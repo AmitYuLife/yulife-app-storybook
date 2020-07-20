@@ -412,6 +412,7 @@ export interface GetLifeInsuranceTopUps_getLifeInsuranceTopUps {
   earnRate: number | null;
   salaryPercentageCovered: number | null;
   newEarnRate: number | null;
+  descriptionHeading: string | null;
 }
 
 export interface GetLifeInsuranceTopUps {

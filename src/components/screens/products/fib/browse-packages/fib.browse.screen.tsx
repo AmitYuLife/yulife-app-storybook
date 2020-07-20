@@ -1,4 +1,4 @@
-import React, { memo, ComponentProps, useCallback } from "react";
+import React, { memo, ComponentProps, useEffect } from "react";
 import { StyleSheet, ScrollView, SafeAreaView } from "react-native";
 import * as Animatable from "react-native-animatable";
 import { GenericHeading } from "@atoms";
@@ -13,6 +13,7 @@ import AdditionalBenefits from "./additional-benefits/additional-benefits";
 import { PayoutCalculator } from "./subcomponents/payout-calculator/payout-calculator";
 import { Documents } from "./subcomponents/documents/documents";
 import { PackageId } from "../fib.helper";
+import Logger from "@services/logging/logger";
 
 interface IFibBrowseScreenProps {
   onNavigateToYuScreen: () => void;
@@ -37,21 +38,20 @@ export const FibBrowseScreen = memo(function (props: IFibBrowseScreenProps) {
     documents,
   } = props;
 
-  const onSelectPackage = useCallback(
-    (packageId: string) => {
-      const coverType = packageId.toLowerCase() as PackageId;
+  const onSelectPackage = (packageId: string) => {
+    const coverType = packageId.toLowerCase() as PackageId;
 
-      // Logger.logEvent("package_view", {
-      //   name: newPackage.packageLabel,
-      //   salary_percentage: packageDetails.salaryPercentageCovered,
-      //   yucount_multiplier: packageDetails.earnRate,
-      //   estimated_cost: packageDetails.estimatedCost,
-      // });
+    selectCoverType(coverType);
+  };
 
-      selectCoverType(coverType);
-    },
-    [selectCoverType]
-  );
+  useEffect(() => {
+    Logger.logEvent("package_view", {
+      name: selectedPackage.label,
+      salary_percentage: selectedPackage.salaryPercentageCovered,
+      yucount_multiplier: selectedPackage.earnRate,
+      estimated_cost: selectedPackage.estimatedCost,
+    });
+  }, [selectedPackage]);
 
   return (
     <>
