@@ -5,7 +5,7 @@ import { FibIntroductionScreen, IFibIntroductionScreenProps } from "./fib-introd
 
 const defaultProps: IFibIntroductionScreenProps = {
   navigateToYuScreen: () => null,
-  userName: "yulify mcyulifeface",
+  firstName: "yulify mcyulifeface",
   onNavigateToSalary: () => null,
   avatar: avatarFiller,
 };

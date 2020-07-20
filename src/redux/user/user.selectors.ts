@@ -15,6 +15,7 @@ export const getAllLeaderboards = (state: IReduxState) => state.user.leaderboard
 export const getVisiblePopups = (state: IReduxState) => state.user.popupVisibility;
 export const getSurgeIntro = (state: IReduxState) => state.user.surgeIntro;
 export const getUserBusiness = (state: IReduxState) => state.user.business;
+export const getUserFirstName = (state: IReduxState) => state.user.firstName;
 export const getUserName = (state: IReduxState) => state.user.firstName + " " + state.user.lastName;
 export const getUserMembershipType = (state: IReduxState) => state.user.membershipType;
 export const getAcceptedLeaderboards = (state: IReduxState) => state.user.leaderboards.filter((l) => l.hasAccepted);
