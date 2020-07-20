@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import { Text } from "@atoms";
 import { GQL_QUERY_GET_YULIFER, GetYuliferData } from "@graphql/yuscreen";
 import { IReduxState } from "@redux/_core/reducers";
-import { getUserName } from "@redux/user/user.selectors";
+import { getUserFirstName } from "@redux/user/user.selectors";
 import { FibIntroductionScreen } from "@screens/products/fib/introduction/fib-introduction.screen";
 import { transformAvatar } from "@screens/member/yu-screen/avatar-builder/avatar-builder.helper";
 import { FIB_EDIT_SALARY, FibLocalNavigation } from "../fib.types";
@@ -20,7 +20,7 @@ type Props = IFibEditSalaryContainerProps & ConnectedState;
 
 const FibIntroductionContainer = memo(function (props: Props) {
   const { loading, error, data } = useQuery<GetYuliferData>(GQL_QUERY_GET_YULIFER);
-  const { userName, navigation } = props;
+  const { firstName, navigation } = props;
 
   if (loading) {
     return (
@@ -40,7 +40,7 @@ const FibIntroductionContainer = memo(function (props: Props) {
 
   return (
     <FibIntroductionScreen
-      userName={userName}
+      firstName={firstName}
       avatar={transformAvatar(data.getYulifer.avatar)}
       navigateToYuScreen={navigation.popToMain}
       onNavigateToSalary={() => navigation.push(FIB_EDIT_SALARY)}
@@ -49,7 +49,7 @@ const FibIntroductionContainer = memo(function (props: Props) {
 });
 
 const mapStateToProps = (state: IReduxState) => ({
-  userName: getUserName(state),
+  firstName: getUserFirstName(state),
 });
 
 export default connect<ConnectedState>(mapStateToProps)(FibIntroductionContainer);

@@ -12,17 +12,17 @@ export interface IFibIntroductionScreenProps {
   navigateToYuScreen: () => void;
   avatar: IAvatar;
   onNavigateToSalary: () => void;
-  userName: string;
+  firstName: string;
 }
 
 export const FibIntroductionScreen = memo(function (props: IFibIntroductionScreenProps) {
-  const { navigateToYuScreen, onNavigateToSalary, userName, avatar } = props;
+  const { navigateToYuScreen, onNavigateToSalary, firstName, avatar } = props;
 
   return (
     <>
       <SafeAreaView style={styles.wrapper}>
-        <GenericHeading heading="Life Insurance" rightIcon={{ icon: "CLOSE" }} onRightIconPress={navigateToYuScreen} />
-        <ScrollView>
+        <GenericHeading heading="Life Insurance" onLeftIconPress={navigateToYuScreen} />
+        <ScrollView showsVerticalScrollIndicator={false}>
           <Animatable.View duration={1000} animation="fadeIn" style={{ flex: 1 }}>
             <View style={styles.imagesWrapper}>
               <View style={styles.avatarWrapper}>
@@ -38,7 +38,7 @@ export const FibIntroductionScreen = memo(function (props: IFibIntroductionScree
                 <FibIntroductionToLifeInsuranceSvg />
               </View>
             </View>
-            <Heading label={`Welcome ${userName}`} style={styles.header} />
+            <Heading label={`Welcome ${firstName},`} style={styles.header} />
             <View style={styles.mainContent}>
               <Text style={styles.text}>This life insurance protects your family from the loss of your income.</Text>
               <Text style={styles.text}>This means every package is unique to you and your current earnings.</Text>
