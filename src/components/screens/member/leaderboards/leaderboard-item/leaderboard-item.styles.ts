@@ -65,9 +65,11 @@ export default StyleSheet.create({
     alignItems: "center",
   } as ViewStyle,
   avatarHeadWrapper: {
+    marginTop: Style.adjust(-15),
     height: "100%",
     width: AVATAR_WIDTH,
-    justifyContent: "center",
+    overflow: "hidden",
+    justifyContent: "flex-start",
     alignItems: "center",
   } as ViewStyle,
   textRight: {

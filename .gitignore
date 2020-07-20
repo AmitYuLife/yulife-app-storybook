@@ -84,3 +84,4 @@ e2e/__report/*
 ios/tmp.xcconfig
 
 e2e-report
+simulator.mov

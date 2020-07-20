@@ -4,13 +4,12 @@ import * as Animatable from "react-native-animatable";
 import { GenericHeading, Heading, Text } from "@atoms";
 import { Style, Colours } from "@styles";
 import MinimalButton from "@atoms/button/minimalButton";
-import { IAvatar } from "@components/screens/member/yu-screen/avatar-builder/avatar.types";
 import { Avatar } from "@components/screens/member/yu-screen/subcomponents/avatar-section/avatar";
 import { FibIntroductionToLifeInsuranceSvg } from "./fib-introduction-to-life-insurance-svg";
 
 export interface IFibIntroductionScreenProps {
   navigateToYuScreen: () => void;
-  avatar: IAvatar;
+  avatar: string;
   onNavigateToSalary: () => void;
   firstName: string;
 }
@@ -26,13 +25,7 @@ export const FibIntroductionScreen = memo(function (props: IFibIntroductionScree
           <Animatable.View duration={1000} animation="fadeIn" style={{ flex: 1 }}>
             <View style={styles.imagesWrapper}>
               <View style={styles.avatarWrapper}>
-                <Avatar
-                  sizeMultiplier={0.6}
-                  avatar={avatar}
-                  isAvatarCreated={true}
-                  avatarFromLocal={avatar}
-                  loading={false}
-                />
+                <Avatar sizeMultiplier={0.6} avatar={null} avatarUrl={avatar} isAvatarCreated={true} loading={false} />
               </View>
               <View style={styles.imageWrapper}>
                 <FibIntroductionToLifeInsuranceSvg />

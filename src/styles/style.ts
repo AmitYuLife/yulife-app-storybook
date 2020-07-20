@@ -148,6 +148,7 @@ const Style = {
   adjust,
   defaultShrinkThreshold,
   isWideScreen,
+  hasNotch: DeviceInfo.hasNotch(),
 };
 
 export default Style;

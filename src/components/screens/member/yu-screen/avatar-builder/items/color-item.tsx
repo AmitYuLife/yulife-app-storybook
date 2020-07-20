@@ -22,7 +22,6 @@ function ColorItem(props: Props) {
   const isSelected = item?.colorScheme?.main === selectedColor;
 
   function onPress() {
-    console.log(item.colorScheme.main);
     setSelectedColor(item?.colorScheme?.main ? item.colorScheme.main : "");
 
     switch (bodyItemType) {

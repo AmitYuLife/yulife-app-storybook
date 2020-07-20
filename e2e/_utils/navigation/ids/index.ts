@@ -102,3 +102,4 @@ export const BUILDER_BODY = (bodyItems: string[]) => `BUILDER_BODY${bodyItems}`
 export const NO_ITEM_SELECTED = "NO_ITEM_SELECTED"
 export const HEAD_TYPE = (type: string) => `HEAD_TYPE_${type}`
 export const YUSCREEN_AVATAR = "YUSCREEN_AVATAR"
+export const EMPTY_AVATAR = "EMPTY_AVATAR";

@@ -28,6 +28,7 @@ export * from "./GetNewConnectionLink";
 export * from "./GetRewards";
 export * from "./GetSession";
 export * from "./GetYulifer";
+export * from "./GetYuliferWithAvatar";
 export * from "./LoginUser";
 export * from "./Milestone";
 export * from "./RedeemReward";

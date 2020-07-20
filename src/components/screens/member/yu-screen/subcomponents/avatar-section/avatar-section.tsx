@@ -9,7 +9,7 @@ type Props = ComponentProps<typeof AvatarItems> & ComponentProps<typeof Avatar>;
 
 export const AvatarSection = memo(function ({
   loading,
-  avatarFromLocal,
+  avatarUrl,
   avatar,
   onEditPress,
   isAvatarCreated,
@@ -24,9 +24,9 @@ export const AvatarSection = memo(function ({
           <Avatar
             isAvatarCreated={isAvatarCreated}
             avatar={avatar}
+            avatarUrl={avatarUrl}
             onEditPress={onEditPress}
             loading={loading}
-            avatarFromLocal={avatarFromLocal}
           />
         </View>
         <View style={styles.avatarItemsWrapper}>

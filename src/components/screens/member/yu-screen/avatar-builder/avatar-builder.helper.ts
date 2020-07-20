@@ -1,6 +1,6 @@
 import {
-  GetYulifer_getYulifer_avatar as FullAvatar,
-  GetYulifer_getYulifer_avatar_head_part as AvatarPart,
+  GetYuliferWithAvatar_getYulifer_avatar as FullAvatar,
+  GetYuliferWithAvatar_getYulifer_avatar_head_part as AvatarPart,
   Avatar_listAvatarParts,
 } from "@graphql/_core/schema";
 import { IAvatarStore, IBodyItem } from "@redux/avatar/avatar.reducer";

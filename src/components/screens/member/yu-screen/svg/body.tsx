@@ -4,7 +4,7 @@ import Svg, { Path, Polygon, Rect, Ellipse } from "react-native-svg";
 import { Style } from "@styles/index";
 import { IBodyItem } from "../../../../../redux/avatar/avatar.reducer";
 import { IAvatar } from "../avatar-builder/avatar.types";
-import { AVATAR_BODY, LEADERBOARD_HEAD_AVATAR } from "@ids";
+import { AVATAR_BODY } from "@ids";
 
 interface IProps {
   avatar: IAvatar;
@@ -74,31 +74,6 @@ export const BodyAvatar = ({ avatar, showElipse, height, width, viewBox }: IProp
       {renderPart(avatar.boots)}
       {renderPart(avatar.chest)}
       {renderPart(avatar.gloves)}
-      {renderPart(avatar.facialHair)}
-      {renderPart(avatar.glasses)}
-    </Svg>
-  );
-};
-
-export const LeaderboardHeadAvatar = ({ avatar, height, width, viewBox = "19 30 230 150" }: IProps) => {
-  return (
-    <Svg
-      width={String(Style.adjust(width ? width : 248))}
-      height={String(Style.adjust(height ? height : 248))}
-      viewBox={viewBox}
-      fill="none"
-      testID={LEADERBOARD_HEAD_AVATAR([
-        avatar.facialHair.partId,
-        avatar.eyes.partId,
-        avatar.hair.partId,
-        avatar.glasses.partId,
-      ])}
-    >
-      {renderPart(avatar.head)}
-      {renderPart(avatar.eyes)}
-      {renderPart(avatar.hair)}
-      {renderPart(avatar.body)}
-      {renderPart(avatar.chest)}
       {renderPart(avatar.facialHair)}
       {renderPart(avatar.glasses)}
     </Svg>

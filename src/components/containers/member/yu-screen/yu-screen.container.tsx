@@ -8,10 +8,7 @@ import { IReduxState } from "@redux/_core/reducers";
 import { getCurrentLevel, getHasNotification } from "@redux/levels/levels.selectors";
 import { getUserName } from "@redux/user/user.selectors";
 import { useQuery } from "@apollo/react-hooks";
-import { transformAvatar } from "../../../screens/member/yu-screen/avatar-builder/avatar-builder.helper";
-import { IBodyItem } from "@redux/avatar/avatar.reducer";
 import { GQL_QUERY_GET_YULIFER } from "../../../../graphql/yuscreen/getYulifer.gql";
-import { saveAvatar } from "@redux/avatar/avatar.actions";
 import {
   GetYulifer,
   GetYulifer_getYulifer_products,
@@ -40,26 +37,14 @@ function YuScreenContainer({
   userName,
   hasNotification,
   componentId,
-  saveAvatar: dispatchSaveAvatar,
   totalCoins,
   avatarFromLocal,
   onLeftMenuPress,
   showYuscreenIntro,
   setYuscreenIntroShown,
 }: Props) {
-  const { data, loading, refetch } = useQuery<GetYulifer>(GQL_QUERY_GET_YULIFER);
-  let avatarFromServer: {
-    head: IBodyItem;
-    eyes: IBodyItem;
-    hair: IBodyItem;
-    body: IBodyItem;
-    pants: IBodyItem;
-    boots: IBodyItem;
-    chest: IBodyItem;
-    gloves: IBodyItem;
-    facialHair: IBodyItem;
-    glasses: IBodyItem;
-  };
+  const { data, loading, refetch } = useQuery<GetYulifer>(GQL_QUERY_GET_YULIFER, { fetchPolicy: "cache-first" });
+  let avatarRemoteFile = null as string;
   let earnRate = 1;
   let products: GetYulifer_getYulifer_products = {
     employer: [],
@@ -70,12 +55,7 @@ function YuScreenContainer({
   const isAvatarCreated = !!data?.getYulifer?.isAvatarCreated;
 
   if (data && data.getYulifer) {
-    const avatarData = data.getYulifer.avatar;
-
-    if (!!avatarData) {
-      avatarFromServer = transformAvatar(avatarData);
-    }
-
+    avatarRemoteFile = data.getYulifer.avatarRemoteFile;
     products = data.getYulifer.products;
     earnRate = data.getYulifer.earnRate ? data.getYulifer.earnRate : earnRate;
   }
@@ -90,8 +70,8 @@ function YuScreenContainer({
       userName={userName}
       hasNotification={hasNotification}
       isAvatarCreated={isAvatarCreated}
-      avatar={avatarFromServer}
-      avatarFromLocal={avatarFromLocal}
+      avatarUrl={avatarRemoteFile}
+      avatarFromLocal={avatarRemoteFile ? null : avatarFromLocal}
       products={products}
       loading={loading}
       earnRate={totalEarnRate}
@@ -107,7 +87,6 @@ function YuScreenContainer({
         navigateToAvatarCreationScreen(refetch, componentId, "Create your Yumoji");
       }}
       onEditPress={() => {
-        dispatchSaveAvatar(avatarFromServer);
         navigateToAvatarModal({
           refetch,
           componentId,
@@ -132,7 +111,6 @@ const mapStateToProps = (state: IReduxState) => ({
 });
 
 const mapDispatchToProps = {
-  saveAvatar,
   setYuscreenIntroShown,
 };
 

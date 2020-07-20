@@ -342,7 +342,7 @@ PODS:
     - React
   - RNSpringScrollView (2.0.23):
     - React
-  - RNSVG (12.0.3):
+  - RNSVG (12.1.0):
     - React
   - RNWootric (1.0.0):
     - React
@@ -585,7 +585,7 @@ SPEC CHECKSUMS:
   RNFastImage: 35ae972d6727c84ee3f5c6897e07f84d0a3445e9
   RNFitKit: 616d0226b7c2df643037e955434d347057eed612
   RNSpringScrollView: 8b0af44fda8b131d845b93bf5b1d0710152e4e61
-  RNSVG: 7e16ddfc6e00d5aa69c9eb83e699bcce5dcb85d4
+  RNSVG: ce9d996113475209013317e48b05c21ee988d42e
   RNWootric: 82a24018a640a6b196c9287421b42ff3946a2b45
   SDWebImage: 7edb9c3ea661e77a66661f7f044de8c1b55d1120
   SDWebImageWebPCoder: 36f8f47bd9879a8aea6044765c1351120fd8e3a8

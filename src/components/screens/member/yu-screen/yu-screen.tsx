@@ -21,7 +21,7 @@ interface IProps {
   isAvatarCreated: boolean;
   loading: boolean;
   userName: string;
-  avatar: IAvatar;
+  avatarUrl: string;
   avatarFromLocal: IAvatar;
   products: GetYulifer_getYulifer_products;
   onUnlockPress: () => void;
@@ -42,7 +42,7 @@ const YuScreen = (props: IProps) => {
     userName,
     totalCoins,
     isAvatarCreated,
-    avatar,
+    avatarUrl,
     avatarFromLocal,
     loading,
     products: { personal: productsPersonal, employer: productsEmployer, charms: productsCharms },
@@ -60,6 +60,7 @@ const YuScreen = (props: IProps) => {
     const { y, height } = event.nativeEvent.layout;
     setLayoutHeader(y + height);
   }, []);
+
   return (
     <View style={styles.wrapper} testID={YUSCREEN}>
       <View style={styles.topbarFiller} />
@@ -69,12 +70,12 @@ const YuScreen = (props: IProps) => {
         <AvatarSection
           productsPersonal={productsPersonal}
           onEditPress={onEditPress}
-          avatar={avatar}
+          avatarUrl={avatarUrl}
           onProductPress={onProductPress}
           isAvatarCreated={isAvatarCreated}
           onUnlockPress={onUnlockPress}
           loading={loading}
-          avatarFromLocal={avatarFromLocal}
+          avatar={avatarFromLocal}
         />
         <CharmsSection productsCharms={productsCharms} textPosition={sectionTitleWidth} />
         <EmployerBenefits

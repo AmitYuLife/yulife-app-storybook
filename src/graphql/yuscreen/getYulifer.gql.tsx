@@ -1,5 +1,5 @@
 import gql from "graphql-tag";
-import { GQL_FRAGMENT_PRODUCT, GQL_FRAGMENT_AVATAR } from "./_fragments.gql";
+import { GQL_FRAGMENT_PRODUCT } from "./_fragments.gql";
 import { GetYulifer_getYulifer } from "@graphql/_core/schema";
 
 export interface GetYuliferData {
@@ -8,13 +8,13 @@ export interface GetYuliferData {
 
 export const GQL_QUERY_GET_YULIFER = gql`
   ${GQL_FRAGMENT_PRODUCT}
-  ${GQL_FRAGMENT_AVATAR}
 
   query GetYulifer {
     getYulifer {
       userId
       earnRate
       isAvatarCreated
+      avatarRemoteFile
       products {
         employer {
           ...YuProduct
@@ -25,9 +25,6 @@ export const GQL_QUERY_GET_YULIFER = gql`
         charms {
           ...YuProduct
         }
-      }
-      avatar {
-        ...YuAvatar
       }
     }
   }

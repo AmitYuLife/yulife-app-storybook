@@ -3,7 +3,6 @@ import { StyleSheet, ScrollView, SafeAreaView } from "react-native";
 import * as Animatable from "react-native-animatable";
 import { GenericHeading } from "@atoms";
 import { Style } from "@styles";
-import { IAvatar } from "@components/screens/member/yu-screen/avatar-builder/avatar.types";
 import { AvatarAndDescription, HowItWorks, EstimatedCost } from "./subcomponents";
 import { ContinueButton } from "./continue-button/continue-button";
 import { Package } from "./fib.browse.types";
@@ -20,17 +19,17 @@ interface IFibBrowseScreenProps {
   onNavigateToYuScreen: () => void;
   navigateToEditSalary: () => void;
   currentEarnRate: number;
-  avatar: IAvatar;
   selectCoverType: (coverType: PackageId) => void;
   selectedPackage: Package;
   faqs: IFaq[];
   documents: IFaq[];
+  avatarUrl: string;
 }
 
 export const FibBrowseScreen = memo(function (props: IFibBrowseScreenProps) {
   const {
     onNavigateToYuScreen,
-    avatar,
+    avatarUrl,
     currentEarnRate,
     selectCoverType,
     faqs,
@@ -65,7 +64,7 @@ export const FibBrowseScreen = memo(function (props: IFibBrowseScreenProps) {
         <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scrollView}>
           <Animatable.View duration={1000} animation="fadeIn" style={{ flex: 1 }}>
             <PackageOptions selectedPackageId={selectedPackage.label} onSelectPackage={onSelectPackage} />
-            <AvatarAndDescription avatar={avatar} selectedPackage={selectedPackage} currentEarnRate={currentEarnRate} />
+            <AvatarAndDescription avatarUrl={avatarUrl} selectedPackage={selectedPackage} currentEarnRate={currentEarnRate} />
             <EstimatedCost
               navigateToEditSalary={navigateToEditSalary}
               heading={`£${selectedPackage.estimatedCost} per month`}

@@ -8,12 +8,13 @@ import {
   GetLifeInsuranceTopUpsVars,
 } from "@graphql/products";
 import { FibBrowseScreen } from "@screens/index";
-import { transformAvatar } from "@screens/member/yu-screen/avatar-builder/avatar-builder.helper";
 import Logger from "@services/logging/logger";
 
 import { FIB_EDIT_SALARY, FIB_FAQ, FibLocalNavigation } from "../fib.types";
 import fibFaqItems from "../data/faq-fib-data";
 import fibDocumentsItems from "../data/documents-data";
+import { GetYulifer } from "@graphql/_core/schema";
+import { GQL_QUERY_GET_YULIFER } from "@graphql/yuscreen";
 import { PackageId } from "@components/screens/products/fib/fib.helper";
 import { Package } from "@components/screens/products/fib/browse-packages/fib.browse.types";
 import { IFaq } from "@components/screens/products/fib/browse-packages/subcomponents/faqs/faq";
@@ -67,6 +68,10 @@ const FibBrowseContainer = memo(function (props: IFibContainer) {
     }
   );
 
+  const { data: yuliferData } = useQuery<GetYulifer>(GQL_QUERY_GET_YULIFER, {
+    fetchPolicy: "cache-only",
+  });
+
   const faqs: IFaq[] = fibFaqItems.map((faq) => ({
     label: faq.question,
     redirectType: "internal",
@@ -105,7 +110,7 @@ const FibBrowseContainer = memo(function (props: IFibContainer) {
 
   return (
     <FibBrowseScreen
-      avatar={transformAvatar(data.getLifeInsuranceTopUps.avatar)}
+      avatarUrl={yuliferData.getYulifer.avatarRemoteFile}
       onNavigateToYuScreen={navigation.popToMain}
       navigateToEditSalary={() => navigation.push(FIB_EDIT_SALARY)}
       currentEarnRate={data.getLifeInsuranceTopUps.earnRate}

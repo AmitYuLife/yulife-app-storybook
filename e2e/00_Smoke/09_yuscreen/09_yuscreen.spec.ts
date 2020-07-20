@@ -1,4 +1,4 @@
-import { Feature, Scenario, Given, When, Then, ScenarioOnly, FeatureOnly } from "@bdd";
+import { Feature, Scenario, Given, When, Then, ScenarioOnly } from "@bdd";
 import * as scenario from "./_steps/scenario"
 import * as given from "./_steps/given"
 import * as when from "./_steps/when"
@@ -68,14 +68,14 @@ Feature("I am able to use the yuscreen, create, and edit an Yumoji", async () =>
                                                         Then("I should be on the Yumoji completion screen", then.onAvatarCompletionScreen)
                                                         When("I tap 'Done' ", when.tapText("Done"), async () => {
                                                             Then("I should be on the yuscreen", then.onYuscreen(CUSTOMER_18))
-                                                            Then("I should see my Yumoji", then.avatarBodyVisible("eyes_1", "scruffy_sidepart", "fat_lumberjack", "glasses_5"))
+                                                            Then("I should see my Yumoji", then.idVisible(YUSCREEN_AVATAR))
                                                             Then("I should see my updated coin balance", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(620)))
                                                         })
                                                     })
                                                 })
                                                 When("I go to the leaderboard", when.tapID(NAV_BAR("leaderboard")), async () => {
                                                     Then("I should be on the leaderboard", then.textVisible(USER_18_LEADERBOARD.data.name))
-                                                    Then("I should see my Yumoji", then.avatarBodyVisible("eyes_1", "scruffy_sidepart", "fat_lumberjack", "glasses_5"))
+                                                    Then("I should see my Yumoji", then.idVisible(YUSCREEN_AVATAR))
                                                 })
                                             })
                                         })
@@ -106,9 +106,9 @@ Feature("I am able to use the yuscreen, create, and edit an Yumoji", async () =>
 
     Scenario("I can view my Yumoji after I login, and edit it", scenario.start, async () => {
         Given("I login", given.loginToYuScreen(true, CUSTOMER_17, AUTH_17), async () => {
-            Then("I should see my Yumoji", then.avatarBodyVisibleWithUser(USER_17))
+            Then("I should see my Yumoji", then.idVisible(YUSCREEN_AVATAR))
             When("I go to the leaderboard", when.tapID(NAV_BAR("leaderboard")), async () => {
-                Then("I should see my Yumoji", then.avatarBodyVisibleWithUser(USER_17))
+                Then("I should see my Yumoji", then.idVisible(YUSCREEN_AVATAR))
                 Then("I should see my coin balance", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(460)))
                 When("I go back to the yuscreen", when.tapID(NAV_BAR("yu")), async () => {
                     Then("I should be on the yuscreen", then.onYuscreen(CUSTOMER_17))
@@ -137,10 +137,10 @@ Feature("I am able to use the yuscreen, create, and edit an Yumoji", async () =>
                                                         Then("I should be on the 'All Set' screen", then.textVisible("All Set!"))
                                                         When("I tap 'yes'", when.tapText("Yes"), async () => {
                                                             Then("I should be on the yuscreen", then.onYuscreen(CUSTOMER_17))
-                                                            Then("I should see my Yumoji", then.avatarBodyVisible("eyes_1", "scruffy_sidepart", "emptyElement", ""))
+                                                            Then("I should see my Yumoji", then.idVisible(YUSCREEN_AVATAR))
                                                             Then("I should see the same coin balance", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(460)))
                                                             When("I go to the leaderboard", when.tapID(NAV_BAR("leaderboard")), async () => {
-                                                                Then("I should see my Yumoji", then.avatarBodyVisible("eyes_1", "scruffy_sidepart", "", ""))
+                                                                Then("I should see my Yumoji", then.idVisible(YUSCREEN_AVATAR))
                                                             })
                                                         })
                                                     })
@@ -159,7 +159,7 @@ Feature("I am able to use the yuscreen, create, and edit an Yumoji", async () =>
 
     Scenario("I can complete a survey on the yuscreen", scenario.start, async () => {
         Given("I login", given.loginToYuScreen(true, CUSTOMER_17, AUTH_17), async () => {
-            Then("I should see my Yumoji", then.avatarBodyVisibleWithUser(USER_17))
+            Then("I should see my Yumoji", then.idVisible(YUSCREEN_AVATAR))
             Then("I should see a list of 'Coming Soon' options", then.personalProductsVisible)
             When("I tap the gloves", when.tapID(PERSONAL_PRODUCT("LifeInsurance")), async () => {
                 Then("I should be on the survey screen", then.onSurveyScreen)
@@ -181,7 +181,7 @@ Feature("I am able to use the yuscreen, create, and edit an Yumoji", async () =>
                             Then("I should see a Thank You screen", then.onSurveySubmitScreen)
                             When("I tap Close", when.tapText("Close"), async () => {
                                 Then("I should be on the yuscreen", then.onYuscreen(CUSTOMER_17))
-                                Then("I should see my Yumoji", then.avatarBodyVisibleWithUser(USER_17))
+                                Then("I should see my Yumoji", then.idVisible(YUSCREEN_AVATAR))
                             })
                         })
                     })
@@ -237,14 +237,14 @@ Feature("I am able to use the yuscreen, create, and edit an Yumoji", async () =>
                                                     Then("I should be on the Yumoji completion screen", then.onAvatarCompletionScreen)
                                                     When("I tap 'Done' ", when.tapText("Done"), async () => {
                                                         Then("I should be on the yuscreen", then.onYuscreen(CUSTOMER_19))
-                                                        Then("I should see my Yumoji", then.avatarBodyVisible("eyes_1", "long_sides", "", "emptyElement"))
+                                                        Then("I should see my Yumoji", then.idVisible(YUSCREEN_AVATAR))
                                                         Then("I should see my updated coin balance", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(300)))
                                                     })
                                                 })
                                             })
                                             When("I go to the leaderboard", when.tapID(NAV_BAR("leaderboard")), async () => {
                                                 Then("I should be on the leaderboard", then.textVisible(USER_18_LEADERBOARD.data.name))
-                                                Then("I should see my Yumoji", then.avatarBodyVisible("eyes_1", "long_sides", "", ""))
+                                                Then("I should see my Yumoji", then.idVisible(YUSCREEN_AVATAR))
                                             })
                                         })
                                     })

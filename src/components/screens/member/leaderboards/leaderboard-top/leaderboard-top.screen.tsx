@@ -1,20 +1,14 @@
 import * as React from "react";
 import { View, Animated, Platform, ViewStyle, LayoutChangeEvent } from "react-native";
-import { avatarStyles } from "./leaderboard-top.styles";
+import { avatarStyles, BODY_AVATAR_WIDTH, SVG_HEIGHT } from "./leaderboard-top.styles";
 import { LeaderboardPedestal, EmptyMaleBody } from "./../svg/leaderboard";
-import { BodyAvatar } from "../../yu-screen/svg/body";
-import { IAvatar } from "../../yu-screen/avatar-builder/avatar.types";
 import commonStyles from "../leaderboards.screen.styles";
-import { Style } from "@styles/index";
+import { SvgCssUri } from "react-native-svg";
+import { YUSCREEN_AVATAR } from "@ids";
 
 interface IProps {
-  avatars: IAvatar[];
+  avatars: string[];
 }
-const MULTIPLIER = 1.1;
-
-const BODY_AVATAR_HEIGHT = Style.SCALE_UP_AND_DOWN(150 * MULTIPLIER);
-const BODY_AVATAR_WIDTH = Style.SCALE_UP_AND_DOWN(53 * MULTIPLIER);
-const VIEWBOX_MIN_Y = 40;
 
 export default function LeaderboardTop({ avatars }: IProps) {
   return (
@@ -26,9 +20,10 @@ export default function LeaderboardTop({ avatars }: IProps) {
         {avatars.map((avatar, i) => (
           <View
             key={i}
+            testID={i === 1 ? YUSCREEN_AVATAR : null}
             style={[
               avatarStyles.avatarBase,
-              avatar.head ? avatarStyles[`avatar${i + 1}`] : avatarStyles[`avatarEmpty${i + 1}`],
+              avatar ? avatarStyles[`avatar${i + 1}`] : avatarStyles[`avatarEmpty${i + 1}`],
             ]}
           >
             <Avatar avatar={avatar} />
@@ -39,17 +34,13 @@ export default function LeaderboardTop({ avatars }: IProps) {
   );
 }
 
-function Avatar({ avatar }: { avatar: IAvatar }) {
-  const Component = !avatar.head ? EmptyMaleBody : BodyAvatar;
+function Avatar({ avatar }: { avatar: string }) {
+  if (!avatar) {
+    return <EmptyMaleBody />;
+  }
   return (
-    <View>
-      <Component
-        avatar={avatar}
-        showElipse={false}
-        width={BODY_AVATAR_WIDTH}
-        height={BODY_AVATAR_HEIGHT}
-        viewBox={`0 ${VIEWBOX_MIN_Y} 265 553`}
-      />
+    <View style={avatarStyles.avatarWrapper}>
+      <SvgCssUri uri={avatar} style={{ width: BODY_AVATAR_WIDTH, height: SVG_HEIGHT }} />
     </View>
   );
 }
@@ -57,7 +48,7 @@ function Avatar({ avatar }: { avatar: IAvatar }) {
 interface ILeaderboardTopIOS {
   translateYTransform: Animated.AnimatedInterpolation;
   showConsentPrompt: boolean;
-  avatars: IAvatar[];
+  avatars: string[];
   style?: ViewStyle;
   onLayout?: (e: LayoutChangeEvent) => void;
   children: React.ReactChild;
