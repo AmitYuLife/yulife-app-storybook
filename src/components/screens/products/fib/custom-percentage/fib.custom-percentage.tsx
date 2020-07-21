@@ -7,6 +7,7 @@ import { GenericHeading, MinimalButton } from "@atoms";
 import { TextWithBoldText, HorizontalScroller } from "@molecules";
 import { personPencilSvg } from "./assets/person-pencil-svg";
 import { EstimatedCost } from "./subcomponents/estimated-cost";
+import LinearGradient from "react-native-linear-gradient";
 
 export interface IFibCustomPercentage {
   onNavigateBack: () => void;
@@ -21,6 +22,8 @@ export interface IFibCustomPercentage {
 const copy = {
   caption: `Get an estimated quote using a\n<bold>custom percentage</bold> of your salary`,
 };
+
+const GRADIENT_COLOR = ["rgba(255, 255, 255, 0)", "rgba(217, 217, 217, 0.67)", "rgba(243, 243, 243, 0)"];
 
 export const FibCustomPercentage = memo(function (props: IFibCustomPercentage) {
   const {
@@ -45,6 +48,13 @@ export const FibCustomPercentage = memo(function (props: IFibCustomPercentage) {
         <View>
           <TextWithBoldText style={styles.caption} value={copy.caption} />
         </View>
+        <LinearGradient
+          pointerEvents="none"
+          colors={GRADIENT_COLOR}
+          style={styles.gradientTop}
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 0 }}
+        />
         <View style={styles.percentagePickerWrapper}>
           <HorizontalScroller
             items={salaryPercentageRange}
@@ -57,6 +67,13 @@ export const FibCustomPercentage = memo(function (props: IFibCustomPercentage) {
           />
         </View>
         <EstimatedCost estimatedCost={estimatedCost} loading={loadingEstimatedCost} />
+        <LinearGradient
+          pointerEvents="none"
+          colors={GRADIENT_COLOR}
+          style={styles.gradientBottom}
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 0 }}
+        />
       </View>
       <View style={styles.floatBottom}>
         <View style={styles.promptForward}>
@@ -132,6 +149,17 @@ const styles = StyleSheet.create({
     marginTop: Platform.select({ ios: Style.adjust(38), android: Style.adjust(24) }),
     paddingLeft: Platform.select({ ios: Style.adjust(14), android: Style.adjust(14) }),
     overflow: "hidden",
+  } as ViewStyle,
+  gradientBottom: {
+    width: Style.DEVICE_WIDTH,
+    height: 1,
+    marginTop: Style.adjust(23),
+  } as ViewStyle,
+  gradientTop: {
+    width: Style.DEVICE_WIDTH,
+    height: 1,
+    marginTop: Style.adjust(32),
+    marginBottom: Style.adjust(-20),
   } as ViewStyle,
 });
 
