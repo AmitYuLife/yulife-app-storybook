@@ -1,4 +1,4 @@
-import React, { useState, useRef, FC } from "react";
+import React, { useState, useRef, FC, useEffect } from "react";
 import {
   View,
   Animated,
@@ -32,12 +32,9 @@ type Props = {
   highlightLabelStyle?: TextStyle;
   activeTextStyle?: TextStyle;
   newActiveIndexCallback?: (activeIndex: number) => void;
-  onPressOut?: () => void;
 } & StaticProps;
 
 const ANDROID_SAFEGUARD = 0.1;
-
-const AnimatedScrollView: any = Animated.createAnimatedComponent(ScrollView); // it works, but I can't make TS stop shouting for ref
 
 const HorizontalScroller: FC<Props> & StaticProps = ({
   items = Array.from({ length: 50 }).map((_, i) => i),
@@ -47,45 +44,60 @@ const HorizontalScroller: FC<Props> & StaticProps = ({
   highlightLabelStyle,
   activeTextStyle,
   newActiveIndexCallback,
-  onPressOut = () => null,
 }) => {
+  const timerRef = useRef(null);
+
+  const cancelTimer = () => {
+    if (timerRef?.current) {
+      clearTimeout(timerRef.current);
+    }
+  };
+
+  useEffect(() => {
+    return cancelTimer;
+  }, []);
+
   const [scrollX] = useState(new Animated.Value(0));
-  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
   const scrollViewRef = useRef<ScrollView | null>(null);
+
   const handleSwipe = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
     const { x } = event.nativeEvent.contentOffset;
+    let activeIndex = Math.round(x ? x / ITEM_WIDTH + ANDROID_SAFEGUARD : 0);
 
-    const activeIndex = Math.floor(x ? x / ITEM_WIDTH + ANDROID_SAFEGUARD : 0);
-    const hasStoppedBeyondCenter = x % ITEM_WIDTH > 0;
-    if (hasStoppedBeyondCenter) {
-      scrollViewRef.current.scrollTo({ x: activeIndex * ITEM_WIDTH });
+    if (activeIndex >= items.length) {
+      activeIndex = items.length - 1;
     }
 
-    timeoutRef.current = setTimeout(() => {
+    if (activeIndex < 0) {
+      activeIndex = 0;
+    }
+
+    timerRef.current = setTimeout(() => {
+      scrollViewRef?.current?.scrollTo({ x: activeIndex * ITEM_WIDTH });
+
       if (newActiveIndexCallback) {
         newActiveIndexCallback(activeIndex);
       }
-    }, 750);
+    }, 700);
   };
+
   return (
     <View style={styles.wrapper}>
       <Highlight style={highlightStyle} />
-      <AnimatedScrollView
+      <Animated.ScrollView
         onScroll={Animated.event([{ nativeEvent: { contentOffset: { x: scrollX } } }], { useNativeDriver: true })}
-        onTouchStart={() => {
-          if (timeoutRef.current) {
-            clearTimeout(timeoutRef.current);
-          }
-        }}
-        onScrollEndDrag={onPressOut}
-        onMomentumScrollEnd={handleSwipe}
+        onScrollEndDrag={handleSwipe}
+        snapToInterval={ITEM_WIDTH}
+        decelerationRate={0}
+        onTouchStart={cancelTimer}
+        disableIntervalMomentum={true}
+        disableScrollViewPanResponder={true}
         ref={scrollViewRef}
         scrollEventThrottle={16}
         contentContainerStyle={styles.contentContainer}
         style={styles.scrollView}
         showsHorizontalScrollIndicator={false}
         horizontal={true}
-        disableIntervalMomentum={true}
       >
         {items.map((item, index) => (
           <Wrapper
@@ -108,7 +120,7 @@ const HorizontalScroller: FC<Props> & StaticProps = ({
             </ItemText>
           </Wrapper>
         ))}
-      </AnimatedScrollView>
+      </Animated.ScrollView>
       <HighlightLabel
         label={highlightLabel}
         wrapperStyle={highlightLabelWrapperStyle}
