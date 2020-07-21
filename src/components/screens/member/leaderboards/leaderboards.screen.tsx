@@ -430,7 +430,7 @@ function createAnimatedComponentForwardingRef<P, S>(Component: React.ComponentCl
       }
     }
     const AnimatedWrapper = Animated.createAnimatedComponent(Wrapper);
-    return <AnimatedWrapper {...props} />;
+    return <AnimatedWrapper {...(props as any)} />;
   });
 }
 

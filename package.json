@@ -111,7 +111,7 @@
     "@types/mocha": "^7.0.2",
     "@types/node": "^10.9.4",
     "@types/react": "^16.9.34",
-    "@types/react-native": "^0.61.15",
+    "@types/react-native": "^0.62.18",
     "@types/react-native-mixpanel": "^0.1.0",
     "@types/react-native-push-notification": "^3.0.8",
     "@types/react-redux": "^7.1.7",

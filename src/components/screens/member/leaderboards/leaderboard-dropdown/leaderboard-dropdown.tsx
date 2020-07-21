@@ -67,6 +67,7 @@ export default class LeaderboardDropdown extends React.PureComponent<IProps> {
         delay: 400,
         duration: 300,
         toValue: -Style.DEVICE_HEIGHT,
+        useNativeDriver: true,
       }).start();
     };
   };
