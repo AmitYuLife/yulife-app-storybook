@@ -1,4 +1,4 @@
-export const getAdditionalBenefitsData = (earnRate: number, packageEarnRate: number) => [
+export const getAdditionalBenefitsData = (earnRate: number, packageEarnRate: number, loading: boolean) => [
   {
     id: "keepTheApp",
     svg: `<svg width="72" height="72" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -260,7 +260,9 @@ export const getAdditionalBenefitsData = (earnRate: number, packageEarnRate: num
     </defs>
     </svg>
     `,
-    text: `Power up your YuCoin earning from ${earnRate}x to <bold>${packageEarnRate}x</bold>`,
+    text: `Power up your YuCoin earning from ${loading ? "..." : `${earnRate}x`} to <bold>${
+      loading ? "..." : `${packageEarnRate}x`
+    }</bold>`,
   },
   {
     id: "gpConsultations",

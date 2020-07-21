@@ -1,6 +1,7 @@
-import { ImageStyle, StyleSheet, TextStyle, ViewStyle } from "react-native";
+import { ImageStyle, StyleSheet, TextStyle, ViewStyle, Platform } from "react-native";
 import { isIphoneX } from "react-native-iphone-x-helper";
 import { Style } from "../../../../styles";
+import deviceInfoModule from "react-native-device-info";
 
 export default StyleSheet.create({
   close: {
@@ -51,7 +52,7 @@ export default StyleSheet.create({
   } as TextStyle,
   versionTextWrapper: {
     alignItems: "center",
-    bottom: Style.SCALE_UP_AND_DOWN(10),
+    bottom: Platform.OS === "ios" && deviceInfoModule.hasNotch() ? 44 : Style.SCALE_UP_AND_DOWN(10),
     justifyContent: "center",
     position: "absolute",
     width: "100%",

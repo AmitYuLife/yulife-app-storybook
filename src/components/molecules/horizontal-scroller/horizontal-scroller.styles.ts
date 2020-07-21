@@ -2,7 +2,7 @@ import { ViewStyle, TextStyle, StyleSheet } from "react-native";
 import { Style } from "@styles";
 
 export const ITEM_WIDTH = Style.DEVICE_WIDTH / 5;
-export const HEIGHT = 50;
+export const HEIGHT = 80;
 export const ITEM_LABEL_SIZE = 24;
 export const HALF_SCREEN = Style.DEVICE_WIDTH / 2;
 export const HIGHLIGHT_RADIUS = 33;
@@ -13,6 +13,7 @@ export const PUSH_LEFT_TO_CENTER = 30;
 const styles = StyleSheet.create({
   wrapper: {
     height: HEIGHT + 1,
+    overflow: "hidden",
   } as ViewStyle,
   contentContainer: {
     paddingLeft: ITEM_WIDTH * 2,

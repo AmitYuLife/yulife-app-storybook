@@ -5,13 +5,12 @@ import { Colours, Style } from "@styles";
 import { Package } from "../fib.browse.types";
 
 interface Props {
-  currentEarnRate: number;
-  selectedPackage: Package;
+  selectedPackage?: Partial<Package>;
+  loading: boolean;
 }
 
-export const Description = memo(({ currentEarnRate, selectedPackage }: Props) => {
-  const { descriptionHeading, earnRate, salaryPercentageCovered } = selectedPackage;
-  const newEarnRate = earnRate + currentEarnRate;
+export const Description = memo(({ selectedPackage, loading }: Props) => {
+  const { descriptionHeading, earnRate, newEarnRate, salaryPercentageCovered } = selectedPackage;
 
   return (
     <View style={styles.descriptionWrapper}>
@@ -19,7 +18,8 @@ export const Description = memo(({ currentEarnRate, selectedPackage }: Props) =>
         {descriptionHeading}
       </Text>
       <Text style={[styles.text, styles.marginTop1]}>
-        Pays a single cash sum based on <Text bold>{`${salaryPercentageCovered}% `}</Text>of your salary.
+        Pays a single cash sum based on <Text bold>{`${loading ? "..." : salaryPercentageCovered}% `}</Text>of your
+        salary.
       </Text>
       <View style={[styles.manualStructureWrapper, styles.marginTop2]}>
         <View style={styles.compoundInlineWrapper}>
@@ -28,9 +28,9 @@ export const Description = memo(({ currentEarnRate, selectedPackage }: Props) =>
         </View>
         <Text style={styles.text}>increased from</Text>
         <View style={styles.compoundInlineWrapper}>
-          <Text style={styles.text}>{`${currentEarnRate}x to`}</Text>
+          <Text style={styles.text}>{`${loading ? "..." : `${earnRate}x`} to`}</Text>
           <Text style={styles.text} bold>
-            {` ${newEarnRate}x`}
+            {` ${loading ? "..." : `${newEarnRate}x`}`}
           </Text>
         </View>
       </View>

@@ -9,15 +9,23 @@ import {
 import { Text } from "@atoms";
 import { Style } from "@styles";
 
-interface Props {
-  label: string;
+interface IHighlight {
+  style?: ViewStyle;
 }
 
-export const Highlight = memo(() => <View pointerEvents="none" style={styles.highlight} />);
+interface IHighlightLabel {
+  label: string;
+  wrapperStyle?: ViewStyle;
+  labelStyle?: TextStyle;
+}
 
-export const HighlightLabel = memo(({ label = "" }: Props) => (
-  <View pointerEvents="none" style={styles.highlightLabelWrapper}>
-    <Text style={styles.highlightLabel}>{label}</Text>
+export const Highlight = memo(({ style }: IHighlight) => (
+  <View pointerEvents="none" style={[styles.highlight, style]} />
+));
+
+export const HighlightLabel = memo(({ label = "", wrapperStyle, labelStyle }: IHighlightLabel) => (
+  <View pointerEvents="none" style={[styles.highlightLabelWrapper, wrapperStyle]}>
+    <Text style={[styles.highlightLabel, labelStyle]}>{label}</Text>
   </View>
 ));
 

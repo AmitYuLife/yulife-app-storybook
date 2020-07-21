@@ -1,10 +1,17 @@
 import { PackageId } from "../fib.helper";
 
-export interface Package {
+interface IServerPackageProps {
+  payoutAmount: number;
   estimatedCost: number;
   earnRate: number;
+  newEarnRate: number;
   salaryPercentageCovered: number;
+}
+
+interface ILocalPackageProps {
+  id: PackageId;
   label: string;
   descriptionHeading: string;
-  id: PackageId;
 }
+
+export type Package = IServerPackageProps & ILocalPackageProps;

@@ -14,6 +14,8 @@ const selectedPackage: Package = {
   id: "common",
   label: "Common",
   descriptionHeading: "basic cover",
+  newEarnRate: 40,
+  payoutAmount: 400000,
 };
 
 const onPress = (): null => null;
@@ -33,9 +35,16 @@ storiesOf("FibBrowse")
       navigateToEditSalary={() => null}
       onNavigateToYuScreen={(): void => null}
       avatarUrl={""}
-      currentEarnRate={20}
       faqs={faqs}
       selectCoverType={() => null}
       documents={documents}
+      navigateToCustomCover={() => null}
+      payoutEstimatorItems={{
+        years: Array.from({ length: 31 }).map((_, i) => i + 40),
+        months: Array.from({ length: 12 }).map((_, i) => i),
+      }}
+      setDeceaseAgeIndexYear={(_: number): void => null}
+      setDeceaseAgeIndexMonth={(_: number): void => null}
+      loading={false}
     />
   ));

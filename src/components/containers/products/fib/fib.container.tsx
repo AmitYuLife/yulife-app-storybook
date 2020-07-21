@@ -15,12 +15,14 @@ import {
   FIB_FAQ,
   FIB_EDIT_SALARY,
   FIB_BROWSE,
+  FIB_CUSTOM_PERCENTAGE,
 } from "./fib.types";
 import { Navigation } from "react-native-navigation";
 import { ROUTES } from "@navigation/constants";
 import { getFIBState } from "@redux/product/product.selectors";
 import { IReduxState } from "@redux/_core/reducers";
 import { connect } from "react-redux";
+import FibCustomPercentage from "./subcontainers/fib.custom-percentage.container";
 
 interface RouteProps {
   navigation: FibLocalNavigation;
@@ -47,6 +49,8 @@ function getComponent(routeProps: RouteProps) {
       return <FibFaqContainer selectedFaqId={selectedFaq} navigation={navigation} selectFaq={selectFaq} />;
     case FIB_INTRODUCTION:
       return <FibIntroductionContainer navigation={navigation} />;
+    case FIB_CUSTOM_PERCENTAGE:
+      return <FibCustomPercentage navigation={navigation} />;
     default:
       return <FibBrowseContainer selectFaq={selectFaq} navigation={navigation} />;
   }

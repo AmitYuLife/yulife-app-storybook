@@ -27,3 +27,4 @@ export { default as Chest } from "./chest/chest";
 export { default as LevelLine } from "./level-line/level-line";
 export { default as Logo } from "./logo";
 export { default as YuCoinIcon } from "./yucoin-icon/yucoin.icon";
+export { default as MinimalButton } from "./button/minimalButton";

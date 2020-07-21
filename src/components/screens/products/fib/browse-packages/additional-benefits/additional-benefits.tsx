@@ -8,14 +8,15 @@ import { Style } from "../../../../../../styles";
 interface IProps {
   earnRate: number;
   packageEarnRate: number;
+  loading: boolean;
 }
 
 const AdditionalBenefits = memo(function (props: IProps) {
-  const { earnRate, packageEarnRate } = props;
+  const { earnRate, packageEarnRate, loading } = props;
   return (
     <View>
       <Text style={styles.title}>Additional benefits</Text>
-      {getAdditionalBenefitsData(earnRate, packageEarnRate).map((item) => {
+      {getAdditionalBenefitsData(earnRate, packageEarnRate, loading).map((item) => {
         return <AdditionalBenefitsCard key={item.id} text={item.text} svg={item.svg} />;
       })}
     </View>
