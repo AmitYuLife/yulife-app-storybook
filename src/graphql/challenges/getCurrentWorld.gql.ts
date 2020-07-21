@@ -18,8 +18,6 @@ export const GQL_QUERY_GET_CURRENT_WORLD = gql`
         type
         subtype
         unit
-        rating
-        yuCoinAwarded
         challengesDetails {
           id
           rating

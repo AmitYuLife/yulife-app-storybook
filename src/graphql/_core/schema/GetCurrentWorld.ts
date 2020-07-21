@@ -37,8 +37,6 @@ export interface GetCurrentWorld_getCurrentWorld_slots {
   type: string | null;
   subtype: string | null;
   unit: string | null;
-  rating: number | null;
-  yuCoinAwarded: number | null;
   challengesDetails: (GetCurrentWorld_getCurrentWorld_slots_challengesDetails | null)[] | null;
   milestones: (GetCurrentWorld_getCurrentWorld_slots_milestones | null)[] | null;
 }
