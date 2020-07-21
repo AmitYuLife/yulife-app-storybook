@@ -19,7 +19,7 @@ function CardText(props: IProps) {
         {`Your earn rate is ${earnRate}x`}
       </Text>
       <View style={{ flexDirection: "column" }}>
-        <Text style={styles.text}>{`The ${name} you own are giving`}</Text>
+        <Text style={styles.text}>{`Your ${name} are`}</Text>
         {hasIncreasedRate ? <IncreaseRateText earnRate={earnRate} /> : <DefaultRateText earnRate={earnRate} />}
       </View>
     </View>
@@ -32,11 +32,12 @@ function IncreaseRateText({ earnRate }: { earnRate: IProps["earnRate"] }) {
   return (
     <>
       <View style={styles.flexRow}>
-        <Text style={styles.text}>you a</Text>
-        <Text style={StyleSheet.flatten([styles.text, styles.textBold])}>{` ${earnRate}x increase `}</Text>
+        <Text style={styles.text}>adding</Text>
+        <Text style={StyleSheet.flatten([styles.text, styles.textBold])}>{` ${earnRate}x `}</Text>
+        <Text style={styles.text}>to your</Text>
       </View>
       <View style={styles.flexRow}>
-        <Text style={styles.text}>on your YuCoin earn rate from{"\n"}all sources. Amazing!</Text>
+        <Text style={styles.text}>YuCoin earn rate. Amazing!</Text>
       </View>
     </>
   );
@@ -46,11 +47,10 @@ function DefaultRateText({ earnRate }: { earnRate: IProps["earnRate"] }) {
   return (
     <>
       <View style={styles.flexRow}>
-        <Text style={styles.text}>you a</Text>
+        <Text style={styles.text}>giving you a</Text>
         <Text style={StyleSheet.flatten([styles.text, styles.textBold])}>{` ${earnRate}x `}</Text>
-        <Text style={styles.text}>YuCoin earn rate from</Text>
       </View>
-      <Text style={styles.text}>all sources. Amazing!</Text>
+      <Text style={styles.text}>YuCoin earn rate. Amazing!</Text>
     </>
   );
 }

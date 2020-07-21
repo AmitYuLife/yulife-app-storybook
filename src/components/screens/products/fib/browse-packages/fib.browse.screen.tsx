@@ -16,6 +16,7 @@ import { PackageId } from "../fib.helper";
 import { IFaq } from "./subcomponents/faqs/faq";
 import Logger from "@services/logging/logger";
 import { CalculatorItems } from "./subcomponents/payout-calculator/subcomponents/calculator";
+import { formatPrice } from "@components/containers/products/fib/fib.helpers";
 
 interface IFibBrowseScreenProps {
   onNavigateToYuScreen: () => void;
@@ -77,7 +78,7 @@ export const FibBrowseScreen = memo(function (props: IFibBrowseScreenProps) {
             <AvatarAndDescription loading={loading} avatarUrl={avatarUrl} selectedPackage={selectedPackage} />
             <EstimatedCost
               navigateToEditSalary={navigateToEditSalary}
-              heading={`£${selectedPackage.estimatedCost} per month`}
+              heading={`${formatPrice(selectedPackage.estimatedCost)} per month`}
               loading={loading}
             />
             <HowItWorks

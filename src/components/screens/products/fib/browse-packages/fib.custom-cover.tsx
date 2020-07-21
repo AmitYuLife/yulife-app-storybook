@@ -9,6 +9,7 @@ import AdditionalBenefits from "./additional-benefits/additional-benefits";
 import { PayoutCalculator } from "./subcomponents/payout-calculator/payout-calculator";
 import { Documents } from "./subcomponents/documents/documents";
 import { Package } from "./fib.browse.types";
+import { formatPrice } from "@components/containers/products/fib/fib.helpers";
 
 interface IFibCustomCoverScreenProps {
   onNavigateToYuScreen: () => void;
@@ -45,7 +46,7 @@ export const FibCustomCoverScreen = memo(function (props: IFibCustomCoverScreenP
           <AvatarAndDescription loading={loading} avatarUrl={avatarUrl} selectedPackage={selectedPackage} />
           <EstimatedCost
             navigateToEditSalary={navigateToEditSalary}
-            heading={`£${selectedPackage.estimatedCost} per month`}
+            heading={`${formatPrice(selectedPackage.estimatedCost)} per month`}
             loading={loading}
           />
           <HowItWorks
@@ -82,6 +83,7 @@ const styles = StyleSheet.create({
   },
   scrollView: {
     backgroundColor: "#fafafe",
-    paddingBottom: 96,
+    paddingBottom: 120,
+    marginTop: 24,
   },
 });
