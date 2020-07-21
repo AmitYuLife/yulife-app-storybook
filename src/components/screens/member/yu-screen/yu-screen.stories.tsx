@@ -1,8 +1,7 @@
 import React, { ComponentProps } from "react";
 import { storiesOf } from "@storybook/react-native";
 import YuScreen from "./yu-screen";
-import { avatarFiller } from "./yu-screen.stories-helper";
-import { alphaProducts, groupProducts, yulifeProducts } from "./yu-screen-products.data";
+import { avatarFiller, alphaProducts, groupProducts, yulifeProducts } from "./yu-screen.stories-helper";
 
 const fillers = {
   level: 8,

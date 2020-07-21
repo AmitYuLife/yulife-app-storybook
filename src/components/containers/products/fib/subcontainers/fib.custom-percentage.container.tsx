@@ -12,6 +12,7 @@ import {
 } from "@graphql/products";
 import { getFIBState } from "@redux/product/product.selectors";
 import { IReduxState } from "@redux/_core/reducers";
+import { formatPrice } from "../fib.helpers";
 
 type ConnectedState = ReturnType<typeof mapStateToProps>;
 
@@ -68,7 +69,7 @@ const FibCustomPercentageContainer = memo(function (props: FibCustomPercentageCo
       loadingEstimatedCost={loading}
       onNavigateForward={handleNavigateForward}
       salaryPercentageRange={percentageRange}
-      estimatedCost={`£${data?.getLifeInsuranceTopUps.estimatedCost || 0}`}
+      estimatedCost={formatPrice(data?.getLifeInsuranceTopUps.estimatedCost || 0)}
       onNavigateToEditSalary={handleNavigateToEditSalary}
     />
   );

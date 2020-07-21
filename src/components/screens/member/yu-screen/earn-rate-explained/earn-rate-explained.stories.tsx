@@ -1,7 +1,7 @@
 import React, { ComponentProps } from "react";
 import { storiesOf } from "@storybook/react-native";
 import EarnRateExplained from "./earn-rate-explained";
-import { alphaProducts, groupProducts, yulifeProducts } from "./story.helper";
+import { alphaProducts, groupProducts, yulifeProducts } from "../yu-screen.stories-helper";
 
 const fillers = {
   earnRate: 1,
