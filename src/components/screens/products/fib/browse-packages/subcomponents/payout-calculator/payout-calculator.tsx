@@ -1,34 +1,51 @@
-import React, { memo, useState } from "react";
+import React, { memo, useState, ComponentProps } from "react";
 import { View, StyleSheet, ViewStyle, TouchableOpacity, TextStyle } from "react-native";
 import { Text } from "@atoms";
 import { Style, Colours } from "@styles";
 import { SvgXml } from "react-native-svg";
 import { arrowDownSvg, payoutCalculatorSvg } from "./assets";
-import { Calculator } from "./subcomponents/calculator";
+import { Calculator, CalculatorItems } from "./subcomponents/calculator";
 
 const copy = {
   title: "How much would it pay out?",
 };
 
-export const PayoutCalculator = memo(() => {
-  const [collapsed, setCollapsed] = useState(true);
-  const toggleCollapse = () => setCollapsed((collapsed) => !collapsed);
-  return (
-    <View style={styles.wrapper}>
-      <View style={styles.innerWrapper}>
-        <TouchableOpacity onPress={toggleCollapse} style={styles.button}>
-          <SvgXml xml={payoutCalculatorSvg} />
-          <Text style={styles.title}>{copy.title}</Text>
-          <SvgXml
-            style={[styles.arrowDown, { transform: [{ rotate: collapsed ? "0deg" : "180deg" }] }]}
-            xml={arrowDownSvg}
+interface Props {
+  items: CalculatorItems;
+  payoutAmount: number;
+  setDeceaseAgeIndexYear: ComponentProps<typeof Calculator>["setDeceaseAgeIndexYear"];
+  setDeceaseAgeIndexMonth: ComponentProps<typeof Calculator>["setDeceaseAgeIndexMonth"];
+  loading: boolean;
+}
+
+export const PayoutCalculator = memo(
+  ({ loading, payoutAmount, items, setDeceaseAgeIndexYear, setDeceaseAgeIndexMonth }: Props) => {
+    const [collapsed, setCollapsed] = useState(true);
+    const toggleCollapse = () => setCollapsed((collapsed) => !collapsed);
+    return (
+      <View style={styles.wrapper}>
+        <View style={styles.innerWrapper}>
+          <TouchableOpacity onPress={toggleCollapse} style={styles.button}>
+            <SvgXml xml={payoutCalculatorSvg} />
+            <Text style={styles.title}>{copy.title}</Text>
+            <SvgXml
+              style={[styles.arrowDown, { transform: [{ rotate: collapsed ? "0deg" : "180deg" }] }]}
+              xml={arrowDownSvg}
+            />
+          </TouchableOpacity>
+          <Calculator
+            hide={collapsed}
+            items={items}
+            setDeceaseAgeIndexYear={setDeceaseAgeIndexYear}
+            setDeceaseAgeIndexMonth={setDeceaseAgeIndexMonth}
+            payoutAmount={payoutAmount}
+            loading={loading}
           />
-        </TouchableOpacity>
-        <Calculator hide={collapsed} />
+        </View>
       </View>
-    </View>
-  );
-});
+    );
+  }
+);
 
 const styles = StyleSheet.create({
   wrapper: {

@@ -1,5 +1,5 @@
 import React, { memo, ReactChild } from "react";
-import { Animated } from "react-native";
+import { Animated, TextStyle } from "react-native";
 import { Text } from "@atoms";
 import styles from "../horizontal-scroller.styles";
 
@@ -8,11 +8,12 @@ interface Props {
   translateY: Animated.AnimatedInterpolation;
   opacity: Animated.AnimatedInterpolation;
   active?: boolean;
+  style?: TextStyle;
 }
 
-export const ItemText = memo(({ children, opacity, translateY, active }: Props) => {
+export const ItemText = memo(({ children, opacity, translateY, active, style }: Props) => {
   const wrapperStyle = active ? styles.itemLabelActiveWrapper : styles.itemWrapper;
-  const labelStyle = active ? styles.itemLabelActive : styles.itemLabel;
+  const labelStyle = [active ? styles.itemLabelActive : styles.itemLabel, style];
   return (
     <Animated.View
       style={[

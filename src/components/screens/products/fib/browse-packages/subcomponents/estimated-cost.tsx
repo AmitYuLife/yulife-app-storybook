@@ -7,10 +7,11 @@ import Logger from "@services/logging/logger";
 
 interface Props {
   heading: string;
+  loading: boolean;
   navigateToEditSalary: () => void;
 }
 
-export const EstimatedCost = memo(({ heading, navigateToEditSalary }: Props) => {
+export const EstimatedCost = memo(({ heading, loading, navigateToEditSalary }: Props) => {
   function handlePress() {
     Logger.logEvent("salary_edit");
     navigateToEditSalary();
@@ -20,7 +21,7 @@ export const EstimatedCost = memo(({ heading, navigateToEditSalary }: Props) => 
     <View style={styles.wrapper}>
       <Header title="Estimated cost" />
       <View style={styles.contentWrapper}>
-        <Heading title={heading} />
+        <Heading title={loading ? "£... per month" : heading} />
         <View style={styles.buttonWrapper}>
           <MinimalButton
             onPress={handlePress}

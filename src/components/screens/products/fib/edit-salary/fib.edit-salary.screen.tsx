@@ -9,19 +9,19 @@ import Logger from "@services/logging/logger";
 
 export interface IEditSalaryScreen {
   onNavigateBack: () => void;
-  onNavigateToBrowsePackages: () => void;
+  onPressDone: () => void;
   onNavigateToSalaryDescription: () => void;
   salary: number;
   updateSalary: (salary: number) => void;
 }
 
 export const FibEditSalaryScreen = memo(function (props: IEditSalaryScreen) {
-  const { onNavigateBack, salary, updateSalary, onNavigateToBrowsePackages, onNavigateToSalaryDescription } = props;
+  const { onNavigateBack, salary, updateSalary, onPressDone, onNavigateToSalaryDescription } = props;
 
   function handlePress() {
     Logger.logEvent("salary_input");
     Keyboard.dismiss();
-    return onNavigateToBrowsePackages();
+    return onPressDone();
   }
 
   return (

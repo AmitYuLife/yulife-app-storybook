@@ -3,12 +3,16 @@ import LinearGradient from "react-native-linear-gradient";
 import { ITEM_WIDTH } from "../horizontal-scroller.styles";
 import { StyleSheet, ViewStyle } from "react-native";
 
-export const SideGradients = () => (
+interface IProps {
+  gradientLeftStyle?: ViewStyle;
+}
+
+export const SideGradients = ({ gradientLeftStyle }: IProps) => (
   <>
     <LinearGradient
       pointerEvents="none"
       colors={["rgba(255,255,255,1)", "rgba(255,255,255,1)", "rgba(255,255,255,0)"]}
-      style={[styles.gradient, styles.left]}
+      style={[styles.gradient, styles.left, gradientLeftStyle]}
       start={{ x: 0, y: 1 }}
       end={{ x: 1, y: 1 }}
     />

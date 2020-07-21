@@ -19,7 +19,7 @@ export const Faq = memo(({ label = "", onPress, styles, iconSvgXml, redirectType
   return (
     <TouchableOpacity onPress={onPress} style={style.wrapper}>
       {!iconSvgXml ? null : (
-        <View style={style.iconWrapper}>
+        <View pointerEvents="none" style={style.iconWrapper}>
           <SvgXml xml={iconSvgXml} width={40} height={40} />
         </View>
       )}

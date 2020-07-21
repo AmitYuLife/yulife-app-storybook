@@ -10,13 +10,16 @@ type ConnectedState = ReturnType<typeof mapStateToProps>;
 
 interface IFibEditSalaryContainerProps {
   navigation: FibLocalNavigation;
-  fromIntroductionScreen?: boolean;
 }
 
 type Props = IFibEditSalaryContainerProps & ConnectedState;
 
 function FibEditSalaryContainer(props: Props) {
   const { navigation, salary } = props;
+  const {
+    passProps: { onPressDone = () => navigation.push(FIB_BROWSE) },
+  } = navigation.currentRoute;
+
   const dispatch = useDispatch();
   const [tempSalary, setTempSalary] = useState(salary || 0);
 
@@ -31,7 +34,7 @@ function FibEditSalaryContainer(props: Props) {
     };
 
     dispatch(updateFIBValue(payload));
-    navigation.push(FIB_BROWSE);
+    onPressDone();
   }
 
   return (
@@ -39,7 +42,7 @@ function FibEditSalaryContainer(props: Props) {
       salary={tempSalary}
       updateSalary={updateSalary}
       onNavigateToSalaryDescription={() => navigation.push(FIB_SALARY_DESCRIPTION)}
-      onNavigateToBrowsePackages={submitSalary}
+      onPressDone={submitSalary}
       onNavigateBack={navigation.pop}
     />
   );

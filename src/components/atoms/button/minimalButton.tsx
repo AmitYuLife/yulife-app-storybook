@@ -13,7 +13,7 @@ import Text from "../text/text";
 interface IProps {
   disabled?: boolean;
   testID?: string;
-  onPress?: () => void;
+  onPress: () => void;
   isLoading?: boolean;
   title: string;
   titleStyle?: TextStyle;
