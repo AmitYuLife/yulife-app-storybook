@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect } from "react";
 import { Button, GenericHeading } from "@atoms";
 import { useState } from "react";
 import { SafeAreaView, Text, TouchableOpacity, View } from "react-native";
@@ -32,6 +32,9 @@ function SelectBody({
   const isMale = selectedBody === "Male";
   const isFemale = selectedBody === "Female";
   const isNone = selectedBody === "None";
+
+  // respect if parent prop changes
+  useEffect(() => selectBody(bodyType), [bodyType]);
 
   const selectMaleBody = useCallback(() => {
     selectBody("Male");

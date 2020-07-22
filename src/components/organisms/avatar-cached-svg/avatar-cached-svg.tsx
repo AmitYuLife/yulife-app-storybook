@@ -1,50 +1,38 @@
-import React, { useEffect, memo, useState } from "react";
+import React, { useEffect, memo, FC } from "react";
 import { SvgCss, UriProps } from "react-native-svg";
-import { useDispatch, useSelector } from "react-redux";
+import { connect, ConnectedProps } from "react-redux";
 import { IReduxState } from "@redux/_core/reducers";
-import { cacheAvatar, IAvatarCacheItem } from "@redux/avatar-cache/avatar-cache.actions";
+import { fetchAvatar } from "@redux/avatar-cache/avatar-cache.actions";
+import { getCachedAvatarSelector } from "@redux/avatar-cache/avatar-cache.selectors";
 import { AvatarEmpty } from "@molecules";
 
-function _AvatarCachedSvg(props: UriProps) {
-  const { uri } = props;
-  const [key] = useState(uri.split(".svg")[0]);
-  const avatarFromCache = useSelector<IReduxState, IAvatarCacheItem>(
-    (state) => state.avatarCache[key],
-    (left, right) => left.xml?.length === right.xml?.length
-  );
-  const dispatch = useDispatch();
+type OwnProps = UriProps;
 
-  const avatar = avatarFromCache || { isLoading: true, xml: null };
+type Props = OwnProps & ConnectedProps<typeof redux>;
 
+const AvatarCachedSvg: FC<Props> = ({ uri, xml, fetchAvatar: fetchAvatarAction, ...props }) => {
   useEffect(() => {
-    let isMounted = true;
-
-    if (uri && !avatar.xml) {
-      // TODO: use blob fetch and remove redux?
-      fetch(uri)
-        .then((response) => response.text())
-        .then((data) => {
-          if (isMounted) {
-            dispatch(cacheAvatar({ key, xml: data }));
-          }
-        })
-        .catch(() => {
-          // do nothing
-        });
+    if (!xml && uri && fetchAvatarAction) {
+      fetchAvatarAction({ uri });
     }
+  }, [xml, fetchAvatarAction, uri]);
 
-    return () => {
-      isMounted = false;
-    };
-  }, [uri, key, avatar.xml, dispatch]);
-
-  if (avatar.isLoading || !avatar.xml) {
+  if (!xml) {
     return <AvatarEmpty {...props} />;
   }
 
-  return <SvgCss xml={avatar.xml} override={props} />;
-}
+  return <SvgCss xml={xml} override={props} />;
+};
 
-const AvatarCachedSvg = memo(_AvatarCachedSvg);
+const redux = connect(
+  (state: IReduxState, props: OwnProps) => ({
+    xml: getCachedAvatarSelector(state, props.uri),
+  }),
+  {
+    fetchAvatar,
+  }
+);
 
-export default AvatarCachedSvg;
+const arePropsSame = (prev: Props, next: Props) => !!prev.xml === !!next.xml;
+
+export default redux(memo(AvatarCachedSvg, arePropsSame));
