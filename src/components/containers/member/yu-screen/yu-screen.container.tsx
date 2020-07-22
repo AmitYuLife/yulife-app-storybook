@@ -43,7 +43,7 @@ function YuScreenContainer({
   showYuscreenIntro,
   setYuscreenIntroShown,
 }: Props) {
-  const { data, loading, refetch } = useQuery<GetYulifer>(GQL_QUERY_GET_YULIFER, { fetchPolicy: "cache-first" });
+  const { data, loading } = useQuery<GetYulifer>(GQL_QUERY_GET_YULIFER, { fetchPolicy: "cache-first" });
   let avatarRemoteFile = null as string;
   let earnRate = 1;
   let products: GetYulifer_getYulifer_products = {
@@ -84,11 +84,10 @@ function YuScreenContainer({
       totalCoins={totalCoins}
       onLeftMenuPress={onLeftMenuPress}
       onUnlockPress={() => {
-        navigateToAvatarCreationScreen(refetch, componentId, "Create your Yumoji");
+        navigateToAvatarCreationScreen(componentId, "Create your Yumoji");
       }}
       onEditPress={() => {
         navigateToAvatarModal({
-          refetch,
           componentId,
           heading: "Edit your Yumoji",
           subheading: "Do you want to edit your Yumoji?",
@@ -142,13 +141,12 @@ function navigateToProductScreen(
   });
 }
 
-function navigateToAvatarCreationScreen(refetch: () => void, componentId: string, heading: AvatarBuilderHeading) {
+function navigateToAvatarCreationScreen(componentId: string, heading: AvatarBuilderHeading) {
   Navigation.push(componentId, {
     component: {
       id: ROUTES.avatarCreation,
       name: ROUTES.avatarCreation,
       passProps: {
-        refetch,
         heading,
       },
     },
@@ -169,12 +167,11 @@ function navigateToEarnRateScreen(componentId: string, products: GetYulifer_getY
 }
 
 interface INavigateToAvatarModal {
-  refetch: () => void;
   componentId: string;
   heading: AvatarBuilderHeading;
   subheading: string;
 }
-function navigateToAvatarModal({ refetch, componentId, heading, subheading }: INavigateToAvatarModal) {
+function navigateToAvatarModal({ componentId, heading, subheading }: INavigateToAvatarModal) {
   Navigation.showModal({
     component: {
       id: MODALS.generic,
@@ -182,7 +179,7 @@ function navigateToAvatarModal({ refetch, componentId, heading, subheading }: IN
       passProps: {
         onPress: () => {
           Navigation.dismissModal(MODALS.generic);
-          navigateToAvatarCreationScreen(refetch, componentId, heading);
+          navigateToAvatarCreationScreen(componentId, heading);
         },
         onPressSecondary: () => {
           Navigation.dismissModal(MODALS.generic);

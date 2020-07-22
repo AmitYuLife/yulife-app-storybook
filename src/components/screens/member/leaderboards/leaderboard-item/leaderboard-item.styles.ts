@@ -48,21 +48,12 @@ export default StyleSheet.create({
     alignItems: "center",
     overflow: "hidden",
   } as ViewStyle,
-  lockedCellAvatarWrapper: {
-    marginTop: Style.adjust(-4),
-  } as ViewStyle,
   lockedCellBorderWrapper: {
     marginTop: Style.adjust(-4),
   } as ViewStyle,
   lockedCellTextStyle: {
     color: "white",
     fontFamily: Style.FONT_FAMILY_PRIMARY_BOLD,
-  } as ViewStyle,
-  emptyAvatarHeadWrapper: {
-    height: "100%",
-    width: AVATAR_WIDTH,
-    justifyContent: "center",
-    alignItems: "center",
   } as ViewStyle,
   avatarHeadWrapper: {
     marginTop: Style.adjust(-15),
@@ -72,6 +63,7 @@ export default StyleSheet.create({
     justifyContent: "flex-start",
     alignItems: "center",
   } as ViewStyle,
+  avatarHead: { width: Style.adjust(40), height: Style.adjust(105) },
   textRight: {
     textAlign: "right",
   } as TextStyle,

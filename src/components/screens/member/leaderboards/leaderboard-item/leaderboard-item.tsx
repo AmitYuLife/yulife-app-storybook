@@ -3,11 +3,11 @@ import { numberWithCommas } from "@services/utils";
 import * as React from "react";
 import { StyleSheet, View, Animated, TouchableWithoutFeedback } from "react-native";
 import styles from "./leaderboard-item.styles";
-import { FirstPlace, SecondPlace, ThirdPlace, EmptyHead } from "../svg/leaderboard";
+import { FirstPlace, SecondPlace, ThirdPlace } from "../svg/leaderboard";
 import { LEADERBOARD_NAME } from "@ids";
 import { AvatarCachedSvg } from "@components/organisms";
 import { memo, FC } from "react";
-import { Style } from "@styles";
+import { AvatarEmpty } from "@molecules";
 
 export interface ILeaderboardItemProps {
   coins?: number;
@@ -37,7 +37,6 @@ const LeaderboardItem: FC<ILeaderboardItemProps> = ({
   const currentUserStyle = isCurrentUser ? styles.textHighlighted : {};
   const lockedCellTextStyle = isLockedCell ? styles.lockedCellTextStyle : {};
   const lockedCellWrapperStyle = isLockedCell ? styles.lockedCellWrapper : {};
-  const lockedCellAvatarStyle = isLockedCell ? styles.lockedCellAvatarWrapper : {};
   const lockedCellBorderStyle = isLockedCell ? styles.lockedCellBorderWrapper : {};
   const textStyleRightSmall = StyleSheet.flatten([
     styles.text,
@@ -61,15 +60,13 @@ const LeaderboardItem: FC<ILeaderboardItemProps> = ({
             )}
           </View>
 
-          {!avatarRemoteFile ? (
-            <View style={[styles.emptyAvatarHeadWrapper, lockedCellAvatarStyle]}>
-              <EmptyHead />
-            </View>
-          ) : (
-            <View style={styles.avatarHeadWrapper}>
-              <AvatarCachedSvg uri={avatarRemoteFile} style={{ width: Style.adjust(40), height: Style.adjust(105) }} />
-            </View>
-          )}
+          <View style={styles.avatarHeadWrapper}>
+            {!avatarRemoteFile ? (
+              <AvatarEmpty style={styles.avatarHead} />
+            ) : (
+              <AvatarCachedSvg uri={avatarRemoteFile} style={styles.avatarHead} />
+            )}
+          </View>
           <View style={styles.nameWrapper}>
             <Text style={StyleSheet.flatten([styles.text, currentUserStyle, lockedCellTextStyle])}>{name}</Text>
           </View>

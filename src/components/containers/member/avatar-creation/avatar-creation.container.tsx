@@ -1,6 +1,6 @@
 import SelectBody, { SelectedBody } from "@screens/member/yu-screen/select-body/select-body";
 import * as React from "react";
-import { connect } from "react-redux";
+import { connect, useDispatch } from "react-redux";
 import { SaveAvatarMutationTuple, GQL_MUTATION_SAVE_AVATAR } from "@graphql/yuscreen";
 import Logger from "@services/logging/logger";
 import { IReduxState } from "../../../../redux/_core/reducers";
@@ -34,50 +34,52 @@ import {
 } from "../../../../graphql/yuscreen/GetYuliferWithAvatar.gql";
 import { transformAvatar } from "@screens/member/yu-screen/avatar-builder/avatar-builder.helper";
 import { Loading } from "@atoms";
+import { invalidateUserAvatarCache } from "@redux/avatar-cache/avatar-cache.actions";
 
 interface IProps {
   componentId: string;
-  refetch: () => void;
   heading: AvatarBuilderHeading;
 }
 
 type ConnectedState = ReturnType<typeof mapStateToProps>;
-type ConnectedDispatch = typeof mapDispatchToProps;
 
-type Props = IProps & ConnectedState & ConnectedDispatch;
+type Props = IProps & ConnectedState;
 
 const AvatarCreationContainer: React.FC<Props> = (props) => {
+  const dispatch = useDispatch();
   const [bodySelected, setBodySelected] = React.useState(false);
   const [bodyType, setBodyType] = React.useState<SelectedBody>(null);
 
   const handleBodySelected = React.useCallback(() => setBodySelected(true), []);
 
-  const {
-    avatar,
-    maleBodySelected: dispatchMaleBodySelected,
-    femaleBodySelected: dispatchFemaleBodySelected,
-    saveAvatar: saveAvatarToStore,
-    avatarCreated: dispatchAvatarCreated,
-    refetch,
-    heading,
-  } = props;
+  const { avatar, heading } = props;
 
   const [updateUserAvatar, { loading: saveLoading }]: SaveAvatarMutationTuple = useMutation(GQL_MUTATION_SAVE_AVATAR, {
-    refetchQueries: ["GetYulifer", "GetLeaderboard"],
+    refetchQueries: ["GetYulifer"],
   });
+
+  const { data, loading } = useQuery<GetYuliferWithAvatarData>(GQL_QUERY_GET_YULIFER_WITH_AVATAR, {
+    fetchPolicy: "network-only",
+  });
+
+  const avatarRemoteFile = data?.getYulifer?.avatarRemoteFile;
 
   const handleAvatarUpdate = React.useCallback(
     async (avatarToSave: IAvatar) => {
-      saveAvatarToStore(avatarToSave);
+      dispatch(saveAvatar(avatarToSave));
+
+      if (avatarRemoteFile?.length) {
+        // we need to invalidate the current avatar cache in order to save the update
+        dispatch(invalidateUserAvatarCache(avatarRemoteFile.split(".svg")[0]));
+      }
 
       try {
         const response = await updateUserAvatar({
           variables: {
             avatar: generateAvatarObjectForServer(avatarToSave),
           },
+          refetchQueries: ["GetYulifer"],
         });
-
-        refetch();
 
         if (response.data.updateUserAvatar?.rewarded) {
           Navigation.showModal({
@@ -92,7 +94,8 @@ const AvatarCreationContainer: React.FC<Props> = (props) => {
               },
             },
           });
-          dispatchAvatarCreated();
+
+          dispatch(avatarCreated());
         } else {
           returnToYuScreen();
         }
@@ -100,23 +103,20 @@ const AvatarCreationContainer: React.FC<Props> = (props) => {
         // handleError();
       }
     },
-    [updateUserAvatar, saveAvatarToStore, refetch, dispatchAvatarCreated]
+    [updateUserAvatar, dispatch, avatarRemoteFile]
   );
-
-  const { data, loading } = useQuery<GetYuliferWithAvatarData>(GQL_QUERY_GET_YULIFER_WITH_AVATAR, {
-    fetchPolicy: "network-only",
-  });
 
   React.useEffect(() => {
     // if avatar exists on the server, hydrate the redux store with it
     if (data?.getYulifer?.avatar?.id) {
       const avatarFromServer = transformAvatar(data.getYulifer.avatar);
-      saveAvatarToStore(avatarFromServer);
+      dispatch(saveAvatar(avatarFromServer));
+
       if (data.getYulifer?.avatar?.body?.part?.partId) {
         setBodyType(data.getYulifer.avatar.body.part.partId.includes("female") ? "Female" : "Male");
       }
     }
-  }, [data, saveAvatarToStore]);
+  }, [data, dispatch]);
 
   if (loading || !avatar || saveLoading) {
     return <Loading />;
@@ -139,16 +139,18 @@ const AvatarCreationContainer: React.FC<Props> = (props) => {
     <SelectBody
       onMaleBodySelected={() => {
         setBodyType("Male");
-        dispatchMaleBodySelected();
+        dispatch(maleBodySelected());
       }}
       onFemaleBodySelected={() => {
         setBodyType("Female");
-        dispatchFemaleBodySelected();
+        dispatch(femaleBodySelected());
       }}
       onContinue={handleBodySelected}
       onExitConfirmed={() => showExitModal(onExitConfirmed)}
       heading={heading}
-      bodyType={bodyType || (!avatar ? "None" : avatar.head.partId.includes("female") ? "Female" : "Male")}
+      bodyType={
+        bodyType || (!data?.getYulifer?.avatar?.id ? "None" : avatar.head.partId.includes("female") ? "Female" : "Male")
+      }
     />
   );
 };
@@ -220,11 +222,4 @@ const mapStateToProps = (state: IReduxState) => ({
   },
 });
 
-const mapDispatchToProps = {
-  saveAvatar,
-  maleBodySelected,
-  femaleBodySelected,
-  avatarCreated,
-};
-
-export default connect<ConnectedState, ConnectedDispatch>(mapStateToProps, mapDispatchToProps)(AvatarCreationContainer);
+export default connect<ConnectedState>(mapStateToProps)(AvatarCreationContainer);
