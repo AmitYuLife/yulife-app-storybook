@@ -7,6 +7,8 @@ interface IAppLinkConfig {
   playStoreId: string | null;
 }
 
+const noop = (): null => null;
+
 async function openApp(url: string, { appName, appStoreId, appStoreLocale = "gb", playStoreId }: IAppLinkConfig) {
   Linking.openURL(url).catch((err) => {
     if (err.code === "EUNSPECIFIED") {
@@ -14,18 +16,16 @@ async function openApp(url: string, { appName, appStoreId, appStoreLocale = "gb"
         // check if appStoreLocale is set
         const locale = typeof appStoreLocale === "undefined" ? "us" : appStoreLocale;
 
-        Linking.openURL(`https://itunes.apple.com/${locale}/app/${appName}/id${appStoreId}`);
+        Linking.openURL(`https://itunes.apple.com/${locale}/app/${appName}/id${appStoreId}`).catch(noop);
       } else {
-        Linking.openURL(`https://play.google.com/store/apps/details?id=${playStoreId}`);
+        Linking.openURL(`https://play.google.com/store/apps/details?id=${playStoreId}`).catch(noop);
       }
-    } else {
-      throw new Error(`Could not open ${appName}. ${err.toString()}`);
     }
   });
 }
 
 export async function openCalm() {
-  openApp("calm://", {
+  return openApp("calm://", {
     appName: "calm",
     appStoreId: "571800810",
     playStoreId: "com.calm.android",
@@ -33,7 +33,7 @@ export async function openCalm() {
 }
 
 export async function openHeadspace() {
-  openApp("headspace://", {
+  return openApp("headspace://", {
     appName: "headspace-meditation",
     appStoreId: "493145008",
     playStoreId: null,

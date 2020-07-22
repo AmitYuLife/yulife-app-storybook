@@ -30,6 +30,10 @@ import streaksReducer, { initialState as initialStreaksState, IStreaksStore } fr
 import themeReducer, { initialState as initialThemeState, IThemeStore } from "../theme/theme.reducer";
 import userReducer, { initialState as initialUserState, IUserStore } from "../user/user.reducer";
 import productReducer, { initialState as initialProductState, IProductStore } from "../product/product.reducer";
+import avatarCacheReducer, {
+  initialState as initialAvatarCacheState,
+  IAvatarCacheStore,
+} from "../avatar-cache/avatar-cache.reducer";
 
 export interface IReduxState {
   app: IAppStore;
@@ -47,6 +51,7 @@ export interface IReduxState {
   copy: ICopyStore;
   dailyMeditation: IDailyMeditationStore;
   avatar: IAvatarStore;
+  avatarCache: IAvatarCacheStore;
 }
 
 export const initialState: IReduxState = {
@@ -65,6 +70,7 @@ export const initialState: IReduxState = {
   copy: initialCopyState,
   dailyMeditation: initialDailyMeditation,
   avatar: initialStateAvatar,
+  avatarCache: initialAvatarCacheState,
 };
 
 // this alias is created for testing purposes
@@ -86,6 +92,7 @@ const combinedReducers = combineReducers({
   copy: copyReducer,
   dailyMeditation: dailyMeditationReducer,
   avatar: avatarReducer,
+  avatarCache: avatarCacheReducer,
 });
 
 export default combinedReducers;

@@ -1,5 +1,5 @@
 import React, { memo } from "react";
-import { SvgCssUri } from "react-native-svg";
+import { AvatarCachedSvg } from "@components/organisms";
 import { TouchableOpacityWithState } from "@molecules";
 import { YUSCREEN_AVATAR } from "@ids";
 
@@ -16,7 +16,10 @@ interface Props {
 export const AvatarRemote = memo(function ({ avatarUrl, onEditPress, sizeMultiplier = DEFAULT_MULTIPLIER }: Props) {
   return (
     <TouchableOpacityWithState activeOpacity={!onEditPress ? 1 : 0.5} onPress={onEditPress} testID={YUSCREEN_AVATAR}>
-      <SvgCssUri uri={avatarUrl} style={{ width: BASE_WIDTH * sizeMultiplier, height: BASE_HEIGHT * sizeMultiplier }} />
+      <AvatarCachedSvg
+        uri={avatarUrl}
+        style={{ width: BASE_WIDTH * sizeMultiplier, height: BASE_HEIGHT * sizeMultiplier }}
+      />
     </TouchableOpacityWithState>
   );
 });
