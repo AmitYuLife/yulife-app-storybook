@@ -3,7 +3,7 @@ import { View, Animated, Platform, ViewStyle, LayoutChangeEvent } from "react-na
 import { avatarStyles, BODY_AVATAR_WIDTH, SVG_HEIGHT } from "./leaderboard-top.styles";
 import { LeaderboardPedestal, EmptyMaleBody } from "./../svg/leaderboard";
 import commonStyles from "../leaderboards.screen.styles";
-import { SvgCssUri } from "react-native-svg";
+import { AvatarCachedSvg } from "@components/organisms";
 import { YUSCREEN_AVATAR } from "@ids";
 
 interface IProps {
@@ -40,7 +40,7 @@ function Avatar({ avatar }: { avatar: string }) {
   }
   return (
     <View style={avatarStyles.avatarWrapper}>
-      <SvgCssUri uri={avatar} style={{ width: BODY_AVATAR_WIDTH, height: SVG_HEIGHT }} />
+      <AvatarCachedSvg uri={avatar} style={{ width: BODY_AVATAR_WIDTH, height: SVG_HEIGHT }} />
     </View>
   );
 }

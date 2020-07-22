@@ -5,7 +5,7 @@ import { StyleSheet, View, Animated, TouchableWithoutFeedback } from "react-nati
 import styles from "./leaderboard-item.styles";
 import { FirstPlace, SecondPlace, ThirdPlace, EmptyHead } from "../svg/leaderboard";
 import { LEADERBOARD_NAME } from "@ids";
-import { SvgCssUri } from "react-native-svg";
+import { AvatarCachedSvg } from "@components/organisms";
 import { memo, FC } from "react";
 import { Style } from "@styles";
 
@@ -67,7 +67,7 @@ const LeaderboardItem: FC<ILeaderboardItemProps> = ({
             </View>
           ) : (
             <View style={styles.avatarHeadWrapper}>
-              <SvgCssUri uri={avatarRemoteFile} style={{ width: Style.adjust(40), height: Style.adjust(105) }} />
+              <AvatarCachedSvg uri={avatarRemoteFile} style={{ width: Style.adjust(40), height: Style.adjust(105) }} />
             </View>
           )}
           <View style={styles.nameWrapper}>
