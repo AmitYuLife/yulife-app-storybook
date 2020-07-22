@@ -39,7 +39,7 @@ export class YuScreenIntro extends React.PureComponent<IProps, IState> {
             data={data}
             ref={this.setFlatListRef}
             showsVerticalScrollIndicator={false}
-            horizontal
+            horizontal={true}
             showsHorizontalScrollIndicator={false}
             onViewableItemsChanged={this.handleSwipe}
             viewabilityConfig={this.viewabilityConfig}

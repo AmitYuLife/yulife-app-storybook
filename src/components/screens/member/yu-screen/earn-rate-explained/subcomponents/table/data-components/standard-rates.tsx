@@ -14,7 +14,7 @@ interface IRates {
 export function StandardRates({ standardValue, styleForAlphaColumn }: IRates) {
   return (
     <View style={styles.wrapper}>
-      <Text bold style={styleForAlphaColumn}>
+      <Text bold={true} style={styleForAlphaColumn}>
         {standardValue}
       </Text>
       <YuCoinIcon style={StyleSheet.flatten([styles.yucoin, styleForAlphaColumn] as any)} />

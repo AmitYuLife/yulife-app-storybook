@@ -24,7 +24,7 @@ export const Faq = memo(({ label = "", onPress, styles, iconSvgXml, redirectType
         </View>
       )}
       <View style={style.labelWrapper}>
-        <Text bold style={style.label}>
+        <Text bold={true} style={style.label}>
           {label}
         </Text>
       </View>

@@ -32,7 +32,7 @@ function ProductItem(props: IProps) {
           </View>
         )}
         <View style={styles.productsTextWrapper}>
-          <Text bold style={StyleSheet.flatten([styles.description, styles.boldText, styles.productsText])}>
+          <Text bold={true} style={StyleSheet.flatten([styles.description, styles.boldText, styles.productsText])}>
             {isCharm ? "Alpha Charm" : product.name}
           </Text>
           <Text style={styles.description}>{`${product.earnRate}x YuCoin earn rate`}</Text>

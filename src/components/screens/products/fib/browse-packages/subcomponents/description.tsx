@@ -14,12 +14,12 @@ export const Description = memo(({ selectedPackage, loading }: Props) => {
 
   return (
     <View style={styles.descriptionWrapper}>
-      <Text bold style={styles.heading}>
+      <Text bold={true} style={styles.heading}>
         {descriptionHeading}
       </Text>
       <Text style={[styles.text, styles.marginTop1]}>
-        Pays a single cash sum based on <Text bold>{`${loading ? "..." : salaryPercentageCovered}% `}</Text>of your
-        salary.
+        Pays a single cash sum based on <Text bold={true}>{`${loading ? "..." : salaryPercentageCovered}% `}</Text>of
+        your salary.
       </Text>
       <View style={[styles.manualStructureWrapper, styles.marginTop2]}>
         <View style={styles.compoundInlineWrapper}>
@@ -29,7 +29,7 @@ export const Description = memo(({ selectedPackage, loading }: Props) => {
         <Text style={styles.text}>increased from</Text>
         <View style={styles.compoundInlineWrapper}>
           <Text style={styles.text}>{`${loading ? "..." : `${earnRate}x`} to`}</Text>
-          <Text style={styles.text} bold>
+          <Text style={styles.text} bold={true}>
             {` ${loading ? "..." : `${newEarnRate}x`}`}
           </Text>
         </View>

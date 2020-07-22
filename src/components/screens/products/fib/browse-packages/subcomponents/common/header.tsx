@@ -9,7 +9,7 @@ interface Props {
 }
 
 export const Header = memo(({ title, style }: Props) => (
-  <Text bold style={[styles.label, style]}>
+  <Text bold={true} style={[styles.label, style]}>
     {title}
   </Text>
 ));
