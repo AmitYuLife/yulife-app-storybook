@@ -14,6 +14,7 @@ import streaksSagas from "../streaks/sagas";
 import tokenSagas from "../token/token.sagas";
 import userSagas from "../user/sagas";
 import detoxSagas from "../detox/detox.sagas";
+import avatarCacheSagas from "../avatar-cache/avatar-cache.sagas";
 
 export default function* allSagas() {
   yield all([
@@ -32,5 +33,6 @@ export default function* allSagas() {
     ...tokenSagas,
     ...userSagas,
     ...detoxSagas,
+    ...avatarCacheSagas,
   ]);
 }

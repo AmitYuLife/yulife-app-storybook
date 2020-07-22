@@ -48,7 +48,7 @@ type Props = IProps & ConnectedState;
 const AvatarCreationContainer: React.FC<Props> = (props) => {
   const dispatch = useDispatch();
   const [bodySelected, setBodySelected] = React.useState(false);
-  const [bodyType, setBodyType] = React.useState<SelectedBody>(null);
+  const [bodyType, setBodyType] = React.useState<SelectedBody>("None");
 
   const handleBodySelected = React.useCallback(() => setBodySelected(true), []);
 
@@ -68,11 +68,6 @@ const AvatarCreationContainer: React.FC<Props> = (props) => {
     async (avatarToSave: IAvatar) => {
       dispatch(saveAvatar(avatarToSave));
 
-      if (avatarRemoteFile?.length) {
-        // we need to invalidate the current avatar cache in order to save the update
-        dispatch(invalidateUserAvatarCache(avatarRemoteFile.split(".svg")[0]));
-      }
-
       try {
         const response = await updateUserAvatar({
           variables: {
@@ -80,6 +75,11 @@ const AvatarCreationContainer: React.FC<Props> = (props) => {
           },
           refetchQueries: ["GetYulifer"],
         });
+
+        if (avatarRemoteFile?.length) {
+          // we need to invalidate the current avatar cache in order to save the update
+          dispatch(invalidateUserAvatarCache({ uri: avatarRemoteFile }));
+        }
 
         if (response.data.updateUserAvatar?.rewarded) {
           Navigation.showModal({
@@ -148,9 +148,7 @@ const AvatarCreationContainer: React.FC<Props> = (props) => {
       onContinue={handleBodySelected}
       onExitConfirmed={() => showExitModal(onExitConfirmed)}
       heading={heading}
-      bodyType={
-        bodyType || (!data?.getYulifer?.avatar?.id ? "None" : avatar.head.partId.includes("female") ? "Female" : "Male")
-      }
+      bodyType={bodyType}
     />
   );
 };

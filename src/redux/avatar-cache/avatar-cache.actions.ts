@@ -1,17 +1,31 @@
-export const CACHE_AVATAR_SVG = "CACHE_AVATAR_SVG";
+export const SAVE_AVATAR_TO_CACHE = "SAVE_AVATAR_TO_CACHE";
 export const INVALIDATE_USER_AVATAR_CACHE = "INVALIDATE_USER_AVATAR_CACHE";
+export const FETCH_AVATAR = "FETCH_AVATAR";
 
-export interface IAvatarCacheItem {
-  isLoading: boolean;
+export const saveAvatarToCache = (payload: ISaveAvatarToCache) => ({
+  payload,
+  type: SAVE_AVATAR_TO_CACHE,
+});
+
+export const invalidateUserAvatarCache = (payload: IInvalidateUserAvatarCachePayload) => ({
+  payload,
+  type: INVALIDATE_USER_AVATAR_CACHE,
+});
+
+export const fetchAvatar = (payload: IFetchAvatarPayload) => ({
+  payload,
+  type: FETCH_AVATAR,
+});
+
+export interface ISaveAvatarToCache {
+  uri: string;
   xml: string;
 }
 
-export const cacheAvatar = (payload: { key: string; xml: string }) => ({
-  payload,
-  type: CACHE_AVATAR_SVG,
-});
+export interface IInvalidateUserAvatarCachePayload {
+  uri: string;
+}
 
-export const invalidateUserAvatarCache = (key: string) => ({
-  payload: { key },
-  type: INVALIDATE_USER_AVATAR_CACHE,
-});
+export interface IFetchAvatarPayload {
+  uri: string;
+}
