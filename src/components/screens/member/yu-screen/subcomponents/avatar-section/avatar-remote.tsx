@@ -2,24 +2,18 @@ import React, { memo } from "react";
 import { AvatarCachedSvg } from "@components/organisms";
 import { TouchableOpacityWithState } from "@molecules";
 import { YUSCREEN_AVATAR } from "@ids";
-
-const DEFAULT_MULTIPLIER = 1.1;
-const BASE_WIDTH = 176;
-const BASE_HEIGHT = 361;
+import { ViewStyle } from "react-native";
 
 interface Props {
   onEditPress?: () => void;
   avatarUrl: string;
-  sizeMultiplier?: number;
+  style: ViewStyle;
 }
 
-export const AvatarRemote = memo(function ({ avatarUrl, onEditPress, sizeMultiplier = DEFAULT_MULTIPLIER }: Props) {
+export const AvatarRemote = memo(function ({ avatarUrl, onEditPress, style }: Props) {
   return (
     <TouchableOpacityWithState activeOpacity={!onEditPress ? 1 : 0.5} onPress={onEditPress} testID={YUSCREEN_AVATAR}>
-      <AvatarCachedSvg
-        uri={avatarUrl}
-        style={{ width: BASE_WIDTH * sizeMultiplier, height: BASE_HEIGHT * sizeMultiplier }}
-      />
+      <AvatarCachedSvg uri={avatarUrl} style={style} />
     </TouchableOpacityWithState>
   );
 });
