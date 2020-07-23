@@ -1,5 +1,5 @@
 import React from "react";
-import { TextStyle, View, StyleSheet, ImageStyle, ViewStyle } from "react-native";
+import { View, StyleSheet, ImageStyle, ViewStyle, TextStyle } from "react-native";
 import { Text } from "@atoms/index";
 import { EarnRateDetails_getEarnRateDetails } from "@graphql/_core/schema";
 import { Style, Colours } from "@styles";
@@ -8,16 +8,17 @@ import { YuCoinIcon } from "@atoms";
 
 interface IRates {
   standardValue: EarnRateDetails_getEarnRateDetails["standardValue"];
-  styleForAlphaColumn: TextStyle;
+  alphaTextStyle: TextStyle;
+  alphaImageStyle: ImageStyle;
 }
 
-export function StandardRates({ standardValue, styleForAlphaColumn }: IRates) {
+export function StandardRates({ standardValue, alphaTextStyle, alphaImageStyle }: IRates) {
   return (
     <View style={styles.wrapper}>
-      <Text bold={true} style={styleForAlphaColumn}>
+      <Text bold={true} style={alphaTextStyle}>
         {standardValue}
       </Text>
-      <YuCoinIcon style={StyleSheet.flatten([styles.yucoin, styleForAlphaColumn] as any)} />
+      <YuCoinIcon style={StyleSheet.flatten([styles.yucoin, alphaImageStyle])} />
     </View>
   );
 }

@@ -1,5 +1,5 @@
 import React from "react";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, ActivityIndicator, ViewStyle } from "react-native";
 import { Text } from "@atoms/index";
 import { EarnRateDetails_getEarnRateDetails } from "@graphql/_core/schema";
 import { Colours, Style } from "@styles";
@@ -11,6 +11,7 @@ interface IProps {
   earnRate: number;
   explainData: EarnRateDetails_getEarnRateDetails[];
   loading: boolean;
+  isAlpha: boolean;
 }
 
 export interface IColumnSize {
@@ -18,23 +19,13 @@ export interface IColumnSize {
 }
 
 function EarnRateTable(props: IProps) {
-  const { earnRate, explainData, loading } = props;
-  const hasProducts = earnRate !== 1;
+  const { earnRate, explainData, loading, isAlpha } = props;
 
   return (
     <View style={styles.wrapper}>
       <Text style={styles.header}>Earn Rate Explained</Text>
-      {loading ? null : (
-        <View style={styles.table}>
-          <TableBackground width={EARN_RATE_COLUMN_WIDTH} />
-          {!hasProducts ? null : <TableHeader earnRate={earnRate} />}
-          {explainData.map((data, index) => {
-            return (
-              <TableRow key={`${data.label}_${index}`} data={data} totalEarnRate={earnRate} hasProducts={hasProducts} />
-            );
-          })}
-        </View>
-      )}
+      <TableLoader loading={loading} isAlpha={isAlpha} />
+      <TableData isAlpha={isAlpha} loading={loading} explainData={explainData} earnRate={earnRate} />
     </View>
   );
 }
@@ -65,4 +56,49 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     paddingRight: MARGIN_EDGE_RIGHT,
   },
+  loading: {
+    justifyContent: "center",
+    alignItems: "center",
+  } as ViewStyle,
+  loadingHeight: {
+    minHeight: 240,
+  } as ViewStyle,
+  loadingHeightWithHeading: {
+    minHeight: 288,
+  } as ViewStyle,
 });
+
+function TableLoader({ loading, isAlpha }: { loading: boolean; isAlpha: boolean }) {
+  if (!loading) {
+    return null;
+  }
+
+  return (
+    <View style={[styles.loading, isAlpha ? styles.loadingHeight : styles.loadingHeightWithHeading]}>
+      <ActivityIndicator />
+    </View>
+  );
+}
+
+function TableData({ loading, explainData, earnRate, isAlpha }: IProps) {
+  if (loading) {
+    return null;
+  }
+
+  const hasProducts = earnRate !== 1;
+  return (
+    <View style={styles.table}>
+      <TableBackground width={EARN_RATE_COLUMN_WIDTH} />
+      <TableHeader earnRate={earnRate} show={hasProducts} />
+      {explainData.map((data, index) => (
+        <TableRow
+          isAlpha={isAlpha}
+          key={index} // no reorder
+          data={data}
+          totalEarnRate={earnRate}
+          hasProducts={hasProducts}
+        />
+      ))}
+    </View>
+  );
+}

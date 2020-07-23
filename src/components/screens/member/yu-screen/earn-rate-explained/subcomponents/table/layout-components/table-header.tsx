@@ -6,9 +6,14 @@ import { Style, Colours } from "@styles";
 
 interface IProps {
   earnRate: number;
+  show: boolean;
 }
 
-export function TableHeader({ earnRate }: IProps) {
+export function TableHeader({ earnRate, show }: IProps) {
+  if (!show) {
+    return null;
+  }
+
   return (
     <View style={styles.wrapper}>
       <View style={styles.flex} />

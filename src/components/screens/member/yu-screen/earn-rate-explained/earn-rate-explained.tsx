@@ -30,7 +30,7 @@ function YuScreenEarnRate({ products, onExitConfirmed, onProductDetails, explain
       <ScrollView style={styles.background} showsVerticalScrollIndicator={false}>
         <View style={styles.wrapper}>
           <Card isAlpha={isAlpha} earnRate={earnRate} />
-          <EarnRateTable earnRate={earnRate} explainData={explainData} loading={loading} />
+          <EarnRateTable isAlpha={isAlpha} earnRate={earnRate} explainData={explainData} loading={loading} />
           <Products onProductDetails={onProductDetails} products={products} />
         </View>
       </ScrollView>

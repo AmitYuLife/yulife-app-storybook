@@ -12,6 +12,7 @@ export interface ITableRowProps {
   data: EarnRateDetails_getEarnRateDetails;
   totalEarnRate: number;
   hasProducts: boolean;
+  isAlpha: boolean;
 }
 
 export function TableRow(props: ITableRowProps) {
@@ -19,9 +20,12 @@ export function TableRow(props: ITableRowProps) {
     data: { standardValue, icon, label },
     totalEarnRate,
     hasProducts,
+    isAlpha: _isAlpha,
   } = props;
 
-  const styleForAlphaColumn = !hasProducts ? { color: Colours.yuscreen.brown } : {};
+  const isAlpha = !hasProducts || _isAlpha;
+  const alphaTextStyle = isAlpha ? { color: Colours.yuscreen.brown } : {};
+  const alphaImageStyle = isAlpha ? { tintColor: Colours.yuscreen.brown } : {};
 
   return (
     <View style={styles.wrapper}>
@@ -30,7 +34,11 @@ export function TableRow(props: ITableRowProps) {
         <Label label={label} />
       </View>
       <View style={styles.row}>
-        <StandardRates standardValue={standardValue} styleForAlphaColumn={styleForAlphaColumn} />
+        <StandardRates
+          standardValue={standardValue}
+          alphaTextStyle={alphaTextStyle}
+          alphaImageStyle={alphaImageStyle}
+        />
         {!hasProducts ? null : <View style={styles.pad} />}
         <SurgeRates hide={!hasProducts} standardValue={standardValue} totalEarnRate={totalEarnRate} />
       </View>
