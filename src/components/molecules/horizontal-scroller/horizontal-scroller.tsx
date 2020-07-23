@@ -111,7 +111,7 @@ const HorizontalScroller: FC<Props> & StaticProps = ({
               {item}
             </ItemText>
             <ItemText
-              active
+              active={true}
               style={activeTextStyle}
               translateY={getTranslateYValue({ scrollX, index, itemWidth: ITEM_WIDTH })}
               opacity={getActiveTextOpacityValue({ scrollX, index, itemWidth: ITEM_WIDTH })}

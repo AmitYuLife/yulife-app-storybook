@@ -13,14 +13,14 @@ export function TableHeader({ earnRate }: IProps) {
     <View style={styles.wrapper}>
       <View style={styles.flex} />
       <View style={styles.headerLabelWrapper}>
-        <Text style={styles.headerLabel} bold>
+        <Text style={styles.headerLabel} bold={true}>
           Standard 1x
         </Text>
         <Text style={styles.headerLabel}>earn rate</Text>
       </View>
       <View style={styles.pad} />
       <View style={[styles.headerLabelWrapper, styles.marginRight]}>
-        <Text style={[styles.headerLabel, styles.headerLabelHighlight]} bold>
+        <Text style={[styles.headerLabel, styles.headerLabelHighlight]} bold={true}>
           {`Your ${earnRate}x`}
         </Text>
         <Text style={[styles.headerLabel, styles.headerLabelHighlight]}>earn rate</Text>

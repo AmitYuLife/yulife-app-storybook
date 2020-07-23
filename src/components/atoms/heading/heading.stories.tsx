@@ -20,7 +20,7 @@ storiesOf("Heading")
     return (
       <Heading
         size="large"
-        bold
+        bold={true}
         label="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec id mauris felis."
       />
     );

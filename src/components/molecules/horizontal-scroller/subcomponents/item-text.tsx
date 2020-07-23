@@ -24,7 +24,7 @@ export const ItemText = memo(({ children, opacity, translateY, active, style }: 
         },
       ]}
     >
-      <Text bold style={labelStyle}>
+      <Text bold={true} style={labelStyle}>
         {children}
       </Text>
     </Animated.View>

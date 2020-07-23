@@ -18,7 +18,7 @@ export function SurgeRates({ hide, totalEarnRate, standardValue }: ISurgeRates) 
 
   return (
     <View style={styles.wrapper}>
-      <Text bold style={{ color: Colours.yuscreen.brown }}>
+      <Text bold={true} style={{ color: Colours.yuscreen.brown }}>
         {totalEarnRate * standardValue}
       </Text>
       <YuCoinIcon style={styles.yucoin} />

@@ -31,6 +31,7 @@
     "@typescript-eslint/no-use-before-define": "off",
     "@typescript-eslint/camelcase": "off",
     "@typescript-eslint/no-inferrable-types": "off",
+    "react/jsx-boolean-value": ["error", "always"],
     "react/prop-types": "off",
     "yulife-rn-client/no-scale-up-and-down": "warn",
     "no-else-return": [

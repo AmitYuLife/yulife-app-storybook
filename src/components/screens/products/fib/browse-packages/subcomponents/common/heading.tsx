@@ -10,7 +10,7 @@ interface Props {
 
 export const Heading = memo(({ title, wrapperStyle }: Props) => (
   <View style={wrapperStyle}>
-    <Text bold style={styles.label}>
+    <Text bold={true} style={styles.label}>
       {title}
     </Text>
   </View>

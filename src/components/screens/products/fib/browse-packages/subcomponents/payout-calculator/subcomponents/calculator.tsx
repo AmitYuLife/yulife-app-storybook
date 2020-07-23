@@ -52,7 +52,7 @@ export const Calculator = memo(
           {loading ? (
             <ActivityIndicator />
           ) : (
-            <Text style={styles.payout} bold>
+            <Text style={styles.payout} bold={true}>
               £{numberWithCommas(payoutAmount)}
             </Text>
           )}
