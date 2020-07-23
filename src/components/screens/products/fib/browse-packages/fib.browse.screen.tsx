@@ -1,5 +1,5 @@
 import React, { memo, useEffect } from "react";
-import { StyleSheet, ScrollView, SafeAreaView } from "react-native";
+import { StyleSheet, ScrollView, SafeAreaView, ViewStyle } from "react-native";
 import * as Animatable from "react-native-animatable";
 import { GenericHeading } from "@atoms";
 import { Style } from "@styles";
@@ -74,7 +74,7 @@ export const FibBrowseScreen = memo(function (props: IFibBrowseScreenProps) {
           isBeta={true}
         />
         <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scrollView}>
-          <Animatable.View duration={1000} animation="fadeIn" style={{ flex: 1 }}>
+          <Animatable.View duration={1000} animation="fadeIn" style={styles.flex} useNativeDriver={true}>
             <PackageOptions selectedPackageId={selectedPackage.label} onSelectPackage={onSelectPackage} />
             <AvatarAndDescription loading={loading} avatarUrl={avatarUrl} selectedPackage={selectedPackage} />
             <EstimatedCost
@@ -111,6 +111,9 @@ export const FibBrowseScreen = memo(function (props: IFibBrowseScreenProps) {
 });
 
 const styles = StyleSheet.create({
+  flex: {
+    flex: 1,
+  } as ViewStyle,
   wrapper: {
     backgroundColor: "white",
     flex: 1,

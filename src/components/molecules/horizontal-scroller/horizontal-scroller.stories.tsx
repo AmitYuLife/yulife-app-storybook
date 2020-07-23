@@ -1,7 +1,7 @@
 import React from "react";
+import { View } from "react-native";
 import { storiesOf } from "@storybook/react-native";
 import HorizontalScroller from "./horizontal-scroller";
-import { View } from "react-native-animatable";
 
 storiesOf("HorizontalScroller")
   .addDecorator((g: () => React.Component) => (

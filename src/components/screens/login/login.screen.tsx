@@ -67,8 +67,8 @@ class LoginScreen extends PureComponent<IProps, IState> {
     } = this.props;
 
     return (
-      <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : null} style={styles.kAV}>
-        <Animatable.View duration={1000} animation="fadeIn" style={{ flex: 1 }}>
+      <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : null} style={styles.flex}>
+        <Animatable.View duration={1000} animation="fadeIn" style={styles.flex} useNativeDriver={true}>
           <CentredScreen footerImage="forest">
             {this.state.isShowingKeyboard ? null : (
               <View>

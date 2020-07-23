@@ -23,7 +23,7 @@ export const FibIntroductionScreen = memo(function (props: IFibIntroductionScree
         <GenericHeading isBeta={true} logo="yulife" onLeftIconPress={navigateToYuScreen} />
         <ScrollView showsVerticalScrollIndicator={false}>
           <View style={styles.padTop} />
-          <Animatable.View duration={1000} animation="fadeIn" style={{ flex: 1 }}>
+          <Animatable.View duration={1000} animation="fadeIn" style={styles.flex} useNativeDriver={true}>
             <View style={styles.imagesWrapper}>
               <View style={styles.avatarWrapper}>
                 <Avatar sizeMultiplier={0.6} avatar={null} avatarUrl={avatar} isAvatarCreated={true} loading={false} />
@@ -61,6 +61,9 @@ export const FibIntroductionScreen = memo(function (props: IFibIntroductionScree
 });
 
 const styles = StyleSheet.create({
+  flex: {
+    flex: 1,
+  } as ViewStyle,
   heading: {
     color: Colours.products.fib.n800,
     justifyContent: "center",

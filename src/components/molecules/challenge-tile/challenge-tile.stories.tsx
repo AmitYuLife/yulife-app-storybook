@@ -1,8 +1,8 @@
 import React from "react";
+import { View } from "react-native";
 import { storiesOf } from "@storybook/react-native";
 import ChallengeTile from "./challenge-tile";
 import { ScrollView } from "react-native";
-import { View } from "react-native-animatable";
 import { ChallengeType } from "./challenge-tile.types";
 
 const worlds = Array.from({ length: 4 }).map((_, i) => i);

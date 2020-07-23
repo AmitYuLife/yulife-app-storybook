@@ -15,6 +15,7 @@ const ChallengeCompleteScreen: React.SFC<IProps> = ({ isLoading, onCtaPress, cop
   <View style={styles.wrapper}>
     <View>
       <AnimatableImage
+        useNativeDriver={true}
         style={styles.alarm}
         delay={1000}
         iterationCount="infinite"

@@ -2,7 +2,7 @@ import { StyleSheet } from "react-native";
 import { Style } from "../../../styles";
 
 export default StyleSheet.create({
-  kAV: {
+  flex: {
     flex: 1,
   },
   blurbWrapper: {

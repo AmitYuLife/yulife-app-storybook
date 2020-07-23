@@ -20,7 +20,7 @@ export const EstimatedCost = memo(({ estimatedCost, loading }: IProps) => {
         {loading ? (
           <ActivityIndicator color={Colours.darkHotPink} />
         ) : (
-          <Anim.View duration={300} animation="fadeIn">
+          <Anim.View duration={300} animation="fadeIn" useNativeDriver={true}>
             <Text bold={true} style={styles.estimatedCost}>
               {estimatedCost}
             </Text>

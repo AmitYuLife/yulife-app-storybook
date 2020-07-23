@@ -80,7 +80,7 @@ export default function DailyStepsScreen({
   isShowingPassiveMeditation,
 }: Props) {
   return (
-    <Animatable.View duration={750} animation="fadeIn" style={{ flex: 1 }}>
+    <Animatable.View duration={750} animation="fadeIn" style={styles.flex} useNativeDriver={true}>
       <CentredScreen
         footerImage={!hasPermission ? centredScreen.offline.image : centredScreen.online.image}
         style={!hasPermission ? centredScreen.offline.style : centredScreen.online.style}
