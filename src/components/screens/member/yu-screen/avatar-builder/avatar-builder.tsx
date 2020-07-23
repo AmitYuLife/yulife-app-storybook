@@ -325,6 +325,7 @@ function showDoneModal(
           Logger.logMixpanelEvent("avatar_save", { type: "saved" });
           updateUserAvatar();
         },
+        isPrimaryOnePressOnly: true,
         heading: "All Set!",
         subheading: "Are you happy with your Yumoji? You can change your appearance later.",
         ctaLabel: "Yes",

@@ -48,3 +48,4 @@ export * from "./YuAvatar";
 export * from "./YuAvatarColor";
 export * from "./YuAvatarPart";
 export * from "./YuProduct";
+export * from "./YumojiRemoteFiles";

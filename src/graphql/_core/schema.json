@@ -2102,12 +2102,12 @@
             "deprecationReason": null
           },
           {
-            "name": "avatarRemoteFile",
+            "name": "avatarRemoteFiles",
             "description": null,
             "args": [],
             "type": {
-              "kind": "SCALAR",
-              "name": "String",
+              "kind": "OBJECT",
+              "name": "AvatarRemoteFiles",
               "ofType": null
             },
             "isDeprecated": false,
@@ -2495,6 +2495,124 @@
         "inputFields": null,
         "interfaces": [],
         "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "AvatarRemoteFiles",
+        "description": null,
+        "fields": [
+          {
+            "name": "image",
+            "description": null,
+            "args": [
+              {
+                "name": "options",
+                "description": null,
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "AvatarRemoteFileOption",
+                  "ofType": null
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "AvatarRemoteFileOption",
+        "description": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "width",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "Float",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "height",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "Float",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "quality",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "crop",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "format",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "AvatarRemoteFileFormat",
+              "ofType": null
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "ENUM",
+        "name": "AvatarRemoteFileFormat",
+        "description": null,
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "enumValues": [
+          {
+            "name": "png",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "svg",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
         "possibleTypes": null
       },
       {
@@ -5333,8 +5451,8 @@
               "name": "Int",
               "ofType": null
             },
-            "isDeprecated": false,
-            "deprecationReason": null
+            "isDeprecated": true,
+            "deprecationReason": "use challengesDetails.rating"
           },
           {
             "name": "yuCoinAwarded",
@@ -5345,8 +5463,8 @@
               "name": "Int",
               "ofType": null
             },
-            "isDeprecated": false,
-            "deprecationReason": null
+            "isDeprecated": true,
+            "deprecationReason": "use challengesDetails.yuCoinAwarded"
           },
           {
             "name": "challengesDetails",
@@ -9675,12 +9793,12 @@
             "deprecationReason": null
           },
           {
-            "name": "avatarRemoteFile",
+            "name": "avatarRemoteFiles",
             "description": null,
             "args": [],
             "type": {
-              "kind": "SCALAR",
-              "name": "String",
+              "kind": "OBJECT",
+              "name": "AvatarRemoteFiles",
               "ofType": null
             },
             "isDeprecated": false,
@@ -13569,12 +13687,12 @@
             "deprecationReason": null
           },
           {
-            "name": "avatarRemoteFile",
+            "name": "avatarRemoteFiles",
             "description": null,
             "args": [],
             "type": {
-              "kind": "SCALAR",
-              "name": "String",
+              "kind": "OBJECT",
+              "name": "AvatarRemoteFiles",
               "ofType": null
             },
             "isDeprecated": false,
@@ -17383,6 +17501,18 @@
             "type": {
               "kind": "SCALAR",
               "name": "Boolean",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "avatarRemoteFiles",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "AvatarRemoteFiles",
               "ofType": null
             },
             "isDeprecated": false,

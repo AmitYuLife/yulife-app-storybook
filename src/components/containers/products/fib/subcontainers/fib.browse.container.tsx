@@ -114,7 +114,7 @@ const FibBrowseContainer = memo(function (props: IFibContainer & ReturnType<type
   if (isCustomCover) {
     return (
       <FibCustomCoverScreen
-        avatarUrl={yuliferData.getYulifer.avatarRemoteFile}
+        avatarUrl={yuliferData.getYulifer.avatarRemoteFiles?.pngFull}
         onNavigateToYuScreen={navigation.pop}
         navigateToEditSalary={() => navigation.push(FIB_EDIT_SALARY, { onPressDone: navigation.pop })}
         faqs={faqs}
@@ -130,7 +130,7 @@ const FibBrowseContainer = memo(function (props: IFibContainer & ReturnType<type
 
   return (
     <FibBrowseScreen
-      avatarUrl={yuliferData.getYulifer.avatarRemoteFile}
+      avatarUrl={yuliferData.getYulifer.avatarRemoteFiles?.pngFull}
       onNavigateToYuScreen={navigation.popToMain}
       navigateToEditSalary={() => navigation.push(FIB_EDIT_SALARY)}
       navigateToCustomCover={() => navigation.push(FIB_CUSTOM_PERCENTAGE)}

@@ -7,6 +7,13 @@
 // GraphQL query operation: GetYuliferWithAvatar
 // ====================================================
 
+export interface GetYuliferWithAvatar_getYulifer_avatarRemoteFiles {
+  __typename: "AvatarRemoteFiles";
+  svgFull: string | null;
+  pngFull: string | null;
+  pngMini: string | null;
+}
+
 export interface GetYuliferWithAvatar_getYulifer_avatar_hair_part_elements_attributes {
   name: string;
   value: string;
@@ -441,7 +448,7 @@ export interface GetYuliferWithAvatar_getYulifer {
   userId: string | null;
   earnRate: number | null;
   isAvatarCreated: boolean | null;
-  avatarRemoteFile: string | null;
+  avatarRemoteFiles: GetYuliferWithAvatar_getYulifer_avatarRemoteFiles | null;
   avatar: GetYuliferWithAvatar_getYulifer_avatar | null;
   products: GetYuliferWithAvatar_getYulifer_products | null;
 }

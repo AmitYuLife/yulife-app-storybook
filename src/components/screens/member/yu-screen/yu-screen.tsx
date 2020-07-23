@@ -8,7 +8,6 @@ import {
   GetYulifer_getYulifer_products_personal,
 } from "@graphql/_core/schema";
 import { ProductType } from "@containers/member/yu-screen/yu-screen-products.container";
-import { IAvatar } from "./avatar-builder/avatar.types";
 import { YUSCREEN } from "@ids";
 import { EarnRateButton, CharmsSection, YuScreenHeader, EmployerBenefits } from "./subcomponents";
 import { AvatarSection } from "./subcomponents/avatar-section/avatar-section";
@@ -22,7 +21,6 @@ interface IProps {
   loading: boolean;
   userName: string;
   avatarUrl: string;
-  avatarFromLocal: IAvatar;
   products: GetYulifer_getYulifer_products;
   onUnlockPress: () => void;
   onEditPress: () => void;
@@ -43,7 +41,6 @@ const YuScreen = (props: IProps) => {
     totalCoins,
     isAvatarCreated,
     avatarUrl,
-    avatarFromLocal,
     loading,
     products: { personal: productsPersonal, employer: productsEmployer, charms: productsCharms },
     earnRate,
@@ -75,7 +72,7 @@ const YuScreen = (props: IProps) => {
           isAvatarCreated={isAvatarCreated}
           onUnlockPress={onUnlockPress}
           loading={loading}
-          avatar={avatarFromLocal}
+          avatar={null}
         />
         <CharmsSection productsCharms={productsCharms} textPosition={sectionTitleWidth} />
         <EmployerBenefits

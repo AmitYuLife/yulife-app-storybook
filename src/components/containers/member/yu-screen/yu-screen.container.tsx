@@ -38,12 +38,12 @@ function YuScreenContainer({
   hasNotification,
   componentId,
   totalCoins,
-  avatarFromLocal,
   onLeftMenuPress,
   showYuscreenIntro,
   setYuscreenIntroShown,
 }: Props) {
   const { data, loading } = useQuery<GetYulifer>(GQL_QUERY_GET_YULIFER, { fetchPolicy: "cache-first" });
+
   let avatarRemoteFile = null as string;
   let earnRate = 1;
   let products: GetYulifer_getYulifer_products = {
@@ -55,7 +55,7 @@ function YuScreenContainer({
   const isAvatarCreated = !!data?.getYulifer?.isAvatarCreated;
 
   if (data && data.getYulifer) {
-    avatarRemoteFile = data.getYulifer.avatarRemoteFile;
+    avatarRemoteFile = data.getYulifer.avatarRemoteFiles?.pngFull;
     products = data.getYulifer.products;
     earnRate = data.getYulifer.earnRate ? data.getYulifer.earnRate : earnRate;
   }
@@ -71,7 +71,6 @@ function YuScreenContainer({
       hasNotification={hasNotification}
       isAvatarCreated={isAvatarCreated}
       avatarUrl={avatarRemoteFile}
-      avatarFromLocal={avatarRemoteFile ? null : avatarFromLocal}
       products={products}
       loading={loading}
       earnRate={totalEarnRate}

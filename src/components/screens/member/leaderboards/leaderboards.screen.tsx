@@ -46,7 +46,10 @@ export interface IItem {
   lastName: string;
   name: string;
   steps: number;
-  avatarRemoteFile: string;
+  avatarRemoteFiles?: {
+    svgFull?: string;
+    pngMini?: string;
+  };
 }
 
 export interface ILeaderboardsScreenProps {
@@ -89,8 +92,8 @@ export default class LeaderboardsScreen extends React.Component<ILeaderboardsScr
     lastName: "",
     name: "",
     steps: 1,
-    avatarRemoteFile: "",
-  };
+    avatarRemoteFiles: null,
+  } as IItem;
   private animatedFlatListRef: FlatList = null;
 
   private avatarDataFirstUser: string;
@@ -149,9 +152,9 @@ export default class LeaderboardsScreen extends React.Component<ILeaderboardsScr
       copy,
     } = this.props;
     const activeLeaderboard = leaderboards.length > 0 && leaderboards[activeLeaderboardIndex];
-    this.avatarDataFirstUser = items[0]?.avatarRemoteFile;
-    this.avatarDataSecondUser = items[1]?.avatarRemoteFile;
-    this.avatarDataThirdUser = items[2]?.avatarRemoteFile;
+    this.avatarDataFirstUser = items[0]?.avatarRemoteFiles?.pngMini;
+    this.avatarDataSecondUser = items[1]?.avatarRemoteFiles?.pngMini;
+    this.avatarDataThirdUser = items[2]?.avatarRemoteFiles?.pngMini;
 
     const TRANSLATE_Y_TRANSFORM_ADJUST = Platform.select({ ios: -Style.getSafeAreaStart(), android: 0 });
     const translateYTransform = this.state.flatlistOnScrollValue.interpolate({

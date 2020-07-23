@@ -34,7 +34,6 @@ import {
 } from "../../../../graphql/yuscreen/GetYuliferWithAvatar.gql";
 import { transformAvatar } from "@screens/member/yu-screen/avatar-builder/avatar-builder.helper";
 import { Loading } from "@atoms";
-import { invalidateUserAvatarCache } from "@redux/avatar-cache/avatar-cache.actions";
 
 interface IProps {
   componentId: string;
@@ -54,15 +53,11 @@ const AvatarCreationContainer: React.FC<Props> = (props) => {
 
   const { avatar, heading } = props;
 
-  const [updateUserAvatar, { loading: saveLoading }]: SaveAvatarMutationTuple = useMutation(GQL_MUTATION_SAVE_AVATAR, {
-    refetchQueries: ["GetYulifer"],
-  });
+  const [updateUserAvatar]: SaveAvatarMutationTuple = useMutation(GQL_MUTATION_SAVE_AVATAR);
 
   const { data, loading } = useQuery<GetYuliferWithAvatarData>(GQL_QUERY_GET_YULIFER_WITH_AVATAR, {
     fetchPolicy: "network-only",
   });
-
-  const avatarRemoteFile = data?.getYulifer?.avatarRemoteFile;
 
   const handleAvatarUpdate = React.useCallback(
     async (avatarToSave: IAvatar) => {
@@ -73,13 +68,9 @@ const AvatarCreationContainer: React.FC<Props> = (props) => {
           variables: {
             avatar: generateAvatarObjectForServer(avatarToSave),
           },
-          refetchQueries: ["GetYulifer"],
+          // TODO: work out how to avoid refetch and instead set the fragment direct instead of re-fetching
+          refetchQueries: ["GetYulifer", "GetLeaderboard"],
         });
-
-        if (avatarRemoteFile?.length) {
-          // we need to invalidate the current avatar cache in order to save the update
-          dispatch(invalidateUserAvatarCache({ uri: avatarRemoteFile }));
-        }
 
         if (response.data.updateUserAvatar?.rewarded) {
           Navigation.showModal({
@@ -103,7 +94,7 @@ const AvatarCreationContainer: React.FC<Props> = (props) => {
         // handleError();
       }
     },
-    [updateUserAvatar, dispatch, avatarRemoteFile]
+    [updateUserAvatar, dispatch]
   );
 
   React.useEffect(() => {
@@ -118,7 +109,7 @@ const AvatarCreationContainer: React.FC<Props> = (props) => {
     }
   }, [data, dispatch]);
 
-  if (loading || !avatar || saveLoading) {
+  if (loading || !avatar) {
     return <Loading />;
   }
 

@@ -1,19 +1,29 @@
-import React, { memo } from "react";
-import { AvatarCachedSvg } from "@components/organisms";
+import React, { memo, useState } from "react";
 import { TouchableOpacityWithState } from "@molecules";
 import { YUSCREEN_AVATAR } from "@ids";
-import { ViewStyle } from "react-native";
+import { ViewStyle, ImageStyle, ActivityIndicator } from "react-native";
+import FastImage from "react-native-fast-image";
 
 interface Props {
   onEditPress?: () => void;
   avatarUrl: string;
-  style: ViewStyle;
+  style: ViewStyle | ImageStyle;
 }
 
 export const AvatarRemote = memo(function ({ avatarUrl, onEditPress, style }: Props) {
+  const [loading, setLoading] = useState(false);
+
   return (
     <TouchableOpacityWithState activeOpacity={!onEditPress ? 1 : 0.5} onPress={onEditPress} testID={YUSCREEN_AVATAR}>
-      <AvatarCachedSvg uri={avatarUrl} style={style} />
+      <>
+        <FastImage
+          source={{ uri: avatarUrl }}
+          style={style as ImageStyle}
+          onLoadStart={() => setLoading(true)}
+          onLoadEnd={() => setLoading(false)}
+        />
+        {!loading ? null : <ActivityIndicator style={{ position: "absolute", top: 180, left: 80 }} />}
+      </>
     </TouchableOpacityWithState>
   );
 });
