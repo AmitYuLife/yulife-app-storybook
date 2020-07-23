@@ -7,11 +7,11 @@ import {
   GetYulifer_getYulifer_products_personal,
 } from "@graphql/_core/schema";
 import styles from "../products.style";
-import { getPersonalProductImage } from "../employer-products/employer-product.helper";
 import GenericHeading from "@atoms/generic-heading/generic-heading";
 import { ProductType } from "@containers/member/yu-screen/yu-screen-products.container";
 import EmployerProductIcon from "../../svg/employer-products";
 import Charm from "../../svg/charms";
+import PersonalProductsIcon from "../../svg/yuser-products";
 
 interface IProps {
   product: GetYulifer_getYulifer_products_employer | GetYulifer_getYulifer_products_personal;
@@ -37,7 +37,7 @@ function YuscreenEmployerProductDetails({ product, onExitConfirmed, productType 
               <Charm active={true} icon={product.icon} height={114} width={96} />
             </View>
           ) : (
-            getPersonalProductImage(product.icon)
+            <PersonalProductsIcon icon={product.icon} active={product.active} />
           )}
           {!(isEmployerProduct && product.active && product.policyNumber) ? null : (
             <View style={styles.productDetailsPolicy}>

@@ -16,7 +16,7 @@ export default StyleSheet.create({
     width: 152,
     alignItems: "center",
   } as ViewStyle,
-  inactiveProducts: {
+  productName: {
     color: "#838385",
     fontSize: 16,
     fontFamily: Style.FONT_FAMILY_PRIMARY,
@@ -33,12 +33,20 @@ export default StyleSheet.create({
     lineHeight: 16,
     textAlign: "left",
   } as TextStyle,
-  textWrapper: {
+  textWrapperActiveProduct: {
     marginLeft: Style.SCALE_UP_AND_DOWN(16),
     marginRight: Style.SCALE_UP_AND_DOWN(32),
     height: Style.SCALE_UP_AND_DOWN(64),
     flexDirection: "column",
     marginTop: -4,
+  } as ViewStyle,
+  textWrapperInactiveProduct: {
+    marginLeft: Style.SCALE_UP_AND_DOWN(16),
+    marginRight: Style.SCALE_UP_AND_DOWN(32),
+    height: Style.SCALE_UP_AND_DOWN(64),
+    flexDirection: "column",
+    marginTop: -4,
+    justifyContent: "center",
   } as ViewStyle,
   productDetailsWrapper: {
     display: "flex",
