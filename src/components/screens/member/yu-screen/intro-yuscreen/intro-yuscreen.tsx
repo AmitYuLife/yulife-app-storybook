@@ -62,7 +62,7 @@ export class YuScreenIntro extends React.PureComponent<IProps, IState> {
           </View>
         </View>
         <View style={styles.absoluteTop}>
-          <GenericHeading logo="yulife" hidesBorder />
+          <GenericHeading logo="yulife" hidesBorder={true} />
         </View>
       </SafeAreaView>
     );
