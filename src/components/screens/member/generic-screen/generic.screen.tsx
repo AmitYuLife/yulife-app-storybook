@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useState } from "react";
 import { View } from "react-native";
 import { Button, Text } from "../../../atoms";
 import styles from "./generic.styles";
@@ -12,6 +13,7 @@ export interface IGenericModalProps {
   onPressSecondary?: () => void;
   ctaLabelSecondary?: string;
   isPrimaryLoading?: boolean;
+  isPrimaryOnePressOnly?: boolean;
   isSecondaryLoading?: boolean;
 }
 
@@ -24,7 +26,19 @@ export default function GenericScreen({
   ctaLabelSecondary,
   isPrimaryLoading,
   isSecondaryLoading,
+  isPrimaryOnePressOnly = false,
 }: IGenericModalProps) {
+  const [hasPressedPrimary, setHasTouchedPrimary] = useState(false);
+  const onPressPrimary = () => {
+    if (isPrimaryOnePressOnly) {
+      setHasTouchedPrimary(true);
+    }
+
+    if (onPress) {
+      onPress();
+    }
+  };
+
   return (
     <View style={styles.wrapper}>
       <Text style={styles.heading} bold={true} testID={GENERIC_SCREEN_HEADING(heading)}>
@@ -33,10 +47,10 @@ export default function GenericScreen({
       <Text style={styles.subheading}>{subheading}</Text>
       <Button
         testID={GENERIC_SCREEN_CTA(ctaLabel)}
-        isLoading={isPrimaryLoading}
+        isLoading={isPrimaryLoading || hasPressedPrimary}
         wrapperStyle={styles.buttonWrapper}
         label={ctaLabel}
-        onPress={onPress || (() => null)}
+        onPress={onPressPrimary}
         type="Primary"
       />
       {!(onPressSecondary && ctaLabelSecondary) ? null : (

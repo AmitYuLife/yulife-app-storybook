@@ -7,6 +7,13 @@
 // GraphQL query operation: GetYulifer
 // ====================================================
 
+export interface GetYulifer_getYulifer_avatarRemoteFiles {
+  __typename: "AvatarRemoteFiles";
+  svgFull: string | null;
+  pngFull: string | null;
+  pngMini: string | null;
+}
+
 export interface GetYulifer_getYulifer_products_employer {
   productId: string | null;
   policyNumber: string | null;
@@ -47,7 +54,7 @@ export interface GetYulifer_getYulifer {
   userId: string | null;
   earnRate: number | null;
   isAvatarCreated: boolean | null;
-  avatarRemoteFile: string | null;
+  avatarRemoteFiles: GetYulifer_getYulifer_avatarRemoteFiles | null;
   products: GetYulifer_getYulifer_products | null;
 }
 

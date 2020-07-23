@@ -5,9 +5,9 @@ import { StyleSheet, View, Animated, TouchableWithoutFeedback } from "react-nati
 import styles from "./leaderboard-item.styles";
 import { FirstPlace, SecondPlace, ThirdPlace } from "../svg/leaderboard";
 import { LEADERBOARD_NAME } from "@ids";
-import { AvatarCachedSvg } from "@components/organisms";
 import { memo, FC } from "react";
 import { AvatarEmpty } from "@molecules";
+import FastImage from "react-native-fast-image";
 
 export interface ILeaderboardItemProps {
   coins?: number;
@@ -17,7 +17,9 @@ export interface ILeaderboardItemProps {
   rank?: number;
   steps?: number;
   sortBy?: string;
-  avatarRemoteFile?: string;
+  avatarRemoteFiles?: {
+    pngMini?: string;
+  };
   onPress?: () => void;
   animatedOpacity?: Animated.Value;
 }
@@ -30,7 +32,7 @@ const LeaderboardItem: FC<ILeaderboardItemProps> = ({
   steps = 0,
   coins = 0,
   sortBy = "",
-  avatarRemoteFile = null,
+  avatarRemoteFiles = null,
   onPress,
   animatedOpacity = new Animated.Value(1),
 }: ILeaderboardItemProps) => {
@@ -60,13 +62,15 @@ const LeaderboardItem: FC<ILeaderboardItemProps> = ({
             )}
           </View>
 
-          <View style={styles.avatarHeadWrapper}>
-            {!avatarRemoteFile ? (
-              <AvatarEmpty style={styles.avatarHead} />
-            ) : (
-              <AvatarCachedSvg uri={avatarRemoteFile} style={styles.avatarHead} />
-            )}
-          </View>
+          {!avatarRemoteFiles?.pngMini ? (
+            <View style={styles.avatarHeadEmptyWrapper}>
+              <AvatarEmpty style={styles.avatarHeadEmpty} />
+            </View>
+          ) : (
+            <View style={styles.avatarHeadWrapper}>
+              <FastImage source={{ uri: avatarRemoteFiles?.pngMini }} style={styles.avatarHead} />
+            </View>
+          )}
           <View style={styles.nameWrapper}>
             <Text style={StyleSheet.flatten([styles.text, currentUserStyle, lockedCellTextStyle])}>{name}</Text>
           </View>

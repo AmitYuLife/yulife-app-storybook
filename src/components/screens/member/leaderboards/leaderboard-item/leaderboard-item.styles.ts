@@ -55,7 +55,7 @@ export default StyleSheet.create({
     color: "white",
     fontFamily: Style.FONT_FAMILY_PRIMARY_BOLD,
   } as ViewStyle,
-  avatarHeadWrapper: {
+  avatarHeadEmptyWrapper: {
     marginTop: Style.adjust(-15),
     height: "100%",
     width: AVATAR_WIDTH,
@@ -63,7 +63,16 @@ export default StyleSheet.create({
     justifyContent: "flex-start",
     alignItems: "center",
   } as ViewStyle,
-  avatarHead: { width: Style.adjust(40), height: Style.adjust(105) },
+  avatarHeadWrapper: {
+    marginTop: Style.adjust(-10),
+    height: AVATAR_WIDTH,
+    width: AVATAR_WIDTH,
+    overflow: "hidden",
+    justifyContent: "flex-start",
+    alignItems: "center",
+  } as ViewStyle,
+  avatarHeadEmpty: { width: Style.adjust(45), height: Style.adjust(105) },
+  avatarHead: { width: AVATAR_WIDTH, height: Style.adjust(95) },
   textRight: {
     textAlign: "right",
   } as TextStyle,

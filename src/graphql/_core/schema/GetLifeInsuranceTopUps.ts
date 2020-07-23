@@ -9,14 +9,21 @@ import { CoverType } from "./globalTypes";
 // GraphQL query operation: GetLifeInsuranceTopUps
 // ====================================================
 
+export interface GetLifeInsuranceTopUps_getLifeInsuranceTopUps_avatarRemoteFiles {
+  __typename: "AvatarRemoteFiles";
+  svgFull: string | null;
+  pngFull: string | null;
+  pngMini: string | null;
+}
+
 export interface GetLifeInsuranceTopUps_getLifeInsuranceTopUps {
   estimatedCost: number | null;
   payoutAmount: number | null;
   earnRate: number | null;
-  avatarRemoteFile: string | null;
   salaryPercentageCovered: number | null;
   newEarnRate: number | null;
   descriptionHeading: string | null;
+  avatarRemoteFiles: GetLifeInsuranceTopUps_getLifeInsuranceTopUps_avatarRemoteFiles | null;
 }
 
 export interface GetLifeInsuranceTopUps {

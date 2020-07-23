@@ -1,10 +1,10 @@
 import * as React from "react";
 import { View, Animated, Platform, ViewStyle, LayoutChangeEvent } from "react-native";
-import { avatarStyles, BODY_AVATAR_WIDTH, SVG_HEIGHT } from "./leaderboard-top.styles";
+import avatarStyles from "./leaderboard-top.styles";
 import { LeaderboardPedestal, EmptyMaleBody } from "./../svg/leaderboard";
 import commonStyles from "../leaderboards.screen.styles";
-import { AvatarCachedSvg } from "@components/organisms";
 import { YUSCREEN_AVATAR } from "@ids";
+import FastImage from "react-native-fast-image";
 
 interface IProps {
   avatars: string[];
@@ -41,7 +41,7 @@ function Avatar({ avatar }: { avatar: string }) {
 
   return (
     <View style={avatarStyles.avatarWrapper}>
-      <AvatarCachedSvg uri={avatar} style={{ width: BODY_AVATAR_WIDTH, height: SVG_HEIGHT }} />
+      <FastImage source={{ uri: avatar }} style={avatarStyles.avatarImage} />
     </View>
   );
 }

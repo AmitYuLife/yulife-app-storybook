@@ -9,10 +9,18 @@ import { UserAvatarInput } from "./globalTypes";
 // GraphQL mutation operation: SaveAvatar
 // ====================================================
 
+export interface SaveAvatar_updateUserAvatar_avatarRemoteFiles {
+  __typename: "AvatarRemoteFiles";
+  svgFull: string | null;
+  pngFull: string | null;
+  pngMini: string | null;
+}
+
 export interface SaveAvatar_updateUserAvatar {
   rewarded: boolean | null;
   rewardAmount: number | null;
   updated: boolean | null;
+  avatarRemoteFiles: SaveAvatar_updateUserAvatar_avatarRemoteFiles | null;
 }
 
 export interface SaveAvatar {

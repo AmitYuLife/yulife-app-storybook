@@ -33,7 +33,10 @@ const fillers = {
     lastName: "lastName",
     name: "name",
     steps: 0,
-    avatarRemoteFile: "string",
+    avatarRemoteFiles: {
+      __typename: null,
+      pngMini: "https://placehold.it/120x40",
+    },
   })),
   copy: {
     heading: "copy.heading",
