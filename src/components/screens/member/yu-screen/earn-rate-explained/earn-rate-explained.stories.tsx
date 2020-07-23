@@ -41,4 +41,5 @@ const fillers = {
 storiesOf("EarnRateExplained", module)
   .add("products: alpha", () => <EarnRateExplained {...fillers} earnRate={1} products={alphaProducts} />)
   .add("products: group", () => <EarnRateExplained {...fillers} earnRate={30} products={groupProducts} />)
-  .add("products: yulife", () => <EarnRateExplained {...fillers} earnRate={10} products={yulifeProducts} />);
+  .add("products: yulife", () => <EarnRateExplained {...fillers} earnRate={10} products={yulifeProducts} />)
+  .add("loading", () => <EarnRateExplained {...fillers} earnRate={10} products={yulifeProducts} loading={true} />);
