@@ -56,6 +56,7 @@ export const getPositionBottom = (options = { additionalBottom: 0 }) => {
   if (Platform.OS === "ios" && deviceInfoModule.hasNotch()) {
     return 30;
   }
+
   return Style.adjust(20) + additionalBottom;
 };
 

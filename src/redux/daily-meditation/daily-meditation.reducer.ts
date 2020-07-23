@@ -47,6 +47,7 @@ const dailyMeditationReducer = (state: IDailyMeditationStore = initialState, act
       if (action.payload && action.payload.dailyMeditation) {
         return updatePersistedState(state, action.payload.dailyMeditation);
       }
+
       return state;
 
     case UPDATE_DAILY_MEDITATION_SUCCESS:
@@ -85,6 +86,7 @@ const updatePersistedState = (state: IDailyMeditationStore, persistedState: IDai
   if (!persistedState.lastUpdated) {
     return { ...state };
   }
+
   const lastUpdated = moment(persistedState.lastUpdated).startOf("day").format();
   const today = moment().startOf("day").format();
 

@@ -81,6 +81,7 @@ export default class RewardsListScreen extends React.PureComponent<IRewardsListS
         />
       );
     }
+
     return null;
   };
 

@@ -75,6 +75,7 @@ class ScrollyQuest extends React.Component<IScrollQuestProps> {
         offset: 0,
       };
     }
+
     return {
       index,
       length: MAP_SLICE_HEIGHT,

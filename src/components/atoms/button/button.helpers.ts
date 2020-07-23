@@ -11,6 +11,7 @@ export const getWrapperStyle = (props: IGetWrapperStyle) => {
   if (!props) {
     return null;
   }
+
   const { type, pressedIn } = props;
   const wrapperPrimary = StyleSheet.flatten([styles.wrapperPrimary, pressedIn ? styles.wrapperPrimaryPressed : {}]);
   switch (type) {
@@ -61,6 +62,7 @@ export const getShadowStyle = (props: IGetShadowStyle) => {
   if (!props) {
     return null;
   }
+
   const { type, pressedIn } = props;
   const shadowStyle = StyleSheet.flatten([styles.shadow, pressedIn ? styles.shadowPressed : {}]);
   switch (type) {
@@ -86,10 +88,12 @@ export const getWrapperOverlayStyle = (props: IGetWrapperOverlayStyle) => {
   if (!props) {
     return null;
   }
+
   const { disabled, isShadow = false } = props;
   if (disabled && isShadow) {
     return styles.wrapperOverlayPrimaryShadowOffsetDisabled;
   }
+
   if (disabled) {
     return styles.wrapperOverlayPrimaryDisabled;
   }

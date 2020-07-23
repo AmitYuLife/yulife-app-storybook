@@ -38,6 +38,7 @@ function Avatar({ avatar }: { avatar: string }) {
   if (!avatar) {
     return <EmptyMaleBody />;
   }
+
   return (
     <View style={avatarStyles.avatarWrapper}>
       <AvatarCachedSvg uri={avatar} style={{ width: BODY_AVATAR_WIDTH, height: SVG_HEIGHT }} />
@@ -65,6 +66,7 @@ export function LeaderboardTopIOS({
   if (Platform.OS === "android" || showConsentPrompt) {
     return null;
   }
+
   return (
     <Animated.View
       onLayout={onLayout}

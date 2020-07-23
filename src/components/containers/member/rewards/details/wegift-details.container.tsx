@@ -168,6 +168,7 @@ const WegiftRewardDetailsContainer: FC<Props> = (props) => {
         if (!showWegiftPicker) {
           return null;
         }
+
         return (
           <ListPicker
             onPressCancel={toggleOverlay}

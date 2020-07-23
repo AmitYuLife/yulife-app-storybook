@@ -19,6 +19,7 @@ export function groupDatesByMonth(dates: ItemProps[]) {
             items: [curr],
           });
         }
+
         return accumulator;
       }, [])
     : [];
@@ -28,6 +29,7 @@ export function countSources(sources: Partial<Sources>) {
   if (!sources.garmin && !sources.fitbit) {
     return 0;
   }
+
   let sourceCount = 0;
   for (const source in sources) {
     if (
@@ -38,5 +40,6 @@ export function countSources(sources: Partial<Sources>) {
       sourceCount += 1;
     }
   }
+
   return sourceCount;
 }

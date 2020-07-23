@@ -185,5 +185,6 @@ function sampleMeditationDataToAggregatedData(
       value: meditationSeconds,
     });
   }
+
   return aggregateMeditationChallengeArray;
 }

@@ -57,6 +57,7 @@ const ActivityHistoryContainer: React.FC<Props> = (props) => {
         if (code === "send-test-push") {
           return props.sendTestPush();
         }
+
         if (code === CODES.ROUTE_TO_FIB_BROWSE_PACKAGES) {
           return Navigation.push(props.componentId, {
             component: {
@@ -65,6 +66,7 @@ const ActivityHistoryContainer: React.FC<Props> = (props) => {
             },
           });
         }
+
         if (code === CODES.ROUTE_TO_FIB_FAQ) {
           return Navigation.push(props.componentId, {
             component: {
@@ -73,6 +75,7 @@ const ActivityHistoryContainer: React.FC<Props> = (props) => {
             },
           });
         }
+
         await resetData({ variables: { code } });
         Alert.alert("Success");
         props.getUserStart();

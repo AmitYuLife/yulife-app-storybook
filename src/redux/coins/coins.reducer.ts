@@ -38,6 +38,7 @@ const coinsReducer = (state: ICoinsStore = initialState, action: SyncAction) => 
       if (action.payload && action.payload.coins) {
         return updatePersistedState(action.payload.coins);
       }
+
       return { ...state };
     case UPDATE_DAILY_MEDITATION_SUCCESS:
       return updateDailyMeditationSuccess(state, action.payload);

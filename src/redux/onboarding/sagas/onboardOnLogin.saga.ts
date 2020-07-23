@@ -17,6 +17,7 @@ export default function* onboardOnLogin({ payload }: ReturnType<typeof loginUser
       if (features.usePassiveMeditation) {
         yield call(sendHistoricalMeditationData, moment());
       }
+
       yield put(setShowIntro(true));
       yield call(redeemOnboarding);
     }

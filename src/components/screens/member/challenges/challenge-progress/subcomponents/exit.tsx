@@ -13,6 +13,7 @@ const Exit: React.SFC<IProps> = ({ primaryColour = "#ED9CA0", secondaryColour = 
   const onPressIn = () => {
     setOpacity(0.5);
   };
+
   const onPressOut = () => {
     setOpacity(1);
     onPress();

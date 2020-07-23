@@ -75,6 +75,7 @@ const getChallengeDetailsTitle = (challengeType: string, duration: string, miles
 
     return `${challengeType} / ${(milestones[0].target / 1000).toFixed(0)} km`;
   }
+
   return `${challengeType} / ${duration}`;
 };
 

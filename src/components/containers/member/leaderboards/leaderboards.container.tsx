@@ -32,6 +32,7 @@ const getInitialLeaderboard = (leaderboards?: ILeaderboard[]) => {
       activeLeaderboardIndex: 0,
     };
   }
+
   const leaderboardWithConsentIndex = leaderboards.findIndex(({ consent }) => consent);
   const activeLeaderboardIndex = leaderboardWithConsentIndex !== -1 ? leaderboardWithConsentIndex : 0;
   const leaderboard = leaderboards[activeLeaderboardIndex];
@@ -90,6 +91,7 @@ const LeaderboardsContainer: FC<Props> = (props) => {
     if (!refetch) {
       return;
     }
+
     refetch({ sortBy, leaderboardId });
   }, [refetch, leaderboardId]);
   return (

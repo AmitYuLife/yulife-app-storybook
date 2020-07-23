@@ -14,31 +14,37 @@ export default async function handleDeepLink(fullUrl: string, hasToken: boolean)
       if (hasToken) {
         labels[0].onPress();
       }
+
       return;
     case url.startsWith(labels[1].name):
       if (hasToken) {
         labels[1].onPress();
       }
+
       return;
     case url.startsWith(labels[2].name):
       if (hasToken) {
         labels[2].onPress();
       }
+
       return;
     case url.startsWith(labels[3].name):
       if (hasToken) {
         labels[3].onPress();
       }
+
       return;
     case url.startsWith(labels[4].name):
       if (hasToken) {
         labels[4].onPress();
       }
+
       return;
     case url.startsWith("historical-data"):
       if (hasToken) {
         store.dispatch({ type: GET_HISTORICAL_DATA });
       }
+
       return;
     case url.startsWith("feedback"):
       if (hasToken) {
@@ -52,6 +58,7 @@ export default async function handleDeepLink(fullUrl: string, hasToken: boolean)
           },
         });
       }
+
       return;
     case url.startsWith("signup/confirm"): // OTP
       if (!hasToken) {
@@ -60,6 +67,7 @@ export default async function handleDeepLink(fullUrl: string, hasToken: boolean)
           await setUnauthenticatedRoot(props);
         }
       }
+
       return;
     default:
       return;

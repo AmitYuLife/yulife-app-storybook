@@ -37,6 +37,7 @@ export const getLockedImageStyle = (image: Images): ImageStyle => {
     default:
       position.bottom = 0;
   }
+
   return StyleSheet.flatten([
     {
       position: "absolute",
@@ -157,6 +158,7 @@ export const getImageStyle = (image: Images): ImageStyle => {
       position.top = 0;
       position.right = 0;
   }
+
   return StyleSheet.flatten([
     {
       position: "absolute",

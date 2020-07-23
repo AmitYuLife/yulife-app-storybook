@@ -23,6 +23,7 @@ export function LockedCell({
   if (!show) {
     return null;
   }
+
   return (
     <Animated.View
       style={

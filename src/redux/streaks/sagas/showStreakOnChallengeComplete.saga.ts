@@ -23,6 +23,7 @@ export default function* showStreakOnChallengeCompleteSaga() {
     if (currentRoute === MODALS.chest) {
       yield delay(4000);
     }
+
     yield call(showModal, streaks);
   }
 }

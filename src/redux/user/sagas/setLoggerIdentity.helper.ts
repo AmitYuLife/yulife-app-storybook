@@ -6,6 +6,7 @@ export default function* setLoggerIdentity(userId: string, membershipType: strin
   if (hash) {
     yield call(Logger.setIntercomHash, hash);
   }
+
   yield call(Logger.setUserId, userId);
   yield call(Logger.setUserProperties, { app_version: DeviceInfo.getVersion(), membershipType, wootricId }, true);
 }

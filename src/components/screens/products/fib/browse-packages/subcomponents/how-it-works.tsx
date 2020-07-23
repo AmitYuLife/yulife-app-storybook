@@ -46,24 +46,28 @@ function getHeaderProps(header: PackageId): ComponentProps<typeof Header> {
       style: { color: Colours.products.fib.common },
     };
   }
+
   if (header === "rare") {
     return {
       title: "Rare cover",
       style: { color: Colours.products.fib.rare },
     };
   }
+
   if (header === "epic") {
     return {
       title: "Epic cover",
       style: { color: Colours.products.fib.epic },
     };
   }
+
   if (header === "custom") {
     return {
       title: "Custom cover",
       style: { color: Colours.darkHotPink },
     };
   }
+
   return {
     title: "",
     style: {},

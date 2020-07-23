@@ -52,8 +52,10 @@ const AvatarBuilder: FC<IProps> = ({ avatar: defaultAvatar, onBackPressed, updat
         onBackPressed();
         return true;
       }
+
       setDoneModalShown(false);
     }
+
     setBackPressed(false);
     return false;
   }, [setBackPressed, setDoneModalShown, isBackButtonPressed, isDoneModalShown, onBackPressed]);
@@ -153,10 +155,12 @@ const AvatarBuilder: FC<IProps> = ({ avatar: defaultAvatar, onBackPressed, updat
           setSelectedColor(avatar.eyes.colors.colorScheme.main);
           break;
       }
+
       flatListColorRef?.current?.scrollToIndex({ index: 0, animated: false });
     } else {
       flatListRef?.current?.scrollToIndex({ index: 0, animated: false });
     }
+
     if (newBodyItemType === AvatarPartType.body) {
       setAvatarPreview("0 0 265 544");
     } else {

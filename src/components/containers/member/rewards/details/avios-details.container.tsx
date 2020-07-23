@@ -45,6 +45,7 @@ const verifyAccountNumber = (loyaltyId: string, accountNumber: string) => {
   if (!loyaltyId || !accountNumber) {
     return false;
   }
+
   const sanitizedAccountNumber = accountNumber.split(" ").join("");
   const isnum = /^\d+$/.test(sanitizedAccountNumber);
   const programme = loyaltyId.toLowerCase();

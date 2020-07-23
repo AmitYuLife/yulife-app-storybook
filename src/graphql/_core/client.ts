@@ -100,5 +100,6 @@ export default () => {
       link: from([authMiddleware, reduxLink, errorAfterware, httpLink()]),
     });
   }
+
   return client;
 };

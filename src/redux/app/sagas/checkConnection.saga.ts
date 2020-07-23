@@ -8,6 +8,7 @@ export default function* checkConnectionSaga() {
   if (!token) {
     return;
   }
+
   try {
     yield call(getSession);
   } catch (e) {

@@ -126,6 +126,7 @@ export default class LeaderboardsScreen extends React.Component<ILeaderboardsScr
       this.calculateitemOffsetY();
       this.restartScroll();
     }
+
     if (
       prevProps.leaderboards[prevProps.activeLeaderboardIndex]?.isLoading !==
       this.props.leaderboards[this.props.activeLeaderboardIndex]?.isLoading
@@ -256,6 +257,7 @@ export default class LeaderboardsScreen extends React.Component<ILeaderboardsScr
     if (Platform.OS !== "ios") {
       return;
     }
+
     this.setState({ leaderboardTopHeight: e.nativeEvent.layout.height });
   };
 
@@ -316,6 +318,7 @@ export default class LeaderboardsScreen extends React.Component<ILeaderboardsScr
     if (!viewportHeight) {
       return null;
     }
+
     const userIndex = this.props.items.findIndex((item) => item.id === this.props.userId);
     const itemOffsetY = Math.floor(userIndex * LEADERBOARD_ITEM_HEIGHT + LEADERBOARD_ITEMS_OFFSET);
     const ADJUST_MULTIPLIER = Style.isAnyIphoneX() ? 0.5 : 1;
@@ -355,6 +358,7 @@ export default class LeaderboardsScreen extends React.Component<ILeaderboardsScr
           </View>
         );
       }
+
       const { isLoading } = this.props;
       return <FirstListItem isLoading={isLoading} scrollOffset={this.state.flatlistOnScrollValue} />;
     }

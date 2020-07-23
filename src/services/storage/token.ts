@@ -37,6 +37,7 @@ export async function migrateOldAppVersionToken(): Promise<void> {
   if (!oldUserStore) {
     return;
   }
+
   try {
     const token = JSON.parse(oldUserStore).token;
     if (token && !!token.length) {
@@ -47,5 +48,6 @@ export async function migrateOldAppVersionToken(): Promise<void> {
   } catch (e) {
     console.log(e);
   }
+
   await AsyncStorage.removeItem(OLD_KEY);
 }
