@@ -29,12 +29,13 @@ export const FibEditSalaryScreen = memo(function (props: IEditSalaryScreen) {
       <SafeAreaView style={styles.wrapper}>
         <GenericHeading
           heading="Salary"
+          isBeta={true}
           onLeftIconPress={() => {
             Keyboard.dismiss();
             return onNavigateBack();
           }}
         />
-        <Animatable.View duration={1000} animation="fadeIn" style={styles.mainContent}>
+        <Animatable.View useNativeDriver={true} duration={1000} animation="fadeIn" style={styles.mainContent}>
           <Text style={styles.text}>
             Because we designed this product based on your current salary we will need your{" "}
           </Text>

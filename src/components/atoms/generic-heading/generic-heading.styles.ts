@@ -1,12 +1,12 @@
 import { StyleSheet, TextStyle, ViewStyle, Platform, ImageStyle } from "react-native";
 import { Colours, Style } from "../../../styles";
 import { IRightIcon } from "./generic-heading.types";
+import { BetaText } from "@molecules";
 
 const styles = StyleSheet.create({
-  heading: {
-    fontSize: 20,
-  } as TextStyle,
   titleWrapper: {
+    flexDirection: "row",
+    alignItems: "center",
     marginTop: Platform.select({ ios: 0, android: -4 }),
   } as ViewStyle,
   headingWrapper: {
@@ -67,6 +67,9 @@ const styles = StyleSheet.create({
     width: Style.adjust(12),
     height: Style.adjust(12),
   } as ImageStyle,
+  recenter: {
+    marginRight: -BetaText?.WIDTH || 0,
+  } as ViewStyle,
 });
 
 export default styles;

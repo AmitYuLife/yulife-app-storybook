@@ -6,6 +6,7 @@ import faqData from "@components/containers/products/fib/data/faq-fib-data";
 import documentsData from "@components/containers/products/fib/data/documents-data";
 import { Package } from "./fib.browse.types";
 import { IFaq } from "./subcomponents/faqs/faq";
+import { FibCustomCoverScreen } from "./fib.custom-cover";
 
 const selectedPackage: Package = {
   earnRate: 20,
@@ -27,7 +28,7 @@ const documents: IFaq[] = documentsData.map(({ question, iconSvgXml }) => ({
   redirectType: "external",
 }));
 
-storiesOf("FibBrowse")
+storiesOf("FibBrowse", module)
   .addDecorator((g: any) => <View style={{ flex: 1 }}>{g()}</View>)
   .add("default", () => (
     <FibBrowseScreen
@@ -39,6 +40,23 @@ storiesOf("FibBrowse")
       selectCoverType={() => null}
       documents={documents}
       navigateToCustomCover={() => null}
+      payoutEstimatorItems={{
+        years: Array.from({ length: 31 }).map((_, i) => i + 40),
+        months: Array.from({ length: 12 }).map((_, i) => i),
+      }}
+      setDeceaseAgeIndexYear={(_: number): void => null}
+      setDeceaseAgeIndexMonth={(_: number): void => null}
+      loading={false}
+    />
+  ))
+  .add("browse custom cover", () => (
+    <FibCustomCoverScreen
+      selectedPackage={selectedPackage}
+      navigateToEditSalary={() => null}
+      onNavigateToYuScreen={(): void => null}
+      avatarUrl={""}
+      faqs={faqs}
+      documents={documents}
       payoutEstimatorItems={{
         years: Array.from({ length: 31 }).map((_, i) => i + 40),
         months: Array.from({ length: 12 }).map((_, i) => i),

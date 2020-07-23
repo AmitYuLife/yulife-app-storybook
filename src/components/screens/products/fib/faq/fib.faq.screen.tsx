@@ -31,7 +31,7 @@ export const FibFaqScreen = memo(function (props: IFibFaqScreenProps) {
 
   return (
     <View style={styles.wrapper}>
-      <GenericHeading heading="FAQ" onLeftIconPress={onNavigateBack} />
+      <GenericHeading isBeta={true} heading="FAQ" onLeftIconPress={onNavigateBack} />
       <ScrollView>
         <Animatable.View duration={500} animation="fadeIn" style={{ flex: 1 }}>
           <Heading label={faq.question} style={styles.header} />
