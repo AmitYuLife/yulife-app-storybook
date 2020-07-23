@@ -16,6 +16,7 @@ export const CharmsSection = memo(function CharmsFC(props: Props) {
   if (!productsCharms?.length) {
     return null;
   }
+
   return (
     <>
       <SectionSeparator />

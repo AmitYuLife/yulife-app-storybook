@@ -46,6 +46,7 @@ export function getSlotDuration({ subtype, milestones, timeLimit }: GetCurrentWo
 
         return `${meditationTime} min${meditationTime > 1 ? "s" : ""}`;
       }
+
       return "";
 
     case "day walk":

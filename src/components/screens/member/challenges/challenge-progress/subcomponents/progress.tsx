@@ -107,9 +107,11 @@ const calculateProgress = (previousGoal: number, goal: number, amount: number) =
   if (goal <= amount) {
     return 1;
   }
+
   if (previousGoal <= amount) {
     return (amount - previousGoal) / (goal - previousGoal);
   }
+
   return 0;
 };
 

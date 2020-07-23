@@ -67,6 +67,7 @@ export default function IntroScreen({
     const stopIndex = showIntro && !surgeIntro.visibility ? 7 : 8;
     return activeIndex === stopIndex ? onSetIntroDone() : setActiveIndex(activeIndex + 1);
   };
+
   const tooltipProps = getTooltipProps(activeIndex, dailyStepsPosition, yucoinPosition);
   return (
     <Animatable.View duration={750} animation="fadeIn" style={{ flex: 1 }}>
@@ -132,11 +133,14 @@ function getPadHeight(displayStreak: boolean) {
   if (isIphoneX()) {
     return displayStreak ? 120 : 100;
   }
+
   if (Platform.OS === "ios") {
     return displayStreak ? 80 : 60;
   }
+
   if (Style.isShortToMediumAndroid()) {
     return displayStreak ? 60 : 40;
   }
+
   return displayStreak ? 100 : 80;
 }

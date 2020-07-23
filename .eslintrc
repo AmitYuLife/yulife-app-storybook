@@ -39,7 +39,15 @@
         "allowElseIf": false
       }
     ],
-    "semi": 2
+    "semi": 2,
+    "padding-line-between-statements": [
+      "error",
+      {
+        "blankLine": "always",
+        "prev": "block-like",
+        "next": "*"
+      }
+    ]
   },
   "settings": {
     "react": {

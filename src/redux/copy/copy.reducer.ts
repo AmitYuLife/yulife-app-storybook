@@ -17,11 +17,13 @@ const copyReducer = (state: ICopyStore = initialState, action: SyncAction): ICop
       if (action.payload && action.payload.copy) {
         return rehydrate(action.payload.copy as ICopyStore);
       }
+
       return state;
     case UPDATE_COPY:
       if (action.payload && action.payload.getMobileCopy) {
         return action.payload.getMobileCopy;
       }
+
       return state;
     default:
       return state;

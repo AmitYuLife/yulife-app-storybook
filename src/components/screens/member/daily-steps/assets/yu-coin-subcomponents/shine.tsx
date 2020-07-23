@@ -34,6 +34,7 @@ class Shine extends PureComponent<{}, IState> {
         }
       );
     }
+
     return this.setState({ x: -500 });
   };
 

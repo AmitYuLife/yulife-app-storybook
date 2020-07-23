@@ -15,6 +15,7 @@ export default function* showFirstStreakModalSaga() {
     if (!(streaks.currentStreak > 0)) {
       yield call(showStreaksModal, streaks);
     }
+
     yield put(displayStreaksFirstAction());
   }
 }

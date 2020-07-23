@@ -109,6 +109,7 @@ export const userReducer = (state: IUserStore = initialState, action: SyncAction
       if (action.payload && action.payload.user) {
         return updatePersistedState(action.payload.user);
       }
+
       return state;
 
     case GET_USER_SUCCESS:
@@ -271,6 +272,7 @@ const updateLeaderboardLoading = (
     if (leaderboard.leaderboardId === payload.leaderboardId) {
       return { ...leaderboard, isLoading };
     }
+
     return leaderboard;
   }),
 });
@@ -282,6 +284,7 @@ const updateConnectionsLoading = (state: IUserStore, payload: any, isLoading: bo
     if (connection.name === payload.name) {
       return { ...connection, isLoading };
     }
+
     return connection;
   }),
 });
@@ -292,6 +295,7 @@ const updateConnectionsSuccess = (state: IUserStore, payload: any): IUserStore =
     if (connection.name === payload.name) {
       return { ...connection, isLoading: false, isConnected: payload.isConnected };
     }
+
     return connection;
   }),
 });

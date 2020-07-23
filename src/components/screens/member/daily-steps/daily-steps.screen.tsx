@@ -152,11 +152,14 @@ function getPadHeight(displayStreak: boolean) {
   if (isIphoneX()) {
     return displayStreak ? 120 : 100;
   }
+
   if (Platform.OS === "ios") {
     return displayStreak ? 80 : 60;
   }
+
   if (Style.isShortToMediumAndroid()) {
     return displayStreak ? 100 : 80;
   }
+
   return displayStreak ? 140 : 120;
 }

@@ -120,5 +120,6 @@ function getContentContainerPaddingBottom() {
   if (Platform.OS === "ios" && deviceInfoModule.hasNotch()) {
     return NOTCHED_IOS_MAGIC_NUMBER;
   }
+
   return 8;
 }

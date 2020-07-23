@@ -65,6 +65,7 @@ export async function getEndResult({ startDateTime, endDateTime, subtype, score 
           value: results && results[0].value,
         };
       }
+
       const startEarly = moment(startDateTime).subtract(1, "hour").format(DATE_FORMAT_WITH_TZ);
       const endLater = moment(endDateTime).add(1, "hour").format(DATE_FORMAT_WITH_TZ);
 

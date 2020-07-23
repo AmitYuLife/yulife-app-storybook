@@ -76,6 +76,7 @@ function RightIcon({ icon }: { icon: IGenericHeadingProps["rightIcon"] }) {
   if (typeof icon === "string") {
     return <Text style={styles.rightTextIcon}>{icon}</Text>;
   }
+
   switch (icon.icon) {
     case "SETTINGS":
       return <Image source={require("@assets/menu/settings.png")} />;

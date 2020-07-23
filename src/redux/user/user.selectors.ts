@@ -24,9 +24,11 @@ export const getConsentedLeaderboards = (state: IReduxState) =>
     if (checkIsCompanyLeaderbaord(curr)) {
       return [curr, ...prev];
     }
+
     if (curr.consent) {
       return [...prev, curr];
     }
+
     return prev;
   }, []);
 export const hasBusinessLeaderboardConsent = (state: IReduxState) =>

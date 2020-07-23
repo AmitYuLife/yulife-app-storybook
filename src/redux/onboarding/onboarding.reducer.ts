@@ -52,6 +52,7 @@ export const userReducer = (state: IOnboardingStore = initialState, action: Sync
           };
         }
       }
+
       return state;
 
     case SET_HISTORICAL_DATA_COLLECTED:
@@ -98,6 +99,7 @@ const updatePersistedState = (persistedState: IOnboardingStore) => {
   if (typeof persistedState.showYuscreenIntro === "undefined") {
     return { ...persistedState, showYuscreenIntro: true };
   }
+
   return persistedState;
 };
 

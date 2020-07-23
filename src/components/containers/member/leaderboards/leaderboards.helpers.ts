@@ -17,11 +17,14 @@ export function getItems({ data, forcedIndex }: GetItems) {
       if (a.index < b.index) {
         return -1;
       }
+
       if (a.index > b.index) {
         return 1;
       }
+
       return 0;
     });
   }
+
   return data?.getLeaderboard || [];
 }

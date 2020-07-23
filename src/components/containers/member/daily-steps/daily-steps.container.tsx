@@ -139,6 +139,7 @@ class DailyStepsContainer extends React.Component<Props> {
               />
             );
           }
+
           return (
             <DailyStepsScreen
               coinsToday={dailyEarnedCoins}
@@ -211,6 +212,7 @@ class DailyStepsContainer extends React.Component<Props> {
             if (!isDoneToday) {
               labels[1].onPress();
             }
+
             Navigation.dismissModal(modalName);
           },
           onPressCtaSecondary: isDoneToday

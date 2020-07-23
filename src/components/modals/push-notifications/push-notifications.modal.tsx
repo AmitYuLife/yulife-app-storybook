@@ -54,6 +54,7 @@ class PushNotificationsModal extends PureComponent<Props> {
       // tslint:disable-next-line
       // console.log(e);
     }
+
     this.dismissModal();
   };
 
@@ -69,6 +70,7 @@ class PushNotificationsModal extends PureComponent<Props> {
         subheading: copy.toSettings.subheading,
       };
     }
+
     if (fromChallenge) {
       return {
         ctaLabel: copy.fromChallenge.ctaLabel,
@@ -79,6 +81,7 @@ class PushNotificationsModal extends PureComponent<Props> {
         subheading: copy.fromChallenge.subheading,
       };
     }
+
     return {
       ctaLabel: copy.turnNotificationOn.ctaLabel,
       ctaLabelSecondary: copy.turnNotificationOn.ctaLabelSecondary,

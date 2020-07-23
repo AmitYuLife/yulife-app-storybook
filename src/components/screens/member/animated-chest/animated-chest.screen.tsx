@@ -102,6 +102,7 @@ export default class AnimatedChestScreen extends React.PureComponent<IProps> {
     if (DETOX_ENABLED) {
       return;
     }
+
     const sequenceOne = Animated.spring(this.lidYOffset, {
       toValue: -60,
       useNativeDriver: true,

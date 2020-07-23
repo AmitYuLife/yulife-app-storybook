@@ -112,6 +112,7 @@ function ProductsSurvey({ onExitConfirmed }: IProps) {
     const onKeyboardHide = () => {
       setScrollDone(false);
     };
+
     Keyboard.addListener("keyboardDidShow", onKeyboardShow);
     Keyboard.addListener("keyboardDidHide", onKeyboardHide);
 

@@ -82,6 +82,7 @@ function removeOrReplaceLastHistoryItem<T>(newRoute: IHistoryRoute<T> = null) {
       const { route, passProps = {} } = newRoute;
       historyClone.push({ route, passProps });
     }
+
     return historyClone;
   };
 }

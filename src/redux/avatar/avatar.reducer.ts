@@ -188,6 +188,7 @@ const avatarReducer = (state: IAvatarStore = initialMaleState, action: SyncActio
       if (state.head.partId === "female_head_1") {
         return state;
       }
+
       return {
         ...initialFemaleState,
         avatarForYuscreen: state.avatarForYuscreen,
@@ -197,6 +198,7 @@ const avatarReducer = (state: IAvatarStore = initialMaleState, action: SyncActio
       if (state.head.partId === "male_head_1") {
         return state;
       }
+
       return {
         ...initialMaleState,
         avatarForYuscreen: state.avatarForYuscreen,

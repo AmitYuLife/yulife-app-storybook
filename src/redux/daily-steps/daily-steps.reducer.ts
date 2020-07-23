@@ -54,6 +54,7 @@ const dailyStepsReducer = (state: IDailyStepsStore = initialState, action: any):
       if (action.payload && action.payload.dailySteps) {
         return updatePersistedState(state, action.payload.dailySteps);
       }
+
       return { ...state };
 
     case PEDOMETER_UPDATES_START:
@@ -88,6 +89,7 @@ const updatePersistedState = (state: IDailyStepsStore, persistedState: IDailySte
   if (!persistedState.lastUpdated) {
     return { ...state };
   }
+
   const lastUpdated = moment(persistedState.lastUpdated).startOf("day").format();
   const today = moment().startOf("day").format();
 

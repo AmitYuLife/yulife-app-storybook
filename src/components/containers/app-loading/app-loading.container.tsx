@@ -59,6 +59,7 @@ export const AppLoadingContainer: React.FC<IProps> = () => {
     if (persistorBoostrapped && animationEnded) {
       store.dispatch(setMainRoot(url));
     }
+
     return () => null;
   }, [persistorBoostrapped, animationEnded, url]);
 
@@ -71,6 +72,7 @@ export const AppLoadingContainer: React.FC<IProps> = () => {
             if (!bootstrapped) {
               return null;
             }
+
             return <View onLayout={() => setPersistorBoostrapped(true)} />;
           }}
         </PersistGate>

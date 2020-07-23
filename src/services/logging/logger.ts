@@ -46,6 +46,7 @@ class LoggerInstance {
     } else {
       Intercom.updateUser(props);
     }
+
     Mixpanel.set(props);
   }
 

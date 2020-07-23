@@ -15,6 +15,7 @@ export function SurgeRates({ hide, totalEarnRate, standardValue }: ISurgeRates) 
   if (hide) {
     return null;
   }
+
   return (
     <View style={styles.wrapper}>
       <Text bold style={{ color: Colours.yuscreen.brown }}>

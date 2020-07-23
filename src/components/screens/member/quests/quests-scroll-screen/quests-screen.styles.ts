@@ -9,6 +9,7 @@ function scrollViewAdjustPosition() {
       top: -36,
     };
   }
+
   return {
     bottom: 0,
     top: 0,

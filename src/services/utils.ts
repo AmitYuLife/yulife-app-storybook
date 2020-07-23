@@ -11,6 +11,7 @@ export const pathOr: PathOr = (obj, key, def, p) => {
   while (obj && p < key.length) {
     obj = obj[key[p++]];
   }
+
   return obj === undefined || p < key.length ? def : obj;
 };
 
@@ -64,9 +65,11 @@ export function getCurrentEpisode(currentLevel: number) {
   if (currentLevel % 50 === 0) {
     return (currentLevel / 50) * 8 - 1;
   }
+
   if (currentLevel <= 49) {
     return Math.floor((currentLevel - 1) / 7);
   }
+
   if (
     (currentLevel >= 51 && currentLevel <= 99) ||
     (currentLevel >= 101 && currentLevel <= 149) ||
@@ -190,8 +193,10 @@ export const truncate = (str: string, chars = 30) => {
   if (!str) {
     return "";
   }
+
   if (str.length <= chars) {
     return str;
   }
+
   return `${str.substr(0, chars)}...`;
 };
