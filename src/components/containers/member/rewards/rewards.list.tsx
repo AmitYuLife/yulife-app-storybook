@@ -1,5 +1,4 @@
 import { useQuery } from "@apollo/react-hooks";
-import { BaseQueryOptions } from "@apollo/react-common";
 import { GQL_QUERY_GET_REWARDS } from "@graphql/rewards";
 import { bottomTabs } from "@navigation/constants";
 import React, { useCallback } from "react";
@@ -37,16 +36,9 @@ const getDetailsRoute = (rewardProviderId: string) => {
   }
 };
 
-const requestOptions: BaseQueryOptions = {
-  fetchPolicy: "cache-first",
-};
-
 function RewardsListContainer(props: Props) {
   const { copy, onTabChange, totalCoins, hasNotification } = props;
-  const { loading: rewardsAreLoading, data: rewards, refetch: refetchRewards } = useQuery(
-    GQL_QUERY_GET_REWARDS,
-    requestOptions
-  );
+  const { loading, data: rewards, refetch: refetchRewards } = useQuery(GQL_QUERY_GET_REWARDS);
 
   const handleRewardDetailsItemPress = useCallback(
     async (reward: GetRewards_getRewards) => {
@@ -96,13 +88,13 @@ function RewardsListContainer(props: Props) {
 
   return (
     <RewardsListScreen
-      data={rewards && rewards.getRewards ? rewards.getRewards : []}
+      data={rewards?.getRewards || []}
       hasNotification={hasNotification}
       onItemPress={handleRewardDetailsItemPress}
       onLeftMenuPress={props.onLeftMenuPress}
       onLeftTabPress={handleRewardsRefetch}
       onRightTabPress={handleRightTabPress}
-      loading={rewardsAreLoading}
+      loading={loading}
       totalCoins={totalCoins}
     />
   );

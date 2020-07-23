@@ -3,7 +3,7 @@ import * as React from "react";
 import { SFC } from "react";
 import { StyleSheet, View } from "react-native";
 import { Circle, Path, Rect } from "react-native-svg";
-import NativeSvg from "../../../../containers/member/stats/native-svg";
+import NativeSvg from "../../../../molecules/native-svg/native-svg";
 import styles from "./general-info-card.styles";
 import { STATS_VALUE } from "@ids";
 
