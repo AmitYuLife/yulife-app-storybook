@@ -1,13 +1,9 @@
-import Loading from "@atoms/loading/loading";
-import { REWARDS_SCREEN } from "@ids";
-import { NavBar, RewardsListItem, RewardTabs, TopBar, YulifeRefreshHeader } from "@molecules/index";
-import { Style } from "@styles/index";
 import * as React from "react";
-import { View } from "react-native";
-import { IndexPath, LargeList } from "react-native-largelist-v3";
 import { GetRewards_getRewards } from "../../../../../graphql/_core/schema";
 import { IConnectedScreenProps } from "../../../../../typings";
-import styles from "./rewards-list.screen.styles";
+import { RewardsListLayout } from "../subcomponents/rewards-layout";
+import { RewardsList } from "./rewards-list";
+import { RewardsListLoading } from "../subcomponents/rewards-loading";
 
 export interface IRewardsListScreenProps extends IConnectedScreenProps {
   data: GetRewards_getRewards[];
@@ -18,78 +14,45 @@ export interface IRewardsListScreenProps extends IConnectedScreenProps {
   loading: boolean;
 }
 
-export default class RewardsListScreen extends React.PureComponent<IRewardsListScreenProps> {
-  private largeList: LargeList;
+const RewardsListScreen = React.memo((props: IRewardsListScreenProps) => {
+  const {
+    data,
+    hasNotification = false,
+    onLeftTabPress,
+    onRightTabPress,
+    onLeftMenuPress,
+    totalCoins,
+    onItemPress,
+    loading,
+  } = props;
 
-  public render() {
-    const { data, hasNotification = false, onLeftTabPress, onRightTabPress, onLeftMenuPress, totalCoins } = this.props;
+  if (loading) {
     return (
-      <View style={styles.wrapper} testID={REWARDS_SCREEN}>
-        <View style={styles.topbarFiller} />
-        <View style={styles.rewardTabsWrapper}>
-          <RewardTabs onLeftTabPress={onLeftTabPress} onRightTabPress={onRightTabPress} activeTabIndex={0} />
-        </View>
-        <View style={styles.listWrapper}>
-          <LargeList
-            ref={this.setLargeListRef}
-            renderIndexPath={this.renderIndexPath}
-            heightForIndexPath={this.getHeight}
-            data={[{ items: data }]}
-            onRefresh={this.handleRefresh}
-            renderEmpty={Loading}
-            refreshHeader={YulifeRefreshHeader}
-            renderFooter={this.renderFooter}
-          />
-        </View>
-        <View style={styles.topbarWrapper}>
-          <TopBar coins={totalCoins} onPressLeftIcon={onLeftMenuPress} />
-        </View>
-        <NavBar activeIndex={4} hasNotification={hasNotification} />
-      </View>
+      <RewardsListLayout
+        hasNotification={hasNotification}
+        onLeftTabPress={onLeftTabPress}
+        onRightTabPress={onRightTabPress}
+        onLeftMenuPress={onLeftMenuPress}
+        totalCoins={totalCoins}
+        activeScreen="rewards"
+      >
+        <RewardsListLoading />
+      </RewardsListLayout>
     );
   }
 
-  private setLargeListRef = (ref: LargeList) => {
-    this.largeList = ref;
-  };
+  return (
+    <RewardsListLayout
+      activeScreen="rewards"
+      hasNotification={hasNotification}
+      onLeftTabPress={onLeftTabPress}
+      onRightTabPress={onRightTabPress}
+      onLeftMenuPress={onLeftMenuPress}
+      totalCoins={totalCoins}
+    >
+      <RewardsList data={data} onItemPress={onItemPress} onLeftTabPress={onLeftTabPress} />
+    </RewardsListLayout>
+  );
+});
 
-  private handleRefresh = async () => {
-    await this.props.onLeftTabPress();
-    if (this.largeList) {
-      this.largeList.endRefresh();
-    }
-  };
-
-  private renderIndexPath = ({ row }: IndexPath) => {
-    const { data } = this.props;
-    const item = data[row];
-    if (item) {
-      const { available_denominations, code, currency_code, link_type, uiSettings } = item;
-      const isLocked = !available_denominations.length;
-      const { yuCoin = 0, value = 0 } = available_denominations[0] || {};
-
-      return (
-        <RewardsListItem
-          onPress={this.handleItemPress(item)}
-          code={code}
-          settings={uiSettings}
-          cost={isLocked ? 0 : yuCoin}
-          linkType={link_type}
-          rewardValue={isLocked ? 0 : value}
-          rewardCurrency={currency_code}
-          isLocked={isLocked}
-        />
-      );
-    }
-
-    return null;
-  };
-
-  private handleItemPress = (item: GetRewards_getRewards) => () => {
-    this.props.onItemPress(item);
-  };
-
-  private getHeight = () => Style.SCALE_UP_AND_DOWN(150);
-
-  private renderFooter = () => <View style={styles.footer} />;
-}
+export default RewardsListScreen;

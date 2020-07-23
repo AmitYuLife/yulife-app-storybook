@@ -17,6 +17,7 @@ function* fetchAvatarSaga({ payload: { uri } }: SyncAction<IFetchAvatarPayload>)
     }
 
     // mark it as pending to prevent multiple fetched
+
     yield put(saveAvatarToCache({ xml: null, uri }));
 
     const result: Response = yield call(() => fetch(uri));

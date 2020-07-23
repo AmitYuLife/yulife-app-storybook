@@ -1,10 +1,10 @@
 import * as React from "react";
 import { SFC } from "react";
-import { Image, View } from "react-native";
+import { Image, View, ViewStyle, StyleSheet, ImageStyle, TextStyle } from "react-native";
 import { GetMobileCopy_getMobileCopy_screens_purchases_empty } from "../../../../../../graphql/_core/schema";
-import { Button, Text } from "../../../../../atoms";
-import styles from "./purchases-empty.styles";
+import { Text, MinimalButton } from "../../../../../atoms";
 import { CHECK_REWARDS_BUTTON } from "@ids";
+import { Colours, Style } from "@styles";
 
 interface IProps {
   onCtaPress: () => void;
@@ -18,8 +18,43 @@ const PurchasesEmpty: SFC<IProps> = ({ onCtaPress, copy }) => (
       <Text style={styles.text}>{copy.heading}</Text>
       <Text style={styles.text}>{copy.subheading}</Text>
     </View>
-    <Button type="SecondaryMedium" label={copy.ctaLabel} onPress={onCtaPress} testID={CHECK_REWARDS_BUTTON} />
+
+    <View style={styles.ctaWrapper}>
+      <MinimalButton
+        title={copy.ctaLabel}
+        height={60}
+        backgroundColor={Colours.darkHotPink}
+        shadowColor={Colours.darkHotPinkShadow}
+        color="white"
+        onPress={onCtaPress}
+        testID={CHECK_REWARDS_BUTTON}
+      />
+    </View>
   </View>
 );
 
 export default PurchasesEmpty;
+
+const styles = StyleSheet.create({
+  contentWrapper: {
+    alignItems: "center",
+    justifyContent: "center",
+    marginBottom: Style.adjust(18),
+  } as ViewStyle,
+  image: {
+    marginBottom: Style.adjust(21),
+  } as ImageStyle,
+  text: {
+    fontSize: Style.adjust(16),
+    marginBottom: Style.adjust(3),
+  } as TextStyle,
+  wrapper: {
+    alignItems: "center",
+    flex: 1,
+    justifyContent: "center",
+  } as ViewStyle,
+  ctaWrapper: {
+    alignSelf: "center",
+    width: 250,
+  } as ViewStyle,
+});
