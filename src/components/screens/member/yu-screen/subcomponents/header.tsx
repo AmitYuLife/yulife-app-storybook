@@ -1,49 +1,48 @@
 import React, { memo } from "react";
-import { Image, StyleSheet, View, ViewStyle, TextStyle, ImageStyle, LayoutChangeEvent } from "react-native";
+import { Image, StyleSheet, View, ViewStyle, TextStyle, ImageStyle } from "react-native";
 import { Text } from "@components/atoms";
 import { Style } from "@styles";
 import { getCurrentWorld, getCurrentWorldImage, getCurrentWorldText, getCurrentWorldTextColor } from "@services/utils";
+import { EarnRateButton } from "./earn-rate-button";
 
 interface Props {
   userName: string;
   level: number;
-  onLayout: (event: LayoutChangeEvent) => void;
+  earnRate: number;
+  onEarnRatePress: () => void;
 }
 
 export const YuScreenHeader = memo(function HeaderFC(props: Props) {
-  const { userName = "", level = 0, onLayout } = props;
+  const { userName = "", level = 0, earnRate, onEarnRatePress } = props;
   return (
-    <View onLayout={onLayout} style={styles.headerWrapper}>
-      <View style={styles.header}>
-        <Text style={styles.userName}>{userName}</Text>
-        <View style={styles.currentWorldWrapper}>
-          <View style={styles.currentWorld}>
-            <Image style={styles.image} source={getCurrentWorldImage(getCurrentWorld(level))} />
-            <View style={styles.currentWorldDetailsWrapper}>
-              <Text
-                style={StyleSheet.flatten([
-                  styles.worldText,
-                  { color: getCurrentWorldTextColor(getCurrentWorld(level)) },
-                ])}
-              >
-                {getCurrentWorldText(getCurrentWorld(level))}
-              </Text>
-              {!level ? null : <Text style={styles.levelText}>{`Lvl ${level}`}</Text>}
-            </View>
+    <View style={styles.header}>
+      <Text style={styles.userName}>{userName}</Text>
+      <View style={styles.currentWorldWrapper}>
+        <View style={styles.currentWorld}>
+          <Image style={styles.image} source={getCurrentWorldImage(getCurrentWorld(level))} />
+          <View style={styles.currentWorldDetailsWrapper}>
+            <Text
+              style={StyleSheet.flatten([
+                styles.worldText,
+                { color: getCurrentWorldTextColor(getCurrentWorld(level)) },
+              ])}
+            >
+              {getCurrentWorldText(getCurrentWorld(level))}
+            </Text>
+            {!level ? null : <Text style={styles.levelText}>{`Lvl ${level}`}</Text>}
           </View>
         </View>
       </View>
+      <EarnRateButton earnRate={earnRate} onEarnRatePress={onEarnRatePress} />
     </View>
   );
 });
 
 const styles = StyleSheet.create({
-  headerWrapper: {
+  header: {
     paddingBottom: Style.SCALE_UP_AND_DOWN(9),
     borderBottomColor: "#f7f7f7",
     borderBottomWidth: Style.SCALE_UP_AND_DOWN(1),
-  } as ViewStyle,
-  header: {
     width: "100%",
     paddingLeft: Style.SCALE_UP_AND_DOWN(16),
   } as ViewStyle,

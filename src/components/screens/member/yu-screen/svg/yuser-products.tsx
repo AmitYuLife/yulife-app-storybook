@@ -149,9 +149,11 @@ const getXmlStringFromIcon = (icon: string, active: boolean): string => {
       iconSlot = null;
       break;
   }
+
   if (iconSlot && !active) {
     return addLockerIconToSVG(iconSlot);
   }
+
   return iconSlot;
 };
 

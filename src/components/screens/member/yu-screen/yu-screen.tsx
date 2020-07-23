@@ -1,5 +1,5 @@
-import React, { useCallback, useState } from "react";
-import { ScrollView, View, LayoutChangeEvent } from "react-native";
+import React, { useState } from "react";
+import { ScrollView, View } from "react-native";
 import { TopBar, NavBar } from "@molecules/index";
 import styles from "./yu-screen.styles";
 import {
@@ -10,7 +10,7 @@ import {
 import { ProductType } from "@containers/member/yu-screen/yu-screen-products.container";
 import { IAvatar } from "./avatar-builder/avatar.types";
 import { YUSCREEN } from "@ids";
-import { EarnRateButton, CharmsSection, YuScreenHeader, EmployerBenefits } from "./subcomponents";
+import { CharmsSection, YuScreenHeader, EmployerBenefits } from "./subcomponents";
 import { AvatarSection } from "./subcomponents/avatar-section/avatar-section";
 
 interface IProps {
@@ -54,17 +54,12 @@ const YuScreen = (props: IProps) => {
     onProductPress,
     onEarnRatePress,
   } = props;
-  const [layoutHeader, setLayoutHeader] = useState(null);
   const [sectionTitleWidth, setSectionTitleWidth] = useState(SANE_SECTION_TITLE_WIDTH_DEFAULT);
-  const handleLayoutHeader = useCallback((event: LayoutChangeEvent) => {
-    const { y, height } = event.nativeEvent.layout;
-    setLayoutHeader(y + height);
-  }, []);
 
   return (
     <View style={styles.wrapper} testID={YUSCREEN}>
       <View style={styles.topbarFiller} />
-      <YuScreenHeader level={level} userName={userName} onLayout={handleLayoutHeader} />
+      <YuScreenHeader earnRate={earnRate} onEarnRatePress={onEarnRatePress} level={level} userName={userName} />
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.padTop} />
         <AvatarSection
@@ -86,7 +81,6 @@ const YuScreen = (props: IProps) => {
         <View style={styles.padBot} />
       </ScrollView>
       <NavBar activeIndex={2} hasNotification={hasNotification} />
-      <EarnRateButton earnRate={earnRate} onEarnRatePress={onEarnRatePress} topDistance={layoutHeader} />
       <View style={styles.topbarWrapper}>
         <TopBar coins={totalCoins} onPressLeftIcon={onLeftMenuPress} />
       </View>
