@@ -24,4 +24,5 @@ export { POPUPTYPE } from "./pop-up/pop-up";
 export { default as TextField } from "./text-field/text-field";
 export { default as TextWithBoldText } from "./text-with-bold-text/text-with-bold-text";
 export { default as HorizontalScroller } from "./horizontal-scroller/horizontal-scroller";
+export * from "./beta-text/beta-text";
 export { AvatarEmpty } from "./avatar/avatar-empty";

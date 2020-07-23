@@ -20,8 +20,9 @@ export const FibIntroductionScreen = memo(function (props: IFibIntroductionScree
   return (
     <>
       <SafeAreaView style={styles.wrapper}>
-        <GenericHeading heading="Life Insurance" onLeftIconPress={navigateToYuScreen} />
+        <GenericHeading isBeta={true} logo="yulife" onLeftIconPress={navigateToYuScreen} />
         <ScrollView showsVerticalScrollIndicator={false}>
+          <View style={styles.padTop} />
           <Animatable.View duration={1000} animation="fadeIn" style={{ flex: 1 }}>
             <View style={styles.imagesWrapper}>
               <View style={styles.avatarWrapper}>
@@ -105,4 +106,7 @@ const styles = StyleSheet.create({
     marginTop: 16,
     marginHorizontal: 32,
   },
+  padTop: {
+    height: 16,
+  } as ViewStyle,
 });

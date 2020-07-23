@@ -41,7 +41,12 @@ export const FibCustomCoverScreen = memo(function (props: IFibCustomCoverScreenP
   return (
     <>
       <SafeAreaView style={styles.wrapper}>
-        <GenericHeading heading="Create custom cover" leftIcon="BACK" onLeftIconPress={onNavigateToYuScreen} />
+        <GenericHeading
+          heading="Create custom cover"
+          isBeta={true}
+          leftIcon="BACK"
+          onLeftIconPress={onNavigateToYuScreen}
+        />
         <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scrollView}>
           <AvatarAndDescription loading={loading} avatarUrl={avatarUrl} selectedPackage={selectedPackage} />
           <EstimatedCost

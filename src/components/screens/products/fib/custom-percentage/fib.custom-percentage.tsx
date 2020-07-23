@@ -42,6 +42,7 @@ export const FibCustomPercentage = memo(function (props: IFibCustomPercentage) {
         leftIcon="BACK"
         onLeftIconPress={onNavigateBack}
         heading="Create custom cover"
+        isBeta={true}
       />
       <View style={styles.content}>
         <SvgXml xml={personPencilSvg} />

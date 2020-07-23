@@ -1,7 +1,7 @@
 import { ViewStyle } from "react-native";
 
 export interface IGenericHeadingProps {
-  heading: string;
+  heading?: string;
   subheading?: string;
   hidesBorder?: boolean;
   onLeftIconPress?: () => void;
@@ -10,6 +10,8 @@ export interface IGenericHeadingProps {
   leftIcon?: LeftIcon;
   border?: "new"; // FIXME: STANDARDISE ALL HEADING BORDERS
   rightIcon?: IRightIcon | string;
+  isBeta?: boolean;
+  logo?: "yulife";
 }
 
 export interface IRightIcon {

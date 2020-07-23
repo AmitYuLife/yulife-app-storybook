@@ -4,6 +4,9 @@ import Text from "../text/text";
 import Back from "./../back/back";
 import styles, { adjustHitSlop } from "./generic-heading.styles";
 import { IGenericHeadingProps } from "./generic-heading.types";
+import { Heading } from "./subcomponents/heading";
+import { Logo } from "./subcomponents/logo";
+import { Beta } from "./subcomponents/beta";
 
 export default function GenericHeading(props: IGenericHeadingProps) {
   const {
@@ -18,6 +21,8 @@ export default function GenericHeading(props: IGenericHeadingProps) {
     rightIcon = {
       icon: "SETTINGS",
     },
+    isBeta,
+    logo,
   } = props;
   return (
     <View>
@@ -40,10 +45,10 @@ export default function GenericHeading(props: IGenericHeadingProps) {
               <RightIcon icon={rightIcon} />
             </TouchableOpacity>
           )}
-          <View style={styles.titleWrapper}>
-            <Text numberOfLines={1} bold={true} style={styles.heading}>
-              {heading}
-            </Text>
+          <View style={[styles.titleWrapper, isBeta && styles.recenter]}>
+            <Heading heading={heading} />
+            <Logo logo={logo} />
+            <Beta show={isBeta} logo={logo} heading={heading} />
           </View>
         </View>
         {!subheading ? null : (

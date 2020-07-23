@@ -68,9 +68,10 @@ export const FibBrowseScreen = memo(function (props: IFibBrowseScreenProps) {
     <>
       <SafeAreaView style={styles.wrapper}>
         <GenericHeading
-          heading="Life insurance"
           rightIcon={{ icon: "CLOSE" }}
           onRightIconPress={onNavigateToYuScreen}
+          logo="yulife"
+          isBeta={true}
         />
         <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scrollView}>
           <Animatable.View duration={1000} animation="fadeIn" style={{ flex: 1 }}>

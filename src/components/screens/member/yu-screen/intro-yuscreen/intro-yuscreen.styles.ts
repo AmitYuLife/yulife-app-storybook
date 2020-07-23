@@ -1,11 +1,11 @@
-import { StyleSheet, TextStyle, ViewStyle, ImageStyle } from "react-native";
+import { StyleSheet, TextStyle, ViewStyle, ImageStyle, Platform } from "react-native";
 import { Style } from "../../../../../styles";
 
 export default StyleSheet.create({
   imageWrapper: {
     height: 320,
     width: 320,
-    marginTop: Style.DEVICE_HEIGHT * (Style.isAndroid() ? 0.05 : 0.1),
+    marginTop: Style.DEVICE_HEIGHT * 0.1,
     alignSelf: "center",
   } as ViewStyle,
   image: {
@@ -61,5 +61,11 @@ export default StyleSheet.create({
     alignItems: "center",
     right: 0,
     left: 0,
+  } as ViewStyle,
+  absoluteTop: {
+    position: "absolute",
+    left: 0,
+    right: 0,
+    top: Platform.select({ ios: Style.getSafeAreaStart(), android: 0 }),
   } as ViewStyle,
 });

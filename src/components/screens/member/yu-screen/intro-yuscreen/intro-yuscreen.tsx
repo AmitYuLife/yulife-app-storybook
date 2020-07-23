@@ -1,6 +1,6 @@
 import React from "react";
 import { Image, SafeAreaView, FlatList, View, TouchableOpacity, ViewToken, ListRenderItemInfo } from "react-native";
-import { Text, PageIndicator } from "@atoms";
+import { Text, PageIndicator, GenericHeading } from "@atoms";
 import { Style } from "@styles/index";
 import styles from "./intro-yuscreen.styles";
 import { data, images, IYuScreenIntroDataItem } from "./intro-yuscreen.helper";
@@ -60,6 +60,9 @@ export class YuScreenIntro extends React.PureComponent<IProps, IState> {
               <Text style={styles.actionButton}>{buttonLabel}</Text>
             </TouchableOpacity>
           </View>
+        </View>
+        <View style={styles.absoluteTop}>
+          <GenericHeading logo="yulife" hidesBorder />
         </View>
       </SafeAreaView>
     );
