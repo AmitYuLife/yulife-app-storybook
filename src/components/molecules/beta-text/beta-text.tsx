@@ -5,7 +5,7 @@ import { StyleSheet, TextStyle, View, ViewStyle } from "react-native";
 const _BetaText = () => {
   return (
     <View style={styles.wrapper}>
-      <Text bold style={styles.beta}>
+      <Text bold={true} style={styles.beta}>
         BETA
       </Text>
     </View>

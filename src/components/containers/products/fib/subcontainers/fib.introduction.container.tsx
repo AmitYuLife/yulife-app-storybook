@@ -1,7 +1,7 @@
 import { useQuery } from "@apollo/react-hooks";
 import React, { memo } from "react";
-import { View } from "react-native-animatable";
 import { connect } from "react-redux";
+import { View } from "react-native";
 import { Text } from "@atoms";
 import { GQL_QUERY_GET_YULIFER, GetYuliferData } from "@graphql/yuscreen";
 import { IReduxState } from "@redux/_core/reducers";

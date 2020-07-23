@@ -70,7 +70,7 @@ export default function IntroScreen({
 
   const tooltipProps = getTooltipProps(activeIndex, dailyStepsPosition, yucoinPosition);
   return (
-    <Animatable.View duration={750} animation="fadeIn" style={{ flex: 1 }}>
+    <Animatable.View duration={750} animation="fadeIn" style={styles.flex} useNativeDriver={true}>
       <CentredScreen
         footerImage={centredScreen.online.image}
         style={centredScreen.online.style}
