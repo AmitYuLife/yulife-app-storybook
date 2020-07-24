@@ -1,9 +1,11 @@
-import React, { ComponentProps } from "react";
+import React, { ComponentProps, useState, useEffect } from "react";
 import { storiesOf } from "@storybook/react-native";
 import YuScreen from "./yu-screen";
-import { avatarFiller, alphaProducts, groupProducts, yulifeProducts } from "./yu-screen.stories-helper";
+import { alphaProducts, groupProducts, yulifeProducts } from "./yu-screen.stories-helper";
 
-const fillers = {
+type YuScreenProps = ComponentProps<typeof YuScreen>;
+
+const fillers: YuScreenProps = {
   level: 8,
   totalCoins: 0,
   earnRate: 0,
@@ -12,7 +14,6 @@ const fillers = {
   loading: false,
   userName: "userName",
   avatarUrl: "",
-  avatarFromLocal: avatarFiller,
   products: {
     employer: null,
     personal: null,
@@ -23,10 +24,23 @@ const fillers = {
   onLeftMenuPress: (): null => null,
   onEarnRatePress: (): null => null,
   onProductPress: (_: any, __: any): any => (): null => null,
-} as ComponentProps<typeof YuScreen>;
+};
 
 storiesOf("YuScreen")
   .add("no avatar", () => <YuScreen {...fillers} isAvatarCreated={false} />)
   .add("alpha", () => <YuScreen {...fillers} products={alphaProducts} />)
   .add("group", () => <YuScreen {...fillers} products={groupProducts} />)
-  .add("yulife", () => <YuScreen {...fillers} products={yulifeProducts} />);
+  .add("yulife", () => <YuScreen {...fillers} products={yulifeProducts} />)
+  .add("avatar loading", () => <YuScreenLoadingStory {...fillers} />);
+
+function YuScreenLoadingStory(props: YuScreenProps) {
+  const [isLoading, setLoadingState] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setLoadingState(false);
+    }, 3000);
+  }, []);
+
+  return <YuScreen {...props} loading={isLoading} products={yulifeProducts} />;
+}

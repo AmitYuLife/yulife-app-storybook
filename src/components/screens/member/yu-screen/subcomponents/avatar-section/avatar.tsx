@@ -7,7 +7,6 @@ import { AvatarRemote } from "./avatar-remote";
 
 type Props = Omit<AvatarFilledProps, "width" | "height"> & {
   isAvatarCreated: boolean;
-  loading: boolean;
   avatarUrl?: string;
   avatar?: IAvatar;
   sizeMultiplier?: number;
@@ -18,13 +17,13 @@ const BASE_WIDTH = 176;
 const BASE_HEIGHT = 361;
 
 export const Avatar = memo(function (props: Props) {
-  const { isAvatarCreated, avatar, onEditPress, sizeMultiplier = DEFAULT_MULTIPLIER, loading, avatarUrl } = props;
+  const { isAvatarCreated, avatar, onEditPress, sizeMultiplier = DEFAULT_MULTIPLIER, avatarUrl } = props;
   const style = {
     width: Style.adjust(BASE_WIDTH * sizeMultiplier),
     height: Style.adjust(BASE_HEIGHT * sizeMultiplier),
   };
 
-  if (!isAvatarCreated || loading || !avatarUrl) {
+  if (!isAvatarCreated || !avatarUrl) {
     return <AvatarEmpty style={style} />;
   }
 

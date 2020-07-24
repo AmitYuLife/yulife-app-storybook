@@ -1,23 +1,7 @@
 import { ImageStyle, StyleSheet, TextStyle, ViewStyle, Platform } from "react-native";
-import { TopBar, NavBar } from "@components/molecules";
+import { NavBar } from "@components/molecules";
 import { Style } from "@styles/index";
 import deviceInfoModule from "react-native-device-info";
-
-const getTopBarFiller = () => {
-  if (Platform.OS === "android") {
-    return 6;
-  }
-
-  if (Style.isIphoneXPlus()) {
-    return 52;
-  }
-
-  if (Style.isIphoneX()) {
-    return 50;
-  }
-
-  return 30;
-};
 
 const navBarPositionBot = NavBar.positionBottom;
 const navBarHeightApprox = Style.adjust(55);
@@ -26,10 +10,6 @@ const navBarNotchedIosExtraPadding = Platform.OS === "ios" && deviceInfoModule.h
 const padBot = navBarPositionBot + navBarHeightApprox + navbarMarginToLastElement + navBarNotchedIosExtraPadding;
 
 export default StyleSheet.create({
-  wrapper: {
-    flex: 1,
-    backgroundColor: "#FFFFFF",
-  } as ViewStyle,
   padTop: {
     height: Style.adjust(40),
   } as ViewStyle,
@@ -67,15 +47,4 @@ export default StyleSheet.create({
     lineHeight: Style.SCALE_UP_AND_DOWN(17),
     textAlign: "center",
   } as TextStyle,
-  topbarWrapper: {
-    left: 0,
-    paddingTop: Platform.select({ ios: Style.getSafeAreaStart(), android: 0 }),
-    paddingBottom: Style.adjust(12),
-    position: "absolute",
-    right: 0,
-    backgroundColor: "white",
-  } as ViewStyle,
-  topbarFiller: {
-    height: TopBar.height + getTopBarFiller(),
-  } as ViewStyle,
 });

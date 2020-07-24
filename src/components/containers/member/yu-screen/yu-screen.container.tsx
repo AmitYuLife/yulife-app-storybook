@@ -22,6 +22,8 @@ import { AvatarBuilderHeading } from "@screens/member/yu-screen/avatar-builder/a
 import { YuScreenIntro } from "../../../screens/member/yu-screen/intro-yuscreen/intro-yuscreen";
 import { getShowYuscreenIntro } from "../../../../redux/onboarding/onboarding.selectors";
 import { setYuscreenIntroShown } from "../../../../redux/onboarding/onboarding.actions";
+import { YuScreenLayout } from "@components/screens/member/yu-screen/yu-screen-layout";
+import { YuScreenLoading } from "@components/screens/member/yu-screen/yu-screen-loading";
 
 interface IProps {
   componentId: string;
@@ -42,7 +44,7 @@ function YuScreenContainer({
   showYuscreenIntro,
   setYuscreenIntroShown,
 }: Props) {
-  const { data, loading } = useQuery<GetYulifer>(GQL_QUERY_GET_YULIFER, { fetchPolicy: "cache-first" });
+  const { data, loading } = useQuery<GetYulifer>(GQL_QUERY_GET_YULIFER);
 
   let avatarRemoteFile = null as string;
   let earnRate = 1;
@@ -58,6 +60,14 @@ function YuScreenContainer({
     avatarRemoteFile = data.getYulifer.avatarRemoteFiles?.pngFull;
     products = data.getYulifer.products;
     earnRate = data.getYulifer.earnRate ? data.getYulifer.earnRate : earnRate;
+  }
+
+  if (loading || !data) {
+    return (
+      <YuScreenLayout hasNotification={hasNotification} onLeftMenuPress={onLeftMenuPress} totalCoins={totalCoins}>
+        <YuScreenLoading />
+      </YuScreenLayout>
+    );
   }
 
   const [activeProducts, totalEarnRate] = getActiveProductsAndEarnRate(products, earnRate);
