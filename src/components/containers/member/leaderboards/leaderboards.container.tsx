@@ -8,7 +8,6 @@ import { connect } from "react-redux";
 import { IMainTabsProps, labels } from "../../../../navigation/root";
 import { IReduxState } from "../../../../redux/_core/reducers";
 import { getAppState } from "../../../../redux/app/app.selectors";
-import { getTotalCoins } from "../../../../redux/coins/coins.selectors";
 import { getCopy } from "../../../../redux/copy/copy.selectors";
 import { getHasNotification } from "../../../../redux/levels/levels.selectors";
 import { updateLeaderboardConsent } from "../../../../redux/user/user.actions";
@@ -49,7 +48,6 @@ const LeaderboardsContainer: FC<Props> = (props) => {
   const {
     leaderboards = [],
     hasNotification,
-    totalCoins,
     copy,
     componentId,
     appState,
@@ -101,14 +99,13 @@ const LeaderboardsContainer: FC<Props> = (props) => {
       sortBy={sortBy}
       hasNotification={hasNotification}
       appState={appState}
-      onLeftMenuPress={onLeftMenuPress}
       labels={labels}
-      totalCoins={totalCoins}
       isLoading={loading}
       leaderboards={leaderboards || []}
       items={data?.getLeaderboard || []}
       copy={copy.turnBoardOn}
       userId={`lead_${data?.getCurrentUser?.id}`}
+      onLeftMenuPress={onLeftMenuPress}
       onLeaderboardChange={handleLeaderboardChange}
       onRefetch={handleStepsRefetch}
       onAllowLeaderboard={handleAllowLeaderboard}
@@ -120,7 +117,6 @@ const LeaderboardsContainer: FC<Props> = (props) => {
 
 const mapStateToProps = (state: IReduxState) => ({
   copy: getCopy(state, "leaderboards"),
-  totalCoins: getTotalCoins(state),
   leaderboards: getAllLeaderboards(state),
   hasNotification: getHasNotification(state),
   appState: getAppState(state),

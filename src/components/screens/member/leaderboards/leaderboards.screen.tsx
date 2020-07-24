@@ -32,6 +32,7 @@ import { LEADERBOARD_ITEM_HEIGHT } from "./leaderboard-item/leaderboard-item.sty
 import { LockedCell } from "./locked-cell";
 import { LeaderboardTitle } from "./leaderboard-title";
 import deviceInfo from "react-native-device-info";
+import { MemoizedTopBar } from "./subcomponents/memoized-top-bar/memoized-top-bar";
 
 const LEADERBOARD_ITEMS_OFFSET = LIST_PAD_HEIGHT + LOADING_ITEM_HEIGHT;
 
@@ -59,7 +60,6 @@ export interface ILeaderboardsScreenProps {
   hasNotification: boolean;
   appState: IAppStore["appState"];
   labels: ILabel[];
-  totalCoins: number;
   isLoading: boolean;
   leaderboards: ILeaderboard[];
   items: IItem[];
@@ -144,7 +144,6 @@ export default class LeaderboardsScreen extends React.Component<ILeaderboardsScr
       isLoading,
       hasNotification,
       items = [],
-      totalCoins,
       leaderboards,
       onLeftMenuPress,
       onPrivacyPolicyPress,
@@ -249,9 +248,7 @@ export default class LeaderboardsScreen extends React.Component<ILeaderboardsScr
           floatingItemAnimatedOpacity={this.getOpacityInterpolation() as number}
         />
         <NavBar activeIndex={3} hasNotification={hasNotification} />
-        <View onLayout={this.handleTopBarWrapperLayout} style={styles.topBarWrapper}>
-          <TopBar coins={totalCoins} type="default" onPressLeftIcon={onLeftMenuPress} />
-        </View>
+        <MemoizedTopBar onLayout={this.handleTopBarWrapperLayout} onPressLeftIcon={onLeftMenuPress} />
       </View>
     );
   }

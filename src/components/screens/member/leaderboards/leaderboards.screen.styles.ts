@@ -22,8 +22,8 @@ export const pedestalStyles = {
 };
 
 export const LOADING_ITEM_HEIGHT = Style.SCALE_Y_UP_AND_DOWN(48);
-const TOP_BAR_PAD_TOP = Platform.select({ ios: Style.getSafeAreaStart(), android: 0 });
-const TOP_BAR_PAD_BOT = Platform.select({ ios: Style.adjust(16), android: Style.adjust(8) });
+export const TOP_BAR_PAD_TOP = Platform.select({ ios: Style.getSafeAreaStart(), android: 0 });
+export const TOP_BAR_PAD_BOT = Platform.select({ ios: Style.adjust(16), android: Style.adjust(8) });
 export const TOP_BAR_WRAPPER_HEIGHT = TopBar.height + TOP_BAR_PAD_TOP + TOP_BAR_PAD_BOT;
 export const LEADERBOARD_PROMPT_OFFSET = 100;
 export const LIST_PAD_HEIGHT = SVG_HEIGHT;
@@ -51,22 +51,6 @@ export default StyleSheet.create({
     marginTop: Style.adjust(2),
     borderRadius: Style.adjust(5),
     backgroundColor: "#F3F3F3",
-  } as ViewStyle,
-  topBarWrapper: {
-    position: "absolute",
-    paddingTop: TOP_BAR_PAD_TOP,
-    paddingBottom: TOP_BAR_PAD_BOT,
-    left: 0,
-    right: 0,
-    backgroundColor: "white",
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 1,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 2,
   } as ViewStyle,
   list: {
     width: "100%",

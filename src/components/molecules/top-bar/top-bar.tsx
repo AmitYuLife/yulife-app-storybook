@@ -15,7 +15,7 @@ export enum TOP_BAR_TYPES {
   FOREST = "forest",
 }
 
-type IProps = {
+export type IProps = {
   onPressLeftIcon?: () => void;
   timer?: string;
   name?: string;
