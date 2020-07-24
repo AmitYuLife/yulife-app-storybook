@@ -1,5 +1,5 @@
 import React, { memo } from "react";
-import { Image, StyleSheet, View, ViewStyle, TextStyle, ImageStyle } from "react-native";
+import { Image, StyleSheet, View, ViewStyle, TextStyle, ImageStyle, Platform } from "react-native";
 import { Text } from "@components/atoms";
 import { Style } from "@styles";
 import { getCurrentWorld, getCurrentWorldImage, getCurrentWorldText, getCurrentWorldTextColor } from "@services/utils";
@@ -11,6 +11,22 @@ interface Props {
   earnRate: number;
   onEarnRatePress: () => void;
 }
+
+const getTopBarFiller = () => {
+  if (Platform.OS === "android") {
+    return 6;
+  }
+
+  if (Style.isIphoneXPlus()) {
+    return 52;
+  }
+
+  if (Style.isIphoneX()) {
+    return 50;
+  }
+
+  return 30;
+};
 
 export const YuScreenHeader = memo(function HeaderFC(props: Props) {
   const { userName = "", level = 0, earnRate, onEarnRatePress } = props;
@@ -44,7 +60,9 @@ const styles = StyleSheet.create({
     borderBottomColor: "#f7f7f7",
     borderBottomWidth: Style.SCALE_UP_AND_DOWN(1),
     width: "100%",
+    marginTop: 32 + getTopBarFiller(),
     paddingLeft: Style.SCALE_UP_AND_DOWN(16),
+    zIndex: 1,
   } as ViewStyle,
   userName: {
     color: "#333333",

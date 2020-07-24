@@ -19,7 +19,6 @@ function _YuScreenLayout(props: Props) {
       <View style={styles.topbarWrapper}>
         <TopBar coins={totalCoins} onPressLeftIcon={onLeftMenuPress} />
       </View>
-      <View style={styles.topbarFiller} />
       {children}
       <NavBar activeIndex={2} hasNotification={hasNotification} />
     </View>
@@ -27,22 +26,6 @@ function _YuScreenLayout(props: Props) {
 }
 
 export const YuScreenLayout = React.memo(_YuScreenLayout);
-
-const getTopBarFiller = () => {
-  if (Platform.OS === "android") {
-    return 6;
-  }
-
-  if (Style.isIphoneXPlus()) {
-    return 52;
-  }
-
-  if (Style.isIphoneX()) {
-    return 50;
-  }
-
-  return 30;
-};
 
 const styles = StyleSheet.create({
   wrapper: {
@@ -56,8 +39,5 @@ const styles = StyleSheet.create({
     position: "absolute",
     right: 0,
     backgroundColor: "white",
-  } as ViewStyle,
-  topbarFiller: {
-    height: TopBar.height + getTopBarFiller(),
   } as ViewStyle,
 });
