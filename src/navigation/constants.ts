@@ -69,4 +69,5 @@ export const bottomTabs: OptionsBottomTabs = {
   animate: false,
   drawBehind: true,
   visible: false,
+  tabsAttachMode: "afterInitialTab",
 };

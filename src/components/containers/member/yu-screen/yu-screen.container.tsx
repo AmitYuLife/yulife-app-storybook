@@ -7,7 +7,6 @@ import { IMainTabsProps } from "@navigation/root";
 import { IReduxState } from "@redux/_core/reducers";
 import { getCurrentLevel, getHasNotification } from "@redux/levels/levels.selectors";
 import { getUserName } from "@redux/user/user.selectors";
-import { useQuery } from "@apollo/react-hooks";
 import { GQL_QUERY_GET_YULIFER } from "../../../../graphql/yuscreen/getYulifer.gql";
 import {
   GetYulifer,
@@ -24,6 +23,7 @@ import { getShowYuscreenIntro } from "../../../../redux/onboarding/onboarding.se
 import { setYuscreenIntroShown } from "../../../../redux/onboarding/onboarding.actions";
 import { YuScreenLayout } from "@components/screens/member/yu-screen/yu-screen-layout";
 import { YuScreenLoading } from "@components/screens/member/yu-screen/yu-screen-loading";
+import useCacheFirstAndNetworkOnAppearQuery from "@services/hooks/useCacheFirstAndNetworkOnAppearQuery";
 
 interface IProps {
   componentId: string;
@@ -44,7 +44,7 @@ function YuScreenContainer({
   showYuscreenIntro,
   setYuscreenIntroShown,
 }: Props) {
-  const { data, loading } = useQuery<GetYulifer>(GQL_QUERY_GET_YULIFER);
+  const { data } = useCacheFirstAndNetworkOnAppearQuery<GetYulifer>(GQL_QUERY_GET_YULIFER, componentId);
 
   let avatarRemoteFile = null as string;
   let earnRate = 1;
@@ -62,7 +62,7 @@ function YuScreenContainer({
     earnRate = data.getYulifer.earnRate ? data.getYulifer.earnRate : earnRate;
   }
 
-  if (loading || !data) {
+  if (!data) {
     return (
       <YuScreenLayout hasNotification={hasNotification} onLeftMenuPress={onLeftMenuPress} totalCoins={totalCoins}>
         <YuScreenLoading />
@@ -82,7 +82,6 @@ function YuScreenContainer({
       isAvatarCreated={isAvatarCreated}
       avatarUrl={avatarRemoteFile}
       products={products}
-      loading={loading}
       earnRate={totalEarnRate}
       onProductPress={(
         product: GetYulifer_getYulifer_products_employer | GetYulifer_getYulifer_products_personal,

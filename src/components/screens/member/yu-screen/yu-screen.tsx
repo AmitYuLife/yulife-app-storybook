@@ -7,7 +7,7 @@ import {
   GetYulifer_getYulifer_products_personal,
 } from "@graphql/_core/schema";
 import { ProductType } from "@containers/member/yu-screen/yu-screen-products.container";
-import { EarnRateButton, CharmsSection, YuScreenHeader, EmployerBenefits } from "./subcomponents";
+import { CharmsSection, YuScreenHeader, EmployerBenefits } from "./subcomponents";
 import { AvatarSection } from "./subcomponents/avatar-section/avatar-section";
 import { YuScreenLayout } from "./yu-screen-layout";
 
@@ -17,7 +17,6 @@ interface IProps {
   earnRate: number;
   hasNotification: boolean;
   isAvatarCreated: boolean;
-  loading: boolean;
   userName: string;
   avatarUrl: string;
   products: GetYulifer_getYulifer_products;
@@ -73,7 +72,6 @@ const YuScreen = (props: IProps) => {
         />
         <View style={styles.padBot} />
       </ScrollView>
-      <EarnRateButton earnRate={earnRate} onEarnRatePress={onEarnRatePress} />
     </YuScreenLayout>
   );
 };
