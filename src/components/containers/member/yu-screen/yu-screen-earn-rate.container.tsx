@@ -1,4 +1,3 @@
-import { useQuery } from "@apollo/react-hooks";
 import React from "react";
 import { Navigation } from "react-native-navigation";
 import { ROUTES } from "@navigation/constants";
@@ -11,6 +10,7 @@ import {
 import YuScreenEarnRate from "@screens/member/yu-screen/earn-rate-explained/earn-rate-explained";
 import { ProductType } from "./yu-screen-products.container";
 import { GQL_QUERY_GET_EARN_RATE_DETAILS } from "@graphql/yuscreen";
+import useCacheFirstAndNetworkOnAppearQuery from "@services/hooks/useCacheFirstAndNetworkOnAppearQuery";
 
 interface IProps {
   products: GetYulifer_getYulifer_products;
@@ -46,15 +46,13 @@ function navigateToProductScreen(
 }
 
 function YuScreenEarnRateContainer({ componentId, products, earnRate }: IProps) {
-  const { data, loading } = useQuery<EarnRateDetails>(GQL_QUERY_GET_EARN_RATE_DETAILS, {
-    fetchPolicy: "cache-and-network",
-  });
+  const { data } = useCacheFirstAndNetworkOnAppearQuery<EarnRateDetails>(GQL_QUERY_GET_EARN_RATE_DETAILS, componentId);
 
   const explainData = data?.getEarnRateDetails || [];
 
   return (
     <YuScreenEarnRate
-      loading={loading}
+      loading={!data}
       products={products}
       earnRate={earnRate}
       explainData={explainData}

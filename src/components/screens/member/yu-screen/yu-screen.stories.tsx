@@ -2,6 +2,7 @@ import React, { ComponentProps, useState, useEffect } from "react";
 import { storiesOf } from "@storybook/react-native";
 import YuScreen from "./yu-screen";
 import { alphaProducts, groupProducts, yulifeProducts } from "./yu-screen.stories-helper";
+import { YuScreenLoading } from "./yu-screen-loading";
 
 type YuScreenProps = ComponentProps<typeof YuScreen>;
 
@@ -11,7 +12,6 @@ const fillers: YuScreenProps = {
   earnRate: 0,
   hasNotification: false,
   isAvatarCreated: true,
-  loading: false,
   userName: "userName",
   avatarUrl: "",
   products: {
@@ -42,5 +42,9 @@ function YuScreenLoadingStory(props: YuScreenProps) {
     }, 3000);
   }, []);
 
-  return <YuScreen {...props} loading={isLoading} products={yulifeProducts} />;
+  if (isLoading) {
+    return <YuScreenLoading />;
+  }
+
+  return <YuScreen {...props} products={yulifeProducts} />;
 }
