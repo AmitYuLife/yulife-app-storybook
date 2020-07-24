@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { ScrollView, View } from "react-native";
-import { TopBar, NavBar } from "@molecules/index";
 import styles from "./yu-screen.styles";
 import {
   GetYulifer_getYulifer_products,
@@ -8,9 +7,9 @@ import {
   GetYulifer_getYulifer_products_personal,
 } from "@graphql/_core/schema";
 import { ProductType } from "@containers/member/yu-screen/yu-screen-products.container";
-import { YUSCREEN } from "@ids";
-import { CharmsSection, YuScreenHeader, EmployerBenefits } from "./subcomponents";
+import { EarnRateButton, CharmsSection, YuScreenHeader, EmployerBenefits } from "./subcomponents";
 import { AvatarSection } from "./subcomponents/avatar-section/avatar-section";
+import { YuScreenLayout } from "./yu-screen-layout";
 
 interface IProps {
   level: number;
@@ -41,7 +40,6 @@ const YuScreen = (props: IProps) => {
     totalCoins,
     isAvatarCreated,
     avatarUrl,
-    loading,
     products: { personal: productsPersonal, employer: productsEmployer, charms: productsCharms },
     earnRate,
     hasNotification,
@@ -54,8 +52,7 @@ const YuScreen = (props: IProps) => {
   const [sectionTitleWidth, setSectionTitleWidth] = useState(SANE_SECTION_TITLE_WIDTH_DEFAULT);
 
   return (
-    <View style={styles.wrapper} testID={YUSCREEN}>
-      <View style={styles.topbarFiller} />
+    <YuScreenLayout hasNotification={hasNotification} onLeftMenuPress={onLeftMenuPress} totalCoins={totalCoins}>
       <YuScreenHeader earnRate={earnRate} onEarnRatePress={onEarnRatePress} level={level} userName={userName} />
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.padTop} />
@@ -66,7 +63,6 @@ const YuScreen = (props: IProps) => {
           onProductPress={onProductPress}
           isAvatarCreated={isAvatarCreated}
           onUnlockPress={onUnlockPress}
-          loading={loading}
           avatar={null}
         />
         <CharmsSection productsCharms={productsCharms} textPosition={sectionTitleWidth} />
@@ -77,11 +73,8 @@ const YuScreen = (props: IProps) => {
         />
         <View style={styles.padBot} />
       </ScrollView>
-      <NavBar activeIndex={2} hasNotification={hasNotification} />
-      <View style={styles.topbarWrapper}>
-        <TopBar coins={totalCoins} onPressLeftIcon={onLeftMenuPress} />
-      </View>
-    </View>
+      <EarnRateButton earnRate={earnRate} onEarnRatePress={onEarnRatePress} />
+    </YuScreenLayout>
   );
 };
 

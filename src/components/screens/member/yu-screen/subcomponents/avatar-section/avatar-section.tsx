@@ -8,7 +8,6 @@ import { Style } from "@styles";
 type Props = ComponentProps<typeof AvatarItems> & ComponentProps<typeof Avatar>;
 
 export const AvatarSection = memo(function ({
-  loading,
   avatarUrl,
   avatar,
   onEditPress,
@@ -21,13 +20,7 @@ export const AvatarSection = memo(function ({
     <View style={styles.wrapper}>
       <View style={styles.avatarAndProductsWrapper}>
         <View style={styles.avatarWrapper}>
-          <Avatar
-            isAvatarCreated={isAvatarCreated}
-            avatar={avatar}
-            avatarUrl={avatarUrl}
-            onEditPress={onEditPress}
-            loading={loading}
-          />
+          <Avatar isAvatarCreated={isAvatarCreated} avatar={avatar} avatarUrl={avatarUrl} onEditPress={onEditPress} />
         </View>
         <View style={styles.avatarItemsWrapper}>
           <SectionTitle title="Personal Protection" />

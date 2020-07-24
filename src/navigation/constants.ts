@@ -1,3 +1,5 @@
+import { OptionsBottomTabs } from "react-native-navigation";
+
 export const ROUTES = {
   // root screens
   noAccess: "yulife.NoAccess",
@@ -63,7 +65,7 @@ export const MODALS = {
   info: "yulife.modals.info",
 };
 
-export const bottomTabs = {
+export const bottomTabs: OptionsBottomTabs = {
   animate: false,
   drawBehind: true,
   visible: false,

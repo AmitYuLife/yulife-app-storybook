@@ -36,7 +36,6 @@ export default [
   },
   {
     hasMenu: true,
-    renderAfterMs: 300,
     name: ROUTES.yuScreen,
     component: require("../components/containers/member/yu-screen/yu-screen.container").default,
   },

@@ -26,7 +26,7 @@ export const FibIntroductionScreen = memo(function (props: IFibIntroductionScree
           <Animatable.View duration={1000} animation="fadeIn" style={styles.flex} useNativeDriver={true}>
             <View style={styles.imagesWrapper}>
               <View style={styles.avatarWrapper}>
-                <Avatar sizeMultiplier={0.6} avatar={null} avatarUrl={avatar} isAvatarCreated={true} loading={false} />
+                <Avatar sizeMultiplier={0.6} avatar={null} avatarUrl={avatar} isAvatarCreated={true} />
               </View>
               <View style={styles.imageWrapper}>
                 <FibIntroductionToLifeInsuranceSvg />
