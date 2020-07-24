@@ -15,7 +15,6 @@ export function shouldLeaderboardUpdate({ nextProps, currentProps, nextState, cu
     currentProps.sortBy !== nextProps.sortBy ||
     currentProps.items.length !== nextProps.items.length ||
     currentProps.leaderboards.length !== nextProps.leaderboards.length ||
-    currentProps.totalCoins !== nextProps.totalCoins ||
     currentProps.hasNotification !== nextProps.hasNotification ||
     (!!(
       currentProps.leaderboards[currentProps.activeLeaderboardIndex] &&

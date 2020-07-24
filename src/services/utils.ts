@@ -1,5 +1,6 @@
 import { CreateActiveChallenge_createActiveChallenge_levelSlot_milestones_target } from "@graphql/_core/schema";
 import moment from "moment";
+import { useRef } from "react";
 
 export const DATE_FORMAT_WITH_TZ = "YYYY-MM-DDTHH:mm:ssZ";
 export const DATE_FORMAT_WITHOUT_TZ = "YYYY-MM-DDTHH:mm:ss";
@@ -200,3 +201,8 @@ export const truncate = (str: string, chars = 30) => {
 
   return `${str.substr(0, chars)}...`;
 };
+
+export function useDebugRenderCount(componentName: string) {
+  const renders = useRef(0);
+  console.log(componentName, "renders", ++renders.current);
+}

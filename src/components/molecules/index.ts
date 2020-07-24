@@ -8,7 +8,7 @@ export { default as ListPicker } from "./list-picker/list-picker";
 export { default as NavBar, ILabel, IColours } from "./nav-bar/nav-bar";
 export { default as Picker } from "./picker/picker";
 export { default as Streak } from "./streak/streak";
-export { default as TopBar } from "./top-bar/top-bar";
+export { default as TopBar, IProps as TopBarProps } from "./top-bar/top-bar";
 export { default as YulifeRefreshHeader } from "./refresh-header/refresh-header";
 export { default as YulifeLoadingFooter } from "./loading-footer/loading-footer";
 export { default as RewardsListItem } from "./rewards-list/rewards-list-item/rewards-list-item";
