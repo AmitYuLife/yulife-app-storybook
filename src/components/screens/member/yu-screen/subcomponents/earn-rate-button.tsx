@@ -13,7 +13,7 @@ const WRAPPER_WIDTH = 152;
 
 export const EarnRateButton = memo(function ({ earnRate, onEarnRatePress }: Props) {
   return (
-    <TouchableOpacity activeOpacity={1} onPress={onEarnRatePress} style={[styles.wrapper]}>
+    <TouchableOpacity activeOpacity={1} onPress={onEarnRatePress} style={styles.wrapper}>
       <View style={StyleSheet.absoluteFill} testID={EARN_RATE_BUTTON(earnRate)}>
         <EarnRateSVG earnRate={earnRate} height={WRAPPER_HEIGHT} width={WRAPPER_WIDTH} />
       </View>
