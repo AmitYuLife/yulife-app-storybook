@@ -20,7 +20,7 @@ describe("getWrapperStyle", () => {
 
     it("should be defined when given a known input pressed in", () => {
         const actual = getWrapperStyle({
-            pressedIn: true,
+            isPressedIn: true,
             type: BUTTON_TYPES.PRIMARY_SMALL
         });
 
@@ -130,7 +130,7 @@ describe("getShadowStyle", () => {
     });
 
     it("should be defined when given a known input pressed in", () => {
-        const actual = getShadowStyle({ type: BUTTON_TYPES.PRIMARY, pressedIn: true });
+        const actual = getShadowStyle({ type: BUTTON_TYPES.PRIMARY, isPressedIn: true });
 
         expect(actual).toBeDefined();
     });

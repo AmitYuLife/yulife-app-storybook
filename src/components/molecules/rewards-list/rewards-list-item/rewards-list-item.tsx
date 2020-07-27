@@ -1,5 +1,5 @@
 import { GetRewards_getRewards_uiSettings } from "@graphql/_core/schema";
-import { TouchableOpacityWithState } from "@molecules/index";
+import { TouchableOpacityWithDelay } from "@molecules/index";
 import { getCloudinaryUrl } from "@services/cloudinary/index";
 import * as React from "react";
 import { PureComponent } from "react";
@@ -35,7 +35,7 @@ class RewardsListItem extends PureComponent<IProps, IState> {
     const { hasLoaded } = this.state;
 
     return (
-      <TouchableOpacityWithState
+      <TouchableOpacityWithDelay
         activeOpacity={1}
         onPress={onPress || ((): null => null)}
         style={StyleSheet.flatten([styles.wrapper, hasLoaded ? {} : styles.wrapperLoading])}
@@ -72,7 +72,7 @@ class RewardsListItem extends PureComponent<IProps, IState> {
           </View>
           <ActivityIndicator style={styles.activityIndicator} animating={!hasLoaded} />
         </>
-      </TouchableOpacityWithState>
+      </TouchableOpacityWithDelay>
     );
   }
 

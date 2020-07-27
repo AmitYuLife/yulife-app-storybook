@@ -1,6 +1,6 @@
 import { Logo, Text } from "@atoms/index";
 import { MENU_ITEM, MENU_SCREEN } from "@ids";
-import { TouchableOpacityWithState } from "@molecules/index";
+import { TouchableOpacityWithDelay } from "@molecules/index";
 import * as React from "react";
 import { SFC } from "react";
 import { Image, ImageRequireSource, TouchableOpacity, View } from "react-native";
@@ -34,7 +34,7 @@ const MenuScreen: SFC<IProps> = ({ onDebugPress, onPressClose, links, version })
         ? null
         : links.map(({ source, onPress, label, condition }, index) =>
             !condition ? null : (
-              <TouchableOpacityWithState
+              <TouchableOpacityWithDelay
                 key={`menu-${index}`}
                 style={styles.itemWrapper}
                 onPress={onPress}
@@ -48,15 +48,15 @@ const MenuScreen: SFC<IProps> = ({ onDebugPress, onPressClose, links, version })
                 <View style={styles.textWrapper}>
                   <Text style={styles.text} bold={true}>{`${label}  `}</Text>
                 </View>
-              </TouchableOpacityWithState>
+              </TouchableOpacityWithDelay>
             )
           )}
     </View>
     <View style={styles.versionTextWrapper}>
       {!onDebugPress ? null : (
-        <TouchableOpacityWithState onPress={onDebugPress}>
+        <TouchableOpacityWithDelay onPress={onDebugPress}>
           <Text style={styles.debugText}>debug</Text>
-        </TouchableOpacityWithState>
+        </TouchableOpacityWithDelay>
       )}
       <Text style={styles.versionText}>{version}</Text>
     </View>

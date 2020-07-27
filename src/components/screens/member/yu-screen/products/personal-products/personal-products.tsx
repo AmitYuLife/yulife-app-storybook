@@ -1,6 +1,7 @@
 import { Text } from "@atoms/index";
 import * as React from "react";
-import { View, TouchableOpacity } from "react-native";
+import { View } from "react-native";
+import { TouchableOpacityWithDelay } from "@molecules";
 import styles from "../products.style";
 import { PERSONAL_PRODUCT } from "@ids";
 import PersonalProductsIcon from "../../svg/yuser-products";
@@ -15,7 +16,7 @@ interface IProps {
 
 function YuProducts({ isActive, type, onPressAction, name }: IProps) {
   return (
-    <TouchableOpacity onPress={onPressAction} testID={PERSONAL_PRODUCT(type)}>
+    <TouchableOpacityWithDelay onPress={onPressAction} testID={PERSONAL_PRODUCT(type)}>
       <View style={styles.productWrapper}>
         <PersonalProductsIcon icon={type} active={isActive} />
         <View style={isActive ? styles.textWrapperActiveProduct : styles.textWrapperInactiveProduct}>
@@ -23,7 +24,7 @@ function YuProducts({ isActive, type, onPressAction, name }: IProps) {
           {isActive ? <Text style={styles.tapForInfo}>tap for info</Text> : null}
         </View>
       </View>
-    </TouchableOpacity>
+    </TouchableOpacityWithDelay>
   );
 }
 

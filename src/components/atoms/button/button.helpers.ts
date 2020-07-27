@@ -4,7 +4,7 @@ import { BUTTON_TYPES, Types } from "./button.types";
 
 interface IGetWrapperStyle {
   type: Types;
-  pressedIn?: boolean;
+  isPressedIn?: boolean;
 }
 
 export const getWrapperStyle = (props: IGetWrapperStyle) => {
@@ -12,8 +12,9 @@ export const getWrapperStyle = (props: IGetWrapperStyle) => {
     return null;
   }
 
-  const { type, pressedIn } = props;
-  const wrapperPrimary = StyleSheet.flatten([styles.wrapperPrimary, pressedIn ? styles.wrapperPrimaryPressed : {}]);
+  const { type, isPressedIn } = props;
+  const wrapperPrimary = StyleSheet.flatten([styles.wrapperPrimary, isPressedIn ? styles.wrapperPrimaryPressed : {}]);
+
   switch (type) {
     case BUTTON_TYPES.SECONDARY:
       return styles.wrapperSecondary;
@@ -55,7 +56,7 @@ export const getTextStyle = (type: string) => {
 
 interface IGetShadowStyle {
   type: string;
-  pressedIn?: boolean;
+  isPressedIn?: boolean;
 }
 
 export const getShadowStyle = (props: IGetShadowStyle) => {
@@ -63,8 +64,9 @@ export const getShadowStyle = (props: IGetShadowStyle) => {
     return null;
   }
 
-  const { type, pressedIn } = props;
-  const shadowStyle = StyleSheet.flatten([styles.shadow, pressedIn ? styles.shadowPressed : {}]);
+  const { type, isPressedIn } = props;
+  const shadowStyle = StyleSheet.flatten([styles.shadow, isPressedIn ? styles.shadowPressed : {}]);
+
   switch (type) {
     case BUTTON_TYPES.PRIMARY:
       return shadowStyle;
@@ -90,6 +92,7 @@ export const getWrapperOverlayStyle = (props: IGetWrapperOverlayStyle) => {
   }
 
   const { disabled, isShadow = false } = props;
+
   if (disabled && isShadow) {
     return styles.wrapperOverlayPrimaryShadowOffsetDisabled;
   }

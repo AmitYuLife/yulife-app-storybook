@@ -4,7 +4,7 @@ import { BlurView } from "react-native-blur";
 import { isIphoneX } from "react-native-iphone-x-helper";
 import { GetMobileCopy_getMobileCopy_screens_popUp } from "../../../graphql/_core/schema";
 import { Close } from "../../atoms";
-import { Popup, POPUPTYPE, TouchableOpacityWithState } from "../../molecules";
+import { Popup, POPUPTYPE, TouchableOpacityWithDelay } from "../../molecules";
 import YuCoin from "../../screens/member/daily-steps/assets/yu-coin";
 import styles from "./pop-up.styles";
 
@@ -43,13 +43,13 @@ export default class SurgePopup extends React.PureComponent<IProps, IState> {
         <View style={styles.popupWrapper} ref={this.setRef} onLayout={this.handleLayout} />
         {viewRef ? <BlurView viewRef={viewRef} blurAmount={15} blurType="light" style={styles.bgBlur} /> : null}
         <View onLayout={this.getPosition} style={styles.buttonWrapper}>
-          <TouchableOpacityWithState onPress={this.yucoinPress} activeOpacity={1}>
+          <TouchableOpacityWithDelay onPress={this.yucoinPress} activeOpacity={1}>
             <YuCoin
               hasWhiteGlow={hasWhiteGlow}
               isLoading={isLoading}
               isGrayScale={!hasPermission || (!isOnline && !isLoading)}
             />
-          </TouchableOpacityWithState>
+          </TouchableOpacityWithDelay>
         </View>
         {!top ? null : (
           <Popup

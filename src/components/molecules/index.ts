@@ -15,7 +15,7 @@ export { default as RewardsListItem } from "./rewards-list/rewards-list-item/rew
 export { default as RewardItemContent } from "./reward-item-content/reward-item-content";
 export { default as RewardsList } from "./rewards-list/rewards-list";
 export { default as RewardTabs } from "./reward-tabs/reward-tabs";
-export { default as TouchableOpacityWithState } from "./touchable-opacity-delay/touchable-opacity-delay";
+export { default as TouchableOpacityWithDelay } from "./touchable-opacity-delay/touchable-opacity-delay";
 export { default as Popup } from "./pop-up/pop-up";
 export { default as LeaderboardPopup } from "./pop-up/leaderboard-pop-up";
 export { default as SurgePopup } from "./pop-up/surge-pop-up";

@@ -1,4 +1,4 @@
-import { TouchableOpacityWithState } from "@molecules/index";
+import { TouchableOpacityWithDelay } from "@molecules/index";
 import * as React from "react";
 import { SFC } from "react";
 import { StyleSheet, View } from "react-native";
@@ -21,7 +21,7 @@ export enum RewardStatus {
 }
 
 const RewardsPurchasedItem: SFC<IRewardsPurchasedItemProps> = ({ day, month, reward, cost, status, onPress }) => (
-  <TouchableOpacityWithState onPress={onPress} style={styles.wrapper}>
+  <TouchableOpacityWithDelay onPress={onPress} style={styles.wrapper}>
     <View style={styles.dateWrapper}>
       <Text style={styles.day}>{day}</Text>
       <Text style={styles.month}>{month}</Text>
@@ -42,7 +42,7 @@ const RewardsPurchasedItem: SFC<IRewardsPurchasedItemProps> = ({ day, month, rew
         {([RewardStatus.failed, RewardStatus.pending] as string[]).indexOf(status) === -1 ? "" : status}
       </Text>
     </View>
-  </TouchableOpacityWithState>
+  </TouchableOpacityWithDelay>
 );
 
 export default RewardsPurchasedItem;
