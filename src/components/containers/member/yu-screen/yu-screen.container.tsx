@@ -62,7 +62,11 @@ function YuScreenContainer({
     earnRate = data.getYulifer.earnRate ? data.getYulifer.earnRate : earnRate;
   }
 
-  if (!data) {
+  if (showYuscreenIntro) {
+    return <YuScreenIntro setYuscreenIntroShown={setYuscreenIntroShown} />;
+  }
+
+  if (!data && !showYuscreenIntro) {
     return (
       <YuScreenLayout hasNotification={hasNotification} onLeftMenuPress={onLeftMenuPress} totalCoins={totalCoins}>
         <YuScreenLoading />
@@ -72,9 +76,7 @@ function YuScreenContainer({
 
   const [activeProducts, totalEarnRate] = getActiveProductsAndEarnRate(products, earnRate);
 
-  return showYuscreenIntro ? (
-    <YuScreenIntro setYuscreenIntroShown={setYuscreenIntroShown} />
-  ) : (
+  return (
     <YuScreen
       level={currentLevel}
       userName={userName}
