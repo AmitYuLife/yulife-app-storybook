@@ -39,6 +39,7 @@ export default StyleSheet.create({
     marginLeft: "auto",
   } as ViewStyle,
   wrapper: {
+    paddingHorizontal: Style.adjust(15),
     borderBottomColor: "rgb(238,238,238)",
     borderBottomWidth: StyleSheet.hairlineWidth,
     flexDirection: "row",

@@ -74,7 +74,7 @@ export class RewardsPurchasedList extends React.PureComponent<IProps> {
     return null;
   };
 
-  private getHeight = () => Style.adjust(74);
+  private getHeight = () => Style.adjust(80);
 }
 
 const styles = StyleSheet.create({
