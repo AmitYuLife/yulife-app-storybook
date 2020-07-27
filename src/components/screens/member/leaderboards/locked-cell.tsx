@@ -20,7 +20,7 @@ export function LockedCell({
   onPress,
   show,
 }: Props) {
-  if (!show) {
+  if (!show || !leaderboardItem?.name) {
     return null;
   }
 

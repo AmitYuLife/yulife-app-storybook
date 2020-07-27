@@ -16,7 +16,7 @@ import { Navigation } from "react-native-navigation";
 import { Text, Pad } from "../../../atoms";
 import { ILabel, NavBar, TopBar } from "../../../molecules";
 import LeaderboardConsent from "./leaderboard-consent/leaderboard-consent";
-import LeaderboardItem from "./leaderboard-item/leaderboard-item";
+import { MemoizedLeaderboardItem } from "./leaderboard-item/leaderboard-item";
 import { shouldLeaderboardUpdate } from "./leaderboards.screen.helpers";
 import { LEADERBOARD_SCREEN } from "@ids";
 import styles, {
@@ -371,7 +371,7 @@ export default class LeaderboardsScreen extends React.Component<ILeaderboardsScr
       const isCurrentUser = item.id === this.props.userId;
       const opacityInterpolation = !isCurrentUser ? 1 : this.getOpacityInterpolation({ reverse: true });
       return (
-        <LeaderboardItem
+        <MemoizedLeaderboardItem
           {...item}
           isCurrentUser={isCurrentUser}
           sortBy={sortBy}

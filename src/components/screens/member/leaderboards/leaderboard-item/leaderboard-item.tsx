@@ -83,7 +83,8 @@ const LeaderboardItem: FC<ILeaderboardItemProps> = ({
   );
 };
 
-export default memo(LeaderboardItem, () => true);
+export default LeaderboardItem;
+export const MemoizedLeaderboardItem = memo(LeaderboardItem, () => true);
 
 function getDataByCategory(sortBy: string, steps = 0, coins = 0) {
   // todo fix data of mindful mins
