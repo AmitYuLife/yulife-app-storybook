@@ -9,9 +9,7 @@ interface IProps {
   componentId: string;
 }
 
-if (Platform.OS === "ios") {
-  (Text as any).defaultProps = { ...((Text as any).defaultProps || {}), allowFontScaling: false };
-}
+(Text as any).defaultProps = { ...((Text as any).defaultProps || {}), allowFontScaling: false };
 
 export const AppLoadingContainer: React.FC<IProps> = () => {
   const [url, setUrl] = React.useState("");
