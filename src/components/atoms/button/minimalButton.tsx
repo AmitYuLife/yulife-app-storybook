@@ -8,6 +8,7 @@ import {
   ViewStyle,
   TextStyle,
 } from "react-native";
+import { usePressedInWithDelay } from "@services/hooks/usePressedInWithDelay";
 import Text from "../text/text";
 
 interface IProps {
@@ -25,7 +26,7 @@ interface IProps {
 }
 
 interface IState {
-  pressedIn: boolean;
+  isPressedIn: boolean;
   translateYAnimation: Animated.Value;
 }
 
@@ -35,32 +36,26 @@ const SHADOW_DIFF = 3;
 export default function MinimalButton(props: IProps) {
   const { onPress, height = 50, borderRadius = props.height / 2 } = props;
   const [translateYAnimation] = useState(new Animated.Value(0));
-  const [pressedIn, setPressedInState] = React.useState(false as IState["pressedIn"]);
+  const { isPressedIn, handlePressIn, handlePressOut } = usePressedInWithDelay({ onPress });
+
   useEffect(() => {
     Animated.timing(translateYAnimation, {
-      toValue: pressedIn ? 2 : 0,
+      toValue: isPressedIn ? 2 : 0,
       duration: 60,
       useNativeDriver: true,
     }).start();
-  }, [pressedIn, translateYAnimation]);
-  const handlePressIn = React.useCallback(() => {
-    setPressedInState(true);
-  }, []);
+  }, [isPressedIn, translateYAnimation]);
 
-  const handlePressOut = React.useCallback(() => {
-    setPressedInState(false);
-    onPress();
-  }, [onPress]);
   return (
     <View style={[styles.flex, { height: height + SHADOW_ALLOWANCE }]}>
-      <Shadow {...props} height={height - SHADOW_DIFF} borderRadius={borderRadius} pressedIn={pressedIn} />
+      <Shadow {...props} height={height - SHADOW_DIFF} borderRadius={borderRadius} isPressedIn={isPressedIn} />
       <Main
         {...props}
         height={height - SHADOW_DIFF}
         borderRadius={borderRadius}
         onPressIn={handlePressIn}
         onPressOut={handlePressOut}
-        pressedIn={pressedIn}
+        isPressedIn={isPressedIn}
         translateYAnimation={translateYAnimation}
       />
       <DisabledOverlay {...props} />
@@ -68,7 +63,7 @@ export default function MinimalButton(props: IProps) {
   );
 }
 
-function Shadow({ height, borderRadius, shadowColor, testID }: IProps & Pick<IState, "pressedIn">) {
+function Shadow({ height, borderRadius, shadowColor, testID }: IProps & Pick<IState, "isPressedIn">) {
   return (
     <View style={[styles.shadow, { height, borderRadius, backgroundColor: shadowColor }]}>
       <View testID={`${testID}-disabled-overlay`} />

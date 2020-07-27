@@ -1,5 +1,5 @@
 import { LEVEL_CHALLENGE_BUTTON } from "@ids";
-import { TouchableOpacityWithState } from "@molecules/index";
+import { TouchableOpacityWithDelay } from "@molecules/index";
 import moment from "moment";
 import React, { useState } from "react";
 import { StyleSheet, View } from "react-native";
@@ -52,7 +52,7 @@ function LevelBubble(props: IProps) {
         </View>
       )}
       <View style={StyleSheet.flatten([styles.bubble, style])}>
-        <TouchableOpacityWithState
+        <TouchableOpacityWithDelay
           onPress={level.onPress}
           style={StyleSheet.flatten([
             styles.bubbleButton,
@@ -69,7 +69,7 @@ function LevelBubble(props: IProps) {
           testID={LEVEL_CHALLENGE_BUTTON(level.level)}
         >
           {getLevelButton(nextAvailableTimer, currentLevel, level)}
-        </TouchableOpacityWithState>
+        </TouchableOpacityWithDelay>
       </View>
     </>
   );

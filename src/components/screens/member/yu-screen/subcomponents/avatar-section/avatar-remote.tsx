@@ -1,5 +1,5 @@
 import React, { memo, useState } from "react";
-import { TouchableOpacityWithState } from "@molecules";
+import { TouchableOpacityWithDelay } from "@molecules";
 import { YUSCREEN_AVATAR } from "@ids";
 import { ViewStyle, ImageStyle, ActivityIndicator } from "react-native";
 import FastImage from "react-native-fast-image";
@@ -14,7 +14,7 @@ export const AvatarRemote = memo(function ({ avatarUrl, onEditPress, style }: Pr
   const [loading, setLoading] = useState(false);
 
   return (
-    <TouchableOpacityWithState activeOpacity={!onEditPress ? 1 : 0.5} onPress={onEditPress} testID={YUSCREEN_AVATAR}>
+    <TouchableOpacityWithDelay activeOpacity={!onEditPress ? 1 : 0.5} onPress={onEditPress} testID={YUSCREEN_AVATAR}>
       <>
         <FastImage
           source={{ uri: avatarUrl }}
@@ -24,6 +24,6 @@ export const AvatarRemote = memo(function ({ avatarUrl, onEditPress, style }: Pr
         />
         {!loading ? null : <ActivityIndicator style={{ position: "absolute", top: 180, left: 80 }} />}
       </>
-    </TouchableOpacityWithState>
+    </TouchableOpacityWithDelay>
   );
 });

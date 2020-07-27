@@ -1,7 +1,7 @@
 import { IThemeStore } from "@app/redux/theme/theme.reducer";
 import { IConnectedScreenProps } from "@app/typings";
 import { DAILY_STEPS_SCREEN } from "@ids";
-import { Streak, Tooltip, TouchableOpacityWithState } from "@molecules/index";
+import { Streak, Tooltip, TouchableOpacityWithDelay } from "@molecules/index";
 import { IUserStore } from "@redux/user/user.reducer";
 import { Style } from "@styles/index";
 import * as React from "react";
@@ -86,9 +86,9 @@ export default function IntroScreen({
             setYucoinPosition(event.nativeEvent.layout.height + event.nativeEvent.layout.y + 10)
           }
         >
-          <TouchableOpacityWithState onPress={onCoinPress} activeOpacity={1}>
+          <TouchableOpacityWithDelay onPress={onCoinPress} activeOpacity={1}>
             <YuCoin hasWhiteGlow={true} isLoading={isLoading} isGrayScale={false} />
-          </TouchableOpacityWithState>
+          </TouchableOpacityWithDelay>
         </View>
         <View
           style={StyleSheet.flatten([tooltipStyles.highlightWrapper, activeIndex === 2 ? styles.zIndex : null])}

@@ -1,6 +1,6 @@
 import { IThemeStore } from "@app/redux/theme/theme.reducer";
 import { DAILY_STEPS_SCREEN } from "@ids";
-import { ILabel, TouchableOpacityWithState } from "@molecules/index";
+import { ILabel, TouchableOpacityWithDelay } from "@molecules/index";
 import { Style } from "@styles/index";
 import * as React from "react";
 import { Platform, View } from "react-native";
@@ -99,9 +99,9 @@ export default function DailyStepsScreen({
             onUpdateSurgePopupVisibility={onUpdateSurgePopupVisibility}
           />
         ) : (
-          <TouchableOpacityWithState onPress={onCoinPress} activeOpacity={1}>
+          <TouchableOpacityWithDelay onPress={onCoinPress} activeOpacity={1}>
             <YuCoin hasWhiteGlow={hasWhiteGlow} isLoading={isLoading} isGrayScale={!hasPermission} />
-          </TouchableOpacityWithState>
+          </TouchableOpacityWithDelay>
         )}
         {isLoading ? (
           <DailyStepsLoading />
