@@ -103,7 +103,8 @@ function renderRankImage(rank: number) {
     case 2:
       return <SecondPlace />;
     case 3:
-    default:
       return <ThirdPlace />;
+    default:
+      return null;
   }
 }
