@@ -27,7 +27,7 @@ const RewardsPurchasedScreen = React.memo((props: Props) => {
     copy,
   } = props;
 
-  if (loading) {
+  if (loading && data.length === 0) {
     return (
       <RewardsListLayout
         activeScreen="purchased"
