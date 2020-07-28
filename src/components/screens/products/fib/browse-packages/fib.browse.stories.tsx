@@ -35,6 +35,7 @@ storiesOf("FibBrowse", module)
       selectedPackage={selectedPackage}
       navigateToEditSalary={() => null}
       onNavigateToYuScreen={(): void => null}
+      navigateToFeedbackForm={(): void => null}
       avatarUrl={""}
       faqs={faqs}
       selectCoverType={() => null}
