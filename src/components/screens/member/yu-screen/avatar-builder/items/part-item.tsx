@@ -61,7 +61,7 @@ function PartItem(props: Props) {
   }
 
   return (
-    <TouchableOpacity key={index} onPress={handlePress} testID={BODY_PART_ITEM(index)}>
+    <TouchableOpacity key={index} onPress={handlePress} testID={BODY_PART_ITEM(item.partId)}>
       <View style={isSelectedItem ? styles.itemSelectedColorWrapper : styles.itemColorWrapper}>
         {item.bodyElements ? (
           item.bodyElements.length > 0 ? (

@@ -87,7 +87,7 @@ export const EARN_RATE_BUTTON = (earnRate: number) => `EARN_RATE_BUTTON_${earnRa
 // AVATAR BUILDER
 export const BODY_ITEM_TITLE = (title: string) => `BODY_ITEM_TITLE_${title}`
 export const BODY_ITEM_COLOUR = (colorItemTitle: string) => `BODY_ITEM_COLOUR_${colorItemTitle}`
-export const BODY_PART_ITEM = (index: number) => `BODY_PART_ITEM_${index}`
+export const BODY_PART_ITEM = (partID: string) => `BODY_PART_ITEM_${partID}`
 export const SKIN_TONE = (hexColour: string) => `SKIN_TONE_${hexColour}`
 export const SELECTED_COLOR = (hexColour: string) => `SELECTED_COLOR_${hexColour}`
 export const LEADERBOARD_PEDESTAL = "LEADERBOARD_PEDESTAL"
