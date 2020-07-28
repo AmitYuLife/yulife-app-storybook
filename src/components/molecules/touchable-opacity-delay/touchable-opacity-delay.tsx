@@ -8,7 +8,7 @@ export interface IProps extends TouchableOpacityProps {
 }
 
 export default function TouchableOpacityWithDelay({ onPress, ...otherProps }: IProps) {
-  const { handlePressIn, handlePressOut } = usePressedInWithDelay({ onPress });
+  const { handlePressOut } = usePressedInWithDelay({ onPress });
 
-  return <TouchableOpacity {...otherProps} onPressIn={handlePressIn} onPressOut={handlePressOut} />;
+  return <TouchableOpacity {...otherProps} onPress={handlePressOut} />;
 }
