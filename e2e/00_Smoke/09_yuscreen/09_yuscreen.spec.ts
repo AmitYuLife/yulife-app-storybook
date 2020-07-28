@@ -1,4 +1,4 @@
-import { Feature, Scenario, Given, When, Then, ScenarioOnly } from "@bdd";
+import { Feature, Scenario, Given, When, Then, ScenarioOnly, FeatureOnly } from "@bdd";
 import * as scenario from "./_steps/scenario"
 import * as given from "./_steps/given"
 import * as when from "./_steps/when"
@@ -11,7 +11,6 @@ import {
 
 
 Feature("I am able to use the yuscreen, create, and edit an Yumoji", async () => {
-
 
     Scenario("I can create an Yumoji on the yuscreen for the male body", scenario.start, async () => {
         Given("I login as a user", given.logInAndGoToTab("yu", CUSTOMER_18, AUTH_18), async () => {
@@ -29,11 +28,11 @@ Feature("I am able to use the yuscreen, create, and edit an Yumoji", async () =>
                                 When("I tap continue", when.tapText("Continue"), async () => {
                                     Then("I should be on the Yumoji builder", then.onAvatarBuilder)
                                     Then("The male body should be selected", then.idVisible(HEAD_TYPE("male_head_1")))
-                                    Then("I should see a skin tone", then.idVisible(SKIN_TONE("#f4cca7")))
-                                    When("I tap this skin tone", when.tapColour("#f4cca7"), async () => {
+                                    Then("I should see a skin tone", then.idVisible(SKIN_TONE("#FFC89F")))
+                                    When("I tap this skin tone", when.tapColour("#FFC89F"), async () => {
                                         When("I tap the 'Hair Style' tab", when.tapTab("Hair Style"), async () => {
                                             Then("I should be on the Hair Style tab", then.textVisible("Hair Style"))
-                                            When("I tap a style", when.tapItem(5), async () => {
+                                            When("I tap a style", when.tapItem("scruffy_sidepart"), async () => {
                                                 Then("This hair style should be selected", then.avatarBodyVisible("eyes_1", "scruffy_sidepart", "", ""))
                                             })
                                             When("I tap hair colour", when.tapTab("Hair Colour"), async () => {
@@ -41,7 +40,7 @@ Feature("I am able to use the yuscreen, create, and edit an Yumoji", async () =>
                                                 When("I tap a hair colour", when.tapColour("#212121"), async () => {
                                                     When("I tap the Facial Hair tab", when.tapTab("Facial Hair"), async () => {
                                                         Then("I should be on the Facial Hair tab", then.textVisible("Facial Hair"))
-                                                        When("I tap a facial hair style", when.tapItem(5), async () => {
+                                                        When("I tap a facial hair style", when.tapItem("fat_lumberjack"), async () => {
                                                             Then("This facial hair style should be selected", then.avatarBodyVisible("eyes_1", "scruffy_sidepart", "fat_lumberjack", ""))
                                                         })
                                                         When("I tap Facial Hair Colour", when.tapTab("Facial Hair Colour"), async () => {
@@ -57,7 +56,7 @@ Feature("I am able to use the yuscreen, create, and edit an Yumoji", async () =>
                                                     })
                                                     When("I tap the accessories tab", when.tapTab("Accessories"), async () => {
                                                         Then("I should be on the Accessories tab", then.textVisible("Accessories"))
-                                                        When("I select an accessory", when.tapItem(3), async () => {
+                                                        When("I select an accessory", when.tapItem("glasses_5"), async () => {
                                                             Then("This accessory should be selected", then.avatarBodyVisible("eyes_1", "scruffy_sidepart", "fat_lumberjack", "glasses_5"))
                                                         })
                                                     })
@@ -122,11 +121,11 @@ Feature("I am able to use the yuscreen, create, and edit an Yumoji", async () =>
                                     Then("The male body should be selected", then.idVisible(HEAD_TYPE("male_head_1")))
                                     When("I go to the hair style tab", when.tapTab("Hair Style"), async () => {
                                         Then("I should be on the Hair Style tab", then.textVisible("Hair Style"))
-                                        When("I tap a hair style", when.tapItem(5), async () => {
+                                        When("I tap a hair style", when.tapItem("scruffy_sidepart"), async () => {
                                             Then("This hair style should be selected", then.avatarBodyVisible("eyes_1", "scruffy_sidepart", "cowboy_moustache", ""))
                                         })
                                         When("I go to the facial hair tab", when.tapTab("Facial Hair"), async () => {
-                                            When("I tap no facial hair", when.tapItem(0), async () => {
+                                            When("I tap no facial hair", when.tapItem("emptyElement"), async () => {
                                                 Then("This no facial hair should be selected", then.avatarBodyVisible("eyes_1", "scruffy_sidepart", "emptyElement", ""))
                                             })
                                             When("I tap 'Done'", when.tapText("Done"), async () => {
@@ -200,13 +199,13 @@ Feature("I am able to use the yuscreen, create, and edit an Yumoji", async () =>
                     When("I tap continue", when.tapText("Continue"), async () => {
                         Then("I should be on the Yumoji builder", then.onAvatarBuilder)
                         Then("The female body should be selected", then.idVisible(HEAD_TYPE("female_head_1")))
-                        Then("I should see a skin tone", then.idVisible(SKIN_TONE("#f4cca7")))
-                        When("I tap this skin tone", when.tapColour("#f4cca7"), async () => {
+                        Then("I should see a skin tone", then.idVisible(SKIN_TONE("#FFC89F")))
+                        When("I tap this skin tone", when.tapColour("#FFC89F"), async () => {
 
                             When("I tap the 'Hair Style' tab", when.tapTab("Hair Style"), async () => {
                                 Then("I should be on the Hair Style tab", then.textVisible("Hair Style"))
                                 When("I scroll down the list", when.scrollFromID(AVATAR_BUILDER_LIST, "up", "fast"), async () => {
-                                    When("I tap a style", when.tapItem(50), async () => {
+                                    When("I tap a style", when.tapItem("long_sides"), async () => {
                                         Then("This hair style should be selected", then.avatarBodyVisible("eyes_1", "long_sides", "", ""))
                                     })
                                 })
@@ -225,7 +224,7 @@ Feature("I am able to use the yuscreen, create, and edit an Yumoji", async () =>
                                                 When("I select a colour", when.tapColour("#2273AF"), async () => {
                                                     When("I tap the accessories tab", when.tapTab("Accessories"), async () => {
                                                         Then("I should be on the Accessories tab", then.textVisible("Accessories"))
-                                                        When("I select an accessory", when.tapItem(0), async () => {
+                                                        When("I select an accessory", when.tapItem("emptyElement"), async () => {
                                                             Then("No accessory should be selected", then.avatarBodyVisible("eyes_1", "long_sides", "", "emptyElement"))
                                                         })
                                                     })

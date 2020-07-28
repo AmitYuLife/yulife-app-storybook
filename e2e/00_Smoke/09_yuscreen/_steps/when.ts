@@ -18,8 +18,8 @@ export const tapTab = (tabName: string) => async () => {
     await tab.tap()
 }
 
-export const tapItem = (itemIndex: number) => async () => {
-    const item = element(by.id(BODY_PART_ITEM(itemIndex)))
+export const tapItem = (partID: string) => async () => {
+    const item = element(by.id(BODY_PART_ITEM(partID)))
     await item.tap()
 }
 
