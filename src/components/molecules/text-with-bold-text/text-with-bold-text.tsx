@@ -18,7 +18,7 @@ function TextWithBoldText(props: IProps) {
   return (
     <Text style={props.style}>
       {fields.map((field, index) => (
-        <Text key={`${field.slice(0, 8)}_${index}`} bold={index % 2 !== 0}>
+        <Text style={props.style} key={`${field.slice(0, 8)}_${index}`} bold={index % 2 !== 0}>
           {field}
         </Text>
       ))}

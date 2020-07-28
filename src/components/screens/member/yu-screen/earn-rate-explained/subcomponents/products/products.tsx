@@ -14,6 +14,7 @@ type ProductType = "employer" | "personal" | string;
 
 interface IProps {
   products: GetYulifer_getYulifer_products;
+  hasCharmsOnly: boolean;
   onProductDetails: (
     product: GetYulifer_getYulifer_products_employer | GetYulifer_getYulifer_products_personal,
     productType: ProductType
@@ -21,16 +22,16 @@ interface IProps {
 }
 
 interface IFooterTextProps {
-  isAlpha: boolean;
+  hasCharmsOnly: boolean;
 }
 
-function FooterText({ isAlpha }: IFooterTextProps) {
+function FooterText({ hasCharmsOnly }: IFooterTextProps) {
   return (
     <Text style={{ marginTop: 16, marginHorizontal: 16 }}>
       <TextWithBoldText
         style={styles.footerText}
         value={`${
-          !isAlpha ? "" : "As an early adopter alpha user, you get exclusive free access to the app! "
+          !hasCharmsOnly ? "" : "As an early adopter alpha user, you get exclusive free access to the app! "
         }To increase your <bold>earn rate</bold>, check out the products available on your Yu screen. All products come with <bold>power-ups</bold> to increase your earn rate!`}
       />
     </Text>
@@ -38,44 +39,45 @@ function FooterText({ isAlpha }: IFooterTextProps) {
 }
 
 function Products(props: IProps) {
-  const { products, onProductDetails } = props;
+  const { products, onProductDetails, hasCharmsOnly } = props;
 
   return (
     <View style={styles.wrapper}>
-      <Text style={styles.header}>{products.charms.length && !products.employer.length ? "Charms" : "Power-Ups"}</Text>
-      {!products.employer.length && !products.charms.length ? (
-        <View style={styles.marginBottom}>
-          <TextWithBoldText
-            style={styles.compoundText}
-            value="You currently do not have any Power-Ups. To increase your <bold>earn rate</bold>, check out the products
-            available on your Yu screen. All products come with <bold>power-ups</bold> to increase your earn rate!"
-          />
-        </View>
-      ) : (
-        <View style={styles.marginBottom}>
-          {products.employer.map((product, i) => {
-            return (
-              <ProductItem
-                key={`${product.name}_${i}`}
-                product={product}
-                productType="employer"
-                onPressAction={onProductDetails}
-              />
-            );
-          })}
-          {products.charms.map((product, i) => {
-            return (
-              <ProductItem
-                key={`${product.name}_${i}`}
-                product={product}
-                productType="charm"
-                onPressAction={onProductDetails}
-              />
-            );
-          })}
-          <FooterText isAlpha={products.charms.length > 0} />
-        </View>
-      )}
+      <View style={styles.marginBottom}>
+        {!products.charms.length ? null : <Text style={styles.header}>Charms</Text>}
+        {products.charms.map((product, i) => {
+          return (
+            <ProductItem
+              key={`${product.name}_${i}`}
+              product={product}
+              productType="charm"
+              onPressAction={onProductDetails}
+            />
+          );
+        })}
+        {!products.employer.length && !products.personal.length ? null : <Text style={styles.header}>Power-Ups</Text>}
+        {products.employer.map((product, i) => {
+          return (
+            <ProductItem
+              key={`${product.name}_${i}`}
+              product={product}
+              productType="employer"
+              onPressAction={onProductDetails}
+            />
+          );
+        })}
+        {products.personal.map((product, i) => {
+          return (
+            <ProductItem
+              key={`${product.name}_${i}`}
+              product={product}
+              productType="personal"
+              onPressAction={onProductDetails}
+            />
+          );
+        })}
+        <FooterText hasCharmsOnly={hasCharmsOnly} />
+      </View>
     </View>
   );
 }

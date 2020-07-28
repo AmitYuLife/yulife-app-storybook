@@ -11,7 +11,6 @@ interface IProps {
   earnRate: number;
   explainData: EarnRateDetails_getEarnRateDetails[];
   loading: boolean;
-  isAlpha: boolean;
 }
 
 export interface IColumnSize {
@@ -19,13 +18,12 @@ export interface IColumnSize {
 }
 
 function EarnRateTable(props: IProps) {
-  const { earnRate, explainData, loading, isAlpha } = props;
-
+  const { earnRate, explainData, loading } = props;
   return (
     <View style={styles.wrapper}>
       <Text style={styles.header}>Earn Rate Explained</Text>
-      <TableLoader loading={loading} isAlpha={isAlpha} />
-      <TableData isAlpha={isAlpha} loading={loading} explainData={explainData} earnRate={earnRate} />
+      <TableLoader loading={loading} surged={earnRate > 1} />
+      <TableData loading={loading} explainData={explainData} earnRate={earnRate} />
     </View>
   );
 }
@@ -68,19 +66,19 @@ const styles = StyleSheet.create({
   } as ViewStyle,
 });
 
-function TableLoader({ loading, isAlpha }: { loading: boolean; isAlpha: boolean }) {
+function TableLoader({ loading, surged }: { loading: boolean; surged: boolean }) {
   if (!loading) {
     return null;
   }
 
   return (
-    <View style={[styles.loading, isAlpha ? styles.loadingHeight : styles.loadingHeightWithHeading]}>
+    <View style={[styles.loading, surged ? styles.loadingHeight : styles.loadingHeightWithHeading]}>
       <ActivityIndicator />
     </View>
   );
 }
 
-function TableData({ loading, explainData, earnRate, isAlpha }: IProps) {
+function TableData({ loading, explainData, earnRate }: IProps) {
   if (loading) {
     return null;
   }
@@ -92,7 +90,6 @@ function TableData({ loading, explainData, earnRate, isAlpha }: IProps) {
       <TableHeader earnRate={earnRate} show={hasProducts} />
       {explainData.map((data, index) => (
         <TableRow
-          isAlpha={isAlpha}
           key={index} // no reorder
           data={data}
           totalEarnRate={earnRate}

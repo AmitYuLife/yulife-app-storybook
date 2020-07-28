@@ -8,17 +8,17 @@ import { YuCoinIcon } from "@atoms";
 
 interface IRates {
   standardValue: EarnRateDetails_getEarnRateDetails["standardValue"];
-  alphaTextStyle: TextStyle;
-  alphaImageStyle: ImageStyle;
+  surgeTextStyle: TextStyle;
+  surgeImageStyle: ImageStyle;
 }
 
-export function StandardRates({ standardValue, alphaTextStyle, alphaImageStyle }: IRates) {
+export function StandardRates({ standardValue, surgeTextStyle, surgeImageStyle }: IRates) {
   return (
     <View style={styles.wrapper}>
-      <Text bold={true} style={alphaTextStyle}>
+      <Text bold={true} style={surgeTextStyle}>
         {standardValue}
       </Text>
-      <YuCoinIcon style={StyleSheet.flatten([styles.yucoin, alphaImageStyle])} />
+      <YuCoinIcon style={StyleSheet.flatten([styles.yucoin, surgeImageStyle])} />
     </View>
   );
 }

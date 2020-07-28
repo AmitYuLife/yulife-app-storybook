@@ -74,8 +74,6 @@ function YuScreenContainer({
     );
   }
 
-  const [activeProducts, totalEarnRate] = getActiveProductsAndEarnRate(products, earnRate);
-
   return (
     <YuScreen
       level={currentLevel}
@@ -84,7 +82,7 @@ function YuScreenContainer({
       isAvatarCreated={isAvatarCreated}
       avatarUrl={avatarRemoteFile}
       products={products}
-      earnRate={totalEarnRate}
+      earnRate={earnRate}
       onProductPress={(
         product: GetYulifer_getYulifer_products_employer | GetYulifer_getYulifer_products_personal,
         productType: ProductType
@@ -103,9 +101,7 @@ function YuScreenContainer({
           subheading: "Do you want to edit your Yumoji?",
         });
       }}
-      onEarnRatePress={() => {
-        navigateToEarnRateScreen(componentId, activeProducts, totalEarnRate);
-      }}
+      onEarnRatePress={() => navigateToEarnRateScreen(componentId)}
     />
   );
 }
@@ -163,15 +159,11 @@ function navigateToAvatarCreationScreen(componentId: string, heading: AvatarBuil
   });
 }
 
-function navigateToEarnRateScreen(componentId: string, products: GetYulifer_getYulifer_products, earnRate: number) {
+function navigateToEarnRateScreen(componentId: string) {
   Navigation.push(componentId, {
     component: {
       id: ROUTES.yuScreenEarnRate,
       name: ROUTES.yuScreenEarnRate,
-      passProps: {
-        products,
-        earnRate,
-      },
     },
   });
 }
@@ -201,29 +193,4 @@ function navigateToAvatarModal({ componentId, heading, subheading }: INavigateTo
       },
     },
   });
-}
-
-function getActiveProductsAndEarnRate(
-  products: GetYulifer_getYulifer_products,
-  earnRate: number
-): [GetYulifer_getYulifer_products, number] {
-  const activeProducts: GetYulifer_getYulifer_products = {
-    employer: [],
-    charms: [],
-    personal: [],
-  };
-  let totalEarnRate = 0;
-
-  Object.keys(activeProducts).forEach((productType: keyof GetYulifer_getYulifer_products) => {
-    products[productType].forEach((product) => {
-      if (product.active) {
-        activeProducts[productType].push(product);
-        if (productType !== "charms") {
-          totalEarnRate += product.earnRate || 0;
-        }
-      }
-    });
-  });
-
-  return [activeProducts, totalEarnRate || earnRate];
 }
