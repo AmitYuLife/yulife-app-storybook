@@ -14,7 +14,7 @@ export interface ILabel {
 
 export type IColours = "blue" | "dark" | "darker" | "desert" | "light" | "pink" | "mountain" | "forest";
 
-interface IProps {
+export interface IProps {
   activeIndex: number;
   hasNotification?: boolean;
   labels?: ILabel[];
