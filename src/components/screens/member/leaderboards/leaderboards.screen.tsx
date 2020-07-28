@@ -14,7 +14,7 @@ import {
 } from "react-native";
 import { Navigation } from "react-native-navigation";
 import { Text, Pad } from "../../../atoms";
-import { ILabel, NavBar, TopBar } from "../../../molecules";
+import { ILabel, TopBar } from "../../../molecules";
 import LeaderboardConsent from "./leaderboard-consent/leaderboard-consent";
 import { MemoizedLeaderboardItem } from "./leaderboard-item/leaderboard-item";
 import { shouldLeaderboardUpdate } from "./leaderboards.screen.helpers";
@@ -33,6 +33,7 @@ import { LockedCell } from "./locked-cell";
 import { LeaderboardTitle } from "./leaderboard-title";
 import deviceInfo from "react-native-device-info";
 import { MemoizedTopBar } from "./subcomponents/memoized-top-bar/memoized-top-bar";
+import { MemoizedNavBar } from "./subcomponents/memoized-nav-bar/memoized-nav-bar";
 
 const LEADERBOARD_ITEMS_OFFSET = LIST_PAD_HEIGHT + LOADING_ITEM_HEIGHT;
 
@@ -57,7 +58,6 @@ export interface ILeaderboardsScreenProps {
   componentId: string;
   activeLeaderboardIndex: number;
   sortBy: string;
-  hasNotification: boolean;
   appState: IAppStore["appState"];
   labels: ILabel[];
   isLoading: boolean;
@@ -142,7 +142,6 @@ export default class LeaderboardsScreen extends React.Component<ILeaderboardsScr
     const {
       activeLeaderboardIndex,
       isLoading,
-      hasNotification,
       items = [],
       leaderboards,
       onLeftMenuPress,
@@ -247,7 +246,7 @@ export default class LeaderboardsScreen extends React.Component<ILeaderboardsScr
           leaderboardItemIndex={myLeaderboardItemIndex}
           floatingItemAnimatedOpacity={this.getOpacityInterpolation() as number}
         />
-        <NavBar activeIndex={3} hasNotification={hasNotification} />
+        <MemoizedNavBar />
         <MemoizedTopBar onLayout={this.handleTopBarWrapperLayout} onPressLeftIcon={onLeftMenuPress} />
       </View>
     );

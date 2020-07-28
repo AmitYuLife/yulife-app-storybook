@@ -9,7 +9,6 @@ import { IMainTabsProps, labels } from "../../../../navigation/root";
 import { IReduxState } from "../../../../redux/_core/reducers";
 import { getAppState } from "../../../../redux/app/app.selectors";
 import { getCopy } from "../../../../redux/copy/copy.selectors";
-import { getHasNotification } from "../../../../redux/levels/levels.selectors";
 import { updateLeaderboardConsent } from "../../../../redux/user/user.actions";
 import { getAllLeaderboards } from "../../../../redux/user/user.selectors";
 import { LeaderboardsScreen } from "../../../screens";
@@ -47,7 +46,6 @@ const sortBy = "steps";
 const LeaderboardsContainer: FC<Props> = (props) => {
   const {
     leaderboards = [],
-    hasNotification,
     copy,
     componentId,
     appState,
@@ -97,7 +95,6 @@ const LeaderboardsContainer: FC<Props> = (props) => {
       componentId={componentId}
       activeLeaderboardIndex={activeLeaderboardIndex}
       sortBy={sortBy}
-      hasNotification={hasNotification}
       appState={appState}
       labels={labels}
       isLoading={loading}
@@ -118,7 +115,6 @@ const LeaderboardsContainer: FC<Props> = (props) => {
 const mapStateToProps = (state: IReduxState) => ({
   copy: getCopy(state, "leaderboards"),
   leaderboards: getAllLeaderboards(state),
-  hasNotification: getHasNotification(state),
   appState: getAppState(state),
 });
 
