@@ -4,13 +4,12 @@ import { Style } from "@styles";
 import Text from "./card.text";
 
 interface IProps {
-  isAlpha: boolean;
   earnRate: number;
+  hasCharmsOnly: boolean;
 }
 
 function Card(props: IProps) {
-  const { earnRate, isAlpha } = props;
-
+  const { earnRate, hasCharmsOnly } = props;
   return (
     <View style={styles.wrapper}>
       <View style={styles.backgroundWrapper}>
@@ -19,7 +18,7 @@ function Card(props: IProps) {
       <View style={styles.textWrapper}>
         <View style={styles.leftPad} />
         <View>
-          <Text earnRate={earnRate} isAlpha={isAlpha} />
+          <Text hasCharmsOnly={hasCharmsOnly} earnRate={earnRate} />
         </View>
       </View>
     </View>

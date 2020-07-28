@@ -9,6 +9,7 @@ import {
 } from "@graphql/_core/schema";
 import { ProductType } from "@containers/member/yu-screen/yu-screen-products.container";
 import { EarnRateTable, Card, Products } from "./subcomponents";
+import { getActiveProducts } from "./earn-rate-explained.helpers";
 
 interface IProps {
   earnRate: number;
@@ -23,15 +24,18 @@ interface IProps {
 }
 
 function YuScreenEarnRate({ products, onExitConfirmed, onProductDetails, explainData, earnRate, loading }: IProps) {
-  const isAlpha = products.charms.length && !products.employer.length;
+  const activeProducts = getActiveProducts(products);
+  const hasCharmsOnly =
+    activeProducts.charms.length && !activeProducts.employer.length && !activeProducts.personal.length;
+
   return (
     <SafeAreaView style={styles.background}>
       <GenericHeading heading="Your YuCoin" onLeftIconPress={onExitConfirmed} />
       <ScrollView style={styles.background} showsVerticalScrollIndicator={false}>
         <View style={styles.wrapper}>
-          <Card isAlpha={isAlpha} earnRate={earnRate} />
-          <EarnRateTable isAlpha={isAlpha} earnRate={earnRate} explainData={explainData} loading={loading} />
-          <Products onProductDetails={onProductDetails} products={products} />
+          <Card hasCharmsOnly={hasCharmsOnly} earnRate={earnRate} />
+          <EarnRateTable earnRate={earnRate} explainData={explainData} loading={loading} />
+          <Products onProductDetails={onProductDetails} products={activeProducts} hasCharmsOnly={hasCharmsOnly} />
         </View>
       </ScrollView>
     </SafeAreaView>
