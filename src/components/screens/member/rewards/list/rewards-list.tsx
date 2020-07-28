@@ -1,32 +1,50 @@
-import React from "react";
-import { LargeList, IndexPath } from "react-native-largelist-v3";
-import { Loading } from "@atoms";
-import { GetRewards_getRewards } from "@graphql/_core/schema";
-import { YulifeRefreshHeader, RewardsListItem } from "@components/molecules";
-import { Style } from "@styles";
-import { View, StyleSheet, ViewStyle } from "react-native";
+import Loading from "@atoms/loading/loading";
+import { RewardsListItem, YulifeRefreshHeader } from "@molecules/index";
+import { Style } from "@styles/index";
+import * as React from "react";
+import { View } from "react-native";
+import { IndexPath, LargeList } from "react-native-largelist-v3";
+import { GetRewards_getRewards } from "../../../../../graphql/_core/schema";
+import { IConnectedScreenProps } from "../../../../../typings";
 
-interface Props {
+import { StyleSheet, ViewStyle } from "react-native";
+import { RewardsListLayout } from "../subcomponents/rewards-layout";
+
+export interface IRewardsListScreenProps extends IConnectedScreenProps {
   data: GetRewards_getRewards[];
+  hasNotification?: boolean;
   onLeftTabPress: () => void;
+  onRightTabPress: () => void;
   onItemPress: (item: GetRewards_getRewards) => void;
 }
 
-export class RewardsList extends React.Component<Props> {
+export class RewardsList extends React.PureComponent<IRewardsListScreenProps> {
   private largeList: LargeList;
 
-  render() {
+  public render() {
+    const { data, hasNotification = false, onLeftTabPress, onRightTabPress, onLeftMenuPress, totalCoins } = this.props;
     return (
-      <LargeList
-        ref={this.setLargeListRef}
-        renderIndexPath={this.renderIndexPath}
-        heightForIndexPath={this.getHeight}
-        data={[{ items: this.props.data }]}
-        onRefresh={this.handleRefresh}
-        renderEmpty={Loading}
-        refreshHeader={YulifeRefreshHeader}
-        renderFooter={this.renderFooter}
-      />
+      <RewardsListLayout
+        activeScreen="rewards"
+        hasNotification={hasNotification}
+        onLeftMenuPress={onLeftMenuPress}
+        onLeftTabPress={onLeftTabPress}
+        totalCoins={totalCoins}
+        onRightTabPress={onRightTabPress}
+      >
+        <View style={styles.listWrapper}>
+          <LargeList
+            ref={this.setLargeListRef}
+            renderIndexPath={this.renderIndexPath}
+            heightForIndexPath={this.getHeight}
+            data={[{ items: data }]}
+            onRefresh={this.handleRefresh}
+            renderEmpty={Loading}
+            refreshHeader={YulifeRefreshHeader}
+            renderFooter={this.renderFooter}
+          />
+        </View>
+      </RewardsListLayout>
     );
   }
 
@@ -34,9 +52,8 @@ export class RewardsList extends React.Component<Props> {
     this.largeList = ref;
   };
 
-  private handleRefresh = () => {
-    this.props.onLeftTabPress();
-
+  private handleRefresh = async () => {
+    await this.props.onLeftTabPress();
     if (this.largeList) {
       this.largeList.endRefresh();
     }
@@ -71,13 +88,16 @@ export class RewardsList extends React.Component<Props> {
     this.props.onItemPress(item);
   };
 
-  private getHeight = () => Style.adjust(150);
+  private getHeight = () => Style.SCALE_UP_AND_DOWN(150);
 
   private renderFooter = () => <View style={styles.footer} />;
 }
 
 const styles = StyleSheet.create({
+  listWrapper: {
+    flex: 1,
+  } as ViewStyle,
   footer: {
-    height: Style.adjust(72),
+    height: Style.SCALE_UP_AND_DOWN(72),
   } as ViewStyle,
 });

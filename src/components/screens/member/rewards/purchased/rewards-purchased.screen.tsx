@@ -43,16 +43,15 @@ const RewardsPurchasedScreen = React.memo((props: Props) => {
   }
 
   return (
-    <RewardsListLayout
-      activeScreen="purchased"
+    <RewardsPurchasedList
       hasNotification={hasNotification}
       onLeftTabPress={onLeftTabPress}
-      onLeftMenuPress={onLeftMenuPress}
       onRightTabPress={onRightTabPress}
+      onLeftMenuPress={onLeftMenuPress}
       totalCoins={totalCoins}
-    >
-      <RewardsPurchasedList onLeftTabPress={onLeftTabPress} data={data} copy={copy} onRightTabPress={onRightTabPress} />
-    </RewardsListLayout>
+      data={data}
+      copy={copy}
+    />
   );
 });
 

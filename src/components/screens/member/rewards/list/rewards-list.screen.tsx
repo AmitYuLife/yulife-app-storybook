@@ -42,16 +42,14 @@ const RewardsListScreen = React.memo((props: IRewardsListScreenProps) => {
   }
 
   return (
-    <RewardsListLayout
-      activeScreen="rewards"
-      hasNotification={hasNotification}
-      onLeftTabPress={onLeftTabPress}
-      onRightTabPress={onRightTabPress}
+    <RewardsList
       onLeftMenuPress={onLeftMenuPress}
+      onRightTabPress={onRightTabPress}
       totalCoins={totalCoins}
-    >
-      <RewardsList data={data} onItemPress={onItemPress} onLeftTabPress={onLeftTabPress} />
-    </RewardsListLayout>
+      data={data}
+      onItemPress={onItemPress}
+      onLeftTabPress={onLeftTabPress}
+    />
   );
 });
 
