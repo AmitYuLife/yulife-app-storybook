@@ -21,6 +21,12 @@ export default StyleSheet.create({
     color: "#5A5A5C",
   } as TextStyle,
 
+  checkboxWrapper: {
+    width: "90%",
+    paddingLeft: 24,
+    paddingBottom: 24,
+  },
+
   textArea: {
     alignSelf: "center",
     marginBottom: 32,

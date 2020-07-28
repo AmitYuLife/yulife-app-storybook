@@ -75,7 +75,7 @@ export const FibCustomCoverScreen = memo(function (props: IFibCustomCoverScreenP
         </ScrollView>
       </SafeAreaView>
 
-      <ContinueButton onNavigateBack={onNavigateToYuScreen} />
+      <ContinueButton onPress={onNavigateToYuScreen} />
     </>
   );
 });

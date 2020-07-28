@@ -1,7 +1,7 @@
 import YuScreen from "@screens/member/yu-screen/yu-screen";
 import * as React from "react";
 import { Navigation } from "react-native-navigation";
-import { connect } from "react-redux";
+import { connect, useDispatch } from "react-redux";
 import { ROUTES, MODALS } from "@navigation/constants";
 import { IMainTabsProps } from "@navigation/root";
 import { IReduxState } from "@redux/_core/reducers";
@@ -30,9 +30,8 @@ interface IProps {
 }
 
 type ConnectedState = ReturnType<typeof mapStateToProps>;
-type ConnectedDispatch = typeof mapDispatchToProps;
 
-type Props = IProps & IMainTabsProps & ConnectedState & ConnectedDispatch;
+type Props = IProps & IMainTabsProps & ConnectedState;
 
 function YuScreenContainer({
   currentLevel,
@@ -42,8 +41,8 @@ function YuScreenContainer({
   totalCoins,
   onLeftMenuPress,
   showYuscreenIntro,
-  setYuscreenIntroShown,
 }: Props) {
+  const dispatch = useDispatch();
   const { data } = useCacheFirstAndNetworkOnAppearQuery<GetYulifer>(GQL_QUERY_GET_YULIFER, componentId);
 
   let avatarRemoteFile = null as string;
@@ -63,7 +62,7 @@ function YuScreenContainer({
   }
 
   if (showYuscreenIntro) {
-    return <YuScreenIntro setYuscreenIntroShown={setYuscreenIntroShown} />;
+    return <YuScreenIntro setYuscreenIntroShown={() => dispatch(setYuscreenIntroShown())} />;
   }
 
   if (!data && !showYuscreenIntro) {
@@ -119,11 +118,7 @@ const mapStateToProps = (state: IReduxState) => ({
   showYuscreenIntro: getShowYuscreenIntro(state),
 });
 
-const mapDispatchToProps = {
-  setYuscreenIntroShown,
-};
-
-export default connect<ConnectedState, ConnectedDispatch>(mapStateToProps, mapDispatchToProps)(YuScreenContainer);
+export default connect<ConnectedState>(mapStateToProps)(YuScreenContainer);
 
 function navigateToProductScreen(
   componentId: string,

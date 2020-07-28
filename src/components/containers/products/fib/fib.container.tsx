@@ -16,6 +16,7 @@ import {
   FIB_EDIT_SALARY,
   FIB_BROWSE,
   FIB_CUSTOM_PERCENTAGE,
+  FIB_FEEDBACK_FORM,
 } from "./fib.types";
 import { Navigation } from "react-native-navigation";
 import { ROUTES } from "@navigation/constants";
@@ -23,6 +24,7 @@ import { getFIBState } from "@redux/product/product.selectors";
 import { IReduxState } from "@redux/_core/reducers";
 import { connect } from "react-redux";
 import FibCustomPercentage from "./subcontainers/fib.custom-percentage.container";
+import FibFeedbackFormContainer from "./subcontainers/fib.feedback-form.container";
 
 interface RouteProps {
   navigation: FibLocalNavigation;
@@ -51,6 +53,8 @@ function getComponent(routeProps: RouteProps) {
       return <FibIntroductionContainer navigation={navigation} />;
     case FIB_CUSTOM_PERCENTAGE:
       return <FibCustomPercentage navigation={navigation} />;
+    case FIB_FEEDBACK_FORM:
+      return <FibFeedbackFormContainer navigation={navigation} />;
     default:
       return <FibBrowseContainer selectFaq={selectFaq} navigation={navigation} />;
   }

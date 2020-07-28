@@ -11,7 +11,7 @@ import {
 } from "@graphql/products";
 import Logger from "@services/logging/logger";
 
-import { FIB_EDIT_SALARY, FIB_FAQ, FibLocalNavigation, FIB_CUSTOM_PERCENTAGE } from "../fib.types";
+import { FIB_EDIT_SALARY, FIB_FAQ, FibLocalNavigation, FIB_CUSTOM_PERCENTAGE, FIB_FEEDBACK_FORM } from "../fib.types";
 import fibFaqItems from "../data/faq-fib-data";
 import fibDocumentsItems from "../data/documents-data";
 import { GetYulifer } from "@graphql/_core/schema";
@@ -134,6 +134,7 @@ const FibBrowseContainer = memo(function (props: IFibContainer & ReturnType<type
       onNavigateToYuScreen={navigation.popToMain}
       navigateToEditSalary={() => navigation.push(FIB_EDIT_SALARY)}
       navigateToCustomCover={() => navigation.push(FIB_CUSTOM_PERCENTAGE)}
+      navigateToFeedbackForm={() => navigation.push(FIB_FEEDBACK_FORM)}
       selectCoverType={selectCoverType}
       selectedPackage={packageDetails}
       faqs={faqs}

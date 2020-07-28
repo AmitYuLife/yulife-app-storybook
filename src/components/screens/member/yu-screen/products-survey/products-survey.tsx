@@ -189,17 +189,19 @@ function ProductsSurvey({ onExitConfirmed }: IProps) {
             <Text style={styles.headerText}>
               We’d love to take your feedback onboard. Out of the following, which would you like to see covered?
             </Text>
-            {products.map((item) => {
-              return (
-                <CheckBox
-                  checked={productState.includes(item.value)}
-                  value={item.value}
-                  key={item.value}
-                  label={item.label}
-                  onChange={updateProductState}
-                />
-              );
-            })}
+            <View style={styles.checkboxWrapper}>
+              {products.map((item) => {
+                return (
+                  <CheckBox
+                    checked={productState.includes(item.value)}
+                    value={item.value}
+                    key={item.value}
+                    label={item.label}
+                    onChange={updateProductState}
+                  />
+                );
+              })}
+            </View>
             <View style={styles.footerWrapper}>
               <TextInput
                 key="textArea"

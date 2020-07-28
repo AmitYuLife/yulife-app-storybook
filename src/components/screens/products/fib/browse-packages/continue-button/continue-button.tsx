@@ -5,10 +5,10 @@ import MinimalButton from "@atoms/button/minimalButton";
 import { Colours, Style } from "@styles";
 
 interface Props {
-  onNavigateBack: () => void;
+  onPress: () => void;
 }
 
-export const ContinueButton = memo(({ onNavigateBack }: Props) => {
+export const ContinueButton = memo(({ onPress }: Props) => {
   return (
     <LinearGradient colors={["#ffffff00", "#fafafe"]} locations={[0, 0.25]} style={styles.button}>
       <View style={styles.wrapper}>
@@ -17,7 +17,7 @@ export const ContinueButton = memo(({ onNavigateBack }: Props) => {
           shadowColor={Colours.darkHotPinkShadow}
           height={53}
           title="Continue"
-          onPress={onNavigateBack}
+          onPress={onPress}
           color="white"
           borderRadius={50}
           titleStyle={styles.title}
