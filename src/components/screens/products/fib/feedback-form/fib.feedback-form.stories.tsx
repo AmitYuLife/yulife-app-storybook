@@ -4,7 +4,7 @@ import { FibFeedbackFormScreen, Props } from "./fib.feedback-form.screen";
 
 const defaultProps: Props = {
   onNavigateBack: () => null,
-  onNavigateToMain: () => null,
+  onContinue: () => null,
 };
 
 storiesOf("FibFeedbackFormScreen").add("default", () => <FibFeedbackFormScreen {...defaultProps} />);
