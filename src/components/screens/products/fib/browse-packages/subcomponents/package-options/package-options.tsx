@@ -10,7 +10,6 @@ const data = [
     source: require("../../../../../../../../assets/fib/browse-packages/common-chest.png"),
     shadow: "rgba(166, 255, 224, 0.33)",
     selectedBackground: "rgba(167, 253, 224, 0.45)",
-    earnRate: 10,
   },
   {
     id: "rarePackage",
@@ -19,7 +18,6 @@ const data = [
     source: require("../../../../../../../../assets/fib/browse-packages/rare-passive.png"),
     shadow: "rgba(0, 192, 243, 0.1)",
     selectedBackground: "rgba(138, 230, 255, 0.31)",
-    earnRate: 20,
   },
   {
     id: "epicPackage",
@@ -28,7 +26,6 @@ const data = [
     source: require("../../../../../../../../assets/fib/browse-packages/epic-passive.png"),
     shadow: "#E1D5FF",
     selectedBackground: "rgba(210, 194, 253, 0.5)",
-    earnRate: 30,
   },
 ];
 
@@ -54,9 +51,6 @@ export const PackageOptions = memo(function (props: Props) {
                       style={item.type === "Epic" ? styles.imagePassiveEpicPackage : styles.imagePassivePackage}
                       source={item.source}
                     />
-                    <View style={item.type === "Epic" ? styles.rateViewEpicPackage : styles.rateView}>
-                      <Text style={styles.rateText}>{`${item.earnRate}x`}</Text>
-                    </View>
                   </View>
                   <Text style={StyleSheet.flatten([styles.packageText, { color: item.color }])}>{item.type}</Text>
                   <View style={styles.transparentView} />
@@ -77,9 +71,6 @@ export const PackageOptions = memo(function (props: Props) {
                       style={item.type === "Epic" ? styles.imageActiveEpicPackage : styles.imageActivePackage}
                       source={item.source}
                     />
-                    <View style={styles.rateViewActive}>
-                      <Text style={styles.rateTextActive}>{`${item.earnRate}x`}</Text>
-                    </View>
                   </View>
                   <Text style={StyleSheet.flatten([styles.packageTextActive, { color: item.color }])}>{item.type}</Text>
                 </>

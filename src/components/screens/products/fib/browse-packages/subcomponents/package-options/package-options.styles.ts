@@ -1,5 +1,5 @@
 import { StyleSheet, ViewStyle, TextStyle, ImageStyle } from "react-native";
-import { Style, Colours } from "@styles";
+import { Style } from "@styles";
 
 export default StyleSheet.create({
   wrapper: {
@@ -83,58 +83,4 @@ export default StyleSheet.create({
     height: Style.adjust(64),
     width: Style.adjust(64),
   } as ImageStyle,
-  rateView: {
-    height: Style.adjust(32),
-    width: Style.adjust(32),
-    backgroundColor: Colours.yuscreen.earnRateBackground,
-    borderColor: Colours.yuscreen.white,
-    borderRadius: Style.adjust(28),
-    borderWidth: 2,
-    right: Style.adjust(-12),
-    bottom: Style.adjust(-12),
-    position: "absolute",
-    justifyContent: "center",
-    alignItems: "center",
-  } as ViewStyle,
-  rateViewEpicPackage: {
-    height: Style.adjust(32),
-    width: Style.adjust(32),
-    backgroundColor: Colours.yuscreen.earnRateBackground,
-    borderColor: Colours.yuscreen.white,
-    borderRadius: Style.adjust(28),
-    borderWidth: 2,
-    right: Style.adjust(-8),
-    bottom: Style.adjust(-6),
-    position: "absolute",
-    justifyContent: "center",
-    alignItems: "center",
-  } as ViewStyle,
-  rateViewActive: {
-    height: Style.adjust(38),
-    width: Style.adjust(38),
-    backgroundColor: Colours.yuscreen.earnRateBackground,
-    borderColor: Colours.yuscreen.white,
-    borderRadius: Style.adjust(32),
-    borderWidth: 2,
-    right: -10,
-    bottom: -12,
-    position: "absolute",
-    justifyContent: "center",
-    alignItems: "center",
-  } as ViewStyle,
-  rateTextActive: {
-    fontFamily: Style.FONT_FAMILY_PRIMARY_BOLD,
-    fontSize: Style.adjust(16),
-    letterSpacing: 0.8,
-    color: Colours.yuscreen.brown,
-    marginTop: 2,
-    marginLeft: Style.adjust(2),
-  } as TextStyle,
-  rateText: {
-    fontFamily: Style.FONT_FAMILY_PRIMARY_BOLD,
-    fontSize: Style.adjust(12),
-    letterSpacing: 0.8,
-    color: Colours.yuscreen.brown,
-    marginLeft: Style.adjust(1),
-  } as TextStyle,
 });
