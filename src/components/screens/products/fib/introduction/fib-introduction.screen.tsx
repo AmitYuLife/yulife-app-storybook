@@ -1,11 +1,11 @@
 import React, { memo } from "react";
-import { View, StyleSheet, ScrollView, ViewStyle, SafeAreaView } from "react-native";
+import { View, StyleSheet, ViewStyle } from "react-native";
 import * as Animatable from "react-native-animatable";
-import { GenericHeading, Heading, Text } from "@atoms";
+import { Heading, Text } from "@atoms";
 import { Style, Colours } from "@styles";
-import MinimalButton from "@atoms/button/minimalButton";
 import { Avatar } from "@components/screens/member/yu-screen/subcomponents/avatar-section/avatar";
 import { FibIntroductionToLifeInsuranceSvg } from "./fib-introduction-to-life-insurance-svg";
+import { ScrollableLayout } from "../layouts/fib.scrollable-layout";
 
 export interface IFibIntroductionScreenProps {
   navigateToYuScreen: () => void;
@@ -18,45 +18,24 @@ export const FibIntroductionScreen = memo(function (props: IFibIntroductionScree
   const { navigateToYuScreen, onNavigateToSalary, firstName, avatar } = props;
 
   return (
-    <>
-      <SafeAreaView style={styles.wrapper}>
-        <GenericHeading isBeta={true} logo="yulife" onLeftIconPress={navigateToYuScreen} />
-        <ScrollView showsVerticalScrollIndicator={false}>
-          <View style={styles.padTop} />
-          <Animatable.View duration={1000} animation="fadeIn" style={styles.flex} useNativeDriver={true}>
-            <View style={styles.imagesWrapper}>
-              <View style={styles.avatarWrapper}>
-                <Avatar sizeMultiplier={0.6} avatar={null} avatarUrl={avatar} isAvatarCreated={true} />
-              </View>
-              <View style={styles.imageWrapper}>
-                <FibIntroductionToLifeInsuranceSvg />
-              </View>
-            </View>
-            <Heading label={`Welcome ${firstName},`} style={styles.header} />
-            <View style={styles.mainContent}>
-              <Text style={styles.text}>This life insurance protects your family from the loss of your income.</Text>
-              <Text style={styles.text}>This means every package is unique to you and your current earnings.</Text>
-              <Text style={styles.text}>In order to create your packages we will need you to enter your salary.</Text>
-            </View>
-          </Animatable.View>
-        </ScrollView>
-      </SafeAreaView>
-      <View style={styles.button}>
-        <MinimalButton
-          backgroundColor={Colours.darkHotPink}
-          shadowColor={Colours.darkHotPinkShadow}
-          height={53}
-          title="Enter Salary"
-          titleStyle={{
-            fontFamily: Style.FONT_FAMILY_PRIMARY_BOLD,
-            fontSize: 16,
-          }}
-          onPress={onNavigateToSalary}
-          color="white"
-          borderRadius={50}
-        />
-      </View>
-    </>
+    <ScrollableLayout buttonAction={onNavigateToSalary} onLeftIconPress={navigateToYuScreen} buttonTitle="Enter Salary">
+      <Animatable.View duration={1000} animation="fadeIn" style={styles.flex} useNativeDriver={true}>
+        <View style={styles.imagesWrapper}>
+          <View style={styles.avatarWrapper}>
+            <Avatar sizeMultiplier={0.6} avatar={null} avatarUrl={avatar} isAvatarCreated={true} />
+          </View>
+          <View style={styles.imageWrapper}>
+            <FibIntroductionToLifeInsuranceSvg />
+          </View>
+        </View>
+        <Heading label={`Welcome ${firstName},`} style={styles.header} />
+        <View style={styles.mainContent}>
+          <Text style={styles.text}>This life insurance protects your family from the loss of your income.</Text>
+          <Text style={styles.text}>This means every package is unique to you and your current earnings.</Text>
+          <Text style={styles.text}>In order to create your packages we will need you to enter your salary.</Text>
+        </View>
+      </Animatable.View>
+    </ScrollableLayout>
   );
 });
 
@@ -64,15 +43,6 @@ const styles = StyleSheet.create({
   flex: {
     flex: 1,
   } as ViewStyle,
-  heading: {
-    color: Colours.products.fib.n800,
-    justifyContent: "center",
-  },
-  wrapper: {
-    backgroundColor: "white",
-    flex: 1,
-    marginTop: Style.isAnyIphoneX() ? -10 : 0,
-  },
   imagesWrapper: {
     alignItems: "center",
     marginVertical: 12,
@@ -98,18 +68,10 @@ const styles = StyleSheet.create({
     letterSpacing: 1,
     color: "#5A5A5C",
   },
-  button: {
-    width: Style.DEVICE_WIDTH - 70,
-    alignSelf: "center",
-    height: 90,
-  } as ViewStyle,
   header: {
     fontFamily: Style.FONT_FAMILY_PRIMARY_BOLD,
     color: Colours.products.fib.n800,
     marginTop: 16,
     marginHorizontal: 32,
   },
-  padTop: {
-    height: 16,
-  } as ViewStyle,
 });
