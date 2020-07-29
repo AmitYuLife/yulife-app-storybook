@@ -18,8 +18,8 @@ import { FeedbackInputWrapper } from "./feedback-input-wrapper";
 import LinearGradient from "react-native-linear-gradient";
 
 export interface Props {
+  onContinue: () => void;
   onNavigateBack: () => void;
-  onNavigateToMain: () => void;
 }
 
 const initialValue = formInputsData.reduce((prev, curr) => {
@@ -28,6 +28,7 @@ const initialValue = formInputsData.reduce((prev, curr) => {
 
 export function FibFeedbackFormScreen(props: Props) {
   const [formState, setFormState] = useState<Record<string, string>>(initialValue);
+
   const scrollViewRef = useRef<ScrollView | null>(null);
 
   function updateFormState(key: string, value: string) {
@@ -82,7 +83,7 @@ export function FibFeedbackFormScreen(props: Props) {
               onPress={() => {
                 onSubmit(formState);
                 Keyboard.dismiss();
-                return props.onNavigateToMain();
+                return props.onContinue();
               }}
               color="white"
               borderRadius={50}
