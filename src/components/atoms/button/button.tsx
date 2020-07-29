@@ -24,7 +24,7 @@ interface IProps {
 }
 
 function Button({ label, type, wrapperStyle, disabled, testID, isLoading, onPress }: IProps) {
-  const { isPressedIn, handlePressIn, handlePressOut } = usePressedInWithDelay({ onPress });
+  const { isPressedIn, handlePressIn, handlePressOut, handlePress } = usePressedInWithDelay({ onPress });
 
   if (type.startsWith(BUTTON_TYPES.PRIMARY)) {
     return (
@@ -40,6 +40,7 @@ function Button({ label, type, wrapperStyle, disabled, testID, isLoading, onPres
           disabled={disabled}
           onPressIn={handlePressIn}
           onPressOut={handlePressOut}
+          onPress={handlePress}
         >
           <View testID={`${testID}-text-view`} style={getWrapperStyle({ type, isPressedIn })}>
             {isLoading ? (
@@ -63,6 +64,7 @@ function Button({ label, type, wrapperStyle, disabled, testID, isLoading, onPres
       disabled={disabled}
       onPressIn={handlePressIn}
       onPressOut={handlePressOut}
+      onPress={handlePress}
       style={StyleSheet.flatten([getWrapperStyle({ type }), wrapperStyle])}
     >
       {isLoading ? <ActivityIndicator color={Colours.darkHotPink} /> : <Text style={getTextStyle(type)}>{label}</Text>}

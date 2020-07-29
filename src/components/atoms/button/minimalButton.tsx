@@ -36,7 +36,7 @@ const SHADOW_DIFF = 3;
 export default function MinimalButton(props: IProps) {
   const { onPress, height = 50, borderRadius = props.height / 2 } = props;
   const [translateYAnimation] = useState(new Animated.Value(0));
-  const { isPressedIn, handlePressIn, handlePressOut } = usePressedInWithDelay({ onPress });
+  const { isPressedIn, handlePressIn, handlePressOut, handlePress } = usePressedInWithDelay({ onPress });
 
   useEffect(() => {
     Animated.timing(translateYAnimation, {
@@ -48,13 +48,14 @@ export default function MinimalButton(props: IProps) {
 
   return (
     <View style={[styles.flex, { height: height + SHADOW_ALLOWANCE }]}>
-      <Shadow {...props} height={height - SHADOW_DIFF} borderRadius={borderRadius} isPressedIn={isPressedIn} />
+      <Shadow {...props} height={height - SHADOW_DIFF} borderRadius={borderRadius} />
       <Main
         {...props}
         height={height - SHADOW_DIFF}
         borderRadius={borderRadius}
         onPressIn={handlePressIn}
         onPressOut={handlePressOut}
+        onPress={handlePress}
         isPressedIn={isPressedIn}
         translateYAnimation={translateYAnimation}
       />
@@ -63,7 +64,7 @@ export default function MinimalButton(props: IProps) {
   );
 }
 
-function Shadow({ height, borderRadius, shadowColor, testID }: IProps & Pick<IState, "isPressedIn">) {
+function Shadow({ height, borderRadius, shadowColor, testID }: IProps) {
   return (
     <View style={[styles.shadow, { height, borderRadius, backgroundColor: shadowColor }]}>
       <View testID={`${testID}-disabled-overlay`} />
@@ -86,6 +87,7 @@ function Main({
   disabled,
   onPressIn,
   onPressOut,
+  onPress,
   title,
   titleStyle,
 }: IProps & IState & ComponentProps<typeof TouchableWithoutFeedback>) {
@@ -96,6 +98,7 @@ function Main({
       disabled={disabled}
       onPressIn={onPressIn}
       onPressOut={onPressOut}
+      onPress={onPress}
     >
       <Animated.View
         style={[

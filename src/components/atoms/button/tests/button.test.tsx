@@ -32,7 +32,7 @@ describe("Button", () => {
   it("should fire the handler onPress", () => {
     const { getByTestId } = renderComponent({ type: "Primary" });
 
-    fireEvent.pressOut(getByTestId("button"));
+    fireEvent.press(getByTestId("button"));
 
     expect(onPress).toHaveBeenCalledTimes(1);
   });
@@ -50,7 +50,7 @@ describe("Button", () => {
   it("should display the disabled overlay when the button is disabled", () => {
     const { queryByTestId, getByTestId } = renderComponent({ disabled: true });
 
-    fireEvent.pressOut(getByTestId("button"));
+    fireEvent.press(getByTestId("button"));
 
     expect(queryByTestId("button-disabled-overlay")).toBeTruthy();
     expect(onPress).toHaveBeenCalledTimes(0);
@@ -65,7 +65,7 @@ describe("Button", () => {
   it("should still fire the callback when loading", () => {
     const { getByTestId } = renderComponent({ isLoading: true });
 
-    fireEvent.pressOut(getByTestId("button"));
+    fireEvent.press(getByTestId("button"));
 
     expect(onPress).toHaveBeenCalledTimes(1);
   });
