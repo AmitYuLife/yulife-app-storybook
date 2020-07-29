@@ -10,28 +10,29 @@ export function usePressedInWithDelay({ delay = 1000, onPress }: Args) {
   const [calledAt, setCalledAt] = React.useState(getInitialDate());
   const [isWaitingForResponse, setIsWaitingForResponse] = React.useState(false);
 
-  const handlePressIn = React.useCallback(() => {
-    setIsPressedIn(true);
-  }, []);
+  return React.useMemo(
+    () => ({
+      isPressedIn,
+      handlePressIn() {
+        setIsPressedIn(true);
+      },
+      handlePressOut() {
+        setIsPressedIn(false);
+      },
+      async handlePress() {
+        if (new Date().valueOf() - calledAt.valueOf() > delay) {
+          setCalledAt(new Date());
 
-  async function handlePressOut() {
-    if (new Date().valueOf() - calledAt.valueOf() > delay) {
-      setIsPressedIn(false);
-      setCalledAt(new Date());
-
-      if (onPress && !isWaitingForResponse) {
-        setIsWaitingForResponse(true);
-        await onPress(); // onPress can be anything, safer to await
-        setIsWaitingForResponse(false);
-      }
-    }
-  }
-
-  return {
-    isPressedIn,
-    handlePressIn,
-    handlePressOut,
-  };
+          if (onPress && !isWaitingForResponse) {
+            setIsWaitingForResponse(true);
+            await onPress(); // onPress can be anything, safer to await
+            setIsWaitingForResponse(false);
+          }
+        }
+      },
+    }),
+    [isPressedIn, calledAt, isWaitingForResponse, delay, onPress]
+  );
 }
 
 function getInitialDate() {

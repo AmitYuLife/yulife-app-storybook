@@ -58,7 +58,7 @@ describe("ResetPasswordContianer", () => {
     const sendLinkButton = getByText("email me a magic link");
 
     fireEvent.changeText(emailInput, "test@yulife.com");
-    fireEvent.pressOut(sendLinkButton);
+    fireEvent.press(sendLinkButton);
 
     await act(async () => {
       await wait(0);
