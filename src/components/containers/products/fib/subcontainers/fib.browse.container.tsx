@@ -1,6 +1,6 @@
 import { useQuery } from "@apollo/react-hooks";
-import React, { memo, useState } from "react";
-import { connect } from "react-redux";
+import React, { memo, useState, useMemo } from "react";
+import { connect, useDispatch } from "react-redux";
 import { View, Linking } from "react-native";
 import { Text } from "@atoms";
 import { FibBrowseScreen, FibCustomCoverScreen } from "@screens";
@@ -21,6 +21,7 @@ import { Package } from "@components/screens/products/fib/browse-packages/fib.br
 import { getFIBState } from "@redux/product/product.selectors";
 import { IReduxState } from "@redux/_core/reducers";
 import { IFaq } from "@components/screens/products/fib/browse-packages/subcomponents/faqs/faq";
+import { updateFIBValue } from "../../../../../redux/product/product.actions";
 
 interface IFibContainer {
   navigation: FibLocalNavigation;
@@ -61,9 +62,9 @@ const payoutEstimatorItems = {
 };
 
 const FibBrowseContainer = memo(function (props: IFibContainer & ReturnType<typeof mapStateToProps>) {
-  const { navigation, selectFaq, grossSalary } = props;
+  const { navigation, selectFaq, grossSalary, selectedPackage } = props;
   const { isCustomCover, customCoverPercentage = null } = navigation.currentRoute.passProps;
-  const [selectedCoverType, selectCoverType] = useState<PackageId>(isCustomCover ? "custom" : "common");
+  const [selectedCoverType, selectCoverType] = useCover(isCustomCover ? "custom" : selectedPackage || "common");
   const [deceaseAgeIndexYear, setDeceaseAgeIndexYear] = useState(0);
   const [deceaseAgeIndexMonth, setDeceaseAgeIndexMonth] = useState(0);
   const { loading, error, data } = useQuery<GetLifeInsuranceToUpsData, GetLifeInsuranceTopUpsVars>(
@@ -147,8 +148,30 @@ const FibBrowseContainer = memo(function (props: IFibContainer & ReturnType<type
   );
 });
 
+function useCover(packageId: PackageId): [PackageId, (packageId: PackageId) => void] {
+  const dispatch = useDispatch();
+  const [selectedCoverType, selectCoverType] = useState<PackageId>(packageId);
+
+  return useMemo(
+    () => [
+      selectedCoverType,
+      function selectCover(newPackageId: PackageId) {
+        selectCoverType(newPackageId);
+        dispatch(
+          updateFIBValue({
+            key: "selectedPackage",
+            value: newPackageId,
+          })
+        );
+      },
+    ],
+    [selectedCoverType, dispatch]
+  );
+}
+
 const mapStateToProps = (state: IReduxState) => ({
   grossSalary: getFIBState(state).salary,
+  selectedPackage: getFIBState(state).selectedPackage,
 });
 
 export default connect<ReturnType<typeof mapStateToProps>>(mapStateToProps)(FibBrowseContainer);
