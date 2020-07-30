@@ -1,3 +1,4 @@
+import { PackageId } from '../../components/screens/products/fib/fib.helper';
 export const UPDATE_FIB_VALUE = "UPDATE_FIB_VALUE";
 
 export interface IProductStore {
@@ -11,6 +12,7 @@ export interface FIBStoreValue {
 
 export interface FIBStore {
   salary: number;
+  selectedPackage: PackageId;
 }
 
 export interface UpdateFIBStoreAction {

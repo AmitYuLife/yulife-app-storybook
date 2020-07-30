@@ -5,6 +5,7 @@ export { IProductStore } from "./product.types";
 export const initialState: IProductStore = {
   fib: {
     salary: 0,
+    selectedPackage: "common"
   },
 };
 
