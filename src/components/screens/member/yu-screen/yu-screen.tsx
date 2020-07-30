@@ -7,7 +7,7 @@ import {
   GetYulifer_getYulifer_products_personal,
 } from "@graphql/_core/schema";
 import { ProductType } from "@containers/member/yu-screen/yu-screen-products.container";
-import { CharmsSection, YuScreenHeader, EmployerBenefits } from "./subcomponents";
+import { CharmsSection, YuScreenHeader, EmployerBenefits, Disclaimer } from "./subcomponents";
 import { AvatarSection } from "./subcomponents/avatar-section/avatar-section";
 import { YuScreenLayout } from "./yu-screen-layout";
 
@@ -70,6 +70,7 @@ const YuScreen = (props: IProps) => {
           productsEmployer={productsEmployer}
           setSectionTitleWidth={setSectionTitleWidth}
         />
+        <Disclaimer />
         <View style={styles.padBot} />
       </ScrollView>
     </YuScreenLayout>

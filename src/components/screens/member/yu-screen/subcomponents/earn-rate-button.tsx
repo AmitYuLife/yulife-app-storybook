@@ -1,8 +1,9 @@
 import React, { memo } from "react";
-import { TouchableOpacity, StyleSheet, ViewStyle, TextStyle, View } from "react-native";
+import { StyleSheet, ViewStyle, TextStyle, View } from "react-native";
 import { EarnRateSVG } from "../svg/earn-rate-svg";
 import { Style, Colours } from "@styles";
 import { EARN_RATE_BUTTON } from "@ids";
+import { TouchableOpacityWithDelay } from "@molecules";
 
 interface Props {
   earnRate: number;
@@ -13,11 +14,11 @@ const WRAPPER_WIDTH = 152;
 
 export const EarnRateButton = memo(function ({ earnRate, onEarnRatePress }: Props) {
   return (
-    <TouchableOpacity activeOpacity={1} onPress={onEarnRatePress} style={styles.wrapper}>
+    <TouchableOpacityWithDelay activeOpacity={0.85} onPress={onEarnRatePress} style={styles.wrapper}>
       <View style={StyleSheet.absoluteFill} testID={EARN_RATE_BUTTON(earnRate)}>
         <EarnRateSVG earnRate={earnRate} height={WRAPPER_HEIGHT} width={WRAPPER_WIDTH} />
       </View>
-    </TouchableOpacity>
+    </TouchableOpacityWithDelay>
   );
 });
 

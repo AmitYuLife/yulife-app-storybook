@@ -5,3 +5,4 @@ export * from "./employer-benefits-section";
 export * from "./header";
 export * from "./section-title";
 export * from "./avatar-section";
+export * from "./disclaimer";
