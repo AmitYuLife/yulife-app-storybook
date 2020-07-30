@@ -8,7 +8,6 @@ export interface IContentLoaderProps extends SvgProps {
   foregroundColor?: string;
   rtl?: boolean;
   speed?: number;
-  uniqueKey?: string;
   style?: any;
 }
 
@@ -16,11 +15,8 @@ class NativeSvg extends Component<IContentLoaderProps, { offset: number }> {
   public state = { offset: -1 };
 
   protected animatedValue = new Animated.Value(0);
-
-  protected fixedId = this.props.uniqueKey;
-
+  protected fixedId = generateId();
   protected idClip = `${this.fixedId}-diff`;
-
   protected idGradient = `${this.fixedId}-animated-diff`;
 
   public setAnimation = () => {
@@ -57,6 +53,7 @@ class NativeSvg extends Component<IContentLoaderProps, { offset: number }> {
     const { animate = true } = this.props;
 
     if (animate) {
+      this.animatedValue.stopAnimation();
       this.animatedValue.removeAllListeners();
     }
   };
@@ -104,7 +101,7 @@ class NativeSvg extends Component<IContentLoaderProps, { offset: number }> {
   }
 }
 
-const offsetValueBound = (value: number) => {
+function offsetValueBound(value: number) {
   if (value > 1) {
     return "1";
   }
@@ -114,6 +111,10 @@ const offsetValueBound = (value: number) => {
   }
 
   return String(value);
-};
+}
+
+function generateId() {
+  return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+}
 
 export default NativeSvg;
