@@ -52,7 +52,7 @@ export const EmployerBenefits = memo(function ({ onProductPress, productsEmploye
 const styles = StyleSheet.create({
   employerBenefitsWrapper: {
     paddingTop: Style.SCALE_UP_AND_DOWN(24),
-    marginBottom: 18,
+    marginBottom: 12,
   } as ViewStyle,
   employerBenefitsItems: {
     flexDirection: "row",
