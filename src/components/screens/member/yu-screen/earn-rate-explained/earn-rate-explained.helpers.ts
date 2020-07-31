@@ -4,6 +4,6 @@ export function getActiveProducts(products: GetYulifer_getYulifer_products): Get
   return {
     employer: (products.employer || []).filter(({ active }) => active),
     charms: (products.charms || []).filter(({ active }) => active),
-    personal: (products.personal || []).filter(({ active }) => active),
+    personal: (products.personal || []).filter(({ active, policyNumber }) => active && !!policyNumber),
   } as GetYulifer_getYulifer_products;
 }
