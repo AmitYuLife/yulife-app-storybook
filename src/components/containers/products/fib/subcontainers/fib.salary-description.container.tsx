@@ -1,9 +1,10 @@
-import React, { memo } from "react";
+import React, { memo, useCallback } from "react";
 import { SafeAreaView, StyleSheet } from "react-native";
 import { GenericHeading, Text } from "@atoms";
 import * as Animatable from "react-native-animatable";
 import { Style } from "@styles";
 import { FibLocalNavigation } from "../fib.types";
+import { useBackHandler } from "../../../../../services/hooks/useBackHandler";
 
 interface IFibSalaryDescriptionContainerProps {
   navigation: FibLocalNavigation;
@@ -12,6 +13,12 @@ interface IFibSalaryDescriptionContainerProps {
 const FibSalaryDescriptionContainer = memo(function (props: IFibSalaryDescriptionContainerProps) {
   const { navigation } = props;
 
+  const backHandler = useCallback(() => {
+    navigation.pop();
+    return true;
+  }, [navigation]);
+
+  useBackHandler(backHandler);
   return (
     <SafeAreaView style={styles.wrapper}>
       <GenericHeading heading="Salary" onLeftIconPress={navigation.pop} />
