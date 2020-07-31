@@ -17,7 +17,6 @@ import {
 } from "./quests-screen.container.helpers";
 import { useQuery } from "@apollo/react-hooks";
 import { GQL_QUERY_GET_CURRENT_WORLD } from "@graphql/challenges";
-import { Loading } from "@atoms/index";
 
 function isAvailable(nextAvailableAt: string): boolean {
   const nextAvailable = nextAvailableAt ? moment().diff(moment(nextAvailableAt), "seconds") : 0;
@@ -109,30 +108,26 @@ function QuestsScreenContainer(props: Props) {
     fetchPolicy: "network-only",
   });
 
-  if (loading) {
-    return <Loading />;
-  }
-
   const currentWorldGQL = data?.getCurrentWorld ? data.getCurrentWorld : [];
 
   const formattedData = currentWorldGQL.map((itemLevel) => {
     const levelStatus = getLevelStatus(challengesStatus, currentLevel, itemLevel.level, nextLevelAvailableAt);
     const isChestLevel = !!itemLevel.levelChestId;
 
-    const levelAvailable = isAvailable(nextLevelAvailableAt);
-    const conditions = getActionConditions({
-      levelStatus,
-      challengesStatus,
-      itemLevel,
-      levelAvailable,
-      showCompletedLevel,
-    });
-
     return {
       ...itemLevel,
       ...levelStatus,
       isChestLevel,
       onPress: () => {
+        const levelAvailable = isAvailable(nextLevelAvailableAt);
+        const conditions = getActionConditions({
+          levelStatus,
+          challengesStatus,
+          itemLevel,
+          levelAvailable,
+          showCompletedLevel,
+        });
+
         if (conditions.shouldSetUnity) {
           setUnity(itemLevel.level);
         }
@@ -166,6 +161,7 @@ function QuestsScreenContainer(props: Props) {
 
   return (
     <QuestsScreen
+      loading={loading}
       componentId={componentId}
       currentLevel={currentLevel}
       onLeftMenuPress={onLeftMenuPress}
