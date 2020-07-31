@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import React, { memo, useCallback } from "react";
 import { StyleSheet, ViewStyle, View, Platform, TextStyle } from "react-native";
 import deviceInfoModule from "react-native-device-info";
 import { SvgXml } from "react-native-svg";
@@ -8,6 +8,7 @@ import { TextWithBoldText, HorizontalScroller } from "@molecules";
 import { personPencilSvg } from "./assets/person-pencil-svg";
 import { EstimatedCost } from "./subcomponents/estimated-cost";
 import LinearGradient from "react-native-linear-gradient";
+import { useBackHandler } from "../../../../../services/hooks/useBackHandler";
 
 export interface IFibCustomPercentage {
   onNavigateBack: () => void;
@@ -35,6 +36,14 @@ export const FibCustomPercentage = memo(function (props: IFibCustomPercentage) {
     salaryPercentageRange,
     onNavigateToEditSalary,
   } = props;
+
+  const backHandler = useCallback(() => {
+    onNavigateBack();
+    return true;
+  }, [onNavigateBack]);
+
+  useBackHandler(backHandler);
+
   return (
     <View style={styles.wrapper}>
       <GenericHeading
@@ -65,6 +74,7 @@ export const FibCustomPercentage = memo(function (props: IFibCustomPercentage) {
             highlightLabelStyle={horizontalScrollerStyles.highlightLabelStyle}
             highlightLabelWrapperStyle={horizontalScrollerStyles.highlightLabelWrapperStyle}
             newActiveIndexCallback={onChangeSalary}
+            gradientLeftStyle={styles.gradientLeftStyle}
           />
         </View>
         <EstimatedCost estimatedCost={estimatedCost} loading={loadingEstimatedCost} />
@@ -104,6 +114,9 @@ const styles = StyleSheet.create({
     width: Style.DEVICE_WIDTH,
     flex: 1,
     backgroundColor: "white",
+  } as ViewStyle,
+  gradientLeftStyle: {
+    width: Style.DEVICE_WIDTH / 8,
   } as ViewStyle,
   content: {
     flex: 1,

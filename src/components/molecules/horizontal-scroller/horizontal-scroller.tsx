@@ -32,6 +32,7 @@ type Props = {
   highlightLabelStyle?: TextStyle;
   activeTextStyle?: TextStyle;
   newActiveIndexCallback?: (activeIndex: number) => void;
+  gradientLeftStyle?: ViewStyle;
 } & StaticProps;
 
 const ANDROID_SAFEGUARD = 0.1;
@@ -44,6 +45,7 @@ const HorizontalScroller: FC<Props> & StaticProps = ({
   highlightLabelStyle,
   activeTextStyle,
   newActiveIndexCallback,
+  gradientLeftStyle,
 }) => {
   const timerRef = useRef(null);
 
@@ -126,7 +128,7 @@ const HorizontalScroller: FC<Props> & StaticProps = ({
         wrapperStyle={highlightLabelWrapperStyle}
         labelStyle={highlightLabelStyle}
       />
-      <SideGradients />
+      <SideGradients gradientLeftStyle={gradientLeftStyle} />
     </View>
   );
 };

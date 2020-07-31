@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import React, { memo, useCallback } from "react";
 import { View, StyleSheet, SafeAreaView, ViewStyle, KeyboardAvoidingView, Platform, Keyboard } from "react-native";
 import { GenericHeading, Text } from "@atoms";
 import { Style, Colours } from "@styles";
@@ -6,6 +6,7 @@ import { FibEditSalaryInput } from "./fib.edit-salary-input";
 import * as Animatable from "react-native-animatable";
 import MinimalButton from "@atoms/button/minimalButton";
 import Logger from "@services/logging/logger";
+import { useBackHandler } from "../../../../../services/hooks/useBackHandler";
 
 export interface IEditSalaryScreen {
   onNavigateBack: () => void;
@@ -23,6 +24,13 @@ export const FibEditSalaryScreen = memo(function (props: IEditSalaryScreen) {
     Keyboard.dismiss();
     return onPressDone();
   }
+
+  const backHandler = useCallback(() => {
+    onNavigateBack();
+    return true;
+  }, [onNavigateBack]);
+
+  useBackHandler(backHandler);
 
   return (
     <>
