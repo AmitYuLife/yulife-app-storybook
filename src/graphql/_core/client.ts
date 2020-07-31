@@ -3,17 +3,17 @@ import { DATE_FORMAT_WITH_TZ } from "@services/utils";
 import { defaultDataIdFromObject, InMemoryCache, NormalizedCacheObject } from "apollo-cache-inmemory";
 import { persistCache } from "apollo-cache-persist";
 import { ApolloClient } from "apollo-client";
-import { from } from "apollo-link";
+import { from, Operation, ApolloLink } from "apollo-link";
 import { setContext } from "apollo-link-context";
-import { onError } from "apollo-link-error";
+import { onError, ErrorResponse } from "apollo-link-error";
 import { createHttpLink } from "apollo-link-http";
 import moment from "moment";
 import AsyncStorage from "@react-native-community/async-storage";
 import Config from "react-native-config";
 import DeviceInfo from "react-native-device-info";
 import { store } from "@redux/_core/store";
-import { apolloRequest } from "@redux/app/app.actions";
-import { onRequest } from "./reduxLink";
+import { apolloRequest, ApolloRequestPayload } from "@redux/app/app.actions";
+import retryLink from "./retryLink";
 
 const httpLink = () =>
   createHttpLink({
@@ -84,12 +84,36 @@ const authMiddleware = setContext(async (_, { headers }) => {
   };
 });
 
-const errorAfterware = onError(() => {
-  // might wanna do something here
+const reduxLink = new ApolloLink((operation, forward) => {
+  return forward(operation).map((data) => {
+    const requestInfo = mapResponse(operation, 0, null, data);
+    store.dispatch(apolloRequest(requestInfo));
+    return data;
+  });
+});
+
+const errorAfterware = onError(({ networkError, response, operation }: ErrorResponse) => {
+  // Logic for old reduxLink, removed started & complete booleans
+  const operationContext = operation.getContext();
+  const requestInfo = mapResponse(operation, operationContext.retries || 0, !!networkError, response);
+  store.dispatch(apolloRequest(requestInfo));
+
+  // might wanna do something else here
   // console.error("Error ... ", error);
 });
 
-const reduxLink = onRequest((requestInfo) => store.dispatch(apolloRequest(requestInfo)));
+const mapResponse = (
+  operation: Operation,
+  currentRequestCount: number,
+  networkError?: boolean,
+  result?: {}
+): ApolloRequestPayload => ({
+  // tslint:disable-line;
+  operation,
+  currentRequestCount,
+  networkError,
+  result,
+});
 
 let client: ApolloClient<NormalizedCacheObject>;
 
@@ -97,7 +121,7 @@ export default () => {
   if (!client) {
     client = new ApolloClient({
       cache,
-      link: from([authMiddleware, reduxLink, errorAfterware, httpLink()]),
+      link: from([authMiddleware, reduxLink, retryLink, errorAfterware, httpLink()]),
     });
   }
 
