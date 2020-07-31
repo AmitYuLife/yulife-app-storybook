@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useCallback } from "react";
 import { GenericHeading, MinimalButton } from "@atoms";
 import {
   SafeAreaView,
@@ -16,6 +16,7 @@ import formInputsData from "./fib.feedback-form.data";
 import Logger from "@services/logging/logger";
 import { FeedbackInputWrapper } from "./feedback-input-wrapper";
 import LinearGradient from "react-native-linear-gradient";
+import { useBackHandler } from "../../../../../services/hooks/useBackHandler";
 
 export interface Props {
   onContinue: () => void;
@@ -27,9 +28,17 @@ const initialValue = formInputsData.reduce((prev, curr) => {
 }, {});
 
 export function FibFeedbackFormScreen(props: Props) {
+  const { onNavigateBack } = props;
   const [formState, setFormState] = useState<Record<string, string>>(initialValue);
 
   const scrollViewRef = useRef<ScrollView | null>(null);
+
+  const backHandler = useCallback(() => {
+    onNavigateBack();
+    return true;
+  }, [onNavigateBack]);
+
+  useBackHandler(backHandler);
 
   function updateFormState(key: string, value: string) {
     setFormState({
@@ -85,6 +94,7 @@ export function FibFeedbackFormScreen(props: Props) {
                 Keyboard.dismiss();
                 return props.onContinue();
               }}
+              disabled={isButtonDisabled(formState)}
               color="white"
               borderRadius={50}
               titleStyle={styles.buttonTitle}
@@ -94,6 +104,10 @@ export function FibFeedbackFormScreen(props: Props) {
       </KeyboardAvoidingView>
     </>
   );
+}
+
+function isButtonDisabled(formState: Record<string, string>): boolean {
+  return Object.values(formState).every((value) => !value || !value.length);
 }
 
 const styles = StyleSheet.create({

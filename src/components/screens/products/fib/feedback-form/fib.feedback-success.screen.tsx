@@ -1,10 +1,11 @@
-import React from "react";
-import { View, Image, StyleSheet, ViewStyle, SafeAreaView } from "react-native";
+import React, { useCallback } from "react";
+import { View, Image, StyleSheet, ViewStyle, SafeAreaView, ScrollView } from "react-native";
 import { Text, MinimalButton, GenericHeading, Heading } from "@atoms";
 import { Style, Colours } from "@styles";
 import { connect } from "react-redux";
 import { IReduxState } from "@redux/_core/reducers";
 import { getUserFirstName } from "@redux/user/user.selectors";
+import { useBackHandler } from "../../../../../services/hooks/useBackHandler";
 
 type ConnectedState = ReturnType<typeof mapStateToProps>;
 
@@ -14,20 +15,29 @@ interface Props extends ConnectedState {
 }
 
 function FibFeedbackSuccessScreen(props: Props) {
+  const { onNavigateBack } = props;
+  const backHandler = useCallback(() => {
+    onNavigateBack();
+    return true;
+  }, [onNavigateBack]);
+
+  useBackHandler(backHandler);
   return (
     <>
       <SafeAreaView>
-        <GenericHeading heading="Feedback" isBeta={true} onLeftIconPress={props.onNavigateBack} />
-        <View style={styles.imageWrapper}>
-          <Image source={require("@assets/fib/feedback/feedback-complete-image.png")} />
-        </View>
-        <View style={styles.textWrapper}>
-          <Heading label={`Thank you ${props.firstName},`} bold={true} style={styles.header} />
+        <GenericHeading heading="Feedback" isBeta={true} onLeftIconPress={onNavigateBack} />
+        <ScrollView showsVerticalScrollIndicator={false}>
+          <View style={styles.imageWrapper}>
+            <Image source={require("@assets/fib/feedback/feedback-complete-image.png")} />
+          </View>
+          <View style={styles.textWrapper}>
+            <Heading label={`Thank you ${props.firstName},`} bold={true} style={styles.header} />
 
-          <Text style={styles.text}>
-            We appreciate your feedback. Thank you for helping us make YuLife the best insurance company in the world!
-          </Text>
-        </View>
+            <Text style={styles.text}>
+              We appreciate your feedback. Thank you for helping us make YuLife the best insurance company in the world!
+            </Text>
+          </View>
+        </ScrollView>
       </SafeAreaView>
 
       <View style={styles.button}>
@@ -61,6 +71,7 @@ const styles = StyleSheet.create({
   textWrapper: {
     textAlign: "left",
     marginHorizontal: 32,
+    paddingBottom: 200,
   },
   imageWrapper: {
     alignItems: "center",
