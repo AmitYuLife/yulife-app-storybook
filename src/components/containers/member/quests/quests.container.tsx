@@ -77,20 +77,22 @@ const QuestsContainer: FC<Props> = (props) => {
   }
 
   if (status) {
-    return status === "success" ? (
-      <ChallengeSuccessScreen
-        level={level}
-        onPressCta={() => handleResetChallenge(true)}
-        rating={rating}
-        reward={coins}
-        score={score}
-        unit={unit as any}
-        loading={false}
-        copy={copy.success}
-      />
-    ) : (
-      <ChallengeFailedScreen level={level} onPress={handleResetChallenge} loading={false} copy={copy.failed} />
-    );
+    if (status === "success") {
+      return (
+        <ChallengeSuccessScreen
+          level={level}
+          onPressCta={() => handleResetChallenge(true)}
+          rating={rating}
+          reward={coins}
+          score={score}
+          unit={unit as any}
+          loading={false}
+          copy={copy.success}
+        />
+      );
+    }
+
+    return <ChallengeFailedScreen level={level} onPress={handleResetChallenge} loading={false} copy={copy.failed} />;
   }
 
   if (timeUp) {

@@ -12,8 +12,9 @@ import { NavBar, TopBar } from "../../../../molecules";
 import { IMapSlice, loadingSlices, mapSlices } from "./assets";
 import offsets from "./assets/offsets";
 import styles from "./quests-screen.styles";
-import ScrollyQuest from "./scrolly-quest";
+import ScrollyQuest from "./subcomponents/scrolly-quest";
 import getUnity from "./unity-movies/unity";
+import QuestsLoadingOverlay from "./subcomponents/quests.loading";
 
 export interface IChallenge extends GetCurrentWorld_getCurrentWorld {
   isActive?: boolean;
@@ -31,6 +32,7 @@ interface IProps extends IConnectedScreenProps {
   data: IChallenge[];
   hideUnity?: () => void | null;
   unity: number;
+  loading: boolean;
 }
 
 type CurrentWorld = 0 | 1 | 2 | 3;
@@ -52,27 +54,26 @@ class QuestsScreen extends React.PureComponent<IProps, IState> {
     Navigation.events().bindComponent(this);
   }
 
-  public componentDidMount() {
-    this.scrollToActiveLevel();
-  }
-
   public componentDidAppear() {
-    this.scrollToActiveLevel();
+    if (!this.props.loading) {
+      this.scrollToActiveLevel();
+    }
   }
 
   public componentDidUpdate(prevProps: IProps) {
-    if (prevProps.unity && !this.props.unity) {
+    if ((prevProps.loading && !this.props.loading) || (prevProps.unity && !this.props.unity)) {
       this.scrollToActiveLevel();
     }
   }
 
   public render() {
     const { UI } = this.state;
-    const { activeLevel, currentLevel, data, onLeftMenuPress, unity, totalCoins } = this.props;
+    const { activeLevel, currentLevel, data, onLeftMenuPress, unity, totalCoins, loading } = this.props;
 
     if (unity) {
       const currentWorld = getCurrentWorld(unity);
       const Unity = getUnity(currentWorld);
+
       return (
         <View style={styles.wrapper}>
           <Unity data={data[50 + currentWorld * 50]} onSkip={this.handleSkipUnity} />
@@ -98,6 +99,7 @@ class QuestsScreen extends React.PureComponent<IProps, IState> {
           <TopBar type={UI.topBarType} onPressLeftIcon={onLeftMenuPress} coins={totalCoins} />
         </View>
         <NavBar activeIndex={1} hasNotification={false} />
+        <QuestsLoadingOverlay loading={loading} />
       </SafeAreaView>
     );
   }

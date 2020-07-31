@@ -1,6 +1,6 @@
 import { TOP_BAR_TYPES } from "@molecules/top-bar/top-bar";
 import { IChallenge } from "../quests-screen";
-import { shouldScrollyQuestUpdate } from "../scrolly-quest.helpers";
+import { shouldScrollyQuestUpdate } from "../subcomponents/scrolly-quest";
 
 const currentProps = {
   currentLevel: 1,

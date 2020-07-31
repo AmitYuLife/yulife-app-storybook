@@ -1,4 +1,3 @@
-import Loading from "@atoms/loading/loading";
 import { RewardsListItem, YulifeRefreshHeader } from "@molecules/index";
 import { Style } from "@styles/index";
 import * as React from "react";
@@ -39,7 +38,6 @@ export class RewardsList extends React.PureComponent<IRewardsListScreenProps> {
             heightForIndexPath={this.getHeight}
             data={[{ items: data }]}
             onRefresh={this.handleRefresh}
-            renderEmpty={Loading}
             refreshHeader={YulifeRefreshHeader}
             renderFooter={this.renderFooter}
           />

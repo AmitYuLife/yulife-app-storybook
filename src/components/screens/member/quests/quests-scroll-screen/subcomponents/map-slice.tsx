@@ -1,11 +1,11 @@
-import * as React from "react";
+import React from "react";
 import { StyleSheet, View } from "react-native";
 import FastImage from "react-native-fast-image";
 import { isIphoneX } from "react-native-iphone-x-helper";
-import { Style } from "../../../../../styles";
-import { IMapSlice, LevelBubble, MAP_SLICE_HEIGHT } from "./assets";
-import { HALF_MAP_SLICE_HEIGHT } from "./assets/slices.settings";
-import { IChallenge } from "./quests-screen";
+import { Style } from "@styles";
+import { IMapSlice, LevelBubble, MAP_SLICE_HEIGHT } from "../assets";
+import { HALF_MAP_SLICE_HEIGHT } from "../assets/slices.settings";
+import { IChallenge } from "../quests-screen";
 
 interface IProps {
   activeLevel: number;
