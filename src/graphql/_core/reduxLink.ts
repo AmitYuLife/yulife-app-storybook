@@ -1,8 +1,16 @@
 import { ApolloLink, Observable, Operation } from "apollo-link";
 import { ApolloRequestPayload } from "@redux/app/app.actions";
 
-type onEventFunc = (info: ApolloRequestPayload) => void;
+interface OldApolloRequestPayload extends ApolloRequestPayload {
+  started: boolean;
+  completed: boolean;
+}
+type onEventFunc = (info: OldApolloRequestPayload) => void;
 
+/**
+ * @deprecated Now we use apollo-link-error + apollo-link-retry
+ * @param onEvent
+ */
 export const onRequest = (onEvent: onEventFunc): ApolloLink => {
   let count = 0;
   return new ApolloLink((operation, forward) => {
@@ -46,7 +54,7 @@ const mapResponse = (
   completed: boolean,
   networkError?: boolean,
   result?: {}
-): ApolloRequestPayload => ({
+): OldApolloRequestPayload => ({
   // tslint:disable-line;
   operation,
   currentRequestCount,
