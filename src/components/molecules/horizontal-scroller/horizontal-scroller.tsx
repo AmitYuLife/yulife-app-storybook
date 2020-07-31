@@ -1,13 +1,5 @@
-import React, { useState, useRef, FC, useEffect } from "react";
-import {
-  View,
-  Animated,
-  NativeSyntheticEvent,
-  NativeScrollEvent,
-  ScrollView,
-  ViewStyle,
-  TextStyle,
-} from "react-native";
+import React, { useState, FC } from "react";
+import { View, Animated, NativeSyntheticEvent, NativeScrollEvent, ViewStyle, TextStyle } from "react-native";
 import styles, { ITEM_WIDTH, HIGHLIGHT_RADIUS } from "./horizontal-scroller.styles";
 import { Wrapper } from "./subcomponents/wrapper";
 import {
@@ -45,20 +37,18 @@ const HorizontalScroller: FC<Props> & StaticProps = ({
   activeTextStyle,
   newActiveIndexCallback,
 }) => {
-  const timerRef = useRef(null);
-
-  const cancelTimer = () => {
-    if (timerRef?.current) {
-      clearTimeout(timerRef.current);
-    }
-  };
-
-  useEffect(() => {
-    return cancelTimer;
-  }, []);
-
   const [scrollX] = useState(new Animated.Value(0));
-  const scrollViewRef = useRef<ScrollView | null>(null);
+
+  const handleScrollEndDrag = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
+    const hasMomentum = event.nativeEvent.velocity;
+
+    if (hasMomentum) {
+      // let handleMomentumScrollEnd handle
+      return;
+    }
+
+    handleSwipe(event);
+  };
 
   const handleSwipe = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
     const { x } = event.nativeEvent.contentOffset;
@@ -72,13 +62,9 @@ const HorizontalScroller: FC<Props> & StaticProps = ({
       activeIndex = 0;
     }
 
-    timerRef.current = setTimeout(() => {
-      scrollViewRef?.current?.scrollTo({ x: activeIndex * ITEM_WIDTH });
-
-      if (newActiveIndexCallback) {
-        newActiveIndexCallback(activeIndex);
-      }
-    }, 700);
+    if (newActiveIndexCallback) {
+      newActiveIndexCallback(activeIndex);
+    }
   };
 
   return (
@@ -86,13 +72,10 @@ const HorizontalScroller: FC<Props> & StaticProps = ({
       <Highlight style={highlightStyle} />
       <Animated.ScrollView
         onScroll={Animated.event([{ nativeEvent: { contentOffset: { x: scrollX } } }], { useNativeDriver: true })}
-        onScrollEndDrag={handleSwipe}
+        onScrollEndDrag={handleScrollEndDrag}
+        onMomentumScrollEnd={handleSwipe}
         snapToInterval={ITEM_WIDTH}
-        decelerationRate={0}
-        onTouchStart={cancelTimer}
-        disableIntervalMomentum={true}
         disableScrollViewPanResponder={true}
-        ref={scrollViewRef}
         scrollEventThrottle={16}
         contentContainerStyle={styles.contentContainer}
         style={styles.scrollView}
