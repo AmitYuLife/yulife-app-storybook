@@ -19,6 +19,7 @@ export const REFRESH_USER_TOKEN = "REFRESH_USER_TOKEN";
 export const GET_USER_START = "GET_USER_START";
 export const GET_USER_SUCCESS = "GET_USER_SUCCESS";
 export const LOGIN_USER_SUCCESS = "LOGIN_USER_SUCCESS";
+export const UPDATE_ACTIVE_LEADERBOARD_ID = "UPDATE_ACTIVE_LEADERBOARD_ID";
 export const UPDATE_LEADERBOARD_CONSENT_START = "UPDATE_LEADERBOARD_CONSENT_START";
 export const UPDATE_LEADERBOARD_CONSENT_FAILED = "UPDATE_LEADERBOARD_CONSENT_FAILED";
 export const UPDATE_LEADERBOARD_CONSENT_SUCCESS = "UPDATE_LEADERBOARD_CONSENT_SUCCESS";
@@ -119,5 +120,10 @@ export const updateSurgePopupVisibility = (payload: boolean) => ({
 
 export const setShowSurgeIntro = (payload: IUserStore["surgeIntro"]) => ({
   type: SET_SHOW_SURGE_INTRO,
+  payload,
+});
+
+export const updateActiveLeaderboardId = (payload: IUserStore["activeLeaderboardId"]) => ({
+  type: UPDATE_ACTIVE_LEADERBOARD_ID,
   payload,
 });

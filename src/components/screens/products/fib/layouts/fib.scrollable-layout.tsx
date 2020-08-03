@@ -12,6 +12,7 @@ interface Props {
 
 export function ScrollableLayout(props: Props) {
   const { children, buttonTitle, buttonAction, onLeftIconPress } = props;
+
   return (
     <>
       <SafeAreaView style={styles.wrapper}>

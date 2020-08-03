@@ -19,6 +19,7 @@ export interface IColumnSize {
 
 function EarnRateTable(props: IProps) {
   const { earnRate, explainData, loading } = props;
+
   return (
     <View style={styles.wrapper}>
       <Text style={styles.header}>Earn Rate Explained</Text>

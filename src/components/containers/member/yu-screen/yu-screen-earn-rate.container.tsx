@@ -54,6 +54,7 @@ function YuScreenEarnRateContainer({ componentId }: IProps) {
   });
 
   const explainData = data?.getEarnRateDetails || [];
+
   return (
     <YuScreenEarnRate
       loading={!data}

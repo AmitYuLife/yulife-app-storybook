@@ -73,7 +73,6 @@ class QuestsScreen extends React.PureComponent<IProps, IState> {
     if (unity) {
       const currentWorld = getCurrentWorld(unity);
       const Unity = getUnity(currentWorld);
-
       return (
         <View style={styles.wrapper}>
           <Unity data={data[50 + currentWorld * 50]} onSkip={this.handleSkipUnity} />

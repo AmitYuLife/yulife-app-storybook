@@ -84,11 +84,17 @@ export default [
     hasMenu: true,
     renderAfterMs: 450,
     name: ROUTES.leaderboards,
-    component: require("../components/containers/member/leaderboards/leaderboards.container").default,
+    component: require("../components/containers/member/leaderboard/active-leaderboard/active-leaderboard.container")
+      .default,
   },
   {
-    name: ROUTES.chooseLeaderboard,
-    component: require("../components/containers/member/leaderboards/choose-leaderboard.container").default,
+    name: ROUTES.leaderboardInfo,
+    component: require("../components/containers/member/leaderboard/leaderboard-info/leaderboard-info").default,
+  },
+  {
+    name: ROUTES.leaderboardsList,
+    component: require("../components/containers/member/leaderboard/leaderboard-list/leaderboard-list.container")
+      .default,
   },
   {
     name: ROUTES.debug,

@@ -135,7 +135,7 @@ export default function ActivityHistoryLevelsItem({
 function getLabel(challenge: IChallenge) {
   let result = `${challenge.name}`;
 
-  if (!!challenge.score) {
+  if (challenge.score) {
     result += ` / ${challenge.score}`;
   }
 

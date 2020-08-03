@@ -20,6 +20,10 @@ export const getUserName = (state: IReduxState) => state.user.firstName + " " + 
 export const getUserDateOfBirth = (state: IReduxState) => state.user.dateOfBirth;
 export const getUserMembershipType = (state: IReduxState) => state.user.membershipType;
 export const getAcceptedLeaderboards = (state: IReduxState) => state.user.leaderboards.filter((l) => l.hasAccepted);
+export const getActiveLeaderboardId = (state: IReduxState) => state.user.activeLeaderboardId;
+export const getActiveLeaderboard = (state: IReduxState) =>
+  state.user.leaderboards.find((leaderboard) => leaderboard.leaderboardId === state.user.activeLeaderboardId);
+export const getCurrentUserId = (state: IReduxState) => state.user.id;
 export const getConsentedLeaderboards = (state: IReduxState) =>
   state.user.leaderboards.reduce((prev: Leaderboard[], curr) => {
     if (checkIsCompanyLeaderbaord(curr)) {

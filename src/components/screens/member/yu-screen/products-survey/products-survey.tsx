@@ -158,7 +158,7 @@ function ProductsSurvey({ onExitConfirmed }: IProps) {
     }, {});
 
     if (textAreaValue) {
-      data["free_form_text"] = textAreaValue;
+      data.free_form_text = textAreaValue;
     }
 
     Logger.logEvent("app_product_survey", data);

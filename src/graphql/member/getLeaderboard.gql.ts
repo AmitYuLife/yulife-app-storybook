@@ -8,18 +8,12 @@ export const GQL_QUERY_LEADERBOARD = gql`
     getLeaderboard(sortBy: $sortBy, leaderboardId: $leaderboardId) {
       __typename
       id
-      firstName
-      lastName
       name
       coins
       steps
       avatarRemoteFiles {
         ...YumojiRemoteFiles
       }
-    }
-    getCurrentUser {
-      __typename
-      id
     }
   }
 `;

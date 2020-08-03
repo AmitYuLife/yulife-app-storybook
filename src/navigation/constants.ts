@@ -23,6 +23,8 @@ export const ROUTES = {
   activityHistory: "yulife.member.ActivityHistory",
   stats: "yulife.member.Stats",
   leaderboards: "yulife.member.Leaderboards",
+  leaderboardInfo: "yulife.member.LeaderboardInfo",
+  leaderboardsList: "yulife.member.LeaderboardsList",
   chooseLeaderboard: "yulife.member.chooseLeaderboard",
   debug: "yulife.member.Debug",
   memberServices: "yulifer.member.memberServices",

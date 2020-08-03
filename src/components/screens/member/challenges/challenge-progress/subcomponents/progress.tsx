@@ -49,9 +49,9 @@ class Progress extends React.Component<IProps, IState> {
     return (
       <View
         style={{
-          flex: !!width ? 0 : 1,
+          flex: width ? 0 : 1,
           height: 100,
-          width: !!width ? width : null,
+          width: width ? width : null,
         }}
         onLayout={this.onLayout}
       >
