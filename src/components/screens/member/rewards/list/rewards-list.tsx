@@ -22,6 +22,7 @@ export class RewardsList extends React.PureComponent<IRewardsListScreenProps> {
 
   public render() {
     const { data, hasNotification = false, onLeftTabPress, onRightTabPress, onLeftMenuPress, totalCoins } = this.props;
+
     return (
       <RewardsListLayout
         activeScreen="rewards"

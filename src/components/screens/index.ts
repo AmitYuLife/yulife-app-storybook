@@ -14,7 +14,6 @@ export { default as MenuScreen, IMenuLink } from "./member/menu/menu.screen";
 export { default as SettingsScreen } from "./member/settings/settings.screen";
 export { default as ActivityHistoryLevels } from "./member/activity-history-levels/activity-history-levels";
 export { default as CreateLeaderboardScreen } from "./member/create-leaderboard/create-leaderboard.screen";
-export { default as LeaderboardsScreen } from "./member/leaderboards/leaderboards.screen";
 export { default as DailyStepsScreen } from "./member/daily-steps/daily-steps.screen";
 export { default as TodayYucoinScreen } from "./member/today-yucoin/today-yucoin.screen";
 export { default as DebugScreen } from "./member/debug/debug.screen";

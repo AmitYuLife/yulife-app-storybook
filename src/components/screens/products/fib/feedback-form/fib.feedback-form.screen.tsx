@@ -63,6 +63,7 @@ export function FibFeedbackFormScreen(props: Props) {
           isBeta={true}
           onLeftIconPress={() => {
             Keyboard.dismiss();
+
             return props.onNavigateBack();
           }}
         />
@@ -92,6 +93,7 @@ export function FibFeedbackFormScreen(props: Props) {
               onPress={() => {
                 onSubmit(formState);
                 Keyboard.dismiss();
+
                 return props.onContinue();
               }}
               disabled={isButtonDisabled(formState)}

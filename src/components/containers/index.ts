@@ -14,7 +14,6 @@ export { default as IntroContainer } from "./onboarding/intro/intro.container";
 export { default as MenuContainer } from "./member/menu/menu.container";
 export { default as SettingsContainer } from "./member/settings/settings.container";
 export { default as ActivityHistoryContainer } from "./member/activity-history/activity-history.container";
-export { default as LeaderboardsContainer } from "./member/leaderboards/leaderboards.container";
 export { default as DebugContainer } from "./member/debug/debug.container";
 
 export { default as QuestsContainer, ConnectedState } from "./member/quests/quests.container";

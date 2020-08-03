@@ -16,6 +16,20 @@ export const GQL_QUERY_GET_CURRENT_USER = gql`
   }
 `;
 
+export const GQL_QUERY_GET_CURRENT_USER_LEADERBOARD = gql`
+  query {
+    getCurrentUser {
+      leaderboards {
+        leaderboardId
+        name
+        consent
+        hasAccepted
+        inviteFrom
+      }
+    }
+  }
+`;
+
 export default function getCurrentUserWithClient() {
   return client().query<GetCurrentUser>({
     fetchPolicy: "network-only",
