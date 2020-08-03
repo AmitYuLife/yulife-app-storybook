@@ -1,4 +1,4 @@
-import { PackageId } from '../../components/screens/products/fib/fib.helper';
+import { PackageId } from "../../components/screens/products/fib/fib.helper";
 export const UPDATE_FIB_VALUE = "UPDATE_FIB_VALUE";
 
 export interface IProductStore {

@@ -27,6 +27,7 @@ import {
   UPDATE_USER_CONSENT_SUCCESS,
 } from "./user.actions";
 import { reduceUserFeatures } from "./user.helpers";
+import moment from "moment";
 
 interface IFeature {
   [x: string]: boolean;
@@ -50,6 +51,7 @@ type SurgeActivity = "steps" | "meditation" | "all" | null;
 export interface IUserStore {
   firstName: string;
   lastName: string;
+  dateOfBirth: string;
   archived: boolean;
   connections: Connection[];
   consent: MobileConsentInput;
@@ -78,6 +80,7 @@ export const initialState: IUserStore = {
   archived: false,
   firstName: "",
   lastName: "",
+  dateOfBirth: moment().subtract(30, "years").toISOString(), // Default to 30 years old
   membershipType: "",
   consent: {},
   features: {},
@@ -207,6 +210,7 @@ const getUserSuccess = (
     getCurrentUser: {
       firstName,
       lastName,
+      dateOfBirth,
       membershipType,
       leaderboards = [],
       mobileConsent,
@@ -225,6 +229,7 @@ const getUserSuccess = (
   archived: false,
   firstName,
   lastName,
+  dateOfBirth,
   connections,
   membershipType,
   consent: {
@@ -239,13 +244,14 @@ const loginUserSuccess = (
   state: IUserStore,
   {
     loginUser: {
-      user: { firstName, lastName, leaderboards = [], mobileConsent, userFeatures = [], connections = [] },
+      user: { firstName, lastName, dateOfBirth, leaderboards = [], mobileConsent, userFeatures = [], connections = [] },
     },
   }: LoginUser
 ): IUserStore => ({
   ...state,
   firstName,
   lastName,
+  dateOfBirth,
   connections,
   consent: {
     ...mobileConsent,

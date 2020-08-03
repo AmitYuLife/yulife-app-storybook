@@ -157,6 +157,7 @@ export interface LoginUser_loginUser_user {
   archived: boolean | null;
   firstName: string | null;
   lastName: string | null;
+  dateOfBirth: string | null;
   createdAt: string | null;
   onboardingDate: string | null;
   redeemedOnboarding: boolean | null;

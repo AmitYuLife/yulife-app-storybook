@@ -1,5 +1,6 @@
-import { useQuery } from "@apollo/react-hooks";
 import React, { memo, useState, useMemo } from "react";
+import moment from "moment";
+import { useQuery } from "@apollo/react-hooks";
 import { connect, useDispatch } from "react-redux";
 import { View, Linking } from "react-native";
 import { Text } from "@atoms";
@@ -21,6 +22,8 @@ import { Package } from "@components/screens/products/fib/browse-packages/fib.br
 import { getFIBState } from "@redux/product/product.selectors";
 import { IReduxState } from "@redux/_core/reducers";
 import { IFaq } from "@components/screens/products/fib/browse-packages/subcomponents/faqs/faq";
+import { getUserDateOfBirth } from "@redux/user/user.selectors";
+import { calculatePayoutCalculatorItems } from "../fib.helpers";
 import { updateFIBValue } from "../../../../../redux/product/product.actions";
 
 interface IFibContainer {
@@ -56,17 +59,20 @@ const packages = {
   },
 };
 
-const payoutEstimatorItems = {
-  years: Array.from({ length: 31 }).map((_, i) => i + 40),
-  months: Array.from({ length: 12 }).map((_, i) => i),
-};
-
 const FibBrowseContainer = memo(function (props: IFibContainer & ReturnType<typeof mapStateToProps>) {
   const { navigation, selectFaq, grossSalary, selectedPackage } = props;
   const { isCustomCover, customCoverPercentage = null } = navigation.currentRoute.passProps;
   const [selectedCoverType, selectCoverType] = useCover(isCustomCover ? "custom" : selectedPackage || "common");
   const [deceaseAgeIndexYear, setDeceaseAgeIndexYear] = useState(0);
   const [deceaseAgeIndexMonth, setDeceaseAgeIndexMonth] = useState(0);
+  const maxTermAge = moment().diff(moment(props.userDateOfBirth), "years") + 40;
+
+  const payoutEstimatorItems = calculatePayoutCalculatorItems(
+    props.userDateOfBirth,
+    deceaseAgeIndexYear,
+    setDeceaseAgeIndexMonth
+  );
+
   const { loading, error, data } = useQuery<GetLifeInsuranceToUpsData, GetLifeInsuranceTopUpsVars>(
     GQL_GET_LIFE_INSURANCE_TOP_UPS,
     {
@@ -94,6 +100,7 @@ const FibBrowseContainer = memo(function (props: IFibContainer & ReturnType<type
   }));
 
   if (error) {
+    // TODO: Don't show this! Add back button?
     return (
       <View>
         <Text>Error</Text>
@@ -144,6 +151,7 @@ const FibBrowseContainer = memo(function (props: IFibContainer & ReturnType<type
       setDeceaseAgeIndexYear={setDeceaseAgeIndexYear}
       setDeceaseAgeIndexMonth={setDeceaseAgeIndexMonth}
       loading={loading}
+      maxTermAge={maxTermAge}
     />
   );
 });
@@ -171,6 +179,7 @@ function useCover(packageId: PackageId): [PackageId, (packageId: PackageId) => v
 
 const mapStateToProps = (state: IReduxState) => ({
   grossSalary: getFIBState(state).salary,
+  userDateOfBirth: getUserDateOfBirth(state),
   selectedPackage: getFIBState(state).selectedPackage,
 });
 

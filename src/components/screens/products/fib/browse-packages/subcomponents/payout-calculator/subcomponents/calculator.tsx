@@ -8,6 +8,14 @@ import { numberWithCommas } from "@services/utils";
 export interface CalculatorItems {
   years: number[];
   months: number[];
+  max: {
+    year: number;
+    month: number;
+  };
+  min: {
+    year: number;
+    month: number;
+  };
 }
 
 interface Props {
