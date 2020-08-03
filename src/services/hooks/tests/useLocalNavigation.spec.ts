@@ -28,7 +28,7 @@ test("useLocalNavigation", () => {
 
   // assert state after push without props
   expect(result.current.history).toEqual([
-    { route: "Route1", passProps: {} },
+    { route: "Route1", passProps: {}, offset: { x: 0, y: 0 } },
     { route: "Route2", passProps: {} },
   ]);
   expect(result.current.length).toEqual(2);
@@ -39,7 +39,7 @@ test("useLocalNavigation", () => {
   act(result.current.pop);
 
   // assert state after pop
-  expect(result.current.history).toEqual([{ route: "Route1", passProps: {} }]);
+  expect(result.current.history).toEqual([{ route: "Route1", passProps: {}, offset: { x: 0, y: 0 } }]);
   expect(result.current.length).toEqual(1);
   expect(result.current.currentRoute.route).toEqual("Route1");
   expect(result.current.currentRoute.passProps).toEqual({});
@@ -51,7 +51,7 @@ test("useLocalNavigation", () => {
 
   // assert state on push with props
   expect(result.current.history).toEqual([
-    { route: "Route1", passProps: {} },
+    { route: "Route1", passProps: {}, offset: { x: 0, y: 0 } },
     { route: "Route3", passProps: { a: 1, b: 2 } },
   ]);
   expect(result.current.length).toEqual(2);
@@ -65,7 +65,7 @@ test("useLocalNavigation", () => {
 
   // assert replaced state
   expect(result.current.history).toEqual([
-    { route: "Route1", passProps: {} },
+    { route: "Route1", passProps: {}, offset: { x: 0, y: 0 } },
     { route: "Route2", passProps: { c: 3 } },
   ]);
   expect(result.current.length).toEqual(2);

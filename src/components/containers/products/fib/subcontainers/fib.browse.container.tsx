@@ -150,6 +150,8 @@ const FibBrowseContainer = memo(function (props: IFibContainer & ReturnType<type
       payoutEstimatorItems={payoutEstimatorItems}
       setDeceaseAgeIndexYear={setDeceaseAgeIndexYear}
       setDeceaseAgeIndexMonth={setDeceaseAgeIndexMonth}
+      onScrollEnd={navigation.onScrollEnd}
+      offset={navigation.currentRoute.offset || { x: 0, y: 0 }}
       loading={loading}
       maxTermAge={maxTermAge}
     />
