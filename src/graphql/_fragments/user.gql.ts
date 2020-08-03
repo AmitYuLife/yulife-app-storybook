@@ -7,6 +7,7 @@ export const GQL_FRAGMENT_USER = gql`
     archived
     firstName
     lastName
+    dateOfBirth
     createdAt
     onboardingDate
     redeemedOnboarding

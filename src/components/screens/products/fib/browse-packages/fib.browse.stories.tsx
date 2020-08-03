@@ -44,10 +44,19 @@ storiesOf("FibBrowse", module)
       payoutEstimatorItems={{
         years: Array.from({ length: 31 }).map((_, i) => i + 40),
         months: Array.from({ length: 12 }).map((_, i) => i),
+        max: {
+          year: 70,
+          month: 1,
+        },
+        min: {
+          year: 30,
+          month: 1,
+        },
       }}
       setDeceaseAgeIndexYear={(_: number): void => null}
       setDeceaseAgeIndexMonth={(_: number): void => null}
       loading={false}
+      maxTermAge={40}
     />
   ))
   .add("browse custom cover", () => (
@@ -61,6 +70,14 @@ storiesOf("FibBrowse", module)
       payoutEstimatorItems={{
         years: Array.from({ length: 31 }).map((_, i) => i + 40),
         months: Array.from({ length: 12 }).map((_, i) => i),
+        max: {
+          year: 70,
+          month: 1,
+        },
+        min: {
+          year: 30,
+          month: 1,
+        },
       }}
       setDeceaseAgeIndexYear={(_: number): void => null}
       setDeceaseAgeIndexMonth={(_: number): void => null}
