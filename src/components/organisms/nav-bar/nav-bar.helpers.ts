@@ -20,6 +20,21 @@ export interface IIconProps {
   onPressOut?: () => void;
 }
 
+export interface ILabel {
+  name: string;
+  onPress: () => void;
+}
+
+export interface NavBarProps {
+  activeIndex: number;
+  hasNotification?: boolean;
+  labels?: ILabel[];
+  highlightedLabel?: HighlightedLabel;
+  additionalBottom?: number;
+}
+
+export type HighlightedLabel = "yucoin" | "quests" | "yu" | "leaderboard" | "rewards";
+
 export function getIconColour(isActive: boolean) {
   return isActive ? Colours.darkHotPink : "#6E6E70";
 }

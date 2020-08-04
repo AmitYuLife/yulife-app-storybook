@@ -11,7 +11,6 @@ import { RewardsListLayout } from "../subcomponents/rewards-layout";
 
 export interface IRewardsListScreenProps extends IConnectedScreenProps {
   data: GetRewards_getRewards[];
-  hasNotification?: boolean;
   onLeftTabPress: () => void;
   onRightTabPress: () => void;
   onItemPress: (item: GetRewards_getRewards) => void;
@@ -21,12 +20,10 @@ export class RewardsList extends React.PureComponent<IRewardsListScreenProps> {
   private largeList: LargeList;
 
   public render() {
-    const { data, hasNotification = false, onLeftTabPress, onRightTabPress, onLeftMenuPress, totalCoins } = this.props;
-
+    const { data, onLeftTabPress, onRightTabPress, onLeftMenuPress, totalCoins } = this.props;
     return (
       <RewardsListLayout
         activeScreen="rewards"
-        hasNotification={hasNotification}
         onLeftMenuPress={onLeftMenuPress}
         onLeftTabPress={onLeftTabPress}
         totalCoins={totalCoins}

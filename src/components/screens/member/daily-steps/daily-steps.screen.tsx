@@ -1,6 +1,6 @@
 import { IThemeStore } from "@app/redux/theme/theme.reducer";
 import { DAILY_STEPS_SCREEN } from "@ids";
-import { ILabel, TouchableOpacityWithDelay } from "@molecules/index";
+import { TouchableOpacityWithDelay } from "@molecules/index";
 import { Style } from "@styles/index";
 import * as React from "react";
 import { Platform, View } from "react-native";
@@ -13,13 +13,15 @@ import {
 import { IUserStore } from "../../../../redux/user/user.reducer";
 import { IConnectedScreenProps } from "../../../../typings";
 import { CentredScreen, Pad } from "../../../atoms";
-import { LeaderboardPopup, NavBar, Streak, SurgePopup, TopBar } from "../../../molecules";
+import { LeaderboardPopup, Streak, SurgePopup, TopBar } from "../../../molecules";
 import YuCoin from "./assets/yu-coin";
 import DailyStepsFitKitAuthorise from "./daily-steps-fitkit-authorise";
 import DailyStepsFitKitUnavailable from "./daily-steps-fitkit-unavailable";
 import DailyStepsLoading from "./daily-steps-loading";
 import DailyStepsOnline, { IProps as IDailyStepsOnlineProps } from "./daily-steps-online";
 import styles from "./daily-steps.screen.styles";
+import { ILabel } from "@components/organisms/nav-bar/nav-bar.helpers";
+import { NavBar } from "@components/organisms";
 
 interface IProps extends IConnectedScreenProps {
   labels: ILabel[];
@@ -28,7 +30,6 @@ interface IProps extends IConnectedScreenProps {
   currentWorld?: number;
   displayStreak?: boolean;
   fitKitAvailable: boolean;
-  hasNotification?: boolean;
   hasPermission: boolean;
   isDoneToday?: boolean;
   isLoading: boolean;
@@ -55,7 +56,6 @@ export default function DailyStepsScreen({
   currentStreak,
   displayStreak = false,
   fitKitAvailable,
-  hasNotification = false,
   hasPermission,
   isDoneToday,
   isLoading,
@@ -133,12 +133,11 @@ export default function DailyStepsScreen({
         {popupVisibility.leaderboard ? (
           <LeaderboardPopup
             copy={copy.popUpCopy}
-            hasNotification={hasNotification}
             labels={labels}
             onUpdateLeaderboardPopupVisibility={onUpdateLeaderboardPopupVisibility}
           />
         ) : (
-          <NavBar activeIndex={0} hasNotification={hasNotification} />
+          <NavBar activeIndex={0} />
         )}
       </CentredScreen>
       <View style={styles.topbarWrapper}>

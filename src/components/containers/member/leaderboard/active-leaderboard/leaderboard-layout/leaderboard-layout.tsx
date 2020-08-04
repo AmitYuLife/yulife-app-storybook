@@ -1,9 +1,9 @@
 import React from "react";
 import { View, StyleSheet, ViewStyle } from "react-native";
-import { LeaderboardNavBar } from "./subcomponents/leaderboard-navbar/leaderboard-navbar";
 import { LeaderboardTopBar } from "./subcomponents/leaderboard-topbar/leaderboard-topbar";
 import { LeaderboardSkeleton } from "./subcomponents/leaderboard-skeleton/leaderboard-skeleton";
 import { Style } from "@styles";
+import { NavBar } from "@components/organisms";
 
 interface Props {
   children: React.ReactNode;
@@ -17,7 +17,7 @@ export const LeaderboardLayout = ({ children }: Props) => {
       <View style={styles.bottomPad} />
       <LeaderboardSkeleton />
       <LeaderboardTopBar />
-      <LeaderboardNavBar />
+      <NavBar activeIndex={3} />
     </View>
   );
 };

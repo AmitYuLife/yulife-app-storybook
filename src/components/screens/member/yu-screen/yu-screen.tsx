@@ -15,7 +15,6 @@ interface IProps {
   level: number;
   totalCoins: number;
   earnRate: number;
-  hasNotification: boolean;
   isAvatarCreated: boolean;
   userName: string;
   avatarUrl: string;
@@ -41,7 +40,6 @@ const YuScreen = (props: IProps) => {
     avatarUrl,
     products: { personal: productsPersonal, employer: productsEmployer, charms: productsCharms },
     earnRate,
-    hasNotification,
     onUnlockPress,
     onLeftMenuPress,
     onEditPress,
@@ -51,7 +49,7 @@ const YuScreen = (props: IProps) => {
   const [sectionTitleWidth, setSectionTitleWidth] = useState(SANE_SECTION_TITLE_WIDTH_DEFAULT);
 
   return (
-    <YuScreenLayout hasNotification={hasNotification} onLeftMenuPress={onLeftMenuPress} totalCoins={totalCoins}>
+    <YuScreenLayout onLeftMenuPress={onLeftMenuPress} totalCoins={totalCoins}>
       <YuScreenHeader earnRate={earnRate} onEarnRatePress={onEarnRatePress} level={level} userName={userName} />
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.padTop} />

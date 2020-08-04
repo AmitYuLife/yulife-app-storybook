@@ -7,7 +7,6 @@ import { RewardsListLoading } from "../subcomponents/rewards-loading";
 
 interface Props extends IConnectedScreenProps {
   data: RewardsPurchasedItemData[];
-  hasNotification?: boolean;
   onLeftTabPress: () => void;
   onRightTabPress: () => void;
   loading: boolean;
@@ -16,22 +15,12 @@ interface Props extends IConnectedScreenProps {
 }
 
 const RewardsPurchasedScreen = React.memo((props: Props) => {
-  const {
-    data,
-    hasNotification = false,
-    onLeftTabPress,
-    loading,
-    onRightTabPress,
-    onLeftMenuPress,
-    totalCoins,
-    copy,
-  } = props;
+  const { data, onLeftTabPress, loading, onRightTabPress, onLeftMenuPress, totalCoins, copy } = props;
 
   if (loading && data.length === 0) {
     return (
       <RewardsListLayout
         activeScreen="purchased"
-        hasNotification={hasNotification}
         onLeftTabPress={onLeftTabPress}
         onRightTabPress={onRightTabPress}
         onLeftMenuPress={onLeftMenuPress}
@@ -44,7 +33,6 @@ const RewardsPurchasedScreen = React.memo((props: Props) => {
 
   return (
     <RewardsPurchasedList
-      hasNotification={hasNotification}
       onLeftTabPress={onLeftTabPress}
       onRightTabPress={onRightTabPress}
       onLeftMenuPress={onLeftMenuPress}

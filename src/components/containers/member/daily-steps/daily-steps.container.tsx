@@ -18,7 +18,7 @@ import {
   getDailyStepsIsFetching,
   getLastUpdated,
 } from "../../../../redux/daily-steps/daily-steps.selectors";
-import { getChallengesStatus, getCurrentLevel, getHasNotification } from "../../../../redux/levels/levels.selectors";
+import { getChallengesStatus, getCurrentLevel } from "../../../../redux/levels/levels.selectors";
 import { dailyStepsCoinClicked } from "../../../../redux/logging/logging.actions";
 import { getStreaks } from "../../../../redux/streaks/streaks.selectors";
 import { getDailyStepsTheme } from "../../../../redux/theme/theme.selectors";
@@ -68,7 +68,6 @@ class DailyStepsContainer extends React.Component<Props> {
       nextProps.dailyEarnedCoins !== this.props.dailyEarnedCoins ||
       nextProps.dailySteps !== this.props.dailySteps ||
       nextProps.displayEarnMore !== this.props.displayEarnMore ||
-      nextProps.hasNotification !== this.props.hasNotification ||
       nextProps.isFetching !== this.props.isFetching ||
       nextProps.lastUpdated !== this.props.lastUpdated ||
       nextProps.popupVisibility.leaderboard !== this.props.popupVisibility.leaderboard ||
@@ -101,7 +100,6 @@ class DailyStepsContainer extends React.Component<Props> {
             dailySteps,
             dailyMeditation,
             features = {},
-            hasNotification,
             isFetching,
             streaks,
             theme,
@@ -148,7 +146,6 @@ class DailyStepsContainer extends React.Component<Props> {
               currentWorld={getCurrentWorld(currentLevel)}
               displayStreak={displayStreak}
               fitKitAvailable={available}
-              hasNotification={hasNotification}
               hasPermission={authorised}
               isDoneToday={streaks.isDoneToday}
               isLoading={isFetching || loading}
@@ -237,7 +234,6 @@ const mapStateToProps = (state: IReduxState) => ({
   displayEarnMore: getChallengesStatus(state).isAvailable,
   dailyMeditation: getDailyMeditation(state),
   features: getUserFeatures(state),
-  hasNotification: getHasNotification(state),
   isFetching: getDailyStepsIsFetching(state),
   lastUpdated: getLastUpdated(state),
   streaks: getStreaks(state),

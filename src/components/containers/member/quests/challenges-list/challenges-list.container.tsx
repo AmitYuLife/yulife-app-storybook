@@ -11,7 +11,6 @@ import { getTotalCoins } from "../../../../../redux/coins/coins.selectors";
 import { challengeStartSuccessAction } from "../../../../../redux/levels/levels.actions";
 import { getCurrentLevel } from "../../../../../redux/levels/levels.selectors";
 import { BlurProvider, IToggleBlur } from "../../../../atoms";
-import { ILabel } from "../../../../molecules/nav-bar/nav-bar";
 import { ChallengesListScreen, ChallengeDetailsScreen } from "../../../../screens";
 import { formatMilestones, getSlotDuration, reduceMilestones } from "./challenges-list.helpers";
 import { useMutation } from "@apollo/react-hooks";
@@ -25,7 +24,6 @@ type ConnectedDispatch = typeof mapDispatchToProps;
 
 interface IProps {
   componentId: string;
-  labels: ILabel[];
   level: GetCurrentWorld_getCurrentWorld;
   client: ApolloClient<any>;
 }
@@ -36,7 +34,6 @@ const openMeditationURL = handleLinkPress(Config.MEDITATION_SETUP_URL);
 
 const ChallengesListContainer: FC<Props> = ({
   currentLevel,
-  labels,
   level,
   totalCoins,
   componentId,
@@ -124,7 +121,6 @@ const ChallengesListContainer: FC<Props> = ({
             };
           })}
           currentLevel={level.level}
-          labels={labels}
           name={`level ${level.level}`}
           onPressLeftIcon={handleNavPress}
           totalCoins={totalCoins}

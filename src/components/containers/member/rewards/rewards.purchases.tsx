@@ -10,7 +10,7 @@ import { connect } from "react-redux";
 import { IReduxState } from "@redux/_core/reducers";
 import { getTotalCoins } from "@redux/coins/coins.selectors";
 import { getCopy } from "@redux/copy/copy.selectors";
-import { getCurrentLevel, getHasNotification } from "@redux/levels/levels.selectors";
+import { getCurrentLevel } from "@redux/levels/levels.selectors";
 import { formatMoney } from "@services/money";
 import { PurchasedListScreen } from "@screens/index";
 import { IMainTabsProps } from "@navigation/root";
@@ -52,7 +52,7 @@ const requestOptions: BaseQueryOptions = {
 };
 
 function RewardsPurchasesContainer(props: Props) {
-  const { hasNotification, totalCoins, copy, onTabChange } = props;
+  const { totalCoins, copy, onTabChange } = props;
 
   const { loading: purchasesAreLoading, data: purchases, refetch: refetchPurchases } = useQuery<GetAllPurchases>(
     GQL_QUERY_GET_ALL_PURCHASES,
@@ -97,7 +97,6 @@ function RewardsPurchasesContainer(props: Props) {
   return (
     <PurchasedListScreen
       data={items}
-      hasNotification={hasNotification}
       onLeftMenuPress={props.onLeftMenuPress}
       onLeftTabPress={handleLeftTabPress}
       onRightTabPress={handlePurchasesRefetch}
@@ -109,7 +108,6 @@ function RewardsPurchasesContainer(props: Props) {
 }
 
 const mapStateToProps = (state: IReduxState) => ({
-  hasNotification: getHasNotification(state),
   totalCoins: getTotalCoins(state),
   copy: getCopy(state, "purchases"),
   currentLevel: getCurrentLevel(state),

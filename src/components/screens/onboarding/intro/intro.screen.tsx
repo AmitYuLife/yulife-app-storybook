@@ -10,11 +10,12 @@ import * as Animatable from "react-native-animatable";
 import { isIphoneX } from "react-native-iphone-x-helper";
 import { GetMobileCopy_getMobileCopy_screens_intro } from "../../../../graphql/_core/schema";
 import { CentredScreen, Pad } from "../../../atoms";
-import { NavBar, TopBar } from "../../../molecules";
+import { TopBar } from "../../../molecules";
 import YuCoin from "../../member/daily-steps/assets/yu-coin";
 import DailyStepsOnline, { IProps as IDailyStepsOnlineProps } from "../../member/daily-steps/daily-steps-online";
 import { getHighlightedLabel, getTooltipProps } from "./intro.helpers";
 import styles, { tooltipStyles } from "./intro.styles";
+import { NavBar } from "@components/organisms";
 
 interface IProps extends Partial<IConnectedScreenProps> {
   displayStreak: boolean;

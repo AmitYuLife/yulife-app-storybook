@@ -10,7 +10,6 @@ const fillers: YuScreenProps = {
   level: 8,
   totalCoins: 0,
   earnRate: 0,
-  hasNotification: false,
   isAvatarCreated: true,
   userName: "userName",
   avatarUrl: "",

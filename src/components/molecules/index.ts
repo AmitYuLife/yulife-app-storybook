@@ -5,7 +5,6 @@ export { default as Counter } from "./counter/counter";
 export { default as Instruction } from "./instruction/instruction";
 export { default as LinkGroup } from "./link-group/link-group";
 export { default as ListPicker } from "./list-picker/list-picker";
-export { default as NavBar, ILabel, IColours, IProps as NavBarProps } from "./nav-bar/nav-bar";
 export { default as Picker } from "./picker/picker";
 export { default as Streak } from "./streak/streak";
 export { default as TopBar, IProps as TopBarProps } from "./top-bar/top-bar";

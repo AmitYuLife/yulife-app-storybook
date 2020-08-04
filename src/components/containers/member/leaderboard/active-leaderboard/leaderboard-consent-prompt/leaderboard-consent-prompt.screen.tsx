@@ -26,6 +26,6 @@ export const LeaderboardConsentPrompt = (props: Props) => {
 
 const styles = StyleSheet.create({
   absolute: {
-    position: "absolute"
+    position: "absolute",
   } as ViewStyle,
 });

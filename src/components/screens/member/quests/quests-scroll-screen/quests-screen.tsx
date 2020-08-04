@@ -8,12 +8,13 @@ import { isIphoneX } from "react-native-iphone-x-helper";
 import { Navigation } from "react-native-navigation";
 import { GetCurrentWorld_getCurrentWorld } from "../../../../../graphql/_core/schema";
 import { IConnectedScreenProps } from "../../../../../typings";
-import { NavBar, TopBar } from "../../../../molecules";
+import { TopBar } from "../../../../molecules";
 import { IMapSlice, loadingSlices, mapSlices } from "./assets";
 import offsets from "./assets/offsets";
 import styles from "./quests-screen.styles";
 import ScrollyQuest from "./subcomponents/scrolly-quest";
 import getUnity from "./unity-movies/unity";
+import { NavBar } from "@components/organisms";
 import QuestsLoadingOverlay from "./subcomponents/quests.loading";
 
 export interface IChallenge extends GetCurrentWorld_getCurrentWorld {
@@ -97,7 +98,7 @@ class QuestsScreen extends React.PureComponent<IProps, IState> {
         <View style={styles.topBarWrapper}>
           <TopBar type={UI.topBarType} onPressLeftIcon={onLeftMenuPress} coins={totalCoins} />
         </View>
-        <NavBar activeIndex={1} hasNotification={false} />
+        <NavBar activeIndex={1} />
         <QuestsLoadingOverlay loading={loading} />
       </SafeAreaView>
     );

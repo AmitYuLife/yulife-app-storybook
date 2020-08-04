@@ -1,4 +1,4 @@
-import { NavBar, TopBar } from "@molecules/index";
+import { TopBar } from "@molecules/index";
 import * as React from "react";
 import { Image, SafeAreaView, StyleSheet, View } from "react-native";
 import { IConnectedScreenProps } from "../../../../../typings";
@@ -11,6 +11,7 @@ import { ChallengeType } from "@molecules/challenge-tile/challenge-tile.types";
 import { BUTTON_CLOSE_CHALLENGE, CHALLENGE_PROGRESS_BAR } from "@ids";
 import { HeadspaceButton } from "./subcomponents/headspace-button";
 import { CalmButton } from "./subcomponents/calm-button";
+import { NavBar } from "@components/organisms";
 
 interface IProps extends IConnectedScreenProps {
   challengeType: ChallengeType;
@@ -71,7 +72,7 @@ export default function ChallengeProgressScreen({
       <View style={styles.exitChallengeWrapper} testID={BUTTON_CLOSE_CHALLENGE}>
         <Exit onPress={onDismissPress} {...exitChallenge} />
       </View>
-      <NavBar activeIndex={1} hasNotification={false} additionalBottom={2} />
+      <NavBar activeIndex={1} additionalBottom={2} />
     </SafeAreaView>
   );
 }

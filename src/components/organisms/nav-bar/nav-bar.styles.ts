@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
 export const getPositionBottom = (options = { additionalBottom: 0 }) => {
   const { additionalBottom } = options;
   if (Platform.OS === "ios" && deviceInfoModule.hasNotch()) {
-    return 30;
+    return 30 + additionalBottom;
   }
 
   return Style.adjust(20) + additionalBottom;

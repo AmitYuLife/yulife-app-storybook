@@ -36,7 +36,6 @@ type Props = IProps & IMainTabsProps & ConnectedState;
 function YuScreenContainer({
   currentLevel,
   userName,
-  hasNotification,
   componentId,
   totalCoins,
   onLeftMenuPress,
@@ -67,7 +66,7 @@ function YuScreenContainer({
 
   if (!data && !showYuscreenIntro) {
     return (
-      <YuScreenLayout hasNotification={hasNotification} onLeftMenuPress={onLeftMenuPress} totalCoins={totalCoins}>
+      <YuScreenLayout onLeftMenuPress={onLeftMenuPress} totalCoins={totalCoins}>
         <YuScreenLoading />
       </YuScreenLayout>
     );
@@ -77,7 +76,6 @@ function YuScreenContainer({
     <YuScreen
       level={currentLevel}
       userName={userName}
-      hasNotification={hasNotification}
       isAvatarCreated={isAvatarCreated}
       avatarUrl={avatarRemoteFile}
       products={products}
