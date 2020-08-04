@@ -1,15 +1,15 @@
 import { CHALLENGE_SCREEN } from "@ids";
-import { ChallengesList, IChallengesListProps, ILabel, NavBar, TopBar } from "@molecules/index";
+import { ChallengesList, IChallengesListProps, TopBar } from "@molecules/index";
 import { getCurrentWorld } from "@services/utils";
 import * as React from "react";
 import { Image, SafeAreaView, StyleSheet, View } from "react-native";
 import { IMilestoneProps } from "../challenge-details/milestones";
 import styles from "./challenges-list.screen.styles";
 import { ChallengeType } from "@molecules/challenge-tile/challenge-tile.types";
+import { NavBar } from "@components/organisms";
 
 interface IProps extends IChallengesListProps {
   currentLevel?: number;
-  labels: ILabel[];
   name: string;
   onPressLeftIcon: () => void;
   totalCoins: number;

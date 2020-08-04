@@ -1,5 +1,5 @@
 import { Pad, Text } from "@atoms/index";
-import { NavBar, TopBar } from "@molecules/index";
+import { TopBar } from "@molecules/index";
 import * as React from "react";
 import { Image, Platform, SafeAreaView, View } from "react-native";
 import { getQuestsOfflineTheme } from "@redux/theme/theme.selectors";
@@ -8,6 +8,7 @@ import assets from "./assets";
 import styles from "./quests-offline.styles";
 import { IReduxState } from "@redux/_core/reducers";
 import { connect } from "react-redux";
+import { NavBar } from "@components/organisms";
 
 export type ConnectedState = ReturnType<typeof mapStateToProps>;
 
@@ -41,7 +42,7 @@ function QuestsScreenOffline({ fitkitAvailable, onLeftMenuPress, totalCoins, que
         <Pad height={60} />
       </View>
       <TopBar coins={totalCoins} onPressLeftIcon={onLeftMenuPress} />
-      <NavBar activeIndex={1} hasNotification={false} />
+      <NavBar activeIndex={1} />
     </SafeAreaView>
   );
 }

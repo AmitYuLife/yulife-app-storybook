@@ -9,7 +9,7 @@ import { MODALS, ROUTES } from "@navigation/constants";
 import { IReduxState } from "@redux/_core/reducers";
 import { getTotalCoins } from "@redux/coins/coins.selectors";
 import { getCopy } from "@redux/copy/copy.selectors";
-import { getCurrentLevel, getHasNotification } from "@redux/levels/levels.selectors";
+import { getCurrentLevel } from "@redux/levels/levels.selectors";
 import Logger from "@services/logging/logger";
 import { RewardsListScreen } from "@screens/index";
 import { IMainTabsProps } from "@navigation/root";
@@ -37,7 +37,7 @@ const getDetailsRoute = (rewardProviderId: string) => {
 };
 
 function RewardsListContainer(props: Props) {
-  const { copy, onTabChange, totalCoins, hasNotification } = props;
+  const { copy, onTabChange, totalCoins } = props;
   const { loading, data: rewards, refetch: refetchRewards } = useQuery(GQL_QUERY_GET_REWARDS);
 
   const handleRewardDetailsItemPress = useCallback(
@@ -89,7 +89,6 @@ function RewardsListContainer(props: Props) {
   return (
     <RewardsListScreen
       data={rewards?.getRewards || []}
-      hasNotification={hasNotification}
       onItemPress={handleRewardDetailsItemPress}
       onLeftMenuPress={props.onLeftMenuPress}
       onLeftTabPress={handleRewardsRefetch}
@@ -101,7 +100,6 @@ function RewardsListContainer(props: Props) {
 }
 
 const mapStateToProps = (state: IReduxState) => ({
-  hasNotification: getHasNotification(state),
   totalCoins: getTotalCoins(state),
   copy: getCopy(state, "purchases"),
   currentLevel: getCurrentLevel(state),

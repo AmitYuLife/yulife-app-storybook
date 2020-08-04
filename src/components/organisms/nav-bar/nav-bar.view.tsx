@@ -1,47 +1,37 @@
-import React, { useState, useCallback, FC } from "react";
+import React, { useState, useCallback } from "react";
 import { labels as defaultLabels } from "@navigation/root";
 import { StyleSheet, View, Platform } from "react-native";
 import { Giraffe, Scroll, Treasure, Yu } from "./assets";
 import Trophy from "./assets/trophy";
 import styles, { getPositionBottom } from "./nav-bar.styles";
 import useInterval from "@use-it/interval";
+import { NavBarProps } from "./nav-bar.helpers";
 
-export interface ILabel {
-  name: string;
-  onPress: () => void;
-  colour?: IColours;
-}
+const NavBarView = (props: NavBarProps) => {
+  const { activeIndex, hasNotification, labels = defaultLabels, highlightedLabel, additionalBottom = 0 } = props;
 
-export type IColours = "blue" | "dark" | "darker" | "desert" | "light" | "pink" | "mountain" | "forest";
-
-export interface IProps {
-  activeIndex: number;
-  hasNotification?: boolean;
-  labels?: ILabel[];
-  highlightedLabel?: HighlightedLabel;
-  additionalBottom?: number;
-}
-
-type HighlightedLabel = "yucoin" | "quests" | "yu" | "leaderboard" | "rewards";
-
-interface StaticProps {
-  positionBottom: number;
-}
-
-const NavBar: FC<IProps> & StaticProps = (props: IProps) => {
   const [pressed, setPressed] = useState(0);
   const [hasLaidOut, setHasLaidOut] = useState(false);
   const [displayElevation, setDisplayElevation] = useState(false);
+
   useInterval(
     () => {
       setDisplayElevation(true);
     },
     displayElevation || !hasLaidOut || Platform.OS === "ios" ? null : 1000
   );
-  const { activeIndex, hasNotification, labels = defaultLabels, highlightedLabel, additionalBottom = 0 } = props;
+
   const handleLayout = useCallback(() => {
     setHasLaidOut(true);
   }, []);
+
+  function handlePressOut(onPress: () => void) {
+    return () => {
+      setPressed(null);
+      onPress();
+    };
+  }
+
   return (
     <View
       onLayout={handleLayout}
@@ -61,7 +51,7 @@ const NavBar: FC<IProps> & StaticProps = (props: IProps) => {
           isHighlighted={highlightedLabel === "quests"}
           onPressIn={labels[1].onPress}
           onPressOut={handlePressOut(labels[1].onPress)}
-          hasNotification={hasNotification}
+          hasNotification={hasNotification && activeIndex !== 1}
         />
         <Yu
           isPressed={pressed === 2}
@@ -87,15 +77,6 @@ const NavBar: FC<IProps> & StaticProps = (props: IProps) => {
       </View>
     </View>
   );
-
-  function handlePressOut(onPress: () => void) {
-    return () => {
-      setPressed(null);
-      onPress();
-    };
-  }
 };
 
-NavBar.positionBottom = getPositionBottom(); // disregard additionalBottom, work on removing the need for that option
-
-export default NavBar;
+export default NavBarView;

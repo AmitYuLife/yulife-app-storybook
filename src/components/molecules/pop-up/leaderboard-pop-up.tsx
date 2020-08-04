@@ -4,12 +4,13 @@ import { BlurView } from "react-native-blur";
 import { Navigation } from "react-native-navigation";
 import { GetMobileCopy_getMobileCopy_screens_popUp } from "../../../graphql/_core/schema";
 import { ROUTES } from "../../../navigation/constants";
-import { ILabel, NavBar, Popup, POPUPTYPE } from "../../molecules";
+import { Popup, POPUPTYPE } from "../../molecules";
 import styles from "./pop-up.styles";
+import { NavBar } from "@components/organisms";
+import { ILabel } from "@components/organisms/nav-bar/nav-bar.helpers";
 
 interface IProps {
   copy: GetMobileCopy_getMobileCopy_screens_popUp;
-  hasNotification: boolean;
   labels?: ILabel[];
   onUpdateLeaderboardPopupVisibility: (payload: boolean) => void;
 }
@@ -31,7 +32,7 @@ export default class LeaderboardPopup extends React.PureComponent<IProps, IState
 
   public render() {
     const { viewRef } = this.state;
-    const { copy, hasNotification } = this.props;
+    const { copy } = this.props;
     return (
       <>
         <TouchableOpacity style={StyleSheet.absoluteFillObject} onPress={this.updateLeaderboardVisibility}>
@@ -39,7 +40,7 @@ export default class LeaderboardPopup extends React.PureComponent<IProps, IState
           {viewRef ? <BlurView viewRef={viewRef} blurAmount={15} blurType="dark" style={styles.bgBlur} /> : null}
         </TouchableOpacity>
         <View style={[styles.navBarWrapper, styles.zIndexWrapper]}>
-          <NavBar activeIndex={0} hasNotification={hasNotification} labels={this.getUpdateLabelsFunction()} />
+          <NavBar activeIndex={0} labels={this.getUpdateLabelsFunction()} />
         </View>
         <Popup
           type={POPUPTYPE.LEADERBOARD}

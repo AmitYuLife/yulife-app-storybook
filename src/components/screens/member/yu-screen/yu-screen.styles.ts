@@ -1,9 +1,9 @@
 import { ImageStyle, StyleSheet, TextStyle, ViewStyle, Platform } from "react-native";
-import { NavBar } from "@components/molecules";
 import { Style } from "@styles/index";
 import deviceInfoModule from "react-native-device-info";
+import { getPositionBottom } from "@components/organisms/nav-bar/nav-bar.styles";
 
-const navBarPositionBot = NavBar.positionBottom;
+const navBarPositionBot = getPositionBottom();
 const navBarHeightApprox = Style.adjust(55);
 const navbarMarginToLastElement = Style.adjust(16);
 const navBarNotchedIosExtraPadding = Platform.OS === "ios" && deviceInfoModule.hasNotch() ? -44 : 0;

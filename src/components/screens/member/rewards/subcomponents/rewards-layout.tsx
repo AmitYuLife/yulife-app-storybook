@@ -1,8 +1,9 @@
 import React from "react";
 import { StyleSheet, ViewStyle, View, Platform } from "react-native";
 import { Style } from "@styles";
-import { RewardTabs, NavBar, TopBar } from "@components/molecules";
+import { RewardTabs, TopBar } from "@components/molecules";
 import { REWARDS_SCREEN } from "@ids";
+import { NavBar } from "@components/organisms";
 
 interface Props {
   children: React.ReactNode;
@@ -10,20 +11,11 @@ interface Props {
   onRightTabPress: () => void;
   onLeftMenuPress: () => void;
   totalCoins: number;
-  hasNotification: boolean;
   activeScreen: "rewards" | "purchased";
 }
 
 export function RewardsListLayout(props: Props) {
-  const {
-    children,
-    hasNotification,
-    onLeftMenuPress,
-    onLeftTabPress,
-    onRightTabPress,
-    totalCoins,
-    activeScreen,
-  } = props;
+  const { children, onLeftMenuPress, onLeftTabPress, onRightTabPress, totalCoins, activeScreen } = props;
   const activeIndex = activeScreen === "rewards" ? 0 : 1;
 
   return (
@@ -36,7 +28,7 @@ export function RewardsListLayout(props: Props) {
       <View style={styles.topbarWrapper}>
         <TopBar coins={totalCoins} onPressLeftIcon={onLeftMenuPress} />
       </View>
-      <NavBar activeIndex={4} hasNotification={hasNotification} />
+      <NavBar activeIndex={4} />
     </View>
   );
 }

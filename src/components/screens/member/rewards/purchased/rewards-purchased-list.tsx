@@ -1,4 +1,4 @@
-import { NavBar, RewardTabs, TopBar, YulifeRefreshHeader } from "@molecules/index";
+import { RewardTabs, TopBar, YulifeRefreshHeader } from "@molecules/index";
 import { Style } from "@styles/index";
 import * as React from "react";
 import { View, Platform, ViewStyle, StyleSheet } from "react-native";
@@ -8,10 +8,10 @@ import { IConnectedScreenProps } from "../../../../../typings";
 import RewardsPurchasedItem, { IRewardsPurchasedItemProps } from "./purchased-item/purchased-item";
 import PurchasesEmpty from "./purchases-empty/purchases-empty";
 import { isIphoneX } from "react-native-iphone-x-helper";
+import { NavBar } from "@components/organisms";
 
 interface IProps extends IConnectedScreenProps {
   data: RewardsPurchasedItemData[];
-  hasNotification?: boolean;
   onLeftTabPress: () => void;
   onRightTabPress: () => void;
   copy: GetMobileCopy_getMobileCopy_screens_purchases;
@@ -26,7 +26,7 @@ export class RewardsPurchasedList extends React.PureComponent<IProps> {
   private largeList: LargeList;
 
   public render() {
-    const { data, hasNotification = false, onLeftTabPress, onRightTabPress, onLeftMenuPress, totalCoins } = this.props;
+    const { data, onLeftTabPress, onRightTabPress, onLeftMenuPress, totalCoins } = this.props;
 
     return (
       <View style={styles.wrapper}>
@@ -50,7 +50,7 @@ export class RewardsPurchasedList extends React.PureComponent<IProps> {
         <View style={styles.topbarWrapper}>
           <TopBar coins={totalCoins} onPressLeftIcon={onLeftMenuPress} />
         </View>
-        <NavBar activeIndex={4} hasNotification={hasNotification} />
+        <NavBar activeIndex={4} />
       </View>
     );
   }

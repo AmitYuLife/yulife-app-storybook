@@ -1,7 +1,7 @@
 import { Button } from "@atoms/index";
 import { getSlotDuration } from "@containers/member/quests/challenges-list/challenges-list.helpers";
 import { GetCurrentWorld_getCurrentWorld } from "@graphql/_core/schema";
-import { NavBar, TopBar } from "@molecules/index";
+import { TopBar } from "@molecules/index";
 import { getCurrentWorld } from "@services/utils";
 import * as React from "react";
 import { Image, SafeAreaView, ScrollView, StyleSheet, View } from "react-native";
@@ -11,6 +11,7 @@ import ChallengesHistorySlot from "./challenges-history-slot";
 import { getBottomGradient } from "./challenges-history.helpers";
 import styles from "./challenges-history.screen.styles";
 import { TopBarTypes } from "@molecules/top-bar/top-bar";
+import { NavBar } from "@components/organisms";
 
 interface IProps extends IConnectedScreenProps {
   level: GetCurrentWorld_getCurrentWorld;
@@ -59,7 +60,7 @@ export default function ChallengesHistory({ level, onPressActivityHistory, total
       <View style={styles.buttonsWrapper}>
         <Button type="Primary" onPress={onPressActivityHistory} label="full history" />
       </View>
-      <NavBar activeIndex={1} hasNotification={false} />
+      <NavBar activeIndex={1} />
     </SafeAreaView>
   );
 }

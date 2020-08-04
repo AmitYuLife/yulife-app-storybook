@@ -31,7 +31,10 @@ const _PadWithLoader = ({ height }: IPadWithLoaderProps) => {
   return (
     <View style={[styles.wrapper, { height }]}>
       <View style={styles.row}>
-        <Animated.Image source={require("@assets/leaderboards/arrow-down.png")} style={[styles.image, { transform: [{ rotate }] }]} />
+        <Animated.Image
+          source={require("@assets/leaderboards/arrow-down.png")}
+          style={[styles.image, { transform: [{ rotate }] }]}
+        />
         <View style={styles.textWrapper}>
           <Text style={styles.text}>keep pulling to refresh</Text>
         </View>
@@ -51,16 +54,15 @@ const styles = StyleSheet.create({
   } as ViewStyle,
   row: {
     flexDirection: "row",
-    alignItems: "center"
+    alignItems: "center",
   } as ViewStyle,
-  image: {
-  } as ImageStyle,
+  image: {} as ImageStyle,
   textWrapper: {
     marginLeft: 16,
-    marginTop: 4
+    marginTop: 4,
   } as ViewStyle,
   text: {
     letterSpacing: 1,
-    fontSize: 12
+    fontSize: 12,
   } as TextStyle,
 });

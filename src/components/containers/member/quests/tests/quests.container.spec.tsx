@@ -38,7 +38,6 @@ async function renderComponent(testState: Partial<IReduxState>) {
       {
         name: "Hi",
         onPress: jest.fn(),
-        colour: "blue",
       },
     ],
   };

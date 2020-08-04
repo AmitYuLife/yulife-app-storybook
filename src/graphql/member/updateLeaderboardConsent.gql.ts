@@ -16,5 +16,5 @@ export default (variables: UpdateLeaderboardConsentVariables) =>
   client().mutate<UpdateLeaderboardConsent, UpdateLeaderboardConsentVariables>({
     mutation: GQL_MUTATION_UPDATE_LEADERBOARD_CONSENT,
     variables,
-    refetchQueries: ["GetLeaderboard"]
+    refetchQueries: ["GetLeaderboard"],
   });

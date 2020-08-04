@@ -1,18 +1,18 @@
 import React from "react";
 import { YUSCREEN } from "@ids";
 import { View, StyleSheet, ViewStyle, Platform } from "react-native";
-import { TopBar, NavBar } from "@components/molecules";
+import { TopBar } from "@components/molecules";
 import { Style } from "@styles";
+import { NavBar } from "@components/organisms";
 
 interface Props {
   children: React.ReactNode;
   onLeftMenuPress: () => void;
   totalCoins: number;
-  hasNotification: boolean;
 }
 
 function _YuScreenLayout(props: Props) {
-  const { children, onLeftMenuPress, hasNotification, totalCoins } = props;
+  const { children, onLeftMenuPress, totalCoins } = props;
 
   return (
     <View style={styles.wrapper} testID={YUSCREEN}>
@@ -20,7 +20,7 @@ function _YuScreenLayout(props: Props) {
         <TopBar coins={totalCoins} onPressLeftIcon={onLeftMenuPress} />
       </View>
       {children}
-      <NavBar activeIndex={2} hasNotification={hasNotification} />
+      <NavBar activeIndex={2} />
     </View>
   );
 }
