@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
+import { NativeSyntheticEvent, NativeScrollEvent, NativeScrollPoint } from "react-native";
 
 export interface LocalNavigation<T> {
   history: IHistoryRoute<T>[];
@@ -8,11 +9,13 @@ export interface LocalNavigation<T> {
   pop: () => void;
   popToMain: () => void;
   replace: (route: T, passProps?: object) => void;
+  onScrollEnd: (event: NativeSyntheticEvent<NativeScrollEvent>) => void;
 }
 
 interface IHistoryRoute<T> {
   route: T;
   passProps: any;
+  offset?: NativeScrollPoint;
 }
 
 interface Args<T> {
@@ -33,40 +36,44 @@ export function useLocalNavigation<T>({
   defaultHistory = [],
 }: Args<T>): LocalNavigation<T> {
   const [history, setHistory] = useState([...defaultHistory, { route: initialRoute, passProps: initialProps }]);
+  const [offset, setOffset] = useState({ x: 0, y: 0 });
 
   const currentRoute = history.length ? history[history.length - 1] : { route: defaultRoute, passProps: defaultProps };
 
-  function push(route: T, passProps: object = {}) {
-    const newHistory = [...history, { route, passProps }];
+  return useMemo(
+    () => ({
+      history,
+      length: history.length,
+      currentRoute,
+      popToMain,
+      push(route: T, passProps: object = {}) {
+        const newHistory = [...history, { route, passProps }];
 
-    return setHistory(newHistory);
-  }
+        newHistory[newHistory.length - 2].offset = offset;
 
-  function pop() {
-    if (history.length <= 1) {
-      return popToMain();
-    }
+        return setHistory(newHistory);
+      },
+      pop() {
+        if (history.length <= 1) {
+          return popToMain();
+        }
 
-    const prevRoute = history[history.length - 1];
+        const prevRoute = history[history.length - 1];
 
-    setHistory(removeOrReplaceLastHistoryItem());
+        setHistory(removeOrReplaceLastHistoryItem());
 
-    return prevRoute;
-  }
-
-  function replace(route: T, passProps: object = {}) {
-    setHistory(removeOrReplaceLastHistoryItem({ route, passProps }));
-  }
-
-  return {
-    history,
-    length: history.length,
-    currentRoute,
-    push,
-    pop,
-    popToMain,
-    replace,
-  };
+        return prevRoute;
+      },
+      replace(route: T, passProps: object = {}) {
+        setHistory(removeOrReplaceLastHistoryItem({ route, passProps }));
+      },
+      onScrollEnd(event: NativeSyntheticEvent<NativeScrollEvent>) {
+        const { x, y } = event.nativeEvent.contentOffset;
+        setOffset({ x, y });
+      },
+    }),
+    [history, currentRoute, offset, popToMain]
+  );
 }
 
 function removeOrReplaceLastHistoryItem<T>(newRoute: IHistoryRoute<T> = null) {

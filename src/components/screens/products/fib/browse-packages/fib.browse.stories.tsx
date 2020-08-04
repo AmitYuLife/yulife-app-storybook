@@ -38,6 +38,8 @@ storiesOf("FibBrowse", module)
       navigateToFeedbackForm={(): void => null}
       avatarUrl={""}
       faqs={faqs}
+      offset={{ x: 0, y: 0 }}
+      onScrollEnd={() => null}
       selectCoverType={() => null}
       documents={documents}
       navigateToCustomCover={() => null}
