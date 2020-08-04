@@ -10,7 +10,6 @@ interface IProps {
 
 function Card(props: IProps) {
   const { earnRate, hasCharmsOnly } = props;
-
   return (
     <View style={styles.wrapper}>
       <View style={styles.backgroundWrapper}>

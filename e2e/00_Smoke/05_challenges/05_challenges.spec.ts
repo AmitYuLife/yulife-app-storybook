@@ -90,7 +90,7 @@ Feature("As a user I can take a challenge", async () => {
                                 When("I tap collect on the well done screen", when.tapText("collect"), async () => {
                                     Then("I should see the chest unlocked screen telling me I get 200 yucoin", then.textVisible("you get 200 yucoin"))
                                     When("I dismiss the chest unlock screen", when.dismissChestUnlock(), async () => {
-                                        Then("I should be on the quest screen", then.idVisible(QUESTS_SCREEN(0)))
+                                        Then("I should be on the quest screen", then.idVisible(QUESTS_SCREEN(0), 2500))
                                         When("I back to the yucoin tab", when.tapID(NAV_BAR("yucoin")), async () => {
                                             Then("I should see my updated coins in the top right", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(1030)))
                                             Then("I should see the number of steps I just completed", then.textVisible("3050 steps"))

@@ -1,8 +1,8 @@
 import React, { memo, useState } from "react";
 import { TouchableOpacityWithDelay } from "@molecules";
 import { YUSCREEN_AVATAR } from "@ids";
-import { ViewStyle, ImageStyle, ActivityIndicator } from "react-native";
-import FastImage from "react-native-fast-image";
+import { ViewStyle, ActivityIndicator } from "react-native";
+import FastImage, { ImageStyle } from "react-native-fast-image";
 
 interface Props {
   onEditPress?: () => void;

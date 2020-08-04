@@ -1,7 +1,7 @@
 import React from "react";
-import { StyleSheet, View, ViewStyle, ImageStyle, Platform } from "react-native";
+import { StyleSheet, View, ViewStyle, Platform } from "react-native";
 import { AvatarEmpty } from "@molecules";
-import FastImage from "react-native-fast-image";
+import FastImage, { ImageStyle } from "react-native-fast-image";
 import { Style } from "@styles";
 
 export function Image({ uri }: { uri: string }) {

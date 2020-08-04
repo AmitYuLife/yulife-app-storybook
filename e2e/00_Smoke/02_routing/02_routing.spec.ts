@@ -1,4 +1,4 @@
-import { Feature, Scenario, Given, When, Then, ScenarioOnly } from "@bdd";
+import { Feature, Scenario, Given, When, Then, ScenarioOnly, ScenarioSkip } from "@bdd";
 import * as scenario from "./_steps/scenario"
 import * as given from "./_steps/given"
 import * as when from "./_steps/when"
@@ -28,14 +28,13 @@ Feature("As a user I can navigate through member routes correctly", async () => 
             })
         })
     })
-
+    
     Scenario("I can view the menu screens in the app", scenario.start, async () => {
 
         Given("I login as a user", given.loginAsUser(records.CUSTOMER_2, records.AUTH_2), async () => {
             Then("I should see a menu icon in the top left", then.idVisible(MENU_ICON, 1500))
             When("I tap the menu icon in the top left", when.tapID(MENU_ICON, 1500), async () => {
                 Then("I should see the menu items", then.menuItemsVisible)
-
                 When("I tap statistics", when.tapMenuItem("statistics"), async () => {
                     Then("I should be on statistics", then.idVisible(STATS_SCREEN))
                     Then("I should see the correct stats elements and figures", then.statsCorrect)
@@ -71,11 +70,11 @@ Feature("As a user I can navigate through member routes correctly", async () => 
                 When("I tap settings", when.tapMenuItem("settings"), async () => {
                     Then("I should be on the settings tab", then.idVisible(SETTINGS_SCREEN, 2500))
                 })
+
                 When("I go back", when.tapID(BUTTON_CLOSE), async () => {
                     Then("I should be the yucoin tab", then.onDailySteps)
                     When("I tap the menu icon in the top left", when.tapID(MENU_ICON, 500), async () => {
                         Then("I should see the menu items", then.menuItemsVisible)
-
                     })
                 })
             })

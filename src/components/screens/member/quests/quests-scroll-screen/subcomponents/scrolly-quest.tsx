@@ -101,7 +101,6 @@ export default ScrollyQuest;
 export function shouldScrollyQuestUpdate(currentProps: IScrollQuestProps, nextProps: IScrollQuestProps) {
   const currentCurrentLevel = currentProps.levels[currentProps.currentLevel - 1];
   const nextCurrentLevel = nextProps.levels[nextProps.currentLevel - 1];
-
   return (
     currentProps.currentLevel !== nextProps.currentLevel ||
     currentProps.activeLevel !== nextProps.activeLevel ||
