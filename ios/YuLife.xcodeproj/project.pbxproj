@@ -16,16 +16,16 @@
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2DCD954D1E0B4F2C00145EB5 /* YuLifeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* YuLifeTests.m */; };
-		3D8235429BD8017F313EAA3B /* libPods-YuLife-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1556B6F21B5A9D91DD7B2FBF /* libPods-YuLife-tvOS.a */; };
-		4F38807D46D4C18509E992DD /* libPods-YuLife-YuLifeTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 787738A50F1F99B7CFC60FFE /* libPods-YuLife-YuLifeTests.a */; };
-		51EEADBCEDD8A768D54887FA /* libPods-YuLife-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 74BD360B6EC0A16FFA32249C /* libPods-YuLife-tvOSTests.a */; };
-		8BC3FB36475D1BEEAAB51E37 /* libPods-YuLife.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 276475669C8CF9B355BDAFB9 /* libPods-YuLife.a */; };
+		6CAC5838880A738283B2FEDE /* libPods-YuLife-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 517DE8E34D50740A097FD7B5 /* libPods-YuLife-tvOSTests.a */; };
 		94658B14243149CB00E2F06A /* Bariol-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 94658B0E243149CA00E2F06A /* Bariol-Light.otf */; };
 		94658B15243149CB00E2F06A /* Bariol-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 94658B0F243149CA00E2F06A /* Bariol-Regular.otf */; };
 		94658B16243149CB00E2F06A /* OpenSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 94658B10243149CA00E2F06A /* OpenSans-Light.ttf */; };
 		94658B17243149CB00E2F06A /* Bariol-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 94658B11243149CA00E2F06A /* Bariol-Bold.otf */; };
 		94658B18243149CB00E2F06A /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 94658B12243149CA00E2F06A /* OpenSans-Regular.ttf */; };
 		94658B19243149CB00E2F06A /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 94658B13243149CB00E2F06A /* OpenSans-Bold.ttf */; };
+		9BDF6411472D471D723C981E /* libPods-YuLife-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F45840338EBE81B5A798CA7F /* libPods-YuLife-tvOS.a */; };
+		B927F2047FA30F346DB9C6E8 /* libPods-YuLife-YuLifeTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8699D601A3F8074325286D6A /* libPods-YuLife-YuLifeTests.a */; };
+		ED047669C81445B3F71C25D1 /* libPods-YuLife.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0233CDBD653A7F43BB34C4BD /* libPods-YuLife.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +50,8 @@
 		00E356EE1AD99517003FC87E /* YuLifeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YuLifeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* YuLifeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YuLifeTests.m; sourceTree = "<group>"; };
+		0233CDBD653A7F43BB34C4BD /* libPods-YuLife.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-YuLife.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0C5F7563A89B08B578D2EA36 /* Pods-YuLife.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YuLife.release.xcconfig"; path = "Target Support Files/Pods-YuLife/Pods-YuLife.release.xcconfig"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* YuLife.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YuLife.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = YuLife/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = YuLife/AppDelegate.m; sourceTree = "<group>"; };
@@ -57,16 +59,14 @@
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = YuLife/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = YuLife/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = YuLife/main.m; sourceTree = "<group>"; };
-		1556B6F21B5A9D91DD7B2FBF /* libPods-YuLife-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-YuLife-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		276475669C8CF9B355BDAFB9 /* libPods-YuLife.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-YuLife.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		178ED20F56FC64C4B9680BEB /* Pods-YuLife-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YuLife-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-YuLife-tvOSTests/Pods-YuLife-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		2D02E47B1E0B4A5D006451C7 /* YuLife-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "YuLife-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* YuLife-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "YuLife-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		3E75109A021F1D926F63084C /* Pods-YuLife.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YuLife.debug.xcconfig"; path = "Target Support Files/Pods-YuLife/Pods-YuLife.debug.xcconfig"; sourceTree = "<group>"; };
-		4578E9BB10AE7577B90A3468 /* Pods-YuLife-YuLifeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YuLife-YuLifeTests.release.xcconfig"; path = "Target Support Files/Pods-YuLife-YuLifeTests/Pods-YuLife-YuLifeTests.release.xcconfig"; sourceTree = "<group>"; };
-		74BD360B6EC0A16FFA32249C /* libPods-YuLife-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-YuLife-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		787738A50F1F99B7CFC60FFE /* libPods-YuLife-YuLifeTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-YuLife-YuLifeTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		7D6EECFDE92C0CB3224BB07F /* Pods-YuLife-YuLifeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YuLife-YuLifeTests.debug.xcconfig"; path = "Target Support Files/Pods-YuLife-YuLifeTests/Pods-YuLife-YuLifeTests.debug.xcconfig"; sourceTree = "<group>"; };
-		8D80A394256892243C564D61 /* Pods-YuLife-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YuLife-tvOS.release.xcconfig"; path = "Target Support Files/Pods-YuLife-tvOS/Pods-YuLife-tvOS.release.xcconfig"; sourceTree = "<group>"; };
+		46226668B48A7E74F0CEE947 /* Pods-YuLife-YuLifeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YuLife-YuLifeTests.release.xcconfig"; path = "Target Support Files/Pods-YuLife-YuLifeTests/Pods-YuLife-YuLifeTests.release.xcconfig"; sourceTree = "<group>"; };
+		4D30EC32B941D5C46665CB1F /* Pods-YuLife-YuLifeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YuLife-YuLifeTests.debug.xcconfig"; path = "Target Support Files/Pods-YuLife-YuLifeTests/Pods-YuLife-YuLifeTests.debug.xcconfig"; sourceTree = "<group>"; };
+		517DE8E34D50740A097FD7B5 /* libPods-YuLife-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-YuLife-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		684CC0C3B4EB889F3A87BCE9 /* Pods-YuLife.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YuLife.debug.xcconfig"; path = "Target Support Files/Pods-YuLife/Pods-YuLife.debug.xcconfig"; sourceTree = "<group>"; };
+		8699D601A3F8074325286D6A /* libPods-YuLife-YuLifeTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-YuLife-YuLifeTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9454F955243794A60040AB7C /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		94658B0E243149CA00E2F06A /* Bariol-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Bariol-Light.otf"; path = "../assets/fonts/Bariol-Light.otf"; sourceTree = "<group>"; };
 		94658B0F243149CA00E2F06A /* Bariol-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Bariol-Regular.otf"; path = "../assets/fonts/Bariol-Regular.otf"; sourceTree = "<group>"; };
@@ -75,12 +75,12 @@
 		94658B12243149CA00E2F06A /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "OpenSans-Regular.ttf"; path = "../assets/fonts/OpenSans-Regular.ttf"; sourceTree = "<group>"; };
 		94658B13243149CB00E2F06A /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "OpenSans-Bold.ttf"; path = "../assets/fonts/OpenSans-Bold.ttf"; sourceTree = "<group>"; };
 		94C644AE24320478007F14F0 /* YuLife.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; name = YuLife.entitlements; path = YuLife/YuLife.entitlements; sourceTree = "<group>"; };
-		A8E11A54391933AB40EFE76A /* Pods-YuLife.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YuLife.release.xcconfig"; path = "Target Support Files/Pods-YuLife/Pods-YuLife.release.xcconfig"; sourceTree = "<group>"; };
-		ACFD5B6CC3F2B03651A7CDAC /* Pods-YuLife-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YuLife-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-YuLife-tvOSTests/Pods-YuLife-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
-		AE0C8B71B60DC2FED1EA8844 /* Pods-YuLife-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YuLife-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-YuLife-tvOS/Pods-YuLife-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
+		A5A057F7FF0EF7E6F1D40122 /* Pods-YuLife-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YuLife-tvOS.release.xcconfig"; path = "Target Support Files/Pods-YuLife-tvOS/Pods-YuLife-tvOS.release.xcconfig"; sourceTree = "<group>"; };
+		CC474B45444C79CCB12E666B /* Pods-YuLife-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YuLife-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-YuLife-tvOSTests/Pods-YuLife-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
+		EAFC300EC3833FDCAC9EBE30 /* Pods-YuLife-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YuLife-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-YuLife-tvOS/Pods-YuLife-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
-		FC9926C19F7832A5D8787601 /* Pods-YuLife-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YuLife-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-YuLife-tvOSTests/Pods-YuLife-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
+		F45840338EBE81B5A798CA7F /* libPods-YuLife-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-YuLife-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,7 +88,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4F38807D46D4C18509E992DD /* libPods-YuLife-YuLifeTests.a in Frameworks */,
+				B927F2047FA30F346DB9C6E8 /* libPods-YuLife-YuLifeTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -96,7 +96,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8BC3FB36475D1BEEAAB51E37 /* libPods-YuLife.a in Frameworks */,
+				ED047669C81445B3F71C25D1 /* libPods-YuLife.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -104,7 +104,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3D8235429BD8017F313EAA3B /* libPods-YuLife-tvOS.a in Frameworks */,
+				9BDF6411472D471D723C981E /* libPods-YuLife-tvOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,7 +112,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				51EEADBCEDD8A768D54887FA /* libPods-YuLife-tvOSTests.a in Frameworks */,
+				6CAC5838880A738283B2FEDE /* libPods-YuLife-tvOSTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -139,14 +139,14 @@
 		04135C840377CDD1F9F897B1 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				3E75109A021F1D926F63084C /* Pods-YuLife.debug.xcconfig */,
-				A8E11A54391933AB40EFE76A /* Pods-YuLife.release.xcconfig */,
-				7D6EECFDE92C0CB3224BB07F /* Pods-YuLife-YuLifeTests.debug.xcconfig */,
-				4578E9BB10AE7577B90A3468 /* Pods-YuLife-YuLifeTests.release.xcconfig */,
-				AE0C8B71B60DC2FED1EA8844 /* Pods-YuLife-tvOS.debug.xcconfig */,
-				8D80A394256892243C564D61 /* Pods-YuLife-tvOS.release.xcconfig */,
-				FC9926C19F7832A5D8787601 /* Pods-YuLife-tvOSTests.debug.xcconfig */,
-				ACFD5B6CC3F2B03651A7CDAC /* Pods-YuLife-tvOSTests.release.xcconfig */,
+				684CC0C3B4EB889F3A87BCE9 /* Pods-YuLife.debug.xcconfig */,
+				0C5F7563A89B08B578D2EA36 /* Pods-YuLife.release.xcconfig */,
+				4D30EC32B941D5C46665CB1F /* Pods-YuLife-YuLifeTests.debug.xcconfig */,
+				46226668B48A7E74F0CEE947 /* Pods-YuLife-YuLifeTests.release.xcconfig */,
+				EAFC300EC3833FDCAC9EBE30 /* Pods-YuLife-tvOS.debug.xcconfig */,
+				A5A057F7FF0EF7E6F1D40122 /* Pods-YuLife-tvOS.release.xcconfig */,
+				CC474B45444C79CCB12E666B /* Pods-YuLife-tvOSTests.debug.xcconfig */,
+				178ED20F56FC64C4B9680BEB /* Pods-YuLife-tvOSTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -177,10 +177,10 @@
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
-				276475669C8CF9B355BDAFB9 /* libPods-YuLife.a */,
-				787738A50F1F99B7CFC60FFE /* libPods-YuLife-YuLifeTests.a */,
-				1556B6F21B5A9D91DD7B2FBF /* libPods-YuLife-tvOS.a */,
-				74BD360B6EC0A16FFA32249C /* libPods-YuLife-tvOSTests.a */,
+				0233CDBD653A7F43BB34C4BD /* libPods-YuLife.a */,
+				8699D601A3F8074325286D6A /* libPods-YuLife-YuLifeTests.a */,
+				F45840338EBE81B5A798CA7F /* libPods-YuLife-tvOS.a */,
+				517DE8E34D50740A097FD7B5 /* libPods-YuLife-tvOSTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -226,11 +226,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "YuLifeTests" */;
 			buildPhases = (
-				88153AF1553E69E68838649C /* [CP] Check Pods Manifest.lock */,
+				849AEC042B35A7B39402CEFB /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
-				E75E17C4B447E210ED70C844 /* [CP] Copy Pods Resources */,
+				3540760A0CFCAD998E4856EB /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -246,13 +246,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "YuLife" */;
 			buildPhases = (
-				D4AC321C229FC8F8CC60B2CC /* [CP] Check Pods Manifest.lock */,
+				D8D35A1981191C9DE3610C92 /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				1902F4157B44ED9CE5111549 /* [CP] Copy Pods Resources */,
+				4AAC6E45AFC2DA602A5C871C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -267,7 +267,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "YuLife-tvOS" */;
 			buildPhases = (
-				0F135811534A6B176024DF1B /* [CP] Check Pods Manifest.lock */,
+				04B84C77E9877C8D6DC8DE25 /* [CP] Check Pods Manifest.lock */,
 				FD10A7F122414F3F0027D42C /* Start Packager */,
 				2D02E4771E0B4A5D006451C7 /* Sources */,
 				2D02E4781E0B4A5D006451C7 /* Frameworks */,
@@ -287,7 +287,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "YuLife-tvOSTests" */;
 			buildPhases = (
-				78C155534423D2765F221435 /* [CP] Check Pods Manifest.lock */,
+				1EBF54BB1EFBC62A5E5FA9AC /* [CP] Check Pods Manifest.lock */,
 				2D02E48C1E0B4A5D006451C7 /* Sources */,
 				2D02E48D1E0B4A5D006451C7 /* Frameworks */,
 				2D02E48E1E0B4A5D006451C7 /* Resources */,
@@ -405,7 +405,7 @@
 			shellPath = /bin/sh;
 			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
 		};
-		0F135811534A6B176024DF1B /* [CP] Check Pods Manifest.lock */ = {
+		04B84C77E9877C8D6DC8DE25 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -427,77 +427,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		1902F4157B44ED9CE5111549 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-YuLife/Pods-YuLife-resources.sh",
-				"${PODS_ROOT}/Intercom/Intercom/Intercom.framework/Versions/A/Resources/Intercom.bundle",
-				"${PODS_ROOT}/Intercom/Intercom/Intercom.framework/Versions/A/Resources/IntercomTranslations.bundle",
-				"${PODS_ROOT}/Mixpanel/Mixpanel/Images/MPArrowLeft.png",
-				"${PODS_ROOT}/Mixpanel/Mixpanel/Images/MPArrowLeft@2x.png",
-				"${PODS_ROOT}/Mixpanel/Mixpanel/Images/MPArrowRight.png",
-				"${PODS_ROOT}/Mixpanel/Mixpanel/Images/MPArrowRight@2x.png",
-				"${PODS_ROOT}/Mixpanel/Mixpanel/Images/MPCheckmark.png",
-				"${PODS_ROOT}/Mixpanel/Mixpanel/Images/MPCheckmark@2x.png",
-				"${PODS_ROOT}/Mixpanel/Mixpanel/Images/MPCloseButton.png",
-				"${PODS_ROOT}/Mixpanel/Mixpanel/Images/MPCloseButton@2x.png",
-				"${PODS_ROOT}/Mixpanel/Mixpanel/Images/MPCloseButton@3x.png",
-				"${PODS_ROOT}/Mixpanel/Mixpanel/Images/MPDismissKeyboard.png",
-				"${PODS_ROOT}/Mixpanel/Mixpanel/Images/MPDismissKeyboard@2x.png",
-				"${PODS_ROOT}/Mixpanel/Mixpanel/Images/MPLogo.png",
-				"${PODS_ROOT}/Mixpanel/Mixpanel/Images/MPLogo@2x.png",
-				"${PODS_ROOT}/Mixpanel/Mixpanel/Images/placeholder-image.png",
-				"${PODS_ROOT}/Mixpanel/Mixpanel/MPTakeoverNotificationViewController~ipad.xib",
-				"${PODS_ROOT}/Mixpanel/Mixpanel/MPTakeoverNotificationViewController~iphonelandscape.xib",
-				"${PODS_ROOT}/Mixpanel/Mixpanel/MPTakeoverNotificationViewController~iphoneportrait.xib",
-				"${PODS_ROOT}/WootricSDK/WootricSDK/WootricSDK/fontawesome-webfont.ttf",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Intercom.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/IntercomTranslations.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MPArrowLeft.png",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MPArrowLeft@2x.png",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MPArrowRight.png",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MPArrowRight@2x.png",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MPCheckmark.png",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MPCheckmark@2x.png",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MPCloseButton.png",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MPCloseButton@2x.png",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MPCloseButton@3x.png",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MPDismissKeyboard.png",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MPDismissKeyboard@2x.png",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MPLogo.png",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MPLogo@2x.png",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/placeholder-image.png",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MPTakeoverNotificationViewController~ipad.nib",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MPTakeoverNotificationViewController~iphonelandscape.nib",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MPTakeoverNotificationViewController~iphoneportrait.nib",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/fontawesome-webfont.ttf",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-YuLife/Pods-YuLife-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		2D02E4CB1E0B4B27006451C7 /* Bundle React Native Code And Images */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Bundle React Native Code And Images";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
-		};
-		78C155534423D2765F221435 /* [CP] Check Pods Manifest.lock */ = {
+		1EBF54BB1EFBC62A5E5FA9AC /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -519,51 +449,21 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		88153AF1553E69E68838649C /* [CP] Check Pods Manifest.lock */ = {
+		2D02E4CB1E0B4B27006451C7 /* Bundle React Native Code And Images */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
 			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
+			name = "Bundle React Native Code And Images";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-YuLife-YuLifeTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
+			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
 		};
-		D4AC321C229FC8F8CC60B2CC /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-YuLife-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		E75E17C4B447E210ED70C844 /* [CP] Copy Pods Resources */ = {
+		3540760A0CFCAD998E4856EB /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -589,6 +489,7 @@
 				"${PODS_ROOT}/Mixpanel/Mixpanel/MPTakeoverNotificationViewController~ipad.xib",
 				"${PODS_ROOT}/Mixpanel/Mixpanel/MPTakeoverNotificationViewController~iphonelandscape.xib",
 				"${PODS_ROOT}/Mixpanel/Mixpanel/MPTakeoverNotificationViewController~iphoneportrait.xib",
+				"${PODS_CONFIGURATION_BUILD_DIR}/React-Core/AccessibilityResources.bundle",
 				"${PODS_ROOT}/WootricSDK/WootricSDK/WootricSDK/fontawesome-webfont.ttf",
 			);
 			name = "[CP] Copy Pods Resources";
@@ -612,11 +513,114 @@
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MPTakeoverNotificationViewController~ipad.nib",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MPTakeoverNotificationViewController~iphonelandscape.nib",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MPTakeoverNotificationViewController~iphoneportrait.nib",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AccessibilityResources.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/fontawesome-webfont.ttf",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-YuLife-YuLifeTests/Pods-YuLife-YuLifeTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4AAC6E45AFC2DA602A5C871C /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-YuLife/Pods-YuLife-resources.sh",
+				"${PODS_ROOT}/Intercom/Intercom/Intercom.framework/Versions/A/Resources/Intercom.bundle",
+				"${PODS_ROOT}/Intercom/Intercom/Intercom.framework/Versions/A/Resources/IntercomTranslations.bundle",
+				"${PODS_ROOT}/Mixpanel/Mixpanel/Images/MPArrowLeft.png",
+				"${PODS_ROOT}/Mixpanel/Mixpanel/Images/MPArrowLeft@2x.png",
+				"${PODS_ROOT}/Mixpanel/Mixpanel/Images/MPArrowRight.png",
+				"${PODS_ROOT}/Mixpanel/Mixpanel/Images/MPArrowRight@2x.png",
+				"${PODS_ROOT}/Mixpanel/Mixpanel/Images/MPCheckmark.png",
+				"${PODS_ROOT}/Mixpanel/Mixpanel/Images/MPCheckmark@2x.png",
+				"${PODS_ROOT}/Mixpanel/Mixpanel/Images/MPCloseButton.png",
+				"${PODS_ROOT}/Mixpanel/Mixpanel/Images/MPCloseButton@2x.png",
+				"${PODS_ROOT}/Mixpanel/Mixpanel/Images/MPCloseButton@3x.png",
+				"${PODS_ROOT}/Mixpanel/Mixpanel/Images/MPDismissKeyboard.png",
+				"${PODS_ROOT}/Mixpanel/Mixpanel/Images/MPDismissKeyboard@2x.png",
+				"${PODS_ROOT}/Mixpanel/Mixpanel/Images/MPLogo.png",
+				"${PODS_ROOT}/Mixpanel/Mixpanel/Images/MPLogo@2x.png",
+				"${PODS_ROOT}/Mixpanel/Mixpanel/Images/placeholder-image.png",
+				"${PODS_ROOT}/Mixpanel/Mixpanel/MPTakeoverNotificationViewController~ipad.xib",
+				"${PODS_ROOT}/Mixpanel/Mixpanel/MPTakeoverNotificationViewController~iphonelandscape.xib",
+				"${PODS_ROOT}/Mixpanel/Mixpanel/MPTakeoverNotificationViewController~iphoneportrait.xib",
+				"${PODS_CONFIGURATION_BUILD_DIR}/React-Core/AccessibilityResources.bundle",
+				"${PODS_ROOT}/WootricSDK/WootricSDK/WootricSDK/fontawesome-webfont.ttf",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Intercom.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/IntercomTranslations.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MPArrowLeft.png",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MPArrowLeft@2x.png",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MPArrowRight.png",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MPArrowRight@2x.png",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MPCheckmark.png",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MPCheckmark@2x.png",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MPCloseButton.png",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MPCloseButton@2x.png",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MPCloseButton@3x.png",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MPDismissKeyboard.png",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MPDismissKeyboard@2x.png",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MPLogo.png",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MPLogo@2x.png",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/placeholder-image.png",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MPTakeoverNotificationViewController~ipad.nib",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MPTakeoverNotificationViewController~iphonelandscape.nib",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MPTakeoverNotificationViewController~iphoneportrait.nib",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AccessibilityResources.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/fontawesome-webfont.ttf",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-YuLife/Pods-YuLife-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		849AEC042B35A7B39402CEFB /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-YuLife-YuLifeTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D8D35A1981191C9DE3610C92 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-YuLife-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FD10A7F022414F080027D42C /* Start Packager */ = {
@@ -724,7 +728,7 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7D6EECFDE92C0CB3224BB07F /* Pods-YuLife-YuLifeTests.debug.xcconfig */;
+			baseConfigurationReference = 4D30EC32B941D5C46665CB1F /* Pods-YuLife-YuLifeTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -747,7 +751,7 @@
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4578E9BB10AE7577B90A3468 /* Pods-YuLife-YuLifeTests.release.xcconfig */;
+			baseConfigurationReference = 46226668B48A7E74F0CEE947 /* Pods-YuLife-YuLifeTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
@@ -767,7 +771,7 @@
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3E75109A021F1D926F63084C /* Pods-YuLife.debug.xcconfig */;
+			baseConfigurationReference = 684CC0C3B4EB889F3A87BCE9 /* Pods-YuLife.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -796,7 +800,7 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A8E11A54391933AB40EFE76A /* Pods-YuLife.release.xcconfig */;
+			baseConfigurationReference = 0C5F7563A89B08B578D2EA36 /* Pods-YuLife.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -819,7 +823,7 @@
 		};
 		2D02E4971E0B4A5E006451C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AE0C8B71B60DC2FED1EA8844 /* Pods-YuLife-tvOS.debug.xcconfig */;
+			baseConfigurationReference = EAFC300EC3833FDCAC9EBE30 /* Pods-YuLife-tvOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -847,7 +851,7 @@
 		};
 		2D02E4981E0B4A5E006451C7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8D80A394256892243C564D61 /* Pods-YuLife-tvOS.release.xcconfig */;
+			baseConfigurationReference = A5A057F7FF0EF7E6F1D40122 /* Pods-YuLife-tvOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -875,7 +879,7 @@
 		};
 		2D02E4991E0B4A5E006451C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FC9926C19F7832A5D8787601 /* Pods-YuLife-tvOSTests.debug.xcconfig */;
+			baseConfigurationReference = CC474B45444C79CCB12E666B /* Pods-YuLife-tvOSTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
@@ -902,7 +906,7 @@
 		};
 		2D02E49A1E0B4A5E006451C7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = ACFD5B6CC3F2B03651A7CDAC /* Pods-YuLife-tvOSTests.release.xcconfig */;
+			baseConfigurationReference = 178ED20F56FC64C4B9680BEB /* Pods-YuLife-tvOSTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;

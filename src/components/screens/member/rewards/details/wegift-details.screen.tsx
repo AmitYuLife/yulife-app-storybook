@@ -7,6 +7,7 @@ import {
 import { Pad } from "../../../../atoms";
 import { RewardItemContent, RewardsListItem, RewardTabs, TopBar } from "../../../../molecules";
 import styles from "./wegift-details.screen.styles";
+import { WEGIFT_DETAILS } from "@ids";
 
 interface IProps {
   uiSettings: UiSettings;
@@ -29,6 +30,7 @@ interface IProps {
   onPressTopBar: () => void;
   onLeftTabPress: () => void;
   onRightTabPress: () => void;
+  testID?: string;
 }
 
 const WegiftDetailsScreen: React.SFC<IProps> = ({
@@ -60,7 +62,7 @@ const WegiftDetailsScreen: React.SFC<IProps> = ({
     <View style={styles.rewardTabsWrapper}>
       <RewardTabs onLeftTabPress={onLeftTabPress} onRightTabPress={onRightTabPress} activeTabIndex={0} />
     </View>
-    <ScrollView showsVerticalScrollIndicator={false} style={styles.wrapper}>
+    <ScrollView showsVerticalScrollIndicator={false} style={styles.wrapper} testID={WEGIFT_DETAILS}>
       <RewardsListItem
         settings={uiSettings}
         cost={cost}

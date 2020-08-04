@@ -20,6 +20,7 @@ export const CHALLENGE_PROGRESS_BAR = "CHALLENGE_PROGRESS_BAR"
 export const STATS_VALUE = (value: any) => `STATS_VALUE_${value.toString()}`
 export const STATS_CHALLENGE_HISTORY = (value: number) => `STATS_CHALLENGE_HISTORY_${value}`
 export const CHALLENGE_UNAVAILABLE = `CHALLENGE_UNAVAILABLE`
+export const WEGIFT_DETAILS = "WEGIFT_DETAILS"
 // buttons
 export const BUTTON_LOGIN = "BUTTON_LOGIN";
 export const BUTTON_SIGNUP_BONUS_NEXT = "BUTTON_SIGNUP_BONUS_NEXT";

@@ -37,7 +37,7 @@ export const {
 
 
 export const statsCorrect = async () => {
-
+    await expect(element(by.text("statistics"))).toBeVisible()
     const titles = [STATS_TITLE("your yucoin"), STATS_TITLE("challenges"), STATS_TITLE("steps"), STATS_TITLE("mindfulness"), STATS_TITLE("cycling")]
     const subtitles = ["total earned", "total redeemed", "total challenges completed", "challenge history", "average daily steps", "most steps in a day", "steps this week", "average mindful minutes per day", "mindful minutes on your best week", "mindful minutes this week", "average cycling distance per day", "cycling distance on your best week", "cycling distance this week", "see activity history"]
 
@@ -47,11 +47,12 @@ export const statsCorrect = async () => {
         let currentAttempt = 0
         let isTitleVisible = await booleanIdVisible(i)
         while (isTitleVisible === false && currentAttempt < maxAttempts) {
-
-            await scrollFromID(STATS_SCREEN, "up", "slow")()
+            
+            await scrollFromID(STATS_SCREEN, "up", "slow", 0.2)()
             isTitleVisible = await booleanIdVisible(i)
             currentAttempt += 1
         }
+        await expect(element(by.id(i))).toBeVisible()
     }
 
     await scrollFromID(STATS_SCREEN, "down", "fast")()
@@ -62,12 +63,11 @@ export const statsCorrect = async () => {
         let isSubTitleVisible = await booleanTextVisible(i)
         while (isSubTitleVisible === false && currentAttempt < maxAttempts) {
 
-            await scrollFromID(STATS_SCREEN, "up", "slow")()
+            await scrollFromID(STATS_SCREEN, "up", "slow", 0.2)()
             isSubTitleVisible = await booleanTextVisible(i);
 
             currentAttempt += 1
         }
-
 
         await expect(element(by.text(i))).toBeVisible()
     };

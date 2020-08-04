@@ -1,5 +1,6 @@
 import { Colours, Style } from "@styles/index";
-import { ImageStyle, StyleSheet, TextStyle, ViewStyle } from "react-native";
+import { StyleSheet, TextStyle, ViewStyle } from "react-native";
+import { ImageStyle } from "react-native-fast-image";
 import { isIphoneX } from "react-native-iphone-x-helper";
 import { MAP_SLICE_HEIGHT } from "../../assets";
 import { CIRCLE_SIZE } from "../../assets/level/level.styles";

@@ -49,14 +49,8 @@ export const specialRewardVisible = (reward: any, type: rewardType) => async () 
 }
 
 export const tapRewardInList = (reward: any) => async () => {
-    if (reward.data.available_denominations.length === 0) {
-        const rewardItem = element(by.id(LOCKED_REWARD_ITEM(reward.data.code)))
-        await rewardItem.tap()
-
-    } else if (reward.data.available_denominations.length > 0) {
         const rewardItem = element(by.id(REWARD_ITEM(reward.data.code)))
         await rewardItem.tap()
-    }
 }
 
 
@@ -131,6 +125,8 @@ export const denominationListVisible = (reward: any, index = 0) => async () => {
 
 export const tapDenominationList = (reward: any, index = 0) => async () => {
     const denomination = reward.data.available_denominations[index]
+    console.log(`£${denomination.value}.00`)
+    await wait(5000)()
     const denominationText = element(by.text(`£${denomination.value}.00`))
     await expect(denominationText).toBeVisible()
     await denominationText.tap()
@@ -144,7 +140,7 @@ export const buyButtonVisible = (reward: any, index = 0) => async () => {
 export const tapBuyButton = (reward: any, index = 0) => async () => {
     const buttonText = element(by.text(`buy with ${reward.data.available_denominations[index].yuCoin} yucoin`))
     await expect(buttonText).toBeVisible()
-    await buttonText.tap()
+    await buttonText.longPress()
 }
 
 export const onRewardPurchasedScreen = (reward: any) => async () => {

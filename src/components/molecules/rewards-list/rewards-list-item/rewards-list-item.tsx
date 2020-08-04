@@ -36,6 +36,7 @@ class RewardsListItem extends PureComponent<IProps, IState> {
 
     return (
       <TouchableOpacityWithDelay
+        testID={REWARD_ITEM(code)}
         activeOpacity={1}
         onPress={onPress || ((): null => null)}
         style={StyleSheet.flatten([styles.wrapper, hasLoaded ? {} : styles.wrapperLoading])}
@@ -56,7 +57,7 @@ class RewardsListItem extends PureComponent<IProps, IState> {
               width: 375,
             })}
           />
-          <View style={styles.overlayWrapper} testID={REWARD_ITEM(code)}>
+          <View style={styles.overlayWrapper}>
             {isLocked ? (
               <LockedOverlay code={code} settings={settings} />
             ) : (

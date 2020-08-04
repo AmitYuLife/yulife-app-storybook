@@ -24,6 +24,7 @@ afterEach(async function () {
   await adapter.afterEach(this);
 });
 
+// comment out for detox debugging/dev
 after(async () => {
   await detoxInstance.cleanup();
   await socketServer.close();

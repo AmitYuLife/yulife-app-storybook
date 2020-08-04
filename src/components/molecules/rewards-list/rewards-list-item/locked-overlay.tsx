@@ -10,13 +10,14 @@ import { LOCKED_REWARD_ITEM } from "@ids";
 interface IProps {
   code: string;
   settings?: GetRewards_getRewards_uiSettings;
+  testID?: string;
 }
 
 export default function LockedOverlay({ code, settings }: IProps) {
   const height = (settings && settings.logoHeight) || 30;
   const width = (settings && settings.logoWidth) || 100;
   return (
-    <View style={styles.lockedContainer} testID={LOCKED_REWARD_ITEM(code)}>
+    <View style={styles.lockedContainer}>
       <View style={styles.lockedWhiteSpace}>
         <FastImage
           resizeMode="contain"
@@ -27,7 +28,7 @@ export default function LockedOverlay({ code, settings }: IProps) {
             width,
           })}
         />
-        <Text bold={true} style={styles.voucherText}>
+        <Text bold={true} style={styles.voucherText} testID={LOCKED_REWARD_ITEM(code)}>
           locked
         </Text>
       </View>

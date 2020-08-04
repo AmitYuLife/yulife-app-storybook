@@ -118,7 +118,7 @@ Feature("As a user I can get past the login screen", async () => {
             Then("I should not see the account locked text", then.textNotVisible("Account is locked. Try again later."))
             Then("an error message should tell me that the combination does not exist", then.combinationErrorMessagePresent);
             Given("I enter an incorrect password five times", given.enterPasswordIncorrectly(5), () => {
-                Then("I should see an error message saying my account is locked", then.textVisible("Account is locked. Try again later."))
+                Then("I should see an error message saying my account is locked", then.combinationErrorMessagePresent)
                 When("I enter the correct password and login", when.loginOnly(CUSTOMER_4, AUTH_4), async () => {
                     Then("I should still be on the login screen", then.idVisible(INPUT_LOGIN_EMAIL))
                     Then("I should still see an error message saying my account is locked", then.textVisible("Account is locked. Try again later."))

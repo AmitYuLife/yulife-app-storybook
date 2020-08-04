@@ -69,15 +69,20 @@ export const expectIsVisibleViaText = async (label: string, waitTime = 0) => {
 
 export const expectDoesNotExistViaText = async (id: string, waitTime = 0) => {
     const target = element(by.text(id));
-    await waitFor(target).toNotExist().withTimeout(waitTime);
-    await expect(target).toNotExist();
+    await (waitFor as any)(target).not.toExist().withTimeout(waitTime);
+    await (expect as any)(target).not.toExist();
     return target;
 };
 
-export const tapText = (text: string, waitTime = 0) => async () => {
+export const tapText = (text: string, waitTime = 0, longPress?:boolean) => async () => {
     const target = element(by.text(text))
     await waitFor(target).toBeVisible().withTimeout(waitTime)
-    await target.tap()
+
+    if(longPress===true){
+        await target.longPress()
+    }else{
+        await target.tap()
+    }
 }
 
 export const textVisible = (text: string, waitTime = 0) => async () => {
@@ -102,7 +107,7 @@ export const tapID = (id: string, waitTime = 0) => async () => {
 export const tapIDAtPoint = (id: string, x: number, y: number, waitTime = 0) => async () => {
     const target = element(by.id(id))
     await waitFor(target).toBeVisible().withTimeout(waitTime)
-    await target.tapAtPoint({ x, y })
+    await (target as any).tap({ x, y })
 }
 
 export const idVisible = (id: string, waitTime = 0) => async () => {

@@ -1,7 +1,6 @@
 import React from "react";
 import { Button } from "react-native";
-import { act, fireEvent } from "@testing-library/react-native";
-import wait from "waait";
+import { act, fireEvent, wait } from "@testing-library/react-native";
 import { testInitialState, IReduxState } from "@redux/_core/reducers";
 import { getDeviceId, getModel } from "react-native-device-info";
 import { IMainTabsProps } from "@navigation/root";
@@ -30,7 +29,7 @@ function StepIncrementer() {
   return <Button title="Increment Step" onPress={step} />;
 }
 
-async function renderComponent(testState: Partial<IReduxState>) {
+function renderComponent(testState: Partial<IReduxState>) {
   const props: IMainTabsProps = {
     componentId: "1234",
     onLeftMenuPress: jest.fn(),
@@ -57,15 +56,11 @@ async function renderComponent(testState: Partial<IReduxState>) {
     }
   );
 
-  await act(async () => {
-    await wait(0);
-  });
-
   return api;
 }
 
 describe("QuestsContainer", () => {
-  it("should update when a user has taken a step", async () => {
+  it("should update when a user has taken a step", () => {
     jest.useRealTimers();
 
     const activeLevel: IActiveLevel = {
@@ -82,7 +77,7 @@ describe("QuestsContainer", () => {
     mockedGetDeviceId.mockReturnValue("iphone");
     mockedGetModel.mockReturnValue("11");
 
-    const { queryByText, getByText } = await renderComponent({
+    const { queryByText, getByText } = renderComponent({
       levels: {
         ...testInitialState.levels,
         active: activeLevel,
@@ -95,6 +90,8 @@ describe("QuestsContainer", () => {
       fireEvent.press(getByText("Increment Step"));
     });
 
-    expect(queryByText(/101 steps/)).toBeTruthy();
+    wait(() => {
+      expect(queryByText(/101 steps/)).toBeTruthy();
+    });
   });
 });

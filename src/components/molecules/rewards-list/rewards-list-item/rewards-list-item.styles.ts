@@ -1,4 +1,4 @@
-import { ImageStyle, StyleSheet, ViewStyle } from "react-native";
+import { StyleSheet, ViewStyle } from "react-native";
 import { Style } from "../../../../styles";
 
 export default StyleSheet.create({
@@ -9,7 +9,7 @@ export default StyleSheet.create({
     ...StyleSheet.absoluteFillObject,
     height: Style.SCALE_UP_AND_DOWN(150),
     width: Style.SCALE_UP_AND_DOWN(375),
-  } as ImageStyle,
+  },
   overlayWrapper: {
     marginRight: "auto",
   } as ViewStyle,
