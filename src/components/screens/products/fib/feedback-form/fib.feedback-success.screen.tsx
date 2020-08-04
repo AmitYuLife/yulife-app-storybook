@@ -1,15 +1,18 @@
 import React, { useCallback } from "react";
-import { View, Image, StyleSheet, ViewStyle, SafeAreaView, ScrollView } from "react-native";
+import { View, StyleSheet, ViewStyle, SafeAreaView, ScrollView } from "react-native";
 import { Text, MinimalButton, GenericHeading, Heading } from "@atoms";
 import { Style, Colours } from "@styles";
 import { connect } from "react-redux";
 import { IReduxState } from "@redux/_core/reducers";
 import { getUserFirstName } from "@redux/user/user.selectors";
+import { Avatar } from "@components/screens/member/yu-screen/subcomponents/avatar-section/avatar";
 import { useBackHandler } from "../../../../../services/hooks/useBackHandler";
+import { FibFeedbackSuccessImage } from "./fib.feedback-success-image";
 
 type ConnectedState = ReturnType<typeof mapStateToProps>;
 
 interface Props extends ConnectedState {
+  avatar: string;
   onNavigateBack: () => void;
   onContinue: () => void;
 }
@@ -24,17 +27,24 @@ function FibFeedbackSuccessScreen(props: Props) {
   useBackHandler(backHandler);
   return (
     <>
-      <SafeAreaView>
-        <GenericHeading heading="Feedback" isBeta={true} onLeftIconPress={onNavigateBack} />
+      <SafeAreaView style={{ flex: 1 }}>
+        <GenericHeading heading="Feedback" isBeta={true} onLeftIconPress={props.onNavigateBack} />
         <ScrollView showsVerticalScrollIndicator={false}>
           <View style={styles.imageWrapper}>
-            <Image source={require("@assets/fib/feedback/feedback-complete-image.png")} />
+            <FibFeedbackSuccessImage />
+
+            <View style={styles.avatarOuterWrapper}>
+              <View style={styles.avatarWrapper}>
+                <Avatar sizeMultiplier={0.6} avatar={null} isAvatarCreated={true} avatarUrl={props.avatar} />
+              </View>
+            </View>
           </View>
           <View style={styles.textWrapper}>
-            <Heading label={`Thank you ${props.firstName},`} bold={true} style={styles.header} />
+            <Heading label={`Thanks, ${props.firstName}`} bold={true} style={styles.header} />
 
             <Text style={styles.text}>
-              We appreciate your feedback. Thank you for helping us make YuLife the best insurance company in the world!
+              We build everything with our YuLifers in mind, and your feedback helps us stay on track and deliver an app
+              that’s perfect for <Text style={{ fontStyle: "italic" }}>you</Text>!
             </Text>
           </View>
         </ScrollView>
@@ -66,16 +76,27 @@ const styles = StyleSheet.create({
   header: {
     textAlign: "left",
     color: Colours.products.fib.n800,
-    marginTop: 16,
+    marginTop: 50,
   },
   textWrapper: {
     textAlign: "left",
     marginHorizontal: 32,
-    paddingBottom: 200,
+    marginBottom: 100,
+  },
+  avatarOuterWrapper: {
+    alignItems: "flex-end",
+    width: 200,
+    alignSelf: "center",
+    marginVertical: 12,
+  },
+  avatarWrapper: {
+    position: "absolute",
+    bottom: 15,
+    right: -40,
   },
   imageWrapper: {
     alignItems: "center",
-    marginTop: 70,
+    marginTop: 30,
     width: "100%",
   } as ViewStyle,
   buttonTitle: {

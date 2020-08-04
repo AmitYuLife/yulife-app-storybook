@@ -47,7 +47,7 @@ export default function* setMainRootSaga({ payload }: IMainRootPayload) {
     yield put(setUnauthenticated());
   }
 
-  if (!!payload) {
+  if (payload) {
     yield call(handleDeepLink, payload, token);
   }
 }
