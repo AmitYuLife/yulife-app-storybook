@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
     paddingLeft: Style.adjust(10),
-    justifyContent: "center"
+    justifyContent: "center",
   } as ViewStyle,
   text: {
     fontSize: Style.adjust(18),
