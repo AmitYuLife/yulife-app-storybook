@@ -12,7 +12,6 @@
     "detox:test:base": "TS_NODE_PROJECT=./e2e/tsconfig.json yarn detox test --cleanup -c ios.sim.debug --loglevel verbose e2e/init.ts",
     "detox:test:all": "yarn detox:test:base e2e/**/*.spec.ts",
     "detox:smoke": "yarn detox:test:base e2e/00_Smoke/**/*.spec.ts",
-    "detox:backend": "yarn detox:test:base e2e/01_Backend/**/*.spec.ts",
     "detox:extended": "yarn detox:test:base e2e/02_Extended/**/*.spec.ts",
     "ios:record": "(rm simulator.mov || echo '') && xcrun simctl io booted recordVideo simulator.mov",
     "start:android": "react-native run-android --variant=debug",
