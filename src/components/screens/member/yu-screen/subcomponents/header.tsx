@@ -31,26 +31,28 @@ const getTopBarFiller = () => {
 export const YuScreenHeader = memo(function HeaderFC(props: Props) {
   const { userName = "", level = 0, earnRate, onEarnRatePress } = props;
   return (
-    <View style={styles.header}>
-      <Text style={styles.userName}>{userName}</Text>
-      <View style={styles.currentWorldWrapper}>
-        <View style={styles.currentWorld}>
-          <Image style={styles.image} source={getCurrentWorldImage(getCurrentWorld(level))} />
-          <View style={styles.currentWorldDetailsWrapper}>
-            <Text
-              style={StyleSheet.flatten([
-                styles.worldText,
-                { color: getCurrentWorldTextColor(getCurrentWorld(level)) },
-              ])}
-            >
-              {getCurrentWorldText(getCurrentWorld(level))}
-            </Text>
-            {!level ? null : <Text style={styles.levelText}>{`Lvl ${level}`}</Text>}
+    <>
+      <View style={styles.header}>
+        <Text style={styles.userName}>{userName}</Text>
+        <View style={styles.currentWorldWrapper}>
+          <View style={styles.currentWorld}>
+            <Image style={styles.image} source={getCurrentWorldImage(getCurrentWorld(level))} />
+            <View style={styles.currentWorldDetailsWrapper}>
+              <Text
+                style={StyleSheet.flatten([
+                  styles.worldText,
+                  { color: getCurrentWorldTextColor(getCurrentWorld(level)) },
+                ])}
+              >
+                {getCurrentWorldText(getCurrentWorld(level))}
+              </Text>
+              {!level ? null : <Text style={styles.levelText}>{`Lvl ${level}`}</Text>}
+            </View>
           </View>
         </View>
       </View>
       <EarnRateButton earnRate={earnRate} onEarnRatePress={onEarnRatePress} />
-    </View>
+    </>
   );
 });
 
