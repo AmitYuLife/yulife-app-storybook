@@ -1,9 +1,9 @@
 import React, { memo } from "react";
-import { StyleSheet, ViewStyle, TextStyle, View } from "react-native";
+import { StyleSheet, ViewStyle, View, Platform } from "react-native";
 import { EarnRateSVG } from "../svg/earn-rate-svg";
-import { Style, Colours } from "@styles";
 import { EARN_RATE_BUTTON } from "@ids";
 import { TouchableOpacityWithDelay } from "@molecules";
+import { Style } from "@styles";
 
 interface Props {
   earnRate: number;
@@ -11,6 +11,23 @@ interface Props {
 }
 const WRAPPER_HEIGHT = 48;
 const WRAPPER_WIDTH = 152;
+const BUTTON_POSITION = 96;
+
+const getTopBarFiller = () => {
+  if (Platform.OS === "android") {
+    return 0;
+  }
+
+  if (Style.isIphoneXPlus()) {
+    return 42;
+  }
+
+  if (Style.isIphoneX()) {
+    return 37;
+  }
+
+  return 16;
+};
 
 export const EarnRateButton = memo(function ({ earnRate, onEarnRatePress }: Props) {
   return (
@@ -27,19 +44,8 @@ const styles = StyleSheet.create({
     position: "absolute",
     height: WRAPPER_HEIGHT,
     width: WRAPPER_WIDTH,
-    bottom: -WRAPPER_HEIGHT / 2,
+    top: getTopBarFiller() + BUTTON_POSITION,
     alignSelf: "center",
-  } as ViewStyle,
-  text: {
-    color: Colours.yuscreen.brown,
-    fontSize: Style.adjust(14),
-    fontFamily: Style.FONT_FAMILY_PRIMARY_BOLD,
-    letterSpacing: Style.adjust(1),
-    lineHeight: Style.adjust(24),
-    marginRight: Style.adjust(3),
-  } as TextStyle,
-  absoluteTextWrapper: {
-    justifyContent: "center",
-    alignItems: "center",
+    zIndex: 1,
   } as ViewStyle,
 });
