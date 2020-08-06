@@ -62,7 +62,7 @@ export const USER_17 = {
     type: "mongo",
     modelName: "users",
     data: {
-        _id: generateRandomMongoId(),
+        _id: "5f2ab87a75ffd2a445b11263",
         userId: CUSTOMER_17.data.customerId,
         products: [{
             productId: generateRandomMongoId(),
@@ -73,52 +73,10 @@ export const USER_17 = {
         }],
         isAvatarCreated: true,
         earnRate: 10,
-        avatar: {
-            "head": {
-                "partId": "male_head_1",
-                "colorSchemeId": "skin_peach"
-            },
-            "hair": {
-                "partId": "spiral_curls",
-                "colorSchemeId": "hair_charcoal_black"
-            },
-            "body": {
-                "partId": "male_body_1",
-                "colorSchemeId": "skin_peach"
-            },
-            "pants": {
-                "partId": "male_pants_1",
-                "colorSchemeId": ""
-            },
-            "chest": {
-                "partId": "male_chest_1",
-                "colorSchemeId": ""
-            },
-            "gloves": {
-                "partId": "",
-                "colorSchemeId": ""
-            },
-            "facialHair": {
-                "partId": "cowboy_moustache",
-                "colorSchemeId": "facial_hair_black"
-            },
-            "glasses": {
-                "partId": "",
-                "colorSchemeId": ""
-            },
-            "boots": {
-                "partId": "male_boots_1",
-                "colorSchemeId": ""
-            },
-            "leftEye": {
-                "partId": "eyes_1",
-                "colorSchemeId": "eyes_deadshot_black"
-            },
-            "rightEye": {
-                "partId": "eyes_1",
-                "colorSchemeId": "eyes_deadshot_black"
-            }
-        }
+        cloudinaryAvatar:{
+            filename:"api/local/avatars/530EDE9E07434A4EB1E251A8548D834C",
+            version:1
+        },
     }
 } as IDatabaseItem
 

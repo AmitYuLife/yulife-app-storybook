@@ -122,6 +122,11 @@ export const idNotVisible = (id: string, waitTime = 0) => async () => {
     await expect(target).toBeNotVisible()
 }
 
+export const idVisibleAtIndex =(id:string,index:number, waitTime=0) => async()=>{
+    const target = element(by.id(id)).atIndex(index)
+    await waitFor(target).toBeNotVisible().withTimeout(waitTime)
+    await expect(target).toBeNotVisible()
+}
 
 export const typeViaID = (id: string, text: string) => async () => {
     const target = element(by.id(id))

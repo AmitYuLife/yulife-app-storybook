@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { View, Animated, Platform } from "react-native";
 import { Yumoji } from "@atoms";
 import { GetLeaderboard_getLeaderboard_avatarRemoteFiles } from "@graphql/_core/schema";
-import { YUSCREEN_AVATAR } from "@ids";
+import { YUMOJI_PODIUM } from "@ids";
 import styles, { dynamicStyles, LEADERBOARD_PODIUM_HEIGHT } from "./leaderboard-podium.styles";
 import { PodiumAsset } from "./assets/podium";
 import { LeaderboardTitle } from "./subcomponents/leaderboard-title";
@@ -58,7 +58,7 @@ function Avatars({ uriSet, hideAvatars }: Pick<ILeaderboardPodiumProps, "uriSet"
     <>
       {uriSet.map((uri, index) => (
         <PodiumPosition key={uri || index} order={index} isEmpty={!uri}>
-          <Yumoji testID={index === 1 ? YUSCREEN_AVATAR : null} uri={uri} />
+          <Yumoji testID={uri != null ? YUMOJI_PODIUM(index) : null} uri={uri} />
         </PodiumPosition>
       ))}
     </>
