@@ -10,13 +10,13 @@ interface Props {
   testID: string;
 }
 
-function _Yumoji({ uri }: Props) {
+function _Yumoji({ uri, testID }: Props) {
   if (!uri) {
     return <EmptyMaleBody />;
   }
 
   return (
-    <View style={styles.wrapper}>
+    <View style={styles.wrapper} testID={testID}>
       <FastImage source={{ uri }} style={styles.image} />
     </View>
   );
