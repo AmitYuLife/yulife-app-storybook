@@ -20,13 +20,13 @@ export const calculatePayoutCalculatorItems = (
   const monthsTillBirthday = Math.ceil(Math.abs(moment().diff(momentDateOfBirth.year(moment().year()), "days") / 31));
 
   const maxAge = customerAge + 40 < 70 ? customerAge + 40 : 70;
-  const maxMonth = maxAge === 70 ? 12 : moment().month() + 1; // month index starts in 0
+  const maxMonth = maxAge === 70 ? 11 : moment().month(); // month index starts in 0
 
   const defaultPayoutEstimatorItems = {
     years: Array.from({ length: 41 })
       .map((_, i) => i + customerAge)
-      .filter((y) => y <= 70),
-    months: Array.from({ length: 12 }).map((_, i) => i + 1),
+      .filter((y) => y < 71),
+    months: Array.from({ length: 12 }).map((_, i) => i),
     max: {
       year: maxAge,
       month: maxMonth,
@@ -39,7 +39,7 @@ export const calculatePayoutCalculatorItems = (
 
   if (defaultPayoutEstimatorItems.min.year === defaultPayoutEstimatorItems.years[deceaseAgeIndexYear]) {
     const months = defaultPayoutEstimatorItems.months.slice(
-      defaultPayoutEstimatorItems.months.length - monthsTillBirthday - 1
+      defaultPayoutEstimatorItems.months.length - monthsTillBirthday
     );
     const newItems = { ...defaultPayoutEstimatorItems, months };
     return newItems;

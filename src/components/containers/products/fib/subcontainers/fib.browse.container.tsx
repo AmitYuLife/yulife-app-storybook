@@ -73,6 +73,12 @@ const FibBrowseContainer = memo(function (props: IFibContainer & ReturnType<type
     setDeceaseAgeIndexMonth
   );
 
+  //TODO: deceaseAgeIndexMonth should be handle on calculate payout calculator items
+  const deceaseAgeMonth =
+    +payoutEstimatorItems.months[deceaseAgeIndexMonth] === +payoutEstimatorItems.months[deceaseAgeIndexMonth]
+      ? payoutEstimatorItems.months[deceaseAgeIndexMonth]
+      : payoutEstimatorItems.months[payoutEstimatorItems.months.length - 1];
+
   const { loading, error, data } = useQuery<GetLifeInsuranceToUpsData, GetLifeInsuranceTopUpsVars>(
     GQL_GET_LIFE_INSURANCE_TOP_UPS,
     {
@@ -81,10 +87,9 @@ const FibBrowseContainer = memo(function (props: IFibContainer & ReturnType<type
         coverType: selectedCoverType,
         customCoverPercentage,
         deceaseAgeYear: payoutEstimatorItems.years[deceaseAgeIndexYear],
-        deceaseAgeMonth:
-          payoutEstimatorItems.months[deceaseAgeIndexMonth] ||
-          payoutEstimatorItems.months[payoutEstimatorItems.months.length - 1], //TODO: deceaseAgeIndexMonth should be handle on calculate payout calculator items
+        deceaseAgeMonth: deceaseAgeMonth,
       },
+      fetchPolicy: "network-only",
     }
   );
 
