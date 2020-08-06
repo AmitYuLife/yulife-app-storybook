@@ -1,4 +1,4 @@
-import React, { memo, ComponentProps } from "react";
+import React, { memo, ComponentProps, useCallback } from "react";
 import { StyleSheet, ScrollView, SafeAreaView } from "react-native";
 import { GenericHeading } from "@atoms";
 import { Style } from "@styles";
@@ -10,10 +10,12 @@ import { PayoutCalculator } from "./subcomponents/payout-calculator/payout-calcu
 import { Documents } from "./subcomponents/documents/documents";
 import { Package } from "./fib.browse.types";
 import { formatPrice } from "@components/containers/products/fib/fib.helpers";
+import { useBackHandler } from "@services/hooks/useBackHandler";
 
 interface IFibCustomCoverScreenProps {
-  onNavigateToYuScreen: () => void;
+  onNavigateBack: () => void;
   navigateToEditSalary: () => void;
+  navigateToFeedbackForm: () => void;
   avatarUrl: string;
   faqs: ComponentProps<typeof Faqs>["items"];
   documents: ComponentProps<typeof Faqs>["items"];
@@ -26,7 +28,7 @@ interface IFibCustomCoverScreenProps {
 
 export const FibCustomCoverScreen = memo(function (props: IFibCustomCoverScreenProps) {
   const {
-    onNavigateToYuScreen,
+    onNavigateBack,
     avatarUrl,
     faqs,
     navigateToEditSalary,
@@ -36,17 +38,20 @@ export const FibCustomCoverScreen = memo(function (props: IFibCustomCoverScreenP
     setDeceaseAgeIndexYear,
     setDeceaseAgeIndexMonth,
     loading,
+    navigateToFeedbackForm,
   } = props;
+
+  const backHandler = useCallback(() => {
+    onNavigateBack();
+    return true;
+  }, [onNavigateBack]);
+
+  useBackHandler(backHandler);
 
   return (
     <>
       <SafeAreaView style={styles.wrapper}>
-        <GenericHeading
-          heading="Create custom cover"
-          isBeta={true}
-          leftIcon="BACK"
-          onLeftIconPress={onNavigateToYuScreen}
-        />
+        <GenericHeading heading="Create custom cover" isBeta={true} leftIcon="BACK" onLeftIconPress={onNavigateBack} />
         <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scrollView}>
           <AvatarAndDescription loading={loading} avatarUrl={avatarUrl} selectedPackage={selectedPackage} />
           <EstimatedCost
@@ -75,7 +80,7 @@ export const FibCustomCoverScreen = memo(function (props: IFibCustomCoverScreenP
         </ScrollView>
       </SafeAreaView>
 
-      <ContinueButton onPress={onNavigateToYuScreen} />
+      <ContinueButton onPress={navigateToFeedbackForm} />
     </>
   );
 });
