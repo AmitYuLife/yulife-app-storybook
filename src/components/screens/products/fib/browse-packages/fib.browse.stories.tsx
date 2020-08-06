@@ -65,7 +65,8 @@ storiesOf("FibBrowse", module)
     <FibCustomCoverScreen
       selectedPackage={selectedPackage}
       navigateToEditSalary={() => null}
-      onNavigateToYuScreen={(): void => null}
+      onNavigateBack={(): void => null}
+      navigateToFeedbackForm={() => null}
       avatarUrl={""}
       faqs={faqs}
       documents={documents}

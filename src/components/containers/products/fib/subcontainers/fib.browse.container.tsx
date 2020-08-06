@@ -125,8 +125,9 @@ const FibBrowseContainer = memo(function (props: IFibContainer & ReturnType<type
     return (
       <FibCustomCoverScreen
         avatarUrl={yuliferData.getYulifer.avatarRemoteFiles?.pngFull}
-        onNavigateToYuScreen={navigation.pop}
+        onNavigateBack={navigation.pop}
         navigateToEditSalary={() => navigation.push(FIB_EDIT_SALARY, { onPressDone: navigation.pop })}
+        navigateToFeedbackForm={() => navigation.push(FIB_FEEDBACK_FORM)}
         faqs={faqs}
         documents={documents}
         selectedPackage={packageDetails}

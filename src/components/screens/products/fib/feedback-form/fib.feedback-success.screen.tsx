@@ -1,5 +1,5 @@
 import React, { useCallback } from "react";
-import { View, StyleSheet, ViewStyle, SafeAreaView, ScrollView } from "react-native";
+import { View, StyleSheet, ViewStyle, ScrollView, SafeAreaView } from "react-native";
 import { Text, MinimalButton, GenericHeading, Heading } from "@atoms";
 import { Style, Colours } from "@styles";
 import { connect } from "react-redux";
@@ -27,7 +27,7 @@ function FibFeedbackSuccessScreen(props: Props) {
   useBackHandler(backHandler);
   return (
     <>
-      <SafeAreaView style={{ flex: 1 }}>
+      <SafeAreaView style={styles.wrapper}>
         <GenericHeading heading="Feedback" isBeta={true} onLeftIconPress={props.onNavigateBack} />
         <ScrollView showsVerticalScrollIndicator={false}>
           <View style={styles.imageWrapper}>
@@ -73,6 +73,11 @@ const mapStateToProps = (state: IReduxState) => ({
 export default connect<ConnectedState>(mapStateToProps)(FibFeedbackSuccessScreen);
 
 const styles = StyleSheet.create({
+  wrapper: {
+    backgroundColor: "white",
+    flex: 1,
+    marginTop: Style.isAnyIphoneX() ? -10 : 0,
+  },
   header: {
     textAlign: "left",
     color: Colours.products.fib.n800,
