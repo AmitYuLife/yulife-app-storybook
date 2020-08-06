@@ -1,4 +1,4 @@
-import React, { memo, useEffect } from "react";
+import React, { memo, useEffect, useRef } from "react";
 import {
   StyleSheet,
   ScrollView,
@@ -65,11 +65,23 @@ export const FibBrowseScreen = memo(function (props: IFibBrowseScreenProps) {
     onScrollEnd,
   } = props;
 
+  const scrollViewRef = useRef<ScrollView>(null);
   const onSelectPackage = (packageId: string) => {
     const coverType = packageId.toLowerCase() as PackageId;
-
     selectCoverType(coverType);
   };
+
+  useEffect(() => {
+    if (offset && offset.y > 0) {
+      setTimeout(() => {
+        if (scrollViewRef.current && scrollViewRef.current.scrollTo) {
+          scrollViewRef.current.scrollTo({ ...offset, animated: false });
+        }
+      }, 0);
+    }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     Logger.logEvent("package_view", {
@@ -92,9 +104,9 @@ export const FibBrowseScreen = memo(function (props: IFibBrowseScreenProps) {
           isBeta={true}
         />
         <ScrollView
-          contentOffset={offset}
           onMomentumScrollEnd={onScrollEnd}
           showsVerticalScrollIndicator={false}
+          ref={scrollViewRef}
           contentContainerStyle={styles.scrollView}
         >
           <Animatable.View duration={1000} animation="fadeIn" style={styles.flex} useNativeDriver={true}>
