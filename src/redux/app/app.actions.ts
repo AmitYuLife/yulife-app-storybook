@@ -14,6 +14,8 @@ export const APOLLO_EVENT = "APOLLO_EVENT";
 export interface ApolloRequestPayload {
   operation: Operation;
   currentRequestCount: number;
+  started: boolean;
+  completed: boolean;
   networkError?: boolean;
   result: {};
 }
