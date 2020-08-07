@@ -7,7 +7,8 @@ export type FibRoute =
   | "FibEditSalary"
   | "FibSalaryDescription"
   | "FibCustomPercentage"
-  | "FibFeedbackForm";
+  | "FibFeedbackForm"
+  | "FibUnderwritingJourney";
 
 export type FibLocalNavigation = LocalNavigation<FibRoute>;
 
@@ -18,6 +19,7 @@ export const FIB_EDIT_SALARY = "FibEditSalary";
 export const FIB_SALARY_DESCRIPTION = "FibSalaryDescription";
 export const FIB_CUSTOM_PERCENTAGE = "FibCustomPercentage";
 export const FIB_FEEDBACK_FORM = "FibFeedbackForm";
+export const FIB_UNDERWRITING_JOURNEY = "FibUnderwritingJourney";
 
 export interface FAQ {
   id: string;
