@@ -42,7 +42,7 @@ const FibIntroductionContainer = memo(function (props: Props) {
   return (
     <FibIntroductionScreen
       firstName={firstName}
-      avatar={data.getYulifer.avatarRemoteFiles?.pngFull}
+      avatar={data?.getYulifer.avatarRemoteFiles?.pngFull}
       navigateToYuScreen={navigation.popToMain}
       onNavigateToSalary={() => navigation.push(FIB_EDIT_SALARY)}
     />

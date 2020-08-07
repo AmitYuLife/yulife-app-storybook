@@ -13,7 +13,7 @@ export function formatPrice(price: number | null) {
 export const calculatePayoutCalculatorItems = (
   userDateOfBirth: string,
   deceaseAgeIndexYear: number,
-  setDeceaseAgeIndexMonth: (index: number) => void
+  setDeceaseAgeIndexMonth?: (index: number) => void
 ): CalculatorItems => {
   const momentDateOfBirth = moment(userDateOfBirth);
   const customerAge = moment().diff(momentDateOfBirth, "year");
