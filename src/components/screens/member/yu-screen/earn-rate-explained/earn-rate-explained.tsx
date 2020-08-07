@@ -10,6 +10,7 @@ import {
 import { ProductType } from "@containers/member/yu-screen/yu-screen-products.container";
 import { EarnRateTable, Card, Products } from "./subcomponents";
 import { getActiveProducts } from "./earn-rate-explained.helpers";
+import { YOUR_YUCOIN_SCREEN } from "@ids";
 
 interface IProps {
   earnRate: number;
@@ -31,7 +32,7 @@ function YuScreenEarnRate({ products, onExitConfirmed, onProductDetails, explain
   return (
     <SafeAreaView style={styles.background}>
       <GenericHeading heading="Your YuCoin" onLeftIconPress={onExitConfirmed} />
-      <ScrollView style={styles.background} showsVerticalScrollIndicator={false}>
+      <ScrollView style={styles.background} showsVerticalScrollIndicator={false} testID={YOUR_YUCOIN_SCREEN}>
         <View style={styles.wrapper}>
           <Card hasCharmsOnly={hasCharmsOnly} earnRate={earnRate} />
           <EarnRateTable earnRate={earnRate} explainData={explainData} loading={loading} />

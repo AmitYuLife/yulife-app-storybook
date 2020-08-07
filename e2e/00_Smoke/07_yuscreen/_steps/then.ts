@@ -1,9 +1,9 @@
 import {
     navigation, YUSCREEN, GET_STARTED_BUTTON, EMPTY_YUSCREEN_COPY,
     MALE_BODY, FEMALE_BODY, BODY_ITEM_TITLE, multipleTextVisible,
-    AVATAR_BODY, PERSONAL_PRODUCT, SURVEY_SCREEN, BUILDER_BODY
+    AVATAR_BODY, PERSONAL_PRODUCT, SURVEY_SCREEN, BUILDER_BODY, booleanTextVisible, YOUR_YUCOIN_SCREEN
 } from "@utils"
-import { scrollFromText } from "_utils/navigation/scrolling"
+import { scrollFromText, scrollFromID } from "_utils/navigation/scrolling"
 
 export const {
     idVisible,
@@ -84,6 +84,8 @@ export const onAvatarCompletionScreen = async () => {
 }
 
 export const onYourYuCoin = async () => {
+    await expect(element(by.id(YOUR_YUCOIN_SCREEN))).toBeVisible()
+    
     const copy = [
         "Your YuCoin",
         "Earn Rate Explained",
@@ -97,10 +99,11 @@ export const onYourYuCoin = async () => {
     ]
 
     for (let i = 0; i < copy.length; i++) {
+
         try {
             await expect(element(by.text(copy[i]))).toBeVisible()
         } catch (e) {
-            await scrollFromText(copy[i - 1], "up", "fast")()
+            await scrollFromID(YOUR_YUCOIN_SCREEN, "up", "fast")()
             await expect(element(by.text(copy[i]))).toBeVisible()
         }
 
