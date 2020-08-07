@@ -84,6 +84,7 @@ export const EMPTY_YUSCREEN_COPY = "EMPTY_YUSCREEN_COPY"
 export const FEMALE_BODY = "FEMALE_BODY"
 export const MALE_BODY = "MALE_BODY"
 export const EARN_RATE_BUTTON = (earnRate: number) => `EARN_RATE_BUTTON_${earnRate}`
+export const YOUR_YUCOIN_SCREEN = "YOUR_YUCOIN_SCREEN"
 
 // AVATAR BUILDER
 export const BODY_ITEM_TITLE = (title: string) => `BODY_ITEM_TITLE_${title}`
