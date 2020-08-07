@@ -17,6 +17,7 @@ import {
   FIB_BROWSE,
   FIB_CUSTOM_PERCENTAGE,
   FIB_FEEDBACK_FORM,
+  FIB_UNDERWRITING_JOURNEY,
 } from "./fib.types";
 import { Navigation } from "react-native-navigation";
 import { ROUTES } from "@navigation/constants";
@@ -25,6 +26,7 @@ import { IReduxState } from "@redux/_core/reducers";
 import { connect } from "react-redux";
 import FibCustomPercentage from "./subcontainers/fib.custom-percentage.container";
 import FibFeedbackFormContainer from "./subcontainers/fib.feedback-form.container";
+import FibUnderwritingJourneyContainer from "./subcontainers/fib.underwriting-journey.container";
 
 interface RouteProps {
   navigation: FibLocalNavigation;
@@ -55,6 +57,8 @@ function getComponent(routeProps: RouteProps) {
       return <FibCustomPercentage navigation={navigation} />;
     case FIB_FEEDBACK_FORM:
       return <FibFeedbackFormContainer navigation={navigation} />;
+    case FIB_UNDERWRITING_JOURNEY:
+      return <FibUnderwritingJourneyContainer navigation={navigation} />;
     default:
       return <FibBrowseContainer selectFaq={selectFaq} navigation={navigation} />;
   }
