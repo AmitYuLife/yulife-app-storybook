@@ -1,5 +1,13 @@
-import React, { useState, FC } from "react";
-import { View, Animated, NativeSyntheticEvent, NativeScrollEvent, ViewStyle, TextStyle } from "react-native";
+import React, { useState, FC, useRef, RefObject, useEffect } from "react";
+import {
+  View,
+  Animated,
+  NativeSyntheticEvent,
+  NativeScrollEvent,
+  ViewStyle,
+  TextStyle,
+  ScrollView,
+} from "react-native";
 import styles, { ITEM_WIDTH, HIGHLIGHT_RADIUS } from "./horizontal-scroller.styles";
 import { Wrapper } from "./subcomponents/wrapper";
 import {
@@ -25,6 +33,7 @@ type Props = {
   activeTextStyle?: TextStyle;
   newActiveIndexCallback?: (activeIndex: number) => void;
   gradientLeftStyle?: ViewStyle;
+  resetsOnUpdate?: boolean;
 } & StaticProps;
 
 const ANDROID_SAFEGUARD = 0.1;
@@ -38,18 +47,34 @@ const HorizontalScroller: FC<Props> & StaticProps = ({
   activeTextStyle,
   newActiveIndexCallback,
   gradientLeftStyle,
+  resetsOnUpdate,
 }) => {
+  const itemsLength = useRef(items.length);
   const [scrollX] = useState(new Animated.Value(0));
+  const scrollViewRef: RefObject<ScrollView> = useRef(null);
+
+  useEffect(() => {
+    if (resetsOnUpdate) {
+      if (newActiveIndexCallback) {
+        if (itemsLength.current !== items.length) {
+          newActiveIndexCallback(0);
+          scrollViewRef.current.scrollTo({ x: 0, animated: false });
+          itemsLength.current = items.length;
+        }
+      }
+    }
+  }, [resetsOnUpdate, items, newActiveIndexCallback]);
 
   const handleScrollEndDrag = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
-    const hasMomentum = event.nativeEvent.velocity;
+    const hasMomentum = event.nativeEvent.velocity.x;
 
     if (hasMomentum) {
       // let handleMomentumScrollEnd handle
       return;
     }
 
-    handleSwipe(event);
+    const activeIndex = handleSwipe(event);
+    scrollViewRef.current.scrollTo({ x: activeIndex * ITEM_WIDTH, animated: false });
   };
 
   const handleSwipe = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
@@ -67,16 +92,23 @@ const HorizontalScroller: FC<Props> & StaticProps = ({
     if (newActiveIndexCallback) {
       newActiveIndexCallback(activeIndex);
     }
+
+    return activeIndex;
+  };
+
+  const handleMomentumScrollEnd = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
+    const activeIndex = handleSwipe(event);
+    scrollViewRef.current.scrollTo({ x: activeIndex * ITEM_WIDTH, animated: false });
   };
 
   return (
     <View style={styles.wrapper}>
       <Highlight style={highlightStyle} />
       <Animated.ScrollView
+        ref={scrollViewRef}
         onScroll={Animated.event([{ nativeEvent: { contentOffset: { x: scrollX } } }], { useNativeDriver: true })}
         onScrollEndDrag={handleScrollEndDrag}
-        onMomentumScrollEnd={handleSwipe}
-        snapToInterval={ITEM_WIDTH}
+        onMomentumScrollEnd={handleMomentumScrollEnd}
         disableScrollViewPanResponder={true}
         scrollEventThrottle={16}
         contentContainerStyle={styles.contentContainer}

@@ -1,5 +1,5 @@
 import React, { memo } from "react";
-import { View, StyleSheet, ViewStyle, TextStyle, ActivityIndicator } from "react-native";
+import { View, StyleSheet, ViewStyle, TextStyle, ActivityIndicator, Platform } from "react-native";
 import { Style } from "@styles";
 import { Text } from "@atoms";
 import HorizontalScroller from "@components/molecules/horizontal-scroller/horizontal-scroller";
@@ -55,6 +55,7 @@ export const Calculator = memo(
           highlightLabel="months"
           items={items.months}
           newActiveIndexCallback={setDeceaseAgeIndexMonth}
+          resetsOnUpdate={true}
         />
         <View style={styles.payoutAmountWrapper}>
           {loading ? (
@@ -102,15 +103,15 @@ const styles = StyleSheet.create({
   } as TextStyle,
   payoutAmountWrapper: {
     height: Style.adjust(32),
-    marginTop: Style.adjust(24),
+    marginTop: Platform.select({ ios: Style.adjust(24), android: Style.adjust(12) }),
   } as ViewStyle,
 });
 
 const horizontalScrollerStyles = StyleSheet.create({
   highlightLabelWrapper: {
-    top: Style.adjust(20),
+    top: 24,
   } as ViewStyle,
   highlight: {
-    top: Style.adjust(4),
+    top: Platform.select({ ios: Style.adjust(4), android: Style.adjust(10) }),
   } as ViewStyle,
 });

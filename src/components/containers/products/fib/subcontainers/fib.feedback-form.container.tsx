@@ -32,7 +32,7 @@ function FibFeedbackFormContainer(props: Props) {
   if (displaySuccessScreen) {
     return (
       <FibFeedbackSuccessScreen
-        avatar={data.getYulifer.avatarRemoteFiles?.pngFull}
+        avatar={data?.getYulifer.avatarRemoteFiles?.pngFull}
         onContinue={onNavigateToMain}
         onNavigateBack={() => setDisplaySuccessScreenState(false)}
       />

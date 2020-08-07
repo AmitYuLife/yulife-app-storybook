@@ -105,6 +105,6 @@ const styles = StyleSheet.create({
   button: {
     width: Style.DEVICE_WIDTH - 70,
     alignSelf: "center",
-    height: 90,
+    height: Style.adjust(90),
   } as ViewStyle,
 });

@@ -1,4 +1,4 @@
-import React, { memo, useState, useMemo } from "react";
+import React, { memo, useState, useMemo, useEffect } from "react";
 import moment from "moment";
 import { useQuery } from "@apollo/react-hooks";
 import { connect, useDispatch } from "react-redux";
@@ -65,13 +65,20 @@ const FibBrowseContainer = memo(function (props: IFibContainer & ReturnType<type
   const [selectedCoverType, selectCoverType] = useCover(isCustomCover ? "custom" : selectedPackage || "common");
   const [deceaseAgeIndexYear, setDeceaseAgeIndexYear] = useState(0);
   const [deceaseAgeIndexMonth, setDeceaseAgeIndexMonth] = useState(0);
+  const [payoutEstimatorItems, setPayoutEstimatorItems] = useState(
+    calculatePayoutCalculatorItems(props.userDateOfBirth, deceaseAgeIndexYear)
+  );
   const maxTermAge = moment().diff(moment(props.userDateOfBirth), "years") + 40;
 
-  const payoutEstimatorItems = calculatePayoutCalculatorItems(
-    props.userDateOfBirth,
-    deceaseAgeIndexYear,
-    setDeceaseAgeIndexMonth
-  );
+  useEffect(() => {
+    const newItems = calculatePayoutCalculatorItems(
+      props.userDateOfBirth,
+      deceaseAgeIndexYear,
+      setDeceaseAgeIndexMonth
+    );
+
+    setPayoutEstimatorItems(newItems);
+  }, [deceaseAgeIndexYear, props.userDateOfBirth]);
 
   //TODO: deceaseAgeIndexMonth should be handle on calculate payout calculator items
   const deceaseAgeMonth =
@@ -93,9 +100,7 @@ const FibBrowseContainer = memo(function (props: IFibContainer & ReturnType<type
     }
   );
 
-  const { data: yuliferData } = useQuery<GetYulifer>(GQL_QUERY_GET_YULIFER, {
-    fetchPolicy: "cache-only",
-  });
+  const { data: yuliferData } = useQuery<GetYulifer>(GQL_QUERY_GET_YULIFER);
 
   const faqs: IFaq[] = fibFaqItems.map((faq) => ({
     label: faq.question,
@@ -129,7 +134,7 @@ const FibBrowseContainer = memo(function (props: IFibContainer & ReturnType<type
   if (isCustomCover) {
     return (
       <FibCustomCoverScreen
-        avatarUrl={yuliferData.getYulifer.avatarRemoteFiles?.pngFull}
+        avatarUrl={yuliferData?.getYulifer.avatarRemoteFiles?.pngFull}
         onNavigateBack={navigation.pop}
         navigateToEditSalary={() => navigation.push(FIB_EDIT_SALARY, { onPressDone: navigation.pop })}
         navigateToFeedbackForm={() => navigation.push(FIB_FEEDBACK_FORM)}
@@ -146,7 +151,7 @@ const FibBrowseContainer = memo(function (props: IFibContainer & ReturnType<type
 
   return (
     <FibBrowseScreen
-      avatarUrl={yuliferData.getYulifer.avatarRemoteFiles?.pngFull}
+      avatarUrl={yuliferData?.getYulifer.avatarRemoteFiles?.pngFull}
       onNavigateToYuScreen={navigation.popToMain}
       navigateToEditSalary={() => navigation.push(FIB_EDIT_SALARY)}
       navigateToCustomCover={() => navigation.push(FIB_CUSTOM_PERCENTAGE)}
