@@ -9,21 +9,19 @@ export function formatPrice(price: number | null) {
   return `£${price.toFixed(2)}`;
 }
 
-// TODO: Reset month when moving away of limits? setDeceaseAgeIndexMonth
 export const calculatePayoutCalculatorItems = (
   userDateOfBirth: string,
-  deceaseAgeIndexYear: number,
-  setDeceaseAgeIndexMonth?: (index: number) => void
+  deceaseAgeIndexYear: number
 ): CalculatorItems => {
   const momentDateOfBirth = moment(userDateOfBirth);
-  const customerAge = moment().diff(momentDateOfBirth, "year");
-  const monthsTillBirthday = Math.ceil(Math.abs(moment().diff(momentDateOfBirth.year(moment().year()), "days") / 31));
+  const customerAge = moment().diff(momentDateOfBirth, "years");
+  const monthsTillBirthday = getMonthsTillBirthday(momentDateOfBirth);
 
   const maxAge = customerAge + 40 < 70 ? customerAge + 40 : 70;
   const maxMonth = maxAge === 70 ? 11 : moment().month(); // month index starts in 0
 
   const defaultPayoutEstimatorItems = {
-    years: Array.from({ length: 41 })
+    years: Array.from({ length: 40 })
       .map((_, i) => i + customerAge)
       .filter((y) => y < 71),
     months: Array.from({ length: 12 }).map((_, i) => i),
@@ -38,9 +36,9 @@ export const calculatePayoutCalculatorItems = (
   };
 
   if (defaultPayoutEstimatorItems.min.year === defaultPayoutEstimatorItems.years[deceaseAgeIndexYear]) {
-    const months = defaultPayoutEstimatorItems.months.slice(
-      defaultPayoutEstimatorItems.months.length - monthsTillBirthday
-    );
+    const months = !monthsTillBirthday
+      ? defaultPayoutEstimatorItems.months.slice(0)
+      : defaultPayoutEstimatorItems.months.slice(defaultPayoutEstimatorItems.months.length - monthsTillBirthday);
     const newItems = { ...defaultPayoutEstimatorItems, months };
     return newItems;
   }
@@ -51,9 +49,27 @@ export const calculatePayoutCalculatorItems = (
     return newItems;
   }
 
-  if (setDeceaseAgeIndexMonth) {
-    // Reset index?
-  }
-
   return defaultPayoutEstimatorItems;
 };
+
+function getMonthsTillBirthday(dateOfBirth: moment.Moment) {
+  const monthOfBirth = dateOfBirth.month();
+  const now = moment();
+  const currentMonth = now.month();
+  if (monthOfBirth < currentMonth) {
+    return currentMonth - monthOfBirth;
+  }
+
+  if (monthOfBirth === currentMonth) {
+    // Same month case
+    if (dateOfBirth.dayOfYear() >= now.dayOfYear()) {
+      // Before birthday
+      return 1;
+    }
+
+    // After birthday
+    return 0;
+  }
+
+  return 12 - (currentMonth - monthOfBirth);
+}
