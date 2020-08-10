@@ -7,6 +7,47 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.5.0] - 2020-08-10
+
+### Features
+
+- Detox: Split features
+- Feature TP-312: Add user's yumoji to feedback success form
+
+### Bugfixes
+
+- Bugfix: TP-334 Fix payout amount options
+- Revert "Merge branch 'bugfix/tp-214' into 'develop'"
+- Bugfix: TP-303 Change payout amount age limits
+- Bugfix: TP-325 Redirect to feedback form on custom cover continue
+- Bugfix: Get Pill Working on Android
+- Bugfix: TP-303 payout amount
+- Bugfix: TP-303 Add limits for payout amount calculator
+- Bugfix: TP-214 Retry network requests before showing offline screen
+
+### Tasks
+
+- Task: TP-300 Organism nav bar
+- Task TP-292: Refactor leaderboards
+- Task TP-313: Tune HorizontalScroller behavior
+
+### Chores
+
+- (origin/chore/add-scroll-listener-to-navigation) Chore: add scroll end listener to localNavigation
+
+### Extra
+
+- Detox: Yuscreen iPhone 8 fix
+- Underwriting journey layout
+- Revert "Add loading indicator"
+- (origin/e2e/detox_split_2) moved worlds to extended and changed file names in smoke
+- Detox: Updates
+- Hotfix: android scroll view on useLocalNavigation
+- Remove package badges
+- Add logs for timesup screen
+- Fix back functionality wrap content intro scrollView, make button disable
+- Decrease left shadow
+
 ## [2.4.0] - unknown
 
 ### Features
