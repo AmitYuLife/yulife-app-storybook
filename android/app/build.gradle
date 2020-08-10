@@ -182,7 +182,7 @@ android {
         }
         uat {
             initWith release
-            applicationIdSuffix ".uat"
+            applicationIdSuffix ".release"
             matchingFallbacks = ['release']
             manifestPlaceholders = [deepLinkHost: "join-uat.yulife.com", deepLinkAppName:"yulife-uat"]
         }
