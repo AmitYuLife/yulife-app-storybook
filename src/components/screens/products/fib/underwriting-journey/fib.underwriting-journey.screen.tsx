@@ -13,10 +13,11 @@ interface IFibUnderwritingJourneyScreenProps {
   data: any;
   onFirstButtonPressed: () => void;
   onSecondButtonPressed?: () => void;
+  onPreviousButtonPressed?: () => void;
 }
 
 export const FibUnderwritingJourneyScreen = memo(function (props: IFibUnderwritingJourneyScreenProps) {
-  const { onNavigateBack, data, onFirstButtonPressed, onSecondButtonPressed } = props;
+  const { onNavigateBack, data, onFirstButtonPressed, onSecondButtonPressed, onPreviousButtonPressed } = props;
 
   const backHandler = React.useCallback(() => {
     onNavigateBack();
@@ -24,6 +25,12 @@ export const FibUnderwritingJourneyScreen = memo(function (props: IFibUnderwriti
   }, [onNavigateBack]);
 
   useBackHandler(backHandler);
+
+  const firstButton = { action: onFirstButtonPressed, label: data.firstButton.label };
+
+  const secondButton = !onSecondButtonPressed
+    ? null
+    : { action: onSecondButtonPressed, label: data.secondButton.label };
 
   return (
     <View style={styles.wrapper}>
@@ -33,10 +40,7 @@ export const FibUnderwritingJourneyScreen = memo(function (props: IFibUnderwriti
         <TitleWithIcon icon={data.icon} title={data.title} />
         <FibTitle title={data.question} />
       </ScrollView>
-      <Footer
-        firstButton={{ action: onFirstButtonPressed, label: data.firstButtonLabel }}
-        secondButton={{ action: onSecondButtonPressed, label: data.secondButtonLabel }}
-      />
+      <Footer firstButton={firstButton} secondButton={secondButton} onPreviousButtonPressed={onPreviousButtonPressed} />
     </View>
   );
 });
