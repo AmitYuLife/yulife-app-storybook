@@ -71,31 +71,29 @@ const FibBrowseContainer = memo(function (props: IFibContainer & ReturnType<type
   const maxTermAge = moment().diff(moment(props.userDateOfBirth), "years") + 40;
 
   useEffect(() => {
-    const newItems = calculatePayoutCalculatorItems(
-      props.userDateOfBirth,
-      deceaseAgeIndexYear,
-      setDeceaseAgeIndexMonth
-    );
-
+    const newItems = calculatePayoutCalculatorItems(props.userDateOfBirth, deceaseAgeIndexYear);
     setPayoutEstimatorItems(newItems);
   }, [deceaseAgeIndexYear, props.userDateOfBirth]);
 
   //TODO: deceaseAgeIndexMonth should be handle on calculate payout calculator items
   const deceaseAgeMonth =
-    +payoutEstimatorItems.months[deceaseAgeIndexMonth] === +payoutEstimatorItems.months[deceaseAgeIndexMonth]
+    Number(payoutEstimatorItems.months[deceaseAgeIndexMonth]) ===
+    Number(payoutEstimatorItems.months[deceaseAgeIndexMonth])
       ? payoutEstimatorItems.months[deceaseAgeIndexMonth]
-      : payoutEstimatorItems.months[payoutEstimatorItems.months.length - 1];
+      : payoutEstimatorItems.months[payoutEstimatorItems.months.length - 1] || 0; // Never show error, default to 0
+
+  const topUpsQueryVariables = {
+    grossSalary,
+    coverType: selectedCoverType,
+    customCoverPercentage,
+    deceaseAgeYear: payoutEstimatorItems.years[deceaseAgeIndexYear],
+    deceaseAgeMonth: deceaseAgeMonth,
+  };
 
   const { loading, error, data } = useQuery<GetLifeInsuranceToUpsData, GetLifeInsuranceTopUpsVars>(
     GQL_GET_LIFE_INSURANCE_TOP_UPS,
     {
-      variables: {
-        grossSalary,
-        coverType: selectedCoverType,
-        customCoverPercentage,
-        deceaseAgeYear: payoutEstimatorItems.years[deceaseAgeIndexYear],
-        deceaseAgeMonth: deceaseAgeMonth,
-      },
+      variables: topUpsQueryVariables,
       fetchPolicy: "network-only",
     }
   );
