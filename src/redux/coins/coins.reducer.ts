@@ -12,7 +12,7 @@ import {
   UPDATE_DAILY_MEDITATION_EMPTY_RESULT,
   UPDATE_DAILY_MEDITATION_SUCCESS,
 } from "../daily-meditation/daily-meditation.actions";
-import { UPDATE_DAILY_STEPS_SUCCESS } from "../daily-steps/daily-steps.actions";
+import { UPDATE_DAILY_STEPS_SUCCESS, START_DAILY_STEPS } from "../daily-steps/daily-steps.actions";
 import { GET_USER_SUCCESS, LOGIN_USER_SUCCESS } from "../user/user.actions";
 
 const FORMAT = "YYYY-MM-DD";
@@ -32,6 +32,12 @@ export const initialState: ICoinsStore = {
   lastUpdated: moment().format(FORMAT),
 };
 
+const dailyResetCoinStore = {
+  dailyChallengeEarned: 0,
+  dailyStepsEarned: 0,
+  dailyMeditationEarned: 0,
+};
+
 const coinsReducer = (state: ICoinsStore = initialState, action: SyncAction) => {
   switch (action.type) {
     case REHYDRATE:
@@ -40,6 +46,8 @@ const coinsReducer = (state: ICoinsStore = initialState, action: SyncAction) => 
       }
 
       return { ...state };
+    case START_DAILY_STEPS:
+      return startDailyStepsSuccess(state);
     case UPDATE_DAILY_MEDITATION_SUCCESS:
       return updateDailyMeditationSuccess(state, action.payload);
     case UPDATE_DAILY_STEPS_SUCCESS:
@@ -56,6 +64,12 @@ const coinsReducer = (state: ICoinsStore = initialState, action: SyncAction) => 
 };
 
 export default coinsReducer;
+
+function getShouldResetCoinStore(lastUpdated: string) {
+  const today = moment().format(FORMAT);
+
+  return lastUpdated !== today;
+}
 
 const updatePersistedState = (persistedState: ICoinsStore) => {
   /**
@@ -79,14 +93,24 @@ const updatePersistedState = (persistedState: ICoinsStore) => {
     return newState;
   }
 
-  const lastUpdated = persistedState.lastUpdated;
-  const today = moment().format(FORMAT);
+  const shouldResetCoinStore = getShouldResetCoinStore(persistedState.lastUpdated);
 
-  if (lastUpdated !== today) {
-    return { ...persistedState, dailyChallengeEarned: 0, dailyStepsEarned: 0, dailyMeditationEarned: 0 };
+  if (shouldResetCoinStore) {
+    return { ...persistedState, ...dailyResetCoinStore };
   }
 
   return { ...persistedState };
+};
+
+const startDailyStepsSuccess = (state: ICoinsStore) => {
+  // Ensures that the coin state is reset immediately when the user access the app for the first time that day.
+  const shouldResetCoinStore = getShouldResetCoinStore(state.lastUpdated);
+
+  if (shouldResetCoinStore) {
+    return { ...state, ...dailyResetCoinStore };
+  }
+
+  return state;
 };
 
 const sumCompletedChallenges = (challenges: GetCurrentUser_getCurrentUser_todayActivity[] = []): number =>
