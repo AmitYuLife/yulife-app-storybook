@@ -6,6 +6,7 @@ export const initialState: IProductStore = {
   fib: {
     salary: 0,
     selectedPackage: "common",
+    weeklyAlcoholDrinks: 0,
   },
 };
 

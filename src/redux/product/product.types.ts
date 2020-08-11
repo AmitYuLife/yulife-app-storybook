@@ -13,6 +13,7 @@ export interface FIBStoreValue {
 export interface FIBStore {
   salary: number;
   selectedPackage: PackageId;
+  weeklyAlcoholDrinks: number;
 }
 
 export interface UpdateFIBStoreAction {
