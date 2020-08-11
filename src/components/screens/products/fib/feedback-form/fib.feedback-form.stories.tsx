@@ -7,4 +7,4 @@ const defaultProps: Props = {
   onContinue: () => null,
 };
 
-storiesOf("FibFeedbackFormScreen").add("default", () => <FibFeedbackFormScreen {...defaultProps} />);
+storiesOf("FibFeedbackFormScreen", module).add("default", () => <FibFeedbackFormScreen {...defaultProps} />);

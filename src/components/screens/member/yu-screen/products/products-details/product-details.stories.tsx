@@ -2,7 +2,7 @@ import React from "react";
 import { storiesOf } from "@storybook/react-native";
 import ProductDetails from "./product-details";
 
-storiesOf("ProductDetails").add("charm", () => (
+storiesOf("ProductDetails", module).add("charm", () => (
   <ProductDetails
     onExitConfirmed={(): void => null}
     productType="charm"

@@ -6,4 +6,4 @@ const fillers = {
   setYuscreenIntroShown: () => null,
 } as ComponentProps<typeof YuScreenIntro>;
 
-storiesOf("YuScreenIntro").add("default", () => <YuScreenIntro {...fillers} />);
+storiesOf("YuScreenIntro", module).add("default", () => <YuScreenIntro {...fillers} />);

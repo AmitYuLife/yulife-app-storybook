@@ -25,7 +25,7 @@ const fillers: YuScreenProps = {
   onProductPress: (_: any, __: any): any => (): null => null,
 };
 
-storiesOf("YuScreen")
+storiesOf("YuScreen", module)
   .add("no avatar", () => <YuScreen {...fillers} isAvatarCreated={false} />)
   .add("alpha", () => <YuScreen {...fillers} products={alphaProducts} />)
   .add("group", () => <YuScreen {...fillers} products={groupProducts} />)

@@ -2,7 +2,7 @@ import React from "react";
 import { storiesOf } from "@storybook/react-native";
 import Heading from "./heading";
 
-storiesOf("Heading")
+storiesOf("Heading", module)
   .add("small", () => {
     return (
       <Heading size="small" label="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec id mauris felis." />

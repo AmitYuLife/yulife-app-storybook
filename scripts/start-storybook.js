@@ -14,6 +14,7 @@ const STORYBOOK = "STORYBOOK";
 
 const StorybookUIRoot = getStorybookUI({
   onDeviceUI: $$onDeviceUI$$, // true for mobile navigation, false for browser,
+  asyncStorage: null
 });
 
 AppRegistry.registerComponent("%APP_NAME%", () => StorybookUIRoot);

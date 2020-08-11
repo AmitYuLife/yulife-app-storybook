@@ -5,7 +5,7 @@ import { withKnobs, text, number, boolean } from "@storybook/addon-knobs";
 import moment from "moment";
 import TopBar, { TOP_BAR_TYPES } from "./top-bar";
 
-storiesOf("TopBar")
+storiesOf("TopBar", module)
   .addDecorator(withKnobs)
   .addDecorator((g: () => React.ReactNode) => (
     <View style={{ position: "absolute", top: 0, left: 0, right: 0 }}>{g()}</View>
