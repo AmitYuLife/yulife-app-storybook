@@ -186,7 +186,7 @@ const AvatarBuilder: FC<IProps> = ({ avatar: defaultAvatar, onBackPressed, updat
           setDoneModalShown(true);
         }}
         rightIcon="Done"
-        border="new"
+        hideBorder={false}
       />
       <View style={styles.elementWrapper} testID={HEAD_TYPE(avatar.head.partId)}>
         <View

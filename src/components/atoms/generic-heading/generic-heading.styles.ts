@@ -1,91 +1,40 @@
-import { StyleSheet, TextStyle, ViewStyle, Platform, ImageStyle } from "react-native";
+import { StyleSheet, TextStyle, ViewStyle } from "react-native";
 import { Colours, Style } from "../../../styles";
-import { IRightIcon } from "./generic-heading.types";
-import { BetaText } from "@molecules";
 
 const styles = StyleSheet.create({
-  titleWrapper: {
+  wrapper: {
+    height: 56,
+    paddingVertical: 16,
     flexDirection: "row",
-    alignItems: "center",
-    marginTop: Platform.select({ ios: 0, android: -4 }),
+    alignContent: "center",
+    borderBottomColor: "rgba(0,0,0,0.1)",
+    marginHorizontal: 16,
+    marginTop: Style.isAnyIphoneX() ? -10 : 0,
   } as ViewStyle,
-  headingWrapper: {
-    alignItems: "center",
-    borderBottomColor: "rgb(233,233,233)",
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    paddingTop: Style.adjust(17),
-    height: 54,
-    justifyContent: "center",
+  leftIconWrapper: {
+    alignSelf: "center",
+    width: 32,
   } as ViewStyle,
-  paddingBottom: {
-    paddingBottom: Style.adjust(13),
-  },
-  paddingHorizontal: {
-    paddingHorizontal: Style.adjust(15),
-  } as ViewStyle,
-  subheading: {
-    color: Colours.darkGray,
-    fontSize: Style.adjust(12),
+  centerWrapper: { flexDirection: "row", flex: 1, justifyContent: "center" } as ViewStyle,
+  relative: { position: "relative" } as ViewStyle,
+  logoBetaWrapper: { position: "absolute", left: 24 } as ViewStyle,
+  headingBetaWrapper: { position: "absolute", right: -38 } as ViewStyle,
+  heading: {
+    color: Colours.products.fib.n900,
+    letterSpacing: 1,
+    lineHeight: 24,
+    fontFamily: Style.FONT_FAMILY_PRIMARY,
   } as TextStyle,
-  subheadingWrapper: {
-    alignItems: "center",
-  } as ViewStyle,
-  leftIcon: {
-    position: "absolute",
-    top: Style.adjust(18, { shrinkMultiplier: 0.05 }),
-    alignSelf: "flex-start",
-    height: Style.adjust(32),
-    width: Style.adjust(32),
-  },
-  rightIcon: {
-    position: "absolute",
-    top: Style.adjust(10),
-    alignSelf: "flex-end",
-    height: Style.adjust(32),
-    minWidth: Style.adjust(32),
-  },
-  backAdjust: {
-    marginTop: Style.adjust(-4),
-  } as ViewStyle,
-  newBorderPad: {
-    height: 8,
-  } as ViewStyle,
-  newBorderShadow: {
-    position: "absolute",
-    height: 1,
-    bottom: 0,
-    left: 0,
-    right: 0,
-    backgroundColor: "rgba(0,0,0,0.1)",
-  } as ViewStyle,
-  rightTextIcon: {
-    fontSize: Style.adjust(20),
-    marginTop: Style.adjust(6),
+  rightIconWrapper: { width: 32, alignSelf: "center" } as ViewStyle,
+  rightIconTouchable: { alignSelf: "flex-end" },
+  rightIconText: {
+    fontSize: 20,
+    lineHeight: 22,
+    letterSpacing: 1,
+    fontFamily: Style.FONT_FAMILY_PRIMARY,
+    flexWrap: "nowrap",
+    marginLeft: -16,
   } as TextStyle,
-  rightIconClose: {
-    marginTop: Style.adjust(10),
-    width: Style.adjust(12),
-    height: Style.adjust(12),
-  } as ImageStyle,
-  recenter: {
-    marginRight: -BetaText?.WIDTH || 0,
-  } as ViewStyle,
 });
 
 export default styles;
-
-interface IAdjustHitSlop {
-  rightIcon?: IRightIcon | string;
-}
-
-export function adjustHitSlop({ rightIcon }: IAdjustHitSlop) {
-  if (typeof rightIcon === "string") {
-    return null;
-  }
-
-  if (rightIcon.icon === "CLOSE") {
-    return { paddingHorizontal: Style.adjust(16) };
-  }
-
-  return null;
-}

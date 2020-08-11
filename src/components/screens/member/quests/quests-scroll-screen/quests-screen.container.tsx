@@ -96,7 +96,6 @@ function QuestsScreenContainer(props: Props) {
     showChestModalCopy,
     showCompletedLevel,
     onLeftMenuPress,
-    totalCoins,
   } = props;
   const [unity, setUnity] = useState<number | null>(null);
 
@@ -165,7 +164,6 @@ function QuestsScreenContainer(props: Props) {
       componentId={componentId}
       currentLevel={currentLevel}
       onLeftMenuPress={onLeftMenuPress}
-      totalCoins={totalCoins}
       data={formattedData}
       hideUnity={hideUnity}
       unity={unity}

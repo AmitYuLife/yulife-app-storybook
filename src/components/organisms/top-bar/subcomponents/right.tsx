@@ -1,8 +1,8 @@
 import React from "react";
 import { Platform, StyleSheet, ViewStyle, TextStyle, View } from "react-native";
 import { Style, Colours } from "@styles/index";
-import Counter from "../counter/counter";
-import { Coins } from "./assets";
+import { Coins } from "../assets";
+import { Counter } from "@components/molecules";
 
 interface Props {
   coins?: number;

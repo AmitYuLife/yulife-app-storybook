@@ -2,7 +2,7 @@ import { StyleSheet, TextStyle, ViewStyle } from "react-native";
 import { Style } from "../../../styles";
 
 const TOP_BAR_INNER = Style.adjust(28);
-const TOP_BAR_PAD = Style.adjust(8);
+export const TOP_BAR_PAD = Style.adjust(8);
 
 export const TOP_BAR_HEIGHT = TOP_BAR_INNER + TOP_BAR_PAD;
 

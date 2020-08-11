@@ -9,7 +9,7 @@ import { getUserBusiness, getUserFeatures, getUserMembershipType } from "../../.
 import SmartHealth from "../../../screens/member/member-services/smart-health.screen";
 import MemberServicesTabs, { Tab } from "@components/molecules/member-services-tabs/member-services-tabs";
 import { MemberServiceId } from "@components/molecules/member-services-tabs/member-services.models";
-import { GenericHeading, Close, Text } from "@atoms";
+import { GenericHeading, Text } from "@atoms";
 import { Style } from "@styles";
 import { YUMATTER_SCREEN, SMART_HEALTH_SCREEN } from "@ids";
 import { getMemberServicesDisplayState } from "@components/molecules/member-services-tabs/member-services-tab/member-services.helpers";
@@ -66,26 +66,24 @@ function MemberServicesContainer({ componentId, isGroupUser, isWellbeingAccess, 
   if (shouldHideYuMatterScreen && shouldHideSmartHealthScreen) {
     return (
       <SafeAreaView>
-        <GenericHeading heading="member services" />
+        <GenericHeading heading="member services" onRightIconPress={handleClose} />
         <View style={styles.notEnrollredWrapper}>
           <Text>
             It looks like your team has not been enrolled in additional member services. To see what kind of coverage
             your employer has purchased, please check the Yu screen in the YuLife app navigation bar.
           </Text>
         </View>
-        <Close onPress={handleClose} />
       </SafeAreaView>
     );
   }
 
   return (
     <SafeAreaView style={styles.wrapper} testID={selectedTabId === "yumatter" ? YUMATTER_SCREEN : SMART_HEALTH_SCREEN}>
-      <GenericHeading heading="member services" />
+      <GenericHeading heading="member services" onRightIconPress={handleClose} />
       <View style={styles.tabsWrapper}>
         <MemberServicesTabs tabs={tabDetails} activeTabId={selectedTabId} />
       </View>
       {selectedTabId === "yumatter" ? <Yumatter /> : <SmartHealth isInstant={isInstant} />}
-      <Close onPress={handleClose} />
     </SafeAreaView>
   );
 }

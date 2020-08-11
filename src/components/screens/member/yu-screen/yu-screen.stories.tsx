@@ -8,7 +8,6 @@ type YuScreenProps = ComponentProps<typeof YuScreen>;
 
 const fillers: YuScreenProps = {
   level: 8,
-  totalCoins: 0,
   earnRate: 0,
   isAvatarCreated: true,
   userName: "userName",

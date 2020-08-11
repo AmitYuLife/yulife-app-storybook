@@ -236,7 +236,6 @@ const AviosRewardDetailsContainer: FC<Props> = (props) => {
           onForenameChange={setFirstName}
           onSurnameChange={setLastName}
           onCardChange={(input) => setAccountNumber({ value: input, dirty: true })}
-          coins={totalCoins}
           onPressTopBar={onRewardsTabPress}
           onLeftTabPress={onRewardsTabPress}
           onRightTabPress={onPurchasesTabPress}

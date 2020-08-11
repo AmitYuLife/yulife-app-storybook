@@ -1,9 +1,11 @@
 import * as React from "react";
 import { ActivityIndicator, Image, SafeAreaView, ScrollView, View } from "react-native";
 import { Pad, Text } from "../../../../atoms";
-import { RewardItemContent, TopBar } from "../../../../molecules";
+import { RewardItemContent } from "../../../../molecules";
 import styles from "./wegift-confirmed.screen.styles";
 import { WEGIFT_CONFIRMED, PURCHASE_IMAGE } from "@ids";
+import { TopBar } from "@components/organisms";
+import { TopBarLeftIconTypes } from "@components/organisms/top-bar/top-bar.helpers";
 export interface IServerProps {
   rewardName: string;
   redeemInstructions: string[];
@@ -11,7 +13,6 @@ export interface IServerProps {
   purchaseDate: string;
   validDate: string;
   imageUrl: string;
-  coins: number;
 }
 
 interface IContainerProps {
@@ -47,13 +48,12 @@ class WegiftRewardsConfirmed extends React.PureComponent<Props, IState> {
       purchaseDate,
       validDate,
       imageUrl,
-      coins,
       isLoadingConfirmAction,
     } = this.props;
     const { hasLoaded } = this.state;
     return (
       <SafeAreaView style={styles.wrapper}>
-        <TopBar leftIcon={TopBar.LeftIcon.BACK} onPressLeftIcon={onPressTopBar} coins={coins} />
+        <TopBar leftIcon={TopBarLeftIconTypes.BACK} onPressLeftIcon={onPressTopBar} />
         <Pad height={10} />
         <ScrollView
           showsVerticalScrollIndicator={false}

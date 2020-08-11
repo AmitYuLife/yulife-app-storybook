@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import moment from "moment";
 import { StyleSheet, View, ViewStyle, TextStyle, Platform } from "react-native";
-import { Clock } from "./assets";
+import { Clock } from "../assets";
 import { Logo, Text } from "@atoms/index";
 import useInterval from "@use-it/interval";
 import { Style } from "@styles/index";
-import { formatSeconds } from "./top-bar.helpers";
+import { formatSeconds } from "../top-bar.helpers";
 
 interface Props {
   colour: string;
@@ -31,7 +31,7 @@ export default function Center(props: Props) {
     );
   }
 
-  return <Logo scale={0.2} colour={logoColour} />;
+  return <Logo colour={logoColour} />;
 }
 
 function Timer({

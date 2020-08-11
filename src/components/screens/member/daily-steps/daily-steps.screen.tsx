@@ -13,13 +13,14 @@ import {
 import { IUserStore } from "../../../../redux/user/user.reducer";
 import { IConnectedScreenProps } from "../../../../typings";
 import { CentredScreen, Pad } from "../../../atoms";
-import { LeaderboardPopup, Streak, SurgePopup, TopBar } from "../../../molecules";
+import { LeaderboardPopup, Streak, SurgePopup } from "../../../molecules";
 import YuCoin from "./assets/yu-coin";
 import DailyStepsFitKitAuthorise from "./daily-steps-fitkit-authorise";
 import DailyStepsFitKitUnavailable from "./daily-steps-fitkit-unavailable";
 import DailyStepsLoading from "./daily-steps-loading";
 import DailyStepsOnline, { IProps as IDailyStepsOnlineProps } from "./daily-steps-online";
 import styles from "./daily-steps.screen.styles";
+import { TopBar } from "@components/organisms";
 import { ILabel } from "@components/organisms/nav-bar/nav-bar.helpers";
 import { NavBar } from "@components/organisms";
 
@@ -68,7 +69,6 @@ export default function DailyStepsScreen({
   onStreakPress,
   showCounter = false,
   steps,
-  totalCoins,
   theme: { centredScreen, hasWhiteGlow, topBarType, streakType, textStyle },
   copy,
   onUpdateLeaderboardPopupVisibility,
@@ -141,7 +141,7 @@ export default function DailyStepsScreen({
         )}
       </CentredScreen>
       <View style={styles.topbarWrapper}>
-        <TopBar coins={totalCoins} type={topBarType} onPressLeftIcon={onLeftMenuPress} />
+        <TopBar type={topBarType} onPressLeftIcon={onLeftMenuPress} />
       </View>
     </Animatable.View>
   );

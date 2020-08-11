@@ -5,7 +5,7 @@ import { connect, useDispatch } from "react-redux";
 import { ROUTES, MODALS } from "@navigation/constants";
 import { IMainTabsProps } from "@navigation/root";
 import { IReduxState } from "@redux/_core/reducers";
-import { getCurrentLevel, getHasNotification } from "@redux/levels/levels.selectors";
+import { getCurrentLevel } from "@redux/levels/levels.selectors";
 import { getUserName } from "@redux/user/user.selectors";
 import { GQL_QUERY_GET_YULIFER } from "../../../../graphql/yuscreen/getYulifer.gql";
 import {
@@ -15,7 +15,6 @@ import {
   GetYulifer_getYulifer_products_personal,
 } from "../../../../graphql/_core/schema/GetYulifer";
 import { ProductType } from "./yu-screen-products.container";
-import { getTotalCoins } from "../../../../redux/coins/coins.selectors";
 import { getAvatarForYuscreen } from "../../../../redux/avatar/avatar.selectors";
 import { AvatarBuilderHeading } from "@screens/member/yu-screen/avatar-builder/avatar.types";
 import { YuScreenIntro } from "../../../screens/member/yu-screen/intro-yuscreen/intro-yuscreen";
@@ -33,14 +32,7 @@ type ConnectedState = ReturnType<typeof mapStateToProps>;
 
 type Props = IProps & IMainTabsProps & ConnectedState;
 
-function YuScreenContainer({
-  currentLevel,
-  userName,
-  componentId,
-  totalCoins,
-  onLeftMenuPress,
-  showYuscreenIntro,
-}: Props) {
+function YuScreenContainer({ currentLevel, userName, componentId, onLeftMenuPress, showYuscreenIntro }: Props) {
   const dispatch = useDispatch();
   const { data } = useCacheFirstAndNetworkOnAppearQuery<GetYulifer>(GQL_QUERY_GET_YULIFER, componentId);
 
@@ -66,7 +58,7 @@ function YuScreenContainer({
 
   if (!data && !showYuscreenIntro) {
     return (
-      <YuScreenLayout onLeftMenuPress={onLeftMenuPress} totalCoins={totalCoins}>
+      <YuScreenLayout onLeftMenuPress={onLeftMenuPress}>
         <YuScreenLoading />
       </YuScreenLayout>
     );
@@ -86,7 +78,6 @@ function YuScreenContainer({
       ) => () => {
         navigateToProductScreen(componentId, productType, product);
       }}
-      totalCoins={totalCoins}
       onLeftMenuPress={onLeftMenuPress}
       onUnlockPress={() => {
         navigateToAvatarCreationScreen(componentId, "Create your Yumoji");
@@ -106,8 +97,6 @@ function YuScreenContainer({
 const mapStateToProps = (state: IReduxState) => ({
   currentLevel: getCurrentLevel(state),
   userName: getUserName(state),
-  hasNotification: getHasNotification(state),
-  totalCoins: getTotalCoins(state),
   avatarFromLocal: getAvatarForYuscreen(state),
   showYuscreenIntro: getShowYuscreenIntro(state),
 });

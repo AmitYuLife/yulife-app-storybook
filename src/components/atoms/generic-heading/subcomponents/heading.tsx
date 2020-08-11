@@ -4,15 +4,16 @@ import { StyleSheet, TextStyle } from "react-native";
 
 interface Props {
   heading: string;
+  style?: TextStyle;
 }
 
-const _Heading = ({ heading }: Props) => {
+const _Heading = ({ heading, style }: Props) => {
   if (!heading) {
     return null;
   }
 
   return (
-    <Text numberOfLines={1} bold={true} style={styles.heading}>
+    <Text numberOfLines={1} bold={true} style={StyleSheet.flatten([styles.heading, style])}>
       {heading}
     </Text>
   );

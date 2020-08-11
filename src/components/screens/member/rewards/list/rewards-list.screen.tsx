@@ -14,7 +14,7 @@ export interface IRewardsListScreenProps extends IConnectedScreenProps {
 }
 
 const RewardsListScreen = React.memo((props: IRewardsListScreenProps) => {
-  const { data, onLeftTabPress, onRightTabPress, onLeftMenuPress, totalCoins, onItemPress, loading } = props;
+  const { data, onLeftTabPress, onRightTabPress, onLeftMenuPress, onItemPress, loading } = props;
 
   if (loading) {
     return (
@@ -22,7 +22,6 @@ const RewardsListScreen = React.memo((props: IRewardsListScreenProps) => {
         onLeftTabPress={onLeftTabPress}
         onRightTabPress={onRightTabPress}
         onLeftMenuPress={onLeftMenuPress}
-        totalCoins={totalCoins}
         activeScreen="rewards"
       >
         <RewardsListLoading />
@@ -34,7 +33,6 @@ const RewardsListScreen = React.memo((props: IRewardsListScreenProps) => {
     <RewardsList
       onLeftMenuPress={onLeftMenuPress}
       onRightTabPress={onRightTabPress}
-      totalCoins={totalCoins}
       data={data}
       onItemPress={onItemPress}
       onLeftTabPress={onLeftTabPress}

@@ -1,6 +1,31 @@
 import { padNum } from "@services/utils";
 import { Colours } from "@styles/index";
-import { TopBarTypes } from "./top-bar";
+import { ComponentProps } from "react";
+import Left, { leftIconTypes } from "./subcomponents/left";
+import Right from "./subcomponents/right";
+import { LayoutChangeEvent } from "react-native";
+
+export type TopBarTypes = "default" | "white" | "desert" | "mountain" | "forest";
+export enum TOP_BAR_TYPES {
+  DEFAULT = "default",
+  WHITE = "white",
+  DESERT = "desert",
+  MOUNTAIN = "mountain",
+  FOREST = "forest",
+}
+
+export type TopBarViewProps = {
+  onPressLeftIcon?: () => void;
+  onLayout?: (event: LayoutChangeEvent) => void;
+  timer?: string;
+  name?: string;
+  menuLabel?: string;
+  leftIcon?: React.ComponentProps<typeof Left>["icon"];
+  middleLabel?: string;
+  type?: TopBarTypes;
+} & Omit<ComponentProps<typeof Right>, "colour" | "logoColour" | "textStyle">;
+
+export const TopBarLeftIconTypes = leftIconTypes;
 
 export function formatSeconds(secondsRemaining: number): string {
   const days = Math.floor(secondsRemaining / 86400);

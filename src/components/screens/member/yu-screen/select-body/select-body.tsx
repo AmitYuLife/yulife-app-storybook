@@ -61,7 +61,7 @@ function SelectBody({
 
   return (
     <SafeAreaView style={styles.wrapper}>
-      <GenericHeading heading={heading} onLeftIconPress={onExitConfirmed} border="new" leftIcon="CLOSE" />
+      <GenericHeading heading={heading} onLeftIconPress={onExitConfirmed} hideBorder={false} leftIcon="CLOSE" />
       <View style={styles.elementWrapper}>
         <View style={styles.selectorWrapper}>
           <TouchableOpacity onPress={selectMaleBody}>

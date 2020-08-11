@@ -2,16 +2,17 @@ import * as React from "react";
 import { ScrollView, View } from "react-native";
 import { Style } from "../../../../../styles";
 import { Pad, Text } from "../../../../atoms";
-import { RewardItemContent, TopBar } from "../../../../molecules";
+import { RewardItemContent } from "../../../../molecules";
 import styles from "./avios-confirmed.screen.styles";
 import CardStates from "./card-states";
+import { TopBar } from "@components/organisms";
+import { TopBarLeftIconTypes } from "@components/organisms/top-bar/top-bar.helpers";
 
 export type PurchaseStatus = "pending" | "failed" | "delivered";
 
 export interface IServerProps {
   rewardName: string;
   purchaseDate: string;
-  coins: number;
   loyaltyProgramme: string;
   status: PurchaseStatus | string;
 }
@@ -35,7 +36,6 @@ class RewardsConfirmed extends React.PureComponent<Props> {
       rewardName = "",
       purchaseDate = "",
       status,
-      coins,
       loyaltyProgramme = "",
     } = this.props;
     return (
@@ -76,7 +76,7 @@ class RewardsConfirmed extends React.PureComponent<Props> {
           <Pad height={50} />
         </ScrollView>
         <View style={styles.topBarWrapper}>
-          <TopBar coins={coins} leftIcon={TopBar.LeftIcon.BACK} onPressLeftIcon={onPressTopBar} />
+          <TopBar leftIcon={TopBarLeftIconTypes.BACK} onPressLeftIcon={onPressTopBar} />
         </View>
       </>
     );

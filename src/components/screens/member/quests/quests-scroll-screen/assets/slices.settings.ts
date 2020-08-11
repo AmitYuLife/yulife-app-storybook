@@ -1,7 +1,7 @@
-import { TOP_BAR_TYPES, TopBarTypes } from "@molecules/top-bar/top-bar";
 import { Style } from "@styles/index";
 import { Platform } from "react-native";
 import { isIphoneX } from "react-native-iphone-x-helper";
+import { TopBarTypes, TOP_BAR_TYPES } from "@components/organisms/top-bar/top-bar.helpers";
 
 export interface IEpisodeSettings {
   offset: number;

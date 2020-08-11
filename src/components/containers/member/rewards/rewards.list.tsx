@@ -7,7 +7,6 @@ import { connect } from "react-redux";
 import { GetRewards_getRewards } from "@graphql/_core/schema";
 import { MODALS, ROUTES } from "@navigation/constants";
 import { IReduxState } from "@redux/_core/reducers";
-import { getTotalCoins } from "@redux/coins/coins.selectors";
 import { getCopy } from "@redux/copy/copy.selectors";
 import { getCurrentLevel } from "@redux/levels/levels.selectors";
 import Logger from "@services/logging/logger";
@@ -37,7 +36,7 @@ const getDetailsRoute = (rewardProviderId: string) => {
 };
 
 function RewardsListContainer(props: Props) {
-  const { copy, onTabChange, totalCoins } = props;
+  const { copy, onTabChange } = props;
   const { loading, data: rewards, refetch: refetchRewards } = useQuery(GQL_QUERY_GET_REWARDS);
 
   const handleRewardDetailsItemPress = useCallback(
@@ -94,13 +93,11 @@ function RewardsListContainer(props: Props) {
       onLeftTabPress={handleRewardsRefetch}
       onRightTabPress={handleRightTabPress}
       loading={loading}
-      totalCoins={totalCoins}
     />
   );
 }
 
 const mapStateToProps = (state: IReduxState) => ({
-  totalCoins: getTotalCoins(state),
   copy: getCopy(state, "purchases"),
   currentLevel: getCurrentLevel(state),
 });

@@ -15,7 +15,7 @@ interface Props extends IConnectedScreenProps {
 }
 
 const RewardsPurchasedScreen = React.memo((props: Props) => {
-  const { data, onLeftTabPress, loading, onRightTabPress, onLeftMenuPress, totalCoins, copy } = props;
+  const { data, onLeftTabPress, loading, onRightTabPress, onLeftMenuPress, copy } = props;
 
   if (loading && data.length === 0) {
     return (
@@ -24,7 +24,6 @@ const RewardsPurchasedScreen = React.memo((props: Props) => {
         onLeftTabPress={onLeftTabPress}
         onRightTabPress={onRightTabPress}
         onLeftMenuPress={onLeftMenuPress}
-        totalCoins={totalCoins}
       >
         <RewardsListLoading />
       </RewardsListLayout>
@@ -36,7 +35,6 @@ const RewardsPurchasedScreen = React.memo((props: Props) => {
       onLeftTabPress={onLeftTabPress}
       onRightTabPress={onRightTabPress}
       onLeftMenuPress={onLeftMenuPress}
-      totalCoins={totalCoins}
       data={data}
       copy={copy}
     />

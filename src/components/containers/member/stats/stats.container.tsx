@@ -1,5 +1,5 @@
 import { useQuery } from "@apollo/react-hooks";
-import { Close, GenericHeading } from "@atoms/index";
+import { GenericHeading } from "@atoms/index";
 import { GQL_QUERY_GET_USER_STATS } from "@graphql/yuscreen";
 import { ROUTES } from "@navigation/constants";
 import { Style } from "@styles/index";
@@ -46,7 +46,7 @@ const StatsContainer: FC<Props> = ({ componentId }) => {
   if (loading) {
     return (
       <SafeAreaView style={{ flex: 1, backgroundColor: "#FFFFFF" }}>
-        <GenericHeading heading={"statistics"} />
+        <GenericHeading heading={"statistics"} onRightIconPress={handleClose} />
         <View style={{ backgroundColor: "#FAFAFE", padding: Style.SCALE_UP_AND_DOWN(16) }}>
           <LoadingHeader />
           <LoadingRecomendationCard />
@@ -57,7 +57,6 @@ const StatsContainer: FC<Props> = ({ componentId }) => {
           <LoadingGeneralInfoCard />
           <LoadingRecomendationCard />
         </View>
-        <Close onPress={handleClose} />
       </SafeAreaView>
     );
   }

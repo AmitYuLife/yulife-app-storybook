@@ -1,7 +1,7 @@
 import React from "react";
 import { TouchableOpacity, View, StyleSheet, TextStyle, Platform, ViewStyle } from "react-native";
 import { BUTTON_TOP_LEFT_BAR } from "@ids";
-import { Back, Menu } from "./assets";
+import { Back, Menu } from "../assets";
 import { Text } from "@atoms/index";
 import { Style } from "@styles/index";
 

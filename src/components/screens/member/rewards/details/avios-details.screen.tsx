@@ -10,8 +10,10 @@ import {
 } from "react-native";
 import { GetRewards_getRewards_uiSettings } from "../../../../../graphql/_core/schema";
 import { Button, Pad, Text, TextInput } from "../../../../atoms";
-import { LinkGroup, Picker, RewardsListItem, RewardTabs, TopBar } from "../../../../molecules";
+import { LinkGroup, Picker, RewardsListItem, RewardTabs } from "../../../../molecules";
 import styles from "./avios-details.screen.styles";
+import { TopBar } from "@components/organisms";
+import { TopBarLeftIconTypes } from "@components/organisms/top-bar/top-bar.helpers";
 
 const noop = () => ({});
 
@@ -24,7 +26,6 @@ export interface IContainerProps {
   uiSettings: GetRewards_getRewards_uiSettings;
   code: string;
   cost: number;
-  coins: number;
   rewardValue: number;
   rewardCurrency: string;
   welcomeHeading: string;
@@ -118,7 +119,6 @@ class AviosDetailsScreen extends React.PureComponent<Props, IState> {
       forenameValue,
       surnameValue,
       amountValue,
-      coins,
       isLoading,
     } = this.props;
     const { isShowingKeyboard } = this.state;
@@ -222,7 +222,7 @@ class AviosDetailsScreen extends React.PureComponent<Props, IState> {
           <Pad height={50} />
         </ScrollView>
         <View style={styles.topBarWrapper}>
-          <TopBar coins={coins} leftIcon={TopBar.LeftIcon.BACK} onPressLeftIcon={onPressTopBar} />
+          <TopBar leftIcon={TopBarLeftIconTypes.BACK} onPressLeftIcon={onPressTopBar} />
         </View>
       </KeyboardAvoidingView>
     );

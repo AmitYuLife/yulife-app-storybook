@@ -97,12 +97,7 @@ export const FibBrowseScreen = memo(function (props: IFibBrowseScreenProps) {
   return (
     <>
       <SafeAreaView style={styles.wrapper}>
-        <GenericHeading
-          rightIcon={{ icon: "CLOSE" }}
-          onRightIconPress={onNavigateToYuScreen}
-          logo="yulife"
-          isBeta={true}
-        />
+        <GenericHeading onRightIconPress={onNavigateToYuScreen} logo="yulife" isBeta={true} />
         <ScrollView
           onMomentumScrollEnd={onScrollEnd}
           showsVerticalScrollIndicator={false}

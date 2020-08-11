@@ -6,7 +6,6 @@ import React, { FC, useCallback, useMemo } from "react";
 import { connect, useDispatch } from "react-redux";
 
 import { IReduxState } from "../../../../redux/_core/reducers";
-import { getTotalCoins } from "../../../../redux/coins/coins.selectors";
 import { getCopy } from "../../../../redux/copy/copy.selectors";
 import {
   challengeCancelAction,
@@ -34,7 +33,7 @@ export type Props = IMainTabsProps & ConnectedState;
 const QuestsContainer: FC<Props> = (props) => {
   const dispatch = useDispatch();
 
-  const { activeLevel, componentId, currentLevel, features, copy, totalCoins, onLeftMenuPress } = props;
+  const { activeLevel, componentId, currentLevel, features, copy, onLeftMenuPress } = props;
 
   const {
     coins,
@@ -56,9 +55,8 @@ const QuestsContainer: FC<Props> = (props) => {
       componentId,
       currentLevel,
       onLeftMenuPress,
-      totalCoins,
     }),
-    [currentLevel, totalCoins, componentId, onLeftMenuPress]
+    [currentLevel, componentId, onLeftMenuPress]
   );
 
   const handleResetChallenge = useCallback(
@@ -73,7 +71,7 @@ const QuestsContainer: FC<Props> = (props) => {
   );
 
   if (Style.isIPad()) {
-    return <QuestsScreenOffline fitkitAvailable={false} totalCoins={totalCoins} onLeftMenuPress={onLeftMenuPress} />;
+    return <QuestsScreenOffline fitkitAvailable={false} onLeftMenuPress={onLeftMenuPress} />;
   }
 
   if (status) {
@@ -148,7 +146,6 @@ const mapStateToProps = (state: IReduxState) => ({
   activeLevel: getActiveLevel(state),
   currentLevel: getCurrentLevel(state),
   features: getUserFeatures(state),
-  totalCoins: getTotalCoins(state),
   copy: getCopy(state, "challenges"),
 });
 

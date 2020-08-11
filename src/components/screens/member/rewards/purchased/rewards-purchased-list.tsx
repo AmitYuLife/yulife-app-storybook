@@ -1,4 +1,4 @@
-import { RewardTabs, TopBar, YulifeRefreshHeader } from "@molecules/index";
+import { RewardTabs, YulifeRefreshHeader } from "@molecules/index";
 import { Style } from "@styles/index";
 import * as React from "react";
 import { View, Platform, ViewStyle, StyleSheet } from "react-native";
@@ -8,6 +8,8 @@ import { IConnectedScreenProps } from "../../../../../typings";
 import RewardsPurchasedItem, { IRewardsPurchasedItemProps } from "./purchased-item/purchased-item";
 import PurchasesEmpty from "./purchases-empty/purchases-empty";
 import { isIphoneX } from "react-native-iphone-x-helper";
+import { TopBar } from "@components/organisms";
+import { TOP_BAR_HEIGHT } from "@components/organisms/top-bar/top-bar.styles";
 import { NavBar } from "@components/organisms";
 
 interface IProps extends IConnectedScreenProps {
@@ -26,12 +28,12 @@ export class RewardsPurchasedList extends React.PureComponent<IProps> {
   private largeList: LargeList;
 
   public render() {
-    const { data, onLeftTabPress, onRightTabPress, onLeftMenuPress, totalCoins } = this.props;
+    const { data, onLeftTabPress, onRightTabPress, onLeftMenuPress } = this.props;
 
     return (
       <View style={styles.wrapper}>
         <View
-          style={[styles.rewardTabsWrapper, { paddingTop: TopBar.height + Platform.select({ ios: 36, android: 0 }) }]}
+          style={[styles.rewardTabsWrapper, { paddingTop: TOP_BAR_HEIGHT + Platform.select({ ios: 36, android: 0 }) }]}
         >
           <RewardTabs activeTabIndex={1} onLeftTabPress={onLeftTabPress} onRightTabPress={onRightTabPress} />
         </View>
@@ -48,7 +50,7 @@ export class RewardsPurchasedList extends React.PureComponent<IProps> {
           />
         </View>
         <View style={styles.topbarWrapper}>
-          <TopBar coins={totalCoins} onPressLeftIcon={onLeftMenuPress} />
+          <TopBar onPressLeftIcon={onLeftMenuPress} />
         </View>
         <NavBar activeIndex={4} />
       </View>
