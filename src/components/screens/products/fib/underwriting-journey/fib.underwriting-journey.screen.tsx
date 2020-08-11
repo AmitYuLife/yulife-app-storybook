@@ -7,10 +7,11 @@ import ProgressBar from "../../../../molecules/progress-bar/progresss-bar";
 import TitleWithIcon from "@atoms/fib/title-with-icon/title-with-icon";
 import FibTitle from "@atoms/fib/title/title";
 import Footer from "./subcomponents/footer/footer";
+import { UnderwritingJourneyScreen } from "@components/containers/products/fib/data/underwriting-journey-data";
 
 interface IFibUnderwritingJourneyScreenProps {
   onNavigateBack: () => void;
-  data: any;
+  data: UnderwritingJourneyScreen;
   onFirstButtonPressed: () => void;
   onSecondButtonPressed?: () => void;
   onPreviousButtonPressed?: () => void;

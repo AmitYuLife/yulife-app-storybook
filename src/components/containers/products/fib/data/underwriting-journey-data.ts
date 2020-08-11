@@ -1,4 +1,23 @@
-export const data = [
+export interface UnderwritingJourneyScreen {
+  id: string;
+  heading: string;
+  icon: string;
+  title: string;
+  question: string;
+  firstButton: {
+    label: string;
+    actionId: string;
+  };
+  secondButton?: {
+    label: string;
+    actionId: string;
+  };
+  previousButton?: {
+    actionId: string;
+  };
+}
+
+export const data: UnderwritingJourneyScreen[] = [
   {
     id: "your_name",
     heading: "About You",
