@@ -11,7 +11,6 @@ storiesOf("AviosConfirmedScreen", module)
   .addDecorator((g: () => React.ReactNode) => <View style={styles.container}>{g()}</View>)
   .add("default", () => (
     <AviosConfirmedScreen
-      coins={0}
       loyaltyProgramme="loyal af"
       onPressCancel={voidFunc}
       onPressPolicy={voidFunc}
