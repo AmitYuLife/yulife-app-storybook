@@ -1,7 +1,7 @@
 import React from "react";
 import { Colours, Style } from "@styles";
 import { SafeAreaView, ScrollView, View, ViewStyle, StyleSheet } from "react-native";
-import { GenericHeading, MinimalButton } from "@atoms";
+import { GenericHeading, Button } from "@atoms";
 
 interface Props {
   children: React.ReactNode;
@@ -22,19 +22,7 @@ export function ScrollableLayout(props: Props) {
         </ScrollView>
       </SafeAreaView>
       <View style={styles.button}>
-        <MinimalButton
-          backgroundColor={Colours.darkHotPink}
-          shadowColor={Colours.darkHotPinkShadow}
-          height={53}
-          title={buttonTitle}
-          titleStyle={{
-            fontFamily: Style.FONT_FAMILY_PRIMARY_BOLD,
-            fontSize: 16,
-          }}
-          onPress={buttonAction}
-          color="white"
-          borderRadius={50}
-        />
+        <Button label={buttonTitle} onPress={buttonAction} type="Primary" />
       </View>
     </>
   );

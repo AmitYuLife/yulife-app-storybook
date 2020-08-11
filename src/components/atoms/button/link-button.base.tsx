@@ -10,6 +10,7 @@ import {
 } from "react-native";
 import { usePressedInWithDelay } from "@services/hooks/usePressedInWithDelay";
 import Text from "../text/text";
+import { Style } from "@styles";
 
 interface IProps {
   disabled?: boolean;
@@ -17,24 +18,17 @@ interface IProps {
   onPress: () => void;
   isLoading?: boolean;
   title: string;
-  titleStyle?: TextStyle;
+  borderColor?: string;
   color?: string;
-  backgroundColor?: string;
-  shadowColor?: string;
-  borderRadius?: number;
   height: number;
 }
 
-interface IState {
-  isPressedIn: boolean;
+interface MainProps {
   translateYAnimation: Animated.Value;
 }
 
-const SHADOW_ALLOWANCE = 4;
-const SHADOW_DIFF = 3;
-
-export default function MinimalButton(props: IProps) {
-  const { onPress, height = 50, borderRadius = props.height / 2 } = props;
+export function LinkButtonBase(props: IProps) {
+  const { onPress, height = 50 } = props;
   const [translateYAnimation] = useState(new Animated.Value(0));
   const { isPressedIn, handlePressIn, handlePressOut, handlePress } = usePressedInWithDelay({ onPress });
 
@@ -47,40 +41,25 @@ export default function MinimalButton(props: IProps) {
   }, [isPressedIn, translateYAnimation]);
 
   return (
-    <View style={[styles.flex, { height: height + SHADOW_ALLOWANCE }]}>
-      <Shadow {...props} height={height - SHADOW_DIFF} borderRadius={borderRadius} />
+    <View style={[styles.flex, { height }]}>
       <Main
-        {...props}
-        height={height - SHADOW_DIFF}
-        borderRadius={borderRadius}
+        translateYAnimation={translateYAnimation}
+        height={height}
+        color={props.color}
+        isLoading={props.isLoading}
+        testID={props.testID}
         onPressIn={handlePressIn}
         onPressOut={handlePressOut}
         onPress={handlePress}
-        isPressedIn={isPressedIn}
-        translateYAnimation={translateYAnimation}
+        title={props.title}
       />
-      <DisabledOverlay {...props} />
     </View>
   );
-}
-
-function Shadow({ height, borderRadius, shadowColor, testID }: IProps) {
-  return (
-    <View style={[styles.shadow, { height, borderRadius, backgroundColor: shadowColor }]}>
-      <View testID={`${testID}-disabled-overlay`} />
-    </View>
-  );
-}
-
-function DisabledOverlay({ disabled }: IProps) {
-  return !disabled ? null : <View style={styles.disableOverlay} />;
 }
 
 function Main({
   translateYAnimation,
-  borderRadius = 50,
   height,
-  backgroundColor,
   color,
   isLoading,
   testID,
@@ -89,8 +68,8 @@ function Main({
   onPressOut,
   onPress,
   title,
-  titleStyle,
-}: IProps & IState & ComponentProps<typeof TouchableWithoutFeedback>) {
+}: IProps & MainProps & ComponentProps<typeof TouchableWithoutFeedback>) {
+  const disabledStyles = disabled ? styles.disabled : {};
   return (
     <TouchableWithoutFeedback
       testID={testID}
@@ -101,21 +80,20 @@ function Main({
       onPress={onPress}
     >
       <Animated.View
-        style={[
-          styles.main,
-          { backgroundColor, height, borderRadius, transform: [{ translateY: translateYAnimation }] },
-        ]}
+        style={[styles.main, { height, transform: [{ translateY: translateYAnimation }] }]}
         testID={`${testID}-text-view`}
       >
         {isLoading ? (
           <ActivityIndicator color="white" />
         ) : (
-          <Text style={[styles.title, { color }, titleStyle]}>{title}</Text>
+          <Text style={[styles.title, { color }, disabledStyles]}>{title}</Text>
         )}
       </Animated.View>
     </TouchableWithoutFeedback>
   );
 }
+
+export default LinkButtonBase;
 
 const styles = StyleSheet.create({
   main: {
@@ -123,23 +101,16 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   } as ViewStyle,
+  disabled: {
+    opacity: 0.3,
+  },
   title: {
-    fontSize: 18,
+    fontFamily: Style.FONT_FAMILY_PRIMARY_BOLD,
+    fontSize: 16,
   } as TextStyle,
-  shadow: {
-    width: "100%",
-    position: "absolute",
-    top: 6,
-    left: 0,
-    right: 0,
-  } as ViewStyle,
   flex: {
     justifyContent: "center",
     alignItems: "center",
     overflow: "hidden",
-  } as ViewStyle,
-  disableOverlay: {
-    ...StyleSheet.absoluteFillObject,
-    backgroundColor: "rgba(255,255,255,0.5)",
   } as ViewStyle,
 });

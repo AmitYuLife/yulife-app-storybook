@@ -97,6 +97,7 @@ class LoginScreen extends PureComponent<IProps, IState> {
             />
             {!!loginError && <TextInputError>{loginError}</TextInputError>}
             <Pad height={44} />
+
             <Button
               testID={BUTTON_LOGIN}
               isLoading={isLoggingIn}
@@ -104,7 +105,9 @@ class LoginScreen extends PureComponent<IProps, IState> {
               label={copy.ctaLabel}
               onPress={onLogInPress}
               type="Primary"
+              size="Large"
             />
+
             <Pad height={15} />
             <LinkGroup data={this.getLinks()} />
           </CentredScreen>

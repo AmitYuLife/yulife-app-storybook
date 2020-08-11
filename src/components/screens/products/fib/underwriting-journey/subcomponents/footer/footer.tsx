@@ -23,12 +23,13 @@ export default function Footer(props: IFooterProps) {
     <View style={styles.wrapper}>
       <View style={styles.buttonsWrapper}>
         <Button
-          type={secondButton ? "PrimarySmall" : "Primary"}
+          type="Primary"
+          size={secondButton ? "Small" : "Large"}
           onPress={firstButton.action}
           label={firstButton.label}
         />
         {!secondButton ? null : (
-          <Button type={"PrimarySmall"} onPress={secondButton.action} label={secondButton.label} />
+          <Button size="Small" type="Primary" onPress={secondButton.action} label={secondButton.label} />
         )}
       </View>
       {!onPreviousButtonPressed ? null : (

@@ -58,7 +58,8 @@ export default function ChallengeSuccessScreen({
         label={copy.ctaLabel}
         isLoading={loading}
         onPress={onPressCta}
-        type="PrimarySmall"
+        type="Primary"
+        size="Small"
         wrapperStyle={styles.cta}
       />
     </CentredScreen>

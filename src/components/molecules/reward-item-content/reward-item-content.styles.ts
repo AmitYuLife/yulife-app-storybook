@@ -29,21 +29,6 @@ export default StyleSheet.create({
     marginTop: Style.SCALE_UP_AND_DOWN(10),
     width: "100%",
   } as ViewStyle,
-  primaryWrapper: {
-    alignItems: "center",
-    alignSelf: "center",
-    marginTop: Style.SCALE_UP_AND_DOWN(Style.isShortToMediumAndroid() ? 30 : 41),
-  } as ViewStyle,
-  secondaryWrapper: {
-    alignItems: "center",
-    alignSelf: "center",
-    marginTop: Style.SCALE_UP_AND_DOWN(18),
-  } as ViewStyle,
-  tertiaryWrapper: {
-    alignItems: "center",
-    alignSelf: "center",
-    marginTop: Style.SCALE_UP_AND_DOWN(8),
-  } as ViewStyle,
   wrapper: {
     flex: 1,
   } as ViewStyle,

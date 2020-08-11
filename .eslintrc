@@ -7,11 +7,7 @@
     "plugin:react-hooks/recommended",
     "@react-native-community"
   ],
-  "plugins": [
-    "react",
-    "@typescript-eslint",
-    "yulife-rn-client"
-  ],
+  "plugins": ["react", "@typescript-eslint", "yulife-rn-client"],
   "env": {
     "browser": true,
     "jest": true
@@ -56,5 +52,13 @@
       "version": "detect"
     }
   },
+  "overrides": [
+    {
+      "files": ["*.stories.tsx"],
+      "rules": {
+        "react-native/no-inline-styles": "off"
+      }
+    }
+  ],
   "parser": "@typescript-eslint/parser"
 }

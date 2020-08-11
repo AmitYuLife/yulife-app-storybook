@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { FibLocalNavigation } from "../fib.types";
 import { FibFeedbackFormScreen } from "@components/screens/products/fib/feedback-form/fib.feedback-form.screen";
-import FibFeedbackSuccessScreen from "@components/screens/products/fib/feedback-form/fib.feedback-success.screen";
+import { FibFeedbackSuccessScreen } from "@components/screens/products/fib/feedback-form/fib.feedback-success.screen";
 import { useQuery } from "@apollo/react-hooks";
 import { GetYuliferData, GQL_QUERY_GET_YULIFER } from "@graphql/yuscreen";
 import { Loading } from "@atoms";

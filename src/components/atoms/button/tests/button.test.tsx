@@ -37,16 +37,6 @@ describe("Button", () => {
     expect(onPress).toHaveBeenCalledTimes(1);
   });
 
-  it("should display the correct styles on pressIn", () => {
-    const { getByTestId } = renderComponent({ type: "Primary" });
-
-    expect(getByTestId("button-text-view")).not.toHaveStyle({ backgroundColor: "#cb016b" });
-
-    fireEvent.pressIn(getByTestId("button"));
-
-    expect(getByTestId("button-text-view")).toHaveStyle({ backgroundColor: "#cb016b" });
-  });
-
   it("should display the disabled overlay when the button is disabled", () => {
     const { queryByTestId, getByTestId } = renderComponent({ disabled: true });
 

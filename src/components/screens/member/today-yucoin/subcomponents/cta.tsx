@@ -1,23 +1,17 @@
-import React, { ComponentProps } from "react";
+import React from "react";
 import { View, StyleSheet, ViewStyle } from "react-native";
-import MinimalButton from "@atoms/button/minimalButton";
-import { Colours } from "@styles";
+import Button from "@atoms/button/button";
 
 interface IProps {
   hide?: boolean;
+  onPress: () => void;
+  title: string;
 }
 
-export default function CTA({ hide, onPress, title }: IProps & Partial<ComponentProps<typeof MinimalButton>>) {
+export default function CTA({ hide, onPress, title }: IProps) {
   return hide ? null : (
     <View style={styles.ctaWrapper}>
-      <MinimalButton
-        onPress={onPress}
-        title={title}
-        height={50}
-        backgroundColor={Colours.darkHotPink}
-        shadowColor={Colours.darkHotPinkShadow}
-        color="white"
-      />
+      <Button onPress={onPress} label={title} type="Primary" />
     </View>
   );
 }

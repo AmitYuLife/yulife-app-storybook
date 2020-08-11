@@ -24,7 +24,8 @@ const FeedbackScreen: SFC<IProps> = ({ isSubmitting, onCancel, onRatingSelect, o
       <Button
         isLoading={isSubmitting}
         disabled={isSubmitting}
-        type="PrimarySmall"
+        type="Primary"
+        size="Small"
         label={isSubmitting ? "submitting" : "send"}
         onPress={onSubmit}
       />

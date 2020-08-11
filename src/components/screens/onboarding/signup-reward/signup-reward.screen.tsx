@@ -20,7 +20,8 @@ const SignUpRewardScreen: SFC<IProps> = ({ isLoading, onCollectPress, reward, co
     <Blurb label={copy.subheading} />
     <Pad height={26} />
     <Button
-      type="PrimarySmall"
+      type="Primary"
+      size="Small"
       label={copy.ctaLabel}
       onPress={onCollectPress}
       isLoading={isLoading}

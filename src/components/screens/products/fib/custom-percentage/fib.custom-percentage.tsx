@@ -3,7 +3,7 @@ import { StyleSheet, ViewStyle, View, Platform, TextStyle } from "react-native";
 import deviceInfoModule from "react-native-device-info";
 import { SvgXml } from "react-native-svg";
 import { Style, Colours } from "@styles";
-import { GenericHeading, MinimalButton } from "@atoms";
+import { GenericHeading, Button } from "@atoms";
 import { TextWithBoldText, HorizontalScroller } from "@molecules";
 import { personPencilSvg } from "./assets/person-pencil-svg";
 import { EstimatedCost } from "./subcomponents/estimated-cost";
@@ -88,21 +88,9 @@ export const FibCustomPercentage = memo(function (props: IFibCustomPercentage) {
       </View>
       <View style={styles.floatBottom}>
         <View style={styles.promptForward}>
-          <MinimalButton
-            onPress={onNavigateForward}
-            title="Continue"
-            height={56}
-            backgroundColor={Colours.darkHotPink}
-            shadowColor={Colours.darkHotPinkShadow}
-            titleStyle={styles.promptForwardLabel}
-          />
+          <Button onPress={onNavigateForward} label="Continue" type="Primary" />
         </View>
-        <MinimalButton
-          onPress={onNavigateToEditSalary}
-          title="edit salary"
-          height={48}
-          titleStyle={styles.promptBackLabel}
-        />
+        <Button onPress={onNavigateToEditSalary} label="edit salary" type="Link" />
       </View>
     </View>
   );

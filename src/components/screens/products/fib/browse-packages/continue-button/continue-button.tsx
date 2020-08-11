@@ -1,8 +1,8 @@
 import React, { memo } from "react";
 import LinearGradient from "react-native-linear-gradient";
 import { StyleSheet, ViewStyle, TextStyle, View } from "react-native";
-import MinimalButton from "@atoms/button/minimalButton";
-import { Colours, Style } from "@styles";
+import Button from "@atoms/button/button";
+import { Style } from "@styles";
 
 interface Props {
   onPress: () => void;
@@ -12,16 +12,7 @@ export const ContinueButton = memo(({ onPress }: Props) => {
   return (
     <LinearGradient colors={["#ffffff00", "#fafafe"]} locations={[0, 0.25]} style={styles.button}>
       <View style={styles.wrapper}>
-        <MinimalButton
-          backgroundColor={Colours.darkHotPink}
-          shadowColor={Colours.darkHotPinkShadow}
-          height={53}
-          title="Continue"
-          onPress={onPress}
-          color="white"
-          borderRadius={50}
-          titleStyle={styles.title}
-        />
+        <Button label="Continue" onPress={onPress} type="Primary" />
       </View>
     </LinearGradient>
   );

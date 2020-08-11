@@ -1,4 +1,4 @@
-import { Button, Text } from "@atoms/index";
+import { Button, Text, Pad } from "@atoms/index";
 import { Instruction, Picker } from "@molecules/index";
 import * as React from "react";
 import { SFC } from "react";
@@ -38,79 +38,80 @@ const RewardItemContent: SFC<IProps> = ({
   onPressPolicy,
   isLoadingPrimary,
   isLoadingSecondary,
-}) => (
-  <View style={styles.wrapper}>
-    {!description ? null : (
-      <View>
-        <View style={styles.descriptionHeadingWrapper}>
-          <Text style={styles.heading} bold={true}>
-            Description
-          </Text>
+}) => {
+  return (
+    <View style={styles.wrapper}>
+      {!description ? null : (
+        <View>
+          <View style={styles.descriptionHeadingWrapper}>
+            <Text style={styles.heading} bold={true}>
+              Description
+            </Text>
+          </View>
+          <View style={styles.descriptionWrapper}>
+            <Text style={styles.paragraph}>{description}</Text>
+          </View>
         </View>
-        <View style={styles.descriptionWrapper}>
-          <Text style={styles.paragraph}>{description}</Text>
+      )}
+      {!!instructions.length && (
+        <>
+          <View style={styles.instructionsHeadingWrapper}>
+            <Text style={styles.heading} bold={true}>
+              How to redeem
+            </Text>
+          </View>
+          <View style={styles.instructionsWrapper}>
+            {instructions.map((instruction, index) => (
+              <Instruction key={index} bullet={index + 1} instruction={instruction} />
+            ))}
+          </View>
+        </>
+      )}
+      {!onPressPicker ? null : (
+        <View style={styles.pickerWrapper}>
+          <Picker
+            placeholder="amount"
+            label={`£${rewardValue.toFixed(2)}`}
+            onPress={onPressPicker}
+            icon={Picker.Icons.COINS}
+          />
         </View>
-      </View>
-    )}
-    {!!instructions.length && (
-      <>
-        <View style={styles.instructionsHeadingWrapper}>
-          <Text style={styles.heading} bold={true}>
-            How to redeem
-          </Text>
-        </View>
-        <View style={styles.instructionsWrapper}>
-          {instructions.map((instruction, index) => (
-            <Instruction key={index} bullet={index + 1} instruction={instruction} />
-          ))}
-        </View>
-      </>
-    )}
-    {!onPressPicker ? null : (
-      <View style={styles.pickerWrapper}>
-        <Picker
-          placeholder="amount"
-          label={`£${rewardValue.toFixed(2)}`}
-          onPress={onPressPicker}
-          icon={Picker.Icons.COINS}
-        />
-      </View>
-    )}
-    <Button
-      wrapperStyle={styles.primaryWrapper}
-      type="Primary"
-      isLoading={isLoadingPrimary}
-      disabled={isLoadingPrimary}
-      onPress={onPressCtaPrimary}
-      label={labelCtaPrimary}
-    />
-    {!onPressCtaSecondary ? null : (
+      )}
+      <Pad height={30} />
       <Button
-        wrapperStyle={styles.secondaryWrapper}
-        type="Secondary"
-        onPress={onPressCtaSecondary}
-        label={labelCtaSecondary}
-        isLoading={isLoadingSecondary}
-        disabled={isLoadingSecondary}
+        type="Primary"
+        isLoading={isLoadingPrimary}
+        disabled={isLoadingPrimary}
+        onPress={onPressCtaPrimary}
+        label={labelCtaPrimary}
       />
-    )}
-    {!onPressCtaTertiary ? (
-      <LinkGroup
-        data={[
-          {
-            label: "T&Cs",
-            onPress: onPressTerms,
-          },
-          {
-            label: "Reward policy",
-            onPress: onPressPolicy,
-          },
-        ]}
-      />
-    ) : (
-      <Button wrapperStyle={styles.tertiaryWrapper} type="Link" onPress={onPressCtaTertiary} label={labelCtaTertiary} />
-    )}
-  </View>
-);
+      {!onPressCtaSecondary ? null : (
+        <Button
+          type="Secondary"
+          onPress={onPressCtaSecondary}
+          label={labelCtaSecondary}
+          isLoading={isLoadingSecondary}
+          disabled={isLoadingSecondary}
+        />
+      )}
+      {!onPressCtaTertiary ? (
+        <LinkGroup
+          data={[
+            {
+              label: "T&Cs",
+              onPress: onPressTerms,
+            },
+            {
+              label: "Reward policy",
+              onPress: onPressPolicy,
+            },
+          ]}
+        />
+      ) : (
+        <Button type="Link" onPress={onPressCtaTertiary} label={labelCtaTertiary} />
+      )}
+    </View>
+  );
+};
 
 export default RewardItemContent;
