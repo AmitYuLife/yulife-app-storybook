@@ -5,6 +5,29 @@ import { useRef } from "react";
 export const DATE_FORMAT_WITH_TZ = "YYYY-MM-DDTHH:mm:ssZ";
 export const DATE_FORMAT_WITHOUT_TZ = "YYYY-MM-DDTHH:mm:ss";
 
+export function throttle(func: Function, wait: number) {
+  let timeout: NodeJS.Timeout;
+  let last: number;
+
+  return function (...args: any[]) {
+    const now = Number(new Date());
+
+    if (last && now < last + wait) {
+      function functionToCall() {
+        timeout = null;
+        func.apply(this, args);
+      }
+
+      clearTimeout(timeout);
+      timeout = setTimeout(functionToCall, wait);
+      return;
+    }
+
+    last = now;
+    func.apply(this, args);
+  };
+}
+
 type PathOr = <T>(obj: { [x: string]: any }, key: string | string[], defaultValue?: T, p?: number) => T | any;
 export const pathOr: PathOr = (obj, key, def, p) => {
   p = 0;

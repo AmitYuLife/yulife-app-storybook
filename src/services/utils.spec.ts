@@ -1,5 +1,5 @@
 import moment from "moment";
-import { DATE_FORMAT_WITH_TZ, getCurrentEpisode, getStartAndEndDateTimesWithTimezone } from "./utils";
+import { DATE_FORMAT_WITH_TZ, getCurrentEpisode, getStartAndEndDateTimesWithTimezone, throttle } from "./utils";
 
 describe("Utils", () => {
   describe("getStartAndEndDateTimesWithTimezone", () => {
@@ -63,6 +63,31 @@ describe("Utils", () => {
       expect(level45).toEqual(6);
       expect(level135).toEqual(20);
       expect(level151).toEqual(24);
+    });
+  });
+
+  describe("throttle", () => {
+    it("should call the throttled functions the correct number of times", () => {
+      jest.useFakeTimers();
+
+      const func = jest.fn();
+      const throttledFunc = throttle(func, 100);
+
+      throttledFunc("hi");
+      throttledFunc("hi2");
+      throttledFunc("hi3");
+
+      expect(func).toHaveBeenCalledTimes(1);
+      expect(func).toHaveBeenLastCalledWith("hi");
+
+      throttledFunc("bye");
+
+      jest.runAllTimers();
+
+      expect(func).toHaveBeenCalledTimes(2);
+      expect(func).toHaveBeenLastCalledWith("bye");
+
+      jest.runAllTimers();
     });
   });
 });
