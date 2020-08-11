@@ -1,4 +1,4 @@
-import { Close, GenericHeading } from "@atoms/index";
+import { GenericHeading } from "@atoms/index";
 import * as React from "react";
 import { Image, SafeAreaView, SectionList, StyleSheet, TouchableOpacity, View } from "react-native";
 import { GetHighlights_getUserStats, GetHighlights_getUserStats_data as Card } from "../../../../graphql/_core/schema";
@@ -20,7 +20,7 @@ interface IProps {
 
 const Stats = ({ data, onPressClose, onPressActivityHistory }: IProps) => (
   <SafeAreaView style={styles.wrapper} testID={STATS_SCREEN}>
-    <GenericHeading heading={"statistics"} />
+    <GenericHeading heading={"statistics"} onRightIconPress={onPressClose} />
     <View style={{ backgroundColor: "#FAFAFE" }}>
       {!data ? null : (
         <SectionList
@@ -36,7 +36,6 @@ const Stats = ({ data, onPressClose, onPressActivityHistory }: IProps) => (
         />
       )}
     </View>
-    <Close onPress={onPressClose} />
   </SafeAreaView>
 );
 

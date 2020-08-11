@@ -21,7 +21,7 @@ const FibSalaryDescriptionContainer = memo(function (props: IFibSalaryDescriptio
   useBackHandler(backHandler);
   return (
     <SafeAreaView style={styles.wrapper}>
-      <GenericHeading heading="Salary" onLeftIconPress={navigation.pop} />
+      <GenericHeading heading="Salary" onLeftIconPress={navigation.pop} isBeta={true} />
       <Animatable.View duration={1000} animation="fadeIn" style={styles.mainContent} useNativeDriver={true}>
         <Text style={styles.text}>
           Your gross annual earned income for tax purposes. It does not include unearned income such as investment

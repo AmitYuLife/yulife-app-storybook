@@ -3,10 +3,7 @@ import { Component } from "react";
 import * as React from "react";
 import { Clipboard, Linking } from "react-native";
 import Config from "react-native-config";
-import { connect } from "react-redux";
 import { GetAllPurchases_getAllPurchases } from "../../../../../graphql/_core/schema";
-import { IReduxState } from "../../../../../redux/_core/reducers";
-import { getTotalCoins } from "../../../../../redux/coins/coins.selectors";
 import { WegiftRewardConfirmedScreen } from "../../../../screens";
 
 interface IProps {
@@ -15,22 +12,17 @@ interface IProps {
   onTabChange: (tab: "rewards" | "purchases", componentId: string) => void;
 }
 
-type ConnectedState = ReturnType<typeof mapStateToProps>;
-
 interface IState {
   isAccessingUrl: boolean;
 }
 
-type Props = IProps & ConnectedState;
-
-class WegiftRewardConfirmedContainer extends Component<Props, IState> {
+class WegiftRewardConfirmedContainer extends Component<IProps, IState> {
   public state = {
     isAccessingUrl: false,
   };
 
   public render() {
     const {
-      totalCoins,
       purchase: { name, reward, createdAt, expiry_date },
     } = this.props;
     const { isAccessingUrl } = this.state;
@@ -45,7 +37,6 @@ class WegiftRewardConfirmedContainer extends Component<Props, IState> {
         purchaseDate={purchaseDate}
         validDate={validDate}
         imageUrl={(reward && reward.card_image_url) || ""}
-        coins={totalCoins}
         onPressCancel={this.goToRewards}
         onPressConfirm={this.linkToUrl}
         isLoadingConfirmAction={isAccessingUrl}
@@ -92,8 +83,4 @@ class WegiftRewardConfirmedContainer extends Component<Props, IState> {
   };
 }
 
-const mapStateToProps = (state: IReduxState) => ({
-  totalCoins: getTotalCoins(state),
-});
-
-export default connect<ConnectedState>(mapStateToProps)(WegiftRewardConfirmedContainer);
+export default WegiftRewardConfirmedContainer;

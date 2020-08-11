@@ -1,4 +1,4 @@
-import { Close, GenericHeading, Text } from "@atoms/index";
+import { GenericHeading, Text } from "@atoms/index";
 import { TouchableOpacityWithDelay } from "@molecules/index";
 import * as React from "react";
 import { PureComponent } from "react";
@@ -22,7 +22,7 @@ export default class DebugScreen extends PureComponent<IProps> {
 
     return (
       <SafeAreaView style={styles.wrapper}>
-        <GenericHeading heading="debug" hidesBorder={true} />
+        <GenericHeading heading="debug" hideBorder={true} onRightIconPress={onPressClose} />
         <View style={styles.wrapper}>
           <FlatList
             data={data}
@@ -31,7 +31,6 @@ export default class DebugScreen extends PureComponent<IProps> {
             showsVerticalScrollIndicator={false}
           />
         </View>
-        <Close onPress={onPressClose} />
       </SafeAreaView>
     );
   }

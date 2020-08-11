@@ -1,6 +1,6 @@
-import { Close, GenericHeading, Pad } from "@atoms/index";
+import { GenericHeading, Pad } from "@atoms/index";
 import * as React from "react";
-import { ActivityIndicator, ScrollView, View } from "react-native";
+import { ActivityIndicator, ScrollView, View, SafeAreaView } from "react-native";
 import { GetCurrentUser_getCurrentUser_todayActivity } from "../../../../graphql/_core/schema";
 import { ExchangeRateMeditation } from "../../../../redux/daily-meditation/daily-meditation.selectors";
 import { ExchangeRate } from "../../../../redux/daily-steps/daily-steps.selectors";
@@ -41,8 +41,13 @@ export default function TodayYucoinScreen(props: IProps) {
   const { loading, onPressClose } = props;
   const enhancers = mapProps(props);
   return (
-    <View style={styles.wrapper}>
-      <GenericHeading hidesBorder={true} heading="today's yucoin" style={styles.heading} />
+    <SafeAreaView style={styles.wrapper}>
+      <GenericHeading
+        hideBorder={true}
+        heading="today's yucoin"
+        style={styles.heading}
+        onRightIconPress={onPressClose}
+      />
       <ScrollView testID={TODAYS_YUCOIN} style={styles.scrollView} showsVerticalScrollIndicator={false}>
         <Coin />
         <View style={styles.contentWrapper}>
@@ -56,7 +61,6 @@ export default function TodayYucoinScreen(props: IProps) {
         </View>
         <CTA {...enhancers.ctaProps} />
       </ScrollView>
-      <Close style={styles.close} onPress={onPressClose} />
-    </View>
+    </SafeAreaView>
   );
 }

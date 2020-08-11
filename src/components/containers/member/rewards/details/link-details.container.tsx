@@ -7,7 +7,6 @@ import { connect } from "react-redux";
 import { GetRewards_getRewards } from "../../../../../graphql/_core/schema";
 import { IReduxState } from "../../../../../redux/_core/reducers";
 import { getOfflineState } from "../../../../../redux/app/app.selectors";
-import { getTotalCoins } from "../../../../../redux/coins/coins.selectors";
 import Logger from "../../../../../services/logging/logger";
 import { WegiftRewardDetailsScreen } from "../../../../screens";
 import { handleLinkPress } from "@services/app-link";
@@ -26,7 +25,6 @@ const LinkRewardDetailsContainer: FC<Props> = (props) => {
   const {
     componentId,
     onTabChange,
-    totalCoins,
     reward: {
       name,
       availability,
@@ -122,7 +120,6 @@ const LinkRewardDetailsContainer: FC<Props> = (props) => {
       labelCtaPrimary={labelCtaPrimary}
       onPressTerms={handleTermsPress}
       onPressPolicy={handlePolicyPress}
-      coins={totalCoins}
       onPressTopBar={onRewardsTabPress}
       onLeftTabPress={onRewardsTabPress}
       onRightTabPress={onPurchasesTabPress}
@@ -132,7 +129,6 @@ const LinkRewardDetailsContainer: FC<Props> = (props) => {
 
 const mapStateToProps = (state: IReduxState) => ({
   offline: getOfflineState(state),
-  totalCoins: getTotalCoins(state),
 });
 
 export default connect<ConnectedState>(mapStateToProps)(LinkRewardDetailsContainer);

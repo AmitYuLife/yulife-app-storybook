@@ -1,8 +1,10 @@
 import React from "react";
 import { StyleSheet, ViewStyle, View, Platform } from "react-native";
 import { Style } from "@styles";
-import { RewardTabs, TopBar } from "@components/molecules";
+import { RewardTabs } from "@components/molecules";
 import { REWARDS_SCREEN } from "@ids";
+import { TopBar } from "@components/organisms";
+import { TOP_BAR_HEIGHT } from "@components/organisms/top-bar/top-bar.styles";
 import { NavBar } from "@components/organisms";
 
 interface Props {
@@ -10,12 +12,11 @@ interface Props {
   onLeftTabPress: () => void;
   onRightTabPress: () => void;
   onLeftMenuPress: () => void;
-  totalCoins: number;
   activeScreen: "rewards" | "purchased";
 }
 
 export function RewardsListLayout(props: Props) {
-  const { children, onLeftMenuPress, onLeftTabPress, onRightTabPress, totalCoins, activeScreen } = props;
+  const { children, onLeftMenuPress, onLeftTabPress, onRightTabPress, activeScreen } = props;
   const activeIndex = activeScreen === "rewards" ? 0 : 1;
 
   return (
@@ -26,7 +27,7 @@ export function RewardsListLayout(props: Props) {
       </View>
       <View style={styles.listWrapper}>{children}</View>
       <View style={styles.topbarWrapper}>
-        <TopBar coins={totalCoins} onPressLeftIcon={onLeftMenuPress} />
+        <TopBar onPressLeftIcon={onLeftMenuPress} />
       </View>
       <NavBar activeIndex={4} />
     </View>
@@ -51,6 +52,6 @@ const styles = StyleSheet.create({
     top: Platform.select({ ios: Style.getSafeAreaStart(), android: 0 }),
   } as ViewStyle,
   topbarFiller: {
-    height: TopBar.height + Platform.select({ ios: 36, android: 0 }),
+    height: TOP_BAR_HEIGHT + Platform.select({ ios: 36, android: 0 }),
   } as ViewStyle,
 });

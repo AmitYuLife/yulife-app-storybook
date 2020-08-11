@@ -13,7 +13,6 @@ import { YuScreenLayout } from "./yu-screen-layout";
 
 interface IProps {
   level: number;
-  totalCoins: number;
   earnRate: number;
   isAvatarCreated: boolean;
   userName: string;
@@ -35,7 +34,6 @@ const YuScreen = (props: IProps) => {
   const {
     level,
     userName,
-    totalCoins,
     isAvatarCreated,
     avatarUrl,
     products: { personal: productsPersonal, employer: productsEmployer, charms: productsCharms },
@@ -49,7 +47,7 @@ const YuScreen = (props: IProps) => {
   const [sectionTitleWidth, setSectionTitleWidth] = useState(SANE_SECTION_TITLE_WIDTH_DEFAULT);
 
   return (
-    <YuScreenLayout onLeftMenuPress={onLeftMenuPress} totalCoins={totalCoins}>
+    <YuScreenLayout onLeftMenuPress={onLeftMenuPress}>
       <YuScreenHeader earnRate={earnRate} onEarnRatePress={onEarnRatePress} level={level} userName={userName} />
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.padTop} />

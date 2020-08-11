@@ -157,7 +157,6 @@ const WegiftRewardDetailsContainer: FC<Props> = (props) => {
           labelCtaPrimary={labelCtaPrimary}
           onPressTerms={handleTermsPress}
           onPressPolicy={handlePolicyPress}
-          coins={totalCoins}
           isLoading={loading}
           onPressTopBar={onRewardsTabPress}
           onLeftTabPress={onRewardsTabPress}

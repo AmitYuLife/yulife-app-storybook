@@ -1,7 +1,7 @@
 import { LEADERBOARD_ITEM_HEIGHT } from ".";
 import { Style } from "@styles";
 import { TOP_PADDING_HEIGHT } from "../../../helpers/constants";
-import { LeaderboardTopBar } from "../../../../leaderboard-layout/subcomponents/leaderboard-topbar/leaderboard-topbar";
+import { TOP_BAR_HEIGHT } from "@components/organisms/top-bar/top-bar.styles";
 
 function getOpacityThreshold(rank: number) {
   let opacityThreshold = -Style.DEVICE_HEIGHT;
@@ -9,7 +9,7 @@ function getOpacityThreshold(rank: number) {
 
   opacityThreshold += TOP_PADDING_HEIGHT;
   opacityThreshold += LEADERBOARD_ITEM_HEIGHT * rank;
-  opacityThreshold += LeaderboardTopBar.HEIGHT;
+  opacityThreshold += TOP_BAR_HEIGHT;
   opacityThreshold += Style.getSafeAreaStart();
   opacityThreshold += DEFINE_THIS_VALUE;
 

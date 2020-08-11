@@ -3,7 +3,7 @@ import { IYulifeNotification } from "@redux/notifications/notifications.selector
 import * as React from "react";
 import { PureComponent } from "react";
 import { SafeAreaView, ScrollView, View } from "react-native";
-import { Close, GenericHeading } from "../../../atoms";
+import { GenericHeading } from "../../../atoms";
 import ConnectionsItem from "./items/connections-item";
 import LeaderboardItem from "./items/leaderboard-item";
 import NotificationsItem from "./items/notifications-item";
@@ -51,7 +51,7 @@ export default class SettingsScreen extends PureComponent<IProps> {
 
     return (
       <SafeAreaView style={styles.wrapper} testID={SETTINGS_SCREEN}>
-        <GenericHeading heading={data.heading} hidesBorder={true} />
+        <GenericHeading heading={data.heading} hideBorder={true} onRightIconPress={onPressClose} />
         <ScrollView
           showsVerticalScrollIndicator={false}
           contentContainerStyle={styles.scrollContentContainer}
@@ -59,7 +59,6 @@ export default class SettingsScreen extends PureComponent<IProps> {
         >
           {sections.map(this.renderSection)}
         </ScrollView>
-        <Close onPress={onPressClose} />
       </SafeAreaView>
     );
   }

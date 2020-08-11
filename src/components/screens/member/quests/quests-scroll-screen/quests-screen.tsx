@@ -1,6 +1,5 @@
 // import { Style } from "@styles/index";
 import { QUESTS_SCREEN } from "@ids";
-import { TopBarTypes } from "@molecules/top-bar/top-bar";
 import { getCurrentEpisode, getCurrentWorld } from "@services/utils";
 import * as React from "react";
 import { FlatList, SafeAreaView, View, ViewabilityConfigCallbackPair } from "react-native";
@@ -8,7 +7,6 @@ import { isIphoneX } from "react-native-iphone-x-helper";
 import { Navigation } from "react-native-navigation";
 import { GetCurrentWorld_getCurrentWorld } from "../../../../../graphql/_core/schema";
 import { IConnectedScreenProps } from "../../../../../typings";
-import { TopBar } from "../../../../molecules";
 import { IMapSlice, loadingSlices, mapSlices } from "./assets";
 import offsets from "./assets/offsets";
 import styles from "./quests-screen.styles";
@@ -16,6 +14,8 @@ import ScrollyQuest from "./subcomponents/scrolly-quest";
 import getUnity from "./unity-movies/unity";
 import { NavBar } from "@components/organisms";
 import QuestsLoadingOverlay from "./subcomponents/quests.loading";
+import { TopBarTypes } from "@components/organisms/top-bar/top-bar.helpers";
+import { TopBar } from "@components/organisms";
 
 export interface IChallenge extends GetCurrentWorld_getCurrentWorld {
   isActive?: boolean;
@@ -69,7 +69,7 @@ class QuestsScreen extends React.PureComponent<IProps, IState> {
 
   public render() {
     const { UI } = this.state;
-    const { activeLevel, currentLevel, data, onLeftMenuPress, unity, totalCoins, loading } = this.props;
+    const { activeLevel, currentLevel, data, onLeftMenuPress, unity, loading } = this.props;
 
     if (unity) {
       const currentWorld = getCurrentWorld(unity);
@@ -97,7 +97,7 @@ class QuestsScreen extends React.PureComponent<IProps, IState> {
           setFlatListRef={this.setFlatListRef}
         />
         <View style={styles.topBarWrapper}>
-          <TopBar type={UI.topBarType} onPressLeftIcon={onLeftMenuPress} coins={totalCoins} />
+          <TopBar type={UI.topBarType} onPressLeftIcon={onLeftMenuPress} />
         </View>
         <NavBar activeIndex={1} />
         <QuestsLoadingOverlay loading={loading} />

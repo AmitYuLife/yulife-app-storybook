@@ -10,7 +10,7 @@ const _Logo = ({ logo }: Props) => {
     return null;
   }
 
-  return <YuLifeLogo scale={0.27} />;
+  return <YuLifeLogo />;
 };
 
 export const Logo = memo(_Logo);

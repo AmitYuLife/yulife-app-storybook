@@ -1,18 +1,18 @@
 import { CHALLENGE_SCREEN } from "@ids";
-import { ChallengesList, IChallengesListProps, TopBar } from "@molecules/index";
+import { ChallengesList, IChallengesListProps } from "@molecules/index";
 import { getCurrentWorld } from "@services/utils";
 import * as React from "react";
 import { Image, SafeAreaView, StyleSheet, View } from "react-native";
 import { IMilestoneProps } from "../challenge-details/milestones";
 import styles from "./challenges-list.screen.styles";
 import { ChallengeType } from "@molecules/challenge-tile/challenge-tile.types";
+import { TopBar } from "@components/organisms";
 import { NavBar } from "@components/organisms";
 
 interface IProps extends IChallengesListProps {
   currentLevel?: number;
   name: string;
   onPressLeftIcon: () => void;
-  totalCoins: number;
   challenges: IFormattedChallenge[];
 }
 
@@ -40,7 +40,6 @@ export default class ChallengesListScreen extends React.Component<IProps, IState
   public shouldComponentUpdate(nextProps: IProps, nextState: IState) {
     return (
       this.props.currentLevel !== nextProps.currentLevel ||
-      this.props.totalCoins !== nextProps.totalCoins ||
       this.state.hideChallengeTiles !== nextState.hideChallengeTiles ||
       (!!(this.props.challenges[0] && nextProps.challenges[0]) &&
         this.props.challenges[0].id !== nextProps.challenges[0].id)
@@ -54,7 +53,7 @@ export default class ChallengesListScreen extends React.Component<IProps, IState
   }
 
   public render() {
-    const { challenges, currentLevel, onPressLeftIcon, totalCoins, name } = this.props;
+    const { challenges, currentLevel, onPressLeftIcon, name } = this.props;
     const { backgroundWrapperStyle, backgroundImage, topBarType } = getWorldStyle(currentLevel) as any;
 
     return (
@@ -70,14 +69,7 @@ export default class ChallengesListScreen extends React.Component<IProps, IState
         <View style={styles.challengeSetWrapper}>
           {this.state.hideChallengeTiles ? null : <ChallengesList challenges={challenges} />}
         </View>
-        <TopBar
-          type={topBarType}
-          leftIcon="Back"
-          menuLabel="map"
-          name={name}
-          coins={totalCoins}
-          onPressLeftIcon={onPressLeftIcon}
-        />
+        <TopBar type={topBarType} leftIcon="Back" menuLabel="map" name={name} onPressLeftIcon={onPressLeftIcon} />
         <NavBar activeIndex={1} additionalBottom={2} />
       </SafeAreaView>
     );

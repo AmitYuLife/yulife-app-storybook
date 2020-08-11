@@ -1,6 +1,6 @@
-import { TOP_BAR_TYPES, TopBarTypes } from "@molecules/top-bar/top-bar";
 import { isIphoneX as getIsIphone } from "react-native-iphone-x-helper";
 import { episodeSettings, IEpisodeSettings } from "./slices.settings";
+import { TopBarTypes, TOP_BAR_TYPES } from "@components/organisms/top-bar/top-bar.helpers";
 
 interface IMapSliceSlot {
   bottom?: number;

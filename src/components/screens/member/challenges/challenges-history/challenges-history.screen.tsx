@@ -1,7 +1,6 @@
 import { Button } from "@atoms/index";
 import { getSlotDuration } from "@containers/member/quests/challenges-list/challenges-list.helpers";
 import { GetCurrentWorld_getCurrentWorld } from "@graphql/_core/schema";
-import { TopBar } from "@molecules/index";
 import { getCurrentWorld } from "@services/utils";
 import * as React from "react";
 import { Image, SafeAreaView, ScrollView, StyleSheet, View } from "react-native";
@@ -10,7 +9,8 @@ import { IConnectedScreenProps } from "../../../../../typings";
 import ChallengesHistorySlot from "./challenges-history-slot";
 import { getBottomGradient } from "./challenges-history.helpers";
 import styles from "./challenges-history.screen.styles";
-import { TopBarTypes } from "@molecules/top-bar/top-bar";
+import { TopBarTypes } from "@components/organisms/top-bar/top-bar.helpers";
+import { TopBar } from "@components/organisms";
 import { NavBar } from "@components/organisms";
 
 interface IProps extends IConnectedScreenProps {
@@ -19,7 +19,7 @@ interface IProps extends IConnectedScreenProps {
   onPressCta: () => void;
 }
 
-export default function ChallengesHistory({ level, onPressActivityHistory, totalCoins, onLeftMenuPress }: IProps) {
+export default function ChallengesHistory({ level, onPressActivityHistory, onLeftMenuPress }: IProps) {
   const { backgroundWrapperStyle, backgroundImage, topBarType } = getWorldStyle(level.level);
 
   return (
@@ -31,7 +31,6 @@ export default function ChallengesHistory({ level, onPressActivityHistory, total
         leftIcon="Back"
         menuLabel="map"
         name={`level ${level.level}`}
-        coins={totalCoins}
         onPressLeftIcon={onLeftMenuPress}
         type={topBarType as TopBarTypes}
       />

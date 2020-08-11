@@ -1,10 +1,10 @@
-import { TopBarTypes } from "@molecules/top-bar/top-bar";
 import { StyleSheet } from "react-native";
 import { Style } from "../../../../../styles";
 import assets from "./assets";
 import styles from "./challenge-progress.screen.styles";
 import { ProgressBarTypes } from "./subcomponents/progress-bar";
 import { ChallengeType } from "@molecules/challenge-tile/challenge-tile.types";
+import { TopBarTypes } from "@components/organisms/top-bar/top-bar.helpers";
 
 interface IStyleSet {
   backgroundColour: string;

@@ -9,7 +9,7 @@ import { BackHandler, NativeEventSubscription } from "react-native";
 import { Navigation } from "react-native-navigation";
 import { connect } from "react-redux";
 import { IReduxState } from "../../../../redux/_core/reducers";
-import { getDailyEarnedCoins, getTotalCoins } from "../../../../redux/coins/coins.selectors";
+import { getDailyEarnedCoins } from "../../../../redux/coins/coins.selectors";
 import { getCopy } from "../../../../redux/copy/copy.selectors";
 import { getDailyMeditation } from "../../../../redux/daily-meditation/daily-meditation.selectors";
 import { startDailySteps } from "../../../../redux/daily-steps/daily-steps.actions";
@@ -71,7 +71,6 @@ class DailyStepsContainer extends React.Component<Props> {
       nextProps.isFetching !== this.props.isFetching ||
       nextProps.lastUpdated !== this.props.lastUpdated ||
       nextProps.popupVisibility.leaderboard !== this.props.popupVisibility.leaderboard ||
-      nextProps.totalCoins !== this.props.totalCoins ||
       nextProps.streaks.displayStreak !== this.props.streaks.displayStreak ||
       nextProps.streaks.isAvailable !== this.props.streaks.isAvailable ||
       nextProps.streaks.currentStreak !== this.props.streaks.currentStreak ||
@@ -103,7 +102,6 @@ class DailyStepsContainer extends React.Component<Props> {
             isFetching,
             streaks,
             theme,
-            totalCoins,
             copy,
             popUpCopy,
             popupVisibility,
@@ -130,7 +128,6 @@ class DailyStepsContainer extends React.Component<Props> {
                 onStreakPress={this.onStreak}
                 steps={dailySteps}
                 theme={theme}
-                totalCoins={totalCoins}
                 showIntro={showIntro}
                 surgeIntro={surgeIntro}
                 isShowingPassiveMeditation={features.usePassiveMeditation}
@@ -158,7 +155,6 @@ class DailyStepsContainer extends React.Component<Props> {
               onStreakPress={this.onStreak}
               steps={dailySteps}
               theme={theme}
-              totalCoins={totalCoins}
               copy={{ copy, popUpCopy }}
               onUpdateLeaderboardPopupVisibility={this.props.updateLeaderboardPopupVisibility}
               onUpdateSurgePopupVisibility={this.props.updateSurgePopupVisibility}
@@ -238,7 +234,6 @@ const mapStateToProps = (state: IReduxState) => ({
   lastUpdated: getLastUpdated(state),
   streaks: getStreaks(state),
   theme: getDailyStepsTheme(state),
-  totalCoins: getTotalCoins(state),
   copy: getCopy(state, "dailyStepsFitKitAuthorise"),
   popUpCopy: getCopy(state, "popUp"),
   popupVisibility: getVisiblePopups(state),

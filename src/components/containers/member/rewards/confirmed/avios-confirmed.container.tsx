@@ -7,7 +7,6 @@ import Intercom from "react-native-intercom";
 import { connect } from "react-redux";
 import { GetAllPurchases_getAllPurchases } from "../../../../../graphql/_core/schema";
 import { IReduxState } from "../../../../../redux/_core/reducers";
-import { getTotalCoins } from "../../../../../redux/coins/coins.selectors";
 import { getCopy } from "../../../../../redux/copy/copy.selectors";
 import { AviosRewardConfirmedScreen } from "../../../../screens";
 
@@ -32,7 +31,6 @@ class AviosRewardConfirmedContainer extends Component<Props> {
 
   public render() {
     const {
-      totalCoins,
       purchase: {
         name,
         status,
@@ -50,7 +48,6 @@ class AviosRewardConfirmedContainer extends Component<Props> {
         status={status}
         purchaseDate={purchaseDate}
         loyaltyProgramme={loyaltyProgramme}
-        coins={totalCoins}
         onPressCancel={this.goToRewards}
         onPressConfirm={this.showIntercom}
         onPressPolicy={this.openRewardsPolicy}
@@ -93,7 +90,6 @@ class AviosRewardConfirmedContainer extends Component<Props> {
 }
 
 const mapStateToProps = (state: IReduxState) => ({
-  totalCoins: getTotalCoins(state),
   copy: getCopy(state, "purchases"),
 });
 

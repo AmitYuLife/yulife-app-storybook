@@ -7,7 +7,6 @@ import { Navigation } from "react-native-navigation";
 import { connect } from "react-redux";
 import { GetCurrentWorld_getCurrentWorld } from "../../../../../graphql/_core/schema";
 import { IReduxState } from "../../../../../redux/_core/reducers";
-import { getTotalCoins } from "../../../../../redux/coins/coins.selectors";
 import { challengeStartSuccessAction } from "../../../../../redux/levels/levels.actions";
 import { getCurrentLevel } from "../../../../../redux/levels/levels.selectors";
 import { BlurProvider, IToggleBlur } from "../../../../atoms";
@@ -35,7 +34,6 @@ const openMeditationURL = handleLinkPress(Config.MEDITATION_SETUP_URL);
 const ChallengesListContainer: FC<Props> = ({
   currentLevel,
   level,
-  totalCoins,
   componentId,
   challengeStartSuccessAction: dispatchChallengeStartSuccess,
 }) => {
@@ -123,7 +121,6 @@ const ChallengesListContainer: FC<Props> = ({
           currentLevel={level.level}
           name={`level ${level.level}`}
           onPressLeftIcon={handleNavPress}
-          totalCoins={totalCoins}
         />
       )}
       renderOverlay={({ hideOverlay }: IToggleBlur) => (
@@ -146,7 +143,6 @@ const ChallengesListContainer: FC<Props> = ({
 
 const mapStateToProps = (state: IReduxState) => ({
   currentLevel: getCurrentLevel(state),
-  totalCoins: getTotalCoins(state),
 });
 
 const mapDispatchToProps = {

@@ -10,11 +10,11 @@ import * as Animatable from "react-native-animatable";
 import { isIphoneX } from "react-native-iphone-x-helper";
 import { GetMobileCopy_getMobileCopy_screens_intro } from "../../../../graphql/_core/schema";
 import { CentredScreen, Pad } from "../../../atoms";
-import { TopBar } from "../../../molecules";
 import YuCoin from "../../member/daily-steps/assets/yu-coin";
 import DailyStepsOnline, { IProps as IDailyStepsOnlineProps } from "../../member/daily-steps/daily-steps-online";
 import { getHighlightedLabel, getTooltipProps } from "./intro.helpers";
 import styles, { tooltipStyles } from "./intro.styles";
+import { TopBar } from "@components/organisms";
 import { NavBar } from "@components/organisms";
 
 interface IProps extends Partial<IConnectedScreenProps> {
@@ -33,7 +33,6 @@ interface IProps extends Partial<IConnectedScreenProps> {
   surgeIntro: IUserStore["surgeIntro"];
   showIntro: boolean;
   isShowingPassiveMeditation: boolean;
-  totalCoins: number;
 }
 
 type Props = IProps & IDailyStepsOnlineProps;
@@ -57,7 +56,6 @@ export default function IntroScreen({
   showIntro,
   surgeIntro,
   isShowingPassiveMeditation,
-  totalCoins,
 }: Props) {
   const [dailyStepsPosition, setDailyStepsPosition] = React.useState(0);
   const [yucoinPosition, setYucoinPosition] = React.useState(0);
@@ -78,7 +76,7 @@ export default function IntroScreen({
         testID={DAILY_STEPS_SCREEN}
       >
         <View style={StyleSheet.flatten([tooltipStyles.highlightWrapper, activeIndex === 1 ? styles.zIndex : null])}>
-          <TopBar coins={totalCoins} type={topBarType} shouldHighlightCoins={activeIndex === 1} />
+          <TopBar type={topBarType} shouldHighlightCoins={activeIndex === 1} />
         </View>
         <Pad height={getPadHeight(true)} />
         <View

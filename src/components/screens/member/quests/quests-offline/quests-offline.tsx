@@ -1,5 +1,4 @@
 import { Pad, Text } from "@atoms/index";
-import { TopBar } from "@molecules/index";
 import * as React from "react";
 import { Image, Platform, SafeAreaView, View } from "react-native";
 import { getQuestsOfflineTheme } from "@redux/theme/theme.selectors";
@@ -8,6 +7,7 @@ import assets from "./assets";
 import styles from "./quests-offline.styles";
 import { IReduxState } from "@redux/_core/reducers";
 import { connect } from "react-redux";
+import { TopBar } from "@components/organisms";
 import { NavBar } from "@components/organisms";
 
 export type ConnectedState = ReturnType<typeof mapStateToProps>;
@@ -19,7 +19,7 @@ type Props = IConnectedScreenProps &
 
 type ImageType = "forest" | "ocean" | "desert" | "mountain";
 
-function QuestsScreenOffline({ fitkitAvailable, onLeftMenuPress, totalCoins, questsOfflineTheme: { image } }: Props) {
+function QuestsScreenOffline({ fitkitAvailable, onLeftMenuPress, questsOfflineTheme: { image } }: Props) {
   return (
     <SafeAreaView style={styles.wrapper}>
       <View style={styles.backgroundWrapper}>
@@ -41,7 +41,7 @@ function QuestsScreenOffline({ fitkitAvailable, onLeftMenuPress, totalCoins, que
         </Text>
         <Pad height={60} />
       </View>
-      <TopBar coins={totalCoins} onPressLeftIcon={onLeftMenuPress} />
+      <TopBar onPressLeftIcon={onLeftMenuPress} />
       <NavBar activeIndex={1} />
     </SafeAreaView>
   );

@@ -20,13 +20,12 @@ export class RewardsList extends React.PureComponent<IRewardsListScreenProps> {
   private largeList: LargeList;
 
   public render() {
-    const { data, onLeftTabPress, onRightTabPress, onLeftMenuPress, totalCoins } = this.props;
+    const { data, onLeftTabPress, onRightTabPress, onLeftMenuPress } = this.props;
     return (
       <RewardsListLayout
         activeScreen="rewards"
         onLeftMenuPress={onLeftMenuPress}
         onLeftTabPress={onLeftTabPress}
-        totalCoins={totalCoins}
         onRightTabPress={onRightTabPress}
       >
         <View style={styles.listWrapper}>

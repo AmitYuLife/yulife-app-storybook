@@ -8,7 +8,6 @@ import React, { useCallback, useMemo } from "react";
 import { Navigation } from "react-native-navigation";
 import { connect } from "react-redux";
 import { IReduxState } from "@redux/_core/reducers";
-import { getTotalCoins } from "@redux/coins/coins.selectors";
 import { getCopy } from "@redux/copy/copy.selectors";
 import { getCurrentLevel } from "@redux/levels/levels.selectors";
 import { formatMoney } from "@services/money";
@@ -52,7 +51,7 @@ const requestOptions: BaseQueryOptions = {
 };
 
 function RewardsPurchasesContainer(props: Props) {
-  const { totalCoins, copy, onTabChange } = props;
+  const { copy, onTabChange } = props;
 
   const { loading: purchasesAreLoading, data: purchases, refetch: refetchPurchases } = useQuery<GetAllPurchases>(
     GQL_QUERY_GET_ALL_PURCHASES,
@@ -101,14 +100,12 @@ function RewardsPurchasesContainer(props: Props) {
       onLeftTabPress={handleLeftTabPress}
       onRightTabPress={handlePurchasesRefetch}
       loading={purchasesAreLoading}
-      totalCoins={totalCoins}
       copy={copy}
     />
   );
 }
 
 const mapStateToProps = (state: IReduxState) => ({
-  totalCoins: getTotalCoins(state),
   copy: getCopy(state, "purchases"),
   currentLevel: getCurrentLevel(state),
 });

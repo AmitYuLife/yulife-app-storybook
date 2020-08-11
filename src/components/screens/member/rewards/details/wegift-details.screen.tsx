@@ -5,8 +5,10 @@ import {
   GetRewards_getRewards_uiSettings as UiSettings,
 } from "../../../../../graphql/_core/schema";
 import { Pad } from "../../../../atoms";
-import { RewardItemContent, RewardsListItem, RewardTabs, TopBar } from "../../../../molecules";
+import { RewardItemContent, RewardsListItem, RewardTabs } from "../../../../molecules";
 import styles from "./wegift-details.screen.styles";
+import { TopBar } from "@components/organisms";
+import { TopBarLeftIconTypes } from "@components/organisms/top-bar/top-bar.helpers";
 import { WEGIFT_DETAILS } from "@ids";
 
 interface IProps {
@@ -26,7 +28,6 @@ interface IProps {
   showWegiftPicker?: boolean;
   onPressTerms: () => void;
   onPressPolicy: () => void;
-  coins: number;
   onPressTopBar: () => void;
   onLeftTabPress: () => void;
   onRightTabPress: () => void;
@@ -50,14 +51,13 @@ const WegiftDetailsScreen: React.SFC<IProps> = ({
   onPressTerms,
   onPressPolicy,
   onPressTopBar,
-  coins,
   onLeftTabPress,
   onRightTabPress,
   showWegiftPicker = false,
 }) => (
   <SafeAreaView style={styles.wrapper}>
     <View>
-      <TopBar leftIcon={TopBar.LeftIcon.BACK} onPressLeftIcon={onPressTopBar} coins={coins} />
+      <TopBar leftIcon={TopBarLeftIconTypes.BACK} onPressLeftIcon={onPressTopBar} />
     </View>
     <View style={styles.rewardTabsWrapper}>
       <RewardTabs onLeftTabPress={onLeftTabPress} onRightTabPress={onRightTabPress} activeTabIndex={0} />

@@ -1,23 +1,22 @@
 import React from "react";
 import { YUSCREEN } from "@ids";
 import { View, StyleSheet, ViewStyle, Platform } from "react-native";
-import { TopBar } from "@components/molecules";
 import { Style } from "@styles";
+import { TopBar } from "@components/organisms";
 import { NavBar } from "@components/organisms";
 
 interface Props {
   children: React.ReactNode;
   onLeftMenuPress: () => void;
-  totalCoins: number;
 }
 
 function _YuScreenLayout(props: Props) {
-  const { children, onLeftMenuPress, totalCoins } = props;
+  const { children, onLeftMenuPress } = props;
 
   return (
     <View style={styles.wrapper} testID={YUSCREEN}>
       <View style={styles.topbarWrapper}>
-        <TopBar coins={totalCoins} onPressLeftIcon={onLeftMenuPress} />
+        <TopBar onPressLeftIcon={onLeftMenuPress} />
       </View>
       {children}
       <NavBar activeIndex={2} />

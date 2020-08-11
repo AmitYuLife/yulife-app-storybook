@@ -25,7 +25,12 @@ function LeaderboardOptionsScreen(props: IProps) {
 
   return (
     <SafeAreaView style={styles.wrapper}>
-      <GenericHeading heading="Leaderboards" onLeftIconPress={onLeftIconPress} onRightIconPress={onRightIconPress} />
+      <GenericHeading
+        heading="Leaderboards"
+        onLeftIconPress={onLeftIconPress}
+        onRightIconPress={onRightIconPress}
+        rightIcon={{ icon: "SETTINGS" }}
+      />
       <LeaderboardListItems
         leaderboards={leaderboards}
         onPress={onChangeActiveLeaderboard}

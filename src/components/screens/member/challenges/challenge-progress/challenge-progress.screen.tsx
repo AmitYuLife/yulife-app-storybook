@@ -1,4 +1,3 @@
-import { TopBar } from "@molecules/index";
 import * as React from "react";
 import { Image, SafeAreaView, StyleSheet, View } from "react-native";
 import { IConnectedScreenProps } from "../../../../../typings";
@@ -11,6 +10,7 @@ import { ChallengeType } from "@molecules/challenge-tile/challenge-tile.types";
 import { BUTTON_CLOSE_CHALLENGE, CHALLENGE_PROGRESS_BAR } from "@ids";
 import { HeadspaceButton } from "./subcomponents/headspace-button";
 import { CalmButton } from "./subcomponents/calm-button";
+import { TopBar } from "@components/organisms";
 import { NavBar } from "@components/organisms";
 
 interface IProps extends IConnectedScreenProps {
@@ -34,7 +34,6 @@ export default function ChallengeProgressScreen({
   progressTargets,
   unit,
   userProgress,
-  totalCoins,
 }: IProps) {
   const { backgroundColour, progressBarType, source, style, topBarType, exitChallenge } = getWorldStyle(
     challengeType,
@@ -44,13 +43,7 @@ export default function ChallengeProgressScreen({
   return (
     <SafeAreaView style={StyleSheet.flatten([styles.wrapper, { backgroundColor: backgroundColour }])}>
       <Image resizeMethod="resize" resizeMode="cover" source={source} style={style} />
-      <TopBar
-        coins={totalCoins}
-        type={topBarType}
-        menuLabel={challengeType}
-        onPressLeftIcon={onLeftMenuPress}
-        timer={endDateTime}
-      />
+      <TopBar type={topBarType} menuLabel={challengeType} onPressLeftIcon={onLeftMenuPress} timer={endDateTime} />
       <View style={styles.progressBarWrapper} testID={CHALLENGE_PROGRESS_BAR}>
         <ProgressBar
           amount={userProgress}

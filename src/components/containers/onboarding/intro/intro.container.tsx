@@ -28,7 +28,6 @@ interface IntroScreenProps {
   showIntro: boolean;
   surgeIntro: IUserStore["surgeIntro"];
   isShowingPassiveMeditation: boolean;
-  totalCoins: number;
 }
 
 type Props = ConnectedState &
