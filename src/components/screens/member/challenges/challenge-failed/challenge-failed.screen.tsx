@@ -38,7 +38,8 @@ export default function ChallengeFailedScreen({ level, onPress, copy, loading }:
         wrapperStyle={styles.cta}
         onPress={onPress}
         label={copy.ctaLabel}
-        type="PrimaryMedium"
+        type="Primary"
+        size="Medium"
       />
     </CentredScreen>
   );

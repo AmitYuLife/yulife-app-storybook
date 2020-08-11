@@ -7,15 +7,15 @@ import { ActiveLeaderboardLoadingContext } from "../active-leaderboard.context";
 import { NetworkStatus } from "apollo-client";
 
 interface Props {
-  copy: GetMobileCopy_getMobileCopy_screens_leaderboards_turnBoardOn;
+  copy?: GetMobileCopy_getMobileCopy_screens_leaderboards_turnBoardOn;
   setConsent: () => void;
 }
 
+const defaultCopy = { heading: "Turn board on", subheading: "", ctaLabel: "allow" };
+
 export function Caption(props: Props) {
-  const {
-    setConsent,
-    copy: { heading = "Turn board on", subheading = "", ctaLabel = "allow" },
-  } = props;
+  const { setConsent, copy = defaultCopy } = props;
+  const { heading, subheading, ctaLabel } = copy;
 
   const networkStatus = useContext(ActiveLeaderboardLoadingContext);
   const loading = networkStatus === NetworkStatus.loading;

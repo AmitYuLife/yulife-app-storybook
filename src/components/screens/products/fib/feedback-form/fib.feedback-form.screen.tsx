@@ -1,5 +1,5 @@
 import React, { useState, useRef, useCallback } from "react";
-import { GenericHeading, MinimalButton } from "@atoms";
+import { GenericHeading, Button } from "@atoms";
 import {
   SafeAreaView,
   Keyboard,
@@ -11,7 +11,7 @@ import {
   ScrollView,
   TextStyle,
 } from "react-native";
-import { Colours, Style } from "@styles";
+import { Style } from "@styles";
 import formInputsData from "./fib.feedback-form.data";
 import Logger from "@services/logging/logger";
 import { FeedbackInputWrapper } from "./feedback-input-wrapper";
@@ -84,20 +84,15 @@ export function FibFeedbackFormScreen(props: Props) {
       <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : null}>
         <LinearGradient colors={["#ffffff00", "#fafafe"]} locations={[0, 0.25]} style={styles.buttonWrapper}>
           <View style={styles.button}>
-            <MinimalButton
-              backgroundColor={Colours.darkHotPink}
-              shadowColor={Colours.darkHotPinkShadow}
-              height={53}
-              title="Submit"
+            <Button
+              label="Submit"
               onPress={() => {
                 onSubmit(formState);
                 Keyboard.dismiss();
                 return props.onContinue();
               }}
+              type="Primary"
               disabled={isButtonDisabled(formState)}
-              color="white"
-              borderRadius={50}
-              titleStyle={styles.buttonTitle}
             />
           </View>
         </LinearGradient>
@@ -123,7 +118,6 @@ const styles = StyleSheet.create({
     height: 90,
     marginTop: 8,
   } as ViewStyle,
-
   button: {
     width: Style.DEVICE_WIDTH - 70,
   } as ViewStyle,

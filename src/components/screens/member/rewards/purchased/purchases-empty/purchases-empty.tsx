@@ -2,9 +2,9 @@ import * as React from "react";
 import { SFC } from "react";
 import { Image, View, ViewStyle, StyleSheet, ImageStyle, TextStyle } from "react-native";
 import { GetMobileCopy_getMobileCopy_screens_purchases_empty } from "../../../../../../graphql/_core/schema";
-import { Text, MinimalButton } from "../../../../../atoms";
+import { Text, Button } from "../../../../../atoms";
 import { CHECK_REWARDS_BUTTON } from "@ids";
-import { Colours, Style } from "@styles";
+import { Style } from "@styles";
 
 interface IProps {
   onCtaPress: () => void;
@@ -20,15 +20,7 @@ const PurchasesEmpty: SFC<IProps> = ({ onCtaPress, copy }) => (
     </View>
 
     <View style={styles.ctaWrapper}>
-      <MinimalButton
-        title={copy.ctaLabel}
-        height={60}
-        backgroundColor={Colours.darkHotPink}
-        shadowColor={Colours.darkHotPinkShadow}
-        color="white"
-        onPress={onCtaPress}
-        testID={CHECK_REWARDS_BUTTON}
-      />
+      <Button label={copy.ctaLabel} type="Primary" onPress={onCtaPress} testID={CHECK_REWARDS_BUTTON} />
     </View>
   </View>
 );

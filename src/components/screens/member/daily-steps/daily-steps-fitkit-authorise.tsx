@@ -12,7 +12,7 @@ interface IProps {
 const DailyStepsFitKitAuthorise: SFC<IProps> = ({ onPress, copy }) => (
   <>
     <Text style={styles.permissionText}>{copy.permission}</Text>
-    <Button label={copy.permissionCta} onPress={onPress} type="PrimaryMedium" />
+    <Button label={copy.permissionCta} onPress={onPress} type="Primary" size="Medium" />
   </>
 );
 

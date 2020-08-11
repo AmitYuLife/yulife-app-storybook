@@ -1,8 +1,8 @@
 import React, { memo } from "react";
 import { StyleSheet, View, ViewStyle } from "react-native";
-import { Style, Colours } from "@styles";
+import { Style } from "@styles";
 import { Header, Heading, DEFAULT_TEXT_PAD_LEFT } from "./common";
-import MinimalButton from "@atoms/button/minimalButton";
+import Button from "@atoms/button/button";
 import Logger from "@services/logging/logger";
 
 interface Props {
@@ -22,15 +22,7 @@ export const EstimatedCost = memo(({ heading, loading, navigateToEditSalary }: P
       <Header title="Estimated cost" />
       <View style={styles.contentWrapper}>
         <Heading title={loading ? "£... per month" : heading} />
-        <View style={styles.buttonWrapper}>
-          <MinimalButton
-            onPress={handlePress}
-            title="edit salary"
-            height={40}
-            color={Colours.darkHotPink}
-            titleStyle={{ textDecorationLine: "underline" }}
-          />
-        </View>
+        <Button onPress={handlePress} label="edit salary" type="Link" />
       </View>
     </View>
   );
@@ -45,13 +37,10 @@ const styles = StyleSheet.create({
     paddingLeft: DEFAULT_TEXT_PAD_LEFT,
     backgroundColor: "white",
   } as ViewStyle,
-  buttonWrapper: {
-    alignItems: "flex-end",
-    flex: 1,
-  } as ViewStyle,
   contentWrapper: {
     marginTop: Style.adjust(8),
-    paddingRight: Style.adjust(16),
+    marginRight: Style.adjust(32),
+    justifyContent: "space-between",
     alignItems: "center",
     flexDirection: "row",
   },

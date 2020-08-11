@@ -4,7 +4,7 @@ import { GenericHeading, Text } from "@atoms";
 import { Style, Colours } from "@styles";
 import { FibEditSalaryInput } from "./fib.edit-salary-input";
 import * as Animatable from "react-native-animatable";
-import MinimalButton from "@atoms/button/minimalButton";
+import Button from "@atoms/button/button";
 import Logger from "@services/logging/logger";
 import { useBackHandler } from "../../../../../services/hooks/useBackHandler";
 
@@ -63,16 +63,7 @@ export const FibEditSalaryScreen = memo(function (props: IEditSalaryScreen) {
       </SafeAreaView>
       <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : null}>
         <View style={styles.button}>
-          <MinimalButton
-            disabled={!salary}
-            backgroundColor={Colours.darkHotPink}
-            shadowColor={Colours.darkHotPinkShadow}
-            height={53}
-            title="Done"
-            onPress={handlePress}
-            color="white"
-            borderRadius={50}
-          />
+          <Button disabled={!salary} label="Done" type="Primary" onPress={handlePress} />
         </View>
       </KeyboardAvoidingView>
     </>

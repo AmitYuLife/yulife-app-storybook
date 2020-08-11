@@ -1,6 +1,6 @@
 import React, { useCallback } from "react";
 import { View, StyleSheet, ViewStyle, ScrollView, SafeAreaView } from "react-native";
-import { Text, MinimalButton, GenericHeading, Heading } from "@atoms";
+import { Text, Button, GenericHeading, Heading } from "@atoms";
 import { Style, Colours } from "@styles";
 import { connect } from "react-redux";
 import { IReduxState } from "@redux/_core/reducers";
@@ -17,7 +17,7 @@ interface Props extends ConnectedState {
   onContinue: () => void;
 }
 
-function FibFeedbackSuccessScreen(props: Props) {
+function _FibFeedbackSuccessScreen(props: Props) {
   const { onNavigateBack } = props;
   const backHandler = useCallback(() => {
     onNavigateBack();
@@ -44,23 +44,14 @@ function FibFeedbackSuccessScreen(props: Props) {
 
             <Text style={styles.text}>
               We build everything with our YuLifers in mind, and your feedback helps us stay on track and deliver an app
-              that’s perfect for <Text style={{ fontStyle: "italic" }}>you</Text>!
+              that’s perfect for <Text style={styles.italic}>you</Text>!
             </Text>
           </View>
         </ScrollView>
       </SafeAreaView>
 
       <View style={styles.button}>
-        <MinimalButton
-          backgroundColor={Colours.darkHotPink}
-          shadowColor={Colours.darkHotPinkShadow}
-          height={53}
-          title="Close"
-          onPress={props.onContinue}
-          color="white"
-          borderRadius={50}
-          titleStyle={styles.buttonTitle}
-        />
+        <Button label="Close" onPress={props.onContinue} type="Primary" />
       </View>
     </>
   );
@@ -70,7 +61,7 @@ const mapStateToProps = (state: IReduxState) => ({
   firstName: getUserFirstName(state),
 });
 
-export default connect<ConnectedState>(mapStateToProps)(FibFeedbackSuccessScreen);
+export const FibFeedbackSuccessScreen = connect<ConnectedState>(mapStateToProps)(_FibFeedbackSuccessScreen);
 
 const styles = StyleSheet.create({
   wrapper: {
@@ -78,6 +69,7 @@ const styles = StyleSheet.create({
     flex: 1,
     marginTop: Style.isAnyIphoneX() ? -10 : 0,
   },
+  italic: { fontStyle: "italic" },
   header: {
     textAlign: "left",
     color: Colours.products.fib.n800,
