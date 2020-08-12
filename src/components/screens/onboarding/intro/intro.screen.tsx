@@ -1,7 +1,8 @@
 import { IThemeStore } from "@app/redux/theme/theme.reducer";
 import { IConnectedScreenProps } from "@app/typings";
 import { DAILY_STEPS_SCREEN } from "@ids";
-import { Streak, Tooltip, TouchableOpacityWithDelay } from "@molecules/index";
+import { Tooltip, TouchableOpacityWithDelay } from "@molecules";
+import { Streak } from "@components/organisms";
 import { IUserStore } from "@redux/user/user.reducer";
 import { Style } from "@styles/index";
 import * as React from "react";
@@ -18,15 +19,10 @@ import { TopBar } from "@components/organisms";
 import { NavBar } from "@components/organisms";
 
 interface IProps extends Partial<IConnectedScreenProps> {
-  displayStreak: boolean;
   showCounter?: boolean;
-  currentStreak?: number;
-  isDoneToday?: boolean;
   isLoading: boolean;
-  maxStreak?: number;
   onCoinPress: () => void;
   onSetIntroDone: () => void;
-  onStreakPress?: () => void;
   theme: IThemeStore["dailyStepsScreen"];
   copy: GetMobileCopy_getMobileCopy_screens_intro;
   shouldDisplaySurge: boolean;
@@ -39,18 +35,13 @@ type Props = IProps & IDailyStepsOnlineProps;
 
 export default function IntroScreen({
   coinsToday,
-  currentStreak,
-  displayStreak,
-  isDoneToday,
   isLoading,
-  maxStreak,
   onCoinPress,
   onCtaPress,
-  onStreakPress,
   showCounter = false,
   steps,
   onSetIntroDone,
-  theme: { centredScreen, streakType, textStyle, topBarType },
+  theme: { centredScreen, textStyle, topBarType },
   copy,
   shouldDisplaySurge,
   showIntro,
@@ -105,15 +96,7 @@ export default function IntroScreen({
         </View>
         <View style={styles.dim} />
         <NavBar highlightedLabel={getHighlightedLabel(activeIndex)} activeIndex={0} />
-        <Streak
-          isFinished={isDoneToday}
-          isOnline={true}
-          isDim={activeIndex !== 6}
-          onPress={displayStreak ? onStreakPress : () => null}
-          currentStreak={currentStreak}
-          maxStreak={maxStreak}
-          type={streakType}
-        />
+        <Streak isDim={activeIndex !== 6} />
         {dailyStepsPosition && activeIndex >= 0 && activeIndex <= 8 ? (
           <Tooltip
             copy={copy}

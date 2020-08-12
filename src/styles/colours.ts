@@ -128,7 +128,6 @@ export default {
         unpressed: "#0E66A1",
       },
     },
-    offline: "rgb(153,153,153)",
     unfinished: {
       pressed: "#cb016b",
       unpressed: "#e20177",

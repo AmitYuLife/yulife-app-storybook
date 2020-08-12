@@ -13,7 +13,8 @@ import {
 import { IUserStore } from "../../../../redux/user/user.reducer";
 import { IConnectedScreenProps } from "../../../../typings";
 import { CentredScreen, Pad } from "../../../atoms";
-import { LeaderboardPopup, Streak, SurgePopup } from "../../../molecules";
+import { LeaderboardPopup, SurgePopup } from "../../../molecules";
+import { Streak } from "@components/organisms";
 import YuCoin from "./assets/yu-coin";
 import DailyStepsFitKitAuthorise from "./daily-steps-fitkit-authorise";
 import DailyStepsFitKitUnavailable from "./daily-steps-fitkit-unavailable";
@@ -27,14 +28,10 @@ import { NavBar } from "@components/organisms";
 interface IProps extends IConnectedScreenProps {
   labels: ILabel[];
   showCounter?: boolean;
-  currentStreak?: number;
   currentWorld?: number;
-  displayStreak?: boolean;
   fitKitAvailable: boolean;
   hasPermission: boolean;
-  isDoneToday?: boolean;
   isLoading: boolean;
-  maxStreak?: number;
   onAuthoriseFitKitPress: () => void;
   onCoinPress: () => void;
   onStreakPress?: () => void;
@@ -54,22 +51,17 @@ type Props = IProps & IDailyStepsOnlineProps;
 
 export default function DailyStepsScreen({
   coinsToday,
-  currentStreak,
-  displayStreak = false,
   fitKitAvailable,
   hasPermission,
-  isDoneToday,
   isLoading,
   labels,
-  maxStreak,
   onAuthoriseFitKitPress,
   onCoinPress,
   onCtaPress,
   onLeftMenuPress,
-  onStreakPress,
   showCounter = false,
   steps,
-  theme: { centredScreen, hasWhiteGlow, topBarType, streakType, textStyle },
+  theme: { centredScreen, hasWhiteGlow, topBarType, textStyle },
   copy,
   onUpdateLeaderboardPopupVisibility,
   onUpdateSurgePopupVisibility,
@@ -86,7 +78,7 @@ export default function DailyStepsScreen({
         style={!hasPermission ? centredScreen.offline.style : centredScreen.online.style}
         testID={DAILY_STEPS_SCREEN}
       >
-        <Pad height={getPadHeight(displayStreak)} />
+        <Pad height={getPadHeight()} />
         {/** TODO: add surge condition: `!popupVisibility.leaderboard && popupVisibility.surge` */}
         {false ? (
           <SurgePopup
@@ -120,16 +112,7 @@ export default function DailyStepsScreen({
             isShowingPassiveMeditation={isShowingPassiveMeditation}
           />
         )}
-        {!displayStreak ? null : (
-          <Streak
-            isFinished={isDoneToday}
-            isOnline={true}
-            onPress={onStreakPress}
-            currentStreak={currentStreak}
-            maxStreak={maxStreak}
-            type={streakType}
-          />
-        )}
+        <Streak />
         {popupVisibility.leaderboard ? (
           <LeaderboardPopup
             copy={copy.popUpCopy}
@@ -147,18 +130,18 @@ export default function DailyStepsScreen({
   );
 }
 
-function getPadHeight(displayStreak: boolean) {
+function getPadHeight() {
   if (isIphoneX()) {
-    return displayStreak ? 120 : 100;
+    return 120;
   }
 
   if (Platform.OS === "ios") {
-    return displayStreak ? 80 : 60;
+    return 80;
   }
 
   if (Style.isShortToMediumAndroid()) {
-    return displayStreak ? 100 : 80;
+    return 100;
   }
 
-  return displayStreak ? 140 : 120;
+  return 140;
 }

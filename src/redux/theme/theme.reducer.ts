@@ -1,6 +1,6 @@
 // tslint:disable-next-line
 import { CenteredScreenImages } from "../../components/atoms/centred-screen/centred-screen";
-import { StreakTypes } from "../../components/molecules/streak/streak";
+import { StreakTypes } from "@components/organisms/streak/streak";
 import { GetCurrentUser, LoginUser } from "../../graphql/_core/schema";
 import { GET_USER_SUCCESS, LOGIN_USER_SUCCESS } from "../user/user.actions";
 import { getCurrentWorld } from "../../services/utils";
