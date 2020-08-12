@@ -15,12 +15,8 @@ type ConnectedState = ReturnType<typeof mapStateToProps>;
 type ConnectedDispatch = typeof mapDispatchToProps;
 
 interface IntroScreenProps {
-  displayStreak: boolean;
   showCounter?: boolean;
-  currentStreak?: number;
-  isDoneToday?: boolean;
   isLoading: boolean;
-  maxStreak?: number;
   onCoinPress: () => void;
   onStreakPress?: () => void;
   theme: IThemeStore["dailyStepsScreen"];

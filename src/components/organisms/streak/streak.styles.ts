@@ -1,13 +1,9 @@
 import { Platform, StyleSheet, TextStyle, ViewStyle } from "react-native";
 import { isIphoneX } from "react-native-iphone-x-helper";
-import { Colours, Style } from "../../../styles";
-import { IProps } from "./streak";
+import { Colours, Style } from "@styles";
+import { StreakTypes } from "./streak";
 
-export function getColour(type: IProps["type"], isFinished: boolean, isPressed: boolean, isOnline: boolean) {
-  if (!isOnline) {
-    return Colours.streak.offline;
-  }
-
+export function getColour(type: StreakTypes, isFinished: boolean, isPressed: boolean) {
   if (isFinished) {
     if (isPressed) {
       return Colours.streak.finished[type].pressed;

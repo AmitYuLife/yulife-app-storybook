@@ -20,7 +20,6 @@ import {
 } from "../../../../redux/daily-steps/daily-steps.selectors";
 import { getChallengesStatus, getCurrentLevel } from "../../../../redux/levels/levels.selectors";
 import { dailyStepsCoinClicked } from "../../../../redux/logging/logging.actions";
-import { getStreaks } from "../../../../redux/streaks/streaks.selectors";
 import { getDailyStepsTheme } from "../../../../redux/theme/theme.selectors";
 import { updateLeaderboardPopupVisibility, updateSurgePopupVisibility } from "../../../../redux/user/user.actions";
 import { getSurgeIntro, getUserFeatures, getVisiblePopups } from "../../../../redux/user/user.selectors";
@@ -71,11 +70,6 @@ class DailyStepsContainer extends React.Component<Props> {
       nextProps.isFetching !== this.props.isFetching ||
       nextProps.lastUpdated !== this.props.lastUpdated ||
       nextProps.popupVisibility.leaderboard !== this.props.popupVisibility.leaderboard ||
-      nextProps.streaks.displayStreak !== this.props.streaks.displayStreak ||
-      nextProps.streaks.isAvailable !== this.props.streaks.isAvailable ||
-      nextProps.streaks.currentStreak !== this.props.streaks.currentStreak ||
-      nextProps.streaks.isDoneToday !== this.props.streaks.isDoneToday ||
-      nextProps.streaks.maxStreak !== this.props.streaks.maxStreak ||
       nextProps.dailyMeditation !== this.props.dailyMeditation ||
       !!(
         nextProps.surgeIntro &&
@@ -100,7 +94,6 @@ class DailyStepsContainer extends React.Component<Props> {
             dailyMeditation,
             features = {},
             isFetching,
-            streaks,
             theme,
             copy,
             popUpCopy,
@@ -110,22 +103,16 @@ class DailyStepsContainer extends React.Component<Props> {
             onLeftMenuPress,
           } = this.props;
           const shouldDisplaySurge = features.showSurge;
-          const displayStreak = features.showStreaks && streaks.displayStreak && streaks.isAvailable;
           if (showIntro || surgeIntro.visibility) {
             return (
               <IntroContainer
                 shouldDisplaySurge={shouldDisplaySurge}
                 coinsToday={dailyEarnedCoins}
                 showCounter={features.showCounter}
-                displayStreak={displayStreak}
-                currentStreak={streaks.currentStreak}
-                isDoneToday={streaks.isDoneToday}
                 isLoading={isFetching || loading}
-                maxStreak={streaks.maxStreak}
                 onCoinPress={this.onCoinPress}
                 onCtaPress={displayEarnMore ? this.onCta : null}
                 onLeftMenuPress={onLeftMenuPress}
-                onStreakPress={this.onStreak}
                 steps={dailySteps}
                 theme={theme}
                 showIntro={showIntro}
@@ -139,20 +126,15 @@ class DailyStepsContainer extends React.Component<Props> {
             <DailyStepsScreen
               coinsToday={dailyEarnedCoins}
               showCounter={features.showCounter}
-              currentStreak={streaks.currentStreak}
               currentWorld={getCurrentWorld(currentLevel)}
-              displayStreak={displayStreak}
               fitKitAvailable={available}
               hasPermission={authorised}
-              isDoneToday={streaks.isDoneToday}
               isLoading={isFetching || loading}
               labels={labels}
-              maxStreak={streaks.maxStreak}
               onAuthoriseFitKitPress={() => authorise(FitKitPermissions)}
               onCoinPress={this.onCoinPress}
               onCtaPress={displayEarnMore ? this.onCta : null}
               onLeftMenuPress={onLeftMenuPress}
-              onStreakPress={this.onStreak}
               steps={dailySteps}
               theme={theme}
               copy={{ copy, popUpCopy }}
@@ -188,39 +170,6 @@ class DailyStepsContainer extends React.Component<Props> {
   private onCta = () => {
     labels[1].onPress();
   };
-
-  private onStreak = () => {
-    const {
-      streaks: { currentStreak, isDoneToday, maxStreak, reward, nextStreakAvailableAt },
-    } = this.props;
-    const modalName = MODALS.streaks;
-
-    Navigation.showModal({
-      component: {
-        id: modalName,
-        name: modalName,
-        passProps: {
-          isDoneToday,
-          onPressCtaPrimary: () => {
-            if (!isDoneToday) {
-              labels[1].onPress();
-            }
-
-            Navigation.dismissModal(modalName);
-          },
-          onPressCtaSecondary: isDoneToday
-            ? null
-            : () => {
-                Navigation.dismissModal(modalName);
-              },
-          reward,
-          streakCompleted: currentStreak,
-          streakMax: maxStreak,
-          nextStreakAvailableAt,
-        },
-      },
-    });
-  };
 }
 
 const mapStateToProps = (state: IReduxState) => ({
@@ -232,7 +181,6 @@ const mapStateToProps = (state: IReduxState) => ({
   features: getUserFeatures(state),
   isFetching: getDailyStepsIsFetching(state),
   lastUpdated: getLastUpdated(state),
-  streaks: getStreaks(state),
   theme: getDailyStepsTheme(state),
   copy: getCopy(state, "dailyStepsFitKitAuthorise"),
   popUpCopy: getCopy(state, "popUp"),

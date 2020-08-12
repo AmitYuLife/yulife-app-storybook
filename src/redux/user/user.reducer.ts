@@ -29,10 +29,11 @@ import {
 } from "./user.actions";
 import { reduceUserFeatures } from "./user.helpers";
 import moment from "moment";
+import { features } from "./features.data";
 
-interface IFeature {
-  [x: string]: boolean;
-}
+type FeatureKey = typeof features[number];
+
+export type IFeature = Record<FeatureKey, boolean>;
 
 export type ILeaderboard = GetCurrentUser_getCurrentUser_leaderboards & {
   isLoading?: boolean;
