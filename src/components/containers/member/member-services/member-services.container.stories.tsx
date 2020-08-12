@@ -26,7 +26,7 @@ function getInitialState(state: ConnectedState) {
   };
 }
 
-storiesOf("Member Services Container")
+storiesOf("Member Services Container", module)
   .add("Both Tabs", () => {
     const componentState = {
       features: {
@@ -52,26 +52,6 @@ storiesOf("Member Services Container")
       features: {},
       isGroupUser: false,
       isWellbeingAccess: false,
-      membershipType: "",
-    };
-
-    const state = getInitialState(componentState);
-    const store = createStore(reducers, state);
-
-    return (
-      <Provider store={store}>
-        <MemberServices componentId="1234" />
-      </Provider>
-    );
-  })
-  .add("Only SmartHealth", () => {
-    const componentState = {
-      features: {
-        hideYuMatterScreen: true,
-        hideSmartHealthScreen: false,
-      },
-      isGroupUser: true,
-      isWellbeingAccess: true,
       membershipType: "",
     };
 

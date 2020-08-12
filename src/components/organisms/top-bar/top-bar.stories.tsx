@@ -6,7 +6,7 @@ import moment from "moment";
 import TopBar from "./top-bar";
 import { TOP_BAR_TYPES, TopBarLeftIconTypes } from "./top-bar.helpers";
 
-storiesOf("TopBar")
+storiesOf("TopBar", module)
   .addDecorator(withKnobs)
   .addDecorator((g: () => React.ReactNode) => (
     <View style={{ position: "absolute", top: 0, left: 0, right: 0 }}>{g()}</View>

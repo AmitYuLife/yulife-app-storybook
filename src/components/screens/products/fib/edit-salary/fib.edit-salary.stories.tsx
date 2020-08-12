@@ -10,4 +10,4 @@ const defaultProps: IEditSalaryScreen = {
   updateSalary: () => null,
 };
 
-storiesOf("FibEditSalaryScreen").add("default", () => <FibEditSalaryScreen {...defaultProps} />);
+storiesOf("FibEditSalaryScreen", module).add("default", () => <FibEditSalaryScreen {...defaultProps} />);

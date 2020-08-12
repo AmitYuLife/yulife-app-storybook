@@ -25,7 +25,7 @@ const defaultProps = {
   // reward?: string,
 };
 
-storiesOf("ChallengeTile")
+storiesOf("ChallengeTile", module)
   .add("all", () => {
     return (
       <ScrollView

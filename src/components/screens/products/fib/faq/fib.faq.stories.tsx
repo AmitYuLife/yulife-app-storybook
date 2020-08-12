@@ -14,7 +14,7 @@ const faq = {
   salaryIncrease: getFaq("salary-increase"),
 };
 
-storiesOf("Fib Faq")
+storiesOf("Fib Faq", module)
   .add("with list items and subheading", () => <FibFaqScreen {...fillers} faq={faq.increaseCover} />)
   .add("with redirect", () => (
     <FibFaqScreen {...fillers} faq={faq.salaryIncrease} childFaqs={{ onPress: () => null, faq: faq.increaseCover }} />

@@ -9,4 +9,4 @@ const defaultProps: IFibIntroductionScreenProps = {
   avatar: "",
 };
 
-storiesOf("FibIntroductionScreen").add("default", () => <FibIntroductionScreen {...defaultProps} />);
+storiesOf("FibIntroductionScreen", module).add("default", () => <FibIntroductionScreen {...defaultProps} />);

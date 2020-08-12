@@ -4,7 +4,7 @@ import { storiesOf } from "@storybook/react-native";
 import TextField from "./text-field";
 import { withKnobs, text, number } from "@storybook/addon-knobs";
 
-storiesOf("TextField")
+storiesOf("TextField", module)
   .addDecorator(withKnobs)
   .addDecorator((g: () => React.ReactNode) => (
     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>{g()}</View>
