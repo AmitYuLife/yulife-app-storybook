@@ -15,6 +15,5 @@ storiesOf("ChallengesHistoryScreen", module)
       level={{ id: "1", level: 30, __typename: "Level", levelChestId: "123", name: "Hello", rating: 5, slots: [] }}
       onLeftMenuPress={voidFunc}
       onPressActivityHistory={voidFunc}
-      totalCoins={200}
     />
   ));

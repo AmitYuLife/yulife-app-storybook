@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
     color: Colours.products.fib.n900,
     letterSpacing: 1,
     lineHeight: 24,
-    fontFamily: Style.FONT_FAMILY_PRIMARY,
+    fontFamily: Style.FONT_FAMILY_PRIMARY_BOLD,
   } as TextStyle,
   rightIconWrapper: { width: 32, alignSelf: "center" } as ViewStyle,
   rightIconTouchable: { alignSelf: "flex-end" },
