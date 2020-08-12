@@ -46,14 +46,16 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     alignItems: "center",
     position: "absolute",
-    height: 120,
+    height: 130,
     bottom: 0,
     justifyContent: "space-between",
+    backgroundColor: "rgba(255, 255, 255, 0.95)",
   } as ViewStyle,
   buttonsWrapper: {
     width: Style.DEVICE_WIDTH,
     justifyContent: "space-around",
     flexDirection: "row",
+    marginTop: 10,
   } as ViewStyle,
   previousQuestionWrapper: {
     paddingBottom: 25,
