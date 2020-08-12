@@ -7,7 +7,16 @@ import ProgressBar from "../../../../molecules/progress-bar/progresss-bar";
 import TitleWithIcon from "@atoms/fib/title-with-icon/title-with-icon";
 import FibTitle from "@atoms/fib/title/title";
 import Footer from "./subcomponents/footer/footer";
-import { UnderwritingJourneyScreen } from "@components/containers/products/fib/data/underwriting-journey-data";
+import {
+  UnderwritingJourneyScreen,
+  UnderwritingJourneyChild,
+} from "@components/containers/products/fib/data/underwriting-journey-data";
+import {
+  MedicalHistoryItem,
+  IMedicalHistoryItemProps,
+} from "../../../../atoms/fib/medical-history-item/medical-history-item";
+import MarkdownFib from "../../../../atoms/fib/markdown/markdown";
+import { IMarkdownFibProps } from "../../../../atoms/fib/markdown/markdown";
 
 interface IFibUnderwritingJourneyScreenProps {
   onNavigateBack: () => void;
@@ -40,11 +49,22 @@ export const FibUnderwritingJourneyScreen = memo(function (props: IFibUnderwriti
       <ScrollView contentContainerStyle={styles.scrollViewContentStyle}>
         <TitleWithIcon icon={data.icon} title={data.title} />
         <FibTitle title={data.question} />
+        {data.children?.map((child: UnderwritingJourneyChild) => {
+          return renderChildren(child);
+        })}
       </ScrollView>
       <Footer firstButton={firstButton} secondButton={secondButton} onPreviousButtonPressed={onPreviousButtonPressed} />
     </View>
   );
 });
+
+function renderChildren(child: UnderwritingJourneyChild) {
+  const FIELDS: Record<string, React.ReactNode> = {
+    medicalHistory: <MedicalHistoryItem {...(child as IMedicalHistoryItemProps)} />,
+    markdown: <MarkdownFib {...(child as IMarkdownFibProps)} />,
+  };
+  return FIELDS[child.type] || null;
+}
 
 const styles = StyleSheet.create({
   wrapper: {
