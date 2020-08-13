@@ -23,7 +23,7 @@ const styles = {
     fontSize: 16,
     lineHeight: 24,
     letterSpacing: 0.8,
-    paddingLeft: 16,
+    paddingLeft: 12,
     color: "#5A5A5C",
   } as TextStyle,
 };
