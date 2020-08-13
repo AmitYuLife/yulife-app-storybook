@@ -7,11 +7,10 @@ import { ROUTES } from "../../../navigation/constants";
 import { Popup, POPUPTYPE } from "../../molecules";
 import styles from "./pop-up.styles";
 import { NavBar } from "@components/organisms";
-import { ILabel } from "@components/organisms/nav-bar/nav-bar.helpers";
+import { labels } from "@navigation/root";
 
 interface IProps {
   copy: GetMobileCopy_getMobileCopy_screens_popUp;
-  labels?: ILabel[];
   onUpdateLeaderboardPopupVisibility: (payload: boolean) => void;
 }
 
@@ -60,7 +59,7 @@ export default class LeaderboardPopup extends React.PureComponent<IProps, IState
   };
 
   private getUpdateLabelsFunction = () => {
-    return this.props.labels.map((label, currentTabIndex) => ({
+    return labels.map((label, currentTabIndex) => ({
       ...label,
       onPress: () => {
         this.updateLeaderboardVisibility();

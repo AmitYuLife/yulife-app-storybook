@@ -12,14 +12,13 @@ import { isIphoneX } from "react-native-iphone-x-helper";
 import { GetMobileCopy_getMobileCopy_screens_intro } from "../../../../graphql/_core/schema";
 import { CentredScreen, Pad } from "../../../atoms";
 import YuCoin from "../../member/daily-steps/assets/yu-coin";
-import DailyStepsOnline, { IProps as IDailyStepsOnlineProps } from "../../member/daily-steps/daily-steps-online";
 import { getHighlightedLabel, getTooltipProps } from "./intro.helpers";
 import styles, { tooltipStyles } from "./intro.styles";
 import { TopBar } from "@components/organisms";
 import { NavBar } from "@components/organisms";
+import { DailyStepsOnline } from "@components/organisms/daily-steps/daily-steps-content/subcontainers/daily-steps-online";
 
 interface IProps extends Partial<IConnectedScreenProps> {
-  showCounter?: boolean;
   isLoading: boolean;
   onCoinPress: () => void;
   onSetIntroDone: () => void;
@@ -31,17 +30,13 @@ interface IProps extends Partial<IConnectedScreenProps> {
   isShowingPassiveMeditation: boolean;
 }
 
-type Props = IProps & IDailyStepsOnlineProps;
+type Props = IProps;
 
 export default function IntroScreen({
-  coinsToday,
   isLoading,
   onCoinPress,
-  onCtaPress,
-  showCounter = false,
-  steps,
   onSetIntroDone,
-  theme: { centredScreen, textStyle, topBarType },
+  theme: { centredScreen, topBarType },
   copy,
   shouldDisplaySurge,
   showIntro,
@@ -86,13 +81,7 @@ export default function IntroScreen({
             setDailyStepsPosition(event.nativeEvent.layout.height + event.nativeEvent.layout.y + 10)
           }
         >
-          <DailyStepsOnline
-            coinsToday={coinsToday}
-            showCounter={showCounter}
-            steps={steps}
-            onCtaPress={onCtaPress}
-            textStyle={textStyle}
-          />
+          <DailyStepsOnline />
         </View>
         <View style={styles.dim} />
         <NavBar highlightedLabel={getHighlightedLabel(activeIndex)} activeIndex={0} />
