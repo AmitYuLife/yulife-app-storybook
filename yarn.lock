@@ -13334,9 +13334,9 @@ react-native-fast-image@^8.3.2:
   resolved "https://registry.yarnpkg.com/react-native-fast-image/-/react-native-fast-image-8.3.2.tgz#e9db271b70b9634b7be054760914d80954f9898c"
   integrity sha512-AJ0b4BEswRwa0bh4SibYUtXszEiaO88Lf4CZ1ib+t5ZfkAgsMk9Liv3L0LYnDblMJmSeGTr1+2ViIM8F2vamjg==
 
-"react-native-fitkit@ssh://git@gitlab.com:yu-life/react-native-fitkit.git#bf04c5c011ad83d6a9a720fd4d4b51f21522d38b":
+"react-native-fitkit@ssh://git@gitlab.com:yu-life/react-native-fitkit.git#44b6ba500a5f9bbb833c3fb5b8a94069ed9a993e":
   version "1.0.1"
-  resolved "ssh://git@gitlab.com:yu-life/react-native-fitkit.git#bf04c5c011ad83d6a9a720fd4d4b51f21522d38b"
+  resolved "ssh://git@gitlab.com:yu-life/react-native-fitkit.git#44b6ba500a5f9bbb833c3fb5b8a94069ed9a993e"
 
 react-native-intercom@^16.0.0:
   version "16.0.0"

@@ -5,7 +5,6 @@ import { setShowIntro } from "@redux/onboarding/onboarding.actions";
 import { IThemeStore } from "@redux/theme/theme.reducer";
 import { setShowSurgeIntro } from "@redux/user/user.actions";
 import { IntroScreen } from "@screens/index";
-import { IProps as IDailyStepsOnlineProps } from "@screens/member/daily-steps/daily-steps-online";
 import React from "react";
 
 import { IUserStore } from "@redux/user/user.reducer";
@@ -26,11 +25,7 @@ interface IntroScreenProps {
   isShowingPassiveMeditation: boolean;
 }
 
-type Props = ConnectedState &
-  ConnectedDispatch &
-  IntroScreenProps &
-  Partial<IConnectedScreenProps> &
-  IDailyStepsOnlineProps;
+type Props = ConnectedState & ConnectedDispatch & IntroScreenProps & Partial<IConnectedScreenProps>;
 
 const IntroContainer: React.FC<Props> = (props) => {
   const handleHideIntro = () => {

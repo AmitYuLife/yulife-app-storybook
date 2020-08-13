@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import { PureComponent } from "react";
 import Svg, { Circle } from "react-native-svg";
 
@@ -29,7 +29,7 @@ interface IState {
   animationStateIndex: number;
 }
 
-class DailyStepsLoading extends PureComponent<{}, IState> {
+export class DailyStepsLoading extends PureComponent<{}, IState> {
   public state: IState = {
     animationStateIndex: 0,
     animationStates: [First, Second, Third, Third, Third, Third],
@@ -62,5 +62,3 @@ class DailyStepsLoading extends PureComponent<{}, IState> {
     );
   }
 }
-
-export default DailyStepsLoading;

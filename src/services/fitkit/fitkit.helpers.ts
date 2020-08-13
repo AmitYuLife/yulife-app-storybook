@@ -4,6 +4,8 @@ import moment, { Moment } from "moment";
 import { ChallengePayload } from "../../graphql/_core/schema/globalTypes";
 import Logger from "../logging/logger";
 import { DATE_FORMAT_WITH_TZ } from "../utils";
+import { createContext } from "react";
+import { FitKitAvailableChildrenProps } from "react-native-fitkit";
 
 export const mapPedometerResults = (results: PedometerResponse): ChallengePayload => ({
   endDateTime: moment(results.endTime).format(),
@@ -136,3 +138,12 @@ export const authoriseCycling = async () => {
     // console.log("welp... ", e);
   }
 };
+
+const fitkitInitialState: FitKitAvailableChildrenProps = {
+  authorise: () => null,
+  authorised: false,
+  available: false,
+  loading: true,
+};
+
+export const FitkitContext = createContext(fitkitInitialState);

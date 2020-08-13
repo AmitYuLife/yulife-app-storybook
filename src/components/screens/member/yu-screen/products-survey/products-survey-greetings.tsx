@@ -19,7 +19,7 @@ function ProductsSurveyGreetings({ onExitConfirmed }: IProps) {
           </Text>
         </View>
         <View style={styles.imageWrapper}>
-          <Image source={require("../../../../../../assets/yuscreen/animals.png")}></Image>
+          <Image source={require("../../../../../../assets/yuscreen/animals.png")} />
         </View>
         <View style={{ flex: 1, marginBottom: 32 }}>
           <Button
