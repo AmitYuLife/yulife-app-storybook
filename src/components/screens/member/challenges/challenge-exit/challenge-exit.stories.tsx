@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { View } from "react-native";
 import { storiesOf } from "@storybook/react-native";
 import { withKnobs } from "@storybook/addon-knobs";
@@ -13,11 +13,25 @@ storiesOf("ChallengeExitScreen", module)
   .addDecorator((g: () => React.ReactNode) => (
     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>{g()}</View>
   ))
-  .add("default", () => (
+  .add("default", () => <ChallengeExitStory />);
+
+function ChallengeExitStory() {
+  const [isLoading, setLoadingState] = useState(false);
+
+  function handleClick() {
+    setLoadingState(true);
+
+    setTimeout(() => {
+      setLoadingState(false);
+    }, 2000);
+  }
+
+  return (
     <ChallengeExitScreen
-      copy={{ ctaLabel: "exit", ctaLabelSecondary: "secondary", heading: "heading", subheading: "ggggggg" }}
-      isCancelling={false}
+      copy={{ ctaLabel: "stay", ctaLabelSecondary: "exit", heading: "heading", subheading: "ggggggg" }}
+      isCancelling={isLoading}
       onClose={voidFunc}
-      onPressExit={voidFunc}
+      onPressExit={handleClick}
     />
-  ));
+  );
+}
