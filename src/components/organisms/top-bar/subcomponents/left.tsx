@@ -1,7 +1,8 @@
 import React from "react";
 import { TouchableOpacity, View, StyleSheet, TextStyle, Platform, ViewStyle } from "react-native";
 import { BUTTON_TOP_LEFT_BAR } from "@ids";
-import { Back, Menu } from "../assets";
+import { Back } from "@atoms";
+import { Menu } from "../assets";
 import { Text } from "@atoms/index";
 import { Style } from "@styles/index";
 
@@ -37,7 +38,7 @@ function Icon({ icon, colour = "#333333" }: { icon: LeftIconTypes; colour: strin
     case "Menu":
       return <Menu color={colour} />;
     case "Back":
-      return <Back scale={Style.adjust(0.5)} color={colour} />;
+      return <Back color={colour} />;
     default:
       return null;
   }
@@ -59,7 +60,7 @@ const styles = StyleSheet.create({
   menuLabel: {
     fontSize: Style.adjust(20),
     marginLeft: Style.adjust(4),
-    marginTop: Style.adjust(-4),
+    marginTop: Style.adjust(-6),
   } as TextStyle,
   menuLabelWrapper: {
     marginBottom: Style.adjust(Platform.OS === "ios" ? -6 : 0),

@@ -3,6 +3,7 @@ export { default as BlurProvider, IToggleBlur } from "./blur/blur-provider";
 export { default as Button } from "./button/button";
 export { default as CentredScreen } from "./centred-screen/centred-screen";
 export { default as Close } from "./close/close";
+export { default as Back } from "./back/back";
 export { default as ChestCoin } from "./chest-coin/chest-coin";
 export { default as CheckBox } from "./check-box/check-box";
 export { default as CoinConfetti } from "./coin-confetti/coin-confetti";
