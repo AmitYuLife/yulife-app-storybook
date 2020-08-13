@@ -4,6 +4,7 @@ export interface UnderwritingJourneyScreen {
   icon: string;
   title: string;
   question: string;
+  content?: React.ReactNode;
   firstButton: {
     label: string;
     actionId: string;
@@ -678,7 +679,62 @@ export const data: UnderwritingJourneyScreen[] = [
     question:
       "Will the total amount of life insurance on your life (including any amount to be replaced and any other applied for) when added together exceed £20,000,000?",
     firstButton: { label: "No", actionId: "your_name" },
-    secondButton: { label: "Yes", actionId: "your_name" },
+    secondButton: { label: "Yes", actionId: "financial_other_cover" },
     previousButton: { actionId: "medical_covid_symptoms" },
+  },
+  {
+    id: "financial_other_cover",
+    heading: "Financial",
+    icon: `<svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M1 15.5396H18" stroke="#838385" stroke-width="1.41667" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M1 17.6646H18" stroke="#838385" stroke-width="1.41667" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M1 5.92285H18" stroke="#838385" stroke-width="1.41667" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M3.125 8.04785V15.0589" stroke="#838385" stroke-width="1.41667" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M9.5 8.04785V15.0589" stroke="#838385" stroke-width="1.41667" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M15.875 8.04785V15.0589" stroke="#838385" stroke-width="1.41667" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M1 3.79818L9.39102 0.964844L18 3.79818H1Z" stroke="#838385" stroke-width="1.41667" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    `,
+    title: "Other Cover",
+    question: "Do you have, or have you applied for any more life insurance products?",
+    firstButton: { label: "No", actionId: "your_name" },
+    secondButton: { label: "Yes", actionId: "financial_cover_details" },
+    previousButton: { actionId: "financial_questions" },
+  },
+  {
+    id: "financial_cover_details",
+    heading: "Financial",
+    icon: `<svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M1 15.5396H18" stroke="#838385" stroke-width="1.41667" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M1 17.6646H18" stroke="#838385" stroke-width="1.41667" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M1 5.92285H18" stroke="#838385" stroke-width="1.41667" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M3.125 8.04785V15.0589" stroke="#838385" stroke-width="1.41667" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M9.5 8.04785V15.0589" stroke="#838385" stroke-width="1.41667" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M15.875 8.04785V15.0589" stroke="#838385" stroke-width="1.41667" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M1 3.79818L9.39102 0.964844L18 3.79818H1Z" stroke="#838385" stroke-width="1.41667" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    `,
+    title: "Cover Details",
+    question: "Could you please provide more details on the cover you hold or have applied for?",
+    firstButton: { label: "Continue", actionId: "financial_other_cover" },
+  },
+  {
+    id: "financial_other_cover",
+    heading: "Financial",
+    icon: `<svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M1 15.5396H18" stroke="#838385" stroke-width="1.41667" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M1 17.6646H18" stroke="#838385" stroke-width="1.41667" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M1 5.92285H18" stroke="#838385" stroke-width="1.41667" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M3.125 8.04785V15.0589" stroke="#838385" stroke-width="1.41667" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M9.5 8.04785V15.0589" stroke="#838385" stroke-width="1.41667" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M15.875 8.04785V15.0589" stroke="#838385" stroke-width="1.41667" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M1 3.79818L9.39102 0.964844L18 3.79818H1Z" stroke="#838385" stroke-width="1.41667" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    `,
+    title: "Other Cover",
+    question: "Do you have, or have you applied for any more life insurance products?",
+    firstButton: { label: "No", actionId: "your_name" },
+    secondButton: { label: "Yes", actionId: "your_name" },
+    previousButton: { actionId: "financial_questions" },
   },
 ];

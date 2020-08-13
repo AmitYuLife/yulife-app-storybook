@@ -4,6 +4,10 @@ import { storiesOf } from "@storybook/react-native";
 import TextField from "./text-field";
 import { withKnobs, text, number } from "@storybook/addon-knobs";
 
+function voidFunc(): void {
+  return null;
+}
+
 storiesOf("TextField", module)
   .addDecorator(withKnobs)
   .addDecorator((g: () => React.ReactNode) => (
@@ -11,7 +15,7 @@ storiesOf("TextField", module)
   ))
   .add("default", () => (
     <View style={{ width: number("width", 306) }}>
-      <TextField placeholder={text("placeholder", "i be like placeholder")} />
-      <TextField placeholder={text("placeholder", "i be like placeholder")} />
+      <TextField placeholder={text("placeholder", "i be like placeholder")} onChange={voidFunc} />
+      <TextField placeholder={text("placeholder", "i be like placeholder")} onChange={voidFunc} />
     </View>
   ));

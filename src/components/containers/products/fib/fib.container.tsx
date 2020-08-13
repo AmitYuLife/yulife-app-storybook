@@ -76,6 +76,7 @@ function FIBContainer(props: Props) {
     popToMain,
     defaultRoute: FIB_BROWSE,
   });
+
   const [selectedFaq, selectFaq] = useState("");
 
   const component = getComponent({

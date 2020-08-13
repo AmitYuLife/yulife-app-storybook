@@ -1,12 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { StyleSheet, TextInput, View, Animated, ViewStyle, TextStyle, TextInputProps, Platform } from "react-native";
-import { Colours, Style } from "@styles/index";
+import { Style } from "@styles/index";
+import { Placeholder } from "./subcomponents/placeholder";
+import { BaseUnderline, ColouredUnderline } from "./subcomponents/underlines";
 
 interface Props {
   placeholder: string;
+  onChange: (val: string) => void;
+  type?: "Text" | "Number";
+  placeholderIndentSize?: number;
 }
 
-export default function MaterialInput({ placeholder = "placeholder" }: Props) {
+export default function TextField(props: Props) {
+  const { placeholder, onChange, type = "Text", placeholderIndentSize = 0 } = props;
   const [isFocused, setFocused] = useState(false);
   const [placeholderScale] = useState(new Animated.Value(1));
   const [placeholderTranslateX] = useState(new Animated.Value(0));
@@ -26,30 +32,35 @@ export default function MaterialInput({ placeholder = "placeholder" }: Props) {
 
   useEffect(() => {
     const scaleAnim = Animated.timing(placeholderScale, {
-      toValue: activeMaterial ? 0.8 : 1,
+      toValue: activeMaterial ? 0.7 : 1,
       useNativeDriver: true,
       duration: 100,
     });
+
     const translateXAnim = Animated.timing(placeholderTranslateX, {
-      toValue: activeMaterial ? -20 : 0,
+      toValue: activeMaterial ? -70 : 0,
       useNativeDriver: true,
       duration: 100,
     });
+
     const translateYAnim = Animated.timing(placeholderTranslateY, {
-      toValue: activeMaterial ? -28 : 0,
+      toValue: activeMaterial ? -34 : 0,
       useNativeDriver: true,
       duration: 100,
     });
+
     const materialUnderlineScaleXAnim = Animated.timing(materialUnderlineScaleX, {
-      toValue: activeMaterial ? 105 : 0,
+      toValue: isFocused ? 105 : 0,
       useNativeDriver: true,
       duration: 200,
     });
+
     const placeholderOpacityAnim = Animated.timing(placeholderOpacity, {
       toValue: activeMaterial ? 1 : 0.5,
       useNativeDriver: true,
       duration: 100,
     });
+
     Animated.parallel([
       scaleAnim,
       translateXAnim,
@@ -62,33 +73,40 @@ export default function MaterialInput({ placeholder = "placeholder" }: Props) {
     placeholderScale,
     placeholderTranslateX,
     placeholderTranslateY,
+    isFocused,
     materialUnderlineScaleX,
     placeholderOpacity,
   ]);
 
-  const placeholderProps = {
-    scale: placeholderScale,
-    translateX: placeholderTranslateX,
-    translateY: placeholderTranslateY,
-    opacity: placeholderOpacity,
-    title: placeholder,
-    isActive: activeMaterial,
-  } as PlaceholderProps;
   const textInputProps = {
-    style: styles.inputBase,
+    style: StyleSheet.flatten([styles.inputBase, { paddingLeft: placeholderIndentSize, marginBottom: -6 }]),
     onBlur: () => setFocused(false),
     onFocus: () => setFocused(true),
     value: textInputValue,
-    onChangeText: (text: string) => setTextInputValue(text),
+    onChangeText: (text: string) => {
+      onChange(text);
+      return setTextInputValue(text);
+    },
+    keyboardType: type === "Number" ? "number-pad" : "default",
     underlineColorAndroid: "transparent",
     autoCapitalize: "none",
     autoCompleteType: "off",
     autoCorrect: false,
   } as TextInputProps;
+
   return (
     <View style={styles.wrapper}>
       <TextInput {...textInputProps} />
-      <Placeholder {...placeholderProps} />
+      <Placeholder
+        scale={placeholderScale}
+        translateX={placeholderTranslateX}
+        translateY={placeholderTranslateY}
+        opacity={placeholderOpacity}
+        title={placeholder}
+        isFocused={isFocused}
+        hasInput={Boolean(textInputValue)}
+        paddingLeft={placeholderIndentSize}
+      />
       <BaseUnderline />
       <ColouredUnderline scaleX={materialUnderlineScaleX} />
     </View>
@@ -111,73 +129,3 @@ const styles = StyleSheet.create({
     marginBottom: Platform.OS === "android" ? -6 : 0,
   } as ViewStyle,
 });
-
-const ColouredUnderline = ({ scaleX }: { scaleX: Animated.Value }) => (
-  <Animated.View
-    style={{
-      position: "absolute",
-      backgroundColor: Colours.darkHotPinkShadow,
-      bottom: 0,
-      width: "1%",
-      height: 2,
-      left: "50%",
-      transform: [{ scaleX }],
-    }}
-  />
-);
-
-const BaseUnderline = () => (
-  <Animated.View
-    style={
-      {
-        position: "absolute",
-        backgroundColor: "gray",
-        bottom: 0,
-        width: "100%",
-        height: 2,
-      } as ViewStyle
-    }
-  />
-);
-
-interface PlaceholderProps {
-  scale: Animated.Value;
-  translateX: Animated.Value;
-  translateY: Animated.Value;
-  opacity: Animated.Value;
-  title: string;
-  isActive: boolean;
-}
-const Placeholder = ({ scale, translateX, translateY, opacity, title, isActive }: PlaceholderProps) => {
-  return (
-    <Animated.View
-      pointerEvents="none"
-      style={{
-        transform: [{ scale }, { translateX }, { translateY }],
-        height: 24,
-        position: "absolute",
-        bottom: 4,
-        left: 0,
-      }}
-    >
-      <Animated.Text
-        style={[
-          styles.placeholder,
-          {
-            color: getPlaceholderColor(),
-            opacity,
-          },
-        ]}
-      >
-        {title}
-      </Animated.Text>
-    </Animated.View>
-  );
-  function getPlaceholderColor() {
-    if (isActive) {
-      return Colours.darkHotPink;
-    }
-
-    return "black";
-  }
-};

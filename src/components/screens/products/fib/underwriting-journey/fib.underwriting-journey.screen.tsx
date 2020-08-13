@@ -1,12 +1,10 @@
 import React, { memo } from "react";
-import { View, StyleSheet, Platform, ScrollView, ViewStyle } from "react-native";
-import { Style } from "@styles";
+import { StyleSheet, ScrollView, ViewStyle } from "react-native";
 import { useBackHandler } from "../../../../../services/hooks/useBackHandler";
-import { GenericHeading } from "@atoms";
-import ProgressBar from "../../../../molecules/progress-bar/progresss-bar";
 import TitleWithIcon from "@atoms/fib/title-with-icon/title-with-icon";
 import FibTitle from "@atoms/fib/title/title";
 import Footer from "./subcomponents/footer/footer";
+import { FibUnderwritingJourneyLayout } from "../layouts/fib.underwriting-journey-layout";
 import {
   UnderwritingJourneyScreen,
   UnderwritingJourneyChild,
@@ -43,9 +41,7 @@ export const FibUnderwritingJourneyScreen = memo(function (props: IFibUnderwriti
     : { action: onSecondButtonPressed, label: data.secondButton.label };
 
   return (
-    <View style={styles.wrapper}>
-      <GenericHeading heading={data.heading} rightIcon={{ icon: "CLOSE" }} onRightIconPress={onNavigateBack} />
-      <ProgressBar maxLength={30} currentPosition={5} />
+    <FibUnderwritingJourneyLayout heading={data.heading} onNavigateBack={onNavigateBack}>
       <ScrollView contentContainerStyle={styles.scrollViewContentStyle}>
         <TitleWithIcon icon={data.icon} title={data.title} />
         <FibTitle title={data.question} />
@@ -54,7 +50,7 @@ export const FibUnderwritingJourneyScreen = memo(function (props: IFibUnderwriti
         })}
       </ScrollView>
       <Footer firstButton={firstButton} secondButton={secondButton} onPreviousButtonPressed={onPreviousButtonPressed} />
-    </View>
+    </FibUnderwritingJourneyLayout>
   );
 });
 
@@ -67,10 +63,6 @@ function renderChildren(child: UnderwritingJourneyChild) {
 }
 
 const styles = StyleSheet.create({
-  wrapper: {
-    paddingTop: Platform.select({ ios: Style.getSafeAreaStart(), android: 0 }),
-    height: "100%",
-  },
   scrollViewContentStyle: {
     paddingBottom: 130,
   } as ViewStyle,
