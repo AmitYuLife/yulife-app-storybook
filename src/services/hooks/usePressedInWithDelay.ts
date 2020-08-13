@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 
 interface Args {
   delay?: number;
@@ -9,6 +9,13 @@ export function usePressedInWithDelay({ delay = 1000, onPress }: Args) {
   const [isPressedIn, setIsPressedIn] = React.useState(false);
   const [calledAt, setCalledAt] = React.useState(getInitialDate());
   const [isWaitingForResponse, setIsWaitingForResponse] = React.useState(false);
+  const isUnmounted = useRef(false);
+
+  useEffect(() => {
+    return function () {
+      isUnmounted.current = true;
+    };
+  }, []);
 
   return React.useMemo(
     () => ({
@@ -26,7 +33,10 @@ export function usePressedInWithDelay({ delay = 1000, onPress }: Args) {
           if (onPress && !isWaitingForResponse) {
             setIsWaitingForResponse(true);
             await onPress(); // onPress can be anything, safer to await
-            setIsWaitingForResponse(false);
+
+            if (!isUnmounted.current) {
+              setIsWaitingForResponse(false);
+            }
           }
         }
       },

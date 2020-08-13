@@ -109,7 +109,7 @@ const styles = StyleSheet.create({
   wrapper: {
     backgroundColor: "white",
     flex: 1,
-    marginTop: Style.isAnyIphoneX() ? -10 : 0,
+    paddingTop: Platform.select({ ios: Style.getSafeAreaStart(), android: 0 }),
   },
   buttonWrapper: {
     width: "100%",

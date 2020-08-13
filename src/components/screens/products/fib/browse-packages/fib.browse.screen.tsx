@@ -7,6 +7,7 @@ import {
   NativeScrollPoint,
   NativeSyntheticEvent,
   NativeScrollEvent,
+  Platform,
 } from "react-native";
 import * as Animatable from "react-native-animatable";
 import { GenericHeading } from "@atoms";
@@ -147,7 +148,8 @@ const styles = StyleSheet.create({
   wrapper: {
     backgroundColor: "white",
     flex: 1,
-    marginTop: Style.isAnyIphoneX() ? -10 : 0,
+    paddingTop: Platform.select({ ios: Style.getSafeAreaStart(), android: 0 }),
+    height: "100%",
   },
   scrollView: {
     backgroundColor: "#fafafe",

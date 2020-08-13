@@ -1,5 +1,5 @@
 import React, { memo } from "react";
-import { View, StyleSheet, ScrollView, Platform, ViewStyle } from "react-native";
+import { StyleSheet, ScrollView, Platform, ViewStyle, SafeAreaView } from "react-native";
 import * as Animatable from "react-native-animatable";
 import { GenericHeading, Heading } from "@atoms";
 import { Style } from "@styles";
@@ -30,7 +30,7 @@ export const FibFaqScreen = memo(function (props: IFibFaqScreenProps) {
   useBackHandler(backHandler);
 
   return (
-    <View style={styles.wrapper}>
+    <SafeAreaView style={styles.wrapper}>
       <GenericHeading isBeta={true} heading="FAQ" onLeftIconPress={onNavigateBack} />
       <ScrollView>
         <Animatable.View duration={500} animation="fadeIn" style={styles.flex} useNativeDriver={true}>
@@ -46,7 +46,7 @@ export const FibFaqScreen = memo(function (props: IFibFaqScreenProps) {
           )}
         </Animatable.View>
       </ScrollView>
-    </View>
+    </SafeAreaView>
   );
 });
 
@@ -55,10 +55,7 @@ const styles = StyleSheet.create({
     flex: 1,
   } as ViewStyle,
   wrapper: {
-    position: "absolute",
-    top: Platform.select({ ios: Style.getSafeAreaStart(), android: 0 }),
-    left: 0,
-    right: 0,
+    paddingTop: Platform.select({ ios: Style.getSafeAreaStart(), android: 0 }),
     height: "100%",
   },
   markdownContainer: {
