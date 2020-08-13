@@ -1,5 +1,5 @@
 import React, { memo, useCallback } from "react";
-import { StyleSheet, ViewStyle, View, Platform, TextStyle } from "react-native";
+import { StyleSheet, ViewStyle, View, Platform, TextStyle, SafeAreaView } from "react-native";
 import deviceInfoModule from "react-native-device-info";
 import { SvgXml } from "react-native-svg";
 import { Style, Colours } from "@styles";
@@ -45,7 +45,7 @@ export const FibCustomPercentage = memo(function (props: IFibCustomPercentage) {
   useBackHandler(backHandler);
 
   return (
-    <View style={styles.wrapper}>
+    <SafeAreaView style={styles.wrapper}>
       <GenericHeading
         style={styles.headingWrapper}
         leftIcon="BACK"
@@ -92,7 +92,7 @@ export const FibCustomPercentage = memo(function (props: IFibCustomPercentage) {
         </View>
         <Button onPress={onNavigateToEditSalary} label="edit salary" type="Link" />
       </View>
-    </View>
+    </SafeAreaView>
   );
 });
 

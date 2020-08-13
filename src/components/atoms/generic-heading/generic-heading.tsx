@@ -8,6 +8,7 @@ import { Heading } from "./subcomponents/heading";
 import { Logo } from "./subcomponents/logo";
 import { Beta } from "./subcomponents/beta";
 import CloseSvg from "@atoms/close/close-svg";
+import { PressableWithDelay } from "@components/molecules";
 
 export default function GenericHeading(props: IGenericHeadingProps) {
   const {
@@ -54,9 +55,9 @@ export default function GenericHeading(props: IGenericHeadingProps) {
         )}
         <View style={styles.rightIconWrapper}>
           {!onRightIconPress ? null : (
-            <TouchableOpacity onPress={onRightIconPress} style={styles.rightIconTouchable}>
+            <PressableWithDelay hitSlop={16} onPress={onRightIconPress} style={styles.rightIconTouchable}>
               <RightIcon icon={rightIcon} />
-            </TouchableOpacity>
+            </PressableWithDelay>
           )}
         </View>
       </View>

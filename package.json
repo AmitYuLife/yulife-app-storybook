@@ -28,7 +28,7 @@
         "start:bundler": "react-native start --reset-cache",
         "start:storybook": "node ./scripts/start-storybook && start-storybook -p 7007",
         "start:storybook:browser": "node ./scripts/start-storybook browser && start-storybook -p 7007",
-        "start:storybook:reset": "node ./scripts/start-storybook reset",
+        "reset:storybook": "node ./scripts/start-storybook reset",
         "test": "jest",
         "test:watch": "jest --watch",
         "test:lint": "eslint 'src/**/*.{js,ts,tsx}' --quiet",

@@ -1,6 +1,6 @@
 import React from "react";
 import { Colours, Style } from "@styles";
-import { SafeAreaView, ScrollView, View, ViewStyle, StyleSheet } from "react-native";
+import { SafeAreaView, ScrollView, View, ViewStyle, StyleSheet, Platform } from "react-native";
 import { GenericHeading, Button } from "@atoms";
 
 interface Props {
@@ -36,7 +36,8 @@ const styles = StyleSheet.create({
   wrapper: {
     backgroundColor: "white",
     flex: 1,
-    marginTop: Style.isAnyIphoneX() ? -10 : 0,
+    height: "100%",
+    paddingTop: Platform.select({ ios: Style.getSafeAreaStart(), android: 0 }),
   },
   button: {
     width: Style.DEVICE_WIDTH - 70,
