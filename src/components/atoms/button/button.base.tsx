@@ -110,7 +110,7 @@ function Main({
         ]}
         testID={`${testID}-text-view`}
       >
-        {isLoading ? <ActivityIndicator color="white" /> : <Text style={[styles.title, { color }]}>{title}</Text>}
+        {isLoading ? <ActivityIndicator color={color} /> : <Text style={[styles.title, { color }]}>{title}</Text>}
       </Animated.View>
     </TouchableWithoutFeedback>
   );

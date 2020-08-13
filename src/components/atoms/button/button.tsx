@@ -17,7 +17,9 @@ interface IProps {
   size?: Sizes;
 }
 
-function Button({ label, type, size = "Large", wrapperStyle, disabled, testID, isLoading, onPress }: IProps) {
+function Button(props: IProps) {
+  const { label, type, size = "Large", wrapperStyle, disabled, testID, isLoading, onPress } = props;
+
   const { handlePress } = usePressedInWithDelay({ onPress });
 
   const widthStyles = getWidth(size);
@@ -63,7 +65,6 @@ function Button({ label, type, size = "Large", wrapperStyle, disabled, testID, i
     <View style={StyleSheet.flatten([styles.wrapper, wrapperStyle])}>
       <LinkButtonBase
         height={53}
-        isLoading={isLoading}
         disabled={disabled}
         testID={testID}
         title={label}
