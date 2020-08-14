@@ -41,7 +41,7 @@ function LevelBubble(props: IProps) {
         <Pulse
           size={CIRCLE_SIZE + 6}
           pulseMaxSize={Style.SCALE_UP_AND_DOWN(66)}
-          interval={nextAvailableTimer < 0 ? 1250 : 750}
+          interval={nextAvailableTimer < 0 ? 1500 : 1000}
           backgroundColor="rgb(145,0,76)"
           style={pulseStyle}
         />
