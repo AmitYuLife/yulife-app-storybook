@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, ViewStyle, Platform } from "react-native";
+import { StyleSheet, ViewStyle } from "react-native";
 import { Style } from "../../../../styles";
 import Markdown from "@components/molecules/markdown/markdown";
 
@@ -17,14 +17,9 @@ const styles = StyleSheet.create({
     flex: 1,
   } as ViewStyle,
   wrapper: {
-    position: "absolute",
-    top: Platform.select({ ios: Style.getSafeAreaStart(), android: 0 }),
-    left: 0,
-    right: 0,
     height: "100%",
   },
   markdownContainer: {
-    marginHorizontal: 32,
     marginBottom: 4,
     marginTop: 4,
   },
@@ -43,7 +38,6 @@ const styles = StyleSheet.create({
     color: "#464647",
     marginTop: 32,
     textAlign: "left",
-    marginHorizontal: 32,
     marginBottom: 16,
   },
   list: {

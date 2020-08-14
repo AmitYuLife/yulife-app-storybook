@@ -30,6 +30,7 @@ export default {
     third: "rgb(245,172,171)",
   },
   lightGray: "rgb(170,170,170)",
+  lightestGray: "#fcfcfc",
   lightRed: "rgb(255,102,102)",
   navBar: {
     blue: {

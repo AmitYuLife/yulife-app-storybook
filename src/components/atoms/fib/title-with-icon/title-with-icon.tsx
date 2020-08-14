@@ -21,7 +21,6 @@ export default function TitleWithIcon(props: ITitleProps) {
 const styles = StyleSheet.create({
   wrapper: {
     marginTop: 24,
-    paddingLeft: 32,
     height: 24,
     flexDirection: "row",
     alignItems: "center",

@@ -19,7 +19,6 @@ export default function FibTitle(props: ITitleProps) {
 const styles = StyleSheet.create({
   wrapper: {
     marginTop: 16,
-    paddingLeft: 32,
   } as ViewStyle,
   title: {
     width: Style.DEVICE_WIDTH - 63,

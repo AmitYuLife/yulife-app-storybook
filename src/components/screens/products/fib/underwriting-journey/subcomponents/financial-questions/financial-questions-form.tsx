@@ -105,7 +105,7 @@ export function FinancialQuestionsForm(props: Props) {
             onChange={(val) => updateFormValue(fields[2].id, val)}
             placeholder={fields[2].label}
             type="Number"
-            placeholderIndentSize={20}
+            placeholderIndentSize={16}
           />
         </View>
       </View>
