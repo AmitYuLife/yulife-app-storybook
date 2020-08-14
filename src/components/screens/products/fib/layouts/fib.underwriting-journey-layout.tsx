@@ -8,15 +8,19 @@ interface Props {
   heading: string;
   onNavigateBack: () => void;
   children: React.ReactNode;
+  progressBar?: {
+    maxLength: number;
+    currentPosition: number;
+  };
 }
 
 export function FibUnderwritingJourneyLayout(props: Props) {
-  const { heading, onNavigateBack, children } = props;
+  const { heading, onNavigateBack, children, progressBar } = props;
 
   return (
     <KeyboardAvoidingView style={styles.wrapper}>
       <GenericHeading heading={heading} rightIcon={{ icon: "CLOSE" }} onRightIconPress={onNavigateBack} />
-      <ProgressBar maxLength={30} currentPosition={5} />
+      <ProgressBar maxLength={progressBar.maxLength} currentPosition={progressBar.currentPosition} />
       {children}
     </KeyboardAvoidingView>
   );

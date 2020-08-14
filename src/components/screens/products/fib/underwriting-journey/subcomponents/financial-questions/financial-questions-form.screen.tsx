@@ -7,20 +7,26 @@ import { FinancialQuestionsForm, defaultFormValue, FormValue } from "./financial
 import { Style } from "@styles";
 import { IFibUnderwritingJourneyScreenProps } from "../../fib.underwriting-journey.screen";
 import Footer from "../footer/footer";
-import { useDispatch, connect } from "react-redux";
+import { connect } from "react-redux";
 import { updateFIBValue } from "@redux/product/product.actions";
 import { getFIBState } from "@redux/product/product.selectors";
 import { IReduxState } from "@redux/_core/reducers";
 import { Cover } from "@components/containers/products/fib/fib.types";
 
 type Props = IFibUnderwritingJourneyScreenProps & ConnectedState;
-type ConnectedState = ReturnType<typeof mapStateToProps>;
+type ConnectedState = ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps;
 
 export function _FinancialQuestionsFormScreen(props: Props) {
-  const { onNavigateBack, data, onFirstButtonPressed, onPreviousButtonPressed, existingCovers } = props;
+  const {
+    onNavigateBack,
+    data,
+    onFirstButtonPressed,
+    onPreviousButtonPressed,
+    existingCovers,
+    updateExistingCovers,
+  } = props;
 
   const [formValue, setFormValue] = useState<FormValue>(defaultFormValue);
-  const dispatch = useDispatch();
   const [isFormValid, setFormValidState] = useState(false);
 
   function submitForm() {
@@ -30,12 +36,7 @@ export function _FinancialQuestionsFormScreen(props: Props) {
       coverName: formValue["cover-name"],
     };
 
-    const payload = {
-      key: "existingCovers",
-      value: [...existingCovers, cover],
-    };
-
-    dispatch(updateFIBValue(payload));
+    updateExistingCovers([...existingCovers, cover]);
     return onFirstButtonPressed();
   }
 
@@ -64,7 +65,11 @@ function mapStateToProps(store: IReduxState) {
   };
 }
 
-export const FinancialQuestionsFormScreen = connect(mapStateToProps)(_FinancialQuestionsFormScreen);
+const mapDispatchToProps = {
+  updateExistingCovers: (value: Cover[]) => updateFIBValue({ key: "existingCovers", value }),
+};
+
+export const FinancialQuestionsFormScreen = connect(mapStateToProps, mapDispatchToProps)(_FinancialQuestionsFormScreen);
 
 const styles = StyleSheet.create({
   scrollViewContentStyle: {

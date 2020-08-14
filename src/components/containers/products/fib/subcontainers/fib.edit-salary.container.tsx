@@ -29,7 +29,7 @@ function FibEditSalaryContainer(props: Props) {
 
   function submitSalary() {
     const payload = {
-      key: "salary",
+      key: "salary" as "salary",
       value: tempSalary,
     };
 

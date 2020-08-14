@@ -1,4 +1,5 @@
 import React from "react";
+import { connect } from "react-redux";
 import { View, StyleSheet } from "react-native";
 import { Colours, Style } from "@styles";
 import { Text, BorderedPlus, Bin } from "@atoms";
@@ -6,13 +7,12 @@ import { PressableWithDelay } from "@components/molecules";
 import { Navigation } from "react-native-navigation";
 import { MODALS } from "@navigation/constants";
 import { Cover } from "@components/containers/products/fib/fib.types";
-import { useDispatch } from "react-redux";
 import { updateFIBValue } from "@redux/product/product.actions";
 
-interface Props {
+type Props = typeof mapDispatchToProps & {
   existingCovers: Cover[];
   onAddCover: () => void;
-}
+};
 
 function removeByIndex<T>(arr: T[], index: number) {
   return arr
@@ -46,8 +46,8 @@ function openModal(removeItem: () => void) {
   });
 }
 
-export function FinancialQuestionsCoverList(props: Props) {
-  const dispatch = useDispatch();
+function _FinancialQuestionsCoverList(props: Props) {
+  const { updateExistingCovers } = props;
 
   return (
     <View style={styles.wrapper}>
@@ -55,12 +55,7 @@ export function FinancialQuestionsCoverList(props: Props) {
         const covers = removeByIndex(props.existingCovers, index);
 
         function removeItem() {
-          const payload = {
-            key: "existingCovers",
-            value: covers,
-          };
-
-          dispatch(updateFIBValue(payload));
+          updateExistingCovers(covers);
         }
 
         return (
@@ -85,6 +80,12 @@ export function FinancialQuestionsCoverList(props: Props) {
     </View>
   );
 }
+
+const mapDispatchToProps = {
+  updateExistingCovers: (value: Cover[]) => updateFIBValue({ key: "existingCovers", value }),
+};
+
+export const FinancialQuestionsCoverList = connect(null, mapDispatchToProps)(_FinancialQuestionsCoverList);
 
 const styles = StyleSheet.create({
   wrapper: { marginVertical: 16 },

@@ -2,7 +2,7 @@ import { Text } from "@atoms/index";
 import React from "react";
 import { StyleSheet, View, Image, StyleProp, ViewStyle, TouchableOpacity, Linking } from "react-native";
 import SimpleMarkdown from "simple-markdown";
-import styles from "./markdown.styles";
+import styles, { wrapperStyle } from "./markdown.styles";
 
 interface IProps {
   text: string;
@@ -232,7 +232,7 @@ class Markdown extends React.PureComponent<IProps, IState> {
   }
 
   render() {
-    const { containerStyle = styles.defaultContainerStyles } = this.props;
+    const { containerStyle = wrapperStyle } = this.props;
     return <View style={containerStyle}>{this.renderNodes(this.state.syntaxTree, null, null)}</View>;
   }
 }

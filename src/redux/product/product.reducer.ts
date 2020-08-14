@@ -4,9 +4,25 @@ export { IProductStore } from "./product.types";
 
 export const initialState: IProductStore = {
   fib: {
+    fullName: "Oliver Twist",
     salary: 0,
     selectedPackage: "common",
     weeklyAlcoholDrinks: 0,
+    birthDay: "",
+    birthMonth: "",
+    birthYear: "",
+    height: {
+      unit: "cm",
+      cm: "",
+      ft: "",
+      in: "",
+    },
+    weight: {
+      unit: "kg",
+      kg: "",
+      st: "",
+      lb: "",
+    },
     existingCovers: [],
   },
 };
