@@ -1,5 +1,5 @@
 import * as React from "react";
-import { StyleSheet, ViewStyle, View } from "react-native";
+import { StyleSheet, ViewStyle, View, Platform } from "react-native";
 import { Colours, Style } from "@styles";
 import { usePressedInWithDelay } from "@services/hooks/usePressedInWithDelay";
 import { ButtonBase } from "./button.base";
@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
     width: Style.adjust(210),
   },
   small: {
-    width: Style.adjust(170),
+    width: Platform.select({ ios: Style.adjust(170), android: Style.adjust(150) }),
   },
   large: {
     width: Style.DEVICE_WIDTH - 70,

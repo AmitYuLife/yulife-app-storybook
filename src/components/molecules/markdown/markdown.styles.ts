@@ -1,13 +1,14 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, Platform } from "react-native";
 import { Style } from "@styles";
 
+export const wrapperStyle = {
+  flex: 1,
+  marginTop: 64,
+  paddingHorizontal: 32,
+  width: "100%",
+};
+
 export default StyleSheet.create({
-  defaultContainerStyles: {
-    flex: 1,
-    marginTop: 64,
-    paddingHorizontal: 32,
-    width: "100%",
-  },
   block: {
     marginBottom: 10,
     flexWrap: "wrap",
@@ -55,6 +56,7 @@ export default StyleSheet.create({
   },
   strong: {
     fontFamily: Style.FONT_FAMILY_PRIMARY_BOLD,
+    fontWeight: Platform.select({ ios: undefined, android: "100" }),
   },
   em: {
     fontStyle: "italic",

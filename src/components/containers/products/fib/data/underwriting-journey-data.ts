@@ -28,7 +28,13 @@ export interface UnderwritingJourneyChild {
   showDelimiter?: boolean;
 }
 
-export const data: UnderwritingJourneyScreen[] = [
+export const getData = ({
+  fullName,
+  dateOfBirth,
+}: {
+  fullName: string;
+  dateOfBirth: string;
+}): UnderwritingJourneyScreen[] => [
   {
     id: "your_name",
     heading: "About You",
@@ -47,7 +53,7 @@ export const data: UnderwritingJourneyScreen[] = [
     children: [
       {
         type: "markdown",
-        text: "**Marco Aurelious**",
+        text: `**${fullName}**`,
       },
     ],
   },
@@ -65,6 +71,7 @@ export const data: UnderwritingJourneyScreen[] = [
     title: "Name",
     question: "Please enter your name",
     firstButton: { label: "Continue", actionId: "your_date_of_birth" },
+    children: [{ type: "inputFullName" }],
   },
   {
     id: "your_date_of_birth",
@@ -91,7 +98,7 @@ export const data: UnderwritingJourneyScreen[] = [
     children: [
       {
         type: "markdown",
-        text: "**30 March 2000**",
+        text: `**${dateOfBirth}**`,
       },
     ],
   },
@@ -114,6 +121,11 @@ export const data: UnderwritingJourneyScreen[] = [
       `,
     title: "Birthday",
     question: "Please enter your date of birth",
+    children: [
+      {
+        type: "inputBirth",
+      },
+    ],
     firstButton: { label: "Continue", actionId: "uk_resident" },
   },
   {
@@ -226,13 +238,16 @@ export const data: UnderwritingJourneyScreen[] = [
       </svg>
       `,
     title: "Height",
-    question: "Please select your height",
+    question: "Please input your height",
     firstButton: { label: "Continue", actionId: "lifestyle_weight" },
     previousButton: { actionId: "lifestyle_height_and_weight" },
     children: [
       {
         type: "markdown",
         text: "We need this to figure out your BMI.",
+      },
+      {
+        type: "inputHeight",
       },
     ],
   },
@@ -252,13 +267,12 @@ export const data: UnderwritingJourneyScreen[] = [
       </svg>
       `,
     title: "Weight",
-    question: "Please select your weight",
+    question: "Please input your weight",
     firstButton: { label: "Continue", actionId: "lifestyle_smoking" },
     previousButton: { actionId: "lifestyle_height" },
     children: [
       {
-        type: "markdown",
-        text: "We need this to figure out your BMI. If you are pregnant this is your pre-pregnancy weight.",
+        type: "inputWeight",
       },
     ],
   },

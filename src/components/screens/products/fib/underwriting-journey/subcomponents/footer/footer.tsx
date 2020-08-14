@@ -3,6 +3,7 @@ import { StyleSheet, View, ViewStyle, Text, TextStyle } from "react-native";
 import { Style } from "../../../../../../../styles";
 import { Button } from "@atoms";
 import { TouchableOpacityWithDelay } from "@components/molecules";
+import { isIphoneX } from "react-native-iphone-x-helper";
 
 interface IFooterProps {
   firstButton: {
@@ -23,17 +24,19 @@ export default function Footer(props: IFooterProps) {
   return (
     <View style={styles.wrapper}>
       <View style={styles.buttonsWrapper}>
-        <Button
-          type="Primary"
-          size={secondButton ? "Small" : "Large"}
-          onPress={firstButton.action}
-          label={firstButton.label}
-          delay={300}
-          disabled={firstButton.disabled}
-        />
-        {!secondButton ? null : (
-          <Button size="Small" type="Primary" onPress={secondButton.action} label={secondButton.label} delay={300} />
-        )}
+        <View style={styles.innerButtonsWrapper}>
+          <Button
+            type="Primary"
+            size={secondButton ? "Small" : "Large"}
+            onPress={firstButton.action}
+            label={firstButton.label}
+            disabled={firstButton.disabled}
+            delay={300}
+          />
+          {!secondButton ? null : (
+            <Button size="Small" type="Primary" onPress={secondButton.action} label={secondButton.label} delay={300} />
+          )}
+        </View>
       </View>
       {!onPreviousButtonPressed ? null : (
         <TouchableOpacityWithDelay style={styles.previousQuestionWrapper} onPress={onPreviousButtonPressed} delay={300}>
@@ -49,16 +52,21 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     alignItems: "center",
     position: "absolute",
-    height: 130,
+    height: isIphoneX() ? 150 : 130,
     bottom: 0,
+    paddingBottom: isIphoneX() ? 20 : 0,
     justifyContent: "space-between",
     backgroundColor: "rgba(255, 255, 255, 0.95)",
   } as ViewStyle,
   buttonsWrapper: {
     width: Style.DEVICE_WIDTH,
+    paddingHorizontal: Style.adjust(16),
+    marginTop: 10,
+  } as ViewStyle,
+  innerButtonsWrapper: {
+    width: "100%",
     justifyContent: "space-around",
     flexDirection: "row",
-    marginTop: 10,
   } as ViewStyle,
   previousQuestionWrapper: {
     paddingBottom: 25,

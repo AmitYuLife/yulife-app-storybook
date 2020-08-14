@@ -15,6 +15,10 @@ import {
 } from "../../../../atoms/fib/medical-history-item/medical-history-item";
 import MarkdownFib from "../../../../atoms/fib/markdown/markdown";
 import { IMarkdownFibProps } from "../../../../atoms/fib/markdown/markdown";
+import { FibInputBirth } from "@components/organisms/fib/input/birth/fib-input-birth";
+import { FibInputHeight } from "@components/organisms/fib/input/height/fib-input-height";
+import { FibInputName } from "@components/organisms/fib/input/name/fib-input-name";
+import { FibInputWeight } from "@components/organisms/fib/input/weight/fib-input-weight";
 import { getCustomComponent } from "./getCustomComponent";
 
 export interface IFibUnderwritingJourneyScreenProps {
@@ -23,10 +27,21 @@ export interface IFibUnderwritingJourneyScreenProps {
   onFirstButtonPressed: () => void;
   onSecondButtonPressed?: () => void;
   onPreviousButtonPressed?: () => void;
+  progressBar?: {
+    maxLength: number;
+    currentPosition: number;
+  };
 }
 
 export const FibUnderwritingJourneyScreen = memo(function (props: IFibUnderwritingJourneyScreenProps) {
-  const { onNavigateBack, data, onFirstButtonPressed, onSecondButtonPressed, onPreviousButtonPressed } = props;
+  const {
+    onNavigateBack,
+    data,
+    onFirstButtonPressed,
+    onSecondButtonPressed,
+    onPreviousButtonPressed,
+    progressBar,
+  } = props;
 
   const backHandler = React.useCallback(() => {
     onNavigateBack();
@@ -48,8 +63,8 @@ export const FibUnderwritingJourneyScreen = memo(function (props: IFibUnderwriti
   }
 
   return (
-    <FibUnderwritingJourneyLayout heading={data.heading} onNavigateBack={onNavigateBack}>
-      <ScrollView contentContainerStyle={styles.scrollViewContentStyle}>
+    <FibUnderwritingJourneyLayout heading={data.heading} onNavigateBack={onNavigateBack} progressBar={progressBar}>
+      <ScrollView keyboardShouldPersistTaps="handled" contentContainerStyle={styles.scrollViewContentStyle}>
         <TitleWithIcon icon={data.icon} title={data.title} />
         <FibTitle title={data.question} />
         {data.children?.map((child: UnderwritingJourneyChild) => {
@@ -65,6 +80,10 @@ function renderChildren(child: UnderwritingJourneyChild) {
   const FIELDS: Record<string, React.ReactNode> = {
     medicalHistory: <MedicalHistoryItem {...(child as IMedicalHistoryItemProps)} />,
     markdown: <MarkdownFib {...(child as IMarkdownFibProps)} />,
+    inputBirth: <FibInputBirth />,
+    inputHeight: <FibInputHeight />,
+    inputWeight: <FibInputWeight />,
+    inputFullName: <FibInputName />,
   };
   return FIELDS[child.type] || null;
 }

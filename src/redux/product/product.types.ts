@@ -7,14 +7,34 @@ export interface IProductStore {
 }
 
 export interface FIBStoreValue<T> {
-  key: string;
+  key: keyof FIBStore;
   value: T;
+}
+
+export interface Height {
+  unit: "cm" | "ft";
+  cm: string;
+  ft: string;
+  in: string;
+}
+
+export interface Weight {
+  unit: "kg" | "st";
+  st: string;
+  lb: string;
+  kg: string;
 }
 
 export interface FIBStore {
   salary: number;
   selectedPackage: PackageId;
   weeklyAlcoholDrinks: number;
+  birthDay: string;
+  birthMonth: string;
+  birthYear: string;
+  height: Height;
+  weight: Weight;
+  fullName: string;
   existingCovers: Cover[];
 }
 
