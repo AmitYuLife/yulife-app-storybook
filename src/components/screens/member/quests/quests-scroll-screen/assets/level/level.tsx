@@ -40,7 +40,7 @@ function LevelBubble(props: IProps) {
       {!level.isActive ? null : (
         <Pulse
           size={CIRCLE_SIZE + 6}
-          pulseMaxSize={Style.SCALE_UP_AND_DOWN(66)}
+          pulseMaxSize={Style.adjust(66)}
           interval={nextAvailableTimer < 0 ? 1500 : 1000}
           backgroundColor="rgb(145,0,76)"
           style={pulseStyle}
@@ -61,10 +61,10 @@ function LevelBubble(props: IProps) {
             },
           ])}
           hitSlop={{
-            top: Style.SCALE_UP_AND_DOWN(10),
-            left: Style.SCALE_UP_AND_DOWN(10),
-            right: Style.SCALE_UP_AND_DOWN(10),
-            bottom: Style.SCALE_UP_AND_DOWN(10),
+            top: Style.adjust(10),
+            left: Style.adjust(10),
+            right: Style.adjust(10),
+            bottom: Style.adjust(10),
           }}
           testID={LEVEL_CHALLENGE_BUTTON(level.level)}
         >

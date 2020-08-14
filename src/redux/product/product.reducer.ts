@@ -7,10 +7,11 @@ export const initialState: IProductStore = {
     salary: 0,
     selectedPackage: "common",
     weeklyAlcoholDrinks: 0,
+    existingCovers: [],
   },
 };
 
-function personalProductReducer(state: IProductStore = initialState, action: ProductActionTypes) {
+function personalProductReducer<T>(state: IProductStore = initialState, action: ProductActionTypes<T>) {
   switch (action.type) {
     case UPDATE_FIB_VALUE:
       return {

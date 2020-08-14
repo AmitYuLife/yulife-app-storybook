@@ -26,3 +26,9 @@ export interface FAQ {
   question: string;
   answer: string;
 }
+
+export interface Cover {
+  coverName: string;
+  companyName: string;
+  coverAmount: number;
+}

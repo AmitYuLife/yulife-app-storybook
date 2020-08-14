@@ -3,16 +3,39 @@ import { FibUnderwritingJourneyLayout } from "../../../layouts/fib.underwriting-
 import { ScrollView, StyleSheet, ViewStyle } from "react-native";
 import TitleWithIcon from "@atoms/fib/title-with-icon/title-with-icon";
 import FibTitle from "@atoms/fib/title/title";
-import { FinancialQuestionsForm } from "./financial-questions-form";
+import { FinancialQuestionsForm, defaultFormValue, FormValue } from "./financial-questions-form";
 import { Style } from "@styles";
 import { IFibUnderwritingJourneyScreenProps } from "../../fib.underwriting-journey.screen";
 import Footer from "../footer/footer";
+import { useDispatch, connect } from "react-redux";
+import { updateFIBValue } from "@redux/product/product.actions";
+import { getFIBState } from "@redux/product/product.selectors";
+import { IReduxState } from "@redux/_core/reducers";
+import { Cover } from "@components/containers/products/fib/fib.types";
 
-export function FinancialQuestionsFormScreen(props: IFibUnderwritingJourneyScreenProps) {
-  const { onNavigateBack, data, onFirstButtonPressed, onPreviousButtonPressed } = props;
+type Props = IFibUnderwritingJourneyScreenProps & ConnectedState;
+type ConnectedState = ReturnType<typeof mapStateToProps>;
+
+export function _FinancialQuestionsFormScreen(props: Props) {
+  const { onNavigateBack, data, onFirstButtonPressed, onPreviousButtonPressed, existingCovers } = props;
+
+  const [formValue, setFormValue] = useState<FormValue>(defaultFormValue);
+  const dispatch = useDispatch();
   const [isFormValid, setFormValidState] = useState(false);
 
   function submitForm() {
+    const cover: Cover = {
+      companyName: formValue["company-held"],
+      coverAmount: Number(formValue["amount-of-cover"]),
+      coverName: formValue["cover-name"],
+    };
+
+    const payload = {
+      key: "existingCovers",
+      value: [...existingCovers, cover],
+    };
+
+    dispatch(updateFIBValue(payload));
     return onFirstButtonPressed();
   }
 
@@ -21,7 +44,11 @@ export function FinancialQuestionsFormScreen(props: IFibUnderwritingJourneyScree
       <ScrollView contentContainerStyle={styles.scrollViewContentStyle}>
         <TitleWithIcon icon={data.icon} title={data.title} />
         <FibTitle title={data.question} />
-        <FinancialQuestionsForm setFormValidState={setFormValidState} />
+        <FinancialQuestionsForm
+          setFormValidState={setFormValidState}
+          formValue={formValue}
+          setFormValue={setFormValue}
+        />
       </ScrollView>
       <Footer
         firstButton={{ action: submitForm, label: "Done", disabled: !isFormValid }}
@@ -30,6 +57,14 @@ export function FinancialQuestionsFormScreen(props: IFibUnderwritingJourneyScree
     </FibUnderwritingJourneyLayout>
   );
 }
+
+function mapStateToProps(store: IReduxState) {
+  return {
+    existingCovers: getFIBState(store).existingCovers,
+  };
+}
+
+export const FinancialQuestionsFormScreen = connect(mapStateToProps)(_FinancialQuestionsFormScreen);
 
 const styles = StyleSheet.create({
   scrollViewContentStyle: {
