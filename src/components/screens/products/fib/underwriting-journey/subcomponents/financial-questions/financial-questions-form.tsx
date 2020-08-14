@@ -40,13 +40,15 @@ const fields: Field[] = [
 ];
 
 type Errors = Record<string, string>;
-type FormValue = Record<string, string>;
+export type FormValue = Record<string, string>;
 
 interface Props {
   setFormValidState: (isValid: boolean) => void;
+  formValue: FormValue;
+  setFormValue: (formValue: FormValue) => void;
 }
 
-const defaultFormValue = fields.reduce((prev, curr) => {
+export const defaultFormValue = fields.reduce((prev, curr) => {
   return {
     ...prev,
     [curr.id]: "",
@@ -54,18 +56,18 @@ const defaultFormValue = fields.reduce((prev, curr) => {
 }, {});
 
 export function FinancialQuestionsForm(props: Props) {
-  const [formValue, setFormValue] = useState<FormValue>(defaultFormValue);
   const [errors, setErrors] = useState<Errors>(defaultFormValue);
+  const { setFormValidState, formValue, setFormValue } = props;
 
   function checkIfFormIsValid(newErrors: Errors, newFormValue: FormValue) {
     const hasErrors = Object.values(newErrors).some((error) => error);
     const inputsContentsAreTruthy = Object.values(newFormValue).every((val) => val);
 
     if (!hasErrors && inputsContentsAreTruthy) {
-      return props.setFormValidState(true);
+      return setFormValidState(true);
     }
 
-    return props.setFormValidState(false);
+    return setFormValidState(false);
   }
 
   function updateFormValue(key: string, value: string) {

@@ -698,11 +698,11 @@ export const data: UnderwritingJourneyScreen[] = [
     title: "Financial Questions",
     question: "Do you have, or have you applied for any more life insurance products?",
     firstButton: { label: "No", actionId: "your_name" },
-    secondButton: { label: "Yes", actionId: "financial_cover_details" },
+    secondButton: { label: "Yes", actionId: "financial_cover_list" },
     previousButton: { actionId: "financial_questions" },
   },
   {
-    id: "financial_cover_details",
+    id: "financial_cover_list",
     heading: "Financial",
     icon: `<svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M1 15.5396H18" stroke="#838385" stroke-width="1.41667" stroke-linecap="round" stroke-linejoin="round"/>
@@ -715,8 +715,27 @@ export const data: UnderwritingJourneyScreen[] = [
     </svg>
     `,
     title: "Cover Details",
-    question: "Please enter your cover details in below.",
+    question: "Add or remove your existing life insurance products below.",
     firstButton: { label: "Continue", actionId: "your_name" },
+    secondButton: { label: "Yes", actionId: "financial_custom_cover_form" },
+    previousButton: { actionId: "financial_other_cover" },
+  },
+  {
+    id: "financial_custom_cover_form",
+    heading: "Financial",
+    icon: `<svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M1 15.5396H18" stroke="#838385" stroke-width="1.41667" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M1 17.6646H18" stroke="#838385" stroke-width="1.41667" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M1 5.92285H18" stroke="#838385" stroke-width="1.41667" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M3.125 8.04785V15.0589" stroke="#838385" stroke-width="1.41667" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M9.5 8.04785V15.0589" stroke="#838385" stroke-width="1.41667" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M15.875 8.04785V15.0589" stroke="#838385" stroke-width="1.41667" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M1 3.79818L9.39102 0.964844L18 3.79818H1Z" stroke="#838385" stroke-width="1.41667" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    `,
+    title: "Cover Details",
+    question: "Please enter your cover details below.",
+    firstButton: { label: "Continue", actionId: "financial_cover_list" },
     previousButton: { actionId: "financial_other_cover" },
   },
 ];

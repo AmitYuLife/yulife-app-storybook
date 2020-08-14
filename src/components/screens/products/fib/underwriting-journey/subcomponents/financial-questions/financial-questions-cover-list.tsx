@@ -5,25 +5,37 @@ import { Text, BorderedPlus, Bin } from "@atoms";
 import { PressableWithDelay } from "@components/molecules";
 import { Navigation } from "react-native-navigation";
 import { MODALS } from "@navigation/constants";
-
-interface Cover {
-  coverName: string;
-  companyName: string;
-  coverAmount: number;
-}
+import { Cover } from "@components/containers/products/fib/fib.types";
+import { useDispatch } from "react-redux";
+import { updateFIBValue } from "@redux/product/product.actions";
 
 interface Props {
   existingCovers: Cover[];
   onAddCover: () => void;
 }
 
-function openModal() {
+function removeByIndex<T>(arr: T[], index: number) {
+  return arr
+    .map((cover, i) => {
+      if (i === index) {
+        return null;
+      }
+
+      return cover;
+    })
+    .filter((x) => x);
+}
+
+function openModal(removeItem: () => void) {
   return Navigation.showModal({
     component: {
       id: MODALS.generic,
       name: MODALS.generic,
       passProps: {
-        onPress: () => Navigation.dismissModal(MODALS.generic),
+        onPress: () => {
+          removeItem();
+          return Navigation.dismissModal(MODALS.generic);
+        },
         heading: "Remove Cover?",
         subheading: "Do you want to remove this cover?",
         ctaLabel: "Remove",
@@ -35,9 +47,22 @@ function openModal() {
 }
 
 export function FinancialQuestionsCoverList(props: Props) {
+  const dispatch = useDispatch();
+
   return (
     <View style={styles.wrapper}>
-      {props.existingCovers.map((cover) => {
+      {props.existingCovers.map((cover, index) => {
+        const covers = removeByIndex(props.existingCovers, index);
+
+        function removeItem() {
+          const payload = {
+            key: "existingCovers",
+            value: covers,
+          };
+
+          dispatch(updateFIBValue(payload));
+        }
+
         return (
           <View style={styles.coverCardWrapper} key={cover.coverName}>
             <View style={styles.coverCardTextWrapper}>
@@ -45,7 +70,7 @@ export function FinancialQuestionsCoverList(props: Props) {
               <Text style={styles.coverCardText}>{cover.companyName}</Text>
               <Text style={styles.coverCardText}>{`£${cover.coverAmount}`}</Text>
             </View>
-            <PressableWithDelay style={styles.bin} hitSlop={{ left: 10 }} onPress={openModal}>
+            <PressableWithDelay style={styles.bin} hitSlop={{ left: 10 }} onPress={() => openModal(removeItem)}>
               <Bin />
             </PressableWithDelay>
           </View>

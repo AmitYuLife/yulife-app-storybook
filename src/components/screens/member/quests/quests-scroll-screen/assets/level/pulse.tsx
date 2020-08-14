@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Animated, Easing, StyleSheet, View } from "react-native";
+import { Animated, Easing, StyleSheet, View, ViewStyle } from "react-native";
 import { CIRCLE_SIZE } from "./level.styles";
 
 interface IProps {
@@ -7,7 +7,7 @@ interface IProps {
   size: number;
   pulseMaxSize: number;
   backgroundColor: string;
-  style?: any;
+  style?: ViewStyle;
 }
 
 function _Pulse(props: IProps) {
@@ -50,7 +50,7 @@ function _Pulse(props: IProps) {
       ]}
     >
       <Animated.View
-        style={[
+        style={StyleSheet.flatten([
           {
             backgroundColor,
             borderRadius: 999,
@@ -60,7 +60,7 @@ function _Pulse(props: IProps) {
             transform: [{ scale: anim.current.interpolate(interpolation) }],
           },
           style,
-        ]}
+        ])}
       />
     </View>
   );

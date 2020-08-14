@@ -7,25 +7,30 @@ import { Style } from "@styles";
 import { FinancialQuestionsCoverList } from "./financial-questions-cover-list";
 import { IFibUnderwritingJourneyScreenProps } from "../../fib.underwriting-journey.screen";
 import Footer from "../footer/footer";
+import { connect } from "react-redux";
+import { IReduxState } from "@redux/_core/reducers";
+import { getFIBState } from "@redux/product/product.selectors";
 
-export function FinancialQuestionsCoverListScreen(props: IFibUnderwritingJourneyScreenProps) {
-  const { data, onNavigateBack, onFirstButtonPressed, onSecondButtonPressed, onPreviousButtonPressed } = props;
+type Props = IFibUnderwritingJourneyScreenProps & ConnectedState;
+
+type ConnectedState = ReturnType<typeof mapStateToProps>;
+
+function _FinancialQuestionsCoverListScreen(props: Props) {
+  const {
+    data,
+    onNavigateBack,
+    onFirstButtonPressed,
+    onSecondButtonPressed,
+    onPreviousButtonPressed,
+    existingCovers,
+  } = props;
 
   return (
     <FibUnderwritingJourneyLayout heading={data.heading} onNavigateBack={onNavigateBack}>
       <ScrollView contentContainerStyle={styles.scrollViewContentStyle}>
         <TitleWithIcon icon={data.icon} title={data.title} />
         <FibTitle title={data.question} />
-        <FinancialQuestionsCoverList
-          existingCovers={[
-            {
-              companyName: "Andrico",
-              coverAmount: 2345,
-              coverName: "Something silly",
-            },
-          ]}
-          onAddCover={onSecondButtonPressed}
-        />
+        <FinancialQuestionsCoverList existingCovers={existingCovers} onAddCover={onSecondButtonPressed} />
       </ScrollView>
       <Footer
         firstButton={{ action: onFirstButtonPressed, label: "Done" }}
@@ -34,6 +39,14 @@ export function FinancialQuestionsCoverListScreen(props: IFibUnderwritingJourney
     </FibUnderwritingJourneyLayout>
   );
 }
+
+function mapStateToProps(store: IReduxState) {
+  return {
+    existingCovers: getFIBState(store).existingCovers,
+  };
+}
+
+export const FinancialQuestionsCoverListScreen = connect(mapStateToProps)(_FinancialQuestionsCoverListScreen);
 
 const styles = StyleSheet.create({
   scrollViewContentStyle: {
