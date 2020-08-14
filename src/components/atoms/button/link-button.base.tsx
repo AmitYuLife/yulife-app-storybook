@@ -1,8 +1,17 @@
-import React, { ComponentProps } from "react";
-import { Animated, StyleSheet, TouchableWithoutFeedback, View, ViewStyle, TextStyle } from "react-native";
+import React, { ComponentProps, useRef } from "react";
+import {
+  Animated,
+  StyleSheet,
+  TouchableWithoutFeedback,
+  View,
+  ViewStyle,
+  TextStyle,
+  GestureResponderEvent,
+} from "react-native";
 import { usePressedInWithDelay } from "@services/hooks/usePressedInWithDelay";
 import Text from "../text/text";
 import { Style } from "@styles";
+import { PressableWithDelay } from "@components/molecules";
 
 interface IProps {
   disabled?: boolean;
@@ -34,31 +43,45 @@ export function LinkButtonBase(props: IProps) {
   );
 }
 
-function Main({
-  height,
-  color,
-  testID,
-  disabled,
-  onPressIn,
-  onPressOut,
-  onPress,
-  title,
-}: IProps & ComponentProps<typeof TouchableWithoutFeedback>) {
+type IMainProps = IProps & ComponentProps<typeof TouchableWithoutFeedback>;
+
+function Main({ height, color, testID, disabled, onPressIn, onPressOut, onPress, title }: IMainProps) {
   const disabledStyles = disabled ? styles.disabled : {};
+  const fadeAnim = useRef(new Animated.Value(1)).current;
+
+  function handlePressIn(e: GestureResponderEvent) {
+    Animated.timing(fadeAnim, {
+      toValue: 0.4,
+      duration: 100,
+      useNativeDriver: true,
+    }).start();
+
+    onPressIn(e);
+  }
+
+  function handlePressOut(e: GestureResponderEvent) {
+    Animated.timing(fadeAnim, {
+      toValue: 1,
+      duration: 100,
+      useNativeDriver: true,
+    }).start();
+
+    onPressOut(e);
+  }
 
   return (
-    <TouchableWithoutFeedback
+    <PressableWithDelay
       testID={testID}
       accessibilityLabel={disabled ? "disabled" : "enabled"}
       disabled={disabled}
-      onPressIn={onPressIn}
-      onPressOut={onPressOut}
+      onPressIn={handlePressIn}
+      onPressOut={handlePressOut}
       onPress={onPress}
     >
-      <Animated.View style={[styles.main, { height }]} testID={`${testID}-text-view`}>
+      <Animated.View style={[styles.main, { height, opacity: fadeAnim }]} testID={`${testID}-text-view`}>
         <Text style={[styles.title, { color }, disabledStyles]}>{title}</Text>
       </Animated.View>
-    </TouchableWithoutFeedback>
+    </PressableWithDelay>
   );
 }
 
@@ -67,11 +90,15 @@ export default LinkButtonBase;
 const styles = StyleSheet.create({
   main: {
     width: "100%",
+    paddingHorizontal: 10,
     justifyContent: "center",
     alignItems: "center",
   } as ViewStyle,
   disabled: {
     opacity: 0.3,
+  },
+  pressedIn: {
+    opacity: 0.5,
   },
   title: {
     fontFamily: Style.FONT_FAMILY_PRIMARY_BOLD,
