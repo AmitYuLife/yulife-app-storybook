@@ -5,10 +5,11 @@ import { usePressedInWithDelay } from "@services/hooks/usePressedInWithDelay";
 export interface IProps extends TouchableOpacityProps {
   onPress: () => void;
   children: React.ReactNode;
+  delay?: number;
 }
 
-export default function TouchableOpacityWithDelay({ onPress, ...otherProps }: IProps) {
-  const { handlePress } = usePressedInWithDelay({ onPress });
+export default function TouchableOpacityWithDelay({ onPress, delay, ...otherProps }: IProps) {
+  const { handlePress } = usePressedInWithDelay({ onPress, delay });
 
   return <TouchableOpacity {...otherProps} onPress={handlePress} />;
 }

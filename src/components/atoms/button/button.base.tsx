@@ -24,6 +24,7 @@ interface IProps {
   shadowColor?: string;
   borderRadius?: number;
   height: number;
+  delay?: number;
 }
 
 interface IState {
@@ -35,9 +36,9 @@ const SHADOW_ALLOWANCE = 4;
 const SHADOW_DIFF = 3;
 
 export function ButtonBase(props: IProps) {
-  const { onPress, height = 50, borderRadius = props.height / 2 } = props;
+  const { onPress, height = 50, borderRadius = props.height / 2, delay } = props;
   const [translateYAnimation] = useState(new Animated.Value(0));
-  const { isPressedIn, handlePressIn, handlePressOut, handlePress } = usePressedInWithDelay({ onPress });
+  const { isPressedIn, handlePressIn, handlePressOut, handlePress } = usePressedInWithDelay({ onPress, delay });
 
   useEffect(() => {
     Animated.timing(translateYAnimation, {

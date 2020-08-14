@@ -21,11 +21,12 @@ interface IProps {
   borderColor?: string;
   color?: string;
   height: number;
+  delay?: number;
 }
 
 export function LinkButtonBase(props: IProps) {
-  const { onPress, height = 50 } = props;
-  const { handlePressIn, handlePressOut, handlePress } = usePressedInWithDelay({ onPress });
+  const { onPress, height = 50, delay } = props;
+  const { handlePressIn, handlePressOut, handlePress } = usePressedInWithDelay({ onPress, delay });
 
   return (
     <View style={[styles.flex, { height }]}>
