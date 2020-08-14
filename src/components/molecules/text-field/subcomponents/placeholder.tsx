@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
     textAlign: "left",
   },
   placeholder: {
-    fontSize: 20,
+    fontSize: 22,
     fontFamily: Style.FONT_FAMILY_PRIMARY,
     letterSpacing: 0.8,
   } as TextStyle,

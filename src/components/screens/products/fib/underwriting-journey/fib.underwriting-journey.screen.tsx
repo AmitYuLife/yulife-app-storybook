@@ -15,8 +15,9 @@ import {
 } from "../../../../atoms/fib/medical-history-item/medical-history-item";
 import MarkdownFib from "../../../../atoms/fib/markdown/markdown";
 import { IMarkdownFibProps } from "../../../../atoms/fib/markdown/markdown";
+import { getCustomComponent } from "./getCustomComponent";
 
-interface IFibUnderwritingJourneyScreenProps {
+export interface IFibUnderwritingJourneyScreenProps {
   onNavigateBack: () => void;
   data: UnderwritingJourneyScreen;
   onFirstButtonPressed: () => void;
@@ -39,6 +40,12 @@ export const FibUnderwritingJourneyScreen = memo(function (props: IFibUnderwriti
   const secondButton = !onSecondButtonPressed
     ? null
     : { action: onSecondButtonPressed, label: data.secondButton.label };
+
+  const CustomComponent = getCustomComponent(data.id);
+
+  if (CustomComponent) {
+    return <CustomComponent {...props} />;
+  }
 
   return (
     <FibUnderwritingJourneyLayout heading={data.heading} onNavigateBack={onNavigateBack}>
@@ -65,5 +72,6 @@ function renderChildren(child: UnderwritingJourneyChild) {
 const styles = StyleSheet.create({
   scrollViewContentStyle: {
     paddingBottom: 130,
+    paddingHorizontal: 32,
   } as ViewStyle,
 });

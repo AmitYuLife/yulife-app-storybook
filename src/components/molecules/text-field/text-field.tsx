@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, TextInput, View, Animated, ViewStyle, TextStyle, TextInputProps, Platform } from "react-native";
+import { StyleSheet, TextInput, View, Animated, ViewStyle, TextInputProps, Platform } from "react-native";
 import { Style } from "@styles/index";
 import { Placeholder } from "./subcomponents/placeholder";
 import { BaseUnderline, ColouredUnderline } from "./subcomponents/underlines";
@@ -38,7 +38,7 @@ export default function TextField(props: Props) {
     });
 
     const translateXAnim = Animated.timing(placeholderTranslateX, {
-      toValue: activeMaterial ? -70 : 0,
+      toValue: activeMaterial ? -76 : 0,
       useNativeDriver: true,
       duration: 100,
     });
@@ -79,7 +79,10 @@ export default function TextField(props: Props) {
   ]);
 
   const textInputProps = {
-    style: StyleSheet.flatten([styles.inputBase, { paddingLeft: placeholderIndentSize, marginBottom: -6 }]),
+    style: StyleSheet.flatten([
+      styles.inputBase,
+      { paddingLeft: placeholderIndentSize, marginBottom: Platform.OS === "android" ? -9 : -6 },
+    ]),
     onBlur: () => setFocused(false),
     onFocus: () => setFocused(true),
     value: textInputValue,
@@ -118,13 +121,9 @@ const styles = StyleSheet.create({
     paddingTop: 20,
     overflow: "hidden",
   } as ViewStyle,
-  placeholder: {
-    fontSize: 20,
-    fontFamily: Style.FONT_FAMILY_PRIMARY,
-  } as TextStyle,
   inputBase: {
     height: 40,
-    fontSize: 20,
+    fontSize: 22,
     fontFamily: Style.FONT_FAMILY_PRIMARY,
     marginBottom: Platform.OS === "android" ? -6 : 0,
   } as ViewStyle,

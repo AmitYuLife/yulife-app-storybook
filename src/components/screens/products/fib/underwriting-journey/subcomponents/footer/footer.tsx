@@ -8,6 +8,7 @@ interface IFooterProps {
   firstButton: {
     action: () => void;
     label: string;
+    disabled?: boolean;
   };
   secondButton?: {
     action: () => void;
@@ -27,6 +28,7 @@ export default function Footer(props: IFooterProps) {
           size={secondButton ? "Small" : "Large"}
           onPress={firstButton.action}
           label={firstButton.label}
+          disabled={firstButton.disabled}
         />
         {!secondButton ? null : (
           <Button size="Small" type="Primary" onPress={secondButton.action} label={secondButton.label} />
