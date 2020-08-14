@@ -28,14 +28,15 @@ export default function Footer(props: IFooterProps) {
           size={secondButton ? "Small" : "Large"}
           onPress={firstButton.action}
           label={firstButton.label}
+          delay={300}
           disabled={firstButton.disabled}
         />
         {!secondButton ? null : (
-          <Button size="Small" type="Primary" onPress={secondButton.action} label={secondButton.label} />
+          <Button size="Small" type="Primary" onPress={secondButton.action} label={secondButton.label} delay={300} />
         )}
       </View>
       {!onPreviousButtonPressed ? null : (
-        <TouchableOpacityWithDelay style={styles.previousQuestionWrapper} onPress={onPreviousButtonPressed}>
+        <TouchableOpacityWithDelay style={styles.previousQuestionWrapper} onPress={onPreviousButtonPressed} delay={300}>
           <Text style={styles.previousQuestion}>Previous Question</Text>
         </TouchableOpacityWithDelay>
       )}
