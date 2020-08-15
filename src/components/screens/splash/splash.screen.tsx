@@ -89,7 +89,7 @@ function SplashScreen(props: IProps) {
           duration={1000}
           onAnimationEnd={handleLogoEaseIn}
         >
-          <Logo scale={0.85} type="logo-only" style={{ backgroundColor: "white" }} />
+          <Logo scale={0.85} type="logo-only" style={styles.icon} />
         </Animatable.View>
       </Animatable.View>
       <View style={styles.bottomWrapper}>

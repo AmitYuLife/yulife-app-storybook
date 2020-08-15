@@ -1,27 +1,26 @@
 import { Colours, Style } from "@styles/index";
 import { ImageStyle, StyleSheet, ViewStyle } from "react-native";
 
+const LOGO_MARGIN_TOP = Style.SCALE_UP_AND_DOWN(135);
+const YU_ICON_SIZE = Style.SCALE_UP_AND_DOWN(100);
+const DOT_SIZE = Style.SCALE_UP_AND_DOWN(10);
+const DOTS_WIDTH = Style.SCALE_UP_AND_DOWN(80);
+
 export default StyleSheet.create({
   wrapper: {
     flex: 1,
   } as ViewStyle,
   logoWrapper: {
-    marginTop: Style.SCALE_UP_AND_DOWN(135),
+    marginTop: LOGO_MARGIN_TOP,
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
   } as ViewStyle,
   iconWrapper: {
-    height: Style.SCALE_UP_AND_DOWN(100),
-    width: Style.SCALE_UP_AND_DOWN(100),
+    height: YU_ICON_SIZE,
+    width: YU_ICON_SIZE,
   } as ViewStyle,
-  icon: {
-    height: Style.SCALE_UP_AND_DOWN(100),
-    width: Style.SCALE_UP_AND_DOWN(100),
-  } as ImageStyle,
-  lifeImageText: {
-    height: Style.SCALE_UP_AND_DOWN(48),
-  } as ImageStyle,
+  icon: { backgroundColor: "white" } as ImageStyle,
   textWrapper: {
     justifyContent: "center",
     alignItems: "center",
@@ -33,19 +32,19 @@ export default StyleSheet.create({
   } as ViewStyle,
   bottomWrapper: {
     flex: 1,
-    marginBottom: Style.SCALE_UP_AND_DOWN(80),
+    marginBottom: DOTS_WIDTH,
     justifyContent: "flex-end",
     alignItems: "center",
   } as ViewStyle,
   dotsWrapper: {
-    width: Style.SCALE_UP_AND_DOWN(80),
+    width: DOTS_WIDTH,
     justifyContent: "space-around",
     flexDirection: "row",
   } as ViewStyle,
   dot: {
-    height: Style.SCALE_UP_AND_DOWN(10),
-    width: Style.SCALE_UP_AND_DOWN(10),
+    height: DOT_SIZE,
+    width: DOT_SIZE,
     backgroundColor: Colours.darkHotPink,
-    borderRadius: Style.SCALE_UP_AND_DOWN(11),
+    borderRadius: DOT_SIZE,
   } as ViewStyle,
 });
