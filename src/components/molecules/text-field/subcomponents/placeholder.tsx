@@ -1,10 +1,9 @@
-import React from "react";
-import { Animated, TextStyle, StyleSheet, Platform } from "react-native";
+import React, { useRef, useEffect, useState } from "react";
+import { Animated, TextStyle, StyleSheet, LayoutChangeEvent } from "react-native";
 import { Style, Colours } from "@styles";
 
 interface Props {
   scale: Animated.Value;
-  translateX: Animated.Value;
   translateY: Animated.Value;
   opacity: Animated.Value;
   title: string;
@@ -13,30 +12,46 @@ interface Props {
   paddingLeft?: number;
 }
 
-export const Placeholder = ({
-  scale,
-  translateX,
-  translateY,
-  opacity,
-  title,
-  isFocused,
-  hasInput,
-  paddingLeft = 0,
-}: Props) => {
+export const Placeholder = ({ scale, translateY, opacity, title, isFocused, hasInput, paddingLeft = 0 }: Props) => {
+  const placeholderTranslateX = useRef(new Animated.Value(0)).current;
+  const [textWidth, setTextWidth] = useState(0);
+
+  function onLayout(e: LayoutChangeEvent) {
+    setTextWidth(e.nativeEvent.layout.width);
+  }
+
+  useEffect(() => {
+    // I'm doing this because of how the 'scaled' value works.
+    // Since the scaled value coming from the parent is 0.7, it means that the full width of the Text component is 70%
+    // but it still behaves like it's at 100% width. This means that there will always be a 15% indent when the placeholder is active
+    // I tried just using `left: 15%` when the input is active, but it caused the value to jump around
+    // RN doesn't handle percentage values for translateX, so i'm having to manually calculate the value onLayout.
+    // Even though 15% worked when I inputted the value normally, 21% seems to be the magic number here.
+    Animated.timing(placeholderTranslateX, {
+      toValue: isFocused || hasInput ? -`${textWidth * 0.21}` : 0,
+      useNativeDriver: true,
+      duration: 100,
+    }).start();
+  }, [placeholderTranslateX, hasInput, isFocused, textWidth]);
+
   const dynamicStyles = {
-    transform: [{ scale }, { translateX }, { translateY }],
+    transform: [{ translateY }],
     paddingLeft: isFocused || hasInput ? 0 : paddingLeft,
   };
+
+  const dynamicTextStyles = { transform: [{ scale }, { translateX: placeholderTranslateX }] };
 
   return (
     <Animated.View pointerEvents="none" style={[styles.placeholderWrapper, dynamicStyles]}>
       <Animated.Text
+        onLayout={onLayout}
         style={[
           styles.placeholder,
           {
             color: getPlaceholderColor(),
             opacity,
           },
+          dynamicTextStyles,
         ]}
       >
         {title}
@@ -60,14 +75,16 @@ const styles = StyleSheet.create({
   placeholderWrapper: {
     height: 24,
     position: "absolute",
-    bottom: Platform.OS === "android" ? 4 : 0,
+    bottom: 4,
     left: 0,
     width: "100%",
-    textAlign: "left",
+    alignItems: "flex-start",
+    justifyContent: "flex-end",
   },
   placeholder: {
     fontSize: 22,
     fontFamily: Style.FONT_FAMILY_PRIMARY,
+    width: "100%",
     letterSpacing: 0.8,
   } as TextStyle,
 });

@@ -15,15 +15,9 @@ type Props = typeof mapDispatchToProps & {
 };
 
 function removeByIndex<T>(arr: T[], index: number) {
-  return arr
-    .map((cover, i) => {
-      if (i === index) {
-        return null;
-      }
-
-      return cover;
-    })
-    .filter((x) => x);
+  const slice = arr.slice();
+  slice.splice(index, 1);
+  return slice;
 }
 
 function openModal(removeItem: () => void) {

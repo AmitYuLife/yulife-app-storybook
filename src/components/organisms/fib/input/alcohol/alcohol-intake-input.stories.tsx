@@ -7,7 +7,7 @@ import { withProvider } from "@components/storybook/withProvider";
 import { IReduxState } from "@redux/_core/reducers";
 import { connect } from "react-redux";
 
-storiesOf("Alcohol")
+storiesOf("Alcohol", module)
   .addDecorator(withKnobs)
   .addDecorator((g: () => React.ReactNode) => <View style={styles.wrapper}>{g()}</View>)
   .addDecorator(withProvider)
