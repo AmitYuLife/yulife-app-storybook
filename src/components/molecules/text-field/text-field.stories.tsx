@@ -1,8 +1,8 @@
 import React from "react";
-import { View } from "react-native";
+import { View, ScrollView } from "react-native";
 import { storiesOf } from "@storybook/react-native";
 import TextField from "./text-field";
-import { withKnobs, text, number } from "@storybook/addon-knobs";
+import { withKnobs, number } from "@storybook/addon-knobs";
 
 function voidFunc(): void {
   return null;
@@ -14,8 +14,14 @@ storiesOf("TextField", module)
     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>{g()}</View>
   ))
   .add("default", () => (
-    <View style={{ width: number("width", 306) }}>
-      <TextField placeholder={text("placeholder", "i be like placeholder")} onChange={voidFunc} />
-      <TextField placeholder={text("placeholder", "i be like placeholder")} onChange={voidFunc} />
-    </View>
+    <ScrollView>
+      <View style={{ width: number("width", 306) }}>
+        <TextField placeholder="short" onChange={voidFunc} />
+        <TextField placeholder="long placeholder" onChange={voidFunc} />
+        <TextField placeholder="very very long placeholder" onChange={voidFunc} />
+        <View style={{ width: 200 }}>
+          <TextField placeholder="i be like placeholder" onChange={voidFunc} />
+        </View>
+      </View>
+    </ScrollView>
   ));

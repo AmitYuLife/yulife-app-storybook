@@ -15,7 +15,6 @@ export default function TextField(props: Props) {
   const { placeholder, onChange, type = "Text", placeholderIndentSize = 0 } = props;
   const [isFocused, setFocused] = useState(false);
   const [placeholderScale] = useState(new Animated.Value(1));
-  const [placeholderTranslateX] = useState(new Animated.Value(0));
   const [placeholderTranslateY] = useState(new Animated.Value(0));
   const [materialUnderlineScaleX] = useState(new Animated.Value(1));
   const [placeholderOpacity] = useState(new Animated.Value(0.5));
@@ -37,14 +36,8 @@ export default function TextField(props: Props) {
       duration: 100,
     });
 
-    const translateXAnim = Animated.timing(placeholderTranslateX, {
-      toValue: activeMaterial ? -76 : 0,
-      useNativeDriver: true,
-      duration: 100,
-    });
-
     const translateYAnim = Animated.timing(placeholderTranslateY, {
-      toValue: activeMaterial ? -34 : 0,
+      toValue: activeMaterial ? -24 : 0,
       useNativeDriver: true,
       duration: 100,
     });
@@ -61,22 +54,8 @@ export default function TextField(props: Props) {
       duration: 100,
     });
 
-    Animated.parallel([
-      scaleAnim,
-      translateXAnim,
-      translateYAnim,
-      materialUnderlineScaleXAnim,
-      placeholderOpacityAnim,
-    ]).start();
-  }, [
-    activeMaterial,
-    placeholderScale,
-    placeholderTranslateX,
-    placeholderTranslateY,
-    isFocused,
-    materialUnderlineScaleX,
-    placeholderOpacity,
-  ]);
+    Animated.parallel([scaleAnim, translateYAnim, materialUnderlineScaleXAnim, placeholderOpacityAnim]).start();
+  }, [activeMaterial, placeholderScale, placeholderTranslateY, isFocused, materialUnderlineScaleX, placeholderOpacity]);
 
   const textInputProps = {
     style: StyleSheet.flatten([
@@ -102,7 +81,6 @@ export default function TextField(props: Props) {
       <TextInput {...textInputProps} />
       <Placeholder
         scale={placeholderScale}
-        translateX={placeholderTranslateX}
         translateY={placeholderTranslateY}
         opacity={placeholderOpacity}
         title={placeholder}
