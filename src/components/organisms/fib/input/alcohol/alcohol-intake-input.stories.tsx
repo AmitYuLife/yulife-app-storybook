@@ -3,7 +3,6 @@ import { View, StyleSheet } from "react-native";
 import { storiesOf } from "@storybook/react-native";
 import { AlcoholIntakeInput } from "./alcohol-intake-input";
 import { withKnobs, number } from "@storybook/addon-knobs";
-import { FIBStore } from "@redux/product/product.types";
 import { withProvider } from "@components/storybook/withProvider";
 import { IReduxState } from "@redux/_core/reducers";
 import { connect } from "react-redux";
@@ -18,10 +17,10 @@ const styles = StyleSheet.create({
   wrapper: { flex: 1, justifyContent: "center", alignItems: "center" },
 });
 
-function _AlcoholIntakeInputWrapper(props: { fibState: FIBStore }) {
+function _AlcoholIntakeInputWrapper() {
   return (
     <View style={{ width: number("width", 306) }}>
-      <AlcoholIntakeInput fibState={{ weeklyAlcoholDrinks: props.fibState.weeklyAlcoholDrinks } as FIBStore} />
+      <AlcoholIntakeInput />
     </View>
   );
 }

@@ -1,10 +1,8 @@
 import React from "react";
 import { storiesOf } from "@storybook/react-native";
 import { FinancialQuestionsFormScreen } from "./financial-questions-form.screen";
-import { getData } from "@components/containers/products/fib/data/underwriting-journey-data";
+import { data } from "@components/containers/products/fib/data/underwriting-journey-data";
 import { FinancialQuestionsCoverListScreen } from "./financial-questions-cover-list.screen";
-
-const data = getData({ fullName: "", dateOfBirth: "" });
 
 function voidFunc(): void {
   return null;

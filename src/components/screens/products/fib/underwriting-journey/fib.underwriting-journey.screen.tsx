@@ -20,6 +20,9 @@ import { FibInputHeight } from "@components/organisms/fib/input/height/fib-input
 import { FibInputName } from "@components/organisms/fib/input/name/fib-input-name";
 import { FibInputWeight } from "@components/organisms/fib/input/weight/fib-input-weight";
 import { getCustomComponent } from "./getCustomComponent";
+import { AlcoholIntakeInput } from "@components/organisms/fib/input/alcohol/alcohol-intake-input";
+import { CopyBirthday } from "@organisms/fib/copy/birthday";
+import { CopyFullName } from "@organisms/fib/copy/full-name";
 
 export interface IFibUnderwritingJourneyScreenProps {
   onNavigateBack: () => void;
@@ -33,15 +36,8 @@ export interface IFibUnderwritingJourneyScreenProps {
   };
 }
 
-export const FibUnderwritingJourneyScreen = memo(function (props: IFibUnderwritingJourneyScreenProps) {
-  const {
-    onNavigateBack,
-    data,
-    onFirstButtonPressed,
-    onSecondButtonPressed,
-    onPreviousButtonPressed,
-    progressBar,
-  } = props;
+const _FibUnderwritingJourneyScreen = memo(function (props: IFibUnderwritingJourneyScreenProps) {
+  const { onNavigateBack, data, onFirstButtonPressed, onSecondButtonPressed, onPreviousButtonPressed } = props;
 
   const backHandler = React.useCallback(() => {
     onNavigateBack();
@@ -63,7 +59,7 @@ export const FibUnderwritingJourneyScreen = memo(function (props: IFibUnderwriti
   }
 
   return (
-    <FibUnderwritingJourneyLayout heading={data.heading} onNavigateBack={onNavigateBack} progressBar={progressBar}>
+    <FibUnderwritingJourneyLayout heading={data.heading} onNavigateBack={onNavigateBack}>
       <ScrollView keyboardShouldPersistTaps="handled" contentContainerStyle={styles.scrollViewContentStyle}>
         <TitleWithIcon icon={data.icon} title={data.title} />
         <FibTitle title={data.question} />
@@ -76,6 +72,8 @@ export const FibUnderwritingJourneyScreen = memo(function (props: IFibUnderwriti
   );
 });
 
+export const FibUnderwritingJourneyScreen = memo(_FibUnderwritingJourneyScreen);
+
 function renderChildren(child: UnderwritingJourneyChild) {
   const FIELDS: Record<string, React.ReactNode> = {
     medicalHistory: <MedicalHistoryItem {...(child as IMedicalHistoryItemProps)} />,
@@ -84,6 +82,9 @@ function renderChildren(child: UnderwritingJourneyChild) {
     inputHeight: <FibInputHeight />,
     inputWeight: <FibInputWeight />,
     inputFullName: <FibInputName />,
+    inputAlcohol: <AlcoholIntakeInput />,
+    copyBirthday: <CopyBirthday />,
+    copyFullName: <CopyFullName />,
   };
   return FIELDS[child.type] || null;
 }

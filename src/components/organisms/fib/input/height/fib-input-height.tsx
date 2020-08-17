@@ -21,8 +21,10 @@ const _FibInputHeight = (props: ConnectedProps) => {
 
   const handleSwitch = useCallback(() => {
     updateHeight({
-      ...height,
       unit: height.unit === "cm" ? "ft" : "cm",
+      cm: "",
+      ft: "",
+      in: "",
     });
   }, [height, updateHeight]);
 
