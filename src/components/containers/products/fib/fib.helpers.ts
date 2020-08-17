@@ -31,14 +31,14 @@ export const calculatePayoutCalculatorItems = (
     },
     min: {
       year: customerAge,
-      month: monthsTillBirthday,
+      month: 12 - monthsTillBirthday,
     },
   };
 
   if (defaultPayoutEstimatorItems.min.year === defaultPayoutEstimatorItems.years[deceaseAgeIndexYear]) {
     const months = !monthsTillBirthday
       ? defaultPayoutEstimatorItems.months.slice(0)
-      : defaultPayoutEstimatorItems.months.slice(defaultPayoutEstimatorItems.months.length - monthsTillBirthday);
+      : defaultPayoutEstimatorItems.months.slice(defaultPayoutEstimatorItems.min.month);
     const newItems = { ...defaultPayoutEstimatorItems, months };
     return newItems;
   }
@@ -56,20 +56,16 @@ function getMonthsTillBirthday(dateOfBirth: moment.Moment) {
   const monthOfBirth = dateOfBirth.month();
   const now = moment();
   const currentMonth = now.month();
+
+  const addExtraMonth = dateOfBirth.date() > now.date() ? 1 : 0;
   if (monthOfBirth < currentMonth) {
-    return currentMonth - monthOfBirth;
+    return 12 - (currentMonth - monthOfBirth) + addExtraMonth;
   }
 
   if (monthOfBirth === currentMonth) {
     // Same month case
-    if (dateOfBirth.dayOfYear() >= now.dayOfYear()) {
-      // Before birthday
-      return 1;
-    }
-
-    // After birthday
-    return 0;
+    return addExtraMonth;
   }
 
-  return 12 - (currentMonth - monthOfBirth);
+  return monthOfBirth - currentMonth + addExtraMonth;
 }
