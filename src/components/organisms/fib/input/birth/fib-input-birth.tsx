@@ -1,4 +1,4 @@
-import React, { useRef, RefObject } from "react";
+import React, { useRef, RefObject, useEffect } from "react";
 import { connect } from "react-redux";
 import { TextInput, View } from "react-native";
 import { styles } from "./fib-input-birth.styles";
@@ -21,6 +21,12 @@ const _FibInputBirth = (props: ConnectedProps) => {
   const dayRef: RefObject<TextInput> = useRef(null);
   const monthRef: RefObject<TextInput> = useRef(null);
   const yearRef: RefObject<TextInput> = useRef(null);
+
+  useEffect(() => {
+    updateBirthDay("");
+    updateBirthMonth("");
+    updateBirthYear("");
+  }, [updateBirthDay, updateBirthMonth, updateBirthYear]);
 
   const validateDay = (text: string) => {
     const parsedText = Number(text);
@@ -93,7 +99,7 @@ const _FibInputBirth = (props: ConnectedProps) => {
     <View style={styles.wrapper}>
       <InputField
         forwardRef={dayRef}
-        autoFocus={!birthDay}
+        autoFocus={true}
         value={birthDay}
         onChangeText={validateDay}
         maxLength={2}
@@ -101,7 +107,6 @@ const _FibInputBirth = (props: ConnectedProps) => {
         placeholder="DD"
       />
       <InputField
-        autoFocus={!!birthDay && !birthMonth}
         forwardRef={monthRef}
         value={birthMonth}
         onChangeText={validateMonth}
@@ -111,7 +116,6 @@ const _FibInputBirth = (props: ConnectedProps) => {
         onBackSpace={handleBackspaceMonth}
       />
       <InputField
-        autoFocus={!!birthDay && !!birthMonth}
         forwardRef={yearRef}
         isLarge={true}
         value={birthYear}
@@ -120,6 +124,7 @@ const _FibInputBirth = (props: ConnectedProps) => {
         label="Year"
         placeholder="YYYY"
         onBackSpace={handleBackspaceYear}
+        width={70}
       />
     </View>
   );

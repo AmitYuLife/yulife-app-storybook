@@ -1,27 +1,25 @@
 import React from "react";
+import { connect, ConnectedProps } from "react-redux";
 import AlcoholBottle from "./alcohol-bottle";
 import AlcoholBottleGreyscale from "./alcohol-bottle-greyscale";
 import { View, StyleSheet, ViewStyle } from "react-native";
 import { Style } from "@styles/index";
 import { SliderInput } from "./slider";
-import { useDispatch } from "react-redux";
 import { updateFIBValue } from "@redux/product/product.actions";
 import { ALCOHOL_DRINK_LIMIT } from "./alcohol.common";
 import { FIBStore } from "@redux/product/product.types";
+import { IReduxState } from "@redux/_core/reducers";
+import { getFIBState } from "@redux/product/product.selectors";
 
-interface Props {
-  fibState: FIBStore;
-}
+type Props = ConnectedProps<typeof redux>;
 
-export function AlcoholIntakeInput(props: Props) {
-  const dispatch = useDispatch();
-
-  const { fibState } = props;
-  const displayValue = fibState.weeklyAlcoholDrinks;
+const _AlcoholIntakeInput = (props: Props) => {
+  const { weeklyAlcohol, updateWeeklyAlcohol } = props;
+  const displayValue = weeklyAlcohol;
   const sliderPercentageFilled = (displayValue / ALCOHOL_DRINK_LIMIT) * 100;
 
   function handleChange(val: number) {
-    return dispatch(updateFIBValue({ value: Math.round(val), key: "weeklyAlcoholDrinks" }));
+    return updateWeeklyAlcohol(Math.round(val));
   }
 
   const dynamicStyles = StyleSheet.create({
@@ -29,6 +27,7 @@ export function AlcoholIntakeInput(props: Props) {
       height: `${sliderPercentageFilled}%`,
     } as ViewStyle,
   });
+
   return (
     <View style={styles.container}>
       <View style={styles.innerContainer}>
@@ -48,7 +47,20 @@ export function AlcoholIntakeInput(props: Props) {
       </View>
     </View>
   );
-}
+};
+
+const mapStateToProps = (state: IReduxState) => ({
+  weeklyAlcohol: getFIBState(state).weeklyAlcoholDrinks,
+});
+
+const mapDispatchToProps = {
+  updateWeeklyAlcohol: (value: FIBStore["weeklyAlcoholDrinks"]) =>
+    updateFIBValue({ key: "weeklyAlcoholDrinks", value }),
+};
+
+const redux = connect(mapStateToProps, mapDispatchToProps);
+
+export const AlcoholIntakeInput = redux(_AlcoholIntakeInput);
 
 const styles = StyleSheet.create({
   container: {

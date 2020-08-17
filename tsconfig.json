@@ -15,6 +15,8 @@
       "@assets/*": ["./assets/*"],
       "@atoms": ["./src/components/atoms/index"],
       "@atoms/*": ["./src/components/atoms/*"],
+      "@organisms": ["./src/components/organisms/index"],
+      "@organisms/*": ["./src/components/organisms/*"],
       "@components/*": ["./src/components/*"],
       "@containers": ["./src/components/containers/index"],
       "@containers/*": ["./src/components/containers/*"],

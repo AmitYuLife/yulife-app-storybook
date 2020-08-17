@@ -32,9 +32,17 @@ export default function Footer(props: IFooterProps) {
             label={firstButton.label}
             disabled={firstButton.disabled}
             delay={300}
+            disableAnimation={true}
           />
           {!secondButton ? null : (
-            <Button size="Small" type="Primary" onPress={secondButton.action} label={secondButton.label} delay={300} />
+            <Button
+              size="Small"
+              type="Primary"
+              onPress={secondButton.action}
+              label={secondButton.label}
+              delay={300}
+              disableAnimation={true}
+            />
           )}
         </View>
       </View>

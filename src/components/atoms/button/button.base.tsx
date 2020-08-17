@@ -1,4 +1,4 @@
-import React, { ComponentProps, useState, useEffect } from "react";
+import React, { ComponentProps, useEffect, useState } from "react";
 import {
   Animated,
   StyleSheet,
@@ -25,6 +25,7 @@ interface IProps {
   borderRadius?: number;
   height: number;
   delay?: number;
+  disableAnimation?: boolean;
 }
 
 interface IState {
@@ -36,17 +37,21 @@ const SHADOW_ALLOWANCE = 4;
 const SHADOW_DIFF = 3;
 
 export function ButtonBase(props: IProps) {
-  const { onPress, height = 50, borderRadius = props.height / 2, delay } = props;
+  const { onPress, height = 50, borderRadius = props.height / 2, delay, disableAnimation } = props;
   const [translateYAnimation] = useState(new Animated.Value(0));
   const { isPressedIn, handlePressIn, handlePressOut, handlePress } = usePressedInWithDelay({ onPress, delay });
 
   useEffect(() => {
+    if (disableAnimation) {
+      return;
+    }
+
     Animated.timing(translateYAnimation, {
       toValue: isPressedIn ? 2 : 0,
       duration: 60,
       useNativeDriver: true,
     }).start();
-  }, [isPressedIn, translateYAnimation]);
+  }, [isPressedIn, translateYAnimation, disableAnimation]);
 
   return (
     <View style={[styles.flex, { height: height + SHADOW_ALLOWANCE }]}>

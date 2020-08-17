@@ -1,4 +1,4 @@
-import React, { memo, RefObject } from "react";
+import React, { memo, RefObject, useState } from "react";
 import {
   TextInput,
   View,
@@ -8,9 +8,11 @@ import {
   NativeSyntheticEvent,
   TextInputKeyPressEventData,
   KeyboardTypeOptions,
+  Platform,
 } from "react-native";
 import { Text } from "@atoms";
 import { Colours, Style } from "@styles";
+import * as Anim from "react-native-animatable";
 
 export interface InputFieldProps {
   onChangeText: (text: string) => void;
@@ -42,6 +44,8 @@ const _InputField = (props: InputFieldProps) => {
     keyboardType = "number-pad",
   } = props;
 
+  const [isFocused, setIsFocused] = useState(false);
+
   if (!show) {
     return null;
   }
@@ -54,11 +58,25 @@ const _InputField = (props: InputFieldProps) => {
     }
   };
 
+  const handleFocus = (isFocused: boolean) => {
+    return () => {
+      setIsFocused(isFocused);
+
+      if (isFocused) {
+        onChangeText("");
+      }
+    };
+  };
+
   return (
     <View style={styles.fieldWrapper}>
       <Text style={styles.fieldLabel}>{label}</Text>
       <View style={[styles.field, { width }]}>
         <TextInput
+          onFocus={handleFocus(true)}
+          onBlur={handleFocus(false)}
+          clearTextOnFocus={true}
+          caretHidden={true}
           onKeyPress={handleKeyPress}
           autoFocus={autoFocus}
           ref={forwardRef}
@@ -73,6 +91,12 @@ const _InputField = (props: InputFieldProps) => {
           placeholder={placeholder}
           keyboardType={keyboardType}
         />
+        <View pointerEvents="none" style={styles.shadowWrapper}>
+          <Text bold={true} style={styles.shadow}>
+            {value}
+          </Text>
+          <Blinker show={isFocused} />
+        </View>
       </View>
     </View>
   );
@@ -87,6 +111,8 @@ const styles = {
     textAlign: "center",
     fontFamily: Style.FONT_FAMILY_PRIMARY,
     letterSpacing: 1,
+    ...StyleSheet.absoluteFillObject,
+    opacity: 0,
   } as TextStyle,
   fieldWrapper: {
     height: 70,
@@ -107,14 +133,51 @@ const styles = {
     borderRadius: 6,
     backgroundColor: "white",
     marginTop: 4,
+    flexDirection: "row",
   } as ViewStyle,
   fieldActive: {
     borderColor: Colours.darkHotPink,
   } as ViewStyle,
-  small: {
-    width: 50,
+  shadowWrapper: {
+    flexDirection: "row",
+    height: "100%",
+    width: "100%",
+    justifyContent: "center",
+    alignItems: "center",
   } as ViewStyle,
-  large: {
-    width: 80,
+  shadow: {
+    letterSpacing: 1,
+  } as TextStyle,
+};
+
+function Blinker({ show }: Pick<InputFieldProps, "show">) {
+  if (!show) {
+    return null;
+  }
+
+  return (
+    <Anim.View
+      useNativeDriver={true}
+      duration={400}
+      iterationCount="infinite"
+      direction="alternate"
+      animation="fadeIn"
+      style={blinkerStyles.wrapper}
+    >
+      <View style={blinkerStyles.cursor} />
+    </Anim.View>
+  );
+}
+
+const blinkerStyles = {
+  wrapper: {
+    marginTop: 0,
+    marginBottom: Platform.select({ ios: 4, android: 0 }),
+    marginLeft: 1,
+  } as ViewStyle,
+  cursor: {
+    width: 1,
+    height: 14,
+    backgroundColor: Colours.darkHotPink,
   } as ViewStyle,
 };

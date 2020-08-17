@@ -21,8 +21,10 @@ const _FibInputWeight = (props: ConnectedProps) => {
 
   const handleSwitch = useCallback(() => {
     updateWeight({
-      ...weight,
       unit: weight.unit === "st" ? "kg" : "st",
+      st: "",
+      lb: "",
+      kg: "",
     });
   }, [weight, updateWeight]);
 

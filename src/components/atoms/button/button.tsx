@@ -16,10 +16,22 @@ interface IProps {
   testID?: string;
   size?: Sizes;
   delay?: number;
+  disableAnimation?: boolean;
 }
 
 function Button(props: IProps) {
-  const { label, type, size = "Large", wrapperStyle, disabled, testID, isLoading, onPress, delay } = props;
+  const {
+    label,
+    type,
+    size = "Large",
+    wrapperStyle,
+    disabled,
+    testID,
+    isLoading,
+    onPress,
+    delay,
+    disableAnimation,
+  } = props;
 
   const { handlePress } = usePressedInWithDelay({ onPress, delay });
 
@@ -40,6 +52,7 @@ function Button(props: IProps) {
           color="white"
           borderRadius={50}
           delay={delay}
+          disableAnimation={disableAnimation}
         />
       </View>
     );
@@ -59,6 +72,7 @@ function Button(props: IProps) {
           color={Colours.darkHotPink}
           borderRadius={50}
           delay={delay}
+          disableAnimation={disableAnimation}
         />
       </View>
     );

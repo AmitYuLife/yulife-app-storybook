@@ -22,7 +22,7 @@ function _FinancialQuestionsCoverListScreen(props: Props) {
     onFirstButtonPressed,
     onSecondButtonPressed,
     onPreviousButtonPressed,
-    existingCovers,
+    existingCovers = [],
   } = props;
 
   return (
