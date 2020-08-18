@@ -33,16 +33,7 @@ const _FibInputCm = (props: ConnectedProps) => {
     });
   };
 
-  return (
-    <InputField
-      autoFocus={true}
-      value={height.cm}
-      onChangeText={validateCm}
-      maxLength={3}
-      label="cm"
-      placeholder="cm"
-    />
-  );
+  return <InputField autoFocus={true} value={height.cm} onChangeText={validateCm} maxLength={3} label="cm" />;
 };
 
 const mapStateToProps = (state: IReduxState) => ({

@@ -1,10 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
-import { View, ViewStyle } from "react-native";
+import { View, ViewStyle, TextStyle } from "react-native";
 import { updateFIBValue } from "@redux/product/product.actions";
 import { IReduxState } from "@redux/_core/reducers";
 import { getFIBState } from "@redux/product/product.selectors";
 import { InputField } from "../input-field";
+import { Colours, Style } from "@styles";
 
 type ConnectedProps = ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps;
 
@@ -17,10 +18,12 @@ const _FibInputName = (props: ConnectedProps) => {
         isLarge={true}
         value={fullName}
         onChangeText={updateName}
-        maxLength={50}
-        placeholder="name"
-        width={200}
+        maxLength={48}
+        width={Style.DEVICE_WIDTH - 80}
         keyboardType="default"
+        style={styles.textInput}
+        shadowStyle={styles.shadow}
+        maxBeforeTruncate={26}
       />
     </View>
   );
@@ -45,5 +48,16 @@ const styles = {
     justifyContent: "center",
     alignItems: "center",
     paddingTop: 16,
+  } as ViewStyle,
+  textInput: {
+    borderTopWidth: 0,
+    borderLeftWidth: 0,
+    borderRightWidth: 0,
+    borderRadius: 0,
+    borderBottomColor: Colours.darkHotPink,
+  } as TextStyle,
+  shadow: {
+    justifyContent: "flex-start",
+    width: Style.DEVICE_WIDTH - 120,
   } as ViewStyle,
 };

@@ -11,12 +11,11 @@ import {
   Platform,
 } from "react-native";
 import { Text } from "@atoms";
-import { Colours, Style } from "@styles";
+import { Colours } from "@styles";
 import * as Anim from "react-native-animatable";
 
 export interface InputFieldProps {
   onChangeText: (text: string) => void;
-  placeholder?: string;
   maxLength: number;
   value: string;
   forwardRef?: RefObject<TextInput>;
@@ -27,6 +26,9 @@ export interface InputFieldProps {
   width?: number;
   keyboardType?: KeyboardTypeOptions;
   onBackSpace?: () => void;
+  style?: TextStyle;
+  maxBeforeTruncate?: number;
+  shadowStyle?: ViewStyle;
 }
 
 const _InputField = (props: InputFieldProps) => {
@@ -36,12 +38,14 @@ const _InputField = (props: InputFieldProps) => {
     autoFocus,
     value,
     forwardRef,
-    placeholder,
     maxLength,
     label = "",
     width = 50,
     show = true,
     keyboardType = "number-pad",
+    style,
+    maxBeforeTruncate = 0,
+    shadowStyle,
   } = props;
 
   const [isFocused, setIsFocused] = useState(false);
@@ -71,29 +75,26 @@ const _InputField = (props: InputFieldProps) => {
   return (
     <View style={styles.fieldWrapper}>
       <Text style={styles.fieldLabel}>{label}</Text>
-      <View style={[styles.field, { width }]}>
+      <View style={[styles.field, { width }, style]}>
         <TextInput
           onFocus={handleFocus(true)}
           onBlur={handleFocus(false)}
           clearTextOnFocus={true}
-          caretHidden={true}
           onKeyPress={handleKeyPress}
           autoFocus={autoFocus}
           ref={forwardRef}
-          style={styles.textInput}
+          style={[styles.textInput, style]}
           value={value}
           onChangeText={onChangeText}
-          underlineColorAndroid="transparent"
           autoCapitalize="none"
           autoCompleteType="off"
           autoCorrect={false}
           maxLength={maxLength}
-          placeholder={placeholder}
           keyboardType={keyboardType}
         />
-        <View pointerEvents="none" style={styles.shadowWrapper}>
+        <View pointerEvents="none" style={[styles.shadowWrapper, shadowStyle]}>
           <Text bold={true} style={styles.shadow}>
-            {value}
+            {ellipsizeHead(value, maxBeforeTruncate)}
           </Text>
           <Blinker show={isFocused} />
         </View>
@@ -106,11 +107,6 @@ export const InputField = memo(_InputField);
 
 const styles = {
   textInput: {
-    width: "100%",
-    height: "100%",
-    textAlign: "center",
-    fontFamily: Style.FONT_FAMILY_PRIMARY,
-    letterSpacing: 1,
     ...StyleSheet.absoluteFillObject,
     opacity: 0,
   } as TextStyle,
@@ -120,9 +116,6 @@ const styles = {
   } as ViewStyle,
   fieldLabel: {
     fontSize: 12,
-  } as TextStyle,
-  empty: {
-    color: Colours.lightGray,
   } as TextStyle,
   field: {
     borderWidth: StyleSheet.hairlineWidth,
@@ -135,13 +128,9 @@ const styles = {
     marginTop: 4,
     flexDirection: "row",
   } as ViewStyle,
-  fieldActive: {
-    borderColor: Colours.darkHotPink,
-  } as ViewStyle,
   shadowWrapper: {
     flexDirection: "row",
     height: "100%",
-    width: "100%",
     justifyContent: "center",
     alignItems: "center",
   } as ViewStyle,
@@ -174,6 +163,7 @@ const blinkerStyles = {
     marginTop: 0,
     marginBottom: Platform.select({ ios: 4, android: 0 }),
     marginLeft: 1,
+    color: Colours.darkHotPink,
   } as ViewStyle,
   cursor: {
     width: 1,
@@ -181,3 +171,16 @@ const blinkerStyles = {
     backgroundColor: Colours.darkHotPink,
   } as ViewStyle,
 };
+
+function ellipsizeHead(name: string, max: number) {
+  // because ellipsizeMode="head" is not working for some reason
+
+  if (!max || name.length < max) {
+    return name;
+  }
+
+  const ellipses = "...";
+  const ellipsed = `${ellipses}${name.substr(name.length - max)}`;
+
+  return ellipsed;
+}

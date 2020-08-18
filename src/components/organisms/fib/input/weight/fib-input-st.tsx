@@ -69,7 +69,6 @@ const _FibInputSt = (props: ConnectedProps) => {
         onChangeText={validateSt}
         maxLength={2}
         label="stones"
-        placeholder="st"
         forwardRef={stRef}
       />
       <InputField
@@ -79,7 +78,6 @@ const _FibInputSt = (props: ConnectedProps) => {
         onChangeText={validateLb}
         maxLength={2}
         label="pounds"
-        placeholder="lb"
         forwardRef={lbRef}
       />
     </View>
