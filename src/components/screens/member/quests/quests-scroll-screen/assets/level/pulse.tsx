@@ -1,6 +1,7 @@
 import * as React from "react";
 import { Animated, Easing, StyleSheet, View, ViewStyle } from "react-native";
 import { CIRCLE_SIZE } from "./level.styles";
+import { DETOX_ENABLED } from "@services/socket";
 
 interface IProps {
   interval: number;
@@ -15,6 +16,10 @@ function _Pulse(props: IProps) {
   const { interval, pulseMaxSize, backgroundColor, size, style } = props;
 
   React.useEffect(() => {
+    if (DETOX_ENABLED) {
+      return null;
+    }
+
     Animated.loop(
       Animated.sequence(
         [1, 0].map((toValue) =>
