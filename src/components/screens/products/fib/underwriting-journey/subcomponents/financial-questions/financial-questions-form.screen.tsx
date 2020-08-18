@@ -41,7 +41,11 @@ export function _FinancialQuestionsFormScreen(props: Props) {
   }
 
   return (
-    <FibUnderwritingJourneyLayout heading={data.heading} onNavigateBack={onNavigateBack}>
+    <FibUnderwritingJourneyLayout
+      heading={data.heading}
+      onNavigateBack={onNavigateBack}
+      progressBar={props.progressBar}
+    >
       <ScrollView contentContainerStyle={styles.scrollViewContentStyle} keyboardShouldPersistTaps="handled">
         <TitleWithIcon icon={data.icon} title={data.title} />
         <FibTitle title={data.question} />

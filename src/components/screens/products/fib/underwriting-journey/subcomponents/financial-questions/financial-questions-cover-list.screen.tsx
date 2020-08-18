@@ -26,7 +26,11 @@ function _FinancialQuestionsCoverListScreen(props: Props) {
   } = props;
 
   return (
-    <FibUnderwritingJourneyLayout heading={data.heading} onNavigateBack={onNavigateBack}>
+    <FibUnderwritingJourneyLayout
+      heading={data.heading}
+      onNavigateBack={onNavigateBack}
+      progressBar={props.progressBar}
+    >
       <ScrollView contentContainerStyle={styles.scrollViewContentStyle}>
         <TitleWithIcon icon={data.icon} title={data.title} />
         <FibTitle title={data.question} />
