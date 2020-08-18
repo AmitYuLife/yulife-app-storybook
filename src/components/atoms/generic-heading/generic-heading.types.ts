@@ -9,11 +9,13 @@ export interface IGenericHeadingProps {
   leftIcon?: LeftIcon;
   rightIcon?: IRightIcon | string;
   isBeta?: boolean;
-  logo?: "yulife";
+  logo?: Logo;
 }
 
 export interface IRightIcon {
   icon: "SETTINGS" | "CLOSE";
 }
+
+export type Logo = "yulife";
 
 type LeftIcon = "BACK" | "CLOSE";

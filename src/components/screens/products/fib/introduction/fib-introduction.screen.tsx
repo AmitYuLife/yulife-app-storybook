@@ -18,7 +18,12 @@ export const FibIntroductionScreen = memo(function (props: IFibIntroductionScree
   const { navigateToYuScreen, onNavigateToSalary, firstName, avatar } = props;
 
   return (
-    <ScrollableLayout buttonAction={onNavigateToSalary} onLeftIconPress={navigateToYuScreen} buttonTitle="Enter Salary">
+    <ScrollableLayout
+      buttonAction={onNavigateToSalary}
+      onLeftIconPress={navigateToYuScreen}
+      buttonTitle="Enter Salary"
+      logo={"yulife"}
+    >
       <Animatable.View duration={1000} animation="fadeIn" style={styles.flex} useNativeDriver={true}>
         <View style={styles.imagesWrapper}>
           <View style={styles.avatarWrapper}>

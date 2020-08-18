@@ -2,20 +2,23 @@ import React from "react";
 import { Colours, Style } from "@styles";
 import { SafeAreaView, ScrollView, View, ViewStyle, StyleSheet, Platform } from "react-native";
 import { GenericHeading, Button } from "@atoms";
+import { Logo } from "../../../../atoms/generic-heading/generic-heading.types";
 
 interface Props {
   children: React.ReactNode;
   buttonTitle: string;
   buttonAction: () => void;
   onLeftIconPress: () => void;
+  logo?: Logo;
+  heading?: string;
 }
 
 export function ScrollableLayout(props: Props) {
-  const { children, buttonTitle, buttonAction, onLeftIconPress } = props;
+  const { children, buttonTitle, logo, heading, buttonAction, onLeftIconPress } = props;
   return (
     <>
       <SafeAreaView style={styles.wrapper}>
-        <GenericHeading isBeta={true} logo="yulife" onLeftIconPress={onLeftIconPress} />
+        <GenericHeading isBeta={true} logo={logo} heading={heading} onLeftIconPress={onLeftIconPress} />
         <ScrollView showsVerticalScrollIndicator={false}>
           <View style={styles.padTop} />
           {children}
