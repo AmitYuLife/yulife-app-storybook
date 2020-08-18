@@ -15,10 +15,16 @@ const coverListData = data.find((x) => x.id === "financial_cover_list");
 storiesOf("Financial Questions", module)
   .addDecorator(withProvider)
   .add("financial questions form", () => (
-    <FinancialQuestionsFormScreen onNavigateBack={voidFunc} data={formScreenData} onFirstButtonPressed={() => null} />
+    <FinancialQuestionsFormScreen
+      progressBar={{ maxLength: 10, currentPosition: 1 }}
+      onNavigateBack={voidFunc}
+      data={formScreenData}
+      onFirstButtonPressed={() => null}
+    />
   ))
   .add("financial questions cover list", () => (
     <FinancialQuestionsCoverListScreen
+      progressBar={{ maxLength: 10, currentPosition: 2 }}
       onNavigateBack={voidFunc}
       data={coverListData}
       onFirstButtonPressed={() => null}

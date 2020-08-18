@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { StyleSheet, ViewStyle, View } from "react-native";
 import Chip, { ChipProps } from "@atoms/chip/chip";
 
@@ -9,6 +9,19 @@ interface ChipListProps {
 
 function ChipList(props: ChipListProps) {
   const { items } = props;
+  const [activeChips, setActiveChips] = useState<Record<string, boolean>>({});
+
+  useEffect(() => {
+    const defaultState = items.reduce((acc, curr) => {
+      return {
+        ...acc,
+        [curr.id]: curr.active,
+      };
+    }, {});
+
+    setActiveChips(defaultState);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <View style={styles.wrapper}>
@@ -17,11 +30,11 @@ function ChipList(props: ChipListProps) {
           <View style={styles.chipLayout} key={item.id + i}>
             <Chip
               id={item.id}
-              active={item.active}
+              active={activeChips[item.id]}
               iconType={item.iconType}
               icon={item.icon}
-              onPress={item.onPress}
               label={item.label}
+              onPress={() => setActiveChips({ ...activeChips, [item.id]: !activeChips[item.id] })}
             />
           </View>
         );
@@ -36,14 +49,13 @@ const styles = StyleSheet.create({
     flexWrap: "wrap",
     alignItems: "center",
     justifyContent: "center",
+    paddingHorizontal: 16,
   } as ViewStyle,
   chipLayout: {
-    flex: 1,
+    flexGrow: 1,
     flexShrink: 1,
-    flexBasis: "50%",
-    marginVertical: 16,
-    justifyContent: "center",
-    alignContent: "center",
+    flexBasis: "40%",
+    marginVertical: 12,
     alignItems: "center",
   },
 });

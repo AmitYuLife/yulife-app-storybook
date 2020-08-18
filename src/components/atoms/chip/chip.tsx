@@ -12,7 +12,7 @@ export interface ChipProps {
   label: string;
   icon: string;
   iconType: ChipIconType;
-  onPress: () => void;
+  onPress?: () => void;
 }
 
 interface ChipStateProps {
@@ -29,7 +29,11 @@ function Chip(props: ChipProps) {
   const stateProps = getStateProperties(active, iconType, icon);
 
   return (
-    <TouchableOpacityWithDelay style={StyleSheet.flatten([styles.wrapper, stateProps.chipStyle])} onPress={onPress}>
+    <TouchableOpacityWithDelay
+      style={StyleSheet.flatten([styles.wrapper, stateProps.chipStyle])}
+      onPress={onPress}
+      delay={50}
+    >
       <View style={styles.viewWrapper}>
         <View style={styles.iconWrapper}>
           {iconType === "xml" ? (
@@ -50,10 +54,31 @@ function Chip(props: ChipProps) {
 // we need to add here the list of icons available when using images
 function getImage(icon: string): ImageRequireSource {
   switch (icon) {
-    case "ears-nose-throat":
-      return require("../../../../assets/top-ups/Ears-Nose-Throat.png");
+    case "blood_pressure_cholest":
+      return require("../../../../assets/top-ups/blood_pressure_cholest.png");
+    case "condition_stable":
+      return require("../../../../assets/top-ups/condition_stable.png");
+    case "digestive":
+      return require("../../../../assets/top-ups/digestive.png");
+    case "ears_nose_throat":
+      return require("../../../../assets/top-ups/ears_nose_throat.png");
+    case "eye":
+      return require("../../../../assets/top-ups/eye.png");
+    case "kidneys_bladder":
+      return require("../../../../assets/top-ups/kidneys_bladder.png");
+    case "lungs":
+      return require("../../../../assets/top-ups/lungs.png");
+    case "minor_injuries":
+      return require("../../../../assets/top-ups/minor_injuries.png");
+    case "muscles_joints":
+      return require("../../../../assets/top-ups/muscles_joints.png");
+    case "pregnancy":
+      return require("../../../../assets/top-ups/pregnancy.png");
+    case "skin":
+      return require("../../../../assets/top-ups/skin.png");
+    case "other":
     default:
-      return require("../../../../assets/icons/yucoin.png");
+      return require("../../../../assets/top-ups/other.png");
   }
 }
 

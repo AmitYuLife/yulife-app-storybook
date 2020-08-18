@@ -1,4 +1,4 @@
-import { UPDATE_FIB_VALUE, ProductActionTypes, IProductStore } from "./product.types";
+import { UPDATE_FIB_VALUE, ProductActionTypes, IProductStore, UPDATE_FIB_MEDICAL_VALUE } from "./product.types";
 
 export { IProductStore } from "./product.types";
 
@@ -24,6 +24,7 @@ export const initialState: IProductStore = {
       lb: "",
     },
     existingCovers: [],
+    medicalHistory: {},
   },
 };
 
@@ -35,6 +36,17 @@ function personalProductReducer<T>(state: IProductStore = initialState, action: 
         fib: {
           ...state.fib,
           [action.payload.key]: action.payload.value,
+        },
+      };
+    case UPDATE_FIB_MEDICAL_VALUE:
+      return {
+        ...state,
+        fib: {
+          ...state.fib,
+          medicalHistory: {
+            ...state.fib.medicalHistory,
+            [action.payload.key]: action.payload.value,
+          },
         },
       };
     default:

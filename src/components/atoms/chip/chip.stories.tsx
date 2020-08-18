@@ -34,11 +34,11 @@ storiesOf("Chip", module)
           id="test"
           label="Test testtesttest"
           active={true}
-          icon="ears-nose-throat"
+          icon="ears_nose_throat"
           iconType={"image"}
           onPress={voidFunc}
         />
-        <Chip id="test" label="Test" active={false} icon="ears-nose-throat" iconType={"image"} onPress={voidFunc} />
+        <Chip id="test" label="Test" active={false} icon="ears_nose_throat" iconType={"image"} onPress={voidFunc} />
       </View>
     );
   });

@@ -1,6 +1,7 @@
 import { PackageId } from "../../components/screens/products/fib/fib.helper";
 import { Cover } from "@components/containers/products/fib/fib.types";
 export const UPDATE_FIB_VALUE = "UPDATE_FIB_VALUE";
+export const UPDATE_FIB_MEDICAL_VALUE = "UPDATE_FIB_MEDICAL_VALUE";
 
 export interface IProductStore {
   fib: FIBStore;
@@ -36,10 +37,11 @@ export interface FIBStore {
   weight: Weight;
   fullName: string;
   existingCovers: Cover[];
+  medicalHistory: Record<string, boolean>;
 }
 
 export interface UpdateFIBStoreAction<T> {
-  type: typeof UPDATE_FIB_VALUE;
+  type: typeof UPDATE_FIB_VALUE | typeof UPDATE_FIB_MEDICAL_VALUE;
   payload: FIBStoreValue<T>;
 }
 

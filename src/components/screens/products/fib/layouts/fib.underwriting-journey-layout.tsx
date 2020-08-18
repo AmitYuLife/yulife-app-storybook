@@ -8,6 +8,10 @@ interface Props {
   heading: string;
   onNavigateBack: () => void;
   children: React.ReactNode;
+  progressBar: {
+    maxLength: number;
+    currentPosition: number;
+  };
 }
 
 export function FibUnderwritingJourneyLayout(props: Props) {

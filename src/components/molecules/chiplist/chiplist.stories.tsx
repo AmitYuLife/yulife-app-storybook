@@ -2,7 +2,6 @@ import React from "react";
 import { View } from "react-native";
 import { storiesOf } from "@storybook/react-native";
 import { withKnobs } from "@storybook/addon-knobs";
-import { withProvider } from "../../storybook/withProvider";
 import ChipList from "./chiplist";
 import { ChipProps } from "@atoms/chip/chip";
 
@@ -17,7 +16,7 @@ const items: ChipProps[] = [
     onPress: voidFunc,
   },
   {
-    id: "test",
+    id: "test-two",
     label: "Test ttttesttttt",
     active: Math.random() > 0.5,
     iconType: "image",
@@ -25,7 +24,7 @@ const items: ChipProps[] = [
     onPress: voidFunc,
   },
   {
-    id: "test",
+    id: "test-three",
     label: "Test ttttesttttt",
     active: Math.random() > 0.5,
     iconType: "image",
@@ -33,7 +32,7 @@ const items: ChipProps[] = [
     onPress: voidFunc,
   },
   {
-    id: "test",
+    id: "test-four",
     label: "Test ttttesttttt",
     active: Math.random() > 0.5,
     iconType: "image",
@@ -41,7 +40,7 @@ const items: ChipProps[] = [
     onPress: voidFunc,
   },
   {
-    id: "test",
+    id: "test-five",
     label: "Test ttttesttttt",
     active: Math.random() > 0.5,
     iconType: "image",
@@ -49,7 +48,7 @@ const items: ChipProps[] = [
     onPress: voidFunc,
   },
   {
-    id: "test",
+    id: "test-six",
     label: "Test ttttesttttt",
     active: Math.random() > 0.5,
     iconType: "image",
@@ -57,7 +56,7 @@ const items: ChipProps[] = [
     onPress: voidFunc,
   },
   {
-    id: "test",
+    id: "test-seven",
     label: "Test ttttesttttt",
     active: Math.random() > 0.5,
     iconType: "image",
@@ -68,7 +67,6 @@ const items: ChipProps[] = [
 
 storiesOf("ChipList", module)
   .addDecorator(withKnobs)
-  .addDecorator(withProvider)
   .addDecorator((g: () => React.ReactNode) => <View style={{ flex: 1, justifyContent: "center" }}>{g()}</View>)
   .add("Two column", () => {
     return <ChipList items={items} columns={2} />;

@@ -20,6 +20,7 @@ import { FibInputHeight } from "@components/organisms/fib/input/height/fib-input
 import { FibInputName } from "@components/organisms/fib/input/name/fib-input-name";
 import { FibInputWeight } from "@components/organisms/fib/input/weight/fib-input-weight";
 import { getCustomComponent } from "./getCustomComponent";
+import MedicalChipList from "./subcomponents/medical-chip-list/medical-chip-list";
 import { AlcoholIntakeInput } from "@components/organisms/fib/input/alcohol/alcohol-intake-input";
 import { CopyBirthday } from "@organisms/fib/copy/birthday";
 import { CopyFullName } from "@organisms/fib/copy/full-name";
@@ -30,7 +31,7 @@ export interface IFibUnderwritingJourneyScreenProps {
   onFirstButtonPressed: () => void;
   onSecondButtonPressed?: () => void;
   onPreviousButtonPressed?: () => void;
-  progressBar?: {
+  progressBar: {
     maxLength: number;
     currentPosition: number;
   };
@@ -59,12 +60,17 @@ const _FibUnderwritingJourneyScreen = memo(function (props: IFibUnderwritingJour
   }
 
   return (
-    <FibUnderwritingJourneyLayout heading={data.heading} onNavigateBack={onNavigateBack}>
+    <FibUnderwritingJourneyLayout
+      heading={data.heading}
+      onNavigateBack={onNavigateBack}
+      progressBar={props.progressBar}
+    >
       <ScrollView keyboardShouldPersistTaps="handled" contentContainerStyle={styles.scrollViewContentStyle}>
         <TitleWithIcon icon={data.icon} title={data.title} />
         <FibTitle title={data.question} />
-        {data.children?.map((child: UnderwritingJourneyChild) => {
-          return renderChildren(child);
+        {data.children?.map((child: UnderwritingJourneyChild, i) => {
+          const key = data.id + i;
+          return renderChildren(child, key);
         })}
       </ScrollView>
       <Footer firstButton={firstButton} secondButton={secondButton} onPreviousButtonPressed={onPreviousButtonPressed} />
@@ -74,14 +80,15 @@ const _FibUnderwritingJourneyScreen = memo(function (props: IFibUnderwritingJour
 
 export const FibUnderwritingJourneyScreen = memo(_FibUnderwritingJourneyScreen);
 
-function renderChildren(child: UnderwritingJourneyChild) {
+function renderChildren(child: UnderwritingJourneyChild, key: string) {
   const FIELDS: Record<string, React.ReactNode> = {
-    medicalHistory: <MedicalHistoryItem {...(child as IMedicalHistoryItemProps)} />,
-    markdown: <MarkdownFib {...(child as IMarkdownFibProps)} />,
-    inputBirth: <FibInputBirth />,
-    inputHeight: <FibInputHeight />,
-    inputWeight: <FibInputWeight />,
-    inputFullName: <FibInputName />,
+    medicalHistory: <MedicalHistoryItem {...(child as IMedicalHistoryItemProps)} key={key} />,
+    markdown: <MarkdownFib {...(child as IMarkdownFibProps)} key={key} />,
+    inputBirth: <FibInputBirth key={key} />,
+    inputHeight: <FibInputHeight key={key} />,
+    inputWeight: <FibInputWeight key={key} />,
+    inputFullName: <FibInputName key={key} />,
+    chiplist: <MedicalChipList items={child.chips} columns={2} key={key} />,
     inputAlcohol: <AlcoholIntakeInput />,
     copyBirthday: <CopyBirthday />,
     copyFullName: <CopyFullName />,
