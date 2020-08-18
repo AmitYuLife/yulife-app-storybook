@@ -38,7 +38,9 @@ interface RouteProps {
 
 type ConnectedState = ReturnType<typeof mapStateToProps>;
 
-type Props = ConnectedState;
+type Props = ConnectedState & {
+  initialRoute?: FibRoute;
+};
 
 function getComponent(routeProps: RouteProps) {
   const { navigation, selectedFaq, selectFaq } = routeProps;
@@ -72,8 +74,20 @@ function popToMain() {
   return Navigation.popTo(ROUTES.yuScreen);
 }
 
+function getInitialRoute(props: Props): FibRoute {
+  if (props.initialRoute) {
+    return props.initialRoute;
+  }
+
+  if (props.salary) {
+    return FIB_BROWSE;
+  }
+
+  return FIB_INTRODUCTION;
+}
+
 function FIBContainer(props: Props) {
-  const initialRoute = props.salary ? FIB_BROWSE : FIB_INTRODUCTION;
+  const initialRoute = getInitialRoute(props);
 
   const fibRouter = useLocalNavigation<FibRoute>({
     initialRoute,

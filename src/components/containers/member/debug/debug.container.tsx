@@ -10,6 +10,7 @@ import { getUserStart } from "../../../../redux/user/user.actions";
 import { getUserFeatures } from "../../../../redux/user/user.selectors";
 import { DebugScreen } from "../../../screens";
 import { ROUTES } from "@navigation/constants";
+import { FIB_UNDERWRITING_JOURNEY_INTRODUCTION } from "@components/containers/products/fib/fib.types";
 
 interface IProps {
   componentId: string;
@@ -22,7 +23,7 @@ type Props = IProps & ConnectedState & ConnectedDispatch;
 
 enum CODES {
   ROUTE_TO_FIB_BROWSE_PACKAGES = "ROUTE_TO_FIB_BROWSE_PACKAGES",
-  ROUTE_TO_FIB_FAQ = "ROUTE_TO_FIB_FAQ",
+  ROUTE_TO_FIB_UNDERWRITING = "ROUTE_TO_FIB_UNDERWRITING",
 }
 
 const DEFAULT_LIST = [
@@ -43,7 +44,7 @@ const ActivityHistoryContainer: React.FC<Props> = (props) => {
     ...((data && data.getDebugCodes) || DEFAULT_LIST),
     "send-test-push",
     CODES.ROUTE_TO_FIB_BROWSE_PACKAGES,
-    CODES.ROUTE_TO_FIB_FAQ,
+    CODES.ROUTE_TO_FIB_UNDERWRITING,
   ];
 
   const handleClose = () => {
@@ -67,11 +68,14 @@ const ActivityHistoryContainer: React.FC<Props> = (props) => {
           });
         }
 
-        if (code === CODES.ROUTE_TO_FIB_FAQ) {
+        if (code === CODES.ROUTE_TO_FIB_UNDERWRITING) {
           return Navigation.push(props.componentId, {
             component: {
               id: ROUTES.fib,
               name: ROUTES.fib,
+              passProps: {
+                initialRoute: FIB_UNDERWRITING_JOURNEY_INTRODUCTION,
+              },
             },
           });
         }
