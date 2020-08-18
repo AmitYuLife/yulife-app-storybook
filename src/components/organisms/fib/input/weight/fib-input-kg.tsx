@@ -28,16 +28,7 @@ const _FibInputKg = (props: ConnectedProps) => {
     });
   };
 
-  return (
-    <InputField
-      autoFocus={true}
-      value={weight.kg}
-      onChangeText={validateKg}
-      maxLength={3}
-      label="kg"
-      placeholder="kg"
-    />
-  );
+  return <InputField autoFocus={true} value={weight.kg} onChangeText={validateKg} maxLength={3} label="kg" />;
 };
 
 const mapStateToProps = (state: IReduxState) => ({

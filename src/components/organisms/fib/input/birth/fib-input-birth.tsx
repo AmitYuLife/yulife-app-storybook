@@ -104,7 +104,6 @@ const _FibInputBirth = (props: ConnectedProps) => {
         onChangeText={validateDay}
         maxLength={2}
         label="Day"
-        placeholder="DD"
       />
       <InputField
         forwardRef={monthRef}
@@ -112,7 +111,6 @@ const _FibInputBirth = (props: ConnectedProps) => {
         onChangeText={validateMonth}
         maxLength={2}
         label="Month"
-        placeholder="MM"
         onBackSpace={handleBackspaceMonth}
       />
       <InputField
@@ -122,7 +120,6 @@ const _FibInputBirth = (props: ConnectedProps) => {
         onChangeText={validateYear}
         maxLength={4}
         label="Year"
-        placeholder="YYYY"
         onBackSpace={handleBackspaceYear}
         width={70}
       />

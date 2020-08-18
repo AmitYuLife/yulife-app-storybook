@@ -72,7 +72,6 @@ const _FibInputFt = (props: ConnectedProps) => {
         onChangeText={validateFt}
         maxLength={1}
         label="feet"
-        placeholder="ft"
         forwardRef={ftRef}
       />
       <InputField
@@ -82,7 +81,6 @@ const _FibInputFt = (props: ConnectedProps) => {
         onChangeText={validateIn}
         maxLength={2}
         label="inches"
-        placeholder="in"
         forwardRef={inRef}
       />
     </View>
