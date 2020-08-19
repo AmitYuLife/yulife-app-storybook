@@ -16,22 +16,26 @@ function _Pulse(props: IProps) {
   const { interval, pulseMaxSize, backgroundColor, size, style } = props;
 
   React.useEffect(() => {
-    if (DETOX_ENABLED) {
-      return null;
-    }
-
-    Animated.loop(
-      Animated.sequence(
-        [1, 0].map((toValue) =>
-          Animated.timing(anim.current, {
-            duration: interval,
-            easing: Easing.in((n: number) => n),
-            toValue,
-            useNativeDriver: true,
-          })
+    if (!DETOX_ENABLED) {
+      const animation = Animated.loop(
+        Animated.sequence(
+          [1, 0].map((toValue) =>
+            Animated.timing(anim.current, {
+              duration: interval,
+              easing: Easing.in((n: number) => n),
+              toValue,
+              useNativeDriver: true,
+            })
+          )
         )
-      )
-    ).start();
+      );
+
+      animation.start();
+
+      return () => {
+        animation.stop();
+      };
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

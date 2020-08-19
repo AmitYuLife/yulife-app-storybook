@@ -5,7 +5,12 @@ import { migrateOldAppVersionToken } from "./services/storage";
 import { DETOX_ENABLED } from "@services/socket";
 
 if (DETOX_ENABLED) {
-  YellowBox.ignoreWarnings(["Deprecation warning", "Can't perform", "currentlyFocusedField is deprecated"]);
+  YellowBox.ignoreWarnings([
+    "Deprecation warning",
+    "Can't perform",
+    "currentlyFocusedField is deprecated",
+    "An effect function",
+  ]);
 }
 
 const LOADING_ROUTE = "yulife.Loading";
