@@ -89,9 +89,9 @@ function renderChildren(child: UnderwritingJourneyChild, key: string) {
     inputWeight: <FibInputWeight key={key} />,
     inputFullName: <FibInputName key={key} />,
     chiplist: <MedicalChipList items={child.chips} columns={2} key={key} />,
-    inputAlcohol: <AlcoholIntakeInput />,
-    copyBirthday: <CopyBirthday />,
-    copyFullName: <CopyFullName />,
+    inputAlcohol: <AlcoholIntakeInput key={key} />,
+    copyBirthday: <CopyBirthday key={key} />,
+    copyFullName: <CopyFullName key={key} />,
   };
   return FIELDS[child.type] || null;
 }
