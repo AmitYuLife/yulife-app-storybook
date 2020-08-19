@@ -4,9 +4,19 @@ import { OrderedUnderwritingJourneyScreen } from "./data/underwriting-journey-da
 
 type FibButtonType = "firstButton" | "secondButton" | "previousButton";
 
-export const FIRST_MEDICAL_HISTORY_JOURNEY_SCREEN_ID = "medical_three_year_medical_history";
-export const LAST_MEDICAL_HISTORY_JOURNEY_SCREEN_ID = "medical_outstanding_medical_investigations";
-export const BUILD_MEDICAL_JOURNEY_ID = "build_medical_history_journey";
+export const FIB_HIGH_CHOLESTEROL_BLOOD_SCREEN_ID = [
+  "fib_medical_journey_high_blood_pressure",
+  "fib_medical_journey_high_cholesterol",
+];
+export const FIB_HIGH_CHOLESTEROL_BLOOD_EXTRA_SCREENS = ["fib_medical_journey_readings_satisfactory"];
+export const FIB_DIGESTIVE_SCREEN_ID = "fib_medical_journey_digestive";
+export const FIB_DIGESTIVE_EXTRA_SCREENS = [
+  "fib_medical_journey_digestive_hospital_stay",
+  "fib_medical_journey_digestive_hospital_stay",
+  "fib_medical_journey_daily_activity_restrictions",
+  "fib_medical_journey_digestive_symptoms_resolved",
+  "fib_medical_journey_condition_stable",
+];
 
 export function formatPrice(price: number | null) {
   if (!price) {
@@ -77,94 +87,24 @@ function getMonthsTillBirthday(dateOfBirth: moment.Moment) {
   return monthOfBirth - currentMonth + addExtraMonth;
 }
 
-export const buildMedicalHistoryJourney = (
+export const findQuestion = (
   data: OrderedUnderwritingJourneyScreen[],
-  medicalHistory: Record<string, boolean>,
+  buttonType: FibButtonType,
   currentQuestion: OrderedUnderwritingJourneyScreen,
-  setMedicalHistoryData: React.Dispatch<OrderedUnderwritingJourneyScreen[]>
-) => {
+  medicalHistory: Record<string, boolean>
+): OrderedUnderwritingJourneyScreen => {
+  const question = data.find((element) => currentQuestion[buttonType].actionId === element.id);
   const activeChips = Object.entries(medicalHistory)
     .map((entry) => {
       return entry[1] ? entry[0] : null;
     })
     .filter((e) => !!e);
 
-  let satisfactoryReadingsScreen: OrderedUnderwritingJourneyScreen;
-  // Select extra screen for blood pressure or cholesterol question
-  if (activeChips.includes("medical_high_blood_pressure") || activeChips.includes("medical_high_cholesterol")) {
-    // activeChips.push("medical_readings_satisfactory");
-    satisfactoryReadingsScreen = data.find((screen) => screen.id === "medical_readings_satisfactory");
+  // TODO: Add and check answers to complete the logic
+  const showQuestion = question.id.includes("medical_journey") ? activeChips.includes(question.id) : true;
+  if (!showQuestion) {
+    return findQuestion(data, buttonType, question, medicalHistory);
   }
 
-  // Make medical_high_blood_pressure && medical_high_cholesterol last question before last screen to simplify journey
-  const orderedChips = activeChips.sort((a, z) => {
-    if (a === "medical_high_blood_pressure" || a === "medical_high_cholesterol") {
-      return 1;
-    }
-
-    if (z === "medical_high_blood_pressure" || z === "medical_high_cholesterol") {
-      return -1;
-    }
-
-    return 0;
-  });
-
-  // Push last screen to the medical journey
-  orderedChips.push(LAST_MEDICAL_HISTORY_JOURNEY_SCREEN_ID);
-
-  const rawMedicalData = data
-    .filter((data) => orderedChips.includes(data.id))
-    .sort((a, z) => {
-      return orderedChips.indexOf(a.id) - orderedChips.indexOf(z.id);
-    });
-
-  let previousScreen = currentQuestion.id;
-  // Remove first element
-  let nextScreen = orderedChips.shift();
-
-  const medicalHistoryData = rawMedicalData.map((screen) => {
-    // Do not overwrite out journey question next screen
-    if (screen.id === LAST_MEDICAL_HISTORY_JOURNEY_SCREEN_ID) {
-      screen.previousButton.actionId = previousScreen;
-      return screen;
-    }
-
-    // Add satisfactory screen if need it
-    if (screen.id === "medical_high_blood_pressure" || screen.id === "medical_high_cholesterol") {
-      screen.secondButton.actionId = satisfactoryReadingsScreen.id;
-      // Last medical history question, point out to exit screen
-      nextScreen = LAST_MEDICAL_HISTORY_JOURNEY_SCREEN_ID;
-      screen.firstButton.actionId = nextScreen;
-      screen.previousButton.actionId = previousScreen;
-
-      previousScreen = screen.id;
-      return screen;
-    }
-
-    nextScreen = orderedChips.shift();
-    if (!nextScreen) {
-      nextScreen = LAST_MEDICAL_HISTORY_JOURNEY_SCREEN_ID;
-    }
-
-    screen.firstButton.actionId = nextScreen;
-    screen.secondButton.actionId = nextScreen;
-    screen.previousButton.actionId = previousScreen;
-
-    previousScreen = screen.id;
-    return screen;
-  });
-
-  // Add satisfactory screen if need it
-  if (satisfactoryReadingsScreen) {
-    medicalHistoryData.push(satisfactoryReadingsScreen);
-  }
-
-  setMedicalHistoryData(medicalHistoryData);
-  return medicalHistoryData;
+  return question;
 };
-
-export const findQuestion = (
-  data: OrderedUnderwritingJourneyScreen[],
-  buttonType: FibButtonType,
-  currentQuestion: OrderedUnderwritingJourneyScreen
-) => data.find((element) => currentQuestion[buttonType].actionId === element.id);
