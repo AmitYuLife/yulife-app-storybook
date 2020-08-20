@@ -9,8 +9,9 @@ import { sendTestPush } from "../../../../redux/notifications/notifications.acti
 import { getUserStart } from "../../../../redux/user/user.actions";
 import { getUserFeatures } from "../../../../redux/user/user.selectors";
 import { DebugScreen } from "../../../screens";
-import { ROUTES } from "@navigation/constants";
+import { ROUTES, MODALS } from "@navigation/constants";
 import { FIB_UNDERWRITING_JOURNEY_INTRODUCTION } from "@components/containers/products/fib/fib.types";
+import { SliderFeedbackModalProps, npsScreenData } from "@components/modals/feedback/slider-feedback.modal";
 
 interface IProps {
   componentId: string;
@@ -24,6 +25,7 @@ type Props = IProps & ConnectedState & ConnectedDispatch;
 enum CODES {
   ROUTE_TO_FIB_BROWSE_PACKAGES = "ROUTE_TO_FIB_BROWSE_PACKAGES",
   ROUTE_TO_FIB_UNDERWRITING = "ROUTE_TO_FIB_UNDERWRITING",
+  DISPLAY_FEEDBACK_MODAL = "DISPLAY_FEEDBACK_MODAL",
 }
 
 const DEFAULT_LIST = [
@@ -45,6 +47,7 @@ const ActivityHistoryContainer: React.FC<Props> = (props) => {
     "send-test-push",
     CODES.ROUTE_TO_FIB_BROWSE_PACKAGES,
     CODES.ROUTE_TO_FIB_UNDERWRITING,
+    CODES.DISPLAY_FEEDBACK_MODAL,
   ];
 
   const handleClose = () => {
@@ -57,6 +60,19 @@ const ActivityHistoryContainer: React.FC<Props> = (props) => {
       try {
         if (code === "send-test-push") {
           return props.sendTestPush();
+        }
+
+        if (code === CODES.DISPLAY_FEEDBACK_MODAL) {
+          Navigation.showModal<SliderFeedbackModalProps>({
+            component: {
+              id: MODALS.sliderFeedback,
+              name: MODALS.sliderFeedback,
+              passProps: {
+                slider: { leftLabel: "something", maxValue: npsScreenData.maxScore, rightLabel: "something" },
+                textInputScreenContent: npsScreenData.content,
+              },
+            },
+          });
         }
 
         if (code === CODES.ROUTE_TO_FIB_BROWSE_PACKAGES) {

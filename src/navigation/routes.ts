@@ -165,6 +165,10 @@ export default [
     component: require("../components/modals/feedback/feedback.modal").default,
   },
   {
+    name: MODALS.sliderFeedback,
+    component: require("../components/modals/feedback/slider-feedback.modal").default,
+  },
+  {
     name: MODALS.generic,
     component: require("../components/modals/generic-modal/generic-modal").default,
   },
