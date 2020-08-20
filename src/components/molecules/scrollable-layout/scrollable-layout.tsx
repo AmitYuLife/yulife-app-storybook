@@ -2,11 +2,12 @@ import React from "react";
 import { Colours, Style } from "@styles";
 import { SafeAreaView, ScrollView, View, ViewStyle, StyleSheet, Platform } from "react-native";
 import { GenericHeading, Button } from "@atoms";
-import { Logo } from "../../../../atoms/generic-heading/generic-heading.types";
+import { Logo } from "../../atoms/generic-heading/generic-heading.types";
 
 interface Props {
   children: React.ReactNode;
   buttonTitle: string;
+  isButtonDisabled?: boolean;
   buttonAction: () => void;
   onLeftIconPress: () => void;
   logo?: Logo;
@@ -14,7 +15,7 @@ interface Props {
 }
 
 export function ScrollableLayout(props: Props) {
-  const { children, buttonTitle, logo, heading, buttonAction, onLeftIconPress } = props;
+  const { children, buttonTitle, logo, heading, buttonAction, onLeftIconPress, isButtonDisabled = false } = props;
   return (
     <>
       <SafeAreaView style={styles.wrapper}>
@@ -25,7 +26,7 @@ export function ScrollableLayout(props: Props) {
         </ScrollView>
       </SafeAreaView>
       <View style={styles.button}>
-        <Button label={buttonTitle} onPress={buttonAction} type="Primary" />
+        <Button disabled={isButtonDisabled} label={buttonTitle} onPress={buttonAction} type="Primary" />
       </View>
     </>
   );

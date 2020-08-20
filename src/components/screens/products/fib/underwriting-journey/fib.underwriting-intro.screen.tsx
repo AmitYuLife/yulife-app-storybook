@@ -8,7 +8,7 @@ import { getUserFirstName } from "@redux/user/user.selectors";
 import { Avatar } from "@components/screens/member/yu-screen/subcomponents/avatar-section/avatar";
 import { useBackHandler } from "../../../../../services/hooks/useBackHandler";
 import { FibFeedbackSuccessImage } from "../feedback-form/fib.feedback-success-image";
-import { ScrollableLayout } from "../layouts/fib.scrollable-layout";
+import { ScrollableLayout } from "@molecules";
 
 type ConnectedState = ReturnType<typeof mapStateToProps>;
 

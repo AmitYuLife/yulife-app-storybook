@@ -29,6 +29,7 @@ export default function ChallengeSuccessScreen({
   loading,
 }: IProps) {
   const { backgroundImage, backgroundStyle } = getStyle(level);
+
   return (
     <CentredScreen style={StyleSheet.flatten([styles.wrapper, backgroundStyle])} footerImage={backgroundImage}>
       <View style={styles.ratingWrapper}>

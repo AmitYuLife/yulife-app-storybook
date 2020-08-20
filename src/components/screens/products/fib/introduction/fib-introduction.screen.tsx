@@ -5,7 +5,7 @@ import { Heading, Text } from "@atoms";
 import { Style, Colours } from "@styles";
 import { Avatar } from "@components/screens/member/yu-screen/subcomponents/avatar-section/avatar";
 import { FibIntroductionToLifeInsuranceSvg } from "./fib-introduction-to-life-insurance-svg";
-import { ScrollableLayout } from "../layouts/fib.scrollable-layout";
+import { ScrollableLayout } from "@molecules";
 
 export interface IFibIntroductionScreenProps {
   navigateToYuScreen: () => void;

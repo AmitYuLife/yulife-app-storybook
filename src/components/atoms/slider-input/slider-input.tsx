@@ -9,15 +9,17 @@ const list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] as const;
 
 const CIRCLE_DIAMETER = 8;
 
-interface Props {
-  maxValue: typeof list[number];
+export type MaxValue = typeof list[number];
+
+export interface SliderInputProps {
+  maxValue: MaxValue;
   onChange?: (val: number) => void;
   leftLabel: string;
   rightLabel: string;
 }
 
-export function SliderInput(props: Props) {
-  const [activeValue, setActiveValue] = useState<number | null>(null);
+export function SliderInput(props: SliderInputProps) {
+  const [activeValue, setActiveValue] = useState(-1);
   const { maxValue, onChange, leftLabel, rightLabel } = props;
   const valueIterator = new Array(maxValue + 1).fill(0);
 
@@ -42,7 +44,7 @@ export function SliderInput(props: Props) {
       </View>
       <View style={StyleSheet.flatten([styles.greyBarWrapper, styles.valueWrapper])}>
         {valueIterator.map((_, i) => {
-          const isActive = typeof activeValue === "number" && activeValue >= i;
+          const isActive = activeValue >= i;
           const activeStyles = isActive ? styles.activeCircle : {};
 
           return (
@@ -72,19 +74,15 @@ function AnimatedText(props: AnimatedTextProps) {
   const { isActive, index } = props;
 
   useEffect(() => {
-    if (isActive) {
-      return Animated.timing(scaleAnim, {
-        toValue: 1.4,
-        duration: 100,
-        useNativeDriver: true,
-      }).start();
-    }
-
-    return Animated.timing(scaleAnim, {
-      toValue: 1,
+    Animated.timing(scaleAnim, {
+      toValue: isActive ? 1.4 : 1,
       duration: 100,
       useNativeDriver: true,
     }).start();
+
+    return () => {
+      scaleAnim.stopAnimation();
+    };
   }, [isActive, scaleAnim]);
 
   const activeStyles = isActive ? styles.activeText : {};

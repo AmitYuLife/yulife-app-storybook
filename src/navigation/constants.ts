@@ -55,6 +55,7 @@ export const MODALS = {
   createLeaderboard: "yulife.modals.CreateLeaderboard",
   collectReward: "yulife.modals.CollectReward",
   feedback: "yulife.modals.Feedback",
+  sliderFeedback: "yulife.modals.SliderFeedback",
   generic: "yulife.modals.Generic",
   genericConnectionError: "yulife.modals.GenericConnectionError",
   leaderboards: "yulife.modals.Leaderboards",

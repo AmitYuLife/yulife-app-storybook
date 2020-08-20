@@ -79,7 +79,9 @@ const QuestsContainer: FC<Props> = (props) => {
       return (
         <ChallengeSuccessScreen
           level={level}
-          onPressCta={() => handleResetChallenge(true)}
+          onPressCta={() => {
+            return handleResetChallenge(true);
+          }}
           rating={rating}
           reward={coins}
           score={score}

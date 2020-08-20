@@ -6,7 +6,7 @@ interface IProps {
   value: string;
   onChange: (value: string) => void;
   numberOfLines?: number;
-  onFocus: () => void;
+  onFocus?: () => void;
   placeholder?: string;
   testID?: string;
 }
