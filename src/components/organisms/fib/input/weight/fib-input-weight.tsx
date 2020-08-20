@@ -2,7 +2,6 @@ import React, { useCallback } from "react";
 import { connect } from "react-redux";
 import { getFIBState } from "@redux/product/product.selectors";
 import { IReduxState } from "@redux/_core/reducers";
-import { updateFIBValue } from "@redux/product/product.actions";
 import { Weight } from "@redux/product/product.types";
 import { FibInputSt } from "./fib-input-st";
 import { FibInputKg } from "./fib-input-kg";
@@ -10,6 +9,7 @@ import { Text } from "@atoms";
 import { ViewStyle, View, TextStyle } from "react-native";
 import { Colours } from "@styles";
 import { TouchableOpacityWithDelay } from "@components/molecules";
+import { updateFIBAnswerValue } from "../../../../../redux/product/product.actions";
 
 type ConnectedProps = ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps;
 
@@ -39,11 +39,11 @@ const _FibInputWeight = (props: ConnectedProps) => {
 };
 
 const mapStateToProps = (state: IReduxState) => ({
-  weight: getFIBState(state).weight,
+  weight: getFIBState(state).answers.weight as Weight,
 });
 
 const mapDispatchToProps = {
-  updateWeight: (value: Weight) => updateFIBValue({ key: "weight", value }),
+  updateWeight: (value: Weight) => updateFIBAnswerValue({ key: "weight", value }),
 };
 
 const redux = connect(mapStateToProps, mapDispatchToProps);

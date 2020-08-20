@@ -5,9 +5,8 @@ import AlcoholBottleGreyscale from "./alcohol-bottle-greyscale";
 import { View, StyleSheet, ViewStyle } from "react-native";
 import { Style } from "@styles/index";
 import { SliderInput } from "./slider";
-import { updateFIBValue } from "@redux/product/product.actions";
+import { updateFIBAnswerValue } from "@redux/product/product.actions";
 import { ALCOHOL_DRINK_LIMIT } from "./alcohol.common";
-import { FIBStore } from "@redux/product/product.types";
 import { IReduxState } from "@redux/_core/reducers";
 import { getFIBState } from "@redux/product/product.selectors";
 
@@ -50,12 +49,11 @@ const _AlcoholIntakeInput = (props: Props) => {
 };
 
 const mapStateToProps = (state: IReduxState) => ({
-  weeklyAlcohol: getFIBState(state).weeklyAlcoholDrinks,
+  weeklyAlcohol: getFIBState(state).answers.weeklyAlcoholDrinks as number,
 });
 
 const mapDispatchToProps = {
-  updateWeeklyAlcohol: (value: FIBStore["weeklyAlcoholDrinks"]) =>
-    updateFIBValue({ key: "weeklyAlcoholDrinks", value }),
+  updateWeeklyAlcohol: (value: number) => updateFIBAnswerValue({ key: "weeklyAlcoholDrinks", value }),
 };
 
 const redux = connect(mapStateToProps, mapDispatchToProps);

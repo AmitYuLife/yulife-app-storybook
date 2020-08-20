@@ -7,26 +7,36 @@ import { IReduxState } from "@redux/_core/reducers";
 import { getFIBState, getBirthday } from "@redux/product/product.selectors";
 import { connect } from "react-redux";
 import { findQuestion } from "../fib.helpers";
+import { updateFIBAnswerValue } from "../../../../../redux/product/product.actions";
 
 type ConnectedProps = ReturnType<typeof mapStateToProps>;
-type Props = ConnectedProps & IFibUnderwritingJourneyContainer;
+type ConnecteDispatch = typeof mapDispatchToProps;
+type Props = ConnectedProps & ConnecteDispatch & IFibUnderwritingJourneyContainer;
 
 interface IFibUnderwritingJourneyContainer {
   navigation: FibLocalNavigation;
 }
 
 const FibUnderwritingJourneyContainer = memo(function (props: Props) {
-  const { navigation, medicalHistory } = props;
+  const { navigation, medicalHistory, updateAnswer } = props;
 
   const [currentQuestion, setCurrentQuestion] = useState(data[0]);
   const activeIndex = data.findIndex((item) => item.id === currentQuestion.id);
 
   const onFirstButtonPressed = () => {
+    if (shouldAnswerBeStored(currentQuestion.firstButton.label, currentQuestion.id)) {
+      updateAnswer(currentQuestion.id, currentQuestion.firstButton.label);
+    }
+
     const question = findQuestion(data, "firstButton", currentQuestion, medicalHistory);
     setCurrentQuestion(question);
   };
 
   const handleSetCurrentQuestion = () => {
+    if (shouldAnswerBeStored(currentQuestion.secondButton.label, currentQuestion.id)) {
+      updateAnswer(currentQuestion.id, currentQuestion.secondButton.label);
+    }
+
     const question = findQuestion(data, "secondButton", currentQuestion, medicalHistory);
     setCurrentQuestion(question);
   };
@@ -59,10 +69,22 @@ const FibUnderwritingJourneyContainer = memo(function (props: Props) {
   );
 });
 
+const shouldAnswerBeStored = (label: string, currentQuestionId: string) => {
+  return (
+    (label === "Yes" || label === "No") &&
+    currentQuestionId !== "fib_your_name" &&
+    currentQuestionId !== "fib_your_date_of_birth"
+  );
+};
+
 const mapStateToProps = (state: IReduxState) => ({
   dateOfBirth: getBirthday(state),
-  fullName: getFIBState(state).fullName,
+  fullName: getFIBState(state).answers.fib_your_name,
   medicalHistory: getFIBState(state).medicalHistory,
 });
 
-export default connect(mapStateToProps)(FibUnderwritingJourneyContainer);
+const mapDispatchToProps = {
+  updateAnswer: (key: string, value: string) => updateFIBAnswerValue({ key, value }),
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(FibUnderwritingJourneyContainer);

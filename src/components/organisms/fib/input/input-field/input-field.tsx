@@ -175,12 +175,12 @@ const blinkerStyles = {
 function ellipsizeHead(name: string, max: number) {
   // because ellipsizeMode="head" is not working for some reason
 
-  if (!max || name.length < max) {
+  if (!max || name?.length < max) {
     return name;
   }
 
   const ellipses = "...";
-  const ellipsed = `${ellipses}${name.substr(name.length - max)}`;
+  const ellipsed = `${ellipses}${name?.substr(name?.length - max)}`;
 
   return ellipsed;
 }
