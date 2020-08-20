@@ -16,7 +16,7 @@ const _CopyFullName = ({ fullName }: ConnectedProps) => {
 };
 
 const mapStateToProps = (state: IReduxState) => ({
-  fullName: getFIBState(state).fullName,
+  fullName: getFIBState(state).answers.fib_your_name,
 });
 
 export const CopyFullName = connect(mapStateToProps)(_CopyFullName);

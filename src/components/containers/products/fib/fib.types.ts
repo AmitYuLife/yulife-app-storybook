@@ -9,7 +9,8 @@ export type FibRoute =
   | "FibCustomPercentage"
   | "FibFeedbackForm"
   | "FibUnderwritingJourney"
-  | "FibUnderwritingJourneyIntroduction";
+  | "FibUnderwritingJourneyIntroduction"
+  | "FibUnderwritingReviewAnwers";
 
 export type FibLocalNavigation = LocalNavigation<FibRoute>;
 
@@ -22,6 +23,7 @@ export const FIB_CUSTOM_PERCENTAGE = "FibCustomPercentage";
 export const FIB_FEEDBACK_FORM = "FibFeedbackForm";
 export const FIB_UNDERWRITING_JOURNEY = "FibUnderwritingJourney";
 export const FIB_UNDERWRITING_JOURNEY_INTRODUCTION = "FibUnderwritingJourneyIntroduction";
+export const FIB_UNDERWRITING_REVIEW_ANSWERS = "FibUnderwritingReviewAnwers";
 
 export interface FAQ {
   id: string;

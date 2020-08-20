@@ -29,6 +29,8 @@ import FibCustomPercentage from "./subcontainers/fib.custom-percentage.container
 import FibFeedbackFormContainer from "./subcontainers/fib.feedback-form.container";
 import FibUnderwritingJourneyContainer from "./subcontainers/fib.underwriting-journey.container";
 import FibUnderwritingJourneyIntroductionContainer from "./subcontainers/fib.underwriting-journey-introduction.container";
+import { FIB_UNDERWRITING_REVIEW_ANSWERS } from "./fib.types";
+import FibUnderwritingReivewAnswersContainer from "./subcontainers/fib.underwriting-reivew-answers.container";
 
 interface RouteProps {
   navigation: FibLocalNavigation;
@@ -65,6 +67,8 @@ function getComponent(routeProps: RouteProps) {
       return <FibUnderwritingJourneyContainer navigation={navigation} />;
     case FIB_UNDERWRITING_JOURNEY_INTRODUCTION:
       return <FibUnderwritingJourneyIntroductionContainer navigation={navigation} />;
+    case FIB_UNDERWRITING_REVIEW_ANSWERS:
+      return <FibUnderwritingReivewAnswersContainer navigation={navigation} />;
     default:
       return <FibBrowseContainer selectFaq={selectFaq} navigation={navigation} />;
   }

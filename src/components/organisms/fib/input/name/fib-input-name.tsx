@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { View, ViewStyle, TextStyle } from "react-native";
-import { updateFIBValue } from "@redux/product/product.actions";
+import { updateFIBAnswerValue } from "@redux/product/product.actions";
 import { IReduxState } from "@redux/_core/reducers";
 import { getFIBState } from "@redux/product/product.selectors";
 import { InputField } from "../input-field";
@@ -16,7 +16,7 @@ const _FibInputName = (props: ConnectedProps) => {
       <InputField
         autoFocus={true}
         isLarge={true}
-        value={fullName}
+        value={fullName as string}
         onChangeText={updateName}
         maxLength={48}
         width={Style.DEVICE_WIDTH - 80}
@@ -30,11 +30,11 @@ const _FibInputName = (props: ConnectedProps) => {
 };
 
 const mapStateToProps = (state: IReduxState) => ({
-  fullName: getFIBState(state).fullName,
+  fullName: getFIBState(state).answers.fib_your_name,
 });
 
 const mapDispatchToProps = {
-  updateName: (value: string) => updateFIBValue({ key: "fullName", value }),
+  updateName: (value: string) => updateFIBAnswerValue({ key: "fib_your_name", value }),
 };
 
 const redux = connect(mapStateToProps, mapDispatchToProps);

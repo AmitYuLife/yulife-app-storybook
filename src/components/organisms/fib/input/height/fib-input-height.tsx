@@ -2,7 +2,7 @@ import React, { useCallback } from "react";
 import { connect } from "react-redux";
 import { getFIBState } from "@redux/product/product.selectors";
 import { IReduxState } from "@redux/_core/reducers";
-import { updateFIBValue } from "@redux/product/product.actions";
+import { updateFIBAnswerValue } from "@redux/product/product.actions";
 import { Height } from "@redux/product/product.types";
 import { FibInputFt } from "./fib-input-ft";
 import { FibInputCm } from "./fib-input-cm";
@@ -39,11 +39,11 @@ const _FibInputHeight = (props: ConnectedProps) => {
 };
 
 const mapStateToProps = (state: IReduxState) => ({
-  height: getFIBState(state).height,
+  height: getFIBState(state).answers.height as Height,
 });
 
 const mapDispatchToProps = {
-  updateHeight: (value: Height) => updateFIBValue({ key: "height", value }),
+  updateHeight: (value: Height) => updateFIBAnswerValue({ key: "height", value }),
 };
 
 const redux = connect(mapStateToProps, mapDispatchToProps);

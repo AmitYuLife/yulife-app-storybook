@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { InputField } from "../input-field";
 import { getFIBState } from "@redux/product/product.selectors";
 import { IReduxState } from "@redux/_core/reducers";
-import { updateFIBValue } from "@redux/product/product.actions";
+import { updateFIBAnswerValue } from "@redux/product/product.actions";
 import { Weight } from "@redux/product/product.types";
 
 type ConnectedProps = ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps;
@@ -32,11 +32,11 @@ const _FibInputKg = (props: ConnectedProps) => {
 };
 
 const mapStateToProps = (state: IReduxState) => ({
-  weight: getFIBState(state).weight,
+  weight: getFIBState(state).answers.weight as Weight,
 });
 
 const mapDispatchToProps = {
-  updateWeight: (value: Weight) => updateFIBValue({ key: "weight", value }),
+  updateWeight: (value: Weight) => updateFIBAnswerValue({ key: "weight", value }),
 };
 
 const redux = connect(mapStateToProps, mapDispatchToProps);

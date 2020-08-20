@@ -1,8 +1,22 @@
-import { ProductActionTypes, FIBStoreValue, UPDATE_FIB_VALUE, UPDATE_FIB_MEDICAL_VALUE } from "./product.types";
+import { FIBStoreAnswerValue } from "./product.types";
+import {
+  ProductActionTypes,
+  FIBStoreValue,
+  UPDATE_FIB_VALUE,
+  UPDATE_FIB_MEDICAL_VALUE,
+  UPDATE_FIB_ANSWER_VALUE,
+} from "./product.types";
 
 export function updateFIBValue<T>(payload: FIBStoreValue<T>): ProductActionTypes<T> {
   return {
     type: UPDATE_FIB_VALUE,
+    payload,
+  };
+}
+
+export function updateFIBAnswerValue<T>(payload: FIBStoreAnswerValue<T>): ProductActionTypes<T> {
+  return {
+    type: UPDATE_FIB_ANSWER_VALUE,
     payload,
   };
 }

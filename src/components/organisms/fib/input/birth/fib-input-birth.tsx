@@ -2,7 +2,7 @@ import React, { useRef, RefObject, useEffect } from "react";
 import { connect } from "react-redux";
 import { TextInput, View } from "react-native";
 import { styles } from "./fib-input-birth.styles";
-import { updateFIBValue } from "@redux/product/product.actions";
+import { updateFIBAnswerValue } from "@redux/product/product.actions";
 import { IReduxState } from "@redux/_core/reducers";
 import { getFIBState } from "@redux/product/product.selectors";
 import { InputField } from "../input-field";
@@ -84,13 +84,13 @@ const _FibInputBirth = (props: ConnectedProps) => {
   };
 
   const handleBackspaceMonth = () => {
-    if (!birthMonth.length) {
+    if (!(birthMonth as string).length) {
       dayRef.current.focus();
     }
   };
 
   const handleBackspaceYear = () => {
-    if (!birthYear.length) {
+    if (!(birthYear as string).length) {
       monthRef.current.focus();
     }
   };
@@ -100,14 +100,14 @@ const _FibInputBirth = (props: ConnectedProps) => {
       <InputField
         forwardRef={dayRef}
         autoFocus={true}
-        value={birthDay}
+        value={birthDay as string}
         onChangeText={validateDay}
         maxLength={2}
         label="Day"
       />
       <InputField
         forwardRef={monthRef}
-        value={birthMonth}
+        value={birthMonth as string}
         onChangeText={validateMonth}
         maxLength={2}
         label="Month"
@@ -116,7 +116,7 @@ const _FibInputBirth = (props: ConnectedProps) => {
       <InputField
         forwardRef={yearRef}
         isLarge={true}
-        value={birthYear}
+        value={birthYear as string}
         onChangeText={validateYear}
         maxLength={4}
         label="Year"
@@ -128,13 +128,13 @@ const _FibInputBirth = (props: ConnectedProps) => {
 };
 
 const mapStateToProps = (state: IReduxState) => ({
-  fibState: getFIBState(state),
+  fibState: getFIBState(state).answers,
 });
 
 const mapDispatchToProps = {
-  updateBirthDay: (value: string) => updateFIBValue({ key: "birthDay", value }),
-  updateBirthMonth: (value: string) => updateFIBValue({ key: "birthMonth", value }),
-  updateBirthYear: (value: string) => updateFIBValue({ key: "birthYear", value }),
+  updateBirthDay: (value: string) => updateFIBAnswerValue({ key: "birthDay", value }),
+  updateBirthMonth: (value: string) => updateFIBAnswerValue({ key: "birthMonth", value }),
+  updateBirthYear: (value: string) => updateFIBAnswerValue({ key: "birthYear", value }),
 };
 
 const redux = connect(mapStateToProps, mapDispatchToProps);

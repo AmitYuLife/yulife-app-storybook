@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { InputField } from "../input-field";
 import { getFIBState } from "@redux/product/product.selectors";
 import { IReduxState } from "@redux/_core/reducers";
-import { updateFIBValue } from "@redux/product/product.actions";
+import { updateFIBAnswerValue } from "@redux/product/product.actions";
 import { Height } from "@redux/product/product.types";
 
 type ConnectedProps = ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps;
@@ -11,10 +11,7 @@ type ConnectedProps = ReturnType<typeof mapStateToProps> & typeof mapDispatchToP
 const CM_HEIGHT_TALLEST_HUMAN = 273;
 
 const _FibInputCm = (props: ConnectedProps) => {
-  const {
-    fibState: { height },
-    updateHeight,
-  } = props;
+  const { height, updateHeight } = props;
 
   const validateCm = (text: string) => {
     const parsedText = Number(text);
@@ -37,11 +34,11 @@ const _FibInputCm = (props: ConnectedProps) => {
 };
 
 const mapStateToProps = (state: IReduxState) => ({
-  fibState: getFIBState(state),
+  height: getFIBState(state).answers.height as Height,
 });
 
 const mapDispatchToProps = {
-  updateHeight: (value: Height) => updateFIBValue({ key: "height", value }),
+  updateHeight: (value: Height) => updateFIBAnswerValue({ key: "height", value }),
 };
 
 const redux = connect(mapStateToProps, mapDispatchToProps);
