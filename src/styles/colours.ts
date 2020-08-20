@@ -83,6 +83,10 @@ export default {
     body: "rgb(226, 1, 119)",
     border: "white",
   },
+  slider: {
+    inactive: "#BFBFC2",
+    greyBar: "#E7E7EB",
+  },
   picker: {
     empty: "rgb(204,204,204)",
     filled: "rgb(106,106,106)",

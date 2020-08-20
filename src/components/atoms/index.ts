@@ -15,6 +15,7 @@ export { default as Pad } from "./pad/pad";
 export { default as PageIndicator } from "./page-indicator/page-indicator";
 export { default as AnimatedPlusPoints } from "./plus-points/animated-plus-points";
 export { default as StarInline } from "./star-inline/star-inline";
+export { SliderInput } from "./slider-input/slider-input";
 export { default as Stars } from "./stars/stars";
 export { default as Text } from "./text/text";
 export { default as TextInput } from "./text-input/text-input";
