@@ -49,7 +49,7 @@ const _AlcoholIntakeInput = (props: Props) => {
 };
 
 const mapStateToProps = (state: IReduxState) => ({
-  weeklyAlcohol: getFIBState(state).answers.weeklyAlcoholDrinks as number,
+  weeklyAlcohol: getFIBState(state).answers.weeklyAlcoholDrinks,
 });
 
 const mapDispatchToProps = {

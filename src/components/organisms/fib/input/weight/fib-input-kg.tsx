@@ -32,7 +32,7 @@ const _FibInputKg = (props: ConnectedProps) => {
 };
 
 const mapStateToProps = (state: IReduxState) => ({
-  weight: getFIBState(state).answers.weight as Weight,
+  weight: getFIBState(state).answers.weight,
 });
 
 const mapDispatchToProps = {

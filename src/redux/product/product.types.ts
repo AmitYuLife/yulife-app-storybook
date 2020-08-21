@@ -1,8 +1,11 @@
 import { PackageId } from "../../components/screens/products/fib/fib.helper";
 import { Cover } from "@components/containers/products/fib/fib.types";
+import { RehydrateAction } from "redux-persist";
+import { logOut } from "@redux/user/user.actions";
 export const UPDATE_FIB_VALUE = "UPDATE_FIB_VALUE";
 export const UPDATE_FIB_MEDICAL_VALUE = "UPDATE_FIB_MEDICAL_VALUE";
 export const UPDATE_FIB_ANSWER_VALUE = "UPDATE_FIB_ANSWER_VALUE";
+export const RESET_FIB_ANSWERS = "RESET_FIB_ANSWERS";
 
 export interface IProductStore {
   fib: FIBStore;
@@ -33,7 +36,14 @@ export interface Weight {
 }
 
 interface FibAnswers {
-  [questionId: string]: boolean | string | number | Height | Weight;
+  height: Height;
+  weight: Weight;
+  weeklyAlcoholDrinks: number;
+  birthDay: string;
+  birthMonth: string;
+  birthYear: string;
+  fib_your_name: string;
+  [questionId: string]: any;
 }
 
 export interface FIBStore {
@@ -42,6 +52,8 @@ export interface FIBStore {
   selectedPackage: PackageId;
   existingCovers: Cover[];
   medicalHistory: Record<string, boolean>;
+  expireQuoteDate: string;
+  lastQuestionId: string;
 }
 
 export interface UpdateFIBStoreAction<T> {
@@ -49,4 +61,12 @@ export interface UpdateFIBStoreAction<T> {
   payload: FIBStoreValue<T> | FIBStoreAnswerValue<T>;
 }
 
-export type ProductActionTypes<T> = UpdateFIBStoreAction<T>;
+export interface ResetFIBStoreAction {
+  type: typeof RESET_FIB_ANSWERS;
+}
+
+export type ProductActionTypes<T> =
+  | UpdateFIBStoreAction<T>
+  | ResetFIBStoreAction
+  | RehydrateAction
+  | ReturnType<typeof logOut>;

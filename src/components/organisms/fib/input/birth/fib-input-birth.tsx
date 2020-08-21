@@ -84,13 +84,13 @@ const _FibInputBirth = (props: ConnectedProps) => {
   };
 
   const handleBackspaceMonth = () => {
-    if (!(birthMonth as string).length) {
+    if (!birthMonth.length) {
       dayRef.current.focus();
     }
   };
 
   const handleBackspaceYear = () => {
-    if (!(birthYear as string).length) {
+    if (!birthYear.length) {
       monthRef.current.focus();
     }
   };
@@ -100,14 +100,14 @@ const _FibInputBirth = (props: ConnectedProps) => {
       <InputField
         forwardRef={dayRef}
         autoFocus={true}
-        value={birthDay as string}
+        value={birthDay}
         onChangeText={validateDay}
         maxLength={2}
         label="Day"
       />
       <InputField
         forwardRef={monthRef}
-        value={birthMonth as string}
+        value={birthMonth}
         onChangeText={validateMonth}
         maxLength={2}
         label="Month"
@@ -116,7 +116,7 @@ const _FibInputBirth = (props: ConnectedProps) => {
       <InputField
         forwardRef={yearRef}
         isLarge={true}
-        value={birthYear as string}
+        value={birthYear}
         onChangeText={validateYear}
         maxLength={4}
         label="Year"

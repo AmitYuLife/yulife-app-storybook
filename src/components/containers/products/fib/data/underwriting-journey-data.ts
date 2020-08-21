@@ -885,8 +885,7 @@ const _data: UnderwritingJourneyScreen[] = [
     icon: FINANCIAL_QUESTIONS_ICON,
     title: "Cover Details",
     question: "Add or remove your existing life insurance products below.",
-    firstButton: { label: "Continue", actionId: "fib_your_name" },
-    secondButton: { label: "Yes", actionId: "fib_financial_custom_cover_form" },
+    firstButton: { label: "Continue", actionId: "fib_review_screen" },
     previousButton: { actionId: "fib_financial_other_cover" },
   },
   {

@@ -1,13 +1,17 @@
 import React, { memo, useState } from "react";
-import { FibLocalNavigation } from "../fib.types";
+import {
+  FibLocalNavigation,
+  FIB_UNDERWRITING_REVIEW_ANSWERS,
+  FIB_UNDERWRITING_REVIEW_ANSWERS_SCREEN_ID,
+} from "../fib.types";
 import { FibUnderwritingJourneyScreen } from "../../../../screens/products/fib/underwriting-journey/fib.underwriting-journey.screen";
 import { data } from "../data/underwriting-journey-data";
 import { FIBProgressBar } from "@organisms";
 import { IReduxState } from "@redux/_core/reducers";
 import { getFIBState, getBirthday } from "@redux/product/product.selectors";
-import { connect } from "react-redux";
+import { connect, useDispatch } from "react-redux";
 import { findQuestion } from "../fib.helpers";
-import { updateFIBAnswerValue } from "../../../../../redux/product/product.actions";
+import { updateFIBValue, updateFIBAnswerValue } from "@redux/product/product.actions";
 
 type ConnectedProps = ReturnType<typeof mapStateToProps>;
 type ConnecteDispatch = typeof mapDispatchToProps;
@@ -15,12 +19,16 @@ type Props = ConnectedProps & ConnecteDispatch & IFibUnderwritingJourneyContaine
 
 interface IFibUnderwritingJourneyContainer {
   navigation: FibLocalNavigation;
+  initialQuestionId?: string;
 }
 
 const FibUnderwritingJourneyContainer = memo(function (props: Props) {
-  const { navigation, medicalHistory, updateAnswer } = props;
+  const { navigation, medicalHistory, updateAnswer, initialQuestionId } = props;
+  const dispatch = useDispatch();
 
-  const [currentQuestion, setCurrentQuestion] = useState(data[0]);
+  const initialQuestion = data.find((question) => question.id === initialQuestionId) || data[0];
+
+  const [currentQuestion, setCurrentQuestion] = useState(initialQuestion);
   const activeIndex = data.findIndex((item) => item.id === currentQuestion.id);
 
   const onFirstButtonPressed = () => {
@@ -28,7 +36,13 @@ const FibUnderwritingJourneyContainer = memo(function (props: Props) {
       updateAnswer(currentQuestion.id, currentQuestion.firstButton.label);
     }
 
+    if (currentQuestion.firstButton.actionId === FIB_UNDERWRITING_REVIEW_ANSWERS_SCREEN_ID) {
+      dispatch(updateFIBValue({ key: "lastQuestionId", value: FIB_UNDERWRITING_REVIEW_ANSWERS_SCREEN_ID }));
+      return navigation.push(FIB_UNDERWRITING_REVIEW_ANSWERS);
+    }
+
     const question = findQuestion(data, "firstButton", currentQuestion, medicalHistory);
+    dispatch(updateFIBValue({ key: "lastQuestionId", value: question.id }));
     setCurrentQuestion(question);
   };
 
@@ -38,6 +52,7 @@ const FibUnderwritingJourneyContainer = memo(function (props: Props) {
     }
 
     const question = findQuestion(data, "secondButton", currentQuestion, medicalHistory);
+    dispatch(updateFIBValue({ key: "lastQuestionId", value: question.id }));
     setCurrentQuestion(question);
   };
 
@@ -45,6 +60,7 @@ const FibUnderwritingJourneyContainer = memo(function (props: Props) {
 
   const handleSetPreviousQuestion = () => {
     const question = findQuestion(data, "previousButton", currentQuestion, medicalHistory);
+    dispatch(updateFIBValue({ key: "lastQuestionId", value: question.id }));
     setCurrentQuestion(question);
   };
 
