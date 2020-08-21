@@ -1,5 +1,5 @@
 import React from "react";
-import { View, StyleSheet, ViewStyle, TextStyle } from "react-native";
+import { View, StyleSheet, ViewStyle, TextStyle, Platform } from "react-native";
 import { Text } from "@atoms";
 import { Style } from "@styles";
 import { numberWithCommas } from "@services/utils";
@@ -11,9 +11,11 @@ interface Props {
 }
 
 export function Score({ score, bold, style }: Props) {
+  const size = getSize(score.toString().length);
+
   return (
     <View style={styles.wrapper}>
-      <Text style={[styles.text, style]} bold={bold}>
+      <Text style={[styles.text, size, style]} bold={bold}>
         {numberWithCommas(score)}
       </Text>
     </View>
@@ -29,4 +31,18 @@ const styles = StyleSheet.create({
   text: {
     textAlign: "right",
   } as TextStyle,
+  default: {
+    fontSize: Style.adjust(15),
+  },
+  small: {
+    fontSize: Platform.select({ ios: Style.adjust(13), android: Style.adjust(12) }),
+  },
 });
+
+function getSize(length: number) {
+  if (length > 6) {
+    return styles.small;
+  }
+
+  return styles.default;
+}

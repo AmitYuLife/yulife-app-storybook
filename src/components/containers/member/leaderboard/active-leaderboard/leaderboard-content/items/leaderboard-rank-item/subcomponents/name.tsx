@@ -12,7 +12,7 @@ interface Props {
 export function Name({ name, bold, style }: Props) {
   return (
     <View style={styles.wrapper}>
-      <Text numberOfLines={1} bold={bold} style={[styles.text, style]}>
+      <Text numberOfLines={2} bold={bold} style={[styles.text, style]}>
         {name}
       </Text>
     </View>
@@ -27,6 +27,6 @@ const styles = StyleSheet.create({
   } as ViewStyle,
   text: {
     fontSize: Style.adjust(18),
-    width: Style.adjust(150),
+    width: Style.DEVICE_WIDTH - 200,
   } as TextStyle,
 });
