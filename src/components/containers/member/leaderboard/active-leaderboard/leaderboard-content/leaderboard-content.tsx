@@ -16,6 +16,8 @@ export interface LeaderboardContentContainerProps {
   onRefetch: () => void;
 }
 
+const FlatList = Animated.createAnimatedComponent(_FlatList);
+
 const _LeaderboardContentContainer = ({
   leaderboardItems,
   leaderboardName,
@@ -24,7 +26,6 @@ const _LeaderboardContentContainer = ({
 }: LeaderboardContentContainerProps) => {
   const scrollValue = useRef(new Animated.Value(0)).current;
   const flatListRef: RefObject<_FlatList> = useRef();
-  const FlatList = Animated.createAnimatedComponent(_FlatList);
   const refs = { scrollValue, flatListRef };
   const networkStatus = useContext(ActiveLeaderboardLoadingContext);
   const list = resToList(leaderboardItems, currentUserId, refs, leaderboardName);
