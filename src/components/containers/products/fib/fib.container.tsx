@@ -30,22 +30,24 @@ import FibFeedbackFormContainer from "./subcontainers/fib.feedback-form.containe
 import FibUnderwritingJourneyContainer from "./subcontainers/fib.underwriting-journey.container";
 import FibUnderwritingJourneyIntroductionContainer from "./subcontainers/fib.underwriting-journey-introduction.container";
 import { FIB_UNDERWRITING_REVIEW_ANSWERS } from "./fib.types";
-import FibUnderwritingReivewAnswersContainer from "./subcontainers/fib.underwriting-reivew-answers.container";
+import FibUnderwritingReviewAnswersContainer from "./subcontainers/fib.underwriting-review-answers.container";
 
 interface RouteProps {
   navigation: FibLocalNavigation;
   selectedFaq: string;
   selectFaq: (faqId: string) => void;
+  initialQuestionId?: string;
 }
 
 type ConnectedState = ReturnType<typeof mapStateToProps>;
 
 type Props = ConnectedState & {
   initialRoute?: FibRoute;
+  initialQuestionId?: string;
 };
 
 function getComponent(routeProps: RouteProps) {
-  const { navigation, selectedFaq, selectFaq } = routeProps;
+  const { navigation, selectedFaq, selectFaq, initialQuestionId } = routeProps;
   const {
     currentRoute: { route },
   } = navigation;
@@ -64,11 +66,11 @@ function getComponent(routeProps: RouteProps) {
     case FIB_FEEDBACK_FORM:
       return <FibFeedbackFormContainer navigation={navigation} />;
     case FIB_UNDERWRITING_JOURNEY:
-      return <FibUnderwritingJourneyContainer navigation={navigation} />;
+      return <FibUnderwritingJourneyContainer navigation={navigation} initialQuestionId={initialQuestionId} />;
     case FIB_UNDERWRITING_JOURNEY_INTRODUCTION:
       return <FibUnderwritingJourneyIntroductionContainer navigation={navigation} />;
     case FIB_UNDERWRITING_REVIEW_ANSWERS:
-      return <FibUnderwritingReivewAnswersContainer navigation={navigation} />;
+      return <FibUnderwritingReviewAnswersContainer navigation={navigation} />;
     default:
       return <FibBrowseContainer selectFaq={selectFaq} navigation={navigation} />;
   }
@@ -105,6 +107,7 @@ function FIBContainer(props: Props) {
     navigation: fibRouter,
     selectedFaq,
     selectFaq,
+    initialQuestionId: props.initialQuestionId,
   });
 
   return component;

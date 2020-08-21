@@ -25,7 +25,12 @@ const _FibUnderwritingReviewAnswersScreen = memo(function (props: IFibUnderwriti
 
   return (
     <View style={styles.wrapper}>
-      <GenericHeading heading={"Review"} rightIcon={{ icon: "CLOSE" }} onRightIconPress={onNavigateBack} />
+      <GenericHeading
+        heading={"Review"}
+        rightIcon={{ icon: "CLOSE" }}
+        onRightIconPress={onNavigateBack}
+        isBeta={true}
+      />
       <ScrollView contentContainerStyle={styles.scrollViewContentStyle}>
         {answers.map((item) => {
           return <ReviewAnswers icon={item.icon} title={item.title} answer={item.answer} key={item.title} />;

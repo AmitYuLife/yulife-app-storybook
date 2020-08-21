@@ -19,7 +19,7 @@ export function FibUnderwritingJourneyLayout(props: Props) {
 
   return (
     <KeyboardAvoidingView style={styles.wrapper}>
-      <GenericHeading heading={heading} rightIcon={{ icon: "CLOSE" }} onRightIconPress={onNavigateBack} />
+      <GenericHeading heading={heading} rightIcon={{ icon: "CLOSE" }} onRightIconPress={onNavigateBack} isBeta={true} />
       <FIBProgressBar />
       {children}
     </KeyboardAvoidingView>

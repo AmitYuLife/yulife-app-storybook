@@ -5,6 +5,7 @@ import {
   UPDATE_FIB_VALUE,
   UPDATE_FIB_MEDICAL_VALUE,
   UPDATE_FIB_ANSWER_VALUE,
+  RESET_FIB_ANSWERS,
 } from "./product.types";
 
 export function updateFIBValue<T>(payload: FIBStoreValue<T>): ProductActionTypes<T> {
@@ -18,6 +19,12 @@ export function updateFIBAnswerValue<T>(payload: FIBStoreAnswerValue<T>): Produc
   return {
     type: UPDATE_FIB_ANSWER_VALUE,
     payload,
+  };
+}
+
+export function resetFIBAnswers<T>(): ProductActionTypes<T> {
+  return {
+    type: RESET_FIB_ANSWERS,
   };
 }
 

@@ -34,7 +34,7 @@ const _FibInputCm = (props: ConnectedProps) => {
 };
 
 const mapStateToProps = (state: IReduxState) => ({
-  height: getFIBState(state).answers.height as Height,
+  height: getFIBState(state).answers.height,
 });
 
 const mapDispatchToProps = {

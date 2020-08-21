@@ -101,7 +101,7 @@ export const updateConnectionSuccess = (payload: Connection) => ({
 });
 
 export const logOut = () => ({
-  type: LOGOUT,
+  type: LOGOUT as typeof LOGOUT,
 });
 
 export const openMemberZone = () => ({

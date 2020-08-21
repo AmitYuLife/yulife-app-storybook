@@ -16,7 +16,7 @@ const _FibInputName = (props: ConnectedProps) => {
       <InputField
         autoFocus={true}
         isLarge={true}
-        value={fullName as string}
+        value={fullName}
         onChangeText={updateName}
         maxLength={48}
         width={Style.DEVICE_WIDTH - 80}
