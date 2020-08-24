@@ -21,7 +21,7 @@ import { YuScreenLayout } from "@components/screens/member/yu-screen/yu-screen-l
 import { YuScreenLoading } from "@components/screens/member/yu-screen/yu-screen-loading";
 import useCacheFirstAndNetworkOnAppearQuery from "@services/hooks/useCacheFirstAndNetworkOnAppearQuery";
 import { getFIBState } from "@redux/product/product.selectors";
-import { updateFIBValue, resetFIBAnswers } from "@redux/product/product.actions";
+import { updateFIBValue, resetFIBAnswers, resetFIBMedicalHistoryValue } from "@redux/product/product.actions";
 import {
   navigateToProductScreen,
   navigateToAvatarCreationScreen,
@@ -50,6 +50,7 @@ function YuScreenContainer({
 
   const resetFIBJourney = useCallback(() => {
     dispatch(resetFIBAnswers());
+    dispatch(resetFIBMedicalHistoryValue());
     dispatch(updateFIBValue({ key: "lastQuestionId", value: "" }));
   }, [dispatch]);
 
