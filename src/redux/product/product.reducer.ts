@@ -5,6 +5,7 @@ import {
   UPDATE_FIB_MEDICAL_VALUE,
   UPDATE_FIB_ANSWER_VALUE,
   RESET_FIB_ANSWERS,
+  RESET_FIB_MEDICAL_VALUE,
 } from "./product.types";
 import { REHYDRATE } from "redux-persist";
 import { LOGOUT } from "@redux/user/user.actions";
@@ -91,6 +92,14 @@ function personalProductReducer<T>(state: IProductStore = initialState, action: 
               ...initialState.fib.answers.weight,
             },
           },
+        },
+      };
+    case RESET_FIB_MEDICAL_VALUE:
+      return {
+        ...state,
+        fib: {
+          ...state.fib,
+          medicalHistory: {},
         },
       };
     default:

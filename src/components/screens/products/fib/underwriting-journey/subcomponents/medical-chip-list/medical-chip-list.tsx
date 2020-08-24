@@ -4,13 +4,7 @@ import Chip, { ChipProps } from "@atoms/chip/chip";
 import { connect, useDispatch } from "react-redux";
 import { getFIBState } from "@redux/product/product.selectors";
 import { IReduxState } from "@redux/_core/reducers";
-import { updateFIBMedicalHistoryValue } from "@redux/product/product.actions";
-import {
-  FIB_HIGH_CHOLESTEROL_BLOOD_EXTRA_SCREENS,
-  FIB_HIGH_CHOLESTEROL_BLOOD_SCREEN_ID,
-  FIB_DIGESTIVE_SCREEN_ID,
-  FIB_DIGESTIVE_EXTRA_SCREENS,
-} from "@components/containers/products/fib/fib.helpers";
+import { updateFIBMedicalHistoryValue, updateFIBAnswerValue } from "@redux/product/product.actions";
 
 type ConnectedState = ReturnType<typeof mapStateToProps>;
 
@@ -19,18 +13,6 @@ interface ChipListProps {
   columns: 2;
 }
 
-const getAddOrRemoveExtraScreens = (chipId: string, value: boolean): { key: string; value: boolean }[] => {
-  if (FIB_HIGH_CHOLESTEROL_BLOOD_SCREEN_ID.includes(chipId)) {
-    return FIB_HIGH_CHOLESTEROL_BLOOD_EXTRA_SCREENS.map((screenId) => ({ key: screenId, value }));
-  }
-
-  if (chipId === FIB_DIGESTIVE_SCREEN_ID) {
-    return FIB_DIGESTIVE_EXTRA_SCREENS.map((screenId) => ({ key: screenId, value }));
-  }
-
-  return [];
-};
-
 function MedicalChipList(props: ChipListProps & ConnectedState) {
   const { items, medicalHistory } = props;
   const dispatch = useDispatch();
@@ -38,21 +20,16 @@ function MedicalChipList(props: ChipListProps & ConnectedState) {
   const itemsWithDispatch = items.map((item) => {
     // Set medicalHistory
     medicalHistory[item.id] = medicalHistory[item.id] || false;
-    const addOrRemoveExtraScreens = getAddOrRemoveExtraScreens(item.id, medicalHistory[item.id]);
     // Add onPress handler
     item.onPress = function () {
-      if (addOrRemoveExtraScreens.length) {
-        addOrRemoveExtraScreens.forEach((extraScreen) => {
-          dispatch(updateFIBMedicalHistoryValue(extraScreen));
-        });
-      }
-
       dispatch(
         updateFIBMedicalHistoryValue({
           key: item.id,
           value: !medicalHistory[item.id],
         })
       );
+      // Reset previous answers
+      dispatch(updateFIBAnswerValue({ key: item.id, value: "" }));
     };
 
     item.active = medicalHistory[item.id];

@@ -6,6 +6,7 @@ export const UPDATE_FIB_VALUE = "UPDATE_FIB_VALUE";
 export const UPDATE_FIB_MEDICAL_VALUE = "UPDATE_FIB_MEDICAL_VALUE";
 export const UPDATE_FIB_ANSWER_VALUE = "UPDATE_FIB_ANSWER_VALUE";
 export const RESET_FIB_ANSWERS = "RESET_FIB_ANSWERS";
+export const RESET_FIB_MEDICAL_VALUE = "RESET_FIB_MEDICAL_VALUE";
 
 export interface IProductStore {
   fib: FIBStore;
@@ -35,7 +36,7 @@ export interface Weight {
   kg: string;
 }
 
-interface FibAnswers {
+export interface FibAnswers {
   height: Height;
   weight: Weight;
   weeklyAlcoholDrinks: number;
@@ -62,7 +63,7 @@ export interface UpdateFIBStoreAction<T> {
 }
 
 export interface ResetFIBStoreAction {
-  type: typeof RESET_FIB_ANSWERS;
+  type: typeof RESET_FIB_ANSWERS | typeof RESET_FIB_MEDICAL_VALUE;
 }
 
 export type ProductActionTypes<T> =

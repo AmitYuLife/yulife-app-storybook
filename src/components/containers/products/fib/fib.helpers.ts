@@ -1,22 +1,16 @@
 import moment from "moment";
 import { CalculatorItems } from "@components/screens/products/fib/browse-packages/subcomponents/payout-calculator/subcomponents/calculator";
-import { OrderedUnderwritingJourneyScreen } from "./data/underwriting-journey-data";
+import {
+  OrderedUnderwritingJourneyScreen,
+  FIB_DIGESTIVE_SCREEN_ID,
+  FIB_DIGESTIVE_EXTRA_SCREENS,
+  FIB_HIGH_CHOLESTEROL_BLOOD_SCREEN_ID,
+  FIB_HIGH_CHOLESTEROL_BLOOD_EXTRA_SCREEN,
+  FIB_THREE_YEAR_MEDICAL_HISTORY_SCREEN_ID,
+} from "./data/underwriting-journey-data";
+import { FibAnswers } from "@redux/product/product.types";
 
 type FibButtonType = "firstButton" | "secondButton" | "previousButton";
-
-export const FIB_HIGH_CHOLESTEROL_BLOOD_SCREEN_ID = [
-  "fib_medical_journey_high_blood_pressure",
-  "fib_medical_journey_high_cholesterol",
-];
-export const FIB_HIGH_CHOLESTEROL_BLOOD_EXTRA_SCREENS = ["fib_medical_journey_readings_satisfactory"];
-export const FIB_DIGESTIVE_SCREEN_ID = "fib_medical_journey_digestive";
-export const FIB_DIGESTIVE_EXTRA_SCREENS = [
-  "fib_medical_journey_digestive_hospital_stay",
-  "fib_medical_journey_digestive_hospital_stay",
-  "fib_medical_journey_daily_activity_restrictions",
-  "fib_medical_journey_digestive_symptoms_resolved",
-  "fib_medical_journey_condition_stable",
-];
 
 export function formatPrice(price: number | null) {
   if (!price) {
@@ -87,24 +81,99 @@ function getMonthsTillBirthday(dateOfBirth: moment.Moment) {
   return monthOfBirth - currentMonth + addExtraMonth;
 }
 
-export const findQuestion = (
-  data: OrderedUnderwritingJourneyScreen[],
-  buttonType: FibButtonType,
-  currentQuestion: OrderedUnderwritingJourneyScreen,
-  medicalHistory: Record<string, boolean>
-): OrderedUnderwritingJourneyScreen => {
-  const question = data.find((element) => currentQuestion[buttonType].actionId === element.id);
+interface FindFibQuestionOptions {
+  data: OrderedUnderwritingJourneyScreen[];
+  buttonType: FibButtonType;
+  currentQuestion: OrderedUnderwritingJourneyScreen;
+  medicalHistory: Record<string, boolean>;
+  answers: FibAnswers;
+}
+interface FindFibMedicalQuestionOptions {
+  data: OrderedUnderwritingJourneyScreen[];
+  buttonType: FibButtonType;
+  question: OrderedUnderwritingJourneyScreen;
+  medicalHistory: Record<string, boolean>;
+  answers: FibAnswers;
+}
+
+export function findQuestion(options: FindFibQuestionOptions): OrderedUnderwritingJourneyScreen {
+  const { data, buttonType, currentQuestion, medicalHistory, answers } = options;
+
+  const question = data.find((element) => currentQuestion[buttonType]?.actionId === element.id);
+
+  if (question.id.includes("medical_journey")) {
+    return findMedicalQuestion({
+      data,
+      buttonType,
+      question,
+      medicalHistory,
+      answers,
+    });
+  }
+
+  return question;
+}
+
+function findMedicalQuestion(options: FindFibMedicalQuestionOptions): OrderedUnderwritingJourneyScreen {
+  const { data, buttonType, medicalHistory, answers, question } = options;
+
   const activeChips = Object.entries(medicalHistory)
     .map((entry) => {
       return entry[1] ? entry[0] : null;
     })
     .filter((e) => !!e);
 
-  // TODO: Add and check answers to complete the logic
-  const showQuestion = question.id.includes("medical_journey") ? activeChips.includes(question.id) : true;
-  if (!showQuestion) {
-    return findQuestion(data, buttonType, question, medicalHistory);
+  // Extra values for medical journey
+  activeChips.push(FIB_THREE_YEAR_MEDICAL_HISTORY_SCREEN_ID);
+  if (activeChips.includes(FIB_DIGESTIVE_SCREEN_ID)) {
+    activeChips.push(...FIB_DIGESTIVE_EXTRA_SCREENS);
+  }
+
+  const hasBloodOrCholesterolScreen = activeChips.filter((screenId) =>
+    FIB_HIGH_CHOLESTEROL_BLOOD_SCREEN_ID.includes(screenId)
+  ).length;
+
+  if (hasBloodOrCholesterolScreen) {
+    activeChips.push(FIB_HIGH_CHOLESTEROL_BLOOD_EXTRA_SCREEN);
+  }
+
+  const isActiveOnMedicalJourney = getIsActiveOnMedicalJourney(question.id, answers);
+
+  const showQuestion = activeChips.includes(question.id) && isActiveOnMedicalJourney;
+
+  if (!showQuestion && question.id.includes("medical_journey")) {
+    const nextQuestion = data.find((element) => question[buttonType]?.actionId === element.id);
+    return findMedicalQuestion({
+      data,
+      buttonType,
+      question: nextQuestion,
+      medicalHistory,
+      answers,
+    });
   }
 
   return question;
-};
+}
+
+export function getIsActiveOnMedicalJourney(screenId: string, answers: FibAnswers): boolean {
+  // Blood or cholesterol
+  if (FIB_HIGH_CHOLESTEROL_BLOOD_EXTRA_SCREEN === screenId) {
+    const bloodAnswer = answers[FIB_HIGH_CHOLESTEROL_BLOOD_SCREEN_ID[0]];
+    const cholesterolAnswer = answers[FIB_HIGH_CHOLESTEROL_BLOOD_SCREEN_ID[1]];
+    const hasYesAnswer = bloodAnswer === "Yes" || cholesterolAnswer === "Yes";
+    return hasYesAnswer;
+  }
+
+  // Digestive
+  if (FIB_DIGESTIVE_EXTRA_SCREENS.includes(screenId) && screenId !== FIB_DIGESTIVE_SCREEN_ID) {
+    const questionIndex = FIB_DIGESTIVE_EXTRA_SCREENS.findIndex((questionId) => questionId === screenId);
+    const previousAnswer = answers[FIB_DIGESTIVE_EXTRA_SCREENS[questionIndex - 1]] || answers[FIB_DIGESTIVE_SCREEN_ID];
+    return previousAnswer === "Yes";
+  }
+
+  if (screenId === FIB_THREE_YEAR_MEDICAL_HISTORY_SCREEN_ID) {
+    return answers.fib_medical_three_or_more_consultation === "Yes";
+  }
+
+  return true;
+}
