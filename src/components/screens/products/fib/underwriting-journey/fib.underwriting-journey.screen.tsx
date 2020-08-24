@@ -35,10 +35,18 @@ export interface IFibUnderwritingJourneyScreenProps {
     maxLength: number;
     currentPosition: number;
   };
+  disableFirstButton?: boolean;
 }
 
 const _FibUnderwritingJourneyScreen = memo(function (props: IFibUnderwritingJourneyScreenProps) {
-  const { onNavigateBack, data, onFirstButtonPressed, onSecondButtonPressed, onPreviousButtonPressed } = props;
+  const {
+    onNavigateBack,
+    data,
+    onFirstButtonPressed,
+    onSecondButtonPressed,
+    onPreviousButtonPressed,
+    disableFirstButton,
+  } = props;
 
   const backHandler = React.useCallback(() => {
     onNavigateBack();
@@ -47,7 +55,7 @@ const _FibUnderwritingJourneyScreen = memo(function (props: IFibUnderwritingJour
 
   useBackHandler(backHandler);
 
-  const firstButton = { action: onFirstButtonPressed, label: data.firstButton.label };
+  const firstButton = { action: onFirstButtonPressed, label: data.firstButton.label, disabled: disableFirstButton };
 
   const secondButton = !onSecondButtonPressed
     ? null

@@ -5,13 +5,19 @@ import {
   FIB_UNDERWRITING_REVIEW_ANSWERS_SCREEN_ID,
 } from "../fib.types";
 import { FibUnderwritingJourneyScreen } from "../../../../screens/products/fib/underwriting-journey/fib.underwriting-journey.screen";
-import { data } from "../data/underwriting-journey-data";
+import {
+  data,
+  FIB_DIGESTIVE_EXTRA_SCREENS,
+  FIB_DIGESTIVE_SCREEN_ID,
+  FIB_THREE_YEAR_MEDICAL_HISTORY_SCREEN_ID,
+} from "../data/underwriting-journey-data";
 import { FIBProgressBar } from "@organisms";
 import { IReduxState } from "@redux/_core/reducers";
 import { getFIBState, getBirthday } from "@redux/product/product.selectors";
 import { connect, useDispatch } from "react-redux";
+import { updateFIBValue, updateFIBAnswerValue, resetFIBMedicalHistoryValue } from "@redux/product/product.actions";
 import { findQuestion } from "../fib.helpers";
-import { updateFIBValue, updateFIBAnswerValue } from "@redux/product/product.actions";
+import { FibAnswers } from "@redux/product/product.types";
 
 type ConnectedProps = ReturnType<typeof mapStateToProps>;
 type ConnecteDispatch = typeof mapDispatchToProps;
@@ -23,7 +29,7 @@ interface IFibUnderwritingJourneyContainer {
 }
 
 const FibUnderwritingJourneyContainer = memo(function (props: Props) {
-  const { navigation, medicalHistory, updateAnswer, initialQuestionId } = props;
+  const { navigation, medicalHistory, updateFibAnswer, initialQuestionId, fibAnswers } = props;
   const dispatch = useDispatch();
 
   const initialQuestion = data.find((question) => question.id === initialQuestionId) || data[0];
@@ -31,9 +37,38 @@ const FibUnderwritingJourneyContainer = memo(function (props: Props) {
   const [currentQuestion, setCurrentQuestion] = useState(initialQuestion);
   const activeIndex = data.findIndex((item) => item.id === currentQuestion.id);
 
+  const updateAnswer = (questionId: string, value: string, answers: FibAnswers): FibAnswers => {
+    updateFibAnswer(questionId, value);
+
+    if ([...FIB_DIGESTIVE_EXTRA_SCREENS, FIB_DIGESTIVE_SCREEN_ID].includes(questionId) && value === "No") {
+      if (questionId === FIB_DIGESTIVE_SCREEN_ID) {
+        FIB_DIGESTIVE_EXTRA_SCREENS.forEach((extraQuestionId) => updateFibAnswer(extraQuestionId, value));
+        return;
+      }
+
+      const extraQuestionIndex = FIB_DIGESTIVE_EXTRA_SCREENS.findIndex((screenId) => screenId === questionId);
+      for (let i = extraQuestionIndex + 1; i < FIB_DIGESTIVE_EXTRA_SCREENS.length; i++) {
+        updateFibAnswer(FIB_DIGESTIVE_EXTRA_SCREENS[i], value);
+      }
+    }
+
+    if (questionId === "fib_medical_three_or_more_consultation" && value === "No") {
+      for (const key of Object.keys(answers)) {
+        if (key.includes("medical_journey")) {
+          updateFibAnswer(key, "");
+        }
+      }
+
+      dispatch(resetFIBMedicalHistoryValue());
+    }
+
+    return { ...answers, [questionId]: value };
+  };
+
   const onFirstButtonPressed = () => {
+    let localAnswers;
     if (shouldAnswerBeStored(currentQuestion.firstButton.label, currentQuestion.id)) {
-      updateAnswer(currentQuestion.id, currentQuestion.firstButton.label);
+      localAnswers = updateAnswer(currentQuestion.id, currentQuestion.firstButton.label, fibAnswers);
     }
 
     if (currentQuestion.firstButton.actionId === FIB_UNDERWRITING_REVIEW_ANSWERS_SCREEN_ID) {
@@ -41,17 +76,30 @@ const FibUnderwritingJourneyContainer = memo(function (props: Props) {
       return navigation.push(FIB_UNDERWRITING_REVIEW_ANSWERS);
     }
 
-    const question = findQuestion(data, "firstButton", currentQuestion, medicalHistory);
+    const question = findQuestion({
+      data,
+      buttonType: "firstButton",
+      currentQuestion,
+      medicalHistory,
+      answers: localAnswers || fibAnswers,
+    });
     dispatch(updateFIBValue({ key: "lastQuestionId", value: question.id }));
     setCurrentQuestion(question);
   };
 
   const handleSetCurrentQuestion = () => {
+    let localAnswers;
     if (shouldAnswerBeStored(currentQuestion.secondButton.label, currentQuestion.id)) {
-      updateAnswer(currentQuestion.id, currentQuestion.secondButton.label);
+      localAnswers = updateAnswer(currentQuestion.id, currentQuestion.secondButton.label, fibAnswers);
     }
 
-    const question = findQuestion(data, "secondButton", currentQuestion, medicalHistory);
+    const question = findQuestion({
+      data,
+      buttonType: "secondButton",
+      currentQuestion,
+      medicalHistory,
+      answers: localAnswers || fibAnswers,
+    });
     dispatch(updateFIBValue({ key: "lastQuestionId", value: question.id }));
     setCurrentQuestion(question);
   };
@@ -59,7 +107,13 @@ const FibUnderwritingJourneyContainer = memo(function (props: Props) {
   const onSecondButtonPressed = !currentQuestion.secondButton ? null : handleSetCurrentQuestion;
 
   const handleSetPreviousQuestion = () => {
-    const question = findQuestion(data, "previousButton", currentQuestion, medicalHistory);
+    const question = findQuestion({
+      data,
+      buttonType: "previousButton",
+      currentQuestion,
+      medicalHistory,
+      answers: fibAnswers,
+    });
     dispatch(updateFIBValue({ key: "lastQuestionId", value: question.id }));
     setCurrentQuestion(question);
   };
@@ -71,6 +125,15 @@ const FibUnderwritingJourneyContainer = memo(function (props: Props) {
     maxLength: data.length,
   };
 
+  let disableFirstButton = false;
+  if (currentQuestion.id === FIB_THREE_YEAR_MEDICAL_HISTORY_SCREEN_ID) {
+    disableFirstButton = !Object.entries(medicalHistory)
+      .map((entry) => {
+        return entry[1] ? entry[0] : null;
+      })
+      .filter((e) => !!e).length;
+  }
+
   return (
     <FIBProgressBar.ProgressBarContext.Provider value={progressBar}>
       <FibUnderwritingJourneyScreen
@@ -80,6 +143,7 @@ const FibUnderwritingJourneyContainer = memo(function (props: Props) {
         onSecondButtonPressed={onSecondButtonPressed}
         onPreviousButtonPressed={onPreviousButtonPressed}
         progressBar={{ maxLength: data.length, currentPosition: activeIndex + 1 }}
+        disableFirstButton={disableFirstButton}
       />
     </FIBProgressBar.ProgressBarContext.Provider>
   );
@@ -97,10 +161,11 @@ const mapStateToProps = (state: IReduxState) => ({
   dateOfBirth: getBirthday(state),
   fullName: getFIBState(state).answers.fib_your_name,
   medicalHistory: getFIBState(state).medicalHistory,
+  fibAnswers: getFIBState(state).answers,
 });
 
 const mapDispatchToProps = {
-  updateAnswer: (key: string, value: string) => updateFIBAnswerValue({ key, value }),
+  updateFibAnswer: (key: string, value: string) => updateFIBAnswerValue({ key, value }),
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(FibUnderwritingJourneyContainer);

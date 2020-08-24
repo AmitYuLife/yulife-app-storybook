@@ -61,6 +61,26 @@ export interface UnderwritingJourneyChild {
   chips?: ChipProps[];
 }
 
+export const FIB_HIGH_CHOLESTEROL_BLOOD_EXTRA_SCREEN = "fib_medical_journey_readings_satisfactory";
+export const FIB_DIGESTIVE_SCREEN_ID = "fib_medical_journey_digestive";
+export const FIB_THREE_YEAR_MEDICAL_HISTORY_SCREEN_ID = "fib_medical_journey_three_year_medical_history";
+
+const FIB_DIGESTIVE_HOSPITAL_STAY_SCREEN_ID = "fib_medical_journey_digestive_hospital_stay";
+const FIB_DAILY_ACTIVITIES_RESTRICTIONS_SCREEN_ID = "fib_medical_journey_daily_activity_restrictions";
+const FIB_DIGESTIVE_SYMPTOMS_RESOLVED_SCREEN_ID = "fib_medical_journey_digestive_symptoms_resolved";
+const FIB_CONDITION_STABLE_SCREEN_ID = "fib_medical_journey_condition_stable";
+const FIB_HIGH_BLOOD_PRESSURE_SCREEN_ID = "fib_medical_journey_high_blood_pressure";
+const FIB_HIGH_CHOLESTEROL_SCREEN_ID = "fib_medical_journey_high_cholesterol";
+
+export const FIB_HIGH_CHOLESTEROL_BLOOD_SCREEN_ID = [FIB_HIGH_BLOOD_PRESSURE_SCREEN_ID, FIB_HIGH_CHOLESTEROL_SCREEN_ID];
+
+export const FIB_DIGESTIVE_EXTRA_SCREENS = [
+  FIB_DIGESTIVE_HOSPITAL_STAY_SCREEN_ID,
+  FIB_DAILY_ACTIVITIES_RESTRICTIONS_SCREEN_ID,
+  FIB_DIGESTIVE_SYMPTOMS_RESOLVED_SCREEN_ID,
+  FIB_CONDITION_STABLE_SCREEN_ID,
+];
+
 const _data: UnderwritingJourneyScreen[] = [
   {
     id: "fib_your_name",
@@ -332,11 +352,11 @@ const _data: UnderwritingJourneyScreen[] = [
     question:
       "Have you required 3 or more consultations in the last 3 years from a healthcare professional for a medical or mental health condition, symptom, illness or injury? ",
     firstButton: { label: "No", actionId: "fib_medical_outstanding_medical_investigations" },
-    secondButton: { label: "Yes", actionId: "fib_medical_three_year_medical_history" },
+    secondButton: { label: "Yes", actionId: FIB_THREE_YEAR_MEDICAL_HISTORY_SCREEN_ID },
     previousButton: { actionId: "fib_medical_history" },
   },
   {
-    id: "fib_medical_three_year_medical_history",
+    id: FIB_THREE_YEAR_MEDICAL_HISTORY_SCREEN_ID,
     heading: "Medical",
     icon: `<svg width="21" height="18" viewBox="0 0 21 18" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M6.89124 13.3275H19.9968V6.7169H15.4686L13.1218 4.37012H6.89124V13.3275Z" stroke="#828284" stroke-width="1.31056" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
@@ -356,14 +376,14 @@ const _data: UnderwritingJourneyScreen[] = [
         type: "chiplist",
         chips: [
           {
-            id: "fib_medical_journey_high_blood_pressure",
+            id: FIB_HIGH_BLOOD_PRESSURE_SCREEN_ID,
             active: false,
             label: "High Blood Pressure",
             icon: "blood_pressure_cholest",
             iconType: "image",
           },
           {
-            id: "fib_medical_journey_high_cholesterol",
+            id: FIB_HIGH_CHOLESTEROL_SCREEN_ID,
             active: false,
             label: "High Cholesterol",
             icon: "condition_stable",
@@ -377,7 +397,7 @@ const _data: UnderwritingJourneyScreen[] = [
             iconType: "image",
           },
           {
-            id: "fib_medical_journey_digestive",
+            id: FIB_DIGESTIVE_SCREEN_ID,
             active: false,
             label: "Digestive",
             icon: "digestive",
@@ -442,11 +462,11 @@ const _data: UnderwritingJourneyScreen[] = [
         ],
       },
     ],
-    firstButton: { label: "Continue", actionId: "fib_medical_journey_high_blood_pressure" },
+    firstButton: { label: "Continue", actionId: FIB_HIGH_BLOOD_PRESSURE_SCREEN_ID },
     previousButton: { actionId: "fib_medical_three_or_more_consultation" },
   },
   {
-    id: "fib_medical_journey_high_blood_pressure",
+    id: FIB_HIGH_BLOOD_PRESSURE_SCREEN_ID,
     heading: "Medical",
     title: "Blood Pressure or Cholesterol Check",
     icon: `<svg width="23" height="22" viewBox="0 0 23 22" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -460,12 +480,12 @@ const _data: UnderwritingJourneyScreen[] = [
     `,
     question:
       "Has your blood pressure and / or cholesterol been checked by a medical professional in the last 12 months?",
-    firstButton: { label: "No", actionId: "fib_medical_journey_high_cholesterol" },
-    secondButton: { label: "Yes", actionId: "fib_medical_journey_readings_satisfactory" },
-    previousButton: { actionId: "fib_medical_three_year_medical_history" },
+    firstButton: { label: "No", actionId: FIB_HIGH_CHOLESTEROL_SCREEN_ID },
+    secondButton: { label: "Yes", actionId: FIB_HIGH_CHOLESTEROL_BLOOD_EXTRA_SCREEN },
+    previousButton: { actionId: FIB_THREE_YEAR_MEDICAL_HISTORY_SCREEN_ID },
   },
   {
-    id: "fib_medical_journey_high_cholesterol",
+    id: FIB_HIGH_CHOLESTEROL_SCREEN_ID,
     heading: "Medical",
     title: "Blood Pressure or Cholesterol Check",
     icon: `<svg width="23" height="22" viewBox="0 0 23 22" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -479,12 +499,12 @@ const _data: UnderwritingJourneyScreen[] = [
     `,
     question:
       "Has your blood pressure and / or cholesterol been checked by a medical professional in the last 12 months?",
-    firstButton: { label: "No", actionId: "fib_medical_journey_digestive" },
-    secondButton: { label: "Yes", actionId: "fib_medical_journey_readings_satisfactory" },
-    previousButton: { actionId: "fib_medical_journey_high_blood_pressure" },
+    firstButton: { label: "No", actionId: FIB_DIGESTIVE_SCREEN_ID },
+    secondButton: { label: "Yes", actionId: FIB_HIGH_CHOLESTEROL_BLOOD_EXTRA_SCREEN },
+    previousButton: { actionId: FIB_HIGH_BLOOD_PRESSURE_SCREEN_ID },
   },
   {
-    id: "fib_medical_journey_readings_satisfactory",
+    id: FIB_HIGH_CHOLESTEROL_BLOOD_EXTRA_SCREEN,
     heading: "Medical",
     icon: `<svg width="18" height="22" viewBox="0 0 18 22" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M15.5799 21.0001H2.94479C2.17846 21.0001 1.54297 20.3957 1.54297 19.6265V3.94882C1.54297 3.19791 2.15977 2.5752 2.94479 2.5752H15.5986C16.3649 2.5752 17.0004 3.17959 17.0004 3.94882V19.6448C16.9817 20.3957 16.3649 21.0001 15.5799 21.0001Z" stroke="#828284" stroke-width="1.66667" stroke-miterlimit="10"/>
@@ -496,12 +516,12 @@ const _data: UnderwritingJourneyScreen[] = [
     `,
     title: "Readings Satisfactory?",
     question: "Were your last blood pressure and / or cholesterol readings normal or satisfactory?",
-    firstButton: { label: "No", actionId: "fib_medical_journey_digestive" },
-    secondButton: { label: "Yes", actionId: "fib_medical_journey_digestive" },
-    previousButton: { actionId: "fib_medical_journey_high_cholesterol" },
+    firstButton: { label: "No", actionId: FIB_DIGESTIVE_SCREEN_ID },
+    secondButton: { label: "Yes", actionId: FIB_DIGESTIVE_SCREEN_ID },
+    previousButton: { actionId: FIB_HIGH_CHOLESTEROL_SCREEN_ID },
   },
   {
-    id: "fib_medical_journey_digestive",
+    id: FIB_DIGESTIVE_SCREEN_ID,
     heading: "Medical",
     title: "Digestive",
     icon: `<svg width="24" height="23" viewBox="0 0 24 23" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -510,8 +530,8 @@ const _data: UnderwritingJourneyScreen[] = [
     `,
     question: "Did you have or still have any of the following issues?",
     firstButton: { label: "No", actionId: "fib_medical_journey_ears_nose_throat" },
-    secondButton: { label: "Yes", actionId: "fib_medical_journey_digestive_hospital_stay" },
-    previousButton: { actionId: "fib_medical_journey_readings_satisfactory" },
+    secondButton: { label: "Yes", actionId: FIB_DIGESTIVE_HOSPITAL_STAY_SCREEN_ID },
+    previousButton: { actionId: FIB_HIGH_CHOLESTEROL_BLOOD_EXTRA_SCREEN },
     children: [
       {
         type: "markdown",
@@ -521,7 +541,7 @@ const _data: UnderwritingJourneyScreen[] = [
     ],
   },
   {
-    id: "fib_medical_journey_digestive_hospital_stay",
+    id: FIB_DIGESTIVE_HOSPITAL_STAY_SCREEN_ID,
     heading: "Medical",
     icon: `<svg width="24" height="23" viewBox="0 0 24 23" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M5.4116 21.9998C6.36231 18.4895 6.50855 17.9044 6.50855 17.9044C8.33687 20.8297 11.2621 21.561 11.2621 21.561C19.4529 23.9743 25.5228 12.4195 20.1111 6.64212C15.65 2.54675 11.9203 6.3496 11.9203 6.3496C9.06818 6.3496 10.1651 1.81543 10.1651 1.81543H7.09361C7.09361 1.81543 4.60713 8.39728 11.0427 10.0793C11.0427 10.0793 11.9934 12.8583 9.79948 15.8567C9.79948 15.8567 5.77726 12.0539 3.36389 16.2224C3.36389 16.2224 2.12067 18.6357 1.82812 21.9998H4.60713H5.4116Z" stroke="#828284" stroke-width="1.7" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
@@ -538,11 +558,11 @@ const _data: UnderwritingJourneyScreen[] = [
       },
     ],
     firstButton: { label: "No", actionId: "fib_medical_journey_ears_nose_throat" },
-    secondButton: { label: "Yes", actionId: "fib_medical_journey_daily_activity_restrictions" },
-    previousButton: { actionId: "fib_medical_journey_digestive" },
+    secondButton: { label: "Yes", actionId: FIB_DAILY_ACTIVITIES_RESTRICTIONS_SCREEN_ID },
+    previousButton: { actionId: FIB_DIGESTIVE_SCREEN_ID },
   },
   {
-    id: "fib_medical_journey_daily_activity_restrictions",
+    id: FIB_DAILY_ACTIVITIES_RESTRICTIONS_SCREEN_ID,
     heading: "Medical",
     icon: `<svg width="21" height="22" viewBox="0 0 21 22" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M10.5 20.5C15.7467 20.5 20 16.2467 20 11C20 5.75329 15.7467 1.5 10.5 1.5C5.25329 1.5 1 5.75329 1 11C1 16.2467 5.25329 20.5 10.5 20.5Z" stroke="#828284" stroke-width="1.80952" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
@@ -559,11 +579,11 @@ const _data: UnderwritingJourneyScreen[] = [
       },
     ],
     firstButton: { label: "No", actionId: "fib_medical_journey_ears_nose_throat" },
-    secondButton: { label: "Yes", actionId: "fib_medical_journey_digestive_symptoms_resolved" },
-    previousButton: { actionId: "fib_medical_journey_digestive_hospital_stay" },
+    secondButton: { label: "Yes", actionId: FIB_DIGESTIVE_SYMPTOMS_RESOLVED_SCREEN_ID },
+    previousButton: { actionId: FIB_DIGESTIVE_HOSPITAL_STAY_SCREEN_ID },
   },
   {
-    id: "fib_medical_journey_digestive_symptoms_resolved",
+    id: FIB_DIGESTIVE_SYMPTOMS_RESOLVED_SCREEN_ID,
     heading: "Medical",
     icon: `<svg width="24" height="23" viewBox="0 0 24 23" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M5.4116 21.9998C6.36231 18.4895 6.50855 17.9044 6.50855 17.9044C8.33687 20.8297 11.2621 21.561 11.2621 21.561C19.4529 23.9743 25.5228 12.4195 20.1111 6.64212C15.65 2.54675 11.9203 6.3496 11.9203 6.3496C9.06818 6.3496 10.1651 1.81543 10.1651 1.81543H7.09361C7.09361 1.81543 4.60713 8.39728 11.0427 10.0793C11.0427 10.0793 11.9934 12.8583 9.79948 15.8567C9.79948 15.8567 5.77726 12.0539 3.36389 16.2224C3.36389 16.2224 2.12067 18.6357 1.82812 21.9998H4.60713H5.4116Z" stroke="#828284" stroke-width="1.7" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
@@ -573,11 +593,11 @@ const _data: UnderwritingJourneyScreen[] = [
     title: "Digestive Symptoms Resolved",
     question: "Are your digestive condition(s) or symptom(s) fully resolved?",
     firstButton: { label: "No", actionId: "fib_medical_journey_ears_nose_throat" },
-    secondButton: { label: "Yes", actionId: "fib_medical_journey_condition_stable" },
-    previousButton: { actionId: "fib_medical_journey_daily_activity_restrictions" },
+    secondButton: { label: "Yes", actionId: FIB_CONDITION_STABLE_SCREEN_ID },
+    previousButton: { actionId: FIB_DAILY_ACTIVITIES_RESTRICTIONS_SCREEN_ID },
   },
   {
-    id: "fib_medical_journey_condition_stable",
+    id: FIB_CONDITION_STABLE_SCREEN_ID,
     heading: "Medical",
     icon: `<svg width="22" height="20" viewBox="0 0 22 20" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M1.41064 1.2334V19.0003H20.5895" stroke="#828284" stroke-width="1.59823" stroke-linecap="round" stroke-linejoin="round"/>
@@ -588,7 +608,7 @@ const _data: UnderwritingJourneyScreen[] = [
     question: "Are these condition(s) stable (no increasing symptoms or complications)?",
     firstButton: { label: "No", actionId: "fib_medical_journey_ears_nose_throat" },
     secondButton: { label: "Yes", actionId: "fib_medical_journey_ears_nose_throat" },
-    previousButton: { actionId: "fib_medical_journey_digestive_symptoms_resolved" },
+    previousButton: { actionId: FIB_DIGESTIVE_SYMPTOMS_RESOLVED_SCREEN_ID },
   },
   {
     id: "fib_medical_journey_ears_nose_throat",
@@ -601,7 +621,7 @@ const _data: UnderwritingJourneyScreen[] = [
     question: "Did you have any of the following issues?",
     firstButton: { label: "No", actionId: "fib_medical_journey_eye" },
     secondButton: { label: "Yes", actionId: "fib_medical_journey_eye" },
-    previousButton: { actionId: "fib_medical_journey_condition_stable" },
+    previousButton: { actionId: FIB_CONDITION_STABLE_SCREEN_ID },
     children: [
       {
         type: "markdown",
@@ -886,6 +906,7 @@ const _data: UnderwritingJourneyScreen[] = [
     title: "Cover Details",
     question: "Add or remove your existing life insurance products below.",
     firstButton: { label: "Continue", actionId: "fib_review_screen" },
+    secondButton: { label: "Add cover", actionId: "fib_financial_custom_cover_form" },
     previousButton: { actionId: "fib_financial_other_cover" },
   },
   {
