@@ -4,9 +4,11 @@ import {
   OrderedUnderwritingJourneyScreen,
   FIB_DIGESTIVE_SCREEN_ID,
   FIB_DIGESTIVE_EXTRA_SCREENS,
-  FIB_HIGH_CHOLESTEROL_BLOOD_SCREEN_ID,
-  FIB_HIGH_CHOLESTEROL_BLOOD_EXTRA_SCREEN,
   FIB_THREE_YEAR_MEDICAL_HISTORY_SCREEN_ID,
+  FIB_HIGH_BLOOD_PRESSURE_EXTRA_SCREEN,
+  FIB_HIGH_BLOOD_PRESSURE_SCREEN_ID,
+  FIB_HIGH_CHOLESTEROL_EXTRA_SCREEN,
+  FIB_HIGH_CHOLESTEROL_SCREEN_ID,
 } from "./data/underwriting-journey-data";
 import { FibAnswers } from "@redux/product/product.types";
 
@@ -129,12 +131,12 @@ function findMedicalQuestion(options: FindFibMedicalQuestionOptions): OrderedUnd
     activeChips.push(...FIB_DIGESTIVE_EXTRA_SCREENS);
   }
 
-  const hasBloodOrCholesterolScreen = activeChips.filter((screenId) =>
-    FIB_HIGH_CHOLESTEROL_BLOOD_SCREEN_ID.includes(screenId)
-  ).length;
+  if (activeChips.includes(FIB_HIGH_BLOOD_PRESSURE_SCREEN_ID)) {
+    activeChips.push(FIB_HIGH_BLOOD_PRESSURE_EXTRA_SCREEN);
+  }
 
-  if (hasBloodOrCholesterolScreen) {
-    activeChips.push(FIB_HIGH_CHOLESTEROL_BLOOD_EXTRA_SCREEN);
+  if (activeChips.includes(FIB_HIGH_CHOLESTEROL_SCREEN_ID)) {
+    activeChips.push(FIB_HIGH_CHOLESTEROL_EXTRA_SCREEN);
   }
 
   const isActiveOnMedicalJourney = getIsActiveOnMedicalJourney(question.id, answers);
@@ -156,12 +158,16 @@ function findMedicalQuestion(options: FindFibMedicalQuestionOptions): OrderedUnd
 }
 
 export function getIsActiveOnMedicalJourney(screenId: string, answers: FibAnswers): boolean {
-  // Blood or cholesterol
-  if (FIB_HIGH_CHOLESTEROL_BLOOD_EXTRA_SCREEN === screenId) {
-    const bloodAnswer = answers[FIB_HIGH_CHOLESTEROL_BLOOD_SCREEN_ID[0]];
-    const cholesterolAnswer = answers[FIB_HIGH_CHOLESTEROL_BLOOD_SCREEN_ID[1]];
-    const hasYesAnswer = bloodAnswer === "Yes" || cholesterolAnswer === "Yes";
-    return hasYesAnswer;
+  // High Blood pressure
+  if (FIB_HIGH_BLOOD_PRESSURE_EXTRA_SCREEN === screenId) {
+    const bloodAnswer = answers[FIB_HIGH_BLOOD_PRESSURE_SCREEN_ID];
+    return bloodAnswer === "Yes";
+  }
+
+  // High cholesterol
+  if (FIB_HIGH_CHOLESTEROL_EXTRA_SCREEN === screenId) {
+    const cholesterolAnswer = answers[FIB_HIGH_CHOLESTEROL_SCREEN_ID];
+    return cholesterolAnswer === "Yes";
   }
 
   // Digestive
