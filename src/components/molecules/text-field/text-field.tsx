@@ -1,14 +1,43 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, TextInput, View, Animated, ViewStyle, TextInputProps, Platform } from "react-native";
+import { StyleSheet, TextInput, View, Animated, ViewStyle, Platform } from "react-native";
 import { Style } from "@styles/index";
 import { Placeholder } from "./subcomponents/placeholder";
 import { BaseUnderline, ColouredUnderline } from "./subcomponents/underlines";
+import { numberWithCommas } from "@services/utils";
+
+type Type = "Text" | "Number";
 
 interface Props {
   placeholder: string;
   onChange: (val: string) => void;
-  type?: "Text" | "Number";
+  type?: Type;
   placeholderIndentSize?: number;
+}
+
+function stripPunctuation(text: string, type: Type) {
+  if (type === "Text") {
+    return text;
+  }
+
+  return text.replace(/,/g, "");
+}
+
+function formatText(text: string, type: Type) {
+  if (type === "Text") {
+    return text;
+  }
+
+  const castedText = Number(text);
+
+  if (castedText === 0) {
+    return "";
+  }
+
+  if (isNaN(castedText)) {
+    return text;
+  }
+
+  return `${numberWithCommas(castedText)}`;
 }
 
 export default function TextField(props: Props) {
@@ -57,28 +86,29 @@ export default function TextField(props: Props) {
     Animated.parallel([scaleAnim, translateYAnim, materialUnderlineScaleXAnim, placeholderOpacityAnim]).start();
   }, [activeMaterial, placeholderScale, placeholderTranslateY, isFocused, materialUnderlineScaleX, placeholderOpacity]);
 
-  const textInputProps = {
-    style: StyleSheet.flatten([
-      styles.inputBase,
-      { paddingLeft: placeholderIndentSize, marginBottom: Platform.OS === "android" ? -9 : -6 },
-    ]),
-    onBlur: () => setFocused(false),
-    onFocus: () => setFocused(true),
-    value: textInputValue,
-    onChangeText: (text: string) => {
-      onChange(text);
-      return setTextInputValue(text);
-    },
-    keyboardType: type === "Number" ? "number-pad" : "default",
-    underlineColorAndroid: "transparent",
-    autoCapitalize: "none",
-    autoCompleteType: "off",
-    autoCorrect: false,
-  } as TextInputProps;
-
   return (
     <View style={styles.wrapper}>
-      <TextInput {...textInputProps} />
+      <TextInput
+        style={StyleSheet.flatten([
+          styles.inputBase,
+          { paddingLeft: placeholderIndentSize, marginBottom: Platform.OS === "android" ? -9 : -6 },
+        ])}
+        onBlur={() => setFocused(false)}
+        onFocus={() => setFocused(true)}
+        onChangeText={(text: string) => {
+          const strippedPunctuation = stripPunctuation(text, type);
+          onChange(strippedPunctuation);
+
+          const formattedText = formatText(strippedPunctuation, type);
+          return setTextInputValue(formattedText);
+        }}
+        value={textInputValue}
+        keyboardType={type === "Number" ? "number-pad" : "default"}
+        underlineColorAndroid="transparent"
+        autoCapitalize="none"
+        autoCompleteType="off"
+        autoCorrect={false}
+      />
       <Placeholder
         scale={placeholderScale}
         translateY={placeholderTranslateY}
@@ -100,9 +130,8 @@ const styles = StyleSheet.create({
     overflow: "hidden",
   } as ViewStyle,
   inputBase: {
-    height: 40,
+    height: 50,
     fontSize: 22,
     fontFamily: Style.FONT_FAMILY_PRIMARY,
-    marginBottom: Platform.OS === "android" ? -6 : 0,
   } as ViewStyle,
 });

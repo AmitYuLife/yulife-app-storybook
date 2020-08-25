@@ -8,6 +8,7 @@ import { Navigation } from "react-native-navigation";
 import { MODALS } from "@navigation/constants";
 import { Cover } from "@components/containers/products/fib/fib.types";
 import { updateFIBValue } from "@redux/product/product.actions";
+import { numberWithCommas } from "@services/utils";
 
 type Props = typeof mapDispatchToProps & {
   existingCovers: Cover[];
@@ -41,7 +42,7 @@ function openModal(removeItem: () => void) {
 }
 
 function _FinancialQuestionsCoverList(props: Props) {
-  const { updateExistingCovers } = props;
+  const { updateExistingCovers, onAddCover } = props;
 
   return (
     <View style={styles.wrapper}>
@@ -57,7 +58,7 @@ function _FinancialQuestionsCoverList(props: Props) {
             <View style={styles.coverCardTextWrapper}>
               <Text style={StyleSheet.flatten([styles.coverCardText, styles.bold])}>{cover.coverName}</Text>
               <Text style={styles.coverCardText}>{cover.companyName}</Text>
-              <Text style={styles.coverCardText}>{`£${cover.coverAmount}`}</Text>
+              <Text style={styles.coverCardText}>{`£${numberWithCommas(cover.coverAmount)}`}</Text>
             </View>
             <PressableWithDelay style={styles.bin} hitSlop={{ left: 10 }} onPress={() => openModal(removeItem)}>
               <Bin />
@@ -65,7 +66,7 @@ function _FinancialQuestionsCoverList(props: Props) {
           </View>
         );
       })}
-      <PressableWithDelay onPress={props.onAddCover}>
+      <PressableWithDelay onPress={onAddCover}>
         <View style={styles.addCoverWrapper}>
           <BorderedPlus />
           <Text style={styles.addCoverText}>Add cover</Text>

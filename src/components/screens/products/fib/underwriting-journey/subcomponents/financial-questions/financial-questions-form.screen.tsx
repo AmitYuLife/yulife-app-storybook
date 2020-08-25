@@ -56,6 +56,7 @@ export function _FinancialQuestionsFormScreen(props: Props) {
         />
       </ScrollView>
       <Footer
+        hideOnKeyboardOpen={true}
         firstButton={{ action: submitForm, label: "Done", disabled: !isFormValid }}
         onPreviousButtonPressed={onPreviousButtonPressed}
       />

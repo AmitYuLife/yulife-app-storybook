@@ -1,11 +1,15 @@
-import React from "react";
-import { StyleSheet, View, ViewStyle, Text, TextStyle } from "react-native";
+import React, { useEffect, useState, useRef } from "react";
+
+import { StyleSheet, View, ViewStyle, Text, TextStyle, Keyboard, Animated, Platform } from "react-native";
 import { Style } from "../../../../../../../styles";
 import { Button } from "@atoms";
 import { TouchableOpacityWithDelay } from "@components/molecules";
 import { isIphoneX } from "react-native-iphone-x-helper";
 
+const FOOTER_HEIGHT = isIphoneX() ? 150 : 130;
+
 interface IFooterProps {
+  hideOnKeyboardOpen?: boolean;
   firstButton: {
     action: () => void;
     label: string;
@@ -19,10 +23,42 @@ interface IFooterProps {
 }
 
 export default function Footer(props: IFooterProps) {
-  const { firstButton, secondButton, onPreviousButtonPressed } = props;
+  const { firstButton, secondButton, onPreviousButtonPressed, hideOnKeyboardOpen } = props;
+  const fadeAnim = useRef(new Animated.Value(1)).current;
+  const [isVisible, setVisibilityState] = useState(true);
+
+  useEffect(() => {
+    Animated.timing(fadeAnim, {
+      toValue: isVisible ? 1 : 0,
+      duration: 200,
+      useNativeDriver: true,
+    }).start();
+  }, [isVisible, fadeAnim]);
+
+  useEffect(() => {
+    const showFooter = () => setVisibilityState(true);
+    const hideFooter = () => setVisibilityState(false);
+
+    Keyboard.addListener("keyboardDidShow", hideFooter);
+    Keyboard.addListener("keyboardDidHide", showFooter);
+
+    return () => {
+      Keyboard.removeListener("keyboardDidShow", hideFooter);
+      Keyboard.removeListener("keyboardDidHide", showFooter);
+    };
+  });
+
+  const stylesTwo = {
+    display: "none",
+    opacity: fadeAnim,
+    height: Platform.select({ ios: 0 }),
+    position: Platform.select({ ios: "relative", android: "absolute" }),
+  };
+
+  const hiddenStyles = !isVisible && hideOnKeyboardOpen ? stylesTwo : {};
 
   return (
-    <View style={styles.wrapper}>
+    <Animated.View style={StyleSheet.flatten([styles.wrapper, hiddenStyles])}>
       <View style={styles.buttonsWrapper}>
         <View style={styles.innerButtonsWrapper}>
           <Button
@@ -51,7 +87,7 @@ export default function Footer(props: IFooterProps) {
           <Text style={styles.previousQuestion}>Previous Question</Text>
         </TouchableOpacityWithDelay>
       )}
-    </View>
+    </Animated.View>
   );
 }
 
@@ -60,7 +96,7 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     alignItems: "center",
     position: "absolute",
-    height: isIphoneX() ? 150 : 130,
+    height: FOOTER_HEIGHT,
     bottom: 0,
     paddingBottom: isIphoneX() ? 20 : 0,
     justifyContent: "space-between",
