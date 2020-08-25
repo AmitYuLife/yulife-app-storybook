@@ -17,7 +17,7 @@ export const GQL_QUERY_GET_CURRENT_USER = gql`
 `;
 
 export const GQL_QUERY_GET_CURRENT_USER_LEADERBOARD = gql`
-  query {
+  query getCurrentUserLeaderboard {
     getCurrentUser {
       leaderboards {
         leaderboardId

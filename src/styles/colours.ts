@@ -162,15 +162,14 @@ export default {
     n800: "#5A5A5C",
     carrotOrange: "#EA9E2F",
   },
-  text: {
-    n800: "#5A5A5C",
-  },
   primary: {
     p400: "#F43E8E",
   },
   neutral: {
     white: "#FFFFFF",
     n600: "#838385",
+    n800: "#5A5A5C",
+    n900: "#464647",
   },
   solid: {
     grey: "#F0F0F0",

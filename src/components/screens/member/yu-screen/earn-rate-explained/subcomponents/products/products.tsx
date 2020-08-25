@@ -120,6 +120,6 @@ const styles = StyleSheet.create({
     marginHorizontal: Style.adjust(16),
     letterSpacing: 0.8,
     fontSize: Style.adjust(16, { shrinkMultiplier: 0.2 }),
-    color: Colours.text.n800,
+    color: Colours.neutral.n800,
   } as TextStyle,
 });

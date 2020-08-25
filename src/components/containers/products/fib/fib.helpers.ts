@@ -2,17 +2,57 @@ import moment from "moment";
 import { CalculatorItems } from "@components/screens/products/fib/browse-packages/subcomponents/payout-calculator/subcomponents/calculator";
 import {
   OrderedUnderwritingJourneyScreen,
+  FIB_THREE_YEAR_MEDICAL_HISTORY_SCREEN_ID,
   FIB_DIGESTIVE_SCREEN_ID,
   FIB_DIGESTIVE_EXTRA_SCREENS,
-  FIB_THREE_YEAR_MEDICAL_HISTORY_SCREEN_ID,
   FIB_HIGH_BLOOD_PRESSURE_EXTRA_SCREEN,
   FIB_HIGH_BLOOD_PRESSURE_SCREEN_ID,
   FIB_HIGH_CHOLESTEROL_EXTRA_SCREEN,
   FIB_HIGH_CHOLESTEROL_SCREEN_ID,
 } from "./data/underwriting-journey-data";
+import { PackageId } from "@components/screens/products/fib/fib.helper";
+import { useDispatch } from "react-redux";
+import { useState, useMemo } from "react";
+import { updateFIBValue } from "@redux/product/product.actions";
 import { FibAnswers } from "@redux/product/product.types";
 
 type FibButtonType = "firstButton" | "secondButton" | "previousButton";
+
+export const packages = {
+  common: {
+    label: "Common",
+  },
+  rare: {
+    label: "Rare",
+  },
+  epic: {
+    label: "Epic",
+  },
+  custom: {
+    label: "Custom",
+  },
+};
+
+export function useCover(packageId: PackageId): [PackageId, (packageId: PackageId) => void] {
+  const dispatch = useDispatch();
+  const [selectedCoverType, selectCoverType] = useState<PackageId>(packageId);
+
+  return useMemo(
+    () => [
+      selectedCoverType,
+      function selectCover(newPackageId: PackageId) {
+        selectCoverType(newPackageId);
+        dispatch(
+          updateFIBValue({
+            key: "selectedPackage",
+            value: newPackageId,
+          })
+        );
+      },
+    ],
+    [selectedCoverType, dispatch]
+  );
+}
 
 export function formatPrice(price: number | null) {
   if (!price) {

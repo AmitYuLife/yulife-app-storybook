@@ -40,6 +40,8 @@ export const GQL_GET_LIFE_INSURANCE_TOP_UPS = gql`
       salaryPercentageCovered
       newEarnRate
       descriptionHeading
+      term
+      monthlyAmountProtected
       avatarRemoteFiles {
         ...YumojiRemoteFiles
       }

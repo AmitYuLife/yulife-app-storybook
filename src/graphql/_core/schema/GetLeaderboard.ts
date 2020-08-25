@@ -17,22 +17,14 @@ export interface GetLeaderboard_getLeaderboard_avatarRemoteFiles {
 export interface GetLeaderboard_getLeaderboard {
   __typename: "LeaderboardItem";
   id: string | null;
-  firstName: string | null;
-  lastName: string | null;
   name: string | null;
   coins: number | null;
   steps: number | null;
   avatarRemoteFiles: GetLeaderboard_getLeaderboard_avatarRemoteFiles | null;
 }
 
-export interface GetLeaderboard_getCurrentUser {
-  __typename: "User";
-  id: string | null;
-}
-
 export interface GetLeaderboard {
   getLeaderboard: (GetLeaderboard_getLeaderboard | null)[] | null;
-  getCurrentUser: GetLeaderboard_getCurrentUser | null;
 }
 
 export interface GetLeaderboardVariables {

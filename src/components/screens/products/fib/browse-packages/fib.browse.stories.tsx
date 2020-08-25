@@ -17,6 +17,8 @@ const selectedPackage: Package = {
   descriptionHeading: "basic cover",
   newEarnRate: 40,
   payoutAmount: 400000,
+  term: 40,
+  monthlyAmountProtected: 1000,
 };
 
 const onPress = (): null => null;

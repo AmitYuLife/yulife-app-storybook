@@ -1,5 +1,5 @@
 import React, { memo } from "react";
-import { FibLocalNavigation } from "../fib.types";
+import { FibLocalNavigation, FIB_CONFIRM_PACKAGES } from "../fib.types";
 import { IReduxState } from "../../../../../redux/_core/reducers";
 import { connect } from "react-redux";
 import { FibUnderwritingReviewAnswersScreen } from "@components/screens/products/fib/underwriting-journey/fib.underwriting-review-answers.screen";
@@ -15,7 +15,17 @@ type Props = IFibUnderwritingReviewAnswersContainerProps & ConnectedState;
 
 const FibUnderwritingReviewAnswersContainer = memo(function (props: Props) {
   const { navigation, answers } = props;
-  return <FibUnderwritingReviewAnswersScreen onNavigateBack={() => navigation.popToMain()} answers={answers} />;
+  const onSubmitButton = () => {
+    navigation.push(FIB_CONFIRM_PACKAGES);
+  };
+
+  return (
+    <FibUnderwritingReviewAnswersScreen
+      onNavigateBack={() => navigation.popToMain()}
+      answers={answers}
+      onSubmitButton={onSubmitButton}
+    />
+  );
 });
 
 const mapStateToProps = (state: IReduxState) => ({
