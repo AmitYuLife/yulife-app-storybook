@@ -10,7 +10,6 @@ import {
 import { REHYDRATE } from "redux-persist";
 import { LOGOUT } from "@redux/user/user.actions";
 import { IReduxState } from "@redux/_core/reducers";
-import { isObject } from "util";
 
 export { IProductStore } from "./product.types";
 
@@ -112,30 +111,27 @@ function personalProductReducer<T>(state: IProductStore = initialState, action: 
 function rehydratePersonalProductStore(state: IProductStore, payload: IReduxState) {
   // payload is state on local storage state is initialState
   // payload could be undefined on fresh installs
-  const newState = { ...state };
-  // rehydrate fib answers object
-  for (const answersKey of Object.keys(initialState.fib.answers)) {
-    newState.fib.answers[answersKey] = payload?.product?.fib?.answers[answersKey];
-    if (!newState.fib.answers[answersKey]) {
-      newState.fib.answers[answersKey] = isObject(initialState.fib.answers[answersKey])
-        ? { ...initialState.fib.answers[answersKey] }
-        : initialState.fib.answers[answersKey];
-    }
+  if (payload?.product?.fib) {
+    // a persisted store might not have the additional keys we added
+    // we need to ensure that the persisted store structure is up-to-date with the initialState
+    const persistedKeys = Object.keys(payload.product.fib);
+
+    return Object.keys(initialState.fib).reduce(
+      (newPersistedState, key: keyof IProductStore["fib"]) => {
+        // check that the key from initial state is present in persisted store
+        // if it's not - default to initalState
+        if (!persistedKeys.includes(key)) {
+          (newPersistedState.fib as any)[key] = initialState.fib[key];
+        }
+
+        return newPersistedState;
+      },
+      // create a shallow copy of the persisted store
+      { ...payload.product }
+    );
   }
 
-  // rehydrate fib object
-  for (const topLevelKey of Object.keys(initialState.fib)) {
-    if (topLevelKey === "answers") {
-      continue;
-    }
-
-    (newState.fib as any)[topLevelKey] = payload?.product?.fib ? (payload.product.fib as any)[topLevelKey] : null;
-    if (!(newState.fib as any)[topLevelKey]) {
-      (newState.fib as any)[topLevelKey] = (initialState.fib as any)[topLevelKey];
-    }
-  }
-
-  return newState;
+  return state;
 }
 
 export default personalProductReducer;
