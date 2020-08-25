@@ -1,4 +1,4 @@
-import { Feature, Scenario, Given, When, Then, ScenarioOnly } from "@bdd";
+import { Feature, Scenario, Given, When, Then, ScenarioOnly, FeatureOnly } from "@bdd";
 import * as scenario from "./_steps/scenario"
 import * as given from "./_steps/given"
 import * as when from "./_steps/when"
@@ -87,7 +87,7 @@ Feature("As a user I can take a challenge", async () => {
                             Then("I should see the times up modal", then.textVisible("time’s up!"))
                             When("I tap see result", when.tapText("see result"), async () => {
                                 Then("I should see the well done screen", then.onChallengeComplete(3050, 7))
-                                When("I tap collect on the well done screen", when.tapText("collect"), async () => {
+                                When("I tap collect on the well done screen", when.tapText("collect", 5000), async () => {
                                     Then("I should see the chest unlocked screen telling me I get 200 yucoin", then.textVisible("you get 200 yucoin"))
                                     When("I dismiss the chest unlock screen", when.dismissChestUnlock(), async () => {
                                         Then("I should be on the quest screen", then.idVisible(QUESTS_SCREEN(0), 2500))
