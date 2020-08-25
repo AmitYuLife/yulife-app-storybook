@@ -9,6 +9,7 @@ import {
 } from "./product.types";
 import { REHYDRATE } from "redux-persist";
 import { LOGOUT } from "@redux/user/user.actions";
+import { IReduxState } from "@redux/_core/reducers";
 
 export { IProductStore } from "./product.types";
 
@@ -45,7 +46,7 @@ export const initialState: IProductStore = {
 function personalProductReducer<T>(state: IProductStore = initialState, action: ProductActionTypes<T>) {
   switch (action.type) {
     case REHYDRATE:
-      return rehydratePersonalProductStore(state);
+      return rehydratePersonalProductStore(state, action.payload as IReduxState);
     case LOGOUT:
       return initialState;
     case UPDATE_FIB_VALUE:
@@ -107,10 +108,12 @@ function personalProductReducer<T>(state: IProductStore = initialState, action: 
   }
 }
 
-function rehydratePersonalProductStore(state: IProductStore) {
+function rehydratePersonalProductStore(state: IProductStore, payload: IReduxState) {
+  // payload is state on local storage state is initialState
   // rehydrate fib object
   const newState = { ...state };
   for (const topLevelKey of Object.keys(initialState.fib)) {
+    (newState.fib as any)[topLevelKey] = (payload.product.fib as any)[topLevelKey];
     if (!(newState.fib as any)[topLevelKey]) {
       (newState.fib as any)[topLevelKey] = (initialState.fib as any)[topLevelKey];
     }
@@ -118,6 +121,7 @@ function rehydratePersonalProductStore(state: IProductStore) {
 
   // rehydrate fib answers object
   for (const answersKey of Object.keys(initialState.fib.answers)) {
+    newState.fib.answers[answersKey] = payload.product.fib.answers[answersKey];
     if (!newState.fib.answers[answersKey]) {
       newState.fib.answers[answersKey] = initialState.fib.answers[answersKey];
     }
