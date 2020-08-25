@@ -97,9 +97,9 @@ export function FinancialQuestionsForm(props: Props) {
   return (
     <View style={styles.wrapper}>
       <TextField onChange={(val) => updateFormValue(fields[0].id, val)} placeholder={fields[0].label} />
-      <Pad height={20} />
+      <Pad height={10} />
       <TextField onChange={(val) => updateFormValue(fields[1].id, val)} placeholder={fields[1].label} />
-      <Pad height={20} />
+      <Pad height={10} />
       <View>
         <Text style={styles.poundSign}>£</Text>
         <View style={styles.textFieldWrapper}>
@@ -140,12 +140,12 @@ function RadioInput(props: RadioProps) {
 }
 
 const styles = StyleSheet.create({
-  wrapper: { width: Style.DEVICE_WIDTH - 63, alignSelf: "center" },
+  wrapper: { width: Style.DEVICE_WIDTH - 63, alignSelf: "center", marginTop: 30 },
   radioWrapper: {
     flexDirection: "row",
   },
   textFieldWrapper: { flex: 1 },
-  errorWrapper: { height: 20 },
+  errorWrapper: { height: 10 },
   radioInputLabel: { marginBottom: 16, fontFamily: Style.FONT_FAMILY_PRIMARY, fontSize: 20 },
   poundSign: {
     position: "absolute",

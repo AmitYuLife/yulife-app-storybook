@@ -899,7 +899,7 @@ const _data: UnderwritingJourneyScreen[] = [
     title: "Financial Questions",
     question:
       "Will the total amount of life insurance on your life (including any amount to be replaced and any other applied for) when added together exceed £20,000,000?",
-    firstButton: { label: "No", actionId: "fib_your_name" },
+    firstButton: { label: "No", actionId: "fib_review_screen" },
     secondButton: { label: "Yes", actionId: "fib_financial_other_cover" },
     previousButton: { actionId: "fib_medical_covid_symptoms" },
   },
@@ -909,7 +909,7 @@ const _data: UnderwritingJourneyScreen[] = [
     icon: FINANCIAL_QUESTIONS_ICON,
     title: "Financial Questions",
     question: "Do you have, or have you applied for any more life insurance products?",
-    firstButton: { label: "No", actionId: "fib_your_name" },
+    firstButton: { label: "No", actionId: "fib_review_screen" },
     secondButton: { label: "Yes", actionId: "fib_financial_cover_list" },
     previousButton: { actionId: "fib_financial_questions" },
   },
