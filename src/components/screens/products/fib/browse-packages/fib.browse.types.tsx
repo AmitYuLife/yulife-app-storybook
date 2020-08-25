@@ -6,6 +6,8 @@ interface IServerPackageProps {
   earnRate: number;
   newEarnRate: number;
   salaryPercentageCovered: number;
+  term: number;
+  monthlyAmountProtected: number;
 }
 
 interface ILocalPackageProps {

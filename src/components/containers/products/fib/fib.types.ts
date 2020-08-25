@@ -10,7 +10,8 @@ export type FibRoute =
   | "FibFeedbackForm"
   | "FibUnderwritingJourney"
   | "FibUnderwritingJourneyIntroduction"
-  | "FibUnderwritingReviewAnswers";
+  | "FibUnderwritingReviewAnswers"
+  | "FibConfirmPackages";
 
 export type FibLocalNavigation = LocalNavigation<FibRoute>;
 
@@ -24,6 +25,7 @@ export const FIB_FEEDBACK_FORM = "FibFeedbackForm";
 export const FIB_UNDERWRITING_JOURNEY = "FibUnderwritingJourney";
 export const FIB_UNDERWRITING_JOURNEY_INTRODUCTION = "FibUnderwritingJourneyIntroduction";
 export const FIB_UNDERWRITING_REVIEW_ANSWERS = "FibUnderwritingReviewAnswers";
+export const FIB_CONFIRM_PACKAGES = "FibConfirmPackages";
 
 export const FIB_UNDERWRITING_REVIEW_ANSWERS_SCREEN_ID = "fib_review_screen";
 

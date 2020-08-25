@@ -1,7 +1,7 @@
-import React, { memo, useState, useMemo, useEffect } from "react";
+import React, { memo, useState, useEffect } from "react";
 import moment from "moment";
 import { useQuery } from "@apollo/react-hooks";
-import { connect, useDispatch } from "react-redux";
+import { connect } from "react-redux";
 import { View, Linking } from "react-native";
 import { Text } from "@atoms";
 import { FibBrowseScreen, FibCustomCoverScreen } from "@screens";
@@ -17,14 +17,12 @@ import fibFaqItems from "../data/faq-fib-data";
 import fibDocumentsItems from "../data/documents-data";
 import { GetYulifer } from "@graphql/_core/schema";
 import { GQL_QUERY_GET_YULIFER } from "@graphql/yuscreen";
-import { PackageId } from "@components/screens/products/fib/fib.helper";
 import { Package } from "@components/screens/products/fib/browse-packages/fib.browse.types";
 import { getFIBState } from "@redux/product/product.selectors";
 import { IReduxState } from "@redux/_core/reducers";
 import { IFaq } from "@components/screens/products/fib/browse-packages/subcomponents/faqs/faq";
 import { getUserDateOfBirth } from "@redux/user/user.selectors";
-import { calculatePayoutCalculatorItems } from "../fib.helpers";
-import { updateFIBValue } from "../../../../../redux/product/product.actions";
+import { calculatePayoutCalculatorItems, packages, useCover } from "../fib.helpers";
 
 interface IFibContainer {
   navigation: FibLocalNavigation;
@@ -43,21 +41,6 @@ const documents: IFaq[] = fibDocumentsItems.map((document) => ({
   },
   iconSvgXml: document.iconSvgXml,
 }));
-
-const packages = {
-  common: {
-    label: "Common",
-  },
-  rare: {
-    label: "Rare",
-  },
-  epic: {
-    label: "Epic",
-  },
-  custom: {
-    label: "Custom",
-  },
-};
 
 const FibBrowseContainer = memo(function (props: IFibContainer & ReturnType<typeof mapStateToProps>) {
   const { navigation, selectFaq, grossSalary, selectedPackage } = props;
@@ -127,6 +110,8 @@ const FibBrowseContainer = memo(function (props: IFibContainer & ReturnType<type
     id: selectedCoverType,
     label: packages[selectedCoverType].label,
     descriptionHeading: data?.getLifeInsuranceTopUps.descriptionHeading || "",
+    term: data?.getLifeInsuranceTopUps.term,
+    monthlyAmountProtected: data?.getLifeInsuranceTopUps.monthlyAmountProtected,
   };
 
   if (isCustomCover) {
@@ -168,27 +153,6 @@ const FibBrowseContainer = memo(function (props: IFibContainer & ReturnType<type
     />
   );
 });
-
-function useCover(packageId: PackageId): [PackageId, (packageId: PackageId) => void] {
-  const dispatch = useDispatch();
-  const [selectedCoverType, selectCoverType] = useState<PackageId>(packageId);
-
-  return useMemo(
-    () => [
-      selectedCoverType,
-      function selectCover(newPackageId: PackageId) {
-        selectCoverType(newPackageId);
-        dispatch(
-          updateFIBValue({
-            key: "selectedPackage",
-            value: newPackageId,
-          })
-        );
-      },
-    ],
-    [selectedCoverType, dispatch]
-  );
-}
 
 const mapStateToProps = (state: IReduxState) => ({
   grossSalary: getFIBState(state).salary,

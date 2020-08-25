@@ -23,6 +23,8 @@ export interface GetLifeInsuranceTopUps_getLifeInsuranceTopUps {
   salaryPercentageCovered: number | null;
   newEarnRate: number | null;
   descriptionHeading: string | null;
+  term: number | null;
+  monthlyAmountProtected: number | null;
   avatarRemoteFiles: GetLifeInsuranceTopUps_getLifeInsuranceTopUps_avatarRemoteFiles | null;
 }
 

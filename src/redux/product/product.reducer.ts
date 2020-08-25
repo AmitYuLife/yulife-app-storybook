@@ -108,22 +108,22 @@ function personalProductReducer<T>(state: IProductStore = initialState, action: 
 }
 
 function rehydratePersonalProductStore(state: IProductStore) {
-  if (!Object.keys(state.fib.answers).length) {
-    const newState = { ...state };
-    newState.fib.answers = { ...initialState.fib.answers };
-    newState.fib.answers.height = { ...initialState.fib.answers.height };
-    newState.fib.answers.weight = { ...initialState.fib.answers.weight };
-    for (const key of Object.keys(newState.fib.answers)) {
-      if ((state.fib as any)[key]) {
-        newState.fib.answers[key] = (state.fib as any)[key];
-        delete (state.fib as any)[key];
-      }
+  // rehydrate fib object
+  const newState = { ...state };
+  for (const topLevelKey of Object.keys(initialState.fib)) {
+    if (!(newState.fib as any)[topLevelKey]) {
+      (newState.fib as any)[topLevelKey] = (initialState.fib as any)[topLevelKey];
     }
-
-    return newState;
   }
 
-  return state;
+  // rehydrate fib answers object
+  for (const answersKey of Object.keys(initialState.fib.answers)) {
+    if (!newState.fib.answers[answersKey]) {
+      newState.fib.answers[answersKey] = initialState.fib.answers[answersKey];
+    }
+  }
+
+  return newState;
 }
 
 export default personalProductReducer;
