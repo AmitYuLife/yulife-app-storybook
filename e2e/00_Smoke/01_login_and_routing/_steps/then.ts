@@ -23,7 +23,8 @@ import { navigation } from "@navigation"
 export const {
     textVisible,
     textNotVisible,
-    idVisible
+    idVisible,
+    wait
 } = navigation.common
 
 export const emailUnchanged = async (): Promise<void> => {
@@ -44,6 +45,7 @@ export const loginButtonIsActive = async (): Promise<void> => {
 };
 
 export const combinationErrorMessagePresent = async (): Promise<void> => {
+    await wait(5000)()
     const target = element(by.label("Sorry this email and password combination does not exist."));
     await waitFor(target).toExist();
     await expect(target).toBeVisible();

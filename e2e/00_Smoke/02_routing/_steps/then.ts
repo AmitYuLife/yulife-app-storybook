@@ -41,7 +41,7 @@ export const statsCorrect = async () => {
     const titles = [STATS_TITLE("your yucoin"), STATS_TITLE("challenges"), STATS_TITLE("steps"), STATS_TITLE("mindfulness"), STATS_TITLE("cycling")]
     const subtitles = ["total earned", "total redeemed", "total challenges completed", "challenge history", "average daily steps", "most steps in a day", "steps this week", "average mindful minutes per day", "mindful minutes on your best week", "mindful minutes this week", "average cycling distance per day", "cycling distance on your best week", "cycling distance this week", "see activity history"]
 
-    const maxAttempts = 25
+    const maxAttempts = 35
 
     for (const i of titles) {
         let currentAttempt = 0

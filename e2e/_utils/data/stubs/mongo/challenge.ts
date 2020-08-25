@@ -613,9 +613,9 @@ export const CHALLENGE_USER_14_E = {
         ...CHALLENGE_TEMPLATE.data,
         _id: generateRandomMongoId(),
         userId: CUSTOMER_14.data.customerId,
-        startTime: moment().subtract(2, "days").toDate(),
-        startDateTime: moment().subtract(2, "days").toDate(),
-        endDateTime: moment().subtract(2, "days").toDate(),
+        startTime: moment().subtract(12, "days").toDate(),
+        startDateTime: moment().subtract(12, "days").toDate(),
+        endDateTime: moment().subtract(12, "days").toDate(),
         incomingData: {
             steps: 2200
         },
@@ -626,7 +626,7 @@ export const CHALLENGE_USER_14_E = {
                 completionData: [],
                 _id: generateRandomMongoId(),
                 id: LONG_WALK_MILESTONE_1.data.id,
-                completed: moment().subtract(2, "day").toDate(),
+                completed: moment().subtract(12, "day").toDate(),
                 data: {
                     steps: 2500,
                 },
@@ -643,9 +643,9 @@ export const CHALLENGE_USER_14_F = {
         ...CHALLENGE_TEMPLATE.data,
         _id: generateRandomMongoId(),
         userId: CUSTOMER_14.data.customerId,
-        startTime: moment().subtract(1, "days").toDate(),
-        startDateTime: moment().subtract(1, "days").toDate(),
-        endDateTime: moment().subtract(1, "days").toDate(),
+        startTime: moment().subtract(7, "days").toDate(),
+        startDateTime: moment().subtract(7, "days").toDate(),
+        endDateTime: moment().subtract(7, "days").toDate(),
         incomingData: {
             steps: 2500
         },

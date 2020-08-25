@@ -13,9 +13,9 @@ export const {
 export const userStatsVisible = async () => {
     const titles = [STATS_TITLE("your yucoin"), STATS_TITLE("challenges"), STATS_TITLE("steps"), STATS_TITLE("mindfulness")]
     const subtitles = ["total earned", "total redeemed", "total challenges completed", "challenge history", "average daily steps", "most steps in a day", "steps this week", "average mindful minutes per day", "mindful minutes on your best week", "mindful minutes this week", "see activity history"]
-    const mostStepsDate = moment().subtract(1, "days").format("DD/MM/YYYY").toString()
+    const mostStepsDate = moment().subtract(7, "days").format("DD/MM/YYYY").toString()
     const mindfulWeekBeginningDate = "27/04/2020"
-    const valueIDs = [STATS_VALUE("940"), STATS_VALUE("0"), STATS_VALUE("3"), STATS_CHALLENGE_HISTORY(2), STATS_CHALLENGE_HISTORY(1), STATS_VALUE("917"), STATS_VALUE("2,500"), STATS_VALUE(mostStepsDate), STATS_VALUE("57"), STATS_VALUE("167"), STATS_VALUE(mindfulWeekBeginningDate)]
+    const valueIDs = [STATS_VALUE("940"), STATS_VALUE("0"), STATS_VALUE("3"), STATS_CHALLENGE_HISTORY(1), STATS_CHALLENGE_HISTORY(1), STATS_VALUE("917"), STATS_VALUE("2,500"), STATS_VALUE(mostStepsDate), STATS_VALUE("57"), STATS_VALUE("167"), STATS_VALUE(mindfulWeekBeginningDate)]
 
     const maxAttempts = 25
 
