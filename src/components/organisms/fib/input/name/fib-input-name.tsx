@@ -19,11 +19,11 @@ const _FibInputName = (props: ConnectedProps) => {
         value={fullName}
         onChangeText={updateName}
         maxLength={48}
-        width={Style.DEVICE_WIDTH - 80}
+        width={Style.DEVICE_WIDTH - 64}
         keyboardType="default"
         style={styles.textInput}
         shadowStyle={styles.shadow}
-        maxBeforeTruncate={26}
+        maxBeforeTruncate={32}
       />
     </View>
   );
@@ -47,7 +47,7 @@ const styles = {
     width: "100%",
     justifyContent: "center",
     alignItems: "center",
-    paddingTop: 16,
+    paddingTop: 105,
   } as ViewStyle,
   textInput: {
     borderTopWidth: 0,
@@ -55,9 +55,10 @@ const styles = {
     borderRightWidth: 0,
     borderRadius: 0,
     borderBottomColor: Colours.darkHotPink,
+    borderBottomWidth: 2,
   } as TextStyle,
   shadow: {
     justifyContent: "flex-start",
-    width: Style.DEVICE_WIDTH - 120,
+    width: Style.DEVICE_WIDTH - 64,
   } as ViewStyle,
 };

@@ -46,7 +46,7 @@ function _FinancialQuestionsCoverList(props: Props) {
 
   return (
     <View style={styles.wrapper}>
-      {existingCovers.map((cover, index) => {
+      {(existingCovers || []).map((cover, index) => {
         const covers = removeByIndex(props.existingCovers, index);
 
         function removeItem() {
