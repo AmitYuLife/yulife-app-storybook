@@ -106,13 +106,13 @@ function getStateProperties(active: boolean, iconType: ChipIconType, icon: strin
 
 const styles = StyleSheet.create({
   wrapper: {
-    width: 160,
+    width: Style.isWideScreen() ? 160 : 140,
     height: 56,
     borderRadius: 60,
   } as ViewStyle,
   viewWrapper: {
     flexDirection: "row",
-    marginHorizontal: 23,
+    marginHorizontal: Style.isWideScreen() ? 23 : 13,
     height: "100%",
     alignContent: "center",
   } as ViewStyle,
