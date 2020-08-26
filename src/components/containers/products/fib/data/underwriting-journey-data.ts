@@ -67,6 +67,8 @@ export const FIB_HIGH_BLOOD_PRESSURE_EXTRA_SCREEN = "fib_medical_journey_blood_p
 export const FIB_HIGH_CHOLESTEROL_EXTRA_SCREEN = "fib_medical_journey_cholesterol_readings_satisfactory";
 export const FIB_DIGESTIVE_SCREEN_ID = "fib_medical_journey_digestive";
 export const FIB_THREE_YEAR_MEDICAL_HISTORY_SCREEN_ID = "fib_medical_journey_three_year_medical_history";
+export const FIB_ENTER_YOUR_NAME = "fib_enter_your_name";
+export const FIB_ENTER_YOUR_DATE_OF_BIRTH = "fib_enter_your_date_of_birth";
 
 const FIB_DIGESTIVE_HOSPITAL_STAY_SCREEN_ID = "fib_medical_journey_digestive_hospital_stay";
 const FIB_DAILY_ACTIVITIES_RESTRICTIONS_SCREEN_ID = "fib_medical_journey_daily_activity_restrictions";
@@ -87,7 +89,7 @@ const _data: UnderwritingJourneyScreen[] = [
     icon: NAME_ICON,
     title: "Name",
     question: "Is this your name?",
-    firstButton: { label: "No", actionId: "fib_enter_your_name" },
+    firstButton: { label: "No", actionId: FIB_ENTER_YOUR_NAME },
     secondButton: { label: "Yes", actionId: "fib_your_date_of_birth" },
     children: [
       {
@@ -96,7 +98,7 @@ const _data: UnderwritingJourneyScreen[] = [
     ],
   },
   {
-    id: "fib_enter_your_name",
+    id: FIB_ENTER_YOUR_NAME,
     heading: "About You",
     icon: NAME_ICON,
     title: "Name",
@@ -110,7 +112,7 @@ const _data: UnderwritingJourneyScreen[] = [
     icon: BIRTHDAY_ICON,
     title: "Birthday",
     question: "Is this your\ndate or birth?",
-    firstButton: { label: "No", actionId: "fib_enter_your_date_of_birth" },
+    firstButton: { label: "No", actionId: FIB_ENTER_YOUR_DATE_OF_BIRTH },
     secondButton: { label: "Yes", actionId: "fib_uk_resident" },
     previousButton: { actionId: "fib_your_name" },
     children: [
@@ -120,7 +122,7 @@ const _data: UnderwritingJourneyScreen[] = [
     ],
   },
   {
-    id: "fib_enter_your_date_of_birth",
+    id: FIB_ENTER_YOUR_DATE_OF_BIRTH,
     heading: "About You",
     icon: BIRTHDAY_ICON,
     title: "Birthday",

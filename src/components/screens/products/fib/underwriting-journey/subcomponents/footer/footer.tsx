@@ -1,12 +1,9 @@
 import React, { useEffect, useState, useRef } from "react";
 
 import { StyleSheet, View, ViewStyle, Text, TextStyle, Keyboard, Animated, Platform } from "react-native";
-import { Style } from "../../../../../../../styles";
+import { Style } from "@styles";
 import { Button } from "@atoms";
 import { TouchableOpacityWithDelay } from "@components/molecules";
-import { isIphoneX } from "react-native-iphone-x-helper";
-
-const FOOTER_HEIGHT = isIphoneX() ? 150 : 130;
 
 interface IFooterProps {
   hideOnKeyboardOpen?: boolean;
@@ -25,28 +22,32 @@ interface IFooterProps {
 export default function Footer(props: IFooterProps) {
   const { firstButton, secondButton, onPreviousButtonPressed, hideOnKeyboardOpen } = props;
   const fadeAnim = useRef(new Animated.Value(1)).current;
-  const [isVisible, setVisibilityState] = useState(true);
+  const [isKeyboardVisible, setKeyboardVisibilityState] = useState(false);
 
   useEffect(() => {
-    Animated.timing(fadeAnim, {
-      toValue: isVisible ? 1 : 0,
+    const animation = Animated.timing(fadeAnim, {
+      toValue: isKeyboardVisible ? 0 : 1,
       duration: 200,
       useNativeDriver: true,
-    }).start();
-  }, [isVisible, fadeAnim]);
+    });
+
+    animation.start();
+
+    return animation.stop;
+  }, [isKeyboardVisible, fadeAnim]);
 
   useEffect(() => {
-    const showFooter = () => setVisibilityState(true);
-    const hideFooter = () => setVisibilityState(false);
+    const onKeyBoardDidShow = () => setKeyboardVisibilityState(true);
+    const onKeyBoardDidHide = () => setKeyboardVisibilityState(false);
 
-    Keyboard.addListener("keyboardDidShow", hideFooter);
-    Keyboard.addListener("keyboardDidHide", showFooter);
+    Keyboard.addListener("keyboardDidShow", onKeyBoardDidShow);
+    Keyboard.addListener("keyboardDidHide", onKeyBoardDidHide);
 
     return () => {
-      Keyboard.removeListener("keyboardDidShow", hideFooter);
-      Keyboard.removeListener("keyboardDidHide", showFooter);
+      Keyboard.removeListener("keyboardDidShow", onKeyBoardDidShow);
+      Keyboard.removeListener("keyboardDidHide", onKeyBoardDidHide);
     };
-  });
+  }, []);
 
   const stylesTwo = {
     display: "none",
@@ -55,10 +56,24 @@ export default function Footer(props: IFooterProps) {
     position: Platform.select({ ios: "relative", android: "absolute" }),
   };
 
-  const hiddenStyles = !isVisible && hideOnKeyboardOpen ? stylesTwo : {};
+  const shouldHide = isKeyboardVisible && hideOnKeyboardOpen;
+  const hiddenStyles = shouldHide ? stylesTwo : {};
+
+  let paddingBottomWrapper = 68 + (Style.hasNotch ? 16 : 0);
+
+  if (!onPreviousButtonPressed && isKeyboardVisible) {
+    paddingBottomWrapper = 22;
+  }
+
+  if (onPreviousButtonPressed) {
+    paddingBottomWrapper = Platform.select({ ios: isKeyboardVisible ? 0 : Style.hasNotch ? 16 : 0, android: 0 });
+  }
 
   return (
-    <Animated.View style={StyleSheet.flatten([styles.wrapper, hiddenStyles])}>
+    <Animated.View
+      pointerEvents={shouldHide ? "none" : "auto"}
+      style={StyleSheet.flatten([styles.wrapper, hiddenStyles, { paddingBottom: paddingBottomWrapper }])}
+    >
       <View style={styles.buttonsWrapper}>
         <View style={styles.innerButtonsWrapper}>
           <Button
@@ -96,9 +111,7 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     alignItems: "center",
     position: "absolute",
-    height: FOOTER_HEIGHT,
     bottom: 0,
-    paddingBottom: isIphoneX() ? 20 : 0,
     justifyContent: "space-between",
     backgroundColor: "rgba(255, 255, 255, 0.95)",
   } as ViewStyle,
@@ -113,7 +126,9 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   } as ViewStyle,
   previousQuestionWrapper: {
-    paddingBottom: 25,
+    marginBottom: 20,
+    marginTop: 8,
+    height: 40,
     width: "100%",
     alignItems: "center",
     justifyContent: "space-around",

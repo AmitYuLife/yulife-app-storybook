@@ -167,6 +167,7 @@ export default {
   },
   neutral: {
     white: "#FFFFFF",
+    n500: "#979799",
     n600: "#838385",
     n800: "#5A5A5C",
     n900: "#464647",

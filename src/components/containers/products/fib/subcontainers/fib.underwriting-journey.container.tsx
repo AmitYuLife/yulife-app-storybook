@@ -10,6 +10,8 @@ import {
   FIB_DIGESTIVE_EXTRA_SCREENS,
   FIB_DIGESTIVE_SCREEN_ID,
   FIB_THREE_YEAR_MEDICAL_HISTORY_SCREEN_ID,
+  FIB_ENTER_YOUR_NAME,
+  FIB_ENTER_YOUR_DATE_OF_BIRTH,
 } from "../data/underwriting-journey-data";
 import { FIBProgressBar } from "@organisms";
 import { IReduxState } from "@redux/_core/reducers";
@@ -132,6 +134,16 @@ const FibUnderwritingJourneyContainer = memo(function (props: Props) {
         return entry[1] ? entry[0] : null;
       })
       .filter((e) => !!e).length;
+  }
+
+  if (currentQuestion.id === FIB_ENTER_YOUR_NAME) {
+    disableFirstButton = !fibAnswers?.fib_your_name?.length;
+  }
+
+  if (currentQuestion.id === FIB_ENTER_YOUR_DATE_OF_BIRTH) {
+    const { birthDay, birthMonth, birthYear } = fibAnswers;
+    const isValidDates = !!Number(birthDay) && !!Number(birthMonth) && !!Number(birthYear);
+    disableFirstButton = !isValidDates;
   }
 
   return (

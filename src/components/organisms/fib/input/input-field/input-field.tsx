@@ -11,7 +11,7 @@ import {
   Platform,
 } from "react-native";
 import { Text } from "@atoms";
-import { Colours } from "@styles";
+import { Colours, Style } from "@styles";
 import * as Anim from "react-native-animatable";
 
 export interface InputFieldProps {
@@ -74,8 +74,7 @@ const _InputField = (props: InputFieldProps) => {
 
   return (
     <View style={styles.fieldWrapper}>
-      <Text style={styles.fieldLabel}>{label}</Text>
-      <View style={[styles.field, { width }, style]}>
+      <View style={StyleSheet.flatten(StyleSheet.flatten([styles.field, { width }, style]))}>
         <TextInput
           onFocus={handleFocus(true)}
           onBlur={handleFocus(false)}
@@ -83,7 +82,7 @@ const _InputField = (props: InputFieldProps) => {
           onKeyPress={handleKeyPress}
           autoFocus={autoFocus}
           ref={forwardRef}
-          style={[styles.textInput, style]}
+          style={StyleSheet.flatten([styles.textInput, style])}
           value={value}
           onChangeText={onChangeText}
           autoCapitalize="none"
@@ -92,10 +91,14 @@ const _InputField = (props: InputFieldProps) => {
           maxLength={maxLength}
           keyboardType={keyboardType}
         />
-        <View pointerEvents="none" style={[styles.shadowWrapper, shadowStyle]}>
-          <Text bold={true} style={styles.shadow}>
-            {ellipsizeHead(value, maxBeforeTruncate)}
-          </Text>
+        <View pointerEvents="none" style={StyleSheet.flatten([styles.shadowWrapper, shadowStyle])}>
+          {value ? (
+            <Text bold={true} style={styles.shadow}>
+              {ellipsizeHead(value, maxBeforeTruncate)}
+            </Text>
+          ) : (
+            <Text style={StyleSheet.flatten([styles.shadow, { color: Colours.neutral.n500 }])}>{label}</Text>
+          )}
           <Blinker show={isFocused} />
         </View>
       </View>
@@ -114,15 +117,12 @@ const styles = {
     height: 70,
     marginHorizontal: 4,
   } as ViewStyle,
-  fieldLabel: {
-    fontSize: 12,
-  } as TextStyle,
   field: {
     borderWidth: StyleSheet.hairlineWidth,
     borderColor: Colours.lightGray,
     justifyContent: "center",
     alignItems: "center",
-    height: 40,
+    height: 32,
     borderRadius: 6,
     backgroundColor: "white",
     marginTop: 4,
@@ -136,6 +136,10 @@ const styles = {
   } as ViewStyle,
   shadow: {
     letterSpacing: 1,
+    fontFamily: Style.FONT_FAMILY_PRIMARY,
+    fontSize: 20,
+    lineHeight: 24,
+    color: Colours.neutral.n900,
   } as TextStyle,
 };
 
@@ -166,8 +170,8 @@ const blinkerStyles = {
     color: Colours.darkHotPink,
   } as ViewStyle,
   cursor: {
-    width: 1,
-    height: 14,
+    width: 2,
+    height: 22,
     backgroundColor: Colours.darkHotPink,
   } as ViewStyle,
 };

@@ -7,6 +7,7 @@ import { IReduxState } from "@redux/_core/reducers";
 import { getFIBState } from "@redux/product/product.selectors";
 import { InputField } from "../input-field";
 import moment from "moment";
+import { getUserDateOfBirth } from "@redux/user/user.selectors";
 
 type ConnectedProps = ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps;
 
@@ -16,6 +17,7 @@ const _FibInputBirth = (props: ConnectedProps) => {
     updateBirthDay,
     updateBirthMonth,
     updateBirthYear,
+    userDoB,
   } = props;
 
   const dayRef: RefObject<TextInput> = useRef(null);
@@ -23,10 +25,11 @@ const _FibInputBirth = (props: ConnectedProps) => {
   const yearRef: RefObject<TextInput> = useRef(null);
 
   useEffect(() => {
-    updateBirthDay("");
-    updateBirthMonth("");
-    updateBirthYear("");
-  }, [updateBirthDay, updateBirthMonth, updateBirthYear]);
+    const userFormattedDoB = moment(userDoB).format("DD-MM-YYYY").split("-");
+    updateBirthDay(userFormattedDoB[0] || "");
+    updateBirthMonth(userFormattedDoB[1] || "");
+    updateBirthYear(userFormattedDoB[2] || "");
+  }, [updateBirthDay, updateBirthMonth, updateBirthYear, userDoB]);
 
   const validateDay = (text: string) => {
     const parsedText = Number(text);
@@ -103,15 +106,17 @@ const _FibInputBirth = (props: ConnectedProps) => {
         value={birthDay}
         onChangeText={validateDay}
         maxLength={2}
-        label="Day"
+        label="DD"
+        style={styles.textInput}
       />
       <InputField
         forwardRef={monthRef}
         value={birthMonth}
         onChangeText={validateMonth}
         maxLength={2}
-        label="Month"
+        label="MM"
         onBackSpace={handleBackspaceMonth}
+        style={styles.textInput}
       />
       <InputField
         forwardRef={yearRef}
@@ -119,9 +124,10 @@ const _FibInputBirth = (props: ConnectedProps) => {
         value={birthYear}
         onChangeText={validateYear}
         maxLength={4}
-        label="Year"
+        label="YYYY"
         onBackSpace={handleBackspaceYear}
         width={70}
+        style={styles.textInput}
       />
     </View>
   );
@@ -129,6 +135,7 @@ const _FibInputBirth = (props: ConnectedProps) => {
 
 const mapStateToProps = (state: IReduxState) => ({
   fibState: getFIBState(state).answers,
+  userDoB: getUserDateOfBirth(state),
 });
 
 const mapDispatchToProps = {

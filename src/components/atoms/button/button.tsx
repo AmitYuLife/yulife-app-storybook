@@ -101,7 +101,10 @@ const styles = StyleSheet.create({
     width: Style.adjust(210),
   },
   small: {
-    width: Platform.select({ ios: Style.adjust(170), android: Style.adjust(150) }),
+    width: Platform.select({
+      ios: Style.adjust(170, { shrinkThreshold: Style.DEVICE_WIDTH < 400, shrinkMultiplier: 0.1 }),
+      android: Style.adjust(150),
+    }),
   },
   large: {
     width: Style.DEVICE_WIDTH - 70,
