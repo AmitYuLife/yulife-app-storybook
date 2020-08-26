@@ -36,4 +36,8 @@ export default StyleSheet.create({
     height: Style.SCALE_UP_AND_DOWN(262),
     marginBottom: Platform.OS === "ios" && Style.DEVICE_HEIGHT < 700 ? -20 : 0,
   } as ImageStyle,
+  lottie: {
+    width: Style.DEVICE_WIDTH,
+    bottom: -2,
+  } as ImageStyle,
 });
