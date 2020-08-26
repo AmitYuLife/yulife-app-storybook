@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState } from "react";
-import { Animated, TextStyle, StyleSheet, LayoutChangeEvent } from "react-native";
+import { Animated, TextStyle, StyleSheet, LayoutChangeEvent, Platform } from "react-native";
 import { Style, Colours } from "@styles";
 
 interface Props {
@@ -75,10 +75,9 @@ const styles = StyleSheet.create({
   placeholderWrapper: {
     height: 24,
     position: "absolute",
-    bottom: 4,
+    bottom: Platform.OS === "android" ? 0 : 1,
     left: 0,
     width: "100%",
-    alignItems: "flex-start",
     justifyContent: "flex-end",
   },
   placeholder: {

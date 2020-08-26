@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, TextInput, View, Animated, ViewStyle, Platform } from "react-native";
+import { StyleSheet, TextInput, View, Animated, ViewStyle } from "react-native";
 import { Style } from "@styles/index";
 import { Placeholder } from "./subcomponents/placeholder";
 import { BaseUnderline, ColouredUnderline } from "./subcomponents/underlines";
@@ -89,10 +89,7 @@ export default function TextField(props: Props) {
   return (
     <View style={styles.wrapper}>
       <TextInput
-        style={StyleSheet.flatten([
-          styles.inputBase,
-          { paddingLeft: placeholderIndentSize, marginBottom: Platform.OS === "android" ? -9 : -6 },
-        ])}
+        style={StyleSheet.flatten([styles.inputBase, { paddingLeft: placeholderIndentSize }])}
         onBlur={() => setFocused(false)}
         onFocus={() => setFocused(true)}
         onChangeText={(text: string) => {
@@ -130,8 +127,9 @@ const styles = StyleSheet.create({
     overflow: "hidden",
   } as ViewStyle,
   inputBase: {
-    height: 50,
+    paddingTop: 8,
     fontSize: 22,
+    paddingBottom: 0,
     fontFamily: Style.FONT_FAMILY_PRIMARY,
   } as ViewStyle,
 });

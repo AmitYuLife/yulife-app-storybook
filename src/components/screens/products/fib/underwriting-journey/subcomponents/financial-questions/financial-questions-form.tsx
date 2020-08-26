@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, Platform } from "react-native";
 import { TextField } from "@components/molecules";
 import { CheckBox, Text, Pad } from "@atoms";
 import { Style, Colours } from "@styles";
@@ -145,11 +145,11 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
   textFieldWrapper: { flex: 1 },
-  errorWrapper: { height: 10 },
-  radioInputLabel: { marginBottom: 16, fontFamily: Style.FONT_FAMILY_PRIMARY, fontSize: 20 },
+  errorWrapper: { height: 20 },
+  radioInputLabel: { marginBottom: 16, fontFamily: Style.FONT_FAMILY_PRIMARY, fontSize: 20, color: "#979799" },
   poundSign: {
     position: "absolute",
-    bottom: 3,
+    bottom: Platform.OS === "ios" ? 1 : 0,
     fontSize: 22,
     fontFamily: Style.FONT_FAMILY_PRIMARY_BOLD,
     marginRight: 4,
