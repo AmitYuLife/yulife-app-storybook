@@ -164,6 +164,7 @@ export default {
   },
   primary: {
     p400: "#F43E8E",
+    p600: "#E30D76",
   },
   neutral: {
     white: "#FFFFFF",

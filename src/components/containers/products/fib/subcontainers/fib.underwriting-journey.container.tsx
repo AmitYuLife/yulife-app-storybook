@@ -12,6 +12,8 @@ import {
   FIB_THREE_YEAR_MEDICAL_HISTORY_SCREEN_ID,
   FIB_ENTER_YOUR_NAME,
   FIB_ENTER_YOUR_DATE_OF_BIRTH,
+  FIB_LIFESTYLE_HEIGHT_SCREEN_ID,
+  FIB_LIFESTYLE_WEIGHT_SCREEN_ID,
 } from "../data/underwriting-journey-data";
 import { FIBProgressBar } from "@organisms";
 import { IReduxState } from "@redux/_core/reducers";
@@ -144,6 +146,22 @@ const FibUnderwritingJourneyContainer = memo(function (props: Props) {
     const { birthDay, birthMonth, birthYear } = fibAnswers;
     const isValidDates = !!Number(birthDay) && !!Number(birthMonth) && !!Number(birthYear);
     disableFirstButton = !isValidDates;
+  }
+
+  if (currentQuestion.id === FIB_LIFESTYLE_HEIGHT_SCREEN_ID) {
+    if (fibAnswers.height.unit === "cm") {
+      disableFirstButton = !fibAnswers.height.cm;
+    } else {
+      disableFirstButton = !fibAnswers.height.ft || !fibAnswers.height.in;
+    }
+  }
+
+  if (currentQuestion.id === FIB_LIFESTYLE_WEIGHT_SCREEN_ID) {
+    if (fibAnswers.weight.unit === "kg") {
+      disableFirstButton = !fibAnswers.weight.kg;
+    } else {
+      disableFirstButton = !fibAnswers.weight.st || !fibAnswers.weight.lb;
+    }
   }
 
   return (

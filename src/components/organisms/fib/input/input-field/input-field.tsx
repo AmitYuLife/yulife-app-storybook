@@ -19,7 +19,8 @@ export interface InputFieldProps {
   maxLength: number;
   value: string;
   forwardRef?: RefObject<TextInput>;
-  label?: string;
+  inlineLabel?: string;
+  sideLabel?: string;
   isLarge?: boolean;
   show?: boolean;
   autoFocus?: boolean;
@@ -29,6 +30,7 @@ export interface InputFieldProps {
   style?: TextStyle;
   maxBeforeTruncate?: number;
   shadowStyle?: ViewStyle;
+  hasFocusActive?: (focus: boolean) => void;
 }
 
 const _InputField = (props: InputFieldProps) => {
@@ -39,13 +41,15 @@ const _InputField = (props: InputFieldProps) => {
     value,
     forwardRef,
     maxLength,
-    label = "",
-    width = 50,
+    inlineLabel = "",
+    sideLabel,
+    width = 35,
     show = true,
     keyboardType = "number-pad",
     style,
     maxBeforeTruncate = 0,
     shadowStyle,
+    hasFocusActive,
   } = props;
 
   const [isFocused, setIsFocused] = useState(false);
@@ -64,6 +68,10 @@ const _InputField = (props: InputFieldProps) => {
 
   const handleFocus = (isFocused: boolean) => {
     return () => {
+      if (hasFocusActive) {
+        hasFocusActive(isFocused);
+      }
+
       setIsFocused(isFocused);
 
       if (isFocused) {
@@ -97,11 +105,18 @@ const _InputField = (props: InputFieldProps) => {
               {ellipsizeHead(value, maxBeforeTruncate)}
             </Text>
           ) : (
-            <Text style={StyleSheet.flatten([styles.shadow, { color: Colours.neutral.n500 }])}>{label}</Text>
+            <Text style={StyleSheet.flatten([styles.shadow, { color: Colours.neutral.n500 }])}>{inlineLabel}</Text>
           )}
           <Blinker show={isFocused} />
         </View>
       </View>
+      {!sideLabel ? null : (
+        <View style={styles.sideLabelWrapper}>
+          <Text style={StyleSheet.flatten([styles.sideLabel, isFocused ? { color: Colours.primary.p600 } : {}])}>
+            {sideLabel}
+          </Text>
+        </View>
+      )}
     </View>
   );
 };
@@ -116,6 +131,7 @@ const styles = {
   fieldWrapper: {
     height: 70,
     marginHorizontal: 4,
+    flexDirection: "row",
   } as ViewStyle,
   field: {
     borderWidth: StyleSheet.hairlineWidth,
@@ -140,6 +156,18 @@ const styles = {
     fontSize: 20,
     lineHeight: 24,
     color: Colours.neutral.n900,
+  } as TextStyle,
+  sideLabelWrapper: {
+    height: 30,
+    marginLeft: 5,
+    flexDirection: "row",
+  } as ViewStyle,
+  sideLabel: {
+    alignSelf: "flex-end",
+    fontFamily: Style.FONT_FAMILY_PRIMARY,
+    fontSize: 14,
+    lineHeight: 20,
+    color: Colours.neutral.n500,
   } as TextStyle,
 };
 

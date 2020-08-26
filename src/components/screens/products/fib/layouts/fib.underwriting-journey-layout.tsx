@@ -3,6 +3,10 @@ import { Platform, StyleSheet, KeyboardAvoidingView } from "react-native";
 import { GenericHeading } from "@atoms";
 import { FIBProgressBar } from "@components/organisms";
 import { Style } from "@styles";
+import {
+  FIB_ENTER_YOUR_NAME,
+  FIB_ENTER_YOUR_DATE_OF_BIRTH,
+} from "@components/containers/products/fib/data/underwriting-journey-data";
 
 interface Props {
   heading: string;
@@ -12,13 +16,19 @@ interface Props {
     maxLength: number;
     currentPosition: number;
   };
+  activeScreenId?: string;
 }
 
 export function FibUnderwritingJourneyLayout(props: Props) {
-  const { heading, onNavigateBack, children } = props;
-
+  const { heading, onNavigateBack, children, activeScreenId } = props;
+  const iOSKeyboardBehavior = [FIB_ENTER_YOUR_NAME, FIB_ENTER_YOUR_DATE_OF_BIRTH].includes(activeScreenId)
+    ? "height"
+    : null;
   return (
-    <KeyboardAvoidingView behavior={Platform.select({ ios: "height", android: null })} style={styles.wrapper}>
+    <KeyboardAvoidingView
+      behavior={Platform.select({ ios: iOSKeyboardBehavior, android: null })}
+      style={styles.wrapper}
+    >
       <GenericHeading heading={heading} rightIcon={{ icon: "CLOSE" }} onRightIconPress={onNavigateBack} isBeta={true} />
       <FIBProgressBar />
       {children}

@@ -17,7 +17,7 @@ const _FibInputWeight = (props: ConnectedProps) => {
   const { weight, updateWeight } = props;
 
   const Input = weight.unit === "st" ? FibInputSt : FibInputKg;
-  const buttonLabel = `switch to ${weight.unit === "st" ? "kg" : "st"}?`;
+  const buttonLabel = `Switch to ${weight.unit === "st" ? "kg" : "st, lb"}`;
 
   const handleSwitch = useCallback(() => {
     updateWeight({
@@ -55,11 +55,14 @@ const styles = {
     justifyContent: "center",
     alignItems: "center",
     width: "100%",
-    marginTop: 24,
+    marginTop: 80,
   } as ViewStyle,
   label: {
-    fontSize: 12,
-    color: Colours.products.fib.n800,
+    fontSize: 16,
+    lineHeight: 24,
+    color: Colours.primary.p600,
     letterSpacing: 1,
+    textDecorationLine: "underline",
+    textDecorationColor: Colours.primary.p600,
   } as TextStyle,
 };

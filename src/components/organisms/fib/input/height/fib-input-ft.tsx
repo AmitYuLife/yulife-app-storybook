@@ -1,16 +1,19 @@
-import React, { useRef, RefObject } from "react";
+import React, { useRef, RefObject, useState } from "react";
 import { connect } from "react-redux";
 import { InputField } from "../input-field";
 import { getFIBState } from "@redux/product/product.selectors";
 import { IReduxState } from "@redux/_core/reducers";
 import { updateFIBAnswerValue } from "@redux/product/product.actions";
 import { Height } from "@redux/product/product.types";
-import { ViewStyle, TextInput, View } from "react-native";
+import { ViewStyle, TextInput, View, StyleSheet, TextStyle } from "react-native";
+import { Colours } from "@styles";
 
 type ConnectedProps = ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps;
 
 const _FibInputFt = (props: ConnectedProps) => {
   const { height, updateHeight } = props;
+  const [isFtFocus, setIsFtFocus] = useState(false);
+  const [isInFocus, setIsInFocus] = useState(false);
 
   const ftRef: RefObject<TextInput> = useRef(null);
   const inRef: RefObject<TextInput> = useRef(null);
@@ -64,21 +67,41 @@ const _FibInputFt = (props: ConnectedProps) => {
   return (
     <View style={styles.wrapper}>
       <InputField
-        autoFocus={!height.ft}
+        autoFocus={false}
         value={height.ft}
         onChangeText={validateFt}
         maxLength={1}
-        label="feet"
+        sideLabel="ft"
         forwardRef={ftRef}
+        style={StyleSheet.flatten([
+          styles.textInput,
+          isFtFocus
+            ? {}
+            : {
+                borderBottomColor: Colours.neutral.n600,
+              },
+        ])}
+        hasFocusActive={setIsFtFocus}
+        width={15}
       />
       <InputField
-        autoFocus={!!height.ft}
+        autoFocus={false}
         onBackSpace={handleBackspaceInch}
         value={height.in}
         onChangeText={validateIn}
         maxLength={2}
-        label="inches"
+        sideLabel="in"
         forwardRef={inRef}
+        style={StyleSheet.flatten([
+          styles.textInput,
+          isInFocus
+            ? {}
+            : {
+                borderBottomColor: Colours.neutral.n600,
+              },
+        ])}
+        hasFocusActive={setIsInFocus}
+        width={15}
       />
     </View>
   );
@@ -96,8 +119,17 @@ const redux = connect(mapStateToProps, mapDispatchToProps);
 
 export const FibInputFt = redux(_FibInputFt);
 
-const styles = {
+const styles = StyleSheet.create({
   wrapper: {
     flexDirection: "row",
   } as ViewStyle,
-};
+
+  textInput: {
+    borderTopWidth: 0,
+    borderLeftWidth: 0,
+    borderRightWidth: 0,
+    borderRadius: 0,
+    borderBottomColor: Colours.primary.p600,
+    borderBottomWidth: 1,
+  } as TextStyle,
+});

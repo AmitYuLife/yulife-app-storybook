@@ -17,7 +17,7 @@ const _FibInputHeight = (props: ConnectedProps) => {
   const { height, updateHeight } = props;
 
   const Input = height.unit === "ft" ? FibInputFt : FibInputCm;
-  const buttonLabel = `switch to ${height.unit === "ft" ? "cm" : "feet"}?`;
+  const buttonLabel = `Switch to ${height.unit === "ft" ? "cm" : "ft, in"}`;
 
   const handleSwitch = useCallback(() => {
     updateHeight({
@@ -55,11 +55,14 @@ const styles = {
     justifyContent: "center",
     alignItems: "center",
     width: "100%",
-    marginTop: 24,
+    marginTop: 120,
   } as ViewStyle,
   label: {
-    fontSize: 12,
-    color: Colours.products.fib.n800,
+    fontSize: 16,
+    lineHeight: 24,
+    color: Colours.primary.p600,
     letterSpacing: 1,
+    textDecorationLine: "underline",
+    textDecorationColor: Colours.primary.p600,
   } as TextStyle,
 };

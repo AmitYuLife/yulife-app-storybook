@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import { View, ViewStyle, TextStyle } from "react-native";
 import { updateFIBAnswerValue } from "@redux/product/product.actions";
@@ -11,13 +11,20 @@ type ConnectedProps = ReturnType<typeof mapStateToProps> & typeof mapDispatchToP
 
 const _FibInputName = (props: ConnectedProps) => {
   const { fullName, updateName } = props;
+  const [inputValue, setInputValue] = useState(fullName);
   return (
     <View style={styles.wrapper}>
       <InputField
         autoFocus={true}
         isLarge={true}
-        value={fullName}
-        onChangeText={updateName}
+        value={inputValue}
+        onChangeText={(value: string) => {
+          if (value) {
+            updateName(value);
+          }
+
+          setInputValue(value);
+        }}
         maxLength={48}
         width={Style.DEVICE_WIDTH - 64}
         keyboardType="default"
