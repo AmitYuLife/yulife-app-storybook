@@ -45,4 +45,4 @@ const _ListRankItem = ({
   );
 };
 
-export const ListRankItem = memo(_ListRankItem, () => true);
+export const ListRankItem = memo(_ListRankItem);
