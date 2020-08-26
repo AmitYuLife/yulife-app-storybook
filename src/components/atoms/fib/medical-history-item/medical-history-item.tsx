@@ -17,7 +17,7 @@ export const MedicalHistoryItem = memo(function (props: IMedicalHistoryItemProps
       <SvgFromXml xml={icon} />
       <View style={styles.textWrapper}>
         <Text style={styles.title}>{title}</Text>
-        <Text style={styles.descriptioon}>{description}</Text>
+        <Text style={styles.description}>{description}</Text>
       </View>
       {showDelimiter ? <View style={styles.delimiter} /> : null}
     </View>
@@ -26,16 +26,14 @@ export const MedicalHistoryItem = memo(function (props: IMedicalHistoryItemProps
 
 const styles = StyleSheet.create({
   wrapper: {
-    paddingLeft: 31,
-    paddingTop: 24,
-    paddingBottom: 8,
-    minHeight: 122,
-    width: "100%",
+    paddingVertical: 24,
+    flex: 1,
     flexDirection: "row",
   } as ViewStyle,
   textWrapper: {
     flexDirection: "column",
     marginLeft: 15,
+    flex: 1,
   } as ViewStyle,
   title: {
     fontSize: 16,
@@ -44,13 +42,12 @@ const styles = StyleSheet.create({
     fontFamily: Style.FONT_FAMILY_PRIMARY_BOLD,
     color: "#5A5A5C",
   } as TextStyle,
-  descriptioon: {
+  description: {
     fontSize: 16,
     lineHeight: 24,
     letterSpacing: 1,
     fontFamily: Style.FONT_FAMILY_PRIMARY,
     color: "#5A5A5C",
-    width: 256,
   } as TextStyle,
   delimiter: {
     width: Style.DEVICE_WIDTH,
