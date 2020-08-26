@@ -37,7 +37,7 @@ function _FinancialQuestionsCoverListScreen(props: Props) {
         <FinancialQuestionsCoverList existingCovers={existingCovers} onAddCover={onSecondButtonPressed} />
       </ScrollView>
       <Footer
-        firstButton={{ action: onFirstButtonPressed, label: "Done" }}
+        firstButton={{ action: onFirstButtonPressed, label: "Done", disabled: existingCovers.length === 0 }}
         onPreviousButtonPressed={onPreviousButtonPressed}
       />
     </FibUnderwritingJourneyLayout>
