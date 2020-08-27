@@ -932,7 +932,7 @@ const _data: UnderwritingJourneyScreen[] = [
     title: "Cover Details",
     question: "Please enter your cover details below.",
     firstButton: { label: "Continue", actionId: "fib_financial_cover_list" },
-    previousButton: { actionId: "fib_financial_other_cover" },
+    previousButton: { actionId: "fib_financial_cover_list" },
   },
 ];
 
