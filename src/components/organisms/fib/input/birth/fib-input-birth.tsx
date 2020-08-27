@@ -106,7 +106,7 @@ const _FibInputBirth = (props: ConnectedProps) => {
         value={birthDay}
         onChangeText={validateDay}
         maxLength={2}
-        label="DD"
+        inlineLabel="DD"
         style={styles.textInput}
       />
       <InputField
@@ -114,7 +114,7 @@ const _FibInputBirth = (props: ConnectedProps) => {
         value={birthMonth}
         onChangeText={validateMonth}
         maxLength={2}
-        label="MM"
+        inlineLabel="MM"
         onBackSpace={handleBackspaceMonth}
         style={styles.textInput}
       />
@@ -124,7 +124,7 @@ const _FibInputBirth = (props: ConnectedProps) => {
         value={birthYear}
         onChangeText={validateYear}
         maxLength={4}
-        label="YYYY"
+        inlineLabel="YYYY"
         onBackSpace={handleBackspaceYear}
         width={70}
         style={styles.textInput}

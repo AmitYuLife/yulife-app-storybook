@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useCallback } from "react";
 import Slider from "@react-native-community/slider";
 import { View } from "react-native-animatable";
 import { Text } from "@atoms/index";
@@ -13,7 +13,6 @@ interface Props {
 
 export function SliderInput(props: Props) {
   const { onValueChange, value } = props;
-  const [isTooltipVisible, setTooltipVisibilityState] = useState(false);
   const percentageComplete = (value / ALCOHOL_DRINK_LIMIT) * 100;
 
   const dynamicStyles = StyleSheet.create({
@@ -29,20 +28,17 @@ export function SliderInput(props: Props) {
 
   return (
     <View>
-      {isTooltipVisible ? (
-        <View style={StyleSheet.flatten([styles.tooltip, dynamicStyles.tooltip])}>
-          <Text style={styles.tooltipText}>{Math.round(value)} Drinks</Text>
-        </View>
-      ) : null}
+      <View style={StyleSheet.flatten([styles.tooltip, dynamicStyles.tooltip])}>
+        <Text style={styles.tooltipText}>{Math.round(value)} Drinks</Text>
+      </View>
       <Slider
         thumbTintColor="#CC0D6E"
         maximumTrackTintColor="#CC0D6E"
         minimumTrackTintColor="#CC0D6E"
         maximumValue={ALCOHOL_DRINK_LIMIT}
         minimumValue={0}
-        onSlidingComplete={() => setTooltipVisibilityState(false)}
-        onSlidingStart={() => setTooltipVisibilityState(true)}
         onValueChange={debouncedOnValueChange}
+        value={value}
       />
     </View>
   );

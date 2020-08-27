@@ -69,6 +69,8 @@ export const FIB_DIGESTIVE_SCREEN_ID = "fib_medical_journey_digestive";
 export const FIB_THREE_YEAR_MEDICAL_HISTORY_SCREEN_ID = "fib_medical_journey_three_year_medical_history";
 export const FIB_ENTER_YOUR_NAME = "fib_enter_your_name";
 export const FIB_ENTER_YOUR_DATE_OF_BIRTH = "fib_enter_your_date_of_birth";
+export const FIB_LIFESTYLE_HEIGHT_SCREEN_ID = "fib_lifestyle_height";
+export const FIB_LIFESTYLE_WEIGHT_SCREEN_ID = "fib_lifestyle_weight";
 
 const FIB_DIGESTIVE_HOSPITAL_STAY_SCREEN_ID = "fib_medical_journey_digestive_hospital_stay";
 const FIB_DAILY_ACTIVITIES_RESTRICTIONS_SCREEN_ID = "fib_medical_journey_daily_activity_restrictions";
@@ -174,7 +176,7 @@ const _data: UnderwritingJourneyScreen[] = [
     icon: HEIGHT_WEIGHT_ICON,
     title: "Height and weight",
     question: "We need to know your height and weight to calculate your Body Mass Index (BMI).",
-    firstButton: { label: "Continue", actionId: "fib_lifestyle_height" },
+    firstButton: { label: "Continue", actionId: FIB_LIFESTYLE_HEIGHT_SCREEN_ID },
     previousButton: { actionId: "fib_member_of_armed_forces" },
     children: [
       {
@@ -184,12 +186,12 @@ const _data: UnderwritingJourneyScreen[] = [
     ],
   },
   {
-    id: "fib_lifestyle_height",
+    id: FIB_LIFESTYLE_HEIGHT_SCREEN_ID,
     heading: "Lifestyle",
     icon: HEIGHT_ICON,
     title: "Height",
     question: "Please input your height",
-    firstButton: { label: "Continue", actionId: "fib_lifestyle_weight" },
+    firstButton: { label: "Continue", actionId: FIB_LIFESTYLE_WEIGHT_SCREEN_ID },
     previousButton: { actionId: "fib_lifestyle_height_and_weight" },
     children: [
       {
@@ -202,14 +204,18 @@ const _data: UnderwritingJourneyScreen[] = [
     ],
   },
   {
-    id: "fib_lifestyle_weight",
+    id: FIB_LIFESTYLE_WEIGHT_SCREEN_ID,
     heading: "Lifestyle",
     icon: WEIGHT_ICON,
     title: "Weight",
     question: "Please input your weight",
     firstButton: { label: "Continue", actionId: "fib_lifestyle_smoking" },
-    previousButton: { actionId: "fib_lifestyle_height" },
+    previousButton: { actionId: FIB_LIFESTYLE_HEIGHT_SCREEN_ID },
     children: [
+      {
+        type: "markdown",
+        text: "We need this to figure out your BMI. If you are pregnant this is your pre-pregnancy weight.",
+      },
       {
         type: "inputWeight",
       },
@@ -224,7 +230,7 @@ const _data: UnderwritingJourneyScreen[] = [
       "In the last 12 months have you smoked cigarettes, cigars, pipes, or shisha or used nicotine replacements? Vaping counts.",
     firstButton: { label: "No", actionId: "fib_lifestyle_alcohol" },
     secondButton: { label: "Yes", actionId: "fib_lifestyle_alcohol" },
-    previousButton: { actionId: "fib_lifestyle_weight" },
+    previousButton: { actionId: FIB_LIFESTYLE_WEIGHT_SCREEN_ID },
   },
   {
     id: "fib_lifestyle_alcohol",

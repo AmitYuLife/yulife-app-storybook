@@ -67,21 +67,33 @@ const _FibUnderwritingJourneyScreen = memo(function (props: IFibUnderwritingJour
     return <CustomComponent {...props} />;
   }
 
+  let hideOnKeyboardOpen = false;
+
   return (
     <FibUnderwritingJourneyLayout
       heading={data.heading}
       onNavigateBack={onNavigateBack}
       progressBar={props.progressBar}
+      activeScreenId={data.id}
     >
       <ScrollView keyboardShouldPersistTaps="handled" contentContainerStyle={styles.scrollViewContentStyle}>
         <TitleWithIcon icon={data.icon} title={data.title} />
         <FibTitle title={data.question} />
         {data.children?.map((child: UnderwritingJourneyChild, i) => {
+          if (["inputHeight", "inputWeight"].includes(child.type)) {
+            hideOnKeyboardOpen = true;
+          }
+
           const key = data.id + i;
           return renderChildren(child, key);
         })}
       </ScrollView>
-      <Footer firstButton={firstButton} secondButton={secondButton} onPreviousButtonPressed={onPreviousButtonPressed} />
+      <Footer
+        firstButton={firstButton}
+        secondButton={secondButton}
+        onPreviousButtonPressed={onPreviousButtonPressed}
+        hideOnKeyboardOpen={hideOnKeyboardOpen}
+      />
     </FibUnderwritingJourneyLayout>
   );
 });
