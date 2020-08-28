@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import { FibUnderwritingReviewAnswersScreen } from "@components/screens/products/fib/underwriting-journey/fib.underwriting-review-answers.screen";
 import { getFIBState, getReviewAnswers } from "../../../../../redux/product/product.selectors";
 import { Navigation } from "react-native-navigation";
-import { MODALS } from "../../../../../navigation/constants";
+import { ROUTES, MODALS } from "../../../../../navigation/constants";
 
 type ConnectedState = ReturnType<typeof mapStateToProps>;
 
@@ -43,12 +43,12 @@ const FibUnderwritingReviewAnswersContainer = memo(function (props: Props) {
           ctaLabelSecondary: "Exit",
           onPressSecondary: async () => {
             await Navigation.dismissModal(MODALS.generic);
-            return navigation.popToMain();
+            return Navigation.popTo(ROUTES.yuScreen);
           },
         },
       },
     });
-  }, [navigation]);
+  }, []);
 
   return (
     <FibUnderwritingReviewAnswersScreen

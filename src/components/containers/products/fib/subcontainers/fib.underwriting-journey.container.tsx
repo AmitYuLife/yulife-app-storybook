@@ -107,7 +107,10 @@ const FibUnderwritingJourneyContainer = memo(function (props: Props) {
     navigateToReviewScreenOrFindNextQuestion(localAnswers, "firstButton");
 
     if (currentQuestion.firstButton.actionId === FIB_UNDERWRITING_REVIEW_ANSWERS_SCREEN_ID) {
-      dispatch(updateFIBValue({ key: "lastQuestionId", value: FIB_UNDERWRITING_REVIEW_ANSWERS_SCREEN_ID }));
+      if (!redirectedFromReviewScreen) {
+        dispatch(updateFIBValue({ key: "lastQuestionId", value: FIB_UNDERWRITING_REVIEW_ANSWERS_SCREEN_ID }));
+      }
+
       return navigation.push(FIB_UNDERWRITING_REVIEW_ANSWERS);
     }
 
@@ -118,7 +121,10 @@ const FibUnderwritingJourneyContainer = memo(function (props: Props) {
       medicalHistory,
       answers: localAnswers || fibAnswers,
     });
-    dispatch(updateFIBValue({ key: "lastQuestionId", value: question.id }));
+    if (!redirectedFromReviewScreen) {
+      dispatch(updateFIBValue({ key: "lastQuestionId", value: question.id }));
+    }
+
     setCurrentQuestion(question);
   };
 
@@ -142,7 +148,10 @@ const FibUnderwritingJourneyContainer = memo(function (props: Props) {
       medicalHistory,
       answers: localAnswers || fibAnswers,
     });
-    dispatch(updateFIBValue({ key: "lastQuestionId", value: question.id }));
+    if (!redirectedFromReviewScreen) {
+      dispatch(updateFIBValue({ key: "lastQuestionId", value: question.id }));
+    }
+
     setCurrentQuestion(question);
   };
 
@@ -156,7 +165,10 @@ const FibUnderwritingJourneyContainer = memo(function (props: Props) {
       medicalHistory,
       answers: fibAnswers,
     });
-    dispatch(updateFIBValue({ key: "lastQuestionId", value: question.id }));
+    if (!redirectedFromReviewScreen) {
+      dispatch(updateFIBValue({ key: "lastQuestionId", value: question.id }));
+    }
+
     setCurrentQuestion(question);
   };
 
@@ -206,6 +218,10 @@ const FibUnderwritingJourneyContainer = memo(function (props: Props) {
   }
 
   const onNavigateBackHandler = useCallback(async () => {
+    if (redirectedFromReviewScreen) {
+      return navigation.pop();
+    }
+
     await Navigation.showModal({
       component: {
         id: MODALS.generic,
@@ -225,7 +241,7 @@ const FibUnderwritingJourneyContainer = memo(function (props: Props) {
         },
       },
     });
-  }, [navigation]);
+  }, [navigation, redirectedFromReviewScreen]);
 
   return (
     <FIBProgressBar.ProgressBarContext.Provider value={progressBar}>

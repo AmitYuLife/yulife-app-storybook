@@ -227,3 +227,7 @@ export function getIsActiveOnMedicalJourney(screenId: string, answers: FibAnswer
 
   return true;
 }
+
+export function UseInternationalFormat(dayOrMonth: string): string {
+  return `${dayOrMonth.length === 1 ? "0" : ""}${dayOrMonth}`;
+}
