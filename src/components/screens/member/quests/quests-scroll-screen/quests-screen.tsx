@@ -1,4 +1,3 @@
-// import { Style } from "@styles/index";
 import { QUESTS_SCREEN } from "@ids";
 import { getCurrentEpisode, getCurrentWorld } from "@services/utils";
 import * as React from "react";
@@ -11,7 +10,7 @@ import { IMapSlice, loadingSlices, mapSlices } from "./assets";
 import offsets from "./assets/offsets";
 import styles from "./quests-screen.styles";
 import ScrollyQuest from "./subcomponents/scrolly-quest";
-import getUnity from "./unity-movies/unity";
+import Unity from "./unity-movies/unity";
 import { NavBar } from "@components/organisms";
 import QuestsLoadingOverlay from "./subcomponents/quests.loading";
 import { TopBarTypes } from "@components/organisms/top-bar/top-bar.helpers";
@@ -68,16 +67,14 @@ class QuestsScreen extends React.PureComponent<IProps, IState> {
   }
 
   public render() {
-    const { UI } = this.state;
-    const { activeLevel, currentLevel, data, onLeftMenuPress, unity, loading } = this.props;
+    const { handleSkipUnity, props, state } = this;
+    const { UI } = state;
+    const { activeLevel, currentLevel, data, onLeftMenuPress, unity, loading } = props;
 
     if (unity) {
-      const currentWorld = getCurrentWorld(unity);
-      const Unity = getUnity(currentWorld);
-
       return (
         <View style={styles.wrapper}>
-          <Unity data={data[50 + currentWorld * 50]} onSkip={this.handleSkipUnity} />
+          <Unity unity={unity} onSkip={handleSkipUnity} />
         </View>
       );
     }

@@ -9,15 +9,16 @@ interface IProps {
   label: string;
   size?: Sizes;
   style?: TextStyle;
+  color?: string;
 }
 
 type Sizes = "medium" | "large" | "small";
 
 function Heading(props: IProps) {
-  const { label, size = "medium", style, bold } = props;
+  const { label, size = "medium", style, bold, color } = props;
   const boldStyles = bold ? styles.bold : null;
 
-  return <Text style={StyleSheet.flatten([styles.base, styles[size], boldStyles, style])}>{label}</Text>;
+  return <Text style={StyleSheet.flatten([styles.base, styles[size], boldStyles, { color }, style])}>{label}</Text>;
 }
 
 export default React.memo(Heading);
