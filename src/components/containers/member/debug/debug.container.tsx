@@ -11,7 +11,7 @@ import { getUserFeatures } from "../../../../redux/user/user.selectors";
 import { DebugScreen } from "../../../screens";
 import { ROUTES, MODALS } from "@navigation/constants";
 import { FIB_UNDERWRITING_JOURNEY_INTRODUCTION } from "@components/containers/products/fib/fib.types";
-import { SliderFeedbackModalProps, npsScreenData } from "@components/modals/feedback/slider-feedback.modal";
+import { FeedbackModalProps, npsModalProps } from "@components/modals/feedback/feedback.modal";
 
 interface IProps {
   componentId: string;
@@ -63,14 +63,11 @@ const ActivityHistoryContainer: React.FC<Props> = (props) => {
         }
 
         if (code === CODES.DISPLAY_FEEDBACK_MODAL) {
-          Navigation.showModal<SliderFeedbackModalProps>({
+          Navigation.showModal<FeedbackModalProps>({
             component: {
-              id: MODALS.sliderFeedback,
-              name: MODALS.sliderFeedback,
-              passProps: {
-                slider: { leftLabel: "something", maxValue: npsScreenData.maxScore, rightLabel: "something" },
-                textInputScreenContent: npsScreenData.content,
-              },
+              id: MODALS.feedback,
+              name: MODALS.feedback,
+              passProps: npsModalProps,
             },
           });
         }

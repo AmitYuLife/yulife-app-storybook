@@ -45,6 +45,12 @@ export enum LoginMethod {
   PASSWORD = "PASSWORD",
 }
 
+export enum Metric {
+  CES = "CES",
+  NPS = "NPS",
+  latest_app = "latest_app",
+}
+
 export enum OS {
   android = "android",
   ios = "ios",

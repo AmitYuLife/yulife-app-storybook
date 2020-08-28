@@ -1,4 +1,6 @@
 import gql from "graphql-tag";
+import { GetCurrentWorld } from "@graphql/_core/schema";
+import client from "@graphql/_core/client";
 
 export const GQL_QUERY_GET_CURRENT_WORLD = gql`
   query GetCurrentWorld {
@@ -39,3 +41,9 @@ export const GQL_QUERY_GET_CURRENT_WORLD = gql`
     }
   }
 `;
+
+export function getCurrentLevelWithClient() {
+  return client().query<GetCurrentWorld>({
+    query: GQL_QUERY_GET_CURRENT_WORLD,
+  });
+}

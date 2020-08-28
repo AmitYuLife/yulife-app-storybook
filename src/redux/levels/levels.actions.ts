@@ -25,6 +25,8 @@ export const CHALLENGE_CANCEL = "CHALLENGE_CANCEL";
 export const CHALLENGE_CANCEL_SUCCESS = "CHALLENGE_CANCEL_SUCCESS";
 export const CHALLENGE_CANCEL_FAIL = "CHALLENGE_CANCEL_FAIL";
 
+export const HANDLE_FEEDBACK = "HANDLE_FEEDBACK";
+
 export const submitUnityAction = (payload: SubmitUnityVariables) => ({
   payload,
   type: CHALLENGE_SUBMIT_UNITY,
@@ -81,4 +83,9 @@ export const challengeResetFailAction = () => ({
 
 export const challengeCancelAction = () => ({
   type: CHALLENGE_CANCEL,
+});
+
+export const handleFeedbackAction = (payload: { level: number }) => ({
+  type: HANDLE_FEEDBACK,
+  payload,
 });

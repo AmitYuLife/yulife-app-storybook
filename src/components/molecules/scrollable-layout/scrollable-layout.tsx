@@ -12,15 +12,30 @@ interface Props {
   onLeftIconPress: () => void;
   logo?: Logo;
   heading?: string;
+  shouldCenterContent?: boolean;
 }
 
 export function ScrollableLayout(props: Props) {
-  const { children, buttonTitle, logo, heading, buttonAction, onLeftIconPress, isButtonDisabled = false } = props;
+  const {
+    children,
+    buttonTitle,
+    logo,
+    heading,
+    buttonAction,
+    onLeftIconPress,
+    isButtonDisabled = false,
+    shouldCenterContent = false,
+  } = props;
+
+  const contentContainerStyle: ViewStyle = shouldCenterContent
+    ? { flexGrow: 1, alignItems: "center", justifyContent: "center" }
+    : {};
+
   return (
     <>
       <SafeAreaView style={styles.wrapper}>
         <GenericHeading isBeta={true} logo={logo} heading={heading} onLeftIconPress={onLeftIconPress} />
-        <ScrollView showsVerticalScrollIndicator={false}>
+        <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={contentContainerStyle}>
           <View style={styles.padTop} />
           {children}
         </ScrollView>
@@ -40,7 +55,6 @@ const styles = StyleSheet.create({
   wrapper: {
     backgroundColor: "white",
     flex: 1,
-    height: "100%",
     paddingTop: Platform.select({ ios: Style.getSafeAreaStart(), android: 0 }),
   },
   button: {

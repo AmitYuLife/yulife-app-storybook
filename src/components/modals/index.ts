@@ -3,7 +3,6 @@ export { default as ChallengeUnavailableModal } from "./challenge-unavailable/ch
 export { default as CreateLeaderboardModal } from "./create-leaderboard/create-leaderboard.modal";
 export { default as CollectRewardModal } from "./collect-reward/collect-reward.modal";
 export { default as FeedbackModal } from "./feedback/feedback.modal";
-export { default as SliderFeedbackModal } from "./feedback/slider-feedback.modal";
 export { default as GenericModal } from "./generic-modal/generic-modal";
 export { default as GenericConnectionErrorModal } from "./generic-modal/generic-connection-error-modal";
 export { default as LeaderboardInviteModal } from "./leaderboard-invite/leaderboard-invite.modal";

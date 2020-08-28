@@ -15156,6 +15156,16 @@
                   "ofType": null
                 },
                 "defaultValue": null
+              },
+              {
+                "name": "metric",
+                "description": null,
+                "type": {
+                  "kind": "ENUM",
+                  "name": "Metric",
+                  "ofType": null
+                },
+                "defaultValue": null
               }
             ],
             "type": {
@@ -18999,6 +19009,35 @@
         ],
         "interfaces": null,
         "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "ENUM",
+        "name": "Metric",
+        "description": null,
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "enumValues": [
+          {
+            "name": "CES",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "NPS",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "latest_app",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
         "possibleTypes": null
       },
       {
