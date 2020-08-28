@@ -1,35 +1,92 @@
-import { Style } from "@styles/index";
-import { Platform, StyleSheet } from "react-native";
+import { Colours, Style } from "@styles/index";
+import { StyleSheet, TextStyle, ViewStyle } from "react-native";
+import { ImageStyle } from "react-native-fast-image";
 import { isIphoneX } from "react-native-iphone-x-helper";
+import { MAP_SLICE_HEIGHT } from "../assets";
+import { CIRCLE_SIZE } from "../assets/level/level.styles";
 
-export function platformAdjust(os: "ios" | "android" | "macos" | "windows" | "web", iphonex: boolean) {
-  if (iphonex || os === "android") {
-    return 100;
-  }
-
-  return 0;
-}
-
-export function platformAdjustPosition(os: "ios" | "android" | "macos" | "windows" | "web", iphonex: boolean) {
-  if (iphonex || os === "android") {
-    return -50;
-  }
-
-  return 0;
-}
-
-export default StyleSheet.create({
-  svg: {
-    left: platformAdjustPosition(Platform.OS, isIphoneX()),
+const styles = StyleSheet.create({
+  bigText: {
+    fontSize: 20,
+    marginTop: 8,
   },
-  wrapper: {
-    alignItems: "stretch",
-    height: Style.DEVICE_HEIGHT,
+  center: {
+    textAlign: "center",
+  },
+  smallText: {
+    fontSize: 14,
+    marginTop: 16,
+  } as TextStyle,
+  heading: {
+    fontSize: 32,
+    lineHeight: 32,
+    letterSpacing: 1,
+    fontFamily: Style.FONT_FAMILY_PRIMARY_BOLD,
+    paddingBottom: 16,
+  } as TextStyle,
+  subheading: {
+    fontSize: 24,
+    lineHeight: 30,
+    letterSpacing: 1,
+    fontFamily: Style.FONT_FAMILY_PRIMARY,
+    maxWidth: 203,
+    marginHorizontal: "auto",
+  } as TextStyle,
+  headingWrapper: {
+    top: 80,
+    left: 0,
+    position: "absolute",
+    alignItems: "center",
     justifyContent: "center",
-    width: Style.DEVICE_WIDTH + platformAdjust(Platform.OS, isIphoneX()),
-  },
+    width: Style.DEVICE_WIDTH,
+  } as ViewStyle,
+  buttonWrapper: {
+    bottom: 40,
+    left: 0,
+    position: "absolute",
+    width: Style.DEVICE_WIDTH,
+  } as ViewStyle,
+  image: {
+    height: MAP_SLICE_HEIGHT,
+    width: "100%",
+  } as ImageStyle,
+  bubble: {
+    alignItems: "center",
+    borderRadius: CIRCLE_SIZE,
+    height: CIRCLE_SIZE,
+    justifyContent: "center",
+    marginLeft: -CIRCLE_SIZE / 2,
+    position: "absolute",
+    left: Style.DEVICE_WIDTH / 2,
+    right: 0,
+    top: Style.SCALE_UP_AND_DOWN(isIphoneX() ? 122 : 127),
+    zIndex: 3,
+    width: CIRCLE_SIZE,
+    backgroundColor: Colours.darkHotPink,
+  } as ViewStyle,
+  orangeBubble: {
+    position: "absolute",
+    alignItems: "center",
+    height: Style.SCALE_UP_AND_DOWN(250),
+    width: Style.DEVICE_WIDTH,
+    top: Style.SCALE_UP_AND_DOWN(isIphoneX() ? 170 : 120),
+  } as ViewStyle,
+  treesWrapper: {
+    zIndex: 2,
+    height: Style.SCALE_UP_AND_DOWN(150),
+    width: Style.SCALE_UP_AND_DOWN(150),
+    alignItems: "center",
+    position: "absolute",
+    top: Style.SCALE_UP_AND_DOWN(-40),
+  } as ViewStyle,
+  wrapper: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: "rgb(133,226,236)",
+    height: Style.DEVICE_HEIGHT + 80,
+  } as ViewStyle,
+  fillScreen: {
+    width: "100%",
+  } as ViewStyle,
 });
 
-export const width = Style.DEVICE_WIDTH + platformAdjust(Platform.OS, isIphoneX());
-
-export const height = Style.DEVICE_HEIGHT;
+export default styles;

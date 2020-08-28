@@ -48,7 +48,7 @@ export function numberWithCommas(x: number) {
 }
 
 export function getCurrentWorld(currentLevel: number) {
-  return Math.floor((currentLevel - 1) / 50);
+  return Math.floor((currentLevel - 1) / 50) % 4;
 }
 
 const WORLD_IMAGES = [
@@ -228,4 +228,23 @@ export const truncate = (str: string, chars = 30) => {
 export function useDebugRenderCount(componentName: string) {
   const renders = useRef(0);
   console.log(componentName, "renders", ++renders.current);
+}
+
+export function toOrdinal(n: number): string {
+  const m10 = n % 10;
+  const m100 = n % 100;
+
+  if (m10 === 1 && m100 !== 11) {
+    return n + "st";
+  }
+
+  if (m10 === 2 && m100 !== 12) {
+    return n + "nd";
+  }
+
+  if (m10 === 3 && m100 !== 13) {
+    return n + "rd";
+  }
+
+  return n + "th";
 }

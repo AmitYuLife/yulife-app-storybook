@@ -363,7 +363,7 @@ PODS:
   - SDWebImageWebPCoder (0.6.1):
     - libwebp (~> 1.0)
     - SDWebImage/Core (~> 5.7)
-  - WootricSDK (0.18.1)
+  - WootricSDK (0.18.2)
   - Yoga (1.14.0)
   - YogaKit (1.18.1):
     - Yoga (~> 1.14)
@@ -614,10 +614,10 @@ SPEC CHECKSUMS:
   RNWootric: 82a24018a640a6b196c9287421b42ff3946a2b45
   SDWebImage: cf6922231e95550934da2ada0f20f2becf2ceba9
   SDWebImageWebPCoder: d0dac55073088d24b2ac1b191a71a8f8d0adac21
-  WootricSDK: 8571119c79067a3a662e0b074daba9249c4fd54f
+  WootricSDK: be2c27222008c481358e52a0eb872cdcfe13338c
   Yoga: 7740b94929bbacbddda59bf115b5317e9a161598
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
 PODFILE CHECKSUM: e69e3af528c2a2593796015ff1362beeeff7b33d
 
-COCOAPODS: 1.9.3
+COCOAPODS: 1.9.1

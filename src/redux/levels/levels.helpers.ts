@@ -1,6 +1,6 @@
 import RNFitKit from "@services/fitkit/fitkit.service";
 import Logger from "@services/logging/logger";
-import { DATE_FORMAT_WITH_TZ, getCurrentWorld, getStartAndEndDateTimesWithTimezone } from "@services/utils";
+import { DATE_FORMAT_WITH_TZ, getStartAndEndDateTimesWithTimezone } from "@services/utils";
 import moment from "moment";
 import { queryCycling, queryMindfulSessions, querySteps } from "../../services/fitkit/fitkit.helpers";
 import { IActiveLevel } from "./levels.selectors";
@@ -170,6 +170,6 @@ export function isChallengeAvailable(level: number, done: number, available: num
 }
 
 export function getChallengesAmountAvailable(level: number) {
-  const available = getCurrentWorld(level) + 1;
+  const available = Math.floor((level - 1) / 50) + 1;
   return available > MAX_AVAILABLE ? MAX_AVAILABLE : available;
 }
