@@ -34,6 +34,7 @@ export interface IFibUnderwritingJourneyScreenProps {
   progressBar: {
     maxLength: number;
     currentPosition: number;
+    isHidden: boolean;
   };
   disableFirstButton?: boolean;
 }

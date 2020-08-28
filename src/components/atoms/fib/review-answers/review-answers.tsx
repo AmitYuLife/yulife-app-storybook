@@ -9,17 +9,14 @@ export interface IReviewAnswersProps {
   icon: string;
   title: string;
   answer: string;
+  onAnswerPress: () => void;
 }
 
 export const ReviewAnswers = memo(function (props: IReviewAnswersProps) {
-  const { icon, answer, title } = props;
-
-  const onPress = () => {
-    return;
-  };
+  const { icon, answer, title, onAnswerPress } = props;
 
   return (
-    <TouchableOpacityWithDelay style={styles.wrapper} onPress={onPress}>
+    <TouchableOpacityWithDelay style={styles.wrapper} onPress={onAnswerPress}>
       <SvgFromXml xml={icon} />
       <View style={styles.textWrapper}>
         <Text style={styles.title}>{title}</Text>

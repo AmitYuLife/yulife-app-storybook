@@ -9,6 +9,6 @@ const _FIBProgressBar = () => {
   return <ProgressBar currentPosition={currentPosition} maxLength={maxLength} />;
 };
 
-const memoizedFIBProgressBar = memo(_FIBProgressBar);
+const memoizedFIBProgressBar = memo(_FIBProgressBar, () => true);
 
 export const FIBProgressBar = Object.assign(memoizedFIBProgressBar, { ProgressBarContext });

@@ -16,7 +16,7 @@ import { useState, useMemo } from "react";
 import { updateFIBValue } from "@redux/product/product.actions";
 import { FibAnswers } from "@redux/product/product.types";
 
-type FibButtonType = "firstButton" | "secondButton" | "previousButton";
+export type FibButtonType = "firstButton" | "secondButton" | "previousButton";
 
 export const packages = {
   common: {
@@ -143,7 +143,9 @@ export function findQuestion(options: FindFibQuestionOptions): OrderedUnderwriti
 
   const question = data.find((element) => currentQuestion[buttonType]?.actionId === element.id);
 
-  if (question.id.includes("medical_journey")) {
+  // question can be undefined when we're waiting for `fib_review_screen` ID that's not  acutaly a question but a flag
+  // to know that starting with this point we should render the review screen
+  if (question?.id.includes("medical_journey")) {
     return findMedicalQuestion({
       data,
       buttonType,
@@ -213,8 +215,10 @@ export function getIsActiveOnMedicalJourney(screenId: string, answers: FibAnswer
   // Digestive
   if (FIB_DIGESTIVE_EXTRA_SCREENS.includes(screenId) && screenId !== FIB_DIGESTIVE_SCREEN_ID) {
     const questionIndex = FIB_DIGESTIVE_EXTRA_SCREENS.findIndex((questionId) => questionId === screenId);
-    const previousAnswer = answers[FIB_DIGESTIVE_EXTRA_SCREENS[questionIndex - 1]] || answers[FIB_DIGESTIVE_SCREEN_ID];
-    return previousAnswer === "Yes";
+
+    const previousAnswer =
+      questionIndex === 0 ? answers[FIB_DIGESTIVE_SCREEN_ID] : answers[FIB_DIGESTIVE_EXTRA_SCREENS[questionIndex - 1]];
+    return previousAnswer === "No";
   }
 
   if (screenId === FIB_THREE_YEAR_MEDICAL_HISTORY_SCREEN_ID) {
