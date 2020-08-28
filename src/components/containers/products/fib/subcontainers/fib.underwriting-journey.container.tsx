@@ -1,4 +1,4 @@
-import React, { memo, useState } from "react";
+import React, { memo, useState, useCallback } from "react";
 import {
   FibLocalNavigation,
   FIB_UNDERWRITING_REVIEW_ANSWERS,
@@ -20,6 +20,8 @@ import { connect, useDispatch } from "react-redux";
 import { updateFIBValue, updateFIBAnswerValue, resetFIBMedicalHistoryValue } from "@redux/product/product.actions";
 import { findQuestion, FibButtonType } from "../fib.helpers";
 import { FibAnswers } from "@redux/product/product.types";
+import { Navigation } from "react-native-navigation";
+import { MODALS } from "@navigation/constants";
 
 type ConnectedProps = ReturnType<typeof mapStateToProps>;
 type ConnecteDispatch = typeof mapDispatchToProps;
@@ -203,10 +205,32 @@ const FibUnderwritingJourneyContainer = memo(function (props: Props) {
     }
   }
 
+  const onNavigateBackHandler = useCallback(async () => {
+    await Navigation.showModal({
+      component: {
+        id: MODALS.generic,
+        name: MODALS.generic,
+        passProps: {
+          onPress: async () => {
+            await Navigation.dismissModal(MODALS.generic);
+          },
+          heading: "Exit",
+          subheading: "Are you sure you want to exit? Your progressed will be saved",
+          ctaLabel: "Stay",
+          ctaLabelSecondary: "Exit",
+          onPressSecondary: async () => {
+            await Navigation.dismissModal(MODALS.generic);
+            return navigation.pop();
+          },
+        },
+      },
+    });
+  }, [navigation]);
+
   return (
     <FIBProgressBar.ProgressBarContext.Provider value={progressBar}>
       <FibUnderwritingJourneyScreen
-        onNavigateBack={navigation.pop}
+        onNavigateBack={onNavigateBackHandler}
         data={currentQuestion}
         onFirstButtonPressed={onFirstButtonPressed}
         onSecondButtonPressed={onSecondButtonPressed}

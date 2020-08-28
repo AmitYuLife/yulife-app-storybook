@@ -73,10 +73,6 @@ const _InputField = (props: InputFieldProps) => {
       }
 
       setIsFocused(isFocused);
-
-      if (isFocused) {
-        onChangeText("");
-      }
     };
   };
 

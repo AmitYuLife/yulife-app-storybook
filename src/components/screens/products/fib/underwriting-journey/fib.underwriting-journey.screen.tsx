@@ -1,5 +1,5 @@
 import React, { memo } from "react";
-import { StyleSheet, ScrollView, ViewStyle } from "react-native";
+import { StyleSheet, ScrollView, ViewStyle, Platform } from "react-native";
 import { useBackHandler } from "../../../../../services/hooks/useBackHandler";
 import TitleWithIcon from "@atoms/fib/title-with-icon/title-with-icon";
 import FibTitle from "@atoms/fib/title/title";
@@ -75,13 +75,12 @@ const _FibUnderwritingJourneyScreen = memo(function (props: IFibUnderwritingJour
       heading={data.heading}
       onNavigateBack={onNavigateBack}
       progressBar={props.progressBar}
-      activeScreenId={data.id}
     >
       <ScrollView keyboardShouldPersistTaps="handled" contentContainerStyle={styles.scrollViewContentStyle}>
         <TitleWithIcon icon={data.icon} title={data.title} />
         <FibTitle title={data.question} />
         {data.children?.map((child: UnderwritingJourneyChild, i) => {
-          if (["inputHeight", "inputWeight"].includes(child.type)) {
+          if (["inputHeight", "inputWeight"].includes(child.type) || Platform.OS === "android") {
             hideOnKeyboardOpen = true;
           }
 

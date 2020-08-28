@@ -7,9 +7,9 @@ import { Height } from "@redux/product/product.types";
 import { FibInputFt } from "./fib-input-ft";
 import { FibInputCm } from "./fib-input-cm";
 import { Text } from "@atoms";
-import { ViewStyle, View, TextStyle } from "react-native";
-import { Colours } from "@styles";
+import { View } from "react-native";
 import { TouchableOpacityWithDelay } from "@components/molecules";
+import { styles } from "./fib.input-height.styles";
 
 type ConnectedProps = ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps;
 
@@ -49,20 +49,3 @@ const mapDispatchToProps = {
 const redux = connect(mapStateToProps, mapDispatchToProps);
 
 export const FibInputHeight = redux(_FibInputHeight);
-
-const styles = {
-  wrapper: {
-    justifyContent: "center",
-    alignItems: "center",
-    width: "100%",
-    marginTop: 120,
-  } as ViewStyle,
-  label: {
-    fontSize: 16,
-    lineHeight: 24,
-    color: Colours.primary.p600,
-    letterSpacing: 1,
-    textDecorationLine: "underline",
-    textDecorationColor: Colours.primary.p600,
-  } as TextStyle,
-};

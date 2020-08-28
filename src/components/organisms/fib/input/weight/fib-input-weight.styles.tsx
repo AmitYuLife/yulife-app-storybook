@@ -3,19 +3,29 @@ import { Colours } from "@styles";
 
 export const styles = StyleSheet.create({
   wrapper: {
-    flexDirection: "row",
-    width: "100%",
     justifyContent: "center",
     alignItems: "center",
-    paddingTop: 72,
+    width: "100%",
+    marginTop: 80,
+  } as ViewStyle,
+  label: {
+    fontSize: 16,
+    lineHeight: 24,
+    color: Colours.primary.p600,
+    letterSpacing: 1,
+    textDecorationLine: "underline",
+    textDecorationColor: Colours.primary.p600,
+  } as TextStyle,
+  stoneWrapper: {
+    flexDirection: "row",
   } as ViewStyle,
   textInput: {
     borderTopWidth: 0,
     borderLeftWidth: 0,
     borderRightWidth: 0,
     borderRadius: 0,
-    borderBottomColor: Colours.primary.p500,
-    borderBottomWidth: 2,
+    borderBottomColor: Colours.primary.p600,
+    borderBottomWidth: 1,
   } as TextStyle,
   textInputOnBlur: {
     borderBottomColor: Colours.neutral.n600,

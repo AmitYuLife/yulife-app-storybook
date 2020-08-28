@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { View, ViewStyle, TextStyle } from "react-native";
+import { View, ViewStyle, TextStyle, StyleSheet } from "react-native";
 import { updateFIBAnswerValue } from "@redux/product/product.actions";
 import { IReduxState } from "@redux/_core/reducers";
 import { getFIBState } from "@redux/product/product.selectors";
@@ -12,10 +12,12 @@ type ConnectedProps = ReturnType<typeof mapStateToProps> & typeof mapDispatchToP
 const _FibInputName = (props: ConnectedProps) => {
   const { fullName, updateName } = props;
   const [inputValue, setInputValue] = useState(fullName);
+  const [isFocus, setIsFocus] = useState(false);
+
   return (
     <View style={styles.wrapper}>
       <InputField
-        autoFocus={true}
+        autoFocus={false}
         isLarge={true}
         value={inputValue}
         onChangeText={(value: string) => {
@@ -28,9 +30,10 @@ const _FibInputName = (props: ConnectedProps) => {
         maxLength={48}
         width={Style.DEVICE_WIDTH - 64}
         keyboardType="default"
-        style={styles.textInput}
+        style={StyleSheet.flatten([styles.textInput, isFocus ? {} : styles.textInputOnBlur])}
         shadowStyle={styles.shadow}
         maxBeforeTruncate={32}
+        hasFocusActive={setIsFocus}
       />
     </View>
   );
@@ -61,8 +64,11 @@ const styles = {
     borderLeftWidth: 0,
     borderRightWidth: 0,
     borderRadius: 0,
-    borderBottomColor: Colours.darkHotPink,
+    borderBottomColor: Colours.primary.p500,
     borderBottomWidth: 2,
+  } as TextStyle,
+  textInputOnBlur: {
+    borderBottomColor: Colours.neutral.n600,
   } as TextStyle,
   shadow: {
     justifyContent: "flex-start",
