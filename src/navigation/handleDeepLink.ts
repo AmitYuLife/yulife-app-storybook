@@ -2,9 +2,10 @@ import { store } from "@redux/_core/store";
 import { GET_HISTORICAL_DATA } from "@redux/onboarding/onboarding.actions";
 import { getQueryStringObject } from "@services/utils";
 import Config from "react-native-config";
+import { labels, setUnauthenticatedRoot } from "./root";
 import { Navigation } from "react-native-navigation";
 import { MODALS } from "./constants";
-import { labels, setUnauthenticatedRoot } from "./root";
+import { npsModalProps, FeedbackModalProps } from "@components/modals/feedback/feedback.modal";
 
 export default async function handleDeepLink(fullUrl: string, hasToken: boolean) {
   const url = fullUrl.replace("yulifeapp://yulife/", "").replace(Config.JOIN_URL, "");
@@ -46,20 +47,6 @@ export default async function handleDeepLink(fullUrl: string, hasToken: boolean)
       }
 
       return;
-    case url.startsWith("feedback"):
-      if (hasToken) {
-        await Navigation.showModal({
-          component: {
-            id: MODALS.feedback,
-            name: MODALS.feedback,
-            passProps: {
-              closeModal: () => Navigation.dismissModal(MODALS.feedback),
-            },
-          },
-        });
-      }
-
-      return;
     case url.startsWith("signup/confirm"): // OTP
       if (!hasToken) {
         const props = getQueryStringObject(url);
@@ -69,6 +56,20 @@ export default async function handleDeepLink(fullUrl: string, hasToken: boolean)
       }
 
       return;
+
+    case url.startsWith("nps-feedback"):
+      if (hasToken) {
+        await Navigation.showModal<FeedbackModalProps>({
+          component: {
+            id: MODALS.feedback,
+            name: MODALS.feedback,
+            passProps: npsModalProps,
+          },
+        });
+      }
+
+      return;
+
     default:
       return;
   }

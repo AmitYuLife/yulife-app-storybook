@@ -3,7 +3,7 @@ import { StyleSheet, TextInput as Input, View, ViewStyle, TextStyle } from "reac
 import { Style, Colours } from "@styles";
 
 interface IProps {
-  value: string;
+  value?: string;
   onChange: (value: string) => void;
   numberOfLines?: number;
   onFocus?: () => void;
@@ -52,8 +52,9 @@ const styles = StyleSheet.create({
   input: {
     color: Colours.darkGray,
     fontFamily: Style.FONT_FAMILY_PRIMARY,
-    fontSize: Style.SCALE_UP_AND_DOWN(16),
+    fontSize: Style.adjust(16),
     height: 140,
+    letterSpacing: 1,
   } as TextStyle,
   wrapper: {
     backgroundColor: "#FAFAFE",

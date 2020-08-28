@@ -11,6 +11,7 @@ import {
   challengeCancelAction,
   challengeEndAction,
   challengeResetAction,
+  handleFeedbackAction,
 } from "../../../../redux/levels/levels.actions";
 import { getActiveLevel, getCurrentLevel } from "../../../../redux/levels/levels.selectors";
 import { displayStreaksCompletedAction } from "../../../../redux/streaks/streaks.actions";
@@ -80,6 +81,8 @@ const QuestsContainer: FC<Props> = (props) => {
         <ChallengeSuccessScreen
           level={level}
           onPressCta={() => {
+            dispatch(handleFeedbackAction({ level }));
+
             return handleResetChallenge(true);
           }}
           rating={rating}

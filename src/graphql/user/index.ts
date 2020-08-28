@@ -1,4 +1,3 @@
-export * from "./addUserFeedback.gql";
 export * from "./getActivityHistory.gql";
 export * from "./getCurrentUser.gql";
 export * from "./getMagicLink.gql";
