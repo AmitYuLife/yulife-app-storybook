@@ -5,8 +5,8 @@ import { getFIBState } from "@redux/product/product.selectors";
 import { IReduxState } from "@redux/_core/reducers";
 import { updateFIBAnswerValue } from "@redux/product/product.actions";
 import { Height } from "@redux/product/product.types";
-import { StyleSheet, TextStyle } from "react-native";
-import { Colours } from "@styles";
+import { StyleSheet } from "react-native";
+import { styles } from "./fib.input-height.styles";
 
 type ConnectedProps = ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps;
 
@@ -33,11 +33,6 @@ const _FibInputCm = (props: ConnectedProps) => {
     });
   };
 
-  const focusStyle = !isFocus
-    ? {
-        borderBottomColor: Colours.neutral.n600,
-      }
-    : {};
   return (
     <InputField
       autoFocus={false}
@@ -45,7 +40,7 @@ const _FibInputCm = (props: ConnectedProps) => {
       onChangeText={validateCm}
       maxLength={3}
       sideLabel="cm"
-      style={StyleSheet.flatten([styles.textInput, focusStyle])}
+      style={StyleSheet.flatten([styles.textInput, isFocus ? {} : styles.textInputOnBlur])}
       hasFocusActive={setIsFocus}
     />
   );
@@ -62,14 +57,3 @@ const mapDispatchToProps = {
 const redux = connect(mapStateToProps, mapDispatchToProps);
 
 export const FibInputCm = redux(_FibInputCm);
-
-const styles = StyleSheet.create({
-  textInput: {
-    borderTopWidth: 0,
-    borderLeftWidth: 0,
-    borderRightWidth: 0,
-    borderRadius: 0,
-    borderBottomColor: Colours.primary.p600,
-    borderBottomWidth: 1,
-  } as TextStyle,
-});

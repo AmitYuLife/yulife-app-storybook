@@ -1,6 +1,6 @@
-import React, { useRef, RefObject, useEffect } from "react";
+import React, { useRef, RefObject, useEffect, useState } from "react";
 import { connect } from "react-redux";
-import { TextInput, View } from "react-native";
+import { TextInput, View, StyleSheet } from "react-native";
 import { styles } from "./fib-input-birth.styles";
 import { updateFIBAnswerValue } from "@redux/product/product.actions";
 import { IReduxState } from "@redux/_core/reducers";
@@ -23,6 +23,10 @@ const _FibInputBirth = (props: ConnectedProps) => {
   const dayRef: RefObject<TextInput> = useRef(null);
   const monthRef: RefObject<TextInput> = useRef(null);
   const yearRef: RefObject<TextInput> = useRef(null);
+
+  const [isDayFocus, setIsDayFocus] = useState(false);
+  const [isMonthFocus, setIsMonthFocus] = useState(false);
+  const [isYearFocus, setIsYearFocus] = useState(false);
 
   useEffect(() => {
     const userFormattedDoB = moment(userDoB).format("DD-MM-YYYY").split("-");
@@ -102,23 +106,27 @@ const _FibInputBirth = (props: ConnectedProps) => {
     <View style={styles.wrapper}>
       <InputField
         forwardRef={dayRef}
-        autoFocus={true}
+        autoFocus={false}
         value={birthDay}
         onChangeText={validateDay}
         maxLength={2}
         inlineLabel="DD"
-        style={styles.textInput}
+        style={StyleSheet.flatten([styles.textInput, isDayFocus ? {} : styles.textInputOnBlur])}
+        hasFocusActive={setIsDayFocus}
       />
       <InputField
+        autoFocus={false}
         forwardRef={monthRef}
         value={birthMonth}
         onChangeText={validateMonth}
         maxLength={2}
         inlineLabel="MM"
         onBackSpace={handleBackspaceMonth}
-        style={styles.textInput}
+        style={StyleSheet.flatten([styles.textInput, isMonthFocus ? {} : styles.textInputOnBlur])}
+        hasFocusActive={setIsMonthFocus}
       />
       <InputField
+        autoFocus={false}
         forwardRef={yearRef}
         isLarge={true}
         value={birthYear}
@@ -127,7 +135,8 @@ const _FibInputBirth = (props: ConnectedProps) => {
         inlineLabel="YYYY"
         onBackSpace={handleBackspaceYear}
         width={70}
-        style={styles.textInput}
+        style={StyleSheet.flatten([styles.textInput, isYearFocus ? {} : styles.textInputOnBlur])}
+        hasFocusActive={setIsYearFocus}
       />
     </View>
   );

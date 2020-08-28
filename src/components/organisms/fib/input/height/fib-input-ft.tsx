@@ -5,8 +5,8 @@ import { getFIBState } from "@redux/product/product.selectors";
 import { IReduxState } from "@redux/_core/reducers";
 import { updateFIBAnswerValue } from "@redux/product/product.actions";
 import { Height } from "@redux/product/product.types";
-import { ViewStyle, TextInput, View, StyleSheet, TextStyle } from "react-native";
-import { Colours } from "@styles";
+import { TextInput, View, StyleSheet } from "react-native";
+import { styles } from "./fib.input-height.styles";
 
 type ConnectedProps = ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps;
 
@@ -65,7 +65,7 @@ const _FibInputFt = (props: ConnectedProps) => {
   };
 
   return (
-    <View style={styles.wrapper}>
+    <View style={styles.ftWrapper}>
       <InputField
         autoFocus={false}
         value={height.ft}
@@ -73,14 +73,7 @@ const _FibInputFt = (props: ConnectedProps) => {
         maxLength={1}
         sideLabel="ft"
         forwardRef={ftRef}
-        style={StyleSheet.flatten([
-          styles.textInput,
-          isFtFocus
-            ? {}
-            : {
-                borderBottomColor: Colours.neutral.n600,
-              },
-        ])}
+        style={StyleSheet.flatten([styles.textInput, isFtFocus ? {} : styles.textInputOnBlur])}
         hasFocusActive={setIsFtFocus}
         width={15}
       />
@@ -92,14 +85,7 @@ const _FibInputFt = (props: ConnectedProps) => {
         maxLength={2}
         sideLabel="in"
         forwardRef={inRef}
-        style={StyleSheet.flatten([
-          styles.textInput,
-          isInFocus
-            ? {}
-            : {
-                borderBottomColor: Colours.neutral.n600,
-              },
-        ])}
+        style={StyleSheet.flatten([styles.textInput, isInFocus ? {} : styles.textInputOnBlur])}
         hasFocusActive={setIsInFocus}
         width={15}
       />
@@ -118,18 +104,3 @@ const mapDispatchToProps = {
 const redux = connect(mapStateToProps, mapDispatchToProps);
 
 export const FibInputFt = redux(_FibInputFt);
-
-const styles = StyleSheet.create({
-  wrapper: {
-    flexDirection: "row",
-  } as ViewStyle,
-
-  textInput: {
-    borderTopWidth: 0,
-    borderLeftWidth: 0,
-    borderRightWidth: 0,
-    borderRadius: 0,
-    borderBottomColor: Colours.primary.p600,
-    borderBottomWidth: 1,
-  } as TextStyle,
-});
