@@ -5,6 +5,7 @@ import {
   data,
   FIB_THREE_YEAR_MEDICAL_HISTORY_SCREEN_ID,
 } from "../../components/containers/products/fib/data/underwriting-journey-data";
+import { UseInternationalFormat } from "../../components/containers/products/fib/fib.helpers";
 
 export const getFIBState = (state: IReduxState): FIBStore => {
   return state.product.fib;
@@ -15,7 +16,10 @@ export const getBirthday = (state: IReduxState): string => {
   const now = moment();
   const { birthDay, birthMonth, birthYear } = state.product.fib.answers;
 
-  const formatted = moment(`${birthYear}-${birthMonth}-${birthDay}`).format(DATE_FORMAT);
+  const formatted = moment(
+    `${birthYear}-${UseInternationalFormat(birthMonth)}-${UseInternationalFormat(birthDay)}`
+  ).format(DATE_FORMAT);
+
   const placeholder = now.clone().subtract(30, "years").format(DATE_FORMAT);
 
   return formatted === "Invalid date" ? placeholder : formatted;
@@ -57,19 +61,21 @@ export const getReviewAnswers = (state: IReduxState): any => {
         })
         .filter((e) => !!e);
 
-      item.children
-        .find((child) => child.type === "chiplist")
-        .chips.map((chip) => {
-          const activeChip = activeChips.find((activeChip) => activeChip === chip.id);
+      const chipListChild = item.children.find((child) => child.type === "chiplist");
 
-          if (activeChip) {
-            if (!answer) {
-              answer = "";
-            }
+      let commaCount = 0;
+      chipListChild.chips.map((chip) => {
+        const activeChip = activeChips.find((activeChip) => activeChip === chip.id);
 
-            answer = answer.concat(`${chip.label}, `);
+        if (activeChip) {
+          commaCount++;
+          if (!answer) {
+            answer = "";
           }
-        });
+
+          answer = answer.concat(`${chip.label}${commaCount === activeChips.length ? "" : ", "}`);
+        }
+      });
       icon = item.icon;
       title = item.reviewAnswerTitle || item.title;
       questionId = item.id;

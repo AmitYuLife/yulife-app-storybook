@@ -93,6 +93,7 @@ function personalProductReducer<T>(state: IProductStore = initialState, action: 
               ...initialState.fib.answers.weight,
             },
           },
+          existingCovers: initialState.fib.existingCovers,
         },
       };
     case RESET_FIB_MEDICAL_VALUE:
