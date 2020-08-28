@@ -8,6 +8,7 @@ type ChipIconType = "xml" | "image";
 
 export interface ChipProps {
   id: string;
+  relatedId?: string[];
   active: boolean;
   label: string;
   icon: string;

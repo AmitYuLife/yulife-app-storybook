@@ -1,20 +1,48 @@
-import React, { memo } from "react";
-import { StyleSheet, ViewStyle, View, Platform, ScrollView, Text, TextStyle } from "react-native";
+import React, { memo, useEffect, useRef } from "react";
+import {
+  StyleSheet,
+  ViewStyle,
+  View,
+  Platform,
+  ScrollView,
+  Text,
+  TextStyle,
+  NativeSyntheticEvent,
+  NativeScrollEvent,
+} from "react-native";
 import { useBackHandler } from "../../../../../services/hooks/useBackHandler";
 
 import Style from "../../../../../styles/style";
 import GenericHeading from "../../../../atoms/generic-heading/generic-heading";
 import { ReviewAnswers } from "@atoms/fib/review-answers/review-answers";
 import { Button } from "@atoms";
+import { IAnswer } from "../../../../../redux/product/product.selectors";
+import { NativeScrollPoint } from "react-native";
 
 export interface IFibUnderwritingReviewAnswersScreenProps {
   onNavigateBack: () => void;
-  answers: { icon: string; title: string; answer: string }[];
+  answers: IAnswer[];
   onSubmitButton?: () => void;
+  onAnswerPress: (questionId: string) => void;
+  onScrollEnd: (event: NativeSyntheticEvent<NativeScrollEvent>) => void;
+  offset: NativeScrollPoint;
 }
 
 const _FibUnderwritingReviewAnswersScreen = memo(function (props: IFibUnderwritingReviewAnswersScreenProps) {
-  const { onNavigateBack, onSubmitButton, answers } = props;
+  const { onNavigateBack, onSubmitButton, onAnswerPress, onScrollEnd, answers, offset } = props;
+  const scrollViewRef = useRef<ScrollView>(null);
+
+  useEffect(() => {
+    if (offset && offset.y > 0) {
+      setTimeout(() => {
+        if (scrollViewRef.current && scrollViewRef.current.scrollTo) {
+          scrollViewRef.current.scrollTo({ ...offset, animated: false });
+        }
+      }, 0);
+    }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const backHandler = React.useCallback(() => {
     onNavigateBack();
@@ -31,9 +59,23 @@ const _FibUnderwritingReviewAnswersScreen = memo(function (props: IFibUnderwriti
         onRightIconPress={onNavigateBack}
         isBeta={true}
       />
-      <ScrollView contentContainerStyle={styles.scrollViewContentStyle}>
+      <ScrollView
+        contentContainerStyle={styles.scrollViewContentStyle}
+        onMomentumScrollEnd={onScrollEnd}
+        ref={scrollViewRef}
+      >
         {answers.map((item) => {
-          return <ReviewAnswers icon={item.icon} title={item.title} answer={item.answer} key={item.title} />;
+          return (
+            <ReviewAnswers
+              icon={item.icon}
+              title={item.title}
+              answer={item.answer}
+              key={item.title}
+              onAnswerPress={() => {
+                onAnswerPress(item.questionId);
+              }}
+            />
+          );
         })}
         <Text style={styles.agreementText}>I agree that all the above is accurate</Text>
         <Button type="Primary" size={"Large"} onPress={onSubmitButton} label={"Submit answers"} />

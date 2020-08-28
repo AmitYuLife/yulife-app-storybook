@@ -1,7 +1,10 @@
 import { IReduxState } from "@redux/_core/reducers";
 import { FIBStore } from "./product.types";
 import moment from "moment";
-import { data } from "../../components/containers/products/fib/data/underwriting-journey-data";
+import {
+  data,
+  FIB_THREE_YEAR_MEDICAL_HISTORY_SCREEN_ID,
+} from "../../components/containers/products/fib/data/underwriting-journey-data";
 
 export const getFIBState = (state: IReduxState): FIBStore => {
   return state.product.fib;
@@ -20,36 +23,83 @@ export const getBirthday = (state: IReduxState): string => {
 
 export const getFullName = (state: IReduxState): string => state.product.fib.answers.fib_your_name;
 
+export interface IAnswer {
+  icon: string;
+  title: string;
+  answer: string;
+  questionId: string;
+}
 export const getReviewAnswers = (state: IReduxState): any => {
-  const answers: { icon: string; title: string; answer: string }[] = [];
+  const answers: IAnswer[] = [];
 
   // this will be moved to the container once we'll have the data from server
   data.map((item) => {
     let icon: string;
     let title: string;
     let answer: string;
+    let questionId: string;
 
     if (state.product.fib.answers[item.id]) {
       icon = item.icon;
-      title = item.title;
+      title = item.reviewAnswerTitle || item.title;
       answer = state.product.fib.answers[item.id];
+      questionId = item.id;
+
+      if (item.id === "fib_your_name") {
+        questionId = "fib_enter_your_name";
+      }
+    }
+
+    if (item.id === FIB_THREE_YEAR_MEDICAL_HISTORY_SCREEN_ID) {
+      const activeChips = Object.entries(state.product.fib.medicalHistory)
+        .map((entry) => {
+          return entry[1] ? entry[0] : null;
+        })
+        .filter((e) => !!e);
+
+      item.children
+        .find((child) => child.type === "chiplist")
+        .chips.map((chip) => {
+          const activeChip = activeChips.find((activeChip) => activeChip === chip.id);
+
+          if (activeChip) {
+            if (!answer) {
+              answer = "";
+            }
+
+            answer = answer.concat(`${chip.label}, `);
+          }
+        });
+      icon = item.icon;
+      title = item.reviewAnswerTitle || item.title;
+      questionId = item.id;
     }
 
     if (item.id === "fib_your_date_of_birth") {
       icon = item.icon;
       title = item.title;
       answer = getBirthday(state);
+      questionId = "fib_enter_your_date_of_birth";
     }
 
-    if (item.id === "fib_lifestyle_height_and_weight") {
+    if (item.id === "fib_lifestyle_height") {
       const heightObject = state.product.fib.answers.height;
       const height = heightObject.unit === "cm" ? `${heightObject.cm}cm` : `${heightObject.ft}${heightObject.in}ft`;
+
+      icon = item.icon;
+      title = item.title;
+      answer = `${height}`;
+      questionId = item.id;
+    }
+
+    if (item.id === "fib_lifestyle_weight") {
       const weightObject = state.product.fib.answers.weight;
       const weight = weightObject.unit === "kg" ? `${weightObject.kg}kg` : `${weightObject.lb}lb`;
 
       icon = item.icon;
       title = item.title;
-      answer = `${height}, ${weight}`;
+      answer = `${weight}`;
+      questionId = item.id;
     }
 
     if (item.id === "fib_lifestyle_alcohol") {
@@ -58,6 +108,7 @@ export const getReviewAnswers = (state: IReduxState): any => {
       icon = item.icon;
       title = item.title;
       answer = `${units} ${unitOrUnits}`;
+      questionId = item.id;
     }
 
     if (icon && answer && title) {
@@ -65,6 +116,7 @@ export const getReviewAnswers = (state: IReduxState): any => {
         icon,
         title,
         answer,
+        questionId,
       });
     }
   });

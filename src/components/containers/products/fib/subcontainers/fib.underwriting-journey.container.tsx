@@ -7,8 +7,6 @@ import {
 import { FibUnderwritingJourneyScreen } from "../../../../screens/products/fib/underwriting-journey/fib.underwriting-journey.screen";
 import {
   data,
-  FIB_DIGESTIVE_EXTRA_SCREENS,
-  FIB_DIGESTIVE_SCREEN_ID,
   FIB_THREE_YEAR_MEDICAL_HISTORY_SCREEN_ID,
   FIB_ENTER_YOUR_NAME,
   FIB_ENTER_YOUR_DATE_OF_BIRTH,
@@ -20,7 +18,7 @@ import { IReduxState } from "@redux/_core/reducers";
 import { getFIBState, getBirthday } from "@redux/product/product.selectors";
 import { connect, useDispatch } from "react-redux";
 import { updateFIBValue, updateFIBAnswerValue, resetFIBMedicalHistoryValue } from "@redux/product/product.actions";
-import { findQuestion } from "../fib.helpers";
+import { findQuestion, FibButtonType } from "../fib.helpers";
 import { FibAnswers } from "@redux/product/product.types";
 
 type ConnectedProps = ReturnType<typeof mapStateToProps>;
@@ -36,25 +34,17 @@ const FibUnderwritingJourneyContainer = memo(function (props: Props) {
   const { navigation, medicalHistory, updateFibAnswer, initialQuestionId, fibAnswers } = props;
   const dispatch = useDispatch();
 
-  const initialQuestion = data.find((question) => question.id === initialQuestionId) || data[0];
+  const { redirectedFromReviewScreen, initialQuestionIdFromReviewScreen } = navigation.currentRoute.passProps;
+
+  const initialQuestion =
+    data.find((question) => question.id === initialQuestionId || question.id === initialQuestionIdFromReviewScreen) ||
+    data[0];
 
   const [currentQuestion, setCurrentQuestion] = useState(initialQuestion);
   const activeIndex = data.findIndex((item) => item.id === currentQuestion.id);
 
   const updateAnswer = (questionId: string, value: string, answers: FibAnswers): FibAnswers => {
     updateFibAnswer(questionId, value);
-
-    if ([...FIB_DIGESTIVE_EXTRA_SCREENS, FIB_DIGESTIVE_SCREEN_ID].includes(questionId) && value === "No") {
-      if (questionId === FIB_DIGESTIVE_SCREEN_ID) {
-        FIB_DIGESTIVE_EXTRA_SCREENS.forEach((extraQuestionId) => updateFibAnswer(extraQuestionId, value));
-        return;
-      }
-
-      const extraQuestionIndex = FIB_DIGESTIVE_EXTRA_SCREENS.findIndex((screenId) => screenId === questionId);
-      for (let i = extraQuestionIndex + 1; i < FIB_DIGESTIVE_EXTRA_SCREENS.length; i++) {
-        updateFibAnswer(FIB_DIGESTIVE_EXTRA_SCREENS[i], value);
-      }
-    }
 
     if (questionId === "fib_medical_three_or_more_consultation" && value === "No") {
       for (const key of Object.keys(answers)) {
@@ -69,11 +59,50 @@ const FibUnderwritingJourneyContainer = memo(function (props: Props) {
     return { ...answers, [questionId]: value };
   };
 
+  const navigateToReviewScreenOrFindNextQuestion = (localAnswers: FibAnswers, buttonType: FibButtonType) => {
+    if (redirectedFromReviewScreen) {
+      if (initialQuestion.category) {
+        const nextQuestion = findQuestion({
+          data,
+          buttonType,
+          currentQuestion,
+          medicalHistory,
+          answers: localAnswers || fibAnswers,
+        });
+
+        if (!nextQuestion?.id.includes(initialQuestion.category)) {
+          return navigation.pop();
+        }
+      } else if (initialQuestion.nextQuestionBeforeQuit) {
+        const nextQuestion = findQuestion({
+          data,
+          buttonType,
+          currentQuestion,
+          medicalHistory,
+          answers: localAnswers || fibAnswers,
+        });
+
+        if (nextQuestion.id === initialQuestion.nextQuestionBeforeQuit) {
+          return navigation.pop();
+        }
+      } else {
+        return navigation.pop();
+      }
+    }
+  };
+
   const onFirstButtonPressed = () => {
     let localAnswers;
     if (shouldAnswerBeStored(currentQuestion.firstButton.label, currentQuestion.id)) {
       localAnswers = updateAnswer(currentQuestion.id, currentQuestion.firstButton.label, fibAnswers);
+      if (currentQuestion.firstButton.answersIdToInvalidate) {
+        currentQuestion.firstButton.answersIdToInvalidate.map((answerIdToInvalidate) => {
+          updateFibAnswer(answerIdToInvalidate, "");
+        });
+      }
     }
+
+    navigateToReviewScreenOrFindNextQuestion(localAnswers, "firstButton");
 
     if (currentQuestion.firstButton.actionId === FIB_UNDERWRITING_REVIEW_ANSWERS_SCREEN_ID) {
       dispatch(updateFIBValue({ key: "lastQuestionId", value: FIB_UNDERWRITING_REVIEW_ANSWERS_SCREEN_ID }));
@@ -95,7 +124,14 @@ const FibUnderwritingJourneyContainer = memo(function (props: Props) {
     let localAnswers;
     if (shouldAnswerBeStored(currentQuestion.secondButton.label, currentQuestion.id)) {
       localAnswers = updateAnswer(currentQuestion.id, currentQuestion.secondButton.label, fibAnswers);
+      if (currentQuestion.secondButton.answersIdToInvalidate) {
+        currentQuestion.secondButton.answersIdToInvalidate.map((answerIdToInvalidate) => {
+          updateFibAnswer(answerIdToInvalidate, "");
+        });
+      }
     }
+
+    navigateToReviewScreenOrFindNextQuestion(localAnswers, "secondButton");
 
     const question = findQuestion({
       data,
@@ -122,7 +158,10 @@ const FibUnderwritingJourneyContainer = memo(function (props: Props) {
     setCurrentQuestion(question);
   };
 
-  const onPreviousButtonPressed = !currentQuestion.previousButton ? null : handleSetPreviousQuestion;
+  const onPreviousButtonPressed =
+    !currentQuestion.previousButton || initialQuestionIdFromReviewScreen === currentQuestion.id
+      ? null
+      : handleSetPreviousQuestion;
 
   const progressBar = {
     currentPosition: currentQuestion.order,
@@ -172,7 +211,11 @@ const FibUnderwritingJourneyContainer = memo(function (props: Props) {
         onFirstButtonPressed={onFirstButtonPressed}
         onSecondButtonPressed={onSecondButtonPressed}
         onPreviousButtonPressed={onPreviousButtonPressed}
-        progressBar={{ maxLength: data.length, currentPosition: activeIndex + 1 }}
+        progressBar={{
+          maxLength: data.length,
+          currentPosition: activeIndex + 1,
+          isHidden: redirectedFromReviewScreen ? true : false,
+        }}
         disableFirstButton={disableFirstButton}
       />
     </FIBProgressBar.ProgressBarContext.Provider>

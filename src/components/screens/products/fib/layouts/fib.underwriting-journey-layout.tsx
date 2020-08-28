@@ -15,12 +15,13 @@ interface Props {
   progressBar: {
     maxLength: number;
     currentPosition: number;
+    isHidden: boolean;
   };
   activeScreenId?: string;
 }
 
 export function FibUnderwritingJourneyLayout(props: Props) {
-  const { heading, onNavigateBack, children, activeScreenId } = props;
+  const { heading, onNavigateBack, children, activeScreenId, progressBar } = props;
   const iOSKeyboardBehavior = [FIB_ENTER_YOUR_NAME, FIB_ENTER_YOUR_DATE_OF_BIRTH].includes(activeScreenId)
     ? "height"
     : null;
@@ -30,7 +31,7 @@ export function FibUnderwritingJourneyLayout(props: Props) {
       style={styles.wrapper}
     >
       <GenericHeading heading={heading} rightIcon={{ icon: "CLOSE" }} onRightIconPress={onNavigateBack} isBeta={true} />
-      <FIBProgressBar />
+      {progressBar.isHidden ? null : <FIBProgressBar />}
       {children}
     </KeyboardAvoidingView>
   );

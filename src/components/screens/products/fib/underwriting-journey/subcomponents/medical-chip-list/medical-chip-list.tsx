@@ -29,7 +29,13 @@ function MedicalChipList(props: ChipListProps & ConnectedState) {
         })
       );
       // Reset previous answers
-      dispatch(updateFIBAnswerValue({ key: item.id, value: "" }));
+      if (item.relatedId) {
+        item.relatedId.map((id) => {
+          dispatch(updateFIBAnswerValue({ key: id, value: "" }));
+        });
+      } else {
+        dispatch(updateFIBAnswerValue({ key: item.id, value: "" }));
+      }
     };
 
     item.active = medicalHistory[item.id];
