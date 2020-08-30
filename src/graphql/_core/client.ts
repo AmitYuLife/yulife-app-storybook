@@ -66,7 +66,8 @@ persistCache({
 
 const defaultHeaders = {
   app_version: DeviceInfo.getVersion(),
-  device_id: DeviceInfo.getUniqueId(),
+  device_id: DeviceInfo.getDeviceId(),
+  apollo_client_name: "react_native",
 };
 
 const authMiddleware = setContext(async (_, { headers }) => {
