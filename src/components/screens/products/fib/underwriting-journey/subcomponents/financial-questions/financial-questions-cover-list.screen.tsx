@@ -28,18 +28,16 @@ function _FinancialQuestionsCoverListScreen(props: Props) {
   return (
     <FibUnderwritingJourneyLayout
       heading={data.heading}
-      onNavigateBack={onNavigateBack}
+      onClose={onNavigateBack}
       progressBar={props.progressBar}
+      onPreviousQuestion={onPreviousButtonPressed}
     >
-      <ScrollView contentContainerStyle={styles.scrollViewContentStyle}>
+      <ScrollView style={styles.wrapper}>
         <TitleWithIcon icon={data.icon} title={data.title} />
         <FibTitle title={data.question} />
         <FinancialQuestionsCoverList existingCovers={existingCovers} onAddCover={onSecondButtonPressed} />
       </ScrollView>
-      <Footer
-        firstButton={{ action: onFirstButtonPressed, label: "Done", disabled: existingCovers.length === 0 }}
-        onPreviousButtonPressed={onPreviousButtonPressed}
-      />
+      <Footer firstButton={{ action: onFirstButtonPressed, label: "Done", disabled: existingCovers.length === 0 }} />
     </FibUnderwritingJourneyLayout>
   );
 }
@@ -52,9 +50,11 @@ function mapStateToProps(store: IReduxState) {
 
 export const FinancialQuestionsCoverListScreen = connect(mapStateToProps)(_FinancialQuestionsCoverListScreen);
 
+const MARGIN_BOTTOM = Style.hasNotch ? 60 : 100;
+
 const styles = StyleSheet.create({
-  scrollViewContentStyle: {
-    paddingBottom: 130,
+  wrapper: {
+    marginBottom: MARGIN_BOTTOM,
     paddingHorizontal: 32,
   } as ViewStyle,
   buttonWrapper: {

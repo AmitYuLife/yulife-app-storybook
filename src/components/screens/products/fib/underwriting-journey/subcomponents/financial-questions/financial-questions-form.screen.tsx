@@ -43,10 +43,11 @@ export function _FinancialQuestionsFormScreen(props: Props) {
   return (
     <FibUnderwritingJourneyLayout
       heading={data.heading}
-      onNavigateBack={onNavigateBack}
+      onClose={onNavigateBack}
+      onPreviousQuestion={onPreviousButtonPressed}
       progressBar={props.progressBar}
     >
-      <ScrollView contentContainerStyle={styles.scrollViewContentStyle} keyboardShouldPersistTaps="handled">
+      <ScrollView style={styles.wrapper} keyboardShouldPersistTaps="handled">
         <TitleWithIcon icon={data.icon} title={data.title} />
         <FibTitle title={data.question} />
         <FinancialQuestionsForm
@@ -55,11 +56,7 @@ export function _FinancialQuestionsFormScreen(props: Props) {
           setFormValue={setFormValue}
         />
       </ScrollView>
-      <Footer
-        hideOnKeyboardOpen={true}
-        firstButton={{ action: submitForm, label: "Done", disabled: !isFormValid }}
-        onPreviousButtonPressed={onPreviousButtonPressed}
-      />
+      <Footer firstButton={{ action: submitForm, label: "Done", disabled: !isFormValid }} />
     </FibUnderwritingJourneyLayout>
   );
 }
@@ -76,9 +73,11 @@ const mapDispatchToProps = {
 
 export const FinancialQuestionsFormScreen = connect(mapStateToProps, mapDispatchToProps)(_FinancialQuestionsFormScreen);
 
+const MARGIN_BOTTOM = Style.hasNotch ? 60 : 100;
+
 const styles = StyleSheet.create({
-  scrollViewContentStyle: {
-    paddingBottom: 130,
+  wrapper: {
+    marginBottom: MARGIN_BOTTOM,
     paddingHorizontal: 32,
   } as ViewStyle,
   buttonWrapper: {

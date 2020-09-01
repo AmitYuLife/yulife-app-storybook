@@ -6,7 +6,8 @@ import { Style } from "@styles";
 
 interface Props {
   heading: string;
-  onNavigateBack: () => void;
+  onClose: () => void;
+  onPreviousQuestion?: () => void | null;
   children: React.ReactNode;
   progressBar: {
     maxLength: number;
@@ -16,14 +17,15 @@ interface Props {
 }
 
 export function FibUnderwritingJourneyLayout(props: Props) {
-  const { heading, onNavigateBack, children } = props;
+  const { heading, onClose, onPreviousQuestion = null, children } = props;
   return (
     <KeyboardAvoidingView behavior={Platform.select({ ios: "padding", android: null })} style={styles.wrapper}>
-      <SafeAreaView style={{ height: "100%" }}>
+      <SafeAreaView style={{ height: "100%", flex: 1 }}>
         <GenericHeading
           heading={heading}
           rightIcon={{ icon: "CLOSE" }}
-          onRightIconPress={onNavigateBack}
+          onLeftIconPress={onPreviousQuestion}
+          onRightIconPress={onClose}
           isBeta={true}
         />
         <FIBProgressBar />

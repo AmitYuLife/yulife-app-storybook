@@ -123,7 +123,7 @@ const styles = StyleSheet.create({
   },
   scrollView: {
     backgroundColor: "#fafafe",
-    paddingBottom: 120,
+    paddingBottom: 32,
     marginTop: 24,
   },
   buttonWrapper: {

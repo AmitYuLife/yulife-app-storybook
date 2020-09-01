@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
     height: "100%",
   },
   scrollViewContentStyle: {
-    paddingBottom: 68,
+    paddingBottom: 16,
   } as ViewStyle,
   agreementText: {
     marginTop: 42,
