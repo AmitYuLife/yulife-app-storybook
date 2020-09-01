@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Animated, StyleSheet, TouchableWithoutFeedback, View } from "react-native";
+import { Animated, View } from "react-native";
 import { Button, Heading } from "@atoms";
 import { initializeAnimation } from "./world-animations";
 import { getAssets } from "./unity.data";
@@ -52,20 +52,22 @@ class Unity extends React.PureComponent<IProps, {}> {
     const { color, background, background_xl, foreground, foreground_xl } = getAssets(unity);
 
     return (
-      <TouchableWithoutFeedback style={styles.wrapper} onPress={onSkip}>
+      <View style={styles.wrapper}>
+        <LottieView
+          resizeMode="cover"
+          style={styles.fullScreenLottie}
+          source={isIphoneX() ? background_xl : background}
+          autoPlay={true}
+          loop={false}
+        />
+        <LottieView
+          resizeMode="cover"
+          style={styles.fullScreenLottie}
+          source={isIphoneX() ? foreground_xl : foreground}
+          autoPlay={true}
+          loop={false}
+        />
         <>
-          <LottieView
-            style={styles.fillScreen}
-            source={isIphoneX() ? background_xl : background}
-            autoPlay={true}
-            loop={false}
-          />
-          <LottieView
-            style={StyleSheet.absoluteFill}
-            source={isIphoneX() ? foreground_xl : foreground}
-            autoPlay={true}
-            loop={false}
-          />
           <View style={styles.headingWrapper}>
             <Animated.View style={{ opacity: this.headingOpacity }}>
               <Heading label="Congratulations!" color={color} style={styles.heading} />
@@ -79,12 +81,16 @@ class Unity extends React.PureComponent<IProps, {}> {
             </Animated.View>
           </View>
           <Animated.View
-            style={{ opacity: this.buttonOpacity, transform: [{ translateY: this.buttonY }], ...styles.buttonWrapper }}
+            style={{
+              opacity: this.buttonOpacity,
+              transform: [{ translateY: this.buttonY }],
+              ...styles.buttonWrapper,
+            }}
           >
             <Button type="Primary" size="Large" onPress={onSkip} label="Continue" />
           </Animated.View>
         </>
-      </TouchableWithoutFeedback>
+      </View>
     );
   }
 
