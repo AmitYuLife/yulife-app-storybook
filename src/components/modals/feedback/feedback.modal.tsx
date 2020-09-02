@@ -15,6 +15,7 @@ import { useBackHandler } from "@services/hooks/useBackHandler";
 
 export const cesModalProps: FeedbackModalProps = {
   metric: Metric.CES,
+  title: "How easy was it for you to get started in the app?",
   slider: {
     leftLabel: "Not easy at all",
     rightLabel: "Very easy",
@@ -41,9 +42,10 @@ export const cesModalProps: FeedbackModalProps = {
 
 export const npsModalProps: FeedbackModalProps = {
   metric: Metric.NPS,
+  title: "How likely are you to recommend YuLife to a co-worker?",
   slider: {
-    leftLabel: "Not easy at all",
-    rightLabel: "Very easy",
+    leftLabel: "Not at all likely",
+    rightLabel: "Extremely likely",
     maxValue: 10,
   },
   textInputScreenContent: [
@@ -58,7 +60,7 @@ export const npsModalProps: FeedbackModalProps = {
       minDisplayValue: 5,
     },
     {
-      headingText: "We're sorry to hear that. How can we improve?",
+      headingText: "We’re sorry you’re having a hard time. What’s one thing we can do to improve?",
       placeholderText: "Help us by explaining your score...",
       minDisplayValue: 0,
     },
@@ -67,6 +69,7 @@ export const npsModalProps: FeedbackModalProps = {
 
 export interface FeedbackModalProps {
   metric: Metric;
+  title: string;
   slider: SliderInputProps;
   textInputScreenContent: Content[];
 }
@@ -76,7 +79,7 @@ function dismissModal() {
 }
 
 function FeedbackModal(props: FeedbackModalProps) {
-  const { slider, textInputScreenContent, metric } = props;
+  const { slider, textInputScreenContent, metric, title } = props;
   const [addUserSatisfactionFeedback, { loading }] = useMutation<AddUserFeedbackMutationTuple>(GQL_ADD_USER_FEEDBACK, {
     onCompleted: () => {
       dismissModal();
@@ -112,6 +115,7 @@ function FeedbackModal(props: FeedbackModalProps) {
   return (
     <SliderForm
       slider={slider}
+      title={title}
       onClose={dismissModal}
       setScore={setScore}
       score={score}
@@ -125,13 +129,14 @@ export default FeedbackModal;
 interface SliderFormProps {
   slider: SliderInputProps;
   score: number;
+  title: string;
   setScore: (val: number) => void;
   onSubmit: () => void;
   onClose: () => void;
 }
 
 function SliderForm(props: SliderFormProps) {
-  const { setScore, slider, onSubmit, score, onClose } = props;
+  const { setScore, slider, onSubmit, score, onClose, title } = props;
 
   const backHandler = useCallback(() => {
     onClose();
@@ -150,7 +155,7 @@ function SliderForm(props: SliderFormProps) {
       shouldCenterContent={true}
     >
       <View style={styles.content}>
-        <Heading style={styles.heading} label="How easy was it for you to get started in the app?" />
+        <Heading style={styles.heading} label={title} />
 
         <View style={styles.yugiWrapper}>
           <YugiSvg />

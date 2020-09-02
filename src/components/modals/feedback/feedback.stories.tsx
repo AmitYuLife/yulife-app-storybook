@@ -12,6 +12,7 @@ storiesOf("Feedback", module)
   .add("Feedback Modal", () => {
     return (
       <FeedbackModal
+        title={cesModalProps.title}
         metric={cesModalProps.metric}
         slider={cesModalProps.slider}
         textInputScreenContent={cesModalProps.textInputScreenContent}

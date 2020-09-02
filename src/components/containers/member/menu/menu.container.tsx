@@ -1,5 +1,4 @@
 import { bottomTabs, MODALS, ROUTES } from "@navigation/constants";
-import Wootric from "@services/wootric";
 import * as React from "react";
 import Config from "react-native-config";
 import { PureComponent } from "react";
@@ -16,6 +15,7 @@ import { getUserBusiness, getUserFeatures, getUserMembershipType } from "../../.
 import { MenuScreen } from "../../../screens";
 import assets, { LINKS, LinkTypes } from "./assets";
 import { getMemberServicesDisplayState } from "@components/molecules/member-services-tabs/member-services-tab/member-services.helpers";
+import { npsModalProps, FeedbackModalProps } from "@components/modals/feedback/feedback.modal";
 
 type ConnectedState = ReturnType<typeof mapStateToProps>;
 type ConnectedDipatch = typeof mapDispatchToProps;
@@ -183,7 +183,13 @@ class MenuContainer extends PureComponent<Props> {
   };
 
   private handleSurvey() {
-    Wootric.showSurvey();
+    Navigation.showModal<FeedbackModalProps>({
+      component: {
+        id: MODALS.feedback,
+        name: MODALS.feedback,
+        passProps: npsModalProps,
+      },
+    });
   }
 }
 

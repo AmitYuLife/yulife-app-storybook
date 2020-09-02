@@ -354,16 +354,12 @@ PODS:
     - React
   - RNSVG (12.1.0):
     - React
-  - RNWootric (1.0.0):
-    - React
-    - WootricSDK
   - SDWebImage (5.8.4):
     - SDWebImage/Core (= 5.8.4)
   - SDWebImage/Core (5.8.4)
   - SDWebImageWebPCoder (0.6.1):
     - libwebp (~> 1.0)
     - SDWebImage/Core (~> 5.7)
-  - WootricSDK (0.18.2)
   - Yoga (1.14.0)
   - YogaKit (1.18.1):
     - Yoga (~> 1.14)
@@ -434,7 +430,6 @@ DEPENDENCIES:
   - RNFitKit (from `../node_modules/react-native-fitkit/ios`)
   - RNSpringScrollView (from `../node_modules/react-native-spring-scrollview/ios`)
   - RNSVG (from `../node_modules/react-native-svg`)
-  - "RNWootric (from `../node_modules/@wootric/react-native-wootric/ios`)"
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
@@ -455,7 +450,6 @@ SPEC REPOS:
     - OpenSSL-Universal
     - SDWebImage
     - SDWebImageWebPCoder
-    - WootricSDK
     - YogaKit
 
 EXTERNAL SOURCES:
@@ -547,8 +541,6 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-spring-scrollview/ios"
   RNSVG:
     :path: "../node_modules/react-native-svg"
-  RNWootric:
-    :path: "../node_modules/@wootric/react-native-wootric/ios"
   Yoga:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
@@ -611,10 +603,8 @@ SPEC CHECKSUMS:
   RNFitKit: 616d0226b7c2df643037e955434d347057eed612
   RNSpringScrollView: 8b0af44fda8b131d845b93bf5b1d0710152e4e61
   RNSVG: ce9d996113475209013317e48b05c21ee988d42e
-  RNWootric: 82a24018a640a6b196c9287421b42ff3946a2b45
   SDWebImage: cf6922231e95550934da2ada0f20f2becf2ceba9
   SDWebImageWebPCoder: d0dac55073088d24b2ac1b191a71a8f8d0adac21
-  WootricSDK: be2c27222008c481358e52a0eb872cdcfe13338c
   Yoga: 7740b94929bbacbddda59bf115b5317e9a161598
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 

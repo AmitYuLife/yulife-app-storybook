@@ -3432,11 +3432,6 @@
     "@webassemblyjs/wast-parser" "1.9.0"
     "@xtuc/long" "4.2.2"
 
-"@wootric/react-native-wootric@^1.3.0":
-  version "1.3.0"
-  resolved "https://registry.yarnpkg.com/@wootric/react-native-wootric/-/react-native-wootric-1.3.0.tgz#81a0de80cc1e42d12d558fa2d9b16589e2714449"
-  integrity sha512-L8dNSc4LYzMWj6KKN4Sk0eKk/ubbIsW7oMEU58LgdYummZR7V0KcVA372r7OQl/xNHa7vhu9mG/EVaNZBamv2Q==
-
 "@wry/context@^0.4.0":
   version "0.4.4"
   resolved "https://registry.yarnpkg.com/@wry/context/-/context-0.4.4.tgz#e50f5fa1d6cfaabf2977d1fda5ae91717f8815f8"

@@ -15,35 +15,18 @@ jest.mock("react-native-config", () => ({
 }));
 
 jest.mock("react-native/Libraries/Components/Touchable/TouchableOpacity.js", () => {
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
   const { TouchableHighlight } = require("react-native");
   const MockTouchable = (props) => {
     return <TouchableHighlight {...props} />;
   };
+
   MockTouchable.displayName = "TouchableOpacity";
 
   return MockTouchable;
 });
 
-jest.mock("react-native-intercom", () => {}, { virtual: true });
-jest.mock(
-  "@wootric/react-native-wootric",
-  () => ({
-    configureWithClientID: () => ({}),
-    setEndUserEmail: () => ({}),
-    setSurveyImmediately: () => ({}),
-    setEndUserCreatedAt: () => ({}),
-    setEndUserExternalId: () => ({}),
-    setEndUserPhoneNumber: () => ({}),
-    setEndUserProperties: () => ({}),
-    showOptOut: () => ({}),
-    setFirstSurveyAfter: () => ({}),
-    setCustomLanguage: () => ({}),
-    setCustomProductName: () => ({}),
-    setCustomAudience: () => ({}),
-    showSurvey: () => ({}),
-  }),
-  {}
-);
+jest.mock("react-native-intercom", () => ({}), { virtual: true });
 
 jest.mock("react-native-fitkit", () => ({
   // As strange as it is to use moment in a config file, this ensures that at whatever point this
