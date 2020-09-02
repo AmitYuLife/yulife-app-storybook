@@ -21,6 +21,9 @@ export const STATS_VALUE = (value: any) => `STATS_VALUE_${value.toString()}`
 export const STATS_CHALLENGE_HISTORY = (value: number) => `STATS_CHALLENGE_HISTORY_${value}`
 export const CHALLENGE_UNAVAILABLE = `CHALLENGE_UNAVAILABLE`
 export const WEGIFT_DETAILS = "WEGIFT_DETAILS"
+export const YUNITY_REACHED = (yunityNum:number) => `YUNITY_REACHED_${yunityNum}`
+
+
 // buttons
 export const BUTTON_LOGIN = "BUTTON_LOGIN";
 export const BUTTON_SIGNUP_BONUS_NEXT = "BUTTON_SIGNUP_BONUS_NEXT";

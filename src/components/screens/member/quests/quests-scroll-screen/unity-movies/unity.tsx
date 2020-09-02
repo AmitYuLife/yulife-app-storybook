@@ -7,6 +7,8 @@ import styles from "./unity.styles";
 import LottieView from "lottie-react-native";
 import { isIphoneX } from "react-native-iphone-x-helper";
 import { toOrdinal } from "@services/utils";
+import { YUNITY_REACHED } from "@ids";
+import { DETOX_ENABLED } from "@services/socket";
 
 interface IProps {
   unity: number;
@@ -72,7 +74,7 @@ class Unity extends React.PureComponent<IProps, {}> {
             <Animated.View style={{ opacity: this.headingOpacity }}>
               <Heading label="Congratulations!" color={color} style={styles.heading} />
             </Animated.View>
-            <Animated.View style={{ opacity: this.subheadingOpacity }}>
+            <Animated.View style={{ opacity: this.subheadingOpacity }} testID={YUNITY_REACHED(Math.floor(unity / 50))}>
               <Heading
                 label={`You’ve reached the ${toOrdinal(Math.floor(unity / 50))} level of Yunity`}
                 color={color}
@@ -95,6 +97,17 @@ class Unity extends React.PureComponent<IProps, {}> {
   }
 
   private createAnimation = (variable: Animated.Value, toValue: number, delay = 0, duration = 500) => {
+    if (DETOX_ENABLED) {
+      {
+        return Animated.timing(variable, {
+          toValue: 1,
+          useNativeDriver: true,
+          duration: 0,
+          delay: 0,
+        });
+      }
+    }
+
     return Animated.timing(variable, {
       toValue,
       useNativeDriver: true,

@@ -32,15 +32,23 @@ Feature("As a user I can use the streaks functionality", async () => {
                                         When("I tap collect", when.tapText("collect"), async () => {
                                             Then("..I should see the completed streak day 1 modal", then.textVisible("Completed streak day 1"))
                                             When("I tap 'done'", when.tapText("done"), async () => {
-                                                Then("I should be on the quest screen", then.idVisible(QUESTS_SCREEN(0)))
-                                                Then("I should see the level 2 is unlocked", then.idVisible(LEVEL_CHALLENGE_BUTTON(2)))
-                                                When("I go back to the yucoin tab", when.tapID(NAV_BAR("yucoin")), async () => {
-                                                    When("I continue the intro", when.finishIntro, async () => {
-                                                        Then("I should see 1/5 streaks", then.textVisible("1/5"))
-                                                        Then("I should see the amount of yucoin I earned today", then.textVisible("60 yucoin today"))
-                                                        Then("I should see the number of steps I walked today", then.textVisible("108 steps"))
-                                                        When("I tap '1/5", when.tapText("1/5"), async () => {
-                                                            Then("I should see the completed modal again", then.textVisible("Completed streak day 1"))
+                                                Then("I should see the feedback screen", then.textVisible("Not easy at all"))
+                                                When("I tap 7", when.tapText("7"), async()=>{
+                                                    When("I tap submit your rating", when.tapText("Submit your rating"), async()=>{
+                                                        Then("I should see the explain your score screen", then.textVisible("Submit feedback"))
+                                                        When("I tap submit feedback", when.tapText("Submit feedback"), async()=>{
+                                                            Then("I should be on the quest screen", then.idVisible(QUESTS_SCREEN(0)))
+                                                            Then("I should see the level 2 is unlocked", then.idVisible(LEVEL_CHALLENGE_BUTTON(2)))
+                                                            When("I go back to the yucoin tab", when.tapID(NAV_BAR("yucoin")), async () => {
+                                                                When("I continue the intro", when.finishIntro, async () => {
+                                                                    Then("I should see 1/5 streaks", then.textVisible("1/5"))
+                                                                    Then("I should see the amount of yucoin I earned today", then.textVisible("60 yucoin today"))
+                                                                    Then("I should see the number of steps I walked today", then.textVisible("108 steps"))
+                                                                    When("I tap '1/5", when.tapText("1/5"), async () => {
+                                                                        Then("I should see the completed modal again", then.textVisible("Completed streak day 1"))
+                                                                    })
+                                                                })
+                                                            })
                                                         })
                                                     })
                                                 })

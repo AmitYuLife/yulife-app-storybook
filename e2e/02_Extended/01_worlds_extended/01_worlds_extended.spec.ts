@@ -4,7 +4,7 @@ import * as given from "./_steps/given"
 import * as when from "./_steps/when"
 import * as then from "./_steps/then"
 import { CUSTOMER_22, AUTH_22, CUSTOMER_23, AUTH_23 } from "_utils/data/stubs";
-import { LEVEL_CHALLENGE_BUTTON, QUESTS_SCREEN, VIEW_TOP_RIGHT_COIN_COUNTER } from "@ids";
+import { LEVEL_CHALLENGE_BUTTON, QUESTS_SCREEN, VIEW_TOP_RIGHT_COIN_COUNTER, YUNITY_REACHED } from "@ids";
 
 
 Feature("As a user I can complete challenges across multiple worlds", async () => {
@@ -16,9 +16,12 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
             When("I complete a walking challenge", when.completeNewWorldShortStroll(49), async () => {
                 Then("I should see the level 50 challenge button", then.idVisible(LEVEL_CHALLENGE_BUTTON(50)))
                 When("I tap this level 50 button", when.tapID(LEVEL_CHALLENGE_BUTTON(50)), async () => {
-                    Then("I should be on the second world", then.idVisible(QUESTS_SCREEN(1)))
-                    Then("I should see my updated coin amount", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(17910)))
-                    Then("I should see the level 51 challenge button", then.idVisible(LEVEL_CHALLENGE_BUTTON(51)))
+                    Then("I should see the compelted the first yunity screen", then.idVisible(YUNITY_REACHED(1), 12000))
+                    When("I tap Continue", when.tapText("Continue"), async()=>{
+                        Then("I should be on the second world", then.idVisible(QUESTS_SCREEN(1)))
+                        Then("I should see my updated coin amount", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(17910)))
+                        Then("I should see the level 51 challenge button", then.idVisible(LEVEL_CHALLENGE_BUTTON(51)))
+                    })
                 })
             })
         })
@@ -35,6 +38,8 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
                 When("I scroll up", when.scrollFromID(LEVEL_CHALLENGE_BUTTON(99), "down", "slow"), async () => {
                     Then("I should see the level 100 unity challenge", then.idVisible(LEVEL_CHALLENGE_BUTTON(100)))
                     When("I tap the level 100 unity challenge", when.tapID(LEVEL_CHALLENGE_BUTTON(100)), async () => {
+                        Then("I should see the compelted the second yunity screen", then.idVisible(YUNITY_REACHED(2), 12000))
+                        When("I tap Continue", when.tapText("Continue"), async () => {
                         Then("I should have unlocked the third world", then.idVisible(QUESTS_SCREEN(2), 5000))
                         Then("I should see the level 99 challenge button on the second world", then.idVisible(LEVEL_CHALLENGE_BUTTON(99)))
                         When("I complete a level 99 meditation challenge", when.completeNewWorldMeditation(99), async () => {
@@ -48,6 +53,7 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
                                         Then("I should see the short stroll challenge I just completed with the correct stars", then.onChallengeHistory("short stroll", 99, 10, 3))
                                         Then("I should see the meditation challenge I just completed with the correct stars", then.onChallengeHistory("meditation", 99, 20, 1))
                                         Then("I should see the number of minutes for meditation", then.textVisible("3-10 mins"))
+                                        })
                                     })
                                 })
                             })
@@ -69,9 +75,12 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
                 When("I complete a level 99 meditation challenge", when.completeNewWorldMeditation(99), async () => {
                     Then("I should see the level 100 unity challenge", then.idVisible(LEVEL_CHALLENGE_BUTTON(100)))
                     When("I tap the level 100 unity challenge", when.tapID(LEVEL_CHALLENGE_BUTTON(100)), async () => {
+                        Then("I should see the compelted the second yunity screen", then.idVisible(YUNITY_REACHED(2), 12000))
+                        When("I tap Continue", when.tapText("Continue"), async () => {
                         Then("I should be on the third world", then.idVisible(QUESTS_SCREEN(2)))
                         Then("I should see the level 101 challenge button", then.idVisible(LEVEL_CHALLENGE_BUTTON(101)))
                         Then("I should see my updated coin amount", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(17930)))
+                        })
                     })
                 })
             })
