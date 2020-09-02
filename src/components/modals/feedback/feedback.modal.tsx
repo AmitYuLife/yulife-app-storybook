@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import { SliderInput, Heading } from "@atoms";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, Keyboard } from "react-native";
 import { SliderInputProps } from "@atoms/slider-input/slider-input";
 import { ScrollableLayout } from "@molecules";
 import { YugiSvg } from "./yugi-svg";
@@ -11,6 +11,7 @@ import { MODALS } from "@navigation/constants";
 import { useMutation } from "@apollo/react-hooks";
 import { GQL_ADD_USER_FEEDBACK, AddUserFeedbackMutationTuple } from "@graphql/member";
 import { Metric } from "@graphql/_core/schema/globalTypes";
+import { useBackHandler } from "@services/hooks/useBackHandler";
 
 export const cesModalProps: FeedbackModalProps = {
   metric: Metric.CES,
@@ -22,7 +23,7 @@ export const cesModalProps: FeedbackModalProps = {
   textInputScreenContent: [
     {
       headingText: "Thank you! We’re so glad to have you on board!",
-      placeholderText: "Help us by explaining your score",
+      placeholderText: "Help us by explaining your score...",
       minDisplayValue: 6,
     },
     {
@@ -32,7 +33,7 @@ export const cesModalProps: FeedbackModalProps = {
     },
     {
       headingText: "We're sorry to hear that. How can we improve?",
-      placeholderText: "Help us by explaining your score",
+      placeholderText: "Help us by explaining your score...",
       minDisplayValue: 0,
     },
   ],
@@ -48,7 +49,7 @@ export const npsModalProps: FeedbackModalProps = {
   textInputScreenContent: [
     {
       headingText: "Thank you! We’re so glad to have you on board!",
-      placeholderText: "Help us by explaining your score",
+      placeholderText: "Help us by explaining your score...",
       minDisplayValue: 8,
     },
     {
@@ -58,7 +59,7 @@ export const npsModalProps: FeedbackModalProps = {
     },
     {
       headingText: "We're sorry to hear that. How can we improve?",
-      placeholderText: "Help us by explaining your score",
+      placeholderText: "Help us by explaining your score...",
       minDisplayValue: 0,
     },
   ],
@@ -90,6 +91,7 @@ function FeedbackModal(props: FeedbackModalProps) {
     return (
       <TextInputForm
         onBackPress={() => setShouldDisplaySecondScreen(false)}
+        onClose={dismissModal}
         content={textInputScreenContent}
         score={score}
         updateFeedback={(updatedFeedback) => setFeedback(updatedFeedback)}
@@ -108,7 +110,13 @@ function FeedbackModal(props: FeedbackModalProps) {
   }
 
   return (
-    <SliderForm slider={slider} setScore={setScore} score={score} onSubmit={() => setShouldDisplaySecondScreen(true)} />
+    <SliderForm
+      slider={slider}
+      onClose={dismissModal}
+      setScore={setScore}
+      score={score}
+      onSubmit={() => setShouldDisplaySecondScreen(true)}
+    />
   );
 }
 
@@ -119,14 +127,23 @@ interface SliderFormProps {
   score: number;
   setScore: (val: number) => void;
   onSubmit: () => void;
+  onClose: () => void;
 }
 
 function SliderForm(props: SliderFormProps) {
-  const { setScore, slider, onSubmit, score } = props;
+  const { setScore, slider, onSubmit, score, onClose } = props;
+
+  const backHandler = useCallback(() => {
+    onClose();
+    return true;
+  }, [onClose]);
+
+  useBackHandler(backHandler);
+
   return (
     <ScrollableLayout
       heading="Feedback"
-      onLeftIconPress={dismissModal}
+      onRightIconPress={onClose}
       buttonTitle="Submit your rating"
       buttonAction={onSubmit}
       isButtonDisabled={score === -1}
@@ -163,6 +180,7 @@ interface TextInputFormProps {
   score: number;
   updateFeedback: (feedback: string) => void;
   onBackPress: () => void;
+  onClose: () => void;
   onSubmit: () => void;
 }
 
@@ -179,17 +197,28 @@ function getContentToDisplay(score: number, content: Content[]) {
 }
 
 function TextInputForm(props: TextInputFormProps) {
-  const { content, score, onSubmit, onBackPress, disableButton, updateFeedback } = props;
+  const { content, score, onSubmit, onBackPress, disableButton, updateFeedback, onClose } = props;
 
   const contentToDisplay = getContentToDisplay(score, content);
+
+  const backHandler = useCallback(() => {
+    onBackPress();
+    return true;
+  }, [onBackPress]);
+
+  useBackHandler(backHandler);
 
   return (
     <ScrollableLayout
       heading="Feedback"
       onLeftIconPress={onBackPress}
+      onRightIconPress={onClose}
       buttonTitle="Submit feedback"
       isButtonDisabled={disableButton}
-      buttonAction={onSubmit}
+      buttonAction={() => {
+        Keyboard.dismiss();
+        return onSubmit();
+      }}
       shouldCenterContent={true}
     >
       <View style={styles.content}>

@@ -1,6 +1,6 @@
 import React from "react";
 import { Colours, Style } from "@styles";
-import { SafeAreaView, ScrollView, View, ViewStyle, StyleSheet, Platform } from "react-native";
+import { SafeAreaView, ScrollView, View, ViewStyle, StyleSheet, Platform, KeyboardAvoidingView } from "react-native";
 import { GenericHeading, Button } from "@atoms";
 import { Logo } from "../../atoms/generic-heading/generic-heading.types";
 
@@ -9,7 +9,8 @@ interface Props {
   buttonTitle: string;
   isButtonDisabled?: boolean;
   buttonAction: () => void;
-  onLeftIconPress: () => void;
+  onLeftIconPress?: () => void;
+  onRightIconPress?: () => void;
   logo?: Logo;
   heading?: string;
   shouldCenterContent?: boolean;
@@ -23,6 +24,7 @@ export function ScrollableLayout(props: Props) {
     heading,
     buttonAction,
     onLeftIconPress,
+    onRightIconPress,
     isButtonDisabled = false,
     shouldCenterContent = false,
   } = props;
@@ -32,9 +34,15 @@ export function ScrollableLayout(props: Props) {
     : {};
 
   return (
-    <>
+    <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS === "ios" ? "padding" : null}>
       <SafeAreaView style={styles.wrapper}>
-        <GenericHeading isBeta={true} logo={logo} heading={heading} onLeftIconPress={onLeftIconPress} />
+        <GenericHeading
+          isBeta={true}
+          logo={logo}
+          heading={heading}
+          onLeftIconPress={onLeftIconPress}
+          onRightIconPress={onRightIconPress}
+        />
         <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={contentContainerStyle}>
           <View style={styles.padTop} />
           {children}
@@ -43,7 +51,7 @@ export function ScrollableLayout(props: Props) {
       <View style={styles.button}>
         <Button disabled={isButtonDisabled} label={buttonTitle} onPress={buttonAction} type="Primary" />
       </View>
-    </>
+    </KeyboardAvoidingView>
   );
 }
 
