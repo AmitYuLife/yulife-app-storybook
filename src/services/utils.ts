@@ -55,6 +55,10 @@ export function getCurrentYuniverse(currentLevel: number) {
   return Math.floor((currentLevel - 1) / 200);
 }
 
+export function getNormalizedLevel(level: number) {
+  return (Math.floor(level - 1) % 200) + 1;
+}
+
 const WORLD_IMAGES = [
   { image: require("../../assets/yuscreen/worlds/forest.png") },
   { image: require("../../assets/yuscreen/worlds/ocean.png") },

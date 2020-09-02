@@ -36,31 +36,31 @@ const level = {
 
 describe("getBackgroundColor", () => {
   it("should return pink if active/done/next for unity levels", () => {
-    expect(getBackgroundColor(nextAvailable, { ...level, isActive: true })).toBe("rgb(226, 1, 119)");
+    expect(getBackgroundColor(nextAvailable, { ...level, isActive: true }, 3)).toBe("transparent");
   });
 
   it("should return pink if active/done/next for unity levels", () => {
-    expect(getBackgroundColor(nextAvailable, { ...level, isDone: true })).toBe("rgb(226, 1, 119)");
+    expect(getBackgroundColor(nextAvailable, { ...level, isDone: true }, 1)).toBe("transparent");
   });
 
   it("should return white if not active/done/next for unity levels", () => {
-    expect(getBackgroundColor(nextAvailable, level)).toBe("white");
+    expect(getBackgroundColor(nextAvailable, level, 0)).toBe("white");
   });
 
   it("should return dark hot pink for active non-unity available levels", () => {
-    expect(getBackgroundColor(nextAvailable, { ...level, level: 49, isActive: true })).toBe("rgb(226, 1, 119)");
+    expect(getBackgroundColor(nextAvailable, { ...level, level: 49, isActive: true }, 0)).toBe("rgb(226, 1, 119)");
   });
 
   it("should return different shade of pink for active non-unity unavailable levels", () => {
-    expect(getBackgroundColor(-24050, { ...level, level: 49, isActive: true })).toBe("rgb(145,0,76)");
+    expect(getBackgroundColor(-24050, { ...level, level: 49, isActive: true }, 0)).toBe("rgb(145,0,76)");
   });
 
   it("should return white", () => {
-    expect(getBackgroundColor(nextAvailable, { ...level, level: 49 })).toBe("white");
+    expect(getBackgroundColor(nextAvailable, { ...level, level: 49 }, 0)).toBe("white");
   });
 
   it("should return color for unavailable level of first world of first episode", () => {
-    expect(getBackgroundColor(nextAvailable, { ...level, level: 1, isDone: true })).toBe("rgb(93, 182, 138)");
+    expect(getBackgroundColor(nextAvailable, { ...level, level: 1, isDone: true }, 0)).toBe("rgb(93, 182, 138)");
   });
 });
 

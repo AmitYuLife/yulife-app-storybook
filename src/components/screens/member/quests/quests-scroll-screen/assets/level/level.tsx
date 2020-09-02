@@ -7,10 +7,17 @@ import { Style } from "../../../../../../../styles";
 import { IChallenge } from "../../quests-screen";
 import { IMapSlice } from "../index";
 import getLevelButton from "./level.content";
-import { getBackgroundColor, getButtonPosition, getShadowColor, getShadowPosition } from "./level.helpers";
+import {
+  getBackgroundColor,
+  getButtonPosition,
+  getShadowColor,
+  getShadowPosition,
+  getPulseColor,
+} from "./level.helpers";
 import styles, { CIRCLE_SIZE } from "./level.styles";
 import Pulse from "./pulse";
 import useInterval from "@use-it/interval";
+import { getCurrentWorld, getNormalizedLevel } from "@services/utils";
 
 interface IProps {
   currentLevel: number;
@@ -32,9 +39,12 @@ function LevelBubble(props: IProps) {
     },
     level.nextAvailableAt ? ONE_SECOND : null
   );
-  const bubbleBackgroundColor = getBackgroundColor(nextAvailableTimer, level);
+  const currentWorld = getCurrentWorld(level.level);
+  const normalizedLevel = getNormalizedLevel(level.level);
+  const bubbleBackgroundColor = getBackgroundColor(nextAvailableTimer, level, currentWorld);
   const shadowStyle = getShadowPosition(style);
-  const shadowColor = getShadowColor(level.level);
+  const shadowColor = getShadowColor(normalizedLevel);
+  const bubblePulseColor = getPulseColor(normalizedLevel);
   return (
     <>
       {!level.isActive ? null : (
@@ -42,7 +52,7 @@ function LevelBubble(props: IProps) {
           size={CIRCLE_SIZE + 6}
           pulseMaxSize={Style.adjust(66)}
           interval={nextAvailableTimer < 0 ? 1500 : 1000}
-          backgroundColor="rgb(145,0,76)"
+          backgroundColor={bubblePulseColor}
           style={pulseStyle}
         />
       )}
@@ -68,7 +78,7 @@ function LevelBubble(props: IProps) {
           }}
           testID={LEVEL_CHALLENGE_BUTTON(level.level)}
         >
-          {getLevelButton(nextAvailableTimer, currentLevel, level)}
+          {getLevelButton(nextAvailableTimer, currentLevel, level, normalizedLevel)}
         </TouchableOpacityWithDelay>
       </View>
     </>

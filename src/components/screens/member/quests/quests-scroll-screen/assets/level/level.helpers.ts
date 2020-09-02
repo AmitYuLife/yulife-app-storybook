@@ -133,11 +133,11 @@ const worldBubbleColours: IBubbleColours = {
   },
 };
 
-export function getBackgroundColor(nextAvailable: number, level: IChallenge): string {
+export function getBackgroundColor(nextAvailable: number, level: IChallenge, normalizedWorld: number): string {
   // time for more of that fucking awful logic
 
   if (level.level % 50 === 0) {
-    return level.isDone || level.isActive || level.isNext ? "rgb(226, 1, 119)" : "white";
+    return level.isDone || level.isActive || level.isNext ? "transparent" : "white";
   }
 
   if (level.isActive) {
@@ -145,14 +145,13 @@ export function getBackgroundColor(nextAvailable: number, level: IChallenge): st
     return nextAvailable < 0 ? "rgb(145,0,76)" : "rgb(226, 1, 119)";
   }
 
-  const world = Math.floor((level.level - 1) / 50);
   const episode = Math.floor(((level.level - 1) % 50) / 7);
 
   if (level.isDone) {
-    return worldBubbleColours[world][episode].notAvailable;
+    return worldBubbleColours[normalizedWorld][episode].notAvailable;
   }
 
-  return worldBubbleColours[world][episode].available;
+  return worldBubbleColours[normalizedWorld][episode].available;
 }
 
 export function getShadowColor(level: number) {
@@ -227,4 +226,19 @@ export function getTime(nextAvailable: number) {
   }
 
   return `${paddedHours}:${paddedMinutes}:${paddedSeconds}`;
+}
+
+export function getPulseColor(level: number) {
+  switch (level) {
+    case 50:
+      return "#00ED9D";
+    case 100:
+      return "#BEE9F3";
+    case 150:
+      return "#FA906A";
+    case 200:
+      return "#FFD2DB";
+    default:
+      return "rgb(145,0,76)";
+  }
 }
