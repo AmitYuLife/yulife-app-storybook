@@ -3,7 +3,6 @@ import { MODALS } from "@navigation/constants";
 import { IMainTabsProps, labels } from "@navigation/root";
 import { getShowIntro } from "@redux/onboarding/onboarding.selectors";
 import { FitKitAvailable, FitKitAvailableChildrenProps } from "@services/fitkit/fitkit.service";
-import { getCurrentWorld } from "@services/utils";
 import React from "react";
 import { BackHandler, NativeEventSubscription } from "react-native";
 import { Navigation } from "react-native-navigation";
@@ -12,7 +11,6 @@ import { IReduxState } from "@redux/_core/reducers";
 import { getCopy } from "@redux/copy/copy.selectors";
 import { startDailySteps } from "@redux/daily-steps/daily-steps.actions";
 import { getDailyStepsIsFetching } from "@redux/daily-steps/daily-steps.selectors";
-import { getCurrentLevel } from "@redux/levels/levels.selectors";
 import { dailyStepsCoinClicked } from "@redux/logging/logging.actions";
 import { getDailyStepsTheme } from "@redux/theme/theme.selectors";
 import { updateLeaderboardPopupVisibility, updateSurgePopupVisibility } from "@redux/user/user.actions";
@@ -57,7 +55,6 @@ class DailyStepsContainer extends React.Component<Props> {
     const thisSurgeIntro = this.props.surgeIntro;
     const nextSurgeIntro = nextProps.surgeIntro;
     return (
-      nextProps.currentLevel !== this.props.currentLevel ||
       nextProps.isFetching !== this.props.isFetching ||
       nextProps.popupVisibility.leaderboard !== this.props.popupVisibility.leaderboard ||
       !!(
@@ -75,16 +72,7 @@ class DailyStepsContainer extends React.Component<Props> {
     return (
       <FitKitAvailable>
         {(fitkit: FitKitAvailableChildrenProps) => {
-          const {
-            currentLevel,
-            features = {},
-            isFetching,
-            theme,
-            popUpCopy,
-            showIntro,
-            surgeIntro,
-            onLeftMenuPress,
-          } = this.props;
+          const { features = {}, isFetching, theme, popUpCopy, showIntro, surgeIntro, onLeftMenuPress } = this.props;
           const shouldDisplaySurge = features.showSurge;
           if (showIntro || surgeIntro.visibility) {
             return (
@@ -110,7 +98,6 @@ class DailyStepsContainer extends React.Component<Props> {
                 theme={theme}
                 popUpCopy={popUpCopy}
                 onLeftMenuPress={onLeftMenuPress}
-                currentWorld={getCurrentWorld(currentLevel)}
                 fitKitAvailable={fitkit.available}
                 hasPermission={fitkit.authorised}
                 isLoading={isFetching || fitkit.loading}
@@ -145,7 +132,6 @@ class DailyStepsContainer extends React.Component<Props> {
 }
 
 const mapStateToProps = (state: IReduxState) => ({
-  currentLevel: getCurrentLevel(state),
   features: getUserFeatures(state),
   isFetching: getDailyStepsIsFetching(state),
   theme: getDailyStepsTheme(state),

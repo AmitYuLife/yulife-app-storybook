@@ -1,3 +1,48 @@
+type RGBType = {
+  r: number;
+  g: number;
+  b: number;
+};
+
+const hexToRGB = (hex: string): RGBType | null => {
+  // expand shorthand hex colors
+  hex = hex.replace(/^#?([A-Fa-f\d])([A-Fa-f\d])([A-Fa-f\d])$/i, (_, r, g, b) => r + r + g + g + b + b);
+
+  const result = /^#?([A-Fa-f\d]{2})([A-Fa-f\d]{2})([A-Fa-f\d]{2})$/i.exec(hex);
+  return result
+    ? {
+        r: parseInt(result[1], 16),
+        g: parseInt(result[2], 16),
+        b: parseInt(result[3], 16),
+      }
+    : null;
+};
+
+const toBase16 = (n: number) => {
+  const hex = Math.floor(n).toString(16);
+  return hex.length === 1 ? "0" + hex : hex;
+};
+
+const rgbToHex = ({ r = 0, g = 0, b = 0 }: RGBType): string => {
+  return "#" + toBase16(r) + toBase16(g) + toBase16(b);
+};
+
+const toGrayScale = (hex: string): string | null => {
+  const rgb = hexToRGB(hex);
+  if (rgb) {
+    const { r, g, b } = rgb;
+    const newColor = 0.299 * r + 0.587 * g + 0.114 * b;
+
+    return "#" + toBase16(newColor).repeat(3);
+  }
+
+  return null;
+};
+
+const toGrayScaleArray = (hexArray: string[]): (string | null)[] => {
+  return hexArray.map((hex) => toGrayScale(hex));
+};
+
 export default {
   button: {
     link: "rgb(232, 49, 129)",
@@ -177,4 +222,8 @@ export default {
   solid: {
     grey: "#F0F0F0",
   },
+  hexToRGB,
+  rgbToHex,
+  toGrayScale,
+  toGrayScaleArray,
 };
