@@ -52,6 +52,7 @@ function YuScreenContainer({
     dispatch(resetFIBAnswers());
     dispatch(resetFIBMedicalHistoryValue());
     dispatch(updateFIBValue({ key: "lastQuestionId", value: "" }));
+    dispatch(updateFIBValue({ key: "quoteDate", value: "" }));
   }, [dispatch]);
 
   const handleProductPress = useCallback(

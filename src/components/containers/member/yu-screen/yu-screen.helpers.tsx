@@ -13,6 +13,9 @@ import {
 } from "@components/containers/products/fib/fib.types";
 import { AvatarBuilderHeading } from "@components/screens/member/yu-screen/avatar-builder/avatar.types";
 import { FIB_UNDERWRITING_REVIEW_ANSWERS_SCREEN_ID } from "@components/containers/products/fib/data/underwriting-journey-data";
+import moment from "moment";
+
+const FIB_EXPIRE_QUOTE_MONTHS = 3;
 
 interface NavigateToProductScreenOptions {
   componentId: string;
@@ -33,9 +36,12 @@ export function navigateToProductScreen(options: NavigateToProductScreenOptions)
 
   // TODO: Implement different journeys for different products
   if (productType === "personal" && product.active) {
-    // TODO: Add quote expired logic
-    // const isQuoteExpired = fibState.expireQuoteDate;
-    if (fibState.lastQuestionId) {
+    const isQuoteExpired = moment().diff(moment(fibState.quoteDate), "months") >= FIB_EXPIRE_QUOTE_MONTHS;
+    if (isQuoteExpired) {
+      resetFIBJourney();
+    }
+
+    if (fibState.lastQuestionId && !isQuoteExpired) {
       const dismissModal = async () => {
         await Navigation.dismissModal(MODALS.generic);
         return true;

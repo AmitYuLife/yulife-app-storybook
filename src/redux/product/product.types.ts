@@ -53,7 +53,7 @@ export interface FIBStore {
   selectedPackage: PackageId;
   existingCovers: Cover[];
   medicalHistory: Record<string, boolean>;
-  expireQuoteDate: string;
+  quoteDate: string;
   lastQuestionId: string;
 }
 
