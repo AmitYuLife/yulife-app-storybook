@@ -1,11 +1,12 @@
 import { FinancialQuestionsFormScreen } from "./subcomponents/financial-questions/financial-questions-form.screen";
 import { FinancialQuestionsCoverListScreen } from "./subcomponents/financial-questions/financial-questions-cover-list.screen";
 import { IFibUnderwritingJourneyScreenProps } from "./fib.underwriting-journey.screen";
+import {
+  FIB_FINANCIAL_COVER_LIST_SCREEN_ID,
+  FIB_FINANCIAL_CUSTOM_COVER_FORM_SCREEN_ID,
+} from "../../../../containers/products/fib/data/underwriting-journey-data";
 
-const FINANCIAL_QUESTIONS_FORM_SCREEN = "fib_financial_custom_cover_form";
-const FINANCIAL_QUESTIONS_COVER_LIST_SCREEN = "fib_financial_cover_list";
-
-type CustomComponents = typeof FINANCIAL_QUESTIONS_FORM_SCREEN | typeof FINANCIAL_QUESTIONS_COVER_LIST_SCREEN;
+type CustomComponents = typeof FIB_FINANCIAL_CUSTOM_COVER_FORM_SCREEN_ID | typeof FIB_FINANCIAL_COVER_LIST_SCREEN_ID;
 
 export function getCustomComponent(id: string) {
   const customComponents: Record<CustomComponents, (props: IFibUnderwritingJourneyScreenProps) => JSX.Element> = {

@@ -27,8 +27,6 @@ export const FIB_UNDERWRITING_JOURNEY_INTRODUCTION = "FibUnderwritingJourneyIntr
 export const FIB_UNDERWRITING_REVIEW_ANSWERS = "FibUnderwritingReviewAnswers";
 export const FIB_CONFIRM_PACKAGES = "FibConfirmPackages";
 
-export const FIB_UNDERWRITING_REVIEW_ANSWERS_SCREEN_ID = "fib_review_screen";
-
 export interface FAQ {
   id: string;
   question: string;

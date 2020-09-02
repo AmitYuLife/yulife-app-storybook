@@ -7,12 +7,12 @@ import { FIBStore } from "@redux/product/product.types";
 import { Navigation } from "react-native-navigation";
 import { MODALS, ROUTES } from "@navigation/constants";
 import {
-  FIB_UNDERWRITING_REVIEW_ANSWERS_SCREEN_ID,
   FIB_UNDERWRITING_REVIEW_ANSWERS,
   FIB_UNDERWRITING_JOURNEY,
   FIB_INTRODUCTION,
 } from "@components/containers/products/fib/fib.types";
 import { AvatarBuilderHeading } from "@components/screens/member/yu-screen/avatar-builder/avatar.types";
+import { FIB_UNDERWRITING_REVIEW_ANSWERS_SCREEN_ID } from "@components/containers/products/fib/data/underwriting-journey-data";
 
 interface NavigateToProductScreenOptions {
   componentId: string;

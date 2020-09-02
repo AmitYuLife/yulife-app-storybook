@@ -65,6 +65,34 @@ export interface UnderwritingJourneyChild {
   showDelimiter?: boolean;
   chips?: ChipProps[];
 }
+export const FIB_YOUR_NAME_SCREEN_ID = "fib_your_name";
+export const FIB_YOUR_DATE_OF_BIRTH_SCREEN_ID = "fib_your_date_of_birth";
+export const FIB_UK_RESIDENT_SCREEN_ID = "fib_uk_resident";
+export const FIB_MEMBER_OF_ARMED_FORCES_SCREEN_ID = "fib_member_of_armed_forces";
+export const FIB_LIFESTYLE_HEIGHT_AND_WEIGHT_SCREEN_ID = "fib_lifestyle_height_and_weight";
+export const FIB_LIFESTYLE_SMOKING_SCREEN_ID = "fib_lifestyle_smoking";
+export const FIB_LIFESTYLE_ALCOHOL_SCREEN_ID = "fib_lifestyle_alcohol";
+export const FIB_LIFESTYLE_DRUGS_COUNCELLING_SCREEN_ID = "fib_lifestyle_drugs_councelling";
+export const FIB_MEDICAL_HISTORY_SCREEN_ID = "fib_medical_history";
+export const FIB_MEDICAL_THREE_OR_MORE_CONSULTATION_SCREEN_ID = "fib_medical_three_or_more_consultation";
+export const FIB_MEDICAL_JOURNEY_EARS_NOSE_THROAT_SCREEN_ID = "fib_medical_journey_ears_nose_throat";
+export const FIB_MEDICAL_JOURNEY_EYE_SCREEN_ID = "fib_medical_journey_eye";
+export const FIB_MEDICAL_JOURNEY_KIDNEYS_BLADDER_SCREEN_ID = "fib_medical_journey_kidneys_bladder";
+export const FIB_MEDICAL_JOURNEY_LUNGS_SCREEN_ID = "fib_medical_journey_lungs";
+export const FIB_MEDICAL_JOURNEY_MINOR_INJURIES_SCREEN_ID = "fib_medical_journey_minor_injuries";
+export const FIB_MEDICAL_JOURNEY_MUSCLES_JOINTS_SCREEN_ID = "fib_medical_journey_muscles_joints";
+export const FIB_MEDICAL_JOURNEY_PREGNANCY_SCREEN_ID = "fib_medical_journey_pregnancy";
+export const FIB_MEDICAL_JOURNEY_SKIN_SCREEN_ID = "fib_medical_journey_skin";
+export const FIB_MEDICAL_JOURNEY_OTHER_SCREEN_ID = "fib_medical_journey_other";
+export const FIB_MEDICAL_OUTSTANDING_MEDICAL_INVESTIGATIONS_SCREEN_ID =
+  "fib_medical_outstanding_medical_investigations";
+export const FIB_MEDICAL_OTHER_SYMPTOMS_SCREEN_ID = "fib_medical_other_symptoms";
+export const FIB_MEDICAL_COVID_ISOLATION_SCREEN_ID = "fib_medical_covid_isolation";
+export const FIB_MEDICAL_COVID_SYMPTOMS_SCREEN_ID = "fib_medical_covid_symptoms";
+export const FIB_FINANCIAL_QUESTIONS_SCREEN_ID = "fib_financial_questions";
+export const FIB_FINANCIAL_OTHER_COVER_SCREEN_ID = "fib_financial_other_cover";
+export const FIB_FINANCIAL_COVER_LIST_SCREEN_ID = "fib_financial_cover_list";
+export const FIB_LIFESTYLE_DRUGS_SCREEN_ID = "fib_lifestyle_drugs";
 
 export const FIB_HIGH_BLOOD_PRESSURE_SCREEN_ID = "fib_medical_journey_high_blood_pressure";
 export const FIB_HIGH_CHOLESTEROL_SCREEN_ID = "fib_medical_journey_high_cholesterol";
@@ -76,6 +104,7 @@ export const FIB_ENTER_YOUR_NAME = "fib_enter_your_name";
 export const FIB_ENTER_YOUR_DATE_OF_BIRTH = "fib_enter_your_date_of_birth";
 export const FIB_LIFESTYLE_HEIGHT_SCREEN_ID = "fib_lifestyle_height";
 export const FIB_LIFESTYLE_WEIGHT_SCREEN_ID = "fib_lifestyle_weight";
+export const FIB_FINANCIAL_CUSTOM_COVER_FORM_SCREEN_ID = "fib_financial_custom_cover_form";
 
 const FIB_DIGESTIVE_HOSPITAL_STAY_SCREEN_ID = "fib_medical_journey_digestive_hospital_stay";
 const FIB_DAILY_ACTIVITIES_RESTRICTIONS_SCREEN_ID = "fib_medical_journey_digestive_daily_activity_restrictions";
@@ -89,15 +118,17 @@ export const FIB_DIGESTIVE_EXTRA_SCREENS = [
   FIB_CONDITION_STABLE_SCREEN_ID,
 ];
 
+export const FIB_UNDERWRITING_REVIEW_ANSWERS_SCREEN_ID = "fib_review_screen";
+
 const _data: UnderwritingJourneyScreen[] = [
   {
-    id: "fib_your_name",
+    id: FIB_YOUR_NAME_SCREEN_ID,
     heading: "About You",
     icon: NAME_ICON,
     title: "Name",
     question: "Is this your name?",
     firstButton: { label: "No", actionId: FIB_ENTER_YOUR_NAME },
-    secondButton: { label: "Yes", actionId: "fib_your_date_of_birth" },
+    secondButton: { label: "Yes", actionId: FIB_YOUR_DATE_OF_BIRTH_SCREEN_ID },
     children: [
       {
         type: "copyFullName",
@@ -110,18 +141,18 @@ const _data: UnderwritingJourneyScreen[] = [
     icon: NAME_ICON,
     title: "Name",
     question: "Please enter your name",
-    firstButton: { label: "Continue", actionId: "fib_your_date_of_birth" },
+    firstButton: { label: "Continue", actionId: FIB_YOUR_DATE_OF_BIRTH_SCREEN_ID },
     children: [{ type: "inputFullName" }],
   },
   {
-    id: "fib_your_date_of_birth",
+    id: FIB_YOUR_DATE_OF_BIRTH_SCREEN_ID,
     heading: "About You",
     icon: BIRTHDAY_ICON,
     title: "Birthday",
     question: "Is this your\ndate or birth?",
     firstButton: { label: "No", actionId: FIB_ENTER_YOUR_DATE_OF_BIRTH },
-    secondButton: { label: "Yes", actionId: "fib_uk_resident" },
-    previousButton: { actionId: "fib_your_name" },
+    secondButton: { label: "Yes", actionId: FIB_UK_RESIDENT_SCREEN_ID },
+    previousButton: { actionId: FIB_YOUR_NAME_SCREEN_ID },
     children: [
       {
         type: "copyBirthday",
@@ -139,17 +170,17 @@ const _data: UnderwritingJourneyScreen[] = [
         type: "inputBirth",
       },
     ],
-    firstButton: { label: "Continue", actionId: "fib_uk_resident" },
+    firstButton: { label: "Continue", actionId: FIB_UK_RESIDENT_SCREEN_ID },
   },
   {
-    id: "fib_uk_resident",
+    id: FIB_UK_RESIDENT_SCREEN_ID,
     heading: "About You",
     icon: UK_FLAG_ICON,
     title: "UK Residency",
     question: "Are you a UK resident?",
-    firstButton: { label: "No", actionId: "fib_member_of_armed_forces" },
-    secondButton: { label: "Yes", actionId: "fib_member_of_armed_forces" },
-    previousButton: { actionId: "fib_your_date_of_birth" },
+    firstButton: { label: "No", actionId: FIB_MEMBER_OF_ARMED_FORCES_SCREEN_ID },
+    secondButton: { label: "Yes", actionId: FIB_MEMBER_OF_ARMED_FORCES_SCREEN_ID },
+    previousButton: { actionId: FIB_YOUR_DATE_OF_BIRTH_SCREEN_ID },
     children: [
       {
         type: "markdown",
@@ -159,15 +190,15 @@ const _data: UnderwritingJourneyScreen[] = [
     ],
   },
   {
-    id: "fib_member_of_armed_forces",
+    id: FIB_MEMBER_OF_ARMED_FORCES_SCREEN_ID,
     heading: "About You",
     icon: HAZARDOUS_OCCUPATION_ICON,
     title: "Hazardous occupation",
     question:
       "Are you a member of the armed forces, territorial army or reservists or employed in any of the following hazardous occupations:",
-    firstButton: { label: "No", actionId: "fib_lifestyle_height_and_weight" },
-    secondButton: { label: "Yes", actionId: "fib_lifestyle_height_and_weight" },
-    previousButton: { actionId: "fib_uk_resident" },
+    firstButton: { label: "No", actionId: FIB_LIFESTYLE_HEIGHT_AND_WEIGHT_SCREEN_ID },
+    secondButton: { label: "Yes", actionId: FIB_LIFESTYLE_HEIGHT_AND_WEIGHT_SCREEN_ID },
+    previousButton: { actionId: FIB_UK_RESIDENT_SCREEN_ID },
     children: [
       {
         type: "markdown",
@@ -176,13 +207,13 @@ const _data: UnderwritingJourneyScreen[] = [
     ],
   },
   {
-    id: "fib_lifestyle_height_and_weight",
+    id: FIB_LIFESTYLE_HEIGHT_AND_WEIGHT_SCREEN_ID,
     heading: "Lifestyle",
     icon: HEIGHT_WEIGHT_ICON,
     title: "Height and weight",
     question: "We need to know your height and weight to calculate your Body Mass Index (BMI).",
     firstButton: { label: "Continue", actionId: FIB_LIFESTYLE_HEIGHT_SCREEN_ID },
-    previousButton: { actionId: "fib_member_of_armed_forces" },
+    previousButton: { actionId: FIB_MEMBER_OF_ARMED_FORCES_SCREEN_ID },
     children: [
       {
         type: "markdown",
@@ -197,7 +228,7 @@ const _data: UnderwritingJourneyScreen[] = [
     title: "Height",
     question: "Please input your height",
     firstButton: { label: "Continue", actionId: FIB_LIFESTYLE_WEIGHT_SCREEN_ID },
-    previousButton: { actionId: "fib_lifestyle_height_and_weight" },
+    previousButton: { actionId: FIB_LIFESTYLE_HEIGHT_AND_WEIGHT_SCREEN_ID },
     children: [
       {
         type: "markdown",
@@ -214,7 +245,7 @@ const _data: UnderwritingJourneyScreen[] = [
     icon: WEIGHT_ICON,
     title: "Weight",
     question: "Please input your weight",
-    firstButton: { label: "Continue", actionId: "fib_lifestyle_smoking" },
+    firstButton: { label: "Continue", actionId: FIB_LIFESTYLE_SMOKING_SCREEN_ID },
     previousButton: { actionId: FIB_LIFESTYLE_HEIGHT_SCREEN_ID },
     children: [
       {
@@ -227,24 +258,24 @@ const _data: UnderwritingJourneyScreen[] = [
     ],
   },
   {
-    id: "fib_lifestyle_smoking",
+    id: FIB_LIFESTYLE_SMOKING_SCREEN_ID,
     heading: "Lifestyle",
     icon: SMOKING_ICON,
     title: "Smoking",
     question:
       "In the last 12 months have you smoked cigarettes, cigars, pipes, or shisha or used nicotine replacements? Vaping counts.",
-    firstButton: { label: "No", actionId: "fib_lifestyle_alcohol" },
-    secondButton: { label: "Yes", actionId: "fib_lifestyle_alcohol" },
+    firstButton: { label: "No", actionId: FIB_LIFESTYLE_ALCOHOL_SCREEN_ID },
+    secondButton: { label: "Yes", actionId: FIB_LIFESTYLE_ALCOHOL_SCREEN_ID },
     previousButton: { actionId: FIB_LIFESTYLE_WEIGHT_SCREEN_ID },
   },
   {
-    id: "fib_lifestyle_alcohol",
+    id: FIB_LIFESTYLE_ALCOHOL_SCREEN_ID,
     heading: "Lifestyle",
     icon: ALCOHOL_ICON,
     title: "Alcohol",
     question: "How much do you drink in an average week? ",
-    firstButton: { label: "Continue", actionId: "fib_lifestyle_drugs" },
-    previousButton: { actionId: "fib_lifestyle_smoking" },
+    firstButton: { label: "Continue", actionId: FIB_LIFESTYLE_DRUGS_SCREEN_ID },
+    previousButton: { actionId: FIB_LIFESTYLE_SMOKING_SCREEN_ID },
     children: [
       {
         type: "markdown",
@@ -256,15 +287,15 @@ const _data: UnderwritingJourneyScreen[] = [
     ],
   },
   {
-    id: "fib_lifestyle_drugs",
+    id: FIB_LIFESTYLE_DRUGS_SCREEN_ID,
     heading: "Lifestyle",
     icon: DRUGS_ICON,
     title: "Drugs",
     question:
       "In the last 5 years have you used class A, B or C drugs like, but not restricted to heroin, cocaine, ecstasy, spice, LSD, anabolic steroids and legal highs?",
-    firstButton: { label: "No", actionId: "fib_lifestyle_drugs_councelling" },
-    secondButton: { label: "Yes", actionId: "fib_lifestyle_drugs_councelling" },
-    previousButton: { actionId: "fib_lifestyle_alcohol" },
+    firstButton: { label: "No", actionId: FIB_LIFESTYLE_DRUGS_COUNCELLING_SCREEN_ID },
+    secondButton: { label: "Yes", actionId: FIB_LIFESTYLE_DRUGS_COUNCELLING_SCREEN_ID },
+    previousButton: { actionId: FIB_LIFESTYLE_ALCOHOL_SCREEN_ID },
     children: [
       {
         type: "markdown",
@@ -273,25 +304,25 @@ const _data: UnderwritingJourneyScreen[] = [
     ],
   },
   {
-    id: "fib_lifestyle_drugs_councelling",
+    id: FIB_LIFESTYLE_DRUGS_COUNCELLING_SCREEN_ID,
     heading: "Lifestyle",
     icon: DRUGS_COUNSELLING_ICON,
     title: "Drugs Councelling",
     question:
       "Have you ever been advised to receive treatment, counselling, or attend a support group to manage your alcohol or drugs use?",
-    firstButton: { label: "No", actionId: "fib_medical_history" },
-    secondButton: { label: "Yes", actionId: "fib_medical_history" },
-    previousButton: { actionId: "fib_lifestyle_drugs" },
+    firstButton: { label: "No", actionId: FIB_MEDICAL_HISTORY_SCREEN_ID },
+    secondButton: { label: "Yes", actionId: FIB_MEDICAL_HISTORY_SCREEN_ID },
+    previousButton: { actionId: FIB_LIFESTYLE_DRUGS_SCREEN_ID },
   },
   {
-    id: "fib_medical_history",
+    id: FIB_MEDICAL_HISTORY_SCREEN_ID,
     heading: "Medical",
     icon: MEDICAL_HISTORY_ICON,
     title: "Medical History",
     question: "Have you been diagnosed with one of the following?",
-    firstButton: { label: "No", actionId: "fib_medical_three_or_more_consultation" },
-    secondButton: { label: "Yes", actionId: "fib_medical_three_or_more_consultation" },
-    previousButton: { actionId: "fib_lifestyle_drugs_councelling" },
+    firstButton: { label: "No", actionId: FIB_MEDICAL_THREE_OR_MORE_CONSULTATION_SCREEN_ID },
+    secondButton: { label: "Yes", actionId: FIB_MEDICAL_THREE_OR_MORE_CONSULTATION_SCREEN_ID },
+    previousButton: { actionId: FIB_LIFESTYLE_DRUGS_COUNCELLING_SCREEN_ID },
     children: [
       {
         type: "markdown",
@@ -357,16 +388,16 @@ const _data: UnderwritingJourneyScreen[] = [
     ],
   },
   {
-    id: "fib_medical_three_or_more_consultation",
+    id: FIB_MEDICAL_THREE_OR_MORE_CONSULTATION_SCREEN_ID,
     heading: "Medical",
     icon: MEDICAL_HISTORY_PAST_CONSULTATIONS_ICON,
     title: "Three Or More Consultations In Last 3 Years",
     question:
       "Have you required 3 or more consultations in the last 3 years from a healthcare professional for a medical or mental health condition, symptom, illness or injury? ",
-    firstButton: { label: "No", actionId: "fib_medical_outstanding_medical_investigations" },
+    firstButton: { label: "No", actionId: FIB_MEDICAL_OUTSTANDING_MEDICAL_INVESTIGATIONS_SCREEN_ID },
     secondButton: { label: "Yes", actionId: FIB_THREE_YEAR_MEDICAL_HISTORY_SCREEN_ID },
-    nextQuestionBeforeQuit: "fib_medical_outstanding_medical_investigations",
-    previousButton: { actionId: "fib_medical_history" },
+    nextQuestionBeforeQuit: FIB_MEDICAL_OUTSTANDING_MEDICAL_INVESTIGATIONS_SCREEN_ID,
+    previousButton: { actionId: FIB_MEDICAL_HISTORY_SCREEN_ID },
   },
   {
     id: FIB_THREE_YEAR_MEDICAL_HISTORY_SCREEN_ID,
@@ -405,7 +436,7 @@ const _data: UnderwritingJourneyScreen[] = [
             iconType: "image",
           },
           {
-            id: "fib_medical_journey_ears_nose_throat",
+            id: FIB_MEDICAL_JOURNEY_EARS_NOSE_THROAT_SCREEN_ID,
             active: false,
             label: "Ear, nose, throat",
             icon: "ears_nose_throat",
@@ -426,56 +457,56 @@ const _data: UnderwritingJourneyScreen[] = [
             iconType: "image",
           },
           {
-            id: "fib_medical_journey_kidneys_bladder",
+            id: FIB_MEDICAL_JOURNEY_KIDNEYS_BLADDER_SCREEN_ID,
             active: false,
             label: "Kidneys & bladder",
             icon: "kidneys_bladder",
             iconType: "image",
           },
           {
-            id: "fib_medical_journey_eye",
+            id: FIB_MEDICAL_JOURNEY_EYE_SCREEN_ID,
             active: false,
             label: "Eye",
             icon: "eye",
             iconType: "image",
           },
           {
-            id: "fib_medical_journey_minor_injuries",
+            id: FIB_MEDICAL_JOURNEY_MINOR_INJURIES_SCREEN_ID,
             active: false,
             label: "Minor injuries",
             icon: "minor_injuries",
             iconType: "image",
           },
           {
-            id: "fib_medical_journey_lungs",
+            id: FIB_MEDICAL_JOURNEY_LUNGS_SCREEN_ID,
             active: false,
             label: "Lungs",
             icon: "lungs",
             iconType: "image",
           },
           {
-            id: "fib_medical_journey_pregnancy",
+            id: FIB_MEDICAL_JOURNEY_PREGNANCY_SCREEN_ID,
             active: false,
             label: "Pregnancy",
             icon: "pregnancy",
             iconType: "image",
           },
           {
-            id: "fib_medical_journey_muscles_joints",
+            id: FIB_MEDICAL_JOURNEY_MUSCLES_JOINTS_SCREEN_ID,
             active: false,
             label: "Muscles & Joints",
             icon: "muscles_joints",
             iconType: "image",
           },
           {
-            id: "fib_medical_journey_skin",
+            id: FIB_MEDICAL_JOURNEY_SKIN_SCREEN_ID,
             active: false,
             label: "Skin",
             icon: "skin",
             iconType: "image",
           },
           {
-            id: "fib_medical_journey_other",
+            id: FIB_MEDICAL_JOURNEY_OTHER_SCREEN_ID,
             active: false,
             label: "Other",
             icon: "other",
@@ -485,7 +516,7 @@ const _data: UnderwritingJourneyScreen[] = [
       },
     ],
     firstButton: { label: "Continue", actionId: FIB_HIGH_BLOOD_PRESSURE_SCREEN_ID },
-    previousButton: { actionId: "fib_medical_three_or_more_consultation" },
+    previousButton: { actionId: FIB_MEDICAL_THREE_OR_MORE_CONSULTATION_SCREEN_ID },
   },
   {
     id: FIB_HIGH_BLOOD_PRESSURE_SCREEN_ID,
@@ -530,7 +561,7 @@ const _data: UnderwritingJourneyScreen[] = [
   },
   {
     id: FIB_HIGH_CHOLESTEROL_SCREEN_ID,
-    category: "fib_medical_journey_high_cholesterol",
+    category: FIB_HIGH_CHOLESTEROL_SCREEN_ID,
     heading: "Medical",
     title: "Cholesterol Check",
     icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -553,7 +584,7 @@ const _data: UnderwritingJourneyScreen[] = [
   },
   {
     id: FIB_HIGH_CHOLESTEROL_EXTRA_SCREEN,
-    category: "fib_medical_journey_high_cholesterol",
+    category: FIB_HIGH_CHOLESTEROL_SCREEN_ID,
     heading: "Medical",
     icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M15.5799 21.0001H2.94479C2.17846 21.0001 1.54297 20.3957 1.54297 19.6265V3.94882C1.54297 3.19791 2.15977 2.5752 2.94479 2.5752H15.5986C16.3649 2.5752 17.0004 3.17959 17.0004 3.94882V19.6448C16.9817 20.3957 16.3649 21.0001 15.5799 21.0001Z" stroke="#828284" stroke-width="1.66667" stroke-miterlimit="10"/>
@@ -571,7 +602,7 @@ const _data: UnderwritingJourneyScreen[] = [
   },
   {
     id: FIB_DIGESTIVE_SCREEN_ID,
-    category: "fib_medical_journey_digestive",
+    category: FIB_DIGESTIVE_SCREEN_ID,
     heading: "Medical",
     title: "Digestive",
     reviewAnswerTitle: "Digestive Issues",
@@ -583,7 +614,7 @@ const _data: UnderwritingJourneyScreen[] = [
     firstButton: { label: "No", actionId: FIB_DIGESTIVE_HOSPITAL_STAY_SCREEN_ID },
     secondButton: {
       label: "Yes",
-      actionId: "fib_medical_journey_ears_nose_throat",
+      actionId: FIB_MEDICAL_JOURNEY_EARS_NOSE_THROAT_SCREEN_ID,
       answersIdToInvalidate: [
         FIB_DIGESTIVE_HOSPITAL_STAY_SCREEN_ID,
         FIB_DAILY_ACTIVITIES_RESTRICTIONS_SCREEN_ID,
@@ -602,7 +633,7 @@ const _data: UnderwritingJourneyScreen[] = [
   },
   {
     id: FIB_DIGESTIVE_HOSPITAL_STAY_SCREEN_ID,
-    category: "fib_medical_journey_digestive",
+    category: FIB_DIGESTIVE_SCREEN_ID,
     heading: "Medical",
     icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M5.4116 21.9998C6.36231 18.4895 6.50855 17.9044 6.50855 17.9044C8.33687 20.8297 11.2621 21.561 11.2621 21.561C19.4529 23.9743 25.5228 12.4195 20.1111 6.64212C15.65 2.54675 11.9203 6.3496 11.9203 6.3496C9.06818 6.3496 10.1651 1.81543 10.1651 1.81543H7.09361C7.09361 1.81543 4.60713 8.39728 11.0427 10.0793C11.0427 10.0793 11.9934 12.8583 9.79948 15.8567C9.79948 15.8567 5.77726 12.0539 3.36389 16.2224C3.36389 16.2224 2.12067 18.6357 1.82812 21.9998H4.60713H5.4116Z" stroke="#828284" stroke-width="1.7" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
@@ -621,7 +652,7 @@ const _data: UnderwritingJourneyScreen[] = [
     firstButton: { label: "No", actionId: FIB_DAILY_ACTIVITIES_RESTRICTIONS_SCREEN_ID },
     secondButton: {
       label: "Yes",
-      actionId: "fib_medical_journey_ears_nose_throat",
+      actionId: FIB_MEDICAL_JOURNEY_EARS_NOSE_THROAT_SCREEN_ID,
       answersIdToInvalidate: [
         FIB_DAILY_ACTIVITIES_RESTRICTIONS_SCREEN_ID,
         FIB_DIGESTIVE_SYMPTOMS_RESOLVED_SCREEN_ID,
@@ -632,7 +663,7 @@ const _data: UnderwritingJourneyScreen[] = [
   },
   {
     id: FIB_DAILY_ACTIVITIES_RESTRICTIONS_SCREEN_ID,
-    category: "fib_medical_journey_digestive",
+    category: FIB_DIGESTIVE_SCREEN_ID,
     heading: "Medical",
     icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M10.5 20.5C15.7467 20.5 20 16.2467 20 11C20 5.75329 15.7467 1.5 10.5 1.5C5.25329 1.5 1 5.75329 1 11C1 16.2467 5.25329 20.5 10.5 20.5Z" stroke="#828284" stroke-width="1.80952" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
@@ -651,14 +682,14 @@ const _data: UnderwritingJourneyScreen[] = [
     firstButton: { label: "No", actionId: FIB_DIGESTIVE_SYMPTOMS_RESOLVED_SCREEN_ID },
     secondButton: {
       label: "Yes",
-      actionId: "fib_medical_journey_ears_nose_throat",
+      actionId: FIB_MEDICAL_JOURNEY_EARS_NOSE_THROAT_SCREEN_ID,
       answersIdToInvalidate: [, FIB_DIGESTIVE_SYMPTOMS_RESOLVED_SCREEN_ID, FIB_CONDITION_STABLE_SCREEN_ID],
     },
     previousButton: { actionId: FIB_DIGESTIVE_HOSPITAL_STAY_SCREEN_ID },
   },
   {
     id: FIB_DIGESTIVE_SYMPTOMS_RESOLVED_SCREEN_ID,
-    category: "fib_medical_journey_digestive",
+    category: FIB_DIGESTIVE_SCREEN_ID,
     heading: "Medical",
     icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M5.4116 21.9998C6.36231 18.4895 6.50855 17.9044 6.50855 17.9044C8.33687 20.8297 11.2621 21.561 11.2621 21.561C19.4529 23.9743 25.5228 12.4195 20.1111 6.64212C15.65 2.54675 11.9203 6.3496 11.9203 6.3496C9.06818 6.3496 10.1651 1.81543 10.1651 1.81543H7.09361C7.09361 1.81543 4.60713 8.39728 11.0427 10.0793C11.0427 10.0793 11.9934 12.8583 9.79948 15.8567C9.79948 15.8567 5.77726 12.0539 3.36389 16.2224C3.36389 16.2224 2.12067 18.6357 1.82812 21.9998H4.60713H5.4116Z" stroke="#828284" stroke-width="1.7" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
@@ -670,14 +701,14 @@ const _data: UnderwritingJourneyScreen[] = [
     firstButton: { label: "No", actionId: FIB_CONDITION_STABLE_SCREEN_ID },
     secondButton: {
       label: "Yes",
-      actionId: "fib_medical_journey_ears_nose_throat",
+      actionId: FIB_MEDICAL_JOURNEY_EARS_NOSE_THROAT_SCREEN_ID,
       answersIdToInvalidate: [FIB_CONDITION_STABLE_SCREEN_ID],
     },
     previousButton: { actionId: FIB_DAILY_ACTIVITIES_RESTRICTIONS_SCREEN_ID },
   },
   {
     id: FIB_CONDITION_STABLE_SCREEN_ID,
-    category: "fib_medical_journey_digestive",
+    category: FIB_DIGESTIVE_SCREEN_ID,
     heading: "Medical",
     icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M1.41064 1.2334V19.0003H20.5895" stroke="#828284" stroke-width="1.59823" stroke-linecap="round" stroke-linejoin="round"/>
@@ -686,12 +717,12 @@ const _data: UnderwritingJourneyScreen[] = [
     `,
     title: "Digestive Condition Stable?",
     question: "Are these condition(s) stable (no increasing symptoms or complications)?",
-    firstButton: { label: "No", actionId: "fib_medical_journey_ears_nose_throat" },
-    secondButton: { label: "Yes", actionId: "fib_medical_journey_ears_nose_throat" },
+    firstButton: { label: "No", actionId: FIB_MEDICAL_JOURNEY_EARS_NOSE_THROAT_SCREEN_ID },
+    secondButton: { label: "Yes", actionId: FIB_MEDICAL_JOURNEY_EARS_NOSE_THROAT_SCREEN_ID },
     previousButton: { actionId: FIB_DIGESTIVE_SYMPTOMS_RESOLVED_SCREEN_ID },
   },
   {
-    id: "fib_medical_journey_ears_nose_throat",
+    id: FIB_MEDICAL_JOURNEY_EARS_NOSE_THROAT_SCREEN_ID,
     heading: "Medical",
     title: "Ears, Nose, Throat",
     icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -699,8 +730,8 @@ const _data: UnderwritingJourneyScreen[] = [
     </svg>
     `,
     question: "Did you have any of the following issues?",
-    firstButton: { label: "No", actionId: "fib_medical_journey_eye" },
-    secondButton: { label: "Yes", actionId: "fib_medical_journey_eye" },
+    firstButton: { label: "No", actionId: FIB_MEDICAL_JOURNEY_EYE_SCREEN_ID },
+    secondButton: { label: "Yes", actionId: FIB_MEDICAL_JOURNEY_EYE_SCREEN_ID },
     previousButton: { actionId: FIB_CONDITION_STABLE_SCREEN_ID },
     children: [
       {
@@ -711,7 +742,7 @@ const _data: UnderwritingJourneyScreen[] = [
     ],
   },
   {
-    id: "fib_medical_journey_eye",
+    id: FIB_MEDICAL_JOURNEY_EYE_SCREEN_ID,
     heading: "Medical",
     icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M21 6.99984C19 10.517 15.25 12.8332 11 12.8332C6.75 12.8332 3 10.517 1 6.99984C3 3.48268 6.75 1.1665 11 1.1665C15.25 1.1665 18.9167 3.48268 21 6.99984Z" stroke="#828284" stroke-width="1.41667" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
@@ -721,9 +752,9 @@ const _data: UnderwritingJourneyScreen[] = [
     title: "Eye",
     reviewAnswerTitle: "Eye Issues",
     question: "Did you have any of the following issues?",
-    firstButton: { label: "No", actionId: "fib_medical_journey_kidneys_bladder" },
-    secondButton: { label: "Yes", actionId: "fib_medical_journey_kidneys_bladder" },
-    previousButton: { actionId: "fib_medical_journey_ears_nose_throat" },
+    firstButton: { label: "No", actionId: FIB_MEDICAL_JOURNEY_KIDNEYS_BLADDER_SCREEN_ID },
+    secondButton: { label: "Yes", actionId: FIB_MEDICAL_JOURNEY_KIDNEYS_BLADDER_SCREEN_ID },
+    previousButton: { actionId: FIB_MEDICAL_JOURNEY_EARS_NOSE_THROAT_SCREEN_ID },
     children: [
       {
         type: "markdown",
@@ -732,7 +763,7 @@ const _data: UnderwritingJourneyScreen[] = [
     ],
   },
   {
-    id: "fib_medical_journey_kidneys_bladder",
+    id: FIB_MEDICAL_JOURNEY_KIDNEYS_BLADDER_SCREEN_ID,
     heading: "Medical",
     icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M4.90466 4.42048C4.82171 4.07726 4.93203 3.71451 5.16641 3.45042C5.74014 2.80397 6.12087 1.85003 4.73959 1.23613C2.59652 0.283652 0.929688 2.42672 0.929688 3.85544C0.929688 5.28415 1.64404 7.66534 3.78711 7.42722C5.24321 7.26543 5.18782 5.59215 4.90466 4.42048Z" stroke="#828284" stroke-width="1.41667" stroke-linecap="round" stroke-linejoin="round"/>
@@ -745,9 +776,9 @@ const _data: UnderwritingJourneyScreen[] = [
     title: "Kidneys & Bladder",
     reviewAnswerTitle: "Kidneys & Bladder Issues",
     question: "Did you have any of the following issues?",
-    firstButton: { label: "No", actionId: "fib_medical_journey_lungs" },
-    secondButton: { label: "Yes", actionId: "fib_medical_journey_lungs" },
-    previousButton: { actionId: "fib_medical_journey_eye" },
+    firstButton: { label: "No", actionId: FIB_MEDICAL_JOURNEY_LUNGS_SCREEN_ID },
+    secondButton: { label: "Yes", actionId: FIB_MEDICAL_JOURNEY_LUNGS_SCREEN_ID },
+    previousButton: { actionId: FIB_MEDICAL_JOURNEY_EYE_SCREEN_ID },
     children: [
       {
         type: "markdown",
@@ -756,7 +787,7 @@ const _data: UnderwritingJourneyScreen[] = [
     ],
   },
   {
-    id: "fib_medical_journey_lungs",
+    id: FIB_MEDICAL_JOURNEY_LUNGS_SCREEN_ID,
     heading: "Medical",
     title: "Lungs",
     reviewAnswerTitle: "Lungs Issues",
@@ -775,12 +806,12 @@ const _data: UnderwritingJourneyScreen[] = [
           "Asthma treated with inhalers only or no treatment, hay fever, single attack of bronchitis, chest infection.",
       },
     ],
-    firstButton: { label: "No", actionId: "fib_medical_journey_minor_injuries" },
-    secondButton: { label: "Yes", actionId: "fib_medical_journey_minor_injuries" },
-    previousButton: { actionId: "fib_medical_journey_kidneys_bladder" },
+    firstButton: { label: "No", actionId: FIB_MEDICAL_JOURNEY_MINOR_INJURIES_SCREEN_ID },
+    secondButton: { label: "Yes", actionId: FIB_MEDICAL_JOURNEY_MINOR_INJURIES_SCREEN_ID },
+    previousButton: { actionId: FIB_MEDICAL_JOURNEY_KIDNEYS_BLADDER_SCREEN_ID },
   },
   {
-    id: "fib_medical_journey_minor_injuries",
+    id: FIB_MEDICAL_JOURNEY_MINOR_INJURIES_SCREEN_ID,
     heading: "Medical",
     title: "Minor Injuries",
     icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -796,12 +827,12 @@ const _data: UnderwritingJourneyScreen[] = [
           "Cuts, broken bones, dislocation, muscle injury, repetitive strain injury, sprains and strains, whiplash.",
       },
     ],
-    firstButton: { label: "No", actionId: "fib_medical_journey_muscles_joints" },
-    secondButton: { label: "Yes", actionId: "fib_medical_journey_muscles_joints" },
-    previousButton: { actionId: "fib_medical_journey_lungs" },
+    firstButton: { label: "No", actionId: FIB_MEDICAL_JOURNEY_MUSCLES_JOINTS_SCREEN_ID },
+    secondButton: { label: "Yes", actionId: FIB_MEDICAL_JOURNEY_MUSCLES_JOINTS_SCREEN_ID },
+    previousButton: { actionId: FIB_MEDICAL_JOURNEY_LUNGS_SCREEN_ID },
   },
   {
-    id: "fib_medical_journey_muscles_joints",
+    id: FIB_MEDICAL_JOURNEY_MUSCLES_JOINTS_SCREEN_ID,
     heading: "Medical",
     icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M15.6276 14.0036C15.6276 14.0036 13.5583 8.35818 7.75194 11.6461C7.75194 11.6461 5.86797 9.10262 3.21187 10.2503C0.555779 11.398 1.42055 18.8424 4.47815 19.2457C6.03916 19.5788 8.21521 18.9045 8.21521 18.9045C8.21521 18.9045 12.4773 20.8587 16.7703 19.0906C21.0633 17.3225 21.9898 15.3994 21.9898 15.3994C21.9898 15.3994 22.421 10.9567 17.913 6.40401C16.8178 5.18968 15.9787 4.27741 15.3384 3.59353C14.073 2.24201 12.4553 1.34136 10.6713 0.846099V0.846099C9.98164 0.654633 9.24201 0.803297 8.67988 1.24637L8.40239 1.46509C7.64211 2.06435 7.3413 3.07727 7.65126 3.99436V3.99436C8.03263 5.12273 9.0446 5.95534 10.2274 5.8155C10.8813 5.7382 11.5968 5.57669 12.1994 5.25632C12.1994 5.25632 16.2453 6.7142 14.2995 11.9873" stroke="#828284" stroke-width="1.46574" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
@@ -817,12 +848,12 @@ const _data: UnderwritingJourneyScreen[] = [
           "Arthritis in one joint only, back problems, bunion, bursitis, carpal tunnel syndrome, cartilage, ligament muscle or tendon trouble, chronic fatigue syndrome, fibrositis/fibromyalgia, frozen shoulder, sciatica, slipped disc, tennis elbow.",
       },
     ],
-    firstButton: { label: "No", actionId: "fib_medical_journey_pregnancy" },
-    secondButton: { label: "Yes", actionId: "fib_medical_journey_pregnancy" },
-    previousButton: { actionId: "fib_medical_journey_minor_injuries" },
+    firstButton: { label: "No", actionId: FIB_MEDICAL_JOURNEY_PREGNANCY_SCREEN_ID },
+    secondButton: { label: "Yes", actionId: FIB_MEDICAL_JOURNEY_PREGNANCY_SCREEN_ID },
+    previousButton: { actionId: FIB_MEDICAL_JOURNEY_MINOR_INJURIES_SCREEN_ID },
   },
   {
-    id: "fib_medical_journey_pregnancy",
+    id: FIB_MEDICAL_JOURNEY_PREGNANCY_SCREEN_ID,
     heading: "Medical",
     icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M17.36 9.81622C17.36 5.29854 13.6977 1.63623 9.17999 1.63623C4.66231 1.63623 1 5.29854 1 9.81622C1 14.3339 4.66231 17.9962 9.17999 17.9962C11.7444 17.9962 14.0331 16.8162 15.5329 14.9696" stroke="#828284" stroke-width="1.41667" stroke-linecap="round" stroke-linejoin="round"/>
@@ -844,12 +875,12 @@ const _data: UnderwritingJourneyScreen[] = [
           "Regular pregnancy check ups/scans, abortion, eclampsia, fertility treatment, any complications from which you have fully recovered.",
       },
     ],
-    firstButton: { label: "No", actionId: "fib_medical_journey_skin" },
-    secondButton: { label: "Yes", actionId: "fib_medical_journey_skin" },
-    previousButton: { actionId: "fib_medical_journey_muscles_joints" },
+    firstButton: { label: "No", actionId: FIB_MEDICAL_JOURNEY_SKIN_SCREEN_ID },
+    secondButton: { label: "Yes", actionId: FIB_MEDICAL_JOURNEY_SKIN_SCREEN_ID },
+    previousButton: { actionId: FIB_MEDICAL_JOURNEY_MUSCLES_JOINTS_SCREEN_ID },
   },
   {
-    id: "fib_medical_journey_skin",
+    id: FIB_MEDICAL_JOURNEY_SKIN_SCREEN_ID,
     heading: "Medical",
     icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M15.5488 16.0878C14.6774 17.2027 16.0368 21 16.0368 21H7.75844C7.75844 21 7.65387 18.7181 6.34676 18.8052C5.03964 18.9097 3.5234 18.9968 3.81967 17.2549C3.88939 16.802 3.90681 16.4188 3.87196 16.1227C3.85453 15.844 3.80225 15.6175 3.73253 15.4607C3.59311 15.0775 3.41883 14.9382 3.41883 14.9382L3.34911 14.2066L3.31426 13.9105C3.31426 13.9105 3.26197 13.7537 3.03541 13.6317C2.89598 13.5621 2.56485 13.4401 2.26857 13.3182C1.41459 12.9872 1.65858 12.395 2.18143 11.7679C2.82627 11.0015 4.04624 10.026 2.98312 8.64991C2.98312 8.64991 1.86772 -0.930564 13.5794 1.35133C13.5794 1.35133 20.3416 2.57066 18.4419 10.8795C18.4593 10.8795 17.9365 13.2137 15.5488 16.0878Z" stroke="#828284" stroke-width="1.41667" stroke-linecap="round" stroke-linejoin="round"/>
@@ -869,12 +900,12 @@ const _data: UnderwritingJourneyScreen[] = [
         text: "Acne, athlete's foot, dermatitis, eczema, fungal infections, herpes, psoriasis, verruca, vitiligo.",
       },
     ],
-    firstButton: { label: "No", actionId: "fib_medical_journey_other" },
-    secondButton: { label: "Yes", actionId: "fib_medical_journey_other" },
-    previousButton: { actionId: "fib_medical_journey_pregnancy" },
+    firstButton: { label: "No", actionId: FIB_MEDICAL_JOURNEY_OTHER_SCREEN_ID },
+    secondButton: { label: "Yes", actionId: FIB_MEDICAL_JOURNEY_OTHER_SCREEN_ID },
+    previousButton: { actionId: FIB_MEDICAL_JOURNEY_PREGNANCY_SCREEN_ID },
   },
   {
-    id: "fib_medical_journey_other",
+    id: FIB_MEDICAL_JOURNEY_OTHER_SCREEN_ID,
     heading: "Medical",
     icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M9.9 18.9997C14.9258 18.9997 19 14.9255 19 9.89976C19 4.87399 14.9258 0.799805 9.9 0.799805C4.87424 0.799805 0.800049 4.87399 0.800049 9.89976C0.800049 14.9255 4.87424 18.9997 9.9 18.9997Z" stroke="#828284" stroke-width="1.50412"/>
@@ -893,19 +924,19 @@ const _data: UnderwritingJourneyScreen[] = [
           "Normal cervical smear not requiring any treatment, allergic reactions, common cold, cosmetic surgery, epilepsy diagnosed more than 1 year ago, ganglion, glandular fever, hyperthyroidism, hypothyroidism, influenza (flu), migraine, piles (haemorrhoids), sebaceous cyst, shingles, thrush, varicose veins.",
       },
     ],
-    firstButton: { label: "No", actionId: "fib_medical_outstanding_medical_investigations" },
-    secondButton: { label: "Yes", actionId: "fib_medical_outstanding_medical_investigations" },
-    previousButton: { actionId: "fib_medical_journey_skin" },
+    firstButton: { label: "No", actionId: FIB_MEDICAL_OUTSTANDING_MEDICAL_INVESTIGATIONS_SCREEN_ID },
+    secondButton: { label: "Yes", actionId: FIB_MEDICAL_OUTSTANDING_MEDICAL_INVESTIGATIONS_SCREEN_ID },
+    previousButton: { actionId: FIB_MEDICAL_JOURNEY_SKIN_SCREEN_ID },
   },
   {
-    id: "fib_medical_outstanding_medical_investigations",
+    id: FIB_MEDICAL_OUTSTANDING_MEDICAL_INVESTIGATIONS_SCREEN_ID,
     heading: "Medical",
     icon: OUTSTANDING_MEDICAL_INVESTIGATIONS_ICON,
     title: "Outstanding Medical Investigations",
     question: "Are you awaiting any investigations/tests (including their results) or any surgery?",
-    firstButton: { label: "No", actionId: "fib_medical_other_symptoms" },
-    secondButton: { label: "Yes", actionId: "fib_medical_other_symptoms" },
-    previousButton: { actionId: "fib_medical_journey_other" },
+    firstButton: { label: "No", actionId: FIB_MEDICAL_OTHER_SYMPTOMS_SCREEN_ID },
+    secondButton: { label: "Yes", actionId: FIB_MEDICAL_OTHER_SYMPTOMS_SCREEN_ID },
+    previousButton: { actionId: FIB_MEDICAL_JOURNEY_OTHER_SCREEN_ID },
     children: [
       {
         type: "markdown",
@@ -915,15 +946,15 @@ const _data: UnderwritingJourneyScreen[] = [
     ],
   },
   {
-    id: "fib_medical_other_symptoms",
+    id: FIB_MEDICAL_OTHER_SYMPTOMS_SCREEN_ID,
     heading: "Medical",
     icon: CIRCLE_WITH_ELLIPSES_ICON,
     title: "Other Symptoms",
     question:
       "In the last 6 months have you noticed any symptoms for which you have not yet received an exact diagnosis, that you continue to experience and for which you expect to consult a doctor?",
-    firstButton: { label: "No", actionId: "fib_medical_covid_isolation" },
-    secondButton: { label: "Yes", actionId: "fib_medical_covid_isolation" },
-    previousButton: { actionId: "fib_medical_outstanding_medical_investigations" },
+    firstButton: { label: "No", actionId: FIB_MEDICAL_COVID_ISOLATION_SCREEN_ID },
+    secondButton: { label: "Yes", actionId: FIB_MEDICAL_COVID_ISOLATION_SCREEN_ID },
+    previousButton: { actionId: FIB_MEDICAL_OUTSTANDING_MEDICAL_INVESTIGATIONS_SCREEN_ID },
     children: [
       {
         type: "markdown",
@@ -932,14 +963,14 @@ const _data: UnderwritingJourneyScreen[] = [
     ],
   },
   {
-    id: "fib_medical_covid_isolation",
+    id: FIB_MEDICAL_COVID_ISOLATION_SCREEN_ID,
     heading: "Medical",
     icon: PERSON_FACEMASK_ICON,
     title: "Covid Isolation",
     question: "In the last 30 days have you been self-isolating for any of the reasons below:",
-    firstButton: { label: "No", actionId: "fib_medical_covid_symptoms" },
-    secondButton: { label: "Yes", actionId: "fib_medical_covid_symptoms" },
-    previousButton: { actionId: "fib_medical_other_symptoms" },
+    firstButton: { label: "No", actionId: FIB_MEDICAL_COVID_SYMPTOMS_SCREEN_ID },
+    secondButton: { label: "Yes", actionId: FIB_MEDICAL_COVID_SYMPTOMS_SCREEN_ID },
+    previousButton: { actionId: FIB_MEDICAL_OTHER_SYMPTOMS_SCREEN_ID },
     children: [
       {
         type: "markdown",
@@ -949,14 +980,14 @@ const _data: UnderwritingJourneyScreen[] = [
     ],
   },
   {
-    id: "fib_medical_covid_symptoms",
+    id: FIB_MEDICAL_COVID_SYMPTOMS_SCREEN_ID,
     heading: "Medical",
     icon: PERSON_FACEMASK_ICON,
     title: "Covid Symptoms",
     question: "In the last 30 days have either of the following applied to you?",
-    firstButton: { label: "No", actionId: "fib_financial_questions" },
-    secondButton: { label: "Yes", actionId: "fib_financial_questions" },
-    previousButton: { actionId: "fib_medical_covid_isolation" },
+    firstButton: { label: "No", actionId: FIB_FINANCIAL_QUESTIONS_SCREEN_ID },
+    secondButton: { label: "Yes", actionId: FIB_FINANCIAL_QUESTIONS_SCREEN_ID },
+    previousButton: { actionId: FIB_MEDICAL_COVID_ISOLATION_SCREEN_ID },
     children: [
       {
         type: "markdown",
@@ -966,7 +997,7 @@ const _data: UnderwritingJourneyScreen[] = [
     ],
   },
   {
-    id: "fib_financial_questions",
+    id: FIB_FINANCIAL_QUESTIONS_SCREEN_ID,
     category: "fib_financial",
     heading: "Financial",
     icon: FINANCIAL_QUESTIONS_ICON,
@@ -974,42 +1005,46 @@ const _data: UnderwritingJourneyScreen[] = [
     reviewAnswerTitle: "Total Life Insurance Exceed £20,000,000?",
     question:
       "Will the total amount of life insurance on your life (including any amount to be replaced and any other applied for) when added together exceed £20,000,000?",
-    firstButton: { label: "No", actionId: "fib_review_screen", answersIdToInvalidate: ["fib_financial_other_cover"] },
-    secondButton: { label: "Yes", actionId: "fib_financial_other_cover" },
-    previousButton: { actionId: "fib_medical_covid_symptoms" },
+    firstButton: {
+      label: "No",
+      actionId: FIB_UNDERWRITING_REVIEW_ANSWERS_SCREEN_ID,
+      answersIdToInvalidate: [FIB_FINANCIAL_OTHER_COVER_SCREEN_ID],
+    },
+    secondButton: { label: "Yes", actionId: FIB_FINANCIAL_OTHER_COVER_SCREEN_ID },
+    previousButton: { actionId: FIB_MEDICAL_COVID_SYMPTOMS_SCREEN_ID },
   },
   {
-    id: "fib_financial_other_cover",
+    id: FIB_FINANCIAL_OTHER_COVER_SCREEN_ID,
     category: "fib_financial",
     heading: "Financial",
     icon: FINANCIAL_QUESTIONS_ICON,
     title: "Financial Questions",
     reviewAnswerTitle: "Additional Life Insurance Products",
     question: "Do you have, or have you applied for any more life insurance products?",
-    firstButton: { label: "No", actionId: "fib_review_screen" },
-    secondButton: { label: "Yes", actionId: "fib_financial_cover_list" },
-    previousButton: { actionId: "fib_financial_questions" },
+    firstButton: { label: "No", actionId: FIB_UNDERWRITING_REVIEW_ANSWERS_SCREEN_ID },
+    secondButton: { label: "Yes", actionId: FIB_FINANCIAL_COVER_LIST_SCREEN_ID },
+    previousButton: { actionId: FIB_FINANCIAL_QUESTIONS_SCREEN_ID },
   },
   {
-    id: "fib_financial_cover_list",
+    id: FIB_FINANCIAL_COVER_LIST_SCREEN_ID,
     category: "fib_financial",
     heading: "Financial",
     icon: FINANCIAL_QUESTIONS_ICON,
     title: "Cover Details",
     question: "Add or remove your existing life insurance products below.",
-    firstButton: { label: "Continue", actionId: "fib_review_screen" },
-    secondButton: { label: "Add cover", actionId: "fib_financial_custom_cover_form" },
-    previousButton: { actionId: "fib_financial_other_cover" },
+    firstButton: { label: "Continue", actionId: FIB_UNDERWRITING_REVIEW_ANSWERS_SCREEN_ID },
+    secondButton: { label: "Add cover", actionId: FIB_FINANCIAL_CUSTOM_COVER_FORM_SCREEN_ID },
+    previousButton: { actionId: FIB_FINANCIAL_OTHER_COVER_SCREEN_ID },
   },
   {
-    id: "fib_financial_custom_cover_form",
+    id: FIB_FINANCIAL_CUSTOM_COVER_FORM_SCREEN_ID,
     category: "fib_financial",
     heading: "Financial",
     icon: FINANCIAL_QUESTIONS_ICON,
     title: "Cover Details",
     question: "Please enter your cover details below.",
-    firstButton: { label: "Continue", actionId: "fib_financial_cover_list" },
-    previousButton: { actionId: "fib_financial_cover_list" },
+    firstButton: { label: "Continue", actionId: FIB_FINANCIAL_COVER_LIST_SCREEN_ID },
+    previousButton: { actionId: FIB_FINANCIAL_COVER_LIST_SCREEN_ID },
   },
 ];
 
@@ -1017,9 +1052,9 @@ export type OrderedUnderwritingJourneyScreen = UnderwritingJourneyScreen & { ord
 
 function getData(): OrderedUnderwritingJourneyScreen[] {
   const ROUTES_WITHOUT_PROGRESS = [
-    "fib_enter_your_date_of_birth",
-    "fib_enter_your_name",
-    "fib_financial_custom_cover_form",
+    FIB_ENTER_YOUR_DATE_OF_BIRTH,
+    FIB_ENTER_YOUR_NAME,
+    FIB_FINANCIAL_CUSTOM_COVER_FORM_SCREEN_ID,
   ];
 
   let progressCounter = 0;
