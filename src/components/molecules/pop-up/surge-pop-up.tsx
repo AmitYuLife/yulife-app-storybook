@@ -44,11 +44,7 @@ export default class SurgePopup extends React.PureComponent<IProps, IState> {
         {viewRef ? <BlurView viewRef={viewRef} blurAmount={15} blurType="light" style={styles.bgBlur} /> : null}
         <View onLayout={this.getPosition} style={styles.buttonWrapper}>
           <TouchableOpacityWithDelay onPress={this.yucoinPress} activeOpacity={1}>
-            <YuCoin
-              hasWhiteGlow={hasWhiteGlow}
-              isLoading={isLoading}
-              isGrayScale={!hasPermission || (!isOnline && !isLoading)}
-            />
+            <YuCoin hasWhiteGlow={hasWhiteGlow} isGrayScale={!hasPermission || (!isOnline && !isLoading)} />
           </TouchableOpacityWithDelay>
         </View>
         {!top ? null : (

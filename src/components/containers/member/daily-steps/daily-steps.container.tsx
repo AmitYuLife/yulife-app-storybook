@@ -100,7 +100,6 @@ class DailyStepsContainer extends React.Component<Props> {
                 onLeftMenuPress={onLeftMenuPress}
                 fitKitAvailable={fitkit.available}
                 hasPermission={fitkit.authorised}
-                isLoading={isFetching || fitkit.loading}
               />
             </FitkitContext.Provider>
           );

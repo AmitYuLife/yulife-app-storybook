@@ -1,5 +1,9 @@
-export { default as GiraffeAnimated } from "./giraffe-animated";
-export { TiltNeutral as GiraffeStatic } from "./giraffe/giraffe-states";
 export { default as Glow } from "./glow";
-export { default as Shine } from "./shine";
-export { default as Static } from "./static";
+export { default as Body } from "./body";
+export { default as Clasps } from "./clasps";
+export { default as Crown } from "./crown";
+export { default as Gems } from "./gems";
+export { default as CycleTwoOrnament } from "./cycleTwoOrnament";
+export { default as CycleThreeOrnament } from "./cycleThreeOrnament";
+export { default as CycleFourOrnament } from "./cycleFourOrnament";
+export { default as CycleFiveOrnament } from "./cycleFiveOrnament";

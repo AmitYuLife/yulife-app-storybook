@@ -22,7 +22,6 @@ interface IProps extends IConnectedScreenProps {
   showCounter?: boolean;
   fitKitAvailable: boolean;
   hasPermission: boolean;
-  isLoading: boolean;
   onCoinPress: () => void;
   onStreakPress?: () => void;
   theme: IThemeStore["dailyStepsScreen"];
@@ -36,7 +35,6 @@ type Props = IProps;
 
 export default function DailyStepsScreen({
   hasPermission,
-  isLoading,
   onCoinPress,
   onLeftMenuPress,
   theme: { centredScreen, hasWhiteGlow, topBarType },
@@ -55,7 +53,7 @@ export default function DailyStepsScreen({
       >
         <Pad height={getPadHeight()} />
         <TouchableOpacityWithDelay onPress={onCoinPress} activeOpacity={1}>
-          <YuCoin hasWhiteGlow={hasWhiteGlow} isLoading={isLoading} isGrayScale={!hasPermission} />
+          <YuCoin hasWhiteGlow={hasWhiteGlow} isGrayScale={!hasPermission} />
         </TouchableOpacityWithDelay>
         <DailyStepsContent />
         <Streak />

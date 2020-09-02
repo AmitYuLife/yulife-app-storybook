@@ -19,7 +19,6 @@ import { NavBar } from "@components/organisms";
 import { DailyStepsOnline } from "@components/organisms/daily-steps/daily-steps-content/subcontainers/daily-steps-online";
 
 interface IProps extends Partial<IConnectedScreenProps> {
-  isLoading: boolean;
   onCoinPress: () => void;
   onSetIntroDone: () => void;
   theme: IThemeStore["dailyStepsScreen"];
@@ -33,7 +32,6 @@ interface IProps extends Partial<IConnectedScreenProps> {
 type Props = IProps;
 
 export default function IntroScreen({
-  isLoading,
   onCoinPress,
   onSetIntroDone,
   theme: { centredScreen, topBarType },
@@ -72,7 +70,7 @@ export default function IntroScreen({
           }
         >
           <TouchableOpacityWithDelay onPress={onCoinPress} activeOpacity={1}>
-            <YuCoin hasWhiteGlow={true} isLoading={isLoading} isGrayScale={false} />
+            <YuCoin hasWhiteGlow={true} isGrayScale={false} />
           </TouchableOpacityWithDelay>
         </View>
         <View
