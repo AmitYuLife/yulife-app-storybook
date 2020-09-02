@@ -4,6 +4,13 @@ import moment from "moment";
 import {
   data,
   FIB_THREE_YEAR_MEDICAL_HISTORY_SCREEN_ID,
+  FIB_YOUR_NAME_SCREEN_ID,
+  FIB_YOUR_DATE_OF_BIRTH_SCREEN_ID,
+  FIB_LIFESTYLE_ALCOHOL_SCREEN_ID,
+  FIB_ENTER_YOUR_NAME,
+  FIB_ENTER_YOUR_DATE_OF_BIRTH,
+  FIB_LIFESTYLE_HEIGHT_SCREEN_ID,
+  FIB_LIFESTYLE_WEIGHT_SCREEN_ID,
 } from "../../components/containers/products/fib/data/underwriting-journey-data";
 import { UseInternationalFormat } from "../../components/containers/products/fib/fib.helpers";
 
@@ -49,8 +56,8 @@ export const getReviewAnswers = (state: IReduxState): any => {
       answer = state.product.fib.answers[item.id];
       questionId = item.id;
 
-      if (item.id === "fib_your_name") {
-        questionId = "fib_enter_your_name";
+      if (item.id === FIB_YOUR_NAME_SCREEN_ID) {
+        questionId = FIB_ENTER_YOUR_NAME;
       }
     }
 
@@ -81,14 +88,14 @@ export const getReviewAnswers = (state: IReduxState): any => {
       questionId = item.id;
     }
 
-    if (item.id === "fib_your_date_of_birth") {
+    if (item.id === FIB_YOUR_DATE_OF_BIRTH_SCREEN_ID) {
       icon = item.icon;
       title = item.title;
       answer = getBirthday(state);
-      questionId = "fib_enter_your_date_of_birth";
+      questionId = FIB_ENTER_YOUR_DATE_OF_BIRTH;
     }
 
-    if (item.id === "fib_lifestyle_height") {
+    if (item.id === FIB_LIFESTYLE_HEIGHT_SCREEN_ID) {
       const heightObject = state.product.fib.answers.height;
       const height = heightObject.unit === "cm" ? `${heightObject.cm}cm` : `${heightObject.ft}${heightObject.in}ft`;
 
@@ -98,7 +105,7 @@ export const getReviewAnswers = (state: IReduxState): any => {
       questionId = item.id;
     }
 
-    if (item.id === "fib_lifestyle_weight") {
+    if (item.id === FIB_LIFESTYLE_WEIGHT_SCREEN_ID) {
       const weightObject = state.product.fib.answers.weight;
       const weight = weightObject.unit === "kg" ? `${weightObject.kg}kg` : `${weightObject.lb}lb`;
 
@@ -108,7 +115,7 @@ export const getReviewAnswers = (state: IReduxState): any => {
       questionId = item.id;
     }
 
-    if (item.id === "fib_lifestyle_alcohol") {
+    if (item.id === FIB_LIFESTYLE_ALCOHOL_SCREEN_ID) {
       const units = state.product.fib.answers.weeklyAlcoholDrinks;
       const unitOrUnits = units === 0 || units > 1 ? "units" : "unit";
       icon = item.icon;

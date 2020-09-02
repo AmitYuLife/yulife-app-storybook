@@ -9,6 +9,12 @@ import {
   FIB_HIGH_BLOOD_PRESSURE_SCREEN_ID,
   FIB_HIGH_CHOLESTEROL_EXTRA_SCREEN,
   FIB_HIGH_CHOLESTEROL_SCREEN_ID,
+  FIB_ENTER_YOUR_NAME,
+  FIB_ENTER_YOUR_DATE_OF_BIRTH,
+  FIB_LIFESTYLE_HEIGHT_SCREEN_ID,
+  FIB_LIFESTYLE_WEIGHT_SCREEN_ID,
+  FIB_YOUR_NAME_SCREEN_ID,
+  FIB_YOUR_DATE_OF_BIRTH_SCREEN_ID,
 } from "./data/underwriting-journey-data";
 import { PackageId } from "@components/screens/products/fib/fib.helper";
 import { useDispatch } from "react-redux";
@@ -226,6 +232,56 @@ export function getIsActiveOnMedicalJourney(screenId: string, answers: FibAnswer
   }
 
   return true;
+}
+
+export function shouldAnswerBeStored(label: string, currentQuestionId: string): boolean {
+  return (
+    (label === "Yes" || label === "No") &&
+    currentQuestionId !== FIB_YOUR_NAME_SCREEN_ID &&
+    currentQuestionId !== FIB_YOUR_DATE_OF_BIRTH_SCREEN_ID
+  );
+}
+
+export function shouldFirstButtonBeDisabled(
+  medicalHistory: Record<string, boolean>,
+  currentQuestion: OrderedUnderwritingJourneyScreen,
+  fibAnswers: FibAnswers
+) {
+  if (currentQuestion.id === FIB_THREE_YEAR_MEDICAL_HISTORY_SCREEN_ID) {
+    return !Object.entries(medicalHistory)
+      .map((entry) => {
+        return entry[1] ? entry[0] : null;
+      })
+      .filter((e) => !!e).length;
+  }
+
+  if (currentQuestion.id === FIB_ENTER_YOUR_NAME) {
+    return !fibAnswers?.fib_your_name?.length;
+  }
+
+  if (currentQuestion.id === FIB_ENTER_YOUR_DATE_OF_BIRTH) {
+    const { birthDay, birthMonth, birthYear } = fibAnswers;
+    const isValidDates = !!Number(birthDay) && !!Number(birthMonth) && !!Number(birthYear);
+    return !isValidDates;
+  }
+
+  if (currentQuestion.id === FIB_LIFESTYLE_HEIGHT_SCREEN_ID) {
+    if (fibAnswers.height.unit === "cm") {
+      return !fibAnswers.height.cm;
+    }
+
+    return !fibAnswers.height.ft || !fibAnswers.height.in;
+  }
+
+  if (currentQuestion.id === FIB_LIFESTYLE_WEIGHT_SCREEN_ID) {
+    if (fibAnswers.weight.unit === "kg") {
+      return !fibAnswers.weight.kg;
+    }
+
+    return !fibAnswers.weight.st || !fibAnswers.weight.lb;
+  }
+
+  return false;
 }
 
 export function UseInternationalFormat(dayOrMonth: string): string {

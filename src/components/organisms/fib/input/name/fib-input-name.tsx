@@ -6,6 +6,7 @@ import { IReduxState } from "@redux/_core/reducers";
 import { getFIBState } from "@redux/product/product.selectors";
 import { InputField } from "../input-field";
 import { Colours, Style } from "@styles";
+import { FIB_YOUR_NAME_SCREEN_ID } from "../../../../containers/products/fib/data/underwriting-journey-data";
 
 type ConnectedProps = ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps;
 
@@ -44,7 +45,7 @@ const mapStateToProps = (state: IReduxState) => ({
 });
 
 const mapDispatchToProps = {
-  updateName: (value: string) => updateFIBAnswerValue({ key: "fib_your_name", value }),
+  updateName: (value: string) => updateFIBAnswerValue({ key: FIB_YOUR_NAME_SCREEN_ID, value }),
 };
 
 const redux = connect(mapStateToProps, mapDispatchToProps);

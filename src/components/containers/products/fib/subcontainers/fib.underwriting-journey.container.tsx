@@ -1,24 +1,17 @@
 import React, { memo, useState, useCallback } from "react";
-import {
-  FibLocalNavigation,
-  FIB_UNDERWRITING_REVIEW_ANSWERS,
-  FIB_UNDERWRITING_REVIEW_ANSWERS_SCREEN_ID,
-} from "../fib.types";
+import { FibLocalNavigation, FIB_UNDERWRITING_REVIEW_ANSWERS } from "../fib.types";
 import { FibUnderwritingJourneyScreen } from "../../../../screens/products/fib/underwriting-journey/fib.underwriting-journey.screen";
 import {
   data,
-  FIB_THREE_YEAR_MEDICAL_HISTORY_SCREEN_ID,
-  FIB_ENTER_YOUR_NAME,
-  FIB_ENTER_YOUR_DATE_OF_BIRTH,
-  FIB_LIFESTYLE_HEIGHT_SCREEN_ID,
-  FIB_LIFESTYLE_WEIGHT_SCREEN_ID,
+  FIB_MEDICAL_THREE_OR_MORE_CONSULTATION_SCREEN_ID,
+  FIB_UNDERWRITING_REVIEW_ANSWERS_SCREEN_ID,
 } from "../data/underwriting-journey-data";
 import { FIBProgressBar } from "@organisms";
 import { IReduxState } from "@redux/_core/reducers";
 import { getFIBState, getBirthday } from "@redux/product/product.selectors";
 import { connect, useDispatch } from "react-redux";
 import { updateFIBValue, updateFIBAnswerValue, resetFIBMedicalHistoryValue } from "@redux/product/product.actions";
-import { findQuestion, FibButtonType } from "../fib.helpers";
+import { findQuestion, FibButtonType, shouldFirstButtonBeDisabled, shouldAnswerBeStored } from "../fib.helpers";
 import { FibAnswers } from "@redux/product/product.types";
 import { Navigation } from "react-native-navigation";
 import { MODALS } from "@navigation/constants";
@@ -48,7 +41,7 @@ const FibUnderwritingJourneyContainer = memo(function (props: Props) {
   const updateAnswer = (questionId: string, value: string, answers: FibAnswers): FibAnswers => {
     updateFibAnswer(questionId, value);
 
-    if (questionId === "fib_medical_three_or_more_consultation" && value === "No") {
+    if (questionId === FIB_MEDICAL_THREE_OR_MORE_CONSULTATION_SCREEN_ID && value === "No") {
       for (const key of Object.keys(answers)) {
         if (key.includes("medical_journey")) {
           updateFibAnswer(key, "");
@@ -62,34 +55,28 @@ const FibUnderwritingJourneyContainer = memo(function (props: Props) {
   };
 
   const navigateToReviewScreenOrFindNextQuestion = (localAnswers: FibAnswers, buttonType: FibButtonType) => {
-    if (redirectedFromReviewScreen) {
-      if (initialQuestion.category) {
-        const nextQuestion = findQuestion({
-          data,
-          buttonType,
-          currentQuestion,
-          medicalHistory,
-          answers: localAnswers || fibAnswers,
-        });
+    if (!redirectedFromReviewScreen) {
+      return;
+    }
 
-        if (!nextQuestion?.id.includes(initialQuestion.category)) {
-          return navigation.pop();
-        }
-      } else if (initialQuestion.nextQuestionBeforeQuit) {
-        const nextQuestion = findQuestion({
-          data,
-          buttonType,
-          currentQuestion,
-          medicalHistory,
-          answers: localAnswers || fibAnswers,
-        });
+    if (!initialQuestion.category && !initialQuestion.nextQuestionBeforeQuit) {
+      return navigation.pop();
+    }
 
-        if (nextQuestion.id === initialQuestion.nextQuestionBeforeQuit) {
-          return navigation.pop();
-        }
-      } else {
-        return navigation.pop();
-      }
+    const nextQuestion = findQuestion({
+      data,
+      buttonType,
+      currentQuestion,
+      medicalHistory,
+      answers: localAnswers || fibAnswers,
+    });
+
+    if (initialQuestion.category && !nextQuestion?.id.includes(initialQuestion.category)) {
+      return navigation.pop();
+    }
+
+    if (initialQuestion.nextQuestionBeforeQuit && nextQuestion.id === initialQuestion.nextQuestionBeforeQuit) {
+      return navigation.pop();
     }
   };
 
@@ -182,40 +169,7 @@ const FibUnderwritingJourneyContainer = memo(function (props: Props) {
     maxLength: data.length,
   };
 
-  let disableFirstButton = false;
-  if (currentQuestion.id === FIB_THREE_YEAR_MEDICAL_HISTORY_SCREEN_ID) {
-    disableFirstButton = !Object.entries(medicalHistory)
-      .map((entry) => {
-        return entry[1] ? entry[0] : null;
-      })
-      .filter((e) => !!e).length;
-  }
-
-  if (currentQuestion.id === FIB_ENTER_YOUR_NAME) {
-    disableFirstButton = !fibAnswers?.fib_your_name?.length;
-  }
-
-  if (currentQuestion.id === FIB_ENTER_YOUR_DATE_OF_BIRTH) {
-    const { birthDay, birthMonth, birthYear } = fibAnswers;
-    const isValidDates = !!Number(birthDay) && !!Number(birthMonth) && !!Number(birthYear);
-    disableFirstButton = !isValidDates;
-  }
-
-  if (currentQuestion.id === FIB_LIFESTYLE_HEIGHT_SCREEN_ID) {
-    if (fibAnswers.height.unit === "cm") {
-      disableFirstButton = !fibAnswers.height.cm;
-    } else {
-      disableFirstButton = !fibAnswers.height.ft || !fibAnswers.height.in;
-    }
-  }
-
-  if (currentQuestion.id === FIB_LIFESTYLE_WEIGHT_SCREEN_ID) {
-    if (fibAnswers.weight.unit === "kg") {
-      disableFirstButton = !fibAnswers.weight.kg;
-    } else {
-      disableFirstButton = !fibAnswers.weight.st || !fibAnswers.weight.lb;
-    }
-  }
+  const disableFirstButton = shouldFirstButtonBeDisabled(medicalHistory, currentQuestion, fibAnswers);
 
   const onNavigateBackHandler = useCallback(async () => {
     if (redirectedFromReviewScreen) {
@@ -261,14 +215,6 @@ const FibUnderwritingJourneyContainer = memo(function (props: Props) {
     </FIBProgressBar.ProgressBarContext.Provider>
   );
 });
-
-const shouldAnswerBeStored = (label: string, currentQuestionId: string) => {
-  return (
-    (label === "Yes" || label === "No") &&
-    currentQuestionId !== "fib_your_name" &&
-    currentQuestionId !== "fib_your_date_of_birth"
-  );
-};
 
 const mapStateToProps = (state: IReduxState) => ({
   dateOfBirth: getBirthday(state),
