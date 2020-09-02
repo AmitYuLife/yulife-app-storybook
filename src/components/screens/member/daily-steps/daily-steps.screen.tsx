@@ -20,7 +20,6 @@ import { Style } from "@styles";
 
 interface IProps extends IConnectedScreenProps {
   showCounter?: boolean;
-  currentWorld?: number;
   fitKitAvailable: boolean;
   hasPermission: boolean;
   isLoading: boolean;
