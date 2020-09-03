@@ -239,6 +239,7 @@ const challengeResetSuccess = (state: ILevelsStore): ILevelsStore => ({
   ...state,
   active: {
     ...initialState.active,
+    isLoading: false,
   },
 });
 
