@@ -13641,26 +13641,6 @@
             "defaultValue": null
           },
           {
-            "name": "deceaseAgeYear",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "Int",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "deceaseAgeMonth",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "Int",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
             "name": "coverType",
             "description": null,
             "type": {
@@ -13672,6 +13652,26 @@
           },
           {
             "name": "customCoverPercentage",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "Int",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "deceaseAgeYear",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "Int",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "deceaseAgeMonth",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -13738,7 +13738,7 @@
             "deprecationReason": null
           },
           {
-            "name": "payoutAmount",
+            "name": "sumAssured",
             "description": null,
             "args": [],
             "type": {
@@ -13834,6 +13834,18 @@
             "deprecationReason": null
           },
           {
+            "name": "payoutAmount",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Float",
+              "ofType": null
+            },
+            "isDeprecated": true,
+            "deprecationReason": "Logic in the client, field no longer need it"
+          },
+          {
             "name": "monthlyAmountProtected",
             "description": null,
             "args": [],
@@ -13842,8 +13854,8 @@
               "name": "Float",
               "ofType": null
             },
-            "isDeprecated": false,
-            "deprecationReason": null
+            "isDeprecated": true,
+            "deprecationReason": "Logic in the client, field no longer need it"
           }
         ],
         "inputFields": null,

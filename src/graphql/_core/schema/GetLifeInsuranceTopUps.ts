@@ -18,13 +18,12 @@ export interface GetLifeInsuranceTopUps_getLifeInsuranceTopUps_avatarRemoteFiles
 
 export interface GetLifeInsuranceTopUps_getLifeInsuranceTopUps {
   estimatedCost: number | null;
-  payoutAmount: number | null;
+  sumAssured: number | null;
   earnRate: number | null;
   salaryPercentageCovered: number | null;
   newEarnRate: number | null;
   descriptionHeading: string | null;
   term: number | null;
-  monthlyAmountProtected: number | null;
   avatarRemoteFiles: GetLifeInsuranceTopUps_getLifeInsuranceTopUps_avatarRemoteFiles | null;
 }
 
@@ -34,8 +33,6 @@ export interface GetLifeInsuranceTopUps {
 
 export interface GetLifeInsuranceTopUpsVariables {
   grossSalary?: number | null;
-  deceaseAgeYear?: number | null;
-  deceaseAgeMonth?: number | null;
   coverType?: CoverType | null;
   customCoverPercentage?: number | null;
 }
