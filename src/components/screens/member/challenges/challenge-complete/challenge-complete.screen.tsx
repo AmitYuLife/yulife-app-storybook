@@ -8,11 +8,11 @@ import Logger from "@services/logging/logger";
 
 interface IProps {
   onCtaPress: () => void;
-  isLoading?: boolean;
   copy: GetMobileCopy_getMobileCopy_screens_challenges_completed;
+  isLoading: boolean;
 }
 
-const ChallengeCompleteScreen: React.SFC<IProps> = ({ isLoading, onCtaPress, copy }) => {
+const ChallengeCompleteScreen: React.SFC<IProps> = ({ onCtaPress, copy, isLoading }) => {
   useEffect(() => {
     Logger.logEvent("screen_view", { name: "timesUp" });
   }, []);
