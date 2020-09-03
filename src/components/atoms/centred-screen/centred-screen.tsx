@@ -135,4 +135,4 @@ function _Background({ footerImage }: Pick<Props, "footerImage">) {
   return <Image resizeMode="cover" style={style} source={source} />;
 }
 
-const Background = React.memo(_Background, () => true);
+const Background = React.memo(_Background);
