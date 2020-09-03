@@ -15,7 +15,7 @@ const _DailyStepsContent = (props: Props) => {
   const { dailyStepsIsFetching } = props;
   const { authorise, loading: fitkitLoading, authorised, available } = useContext(FitkitContext);
 
-  const isLoading = fitkitLoading && dailyStepsIsFetching;
+  const isLoading = fitkitLoading || dailyStepsIsFetching;
   const unavailable = !isLoading && !available;
   const unauthorised = !isLoading && available && !authorised;
 
