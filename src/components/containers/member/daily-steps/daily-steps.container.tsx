@@ -64,7 +64,8 @@ class DailyStepsContainer extends React.Component<Props> {
           nextSurgeIntro.activity !== thisSurgeIntro.activity ||
           nextSurgeIntro.visibility !== thisSurgeIntro.visibility)
       ) ||
-      nextProps.showIntro !== this.props.showIntro
+      nextProps.showIntro !== this.props.showIntro ||
+      nextProps.theme !== this.props.theme
     );
   }
 
