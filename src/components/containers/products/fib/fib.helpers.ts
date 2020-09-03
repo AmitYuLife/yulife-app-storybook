@@ -287,3 +287,37 @@ export function shouldFirstButtonBeDisabled(
 export function UseInternationalFormat(dayOrMonth: string): string {
   return `${dayOrMonth.length === 1 ? "0" : ""}${dayOrMonth}`;
 }
+
+interface CalculatePayoutAmountInput {
+  deceaseAgeYear: number;
+  deceaseAgeMonth: number;
+  sumAssured: number;
+  term: number;
+  dateOfBirth: string;
+}
+export function calculatePayoutAmount({
+  deceaseAgeYear,
+  deceaseAgeMonth,
+  sumAssured,
+  term,
+  dateOfBirth,
+}: CalculatePayoutAmountInput) {
+  const totalPayoutMonths = term * 12;
+
+  const deceaseTotalMonths = deceaseAgeYear * 12 + deceaseAgeMonth;
+  const ageInMonths = moment().diff(moment(dateOfBirth), "months");
+
+  let payoutMonths = deceaseTotalMonths - ageInMonths;
+
+  if (payoutMonths < 0) {
+    payoutMonths = 0;
+  }
+
+  // Decease age over max term
+  if (totalPayoutMonths - payoutMonths <= 0) {
+    return 0;
+  }
+
+  const payoutAmount = sumAssured * ((totalPayoutMonths - payoutMonths) / totalPayoutMonths);
+  return payoutAmount;
+}

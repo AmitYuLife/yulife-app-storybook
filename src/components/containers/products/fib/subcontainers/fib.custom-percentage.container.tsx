@@ -35,8 +35,6 @@ const FibCustomPercentageContainer = memo(function (props: FibCustomPercentageCo
         grossSalary: salary,
         coverType: "custom",
         customCoverPercentage: percentageRange[activeIndex],
-        deceaseAgeMonth: 0,
-        deceaseAgeYear: 20,
       },
     }
   );

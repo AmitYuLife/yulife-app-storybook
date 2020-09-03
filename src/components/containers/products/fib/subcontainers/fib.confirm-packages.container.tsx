@@ -11,7 +11,7 @@ import {
 } from "@graphql/products";
 import { getFIBState } from "@redux/product/product.selectors";
 import { IReduxState } from "@redux/_core/reducers";
-import { packages, useCover, calculatePayoutCalculatorItems } from "../fib.helpers";
+import { packages, useCover, calculatePayoutCalculatorItems, calculatePayoutAmount } from "../fib.helpers";
 import { FibSummaryScreen } from "@components/screens/products/fib/browse-packages/fib.summary.screen";
 import { Package } from "@components/screens/products/fib/browse-packages/fib.browse.types";
 import { getUserDateOfBirth } from "@redux/user/user.selectors";
@@ -66,12 +66,12 @@ const FibConfirmPackagesContainer = memo(function (props: FibConfirmPackagesCont
       ? payoutEstimatorItems.months[deceaseAgeIndexMonth]
       : payoutEstimatorItems.months[payoutEstimatorItems.months.length - 1] || 0; // Never show error, default to 0
 
+  const deceaseAgeYear = payoutEstimatorItems.years[deceaseAgeIndexYear];
+
   const queryVariables: GetLifeInsuranceTopUpsVars = {
     grossSalary: grossSalary,
     coverType: selectedCoverType,
     customCoverPercentage: 0,
-    deceaseAgeMonth: deceaseAgeMonth,
-    deceaseAgeYear: payoutEstimatorItems.years[deceaseAgeIndexYear],
   };
 
   const { loading, error, data } = useQuery<GetLifeInsuranceToUpsData, GetLifeInsuranceTopUpsVars>(
@@ -81,9 +81,21 @@ const FibConfirmPackagesContainer = memo(function (props: FibConfirmPackagesCont
     }
   );
 
+  const payoutAmount = calculatePayoutAmount({
+    deceaseAgeMonth,
+    deceaseAgeYear,
+    sumAssured: data?.getLifeInsuranceTopUps?.sumAssured,
+    term: data?.getLifeInsuranceTopUps?.term,
+    dateOfBirth: userDateOfBirth,
+  });
+
+  const monthlyAmountProtected = Math.round(
+    ((data?.getLifeInsuranceTopUps?.sumAssured / (data?.getLifeInsuranceTopUps?.term * 12)) * 100) / 100
+  );
+
   const packageDetails: Package = {
     newEarnRate: data?.getLifeInsuranceTopUps.newEarnRate || 0,
-    payoutAmount: Math.round(data?.getLifeInsuranceTopUps.payoutAmount || 0),
+    payoutAmount: Math.round(payoutAmount),
     earnRate: data?.getLifeInsuranceTopUps.earnRate || 0,
     salaryPercentageCovered: data?.getLifeInsuranceTopUps.salaryPercentageCovered || 0,
     estimatedCost: data?.getLifeInsuranceTopUps.estimatedCost || 0,
@@ -91,7 +103,7 @@ const FibConfirmPackagesContainer = memo(function (props: FibConfirmPackagesCont
     label: packages[selectedCoverType].label,
     descriptionHeading: data?.getLifeInsuranceTopUps.descriptionHeading || "",
     term: data?.getLifeInsuranceTopUps.term,
-    monthlyAmountProtected: data?.getLifeInsuranceTopUps.monthlyAmountProtected,
+    monthlyAmountProtected,
   };
 
   const faqs: IFaq[] = fibFaqItems.map((faq) => ({

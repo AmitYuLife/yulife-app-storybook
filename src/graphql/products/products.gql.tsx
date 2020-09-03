@@ -9,8 +9,6 @@ export interface GetLifeInsuranceToUpsData {
 
 export interface GetLifeInsuranceTopUpsVars {
   grossSalary: number;
-  deceaseAgeYear: number;
-  deceaseAgeMonth: number;
   coverType: PackageId;
   customCoverPercentage: number;
 }
@@ -18,30 +16,17 @@ export interface GetLifeInsuranceTopUpsVars {
 export const GQL_GET_LIFE_INSURANCE_TOP_UPS = gql`
   ${GQL_FRAGMENT_AVATAR_REMOTE_FILES}
 
-  query GetLifeInsuranceTopUps(
-    $grossSalary: Int
-    $deceaseAgeYear: Int
-    $deceaseAgeMonth: Int
-    $coverType: CoverType
-    $customCoverPercentage: Int
-  ) {
+  query GetLifeInsuranceTopUps($grossSalary: Int, $coverType: CoverType, $customCoverPercentage: Int) {
     getLifeInsuranceTopUps(
-      input: {
-        grossSalary: $grossSalary
-        deceaseAgeYear: $deceaseAgeYear
-        deceaseAgeMonth: $deceaseAgeMonth
-        coverType: $coverType
-        customCoverPercentage: $customCoverPercentage
-      }
+      input: { grossSalary: $grossSalary, coverType: $coverType, customCoverPercentage: $customCoverPercentage }
     ) {
       estimatedCost
-      payoutAmount
+      sumAssured
       earnRate
       salaryPercentageCovered
       newEarnRate
       descriptionHeading
       term
-      monthlyAmountProtected
       avatarRemoteFiles {
         ...YumojiRemoteFiles
       }

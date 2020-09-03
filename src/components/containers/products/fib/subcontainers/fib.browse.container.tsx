@@ -22,7 +22,7 @@ import { getFIBState } from "@redux/product/product.selectors";
 import { IReduxState } from "@redux/_core/reducers";
 import { IFaq } from "@components/screens/products/fib/browse-packages/subcomponents/faqs/faq";
 import { getUserDateOfBirth } from "@redux/user/user.selectors";
-import { calculatePayoutCalculatorItems, packages, useCover } from "../fib.helpers";
+import { calculatePayoutCalculatorItems, packages, useCover, calculatePayoutAmount } from "../fib.helpers";
 
 interface IFibContainer {
   navigation: FibLocalNavigation;
@@ -43,20 +43,20 @@ const documents: IFaq[] = fibDocumentsItems.map((document) => ({
 }));
 
 const FibBrowseContainer = memo(function (props: IFibContainer & ReturnType<typeof mapStateToProps>) {
-  const { navigation, selectFaq, grossSalary, selectedPackage } = props;
+  const { navigation, selectFaq, grossSalary, selectedPackage, userDateOfBirth } = props;
   const { isCustomCover, customCoverPercentage = null } = navigation.currentRoute.passProps;
   const [selectedCoverType, selectCoverType] = useCover(isCustomCover ? "custom" : selectedPackage || "common");
   const [deceaseAgeIndexYear, setDeceaseAgeIndexYear] = useState(0);
   const [deceaseAgeIndexMonth, setDeceaseAgeIndexMonth] = useState(0);
   const [payoutEstimatorItems, setPayoutEstimatorItems] = useState(
-    calculatePayoutCalculatorItems(props.userDateOfBirth, deceaseAgeIndexYear)
+    calculatePayoutCalculatorItems(userDateOfBirth, deceaseAgeIndexYear)
   );
-  const maxTermAge = moment().diff(moment(props.userDateOfBirth), "years") + 40;
+  const maxTermAge = moment().diff(moment(userDateOfBirth), "years") + 40;
 
   useEffect(() => {
-    const newItems = calculatePayoutCalculatorItems(props.userDateOfBirth, deceaseAgeIndexYear);
+    const newItems = calculatePayoutCalculatorItems(userDateOfBirth, deceaseAgeIndexYear);
     setPayoutEstimatorItems(newItems);
-  }, [deceaseAgeIndexYear, props.userDateOfBirth]);
+  }, [deceaseAgeIndexYear, userDateOfBirth]);
 
   //TODO: deceaseAgeIndexMonth should be handle on calculate payout calculator items
   const deceaseAgeMonth =
@@ -64,13 +64,12 @@ const FibBrowseContainer = memo(function (props: IFibContainer & ReturnType<type
     Number(payoutEstimatorItems.months[deceaseAgeIndexMonth])
       ? payoutEstimatorItems.months[deceaseAgeIndexMonth]
       : payoutEstimatorItems.months[payoutEstimatorItems.months.length - 1] || 0; // Never show error, default to 0
+  const deceaseAgeYear = payoutEstimatorItems.years[deceaseAgeIndexYear];
 
   const topUpsQueryVariables = {
     grossSalary,
     coverType: selectedCoverType,
     customCoverPercentage,
-    deceaseAgeYear: payoutEstimatorItems.years[deceaseAgeIndexYear],
-    deceaseAgeMonth: deceaseAgeMonth,
   };
 
   const { loading, error, data } = useQuery<GetLifeInsuranceToUpsData, GetLifeInsuranceTopUpsVars>(
@@ -82,6 +81,13 @@ const FibBrowseContainer = memo(function (props: IFibContainer & ReturnType<type
   );
 
   const { data: yuliferData } = useQuery<GetYulifer>(GQL_QUERY_GET_YULIFER);
+  const payoutAmount = calculatePayoutAmount({
+    term: data?.getLifeInsuranceTopUps.term,
+    deceaseAgeMonth,
+    deceaseAgeYear,
+    sumAssured: data?.getLifeInsuranceTopUps.sumAssured,
+    dateOfBirth: userDateOfBirth,
+  });
 
   const faqs: IFaq[] = fibFaqItems.map((faq) => ({
     label: faq.question,
@@ -101,9 +107,13 @@ const FibBrowseContainer = memo(function (props: IFibContainer & ReturnType<type
     );
   }
 
+  const monthlyAmountProtected = Math.round(
+    ((data?.getLifeInsuranceTopUps?.sumAssured / (data?.getLifeInsuranceTopUps?.term * 12)) * 100) / 100
+  );
+
   const packageDetails: Package = {
     newEarnRate: data?.getLifeInsuranceTopUps.newEarnRate || 0,
-    payoutAmount: Math.round(data?.getLifeInsuranceTopUps.payoutAmount || 0),
+    payoutAmount: Math.round(payoutAmount),
     earnRate: data?.getLifeInsuranceTopUps.earnRate || 0,
     salaryPercentageCovered: data?.getLifeInsuranceTopUps.salaryPercentageCovered || 0,
     estimatedCost: data?.getLifeInsuranceTopUps.estimatedCost || 0,
@@ -111,7 +121,7 @@ const FibBrowseContainer = memo(function (props: IFibContainer & ReturnType<type
     label: packages[selectedCoverType].label,
     descriptionHeading: data?.getLifeInsuranceTopUps.descriptionHeading || "",
     term: data?.getLifeInsuranceTopUps.term,
-    monthlyAmountProtected: data?.getLifeInsuranceTopUps.monthlyAmountProtected,
+    monthlyAmountProtected,
   };
 
   if (isCustomCover) {
