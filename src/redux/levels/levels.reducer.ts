@@ -7,7 +7,6 @@ import { PEDOMETER_UPDATES_SUCCESS } from "../pedometer/pedometer.actions";
 import { GET_USER_SUCCESS, LOGIN_USER_SUCCESS } from "../user/user.actions";
 import {
   CHALLENGE_CANCEL,
-  CHALLENGE_END,
   CHALLENGE_END_FAIL,
   CHALLENGE_END_SUCCESS,
   CHALLENGE_RESET,
@@ -16,6 +15,7 @@ import {
   CHALLENGE_START_SUCCESS,
   CHALLENGE_TIME_UP,
   CHALLENGE_UPDATE_SUCCESS,
+  CHALLENGE_END,
 } from "./levels.actions";
 import { CHALLENGE_START_INITIAL_STEPS, ChallengeStartPayload } from "./levels.actions";
 import { IActiveLevel } from "./levels.selectors";
@@ -108,6 +108,7 @@ const getUserSuccess = (state: ILevelsStore, data: GetCurrentUser): ILevelsStore
   ...state,
   active: {
     ...state.active,
+    isLoading: false,
     endDateTime: pathOr<string>(
       data,
       "getCurrentUser.activeChallenge.challenge.endDateTime",
