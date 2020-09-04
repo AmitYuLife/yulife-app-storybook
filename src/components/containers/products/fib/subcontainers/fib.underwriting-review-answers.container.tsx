@@ -1,11 +1,13 @@
 import React, { memo, useCallback } from "react";
 import { FibLocalNavigation, FIB_UNDERWRITING_JOURNEY, FIB_CONFIRM_PACKAGES } from "../fib.types";
 import { IReduxState } from "../../../../../redux/_core/reducers";
-import { connect } from "react-redux";
+import { connect, useDispatch } from "react-redux";
 import { FibUnderwritingReviewAnswersScreen } from "@components/screens/products/fib/underwriting-journey/fib.underwriting-review-answers.screen";
 import { getFIBState, getReviewAnswers } from "../../../../../redux/product/product.selectors";
 import { Navigation } from "react-native-navigation";
 import { ROUTES, MODALS } from "../../../../../navigation/constants";
+import { updateFIBValue } from "@redux/product/product.actions";
+import moment from "moment";
 
 type ConnectedState = ReturnType<typeof mapStateToProps>;
 
@@ -16,8 +18,10 @@ interface IFibUnderwritingReviewAnswersContainerProps {
 type Props = IFibUnderwritingReviewAnswersContainerProps & ConnectedState;
 
 const FibUnderwritingReviewAnswersContainer = memo(function (props: Props) {
-  const { navigation, answers } = props;
+  const { navigation, answers, updateQuoteDate } = props;
+  const dispatch = useDispatch();
   const onSubmitButton = () => {
+    dispatch(updateQuoteDate(moment().format("YYYY-MM-DD")));
     navigation.push(FIB_CONFIRM_PACKAGES);
   };
 
@@ -65,6 +69,7 @@ const FibUnderwritingReviewAnswersContainer = memo(function (props: Props) {
 const mapStateToProps = (state: IReduxState) => ({
   fibState: getFIBState(state),
   answers: getReviewAnswers(state),
+  updateQuoteDate: (value: string) => updateFIBValue({ key: "quoteDate", value }),
 });
 
 export default connect<ConnectedState>(mapStateToProps)(FibUnderwritingReviewAnswersContainer);

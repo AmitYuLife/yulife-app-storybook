@@ -38,7 +38,7 @@ export const initialState: IProductStore = {
     selectedPackage: "common",
     existingCovers: [],
     medicalHistory: {},
-    expireQuoteDate: "",
+    quoteDate: "",
     lastQuestionId: "",
   },
 };
