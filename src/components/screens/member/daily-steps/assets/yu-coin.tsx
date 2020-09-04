@@ -24,13 +24,15 @@ type ConnectedState = ReturnType<typeof mapStateToProps>;
 interface YuCoinProps {
   isGrayScale?: boolean;
   hasWhiteGlow?: boolean;
+  level?: number;
+  gems?: number;
 }
 
 type Props = ConnectedState & YuCoinProps;
 
 const YuCoin: React.FC<Props> = (props) => {
-  const { isGrayScale, hasWhiteGlow, currentLevel } = props;
-  const currentYuniverse = getCurrentYuniverse(currentLevel);
+  const { isGrayScale, hasWhiteGlow, level, gems, currentLevel } = props;
+  const currentYuniverse = getCurrentYuniverse(level || currentLevel);
 
   return (
     <View style={styles.wrapper} testID={YUCOIN}>
@@ -50,7 +52,7 @@ const YuCoin: React.FC<Props> = (props) => {
           <CycleFiveOrnament isGrayScale={isGrayScale} />
         ) : null}
         <Clasps isGrayScale={isGrayScale} />
-        <Gems isGrayScale={isGrayScale} gemsToShow={getCurrentWorld(currentLevel)} />
+        <Gems isGrayScale={isGrayScale} gemsToShow={gems || getCurrentWorld(level || currentLevel)} />
       </Svg>
     </View>
   );
