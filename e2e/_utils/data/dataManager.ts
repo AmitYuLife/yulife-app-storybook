@@ -3,7 +3,6 @@ import * as stubs from "./stubs";
 import { IDatabaseItem } from "./types";
 import { hashPassword } from './utils';
 
-
 export class DataManager {
     public baseUrl: string;
 

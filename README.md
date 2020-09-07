@@ -382,3 +382,14 @@ graph TD;
   - Queries `getRewards`
     - if request failed: show cached rewards
     - render new rewards list and cache them
+
+## Detox
+
+On `rn-client`, open 2 terminals
+
+- `start:e2e`
+- `detox:smoke` or `detox:extended`
+
+On `api-server`
+
+- `detox:start`

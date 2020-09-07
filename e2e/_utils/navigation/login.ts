@@ -1,6 +1,6 @@
 import { INPUT_LOGIN_EMAIL, INPUT_LOGIN_PASSWORD, BUTTON_LOGIN, NAV_BAR } from "@ids";
 import { records } from "@data";
-import { tapID, navigateViaID, navigateViaText } from "./common";
+import { navigateViaID, navigateViaText } from "./common";
 import { authoriseFitkit } from "@socket";
 
 
@@ -13,7 +13,7 @@ export const loginAsUser = (customer = records.CUSTOMER_1, auth = records.AUTH_1
     await passwordField.tap();
     await passwordField.replaceText(auth.data.password);
     await navigateViaID(BUTTON_LOGIN)
-    await navigateViaText("next")
+    await navigateViaText("next") // sign-up reward screen
     await dismissStreakIfVisible()
     await navigateViaText("let’s begin")
     await completeIntro()

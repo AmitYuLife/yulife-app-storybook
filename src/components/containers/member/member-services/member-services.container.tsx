@@ -90,8 +90,8 @@ function MemberServicesContainer({ componentId, isGroupUser, isWellbeingAccess, 
 
 const mapStateToProps = (state: IReduxState) => ({
   features: getUserFeatures(state),
-  isGroupUser: getUserBusiness(state).isGroup,
-  isWellbeingAccess: getUserBusiness(state).isWellbeingAccess,
+  isGroupUser: getUserBusiness(state)?.isGroup,
+  isWellbeingAccess: getUserBusiness(state)?.isWellbeingAccess,
   membershipType: getUserMembershipType(state),
 });
 

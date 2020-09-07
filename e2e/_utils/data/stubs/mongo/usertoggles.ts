@@ -1,46 +1,7 @@
 import { generateRandomMongoId } from '../../utils';
 import { IDatabaseItem } from '../../types';
+import { allTogglesTrue } from "./_templates"
 import { CUSTOMER_2, CUSTOMER_5, CUSTOMER_6, CUSTOMER_7, CUSTOMER_8, CUSTOMER_9, CUSTOMER_14, CUSTOMER_3, CUSTOMER_15, CUSTOMER_16, CUSTOMER_17, CUSTOMER_20, CUSTOMER_23, CUSTOMER_10, CUSTOMER_12, CUSTOMER_13, CUSTOMER_18, CUSTOMER_22, CUSTOMER_21 } from '../postgres/customers';;
-
-const allTogglesTrue = {
-    "showTodayYucoin": true,
-    "showActivity": true,
-    "showNotifications": true,
-    "showStreaks": true,
-    "showCompletedLevel": true,
-    "showCounter": true,
-    "showBuildNumber": true,
-    "showSettings": true,
-    "showCreateLeaderboard": true,
-    "showAdvancedLeaderboards": true,
-    "disableUserEntries": true,
-    "fitbit": true,
-    "showConnections": true,
-    "showLastSynced": true,
-    "newPassiveValidationRule": true,
-    "showWegiftPicker": true,
-    "usePassiveMeditation": true,
-    "statsShowCoinGeneralTotalYearned": true,
-    "statsShowCoinRecommendationCard": true,
-    "statsShowCoinGeneralTotalRedeemedCard": true,
-    "statsShowCoinAchievementCard": true,
-    "statsShowChallengeGeneralCard": true,
-    "statsShowChallengeRecommendationCard": true,
-    "statsShowChallengeComparisonCard": true,
-    "statsShowStepsRecommendationCard": true,
-    "statsShowStepsGeneralCard": true,
-    "statsShowStepsBestScoreCard": true,
-    "statsShowStepsGraphCard": true,
-    "statsShowMindfulnessRecommendationCard": true,
-    "statsShowMindfulnessGeneralCard": true,
-    "statsShowMindfulnessBestScoreCard": true,
-    "statsShowMindfulnessGraphCard": true,
-    "statsShowCyclingRecommendationCard": true,
-    "statsShowCyclingGeneralCard": true,
-    "statsShowCyclingBestScoreCard": true,
-    "statsShowCyclingGraphCard": true,
-    "showStats": true
-}
 
 export const CUSTOMER_2_TOGGLES = {
     type: "mongo",

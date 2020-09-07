@@ -197,8 +197,8 @@ const mapStateToProps = (state: IReduxState) => ({
   currentRoute: getRouteState(state),
   features: getUserFeatures(state),
   permissions: getPushNotifications(state),
-  isGroupUser: getUserBusiness(state).isGroup,
-  isWellbeingAccess: getUserBusiness(state).isWellbeingAccess,
+  isGroupUser: getUserBusiness(state)?.isGroup,
+  isWellbeingAccess: getUserBusiness(state)?.isWellbeingAccess,
   pushNotificationCopy: getCopy(state, "pushNotification"),
   membershipType: getUserMembershipType(state),
 });

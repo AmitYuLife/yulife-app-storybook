@@ -1,0 +1,101 @@
+import { IDatabaseItem } from "_utils/data/types";
+import { generateRandomMongoId } from "_utils/data/utils";
+import moment = require("moment");
+
+export const AUTH_TEMPLATE = {
+  type: "mongo",
+  modelName: "auth",
+  data: {
+      attempts: 1,
+      lastAttempt: "2019-03-12T14:10:29.275+00:00",
+      lastIp: "35.176.60.174",
+      password: "letmein",
+      scope: "user",
+      strategy: "0",
+      used: false,
+  }
+} as IDatabaseItem
+
+export const allTogglesTrue = {
+  "showTodayYucoin": true,
+  "showActivity": true,
+  "showNotifications": true,
+  "showStreaks": true,
+  "showCompletedLevel": true,
+  "showCounter": true,
+  "showBuildNumber": true,
+  "showSettings": true,
+  "showCreateLeaderboard": true,
+  "showAdvancedLeaderboards": true,
+  "disableUserEntries": true,
+  "fitbit": true,
+  "showConnections": true,
+  "showLastSynced": true,
+  "newPassiveValidationRule": true,
+  "showWegiftPicker": true,
+  "usePassiveMeditation": true,
+  "statsShowCoinGeneralTotalYearned": true,
+  "statsShowCoinRecommendationCard": true,
+  "statsShowCoinGeneralTotalRedeemedCard": true,
+  "statsShowCoinAchievementCard": true,
+  "statsShowChallengeGeneralCard": true,
+  "statsShowChallengeRecommendationCard": true,
+  "statsShowChallengeComparisonCard": true,
+  "statsShowStepsRecommendationCard": true,
+  "statsShowStepsGeneralCard": true,
+  "statsShowStepsBestScoreCard": true,
+  "statsShowStepsGraphCard": true,
+  "statsShowMindfulnessRecommendationCard": true,
+  "statsShowMindfulnessGeneralCard": true,
+  "statsShowMindfulnessBestScoreCard": true,
+  "statsShowMindfulnessGraphCard": true,
+  "statsShowCyclingRecommendationCard": true,
+  "statsShowCyclingGeneralCard": true,
+  "statsShowCyclingBestScoreCard": true,
+  "statsShowCyclingGraphCard": true,
+  "showStats": true
+}
+
+export const CHALLENGE_TEMPLATE = {
+  type: "mongo",
+  modelName: "challenge",
+  data: {
+      "_id": generateRandomMongoId(),
+      "challengeTemplateId": [],
+      "data": [],
+      "actions": [],
+      "target": [],
+      "userId": "",
+      "level": 1,
+      "levelId": "YU_LEVEL_0001",
+      "levelSlotId": "YU_LEVEL_0001_1",
+      "levelSlotTemplateId": "SHORT_STROLL_001",
+      "subtype": "short stroll",
+      "isNewType": true,
+      "status": "completed",
+      "passive": false,
+      "incomingData": {
+          "steps": 125
+      },
+      "startTime": moment().subtract(1, "day").toDate(),
+      "startDateTime": moment().subtract(1, "day").toDate(),
+      "endDateTime": moment().subtract(1, "day").toDate(),
+      "yuCoinAwarded": 60,
+      "milestoneLog": [
+          {
+              "completionData": [],
+              "_id": generateRandomMongoId(),
+              "id": "YU_MILESTONE_SS0001_0",
+              "completed": moment().subtract(1, "day").toDate(),
+              "data": {
+                  "steps": 108,
+                  "meditation": 0,
+                  "distance": 0
+              },
+              "yuCoinAwarded": 60
+          }
+      ],
+      "rating": 3,
+      "multiplierId": null
+  }
+} as IDatabaseItem
