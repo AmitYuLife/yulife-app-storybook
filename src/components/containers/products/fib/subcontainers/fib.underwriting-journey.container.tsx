@@ -11,10 +11,21 @@ import { IReduxState } from "@redux/_core/reducers";
 import { getFIBState, getBirthday } from "@redux/product/product.selectors";
 import { connect, useDispatch } from "react-redux";
 import { updateFIBValue, updateFIBAnswerValue, resetFIBMedicalHistoryValue } from "@redux/product/product.actions";
-import { findQuestion, FibButtonType, shouldFirstButtonBeDisabled, shouldAnswerBeStored } from "../fib.helpers";
+import {
+  findQuestion as findNextQuestion,
+  FibButtonType,
+  shouldFirstButtonBeDisabled,
+  shouldAnswerBeStored,
+  FindFibQuestionOptions,
+} from "../fib.helpers";
 import { FibAnswers } from "@redux/product/product.types";
 import { Navigation } from "react-native-navigation";
 import { MODALS } from "@navigation/constants";
+import {
+  OrderedUnderwritingJourneyScreen,
+  FIB_MEDICAL_FOLLOW_UP_QUESTIONS,
+  MEDICAL_CHIPS_QUESTIONS,
+} from "../data/underwriting-journey-data";
 
 type ConnectedProps = ReturnType<typeof mapStateToProps>;
 type ConnecteDispatch = typeof mapDispatchToProps;
@@ -54,6 +65,14 @@ const FibUnderwritingJourneyContainer = memo(function (props: Props) {
     return { ...answers, [questionId]: value };
   };
 
+  const findQuestion = (options: FindFibQuestionOptions): OrderedUnderwritingJourneyScreen => {
+    const newOptions = initialQuestionIdFromReviewScreen
+      ? { ...options, initialQuesionIdFromReviewSession: initialQuestionIdFromReviewScreen }
+      : options;
+    const nextQuestion = findNextQuestion(newOptions, redirectedFromReviewScreen);
+    return nextQuestion;
+  };
+
   const navigateToReviewScreenOrFindNextQuestion = (localAnswers: FibAnswers, buttonType: FibButtonType) => {
     if (!redirectedFromReviewScreen) {
       return;
@@ -81,7 +100,7 @@ const FibUnderwritingJourneyContainer = memo(function (props: Props) {
   };
 
   const onFirstButtonPressed = () => {
-    let localAnswers;
+    let localAnswers: FibAnswers;
     if (shouldAnswerBeStored(currentQuestion.firstButton.label, currentQuestion.id)) {
       localAnswers = updateAnswer(currentQuestion.id, currentQuestion.firstButton.label, fibAnswers);
       if (currentQuestion.firstButton.answersIdToInvalidate) {
@@ -116,12 +135,22 @@ const FibUnderwritingJourneyContainer = memo(function (props: Props) {
   };
 
   const handleSetCurrentQuestion = () => {
-    let localAnswers;
+    let localAnswers: FibAnswers;
     if (shouldAnswerBeStored(currentQuestion.secondButton.label, currentQuestion.id)) {
       localAnswers = updateAnswer(currentQuestion.id, currentQuestion.secondButton.label, fibAnswers);
       if (currentQuestion.secondButton.answersIdToInvalidate) {
         currentQuestion.secondButton.answersIdToInvalidate.map((answerIdToInvalidate) => {
           updateFibAnswer(answerIdToInvalidate, "");
+        });
+      }
+    }
+
+    if (MEDICAL_CHIPS_QUESTIONS.includes(currentQuestion.id)) {
+      const isThereNoAnswer = MEDICAL_CHIPS_QUESTIONS.some((questionId) => localAnswers[questionId] === "No");
+
+      if (!isThereNoAnswer) {
+        FIB_MEDICAL_FOLLOW_UP_QUESTIONS.map((item) => {
+          localAnswers = updateAnswer(item, "", localAnswers);
         });
       }
     }
