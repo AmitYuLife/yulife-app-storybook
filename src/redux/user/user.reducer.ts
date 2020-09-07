@@ -40,7 +40,7 @@ export type ILeaderboard = GetCurrentUser_getCurrentUser_leaderboards & {
 };
 
 type Connection = GetCurrentUser_getCurrentUser_connections & { isLoading?: boolean };
-type Business = GetCurrentUser_getCurrentUser_business & { isLoading?: boolean };
+type Business = (GetCurrentUser_getCurrentUser_business & { isLoading?: boolean }) | null;
 
 export enum MembershipTypes {
   "YULIFE_LITE" = "Yulife Lite",

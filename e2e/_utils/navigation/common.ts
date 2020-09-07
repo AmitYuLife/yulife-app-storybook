@@ -1,6 +1,5 @@
 import { dataManager } from '../data/dataManager';
 import { NAV_BAR } from '@ids';
-import detoxExport = require('detox');
 
 export const restart = async () => {
     await device.terminateApp();

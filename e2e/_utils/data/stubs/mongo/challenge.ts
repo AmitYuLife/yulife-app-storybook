@@ -4,51 +4,7 @@ import { CUSTOMER_2, CUSTOMER_6, CUSTOMER_7, CUSTOMER_8, CUSTOMER_9, CUSTOMER_14
 import moment = require('moment');
 import { SHORT_STROLL_MILESTONE_1, LONG_WALK_MILESTONE_1, MEDITATION_MILESTONE_1 } from './map_milestone_templates';
 import { MEDITATION_1, LONG_WALK_1, SHORT_STROLL_1 } from './map_level_slot_templates';
-import { MAP_LEVEL_2 } from './map_levels';
-
-const CHALLENGE_TEMPLATE = {
-    type: "mongo",
-    modelName: "challenge",
-    data: {
-        "_id": generateRandomMongoId(),
-        "challengeTemplateId": [],
-        "data": [],
-        "actions": [],
-        "target": [],
-        "userId": "",
-        "level": 1,
-        "levelId": "YU_LEVEL_0001",
-        "levelSlotId": "YU_LEVEL_0001_1",
-        "levelSlotTemplateId": "SHORT_STROLL_001",
-        "subtype": "short stroll",
-        "isNewType": true,
-        "status": "completed",
-        "passive": false,
-        "incomingData": {
-            "steps": 125
-        },
-        "startTime": moment().subtract(1, "day").toDate(),
-        "startDateTime": moment().subtract(1, "day").toDate(),
-        "endDateTime": moment().subtract(1, "day").toDate(),
-        "yuCoinAwarded": 60,
-        "milestoneLog": [
-            {
-                "completionData": [],
-                "_id": generateRandomMongoId(),
-                "id": "YU_MILESTONE_SS0001_0",
-                "completed": moment().subtract(1, "day").toDate(),
-                "data": {
-                    "steps": 108,
-                    "meditation": 0,
-                    "distance": 0
-                },
-                "yuCoinAwarded": 60
-            }
-        ],
-        "rating": 3,
-        "multiplierId": null
-    }
-} as IDatabaseItem
+import { CHALLENGE_TEMPLATE } from "./_templates"
 
 export const CHALLENGE_2 = {
     type: "mongo",
