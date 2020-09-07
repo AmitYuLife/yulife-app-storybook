@@ -9,7 +9,6 @@ import {
   challengeCancelAction,
   challengeEndAction,
   challengeResetAction,
-  handleFeedbackAction,
 } from "../../../../redux/levels/levels.actions";
 import { getActiveLevel, getCurrentLevel } from "../../../../redux/levels/levels.selectors";
 import { displayStreaksCompletedAction } from "../../../../redux/streaks/streaks.actions";
@@ -24,6 +23,7 @@ import {
 } from "../../../screens";
 import QuestsScreenContainer from "@screens/member/quests/quests-scroll-screen/quests-screen.container";
 import { BlurProvider } from "@atoms/index";
+import { handleFeedbackAction } from "@redux/feedback/feedback.actions";
 
 export type ConnectedState = ReturnType<typeof mapStateToProps>;
 
