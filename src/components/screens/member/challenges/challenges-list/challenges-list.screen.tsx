@@ -84,7 +84,8 @@ export default class ChallengesListScreen extends React.Component<IProps, IState
 }
 
 function getWorldStyle(currentLevel: number) {
-  switch (getCurrentWorld(currentLevel)) {
+  const world = getCurrentWorld(currentLevel);
+  switch (world) {
     case 3:
       return {
         backgroundImage: require("../../../../../../assets/challenges/mountain.png"),

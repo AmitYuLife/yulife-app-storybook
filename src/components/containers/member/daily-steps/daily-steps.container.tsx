@@ -54,7 +54,10 @@ class DailyStepsContainer extends React.Component<Props> {
   public shouldComponentUpdate(nextProps: Props) {
     const thisSurgeIntro = this.props.surgeIntro;
     const nextSurgeIntro = nextProps.surgeIntro;
+    const thisThemeImage = this.props.theme.centredScreen;
+    const nextThemeImage = nextProps.theme.centredScreen;
     return (
+      thisThemeImage.online.image !== nextThemeImage.online.image ||
       nextProps.isFetching !== this.props.isFetching ||
       nextProps.popupVisibility.leaderboard !== this.props.popupVisibility.leaderboard ||
       !!(

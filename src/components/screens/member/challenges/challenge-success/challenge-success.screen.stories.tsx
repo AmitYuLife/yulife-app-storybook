@@ -15,6 +15,7 @@ storiesOf("ChallengeSuccessScreen", module)
     <ChallengeSuccessScreen
       copy={{ ctaLabel: "exit", footer: "fooooter" }}
       loading={false}
+      currentWorld={0}
       onPressCta={voidFunc}
       rating={5}
       reward={100}

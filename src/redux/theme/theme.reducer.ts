@@ -68,7 +68,9 @@ const getCurrentWorldTheme = (
     currentLevel = (data as LoginUser).loginUser.user.coinLedger.currentLevel;
   }
 
-  switch (getCurrentWorld(currentLevel)) {
+  const currentWorld = getCurrentWorld(currentLevel);
+
+  switch (currentWorld) {
     case 3:
       return {
         dailyStepsScreen: {

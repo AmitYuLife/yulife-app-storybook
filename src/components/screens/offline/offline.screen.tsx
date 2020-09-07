@@ -2,9 +2,9 @@ import { Button, CentredScreen, Text } from "@atoms/index";
 import { GetMobileCopy_getMobileCopy_screens_offline as OfflineCopy } from "@graphql/_core/schema";
 import * as React from "react";
 import { StyleSheet, TextStyle, View, ViewStyle } from "react-native";
-import { getCurrentWorld } from "../../../services/utils";
 import { CenteredScreenImages } from "../../atoms/centred-screen/centred-screen";
 import styles from "./offline.screen.styles";
+import { getCurrentWorld } from "@services/utils";
 
 interface IProps {
   level: number;
@@ -13,8 +13,8 @@ interface IProps {
 }
 
 export default function OfflineScreen({ copy, level, onPress }: IProps) {
-  const currentWorld = getCurrentWorld(level);
-  const { centerScreenStyle, textStyle } = getWorldStyle(currentWorld);
+  const normalizedWorld = getCurrentWorld(level);
+  const { centerScreenStyle, textStyle } = getWorldStyle(normalizedWorld);
 
   return (
     <CentredScreen {...centerScreenStyle}>

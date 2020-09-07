@@ -1,8 +1,6 @@
-import { getCurrentWorld } from "../../../../../services/utils";
 import { CenteredScreenImages } from "../../../../atoms/centred-screen/centred-screen";
 
-export function getStyle(currentLevel: number) {
-  const currentWorld = getCurrentWorld(currentLevel);
+export function getStyle(currentWorld: number) {
   switch (currentWorld) {
     case 3:
       return {

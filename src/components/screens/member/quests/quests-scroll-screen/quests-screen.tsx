@@ -1,10 +1,10 @@
 import { QUESTS_SCREEN } from "@ids";
-import { getCurrentEpisode, getCurrentWorld } from "@services/utils";
+import { getCurrentEpisode, getCurrentWorld, getNormalizedLevel } from "@services/utils";
 import * as React from "react";
 import { FlatList, SafeAreaView, View, ViewabilityConfigCallbackPair } from "react-native";
 import { isIphoneX } from "react-native-iphone-x-helper";
 import { Navigation } from "react-native-navigation";
-import { GetCurrentWorld_getCurrentWorld } from "../../../../../graphql/_core/schema";
+import { GetCurrentQuestLevels_getCurrentQuestLevels } from "../../../../../graphql/_core/schema";
 import { IConnectedScreenProps } from "../../../../../typings";
 import { IMapSlice, loadingSlices, mapSlices } from "./assets";
 import offsets from "./assets/offsets";
@@ -16,7 +16,7 @@ import QuestsLoadingOverlay from "./subcomponents/quests.loading";
 import { TopBarTypes } from "@components/organisms/top-bar/top-bar.helpers";
 import { TopBar } from "@components/organisms";
 
-export interface IChallenge extends GetCurrentWorld_getCurrentWorld {
+export interface IChallenge extends GetCurrentQuestLevels_getCurrentQuestLevels {
   isActive?: boolean;
   isDone?: boolean;
   isNext?: boolean;
@@ -108,7 +108,9 @@ class QuestsScreen extends React.PureComponent<IProps, IState> {
 
   private scrollToActiveLevel = () => {
     const { activeLevel } = this.props;
-    const result = mapSlices.find((slice) => slice.slots.some((item) => item.index === activeLevel - 1));
+    const currentWorld = getCurrentWorld(activeLevel);
+    const normalizedLevel = getNormalizedLevel(activeLevel);
+    const result = mapSlices.find((slice) => slice.slots.some((item) => item.index === normalizedLevel - 1));
 
     if (result && result.episodeSettings) {
       const { topBarType } = result.episodeSettings;
@@ -116,8 +118,7 @@ class QuestsScreen extends React.PureComponent<IProps, IState> {
       global.setTimeout(() => {
         if (this.flatList) {
           this.setState({ UI: { topBarType } }, () => {
-            const currentWorld = getCurrentWorld(this.props.activeLevel);
-            const currentEpisode = getCurrentEpisode(this.props.activeLevel);
+            const currentEpisode = getCurrentEpisode(normalizedLevel);
             this.flatList.scrollToOffset({
               offset:
                 offsets[activeLevel % 50 === 0 ? "withUnity" : "withoutUnity"][currentWorld as CurrentWorld][
@@ -146,13 +147,15 @@ class QuestsScreen extends React.PureComponent<IProps, IState> {
   private getWorldData = () => {
     const { currentLevel } = this.props;
     const iphoneX = isIphoneX();
+    const currentWorld = getCurrentWorld(currentLevel);
+    const normalizedLevel = getNormalizedLevel(currentLevel);
 
-    switch (getCurrentWorld(currentLevel)) {
+    switch (currentWorld) {
       case 3:
         return {
           initialScrollIndex: iphoneX ? 93 : 92,
           slices:
-            currentLevel < 200
+            normalizedLevel < 200
               ? [...mapSlices.slice(0, iphoneX ? 122 : 121), loadingSlices.mountain]
               : mapSlices.slice(0, iphoneX ? 136 : 134),
           snapOffsets: offsets.withUnity[3],
@@ -161,29 +164,29 @@ class QuestsScreen extends React.PureComponent<IProps, IState> {
         return {
           initialScrollIndex: iphoneX ? 62 : 61,
           slices:
-            currentLevel < 150
+            normalizedLevel < 150
               ? [...mapSlices.slice(0, iphoneX ? 90 : 89), loadingSlices.desert]
               : mapSlices.slice(0, iphoneX ? 94 : 92),
-          snapOffsets: currentLevel < 150 ? offsets.withUnity[2] : offsets.withoutUnity[2],
+          snapOffsets: normalizedLevel < 150 ? offsets.withUnity[2] : offsets.withoutUnity[2],
         };
       case 1:
         return {
           initialScrollIndex: iphoneX ? 31 : 30,
           slices:
-            currentLevel < 100
+            normalizedLevel < 100
               ? [...mapSlices.slice(0, iphoneX ? 58 : 57), loadingSlices.ocean]
               : mapSlices.slice(0, iphoneX ? 63 : 61),
-          snapOffsets: currentLevel < 100 ? offsets.withUnity[1] : offsets.withoutUnity[1],
+          snapOffsets: normalizedLevel < 100 ? offsets.withUnity[1] : offsets.withoutUnity[1],
         };
       case 0:
       default:
         return {
           initialScrollIndex: 0,
           slices:
-            currentLevel < 50
+            normalizedLevel < 50
               ? [...mapSlices.slice(0, iphoneX ? 27 : 26), loadingSlices.forest]
               : mapSlices.slice(0, iphoneX ? 32 : 30),
-          snapOffsets: currentLevel < 50 ? offsets.withUnity[0] : offsets.withoutUnity[0],
+          snapOffsets: normalizedLevel < 50 ? offsets.withUnity[0] : offsets.withoutUnity[0],
         };
     }
   };

@@ -57,14 +57,17 @@ class ScrollyQuest extends React.Component<IScrollQuestProps> {
 
   private keyExtractor = (level: IMapSlice) => level.id;
 
-  private renderItem: ListRenderItem<IMapSlice> = ({ item }) => (
-    <MapSlice
-      activeLevel={this.props.activeLevel}
-      currentLevel={this.props.currentLevel}
-      levels={this.getSlicedLevels(item)}
-      slice={item}
-    />
-  );
+  private renderItem: ListRenderItem<IMapSlice> = ({ item }) => {
+    const { activeLevel, currentLevel } = this.props;
+    return (
+      <MapSlice
+        activeLevel={activeLevel}
+        currentLevel={currentLevel}
+        levels={this.getSlicedLevels(item)}
+        slice={item}
+      />
+    );
+  };
 
   private getItemLayout = (_: any, index: number) => {
     if (index === 0 && isIphoneX()) {
