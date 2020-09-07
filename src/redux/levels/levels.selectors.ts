@@ -44,6 +44,7 @@ export const getChallengesStatus = (state: IReduxState): ITodayChallengesStatus 
   };
 };
 
+export const getChallengesDone = (state: IReduxState): number => state.levels.challengesDoneToday;
 export const getCurrentLevel = (state: IReduxState): number => state.levels.level;
 export const getNextLevelAvailableAt = (state: IReduxState): string => state.levels.nextLevelAvailableAt;
 export const getActiveLevel = (state: IReduxState): IActiveLevel => state.levels.active;
