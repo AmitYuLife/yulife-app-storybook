@@ -8,7 +8,7 @@ export interface IFormattedDatesByMonth {
 
 export function groupDatesByMonth(dates: ItemProps[]) {
   // dates return undefined sometimes on first run which crashes the app
-  return !!(dates && dates.length)
+  return dates && dates.length
     ? dates.reduce((accumulator: IFormattedDatesByMonth[], curr) => {
         const index = accumulator.findIndex((value) => value.title === curr.monthAndYear);
         if (index !== -1) {

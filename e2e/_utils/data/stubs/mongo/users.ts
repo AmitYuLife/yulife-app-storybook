@@ -1,7 +1,7 @@
 
 import { generateRandomMongoId } from '../../utils';
 import { IDatabaseItem } from '../../types';
-import { CUSTOMER_2, CUSTOMER_3, CUSTOMER_4, CUSTOMER_16, CUSTOMER_17, CUSTOMER_18, CUSTOMER_ALPHA } from '../postgres/customers';
+import { CUSTOMER_2, CUSTOMER_3, CUSTOMER_4, CUSTOMER_16, CUSTOMER_17, CUSTOMER_18, CUSTOMER_ALPHA, CUSTOMER_21, CUSTOMER_23 } from '../postgres/customers';
 
 const USER_DATA_TEMPLATE = {
     data: {
@@ -107,5 +107,29 @@ export const USER_ALPHA = {
         }],
         isAvatarCreated: false,
         earnRate: 10,
+    }
+} as IDatabaseItem
+
+
+export const USER_23 = {
+    type: "mongo",
+    modelName: "users",
+    data: {
+        _id: "5f3160808da1c85af12478e9",
+        userId: CUSTOMER_23.data.customerId,
+        products: [{
+            productId: generateRandomMongoId(),
+            productType: "Yulife",
+            option: "epic",
+            type: "employer",
+            earnRate: 10,
+        }],
+        isAvatarCreated: true,
+        earnRate: 10,
+        cloudinaryAvatar: {
+            filename: "api/local/avatars/530EDE9E07434A4EB1E251A8548D834C",
+            version: 1
+        },
+
     }
 } as IDatabaseItem

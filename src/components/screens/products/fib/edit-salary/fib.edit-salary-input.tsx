@@ -4,6 +4,8 @@ import { StyleSheet, TextInput, View, Animated, TouchableOpacity } from "react-n
 import { Colours } from "@styles/index";
 import { Text } from "@atoms";
 import { numberWithCommas } from "@services/utils";
+import { FIB_SALARY_INPUT, FIB_SALARY_INPUT_VALUE } from "@ids";
+import { DETOX_ENABLED } from "@services/socket";
 import { styles } from "./fib.edit-salary.styles";
 
 interface Props {
@@ -42,11 +44,11 @@ export function FibEditSalaryInput(props: Props) {
   }
 
   return (
-    <View style={styles.wrapper}>
+    <View style={styles.wrapper} testID={FIB_SALARY_INPUT_VALUE(value)}>
       <View style={styles.blingWrapper}>
         <Text style={styles.bling}>£</Text>
       </View>
-      <TouchableOpacity style={styles.pressable}>
+      <TouchableOpacity style={styles.pressable} testID={FIB_SALARY_INPUT}>
         <View style={styles.inputWrapper}>
           <TextInput
             onBlur={() => setFocused(false)}
@@ -80,6 +82,10 @@ function Shadow({ value }: { value: number }) {
 }
 
 function Blinker() {
+  if (DETOX_ENABLED) {
+    return <View style={styles.cursor} />;
+  }
+
   return (
     <Anim.View
       useNativeDriver={true}

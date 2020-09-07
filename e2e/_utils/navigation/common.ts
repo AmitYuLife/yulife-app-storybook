@@ -134,6 +134,12 @@ export const typeViaID = (id: string, text: string) => async () => {
     await target.typeText(text)
 }
 
+export const replaceTextViaID = (id: string, text: string) => async () => {
+    const target = element(by.id(id))
+    await expect(target).toBeVisible()
+    await target.replaceText(text)
+}
+
 export const multipleTextVisible = (textArr: string[]) => async () => {
     for (const i of textArr) {
         await expect(element(by.text(i))).toBeVisible()

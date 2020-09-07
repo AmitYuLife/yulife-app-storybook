@@ -1,9 +1,11 @@
-import { navigation, BODY_ITEM_TITLE, BODY_PART_ITEM, SKIN_TONE } from "@utils"
+import { navigation, BODY_ITEM_TITLE, BODY_PART_ITEM, SKIN_TONE, PERSONAL_PRODUCT, FIB_SALARY_INPUT } from "@utils"
+
 
 
 export const {
     scrollFromText,
     scrollFromID,
+    swipeToText
 } = navigation.scrolling
 
 export const {
@@ -27,4 +29,11 @@ export const tapItem = (partID: string) => async () => {
 export const tapColour = (hexValue: string) => async () => {
     const colour = element(by.id(SKIN_TONE(hexValue)))
     await colour.tap()
+}
+
+export const goToLifeInsurance = async () =>{
+    await tapID(PERSONAL_PRODUCT("LifeInsurance"))()
+    await tapText("Enter Salary")()
+    await typeViaID(FIB_SALARY_INPUT, "40000")()
+    await tapText("Done")()
 }

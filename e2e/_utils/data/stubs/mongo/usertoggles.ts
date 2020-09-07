@@ -1,6 +1,6 @@
 import { generateRandomMongoId } from '../../utils';
 import { IDatabaseItem } from '../../types';
-import { CUSTOMER_2, CUSTOMER_5, CUSTOMER_6, CUSTOMER_7, CUSTOMER_8, CUSTOMER_9, CUSTOMER_14, CUSTOMER_3, CUSTOMER_15, CUSTOMER_16, CUSTOMER_17, CUSTOMER_20, CUSTOMER_23, CUSTOMER_10, CUSTOMER_12, CUSTOMER_13, CUSTOMER_18, CUSTOMER_22 } from '../postgres/customers';;
+import { CUSTOMER_2, CUSTOMER_5, CUSTOMER_6, CUSTOMER_7, CUSTOMER_8, CUSTOMER_9, CUSTOMER_14, CUSTOMER_3, CUSTOMER_15, CUSTOMER_16, CUSTOMER_17, CUSTOMER_20, CUSTOMER_23, CUSTOMER_10, CUSTOMER_12, CUSTOMER_13, CUSTOMER_18, CUSTOMER_22, CUSTOMER_21 } from '../postgres/customers';;
 
 const allTogglesTrue = {
     "showTodayYucoin": true,
@@ -211,7 +211,7 @@ export const CUSTOMER_14_TOGGLES = {
             "statsShowCyclingGeneralCard": false,
             "statsShowCyclingBestScoreCard": false,
             "statsShowCyclingGraphCard": false,
-            "showStats": true
+            "showStats": true,
         }
 
     }
@@ -309,7 +309,6 @@ export const CUSTOMER_20_TOGGLES = {
     }
 } as IDatabaseItem
 
-
 export const CUSTOMER_22_TOGGLES = {
     type: "mongo",
     modelName: "usertoggles",
@@ -406,7 +405,8 @@ export const CUSTOMER_23_TOGGLES = {
             "statsShowCyclingGraphCard": true,
             "showStats": true,
             hideSmartHealthScreen: false,
-            hideYuMatterScreen: true
+            hideYuMatterScreen: true,
+            hasFibActive: true
         }
     }
 } as IDatabaseItem

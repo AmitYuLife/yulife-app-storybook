@@ -4,6 +4,7 @@ import { Style } from "@styles";
 import { Text } from "@atoms";
 import HorizontalScroller from "@components/molecules/horizontal-scroller/horizontal-scroller";
 import { numberWithCommas } from "@services/utils";
+import { YEAR_SCROLLER, MONTH_SCROLLER } from "@ids";
 
 export interface CalculatorItems {
   years: number[];
@@ -47,6 +48,7 @@ export const Calculator = memo(
           highlightLabel="years"
           items={items.years}
           newActiveIndexCallback={setDeceaseAgeIndexYear}
+          testID={YEAR_SCROLLER}
         />
         <View style={styles.gap} />
         <HorizontalScroller
@@ -56,6 +58,7 @@ export const Calculator = memo(
           items={items.months}
           newActiveIndexCallback={setDeceaseAgeIndexMonth}
           resetsOnUpdate={true}
+          testID={MONTH_SCROLLER}
         />
         <View style={styles.payoutAmountWrapper}>
           {loading ? (

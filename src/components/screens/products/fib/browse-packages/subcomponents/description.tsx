@@ -3,6 +3,7 @@ import { StyleSheet, View, Platform, ImageStyle, ViewStyle, TextStyle } from "re
 import { Text, YuCoinIcon } from "@atoms";
 import { Colours, Style } from "@styles";
 import { Package } from "../fib.browse.types";
+import { PACKAGE_SCREEN, PERCENTAGE_COVERED } from "@ids";
 
 interface Props {
   selectedPackage?: Partial<Package>;
@@ -13,11 +14,11 @@ export const Description = memo(({ selectedPackage, loading }: Props) => {
   const { descriptionHeading, earnRate, newEarnRate, salaryPercentageCovered } = selectedPackage;
 
   return (
-    <View style={styles.descriptionWrapper}>
+    <View style={styles.descriptionWrapper} testID={PACKAGE_SCREEN}>
       <Text bold={true} style={styles.heading}>
         {descriptionHeading}
       </Text>
-      <Text style={[styles.text, styles.marginTop1]}>
+      <Text style={[styles.text, styles.marginTop1]} testID={PERCENTAGE_COVERED(salaryPercentageCovered)}>
         Pays a single cash sum based on <Text bold={true}>{`${loading ? "..." : salaryPercentageCovered}% `}</Text>of
         your salary.
       </Text>

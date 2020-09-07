@@ -87,6 +87,7 @@ export const EMPTY_YUSCREEN_COPY = "EMPTY_YUSCREEN_COPY"
 export const FEMALE_BODY = "FEMALE_BODY"
 export const MALE_BODY = "MALE_BODY"
 export const EARN_RATE_BUTTON = (earnRate: number) => `EARN_RATE_BUTTON_${earnRate}`
+export const PACKAGE_SCREEN = "PACKAGE_SCREEN"
 export const YOUR_YUCOIN_SCREEN = "YOUR_YUCOIN_SCREEN"
 
 // AVATAR BUILDER
@@ -107,5 +108,16 @@ export const BUILDER_BODY = (bodyItems: string[]) => `BUILDER_BODY${bodyItems}`
 export const NO_ITEM_SELECTED = "NO_ITEM_SELECTED"
 export const HEAD_TYPE = (type: string) => `HEAD_TYPE_${type}`
 export const YUSCREEN_AVATAR = "YUSCREEN_AVATAR"
+
+// FIB
+export const FIB_SALARY_INPUT = "FIB_SALARY_INPUT"
+export const FIB_SALARY_INPUT_VALUE =(value:number) => `FIB_SALARY_INPUT_VALUE_${value}`
+export const FIB_BROWSE_SCREEN =  "FIB_BROWSE_SCREEN"
 export const YUMOJI_PODIUM = (index: number) => `YUMOJI_PODIUM${index}`
 export const EMPTY_AVATAR = "EMPTY_AVATAR";
+export const YEAR_SCROLLER = "YEAR_SCROLLER"
+export const MONTH_SCROLLER = "MONTH_SCROLLER"
+export const SCROLLER_VALUE = (value: number) => `SCROLLER_VALUE${value}`
+export const HIGHLIGHTED_SCROLLER_VALUE = (value:number) => `HIGHLIGHTED_SCROLLER_VALUE_${value}`
+export const CUSTOM_COVER_SCREEN = "CUSTOM_COVER_SCREEN"
+export const PERCENTAGE_COVERED = (value:number) => `PERCENTAGE_COVERD_${value}`
