@@ -1,4 +1,4 @@
-import { GetCurrentWorld_getCurrentWorld } from "@graphql/_core/schema";
+import { GetCurrentQuestLevels_getCurrentQuestLevels } from "@graphql/_core/schema";
 import { Navigation } from "react-native-navigation";
 import { ROUTES, bottomTabs, MODALS } from "@navigation/constants";
 
@@ -8,7 +8,7 @@ const dismissChallengeUnavailableModal = () => Navigation.dismissModal(MODALS.ch
 
 const dismissLevelUnavailableModal = () => Navigation.dismissModal(MODALS.levelUnavailable);
 
-export const goToChallengesList = (componentId: string, level: GetCurrentWorld_getCurrentWorld) =>
+export const goToChallengesList = (componentId: string, level: GetCurrentQuestLevels_getCurrentQuestLevels) =>
   Navigation.push(componentId, {
     component: {
       id: ROUTES.questsChallengesList,
@@ -22,7 +22,7 @@ export const goToChallengesList = (componentId: string, level: GetCurrentWorld_g
 
 export const showChestModal = (
   componentId: string,
-  level: GetCurrentWorld_getCurrentWorld,
+  level: GetCurrentQuestLevels_getCurrentQuestLevels,
   isNext: boolean,
   {
     ctaLabelIsNext,
@@ -80,7 +80,7 @@ export const showLevelUnavailableModal = (level: number) =>
     },
   });
 
-export const showLevelCompleteModal = (componentId: string, level: GetCurrentWorld_getCurrentWorld) =>
+export const showLevelCompleteModal = (componentId: string, level: GetCurrentQuestLevels_getCurrentQuestLevels) =>
   Navigation.push(componentId, {
     component: {
       id: ROUTES.questsChallengesHistory,

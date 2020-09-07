@@ -4,7 +4,7 @@ export * from "./addHistoricalSteps.gql";
 export * from "./cancelActiveChallenge.gql";
 export * from "./createActiveChallenge.gql";
 export * from "./getCurrentLevel.gql";
-export * from "./getCurrentWorld.gql";
+export * from "./getCurrentQuestLevels.gql";
 export * from "./submitUnity.gql";
 export * from "./updateActiveChallenge.gql";
 export * from "./upsertOnboardingChallenge.gql";

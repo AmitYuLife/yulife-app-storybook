@@ -1,11 +1,10 @@
 import { GQL_MUTATION_CREATE_ACTIVE_CHALLENGE, CreateActiveChallengeMutationTuple } from "@graphql/challenges";
-import { getCurrentWorld } from "@services/utils";
 import { ApolloClient } from "apollo-client";
-import React, { FC, useState, useMemo, useCallback } from "react";
+import React, { FC, useState, useCallback } from "react";
 import Config from "react-native-config";
 import { Navigation } from "react-native-navigation";
 import { connect } from "react-redux";
-import { GetCurrentWorld_getCurrentWorld } from "../../../../../graphql/_core/schema";
+import { GetCurrentQuestLevels_getCurrentQuestLevels } from "../../../../../graphql/_core/schema";
 import { IReduxState } from "../../../../../redux/_core/reducers";
 import { challengeStartSuccessAction } from "../../../../../redux/levels/levels.actions";
 import { getCurrentLevel } from "../../../../../redux/levels/levels.selectors";
@@ -17,13 +16,14 @@ import { handleLinkPress } from "@services/app-link";
 import { Unit } from "@screens/member/challenges/models";
 import { authoriseCycling } from "@services/fitkit/fitkit.helpers";
 import { ChallengeType } from "@molecules/challenge-tile/challenge-tile.types";
+import { getCurrentWorld } from "@services/utils";
 
 type ConnectedState = ReturnType<typeof mapStateToProps>;
 type ConnectedDispatch = typeof mapDispatchToProps;
 
 interface IProps {
   componentId: string;
-  level: GetCurrentWorld_getCurrentWorld;
+  level: GetCurrentQuestLevels_getCurrentQuestLevels;
   client: ApolloClient<any>;
 }
 
@@ -55,7 +55,7 @@ const ChallengesListContainer: FC<Props> = ({
     }
   );
 
-  const currentWorld = useMemo(() => getCurrentWorld(level.level), [level.level]);
+  const currentWorld = getCurrentWorld(level.level);
 
   const setError = useCallback(() => {
     setErrorState("Sorry, there was a problem starting your challenge. \n Please try again!");

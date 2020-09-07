@@ -10,6 +10,7 @@ storiesOf("ChallengeFailedScreen", module)
   .add("default", () => (
     <ChallengeFailedScreen
       copy={{ ctaLabel: "exit", heading: "heading", footer: "fooooter" }}
+      currentWorld={0}
       loading={false}
       onPress={voidFunc}
     />

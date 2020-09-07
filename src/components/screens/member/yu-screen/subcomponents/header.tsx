@@ -2,7 +2,7 @@ import React, { memo } from "react";
 import { Image, StyleSheet, View, ViewStyle, TextStyle, ImageStyle, Platform } from "react-native";
 import { Text } from "@components/atoms";
 import { Style } from "@styles";
-import { getCurrentWorld, getCurrentWorldImage, getCurrentWorldText, getCurrentWorldTextColor } from "@services/utils";
+import { getCurrentWorldImage, getCurrentWorldText, getCurrentWorldTextColor, getCurrentWorld } from "@services/utils";
 import { EarnRateButton } from "./earn-rate-button";
 
 interface Props {
@@ -30,21 +30,17 @@ const getTopBarFiller = () => {
 
 export const YuScreenHeader = memo(function HeaderFC(props: Props) {
   const { userName = "", level = 0, earnRate, onEarnRatePress } = props;
+  const currentWorld = getCurrentWorld(level);
   return (
     <>
       <View style={styles.header}>
         <Text style={styles.userName}>{userName}</Text>
         <View style={styles.currentWorldWrapper}>
           <View style={styles.currentWorld}>
-            <Image style={styles.image} source={getCurrentWorldImage(getCurrentWorld(level))} />
+            <Image style={styles.image} source={getCurrentWorldImage(currentWorld)} />
             <View style={styles.currentWorldDetailsWrapper}>
-              <Text
-                style={StyleSheet.flatten([
-                  styles.worldText,
-                  { color: getCurrentWorldTextColor(getCurrentWorld(level)) },
-                ])}
-              >
-                {getCurrentWorldText(getCurrentWorld(level))}
+              <Text style={StyleSheet.flatten([styles.worldText, { color: getCurrentWorldTextColor(currentWorld) }])}>
+                {getCurrentWorldText(currentWorld)}
               </Text>
               {!level ? null : <Text style={styles.levelText}>{`Lvl ${level}`}</Text>}
             </View>

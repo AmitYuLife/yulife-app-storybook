@@ -1,14 +1,17 @@
 import {
-  GetCurrentWorld_getCurrentWorld_slots,
-  GetCurrentWorld_getCurrentWorld_slots_milestones,
+  GetCurrentQuestLevels_getCurrentQuestLevels_slots,
+  GetCurrentQuestLevels_getCurrentQuestLevels_slots_milestones,
 } from "@graphql/_core/schema";
 import { getUnitTarget } from "@services/utils";
 
-export function reduceMilestones(milestones: GetCurrentWorld_getCurrentWorld_slots_milestones[] = []) {
+export function reduceMilestones(milestones: GetCurrentQuestLevels_getCurrentQuestLevels_slots_milestones[] = []) {
   return (milestones || []).reduce((sum, milestone) => sum + milestone.coins, 0);
 }
 
-export function formatMilestones(milestones: GetCurrentWorld_getCurrentWorld_slots_milestones[], subtype: string) {
+export function formatMilestones(
+  milestones: GetCurrentQuestLevels_getCurrentQuestLevels_slots_milestones[],
+  subtype: string
+) {
   return (milestones || []).reduce(
     (acc, milestone) => {
       const reward = acc.sum + milestone.coins;
@@ -29,7 +32,7 @@ export function secondsToMinutes(seconds: number) {
   return Math.floor(seconds / 60);
 }
 
-export function getSlotDuration({ subtype, milestones, timeLimit }: GetCurrentWorld_getCurrentWorld_slots) {
+export function getSlotDuration({ subtype, milestones, timeLimit }: GetCurrentQuestLevels_getCurrentQuestLevels_slots) {
   const defaultTime = secondsToMinutes(timeLimit);
 
   switch (subtype) {

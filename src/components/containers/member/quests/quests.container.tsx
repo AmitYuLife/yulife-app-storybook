@@ -1,10 +1,8 @@
 import { IMainTabsProps } from "@navigation/root";
-import { getCurrentWorld, getUnitTarget } from "@services/utils";
+import { getUnitTarget, getCurrentWorld } from "@services/utils";
 import { Style } from "@styles/index";
 import React, { FC, useCallback, useMemo } from "react";
-
 import { connect, useDispatch } from "react-redux";
-
 import { IReduxState } from "../../../../redux/_core/reducers";
 import { getCopy } from "../../../../redux/copy/copy.selectors";
 import {
@@ -51,6 +49,7 @@ const QuestsContainer: FC<Props> = (props) => {
   } = activeLevel;
 
   const currentWorld = useMemo(() => getCurrentWorld(level), [level]);
+
   const screenProps = useMemo(
     () => ({
       componentId,
@@ -91,11 +90,20 @@ const QuestsContainer: FC<Props> = (props) => {
           unit={unit as any}
           loading={false}
           copy={copy.success}
+          currentWorld={currentWorld}
         />
       );
     }
 
-    return <ChallengeFailedScreen level={level} onPress={handleResetChallenge} loading={false} copy={copy.failed} />;
+    return (
+      <ChallengeFailedScreen
+        level={level}
+        onPress={handleResetChallenge}
+        loading={false}
+        copy={copy.failed}
+        currentWorld={currentWorld}
+      />
+    );
   }
 
   if (timeUp) {

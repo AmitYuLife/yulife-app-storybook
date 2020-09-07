@@ -2,8 +2,7 @@ import * as React from "react";
 import { SFC } from "react";
 import { Image, StyleSheet, View } from "react-native";
 import AutoHeightImage from "react-native-auto-height-image";
-import { GetCurrentWorld_getCurrentWorld_slots_challengesDetails } from "../../../../../graphql/_core/schema";
-import { getCurrentWorld } from "../../../../../services/utils";
+import { GetCurrentQuestLevels_getCurrentQuestLevels_slots_challengesDetails } from "../../../../../graphql/_core/schema";
 import { Text } from "../../../../atoms";
 import styles from "./challenges-history-slot.styles";
 import { getSlotImageProps } from "./challenges-history.helpers";
@@ -13,11 +12,18 @@ interface IProps {
   duration: string;
   locked: boolean;
   type: string;
-  level: any;
-  challengesDetails: GetCurrentWorld_getCurrentWorld_slots_challengesDetails[];
+  challengesDetails: GetCurrentQuestLevels_getCurrentQuestLevels_slots_challengesDetails[];
+  currentWorld: number;
 }
 
-const ChallengesHistorySlot: SFC<IProps> = ({ availableAtLevel, duration, locked, type, level, challengesDetails }) => {
+const ChallengesHistorySlot: SFC<IProps> = ({
+  availableAtLevel,
+  duration,
+  locked,
+  type,
+  challengesDetails,
+  currentWorld,
+}) => {
   return (
     <View style={styles.wrapper}>
       {locked ? (
@@ -26,9 +32,7 @@ const ChallengesHistorySlot: SFC<IProps> = ({ availableAtLevel, duration, locked
           <Text bold={true}>unlock at level {availableAtLevel}</Text>
         </View>
       ) : (
-        <View
-          style={getCurrentWorld(level.level) === 3 ? styles.challengeSetWrapperMountain : styles.challengeSetWrapper}
-        >
+        <View style={currentWorld === 3 ? styles.challengeSetWrapperMountain : styles.challengeSetWrapper}>
           <View style={styles.challengeWrapper}>
             <Text bold={true} style={styles.challengeTypeText}>
               {type}
@@ -64,7 +68,7 @@ const ChallengesHistorySlot: SFC<IProps> = ({ availableAtLevel, duration, locked
               </View>
             ))}
           </View>
-          <AutoHeightImage {...getSlotImageProps(type, getCurrentWorld(level.level))} />
+          <AutoHeightImage {...getSlotImageProps(type, currentWorld)} />
         </View>
       )}
     </View>

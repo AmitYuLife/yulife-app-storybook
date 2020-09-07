@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from "react";
-import { GetCurrentWorld } from "@graphql/_core/schema";
+import { GetCurrentQuestLevels } from "@graphql/_core/schema";
 import QuestsScreen from "./quests-screen";
 import { submitUnityAction } from "@redux/levels/levels.actions";
 import moment from "moment";
@@ -16,7 +16,7 @@ import {
   getActionConditions,
 } from "./quests-screen.container.helpers";
 import { useQuery } from "@apollo/react-hooks";
-import { GQL_QUERY_GET_CURRENT_WORLD } from "@graphql/challenges";
+import { GQL_QUERY_GET_CURRENT_QUEST_LEVELS } from "@graphql/challenges/getCurrentQuestLevels.gql";
 
 function isAvailable(nextAvailableAt: string): boolean {
   const nextAvailable = nextAvailableAt ? moment().diff(moment(nextAvailableAt), "seconds") : 0;
@@ -68,7 +68,12 @@ function getLevelStatus(
 }
 
 export function getActiveLevel(formatedData: any[]) {
-  return formatedData.findIndex((level) => level.isNext && level.isActive) + 1;
+  const activeLevel = formatedData.findIndex((level) => level.isNext && level.isActive) + 1;
+  if (activeLevel) {
+    return activeLevel;
+  }
+
+  return formatedData[0] ? formatedData[0].level : 0;
 }
 
 type ConnectedState = ReturnType<typeof mapStateToProps>;
@@ -103,11 +108,11 @@ function QuestsScreenContainer(props: Props) {
     setUnity(null);
   }, []);
 
-  const { loading, data } = useQuery<GetCurrentWorld>(GQL_QUERY_GET_CURRENT_WORLD, {
+  const { loading, data } = useQuery<GetCurrentQuestLevels>(GQL_QUERY_GET_CURRENT_QUEST_LEVELS, {
     fetchPolicy: "network-only",
   });
 
-  const currentWorldGQL = data?.getCurrentWorld ? data.getCurrentWorld : [];
+  const currentWorldGQL = data?.getCurrentQuestLevels ? data?.getCurrentQuestLevels : [];
 
   const formattedData = currentWorldGQL.map((itemLevel) => {
     const levelStatus = getLevelStatus(challengesStatus, currentLevel, itemLevel.level, nextLevelAvailableAt);

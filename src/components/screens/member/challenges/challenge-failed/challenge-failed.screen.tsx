@@ -1,5 +1,4 @@
 import { Button, CentredScreen, LevelLine, Stars, Text } from "@atoms/index";
-import { getCurrentWorld } from "@services/utils";
 import * as React from "react";
 import { StyleSheet, View, ViewStyle } from "react-native";
 import { GetMobileCopy_getMobileCopy_screens_challenges_failed } from "../../../../../graphql/_core/schema";
@@ -11,10 +10,11 @@ interface IProps {
   loading: boolean;
   onPress: () => void;
   copy: GetMobileCopy_getMobileCopy_screens_challenges_failed;
+  currentWorld: number;
 }
 
-export default function ChallengeFailedScreen({ level, onPress, copy, loading }: IProps) {
-  const { backgroundImage, backgroundStyle } = getStyle(level);
+export default function ChallengeFailedScreen({ level, onPress, copy, loading, currentWorld }: IProps) {
+  const { backgroundImage, backgroundStyle } = getStyle(currentWorld);
   return (
     <CentredScreen
       style={StyleSheet.flatten([styles.wrapper, backgroundStyle]) as ViewStyle}
@@ -45,8 +45,8 @@ export default function ChallengeFailedScreen({ level, onPress, copy, loading }:
   );
 }
 
-function getStyle(currentLevel: number) {
-  switch (getCurrentWorld(currentLevel)) {
+function getStyle(currentWorld: number) {
+  switch (currentWorld) {
     case 3:
       return {
         backgroundImage: "challenge_mountain",

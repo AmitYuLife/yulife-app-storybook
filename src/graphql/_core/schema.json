@@ -373,6 +373,22 @@
             "deprecationReason": null
           },
           {
+            "name": "getCurrentQuestLevels",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "Level",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "getCurrentLevel",
             "description": null,
             "args": [],

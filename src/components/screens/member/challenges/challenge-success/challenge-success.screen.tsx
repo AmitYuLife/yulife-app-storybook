@@ -16,6 +16,7 @@ interface IProps {
   score: number;
   unit: "steps" | "minutes";
   copy: GetMobileCopy_getMobileCopy_screens_challenges_success;
+  currentWorld: number;
 }
 
 export default function ChallengeSuccessScreen({
@@ -27,9 +28,9 @@ export default function ChallengeSuccessScreen({
   unit,
   copy,
   loading,
+  currentWorld,
 }: IProps) {
-  const { backgroundImage, backgroundStyle } = getStyle(level);
-
+  const { backgroundImage, backgroundStyle } = getStyle(currentWorld);
   return (
     <CentredScreen style={StyleSheet.flatten([styles.wrapper, backgroundStyle])} footerImage={backgroundImage}>
       <View style={styles.ratingWrapper}>
