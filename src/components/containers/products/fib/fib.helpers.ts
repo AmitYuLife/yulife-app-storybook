@@ -3,8 +3,7 @@ import { CalculatorItems } from "@components/screens/products/fib/browse-package
 import {
   OrderedUnderwritingJourneyScreen,
   FIB_THREE_YEAR_MEDICAL_HISTORY_SCREEN_ID,
-  FIB_DIGESTIVE_SCREEN_ID,
-  FIB_DIGESTIVE_EXTRA_SCREENS,
+  FIB_MEDICAL_FOLLOW_UP_QUESTIONS,
   FIB_HIGH_BLOOD_PRESSURE_EXTRA_SCREEN,
   FIB_HIGH_BLOOD_PRESSURE_SCREEN_ID,
   FIB_HIGH_CHOLESTEROL_EXTRA_SCREEN,
@@ -15,12 +14,14 @@ import {
   FIB_LIFESTYLE_WEIGHT_SCREEN_ID,
   FIB_YOUR_NAME_SCREEN_ID,
   FIB_YOUR_DATE_OF_BIRTH_SCREEN_ID,
+  FIB_HOSPITAL_STAY_SCREEN_ID,
 } from "./data/underwriting-journey-data";
 import { PackageId } from "@components/screens/products/fib/fib.helper";
 import { useDispatch } from "react-redux";
 import { useState, useMemo } from "react";
 import { updateFIBValue } from "@redux/product/product.actions";
 import { FibAnswers } from "@redux/product/product.types";
+import { FIB_MEDICAL_THREE_OR_MORE_CONSULTATION_SCREEN_ID } from "./data/underwriting-journey-data";
 
 export type FibButtonType = "firstButton" | "secondButton" | "previousButton";
 
@@ -129,12 +130,13 @@ function getMonthsTillBirthday(dateOfBirth: moment.Moment) {
   return monthOfBirth - currentMonth + addExtraMonth;
 }
 
-interface FindFibQuestionOptions {
+export interface FindFibQuestionOptions {
   data: OrderedUnderwritingJourneyScreen[];
   buttonType: FibButtonType;
   currentQuestion: OrderedUnderwritingJourneyScreen;
   medicalHistory: Record<string, boolean>;
   answers: FibAnswers;
+  initialQuesionIdFromReviewSession?: string;
 }
 interface FindFibMedicalQuestionOptions {
   data: OrderedUnderwritingJourneyScreen[];
@@ -144,10 +146,25 @@ interface FindFibMedicalQuestionOptions {
   answers: FibAnswers;
 }
 
-export function findQuestion(options: FindFibQuestionOptions): OrderedUnderwritingJourneyScreen {
-  const { data, buttonType, currentQuestion, medicalHistory, answers } = options;
+export function findQuestion(
+  options: FindFibQuestionOptions,
+  reviewScreenSession: boolean
+): OrderedUnderwritingJourneyScreen {
+  const { data, buttonType, currentQuestion, medicalHistory, answers, initialQuesionIdFromReviewSession } = options;
 
-  const question = data.find((element) => currentQuestion[buttonType]?.actionId === element.id);
+  let nextQuestionId =
+    reviewScreenSession &&
+    currentQuestion[buttonType]?.actionIdReview &&
+    initialQuesionIdFromReviewSession !== FIB_THREE_YEAR_MEDICAL_HISTORY_SCREEN_ID &&
+    initialQuesionIdFromReviewSession !== FIB_MEDICAL_THREE_OR_MORE_CONSULTATION_SCREEN_ID
+      ? currentQuestion[buttonType]?.actionIdReview
+      : currentQuestion[buttonType]?.actionId;
+
+  if (FIB_HOSPITAL_STAY_SCREEN_ID === currentQuestion.id && reviewScreenSession && buttonType === "previousButton") {
+    nextQuestionId = initialQuesionIdFromReviewSession;
+  }
+
+  const question = data.find((element) => nextQuestionId === element.id);
 
   // question can be undefined when we're waiting for `fib_review_screen` ID that's not  acutaly a question but a flag
   // to know that starting with this point we should render the review screen
@@ -175,9 +192,7 @@ function findMedicalQuestion(options: FindFibMedicalQuestionOptions): OrderedUnd
 
   // Extra values for medical journey
   activeChips.push(FIB_THREE_YEAR_MEDICAL_HISTORY_SCREEN_ID);
-  if (activeChips.includes(FIB_DIGESTIVE_SCREEN_ID)) {
-    activeChips.push(...FIB_DIGESTIVE_EXTRA_SCREENS);
-  }
+  activeChips.push(...FIB_MEDICAL_FOLLOW_UP_QUESTIONS);
 
   if (activeChips.includes(FIB_HIGH_BLOOD_PRESSURE_SCREEN_ID)) {
     activeChips.push(FIB_HIGH_BLOOD_PRESSURE_EXTRA_SCREEN);
@@ -187,7 +202,7 @@ function findMedicalQuestion(options: FindFibMedicalQuestionOptions): OrderedUnd
     activeChips.push(FIB_HIGH_CHOLESTEROL_EXTRA_SCREEN);
   }
 
-  const isActiveOnMedicalJourney = getIsActiveOnMedicalJourney(question.id, answers);
+  const isActiveOnMedicalJourney = getIsActiveOnMedicalJourney(question.id, answers, question);
 
   const showQuestion = activeChips.includes(question.id) && isActiveOnMedicalJourney;
 
@@ -205,7 +220,11 @@ function findMedicalQuestion(options: FindFibMedicalQuestionOptions): OrderedUnd
   return question;
 }
 
-export function getIsActiveOnMedicalJourney(screenId: string, answers: FibAnswers): boolean {
+export function getIsActiveOnMedicalJourney(
+  screenId: string,
+  answers: FibAnswers,
+  question: OrderedUnderwritingJourneyScreen
+): boolean {
   // High Blood pressure
   if (FIB_HIGH_BLOOD_PRESSURE_EXTRA_SCREEN === screenId) {
     const bloodAnswer = answers[FIB_HIGH_BLOOD_PRESSURE_SCREEN_ID];
@@ -218,13 +237,9 @@ export function getIsActiveOnMedicalJourney(screenId: string, answers: FibAnswer
     return cholesterolAnswer === "Yes";
   }
 
-  // Digestive
-  if (FIB_DIGESTIVE_EXTRA_SCREENS.includes(screenId) && screenId !== FIB_DIGESTIVE_SCREEN_ID) {
-    const questionIndex = FIB_DIGESTIVE_EXTRA_SCREENS.findIndex((questionId) => questionId === screenId);
-
-    const previousAnswer =
-      questionIndex === 0 ? answers[FIB_DIGESTIVE_SCREEN_ID] : answers[FIB_DIGESTIVE_EXTRA_SCREENS[questionIndex - 1]];
-    return previousAnswer === "No";
+  if (question.dependsOnOtherResponses) {
+    const findTheMatchingQuestion = question.dependsOnOtherResponses.find((item) => item.answer === answers[item.id]);
+    return !!findTheMatchingQuestion;
   }
 
   if (screenId === FIB_THREE_YEAR_MEDICAL_HISTORY_SCREEN_ID) {
