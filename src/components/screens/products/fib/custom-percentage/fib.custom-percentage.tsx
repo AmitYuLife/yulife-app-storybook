@@ -9,6 +9,7 @@ import { personPencilSvg } from "./assets/person-pencil-svg";
 import { EstimatedCost } from "./subcomponents/estimated-cost";
 import LinearGradient from "react-native-linear-gradient";
 import { useBackHandler } from "../../../../../services/hooks/useBackHandler";
+import { CUSTOM_COVER_SCREEN } from "@ids";
 
 export interface IFibCustomPercentage {
   onNavigateBack: () => void;
@@ -45,7 +46,7 @@ export const FibCustomPercentage = memo(function (props: IFibCustomPercentage) {
   useBackHandler(backHandler);
 
   return (
-    <SafeAreaView style={styles.wrapper}>
+    <SafeAreaView style={styles.wrapper} testID={CUSTOM_COVER_SCREEN}>
       <GenericHeading
         style={styles.headingWrapper}
         leftIcon="BACK"

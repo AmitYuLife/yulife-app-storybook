@@ -19,6 +19,7 @@ import {
 import { Highlight, HighlightLabel } from "./subcomponents/highlight";
 import { SideGradients } from "./subcomponents/side-gradients";
 import { ItemText } from "./subcomponents/item-text";
+import { SCROLLER_VALUE, HIGHLIGHTED_SCROLLER_VALUE } from "@ids";
 
 interface StaticProps {
   DEFAULT_HIGHLIGHT_RADIUS?: number;
@@ -34,6 +35,7 @@ type Props = {
   newActiveIndexCallback?: (activeIndex: number) => void;
   gradientLeftStyle?: ViewStyle;
   resetsOnUpdate?: boolean;
+  testID?: string;
 } & StaticProps;
 
 const ANDROID_SAFEGUARD = 0.1;
@@ -48,6 +50,7 @@ const HorizontalScroller: FC<Props> & StaticProps = ({
   newActiveIndexCallback,
   gradientLeftStyle,
   resetsOnUpdate,
+  testID,
 }) => {
   const itemsLength = useRef(items.length);
   const [scrollX] = useState(new Animated.Value(0));
@@ -102,7 +105,7 @@ const HorizontalScroller: FC<Props> & StaticProps = ({
   };
 
   return (
-    <View style={styles.wrapper}>
+    <View style={styles.wrapper} testID={testID}>
       <Highlight style={highlightStyle} />
       <Animated.ScrollView
         ref={scrollViewRef}
@@ -122,12 +125,14 @@ const HorizontalScroller: FC<Props> & StaticProps = ({
             scale={getWrapperScaleValue({ scrollX, index, itemWidth: ITEM_WIDTH })}
           >
             <ItemText
+              testID={SCROLLER_VALUE(item)}
               translateY={getTranslateYValue({ scrollX, index, itemWidth: ITEM_WIDTH })}
               opacity={getInactiveTextOpacityValue({ scrollX, index, itemWidth: ITEM_WIDTH })}
             >
               {item}
             </ItemText>
             <ItemText
+              testID={HIGHLIGHTED_SCROLLER_VALUE(item)}
               active={true}
               style={activeTextStyle}
               translateY={getTranslateYValue({ scrollX, index, itemWidth: ITEM_WIDTH })}

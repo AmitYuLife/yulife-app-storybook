@@ -41,7 +41,7 @@ function ProductItem(props: IProps) {
           <ArrowRight />
         </TouchableOpacity>
       </View>
-      <View style={styles.bottomSeparator}></View>
+      <View style={styles.bottomSeparator} />
     </>
   );
 }

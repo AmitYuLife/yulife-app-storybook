@@ -9,9 +9,10 @@ interface Props {
   opacity: Animated.AnimatedInterpolation;
   active?: boolean;
   style?: TextStyle;
+  testID?: string;
 }
 
-export const ItemText = memo(({ children, opacity, translateY, active, style }: Props) => {
+export const ItemText = memo(({ children, opacity, translateY, active, style, testID }: Props) => {
   const wrapperStyle = active ? styles.itemLabelActiveWrapper : styles.itemWrapper;
   const labelStyle = [active ? styles.itemLabelActive : styles.itemLabel, style];
   return (
@@ -24,7 +25,7 @@ export const ItemText = memo(({ children, opacity, translateY, active, style }: 
         },
       ]}
     >
-      <Text bold={true} style={labelStyle}>
+      <Text bold={true} style={labelStyle} testID={testID}>
         {children}
       </Text>
     </Animated.View>

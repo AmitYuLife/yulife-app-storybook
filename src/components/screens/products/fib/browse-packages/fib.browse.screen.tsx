@@ -26,6 +26,7 @@ import { IFaq } from "./subcomponents/faqs/faq";
 import Logger from "@services/logging/logger";
 import { CalculatorItems } from "./subcomponents/payout-calculator/subcomponents/calculator";
 import { formatPrice } from "@components/containers/products/fib/fib.helpers";
+import { FIB_BROWSE_SCREEN } from "@ids";
 
 interface IFibBrowseScreenProps {
   onNavigateToYuScreen: () => void;
@@ -104,6 +105,7 @@ export const FibBrowseScreen = memo(function (props: IFibBrowseScreenProps) {
           showsVerticalScrollIndicator={false}
           ref={scrollViewRef}
           contentContainerStyle={styles.scrollView}
+          testID={FIB_BROWSE_SCREEN}
         >
           <Animatable.View duration={1000} animation="fadeIn" style={styles.flex} useNativeDriver={true}>
             <PackageOptions selectedPackageId={selectedPackage.label} onSelectPackage={onSelectPackage} />
