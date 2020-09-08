@@ -182,6 +182,10 @@ const FibUnderwritingJourneyContainer = memo(function (props: Props) {
   const onSecondButtonPressed = !currentQuestion.secondButton ? null : handleSetCurrentQuestion;
 
   const handleSetPreviousQuestion = () => {
+    if (redirectedFromReviewScreen && initialQuestionIdFromReviewScreen === currentQuestion.id) {
+      return navigation.pop();
+    }
+
     const question = findQuestion({
       data,
       buttonType: "previousButton",
@@ -197,9 +201,7 @@ const FibUnderwritingJourneyContainer = memo(function (props: Props) {
   };
 
   const onPreviousButtonPressed =
-    !currentQuestion.previousButton || initialQuestionIdFromReviewScreen === currentQuestion.id
-      ? null
-      : handleSetPreviousQuestion;
+    !currentQuestion.previousButton && !redirectedFromReviewScreen ? null : handleSetPreviousQuestion;
 
   const progressBar = {
     currentPosition: currentQuestion.order,
@@ -210,10 +212,6 @@ const FibUnderwritingJourneyContainer = memo(function (props: Props) {
   const disableSecondButton = shouldSecondButtonBeDisabled(currentQuestion, fibAnswers);
 
   const onNavigateBackHandler = useCallback(async () => {
-    if (redirectedFromReviewScreen) {
-      return navigation.pop();
-    }
-
     await Navigation.showModal({
       component: {
         id: MODALS.generic,
@@ -233,12 +231,12 @@ const FibUnderwritingJourneyContainer = memo(function (props: Props) {
         },
       },
     });
-  }, [navigation, redirectedFromReviewScreen]);
+  }, [navigation]);
 
   return (
     <FIBProgressBar.ProgressBarContext.Provider value={progressBar}>
       <FibUnderwritingJourneyScreen
-        onNavigateBack={onNavigateBackHandler}
+        onNavigateBack={redirectedFromReviewScreen ? null : onNavigateBackHandler}
         data={currentQuestion}
         onFirstButtonPressed={onFirstButtonPressed}
         onSecondButtonPressed={onSecondButtonPressed}
