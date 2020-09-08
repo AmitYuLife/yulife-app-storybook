@@ -6,6 +6,7 @@ import {
   UPDATE_FIB_ANSWER_VALUE,
   RESET_FIB_ANSWERS,
   RESET_FIB_MEDICAL_VALUE,
+  RESET_FIB_UNDERWRITING_JOURNEY,
 } from "./product.types";
 import { REHYDRATE } from "redux-persist";
 import { LOGOUT, GET_USER_SUCCESS } from "@redux/user/user.actions";
@@ -42,6 +43,8 @@ export const initialState: IProductStore = {
     medicalHistory: {},
     quoteDate: "",
     lastQuestionId: "",
+    hasPriceChanged: false,
+    actualCost: 0,
   },
 };
 
@@ -106,6 +109,28 @@ function personalProductReducer<T>(state: IProductStore = initialState, action: 
         fib: {
           ...state.fib,
           medicalHistory: {},
+        },
+      };
+    case RESET_FIB_UNDERWRITING_JOURNEY:
+      return {
+        ...state,
+        fib: {
+          ...state.fib,
+          quoteDate: "",
+          lastQuestionId: "",
+          hasPriceChanged: false,
+          actualCost: 0,
+          medicalHistory: {},
+          existingCovers: initialState.fib.existingCovers,
+          answers: {
+            ...initialState.fib.answers,
+            height: {
+              ...initialState.fib.answers.height,
+            },
+            weight: {
+              ...initialState.fib.answers.weight,
+            },
+          },
         },
       };
     default:

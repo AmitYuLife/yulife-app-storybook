@@ -7,18 +7,33 @@ export interface GetLifeInsuranceToUpsData {
   getLifeInsuranceTopUps: GetLifeInsuranceTopUps_getLifeInsuranceTopUps;
 }
 
+export type LifeInsuranceUserAnswers = {
+  questionId: string;
+  value: string;
+};
 export interface GetLifeInsuranceTopUpsVars {
   grossSalary: number;
   coverType: PackageId;
-  customCoverPercentage: number;
+  customCoverPercentage?: number;
+  userAnswers?: LifeInsuranceUserAnswers[];
 }
 
 export const GQL_GET_LIFE_INSURANCE_TOP_UPS = gql`
   ${GQL_FRAGMENT_AVATAR_REMOTE_FILES}
 
-  query GetLifeInsuranceTopUps($grossSalary: Int, $coverType: CoverType, $customCoverPercentage: Int) {
+  query GetLifeInsuranceTopUps(
+    $grossSalary: Int
+    $coverType: CoverType
+    $customCoverPercentage: Int
+    $userAnswers: [LifeInsuranceTopUpsUserAnswers]
+  ) {
     getLifeInsuranceTopUps(
-      input: { grossSalary: $grossSalary, coverType: $coverType, customCoverPercentage: $customCoverPercentage }
+      input: {
+        grossSalary: $grossSalary
+        coverType: $coverType
+        customCoverPercentage: $customCoverPercentage
+        userAnswers: $userAnswers
+      }
     ) {
       estimatedCost
       sumAssured
@@ -27,6 +42,7 @@ export const GQL_GET_LIFE_INSURANCE_TOP_UPS = gql`
       newEarnRate
       descriptionHeading
       term
+      actualCost
       avatarRemoteFiles {
         ...YumojiRemoteFiles
       }

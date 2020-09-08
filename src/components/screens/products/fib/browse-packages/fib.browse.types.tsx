@@ -8,6 +8,7 @@ interface IServerPackageProps {
   salaryPercentageCovered: number;
   term: number;
   monthlyAmountProtected: number;
+  actualCost?: number;
 }
 
 interface ILocalPackageProps {

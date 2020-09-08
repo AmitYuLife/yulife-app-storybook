@@ -12,7 +12,7 @@ interface Props {
 const dateFormat = "DD/MM/YYYY";
 
 export const Summary = memo(({ selectedPackage, loading }: Props) => {
-  const { newEarnRate, earnRate, estimatedCost, term = 40 } = selectedPackage;
+  const { newEarnRate, earnRate, actualCost, term = 40 } = selectedPackage;
   const startDate = moment().format(dateFormat);
   const endDate = moment().add(term, "years").format(dateFormat);
 
@@ -47,7 +47,7 @@ export const Summary = memo(({ selectedPackage, loading }: Props) => {
         <View style={styles.headingWrapper}>
           <Text style={styles.heading}>Cost</Text>
         </View>
-        <Text style={styles.text}>£{`${loading ? "..." : estimatedCost}`} per month</Text>
+        <Text style={styles.text}>£{`${loading ? "..." : actualCost}`} per month</Text>
       </View>
     </View>
   );

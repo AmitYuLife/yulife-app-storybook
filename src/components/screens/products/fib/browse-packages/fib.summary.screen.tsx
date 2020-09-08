@@ -80,7 +80,7 @@ export const FibSummaryScreen = memo(function (props: FibSummaryScreenProps) {
   return (
     <>
       <SafeAreaView style={styles.wrapper}>
-        <GenericHeading heading="Life insurance" isBeta={true} leftIcon="BACK" onLeftIconPress={onNavigateBack} />
+        <GenericHeading heading="Finalise Package" isBeta={true} leftIcon="BACK" onLeftIconPress={onNavigateBack} />
         <ScrollView
           showsVerticalScrollIndicator={false}
           contentContainerStyle={styles.scrollView}

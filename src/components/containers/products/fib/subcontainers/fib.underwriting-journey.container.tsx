@@ -5,11 +5,12 @@ import {
   data,
   FIB_MEDICAL_THREE_OR_MORE_CONSULTATION_SCREEN_ID,
   FIB_UNDERWRITING_REVIEW_ANSWERS_SCREEN_ID,
+  RELEVANT_SCREEN_ID_FOR_PRICES_UPDATES,
   FIB_ENTER_YOUR_NAME,
 } from "../data/underwriting-journey-data";
 import { FIBProgressBar } from "@organisms";
 import { IReduxState } from "@redux/_core/reducers";
-import { getFIBState, getBirthday } from "@redux/product/product.selectors";
+import { getFIBState } from "@redux/product/product.selectors";
 import { connect, useDispatch } from "react-redux";
 import { updateFIBValue, updateFIBAnswerValue, resetFIBMedicalHistoryValue } from "@redux/product/product.actions";
 import {
@@ -77,9 +78,17 @@ const FibUnderwritingJourneyContainer = memo(function (props: Props) {
     return nextQuestion;
   };
 
-  const navigateToReviewScreenOrFindNextQuestion = (localAnswers: FibAnswers, buttonType: FibButtonType) => {
+  const navigateToReviewScreenOrFindNextQuestion = (
+    localAnswers: FibAnswers,
+    buttonType: FibButtonType,
+    currentQuestionId: string
+  ) => {
     if (!redirectedFromReviewScreen) {
       return;
+    }
+
+    if (RELEVANT_SCREEN_ID_FOR_PRICES_UPDATES.includes(currentQuestionId)) {
+      dispatch(updateFIBValue({ key: "hasPriceChanged", value: true }));
     }
 
     if (!initialQuestion.category && !initialQuestion.nextQuestionBeforeQuit) {
@@ -114,11 +123,10 @@ const FibUnderwritingJourneyContainer = memo(function (props: Props) {
       }
     }
 
+    navigateToReviewScreenOrFindNextQuestion(localAnswers, "firstButton", currentQuestion.id);
     if (currentQuestion.id === FIB_ENTER_YOUR_NAME) {
       updateFibAnswer("fib_your_name", inputName);
     }
-
-    navigateToReviewScreenOrFindNextQuestion(localAnswers, "firstButton");
 
     if (currentQuestion.firstButton.actionId === FIB_UNDERWRITING_REVIEW_ANSWERS_SCREEN_ID) {
       if (!redirectedFromReviewScreen) {
@@ -163,7 +171,7 @@ const FibUnderwritingJourneyContainer = memo(function (props: Props) {
       }
     }
 
-    navigateToReviewScreenOrFindNextQuestion(localAnswers, "secondButton");
+    navigateToReviewScreenOrFindNextQuestion(localAnswers, "secondButton", currentQuestion.id);
 
     const question = findQuestion({
       data,
@@ -258,7 +266,6 @@ const FibUnderwritingJourneyContainer = memo(function (props: Props) {
 });
 
 const mapStateToProps = (state: IReduxState) => ({
-  dateOfBirth: getBirthday(state),
   fullName: getFIBState(state).answers.fib_your_name,
   medicalHistory: getFIBState(state).medicalHistory,
   fibAnswers: getFIBState(state).answers,

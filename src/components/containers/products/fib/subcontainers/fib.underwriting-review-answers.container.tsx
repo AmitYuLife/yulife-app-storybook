@@ -7,6 +7,13 @@ import { getFIBState, getReviewAnswers } from "../../../../../redux/product/prod
 import { Navigation } from "react-native-navigation";
 import { ROUTES, MODALS } from "../../../../../navigation/constants";
 import { updateFIBValue } from "@redux/product/product.actions";
+import {
+  GetLifeInsuranceTopUpsVars,
+  GetLifeInsuranceToUpsData,
+  GQL_GET_LIFE_INSURANCE_TOP_UPS,
+  LifeInsuranceUserAnswers,
+} from "@graphql/products";
+import { useQuery } from "@apollo/react-hooks";
 import moment from "moment";
 
 type ConnectedState = ReturnType<typeof mapStateToProps>;
@@ -18,11 +25,56 @@ interface IFibUnderwritingReviewAnswersContainerProps {
 type Props = IFibUnderwritingReviewAnswersContainerProps & ConnectedState;
 
 const FibUnderwritingReviewAnswersContainer = memo(function (props: Props) {
-  const { navigation, answers, updateQuoteDate } = props;
+  const { navigation, answers, fibState, updateQuoteDate } = props;
   const dispatch = useDispatch();
-  const onSubmitButton = () => {
+
+  const userAnswers = Object.keys(fibState.answers).map((questionId: string) => {
+    return {
+      questionId,
+      value: JSON.stringify(fibState.answers[questionId]),
+    } as LifeInsuranceUserAnswers;
+  });
+
+  const queryVariables: GetLifeInsuranceTopUpsVars = {
+    grossSalary: fibState.salary,
+    coverType: fibState.selectedPackage,
+    userAnswers,
+  };
+
+  // Request only actual cost?
+  const { data } = useQuery<GetLifeInsuranceToUpsData, GetLifeInsuranceTopUpsVars>(GQL_GET_LIFE_INSURANCE_TOP_UPS, {
+    variables: queryVariables,
+    fetchPolicy: "network-only",
+  });
+
+  const onSubmitButton = async () => {
     dispatch(updateQuoteDate(moment().format("YYYY-MM-DD")));
-    navigation.push(FIB_CONFIRM_PACKAGES);
+    const priceChangedFromAPI =
+      fibState.actualCost && data?.getLifeInsuranceTopUps?.actualCost
+        ? fibState.actualCost !== data.getLifeInsuranceTopUps.actualCost
+        : false;
+    if (fibState.hasPriceChanged || priceChangedFromAPI) {
+      await Navigation.showModal({
+        component: {
+          id: MODALS.generic,
+          name: MODALS.generic,
+          passProps: {
+            onPress: async () => {
+              dispatch(updateFIBValue({ key: "hasPriceChanged", value: false }));
+              dispatch(updateFIBValue({ key: "actualCost", value: data.getLifeInsuranceTopUps.actualCost }));
+              await Navigation.dismissModal(MODALS.generic);
+              navigation.push(FIB_CONFIRM_PACKAGES);
+            },
+            heading: "Price change",
+            subheading:
+              "The final price of your life insurance packaged has changed. This will appear in the finalise packages screen",
+            ctaLabel: "Continue",
+          },
+        },
+      });
+    } else {
+      navigation.push(FIB_CONFIRM_PACKAGES);
+    }
   };
 
   const onAnswerPress = (questionId: string) => {

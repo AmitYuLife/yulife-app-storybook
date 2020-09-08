@@ -1,13 +1,14 @@
 import { useQuery } from "@apollo/react-hooks";
 import React, { memo, useState, useEffect } from "react";
 import { View, Linking } from "react-native";
-import { connect } from "react-redux";
+import { connect, useDispatch } from "react-redux";
 import { Text } from "@atoms";
 import { FibLocalNavigation, FIB_FEEDBACK_FORM, FIB_FAQ } from "../fib.types";
 import {
   GetLifeInsuranceToUpsData,
   GetLifeInsuranceTopUpsVars,
   GQL_GET_LIFE_INSURANCE_TOP_UPS,
+  LifeInsuranceUserAnswers,
 } from "@graphql/products";
 import { getFIBState } from "@redux/product/product.selectors";
 import { IReduxState } from "@redux/_core/reducers";
@@ -20,6 +21,7 @@ import fibDocumentsItems, { policyScheduleDocument } from "../data/documents-dat
 import Logger from "@services/logging/logger";
 import fibFaqItems from "../data/faq-fib-data";
 import moment from "moment";
+import { updateFIBValue } from "@redux/product/product.actions";
 
 type ConnectedState = ReturnType<typeof mapStateToProps>;
 
@@ -44,7 +46,9 @@ const documents: IFaq[] = [...fibDocumentsItems, policyScheduleDocument].map((do
 }));
 
 const FibConfirmPackagesContainer = memo(function (props: FibConfirmPackagesContainerProps) {
-  const { navigation, grossSalary, userDateOfBirth, selectedPackage, selectFaq } = props;
+  const { navigation, grossSalary, userDateOfBirth, selectedPackage, selectFaq, fibAnswers } = props;
+  const dispatch = useDispatch();
+
   const [selectedCoverType, selectCoverType] = useCover(selectedPackage || "common");
 
   const [deceaseAgeIndexYear, setDeceaseAgeIndexYear] = useState(0);
@@ -68,18 +72,33 @@ const FibConfirmPackagesContainer = memo(function (props: FibConfirmPackagesCont
 
   const deceaseAgeYear = payoutEstimatorItems.years[deceaseAgeIndexYear];
 
+  const userAnswers = Object.keys(fibAnswers).map((questionId: string) => {
+    return {
+      questionId,
+      value: JSON.stringify(fibAnswers[questionId]),
+    } as LifeInsuranceUserAnswers;
+  });
+
   const queryVariables: GetLifeInsuranceTopUpsVars = {
     grossSalary: grossSalary,
     coverType: selectedCoverType,
     customCoverPercentage: 0,
+    userAnswers,
   };
 
   const { loading, error, data } = useQuery<GetLifeInsuranceToUpsData, GetLifeInsuranceTopUpsVars>(
     GQL_GET_LIFE_INSURANCE_TOP_UPS,
     {
       variables: queryVariables,
+      fetchPolicy: "cache-and-network",
     }
   );
+
+  useEffect(() => {
+    if (data?.getLifeInsuranceTopUps?.actualCost) {
+      dispatch(updateFIBValue({ key: "actualCost", value: data.getLifeInsuranceTopUps.actualCost }));
+    }
+  }, [data, dispatch]);
 
   const payoutAmount = calculatePayoutAmount({
     deceaseAgeMonth,
@@ -104,6 +123,7 @@ const FibConfirmPackagesContainer = memo(function (props: FibConfirmPackagesCont
     descriptionHeading: data?.getLifeInsuranceTopUps.descriptionHeading || "",
     term: data?.getLifeInsuranceTopUps.term,
     monthlyAmountProtected,
+    actualCost: data?.getLifeInsuranceTopUps.actualCost || 0,
   };
 
   const faqs: IFaq[] = fibFaqItems.map((faq) => ({
@@ -146,6 +166,7 @@ const mapStateToProps = (state: IReduxState) => ({
   grossSalary: getFIBState(state).salary,
   userDateOfBirth: getUserDateOfBirth(state),
   selectedPackage: getFIBState(state).selectedPackage,
+  fibAnswers: getFIBState(state).answers,
 });
 
 export default connect(mapStateToProps)(FibConfirmPackagesContainer);

@@ -311,7 +311,7 @@ export function shouldSecondButtonBeDisabled(
   return false;
 }
 
-export function UseInternationalFormat(dayOrMonth: string): string {
+export function useInternationalFormat(dayOrMonth: string): string {
   return `${dayOrMonth.length === 1 ? "0" : ""}${dayOrMonth}`;
 }
 
