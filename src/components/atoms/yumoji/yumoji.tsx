@@ -10,9 +10,14 @@ interface Props {
   testID: string;
 }
 
+export const BODY_AVATAR_HEIGHT = Style.SCALE_UP_AND_DOWN(128.5);
+export const BODY_AVATAR_WIDTH = Style.SCALE_UP_AND_DOWN(58);
+export const EMPTY_BODY_AVATAR_HEIGHT = Style.SCALE_UP_AND_DOWN(146);
+export const EMPTY_BODY_AVATAR_WIDTH = Style.SCALE_UP_AND_DOWN(40);
+
 function _Yumoji({ uri, testID }: Props) {
   if (!uri) {
-    return <EmptyMaleBody />;
+    return <EmptyMaleBody height={EMPTY_BODY_AVATAR_HEIGHT} width={EMPTY_BODY_AVATAR_WIDTH} />;
   }
 
   return (
@@ -22,10 +27,13 @@ function _Yumoji({ uri, testID }: Props) {
   );
 }
 
-export const Yumoji = memo(_Yumoji);
-
-export const BODY_AVATAR_HEIGHT = Style.SCALE_UP_AND_DOWN(128.5);
-export const BODY_AVATAR_WIDTH = Style.SCALE_UP_AND_DOWN(58);
+const MemoizedYumoji = memo(_Yumoji);
+export const Yumoji = Object.assign(MemoizedYumoji, {
+  BODY_AVATAR_HEIGHT,
+  BODY_AVATAR_WIDTH,
+  EMPTY_BODY_AVATAR_HEIGHT,
+  EMPTY_BODY_AVATAR_WIDTH,
+});
 
 const styles = StyleSheet.create({
   wrapper: {
