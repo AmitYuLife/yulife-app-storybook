@@ -9,7 +9,6 @@ import {
   NativeScrollEvent,
 } from "react-native";
 import { GenericHeading, Button } from "@atoms";
-import { Style } from "@styles";
 import { Summary, SummaryDescription } from "./subcomponents";
 import { Faqs } from "./subcomponents/faqs/faqs";
 import { PayoutCalculator } from "./subcomponents/payout-calculator/payout-calculator";
@@ -119,7 +118,7 @@ const styles = StyleSheet.create({
   wrapper: {
     backgroundColor: "white",
     flex: 1,
-    marginTop: Style.isAnyIphoneX() ? -10 : 0,
+    height: "100%",
   },
   scrollView: {
     backgroundColor: "#fafafe",

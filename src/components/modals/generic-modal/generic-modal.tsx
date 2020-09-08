@@ -1,6 +1,9 @@
 import React from "react";
 import { GenericScreen } from "../../screens";
 import { IGenericModalProps } from "../../screens/member/generic-screen/generic.screen";
+import { Navigation } from "react-native-navigation";
+import { MODALS } from "@navigation/constants";
+import { useBackHandler } from "@services/hooks/useBackHandler";
 
 export default function GenericModal(props: IGenericModalProps) {
   const {
@@ -14,6 +17,13 @@ export default function GenericModal(props: IGenericModalProps) {
     isPrimaryOnePressOnly,
     isSecondaryLoading,
   } = props;
+
+  const backHandler = () => {
+    Navigation.dismissModal(MODALS.generic);
+    return true;
+  };
+
+  useBackHandler(backHandler);
 
   return (
     <GenericScreen

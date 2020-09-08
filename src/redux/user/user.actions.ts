@@ -52,7 +52,7 @@ export const getUserStart = () => ({
 
 export const getUserSuccess = (payload: GetCurrentUser) => ({
   payload,
-  type: GET_USER_SUCCESS,
+  type: GET_USER_SUCCESS as typeof GET_USER_SUCCESS,
 });
 
 export const loginUserSuccess = (payload: LoginUser) => ({

@@ -35,13 +35,14 @@ const _FibInputCm = (props: ConnectedProps) => {
 
   return (
     <InputField
-      autoFocus={false}
+      autoFocus={true}
       value={height.cm}
       onChangeText={validateCm}
       maxLength={3}
       sideLabel="cm"
       style={StyleSheet.flatten([styles.textInput, isFocus ? {} : styles.textInputOnBlur])}
       hasFocusActive={setIsFocus}
+      width={48}
     />
   );
 };

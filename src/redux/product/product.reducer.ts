@@ -8,8 +8,10 @@ import {
   RESET_FIB_MEDICAL_VALUE,
 } from "./product.types";
 import { REHYDRATE } from "redux-persist";
-import { LOGOUT } from "@redux/user/user.actions";
+import { LOGOUT, GET_USER_SUCCESS } from "@redux/user/user.actions";
 import { IReduxState } from "@redux/_core/reducers";
+import { GetCurrentUser } from "@graphql/_core/schema";
+import moment from "moment";
 
 export { IProductStore } from "./product.types";
 
@@ -32,7 +34,7 @@ export const initialState: IProductStore = {
       birthDay: "",
       birthMonth: "",
       birthYear: "",
-      fib_your_name: "Oliver Twist",
+      fib_your_name: "",
     },
     salary: 0,
     selectedPackage: "common",
@@ -49,6 +51,8 @@ function personalProductReducer<T>(state: IProductStore = initialState, action: 
       return rehydratePersonalProductStore(state, action.payload as IReduxState);
     case LOGOUT:
       return initialState;
+    case GET_USER_SUCCESS:
+      return getUserSuccess(state, action.payload);
     case UPDATE_FIB_VALUE:
       return {
         ...state,
@@ -134,5 +138,27 @@ function rehydratePersonalProductStore(state: IProductStore, payload: IReduxStat
 
   return state;
 }
+
+/**
+ * Update default values DoB and name if there's no value
+ */
+const getUserSuccess = (state: IProductStore, { getCurrentUser }: GetCurrentUser): IProductStore => {
+  const newState = { ...state };
+
+  const hasFIBDoB = state.fib?.answers?.birthDay && state.fib?.answers?.birthMonth && state.fib?.answers?.birthYear;
+  if (!hasFIBDoB) {
+    const dateOfBirth = moment(getCurrentUser.dateOfBirth).format("DD-MM-YYYY").split("-");
+    state.fib.answers.birthDay = state.fib?.answers?.birthDay || dateOfBirth[0];
+    state.fib.answers.birthMonth = state.fib?.answers?.birthMonth || dateOfBirth[1];
+    state.fib.answers.birthYear = state.fib?.answers?.birthYear || dateOfBirth[2];
+  }
+
+  if (!state.fib?.answers.fib_your_name) {
+    const userName = `${getCurrentUser.firstName} ${getCurrentUser.lastName}`;
+    state.fib.answers.fib_your_name = userName;
+  }
+
+  return newState;
+};
 
 export default personalProductReducer;

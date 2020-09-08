@@ -13,11 +13,11 @@ export const styles = StyleSheet.create({
     borderTopWidth: 0,
     borderLeftWidth: 0,
     borderRightWidth: 0,
-    borderRadius: 0,
     borderBottomColor: Colours.primary.p500,
     borderBottomWidth: 2,
+    textAlign: "center",
   } as TextStyle,
   textInputOnBlur: {
-    borderBottomColor: Colours.neutral.n600,
+    borderBottomColor: Colours.neutral.n200,
   } as TextStyle,
 });

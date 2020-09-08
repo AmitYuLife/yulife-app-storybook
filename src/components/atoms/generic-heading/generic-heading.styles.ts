@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignContent: "center",
     borderBottomColor: "rgba(0,0,0,0.1)",
-    marginHorizontal: 16,
+    paddingHorizontal: 16,
     marginTop: Style.isAnyIphoneX() ? -10 : 0,
   } as ViewStyle,
   leftIconWrapper: {

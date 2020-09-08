@@ -172,6 +172,7 @@ const _data: UnderwritingJourneyScreen[] = [
     title: "Name",
     question: "Please enter your name",
     firstButton: { label: "Continue", actionId: FIB_YOUR_DATE_OF_BIRTH_SCREEN_ID },
+    previousButton: { actionId: FIB_YOUR_NAME_SCREEN_ID },
     children: [{ type: "inputFullName" }],
   },
   {
@@ -201,6 +202,7 @@ const _data: UnderwritingJourneyScreen[] = [
       },
     ],
     firstButton: { label: "Continue", actionId: FIB_UK_RESIDENT_SCREEN_ID },
+    previousButton: { actionId: FIB_YOUR_DATE_OF_BIRTH_SCREEN_ID },
   },
   {
     id: FIB_UK_RESIDENT_SCREEN_ID,

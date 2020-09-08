@@ -2,13 +2,13 @@ import React, { memo, useEffect, useRef } from "react";
 import {
   StyleSheet,
   ViewStyle,
-  View,
   Platform,
   ScrollView,
   Text,
   TextStyle,
   NativeSyntheticEvent,
   NativeScrollEvent,
+  SafeAreaView,
 } from "react-native";
 import { useBackHandler } from "../../../../../services/hooks/useBackHandler";
 
@@ -52,7 +52,7 @@ const _FibUnderwritingReviewAnswersScreen = memo(function (props: IFibUnderwriti
   useBackHandler(backHandler);
 
   return (
-    <View style={styles.wrapper}>
+    <SafeAreaView style={styles.wrapper}>
       <GenericHeading
         heading={"Review"}
         rightIcon={{ icon: "CLOSE" }}
@@ -80,7 +80,7 @@ const _FibUnderwritingReviewAnswersScreen = memo(function (props: IFibUnderwriti
         <Text style={styles.agreementText}>I agree that all the above is accurate</Text>
         <Button type="Primary" size={"Large"} onPress={onSubmitButton} label={"Submit answers"} />
       </ScrollView>
-    </View>
+    </SafeAreaView>
   );
 });
 
