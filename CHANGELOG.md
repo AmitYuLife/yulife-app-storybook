@@ -7,6 +7,112 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.6.0] - 2020-09-08
+
+### Features
+
+- Feature TP-327: Display CES/NPS on load
+- Feature TE-589: New game +
+- Feature: TP-353 Implement payout amount logic
+- Feature TE-603: Update unity level gems
+- Feature TE-603: Yunity Animation Updates
+- Feature TE-590: Update the yunity animations
+- Feature: TP-327 (2): CES/NPS screen
+- Feature: introducing lottie
+- Feature: TP-32 Fib confirm packages
+- Feature: TP-344 Medical journey logic
+- Feature: TP-20 Continue Later Fib Journey
+- Feature TP-327 (a): CES/NPS screen
+- Feature TP-385: create horizontal score component
+- Feature: TP-27 medical journey
+- Feature TP-28 (d): Financial Questions - Cleanup
+- Feature TP-28 (c): financial questions
+- Feature TP-301: Atoms: Button Refactor
+
+### Bugfixes
+
+- Bugfix TP-422 FIB issues
+- Bugfix: Background image should update when reaching a new world
+- Bugfix ENG-1006: toggle isLoading on challengeResetSuccess
+- Bugfix ENG-1006: Infinite loading for Challenge End button
+- Bugfix TP-424: remove Wootric
+- Bugfix: CES/NPS Screens
+- Bugfix TP-128: Underwriting change answers fixes
+- Bugfix: FIB UI/UX fixes
+- Bugfix: Update Types
+- Bugfix: rehydrate on fresh install
+- Bugfix: TP-28: finance questions fixes
+- Bugfix ENG-999: Handle leaderboard lengthy text size
+- Bugfix: fix badly sized avatar button
+- Bugfix ENG-954: reset the daily steps page immediately on app load
+
+### Tasks
+
+- Task: Initialise detox for new leaderboards
+- Task TE-594: Update the daily yucoin icon
+- Task: Add input truncate
+- Task: Add FIB underwriting name, birthday, height, weight display and inputs
+- Task TP-340: create cover cards
+- Task: Factor out daily steps content
+- Task TP-339: Additional Form Screen
+- Task TP-337: Implement chip & chiplist
+- Task: Factor out streaks
+- Task: TP-299 Create top bar organism
+
+### Chores
+
+- Chore: Yuniversal Info Screen
+- Chore: fix unity animations
+- Chore: move previous question to topbar
+- Chore: send apollo client name in headers with the right deviceId
+- Chore: TP-344 Finalise medical journey logic
+- Chore: define splash screen sizes as consts
+- Chore: native animated pulse
+- Chore: have one back button only
+- Chore: fix heading for fib
+- Chore TP-333: add alcohol bottle
+
+### Extra
+
+- Center leaderboard avatars
+- New medical journey flow
+- Detox: Browse packages
+- Fix daily steps content loading condition
+- Implement quote expire logic
+- Detox Updates
+- Refactor back to review screen logic
+- show the new yucoin for everyone and delete old assets
+- Change answer
+- custom cover form only goes back one step
+- Fixes for lifestyle screens
+- Revert "Hide previous button on height/weight input screens"
+- Let leaderboard item update
+- Fixes UI for small screens
+- make fixes to financial screens
+- Hotfix: update the persisted store keys on hydrate
+- Everything seems to be working locally. Added a few waits and extended a scroll on one function to make everything more robust for bitrise
+- Persist product state
+- Revert "Sizes"
+- Create mocks for review screen
+- Detox: Fix pulse
+- Refactor medical journey
+- Fix copy on underwriting into
+- Fix detox
+- navigate to underwriting from debug
+- Add underwriting intro screen
+- Fix first month for payout calculation
+- Revert "Set default number of lines to 1"
+- add custom delay for buttons
+- change link opacity on press|
+- make fixes to buttons
+- Adjust pounds margin
+- Historical medical item and markdown
+- Fix develop branch
+- resolve storybook warnings
+- add type for underwiritng screen
+- Add navigation
+- Hotfix: UAT build
+
 ## [2.5.0] - 2020-08-10
 
 ### Features
