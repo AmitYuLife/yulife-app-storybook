@@ -1,24 +1,9 @@
 import { Style } from "@styles";
 import { StyleSheet, Platform, ViewStyle } from "react-native";
+import { Yumoji } from "@atoms";
 
 export const BODY_AVATAR_HEIGHT = Style.SCALE_UP_AND_DOWN(128.5);
 export const BODY_AVATAR_WIDTH = Style.SCALE_UP_AND_DOWN(53);
-
-const getIOSValue = (value: number, additionalNotchValue = 2) => {
-  return Style.hasNotch ? value + additionalNotchValue : value;
-};
-
-const getAndroidValue = (value: number, additionalValueUp = 4, additionalValueDown = 4) => {
-  if (Style.isShortAndLowScaledPixelAndroid()) {
-    return value + additionalValueUp;
-  }
-
-  if (Style.isTallAndLowScaledPixelAndroid()) {
-    return value - additionalValueDown;
-  }
-
-  return value;
-};
 
 export const LEADERBOARD_PODIUM_HEIGHT = Platform.select({ ios: Style.SCALE_UP_AND_DOWN(320), android: 328 });
 
@@ -32,30 +17,33 @@ const styles = StyleSheet.create({
   },
 });
 
+const EMPTY_CENTER_POSITION_X = Style.DEVICE_WIDTH / 2 - Yumoji.EMPTY_BODY_AVATAR_WIDTH / 2 + 2;
+const CENTER_POSITION_Y = Style.SCALE_UP_AND_DOWN(40);
+
 export const dynamicStyles = StyleSheet.create({
   avatar1: {
-    marginTop: Style.adjust(Platform.select({ android: getAndroidValue(45, 6), ios: getIOSValue(42) })),
+    marginTop: CENTER_POSITION_Y + Style.SCALE_UP_AND_DOWN(2),
     marginLeft: Style.SCALE_UP_AND_DOWN(162),
   },
-  avatarEmpty1: {
-    marginTop: Style.adjust(Platform.select({ android: Style.isShortAndroid() ? 47.5 : 49, ios: getIOSValue(37) })),
-    marginLeft: Style.SCALE_UP_AND_DOWN(167),
-  },
   avatar2: {
-    marginTop: Style.adjust(Platform.select({ android: getAndroidValue(72, 10, 7), ios: getIOSValue(68, 4) })),
+    marginTop: CENTER_POSITION_Y + Style.SCALE_UP_AND_DOWN(30),
     marginLeft: Style.SCALE_UP_AND_DOWN(76),
   },
-  avatarEmpty2: {
-    marginTop: Style.adjust(Platform.select({ android: Style.isShortAndroid() ? 72 : 74, ios: getIOSValue(62, 4) })),
-    marginLeft: Style.SCALE_UP_AND_DOWN(80),
-  },
   avatar3: {
-    marginTop: Style.adjust(Platform.select({ android: getAndroidValue(85, 8, 10), ios: getIOSValue(78, 5) })),
+    marginTop: CENTER_POSITION_Y + Style.SCALE_UP_AND_DOWN(36),
     marginLeft: Style.SCALE_UP_AND_DOWN(247),
   },
+  avatarEmpty1: {
+    marginTop: CENTER_POSITION_Y,
+    marginLeft: EMPTY_CENTER_POSITION_X,
+  },
+  avatarEmpty2: {
+    marginTop: CENTER_POSITION_Y + 20,
+    marginLeft: EMPTY_CENTER_POSITION_X - Style.SCALE_UP_AND_DOWN(80),
+  },
   avatarEmpty3: {
-    marginTop: Style.adjust(Platform.select({ android: Style.isShortAndroid() ? 83.5 : 85, ios: getIOSValue(73, 5) })),
-    marginLeft: Style.SCALE_UP_AND_DOWN(252),
+    marginTop: CENTER_POSITION_Y + 32,
+    marginLeft: EMPTY_CENTER_POSITION_X + Style.SCALE_UP_AND_DOWN(80),
   },
 }) as any;
 
