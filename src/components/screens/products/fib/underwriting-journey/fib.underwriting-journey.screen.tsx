@@ -38,6 +38,9 @@ export interface IFibUnderwritingJourneyScreenProps {
     isHidden: boolean;
   };
   disableFirstButton?: boolean;
+  inputName?: string;
+  setInputName?: (text: string) => void;
+  disableSecondButton?: boolean;
 }
 
 const _FibUnderwritingJourneyScreen = memo(function (props: IFibUnderwritingJourneyScreenProps) {
@@ -48,12 +51,15 @@ const _FibUnderwritingJourneyScreen = memo(function (props: IFibUnderwritingJour
     onSecondButtonPressed,
     onPreviousButtonPressed,
     disableFirstButton,
+    inputName,
+    setInputName,
+    disableSecondButton,
   } = props;
 
   const backHandler = React.useCallback(() => {
-    onNavigateBack();
+    onPreviousButtonPressed();
     return true;
-  }, [onNavigateBack]);
+  }, [onPreviousButtonPressed]);
 
   useBackHandler(backHandler);
 
@@ -61,7 +67,7 @@ const _FibUnderwritingJourneyScreen = memo(function (props: IFibUnderwritingJour
 
   const secondButton = !onSecondButtonPressed
     ? null
-    : { action: onSecondButtonPressed, label: data.secondButton.label };
+    : { action: onSecondButtonPressed, label: data.secondButton.label, disabled: disableSecondButton };
 
   const CustomComponent = getCustomComponent(data.id);
 
@@ -81,7 +87,7 @@ const _FibUnderwritingJourneyScreen = memo(function (props: IFibUnderwritingJour
         <FibTitle title={data.question} />
         {data.children?.map((child: UnderwritingJourneyChild, i) => {
           const key = data.id + i;
-          return renderChildren(child, key);
+          return renderChildren(child, key, { inputName, setInputName });
         })}
       </ScrollView>
       <Footer firstButton={firstButton} secondButton={secondButton} />
@@ -91,14 +97,19 @@ const _FibUnderwritingJourneyScreen = memo(function (props: IFibUnderwritingJour
 
 export const FibUnderwritingJourneyScreen = memo(_FibUnderwritingJourneyScreen);
 
-function renderChildren(child: UnderwritingJourneyChild, key: string) {
+interface RenderChildrenExtraProps {
+  inputName: string;
+  setInputName: (text: string) => void;
+}
+
+function renderChildren(child: UnderwritingJourneyChild, key: string, extraProps: RenderChildrenExtraProps) {
   const FIELDS: Record<string, React.ReactNode> = {
     medicalHistory: <MedicalHistoryItem {...(child as IMedicalHistoryItemProps)} key={key} />,
     markdown: <MarkdownFib {...(child as IMarkdownFibProps)} key={key} />,
     inputBirth: <FibInputBirth key={key} />,
     inputHeight: <FibInputHeight key={key} />,
     inputWeight: <FibInputWeight key={key} />,
-    inputFullName: <FibInputName key={key} />,
+    inputFullName: <FibInputName setInputName={extraProps.setInputName} inputName={extraProps.inputName} key={key} />,
     chiplist: <MedicalChipList items={child.chips} columns={2} key={key} />,
     inputAlcohol: <AlcoholIntakeInput key={key} />,
     copyBirthday: <CopyBirthday key={key} />,

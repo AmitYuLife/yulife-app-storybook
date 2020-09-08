@@ -13,6 +13,7 @@ interface IFooterProps {
   secondButton?: {
     action: () => void;
     label: string;
+    disabled?: boolean;
   };
 }
 
@@ -40,6 +41,7 @@ export default function Footer(props: IFooterProps) {
               label={secondButton.label}
               delay={300}
               disableAnimation={true}
+              disabled={secondButton.disabled}
             />
           )}
         </View>

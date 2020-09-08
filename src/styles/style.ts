@@ -65,6 +65,10 @@ const isWideScreen = () => {
   return x > 400;
 };
 
+const isLargeScreen = () => {
+  return y > 810;
+};
+
 const BASE_HEIGHT = 667;
 const scaledPixel = +(x / 375).toFixed(3);
 const scaledYPixel = +(y / 667).toFixed(3);
@@ -150,6 +154,7 @@ const Style = {
   defaultShrinkThreshold,
   isWideScreen,
   hasNotch: DeviceInfo.hasNotch(),
+  isLargeScreen,
 };
 
 export default Style;

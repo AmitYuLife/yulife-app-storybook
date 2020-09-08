@@ -1,12 +1,13 @@
 import { StyleSheet, ViewStyle, TextStyle } from "react-native";
-import { Colours } from "@styles";
+import { Colours, Style } from "@styles";
 
 export const styles = StyleSheet.create({
   wrapper: {
     justifyContent: "center",
     alignItems: "center",
     width: "100%",
-    marginTop: 80,
+    marginTop: Style.isLargeScreen() ? 64 : Style.isWideScreen() ? 32 : 8,
+    marginBottom: 32,
   } as ViewStyle,
   label: {
     fontSize: 16,
@@ -23,11 +24,11 @@ export const styles = StyleSheet.create({
     borderTopWidth: 0,
     borderLeftWidth: 0,
     borderRightWidth: 0,
-    borderRadius: 0,
     borderBottomColor: Colours.primary.p600,
     borderBottomWidth: 1,
+    textAlign: "center",
   } as TextStyle,
   textInputOnBlur: {
-    borderBottomColor: Colours.neutral.n600,
+    borderBottomColor: Colours.neutral.n200,
   } as TextStyle,
 });

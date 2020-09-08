@@ -1,18 +1,18 @@
-import React, { useCallback } from "react";
+import React from "react";
 import Slider from "@react-native-community/slider";
 import { View } from "react-native-animatable";
 import { Text } from "@atoms/index";
 import { StyleSheet, ViewStyle, TextStyle } from "react-native";
 import { ALCOHOL_DRINK_LIMIT } from "./alcohol.common";
-import { throttle } from "@services/utils";
 
 interface Props {
   onValueChange: (val: number) => void;
+  onSlidingComplete: (val: number) => void;
   value: number;
 }
 
 export function SliderInput(props: Props) {
-  const { onValueChange, value } = props;
+  const { onValueChange, value, onSlidingComplete } = props;
   const percentageComplete = (value / ALCOHOL_DRINK_LIMIT) * 100;
 
   const dynamicStyles = StyleSheet.create({
@@ -20,11 +20,6 @@ export function SliderInput(props: Props) {
       left: percentageComplete * 1.69 - 34,
     },
   });
-
-  const debouncedOnValueChange = useCallback(
-    throttle((val: number) => onValueChange(val), 50),
-    []
-  );
 
   return (
     <View>
@@ -37,8 +32,10 @@ export function SliderInput(props: Props) {
         minimumTrackTintColor="#CC0D6E"
         maximumValue={ALCOHOL_DRINK_LIMIT}
         minimumValue={0}
-        onValueChange={debouncedOnValueChange}
+        step={1}
+        onValueChange={onValueChange}
         value={value}
+        onSlidingComplete={onSlidingComplete}
       />
     </View>
   );

@@ -68,7 +68,7 @@ const _FibInputSt = (props: ConnectedProps) => {
   return (
     <View style={styles.stoneWrapper}>
       <InputField
-        autoFocus={false}
+        autoFocus={true}
         value={weight.st}
         onChangeText={validateSt}
         maxLength={2}
@@ -76,7 +76,7 @@ const _FibInputSt = (props: ConnectedProps) => {
         forwardRef={stRef}
         style={StyleSheet.flatten([styles.textInput, isStFocus ? {} : styles.textInputOnBlur])}
         hasFocusActive={setIsStFocus}
-        width={20}
+        width={30}
       />
       <InputField
         autoFocus={false}
@@ -88,7 +88,7 @@ const _FibInputSt = (props: ConnectedProps) => {
         forwardRef={lbRef}
         style={StyleSheet.flatten([styles.textInput, isLbFocus ? {} : styles.textInputOnBlur])}
         hasFocusActive={setIsLbFocus}
-        width={20}
+        width={30}
       />
     </View>
   );

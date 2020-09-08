@@ -5,6 +5,7 @@ import {
   data,
   FIB_MEDICAL_THREE_OR_MORE_CONSULTATION_SCREEN_ID,
   FIB_UNDERWRITING_REVIEW_ANSWERS_SCREEN_ID,
+  FIB_ENTER_YOUR_NAME,
 } from "../data/underwriting-journey-data";
 import { FIBProgressBar } from "@organisms";
 import { IReduxState } from "@redux/_core/reducers";
@@ -17,6 +18,7 @@ import {
   shouldFirstButtonBeDisabled,
   shouldAnswerBeStored,
   FindFibQuestionOptions,
+  shouldSecondButtonBeDisabled,
 } from "../fib.helpers";
 import { FibAnswers } from "@redux/product/product.types";
 import { Navigation } from "react-native-navigation";
@@ -48,6 +50,8 @@ const FibUnderwritingJourneyContainer = memo(function (props: Props) {
 
   const [currentQuestion, setCurrentQuestion] = useState(initialQuestion);
   const activeIndex = data.findIndex((item) => item.id === currentQuestion.id);
+
+  const [inputName, setInputName] = useState(fibAnswers.fib_your_name);
 
   const updateAnswer = (questionId: string, value: string, answers: FibAnswers): FibAnswers => {
     updateFibAnswer(questionId, value);
@@ -108,6 +112,10 @@ const FibUnderwritingJourneyContainer = memo(function (props: Props) {
           updateFibAnswer(answerIdToInvalidate, "");
         });
       }
+    }
+
+    if (currentQuestion.id === FIB_ENTER_YOUR_NAME) {
+      updateFibAnswer("fib_your_name", inputName);
     }
 
     navigateToReviewScreenOrFindNextQuestion(localAnswers, "firstButton");
@@ -198,7 +206,8 @@ const FibUnderwritingJourneyContainer = memo(function (props: Props) {
     maxLength: data.length,
   };
 
-  const disableFirstButton = shouldFirstButtonBeDisabled(medicalHistory, currentQuestion, fibAnswers);
+  const disableFirstButton = shouldFirstButtonBeDisabled(medicalHistory, currentQuestion, fibAnswers, inputName);
+  const disableSecondButton = shouldSecondButtonBeDisabled(currentQuestion, fibAnswers);
 
   const onNavigateBackHandler = useCallback(async () => {
     if (redirectedFromReviewScreen) {
@@ -240,6 +249,9 @@ const FibUnderwritingJourneyContainer = memo(function (props: Props) {
           isHidden: redirectedFromReviewScreen ? true : false,
         }}
         disableFirstButton={disableFirstButton}
+        inputName={inputName}
+        setInputName={setInputName}
+        disableSecondButton={disableSecondButton}
       />
     </FIBProgressBar.ProgressBarContext.Provider>
   );

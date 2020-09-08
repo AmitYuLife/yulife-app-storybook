@@ -33,13 +33,14 @@ const _FibInputKg = (props: ConnectedProps) => {
 
   return (
     <InputField
-      autoFocus={false}
+      autoFocus={true}
       value={weight.kg}
       onChangeText={validateKg}
       maxLength={3}
       sideLabel="kg"
       style={StyleSheet.flatten([styles.textInput, isFocus ? {} : styles.textInputOnBlur])}
       hasFocusActive={setIsFocus}
+      width={48}
     />
   );
 };

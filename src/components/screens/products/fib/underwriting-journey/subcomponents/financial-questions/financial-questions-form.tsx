@@ -140,7 +140,7 @@ function RadioInput(props: RadioProps) {
 }
 
 const styles = StyleSheet.create({
-  wrapper: { width: Style.DEVICE_WIDTH - 63, alignSelf: "center", marginTop: 30 },
+  wrapper: { width: Style.DEVICE_WIDTH - 63, alignSelf: "center", marginTop: 30, marginBottom: 60 },
   radioWrapper: {
     flexDirection: "row",
   },

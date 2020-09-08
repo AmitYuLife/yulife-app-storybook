@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { connect, ConnectedProps } from "react-redux";
 import AlcoholBottle from "./alcohol-bottle";
 import AlcoholBottleGreyscale from "./alcohol-bottle-greyscale";
@@ -14,7 +14,7 @@ type Props = ConnectedProps<typeof redux>;
 
 const _AlcoholIntakeInput = (props: Props) => {
   const { weeklyAlcohol, updateWeeklyAlcohol } = props;
-  const displayValue = weeklyAlcohol;
+  const [displayValue, setDisplayValue] = useState(weeklyAlcohol);
   const sliderPercentageFilled = (displayValue / ALCOHOL_DRINK_LIMIT) * 100;
 
   function handleChange(val: number) {
@@ -41,7 +41,7 @@ const _AlcoholIntakeInput = (props: Props) => {
           </View>
         </View>
         <View style={styles.sliderContainer}>
-          <SliderInput value={displayValue} onValueChange={handleChange} />
+          <SliderInput value={displayValue} onValueChange={setDisplayValue} onSlidingComplete={handleChange} />
         </View>
       </View>
     </View>

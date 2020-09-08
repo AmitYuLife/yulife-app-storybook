@@ -1,32 +1,25 @@
-import React, { useState } from "react";
-import { connect } from "react-redux";
+import React, { useState, memo } from "react";
 import { View, ViewStyle, TextStyle, StyleSheet } from "react-native";
-import { updateFIBAnswerValue } from "@redux/product/product.actions";
-import { IReduxState } from "@redux/_core/reducers";
-import { getFIBState } from "@redux/product/product.selectors";
 import { InputField } from "../input-field";
 import { Colours, Style } from "@styles";
-import { FIB_YOUR_NAME_SCREEN_ID } from "../../../../containers/products/fib/data/underwriting-journey-data";
 
-type ConnectedProps = ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps;
+interface FibInputNameProps {
+  inputName: string;
+  setInputName: (text: string) => void;
+}
 
-const _FibInputName = (props: ConnectedProps) => {
-  const { fullName, updateName } = props;
-  const [inputValue, setInputValue] = useState(fullName);
+const _FibInputName = (props: FibInputNameProps) => {
+  const { inputName, setInputName } = props;
   const [isFocus, setIsFocus] = useState(false);
 
   return (
     <View style={styles.wrapper}>
       <InputField
-        autoFocus={false}
+        autoFocus={true}
         isLarge={true}
-        value={inputValue}
+        value={inputName}
         onChangeText={(value: string) => {
-          if (value) {
-            updateName(value);
-          }
-
-          setInputValue(value);
+          setInputName(value);
         }}
         maxLength={48}
         width={Style.DEVICE_WIDTH - 64}
@@ -40,17 +33,7 @@ const _FibInputName = (props: ConnectedProps) => {
   );
 };
 
-const mapStateToProps = (state: IReduxState) => ({
-  fullName: getFIBState(state).answers.fib_your_name,
-});
-
-const mapDispatchToProps = {
-  updateName: (value: string) => updateFIBAnswerValue({ key: FIB_YOUR_NAME_SCREEN_ID, value }),
-};
-
-const redux = connect(mapStateToProps, mapDispatchToProps);
-
-export const FibInputName = redux(_FibInputName);
+export const FibInputName = memo(_FibInputName);
 
 const styles = {
   wrapper: {
@@ -64,12 +47,11 @@ const styles = {
     borderTopWidth: 0,
     borderLeftWidth: 0,
     borderRightWidth: 0,
-    borderRadius: 0,
     borderBottomColor: Colours.primary.p500,
     borderBottomWidth: 2,
   } as TextStyle,
   textInputOnBlur: {
-    borderBottomColor: Colours.neutral.n600,
+    borderBottomColor: Colours.neutral.n200,
   } as TextStyle,
   shadow: {
     justifyContent: "flex-start",

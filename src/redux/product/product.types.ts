@@ -1,7 +1,7 @@
 import { PackageId } from "../../components/screens/products/fib/fib.helper";
 import { Cover } from "@components/containers/products/fib/fib.types";
 import { RehydrateAction } from "redux-persist";
-import { logOut } from "@redux/user/user.actions";
+import { logOut, getUserSuccess } from "@redux/user/user.actions";
 export const UPDATE_FIB_VALUE = "UPDATE_FIB_VALUE";
 export const UPDATE_FIB_MEDICAL_VALUE = "UPDATE_FIB_MEDICAL_VALUE";
 export const UPDATE_FIB_ANSWER_VALUE = "UPDATE_FIB_ANSWER_VALUE";
@@ -70,4 +70,5 @@ export type ProductActionTypes<T> =
   | UpdateFIBStoreAction<T>
   | ResetFIBStoreAction
   | RehydrateAction
-  | ReturnType<typeof logOut>;
+  | ReturnType<typeof logOut>
+  | ReturnType<typeof getUserSuccess>;
