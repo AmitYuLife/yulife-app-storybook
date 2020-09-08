@@ -12,7 +12,6 @@ import {
   FIB_LIFESTYLE_HEIGHT_SCREEN_ID,
   FIB_LIFESTYLE_WEIGHT_SCREEN_ID,
 } from "../../components/containers/products/fib/data/underwriting-journey-data";
-import { UseInternationalFormat } from "../../components/containers/products/fib/fib.helpers";
 
 export const getFIBState = (state: IReduxState): FIBStore => {
   return state.product.fib;
@@ -23,9 +22,7 @@ export const getBirthday = (state: IReduxState): string => {
   const now = moment();
   const { birthDay, birthMonth, birthYear } = state.product.fib.answers;
 
-  const formatted = moment(
-    `${birthYear}-${UseInternationalFormat(birthMonth)}-${UseInternationalFormat(birthDay)}`
-  ).format(DATE_FORMAT);
+  const formatted = moment(`${birthYear}-${birthMonth}-${birthDay}`, "YYYY-M-D").format(DATE_FORMAT);
 
   const placeholder = now.clone().subtract(30, "years").format(DATE_FORMAT);
 

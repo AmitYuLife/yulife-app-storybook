@@ -75,6 +75,11 @@ export interface ChallengePayload {
   value?: number | null;
 }
 
+export interface LifeInsuranceTopUpsUserAnswers {
+  questionId?: string | null;
+  value?: string | null;
+}
+
 export interface MobileConsentInput {
   mobileHealth?: boolean | null;
   marketing?: boolean | null;

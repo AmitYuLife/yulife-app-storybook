@@ -3,7 +3,7 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { CoverType } from "./globalTypes";
+import { CoverType, LifeInsuranceTopUpsUserAnswers } from "./globalTypes";
 
 // ====================================================
 // GraphQL query operation: GetLifeInsuranceTopUps
@@ -24,6 +24,7 @@ export interface GetLifeInsuranceTopUps_getLifeInsuranceTopUps {
   newEarnRate: number | null;
   descriptionHeading: string | null;
   term: number | null;
+  actualCost: number | null;
   avatarRemoteFiles: GetLifeInsuranceTopUps_getLifeInsuranceTopUps_avatarRemoteFiles | null;
 }
 
@@ -35,4 +36,5 @@ export interface GetLifeInsuranceTopUpsVariables {
   grossSalary?: number | null;
   coverType?: CoverType | null;
   customCoverPercentage?: number | null;
+  userAnswers?: (LifeInsuranceTopUpsUserAnswers | null)[] | null;
 }

@@ -13695,6 +13695,20 @@
               "ofType": null
             },
             "defaultValue": null
+          },
+          {
+            "name": "userAnswers",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "INPUT_OBJECT",
+                "name": "LifeInsuranceTopUpsUserAnswers",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
           }
         ],
         "interfaces": null,
@@ -13734,6 +13748,37 @@
             "deprecationReason": null
           }
         ],
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "LifeInsuranceTopUpsUserAnswers",
+        "description": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "questionId",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "value",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
         "possibleTypes": null
       },
       {
@@ -13850,6 +13895,18 @@
             "deprecationReason": null
           },
           {
+            "name": "actualCost",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Float",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "payoutAmount",
             "description": null,
             "args": [],
@@ -13859,7 +13916,7 @@
               "ofType": null
             },
             "isDeprecated": true,
-            "deprecationReason": "Logic in the client, field no longer need it"
+            "deprecationReason": "Logic in the client, field no longer needed"
           },
           {
             "name": "monthlyAmountProtected",
@@ -13871,7 +13928,7 @@
               "ofType": null
             },
             "isDeprecated": true,
-            "deprecationReason": "Logic in the client, field no longer need it"
+            "deprecationReason": "Logic in the client, field no longer needed"
           }
         ],
         "inputFields": null,

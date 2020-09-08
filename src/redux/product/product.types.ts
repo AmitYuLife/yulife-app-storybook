@@ -7,6 +7,7 @@ export const UPDATE_FIB_MEDICAL_VALUE = "UPDATE_FIB_MEDICAL_VALUE";
 export const UPDATE_FIB_ANSWER_VALUE = "UPDATE_FIB_ANSWER_VALUE";
 export const RESET_FIB_ANSWERS = "RESET_FIB_ANSWERS";
 export const RESET_FIB_MEDICAL_VALUE = "RESET_FIB_MEDICAL_VALUE";
+export const RESET_FIB_UNDERWRITING_JOURNEY = "RESET_FIB_UNDERWRITING_JOURNEY";
 
 export interface IProductStore {
   fib: FIBStore;
@@ -55,6 +56,8 @@ export interface FIBStore {
   medicalHistory: Record<string, boolean>;
   quoteDate: string;
   lastQuestionId: string;
+  hasPriceChanged: boolean;
+  actualCost: number;
 }
 
 export interface UpdateFIBStoreAction<T> {
@@ -63,7 +66,7 @@ export interface UpdateFIBStoreAction<T> {
 }
 
 export interface ResetFIBStoreAction {
-  type: typeof RESET_FIB_ANSWERS | typeof RESET_FIB_MEDICAL_VALUE;
+  type: typeof RESET_FIB_ANSWERS | typeof RESET_FIB_MEDICAL_VALUE | typeof RESET_FIB_UNDERWRITING_JOURNEY;
 }
 
 export type ProductActionTypes<T> =

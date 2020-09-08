@@ -21,7 +21,7 @@ import { YuScreenLayout } from "@components/screens/member/yu-screen/yu-screen-l
 import { YuScreenLoading } from "@components/screens/member/yu-screen/yu-screen-loading";
 import useCacheFirstAndNetworkOnAppearQuery from "@services/hooks/useCacheFirstAndNetworkOnAppearQuery";
 import { getFIBState } from "@redux/product/product.selectors";
-import { updateFIBValue, resetFIBAnswers, resetFIBMedicalHistoryValue } from "@redux/product/product.actions";
+import { resetFIBUnderwritingJourney } from "@redux/product/product.actions";
 import {
   navigateToProductScreen,
   navigateToAvatarCreationScreen,
@@ -49,10 +49,7 @@ function YuScreenContainer({
   const { data } = useCacheFirstAndNetworkOnAppearQuery<GetYulifer>(GQL_QUERY_GET_YULIFER, componentId);
 
   const resetFIBJourney = useCallback(() => {
-    dispatch(resetFIBAnswers());
-    dispatch(resetFIBMedicalHistoryValue());
-    dispatch(updateFIBValue({ key: "lastQuestionId", value: "" }));
-    dispatch(updateFIBValue({ key: "quoteDate", value: "" }));
+    dispatch(resetFIBUnderwritingJourney());
   }, [dispatch]);
 
   const handleProductPress = useCallback(

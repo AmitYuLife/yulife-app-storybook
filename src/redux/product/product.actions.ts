@@ -7,6 +7,7 @@ import {
   UPDATE_FIB_ANSWER_VALUE,
   RESET_FIB_ANSWERS,
   RESET_FIB_MEDICAL_VALUE,
+  RESET_FIB_UNDERWRITING_JOURNEY,
 } from "./product.types";
 
 export function updateFIBValue<T>(payload: FIBStoreValue<T>): ProductActionTypes<T> {
@@ -39,5 +40,11 @@ export function updateFIBMedicalHistoryValue(payload: { key: string; value: bool
 export function resetFIBMedicalHistoryValue<T>(): ProductActionTypes<T> {
   return {
     type: RESET_FIB_MEDICAL_VALUE,
+  };
+}
+
+export function resetFIBUnderwritingJourney<T>(): ProductActionTypes<T> {
+  return {
+    type: RESET_FIB_UNDERWRITING_JOURNEY,
   };
 }
