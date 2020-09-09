@@ -145,6 +145,10 @@ export default [
   },
   // modals
   {
+    name: MODALS.leaderboardLean,
+    component: require("../components/containers/member/leaderboard/leaderboard-lean/leaderboard-lean").default,
+  },
+  {
     name: MODALS.challengeUnavailable,
     component: require("../components/modals/challenge-unavailable/challenge-unavailable.modal").default,
   },

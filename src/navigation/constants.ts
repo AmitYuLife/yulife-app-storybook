@@ -59,6 +59,7 @@ export const MODALS = {
   genericConnectionError: "yulife.modals.GenericConnectionError",
   leaderboards: "yulife.modals.Leaderboards",
   leaderboardInvite: "yulife.modals.LeaderboardInvite",
+  leaderboardLean: "yulife.modals.LeaderboardLean",
   levelUnavailable: "yulife.modals.LevelUnavailable",
   pushNotifications: "yulife.modals.PushNotifications",
   rewards: "yulife.modals.Rewards",

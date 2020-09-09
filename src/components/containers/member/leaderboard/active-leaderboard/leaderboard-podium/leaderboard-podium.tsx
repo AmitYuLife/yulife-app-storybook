@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { View, Animated, Platform } from "react-native";
 import { Yumoji } from "@atoms";
 import { GetLeaderboard_getLeaderboard_avatarRemoteFiles } from "@graphql/_core/schema";
@@ -7,7 +7,6 @@ import styles, { dynamicStyles, LEADERBOARD_PODIUM_HEIGHT } from "./leaderboard-
 import { PodiumAsset } from "./assets/podium";
 import { LeaderboardTitle } from "./subcomponents/leaderboard-title";
 import { goToLeaderboardsList, goToLeaderboardInfo } from "./helpers/routing";
-import { ScrollValueContext } from "../leaderboard-content/leaderboard-content.context";
 
 export interface IAvatarRemoteFiles {
   uriSet: Array<GetLeaderboard_getLeaderboard_avatarRemoteFiles["pngFull"]>;
@@ -18,10 +17,16 @@ export interface ILeaderboardPodiumProps {
   uriSet?: string[];
   hideAvatars?: boolean;
   cropAmount?: number;
+  scrollValue?: Animated.Value;
 }
 
-const _LeaderboardPodium = ({ cropAmount, hideAvatars, uriSet, leaderboardName }: ILeaderboardPodiumProps) => {
-  const scrollValue = useContext(ScrollValueContext);
+const _LeaderboardPodium = ({
+  cropAmount,
+  hideAvatars,
+  uriSet,
+  leaderboardName,
+  scrollValue,
+}: ILeaderboardPodiumProps) => {
   const [translateY, setTranslateY] = useState(0 as number | Animated.AnimatedInterpolation);
 
   useEffect(() => {

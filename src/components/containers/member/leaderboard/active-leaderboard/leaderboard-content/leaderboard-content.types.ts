@@ -1,6 +1,6 @@
-import { ILeaderboardRankItemProps, ILeaderboardPadProps } from "./items";
+import { ILeaderboardRankItemProps, ILeaderboardPadProps } from "../../items";
+import { IPadWithLoaderProps } from "../../items/pad-with-loader";
 import { ILeaderboardPodiumProps } from "../leaderboard-podium/leaderboard-podium";
-import { IPadWithLoaderProps } from "./items/pad-with-loader";
 
 export enum LEADERBOARD_LIST_ITEM {
   RANK_ITEM = "RANK_ITEM",

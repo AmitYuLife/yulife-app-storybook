@@ -1,6 +1,6 @@
 import { ILeaderboardListItem, LEADERBOARD_LIST_ITEM } from "../leaderboard-content.types";
 import { TOP_PADDING_HEIGHT } from "./constants";
-import { LEADERBOARD_ITEM_HEIGHT } from "../items/leaderboard-rank-item/subcomponents";
+import { LEADERBOARD_ITEM_HEIGHT } from "../../../items/leaderboard-rank-item/subcomponents";
 
 export function getItemLayout(
   data: Array<ILeaderboardListItem> | null | undefined,

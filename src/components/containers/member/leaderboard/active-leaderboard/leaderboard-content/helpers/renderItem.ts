@@ -1,9 +1,9 @@
 import { createElement } from "react";
 import { ListRenderItemInfo } from "react-native";
 import { ILeaderboardListItem, LEADERBOARD_LIST_ITEM } from "../leaderboard-content.types";
-import { LeaderboardPad } from "../items/leaderboard-pad";
-import { ListRankItem } from "../items/leaderboard-rank-item/list-rank-item";
-import { PadWithLoader } from "../items/pad-with-loader";
+import { LeaderboardPad } from "../../../items/leaderboard-pad";
+import { ListRankItem } from "../../../items/leaderboard-rank-item/list-rank-item";
+import { PadWithLoader } from "../../../items/pad-with-loader";
 import { LeaderboardPodium } from "../../leaderboard-podium";
 
 export function renderItem({ item }: ListRenderItemInfo<ILeaderboardListItem>): React.ReactElement | null {

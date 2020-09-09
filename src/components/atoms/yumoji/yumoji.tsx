@@ -38,7 +38,6 @@ export const Yumoji = Object.assign(MemoizedYumoji, {
 const styles = StyleSheet.create({
   wrapper: {
     overflow: "hidden",
-    justifyContent: "flex-start",
     height: BODY_AVATAR_HEIGHT,
     width: BODY_AVATAR_WIDTH,
     alignItems: "center",

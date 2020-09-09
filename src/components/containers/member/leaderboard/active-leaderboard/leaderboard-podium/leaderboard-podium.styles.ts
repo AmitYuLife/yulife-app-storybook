@@ -2,9 +2,6 @@ import { Style } from "@styles";
 import { StyleSheet, Platform, ViewStyle } from "react-native";
 import { Yumoji } from "@atoms";
 
-export const BODY_AVATAR_HEIGHT = Style.SCALE_UP_AND_DOWN(128.5);
-export const BODY_AVATAR_WIDTH = Style.SCALE_UP_AND_DOWN(53);
-
 export const LEADERBOARD_PODIUM_HEIGHT = Platform.select({ ios: Style.SCALE_UP_AND_DOWN(320), android: 328 });
 
 const styles = StyleSheet.create({

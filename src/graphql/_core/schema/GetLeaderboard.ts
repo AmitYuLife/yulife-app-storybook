@@ -20,6 +20,9 @@ export interface GetLeaderboard_getLeaderboard {
   name: string | null;
   coins: number | null;
   steps: number | null;
+  userId: string | null;
+  isTarget: boolean | null;
+  position: number | null;
   avatarRemoteFiles: GetLeaderboard_getLeaderboard_avatarRemoteFiles | null;
 }
 
@@ -30,4 +33,6 @@ export interface GetLeaderboard {
 export interface GetLeaderboardVariables {
   sortBy?: string | null;
   leaderboardId?: string | null;
+  limit?: number | null;
+  targetId?: string | null;
 }
