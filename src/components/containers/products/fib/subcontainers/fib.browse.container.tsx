@@ -2,7 +2,7 @@ import React, { memo, useState, useEffect } from "react";
 import moment from "moment";
 import { useQuery } from "@apollo/react-hooks";
 import { connect } from "react-redux";
-import { View, Linking } from "react-native";
+import { View, Linking, Platform } from "react-native";
 import { Text } from "@atoms";
 import { FibBrowseScreen, FibCustomCoverScreen } from "@screens";
 import {
@@ -10,7 +10,6 @@ import {
   GetLifeInsuranceToUpsData,
   GetLifeInsuranceTopUpsVars,
 } from "@graphql/products";
-import Logger from "@services/logging/logger";
 
 import { FIB_EDIT_SALARY, FIB_FAQ, FibLocalNavigation, FIB_CUSTOM_PERCENTAGE, FIB_FEEDBACK_FORM } from "../fib.types";
 import fibFaqItems from "../data/faq-fib-data";
@@ -23,6 +22,9 @@ import { IReduxState } from "@redux/_core/reducers";
 import { IFaq } from "@components/screens/products/fib/browse-packages/subcomponents/faqs/faq";
 import { getUserDateOfBirth } from "@redux/user/user.selectors";
 import { calculatePayoutCalculatorItems, packages, useCover, calculatePayoutAmount } from "../fib.helpers";
+import { handleOpenWebView } from "@navigation/utils";
+import { ROUTES } from "@navigation/constants";
+import Logger from "@services/logging/logger";
 
 interface IFibContainer {
   navigation: FibLocalNavigation;
@@ -33,10 +35,14 @@ const documents: IFaq[] = fibDocumentsItems.map((document) => ({
   redirectType: "external",
   label: document.question,
   onPress: async () => {
-    try {
-      await Linking.openURL(document.url);
-    } catch (e) {
-      Logger.logMixpanelError(e, `${document.id}_error`);
+    if (Platform.OS === "ios") {
+      handleOpenWebView(ROUTES.fib, { uri: document.url, title: "Policy" });
+    } else {
+      try {
+        await Linking.openURL(document.url);
+      } catch (e) {
+        Logger.logMixpanelError(e, `${document.id}_error`);
+      }
     }
   },
   iconSvgXml: document.iconSvgXml,

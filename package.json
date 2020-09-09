@@ -84,6 +84,7 @@
         "react-native-push-notification": "^3.1.9",
         "react-native-spring-scrollview": "^2.0.23",
         "react-native-svg": "^12.1.0",
+        "react-native-webview": "^10.8.3",
         "react-redux": "^7.2.0",
         "redux": "^4.0.5",
         "redux-persist": "^6.0.0",

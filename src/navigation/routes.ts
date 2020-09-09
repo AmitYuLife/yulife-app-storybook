@@ -143,6 +143,11 @@ export default [
     name: ROUTES.fib,
     component: require("../components/containers/products/fib/fib.container").default,
   },
+  // webview
+  {
+    name: ROUTES.webView,
+    component: require("../components/containers/web-view/web-view.container").default,
+  },
   // modals
   {
     name: MODALS.challengeUnavailable,

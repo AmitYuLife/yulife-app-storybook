@@ -1,7 +1,6 @@
 import { useMutation } from "@apollo/react-hooks";
 import { RedeemRewardMutationTuple, GQL_MUTATION_REDEEM_REWARD } from "@graphql/rewards";
 import React, { FC, useCallback, useMemo, useEffect } from "react";
-import { Alert, Linking } from "react-native";
 import Config from "react-native-config";
 import { connect } from "react-redux";
 import { GetRewards_getRewards } from "../../../../../graphql/_core/schema";
@@ -9,6 +8,8 @@ import { IReduxState } from "../../../../../redux/_core/reducers";
 import { getOfflineState } from "../../../../../redux/app/app.selectors";
 import Logger from "../../../../../services/logging/logger";
 import { WegiftRewardDetailsScreen } from "../../../../screens";
+import { handleOpenWebView } from "@navigation/utils";
+import { Platform } from "react-native";
 import { handleLinkPress } from "@services/app-link";
 
 interface IProps {
@@ -57,51 +58,47 @@ const LinkRewardDetailsContainer: FC<Props> = (props) => {
   const onRewardsTabPress = useCallback(() => onTabChange("rewards", componentId), [componentId, onTabChange]);
   const onPurchasesTabPress = useCallback(() => onTabChange("purchases", componentId), [componentId, onTabChange]);
 
-  const handlePolicyPress = useMemo(() => handleLinkPress(Config.REWARDS_POLICY_URL), []);
-  const handleTermsPress = useMemo(() => handleLinkPress(terms_and_conditions_url), [terms_and_conditions_url]);
+  const handlePolicyPress = useMemo(() => {
+    return () => handleOpenWebView(componentId, { uri: Config.REWARDS_POLICY_URL, title: "Rewards Policy" });
+  }, [componentId]);
+
+  const handleTermsPress = useMemo(() => {
+    const uri = terms_and_conditions_url;
+
+    if (Platform.OS === "ios") {
+      return () => handleOpenWebView(componentId, { uri, title: "T&Cs" });
+    }
+
+    return handleLinkPress(terms_and_conditions_url);
+  }, [componentId, terms_and_conditions_url]);
 
   const [redeemReward, { loading }]: RedeemRewardMutationTuple = useMutation(GQL_MUTATION_REDEEM_REWARD);
 
-  const handleSubmit = useCallback(() => {
+  const handleSubmit = useCallback(async () => {
     const [{ value }] = available_denominations;
 
-    Alert.alert(
-      uiSettings.alertHeading || "Claim reward",
-      uiSettings.alertSubheading || `You will be redirected to ${name}.`,
-      [
-        { text: uiSettings.alertCancelLabel || "Cancel", style: "cancel" },
-        {
-          onPress: async () => {
-            try {
-              await redeemReward({ variables: { id: code, amount: value } });
-            } catch (e) {
-              Logger.logMixpanelError(e, "linkRewardDetailsContainer");
-            }
+    try {
+      await redeemReward({ variables: { id: code, amount: value } });
+    } catch (e) {
+      Logger.logMixpanelError(e, "linkRewardDetailsContainer");
+    }
 
-            const supported = await Linking.canOpenURL(availability);
+    Logger.logEvent("reward_redeem_pressed", {
+      reward_amount: 0,
+      reward_code: code,
+      reward_name: name,
+      reward_yucoin_spent: 0,
+    });
 
-            if (supported) {
-              Logger.logEvent("reward_redeem_pressed", {
-                reward_amount: 0,
-                reward_code: code,
-                reward_name: name,
-                reward_yucoin_spent: 0,
-              });
-              await Linking.openURL(availability);
-            } else {
-              // Record the fact that the user didn't see the link.
-              Logger.logEvent("reward_redeem_link_unsupported", {
-                reward_code: code,
-                reward_name: name,
-              });
-            }
-          },
-          text: uiSettings.alertOkLabel || "OK",
-        },
-      ]
-    );
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    function onWebViewFail() {
+      Logger.logEvent("reward_redeem_link_unsupported", {
+        reward_code: code,
+        reward_name: name,
+      });
+    }
+
+    handleOpenWebView(componentId, { uri: availability, title: "Rewards", onBothLinksFail: onWebViewFail });
+  }, [available_denominations, code, name, redeemReward, componentId, availability]);
 
   return (
     <WegiftRewardDetailsScreen

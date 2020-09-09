@@ -1,6 +1,6 @@
 import { useQuery } from "@apollo/react-hooks";
 import React, { memo, useState, useEffect } from "react";
-import { View, Linking } from "react-native";
+import { View, Linking, Platform } from "react-native";
 import { connect, useDispatch } from "react-redux";
 import { Text } from "@atoms";
 import { FibLocalNavigation, FIB_FEEDBACK_FORM, FIB_FAQ } from "../fib.types";
@@ -18,10 +18,12 @@ import { Package } from "@components/screens/products/fib/browse-packages/fib.br
 import { getUserDateOfBirth } from "@redux/user/user.selectors";
 import { IFaq } from "@components/screens/products/fib/browse-packages/subcomponents/faqs/faq";
 import fibDocumentsItems, { policyScheduleDocument } from "../data/documents-data";
-import Logger from "@services/logging/logger";
 import fibFaqItems from "../data/faq-fib-data";
 import moment from "moment";
 import { updateFIBValue } from "@redux/product/product.actions";
+import { ROUTES } from "@navigation/constants";
+import { handleOpenWebView } from "@navigation/utils";
+import Logger from "@services/logging/logger";
 
 type ConnectedState = ReturnType<typeof mapStateToProps>;
 
@@ -36,10 +38,14 @@ const documents: IFaq[] = [...fibDocumentsItems, policyScheduleDocument].map((do
   redirectType: "external",
   label: document.question,
   onPress: async () => {
-    try {
-      await Linking.openURL(document.url);
-    } catch (e) {
-      Logger.logMixpanelError(e, `${document.id}_error`);
+    if (Platform.OS === "ios") {
+      handleOpenWebView(ROUTES.fib, { uri: document.url, title: "Policy" });
+    } else {
+      try {
+        await Linking.openURL(document.url);
+      } catch (e) {
+        Logger.logMixpanelError(e, `${document.id}_error`);
+      }
     }
   },
   iconSvgXml: document.iconSvgXml,

@@ -16,7 +16,7 @@ import Logger from "../../../../../services/logging/logger";
 import { BlurProvider } from "../../../../atoms";
 import { ListPicker } from "../../../../molecules";
 import { AviosRewardDetailsScreen } from "../../../../screens";
-import { handleLinkPress } from "@services/app-link";
+import { handleOpenWebView } from "@navigation/utils";
 
 enum Programmes {
   aerLingus = "aerclub",
@@ -111,12 +111,14 @@ const AviosRewardDetailsContainer: FC<Props> = (props) => {
   const onRewardsTabPress = useCallback(() => onTabChange("rewards", componentId), [onTabChange, componentId]);
   const onPurchasesTabPress = useCallback(() => onTabChange("purchases", componentId), [onTabChange, componentId]);
 
-  const handlePolicyPress = useMemo(() => handleLinkPress(Config.REWARDS_POLICY_URL), []);
-  // const handleTermsPress = useMemo(() => handleLinkPress(`${Config.API_URL}/docs/avios-terms.pdf`), []);
-  const handleAviosTermsPress = useMemo(
-    () => handleLinkPress("https://www.avios.com/gb/en_gb/my-account/log-into-avios"),
-    []
-  );
+  const handlePolicyPress = useMemo(() => {
+    return () => handleOpenWebView(componentId, { uri: Config.REWARDS_POLICY_URL, title: "Rewards Policy" });
+  }, [componentId]);
+
+  const handleAviosTermsPress = useMemo(() => {
+    const uri = "https://www.avios.com/gb/en_gb/my-account/log-into-avios";
+    return () => handleOpenWebView(componentId, { uri, title: "Avios" });
+  }, [componentId]);
 
   const [picker, setPicker] = useState("");
   const [amount, setAmount] = useState(amountList[0]);

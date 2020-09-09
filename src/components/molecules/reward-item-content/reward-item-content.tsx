@@ -102,7 +102,7 @@ const RewardItemContent: SFC<IProps> = ({
               onPress: onPressTerms,
             },
             {
-              label: "Reward policy",
+              label: "Rewards policy",
               onPress: onPressPolicy,
             },
           ]}

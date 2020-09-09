@@ -71,7 +71,7 @@ class RewardsConfirmed extends React.PureComponent<Props> {
             onPressCtaSecondary={onPressConfirm}
             labelCtaSecondary="need help? talk to us"
             onPressCtaTertiary={onPressPolicy}
-            labelCtaTertiary="Reward policy"
+            labelCtaTertiary="Rewards policy"
           />
           <Pad height={50} />
         </ScrollView>
