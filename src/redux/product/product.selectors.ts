@@ -94,7 +94,7 @@ export const getReviewAnswers = (state: IReduxState): any => {
 
     if (item.id === FIB_LIFESTYLE_HEIGHT_SCREEN_ID) {
       const heightObject = state.product.fib.answers.height;
-      const height = heightObject.unit === "cm" ? `${heightObject.cm}cm` : `${heightObject.ft}${heightObject.in}ft`;
+      const height = heightObject.unit === "cm" ? `${heightObject.cm}cm` : `${heightObject.ft}' ${heightObject.in}''`;
 
       icon = item.icon;
       title = item.title;
@@ -104,7 +104,7 @@ export const getReviewAnswers = (state: IReduxState): any => {
 
     if (item.id === FIB_LIFESTYLE_WEIGHT_SCREEN_ID) {
       const weightObject = state.product.fib.answers.weight;
-      const weight = weightObject.unit === "kg" ? `${weightObject.kg}kg` : `${weightObject.lb}lb`;
+      const weight = weightObject.unit === "kg" ? `${weightObject.kg}kg` : `${weightObject.st}st ${weightObject.lb}lb`;
 
       icon = item.icon;
       title = item.title;

@@ -116,7 +116,7 @@ const _FibInputBirth = (props: ConnectedProps) => {
         onBackSpace={handleBackspaceMonth}
         style={StyleSheet.flatten([styles.textInput, isMonthFocus ? {} : styles.textInputOnBlur])}
         hasFocusActive={setIsMonthFocus}
-        width={40}
+        width={48}
       />
       <InputField
         autoFocus={false}

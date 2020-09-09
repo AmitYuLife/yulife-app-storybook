@@ -50,7 +50,7 @@ const FibUnderwritingJourneyContainer = memo(function (props: Props) {
     data[0];
 
   const [currentQuestion, setCurrentQuestion] = useState(initialQuestion);
-  const activeIndex = data.findIndex((item) => item.id === currentQuestion.id);
+  const activeIndex = data.findIndex((item) => item.id === currentQuestion?.id) || 0;
 
   const [inputName, setInputName] = useState(fibAnswers.fib_your_name);
 
