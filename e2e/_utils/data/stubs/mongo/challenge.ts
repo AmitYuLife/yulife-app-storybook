@@ -1,6 +1,6 @@
 import { generateRandomMongoId } from '../../utils';
 import { IDatabaseItem } from '../../types';
-import { CUSTOMER_2, CUSTOMER_6, CUSTOMER_7, CUSTOMER_8, CUSTOMER_9, CUSTOMER_14, CUSTOMER_15, CUSTOMER_18, CUSTOMER_17, CUSTOMER_3 } from '../postgres/customers';
+import { CUSTOMER_2, CUSTOMER_6, CUSTOMER_7, CUSTOMER_8, CUSTOMER_9, CUSTOMER_14, CUSTOMER_15, CUSTOMER_18, CUSTOMER_17, CUSTOMER_3, CUSTOMER_19, CUSTOMER_16 } from '../postgres/customers';
 import moment = require('moment');
 import { SHORT_STROLL_MILESTONE_1, LONG_WALK_MILESTONE_1, MEDITATION_MILESTONE_1 } from './map_milestone_templates';
 import { MEDITATION_1, LONG_WALK_1, SHORT_STROLL_1 } from './map_level_slot_templates';
@@ -833,6 +833,7 @@ export const CHALLENGE_USER_15_D = {
     }
 } as IDatabaseItem;
 
+
 export const CHALLENGE_USER_17_A = {
     type: "mongo",
     modelName: "challenge",
@@ -864,8 +865,6 @@ export const CHALLENGE_USER_17_A = {
                 isNewType: true,
             },
         ],
-
-
     }
 } as IDatabaseItem;
 
@@ -938,5 +937,39 @@ export const CHALLENGE_USER_18_B = {
             },
         ],
 
+    }
+} as IDatabaseItem;
+
+export const CHALLENGE_USER_19 = {
+    type: "mongo",
+    modelName: "challenge",
+    data: {
+        ...CHALLENGE_TEMPLATE.data,
+        _id: generateRandomMongoId(),
+        userId: CUSTOMER_19.data.customerId,
+        startTime: moment().subtract(3, "days").toDate(),
+        startDateTime: moment().subtract(3, "days").toDate(),
+        endDateTime: moment().subtract(3, "days").toDate(),
+        level: 2,
+        status: "completed",
+        levelSlotTemplateId: "DAILY_PASSIVE_001",
+        passive: true,
+        incomingData: {
+            steps: 50
+        },
+        milestoneLog: [
+            {
+                completionData: [],
+                _id: generateRandomMongoId(),
+                data: {
+                    meditation: 0,
+                    steps: 50
+                },
+                yuCoinAwarded: 60,
+                completed: moment().subtract(3, "day").toDate(),
+                id: SHORT_STROLL_MILESTONE_1.data.id,
+                isNewType: true,
+            },
+        ],
     }
 } as IDatabaseItem;
