@@ -7,23 +7,35 @@ import {
   IPadWithLoader,
 } from "../leaderboard-content.types";
 import { GetLeaderboard_getLeaderboard } from "@graphql/_core/schema";
-import { Animated, FlatList, Platform } from "react-native";
-import { ILeaderboardRankItemProps } from "../items";
-import { LEADERBOARD_ITEM_HEIGHT } from "../items/leaderboard-rank-item/subcomponents";
-import { RefObject } from "react";
+import { Platform, Animated } from "react-native";
+import { ILeaderboardRankItemProps } from "../../../items";
+import { LEADERBOARD_ITEM_HEIGHT } from "../../../items/leaderboard-rank-item/subcomponents";
 import { TOP_PADDING_HEIGHT } from "./constants";
+import { PAGE_SIZE } from "../../active-leaderboard.container";
 
-interface IResToListRefs {
-  scrollValue: Animated.Value;
-  flatListRef: RefObject<FlatList>;
+interface ResToListOutput {
+  flatListData: ILeaderboardListItem[];
+  floatingItemData: ILeaderboardRankItemProps;
+  currentUserOffset: number;
 }
 
-export const resToList = (
-  leaderboardItems: GetLeaderboard_getLeaderboard[],
-  currentUserId: string,
-  refs: IResToListRefs,
-  leaderboardName: string
-): { flatListData: ILeaderboardListItem[]; floatingItemData: ILeaderboardRankItemProps; currentUserOffset: number } => {
+interface ResToListArgs {
+  leaderboardItems: GetLeaderboard_getLeaderboard[];
+  currentUserId: string;
+  leaderboardName: string;
+  isRefetching: boolean;
+  isLoading: boolean;
+  scrollValue: Animated.Value;
+}
+
+export const resToList = ({
+  leaderboardItems,
+  currentUserId,
+  leaderboardName,
+  isRefetching,
+  scrollValue,
+  isLoading,
+}: ResToListArgs): ResToListOutput => {
   if (!leaderboardItems.length || !currentUserId) {
     return { flatListData: [], floatingItemData: null, currentUserOffset: 0 };
   }
@@ -38,11 +50,12 @@ export const resToList = (
     uri: null,
   };
 
-  addTopPadding(list, { leaderboardName, leaderboardItems });
-  addRankItems(list, currentUserData, { leaderboardItems, currentUserId, refs });
-  addBottomPadding(list);
-
   const userIndex = leaderboardItems.findIndex(({ id }) => id === `lead_${currentUserId}`);
+  const user = leaderboardItems[userIndex];
+
+  addTopPadding({ list, leaderboardName, leaderboardItems, isRefetching, scrollValue, isLoading });
+  addRankItems(list, currentUserData, { leaderboardItems, currentUserId });
+  addBottomPadding(list, user.position < PAGE_SIZE);
 
   return {
     flatListData: list,
@@ -55,16 +68,32 @@ export function getUriSet(leaderboardItems: GetLeaderboard_getLeaderboard[]) {
   return Array.from({ length: 3 }).map((_, index) => leaderboardItems[index]?.avatarRemoteFiles?.pngFull);
 }
 
-function addTopPadding(
-  list: ILeaderboardListItem[],
-  { leaderboardName, leaderboardItems }: { leaderboardName: string; leaderboardItems: GetLeaderboard_getLeaderboard[] }
-) {
+interface AddTopPaddingArgs {
+  scrollValue: Animated.Value;
+  isRefetching: boolean;
+  list: ILeaderboardListItem[];
+  isLoading: boolean;
+  leaderboardName: string;
+  leaderboardItems: GetLeaderboard_getLeaderboard[];
+}
+
+function addTopPadding({
+  isLoading,
+  list,
+  leaderboardName,
+  leaderboardItems,
+  isRefetching,
+  scrollValue,
+}: AddTopPaddingArgs) {
   if (Platform.OS === "ios") {
     const padding = {
       key: "TOP_PAD",
       type: LEADERBOARD_LIST_ITEM.PAD_WITH_LOADER,
       data: {
         height: TOP_PADDING_HEIGHT,
+        isRefetching,
+        scrollValue,
+        isLoading,
       },
     } as IPadWithLoader;
 
@@ -87,32 +116,32 @@ function addTopPadding(
 
 interface AddRanksItemArgs {
   leaderboardItems: GetLeaderboard_getLeaderboard[];
-  refs: IResToListRefs;
   currentUserId: string;
 }
 
 function addRankItems(
   list: ILeaderboardListItem[],
   currentUserData: ILeaderboardRankItemProps,
-  { leaderboardItems, refs, currentUserId }: AddRanksItemArgs
+  { leaderboardItems, currentUserId }: AddRanksItemArgs
 ) {
   for (let i = 0; i < leaderboardItems.length; i++) {
     const leaderboardItem = leaderboardItems[i];
     const isCurrentUser = leaderboardItem.id === `lead_${currentUserId}`;
     const data = {
       isCurrentUser,
-      animatedOpacity: isCurrentUser ? refs.scrollValue : null,
       uri: leaderboardItem.avatarRemoteFiles?.pngMini,
       name: leaderboardItem.name,
-      rank: i + 1,
+      rank: leaderboardItem.position,
       score: leaderboardItem.steps,
     };
 
-    list.push({
-      key: leaderboardItem.id,
-      type: LEADERBOARD_LIST_ITEM.RANK_ITEM,
-      data,
-    } as ILeaderboardRankItem);
+    if (leaderboardItem.position < PAGE_SIZE) {
+      list.push({
+        key: leaderboardItem.id,
+        type: LEADERBOARD_LIST_ITEM.RANK_ITEM,
+        data,
+      } as ILeaderboardRankItem);
+    }
 
     if (isCurrentUser) {
       Object.assign(currentUserData, data);
@@ -120,14 +149,12 @@ function addRankItems(
   }
 }
 
-function addBottomPadding(list: ILeaderboardListItem[]) {
-  const SPACE_FOR_NAV_BAR = 20;
-
+function addBottomPadding(list: ILeaderboardListItem[], userInPage: boolean) {
   list.push({
     key: "BOTTOM_PADDING",
     type: LEADERBOARD_LIST_ITEM.PAD,
     data: {
-      height: SPACE_FOR_NAV_BAR,
+      height: list.length < PAGE_SIZE || !userInPage ? LEADERBOARD_ITEM_HEIGHT + 16 : 8,
     },
   } as ILeaderboardPad);
 }

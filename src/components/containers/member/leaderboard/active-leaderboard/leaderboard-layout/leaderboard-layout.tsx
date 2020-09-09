@@ -3,7 +3,6 @@ import { View, StyleSheet, ViewStyle, Platform } from "react-native";
 import { Style } from "@styles";
 import { TOP_BAR_HEIGHT } from "@components/organisms/top-bar/top-bar.styles";
 import { TopBar } from "@components/organisms";
-import { LeaderboardSkeleton } from "./subcomponents/leaderboard-skeleton/leaderboard-skeleton";
 import { NavBar } from "@components/organisms";
 import { Navigation } from "react-native-navigation";
 import { ROUTES } from "@navigation/constants";
@@ -18,7 +17,6 @@ export const LeaderboardLayout = ({ children }: Props) => {
       <View style={styles.topPad} />
       {children}
       <View style={styles.bottomPad} />
-      <LeaderboardSkeleton />
       <View style={styles.topBarWrapper}>
         <TopBar onPressLeftIcon={openMenu} />
         <View style={styles.topBarShadow} />

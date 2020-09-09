@@ -1,76 +1,120 @@
-import React, { useRef, RefObject, useCallback, useContext } from "react";
-import { Animated, FlatList as _FlatList, View, StyleSheet, ViewStyle, RefreshControl, Platform } from "react-native";
+import React, { useRef, RefObject, useCallback, useState } from "react";
+import {
+  Animated,
+  FlatList as _FlatList,
+  View,
+  StyleSheet,
+  ViewStyle,
+  Platform,
+  LayoutChangeEvent,
+} from "react-native";
 import { resToList, getItemLayout, renderItem } from "./helpers";
-import { GetLeaderboard_getLeaderboard } from "@graphql/_core/schema";
+import { GetLeaderboard } from "@graphql/_core/schema";
 import { LeaderboardPodium } from "../leaderboard-podium";
-import { FloatingRankItem } from "./items/leaderboard-rank-item/floating-rank-item";
-import { ScrollValueContext } from "./leaderboard-content.context";
-import { ActiveLeaderboardLoadingContext } from "../active-leaderboard.context";
-import { NetworkStatus } from "apollo-client";
+import FloatingRankItem from "../../items/leaderboard-rank-item/floating-rank-item";
 import { getUriSet } from "./helpers/resToList";
+import { TOP_PADDING_HEIGHT } from "./helpers/constants";
+import { LEADERBOARD_ITEM_HEIGHT } from "../../items/leaderboard-rank-item/subcomponents";
+import { PAGE_SIZE } from "../active-leaderboard.container";
 
 export interface LeaderboardContentContainerProps {
-  leaderboardItems: GetLeaderboard_getLeaderboard[];
+  query: GetLeaderboard;
   leaderboardName: string;
   currentUserId: string;
+  isRefetching: boolean;
+  isLoading: boolean;
   onRefetch: () => void;
+  openModal: () => void;
 }
 
 const FlatList = Animated.createAnimatedComponent(_FlatList);
 
 const _LeaderboardContentContainer = ({
-  leaderboardItems,
+  query,
   leaderboardName,
   currentUserId,
   onRefetch,
+  openModal,
+  isRefetching,
+  isLoading,
 }: LeaderboardContentContainerProps) => {
-  const scrollValue = useRef(new Animated.Value(0)).current;
+  const [scrollValue] = useState(new Animated.Value(0));
+  const [flatListHeight, setFlatListHeight] = useState(0);
   const flatListRef: RefObject<_FlatList> = useRef();
-  const refs = { scrollValue, flatListRef };
-  const networkStatus = useContext(ActiveLeaderboardLoadingContext);
-  const list = resToList(leaderboardItems, currentUserId, refs, leaderboardName);
+  const leaderboardItems = query?.getLeaderboard || [];
+  const myLeaderboardItem = (query?.getLeaderboard || []).find((item) => item.userId === currentUserId);
+  const list = resToList({
+    leaderboardItems,
+    currentUserId,
+    leaderboardName,
+    isRefetching,
+    scrollValue,
+    isLoading,
+  });
+
+  const offsetFromRows = LEADERBOARD_ITEM_HEIGHT * (myLeaderboardItem?.position || 0);
+  const offset = offsetFromRows + TOP_PADDING_HEIGHT - flatListHeight;
 
   const handlePressFloater = useCallback(() => {
-    const targetIndex = leaderboardItems.findIndex((item) => item.id === `lead_${currentUserId}`);
-    flatListRef.current.scrollToIndex({ animated: true, index: targetIndex });
-  }, [leaderboardItems, currentUserId]);
+    const target = leaderboardItems.find((item) => item.id === `lead_${currentUserId}`);
+    if (target.position > PAGE_SIZE - 1) {
+      return openModal();
+    }
+
+    flatListRef.current.scrollToIndex({ animated: true, index: target.position });
+  }, [leaderboardItems, currentUserId, openModal]);
+
+  const handleLayout = useCallback(
+    (e: LayoutChangeEvent) => {
+      setFlatListHeight(e.nativeEvent.layout.height);
+    },
+    [setFlatListHeight]
+  );
 
   return (
-    <ScrollValueContext.Provider value={scrollValue}>
-      <View style={styles.flex}>
-        <FlatList
-          ref={flatListRef}
-          style={styles.flex}
-          scrollEnabled={networkStatus === NetworkStatus.ready}
-          showsVerticalScrollIndicator={false}
-          data={list.flatListData}
-          renderItem={renderItem}
-          getItemLayout={getItemLayout}
-          scrollEventThrottle={16}
-          onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: scrollValue } } }], { useNativeDriver: true })}
-          refreshControl={
-            <RefreshControl
-              style={styles.hidden}
-              onRefresh={onRefetch}
-              refreshing={networkStatus === NetworkStatus.refetch}
-            />
-          }
-        />
-        <IOSPodium leaderboardItems={leaderboardItems} leaderboardName={leaderboardName} />
-        <FloatingRankItem {...list.floatingItemData} onPress={handlePressFloater} />
-      </View>
-    </ScrollValueContext.Provider>
+    <View style={styles.flex}>
+      <FlatList
+        onLayout={handleLayout}
+        onRefresh={onRefetch}
+        refreshing={isRefetching}
+        ref={flatListRef}
+        style={styles.flex}
+        showsVerticalScrollIndicator={false}
+        data={list.flatListData}
+        renderItem={renderItem}
+        getItemLayout={getItemLayout}
+        scrollEventThrottle={16}
+        onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: scrollValue } } }], { useNativeDriver: true })}
+      />
+      <IOSPodium scrollValue={scrollValue} query={query} leaderboardName={leaderboardName} />
+      <FloatingRankItem
+        onPress={handlePressFloater}
+        item={myLeaderboardItem}
+        scrollValue={scrollValue}
+        offset={offset}
+      />
+    </View>
   );
 };
 
-function IOSPodium({ leaderboardName, leaderboardItems }: Partial<LeaderboardContentContainerProps>) {
+function IOSPodium({
+  leaderboardName,
+  query,
+  scrollValue,
+}: Partial<LeaderboardContentContainerProps> & { scrollValue: Animated.Value }) {
   if (Platform.OS === "android") {
     return null;
   }
 
+  const leaderboardItems = query?.getLeaderboard || [];
+
   return (
     <View pointerEvents="box-none" style={styles.absolute}>
-      <LeaderboardPodium leaderboardName={leaderboardName} uriSet={getUriSet(leaderboardItems)} />
+      <LeaderboardPodium
+        scrollValue={scrollValue}
+        leaderboardName={leaderboardName}
+        uriSet={getUriSet(leaderboardItems)}
+      />
     </View>
   );
 }
@@ -78,9 +122,6 @@ function IOSPodium({ leaderboardName, leaderboardItems }: Partial<LeaderboardCon
 const styles = StyleSheet.create({
   flex: {
     flex: 1,
-  } as ViewStyle,
-  hidden: {
-    opacity: 0,
   } as ViewStyle,
   absolute: {
     position: "absolute",

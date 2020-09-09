@@ -3,14 +3,16 @@ import { GQL_FRAGMENT_AVATAR_REMOTE_FILES } from "../_fragments/avatarRemoteFile
 
 export const GQL_QUERY_LEADERBOARD = gql`
   ${GQL_FRAGMENT_AVATAR_REMOTE_FILES}
-
-  query GetLeaderboard($sortBy: String, $leaderboardId: String) {
-    getLeaderboard(sortBy: $sortBy, leaderboardId: $leaderboardId) {
+  query GetLeaderboard($sortBy: String, $leaderboardId: String, $limit: Int, $targetId: ID) {
+    getLeaderboard(sortBy: $sortBy, leaderboardId: $leaderboardId, limit: $limit, targetId: $targetId) {
       __typename
       id
       name
       coins
       steps
+      userId
+      isTarget
+      position
       avatarRemoteFiles {
         ...YumojiRemoteFiles
       }

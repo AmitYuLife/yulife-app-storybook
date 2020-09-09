@@ -1,20 +1,16 @@
-import React, { memo, useContext } from "react";
+import React, { memo } from "react";
 import { StyleSheet, ViewStyle, ActivityIndicator, Animated, TextStyle, ImageStyle } from "react-native";
 import { Text } from "@atoms";
 import { View } from "react-native-animatable";
-import { ScrollValueContext } from "../leaderboard-content.context";
-import { ActiveLeaderboardLoadingContext } from "../../active-leaderboard.context";
-import { NetworkStatus } from "apollo-client";
 
 export interface IPadWithLoaderProps {
   height: number;
+  isRefetching: boolean;
+  scrollValue: Animated.Value;
 }
 
-const _PadWithLoader = ({ height }: IPadWithLoaderProps) => {
-  const scrollValue = useContext(ScrollValueContext);
-  const networkStatus = useContext(ActiveLeaderboardLoadingContext);
-
-  if (networkStatus === NetworkStatus.refetch) {
+const _PadWithLoader = ({ height, isRefetching, scrollValue }: IPadWithLoaderProps) => {
+  if (isRefetching) {
     return (
       <View style={[styles.wrapper, { height }]}>
         <ActivityIndicator />
@@ -43,8 +39,7 @@ const _PadWithLoader = ({ height }: IPadWithLoaderProps) => {
   );
 };
 
-const neverUpdate = () => true;
-export const PadWithLoader = memo(_PadWithLoader, neverUpdate);
+export const PadWithLoader = memo(_PadWithLoader);
 
 const styles = StyleSheet.create({
   wrapper: {
