@@ -80,34 +80,38 @@ function dismissModal() {
 
 function FeedbackModal(props: FeedbackModalProps) {
   const { slider, textInputScreenContent, metric, title } = props;
-  const [addUserSatisfactionFeedback, { loading }] = useMutation<AddUserFeedbackMutationTuple>(GQL_ADD_USER_FEEDBACK, {
-    onCompleted: () => {
-      dismissModal();
-    },
-  });
+  const [addUserSatisfactionFeedback, { loading }] = useMutation<AddUserFeedbackMutationTuple>(GQL_ADD_USER_FEEDBACK);
 
   const [score, setScore] = useState(-1);
-  const [feedback, setFeedback] = useState("");
+  const [comment, setComment] = useState("");
   const [shouldDisplaySecondScreen, setShouldDisplaySecondScreen] = useState(false);
+
+  const handleSubmit = useCallback(async () => {
+    try {
+      await addUserSatisfactionFeedback({
+        variables: {
+          rating: score,
+          metric,
+          comment,
+        },
+      });
+    } catch (e) {
+      // silent fail
+    }
+
+    await dismissModal();
+  }, [score, metric, comment, addUserSatisfactionFeedback]);
 
   if (shouldDisplaySecondScreen) {
     return (
       <TextInputForm
         onBackPress={() => setShouldDisplaySecondScreen(false)}
-        onClose={dismissModal}
+        onClose={handleSubmit}
         content={textInputScreenContent}
         score={score}
-        updateFeedback={(updatedFeedback) => setFeedback(updatedFeedback)}
+        updateFeedback={(updatedFeedback) => setComment(updatedFeedback)}
         disableButton={loading}
-        onSubmit={() => {
-          addUserSatisfactionFeedback({
-            variables: {
-              rating: score,
-              metric,
-              comment: feedback,
-            },
-          });
-        }}
+        onSubmit={handleSubmit}
       />
     );
   }
@@ -116,7 +120,7 @@ function FeedbackModal(props: FeedbackModalProps) {
     <SliderForm
       slider={slider}
       title={title}
-      onClose={dismissModal}
+      onClose={handleSubmit}
       setScore={setScore}
       score={score}
       onSubmit={() => setShouldDisplaySecondScreen(true)}
@@ -147,6 +151,7 @@ function SliderForm(props: SliderFormProps) {
 
   return (
     <ScrollableLayout
+      isBeta={false}
       heading="Feedback"
       onRightIconPress={onClose}
       buttonTitle="Submit your rating"
@@ -155,15 +160,14 @@ function SliderForm(props: SliderFormProps) {
       shouldCenterContent={true}
     >
       <View style={styles.content}>
-        <Heading style={styles.heading} label={title} />
-
+        <Heading style={styles.heading} label={title} bold={true} />
         <View style={styles.yugiWrapper}>
           <YugiSvg />
         </View>
-
         <View style={styles.inputWrapper}>
           <SliderInput
-            onChange={(val) => setScore(val)}
+            score={score}
+            onChange={setScore}
             leftLabel={slider.leftLabel}
             rightLabel={slider.rightLabel}
             maxValue={slider.maxValue}
@@ -215,6 +219,7 @@ function TextInputForm(props: TextInputFormProps) {
 
   return (
     <ScrollableLayout
+      isBeta={false}
       heading="Feedback"
       onLeftIconPress={onBackPress}
       onRightIconPress={onClose}
@@ -227,8 +232,7 @@ function TextInputForm(props: TextInputFormProps) {
       shouldCenterContent={true}
     >
       <View style={styles.content}>
-        <Heading style={styles.heading} label={contentToDisplay.headingText} />
-
+        <Heading style={styles.heading} label={contentToDisplay.headingText} bold={true} />
         <View style={styles.yugiWrapper}>
           <YugiSvg />
         </View>
@@ -249,9 +253,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: 35,
   },
   heading: {
-    fontFamily: Style.FONT_FAMILY_PRIMARY_BOLD,
     textAlign: "left",
-    width: "70%",
+    width: "75%",
+    lineHeight: Style.adjust(36),
   },
   inputWrapper: {
     marginTop: 40,

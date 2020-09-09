@@ -15,7 +15,7 @@ interface IProps {
 type Sizes = "medium" | "large" | "small";
 
 function Heading(props: IProps) {
-  const { label, size = "medium", style, bold, color } = props;
+  const { label, size = "medium", style, bold, color = colours.darkGray } = props;
   const boldStyles = bold ? styles.bold : null;
 
   return <Text style={StyleSheet.flatten([styles.base, styles[size], boldStyles, { color }, style])}>{label}</Text>;
@@ -25,7 +25,6 @@ export default React.memo(Heading);
 
 const styles = StyleSheet.create({
   base: {
-    color: colours.darkGray,
     fontFamily: Style.FONT_FAMILY_PRIMARY,
     textAlign: "center",
     letterSpacing: 1,
