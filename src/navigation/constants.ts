@@ -33,6 +33,9 @@ export const ROUTES = {
   yuScreenProducts: "yulife.member.YuscreenProducts",
   yuScreenEarnRate: "yulife.member.YuscreenEarnRate",
 
+  // webview
+  webView: "yulife.webView.WebView",
+
   // product
   fib: "yulife.product.FibBrowse",
 

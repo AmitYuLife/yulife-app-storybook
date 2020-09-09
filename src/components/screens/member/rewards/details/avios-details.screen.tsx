@@ -213,7 +213,7 @@ class AviosDetailsScreen extends React.PureComponent<Props, IState> {
                   onPress: onPressSetUp,
                 },
                 {
-                  label: "Reward Policy",
+                  label: "Rewards Policy",
                   onPress: onPressPolicy,
                 },
               ]}

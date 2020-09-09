@@ -1,10 +1,11 @@
 import moment from "moment";
 import { Component } from "react";
 import * as React from "react";
-import { Clipboard, Linking } from "react-native";
+import { Clipboard } from "react-native";
 import Config from "react-native-config";
 import { GetAllPurchases_getAllPurchases } from "../../../../../graphql/_core/schema";
 import { WegiftRewardConfirmedScreen } from "../../../../screens";
+import { handleOpenWebView } from "@navigation/utils";
 
 interface IProps {
   componentId: string;
@@ -47,23 +48,29 @@ class WegiftRewardConfirmedContainer extends Component<IProps, IState> {
     );
   }
 
-  public copyToClipboard = async () => {
-    await Clipboard.setString(this.props.purchase.delivery_url);
-  };
+  public copyToClipboard = async () => Clipboard.setString(this.props.purchase.delivery_url);
 
   public openPDFs = (pdf: "policy" | "terms") => async () => {
-    const url = pdf === "policy" ? Config.REWARDS_POLICY_URL : this.props.purchase.reward.terms_and_conditions_url;
-    const supported = await Linking.canOpenURL(url);
+    const data =
+      pdf === "policy"
+        ? {
+            uri: Config.REWARDS_POLICY_URL,
+            title: "Rewards Policy",
+          }
+        : {
+            uri: this.props.purchase.reward.terms_and_conditions_url,
+            title: "T&Cs",
+          };
 
-    if (supported) {
-      await Linking.openURL(url);
-    }
+    handleOpenWebView(this.props.componentId, data);
   };
 
   public linkToUrl = async () => {
     try {
       this.setState({ isAccessingUrl: true });
-      await Linking.openURL(this.props.purchase.delivery_url);
+      const uri = this.props.purchase.delivery_url;
+
+      handleOpenWebView(this.props.componentId, { uri, title: "Wegift" });
     } catch (e) {
       // console.warn("unable to open url because: ", e);
     } finally {

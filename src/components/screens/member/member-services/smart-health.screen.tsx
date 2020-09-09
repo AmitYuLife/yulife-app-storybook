@@ -5,6 +5,8 @@ import { Style } from "../../../../styles";
 import { smartHealthData } from "./member-services.data";
 import styles from "./smart-health.screen.styles";
 import { TextWithBoldText } from "@components/molecules";
+import { handleOpenWebView } from "@navigation/utils";
+import { ROUTES } from "@navigation/constants";
 
 const defaultInstructionCopy = "your group life scheme number, which can be provided by your HR manager";
 const instantInstructionCopy = "<bold>“yulifeinstant”</bold> in the Policy number / Scheme code field.";
@@ -32,7 +34,11 @@ const SmartHealth = (props: Props) => {
           <Text style={styles.content}>To access SmartHealth, you can download the SmartHealth by AIG app.</Text>
           <View style={styles.hyperlinkWrapper}>
             <Text style={styles.content}>You can also </Text>
-            <TouchableOpacity onPress={() => Linking.openURL(smartHealthData.website)}>
+            <TouchableOpacity
+              onPress={() =>
+                handleOpenWebView(ROUTES.memberServices, { uri: smartHealthData.website, title: "SmartHealth" })
+              }
+            >
               <Text style={styles.globalHyperLink}>request services online here.</Text>
             </TouchableOpacity>
           </View>
@@ -49,10 +55,17 @@ const SmartHealth = (props: Props) => {
 
           <Text style={styles.content}>Questions? Chat to us through the app, or read </Text>
           <View style={styles.contentHelpCenter}>
-            <Text style={StyleSheet.flatten([styles.content, { marginTop: Style.SCALE_UP_AND_DOWN(1) }])}>
+            <Text style={StyleSheet.flatten([styles.content, { marginTop: Style.adjust(1) }])}>
               more about SmartHealth in our{" "}
             </Text>
-            <TouchableOpacity onPress={() => Linking.openURL(smartHealthData.yulifeHelpCenter)}>
+            <TouchableOpacity
+              onPress={() =>
+                handleOpenWebView(ROUTES.memberServices, {
+                  uri: smartHealthData.yulifeHelpCenter,
+                  title: "SmartHealth",
+                })
+              }
+            >
               <Text style={styles.globalHyperLinkNoMargin}>Help Center.</Text>
             </TouchableOpacity>
           </View>

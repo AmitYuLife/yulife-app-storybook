@@ -1,7 +1,7 @@
 import moment from "moment";
 import * as React from "react";
 import { Component } from "react";
-import { Alert, Linking } from "react-native";
+import { Alert } from "react-native";
 import Config from "react-native-config";
 import Intercom from "react-native-intercom";
 import { connect } from "react-redux";
@@ -9,6 +9,7 @@ import { GetAllPurchases_getAllPurchases } from "../../../../../graphql/_core/sc
 import { IReduxState } from "../../../../../redux/_core/reducers";
 import { getCopy } from "../../../../../redux/copy/copy.selectors";
 import { AviosRewardConfirmedScreen } from "../../../../screens";
+import { handleOpenWebView } from "@navigation/utils";
 
 interface IProps {
   componentId: string;
@@ -73,11 +74,8 @@ class AviosRewardConfirmedContainer extends Component<Props> {
 
   public openRewardsPolicy = async () => {
     const url = Config.REWARDS_POLICY_URL;
-    const supported = await Linking.canOpenURL(url);
 
-    if (supported) {
-      await Linking.openURL(url);
-    }
+    handleOpenWebView(this.props.componentId, { uri: url, title: "Rewards Policy" });
   };
 
   public goBack = async () => {
