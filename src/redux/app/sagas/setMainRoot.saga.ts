@@ -31,7 +31,12 @@ export default function* setMainRootSaga({ payload }: IMainRootPayload) {
         yield put(refreshUserToken());
       }
 
-      if (tokenStatus !== "invalid") {
+      /**
+       * If tokenStatus is null means there is an error, do not set up
+       * authenticated root to avoid showing the app when some requests
+       * are timing out
+       **/
+      if (!!tokenStatus && tokenStatus !== "invalid") {
         yield call(setAuthenticatedRoot);
       }
     }

@@ -1,13 +1,7 @@
 import { ROUTES } from "@navigation/constants";
 import { AppState, AppStateStatus } from "react-native";
 import { SyncAction } from "../_core/types";
-import {
-  UPDATE_APP_STATE,
-  UPDATE_NAVIGATION_STATE,
-  UPDATE_OFFLINE_STATE,
-  APOLLO_EVENT,
-  ApolloRequestPayload,
-} from "./app.actions";
+import { UPDATE_APP_STATE, UPDATE_NAVIGATION_STATE, UPDATE_OFFLINE_STATE } from "./app.actions";
 
 export const initialState = {
   appState: AppState.currentState,
@@ -27,9 +21,6 @@ const appReducer = (state = initialState, action: SyncAction) => {
 
     case UPDATE_OFFLINE_STATE:
       return updateOfflineState(state, action.payload);
-
-    case APOLLO_EVENT:
-      return apolloEvent(state, action.payload);
 
     default:
       return state;
@@ -52,9 +43,4 @@ const updateNavigationState = (state: IAppStore, currentRoute: string): IAppStor
 const updateOfflineState = (state: IAppStore, isOffline: boolean): IAppStore => ({
   ...state,
   isOffline,
-});
-
-const apolloEvent = (state: IAppStore, payload: ApolloRequestPayload) => ({
-  ...state,
-  isOffline: payload.networkError ? true : false,
 });

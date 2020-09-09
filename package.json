@@ -58,6 +58,7 @@
         "apollo-link": "^1.2.13",
         "apollo-link-context": "^1.0.19",
         "apollo-link-error": "^1.1.12",
+        "apollo-link-retry": "^2.2.16",
         "bugsnag-react-native": "^2.23.6",
         "cloudinary-core": "^2.8.2",
         "email-validator": "^2.0.4",
