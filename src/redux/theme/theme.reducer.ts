@@ -6,6 +6,7 @@ import { GET_USER_SUCCESS, LOGIN_USER_SUCCESS } from "../user/user.actions";
 import { getCurrentWorld } from "../../services/utils";
 import { SyncAction } from "../_core/types";
 import { TopBarTypes } from "@components/organisms/top-bar/top-bar.helpers";
+import moment from "moment";
 
 export interface ICentredScreen {
   image: CenteredScreenImages;
@@ -62,8 +63,18 @@ const getCurrentWorldTheme = (
   type: SyncAction["type"]
 ): IThemeStore => {
   let currentLevel = 0;
+
   if (type === GET_USER_SUCCESS) {
-    currentLevel = (data as GetCurrentUser).getCurrentUser.coinLedger.currentLevel;
+    const { currentLevel: level, nextLevelAvailableAt } = (data as GetCurrentUser).getCurrentUser.coinLedger;
+    const hasChangedYuniverse = currentLevel % 200 === 1;
+    const isBeforeNextLevel = nextLevelAvailableAt && moment().isBefore(moment(nextLevelAvailableAt));
+    const shouldStickWithCurrentWorld = !hasChangedYuniverse && isBeforeNextLevel;
+
+    currentLevel = level;
+
+    if (shouldStickWithCurrentWorld) {
+      currentLevel = currentLevel - 1;
+    }
   } else {
     currentLevel = (data as LoginUser).loginUser.user.coinLedger.currentLevel;
   }
