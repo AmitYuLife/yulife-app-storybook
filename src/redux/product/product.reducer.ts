@@ -184,14 +184,14 @@ const getUserSuccess = (state: IProductStore, { getCurrentUser }: GetCurrentUser
   const hasFIBDoB = state.fib?.answers?.birthDay && state.fib?.answers?.birthMonth && state.fib?.answers?.birthYear;
   if (!hasFIBDoB) {
     const dateOfBirth = moment(getCurrentUser.dateOfBirth).format("DD-MM-YYYY").split("-");
-    state.fib.answers.birthDay = state.fib?.answers?.birthDay || dateOfBirth[0];
-    state.fib.answers.birthMonth = state.fib?.answers?.birthMonth || dateOfBirth[1];
-    state.fib.answers.birthYear = state.fib?.answers?.birthYear || dateOfBirth[2];
+    newState.fib.answers.birthDay = state.fib?.answers?.birthDay || dateOfBirth[0];
+    newState.fib.answers.birthMonth = state.fib?.answers?.birthMonth || dateOfBirth[1];
+    newState.fib.answers.birthYear = state.fib?.answers?.birthYear || dateOfBirth[2];
   }
 
-  if (!state.fib?.answers.fib_your_name) {
+  if (!state.fib?.answers?.fib_your_name) {
     const userName = `${getCurrentUser.firstName} ${getCurrentUser.lastName}`;
-    state.fib.answers.fib_your_name = userName;
+    newState.fib.answers.fib_your_name = userName;
   }
 
   return newState;
