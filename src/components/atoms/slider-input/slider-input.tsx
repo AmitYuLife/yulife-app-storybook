@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useMemo } from "react";
 import { StyleSheet, View, Animated } from "react-native";
 import { Colours, Style } from "@styles";
 import { Text } from "@atoms";
@@ -12,6 +12,7 @@ const CIRCLE_DIAMETER = 8;
 export type MaxValue = typeof list[number];
 
 export interface SliderInputProps {
+  score?: number;
   maxValue: MaxValue;
   onChange?: (val: number) => void;
   leftLabel: string;
@@ -19,9 +20,9 @@ export interface SliderInputProps {
 }
 
 export function SliderInput(props: SliderInputProps) {
-  const [activeValue, setActiveValue] = useState(-1);
-  const { maxValue, onChange, leftLabel, rightLabel } = props;
-  const valueIterator = new Array(maxValue + 1).fill(0);
+  const { maxValue, onChange, leftLabel, rightLabel, score } = props;
+  const [activeValue, setActiveValue] = useState(score ?? -1);
+  const valueIterator = useMemo(() => new Array(maxValue + 1).fill(0), [maxValue]);
 
   useEffect(() => {
     if (onChange) {

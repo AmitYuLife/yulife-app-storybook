@@ -7,6 +7,7 @@ import { Logo } from "../../atoms/generic-heading/generic-heading.types";
 interface Props {
   children: React.ReactNode;
   buttonTitle: string;
+  isBeta?: boolean;
   isButtonDisabled?: boolean;
   buttonAction: () => void;
   onLeftIconPress?: () => void;
@@ -25,6 +26,7 @@ export function ScrollableLayout(props: Props) {
     buttonAction,
     onLeftIconPress,
     onRightIconPress,
+    isBeta = true,
     isButtonDisabled = false,
     shouldCenterContent = false,
   } = props;
@@ -37,7 +39,7 @@ export function ScrollableLayout(props: Props) {
     <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS === "ios" ? "padding" : null}>
       <SafeAreaView style={styles.wrapper}>
         <GenericHeading
-          isBeta={true}
+          isBeta={isBeta}
           logo={logo}
           heading={heading}
           onLeftIconPress={onLeftIconPress}

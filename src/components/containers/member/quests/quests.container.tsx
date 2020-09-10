@@ -60,14 +60,17 @@ const QuestsContainer: FC<Props> = (props) => {
   );
 
   const handleResetChallenge = useCallback(
-    (showStreakComplete = false) => {
-      if (showStreakComplete) {
+    (wasSuccessful = false) => {
+      if (wasSuccessful) {
+        // at some point(if we dispatch another action) it'll be good to create a new action
+        // and move all these to a saga; keep it for now
+        dispatch(handleFeedbackAction({ level }));
         dispatch(displayStreaksCompletedAction());
       }
 
       dispatch(challengeResetAction());
     },
-    [dispatch]
+    [dispatch, level]
   );
 
   if (Style.isIPad()) {
@@ -79,11 +82,7 @@ const QuestsContainer: FC<Props> = (props) => {
       return (
         <ChallengeSuccessScreen
           level={level}
-          onPressCta={() => {
-            dispatch(handleFeedbackAction({ level }));
-
-            return handleResetChallenge(true);
-          }}
+          onPressCta={() => handleResetChallenge(true)}
           rating={rating}
           reward={coins}
           score={score}
