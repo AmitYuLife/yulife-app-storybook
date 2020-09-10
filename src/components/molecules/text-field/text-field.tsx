@@ -5,8 +5,9 @@ import { Placeholder } from "./subcomponents/placeholder";
 import { BaseUnderline, ColouredUnderline } from "./subcomponents/underlines";
 import { numberWithCommas } from "@services/utils";
 import Warning from "@atoms/text-input/assets/warning";
+import { formatPostCode } from "../../screens/products/fib/underwriting-journey/fib.find-adress.screen";
 
-type Type = "Text" | "Number" | "PhoneNumber";
+type Type = "Text" | "Number" | "PhoneNumber" | "PostCode";
 
 interface Props {
   placeholder: string;
@@ -17,6 +18,7 @@ interface Props {
   value?: string;
   showError?: boolean;
   errorMessage?: string;
+  maxLength?: number;
 }
 
 function stripPunctuation(text: string, type: Type) {
@@ -30,6 +32,10 @@ function stripPunctuation(text: string, type: Type) {
 function formatText(text: string, type: Type) {
   if (type === "Text" || type === "PhoneNumber") {
     return text;
+  }
+
+  if (type === "PostCode") {
+    return formatPostCode(text.replace(/ /g, "")).toUpperCase();
   }
 
   const castedText = Number(text);
@@ -55,6 +61,7 @@ export default function TextField(props: Props) {
     value,
     showError,
     errorMessage,
+    maxLength,
   } = props;
   const [isFocused, setFocused] = useState(false);
   const [placeholderScale] = useState(new Animated.Value(1));
@@ -126,6 +133,7 @@ export default function TextField(props: Props) {
           autoCapitalize="none"
           autoCompleteType="off"
           autoCorrect={false}
+          maxLength={maxLength}
         />
         <Placeholder
           scale={placeholderScale}

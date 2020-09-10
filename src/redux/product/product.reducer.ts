@@ -23,7 +23,6 @@ export const initialState: IProductStore = {
         firstAddressLine: "",
         secondAddressLine: "",
         townOrCity: "",
-        county: "",
         postCode: "",
         personalEmail: "",
         phoneNumber: "",

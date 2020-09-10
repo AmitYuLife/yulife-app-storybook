@@ -1,4 +1,4 @@
-import React, { memo, useState } from "react";
+import React, { memo, useState, useCallback } from "react";
 import { FibUnderwritingJourneyLayout } from "../layouts/fib.underwriting-journey-layout";
 import { View, StyleSheet, TextStyle, ViewStyle, ScrollView } from "react-native";
 import { TextField, TouchableOpacityWithDelay } from "@components/molecules";
@@ -20,7 +20,8 @@ export interface IFibContactDetailsScreenProps {
 
 export const FibContactDetailsScreen = memo(function (props: IFibContactDetailsScreenProps) {
   const { onContinue, onContactDetailsChange, contactDetails, onFindAdress, onClose } = props;
-  const [isEmailValid, setIsEmailValid] = useState(true);
+  const [isEmailValid, setIsEmailValid] = useState(validator.validate(contactDetails.personalEmail));
+  const [isPhoneNumberValid, setIsPhoneNumberValid] = useState(phoneNumberIsValid(contactDetails.phoneNumber));
 
   const isButtonEnable =
     isEmailValid &&
@@ -28,9 +29,19 @@ export const FibContactDetailsScreen = memo(function (props: IFibContactDetailsS
     contactDetails.townOrCity &&
     contactDetails.personalEmail &&
     contactDetails.postCode &&
-    contactDetails.phoneNumber
+    contactDetails.phoneNumber &&
+    isPhoneNumberValid
       ? true
       : false;
+
+  const onPhoneNumberChange = useCallback(
+    (phoneNumber: string) => {
+      const isValid = phoneNumberIsValid(phoneNumber);
+      setIsPhoneNumberValid(isValid);
+      onContactDetailsChange("phoneNumber", phoneNumber);
+    },
+    [setIsPhoneNumberValid, onContactDetailsChange]
+  );
 
   return (
     <FibUnderwritingJourneyLayout
@@ -71,15 +82,10 @@ export const FibContactDetailsScreen = memo(function (props: IFibContactDetailsS
           <Pad height={20} />
 
           <TextField
-            onChange={(val) => onContactDetailsChange("county", val)}
-            placeholder={"County (optional)"}
-            value={contactDetails.county}
-          />
-          <Pad height={20} />
-
-          <TextField
             onChange={(val) => onContactDetailsChange("postCode", val)}
             placeholder={"Postcode"}
+            type={"PostCode"}
+            maxLength={8}
             value={contactDetails.postCode}
           />
           <Pad height={20} />
@@ -91,16 +97,18 @@ export const FibContactDetailsScreen = memo(function (props: IFibContactDetailsS
             }}
             placeholder={"Personal Email"}
             value={contactDetails.personalEmail}
-            showError={!isEmailValid}
+            showError={contactDetails.personalEmail && !isEmailValid}
             errorMessage={"Not a valid email"}
           />
           <Pad height={20} />
 
           <TextField
-            onChange={(val) => onContactDetailsChange("phoneNumber", val)}
+            onChange={(val) => onPhoneNumberChange(val)}
             placeholder={"Phone number"}
             value={contactDetails.phoneNumber}
             type={"PhoneNumber"}
+            showError={contactDetails.phoneNumber && !isPhoneNumberValid}
+            errorMessage={"Please enter a valid UK phone number."}
           />
           <Pad height={40} />
 
@@ -110,6 +118,11 @@ export const FibContactDetailsScreen = memo(function (props: IFibContactDetailsS
     </FibUnderwritingJourneyLayout>
   );
 });
+
+const phoneRegEx = /^(?:(?:\(?(?:0(?:0|11)\)?[\s-]?\(?|\+)44\)?[\s-]?(?:\(?0\)?[\s-]?)?)|(?:\(?0))(?:(?:\d{5}\)?[\s-]?\d{4,5})|(?:\d{4}\)?[\s-]?(?:\d{5}|\d{3}[\s-]?\d{3}))|(?:\d{3}\)?[\s-]?\d{3}[\s-]?\d{3,4})|(?:\d{2}\)?[\s-]?\d{4}[\s-]?\d{4}))(?:[\s-]?(?:x|ext\.?|\#)\d{3,4})?$/;
+const phoneNumberIsValid = (phoneNumber: string) => {
+  return phoneRegEx.test(phoneNumber);
+};
 
 const styles = StyleSheet.create({
   wrapper: {

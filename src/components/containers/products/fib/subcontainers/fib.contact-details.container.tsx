@@ -33,7 +33,6 @@ const FibContactDetailsConatainer = memo(function (props: Props) {
       firstAddressLine: "",
       secondAddressLine: "",
       townOrCity: "",
-      county: "",
       postCode: "",
       personalEmail: "",
       phoneNumber: "",
@@ -68,6 +67,7 @@ const FibContactDetailsConatainer = memo(function (props: Props) {
     setContactDetails((state) => ({
       ...state,
       firstAddressLine: address.addressFirstLine,
+      secondAddressLine: address.addressSecondLine,
       townOrCity: address.addressCity,
       postCode: address.addressPostCode,
     }));
