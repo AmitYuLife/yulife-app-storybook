@@ -1,4 +1,4 @@
-import React, { memo, useRef, useCallback, useState } from "react";
+import React, { memo, useRef, useCallback, useState, useEffect } from "react";
 import { FibUnderwritingJourneyLayout } from "../layouts/fib.underwriting-journey-layout";
 import { View, StyleSheet, TextStyle, ViewStyle, FlatList, ListRenderItemInfo, ActivityIndicator } from "react-native";
 import { TextField, TouchableOpacityWithDelay } from "@components/molecules";
@@ -33,6 +33,10 @@ export const FibFindAdressScreen = memo(function (props: IFibFindAdressScreenPro
 
   useBackHandler(backHandler);
 
+  useEffect(() => {
+    return () => clearTimeout(timer.current);
+  }, []);
+
   const startTimer = useCallback(
     (postcode: string) => {
       setPostCode(postcode);
@@ -41,7 +45,7 @@ export const FibFindAdressScreen = memo(function (props: IFibFindAdressScreenPro
       clearTimeout(timer.current);
       timer.current = setTimeout(() => {
         if (postCodeRegex.test(postcode)) {
-          onPostCodeAdded(postcode);
+          onPostCodeAdded(formatPostCode(postcode));
         }
 
         setUserIsTyping(false);
@@ -59,7 +63,12 @@ export const FibFindAdressScreen = memo(function (props: IFibFindAdressScreenPro
       <View style={styles.wrapper}>
         <View style={styles.enterPostCodeWrapper}>
           <FibTitle title={"Enter your post code"} />
-          <TextField placeholder={""} onChange={(val) => startTimer(val)} />
+          <TextField
+            placeholder={""}
+            onChange={(val) => startTimer(val.toUpperCase().replace(/ /g, ""))}
+            type={"PostCode"}
+            maxLength={8}
+          />
           <Pad height={20} />
         </View>
 
@@ -84,6 +93,10 @@ export const FibFindAdressScreen = memo(function (props: IFibFindAdressScreenPro
     </FibUnderwritingJourneyLayout>
   );
 });
+
+export const formatPostCode = (postCode: string) => {
+  return postCode.replace(/^(.*)(\d)/, "$1 $2");
+};
 
 interface ItemAdressProps {
   address: Address_findUserAddress;
