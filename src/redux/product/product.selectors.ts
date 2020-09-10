@@ -1,5 +1,5 @@
 import { IReduxState } from "@redux/_core/reducers";
-import { FIBStore } from "./product.types";
+import { FIBStore, ContactDetails } from "./product.types";
 import moment from "moment";
 import {
   data,
@@ -30,6 +30,7 @@ export const getBirthday = (state: IReduxState): string => {
 };
 
 export const getFullName = (state: IReduxState): string => state.product.fib.answers.fib_your_name;
+export const getContactDetails = (state: IReduxState): ContactDetails => state.product.fib.answers.contactDetails;
 
 export interface IAnswer {
   icon: string;

@@ -12,6 +12,7 @@ import { DebugScreen } from "../../../screens";
 import { ROUTES, MODALS } from "@navigation/constants";
 import { FIB_UNDERWRITING_JOURNEY_INTRODUCTION } from "@components/containers/products/fib/fib.types";
 import { FeedbackModalProps, npsModalProps } from "@components/modals/feedback/feedback.modal";
+import { FIB_CONTACT_DETAILS } from "../../products/fib/fib.types";
 
 interface IProps {
   componentId: string;
@@ -26,6 +27,7 @@ enum CODES {
   ROUTE_TO_FIB_BROWSE_PACKAGES = "ROUTE_TO_FIB_BROWSE_PACKAGES",
   ROUTE_TO_FIB_UNDERWRITING = "ROUTE_TO_FIB_UNDERWRITING",
   DISPLAY_FEEDBACK_MODAL = "DISPLAY_FEEDBACK_MODAL",
+  ROUTE_TO_FIB_CONTACT_DETAILS_SCREEN = "ROUTE_TO_FIB_CONTACT_DETAILS_SCREEN",
 }
 
 const DEFAULT_LIST = [
@@ -48,6 +50,7 @@ const ActivityHistoryContainer: React.FC<Props> = (props) => {
     CODES.ROUTE_TO_FIB_BROWSE_PACKAGES,
     CODES.ROUTE_TO_FIB_UNDERWRITING,
     CODES.DISPLAY_FEEDBACK_MODAL,
+    CODES.ROUTE_TO_FIB_CONTACT_DETAILS_SCREEN,
   ];
 
   const handleClose = () => {
@@ -88,6 +91,18 @@ const ActivityHistoryContainer: React.FC<Props> = (props) => {
               name: ROUTES.fib,
               passProps: {
                 initialRoute: FIB_UNDERWRITING_JOURNEY_INTRODUCTION,
+              },
+            },
+          });
+        }
+
+        if (code === CODES.ROUTE_TO_FIB_CONTACT_DETAILS_SCREEN) {
+          return Navigation.push(props.componentId, {
+            component: {
+              id: ROUTES.fib,
+              name: ROUTES.fib,
+              passProps: {
+                initialRoute: FIB_CONTACT_DETAILS,
               },
             },
           });

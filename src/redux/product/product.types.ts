@@ -37,7 +37,18 @@ export interface Weight {
   kg: string;
 }
 
+export interface ContactDetails {
+  firstAddressLine: string;
+  secondAddressLine: string;
+  townOrCity: string;
+  county: string;
+  postCode: string;
+  personalEmail: string;
+  phoneNumber: string;
+}
+
 export interface FibAnswers {
+  contactDetails: ContactDetails;
   height: Height;
   weight: Weight;
   weeklyAlcoholDrinks: number;

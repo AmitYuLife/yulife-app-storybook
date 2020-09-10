@@ -17,7 +17,7 @@ interface Props {
 }
 
 export function FibUnderwritingJourneyLayout(props: Props) {
-  const { heading, onClose, onPreviousQuestion = null, children } = props;
+  const { heading, onClose, onPreviousQuestion = null, children, progressBar } = props;
   return (
     <KeyboardAvoidingView behavior={Platform.select({ ios: "padding", android: null })} style={styles.wrapper}>
       <SafeAreaView style={{ height: "100%", flex: 1 }}>
@@ -29,7 +29,7 @@ export function FibUnderwritingJourneyLayout(props: Props) {
           isBeta={true}
           hideBorder={true}
         />
-        <FIBProgressBar />
+        {progressBar.isHidden ? null : <FIBProgressBar />}
         {children}
       </SafeAreaView>
     </KeyboardAvoidingView>

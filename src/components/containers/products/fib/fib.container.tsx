@@ -21,6 +21,7 @@ import {
   FIB_UNDERWRITING_JOURNEY_INTRODUCTION,
   FIB_CONFIRM_PACKAGES,
   FIB_UNDERWRITING_REVIEW_ANSWERS,
+  FIB_CONTACT_DETAILS,
 } from "./fib.types";
 import { Navigation } from "react-native-navigation";
 import { ROUTES } from "@navigation/constants";
@@ -33,6 +34,7 @@ import FibUnderwritingJourneyContainer from "./subcontainers/fib.underwriting-jo
 import FibUnderwritingJourneyIntroductionContainer from "./subcontainers/fib.underwriting-journey-introduction.container";
 import FibUnderwritingReviewAnswersContainer from "./subcontainers/fib.underwriting-review-answers.container";
 import FibConfirmPackagesContainer from "./subcontainers/fib.confirm-packages.container";
+import FibContactDetailsContainer from "./subcontainers/fib.contact-details.container";
 
 interface RouteProps {
   navigation: FibLocalNavigation;
@@ -75,6 +77,8 @@ function getComponent(routeProps: RouteProps) {
       return <FibUnderwritingReviewAnswersContainer navigation={navigation} />;
     case FIB_CONFIRM_PACKAGES:
       return <FibConfirmPackagesContainer navigation={navigation} selectFaq={selectFaq} />;
+    case FIB_CONTACT_DETAILS:
+      return <FibContactDetailsContainer navigation={navigation} />;
     default:
       return <FibBrowseContainer selectFaq={selectFaq} navigation={navigation} />;
   }
