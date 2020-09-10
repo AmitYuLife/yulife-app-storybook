@@ -1,17 +1,22 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, TextInput, View, Animated, ViewStyle } from "react-native";
+import { StyleSheet, TextInput, View, Animated, ViewStyle, Text } from "react-native";
 import { Style } from "@styles/index";
 import { Placeholder } from "./subcomponents/placeholder";
 import { BaseUnderline, ColouredUnderline } from "./subcomponents/underlines";
 import { numberWithCommas } from "@services/utils";
+import Warning from "@atoms/text-input/assets/warning";
 
-type Type = "Text" | "Number";
+type Type = "Text" | "Number" | "PhoneNumber";
 
 interface Props {
   placeholder: string;
   onChange: (val: string) => void;
+  onBlur?: () => void;
   type?: Type;
   placeholderIndentSize?: number;
+  value?: string;
+  showError?: boolean;
+  errorMessage?: string;
 }
 
 function stripPunctuation(text: string, type: Type) {
@@ -23,7 +28,7 @@ function stripPunctuation(text: string, type: Type) {
 }
 
 function formatText(text: string, type: Type) {
-  if (type === "Text") {
+  if (type === "Text" || type === "PhoneNumber") {
     return text;
   }
 
@@ -41,13 +46,22 @@ function formatText(text: string, type: Type) {
 }
 
 export default function TextField(props: Props) {
-  const { placeholder, onChange, type = "Text", placeholderIndentSize = 0 } = props;
+  const {
+    placeholder,
+    onChange,
+    onBlur,
+    type = "Text",
+    placeholderIndentSize = 0,
+    value,
+    showError,
+    errorMessage,
+  } = props;
   const [isFocused, setFocused] = useState(false);
   const [placeholderScale] = useState(new Animated.Value(1));
   const [placeholderTranslateY] = useState(new Animated.Value(0));
   const [materialUnderlineScaleX] = useState(new Animated.Value(1));
   const [placeholderOpacity] = useState(new Animated.Value(0.5));
-  const [textInputValue, setTextInputValue] = useState("");
+  const [textInputValue, setTextInputValue] = useState(value || "");
   const [activeMaterial, setActiveMaterial] = useState(false);
 
   useEffect(() => {
@@ -87,37 +101,52 @@ export default function TextField(props: Props) {
   }, [activeMaterial, placeholderScale, placeholderTranslateY, isFocused, materialUnderlineScaleX, placeholderOpacity]);
 
   return (
-    <View style={styles.wrapper}>
-      <TextInput
-        style={StyleSheet.flatten([styles.inputBase, { paddingLeft: placeholderIndentSize }])}
-        onBlur={() => setFocused(false)}
-        onFocus={() => setFocused(true)}
-        onChangeText={(text: string) => {
-          const strippedPunctuation = stripPunctuation(text, type);
-          onChange(strippedPunctuation);
+    <>
+      <View style={styles.wrapper}>
+        <TextInput
+          style={StyleSheet.flatten([styles.inputBase, { paddingLeft: placeholderIndentSize }])}
+          onBlur={() => {
+            if (onBlur) {
+              onBlur();
+            }
 
-          const formattedText = formatText(strippedPunctuation, type);
-          return setTextInputValue(formattedText);
-        }}
-        value={textInputValue}
-        keyboardType={type === "Number" ? "number-pad" : "default"}
-        underlineColorAndroid="transparent"
-        autoCapitalize="none"
-        autoCompleteType="off"
-        autoCorrect={false}
-      />
-      <Placeholder
-        scale={placeholderScale}
-        translateY={placeholderTranslateY}
-        opacity={placeholderOpacity}
-        title={placeholder}
-        isFocused={isFocused}
-        hasInput={Boolean(textInputValue)}
-        paddingLeft={placeholderIndentSize}
-      />
-      <BaseUnderline />
-      <ColouredUnderline scaleX={materialUnderlineScaleX} />
-    </View>
+            setFocused(false);
+          }}
+          onFocus={() => setFocused(true)}
+          onChangeText={(text: string) => {
+            const strippedPunctuation = stripPunctuation(text, type);
+            onChange(strippedPunctuation);
+
+            const formattedText = formatText(strippedPunctuation, type);
+            return setTextInputValue(formattedText);
+          }}
+          value={textInputValue}
+          keyboardType={type === "Number" || type === "PhoneNumber" ? "number-pad" : "default"}
+          underlineColorAndroid="transparent"
+          autoCapitalize="none"
+          autoCompleteType="off"
+          autoCorrect={false}
+        />
+        <Placeholder
+          scale={placeholderScale}
+          translateY={placeholderTranslateY}
+          opacity={placeholderOpacity}
+          title={placeholder}
+          isFocused={isFocused}
+          hasInput={Boolean(textInputValue)}
+          paddingLeft={placeholderIndentSize}
+        />
+        <BaseUnderline color={showError ? "#FC0000" : null} />
+        <ColouredUnderline scaleX={materialUnderlineScaleX} />
+
+        {showError && !isFocused ? (
+          <View style={styles.rightIcon}>
+            <Warning />
+          </View>
+        ) : null}
+      </View>
+      {showError && !isFocused ? <Text style={styles.errorMessage}>{errorMessage}</Text> : null}
+    </>
   );
 }
 
@@ -132,4 +161,20 @@ const styles = StyleSheet.create({
     paddingBottom: 0,
     fontFamily: Style.FONT_FAMILY_PRIMARY,
   } as ViewStyle,
+  rightIcon: {
+    position: "absolute",
+    right: 0,
+    bottom: 5,
+    height: 24,
+    width: 24,
+  } as ViewStyle,
+  errorMessage: {
+    marginLeft: "auto",
+    color: "#FC0000",
+    fontSize: 12,
+    fontFamily: Style.FONT_FAMILY_PRIMARY,
+    lineHeight: 16,
+    letterSpacing: 1,
+    marginTop: 6,
+  },
 });

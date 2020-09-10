@@ -19,6 +19,15 @@ export { IProductStore } from "./product.types";
 export const initialState: IProductStore = {
   fib: {
     answers: {
+      contactDetails: {
+        firstAddressLine: "",
+        secondAddressLine: "",
+        townOrCity: "",
+        county: "",
+        postCode: "",
+        personalEmail: "",
+        phoneNumber: "",
+      },
       height: {
         unit: "cm",
         cm: "",
@@ -98,6 +107,9 @@ function personalProductReducer<T>(state: IProductStore = initialState, action: 
             },
             weight: {
               ...initialState.fib.answers.weight,
+            },
+            contactDetails: {
+              ...initialState.fib.answers.contactDetails,
             },
           },
           existingCovers: initialState.fib.existingCovers,

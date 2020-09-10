@@ -3,6 +3,7 @@ export * from "./AddDeviceToken";
 export * from "./AddHistoricalData";
 export * from "./AddHistoricalSteps";
 export * from "./AddUserFeedback";
+export * from "./Address";
 export * from "./Avatar";
 export * from "./CancelActiveChallenge";
 export * from "./Challenge";
