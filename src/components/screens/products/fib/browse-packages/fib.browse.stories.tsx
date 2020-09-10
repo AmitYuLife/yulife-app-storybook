@@ -37,7 +37,7 @@ storiesOf("FibBrowse", module)
       selectedPackage={selectedPackage}
       navigateToEditSalary={() => null}
       onNavigateToYuScreen={(): void => null}
-      navigateToFeedbackForm={(): void => null}
+      onContinue={(): void => null}
       avatarUrl={""}
       faqs={faqs}
       offset={{ x: 0, y: 0 }}
@@ -68,7 +68,7 @@ storiesOf("FibBrowse", module)
       selectedPackage={selectedPackage}
       navigateToEditSalary={() => null}
       onNavigateBack={(): void => null}
-      navigateToFeedbackForm={() => null}
+      onContinue={() => null}
       avatarUrl={""}
       faqs={faqs}
       documents={documents}

@@ -99,16 +99,7 @@ const FibUnderwritingReviewAnswersContainer = memo(function (props: Props) {
           ctaLabelSecondary: "Exit",
           onPressSecondary: async () => {
             await Navigation.dismissModal(MODALS.generic);
-            try {
-              await Navigation.popTo(ROUTES.yuScreen);
-            } catch (e) {
-              // We arrived to the review screen without passing through yuScreen
-              // This should never happen but because our current way of testing
-              // we need this try/catch block
-              await Navigation.popTo(ROUTES.debug);
-            }
-
-            return;
+            return await Navigation.popTo(ROUTES.yuScreen);
           },
         },
       },

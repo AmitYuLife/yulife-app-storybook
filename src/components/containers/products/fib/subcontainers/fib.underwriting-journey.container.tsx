@@ -1,4 +1,4 @@
-import React, { memo, useState, useCallback } from "react";
+import React, { memo, useState, useCallback, useEffect } from "react";
 import { FibLocalNavigation, FIB_UNDERWRITING_REVIEW_ANSWERS } from "../fib.types";
 import { FibUnderwritingJourneyScreen } from "../../../../screens/products/fib/underwriting-journey/fib.underwriting-journey.screen";
 import {
@@ -7,6 +7,7 @@ import {
   FIB_UNDERWRITING_REVIEW_ANSWERS_SCREEN_ID,
   RELEVANT_SCREEN_ID_FOR_PRICES_UPDATES,
   FIB_ENTER_YOUR_NAME,
+  FIB_YOUR_NAME_SCREEN_ID,
 } from "../data/underwriting-journey-data";
 import { FIBProgressBar } from "@organisms";
 import { IReduxState } from "@redux/_core/reducers";
@@ -51,6 +52,13 @@ const FibUnderwritingJourneyContainer = memo(function (props: Props) {
 
   const [currentQuestion, setCurrentQuestion] = useState(initialQuestion);
   const activeIndex = data.findIndex((item) => item.id === currentQuestion?.id) || 0;
+  const isFirstQuestion = currentQuestion.id === FIB_YOUR_NAME_SCREEN_ID;
+
+  useEffect(() => {
+    if (isFirstQuestion) {
+      dispatch(updateFIBValue({ key: "lastQuestionId", value: currentQuestion.id }));
+    }
+  }, [isFirstQuestion, dispatch, currentQuestion]);
 
   const [inputName, setInputName] = useState(fibAnswers.fib_your_name);
 
@@ -190,7 +198,7 @@ const FibUnderwritingJourneyContainer = memo(function (props: Props) {
   const onSecondButtonPressed = !currentQuestion.secondButton ? null : handleSetCurrentQuestion;
 
   const handleSetPreviousQuestion = () => {
-    if (redirectedFromReviewScreen && initialQuestionIdFromReviewScreen === currentQuestion.id) {
+    if ((redirectedFromReviewScreen && initialQuestionIdFromReviewScreen === currentQuestion.id) || isFirstQuestion) {
       return navigation.pop();
     }
 
@@ -209,7 +217,9 @@ const FibUnderwritingJourneyContainer = memo(function (props: Props) {
   };
 
   const onPreviousButtonPressed =
-    !currentQuestion.previousButton && !redirectedFromReviewScreen ? null : handleSetPreviousQuestion;
+    !currentQuestion.previousButton && !redirectedFromReviewScreen && !isFirstQuestion
+      ? null
+      : handleSetPreviousQuestion;
 
   const progressBar = {
     currentPosition: currentQuestion.order,
@@ -234,7 +244,7 @@ const FibUnderwritingJourneyContainer = memo(function (props: Props) {
           ctaLabelSecondary: "Exit",
           onPressSecondary: async () => {
             await Navigation.dismissModal(MODALS.generic);
-            return navigation.pop();
+            return navigation.popToMain();
           },
         },
       },

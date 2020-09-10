@@ -76,7 +76,7 @@ const _FibInputSt = (props: ConnectedProps) => {
         forwardRef={stRef}
         style={StyleSheet.flatten([styles.textInput, isStFocus ? {} : styles.textInputOnBlur])}
         hasFocusActive={setIsStFocus}
-        width={30}
+        width={40}
       />
       <InputField
         autoFocus={false}
@@ -88,7 +88,7 @@ const _FibInputSt = (props: ConnectedProps) => {
         forwardRef={lbRef}
         style={StyleSheet.flatten([styles.textInput, isLbFocus ? {} : styles.textInputOnBlur])}
         hasFocusActive={setIsLbFocus}
-        width={30}
+        width={32}
       />
     </View>
   );

@@ -32,7 +32,7 @@ interface IFibBrowseScreenProps {
   onNavigateToYuScreen: () => void;
   navigateToEditSalary: () => void;
   navigateToCustomCover: () => void;
-  navigateToFeedbackForm: () => void;
+  onContinue: () => void;
   selectCoverType: (coverType: PackageId) => void;
   selectedPackage: Package;
   payoutEstimatorItems: CalculatorItems;
@@ -55,7 +55,7 @@ export const FibBrowseScreen = memo(function (props: IFibBrowseScreenProps) {
     navigateToEditSalary,
     documents,
     navigateToCustomCover,
-    navigateToFeedbackForm,
+    onContinue,
     selectCoverType,
     selectedPackage,
     payoutEstimatorItems,
@@ -138,7 +138,7 @@ export const FibBrowseScreen = memo(function (props: IFibBrowseScreenProps) {
         </ScrollView>
       </SafeAreaView>
 
-      <ContinueButton onPress={navigateToFeedbackForm} />
+      <ContinueButton onPress={onContinue} />
     </>
   );
 });

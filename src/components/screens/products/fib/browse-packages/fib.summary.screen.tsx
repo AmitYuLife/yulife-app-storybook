@@ -20,7 +20,8 @@ import { PackageId } from "../fib.helper";
 
 interface FibSummaryScreenProps {
   onNavigateBack: () => void;
-  navigateToFeedbackForm: () => void;
+  onContinue: () => void;
+  onExit: () => void;
   faqs: ComponentProps<typeof Faqs>["items"];
   documents: ComponentProps<typeof Faqs>["items"];
   selectedPackage: Package;
@@ -44,11 +45,12 @@ export const FibSummaryScreen = memo(function (props: FibSummaryScreenProps) {
     setDeceaseAgeIndexYear,
     setDeceaseAgeIndexMonth,
     loading,
-    navigateToFeedbackForm,
+    onContinue,
     selectCoverType,
     customerAge,
     onScrollEnd,
     offset,
+    onExit,
   } = props;
 
   const backHandler = useCallback(() => {
@@ -80,7 +82,13 @@ export const FibSummaryScreen = memo(function (props: FibSummaryScreenProps) {
   return (
     <>
       <SafeAreaView style={styles.wrapper}>
-        <GenericHeading heading="Finalise Package" isBeta={true} leftIcon="BACK" onLeftIconPress={onNavigateBack} />
+        <GenericHeading
+          heading="Finalise Package"
+          isBeta={true}
+          leftIcon="BACK"
+          onLeftIconPress={onNavigateBack}
+          onRightIconPress={onExit}
+        />
         <ScrollView
           showsVerticalScrollIndicator={false}
           contentContainerStyle={styles.scrollView}
@@ -105,7 +113,7 @@ export const FibSummaryScreen = memo(function (props: FibSummaryScreenProps) {
           <Summary selectedPackage={selectedPackage} loading={loading} />
           <Documents items={documents} />
           <View style={styles.buttonWrapper}>
-            <Button label="Continue" onPress={navigateToFeedbackForm} type="Primary" />
+            <Button label="Continue" onPress={onContinue} type="Primary" />
           </View>
           <Faqs items={faqs} />
         </ScrollView>
