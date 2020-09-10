@@ -12,6 +12,7 @@ import { ILeaderboardRankItemProps } from "../../../items";
 import { LEADERBOARD_ITEM_HEIGHT } from "../../../items/leaderboard-rank-item/subcomponents";
 import { TOP_PADDING_HEIGHT } from "./constants";
 import { PAGE_SIZE } from "../../active-leaderboard.container";
+import deviceInfoModule from "react-native-device-info";
 
 interface ResToListOutput {
   flatListData: ILeaderboardListItem[];
@@ -55,7 +56,7 @@ export const resToList = ({
 
   addTopPadding({ list, leaderboardName, leaderboardItems, isRefetching, scrollValue, isLoading });
   addRankItems(list, currentUserData, { leaderboardItems, currentUserId });
-  addBottomPadding(list, user.position < PAGE_SIZE);
+  addBottomPadding({ list, userInPage: user?.position < PAGE_SIZE });
 
   return {
     flatListData: list,
@@ -149,12 +150,33 @@ function addRankItems(
   }
 }
 
-function addBottomPadding(list: ILeaderboardListItem[], userInPage: boolean) {
+interface AddBottomPadding {
+  list: ILeaderboardListItem[];
+  userInPage: boolean;
+}
+
+function addBottomPadding({ list, userInPage }: AddBottomPadding) {
   list.push({
     key: "BOTTOM_PADDING",
     type: LEADERBOARD_LIST_ITEM.PAD,
     data: {
-      height: list.length < PAGE_SIZE || !userInPage ? LEADERBOARD_ITEM_HEIGHT + 16 : 8,
+      height: getBottomPadding({ list, userInPage }),
     },
   } as ILeaderboardPad);
+}
+
+function getBottomPadding({ list, userInPage }: AddBottomPadding) {
+  if (list.length < PAGE_SIZE || userInPage) {
+    if (Platform.OS === "ios" && deviceInfoModule.hasNotch()) {
+      return 8;
+    }
+
+    return 0;
+  }
+
+  if (Platform.OS === "ios" && deviceInfoModule.hasNotch()) {
+    return LEADERBOARD_ITEM_HEIGHT + 12;
+  }
+
+  return LEADERBOARD_ITEM_HEIGHT;
 }
