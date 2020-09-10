@@ -11,7 +11,13 @@ import {
   GetLifeInsuranceTopUpsVars,
 } from "@graphql/products";
 
-import { FIB_EDIT_SALARY, FIB_FAQ, FibLocalNavigation, FIB_CUSTOM_PERCENTAGE, FIB_FEEDBACK_FORM } from "../fib.types";
+import {
+  FIB_EDIT_SALARY,
+  FIB_FAQ,
+  FibLocalNavigation,
+  FIB_CUSTOM_PERCENTAGE,
+  FIB_UNDERWRITING_JOURNEY_INTRODUCTION,
+} from "../fib.types";
 import fibFaqItems from "../data/faq-fib-data";
 import fibDocumentsItems from "../data/documents-data";
 import { GetYulifer } from "@graphql/_core/schema";
@@ -136,7 +142,7 @@ const FibBrowseContainer = memo(function (props: IFibContainer & ReturnType<type
         avatarUrl={yuliferData?.getYulifer.avatarRemoteFiles?.pngFull}
         onNavigateBack={navigation.pop}
         navigateToEditSalary={() => navigation.push(FIB_EDIT_SALARY, { onPressDone: navigation.pop })}
-        navigateToFeedbackForm={() => navigation.push(FIB_FEEDBACK_FORM)}
+        onContinue={() => navigation.push(FIB_UNDERWRITING_JOURNEY_INTRODUCTION)}
         faqs={faqs}
         documents={documents}
         selectedPackage={packageDetails}
@@ -154,7 +160,7 @@ const FibBrowseContainer = memo(function (props: IFibContainer & ReturnType<type
       onNavigateToYuScreen={navigation.popToMain}
       navigateToEditSalary={() => navigation.push(FIB_EDIT_SALARY)}
       navigateToCustomCover={() => navigation.push(FIB_CUSTOM_PERCENTAGE)}
-      navigateToFeedbackForm={() => navigation.push(FIB_FEEDBACK_FORM)}
+      onContinue={() => navigation.push(FIB_UNDERWRITING_JOURNEY_INTRODUCTION)}
       selectCoverType={selectCoverType}
       selectedPackage={packageDetails}
       faqs={faqs}

@@ -15,7 +15,7 @@ import { useBackHandler } from "@services/hooks/useBackHandler";
 interface IFibCustomCoverScreenProps {
   onNavigateBack: () => void;
   navigateToEditSalary: () => void;
-  navigateToFeedbackForm: () => void;
+  onContinue: () => void;
   avatarUrl: string;
   faqs: ComponentProps<typeof Faqs>["items"];
   documents: ComponentProps<typeof Faqs>["items"];
@@ -38,7 +38,7 @@ export const FibCustomCoverScreen = memo(function (props: IFibCustomCoverScreenP
     setDeceaseAgeIndexYear,
     setDeceaseAgeIndexMonth,
     loading,
-    navigateToFeedbackForm,
+    onContinue,
   } = props;
 
   const backHandler = useCallback(() => {
@@ -80,7 +80,7 @@ export const FibCustomCoverScreen = memo(function (props: IFibCustomCoverScreenP
         </ScrollView>
       </SafeAreaView>
 
-      <ContinueButton onPress={navigateToFeedbackForm} />
+      <ContinueButton onPress={onContinue} />
     </>
   );
 });

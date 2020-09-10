@@ -1,5 +1,5 @@
 import { useQuery } from "@apollo/react-hooks";
-import React, { memo, useState, useEffect } from "react";
+import React, { memo, useState, useEffect, useCallback } from "react";
 import { View, Linking, Platform } from "react-native";
 import { connect, useDispatch } from "react-redux";
 import { Text } from "@atoms";
@@ -21,9 +21,10 @@ import fibDocumentsItems, { policyScheduleDocument } from "../data/documents-dat
 import fibFaqItems from "../data/faq-fib-data";
 import moment from "moment";
 import { updateFIBValue } from "@redux/product/product.actions";
-import { ROUTES } from "@navigation/constants";
+import { ROUTES, MODALS } from "@navigation/constants";
 import { handleOpenWebView } from "@navigation/utils";
 import Logger from "@services/logging/logger";
+import { Navigation } from "react-native-navigation";
 
 type ConnectedState = ReturnType<typeof mapStateToProps>;
 
@@ -141,6 +142,28 @@ const FibConfirmPackagesContainer = memo(function (props: FibConfirmPackagesCont
     },
   }));
 
+  const onExitHandler = useCallback(async () => {
+    await Navigation.showModal({
+      component: {
+        id: MODALS.generic,
+        name: MODALS.generic,
+        passProps: {
+          onPress: async () => {
+            await Navigation.dismissModal(MODALS.generic);
+          },
+          heading: "Exit",
+          subheading: "Are you sure you want to exit? Your progressed will be saved",
+          ctaLabel: "Stay",
+          ctaLabelSecondary: "Exit",
+          onPressSecondary: async () => {
+            await Navigation.dismissModal(MODALS.generic);
+            return navigation.popToMain();
+          },
+        },
+      },
+    });
+  }, [navigation]);
+
   if (error) {
     return (
       <View>
@@ -151,7 +174,8 @@ const FibConfirmPackagesContainer = memo(function (props: FibConfirmPackagesCont
 
   return (
     <FibSummaryScreen
-      navigateToFeedbackForm={() => navigation.push(FIB_FEEDBACK_FORM)} // TODO: Rename to onContinue? and redirect to address questions
+      onContinue={() => navigation.push(FIB_FEEDBACK_FORM)} // TODO: redirect to address questions
+      onExit={onExitHandler}
       selectedPackage={packageDetails}
       selectCoverType={selectCoverType}
       faqs={faqs}

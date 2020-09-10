@@ -10,7 +10,6 @@ import { getUserStart } from "../../../../redux/user/user.actions";
 import { getUserFeatures } from "../../../../redux/user/user.selectors";
 import { DebugScreen } from "../../../screens";
 import { ROUTES, MODALS } from "@navigation/constants";
-import { FIB_UNDERWRITING_JOURNEY_INTRODUCTION } from "@components/containers/products/fib/fib.types";
 import { FeedbackModalProps, npsModalProps } from "@components/modals/feedback/feedback.modal";
 import { FIB_CONTACT_DETAILS } from "../../products/fib/fib.types";
 
@@ -25,7 +24,6 @@ type Props = IProps & ConnectedState & ConnectedDispatch;
 
 enum CODES {
   ROUTE_TO_FIB_BROWSE_PACKAGES = "ROUTE_TO_FIB_BROWSE_PACKAGES",
-  ROUTE_TO_FIB_UNDERWRITING = "ROUTE_TO_FIB_UNDERWRITING",
   DISPLAY_FEEDBACK_MODAL = "DISPLAY_FEEDBACK_MODAL",
   ROUTE_TO_FIB_CONTACT_DETAILS_SCREEN = "ROUTE_TO_FIB_CONTACT_DETAILS_SCREEN",
 }
@@ -48,7 +46,6 @@ const ActivityHistoryContainer: React.FC<Props> = (props) => {
     ...((data && data.getDebugCodes) || DEFAULT_LIST),
     "send-test-push",
     CODES.ROUTE_TO_FIB_BROWSE_PACKAGES,
-    CODES.ROUTE_TO_FIB_UNDERWRITING,
     CODES.DISPLAY_FEEDBACK_MODAL,
     CODES.ROUTE_TO_FIB_CONTACT_DETAILS_SCREEN,
   ];
@@ -80,18 +77,6 @@ const ActivityHistoryContainer: React.FC<Props> = (props) => {
             component: {
               id: ROUTES.fib,
               name: ROUTES.fib,
-            },
-          });
-        }
-
-        if (code === CODES.ROUTE_TO_FIB_UNDERWRITING) {
-          return Navigation.push(props.componentId, {
-            component: {
-              id: ROUTES.fib,
-              name: ROUTES.fib,
-              passProps: {
-                initialRoute: FIB_UNDERWRITING_JOURNEY_INTRODUCTION,
-              },
             },
           });
         }

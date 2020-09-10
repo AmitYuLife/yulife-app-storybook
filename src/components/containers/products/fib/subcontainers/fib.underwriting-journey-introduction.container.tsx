@@ -23,7 +23,7 @@ function FibUnderwritingJourneyIntroductionContainer(props: Props) {
     <FibUnderwritingIntroduction
       avatar={data?.getYulifer.avatarRemoteFiles?.pngFull}
       onContinue={() => navigation.push(FIB_UNDERWRITING_JOURNEY)}
-      onNavigateBack={() => navigation.popToMain()}
+      onNavigateBack={() => navigation.pop()}
     />
   );
 }
