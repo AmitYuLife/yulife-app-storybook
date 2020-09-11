@@ -51,6 +51,17 @@ export function getCurrentWorld(currentLevel: number) {
   return Math.floor((currentLevel - 1) / 50) % 4;
 }
 
+export enum WorldName {
+  forest = "forest",
+  ocean = "ocean",
+  desert = "desert",
+  mountain = "mountain",
+}
+
+export function getCurrentWorldName(currentLevel: number): WorldName {
+  return [WorldName.forest, WorldName.ocean, WorldName.desert, WorldName.mountain][getCurrentWorld(currentLevel)];
+}
+
 export function getCurrentYuniverse(currentLevel: number) {
   return Math.floor((currentLevel - 1) / 200);
 }

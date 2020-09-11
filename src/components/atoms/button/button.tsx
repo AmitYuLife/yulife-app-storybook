@@ -97,6 +97,9 @@ const styles = StyleSheet.create({
   wrapper: {
     alignSelf: "center",
   },
+  fill: {
+    width: "100%",
+  },
   medium: {
     width: Style.adjust(210),
   },
@@ -115,6 +118,8 @@ export default Button;
 
 export function getWidth(size: Sizes) {
   switch (size) {
+    case BUTTON_SIZES.FILL:
+      return styles.fill;
     case BUTTON_SIZES.SMALL:
       return styles.small;
     case BUTTON_SIZES.MEDIUM:

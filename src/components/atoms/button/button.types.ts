@@ -5,10 +5,11 @@ export enum BUTTON_TYPES {
 }
 
 export enum BUTTON_SIZES {
+  FILL = "Fill",
   SMALL = "Small",
   MEDIUM = "Medium",
   LARGE = "Large",
 }
 
 export type Types = "Primary" | "Secondary" | "Link";
-export type Sizes = "Small" | "Medium" | "Large";
+export type Sizes = "Fill" | "Small" | "Medium" | "Large";
