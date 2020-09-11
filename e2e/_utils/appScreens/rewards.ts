@@ -179,7 +179,7 @@ export const onRewardPurchasedScreen = (reward: any) => async () => {
     }
 
     await expect(element(by.text("T&Cs"))).toBeVisible()
-    await expect(element(by.text("Reward policy"))).toBeVisible()
+    await expect(element(by.text("Rewards policy"))).toBeVisible()
 
 }
 

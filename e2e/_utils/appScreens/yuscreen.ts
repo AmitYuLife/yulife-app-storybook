@@ -4,6 +4,7 @@ import {
     AVATAR_BODY, PERSONAL_PRODUCT, SURVEY_SCREEN, BUILDER_BODY, PACKAGE_SCREEN, FIB_BROWSE_SCREEN, booleanTextVisible, wait,
 } from "@utils"
 import { scrollFromText, scrollFromID } from "_utils/navigation/scrolling"
+import { EARN_RATE_TABLE } from "@ids"
 
 
 export const {
@@ -103,8 +104,9 @@ export const onYourYuCoin = async () => {
     for (let i = 0; i < copy.length; i++) {
         try {
             await expect(element(by.text(copy[i]))).toBeVisible()
+            console.log(`Found ${copy[i]}`)
         } catch (e) {
-            await scrollFromText(copy[i - 1], "up", "fast")()
+            await scrollFromID(EARN_RATE_TABLE, "up", "fast")()
             await expect(element(by.text(copy[i]))).toBeVisible()
         }
 

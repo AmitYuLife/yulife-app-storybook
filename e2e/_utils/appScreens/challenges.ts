@@ -1,4 +1,4 @@
-import { navigateViaText, navigateViaID, CHALLENGE_TILE, idVisible, CHALLENGE_PROGRESS_BAR, expectIsVisibleViaText, QUESTS_SCREEN, wait, LEVEL_CHALLENGE_BUTTON } from "@navigation"
+import { navigateViaText, navigateViaID, CHALLENGE_TILE, idVisible, CHALLENGE_PROGRESS_BAR, expectIsVisibleViaText, QUESTS_SCREEN, wait, LEVEL_CHALLENGE_BUTTON, expectIsVisibleViaID } from "@navigation"
 
 export const onChallengeComplete = (stepCount: number, level = 1) => async () => {
     const steps = `${stepCount} steps`
@@ -44,7 +44,7 @@ export const dismissChestUnlock = (streakDay = 1) => async () => {
         await expectIsVisibleViaText(`Completed streak day ${streakDay}`, 2500)
         await navigateViaText("done")
     } catch (e) {
-        await expectIsVisibleViaText(QUESTS_SCREEN(0))
+        await expectIsVisibleViaID(QUESTS_SCREEN(0))
     }
 }
 
@@ -57,5 +57,4 @@ export const startChallengeFromQuests = (levelButton: number, challengeName: str
     } catch (e) {
         await idVisible(CHALLENGE_PROGRESS_BAR)()
     }
-
 }
