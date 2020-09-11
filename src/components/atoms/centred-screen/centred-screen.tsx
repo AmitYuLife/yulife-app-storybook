@@ -2,6 +2,7 @@ import * as React from "react";
 import { Image, SafeAreaView, StyleSheet, View, ViewStyle, ImageStyle } from "react-native";
 import LottieView from "lottie-react-native";
 import styles from "./centred-screen.styles";
+import { Style } from "../../../styles";
 
 interface Props {
   children?: React.ReactNode;
@@ -125,14 +126,36 @@ const IMAGES: Record<CenteredScreenImages, { style: ImageStyle; isLottie: boolea
   },
 };
 
+const BackgroundWrapper: React.FC<{}> = ({ children }) => {
+  if (Style.DEVICE_HEIGHT < 750) {
+    const translateY = 750 - Style.DEVICE_HEIGHT;
+
+    return (
+      <View
+        style={{
+          transform: [{ translateY }],
+        }}
+      >
+        {children}
+      </View>
+    );
+  }
+
+  return <>{children}</>;
+};
+
 function _Background({ footerImage }: Pick<Props, "footerImage">) {
   const { source, style, isLottie } = IMAGES[footerImage];
 
-  if (isLottie) {
-    return <LottieView style={style} source={source} autoPlay={true} loop={true} />;
-  }
-
-  return <Image resizeMode="cover" style={style} source={source} />;
+  return (
+    <BackgroundWrapper>
+      {isLottie ? (
+        <LottieView style={style} source={source} autoPlay={true} loop={true} />
+      ) : (
+        <Image resizeMode="cover" style={style} source={source} />
+      )}
+    </BackgroundWrapper>
+  );
 }
 
 const Background = React.memo(_Background);
