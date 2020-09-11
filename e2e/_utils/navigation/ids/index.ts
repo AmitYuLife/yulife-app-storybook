@@ -89,6 +89,7 @@ export const MALE_BODY = "MALE_BODY"
 export const EARN_RATE_BUTTON = (earnRate: number) => `EARN_RATE_BUTTON_${earnRate}`
 export const PACKAGE_SCREEN = "PACKAGE_SCREEN"
 export const YOUR_YUCOIN_SCREEN = "YOUR_YUCOIN_SCREEN"
+export const EARN_RATE_TABLE = "EARN_RATE_TABLE"
 
 // AVATAR BUILDER
 export const BODY_ITEM_TITLE = (title: string) => `BODY_ITEM_TITLE_${title}`

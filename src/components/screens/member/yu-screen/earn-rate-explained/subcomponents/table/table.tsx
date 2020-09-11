@@ -6,6 +6,7 @@ import { Colours, Style } from "@styles";
 import { TableHeader, TableBackground } from "./layout-components";
 import { TableRow } from "./data-components";
 import { EARN_RATE_COLUMN_WIDTH, MARGIN_EDGE_RIGHT } from "./table.styles";
+import { EARN_RATE_TABLE } from "@ids";
 
 interface IProps {
   earnRate: number;
@@ -20,7 +21,7 @@ export interface IColumnSize {
 function EarnRateTable(props: IProps) {
   const { earnRate, explainData, loading } = props;
   return (
-    <View style={styles.wrapper}>
+    <View style={styles.wrapper} testID={EARN_RATE_TABLE}>
       <Text style={styles.header}>Earn Rate Explained</Text>
       <TableLoader loading={loading} surged={earnRate > 1} />
       <TableData loading={loading} explainData={explainData} earnRate={earnRate} />
