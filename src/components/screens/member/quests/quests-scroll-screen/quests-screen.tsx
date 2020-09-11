@@ -74,7 +74,7 @@ class QuestsScreen extends React.PureComponent<IProps, IState> {
     if (unity) {
       return (
         <View style={styles.wrapper}>
-          <Unity unity={unity} onSkip={handleSkipUnity} />
+          <Unity level={unity} onSkip={handleSkipUnity} />
         </View>
       );
     }
