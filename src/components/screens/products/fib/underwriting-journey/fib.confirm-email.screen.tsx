@@ -37,7 +37,7 @@ export const FibConfirmScreen = memo(function (props: IFibConfirmEmailScreenProp
         <FibTitle title={"Would you like to use:"} />
         <Text style={styles.email}>{email}</Text>
         <Text style={styles.message}>
-          as your email address for logging into the yulie app in the future? Your password will remain the same
+          as your email address for logging into the yulife app in the future? Your password will remain the same
         </Text>
       </View>
       <Footer

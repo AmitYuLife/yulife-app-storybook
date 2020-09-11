@@ -7,7 +7,7 @@ import { numberWithCommas } from "@services/utils";
 import Warning from "@atoms/text-input/assets/warning";
 import { formatPostCode } from "../../screens/products/fib/underwriting-journey/fib.find-adress.screen";
 
-type Type = "Text" | "Number" | "PhoneNumber" | "PostCode";
+type Type = "Text" | "Number" | "PhoneNumber" | "PostCode" | "PostCodeFinder";
 
 interface Props {
   placeholder: string;
@@ -32,10 +32,6 @@ function stripPunctuation(text: string, type: Type) {
 function formatText(text: string, type: Type) {
   if (type === "Text" || type === "PhoneNumber") {
     return text;
-  }
-
-  if (type === "PostCode") {
-    return formatPostCode(text.replace(/ /g, "")).toUpperCase();
   }
 
   const castedText = Number(text);
@@ -117,6 +113,12 @@ export default function TextField(props: Props) {
               onBlur();
             }
 
+            // the logic is addid in order to format the postcode after the input become unfocused
+            if (type === "PostCode") {
+              setTextInputValue((state) => formatPostCode(state));
+              onChange(formatPostCode(textInputValue));
+            }
+
             setFocused(false);
           }}
           onFocus={() => setFocused(true)}
@@ -130,7 +132,7 @@ export default function TextField(props: Props) {
           value={textInputValue}
           keyboardType={type === "Number" || type === "PhoneNumber" ? "number-pad" : "default"}
           underlineColorAndroid="transparent"
-          autoCapitalize="none"
+          autoCapitalize={type === "PostCode" || type === "PostCodeFinder" ? "characters" : "none"}
           autoCompleteType="off"
           autoCorrect={false}
           maxLength={maxLength}

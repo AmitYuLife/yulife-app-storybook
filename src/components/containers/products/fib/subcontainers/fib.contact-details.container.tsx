@@ -13,6 +13,7 @@ import { getContactDetails } from "../../../../../redux/product/product.selector
 import { ContactDetails } from "@redux/product/product.types";
 import { Navigation } from "react-native-navigation";
 import { MODALS, ROUTES } from "../../../../../navigation/constants";
+import { formatPostCode } from "../../../../screens/products/fib/underwriting-journey/fib.find-adress.screen";
 
 type ConnectedDispatch = typeof mapDispatchToProps;
 type ConnectedState = ReturnType<typeof mapStateToProps>;
@@ -69,7 +70,7 @@ const FibContactDetailsConatainer = memo(function (props: Props) {
       firstAddressLine: address.addressFirstLine,
       secondAddressLine: address.addressSecondLine,
       townOrCity: address.addressCity,
-      postCode: address.addressPostCode,
+      postCode: formatPostCode(address.addressPostCode),
     }));
     setScreenId("ContactDetails");
   };
