@@ -17,7 +17,8 @@ interface IFibFindAdressScreenProps {
   onClose?: () => void;
 }
 
-const postCodeRegex = /^([Gg][Ii][Rr] 0[Aa]{2})|((([A-Za-z][0-9]{1,2})|(([A-Za-z][A-Ha-hJ-Yj-y][0-9]{1,2})|(([AZa-z][0-9][A-Za-z])|([A-Za-z][A-Ha-hJ-Yj-y][0-9]?[A-Za-z]))))[0-9][A-Za-z]{2})$/;
+export const postCodeRegex = /^[A-Z]{1,2}[0-9][A-Z0-9]? ?[0-9][A-Z]{2}$/;
+export const postCodeRegexSpecial = /^(([A-Z]{1,2}[0-9][A-Z0-9]?|ASCN|STHL|TDCU|BBND|[BFS]IQQ|PCRN|TKCA) ?[0-9][A-Z]{2}|BFPO ?[0-9]{1,4}|(KY[0-9]|MSR|VG|AI)[ -]?[0-9]{4}|[A-Z]{2} ?[0-9]{2}|GE ?CX|GIR ?0A{2}|SAN ?TA1)$/;
 
 export const FibFindAdressScreen = memo(function (props: IFibFindAdressScreenProps) {
   const { onBackButtonPress, onAddressSelected, onPostCodeAdded, data, loading, onClose } = props;
@@ -44,8 +45,8 @@ export const FibFindAdressScreen = memo(function (props: IFibFindAdressScreenPro
       setUserIsTyping(true);
       clearTimeout(timer.current);
       timer.current = setTimeout(() => {
-        if (postCodeRegex.test(postcode)) {
-          onPostCodeAdded(formatPostCode(postcode));
+        if (postCodeRegex.test(postcode) || postCodeRegexSpecial.test(postcode)) {
+          onPostCodeAdded(postcode);
         }
 
         setUserIsTyping(false);
@@ -65,8 +66,8 @@ export const FibFindAdressScreen = memo(function (props: IFibFindAdressScreenPro
           <FibTitle title={"Enter your post code"} />
           <TextField
             placeholder={""}
-            onChange={(val) => startTimer(val.toUpperCase().replace(/ /g, ""))}
-            type={"PostCode"}
+            onChange={(val) => startTimer(val.toUpperCase())}
+            type={"PostCodeFinder"}
             maxLength={8}
           />
           <Pad height={20} />
@@ -95,7 +96,10 @@ export const FibFindAdressScreen = memo(function (props: IFibFindAdressScreenPro
 });
 
 export const formatPostCode = (postCode: string) => {
-  return postCode.replace(/^(.*)(\d)/, "$1 $2");
+  return postCode
+    .replace(/ /g, "")
+    .toUpperCase()
+    .replace(/^(.*)(\d)/, "$1 $2");
 };
 
 interface ItemAdressProps {

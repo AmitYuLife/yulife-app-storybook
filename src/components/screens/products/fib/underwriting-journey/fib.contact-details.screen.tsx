@@ -9,6 +9,7 @@ import { SvgXml } from "react-native-svg";
 import { arrowRightSvg } from "../browse-packages/subcomponents/faqs/svgs/svgArrowRight";
 import validator from "email-validator";
 import { ContactDetails } from "@redux/product/product.types";
+import { postCodeRegexSpecial, postCodeRegex } from "./fib.find-adress.screen";
 
 export interface IFibContactDetailsScreenProps {
   onContinue: () => void;
@@ -22,6 +23,7 @@ export const FibContactDetailsScreen = memo(function (props: IFibContactDetailsS
   const { onContinue, onContactDetailsChange, contactDetails, onFindAdress, onClose } = props;
   const [isEmailValid, setIsEmailValid] = useState(validator.validate(contactDetails.personalEmail));
   const [isPhoneNumberValid, setIsPhoneNumberValid] = useState(phoneNumberIsValid(contactDetails.phoneNumber));
+  const [isPostCodeValide, setIsPostCodeValid] = useState(postCodeValid(contactDetails.postCode));
 
   const isButtonEnable =
     isEmailValid &&
@@ -41,6 +43,14 @@ export const FibContactDetailsScreen = memo(function (props: IFibContactDetailsS
       onContactDetailsChange("phoneNumber", phoneNumber);
     },
     [setIsPhoneNumberValid, onContactDetailsChange]
+  );
+
+  const onPostCodeChange = useCallback(
+    (postCode: string) => {
+      setIsPostCodeValid(postCodeValid(postCode));
+      onContactDetailsChange("postCode", postCode);
+    },
+    [setIsPostCodeValid, onContactDetailsChange]
   );
 
   return (
@@ -82,11 +92,13 @@ export const FibContactDetailsScreen = memo(function (props: IFibContactDetailsS
           <Pad height={20} />
 
           <TextField
-            onChange={(val) => onContactDetailsChange("postCode", val)}
+            onChange={(val) => onPostCodeChange(val)}
             placeholder={"Postcode"}
             type={"PostCode"}
             maxLength={8}
             value={contactDetails.postCode}
+            showError={contactDetails.postCode && !isPostCodeValide}
+            errorMessage={"Not a valid postcode"}
           />
           <Pad height={20} />
 
@@ -108,7 +120,8 @@ export const FibContactDetailsScreen = memo(function (props: IFibContactDetailsS
             value={contactDetails.phoneNumber}
             type={"PhoneNumber"}
             showError={contactDetails.phoneNumber && !isPhoneNumberValid}
-            errorMessage={"Please enter a valid UK phone number."}
+            errorMessage={"Not a valid UK phone number"}
+            maxLength={11}
           />
           <Pad height={40} />
 
@@ -122,6 +135,10 @@ export const FibContactDetailsScreen = memo(function (props: IFibContactDetailsS
 const phoneRegEx = /^(?:(?:\(?(?:0(?:0|11)\)?[\s-]?\(?|\+)44\)?[\s-]?(?:\(?0\)?[\s-]?)?)|(?:\(?0))(?:(?:\d{5}\)?[\s-]?\d{4,5})|(?:\d{4}\)?[\s-]?(?:\d{5}|\d{3}[\s-]?\d{3}))|(?:\d{3}\)?[\s-]?\d{3}[\s-]?\d{3,4})|(?:\d{2}\)?[\s-]?\d{4}[\s-]?\d{4}))(?:[\s-]?(?:x|ext\.?|\#)\d{3,4})?$/;
 const phoneNumberIsValid = (phoneNumber: string) => {
   return phoneRegEx.test(phoneNumber);
+};
+
+const postCodeValid = (postCode: string) => {
+  return postCodeRegexSpecial.test(postCode) || postCodeRegex.test(postCode);
 };
 
 const styles = StyleSheet.create({
