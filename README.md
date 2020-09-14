@@ -393,3 +393,7 @@ On `rn-client`, open 2 terminals
 On `api-server`
 
 - `detox:start`
+
+## Garmin Sync
+
+Trying to sync Garmin? On `api-server`, do `yarn develop:develop` before trying to toggle Garmin sync.

@@ -1,4 +1,4 @@
-import React, { useRef, RefObject, useCallback, useState } from "react";
+import React, { useRef, RefObject, useCallback, useState, useEffect } from "react";
 import {
   Animated,
   FlatList as _FlatList,
@@ -16,6 +16,8 @@ import { getUriSet } from "./helpers/resToList";
 import { TOP_PADDING_HEIGHT } from "./helpers/constants";
 import { LEADERBOARD_ITEM_HEIGHT } from "../../items/leaderboard-rank-item/subcomponents";
 import { PAGE_SIZE } from "../active-leaderboard.container";
+import { MODALS } from "@navigation/constants";
+import useNavigationComponentDidDisappear from "@services/hooks/useNavigationComponentDidDisappear";
 
 export interface LeaderboardContentContainerProps {
   query: GetLeaderboard;
@@ -61,8 +63,15 @@ const _LeaderboardContentContainer = ({
       return openModal();
     }
 
-    flatListRef.current.scrollToIndex({ animated: true, index: target.position });
+    flatListRef.current.scrollToIndex({ animated: true, index: target.position - 1 });
   }, [leaderboardItems, currentUserId, openModal]);
+
+  useEffect(() => {
+    // we need this for floating-rank-item because there's no way to get
+    // current scroll position other than to attach an event listener
+    // so we emit a scroll event by forcing to scroll on initialisation
+    flatListRef.current.scrollToOffset({ offset: 1 });
+  }, []);
 
   const handleLayout = useCallback(
     (e: LayoutChangeEvent) => {
@@ -70,6 +79,11 @@ const _LeaderboardContentContainer = ({
     },
     [setFlatListHeight]
   );
+
+  useNavigationComponentDidDisappear(() => {
+    // we need this to sync refresh gesture from modal
+    onRefetch();
+  }, MODALS.leaderboardLean);
 
   return (
     <View style={styles.flex}>

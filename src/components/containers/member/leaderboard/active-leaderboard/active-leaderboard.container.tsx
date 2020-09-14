@@ -30,6 +30,7 @@ const _ActiveLeaderboard = (props: Props) => {
       limit: PAGE_SIZE,
     },
     notifyOnNetworkStatusChange: true,
+    fetchPolicy: "network-only", // caching breaks because it shares the same query w/ leaderboard-lean
   });
 
   const handleRefetch = useCallback(async () => {

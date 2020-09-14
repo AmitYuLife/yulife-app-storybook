@@ -9,5 +9,4 @@ const _LeaderboardPad = ({ height }: ILeaderboardPadProps) => {
   return <View style={{ height }} />;
 };
 
-const neverUpdate = () => true;
-export const LeaderboardPad = memo(_LeaderboardPad, neverUpdate);
+export const LeaderboardPad = memo(_LeaderboardPad);
