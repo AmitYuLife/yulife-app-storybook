@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect } from "react";
 import { FlatList, View, StyleSheet, ViewStyle } from "react-native";
 import { resToList, renderItem } from "./helpers";
 import { GetLeaderboard, GetLeaderboardVariables } from "@graphql/_core/schema";
@@ -10,6 +10,7 @@ import { GQL_QUERY_LEADERBOARD } from "@graphql/member";
 import { Navigation } from "react-native-navigation";
 import { MODALS } from "@navigation/constants";
 import { LeaderboardSkeleton } from "../active-leaderboard/leaderboard-layout/subcomponents/leaderboard-skeleton/leaderboard-skeleton";
+import { PAGE_SIZE } from "../active-leaderboard/active-leaderboard.container";
 
 export type LeaderboardLeanProps = ConnectedProps<typeof redux>;
 
@@ -29,8 +30,19 @@ const LeaderboardLean = (props: LeaderboardLeanProps) => {
         targetId: userId,
       },
       notifyOnNetworkStatusChange: true,
+      fetchPolicy: "network-only", // caching breaks because it shares the same query w/ active-leaderboard
     }
   );
+
+  useEffect(() => {
+    const user = data?.getLeaderboard.find((item) => item.id === `lead_${userId}`);
+
+    if (user?.position < PAGE_SIZE) {
+      onBack();
+    }
+
+    return () => null;
+  }, [data, onBack, userId]);
 
   const list = resToList({ leaderboardItems: data?.getLeaderboard || [], onBack });
 

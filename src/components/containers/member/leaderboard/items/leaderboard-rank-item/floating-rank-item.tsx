@@ -1,4 +1,4 @@
-import React, { memo, useEffect, useState } from "react";
+import React, { memo, useEffect, useRef, useState } from "react";
 import { Animated, View } from "react-native";
 import { baseStyles, floatingItemStyles } from "./subcomponents/styles";
 import { Rank } from "./subcomponents/rank";
@@ -16,7 +16,7 @@ interface Props {
   offset: number;
 }
 
-const ADJUST = -40;
+const ADJUST = -20;
 
 const FloatingRankItem = ({
   onPress = (): void => null,
@@ -25,16 +25,14 @@ const FloatingRankItem = ({
   offset = 0,
 }: Props) => {
   const [disableTouch, setDisableTouch] = useState(false);
+  const listener = useRef(null);
 
   useEffect(() => {
-    if (item?.position && item.position >= PAGE_SIZE) {
-      return;
-    }
+    scrollValue.removeListener(listener.current);
+    listener.current = scrollValue.addListener(({ value }) => setDisableTouch(value > offset));
 
-    const listener = scrollValue.addListener(({ value }) => setDisableTouch(value > offset));
-
-    return () => scrollValue.removeListener(listener);
-  }, [scrollValue, offset, item]);
+    return () => scrollValue.removeListener(listener.current);
+  }, [offset, item, scrollValue]);
 
   if (!item) {
     return null;
