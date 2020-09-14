@@ -88,6 +88,7 @@ export const FibFindAdressScreen = memo(function (props: IFibFindAdressScreenPro
             keyExtractor={(item: Address_findUserAddress) => item.addressFirstLine}
             data={data}
             showsVerticalScrollIndicator={false}
+            keyboardShouldPersistTaps={"always"}
           />
         )}
       </View>
