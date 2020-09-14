@@ -52,7 +52,7 @@ const _DailyStepsOnline = (props: Props) => {
           {usePassiveMeditation && dailyMeditation > 0 ? mindfulTotalToDisplay : ""}
         </Text>
       )}
-      <Pad height={8} />
+      <Pad height={4} />
       <Text>
         {showCounter ? (
           <Counter duration={1200} value={dailyEarnedCoins} textStyle={flattenStyle} />
@@ -65,7 +65,7 @@ const _DailyStepsOnline = (props: Props) => {
         <Text style={flattenStyle}>{`coin `}</Text>
         <Text style={flattenStyle}>today</Text>
       </Text>
-      <Pad height={22} />
+      <Pad height={18} />
       {!displayEarnMore ? null : (
         <Button onPress={handleNavigateToQuestsTab} type="Primary" size="Medium" label="earn more" />
       )}
@@ -95,7 +95,7 @@ const styles = {
   } as ViewStyle,
   dailyStepsOnlineWrapper: {
     alignItems: "center",
-    marginTop: Style.SCALE_UP_AND_DOWN(-16),
+    marginTop: Style.SCALE_UP_AND_DOWN(-2),
   } as ViewStyle,
   heading: {
     fontSize: Style.SCALE_UP_AND_DOWN(35),

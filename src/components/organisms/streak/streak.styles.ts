@@ -42,6 +42,6 @@ export default StyleSheet.create({
     justifyContent: "flex-end",
     position: "absolute",
     right: Style.SCALE_UP_AND_DOWN(isIphoneX() ? -15 : 0),
-    top: Style.SCALE_UP_AND_DOWN(isIphoneX() ? 120 : 80),
+    top: Style.SCALE_UP_AND_DOWN(isIphoneX() ? 95 : 55),
   } as ViewStyle,
 });
