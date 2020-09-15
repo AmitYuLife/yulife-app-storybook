@@ -41,6 +41,7 @@ const _LeaderboardContentContainer = ({
   isLoading,
 }: LeaderboardContentContainerProps) => {
   const [scrollValue] = useState(new Animated.Value(0));
+  const listScrollTimeout = useRef(null);
   const [flatListHeight, setFlatListHeight] = useState(0);
   const flatListRef: RefObject<_FlatList> = useRef();
   const leaderboardItems = query?.getLeaderboard || [];
@@ -63,14 +64,17 @@ const _LeaderboardContentContainer = ({
       return openModal();
     }
 
-    flatListRef.current.scrollToIndex({ animated: true, index: target.position - 1 });
+    flatListRef.current?.scrollToIndex({ animated: true, index: target.position - 1 });
   }, [leaderboardItems, currentUserId, openModal]);
 
   useEffect(() => {
     // we need this for floating-rank-item because there's no way to get
     // current scroll position other than to attach an event listener
     // so we emit a scroll event by forcing to scroll on initialisation
-    flatListRef.current.scrollToOffset({ offset: 1 });
+    listScrollTimeout.current = setTimeout(() => {
+      flatListRef.current?.scrollToOffset({ offset: 1 });
+    }, 50);
+    return () => clearTimeout(listScrollTimeout.current);
   }, []);
 
   const handleLayout = useCallback(
