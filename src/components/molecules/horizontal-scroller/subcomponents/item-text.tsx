@@ -15,6 +15,7 @@ interface Props {
 export const ItemText = memo(({ children, opacity, translateY, active, style, testID }: Props) => {
   const wrapperStyle = active ? styles.itemLabelActiveWrapper : styles.itemWrapper;
   const labelStyle = [active ? styles.itemLabelActive : styles.itemLabel, style];
+
   return (
     <Animated.View
       style={[
