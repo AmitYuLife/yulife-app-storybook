@@ -1,4 +1,4 @@
-import { Feature, Scenario, Given, When, Then, ScenarioOnly, FeatureOnly } from "@bdd";
+import { Feature, Scenario, Given, When, Then, ScenarioOnly, FeatureOnly, ScenarioSkip } from "@bdd";
 import * as scenario from "./_steps/scenario"
 import * as given from "./_steps/given"
 import * as when from "./_steps/when"
@@ -22,14 +22,13 @@ Feature("I am able to use the yuscreens extended features", async () => {
                         When("I tap done", when.tapText("Done"), async()=>{
                             Then("I should be on the package screen for life insurance", then.onPackageScreen)
                             Then("The common option should be selected", then.textVisible("Designed to cover the basics"))
-                                Then("the rest of the package screen should be visible", then.packageScreenCorrect(18.68))
+                                Then("the rest of the package screen should be visible", then.packageScreenCorrect(18.12))
                         })
                     })
                 })
             })
         })
     })
-
 
     Scenario("The payout calculator should work correctly", scenario.start, async()=>{
         Given("I go to the yuscreen as a user with the correct toggle", given.loginToYuScreen(true, CUSTOMER_23, AUTH_23), async () => {
@@ -51,7 +50,7 @@ Feature("I am able to use the yuscreens extended features", async () => {
                                             Then("I should see the payment calculator", then.paymentCalcVisible)
                                             Then("I should see years set at 40", then.idVisible(HIGHLIGHTED_SCROLLER_VALUE(40)))
                                             Then("I should see months set at 0", then.idVisible(HIGHLIGHTED_SCROLLER_VALUE(0)))
-                                            Then("I should see the default payment calculation", then.textVisible("£310,000"))
+                                            Then("I should see the default payment calculation", then.textVisible("£300,000"))
                                             When("I scroll the years scroller", when.scrollFromID(YEAR_SCROLLER, "left", "fast"), async()=>{
                                                 Then("The years, months, and payout should be correct", then.yearsScrollCorrect)
                                             })
@@ -79,15 +78,15 @@ Feature("I am able to use the yuscreens extended features", async () => {
                         Then("I should see the customer cover tab", then.textVisible("Create custom cover"))
                         When("I tap the custom cover tab", when.tapText("Create custom cover"), async()=>{
                             Then("I should be on the custom cover screen", then.onCustomCover)
-                            Then("I should see the initial estimated cost", then.textVisible("£18.68"))
+                            Then("I should see the initial estimated cost", then.textVisible("£18.12"))
                             When("I change the percentage", when.scrollFromID(HIGHLIGHTED_SCROLLER_VALUE(25), "left", "fast"), async()=>{
                                 Then("I should see the changed percentage value", then.idVisible(HIGHLIGHTED_SCROLLER_VALUE(35)))
-                                Then("I should see the newly calculated estimated cost", then.textVisible("£24.54"))
+                                Then("I should see the newly calculated estimated cost", then.textVisible("£23.17"))
                                 When("I tap continue", when.tapText("Continue"), async()=>{
                                     Then("I should be on the next custom cover screen", then.onNextCustomCoverScreen)
-                                    Then("I should see the newly calculated estimated cost", then.textVisible("£24.54 per month"))
+                                    Then("I should see the newly calculated estimated cost", then.textVisible("£23.17 per month"))
                                     When("I tap continue", when.tapText("Continue"), async()=>{
-                                        Then("I should be on the feedback screen", then.textVisible("Feedback"))
+                                        Then("I should be on Let's get started screen", then.textVisible(`Let's get started Mike,`))
                                     })
                                 })
                             })

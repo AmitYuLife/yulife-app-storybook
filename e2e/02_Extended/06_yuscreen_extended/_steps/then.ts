@@ -1,4 +1,4 @@
-import { navigation, YEAR_SCROLLER, MONTH_SCROLLER, booleanTextVisible, booleanIdVisible, HIGHLIGHTED_SCROLLER_VALUE, CUSTOM_COVER_SCREEN, PERCENTAGE_COVERED } from "@utils"
+import { navigation, YEAR_SCROLLER, MONTH_SCROLLER, booleanTextVisible, booleanIdVisible, HIGHLIGHTED_SCROLLER_VALUE, CUSTOM_COVER_SCREEN, PERCENTAGE_COVERED, wait, SCROLLER_VALUE } from "@utils"
 import { screens } from "@appScreens"
 
 export const {
@@ -36,16 +36,18 @@ export const paymentCalcVisible = async()=>{
 
 
 export const yearsScrollCorrect = async () => {
+    await wait(2500)()
     try {
         await expect(element(by.id(HIGHLIGHTED_SCROLLER_VALUE(50)))).toBeVisible()
-        await expect(element(by.text("£210,000"))).toBeVisible()
+        await expect(element(by.text("£200,000"))).toBeVisible()
     }catch(e){
         await expect(element(by.id(HIGHLIGHTED_SCROLLER_VALUE(51)))).toBeVisible()
-        await expect(element(by.text("£200,000"))).toBeVisible()
+        await expect(element(by.text("£190,000"))).toBeVisible()
     }
 }
 
 export const monthsScrollCorrect = async()=>{
+    await wait(2500)()
     const yearIsFifty = await booleanIdVisible(HIGHLIGHTED_SCROLLER_VALUE(50))
     const yearIsFiftyOne = await booleanTextVisible(HIGHLIGHTED_SCROLLER_VALUE(51))
     
@@ -53,20 +55,20 @@ export const monthsScrollCorrect = async()=>{
         await expect(element(by.id(HIGHLIGHTED_SCROLLER_VALUE(50)))).toBeVisible()
         try{ 
             await expect(element(by.id(HIGHLIGHTED_SCROLLER_VALUE(10)))).toBeVisible()
-            await expect(element(by.text("£201,667"))).toBeVisible()
+            await expect(element(by.text("£191,667"))).toBeVisible()
         }catch(e){
             await expect(element(by.id(HIGHLIGHTED_SCROLLER_VALUE(11)))).toBeVisible()
-            await expect(element(by.text("£200,833"))).toBeVisible()
+            await expect(element(by.text("£190,833"))).toBeVisible()
         }
     } else if(yearIsFiftyOne === true && yearIsFifty===false){
         try{
             await expect(element(by.id(HIGHLIGHTED_SCROLLER_VALUE(51)))).toBeVisible()
             await expect(element(by.id(HIGHLIGHTED_SCROLLER_VALUE(10)))).toBeVisible()
-            await expect(element(by.text("191,667"))).toBeVisible()
+            await expect(element(by.text("£181,667"))).toBeVisible()
         }catch(e){
             await expect(element(by.id(HIGHLIGHTED_SCROLLER_VALUE(51)))).toBeVisible()
             await expect(element(by.id(HIGHLIGHTED_SCROLLER_VALUE(11)))).toBeVisible()
-            await expect(element(by.text("190,833"))).toBeVisible()
+            await expect(element(by.text("£180,833"))).toBeVisible()
         }
     }
 }
