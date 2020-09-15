@@ -45,20 +45,22 @@ const FibUnderwritingJourneyContainer = memo(function (props: Props) {
   const dispatch = useDispatch();
 
   const { redirectedFromReviewScreen, initialQuestionIdFromReviewScreen } = navigation.currentRoute.passProps;
-
   const initialQuestion =
-    data.find((question) => question.id === initialQuestionId || question.id === initialQuestionIdFromReviewScreen) ||
-    data[0];
+    data.find((question) =>
+      initialQuestionIdFromReviewScreen
+        ? question.id === initialQuestionIdFromReviewScreen
+        : question.id === initialQuestionId
+    ) || data[0];
 
   const [currentQuestion, setCurrentQuestion] = useState(initialQuestion);
   const activeIndex = data.findIndex((item) => item.id === currentQuestion?.id) || 0;
   const isFirstQuestion = currentQuestion.id === FIB_YOUR_NAME_SCREEN_ID;
 
   useEffect(() => {
-    if (isFirstQuestion) {
+    if (isFirstQuestion && !redirectedFromReviewScreen) {
       dispatch(updateFIBValue({ key: "lastQuestionId", value: currentQuestion.id }));
     }
-  }, [isFirstQuestion, dispatch, currentQuestion]);
+  }, [isFirstQuestion, dispatch, currentQuestion, redirectedFromReviewScreen]);
 
   const [inputName, setInputName] = useState(fibAnswers.fib_your_name);
 

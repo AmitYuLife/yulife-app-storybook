@@ -11,7 +11,11 @@ import {
   FIB_ENTER_YOUR_DATE_OF_BIRTH,
   FIB_LIFESTYLE_HEIGHT_SCREEN_ID,
   FIB_LIFESTYLE_WEIGHT_SCREEN_ID,
+  FIB_MEDICAL_THREE_OR_MORE_CONSULTATION_SCREEN_ID,
 } from "../../components/containers/products/fib/data/underwriting-journey-data";
+import { FINANCIAL_QUESTIONS_ICON } from "@atoms/fib/svg-assets/underwriting/svg-strings";
+import { numberWithCommas } from "@services/utils";
+import { FIB_EDIT_SALARY } from "@components/containers/products/fib/fib.types";
 
 export const getFIBState = (state: IReduxState): FIBStore => {
   return state.product.fib;
@@ -37,18 +41,28 @@ export interface IAnswer {
   title: string;
   answer: string;
   questionId: string;
+  incomplete: boolean;
 }
 export const getReviewAnswers = (state: IReduxState): any => {
   const answers: IAnswer[] = [];
 
+  const activeChips = Object.entries(state.product.fib.medicalHistory)
+    .map((entry) => {
+      return entry[1] ? entry[0] : null;
+    })
+    .filter((e) => !!e);
+
+  const showThreeYearMedical = state.product.fib.answers[FIB_MEDICAL_THREE_OR_MORE_CONSULTATION_SCREEN_ID] === "Yes";
   // this will be moved to the container once we'll have the data from server
   data.map((item) => {
     let icon: string;
     let title: string;
     let answer: string;
     let questionId: string;
-
-    if (state.product.fib.answers[item.id]) {
+    if (
+      state.product.fib.answers[item.id] ||
+      (activeChips.includes(item.id) && item.id !== FIB_THREE_YEAR_MEDICAL_HISTORY_SCREEN_ID)
+    ) {
       icon = item.icon;
       title = item.reviewAnswerTitle || item.title;
       answer = state.product.fib.answers[item.id];
@@ -59,13 +73,7 @@ export const getReviewAnswers = (state: IReduxState): any => {
       }
     }
 
-    if (item.id === FIB_THREE_YEAR_MEDICAL_HISTORY_SCREEN_ID) {
-      const activeChips = Object.entries(state.product.fib.medicalHistory)
-        .map((entry) => {
-          return entry[1] ? entry[0] : null;
-        })
-        .filter((e) => !!e);
-
+    if (item.id === FIB_THREE_YEAR_MEDICAL_HISTORY_SCREEN_ID && showThreeYearMedical) {
       const chipListChild = item.children.find((child) => child.type === "chiplist");
 
       let commaCount = 0;
@@ -122,14 +130,23 @@ export const getReviewAnswers = (state: IReduxState): any => {
       questionId = item.id;
     }
 
-    if (icon && answer && title) {
+    if (icon && title) {
       answers.push({
         icon,
         title,
         answer,
         questionId,
+        incomplete: !answer,
       });
     }
+  });
+  // Add salary to answers 3rd position
+  answers.splice(2, 0, {
+    icon: FINANCIAL_QUESTIONS_ICON,
+    title: "Salary",
+    answer: `£${numberWithCommas(state.product.fib.salary)}`,
+    questionId: FIB_EDIT_SALARY,
+    incomplete: !state.product.fib.salary,
   });
 
   return answers;

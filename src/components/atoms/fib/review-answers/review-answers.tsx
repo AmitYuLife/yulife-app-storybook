@@ -1,26 +1,38 @@
 import React, { memo } from "react";
-import { StyleSheet, View, ViewStyle, TextStyle, Text } from "react-native";
+import { StyleSheet, View, ViewStyle, TextStyle } from "react-native";
 import { Style } from "../../../../styles";
 import { SvgFromXml } from "react-native-svg";
 import { arrowRightSvg } from "../../../screens/products/fib/browse-packages/subcomponents/faqs/svgs/svgArrowRight";
 import TouchableOpacityWithDelay from "../../../molecules/touchable-opacity-delay/touchable-opacity-delay";
+import Warning from "@atoms/text-input/assets/warning";
+import { Text } from "@atoms";
 
 export interface IReviewAnswersProps {
   icon: string;
   title: string;
   answer: string;
+  incomplete: boolean;
   onAnswerPress: () => void;
 }
 
 export const ReviewAnswers = memo(function (props: IReviewAnswersProps) {
-  const { icon, answer, title, onAnswerPress } = props;
+  const { icon, answer, title, onAnswerPress, incomplete } = props;
 
   return (
     <TouchableOpacityWithDelay style={styles.wrapper} onPress={onAnswerPress}>
       <SvgFromXml xml={icon} />
       <View style={styles.textWrapper}>
         <Text style={styles.title}>{title}</Text>
-        <Text style={styles.answer}>{answer}</Text>
+        {!incomplete ? (
+          <Text style={styles.answer}>{answer}</Text>
+        ) : (
+          <View style={styles.incompleteWrapper}>
+            <Text style={[styles.answer, styles.incompleteMessage]}>Please complete this question</Text>
+            <View style={styles.incompleteIcon}>
+              <Warning width={22} height={20} />
+            </View>
+          </View>
+        )}
       </View>
       <View style={styles.imageWrapper}>
         <SvgFromXml height={18} width={18} xml={arrowRightSvg} />
@@ -69,5 +81,15 @@ const styles = StyleSheet.create({
     marginLeft: "auto",
     paddingRight: Style.adjust(24),
     alignSelf: "center",
+  } as ViewStyle,
+  incompleteWrapper: {
+    flexDirection: "row",
+  } as ViewStyle,
+  incompleteMessage: {
+    color: "#FC0000",
+    width: null,
+  } as TextStyle,
+  incompleteIcon: {
+    marginLeft: 6,
   } as ViewStyle,
 });
