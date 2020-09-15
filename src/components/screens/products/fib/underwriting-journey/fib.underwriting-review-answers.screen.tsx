@@ -51,6 +51,8 @@ const _FibUnderwritingReviewAnswersScreen = memo(function (props: IFibUnderwriti
 
   useBackHandler(backHandler);
 
+  const disableSubmitButton = !!answers.filter((answer) => answer.incomplete).length;
+
   return (
     <SafeAreaView style={styles.wrapper}>
       <GenericHeading
@@ -74,11 +76,18 @@ const _FibUnderwritingReviewAnswersScreen = memo(function (props: IFibUnderwriti
               onAnswerPress={() => {
                 onAnswerPress(item.questionId);
               }}
+              incomplete={item.incomplete}
             />
           );
         })}
         <Text style={styles.agreementText}>I agree that all the above is accurate</Text>
-        <Button type="Primary" size={"Large"} onPress={onSubmitButton} label={"Submit answers"} />
+        <Button
+          type="Primary"
+          size={"Large"}
+          onPress={onSubmitButton}
+          label={"Submit answers"}
+          disabled={disableSubmitButton}
+        />
       </ScrollView>
     </SafeAreaView>
   );

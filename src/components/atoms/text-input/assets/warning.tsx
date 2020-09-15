@@ -1,9 +1,9 @@
 import * as React from "react";
 import Svg, { Path, Circle } from "react-native-svg";
 
-export const Warning = () => {
+export const Warning = ({ height = 24, width = 24 }) => {
   return (
-    <Svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+    <Svg width={width} height={height} viewBox="0 0 24 24" fill="none">
       <Path
         d="M10.9196 3.60056L1.79497 20.5254C1.43578 21.1917 1.9183 22 2.6752 22H21.2926C22.0569 22 22.5386 21.1774 22.1648 20.5108L12.672 3.58593C12.2864 2.8983 11.2938 2.90659 10.9196 3.60056Z"
         stroke="#FC0000"
