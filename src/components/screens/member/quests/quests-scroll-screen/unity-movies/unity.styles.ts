@@ -7,6 +7,7 @@ const styles = StyleSheet.create({
     lineHeight: 32,
     letterSpacing: 1,
     paddingBottom: 16,
+    paddingHorizontal: 30,
     fontFamily: Style.FONT_FAMILY_PRIMARY_BOLD,
   } as TextStyle,
   subheading: {

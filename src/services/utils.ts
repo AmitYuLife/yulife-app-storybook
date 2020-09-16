@@ -267,3 +267,35 @@ export function toOrdinal(n: number): string {
 
   return n + "th";
 }
+
+export function toOrdinalWord(n: number): string {
+  // fallback to numerals when n > 20
+  if (n > 20) {
+    return toOrdinal(n);
+  }
+
+  const arr = [
+    "first",
+    "second",
+    "third",
+    "fourth",
+    "fifth",
+    "sixth",
+    "seventh",
+    "eighth",
+    "ninth",
+    "tenth",
+    "eleventh",
+    "twelfth",
+    "thirteenth",
+    "fourteenth",
+    "fifteenth",
+    "sixteenth",
+    "seventeenth",
+    "eighteenth",
+    "nineteenth",
+    "twentieth",
+  ];
+
+  return arr[n - 1];
+}
