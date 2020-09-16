@@ -8,7 +8,8 @@ export const {
     textNotVisible,
     expectIsVisibleViaID,
     expectIsVisibleViaText,
-    multipleTextVisible
+    multipleTextVisible,
+    tryCatchTextVisible
 } = navigation.common
 
 export const {

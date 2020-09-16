@@ -81,10 +81,10 @@ Feature("I am able to use the yuscreens extended features", async () => {
                             Then("I should see the initial estimated cost", then.textVisible("£18.12"))
                             When("I change the percentage", when.scrollFromID(HIGHLIGHTED_SCROLLER_VALUE(25), "left", "fast"), async()=>{
                                 Then("I should see the changed percentage value", then.idVisible(HIGHLIGHTED_SCROLLER_VALUE(35)))
-                                Then("I should see the newly calculated estimated cost", then.textVisible("£23.17"))
+                                Then("I should see the newly calculated estimated cost", then.tryCatchTextVisible(["£23.17", "£23.76"]))
                                 When("I tap continue", when.tapText("Continue"), async()=>{
                                     Then("I should be on the next custom cover screen", then.onNextCustomCoverScreen)
-                                    Then("I should see the newly calculated estimated cost", then.textVisible("£23.17 per month"))
+                                    Then("I should see the newly calculated estimated cost", then.tryCatchTextVisible(["£23.17 per month","£23.76 per month" ]))
                                     When("I tap continue", when.tapText("Continue"), async()=>{
                                         Then("I should be on Let's get started screen", then.textVisible(`Let's get started Mike,`))
                                     })
