@@ -72,7 +72,7 @@ export default function DailyStepsScreen({
 
 function getPadHeight() {
   if (isIphoneX()) {
-    return 120;
+    return 110;
   }
 
   if (Platform.OS === "ios") {
@@ -83,5 +83,5 @@ function getPadHeight() {
     return 100;
   }
 
-  return 140;
+  return 110;
 }
