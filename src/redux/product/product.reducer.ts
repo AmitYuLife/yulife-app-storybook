@@ -43,7 +43,8 @@ export const initialState: IProductStore = {
       birthDay: "",
       birthMonth: "",
       birthYear: "",
-      fib_your_name: "",
+      firstName: "",
+      lastName: "",
     },
     salary: 0,
     selectedPackage: "common",
@@ -189,9 +190,9 @@ const getUserSuccess = (state: IProductStore, { getCurrentUser }: GetCurrentUser
     newState.fib.answers.birthYear = state.fib?.answers?.birthYear || dateOfBirth[2];
   }
 
-  if (!state.fib?.answers?.fib_your_name) {
-    const userName = `${getCurrentUser.firstName} ${getCurrentUser.lastName}`;
-    newState.fib.answers.fib_your_name = userName;
+  if (!state.fib?.answers?.firstName || !state.fib?.answers?.lastName) {
+    newState.fib.answers.firstName = getCurrentUser.firstName;
+    newState.fib.answers.lastName = getCurrentUser.lastName;
   }
 
   return newState;

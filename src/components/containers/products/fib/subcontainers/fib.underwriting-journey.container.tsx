@@ -62,7 +62,8 @@ const FibUnderwritingJourneyContainer = memo(function (props: Props) {
     }
   }, [isFirstQuestion, dispatch, currentQuestion, redirectedFromReviewScreen]);
 
-  const [inputName, setInputName] = useState(fibAnswers.fib_your_name);
+  const [inputFirstName, setInputFirstName] = useState(fibAnswers.firstName);
+  const [inputLastName, setInputLastName] = useState(fibAnswers.lastName);
 
   const updateAnswer = (questionId: string, value: string, answers: FibAnswers): FibAnswers => {
     updateFibAnswer(questionId, value);
@@ -135,7 +136,8 @@ const FibUnderwritingJourneyContainer = memo(function (props: Props) {
 
     navigateToReviewScreenOrFindNextQuestion(localAnswers, "firstButton", currentQuestion.id);
     if (currentQuestion.id === FIB_ENTER_YOUR_NAME) {
-      updateFibAnswer("fib_your_name", inputName);
+      updateFibAnswer("firstName", inputFirstName);
+      updateFibAnswer("lastName", inputLastName);
     }
 
     if (currentQuestion.firstButton.actionId === FIB_UNDERWRITING_REVIEW_ANSWERS_SCREEN_ID) {
@@ -228,7 +230,13 @@ const FibUnderwritingJourneyContainer = memo(function (props: Props) {
     maxLength: data.length,
   };
 
-  const disableFirstButton = shouldFirstButtonBeDisabled(medicalHistory, currentQuestion, fibAnswers, inputName);
+  const disableFirstButton = shouldFirstButtonBeDisabled(
+    medicalHistory,
+    currentQuestion,
+    fibAnswers,
+    inputFirstName,
+    inputLastName
+  );
   const disableSecondButton = shouldSecondButtonBeDisabled(currentQuestion, fibAnswers);
 
   const onNavigateBackHandler = useCallback(async () => {
@@ -267,8 +275,10 @@ const FibUnderwritingJourneyContainer = memo(function (props: Props) {
           isHidden: redirectedFromReviewScreen ? true : false,
         }}
         disableFirstButton={disableFirstButton}
-        inputName={inputName}
-        setInputName={setInputName}
+        inputFirstName={inputFirstName}
+        inputLastName={inputLastName}
+        setInputFirstName={setInputFirstName}
+        setInputLastName={setInputLastName}
         disableSecondButton={disableSecondButton}
       />
     </FIBProgressBar.ProgressBarContext.Provider>
@@ -276,7 +286,6 @@ const FibUnderwritingJourneyContainer = memo(function (props: Props) {
 });
 
 const mapStateToProps = (state: IReduxState) => ({
-  fullName: getFIBState(state).answers.fib_your_name,
   medicalHistory: getFIBState(state).medicalHistory,
   fibAnswers: getFIBState(state).answers,
 });
