@@ -11,7 +11,7 @@ import { getUserFeatures } from "../../../../redux/user/user.selectors";
 import { DebugScreen } from "../../../screens";
 import { ROUTES, MODALS } from "@navigation/constants";
 import { FeedbackModalProps, npsModalProps } from "@components/modals/feedback/feedback.modal";
-import { FIB_CONTACT_DETAILS } from "../../products/fib/fib.types";
+import { FIB_CONTACT_DETAILS, FIB_DECLARATION_CONFIRMATION } from "../../products/fib/fib.types";
 
 interface IProps {
   componentId: string;
@@ -26,6 +26,7 @@ enum CODES {
   ROUTE_TO_FIB_BROWSE_PACKAGES = "ROUTE_TO_FIB_BROWSE_PACKAGES",
   DISPLAY_FEEDBACK_MODAL = "DISPLAY_FEEDBACK_MODAL",
   ROUTE_TO_FIB_CONTACT_DETAILS_SCREEN = "ROUTE_TO_FIB_CONTACT_DETAILS_SCREEN",
+  ROUTE_TO_FIB_CONFIRMATION_DECLARATION = "ROUTE_TO_FIB_CONFIRMATION_DECLARATION",
 }
 
 const DEFAULT_LIST = [
@@ -48,6 +49,7 @@ const ActivityHistoryContainer: React.FC<Props> = (props) => {
     CODES.ROUTE_TO_FIB_BROWSE_PACKAGES,
     CODES.DISPLAY_FEEDBACK_MODAL,
     CODES.ROUTE_TO_FIB_CONTACT_DETAILS_SCREEN,
+    CODES.ROUTE_TO_FIB_CONFIRMATION_DECLARATION,
   ];
 
   const handleClose = () => {
@@ -88,6 +90,18 @@ const ActivityHistoryContainer: React.FC<Props> = (props) => {
               name: ROUTES.fib,
               passProps: {
                 initialRoute: FIB_CONTACT_DETAILS,
+              },
+            },
+          });
+        }
+
+        if (code === CODES.ROUTE_TO_FIB_CONFIRMATION_DECLARATION) {
+          return Navigation.push(props.componentId, {
+            component: {
+              id: ROUTES.fib,
+              name: ROUTES.fib,
+              passProps: {
+                initialRoute: FIB_DECLARATION_CONFIRMATION,
               },
             },
           });

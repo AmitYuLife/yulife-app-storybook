@@ -9,6 +9,7 @@ interface Props {
   onClose: () => void;
   onPreviousQuestion?: () => void | null;
   children: React.ReactNode;
+  hideHeadingBorder?: boolean;
   progressBar: {
     maxLength: number;
     currentPosition: number;
@@ -17,7 +18,7 @@ interface Props {
 }
 
 export function FibUnderwritingJourneyLayout(props: Props) {
-  const { heading, onClose, onPreviousQuestion = null, children, progressBar } = props;
+  const { heading, onClose, onPreviousQuestion = null, children, progressBar, hideHeadingBorder } = props;
   return (
     <KeyboardAvoidingView behavior={Platform.select({ ios: "padding", android: null })} style={styles.wrapper}>
       <SafeAreaView style={{ height: "100%", flex: 1 }}>
@@ -27,7 +28,7 @@ export function FibUnderwritingJourneyLayout(props: Props) {
           onLeftIconPress={onPreviousQuestion}
           onRightIconPress={onClose}
           isBeta={true}
-          hideBorder={true}
+          hideBorder={hideHeadingBorder ?? true}
         />
         {progressBar.isHidden ? null : <FIBProgressBar />}
         {children}
