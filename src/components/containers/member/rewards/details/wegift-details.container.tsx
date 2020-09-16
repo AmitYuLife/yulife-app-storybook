@@ -66,17 +66,17 @@ const WegiftRewardDetailsContainer: FC<Props> = (props) => {
   const onPurchasesTabPress = useCallback(() => onTabChange("purchases", componentId), [componentId, onTabChange]);
 
   const handlePolicyPress = useMemo(() => {
-    return () => handleOpenWebView(componentId, { uri: Config.REWARDS_POLICY_URL, title: "Rewards Policy" });
-  }, [componentId]);
+    return () => handleOpenWebView({ uri: Config.REWARDS_POLICY_URL, title: "Rewards Policy" });
+  }, []);
 
   const handleTermsPress = useMemo(() => {
     const uri = terms_and_conditions_url;
     if (Platform.OS === "ios") {
-      return () => handleOpenWebView(componentId, { uri, title: "T&Cs" });
+      return () => handleOpenWebView({ uri, title: "T&Cs" });
     }
 
     return handleLinkPress(terms_and_conditions_url);
-  }, [componentId, terms_and_conditions_url]);
+  }, [terms_and_conditions_url]);
 
   const [denomination, setDenomination] = useState(available_denominations[0]);
 

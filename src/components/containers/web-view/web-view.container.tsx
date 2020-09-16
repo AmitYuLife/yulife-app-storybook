@@ -11,7 +11,7 @@ export interface WebViewContainerProps {
 }
 
 function handleCloseWebView() {
-  Navigation.pop(ROUTES.webView);
+  Navigation.dismissModal(ROUTES.webView);
 }
 
 function WebViewContainer(props: WebViewContainerProps) {

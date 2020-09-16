@@ -2,7 +2,7 @@ import React from "react";
 import { View, TouchableOpacity, Image, StyleSheet } from "react-native";
 import Text from "../text/text";
 import Back from "./../back/back";
-import styles from "./generic-heading.styles";
+import styles, { GENERIC_HEADING_HEIGHT } from "./generic-heading.styles";
 import { IGenericHeadingProps } from "./generic-heading.types";
 import { Heading } from "./subcomponents/heading";
 import { Logo } from "./subcomponents/logo";
@@ -10,7 +10,7 @@ import { Beta } from "./subcomponents/beta";
 import CloseSvg from "@atoms/close/close-svg";
 import { PressableWithDelay } from "@components/molecules";
 
-export default function GenericHeading(props: IGenericHeadingProps) {
+function GenericHeading(props: IGenericHeadingProps) {
   const {
     heading,
     hideBorder = false,
@@ -102,3 +102,5 @@ function RightIcon({ icon }: { icon: IGenericHeadingProps["rightIcon"] }) {
       return null;
   }
 }
+
+export default Object.assign(GenericHeading, { GENERIC_HEADING_HEIGHT });

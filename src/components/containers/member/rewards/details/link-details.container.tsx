@@ -1,6 +1,6 @@
 import { useMutation } from "@apollo/react-hooks";
 import { RedeemRewardMutationTuple, GQL_MUTATION_REDEEM_REWARD } from "@graphql/rewards";
-import React, { FC, useCallback, useMemo, useEffect } from "react";
+import React, { FC, useCallback, useEffect, useMemo } from "react";
 import Config from "react-native-config";
 import { connect } from "react-redux";
 import { GetRewards_getRewards } from "../../../../../graphql/_core/schema";
@@ -59,18 +59,18 @@ const LinkRewardDetailsContainer: FC<Props> = (props) => {
   const onPurchasesTabPress = useCallback(() => onTabChange("purchases", componentId), [componentId, onTabChange]);
 
   const handlePolicyPress = useMemo(() => {
-    return () => handleOpenWebView(componentId, { uri: Config.REWARDS_POLICY_URL, title: "Rewards Policy" });
-  }, [componentId]);
+    return () => handleOpenWebView({ uri: Config.REWARDS_POLICY_URL, title: "Rewards Policy" });
+  }, []);
 
   const handleTermsPress = useMemo(() => {
     const uri = terms_and_conditions_url;
 
     if (Platform.OS === "ios") {
-      return () => handleOpenWebView(componentId, { uri, title: "T&Cs" });
+      return () => handleOpenWebView({ uri, title: "T&Cs" });
     }
 
     return handleLinkPress(terms_and_conditions_url);
-  }, [componentId, terms_and_conditions_url]);
+  }, [terms_and_conditions_url]);
 
   const [redeemReward, { loading }]: RedeemRewardMutationTuple = useMutation(GQL_MUTATION_REDEEM_REWARD);
 
@@ -97,8 +97,8 @@ const LinkRewardDetailsContainer: FC<Props> = (props) => {
       });
     }
 
-    handleOpenWebView(componentId, { uri: availability, title: "Rewards", onBothLinksFail: onWebViewFail });
-  }, [available_denominations, code, name, redeemReward, componentId, availability]);
+    handleOpenWebView({ uri: availability, title: "Rewards", onBothLinksFail: onWebViewFail });
+  }, [available_denominations, code, name, redeemReward, availability]);
 
   return (
     <WegiftRewardDetailsScreen

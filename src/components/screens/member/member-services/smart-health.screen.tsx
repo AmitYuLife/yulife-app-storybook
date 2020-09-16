@@ -6,7 +6,6 @@ import { smartHealthData } from "./member-services.data";
 import styles from "./smart-health.screen.styles";
 import { TextWithBoldText } from "@components/molecules";
 import { handleOpenWebView } from "@navigation/utils";
-import { ROUTES } from "@navigation/constants";
 
 const defaultInstructionCopy = "your group life scheme number, which can be provided by your HR manager";
 const instantInstructionCopy = "<bold>“yulifeinstant”</bold> in the Policy number / Scheme code field.";
@@ -34,11 +33,7 @@ const SmartHealth = (props: Props) => {
           <Text style={styles.content}>To access SmartHealth, you can download the SmartHealth by AIG app.</Text>
           <View style={styles.hyperlinkWrapper}>
             <Text style={styles.content}>You can also </Text>
-            <TouchableOpacity
-              onPress={() =>
-                handleOpenWebView(ROUTES.memberServices, { uri: smartHealthData.website, title: "SmartHealth" })
-              }
-            >
+            <TouchableOpacity onPress={() => handleOpenWebView({ uri: smartHealthData.website, title: "SmartHealth" })}>
               <Text style={styles.globalHyperLink}>request services online here.</Text>
             </TouchableOpacity>
           </View>
@@ -60,7 +55,7 @@ const SmartHealth = (props: Props) => {
             </Text>
             <TouchableOpacity
               onPress={() =>
-                handleOpenWebView(ROUTES.memberServices, {
+                handleOpenWebView({
                   uri: smartHealthData.yulifeHelpCenter,
                   title: "SmartHealth",
                 })

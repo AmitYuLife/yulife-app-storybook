@@ -43,7 +43,7 @@ export function WebViewScreen(props: Props) {
 
 const styles = StyleSheet.create({
   webViewWrapper: {
-    height: "100%",
+    height: Style.DEVICE_HEIGHT - GenericHeading.GENERIC_HEADING_HEIGHT - 20,
     width: "100%",
   },
 });

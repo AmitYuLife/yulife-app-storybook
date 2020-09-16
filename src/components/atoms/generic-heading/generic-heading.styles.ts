@@ -1,9 +1,11 @@
 import { StyleSheet, TextStyle, ViewStyle } from "react-native";
 import { Colours, Style } from "../../../styles";
 
+export const GENERIC_HEADING_HEIGHT = 56;
+
 const styles = StyleSheet.create({
   wrapper: {
-    height: 56,
+    height: GENERIC_HEADING_HEIGHT,
     paddingVertical: 16,
     flexDirection: "row",
     alignContent: "center",

@@ -6,7 +6,6 @@ import { Style } from "../../../../styles";
 import { yuMatterData } from "./member-services.data";
 import styles from "./yumatter.screen.styles";
 import { handleOpenWebView } from "@navigation/utils";
-import { ROUTES } from "@navigation/constants";
 
 const Yumatter = () => {
   return (
@@ -28,9 +27,7 @@ const Yumatter = () => {
         <View style={styles.loginDetailsWrapper}>
           <Text style={styles.loginHeader}>To login and access YuMatter services:</Text>
           <Text style={styles.content}>Website: </Text>
-          <TouchableOpacity
-            onPress={() => handleOpenWebView(ROUTES.memberServices, { uri: yuMatterData.website, title: "YuMatter" })}
-          >
+          <TouchableOpacity onPress={() => handleOpenWebView({ uri: yuMatterData.website, title: "YuMatter" })}>
             <Text style={styles.globalHyperLink}>{yuMatterData.website}</Text>
           </TouchableOpacity>
 
@@ -40,9 +37,9 @@ const Yumatter = () => {
           <Text style={StyleSheet.flatten([styles.content, { marginTop: Style.adjust(1) }])}>
             {`Password: ${yuMatterData.password}`}
           </Text>
-          <Text style={StyleSheet.flatten([styles.content, { marginTop: Style.adjust(30) }])}>
-            Contact number:{" "}
-          </Text>
+          <Text
+            style={StyleSheet.flatten([styles.content, { marginTop: Style.adjust(30) }])}
+          >{`Contact number: `}</Text>
           <TouchableOpacity onPress={() => Linking.openURL(`tel:${yuMatterData.contactNumber.split(" ").join("")}`)}>
             <Text style={styles.globalHyperLink}>{yuMatterData.contactNumber}</Text>
           </TouchableOpacity>
@@ -67,9 +64,7 @@ const Yumatter = () => {
             more about YuMatter in our{" "}
           </Text>
           <TouchableOpacity
-            onPress={() =>
-              handleOpenWebView(ROUTES.memberServices, { uri: yuMatterData.yulifeHelpCenter, title: "YuMatter" })
-            }
+            onPress={() => handleOpenWebView({ uri: yuMatterData.yulifeHelpCenter, title: "YuMatter" })}
           >
             <Text style={styles.globalHyperLink}>Help Center</Text>
           </TouchableOpacity>
