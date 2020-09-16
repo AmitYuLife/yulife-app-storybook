@@ -12,6 +12,14 @@ import {
   FIB_LIFESTYLE_HEIGHT_SCREEN_ID,
   FIB_LIFESTYLE_WEIGHT_SCREEN_ID,
   FIB_MEDICAL_THREE_OR_MORE_CONSULTATION_SCREEN_ID,
+  FIB_HIGH_CHOLESTEROL_EXTRA_SCREEN,
+  FIB_HIGH_BLOOD_PRESSURE_SCREEN_ID,
+  FIB_HIGH_BLOOD_PRESSURE_EXTRA_SCREEN,
+  FIB_HIGH_CHOLESTEROL_SCREEN_ID,
+  FIB_HOSPITAL_STAY_SCREEN_ID,
+  FIB_CONDITION_STABLE_SCREEN_ID,
+  FIB_DAILY_ACTIVITIES_RESTRICTIONS_SCREEN_ID,
+  FIB_SYMPTOMS_RESOLVED_SCREEN_ID,
 } from "../../components/containers/products/fib/data/underwriting-journey-data";
 import { FINANCIAL_QUESTIONS_ICON } from "@atoms/fib/svg-assets/underwriting/svg-strings";
 import { numberWithCommas } from "@services/utils";
@@ -127,6 +135,79 @@ export const getReviewAnswers = (state: IReduxState): any => {
       icon = item.icon;
       title = item.title;
       answer = `${units} ${unitOrUnits}`;
+      questionId = item.id;
+    }
+
+    if (
+      item.id === FIB_HIGH_BLOOD_PRESSURE_EXTRA_SCREEN &&
+      activeChips.includes(FIB_HIGH_BLOOD_PRESSURE_SCREEN_ID) &&
+      state.product.fib.answers[FIB_HIGH_BLOOD_PRESSURE_SCREEN_ID] === "Yes"
+    ) {
+      icon = item.icon;
+      title = item.title;
+      answer = state.product.fib.answers[item.id];
+      questionId = item.id;
+    }
+
+    if (
+      item.id === FIB_HIGH_CHOLESTEROL_EXTRA_SCREEN &&
+      activeChips.includes(FIB_HIGH_CHOLESTEROL_SCREEN_ID) &&
+      state.product.fib.answers[FIB_HIGH_CHOLESTEROL_SCREEN_ID] === "Yes"
+    ) {
+      icon = item.icon;
+      title = item.title;
+      answer = state.product.fib.answers[item.id];
+      questionId = item.id;
+    }
+
+    if (item.id === FIB_HOSPITAL_STAY_SCREEN_ID) {
+      let needFollowUpQuestion = false;
+      for (const screenId of activeChips) {
+        if ([FIB_HIGH_BLOOD_PRESSURE_SCREEN_ID, FIB_HIGH_CHOLESTEROL_SCREEN_ID].includes(screenId)) {
+          continue;
+        }
+
+        needFollowUpQuestion = state.product.fib.answers[screenId] === "No";
+        if (needFollowUpQuestion) {
+          break;
+        }
+      }
+
+      if (needFollowUpQuestion) {
+        icon = item.icon;
+        title = item.title;
+        answer = state.product.fib.answers[item.id];
+        questionId = item.id;
+      }
+    }
+
+    if (
+      item.id === FIB_DAILY_ACTIVITIES_RESTRICTIONS_SCREEN_ID &&
+      state.product.fib.answers[FIB_HOSPITAL_STAY_SCREEN_ID] === "No"
+    ) {
+      icon = item.icon;
+      title = item.title;
+      answer = state.product.fib.answers[item.id];
+      questionId = item.id;
+    }
+
+    if (
+      item.id === FIB_SYMPTOMS_RESOLVED_SCREEN_ID &&
+      state.product.fib.answers[FIB_DAILY_ACTIVITIES_RESTRICTIONS_SCREEN_ID] === "No"
+    ) {
+      icon = item.icon;
+      title = item.title;
+      answer = state.product.fib.answers[item.id];
+      questionId = item.id;
+    }
+
+    if (
+      item.id === FIB_CONDITION_STABLE_SCREEN_ID &&
+      state.product.fib.answers[FIB_SYMPTOMS_RESOLVED_SCREEN_ID] === "No"
+    ) {
+      icon = item.icon;
+      title = item.title;
+      answer = state.product.fib.answers[item.id];
       questionId = item.id;
     }
 
