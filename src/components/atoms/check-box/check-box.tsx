@@ -1,5 +1,5 @@
 import React from "react";
-import { ViewStyle, TextStyle, View, TouchableOpacity, Text } from "react-native";
+import { ViewStyle, TextStyle, View, TouchableOpacity, Text, StyleSheet } from "react-native";
 import Svg, { Circle, Path } from "react-native-svg";
 import { Style } from "@styles/index";
 import { CHECK_BOX_STATE } from "@ids";
@@ -9,6 +9,7 @@ interface ICheckBox {
   value: string;
   label: string;
   onChange: (value: string) => void;
+  textStyle?: TextStyle;
 }
 
 const styles = {
@@ -29,7 +30,7 @@ const styles = {
 };
 
 function CheckBox(props: ICheckBox) {
-  const { checked, value, onChange, label } = props;
+  const { checked, value, onChange, label, textStyle } = props;
 
   return (
     <View>
@@ -49,7 +50,7 @@ function CheckBox(props: ICheckBox) {
             )}
           </Svg>
         </View>
-        <Text style={styles.text}>{label}</Text>
+        <Text style={StyleSheet.flatten([styles.text, textStyle])}>{label}</Text>
       </TouchableOpacity>
     </View>
   );
