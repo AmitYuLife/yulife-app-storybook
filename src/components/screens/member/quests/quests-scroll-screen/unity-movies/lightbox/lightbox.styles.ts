@@ -36,14 +36,18 @@ const styles = StyleSheet.create({
   heading: {
     fontWeight: "600",
     color: "#464647",
+    paddingHorizontal: 30,
+    lineHeight: 32,
+    fontFamily: Style.FONT_FAMILY_PRIMARY_BOLD,
   } as TextStyle,
   text: {
     paddingVertical: 8,
-    fontWeight: "300",
     fontSize: 16,
     lineHeight: 24,
     letterSpacing: 1,
     color: "#5A5A5C",
+    marginHorizontal: "auto",
+    fontFamily: Style.FONT_FAMILY_PRIMARY,
   } as TextStyle,
   whiteFade: {
     position: "absolute",
