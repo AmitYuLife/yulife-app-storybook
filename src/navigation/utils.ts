@@ -1,6 +1,7 @@
 import { Navigation } from "react-native-navigation";
 import { ROUTES } from "./constants";
 import { WebViewContainerProps } from "@components/containers/web-view/web-view.container";
+import Logger from "@services/logging/logger";
 
 export function handleNavigateBack(componentId: string) {
   return function () {
@@ -8,14 +9,18 @@ export function handleNavigateBack(componentId: string) {
   };
 }
 
-export function handleOpenWebView(componentId: string, props: WebViewContainerProps) {
-  Navigation.push<WebViewContainerProps>(componentId, {
-    component: {
-      id: ROUTES.webView,
-      name: ROUTES.webView,
-      passProps: props,
-    },
-  });
+export function handleOpenWebView(props: WebViewContainerProps) {
+  try {
+    return Navigation.showModal({
+      component: {
+        id: ROUTES.webView,
+        name: ROUTES.webView,
+        passProps: props,
+      },
+    });
+  } catch (error) {
+    Logger.logEvent("web_view_failed", { message: props ? `Link: ${props.uri}` : "Missing args" });
+  }
 }
 
 export function handleNavigateToQuestsTab() {

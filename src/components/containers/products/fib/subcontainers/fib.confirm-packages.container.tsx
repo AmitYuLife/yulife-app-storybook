@@ -21,7 +21,7 @@ import fibDocumentsItems, { policyScheduleDocument } from "../data/documents-dat
 import fibFaqItems from "../data/faq-fib-data";
 import moment from "moment";
 import { updateFIBValue } from "@redux/product/product.actions";
-import { ROUTES, MODALS } from "@navigation/constants";
+import { MODALS } from "@navigation/constants";
 import { handleOpenWebView } from "@navigation/utils";
 import Logger from "@services/logging/logger";
 import { Navigation } from "react-native-navigation";
@@ -40,7 +40,7 @@ const documents: IFaq[] = [...fibDocumentsItems, policyScheduleDocument].map((do
   label: document.question,
   onPress: async () => {
     if (Platform.OS === "ios") {
-      handleOpenWebView(ROUTES.fib, { uri: document.url, title: "Policy" });
+      handleOpenWebView({ uri: document.url, title: "Policy" });
     } else {
       try {
         await Linking.openURL(document.url);

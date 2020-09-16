@@ -112,13 +112,13 @@ const AviosRewardDetailsContainer: FC<Props> = (props) => {
   const onPurchasesTabPress = useCallback(() => onTabChange("purchases", componentId), [onTabChange, componentId]);
 
   const handlePolicyPress = useMemo(() => {
-    return () => handleOpenWebView(componentId, { uri: Config.REWARDS_POLICY_URL, title: "Rewards Policy" });
-  }, [componentId]);
+    return () => handleOpenWebView({ uri: Config.REWARDS_POLICY_URL, title: "Rewards Policy" });
+  }, []);
 
   const handleAviosTermsPress = useMemo(() => {
     const uri = "https://www.avios.com/gb/en_gb/my-account/log-into-avios";
-    return () => handleOpenWebView(componentId, { uri, title: "Avios" });
-  }, [componentId]);
+    return () => handleOpenWebView({ uri, title: "Avios" });
+  }, []);
 
   const [picker, setPicker] = useState("");
   const [amount, setAmount] = useState(amountList[0]);

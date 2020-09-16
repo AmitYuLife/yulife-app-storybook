@@ -29,7 +29,6 @@ import { IFaq } from "@components/screens/products/fib/browse-packages/subcompon
 import { getUserDateOfBirth } from "@redux/user/user.selectors";
 import { calculatePayoutCalculatorItems, packages, useCover, calculatePayoutAmount } from "../fib.helpers";
 import { handleOpenWebView } from "@navigation/utils";
-import { ROUTES } from "@navigation/constants";
 import Logger from "@services/logging/logger";
 
 interface IFibContainer {
@@ -42,7 +41,7 @@ const documents: IFaq[] = fibDocumentsItems.map((document) => ({
   label: document.question,
   onPress: async () => {
     if (Platform.OS === "ios") {
-      handleOpenWebView(ROUTES.fib, { uri: document.url, title: "Policy" });
+      handleOpenWebView({ uri: document.url, title: "Policy" });
     } else {
       try {
         await Linking.openURL(document.url);

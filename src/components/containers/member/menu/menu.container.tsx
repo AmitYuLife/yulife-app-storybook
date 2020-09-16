@@ -18,9 +18,9 @@ import { getMemberServicesDisplayState } from "@components/molecules/member-serv
 import { npsModalProps, FeedbackModalProps } from "@components/modals/feedback/feedback.modal";
 
 type ConnectedState = ReturnType<typeof mapStateToProps>;
-type ConnectedDipatch = typeof mapDispatchToProps;
+type ConnectedDispatch = typeof mapDispatchToProps;
 
-type Props = ConnectedState & ConnectedDipatch;
+type Props = ConnectedState & ConnectedDispatch & { componentId: string };
 
 const IS_DEVELOP = ["dev", "develop"].includes(Config.ENV);
 
@@ -208,4 +208,4 @@ const mapDispatchToProps = {
   openMemberZone,
 };
 
-export default connect<ConnectedState, ConnectedDipatch>(mapStateToProps, mapDispatchToProps)(MenuContainer);
+export default connect<ConnectedState, ConnectedDispatch>(mapStateToProps, mapDispatchToProps)(MenuContainer);

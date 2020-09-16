@@ -75,7 +75,7 @@ class AviosRewardConfirmedContainer extends Component<Props> {
   public openRewardsPolicy = async () => {
     const url = Config.REWARDS_POLICY_URL;
 
-    handleOpenWebView(this.props.componentId, { uri: url, title: "Rewards Policy" });
+    handleOpenWebView({ uri: url, title: "Rewards Policy" });
   };
 
   public goBack = async () => {

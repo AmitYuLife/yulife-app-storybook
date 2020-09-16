@@ -62,7 +62,7 @@ class WegiftRewardConfirmedContainer extends Component<IProps, IState> {
             title: "T&Cs",
           };
 
-    handleOpenWebView(this.props.componentId, data);
+    handleOpenWebView(data);
   };
 
   public linkToUrl = async () => {
@@ -70,7 +70,7 @@ class WegiftRewardConfirmedContainer extends Component<IProps, IState> {
       this.setState({ isAccessingUrl: true });
       const uri = this.props.purchase.delivery_url;
 
-      handleOpenWebView(this.props.componentId, { uri, title: "Wegift" });
+      handleOpenWebView({ uri, title: "Wegift" });
     } catch (e) {
       // console.warn("unable to open url because: ", e);
     } finally {
