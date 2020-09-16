@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { IReduxState } from "@redux/_core/reducers";
-import { getFIBState } from "@redux/product/product.selectors";
+import { getFullName } from "@redux/product/product.selectors";
 import { Text } from "@atoms";
 import { styles } from "./common.styles";
 
@@ -16,7 +16,7 @@ const _CopyFullName = ({ fullName }: ConnectedProps) => {
 };
 
 const mapStateToProps = (state: IReduxState) => ({
-  fullName: getFIBState(state).answers.fib_your_name,
+  fullName: getFullName(state),
 });
 
 export const CopyFullName = connect(mapStateToProps)(_CopyFullName);

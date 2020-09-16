@@ -261,7 +261,8 @@ export function shouldFirstButtonBeDisabled(
   medicalHistory: Record<string, boolean>,
   currentQuestion: OrderedUnderwritingJourneyScreen,
   fibAnswers: FibAnswers,
-  inputName: string
+  inputFirstName: string,
+  inputLastName: string
 ) {
   if (currentQuestion.id === FIB_THREE_YEAR_MEDICAL_HISTORY_SCREEN_ID) {
     return !Object.entries(medicalHistory)
@@ -272,7 +273,7 @@ export function shouldFirstButtonBeDisabled(
   }
 
   if (currentQuestion.id === FIB_ENTER_YOUR_NAME) {
-    return !inputName;
+    return !inputFirstName || !inputLastName;
   }
 
   if (currentQuestion.id === FIB_ENTER_YOUR_DATE_OF_BIRTH) {
@@ -305,7 +306,7 @@ export function shouldSecondButtonBeDisabled(
   fibAnswers: FibAnswers
 ) {
   if (currentQuestion.id === FIB_YOUR_NAME_SCREEN_ID) {
-    return fibAnswers.fib_your_name.length < 1;
+    return fibAnswers.firstName.length < 1 || fibAnswers.lastName.length < 1;
   }
 
   return false;

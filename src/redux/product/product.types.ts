@@ -54,7 +54,8 @@ export interface FibAnswers {
   birthDay: string;
   birthMonth: string;
   birthYear: string;
-  fib_your_name: string;
+  firstName: string;
+  lastName: string;
   [questionId: string]: any;
 }
 

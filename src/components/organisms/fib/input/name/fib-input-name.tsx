@@ -1,60 +1,48 @@
-import React, { useState, memo } from "react";
-import { View, ViewStyle, TextStyle, StyleSheet } from "react-native";
-import { InputField } from "../input-field";
-import { Colours, Style } from "@styles";
+import React, { memo } from "react";
+import { View, ViewStyle, StyleSheet } from "react-native";
+import { TextField } from "@components/molecules";
 
 interface FibInputNameProps {
-  inputName: string;
-  setInputName: (text: string) => void;
+  inputFirstName?: string;
+  inputLastName?: string;
+  setInputFirstName?: (text: string) => void;
+  setInputLastName?: (text: string) => void;
 }
 
 const _FibInputName = (props: FibInputNameProps) => {
-  const { inputName, setInputName } = props;
-  const [isFocus, setIsFocus] = useState(false);
+  const { inputFirstName, inputLastName, setInputFirstName, setInputLastName } = props;
 
   return (
     <View style={styles.wrapper}>
-      <InputField
-        autoFocus={true}
-        isLarge={true}
-        value={inputName}
-        onChangeText={(value: string) => {
-          setInputName(value);
-        }}
-        maxLength={48}
-        width={Style.DEVICE_WIDTH - 64}
-        keyboardType="default"
-        style={StyleSheet.flatten([styles.textInput, isFocus ? {} : styles.textInputOnBlur])}
-        shadowStyle={styles.shadow}
-        maxBeforeTruncate={32}
-        hasFocusActive={setIsFocus}
-      />
+      <View style={styles.inputWrapper}>
+        <TextField
+          placeholder="First name"
+          onChange={(value: string) => {
+            setInputFirstName(value);
+          }}
+          value={inputFirstName}
+        />
+      </View>
+      <View style={styles.inputWrapper}>
+        <TextField
+          placeholder="Last name"
+          onChange={(value: string) => {
+            setInputLastName(value);
+          }}
+          value={inputLastName}
+        />
+      </View>
     </View>
   );
 };
 
 export const FibInputName = memo(_FibInputName);
 
-const styles = {
+const styles = StyleSheet.create({
   wrapper: {
-    flexDirection: "row",
-    width: "100%",
-    justifyContent: "center",
-    alignItems: "center",
-    paddingTop: 105,
+    marginTop: 48,
   } as ViewStyle,
-  textInput: {
-    borderTopWidth: 0,
-    borderLeftWidth: 0,
-    borderRightWidth: 0,
-    borderBottomColor: Colours.primary.p500,
-    borderBottomWidth: 2,
-  } as TextStyle,
-  textInputOnBlur: {
-    borderBottomColor: Colours.neutral.n200,
-  } as TextStyle,
-  shadow: {
-    justifyContent: "flex-start",
-    width: Style.DEVICE_WIDTH - 64,
+  inputWrapper: {
+    paddingTop: 24,
   } as ViewStyle,
-};
+});

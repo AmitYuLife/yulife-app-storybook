@@ -8,7 +8,6 @@ import { TouchableOpacityWithDelay } from "@components/molecules";
 import { PackageId } from "../../fib.helper";
 import { handleOpenWebView } from "../../../../../../navigation/utils";
 import Config from "react-native-config";
-import { ROUTES } from "../../../../../../navigation/constants";
 
 const data = [
   {
@@ -65,7 +64,7 @@ export const FibConfirmationDeclarationScreen = memo(function (props: IFibConfir
   const handlePolicySummary = useCallback(async () => {
     const url = `${Config.WEB_SITE_URL}static/docs/insurance-top-up/terms-and-conditions/4.0.0/life-Insurance-top-up-cover-terms-and-conditions.pdf`;
     if (Platform.OS === "ios") {
-      handleOpenWebView(ROUTES.fib, {
+      handleOpenWebView({
         uri: url,
         title: "Policy",
       });

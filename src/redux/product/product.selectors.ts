@@ -41,7 +41,8 @@ export const getBirthday = (state: IReduxState): string => {
   return formatted === "Invalid date" ? placeholder : formatted;
 };
 
-export const getFullName = (state: IReduxState): string => state.product.fib.answers.fib_your_name;
+export const getFullName = (state: IReduxState): string =>
+  `${state.product.fib.answers.firstName} ${state.product.fib.answers.lastName}`;
 export const getContactDetails = (state: IReduxState): ContactDetails => state.product.fib.answers.contactDetails;
 
 export interface IAnswer {
@@ -75,10 +76,13 @@ export const getReviewAnswers = (state: IReduxState): any => {
       title = item.reviewAnswerTitle || item.title;
       answer = state.product.fib.answers[item.id];
       questionId = item.id;
+    }
 
-      if (item.id === FIB_YOUR_NAME_SCREEN_ID) {
-        questionId = FIB_ENTER_YOUR_NAME;
-      }
+    if (item.id === FIB_YOUR_NAME_SCREEN_ID) {
+      icon = item.icon;
+      title = item.reviewAnswerTitle || item.title;
+      answer = `${state.product.fib.answers.firstName} ${state.product.fib.answers.lastName}`;
+      questionId = FIB_ENTER_YOUR_NAME;
     }
 
     if (item.id === FIB_THREE_YEAR_MEDICAL_HISTORY_SCREEN_ID && showThreeYearMedical) {

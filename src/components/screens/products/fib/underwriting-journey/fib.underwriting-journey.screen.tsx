@@ -38,8 +38,10 @@ export interface IFibUnderwritingJourneyScreenProps {
     isHidden: boolean;
   };
   disableFirstButton?: boolean;
-  inputName?: string;
-  setInputName?: (text: string) => void;
+  inputFirstName?: string;
+  inputLastName?: string;
+  setInputFirstName?: (text: string) => void;
+  setInputLastName?: (text: string) => void;
   disableSecondButton?: boolean;
 }
 
@@ -51,8 +53,10 @@ const _FibUnderwritingJourneyScreen = memo(function (props: IFibUnderwritingJour
     onSecondButtonPressed,
     onPreviousButtonPressed,
     disableFirstButton,
-    inputName,
-    setInputName,
+    inputFirstName,
+    inputLastName,
+    setInputFirstName,
+    setInputLastName,
     disableSecondButton,
   } = props;
 
@@ -87,7 +91,7 @@ const _FibUnderwritingJourneyScreen = memo(function (props: IFibUnderwritingJour
         <FibTitle title={data.question} />
         {data.children?.map((child: UnderwritingJourneyChild, i) => {
           const key = data.id + i;
-          return renderChildren(child, key, { inputName, setInputName });
+          return renderChildren(child, key, { inputFirstName, inputLastName, setInputFirstName, setInputLastName });
         })}
       </ScrollView>
       <Footer firstButton={firstButton} secondButton={secondButton} />
@@ -98,8 +102,10 @@ const _FibUnderwritingJourneyScreen = memo(function (props: IFibUnderwritingJour
 export const FibUnderwritingJourneyScreen = memo(_FibUnderwritingJourneyScreen);
 
 interface RenderChildrenExtraProps {
-  inputName: string;
-  setInputName: (text: string) => void;
+  inputFirstName?: string;
+  inputLastName?: string;
+  setInputFirstName?: (text: string) => void;
+  setInputLastName?: (text: string) => void;
 }
 
 function renderChildren(child: UnderwritingJourneyChild, key: string, extraProps: RenderChildrenExtraProps) {
@@ -109,7 +115,15 @@ function renderChildren(child: UnderwritingJourneyChild, key: string, extraProps
     inputBirth: <FibInputBirth key={key} />,
     inputHeight: <FibInputHeight key={key} />,
     inputWeight: <FibInputWeight key={key} />,
-    inputFullName: <FibInputName setInputName={extraProps.setInputName} inputName={extraProps.inputName} key={key} />,
+    inputFullName: (
+      <FibInputName
+        key={key}
+        setInputFirstName={extraProps.setInputFirstName}
+        inputFirstName={extraProps.inputFirstName}
+        setInputLastName={extraProps.setInputLastName}
+        inputLastName={extraProps.inputLastName}
+      />
+    ),
     chiplist: <MedicalChipList items={child.chips} columns={2} key={key} />,
     inputAlcohol: <AlcoholIntakeInput key={key} />,
     copyBirthday: <CopyBirthday key={key} />,
