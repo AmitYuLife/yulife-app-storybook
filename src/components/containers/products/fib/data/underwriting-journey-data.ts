@@ -115,9 +115,9 @@ export const FIB_LIFESTYLE_WEIGHT_SCREEN_ID = "fib_lifestyle_weight";
 export const FIB_FINANCIAL_CUSTOM_COVER_FORM_SCREEN_ID = "fib_financial_custom_cover_form";
 
 export const FIB_HOSPITAL_STAY_SCREEN_ID = "fib_medical_journey_hospital_stay";
-const FIB_DAILY_ACTIVITIES_RESTRICTIONS_SCREEN_ID = "fib_medical_journey_daily_activity_restrictions";
-const FIB_SYMPTOMS_RESOLVED_SCREEN_ID = "fib_medical_journey_symptoms_resolved";
-const FIB_CONDITION_STABLE_SCREEN_ID = "fib_medical_journey_condition_stable";
+export const FIB_DAILY_ACTIVITIES_RESTRICTIONS_SCREEN_ID = "fib_medical_journey_daily_activity_restrictions";
+export const FIB_SYMPTOMS_RESOLVED_SCREEN_ID = "fib_medical_journey_symptoms_resolved";
+export const FIB_CONDITION_STABLE_SCREEN_ID = "fib_medical_journey_condition_stable";
 
 export const FIB_MEDICAL_FOLLOW_UP_QUESTIONS = [
   FIB_HOSPITAL_STAY_SCREEN_ID,
