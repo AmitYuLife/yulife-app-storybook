@@ -217,6 +217,7 @@ export default {
   },
   neutral: {
     white: "#FFFFFF",
+    n100: "#E7E7EB",
     n200: "#D3D3D6",
     n400: "#ABABAD",
     n500: "#979799",
@@ -225,6 +226,7 @@ export default {
     n800: "#5A5A5C",
     n900: "#464647",
   },
+  blue: "#6AA3DC",
   solid: {
     grey: "#F0F0F0",
   },

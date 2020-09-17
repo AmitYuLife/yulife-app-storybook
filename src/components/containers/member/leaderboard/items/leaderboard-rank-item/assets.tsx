@@ -2,9 +2,12 @@ import React from "react";
 import Svg, { Polygon, Path, Circle } from "react-native-svg";
 import { Style } from "@styles";
 
+const HEIGHT = Style.adjust(33) * 0.9;
+const WIDTH = Style.adjust(25) * 0.9;
+
 export const ThirdPlace = () => {
   return (
-    <Svg height={String(Style.adjust(33))} width={String(Style.adjust(25))} viewBox="0 0 25 33">
+    <Svg height={String(HEIGHT)} width={String(WIDTH)} viewBox="0 0 25 33">
       <Polygon points="4.34 31.61 4.34 21.01 20.8 21.01 20.8 31.61 12.57 28.33 4.34 31.61" fill="#fff" />
       <Path d="M3.08,18.65V33.51l9.62-3.82,9.36,3.82V18.65ZM20,30.56l-7.33-3.07L5.14,30.56V20.45H20Z" fill="#00ed9d" />
       <Circle cx="12.57" cy="12.78" r="11.5" fill="#fff" />
@@ -23,7 +26,7 @@ export const ThirdPlace = () => {
 
 export const SecondPlace = () => {
   return (
-    <Svg height={String(Style.adjust(33))} width={String(Style.adjust(25))} viewBox="0 0 25 33">
+    <Svg height={String(HEIGHT)} width={String(WIDTH)} viewBox="0 0 25 33">
       <Polygon points="4.34 31.61 4.34 21.01 20.8 21.01 20.8 31.61 12.57 28.33 4.34 31.61" fill="#fff" />
       <Path d="M3.08,18.65V33.51l9.62-3.82,9.36,3.82V18.65ZM20,30.56l-7.33-3.07L5.14,30.56V20.45H20Z" fill="#00c0f3" />
       <Circle cx="12.57" cy="12.78" r="11.5" fill="#fff" />
@@ -42,7 +45,7 @@ export const SecondPlace = () => {
 
 export const FirstPlace = () => {
   return (
-    <Svg height={String(Style.adjust(33))} width={String(Style.adjust(25))} viewBox="0 0 25 33">
+    <Svg height={String(HEIGHT)} width={String(WIDTH)} viewBox="0 0 25 33">
       <Polygon points="3.89 31.61 3.89 21.01 20.35 21.01 20.35 31.61 12.13 28.33 3.89 31.61" fill="#fff" />
       <Path d="M3.08,18.65V33.51l9.62-3.82,9.36,3.82V18.65ZM20,30.56l-7.33-3.07L5.14,30.56V20.45H20Z" fill="#956aff" />
       <Circle cx="12.57" cy="12.78" r="11.5" fill="#fff" />

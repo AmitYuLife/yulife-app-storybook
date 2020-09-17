@@ -1,4 +1,4 @@
-import { Style } from "@styles";
+import { Colours, Style } from "@styles";
 import { StyleSheet, ViewStyle, Platform } from "react-native";
 import deviceInfoModule from "react-native-device-info";
 
@@ -18,6 +18,15 @@ export const baseStyles = StyleSheet.create({
     width: "100%",
     paddingBottom: 2,
   } as ViewStyle,
+  currentUser: {
+    backgroundColor: Colours.neutral.n100,
+    position: "absolute",
+    left: 8,
+    right: 8,
+    top: 2,
+    bottom: Platform.OS === "android" && Style.DEVICE_HEIGHT < 600 ? 3 : 4,
+    borderRadius: 8,
+  } as ViewStyle,
 });
 
 export const floatingItemStyles = StyleSheet.create({
@@ -36,7 +45,7 @@ export const floatingItemStyles = StyleSheet.create({
     left: 8,
     right: 8,
     top: 0,
-    bottom: 0,
+    bottom: 3,
     backgroundColor: "#6FA4DF",
     borderRadius: 8,
   } as ViewStyle,

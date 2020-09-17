@@ -1,5 +1,4 @@
-import * as React from "react";
-import { SFC } from "react";
+import React from "react";
 import { TouchableOpacity, View } from "react-native";
 import { Text } from "../../../../atoms";
 import { ILeaderboardSectionItem } from "../settings.screen";
@@ -7,7 +6,7 @@ import LeaderboardCircle from "./leaderboard-item.circle";
 import styles from "./leaderboard-item.styles";
 import { LEADERBOARD_STATUS } from "@ids";
 
-const LeaderboardItem: SFC<ILeaderboardSectionItem> = ({ name, onPress, status, isLoading }) => (
+const LeaderboardItem = ({ name, onPress, status, isLoading }: ILeaderboardSectionItem) => (
   <View style={styles.wrapper}>
     <TouchableOpacity style={styles.button} onPress={onPress} testID={LEADERBOARD_STATUS(name, status)}>
       <Text numberOfLines={1} bold={false} style={styles.name}>

@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   } as ViewStyle,
   text: {
-    fontSize: Style.adjust(18),
+    fontSize: Style.adjust(16),
     width: Style.DEVICE_WIDTH - 200,
   } as TextStyle,
 });

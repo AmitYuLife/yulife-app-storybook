@@ -1,10 +1,11 @@
 import React from "react";
-import { Image, View, StyleSheet, ViewStyle, Platform, TextStyle, ImageStyle } from "react-native";
+import { View, StyleSheet, ViewStyle, Platform, TextStyle, ImageStyle } from "react-native";
 import { Text } from "@atoms";
 import { LEADERBOARD_TOP_SCREEN } from "@ids";
 import { truncate } from "@services/utils";
-import { Style } from "@styles";
+import { Colours, Style } from "@styles";
 import { TouchableOpacityWithDelay } from "@components/molecules";
+import Svg, { Path } from "react-native-svg";
 
 export interface LeaderboardPressableTitleProps {
   onPressLabel: () => void;
@@ -47,7 +48,7 @@ const titleStyles = StyleSheet.create({
     alignItems: "center",
   } as ViewStyle,
   title: {
-    color: "#333333",
+    color: Colours.blue,
     fontSize: Style.adjust(18),
     textAlign: "center",
     fontFamily: Style.FONT_FAMILY_PRIMARY,
@@ -63,16 +64,20 @@ const titleStyles = StyleSheet.create({
 
 function Arrow() {
   return (
-    <View style={arrowStyles.wrapper}>
-      <Image style={arrowStyles.image} source={require("@assets/icons/v.png")} />
-    </View>
+    <Svg width="12" height="8" viewBox="0 0 12 8" style={arrowStyles.wrapper}>
+      <Path
+        d="M0.666687 1.33334L6.00002 6.66667L11.3334 1.33334"
+        stroke="#6AA3DC"
+        stroke-miterlimit="10"
+        stroke-linecap="round"
+      />
+    </Svg>
   );
 }
 
 const arrowStyles = StyleSheet.create({
   wrapper: {
     marginTop: Style.adjust(7),
-    marginLeft: Style.adjust(16),
     height: Style.adjust(32),
     width: Style.adjust(32),
   } as ViewStyle,
