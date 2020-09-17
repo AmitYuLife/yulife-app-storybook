@@ -70,5 +70,6 @@ const styles = StyleSheet.create({
   contentContainerStyle: {
     paddingTop: 44,
     paddingBottom: 32,
+    backgroundColor: "#fafafe",
   },
 });
