@@ -174,3 +174,14 @@ export const replaceTextByID = (id: string, text: string) => async () => {
     await textField.tap();
     await textField.replaceText(text);
 }
+
+
+export const tryCatchTextVisible = (textArr, waitTime=0) => async()=>{
+    await wait(waitTime)()
+
+    try{
+        expect(element(by.text(textArr[0]))).toBeVisible()
+    }catch(e){
+        expect(element(by.text(textArr[1]))).toBeVisible()
+    }
+}
