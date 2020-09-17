@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import WebView from "react-native-webview";
-import { SafeAreaView, View, StyleSheet } from "react-native";
+import { SafeAreaView, View, StyleSheet, KeyboardAvoidingView } from "react-native";
 import { Style } from "@styles";
 import { GenericHeading } from "@atoms";
 
@@ -25,17 +25,19 @@ export function WebViewScreen(props: Props) {
       <GenericHeading onRightIconPress={handleCloseWebView} heading={title} />
 
       <View style={styles.webViewWrapper}>
-        <WebView
-          onRenderProcessGone={(e) => {
-            console.log("WebView crash:", e.nativeEvent.didCrash);
-            setErrorState(e.nativeEvent.didCrash);
-          }}
-          onError={() => {
-            setErrorState(true);
-          }}
-          style={{ width: Style.DEVICE_WIDTH }}
-          source={{ uri }}
-        />
+        <KeyboardAvoidingView
+          behavior="padding"
+          keyboardVerticalOffset={80}
+          style={styles.flex}
+          contentContainerStyle={styles.flex}
+        >
+          <WebView
+            onRenderProcessGone={(e) => setErrorState(e.nativeEvent.didCrash)}
+            onError={() => setErrorState(true)}
+            style={{ width: Style.DEVICE_WIDTH }}
+            source={{ uri }}
+          />
+        </KeyboardAvoidingView>
       </View>
     </SafeAreaView>
   );
@@ -45,5 +47,8 @@ const styles = StyleSheet.create({
   webViewWrapper: {
     height: Style.DEVICE_HEIGHT - GenericHeading.GENERIC_HEADING_HEIGHT - 20,
     width: "100%",
+  },
+  flex: {
+    flex: 1,
   },
 });
