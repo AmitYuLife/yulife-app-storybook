@@ -49,6 +49,12 @@ const FibUnderwritingReviewAnswersContainer = memo(function (props: Props) {
 
   const onSubmitButton = async () => {
     dispatch(updateQuoteDate(moment().format("YYYY-MM-DD")));
+    dispatch(
+      updateFIBValue({
+        key: "medicalInvestigationRequired",
+        value: data?.getLifeInsuranceTopUps?.medicalInvestigationRequired,
+      })
+    );
     const priceChangedFromAPI =
       fibState.actualCost && data?.getLifeInsuranceTopUps?.actualCost
         ? fibState.actualCost !== data.getLifeInsuranceTopUps.actualCost

@@ -105,6 +105,15 @@ const FibConfirmPackagesContainer = memo(function (props: FibConfirmPackagesCont
     if (data?.getLifeInsuranceTopUps?.actualCost) {
       dispatch(updateFIBValue({ key: "actualCost", value: data.getLifeInsuranceTopUps.actualCost }));
     }
+
+    if (data?.getLifeInsuranceTopUps?.medicalInvestigationRequired) {
+      dispatch(
+        updateFIBValue({
+          key: "medicalInvestigationRequired",
+          value: data.getLifeInsuranceTopUps.medicalInvestigationRequired,
+        })
+      );
+    }
   }, [data, dispatch]);
 
   const payoutAmount = calculatePayoutAmount({

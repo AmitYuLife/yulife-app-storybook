@@ -69,6 +69,7 @@ export interface FIBStore {
   lastQuestionId: string;
   hasPriceChanged: boolean;
   actualCost: number;
+  medicalInvestigationRequired: boolean;
 }
 
 export interface UpdateFIBStoreAction<T> {

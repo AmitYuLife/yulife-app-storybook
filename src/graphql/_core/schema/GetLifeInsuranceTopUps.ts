@@ -25,6 +25,7 @@ export interface GetLifeInsuranceTopUps_getLifeInsuranceTopUps {
   descriptionHeading: string | null;
   term: number | null;
   actualCost: number | null;
+  medicalInvestigationRequired: boolean | null;
   avatarRemoteFiles: GetLifeInsuranceTopUps_getLifeInsuranceTopUps_avatarRemoteFiles | null;
 }
 

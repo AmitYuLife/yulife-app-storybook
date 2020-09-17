@@ -54,6 +54,7 @@ export const initialState: IProductStore = {
     lastQuestionId: "",
     hasPriceChanged: false,
     actualCost: 0,
+    medicalInvestigationRequired: false,
   },
 };
 

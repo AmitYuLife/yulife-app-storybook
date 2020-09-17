@@ -43,6 +43,7 @@ export const GQL_GET_LIFE_INSURANCE_TOP_UPS = gql`
       descriptionHeading
       term
       actualCost
+      medicalInvestigationRequired
       avatarRemoteFiles {
         ...YumojiRemoteFiles
       }
