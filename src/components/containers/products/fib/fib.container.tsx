@@ -52,6 +52,7 @@ type ConnectedState = ReturnType<typeof mapStateToProps>;
 type Props = ConnectedState & {
   initialRoute?: FibRoute;
   initialQuestionId?: string;
+  initialProps: any;
 };
 
 function getComponent(routeProps: RouteProps) {
@@ -115,6 +116,7 @@ function FIBContainer(props: Props) {
     initialRoute,
     popToMain,
     defaultRoute: FIB_BROWSE,
+    initialProps: props.initialProps,
   });
 
   const [selectedFaq, selectFaq] = useState("");
