@@ -6,7 +6,7 @@ import { Style } from "@styles";
 
 interface Props {
   heading: string;
-  onClose: () => void;
+  onClose?: () => void;
   onPreviousQuestion?: () => void | null;
   children: React.ReactNode;
   hideHeadingBorder?: boolean;

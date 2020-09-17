@@ -13,7 +13,8 @@ export type FibRoute =
   | "FibUnderwritingReviewAnswers"
   | "FibConfirmPackages"
   | "FibContactDetails"
-  | "FibDeclarationConfirmation";
+  | "FibDeclarationConfirmation"
+  | "FibInfo";
 
 export type FibLocalNavigation = LocalNavigation<FibRoute>;
 
@@ -30,6 +31,7 @@ export const FIB_UNDERWRITING_REVIEW_ANSWERS = "FibUnderwritingReviewAnswers";
 export const FIB_CONFIRM_PACKAGES = "FibConfirmPackages";
 export const FIB_CONTACT_DETAILS = "FibContactDetails";
 export const FIB_DECLARATION_CONFIRMATION = "FibDeclarationConfirmation";
+export const FIB_INFO = "FibInfo";
 
 export interface FAQ {
   id: string;

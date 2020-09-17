@@ -37,6 +37,8 @@ import FibUnderwritingReviewAnswersContainer from "./subcontainers/fib.underwrit
 import FibConfirmPackagesContainer from "./subcontainers/fib.confirm-packages.container";
 import FibContactDetailsContainer from "./subcontainers/fib.contact-details.container";
 import FibDeclarationConfirmationContainer from "./subcontainers/fib.declaration-confirmation.container";
+import FibInfoContainer from "./subcontainers/fib.info.container";
+import { FIB_INFO } from "./fib.types";
 
 interface RouteProps {
   navigation: FibLocalNavigation;
@@ -83,6 +85,8 @@ function getComponent(routeProps: RouteProps) {
       return <FibContactDetailsContainer navigation={navigation} />;
     case FIB_DECLARATION_CONFIRMATION:
       return <FibDeclarationConfirmationContainer navigation={navigation} />;
+    case FIB_INFO:
+      return <FibInfoContainer navigation={navigation} />;
     default:
       return <FibBrowseContainer selectFaq={selectFaq} navigation={navigation} />;
   }
