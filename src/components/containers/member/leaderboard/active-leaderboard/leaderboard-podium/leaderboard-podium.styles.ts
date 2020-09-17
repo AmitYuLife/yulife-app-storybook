@@ -35,11 +35,11 @@ export const dynamicStyles = StyleSheet.create({
     marginLeft: EMPTY_CENTER_POSITION_X,
   },
   avatarEmpty2: {
-    marginTop: CENTER_POSITION_Y + 20,
+    marginTop: CENTER_POSITION_Y + 32,
     marginLeft: EMPTY_CENTER_POSITION_X - Style.SCALE_UP_AND_DOWN(80),
   },
   avatarEmpty3: {
-    marginTop: CENTER_POSITION_Y + 32,
+    marginTop: CENTER_POSITION_Y + 40,
     marginLeft: EMPTY_CENTER_POSITION_X + Style.SCALE_UP_AND_DOWN(80),
   },
 }) as any;

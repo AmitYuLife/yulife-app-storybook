@@ -17,6 +17,7 @@ const _ListRankItem = ({
 }: ILeaderboardRankItemProps) => {
   return (
     <Animated.View style={baseStyles.wrapper}>
+      {isCurrentUser && <View style={baseStyles.currentUser} />}
       <View style={baseStyles.borderWrapper} testID={LEADERBOARD_NAME(name)}>
         <Rank rank={rank} />
         <Image uri={uri} />

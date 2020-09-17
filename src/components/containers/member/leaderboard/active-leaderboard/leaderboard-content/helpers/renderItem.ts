@@ -5,6 +5,7 @@ import { LeaderboardPad } from "../../../items/leaderboard-pad";
 import { ListRankItem } from "../../../items/leaderboard-rank-item/list-rank-item";
 import { PadWithLoader } from "../../../items/pad-with-loader";
 import { LeaderboardPodium } from "../../leaderboard-podium";
+import { FrontPageLabel } from "../../../items/front-page-label";
 
 export function renderItem({ item }: ListRenderItemInfo<ILeaderboardListItem>): React.ReactElement | null {
   switch (item.type) {
@@ -16,6 +17,8 @@ export function renderItem({ item }: ListRenderItemInfo<ILeaderboardListItem>): 
       return createElement(LeaderboardPodium, item.data);
     case LEADERBOARD_LIST_ITEM.PAD_WITH_LOADER:
       return createElement(PadWithLoader, item.data);
+    case LEADERBOARD_LIST_ITEM.FRONT_PAGE_LABEL:
+      return createElement(FrontPageLabel);
     default:
       return null;
   }

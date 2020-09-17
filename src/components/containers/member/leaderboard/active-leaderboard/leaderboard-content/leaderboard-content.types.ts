@@ -1,5 +1,4 @@
-import { ILeaderboardRankItemProps, ILeaderboardPadProps } from "../../items";
-import { IPadWithLoaderProps } from "../../items/pad-with-loader";
+import { ILeaderboardRankItemProps, ILeaderboardPadProps, IPadWithLoaderProps } from "../../items";
 import { ILeaderboardPodiumProps } from "../leaderboard-podium/leaderboard-podium";
 
 export enum LEADERBOARD_LIST_ITEM {
@@ -7,6 +6,7 @@ export enum LEADERBOARD_LIST_ITEM {
   PAD = "PAD",
   PODIUM = "PODIUM",
   PAD_WITH_LOADER = "PAD_WITH_LOADER",
+  FRONT_PAGE_LABEL = "FRONT_PAGE_LABEL",
 }
 
 export interface ILeaderboardPad {
@@ -29,4 +29,13 @@ export interface IPadWithLoader {
   data: IPadWithLoaderProps;
 }
 
-export type ILeaderboardListItem = ILeaderboardPad | ILeaderboardRankItem | ILeaderboardPodium | IPadWithLoader;
+export interface IFrontPageLabel {
+  type: LEADERBOARD_LIST_ITEM.FRONT_PAGE_LABEL;
+}
+
+export type ILeaderboardListItem =
+  | ILeaderboardPad
+  | ILeaderboardRankItem
+  | ILeaderboardPodium
+  | IPadWithLoader
+  | IFrontPageLabel;

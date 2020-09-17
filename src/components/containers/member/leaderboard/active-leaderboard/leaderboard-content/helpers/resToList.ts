@@ -55,6 +55,7 @@ export const resToList = ({
   const user = leaderboardItems[userIndex];
 
   addTopPadding({ list, leaderboardName, leaderboardItems, isRefetching, scrollValue, isLoading });
+  addFrontPageLabel(list);
   addRankItems(list, currentUserData, { leaderboardItems, currentUserId });
   addBottomPadding({ list, userInPage: user?.position < PAGE_SIZE });
 
@@ -113,6 +114,13 @@ function addTopPadding({
 
     list.push(padding);
   }
+}
+
+function addFrontPageLabel(list: ILeaderboardListItem[]) {
+  list.push({
+    key: "FRONT_PAGE_LABEL",
+    type: LEADERBOARD_LIST_ITEM.FRONT_PAGE_LABEL,
+  } as ILeaderboardListItem);
 }
 
 interface AddRanksItemArgs {

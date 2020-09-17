@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
   wrapper: {
     position: "absolute",
     paddingTop: 16,
-    left: Style.SCALE_UP_AND_DOWN(44),
+    left: Style.SCALE_UP_AND_DOWN(20),
     right: 0,
   } as ViewStyle,
 });

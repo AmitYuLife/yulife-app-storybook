@@ -44,7 +44,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     height: "100%",
     justifyContent: "center",
-    width: 58,
+    width: 40,
+    marginLeft: 20,
   } as ViewStyle,
   rankImage: {
     height: Style.adjust(33),

@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, View, ViewStyle, Platform } from "react-native";
+import { StyleSheet, View, ViewStyle } from "react-native";
 import { AvatarEmpty } from "@molecules";
 import FastImage, { ImageStyle } from "react-native-fast-image";
 import { Style } from "@styles";
@@ -24,7 +24,7 @@ const AVATAR_WIDTH = Style.adjust(40);
 
 const emptyStyles = StyleSheet.create({
   wrapper: {
-    marginTop: Style.adjust(-15),
+    marginTop: Style.adjust(-6),
     height: "100%",
     width: AVATAR_WIDTH,
     overflow: "hidden",
@@ -39,7 +39,7 @@ const emptyStyles = StyleSheet.create({
 
 const filledStyles = StyleSheet.create({
   wrapper: {
-    marginTop: Platform.select({ ios: Style.adjust(-10), android: 0 }),
+    marginBottom: -2,
     height: AVATAR_WIDTH,
     width: AVATAR_WIDTH,
     overflow: "hidden",
