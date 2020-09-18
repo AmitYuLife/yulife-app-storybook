@@ -7,7 +7,7 @@ import { FibConfirmationDetailsScreen } from "../../../../screens/products/fib/u
 import { useQuery } from "@apollo/react-hooks";
 import { getFIBState, getFullName } from "../../../../../redux/product/product.selectors";
 import { Package } from "../../../../screens/products/fib/browse-packages/fib.browse.types";
-import { getUserDateOfBirth, getUserFeatures } from "../../../../../redux/user/user.selectors";
+import { getUserDateOfBirth } from "../../../../../redux/user/user.selectors";
 import { calculatePayoutAmount, calculatePayoutCalculatorItems, packages } from "../fib.helpers";
 import stripe from "tipsi-stripe";
 import moment from "moment";
@@ -35,7 +35,15 @@ type Props = IDeclarationConfirmationContainer & ConnectedDispatch & ConnectedSt
 type ScreenId = "Confirmation" | "ConfirmationDetails";
 
 const FibDeclarationConfirmationConatainer = memo(function (props: Props) {
-  const { fibAnswers, grossSalary, selectedPackage, userDateOfBirth, fullName, navigation, features } = props;
+  const {
+    fibAnswers,
+    grossSalary,
+    selectedPackage,
+    userDateOfBirth,
+    fullName,
+    navigation,
+    medicalInvestigationRequired,
+  } = props;
   const [screenId, setScreenId] = useState<ScreenId>("Confirmation");
   const [statementConfirmed, setStatementConfirmed] = useState(false);
   const [deceaseAgeIndexYear, setDeceaseAgeIndexYear] = useState(0);
@@ -142,7 +150,7 @@ const FibDeclarationConfirmationConatainer = memo(function (props: Props) {
       // returned token will be sent to the server to take payments
       await stripe.paymentRequestWithCardForm(options);
 
-      if (features.showGP) {
+      if (medicalInvestigationRequired) {
         navigation.push(FIB_INFO, { type: "HoldingGP" } as { type: InfoTypes });
       } else {
         navigation.push(FIB_INFO, { type: "PaymentCongratulation", packageType: toCapitalLetter(selectedPackage) } as {
@@ -153,7 +161,7 @@ const FibDeclarationConfirmationConatainer = memo(function (props: Props) {
     } catch (e) {
       Logger.logEvent("fib_payment_failed", { message: e.message });
     }
-  }, [navigation, fibAnswers, fullName, features, selectedPackage]);
+  }, [navigation, fibAnswers, fullName, medicalInvestigationRequired, selectedPackage]);
 
   switch (screenId) {
     case "Confirmation":
@@ -193,7 +201,7 @@ const mapStateToProps = (state: IReduxState) => ({
   selectedPackage: getFIBState(state).selectedPackage,
   userDateOfBirth: getUserDateOfBirth(state),
   fullName: getFullName(state),
-  features: getUserFeatures(state),
+  medicalInvestigationRequired: getFIBState(state).medicalInvestigationRequired,
 });
 
 const mapDispatchToProps = {};
