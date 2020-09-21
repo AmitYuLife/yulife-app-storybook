@@ -1,24 +1,11 @@
-import { Platform } from "react-native";
-import Config from "react-native-config";
-import Mixpanel from "react-native-mixpanel";
 import PushNotification, { PushNotification as IPushNotification } from "react-native-push-notification";
-import { call, put, spawn, take } from "redux-saga/effects";
+import { call, put, take } from "redux-saga/effects";
 import { addDeviceToken, pushNotificationReceived } from "../device.actions";
 import { createPushNotificationsChannel } from "../device.channels";
 
 export default function* registerPushSaga() {
   const channel = yield call(createPushNotificationsChannel);
   let result: IPushNotification & { os: string; token: string };
-
-  if (Platform.OS === "android") {
-    yield spawn(() => {
-      try {
-        Mixpanel.initPushHandling(Config.INTERCOM_GCM_SENDER_ID);
-      } catch (e) {
-        // console.log(e);
-      }
-    });
-  }
 
   while (true) {
     result = yield take(channel);
