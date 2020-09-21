@@ -23,7 +23,7 @@ export const Avatar = memo(function (props: Props) {
     height: Style.adjust(BASE_HEIGHT * sizeMultiplier),
   };
 
-  if (!isAvatarCreated || !avatarUrl) {
+  if (!isAvatarCreated) {
     return <AvatarEmpty style={style} />;
   }
 
@@ -35,5 +35,6 @@ export const Avatar = memo(function (props: Props) {
     return <AvatarRemote avatarUrl={avatarUrl} onEditPress={onEditPress} style={style} />;
   }
 
-  return <AvatarEmpty style={style} />;
+  // Avatar has been created but missing avatar url, allow customers to edit again the avatar
+  return <AvatarEmpty style={style} onEditPress={onEditPress} />;
 });
