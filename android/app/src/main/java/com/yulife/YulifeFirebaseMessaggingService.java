@@ -4,6 +4,7 @@ import com.google.firebase.messaging.RemoteMessage;
 import com.mixpanel.android.mpmetrics.MixpanelFCMMessagingService;
 
 import java.util.Map;
+import android.content.Intent;
 
 import io.intercom.android.sdk.push.IntercomPushClient;
 
@@ -22,10 +23,21 @@ public class YulifeFirebaseMessaggingService extends MixpanelFCMMessagingService
 
         if (message.containsKey("mp_message")) {
             // default if we don't set it in MP
-            if (!message.containsKey("mc_icnm")) {
-                message.put("mc_icnm", "intercom_push_icon");
+
+            Intent intent = remoteMessage.toIntent();
+            
+            if (!message.containsKey("mp_icnm")) {
+                String iconName = "intercom_push_icon";
+                intent.putExtra("mp_icnm", iconName);
+                intent.putExtra("mp_icnm_w", iconName);
+                intent.putExtra("mp_icnm_l", iconName);
             }
-            super.onMessageReceived(remoteMessage);
+
+            if (!message.containsKey("mp_color")) {
+                intent.putExtra("mp_color", getResources().getString(R.color.yupink));
+            }
+
+            super.onMessageReceived(getApplicationContext(), intent);
         } else if (intercomPushClient.isIntercomPush(message)) {
             intercomPushClient.handlePush(getApplication(), message);
         }

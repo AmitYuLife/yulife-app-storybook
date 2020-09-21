@@ -226,7 +226,10 @@ dependencies {
     // Intercom
     implementation project(':react-native-intercom')
     implementation 'io.intercom.android:intercom-sdk:7.1.+'
-    implementation "com.google.firebase:firebase-messaging:$firebaseVersion"
+    
+    // Firebase
+    implementation 'com.google.firebase:firebase-core:17.5.0'
+    implementation 'com.google.firebase:firebase-messaging:20.2.4'
 
     // Mixpanel
     implementation project(':react-native-mixpanel')
