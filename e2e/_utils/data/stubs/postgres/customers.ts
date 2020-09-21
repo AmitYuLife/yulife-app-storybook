@@ -4,7 +4,7 @@ import * as moment from "moment";
 
 export const CUSTOMER_1 = {
     type: "postgres",
-    modelName: "customer_detail",
+    modelName: "customer",
     data: {
         customerId: generateRandomMongoId(),
         email: "dan@yulife.com",
@@ -18,7 +18,7 @@ export const CUSTOMER_1 = {
 
 export const CUSTOMER_2 = {
     type: "postgres",
-    modelName: "customer_detail",
+    modelName: "customer",
     data: {
         customerId: generateRandomMongoId(),
         email: "osama@yulife.com",
@@ -32,7 +32,7 @@ export const CUSTOMER_2 = {
 
 export const CUSTOMER_3 = {
     type: "postgres",
-    modelName: "customer_detail",
+    modelName: "customer",
     data: {
         customerId: generateRandomMongoId(),
         email: "walter@yulife.com",
@@ -46,7 +46,7 @@ export const CUSTOMER_3 = {
 
 export const CUSTOMER_4 = {
     type: "postgres",
-    modelName: "customer_detail",
+    modelName: "customer",
     data: {
         customerId: generateRandomMongoId(),
         email: "jesse@yulife.com",
@@ -60,7 +60,7 @@ export const CUSTOMER_4 = {
 
 export const CUSTOMER_5 = {
     type: "postgres",
-    modelName: "customer_detail",
+    modelName: "customer",
     data: {
         customerId: generateRandomMongoId(),
         email: "saul@yulife.com",
@@ -74,7 +74,7 @@ export const CUSTOMER_5 = {
 
 export const CUSTOMER_6 = {
     type: "postgres",
-    modelName: "customer_detail",
+    modelName: "customer",
     data: {
         customerId: generateRandomMongoId(),
         email: "gus@yulife.com",
@@ -88,7 +88,7 @@ export const CUSTOMER_6 = {
 
 export const CUSTOMER_7 = {
     type: "postgres",
-    modelName: "customer_detail",
+    modelName: "customer",
     data: {
         customerId: generateRandomMongoId(),
         email: "skyler@yulife.com",
@@ -102,7 +102,7 @@ export const CUSTOMER_7 = {
 
 export const CUSTOMER_8 = {
     type: "postgres",
-    modelName: "customer_detail",
+    modelName: "customer",
     data: {
         customerId: generateRandomMongoId(),
         email: "jerry@yulife.com",
@@ -116,7 +116,7 @@ export const CUSTOMER_8 = {
 
 export const CUSTOMER_9 = {
     type: "postgres",
-    modelName: "customer_detail",
+    modelName: "customer",
     data: {
         customerId: generateRandomMongoId(),
         email: "george@yulife.com",
@@ -130,7 +130,7 @@ export const CUSTOMER_9 = {
 
 export const CUSTOMER_10 = {
     type: "postgres",
-    modelName: "customer_detail",
+    modelName: "customer",
     data: {
         customerId: generateRandomMongoId(),
         email: "kramer@yulife.com",
@@ -144,7 +144,7 @@ export const CUSTOMER_10 = {
 
 export const CUSTOMER_11 = {
     type: "postgres",
-    modelName: "customer_detail",
+    modelName: "customer",
     data: {
         customerId: generateRandomMongoId(),
         email: "Elaine@yulife.com",
@@ -158,7 +158,7 @@ export const CUSTOMER_11 = {
 
 export const CUSTOMER_12 = {
     type: "postgres",
-    modelName: "customer_detail",
+    modelName: "customer",
     data: {
         customerId: generateRandomMongoId(),
         email: "newman@yulife.com",
@@ -172,7 +172,7 @@ export const CUSTOMER_12 = {
 
 export const CUSTOMER_13 = {
     type: "postgres",
-    modelName: "customer_detail",
+    modelName: "customer",
     data: {
         customerId: generateRandomMongoId(),
         email: "frank@yulife.com",
@@ -186,7 +186,7 @@ export const CUSTOMER_13 = {
 
 export const CUSTOMER_14 = {
     type: "postgres",
-    modelName: "customer_detail",
+    modelName: "customer",
     data: {
         customerId: generateRandomMongoId(),
         email: "mario@yulife.com",
@@ -200,7 +200,7 @@ export const CUSTOMER_14 = {
 
 export const CUSTOMER_ARCHIVED = {
     type: "postgres",
-    modelName: "customer_detail",
+    modelName: "customer",
     data: {
         customerId: generateRandomMongoId(),
         email: "archived@yulife.com",
@@ -215,7 +215,7 @@ export const CUSTOMER_ARCHIVED = {
 
 export const CUSTOMER_15 = {
     type: "postgres",
-    modelName: "customer_detail",
+    modelName: "customer",
     data: {
         customerId: generateRandomMongoId(),
         email: "luigi@yulife.com",
@@ -229,7 +229,7 @@ export const CUSTOMER_15 = {
 
 export const CUSTOMER_16 = {
     type: "postgres",
-    modelName: "customer_detail",
+    modelName: "customer",
     data: {
         customerId: generateRandomMongoId(),
         email: "stanley@dundermifflin.com",
@@ -243,7 +243,7 @@ export const CUSTOMER_16 = {
 
 export const CUSTOMER_17 = {
     type: "postgres",
-    modelName: "customer_detail",
+    modelName: "customer",
     data: {
         customerId: generateRandomMongoId(),
         email: "ryan@dundermifflin.com",
@@ -257,7 +257,7 @@ export const CUSTOMER_17 = {
 
 export const CUSTOMER_18 = {
     type: "postgres",
-    modelName: "customer_detail",
+    modelName: "customer",
     data: {
         customerId: generateRandomMongoId(),
         email: "michael@dundermifflin.com",
@@ -271,7 +271,7 @@ export const CUSTOMER_18 = {
 
 export const CUSTOMER_19 = {
     type: "postgres",
-    modelName: "customer_detail",
+    modelName: "customer",
     data: {
         customerId: generateRandomMongoId(),
         email: "angela@dundermifflin.com",
@@ -285,7 +285,7 @@ export const CUSTOMER_19 = {
 
 export const CUSTOMER_20 = {
     type: "postgres",
-    modelName: "customer_detail",
+    modelName: "customer",
     data: {
         customerId: generateRandomMongoId(),
         email: "oscar@dundermifflin.com",
@@ -299,7 +299,7 @@ export const CUSTOMER_20 = {
 
 export const CUSTOMER_21 = {
     type: "postgres",
-    modelName: "customer_detail",
+    modelName: "customer",
     data: {
         customerId: generateRandomMongoId(),
         email: "dwight@dundermifflin.com",
@@ -313,7 +313,7 @@ export const CUSTOMER_21 = {
 
 export const CUSTOMER_22 = {
     type: "postgres",
-    modelName: "customer_detail",
+    modelName: "customer",
     data: {
         customerId: generateRandomMongoId(),
         email: "craig@yulife.com",
@@ -327,7 +327,7 @@ export const CUSTOMER_22 = {
 
 export const CUSTOMER_23 = {
     type: "postgres",
-    modelName: "customer_detail",
+    modelName: "customer",
     data: {
         customerId: generateRandomMongoId(),
         email: "mike@yulife.com",
@@ -341,7 +341,7 @@ export const CUSTOMER_23 = {
 
 export const CUSTOMER_ALPHA = {
     type: "postgres",
-    modelName: "customer_detail",
+    modelName: "customer",
     data: {
         customerId: generateRandomMongoId(),
         email: "alpha@yulife.com",

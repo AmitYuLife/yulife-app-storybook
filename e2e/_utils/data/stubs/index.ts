@@ -10,6 +10,6 @@ export * from "./mongo/core_streaks";
 export * from "./mongo/leaderboard"
 
 
-export * from "./postgres/business_accounts";
+export * from "./postgres/business";
 export * from "./postgres/customers";
 export * from "./postgres/business_employees";
