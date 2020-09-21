@@ -10,6 +10,7 @@ test("useLocalNavigation", () => {
       initialRoute: "Route1",
       defaultRoute: "Route3",
       popToMain: () => {
+        // Main route doesn't have to be equals to Route1
         timesPopToMain += 1;
       },
     })
@@ -74,6 +75,12 @@ test("useLocalNavigation", () => {
 
   // pop 2 times to main
   act(result.current.pop);
+  act(result.current.pop);
+
+  // check that it didn't popToMain
+  expect(timesPopToMain).toEqual(0);
+
+  // pop 1 more time to popToMain
   act(result.current.pop);
 
   // check that it did popToMain
