@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, View, ViewStyle } from "react-native";
+import { ScrollView, StyleSheet, View, ViewStyle } from "react-native";
 import { LeaderboardPodium } from "../leaderboard-podium";
 import { Caption } from "./caption";
 import { GetMobileCopy_getMobileCopy_screens_leaderboards_turnBoardOn } from "@graphql/_core/schema";
@@ -15,12 +15,12 @@ export const LeaderboardConsentPrompt = (props: Props) => {
   const { leaderboardName, setConsent, consentCopy } = props;
 
   return (
-    <View>
+    <ScrollView showsVerticalScrollIndicator={false}>
       <Caption copy={consentCopy} setConsent={setConsent} />
       <View style={styles.absolute}>
         <LeaderboardPodium leaderboardName={leaderboardName} hideAvatars={true} cropAmount={CROP_AMOUNT} />
       </View>
-    </View>
+    </ScrollView>
   );
 };
 

@@ -226,7 +226,10 @@ export default {
     n800: "#5A5A5C",
     n900: "#464647",
   },
-  blue: "#6AA3DC",
+  blue: {
+    b100: "#D5ECFF",
+    b200: "#6AA3DC",
+  },
   solid: {
     grey: "#F0F0F0",
   },

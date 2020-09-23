@@ -48,7 +48,7 @@ const titleStyles = StyleSheet.create({
     alignItems: "center",
   } as ViewStyle,
   title: {
-    color: Colours.blue,
+    color: Colours.blue.b200,
     fontSize: Style.adjust(18),
     textAlign: "center",
     fontFamily: Style.FONT_FAMILY_PRIMARY,

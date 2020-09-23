@@ -69,6 +69,24 @@ const isLargeScreen = () => {
   return y > 810;
 };
 
+const platformSelect = ({ ios, android, shorterAndroid, shortAndroid }: { [key: string]: number }) => {
+  if (Platform.OS === "android") {
+    if (y < 600) {
+      return shorterAndroid;
+    }
+
+    if (y < 700) {
+      return shortAndroid;
+    }
+
+    return android;
+  }
+
+  if (Platform.OS === "ios") {
+    return ios;
+  }
+};
+
 const BASE_HEIGHT = 667;
 const scaledPixel = +(x / 375).toFixed(3);
 const scaledYPixel = +(y / 667).toFixed(3);
@@ -151,6 +169,7 @@ const Style = {
   isShortAndLowScaledPixelAndroid,
   getSafeAreaStart,
   adjust,
+  platformSelect,
   defaultShrinkThreshold,
   isWideScreen,
   hasNotch: DeviceInfo.hasNotch(),
