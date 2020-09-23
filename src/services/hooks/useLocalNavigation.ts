@@ -54,7 +54,7 @@ export function useLocalNavigation<T>({
         return setHistory(newHistory);
       },
       pop() {
-        if (history.length <= 1) {
+        if (history.length < 1) {
           return popToMain();
         }
 
