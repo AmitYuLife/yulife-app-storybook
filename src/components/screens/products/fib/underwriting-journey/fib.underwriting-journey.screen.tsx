@@ -85,6 +85,7 @@ const _FibUnderwritingJourneyScreen = memo(function (props: IFibUnderwritingJour
       onClose={onNavigateBack}
       progressBar={props.progressBar}
       onPreviousQuestion={onPreviousButtonPressed}
+      hideHeadingBorder={!props.progressBar.isHidden}
     >
       <ScrollView keyboardShouldPersistTaps="handled" style={styles.wrapper}>
         <TitleWithIcon icon={data.icon} title={data.title} />
