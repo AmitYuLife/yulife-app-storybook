@@ -43,11 +43,10 @@ function _FibUnderwritingIntroduction(props: Props) {
         </View>
       </View>
       <View style={styles.textWrapper}>
-        <Heading label={`Let's get started ${props.firstName},`} bold={true} style={styles.header} />
+        <Heading label={`Let’s get personal, ${props.firstName}`} bold={true} style={styles.header} />
 
         <Text style={styles.text}>
-          {`You need to fill out some questions, they won’t be seen by your employer. We may require medical assessment.\n\nYou’ll earn 100 YuCoin for completing sections. This should take approximately `}
-          <Text style={styles.bold}>6 minutes</Text>.
+          {`In order to get you covered, I’ll need to know a bit about you. Your answers will stay between you and me (and our friends at AIG who issue your policy).\n\nI’ll send you 100 YuCoin for the approximately 6 minutes it takes to complete my questions! Ready?`}
         </Text>
       </View>
     </ScrollableLayout>

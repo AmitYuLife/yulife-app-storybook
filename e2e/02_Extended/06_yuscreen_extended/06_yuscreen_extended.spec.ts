@@ -86,7 +86,7 @@ Feature("I am able to use the yuscreens extended features", async () => {
                                     Then("I should be on the next custom cover screen", then.onNextCustomCoverScreen)
                                     Then("I should see the newly calculated estimated cost", then.tryCatchTextVisible(["£23.17 per month","£23.76 per month" ]))
                                     When("I tap continue", when.tapText("Continue"), async()=>{
-                                        Then("I should be on Let's get started screen", then.textVisible(`Let's get started Mike,`))
+                                        Then("I should be on Let's get started screen", then.textVisible(`Let’s get personal, Mike`))
                                     })
                                 })
                             })
