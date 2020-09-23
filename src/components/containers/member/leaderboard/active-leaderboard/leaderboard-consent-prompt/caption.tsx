@@ -13,14 +13,18 @@ const defaultCopy = { heading: "Turn board on", subheading: "", ctaLabel: "allow
 
 export function Caption(props: Props) {
   const { setConsent, copy = defaultCopy } = props;
-  const { heading, subheading, ctaLabel } = copy;
+  const { heading, subheading = "", ctaLabel } = copy;
 
   return (
     <View style={captionStyle.wrapper}>
       <Text style={captionStyle.heading} bold={true}>
         {heading}
       </Text>
-      <Text style={captionStyle.subheading}>{subheading}</Text>
+      {subheading.split("\n").map((segment, i) => (
+        <Text key={i} style={captionStyle.subheading}>
+          {segment}
+        </Text>
+      ))}
       <Button wrapperStyle={captionStyle.button} label={ctaLabel} onPress={setConsent} type="Primary" />
     </View>
   );

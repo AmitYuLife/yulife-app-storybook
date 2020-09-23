@@ -19,7 +19,7 @@ export const baseStyles = StyleSheet.create({
     paddingBottom: 2,
   } as ViewStyle,
   currentUser: {
-    backgroundColor: Colours.neutral.n100,
+    backgroundColor: Colours.blue.b100,
     position: "absolute",
     left: 8,
     right: 8,

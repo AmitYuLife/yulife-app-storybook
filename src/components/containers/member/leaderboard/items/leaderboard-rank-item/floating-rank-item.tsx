@@ -1,5 +1,5 @@
 import React, { memo, useEffect, useRef, useState } from "react";
-import { Animated, View } from "react-native";
+import { Animated, Platform, View } from "react-native";
 import { baseStyles, floatingItemStyles } from "./subcomponents/styles";
 import { Rank } from "./subcomponents/rank";
 import { Image } from "./subcomponents/image";
@@ -16,7 +16,7 @@ interface Props {
   offset: number;
 }
 
-const ADJUST = -20;
+const ADJUST = Platform.select({ ios: -20, android: 0 });
 
 const FloatingRankItem = ({
   onPress = (): void => null,
@@ -25,11 +25,22 @@ const FloatingRankItem = ({
   offset = 0,
 }: Props) => {
   const [disableTouch, setDisableTouch] = useState(false);
+  const [hasInitialised, setHasInitialised] = useState(false);
+  const initialisationTimeout = useRef(null);
   const listener = useRef(null);
 
   useEffect(() => {
+    initialisationTimeout.current = setTimeout(() => {
+      setHasInitialised(true);
+    }, 50);
+    return () => clearTimeout(initialisationTimeout.current);
+  }, []);
+
+  useEffect(() => {
     scrollValue.removeListener(listener.current);
-    listener.current = scrollValue.addListener(({ value }) => setDisableTouch(value > offset));
+    listener.current = scrollValue.addListener(({ value }) => {
+      setDisableTouch(value > offset);
+    });
 
     return () => scrollValue.removeListener(listener.current);
   }, [offset, item, scrollValue]);
@@ -50,6 +61,10 @@ const FloatingRankItem = ({
         });
 
   const { name, steps, position, avatarRemoteFiles } = item;
+
+  if (!hasInitialised) {
+    return null;
+  }
 
   return (
     <Animated.View
