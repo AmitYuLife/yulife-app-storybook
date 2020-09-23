@@ -93,11 +93,11 @@ Feature("I am able to use the yuscreen, create, and edit an Yumoji", async () =>
     Scenario("My earn rate and employer benefits should be correct", scenario.start, async () => {
         Given("I login", given.loginToYuScreen(), async () => {
             Then("I should be on an empty yuscreen tab", then.onEmptyYuscreen(CUSTOMER_1))
-            Then("I should see 10x Earn Rate", then.idVisible(EARN_RATE_BUTTON(10)))
+            Then("I should see 1x Earn Rate", then.idVisible(EARN_RATE_BUTTON(1)))
             When("I scroll to the bottom", when.scrollFromID(YUSCREEN, "up", "fast"), async () => {
                 Then("I should see my Employer benefits", then.textVisible("Employer Benefits"))
                 Then("I should see Life Insurance", then.textVisible("Life Insurance"))
-                When("I tap the earn rate", when.tapID(EARN_RATE_BUTTON(10)), async () => {
+                When("I tap the earn rate", when.tapID(EARN_RATE_BUTTON(1)), async () => {
                     Then("I should be on the 'Your YuCoin' screen", then.onYourYuCoin)
                 })
             })
