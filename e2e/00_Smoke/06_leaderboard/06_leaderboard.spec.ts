@@ -12,7 +12,7 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
         Given("I login", given.loginAsUser(CUSTOMER_16, AUTH_16), async () => {
             When("I go to the leaderboard screen", when.tapID(NAV_BAR("leaderboard")), async () => {
                 Then("I should see the leaderboard consent screen", then.onLeaderboardConsent)
-                When("I tap 'yes please'", when.tapText("yes please!"), async () => {
+                When("I tap 'Yes'", when.tapText("Yes"), async () => {
                     Then("I should see the leaderboard title", then.textVisible(USER_18_LEADERBOARD.data.name))
                     Then("I should see the leaderboard", then.leaderboardVisible([CUSTOMER_18, CUSTOMER_17, CUSTOMER_19, CUSTOMER_21], [800, 250]))
                     When("I tap the ? icon", when.tapID(LEADERBOARD_INFO_BUTTON), async () => {
@@ -64,14 +64,14 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
                             })
                         })
                         When("I tap the leaderboard", when.tapID(LEADERBOARD_STATUS("Group 1", "inactive")), async () => {
-                            Then("I should be on the join this leaderboard screen", then.textVisible("join this leaderboard?"))
+                            Then("I should be on the Turn on Leaderboard screen", then.textVisible("Turn on Leaderboard?"))
                             When("I tap 'no thanks'", when.tapText("no thanks"), async () => {
                                 Then("I should be back on the settings page and the leaderboard should be inactive", then.leaderboardStatus("Group 1", "inactive"))
                             })
                         })
                         When("I tap the leaderboard", when.tapID(LEADERBOARD_STATUS("Group 1", "inactive")), async () => {
-                            Then("I should be on the join this leaderboard screen", then.textVisible("join this leaderboard?"))
-                            When("I tap yes please!", when.tapText("yes please!"), async () => {
+                            Then("I should be on the Turn on Leaderboard screen", then.textVisible("Turn on Leaderboard?"))
+                            When("I tap Yes", when.tapText("Yes"), async () => {
                                 Then("I should be back on the settings page and the leaderboard should be active", then.leaderboardStatus("Group 1", "active"))
                             })
                         })
