@@ -18,7 +18,8 @@ export const GENERIC_SCREEN_HEADING = (title: string) => `GENERIC_SCREEN_HEADING
 export const GENERIC_SCREEN_CTA = (ctaLabel: string) => `GENERIC_SCREEN_CTA${ctaLabel}`
 export const CHALLENGE_PROGRESS_BAR = "CHALLENGE_PROGRESS_BAR"
 export const STATS_VALUE = (value: any) => `STATS_VALUE_${value.toString()}`
-export const STATS_CHALLENGE_HISTORY = (value: number) => `STATS_CHALLENGE_HISTORY_${value}`
+export const CHALLENGE_HISTORY_THIS_WEEK = (value: number) => `CHALLENGE_HISTORY_THIS_WEEK${value}`
+export const CHALLENGE_HISTORY_LAST_WEEK = (value: number) => `CHALLENGE_HISTORY_LAST_WEEK${value}`
 export const CHALLENGE_UNAVAILABLE = `CHALLENGE_UNAVAILABLE`
 export const WEGIFT_DETAILS = "WEGIFT_DETAILS"
 export const YUNITY_REACHED = (yunityNum:number) => `YUNITY_REACHED_${yunityNum}`

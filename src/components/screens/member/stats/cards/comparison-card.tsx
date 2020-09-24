@@ -6,7 +6,7 @@ import { StyleSheet, View } from "react-native";
 import { Style } from "../../../../../styles";
 import styles from "./comparison-card.styles";
 import { MAX_GRAPH_WIDTH } from "./comparison-card.styles";
-import { STATS_CHALLENGE_HISTORY } from "@ids";
+import { CHALLENGE_HISTORY_LAST_WEEK, CHALLENGE_HISTORY_THIS_WEEK } from "@ids";
 
 interface IProps {
   title: string;
@@ -54,7 +54,7 @@ const ComparisonCard: SFC<IProps> = ({
             styles.valueText,
             { marginLeft: Style.SCALE_UP_AND_DOWN(firstValue > 0 ? 6 : 0), color: firstTitleColor },
           ])}
-          testID={STATS_CHALLENGE_HISTORY(firstValue)}
+          testID={CHALLENGE_HISTORY_THIS_WEEK(firstValue)}
         >
           {numberWithCommas(firstValue)}
         </Text>
@@ -78,7 +78,7 @@ const ComparisonCard: SFC<IProps> = ({
             styles.valueText,
             { marginLeft: Style.SCALE_UP_AND_DOWN(secondValue > 0 ? 6 : 0), color: secondTitleColor },
           ])}
-          testID={STATS_CHALLENGE_HISTORY(secondValue)}
+          testID={CHALLENGE_HISTORY_LAST_WEEK(secondValue)}
         >
           {numberWithCommas(secondValue)}
         </Text>
