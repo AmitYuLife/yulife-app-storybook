@@ -55,7 +55,7 @@ export function ButtonBase(props: IProps) {
 
   return (
     <View style={[styles.flex, { height: height + SHADOW_ALLOWANCE }]}>
-      <Shadow {...props} height={height - SHADOW_DIFF} borderRadius={borderRadius} />
+      <Shadow {...props} height={height - SHADOW_DIFF} borderRadius={borderRadius} disabled={props.disabled} />
       <Main
         {...props}
         height={height - SHADOW_DIFF}
@@ -71,16 +71,30 @@ export function ButtonBase(props: IProps) {
   );
 }
 
-function Shadow({ height, borderRadius, shadowColor, testID }: IProps) {
+function Shadow({ height, borderRadius, shadowColor, testID, disabled }: IProps) {
+  const opacity = disabled ? 0.5 : 1;
   return (
-    <View style={[styles.shadow, { height, borderRadius, backgroundColor: shadowColor }]}>
+    <View style={[styles.shadow, { height, borderRadius, backgroundColor: shadowColor, opacity }]}>
       <View testID={`${testID}-disabled-overlay`} />
     </View>
   );
 }
 
-function DisabledOverlay({ disabled }: IProps) {
-  return !disabled ? null : <View style={styles.disableOverlay} />;
+function DisabledOverlay({ disabled, borderRadius, height, borderColor }: IProps) {
+  const border = borderColor ? { borderWidth: 1, borderColor: "rgba(255,255,255,0.5)" } : {};
+  return !disabled ? null : (
+    <View
+      style={[
+        StyleSheet.absoluteFillObject,
+        styles.main,
+        {
+          height: height + SHADOW_ALLOWANCE,
+        },
+      ]}
+    >
+      <View style={[styles.disableOverlay, border, { height: height - SHADOW_DIFF, borderRadius }]} />
+    </View>
+  );
 }
 
 function Main({
@@ -147,7 +161,7 @@ const styles = StyleSheet.create({
     overflow: "hidden",
   } as ViewStyle,
   disableOverlay: {
-    ...StyleSheet.absoluteFillObject,
+    width: "100%",
     backgroundColor: "rgba(255,255,255,0.5)",
   } as ViewStyle,
 });
