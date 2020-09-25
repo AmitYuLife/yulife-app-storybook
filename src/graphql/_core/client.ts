@@ -12,14 +12,15 @@ import AsyncStorage from "@react-native-community/async-storage";
 import Config from "react-native-config";
 import DeviceInfo from "react-native-device-info";
 import { store } from "@redux/_core/store";
-import { apolloRequest } from "@redux/app/app.actions";
-import { onRequest } from "./reduxLink";
+import { updateOfflineState } from "@redux/app/app.actions";
+import createRetryLink from "./retryLink";
 
 const httpLink = () =>
   createHttpLink({
     uri: `${Config.API_URL}/graphql`,
   });
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const dataIdFromObject = (object: any) => {
   switch (object.__typename) {
     case "UserPayload":
@@ -90,7 +91,9 @@ const errorAfterware = onError(() => {
   // console.error("Error ... ", error);
 });
 
-const reduxLink = onRequest((requestInfo) => store.dispatch(apolloRequest(requestInfo)));
+const retryLink = createRetryLink(() => {
+  store.dispatch(updateOfflineState(true));
+});
 
 let client: ApolloClient<NormalizedCacheObject>;
 
@@ -98,7 +101,7 @@ export default () => {
   if (!client) {
     client = new ApolloClient({
       cache,
-      link: from([authMiddleware, reduxLink, errorAfterware, httpLink()]),
+      link: from([authMiddleware, retryLink, errorAfterware, httpLink()]),
     });
   }
 
