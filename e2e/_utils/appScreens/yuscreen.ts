@@ -170,7 +170,7 @@ export const onPackageScreen = async () => {
 
 export const packageScreenCorrect = (estimatedCost: number) => async () => {
     const textElements = ["How it works", "How much would it pay out?", "Additional benefits",
-        "FAQs", "Need something different?", "Create custom cover", "Documents",
+        "FAQs", "Need something different?", "Documents",
         "Policy Terms & Conditions", "Policy summary"]
 
     await scrollFromID(PACKAGE_SCREEN, "up", "slow")()
