@@ -69,7 +69,7 @@ Feature("I am able to use the yuscreens extended features", async () => {
     })
 
 
-    Scenario("I should be able to create customer cover", scenario.start, async()=>{
+    ScenarioSkip("I should be able to create customer cover", scenario.start, async()=>{
         Given("I login to the yuscreen", given.loginToYuScreen(true, CUSTOMER_23, AUTH_23), async()=>{
             When("I go to the life insurance screen", when.goToLifeInsurance, async()=>{
                 Then("I should be on the package screen for life insurance", then.onPackageScreen)
