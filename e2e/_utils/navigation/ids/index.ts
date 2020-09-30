@@ -23,6 +23,7 @@ export const CHALLENGE_HISTORY_LAST_WEEK = (value: number) => `CHALLENGE_HISTORY
 export const CHALLENGE_UNAVAILABLE = `CHALLENGE_UNAVAILABLE`
 export const WEGIFT_DETAILS = "WEGIFT_DETAILS"
 export const YUNITY_REACHED = (yunityNum:number) => `YUNITY_REACHED_${yunityNum}`
+export const YUNITY_HEADER = (levelName:string) => `YUNITY_HEADER_${levelName}`
 
 
 // buttons

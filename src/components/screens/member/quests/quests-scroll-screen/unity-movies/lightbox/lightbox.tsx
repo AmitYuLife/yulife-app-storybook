@@ -6,6 +6,8 @@ import { Heading } from "@atoms";
 import YuCoin from "../../../../../../screens/member/daily-steps/assets/yu-coin";
 import LinearGradient from "react-native-linear-gradient";
 import { getHeading, getText, getButtonLabel } from "./lightbox.data";
+import { YUNITY_HEADER } from "@ids";
+import { DETOX_ENABLED } from "@services/socket";
 
 interface IProps {
   level: number;
@@ -13,9 +15,9 @@ interface IProps {
 }
 
 const Lightbox: FC<IProps> = ({ level, goToNextScreen }) => {
-  const opacity = new Animated.Value(0);
-  const modalOpacity = new Animated.Value(0);
-  const y = new Animated.Value(30);
+  const opacity = DETOX_ENABLED ? new Animated.Value(1) : new Animated.Value(0);
+  const modalOpacity = DETOX_ENABLED ? new Animated.Value(1) : new Animated.Value(0);
+  const y = DETOX_ENABLED ? new Animated.Value(0) : new Animated.Value(30);
 
   const opacityAnim = Animated.timing(opacity, {
     toValue: 1,
@@ -38,9 +40,11 @@ const Lightbox: FC<IProps> = ({ level, goToNextScreen }) => {
   });
 
   useEffect(() => {
-    opacityAnim.start();
-    modalOpacityAnim.start();
-    yAnim.start();
+    if (!DETOX_ENABLED) {
+      opacityAnim.start();
+      modalOpacityAnim.start();
+      yAnim.start();
+    }
 
     return () => {
       opacityAnim.stop();
@@ -54,7 +58,7 @@ const Lightbox: FC<IProps> = ({ level, goToNextScreen }) => {
       <Animated.View style={[styles.modal, { opacity: modalOpacity, transform: [{ translateY: y }] }]}>
         <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scrollView}>
           <View style={styles.headingWrapper}>
-            <Heading style={styles.heading} label={getHeading(level)} />
+            <Heading style={styles.heading} label={getHeading(level)} testID={YUNITY_HEADER(getHeading(level))} />
           </View>
           <View style={styles.textWrapper}>
             <View style={styles.coinWrapper}>

@@ -10,15 +10,20 @@ interface IProps {
   size?: Sizes;
   style?: TextStyle;
   color?: string;
+  testID?: string;
 }
 
 type Sizes = "medium" | "large" | "small";
 
 function Heading(props: IProps) {
-  const { label, size = "medium", style, bold, color = colours.darkGray } = props;
+  const { label, size = "medium", style, bold, color = colours.darkGray, testID } = props;
   const boldStyles = bold ? styles.bold : null;
 
-  return <Text style={StyleSheet.flatten([styles.base, styles[size], boldStyles, { color }, style])}>{label}</Text>;
+  return (
+    <Text style={StyleSheet.flatten([styles.base, styles[size], boldStyles, { color }, style])} testID={testID}>
+      {label}
+    </Text>
+  );
 }
 
 export default React.memo(Heading);

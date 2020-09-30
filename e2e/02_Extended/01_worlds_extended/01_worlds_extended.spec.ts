@@ -4,7 +4,7 @@ import * as given from "./_steps/given"
 import * as when from "./_steps/when"
 import * as then from "./_steps/then"
 import { CUSTOMER_22, AUTH_22, CUSTOMER_23, AUTH_23 } from "_utils/data/stubs";
-import { LEVEL_CHALLENGE_BUTTON, QUESTS_SCREEN, VIEW_TOP_RIGHT_COIN_COUNTER, YUNITY_REACHED } from "@ids";
+import { LEVEL_CHALLENGE_BUTTON, QUESTS_SCREEN, VIEW_TOP_RIGHT_COIN_COUNTER } from "@ids";
 
 
 Feature("As a user I can complete challenges across multiple worlds", async () => {
@@ -16,14 +16,11 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
             When("I complete a walking challenge", when.completeNewWorldShortStroll(49), async () => {
                 Then("I should see the level 50 challenge button", then.idVisible(LEVEL_CHALLENGE_BUTTON(50)))
                 When("I tap this level 50 button", when.tapID(LEVEL_CHALLENGE_BUTTON(50)), async () => {
-                    Then("I should see the compelted the first yunity screen", then.idVisible(YUNITY_REACHED(1), 12000))
-                    When("I tap Continue", when.tapText("Continue"), async()=>{
-                        Then("I should see the forest light box", then.textVisible("You’ve achieved Yunity with the Forest"))
+                    Then("The yunity screens should be correct", then.yunityCorrect(1, "Forest"))
                         When("I tap 'On to the next world!'", when.tapText("On to the next world"), async()=>{
                             Then("I should be on the second world", then.idVisible(QUESTS_SCREEN(1)))
                             Then("I should see my updated coin amount", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(17910)))
                             Then("I should see the level 51 challenge button", then.idVisible(LEVEL_CHALLENGE_BUTTON(51)))
-                        })
                     })
                 })
             })
@@ -41,9 +38,7 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
                 When("I scroll up", when.scrollFromID(LEVEL_CHALLENGE_BUTTON(99), "down", "slow"), async () => {
                     Then("I should see the level 100 unity challenge", then.idVisible(LEVEL_CHALLENGE_BUTTON(100)))
                     When("I tap the level 100 unity challenge", when.tapID(LEVEL_CHALLENGE_BUTTON(100)), async () => {
-                        Then("I should see the compelted the second yunity screen", then.idVisible(YUNITY_REACHED(2), 12000))
-                        When("I tap Continue", when.tapText("Continue"), async () => {
-                            Then("I should see the ocean light box", then.textVisible("You’ve achieved Yunity with the Ocean"))
+                        Then("The yunity screens should be correct", then.yunityCorrect(2, "Ocean"))
                             When("I tap 'On to the next world!'", when.tapText("On to the next world"), async () => {
                         Then("I should have unlocked the third world", then.idVisible(QUESTS_SCREEN(2), 5000))
                         Then("I should see the level 99 challenge button on the second world", then.idVisible(LEVEL_CHALLENGE_BUTTON(99)))
@@ -68,7 +63,6 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
                 })
             })
         })
-    })
 
     Scenario("I can transition from the second to third world without tapping the level 100 challenge button", scenario.start, async () => {
         Given("I login as a user on level 99", given.logInAndGoToTab("quests", CUSTOMER_23, AUTH_23), async () => {
@@ -81,9 +75,7 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
                 When("I complete a level 99 meditation challenge", when.completeNewWorldMeditation(99), async () => {
                     Then("I should see the level 100 unity challenge", then.idVisible(LEVEL_CHALLENGE_BUTTON(100)))
                     When("I tap the level 100 unity challenge", when.tapID(LEVEL_CHALLENGE_BUTTON(100)), async () => {
-                        Then("I should see the compelted the second yunity screen", then.idVisible(YUNITY_REACHED(2), 12000))
-                        When("I tap Continue", when.tapText("Continue"), async () => {
-                            Then("I should see the ocean light box", then.textVisible("You’ve achieved Yunity with the Ocean"))
+                        Then("The yunity screens should be correct", then.yunityCorrect(2, "Ocean"))
                             When("I tap 'On to the next world!'", when.tapText("On to the next world"), async () => {
                             Then("I should be on the third world", then.idVisible(QUESTS_SCREEN(2)))
                             Then("I should see the level 101 challenge button", then.idVisible(LEVEL_CHALLENGE_BUTTON(101)))
@@ -94,8 +86,7 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
                 })
             })
         })
-    })
-
+        
 })
 
 
