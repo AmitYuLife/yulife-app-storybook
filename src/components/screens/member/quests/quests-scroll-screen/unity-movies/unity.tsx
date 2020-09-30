@@ -7,9 +7,11 @@ import styles from "./unity.styles";
 import LottieView from "lottie-react-native";
 import { isIphoneX } from "react-native-iphone-x-helper";
 import { YUNITY_REACHED } from "@ids";
-import { DETOX_ENABLED } from "@services/socket";
 import Lightbox from "./lightbox/lightbox";
 import { getHeading } from "./lightbox/lightbox.data";
+import { DETOX_ENABLED } from "@services/socket";
+
+const REMOVE_LOTTIE_VIEWS = false;
 
 interface IProps {
   level: number;
@@ -20,8 +22,6 @@ interface IState {
   displayWaves: boolean;
   showLightbox: boolean;
 }
-
-const AUTO_PLAY = !DETOX_ENABLED;
 
 class Unity extends React.PureComponent<IProps, IState> {
   private fadeHeading: Animated.CompositeAnimation;
@@ -35,10 +35,10 @@ class Unity extends React.PureComponent<IProps, IState> {
 
   private timeout: NodeJS.Timeout;
 
-  private headingOpacity = new Animated.Value(0);
-  private subheadingOpacity = new Animated.Value(0);
-  private buttonOpacity = new Animated.Value(0);
-  private buttonY = new Animated.Value(15);
+  private headingOpacity = DETOX_ENABLED ? new Animated.Value(1) : new Animated.Value(0);
+  private subheadingOpacity = DETOX_ENABLED ? new Animated.Value(1) : new Animated.Value(0);
+  private buttonOpacity = DETOX_ENABLED ? new Animated.Value(1) : new Animated.Value(0);
+  private buttonY = DETOX_ENABLED ? new Animated.Value(0) : new Animated.Value(15);
 
   private isYuniversal: boolean;
 
@@ -76,18 +76,16 @@ class Unity extends React.PureComponent<IProps, IState> {
   }
 
   public componentDidMount() {
-    this.fadeHeading.start();
-    this.fadeSubheading.start();
-    this.fadeButton.start();
-    this.moveButton.start(() => {
-      if (AUTO_PLAY) {
+    if (!DETOX_ENABLED) {
+      this.fadeHeading.start();
+      this.fadeSubheading.start();
+      this.fadeButton.start();
+      this.moveButton.start(() => {
         this.setState({ displayWaves: true });
         this.wavesAnim.play();
-      }
-    });
+      });
 
-    if (this.foregroundAnim && this.backgroundAnim) {
-      if (AUTO_PLAY) {
+      if (this.foregroundAnim && this.backgroundAnim) {
         if (this.isYuniversal) {
           this.loopForeground(15000, 450, 288, 388);
         } else {
@@ -95,9 +93,6 @@ class Unity extends React.PureComponent<IProps, IState> {
         }
 
         this.backgroundAnim.play();
-      } else {
-        this.foregroundAnim.play(300, 300);
-        this.backgroundAnim.play(300, 300);
       }
     }
   }
@@ -133,30 +128,34 @@ class Unity extends React.PureComponent<IProps, IState> {
     return (
       <>
         <View style={styles.wrapper} testID={YUNITY_REACHED(Math.floor(level / 50))}>
-          <LottieView
-            resizeMode="cover"
-            style={[styles.fullScreenLottie, { opacity: displayWaves ? 1 : 0 }]}
-            source={waves}
-            autoPlay={false}
-            loop={true}
-            ref={(anim) => (this.wavesAnim = anim)}
-          />
-          <LottieView
-            resizeMode="cover"
-            style={styles.fullScreenLottie}
-            source={isIphoneX() ? background_xl : background}
-            autoPlay={false}
-            loop={false}
-            ref={(anim) => (this.backgroundAnim = anim)}
-          />
-          <LottieView
-            resizeMode="cover"
-            style={styles.fullScreenLottie}
-            source={isIphoneX() ? foreground_xl : foreground}
-            autoPlay={false}
-            loop={true}
-            ref={(anim) => (this.foregroundAnim = anim)}
-          />
+          {REMOVE_LOTTIE_VIEWS ? null : (
+            <>
+              <LottieView
+                resizeMode="cover"
+                style={[styles.fullScreenLottie, { opacity: displayWaves ? 1 : 0 }]}
+                source={waves}
+                autoPlay={false}
+                loop={DETOX_ENABLED ? false : true}
+                ref={(anim) => (this.wavesAnim = anim)}
+              />
+              <LottieView
+                resizeMode="cover"
+                style={styles.fullScreenLottie}
+                source={isIphoneX() ? background_xl : background}
+                autoPlay={false}
+                loop={false}
+                ref={(anim) => (this.backgroundAnim = anim)}
+              />
+              <LottieView
+                resizeMode="cover"
+                style={styles.fullScreenLottie}
+                source={isIphoneX() ? foreground_xl : foreground}
+                autoPlay={false}
+                loop={DETOX_ENABLED ? false : true}
+                ref={(anim) => (this.foregroundAnim = anim)}
+              />
+            </>
+          )}
           <View style={styles.headingWrapper}>
             <Animated.View style={{ opacity: this.headingOpacity }}>
               <Heading label={getHeading(level)} color={color} style={styles.heading} />
@@ -181,7 +180,7 @@ class Unity extends React.PureComponent<IProps, IState> {
   }
 
   private createAnimation = (variable: Animated.Value, toValue: number, delay = 0, duration = 500) => {
-    if (!AUTO_PLAY) {
+    if (DETOX_ENABLED) {
       delay = 0;
       duration = 0;
     }
