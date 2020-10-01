@@ -4,15 +4,17 @@ import { ChestCoin } from "../../../../atoms";
 
 const CONSTANT = 20;
 
-export default function Coin() {
+const Coin = ({ isGrayScale = false }) => {
   return (
     <View style={styles.wrapper}>
       <View style={styles.overflow}>
-        <ChestCoin />
+        <ChestCoin isGrayScale={isGrayScale} />
       </View>
     </View>
   );
-}
+};
+
+export default Coin;
 
 const styles = StyleSheet.create({
   wrapper: {

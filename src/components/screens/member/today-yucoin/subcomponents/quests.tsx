@@ -10,12 +10,13 @@ interface IProps {
   challenges: GetCurrentUser_getCurrentUser_todayActivity[];
   showNoChallengeDone: boolean;
   activeChallenge: GetCurrentUser_getCurrentUser_todayActivity;
+  isGrayScale?: boolean;
 }
 
-export default function Quests({ showNoChallengeDone, activeChallenge, challenges }: IProps) {
+export default function Quests({ showNoChallengeDone, activeChallenge, challenges, isGrayScale }: IProps) {
   return (
     <>
-      <SectionHeading labelLeft="quests" labelRight="yucoin" />
+      <SectionHeading isGrayScale={isGrayScale} labelLeft="quests" labelRight="yucoin" />
       <ChallengesWrapper>
         <>
           {!showNoChallengeDone ? null : (

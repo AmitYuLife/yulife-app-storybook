@@ -12,10 +12,10 @@ export default StyleSheet.create({
   } as TextStyle,
   plusPointsWrapper: {
     alignItems: "center",
-    marginBottom: Style.SCALE_UP_AND_DOWN(-8),
+    marginBottom: Style.SCALE_UP_AND_DOWN(48),
   } as ViewStyle,
   score: {
-    bottom: Style.SCALE_UP_AND_DOWN(20),
+    bottom: Style.SCALE_UP_AND_DOWN(24),
     color: "rgb(168, 105, 22)",
     fontSize: Style.SCALE_UP_AND_DOWN(25),
     left: 0,

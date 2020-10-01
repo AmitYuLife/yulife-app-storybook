@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
     width: 305,
   } as ViewStyle,
   wrapper: {
-    backgroundColor: "rgba(255,255,255,0.9)",
+    backgroundColor: "#FAFAFE",
     flex: 1,
   } as ViewStyle,
   scrollView: {
