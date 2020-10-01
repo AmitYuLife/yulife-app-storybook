@@ -6,6 +6,7 @@ import Svg from "react-native-svg";
 import {
   Glow,
   Body,
+  GenericYucoin,
   Clasps,
   Crown,
   Gems,
@@ -22,6 +23,7 @@ import { getCurrentYuniverse, getCurrentWorld } from "@services/utils";
 type ConnectedState = ReturnType<typeof mapStateToProps>;
 
 interface YuCoinProps {
+  isGeneric?: boolean;
   isGrayScale?: boolean;
   hasWhiteGlow?: boolean;
   level?: number;
@@ -31,7 +33,12 @@ interface YuCoinProps {
 type Props = ConnectedState & YuCoinProps;
 
 const YuCoin: React.FC<Props> = (props) => {
-  const { isGrayScale, hasWhiteGlow, level, gems, currentLevel } = props;
+  const { isGeneric, isGrayScale, hasWhiteGlow, level, gems, currentLevel } = props;
+
+  if (isGeneric) {
+    return <GenericYucoin isGrayScale={isGrayScale} />;
+  }
+
   const currentYuniverse = getCurrentYuniverse(level || currentLevel);
 
   return (

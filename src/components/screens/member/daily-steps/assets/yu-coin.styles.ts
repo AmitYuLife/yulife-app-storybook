@@ -9,6 +9,10 @@ const styles = StyleSheet.create({
     height: 218,
     width: 218,
   },
+  genericWrapper: {
+    height: 121,
+    width: 126,
+  },
 });
 
 export default styles;

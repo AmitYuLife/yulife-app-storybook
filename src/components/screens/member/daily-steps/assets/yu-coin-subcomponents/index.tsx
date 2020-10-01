@@ -1,5 +1,6 @@
 export { default as Glow } from "./glow";
 export { default as Body } from "./body";
+export { default as GenericYucoin } from "./generic";
 export { default as Clasps } from "./clasps";
 export { default as Crown } from "./crown";
 export { default as Gems } from "./gems";
