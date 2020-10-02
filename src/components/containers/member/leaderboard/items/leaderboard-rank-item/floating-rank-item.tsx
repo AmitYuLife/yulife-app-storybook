@@ -1,5 +1,5 @@
 import React, { memo, useEffect, useRef, useState } from "react";
-import { Animated, Platform, View } from "react-native";
+import { Animated, Platform, View, StyleSheet } from "react-native";
 import { baseStyles, floatingItemStyles } from "./subcomponents/styles";
 import { Rank } from "./subcomponents/rank";
 import { Image } from "./subcomponents/image";
@@ -73,7 +73,15 @@ const FloatingRankItem = ({
     >
       <TouchableOpacityWithDelay style={floatingItemStyles.button} activeOpacity={0.7} onPress={onPress}>
         <View style={floatingItemStyles.background} />
-        <View style={[baseStyles.borderWrapper, floatingItemStyles.borderWrapper]}>
+        <View
+          style={StyleSheet.flatten([
+            baseStyles.borderWrapper,
+            floatingItemStyles.borderWrapper,
+            avatarRemoteFiles?.pngMini
+              ? floatingItemStyles.avatarFilledPaddingBottom
+              : floatingItemStyles.avatarEmptyPaddingBottom,
+          ])}
+        >
           <Rank rank={position} style={floatingItemStyles.text} />
           <Image uri={avatarRemoteFiles?.pngMini} />
           <Name name={name} bold={true} style={floatingItemStyles.text} />

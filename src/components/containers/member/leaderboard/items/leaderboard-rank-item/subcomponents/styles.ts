@@ -61,6 +61,18 @@ export const floatingItemStyles = StyleSheet.create({
     color: "white",
     fontFamily: Style.FONT_FAMILY_PRIMARY_BOLD,
   } as ViewStyle,
+  avatarFilledPaddingBottom: {
+    paddingBottom: Platform.select({
+      ios: 9,
+      android: 1,
+    }),
+  } as ViewStyle,
+  avatarEmptyPaddingBottom: {
+    paddingBottom: Platform.select({
+      ios: 4,
+      android: 0,
+    }),
+  } as ViewStyle,
 });
 
 function getBottomPosition() {
