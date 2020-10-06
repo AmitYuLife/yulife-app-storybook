@@ -20,7 +20,6 @@ import { Faqs } from "./subcomponents/faqs/faqs";
 import AdditionalBenefits from "./additional-benefits/additional-benefits";
 import { PayoutCalculator } from "./subcomponents/payout-calculator/payout-calculator";
 import { Documents } from "./subcomponents/documents/documents";
-import { CustomCoverPrompt } from "./subcomponents/custom-cover-prompt/custom-cover-prompt";
 import { PackageId } from "../fib.helper";
 import { IFaq } from "./subcomponents/faqs/faq";
 import Logger from "@services/logging/logger";
@@ -54,7 +53,6 @@ export const FibBrowseScreen = memo(function (props: IFibBrowseScreenProps) {
     faqs,
     navigateToEditSalary,
     documents,
-    navigateToCustomCover,
     onContinue,
     selectCoverType,
     selectedPackage,
@@ -132,7 +130,6 @@ export const FibBrowseScreen = memo(function (props: IFibBrowseScreenProps) {
               loading={loading}
             />
             <Faqs items={faqs} />
-            <CustomCoverPrompt onPressCustomCoverPrompt={navigateToCustomCover} />
             <Documents items={documents} />
           </Animatable.View>
         </ScrollView>
