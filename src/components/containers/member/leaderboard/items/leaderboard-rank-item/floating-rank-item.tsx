@@ -37,6 +37,10 @@ const FloatingRankItem = ({
   }, []);
 
   useEffect(() => {
+    setDisableTouch(offset < 10);
+  }, [offset]);
+
+  useEffect(() => {
     scrollValue.removeListener(listener.current);
     listener.current = scrollValue.addListener(({ value }) => {
       setDisableTouch(value > offset);
@@ -45,7 +49,7 @@ const FloatingRankItem = ({
     return () => scrollValue.removeListener(listener.current);
   }, [offset, item, scrollValue]);
 
-  if (!item) {
+  if (!item || !hasInitialised) {
     return null;
   }
 
@@ -61,10 +65,6 @@ const FloatingRankItem = ({
         });
 
   const { name, steps, position, avatarRemoteFiles } = item;
-
-  if (!hasInitialised) {
-    return null;
-  }
 
   return (
     <Animated.View
