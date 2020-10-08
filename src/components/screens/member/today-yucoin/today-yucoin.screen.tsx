@@ -14,8 +14,7 @@ import { ChallengesWrapper } from "./subcomponents/common";
 import Challenge from "./subcomponents/challenges";
 import { mapProps } from "./today-yucoin.helpers";
 import { TODAYS_YUCOIN } from "@ids";
-import { useContext } from "react";
-import { FitkitContext } from "@services/fitkit/fitkit.helpers";
+import { FitKitAvailable, FitKitAvailableChildrenProps } from "@services/fitkit/fitkit.service";
 
 type ChallengeToday = GetCurrentUser_getCurrentUser_todayActivity;
 
@@ -42,38 +41,45 @@ export interface IProps {
 export default function TodayYucoinScreen(props: IProps) {
   const { loading, onPressClose } = props;
   const enhancers = mapProps(props);
-  const { available, authorised } = useContext(FitkitContext);
-  const isGrayScale = !available || !authorised;
+
   return (
-    <SafeAreaView style={styles.wrapper}>
-      <GenericHeading
-        hideBorder={true}
-        heading="today's yucoin"
-        style={styles.heading}
-        onRightIconPress={onPressClose}
-      />
-      <ScrollView testID={TODAYS_YUCOIN} style={styles.scrollView} showsVerticalScrollIndicator={false}>
-        <Coin isGrayScale={isGrayScale} />
-        <View style={styles.contentWrapper}>
-          <SectionHeading
-            hasRoundedTop={true}
-            isGrayScale={isGrayScale}
-            labelLeft="activity & quests"
-            labelRight="yucoin"
-          />
-          <ChallengesWrapper style={styles.reduceBottomPadding}>
-            <Challenge {...enhancers.challengeStepsProps} />
-            <Pad height={20} />
-            <Challenge {...enhancers.challengeMeditationProps} />
-          </ChallengesWrapper>
-          {loading ? (
-            <ActivityIndicator color={Colours.darkHotPink} />
-          ) : (
-            <Quests isGrayScale={isGrayScale} {...enhancers.questsProps} />
-          )}
-        </View>
-        <CTA {...enhancers.ctaProps} />
-      </ScrollView>
-    </SafeAreaView>
+    <FitKitAvailable>
+      {(fitkit: FitKitAvailableChildrenProps) => {
+        const isGrayScale = !fitkit.available || !fitkit.authorised;
+
+        return (
+          <SafeAreaView style={styles.wrapper}>
+            <GenericHeading
+              hideBorder={true}
+              heading="today's yucoin"
+              style={styles.heading}
+              onRightIconPress={onPressClose}
+            />
+            <ScrollView testID={TODAYS_YUCOIN} style={styles.scrollView} showsVerticalScrollIndicator={false}>
+              <Coin isGrayScale={isGrayScale} />
+              <View style={styles.contentWrapper}>
+                <SectionHeading
+                  hasRoundedTop={true}
+                  isGrayScale={isGrayScale}
+                  labelLeft="activity & quests"
+                  labelRight="yucoin"
+                />
+                <ChallengesWrapper style={styles.reduceBottomPadding}>
+                  <Challenge {...enhancers.challengeStepsProps} />
+                  <Pad height={20} />
+                  <Challenge {...enhancers.challengeMeditationProps} />
+                </ChallengesWrapper>
+                {loading ? (
+                  <ActivityIndicator color={Colours.darkHotPink} />
+                ) : (
+                  <Quests isGrayScale={isGrayScale} {...enhancers.questsProps} />
+                )}
+              </View>
+              <CTA {...enhancers.ctaProps} />
+            </ScrollView>
+          </SafeAreaView>
+        );
+      }}
+    </FitKitAvailable>
   );
 }
