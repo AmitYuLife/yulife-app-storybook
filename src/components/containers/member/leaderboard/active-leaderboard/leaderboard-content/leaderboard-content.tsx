@@ -13,11 +13,18 @@ import { GetLeaderboard } from "@graphql/_core/schema";
 import { LeaderboardPodium } from "../leaderboard-podium";
 import FloatingRankItem from "../../items/leaderboard-rank-item/floating-rank-item";
 import { getUriSet } from "./helpers/resToList";
-import { TOP_PADDING_HEIGHT } from "./helpers/constants";
-import { LEADERBOARD_ITEM_HEIGHT } from "../../items/leaderboard-rank-item/subcomponents";
 import { PAGE_SIZE } from "../active-leaderboard.container";
 import { MODALS } from "@navigation/constants";
 import useNavigationComponentDidDisappear from "@services/hooks/useNavigationComponentDidDisappear";
+import { IReduxState } from "@redux/_core/reducers";
+import { getUserFeatures } from "@redux/user/user.selectors";
+import { connect } from "react-redux";
+import {
+  DUEL_DIALOG_HEIGHT,
+  DUEL_DIALOG_MARGIN_BOTTOM,
+  LEADERBOARD_ITEM_HEIGHT,
+} from "../../items/leaderboard-rank-item/subcomponents";
+import { TOP_PADDING_HEIGHT } from "./helpers/constants";
 
 export interface LeaderboardContentContainerProps {
   query: GetLeaderboard;
@@ -29,6 +36,10 @@ export interface LeaderboardContentContainerProps {
   openModal: () => void;
 }
 
+type ConnectedState = ReturnType<typeof mapStateToProps>;
+
+interface IProps extends LeaderboardContentContainerProps, ConnectedState {}
+
 const FlatList = Animated.createAnimatedComponent(_FlatList);
 
 const _LeaderboardContentContainer = ({
@@ -39,7 +50,9 @@ const _LeaderboardContentContainer = ({
   openModal,
   isRefetching,
   isLoading,
-}: LeaderboardContentContainerProps) => {
+  showDuels,
+}: IProps) => {
+  const [duelDialogId, setDuelDialogId] = useState("");
   const [scrollValue] = useState(new Animated.Value(0));
   const [flatListHeight, setFlatListHeight] = useState(0);
   const flatListRef: RefObject<_FlatList> = useRef();
@@ -52,6 +65,9 @@ const _LeaderboardContentContainer = ({
     isRefetching,
     scrollValue,
     isLoading,
+    duelDialogId,
+    setDuelDialogId,
+    showDuels,
   });
 
   const offsetFromRows = LEADERBOARD_ITEM_HEIGHT * (myLeaderboardItem?.position || 0);
@@ -63,8 +79,16 @@ const _LeaderboardContentContainer = ({
       return openModal();
     }
 
-    flatListRef.current?.scrollToIndex({ animated: true, index: target.position - 1 });
-  }, [leaderboardItems, currentUserId, openModal]);
+    // adds a small gap to help keep the appearance clean
+    const padding = -1;
+    const scrollToOffset =
+      TOP_PADDING_HEIGHT +
+      LEADERBOARD_ITEM_HEIGHT * target.position +
+      (duelDialogId === "" ? 0 : DUEL_DIALOG_HEIGHT + DUEL_DIALOG_MARGIN_BOTTOM) +
+      padding;
+
+    flatListRef.current?.scrollToIndex({ animated: true, index: scrollToOffset });
+  }, [leaderboardItems, currentUserId, openModal, duelDialogId]);
 
   const handleLayout = useCallback(
     (e: LayoutChangeEvent) => {
@@ -135,4 +159,8 @@ const styles = StyleSheet.create({
   } as ViewStyle,
 });
 
-export const LeaderboardContentContainer = _LeaderboardContentContainer;
+const mapStateToProps = (state: IReduxState) => ({
+  showDuels: !!getUserFeatures(state).showDuels,
+});
+
+export const LeaderboardContentContainer = connect<ConnectedState>(mapStateToProps)(_LeaderboardContentContainer);

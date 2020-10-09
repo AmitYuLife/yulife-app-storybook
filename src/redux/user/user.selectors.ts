@@ -16,6 +16,7 @@ export const getVisiblePopups = (state: IReduxState) => state.user.popupVisibili
 export const getSurgeIntro = (state: IReduxState) => state.user.surgeIntro;
 export const getUserBusiness = (state: IReduxState) => state.user.business;
 export const getUserFirstName = (state: IReduxState) => state.user.firstName;
+export const getUserLastName = (state: IReduxState) => state.user.lastName;
 export const getUserName = (state: IReduxState) => state.user.firstName + " " + state.user.lastName;
 export const getUserDateOfBirth = (state: IReduxState) => state.user.dateOfBirth;
 export const getUserMembershipType = (state: IReduxState) => state.user.membershipType;

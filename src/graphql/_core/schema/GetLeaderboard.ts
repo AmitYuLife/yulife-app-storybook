@@ -18,6 +18,8 @@ export interface GetLeaderboard_getLeaderboard {
   __typename: "LeaderboardItem";
   id: string | null;
   name: string | null;
+  firstName: string | null;
+  lastName: string | null;
   coins: number | null;
   steps: number | null;
   userId: string | null;

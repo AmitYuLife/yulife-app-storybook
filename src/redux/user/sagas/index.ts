@@ -29,10 +29,12 @@ import updateConnectionSaga from "./updateConnection.saga";
 import updateLeaderboardConsentSaga from "./updateLeaderboardConsent.saga";
 import updateUserConsentSaga from "./updateUserConsent.saga";
 import { AVATAR_CREATED } from "../../avatar/avatar.actions";
+import sendDuelInvitation from "./sendDuelInvitation.saga";
 
 export default [
   takeLatest(AUTHENTICATED, fetchUserOnAppStateChangeSaga),
   takeLatest(GET_USER_START, getUserDataSaga),
+  takeLatest(GET_USER_SUCCESS, sendDuelInvitation),
   takeLatest(GET_USER_SUCCESS, showLeaderboardInviteOnGetUserSaga),
   takeLatest(SET_USER_NO_ACCESS, setUserNoAccessSaga),
   takeLatest(LOGIN_USER_SUCCESS, loginUserSuccessSaga),

@@ -8,6 +8,8 @@ export const GQL_QUERY_LEADERBOARD = gql`
       __typename
       id
       name
+      firstName
+      lastName
       coins
       steps
       userId

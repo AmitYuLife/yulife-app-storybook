@@ -1,1 +1,1 @@
-export { LEADERBOARD_ITEM_HEIGHT } from "./styles";
+export { LEADERBOARD_ITEM_HEIGHT, DUEL_DIALOG_HEIGHT, DUEL_DIALOG_MARGIN_BOTTOM } from "./styles";

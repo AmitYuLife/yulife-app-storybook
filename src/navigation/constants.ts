@@ -22,6 +22,7 @@ export const ROUTES = {
   rewards: "yulife.member.Rewards",
   activityHistory: "yulife.member.ActivityHistory",
   stats: "yulife.member.Stats",
+  duelsHub: "yulife.member.DuelsHub",
   leaderboards: "yulife.member.Leaderboards",
   leaderboardInfo: "yulife.member.LeaderboardInfo",
   leaderboardsList: "yulife.member.LeaderboardsList",
@@ -69,6 +70,8 @@ export const MODALS = {
   streaks: "yulife.modals.Streaks",
   todayYucoin: "yulife.modals.todayYucoin",
   info: "yulife.modals.info",
+  duelInvite: "yulife.modals.duelInvite",
+  duelRespond: "yulife.modals.duelRespond",
 };
 
 export const bottomTabs: OptionsBottomTabs = {
