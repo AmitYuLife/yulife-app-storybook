@@ -3,6 +3,8 @@ import { StyleSheet, ViewStyle, Platform } from "react-native";
 import deviceInfoModule from "react-native-device-info";
 
 export const LEADERBOARD_ITEM_HEIGHT = Style.adjust(48);
+export const DUEL_DIALOG_HEIGHT = Style.adjust(84);
+export const DUEL_DIALOG_MARGIN_BOTTOM = Style.adjust(10);
 
 export const baseStyles = StyleSheet.create({
   wrapper: {
@@ -17,6 +19,14 @@ export const baseStyles = StyleSheet.create({
     alignItems: "center",
     width: "100%",
     paddingBottom: 2,
+  } as ViewStyle,
+  borderWrapperCentered: {
+    height: DUEL_DIALOG_HEIGHT,
+    alignItems: "center",
+    justifyContent: "center",
+    width: "100%",
+    paddingBottom: 2,
+    marginBottom: DUEL_DIALOG_MARGIN_BOTTOM,
   } as ViewStyle,
   currentUser: {
     backgroundColor: Colours.blue.b100,

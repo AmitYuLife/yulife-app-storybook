@@ -53,7 +53,8 @@ export const allTogglesTrue = {
   "statsShowCyclingGeneralCard": true,
   "statsShowCyclingBestScoreCard": true,
   "statsShowCyclingGraphCard": true,
-  "showStats": true
+  "showStats": true,
+  "showDuels": true,
 }
 
 export const CHALLENGE_TEMPLATE = {

@@ -6,19 +6,40 @@ import { truncate } from "@services/utils";
 import { Colours, Style } from "@styles";
 import { TouchableOpacityWithDelay } from "@components/molecules";
 import Svg, { Path } from "react-native-svg";
+import { InfoButton } from "./info-button";
+import { DuelsButton } from "./duels-button";
+import { getUserFeatures } from "@redux/user/user.selectors";
+import { IReduxState } from "@redux/_core/reducers";
+import { connect } from "react-redux";
 
 export interface LeaderboardPressableTitleProps {
   onPressLabel: () => void;
+  onPressInfo: () => void;
   name: string;
 }
 
-export function LeaderboardPressableTitle({ onPressLabel, name }: LeaderboardPressableTitleProps) {
+type ConnectedState = ReturnType<typeof mapStateToProps>;
+
+interface IProps extends LeaderboardPressableTitleProps, Partial<ConnectedState> {}
+
+export function _LeaderboardPressableTitle({ onPressLabel, onPressInfo, name, showDuels }: Partial<IProps>) {
+  if (showDuels) {
+    return (
+      <View pointerEvents="box-none" style={styles.wrapper}>
+        <View style={styles.row}>
+          <Title title={name} onPressLabel={onPressLabel} onPressInfo={onPressInfo} showDuels={showDuels} />
+        </View>
+        <DuelsButton />
+      </View>
+    );
+  }
+
   return (
     <View pointerEvents="box-none" style={styles.wrapper}>
       <TouchableOpacityWithDelay style={styles.row} onPress={onPressLabel}>
-        <Title title={name} />
-        <Arrow />
+        <Title title={name} onPressLabel={onPressLabel} onPressInfo={onPressInfo} showDuels={showDuels} />
       </TouchableOpacityWithDelay>
+      <InfoButton onPressInfo={onPressInfo} showDuels={showDuels} />
     </View>
   );
 }
@@ -33,11 +54,35 @@ const styles = StyleSheet.create({
   } as ViewStyle,
 });
 
-function Title({ title }: { title: string }) {
+function Title({
+  title,
+  onPressLabel,
+  onPressInfo,
+  showDuels,
+}: {
+  title: string;
+  onPressLabel: () => void;
+  onPressInfo: () => void;
+  showDuels: boolean;
+}) {
   return (
     <View style={titleStyles.wrapper} testID={LEADERBOARD_TOP_SCREEN}>
-      <Text style={titleStyles.title}>{truncate(title, 16)}</Text>
-      <Text style={titleStyles.caption}>30 day steps</Text>
+      <TouchableOpacityWithDelay onPress={onPressLabel}>
+        <View style={titleStyles.leaderboardName}>
+          <Text style={titleStyles.title}>
+            {truncate(title, 16)}
+            <View style={titleStyles.arrow}>
+              <Arrow />
+            </View>
+          </Text>
+        </View>
+      </TouchableOpacityWithDelay>
+      <TouchableOpacityWithDelay onPress={onPressInfo}>
+        <View style={titleStyles.flexRow}>
+          <Text style={showDuels ? titleStyles.captionDuels : titleStyles.caption}>30 day steps</Text>
+          {showDuels ? <InfoButton onPressInfo={onPressInfo} showDuels={showDuels} /> : null}
+        </View>
+      </TouchableOpacityWithDelay>
     </View>
   );
 }
@@ -46,6 +91,9 @@ const titleStyles = StyleSheet.create({
   wrapper: {
     alignSelf: "center",
     alignItems: "center",
+  } as ViewStyle,
+  leaderboardName: {
+    paddingHorizontal: Style.adjust(16),
   } as ViewStyle,
   title: {
     color: Colours.blue.b200,
@@ -59,7 +107,24 @@ const titleStyles = StyleSheet.create({
     color: "#000000",
     fontSize: Style.adjust(18),
     fontFamily: Style.FONT_FAMILY_PRIMARY_BOLD,
+    marginLeft: -5,
   } as TextStyle,
+  captionDuels: {
+    color: "#000000",
+    fontSize: Style.adjust(18),
+    fontFamily: Style.FONT_FAMILY_PRIMARY_BOLD,
+  } as TextStyle,
+  inlineButton: {
+    position: "relative",
+    marginHorizontal: 100,
+  } as TextStyle,
+  arrow: {
+    paddingLeft: Style.adjust(8),
+  } as ViewStyle,
+  flexRow: {
+    flexDirection: "row",
+    alignItems: "center",
+  } as ViewStyle,
 });
 
 function Arrow() {
@@ -68,8 +133,8 @@ function Arrow() {
       <Path
         d="M0.666687 1.33334L6.00002 6.66667L11.3334 1.33334"
         stroke="#6AA3DC"
-        stroke-miterlimit="10"
-        stroke-linecap="round"
+        strokeMiterlimit="10"
+        strokeLinecap="round"
       />
     </Svg>
   );
@@ -77,7 +142,7 @@ function Arrow() {
 
 const arrowStyles = StyleSheet.create({
   wrapper: {
-    marginTop: Style.adjust(7),
+    marginTop: Style.adjust(4),
     height: Style.adjust(32),
     width: Style.adjust(32),
   } as ViewStyle,
@@ -86,3 +151,9 @@ const arrowStyles = StyleSheet.create({
     height: Style.adjust(7),
   } as ImageStyle,
 });
+
+const mapStateToProps = (state: IReduxState) => ({
+  showDuels: !!getUserFeatures(state).showDuels,
+});
+
+export const LeaderboardPressableTitle = connect<ConnectedState>(mapStateToProps)(_LeaderboardPressableTitle);

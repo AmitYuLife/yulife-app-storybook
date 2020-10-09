@@ -9,9 +9,18 @@ import { GetLeaderboard_getLeaderboard } from "@graphql/_core/schema";
 interface IResToListArgs {
   leaderboardItems: GetLeaderboard_getLeaderboard[];
   onBack: () => void;
+  duelDialogId: string;
+  setDuelDialogId: React.Dispatch<React.SetStateAction<string>>;
+  showDuels: boolean;
 }
 
-export const resToList = ({ leaderboardItems, onBack = () => null }: IResToListArgs): ILeaderboardListItem[] => {
+export const resToList = ({
+  leaderboardItems,
+  onBack = () => null,
+  duelDialogId,
+  setDuelDialogId,
+  showDuels,
+}: IResToListArgs): ILeaderboardListItem[] => {
   if (!leaderboardItems.length) {
     return [];
   }
@@ -19,7 +28,7 @@ export const resToList = ({ leaderboardItems, onBack = () => null }: IResToListA
   const list = [] as ILeaderboardListItem[];
 
   addHeader(list, onBack);
-  addRankItems(list, leaderboardItems);
+  addRankItems(list, leaderboardItems, duelDialogId, setDuelDialogId, showDuels);
 
   return list;
 };
@@ -34,7 +43,13 @@ function addHeader(list: ILeaderboardListItem[], onBack: () => void) {
   } as ILeaderboardHeader);
 }
 
-function addRankItems(list: ILeaderboardListItem[], leaderboardItems: IResToListArgs["leaderboardItems"]) {
+function addRankItems(
+  list: ILeaderboardListItem[],
+  leaderboardItems: IResToListArgs["leaderboardItems"],
+  duelDialogId: string,
+  setDuelDialogId: React.Dispatch<React.SetStateAction<string>>,
+  showDuels: boolean
+) {
   for (let i = 0; i < leaderboardItems.length; i++) {
     const leaderboardItem = leaderboardItems[i];
     const data = {
@@ -43,6 +58,12 @@ function addRankItems(list: ILeaderboardListItem[], leaderboardItems: IResToList
       name: leaderboardItem.name,
       rank: leaderboardItem.position,
       score: leaderboardItem.steps,
+      id: leaderboardItem.id,
+      firstName: leaderboardItem.firstName,
+      lastName: leaderboardItem.lastName,
+      duelDialogId,
+      setDuelDialogId,
+      showDuels,
     };
 
     list.push({

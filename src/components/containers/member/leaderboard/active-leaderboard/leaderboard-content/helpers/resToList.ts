@@ -27,6 +27,9 @@ interface ResToListArgs {
   isRefetching: boolean;
   isLoading: boolean;
   scrollValue: Animated.Value;
+  duelDialogId: string;
+  setDuelDialogId: React.Dispatch<React.SetStateAction<string>>;
+  showDuels: boolean;
 }
 
 export const resToList = ({
@@ -36,6 +39,9 @@ export const resToList = ({
   isRefetching,
   scrollValue,
   isLoading,
+  duelDialogId,
+  setDuelDialogId,
+  showDuels,
 }: ResToListArgs): ResToListOutput => {
   if (!leaderboardItems.length || !currentUserId) {
     return { flatListData: [], floatingItemData: null, currentUserOffset: 0 };
@@ -49,6 +55,12 @@ export const resToList = ({
     rank: 0,
     score: 0,
     uri: null,
+    id: "",
+    firstName: "",
+    lastName: "",
+    duelDialogId,
+    setDuelDialogId,
+    showDuels,
   };
 
   const userIndex = leaderboardItems.findIndex(({ id }) => id === `lead_${currentUserId}`);
@@ -56,7 +68,7 @@ export const resToList = ({
 
   addTopPadding({ list, leaderboardName, leaderboardItems, isRefetching, scrollValue, isLoading });
   addFrontPageLabel(list, leaderboardItems.length);
-  addRankItems(list, currentUserData, { leaderboardItems, currentUserId });
+  addRankItems(list, currentUserData, { leaderboardItems, currentUserId }, duelDialogId, setDuelDialogId, showDuels);
   addBottomPadding({ list, userInPage: user?.position < PAGE_SIZE });
 
   return {
@@ -135,7 +147,10 @@ interface AddRanksItemArgs {
 function addRankItems(
   list: ILeaderboardListItem[],
   currentUserData: ILeaderboardRankItemProps,
-  { leaderboardItems, currentUserId }: AddRanksItemArgs
+  { leaderboardItems, currentUserId }: AddRanksItemArgs,
+  duelDialogId: string,
+  setDuelDialogId: React.Dispatch<React.SetStateAction<string>>,
+  showDuels: boolean
 ) {
   for (let i = 0; i < leaderboardItems.length; i++) {
     const leaderboardItem = leaderboardItems[i];
@@ -146,6 +161,12 @@ function addRankItems(
       name: leaderboardItem.name,
       rank: leaderboardItem.position,
       score: leaderboardItem.steps,
+      id: leaderboardItem.id,
+      firstName: leaderboardItem.firstName,
+      lastName: leaderboardItem.lastName,
+      duelDialogId,
+      setDuelDialogId,
+      showDuels,
     };
 
     if (leaderboardItem.position < PAGE_SIZE) {

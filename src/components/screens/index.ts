@@ -20,6 +20,8 @@ export { default as DebugScreen } from "./member/debug/debug.screen";
 export { default as StreaksScreen } from "./member/streaks/streaks.screen";
 export { default as CollectRewardScreen } from "./member/collect-reward/collect-reward.screen";
 export { default as AnimatedChestScreen } from "./member/animated-chest/animated-chest.screen";
+export { default as ActiveDuelsScreen } from "./member/duels-hub/active-duels/active-duels.screen";
+export { default as PastDuelsScreen } from "./member/duels-hub/past-duels/past-duels.screen";
 
 // quests screens
 export { default as QuestsScreenOffline } from "./member/quests/quests-offline/quests-offline";

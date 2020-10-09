@@ -10,3 +10,5 @@ export { default as LevelUnavailableModal } from "./level-unavailable/level-unav
 export { default as PushNotificationsModal } from "./push-notifications/push-notifications.modal";
 export { default as StreaksModal } from "./streaks/streaks.modal";
 export { default as TodayYucoinModal } from "./today-yucoin/today-yucoin.modal";
+export { default as DuelInviteModal } from "./duels/duel-invite.modal";
+export { default as DuelRespondModal } from "./duels/duel-respond.modal";

@@ -81,6 +81,10 @@ export default [
     component: require("../components/containers/member/stats/stats.container").default,
   },
   {
+    name: ROUTES.duelsHub,
+    component: require("../components/containers/member/duels-hub/duels-hub.container").default,
+  },
+  {
     hasMenu: true,
     renderAfterMs: 450,
     name: ROUTES.leaderboards,
@@ -212,5 +216,13 @@ export default [
   {
     name: MODALS.info,
     component: require("../components/modals/info/info.modal").default,
+  },
+  {
+    name: MODALS.duelInvite,
+    component: require("../components/modals/duels/duel-invite.modal").default,
+  },
+  {
+    name: MODALS.duelRespond,
+    component: require("../components/modals/duels/duel-respond.modal").default,
   },
 ];

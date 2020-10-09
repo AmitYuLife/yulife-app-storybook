@@ -142,6 +142,17 @@ export function getTimeRemaining(nextAvailableAt: string) {
   return `${getTime(Math.abs(moment().diff(moment(nextAvailableAt), "seconds")))}`;
 }
 
+export function getDaysAndMinutesFromSeconds(inputSeconds: number) {
+  const duration = moment.duration({ seconds: inputSeconds });
+  const [days, hours, minutes, seconds] = [duration.days(), duration.hours(), duration.minutes(), duration.seconds()];
+
+  const dayDisplay = days > 0 ? days + (days > 1 ? " days " : " day ") : "";
+  const hourDisplay = hours > 0 ? hours + (hours > 1 ? " hours " : " hour ") : "";
+  const minuteDisplay = minutes > 0 ? minutes + (minutes > 1 ? " minutes " : " minute ") : "";
+  const secondsDisplay = seconds > 0 ? seconds + (seconds > 1 ? " seconds" : " second") : "";
+  return (dayDisplay + hourDisplay + minuteDisplay + secondsDisplay).trim();
+}
+
 export function getTime(nextAvailable: number) {
   const days = Math.floor(nextAvailable / (60 * 60 * 24));
   const hours = Math.floor(nextAvailable / (60 * 60)) % 24;

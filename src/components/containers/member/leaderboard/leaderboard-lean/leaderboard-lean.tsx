@@ -1,9 +1,9 @@
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { FlatList, View, StyleSheet, ViewStyle } from "react-native";
 import { resToList, renderItem } from "./helpers";
 import { GetLeaderboard, GetLeaderboardVariables } from "@graphql/_core/schema";
 import { IReduxState } from "@redux/_core/reducers";
-import { getActiveLeaderboard, getCurrentUserId } from "@redux/user/user.selectors";
+import { getActiveLeaderboard, getCurrentUserId, getUserFeatures } from "@redux/user/user.selectors";
 import { connect, ConnectedProps } from "react-redux";
 import { useQuery } from "@apollo/react-hooks";
 import { GQL_QUERY_LEADERBOARD } from "@graphql/member";
@@ -15,7 +15,8 @@ import { PAGE_SIZE } from "../active-leaderboard/active-leaderboard.container";
 export type LeaderboardLeanProps = ConnectedProps<typeof redux>;
 
 const LeaderboardLean = (props: LeaderboardLeanProps) => {
-  const { activeLeaderboard, userId } = props;
+  const { activeLeaderboard, userId, showDuels } = props;
+  const [duelDialogId, setDuelDialogId] = useState("");
 
   const onBack = useCallback(async () => {
     await Navigation.dismissModal(MODALS.leaderboardLean);
@@ -44,7 +45,13 @@ const LeaderboardLean = (props: LeaderboardLeanProps) => {
     return () => null;
   }, [data, onBack, userId]);
 
-  const list = resToList({ leaderboardItems: data?.getLeaderboard || [], onBack });
+  const list = resToList({
+    leaderboardItems: data?.getLeaderboard || [],
+    onBack,
+    duelDialogId,
+    setDuelDialogId,
+    showDuels,
+  });
 
   if (loading) {
     return <LeaderboardSkeleton />;
@@ -73,6 +80,7 @@ const styles = StyleSheet.create({
 const mapStateToProps = (state: IReduxState) => ({
   activeLeaderboard: getActiveLeaderboard(state),
   userId: getCurrentUserId(state),
+  showDuels: !!getUserFeatures(state).showDuels,
 });
 
 const redux = connect<ReturnType<typeof mapStateToProps>>(mapStateToProps);
