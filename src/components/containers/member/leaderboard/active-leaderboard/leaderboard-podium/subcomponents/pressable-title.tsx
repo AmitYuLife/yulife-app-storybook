@@ -1,7 +1,7 @@
 import React from "react";
 import { View, StyleSheet, ViewStyle, Platform, TextStyle, ImageStyle } from "react-native";
 import { Text } from "@atoms";
-import { LEADERBOARD_TOP_SCREEN } from "@ids";
+import { LEADERBOARD_INFO_BUTTON, LEADERBOARD_TITLE, LEADERBOARD_TOP_SCREEN } from "@ids";
 import { truncate } from "@services/utils";
 import { Colours, Style } from "@styles";
 import { TouchableOpacityWithDelay } from "@components/molecules";
@@ -69,7 +69,7 @@ function Title({
     <View style={titleStyles.wrapper} testID={LEADERBOARD_TOP_SCREEN}>
       <TouchableOpacityWithDelay onPress={onPressLabel}>
         <View style={titleStyles.leaderboardName}>
-          <Text style={titleStyles.title}>
+          <Text style={titleStyles.title} testID={LEADERBOARD_TITLE(title)}>
             {truncate(title, 16)}
             <View style={titleStyles.arrow}>
               <Arrow />
@@ -77,7 +77,7 @@ function Title({
           </Text>
         </View>
       </TouchableOpacityWithDelay>
-      <TouchableOpacityWithDelay onPress={onPressInfo}>
+      <TouchableOpacityWithDelay onPress={onPressInfo} testID={LEADERBOARD_INFO_BUTTON}>
         <View style={titleStyles.flexRow}>
           <Text style={showDuels ? titleStyles.captionDuels : titleStyles.caption}>30 day steps</Text>
           {showDuels ? <InfoButton onPressInfo={onPressInfo} showDuels={showDuels} /> : null}
