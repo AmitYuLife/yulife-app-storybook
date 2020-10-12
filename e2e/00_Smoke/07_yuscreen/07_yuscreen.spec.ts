@@ -7,7 +7,7 @@ import { CUSTOMER_1, CUSTOMER_18, AUTH_18, CUSTOMER_17, AUTH_17, USER_17, AUTH_1
 import {
     GET_STARTED_BUTTON, MALE_BODY, SKIN_TONE, VIEW_TOP_RIGHT_COIN_COUNTER, NAV_BAR, PERSONAL_PRODUCT,
     CHECK_BOX_STATE, SURVEY_SCREEN, SURVEY_TEXT_BOX, FEMALE_BODY, AVATAR_BUILDER_LIST, NO_ITEM_SELECTED, 
-    HEAD_TYPE, YUSCREEN_AVATAR, EARN_RATE_BUTTON, PACKAGE_SCREEN, FIB_SALARY_INPUT, FIB_SALARY_INPUT_VALUE, YUSCREEN, YUMOJI_PODIUM,
+    HEAD_TYPE, YUSCREEN_AVATAR, EARN_RATE_BUTTON, PACKAGE_SCREEN, FIB_SALARY_INPUT, FIB_SALARY_INPUT_VALUE, YUSCREEN, YUMOJI_PODIUM, LEADERBOARD_TITLE,
 } from "@ids";
 
 
@@ -74,7 +74,7 @@ Feature("I am able to use the yuscreen, create, and edit an Yumoji", async () =>
                                                     })
                                                 })
                                                 When("I go to the leaderboard", when.tapID(NAV_BAR("leaderboard")), async () => {
-                                                    Then("I should be on the leaderboard", then.textVisible(USER_18_LEADERBOARD.data.name))
+                                                    Then("I should see the leaderboard title", then.idVisible(LEADERBOARD_TITLE(USER_18_LEADERBOARD.data.name)))
                                                     Then("I should see my Yumoji", then.idVisible(YUMOJI_PODIUM(0)))
                                                 })
                                             })
@@ -245,7 +245,7 @@ Feature("I am able to use the yuscreen, create, and edit an Yumoji", async () =>
                                                 })
                                             })
                                             When("I go to the leaderboard", when.tapID(NAV_BAR("leaderboard")), async () => {
-                                                Then("I should be on the leaderboard", then.textVisible(USER_18_LEADERBOARD.data.name))
+                                                Then("I should see the leaderboard title", then.idVisible(LEADERBOARD_TITLE(USER_18_LEADERBOARD.data.name)))
                                                 Then("I should see my Yumoji", then.idVisible(YUMOJI_PODIUM(2)))
                                             })
                                         })
