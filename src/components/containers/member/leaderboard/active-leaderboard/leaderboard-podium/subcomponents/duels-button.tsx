@@ -1,6 +1,5 @@
 import React from "react";
 import { StyleSheet, ViewStyle } from "react-native";
-import { LEADERBOARD_INFO_BUTTON } from "@ids";
 import { Style } from "@styles";
 import { DuelsIcon } from "../assets/duels-svg";
 import { TouchableOpacityWithDelay } from "@components/molecules";
@@ -19,7 +18,6 @@ export function DuelsButton() {
           },
         });
       }}
-      testID={LEADERBOARD_INFO_BUTTON}
     >
       <DuelsIcon />
     </TouchableOpacityWithDelay>
