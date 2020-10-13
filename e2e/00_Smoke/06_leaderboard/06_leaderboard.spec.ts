@@ -108,7 +108,7 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
             When("I go to the leaderboard", when.tapID(NAV_BAR("leaderboard")), async () => {
                 Then("I should see the leaderboard title", then.idVisible(LEADERBOARD_TITLE(USER_18_LEADERBOARD.data.name)))
                 Then("I should see the leaderboard", then.leaderboardVisible([CUSTOMER_18, CUSTOMER_17, CUSTOMER_21], [800, 250]))
-                When("I tap the the drop down", when.tapText(USER_18_LEADERBOARD.data.name), async () => {
+                When("I tap the leaderboard drop down", when.tapID(LEADERBOARD_TITLE(USER_18_LEADERBOARD.data.name)), async () => {
                     Then("I should be on the leaderboard selection screen", then.multipleTextVisible([USER_18_LEADERBOARD.data.name, USER_19_LEADERBOARD_B.data.name]))
                     When("I tap the second leaderboard, Lb2", when.tapText(USER_19_LEADERBOARD_B.data.name), async () => {
                         Then("I should be on the second leaderboard", then.leaderboardVisible([CUSTOMER_20]))
@@ -127,7 +127,7 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
                     When("I go to the leaderboard", when.tapID(NAV_BAR("leaderboard")), async () => {
                         Then("I should see the leaderboard title", then.idVisible(LEADERBOARD_TITLE(USER_18_LEADERBOARD.data.name)))
                         Then("I should see the leaderboard", then.leaderboardVisible([CUSTOMER_18, CUSTOMER_17, CUSTOMER_19], [800, 250]))
-                        When("I tap the leaderboard drop down", when.tapText(USER_18_LEADERBOARD.data.name), async () => {
+                        When("I tap the leaderboard drop down", when.tapID(LEADERBOARD_TITLE(USER_18_LEADERBOARD.data.name)), async () => {
                             Then("I should see both Lb1 and the new leaderboard I just joined", then.multipleTextVisible([USER_18_LEADERBOARD.data.name, USER_19_LEADERBOARD_B.data.name]))
                             When("I tap Lb2", when.tapText(USER_19_LEADERBOARD_B.data.name), async () => {
                                 Then("I should be on the Lb2 leaderboard", then.leaderboardVisible([CUSTOMER_19, CUSTOMER_20]))
@@ -172,10 +172,10 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
                                         When("I go to the leaderboard", when.tapID(NAV_BAR("leaderboard")), async () => {
                                             Then("I should see the leaderboard title", then.idVisible(LEADERBOARD_TITLE(USER_18_LEADERBOARD.data.name)))
                                             Then("I should be on the default leaderboard", then.leaderboardVisible([CUSTOMER_17, CUSTOMER_18, CUSTOMER_21], [800, 250]))
-                                            When("I tap the leaderboard drop down", when.tapText(USER_18_LEADERBOARD.data.name), async () => {
+                                            When("I tap the leaderboard title", when.tapID(LEADERBOARD_TITLE(USER_18_LEADERBOARD.data.name)), async () => {
                                                 Then("I should see both Lb1 and the new leaderboard I just joined", then.multipleTextVisible([USER_18_LEADERBOARD.data.name, "Lb3"]))
                                                 When("I tap Lb3", when.tapText("Lb3"), async () => {
-                                                    Then("I should see the leaderboard name Lb3", then.textVisible("Lb3"))
+                                                    Then("I should see the leaderboard name Lb3", then.idVisible(LEADERBOARD_TITLE("Lb3")))
                                                     Then("I should not see any of the other leaderboards", then.textNotVisible(USER_19_LEADERBOARD_B.data.name))
                                                     Then("I should be on the Lb3 leaderboard", then.leaderboardVisible([CUSTOMER_20]))
                                                 })

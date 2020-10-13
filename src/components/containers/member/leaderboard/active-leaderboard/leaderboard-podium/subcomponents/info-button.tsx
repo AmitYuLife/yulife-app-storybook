@@ -1,6 +1,5 @@
 import React from "react";
 import { StyleSheet, ViewStyle } from "react-native";
-import { LEADERBOARD_INFO_BUTTON } from "@ids";
 import { Style } from "@styles";
 import { InfoIcon } from "../assets/info-svg";
 import { TouchableOpacityWithDelay } from "@components/molecules";
@@ -12,11 +11,7 @@ export interface InfoButtonProps {
 
 export function InfoButton({ onPressInfo, showDuels }: InfoButtonProps) {
   return (
-    <TouchableOpacityWithDelay
-      style={showDuels ? styles.duelsWrapper : styles.wrapper}
-      onPress={onPressInfo}
-      testID={LEADERBOARD_INFO_BUTTON}
-    >
+    <TouchableOpacityWithDelay style={showDuels ? styles.duelsWrapper : styles.wrapper} onPress={onPressInfo}>
       <InfoIcon />
     </TouchableOpacityWithDelay>
   );
