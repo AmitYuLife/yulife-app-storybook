@@ -15,7 +15,6 @@ import { getUserBusiness, getUserFeatures, getUserMembershipType } from "../../.
 import { MenuScreen } from "../../../screens";
 import assets, { LINKS, LinkTypes } from "./assets";
 import { getMemberServicesDisplayState } from "@components/molecules/member-services-tabs/member-services-tab/member-services.helpers";
-import { npsModalProps, FeedbackModalProps } from "@components/modals/feedback/feedback.modal";
 
 type ConnectedState = ReturnType<typeof mapStateToProps>;
 type ConnectedDispatch = typeof mapDispatchToProps;
@@ -79,12 +78,6 @@ class MenuContainer extends PureComponent<Props> {
             source: assets[LINKS.SUPPORT],
           },
           {
-            condition: features.surveyInMenu,
-            label: "feedback",
-            onPress: this.handlePressLink(LINKS.SURVEY),
-            source: assets[LINKS.SURVEY],
-          },
-          {
             condition: true,
             label: "log out",
             onPress: this.handlePressLink(LINKS.LOGOUT),
@@ -110,9 +103,6 @@ class MenuContainer extends PureComponent<Props> {
         return null;
       case LINKS.SUPPORT:
         this.handleIntercom();
-        return null;
-      case LINKS.SURVEY:
-        this.handleSurvey();
         return null;
       case LINKS.DEBUG:
         this.handlePush(ROUTES.debug);
@@ -181,16 +171,6 @@ class MenuContainer extends PureComponent<Props> {
       callback();
     }
   };
-
-  private handleSurvey() {
-    Navigation.showModal<FeedbackModalProps>({
-      component: {
-        id: MODALS.feedback,
-        name: MODALS.feedback,
-        passProps: npsModalProps,
-      },
-    });
-  }
 }
 
 const mapStateToProps = (state: IReduxState) => ({

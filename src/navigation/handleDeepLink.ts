@@ -3,9 +3,6 @@ import { GET_HISTORICAL_DATA } from "@redux/onboarding/onboarding.actions";
 import { getQueryStringObject } from "@services/utils";
 import Config from "react-native-config";
 import { labels, setUnauthenticatedRoot } from "./root";
-import { Navigation } from "react-native-navigation";
-import { MODALS } from "./constants";
-import { npsModalProps, FeedbackModalProps } from "@components/modals/feedback/feedback.modal";
 
 export default async function handleDeepLink(fullUrl: string, hasToken: boolean) {
   const url = fullUrl.replace("yulifeapp://yulife/", "").replace(Config.JOIN_URL, "");
@@ -53,19 +50,6 @@ export default async function handleDeepLink(fullUrl: string, hasToken: boolean)
         if (props.redirectUrl === "/member") {
           await setUnauthenticatedRoot(props);
         }
-      }
-
-      return;
-
-    case url.startsWith("nps-feedback"):
-      if (hasToken) {
-        await Navigation.showModal<FeedbackModalProps>({
-          component: {
-            id: MODALS.feedback,
-            name: MODALS.feedback,
-            passProps: npsModalProps,
-          },
-        });
       }
 
       return;

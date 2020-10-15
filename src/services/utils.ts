@@ -310,3 +310,14 @@ export function toOrdinalWord(n: number): string {
 
   return arr[n - 1];
 }
+
+// good for unpacking promises
+export type Unpacked<T> = T extends Array<infer U>
+  ? U
+  : T extends (...args: any[]) => Promise<infer U>
+  ? U
+  : T extends (...args: any[]) => infer U
+  ? U
+  : T extends Promise<infer U>
+  ? U
+  : T;
