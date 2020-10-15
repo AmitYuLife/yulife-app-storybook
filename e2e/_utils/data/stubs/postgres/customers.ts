@@ -352,3 +352,17 @@ export const CUSTOMER_ALPHA = {
         status: "onboarded"
     }
 } as IDatabaseItem
+
+export const CUSTOMER_24 = {
+    type: "postgres",
+    modelName: "customer",
+    data: {
+        customerId: generateRandomMongoId(),
+        email: "aj@yulife.com",
+        firstName: "AJ",
+        lastName: "Tracey",
+        dateOfBirth: moment().subtract(27, "years").toDate(),
+        membershipType: "Wellbeing Access",
+        status: "onboarded"
+    }
+} as IDatabaseItem

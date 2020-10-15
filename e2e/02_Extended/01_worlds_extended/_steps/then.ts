@@ -44,7 +44,7 @@ export const onChallengeHistory = (challengeType: string, levelNum: number, yuco
 }
 
 
-export const yunityCorrect = (yunityNum:number, worldType: "Forest" | "Ocean" |"Desert") => async()=>{
+export const yunityCorrect = (yunityNum:number, worldType: "Forest" | "Ocean" |"Desert" |"Mountain1") => async()=>{
     await wait(5000)()
     let label = ""
 
@@ -58,6 +58,8 @@ export const yunityCorrect = (yunityNum:number, worldType: "Forest" | "Ocean" |"
         case "Desert":
             label = "You’ve achieved Yunity with the Desert"
             break
+        case "Mountain1":
+            label = `You’ve completed your first Yuniversal Journey`
     }
     
     try{
