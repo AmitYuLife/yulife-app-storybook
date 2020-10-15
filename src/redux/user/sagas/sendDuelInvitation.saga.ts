@@ -1,6 +1,6 @@
 import moment from "moment";
 import { ROUTES, MODALS } from "@navigation/constants";
-import { pathOr, DATE_FORMAT_WITHOUT_TZ } from "@services/utils";
+import { pathOr, DATE_FORMAT_WITH_TZ } from "@services/utils";
 import { Navigation } from "react-native-navigation";
 import { call, select, take } from "redux-saga/effects";
 import { UPDATE_NAVIGATION_STATE } from "../../app/app.actions";
@@ -8,6 +8,7 @@ import { getRouteState } from "../../app/app.selectors";
 import { getUserSuccess } from "../user.actions";
 import updateDuelWithClient from "../../../graphql/duels/updateDuel.gql";
 import { querySteps } from "@services/fitkit/fitkit.helpers";
+import { ChallengePayload } from "@graphql/_core/schema/globalTypes";
 
 export default function* sendDuelInvitation({ payload }: ReturnType<typeof getUserSuccess>) {
   const currentRoute = yield select(getRouteState);
@@ -49,11 +50,14 @@ export default function* sendDuelInvitation({ payload }: ReturnType<typeof getUs
         const user = opponents[userIndex];
 
         const now = moment();
-        const endDateTime = moment(user.startDateTime, DATE_FORMAT_WITHOUT_TZ).add(duration, "seconds");
+        const endDateTime = moment(user.startDateTime, DATE_FORMAT_WITH_TZ).add(duration, "seconds");
 
         if (now.isAfter(endDateTime)) {
-          const score = yield call(querySteps, moment(user.startDateTime, DATE_FORMAT_WITHOUT_TZ), endDateTime);
-
+          const scoreAggregate = yield call(querySteps, moment(user.startDateTime, DATE_FORMAT_WITH_TZ), endDateTime);
+          const score = (scoreAggregate.results as ChallengePayload[]).reduce((acc, challenge) => {
+            const challengeScore = challenge.value || 0;
+            return acc + challengeScore;
+          }, 0);
           yield call(updateDuelWithClient, id, score);
 
           return true;

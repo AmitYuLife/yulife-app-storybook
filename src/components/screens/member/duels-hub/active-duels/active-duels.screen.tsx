@@ -45,8 +45,6 @@ const ActiveDuels = ({ data, onPressClose, onChangeTab, activeTab, onRefetch, re
     activeDuels,
     duelInvitations,
     upcomingDuels,
-    activeTab,
-    onChangeTab,
     totalSteps: dailySteps,
   });
 
@@ -58,6 +56,7 @@ const ActiveDuels = ({ data, onPressClose, onChangeTab, activeTab, onRefetch, re
       </View>
       <SectionList
         style={styles.sectionList}
+        extraData={activeDuels.length + upcomingDuels.length + duelInvitations.length}
         sections={sections}
         refreshing={refreshing}
         stickySectionHeadersEnabled={false}

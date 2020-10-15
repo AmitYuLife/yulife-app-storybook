@@ -5,8 +5,6 @@ import { Text } from "@atoms";
 import styles from "./active-duels.styles";
 import { GetDuelsHubData_getDuelsHubData_activeDuels } from "@graphql/_core/schema";
 import { DuelEntry, DuelInvitation, DuelHeading } from "../subcomponents";
-import { DuelHubTab } from "@components/containers/member/duels-hub/duels-hub.container";
-import { DUEL_TAB_HEIGHT } from "../subcomponents/duel-tabs/duels-tabs.styles";
 import { DUEL_ENTRY_HEIGHT } from "../subcomponents/duel-entry/duel-entry.styles";
 
 type TypeDuels = GetDuelsHubData_getDuelsHubData_activeDuels[];
@@ -18,19 +16,13 @@ interface GetResToListProps {
   upcomingDuels: TypeDuels;
   duelInvitations: TypeDuels;
   totalSteps: number;
-  activeTab: DuelHubTab;
-  onChangeTab: (tab: DuelHubTab) => () => void;
 }
 
-export function getResToList({
-  activeDuels,
-  upcomingDuels,
-  duelInvitations,
-  totalSteps,
-  onChangeTab,
-  activeTab,
-}: GetResToListProps) {
-  const isEmpty = activeDuels.length === 0 && upcomingDuels.length === 0 && duelInvitations.length === 0;
+export function getResToList({ activeDuels, upcomingDuels, duelInvitations, totalSteps }: GetResToListProps) {
+  const isActiveDuelsEmpty = activeDuels.length === 0;
+  const isUpcomingDuelsEmpty = upcomingDuels.length === 0;
+  const isInvitationsEmpty = duelInvitations.length === 0;
+  const isEmpty = isActiveDuelsEmpty && isUpcomingDuelsEmpty && isInvitationsEmpty;
   if (isEmpty) {
     return [];
   }
@@ -38,14 +30,19 @@ export function getResToList({
   const totalYuCoin = activeDuels.reduce((acc, curr) => {
     return acc + curr.yucoin;
   }, 0);
-  return [
-    {
+  const sections = [];
+
+  if (!isActiveDuelsEmpty) {
+    sections.push({
+      id: "activeDuels",
       title: "activeDuels",
-      activeTab,
-      onChangeTab,
       data: activeDuels.map((duel) => ({ ...duel, isActiveDuel: true })),
-    },
-    {
+    });
+  }
+
+  if (totalYuCoin > 0) {
+    sections.push({
+      id: "totalYucoin",
       title: "totalYucoin",
       totalYuCoin,
       data: [
@@ -53,8 +50,12 @@ export function getResToList({
           id: "totalYucoin",
         },
       ],
-    },
-    {
+    });
+  }
+
+  if (totalSteps > 0) {
+    sections.push({
+      id: "totalSteps",
       title: "totalSteps",
       totalSteps,
       data: [
@@ -62,16 +63,26 @@ export function getResToList({
           id: "totalSteps",
         },
       ],
-    },
-    {
+    });
+  }
+
+  if (!isUpcomingDuelsEmpty) {
+    sections.push({
+      id: "Upcoming duels",
       title: "Upcoming duels",
       data: upcomingDuels,
-    },
-    {
+    });
+  }
+
+  if (!isInvitationsEmpty) {
+    sections.push({
+      id: "Invitations",
       title: "Invitations",
       data: duelInvitations,
-    },
-  ];
+    });
+  }
+
+  return sections;
 }
 
 export function renderItem({
@@ -168,94 +179,30 @@ export function getItemLayout(item: ReturnType<typeof getResToList>, index: numb
    * Data is flattened so you depend on the index as your basis.
    * Weirdly enough, after every section, the index in getItemLayout skips one number
    */
-  const { activeDuelsCount, upcomingDuelsCount, duelInvitationsCount } = item.reduce(
-    (accumulator, { title, data }) => {
-      if (title === "activeDuels") {
-        accumulator.activeDuelsCount = data.length;
+  const EMPTY_HEIGHT = 0;
+
+  const itemLengths = item.reduce((acc, data) => {
+    if (data.id === "activeDuels" || data.id === "Upcoming duels" || data.id === "Invitations") {
+      acc.push(data.id === "activeDuels" ? EMPTY_HEIGHT : 72);
+      for (let i = 0; i < data.data.length; i++) {
+        acc.push(data.id === "Invitations" ? 32 : DUEL_ENTRY_HEIGHT);
       }
 
-      if (title === "Upcoming duels") {
-        accumulator.upcomingDuelsCount = data.length;
-      }
+      acc.push(EMPTY_HEIGHT);
+    }
 
-      if (title === "Invitations") {
-        accumulator.duelInvitationsCount = data.length;
-      }
+    if (data.id === "totalYucoin" || data.id === "totalSteps") {
+      acc.push(EMPTY_HEIGHT);
+      acc.push(32);
+      acc.push(EMPTY_HEIGHT);
+    }
 
-      return accumulator;
-    },
-    { activeDuelsCount: 0, upcomingDuelsCount: 0, duelInvitationsCount: 0 }
-  );
-
-  const duelTabsIndex = 1;
-  const activeDuelsIndexEnd = activeDuelsCount + duelTabsIndex;
-
-  const totalYucoinNullHeaderIndex = activeDuelsCount + duelTabsIndex + 2;
-  const totalYucoinItemIndex = totalYucoinNullHeaderIndex + 1;
-
-  const totalYucoinNullStepsIndex = totalYucoinItemIndex + 2;
-  const totalStepsItemIndex = totalYucoinNullStepsIndex + 1;
-
-  const upcomingDuelsHeaderIndex = totalStepsItemIndex + 2;
-  const upcomingDuelsIndexStart = upcomingDuelsHeaderIndex + 1;
-  const upcomingDuelsIndexEnd = upcomingDuelsIndexStart + upcomingDuelsCount;
-
-  const duelInvitationsHeaderIndex = upcomingDuelsIndexEnd + 1;
-  const duelInvitationsIndexStart = duelInvitationsHeaderIndex + 1;
-  const duelInvitationsIndexEnd = duelInvitationsIndexStart + duelInvitationsCount;
-
-  if (index === duelTabsIndex) {
-    // Section Header of active duels
-    return {
-      index,
-      offset: DUEL_TAB_HEIGHT * index,
-      length: DUEL_TAB_HEIGHT,
-    };
-  }
-
-  if (index <= activeDuelsIndexEnd) {
-    // active duels height
-    return {
-      index,
-      offset: DUEL_ENTRY_HEIGHT * index,
-      length: DUEL_ENTRY_HEIGHT,
-    };
-  }
-
-  if (totalYucoinNullHeaderIndex === index || totalYucoinNullStepsIndex === index) {
-    // this checks for the empty section headers
-    return {
-      index,
-      offset: 0 * index,
-      length: 0,
-    };
-  }
-
-  if (
-    totalYucoinItemIndex === index ||
-    totalStepsItemIndex === index ||
-    (index >= duelInvitationsIndexStart && index <= duelInvitationsIndexEnd) ||
-    (index >= upcomingDuelsIndexStart && index <= upcomingDuelsIndexEnd)
-  ) {
-    // this checks for the text for total steps & total yucoin
-    return {
-      index,
-      offset: 32 * index,
-      length: 32,
-    };
-  }
-
-  if (upcomingDuelsHeaderIndex === index || duelInvitationsHeaderIndex === index) {
-    return {
-      index,
-      offset: 72 * index,
-      length: 72,
-    };
-  }
-
+    return acc;
+  }, []);
+  const offsetTotal = itemLengths.slice(0, index + 1).reduce((acc, length) => acc + length, 0);
   return {
     index,
-    offset: 32 * index,
-    length: 32,
+    offset: offsetTotal,
+    length: itemLengths[index],
   };
 }

@@ -109,7 +109,7 @@ const DuelRespondModal: React.FC<IProps> = ({ componentId, duelId, userCoins, in
   const submitDuel = async () => {
     Alert.alert(
       `Are you sure?`,
-      `Remember, if ${opponent.firstName} you accept this duel, you could lose ${yucoin} YuCoin. Are you happy to proceed?`,
+      `Remember, if you accept this duel, you could lose ${yucoin} YuCoin. Are you happy to proceed?`,
       [
         {
           style: "cancel",
