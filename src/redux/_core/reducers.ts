@@ -13,7 +13,6 @@ import dailyStepsReducer, {
   initialState as initialDailyStepsState,
 } from "../daily-steps/daily-steps.reducer";
 import deviceReducer, { IDeviceStore, initialState as initialDeviceState } from "../device/device.reducer";
-import feedbackReducer, { IFeedbackStore, initialState as initialFeedbackState } from "../feedback/feedback.reducer";
 import levelsReducer, { ILevelsStore, initialState as initialLevelsState } from "../levels/levels.reducer";
 import notificationsReducer, {
   initialState as initialNotificationsState,
@@ -37,7 +36,6 @@ export interface IReduxState {
   coins: ICoinsStore;
   dailySteps: IDailyStepsStore;
   device: IDeviceStore;
-  feedback: IFeedbackStore;
   levels: ILevelsStore;
   notifications: INotificationsStore;
   onboarding: IOnboardingStore;
@@ -56,7 +54,6 @@ export const initialState: IReduxState = {
   coins: initialCoinsState,
   dailySteps: initialDailyStepsState,
   device: initialDeviceState,
-  feedback: initialFeedbackState,
   levels: initialLevelsState,
   notifications: initialNotificationsState,
   onboarding: initialOnboardingState,
@@ -78,7 +75,6 @@ const combinedReducers = combineReducers({
   coins: coinsReducer,
   dailySteps: dailyStepsReducer,
   device: deviceReducer,
-  feedback: feedbackReducer,
   levels: levelsReducer,
   notifications: notificationsReducer,
   onboarding: onboardingReducer,

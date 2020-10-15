@@ -33,6 +33,11 @@ export enum CoverType {
   rare = "rare",
 }
 
+export enum FeedbackFormQuestionType {
+  COMMENT = "COMMENT",
+  NUMBER_SLIDER = "NUMBER_SLIDER",
+}
+
 export enum IntercomHashMethod {
   android = "android",
   ios = "ios",
@@ -45,12 +50,6 @@ export enum LoginMethod {
   PASSWORD = "PASSWORD",
 }
 
-export enum Metric {
-  CES = "CES",
-  NPS = "NPS",
-  latest_app = "latest_app",
-}
-
 export enum OS {
   android = "android",
   ios = "ios",
@@ -60,6 +59,11 @@ export enum PassiveChallengeType {
   MEDITATION = "MEDITATION",
   ONBOARDING = "ONBOARDING",
   STEPS = "STEPS",
+}
+
+export interface AnswerInput {
+  key: string;
+  value: string;
 }
 
 export interface AviosMetadata {

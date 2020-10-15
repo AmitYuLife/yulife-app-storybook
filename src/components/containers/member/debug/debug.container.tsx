@@ -9,8 +9,7 @@ import { sendTestPush } from "../../../../redux/notifications/notifications.acti
 import { getUserStart } from "../../../../redux/user/user.actions";
 import { getUserFeatures } from "../../../../redux/user/user.selectors";
 import { DebugScreen } from "../../../screens";
-import { ROUTES, MODALS } from "@navigation/constants";
-import { FeedbackModalProps, npsModalProps } from "@components/modals/feedback/feedback.modal";
+import { ROUTES } from "@navigation/constants";
 import { FIB_CONTACT_DETAILS, FIB_DECLARATION_CONFIRMATION } from "../../products/fib/fib.types";
 
 interface IProps {
@@ -24,7 +23,6 @@ type Props = IProps & ConnectedState & ConnectedDispatch;
 
 enum CODES {
   ROUTE_TO_FIB_BROWSE_PACKAGES = "ROUTE_TO_FIB_BROWSE_PACKAGES",
-  DISPLAY_FEEDBACK_MODAL = "DISPLAY_FEEDBACK_MODAL",
   ROUTE_TO_FIB_CONTACT_DETAILS_SCREEN = "ROUTE_TO_FIB_CONTACT_DETAILS_SCREEN",
   ROUTE_TO_FIB_CONFIRMATION_DECLARATION = "ROUTE_TO_FIB_CONFIRMATION_DECLARATION",
 }
@@ -47,7 +45,6 @@ const ActivityHistoryContainer: React.FC<Props> = (props) => {
     ...((data && data.getDebugCodes) || DEFAULT_LIST),
     "send-test-push",
     CODES.ROUTE_TO_FIB_BROWSE_PACKAGES,
-    CODES.DISPLAY_FEEDBACK_MODAL,
     CODES.ROUTE_TO_FIB_CONTACT_DETAILS_SCREEN,
     CODES.ROUTE_TO_FIB_CONFIRMATION_DECLARATION,
   ];
@@ -62,16 +59,6 @@ const ActivityHistoryContainer: React.FC<Props> = (props) => {
       try {
         if (code === "send-test-push") {
           return props.sendTestPush();
-        }
-
-        if (code === CODES.DISPLAY_FEEDBACK_MODAL) {
-          Navigation.showModal<FeedbackModalProps>({
-            component: {
-              id: MODALS.feedback,
-              name: MODALS.feedback,
-              passProps: npsModalProps,
-            },
-          });
         }
 
         if (code === CODES.ROUTE_TO_FIB_BROWSE_PACKAGES) {

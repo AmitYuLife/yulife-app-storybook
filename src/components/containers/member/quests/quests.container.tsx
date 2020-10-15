@@ -23,7 +23,6 @@ import {
 } from "../../../screens";
 import QuestsScreenContainer from "@screens/member/quests/quests-scroll-screen/quests-screen.container";
 import { BlurProvider } from "@atoms/index";
-import { handleFeedbackAction } from "@redux/feedback/feedback.actions";
 
 export type ConnectedState = ReturnType<typeof mapStateToProps>;
 
@@ -64,13 +63,12 @@ const QuestsContainer: FC<Props> = (props) => {
       if (wasSuccessful) {
         // at some point(if we dispatch another action) it'll be good to create a new action
         // and move all these to a saga; keep it for now
-        dispatch(handleFeedbackAction({ level }));
         dispatch(displayStreaksCompletedAction());
       }
 
       dispatch(challengeResetAction());
     },
-    [dispatch, level]
+    [dispatch]
   );
 
   if (Style.isIPad()) {

@@ -13,22 +13,23 @@ export type MaxValue = typeof list[number];
 
 export interface SliderInputProps {
   score?: number;
-  maxValue: MaxValue;
+  maxValue: MaxValue | number;
+  minValue?: number;
   onChange?: (val: number) => void;
   leftLabel: string;
   rightLabel: string;
 }
 
 export function SliderInput(props: SliderInputProps) {
-  const { maxValue, onChange, leftLabel, rightLabel, score } = props;
+  const { maxValue, onChange, leftLabel, rightLabel, score, minValue = 0 } = props;
   const [activeValue, setActiveValue] = useState(score ?? -1);
-  const valueIterator = useMemo(() => new Array(maxValue + 1).fill(0), [maxValue]);
+  const valueIterator = useMemo(() => new Array(maxValue - minValue + 1).fill(0), [maxValue, minValue]);
 
   useEffect(() => {
     if (onChange) {
-      onChange(activeValue);
+      onChange(activeValue + minValue);
     }
-  }, [activeValue, onChange]);
+  }, [activeValue, onChange, minValue]);
 
   return (
     <View style={styles.wrapper}>
@@ -38,7 +39,7 @@ export function SliderInput(props: SliderInputProps) {
 
           return (
             <PressableWithDelay hitSlop={5} key={i} onPress={() => setActiveValue(i)}>
-              <AnimatedText isActive={isActive} index={i} />
+              <AnimatedText isActive={isActive} index={i + minValue} />
             </PressableWithDelay>
           );
         })}
