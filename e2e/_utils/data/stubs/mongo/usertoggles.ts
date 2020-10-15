@@ -1,7 +1,7 @@
 import { generateRandomMongoId } from '../../utils';
 import { IDatabaseItem } from '../../types';
 import { allTogglesTrue } from "./_templates";
-import { CUSTOMER_2, CUSTOMER_5, CUSTOMER_6, CUSTOMER_7, CUSTOMER_8, CUSTOMER_9, CUSTOMER_14, CUSTOMER_3, CUSTOMER_15, CUSTOMER_16, CUSTOMER_17, CUSTOMER_20, CUSTOMER_23, CUSTOMER_10, CUSTOMER_12, CUSTOMER_13, CUSTOMER_18, CUSTOMER_22 } from '../postgres/customers';
+import { CUSTOMER_2, CUSTOMER_5, CUSTOMER_6, CUSTOMER_7, CUSTOMER_8, CUSTOMER_9, CUSTOMER_14, CUSTOMER_3, CUSTOMER_15, CUSTOMER_16, CUSTOMER_17, CUSTOMER_20, CUSTOMER_23, CUSTOMER_10, CUSTOMER_12, CUSTOMER_13, CUSTOMER_18, CUSTOMER_22, CUSTOMER_24 } from '../postgres/customers';
 
 export const CUSTOMER_2_TOGGLES = {
     type: "mongo",
@@ -315,8 +315,8 @@ export const CUSTOMER_22_TOGGLES = {
             "statsShowCyclingGraphCard": true,
             "showStats": true,
             hideSmartHealthScreen: true,
-            hideYuMatterScreen: false
-
+            hideYuMatterScreen: false,
+            newGamePlus:true
         }
     }
 } as IDatabaseItem
@@ -368,6 +368,57 @@ export const CUSTOMER_23_TOGGLES = {
             hideSmartHealthScreen: false,
             hideYuMatterScreen: true,
             hasFibActive: true
+        }
+    }
+} as IDatabaseItem
+
+export const CUSTOMER_24_TOGGLES = {
+    type: "mongo",
+    modelName: "usertoggles",
+    data: {
+        _id: generateRandomMongoId(),
+        userId: CUSTOMER_24.data.customerId,
+        features: {
+            "showTodayYucoin": true,
+            "showActivity": true,
+            "showNotifications": true,
+            "showStreaks": true,
+            "showCompletedLevel": true,
+            "showCounter": true,
+            "showBuildNumber": true,
+            "showSettings": true,
+            "showCreateLeaderboard": true,
+            "showAdvancedLeaderboards": true,
+            "disableUserEntries": true,
+            "fitbit": true,
+            "showConnections": true,
+            "showLastSynced": true,
+            "newPassiveValidationRule": true,
+            "showWegiftPicker": true,
+            "usePassiveMeditation": true,
+            "statsShowCoinGeneralTotalYearned": true,
+            "statsShowCoinRecommendationCard": true,
+            "statsShowCoinGeneralTotalRedeemedCard": true,
+            "statsShowCoinAchievementCard": true,
+            "statsShowChallengeGeneralCard": true,
+            "statsShowChallengeRecommendationCard": true,
+            "statsShowChallengeComparisonCard": true,
+            "statsShowStepsRecommendationCard": true,
+            "statsShowStepsGeneralCard": true,
+            "statsShowStepsBestScoreCard": true,
+            "statsShowStepsGraphCard": true,
+            "statsShowMindfulnessRecommendationCard": true,
+            "statsShowMindfulnessGeneralCard": true,
+            "statsShowMindfulnessBestScoreCard": true,
+            "statsShowMindfulnessGraphCard": true,
+            "statsShowCyclingRecommendationCard": true,
+            "statsShowCyclingGeneralCard": true,
+            "statsShowCyclingBestScoreCard": true,
+            "statsShowCyclingGraphCard": true,
+            "showStats": true,
+            hideSmartHealthScreen: true,
+            hideYuMatterScreen: false,
+            newGamePlus: true
         }
     }
 } as IDatabaseItem

@@ -3,8 +3,8 @@ import * as scenario from "./_steps/scenario"
 import * as given from "./_steps/given"
 import * as when from "./_steps/when"
 import * as then from "./_steps/then"
-import { CUSTOMER_22, AUTH_22, CUSTOMER_23, AUTH_23 } from "_utils/data/stubs";
-import { LEVEL_CHALLENGE_BUTTON, QUESTS_SCREEN, VIEW_TOP_RIGHT_COIN_COUNTER } from "@ids";
+import { CUSTOMER_22, AUTH_22, CUSTOMER_23, AUTH_23, CUSTOMER_24, AUTH_24 } from "_utils/data/stubs";
+import { LEVEL_CHALLENGE_BUTTON, NAV_BAR, QUESTS_SCREEN, VIEW_TOP_RIGHT_COIN_COUNTER, YUCOIN } from "@ids";
 
 
 Feature("As a user I can complete challenges across multiple worlds", async () => {
@@ -21,11 +21,16 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
                             Then("I should be on the second world", then.idVisible(QUESTS_SCREEN(1)))
                             Then("I should see my updated coin amount", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(17910)))
                             Then("I should see the level 51 challenge button", then.idVisible(LEVEL_CHALLENGE_BUTTON(51)))
+                            When("I go back to the daily steps screen", when.tapID(NAV_BAR("yucoin")), async()=>{
+                                When("I tap the yucoin image", when.tapID(YUCOIN), async()=>{
+                                    Then("I should see my x2 updated yucoin earn rate", then.textVisible("20 yucoin for 2000 steps"))
+                                })
+                            })
+                        })
                     })
                 })
             })
         })
-    })
 
     Scenario("I can transition from the second to third world, when I tap the level 100 challenge button", scenario.start, async () => {
         Given("I login as a user on level 99", given.logInAndGoToTab("quests", CUSTOMER_23, AUTH_23), async () => {
@@ -86,6 +91,33 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
                 })
             })
         })
+
+        Scenario("When I get to level 200 my earn rate should be doubled", scenario.start, async()=>{
+            Given("I login as a user on level 199", given.logInAndGoToTab("quests", CUSTOMER_24, AUTH_24), async () => {
+                Then("I should be on the fourth world", then.idVisible(QUESTS_SCREEN(3)))
+                Then("I should see level 199", then.idVisible(LEVEL_CHALLENGE_BUTTON(199)))
+                When("I complete the level 199 challenge", when.completeNewWorldShortStroll(199), async () => {
+                    Then("I should be on the second world", then.idVisible(QUESTS_SCREEN(3)))
+                    Then("I should still see level 199", then.idVisible(LEVEL_CHALLENGE_BUTTON(199)))
+                    When("I scroll up", when.scrollFromID(LEVEL_CHALLENGE_BUTTON(199), "down", "slow"), async () => {
+                        Then("I should see the level 200 unity challenge", then.idVisible(LEVEL_CHALLENGE_BUTTON(200)))
+                        When("I tap the level 200 unity challenge", when.tapID(LEVEL_CHALLENGE_BUTTON(200)), async () => {
+                            Then("The yunity screens should be correct", then.yunityCorrect(4, "Mountain1"))
+                            When("I tap 'Continue'", when.tapText("Continue"), async () => {
+                                Then("I should be on the second world", then.idVisible(QUESTS_SCREEN(0)))
+                                When("I go back to the daily steps screen", when.tapID(NAV_BAR("yucoin")), async () => {
+                                    When("I tap the yucoin image", when.tapID(YUCOIN), async () => {
+                                        Then("I should see my x2 updated yucoin earn rate", then.textVisible("20 yucoin for 2000 steps"))
+                                    })
+                                })
+
+                            })
+                        })
+                    })
+                })
+            })
+        })
+
         
 })
 
