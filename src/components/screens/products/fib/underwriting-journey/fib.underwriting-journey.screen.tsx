@@ -1,5 +1,5 @@
 import React, { memo } from "react";
-import { StyleSheet, ScrollView, ViewStyle } from "react-native";
+import { View, StyleSheet, ScrollView, ViewStyle } from "react-native";
 import { useBackHandler } from "../../../../../services/hooks/useBackHandler";
 import TitleWithIcon from "@atoms/fib/title-with-icon/title-with-icon";
 import FibTitle from "@atoms/fib/title/title";
@@ -24,7 +24,6 @@ import MedicalChipList from "./subcomponents/medical-chip-list/medical-chip-list
 import { AlcoholIntakeInput } from "@components/organisms/fib/input/alcohol/alcohol-intake-input";
 import { CopyBirthday } from "@organisms/fib/copy/birthday";
 import { CopyFullName } from "@organisms/fib/copy/full-name";
-import { Style } from "@styles";
 
 export interface IFibUnderwritingJourneyScreenProps {
   onNavigateBack: () => void;
@@ -89,11 +88,12 @@ const _FibUnderwritingJourneyScreen = memo(function (props: IFibUnderwritingJour
     >
       <ScrollView keyboardShouldPersistTaps="handled" style={styles.wrapper}>
         <TitleWithIcon icon={data.icon} title={data.title} />
-        <FibTitle title={data.question} />
+        <FibTitle title={data.question} isLarge={data.isTitleLarge} />
         {data.children?.map((child: UnderwritingJourneyChild, i) => {
           const key = data.id + i;
           return renderChildren(child, key, { inputFirstName, inputLastName, setInputFirstName, setInputLastName });
         })}
+        <View style={{ height: Footer.HEIGHT }} />
       </ScrollView>
       <Footer firstButton={firstButton} secondButton={secondButton} />
     </FibUnderwritingJourneyLayout>
@@ -133,11 +133,8 @@ function renderChildren(child: UnderwritingJourneyChild, key: string, extraProps
   return FIELDS[child.type] || null;
 }
 
-const MARGIN_BOTTOM = Style.hasNotch ? 60 : 100;
-
 const styles = StyleSheet.create({
   wrapper: {
-    marginBottom: MARGIN_BOTTOM,
     paddingHorizontal: 32,
   } as ViewStyle,
 });

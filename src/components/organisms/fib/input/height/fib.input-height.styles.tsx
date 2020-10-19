@@ -1,12 +1,12 @@
 import { StyleSheet, ViewStyle, TextStyle } from "react-native";
-import { Colours, Style } from "@styles";
+import { Colours } from "@styles";
 
 export const styles = StyleSheet.create({
   wrapper: {
     justifyContent: "center",
     alignItems: "center",
     width: "100%",
-    marginTop: Style.isLargeScreen() ? 96 : 48,
+    marginTop: 48,
   } as ViewStyle,
   label: {
     fontSize: 16,

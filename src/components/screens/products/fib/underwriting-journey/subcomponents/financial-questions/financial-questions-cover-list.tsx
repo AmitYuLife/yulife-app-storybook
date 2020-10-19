@@ -32,7 +32,6 @@ function openModal(removeItem: () => void) {
           return Navigation.dismissModal(MODALS.generic);
         },
         heading: "Remove Cover?",
-        subheading: "Do you want to remove this cover?",
         ctaLabel: "Remove",
         onPressSecondary: () => Navigation.dismissModal(MODALS.generic),
         ctaLabelSecondary: "Don't Remove",

@@ -75,7 +75,7 @@ export function navigateToProductScreen(options: NavigateToProductScreenOptions)
           name: MODALS.generic,
           passProps: {
             heading: "In Progress",
-            subheading: "You currently have an application which is in progress.",
+            subheading: "Do you want to continue with your previous application?",
             ctaLabel: "Continue",
             onPress: async () => {
               // Pushing the a new route before dismiss doesn't work very well on android

@@ -16,7 +16,7 @@ const AdditionalBenefitsCard = memo(function (props: IProps) {
         <View style={styles.imageWrapper}>
           <SvgXml xml={svg} width={72} height={72} />
         </View>
-        <TextWithBoldText style={styles.infotText} value={text} />
+        <TextWithBoldText style={styles.infoText} value={text} />
       </View>
     </View>
   );
@@ -36,9 +36,8 @@ const styles = StyleSheet.create({
     paddingVertical: Style.adjust(24),
     paddingHorizontal: Style.adjust(16),
   } as ViewStyle,
-  infotText: {
+  infoText: {
     fontSize: Style.SCALE_UP_AND_DOWN(16),
-    fontFamily: Style.FONT_FAMILY_PRIMARY,
     lineHeight: 24,
     color: "#5A5A5C",
     letterSpacing: 1,

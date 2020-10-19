@@ -1,6 +1,6 @@
 import React from "react";
-
 import { StyleSheet, View, ViewStyle, Animated } from "react-native";
+import LinearGradient from "react-native-linear-gradient";
 import { Style } from "@styles";
 import { Button } from "@atoms";
 
@@ -17,11 +17,18 @@ interface IFooterProps {
   };
 }
 
-export default function Footer(props: IFooterProps) {
+function Footer(props: IFooterProps) {
   const { firstButton, secondButton } = props;
 
   return (
     <Animated.View pointerEvents="auto" style={styles.wrapper}>
+      <LinearGradient
+        pointerEvents="none"
+        colors={["rgba(255,255,255,1)", "rgba(255,255,255,1)", "rgba(255,255,255,1)", "rgba(255,255,255,0)"]}
+        style={styles.gradient}
+        start={{ x: 1, y: 1 }}
+        end={{ x: 1, y: 0 }}
+      />
       <View style={styles.buttonsWrapper}>
         <View style={styles.innerButtonsWrapper}>
           <Button
@@ -50,24 +57,35 @@ export default function Footer(props: IFooterProps) {
   );
 }
 
+const HEIGHT = 120;
+
+export default Object.assign(Footer, {
+  HEIGHT,
+});
+
 const styles = StyleSheet.create({
   wrapper: {
     flexDirection: "column",
-    alignItems: "center",
+    alignItems: "flex-end",
+    justifyContent: "flex-end",
     position: "absolute",
     bottom: 0,
-    paddingBottom: 32,
-    justifyContent: "space-between",
-    backgroundColor: "rgba(255, 255, 255, 0.95)",
+    paddingBottom: 0,
+    height: HEIGHT,
   } as ViewStyle,
   buttonsWrapper: {
     width: Style.DEVICE_WIDTH,
     paddingHorizontal: Style.adjust(16),
     marginTop: 10,
+    paddingBottom: 32,
   } as ViewStyle,
   innerButtonsWrapper: {
     width: "100%",
     justifyContent: "space-around",
     flexDirection: "row",
+  } as ViewStyle,
+  gradient: {
+    height: "100%",
+    ...StyleSheet.absoluteFillObject,
   } as ViewStyle,
 });

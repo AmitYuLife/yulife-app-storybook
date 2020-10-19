@@ -149,7 +149,7 @@ const styles = StyleSheet.create({
   radioInputLabel: { marginBottom: 16, fontFamily: Style.FONT_FAMILY_PRIMARY, fontSize: 20, color: "#979799" },
   poundSign: {
     position: "absolute",
-    bottom: Platform.OS === "ios" ? 1 : 0,
+    bottom: Platform.OS === "ios" ? 5 : 0,
     fontSize: 22,
     fontFamily: Style.FONT_FAMILY_PRIMARY_BOLD,
     marginRight: 4,
