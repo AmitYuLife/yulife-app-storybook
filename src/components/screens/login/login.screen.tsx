@@ -4,7 +4,16 @@ import { PureComponent } from "react";
 import { EmitterSubscription, Keyboard, KeyboardAvoidingView, Platform, View } from "react-native";
 import * as Animatable from "react-native-animatable";
 import { GetMobileCopy_getMobileCopy_screens_login as LoginCopy } from "../../../graphql/_core/schema";
-import { Blurb, Button, CentredScreen, Heading, Pad, TextInput, TextInputError } from "../../atoms";
+import {
+  Blurb,
+  Button,
+  CentredScreen,
+  Heading,
+  Pad,
+  TextInput,
+  TextInputError,
+  UnauthorisedGradient,
+} from "../../atoms";
 import { LinkGroup } from "../../molecules";
 import styles from "./login.screen.styles";
 
@@ -69,7 +78,7 @@ class LoginScreen extends PureComponent<IProps, IState> {
     return (
       <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : null} style={styles.flex}>
         <Animatable.View duration={1000} animation="fadeIn" style={styles.flex} useNativeDriver={true}>
-          <CentredScreen footerImage="forest">
+          <CentredScreen footerImage="forest" BackgroundGradient={<UnauthorisedGradient />}>
             {this.state.isShowingKeyboard ? null : (
               <View>
                 <Pad height={100} />
@@ -95,7 +104,7 @@ class LoginScreen extends PureComponent<IProps, IState> {
               value={password}
               type={TextInput.Types.PASSWORD}
             />
-            {!!loginError && <TextInputError>{loginError}</TextInputError>}
+            {!loginError ? null : <TextInputError>{loginError}</TextInputError>}
             <Pad height={44} />
 
             <Button

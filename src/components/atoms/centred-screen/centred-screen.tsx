@@ -9,6 +9,7 @@ interface Props {
   footerImage?: CenteredScreenImages;
   style?: ViewStyle;
   testID?: string;
+  BackgroundGradient?: JSX.Element;
 }
 
 export type CenteredScreenImages =
@@ -28,9 +29,10 @@ export type CenteredScreenImages =
   | "challenge_mountain"
   | "challenge_success_forest";
 
-export default function CenteredScreen({ children, footerImage, style, testID }: Props) {
+export default function CenteredScreen({ children, footerImage, style, testID, BackgroundGradient = null }: Props) {
   return (
     <SafeAreaView style={StyleSheet.flatten([styles.wrapper, style])} testID={testID}>
+      {BackgroundGradient}
       {!footerImage ? null : (
         <View style={styles.imageWrapper}>
           <Background footerImage={footerImage} />

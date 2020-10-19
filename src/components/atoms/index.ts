@@ -28,3 +28,4 @@ export { default as LevelLine } from "./level-line/level-line";
 export { default as Logo } from "./logo";
 export { default as YuCoinIcon } from "./yucoin-icon/yucoin.icon";
 export { Yumoji } from "./yumoji/yumoji";
+export { UnauthorisedGradient } from "./unauthorised-gradient/unauthorised-gradient";
