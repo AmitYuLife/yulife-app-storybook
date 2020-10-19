@@ -1,9 +1,10 @@
 import * as React from "react";
 import Svg, { G, Path, Defs, ClipPath } from "react-native-svg";
+import { Style } from "@styles";
 
 export function FibFeedbackSuccessImage() {
   return (
-    <Svg width={320} height={320} viewBox="0 0 320 320" fill="none">
+    <Svg width={Style.adjust(320)} height={Style.adjust(320)} viewBox="0 0 320 320" fill="none">
       <G clipPath="url(#prefix__clip0)">
         <Path
           d="M230.264 37.193C290.815 66.664 331.663 172.5 287.163 239c-35.748 62.103-148.11 66.58-208 34-62.5-34-91.484-117.227-34.734-178.482 56.749-61.255 125.275-86.686 185.835-57.325z"

@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState } from "react";
-import { Animated, TextStyle, StyleSheet, LayoutChangeEvent, Platform } from "react-native";
+import { Animated, TextStyle, StyleSheet, LayoutChangeEvent, Platform, ViewStyle } from "react-native";
 import { Style, Colours } from "@styles";
 
 interface Props {
@@ -75,15 +75,15 @@ const styles = StyleSheet.create({
   placeholderWrapper: {
     height: 24,
     position: "absolute",
-    bottom: Platform.OS === "android" ? 0 : 1,
+    bottom: Platform.OS === "android" ? 0 : 8,
     left: 0,
     width: "100%",
     justifyContent: "flex-end",
-  },
+  } as ViewStyle,
   placeholder: {
-    fontSize: 22,
+    fontSize: 20,
     fontFamily: Style.FONT_FAMILY_PRIMARY,
     width: "100%",
-    letterSpacing: 0.8,
+    letterSpacing: 1,
   } as TextStyle,
 });

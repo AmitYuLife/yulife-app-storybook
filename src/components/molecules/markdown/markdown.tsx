@@ -24,8 +24,10 @@ interface IExtras {
 class Markdown extends React.PureComponent<IProps, IState> {
   constructor(props: IProps) {
     super(props);
+
+    const syntaxTree = SimpleMarkdown.markdownToReact(this.props.text) as React.ReactElement[];
     this.state = {
-      syntaxTree: SimpleMarkdown.markdownToReact(this.props.text) as React.ReactElement[],
+      syntaxTree,
       styles: StyleSheet.create(Object.assign(styles, this.props.markdownStyles || {})),
     };
   }
@@ -94,7 +96,7 @@ class Markdown extends React.PureComponent<IProps, IState> {
 
   renderText(node: React.ReactElement, key: string, extras: IExtras) {
     const { styles } = this.state;
-    const style = extras && extras.style ? [styles.text].concat(extras.style) : styles.text;
+    const style = [styles.text].concat(extras?.style || []);
 
     if (node.props) {
       return (
@@ -189,8 +191,8 @@ class Markdown extends React.PureComponent<IProps, IState> {
         if (node.props.className === "paragraph") {
           return this.renderText(node, key, {
             ...extras,
+            style: styles?.paragraph,
             isParagraph: true,
-            ...concatStyles(extras, styles.paragraph),
           });
         }
 
@@ -243,7 +245,7 @@ const concatStyles = (extras: IExtras, newStyle: StyleProp<any>) => {
   if (extras) {
     const newExtras = Object.assign({}, extras);
 
-    if (extras.style) {
+    if (Array.isArray(extras.style)) {
       newExtras.style.push(newStyle);
     } else {
       newExtras.style = [newStyle];

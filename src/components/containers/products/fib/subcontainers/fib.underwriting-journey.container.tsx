@@ -248,8 +248,8 @@ const FibUnderwritingJourneyContainer = memo(function (props: Props) {
           onPress: async () => {
             await Navigation.dismissModal(MODALS.generic);
           },
-          heading: "Exit",
-          subheading: "Are you sure you want to exit? Your progressed will be saved",
+          heading: "Leave Application",
+          subheading: "Your progress will be saved, would you like to exit?",
           ctaLabel: "Stay",
           ctaLabelSecondary: "Exit",
           onPressSecondary: async () => {

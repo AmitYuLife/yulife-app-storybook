@@ -16,13 +16,15 @@ const styles = StyleSheet.create({
     backgroundColor: Colours.darkHotPink,
     bottom: 0,
     width: "1%",
-    height: 1,
+    height: 2,
     left: "50%",
   },
   baseUnderline: {
     position: "absolute",
     bottom: 0,
     width: "100%",
-    height: 1,
+    height: 2,
+    borderRadius: 999,
+    overflow: "hidden",
   } as ViewStyle,
 });

@@ -21,7 +21,7 @@ export const FibIntroductionScreen = memo(function (props: IFibIntroductionScree
     <ScrollableLayout
       buttonAction={onNavigateToSalary}
       onLeftIconPress={navigateToYuScreen}
-      buttonTitle="Enter Salary"
+      buttonTitle="Continue"
       logo={"yulife"}
     >
       <Animatable.View duration={1000} animation="fadeIn" style={styles.flex} useNativeDriver={true}>
@@ -66,7 +66,6 @@ const styles = StyleSheet.create({
   } as ViewStyle,
   text: {
     fontFamily: Style.FONT_FAMILY_PRIMARY,
-    textAlign: "center",
     marginVertical: 12,
     fontSize: 16,
     lineHeight: 24,
@@ -78,5 +77,6 @@ const styles = StyleSheet.create({
     color: Colours.products.fib.n800,
     marginTop: 16,
     marginHorizontal: 32,
+    textAlign: "left",
   },
 });

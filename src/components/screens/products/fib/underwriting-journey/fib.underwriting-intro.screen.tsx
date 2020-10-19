@@ -1,6 +1,6 @@
 import React, { useCallback } from "react";
 import { View, StyleSheet, ViewStyle } from "react-native";
-import { Text, Heading } from "@atoms";
+import { Heading } from "@atoms";
 import { Style, Colours } from "@styles";
 import { connect } from "react-redux";
 import { IReduxState } from "@redux/_core/reducers";
@@ -8,7 +8,7 @@ import { getUserFirstName } from "@redux/user/user.selectors";
 import { Avatar } from "@components/screens/member/yu-screen/subcomponents/avatar-section/avatar";
 import { useBackHandler } from "../../../../../services/hooks/useBackHandler";
 import { FibFeedbackSuccessImage } from "../feedback-form/fib.feedback-success-image";
-import { ScrollableLayout } from "@molecules";
+import { ScrollableLayout, TextWithBoldText } from "@molecules";
 
 type ConnectedState = ReturnType<typeof mapStateToProps>;
 
@@ -17,6 +17,8 @@ interface Props extends ConnectedState {
   onNavigateBack: () => void;
   onContinue: () => void;
 }
+
+const COPY = `In order to get you covered, I’ll need to know a bit about you. Your answers will stay between you and me (and our friends at AIG who issue your policy).\n\nI’ll send you 100 YuCoin for the approximately <bold>6 minutes</bold> it takes to complete my questions! Ready?`;
 
 function _FibUnderwritingIntroduction(props: Props) {
   const { onNavigateBack, onContinue } = props;
@@ -30,7 +32,7 @@ function _FibUnderwritingIntroduction(props: Props) {
     <ScrollableLayout
       buttonAction={onContinue}
       onLeftIconPress={onNavigateBack}
-      buttonTitle="Continue"
+      buttonTitle="Fire Away!"
       heading={"Life Insurance"}
     >
       <View style={styles.imageWrapper}>
@@ -44,10 +46,7 @@ function _FibUnderwritingIntroduction(props: Props) {
       </View>
       <View style={styles.textWrapper}>
         <Heading label={`Let’s get personal, ${props.firstName}`} bold={true} style={styles.header} />
-
-        <Text style={styles.text}>
-          {`In order to get you covered, I’ll need to know a bit about you. Your answers will stay between you and me (and our friends at AIG who issue your policy).\n\nI’ll send you 100 YuCoin for the approximately 6 minutes it takes to complete my questions! Ready?`}
-        </Text>
+        <TextWithBoldText value={COPY} style={styles.text} />
       </View>
     </ScrollableLayout>
   );

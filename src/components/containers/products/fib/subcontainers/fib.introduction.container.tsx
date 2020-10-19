@@ -17,7 +17,7 @@ interface IFibEditSalaryContainerProps {
 
 type Props = IFibEditSalaryContainerProps & ConnectedState;
 
-const FibIntroductionContainer = memo(function (props: Props) {
+const _FibIntroductionContainer = memo(function FibIntroductionContainer(props: Props) {
   const { loading, error, data } = useQuery<GetYuliferData>(GQL_QUERY_GET_YULIFER, {
     fetchPolicy: "cache-only",
   });
@@ -53,4 +53,4 @@ const mapStateToProps = (state: IReduxState) => ({
   firstName: getUserFirstName(state),
 });
 
-export default connect<ConnectedState>(mapStateToProps)(FibIntroductionContainer);
+export default connect<ConnectedState>(mapStateToProps)(_FibIntroductionContainer);

@@ -13,7 +13,7 @@ const _FibInputName = (props: FibInputNameProps) => {
   const { inputFirstName, inputLastName, setInputFirstName, setInputLastName } = props;
 
   return (
-    <View style={styles.wrapper}>
+    <View>
       <View style={styles.inputWrapper}>
         <TextField
           placeholder="First name"
@@ -21,6 +21,7 @@ const _FibInputName = (props: FibInputNameProps) => {
             setInputFirstName(value);
           }}
           value={inputFirstName}
+          autoFocus={true}
         />
       </View>
       <View style={styles.inputWrapper}>
@@ -39,9 +40,6 @@ const _FibInputName = (props: FibInputNameProps) => {
 export const FibInputName = memo(_FibInputName);
 
 const styles = StyleSheet.create({
-  wrapper: {
-    marginTop: 48,
-  } as ViewStyle,
   inputWrapper: {
     paddingTop: 24,
   } as ViewStyle,

@@ -1,8 +1,8 @@
+import { StyleSheet, ViewStyle, TextStyle } from "react-native";
 import { ChipProps } from "@atoms/chip/chip";
 import {
   BIRTHDAY_ICON,
   HAZARDOUS_OCCUPATION_ICON,
-  HEIGHT_WEIGHT_ICON,
   NAME_ICON,
   UK_FLAG_ICON,
   HEIGHT_ICON,
@@ -28,6 +28,7 @@ import {
   HIV_AIDS_ICON,
   MENTAL_ILLNESS_ICON,
 } from "@atoms/fib/svg-assets/underwriting/medical-history-svg-strings";
+
 interface OtherQuestionResponse {
   id: string;
   answer: string;
@@ -38,6 +39,7 @@ export interface UnderwritingJourneyScreen {
   heading: string;
   icon: string;
   title: string;
+  isTitleLarge?: boolean;
   reviewAnswerTitle?: string;
   question: string;
   content?: React.ReactNode;
@@ -72,7 +74,9 @@ export interface UnderwritingJourneyChild {
   description?: string;
   showDelimiter?: boolean;
   chips?: ChipProps[];
+  style?: StyleSheet.NamedStyles<ViewStyle | TextStyle>;
 }
+
 export const FIB_YOUR_NAME_SCREEN_ID = "fib_your_name";
 export const FIB_YOUR_DATE_OF_BIRTH_SCREEN_ID = "fib_your_date_of_birth";
 export const FIB_UK_RESIDENT_SCREEN_ID = "fib_uk_resident";
@@ -159,25 +163,12 @@ export const RELEVANT_SCREEN_ID_FOR_PRICES_UPDATES = [
 
 const _data: UnderwritingJourneyScreen[] = [
   {
-    id: FIB_YOUR_NAME_SCREEN_ID,
-    heading: "About You",
-    icon: NAME_ICON,
-    title: "Name",
-    question: "Is this your name?",
-    firstButton: { label: "No", actionId: FIB_ENTER_YOUR_NAME },
-    secondButton: { label: "Yes", actionId: FIB_YOUR_DATE_OF_BIRTH_SCREEN_ID },
-    children: [
-      {
-        type: "copyFullName",
-      },
-    ],
-  },
-  {
     id: FIB_ENTER_YOUR_NAME,
     heading: "About You",
     icon: NAME_ICON,
     title: "Name",
-    question: "Please enter your name",
+    question: "Okay! Let’s start with the easy stuff: is this your name?",
+    isTitleLarge: true,
     firstButton: { label: "Continue", actionId: FIB_YOUR_DATE_OF_BIRTH_SCREEN_ID },
     previousButton: { actionId: FIB_YOUR_NAME_SCREEN_ID },
     children: [{ type: "inputFullName" }],
@@ -187,7 +178,8 @@ const _data: UnderwritingJourneyScreen[] = [
     heading: "About You",
     icon: BIRTHDAY_ICON,
     title: "Birthday",
-    question: "Is this your\ndate or birth?",
+    question: "And is this your birthday?",
+    isTitleLarge: true,
     firstButton: { label: "No", actionId: FIB_ENTER_YOUR_DATE_OF_BIRTH },
     secondButton: { label: "Yes", actionId: FIB_UK_RESIDENT_SCREEN_ID },
     previousButton: { actionId: FIB_YOUR_NAME_SCREEN_ID },
@@ -202,7 +194,7 @@ const _data: UnderwritingJourneyScreen[] = [
     heading: "About You",
     icon: BIRTHDAY_ICON,
     title: "Birthday",
-    question: "Please enter your date of birth",
+    question: "Okay, what is the correct date?",
     children: [
       {
         type: "inputBirth",
@@ -216,7 +208,8 @@ const _data: UnderwritingJourneyScreen[] = [
     heading: "About You",
     icon: UK_FLAG_ICON,
     title: "UK Residency",
-    question: "Are you a UK resident?",
+    question: "Are you a UK Resident?",
+    isTitleLarge: true,
     firstButton: { label: "No", actionId: FIB_MEMBER_OF_ARMED_FORCES_SCREEN_ID },
     secondButton: { label: "Yes", actionId: FIB_MEMBER_OF_ARMED_FORCES_SCREEN_ID },
     previousButton: { actionId: FIB_YOUR_DATE_OF_BIRTH_SCREEN_ID },
@@ -234,29 +227,14 @@ const _data: UnderwritingJourneyScreen[] = [
     icon: HAZARDOUS_OCCUPATION_ICON,
     title: "Hazardous occupation",
     question:
-      "Are you a member of the armed forces, territorial army or reservists or employed in any of the following hazardous occupations:",
-    firstButton: { label: "No", actionId: FIB_LIFESTYLE_HEIGHT_AND_WEIGHT_SCREEN_ID },
-    secondButton: { label: "Yes", actionId: FIB_LIFESTYLE_HEIGHT_AND_WEIGHT_SCREEN_ID },
+      "Are you a member of the armed forces, territorial army or reservists, or employed in any of the following hazardous occupations:",
+    firstButton: { label: "No", actionId: FIB_LIFESTYLE_HEIGHT_SCREEN_ID },
+    secondButton: { label: "Yes", actionId: FIB_LIFESTYLE_HEIGHT_SCREEN_ID },
     previousButton: { actionId: FIB_UK_RESIDENT_SCREEN_ID },
     children: [
       {
         type: "markdown",
-        text: `- Commercial diving;\n- Commercial aviation (as pilot or crew);\n- Offshore work (including gas or oil platforms);\n- Offshore fishing; or\n- Working with explosives.`,
-      },
-    ],
-  },
-  {
-    id: FIB_LIFESTYLE_HEIGHT_AND_WEIGHT_SCREEN_ID,
-    heading: "Lifestyle",
-    icon: HEIGHT_WEIGHT_ICON,
-    title: "Height and weight",
-    question: "We need to know your height and weight to calculate your Body Mass Index (BMI).",
-    firstButton: { label: "Continue", actionId: FIB_LIFESTYLE_HEIGHT_SCREEN_ID },
-    previousButton: { actionId: FIB_MEMBER_OF_ARMED_FORCES_SCREEN_ID },
-    children: [
-      {
-        type: "markdown",
-        text: `BMI is a measure used by healthcare professionals, to find out whether you are at a healthy weight for your height. If you are pregnant, please enter your pre-pregnancy weight.`,
+        text: `- Commercial diving;\n- Commercial aviation (as pilot or crew);\n- Working with explosives.\n- Offshore fishing; or\n- Offshore work (including gas or oil platforms);`,
       },
     ],
   },
@@ -265,14 +243,10 @@ const _data: UnderwritingJourneyScreen[] = [
     heading: "Lifestyle",
     icon: HEIGHT_ICON,
     title: "Height",
-    question: "Please input your height",
+    question: "Getting a bit more personal now... I’m a whopping 16ft 4in tall, what about you?",
     firstButton: { label: "Continue", actionId: FIB_LIFESTYLE_WEIGHT_SCREEN_ID },
     previousButton: { actionId: FIB_LIFESTYLE_HEIGHT_AND_WEIGHT_SCREEN_ID },
     children: [
-      {
-        type: "markdown",
-        text: "We need this to figure out your BMI.",
-      },
       {
         type: "inputHeight",
       },
@@ -283,13 +257,13 @@ const _data: UnderwritingJourneyScreen[] = [
     heading: "Lifestyle",
     icon: WEIGHT_ICON,
     title: "Weight",
-    question: "Please input your weight",
+    question: "I weigh in at a modest 800kg, you?",
     firstButton: { label: "Continue", actionId: FIB_LIFESTYLE_SMOKING_SCREEN_ID },
     previousButton: { actionId: FIB_LIFESTYLE_HEIGHT_SCREEN_ID },
     children: [
       {
         type: "markdown",
-        text: "We need this to figure out your BMI. If you are pregnant this is your pre-pregnancy weight.",
+        text: "If you are pregnant, congrats! Let me know your pre-pregnancy weight.",
       },
       {
         type: "inputWeight",
@@ -312,13 +286,14 @@ const _data: UnderwritingJourneyScreen[] = [
     heading: "Lifestyle",
     icon: ALCOHOL_ICON,
     title: "Alcohol",
-    question: "How much do you drink in an average week? ",
+    isTitleLarge: true,
+    question: "Cheers! How much do you drink in an average week?",
     firstButton: { label: "Continue", actionId: FIB_LIFESTYLE_DRUGS_SCREEN_ID },
     previousButton: { actionId: FIB_LIFESTYLE_SMOKING_SCREEN_ID },
     children: [
       {
         type: "markdown",
-        text: "1 drink is a small glass of wine, 1 pint of beer or cider, or a shot.",
+        text: "1 drink is a small glass of wine, ½ pint of beer or cider, or a shot (for a human, anyway).",
       },
       {
         type: "inputAlcohol",
@@ -330,15 +305,17 @@ const _data: UnderwritingJourneyScreen[] = [
     heading: "Lifestyle",
     icon: DRUGS_ICON,
     title: "Drugs",
+    isTitleLarge: true,
     question:
-      "In the last 5 years have you used class A, B or C drugs like, but not restricted to heroin, cocaine, ecstasy, spice, LSD, anabolic steroids and legal highs?",
+      "In the last 5 years have you used class A, B, or C drugs like, but not restricted to: heroin, cocaine, ecstasy, spice, LSD, anabolic steroids, and legal highs?",
     firstButton: { label: "No", actionId: FIB_LIFESTYLE_DRUGS_COUNCELLING_SCREEN_ID },
     secondButton: { label: "Yes", actionId: FIB_LIFESTYLE_DRUGS_COUNCELLING_SCREEN_ID },
     previousButton: { actionId: FIB_LIFESTYLE_ALCOHOL_SCREEN_ID },
     children: [
       {
         type: "markdown",
-        text: "We won’t count cannabis if it's no more than 1 or 2 tobacco free joints a week.",
+        text:
+          "I won’t count cannabis if it’s no more than 1 or 2 tobacco-free joints a week. I’m not like those **other** giraffes. I’m a **cool** giraffe.",
       },
     ],
   },
@@ -348,7 +325,7 @@ const _data: UnderwritingJourneyScreen[] = [
     icon: DRUGS_COUNSELLING_ICON,
     title: "Drugs Councelling",
     question:
-      "Have you ever been advised to receive treatment, counselling, or attend a support group to manage your alcohol or drugs use?",
+      "Have you ever been advised to receive treatment, counselling, or attend a support group to manage your alcohol or drug use?",
     firstButton: { label: "No", actionId: FIB_MEDICAL_HISTORY_SCREEN_ID },
     secondButton: { label: "Yes", actionId: FIB_MEDICAL_HISTORY_SCREEN_ID },
     previousButton: { actionId: FIB_LIFESTYLE_DRUGS_SCREEN_ID },
@@ -372,7 +349,8 @@ const _data: UnderwritingJourneyScreen[] = [
         showDelimiter: false,
         icon: DIABETES_ICON,
         title: "Diabetes",
-        description: "Description Goes Here ",
+        description:
+          "A disease in which the body’s ability to produce or respond to the hormone insulin is compromised",
       },
       {
         type: "medicalHistory",
@@ -401,7 +379,8 @@ const _data: UnderwritingJourneyScreen[] = [
         showDelimiter: false,
         icon: MULTIPLE_SCLEROSIS_ICON,
         title: "Multiple sclerosis",
-        description: "Description Goes here",
+        description:
+          "A disease where the immune system attacks the protective sheath that covers nerve fibers and causes communication problems between your brain and the rest of your body",
       },
       {
         type: "medicalHistory",
@@ -415,7 +394,7 @@ const _data: UnderwritingJourneyScreen[] = [
         showDelimiter: false,
         icon: HIV_AIDS_ICON,
         title: "HIV/AIDS",
-        description: "Description Goes Here",
+        description: "A virus that damages the cells in your immune system",
       },
       {
         type: "medicalHistory",
@@ -455,7 +434,7 @@ const _data: UnderwritingJourneyScreen[] = [
     `,
     title: "Three Year Medical History",
     reviewAnswerTitle: "Three Year Medical History Detail",
-    question: "Please select all the conditions for which you required these consultations from the list below.",
+    question: "Select all the conditions for which you required consultations",
     children: [
       {
         type: "chiplist",
@@ -643,7 +622,7 @@ const _data: UnderwritingJourneyScreen[] = [
     <path d="M5.4116 21.9998C6.36231 18.4895 6.50855 17.9044 6.50855 17.9044C8.33687 20.8297 11.2621 21.561 11.2621 21.561C19.4529 23.9743 25.5228 12.4195 20.1111 6.64212C15.65 2.54675 11.9203 6.3496 11.9203 6.3496C9.06818 6.3496 10.1651 1.81543 10.1651 1.81543H7.09361C7.09361 1.81543 4.60713 8.39728 11.0427 10.0793C11.0427 10.0793 11.9934 12.8583 9.79948 15.8567C9.79948 15.8567 5.77726 12.0539 3.36389 16.2224C3.36389 16.2224 2.12067 18.6357 1.82812 21.9998H4.60713H5.4116Z" stroke="#828284" stroke-width="1.7" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
     </svg>
     `,
-    question: "Did you have or still have any of the following issues?",
+    question: "Were all of your digestive issues in the list below?",
     firstButton: {
       label: "No",
       actionId: FIB_MEDICAL_JOURNEY_EARS_NOSE_THROAT_SCREEN_ID,
@@ -659,7 +638,7 @@ const _data: UnderwritingJourneyScreen[] = [
       {
         type: "markdown",
         text:
-          "Appendicitis, constipation, dyspepsia, food poisoning, gallbladder stones, hernia, indigestion, irritable bowel syndrome, rectal / anal abscess.",
+          "- Appendicitis\n- Constipation\n- Dyspepsia\n- Food poisoning\n- Gallbladder stones\n- Hernia\n- Rectal / anal abscess\n- Indigestion\n- Irritable bowel syndrome",
       },
     ],
   },
@@ -672,7 +651,7 @@ const _data: UnderwritingJourneyScreen[] = [
     <path d="M15.6892 16.22C14.7952 17.3637 16.1898 21.2596 16.1898 21.2596H7.69668C7.69668 21.2596 7.5894 18.9185 6.24838 19.0078C4.90735 19.1151 3.35177 19.2044 3.65573 17.4173C3.72725 16.9527 3.74513 16.5595 3.70937 16.2557C3.69149 15.9698 3.63785 15.7375 3.56633 15.5766C3.42329 15.1835 3.24449 15.0405 3.24449 15.0405L3.17296 14.2899L3.1372 13.9861C3.1372 13.9861 3.08356 13.8253 2.85112 13.7002C2.70808 13.6287 2.36835 13.5036 2.06439 13.3785C1.18825 13.039 1.43858 12.4313 1.97498 11.788C2.63656 11.0017 3.88818 10.0009 2.79748 8.58909C2.79748 8.58909 1.65314 -1.23993 13.6687 1.10117C13.6687 1.10117 20.6063 2.35213 18.6573 10.8766C18.6752 10.8766 18.1388 13.2713 15.6892 16.22Z" stroke="#828284" stroke-width="1.45342" stroke-linecap="round" stroke-linejoin="round"/>
     </svg>
     `,
-    question: "Did you have or still have any of the following issues?",
+    question: "Were all of your ear, nose, and throat issues in the list below?",
     firstButton: {
       label: "No",
       actionId: FIB_MEDICAL_JOURNEY_EYE_SCREEN_ID,
@@ -688,7 +667,7 @@ const _data: UnderwritingJourneyScreen[] = [
       {
         type: "markdown",
         text:
-          "Deafness, earache, grommets, laryngitis, nasal polyp, pharyngitis, rhinitis, sinusitis, throat infection, tonsillitis.",
+          "- Deafness\n- Earache\n- Grommets\n- Laryngitis\n- Nasal polyp\n- Pharyngitis\n- Rhinitis\n- Sinusitis\n- Throat infection\n- Tonsillitis",
       },
     ],
   },
@@ -703,7 +682,7 @@ const _data: UnderwritingJourneyScreen[] = [
     `,
     title: "Eye",
     reviewAnswerTitle: "Eye Issues",
-    question: "Did you have or still have any of the following issues?",
+    question: "Were all of your eye issues in the list below?",
     firstButton: {
       label: "No",
       actionId: FIB_MEDICAL_JOURNEY_KIDNEYS_BLADDER_SCREEN_ID,
@@ -718,7 +697,7 @@ const _data: UnderwritingJourneyScreen[] = [
     children: [
       {
         type: "markdown",
-        text: "Blindness, cataract, conjunctivitis, detached retina, glaucoma, stye.",
+        text: "- Blindness\n- Cataract\n- Conjunctivitis\n- Detached retina\n- Glaucoma\n- Stye",
       },
     ],
   },
@@ -736,7 +715,7 @@ const _data: UnderwritingJourneyScreen[] = [
     `,
     title: "Kidneys & Bladder",
     reviewAnswerTitle: "Kidneys & Bladder Issues",
-    question: "Did you have or still have any of the following issues?",
+    question: "Were all of your kidney & bladder issues in the list below?",
     firstButton: {
       label: "No",
       actionId: FIB_MEDICAL_JOURNEY_LUNGS_SCREEN_ID,
@@ -751,7 +730,7 @@ const _data: UnderwritingJourneyScreen[] = [
     children: [
       {
         type: "markdown",
-        text: "Bladder stone(s), kidney stone(s), urine infection, cystitis.",
+        text: "- Bladder stone(s)\n- Kidney stone(s)\n- Urine infection\n- Cystitis",
       },
     ],
   },
@@ -768,12 +747,12 @@ const _data: UnderwritingJourneyScreen[] = [
     <path d="M14.329 13.4928C14.329 13.4928 11.7894 11.7183 11.4991 8.45312" stroke="#828284" stroke-width="1.52647" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
     </svg>
     `,
-    question: "Did you have or still have any of the following issues?",
+    question: "Were all of your lung issues in the list below?",
     children: [
       {
         type: "markdown",
         text:
-          "Asthma treated with inhalers only or no treatment, hay fever, single attack of bronchitis, chest infection.",
+          "- Asthma treated with inhalers only or no treatment\n- Hay fever\n- Single attack of bronchitis\n- Chest infection",
       },
     ],
     firstButton: {
@@ -798,12 +777,12 @@ const _data: UnderwritingJourneyScreen[] = [
     <path d="M7.39514 2.57556V6.98834H9.80211V2.57556C9.80211 1.91089 9.26329 1.37207 8.59863 1.37207C7.93396 1.37207 7.39514 1.91089 7.39514 2.57556Z" fill="#828284" stroke="#828284" stroke-width="1.36395"/>
     </svg>
     `,
-    question: "Did you have or still have any of the following issues?",
+    question: "Were all of your minor injuries in the list below?",
     children: [
       {
         type: "markdown",
         text:
-          "Cuts, broken bones, dislocation, muscle injury, repetitive strain injury, sprains and strains, whiplash.",
+          "- Cuts\n- Broken bones\n- Dislocation\n- Muscle injury\n- Repetitive strain injury\n- Sprains and strains\n- Whiplash.",
       },
     ],
     firstButton: {
@@ -828,12 +807,12 @@ const _data: UnderwritingJourneyScreen[] = [
     `,
     title: "Muscles & Joints",
     reviewAnswerTitle: "Muscles & Joints Issues",
-    question: "Did you have or still have any of the following issues?",
+    question: "Were all of your muscle & joint issues in the list below?",
     children: [
       {
         type: "markdown",
         text:
-          "Arthritis in one joint only, back problems, bunion, bursitis, carpal tunnel syndrome, cartilage, ligament muscle or tendon trouble, chronic fatigue syndrome, fibrositis/fibromyalgia, frozen shoulder, sciatica, slipped disc, tennis elbow.",
+          "- Arthritis in one joint only\n- Back problems\n- Bunion\n- Bursitis\n- Carpal tunnel syndrome\n- Cartilage\n- Ligament muscle or tendon trouble\n- Chronic fatigue syndrome\n- Fibrositis/fibromyalgia\n- Frozen shoulder\n- Sciatica\n- Slipped disc\n- Tennis elbow",
       },
     ],
     firstButton: {
@@ -864,12 +843,12 @@ const _data: UnderwritingJourneyScreen[] = [
     `,
     title: "Pregnancy",
     reviewAnswerTitle: "Pregnancy Issues",
-    question: "Did you have or still have any of the following issues?",
+    question: "Were all of your issues relating to pregnancy in the list below?",
     children: [
       {
         type: "markdown",
         text:
-          "Regular pregnancy check ups/scans, abortion, eclampsia, fertility treatment, any complications from which you have fully recovered.",
+          "- Regular pregnancy check ups/scans\n- Abortion\n- Eclampsia\n- Fertility treatment\n- Any complications from which you have fully recovered",
       },
     ],
     firstButton: {
@@ -899,11 +878,12 @@ const _data: UnderwritingJourneyScreen[] = [
     `,
     title: "Skin",
     reviewAnswerTitle: "Skin Issues",
-    question: "Did you have or still have any of the following issues?",
+    question: "Were all of your skin issues in the list below?",
     children: [
       {
         type: "markdown",
-        text: "Acne, athlete's foot, dermatitis, eczema, fungal infections, herpes, psoriasis, verruca, vitiligo.",
+        text:
+          "- Acne\n- Athlete's foot\n- Dermatitis\n- Eczema\n- Fungal infections\n- Herpes\n- Psoriasis\n- Verruca\n- Vitiligo",
       },
     ],
     firstButton: {
@@ -931,12 +911,12 @@ const _data: UnderwritingJourneyScreen[] = [
     `,
     title: "Other",
     reviewAnswerTitle: "Other Issues",
-    question: "Did you have or still have any of the following issues?",
+    question: "Were all of your other issues in the list below?",
     children: [
       {
         type: "markdown",
         text:
-          "Normal cervical smear not requiring any treatment, allergic reactions, common cold, cosmetic surgery, epilepsy diagnosed more than 1 year ago, ganglion, glandular fever, hyperthyroidism, hypothyroidism, influenza (flu), migraine, piles (haemorrhoids), sebaceous cyst, shingles, thrush, varicose veins.",
+          "- Normal cervical smear not requiring any treatment\n- Allergic reactions\n- Common cold\n- Cosmetic surgery\n- Epilepsy diagnosed more than 1 year ago\n- Ganglion\n- Glandular fever\n- Hyperthyroidism\n- Hypothyroidism\n- Influenza (flu)\n- Migraine\n- Piles (haemorrhoids)\n- Sebaceous cyst\n- Shingles\n- Thrush\n- Varicose veins",
       },
     ],
     firstButton: { label: "No", actionId: FIB_HOSPITAL_STAY_SCREEN_ID, actionIdReview: FIB_HOSPITAL_STAY_SCREEN_ID },
@@ -1164,8 +1144,8 @@ const _data: UnderwritingJourneyScreen[] = [
     children: [
       {
         type: "markdown",
-        text:
-          "As a precaution because of an existing medical condition\n\nbecause you have had direct contact with someone diagnosed with, or suspected of having, coronavirus/COVID-19\n\nbecause you have experienced symptoms of coronavirus/COVID-19\n\nPlease answer no if you are following general government social-distancing advice and/or working from home to avoid spread of the virus",
+        style: { paragraph: { marginBottom: 20 } } as StyleSheet.NamedStyles<ViewStyle>,
+        text: `As a precaution because of an existing medical condition\n\nbecause you have had direct contact with someone diagnosed with, or suspected of having, coronavirus/COVID-19\n\nbecause you have experienced symptoms of coronavirus/COVID-19\n\nPlease answer no if you are following general government social-distancing advice and/or working from home to avoid spread of the virus`,
       },
     ],
   },
@@ -1194,7 +1174,7 @@ const _data: UnderwritingJourneyScreen[] = [
     title: "Financial Questions",
     reviewAnswerTitle: "Total Life Insurance Exceed £20,000,000?",
     question:
-      "Will the total amount of life insurance on your life (including any amount to be replaced and any other applied for) when added together exceed £20,000,000?",
+      "Almost done! Will the total amount of life insurance on your life (including any amount to be replaced and any other applied for) when added together exceed £20,000,000?",
     firstButton: {
       label: "No",
       actionId: FIB_UNDERWRITING_REVIEW_ANSWERS_SCREEN_ID,
@@ -1210,7 +1190,7 @@ const _data: UnderwritingJourneyScreen[] = [
     icon: FINANCIAL_QUESTIONS_ICON,
     title: "Financial Questions",
     reviewAnswerTitle: "Additional Life Insurance Products",
-    question: "Do you have, or have you applied for any more life insurance products?",
+    question: "Do you have, or have you applied for any additional life insurance products?",
     firstButton: { label: "No", actionId: FIB_UNDERWRITING_REVIEW_ANSWERS_SCREEN_ID },
     secondButton: { label: "Yes", actionId: FIB_FINANCIAL_COVER_LIST_SCREEN_ID },
     previousButton: { actionId: FIB_FINANCIAL_QUESTIONS_SCREEN_ID },
@@ -1221,7 +1201,7 @@ const _data: UnderwritingJourneyScreen[] = [
     heading: "Financial",
     icon: FINANCIAL_QUESTIONS_ICON,
     title: "Cover Details",
-    question: "Add or remove your existing life insurance products below.",
+    question: "Okay! Please add or remove your existing life insurance products below.",
     firstButton: { label: "Continue", actionId: FIB_UNDERWRITING_REVIEW_ANSWERS_SCREEN_ID },
     secondButton: { label: "Add cover", actionId: FIB_FINANCIAL_CUSTOM_COVER_FORM_SCREEN_ID },
     previousButton: { actionId: FIB_FINANCIAL_OTHER_COVER_SCREEN_ID },
@@ -1232,7 +1212,7 @@ const _data: UnderwritingJourneyScreen[] = [
     heading: "Financial",
     icon: FINANCIAL_QUESTIONS_ICON,
     title: "Cover Details",
-    question: "Please enter your cover details below.",
+    question: "We’ll need some details about your cover.",
     firstButton: { label: "Continue", actionId: FIB_FINANCIAL_COVER_LIST_SCREEN_ID },
     previousButton: { actionId: FIB_FINANCIAL_COVER_LIST_SCREEN_ID },
   },

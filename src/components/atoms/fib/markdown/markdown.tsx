@@ -5,11 +5,19 @@ import Markdown from "@components/molecules/markdown/markdown";
 
 export interface IMarkdownFibProps {
   text: string;
+  style?: StyleSheet.NamedStyles<ViewStyle>;
 }
 
 export default function MarkdownFib(props: IMarkdownFibProps) {
   const { text } = props;
-  return <Markdown text={text} containerStyle={styles.markdownContainer} markdownStyles={styles} />;
+
+  return (
+    <Markdown
+      text={text}
+      containerStyle={styles.markdownContainer}
+      markdownStyles={StyleSheet.flatten([markdownStyles, props.style])}
+    />
+  );
 }
 
 const styles = StyleSheet.create({
@@ -21,8 +29,12 @@ const styles = StyleSheet.create({
   },
   markdownContainer: {
     marginBottom: 4,
-    marginTop: 4,
+    marginTop: 24,
+    maxWidth: Style.DEVICE_WIDTH - 120,
   },
+});
+
+const markdownStyles = {
   text: {
     fontFamily: Style.FONT_FAMILY_PRIMARY,
     fontSize: 16,
@@ -42,11 +54,12 @@ const styles = StyleSheet.create({
   },
   list: {
     marginBottom: 8,
+    marginTop: 16,
   },
   listItem: {
     flexDirection: "row",
-    justifyContent: "flex-start",
-    marginVertical: 12,
+    marginVertical: 4,
+    fontSize: 16,
   },
   listItemBullet: {
     marginTop: 10,
@@ -56,4 +69,4 @@ const styles = StyleSheet.create({
     borderRadius: 2,
     marginRight: 10,
   },
-});
+};

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, TextInput, View, Animated, ViewStyle, Text } from "react-native";
+import { StyleSheet, TextInput, View, Animated, ViewStyle, Text, TextStyle } from "react-native";
 import { Style } from "@styles/index";
 import { Placeholder } from "./subcomponents/placeholder";
 import { BaseUnderline, ColouredUnderline } from "./subcomponents/underlines";
@@ -19,6 +19,7 @@ interface Props {
   showError?: boolean;
   errorMessage?: string;
   maxLength?: number;
+  autoFocus?: boolean;
 }
 
 function stripPunctuation(text: string, type: Type) {
@@ -58,6 +59,7 @@ export default function TextField(props: Props) {
     showError,
     errorMessage,
     maxLength,
+    autoFocus,
   } = props;
   const [isFocused, setFocused] = useState(false);
   const [placeholderScale] = useState(new Animated.Value(1));
@@ -136,6 +138,7 @@ export default function TextField(props: Props) {
           autoCompleteType="off"
           autoCorrect={false}
           maxLength={maxLength}
+          autoFocus={autoFocus}
         />
         <Placeholder
           scale={placeholderScale}
@@ -168,9 +171,10 @@ const styles = StyleSheet.create({
   inputBase: {
     paddingTop: 8,
     fontSize: 22,
-    paddingBottom: 0,
+    paddingBottom: 4,
     fontFamily: Style.FONT_FAMILY_PRIMARY,
-  } as ViewStyle,
+    letterSpacing: 1,
+  } as TextStyle,
   rightIcon: {
     position: "absolute",
     right: 0,
@@ -186,5 +190,5 @@ const styles = StyleSheet.create({
     lineHeight: 16,
     letterSpacing: 1,
     marginTop: 6,
-  },
+  } as TextStyle,
 });

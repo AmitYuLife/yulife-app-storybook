@@ -27,7 +27,9 @@ export const PayoutCalculator = memo(
         <View style={styles.innerWrapper}>
           <TouchableOpacity onPress={toggleCollapse} style={styles.button}>
             <SvgXml xml={payoutCalculatorSvg} />
-            <Text style={styles.title}>{copy.title}</Text>
+            <Text bold={true} style={styles.title}>
+              {copy.title}
+            </Text>
             <SvgXml
               style={[styles.arrowDown, { transform: [{ rotate: collapsed ? "0deg" : "180deg" }] }]}
               xml={arrowDownSvg}

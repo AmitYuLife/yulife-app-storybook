@@ -44,9 +44,7 @@ export const FibEditSalaryScreen = memo(function (props: IEditSalaryScreen) {
           }}
         />
         <Animatable.View useNativeDriver={true} duration={1000} animation="fadeIn" style={styles.mainContent}>
-          <Text style={styles.text}>
-            Because we designed this product based on your current salary we will need your{" "}
-          </Text>
+          <Text style={styles.text}>{`Let's get started! To begin, please enter your `}</Text>
           <Text
             onPress={() => {
               Keyboard.dismiss();
@@ -83,7 +81,6 @@ const styles = StyleSheet.create({
   },
   link: {
     color: Colours.darkHotPink,
-    textDecorationLine: "underline",
   },
   inputWrapper: {
     marginVertical: Style.adjust(50),

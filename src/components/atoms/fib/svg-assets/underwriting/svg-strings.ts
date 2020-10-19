@@ -50,25 +50,6 @@ export const HAZARDOUS_OCCUPATION_ICON = `<svg width="24" height="24" viewBox="0
 </svg>
 `;
 
-export const HEIGHT_WEIGHT_ICON = `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-<mask id="mask0" mask-type="alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
-<rect width="24" height="24" fill="#C4C4C4"/>
-</mask>
-<g mask="url(#mask0)">
-<path d="M19.5245 6.40625V21.0007H3.00439V6.40625H7.36246C7.36246 8.27921 8.89488 9.81162 10.7678 9.81162C12.6408 9.81162 14.1732 8.27921 14.1732 6.40625H19.5245Z" stroke="#828285" stroke-width="1.4" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M10.7691 9.81075C12.6499 9.81075 14.1745 8.28611 14.1745 6.40537C14.1745 4.52464 12.6499 3 10.7691 3C8.88841 3 7.36377 4.52464 7.36377 6.40537C7.36377 8.28611 8.88841 9.81075 10.7691 9.81075Z" stroke="#828285" stroke-width="1.4" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M10.7676 6.40625V9.81162" stroke="#828285" stroke-width="1.4" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M10.7676 17.25V20.6554" stroke="#828285" stroke-width="1.4" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M20.8984 3H16.3984V20.9996H20.8984V3Z" fill="white" stroke="#828285" stroke-width="1.4" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M16.3984 5.82324H18.6484" stroke="#828285" stroke-width="1.4" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M16.4688 8.87305H18.0156" stroke="#828285" stroke-width="1.4" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M16.4688 14.9365H18.0156" stroke="#828285" stroke-width="1.4" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M16.4688 11.9053H18.7187" stroke="#828285" stroke-width="1.4" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M16.4688 17.9678H18.7187" stroke="#828285" stroke-width="1.4" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-</g>
-</svg>
-`;
-
 export const HEIGHT_ICON = `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 <mask id="mask0" mask-type="alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
 <rect width="24" height="24" fill="#C4C4C4"/>
