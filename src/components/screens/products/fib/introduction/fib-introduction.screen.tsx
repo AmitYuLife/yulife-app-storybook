@@ -33,7 +33,7 @@ export const FibIntroductionScreen = memo(function (props: IFibIntroductionScree
             <FibIntroductionToLifeInsuranceSvg />
           </View>
         </View>
-        <Heading label={`Welcome ${firstName},`} style={styles.header} />
+        <Heading label={`Welcome, ${firstName}`} style={styles.header} />
         <View style={styles.mainContent}>
           <Text style={styles.text}>This life insurance protects your family from the loss of your income.</Text>
           <Text style={styles.text}>This means every package is unique to you and your current earnings.</Text>
