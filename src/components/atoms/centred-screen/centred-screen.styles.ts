@@ -6,7 +6,7 @@ export default StyleSheet.create({
     width: "100%",
   } as ImageStyle,
   imageForest: {
-    height: Style.SCALE_UP_AND_DOWN(200),
+    height: Style.SCALE_UP_AND_DOWN(240),
   } as ImageStyle,
   imageLargeForest: {
     height: Style.SCALE_UP_AND_DOWN(300),

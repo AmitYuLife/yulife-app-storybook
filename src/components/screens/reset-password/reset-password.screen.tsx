@@ -1,7 +1,7 @@
 import * as React from "react";
 import { FunctionComponent } from "react";
 import { GetMobileCopy_getMobileCopy_screens_needHelpLoggingIn as ResetPasswordCopy } from "../../../graphql/_core/schema";
-import { Blurb, Button, CentredScreen, Heading, Pad, TextInput } from "../../atoms";
+import { Blurb, Button, CentredScreen, Heading, Pad, TextInput, UnauthorisedGradient } from "../../atoms";
 import styles from "./reset-password.screen.styles";
 import { INPUT_RESET_PASSWORD } from "@ids";
 
@@ -26,7 +26,7 @@ const ResetPasswordScreen: FunctionComponent<IProps> = ({
   onSubmitPress,
   copy,
 }) => (
-  <CentredScreen footerImage="forest">
+  <CentredScreen footerImage="forest" BackgroundGradient={<UnauthorisedGradient />}>
     <Pad height={120} />
     <Heading style={styles.heading} label={copy.heading} />
     <Pad height={9} />

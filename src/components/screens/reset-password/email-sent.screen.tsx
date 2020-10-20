@@ -1,7 +1,7 @@
 import * as React from "react";
 import { SFC } from "react";
 import { GetMobileCopy_getMobileCopy_screens_emailSent as EmailSentCopy } from "../../../graphql/_core/schema";
-import { Blurb, Button, CentredScreen, Heading, Pad } from "../../atoms";
+import { Blurb, Button, CentredScreen, Heading, Pad, UnauthorisedGradient } from "../../atoms";
 import styles from "./reset-password.screen.styles";
 
 interface IProps {
@@ -12,7 +12,7 @@ interface IProps {
 }
 
 const EmailSentScreen: SFC<IProps> = ({ onCtaPress, onSecondaryCtaPress, email, copy }) => (
-  <CentredScreen footerImage="forest">
+  <CentredScreen footerImage="forest" BackgroundGradient={<UnauthorisedGradient />}>
     <Pad height={120} />
     <Heading style={styles.heading} label={copy.heading} />
     <Pad height={9} />
