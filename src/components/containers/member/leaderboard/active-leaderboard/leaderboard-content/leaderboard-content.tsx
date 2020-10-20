@@ -42,6 +42,8 @@ interface IProps extends LeaderboardContentContainerProps, ConnectedState {}
 
 const FlatList = Animated.createAnimatedComponent(_FlatList);
 
+const DUEL_DIALOG_FULL_HEIGHT = DUEL_DIALOG_HEIGHT + DUEL_DIALOG_MARGIN_BOTTOM;
+
 const _LeaderboardContentContainer = ({
   query,
   leaderboardName,
@@ -57,7 +59,7 @@ const _LeaderboardContentContainer = ({
   const [flatListHeight, setFlatListHeight] = useState(0);
   const flatListRef: RefObject<_FlatList> = useRef();
   const leaderboardItems = query?.getLeaderboard || [];
-  const myLeaderboardItem = (query?.getLeaderboard || []).find((item) => item.userId === currentUserId);
+  const myLeaderboardItem = leaderboardItems.find((item) => item.userId === currentUserId);
   const list = resToList({
     leaderboardItems,
     currentUserId,
@@ -84,7 +86,7 @@ const _LeaderboardContentContainer = ({
     const scrollToOffset =
       TOP_PADDING_HEIGHT +
       LEADERBOARD_ITEM_HEIGHT * target.position +
-      (duelDialogId === "" ? 0 : DUEL_DIALOG_HEIGHT + DUEL_DIALOG_MARGIN_BOTTOM) +
+      (duelDialogId === "" ? 0 : DUEL_DIALOG_FULL_HEIGHT) +
       padding;
 
     flatListRef.current?.scrollToIndex({ animated: true, index: scrollToOffset });

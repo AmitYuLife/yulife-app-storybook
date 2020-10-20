@@ -22,15 +22,17 @@ const DuelInvitation = ({ opponent, duelId, yucoin, responseRequired, status, is
   const lastItemStyle = isLast ? styles.lastInvitationItem : {};
 
   const openDuelsResponseModal = async () => {
-    await Navigation.showModal({
-      component: {
-        id: MODALS.duelRespond,
-        name: MODALS.duelRespond,
-        passProps: {
-          duelId,
+    if (responseRequired) {
+      await Navigation.showModal({
+        component: {
+          id: MODALS.duelRespond,
+          name: MODALS.duelRespond,
+          passProps: {
+            duelId,
+          },
         },
-      },
-    });
+      });
+    }
   };
 
   return (
