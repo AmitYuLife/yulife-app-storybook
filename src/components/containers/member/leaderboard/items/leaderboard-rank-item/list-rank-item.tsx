@@ -24,14 +24,11 @@ const _ListRankItem = ({
   return (
     <>
       <TouchableOpacityWithDelay
+        delay={200}
         style={baseStyles.wrapper}
         onPress={() => {
           if (showDuels && !isCurrentUser) {
-            if (duelDialogId === id) {
-              setDuelDialogId("");
-            } else {
-              setDuelDialogId(id);
-            }
+            setDuelDialogId(duelDialogId === id ? "" : id);
           }
         }}
       >
