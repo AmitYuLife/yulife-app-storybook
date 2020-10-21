@@ -72,8 +72,7 @@ const FibUnderwritingReviewAnswersContainer = memo(function (props: Props) {
               navigation.push(FIB_CONFIRM_PACKAGES);
             },
             heading: "Price change",
-            subheading:
-              "The final price of your life insurance packaged has changed. This will appear in the finalise packages screen",
+            subheading: "Based on your answers, the final price of your life insurance package has changed.",
             ctaLabel: "Continue",
           },
         },

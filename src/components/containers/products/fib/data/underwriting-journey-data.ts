@@ -77,11 +77,9 @@ export interface UnderwritingJourneyChild {
   style?: StyleSheet.NamedStyles<ViewStyle | TextStyle>;
 }
 
-export const FIB_YOUR_NAME_SCREEN_ID = "fib_your_name";
 export const FIB_YOUR_DATE_OF_BIRTH_SCREEN_ID = "fib_your_date_of_birth";
 export const FIB_UK_RESIDENT_SCREEN_ID = "fib_uk_resident";
 export const FIB_MEMBER_OF_ARMED_FORCES_SCREEN_ID = "fib_member_of_armed_forces";
-export const FIB_LIFESTYLE_HEIGHT_AND_WEIGHT_SCREEN_ID = "fib_lifestyle_height_and_weight";
 export const FIB_LIFESTYLE_SMOKING_SCREEN_ID = "fib_lifestyle_smoking";
 export const FIB_LIFESTYLE_ALCOHOL_SCREEN_ID = "fib_lifestyle_alcohol";
 export const FIB_LIFESTYLE_DRUGS_COUNCELLING_SCREEN_ID = "fib_lifestyle_drugs_councelling";
@@ -170,7 +168,7 @@ const _data: UnderwritingJourneyScreen[] = [
     question: "Okay! Let’s start with the easy stuff: is this your name?",
     isTitleLarge: true,
     firstButton: { label: "Continue", actionId: FIB_YOUR_DATE_OF_BIRTH_SCREEN_ID },
-    previousButton: { actionId: FIB_YOUR_NAME_SCREEN_ID },
+    previousButton: { actionId: FIB_ENTER_YOUR_NAME },
     children: [{ type: "inputFullName" }],
   },
   {
@@ -182,7 +180,7 @@ const _data: UnderwritingJourneyScreen[] = [
     isTitleLarge: true,
     firstButton: { label: "No", actionId: FIB_ENTER_YOUR_DATE_OF_BIRTH },
     secondButton: { label: "Yes", actionId: FIB_UK_RESIDENT_SCREEN_ID },
-    previousButton: { actionId: FIB_YOUR_NAME_SCREEN_ID },
+    previousButton: { actionId: FIB_ENTER_YOUR_NAME },
     children: [
       {
         type: "copyBirthday",
@@ -208,7 +206,7 @@ const _data: UnderwritingJourneyScreen[] = [
     heading: "About You",
     icon: UK_FLAG_ICON,
     title: "UK Residency",
-    question: "Are you a UK Resident?",
+    question: "Are you a British Citizen or Resident in the UK?",
     isTitleLarge: true,
     firstButton: { label: "No", actionId: FIB_MEMBER_OF_ARMED_FORCES_SCREEN_ID },
     secondButton: { label: "Yes", actionId: FIB_MEMBER_OF_ARMED_FORCES_SCREEN_ID },
@@ -217,7 +215,7 @@ const _data: UnderwritingJourneyScreen[] = [
       {
         type: "markdown",
         text:
-          "A UK resident is defined as a person who has their main home in the United Kingdom, and who has been resident in the UK for 6 months out of the last 12.",
+          "You are considered a resident if: \n\n- You are an EU or EEA national living permanently in the UK, Channel Islands, Isle of Man or Gibraltar; or\n\n- You are an EU or EEA national living permanently in the UK, Channel Islands, Isle of Man or Gibraltar; or\n\n- You have resided in the UK, Channel Islands, Isle of Man or Gibraltar for the last 12 months, live there permanently and will continue to do so.",
       },
     ],
   },
@@ -234,7 +232,7 @@ const _data: UnderwritingJourneyScreen[] = [
     children: [
       {
         type: "markdown",
-        text: `- Commercial diving;\n- Commercial aviation (as pilot or crew);\n- Working with explosives.\n- Offshore fishing; or\n- Offshore work (including gas or oil platforms);`,
+        text: `- Commercial diving;\n- Commercial aviation (as pilot or crew);\n- Offshore work (including gas or oil platforms);\n- Offshore fishing; or\n- Working with explosives.`,
       },
     ],
   },
@@ -245,7 +243,7 @@ const _data: UnderwritingJourneyScreen[] = [
     title: "Height",
     question: "Getting a bit more personal now... I’m a whopping 16ft 4in tall, what about you?",
     firstButton: { label: "Continue", actionId: FIB_LIFESTYLE_WEIGHT_SCREEN_ID },
-    previousButton: { actionId: FIB_LIFESTYLE_HEIGHT_AND_WEIGHT_SCREEN_ID },
+    previousButton: { actionId: FIB_MEMBER_OF_ARMED_FORCES_SCREEN_ID },
     children: [
       {
         type: "inputHeight",
@@ -340,10 +338,6 @@ const _data: UnderwritingJourneyScreen[] = [
     secondButton: { label: "Yes", actionId: FIB_MEDICAL_THREE_OR_MORE_CONSULTATION_SCREEN_ID },
     previousButton: { actionId: FIB_LIFESTYLE_DRUGS_COUNCELLING_SCREEN_ID },
     children: [
-      {
-        type: "markdown",
-        text: "Just answer yes/no at the bottom of the page.",
-      },
       {
         type: "medicalHistory",
         showDelimiter: false,
@@ -980,7 +974,7 @@ const _data: UnderwritingJourneyScreen[] = [
     `,
     title: "Hospital Stay",
     question:
-      "For the issues you had that were not on the list, have you required an overnight stay in hospital in the last 2 years?",
+      "For the issues you had that were not on the list(s), have you required an overnight stay in hospital in the last 2 years?",
     children: [
       {
         type: "markdown",
@@ -1006,7 +1000,7 @@ const _data: UnderwritingJourneyScreen[] = [
     </svg>
     `,
     title: "Symptoms Resolved",
-    question: "Are these condition(s) or symptom(s) fully resolved?",
+    question: "Are these conditions or symptoms fully resolved?",
     firstButton: { label: "No", actionId: FIB_CONDITION_STABLE_SCREEN_ID },
     secondButton: {
       label: "Yes",
@@ -1110,8 +1104,7 @@ const _data: UnderwritingJourneyScreen[] = [
     children: [
       {
         type: "markdown",
-        text:
-          "You can answer NO if they relate to any of the following: cuts, broken bones, dislocation, muscle injury, repetitive strain injury, sprains, strains or whiplash",
+        text: `You can answer "No" if they relate to any of the following: cuts, broken bones, dislocation, muscle injury, repetitive strain injury, sprains, strains or whiplash`,
       },
     ],
   },
@@ -1145,7 +1138,7 @@ const _data: UnderwritingJourneyScreen[] = [
       {
         type: "markdown",
         style: { paragraph: { marginBottom: 20 } } as StyleSheet.NamedStyles<ViewStyle>,
-        text: `As a precaution because of an existing medical condition\n\nbecause you have had direct contact with someone diagnosed with, or suspected of having, coronavirus/COVID-19\n\nbecause you have experienced symptoms of coronavirus/COVID-19\n\nPlease answer no if you are following general government social-distancing advice and/or working from home to avoid spread of the virus`,
+        text: `As a precaution because of an existing medical condition\n\nbecause you have had direct contact with someone diagnosed with, or suspected of having, coronavirus/COVID-19\n\nbecause you have experienced symptoms of coronavirus/COVID-19\n\nPlease answer "No" if you are following general government social-distancing advice and/or working from home to avoid spread of the virus`,
       },
     ],
   },

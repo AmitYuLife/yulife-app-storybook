@@ -12,7 +12,6 @@ import {
   FIB_ENTER_YOUR_DATE_OF_BIRTH,
   FIB_LIFESTYLE_HEIGHT_SCREEN_ID,
   FIB_LIFESTYLE_WEIGHT_SCREEN_ID,
-  FIB_YOUR_NAME_SCREEN_ID,
   FIB_YOUR_DATE_OF_BIRTH_SCREEN_ID,
   FIB_HOSPITAL_STAY_SCREEN_ID,
 } from "./data/underwriting-journey-data";
@@ -252,7 +251,7 @@ export function getIsActiveOnMedicalJourney(
 export function shouldAnswerBeStored(label: string, currentQuestionId: string): boolean {
   return (
     (label === "Yes" || label === "No") &&
-    currentQuestionId !== FIB_YOUR_NAME_SCREEN_ID &&
+    currentQuestionId !== FIB_ENTER_YOUR_NAME &&
     currentQuestionId !== FIB_YOUR_DATE_OF_BIRTH_SCREEN_ID
   );
 }
@@ -305,7 +304,7 @@ export function shouldSecondButtonBeDisabled(
   currentQuestion: OrderedUnderwritingJourneyScreen,
   fibAnswers: FibAnswers
 ) {
-  if (currentQuestion.id === FIB_YOUR_NAME_SCREEN_ID) {
+  if (currentQuestion.id === FIB_ENTER_YOUR_NAME) {
     return fibAnswers.firstName.length < 1 || fibAnswers.lastName.length < 1;
   }
 

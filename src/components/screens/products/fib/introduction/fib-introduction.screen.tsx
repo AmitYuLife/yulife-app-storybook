@@ -37,7 +37,7 @@ export const FibIntroductionScreen = memo(function (props: IFibIntroductionScree
         <View style={styles.mainContent}>
           <Text style={styles.text}>This life insurance protects your family from the loss of your income.</Text>
           <Text style={styles.text}>This means every package is unique to you and your current earnings.</Text>
-          <Text style={styles.text}>In order to create your packages we will need you to enter your salary.</Text>
+          <Text style={styles.text}>In order to create your package we will need you to enter your salary.</Text>
         </View>
       </Animatable.View>
     </ScrollableLayout>
