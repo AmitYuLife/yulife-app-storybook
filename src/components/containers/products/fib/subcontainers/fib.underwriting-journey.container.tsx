@@ -7,7 +7,6 @@ import {
   FIB_UNDERWRITING_REVIEW_ANSWERS_SCREEN_ID,
   RELEVANT_SCREEN_ID_FOR_PRICES_UPDATES,
   FIB_ENTER_YOUR_NAME,
-  FIB_YOUR_NAME_SCREEN_ID,
 } from "../data/underwriting-journey-data";
 import { FIBProgressBar } from "@organisms";
 import { IReduxState } from "@redux/_core/reducers";
@@ -54,7 +53,7 @@ const FibUnderwritingJourneyContainer = memo(function (props: Props) {
 
   const [currentQuestion, setCurrentQuestion] = useState(initialQuestion);
   const activeIndex = data.findIndex((item) => item.id === currentQuestion?.id) || 0;
-  const isFirstQuestion = currentQuestion.id === FIB_YOUR_NAME_SCREEN_ID;
+  const isFirstQuestion = currentQuestion.id === FIB_ENTER_YOUR_NAME;
 
   useEffect(() => {
     if (isFirstQuestion && !redirectedFromReviewScreen) {

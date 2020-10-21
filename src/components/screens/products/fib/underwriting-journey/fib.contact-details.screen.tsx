@@ -61,7 +61,7 @@ export const FibContactDetailsScreen = memo(function (props: IFibContactDetailsS
     >
       <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 50 }}>
         <View style={styles.wrapper}>
-          <FibTitle title={"Please enter your contact\ndetails below"} />
+          <FibTitle title={"Great! Please enter your\ncontact details below"} />
 
           <TouchableOpacityWithDelay onPress={onFindAdress}>
             <View style={styles.lookUpAdressWrapper}>

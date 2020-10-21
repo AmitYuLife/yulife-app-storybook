@@ -4,7 +4,6 @@ import moment from "moment";
 import {
   data,
   FIB_THREE_YEAR_MEDICAL_HISTORY_SCREEN_ID,
-  FIB_YOUR_NAME_SCREEN_ID,
   FIB_YOUR_DATE_OF_BIRTH_SCREEN_ID,
   FIB_LIFESTYLE_ALCOHOL_SCREEN_ID,
   FIB_ENTER_YOUR_NAME,
@@ -78,7 +77,7 @@ export const getReviewAnswers = (state: IReduxState): any => {
       questionId = item.id;
     }
 
-    if (item.id === FIB_YOUR_NAME_SCREEN_ID) {
+    if (item.id === FIB_ENTER_YOUR_NAME) {
       icon = item.icon;
       title = item.reviewAnswerTitle || item.title;
       answer = `${state.product.fib.answers.firstName} ${state.product.fib.answers.lastName}`;
