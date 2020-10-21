@@ -11,8 +11,8 @@ const defaultTextStyle = {
 
 export default StyleSheet.create({
   employerBenefitsItemWrapper: {
-    height: Style.adjust(112),
-    width: Style.adjust(130),
+    height: 112,
+    width: 106,
     alignItems: "center",
   } as ViewStyle,
 
