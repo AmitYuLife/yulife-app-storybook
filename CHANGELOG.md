@@ -7,6 +7,96 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.7.0] - 2020-10-22
+
+### Features
+
+- Feature: TP-426 New smoking questions
+- (origin/feature/update-forest-asset) Feature: update the main forest asset
+- Feature TP-447: Update copy for underwriting
+- Feature: Advanced feedback forms
+- Feature TE-623: Duels (rn-client)
+- (origin/feature/tp-37-gp-results-screen, feature/tp-37-gp-results-screen) Show GP results, make use of medicalInvestigationRequired > > TP-37
+- Feature TP 455: Add details on leaderboards ui
+- Feature TE-648: Create info lightbox for Yunity/Yuniversal
+- Feature TP-368: add the webview screen to the app
+- Feature TP-267: Data-saving leaderboards
+- Feature: TP-30 Price updated screen
+
+### Bugfixes
+
+- (origin/bugfix/missing-answers-copy, bugfix/missing-answers-copy) Replase missing ansewrs copy
+- (origin/bugfix/fib-price, bugfix/fib-price) Fib price fix
+- (origin/bugfix/tp-511-uk-residency-small-copy-changes, bugfix/tp-511-uk-residency-small-copy-changes) UK residency copy update
+- Bugfix: Fix broken locked cell
+- Bugfix ENG-1219: Add safer width values on YuScreen Employer Benefit items
+- Bugfix TP-493: Copy update & back button fix
+- (origin/bugfix/duels-issues) Bugfix: various duel fixes
+- Bugfix TE-623: Duel fixes
+- Bugfix TP-471 Hide custom cover from browse package screen
+- Bugfix: Remove leaderboard autoscroll
+- Bugfix: Fix UI of leaderboard floating item avatar
+- Bugfix: Copy on fib underwriting intro screen and detox
+- Bugfix: push notifications
+- (origin/bugfix/tp-459, bugfix/tp-459) Fix local navigation with only 1 route
+- (origin/bugfix/TP-460) Add border to redirected screens
+- (origin/bugfix/tp-458) Allow click edit avatar when avatar is created
+- Bugfix: Make keyboard adaptive for external links
+- (origin/bugfix/tp-36-add-details-background-color, bugfix/tp-36-add-details-background-color) Add background color on details screen
+- Bugfix: Add validation for high blood/cholesterol
+- Bugfix: Make member services use webview and fix webview cropping
+- Bugfix: Add timeout to leaderboards scroll event emitter
+- Bugfix: TP-267 Tweak leaderboards
+- (origin/bugfix/tp-126-contact-details-keyboard-persist, bugfix/tp-126-contact-details-keyboard-persist) Make use of keyboardShouldPersistTaps
+- (origin/bugfix/button-overlay) Bugfix: Button overlay overlap
+- Bugfix: Fix UI details on new leaderboards
+- Bugfix: UI feedback for pedestal
+- (origin/bugfix/tp-214-offline-screen) Bugfix TP-214: offline screen
+- Bugfix: Fixes fib inputs on android
+- Bugfix: Show daily steps BG based on activeLevel
+
+### Tasks
+
+- Task: Fix comma in FIB intro screen
+- Task TE-652: Update the yucoin asset
+- Task: Leaderboards conditional label, minor UI fixes
+- (origin/task/tp-457) Flag users that require medical investigations
+- Task TP-449 Add salary on review screen and form validation
+- (origin/task/te-657-match-daily-steps-screen-to-figma) adjust spacing
+- Task TE-645: Move background image down on small devices
+- Task TP-436 Underwriting journey from browse package
+
+### Extra
+
+- Detox: Extended update
+- fix: package.json to reduce vulnerabilities
+- Detox: Double yucoin power
+- Detox: Leaderboard title fix 2
+- leaderboard fix
+- use fitkitavailable
+- Detox: Extended worlds fix
+- skipped custom cover scenario and removed matcher
+- Detox: Stats extended fix
+- (origin/e2e/leaderboard_copy_update) ready to merge
+- (origin/e2e/earn_rate_fix) quick earn rate update
+- Detox PG migration fixes
+- Add tipsi-stripe package
+- (origin/e2e/extended_fixes) ready to merge
+- Tweak lightbox spacing, and spell out ordinals as words
+- Split name in 2 fields
+- Confirmation&Declaration screen
+- Detox: Extended updates
+- Fix post code and nphone numebr input
+- Detox: Small fixes
+- Change correct state
+- Validate phone number, format post code, fix emails and county
+- Add contact detailsscreen
+- Detox: Leaderboard ranking fix
+- Hotfix: feedback modals
+- add padding around yucoin svg
+- Add back button on review and handle error
+- (origin/e2e/detox_fix) Removed CES screen
+
 ## [2.6.0] - 2020-09-08
 
 ### Features
