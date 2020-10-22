@@ -22,7 +22,7 @@ const fields: Field[] = [
   },
   {
     id: "company-held",
-    label: "Company held/proposed with",
+    label: "Company held / proposed with",
   },
   {
     id: "amount-of-cover",

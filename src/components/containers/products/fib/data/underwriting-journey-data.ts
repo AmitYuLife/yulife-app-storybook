@@ -215,7 +215,7 @@ const _data: UnderwritingJourneyScreen[] = [
       {
         type: "markdown",
         text:
-          "You are considered a resident if: \n\n- You are an EU or EEA national living permanently in the UK, Channel Islands, Isle of Man or Gibraltar; or\n\n- You are an EU or EEA national living permanently in the UK, Channel Islands, Isle of Man or Gibraltar; or\n\n- You have resided in the UK, Channel Islands, Isle of Man or Gibraltar for the last 12 months, live there permanently and will continue to do so.",
+          "You are considered a resident if: \n\n- You have indefinite leave to remain in the UK, Channel Islands, Isle of Man or Gibraltar; or\n\n- You are an EU or EEA national living permanently in the UK, Channel Islands, Isle of Man or Gibraltar; or\n\n- You have resided in the UK, Channel Islands, Isle of Man or Gibraltar for the last 12 months, live there permanently and will continue to do so.",
       },
     ],
   },
@@ -1020,7 +1020,7 @@ const _data: UnderwritingJourneyScreen[] = [
     </svg>
     `,
     title: "Condition Stable?",
-    question: "Are these condition(s) stable (no increasing symptoms or complications)?",
+    question: "Are these conditions stable (no increasing symptoms or complications)?",
     firstButton: { label: "No", actionId: FIB_DAILY_ACTIVITIES_RESTRICTIONS_SCREEN_ID },
     secondButton: { label: "Yes", actionId: FIB_DAILY_ACTIVITIES_RESTRICTIONS_SCREEN_ID },
     previousButton: { actionId: FIB_SYMPTOMS_RESOLVED_SCREEN_ID },
