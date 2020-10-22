@@ -56,7 +56,7 @@ const FibUnderwritingReviewAnswersContainer = memo(function (props: Props) {
       })
     );
     const priceChangedFromAPI =
-      fibState.actualCost && data?.getLifeInsuranceTopUps?.actualCost
+      !!Number(fibState.actualCost) && !!Number(data?.getLifeInsuranceTopUps?.actualCost)
         ? fibState.actualCost !== data.getLifeInsuranceTopUps.actualCost
         : false;
     if (fibState.hasPriceChanged || priceChangedFromAPI) {
