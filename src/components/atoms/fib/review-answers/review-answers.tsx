@@ -27,7 +27,7 @@ export const ReviewAnswers = memo(function (props: IReviewAnswersProps) {
           <Text style={styles.answer}>{answer}</Text>
         ) : (
           <View style={styles.incompleteWrapper}>
-            <Text style={[styles.answer, styles.incompleteMessage]}>Please complete this question</Text>
+            <Text style={[styles.answer, styles.incompleteMessage]}>This question is missing answers</Text>
             <View style={styles.incompleteIcon}>
               <Warning width={22} height={20} />
             </View>
