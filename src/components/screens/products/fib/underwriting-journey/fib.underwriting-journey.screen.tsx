@@ -24,6 +24,7 @@ import MedicalChipList from "./subcomponents/medical-chip-list/medical-chip-list
 import { AlcoholIntakeInput } from "@components/organisms/fib/input/alcohol/alcohol-intake-input";
 import { CopyBirthday } from "@organisms/fib/copy/birthday";
 import { CopyFullName } from "@organisms/fib/copy/full-name";
+import RadioInput from "../feedback-form/radio-input";
 
 export interface IFibUnderwritingJourneyScreenProps {
   onNavigateBack: () => void;
@@ -42,6 +43,8 @@ export interface IFibUnderwritingJourneyScreenProps {
   setInputFirstName?: (text: string) => void;
   setInputLastName?: (text: string) => void;
   disableSecondButton?: boolean;
+  radioInputValue?: string;
+  setRadioInputValue?: (text: string) => void;
 }
 
 const _FibUnderwritingJourneyScreen = memo(function (props: IFibUnderwritingJourneyScreenProps) {
@@ -57,6 +60,8 @@ const _FibUnderwritingJourneyScreen = memo(function (props: IFibUnderwritingJour
     setInputFirstName,
     setInputLastName,
     disableSecondButton,
+    radioInputValue,
+    setRadioInputValue,
   } = props;
 
   const backHandler = React.useCallback(() => {
@@ -91,7 +96,14 @@ const _FibUnderwritingJourneyScreen = memo(function (props: IFibUnderwritingJour
         <FibTitle title={data.question} isLarge={data.isTitleLarge} />
         {data.children?.map((child: UnderwritingJourneyChild, i) => {
           const key = data.id + i;
-          return renderChildren(child, key, { inputFirstName, inputLastName, setInputFirstName, setInputLastName });
+          return renderChildren(child, key, {
+            inputFirstName,
+            inputLastName,
+            setInputFirstName,
+            setInputLastName,
+            radioInputValue,
+            setRadioInputValue,
+          });
         })}
         <View style={{ height: Footer.HEIGHT }} />
       </ScrollView>
@@ -107,6 +119,8 @@ interface RenderChildrenExtraProps {
   inputLastName?: string;
   setInputFirstName?: (text: string) => void;
   setInputLastName?: (text: string) => void;
+  radioInputValue?: string;
+  setRadioInputValue?: (value: string) => void;
 }
 
 function renderChildren(child: UnderwritingJourneyChild, key: string, extraProps: RenderChildrenExtraProps) {
@@ -129,6 +143,16 @@ function renderChildren(child: UnderwritingJourneyChild, key: string, extraProps
     inputAlcohol: <AlcoholIntakeInput key={key} />,
     copyBirthday: <CopyBirthday key={key} />,
     copyFullName: <CopyFullName key={key} />,
+    radioInput: (
+      <RadioInput
+        key={key}
+        options={child.radioInputOptions}
+        selectedValue={extraProps.radioInputValue}
+        onChange={extraProps.setRadioInputValue}
+        styles={styles.radioInputStyles}
+        extraVerticalPadding={4}
+      />
+    ),
   };
   return FIELDS[child.type] || null;
 }
@@ -136,5 +160,8 @@ function renderChildren(child: UnderwritingJourneyChild, key: string, extraProps
 const styles = StyleSheet.create({
   wrapper: {
     paddingHorizontal: 32,
+  } as ViewStyle,
+  radioInputStyles: {
+    marginTop: 48,
   } as ViewStyle,
 });

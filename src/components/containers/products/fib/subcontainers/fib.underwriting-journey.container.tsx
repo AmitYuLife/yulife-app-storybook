@@ -7,6 +7,10 @@ import {
   FIB_UNDERWRITING_REVIEW_ANSWERS_SCREEN_ID,
   RELEVANT_SCREEN_ID_FOR_PRICES_UPDATES,
   FIB_ENTER_YOUR_NAME,
+  FIB_LIFESTYLE_SMOKING_CIGARETTES_SCREEN_ID,
+  FIB_LIFESTYLE_SMOKING_CIGARS_SCREEN_ID,
+  FIB_LIFESTYLE_SMOKING_VAPES_SCREEN_ID,
+  FIB_LIFESTYLE_SMOKING_CIGARETTES_FOLLOW_UP_SCREEN_ID,
 } from "../data/underwriting-journey-data";
 import { FIBProgressBar } from "@organisms";
 import { IReduxState } from "@redux/_core/reducers";
@@ -51,8 +55,15 @@ const FibUnderwritingJourneyContainer = memo(function (props: Props) {
         : question.id === initialQuestionId
     ) || data[0];
 
-  const [currentQuestion, setCurrentQuestion] = useState(initialQuestion);
+  const [currentQuestion, setCurrentQuestion] = useState<OrderedUnderwritingJourneyScreen>(initialQuestion);
   const activeIndex = data.findIndex((item) => item.id === currentQuestion?.id) || 0;
+
+  const isSmokingQuestion = [
+    FIB_LIFESTYLE_SMOKING_CIGARETTES_SCREEN_ID,
+    FIB_LIFESTYLE_SMOKING_CIGARETTES_FOLLOW_UP_SCREEN_ID,
+    FIB_LIFESTYLE_SMOKING_CIGARS_SCREEN_ID,
+    FIB_LIFESTYLE_SMOKING_VAPES_SCREEN_ID,
+  ].includes(currentQuestion.id);
   const isFirstQuestion = currentQuestion.id === FIB_ENTER_YOUR_NAME;
 
   useEffect(() => {
@@ -63,6 +74,17 @@ const FibUnderwritingJourneyContainer = memo(function (props: Props) {
 
   const [inputFirstName, setInputFirstName] = useState(fibAnswers.firstName);
   const [inputLastName, setInputLastName] = useState(fibAnswers.lastName);
+  const [radioInputValue, setRadioInputValue] = useState<string>(null);
+
+  const currentAnswer = fibAnswers[currentQuestion.id];
+
+  useEffect(() => {
+    if (isSmokingQuestion && currentAnswer && currentAnswer !== radioInputValue) {
+      // Update radioInputValue only on first render
+      setRadioInputValue(currentAnswer);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentAnswer, isSmokingQuestion]);
 
   const updateAnswer = (questionId: string, value: string, answers: FibAnswers): FibAnswers => {
     updateFibAnswer(questionId, value);
@@ -133,7 +155,12 @@ const FibUnderwritingJourneyContainer = memo(function (props: Props) {
       }
     }
 
-    navigateToReviewScreenOrFindNextQuestion(localAnswers, "firstButton", currentQuestion.id);
+    if (isSmokingQuestion) {
+      updateFibAnswer(currentQuestion.id, radioInputValue);
+      setRadioInputValue(null);
+      localAnswers = { ...fibAnswers, [currentQuestion.id]: radioInputValue };
+    }
+
     if (currentQuestion.id === FIB_ENTER_YOUR_NAME) {
       updateFibAnswer("firstName", inputFirstName);
       updateFibAnswer("lastName", inputLastName);
@@ -147,6 +174,8 @@ const FibUnderwritingJourneyContainer = memo(function (props: Props) {
       return navigation.push(FIB_UNDERWRITING_REVIEW_ANSWERS);
     }
 
+    navigateToReviewScreenOrFindNextQuestion(localAnswers, "firstButton", currentQuestion.id);
+
     const question = findQuestion({
       data,
       buttonType: "firstButton",
@@ -154,6 +183,7 @@ const FibUnderwritingJourneyContainer = memo(function (props: Props) {
       medicalHistory,
       answers: localAnswers || fibAnswers,
     });
+
     if (!redirectedFromReviewScreen) {
       dispatch(updateFIBValue({ key: "lastQuestionId", value: question.id }));
     }
@@ -234,7 +264,8 @@ const FibUnderwritingJourneyContainer = memo(function (props: Props) {
     currentQuestion,
     fibAnswers,
     inputFirstName,
-    inputLastName
+    inputLastName,
+    radioInputValue
   );
   const disableSecondButton = shouldSecondButtonBeDisabled(currentQuestion, fibAnswers);
 
@@ -279,6 +310,8 @@ const FibUnderwritingJourneyContainer = memo(function (props: Props) {
         setInputFirstName={setInputFirstName}
         setInputLastName={setInputLastName}
         disableSecondButton={disableSecondButton}
+        radioInputValue={radioInputValue}
+        setRadioInputValue={setRadioInputValue}
       />
     </FIBProgressBar.ProgressBarContext.Provider>
   );
