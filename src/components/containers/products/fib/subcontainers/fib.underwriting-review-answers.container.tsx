@@ -102,8 +102,8 @@ const FibUnderwritingReviewAnswersContainer = memo(function (props: Props) {
           onPress: async () => {
             await Navigation.dismissModal(MODALS.generic);
           },
-          heading: "Leave Application",
-          subheading: "Your progress will be saved, would you like to exit?",
+          heading: "Leave Application?",
+          subheading: "We’ll save your progress for you.",
           ctaLabel: "Stay",
           ctaLabelSecondary: "Exit",
           onPressSecondary: async () => {

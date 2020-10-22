@@ -160,8 +160,8 @@ const FibConfirmPackagesContainer = memo(function (props: FibConfirmPackagesCont
           onPress: async () => {
             await Navigation.dismissModal(MODALS.generic);
           },
-          heading: "Exit",
-          subheading: "Are you sure you want to exit? Your progressed will be saved",
+          heading: "Leave Application?",
+          subheading: "We’ll save your progress for you.",
           ctaLabel: "Stay",
           ctaLabelSecondary: "Exit",
           onPressSecondary: async () => {

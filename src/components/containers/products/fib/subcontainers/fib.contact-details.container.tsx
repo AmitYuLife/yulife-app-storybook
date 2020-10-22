@@ -84,8 +84,8 @@ const FibContactDetailsConatainer = memo(function (props: Props) {
           onPress: async () => {
             await Navigation.dismissModal(MODALS.generic);
           },
-          heading: "Exit",
-          subheading: "If you exit now, your progress will be saved for next time.",
+          heading: "Leave Application?",
+          subheading: "We’ll save your progress for you.",
           ctaLabel: "Stay",
           ctaLabelSecondary: "Exit",
           onPressSecondary: async () => {
