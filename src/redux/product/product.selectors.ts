@@ -19,6 +19,9 @@ import {
   FIB_CONDITION_STABLE_SCREEN_ID,
   FIB_DAILY_ACTIVITIES_RESTRICTIONS_SCREEN_ID,
   FIB_SYMPTOMS_RESOLVED_SCREEN_ID,
+  FIB_LIFESTYLE_SMOKING_CIGARETTES_FOLLOW_UP_SCREEN_ID,
+  FIB_LIFESTYLE_SMOKING_CIGARETTES_SCREEN_ID,
+  FOLLOW_UP_SMOKING_ANSWERS_TRIGGER,
 } from "../../components/containers/products/fib/data/underwriting-journey-data";
 import { FINANCIAL_QUESTIONS_ICON } from "@atoms/fib/svg-assets/underwriting/svg-strings";
 import { numberWithCommas } from "@services/utils";
@@ -212,6 +215,20 @@ export const getReviewAnswers = (state: IReduxState): any => {
       title = item.title;
       answer = state.product.fib.answers[item.id];
       questionId = item.id;
+    }
+
+    if (item.id === FIB_LIFESTYLE_SMOKING_CIGARETTES_FOLLOW_UP_SCREEN_ID) {
+      const smokingAnswer = state.product.fib.answers[FIB_LIFESTYLE_SMOKING_CIGARETTES_SCREEN_ID];
+      const needsFollowUpQuestion = FOLLOW_UP_SMOKING_ANSWERS_TRIGGER.includes(smokingAnswer);
+      if (!needsFollowUpQuestion) {
+        icon = null;
+        title = null;
+      } else {
+        icon = item.icon;
+        title = item.reviewAnswerTitle;
+        questionId = item.id;
+        answer = state.product.fib.answers[item.id];
+      }
     }
 
     if (icon && title) {

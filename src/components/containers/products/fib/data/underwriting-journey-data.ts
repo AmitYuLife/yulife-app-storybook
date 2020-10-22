@@ -74,13 +74,18 @@ export interface UnderwritingJourneyChild {
   description?: string;
   showDelimiter?: boolean;
   chips?: ChipProps[];
+  radioInputOptions?: any;
   style?: StyleSheet.NamedStyles<ViewStyle | TextStyle>;
 }
 
 export const FIB_YOUR_DATE_OF_BIRTH_SCREEN_ID = "fib_your_date_of_birth";
 export const FIB_UK_RESIDENT_SCREEN_ID = "fib_uk_resident";
 export const FIB_MEMBER_OF_ARMED_FORCES_SCREEN_ID = "fib_member_of_armed_forces";
-export const FIB_LIFESTYLE_SMOKING_SCREEN_ID = "fib_lifestyle_smoking";
+export const FIB_LIFESTYLE_HEIGHT_AND_WEIGHT_SCREEN_ID = "fib_lifestyle_height_and_weight";
+export const FIB_LIFESTYLE_SMOKING_CIGARETTES_SCREEN_ID = "fib_lifestyle_smoking_cigarettes";
+export const FIB_LIFESTYLE_SMOKING_CIGARETTES_FOLLOW_UP_SCREEN_ID = "fib_lifestyle_smoking_cigarettes_amount";
+export const FIB_LIFESTYLE_SMOKING_CIGARS_SCREEN_ID = "fib_lifestyle_smoking_cigars";
+export const FIB_LIFESTYLE_SMOKING_VAPES_SCREEN_ID = "fib_lifestyle_smoking_vapes";
 export const FIB_LIFESTYLE_ALCOHOL_SCREEN_ID = "fib_lifestyle_alcohol";
 export const FIB_LIFESTYLE_DRUGS_COUNCELLING_SCREEN_ID = "fib_lifestyle_drugs_councelling";
 export const FIB_MEDICAL_HISTORY_SCREEN_ID = "fib_medical_history";
@@ -154,10 +159,22 @@ export const FIB_UNDERWRITING_REVIEW_ANSWERS_SCREEN_ID = "fib_review_screen";
 
 export const RELEVANT_SCREEN_ID_FOR_PRICES_UPDATES = [
   FIB_YOUR_DATE_OF_BIRTH_SCREEN_ID,
-  FIB_LIFESTYLE_SMOKING_SCREEN_ID,
+  FIB_LIFESTYLE_SMOKING_CIGARETTES_SCREEN_ID,
+  FIB_LIFESTYLE_SMOKING_CIGARETTES_FOLLOW_UP_SCREEN_ID,
+  FIB_LIFESTYLE_SMOKING_CIGARS_SCREEN_ID,
+  FIB_LIFESTYLE_SMOKING_VAPES_SCREEN_ID,
   FIB_LIFESTYLE_HEIGHT_SCREEN_ID,
   FIB_LIFESTYLE_WEIGHT_SCREEN_ID,
 ];
+
+export const SMOKING_QUESTIONS_SCREEN_IDS = [
+  FIB_LIFESTYLE_SMOKING_CIGARETTES_SCREEN_ID,
+  FIB_LIFESTYLE_SMOKING_CIGARETTES_FOLLOW_UP_SCREEN_ID,
+  FIB_LIFESTYLE_SMOKING_CIGARS_SCREEN_ID,
+  FIB_LIFESTYLE_SMOKING_VAPES_SCREEN_ID,
+];
+
+export const FOLLOW_UP_SMOKING_ANSWERS_TRIGGER = ["In the past month", "In the past 6 months", "In the past 12 months"];
 
 const _data: UnderwritingJourneyScreen[] = [
   {
@@ -256,7 +273,7 @@ const _data: UnderwritingJourneyScreen[] = [
     icon: WEIGHT_ICON,
     title: "Weight",
     question: "I weigh in at a modest 800kg, you?",
-    firstButton: { label: "Continue", actionId: FIB_LIFESTYLE_SMOKING_SCREEN_ID },
+    firstButton: { label: "Continue", actionId: FIB_LIFESTYLE_SMOKING_CIGARETTES_SCREEN_ID },
     previousButton: { actionId: FIB_LIFESTYLE_HEIGHT_SCREEN_ID },
     children: [
       {
@@ -269,15 +286,192 @@ const _data: UnderwritingJourneyScreen[] = [
     ],
   },
   {
-    id: FIB_LIFESTYLE_SMOKING_SCREEN_ID,
+    id: FIB_LIFESTYLE_SMOKING_CIGARETTES_SCREEN_ID,
+    heading: "Lifestyle",
+    category: "fib_lifestyle_smoking_cigarettes",
+    icon: SMOKING_ICON,
+    title: "Smoking",
+    reviewAnswerTitle: "Smoking cigarettes",
+    question: "When was the last time you smoked a cigarette?",
+    firstButton: { label: "Continue", actionId: FIB_LIFESTYLE_SMOKING_CIGARETTES_FOLLOW_UP_SCREEN_ID },
+    previousButton: { actionId: FIB_LIFESTYLE_WEIGHT_SCREEN_ID },
+    nextQuestionBeforeQuit: FIB_LIFESTYLE_SMOKING_CIGARS_SCREEN_ID,
+    children: [
+      {
+        type: "radioInput",
+        radioInputOptions: [
+          {
+            label: "In the past month",
+            value: "In the past month",
+          },
+          {
+            label: "In the past 6 months",
+            value: "In the past 6 months",
+          },
+          {
+            label: "In the past 12 months",
+            value: "In the past 12 months",
+          },
+          {
+            label: "1 to 5 years ago",
+            value: "1 to 5 years ago",
+          },
+          {
+            label: "6 to 10 years ago",
+            value: "6 to 10 years ago",
+          },
+          {
+            label: "More than 10 years ago",
+            value: "More than 10 years ago",
+          },
+          {
+            label: "Never",
+            value: "Never",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: FIB_LIFESTYLE_SMOKING_CIGARETTES_FOLLOW_UP_SCREEN_ID,
     heading: "Lifestyle",
     icon: SMOKING_ICON,
     title: "Smoking",
+    category: "fib_lifestyle_smoking_cigarettes",
+    reviewAnswerTitle: "Smoking cigarettes amount",
+    question: "How many cigarettes do you or did you smoke per day?",
+    firstButton: { label: "Continue", actionId: FIB_LIFESTYLE_SMOKING_CIGARS_SCREEN_ID },
+    previousButton: { actionId: FIB_LIFESTYLE_SMOKING_CIGARETTES_SCREEN_ID },
+    children: [
+      {
+        type: "radioInput",
+        radioInputOptions: [
+          {
+            label: "40 or more per day",
+            value: "40 or more per day",
+          },
+          {
+            label: "30-39 per day",
+            value: "30-39 per day",
+          },
+          {
+            label: "21-29 per day",
+            value: "21-29 per day",
+          },
+          {
+            label: "10-20 per day",
+            value: "10-20 per day",
+          },
+          {
+            label: "1-9 per day",
+            value: "1-9 per day",
+          },
+          {
+            label: "Less than 1 per day",
+            value: "Less than 1 per day",
+          },
+          {
+            label: "Less than 1 per week",
+            value: "Less than 1 per week",
+          },
+          {
+            label: "Less than 1 per month",
+            value: "Less than 1 per month",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: FIB_LIFESTYLE_SMOKING_CIGARS_SCREEN_ID,
+    heading: "Lifestyle",
+    icon: SMOKING_ICON,
+    title: "Smoking",
+    reviewAnswerTitle: "Smoking cigars, pipes or shisha",
+    question: "When was the last time you smoked cigars, pipes or shisha?",
+    firstButton: { label: "Continue", actionId: FIB_LIFESTYLE_SMOKING_VAPES_SCREEN_ID },
+    previousButton: { actionId: FIB_LIFESTYLE_SMOKING_CIGARETTES_FOLLOW_UP_SCREEN_ID },
+    children: [
+      {
+        type: "radioInput",
+        radioInputOptions: [
+          {
+            label: "In the past month",
+            value: "In the past month",
+          },
+          {
+            label: "In the past 6 months",
+            value: "In the past 6 months",
+          },
+          {
+            label: "In the past 12 months",
+            value: "In the past 12 months",
+          },
+          {
+            label: "1 to 5 years ago",
+            value: "1 to 5 years ago",
+          },
+          {
+            label: "6 to 10 years ago",
+            value: "6 to 10 years ago",
+          },
+          {
+            label: "More than 10 years ago",
+            value: "More than 10 years ago",
+          },
+          {
+            label: "Never",
+            value: "Never",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: FIB_LIFESTYLE_SMOKING_VAPES_SCREEN_ID,
+    heading: "Lifestyle",
+    icon: SMOKING_ICON,
+    title: "Smoking",
+    reviewAnswerTitle: "Smoking e-cigarettes, vapes or another nicotine substitute",
     question:
-      "In the last 12 months have you smoked cigarettes, cigars, pipes, or shisha or used nicotine replacements? Vaping counts.",
-    firstButton: { label: "No", actionId: FIB_LIFESTYLE_ALCOHOL_SCREEN_ID },
-    secondButton: { label: "Yes", actionId: FIB_LIFESTYLE_ALCOHOL_SCREEN_ID },
-    previousButton: { actionId: FIB_LIFESTYLE_WEIGHT_SCREEN_ID },
+      "When was the last time you used e-cigarettes, vapes or another nicotine substitutes such as nicotine gum or patches?",
+    firstButton: { label: "Continue", actionId: FIB_LIFESTYLE_ALCOHOL_SCREEN_ID },
+    previousButton: { actionId: FIB_LIFESTYLE_SMOKING_CIGARS_SCREEN_ID },
+    children: [
+      {
+        type: "radioInput",
+        radioInputOptions: [
+          {
+            label: "In the past month",
+            value: "In the past month",
+          },
+          {
+            label: "In the past 6 months",
+            value: "In the past 6 months",
+          },
+          {
+            label: "In the past 12 months",
+            value: "In the past 12 months",
+          },
+          {
+            label: "1 to 5 years ago",
+            value: "1 to 5 years ago",
+          },
+          {
+            label: "6 to 10 years ago",
+            value: "6 to 10 years ago",
+          },
+          {
+            label: "More than 10 years ago",
+            value: "More than 10 years ago",
+          },
+          {
+            label: "Never",
+            value: "Never",
+          },
+        ],
+      },
+    ],
   },
   {
     id: FIB_LIFESTYLE_ALCOHOL_SCREEN_ID,
@@ -287,7 +481,7 @@ const _data: UnderwritingJourneyScreen[] = [
     isTitleLarge: true,
     question: "Cheers! How much do you drink in an average week?",
     firstButton: { label: "Continue", actionId: FIB_LIFESTYLE_DRUGS_SCREEN_ID },
-    previousButton: { actionId: FIB_LIFESTYLE_SMOKING_SCREEN_ID },
+    previousButton: { actionId: FIB_LIFESTYLE_SMOKING_VAPES_SCREEN_ID },
     children: [
       {
         type: "markdown",

@@ -14,6 +14,10 @@ import {
   FIB_LIFESTYLE_WEIGHT_SCREEN_ID,
   FIB_YOUR_DATE_OF_BIRTH_SCREEN_ID,
   FIB_HOSPITAL_STAY_SCREEN_ID,
+  SMOKING_QUESTIONS_SCREEN_IDS,
+  FIB_LIFESTYLE_SMOKING_CIGARETTES_FOLLOW_UP_SCREEN_ID,
+  FIB_LIFESTYLE_SMOKING_CIGARETTES_SCREEN_ID,
+  FOLLOW_UP_SMOKING_ANSWERS_TRIGGER,
 } from "./data/underwriting-journey-data";
 import { PackageId } from "@components/screens/products/fib/fib.helper";
 import { useDispatch } from "react-redux";
@@ -165,6 +169,14 @@ export function findQuestion(
 
   const question = data.find((element) => nextQuestionId === element.id);
 
+  if (
+    question.id === FIB_LIFESTYLE_SMOKING_CIGARETTES_FOLLOW_UP_SCREEN_ID &&
+    !FOLLOW_UP_SMOKING_ANSWERS_TRIGGER.includes(answers[FIB_LIFESTYLE_SMOKING_CIGARETTES_SCREEN_ID])
+  ) {
+    const newOptions = { ...options, currentQuestion: question };
+    return findQuestion(newOptions, reviewScreenSession);
+  }
+
   // question can be undefined when we're waiting for `fib_review_screen` ID that's not  acutaly a question but a flag
   // to know that starting with this point we should render the review screen
   if (question?.id.includes("medical_journey")) {
@@ -261,7 +273,8 @@ export function shouldFirstButtonBeDisabled(
   currentQuestion: OrderedUnderwritingJourneyScreen,
   fibAnswers: FibAnswers,
   inputFirstName: string,
-  inputLastName: string
+  inputLastName: string,
+  radioInputValue: string
 ) {
   if (currentQuestion.id === FIB_THREE_YEAR_MEDICAL_HISTORY_SCREEN_ID) {
     return !Object.entries(medicalHistory)
@@ -295,6 +308,10 @@ export function shouldFirstButtonBeDisabled(
     }
 
     return !fibAnswers.weight.st || !fibAnswers.weight.lb;
+  }
+
+  if (SMOKING_QUESTIONS_SCREEN_IDS.includes(currentQuestion.id)) {
+    return !radioInputValue;
   }
 
   return false;
