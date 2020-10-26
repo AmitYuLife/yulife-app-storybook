@@ -10306,18 +10306,6 @@
             "deprecationReason": null
           },
           {
-            "name": "password",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "ownerRole",
             "description": null,
             "args": [],
@@ -13997,6 +13985,18 @@
             },
             "isDeprecated": true,
             "deprecationReason": "Logic in the client, field no longer needed"
+          },
+          {
+            "name": "rejected",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
           }
         ],
         "inputFields": null,

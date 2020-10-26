@@ -55,6 +55,7 @@ export const initialState: IProductStore = {
     hasPriceChanged: false,
     actualCost: 0,
     medicalInvestigationRequired: false,
+    rejected: false,
   },
 };
 
@@ -159,7 +160,7 @@ function rehydratePersonalProductStore(state: IProductStore, payload: IReduxStat
     // we need to ensure that the persisted store structure is up-to-date with the initialState
     const persistedKeys = Object.keys(payload.product.fib);
 
-    return Object.keys(initialState.fib).reduce(
+    const fibNewPersistedState = Object.keys(initialState.fib).reduce(
       (newPersistedState, key: keyof IProductStore["fib"]) => {
         // check that the key from initial state is present in persisted store
         // if it's not - default to initalState
@@ -172,6 +173,12 @@ function rehydratePersonalProductStore(state: IProductStore, payload: IReduxStat
       // create a shallow copy of the persisted store
       { ...payload.product }
     );
+
+    if (!fibNewPersistedState.fib.rejected) {
+      fibNewPersistedState.fib.rejected = false;
+    }
+
+    return fibNewPersistedState;
   }
 
   return state;
