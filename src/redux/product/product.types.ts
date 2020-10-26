@@ -70,6 +70,7 @@ export interface FIBStore {
   hasPriceChanged: boolean;
   actualCost: number;
   medicalInvestigationRequired: boolean;
+  rejected: boolean;
 }
 
 export interface UpdateFIBStoreAction<T> {

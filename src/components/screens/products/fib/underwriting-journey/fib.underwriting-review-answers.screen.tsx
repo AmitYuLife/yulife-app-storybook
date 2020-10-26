@@ -65,6 +65,7 @@ const _FibUnderwritingReviewAnswersScreen = memo(function (props: IFibUnderwriti
         contentContainerStyle={styles.scrollViewContentStyle}
         onMomentumScrollEnd={onScrollEnd}
         ref={scrollViewRef}
+        showsVerticalScrollIndicator={false}
       >
         {answers.map((item) => {
           return (

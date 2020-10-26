@@ -1,5 +1,11 @@
 import React, { memo, useCallback } from "react";
-import { FibLocalNavigation, FIB_UNDERWRITING_JOURNEY, FIB_CONFIRM_PACKAGES, FIB_EDIT_SALARY } from "../fib.types";
+import {
+  FibLocalNavigation,
+  FIB_UNDERWRITING_JOURNEY,
+  FIB_CONFIRM_PACKAGES,
+  FIB_EDIT_SALARY,
+  FIB_INFO,
+} from "../fib.types";
 import { IReduxState } from "../../../../../redux/_core/reducers";
 import { connect, useDispatch } from "react-redux";
 import { FibUnderwritingReviewAnswersScreen } from "@components/screens/products/fib/underwriting-journey/fib.underwriting-review-answers.screen";
@@ -15,6 +21,7 @@ import {
 } from "@graphql/products";
 import { useQuery } from "@apollo/react-hooks";
 import moment from "moment";
+import { InfoTypes } from "./fib.info.container";
 
 type ConnectedState = ReturnType<typeof mapStateToProps>;
 
@@ -25,7 +32,7 @@ interface IFibUnderwritingReviewAnswersContainerProps {
 type Props = IFibUnderwritingReviewAnswersContainerProps & ConnectedState;
 
 const FibUnderwritingReviewAnswersContainer = memo(function (props: Props) {
-  const { navigation, answers, fibState, updateQuoteDate } = props;
+  const { navigation, answers, fibState, updateQuoteDate, updateRejectedValue } = props;
   const dispatch = useDispatch();
 
   const userAnswers = Object.keys(fibState.answers).map((questionId: string) => {
@@ -48,6 +55,12 @@ const FibUnderwritingReviewAnswersContainer = memo(function (props: Props) {
   });
 
   const onSubmitButton = async () => {
+    const rejected = data?.getLifeInsuranceTopUps?.rejected;
+    if (rejected) {
+      dispatch(updateRejectedValue());
+      return navigation.push(FIB_INFO, { type: "Rejected" } as { type: InfoTypes });
+    }
+
     dispatch(updateQuoteDate(moment().format("YYYY-MM-DD")));
     dispatch(
       updateFIBValue({
@@ -131,6 +144,7 @@ const mapStateToProps = (state: IReduxState) => ({
   fibState: getFIBState(state),
   answers: getReviewAnswers(state),
   updateQuoteDate: (value: string) => updateFIBValue({ key: "quoteDate", value }),
+  updateRejectedValue: () => updateFIBValue({ key: "rejected", value: true }),
 });
 
 export default connect<ConnectedState>(mapStateToProps)(FibUnderwritingReviewAnswersContainer);

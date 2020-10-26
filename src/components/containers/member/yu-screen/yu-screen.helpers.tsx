@@ -38,6 +38,20 @@ export function navigateToProductScreen(options: NavigateToProductScreenOptions)
 
   // TODO: Implement different journeys for different products
   if (productType === "personal" && product.active) {
+    // TODO: get rejected value from server
+    if (fibState.rejected) {
+      return Navigation.push(componentId, {
+        component: {
+          id: ROUTES.fib,
+          name: ROUTES.fib,
+          passProps: {
+            initialRoute: FIB_INFO,
+            initialProps: { type: "Rejected" } as { type: InfoTypes },
+          },
+        },
+      });
+    }
+
     // TODO: get medicalInvestigationRequired from server
     if (fibState.medicalInvestigationRequired) {
       return Navigation.push(componentId, {
