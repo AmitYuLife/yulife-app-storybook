@@ -27,7 +27,7 @@ export const FibRejectedScreen = memo(function (props: IFibRejectedScreenProps) 
       onPreviousQuestion={onClose}
     >
       <View style={styles.wrapper}>
-        <FibTitle title={`Sorry about that!`} />
+        <FibTitle title={`Sorry about that!`} textStyle={{ fontSize: 20, lineHeight: 24 }} />
         <Text
           style={styles.message}
         >{`Based on your answers, we're not able to offer you personal life insurance right now.`}</Text>
@@ -42,7 +42,7 @@ export const FibRejectedScreen = memo(function (props: IFibRejectedScreenProps) 
 
 const styles = StyleSheet.create({
   wrapper: {
-    paddingTop: 28,
+    paddingTop: 12,
     paddingHorizontal: 32,
   } as ViewStyle,
   buttonWrapper: {
