@@ -44,16 +44,19 @@ export const FibEditSalaryScreen = memo(function (props: IEditSalaryScreen) {
           }}
         />
         <Animatable.View useNativeDriver={true} duration={1000} animation="fadeIn" style={styles.mainContent}>
-          <Text style={styles.text}>{`Let's get started! To begin, please enter your `}</Text>
-          <Text
-            onPress={() => {
-              Keyboard.dismiss();
-              return onNavigateToSalaryDescription();
-            }}
-            style={StyleSheet.flatten([styles.link, styles.text])}
-          >
-            annual gross salary.
+          <Text style={styles.text}>
+            {`Let's get started! To begin, please enter your `}
+            <Text
+              onPress={() => {
+                Keyboard.dismiss();
+                return onNavigateToSalaryDescription();
+              }}
+              style={StyleSheet.flatten([styles.link, styles.text])}
+            >
+              annual gross salary.
+            </Text>
           </Text>
+
           <View style={styles.inputWrapper}>
             <FibEditSalaryInput value={salary} onChange={updateSalary} />
           </View>

@@ -5,10 +5,11 @@ import { Style } from "../../../../styles";
 interface ITitleProps {
   title: string;
   isLarge?: boolean;
+  textStyle?: TextStyle;
 }
 
 export default function FibTitle(props: ITitleProps) {
-  const { title, isLarge } = props;
+  const { title, isLarge, textStyle } = props;
 
   const style = [styles.title];
 
@@ -18,7 +19,7 @@ export default function FibTitle(props: ITitleProps) {
 
   return (
     <View style={styles.wrapper}>
-      <Text style={style}>{title}</Text>
+      <Text style={StyleSheet.flatten([style, textStyle])}>{title}</Text>
     </View>
   );
 }

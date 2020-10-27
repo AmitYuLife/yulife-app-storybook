@@ -27,7 +27,7 @@ export const FibHoldingGPDetails = memo(function (props: IFibHoldingGPDetailsScr
     >
       <View style={styles.wrapper}>
         <Text style={styles.message}>
-          {`We are going to contact your GP.\n\nWe cannot issue your insurance until your medical assessment and further checks have been completed.\n\nWe have not taken payment, and will inform you when we have your results`}
+          {`We are going to contact your GP.\n\nWe cannot issue your insurance until your medical assessment and further checks have been completed.\n\nWe have not taken payment, and will inform you when we have your results.`}
         </Text>
       </View>
     </FibUnderwritingJourneyLayout>
