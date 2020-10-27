@@ -19,6 +19,7 @@ interface Props {
   showError?: boolean;
   errorMessage?: string;
   maxLength?: number;
+  inputTextStyle?: TextStyle;
   autoFocus?: boolean;
 }
 
@@ -55,13 +56,14 @@ export default function TextField(props: Props) {
     onBlur,
     type = "Text",
     placeholderIndentSize = 0,
+    inputTextStyle,
+    autoFocus = false,
     value,
     showError,
     errorMessage,
     maxLength,
-    autoFocus,
   } = props;
-  const [isFocused, setFocused] = useState(false);
+  const [isFocused, setFocused] = useState(autoFocus);
   const [placeholderScale] = useState(new Animated.Value(1));
   const [placeholderTranslateY] = useState(new Animated.Value(0));
   const [materialUnderlineScaleX] = useState(new Animated.Value(1));
@@ -109,7 +111,7 @@ export default function TextField(props: Props) {
     <>
       <View style={styles.wrapper}>
         <TextInput
-          style={StyleSheet.flatten([styles.inputBase, { paddingLeft: placeholderIndentSize }])}
+          style={StyleSheet.flatten([styles.inputBase, { paddingLeft: placeholderIndentSize }, inputTextStyle])}
           onBlur={() => {
             if (onBlur) {
               onBlur();

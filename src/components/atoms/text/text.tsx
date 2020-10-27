@@ -13,7 +13,7 @@ const YuText = ({ children, bold, style, numberOfLines, testID, onPress }: IProp
   <Text
     allowFontScaling={false}
     numberOfLines={numberOfLines}
-    style={StyleSheet.flatten([styles.base, bold ? styles.weightBold : styles.weightNormal, style])}
+    style={StyleSheet.flatten([styles.base, style, bold ? styles.weightBold : styles.weightNormal])}
     testID={testID}
     onPress={onPress}
   >
