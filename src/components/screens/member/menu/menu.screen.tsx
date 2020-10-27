@@ -46,7 +46,7 @@ const MenuScreen: SFC<IProps> = ({ onDebugPress, onPressClose, links, version })
                   </View>
                 )}
                 <View style={styles.textWrapper}>
-                  <Text style={styles.text} bold={true}>{`${label}  `}</Text>
+                  <Text style={styles.text}>{`${label}  `}</Text>
                 </View>
               </TouchableOpacityWithDelay>
             )

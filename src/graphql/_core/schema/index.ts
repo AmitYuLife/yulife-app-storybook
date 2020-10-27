@@ -37,6 +37,7 @@ export * from "./GetYulifer";
 export * from "./GetYuliferWithAvatar";
 export * from "./InviteToDuel";
 export * from "./LoginUser";
+export * from "./MedicalPractices";
 export * from "./Milestone";
 export * from "./PendingFeedbackForm";
 export * from "./RedeemReward";

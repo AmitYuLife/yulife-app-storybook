@@ -1,6 +1,6 @@
+import { Style } from "@styles";
 import * as React from "react";
 import Svg, { G, Path, Defs, ClipPath } from "react-native-svg";
-import { Style } from "@styles";
 
 export function FibFeedbackSuccessImage() {
   return (

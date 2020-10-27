@@ -1,0 +1,93 @@
+import React, { useCallback, memo } from "react";
+import { View, StyleSheet, ViewStyle, TextStyle } from "react-native";
+import { Style, Colours } from "@styles";
+import { useBackHandler } from "../../../../../../../services/hooks/useBackHandler";
+import { ScrollableLayout } from "@molecules";
+import {
+  MedicalPractices_getMedicalPractices_practicioners,
+  MedicalPractices_getMedicalPractices,
+} from "@graphql/_core/schema";
+import FibTitle from "@atoms/fib/title/title";
+import { Text } from "@atoms";
+import { GPInputForm } from "./fib.gp-manually-input.screen";
+
+interface Props {
+  onClose: () => void;
+  onNavigateBack: () => void;
+  onContinue: () => void;
+  gp: MedicalPractices_getMedicalPractices_practicioners;
+  practice: MedicalPractices_getMedicalPractices;
+  manualInput?: GPInputForm;
+}
+
+function _FibGPConfirmScreen(props: Props) {
+  const { onNavigateBack, onContinue, onClose, gp, practice, manualInput } = props;
+
+  const backHandler = useCallback(() => {
+    onNavigateBack();
+    return true;
+  }, [onNavigateBack]);
+
+  useBackHandler(backHandler);
+
+  return (
+    <ScrollableLayout
+      buttonAction={onContinue}
+      onLeftIconPress={onNavigateBack}
+      buttonTitle="Continue"
+      heading={"GP Report"}
+      onRightIconPress={onClose}
+    >
+      <View style={styles.viewWrapper}>
+        <FibTitle title="Please confirm this is your GP and we will get in touch with them" />
+        <View style={styles.gpWrapper}>
+          <Text bold={true} style={[styles.text, styles.header]}>
+            {manualInput ? manualInput.gpName : gp.name}
+          </Text>
+        </View>
+        <View>
+          {manualInput ? (
+            <>
+              <Text style={styles.text}>{manualInput.practiceName}</Text>
+              <Text style={styles.text}>{manualInput.practiceAddress}</Text>
+              <Text style={styles.text}>{manualInput.practiceTown}</Text>
+              <Text style={styles.text}>{manualInput.practicePostCode}</Text>
+            </>
+          ) : (
+            <>
+              <Text style={styles.text}>{practice.name}</Text>
+              {practice.address1 ? <Text style={styles.text}>{practice.address1}</Text> : null}
+              {practice.address2 ? <Text style={styles.text}>{practice.address2}</Text> : null}
+              {practice.address3 ? <Text style={styles.text}>{practice.address3}</Text> : null}
+              {practice.address4 ? <Text style={styles.text}>{practice.address4}</Text> : null}
+              {practice.address5 ? <Text style={styles.text}>{practice.address5}</Text> : null}
+              {practice.postCode ? <Text style={styles.text}>{practice.postCode}</Text> : null}
+            </>
+          )}
+        </View>
+      </View>
+    </ScrollableLayout>
+  );
+}
+
+export const FibGPConfirmScreen = memo(_FibGPConfirmScreen);
+
+const styles = StyleSheet.create({
+  viewWrapper: {
+    marginHorizontal: 32,
+    marginBottom: 48,
+  } as ViewStyle,
+  gpWrapper: {
+    marginVertical: 24,
+  } as ViewStyle,
+  text: {
+    fontFamily: Style.FONT_FAMILY_PRIMARY,
+    fontSize: 16,
+    lineHeight: 24,
+    letterSpacing: 1,
+    color: Colours.neutral.n800,
+  } as TextStyle,
+  header: {
+    fontSize: 20,
+  } as TextStyle,
+});

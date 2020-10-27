@@ -17,6 +17,7 @@ interface IProps {
   size?: Sizes;
   delay?: number;
   disableAnimation?: boolean;
+  show?: boolean;
 }
 
 function Button(props: IProps) {
@@ -31,9 +32,14 @@ function Button(props: IProps) {
     onPress,
     delay,
     disableAnimation,
+    show = true,
   } = props;
 
   const { handlePress } = usePressedInWithDelay({ onPress, delay });
+
+  if (!show) {
+    return null;
+  }
 
   const widthStyles = getWidth(size);
 
