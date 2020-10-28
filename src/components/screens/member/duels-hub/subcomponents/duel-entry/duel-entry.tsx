@@ -58,12 +58,27 @@ const DuelStatus: React.FC<Partial<IProps>> = ({ status, yucoin }) => {
     return <Text>Declined</Text>;
   }
 
-  if (status === DUELLER_DUEL_STATUS.WON) {
-    return <Text style={styles.victory}>+ {yucoin} YuCoin</Text>;
+  if (status === DUELLER_DUEL_STATUS.DRAW) {
+    return <Text>Draw</Text>;
   }
 
-  if (status === DUELLER_DUEL_STATUS.LOST) {
-    return <Text style={styles.defeat}>- {Math.abs(yucoin)} YuCoin</Text>;
+  if ([DUELLER_DUEL_STATUS.WON, DUELLER_DUEL_STATUS.LOST].includes(status as DUELLER_DUEL_STATUS)) {
+    const hasWon = status === DUELLER_DUEL_STATUS.WON;
+    const style = hasWon ? styles.victory : styles.defeat;
+    if (yucoin === 0) {
+      return <Text style={style}>0 YuCoin</Text>;
+    }
+
+    const icon = hasWon ? "+" : "-";
+    return (
+      <Text style={style}>
+        {icon} {Math.abs(yucoin)} YuCoin
+      </Text>
+    );
+  }
+
+  if (status === DUELLER_DUEL_STATUS.PENDING_SUBMISSION) {
+    return <Text>Pending</Text>;
   }
 
   return <Text>{yucoin} YuCoin</Text>;

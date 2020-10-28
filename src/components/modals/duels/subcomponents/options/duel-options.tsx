@@ -21,14 +21,19 @@ export default function DuelOptions({
 }: DuelStepProps) {
   // Picker control values
   const [pickerYuCoinAmount, setPickerYuCoinAmount] = useState(`${yucoin} YuCoin`);
-  const disabled = userCoins < 10;
-  const { data, loading: areTemplatesLoading } = useQuery<GetDuelTemplates>(GQL_QUERY_GET_DUEL_TEMPLATES);
+  const disabled = userCoins < 0;
+  const { data, loading: areTemplatesLoading } = useQuery<GetDuelTemplates>(GQL_QUERY_GET_DUEL_TEMPLATES, {
+    fetchPolicy: "network-only",
+  });
   const wagers = data?.getDuelTemplates?.wagerTemplate || [];
 
   useEffect(() => {
     if (wagers && wagers.length) {
-      setYucoin(wagers[0].yucoin);
-      setPickerYuCoinAmount(`${wagers[0].yucoin} YuCoin`);
+      const { yucoin } = wagers[0];
+      setYucoin(yucoin);
+
+      const label = yucoin === 0 ? `${yucoin} YuCoin (pride)` : `${yucoin} YuCoin`;
+      setPickerYuCoinAmount(label);
     }
   }, [wagers, setDuration, setYucoin, setPickerYuCoinAmount]);
 
@@ -36,10 +41,12 @@ export default function DuelOptions({
     () =>
       wagers.reduce((acc, { id, yucoin: wagerYuCoin }) => {
         if (userCoins >= wagerYuCoin) {
+          const label = wagerYuCoin === 0 ? `${wagerYuCoin} YuCoin (pride)` : `${wagerYuCoin} YuCoin`;
+
           acc.push({
-            label: `${wagerYuCoin} YuCoin`,
-            value: wagerYuCoin,
             id,
+            label,
+            value: wagerYuCoin,
           });
         }
 

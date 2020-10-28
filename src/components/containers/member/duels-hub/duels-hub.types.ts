@@ -4,4 +4,6 @@ export enum DUELLER_DUEL_STATUS {
   DECLINED = "declined",
   WON = "won",
   LOST = "lost",
+  DRAW = "draw",
+  PENDING_SUBMISSION = "pending_submission",
 }
