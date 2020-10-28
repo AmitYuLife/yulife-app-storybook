@@ -3,6 +3,7 @@ import { GetDuellerDetails_getDuellerDetails } from "@graphql/_core/schema/GetDu
 export type Step = "INTRO" | "OPTIONS";
 
 export enum YuCoinAmount {
+  pride = 0,
   low = 10,
   medium = 25,
   high = 50,
@@ -11,7 +12,7 @@ export enum YuCoinAmount {
 
 export const DEFAULT_DUEL_DURATION = 86400;
 export const DEFAULT_DUEL_DURATION_LABEL = "Whole day";
-export const DEFAULT_DUEL_AMOUNT = YuCoinAmount.low;
+export const DEFAULT_DUEL_AMOUNT = YuCoinAmount.pride;
 
 export interface DuelStepProps {
   yucoin: number;
