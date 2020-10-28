@@ -20,7 +20,7 @@ export default StyleSheet.create({
     flex: 1,
   } as ViewStyle,
   titleSection: {
-    marginTop: 40,
+    marginTop: 10,
     marginBottom: 10,
     paddingHorizontal: 40,
   } as ViewStyle,
@@ -39,7 +39,6 @@ export default StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     width: "100%",
-    paddingHorizontal: 40,
   } as ViewStyle,
   buttonSection: {
     marginTop: 20,
@@ -52,6 +51,7 @@ export default StyleSheet.create({
     alignItems: "center",
   } as ViewStyle,
   flex120: {
+    flex: 4,
     flexBasis: 120,
   } as ViewStyle,
   vsText: {
