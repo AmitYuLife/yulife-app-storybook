@@ -83,6 +83,7 @@ function _FibGPManuallyInputScreen(props: Props) {
               placeholder="Medical Practise Name"
               inputTextStyle={styles.text}
               value={formValue.practiceName}
+              autoFocus={!formValue.practiceName}
             />
           </View>
           <View style={styles.formWrapper}>
@@ -115,6 +116,7 @@ function _FibGPManuallyInputScreen(props: Props) {
               placeholder="GP Name"
               inputTextStyle={styles.text}
               value={formValue.gpName}
+              autoFocus={!!formValue.practiceName}
             />
           </View>
         </View>

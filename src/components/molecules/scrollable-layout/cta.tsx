@@ -15,7 +15,7 @@ interface Props {
   isInlineCTA?: boolean;
 }
 
-const CTA_HEIGHT = 180;
+const CTA_HEIGHT = Style.hasNotch ? 144 : 128;
 
 const _CTA = ({
   hideFirstButton,
@@ -33,18 +33,10 @@ const _CTA = ({
     return null;
   }
 
-  const secondButtonExtraStyle = { height: Style.hasNotch ? 144 : 128, paddingTop: Style.hasNotch ? 40 : 80 };
   const absolutelyPositionedStyles = !isInlineCTA ? styles.absolute : {};
 
   return (
-    <View
-      pointerEvents="box-none"
-      style={[
-        styles.button,
-        absolutelyPositionedStyles,
-        hasSecondButton && !hideFirstButton ? secondButtonExtraStyle : {},
-      ]}
-    >
+    <View pointerEvents="box-none" style={[styles.button, absolutelyPositionedStyles]}>
       <LinearGradient
         pointerEvents="none"
         colors={["rgba(255,255,255,1)", "rgba(255,255,255,1)", "rgba(255,255,255,0)"]}
@@ -65,7 +57,10 @@ const _CTA = ({
         type="Link"
         label={secondButtonLabel}
         onPress={secondButtonAction}
-        wrapperStyle={styles.secondButton}
+        wrapperStyle={StyleSheet.flatten([
+          styles.secondButton,
+          hideFirstButton ? { marginBottom: 0 } : { marginBottom: 40 },
+        ])}
       />
     </View>
   );
@@ -80,7 +75,7 @@ const styles = {
     height: CTA_HEIGHT,
   } as ViewStyle,
   secondButton: {
-    marginTop: 8,
+    marginTop: 4,
   } as ViewStyle,
   absolute: {
     position: "absolute",

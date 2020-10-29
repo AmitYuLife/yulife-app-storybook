@@ -80,7 +80,9 @@ function Main({ height, color, testID, disabled, onPressIn, onPressOut, onPress,
       onPress={onPress}
     >
       <Animated.View style={[styles.main, { height, opacity: fadeAnim }]} testID={`${testID}-text-view`}>
-        <Text style={[styles.title, { color }, disabledStyles]}>{title}</Text>
+        <Text bold={true} style={[styles.title, { color }, disabledStyles]}>
+          {title}
+        </Text>
       </Animated.View>
     </PressableWithDelay>
   );
