@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect, useRef } from "react";
 import { connect } from "react-redux";
 import { IReduxState } from "@redux/_core/reducers";
 import { getCurrentUserId, getActiveLeaderboard } from "@redux/user/user.selectors";
@@ -6,6 +6,7 @@ import { GetLeaderboard, GetLeaderboardVariables } from "@graphql/_core/schema";
 import { GQL_QUERY_LEADERBOARD } from "@graphql/member";
 import { LeaderboardLayout } from "./leaderboard-layout/leaderboard-layout";
 import { getCopy } from "@redux/copy/copy.selectors";
+import { getAppState } from "@redux/app/app.selectors";
 import { updateLeaderboardConsent } from "@redux/user/user.actions";
 import ConsentGuard from "./consent-guard/consent-guard";
 import { useQuery } from "@apollo/react-hooks";
@@ -22,7 +23,9 @@ type Props = ConnectedState;
 export const PAGE_SIZE = 501; // number of rows to show +1
 
 const _ActiveLeaderboard = (props: Props) => {
-  const { activeLeaderboard, userId, consentCopy, updateLeaderboardConsent } = props;
+  const { appState, activeLeaderboard, userId, consentCopy, updateLeaderboardConsent } = props;
+  const appStateRef = useRef(appState);
+
   const { data, refetch, networkStatus } = useQuery<GetLeaderboard, GetLeaderboardVariables>(GQL_QUERY_LEADERBOARD, {
     variables: {
       leaderboardId: activeLeaderboard?.leaderboardId,
@@ -32,6 +35,14 @@ const _ActiveLeaderboard = (props: Props) => {
     notifyOnNetworkStatusChange: true,
     fetchPolicy: "network-only", // caching breaks because it shares the same query w/ leaderboard-lean
   });
+
+  useEffect(() => {
+    if (appState === "active" && appStateRef.current !== "active") {
+      refetch();
+    }
+
+    appStateRef.current = appState;
+  }, [appState, refetch]);
 
   const handleRefetch = useCallback(async () => {
     refetch().catch(() => null);
@@ -85,6 +96,7 @@ const mapStateToProps = (state: IReduxState) => ({
   activeLeaderboard: getActiveLeaderboard(state),
   userId: getCurrentUserId(state),
   consentCopy: getCopy(state, "leaderboards").turnBoardOn,
+  appState: getAppState(state),
 });
 
 const mapDispatchToProps = { updateLeaderboardConsent };
