@@ -18,7 +18,7 @@ export const REWARDS_JOHN_LEWIS = {
         },
         "loyalty_programme": [],
         "sort_order": 14,
-        "rewardProviderId": "wegift",
+        "rewardProviderId": "false_id_for_detox",
         "availability": "stocked",
         "progression_level": "5",
         "card_image_url": "https://gift-sandbox.wegift.io/static/product_assets/JLS/JLS-card.png",
