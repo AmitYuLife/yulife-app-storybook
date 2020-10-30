@@ -26,6 +26,9 @@ export enum AvatarPartType {
   pants = "pants",
 }
 
+/**
+ * Different cover types
+ */
 export enum CoverType {
   common = "common",
   custom = "custom",
@@ -79,6 +82,10 @@ export interface ChallengePayload {
   value?: number | null;
 }
 
+/**
+ * User answers to underwriting journey where the questionId is the unique id that
+ * identifies a question and value is the answer provided by the customer
+ */
 export interface LifeInsuranceTopUpsUserAnswers {
   questionId?: string | null;
   value?: string | null;

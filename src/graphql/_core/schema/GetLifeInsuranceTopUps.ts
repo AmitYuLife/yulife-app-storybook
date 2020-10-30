@@ -31,6 +31,9 @@ export interface GetLifeInsuranceTopUps_getLifeInsuranceTopUps {
 }
 
 export interface GetLifeInsuranceTopUps {
+  /**
+   * Deprecated on v2.8
+   */
   getLifeInsuranceTopUps: GetLifeInsuranceTopUps_getLifeInsuranceTopUps | null;
 }
 
