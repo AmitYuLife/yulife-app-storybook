@@ -2,6 +2,7 @@ import moment from "moment";
 import { Platform } from "react-native";
 import PushNotification from "react-native-push-notification";
 import { call, select } from "redux-saga/effects";
+import { YULIFE_PN_CHANNEL_ID } from "@services/constants";
 import { challengeStartSuccessAction } from "../../levels/levels.actions";
 import { defaultNotificationSettings, getNotificationTitleAndMessage, numericId } from "../notifications.helpers";
 import { getChallengeCompletionNotification } from "../notifications.selectors";
@@ -24,8 +25,9 @@ export default function* scheduleChallengeNotificationSaga({
       PushNotification.localNotificationSchedule({
         ...defaultNotificationSettings,
         date: moment(endDateTime).toDate(),
+        channelId: YULIFE_PN_CHANNEL_ID,
         group: "Yu Life Challenges", // (optional) add group to message
-        id: fixedId, // (optional)
+        id: Number(fixedId), // (optional)
         tag: "challenge_complete", // (optional) add tag to message
         userInfo: Platform.OS === "ios" ? { id: fixedId } : null, // required to cancel iOS local notification
         ...details,

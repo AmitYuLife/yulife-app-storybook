@@ -50,59 +50,44 @@
       <meta-data
           android:name="com.google.firebase.messaging.default_notification_icon"
           android:resource="@drawable/intercom_push_icon" />
-
-      <meta-data android:name="com.google.firebase.messaging.default_notification_color"
-          android:resource="@color/yupink" />
-
       <meta-data
           android:name="com.google.firebase.messaging.default_notification_channel_id"
           android:value="YULIFE_PUSH_NOTIFICATION_CHANNEL" />
+      <meta-data android:name="com.google.firebase.messaging.default_notification_color"
+          android:resource="@color/yupink"
+          tools:replace="android:resource" />
 
       <meta-data
           android:name="com.kevinejohn.RNMixpanel.messaging.icon"
           android:resource="@drawable/intercom_push_icon" />
 
-        <!-- Push notifications -->
-        <meta-data  android:name="com.dieam.reactnativepushnotification.notification_channel_name"
-            android:value="YULIFE_PN_CHANNEL"/>
-        <meta-data  android:name="com.dieam.reactnativepushnotification.notification_channel_description"
-            android:value="YULIFE_PUSH_NOTIFICATION_CHANNEL"/>
         <!-- Change the resource name to your App's accent color - or any other color you want -->
+        <meta-data  android:name="com.dieam.reactnativepushnotification.notification_foreground"
+                    android:value="true"/>
         <meta-data  android:name="com.dieam.reactnativepushnotification.notification_color"
             android:resource="@color/yupink"/>
 
+        <receiver android:name="com.dieam.reactnativepushnotification.modules.RNPushNotificationActions" />
         <receiver android:name="com.dieam.reactnativepushnotification.modules.RNPushNotificationPublisher" />
         <receiver android:name="com.dieam.reactnativepushnotification.modules.RNPushNotificationBootEventReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+                <action android:name="com.htc.intent.action.QUICKBOOT_POWERON"/>
             </intent-filter>
         </receiver>
         <service android:name="com.dieam.reactnativepushnotification.modules.RNPushNotificationRegistrationService"/>
-        <service
-            android:name="com.dieam.reactnativepushnotification.modules.RNPushNotificationListenerServiceGcm"
+        <!-- <service
+            android:name="com.dieam.reactnativepushnotification.modules.RNPushNotificationListenerService"
             android:exported="false" >
-            <intent-filter android:priority="999">
-                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
-        </service>
-
-        <!-- Intercom -->
-        <service
-            android:name="com.robinpowered.react.Intercom.IntercomIntentService"
-            android:exported="false">
-            <intent-filter android:priority="999">
-                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
-            </intent-filter>
-        </service>
-        <receiver
-            android:name="io.intercom.android.sdk.push.IntercomPushBroadcastReceiver"
-            android:exported="true"
-            tools:replace="android:exported" />
-
+        </service> -->
         <!-- Bugsnag -->
         <meta-data android:name="com.bugsnag.android.API_KEY"
             android:value="@string/BUGSNAG_API_KEY"/>
-
+        <!-- Firebase-->
         <service android:name=".YulifeFirebaseMessaggingService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />

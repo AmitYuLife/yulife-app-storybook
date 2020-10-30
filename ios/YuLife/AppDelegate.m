@@ -114,13 +114,21 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
     }
   } else {
     [RNCPushNotificationIOS didReceiveRemoteNotification:userInfo fetchCompletionHandler:completionHandler];
-     completionHandler(UIBackgroundFetchResultNoData);
+    completionHandler(UIBackgroundFetchResultNoData);
   }
 }
 // Required for the registrationError event.
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error
 {
   [RNCPushNotificationIOS didFailToRegisterForRemoteNotificationsWithError:error];
+}
+// IOS 10+ Required for localNotification event
+- (void)userNotificationCenter:(UNUserNotificationCenter *)center
+didReceiveNotificationResponse:(UNNotificationResponse *)response
+         withCompletionHandler:(void (^)(void))completionHandler
+{
+  [RNCPushNotificationIOS didReceiveNotificationResponse:response];
+  completionHandler();
 }
 // Required for the localNotification event.
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
