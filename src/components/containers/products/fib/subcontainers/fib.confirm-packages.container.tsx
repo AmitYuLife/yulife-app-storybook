@@ -3,7 +3,7 @@ import React, { memo, useState, useEffect, useCallback } from "react";
 import { View, Linking, Platform } from "react-native";
 import { connect, useDispatch } from "react-redux";
 import { Text } from "@atoms";
-import { FibLocalNavigation, FIB_FEEDBACK_FORM, FIB_FAQ } from "../fib.types";
+import { FibLocalNavigation, FIB_FAQ, FIB_CONTACT_DETAILS } from "../fib.types";
 import {
   LifeInsuranceUserAnswers,
   GQL_MUTATION_CREATE_TOP_UPS_QUOTE,
@@ -237,8 +237,7 @@ const FibConfirmPackagesContainer = memo(function (props: FibConfirmPackagesCont
       );
     }
 
-    // TODO: redirect to address questions
-    return navigation.push(FIB_FEEDBACK_FORM);
+    return navigation.push(FIB_CONTACT_DETAILS);
   }, [dispatch, createQuoteData, navigation]);
 
   if (error || createQuoteError) {
