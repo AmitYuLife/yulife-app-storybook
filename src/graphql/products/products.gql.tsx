@@ -1,6 +1,7 @@
 import gql from "graphql-tag";
-import { GQL_FRAGMENT_AVATAR_REMOTE_FILES } from "../_fragments/avatarRemoteFiles.gql";
+import { UpsertTopUpsProductEntity, UpsertTopUpsProductEntityVariables } from "@graphql/_core/schema";
 import { PackageId } from "@components/screens/products/fib/fib.helper";
+import { MutationTuple } from "@apollo/react-hooks";
 
 export type LifeInsuranceUserAnswers = {
   questionId: string;
@@ -13,23 +14,9 @@ export interface GetLifeInsuranceTopUpsVars {
   userAnswers?: LifeInsuranceUserAnswers[];
 }
 
-export const GQL_GET_LIFE_INSURANCE_TOP_UPS = gql`
-  ${GQL_FRAGMENT_AVATAR_REMOTE_FILES}
-
-  query GetLifeInsuranceTopUps(
-    $grossSalary: Int
-    $coverType: CoverType
-    $customCoverPercentage: Int
-    $userAnswers: [LifeInsuranceTopUpsUserAnswers]
-  ) {
-    getLifeInsuranceTopUps(
-      input: {
-        grossSalary: $grossSalary
-        coverType: $coverType
-        customCoverPercentage: $customCoverPercentage
-        userAnswers: $userAnswers
-      }
-    ) {
+export const GQL_QUERY_GET_TOP_UPS_ESTIMATE_COST = gql`
+  query GetTopUpsEstimateCost($input: TopUpsEstimateCostInput!, $product: ProductCode!) {
+    getTopUpsEstimateCost(input: $input, product: $product) {
       estimatedCost
       sumAssured
       earnRate
@@ -37,12 +24,42 @@ export const GQL_GET_LIFE_INSURANCE_TOP_UPS = gql`
       newEarnRate
       descriptionHeading
       term
+    }
+  }
+`;
+
+export const GQL_MUTATION_CREATE_TOP_UPS_QUOTE = gql`
+  mutation CreateTopUpsQuote($input: CreateTopUpsQuoteInput!, $product: ProductCode!) {
+    createTopUpsQuote(input: $input, product: $product) {
+      id
+      productEntityId
       actualCost
-      medicalInvestigationRequired
+      sumAssured
+      earnRate
+      salaryPercentageCovered
+      newEarnRate
+      descriptionHeading
+      term
       rejected
-      avatarRemoteFiles {
-        ...YumojiRemoteFiles
-      }
+      medicalInvestigationRequired
+    }
+  }
+`;
+
+export const GQL_QUERY_GET_TOP_UPS_QUOTE = gql`
+  query GetTopUpsQuote($input: GetTopUpsQuoteInput!, $product: ProductCode!) {
+    getTopUpsQuote(input: $input, product: $product) {
+      id
+      productEntityId
+      actualCost
+      sumAssured
+      earnRate
+      salaryPercentageCovered
+      newEarnRate
+      descriptionHeading
+      term
+      rejected
+      medicalInvestigationRequired
     }
   }
 `;
