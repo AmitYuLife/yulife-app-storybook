@@ -64,6 +64,9 @@ export enum PassiveChallengeType {
   STEPS = "STEPS",
 }
 
+/**
+ * Product code used internally to identify different products
+ */
 export enum ProductCode {
   YULFIB = "YULFIB",
 }
@@ -87,6 +90,25 @@ export interface ChallengePayload {
 }
 
 /**
+ * Input to create a top ups quote
+ */
+export interface CreateTopUpsQuoteInput {
+  grossSalary?: number | null;
+  coverType?: CoverType | null;
+  customCoverPercentage?: number | null;
+  userAnswers?: (LifeInsuranceTopUpsUserAnswers | null)[] | null;
+  productEntityId?: string | null;
+}
+
+/**
+ * Input for getting an existing quote
+ */
+export interface GetTopUpsQuoteInput {
+  customerProductEntityId?: string | null;
+  quoteId?: string | null;
+}
+
+/**
  * User answers to underwriting journey where the questionId is the unique id that
  * identifies a question and value is the answer provided by the customer
  */
@@ -107,10 +129,21 @@ export interface ProductMetadata {
   avios?: AviosMetadata | null;
 }
 
+/**
+ * Input for calculate top ups estimated cost
+ */
 export interface TopUpsEstimateCostInput {
   grossSalary?: number | null;
   coverType?: CoverType | null;
   customCoverPercentage?: number | null;
+}
+
+export interface UpdateContactDetailsInput {
+  phone?: string | null;
+  addressFirstLine?: string | null;
+  addressSecondLine?: string | null;
+  addressCity?: string | null;
+  addressPostCode?: string | null;
 }
 
 export interface UserAvatarInput {

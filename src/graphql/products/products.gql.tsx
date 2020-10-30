@@ -92,6 +92,14 @@ export const GQL_MUTATION_UPSERT_TOP_UPS_PRODUCT_ENTITY = gql`
   }
 `;
 
+export const GQL_MUTATION_UPDATE_CUSTOMER_CONTACT_DETAILS = gql`
+  mutation UpdateContactDetails($contactDetails: UpdateContactDetailsInput) {
+    updateContactDetails(contactDetails: $contactDetails) {
+      updated
+    }
+  }
+`;
+
 export type UpsertProductEntityMutationTuple = MutationTuple<
   UpsertTopUpsProductEntity,
   UpsertTopUpsProductEntityVariables

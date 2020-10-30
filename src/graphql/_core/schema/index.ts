@@ -52,6 +52,7 @@ export * from "./SendMagicLink";
 export * from "./SubmitFeedbackForm";
 export * from "./SubmitUnity";
 export * from "./UpdateActiveChallenge";
+export * from "./UpdateContactDetails";
 export * from "./UpdateDuel";
 export * from "./UpdateLeaderboardConsent";
 export * from "./UpdateMemberConsent";
