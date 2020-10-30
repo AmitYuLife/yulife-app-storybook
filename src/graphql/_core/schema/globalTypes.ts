@@ -26,6 +26,9 @@ export enum AvatarPartType {
   pants = "pants",
 }
 
+/**
+ * Different cover types
+ */
 export enum CoverType {
   common = "common",
   custom = "custom",
@@ -83,19 +86,10 @@ export interface ChallengePayload {
   value?: number | null;
 }
 
-export interface CreateTopUpsQuoteInput {
-  grossSalary?: number | null;
-  coverType?: CoverType | null;
-  customCoverPercentage?: number | null;
-  userAnswers?: (LifeInsuranceTopUpsUserAnswers | null)[] | null;
-  productEntityId?: string | null;
-}
-
-export interface GetTopUpsQuoteInput {
-  customerProductEntityId?: string | null;
-  quoteId?: string | null;
-}
-
+/**
+ * User answers to underwriting journey where the questionId is the unique id that
+ * identifies a question and value is the answer provided by the customer
+ */
 export interface LifeInsuranceTopUpsUserAnswers {
   questionId?: string | null;
   value?: string | null;

@@ -39,7 +39,7 @@
           },
           {
             "name": "getMedicalPractices",
-            "description": null,
+            "description": "Returns a list of medical practices with practitioners available. It accepts medical practice name or postcode as input",
             "args": [
               {
                 "name": "nameOrPostcode",
@@ -66,7 +66,7 @@
           },
           {
             "name": "getTopUpsEstimateCost",
-            "description": null,
+            "description": "Query to obtain an estimate cost for top ups",
             "args": [
               {
                 "name": "input",
@@ -107,7 +107,7 @@
           },
           {
             "name": "getTopUpsQuote",
-            "description": null,
+            "description": "Query to obtain a quote for top ups",
             "args": [
               {
                 "name": "input",
@@ -148,7 +148,7 @@
           },
           {
             "name": "getLifeInsuranceTopUps",
-            "description": null,
+            "description": "Deprecated on v2.8",
             "args": [
               {
                 "name": "input",
@@ -1665,6 +1665,33 @@
             },
             "isDeprecated": false,
             "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "FeedbackFormQuestionNextCondition",
+        "description": null,
+        "fields": [
+          {
+            "name": "id",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "ID",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
           },
           {
             "name": "submit",
@@ -1750,7 +1777,7 @@
         "fields": [
           {
             "name": "organisationCode",
-            "description": null,
+            "description": "Medical practice unique code",
             "args": [],
             "type": {
               "kind": "SCALAR",
@@ -1762,7 +1789,7 @@
           },
           {
             "name": "name",
-            "description": null,
+            "description": "Medical practice name",
             "args": [],
             "type": {
               "kind": "SCALAR",
@@ -1774,7 +1801,7 @@
           },
           {
             "name": "address1",
-            "description": null,
+            "description": "Medical practice address line 1",
             "args": [],
             "type": {
               "kind": "SCALAR",
@@ -1786,7 +1813,7 @@
           },
           {
             "name": "address2",
-            "description": null,
+            "description": "Medical practice address line 2",
             "args": [],
             "type": {
               "kind": "SCALAR",
@@ -1798,7 +1825,7 @@
           },
           {
             "name": "address3",
-            "description": null,
+            "description": "Medical practice address line 3",
             "args": [],
             "type": {
               "kind": "SCALAR",
@@ -1810,7 +1837,7 @@
           },
           {
             "name": "address4",
-            "description": null,
+            "description": "Medical practice address line 4",
             "args": [],
             "type": {
               "kind": "SCALAR",
@@ -1822,7 +1849,7 @@
           },
           {
             "name": "address5",
-            "description": null,
+            "description": "Medical practice address line 5",
             "args": [],
             "type": {
               "kind": "SCALAR",
@@ -1834,7 +1861,7 @@
           },
           {
             "name": "postCode",
-            "description": null,
+            "description": "Medical practice postcode",
             "args": [],
             "type": {
               "kind": "SCALAR",
@@ -1846,7 +1873,7 @@
           },
           {
             "name": "practicioners",
-            "description": null,
+            "description": "List of practicioners available for a practice",
             "args": [],
             "type": {
               "kind": "LIST",
@@ -1873,7 +1900,7 @@
         "fields": [
           {
             "name": "organisationCode",
-            "description": null,
+            "description": "Practicioner unique code",
             "args": [],
             "type": {
               "kind": "SCALAR",
@@ -1885,7 +1912,7 @@
           },
           {
             "name": "name",
-            "description": null,
+            "description": "Practicioner name",
             "args": [],
             "type": {
               "kind": "SCALAR",
@@ -1897,7 +1924,7 @@
           },
           {
             "name": "parentOrganisationCode",
-            "description": null,
+            "description": "Medical practice unique code where practicioner practice",
             "args": [],
             "type": {
               "kind": "SCALAR",
@@ -1916,7 +1943,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "TopUpsEstimateCostInput",
-        "description": null,
+        "description": "Input for calculate top ups estimated cost",
         "fields": null,
         "inputFields": [
           {
@@ -1957,7 +1984,7 @@
       {
         "kind": "ENUM",
         "name": "CoverType",
-        "description": null,
+        "description": "Different cover types",
         "fields": null,
         "inputFields": null,
         "interfaces": null,
@@ -1992,7 +2019,7 @@
       {
         "kind": "ENUM",
         "name": "ProductCode",
-        "description": null,
+        "description": "Product code used internally to identify different products",
         "fields": null,
         "inputFields": null,
         "interfaces": null,
@@ -2009,7 +2036,7 @@
       {
         "kind": "OBJECT",
         "name": "TopUpsEstimateCostResult",
-        "description": null,
+        "description": "Result after calculating an estimated cost for top ups",
         "fields": [
           {
             "name": "estimatedCost",
@@ -2276,6 +2303,185 @@
         "inputFields": null,
         "interfaces": [],
         "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "UserAvatarPart",
+        "description": null,
+        "fields": [
+          {
+            "name": "part",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "AvatarPart",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "color",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "AvatarColor",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "AvatarPart",
+        "description": null,
+        "fields": [
+          {
+            "name": "partId",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "bodyType",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "ENUM",
+              "name": "AvatarBodyType",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "partType",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "ENUM",
+              "name": "AvatarPartType",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "colors",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "AvatarPartColors",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "elements",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "AvatarElements",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "previewViewBox",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "width",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "height",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "ENUM",
+        "name": "AvatarBodyType",
+        "description": null,
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "enumValues": [
+          {
+            "name": "male",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "female",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "neutral",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
         "possibleTypes": null
       },
       {
@@ -2996,7 +3202,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "GetTopUpsQuoteInput",
-        "description": null,
+        "description": "Input for getting an existing quote",
         "fields": null,
         "inputFields": [
           {
@@ -3027,11 +3233,11 @@
       {
         "kind": "OBJECT",
         "name": "GetTopUpsQuoteResult",
-        "description": null,
+        "description": "Output after requesting an existing quote",
         "fields": [
           {
             "name": "id",
-            "description": null,
+            "description": "Quote id",
             "args": [],
             "type": {
               "kind": "SCALAR",
@@ -3043,7 +3249,7 @@
           },
           {
             "name": "productEntityId",
-            "description": null,
+            "description": "Customer product entity id",
             "args": [],
             "type": {
               "kind": "SCALAR",
@@ -3139,7 +3345,7 @@
           },
           {
             "name": "descriptionHeading",
-            "description": null,
+            "description": "String that describes different covers for top ups",
             "args": [],
             "type": {
               "kind": "SCALAR",
@@ -3163,7 +3369,7 @@
           },
           {
             "name": "rejected",
-            "description": null,
+            "description": "Flag to determinate is the user is eligible for insurance",
             "args": [],
             "type": {
               "kind": "SCALAR",
@@ -3175,7 +3381,7 @@
           },
           {
             "name": "medicalInvestigationRequired",
-            "description": null,
+            "description": "Flag to require medical investigations",
             "args": [],
             "type": {
               "kind": "SCALAR",
@@ -3194,7 +3400,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "LifeInsuranceTopUpsInput",
-        "description": null,
+        "description": "Deprecated on v2.8",
         "fields": null,
         "inputFields": [
           {
@@ -3269,7 +3475,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "LifeInsuranceTopUpsUserAnswers",
-        "description": null,
+        "description": "User answers to underwriting journey where the questionId is the unique id that\nidentifies a question and value is the answer provided by the customer",
         "fields": null,
         "inputFields": [
           {
@@ -3300,7 +3506,7 @@
       {
         "kind": "OBJECT",
         "name": "LifeInsuranceTopUpsResult",
-        "description": null,
+        "description": "Deprecated on v2.8",
         "fields": [
           {
             "name": "estimatedCost",
@@ -4442,15 +4648,30 @@
             },
             "isDeprecated": false,
             "deprecationReason": null
-          },
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "InputField",
+        "description": null,
+        "fields": [
           {
             "name": "value",
             "description": null,
             "args": [],
             "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -4497,7 +4718,21 @@
             },
             "isDeprecated": false,
             "deprecationReason": null
-          },
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "ENUM",
+        "name": "InputFieldType",
+        "description": null,
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "enumValues": [
           {
             "name": "name",
             "description": null,
@@ -4533,19 +4768,10 @@
           {
             "name": "validationType",
             "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
             "isDeprecated": false,
             "deprecationReason": null
           }
         ],
-        "inputFields": null,
-        "interfaces": [],
-        "enumValues": null,
         "possibleTypes": null
       },
       {
@@ -4561,7 +4787,18 @@
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
-          },
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "SubheadingField",
+        "description": null,
+        "fields": [
           {
             "name": "Number",
             "description": null,
@@ -4994,7 +5231,7 @@
             "args": [],
             "type": {
               "kind": "SCALAR",
-              "name": "Int",
+              "name": "String",
               "ofType": null
             },
             "isDeprecated": false,
@@ -5050,12 +5287,6 @@
           {
             "name": "value",
             "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
             "isDeprecated": false,
             "deprecationReason": null
           },
@@ -5072,9 +5303,6 @@
             "deprecationReason": null
           }
         ],
-        "inputFields": null,
-        "interfaces": [],
-        "enumValues": null,
         "possibleTypes": null
       },
       {
@@ -5699,9 +5927,13 @@
             "description": null,
             "args": [],
             "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "DuelHubData",
+                "ofType": null
+              }
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -5896,8 +6128,8 @@
             "description": null,
             "args": [],
             "type": {
-              "kind": "SCALAR",
-              "name": "String",
+              "kind": "OBJECT",
+              "name": "MobileCopyScreen",
               "ofType": null
             },
             "isDeprecated": false,
@@ -15975,7 +16207,7 @@
           },
           {
             "name": "upsertTopUpsProductEntity",
-            "description": null,
+            "description": "Creates or updates a product entity for customers",
             "args": [
               {
                 "name": "product",
@@ -16002,7 +16234,7 @@
           },
           {
             "name": "createTopUpsQuote",
-            "description": null,
+            "description": "Creates a new quote for top ups",
             "args": [
               {
                 "name": "input",
@@ -17605,6 +17837,29 @@
             "type": {
               "kind": "SCALAR",
               "name": "Boolean",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "updateContactDetails",
+            "description": "Update customer contact details",
+            "args": [
+              {
+                "name": "contactDetails",
+                "description": null,
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "UpdateContactDetailsInput",
+                  "ofType": null
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "OBJECT",
+              "name": "UpdateDetailsResponse",
               "ofType": null
             },
             "isDeprecated": false,
@@ -20164,8 +20419,481 @@
             "deprecationReason": null
           },
           {
-            "name": "descriptionHeading",
+            "name": "resetBusinessPassword",
             "description": null,
+            "args": [
+              {
+                "name": "passwordUpdate",
+                "description": null,
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "BusinessPasswordUpdateInput",
+                  "ofType": null
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "OBJECT",
+              "name": "BusinessPasswordUpdateResponse",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "loginUser",
+            "description": null,
+            "args": [
+              {
+                "name": "password",
+                "description": null,
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "email",
+                "description": null,
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "method",
+                "description": null,
+                "type": {
+                  "kind": "ENUM",
+                  "name": "LoginMethod",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "tokenExpiration",
+                "description": null,
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "intercomHashMethod",
+                "description": null,
+                "type": {
+                  "kind": "ENUM",
+                  "name": "IntercomHashMethod",
+                  "ofType": null
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "OBJECT",
+              "name": "UserPayload",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "sendMagicLink",
+            "description": null,
+            "args": [
+              {
+                "name": "email",
+                "description": null,
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "OBJECT",
+              "name": "StartSessionResponse",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "sendBusinessMagicLink",
+            "description": null,
+            "args": [
+              {
+                "name": "email",
+                "description": null,
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "OBJECT",
+              "name": "BusinessMagicLinkResponse",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "AnswerInput",
+        "description": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "key",
+            "description": null,
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "value",
+            "description": null,
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "SubmitFeedbackFormResponse",
+        "description": null,
+        "fields": [
+          {
+            "name": "message",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "ENUM",
+        "name": "Metric",
+        "description": null,
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "enumValues": [
+          {
+            "name": "CES",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "NPS",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "latest_app",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "AddUserFeedbackResponse",
+        "description": null,
+        "fields": [
+          {
+            "name": "message",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "UpsertTopUpsProductEntityResponse",
+        "description": "Response after updating the customer product entity, customerProductEntityId",
+        "fields": [
+          {
+            "name": "id",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "CreateTopUpsQuoteInput",
+        "description": "Input to create a top ups quote",
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "grossSalary",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "Int",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "coverType",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "CoverType",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "customCoverPercentage",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "Int",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "userAnswers",
+            "description": null,
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "INPUT_OBJECT",
+                "name": "LifeInsuranceTopUpsUserAnswers",
+                "ofType": null
+              }
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "productEntityId",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "CreateTopUpsQuoteResult",
+        "description": "Create top ups quote result",
+        "fields": [
+          {
+            "name": "id",
+            "description": "Quote id",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "productEntityId",
+            "description": "Customer product entity id",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "actualCost",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Float",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "sumAssured",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Float",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "avatar",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "UserAvatar",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "avatarRemoteFiles",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "AvatarRemoteFiles",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "earnRate",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Int",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "salaryPercentageCovered",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Int",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "newEarnRate",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Int",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "descriptionHeading",
+            "description": "String that describes different covers for top ups",
             "args": [],
             "type": {
               "kind": "SCALAR",
@@ -20189,7 +20917,7 @@
           },
           {
             "name": "rejected",
-            "description": null,
+            "description": "Flag to determinate is the user is eligible for insurance",
             "args": [],
             "type": {
               "kind": "SCALAR",
@@ -20201,7 +20929,7 @@
           },
           {
             "name": "medicalInvestigationRequired",
-            "description": null,
+            "description": "Flag to require medical investigations",
             "args": [],
             "type": {
               "kind": "SCALAR",
@@ -22444,6 +23172,90 @@
                 "name": "InstantEmployeeType",
                 "ofType": null
               }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "UpdateContactDetailsInput",
+        "description": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "phone",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "addressFirstLine",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "addressSecondLine",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "addressCity",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "addressPostCode",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "UpdateDetailsResponse",
+        "description": null,
+        "fields": [
+          {
+            "name": "updated",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
+              "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -25235,9 +26047,7 @@
       {
         "name": "specifiedBy",
         "description": "Exposes a URL that specifies the behaviour of this scalar.",
-        "locations": [
-          "SCALAR"
-        ],
+        "locations": ["SCALAR"],
         "args": [
           {
             "name": "url",
@@ -25258,11 +26068,7 @@
       {
         "name": "skip",
         "description": "Directs the executor to skip this field or fragment when the `if` argument is true.",
-        "locations": [
-          "FIELD",
-          "FRAGMENT_SPREAD",
-          "INLINE_FRAGMENT"
-        ],
+        "locations": ["FIELD", "FRAGMENT_SPREAD", "INLINE_FRAGMENT"],
         "args": [
           {
             "name": "if",
@@ -25283,11 +26089,7 @@
       {
         "name": "include",
         "description": "Directs the executor to include this field or fragment only when the `if` argument is true.",
-        "locations": [
-          "FIELD",
-          "FRAGMENT_SPREAD",
-          "INLINE_FRAGMENT"
-        ],
+        "locations": ["FIELD", "FRAGMENT_SPREAD", "INLINE_FRAGMENT"],
         "args": [
           {
             "name": "if",
@@ -25308,10 +26110,7 @@
       {
         "name": "deprecated",
         "description": "Marks an element of a GraphQL schema as no longer supported.",
-        "locations": [
-          "FIELD_DEFINITION",
-          "ENUM_VALUE"
-        ],
+        "locations": ["FIELD_DEFINITION", "ENUM_VALUE"],
         "args": [
           {
             "name": "reason",
@@ -25328,11 +26127,7 @@
       {
         "name": "client",
         "description": "Direct the client to resolve this field locally, either from the cache or local resolvers.",
-        "locations": [
-          "FIELD",
-          "FRAGMENT_DEFINITION",
-          "INLINE_FRAGMENT"
-        ],
+        "locations": ["FIELD", "FRAGMENT_DEFINITION", "INLINE_FRAGMENT"],
         "args": [
           {
             "name": "always",
@@ -25349,9 +26144,7 @@
       {
         "name": "export",
         "description": "Export this locally resolved field as a variable to be used in the remainder of this query. See\nhttps://www.apollographql.com/docs/react/essentials/local-state/#using-client-fields-as-variables",
-        "locations": [
-          "FIELD"
-        ],
+        "locations": ["FIELD"],
         "args": [
           {
             "name": "as",
@@ -25372,9 +26165,7 @@
       {
         "name": "connection",
         "description": "Specify a custom store key for this result. See\nhttps://www.apollographql.com/docs/react/advanced/caching/#the-connection-directive",
-        "locations": [
-          "FIELD"
-        ],
+        "locations": ["FIELD"],
         "args": [
           {
             "name": "key",
