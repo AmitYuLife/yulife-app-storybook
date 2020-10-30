@@ -4,6 +4,8 @@ import { Text, CheckBox } from "@atoms";
 import { Style, Colours } from "@styles";
 import { useBackHandler } from "../../../../../../../services/hooks/useBackHandler";
 import { ScrollableLayout } from "@molecules";
+import { useDispatch } from "react-redux";
+import { updateFIBAnswerValue } from "../../../../../../../redux/product/product.actions";
 
 interface Props {
   onClose: () => void;
@@ -15,6 +17,24 @@ function _FibGPConsentScreen(props: Props) {
   const { onNavigateBack, onContinue, onClose } = props;
 
   const [consent, setConsent] = useState("no");
+  const [previewTestResults, setPreviewTestResults] = useState("no");
+  const dispatch = useDispatch();
+
+  const handleOnContinue = useCallback(() => {
+    dispatch(
+      updateFIBAnswerValue({
+        key: "medicalConsent",
+        value: consent === "yes",
+      })
+    );
+    dispatch(
+      updateFIBAnswerValue({
+        key: "previewMedicalTests",
+        value: previewTestResults === "yes",
+      })
+    );
+    return onContinue();
+  }, [previewTestResults, consent, dispatch, onContinue]);
 
   const backHandler = useCallback(() => {
     onNavigateBack();
@@ -25,12 +45,12 @@ function _FibGPConsentScreen(props: Props) {
 
   return (
     <ScrollableLayout
-      buttonAction={onContinue}
+      buttonAction={handleOnContinue}
       onLeftIconPress={onNavigateBack}
       buttonTitle="Continue"
       heading={"GP Report"}
       onRightIconPress={onClose}
-      isButtonDisabled={false}
+      isButtonDisabled={consent === "no"}
     >
       <View style={styles.viewWrapper}>
         <View style={styles.headerWrapper}>
@@ -60,12 +80,22 @@ function _FibGPConsentScreen(props: Props) {
           <CheckBox
             checked={consent === "yes"}
             value="no"
-            label="Tick here if you want to see your medical report before your doctor sends it to us."
+            label="Tick here to consent to your doctor supplying us with a medical report"
             onChange={() => setConsent(consent === "yes" ? "no" : "yes")}
           />
-        </View>
-        <View>
-          <Text style={styles.text}>By continuing you consent to your doctor supplying us with a medical report.</Text>
+          <View style={styles.secondCheckBoxWrapper}>
+            <CheckBox
+              checked={previewTestResults === "yes"}
+              value="no"
+              label="Tick here if you want to see your medical report before your doctor sends it to us."
+              onChange={() => setPreviewTestResults(previewTestResults === "yes" ? "no" : "yes")}
+            />
+            <View style={styles.disclaimerTextWrapper}>
+              <Text style={StyleSheet.flatten([styles.text, styles.disclaimerTextStyle])}>
+                Please note by checking this option you will be invited to your GP surgery to review your report.
+              </Text>
+            </View>
+          </View>
         </View>
       </View>
     </ScrollableLayout>
@@ -100,6 +130,14 @@ const styles = StyleSheet.create({
   checkBoxWrapper: {
     marginRight: 32,
     paddingTop: 23,
-    marginBottom: 24,
   } as ViewStyle,
+  secondCheckBoxWrapper: {
+    paddingTop: 23,
+  } as ViewStyle,
+  disclaimerTextWrapper: {
+    marginLeft: 44,
+  } as ViewStyle,
+  disclaimerTextStyle: {
+    fontSize: 12,
+  } as TextStyle,
 });
