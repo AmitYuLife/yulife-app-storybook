@@ -81,7 +81,7 @@ const FibContactDetailsContainer = memo(function (props: Props) {
     updateFibAnswer("use_personal_email", "No");
   };
 
-  const onSecondButton = async () => {
+  const onSecondButton = () => {
     updateFibAnswer("use_personal_email", "Yes");
   };
 
