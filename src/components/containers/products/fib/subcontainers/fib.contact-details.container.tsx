@@ -1,5 +1,5 @@
 import React, { memo, useState, useCallback } from "react";
-import { FibLocalNavigation } from "../fib.types";
+import { FibLocalNavigation, FIB_FEEDBACK_FORM } from "../fib.types";
 import { FibContactDetailsScreen } from "@components/screens/products/fib/underwriting-journey/fib.contact-details.screen";
 import { FibConfirmScreen } from "../../../../screens/products/fib/underwriting-journey/fib.confirm-email.screen";
 import { connect } from "react-redux";
@@ -32,7 +32,7 @@ type Props = IContactDetailsContainer & ConnectedDispatch & ConnectedState;
 type ScreenId = "ContactDetails" | "FindAddress" | "ConfirmEmailAddress";
 
 const FibContactDetailsContainer = memo(function (props: Props) {
-  const { updateFibAnswer, updateContactDetails, contactDetailsFromStore } = props;
+  const { updateFibAnswer, updateContactDetails, contactDetailsFromStore, navigation } = props;
   const [screenId, setScreenId] = useState<ScreenId>("ContactDetails");
   const [contactDetails, setContactDetails] = useState<ContactDetails>(
     contactDetailsFromStore || {
@@ -79,10 +79,14 @@ const FibContactDetailsContainer = memo(function (props: Props) {
 
   const onFirstButton = () => {
     updateFibAnswer("use_personal_email", "No");
+    // TODO: Go to next step
+    navigation.push(FIB_FEEDBACK_FORM);
   };
 
   const onSecondButton = () => {
     updateFibAnswer("use_personal_email", "Yes");
+    // TODO: Go to next step
+    navigation.push(FIB_FEEDBACK_FORM);
   };
 
   const onAddressSelected = (address: Address_findUserAddress) => {
