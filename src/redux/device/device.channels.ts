@@ -1,8 +1,9 @@
 import { Platform } from "react-native";
 import PushNotificationIOS from "@react-native-community/push-notification-ios";
-import Config from "react-native-config";
 import PushNotification from "react-native-push-notification";
 import { eventChannel } from "redux-saga";
+import Logger from "@services/logging/logger";
+import { YULIFE_PN_CHANNEL_NAME, YULIFE_PN_CHANNEL_ID } from "@services/constants";
 
 export function createPushNotificationsChannel() {
   return eventChannel((emitter) => {
@@ -14,9 +15,27 @@ export function createPushNotificationsChannel() {
       onRegister: (result) => {
         emitter(result);
       },
+      onRegistrationError: (err) => {
+        Logger.logMixpanelError(`Push notification error: ${err?.message}`, {});
+      },
+      permissions: {
+        alert: true,
+        badge: true,
+        sound: true,
+      },
       requestPermissions: Platform.OS === "android",
-      senderID: Config.INTERCOM_GCM_SENDER_ID,
     });
+
+    PushNotification.createChannel(
+      {
+        channelId: YULIFE_PN_CHANNEL_ID, // (required)
+        channelName: YULIFE_PN_CHANNEL_NAME, // (required)
+        soundName: "default", // (optional) See `soundName` parameter of `localNotification` function
+        importance: 4, // (optional) default: 4. Int value of the Android notification importance
+        vibrate: true, // (optional) default: true. Creates the default vibration patten if true.
+      },
+      (created) => emitter({ created })
+    );
 
     // PushNotification.popInitialNotification((notification) => {
     //     console.log("@DEVICE CHANNEL ... ", notification);
