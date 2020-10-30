@@ -5,14 +5,12 @@ import { connect } from "react-redux";
 import { Text } from "@atoms";
 import { FibLocalNavigation, FIB_EDIT_SALARY, FIB_BROWSE } from "../fib.types";
 import { FibCustomPercentage } from "@components/screens/products/fib/custom-percentage/fib.custom-percentage";
-import {
-  GetLifeInsuranceToUpsData,
-  GetLifeInsuranceTopUpsVars,
-  GQL_GET_LIFE_INSURANCE_TOP_UPS,
-} from "@graphql/products";
+import { GQL_QUERY_GET_TOP_UPS_ESTIMATE_COST } from "@graphql/products";
 import { getFIBState } from "@redux/product/product.selectors";
 import { IReduxState } from "@redux/_core/reducers";
 import { formatPrice } from "../fib.helpers";
+import { GetTopUpsEstimateCost, GetTopUpsEstimateCostVariables } from "../../../../../graphql/_core/schema";
+import { CoverType, ProductCode } from "../../../../../graphql/_core/schema/globalTypes";
 
 type ConnectedState = ReturnType<typeof mapStateToProps>;
 
@@ -28,14 +26,19 @@ const percentageRange = Array.from({ length: range[1] - range[0] + 1 }).map((_, 
 const FibCustomPercentageContainer = memo(function (props: FibCustomPercentageContainerProps) {
   const { navigation, salary } = props;
   const [activeIndex, setActiveIndex] = useState(0);
-  const { loading, error, data } = useQuery<GetLifeInsuranceToUpsData, GetLifeInsuranceTopUpsVars>(
-    GQL_GET_LIFE_INSURANCE_TOP_UPS,
+
+  const { loading, error, data } = useQuery<GetTopUpsEstimateCost, GetTopUpsEstimateCostVariables>(
+    GQL_QUERY_GET_TOP_UPS_ESTIMATE_COST,
     {
       variables: {
-        grossSalary: salary,
-        coverType: "custom",
-        customCoverPercentage: percentageRange[activeIndex],
+        input: {
+          grossSalary: salary,
+          coverType: "custom" as CoverType,
+          customCoverPercentage: percentageRange[activeIndex],
+        },
+        product: ProductCode.YULFIB,
       },
+      fetchPolicy: "network-only",
     }
   );
 
@@ -67,7 +70,7 @@ const FibCustomPercentageContainer = memo(function (props: FibCustomPercentageCo
       loadingEstimatedCost={loading}
       onNavigateForward={handleNavigateForward}
       salaryPercentageRange={percentageRange}
-      estimatedCost={formatPrice(data?.getLifeInsuranceTopUps.estimatedCost || 0)}
+      estimatedCost={formatPrice(data?.getTopUpsEstimateCost?.estimatedCost || 0)}
       onNavigateToEditSalary={handleNavigateToEditSalary}
     />
   );

@@ -5,12 +5,7 @@ import { connect } from "react-redux";
 import { View, Linking, Platform } from "react-native";
 import { Text } from "@atoms";
 import { FibBrowseScreen, FibCustomCoverScreen } from "@screens";
-import {
-  GQL_GET_LIFE_INSURANCE_TOP_UPS,
-  GetLifeInsuranceToUpsData,
-  GetLifeInsuranceTopUpsVars,
-} from "@graphql/products";
-
+import { GQL_QUERY_GET_TOP_UPS_ESTIMATE_COST } from "@graphql/products";
 import {
   FIB_EDIT_SALARY,
   FIB_FAQ,
@@ -20,7 +15,7 @@ import {
 } from "../fib.types";
 import fibFaqItems from "../data/faq-fib-data";
 import fibDocumentsItems from "../data/documents-data";
-import { GetYulifer } from "@graphql/_core/schema";
+import { GetTopUpsEstimateCost, GetTopUpsEstimateCostVariables, GetYulifer } from "@graphql/_core/schema";
 import { GQL_QUERY_GET_YULIFER } from "@graphql/yuscreen";
 import { Package } from "@components/screens/products/fib/browse-packages/fib.browse.types";
 import { getFIBState } from "@redux/product/product.selectors";
@@ -30,7 +25,7 @@ import { getUserDateOfBirth } from "@redux/user/user.selectors";
 import { calculatePayoutCalculatorItems, packages, useCover, calculatePayoutAmount } from "../fib.helpers";
 import { handleOpenWebView } from "@navigation/utils";
 import Logger from "@services/logging/logger";
-
+import { CoverType, ProductCode } from "../../../../../graphql/_core/schema/globalTypes";
 interface IFibContainer {
   navigation: FibLocalNavigation;
   selectFaq: (fabId: string) => void;
@@ -52,7 +47,6 @@ const documents: IFaq[] = fibDocumentsItems.map((document) => ({
   },
   iconSvgXml: document.iconSvgXml,
 }));
-
 const FibBrowseContainer = memo(function (props: IFibContainer & ReturnType<typeof mapStateToProps>) {
   const { navigation, selectFaq, grossSalary, selectedPackage, userDateOfBirth } = props;
   const { isCustomCover, customCoverPercentage = null } = navigation.currentRoute.passProps;
@@ -79,24 +73,27 @@ const FibBrowseContainer = memo(function (props: IFibContainer & ReturnType<type
 
   const topUpsQueryVariables = {
     grossSalary,
-    coverType: selectedCoverType,
+    coverType: selectedCoverType as CoverType,
     customCoverPercentage,
   };
 
-  const { loading, error, data } = useQuery<GetLifeInsuranceToUpsData, GetLifeInsuranceTopUpsVars>(
-    GQL_GET_LIFE_INSURANCE_TOP_UPS,
+  const { loading, error, data } = useQuery<GetTopUpsEstimateCost, GetTopUpsEstimateCostVariables>(
+    GQL_QUERY_GET_TOP_UPS_ESTIMATE_COST,
     {
-      variables: topUpsQueryVariables,
+      variables: {
+        input: topUpsQueryVariables,
+        product: ProductCode.YULFIB,
+      },
       fetchPolicy: "network-only",
     }
   );
 
   const { data: yuliferData } = useQuery<GetYulifer>(GQL_QUERY_GET_YULIFER);
   const payoutAmount = calculatePayoutAmount({
-    term: data?.getLifeInsuranceTopUps.term,
+    term: data?.getTopUpsEstimateCost?.term,
     deceaseAgeMonth,
     deceaseAgeYear,
-    sumAssured: data?.getLifeInsuranceTopUps.sumAssured,
+    sumAssured: data?.getTopUpsEstimateCost?.sumAssured,
     dateOfBirth: userDateOfBirth,
   });
 
@@ -119,19 +116,19 @@ const FibBrowseContainer = memo(function (props: IFibContainer & ReturnType<type
   }
 
   const monthlyAmountProtected = Math.round(
-    ((data?.getLifeInsuranceTopUps?.sumAssured / (data?.getLifeInsuranceTopUps?.term * 12)) * 100) / 100
+    ((data?.getTopUpsEstimateCost?.sumAssured / (data?.getTopUpsEstimateCost?.term * 12)) * 100) / 100
   );
 
   const packageDetails: Package = {
-    newEarnRate: data?.getLifeInsuranceTopUps.newEarnRate || 0,
+    newEarnRate: data?.getTopUpsEstimateCost?.newEarnRate || 0,
     payoutAmount: Math.round(payoutAmount),
-    earnRate: data?.getLifeInsuranceTopUps.earnRate || 0,
-    salaryPercentageCovered: data?.getLifeInsuranceTopUps.salaryPercentageCovered || 0,
-    estimatedCost: data?.getLifeInsuranceTopUps.estimatedCost || 0,
+    earnRate: data?.getTopUpsEstimateCost?.earnRate || 0,
+    salaryPercentageCovered: data?.getTopUpsEstimateCost?.salaryPercentageCovered || 0,
+    estimatedCost: data?.getTopUpsEstimateCost?.estimatedCost || 0,
     id: selectedCoverType,
     label: packages[selectedCoverType].label,
-    descriptionHeading: data?.getLifeInsuranceTopUps.descriptionHeading || "",
-    term: data?.getLifeInsuranceTopUps.term,
+    descriptionHeading: data?.getTopUpsEstimateCost?.descriptionHeading || "",
+    term: data?.getTopUpsEstimateCost?.term,
     monthlyAmountProtected,
   };
 
