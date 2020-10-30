@@ -56,6 +56,7 @@ export * from "./UpdateLeaderboardConsent";
 export * from "./UpdateMemberConsent";
 export * from "./UpsertOnboardingChallenge";
 export * from "./UpsertPassiveChallenge";
+export * from "./UpsertTopUpsProductEntity";
 export * from "./User";
 export * from "./YuAvatar";
 export * from "./YuAvatarColor";
