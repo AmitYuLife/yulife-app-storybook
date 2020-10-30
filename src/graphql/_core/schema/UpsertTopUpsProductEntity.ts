@@ -14,6 +14,9 @@ export interface UpsertTopUpsProductEntity_upsertTopUpsProductEntity {
 }
 
 export interface UpsertTopUpsProductEntity {
+  /**
+   * Creates or updates a product entity for customers
+   */
   upsertTopUpsProductEntity: UpsertTopUpsProductEntity_upsertTopUpsProductEntity | null;
 }
 
