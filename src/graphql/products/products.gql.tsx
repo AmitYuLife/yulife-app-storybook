@@ -1,11 +1,6 @@
 import gql from "graphql-tag";
-import { GetLifeInsuranceTopUps_getLifeInsuranceTopUps } from "@graphql/_core/schema";
 import { GQL_FRAGMENT_AVATAR_REMOTE_FILES } from "../_fragments/avatarRemoteFiles.gql";
 import { PackageId } from "@components/screens/products/fib/fib.helper";
-
-export interface GetLifeInsuranceToUpsData {
-  getLifeInsuranceTopUps: GetLifeInsuranceTopUps_getLifeInsuranceTopUps;
-}
 
 export type LifeInsuranceUserAnswers = {
   questionId: string;
