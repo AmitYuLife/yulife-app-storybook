@@ -71,6 +71,8 @@ export interface FIBStore {
   actualCost: number;
   medicalInvestigationRequired: boolean;
   rejected: boolean;
+  productEntityId: string;
+  latestQuoteId: string;
 }
 
 export interface UpdateFIBStoreAction<T> {

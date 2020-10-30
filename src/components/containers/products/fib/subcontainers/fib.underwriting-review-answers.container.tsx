@@ -13,15 +13,12 @@ import { getFIBState, getReviewAnswers } from "../../../../../redux/product/prod
 import { Navigation } from "react-native-navigation";
 import { ROUTES, MODALS } from "../../../../../navigation/constants";
 import { updateFIBValue } from "@redux/product/product.actions";
-import {
-  GetLifeInsuranceTopUpsVars,
-  GetLifeInsuranceToUpsData,
-  GQL_GET_LIFE_INSURANCE_TOP_UPS,
-  LifeInsuranceUserAnswers,
-} from "@graphql/products";
-import { useQuery } from "@apollo/react-hooks";
+import { GQL_MUTATION_CREATE_TOP_UPS_QUOTE, LifeInsuranceUserAnswers } from "@graphql/products";
+import { useMutation } from "@apollo/react-hooks";
 import moment from "moment";
 import { InfoTypes } from "./fib.info.container";
+import { CreateTopUpsQuote, CreateTopUpsQuoteVariables } from "../../../../../graphql/_core/schema";
+import { CoverType, CreateTopUpsQuoteInput, ProductCode } from "../../../../../graphql/_core/schema/globalTypes";
 
 type ConnectedState = ReturnType<typeof mapStateToProps>;
 
@@ -42,20 +39,35 @@ const FibUnderwritingReviewAnswersContainer = memo(function (props: Props) {
     } as LifeInsuranceUserAnswers;
   });
 
-  const queryVariables: GetLifeInsuranceTopUpsVars = {
+  const queryVariables: CreateTopUpsQuoteInput = {
     grossSalary: fibState.salary,
-    coverType: fibState.selectedPackage,
+    coverType: fibState.selectedPackage as CoverType,
     userAnswers,
   };
 
-  // Request only actual cost?
-  const { data } = useQuery<GetLifeInsuranceToUpsData, GetLifeInsuranceTopUpsVars>(GQL_GET_LIFE_INSURANCE_TOP_UPS, {
-    variables: queryVariables,
-    fetchPolicy: "network-only",
-  });
+  const [createFibQuote, { data }] = useMutation<CreateTopUpsQuote, CreateTopUpsQuoteVariables>(
+    GQL_MUTATION_CREATE_TOP_UPS_QUOTE
+  );
 
   const onSubmitButton = async () => {
-    const rejected = data?.getLifeInsuranceTopUps?.rejected;
+    await createFibQuote({
+      variables: {
+        input: queryVariables,
+        product: ProductCode.YULFIB,
+      },
+    });
+
+    const quoteId = data?.createTopUpsQuote?.id;
+    if (quoteId) {
+      dispatch(
+        updateFIBValue({
+          key: "latestQuoteId",
+          value: quoteId,
+        })
+      );
+    }
+
+    const rejected = data?.createTopUpsQuote?.rejected;
     if (rejected) {
       dispatch(updateRejectedValue());
       return navigation.push(FIB_INFO, { type: "Rejected" } as { type: InfoTypes });
@@ -65,12 +77,12 @@ const FibUnderwritingReviewAnswersContainer = memo(function (props: Props) {
     dispatch(
       updateFIBValue({
         key: "medicalInvestigationRequired",
-        value: data?.getLifeInsuranceTopUps?.medicalInvestigationRequired,
+        value: data?.createTopUpsQuote?.medicalInvestigationRequired,
       })
     );
     const priceChangedFromAPI =
-      !!Number(fibState.actualCost) && !!Number(data?.getLifeInsuranceTopUps?.actualCost)
-        ? fibState.actualCost !== data.getLifeInsuranceTopUps.actualCost
+      !!Number(fibState.actualCost) && !!Number(data?.createTopUpsQuote?.actualCost)
+        ? fibState.actualCost !== data.createTopUpsQuote?.actualCost
         : false;
     if (fibState.hasPriceChanged || priceChangedFromAPI) {
       await Navigation.showModal({
@@ -80,7 +92,7 @@ const FibUnderwritingReviewAnswersContainer = memo(function (props: Props) {
           passProps: {
             onPress: async () => {
               dispatch(updateFIBValue({ key: "hasPriceChanged", value: false }));
-              dispatch(updateFIBValue({ key: "actualCost", value: data.getLifeInsuranceTopUps.actualCost }));
+              dispatch(updateFIBValue({ key: "actualCost", value: data.createTopUpsQuote?.actualCost }));
               await Navigation.dismissModal(MODALS.generic);
               navigation.push(FIB_CONFIRM_PACKAGES);
             },

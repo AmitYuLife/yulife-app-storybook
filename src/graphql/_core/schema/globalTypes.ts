@@ -61,6 +61,10 @@ export enum PassiveChallengeType {
   STEPS = "STEPS",
 }
 
+export enum ProductCode {
+  YULFIB = "YULFIB",
+}
+
 export interface AnswerInput {
   key: string;
   value: string;
@@ -79,6 +83,19 @@ export interface ChallengePayload {
   value?: number | null;
 }
 
+export interface CreateTopUpsQuoteInput {
+  grossSalary?: number | null;
+  coverType?: CoverType | null;
+  customCoverPercentage?: number | null;
+  userAnswers?: (LifeInsuranceTopUpsUserAnswers | null)[] | null;
+  productEntityId?: string | null;
+}
+
+export interface GetTopUpsQuoteInput {
+  customerProductEntityId?: string | null;
+  quoteId?: string | null;
+}
+
 export interface LifeInsuranceTopUpsUserAnswers {
   questionId?: string | null;
   value?: string | null;
@@ -94,6 +111,12 @@ export interface MobileConsentInput {
 
 export interface ProductMetadata {
   avios?: AviosMetadata | null;
+}
+
+export interface TopUpsEstimateCostInput {
+  grossSalary?: number | null;
+  coverType?: CoverType | null;
+  customCoverPercentage?: number | null;
 }
 
 export interface UserAvatarInput {

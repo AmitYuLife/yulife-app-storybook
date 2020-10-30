@@ -56,6 +56,8 @@ export const initialState: IProductStore = {
     actualCost: 0,
     medicalInvestigationRequired: false,
     rejected: false,
+    productEntityId: "",
+    latestQuoteId: "",
   },
 };
 
