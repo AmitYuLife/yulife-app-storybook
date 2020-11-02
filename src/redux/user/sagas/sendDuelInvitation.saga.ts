@@ -2,13 +2,14 @@ import moment from "moment";
 import { ROUTES, MODALS } from "@navigation/constants";
 import { pathOr, DATE_FORMAT_WITH_TZ } from "@services/utils";
 import { Navigation } from "react-native-navigation";
-import { call, select, take } from "redux-saga/effects";
+import { call, select, take, delay } from "redux-saga/effects";
 import { UPDATE_NAVIGATION_STATE } from "../../app/app.actions";
 import { getRouteState } from "../../app/app.selectors";
 import { getUserSuccess } from "../user.actions";
 import updateDuelWithClient from "../../../graphql/duels/updateDuel.gql";
 import { querySteps } from "@services/fitkit/fitkit.helpers";
 import { ChallengePayload } from "@graphql/_core/schema/globalTypes";
+import { getUserFeatures } from "../user.selectors";
 
 export default function* sendDuelInvitation({ payload }: ReturnType<typeof getUserSuccess>) {
   const currentRoute = yield select(getRouteState);
@@ -17,19 +18,22 @@ export default function* sendDuelInvitation({ payload }: ReturnType<typeof getUs
   const userId = getCurrentUser.id;
 
   const duels: typeof payload.getDuels = pathOr(payload.getDuels, []);
+  const features = yield select(getUserFeatures);
+  const isDuelsEnabled = features.showDuels;
 
   // do not show leaderboard invite on onboarding reward screen
   if (currentRoute === ROUTES.onboardingSignUpReward) {
     yield take(UPDATE_NAVIGATION_STATE);
   }
 
-  if (duels && duels.length > 0 && currentRoute !== MODALS.duelInvite) {
+  if (duels && duels.length > 0 && isDuelsEnabled && currentRoute !== MODALS.duelInvite) {
     const invitation = duels.find((duel) => {
       const invitee = duel.opponents[1];
       return duel.status === "pending" && invitee.userId === userId && invitee.status === "pending";
     });
 
     if (invitation) {
+      yield delay(1000);
       yield call(() =>
         Navigation.showModal({
           component: {
@@ -59,8 +63,6 @@ export default function* sendDuelInvitation({ payload }: ReturnType<typeof getUs
             return acc + challengeScore;
           }, 0);
           yield call(updateDuelWithClient, id, score);
-
-          return true;
         }
       }
     }

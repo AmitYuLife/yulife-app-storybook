@@ -8,13 +8,11 @@ interface IProps {
 }
 
 const DuelsHeading = ({ label, inactive }: IProps) => {
-  const style = [styles.heading];
-
-  if (inactive) {
-    style.push(styles.inactive);
-  }
-
-  return <Text style={style}>{label}</Text>;
+  return (
+    <Text style={styles.heading} bold={!inactive}>
+      {label}
+    </Text>
+  );
 };
 
 export default DuelsHeading;
