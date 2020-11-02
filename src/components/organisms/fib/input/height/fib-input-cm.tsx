@@ -35,7 +35,6 @@ const _FibInputCm = (props: ConnectedProps) => {
 
   return (
     <InputField
-      autoFocus={true}
       value={height.cm}
       onChangeText={validateCm}
       maxLength={3}

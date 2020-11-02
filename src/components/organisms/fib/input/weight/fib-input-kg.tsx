@@ -33,7 +33,6 @@ const _FibInputKg = (props: ConnectedProps) => {
 
   return (
     <InputField
-      autoFocus={true}
       value={weight.kg}
       onChangeText={validateKg}
       maxLength={3}

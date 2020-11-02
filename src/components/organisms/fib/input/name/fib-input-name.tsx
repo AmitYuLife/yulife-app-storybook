@@ -21,7 +21,6 @@ const _FibInputName = (props: FibInputNameProps) => {
             setInputFirstName(value);
           }}
           value={inputFirstName}
-          autoFocus={true}
         />
       </View>
       <View style={styles.inputWrapper}>

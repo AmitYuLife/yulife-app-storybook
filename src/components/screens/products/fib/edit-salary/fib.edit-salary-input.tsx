@@ -60,7 +60,6 @@ export function FibEditSalaryInput(props: Props) {
             autoCapitalize="none"
             autoCompleteType="off"
             autoCorrect={false}
-            autoFocus={true}
             maxLength={6}
             keyboardType="numeric"
           />

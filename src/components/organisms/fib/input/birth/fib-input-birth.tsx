@@ -97,7 +97,6 @@ const _FibInputBirth = (props: ConnectedProps) => {
     <View style={styles.wrapper}>
       <InputField
         forwardRef={dayRef}
-        autoFocus={true}
         value={birthDay}
         onChangeText={validateDay}
         maxLength={2}
@@ -107,7 +106,6 @@ const _FibInputBirth = (props: ConnectedProps) => {
         width={36}
       />
       <InputField
-        autoFocus={false}
         forwardRef={monthRef}
         value={birthMonth}
         onChangeText={validateMonth}
@@ -119,7 +117,6 @@ const _FibInputBirth = (props: ConnectedProps) => {
         width={48}
       />
       <InputField
-        autoFocus={false}
         forwardRef={yearRef}
         isLarge={true}
         value={birthYear}

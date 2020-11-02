@@ -67,7 +67,6 @@ const _FibInputFt = (props: ConnectedProps) => {
   return (
     <View style={styles.ftWrapper}>
       <InputField
-        autoFocus={true}
         value={height.ft}
         onChangeText={validateFt}
         maxLength={1}
@@ -78,7 +77,6 @@ const _FibInputFt = (props: ConnectedProps) => {
         width={24}
       />
       <InputField
-        autoFocus={false}
         onBackSpace={handleBackspaceInch}
         value={height.in}
         onChangeText={validateIn}

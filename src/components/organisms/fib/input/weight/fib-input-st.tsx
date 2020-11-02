@@ -68,7 +68,6 @@ const _FibInputSt = (props: ConnectedProps) => {
   return (
     <View style={styles.stoneWrapper}>
       <InputField
-        autoFocus={true}
         value={weight.st}
         onChangeText={validateSt}
         maxLength={2}
@@ -79,7 +78,6 @@ const _FibInputSt = (props: ConnectedProps) => {
         width={40}
       />
       <InputField
-        autoFocus={false}
         onBackSpace={handleBackspaceInch}
         value={weight.lb}
         onChangeText={validateLb}

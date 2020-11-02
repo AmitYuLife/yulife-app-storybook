@@ -37,12 +37,7 @@ function _FibGPPracticeSearchScreen(props: Props) {
       <View style={styles.wrapper}>
         <FibTitle title="Please enter the name of your local medical practise below." />
         <View>
-          <TextField
-            onChange={(val) => setPracticeName(val)}
-            placeholder=""
-            inputTextStyle={styles.text}
-            autoFocus={true}
-          />
+          <TextField onChange={(val) => setPracticeName(val)} placeholder="" inputTextStyle={styles.text} />
         </View>
       </View>
     </ScrollableLayout>

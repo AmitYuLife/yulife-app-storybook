@@ -68,7 +68,6 @@ class TextInput extends React.PureComponent<IProps> {
               value={getValue({ value, type })}
               autoCapitalize="none"
               autoCorrect={false}
-              autoFocus={false}
               placeholder={getPlaceholder({ type, placeholder })}
               style={getStyle({ type })}
               underlineColorAndroid="transparent"
