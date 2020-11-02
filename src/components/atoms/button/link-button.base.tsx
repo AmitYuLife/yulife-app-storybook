@@ -105,7 +105,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontFamily: Style.FONT_FAMILY_PRIMARY_BOLD,
-    fontSize: 16,
+    fontSize: Style.adjust(16),
   } as TextStyle,
   flex: {
     justifyContent: "center",
