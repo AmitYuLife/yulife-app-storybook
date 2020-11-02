@@ -1,12 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 import * as Anim from "react-native-animatable";
-import { StyleSheet, TextInput, View, Animated, TouchableOpacity } from "react-native";
+import { StyleSheet, TextInput, View, Animated } from "react-native";
 import { Colours } from "@styles/index";
 import { Text } from "@atoms";
 import { numberWithCommas } from "@services/utils";
 import { FIB_SALARY_INPUT, FIB_SALARY_INPUT_VALUE } from "@ids";
 import { DETOX_ENABLED } from "@services/socket";
 import { styles } from "./fib.edit-salary.styles";
+import { TouchableOpacityWithDelay } from "@components/molecules";
 
 interface Props {
   value: number;
@@ -23,6 +24,7 @@ function getDisplayValue(val: number) {
 
 export function FibEditSalaryInput(props: Props) {
   const { value, onChange } = props;
+  const inputRef = useRef<TextInput>(null);
   const [isFocused, setFocused] = useState(false);
   const [isActive, setActive] = useState(true);
 
@@ -43,14 +45,19 @@ export function FibEditSalaryInput(props: Props) {
     return onChange(castedValue);
   }
 
+  const handleFocus = useCallback(() => {
+    inputRef.current.focus();
+  }, [inputRef]);
+
   return (
     <View style={styles.wrapper} testID={FIB_SALARY_INPUT_VALUE(value)}>
       <View style={styles.blingWrapper}>
         <Text style={styles.bling}>£</Text>
       </View>
-      <TouchableOpacity style={styles.pressable} testID={FIB_SALARY_INPUT}>
+      <TouchableOpacityWithDelay onPress={handleFocus} style={styles.pressable} testID={FIB_SALARY_INPUT}>
         <View style={styles.inputWrapper}>
           <TextInput
+            ref={inputRef}
             onBlur={() => setFocused(false)}
             onFocus={() => setFocused(true)}
             value={value.toString()}
@@ -63,19 +70,19 @@ export function FibEditSalaryInput(props: Props) {
             maxLength={6}
             keyboardType="numeric"
           />
-          <Shadow value={value} />
+          <Shadow isFocused={isFocused} value={value} />
         </View>
         <Underline active={isActive} />
-      </TouchableOpacity>
+      </TouchableOpacityWithDelay>
     </View>
   );
 }
 
-function Shadow({ value }: { value: number }) {
+function Shadow({ value, isFocused }: { value: number; isFocused: boolean }) {
   return (
     <View pointerEvents="none" style={styles.shadowWrapper}>
       <Text style={styles.shadowLabel}>{getDisplayValue(value)}</Text>
-      <Blinker />
+      {!isFocused ? null : <Blinker />}
     </View>
   );
 }
