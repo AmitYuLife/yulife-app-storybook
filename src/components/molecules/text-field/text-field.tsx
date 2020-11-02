@@ -87,7 +87,7 @@ export default function TextField(props: Props) {
     });
 
     const translateYAnim = Animated.timing(placeholderTranslateY, {
-      toValue: activeMaterial ? -24 : 0,
+      toValue: activeMaterial ? -32 : 0,
       useNativeDriver: true,
       duration: 100,
     });
