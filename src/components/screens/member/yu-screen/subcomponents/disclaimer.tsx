@@ -6,8 +6,9 @@ function _Disclaimer() {
   return (
     <View style={styles.wrapper}>
       <Text style={styles.sectionTitle}>
-        These are all the benefits held by your company, but may differ for some YuLifers. We are working to show your
-        personal benefits shortly, but if you have any questions in the meantime please reach out to your HR Manager.
+        These are the benefits held by all the employees at your company, but you may have a different category of
+        cover. We are working to show your personal benefits shortly, but if you have any questions in the meantime
+        please reach out to your HR Manager.
       </Text>
     </View>
   );
@@ -16,12 +17,15 @@ function _Disclaimer() {
 export const Disclaimer = memo(_Disclaimer, () => true);
 
 const styles = StyleSheet.create({
-  wrapper: { marginBottom: 18, marginHorizontal: Style.adjust(30) },
+  wrapper: {
+    marginBottom: Style.adjust(24),
+    marginTop: Style.adjust(16),
+    marginHorizontal: Style.adjust(30),
+  },
   sectionTitle: {
-    marginTop: 5,
     color: "#6E6E70",
-    fontSize: 10,
-    lineHeight: 15,
+    fontSize: Style.adjust(10),
+    lineHeight: Style.adjust(15),
     letterSpacing: 0.25,
   } as TextStyle,
 });
