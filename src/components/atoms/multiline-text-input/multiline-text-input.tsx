@@ -36,7 +36,6 @@ function _MultilineTextInput(props: IProps) {
         numberOfLines={numberOfLines}
         autoCorrect={false}
         multiline={true}
-        autoFocus={false}
         style={styles.input}
         placeholder={placeholder}
         underlineColorAndroid="transparent"
