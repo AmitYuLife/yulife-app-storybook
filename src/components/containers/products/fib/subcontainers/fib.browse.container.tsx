@@ -26,6 +26,7 @@ import { calculatePayoutCalculatorItems, packages, useCover, calculatePayoutAmou
 import { handleOpenWebView } from "@navigation/utils";
 import Logger from "@services/logging/logger";
 import { CoverType, ProductCode } from "../../../../../graphql/_core/schema/globalTypes";
+
 interface IFibContainer {
   navigation: FibLocalNavigation;
   selectFaq: (fabId: string) => void;
@@ -47,10 +48,13 @@ const documents: IFaq[] = fibDocumentsItems.map((document) => ({
   },
   iconSvgXml: document.iconSvgXml,
 }));
-const FibBrowseContainer = memo(function (props: IFibContainer & ReturnType<typeof mapStateToProps>) {
+
+const _FibBrowseContainer = memo(function (props: IFibContainer & ReturnType<typeof mapStateToProps>) {
   const { navigation, selectFaq, grossSalary, selectedPackage, userDateOfBirth } = props;
   const { isCustomCover, customCoverPercentage = null } = navigation.currentRoute.passProps;
-  const [selectedCoverType, selectCoverType] = useCover(isCustomCover ? "custom" : selectedPackage || "common");
+  const [selectedCoverType, selectCoverType] = useCover(
+    isCustomCover ? CoverType.custom : selectedPackage || CoverType.common
+  );
   const [deceaseAgeIndexYear, setDeceaseAgeIndexYear] = useState(0);
   const [deceaseAgeIndexMonth, setDeceaseAgeIndexMonth] = useState(0);
   const [payoutEstimatorItems, setPayoutEstimatorItems] = useState(
@@ -84,7 +88,7 @@ const FibBrowseContainer = memo(function (props: IFibContainer & ReturnType<type
         input: topUpsQueryVariables,
         product: ProductCode.YULFIB,
       },
-      fetchPolicy: "network-only",
+      fetchPolicy: "cache-first",
     }
   );
 
@@ -178,4 +182,6 @@ const mapStateToProps = (state: IReduxState) => ({
   selectedPackage: getFIBState(state).selectedPackage,
 });
 
-export default connect<ReturnType<typeof mapStateToProps>>(mapStateToProps)(FibBrowseContainer);
+const FibBrowseContainer = connect<ReturnType<typeof mapStateToProps>>(mapStateToProps)(_FibBrowseContainer);
+
+export default FibBrowseContainer;
