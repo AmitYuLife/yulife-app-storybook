@@ -80,7 +80,7 @@ function _FibGPConsentScreen(props: Props) {
           <CheckBox
             checked={consent === "yes"}
             value="no"
-            label="Tick here to consent to your doctor supplying us with a medical report"
+            label="Tick here to consent to your doctor supplying us with a medical report."
             onChange={() => setConsent(consent === "yes" ? "no" : "yes")}
           />
           <View style={styles.secondCheckBoxWrapper}>
@@ -91,7 +91,7 @@ function _FibGPConsentScreen(props: Props) {
               onChange={() => setPreviewTestResults(previewTestResults === "yes" ? "no" : "yes")}
             />
             <View style={styles.disclaimerTextWrapper}>
-              <Text style={StyleSheet.flatten([styles.text, styles.disclaimerTextStyle])}>
+              <Text style={styles.disclaimerTextStyle}>
                 Please note by checking this option you will be invited to your GP surgery to review your report.
               </Text>
             </View>
@@ -138,6 +138,10 @@ const styles = StyleSheet.create({
     marginLeft: 44,
   } as ViewStyle,
   disclaimerTextStyle: {
+    fontFamily: Style.FONT_FAMILY_PRIMARY,
     fontSize: 12,
+    lineHeight: 20,
+    letterSpacing: 0.8,
+    color: Colours.neutral.n800,
   } as TextStyle,
 });
