@@ -68,17 +68,9 @@ function GenericHeading(props: IGenericHeadingProps) {
 function LeftIcon({ icon }: { icon: IGenericHeadingProps["leftIcon"] }) {
   switch (icon) {
     case "BACK":
-      return (
-        <View>
-          <Back />
-        </View>
-      );
+      return <Back />;
     case "CLOSE":
-      return (
-        <View>
-          <CloseSvg />
-        </View>
-      );
+      return <CloseSvg />;
     default:
       return null;
   }
