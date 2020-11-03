@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { FibUnderwritingJourneyLayout } from "../../../layouts/fib.underwriting-journey-layout";
 import { ScrollView, StyleSheet, ViewStyle } from "react-native";
-import TitleWithIcon from "@atoms/fib/title-with-icon/title-with-icon";
 import FibTitle from "@atoms/fib/title/title";
 import { FinancialQuestionsForm, defaultFormValue, FormValue } from "./financial-questions-form";
 import { Style } from "@styles";
@@ -48,7 +47,6 @@ export function _FinancialQuestionsFormScreen(props: Props) {
       progressBar={props.progressBar}
     >
       <ScrollView style={styles.wrapper} keyboardShouldPersistTaps="handled">
-        <TitleWithIcon icon={data.icon} title={data.title} />
         <FibTitle title={data.question} />
         <FinancialQuestionsForm
           setFormValidState={setFormValidState}
