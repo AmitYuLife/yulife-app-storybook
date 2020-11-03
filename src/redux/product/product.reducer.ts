@@ -39,7 +39,7 @@ export const initialState: IProductStore = {
         st: "",
         lb: "",
       },
-      weeklyAlcoholDrinks: 0,
+      weeklyAlcoholDrinks: "",
       birthDay: `${moment().date()}`,
       birthMonth: `${moment().month() + 1}`,
       birthYear: `${moment().year()}`,

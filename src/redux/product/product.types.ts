@@ -50,7 +50,7 @@ export interface FibAnswers {
   contactDetails: ContactDetails;
   height: Height;
   weight: Weight;
-  weeklyAlcoholDrinks: number;
+  weeklyAlcoholDrinks: string;
   birthDay: string;
   birthMonth: string;
   birthYear: string;
