@@ -37,7 +37,7 @@ const SHADOW_ALLOWANCE = 4;
 const SHADOW_DIFF = 3;
 
 export function ButtonBase(props: IProps) {
-  const { onPress, height = 50, borderRadius = props.height / 2, delay, disableAnimation } = props;
+  const { onPress, height = Style.adjust(50), borderRadius = props.height / 2, delay, disableAnimation } = props;
   const [translateYAnimation] = useState(new Animated.Value(0));
   const { isPressedIn, handlePressIn, handlePressOut, handlePress } = usePressedInWithDelay({ onPress, delay });
 
@@ -152,7 +152,7 @@ const styles = StyleSheet.create({
   } as ViewStyle,
   title: {
     fontFamily: Style.FONT_FAMILY_PRIMARY_BOLD,
-    fontSize: 16,
+    fontSize: Style.adjust(16),
   } as TextStyle,
   shadow: {
     width: "100%",

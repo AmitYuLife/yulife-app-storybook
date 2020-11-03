@@ -20,6 +20,8 @@ interface IProps {
   show?: boolean;
 }
 
+const DEFAULT_HEIGHT = Style.adjust(53);
+
 function Button(props: IProps) {
   const {
     label,
@@ -50,7 +52,7 @@ function Button(props: IProps) {
           backgroundColor={Colours.darkHotPink}
           shadowColor={Colours.darkHotPinkShadow}
           testID={testID}
-          height={53}
+          height={DEFAULT_HEIGHT}
           isLoading={isLoading}
           disabled={disabled}
           title={label}
@@ -68,7 +70,7 @@ function Button(props: IProps) {
     return (
       <View style={StyleSheet.flatten([styles.wrapper, wrapperStyle, widthStyles])}>
         <ButtonBase
-          height={53}
+          height={DEFAULT_HEIGHT}
           disabled={disabled}
           testID={testID}
           isLoading={isLoading}
@@ -87,7 +89,7 @@ function Button(props: IProps) {
   return (
     <View style={StyleSheet.flatten([styles.wrapper, wrapperStyle])}>
       <LinkButtonBase
-        height={53}
+        height={DEFAULT_HEIGHT}
         disabled={disabled}
         testID={testID}
         title={label}
