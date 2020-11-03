@@ -10,20 +10,38 @@ import { CreateTopUpsQuoteInput, ProductCode } from "./globalTypes";
 // ====================================================
 
 export interface CreateTopUpsQuote_createTopUpsQuote {
+  /**
+   * Quote id
+   */
   id: string | null;
+  /**
+   * Customer product entity id
+   */
   productEntityId: string | null;
   actualCost: number | null;
   sumAssured: number | null;
   earnRate: number | null;
   salaryPercentageCovered: number | null;
   newEarnRate: number | null;
+  /**
+   * String that describes different covers for top ups
+   */
   descriptionHeading: string | null;
   term: number | null;
+  /**
+   * Flag to determinate is the user is eligible for insurance
+   */
   rejected: boolean | null;
+  /**
+   * Flag to require medical investigations
+   */
   medicalInvestigationRequired: boolean | null;
 }
 
 export interface CreateTopUpsQuote {
+  /**
+   * Creates a new quote for top ups
+   */
   createTopUpsQuote: CreateTopUpsQuote_createTopUpsQuote | null;
 }
 
