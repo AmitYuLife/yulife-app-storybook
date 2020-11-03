@@ -1,7 +1,6 @@
 import React from "react";
 import { FibUnderwritingJourneyLayout } from "../../../layouts/fib.underwriting-journey-layout";
 import { ScrollView, StyleSheet, ViewStyle } from "react-native";
-import TitleWithIcon from "@atoms/fib/title-with-icon/title-with-icon";
 import FibTitle from "@atoms/fib/title/title";
 import { Style } from "@styles";
 import { FinancialQuestionsCoverList } from "./financial-questions-cover-list";
@@ -33,7 +32,6 @@ function _FinancialQuestionsCoverListScreen(props: Props) {
       onPreviousQuestion={onPreviousButtonPressed}
     >
       <ScrollView style={styles.wrapper}>
-        <TitleWithIcon icon={data.icon} title={data.title} />
         <FibTitle title={data.question} />
         <FinancialQuestionsCoverList existingCovers={existingCovers} onAddCover={onSecondButtonPressed} />
       </ScrollView>
