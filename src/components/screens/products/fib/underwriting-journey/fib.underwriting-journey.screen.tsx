@@ -91,7 +91,7 @@ const _FibUnderwritingJourneyScreen = memo(function (props: IFibUnderwritingJour
       hideHeadingBorder={!props.progressBar.isHidden}
     >
       <ScrollView showsVerticalScrollIndicator={false} keyboardShouldPersistTaps="handled" style={styles.wrapper}>
-        <FibTitle title={data.question} isLarge={data.isTitleLarge} />
+        <FibTitle title={data.question} />
         {data.children?.map((child: UnderwritingJourneyChild, i) => {
           const key = data.id + i;
           return renderChildren(child, key, {
