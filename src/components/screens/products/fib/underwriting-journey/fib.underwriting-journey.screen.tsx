@@ -20,10 +20,10 @@ import { FibInputName } from "@components/organisms/fib/input/name/fib-input-nam
 import { FibInputWeight } from "@components/organisms/fib/input/weight/fib-input-weight";
 import { getCustomComponent } from "./getCustomComponent";
 import MedicalChipList from "./subcomponents/medical-chip-list/medical-chip-list";
-import { AlcoholIntakeInput } from "@components/organisms/fib/input/alcohol/alcohol-intake-input";
 import { CopyBirthday } from "@organisms/fib/copy/birthday";
 import { CopyFullName } from "@organisms/fib/copy/full-name";
 import RadioInput from "../feedback-form/radio-input";
+import { FibInputAlcohol } from "@organisms/fib/input/alcohol/fib-input-alcohol";
 
 export interface IFibUnderwritingJourneyScreenProps {
   onNavigateBack: () => void;
@@ -138,7 +138,7 @@ function renderChildren(child: UnderwritingJourneyChild, key: string, extraProps
       />
     ),
     chiplist: <MedicalChipList items={child.chips} columns={2} key={key} />,
-    inputAlcohol: <AlcoholIntakeInput key={key} />,
+    inputAlcohol: <FibInputAlcohol key={key} />,
     copyBirthday: <CopyBirthday key={key} />,
     copyFullName: <CopyFullName key={key} />,
     radioInput: (

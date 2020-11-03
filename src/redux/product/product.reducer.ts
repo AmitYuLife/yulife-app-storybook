@@ -39,7 +39,7 @@ export const initialState: IProductStore = {
         st: "",
         lb: "",
       },
-      weeklyAlcoholDrinks: 0,
+      weeklyAlcoholDrinks: "",
       birthDay: "",
       birthMonth: "",
       birthYear: "",

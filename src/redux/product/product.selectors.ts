@@ -31,7 +31,18 @@ export const getFIBState = (state: IReduxState): FIBStore => {
   return state.product.fib;
 };
 
+export const getWeeklyAlcoholDrinks = (state: IReduxState): string => {
+  const alcohol = state.product.fib.answers.weeklyAlcoholDrinks;
+
+  if (!alcohol || typeof alcohol !== "string") {
+    return "";
+  }
+
+  return alcohol;
+};
+
 const DATE_FORMAT = "Do MMMM YYYY";
+
 export const getBirthday = (state: IReduxState): string => {
   const now = moment();
   const { birthDay, birthMonth, birthYear } = state.product.fib.answers;
@@ -54,6 +65,7 @@ export interface IAnswer {
   questionId: string;
   incomplete: boolean;
 }
+
 export const getReviewAnswers = (state: IReduxState): any => {
   const answers: IAnswer[] = [];
 
@@ -137,7 +149,7 @@ export const getReviewAnswers = (state: IReduxState): any => {
 
     if (item.id === FIB_LIFESTYLE_ALCOHOL_SCREEN_ID) {
       const units = state.product.fib.answers.weeklyAlcoholDrinks;
-      const unitOrUnits = units === 0 || units > 1 ? "units" : "unit";
+      const unitOrUnits = Number(units) === 0 || Number(units) > 1 ? "units" : "unit";
       icon = item.icon;
       title = item.title;
       answer = `${units} ${unitOrUnits}`;
