@@ -18,19 +18,21 @@ export default function TitleWithIcon(props: ITitleProps) {
   );
 }
 
+const TITLE_FONT_SIZE = Style.adjust(12);
+
 const styles = StyleSheet.create({
   wrapper: {
-    marginTop: 24,
-    height: 24,
+    marginTop: Style.adjust(24),
+    height: Style.adjust(24),
     flexDirection: "row",
     alignItems: "center",
   } as ViewStyle,
   title: {
-    fontSize: 12,
+    fontSize: TITLE_FONT_SIZE,
+    lineHeight: TITLE_FONT_SIZE * 1.2,
     fontFamily: Style.FONT_FAMILY_PRIMARY_BOLD,
-    lineHeight: 16,
     letterSpacing: 1,
     color: "#838385",
-    marginLeft: 8,
+    marginLeft: Style.adjust(8),
   } as TextStyle,
 });
