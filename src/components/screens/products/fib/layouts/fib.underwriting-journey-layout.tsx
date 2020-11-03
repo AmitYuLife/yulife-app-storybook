@@ -1,8 +1,9 @@
 import React from "react";
-import { Platform, StyleSheet, KeyboardAvoidingView, SafeAreaView } from "react-native";
+import { Platform, StyleSheet, KeyboardAvoidingView, SafeAreaView, View, ViewStyle } from "react-native";
 import { GenericHeading } from "@atoms";
 import { FIBProgressBar } from "@components/organisms";
 import { Style } from "@styles";
+import { YugiSvg } from "./assets/yugi-svg";
 
 interface Props {
   heading: string;
@@ -32,6 +33,9 @@ export function FibUnderwritingJourneyLayout(props: Props) {
         />
         {progressBar.isHidden ? null : <FIBProgressBar />}
         {children}
+        <View style={styles.yugiWrapper}>
+          <YugiSvg />
+        </View>
       </SafeAreaView>
     </KeyboardAvoidingView>
   );
@@ -44,4 +48,9 @@ const styles = StyleSheet.create({
     height: "100%",
     backgroundColor: "white",
   },
+  yugiWrapper: {
+    position: "absolute",
+    top: Style.adjust(120),
+    right: 0,
+  } as ViewStyle,
 });

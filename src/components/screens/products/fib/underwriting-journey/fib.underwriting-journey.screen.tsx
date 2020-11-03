@@ -1,7 +1,6 @@
 import React, { memo } from "react";
 import { StyleSheet, ScrollView, ViewStyle, View } from "react-native";
 import { useBackHandler } from "../../../../../services/hooks/useBackHandler";
-import TitleWithIcon from "@atoms/fib/title-with-icon/title-with-icon";
 import FibTitle from "@atoms/fib/title/title";
 import Footer from "./subcomponents/footer/footer";
 import { FibUnderwritingJourneyLayout } from "../layouts/fib.underwriting-journey-layout";
@@ -92,7 +91,6 @@ const _FibUnderwritingJourneyScreen = memo(function (props: IFibUnderwritingJour
       hideHeadingBorder={!props.progressBar.isHidden}
     >
       <ScrollView showsVerticalScrollIndicator={false} keyboardShouldPersistTaps="handled" style={styles.wrapper}>
-        <TitleWithIcon icon={data.icon} title={data.title} />
         <FibTitle title={data.question} isLarge={data.isTitleLarge} />
         {data.children?.map((child: UnderwritingJourneyChild, i) => {
           const key = data.id + i;
