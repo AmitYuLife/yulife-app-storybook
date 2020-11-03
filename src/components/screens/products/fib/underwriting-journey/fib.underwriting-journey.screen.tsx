@@ -1,5 +1,5 @@
-import React, { memo } from "react";
-import { StyleSheet, ScrollView, ViewStyle, View } from "react-native";
+import React, { memo, useRef, useEffect, useCallback } from "react";
+import { StyleSheet, ScrollView, ViewStyle, View, Keyboard } from "react-native";
 import { useBackHandler } from "../../../../../services/hooks/useBackHandler";
 import FibTitle from "@atoms/fib/title/title";
 import Footer from "./subcomponents/footer/footer";
@@ -62,15 +62,43 @@ const _FibUnderwritingJourneyScreen = memo(function (props: IFibUnderwritingJour
     radioInputValue,
     setRadioInputValue,
   } = props;
+  const scrollViewRef = useRef(null as ScrollView);
+
+  function handleResetScroll() {
+    if (scrollViewRef?.current) {
+      scrollViewRef.current.scrollTo({ y: 0 });
+    }
+  }
+
+  const handleScrollToKeyboardOffset = useCallback(() => {
+    if (scrollViewRef?.current) {
+      scrollViewRef.current.scrollTo({ y: 200 });
+    }
+  }, [scrollViewRef]);
+
+  useEffect(() => {
+    Keyboard.addListener("keyboardDidShow", handleScrollToKeyboardOffset);
+    return () => {
+      Keyboard.removeListener("keyboardDidShow", handleScrollToKeyboardOffset);
+    };
+  }, [handleScrollToKeyboardOffset]);
 
   const backHandler = React.useCallback(() => {
     onPreviousButtonPressed();
+    handleResetScroll();
     return true;
   }, [onPreviousButtonPressed]);
 
   useBackHandler(backHandler);
 
-  const firstButton = { action: onFirstButtonPressed, label: data.firstButton.label, disabled: disableFirstButton };
+  const firstButton = {
+    action: () => {
+      onFirstButtonPressed();
+      handleResetScroll();
+    },
+    label: data.firstButton.label,
+    disabled: disableFirstButton,
+  };
 
   const secondButton = !onSecondButtonPressed
     ? null
@@ -90,7 +118,12 @@ const _FibUnderwritingJourneyScreen = memo(function (props: IFibUnderwritingJour
       onPreviousQuestion={onPreviousButtonPressed}
       hideHeadingBorder={!props.progressBar.isHidden}
     >
-      <ScrollView showsVerticalScrollIndicator={false} keyboardShouldPersistTaps="handled" style={styles.wrapper}>
+      <ScrollView
+        ref={scrollViewRef}
+        showsVerticalScrollIndicator={false}
+        keyboardShouldPersistTaps="handled"
+        style={styles.wrapper}
+      >
         <FibTitle title={data.question} />
         {data.children?.map((child: UnderwritingJourneyChild, i) => {
           const key = data.id + i;
