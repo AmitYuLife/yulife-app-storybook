@@ -20,6 +20,7 @@ interface Props {
 
 export function FibUnderwritingJourneyLayout(props: Props) {
   const { heading, onClose, onPreviousQuestion = null, children, progressBar, hideHeadingBorder } = props;
+
   return (
     <KeyboardAvoidingView behavior={Platform.select({ ios: "padding", android: null })} style={styles.wrapper}>
       <SafeAreaView style={{ height: "100%", flex: 1 }}>
@@ -50,7 +51,7 @@ const styles = StyleSheet.create({
   },
   yugiWrapper: {
     position: "absolute",
-    top: Style.adjust(120),
+    top: Style.adjust(80),
     right: 0,
   } as ViewStyle,
 });
