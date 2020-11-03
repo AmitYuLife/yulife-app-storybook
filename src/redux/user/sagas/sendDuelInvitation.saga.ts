@@ -21,12 +21,14 @@ export default function* sendDuelInvitation({ payload }: ReturnType<typeof getUs
   const features = yield select(getUserFeatures);
   const isDuelsEnabled = features.showDuels;
 
-  // do not show leaderboard invite on onboarding reward screen
+  // do not show duel invite on onboarding reward screen
   if (currentRoute === ROUTES.onboardingSignUpReward) {
     yield take(UPDATE_NAVIGATION_STATE);
   }
 
-  if (duels && duels.length > 0 && isDuelsEnabled && currentRoute !== MODALS.duelInvite) {
+  const whitelist = [ROUTES.dailySteps, ROUTES.quests, ROUTES.yuScreen, ROUTES.leaderboards, ROUTES.rewards];
+
+  if (duels && duels.length > 0 && isDuelsEnabled && whitelist.includes(currentRoute)) {
     const invitation = duels.find((duel) => {
       const invitee = duel.opponents[1];
       return duel.status === "pending" && invitee.userId === userId && invitee.status === "pending";
