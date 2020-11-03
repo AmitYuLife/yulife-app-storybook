@@ -42,8 +42,8 @@ interface IMediaQuery {
  * @param defaultValue Value to return if there are no truthy conditions found from the first argument
  */
 export const select = (combinations: IMediaQuery[], defaultValue?: number) => {
-  if (!combinations.length || !Array.isArray(combinations)) {
-    throw new Error("invalid input");
+  if (!combinations?.length || !Array.isArray(combinations)) {
+    return defaultValue ?? 0;
   }
 
   for (let i = 0; i < combinations.length; i += 1) {

@@ -62,16 +62,12 @@ describe("media queries", () => {
     expect(result).toBe(6);
   });
 
-  it("should throw an error if given empty array", () => {
-    expect(() => {
-      media.select([]);
-    }).toThrow();
+  it("should return 0 when given empty array and no default value", () => {
+    expect(media.select([])).toBe(0);
   });
 
-  it("should throw an error if not given an array", () => {
-    expect(() => {
-      media.select(null);
-    }).toThrow();
+  it("should throw an error if not given an array and no default value", () => {
+    expect(media.select(null)).toBe(0);
   });
 
   it("should return the right value for a given device dimension", () => {
