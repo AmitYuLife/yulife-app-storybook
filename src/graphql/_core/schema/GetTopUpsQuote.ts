@@ -13,7 +13,7 @@ export interface GetTopUpsQuote_getTopUpsQuote {
   /**
    * Quote id
    */
-  id: string | null;
+  quoteId: string | null;
   /**
    * Customer product entity id
    */

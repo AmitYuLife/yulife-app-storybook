@@ -13,7 +13,7 @@ export interface CreateTopUpsQuote_createTopUpsQuote {
   /**
    * Quote id
    */
-  id: string | null;
+  quoteId: string | null;
   /**
    * Customer product entity id
    */

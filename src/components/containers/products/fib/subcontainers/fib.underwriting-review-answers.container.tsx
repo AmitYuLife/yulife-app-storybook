@@ -57,7 +57,7 @@ const FibUnderwritingReviewAnswersContainer = memo(function (props: Props) {
       },
     });
 
-    const quoteId = data?.createTopUpsQuote?.id;
+    const quoteId = data?.createTopUpsQuote?.quoteId;
     if (quoteId) {
       dispatch(
         updateFIBValue({
