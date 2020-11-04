@@ -21,6 +21,7 @@ interface Props {
   maxLength?: number;
   inputTextStyle?: TextStyle;
   autoFocus?: boolean;
+  onFocus?: () => void;
 }
 
 function stripPunctuation(text: string, type: Type) {
@@ -62,6 +63,7 @@ export default function TextField(props: Props) {
     showError,
     errorMessage,
     maxLength,
+    onFocus,
   } = props;
   const [isFocused, setFocused] = useState(autoFocus);
   const [placeholderScale] = useState(new Animated.Value(1));
@@ -125,7 +127,13 @@ export default function TextField(props: Props) {
 
             setFocused(false);
           }}
-          onFocus={() => setFocused(true)}
+          onFocus={() => {
+            setFocused(true);
+
+            if (onFocus) {
+              onFocus();
+            }
+          }}
           onChangeText={(text: string) => {
             const strippedPunctuation = stripPunctuation(text, type);
             onChange(strippedPunctuation);

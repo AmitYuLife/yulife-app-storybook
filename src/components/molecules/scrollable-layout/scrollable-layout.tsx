@@ -1,4 +1,4 @@
-import React from "react";
+import React, { RefObject } from "react";
 import { Colours, Style } from "@styles";
 import { SafeAreaView, ScrollView, View, ViewStyle, StyleSheet, Platform, KeyboardAvoidingView } from "react-native";
 import { GenericHeading } from "@atoms";
@@ -21,6 +21,7 @@ interface Props {
   secondButtonLabel?: string;
   hideFirstButton?: boolean;
   isInlineCTA?: boolean;
+  scrollViewForwardRef?: RefObject<ScrollView>;
 }
 
 export function ScrollableLayout(props: Props) {
@@ -39,6 +40,7 @@ export function ScrollableLayout(props: Props) {
     hideFirstButton = false,
     secondButtonLabel,
     secondButtonAction,
+    scrollViewForwardRef,
   } = props;
 
   const contentContainerStyle: ViewStyle = shouldCenterContent
@@ -55,7 +57,11 @@ export function ScrollableLayout(props: Props) {
           onLeftIconPress={onLeftIconPress}
           onRightIconPress={onRightIconPress}
         />
-        <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={contentContainerStyle}>
+        <ScrollView
+          ref={scrollViewForwardRef}
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={contentContainerStyle}
+        >
           <View style={styles.padTop} />
           {children}
           <View style={styles.padBot} />
