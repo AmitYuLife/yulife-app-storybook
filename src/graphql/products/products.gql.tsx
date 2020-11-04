@@ -31,7 +31,7 @@ export const GQL_QUERY_GET_TOP_UPS_ESTIMATE_COST = gql`
 export const GQL_MUTATION_CREATE_TOP_UPS_QUOTE = gql`
   mutation CreateTopUpsQuote($input: CreateTopUpsQuoteInput!, $product: ProductCode!) {
     createTopUpsQuote(input: $input, product: $product) {
-      id
+      quoteId
       productEntityId
       actualCost
       sumAssured
@@ -49,7 +49,7 @@ export const GQL_MUTATION_CREATE_TOP_UPS_QUOTE = gql`
 export const GQL_QUERY_GET_TOP_UPS_QUOTE = gql`
   query GetTopUpsQuote($input: GetTopUpsQuoteInput!, $product: ProductCode!) {
     getTopUpsQuote(input: $input, product: $product) {
-      id
+      quoteId
       productEntityId
       actualCost
       sumAssured
