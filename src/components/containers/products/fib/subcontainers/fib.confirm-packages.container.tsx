@@ -126,11 +126,11 @@ const FibConfirmPackagesContainer = memo(function (props: FibConfirmPackagesCont
       );
     }
 
-    if (data?.getTopUpsQuote?.id) {
+    if (data?.getTopUpsQuote?.quoteId) {
       dispatch(
         updateFIBValue({
           key: "latestQuoteId",
-          value: data?.getTopUpsQuote?.id,
+          value: data.getTopUpsQuote.quoteId,
         })
       );
     }
@@ -217,7 +217,7 @@ const FibConfirmPackagesContainer = memo(function (props: FibConfirmPackagesCont
   }, [navigation]);
 
   const handleOnContinue = useCallback(async () => {
-    const latestQuoteId = createQuoteData?.createTopUpsQuote?.id;
+    const latestQuoteId = createQuoteData?.createTopUpsQuote?.quoteId;
     if (latestQuoteId) {
       dispatch(
         updateFIBValue({
