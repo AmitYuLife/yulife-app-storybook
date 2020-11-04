@@ -1,14 +1,14 @@
 import React, { memo, useState, useCallback } from "react";
-import { FibLocalNavigation } from "../fib.types";
-import { useDispatch } from "react-redux";
+import { FibLocalNavigation, FIB_FEEDBACK_FORM } from "../fib.types";
+import { connect, useDispatch } from "react-redux";
 import { Navigation } from "react-native-navigation";
 import { ROUTES } from "@navigation/constants";
 import { FibGPConsentScreen } from "@components/screens/products/fib/underwriting-journey/subcomponents/gp-details/fib.gp-details.screen";
 import { updateFIBAnswerValue } from "@redux/product/product.actions";
 import { FibGPPracticeSearchScreen } from "@components/screens/products/fib/underwriting-journey/subcomponents/gp-details/fib.gp-practice-search";
 import { useBackHandler } from "@services/hooks/useBackHandler";
-import { useLazyQuery } from "@apollo/react-hooks";
-import { GQL_GET_MEDICAL_PRACTICES } from "@graphql/products/products.gql";
+import { useLazyQuery, useMutation } from "@apollo/react-hooks";
+import { GQL_GET_MEDICAL_PRACTICES, GQL_MUTATION_UPDATE_CUSTOMER_GP_DETAILS } from "@graphql/products/products.gql";
 import { FibGPPracticesResultsScreen } from "@components/screens/products/fib/underwriting-journey/subcomponents/gp-details/fib.gp-practices-results";
 import {
   MedicalPractices,
@@ -17,11 +17,16 @@ import {
   MedicalPractices_getMedicalPractices_practicioners,
 } from "@graphql/_core/schema/MedicalPractices";
 import { FibGPConfirmScreen } from "@components/screens/products/fib/underwriting-journey/subcomponents/gp-details/fib.gp-confirm.screen";
-import { Alert } from "react-native";
 import {
   FibGPManuallyInputScreen,
   GPInputForm,
 } from "@components/screens/products/fib/underwriting-journey/subcomponents/gp-details/fib.gp-manually-input.screen";
+import {
+  UpdateCustomerGPDetails,
+  UpdateCustomerGPDetailsVariables,
+} from "../../../../../graphql/_core/schema/UpdateCustomerGPDetails";
+import { IReduxState } from "../../../../../redux/_core/reducers";
+import { getFIBState } from "../../../../../redux/product/product.selectors";
 
 interface IFibGPDetailsContainerProps {
   navigation: FibLocalNavigation;
@@ -35,8 +40,8 @@ type GPView =
   | "medical_manually_input"
   | "medical_confirm";
 
-const FibGPDetailsContainer = memo(function (props: IFibGPDetailsContainerProps) {
-  const { navigation } = props;
+const FibGPDetailsContainer = memo(function (props: IFibGPDetailsContainerProps & ReturnType<typeof mapStateToProps>) {
+  const { navigation, fibAnswers } = props;
   const [gpView, setGPView] = useState<GPView>("consent");
   const [gpMedicalPracticeName, setGPMedicalPracticeName] = useState<string>("");
   const [searchGP, setSearchGP] = useState<boolean>(false);
@@ -48,6 +53,11 @@ const FibGPDetailsContainer = memo(function (props: IFibGPDetailsContainerProps)
   const [selectedMedicalPractice, setSelectedMedicalPractice] = useState<MedicalPractices_getMedicalPractices>(null);
   const [selectedGP, setSelectedGP] = useState<MedicalPractices_getMedicalPractices_practicioners>(null);
   const [manualInput, setManualInput] = useState<GPInputForm>(null);
+
+  // TODO: Handle errors
+  const [updateCustomerGPDetailsMutation] = useMutation<UpdateCustomerGPDetails, UpdateCustomerGPDetailsVariables>(
+    GQL_MUTATION_UPDATE_CUSTOMER_GP_DETAILS
+  );
 
   const dispatch = useDispatch();
 
@@ -93,9 +103,31 @@ const FibGPDetailsContainer = memo(function (props: IFibGPDetailsContainerProps)
     setGPView("medical_manually_input");
   }, []);
 
-  const onConfirm = useCallback(() => {
-    Alert.alert("All right!");
-  }, []);
+  const onConfirm = useCallback(async () => {
+    const gpDetails = manualInput
+      ? manualInput
+      : {
+          practiceName: selectedMedicalPractice.name,
+          practiceAddress: `${selectedMedicalPractice.address1 ?? ""}\n\n${selectedMedicalPractice.address2 ?? ""}\n\n${
+            selectedMedicalPractice.address3 ?? ""
+          }`,
+          practiceTown: `${selectedMedicalPractice.address4 ?? ""}\n\n${selectedMedicalPractice.address5 ?? ""}`,
+          practicePostCode: selectedMedicalPractice.postCode,
+          gpName: selectedGP.name,
+        };
+    await updateCustomerGPDetailsMutation({
+      variables: {
+        gpDetails,
+        options: {
+          requestMSSTests: true,
+          medicalConsent: fibAnswers.medicalConsent,
+          previewMedicalTests: fibAnswers.previewMedicalTests,
+        },
+      },
+    });
+    // TODO: Redirect to confirmation declaration
+    navigation.push(FIB_FEEDBACK_FORM);
+  }, [manualInput, selectedGP, selectedMedicalPractice, updateCustomerGPDetailsMutation, navigation, fibAnswers]);
 
   const handleOnClose = useCallback(async () => {
     await Navigation.popTo(ROUTES.yuScreen);
@@ -226,4 +258,8 @@ const FibGPDetailsContainer = memo(function (props: IFibGPDetailsContainerProps)
   }
 });
 
-export default FibGPDetailsContainer;
+const mapStateToProps = (state: IReduxState) => ({
+  fibAnswers: getFIBState(state).answers,
+});
+
+export default connect<ReturnType<typeof mapStateToProps>>(mapStateToProps)(FibGPDetailsContainer);

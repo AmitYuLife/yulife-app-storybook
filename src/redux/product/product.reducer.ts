@@ -45,6 +45,8 @@ export const initialState: IProductStore = {
       birthYear: `${moment().year()}`,
       firstName: "",
       lastName: "",
+      medicalConsent: false,
+      previewMedicalTests: false,
     },
     salary: 0,
     selectedPackage: "common",

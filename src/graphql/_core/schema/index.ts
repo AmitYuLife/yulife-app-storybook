@@ -53,6 +53,7 @@ export * from "./SubmitFeedbackForm";
 export * from "./SubmitUnity";
 export * from "./UpdateActiveChallenge";
 export * from "./UpdateContactDetails";
+export * from "./UpdateCustomerGPDetails";
 export * from "./UpdateDuel";
 export * from "./UpdateLeaderboardConsent";
 export * from "./UpdateMemberConsent";

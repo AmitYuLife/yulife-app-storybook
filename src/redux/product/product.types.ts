@@ -56,6 +56,8 @@ export interface FibAnswers {
   birthYear: string;
   firstName: string;
   lastName: string;
+  medicalConsent: boolean;
+  previewMedicalTests: boolean;
   [questionId: string]: any;
 }
 

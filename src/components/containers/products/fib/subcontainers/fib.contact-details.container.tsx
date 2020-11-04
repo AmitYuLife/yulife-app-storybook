@@ -1,5 +1,5 @@
 import React, { memo, useState, useCallback } from "react";
-import { FibLocalNavigation, FIB_FEEDBACK_FORM } from "../fib.types";
+import { FibLocalNavigation, FIB_GP_DETAILS } from "../fib.types";
 import { FibContactDetailsScreen } from "@components/screens/products/fib/underwriting-journey/fib.contact-details.screen";
 import { FibConfirmScreen } from "../../../../screens/products/fib/underwriting-journey/fib.confirm-email.screen";
 import { connect } from "react-redux";
@@ -79,14 +79,12 @@ const FibContactDetailsContainer = memo(function (props: Props) {
 
   const onFirstButton = () => {
     updateFibAnswer("use_personal_email", "No");
-    // TODO: Go to next step
-    navigation.push(FIB_FEEDBACK_FORM);
+    navigation.push(FIB_GP_DETAILS);
   };
 
   const onSecondButton = () => {
     updateFibAnswer("use_personal_email", "Yes");
-    // TODO: Go to next step
-    navigation.push(FIB_FEEDBACK_FORM);
+    navigation.push(FIB_GP_DETAILS);
   };
 
   const onAddressSelected = (address: Address_findUserAddress) => {
