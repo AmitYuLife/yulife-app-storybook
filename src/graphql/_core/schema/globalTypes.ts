@@ -146,6 +146,20 @@ export interface UpdateContactDetailsInput {
   addressPostCode?: string | null;
 }
 
+export interface UpdateCustomerGPDetailsInput {
+  practiceName?: string | null;
+  practiceAddress?: string | null;
+  practiceTown?: string | null;
+  practicePostCode?: string | null;
+  gpName?: string | null;
+}
+
+export interface UpdateCustomerGPDetailsOptions {
+  requestMSSTests?: boolean | null;
+  medicalConsent?: boolean | null;
+  previewMedicalTests?: boolean | null;
+}
+
 export interface UserAvatarInput {
   head?: UserAvatarInputPart | null;
   eyes?: UserAvatarInputPart | null;
