@@ -117,6 +117,7 @@ const _FibUnderwritingJourneyScreen = memo(function (props: IFibUnderwritingJour
       progressBar={props.progressBar}
       onPreviousQuestion={onPreviousButtonPressed}
       hideHeadingBorder={!props.progressBar.isHidden}
+      yugi="default"
     >
       <ScrollView
         ref={scrollViewRef}
