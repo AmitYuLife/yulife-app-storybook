@@ -7,6 +7,71 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.8.0] - 2020-11-05
+
+### Features
+
+- Feature: FIB GP details
+
+### Bugfixes
+
+- (origin/bugfix/tp-548) Rename customer quote id for quoteId
+- (origin/bugfix/tweak-scroll-settings) Tweak scroll, move yugi up
+- Bugfix: Cleanup underwriting question and titles
+- Bugfix: Fix salary input focus handler
+- Bugfix TE-623: Duels fixes
+- Bugfix TE-623: UI changes
+- Bugfix TE-623: Fix rotate animation on android
+- (origin/bugfix/annual-salary-fib-copy, bugfix/annual-salary-fib-copy) Fix annual salary text, add new style for rejection header
+
+### Tasks
+
+- Task: TP-537 Update gp details using mutation
+- Task TP-551: Handle GP Details scroll to focused InputField
+- Task TP-540: Replace alcohol slider with text input
+- Task TP-537 TP-547: Add yugi, remove TitleWithIcon from UnderwritingJourney
+- Task TP-545: Remove autofocus
+- Task TP-513: Change YuScreen disclaimer copy
+- (origin/task/tp-544-adjust-text-size) Adjust text size
+- (origin/task/tp-546-adjust-button-size) Adjust button size
+- (origin/task/tp-543-adjust-topbar-size) Adjust FIB Top Bar size
+- (origin/task/tp-523-browse-packages-loading) Use cache-first to avoid loading already loaded values
+- (origin/task/media-no-error) Change media util to default to 0 instead of throwing an error
+- Task: Add function for media queries
+- (origin/task/tp-536) Redirect after confirm packages to address details
+- Task: TP-535 Use topups new queries and mutation
+- (origin/task/update-lib-react-native-device-info) Update react-native-device-info
+- (origin/task/refresh-leaderboards-on-app-active) Refresh leaderboards on app active
+
+### Chores
+
+- Chore: Upgrade notifications and move to com.yulife.develop for dev / uat builds
+
+### Extra
+
+- Detox: Enter salary fix
+- Revert "Use less loading states in FIB summary"
+- Keep Yugi in underwriting
+- Provide strict whitelist of routes that can load duel invite
+- Redirect after confirm packages to address details
+- Redirect to feedback after submit contact details
+- Remove unnecesary async
+- Use contact details mutation
+- Add missing types
+- Update contact details mutation
+- New schema types
+- More UI fixes
+- Add missing checkbox
+- Redirect to feedback after submit contact details
+- Remove unnecesary async
+- Use contact details mutation
+- Add missing types
+- Update contact details mutation
+- New schema types
+- Detox: Fix negative reward purchase scenario
+- UI fixes
+- Rejected screen
+
 ## [2.7.0] - 2020-10-22
 
 ### Features
