@@ -344,8 +344,8 @@ PODS:
     - React-Core
   - RNDateTimePicker (3.0.3):
     - React-Core
-  - RNDeviceInfo (5.6.1):
-    - React
+  - RNDeviceInfo (7.0.2):
+    - React-Core
   - RNFastImage (8.3.2):
     - React
     - SDWebImage (~> 5.8)
@@ -612,7 +612,7 @@ SPEC CHECKSUMS:
   RNCAsyncStorage: d059c3ee71738c39834a627476322a5a8cd5bf36
   RNCPushNotificationIOS: 346c804c13fb99e644c996d1af5175a35452b2cb
   RNDateTimePicker: 6f62fd42ac8b58bcc30c43ac3620e5097e8a227f
-  RNDeviceInfo: b6e650fbd234732c759544218657d549b4339038
+  RNDeviceInfo: e1d82a27d0c1ea6278e3b141784dc38e51fc90f4
   RNFastImage: e19ba191922e7dab9d932a4d59d62d76660aa222
   RNFitKit: 616d0226b7c2df643037e955434d347057eed612
   RNSpringScrollView: 8b0af44fda8b131d845b93bf5b1d0710152e4e61

@@ -3,7 +3,7 @@ import React, { memo, useState, useEffect, useCallback } from "react";
 import { View, Linking, Platform } from "react-native";
 import { connect, useDispatch } from "react-redux";
 import { Text } from "@atoms";
-import { FibLocalNavigation, FIB_FEEDBACK_FORM, FIB_FAQ } from "../fib.types";
+import { FibLocalNavigation, FIB_FAQ, FIB_FEEDBACK_FORM } from "../fib.types";
 import {
   LifeInsuranceUserAnswers,
   GQL_MUTATION_CREATE_TOP_UPS_QUOTE,
@@ -104,13 +104,12 @@ const FibConfirmPackagesContainer = memo(function (props: FibConfirmPackagesCont
       },
       product: ProductCode.YULFIB,
     },
-    fetchPolicy: "cache-and-network",
+    fetchPolicy: "cache-first",
   });
 
-  const [createFibQuote, { data: createQuoteData, loading: createQuoteLoading, error: createQuoteError }] = useMutation<
-    CreateTopUpsQuote,
-    CreateTopUpsQuoteVariables
-  >(GQL_MUTATION_CREATE_TOP_UPS_QUOTE, { refetchQueries: ["GetTopUpsQuote"] });
+  const [createFibQuote] = useMutation<CreateTopUpsQuote, CreateTopUpsQuoteVariables>(
+    GQL_MUTATION_CREATE_TOP_UPS_QUOTE
+  );
 
   useEffect(() => {
     if (data?.getTopUpsQuote?.actualCost && fibState.actualCost !== data.getTopUpsQuote.actualCost) {
@@ -125,34 +124,25 @@ const FibConfirmPackagesContainer = memo(function (props: FibConfirmPackagesCont
         })
       );
     }
-
-    if (data?.getTopUpsQuote?.id) {
-      dispatch(
-        updateFIBValue({
-          key: "latestQuoteId",
-          value: data?.getTopUpsQuote?.id,
-        })
-      );
-    }
-
-    if (data?.getTopUpsQuote?.productEntityId) {
-      dispatch(
-        updateFIBValue({
-          key: "productEntityId",
-          value: data?.getTopUpsQuote?.productEntityId,
-        })
-      );
-    }
   }, [data, dispatch, selectedCoverType, fibState.actualCost]);
 
   useEffect(() => {
     async function createNewQuote() {
-      await createFibQuote({
+      const { data: newFibQuoteData } = await createFibQuote({
         variables: {
           input: queryVariables,
           product: ProductCode.YULFIB,
         },
       });
+      const quoteId = newFibQuoteData?.createTopUpsQuote?.quoteId;
+      if (quoteId) {
+        dispatch(
+          updateFIBValue({
+            key: "latestQuoteId",
+            value: quoteId,
+          })
+        );
+      }
     }
 
     createNewQuote();
@@ -217,31 +207,12 @@ const FibConfirmPackagesContainer = memo(function (props: FibConfirmPackagesCont
   }, [navigation]);
 
   const handleOnContinue = useCallback(async () => {
-    const latestQuoteId = createQuoteData?.createTopUpsQuote?.id;
-    if (latestQuoteId) {
-      dispatch(
-        updateFIBValue({
-          key: "latestQuoteId",
-          value: latestQuoteId,
-        })
-      );
-    }
-
-    const productEntityId = createQuoteData?.createTopUpsQuote?.productEntityId;
-    if (productEntityId) {
-      dispatch(
-        updateFIBValue({
-          key: "productEntityId",
-          value: productEntityId,
-        })
-      );
-    }
-
-    // TODO: redirect to address questions
+    // TODO: Redirect to contact details when mutation is tested
+    // return navigation.push(FIB_CONTACT_DETAILS);
     return navigation.push(FIB_FEEDBACK_FORM);
-  }, [dispatch, createQuoteData, navigation]);
+  }, [navigation]);
 
-  if (error || createQuoteError) {
+  if (error) {
     return (
       <View>
         <Text>Error</Text>
@@ -260,7 +231,7 @@ const FibConfirmPackagesContainer = memo(function (props: FibConfirmPackagesCont
       payoutEstimatorItems={payoutEstimatorItems}
       setDeceaseAgeIndexYear={setDeceaseAgeIndexYear}
       setDeceaseAgeIndexMonth={setDeceaseAgeIndexMonth}
-      loading={loading || createQuoteLoading}
+      loading={loading}
       onNavigateBack={navigation.pop}
       customerAge={customerAge}
       onScrollEnd={navigation.onScrollEnd}
@@ -274,4 +245,6 @@ const mapStateToProps = (state: IReduxState) => ({
   userDateOfBirth: getUserDateOfBirth(state),
 });
 
-export default connect(mapStateToProps)(FibConfirmPackagesContainer);
+const FIBConfirmPackages = connect(mapStateToProps)(FibConfirmPackagesContainer);
+
+export default FIBConfirmPackages;

@@ -54,7 +54,7 @@ function _FibGPConsentScreen(props: Props) {
     >
       <View style={styles.viewWrapper}>
         <View style={styles.headerWrapper}>
-          <Text style={styles.text} bold={true}>
+          <Text style={[styles.text, { fontFamily: Style.FONT_FAMILY_PRIMARY_BOLD }]} bold={true}>
             We may need to request a medical report from your doctor to verify the accuracy of the answers you have
             given during this sign-up journey. We will guard this information carefully and only share it with our
             insurance partners in accordance with our privacy policy.

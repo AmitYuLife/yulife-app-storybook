@@ -1,11 +1,11 @@
 import React, { memo, useState, useCallback } from "react";
-import { FibLocalNavigation } from "../fib.types";
+import { FibLocalNavigation, FIB_GP_DETAILS } from "../fib.types";
 import { FibContactDetailsScreen } from "@components/screens/products/fib/underwriting-journey/fib.contact-details.screen";
 import { FibConfirmScreen } from "../../../../screens/products/fib/underwriting-journey/fib.confirm-email.screen";
 import { connect } from "react-redux";
 import { updateFIBAnswerValue } from "../../../../../redux/product/product.actions";
-import { FibFindAdressScreen } from "@components/screens/products/fib/underwriting-journey/fib.find-adress.screen";
-import { useQuery } from "@apollo/react-hooks";
+import { FibFindAddressScreen } from "@components/screens/products/fib/underwriting-journey/fib.find-adress.screen";
+import { useMutation, useQuery } from "@apollo/react-hooks";
 import { GQL_QUERY_GET_ADDRESS_BY_POSTCODE } from "../../../../../graphql/yuscreen/getAdress.gql";
 import { Address_findUserAddress } from "../../../../../graphql/_core/schema/Address";
 import { IReduxState } from "../../../../../redux/_core/reducers";
@@ -14,6 +14,11 @@ import { ContactDetails } from "@redux/product/product.types";
 import { Navigation } from "react-native-navigation";
 import { MODALS, ROUTES } from "../../../../../navigation/constants";
 import { formatPostCode } from "../../../../screens/products/fib/underwriting-journey/fib.find-adress.screen";
+import { GQL_MUTATION_UPDATE_CUSTOMER_CONTACT_DETAILS } from "../../../../../graphql/products";
+import {
+  UpdateContactDetails,
+  UpdateContactDetailsVariables,
+} from "../../../../../graphql/_core/schema/UpdateContactDetails";
 
 type ConnectedDispatch = typeof mapDispatchToProps;
 type ConnectedState = ReturnType<typeof mapStateToProps>;
@@ -26,8 +31,8 @@ type Props = IContactDetailsContainer & ConnectedDispatch & ConnectedState;
 
 type ScreenId = "ContactDetails" | "FindAddress" | "ConfirmEmailAddress";
 
-const FibContactDetailsConatainer = memo(function (props: Props) {
-  const { updateFibAnswer, updateContactDetails, contactDetailsFromStore } = props;
+const FibContactDetailsContainer = memo(function (props: Props) {
+  const { updateFibAnswer, updateContactDetails, contactDetailsFromStore, navigation } = props;
   const [screenId, setScreenId] = useState<ScreenId>("ContactDetails");
   const [contactDetails, setContactDetails] = useState<ContactDetails>(
     contactDetailsFromStore || {
@@ -47,21 +52,39 @@ const FibContactDetailsConatainer = memo(function (props: Props) {
     fetchPolicy: "network-only",
   });
 
+  // TODO: Handle error
+  const [updateContactDetailsMutation] = useMutation<UpdateContactDetails, UpdateContactDetailsVariables>(
+    GQL_MUTATION_UPDATE_CUSTOMER_CONTACT_DETAILS
+  );
+
   const onContactDetailsChange = (key: keyof ContactDetails, value: string) => {
     setContactDetails((state) => ({ ...state, [key]: value }));
   };
 
-  const onContinuePress = () => {
+  const onContinuePress = async () => {
     updateContactDetails(contactDetails);
+    await updateContactDetailsMutation({
+      variables: {
+        contactDetails: {
+          phone: contactDetails.phoneNumber,
+          addressFirstLine: contactDetails.firstAddressLine,
+          addressSecondLine: contactDetails.secondAddressLine,
+          addressCity: contactDetails.townOrCity,
+          addressPostCode: contactDetails.postCode,
+        },
+      },
+    });
     setScreenId("ConfirmEmailAddress");
   };
 
   const onFirstButton = () => {
     updateFibAnswer("use_personal_email", "No");
+    navigation.push(FIB_GP_DETAILS);
   };
 
   const onSecondButton = () => {
     updateFibAnswer("use_personal_email", "Yes");
+    navigation.push(FIB_GP_DETAILS);
   };
 
   const onAddressSelected = (address: Address_findUserAddress) => {
@@ -97,6 +120,7 @@ const FibContactDetailsConatainer = memo(function (props: Props) {
               // We arrived to this screen without passing through yuScreen
               // This should never happen but because our current way of testing
               // we need this try/catch block
+              // TODO: Remote this
               await Navigation.popTo(ROUTES.debug);
             }
 
@@ -130,7 +154,7 @@ const FibContactDetailsConatainer = memo(function (props: Props) {
       );
     case "FindAddress":
       return (
-        <FibFindAdressScreen
+        <FibFindAddressScreen
           onAddressSelected={onAddressSelected}
           onBackButtonPress={() => setScreenId("ContactDetails")}
           data={data && !error ? data.findUserAddress : []}
@@ -150,7 +174,8 @@ const mapDispatchToProps = {
   updateFibAnswer: (key: string, value: string) => updateFIBAnswerValue({ key, value }),
   updateContactDetails: (value: ContactDetails) => updateFIBAnswerValue({ key: "contactDetails", value }),
 };
+
 export default connect<ConnectedState, ConnectedDispatch>(
   mapStateToProps,
   mapDispatchToProps
-)(FibContactDetailsConatainer);
+)(FibContactDetailsContainer);

@@ -1,1 +1,1 @@
-export * from "./alcohol-intake-input";
+export * from "./fib-input-alcohol";

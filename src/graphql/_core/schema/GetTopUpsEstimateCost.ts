@@ -20,6 +20,9 @@ export interface GetTopUpsEstimateCost_getTopUpsEstimateCost {
 }
 
 export interface GetTopUpsEstimateCost {
+  /**
+   * Query to obtain an estimate cost for top ups
+   */
   getTopUpsEstimateCost: GetTopUpsEstimateCost_getTopUpsEstimateCost | null;
 }
 

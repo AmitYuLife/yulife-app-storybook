@@ -1,6 +1,6 @@
 import React, { memo, useCallback, ComponentProps } from "react";
 import { FibUnderwritingJourneyLayout } from "../../layouts/fib.underwriting-journey-layout";
-import { StyleSheet, ScrollView } from "react-native";
+import { StyleSheet, ScrollView, View } from "react-native";
 import { useBackHandler } from "../../../../../../services/hooks/useBackHandler";
 import { SummaryDescription } from "../../browse-packages/subcomponents/summary-description";
 import { PayoutCalculator } from "../../browse-packages/subcomponents/payout-calculator/payout-calculator";
@@ -46,6 +46,7 @@ export const FibConfirmationDetailsScreen = memo(function (props: IFibConfirmati
       hideHeadingBorder={false}
     >
       <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.contentContainerStyle}>
+        <View style={styles.topWhiteSeparator} />
         <SummaryDescription
           customerAge={customerAge}
           selectedPackage={selectedPackage}
@@ -68,8 +69,11 @@ export const FibConfirmationDetailsScreen = memo(function (props: IFibConfirmati
 
 const styles = StyleSheet.create({
   contentContainerStyle: {
-    paddingTop: 44,
     paddingBottom: 32,
     backgroundColor: "#fafafe",
+  },
+  topWhiteSeparator: {
+    height: 44,
+    backgroundColor: "white",
   },
 });

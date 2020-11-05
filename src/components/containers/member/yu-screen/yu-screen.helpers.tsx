@@ -14,8 +14,6 @@ import {
 import { AvatarBuilderHeading } from "@components/screens/member/yu-screen/avatar-builder/avatar.types";
 import { FIB_UNDERWRITING_REVIEW_ANSWERS_SCREEN_ID } from "@components/containers/products/fib/data/underwriting-journey-data";
 import moment from "moment";
-import { FIB_INFO } from "../../products/fib/fib.types";
-import { InfoTypes } from "../../products/fib/subcontainers/fib.info.container";
 
 const FIB_EXPIRE_QUOTE_MONTHS = 3;
 
@@ -40,30 +38,32 @@ export function navigateToProductScreen(options: NavigateToProductScreenOptions)
   if (productType === "personal" && product.active) {
     // TODO: get rejected value from server
     if (fibState.rejected) {
-      return Navigation.push(componentId, {
-        component: {
-          id: ROUTES.fib,
-          name: ROUTES.fib,
-          passProps: {
-            initialRoute: FIB_INFO,
-            initialProps: { type: "Rejected" } as { type: InfoTypes },
-          },
-        },
-      });
+      // TODO: uncomment Navaigation when we'll go live
+      // return Navigation.push(componentId, {
+      //   component: {
+      //     id: ROUTES.fib,
+      //     name: ROUTES.fib,
+      //     passProps: {
+      //       initialRoute: FIB_INFO,
+      //       initialProps: { type: "Rejected" } as { type: InfoTypes },
+      //     },
+      //   },
+      // });
     }
 
     // TODO: get medicalInvestigationRequired from server
     if (fibState.medicalInvestigationRequired) {
-      return Navigation.push(componentId, {
-        component: {
-          id: ROUTES.fib,
-          name: ROUTES.fib,
-          passProps: {
-            initialRoute: FIB_INFO,
-            initialProps: { type: "HoldingGP" } as { type: InfoTypes },
-          },
-        },
-      });
+      // TODO: uncomment Navaigation when we'll go live
+      // return Navigation.push(componentId, {
+      //   component: {
+      //     id: ROUTES.fib,
+      //     name: ROUTES.fib,
+      //     passProps: {
+      //       initialRoute: FIB_INFO,
+      //       initialProps: { type: "HoldingGP" } as { type: InfoTypes },
+      //     },
+      //   },
+      // });
     }
 
     const isQuoteExpired = moment().diff(moment(fibState.quoteDate), "months") >= FIB_EXPIRE_QUOTE_MONTHS;

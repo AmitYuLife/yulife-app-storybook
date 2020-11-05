@@ -50,12 +50,14 @@ export interface FibAnswers {
   contactDetails: ContactDetails;
   height: Height;
   weight: Weight;
-  weeklyAlcoholDrinks: number;
+  weeklyAlcoholDrinks: string;
   birthDay: string;
   birthMonth: string;
   birthYear: string;
   firstName: string;
   lastName: string;
+  medicalConsent: boolean;
+  previewMedicalTests: boolean;
   [questionId: string]: any;
 }
 

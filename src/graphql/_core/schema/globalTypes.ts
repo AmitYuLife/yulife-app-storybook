@@ -26,6 +26,9 @@ export enum AvatarPartType {
   pants = "pants",
 }
 
+/**
+ * Different cover types
+ */
 export enum CoverType {
   common = "common",
   custom = "custom",
@@ -61,6 +64,9 @@ export enum PassiveChallengeType {
   STEPS = "STEPS",
 }
 
+/**
+ * Product code used internally to identify different products
+ */
 export enum ProductCode {
   YULFIB = "YULFIB",
 }
@@ -83,6 +89,9 @@ export interface ChallengePayload {
   value?: number | null;
 }
 
+/**
+ * Input to create a top ups quote
+ */
 export interface CreateTopUpsQuoteInput {
   grossSalary?: number | null;
   coverType?: CoverType | null;
@@ -91,11 +100,18 @@ export interface CreateTopUpsQuoteInput {
   productEntityId?: string | null;
 }
 
+/**
+ * Input for getting an existing quote
+ */
 export interface GetTopUpsQuoteInput {
   customerProductEntityId?: string | null;
   quoteId?: string | null;
 }
 
+/**
+ * User answers to underwriting journey where the questionId is the unique id that
+ * identifies a question and value is the answer provided by the customer
+ */
 export interface LifeInsuranceTopUpsUserAnswers {
   questionId?: string | null;
   value?: string | null;
@@ -113,10 +129,35 @@ export interface ProductMetadata {
   avios?: AviosMetadata | null;
 }
 
+/**
+ * Input for calculate top ups estimated cost
+ */
 export interface TopUpsEstimateCostInput {
   grossSalary?: number | null;
   coverType?: CoverType | null;
   customCoverPercentage?: number | null;
+}
+
+export interface UpdateContactDetailsInput {
+  phone?: string | null;
+  addressFirstLine?: string | null;
+  addressSecondLine?: string | null;
+  addressCity?: string | null;
+  addressPostCode?: string | null;
+}
+
+export interface UpdateCustomerGPDetailsInput {
+  practiceName?: string | null;
+  practiceAddress?: string | null;
+  practiceTown?: string | null;
+  practicePostCode?: string | null;
+  gpName?: string | null;
+}
+
+export interface UpdateCustomerGPDetailsOptions {
+  requestMSSTests?: boolean | null;
+  medicalConsent?: boolean | null;
+  previewMedicalTests?: boolean | null;
 }
 
 export interface UserAvatarInput {

@@ -89,5 +89,6 @@ const styles = StyleSheet.create({
   } as TextStyle,
   header: {
     fontSize: 20,
+    fontFamily: Style.FONT_FAMILY_PRIMARY_BOLD,
   } as TextStyle,
 });

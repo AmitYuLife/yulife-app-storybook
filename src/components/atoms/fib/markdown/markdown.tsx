@@ -1,7 +1,8 @@
 import React from "react";
-import { StyleSheet, ViewStyle } from "react-native";
+import { StyleSheet, ViewStyle, Platform } from "react-native";
 import { Style } from "../../../../styles";
 import Markdown from "@components/molecules/markdown/markdown";
+import media from "@styles/media";
 
 export interface IMarkdownFibProps {
   text: string;
@@ -20,6 +21,19 @@ export default function MarkdownFib(props: IMarkdownFibProps) {
   );
 }
 
+const marginTop = Platform.select({
+  ios: Style.adjust(24),
+  android: media.select(
+    [
+      {
+        condition: Style.DEVICE_HEIGHT <= media.DEVICES.SamsungGalaxyA5.height,
+        value: 0,
+      },
+    ],
+    Style.adjust(24)
+  ),
+});
+
 const styles = StyleSheet.create({
   flex: {
     flex: 1,
@@ -29,44 +43,57 @@ const styles = StyleSheet.create({
   },
   markdownContainer: {
     marginBottom: 4,
-    marginTop: 24,
+    marginTop,
     maxWidth: Style.DEVICE_WIDTH - 120,
   },
+});
+
+const fontSize = Platform.select({
+  ios: Style.adjust(16),
+  android: media.select(
+    [
+      {
+        condition: Style.DEVICE_HEIGHT <= media.DEVICES.SamsungGalaxyA5.height,
+        value: Style.adjust(16),
+      },
+    ],
+    Style.adjust(16)
+  ),
 });
 
 const markdownStyles = {
   text: {
     fontFamily: Style.FONT_FAMILY_PRIMARY,
-    fontSize: 16,
-    lineHeight: 24,
+    fontSize,
+    lineHeight: fontSize * 1.2,
     letterSpacing: 1,
     color: "#5A5A5C",
   },
   header: {
     fontFamily: Style.FONT_FAMILY_PRIMARY_BOLD,
-    fontSize: 20,
-    lineHeight: 24,
+    fontSize: Style.adjust(20),
+    lineHeight: Style.adjust(24),
     letterSpacing: 1,
     color: "#464647",
-    marginTop: 32,
+    marginTop: Style.adjust(32),
     textAlign: "left",
-    marginBottom: 16,
+    marginBottom: Style.adjust(16),
   },
   list: {
-    marginBottom: 8,
-    marginTop: 16,
+    marginBottom: Style.adjust(8),
+    marginTop: Style.adjust(16),
   },
   listItem: {
     flexDirection: "row",
-    marginVertical: 4,
-    fontSize: 16,
+    marginVertical: Style.adjust(4),
+    fontSize: Style.adjust(16),
   },
   listItemBullet: {
-    marginTop: 10,
-    width: 4,
-    height: 4,
+    marginTop: Style.adjust(10),
+    width: Style.adjust(4),
+    height: Style.adjust(4),
     backgroundColor: "black",
     borderRadius: 2,
-    marginRight: 10,
+    marginRight: Style.adjust(10),
   },
 };

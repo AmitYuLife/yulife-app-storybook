@@ -31,7 +31,7 @@ export const GQL_QUERY_GET_TOP_UPS_ESTIMATE_COST = gql`
 export const GQL_MUTATION_CREATE_TOP_UPS_QUOTE = gql`
   mutation CreateTopUpsQuote($input: CreateTopUpsQuoteInput!, $product: ProductCode!) {
     createTopUpsQuote(input: $input, product: $product) {
-      id
+      quoteId
       productEntityId
       actualCost
       sumAssured
@@ -49,7 +49,7 @@ export const GQL_MUTATION_CREATE_TOP_UPS_QUOTE = gql`
 export const GQL_QUERY_GET_TOP_UPS_QUOTE = gql`
   query GetTopUpsQuote($input: GetTopUpsQuoteInput!, $product: ProductCode!) {
     getTopUpsQuote(input: $input, product: $product) {
-      id
+      quoteId
       productEntityId
       actualCost
       sumAssured
@@ -88,6 +88,22 @@ export const GQL_MUTATION_UPSERT_TOP_UPS_PRODUCT_ENTITY = gql`
   mutation UpsertTopUpsProductEntity($product: ProductCode!) {
     upsertTopUpsProductEntity(product: $product) {
       id
+    }
+  }
+`;
+
+export const GQL_MUTATION_UPDATE_CUSTOMER_CONTACT_DETAILS = gql`
+  mutation UpdateContactDetails($contactDetails: UpdateContactDetailsInput) {
+    updateContactDetails(contactDetails: $contactDetails) {
+      updated
+    }
+  }
+`;
+
+export const GQL_MUTATION_UPDATE_CUSTOMER_GP_DETAILS = gql`
+  mutation UpdateCustomerGPDetails($gpDetails: UpdateCustomerGPDetailsInput, $options: UpdateCustomerGPDetailsOptions) {
+    updateCustomerGPDetails(gpDetails: $gpDetails, options: $options) {
+      updated
     }
   }
 `;

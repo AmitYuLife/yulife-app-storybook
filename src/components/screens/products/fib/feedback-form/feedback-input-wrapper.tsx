@@ -19,7 +19,9 @@ export function FeedbackInputWrapper(props: Props) {
   return (
     <View onLayout={(layout) => setPosition(layout.nativeEvent.layout)} style={styles.inputWrapper}>
       <View style={styles.innerWrapper}>
-        <Text style={styles.title}>{data.title}</Text>
+        <Text bold={true} style={styles.title}>
+          {data.title}
+        </Text>
         {data.type === "text" ? (
           <FeedbackTextInput
             handleChangeText={(val) => updateFormState(data.id, val)}
@@ -40,7 +42,9 @@ const styles = StyleSheet.create({
   innerWrapper: {
     width: "90%",
   },
-  title: { fontWeight: "bold", paddingBottom: 24 },
+  title: {
+    paddingBottom: 24,
+  },
   inputWrapper: {
     width: "100%",
     backgroundColor: "white",

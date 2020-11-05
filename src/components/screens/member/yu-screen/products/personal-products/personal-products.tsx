@@ -21,7 +21,11 @@ function YuProducts({ isActive, type, onPressAction, name }: IProps) {
         <PersonalProductsIcon icon={type} active={isActive} />
         <View style={isActive ? styles.textWrapperActiveProduct : styles.textWrapperInactiveProduct}>
           <Text style={styles.productName}>{name}</Text>
-          {isActive ? <Text style={styles.tapForInfo}>tap for info</Text> : null}
+          {isActive ? (
+            <Text bold={true} style={styles.tapForInfo}>
+              tap for info
+            </Text>
+          ) : null}
         </View>
       </View>
     </TouchableOpacityWithDelay>

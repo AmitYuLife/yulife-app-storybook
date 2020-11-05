@@ -39,7 +39,6 @@ export interface UnderwritingJourneyScreen {
   heading: string;
   icon: string;
   title: string;
-  isTitleLarge?: boolean;
   reviewAnswerTitle?: string;
   question: string;
   content?: React.ReactNode;
@@ -183,7 +182,6 @@ const _data: UnderwritingJourneyScreen[] = [
     icon: NAME_ICON,
     title: "Name",
     question: "Okay! Let’s start with the easy stuff: is this your name?",
-    isTitleLarge: true,
     firstButton: { label: "Continue", actionId: FIB_YOUR_DATE_OF_BIRTH_SCREEN_ID },
     previousButton: { actionId: FIB_ENTER_YOUR_NAME },
     children: [{ type: "inputFullName" }],
@@ -194,7 +192,6 @@ const _data: UnderwritingJourneyScreen[] = [
     icon: BIRTHDAY_ICON,
     title: "Birthday",
     question: "And is this your birthday?",
-    isTitleLarge: true,
     firstButton: { label: "No", actionId: FIB_ENTER_YOUR_DATE_OF_BIRTH },
     secondButton: { label: "Yes", actionId: FIB_UK_RESIDENT_SCREEN_ID },
     previousButton: { actionId: FIB_ENTER_YOUR_NAME },
@@ -224,7 +221,6 @@ const _data: UnderwritingJourneyScreen[] = [
     icon: UK_FLAG_ICON,
     title: "UK Residency",
     question: "Are you a British Citizen or Resident in the UK?",
-    isTitleLarge: true,
     firstButton: { label: "No", actionId: FIB_MEMBER_OF_ARMED_FORCES_SCREEN_ID },
     secondButton: { label: "Yes", actionId: FIB_MEMBER_OF_ARMED_FORCES_SCREEN_ID },
     previousButton: { actionId: FIB_YOUR_DATE_OF_BIRTH_SCREEN_ID },
@@ -478,7 +474,6 @@ const _data: UnderwritingJourneyScreen[] = [
     heading: "Lifestyle",
     icon: ALCOHOL_ICON,
     title: "Alcohol",
-    isTitleLarge: true,
     question: "Cheers! How much do you drink in an average week?",
     firstButton: { label: "Continue", actionId: FIB_LIFESTYLE_DRUGS_SCREEN_ID },
     previousButton: { actionId: FIB_LIFESTYLE_SMOKING_VAPES_SCREEN_ID },
@@ -497,7 +492,6 @@ const _data: UnderwritingJourneyScreen[] = [
     heading: "Lifestyle",
     icon: DRUGS_ICON,
     title: "Drugs",
-    isTitleLarge: true,
     question:
       "In the last 5 years have you used class A, B, or C drugs like, but not restricted to: heroin, cocaine, ecstasy, spice, LSD, anabolic steroids, and legal highs?",
     firstButton: { label: "No", actionId: FIB_LIFESTYLE_DRUGS_COUNCELLING_SCREEN_ID },

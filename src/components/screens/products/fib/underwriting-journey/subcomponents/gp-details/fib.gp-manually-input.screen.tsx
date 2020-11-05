@@ -1,5 +1,14 @@
-import React, { useCallback, memo, useState } from "react";
-import { View, StyleSheet, ViewStyle, TextStyle, Platform } from "react-native";
+import React, { useCallback, memo, useState, useRef, useEffect, useMemo } from "react";
+import {
+  View,
+  StyleSheet,
+  ViewStyle,
+  TextStyle,
+  Platform,
+  LayoutChangeEvent,
+  ScrollView,
+  Keyboard,
+} from "react-native";
 import { Style, Colours } from "@styles";
 import { useBackHandler } from "../../../../../../../services/hooks/useBackHandler";
 import { ScrollableLayout, TextField } from "@molecules";
@@ -33,8 +42,40 @@ function validateGPForm(form: GPInputForm) {
   return !form.practiceName || !form.practiceAddress || !form.practiceTown || !form.practicePostCode || !form.gpName;
 }
 
+const FORM_HEIGHT = Platform.select({
+  ios: Style.adjust(74.5),
+  android: Style.adjust(78.5),
+});
+
 function _FibGPManuallyInputScreen(props: Props) {
   const { onNavigateBack, onContinue, onClose, selectedPractice } = props;
+
+  const scrollViewRef = useRef<ScrollView>(null);
+  const isKeyboardUp = useRef(false);
+  const keyboardAnimationTimeout = useRef<ReturnType<typeof setTimeout>>(null);
+
+  const setIsKeyboardUp = (bool: boolean) => {
+    return () => (isKeyboardUp.current = bool);
+  };
+
+  useEffect(() => {
+    Keyboard.addListener("keyboardWillShow", setIsKeyboardUp(true));
+    Keyboard.addListener("keyboardWillHide", setIsKeyboardUp(false));
+
+    return () => {
+      Keyboard.removeListener("keyboardWillShow", setIsKeyboardUp(true));
+      Keyboard.removeListener("keyboardWillHide", setIsKeyboardUp(false));
+    };
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      clearTimeout(keyboardAnimationTimeout.current);
+    };
+  }, []);
+
+  const [titleHeight, setTitleHeight] = useState(0);
+
   const initialState = selectedPractice
     ? {
         ...defaultFormValue,
@@ -65,6 +106,56 @@ function _FibGPManuallyInputScreen(props: Props) {
   };
 
   const isValidForm = validateGPForm(formValue);
+
+  const handleTitleLayout = useCallback((event: LayoutChangeEvent) => {
+    setTitleHeight(event.nativeEvent.layout.height);
+  }, []);
+
+  const forms = useMemo(
+    () => [
+      {
+        updateFormKey: "practiceName",
+        placeholder: "Medical Practise Name",
+        value: formValue.practiceName,
+      },
+      {
+        updateFormKey: "practiceAddress",
+        placeholder: "Medical Practise Address",
+        value: formValue.practiceAddress,
+      },
+      {
+        updateFormKey: "practiceTown",
+        placeholder: "Medical Practise Town or City",
+        value: formValue.practiceTown,
+      },
+      {
+        updateFormKey: "practicePostCode",
+        placeholder: "Medical Practise Postcode",
+        value: formValue.practicePostCode,
+      },
+      {
+        updateFormKey: "gpName",
+        placeholder: "GP Name",
+        value: formValue.gpName,
+      },
+    ],
+    [formValue]
+  );
+
+  const handleFocus = useCallback(
+    (formIndex: number) => {
+      const KEYBOARD_ANIMATION_MS = Platform.select({
+        ios: isKeyboardUp.current ? 0 : 700,
+        android: isKeyboardUp.current ? 0 : 500,
+      });
+
+      keyboardAnimationTimeout.current = setTimeout(() => {
+        scrollViewRef?.current.scrollTo({ y: titleHeight + formIndex * FORM_HEIGHT });
+      }, KEYBOARD_ANIMATION_MS);
+    },
+    [titleHeight]
+  );
+
   return (
     <ScrollableLayout
       buttonAction={handleContinue}
@@ -73,71 +164,52 @@ function _FibGPManuallyInputScreen(props: Props) {
       heading={"GP Report"}
       onRightIconPress={onClose}
       isButtonDisabled={isValidForm}
+      scrollViewForwardRef={scrollViewRef}
     >
       <View style={styles.wrapper}>
-        <FibTitle title="Please enter your medical practise and GP details below:" />
+        <View onLayout={handleTitleLayout}>
+          <FibTitle title="Please enter your medical practise and GP details below:" />
+        </View>
         <View>
-          <View style={styles.formWrapper}>
-            <TextField
-              onChange={(val) => updateForm("practiceName", val)}
-              placeholder="Medical Practise Name"
-              inputTextStyle={styles.text}
-              value={formValue.practiceName}
-            />
-          </View>
-          <View style={styles.formWrapper}>
-            <TextField
-              onChange={(val) => updateForm("practiceAddress", val)}
-              placeholder="Medical Practise Address"
-              inputTextStyle={styles.text}
-              value={formValue.practiceAddress}
-            />
-          </View>
-          <View style={styles.formWrapper}>
-            <TextField
-              onChange={(val) => updateForm("practiceTown", val)}
-              placeholder="Medical Practise Town or City"
-              inputTextStyle={styles.text}
-              value={formValue.practiceTown}
-            />
-          </View>
-          <View style={styles.formWrapper}>
-            <TextField
-              onChange={(val) => updateForm("practicePostCode", val)}
-              placeholder="Medical Practise Postcode"
-              inputTextStyle={styles.text}
-              value={formValue.practicePostCode}
-            />
-          </View>
-          <View style={[styles.formWrapper, { paddingBottom: 32 }]}>
-            <TextField
-              onChange={(val) => updateForm("gpName", val)}
-              placeholder="GP Name"
-              inputTextStyle={styles.text}
-              value={formValue.gpName}
-            />
-          </View>
+          {forms.map(({ updateFormKey, placeholder, value }, formIndex) => (
+            <View key={updateFormKey} style={styles.formWrapper}>
+              <TextField
+                onChange={(val) => updateForm(updateFormKey, val)}
+                placeholder={placeholder}
+                inputTextStyle={styles.text}
+                value={value}
+                onFocus={() => handleFocus(formIndex)}
+              />
+            </View>
+          ))}
         </View>
       </View>
+      <View style={styles.bottomPad} />
     </ScrollableLayout>
   );
 }
 
 export const FibGPManuallyInputScreen = memo(_FibGPManuallyInputScreen);
 
+const FONT_SIZE = Style.adjust(20);
+
 const styles = StyleSheet.create({
   wrapper: {
     marginHorizontal: 32,
   } as ViewStyle,
   text: {
-    fontSize: 20,
-    lineHeight: 24,
+    fontSize: FONT_SIZE,
+    lineHeight: FONT_SIZE * 1.2,
     fontFamily: Style.FONT_FAMILY_PRIMARY,
     letterSpacing: 1,
     color: Colours.neutral.n900,
     marginBottom: Platform.select({ ios: 6, android: 2 }),
   } as TextStyle,
   formWrapper: {
-    paddingVertical: 6,
+    paddingVertical: Style.adjust(6),
+    height: FORM_HEIGHT,
+  } as ViewStyle,
+  bottomPad: {
+    height: Style.adjust(32),
   } as ViewStyle,
 });

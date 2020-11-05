@@ -39,12 +39,14 @@ export const initialState: IProductStore = {
         st: "",
         lb: "",
       },
-      weeklyAlcoholDrinks: 0,
+      weeklyAlcoholDrinks: "",
       birthDay: "",
       birthMonth: "",
       birthYear: "",
       firstName: "",
       lastName: "",
+      medicalConsent: false,
+      previewMedicalTests: false,
     },
     salary: 0,
     selectedPackage: "common",
@@ -146,12 +148,48 @@ function personalProductReducer<T>(state: IProductStore = initialState, action: 
             weight: {
               ...initialState.fib.answers.weight,
             },
+            firstName: state.fib.answers.firstName,
+            lastName: state.fib.answers.lastName,
+            birthDay: state.fib.answers.birthDay,
+            birthMonth: state.fib.answers.birthMonth,
+            birthYear: state.fib.answers.birthYear,
           },
         },
       };
     default:
       return state;
   }
+}
+
+function validateBirthday(
+  day: string,
+  month: string,
+  year: string,
+  payload: IReduxState
+): { birthDay: string; birthMonth: string; birthYear: string } {
+  const dob = moment(`${year}-${month}-${day}`);
+  if (dob.isValid()) {
+    return { birthDay: day, birthMonth: month, birthYear: year };
+  }
+
+  const dateOfBirth = moment(payload?.user?.dateOfBirth);
+  if (dateOfBirth.isValid()) {
+    const parsedDateOfBirth = dateOfBirth.format("DD-MM-YYYY").split("-");
+    return { birthDay: parsedDateOfBirth[0], birthMonth: parsedDateOfBirth[1], birthYear: parsedDateOfBirth[2] };
+  }
+
+  const now = moment();
+  return {
+    birthDay: now.date().toString(),
+    birthMonth: `${now.month() + 1}`,
+    birthYear: now.year().toString(),
+  };
+}
+
+function validateName(firstName: string, lastName: string, payload: IReduxState) {
+  const validatedFirstName = firstName ? firstName : payload.user?.firstName || "";
+  const validatedLastName = lastName ? lastName : payload.user?.lastName || "";
+  return { firstName: validatedFirstName, lastName: validatedLastName };
 }
 
 function rehydratePersonalProductStore(state: IProductStore, payload: IReduxState) {
@@ -175,6 +213,26 @@ function rehydratePersonalProductStore(state: IProductStore, payload: IReduxStat
       // create a shallow copy of the persisted store
       { ...payload.product }
     );
+
+    const { birthDay, birthMonth, birthYear } = validateBirthday(
+      fibNewPersistedState.fib.answers.birthDay,
+      fibNewPersistedState.fib.answers.birthMonth,
+      fibNewPersistedState.fib.answers.birthYear,
+      payload
+    );
+
+    fibNewPersistedState.fib.answers.birthDay = birthDay;
+    fibNewPersistedState.fib.answers.birthMonth = birthMonth;
+    fibNewPersistedState.fib.answers.birthYear = birthYear;
+
+    const { firstName, lastName } = validateName(
+      fibNewPersistedState.fib.answers.firstName,
+      fibNewPersistedState.fib.answers.lastName,
+      payload
+    );
+
+    fibNewPersistedState.fib.answers.firstName = firstName;
+    fibNewPersistedState.fib.answers.lastName = lastName;
 
     if (!fibNewPersistedState.fib.rejected) {
       fibNewPersistedState.fib.rejected = false;

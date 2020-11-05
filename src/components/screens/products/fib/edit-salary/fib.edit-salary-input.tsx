@@ -55,7 +55,7 @@ export function FibEditSalaryInput(props: Props) {
         <Text style={styles.bling}>£</Text>
       </View>
       <TouchableOpacityWithDelay onPress={handleFocus} style={styles.pressable} testID={FIB_SALARY_INPUT}>
-        <View style={styles.inputWrapper}>
+        <View pointerEvents="none" style={styles.inputWrapper}>
           <TextInput
             ref={inputRef}
             onBlur={() => setFocused(false)}

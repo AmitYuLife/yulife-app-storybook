@@ -1,5 +1,5 @@
-import React, { memo } from "react";
-import { StyleSheet, ScrollView, ViewStyle, View } from "react-native";
+import React, { memo, useRef, useEffect, useCallback } from "react";
+import { StyleSheet, ScrollView, ViewStyle, View, Keyboard } from "react-native";
 import { useBackHandler } from "../../../../../services/hooks/useBackHandler";
 import FibTitle from "@atoms/fib/title/title";
 import Footer from "./subcomponents/footer/footer";
@@ -20,10 +20,10 @@ import { FibInputName } from "@components/organisms/fib/input/name/fib-input-nam
 import { FibInputWeight } from "@components/organisms/fib/input/weight/fib-input-weight";
 import { getCustomComponent } from "./getCustomComponent";
 import MedicalChipList from "./subcomponents/medical-chip-list/medical-chip-list";
-import { AlcoholIntakeInput } from "@components/organisms/fib/input/alcohol/alcohol-intake-input";
 import { CopyBirthday } from "@organisms/fib/copy/birthday";
 import { CopyFullName } from "@organisms/fib/copy/full-name";
 import RadioInput from "../feedback-form/radio-input";
+import { FibInputAlcohol } from "@organisms/fib/input/alcohol/fib-input-alcohol";
 
 export interface IFibUnderwritingJourneyScreenProps {
   onNavigateBack: () => void;
@@ -62,15 +62,43 @@ const _FibUnderwritingJourneyScreen = memo(function (props: IFibUnderwritingJour
     radioInputValue,
     setRadioInputValue,
   } = props;
+  const scrollViewRef = useRef(null as ScrollView);
+
+  function handleResetScroll() {
+    if (scrollViewRef?.current) {
+      scrollViewRef.current.scrollTo({ y: 0 });
+    }
+  }
+
+  const handleScrollToKeyboardOffset = useCallback(() => {
+    if (scrollViewRef?.current) {
+      scrollViewRef.current.scrollTo({ y: 200 });
+    }
+  }, [scrollViewRef]);
+
+  useEffect(() => {
+    Keyboard.addListener("keyboardDidShow", handleScrollToKeyboardOffset);
+    return () => {
+      Keyboard.removeListener("keyboardDidShow", handleScrollToKeyboardOffset);
+    };
+  }, [handleScrollToKeyboardOffset]);
 
   const backHandler = React.useCallback(() => {
     onPreviousButtonPressed();
+    handleResetScroll();
     return true;
   }, [onPreviousButtonPressed]);
 
   useBackHandler(backHandler);
 
-  const firstButton = { action: onFirstButtonPressed, label: data.firstButton.label, disabled: disableFirstButton };
+  const firstButton = {
+    action: () => {
+      onFirstButtonPressed();
+      handleResetScroll();
+    },
+    label: data.firstButton.label,
+    disabled: disableFirstButton,
+  };
 
   const secondButton = !onSecondButtonPressed
     ? null
@@ -89,9 +117,15 @@ const _FibUnderwritingJourneyScreen = memo(function (props: IFibUnderwritingJour
       progressBar={props.progressBar}
       onPreviousQuestion={onPreviousButtonPressed}
       hideHeadingBorder={!props.progressBar.isHidden}
+      yugi="default"
     >
-      <ScrollView showsVerticalScrollIndicator={false} keyboardShouldPersistTaps="handled" style={styles.wrapper}>
-        <FibTitle title={data.question} isLarge={data.isTitleLarge} />
+      <ScrollView
+        ref={scrollViewRef}
+        showsVerticalScrollIndicator={false}
+        keyboardShouldPersistTaps="handled"
+        style={styles.wrapper}
+      >
+        <FibTitle title={data.question} />
         {data.children?.map((child: UnderwritingJourneyChild, i) => {
           const key = data.id + i;
           return renderChildren(child, key, {
@@ -138,7 +172,7 @@ function renderChildren(child: UnderwritingJourneyChild, key: string, extraProps
       />
     ),
     chiplist: <MedicalChipList items={child.chips} columns={2} key={key} />,
-    inputAlcohol: <AlcoholIntakeInput key={key} />,
+    inputAlcohol: <FibInputAlcohol key={key} />,
     copyBirthday: <CopyBirthday key={key} />,
     copyFullName: <CopyFullName key={key} />,
     radioInput: (

@@ -8,9 +8,9 @@ import FibTitle from "../../../../atoms/fib/title/title";
 import { Address_findUserAddress } from "../../../../../graphql/_core/schema/Address";
 import { useBackHandler } from "../../../../../services/hooks/useBackHandler";
 
-interface IFibFindAdressScreenProps {
+interface IFibFindAddressScreenProps {
   onBackButtonPress: () => void;
-  onAddressSelected: (adress: Address_findUserAddress) => void;
+  onAddressSelected: (address: Address_findUserAddress) => void;
   onPostCodeAdded: (postCode: string) => void;
   data: Address_findUserAddress[];
   loading: boolean;
@@ -20,7 +20,7 @@ interface IFibFindAdressScreenProps {
 export const postCodeRegex = /^[A-Z]{1,2}[0-9][A-Z0-9]? ?[0-9][A-Z]{2}$/;
 export const postCodeRegexSpecial = /^(([A-Z]{1,2}[0-9][A-Z0-9]?|ASCN|STHL|TDCU|BBND|[BFS]IQQ|PCRN|TKCA) ?[0-9][A-Z]{2}|BFPO ?[0-9]{1,4}|(KY[0-9]|MSR|VG|AI)[ -]?[0-9]{4}|[A-Z]{2} ?[0-9]{2}|GE ?CX|GIR ?0A{2}|SAN ?TA1)$/;
 
-export const FibFindAdressScreen = memo(function (props: IFibFindAdressScreenProps) {
+export const FibFindAddressScreen = memo(function (props: IFibFindAddressScreenProps) {
   const { onBackButtonPress, onAddressSelected, onPostCodeAdded, data, loading, onClose } = props;
   const [userIsTyping, setUserIsTyping] = useState(false);
   const [isEntryPoint, setIsEntryPoint] = useState(true);
@@ -103,18 +103,18 @@ export const formatPostCode = (postCode: string) => {
     .replace(/^(.*)(\d)/, "$1 $2");
 };
 
-interface ItemAdressProps {
+interface ItemAddressProps {
   address: Address_findUserAddress;
   onPress: () => void;
 }
 
-const AddressItem = (props: ItemAdressProps) => {
+const AddressItem = (props: ItemAddressProps) => {
   return (
     <TouchableOpacityWithDelay onPress={props.onPress}>
-      <View style={styles.adressItemWrapper}>
-        <Text style={styles.itemAdressTextBold}>
+      <View style={styles.addressItemWrapper}>
+        <Text style={styles.itemAddressTextBold}>
           {`${props.address.addressFirstLine}, `}
-          <Text style={styles.itemAdressText}>
+          <Text style={styles.itemAddressText}>
             {props.address.addressCity}, {props.address.addressPostCode}
           </Text>
         </Text>
@@ -133,7 +133,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 32,
     backgroundColor: "white",
   } as ViewStyle,
-  adressItemWrapper: {
+  addressItemWrapper: {
     height: 80,
     borderBottomWidth: 1,
     borderColor: "#E7E7EB",
@@ -148,7 +148,7 @@ const styles = StyleSheet.create({
     fontFamily: Style.FONT_FAMILY_PRIMARY_BOLD,
     paddingHorizontal: 32,
   } as TextStyle,
-  itemAdressTextBold: {
+  itemAddressTextBold: {
     fontSize: 16,
     lineHeight: 24,
     color: "#5A5A5C",
@@ -156,7 +156,7 @@ const styles = StyleSheet.create({
     fontFamily: Style.FONT_FAMILY_PRIMARY_BOLD,
     paddingHorizontal: 32,
   } as TextStyle,
-  itemAdressText: {
+  itemAddressText: {
     fontSize: 16,
     lineHeight: 24,
     color: "#5A5A5C",
