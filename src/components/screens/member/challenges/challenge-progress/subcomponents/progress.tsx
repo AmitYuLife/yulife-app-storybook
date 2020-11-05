@@ -84,7 +84,7 @@ class Progress extends React.Component<IProps, IState> {
                   points="16.1,8.9 25.5,8.9 18.1,14.7 21,23.7 13.2,18.5 5.5,24 8.1,14.9 0.5,9.3 9.9,9 12.8,0 "
                 />
               </Svg>
-              <Text style={StyleSheet.flatten([styles.goalText, worldStyle.goalTextColor])} bold={true}>
+              <Text bold={true} style={StyleSheet.flatten([styles.goalText, worldStyle.goalTextColor])}>
                 {adjustGoalValue(type, goal)}
               </Text>
             </View>

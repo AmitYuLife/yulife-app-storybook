@@ -1,7 +1,10 @@
 import * as React from "react";
 import { StyleSheet, Text, TextProps, TextStyle } from "react-native";
 import styles from "./text.styles";
-
+/**
+ * @param bold *** WATCH OUT *** This prop will only work if we don't pass a fontFamily alongside other styles.
+ * **bold** prop changes the fontFamily to the default bold one but it can be overwriting
+ */
 interface IProps extends TextProps {
   bold?: boolean;
   style?: TextStyle | TextStyle[];
@@ -13,7 +16,7 @@ const YuText = ({ children, bold, style, numberOfLines, testID, onPress }: IProp
   <Text
     allowFontScaling={false}
     numberOfLines={numberOfLines}
-    style={StyleSheet.flatten([styles.base, style, bold ? styles.weightBold : styles.weightNormal])}
+    style={StyleSheet.flatten([styles.base, bold ? styles.weightBold : styles.weightNormal, style])}
     testID={testID}
     onPress={onPress}
   >

@@ -41,7 +41,6 @@ const styles = StyleSheet.create({
     width: Style.PIXEL * 50,
   },
   goalText: {
-    fontFamily: Style.FONT_FAMILY_PRIMARY,
     fontSize: Style.SCALE_UP_AND_DOWN(13),
     marginTop: Style.SCALE_UP_AND_DOWN(14.5),
     textAlign: "center",

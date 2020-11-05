@@ -45,12 +45,12 @@ const FibUnderwritingReviewAnswersContainer = memo(function (props: Props) {
     userAnswers,
   };
 
-  const [createFibQuote, { data }] = useMutation<CreateTopUpsQuote, CreateTopUpsQuoteVariables>(
+  const [createFibQuote] = useMutation<CreateTopUpsQuote, CreateTopUpsQuoteVariables>(
     GQL_MUTATION_CREATE_TOP_UPS_QUOTE
   );
 
   const onSubmitButton = async () => {
-    await createFibQuote({
+    const { data } = await createFibQuote({
       variables: {
         input: queryVariables,
         product: ProductCode.YULFIB,
@@ -74,16 +74,22 @@ const FibUnderwritingReviewAnswersContainer = memo(function (props: Props) {
     }
 
     dispatch(updateQuoteDate(moment().format("YYYY-MM-DD")));
-    dispatch(
-      updateFIBValue({
-        key: "medicalInvestigationRequired",
-        value: data?.createTopUpsQuote?.medicalInvestigationRequired,
-      })
-    );
+
+    const medicalInvestigationRequired = data?.createTopUpsQuote?.medicalInvestigationRequired;
+    if (medicalInvestigationRequired) {
+      dispatch(
+        updateFIBValue({
+          key: "medicalInvestigationRequired",
+          value: medicalInvestigationRequired,
+        })
+      );
+    }
+
     const priceChangedFromAPI =
       !!Number(fibState.actualCost) && !!Number(data?.createTopUpsQuote?.actualCost)
         ? fibState.actualCost !== data.createTopUpsQuote?.actualCost
         : false;
+
     if (fibState.hasPriceChanged || priceChangedFromAPI) {
       await Navigation.showModal({
         component: {
@@ -91,8 +97,12 @@ const FibUnderwritingReviewAnswersContainer = memo(function (props: Props) {
           name: MODALS.generic,
           passProps: {
             onPress: async () => {
+              const actualCost = data?.createTopUpsQuote?.actualCost;
+              if (actualCost) {
+                dispatch(updateFIBValue({ key: "actualCost", value: actualCost }));
+              }
+
               dispatch(updateFIBValue({ key: "hasPriceChanged", value: false }));
-              dispatch(updateFIBValue({ key: "actualCost", value: data.createTopUpsQuote?.actualCost }));
               await Navigation.dismissModal(MODALS.generic);
               navigation.push(FIB_CONFIRM_PACKAGES);
             },
