@@ -14,8 +14,8 @@ Feature("I am able to use the yuscreens extended features", async () => {
             Then("I should be on the yuscreen", then.onYuscreen(CUSTOMER_23))
             Then("I should see my yumoji", then.idVisible(YUSCREEN_AVATAR))
             When("I tap life insurance", when.tapID(PERSONAL_PRODUCT("LifeInsurance")), async () => {
-                Then("I should see the FIB intro screen", then.multipleTextVisible([`Welcome, ${CUSTOMER_23.data.firstName}`, "Enter Salary"]))
-                When("I tap enter salary", when.tapText("Enter Salary"), async()=>{
+                Then("I should see the FIB intro screen", then.textVisible(`Welcome, ${CUSTOMER_23.data.firstName}`))
+                When("I tap continue", when.tapText("Continue"), async()=>{
                     Then("I should see the salary input", then.idVisible(FIB_SALARY_INPUT))
                     When("I enter a salary", when.typeViaID(FIB_SALARY_INPUT, "40000"), async ()=>{
                         Then("I should see my salary has been input", then.idVisible(FIB_SALARY_INPUT_VALUE(40000)))
@@ -34,8 +34,8 @@ Feature("I am able to use the yuscreens extended features", async () => {
         Given("I go to the yuscreen as a user with the correct toggle", given.loginToYuScreen(true, CUSTOMER_23, AUTH_23), async () => {
             Then("I should be on the yuscreen", then.onYuscreen(CUSTOMER_23))
             When("I tap life insurance", when.tapID(PERSONAL_PRODUCT("LifeInsurance")), async () => {
-                Then("I should see the FIB intro screen", then.multipleTextVisible([`Welcome, ${CUSTOMER_23.data.firstName}`, "Enter Salary"]))
-                When("I tap enter salary", when.tapText("Enter Salary"), async () => {
+                Then("I should see the FIB intro screen", then.textVisible(`Welcome, ${CUSTOMER_23.data.firstName}`))
+                When("I tap continue", when.tapText("Continue"), async () => {
                     Then("I should see the salary input", then.idVisible(FIB_SALARY_INPUT))
                     When("I enter a salary", when.typeViaID(FIB_SALARY_INPUT, "40000"), async () => {
                         Then("I should see my salary has been input", then.idVisible(FIB_SALARY_INPUT_VALUE(40000)))

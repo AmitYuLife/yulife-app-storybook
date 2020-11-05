@@ -130,6 +130,7 @@ export const idVisibleAtIndex =(id:string,index:number, waitTime=0) => async()=>
 export const typeViaID = (id: string, text: string) => async () => {
     const target = element(by.id(id))
     await expect(target).toBeVisible()
+    await target.tap()
     await target.typeText(text)
 }
 
