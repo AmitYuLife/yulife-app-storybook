@@ -2,7 +2,7 @@ import { REHYDRATE } from "redux-persist";
 import { GetCurrentUser, LoginUser } from "../../graphql/_core/schema";
 import { SyncAction } from "../_core/types";
 import { GET_USER_SUCCESS, LOGIN_USER_SUCCESS } from "../user/user.actions";
-import { SET_YUSCREEN_INTRO_SHOWN } from "./onboarding.actions";
+import { SET_YUSCREEN_INTRO_SHOWN, SET_COMMUNITY_GOALS_INTRO_SHOWN } from "./onboarding.actions";
 import {
   SET_HISTORICAL_DATA_COLLECTED,
   SET_HISTORICAL_MEDITATION_DATA_COLLECTED,
@@ -18,6 +18,7 @@ export interface IOnboardingStore {
   isOnboarding: boolean;
   showIntro: boolean;
   showYuscreenIntro: boolean;
+  showCommunityGoalsIntro: boolean;
 }
 
 export const initialState: IOnboardingStore = {
@@ -28,6 +29,7 @@ export const initialState: IOnboardingStore = {
   isOnboarding: true,
   showIntro: false,
   showYuscreenIntro: true,
+  showCommunityGoalsIntro: true,
 };
 
 export const userReducer = (state: IOnboardingStore = initialState, action: SyncAction): IOnboardingStore => {
@@ -49,6 +51,7 @@ export const userReducer = (state: IOnboardingStore = initialState, action: Sync
             reward: 200,
             isOnboarding: false,
             showYuscreenIntro: true,
+            showCommunityGoalsIntro: true,
           };
         }
       }
@@ -72,6 +75,12 @@ export const userReducer = (state: IOnboardingStore = initialState, action: Sync
 
     case LOGIN_USER_SUCCESS:
       return loginUserSuccess(state, action.payload);
+
+    case SET_COMMUNITY_GOALS_INTRO_SHOWN:
+      return {
+        ...state,
+        showCommunityGoalsIntro: false,
+      };
 
     case SET_YUSCREEN_INTRO_SHOWN:
       return {
@@ -98,6 +107,10 @@ const updatePersistedState = (persistedState: IOnboardingStore) => {
 
   if (typeof persistedState.showYuscreenIntro === "undefined") {
     return { ...persistedState, showYuscreenIntro: true };
+  }
+
+  if (typeof persistedState.showCommunityGoalsIntro === "undefined") {
+    return { ...persistedState, showCommunityGoalsIntro: true };
   }
 
   return persistedState;

@@ -26,6 +26,11 @@ export enum AvatarPartType {
   pants = "pants",
 }
 
+export enum CommunityGoalType {
+  meditation = "meditation",
+  steps = "steps",
+}
+
 /**
  * Different cover types
  */

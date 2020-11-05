@@ -8,6 +8,7 @@ import { TouchableOpacityWithDelay } from "@components/molecules";
 import Svg, { Path } from "react-native-svg";
 import { InfoButton } from "./info-button";
 import { DuelsButton } from "./duels-button";
+import { CommunityGoalsButton } from "./community-goals-button";
 import { getUserFeatures } from "@redux/user/user.selectors";
 import { IReduxState } from "@redux/_core/reducers";
 import { connect } from "react-redux";
@@ -22,24 +23,20 @@ type ConnectedState = ReturnType<typeof mapStateToProps>;
 
 interface IProps extends LeaderboardPressableTitleProps, Partial<ConnectedState> {}
 
-export function _LeaderboardPressableTitle({ onPressLabel, onPressInfo, name, showDuels }: Partial<IProps>) {
-  if (showDuels) {
-    return (
-      <View pointerEvents="box-none" style={styles.wrapper}>
-        <View style={styles.row}>
-          <Title title={name} onPressLabel={onPressLabel} onPressInfo={onPressInfo} showDuels={showDuels} />
-        </View>
-        <DuelsButton />
-      </View>
-    );
-  }
-
+export function _LeaderboardPressableTitle({
+  onPressLabel,
+  onPressInfo,
+  name,
+  showDuels,
+  showCommunityGoals,
+}: Partial<IProps>) {
   return (
     <View pointerEvents="box-none" style={styles.wrapper}>
-      <TouchableOpacityWithDelay style={styles.row} onPress={onPressLabel}>
-        <Title title={name} onPressLabel={onPressLabel} onPressInfo={onPressInfo} showDuels={showDuels} />
-      </TouchableOpacityWithDelay>
-      <InfoButton onPressInfo={onPressInfo} showDuels={showDuels} />
+      <View style={styles.row}>
+        <Title title={name} onPressLabel={onPressLabel} onPressInfo={onPressInfo} />
+      </View>
+      {!showDuels ? null : <DuelsButton />}
+      {!showCommunityGoals ? null : <CommunityGoalsButton />}
     </View>
   );
 }
@@ -58,12 +55,10 @@ function Title({
   title,
   onPressLabel,
   onPressInfo,
-  showDuels,
 }: {
   title: string;
   onPressLabel: () => void;
   onPressInfo: () => void;
-  showDuels: boolean;
 }) {
   return (
     <View style={titleStyles.wrapper} testID={LEADERBOARD_TOP_SCREEN}>
@@ -79,8 +74,8 @@ function Title({
       </TouchableOpacityWithDelay>
       <TouchableOpacityWithDelay onPress={onPressInfo} testID={LEADERBOARD_INFO_BUTTON}>
         <View style={titleStyles.flexRow}>
-          <Text style={showDuels ? titleStyles.captionDuels : titleStyles.caption}>30 day steps</Text>
-          {showDuels ? <InfoButton onPressInfo={onPressInfo} showDuels={showDuels} /> : null}
+          <Text style={titleStyles.caption}>30 day steps</Text>
+          <InfoButton onPressInfo={onPressInfo} />
         </View>
       </TouchableOpacityWithDelay>
     </View>
@@ -104,12 +99,6 @@ const titleStyles = StyleSheet.create({
     marginTop: Platform.select({ ios: 2, android: -4 }),
   } as TextStyle,
   caption: {
-    color: "#000000",
-    fontSize: Style.adjust(18),
-    fontFamily: Style.FONT_FAMILY_PRIMARY_BOLD,
-    marginLeft: -5,
-  } as TextStyle,
-  captionDuels: {
     color: "#000000",
     fontSize: Style.adjust(18),
     fontFamily: Style.FONT_FAMILY_PRIMARY_BOLD,
@@ -154,6 +143,7 @@ const arrowStyles = StyleSheet.create({
 
 const mapStateToProps = (state: IReduxState) => ({
   showDuels: !!getUserFeatures(state).showDuels,
+  showCommunityGoals: !!getUserFeatures(state).showCommunityGoals,
 });
 
 export const LeaderboardPressableTitle = connect<ConnectedState>(mapStateToProps)(_LeaderboardPressableTitle);

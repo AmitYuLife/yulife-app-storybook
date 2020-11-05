@@ -24,6 +24,9 @@ export interface SaveAvatar_updateUserAvatar {
 }
 
 export interface SaveAvatar {
+  /**
+   * Allows the current user to update his yumoji.
+   */
   updateUserAvatar: SaveAvatar_updateUserAvatar | null;
 }
 

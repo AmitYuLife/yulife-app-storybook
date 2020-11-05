@@ -134,11 +134,18 @@ class MenuContainer extends PureComponent<Props> {
       component: {
         id: route,
         name: route,
-        options: { bottomTabs, ...options },
+        options: {
+          bottomTabs,
+          sideMenu: {
+            left: {
+              enabled: false,
+              visible: false,
+            },
+          },
+          ...options,
+        },
       },
     });
-
-    this.handleClose();
   };
 
   private handleClose = () =>

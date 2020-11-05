@@ -22,6 +22,8 @@ export { default as CollectRewardScreen } from "./member/collect-reward/collect-
 export { default as AnimatedChestScreen } from "./member/animated-chest/animated-chest.screen";
 export { default as ActiveDuelsScreen } from "./member/duels-hub/active-duels/active-duels.screen";
 export { default as PastDuelsScreen } from "./member/duels-hub/past-duels/past-duels.screen";
+export { default as CommunityGoalsScreen } from "./member/community-goals/community-goals.screen";
+export { default as CommunityGoalsIntro } from "./member/community-goals/community-goals.intro";
 
 // quests screens
 export { default as QuestsScreenOffline } from "./member/quests/quests-offline/quests-offline";

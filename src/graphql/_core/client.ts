@@ -27,6 +27,10 @@ const dataIdFromObject = (object: any) => {
       return `${object.__typename}-${object.expiresAt}`;
     case "Level":
       return `${object.__typename}-${object.id}`;
+    case "CommunityGoal":
+      return `${object.__typename}-${object.id}`;
+    case "CommunityGoalParticipant":
+      return `${object.__typename}-${object.userId}`;
     case "LevelSlot":
       return `${object.__typename}-${object.id}`;
     case "LevelSlotMilestone":

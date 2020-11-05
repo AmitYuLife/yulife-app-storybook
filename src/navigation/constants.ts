@@ -29,6 +29,7 @@ export const ROUTES = {
   chooseLeaderboard: "yulife.member.chooseLeaderboard",
   debug: "yulife.member.Debug",
   memberServices: "yulifer.member.memberServices",
+  communityGoals: "yulife.member.CommunityGoals",
   yuScreen: "yulife.member.Yuscreen",
   avatarCreation: "yulife.member.AvatarCreation",
   yuScreenProducts: "yulife.member.YuscreenProducts",
