@@ -119,7 +119,6 @@ export const USER_21_LEADERBOARD_B = {
         name: USER_19_LEADERBOARD_B.data.name,
         creatorName: CREATOR_NAME_2,
         consent: false,
-        // hasAccepted: false,
         days: 30,
         isCreatedByCurrentUser: false,
         primaryBusinessLeaderboard: false,

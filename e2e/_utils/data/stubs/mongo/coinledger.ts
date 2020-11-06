@@ -1,7 +1,7 @@
 
 import { generateRandomMongoId } from '../../utils';
 import { IDatabaseItem } from '../../types';
-import { CUSTOMER_2, CUSTOMER_3, CUSTOMER_4, CUSTOMER_6, CUSTOMER_7, CUSTOMER_8, CUSTOMER_9, CUSTOMER_12, CUSTOMER_13, CUSTOMER_14, CUSTOMER_15, CUSTOMER_18, CUSTOMER_17, CUSTOMER_22, CUSTOMER_23, CUSTOMER_24 } from '../postgres/customers';
+import { CUSTOMER_2, CUSTOMER_3, CUSTOMER_4, CUSTOMER_6, CUSTOMER_7, CUSTOMER_8, CUSTOMER_9, CUSTOMER_12, CUSTOMER_13, CUSTOMER_14, CUSTOMER_15, CUSTOMER_18, CUSTOMER_17, CUSTOMER_22, CUSTOMER_23, CUSTOMER_24, CUSTOMER_19, CUSTOMER_16 } from '../postgres/customers';
 import {
     CHALLENGE_2, CHALLENGE_USER_6_A, CHALLENGE_USER_7_A, CHALLENGE_USER_7_B, CHALLENGE_USER_7_C, CHALLENGE_USER_7_D,
     CHALLENGE_USER_8_B, CHALLENGE_USER_8_A, CHALLENGE_USER_9_B, CHALLENGE_USER_9_A, CHALLENGE_USER_9_C, CHALLENGE_USER_9_D,
@@ -502,6 +502,23 @@ export const COIN_LEDGER_15 = {
     }
 } as IDatabaseItem
 
+export const COIN_LEDGER_16 = {
+    type: "mongo",
+    modelName: "coinledger",
+    data: {
+        _id: generateRandomMongoId(),
+        customerId: CUSTOMER_16.data.customerId,
+        userId: CUSTOMER_16.data.customerId,
+        transactions: [],
+        activeStreakId: "YU_STREAK_001",
+        currentBalance: 50,
+        currentLevel: 1,
+        nextStreakAvailableAt: moment().startOf("day").format("YYYY-MM-DDTHH:mm:ss")
+
+    }
+} as IDatabaseItem
+
+
 export const COIN_LEDGER_17 = {
     type: "mongo",
     modelName: "coinledger",
@@ -565,6 +582,20 @@ export const COIN_LEDGER_18 = {
         currentLevel: 2,
         nextStreakAvailableAt: moment().startOf("day").format("YYYY-MM-DDTHH:mm:ss")
 
+    }
+} as IDatabaseItem
+
+export const COIN_LEDGER_19 = {
+    type:"mongo",
+    modelName:"coinledger",
+    data:{
+        _id: generateRandomMongoId(),
+        customerId: CUSTOMER_19.data.customerId,
+        userId: CUSTOMER_19.data.customerId,
+        transactions: [],
+        currentBalance: 250,
+        currentStreak: 0,
+        currentLevel: 1
     }
 } as IDatabaseItem
 

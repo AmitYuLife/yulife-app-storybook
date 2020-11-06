@@ -195,7 +195,7 @@ Feature("I am able to use the yuscreen, create, and edit an Yumoji", async () =>
     Scenario("I can create an Yumoji using the female body type", scenario.start, async () => {
         Given("I login and go to the yuscreen", given.loginToYuScreen(true, CUSTOMER_19, AUTH_19), async () => {
             Then("I should be on the yuscreen tab", then.onEmptyYuscreen(CUSTOMER_19))
-            Then("I should see my coin balance in the top right", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(200)))
+            Then("I should see my coin balance in the top right", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(450)))
             When("I tap get started", when.tapID(GET_STARTED_BUTTON), async () => {
                 Then("I should be on the create Yumoji screen", then.onCreateAvatarScreen)
                 When("I tap a body type", when.tapID(FEMALE_BODY), async () => {
