@@ -9,6 +9,7 @@ import { GetDuelTemplates } from "@graphql/_core/schema";
 import { Coins } from "@organisms/top-bar/assets";
 import WagerDropdown from "./subcomponents/wager-dropdown";
 import { Colours } from "@styles";
+import { DUEL_OPTIONS_SCREEN } from "@ids";
 
 export default function DuelOptions({
   opponent,
@@ -74,7 +75,7 @@ export default function DuelOptions({
 
   return (
     <>
-      <View style={styles.wrapper}>
+      <View style={styles.wrapper} testID={DUEL_OPTIONS_SCREEN}>
         <View>
           <Text style={styles.description}>
             You&apos;re challenging{" "}

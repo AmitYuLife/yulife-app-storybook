@@ -3,6 +3,7 @@ import { View } from "react-native";
 import { Text, Button } from "@atoms";
 import styles from "./duel-response-options.styles";
 import { getDaysAndMinutesFromSeconds } from "@services/utils";
+import { DUEL_RESPONSE } from "@ids";
 
 interface IProps {
   startDateTime: string;
@@ -32,7 +33,7 @@ const Options: React.FC<IProps> = ({
   const disabled = yucoin > userCoins;
   return (
     <>
-      <View style={styles.wrapper}>
+      <View style={styles.wrapper} testID={DUEL_RESPONSE(opponentFirstName)}>
         <View style={styles.bodyWrapper}>
           <Text style={styles.description}>
             {opponentFirstName} has invited you to a{" "}

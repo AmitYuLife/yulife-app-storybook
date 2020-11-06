@@ -1,6 +1,6 @@
 import { INPUT_LOGIN_EMAIL, INPUT_LOGIN_PASSWORD, BUTTON_LOGIN, NAV_BAR } from "@ids";
 import { records } from "@data";
-import { navigateViaID, navigateViaText } from "./common";
+import { navigateViaID, navigateViaText, restart, restartWithData } from "./common";
 import { authoriseFitkit } from "@socket";
 
 
@@ -23,6 +23,14 @@ export const logInAndGoToTab = (tab?: "yucoin" | "quests" | "leaderboard" | "rew
     await loginAsUser(customer, auth, fitkitAuth)()
     await navigateViaID(NAV_BAR(tab))
 }
+
+export const restartAndLoginToTab = (tab?: "yucoin" | "quests" | "leaderboard" | "rewards" | "yu", customer = records.CUSTOMER_1, auth = records.AUTH_1, fitkitAuth = true) => async () => {
+    await device.terminateApp();
+    await device.launchApp({ delete: true, });
+    await loginAsUser(customer, auth, fitkitAuth)()
+    await navigateViaID(NAV_BAR(tab))
+}
+
 
 export const completeIntro = async () => {
     for (var i = 0; i < 7; i++) {

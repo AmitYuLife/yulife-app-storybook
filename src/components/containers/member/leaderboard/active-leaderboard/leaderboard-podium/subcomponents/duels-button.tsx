@@ -6,6 +6,7 @@ import { TouchableOpacityWithDelay } from "@components/molecules";
 import { Navigation } from "react-native-navigation";
 import { ROUTES } from "@navigation/constants";
 import { Text } from "@atoms";
+import { DUELS_BUTTON } from "@ids";
 
 function navigateToDuelsHub() {
   Navigation.push(ROUTES.leaderboards, {
@@ -26,7 +27,12 @@ const HIT_SLOP = {
 
 export function DuelsButton() {
   return (
-    <TouchableOpacityWithDelay style={styles.wrapper} onPress={navigateToDuelsHub} hitSlop={HIT_SLOP}>
+    <TouchableOpacityWithDelay
+      style={styles.wrapper}
+      onPress={navigateToDuelsHub}
+      hitSlop={HIT_SLOP}
+      testID={DUELS_BUTTON}
+    >
       <View style={styles.innerWrapper}>
         <Text style={styles.mainText} bold={true}>
           Duels

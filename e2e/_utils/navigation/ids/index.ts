@@ -77,6 +77,7 @@ export const LEADERBOARD_TOP_SCREEN = "LEADERBOARD_TOP_SCREEN"
 export const LEADERBOARD_INFO_BUTTON = "LEADERBOARD_INFO_BUTTON"
 export const LEADERBOARD_INFO = "LEADERBOARD_INFO"
 export const LEADERBOARD_TITLE = (title:string) => `LEADERBOARD_TITLE_${title}`
+export const DUELS_BUTTON = "DUELS_BUTTON"
 
 // create a leaderboard
 export const GROUP_NAME_INPUT = "GROUP_NAME_INPUT"
@@ -125,3 +126,9 @@ export const SCROLLER_VALUE = (value: number) => `SCROLLER_VALUE${value}`
 export const HIGHLIGHTED_SCROLLER_VALUE = (value:number) => `HIGHLIGHTED_SCROLLER_VALUE_${value}`
 export const CUSTOM_COVER_SCREEN = "CUSTOM_COVER_SCREEN"
 export const PERCENTAGE_COVERED = (value:number) => `PERCENTAGE_COVERD_${value}`
+
+// DUELS
+export const DUELS_HUB = "DUELS_HUB"
+export const EMPTY_DUELS_HUB = "EMPTY_DUELS_HUB"
+export const DUEL_OPTIONS_SCREEN = "DUEL_OPTIONS_SCREEN"
+export const DUEL_RESPONSE = (opponentName:string) => `DUEL_RESPONSE_${opponentName}`

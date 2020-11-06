@@ -14,7 +14,7 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
                 Then("I should see the leaderboard consent screen", then.onLeaderboardConsent)
                 When("I tap 'Yes'", when.tapText("Yes"), async () => {
                     Then("I should see the leaderboard title", then.idVisible(LEADERBOARD_TITLE(USER_18_LEADERBOARD.data.name)))
-                    Then("I should see the leaderboard", then.leaderboardVisible([CUSTOMER_18, CUSTOMER_17, CUSTOMER_19, CUSTOMER_21], [800, 250]))
+                    Then("I should see the leaderboard", then.leaderboardVisible([CUSTOMER_18, CUSTOMER_17, CUSTOMER_19, CUSTOMER_21], [800, 50]))
                     When("I tap the ? icon", when.tapID(LEADERBOARD_INFO_BUTTON), async () => {
                         Then("I should be on the about leaderboard page", then.idVisible(LEADERBOARD_INFO))
                         When("I tap the back button", when.tapID(BACK_BUTTON), async () => {

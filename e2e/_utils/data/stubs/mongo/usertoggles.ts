@@ -1,7 +1,7 @@
 import { generateRandomMongoId } from '../../utils';
 import { IDatabaseItem } from '../../types';
 import { allTogglesTrue } from "./_templates";
-import { CUSTOMER_2, CUSTOMER_5, CUSTOMER_6, CUSTOMER_7, CUSTOMER_8, CUSTOMER_9, CUSTOMER_14, CUSTOMER_3, CUSTOMER_15, CUSTOMER_16, CUSTOMER_17, CUSTOMER_20, CUSTOMER_23, CUSTOMER_10, CUSTOMER_12, CUSTOMER_13, CUSTOMER_18, CUSTOMER_22, CUSTOMER_24 } from '../postgres/customers';
+import { CUSTOMER_2, CUSTOMER_5, CUSTOMER_6, CUSTOMER_7, CUSTOMER_8, CUSTOMER_9, CUSTOMER_14, CUSTOMER_3, CUSTOMER_15, CUSTOMER_16, CUSTOMER_17, CUSTOMER_20, CUSTOMER_23, CUSTOMER_10, CUSTOMER_12, CUSTOMER_13, CUSTOMER_18, CUSTOMER_22, CUSTOMER_24, CUSTOMER_19 } from '../postgres/customers';
 
 export const CUSTOMER_2_TOGGLES = {
     type: "mongo",
@@ -173,6 +173,7 @@ export const CUSTOMER_14_TOGGLES = {
             "statsShowCyclingBestScoreCard": false,
             "statsShowCyclingGraphCard": false,
             "showStats": true,
+            showDuels: true
         }
 
     }
@@ -215,9 +216,26 @@ export const CUSTOMER_18_TOGGLES = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_18.data.customerId,
-        features: { hideSmartHealthScreen: false, hideYuMatterScreen: true },
+        features: {
+            hideSmartHealthScreen: false, 
+            hideYuMatterScreen: true, 
+            showDuels: true
+         },
     }
 } as IDatabaseItem
+
+export const CUSTOMER_19_TOGGLES = {
+    type: "mongo",
+    modelName: "usertoggles",
+    data: {
+        _id: generateRandomMongoId(),
+        userId: CUSTOMER_19.data.customerId,
+        features: {
+            showDuels: true
+        },
+    }
+} as IDatabaseItem
+
 
 export const CUSTOMER_20_TOGGLES = {
     type: "mongo",
@@ -264,11 +282,12 @@ export const CUSTOMER_20_TOGGLES = {
             "statsShowCyclingGraphCard": true,
             "showStats": true,
             hideSmartHealthScreen: true,
-            hideYuMatterScreen: true
-
+            hideYuMatterScreen: true,
+            showDuels: true
         },
     }
 } as IDatabaseItem
+
 
 export const CUSTOMER_22_TOGGLES = {
     type: "mongo",
@@ -367,7 +386,7 @@ export const CUSTOMER_23_TOGGLES = {
             "showStats": true,
             hideSmartHealthScreen: false,
             hideYuMatterScreen: true,
-            hasFibActive: true
+            hasFibActive: true,
         }
     }
 } as IDatabaseItem

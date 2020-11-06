@@ -2,6 +2,7 @@ import React, { FC } from "react";
 import { View } from "react-native";
 import { DuelEmpty } from "..";
 import { DuelHubTab } from "@components/containers/member/duels-hub/duels-hub.container";
+import { EMPTY_DUELS_HUB } from "@ids";
 
 interface IProps {
   onPressClose: () => void;
@@ -20,7 +21,7 @@ const EmptyDuelHub: FC<IProps> = ({ onPressClose, activeTab }) => {
           buttonText: "Challenge a colleague",
         };
   return (
-    <View>
+    <View testID={EMPTY_DUELS_HUB}>
       <DuelEmpty {...copy} onPress={onPressClose} />
     </View>
   );
