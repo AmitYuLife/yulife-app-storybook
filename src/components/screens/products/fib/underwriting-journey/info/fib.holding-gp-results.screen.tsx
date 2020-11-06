@@ -1,16 +1,17 @@
 import React, { memo, useCallback } from "react";
 import { View, StyleSheet, TextStyle, ViewStyle } from "react-native";
-import { Text } from "@atoms";
+import { Text, Button } from "@atoms";
 import { Style } from "@styles";
 import { FibUnderwritingJourneyLayout } from "../../layouts/fib.underwriting-journey-layout";
 import { useBackHandler } from "../../../../../../services/hooks/useBackHandler";
 
 export interface IFibHoldingGPDetailsScreenProps {
   onClose?: () => void;
+  onResetFib?: () => void;
 }
 
 export const FibHoldingGPDetails = memo(function (props: IFibHoldingGPDetailsScreenProps) {
-  const { onClose } = props;
+  const { onClose, onResetFib } = props;
 
   const backHandler = useCallback(() => {
     return true;
@@ -30,6 +31,11 @@ export const FibHoldingGPDetails = memo(function (props: IFibHoldingGPDetailsScr
           {`We are going to contact your GP.\n\nWe cannot issue your insurance until your medical assessment and further checks have been completed.\n\nWe have not taken payment, and will inform you when we have your results.`}
         </Text>
       </View>
+      <View style={styles.buttonWrapper}>
+        {onResetFib ? (
+          <Button type="Primary" size={"Large"} onPress={onResetFib} label={"restart journey (beta only)"} />
+        ) : null}
+      </View>
     </FibUnderwritingJourneyLayout>
   );
 });
@@ -46,4 +52,8 @@ const styles = StyleSheet.create({
     letterSpacing: 1,
     color: "#5A5A5C",
   } as TextStyle,
+  buttonWrapper: {
+    marginTop: "auto",
+    marginBottom: 48,
+  } as ViewStyle,
 });

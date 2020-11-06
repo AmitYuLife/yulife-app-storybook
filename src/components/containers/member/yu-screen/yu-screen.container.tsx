@@ -22,6 +22,7 @@ import { YuScreenLoading } from "@components/screens/member/yu-screen/yu-screen-
 import useCacheFirstAndNetworkOnAppearQuery from "@services/hooks/useCacheFirstAndNetworkOnAppearQuery";
 import { getFIBState } from "@redux/product/product.selectors";
 import { resetFIBUnderwritingJourney } from "@redux/product/product.actions";
+import { getUserFeatures } from "../../../../redux/user/user.selectors";
 import {
   navigateToProductScreen,
   navigateToAvatarCreationScreen,
@@ -44,6 +45,7 @@ function YuScreenContainer({
   onLeftMenuPress,
   showYuscreenIntro,
   fibState,
+  features,
 }: Props) {
   const dispatch = useDispatch();
   const { data } = useCacheFirstAndNetworkOnAppearQuery<GetYulifer>(GQL_QUERY_GET_YULIFER, componentId);
@@ -57,9 +59,9 @@ function YuScreenContainer({
       product: GetYulifer_getYulifer_products_employer | GetYulifer_getYulifer_products_personal,
       productType: ProductType
     ) => () => {
-      navigateToProductScreen({ componentId, productType, product, fibState, resetFIBJourney });
+      navigateToProductScreen({ componentId, productType, product, fibState, resetFIBJourney, features });
     },
-    [componentId, fibState, resetFIBJourney]
+    [componentId, fibState, resetFIBJourney, features]
   );
 
   const handleUnlockPress = useCallback(() => {
@@ -128,6 +130,7 @@ const mapStateToProps = (state: IReduxState) => ({
   avatarFromLocal: getAvatarForYuscreen(state),
   showYuscreenIntro: getShowYuscreenIntro(state),
   fibState: getFIBState(state),
+  features: getUserFeatures(state),
 });
 
 export default connect<ConnectedState>(mapStateToProps)(YuScreenContainer);

@@ -14,6 +14,8 @@ import {
 import { AvatarBuilderHeading } from "@components/screens/member/yu-screen/avatar-builder/avatar.types";
 import { FIB_UNDERWRITING_REVIEW_ANSWERS_SCREEN_ID } from "@components/containers/products/fib/data/underwriting-journey-data";
 import moment from "moment";
+import { FIB_INFO } from "../../products/fib/fib.types";
+import { InfoTypes } from "../../products/fib/subcontainers/fib.info.container";
 
 const FIB_EXPIRE_QUOTE_MONTHS = 3;
 
@@ -23,6 +25,7 @@ interface NavigateToProductScreenOptions {
   product: GetYulifer_getYulifer_products_employer | GetYulifer_getYulifer_products_personal;
   fibState: FIBStore;
   resetFIBJourney: () => void;
+  features?: any;
 }
 
 interface INavigateToAvatarModal {
@@ -32,38 +35,53 @@ interface INavigateToAvatarModal {
 }
 
 export function navigateToProductScreen(options: NavigateToProductScreenOptions) {
-  const { componentId, productType, product, fibState, resetFIBJourney } = options;
+  const { componentId, productType, product, fibState, features, resetFIBJourney } = options;
 
   // TODO: Implement different journeys for different products
   if (productType === "personal" && product.active) {
+    const resetFib = features.resetFib
+      ? () => {
+          resetFIBJourney();
+          return Navigation.push(componentId, {
+            component: {
+              id: ROUTES.fib,
+              name: ROUTES.fib,
+              passProps: {
+                initialRoute: FIB_INTRODUCTION,
+              },
+            },
+          });
+        }
+      : null;
     // TODO: get rejected value from server
     if (fibState.rejected) {
-      // TODO: uncomment Navaigation when we'll go live
-      // return Navigation.push(componentId, {
-      //   component: {
-      //     id: ROUTES.fib,
-      //     name: ROUTES.fib,
-      //     passProps: {
-      //       initialRoute: FIB_INFO,
-      //       initialProps: { type: "Rejected" } as { type: InfoTypes },
-      //     },
-      //   },
-      // });
+      return Navigation.push(componentId, {
+        component: {
+          id: ROUTES.fib,
+          name: ROUTES.fib,
+          passProps: {
+            initialRoute: FIB_INFO,
+            initialProps: {
+              type: "Rejected",
+              onResetFib: resetFib,
+            } as { type: InfoTypes; onResetFib: () => void },
+          },
+        },
+      });
     }
 
     // TODO: get medicalInvestigationRequired from server
     if (fibState.medicalInvestigationRequired) {
-      // TODO: uncomment Navaigation when we'll go live
-      // return Navigation.push(componentId, {
-      //   component: {
-      //     id: ROUTES.fib,
-      //     name: ROUTES.fib,
-      //     passProps: {
-      //       initialRoute: FIB_INFO,
-      //       initialProps: { type: "HoldingGP" } as { type: InfoTypes },
-      //     },
-      //   },
-      // });
+      return Navigation.push(componentId, {
+        component: {
+          id: ROUTES.fib,
+          name: ROUTES.fib,
+          passProps: {
+            initialRoute: FIB_INFO,
+            initialProps: { type: "HoldingGP", onResetFib: resetFib } as { type: InfoTypes; onResetFib: () => void },
+          },
+        },
+      });
     }
 
     const isQuoteExpired = moment().diff(moment(fibState.quoteDate), "months") >= FIB_EXPIRE_QUOTE_MONTHS;
