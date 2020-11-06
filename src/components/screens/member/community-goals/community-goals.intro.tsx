@@ -1,12 +1,13 @@
 import * as React from "react";
-import { StyleSheet, ListRenderItemInfo, View, Image, ViewStyle, ImageStyle, TextStyle } from "react-native";
+import { StyleSheet, ListRenderItemInfo, View, Image, ImageStyle, TextStyle } from "react-native";
 import { useMutation } from "@apollo/react-hooks";
 
 import { GQL_MUTATION_UPDATE_NICKNAME } from "@graphql/user";
 import { UpdateNickname, UpdateNicknameVariables } from "@graphql/_core/schema/UpdateNickname";
-import { Text, TextInput } from "@atoms";
+import { Text, TextInput, Pad } from "@atoms";
 import { OnboardingSwiper, OnboardingSwiperData } from "@organisms";
 import { Style } from "@styles";
+import { useKeyboardListeners } from "@services/hooks/useKeyboardListeners";
 
 interface Props {
   setOnboardingShown: () => void;
@@ -69,33 +70,46 @@ interface GetRenderItem {
 
 function getRenderItem({ nickname, setNickname }: GetRenderItem) {
   return function renderItem({ item, index }: ListRenderItemInfo<OnboardingSwiperData>) {
-    return (
-      <View style={{ height: Style.DEVICE_HEIGHT, width: Style.DEVICE_WIDTH }}>
-        <View style={styles.imageWrapper}>
-          <Image style={styles.image} source={images[index]} />
-        </View>
-        <Text style={styles.title} bold={true}>
-          {item.title}
-        </Text>
-        <Text style={styles.subTitle}>{item.subtitle}</Text>
-        {index !== 2 ? null : (
-          <View style={styles.inputWrapper}>
-            <TextInput onChange={setNickname} value={nickname} type={TextInput.Types.TEXT} />
-          </View>
-        )}
-      </View>
-    );
+    return <IntroItem item={item} index={index} nickname={nickname} setNickname={setNickname} />;
   };
 }
 
+interface IntroItemProps extends GetRenderItem {
+  index: number;
+  item: OnboardingSwiperData;
+}
+
+const MARGIN_TOP = Style.DEVICE_HEIGHT * 0.1;
+
+function IntroItem(props: IntroItemProps) {
+  const isKeyboardShown = useKeyboardListeners();
+  const { index, item, setNickname, nickname } = props;
+
+  return (
+    <View style={styles.fullWidth}>
+      {isKeyboardShown ? <Pad height={MARGIN_TOP} /> : <Image style={styles.image} source={images[index]} />}
+
+      <Text style={styles.title} bold={true}>
+        {item.title}
+      </Text>
+      <Text style={styles.subTitle}>{item.subtitle}</Text>
+      {index !== 2 ? null : (
+        <View style={styles.inputWrapper}>
+          <TextInput onChange={setNickname} value={nickname} type={TextInput.Types.TEXT} />
+        </View>
+      )}
+    </View>
+  );
+}
+
 const styles = StyleSheet.create({
-  imageWrapper: {
-    height: Style.adjust(300),
-    width: Style.adjust(300),
-    marginTop: Style.DEVICE_HEIGHT * 0.1,
-    alignSelf: "center",
-  } as ViewStyle,
+  fullWidth: {
+    height: Style.DEVICE_HEIGHT,
+    width: Style.DEVICE_WIDTH,
+  },
   image: {
+    alignSelf: "center",
+    marginTop: MARGIN_TOP,
     height: Style.adjust(300),
     width: Style.adjust(300),
   } as ImageStyle,
