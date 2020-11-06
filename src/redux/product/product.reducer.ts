@@ -134,6 +134,8 @@ function personalProductReducer<T>(state: IProductStore = initialState, action: 
         ...state,
         fib: {
           ...state.fib,
+          rejected: false,
+          medicalInvestigationRequired: false,
           quoteDate: "",
           lastQuestionId: "",
           hasPriceChanged: false,

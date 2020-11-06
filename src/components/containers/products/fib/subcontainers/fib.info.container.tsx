@@ -14,7 +14,11 @@ interface IFibInfoContainerProps {
 
 const FibInfoContainer = memo(function (props: IFibInfoContainerProps) {
   const { navigation } = props;
-  const { type, packageType }: { type: InfoTypes; packageType: string } = navigation.currentRoute.passProps;
+  const {
+    type,
+    packageType,
+    onResetFib,
+  }: { type: InfoTypes; packageType: string; onResetFib: () => {} } = navigation.currentRoute.passProps;
 
   const backHandler = useCallback(() => {
     navigation.pop();
@@ -29,11 +33,11 @@ const FibInfoContainer = memo(function (props: IFibInfoContainerProps) {
 
   switch (type) {
     case "HoldingGP":
-      return <FibHoldingGPDetails onClose={onClose} />;
+      return <FibHoldingGPDetails onClose={onClose} onResetFib={onResetFib} />;
     case "PaymentCongratulation":
       return <FibPaymentCongratulationScreen onClose={onClose} packageType={packageType} />;
     case "Rejected":
-      return <FibRejectedScreen onClose={onClose} />;
+      return <FibRejectedScreen onClose={onClose} onResetFib={onResetFib} />;
     default:
       return <></>;
   }
