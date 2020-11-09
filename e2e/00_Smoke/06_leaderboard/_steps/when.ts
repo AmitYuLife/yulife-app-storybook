@@ -15,7 +15,7 @@ export const {
 
 export const turnOffLeaderboard = (leaderboardID: string) => async () => {
     const leaderboard = element(by.id(leaderboardID))
-    const offButton = element(by.text("turn it off"))
+    const offButton = element(by.text("Turn it off"))
 
     await leaderboard.tap()
     await offButton.tap()

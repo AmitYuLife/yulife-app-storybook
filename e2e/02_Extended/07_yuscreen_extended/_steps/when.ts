@@ -33,7 +33,5 @@ export const tapColour = (hexValue: string) => async () => {
 
 export const goToLifeInsurance = async () =>{
     await tapID(PERSONAL_PRODUCT("LifeInsurance"))()
-    await tapText("Enter Salary")()
-    await typeViaID(FIB_SALARY_INPUT, "40000")()
-    await tapText("Done")()
+    await tapText("Continue")()
 }
