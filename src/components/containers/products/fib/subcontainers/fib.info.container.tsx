@@ -1,5 +1,5 @@
 import React, { memo, useCallback } from "react";
-import { FibLocalNavigation } from "../fib.types";
+import { FibLocalNavigation, FIB_INTRODUCTION } from "../fib.types";
 import { useBackHandler } from "../../../../../services/hooks/useBackHandler";
 import { FibHoldingGPDetails } from "../../../../screens/products/fib/underwriting-journey/info/fib.holding-gp-results.screen";
 import { FibPaymentCongratulationScreen } from "@components/screens/products/fib/underwriting-journey/info/fib.payment-congratulation.screen";
@@ -27,17 +27,24 @@ const FibInfoContainer = memo(function (props: IFibInfoContainerProps) {
 
   useBackHandler(backHandler);
 
+  const resetFib = onResetFib
+    ? () => {
+        onResetFib();
+        navigation.push(FIB_INTRODUCTION);
+      }
+    : null;
+
   const onClose = useCallback(() => {
     Navigation.popTo(ROUTES.yuScreen);
   }, []);
 
   switch (type) {
     case "HoldingGP":
-      return <FibHoldingGPDetails onClose={onClose} onResetFib={onResetFib} />;
+      return <FibHoldingGPDetails onClose={onClose} onResetFib={resetFib} />;
     case "PaymentCongratulation":
       return <FibPaymentCongratulationScreen onClose={onClose} packageType={packageType} />;
     case "Rejected":
-      return <FibRejectedScreen onClose={onClose} onResetFib={onResetFib} />;
+      return <FibRejectedScreen onClose={onClose} onResetFib={resetFib} />;
     default:
       return <></>;
   }
