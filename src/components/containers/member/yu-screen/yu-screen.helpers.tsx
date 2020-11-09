@@ -39,20 +39,7 @@ export function navigateToProductScreen(options: NavigateToProductScreenOptions)
 
   // TODO: Implement different journeys for different products
   if (productType === "personal" && product.active) {
-    const resetFib = features.resetFib
-      ? () => {
-          resetFIBJourney();
-          return Navigation.push(componentId, {
-            component: {
-              id: ROUTES.fib,
-              name: ROUTES.fib,
-              passProps: {
-                initialRoute: FIB_INTRODUCTION,
-              },
-            },
-          });
-        }
-      : null;
+    const resetFib = features.resetFib ? () => resetFIBJourney() : null;
     // TODO: get rejected value from server
     if (fibState.rejected) {
       return Navigation.push(componentId, {
@@ -65,20 +52,6 @@ export function navigateToProductScreen(options: NavigateToProductScreenOptions)
               type: "Rejected",
               onResetFib: resetFib,
             } as { type: InfoTypes; onResetFib: () => void },
-          },
-        },
-      });
-    }
-
-    // TODO: get medicalInvestigationRequired from server
-    if (fibState.medicalInvestigationRequired) {
-      return Navigation.push(componentId, {
-        component: {
-          id: ROUTES.fib,
-          name: ROUTES.fib,
-          passProps: {
-            initialRoute: FIB_INFO,
-            initialProps: { type: "HoldingGP", onResetFib: resetFib } as { type: InfoTypes; onResetFib: () => void },
           },
         },
       });
