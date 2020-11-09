@@ -86,6 +86,7 @@ const authMiddleware = setContext(async (_, { headers }) => {
       ...defaultHeaders,
       authorization: token ? `Bearer ${token}` : "",
       date: moment().format(DATE_FORMAT_WITH_TZ),
+      yu_client_token: Config.YU_CLIENT_TOKEN,
     },
   };
 });
