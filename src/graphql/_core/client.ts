@@ -31,6 +31,8 @@ const dataIdFromObject = (object: any) => {
       return `${object.__typename}-${object.id}`;
     case "CommunityGoalParticipant":
       return `${object.__typename}-${object.userId}`;
+    case "CommunityGoalParticipantStats":
+      return `${object.__typename}-${object.value}-${object.lastUpdatedAt}`;
     case "LevelSlot":
       return `${object.__typename}-${object.id}`;
     case "LevelSlotMilestone":
