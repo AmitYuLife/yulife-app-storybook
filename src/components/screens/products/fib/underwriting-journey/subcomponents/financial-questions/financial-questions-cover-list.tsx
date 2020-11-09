@@ -8,7 +8,7 @@ import { Navigation } from "react-native-navigation";
 import { MODALS } from "@navigation/constants";
 import { Cover } from "@components/containers/products/fib/fib.types";
 import { updateFIBValue } from "@redux/product/product.actions";
-import { numberWithCommas, truncate } from "@services/utils";
+import { addCommasToNumber, truncate } from "@services/utils";
 
 type Props = typeof mapDispatchToProps & {
   existingCovers: Cover[];
@@ -59,7 +59,7 @@ function _FinancialQuestionsCoverList(props: Props) {
                 {truncate(cover.coverName, 20)}
               </Text>
               <Text style={styles.coverCardText}>{truncate(cover.companyName, 20)}</Text>
-              <Text style={styles.coverCardText}>{`£${numberWithCommas(cover.coverAmount)}`}</Text>
+              <Text style={styles.coverCardText}>{`£${addCommasToNumber(cover.coverAmount)}`}</Text>
             </View>
             <PressableWithDelay style={styles.bin} hitSlop={{ left: 10 }} onPress={() => openModal(removeItem)}>
               <Bin />

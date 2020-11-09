@@ -6,6 +6,7 @@ import styles from "./active-duels.styles";
 import { GetDuelsHubData_getDuelsHubData_activeDuels } from "@graphql/_core/schema";
 import { DuelEntry, DuelInvitation, DuelHeading } from "../subcomponents";
 import { DUEL_ENTRY_HEIGHT } from "../subcomponents/duel-entry/duel-entry.styles";
+import { addCommasToNumber } from "@services/utils";
 
 type TypeDuels = GetDuelsHubData_getDuelsHubData_activeDuels[];
 
@@ -129,7 +130,7 @@ export function renderItem({
     if (section.totalSteps > 0) {
       return (
         <Text style={styles.keyText}>
-          You’ve walked <Text bold={true}>{section.totalSteps.toLocaleString()} steps</Text> today
+          You’ve walked <Text bold={true}>{addCommasToNumber(section.totalSteps)} steps</Text> today
         </Text>
       );
     }

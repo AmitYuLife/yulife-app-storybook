@@ -4,6 +4,7 @@ import Svg, { Path } from "react-native-svg";
 import { Text } from "@atoms";
 import { Style } from "@styles";
 import { GetCommunityGoals_getCommunityGoals } from "@graphql/_core/schema";
+import { addCommasToNumber } from "@services/utils";
 
 interface Props {
   hasNotStarted: boolean;
@@ -26,26 +27,28 @@ export function CommunityGoalParticipants({ goal, hasNotStarted }: Props) {
           />
         ) : null}
       </View>
-      {!isOpen ? null : <View style={styles.spacing} />}
       {!isOpen ? null : (
-        <View>
-          {
-            <View style={[styles.wrapper, styles.participantWrapper]}>
-              <Text bold={true} style={styles.textBase}>
-                Total
-              </Text>
-              <Text bold={true} style={styles.textBase}>
-                {goal.participants.reduce((acc, i) => acc + (i?.stats?.value || 0), 0)}
-              </Text>
-            </View>
-          }
-          {goal.participants.map((p) => (
-            <View key={p.userId} style={[styles.wrapper, styles.participantWrapper]}>
-              <Text style={styles.textBase}>{p.nickname}</Text>
-              <Text style={styles.textBase}>{p.stats.value}</Text>
-            </View>
-          ))}
-        </View>
+        <>
+          <View style={styles.spacing} />
+          <View>
+            {
+              <View style={[styles.wrapper, styles.participantWrapper]}>
+                <Text bold={true} style={styles.textBase}>
+                  Total
+                </Text>
+                <Text bold={true} style={styles.textBase}>
+                  {addCommasToNumber(goal.participants.reduce((acc, i) => acc + (i?.stats?.value || 0), 0))}
+                </Text>
+              </View>
+            }
+            {goal.participants.map((p) => (
+              <View key={p.userId} style={[styles.wrapper, styles.participantWrapper]}>
+                <Text style={styles.textBase}>{p.nickname}</Text>
+                <Text style={styles.textBase}>{addCommasToNumber(p.stats.value)}</Text>
+              </View>
+            ))}
+          </View>
+        </>
       )}
     </>
   );

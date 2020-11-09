@@ -1,5 +1,5 @@
 import { Text } from "@atoms/index";
-import { numberWithCommas } from "@services/utils";
+import { addCommasToNumber } from "@services/utils";
 import { Style } from "@styles/index";
 import moment from "moment";
 import * as React from "react";
@@ -125,10 +125,10 @@ const WeeklyGraphCard: SFC<IProps> = ({
 
           <View style={styles.limitValueWrapper}>
             <View style={styles.texLineWrapper}>
-              <Text style={styles.textLine}>{numberWithCommas(graphLimit)}</Text>
+              <Text style={styles.textLine}>{addCommasToNumber(graphLimit)}</Text>
             </View>
             <View style={styles.texLineWrapper}>
-              <Text style={styles.textLine}>{numberWithCommas(graphLimit / 2)}</Text>
+              <Text style={styles.textLine}>{addCommasToNumber(graphLimit / 2)}</Text>
             </View>
 
             <View style={styles.texLineWrapper}>
@@ -161,7 +161,7 @@ const WeeklyGraphCard: SFC<IProps> = ({
                 },
               ])}
             >
-              <Text style={styles.averageValue}>{numberWithCommas(averageValue)}</Text>
+              <Text style={styles.averageValue}>{addCommasToNumber(averageValue)}</Text>
               <View>
                 <Text style={styles.unit}>{unit}</Text>
               </View>

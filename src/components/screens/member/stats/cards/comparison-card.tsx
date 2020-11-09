@@ -1,5 +1,5 @@
 import { Text } from "@atoms/index";
-import { numberWithCommas } from "@services/utils";
+import { addCommasToNumber } from "@services/utils";
 import * as React from "react";
 import { SFC } from "react";
 import { StyleSheet, View } from "react-native";
@@ -56,7 +56,7 @@ const ComparisonCard: SFC<IProps> = ({
           ])}
           testID={CHALLENGE_HISTORY_THIS_WEEK(firstValue)}
         >
-          {numberWithCommas(firstValue)}
+          {addCommasToNumber(firstValue)}
         </Text>
       </View>
 
@@ -80,7 +80,7 @@ const ComparisonCard: SFC<IProps> = ({
           ])}
           testID={CHALLENGE_HISTORY_LAST_WEEK(secondValue)}
         >
-          {numberWithCommas(secondValue)}
+          {addCommasToNumber(secondValue)}
         </Text>
       </View>
     </View>

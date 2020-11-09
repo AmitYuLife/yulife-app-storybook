@@ -2,6 +2,7 @@ import { CreateActiveChallenge_createActiveChallenge_levelSlot_milestones_target
 import moment from "moment";
 import { useRef } from "react";
 
+export const DATE_FORMAT = "YYYY-MM-DD";
 export const DATE_FORMAT_WITH_TZ = "YYYY-MM-DDTHH:mm:ssZ";
 export const DATE_FORMAT_WITHOUT_TZ = "YYYY-MM-DDTHH:mm:ss";
 
@@ -43,7 +44,7 @@ export function padNum(x: number, sliceIndex: number = -2) {
   return `0${x}`.slice(sliceIndex);
 }
 
-export function numberWithCommas(x: number) {
+export function addCommasToNumber(x: number) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 

@@ -3,7 +3,7 @@ import { StyleSheet, View, ViewStyle, TextStyle } from "react-native";
 import { Text } from "@atoms";
 import { Colours, Style } from "@styles";
 import { Package } from "../fib.browse.types";
-import { numberWithCommas } from "@services/utils";
+import { addCommasToNumber } from "@services/utils";
 
 interface Props {
   selectedPackage?: Partial<Package>;
@@ -39,7 +39,7 @@ export const SummaryDescription = memo(({ selectedPackage, customerAge, amountPr
           Amount protected
         </Text>
         <Text style={styles.text}>
-          £{`${loading ? "..." : numberWithCommas(amountProtected)} `}for every month remaining in policy at time of
+          £{`${loading ? "..." : addCommasToNumber(amountProtected)} `}for every month remaining in policy at time of
           death.
         </Text>
       </View>

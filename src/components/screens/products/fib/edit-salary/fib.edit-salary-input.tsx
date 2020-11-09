@@ -3,7 +3,7 @@ import * as Anim from "react-native-animatable";
 import { StyleSheet, TextInput, View, Animated } from "react-native";
 import { Colours } from "@styles/index";
 import { Text } from "@atoms";
-import { numberWithCommas } from "@services/utils";
+import { addCommasToNumber } from "@services/utils";
 import { FIB_SALARY_INPUT, FIB_SALARY_INPUT_VALUE } from "@ids";
 import { DETOX_ENABLED } from "@services/socket";
 import { styles } from "./fib.edit-salary.styles";
@@ -19,7 +19,7 @@ function getDisplayValue(val: number) {
     return "";
   }
 
-  return `${numberWithCommas(val)}`;
+  return `${addCommasToNumber(val)}`;
 }
 
 export function FibEditSalaryInput(props: Props) {
