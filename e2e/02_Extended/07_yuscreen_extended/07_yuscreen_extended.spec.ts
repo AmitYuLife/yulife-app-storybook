@@ -100,12 +100,17 @@ Feature("I am able to use the yuscreens extended features", async () => {
     Scenario("I am able to view the FAQs", scenario.start, async()=>{
         Given("I login to the yuscreen", given.loginToYuScreen(true, CUSTOMER_23, AUTH_23), async () => {
             When("I go to the life insurance screen", when.goToLifeInsurance, async () => {
-                Then("I should be on the package screen for life insurance", then.onPackageScreen)
-                When("I scroll past the package screen", when.scrollFromID(PACKAGE_SCREEN, "up", "slow"), async () => {
-                    When("I scroll to the FAQs", when.swipeToText(FIB_BROWSE_SCREEN, "FAQs", "up", 15), async () => {
-                        Then("I should see the FAQs", then.textVisible("FAQs"))
-                        When("I tap what is the lump sum", when.tapText("What is a lump sum?"), async()=>{
-                            Then("I should be on the lump sum FAQ screen", then.textVisible("What is a lump sum?"))
+                When("I enter my salary", when.typeViaID(FIB_SALARY_INPUT, "40000"), async()=>{
+                    Then("I should see my salary has been input", then.idVisible(FIB_SALARY_INPUT_VALUE(40000)))
+                    When("I tap done", when.tapText("Done"), async () => {
+                    Then("I should be on the package screen for life insurance", then.onPackageScreen)
+                    When("I scroll past the package screen", when.scrollFromID(PACKAGE_SCREEN, "up", "slow"), async () => {
+                        When("I scroll to the FAQs", when.swipeToText(FIB_BROWSE_SCREEN, "FAQs", "up", 15), async () => {
+                            Then("I should see the FAQs", then.textVisible("FAQs"))
+                            When("I tap what is the lump sum", when.tapText("What is a lump sum?"), async()=>{
+                                Then("I should be on the lump sum FAQ screen", then.textVisible("What is a lump sum?"))
+                                })
+                            })
                         })
                     })
                 })

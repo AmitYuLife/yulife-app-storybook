@@ -51,21 +51,21 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
                             Then("The status of the group should be online", then.leaderboardStatus("Group 1", "active"))
                         })
                         When("I tap the leaderboard in settings", when.tapText("Group 1"), async () => {
-                            Then("I should be on the turn it off screen", then.textVisible("turn it off?"))
-                            When("I tap keep it on!", when.tapText("keep it on!"), async () => {
+                            Then("I should be on the Turn it off screen", then.textVisible("Turn it off?"))
+                            When("I tap Keep it on!", when.tapText("Keep it on!"), async () => {
                                 Then("I should be back on the settings screen the group still visible", then.textVisible("Group 1"))
                                 Then("The status of the group should be online", then.leaderboardStatus("Group 1", "active"))
                             })
                         })
                         When("I tap the leaderboard in settings", when.tapText("Group 1"), async () => {
-                            Then("I should be on the turn it off screen", then.textVisible("turn it off?"))
-                            When("I tap turn it off", when.tapText("turn it off"), async () => {
+                            Then("I should be on the Turn it off screen", then.textVisible("Turn it off?"))
+                            When("I tap Turn it off", when.tapText("Turn it off"), async () => {
                                 Then("I should be on the settings page with the leaderboard turned off", then.leaderboardStatus("Group 1", "inactive"))
                             })
                         })
                         When("I tap the leaderboard", when.tapID(LEADERBOARD_STATUS("Group 1", "inactive")), async () => {
                             Then("I should be on the Turn on Leaderboard screen", then.textVisible("Turn on Leaderboard?"))
-                            When("I tap 'no thanks'", when.tapText("no thanks"), async () => {
+                            When("I tap 'no thanks'", when.tapText("No thanks"), async () => {
                                 Then("I should be back on the settings page and the leaderboard should be inactive", then.leaderboardStatus("Group 1", "inactive"))
                             })
                         })
