@@ -55,6 +55,7 @@ export const allTogglesTrue = {
   "statsShowCyclingGraphCard": true,
   "showStats": true,
   "showDuels": true,
+  showCommunityGoals: true,
 }
 
 export const CHALLENGE_TEMPLATE = {

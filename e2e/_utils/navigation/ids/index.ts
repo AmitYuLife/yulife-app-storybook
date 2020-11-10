@@ -78,6 +78,7 @@ export const LEADERBOARD_INFO_BUTTON = "LEADERBOARD_INFO_BUTTON"
 export const LEADERBOARD_INFO = "LEADERBOARD_INFO"
 export const LEADERBOARD_TITLE = (title:string) => `LEADERBOARD_TITLE_${title}`
 export const DUELS_BUTTON = "DUELS_BUTTON"
+export const GOALS_BUTTON = "GOALS_BUTTON"
 
 // create a leaderboard
 export const GROUP_NAME_INPUT = "GROUP_NAME_INPUT"
@@ -132,3 +133,7 @@ export const DUELS_HUB = "DUELS_HUB"
 export const EMPTY_DUELS_HUB = "EMPTY_DUELS_HUB"
 export const DUEL_OPTIONS_SCREEN = "DUEL_OPTIONS_SCREEN"
 export const DUEL_RESPONSE = (opponentName:string) => `DUEL_RESPONSE_${opponentName}`
+
+// COMMUNITY GOALS
+export const NICKNAME_INPUT = "NICKNAME_INPUT"
+export const COMMUNITY_GOAL_DROPDOWN = "COMMUNITY_GOAL_DROPDOWN"

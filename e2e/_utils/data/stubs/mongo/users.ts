@@ -1,7 +1,7 @@
 
 import { generateRandomMongoId } from '../../utils';
 import { IDatabaseItem } from '../../types';
-import { CUSTOMER_2, CUSTOMER_3, CUSTOMER_4, CUSTOMER_16, CUSTOMER_17, CUSTOMER_18, CUSTOMER_ALPHA, CUSTOMER_21, CUSTOMER_23 } from '../postgres/customers';
+import { CUSTOMER_2, CUSTOMER_3, CUSTOMER_4, CUSTOMER_16, CUSTOMER_17, CUSTOMER_18, CUSTOMER_ALPHA, CUSTOMER_21, CUSTOMER_23, CUSTOMER_20, CUSTOMER_19 } from '../postgres/customers';
 
 const USER_DATA_TEMPLATE = {
     data: {
@@ -88,6 +88,29 @@ export const USER_18 = {
         ...USER_DATA_TEMPLATE.data,
         _id: generateRandomMongoId(),
         userId: CUSTOMER_18.data.customerId,
+    }
+} as IDatabaseItem
+
+export const USER_19 = {
+    type: "mongo",
+    modelName: "users",
+    data: {
+        ...USER_DATA_TEMPLATE.data,
+        _id: generateRandomMongoId(),
+        userId: CUSTOMER_19.data.customerId,
+        nickname:"Angela"
+    }
+} as IDatabaseItem
+
+
+export const USER_20 = {
+    type: "mongo",
+    modelName: "users",
+    data: {
+        ...USER_DATA_TEMPLATE.data,
+        _id: generateRandomMongoId(),
+        userId: CUSTOMER_20.data.customerId,
+        nickname:"Oscar"
     }
 } as IDatabaseItem
 

@@ -31,8 +31,7 @@ export const CUSTOMER_2_TOGGLES = {
             "statsShowCyclingGeneralCard": true,
             "statsShowCyclingBestScoreCard": true,
             "statsShowCyclingGraphCard": true,
-            "showSettings": true
-
+            "showSettings": true,
         }
     }
 } as IDatabaseItem
@@ -283,7 +282,8 @@ export const CUSTOMER_20_TOGGLES = {
             "showStats": true,
             hideSmartHealthScreen: true,
             hideYuMatterScreen: true,
-            showDuels: true
+            showDuels: true,
+            showCommunityGoals:true
         },
     }
 } as IDatabaseItem

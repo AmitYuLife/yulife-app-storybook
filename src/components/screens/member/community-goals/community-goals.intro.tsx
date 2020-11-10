@@ -8,6 +8,7 @@ import { Text, TextInput, Pad } from "@atoms";
 import { OnboardingSwiper, OnboardingSwiperData } from "@organisms";
 import { Style } from "@styles";
 import { useKeyboardListeners } from "@services/hooks/useKeyboardListeners";
+import { NICKNAME_INPUT } from "@ids";
 
 interface Props {
   setOnboardingShown: () => void;
@@ -95,7 +96,7 @@ function IntroItem(props: IntroItemProps) {
       <Text style={styles.subTitle}>{item.subtitle}</Text>
       {index !== 2 ? null : (
         <View style={styles.inputWrapper}>
-          <TextInput onChange={setNickname} value={nickname} type={TextInput.Types.TEXT} />
+          <TextInput onChange={setNickname} value={nickname} type={TextInput.Types.TEXT} testID={NICKNAME_INPUT} />
         </View>
       )}
     </View>
