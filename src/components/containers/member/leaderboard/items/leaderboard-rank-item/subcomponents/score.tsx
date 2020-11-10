@@ -2,7 +2,7 @@ import React from "react";
 import { View, StyleSheet, ViewStyle, TextStyle, Platform } from "react-native";
 import { Text } from "@atoms";
 import { Style } from "@styles";
-import { numberWithCommas } from "@services/utils";
+import { addCommasToNumber } from "@services/utils";
 
 interface Props {
   score: number;
@@ -16,7 +16,7 @@ export function Score({ score, bold, style }: Props) {
   return (
     <View style={styles.wrapper}>
       <Text style={[styles.text, size, style]} bold={bold}>
-        {numberWithCommas(score)}
+        {addCommasToNumber(score)}
       </Text>
     </View>
   );

@@ -24,7 +24,7 @@ import {
   FOLLOW_UP_SMOKING_ANSWERS_TRIGGER,
 } from "../../components/containers/products/fib/data/underwriting-journey-data";
 import { FINANCIAL_QUESTIONS_ICON } from "@atoms/fib/svg-assets/underwriting/svg-strings";
-import { numberWithCommas } from "@services/utils";
+import { addCommasToNumber } from "@services/utils";
 import { FIB_EDIT_SALARY } from "@components/containers/products/fib/fib.types";
 
 export const getFIBState = (state: IReduxState): FIBStore => {
@@ -254,7 +254,7 @@ export const getReviewAnswers = (state: IReduxState): any => {
   answers.splice(2, 0, {
     icon: FINANCIAL_QUESTIONS_ICON,
     title: "Salary",
-    answer: `£${numberWithCommas(state.product.fib.salary)}`,
+    answer: `£${addCommasToNumber(state.product.fib.salary)}`,
     questionId: FIB_EDIT_SALARY,
     incomplete: !state.product.fib.salary,
   });

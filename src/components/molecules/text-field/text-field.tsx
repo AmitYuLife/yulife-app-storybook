@@ -3,7 +3,7 @@ import { StyleSheet, TextInput, View, Animated, ViewStyle, Text, TextStyle } fro
 import { Style } from "@styles/index";
 import { Placeholder } from "./subcomponents/placeholder";
 import { BaseUnderline, ColouredUnderline } from "./subcomponents/underlines";
-import { numberWithCommas } from "@services/utils";
+import { addCommasToNumber } from "@services/utils";
 import Warning from "@atoms/text-input/assets/warning";
 import { formatPostCode } from "../../screens/products/fib/underwriting-journey/fib.find-adress.screen";
 
@@ -47,7 +47,7 @@ function formatText(text: string, type: Type) {
     return text;
   }
 
-  return `${numberWithCommas(castedText)}`;
+  return `${addCommasToNumber(castedText)}`;
 }
 
 export default function TextField(props: Props) {
