@@ -1,7 +1,7 @@
 import { MutationFunctionOptions } from "@apollo/react-common";
 import moment from "moment";
 import * as React from "react";
-import { View, StyleSheet, ViewStyle } from "react-native";
+import { Alert, View, StyleSheet, ViewStyle } from "react-native";
 import {
   GetCommunityGoals_getCommunityGoals,
   JoinCommunityGoal,
@@ -33,13 +33,28 @@ export function CommunityGoal({ goal, joinCommunityGoal }: IProps) {
     wrapperStyles.push(styles.notStarted);
   }
 
-  async function handlePress() {
-    try {
-      await joinCommunityGoal({ variables: { communityGoalId: goal.id } });
-    } catch (e) {
-      // fail silently
-      // TODO: show them a message?
-    }
+  function handlePress() {
+    Alert.alert(
+      "Ready to join?",
+      "Your challenge mates will be able to see your nickname step count for this challenge.",
+      [
+        {
+          text: "Cancel",
+          style: "cancel",
+        },
+        {
+          text: "Confirm",
+          onPress: async () => {
+            try {
+              await joinCommunityGoal({ variables: { communityGoalId: goal.id } });
+            } catch (e) {
+              // fail silently
+              // TODO: show them a message?
+            }
+          },
+        },
+      ]
+    );
   }
 
   const currentGoalValue = goal.participants.reduce((acc, p) => acc + (p?.stats?.value || 0), 0);
@@ -60,7 +75,7 @@ export function CommunityGoal({ goal, joinCommunityGoal }: IProps) {
           maxValue={goal.goalValue}
         />
       )}
-      {goal.isExpired && !goal.youHaveJoined ? (
+      {(goal.isExpired && !goal.youHaveJoined) || goal.maxJoiners === goal.participants.length ? (
         <View style={styles.marginVertical8} />
       ) : (
         <View style={styles.marginVertical16}>
