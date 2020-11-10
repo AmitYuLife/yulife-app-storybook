@@ -5,6 +5,7 @@ import { Text } from "@atoms";
 import { Style } from "@styles";
 import { GetCommunityGoals_getCommunityGoals } from "@graphql/_core/schema";
 import { addCommasToNumber } from "@services/utils";
+import { COMMUNITY_GOAL_DROPDOWN } from "@ids";
 
 interface Props {
   hasNotStarted: boolean;
@@ -76,7 +77,7 @@ function Icon({ isOpen, hasNotStarted, isExpired, onPress }: IconProps) {
   }
 
   return (
-    <Svg onPress={onPress} width={SIZE} height={SIZE} viewBox="0 0 24 24" fill="none">
+    <Svg onPress={onPress} width={SIZE} height={SIZE} viewBox="0 0 24 24" fill="none" testID={COMMUNITY_GOAL_DROPDOWN}>
       <Path
         d={ICON_PATHS[String(isOpen) as "true" | "false"]}
         stroke={stroke}
