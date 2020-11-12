@@ -10,6 +10,7 @@ import { View } from "react-native";
 import { TouchableOpacityWithDelay } from "@components/molecules";
 import { updateFIBAnswerValue } from "../../../../../redux/product/product.actions";
 import { styles } from "./fib-input-weight.styles";
+import { stToKg, kgToSt } from "../../../../../services/utils";
 
 type ConnectedProps = ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps;
 
@@ -20,11 +21,24 @@ const _FibInputWeight = (props: ConnectedProps) => {
   const buttonLabel = `Switch to ${weight.unit === "st" ? "kg" : "st, lb"}`;
 
   const handleSwitch = useCallback(() => {
+    const isKg = weight.unit === "kg";
+    let kg;
+    let st;
+    let lb;
+
+    if (weight.unit === "st") {
+      kg = stToKg(parseInt(weight.st || "0"), parseInt(weight.lb || "0"));
+    } else {
+      const _weight = kgToSt(parseInt(weight.kg || "0"));
+      st = _weight.st;
+      lb = _weight.lb;
+    }
+
     updateWeight({
       unit: weight.unit === "st" ? "kg" : "st",
-      st: "",
-      lb: "",
-      kg: "",
+      st: isKg && st ? `${st}` : "",
+      lb: isKg && lb ? `${lb}` : "",
+      kg: isKg ? "" : `${kg}`,
     });
   }, [weight, updateWeight]);
 
