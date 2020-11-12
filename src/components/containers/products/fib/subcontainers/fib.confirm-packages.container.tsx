@@ -27,6 +27,7 @@ import { Navigation } from "react-native-navigation";
 import { CreateTopUpsQuote, CreateTopUpsQuoteVariables } from "../../../../../graphql/_core/schema";
 import { CoverType, CreateTopUpsQuoteInput, ProductCode } from "../../../../../graphql/_core/schema/globalTypes";
 import { GetTopUpsQuote, GetTopUpsQuoteVariables } from "../../../../../graphql/_core/schema/GetTopUpsQuote";
+import { getBirthday } from "../../../../../redux/product/product.selectors";
 
 type ConnectedState = ReturnType<typeof mapStateToProps>;
 
@@ -55,7 +56,7 @@ const documents: IFaq[] = [...fibDocumentsItems, policyScheduleDocument].map((do
 }));
 
 const FibConfirmPackagesContainer = memo(function (props: FibConfirmPackagesContainerProps) {
-  const { navigation, userDateOfBirth, selectFaq, fibState } = props;
+  const { navigation, userDateOfBirth, userDateOfBirthFib, selectFaq, fibState } = props;
   const { answers: fibAnswers, salary: grossSalary, selectedPackage } = fibState;
   const dispatch = useDispatch();
 
@@ -64,15 +65,18 @@ const FibConfirmPackagesContainer = memo(function (props: FibConfirmPackagesCont
   const [deceaseAgeIndexYear, setDeceaseAgeIndexYear] = useState(0);
   const [deceaseAgeIndexMonth, setDeceaseAgeIndexMonth] = useState(0);
   const [payoutEstimatorItems, setPayoutEstimatorItems] = useState(
-    calculatePayoutCalculatorItems(props.userDateOfBirth, deceaseAgeIndexYear)
+    calculatePayoutCalculatorItems(props.userDateOfBirthFib || props.userDateOfBirth, deceaseAgeIndexYear)
   );
 
-  const customerAge = moment().diff(moment(userDateOfBirth), "years");
+  const customerAge = moment().diff(moment(userDateOfBirthFib || userDateOfBirth), "years");
 
   useEffect(() => {
-    const newItems = calculatePayoutCalculatorItems(props.userDateOfBirth, deceaseAgeIndexYear);
+    const newItems = calculatePayoutCalculatorItems(
+      props.userDateOfBirthFib || props.userDateOfBirth,
+      deceaseAgeIndexYear
+    );
     setPayoutEstimatorItems(newItems);
-  }, [deceaseAgeIndexYear, props.userDateOfBirth]);
+  }, [deceaseAgeIndexYear, props.userDateOfBirth, props.userDateOfBirthFib]);
 
   const deceaseAgeMonth =
     Number(payoutEstimatorItems.months[deceaseAgeIndexMonth]) ===
@@ -154,7 +158,7 @@ const FibConfirmPackagesContainer = memo(function (props: FibConfirmPackagesCont
     deceaseAgeYear,
     sumAssured: data?.getTopUpsQuote?.sumAssured,
     term: data?.getTopUpsQuote?.term,
-    dateOfBirth: userDateOfBirth,
+    dateOfBirth: userDateOfBirthFib || userDateOfBirth,
   });
 
   const monthlyAmountProtected = Math.round(
@@ -243,6 +247,7 @@ const FibConfirmPackagesContainer = memo(function (props: FibConfirmPackagesCont
 const mapStateToProps = (state: IReduxState) => ({
   fibState: getFIBState(state),
   userDateOfBirth: getUserDateOfBirth(state),
+  userDateOfBirthFib: getBirthday(state, "YYYY-MM-DD"),
 });
 
 const FIBConfirmPackages = connect(mapStateToProps)(FibConfirmPackagesContainer);
