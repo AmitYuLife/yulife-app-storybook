@@ -43,10 +43,10 @@ export const getWeeklyAlcoholDrinks = (state: IReduxState): string => {
 
 const DATE_FORMAT = "Do MMMM YYYY";
 
-export const getBirthday = (state: IReduxState): string => {
+export const getBirthday = (state: IReduxState, dateFormat: string = DATE_FORMAT): string => {
   const { birthDay, birthMonth, birthYear } = state.product.fib.answers;
 
-  const formatted = moment(`${birthYear}-${birthMonth}-${birthDay}`, "YYYY-M-D").format(DATE_FORMAT);
+  const formatted = moment(`${birthYear}-${birthMonth}-${birthDay}`, "YYYY-M-D").format(dateFormat);
 
   return formatted;
 };
