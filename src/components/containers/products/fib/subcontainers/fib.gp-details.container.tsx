@@ -55,9 +55,10 @@ const FibGPDetailsContainer = memo(function (props: IFibGPDetailsContainerProps 
   const [manualInput, setManualInput] = useState<GPInputForm>(null);
 
   // TODO: Handle errors
-  const [updateCustomerGPDetailsMutation] = useMutation<UpdateCustomerGPDetails, UpdateCustomerGPDetailsVariables>(
-    GQL_MUTATION_UPDATE_CUSTOMER_GP_DETAILS
-  );
+  const [updateCustomerGPDetailsMutation, { loading: updateCustomerGpLoading }] = useMutation<
+    UpdateCustomerGPDetails,
+    UpdateCustomerGPDetailsVariables
+  >(GQL_MUTATION_UPDATE_CUSTOMER_GP_DETAILS);
 
   const dispatch = useDispatch();
 
@@ -104,14 +105,23 @@ const FibGPDetailsContainer = memo(function (props: IFibGPDetailsContainerProps 
   }, []);
 
   const onConfirm = useCallback(async () => {
+    const address3 =
+      selectedMedicalPractice.address4 && selectedMedicalPractice.address5 && selectedMedicalPractice.address3
+        ? `\n\n${selectedMedicalPractice.address3}`
+        : "";
+
+    const practiceTown =
+      selectedMedicalPractice.address4 && selectedMedicalPractice.address5
+        ? `${selectedMedicalPractice.address4 ?? ""}\n\n${selectedMedicalPractice.address5 ?? ""}`
+        : selectedMedicalPractice.address3;
     const gpDetails = manualInput
       ? manualInput
       : {
           practiceName: selectedMedicalPractice.name,
-          practiceAddress: `${selectedMedicalPractice.address1 ?? ""}\n\n${selectedMedicalPractice.address2 ?? ""}\n\n${
-            selectedMedicalPractice.address3 ?? ""
-          }`,
-          practiceTown: `${selectedMedicalPractice.address4 ?? ""}\n\n${selectedMedicalPractice.address5 ?? ""}`,
+          practiceAddress: `${selectedMedicalPractice.address1 ?? ""}\n\n${
+            selectedMedicalPractice.address2 ?? ""
+          }${address3}`,
+          practiceTown: practiceTown,
           practicePostCode: selectedMedicalPractice.postCode,
           gpName: selectedGP.name,
         };
@@ -244,6 +254,7 @@ const FibGPDetailsContainer = memo(function (props: IFibGPDetailsContainerProps 
         <FibGPConfirmScreen
           onNavigateBack={handleBack}
           onContinue={onConfirm}
+          loading={updateCustomerGpLoading}
           onClose={handleOnClose}
           gp={selectedGP}
           practice={selectedMedicalPractice}

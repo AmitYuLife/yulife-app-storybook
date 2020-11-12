@@ -106,7 +106,7 @@ export const FibMedicalResult = ({
         </View>
         <View>
           <Text bold={true} style={styles.text}>
-            {header}
+            {icon === "practice" ? header : `Dr. ${header}`}
           </Text>
           {firstLine ? <Text style={styles.text}>{firstLine}</Text> : null}
           {secondLine ? <Text style={styles.text}>{secondLine}</Text> : null}

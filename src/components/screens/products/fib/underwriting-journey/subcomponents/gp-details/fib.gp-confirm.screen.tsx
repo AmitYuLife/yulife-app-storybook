@@ -15,13 +15,14 @@ interface Props {
   onClose: () => void;
   onNavigateBack: () => void;
   onContinue: () => void;
+  loading: boolean;
   gp: MedicalPractices_getMedicalPractices_practicioners;
   practice: MedicalPractices_getMedicalPractices;
   manualInput?: GPInputForm;
 }
 
 function _FibGPConfirmScreen(props: Props) {
-  const { onNavigateBack, onContinue, onClose, gp, practice, manualInput } = props;
+  const { onNavigateBack, onContinue, onClose, loading, gp, practice, manualInput } = props;
 
   const backHandler = useCallback(() => {
     onNavigateBack();
@@ -33,6 +34,8 @@ function _FibGPConfirmScreen(props: Props) {
   return (
     <ScrollableLayout
       buttonAction={onContinue}
+      isButtonLoading={loading}
+      isButtonDisabled={loading}
       onLeftIconPress={onNavigateBack}
       buttonTitle="Continue"
       heading={"GP Report"}
