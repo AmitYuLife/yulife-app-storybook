@@ -312,6 +312,34 @@ export function toOrdinalWord(n: number): string {
   return arr[n - 1];
 }
 
+export function ftToCm(ft: number, inc: number) {
+  return Math.floor((ft * 12 + inc) * 2.54);
+}
+
+export function stToKg(st: number, lb: number) {
+  return Math.floor((st * 14 + lb) * 0.453592);
+}
+
+export function cmToFt(cm: number) {
+  const ft = Math.floor(cm / (2.54 * 12));
+  const inc = Math.floor(cm / 2.54 - ft * 12);
+
+  return {
+    ft,
+    inc,
+  };
+}
+
+export function kgToSt(kg: number) {
+  const st = Math.floor(kg / (0.453592 * 14));
+  const lb = Math.floor(kg / 0.453592 - st * 14);
+
+  return {
+    st,
+    lb,
+  };
+}
+
 // good for unpacking promises
 export type Unpacked<T> = T extends Array<infer U>
   ? U
