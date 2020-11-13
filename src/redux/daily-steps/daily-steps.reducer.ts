@@ -13,6 +13,7 @@ import {
   STEPS_SINCE_LAST_UPDATED_SUCCESS,
   UPDATE_DAILY_STEPS_FAILED,
   UPDATE_DAILY_STEPS_SUCCESS,
+  UPDATE_DAILY_STEPS_NO_NEW_DATA,
 } from "./daily-steps.actions";
 
 type ExchangeRate = GetCurrentUser_getCurrentUser_passiveSteps_exchange;
@@ -60,6 +61,7 @@ const dailyStepsReducer = (state: IDailyStepsStore = initialState, action: any):
     case PEDOMETER_UPDATES_START:
       return { ...state, isFetching: true };
 
+    case UPDATE_DAILY_STEPS_NO_NEW_DATA:
     case PEDOMETER_UPDATES_NO_NEW_DATA:
       return { ...state, isFetching: false };
 

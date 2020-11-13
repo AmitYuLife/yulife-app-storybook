@@ -6,7 +6,7 @@ import Logger from "@services/logging/logger";
 
 import { getDailySteps } from "../../daily-steps/daily-steps.selectors";
 import { updatePedometerSuccessAction } from "../../pedometer/pedometer.actions";
-import { updateDailyStepsFailed, updateDailyStepsSuccess } from "../daily-steps.actions";
+import { updateDailyStepsFailed, updateDailyStepsSuccess, stepsWithNoUpdate } from "../daily-steps.actions";
 
 export default function* updateDailyStepsSaga({ payload }: ReturnType<typeof updatePedometerSuccessAction>) {
   try {
@@ -19,6 +19,8 @@ export default function* updateDailyStepsSaga({ payload }: ReturnType<typeof upd
       if (data && data.upsertPassiveChallenge) {
         yield put(updateDailyStepsSuccess(data));
       }
+    } else {
+      yield put(stepsWithNoUpdate());
     }
   } catch (e) {
     yield spawn(() => Logger.logMixpanelError(e, "updateDailySteps"));
@@ -26,7 +28,7 @@ export default function* updateDailyStepsSaga({ payload }: ReturnType<typeof upd
   }
 }
 
-const STEPS_REQUEST_BASE = 50;
+const STEPS_REQUEST_BASE = 20;
 const STEPS_MILESTONE = 2000;
 
 /**
