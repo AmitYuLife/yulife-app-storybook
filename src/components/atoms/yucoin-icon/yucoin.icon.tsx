@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet, Image, ImageStyle } from "react-native";
-import { Style } from "@styles";
+import { Style, Colours } from "@styles";
 
 interface IProps {
   style?: ImageStyle;
@@ -18,6 +18,6 @@ const styles = StyleSheet.create({
   image: {
     width: Style.adjust(18),
     height: Style.adjust(18),
-    tintColor: "#EA9E2F",
+    tintColor: Colours.orange,
   } as ImageStyle,
 });

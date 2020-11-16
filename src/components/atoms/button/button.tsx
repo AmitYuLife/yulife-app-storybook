@@ -18,6 +18,9 @@ interface IProps {
   delay?: number;
   disableAnimation?: boolean;
   show?: boolean;
+  backgroundColor?: string;
+  shadowColor?: string;
+  textColor?: string;
 }
 
 const DEFAULT_HEIGHT = Style.adjust(53);
@@ -35,6 +38,9 @@ function Button(props: IProps) {
     delay,
     disableAnimation,
     show = true,
+    backgroundColor = Colours.darkHotPink,
+    shadowColor = Colours.darkHotPinkShadow,
+    textColor = "white",
   } = props;
 
   const { handlePress } = usePressedInWithDelay({ onPress, delay });
@@ -49,15 +55,15 @@ function Button(props: IProps) {
     return (
       <View style={StyleSheet.flatten([styles.wrapper, wrapperStyle, widthStyles])}>
         <ButtonBase
-          backgroundColor={Colours.darkHotPink}
-          shadowColor={Colours.darkHotPinkShadow}
+          backgroundColor={backgroundColor}
+          shadowColor={shadowColor}
           testID={testID}
           height={DEFAULT_HEIGHT}
           isLoading={isLoading}
           disabled={disabled}
           title={label}
           onPress={handlePress}
-          color="white"
+          color={textColor}
           borderRadius={50}
           delay={delay}
           disableAnimation={disableAnimation}

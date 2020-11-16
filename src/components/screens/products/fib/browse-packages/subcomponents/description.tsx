@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
     marginTop: Style.adjust(18),
   } as ViewStyle,
   yucoin: {
-    tintColor: Colours.yucoin.n800,
+    tintColor: Colours.neutral.n800,
     marginRight: Style.adjust(4),
     width: Style.adjust(14),
     height: Style.adjust(14),

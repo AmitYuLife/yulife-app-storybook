@@ -24,9 +24,7 @@ interface IFibEditSalaryContainerProps {
 type Props = IFibEditSalaryContainerProps & ConnectedState;
 
 const _FibIntroductionContainer = memo(function FibIntroductionContainer(props: Props) {
-  const { loading, error, data } = useQuery<GetYuliferData>(GQL_QUERY_GET_YULIFER, {
-    fetchPolicy: "cache-only",
-  });
+  const { loading, error, data } = useQuery<GetYuliferData>(GQL_QUERY_GET_YULIFER);
   const [upsertProductEntity]: UpsertProductEntityMutationTuple = useMutation(
     GQL_MUTATION_UPSERT_TOP_UPS_PRODUCT_ENTITY
   );

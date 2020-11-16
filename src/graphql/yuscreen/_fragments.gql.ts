@@ -9,6 +9,8 @@ export const GQL_FRAGMENT_PRODUCT = gql`
     active
     icon
     name
+    itemSlot
+    status
   }
 `;
 

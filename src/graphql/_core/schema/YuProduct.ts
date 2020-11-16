@@ -15,4 +15,6 @@ export interface YuProduct {
   active: boolean | null;
   icon: string | null;
   name: string | null;
+  itemSlot: string | null;
+  status: string | null;
 }

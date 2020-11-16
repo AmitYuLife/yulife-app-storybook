@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   } as ViewStyle,
   yucoin: {
-    tintColor: Colours.yucoin.n800,
+    tintColor: Colours.neutral.n800,
     marginBottom: -4,
     width: Style.adjust(16),
     height: Style.adjust(16),

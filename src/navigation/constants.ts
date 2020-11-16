@@ -32,8 +32,7 @@ export const ROUTES = {
   communityGoals: "yulife.member.CommunityGoals",
   yuScreen: "yulife.member.Yuscreen",
   avatarCreation: "yulife.member.AvatarCreation",
-  yuScreenProducts: "yulife.member.YuscreenProducts",
-  yuScreenEarnRate: "yulife.member.YuscreenEarnRate",
+  yuProductSurvey: "yulife.member.YuProductSurvey",
 
   // webview
   webView: "yulife.webView.WebView",
@@ -73,6 +72,8 @@ export const MODALS = {
   info: "yulife.modals.info",
   duelInvite: "yulife.modals.duelInvite",
   duelRespond: "yulife.modals.duelRespond",
+  earnRate: "yulife.modals.earnRate",
+  yuProductDetails: "yulife.member.yuProductDetails",
 };
 
 export const bottomTabs: OptionsBottomTabs = {
