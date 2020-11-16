@@ -51,6 +51,9 @@ Feature("As an enabled user I am able to use the goals feature", async () => {
                 Then("I should see the number of steps walked", then.multipleTextVisible(["2,571", "2,134", "437"]))
             })
             When("I tap the join challenge button", when.tapText("Join the challenge!"), async () => {
+                Then("I should see the Ready to join? modal", then.textVisible("Ready to join?"))
+            })
+                When("I tap Confirm", when.tapText("Confirm"), async()=>{
                 Then("I should not see the join the challenge button", then.textNotVisible("Join the challenge!"))
                 Then("I should see the upated number of people doing this challenge", then.textVisible("3 / 100 have joined"))
                 Then("I should see the number of steps walked", then.multipleTextVisible(["2,571", "2,134", "437", "0"]))
