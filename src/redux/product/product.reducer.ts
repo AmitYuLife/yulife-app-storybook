@@ -7,11 +7,16 @@ import {
   RESET_FIB_ANSWERS,
   RESET_FIB_MEDICAL_VALUE,
   RESET_FIB_UNDERWRITING_JOURNEY,
+  REFRESH_FIB_STORE,
+  RefreshFIBStoreAction,
+  FIBStore,
+  UpdateFIBValuesFromQuoteAction,
+  UPDATE_FIB_VALUES_FROM_QUOTE,
 } from "./product.types";
 import { REHYDRATE } from "redux-persist";
 import { LOGOUT, GET_USER_SUCCESS } from "@redux/user/user.actions";
 import { IReduxState } from "@redux/_core/reducers";
-import { GetCurrentUser } from "@graphql/_core/schema";
+import { GetCurrentUser, GetTopUpsQuote_getTopUpsQuote_userAnswers } from "@graphql/_core/schema";
 import moment from "moment";
 
 export { IProductStore } from "./product.types";
@@ -158,6 +163,10 @@ function personalProductReducer<T>(state: IProductStore = initialState, action: 
           },
         },
       };
+    case REFRESH_FIB_STORE:
+      return refreshFibStore(state, action);
+    case UPDATE_FIB_VALUES_FROM_QUOTE:
+      return updateFibValuesFromQuote(state, action);
     default:
       return state;
   }
@@ -264,6 +273,66 @@ const getUserSuccess = (state: IProductStore, { getCurrentUser }: GetCurrentUser
     newState.fib.answers.firstName = getCurrentUser.firstName;
     newState.fib.answers.lastName = getCurrentUser.lastName;
   }
+
+  return newState;
+};
+
+const refreshFibStore = (state: IProductStore, action: RefreshFIBStoreAction) => {
+  const newState: any = {
+    ...state,
+    fib: {
+      ...state.fib,
+      answers: {
+        ...state.fib.answers,
+      },
+    },
+  };
+  const userAnswers = action.payload.userAnswers;
+  const quoteResult = action.payload;
+
+  userAnswers.forEach((answer) => {
+    const questionId = answer.questionId;
+    const value = JSON.parse(answer.value);
+    // Check for fibStore to build rest of fields
+    if (questionId === "fibStore") {
+      value.forEach((fibStore: GetTopUpsQuote_getTopUpsQuote_userAnswers) => {
+        const fibField = fibStore.questionId as keyof FIBStore;
+        const fibValue = JSON.parse(fibStore.value);
+        newState.fib[fibField] = fibValue;
+      });
+    }
+
+    newState.fib.answers[questionId] = value;
+  });
+  // Update specific quote values
+  newState.fib.rejected = quoteResult.rejected;
+  newState.fib.medicalInvestigationRequired = quoteResult.medicalInvestigationRequired;
+  newState.fib.actualCost = quoteResult.actualCost;
+
+  return newState;
+};
+
+const updateFibValuesFromQuote = (state: IProductStore, action: UpdateFIBValuesFromQuoteAction) => {
+  const newQuoteData = action.payload;
+  const quoteId = newQuoteData?.quoteId;
+  const actualCost = newQuoteData?.actualCost;
+  const medicalInvestigationRequired = newQuoteData?.medicalInvestigationRequired;
+  const rejected = newQuoteData?.rejected;
+
+  const newState: IProductStore = {
+    ...state,
+    fib: {
+      ...state.fib,
+      latestQuoteId: quoteId || state.fib.latestQuoteId,
+      actualCost: actualCost || state.fib.actualCost,
+      medicalInvestigationRequired: medicalInvestigationRequired || state.fib.medicalInvestigationRequired,
+      rejected: rejected || state.fib.rejected,
+      quoteDate: moment().format("YYYY-MM-DD"),
+      answers: {
+        ...state.fib.answers,
+      },
+    },
+  };
 
   return newState;
 };

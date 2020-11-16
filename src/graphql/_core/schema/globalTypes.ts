@@ -115,7 +115,7 @@ export interface GetTopUpsQuoteInput {
 
 /**
  * User answers to underwriting journey where the questionId is the unique id that
- * identifies a question and value is the answer provided by the customer
+ * identifies a question and value is the answer provided by the customer (input)
  */
 export interface LifeInsuranceTopUpsUserAnswers {
   questionId?: string | null;

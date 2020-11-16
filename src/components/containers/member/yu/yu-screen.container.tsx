@@ -1,13 +1,16 @@
-import React, { memo } from "react";
+import React, { memo, useEffect } from "react";
 import { YuScreen } from "./yu-screen";
 import { YuScreenLayout } from "./yu-screen-layout";
-import { GetYulifer } from "@graphql/_core/schema";
+import { GetTopUpsQuote, GetTopUpsQuoteVariables, GetYulifer } from "@graphql/_core/schema";
 import { GQL_QUERY_GET_YULIFER } from "@graphql/yuscreen";
 import { YuScreenLoading } from "./yu-screen-loading";
 import { useQuery } from "@apollo/react-hooks";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getShowYuscreenIntro } from "@redux/onboarding/onboarding.selectors";
 import { YuScreenIntro } from "./yu-screen-intro/yu-screen-intro";
+import { GQL_QUERY_GET_TOP_UPS_QUOTE } from "../../../../graphql/products";
+import { refreshFIBStore } from "../../../../redux/product/product.actions";
+import { ProductCode } from "../../../../graphql/_core/schema/globalTypes";
 
 const _YuScreenContainer = () => {
   /*
@@ -17,6 +20,24 @@ const _YuScreenContainer = () => {
   const { data, loading } = useQuery<GetYulifer>(GQL_QUERY_GET_YULIFER, {
     fetchPolicy: "network-only",
   });
+  const { data: topUpsData, loading: topUpsLoading } = useQuery<GetTopUpsQuote, GetTopUpsQuoteVariables>(
+    GQL_QUERY_GET_TOP_UPS_QUOTE,
+    {
+      variables: {
+        product: ProductCode.YULFIB,
+        input: {},
+      },
+      fetchPolicy: "network-only",
+    }
+  );
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (topUpsData?.getTopUpsQuote?.userAnswers.length) {
+      dispatch(refreshFIBStore(topUpsData.getTopUpsQuote));
+    }
+  }, [dispatch, topUpsData]);
 
   const showIntro = useSelector(getShowYuscreenIntro);
 
@@ -24,7 +45,7 @@ const _YuScreenContainer = () => {
     return <YuScreenIntro />;
   }
 
-  if (loading || !data) {
+  if (loading || topUpsLoading || !data) {
     return (
       <YuScreenLayout>
         <YuScreenLoading />

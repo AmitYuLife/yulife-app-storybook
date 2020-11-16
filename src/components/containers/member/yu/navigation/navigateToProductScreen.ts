@@ -43,9 +43,8 @@ export const navigateToProductScreen = ({
     }
 
     const resetFib = shouldResetFib ? () => resetFibJourney() : null;
-    // TODO: get rejected value from server
     if (fibState.rejected) {
-      handleRejected(resetFib);
+      return handleRejected(resetFib);
     }
 
     const isQuoteExpired = moment().diff(moment(fibState.quoteDate), "months") >= FIB_EXPIRE_QUOTE_MONTHS;
