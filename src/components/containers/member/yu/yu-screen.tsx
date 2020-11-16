@@ -18,6 +18,7 @@ export const YuScreen = () => {
         <NameAndLevel />
         <AvatarAndEquipment product={product} setProduct={setProduct} />
         <YuCoinPower />
+        <ProductSet type="charms" />
         <ProductSet type="employer" />
         <ProductSet type="personal" />
         <View style={styles.padBot} />

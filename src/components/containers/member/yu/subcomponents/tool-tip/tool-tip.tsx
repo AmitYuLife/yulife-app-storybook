@@ -40,7 +40,7 @@ export const ToolTip = ({ code, onClose }: IToolTipProps) => {
 
     const { products } = data.getYulifer;
 
-    const allProducts = [...products.employer, ...products.personal];
+    const allProducts = [...products.employer, ...products.charms, ...products.personal];
 
     const item = allProducts.find((i) => i?.icon === code);
 
@@ -129,7 +129,7 @@ function getButtonProps({ product }: { product: GetYuliferWithAvatar_getYulifer_
       label = "Unlock";
       break;
     case "active":
-      label = "Explore";
+      label = "Inspect";
   }
 
   if (isEmployerItem(product.itemSlot)) {

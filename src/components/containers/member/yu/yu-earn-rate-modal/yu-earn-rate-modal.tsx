@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useMemo } from "react";
 import { StyleSheet, View, ViewStyle, Animated, ScrollView, TextStyle, Platform } from "react-native";
 import { Style } from "@styles";
 import { TextWithBoldText } from "@components/molecules";
@@ -32,6 +32,9 @@ const YuEarnRateModal = () => {
     }).start();
   }, [translateY]);
 
+  const earnRate = useMemo(() => data?.getYulifer?.earnRate || 1, [data]);
+  const explainData = useMemo(() => earnRateData?.getEarnRateDetails || [], [earnRateData]);
+
   return (
     <GenericOverlay onClose={dismissOverlay}>
       <ScrollView style={styles.wrapper} showsVerticalScrollIndicator={false}>
@@ -40,13 +43,9 @@ const YuEarnRateModal = () => {
             Your YuCoin Power
           </Text>
         </View>
-        <EarnRateTable
-          earnRate={data.getYulifer.earnRate}
-          explainData={earnRateData?.getEarnRateDetails || []}
-          loading={loading}
-        />
-        <SurgedInfo earnRate={data.getYulifer.earnRate} />
-        <View style={styles.footerWrapper}>
+        <EarnRateTable earnRate={earnRate} explainData={explainData} loading={loading} />
+        <SurgedInfo earnRate={earnRate} />
+        <View style={StyleSheet.flatten([styles.footerWrapper, { marginTop: earnRate < 2 ? 0 : Style.adjust(24) }])}>
           <TextWithBoldText style={styles.footer} value={COPY} />
         </View>
         <Button wrapperStyle={styles.confirm} size="Large" type="Primary" onPress={dismissOverlay} label="Got it!" />
@@ -101,7 +100,6 @@ const styles = StyleSheet.create({
   } as TextStyle,
   footerWrapper: {
     paddingHorizontal: Style.adjust(30),
-    marginTop: Style.adjust(24),
   } as ViewStyle,
   footer: {
     fontSize: Style.adjust(16),

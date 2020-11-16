@@ -13,7 +13,7 @@ import { resetFIBUnderwritingJourney } from "@redux/product/product.actions";
 import { getUserFeatures } from "@redux/user/user.selectors";
 
 export interface IProductSetProps {
-  type: "employer" | "personal";
+  type: "employer" | "personal" | "charms";
 }
 
 export const ProductSet = (props: IProductSetProps) => {
@@ -31,6 +31,10 @@ export const ProductSet = (props: IProductSetProps) => {
   const products = getProducts({ type, data, fibState, resetFibJourney, shouldResetFib });
   const heading = getHeading(type);
 
+  if (!products.length) {
+    return null;
+  }
+
   return (
     <View>
       <Heading text={heading} />
@@ -44,9 +48,11 @@ export const ProductSet = (props: IProductSetProps) => {
 function getHeading(type: IProductSetProps["type"]) {
   switch (type) {
     case "employer":
-      return "Your company has equipped you with";
+      return "Your company has equipped you with:";
+    case "charms":
+      return "As an early adopter, you get:";
     case "personal":
-      return "Power up and protect yourself";
+      return "Power up and protect yourself:";
     default:
       return null;
   }

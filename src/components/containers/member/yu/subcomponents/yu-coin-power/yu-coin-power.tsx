@@ -11,7 +11,9 @@ import { GQL_QUERY_GET_YULIFER } from "@graphql/yuscreen";
 
 const POWER_LABEL_TOP = "YuCoin Power";
 const getInfo = (power: number) =>
-  `Your gear boosts your YuCoin. For every 1 earned you now get <bold>${power}</bold>.`;
+  power < 2
+    ? "To increase your YuCoin Power, check out your available gear."
+    : `Your gear boosts your YuCoin. For every 1 earned you now get <bold>${power}</bold>.`;
 
 const _YuCoinPower = () => {
   const { data } = useQuery<GetYulifer>(GQL_QUERY_GET_YULIFER, {

@@ -10,6 +10,10 @@ interface ISurgedInfoProps {
 export const SurgedInfo = (props: ISurgedInfoProps) => {
   const { earnRate } = props;
 
+  if (earnRate < 2) {
+    return null;
+  }
+
   return (
     <View style={styles.wrapper}>
       <Text style={styles.text}>{getCopy(earnRate)}</Text>
@@ -23,6 +27,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     paddingHorizontal: Style.adjust(30),
+    marginTop: Style.adjust(16),
   } as ViewStyle,
   text: {
     fontSize: Style.adjust(16),

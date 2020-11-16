@@ -28,14 +28,26 @@ const _AvatarAndEquipment = ({ setProduct, product }: Props) => {
     setProduct(null);
   }, [setProduct]);
 
+  const [left, right] = useMemo(() => {
+    if (!data?.getYulifer) {
+      return [[], []];
+    }
+
+    const {
+      products: { employer, charms, personal },
+    } = data.getYulifer;
+
+    return [personal, [...employer, ...charms]];
+  }, [data]);
+
   return (
     <TouchableOpacityWithDelay onPress={dismissOverlay} activeOpacity={1} style={styles.wrapper}>
-      <ItemSet product={product} setProduct={setProduct} items={data?.getYulifer?.products?.personal} />
+      <ItemSet product={product} setProduct={setProduct} items={left} />
       <TouchableOpacityWithDelay onPress={navigateToAvatarModal} style={styles.avatarWrapper}>
         <ActivityIndicator color={Colours.darkHotPink} style={styles.activityIndicator} />
         <Image resizeMode="contain" style={styles.avatar} source={avatarSource} />
       </TouchableOpacityWithDelay>
-      <ItemSet product={product} setProduct={setProduct} items={data?.getYulifer?.products?.employer} />
+      <ItemSet product={product} setProduct={setProduct} items={right} />
     </TouchableOpacityWithDelay>
   );
 };
