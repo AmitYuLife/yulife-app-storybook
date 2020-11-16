@@ -10,7 +10,7 @@ export const authoriseFitkit = (authorised = true) => async () => {
     });
 }
 
-export const sendSteps = (amount = 10, waitTime?: number) => async (): Promise<void> => {
+export const sendSteps = (amount = 20, waitTime?: number) => async (): Promise<void> => {
     socketServer.emit({
         name: EVENT.PEDOMETER_EVENT,
         payload: {
