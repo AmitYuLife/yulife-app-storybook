@@ -26,6 +26,7 @@ import {
 import { FINANCIAL_QUESTIONS_ICON } from "@atoms/fib/svg-assets/underwriting/svg-strings";
 import { addCommasToNumber } from "@services/utils";
 import { FIB_EDIT_SALARY } from "@components/containers/products/fib/fib.types";
+import { LifeInsuranceUserAnswers } from "../../graphql/products";
 
 export const getFIBState = (state: IReduxState): FIBStore => {
   return state.product.fib;
@@ -262,4 +263,34 @@ export const getReviewAnswers = (state: IReduxState): any => {
   });
 
   return answers;
+};
+
+export const getLifeInsuranceUserAnswers = (state: IReduxState): LifeInsuranceUserAnswers[] => {
+  const answers = state.product.fib.answers;
+  const userAnswers = Object.keys(answers).map((questionId: string) => {
+    return {
+      questionId,
+      value: JSON.stringify(answers[questionId]),
+    } as LifeInsuranceUserAnswers;
+  });
+
+  const fibStore = state.product.fib;
+  const parsedFibStore = Object.keys(fibStore)
+    .map((key: keyof FIBStore) => {
+      if (key === "answers") {
+        return null;
+      }
+
+      return {
+        questionId: key,
+        value: JSON.stringify(fibStore[key]),
+      } as LifeInsuranceUserAnswers;
+    })
+    .filter((v) => !!v);
+
+  userAnswers.push({
+    questionId: "fibStore",
+    value: JSON.stringify(parsedFibStore),
+  });
+  return userAnswers;
 };

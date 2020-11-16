@@ -1,3 +1,4 @@
+import { CreateTopUpsQuote_createTopUpsQuote, GetTopUpsQuote_getTopUpsQuote } from "../../graphql/_core/schema";
 import { FIBStoreAnswerValue } from "./product.types";
 import {
   ProductActionTypes,
@@ -8,6 +9,8 @@ import {
   RESET_FIB_ANSWERS,
   RESET_FIB_MEDICAL_VALUE,
   RESET_FIB_UNDERWRITING_JOURNEY,
+  REFRESH_FIB_STORE,
+  UPDATE_FIB_VALUES_FROM_QUOTE,
 } from "./product.types";
 
 export function updateFIBValue<T>(payload: FIBStoreValue<T>): ProductActionTypes<T> {
@@ -46,5 +49,19 @@ export function resetFIBMedicalHistoryValue<T>(): ProductActionTypes<T> {
 export function resetFIBUnderwritingJourney<T>(): ProductActionTypes<T> {
   return {
     type: RESET_FIB_UNDERWRITING_JOURNEY,
+  };
+}
+
+export function refreshFIBStore<T>(payload: GetTopUpsQuote_getTopUpsQuote): ProductActionTypes<T> {
+  return {
+    type: REFRESH_FIB_STORE,
+    payload,
+  };
+}
+
+export function updateFIBValuesFromNewQuote<T>(payload: CreateTopUpsQuote_createTopUpsQuote): ProductActionTypes<T> {
+  return {
+    type: UPDATE_FIB_VALUES_FROM_QUOTE,
+    payload,
   };
 }

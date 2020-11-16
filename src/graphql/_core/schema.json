@@ -1448,7 +1448,7 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "LifeInsuranceTopUpsUserAnswers",
-        "description": "User answers to underwriting journey where the questionId is the unique id that\nidentifies a question and value is the answer provided by the customer",
+        "description": "User answers to underwriting journey where the questionId is the unique id that\nidentifies a question and value is the answer provided by the customer (input)",
         "fields": null,
         "inputFields": [
           {
@@ -13752,6 +13752,57 @@
             },
             "isDeprecated": false,
             "deprecationReason": null
+          },
+          {
+            "name": "userAnswers",
+            "description": "User answers to",
+            "args": [],
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "TopUpsUserAnswers",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "TopUpsUserAnswers",
+        "description": "User answers to underwriting journey where the questionId is the unique id that\nidentifies a question and value is the answer provided by the customer (output)",
+        "fields": [
+          {
+            "name": "questionId",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "value",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
           }
         ],
         "inputFields": null,
@@ -16100,8 +16151,8 @@
               "name": "Boolean",
               "ofType": null
             },
-            "isDeprecated": false,
-            "deprecationReason": null
+            "isDeprecated": true,
+            "deprecationReason": "use YuliferProduct.status at client version 2.9"
           },
           {
             "name": "icon",

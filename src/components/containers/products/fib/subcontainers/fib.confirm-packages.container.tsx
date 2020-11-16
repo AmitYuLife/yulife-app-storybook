@@ -4,12 +4,8 @@ import { View, Linking, Platform } from "react-native";
 import { connect, useDispatch } from "react-redux";
 import { Text } from "@atoms";
 import { FibLocalNavigation, FIB_FAQ, FIB_FEEDBACK_FORM } from "../fib.types";
-import {
-  LifeInsuranceUserAnswers,
-  GQL_MUTATION_CREATE_TOP_UPS_QUOTE,
-  GQL_QUERY_GET_TOP_UPS_QUOTE,
-} from "@graphql/products";
-import { getFIBState } from "@redux/product/product.selectors";
+import { GQL_MUTATION_CREATE_TOP_UPS_QUOTE, GQL_QUERY_GET_TOP_UPS_QUOTE } from "@graphql/products";
+import { getFIBState, getLifeInsuranceUserAnswers } from "@redux/product/product.selectors";
 import { IReduxState } from "@redux/_core/reducers";
 import { packages, useCover, calculatePayoutCalculatorItems, calculatePayoutAmount } from "../fib.helpers";
 import { FibSummaryScreen } from "@components/screens/products/fib/browse-packages/fib.summary.screen";
@@ -19,7 +15,7 @@ import { IFaq } from "@components/screens/products/fib/browse-packages/subcompon
 import fibDocumentsItems, { policyScheduleDocument } from "../data/documents-data";
 import fibFaqItems from "../data/faq-fib-data";
 import moment from "moment";
-import { updateFIBValue } from "@redux/product/product.actions";
+import { updateFIBValue, updateFIBValuesFromNewQuote } from "@redux/product/product.actions";
 import { MODALS } from "@navigation/constants";
 import { handleOpenWebView } from "@navigation/utils";
 import Logger from "@services/logging/logger";
@@ -56,8 +52,8 @@ const documents: IFaq[] = [...fibDocumentsItems, policyScheduleDocument].map((do
 }));
 
 const FibConfirmPackagesContainer = memo(function (props: FibConfirmPackagesContainerProps) {
-  const { navigation, userDateOfBirth, userDateOfBirthFib, selectFaq, fibState } = props;
-  const { answers: fibAnswers, salary: grossSalary, selectedPackage } = fibState;
+  const { navigation, userDateOfBirth, userDateOfBirthFib, selectFaq, fibState, userAnswers } = props;
+  const { salary: grossSalary, selectedPackage } = fibState;
   const dispatch = useDispatch();
 
   const [selectedCoverType, selectCoverType] = useCover(selectedPackage || "common");
@@ -85,13 +81,6 @@ const FibConfirmPackagesContainer = memo(function (props: FibConfirmPackagesCont
       : payoutEstimatorItems.months[payoutEstimatorItems.months.length - 1] || 0; // Never show error, default to 0
 
   const deceaseAgeYear = payoutEstimatorItems.years[deceaseAgeIndexYear];
-
-  const userAnswers = Object.keys(fibAnswers).map((questionId: string) => {
-    return {
-      questionId,
-      value: JSON.stringify(fibAnswers[questionId]),
-    } as LifeInsuranceUserAnswers;
-  });
 
   const queryVariables: CreateTopUpsQuoteInput = {
     grossSalary: grossSalary,
@@ -138,15 +127,7 @@ const FibConfirmPackagesContainer = memo(function (props: FibConfirmPackagesCont
           product: ProductCode.YULFIB,
         },
       });
-      const quoteId = newFibQuoteData?.createTopUpsQuote?.quoteId;
-      if (quoteId) {
-        dispatch(
-          updateFIBValue({
-            key: "latestQuoteId",
-            value: quoteId,
-          })
-        );
-      }
+      dispatch(updateFIBValuesFromNewQuote(newFibQuoteData?.createTopUpsQuote));
     }
 
     createNewQuote();
@@ -248,6 +229,7 @@ const mapStateToProps = (state: IReduxState) => ({
   fibState: getFIBState(state),
   userDateOfBirth: getUserDateOfBirth(state),
   userDateOfBirthFib: getBirthday(state, "YYYY-MM-DD"),
+  userAnswers: getLifeInsuranceUserAnswers(state),
 });
 
 const FIBConfirmPackages = connect(mapStateToProps)(FibConfirmPackagesContainer);

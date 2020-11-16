@@ -60,6 +60,10 @@ export const GQL_QUERY_GET_TOP_UPS_QUOTE = gql`
       term
       rejected
       medicalInvestigationRequired
+      userAnswers {
+        questionId
+        value
+      }
     }
   }
 `;

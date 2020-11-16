@@ -9,6 +9,11 @@ import { GetTopUpsQuoteInput, ProductCode } from "./globalTypes";
 // GraphQL query operation: GetTopUpsQuote
 // ====================================================
 
+export interface GetTopUpsQuote_getTopUpsQuote_userAnswers {
+  questionId: string | null;
+  value: string | null;
+}
+
 export interface GetTopUpsQuote_getTopUpsQuote {
   /**
    * Quote id
@@ -36,6 +41,10 @@ export interface GetTopUpsQuote_getTopUpsQuote {
    * Flag to require medical investigations
    */
   medicalInvestigationRequired: boolean | null;
+  /**
+   * User answers to
+   */
+  userAnswers: (GetTopUpsQuote_getTopUpsQuote_userAnswers | null)[] | null;
 }
 
 export interface GetTopUpsQuote {

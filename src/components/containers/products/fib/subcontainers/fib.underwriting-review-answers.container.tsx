@@ -9,13 +9,16 @@ import {
 import { IReduxState } from "../../../../../redux/_core/reducers";
 import { connect, useDispatch } from "react-redux";
 import { FibUnderwritingReviewAnswersScreen } from "@components/screens/products/fib/underwriting-journey/fib.underwriting-review-answers.screen";
-import { getFIBState, getReviewAnswers } from "../../../../../redux/product/product.selectors";
+import {
+  getFIBState,
+  getLifeInsuranceUserAnswers,
+  getReviewAnswers,
+} from "../../../../../redux/product/product.selectors";
 import { Navigation } from "react-native-navigation";
 import { ROUTES, MODALS } from "../../../../../navigation/constants";
-import { updateFIBValue } from "@redux/product/product.actions";
-import { GQL_MUTATION_CREATE_TOP_UPS_QUOTE, LifeInsuranceUserAnswers } from "@graphql/products";
+import { updateFIBValue, updateFIBValuesFromNewQuote } from "@redux/product/product.actions";
+import { GQL_MUTATION_CREATE_TOP_UPS_QUOTE } from "@graphql/products";
 import { useMutation } from "@apollo/react-hooks";
-import moment from "moment";
 import { InfoTypes } from "./fib.info.container";
 import { CreateTopUpsQuote, CreateTopUpsQuoteVariables } from "../../../../../graphql/_core/schema";
 import { CoverType, CreateTopUpsQuoteInput, ProductCode } from "../../../../../graphql/_core/schema/globalTypes";
@@ -29,15 +32,8 @@ interface IFibUnderwritingReviewAnswersContainerProps {
 type Props = IFibUnderwritingReviewAnswersContainerProps & ConnectedState;
 
 const FibUnderwritingReviewAnswersContainer = memo(function (props: Props) {
-  const { navigation, answers, fibState, updateQuoteDate, updateRejectedValue } = props;
+  const { navigation, answers, fibState, userAnswers } = props;
   const dispatch = useDispatch();
-
-  const userAnswers = Object.keys(fibState.answers).map((questionId: string) => {
-    return {
-      questionId,
-      value: JSON.stringify(fibState.answers[questionId]),
-    } as LifeInsuranceUserAnswers;
-  });
 
   const queryVariables: CreateTopUpsQuoteInput = {
     grossSalary: fibState.salary,
@@ -56,33 +52,11 @@ const FibUnderwritingReviewAnswersContainer = memo(function (props: Props) {
         product: ProductCode.YULFIB,
       },
     });
-
-    const quoteId = data?.createTopUpsQuote?.quoteId;
-    if (quoteId) {
-      dispatch(
-        updateFIBValue({
-          key: "latestQuoteId",
-          value: quoteId,
-        })
-      );
-    }
+    dispatch(updateFIBValuesFromNewQuote(data?.createTopUpsQuote));
 
     const rejected = data?.createTopUpsQuote?.rejected;
     if (rejected) {
-      dispatch(updateRejectedValue());
       return navigation.push(FIB_INFO, { type: "Rejected" } as { type: InfoTypes });
-    }
-
-    dispatch(updateQuoteDate(moment().format("YYYY-MM-DD")));
-
-    const medicalInvestigationRequired = data?.createTopUpsQuote?.medicalInvestigationRequired;
-    if (medicalInvestigationRequired) {
-      dispatch(
-        updateFIBValue({
-          key: "medicalInvestigationRequired",
-          value: medicalInvestigationRequired,
-        })
-      );
     }
 
     const priceChangedFromAPI =
@@ -97,11 +71,6 @@ const FibUnderwritingReviewAnswersContainer = memo(function (props: Props) {
           name: MODALS.generic,
           passProps: {
             onPress: async () => {
-              const actualCost = data?.createTopUpsQuote?.actualCost;
-              if (actualCost) {
-                dispatch(updateFIBValue({ key: "actualCost", value: actualCost }));
-              }
-
               dispatch(updateFIBValue({ key: "hasPriceChanged", value: false }));
               await Navigation.dismissModal(MODALS.generic);
               navigation.push(FIB_CONFIRM_PACKAGES);
@@ -165,8 +134,7 @@ const FibUnderwritingReviewAnswersContainer = memo(function (props: Props) {
 const mapStateToProps = (state: IReduxState) => ({
   fibState: getFIBState(state),
   answers: getReviewAnswers(state),
-  updateQuoteDate: (value: string) => updateFIBValue({ key: "quoteDate", value }),
-  updateRejectedValue: () => updateFIBValue({ key: "rejected", value: true }),
+  userAnswers: getLifeInsuranceUserAnswers(state),
 });
 
 export default connect<ConnectedState>(mapStateToProps)(FibUnderwritingReviewAnswersContainer);

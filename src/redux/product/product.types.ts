@@ -2,12 +2,15 @@ import { PackageId } from "../../components/screens/products/fib/fib.helper";
 import { Cover } from "@components/containers/products/fib/fib.types";
 import { RehydrateAction } from "redux-persist";
 import { logOut, getUserSuccess } from "@redux/user/user.actions";
+import { CreateTopUpsQuote_createTopUpsQuote, GetTopUpsQuote_getTopUpsQuote } from "../../graphql/_core/schema";
 export const UPDATE_FIB_VALUE = "UPDATE_FIB_VALUE";
 export const UPDATE_FIB_MEDICAL_VALUE = "UPDATE_FIB_MEDICAL_VALUE";
 export const UPDATE_FIB_ANSWER_VALUE = "UPDATE_FIB_ANSWER_VALUE";
 export const RESET_FIB_ANSWERS = "RESET_FIB_ANSWERS";
 export const RESET_FIB_MEDICAL_VALUE = "RESET_FIB_MEDICAL_VALUE";
 export const RESET_FIB_UNDERWRITING_JOURNEY = "RESET_FIB_UNDERWRITING_JOURNEY";
+export const REFRESH_FIB_STORE = "REFRESH_FIB_STORE";
+export const UPDATE_FIB_VALUES_FROM_QUOTE = "UPDATE_FIB_VALUES_FROM_QUOTE";
 
 export interface IProductStore {
   fib: FIBStore;
@@ -86,9 +89,21 @@ export interface ResetFIBStoreAction {
   type: typeof RESET_FIB_ANSWERS | typeof RESET_FIB_MEDICAL_VALUE | typeof RESET_FIB_UNDERWRITING_JOURNEY;
 }
 
+export interface RefreshFIBStoreAction {
+  type: typeof REFRESH_FIB_STORE;
+  payload: GetTopUpsQuote_getTopUpsQuote;
+}
+
+export interface UpdateFIBValuesFromQuoteAction {
+  type: typeof UPDATE_FIB_VALUES_FROM_QUOTE;
+  payload: CreateTopUpsQuote_createTopUpsQuote;
+}
+
 export type ProductActionTypes<T> =
   | UpdateFIBStoreAction<T>
   | ResetFIBStoreAction
   | RehydrateAction
   | ReturnType<typeof logOut>
-  | ReturnType<typeof getUserSuccess>;
+  | ReturnType<typeof getUserSuccess>
+  | RefreshFIBStoreAction
+  | UpdateFIBValuesFromQuoteAction;
