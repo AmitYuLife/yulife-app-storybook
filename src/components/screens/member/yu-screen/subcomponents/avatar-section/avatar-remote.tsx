@@ -10,7 +10,7 @@ interface Props {
   style: ViewStyle | ImageStyle;
 }
 
-export const AvatarRemote = memo(function ({ avatarUrl, onEditPress, style }: Props) {
+export const AvatarRemote = memo(function ({ avatarUrl, onEditPress = () => null, style }: Props) {
   const [loading, setLoading] = useState(false);
 
   return (

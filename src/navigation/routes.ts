@@ -37,19 +37,15 @@ export default [
   {
     hasMenu: true,
     name: ROUTES.yuScreen,
-    component: require("../components/containers/member/yu-screen/yu-screen.container").default,
+    component: require("../components/containers/member/yu/yu-screen.container").default,
+  },
+  {
+    name: ROUTES.yuProductSurvey,
+    component: require("../components/containers/member/yu/yu-product-survey").default,
   },
   {
     name: ROUTES.avatarCreation,
     component: require("../components/containers/member/avatar-creation/avatar-creation.container").default,
-  },
-  {
-    name: ROUTES.yuScreenProducts,
-    component: require("../components/containers/member/yu-screen/yu-screen-products.container").default,
-  },
-  {
-    name: ROUTES.yuScreenEarnRate,
-    component: require("../components/containers/member/yu-screen/yu-screen-earn-rate.container").default,
   },
   {
     name: ROUTES.settings,
@@ -157,6 +153,14 @@ export default [
     component: require("../components/containers/web-view/web-view.container").default,
   },
   // modals
+  {
+    name: MODALS.yuProductDetails,
+    component: require("../components/containers/member/yu/yu-product-details/yu-product-details").default,
+  },
+  {
+    name: MODALS.earnRate,
+    component: require("../components/containers/member/yu/yu-earn-rate-modal/yu-earn-rate-modal").default,
+  },
   {
     name: MODALS.leaderboardLean,
     component: require("../components/containers/member/leaderboard/leaderboard-lean/leaderboard-lean").default,

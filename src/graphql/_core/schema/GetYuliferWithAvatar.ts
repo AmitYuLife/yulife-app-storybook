@@ -416,6 +416,8 @@ export interface GetYuliferWithAvatar_getYulifer_products_employer {
   active: boolean | null;
   icon: string | null;
   name: string | null;
+  itemSlot: string | null;
+  status: string | null;
 }
 
 export interface GetYuliferWithAvatar_getYulifer_products_personal {
@@ -426,6 +428,8 @@ export interface GetYuliferWithAvatar_getYulifer_products_personal {
   active: boolean | null;
   icon: string | null;
   name: string | null;
+  itemSlot: string | null;
+  status: string | null;
 }
 
 export interface GetYuliferWithAvatar_getYulifer_products_charms {
@@ -436,6 +440,8 @@ export interface GetYuliferWithAvatar_getYulifer_products_charms {
   active: boolean | null;
   icon: string | null;
   name: string | null;
+  itemSlot: string | null;
+  status: string | null;
 }
 
 export interface GetYuliferWithAvatar_getYulifer_products {

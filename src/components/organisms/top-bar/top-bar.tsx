@@ -1,15 +1,14 @@
-import React, { memo } from "react";
-import { IReduxState } from "@redux/_core/reducers";
+import React from "react";
 import { getTotalCoins } from "@redux/coins/coins.selectors";
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
 import TopBarView from "./top-bar.view";
 import { TopBarViewProps } from "./top-bar.helpers";
+import { TOP_BAR_HEIGHT } from "./top-bar.styles";
 
-type ConnectedState = ReturnType<typeof mapStateToProps>;
-type TopBarProps = TopBarViewProps & ConnectedState;
+const TopBarContainer = (props: TopBarViewProps) => {
+  const { onPressLeftIcon, timer, name, menuLabel, leftIcon, middleLabel, type, onLayout } = props;
+  const coins = useSelector(getTotalCoins);
 
-const TopBarContainer = (props: TopBarProps) => {
-  const { onPressLeftIcon, timer, name, menuLabel, leftIcon, middleLabel, type, coins, onLayout } = props;
   return (
     <TopBarView
       onPressLeftIcon={onPressLeftIcon}
@@ -25,10 +24,4 @@ const TopBarContainer = (props: TopBarProps) => {
   );
 };
 
-const mapStateToProps = (state: IReduxState) => ({
-  coins: getTotalCoins(state),
-});
-
-const TopBar = connect<ConnectedState, null, TopBarViewProps>(mapStateToProps)(TopBarContainer);
-
-export default memo(TopBar);
+export default Object.assign(TopBarContainer, { HEIGHT: TOP_BAR_HEIGHT });

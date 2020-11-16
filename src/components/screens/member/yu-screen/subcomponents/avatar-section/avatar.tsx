@@ -1,15 +1,13 @@
 import React, { memo } from "react";
 import { AvatarEmpty } from "@molecules";
 import { Style } from "@styles";
-import { AvatarFilled, AvatarFilledProps } from "./avatar-filled";
-import { IAvatar } from "../../avatar-builder/avatar.types";
 import { AvatarRemote } from "./avatar-remote";
 
-type Props = Omit<AvatarFilledProps, "width" | "height"> & {
+type Props = {
   isAvatarCreated: boolean;
   avatarUrl?: string;
-  avatar?: IAvatar;
   sizeMultiplier?: number;
+  onEditPress?: () => void;
 };
 
 const DEFAULT_MULTIPLIER = 1.1;
@@ -17,22 +15,18 @@ const BASE_WIDTH = 176;
 const BASE_HEIGHT = 361;
 
 export const Avatar = memo(function (props: Props) {
-  const { isAvatarCreated, avatar, onEditPress, sizeMultiplier = DEFAULT_MULTIPLIER, avatarUrl } = props;
+  const { isAvatarCreated, onEditPress, sizeMultiplier = DEFAULT_MULTIPLIER, avatarUrl } = props;
   const style = {
     width: Style.adjust(BASE_WIDTH * sizeMultiplier),
     height: Style.adjust(BASE_HEIGHT * sizeMultiplier),
   };
 
-  if (!isAvatarCreated) {
-    return <AvatarEmpty style={style} />;
-  }
-
-  if (avatar) {
-    return <AvatarFilled avatar={avatar} onEditPress={onEditPress} width={style.width} height={style.height} />;
-  }
-
   if (avatarUrl) {
     return <AvatarRemote avatarUrl={avatarUrl} onEditPress={onEditPress} style={style} />;
+  }
+
+  if (!isAvatarCreated) {
+    return <AvatarEmpty style={style} />;
   }
 
   // Avatar has been created but missing avatar url, allow customers to edit again the avatar

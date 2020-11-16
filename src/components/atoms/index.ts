@@ -5,6 +5,7 @@ export { default as BorderedPlus } from "./bordered-plus/bordered-plus";
 export { default as Button } from "./button/button";
 export { default as CentredScreen } from "./centred-screen/centred-screen";
 export { default as Close } from "./close/close";
+export { default as CloseSvg } from "./close/close-svg";
 export { default as Back } from "./back/back";
 export { default as ChestCoin } from "./chest-coin/chest-coin";
 export { default as CheckBox } from "./check-box/check-box";
@@ -29,3 +30,7 @@ export { default as Logo } from "./logo";
 export { default as YuCoinIcon } from "./yucoin-icon/yucoin.icon";
 export { Yumoji } from "./yumoji/yumoji";
 export { UnauthorisedGradient } from "./unauthorised-gradient/unauthorised-gradient";
+
+// error :( https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-8.html#export--as-ns-syntax
+import * as ProductSvg from "./product-svg";
+export { ProductSvg };

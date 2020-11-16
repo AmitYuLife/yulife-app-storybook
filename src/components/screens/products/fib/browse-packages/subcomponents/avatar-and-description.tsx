@@ -14,11 +14,7 @@ export const AvatarAndDescription = memo(({ selectedPackage, avatarUrl, loading 
   return (
     <View style={styles.wrapper}>
       <View style={styles.avatarWrapper}>
-        {loading ? (
-          <ActivityIndicator />
-        ) : (
-          <Avatar avatar={null} sizeMultiplier={0.8} avatarUrl={avatarUrl} isAvatarCreated={true} />
-        )}
+        {loading ? <ActivityIndicator /> : <Avatar sizeMultiplier={0.8} avatarUrl={avatarUrl} isAvatarCreated={true} />}
       </View>
       <Description selectedPackage={selectedPackage} loading={loading} />
     </View>

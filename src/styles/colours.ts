@@ -77,6 +77,12 @@ export default {
   lightGray: "rgb(170,170,170)",
   lightestGray: "#fcfcfc",
   lightRed: "rgb(255,102,102)",
+  world: {
+    forest: "#3c9172",
+    ocean: "#5ba9d5",
+    desert: "#f86f63",
+    mountain: "#ca45b3",
+  },
   navBar: {
     blue: {
       active: "rgba(29,100,163,1)",
@@ -203,10 +209,6 @@ export default {
       n900: "#464647",
     },
   },
-  yucoin: {
-    n800: "#5A5A5C",
-    carrotOrange: "#EA9E2F",
-  },
   primary: {
     p100: "#F9BDD9",
     p200: "#F791BF",
@@ -227,9 +229,17 @@ export default {
     n800: "#5A5A5C",
     n900: "#464647",
   },
+  orange: "#DB8200",
   blue: {
     b100: "#D5ECFF",
     b200: "#6AA3DC",
+    dp301: "#6AA3DC",
+    dp302: "#84AFE0",
+    dp303: "#C6F7FF",
+    dp304: "#7892B3",
+    dp305: "#9ED3E9",
+    dp306: "#BDE3F1",
+    dp307: "#EEF8FB",
   },
   solid: {
     grey: "#F0F0F0",

@@ -40,7 +40,7 @@ function _FibUnderwritingIntroduction(props: Props) {
 
         <View style={styles.avatarOuterWrapper}>
           <View style={styles.avatarWrapper}>
-            <Avatar sizeMultiplier={0.6} avatar={null} isAvatarCreated={true} avatarUrl={props.avatar} />
+            <Avatar sizeMultiplier={0.6} isAvatarCreated={true} avatarUrl={props.avatar} />
           </View>
         </View>
       </View>
