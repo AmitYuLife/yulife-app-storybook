@@ -24,7 +24,7 @@ export const ItemIcon = (props: Props) => {
       <Icon style={getStyle(status)} width={Style.adjust(32)} height={Style.adjust(32)} />
       <View style={styles.slotWrapper}>
         <Text style={getFontStyle(props)} bold={true}>
-          {toCapitalLetter(itemSlot)}
+          {getName(itemSlot)}
         </Text>
       </View>
     </View>
@@ -111,4 +111,12 @@ function getFontStyle(props: Props) {
   }
 
   return defaultStyle;
+}
+
+function getName(item: ItemSlot) {
+  if (item === "clockPendant") {
+    return "Clock";
+  }
+
+  return toCapitalLetter(item);
 }

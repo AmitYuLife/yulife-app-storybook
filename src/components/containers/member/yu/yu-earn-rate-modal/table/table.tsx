@@ -32,7 +32,6 @@ export default EarnRateTable;
 const styles = StyleSheet.create({
   wrapper: {
     marginHorizontal: Style.adjust(16),
-    marginBottom: Style.adjust(16),
     marginTop: Style.adjust(24),
     borderRadius: 8,
     textAlign: "center",
