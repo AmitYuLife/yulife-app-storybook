@@ -1,7 +1,7 @@
 
 import { generateRandomMongoId } from '../../utils';
 import { IDatabaseItem } from '../../types';
-import { CUSTOMER_2, CUSTOMER_3, CUSTOMER_4, CUSTOMER_16, CUSTOMER_17, CUSTOMER_18, CUSTOMER_ALPHA, CUSTOMER_21, CUSTOMER_23, CUSTOMER_20, CUSTOMER_19 } from '../postgres/customers';
+import { CUSTOMER_2, CUSTOMER_3, CUSTOMER_4, CUSTOMER_16, CUSTOMER_17, CUSTOMER_18, CUSTOMER_ALPHA, CUSTOMER_21, CUSTOMER_23, CUSTOMER_20, CUSTOMER_19, CUSTOMER_5, CUSTOMER_6, CUSTOMER_7, CUSTOMER_9, CUSTOMER_15 } from '../postgres/customers';
 
 const USER_DATA_TEMPLATE = {
     data: {
@@ -57,6 +57,99 @@ export const USER_4 = {
         userId: CUSTOMER_4.data.customerId,
     }
 } as IDatabaseItem
+
+export const USER_5 = {
+    type: "mongo",
+    modelName: "users",
+    data: {
+        ...USER_2.data,
+        _id: generateRandomMongoId(),
+        userId: CUSTOMER_5.data.customerId,
+        earnRate: 10,
+        products: [{
+            productId: generateRandomMongoId(),
+            productType: "Yulife",
+            option: "epic",
+            earnRate: 10,
+            type: "employer"
+        }]
+    }
+} as IDatabaseItem
+
+export const USER_6 = {
+    type: "mongo",
+    modelName: "users",
+    data: {
+        ...USER_2.data,
+        _id: generateRandomMongoId(),
+        userId: CUSTOMER_6.data.customerId,
+        earnRate: 10,
+        products: [{
+            productId: generateRandomMongoId(),
+            productType: "Yulife",
+            option: "epic",
+            earnRate: 10,
+            type: "employer"
+        }]
+    }
+} as IDatabaseItem
+
+export const USER_7 = {
+    type: "mongo",
+    modelName: "users",
+    data: {
+        ...USER_2.data,
+        _id: generateRandomMongoId(),
+        userId: CUSTOMER_7.data.customerId,
+        earnRate: 10,
+        products: [{
+            productId: generateRandomMongoId(),
+            productType: "Yulife",
+            option: "epic",
+            earnRate: 10,
+            type: "employer"
+        }]
+    }
+} as IDatabaseItem
+
+
+export const USER_9 = {
+    type: "mongo",
+    modelName: "users",
+    data: {
+        ...USER_2.data,
+        _id: generateRandomMongoId(),
+        userId: CUSTOMER_9.data.customerId,
+        earnRate: 10,
+        products: [{
+            productId: generateRandomMongoId(),
+            productType: "Yulife",
+            option: "epic",
+            earnRate: 10,
+            type: "employer"
+        }]
+    }
+} as IDatabaseItem
+
+export const USER_15 = {
+    type: "mongo",
+    modelName: "users",
+    data: {
+        ...USER_2.data,
+        _id: generateRandomMongoId(),
+        userId: CUSTOMER_15.data.customerId,
+        earnRate: 10,
+        products: [{
+            productId: generateRandomMongoId(),
+            productType: "Yulife",
+            option: "epic",
+            earnRate: 10,
+            type: "employer"
+        }]
+    }
+} as IDatabaseItem
+
+
 
 export const USER_17 = {
     type: "mongo",
