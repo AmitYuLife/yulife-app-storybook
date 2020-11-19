@@ -5,14 +5,13 @@ import { Style, Colours } from "@styles";
 
 export interface IHeadingProps {
   text: string;
-  wrapperStyle?: ViewStyle;
 }
 
 export const Heading = (props: IHeadingProps) => {
-  const { text, wrapperStyle } = props;
+  const { text } = props;
 
   return (
-    <View style={[styles.wrapper, wrapperStyle]}>
+    <View style={styles.wrapper}>
       <Text bold={true} style={styles.text}>
         {text}
       </Text>
@@ -22,7 +21,6 @@ export const Heading = (props: IHeadingProps) => {
 
 const styles = StyleSheet.create({
   wrapper: {
-    marginTop: Style.adjust(32),
     marginHorizontal: Style.adjust(16),
     paddingRight: Style.adjust(16),
     paddingLeft: Style.adjust(12),

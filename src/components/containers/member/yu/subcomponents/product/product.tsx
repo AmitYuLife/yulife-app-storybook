@@ -1,8 +1,8 @@
 import React from "react";
-import { StyleSheet, View, ViewStyle, ImageStyle } from "react-native";
+import { StyleSheet, View, ViewStyle } from "react-native";
 import { ProductHeading } from "./product-heading";
 import { ProductSubHeading, ISubHeadingProps } from "./product-sub-heading";
-import { Style } from "@styles";
+import { Style, Colours } from "@styles";
 import { TouchableOpacityWithDelay } from "@components/molecules";
 import { ProductCtaIcon } from "./product-cta-icon";
 import { getProductIcon } from "../../assets/getProductIcon";
@@ -15,24 +15,28 @@ export interface IProductProps {
   status?: ProductStatus;
   subheading: ISubHeadingProps;
   onPress?: () => void;
+  showSeparator?: boolean;
 }
 
 export const Product = (props: IProductProps) => {
-  const { itemSlot, heading, subheading, status, onPress } = props;
+  const { itemSlot, heading, subheading, status, onPress, showSeparator } = props;
 
   const IconSvg = getProductIcon(itemSlot);
 
   return (
-    <TouchableOpacityWithDelay activeOpacity={1} onPress={onPress} style={styles.wrapper}>
-      <IconSvg style={StyleSheet.flatten([styles.productIconWrapper, { opacity: status !== "active" ? 0.6 : 1 }])} />
-      <View style={styles.productInfoWrapper}>
-        <ProductHeading text={heading} />
-        <View style={styles.productSubheadingWrapper}>
-          <ProductSubHeading {...subheading} />
+    <View>
+      <Separator show={showSeparator} />
+      <TouchableOpacityWithDelay activeOpacity={1} onPress={onPress} style={styles.wrapper}>
+        <IconSvg style={StyleSheet.flatten([styles.productIconWrapper, { opacity: status !== "active" ? 0.6 : 1 }])} />
+        <View style={styles.productInfoWrapper}>
+          <ProductHeading text={heading} />
+          <View style={styles.productSubheadingWrapper}>
+            <ProductSubHeading {...subheading} />
+          </View>
         </View>
-      </View>
-      <ProductCtaIcon status={status} />
-    </TouchableOpacityWithDelay>
+        <ProductCtaIcon status={status} />
+      </TouchableOpacityWithDelay>
+    </View>
   );
 };
 
@@ -40,16 +44,13 @@ const styles = StyleSheet.create({
   wrapper: {
     flexDirection: "row",
     paddingLeft: Style.adjust(28),
-    marginTop: Style.adjust(24),
-    marginRight: Style.adjust(16),
+    paddingRight: Style.adjust(16),
+    minHeight: Style.adjust(128),
+    alignItems: "center",
   } as ViewStyle,
   productIconWrapper: {
     width: Style.adjust(80),
   } as ViewStyle,
-  productIcon: {
-    width: Style.adjust(80),
-    marginTop: "auto",
-  } as ImageStyle,
   productInfoWrapper: {
     marginLeft: Style.adjust(16),
     justifyContent: "center",
@@ -58,4 +59,20 @@ const styles = StyleSheet.create({
   productSubheadingWrapper: {
     marginTop: Style.adjust(4),
   } as ViewStyle,
+  separator: {
+    height: 1,
+    backgroundColor: Colours.neutral.n100,
+    position: "absolute",
+    left: Style.adjust(24),
+    right: Style.adjust(24),
+    top: Style.adjust(0),
+  } as ViewStyle,
 });
+
+function Separator({ show }: { show: boolean }) {
+  if (!show) {
+    return null;
+  }
+
+  return <View style={styles.separator} />;
+}

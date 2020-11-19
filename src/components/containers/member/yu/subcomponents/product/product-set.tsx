@@ -1,23 +1,24 @@
 import React, { useCallback } from "react";
-import { View } from "react-native";
+import { View, ViewStyle } from "react-native";
 import { Product } from "./product";
 import { Heading } from "../heading";
 import { useQuery } from "@apollo/react-hooks";
 import { GetYulifer } from "@graphql/_core/schema";
 import { GQL_QUERY_GET_YULIFER } from "@graphql/yuscreen";
 import { navigateToProductScreen } from "../../navigation/navigateToProductScreen";
-import { ItemSlot, ProductStatus } from "../../yu-types";
+import { ItemSlot, ProductStatus, ProductType } from "../../yu-types";
 import { useSelector, useDispatch } from "react-redux";
 import { getFIBState } from "@redux/product/product.selectors";
 import { resetFIBUnderwritingJourney } from "@redux/product/product.actions";
 import { getUserFeatures } from "@redux/user/user.selectors";
 
 export interface IProductSetProps {
-  type: "employer" | "personal" | "charms";
+  type: ProductType;
+  wrapperStyle?: ViewStyle;
 }
 
 export const ProductSet = (props: IProductSetProps) => {
-  const { type } = props;
+  const { type, wrapperStyle } = props;
   const { data } = useQuery<GetYulifer>(GQL_QUERY_GET_YULIFER, {
     fetchPolicy: "cache-only",
   });
@@ -32,14 +33,14 @@ export const ProductSet = (props: IProductSetProps) => {
   const heading = getHeading(type);
 
   if (!products.length) {
-    return null;
+    return <View style={wrapperStyle} />;
   }
 
   return (
-    <View>
+    <View style={wrapperStyle}>
       <Heading text={heading} />
       {products.map((product, index) => (
-        <Product key={index} {...product} />
+        <Product showSeparator={!!index} key={index} {...product} />
       ))}
     </View>
   );

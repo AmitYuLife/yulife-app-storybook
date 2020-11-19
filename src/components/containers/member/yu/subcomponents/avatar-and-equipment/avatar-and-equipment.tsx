@@ -40,6 +40,10 @@ const _AvatarAndEquipment = ({ setProduct, product }: Props) => {
     return [personal, [...employer, ...charms]];
   }, [data]);
 
+  if (!avatarSource) {
+    return null;
+  }
+
   return (
     <TouchableOpacityWithDelay onPress={dismissOverlay} activeOpacity={1} style={styles.wrapper}>
       <ItemSet product={product} setProduct={setProduct} items={left} />
@@ -74,8 +78,8 @@ const AVATAR_HEIGHT = Style.adjust(328) * 0.95;
 const styles = StyleSheet.create({
   wrapper: {
     flexDirection: "row",
-    marginTop: Style.adjust(24),
-    height: Style.adjust(340),
+    marginTop: Style.adjust(12),
+    height: Style.adjust(328),
     overflow: "hidden",
     justifyContent: "space-between",
     paddingLeft: BASE_PADDING + ITEM_TAG_OFFSET,

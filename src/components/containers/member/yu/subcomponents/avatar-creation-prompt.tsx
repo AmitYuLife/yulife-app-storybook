@@ -1,18 +1,29 @@
-import React, { memo } from "react";
+import React, { memo, useMemo } from "react";
 import { View, StyleSheet, ViewStyle, TextStyle } from "react-native";
 import { Text, Button } from "@atoms";
 import { EmptyAvatar } from "@components/molecules";
 import { Colours, Style } from "@styles";
-
-export interface IAvatarCreationPromptProps {
-  onPressCta: () => void;
-}
+import { useQuery } from "@apollo/react-hooks";
+import { GetYulifer } from "@graphql/_core/schema";
+import { GQL_QUERY_GET_YULIFER } from "@graphql/yuscreen";
+import { navigateToAvatarCreationScreen } from "../navigation/navigateToAvatarCreationScreen";
 
 const CREATE_AVATAR_CAPTION_COPY = "Create your avatar to unlock personal protection and earn 100 YuCoin.";
 const CREATE_AVATAR_CTA_COPY = "Get started";
 
-const _AvatarCreationPrompt = (props: IAvatarCreationPromptProps) => {
-  const { onPressCta } = props;
+const _AvatarCreationPrompt = () => {
+  const { data } = useQuery<GetYulifer>(GQL_QUERY_GET_YULIFER, {
+    fetchPolicy: "cache-only",
+  });
+
+  const avatarSource = useMemo(() => {
+    const uri = data?.getYulifer?.avatarRemoteFiles?.pngFull;
+    return uri ? { uri } : null;
+  }, [data]);
+
+  if (avatarSource) {
+    return null;
+  }
 
   return (
     <View style={styles.wrapper}>
@@ -22,7 +33,7 @@ const _AvatarCreationPrompt = (props: IAvatarCreationPromptProps) => {
       <View style={styles.promptWrapper}>
         <Text style={styles.promptLabel}>{CREATE_AVATAR_CAPTION_COPY}</Text>
         <View style={styles.promptCtaWrapper}>
-          <Button type="Primary" size="Fill" label={CREATE_AVATAR_CTA_COPY} onPress={onPressCta} />
+          <Button type="Primary" size="Fill" label={CREATE_AVATAR_CTA_COPY} onPress={navigateToAvatarCreationScreen} />
         </View>
       </View>
     </View>

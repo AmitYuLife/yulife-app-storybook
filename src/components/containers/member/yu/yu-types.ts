@@ -8,7 +8,7 @@ export type ProductCode =
   | "TravelInsurance"
   | "Alpha";
 
-export type ProductType = "employer" | "personal" | string;
+export type ProductType = "employer" | "personal" | "charms";
 
 export type ItemSlot = "pants" | "chest" | "gloves" | "boots" | "compass" | "map" | "binoculars" | "clockPendant";
 
@@ -22,4 +22,4 @@ export const personalItems = ["chest", "gloves", "boots", "pants"];
 
 export const isEmployerItem = (item: string) => employerItems.includes(item);
 export const getIsEmployerProduct = (item: string) => employerProducts.includes(item);
-export const getIsPersonalItem = (item: string) => personalItems.includes(item);
+export const getIsPersonalItem = (item: ItemSlot) => personalItems.includes(item);

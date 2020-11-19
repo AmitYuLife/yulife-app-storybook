@@ -6,7 +6,7 @@ import {
   GetYulifer_getYulifer_products_personal,
   GetYulifer_getYulifer_products_employer,
 } from "@graphql/_core/schema";
-import { ProductCode, ItemSlot } from "../../../yu-types";
+import { ProductCode, ItemSlot, getIsPersonalItem } from "../../../yu-types";
 
 export interface ItemSetProps {
   items: GetYulifer_getYulifer_products_personal[] | GetYulifer_getYulifer_products_employer[];
@@ -56,6 +56,10 @@ function handlePressProduct(
   product: string
 ) {
   if (item?.status === "locked") {
+    if (getIsPersonalItem(item.itemSlot as ItemSlot)) {
+      return () => setProduct(item?.icon === product ? null : item?.icon);
+    }
+
     return null;
   }
 

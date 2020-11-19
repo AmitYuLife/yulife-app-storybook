@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { View, StyleSheet, ViewStyle, TextStyle, ScrollView } from "react-native";
 import { Text } from "@atoms";
 import GenericOverlay from "@components/modals/generic-overlay/generic-overlay";
@@ -8,6 +8,7 @@ import { Style } from "@styles";
 import { TextWithBoldText } from "@components/molecules";
 import { getProductIcon } from "../assets/getProductIcon";
 import { ItemSlot } from "../yu-types";
+import { useBackHandler } from "@services/hooks/useBackHandler";
 
 interface IYuProductDetails {
   itemSlot: ItemSlot;
@@ -20,6 +21,13 @@ const YuProductDetails = (props: IYuProductDetails) => {
   const { itemSlot, description = "", name, status } = props;
 
   const Icon = getProductIcon(itemSlot);
+
+  const backHandler = useCallback(() => {
+    dismissOverlay();
+    return true;
+  }, []);
+
+  useBackHandler(backHandler);
 
   return (
     <GenericOverlay onClose={dismissOverlay}>
