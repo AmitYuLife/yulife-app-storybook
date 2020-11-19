@@ -362,10 +362,10 @@ PODS:
   - SDWebImageWebPCoder (0.6.1):
     - libwebp (~> 1.0)
     - SDWebImage/Core (~> 5.7)
-  - Stripe (14.0.1)
-  - tipsi-stripe (7.5.3):
+  - Stripe (19.4.0)
+  - tipsi-stripe (8.0.0-beta.11):
     - React
-    - Stripe (~> 14.0.1)
+    - Stripe (>= 19.0.1)
   - Yoga (1.14.0)
   - YogaKit (1.18.1):
     - Yoga (~> 1.14)
@@ -619,11 +619,11 @@ SPEC CHECKSUMS:
   RNSVG: ce9d996113475209013317e48b05c21ee988d42e
   SDWebImage: cf6922231e95550934da2ada0f20f2becf2ceba9
   SDWebImageWebPCoder: d0dac55073088d24b2ac1b191a71a8f8d0adac21
-  Stripe: 4305b646743612854819fb5d5cf67aaeb93577c0
-  tipsi-stripe: fb5b32e890a4528322c491e1827133a3cb919e0a
+  Stripe: 92f1c73a9dbd3c54277ed06a1fea6e08f20414c6
+  tipsi-stripe: b0655ee97dfd4b865d178d81b53ff54b95348701
   Yoga: 7740b94929bbacbddda59bf115b5317e9a161598
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
 PODFILE CHECKSUM: f9619a5aaf28e97c713b469386d01ff3a39942d5
 
-COCOAPODS: 1.10.0
+COCOAPODS: 1.9.3
