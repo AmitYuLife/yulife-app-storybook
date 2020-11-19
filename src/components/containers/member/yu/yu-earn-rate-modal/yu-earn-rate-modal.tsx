@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useMemo } from "react";
+import React, { useRef, useEffect, useMemo, useCallback } from "react";
 import { StyleSheet, View, ViewStyle, Animated, ScrollView, TextStyle, Platform } from "react-native";
 import { Style } from "@styles";
 import { TextWithBoldText } from "@components/molecules";
@@ -13,6 +13,7 @@ import { EarnRateDetails } from "@graphql/_core/schema/EarnRateDetails.ts";
 import media from "@styles/media";
 import { SurgedInfo } from "./surged-info";
 import GenericOverlay from "@components/modals/generic-overlay/generic-overlay";
+import { useBackHandler } from "@services/hooks/useBackHandler";
 
 const COPY =
   "To increase your <bold>YuCoin Power</bold>, check out the gear available on your Yu screen. All gear comes with <bold>power-ups</bold> that increase your earn rate and more!";
@@ -34,6 +35,13 @@ const YuEarnRateModal = () => {
 
   const earnRate = useMemo(() => data?.getYulifer?.earnRate || 1, [data]);
   const explainData = useMemo(() => earnRateData?.getEarnRateDetails || [], [earnRateData]);
+
+  const backHandler = useCallback(() => {
+    dismissOverlay();
+    return true;
+  }, []);
+
+  useBackHandler(backHandler);
 
   return (
     <GenericOverlay onClose={dismissOverlay}>

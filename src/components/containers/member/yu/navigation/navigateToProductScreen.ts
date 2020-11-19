@@ -10,7 +10,7 @@ import {
 import { FIB_UNDERWRITING_REVIEW_ANSWERS_SCREEN_ID } from "@components/containers/products/fib/data/underwriting-journey-data";
 import moment from "moment";
 import { InfoTypes } from "@components/containers/products/fib/subcontainers/fib.info.container";
-import { getIsPersonalItem } from "../yu-types";
+import { getIsPersonalItem, ItemSlot } from "../yu-types";
 import { FIBStore } from "@redux/product/product.types";
 
 interface INavigateToProductScreen {
@@ -30,7 +30,7 @@ export const navigateToProductScreen = ({
 }: INavigateToProductScreen) => {
   // TODO: Implement different journeys for different products
 
-  const isPersonalItem = getIsPersonalItem(product.itemSlot);
+  const isPersonalItem = getIsPersonalItem(product.itemSlot as ItemSlot);
 
   if (isPersonalItem) {
     if (product.status === "locked") {
