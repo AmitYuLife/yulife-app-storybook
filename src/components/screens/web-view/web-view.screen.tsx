@@ -3,6 +3,7 @@ import WebView from "react-native-webview";
 import { SafeAreaView, View, StyleSheet, KeyboardAvoidingView } from "react-native";
 import { Style } from "@styles";
 import { GenericHeading } from "@atoms";
+import Config from "react-native-config";
 
 export interface Props {
   uri: string;
@@ -35,7 +36,7 @@ export function WebViewScreen(props: Props) {
             onRenderProcessGone={(e) => setErrorState(e.nativeEvent.didCrash)}
             onError={() => setErrorState(true)}
             style={{ width: Style.DEVICE_WIDTH }}
-            source={{ uri }}
+            source={{ uri, headers: { yu_client_token: Config.YU_CLIENT_TOKEN } }}
           />
         </KeyboardAvoidingView>
       </View>
