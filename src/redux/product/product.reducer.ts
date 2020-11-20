@@ -65,6 +65,7 @@ export const initialState: IProductStore = {
     rejected: false,
     productEntityId: "",
     latestQuoteId: "",
+    status: "no_status",
   },
 };
 
@@ -308,6 +309,7 @@ const refreshFibStore = (state: IProductStore, action: RefreshFIBStoreAction) =>
   newState.fib.rejected = quoteResult.rejected;
   newState.fib.medicalInvestigationRequired = quoteResult.medicalInvestigationRequired;
   newState.fib.actualCost = quoteResult.actualCost;
+  newState.fib.status = quoteResult.status;
 
   return newState;
 };

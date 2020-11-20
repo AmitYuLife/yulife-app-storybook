@@ -38,11 +38,15 @@ export interface GetTopUpsQuote_getTopUpsQuote {
    */
   rejected: boolean | null;
   /**
+   * Quote status e.g: PAYMENT_PEDING, RGA_INVESTIGATION ...
+   */
+  status: string | null;
+  /**
    * Flag to require medical investigations
    */
   medicalInvestigationRequired: boolean | null;
   /**
-   * User answers to
+   * User answers to medical underwriting. IMPORTANT: Answers are stringify, client needs to JSON.parse
    */
   userAnswers: (GetTopUpsQuote_getTopUpsQuote_userAnswers | null)[] | null;
 }

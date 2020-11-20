@@ -78,6 +78,7 @@ export interface FIBStore {
   rejected: boolean;
   productEntityId: string;
   latestQuoteId: string;
+  status: string;
 }
 
 export interface UpdateFIBStoreAction<T> {
