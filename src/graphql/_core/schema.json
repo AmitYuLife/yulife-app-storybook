@@ -13755,7 +13755,7 @@
           },
           {
             "name": "userAnswers",
-            "description": "User answers to",
+            "description": "User answers to medical underwriting. IMPORTANT: Answers are stringify, client needs to JSON.parse",
             "args": [],
             "type": {
               "kind": "LIST",
@@ -13765,6 +13765,18 @@
                 "name": "TopUpsUserAnswers",
                 "ofType": null
               }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "status",
+            "description": "Quote status e.g: PAYMENT_PEDING, RGA_INVESTIGATION ...",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null

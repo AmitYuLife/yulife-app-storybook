@@ -47,6 +47,21 @@ export const navigateToProductScreen = ({
       return handleRejected(resetFib);
     }
 
+    if (fibState.status === "RGA_LOADING") {
+      return Navigation.push(ROUTES.yuScreen, {
+        component: {
+          id: ROUTES.fib,
+          name: ROUTES.fib,
+          passProps: {
+            initialRoute: FIB_INFO,
+            initialProps: {
+              type: "ResultsIn",
+            } as { type: InfoTypes },
+          },
+        },
+      });
+    }
+
     const isQuoteExpired = moment().diff(moment(fibState.quoteDate), "months") >= FIB_EXPIRE_QUOTE_MONTHS;
     if (isQuoteExpired) {
       resetFibJourney();

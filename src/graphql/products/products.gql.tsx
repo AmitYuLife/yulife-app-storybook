@@ -59,6 +59,7 @@ export const GQL_QUERY_GET_TOP_UPS_QUOTE = gql`
       descriptionHeading
       term
       rejected
+      status
       medicalInvestigationRequired
       userAnswers {
         questionId

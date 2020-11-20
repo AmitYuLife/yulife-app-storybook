@@ -6,8 +6,9 @@ import { FibPaymentCongratulationScreen } from "@components/screens/products/fib
 import { Navigation } from "react-native-navigation";
 import { ROUTES } from "../../../../../navigation/constants";
 import { FibRejectedScreen } from "@components/screens/products/fib/underwriting-journey/info/fib.rejected.screen";
+import { FibResultsInScreen } from "../../../../screens/products/fib/underwriting-journey/info/fib.results-in";
 
-export type InfoTypes = "HoldingGP" | "PaymentCongratulation" | "Rejected";
+export type InfoTypes = "HoldingGP" | "PaymentCongratulation" | "Rejected" | "ResultsIn";
 interface IFibInfoContainerProps {
   navigation: FibLocalNavigation;
 }
@@ -45,6 +46,8 @@ const FibInfoContainer = memo(function (props: IFibInfoContainerProps) {
       return <FibPaymentCongratulationScreen onClose={onClose} packageType={packageType} />;
     case "Rejected":
       return <FibRejectedScreen onClose={onClose} onResetFib={resetFib} />;
+    case "ResultsIn":
+      return <FibResultsInScreen onClose={onClose} navigation={navigation} />;
     default:
       return <></>;
   }
