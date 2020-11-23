@@ -17,7 +17,10 @@ export interface IFibResultsInScreenProps {
 export const FibResultsInScreen = memo(function (props: IFibResultsInScreenProps) {
   const { onClose, navigation } = props;
 
-  const backHandler = () => true;
+  const backHandler = useCallback(() => {
+    onClose();
+    return true;
+  }, [onClose]);
 
   useBackHandler(backHandler);
 

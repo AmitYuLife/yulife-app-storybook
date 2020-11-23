@@ -156,7 +156,7 @@ const FibDeclarationConfirmationContainer = memo(function (props: Props) {
       return (
         <FibConfirmationDeclarationScreen
           onClose={onClose}
-          onBackButtonPress={onClose}
+          onBackButtonPress={() => navigation.pop()}
           onContinueButton={onContinue}
           onDetailsPress={() => setScreenId("ConfirmationDetails")}
           selectedPackage={selectedPackage}

@@ -1,6 +1,5 @@
 import React, { memo, useCallback } from "react";
 import { FibLocalNavigation, FIB_INTRODUCTION } from "../fib.types";
-import { useBackHandler } from "../../../../../services/hooks/useBackHandler";
 import { FibHoldingGPDetails } from "../../../../screens/products/fib/underwriting-journey/info/fib.holding-gp-results.screen";
 import { FibPaymentCongratulationScreen } from "@components/screens/products/fib/underwriting-journey/info/fib.payment-congratulation.screen";
 import { Navigation } from "react-native-navigation";
@@ -20,13 +19,6 @@ const FibInfoContainer = memo(function (props: IFibInfoContainerProps) {
     packageType,
     onResetFib,
   }: { type: InfoTypes; packageType: string; onResetFib: () => {} } = navigation.currentRoute.passProps;
-
-  const backHandler = useCallback(() => {
-    navigation.pop();
-    return true;
-  }, [navigation]);
-
-  useBackHandler(backHandler);
 
   const resetFib = onResetFib
     ? () => {

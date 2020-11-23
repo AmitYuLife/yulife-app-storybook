@@ -16,8 +16,9 @@ export const FibPaymentCongratulationScreen = memo(function (props: IFibPaymentC
   const { onClose, packageType } = props;
 
   const backHandler = useCallback(() => {
+    onClose();
     return true;
-  }, []);
+  }, [onClose]);
 
   useBackHandler(backHandler);
 

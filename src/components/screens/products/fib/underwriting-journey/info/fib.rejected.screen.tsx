@@ -15,8 +15,9 @@ export const FibRejectedScreen = memo(function (props: IFibRejectedScreenProps) 
   const { onClose, onResetFib } = props;
 
   const backHandler = useCallback(() => {
+    onClose();
     return true;
-  }, []);
+  }, [onClose]);
 
   useBackHandler(backHandler);
 

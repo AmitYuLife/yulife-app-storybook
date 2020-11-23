@@ -3,7 +3,7 @@ import React, { memo, useState, useEffect, useCallback } from "react";
 import { View, Linking, Platform } from "react-native";
 import { connect, useDispatch } from "react-redux";
 import { Text } from "@atoms";
-import { FibLocalNavigation, FIB_FAQ, FIB_FEEDBACK_FORM } from "../fib.types";
+import { FibLocalNavigation, FIB_FAQ, FIB_CONTACT_DETAILS } from "../fib.types";
 import { GQL_MUTATION_CREATE_TOP_UPS_QUOTE, GQL_QUERY_GET_TOP_UPS_QUOTE } from "@graphql/products";
 import { getFIBState, getLifeInsuranceUserAnswers } from "@redux/product/product.selectors";
 import { IReduxState } from "@redux/_core/reducers";
@@ -192,9 +192,7 @@ const FibConfirmPackagesContainer = memo(function (props: FibConfirmPackagesCont
   }, [navigation]);
 
   const handleOnContinue = useCallback(async () => {
-    // TODO: Redirect to contact details when mutation is tested
-    // return navigation.push(FIB_CONTACT_DETAILS);
-    return navigation.push(FIB_FEEDBACK_FORM);
+    return navigation.push(FIB_CONTACT_DETAILS);
   }, [navigation]);
 
   if (error) {

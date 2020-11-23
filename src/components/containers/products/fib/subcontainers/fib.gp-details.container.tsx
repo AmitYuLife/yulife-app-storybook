@@ -1,5 +1,5 @@
 import React, { memo, useState, useCallback } from "react";
-import { FibLocalNavigation, FIB_FEEDBACK_FORM } from "../fib.types";
+import { FibLocalNavigation, FIB_DECLARATION_CONFIRMATION } from "../fib.types";
 import { connect, useDispatch } from "react-redux";
 import { Navigation } from "react-native-navigation";
 import { ROUTES } from "@navigation/constants";
@@ -135,8 +135,7 @@ const FibGPDetailsContainer = memo(function (props: IFibGPDetailsContainerProps 
         },
       },
     });
-    // TODO: Redirect to confirmation declaration
-    navigation.push(FIB_FEEDBACK_FORM);
+    navigation.push(FIB_DECLARATION_CONFIRMATION);
   }, [manualInput, selectedGP, selectedMedicalPractice, updateCustomerGPDetailsMutation, navigation, fibAnswers]);
 
   const handleOnClose = useCallback(async () => {
