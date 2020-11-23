@@ -23,6 +23,7 @@ interface IProps {
   style?: ViewStyle;
   testID?: string;
   icon?: Types;
+  maxLength?: number;
 }
 
 export enum TEXT_INPUT_TYPES {
@@ -43,7 +44,7 @@ class TextInput extends React.PureComponent<IProps> {
   };
 
   public render() {
-    const { icon, value, onChange, hasError, errorMessage, type, placeholder = "", style } = this.props;
+    const { icon, value, onChange, hasError, errorMessage, type, placeholder = "", style, maxLength } = this.props;
     const { isFocused } = this.state;
     const Icon = icon ? getIcon(icon) : getIcon(type);
     return (
@@ -60,6 +61,7 @@ class TextInput extends React.PureComponent<IProps> {
           </View>
           <View style={styles.inputWrapper}>
             <Input
+              maxLength={maxLength}
               allowFontScaling={false}
               testID={this.props.testID}
               onFocus={this.handleFocus(true)}

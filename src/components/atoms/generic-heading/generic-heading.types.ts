@@ -13,7 +13,7 @@ export interface IGenericHeadingProps {
 }
 
 export interface IRightIcon {
-  icon: "SETTINGS" | "CLOSE";
+  icon: "SETTINGS" | "CLOSE" | "EDIT";
 }
 
 export type Logo = "yulife";

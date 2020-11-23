@@ -8,6 +8,7 @@ import { Heading } from "./subcomponents/heading";
 import { Logo } from "./subcomponents/logo";
 import { Beta } from "./subcomponents/beta";
 import CloseSvg from "@atoms/close/close-svg";
+import EditSvg from "@atoms/edit/edit-svg";
 import { PressableWithDelay } from "@components/molecules";
 
 function GenericHeading(props: IGenericHeadingProps) {
@@ -54,7 +55,7 @@ function GenericHeading(props: IGenericHeadingProps) {
           </View>
         )}
         <View style={styles.rightIconWrapper}>
-          {!onRightIconPress ? null : (
+          {onRightIconPress && (
             <PressableWithDelay hitSlop={16} onPress={onRightIconPress} style={styles.rightIconTouchable}>
               <RightIcon icon={rightIcon} />
             </PressableWithDelay>
@@ -84,6 +85,13 @@ function RightIcon({ icon }: { icon: IGenericHeadingProps["rightIcon"] }) {
   switch (icon.icon) {
     case "SETTINGS":
       return <Image source={require("@assets/menu/settings.png")} />;
+
+    case "EDIT":
+      return (
+        <View>
+          <EditSvg />
+        </View>
+      );
     case "CLOSE":
       return (
         <View>
