@@ -1,19 +1,145 @@
 declare module "tipsi-stripe" {
-  interface StripeOptions {
+  export interface StripeOptions {
     publishableKey: string;
     merchantId?: string;
     androidPayMode?: string;
   }
 
-  type AccountHolderType = "company" | "individual";
+  export type AccountHolderType = "company" | "individual";
 
-  type ApplePayNetworks = "american_express" | "discover" | "master_card" | "visa";
+  export type PaymentMethodAddress = {
+    city: string;
+    country: string;
+    line1: string;
+    line2: string;
+    postalCode: string;
+    state: string;
+  };
 
-  type ApplePayAddressFields = "all" | "name" | "email" | "phone" | "postal_address";
+  export type PaymentMethodBillingDetails = {
+    address: PaymentMethodAddress;
+    email: string;
+    name: string;
+    phone: string;
+  };
 
-  type ApplePayShippingType = "shipping" | "delivery" | "store_pickup" | "service_pickup";
+  export type CardBrandSlug = "unknown" | "amex" | "diners" | "discover" | "jcb" | "mastercard" | "unionpay" | "visa";
 
-  type StripeSourceType =
+  export type CardBrandPresentableString =
+    | "Unknown"
+    | "American Express"
+    | "Diners Club"
+    | "Discover"
+    | "JCB"
+    | "MasterCard"
+    | "UnionPay"
+    | "Visa";
+
+  export type PaymentMethodCard = {
+    brand?: CardBrandSlug;
+    country?: string;
+    expMonth: number;
+    expYear: number;
+    cvc: string;
+    number: string;
+    funding?: "credit" | "debit" | "prepaid" | "unknown";
+    last4?: string;
+  };
+
+  export type PaymentMethod = {
+    id: string;
+    created: number;
+    livemode: boolean;
+    type: string;
+    card: PaymentMethodCard;
+    billingDetails: PaymentMethodBillingDetails;
+    customerId: string;
+  };
+
+  export type StripePaymentIntentStatus =
+    | "unknown"
+    | "canceled"
+    | "processing"
+    | "requires_action"
+    | "requires_capture"
+    | "requires_payment_method"
+    | "requires_confirmation"
+    | "succeeded";
+
+  export type StripeSetupIntentStatus =
+    | "unknown"
+    | "canceled"
+    | "processing"
+    | "requires_action"
+    | "requires_payment_method"
+    | "requires_confirmation"
+    | "succeeded";
+
+  export type PaymentMethodParamsCardByToken = {
+    token: string;
+  };
+
+  export type CreatePaymentMethodParams = {
+    billingDetails?: PaymentMethodBillingDetails;
+    card: PaymentMethodCard;
+    metadata?: object;
+  };
+
+  export type ConfirmPaymentIntentParams = {
+    clientSecret: string;
+    paymentMethod?: CreatePaymentMethodParams;
+    paymentMethodId?: string;
+    sourceId?: string;
+    returnURL?: string;
+    savePaymentMethod?: boolean;
+  };
+
+  export type PaymentIntentConfirmationResult = {
+    status: StripePaymentIntentStatus;
+    paymentIntentId: string;
+  };
+
+  export type AuthenticatePaymentIntentParams = {
+    clientSecret: string;
+    returnURL: string;
+  };
+
+  export type PaymentIntentAuthenticationResult = {
+    status: StripePaymentIntentStatus;
+    paymentIntentId: string;
+  };
+
+  export type ConfirmSetupIntentParams = {
+    clientSecret: string;
+    paymentMethod: CreatePaymentMethodParams;
+    paymentMethodId: string;
+    returnURL: string;
+  };
+
+  export type SetupIntentConfirmationResult = {
+    status: StripePaymentIntentStatus;
+    setupIntentId: string;
+    paymentMethodId: string;
+  };
+
+  export type AuthenticateSetupIntentParams = {
+    clientSecret: string;
+    returnURL: string;
+  };
+
+  export type SetupIntentAuthenticationResult = {
+    status: StripeSetupIntentStatus;
+    setupIntentId: string;
+    paymentMethodId: string;
+  };
+
+  export type ApplePayNetworks = "american_express" | "discover" | "master_card" | "visa";
+
+  export type ApplePayAddressFields = "all" | "name" | "email" | "phone" | "postal_address";
+
+  export type ApplePayShippingType = "shipping" | "delivery" | "store_pickup" | "service_pickup";
+
+  export type StripeSourceType =
     | "bancontact"
     | "bitcoin"
     | "giropay"
@@ -23,11 +149,11 @@ declare module "tipsi-stripe" {
     | "threeDSecure"
     | "alipay";
 
-  interface AppleNetworkOptions {
+  export interface AppleNetworkOptions {
     networks: ApplePayNetworks;
   }
 
-  interface ApplePaymentOptions {
+  export interface ApplePaymentOptions {
     currencyCode: string;
     countryCode: string;
     requiredBillingAddressFields: ApplePayAddressFields[];
@@ -36,7 +162,7 @@ declare module "tipsi-stripe" {
     shippingType: ApplePayShippingType;
   }
 
-  interface AndroidPaymentOptions {
+  export interface AndroidPaymentOptions {
     total_price: string;
     currency_code: string;
     line_items: AndroidPaymentRequestItem[];
@@ -64,7 +190,7 @@ declare module "tipsi-stripe" {
     addressZip?: string; //	The cardholder’s zip code
   }
 
-  interface StripeBankDetails {
+  export interface StripeBankDetails {
     routingNumber: string; //	The routing number of this account
     accountNumber: string; //	The account number for this BankAccount.
     countryCode: string; //	The two-letter country code that this account was created in
@@ -76,7 +202,7 @@ declare module "tipsi-stripe" {
     last4: string; //	The last four digits of the account number
   }
 
-  interface StripeToken {
+  export interface StripeToken {
     tokenId: string;
     created: number;
     livemode: boolean;
@@ -85,13 +211,13 @@ declare module "tipsi-stripe" {
     extra?: object;
   }
 
-  interface ApplePaymentRequestItem {
+  export interface ApplePaymentRequestItem {
     label: string;
     amount: string;
     type: "final" | "pending";
   }
 
-  interface AndroidPaymentRequestItem {
+  export interface AndroidPaymentRequestItem {
     currency_code: string;
     total_price: string;
     unit_price: string;
@@ -99,7 +225,7 @@ declare module "tipsi-stripe" {
     description: string;
   }
 
-  interface CardFormParams {
+  export interface CardFormParams {
     requiredBillingAddressFields: "full" | "zip";
     managedAccountCurrency: string;
     smsAutofillDisabled: boolean;
@@ -118,7 +244,7 @@ declare module "tipsi-stripe" {
         email: string;
       };
     };
-    theme?: {
+    theme: {
       primaryBackgroundColor: string;
       secondaryBackgroundColor: string;
       primaryForegroundColor: string;
@@ -128,7 +254,7 @@ declare module "tipsi-stripe" {
     };
   }
 
-  interface CardTokenParams {
+  export interface CardTokenParams {
     number: string;
     expMonth: number;
     expYear: number;
@@ -150,7 +276,7 @@ declare module "tipsi-stripe" {
     funding?: string;
   }
 
-  interface BankAccountParams {
+  export interface BankAccountParams {
     accountNumber: string;
     countryCode: string;
     currency: string;
@@ -159,7 +285,7 @@ declare module "tipsi-stripe" {
     accountHolderType: AccountHolderType;
   }
 
-  interface SourceParams {
+  export interface SourceParams {
     type: StripeSourceType;
     amount: number;
     name: string;
@@ -195,6 +321,16 @@ declare module "tipsi-stripe" {
     static createTokenWithBankAccount(params: BankAccountParams): Promise<StripeToken>;
 
     static createSourceWithParams(params: SourceParams): Promise<any>;
+
+    static createPaymentMethod(params: CreatePaymentMethodParams): Promise<PaymentMethod>;
+
+    static confirmPaymentIntent(params: ConfirmPaymentIntentParams): Promise<PaymentIntentConfirmationResult>;
+
+    static authenticatePaymentIntent(
+      params: AuthenticatePaymentIntentParams
+    ): Promise<PaymentIntentAuthenticationResult>;
+
+    static confirmSetupIntent(params: ConfirmSetupIntentParams): Promise<SetupIntentConfirmationResult>;
   }
 
   export default Stripe;
