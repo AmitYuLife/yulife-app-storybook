@@ -14,8 +14,9 @@ export const FibHoldingGPDetails = memo(function (props: IFibHoldingGPDetailsScr
   const { onClose, onResetFib } = props;
 
   const backHandler = useCallback(() => {
+    onClose();
     return true;
-  }, []);
+  }, [onClose]);
 
   useBackHandler(backHandler);
 
