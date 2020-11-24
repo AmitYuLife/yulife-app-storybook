@@ -7,8 +7,6 @@ import { UPDATE_NAVIGATION_STATE } from "../../app/app.actions";
 import { getRouteState } from "../../app/app.selectors";
 import { getUserSuccess } from "../user.actions";
 import updateDuelWithClient from "../../../graphql/duels/updateDuel.gql";
-import { querySteps } from "@services/fitkit/fitkit.helpers";
-import { ChallengePayload } from "@graphql/_core/schema/globalTypes";
 import { getUserFeatures } from "../user.selectors";
 
 export default function* sendDuelInvitation({ payload }: ReturnType<typeof getUserSuccess>) {
@@ -59,12 +57,7 @@ export default function* sendDuelInvitation({ payload }: ReturnType<typeof getUs
         const endDateTime = moment(user.startDateTime, DATE_FORMAT_WITH_TZ).add(duration, "seconds");
 
         if (now.isAfter(endDateTime)) {
-          const scoreAggregate = yield call(querySteps, moment(user.startDateTime, DATE_FORMAT_WITH_TZ), endDateTime);
-          const score = (scoreAggregate.results as ChallengePayload[]).reduce((acc, challenge) => {
-            const challengeScore = challenge.value || 0;
-            return acc + challengeScore;
-          }, 0);
-          yield call(updateDuelWithClient, id, score);
+          yield call(updateDuelWithClient, id);
         }
       }
     }

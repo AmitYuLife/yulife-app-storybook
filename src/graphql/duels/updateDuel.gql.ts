@@ -11,10 +11,10 @@ export const GQL_MUTATION_UPDATE_DUEL = gql`
 
 export type UpdateDuelMutationTuple = MutationTuple<UpdateDuel, UpdateDuelVariables>;
 
-const updateDuelWithClient = (duelId: string, score: number) =>
+const updateDuelWithClient = (duelId: string) =>
   client().mutate<UpdateDuel, UpdateDuelVariables>({
     mutation: GQL_MUTATION_UPDATE_DUEL,
-    variables: { duelId, score },
+    variables: { duelId, score: 0 },
   });
 
 export default updateDuelWithClient;
