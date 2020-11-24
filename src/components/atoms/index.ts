@@ -6,6 +6,7 @@ export { default as Button } from "./button/button";
 export { default as CentredScreen } from "./centred-screen/centred-screen";
 export { default as Close } from "./close/close";
 export { default as CloseSvg } from "./close/close-svg";
+export { default as EditSvg } from "./edit/edit-svg";
 export { default as Back } from "./back/back";
 export { default as ChestCoin } from "./chest-coin/chest-coin";
 export { default as CheckBox } from "./check-box/check-box";

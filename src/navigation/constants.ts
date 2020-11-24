@@ -33,6 +33,7 @@ export const ROUTES = {
   yuScreen: "yulife.member.Yuscreen",
   avatarCreation: "yulife.member.AvatarCreation",
   yuProductSurvey: "yulife.member.YuProductSurvey",
+  changeMemberNickname: "yulife.member.changeMemberNickname",
 
   // webview
   webView: "yulife.webView.WebView",

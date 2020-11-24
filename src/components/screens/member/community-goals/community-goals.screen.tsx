@@ -10,6 +10,9 @@ import { GenericHeading } from "@atoms";
 import { Style } from "@styles";
 import { EmptyCommunityGoals, CommunityGoal } from "./subcomponents";
 import { View } from "react-native-animatable";
+import { Navigation } from "react-native-navigation";
+import { ROUTES } from "@navigation/constants";
+import { IRightIcon } from "@atoms/generic-heading/generic-heading.types";
 
 interface IProps {
   onClose: () => void;
@@ -19,10 +22,26 @@ interface IProps {
   loading: boolean;
 }
 
+const RIGHT_ICON: IRightIcon = { icon: "EDIT" };
+
 const CommunityGoalsScreen: React.FC<IProps> = ({ onClose, onRefresh, joinCommunityGoal, data = [], loading }) => {
+  const handleRightIconPress = () => {
+    Navigation.push(ROUTES.communityGoals, {
+      component: {
+        id: ROUTES.changeMemberNickname,
+        name: ROUTES.changeMemberNickname,
+      },
+    });
+  };
+
   return (
     <SafeAreaView style={styles.wrapper} testID={"comunitygoals"}>
-      <GenericHeading heading="Community Goals" onLeftIconPress={onClose} />
+      <GenericHeading
+        heading="Community Goals"
+        onLeftIconPress={onClose}
+        rightIcon={RIGHT_ICON}
+        onRightIconPress={handleRightIconPress}
+      />
       <FlatList
         style={styles.flatList}
         data={data}

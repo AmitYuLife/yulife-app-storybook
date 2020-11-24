@@ -5,9 +5,9 @@ import styles from "./onboarding-swiper.styles";
 
 export interface OnboardingSwiperData {
   id: string;
-  buttonLabel: string;
-  title: string;
-  subtitle: string;
+  buttonLabel?: string;
+  title?: string;
+  subtitle?: string;
 }
 
 interface Props {
@@ -82,7 +82,7 @@ export class OnboardingSwiper extends React.PureComponent<Props, State> {
     this.swiper = ref;
   };
 
-  keyExtractor = (item: OnboardingSwiperData) => item.id;
+  keyExtractor = (item: OnboardingSwiperData) => item?.id;
 
   scrollToNext = () => {
     const { activePageIndex } = this.state;
@@ -91,7 +91,7 @@ export class OnboardingSwiper extends React.PureComponent<Props, State> {
       this.swiper?.scrollToIndex({ index: activePageIndex + 1, animated: true });
       this.setState({
         activePageIndex: activePageIndex + 1,
-        buttonLabel: this.props.data[activePageIndex + 1].buttonLabel,
+        buttonLabel: this.props.data[activePageIndex + 1]?.buttonLabel,
       });
       return;
     }

@@ -1,14 +1,13 @@
 import * as React from "react";
 import { StyleSheet, ListRenderItemInfo, View, Image, ImageStyle, TextStyle } from "react-native";
 import { useMutation } from "@apollo/react-hooks";
-
 import { GQL_MUTATION_UPDATE_NICKNAME } from "@graphql/user";
 import { UpdateNickname, UpdateNicknameVariables } from "@graphql/_core/schema/UpdateNickname";
-import { Text, TextInput, Pad } from "@atoms";
+import { Text, Pad } from "@atoms";
 import { OnboardingSwiper, OnboardingSwiperData } from "@organisms";
 import { Style } from "@styles";
+import { ChangeMemberNickname } from "@screens";
 import { useKeyboardListeners } from "@services/hooks/useKeyboardListeners";
-import { NICKNAME_INPUT } from "@ids";
 
 interface Props {
   setOnboardingShown: () => void;
@@ -17,7 +16,6 @@ interface Props {
 const images = [
   require("../../../../../assets/community-goals/intro/first.png"),
   require("../../../../../assets/community-goals/intro/second.png"),
-  require("../../../../../assets/community-goals/intro/third.png"),
 ];
 
 const data: OnboardingSwiperData[] = [
@@ -35,14 +33,11 @@ const data: OnboardingSwiperData[] = [
   },
   {
     id: "community_goals_onboarding_3",
-    buttonLabel: "Let's go",
-    title: "Choose a nickname",
-    subtitle: "Enter a nickname for other YuLifers to see, or leave it blank to be anonymous. ",
   },
 ];
 
-const CommunityGoalsIntro: React.FC<Props> = ({ setOnboardingShown }) => {
-  const [nickname, setNickname] = React.useState("");
+const CommunityGoalsIntro: React.FunctionComponent<Props> = ({ setOnboardingShown }) => {
+  const [nickname, setNickname] = React.useState<string>("");
   const [updateNickname] = useMutation<UpdateNickname, UpdateNicknameVariables>(GQL_MUTATION_UPDATE_NICKNAME);
 
   async function handleClose() {
@@ -57,51 +52,40 @@ const CommunityGoalsIntro: React.FC<Props> = ({ setOnboardingShown }) => {
     setOnboardingShown();
   }
 
-  const renderItem = React.useMemo(() => getRenderItem({ nickname, setNickname }), [nickname]);
+  const renderItem = ({ item, index: sliderNumber }: ListRenderItemInfo<OnboardingSwiperData>) => {
+    return sliderNumber !== 2 ? (
+      <IntroItem sliderNumber={sliderNumber} item={item} />
+    ) : (
+      <ChangeMemberNickname onChange={setNickname} enableButton={false} />
+    );
+  };
 
   return <OnboardingSwiper data={data} renderItem={renderItem} onClose={handleClose} />;
 };
 
 export default CommunityGoalsIntro;
 
-interface GetRenderItem {
-  nickname: string;
-  setNickname: React.Dispatch<React.SetStateAction<string>>;
-}
-
-function getRenderItem({ nickname, setNickname }: GetRenderItem) {
-  return function renderItem({ item, index }: ListRenderItemInfo<OnboardingSwiperData>) {
-    return <IntroItem item={item} index={index} nickname={nickname} setNickname={setNickname} />;
-  };
-}
-
-interface IntroItemProps extends GetRenderItem {
-  index: number;
+interface IntroItemProps {
+  sliderNumber: number;
   item: OnboardingSwiperData;
 }
 
 const MARGIN_TOP = Style.DEVICE_HEIGHT * 0.1;
 
-function IntroItem(props: IntroItemProps) {
+const IntroItem = React.memo((props: IntroItemProps) => {
   const isKeyboardShown = useKeyboardListeners();
-  const { index, item, setNickname, nickname } = props;
+  const { sliderNumber, item } = props;
 
   return (
     <View style={styles.fullWidth}>
-      {isKeyboardShown ? <Pad height={MARGIN_TOP} /> : <Image style={styles.image} source={images[index]} />}
-
+      {isKeyboardShown ? <Pad height={MARGIN_TOP} /> : <Image style={styles.image} source={images[sliderNumber]} />}
       <Text style={styles.title} bold={true}>
-        {item.title}
+        {item?.title}
       </Text>
-      <Text style={styles.subTitle}>{item.subtitle}</Text>
-      {index !== 2 ? null : (
-        <View style={styles.inputWrapper}>
-          <TextInput onChange={setNickname} value={nickname} type={TextInput.Types.TEXT} testID={NICKNAME_INPUT} />
-        </View>
-      )}
+      <Text style={styles.subTitle}>{item?.subtitle}</Text>
     </View>
   );
-}
+});
 
 const styles = StyleSheet.create({
   fullWidth: {
