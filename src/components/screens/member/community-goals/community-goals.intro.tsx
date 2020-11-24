@@ -36,7 +36,7 @@ const data: OnboardingSwiperData[] = [
   },
 ];
 
-const CommunityGoalsIntro: React.FC<Props> = ({ setOnboardingShown }) => {
+const CommunityGoalsIntro: React.FunctionComponent<Props> = ({ setOnboardingShown }) => {
   const [nickname, setNickname] = React.useState<string>("");
   const [updateNickname] = useMutation<UpdateNickname, UpdateNicknameVariables>(GQL_MUTATION_UPDATE_NICKNAME);
 
@@ -52,41 +52,38 @@ const CommunityGoalsIntro: React.FC<Props> = ({ setOnboardingShown }) => {
     setOnboardingShown();
   }
 
-  const renderItem = ({ item, index }: ListRenderItemInfo<OnboardingSwiperData>) => (
-    <IntroItem index={index} item={item} setNickname={setNickname} />
-  );
+  const renderItem = ({ item, index: sliderNumber }: ListRenderItemInfo<OnboardingSwiperData>) => {
+    return sliderNumber !== 2 ? (
+      <IntroItem sliderNumber={sliderNumber} item={item} />
+    ) : (
+      <ChangeMemberNickname onChange={setNickname} enableButton={false} />
+    );
+  };
 
   return <OnboardingSwiper data={data} renderItem={renderItem} onClose={handleClose} />;
 };
 
 export default CommunityGoalsIntro;
 
-interface GetRenderItem {
-  setNickname: React.Dispatch<React.SetStateAction<string>>;
-}
-
-interface IntroItemProps extends GetRenderItem {
-  index: number;
+interface IntroItemProps {
+  sliderNumber: number;
   item: OnboardingSwiperData;
 }
 
 const MARGIN_TOP = Style.DEVICE_HEIGHT * 0.1;
+
 const IntroItem = React.memo((props: IntroItemProps) => {
   const isKeyboardShown = useKeyboardListeners();
-  const { index, item, setNickname } = props;
+  const { sliderNumber, item } = props;
 
   return (
-    <>
-      {(index !== 2 && (
-        <View style={styles.fullWidth}>
-          {isKeyboardShown ? <Pad height={MARGIN_TOP} /> : <Image style={styles.image} source={images[index]} />}
-          <Text style={styles.title} bold={true}>
-            {item?.title}
-          </Text>
-          <Text style={styles.subTitle}>{item?.subtitle}</Text>
-        </View>
-      )) || <ChangeMemberNickname onChange={setNickname} enableButton={false} />}
-    </>
+    <View style={styles.fullWidth}>
+      {isKeyboardShown ? <Pad height={MARGIN_TOP} /> : <Image style={styles.image} source={images[sliderNumber]} />}
+      <Text style={styles.title} bold={true}>
+        {item?.title}
+      </Text>
+      <Text style={styles.subTitle}>{item?.subtitle}</Text>
+    </View>
   );
 });
 

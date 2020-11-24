@@ -1,4 +1,4 @@
-import React, { useState, FunctionComponent } from "react";
+import React, { useState, FunctionComponent, memo } from "react";
 import { View, Image, StyleSheet, ImageStyle, TextStyle, SafeAreaView, Keyboard } from "react-native";
 import { Style } from "@styles";
 import { Button, Text, TextInput, Pad, GenericHeading } from "@atoms";
@@ -27,7 +27,7 @@ const ChangeMemberNickname: FunctionComponent<Props> = ({ enableButton, isLoadin
 
   return (
     <SafeAreaView style={styles.wrapper} testID="change-member-nickname">
-      <GenericHeading onLeftIconPress={handleNavigation} logo="yulife" />
+      {enableButton ? <GenericHeading onLeftIconPress={handleNavigation} logo="yulife" /> : null}
       <View style={styles.fullWidth}>
         {isKeyboardShown ? (
           <Pad height={MARGIN_TOP} />
@@ -52,7 +52,7 @@ const ChangeMemberNickname: FunctionComponent<Props> = ({ enableButton, isLoadin
             type={TextInput.Types.TEXT}
           />
         </View>
-        {enableButton && (
+        {enableButton ? (
           <Button
             disabled={!nickname}
             testID={CHANGE_MEMBER_NICK_BUTTON}
@@ -61,7 +61,7 @@ const ChangeMemberNickname: FunctionComponent<Props> = ({ enableButton, isLoadin
             isLoading={isLoading}
             onPress={() => onPress(nickname)}
           />
-        )}
+        ) : null}
       </View>
     </SafeAreaView>
   );
@@ -108,4 +108,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ChangeMemberNickname;
+export default memo(ChangeMemberNickname);

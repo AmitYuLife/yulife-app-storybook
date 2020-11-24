@@ -55,11 +55,11 @@ function GenericHeading(props: IGenericHeadingProps) {
           </View>
         )}
         <View style={styles.rightIconWrapper}>
-          {onRightIconPress && (
+          {onRightIconPress ? (
             <PressableWithDelay hitSlop={16} onPress={onRightIconPress} style={styles.rightIconTouchable}>
               <RightIcon icon={rightIcon} />
             </PressableWithDelay>
-          )}
+          ) : null}
         </View>
       </View>
     </>

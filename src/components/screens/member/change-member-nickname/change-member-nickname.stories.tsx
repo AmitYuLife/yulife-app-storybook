@@ -4,7 +4,7 @@ import { storiesOf } from "@storybook/react-native";
 import { withKnobs } from "@storybook/addon-knobs";
 import { ChangeMemberNickname } from "@components/screens";
 
-const voidFunc: () => void = () => null;
+let voidFunc: () => null;
 
 storiesOf("ChangeMemberNick", module)
   .addDecorator(withKnobs)
