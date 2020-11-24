@@ -1,7 +1,7 @@
 
 import { generateRandomMongoId } from '../../utils';
 import { IDatabaseItem } from '../../types';
-import { CUSTOMER_2, CUSTOMER_3, CUSTOMER_4, CUSTOMER_16, CUSTOMER_17, CUSTOMER_18, CUSTOMER_ALPHA, CUSTOMER_21, CUSTOMER_23, CUSTOMER_20, CUSTOMER_19, CUSTOMER_5, CUSTOMER_6, CUSTOMER_7, CUSTOMER_9, CUSTOMER_15 } from '../postgres/customers';
+import { CUSTOMER_2, CUSTOMER_3, CUSTOMER_4, CUSTOMER_16, CUSTOMER_17, CUSTOMER_18, CUSTOMER_ALPHA, CUSTOMER_21, CUSTOMER_23, CUSTOMER_20, CUSTOMER_19, CUSTOMER_5, CUSTOMER_6, CUSTOMER_7, CUSTOMER_9, CUSTOMER_15, CUSTOMER_22, CUSTOMER_24, CUSTOMER_13 } from '../postgres/customers';
 
 const USER_DATA_TEMPLATE = {
     data: {
@@ -131,6 +131,25 @@ export const USER_9 = {
     }
 } as IDatabaseItem
 
+export const USER_13 = {
+    type: "mongo",
+    modelName: "users",
+    data: {
+        ...USER_2.data,
+        _id: generateRandomMongoId(),
+        userId: CUSTOMER_13.data.customerId,
+        earnRate: 10,
+        products: [{
+            productId: generateRandomMongoId(),
+            productType: "Yulife",
+            option: "epic",
+            earnRate: 10,
+            type: "employer"
+        }]
+    }
+} as IDatabaseItem
+
+
 export const USER_15 = {
     type: "mongo",
     modelName: "users",
@@ -226,6 +245,24 @@ export const USER_ALPHA = {
     }
 } as IDatabaseItem
 
+export const USER_22 = {
+    type: "mongo",
+    modelName: "users",
+    data: {
+        _id: generateRandomMongoId(),
+        userId: CUSTOMER_22.data.customerId,
+        products: [{
+            productId: generateRandomMongoId(),
+            productType: "Yulife",
+            option: "epic",
+            type: "employer",
+            earnRate: 10,
+        }],
+        earnRate: 10,
+    }
+} as IDatabaseItem
+
+
 
 export const USER_23 = {
     type: "mongo",
@@ -247,5 +284,22 @@ export const USER_23 = {
             version: 1
         },
 
+    }
+} as IDatabaseItem
+
+export const USER_24 = {
+    type: "mongo",
+    modelName: "users",
+    data: {
+        _id: generateRandomMongoId(),
+        userId: CUSTOMER_24.data.customerId,
+        products: [{
+            productId: generateRandomMongoId(),
+            productType: "Yulife",
+            option: "epic",
+            type: "employer",
+            earnRate: 10,
+        }],
+        earnRate: 10,
     }
 } as IDatabaseItem
