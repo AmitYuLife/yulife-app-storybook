@@ -318,7 +318,7 @@ const FibUnderwritingJourneyContainer = memo(function (props: Props) {
 });
 
 const mapStateToProps = (state: IReduxState) => ({
-  medicalHistory: getFIBState(state).medicalHistory,
+  medicalHistory: getFIBState(state).answers.medicalHistory,
   fibAnswers: getFIBState(state).answers,
 });
 

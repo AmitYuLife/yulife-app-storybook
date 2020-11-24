@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = (state: IReduxState) => ({
-  medicalHistory: getFIBState(state).medicalHistory,
+  medicalHistory: getFIBState(state).answers.medicalHistory,
 });
 
 export default connect(mapStateToProps)(MedicalChipList);

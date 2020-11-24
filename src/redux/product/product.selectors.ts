@@ -66,7 +66,7 @@ export interface IAnswer {
 export const getReviewAnswers = (state: IReduxState): any => {
   const answers: IAnswer[] = [];
 
-  const activeChips = Object.entries(state.product.fib.medicalHistory)
+  const activeChips = Object.entries(state.product.fib.answers.medicalHistory)
     .map((entry) => {
       return entry[1] ? entry[0] : null;
     })

@@ -47,11 +47,11 @@ export const initialState: IProductStore = {
       lastName: "",
       medicalConsent: false,
       previewMedicalTests: false,
+      existingCovers: [],
+      medicalHistory: {},
     },
     salary: 0,
     selectedPackage: "common",
-    existingCovers: [],
-    medicalHistory: {},
     quoteDate: "",
     lastQuestionId: "",
     hasPriceChanged: false,
@@ -95,9 +95,12 @@ function personalProductReducer<T>(state: IProductStore = initialState, action: 
         ...state,
         fib: {
           ...state.fib,
-          medicalHistory: {
-            ...state.fib.medicalHistory,
-            [action.payload.key]: action.payload.value,
+          answers: {
+            ...state.fib.answers,
+            medicalHistory: {
+              ...state.fib.answers.medicalHistory,
+              [action.payload.key]: action.payload.value,
+            },
           },
         },
       };
@@ -117,8 +120,9 @@ function personalProductReducer<T>(state: IProductStore = initialState, action: 
             contactDetails: {
               ...initialState.fib.answers.contactDetails,
             },
+            existingCovers: initialState.fib.answers.existingCovers,
+            medicalHistory: {},
           },
-          existingCovers: initialState.fib.existingCovers,
         },
       };
     case RESET_FIB_MEDICAL_VALUE:
@@ -141,7 +145,6 @@ function personalProductReducer<T>(state: IProductStore = initialState, action: 
           hasPriceChanged: false,
           actualCost: 0,
           medicalHistory: {},
-          existingCovers: initialState.fib.existingCovers,
           answers: {
             ...initialState.fib.answers,
             height: {
@@ -155,6 +158,7 @@ function personalProductReducer<T>(state: IProductStore = initialState, action: 
             birthDay: state.fib.answers.birthDay,
             birthMonth: state.fib.answers.birthMonth,
             birthYear: state.fib.answers.birthYear,
+            existingCovers: initialState.fib.answers.existingCovers,
           },
         },
       };

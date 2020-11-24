@@ -7,7 +7,7 @@ import { PressableWithDelay } from "@components/molecules";
 import { Navigation } from "react-native-navigation";
 import { MODALS } from "@navigation/constants";
 import { Cover } from "@components/containers/products/fib/fib.types";
-import { updateFIBValue } from "@redux/product/product.actions";
+import { updateFIBAnswerValue } from "@redux/product/product.actions";
 import { addCommasToNumber, truncate } from "@services/utils";
 
 type Props = typeof mapDispatchToProps & {
@@ -78,7 +78,7 @@ function _FinancialQuestionsCoverList(props: Props) {
 }
 
 const mapDispatchToProps = {
-  updateExistingCovers: (value: Cover[]) => updateFIBValue({ key: "existingCovers", value }),
+  updateExistingCovers: (value: Cover[]) => updateFIBAnswerValue({ key: "existingCovers", value }),
 };
 
 export const FinancialQuestionsCoverList = connect(null, mapDispatchToProps)(_FinancialQuestionsCoverList);

@@ -46,4 +46,6 @@ export interface Cover {
   coverName: string;
   companyName: string;
   coverAmount: number;
+  coverReason: string;
+  coverRemainInForce: string;
 }

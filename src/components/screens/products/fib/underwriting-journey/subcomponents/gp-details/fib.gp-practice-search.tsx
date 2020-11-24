@@ -35,7 +35,7 @@ function _FibGPPracticeSearchScreen(props: Props) {
       isButtonLoading={loading}
     >
       <View style={styles.wrapper}>
-        <FibTitle title="Please enter the name of your local medical practise below." />
+        <FibTitle title="Please enter the name of your local medical practice below." />
         <View>
           <TextField onChange={(val) => setPracticeName(val)} placeholder="" inputTextStyle={styles.text} />
         </View>
