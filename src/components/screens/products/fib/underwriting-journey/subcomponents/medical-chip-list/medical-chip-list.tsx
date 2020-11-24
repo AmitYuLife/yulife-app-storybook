@@ -5,6 +5,7 @@ import { connect, useDispatch } from "react-redux";
 import { getFIBState } from "@redux/product/product.selectors";
 import { IReduxState } from "@redux/_core/reducers";
 import { updateFIBMedicalHistoryValue, updateFIBAnswerValue } from "@redux/product/product.actions";
+import { Style } from "@styles";
 
 type ConnectedState = ReturnType<typeof mapStateToProps>;
 
@@ -47,14 +48,7 @@ function MedicalChipList(props: ChipListProps & ConnectedState) {
       {itemsWithDispatch.map((item, i) => {
         return (
           <View style={styles.chipLayout} key={item.id + i}>
-            <Chip
-              id={item.id}
-              active={item.active}
-              iconType={item.iconType}
-              icon={item.icon}
-              onPress={item.onPress}
-              label={item.label}
-            />
+            <Chip id={item.id} active={item.active} icon={item.icon} onPress={item.onPress} label={item.label} />
           </View>
         );
       })}
@@ -68,13 +62,11 @@ const styles = StyleSheet.create({
     flexWrap: "wrap",
     alignItems: "center",
     justifyContent: "center",
+    marginTop: Style.adjust(28),
   } as ViewStyle,
   chipLayout: {
-    flexGrow: 1,
-    flexShrink: 1,
-    flexBasis: "45%",
-    marginVertical: 12,
     alignItems: "center",
+    marginBottom: Style.adjust(8),
   },
 });
 

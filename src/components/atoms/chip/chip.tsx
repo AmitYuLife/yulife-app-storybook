@@ -1,138 +1,59 @@
 import React from "react";
-import { StyleSheet, View, Text, TextStyle, ViewStyle, Image, ImageStyle, ImageRequireSource } from "react-native";
-import { Colours, Style } from "@styles";
-import { SvgFromXml } from "react-native-svg";
+import { StyleSheet, View, ViewStyle } from "react-native";
+import { Style, Colours } from "@styles";
 import { TouchableOpacityWithDelay } from "@components/molecules";
-
-type ChipIconType = "xml" | "image";
+import { Label } from "./label";
+import { Icon } from "./icon";
+import { ChipIconType } from "./chip.types";
+import { ActiveIndicator } from "./active-indicator";
 
 export interface ChipProps {
   id: string;
   relatedId?: string[];
   active: boolean;
   label: string;
-  icon: string;
-  iconType: ChipIconType;
+  icon: ChipIconType;
   onPress?: () => void;
 }
 
-interface ChipStateProps {
-  chipStyle: ViewStyle;
-  textStyle: TextStyle;
-  imageStyle: ImageStyle;
-  xmlString: string;
-  image: ImageRequireSource;
-}
-
 function Chip(props: ChipProps) {
-  const { active, label, icon, iconType, onPress } = props;
-
-  const stateProps = getStateProperties(active, iconType, icon);
+  const { active, label, icon, onPress } = props;
 
   return (
     <TouchableOpacityWithDelay
-      style={StyleSheet.flatten([styles.wrapper, stateProps.chipStyle])}
+      activeOpacity={1}
+      style={StyleSheet.flatten([styles.wrapper, active && styles.activeWrapper])}
       onPress={onPress}
       delay={50}
     >
       <View style={styles.viewWrapper}>
-        <View style={styles.iconWrapper}>
-          {iconType === "xml" ? (
-            <SvgFromXml xml={stateProps.xmlString} />
-          ) : (
-            <Image source={stateProps.image} style={stateProps.imageStyle} />
-          )}
-        </View>
-        <View style={styles.textWrapper}>
-          <Text style={StyleSheet.flatten([styles.textStyle, stateProps.textStyle])}>{label}</Text>
-        </View>
+        <ActiveIndicator isActive={active} />
+        <Icon icon={icon} />
+        <Label label={label} isActive={active} />
       </View>
     </TouchableOpacityWithDelay>
   );
 }
 
-// RN needs to load all images before compiling the bundle. Cannot load dynamically images
-// we need to add here the list of icons available when using images
-function getImage(icon: string): ImageRequireSource {
-  switch (icon) {
-    case "blood_pressure_cholest":
-      return require("../../../../assets/top-ups/blood_pressure_cholest.png");
-    case "condition_stable":
-      return require("../../../../assets/top-ups/condition_stable.png");
-    case "digestive":
-      return require("../../../../assets/top-ups/digestive.png");
-    case "ears_nose_throat":
-      return require("../../../../assets/top-ups/ears_nose_throat.png");
-    case "eye":
-      return require("../../../../assets/top-ups/eye.png");
-    case "kidneys_bladder":
-      return require("../../../../assets/top-ups/kidneys_bladder.png");
-    case "lungs":
-      return require("../../../../assets/top-ups/lungs.png");
-    case "minor_injuries":
-      return require("../../../../assets/top-ups/minor_injuries.png");
-    case "muscles_joints":
-      return require("../../../../assets/top-ups/muscles_joints.png");
-    case "pregnancy":
-      return require("../../../../assets/top-ups/pregnancy.png");
-    case "skin":
-      return require("../../../../assets/top-ups/skin.png");
-    case "other":
-    default:
-      return require("../../../../assets/top-ups/other.png");
-  }
-}
-
-function getStateProperties(active: boolean, iconType: ChipIconType, icon: string): ChipStateProps {
-  const isXmlString = iconType === "xml";
-  const isImagePath = iconType === "image";
-  if (active) {
-    return {
-      chipStyle: { backgroundColor: Colours.primary.p400 },
-      textStyle: { color: Colours.neutral.white },
-      imageStyle: { tintColor: Colours.neutral.white },
-      xmlString: isXmlString ? icon.replace(/dynamicColor/g, "white") : "",
-      image: isImagePath ? getImage(icon) : null,
-    };
-  }
-
-  return {
-    chipStyle: { backgroundColor: Colours.solid.grey },
-    textStyle: { color: Colours.neutral.n600 },
-    imageStyle: { tintColor: Colours.neutral.n600 },
-    xmlString: isXmlString ? icon.replace(/dynamicColor/g, "#828284") : "",
-    image: isImagePath ? getImage(icon) : null,
-  };
-}
-
 const styles = StyleSheet.create({
   wrapper: {
-    width: Style.isWideScreen() ? 160 : 140,
-    height: 56,
-    borderRadius: 60,
+    width: Style.adjust(168),
+    height: Style.adjust(80),
+    borderRadius: 16,
+    marginHorizontal: Style.adjust(4),
+    borderColor: Colours.neutral.n100,
+    borderWidth: 1,
+  } as ViewStyle,
+  activeWrapper: {
+    borderColor: Colours.blue.up306,
   } as ViewStyle,
   viewWrapper: {
-    flexDirection: "row",
-    marginHorizontal: Style.isWideScreen() ? 23 : 13,
     height: "100%",
     alignContent: "center",
+    justifyContent: "center",
+    overflow: "hidden",
+    borderRadius: 16,
   } as ViewStyle,
-  textWrapper: {
-    width: 78,
-    alignSelf: "center",
-  } as ViewStyle,
-  iconWrapper: {
-    alignSelf: "center",
-    width: 36,
-  },
-  textStyle: {
-    fontFamily: Style.FONT_FAMILY_PRIMARY_BOLD,
-    fontSize: 14,
-    letterSpacing: 1,
-    lineHeight: 24,
-    textAlign: "left",
-    width: "100%",
-  } as TextStyle,
 });
 
 export default Chip;

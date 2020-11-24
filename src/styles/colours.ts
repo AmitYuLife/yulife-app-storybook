@@ -240,6 +240,8 @@ export default {
     dp305: "#9ED3E9",
     dp306: "#BDE3F1",
     dp307: "#EEF8FB",
+    up204: "#5BA9D5",
+    up306: "#D8F0FF",
   },
   solid: {
     grey: "#F0F0F0",

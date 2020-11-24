@@ -53,7 +53,6 @@ const MARGIN_BOTTOM = Style.hasNotch ? 60 : 100;
 const styles = StyleSheet.create({
   wrapper: {
     marginBottom: MARGIN_BOTTOM,
-    paddingHorizontal: 32,
   } as ViewStyle,
   buttonWrapper: {
     width: Style.DEVICE_WIDTH - 70,
