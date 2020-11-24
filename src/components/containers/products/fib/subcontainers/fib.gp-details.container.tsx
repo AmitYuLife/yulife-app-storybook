@@ -71,7 +71,7 @@ const FibGPDetailsContainer = memo(function (props: IFibGPDetailsContainerProps 
 
   const onContinueConsentScreen = useCallback(() => {
     setGPView("medical_practice_search");
-    dispatch(updateFIBAnswerValue({ key: "medical_consent", value: true }));
+    dispatch(updateFIBAnswerValue({ key: "medicalConsent", value: true }));
   }, [dispatch]);
 
   const onContinueMedicalPracticeSearch = useCallback(() => {

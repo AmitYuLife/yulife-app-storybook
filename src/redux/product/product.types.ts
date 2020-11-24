@@ -61,6 +61,8 @@ export interface FibAnswers {
   lastName: string;
   medicalConsent: boolean;
   previewMedicalTests: boolean;
+  existingCovers: Cover[];
+  medicalHistory: Record<string, boolean>;
   [questionId: string]: any;
 }
 
@@ -68,8 +70,6 @@ export interface FIBStore {
   answers: FibAnswers;
   salary: number;
   selectedPackage: PackageId;
-  existingCovers: Cover[];
-  medicalHistory: Record<string, boolean>;
   quoteDate: string;
   lastQuestionId: string;
   hasPriceChanged: boolean;

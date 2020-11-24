@@ -39,13 +39,13 @@ function _FibGPPracticesResultsScreen(props: Props) {
     resultType === "practice"
       ? data?.length > 0
         ? "Please select your medical practice:"
-        : "We found 0 medical practises with that name."
+        : "We found 0 medical practices with that name."
       : `Please select your GP at ${selectedPractice.name}:`;
 
   const secondButtonLabel =
     resultType === "practice"
       ? data?.length > 0
-        ? "Couldn’t find your practise?"
+        ? "Couldn’t find your practice?"
         : "Enter manually"
       : "Couldn’t find your doctor?";
 

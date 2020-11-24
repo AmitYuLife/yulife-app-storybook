@@ -115,22 +115,22 @@ function _FibGPManuallyInputScreen(props: Props) {
     () => [
       {
         updateFormKey: "practiceName",
-        placeholder: "Medical Practise Name",
+        placeholder: "Medical Practice Name",
         value: formValue.practiceName,
       },
       {
         updateFormKey: "practiceAddress",
-        placeholder: "Medical Practise Address",
+        placeholder: "Medical Practice Address",
         value: formValue.practiceAddress,
       },
       {
         updateFormKey: "practiceTown",
-        placeholder: "Medical Practise Town or City",
+        placeholder: "Medical Practice Town or City",
         value: formValue.practiceTown,
       },
       {
         updateFormKey: "practicePostCode",
-        placeholder: "Medical Practise Postcode",
+        placeholder: "Medical Practice Postcode",
         value: formValue.practicePostCode,
       },
       {
@@ -168,7 +168,7 @@ function _FibGPManuallyInputScreen(props: Props) {
     >
       <View style={styles.wrapper}>
         <View onLayout={handleTitleLayout}>
-          <FibTitle title="Please enter your medical practise and GP details below:" />
+          <FibTitle title="Please enter your medical practice and GP details below:" />
         </View>
         <View>
           {forms.map(({ updateFormKey, placeholder, value }, formIndex) => (

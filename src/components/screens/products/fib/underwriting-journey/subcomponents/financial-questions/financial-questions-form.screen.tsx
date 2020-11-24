@@ -7,7 +7,7 @@ import { Style } from "@styles";
 import { IFibUnderwritingJourneyScreenProps } from "../../fib.underwriting-journey.screen";
 import Footer from "../footer/footer";
 import { connect } from "react-redux";
-import { updateFIBValue } from "@redux/product/product.actions";
+import { updateFIBAnswerValue } from "@redux/product/product.actions";
 import { getFIBState } from "@redux/product/product.selectors";
 import { IReduxState } from "@redux/_core/reducers";
 import { Cover } from "@components/containers/products/fib/fib.types";
@@ -33,6 +33,8 @@ export function _FinancialQuestionsFormScreen(props: Props) {
       companyName: formValue["company-held"],
       coverAmount: Number(formValue["amount-of-cover"]),
       coverName: formValue["cover-name"],
+      coverReason: formValue["reason-for-cover"],
+      coverRemainInForce: formValue["will-the-policy-remain"],
     };
 
     updateExistingCovers([...existingCovers, cover]);
@@ -61,12 +63,12 @@ export function _FinancialQuestionsFormScreen(props: Props) {
 
 function mapStateToProps(store: IReduxState) {
   return {
-    existingCovers: getFIBState(store).existingCovers,
+    existingCovers: getFIBState(store).answers.existingCovers,
   };
 }
 
 const mapDispatchToProps = {
-  updateExistingCovers: (value: Cover[]) => updateFIBValue({ key: "existingCovers", value }),
+  updateExistingCovers: (value: Cover[]) => updateFIBAnswerValue({ key: "existingCovers", value }),
 };
 
 export const FinancialQuestionsFormScreen = connect(mapStateToProps, mapDispatchToProps)(_FinancialQuestionsFormScreen);

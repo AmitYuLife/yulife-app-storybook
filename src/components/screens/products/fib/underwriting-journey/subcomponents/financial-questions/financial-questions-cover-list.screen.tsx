@@ -42,7 +42,7 @@ function _FinancialQuestionsCoverListScreen(props: Props) {
 
 function mapStateToProps(store: IReduxState) {
   return {
-    existingCovers: getFIBState(store).existingCovers,
+    existingCovers: getFIBState(store).answers.existingCovers,
   };
 }
 
