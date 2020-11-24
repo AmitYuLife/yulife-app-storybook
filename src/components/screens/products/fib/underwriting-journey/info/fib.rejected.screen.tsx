@@ -11,6 +11,8 @@ export interface IFibRejectedScreenProps {
   onResetFib?: () => void;
 }
 
+const PROGRESS_BAR = { maxLength: 0, currentPosition: 0, isHidden: true };
+
 export const FibRejectedScreen = memo(function (props: IFibRejectedScreenProps) {
   const { onClose, onResetFib } = props;
 
@@ -24,15 +26,17 @@ export const FibRejectedScreen = memo(function (props: IFibRejectedScreenProps) 
   return (
     <FibUnderwritingJourneyLayout
       heading={"Rejection"}
-      progressBar={{ maxLength: 0, currentPosition: 0, isHidden: true }}
+      progressBar={PROGRESS_BAR}
       hideHeadingBorder={false}
       onPreviousQuestion={onClose}
     >
       <View style={styles.wrapper}>
-        <FibTitle title={`Sorry about that!`} textStyle={{ fontSize: 20, lineHeight: 24 }} />
-        <Text
-          style={styles.message}
-        >{`Based on your answers, we're not able to offer you personal life insurance right now.`}</Text>
+        <FibTitle title={`Sorry about that!`} textStyle={styles.fibTitle} />
+        <View style={styles.padding}>
+          <Text
+            style={styles.message}
+          >{`Based on your answers, we're not able to offer you personal life insurance right now.`}</Text>
+        </View>
       </View>
 
       <View style={styles.buttonWrapper}>
@@ -47,19 +51,24 @@ export const FibRejectedScreen = memo(function (props: IFibRejectedScreenProps) 
 
 const styles = StyleSheet.create({
   wrapper: {
-    paddingTop: 12,
-    paddingHorizontal: 32,
+    paddingTop: Style.adjust(12),
   } as ViewStyle,
   buttonWrapper: {
     marginTop: "auto",
-    marginBottom: 48,
+    marginBottom: Style.adjust(48),
+  } as ViewStyle,
+  padding: {
+    paddingHorizontal: Style.adjust(24),
   } as ViewStyle,
   message: {
-    fontSize: 16,
-    lineHeight: 24,
-    fontFamily: Style.FONT_FAMILY_PRIMARY,
+    fontSize: Style.adjust(16),
+    lineHeight: Style.adjust(24),
     letterSpacing: 1,
     color: "#5A5A5C",
-    marginTop: 20,
+    marginTop: Style.adjust(20),
   } as TextStyle,
+  fibTitle: {
+    fontSize: Style.adjust(20),
+    lineHeight: Style.adjust(24),
+  } as ViewStyle,
 });
