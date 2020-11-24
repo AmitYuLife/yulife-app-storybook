@@ -140,7 +140,12 @@ function RadioInput(props: RadioProps) {
 }
 
 const styles = StyleSheet.create({
-  wrapper: { width: Style.DEVICE_WIDTH - 63, alignSelf: "center", marginTop: 30, marginBottom: 60 },
+  wrapper: {
+    width: Style.DEVICE_WIDTH - 48,
+    alignSelf: "center",
+    marginTop: Style.adjust(28),
+    marginBottom: Style.adjust(60),
+  },
   radioWrapper: {
     flexDirection: "row",
   },
@@ -150,7 +155,7 @@ const styles = StyleSheet.create({
   poundSign: {
     position: "absolute",
     bottom: Platform.OS === "ios" ? 5 : 4,
-    fontSize: 22,
+    fontSize: Style.adjust(22),
     fontFamily: Style.FONT_FAMILY_PRIMARY_BOLD,
     marginRight: 4,
   },

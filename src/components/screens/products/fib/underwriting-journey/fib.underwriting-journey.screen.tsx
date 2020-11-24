@@ -1,5 +1,5 @@
 import React, { memo, useRef, useEffect, useCallback } from "react";
-import { StyleSheet, ScrollView, ViewStyle, View, Keyboard } from "react-native";
+import { ScrollView, View, Keyboard } from "react-native";
 import { useBackHandler } from "../../../../../services/hooks/useBackHandler";
 import FibTitle from "@atoms/fib/title/title";
 import Footer from "./subcomponents/footer/footer";
@@ -24,6 +24,7 @@ import { CopyBirthday } from "@organisms/fib/copy/birthday";
 import { CopyFullName } from "@organisms/fib/copy/full-name";
 import RadioInput from "../feedback-form/radio-input";
 import { FibInputAlcohol } from "@organisms/fib/input/alcohol/fib-input-alcohol";
+import { styles, getChildWrapperStyle } from "./fib.underwriting-journey.styles";
 
 export interface IFibUnderwritingJourneyScreenProps {
   onNavigateBack: () => void;
@@ -119,23 +120,22 @@ const _FibUnderwritingJourneyScreen = memo(function (props: IFibUnderwritingJour
       hideHeadingBorder={!props.progressBar.isHidden}
       yugi="default"
     >
-      <ScrollView
-        ref={scrollViewRef}
-        showsVerticalScrollIndicator={false}
-        keyboardShouldPersistTaps="handled"
-        style={styles.wrapper}
-      >
+      <ScrollView ref={scrollViewRef} showsVerticalScrollIndicator={false} keyboardShouldPersistTaps="handled">
         <FibTitle title={data.question} />
         {data.children?.map((child: UnderwritingJourneyChild, i) => {
           const key = data.id + i;
-          return renderChildren(child, key, {
-            inputFirstName,
-            inputLastName,
-            setInputFirstName,
-            setInputLastName,
-            radioInputValue,
-            setRadioInputValue,
-          });
+          return (
+            <View style={getChildWrapperStyle(child.type)} key={key}>
+              {renderChildren(child, {
+                inputFirstName,
+                inputLastName,
+                setInputFirstName,
+                setInputLastName,
+                radioInputValue,
+                setRadioInputValue,
+              })}
+            </View>
+          );
         })}
         <View style={{ height: Footer.HEIGHT }} />
       </ScrollView>
@@ -155,29 +155,27 @@ interface RenderChildrenExtraProps {
   setRadioInputValue?: (value: string) => void;
 }
 
-function renderChildren(child: UnderwritingJourneyChild, key: string, extraProps: RenderChildrenExtraProps) {
+function renderChildren(child: UnderwritingJourneyChild, extraProps: RenderChildrenExtraProps) {
   const FIELDS: Record<string, React.ReactNode> = {
-    medicalHistory: <MedicalHistoryItem {...(child as IMedicalHistoryItemProps)} key={key} />,
-    markdown: <MarkdownFib {...(child as IMarkdownFibProps)} key={key} />,
-    inputBirth: <FibInputBirth key={key} />,
-    inputHeight: <FibInputHeight key={key} />,
-    inputWeight: <FibInputWeight key={key} />,
+    medicalHistory: <MedicalHistoryItem {...(child as IMedicalHistoryItemProps)} />,
+    markdown: <MarkdownFib {...(child as IMarkdownFibProps)} />,
+    inputBirth: <FibInputBirth />,
+    inputHeight: <FibInputHeight />,
+    inputWeight: <FibInputWeight />,
     inputFullName: (
       <FibInputName
-        key={key}
         setInputFirstName={extraProps.setInputFirstName}
         inputFirstName={extraProps.inputFirstName}
         setInputLastName={extraProps.setInputLastName}
         inputLastName={extraProps.inputLastName}
       />
     ),
-    chiplist: <MedicalChipList items={child.chips} columns={2} key={key} />,
-    inputAlcohol: <FibInputAlcohol key={key} />,
-    copyBirthday: <CopyBirthday key={key} />,
-    copyFullName: <CopyFullName key={key} />,
+    chiplist: <MedicalChipList items={child.chips} columns={2} />,
+    inputAlcohol: <FibInputAlcohol />,
+    copyBirthday: <CopyBirthday />,
+    copyFullName: <CopyFullName />,
     radioInput: (
       <RadioInput
-        key={key}
         options={child.radioInputOptions}
         selectedValue={extraProps.radioInputValue}
         onChange={extraProps.setRadioInputValue}
@@ -188,12 +186,3 @@ function renderChildren(child: UnderwritingJourneyChild, key: string, extraProps
   };
   return FIELDS[child.type] || null;
 }
-
-const styles = StyleSheet.create({
-  wrapper: {
-    paddingHorizontal: 32,
-  } as ViewStyle,
-  radioInputStyles: {
-    marginTop: 48,
-  } as ViewStyle,
-});

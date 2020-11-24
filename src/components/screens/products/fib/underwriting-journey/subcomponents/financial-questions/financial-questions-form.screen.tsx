@@ -46,7 +46,7 @@ export function _FinancialQuestionsFormScreen(props: Props) {
       onPreviousQuestion={onPreviousButtonPressed}
       progressBar={props.progressBar}
     >
-      <ScrollView style={styles.wrapper} keyboardShouldPersistTaps="handled">
+      <ScrollView showsVerticalScrollIndicator={false} style={styles.wrapper} keyboardShouldPersistTaps="handled">
         <FibTitle title={data.question} />
         <FinancialQuestionsForm
           setFormValidState={setFormValidState}
@@ -76,7 +76,6 @@ const MARGIN_BOTTOM = Style.hasNotch ? 60 : 100;
 const styles = StyleSheet.create({
   wrapper: {
     marginBottom: MARGIN_BOTTOM,
-    paddingHorizontal: 32,
   } as ViewStyle,
   buttonWrapper: {
     width: Style.DEVICE_WIDTH - 70,

@@ -83,43 +83,48 @@ const mapDispatchToProps = {
 
 export const FinancialQuestionsCoverList = connect(null, mapDispatchToProps)(_FinancialQuestionsCoverList);
 
+const HEIGHT = Style.adjust(112);
+
 const styles = StyleSheet.create({
-  wrapper: { marginVertical: 16 },
+  wrapper: {
+    marginVertical: Style.adjust(16),
+    paddingHorizontal: Style.adjust(16),
+  },
   coverCardWrapper: {
     backgroundColor: Colours.lightestGray,
-    marginVertical: 16,
-    height: 112,
+    marginVertical: Style.adjust(16),
+    height: HEIGHT,
     borderColor: Colours.lightGray,
     flexDirection: "row",
     borderWidth: 2,
     borderRadius: 8,
-    paddingVertical: 16,
-    paddingHorizontal: 20,
+    paddingVertical: Style.adjust(16),
+    paddingHorizontal: Style.adjust(20),
   },
   coverCardTextWrapper: {
     flex: 1,
     justifyContent: "space-between",
     height: "100%",
   },
-  coverCardText: { fontSize: 20 },
+  coverCardText: { fontSize: Style.adjust(20) },
   bold: { fontFamily: Style.FONT_FAMILY_PRIMARY_BOLD },
   bin: { justifyContent: "center", height: "100%" },
   addCoverWrapper: {
     backgroundColor: Colours.lightestGray,
-    height: 112,
+    height: HEIGHT,
     borderColor: Colours.lightGray,
     justifyContent: "center",
     alignItems: "center",
     borderWidth: 2,
-    marginVertical: 16,
+    marginVertical: Style.adjust(16),
     borderRadius: 8,
     borderStyle: "dashed",
   },
   addCoverText: {
     color: "#D9D9D7",
     fontFamily: Style.FONT_FAMILY_PRIMARY_BOLD,
-    marginTop: 8,
-    fontSize: 18,
+    marginTop: Style.adjust(8),
+    fontSize: Style.adjust(18),
     letterSpacing: 0.8,
   },
 });

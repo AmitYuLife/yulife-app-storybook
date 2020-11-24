@@ -34,6 +34,7 @@ const TITLE_FONT_SIZE = Platform.select({
 const styles = StyleSheet.create({
   wrapper: {
     marginTop: Style.adjust(16),
+    paddingHorizontal: Style.adjust(24),
   } as ViewStyle,
   title: {
     width: Style.DEVICE_WIDTH - 120,
