@@ -23,11 +23,7 @@ export const FibPaymentCongratulationScreen = memo(function (props: IFibPaymentC
   useBackHandler(backHandler);
 
   return (
-    <FibUnderwritingJourneyLayout
-      heading={"Congratulation"}
-      progressBar={{ maxLength: 0, currentPosition: 0, isHidden: true }}
-      hideHeadingBorder={false}
-    >
+    <FibUnderwritingJourneyLayout heading={"Congratulation"} hideProgressBar={true} hideHeadingBorder={false}>
       <View style={styles.wrapper}>
         <FibTitle title={`You have successfully\npurchased ${toCapitalLetter(packageType)} Life Insurance!`} />
         <Text style={styles.message}>{`Congratulation Congratulation Congratulation!!!`}</Text>

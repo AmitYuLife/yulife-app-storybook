@@ -31,7 +31,7 @@ export const FibConfirmScreen = memo(function (props: IFibConfirmEmailScreenProp
       heading={"Contact Details"}
       onClose={onClose}
       onPreviousQuestion={onBackButtonPress}
-      progressBar={{ maxLength: 0, currentPosition: 0, isHidden: true }}
+      hideProgressBar={true}
     >
       <View style={styles.wrapper}>
         <FibTitle title={"Would you like to use:"} />

@@ -32,11 +32,6 @@ export interface IFibUnderwritingJourneyScreenProps {
   onFirstButtonPressed: () => void;
   onSecondButtonPressed?: () => void;
   onPreviousButtonPressed?: () => void;
-  progressBar: {
-    maxLength: number;
-    currentPosition: number;
-    isHidden: boolean;
-  };
   disableFirstButton?: boolean;
   inputFirstName?: string;
   inputLastName?: string;
@@ -45,6 +40,7 @@ export interface IFibUnderwritingJourneyScreenProps {
   disableSecondButton?: boolean;
   radioInputValue?: string;
   setRadioInputValue?: (text: string) => void;
+  hideProgressBar: boolean;
 }
 
 const _FibUnderwritingJourneyScreen = memo(function (props: IFibUnderwritingJourneyScreenProps) {
@@ -62,6 +58,7 @@ const _FibUnderwritingJourneyScreen = memo(function (props: IFibUnderwritingJour
     disableSecondButton,
     radioInputValue,
     setRadioInputValue,
+    hideProgressBar,
   } = props;
   const scrollViewRef = useRef(null as ScrollView);
 
@@ -115,9 +112,9 @@ const _FibUnderwritingJourneyScreen = memo(function (props: IFibUnderwritingJour
     <FibUnderwritingJourneyLayout
       heading={data.heading}
       onClose={onNavigateBack}
-      progressBar={props.progressBar}
+      hideProgressBar={hideProgressBar}
       onPreviousQuestion={onPreviousButtonPressed}
-      hideHeadingBorder={!props.progressBar.isHidden}
+      hideHeadingBorder={!hideProgressBar}
       yugi="default"
     >
       <ScrollView ref={scrollViewRef} showsVerticalScrollIndicator={false} keyboardShouldPersistTaps="handled">

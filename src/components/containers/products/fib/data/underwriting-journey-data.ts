@@ -43,6 +43,7 @@ export interface UnderwritingJourneyScreen {
   reviewAnswerTitle?: string;
   question: string;
   content?: React.ReactNode;
+  accumulatedProgress: number;
   firstButton: {
     label: string;
     actionId: string;
@@ -176,6 +177,54 @@ export const SMOKING_QUESTIONS_SCREEN_IDS = [
 
 export const FOLLOW_UP_SMOKING_ANSWERS_TRIGGER = ["In the past month", "In the past 6 months", "In the past 12 months"];
 
+export const FINAL_PROGRESS = 2400;
+
+enum ACCUMULATED_PROGRESS {
+  FIB_ENTER_YOUR_NAME = 100,
+  FIB_YOUR_DATE_OF_BIRTH_SCREEN_ID = 200,
+  FIB_ENTER_YOUR_DATE_OF_BIRTH = 250,
+  FIB_UK_RESIDENT_SCREEN_ID = 300,
+  FIB_MEMBER_OF_ARMED_FORCES_SCREEN_ID = 400,
+  FIB_LIFESTYLE_HEIGHT_SCREEN_ID = 500,
+  FIB_LIFESTYLE_WEIGHT_SCREEN_ID = 600,
+  FIB_LIFESTYLE_SMOKING_CIGARETTES_SCREEN_ID = 700,
+  FIB_LIFESTYLE_SMOKING_CIGARETTES_FOLLOW_UP_SCREEN_ID = 750,
+  FIB_LIFESTYLE_SMOKING_CIGARS_SCREEN_ID = 800,
+  FIB_LIFESTYLE_SMOKING_VAPES_SCREEN_ID = 900,
+  FIB_LIFESTYLE_ALCOHOL_SCREEN_ID = 1000,
+  FIB_LIFESTYLE_DRUGS_SCREEN_ID = 1100,
+  FIB_LIFESTYLE_DRUGS_COUNCELLING_SCREEN_ID = 1200,
+  FIB_MEDICAL_HISTORY_SCREEN_ID = 1300,
+  FIB_MEDICAL_THREE_OR_MORE_CONSULTATION_SCREEN_ID = 1400,
+  FIB_THREE_YEAR_MEDICAL_HISTORY_SCREEN_ID = 1420,
+  FIB_HIGH_BLOOD_PRESSURE_SCREEN_ID = 1420,
+  FIB_HIGH_BLOOD_PRESSURE_EXTRA_SCREEN = 1425,
+  FIB_HIGH_CHOLESTEROL_SCREEN_ID = 1430,
+  FIB_HIGH_CHOLESTEROL_EXTRA_SCREEN = 1435,
+  FIB_DIGESTIVE_SCREEN_ID = 1440,
+  FIB_MEDICAL_JOURNEY_EARS_NOSE_THROAT_SCREEN_ID = 1450,
+  FIB_MEDICAL_JOURNEY_EYE_SCREEN_ID = 1460,
+  FIB_MEDICAL_JOURNEY_KIDNEYS_BLADDER_SCREEN_ID = 1470,
+  FIB_MEDICAL_JOURNEY_LUNGS_SCREEN_ID = 1480,
+  FIB_MEDICAL_JOURNEY_MINOR_INJURIES_SCREEN_ID = 1490,
+  FIB_MEDICAL_JOURNEY_MUSCLES_JOINTS_SCREEN_ID = 1500,
+  FIB_MEDICAL_JOURNEY_PREGNANCY_SCREEN_ID = 1510,
+  FIB_MEDICAL_JOURNEY_SKIN_SCREEN_ID = 1520,
+  FIB_MEDICAL_JOURNEY_OTHER_SCREEN_ID = 1530,
+  FIB_HOSPITAL_STAY_SCREEN_ID = 1540,
+  FIB_SYMPTOMS_RESOLVED_SCREEN_ID = 1550,
+  FIB_CONDITION_STABLE_SCREEN_ID = 1560,
+  FIB_DAILY_ACTIVITIES_RESTRICTIONS_SCREEN_ID = 1570,
+  FIB_MEDICAL_OUTSTANDING_MEDICAL_INVESTIGATIONS_SCREEN_ID = 1700,
+  FIB_MEDICAL_OTHER_SYMPTOMS_SCREEN_ID = 1800,
+  FIB_MEDICAL_COVID_ISOLATION_SCREEN_ID = 1900,
+  FIB_MEDICAL_COVID_SYMPTOMS_SCREEN_ID = 2000,
+  FIB_FINANCIAL_QUESTIONS_SCREEN_ID = 2100,
+  FIB_FINANCIAL_OTHER_COVER_SCREEN_ID = 2350,
+  FIB_FINANCIAL_COVER_LIST_SCREEN_ID = FINAL_PROGRESS,
+  FIB_FINANCIAL_CUSTOM_COVER_FORM_SCREEN_ID = FINAL_PROGRESS,
+}
+
 const _data: UnderwritingJourneyScreen[] = [
   {
     id: FIB_ENTER_YOUR_NAME,
@@ -186,6 +235,7 @@ const _data: UnderwritingJourneyScreen[] = [
     firstButton: { label: "Continue", actionId: FIB_YOUR_DATE_OF_BIRTH_SCREEN_ID },
     previousButton: { actionId: FIB_ENTER_YOUR_NAME },
     children: [{ type: "inputFullName" }],
+    accumulatedProgress: ACCUMULATED_PROGRESS.FIB_ENTER_YOUR_NAME,
   },
   {
     id: FIB_YOUR_DATE_OF_BIRTH_SCREEN_ID,
@@ -201,6 +251,7 @@ const _data: UnderwritingJourneyScreen[] = [
         type: "copyBirthday",
       },
     ],
+    accumulatedProgress: ACCUMULATED_PROGRESS.FIB_YOUR_DATE_OF_BIRTH_SCREEN_ID,
   },
   {
     id: FIB_ENTER_YOUR_DATE_OF_BIRTH,
@@ -215,6 +266,7 @@ const _data: UnderwritingJourneyScreen[] = [
     ],
     firstButton: { label: "Continue", actionId: FIB_UK_RESIDENT_SCREEN_ID },
     previousButton: { actionId: FIB_YOUR_DATE_OF_BIRTH_SCREEN_ID },
+    accumulatedProgress: ACCUMULATED_PROGRESS.FIB_YOUR_DATE_OF_BIRTH_SCREEN_ID,
   },
   {
     id: FIB_UK_RESIDENT_SCREEN_ID,
@@ -232,6 +284,7 @@ const _data: UnderwritingJourneyScreen[] = [
           "You are considered a resident if: \n\n- You have indefinite leave to remain in the UK, Channel Islands, Isle of Man or Gibraltar; or\n\n- You are an EU or EEA national living permanently in the UK, Channel Islands, Isle of Man or Gibraltar; or\n\n- You have resided in the UK, Channel Islands, Isle of Man or Gibraltar for the last 12 months, live there permanently and will continue to do so.",
       },
     ],
+    accumulatedProgress: ACCUMULATED_PROGRESS.FIB_UK_RESIDENT_SCREEN_ID,
   },
   {
     id: FIB_MEMBER_OF_ARMED_FORCES_SCREEN_ID,
@@ -249,6 +302,7 @@ const _data: UnderwritingJourneyScreen[] = [
         text: `- Commercial diving;\n- Commercial aviation (as pilot or crew);\n- Offshore work (including gas or oil platforms);\n- Offshore fishing; or\n- Working with explosives.`,
       },
     ],
+    accumulatedProgress: ACCUMULATED_PROGRESS.FIB_MEMBER_OF_ARMED_FORCES_SCREEN_ID,
   },
   {
     id: FIB_LIFESTYLE_HEIGHT_SCREEN_ID,
@@ -263,6 +317,7 @@ const _data: UnderwritingJourneyScreen[] = [
         type: "inputHeight",
       },
     ],
+    accumulatedProgress: ACCUMULATED_PROGRESS.FIB_LIFESTYLE_HEIGHT_SCREEN_ID,
   },
   {
     id: FIB_LIFESTYLE_WEIGHT_SCREEN_ID,
@@ -281,6 +336,7 @@ const _data: UnderwritingJourneyScreen[] = [
         type: "inputWeight",
       },
     ],
+    accumulatedProgress: ACCUMULATED_PROGRESS.FIB_LIFESTYLE_WEIGHT_SCREEN_ID,
   },
   {
     id: FIB_LIFESTYLE_SMOKING_CIGARETTES_SCREEN_ID,
@@ -293,6 +349,7 @@ const _data: UnderwritingJourneyScreen[] = [
     firstButton: { label: "Continue", actionId: FIB_LIFESTYLE_SMOKING_CIGARETTES_FOLLOW_UP_SCREEN_ID },
     previousButton: { actionId: FIB_LIFESTYLE_WEIGHT_SCREEN_ID },
     nextQuestionBeforeQuit: FIB_LIFESTYLE_SMOKING_CIGARS_SCREEN_ID,
+    accumulatedProgress: ACCUMULATED_PROGRESS.FIB_LIFESTYLE_SMOKING_CIGARETTES_SCREEN_ID,
     children: [
       {
         type: "radioInput",
@@ -339,6 +396,7 @@ const _data: UnderwritingJourneyScreen[] = [
     question: "How many cigarettes do you or did you smoke per day?",
     firstButton: { label: "Continue", actionId: FIB_LIFESTYLE_SMOKING_CIGARS_SCREEN_ID },
     previousButton: { actionId: FIB_LIFESTYLE_SMOKING_CIGARETTES_SCREEN_ID },
+    accumulatedProgress: ACCUMULATED_PROGRESS.FIB_LIFESTYLE_SMOKING_CIGARETTES_FOLLOW_UP_SCREEN_ID,
     children: [
       {
         type: "radioInput",
@@ -388,6 +446,7 @@ const _data: UnderwritingJourneyScreen[] = [
     question: "When was the last time you smoked cigars, pipes or shisha?",
     firstButton: { label: "Continue", actionId: FIB_LIFESTYLE_SMOKING_VAPES_SCREEN_ID },
     previousButton: { actionId: FIB_LIFESTYLE_SMOKING_CIGARETTES_FOLLOW_UP_SCREEN_ID },
+    accumulatedProgress: ACCUMULATED_PROGRESS.FIB_LIFESTYLE_SMOKING_CIGARS_SCREEN_ID,
     children: [
       {
         type: "radioInput",
@@ -434,6 +493,7 @@ const _data: UnderwritingJourneyScreen[] = [
       "When was the last time you used e-cigarettes, vapes or another nicotine substitutes such as nicotine gum or patches?",
     firstButton: { label: "Continue", actionId: FIB_LIFESTYLE_ALCOHOL_SCREEN_ID },
     previousButton: { actionId: FIB_LIFESTYLE_SMOKING_CIGARS_SCREEN_ID },
+    accumulatedProgress: ACCUMULATED_PROGRESS.FIB_LIFESTYLE_SMOKING_VAPES_SCREEN_ID,
     children: [
       {
         type: "radioInput",
@@ -478,6 +538,7 @@ const _data: UnderwritingJourneyScreen[] = [
     question: "Cheers! How much do you drink in an average week?",
     firstButton: { label: "Continue", actionId: FIB_LIFESTYLE_DRUGS_SCREEN_ID },
     previousButton: { actionId: FIB_LIFESTYLE_SMOKING_VAPES_SCREEN_ID },
+    accumulatedProgress: ACCUMULATED_PROGRESS.FIB_LIFESTYLE_ALCOHOL_SCREEN_ID,
     children: [
       {
         type: "markdown",
@@ -498,6 +559,7 @@ const _data: UnderwritingJourneyScreen[] = [
     firstButton: { label: "No", actionId: FIB_LIFESTYLE_DRUGS_COUNCELLING_SCREEN_ID },
     secondButton: { label: "Yes", actionId: FIB_LIFESTYLE_DRUGS_COUNCELLING_SCREEN_ID },
     previousButton: { actionId: FIB_LIFESTYLE_ALCOHOL_SCREEN_ID },
+    accumulatedProgress: ACCUMULATED_PROGRESS.FIB_LIFESTYLE_DRUGS_SCREEN_ID,
     children: [
       {
         type: "markdown",
@@ -516,6 +578,7 @@ const _data: UnderwritingJourneyScreen[] = [
     firstButton: { label: "No", actionId: FIB_MEDICAL_HISTORY_SCREEN_ID },
     secondButton: { label: "Yes", actionId: FIB_MEDICAL_HISTORY_SCREEN_ID },
     previousButton: { actionId: FIB_LIFESTYLE_DRUGS_SCREEN_ID },
+    accumulatedProgress: ACCUMULATED_PROGRESS.FIB_LIFESTYLE_DRUGS_COUNCELLING_SCREEN_ID,
   },
   {
     id: FIB_MEDICAL_HISTORY_SCREEN_ID,
@@ -526,6 +589,7 @@ const _data: UnderwritingJourneyScreen[] = [
     firstButton: { label: "No", actionId: FIB_MEDICAL_THREE_OR_MORE_CONSULTATION_SCREEN_ID },
     secondButton: { label: "Yes", actionId: FIB_MEDICAL_THREE_OR_MORE_CONSULTATION_SCREEN_ID },
     previousButton: { actionId: FIB_LIFESTYLE_DRUGS_COUNCELLING_SCREEN_ID },
+    accumulatedProgress: ACCUMULATED_PROGRESS.FIB_MEDICAL_HISTORY_SCREEN_ID,
     children: [
       {
         type: "medicalHistory",
@@ -599,6 +663,7 @@ const _data: UnderwritingJourneyScreen[] = [
     secondButton: { label: "Yes", actionId: FIB_THREE_YEAR_MEDICAL_HISTORY_SCREEN_ID },
     nextQuestionBeforeQuit: FIB_MEDICAL_OUTSTANDING_MEDICAL_INVESTIGATIONS_SCREEN_ID,
     previousButton: { actionId: FIB_MEDICAL_HISTORY_SCREEN_ID },
+    accumulatedProgress: ACCUMULATED_PROGRESS.FIB_MEDICAL_THREE_OR_MORE_CONSULTATION_SCREEN_ID,
   },
   {
     id: FIB_THREE_YEAR_MEDICAL_HISTORY_SCREEN_ID,
@@ -618,6 +683,7 @@ const _data: UnderwritingJourneyScreen[] = [
     title: "Three Year Medical History",
     reviewAnswerTitle: "Three Year Medical History Detail",
     question: "Select all the conditions for which you required consultations",
+    accumulatedProgress: ACCUMULATED_PROGRESS.FIB_THREE_YEAR_MEDICAL_HISTORY_SCREEN_ID,
     children: [
       {
         type: "chiplist",
@@ -721,6 +787,7 @@ const _data: UnderwritingJourneyScreen[] = [
       actionId: FIB_HIGH_CHOLESTEROL_SCREEN_ID,
       answersIdToInvalidate: [FIB_HIGH_BLOOD_PRESSURE_EXTRA_SCREEN],
     },
+    accumulatedProgress: ACCUMULATED_PROGRESS.FIB_HIGH_BLOOD_PRESSURE_SCREEN_ID,
     secondButton: { label: "Yes", actionId: FIB_HIGH_BLOOD_PRESSURE_EXTRA_SCREEN },
     previousButton: { actionId: FIB_THREE_YEAR_MEDICAL_HISTORY_SCREEN_ID },
   },
@@ -736,6 +803,7 @@ const _data: UnderwritingJourneyScreen[] = [
     <path d="M6.96094 9.33301L7.78125 10.1663L9.8776 8.08301" stroke="#828284" stroke-width="1.41667" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
     </svg>
     `,
+    accumulatedProgress: ACCUMULATED_PROGRESS.FIB_HIGH_BLOOD_PRESSURE_EXTRA_SCREEN,
     title: "Blood Pressure Readings Satisfactory?",
     question: "Were your last blood pressure readings normal or satisfactory?",
     firstButton: { label: "No", actionId: FIB_HIGH_CHOLESTEROL_SCREEN_ID },
@@ -757,6 +825,7 @@ const _data: UnderwritingJourneyScreen[] = [
     </svg>
     `,
     question: "Has your cholesterol been checked by a medical professional in the last 12 months?",
+    accumulatedProgress: ACCUMULATED_PROGRESS.FIB_HIGH_CHOLESTEROL_SCREEN_ID,
     firstButton: {
       label: "No",
       actionId: FIB_DIGESTIVE_SCREEN_ID,
@@ -778,6 +847,7 @@ const _data: UnderwritingJourneyScreen[] = [
     </svg>
     `,
     title: "Cholesterol Readings Satisfactory?",
+    accumulatedProgress: ACCUMULATED_PROGRESS.FIB_HIGH_CHOLESTEROL_EXTRA_SCREEN,
     question: "Were your last cholesterol readings normal or satisfactory?",
     firstButton: { label: "No", actionId: FIB_DIGESTIVE_SCREEN_ID },
     secondButton: { label: "Yes", actionId: FIB_DIGESTIVE_SCREEN_ID },
@@ -785,6 +855,7 @@ const _data: UnderwritingJourneyScreen[] = [
   },
   {
     id: FIB_DIGESTIVE_SCREEN_ID,
+    accumulatedProgress: ACCUMULATED_PROGRESS.FIB_DIGESTIVE_SCREEN_ID,
     category: "fib_medical_journey",
     heading: "Medical",
     title: "Digestive",
@@ -815,6 +886,7 @@ const _data: UnderwritingJourneyScreen[] = [
   },
   {
     id: FIB_MEDICAL_JOURNEY_EARS_NOSE_THROAT_SCREEN_ID,
+    accumulatedProgress: ACCUMULATED_PROGRESS.FIB_MEDICAL_JOURNEY_EARS_NOSE_THROAT_SCREEN_ID,
     category: "fib_medical_journey",
     heading: "Medical",
     title: "Ears, Nose, Throat",
@@ -844,6 +916,7 @@ const _data: UnderwritingJourneyScreen[] = [
   },
   {
     id: FIB_MEDICAL_JOURNEY_EYE_SCREEN_ID,
+    accumulatedProgress: ACCUMULATED_PROGRESS.FIB_MEDICAL_JOURNEY_EYE_SCREEN_ID,
     category: "fib_medical_journey",
     heading: "Medical",
     icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -874,6 +947,7 @@ const _data: UnderwritingJourneyScreen[] = [
   },
   {
     id: FIB_MEDICAL_JOURNEY_KIDNEYS_BLADDER_SCREEN_ID,
+    accumulatedProgress: ACCUMULATED_PROGRESS.FIB_MEDICAL_JOURNEY_KIDNEYS_BLADDER_SCREEN_ID,
     category: "fib_medical_journey",
     heading: "Medical",
     icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -907,6 +981,7 @@ const _data: UnderwritingJourneyScreen[] = [
   },
   {
     id: FIB_MEDICAL_JOURNEY_LUNGS_SCREEN_ID,
+    accumulatedProgress: ACCUMULATED_PROGRESS.FIB_MEDICAL_JOURNEY_LUNGS_SCREEN_ID,
     category: "fib_medical_journey",
     heading: "Medical",
     title: "Lungs",
@@ -940,6 +1015,7 @@ const _data: UnderwritingJourneyScreen[] = [
   },
   {
     id: FIB_MEDICAL_JOURNEY_MINOR_INJURIES_SCREEN_ID,
+    accumulatedProgress: ACCUMULATED_PROGRESS.FIB_MEDICAL_JOURNEY_MINOR_INJURIES_SCREEN_ID,
     category: "fib_medical_journey",
     heading: "Medical",
     title: "Minor Injuries",
@@ -970,6 +1046,7 @@ const _data: UnderwritingJourneyScreen[] = [
   },
   {
     id: FIB_MEDICAL_JOURNEY_MUSCLES_JOINTS_SCREEN_ID,
+    accumulatedProgress: ACCUMULATED_PROGRESS.FIB_MEDICAL_JOURNEY_MUSCLES_JOINTS_SCREEN_ID,
     category: "fib_medical_journey",
     heading: "Medical",
     icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1000,6 +1077,7 @@ const _data: UnderwritingJourneyScreen[] = [
   },
   {
     id: FIB_MEDICAL_JOURNEY_PREGNANCY_SCREEN_ID,
+    accumulatedProgress: ACCUMULATED_PROGRESS.FIB_MEDICAL_JOURNEY_PREGNANCY_SCREEN_ID,
     category: "fib_medical_journey",
     heading: "Medical",
     icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1036,6 +1114,7 @@ const _data: UnderwritingJourneyScreen[] = [
   },
   {
     id: FIB_MEDICAL_JOURNEY_SKIN_SCREEN_ID,
+    accumulatedProgress: ACCUMULATED_PROGRESS.FIB_MEDICAL_JOURNEY_SKIN_SCREEN_ID,
     category: "fib_medical_journey",
     heading: "Medical",
     icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1071,6 +1150,7 @@ const _data: UnderwritingJourneyScreen[] = [
   },
   {
     id: FIB_MEDICAL_JOURNEY_OTHER_SCREEN_ID,
+    accumulatedProgress: ACCUMULATED_PROGRESS.FIB_MEDICAL_JOURNEY_OTHER_SCREEN_ID,
     category: "fib_medical_journey",
     heading: "Medical",
     icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1100,6 +1180,7 @@ const _data: UnderwritingJourneyScreen[] = [
   },
   {
     id: FIB_HOSPITAL_STAY_SCREEN_ID,
+    accumulatedProgress: ACCUMULATED_PROGRESS.FIB_HOSPITAL_STAY_SCREEN_ID,
     category: "fib_medical_journey",
     dependsOnOtherResponses: [
       {
@@ -1168,6 +1249,7 @@ const _data: UnderwritingJourneyScreen[] = [
   },
   {
     id: FIB_SYMPTOMS_RESOLVED_SCREEN_ID,
+    accumulatedProgress: ACCUMULATED_PROGRESS.FIB_SYMPTOMS_RESOLVED_SCREEN_ID,
     category: "fib_medical_journey",
     dependsOnOtherResponses: [{ id: FIB_HOSPITAL_STAY_SCREEN_ID, answer: "No" }],
     heading: "Medical",
@@ -1188,6 +1270,7 @@ const _data: UnderwritingJourneyScreen[] = [
   },
   {
     id: FIB_CONDITION_STABLE_SCREEN_ID,
+    accumulatedProgress: ACCUMULATED_PROGRESS.FIB_CONDITION_STABLE_SCREEN_ID,
     category: "fib_medical_journey",
     dependsOnOtherResponses: [{ id: FIB_SYMPTOMS_RESOLVED_SCREEN_ID, answer: "No" }],
     heading: "Medical",
@@ -1204,6 +1287,7 @@ const _data: UnderwritingJourneyScreen[] = [
   },
   {
     id: FIB_DAILY_ACTIVITIES_RESTRICTIONS_SCREEN_ID,
+    accumulatedProgress: ACCUMULATED_PROGRESS.FIB_DAILY_ACTIVITIES_RESTRICTIONS_SCREEN_ID,
     category: "fib_medical_journey",
     dependsOnOtherResponses: [
       {
@@ -1271,6 +1355,7 @@ const _data: UnderwritingJourneyScreen[] = [
   },
   {
     id: FIB_MEDICAL_OUTSTANDING_MEDICAL_INVESTIGATIONS_SCREEN_ID,
+    accumulatedProgress: ACCUMULATED_PROGRESS.FIB_MEDICAL_OUTSTANDING_MEDICAL_INVESTIGATIONS_SCREEN_ID,
     heading: "Medical",
     icon: OUTSTANDING_MEDICAL_INVESTIGATIONS_ICON,
     title: "Outstanding Medical Investigations",
@@ -1287,6 +1372,7 @@ const _data: UnderwritingJourneyScreen[] = [
   },
   {
     id: FIB_MEDICAL_OTHER_SYMPTOMS_SCREEN_ID,
+    accumulatedProgress: ACCUMULATED_PROGRESS.FIB_MEDICAL_OTHER_SYMPTOMS_SCREEN_ID,
     heading: "Medical",
     icon: CIRCLE_WITH_ELLIPSES_ICON,
     title: "Other Symptoms",
@@ -1304,6 +1390,7 @@ const _data: UnderwritingJourneyScreen[] = [
   },
   {
     id: FIB_MEDICAL_COVID_ISOLATION_SCREEN_ID,
+    accumulatedProgress: ACCUMULATED_PROGRESS.FIB_MEDICAL_COVID_ISOLATION_SCREEN_ID,
     heading: "Medical",
     icon: PERSON_FACEMASK_ICON,
     title: "Covid Isolation",
@@ -1321,6 +1408,7 @@ const _data: UnderwritingJourneyScreen[] = [
   },
   {
     id: FIB_MEDICAL_COVID_SYMPTOMS_SCREEN_ID,
+    accumulatedProgress: ACCUMULATED_PROGRESS.FIB_MEDICAL_COVID_SYMPTOMS_SCREEN_ID,
     heading: "Medical",
     icon: PERSON_FACEMASK_ICON,
     title: "Covid Symptoms",
@@ -1338,6 +1426,7 @@ const _data: UnderwritingJourneyScreen[] = [
   },
   {
     id: FIB_FINANCIAL_QUESTIONS_SCREEN_ID,
+    accumulatedProgress: ACCUMULATED_PROGRESS.FIB_FINANCIAL_QUESTIONS_SCREEN_ID,
     category: "fib_financial",
     heading: "Financial",
     icon: FINANCIAL_QUESTIONS_ICON,
@@ -1355,6 +1444,7 @@ const _data: UnderwritingJourneyScreen[] = [
   },
   {
     id: FIB_FINANCIAL_OTHER_COVER_SCREEN_ID,
+    accumulatedProgress: ACCUMULATED_PROGRESS.FIB_FINANCIAL_OTHER_COVER_SCREEN_ID,
     category: "fib_financial",
     heading: "Financial",
     icon: FINANCIAL_QUESTIONS_ICON,
@@ -1367,6 +1457,7 @@ const _data: UnderwritingJourneyScreen[] = [
   },
   {
     id: FIB_FINANCIAL_COVER_LIST_SCREEN_ID,
+    accumulatedProgress: ACCUMULATED_PROGRESS.FIB_FINANCIAL_COVER_LIST_SCREEN_ID,
     category: "fib_financial",
     heading: "Financial",
     icon: FINANCIAL_QUESTIONS_ICON,
@@ -1378,6 +1469,7 @@ const _data: UnderwritingJourneyScreen[] = [
   },
   {
     id: FIB_FINANCIAL_CUSTOM_COVER_FORM_SCREEN_ID,
+    accumulatedProgress: ACCUMULATED_PROGRESS.FIB_FINANCIAL_CUSTOM_COVER_FORM_SCREEN_ID,
     category: "fib_financial",
     heading: "Financial",
     icon: FINANCIAL_QUESTIONS_ICON,
