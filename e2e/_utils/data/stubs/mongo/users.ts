@@ -1,7 +1,7 @@
 
 import { generateRandomMongoId } from '../../utils';
 import { IDatabaseItem } from '../../types';
-import { CUSTOMER_2, CUSTOMER_3, CUSTOMER_4, CUSTOMER_16, CUSTOMER_17, CUSTOMER_18, CUSTOMER_ALPHA, CUSTOMER_21, CUSTOMER_23, CUSTOMER_20, CUSTOMER_19, CUSTOMER_5, CUSTOMER_6, CUSTOMER_7, CUSTOMER_9, CUSTOMER_15, CUSTOMER_22, CUSTOMER_24, CUSTOMER_13 } from '../postgres/customers';
+import { CUSTOMER_2, CUSTOMER_3, CUSTOMER_4, CUSTOMER_16, CUSTOMER_17, CUSTOMER_18, CUSTOMER_ALPHA, CUSTOMER_21, CUSTOMER_23, CUSTOMER_20, CUSTOMER_19, CUSTOMER_5, CUSTOMER_6, CUSTOMER_7, CUSTOMER_9, CUSTOMER_15, CUSTOMER_22, CUSTOMER_24, CUSTOMER_13, CUSTOMER_25 } from '../postgres/customers';
 
 const USER_DATA_TEMPLATE = {
     data: {
@@ -287,6 +287,23 @@ export const USER_23 = {
     }
 } as IDatabaseItem
 
+export const USER_25 = {
+    type: "mongo",
+    modelName: "users",
+    data: {
+        _id: generateRandomMongoId(),
+        userId: CUSTOMER_25.data.customerId,
+        products: [{
+            productId: generateRandomMongoId(),
+            productType: "Yulife",
+            option: "epic",
+            type: "employer",
+            earnRate: 10,
+        }],
+        earnRate: 10,
+    }
+} as IDatabaseItem
+
 export const USER_24 = {
     type: "mongo",
     modelName: "users",
@@ -303,3 +320,4 @@ export const USER_24 = {
         earnRate: 10,
     }
 } as IDatabaseItem
+

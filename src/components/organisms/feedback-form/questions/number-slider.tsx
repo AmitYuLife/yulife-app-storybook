@@ -5,6 +5,7 @@ import { SliderInputProps } from "@atoms/slider-input/slider-input";
 import { ScrollableLayout } from "@molecules";
 import { YugiSvg } from "../assets/yugi-svg";
 import { styles, QuestionProps } from "./common";
+import { FEEDBACK_FORM_QUESTION } from "@ids";
 
 interface Props extends QuestionProps {
   slider: SliderInputProps;
@@ -37,7 +38,12 @@ export default ({
       shouldCenterContent={true}
     >
       <View style={styles.content}>
-        <Heading style={styles.heading} label={questionText} bold={true} />
+        <Heading
+          style={styles.heading}
+          label={questionText}
+          bold={true}
+          testID={FEEDBACK_FORM_QUESTION(questionText)}
+        />
         <View style={styles.yugiWrapper}>
           <YugiSvg />
         </View>

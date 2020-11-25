@@ -13,6 +13,8 @@ export * from "./mongo/duel_wager_template"
 export * from "./mongo/userDuel"
 export * from "./mongo/user_community_goals"
 export * from "./mongo/core_community_goals"
+export * from "./mongo/feedback_forms"
+export * from "./mongo/feedback_submission"
 
 export * from "./postgres/business";
 export * from "./postgres/customers";
