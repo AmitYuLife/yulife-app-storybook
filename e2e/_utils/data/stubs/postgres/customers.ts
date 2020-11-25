@@ -366,3 +366,18 @@ export const CUSTOMER_24 = {
         status: "onboarded"
     }
 } as IDatabaseItem
+
+// feedback will always show for this user on login
+export const CUSTOMER_25 = {
+    type: "postgres",
+    modelName: "customer",
+    data: {
+        customerId: generateRandomMongoId(),
+        email: "majid@yulife.com",
+        firstName: "Majid",
+        lastName: "Jordan",
+        dateOfBirth: moment().subtract(27, "years").toDate(),
+        membershipType: "Wellbeing Access",
+        status: "onboarded"
+    }
+} as IDatabaseItem

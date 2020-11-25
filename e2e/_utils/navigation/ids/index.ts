@@ -139,3 +139,9 @@ export const DUEL_RESPONSE = (opponentName:string) => `DUEL_RESPONSE_${opponentN
 // COMMUNITY GOALS
 export const NICKNAME_INPUT = "NICKNAME_INPUT"
 export const COMMUNITY_GOAL_DROPDOWN = "COMMUNITY_GOAL_DROPDOWN"
+
+// FEEDBACK FORMS
+export const FEEDBACK_FORM_QUESTION =(question:string) => `FEEDBACK_FORM_QUESTION_${question}`
+export const SLIDER_INPUT = (index:number) => `FEEDBACK_FORM_RATING_${index}`
+export const SLIDER_LABEL = (label:string) => `SLIDER_LABEL_${label}`
+export const FEEDBACK_TEXT_INPUT = "FEEDBACK_TEXT_INPUT"
