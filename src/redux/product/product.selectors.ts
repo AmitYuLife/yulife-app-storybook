@@ -101,18 +101,16 @@ export const getReviewAnswers = (state: IReduxState): any => {
       const chipListChild = item.children.find((child) => child.type === "chiplist");
 
       let commaCount = 0;
+      answer = "";
+
       chipListChild.chips.map((chip) => {
         const activeChip = activeChips.find((activeChip) => activeChip === chip.id);
-
         if (activeChip) {
           commaCount++;
-          if (!answer) {
-            answer = "";
-          }
-
           answer = answer.concat(`${chip.label}${commaCount === activeChips.length ? "" : ", "}`);
         }
       });
+
       icon = item.icon;
       title = item.reviewAnswerTitle || item.title;
       questionId = item.id;

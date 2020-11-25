@@ -224,6 +224,22 @@ function rehydratePersonalProductStore(state: IProductStore, payload: IReduxStat
           (newPersistedState.fib as any)[key] = initialState.fib[key];
         }
 
+        // Do the same for answers object
+        if (key === "answers") {
+          const persistedAnswers = Object.keys(payload.product.fib.answers);
+
+          (newPersistedState.fib as any)[key] = Object.keys(initialState.fib.answers).reduce(
+            (newPersistedAnswers, answerKey) => {
+              if (!persistedAnswers.includes(answerKey)) {
+                newPersistedAnswers[answerKey] = initialState.fib.answers[answerKey];
+              }
+
+              return newPersistedAnswers;
+            },
+            { ...payload.product.fib.answers }
+          );
+        }
+
         return newPersistedState;
       },
       // create a shallow copy of the persisted store
