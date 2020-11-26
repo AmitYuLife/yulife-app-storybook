@@ -16,17 +16,17 @@ storiesOf("Financial Questions", module)
   .addDecorator(withProvider)
   .add("financial questions form", () => (
     <FinancialQuestionsFormScreen
-      progressBar={{ maxLength: 10, currentPosition: 1, isHidden: false }}
       onNavigateBack={voidFunc}
       data={formScreenData}
       onFirstButtonPressed={() => null}
+      hideProgressBar={false}
     />
   ))
   .add("financial questions cover list", () => (
     <FinancialQuestionsCoverListScreen
-      progressBar={{ maxLength: 10, currentPosition: 2, isHidden: false }}
       onNavigateBack={voidFunc}
       data={coverListData}
       onFirstButtonPressed={() => null}
+      hideProgressBar={false}
     />
   ));

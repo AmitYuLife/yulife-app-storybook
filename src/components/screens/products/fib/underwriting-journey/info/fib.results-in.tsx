@@ -45,7 +45,7 @@ export const FibResultsInScreen = memo(function (props: IFibResultsInScreenProps
   return (
     <FibUnderwritingJourneyLayout
       heading={"Results"}
-      progressBar={{ maxLength: 0, currentPosition: 0, isHidden: true }}
+      hideProgressBar={true}
       hideHeadingBorder={false}
       onPreviousQuestion={onClose}
     >

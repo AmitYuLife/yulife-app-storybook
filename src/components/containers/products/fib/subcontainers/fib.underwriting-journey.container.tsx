@@ -11,6 +11,7 @@ import {
   FIB_LIFESTYLE_SMOKING_CIGARS_SCREEN_ID,
   FIB_LIFESTYLE_SMOKING_VAPES_SCREEN_ID,
   FIB_LIFESTYLE_SMOKING_CIGARETTES_FOLLOW_UP_SCREEN_ID,
+  FINAL_PROGRESS,
 } from "../data/underwriting-journey-data";
 import { FIBProgressBar } from "@organisms";
 import { IReduxState } from "@redux/_core/reducers";
@@ -56,7 +57,6 @@ const FibUnderwritingJourneyContainer = memo(function (props: Props) {
     ) || data[0];
 
   const [currentQuestion, setCurrentQuestion] = useState<OrderedUnderwritingJourneyScreen>(initialQuestion);
-  const activeIndex = data.findIndex((item) => item.id === currentQuestion?.id) || 0;
 
   const isSmokingQuestion = [
     FIB_LIFESTYLE_SMOKING_CIGARETTES_SCREEN_ID,
@@ -255,8 +255,8 @@ const FibUnderwritingJourneyContainer = memo(function (props: Props) {
       : handleSetPreviousQuestion;
 
   const progressBar = {
-    currentPosition: currentQuestion.order,
-    maxLength: data.length,
+    currentPosition: currentQuestion.accumulatedProgress,
+    maxLength: FINAL_PROGRESS,
   };
 
   const disableFirstButton = shouldFirstButtonBeDisabled(
@@ -299,11 +299,7 @@ const FibUnderwritingJourneyContainer = memo(function (props: Props) {
         onFirstButtonPressed={onFirstButtonPressed}
         onSecondButtonPressed={onSecondButtonPressed}
         onPreviousButtonPressed={onPreviousButtonPressed}
-        progressBar={{
-          maxLength: data.length,
-          currentPosition: activeIndex + 1,
-          isHidden: redirectedFromReviewScreen ? true : false,
-        }}
+        hideProgressBar={redirectedFromReviewScreen}
         disableFirstButton={disableFirstButton}
         inputFirstName={inputFirstName}
         inputLastName={inputLastName}

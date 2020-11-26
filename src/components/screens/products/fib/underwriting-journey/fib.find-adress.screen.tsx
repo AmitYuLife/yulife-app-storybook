@@ -58,7 +58,7 @@ export const FibFindAddressScreen = memo(function (props: IFibFindAddressScreenP
     <FibUnderwritingJourneyLayout
       heading={"Contact Details"}
       onClose={onClose}
-      progressBar={{ maxLength: 0, currentPosition: 0, isHidden: true }}
+      hideProgressBar={true}
       onPreviousQuestion={onBackButtonPress}
     >
       <View style={styles.wrapper}>

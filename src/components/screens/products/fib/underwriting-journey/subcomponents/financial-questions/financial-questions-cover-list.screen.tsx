@@ -22,13 +22,14 @@ function _FinancialQuestionsCoverListScreen(props: Props) {
     onSecondButtonPressed,
     onPreviousButtonPressed,
     existingCovers = [],
+    hideProgressBar,
   } = props;
 
   return (
     <FibUnderwritingJourneyLayout
       heading={data.heading}
       onClose={onNavigateBack}
-      progressBar={props.progressBar}
+      hideProgressBar={hideProgressBar}
       onPreviousQuestion={onPreviousButtonPressed}
     >
       <ScrollView style={styles.wrapper}>

@@ -11,8 +11,6 @@ export interface IFibRejectedScreenProps {
   onResetFib?: () => void;
 }
 
-const PROGRESS_BAR = { maxLength: 0, currentPosition: 0, isHidden: true };
-
 export const FibRejectedScreen = memo(function (props: IFibRejectedScreenProps) {
   const { onClose, onResetFib } = props;
 
@@ -26,7 +24,7 @@ export const FibRejectedScreen = memo(function (props: IFibRejectedScreenProps) 
   return (
     <FibUnderwritingJourneyLayout
       heading={"Rejection"}
-      progressBar={PROGRESS_BAR}
+      hideProgressBar={true}
       hideHeadingBorder={false}
       onPreviousQuestion={onClose}
     >

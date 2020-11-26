@@ -24,7 +24,7 @@ export const FibHoldingGPDetails = memo(function (props: IFibHoldingGPDetailsScr
     <FibUnderwritingJourneyLayout
       heading={"GP Results"}
       onClose={onClose}
-      progressBar={{ maxLength: 0, currentPosition: 0, isHidden: true }}
+      hideProgressBar={true}
       hideHeadingBorder={false}
     >
       <View style={styles.wrapper}>

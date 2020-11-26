@@ -54,11 +54,7 @@ export const FibContactDetailsScreen = memo(function (props: IFibContactDetailsS
   );
 
   return (
-    <FibUnderwritingJourneyLayout
-      heading={"Contact Details"}
-      onClose={onClose}
-      progressBar={{ maxLength: 0, currentPosition: 0, isHidden: true }}
-    >
+    <FibUnderwritingJourneyLayout heading={"Contact Details"} onClose={onClose} hideProgressBar={true}>
       <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 50 }}>
         <View style={styles.wrapper}>
           <FibTitle title={"Great! Please enter your\ncontact details below"} />

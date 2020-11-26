@@ -11,16 +11,12 @@ interface Props {
   onPreviousQuestion?: () => void | null;
   children: React.ReactNode;
   hideHeadingBorder?: boolean;
-  progressBar: {
-    maxLength: number;
-    currentPosition: number;
-    isHidden: boolean;
-  };
+  hideProgressBar: boolean;
   yugi?: "default";
 }
 
 export function FibUnderwritingJourneyLayout(props: Props) {
-  const { heading, onClose, onPreviousQuestion = null, children, progressBar, hideHeadingBorder, yugi } = props;
+  const { heading, onClose, onPreviousQuestion = null, children, hideProgressBar, hideHeadingBorder, yugi } = props;
 
   return (
     <KeyboardAvoidingView behavior={Platform.select({ ios: "padding", android: null })} style={styles.wrapper}>
@@ -33,7 +29,7 @@ export function FibUnderwritingJourneyLayout(props: Props) {
           isBeta={true}
           hideBorder={hideHeadingBorder ?? true}
         />
-        {progressBar.isHidden ? null : <FIBProgressBar />}
+        {hideProgressBar ? null : <FIBProgressBar />}
         {children}
         <Yugi yugi={yugi} />
       </SafeAreaView>
