@@ -3,7 +3,7 @@ import { View, StyleSheet, ViewStyle, ImageStyle, TextStyle } from "react-native
 import { Text } from "@atoms/index";
 import { ITableRowProps } from "./table.row";
 import { Style, Colours } from "@styles";
-import { EARN_RATE_COLUMN_WIDTH } from "../table.styles";
+import { EARN_RATE_COLUMN_WIDTH, ROW_HEIGHT } from "../table.styles";
 import { YuCoinIcon } from "@atoms";
 
 type ISurgeRates = Pick<ITableRowProps, "totalEarnRate"> & {
@@ -30,7 +30,7 @@ export function SurgeRates({ hide, totalEarnRate, standardValue }: ISurgeRates) 
 
 const styles = StyleSheet.create({
   wrapper: {
-    height: Style.adjust(48),
+    height: ROW_HEIGHT,
     width: EARN_RATE_COLUMN_WIDTH,
     justifyContent: "flex-end",
     alignItems: "center",

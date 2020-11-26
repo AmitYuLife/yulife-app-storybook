@@ -53,7 +53,7 @@ const YuEarnRateModal = () => {
         </View>
         <EarnRateTable earnRate={earnRate} explainData={explainData} loading={loading} />
         <SurgedInfo earnRate={earnRate} />
-        <View style={StyleSheet.flatten([styles.footerWrapper, { marginTop: earnRate < 2 ? 0 : Style.adjust(24) }])}>
+        <View style={styles.footerWrapper}>
           <TextWithBoldText style={styles.footer} value={COPY} />
         </View>
         <Button wrapperStyle={styles.confirm} size="Large" type="Primary" onPress={dismissOverlay} label="Got it!" />
@@ -79,7 +79,6 @@ const headingWrapperMarginTop = Platform.select({
 const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
-    borderWidth: 1,
   } as ViewStyle,
   bottomPad: {
     height: Style.adjust(140),
@@ -108,10 +107,11 @@ const styles = StyleSheet.create({
   } as TextStyle,
   footerWrapper: {
     paddingHorizontal: Style.adjust(30),
+    marginTop: Style.adjust(8),
   } as ViewStyle,
   footer: {
     fontSize: Style.adjust(16),
-    letterSpacing: 1,
+    letterSpacing: 0.8,
     lineHeight: Style.adjust(24),
   } as TextStyle,
   confirm: {

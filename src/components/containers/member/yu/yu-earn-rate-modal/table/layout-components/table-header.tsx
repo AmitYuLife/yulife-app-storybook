@@ -1,38 +1,33 @@
 import React from "react";
 import { View, StyleSheet, ViewStyle, TextStyle } from "react-native";
-import { EARN_RATE_COLUMN_WIDTH, RATE_COLUMN_PAD } from "../table.styles";
+import { EARN_RATE_COLUMN_WIDTH, RATE_COLUMN_PAD, SINGLE_COLUMN_MAX_WIDTH } from "../table.styles";
 import { Style, Colours } from "@styles";
 import { TextWithBoldText } from "@components/molecules";
+import { SurgedHeader } from "./surged-header";
 
 interface IProps {
   earnRate: number;
-  show: boolean;
 }
 
-export function TableHeader({ earnRate, show }: IProps) {
-  if (!show) {
-    return null;
-  }
-
+export function TableHeader({ earnRate }: IProps) {
   return (
-    <View style={styles.wrapper}>
+    <View style={StyleSheet.flatten([styles.wrapper, earnRate < 2 && styles.noEarnRateIncrease])}>
       <View style={styles.flex} />
       <View style={styles.headerLabelWrapper}>
         <TextWithBoldText value={"<bold>1</bold>\nYuCoin\nPower"} style={styles.headerLabel} />
       </View>
-      <View style={styles.pad} />
-      <View style={[styles.headerLabelWrapper, styles.marginRight]}>
-        <TextWithBoldText
-          value={`<bold>${earnRate}</bold>\nYuCoin\nPower`}
-          style={StyleSheet.flatten([styles.headerLabel, styles.headerLabelHighlight])}
-        />
-      </View>
+      {earnRate < 2 ? null : <SurgedHeader earnRate={earnRate} />}
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  flex: { flex: 1 } as ViewStyle,
+  flex: {
+    flex: 1,
+  } as ViewStyle,
+  noEarnRateIncrease: {
+    maxWidth: SINGLE_COLUMN_MAX_WIDTH - 12,
+  } as ViewStyle,
   wrapper: {
     flexDirection: "row",
     alignSelf: "center",
