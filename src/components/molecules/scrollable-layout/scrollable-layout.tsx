@@ -22,6 +22,7 @@ interface Props {
   hideFirstButton?: boolean;
   isInlineCTA?: boolean;
   scrollViewForwardRef?: RefObject<ScrollView>;
+  removeCtaFade?: boolean;
 }
 
 export function ScrollableLayout(props: Props) {
@@ -41,6 +42,7 @@ export function ScrollableLayout(props: Props) {
     secondButtonLabel,
     secondButtonAction,
     scrollViewForwardRef,
+    removeCtaFade,
   } = props;
 
   const contentContainerStyle: ViewStyle = shouldCenterContent
@@ -74,6 +76,7 @@ export function ScrollableLayout(props: Props) {
           hideFirstButton={hideFirstButton}
           secondButtonAction={secondButtonAction}
           secondButtonLabel={secondButtonLabel}
+          removeCtaFade={removeCtaFade}
         />
       </SafeAreaView>
     </KeyboardAvoidingView>

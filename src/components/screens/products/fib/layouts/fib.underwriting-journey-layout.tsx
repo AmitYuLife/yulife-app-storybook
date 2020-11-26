@@ -27,7 +27,7 @@ export function FibUnderwritingJourneyLayout(props: Props) {
           onLeftIconPress={onPreviousQuestion}
           onRightIconPress={onClose}
           isBeta={true}
-          hideBorder={hideHeadingBorder ?? true}
+          hideBorder={hideHeadingBorder}
         />
         {hideProgressBar ? null : <FIBProgressBar />}
         {children}

@@ -57,70 +57,70 @@ export const FibContactDetailsScreen = memo(function (props: IFibContactDetailsS
     <FibUnderwritingJourneyLayout heading={"Contact Details"} onClose={onClose} hideProgressBar={true}>
       <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 50 }}>
         <View style={styles.wrapper}>
-          <FibTitle title={"Great! Please enter your\ncontact details below"} />
-
-          <TouchableOpacityWithDelay onPress={onFindAdress}>
-            <View style={styles.lookUpAdressWrapper}>
-              <Text style={styles.lookUpAdressText}>Look up address</Text>
-              <View style={styles.imageWrapper}>
-                <SvgXml height={12} width={6} xml={arrowRightSvg} />
+          <FibTitle title={"Great! Please enter your contact details below"} />
+          <View style={styles.paddingHorizontal}>
+            <TouchableOpacityWithDelay onPress={onFindAdress}>
+              <View style={styles.lookUpAdressWrapper}>
+                <Text style={styles.lookUpAdressText}>Look up address</Text>
+                <View style={styles.imageWrapper}>
+                  <SvgXml height={12} width={6} xml={arrowRightSvg} />
+                </View>
               </View>
-            </View>
-          </TouchableOpacityWithDelay>
-          <TextField
-            onChange={(val) => onContactDetailsChange("firstAddressLine", val)}
-            placeholder={"Address Line 1"}
-            value={contactDetails.firstAddressLine}
-          />
-          <Pad height={20} />
-          <TextField
-            onChange={(val) => onContactDetailsChange("secondAddressLine", val)}
-            placeholder={"Address Line 2 (optional)"}
-            value={contactDetails.secondAddressLine}
-          />
-          <Pad height={20} />
+            </TouchableOpacityWithDelay>
+            <TextField
+              onChange={(val) => onContactDetailsChange("firstAddressLine", val)}
+              placeholder={"Address Line 1"}
+              value={contactDetails.firstAddressLine}
+            />
+            <Pad height={20} />
+            <TextField
+              onChange={(val) => onContactDetailsChange("secondAddressLine", val)}
+              placeholder={"Address Line 2 (optional)"}
+              value={contactDetails.secondAddressLine}
+            />
+            <Pad height={20} />
 
-          <TextField
-            onChange={(val) => onContactDetailsChange("townOrCity", val)}
-            placeholder={"Town or City"}
-            value={contactDetails.townOrCity}
-          />
-          <Pad height={20} />
+            <TextField
+              onChange={(val) => onContactDetailsChange("townOrCity", val)}
+              placeholder={"Town or City"}
+              value={contactDetails.townOrCity}
+            />
+            <Pad height={20} />
 
-          <TextField
-            onChange={(val) => onPostCodeChange(val)}
-            placeholder={"Postcode"}
-            type={"PostCode"}
-            maxLength={8}
-            value={contactDetails.postCode}
-            showError={contactDetails.postCode && !isPostCodeValide}
-            errorMessage={"Not a valid postcode"}
-          />
-          <Pad height={20} />
+            <TextField
+              onChange={(val) => onPostCodeChange(val)}
+              placeholder={"Postcode"}
+              type={"PostCode"}
+              maxLength={8}
+              value={contactDetails.postCode}
+              showError={contactDetails.postCode && !isPostCodeValide}
+              errorMessage={"Not a valid postcode"}
+            />
+            <Pad height={20} />
 
-          <TextField
-            onChange={(val) => {
-              setIsEmailValid(validator.validate(val));
-              onContactDetailsChange("personalEmail", val);
-            }}
-            placeholder={"Personal Email"}
-            value={contactDetails.personalEmail}
-            showError={contactDetails.personalEmail && !isEmailValid}
-            errorMessage={"Not a valid email"}
-          />
-          <Pad height={20} />
+            <TextField
+              onChange={(val) => {
+                setIsEmailValid(validator.validate(val));
+                onContactDetailsChange("personalEmail", val);
+              }}
+              placeholder={"Personal Email"}
+              value={contactDetails.personalEmail}
+              showError={contactDetails.personalEmail && !isEmailValid}
+              errorMessage={"Not a valid email"}
+            />
+            <Pad height={20} />
 
-          <TextField
-            onChange={(val) => onPhoneNumberChange(val)}
-            placeholder={"Phone number"}
-            value={contactDetails.phoneNumber}
-            type={"PhoneNumber"}
-            showError={contactDetails.phoneNumber && !isPhoneNumberValid}
-            errorMessage={"Not a valid UK phone number"}
-            maxLength={11}
-          />
-          <Pad height={40} />
-
+            <TextField
+              onChange={(val) => onPhoneNumberChange(val)}
+              placeholder={"Phone number"}
+              value={contactDetails.phoneNumber}
+              type={"PhoneNumber"}
+              showError={contactDetails.phoneNumber && !isPhoneNumberValid}
+              errorMessage={"Not a valid UK phone number"}
+              maxLength={11}
+            />
+            <Pad height={40} />
+          </View>
           <Button type="Primary" size={"Large"} onPress={onContinue} label={"Continue"} disabled={!isButtonEnable} />
         </View>
       </ScrollView>
@@ -139,9 +139,12 @@ const postCodeValid = (postCode: string) => {
 
 const styles = StyleSheet.create({
   wrapper: {
-    width: Style.DEVICE_WIDTH - 63,
     alignSelf: "center",
     marginTop: 30,
+    width: "100%",
+  } as ViewStyle,
+  paddingHorizontal: {
+    paddingHorizontal: Style.adjust(24),
   } as ViewStyle,
   lookUpAdressWrapper: {
     marginTop: 34,
