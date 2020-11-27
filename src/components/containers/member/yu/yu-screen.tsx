@@ -29,11 +29,7 @@ export const YuScreen = () => {
         <AvatarAndEquipment product={product} setProduct={setProduct} />
         <YuCoinPower />
         {["charms", "employer", "personal"].map((type: ProductType, index) => (
-          <ProductSet
-            key={index}
-            wrapperStyle={!index ? styles.productSectionMargin : styles.productSetMargin}
-            type={type}
-          />
+          <ProductSet key={index} type={type} />
         ))}
         <View style={styles.padBot} />
         <ToolTip code={product} onClose={handleCloseModal} />
@@ -80,11 +76,5 @@ const styles = StyleSheet.create({
   } as ViewStyle,
   padBot: {
     height: PAD_BOT,
-  } as ViewStyle,
-  productSectionMargin: {
-    marginTop: Style.adjust(12),
-  } as ViewStyle,
-  productSetMargin: {
-    marginTop: Style.adjust(32),
   } as ViewStyle,
 });
