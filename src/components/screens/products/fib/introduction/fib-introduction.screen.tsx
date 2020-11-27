@@ -23,6 +23,7 @@ export const FibIntroductionScreen = memo(function (props: IFibIntroductionScree
       onLeftIconPress={navigateToYuScreen}
       buttonTitle="Continue"
       logo={"yulife"}
+      isBeta={false}
     >
       <Animatable.View duration={1000} animation="fadeIn" style={styles.flex} useNativeDriver={true}>
         <View style={styles.imagesWrapper}>

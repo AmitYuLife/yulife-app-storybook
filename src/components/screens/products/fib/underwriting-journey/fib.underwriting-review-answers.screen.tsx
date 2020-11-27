@@ -59,7 +59,6 @@ const _FibUnderwritingReviewAnswersScreen = memo(function (props: IFibUnderwriti
         heading={"Review"}
         rightIcon={{ icon: "CLOSE" }}
         onRightIconPress={onNavigateBack}
-        isBeta={true}
       />
       <ScrollView
         contentContainerStyle={styles.scrollViewContentStyle}
