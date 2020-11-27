@@ -3,7 +3,7 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { GetTopUpsQuoteInput, ProductCode } from "./globalTypes";
+import { GetTopUpsQuoteInput, ProductCode, CoverType } from "./globalTypes";
 
 // ====================================================
 // GraphQL query operation: GetTopUpsQuote
@@ -38,13 +38,21 @@ export interface GetTopUpsQuote_getTopUpsQuote {
    */
   rejected: boolean | null;
   /**
-   * Quote status e.g: PAYMENT_PEDING, RGA_INVESTIGATION ...
+   * Quote status e.g: PAYMENT_PENDING, RGA_INVESTIGATION ...
    */
   status: string | null;
   /**
    * Flag to require medical investigations
    */
   medicalInvestigationRequired: boolean | null;
+  /**
+   * Date of creation
+   */
+  createdAt: string | null;
+  /**
+   * Selected cover
+   */
+  coverType: CoverType | null;
   /**
    * User answers to medical underwriting. IMPORTANT: Answers are stringify, client needs to JSON.parse
    */

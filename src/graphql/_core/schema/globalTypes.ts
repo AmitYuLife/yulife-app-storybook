@@ -149,6 +149,8 @@ export interface UpdateContactDetailsInput {
   addressSecondLine?: string | null;
   addressCity?: string | null;
   addressPostCode?: string | null;
+  email?: string | null;
+  personalEmailConsent?: boolean | null;
 }
 
 export interface UpdateCustomerGPDetailsInput {
