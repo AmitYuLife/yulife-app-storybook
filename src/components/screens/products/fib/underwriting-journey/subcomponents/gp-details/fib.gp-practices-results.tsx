@@ -60,7 +60,7 @@ function _FibGPPracticesResultsScreen(props: Props) {
       secondButtonLabel={secondButtonLabel}
       secondButtonAction={onEnterManually}
     >
-      <View style={styles.wrapper}>
+      <View>
         <FibTitle title={title} />
         <View style={styles.resultsWrapper}>
           {data?.length > 0 ? (
@@ -93,7 +93,6 @@ function _FibGPPracticesResultsScreen(props: Props) {
 export const FibGPPracticesResultsScreen = memo(_FibGPPracticesResultsScreen);
 
 const styles = StyleSheet.create({
-  wrapper: {} as ViewStyle,
   text: {
     fontSize: Style.adjust(16),
     lineHeight: Style.adjust(24),

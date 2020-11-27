@@ -1,5 +1,5 @@
 import React, { useCallback } from "react";
-import { View, ViewStyle } from "react-native";
+import { View, ViewStyle, StyleSheet } from "react-native";
 import { Product } from "./product";
 import { Heading } from "../heading";
 import { useQuery } from "@apollo/react-hooks";
@@ -11,14 +11,14 @@ import { useSelector, useDispatch } from "react-redux";
 import { getFIBState } from "@redux/product/product.selectors";
 import { resetFIBUnderwritingJourney } from "@redux/product/product.actions";
 import { getUserFeatures } from "@redux/user/user.selectors";
+import { Style } from "@styles";
 
 export interface IProductSetProps {
   type: ProductType;
-  wrapperStyle?: ViewStyle;
 }
 
 export const ProductSet = (props: IProductSetProps) => {
-  const { type, wrapperStyle } = props;
+  const { type } = props;
   const { data } = useQuery<GetYulifer>(GQL_QUERY_GET_YULIFER, {
     fetchPolicy: "cache-only",
   });
@@ -33,11 +33,11 @@ export const ProductSet = (props: IProductSetProps) => {
   const heading = getHeading(type);
 
   if (!products.length) {
-    return <View style={wrapperStyle} />;
+    return null;
   }
 
   return (
-    <View style={wrapperStyle}>
+    <View style={styles.wrapper}>
       <Heading text={heading} />
       {products.map((product, index) => (
         <Product showSeparator={!!index} key={index} {...product} />
@@ -104,3 +104,9 @@ function getProducts({ type, data, fibState, resetFibJourney, shouldResetFib }: 
     })
     .filter(Boolean);
 }
+
+const styles = StyleSheet.create({
+  wrapper: {
+    marginTop: Style.adjust(40),
+  } as ViewStyle,
+});
