@@ -1,5 +1,5 @@
 import React from "react";
-import { View, StyleSheet, ViewStyle, TextStyle } from "react-native";
+import { View, StyleSheet, ViewStyle, TextStyle, Platform } from "react-native";
 import { Style, Colours } from "@styles";
 import { ChipIconType } from "./chip.types";
 import { HighBloodPressureSvg } from "./svg/high-blood-pressure";
@@ -14,17 +14,34 @@ import { MusclesJointsSvg } from "./svg/muscles-joints";
 import { OtherSvg } from "./svg/other";
 import { PregnancySvg } from "./svg/pregnancy";
 import { SkinSvg } from "./svg/skin";
+import Svg from "react-native-svg";
+import media from "@styles/media";
 
 interface Props {
   icon: ChipIconType;
 }
+
+const SIZE = Platform.select({
+  ios: Style.adjust(40),
+  android: media.select(
+    [
+      {
+        condition: Style.DEVICE_HEIGHT <= media.DEVICES.SamsungGalaxyA5.height,
+        value: Style.adjust(32)
+      },
+    ],
+    Style.adjust(40)
+  ),
+});
 
 export const Icon = ({ icon }: Props) => {
   const SvgIcon = getSvgIcon(icon);
 
   return (
     <View style={styles.wrapper}>
-      <SvgIcon />
+      <Svg width={SIZE} height={SIZE} viewBox="0 0 40 40" fill="none">
+        <SvgIcon />
+      </Svg>
     </View>
   );
 };

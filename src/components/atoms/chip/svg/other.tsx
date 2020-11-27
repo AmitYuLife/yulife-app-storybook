@@ -1,8 +1,8 @@
 import React from "react";
-import Svg, { Path } from "react-native-svg";
+import { Path } from "react-native-svg";
 
 export const OtherSvg = () => (
-  <Svg width={40} height={40} viewBox="0 0 40 40">
+  <>
     <Path
       d="M19.9 36C28.792 36 36 28.792 36 19.9c0-8.892-7.209-16.1-16.1-16.1-8.892 0-16.1 7.208-16.1 16.1 0 8.892 7.208 16.1 16.1 16.1z"
       stroke="#6E6E70"
@@ -14,5 +14,5 @@ export const OtherSvg = () => (
       stroke="#5BA9D5"
       strokeWidth={2}
     />
-  </Svg>
+  </>
 );

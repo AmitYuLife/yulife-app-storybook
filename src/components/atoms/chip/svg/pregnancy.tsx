@@ -1,8 +1,8 @@
 import React from "react";
-import Svg, { Path } from "react-native-svg";
+import { Path } from "react-native-svg";
 
 export const PregnancySvg = () => (
-  <Svg width={40} height={40} viewBox="0 0 40 40">
+  <>
     <Path
       d="M30.773 19.82c0-7.728-6.264-13.992-13.992-13.992-7.727 0-13.992 6.264-13.992 13.992 0 7.728 6.265 13.992 13.992 13.992 4.387 0 8.302-2.018 10.867-5.177"
       stroke="#6E6E70"
@@ -33,5 +33,5 @@ export const PregnancySvg = () => (
       strokeLinecap="round"
       strokeLinejoin="round"
     />
-  </Svg>
+  </>
 );
