@@ -61,8 +61,13 @@ const FibContactDetailsContainer = memo(function (props: Props) {
     setContactDetails((state) => ({ ...state, [key]: value }));
   };
 
-  const onContinuePress = async () => {
+  const onContinuePress = () => {
     updateContactDetails(contactDetails);
+    setScreenId("ConfirmEmailAddress");
+  };
+
+  const onFirstButton = async () => {
+    updateFibAnswer("use_personal_email", "No");
     await updateContactDetailsMutation({
       variables: {
         contactDetails: {
@@ -71,19 +76,29 @@ const FibContactDetailsContainer = memo(function (props: Props) {
           addressSecondLine: contactDetails.secondAddressLine,
           addressCity: contactDetails.townOrCity,
           addressPostCode: contactDetails.postCode,
+          email: contactDetails.personalEmail,
+          personalEmailConsent: false,
         },
       },
     });
-    setScreenId("ConfirmEmailAddress");
-  };
-
-  const onFirstButton = () => {
-    updateFibAnswer("use_personal_email", "No");
     navigation.push(FIB_GP_DETAILS);
   };
 
-  const onSecondButton = () => {
+  const onSecondButton = async () => {
     updateFibAnswer("use_personal_email", "Yes");
+    await updateContactDetailsMutation({
+      variables: {
+        contactDetails: {
+          phone: contactDetails.phoneNumber,
+          addressFirstLine: contactDetails.firstAddressLine,
+          addressSecondLine: contactDetails.secondAddressLine,
+          addressCity: contactDetails.townOrCity,
+          addressPostCode: contactDetails.postCode,
+          email: contactDetails.personalEmail,
+          personalEmailConsent: true,
+        },
+      },
+    });
     navigation.push(FIB_GP_DETAILS);
   };
 

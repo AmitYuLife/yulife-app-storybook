@@ -69,4 +69,3 @@ export * from "./YuAvatarColor";
 export * from "./YuAvatarPart";
 export * from "./YuProduct";
 export * from "./YumojiRemoteFiles";
-export * from "./index";

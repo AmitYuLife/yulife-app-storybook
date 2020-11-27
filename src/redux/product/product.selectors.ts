@@ -22,11 +22,12 @@ import {
   FIB_LIFESTYLE_SMOKING_CIGARETTES_FOLLOW_UP_SCREEN_ID,
   FIB_LIFESTYLE_SMOKING_CIGARETTES_SCREEN_ID,
   FOLLOW_UP_SMOKING_ANSWERS_TRIGGER,
+  FIB_FINANCIAL_COVER_LIST_SCREEN_ID,
 } from "../../components/containers/products/fib/data/underwriting-journey-data";
 import { FINANCIAL_QUESTIONS_ICON } from "@atoms/fib/svg-assets/underwriting/svg-strings";
 import { addCommasToNumber } from "@services/utils";
 import { FIB_EDIT_SALARY } from "@components/containers/products/fib/fib.types";
-import { LifeInsuranceUserAnswers } from "../../graphql/products";
+import { LifeInsuranceTopUpsUserAnswers } from "../../graphql/_core/schema/globalTypes";
 
 export const getFIBState = (state: IReduxState): FIBStore => {
   return state.product.fib;
@@ -99,7 +100,6 @@ export const getReviewAnswers = (state: IReduxState): any => {
 
     if (item.id === FIB_THREE_YEAR_MEDICAL_HISTORY_SCREEN_ID && showThreeYearMedical) {
       const chipListChild = item.children.find((child) => child.type === "chiplist");
-
       let commaCount = 0;
       answer = "";
 
@@ -263,32 +263,30 @@ export const getReviewAnswers = (state: IReduxState): any => {
   return answers;
 };
 
-export const getLifeInsuranceUserAnswers = (state: IReduxState): LifeInsuranceUserAnswers[] => {
+export const getLifeInsuranceUserAnswers = (state: IReduxState): LifeInsuranceTopUpsUserAnswers[] => {
   const answers = state.product.fib.answers;
   const userAnswers = Object.keys(answers).map((questionId: string) => {
+    let parsedQuestionId = questionId;
+    if (questionId === "medicalHistory") {
+      parsedQuestionId = FIB_THREE_YEAR_MEDICAL_HISTORY_SCREEN_ID;
+    }
+
+    if (questionId === "existingCovers") {
+      parsedQuestionId = FIB_FINANCIAL_COVER_LIST_SCREEN_ID;
+    }
+
     return {
-      questionId,
+      questionId: parsedQuestionId,
       value: JSON.stringify(answers[questionId]),
-    } as LifeInsuranceUserAnswers;
+    } as LifeInsuranceTopUpsUserAnswers;
   });
 
   const fibStore = state.product.fib;
-  const parsedFibStore = Object.keys(fibStore)
-    .map((key: keyof FIBStore) => {
-      if (key === "answers") {
-        return null;
-      }
-
-      return {
-        questionId: key,
-        value: JSON.stringify(fibStore[key]),
-      } as LifeInsuranceUserAnswers;
-    })
-    .filter((v) => !!v);
 
   userAnswers.push({
-    questionId: "fibStore",
-    value: JSON.stringify(parsedFibStore),
+    questionId: "salary",
+    value: JSON.stringify(fibStore.salary),
   });
+
   return userAnswers;
 };
