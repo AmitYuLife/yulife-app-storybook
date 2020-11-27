@@ -26,5 +26,5 @@ export { default as HorizontalScroller } from "./horizontal-scroller/horizontal-
 export * from "./beta-text/beta-text";
 export { AvatarEmpty } from "./avatar/avatar-empty";
 export { EmptyAvatar } from "./avatar/empty-avatar";
-export { default as ProgressBar } from "./progress-bar/progresss-bar";
+export { default as ProgressBar } from "./progress-bar/progress-bar";
 export { PowerCoin } from "./power-coin/power-coin";

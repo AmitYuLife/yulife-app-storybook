@@ -27,7 +27,7 @@ function _FinancialQuestionsCoverListScreen(props: Props) {
 
   return (
     <FibUnderwritingJourneyLayout
-      heading={data.heading}
+      centreLogo="yulife"
       onClose={onNavigateBack}
       hideProgressBar={hideProgressBar}
       onPreviousQuestion={onPreviousButtonPressed}

@@ -44,7 +44,7 @@ export function _FinancialQuestionsFormScreen(props: Props) {
 
   return (
     <FibUnderwritingJourneyLayout
-      heading={data.heading}
+      centreLogo="yulife"
       onClose={onNavigateBack}
       onPreviousQuestion={onPreviousButtonPressed}
       hideProgressBar={hideProgressBar}

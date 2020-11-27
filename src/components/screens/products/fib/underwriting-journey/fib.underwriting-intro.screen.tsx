@@ -33,7 +33,8 @@ function _FibUnderwritingIntroduction(props: Props) {
       buttonAction={onContinue}
       onLeftIconPress={onNavigateBack}
       buttonTitle="Fire Away!"
-      heading={"Life Insurance"}
+      isBeta={false}
+      logo="yulife"
     >
       <View style={styles.imageWrapper}>
         <FibFeedbackSuccessImage />

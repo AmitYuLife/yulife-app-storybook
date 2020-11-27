@@ -110,7 +110,7 @@ const _FibUnderwritingJourneyScreen = memo(function (props: IFibUnderwritingJour
 
   return (
     <FibUnderwritingJourneyLayout
-      heading={data.heading}
+      centreLogo="yulife"
       onClose={onNavigateBack}
       hideProgressBar={hideProgressBar}
       onPreviousQuestion={onPreviousButtonPressed}
