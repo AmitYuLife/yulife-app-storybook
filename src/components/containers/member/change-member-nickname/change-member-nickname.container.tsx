@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from "react";
-import { View } from "react-native";
+import { View, Keyboard, StyleSheet } from "react-native";
 import { useMutation } from "@apollo/react-hooks";
 import { Navigation } from "react-native-navigation";
 import { ROUTES } from "@navigation/constants";
@@ -14,6 +14,7 @@ const ChangeMemberNicknameContainer: FunctionComponent = () => {
   const handleOnPress = async (nickname: string) => {
     try {
       await updateNickname({ variables: { nickname } });
+      Keyboard.dismiss();
       Navigation.pop(ROUTES.changeMemberNickname);
     } catch (e) {
       // TODO: show error message?
@@ -21,10 +22,16 @@ const ChangeMemberNicknameContainer: FunctionComponent = () => {
   };
 
   return (
-    <View>
+    <View style={styles.wrapper}>
       <ChangeMemberNickname enableButton={true} onPress={handleOnPress} isLoading={loading} />
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  wrapper: {
+    flex: 1,
+  },
+});
 
 export default ChangeMemberNicknameContainer;
