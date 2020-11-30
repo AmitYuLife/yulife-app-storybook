@@ -26,7 +26,7 @@ const ChangeMemberNickname: FunctionComponent<Props> = ({ enableButton, isLoadin
   };
 
   return (
-    <SafeAreaView style={styles.wrapper} testID="change-member-nickname">
+    <SafeAreaView testID="change-member-nickname">
       {enableButton ? <GenericHeading onLeftIconPress={handleNavigation} logo="yulife" /> : null}
       <View style={styles.fullWidth}>
         {isKeyboardShown ? (
@@ -68,9 +68,6 @@ const ChangeMemberNickname: FunctionComponent<Props> = ({ enableButton, isLoadin
 };
 
 const styles = StyleSheet.create({
-  wrapper: {
-    flex: 1,
-  },
   fullWidth: {
     height: Style.DEVICE_HEIGHT,
     width: Style.DEVICE_WIDTH,
