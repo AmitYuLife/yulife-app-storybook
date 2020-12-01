@@ -1,7 +1,7 @@
 import React, { memo } from "react";
 import { View, StyleSheet, ViewStyle, Platform } from "react-native";
 import { TopBar, NavBar } from "@organisms";
-import { Style, Colours } from "@styles";
+import { TOP_BAR, Colours } from "@styles";
 import { Navigation } from "react-native-navigation";
 import { ROUTES } from "@navigation/constants";
 
@@ -24,9 +24,6 @@ const _YuScreenLayout = ({ children }: Props) => {
 
 export const YuScreenLayout = memo(_YuScreenLayout);
 
-const PADDING_TOP = Platform.select({ ios: Style.getSafeAreaStart(), android: 0 });
-const PADDING_BOTTOM = 12;
-
 const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
@@ -36,9 +33,9 @@ const styles = StyleSheet.create({
     position: "absolute",
     left: 0,
     right: 0,
-    paddingTop: PADDING_TOP,
-    paddingBottom: PADDING_BOTTOM,
-    height: TopBar.HEIGHT + PADDING_TOP + PADDING_BOTTOM,
+    paddingTop: TOP_BAR.PADDING_TOP,
+    paddingBottom: TOP_BAR.PADDING_BOTTOM,
+    height: TOP_BAR.HEIGHT_WITH_PADDING,
     backgroundColor: "white",
   } as ViewStyle,
   topBarShadow: {

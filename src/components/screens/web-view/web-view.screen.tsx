@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import WebView from "react-native-webview";
 import { SafeAreaView, View, StyleSheet, KeyboardAvoidingView } from "react-native";
-import { Style } from "@styles";
+import { Style, TOP_BAR } from "@styles";
 import { GenericHeading } from "@atoms";
 import Config from "react-native-config";
 
@@ -46,7 +46,7 @@ export function WebViewScreen(props: Props) {
 
 const styles = StyleSheet.create({
   webViewWrapper: {
-    height: Style.DEVICE_HEIGHT - GenericHeading.GENERIC_HEADING_HEIGHT - 20,
+    height: Style.DEVICE_HEIGHT - TOP_BAR.HEIGHT_WITH_PADDING - 20,
     width: "100%",
   },
   flex: {
