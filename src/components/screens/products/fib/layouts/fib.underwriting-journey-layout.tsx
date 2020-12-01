@@ -4,6 +4,7 @@ import { GenericHeading } from "@atoms";
 import { FIBProgressBar } from "@components/organisms";
 import { Style } from "@styles";
 import { Yugi } from "./yugi";
+import { useBackHandler } from "@services/hooks/useBackHandler";
 
 interface Props {
   heading?: string;
@@ -31,6 +32,11 @@ export function FibUnderwritingJourneyLayout(props: Props) {
     hideHeadingBorder,
     yugi,
   } = props;
+
+  useBackHandler(() => {
+    onPreviousQuestion();
+    return true;
+  });
 
   return (
     <KeyboardAvoidingView behavior={keyboardBehavior} style={styles.wrapper}>
