@@ -1,14 +1,12 @@
 import { StyleSheet, TextStyle, ViewStyle, Platform } from "react-native";
-import { Colours, Style } from "@styles";
-
-export const GENERIC_HEADING_HEIGHT = Style.adjust(56);
+import { Colours, Style, TOP_BAR } from "@styles";
 
 const styles = StyleSheet.create({
   wrapper: {
-    height: GENERIC_HEADING_HEIGHT,
-    paddingVertical: Style.adjust(16),
+    height: TOP_BAR.HEIGHT_WITH_PADDING,
     flexDirection: "row",
     alignContent: "center",
+    alignItems: "center",
     borderBottomColor: "rgba(0,0,0,0.1)",
     paddingHorizontal: Style.adjust(16),
     marginTop: Platform.OS === "ios" && Style.hasNotch ? -10 : 0,

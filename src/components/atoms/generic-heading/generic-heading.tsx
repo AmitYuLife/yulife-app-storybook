@@ -2,7 +2,7 @@ import React from "react";
 import { View, TouchableOpacity, Image, StyleSheet } from "react-native";
 import Text from "../text/text";
 import Back from "./../back/back";
-import styles, { GENERIC_HEADING_HEIGHT } from "./generic-heading.styles";
+import styles from "./generic-heading.styles";
 import { IGenericHeadingProps } from "./generic-heading.types";
 import { Heading } from "./subcomponents/heading";
 import { Logo } from "./subcomponents/logo";
@@ -26,43 +26,41 @@ function GenericHeading(props: IGenericHeadingProps) {
   } = props;
 
   return (
-    <>
-      <View style={StyleSheet.flatten([styles.wrapper, { borderBottomWidth: hideBorder ? 0 : 1 }])}>
-        <View style={styles.leftIconWrapper}>
-          {!onLeftIconPress ? null : (
-            <TouchableOpacity onPress={onLeftIconPress}>
-              <LeftIcon icon={leftIcon} />
-            </TouchableOpacity>
-          )}
-        </View>
-        {!heading ? (
-          <View style={styles.centerWrapper}>
-            <View style={styles.relative}>
-              <Logo logo={logo} />
-              <View style={styles.logoBetaWrapper}>
-                <Beta show={isBeta} />
-              </View>
-            </View>
-          </View>
-        ) : (
-          <View style={styles.centerWrapper}>
-            <View style={styles.relative}>
-              <Heading heading={heading} style={styles.heading} />
-              <View style={styles.headingBetaWrapper}>
-                <Beta show={isBeta} />
-              </View>
-            </View>
-          </View>
+    <View style={StyleSheet.flatten([styles.wrapper, { borderBottomWidth: hideBorder ? 0 : 1 }])}>
+      <View style={styles.leftIconWrapper}>
+        {!onLeftIconPress ? null : (
+          <TouchableOpacity onPress={onLeftIconPress}>
+            <LeftIcon icon={leftIcon} />
+          </TouchableOpacity>
         )}
-        <View style={styles.rightIconWrapper}>
-          {onRightIconPress ? (
-            <PressableWithDelay hitSlop={16} onPress={onRightIconPress} style={styles.rightIconTouchable}>
-              <RightIcon icon={rightIcon} />
-            </PressableWithDelay>
-          ) : null}
-        </View>
       </View>
-    </>
+      {!heading ? (
+        <View style={styles.centerWrapper}>
+          <View style={styles.relative}>
+            <Logo logo={logo} />
+            <View style={styles.logoBetaWrapper}>
+              <Beta show={isBeta} />
+            </View>
+          </View>
+        </View>
+      ) : (
+        <View style={styles.centerWrapper}>
+          <View style={styles.relative}>
+            <Heading heading={heading} style={styles.heading} />
+            <View style={styles.headingBetaWrapper}>
+              <Beta show={isBeta} />
+            </View>
+          </View>
+        </View>
+      )}
+      <View style={styles.rightIconWrapper}>
+        {onRightIconPress ? (
+          <PressableWithDelay hitSlop={16} onPress={onRightIconPress} style={styles.rightIconTouchable}>
+            <RightIcon icon={rightIcon} />
+          </PressableWithDelay>
+        ) : null}
+      </View>
+    </View>
   );
 }
 
@@ -103,4 +101,4 @@ function RightIcon({ icon }: { icon: IGenericHeadingProps["rightIcon"] }) {
   }
 }
 
-export default Object.assign(GenericHeading, { GENERIC_HEADING_HEIGHT });
+export default GenericHeading;
