@@ -1,21 +1,21 @@
-import React, { memo, useEffect, useRef } from "react";
+import React, { memo, useEffect, useRef, useState } from "react";
 import {
   StyleSheet,
   ViewStyle,
   Platform,
   ScrollView,
-  Text,
   TextStyle,
   NativeSyntheticEvent,
   NativeScrollEvent,
   SafeAreaView,
+  View,
 } from "react-native";
 import { useBackHandler } from "../../../../../services/hooks/useBackHandler";
 
 import Style from "../../../../../styles/style";
 import GenericHeading from "../../../../atoms/generic-heading/generic-heading";
 import { ReviewAnswers } from "@atoms/fib/review-answers/review-answers";
-import { Button } from "@atoms";
+import { Button, CheckBox } from "@atoms";
 import { IAnswer } from "../../../../../redux/product/product.selectors";
 import { NativeScrollPoint } from "react-native";
 
@@ -31,6 +31,7 @@ export interface IFibUnderwritingReviewAnswersScreenProps {
 const _FibUnderwritingReviewAnswersScreen = memo(function (props: IFibUnderwritingReviewAnswersScreenProps) {
   const { onNavigateBack, onSubmitButton, onAnswerPress, onScrollEnd, answers, offset } = props;
   const scrollViewRef = useRef<ScrollView>(null);
+  const [confirmed, setConfirmed] = useState(false);
 
   useEffect(() => {
     if (offset && offset.y > 0) {
@@ -53,13 +54,11 @@ const _FibUnderwritingReviewAnswersScreen = memo(function (props: IFibUnderwriti
 
   const disableSubmitButton = !!answers.filter((answer) => answer.incomplete).length;
 
+  const toggleConfirmed = () => setConfirmed(!confirmed);
+
   return (
     <SafeAreaView style={styles.wrapper}>
-      <GenericHeading
-        heading={"Review"}
-        rightIcon={{ icon: "CLOSE" }}
-        onRightIconPress={onNavigateBack}
-      />
+      <GenericHeading heading={"Review"} rightIcon={{ icon: "CLOSE" }} onRightIconPress={onNavigateBack} />
       <ScrollView
         contentContainerStyle={styles.scrollViewContentStyle}
         onMomentumScrollEnd={onScrollEnd}
@@ -80,13 +79,20 @@ const _FibUnderwritingReviewAnswersScreen = memo(function (props: IFibUnderwriti
             />
           );
         })}
-        <Text style={styles.agreementText}>I agree that all the above is accurate</Text>
+        <View style={checkboxStyles.wrapper}>
+          <CheckBox
+            checked={confirmed}
+            value=""
+            label="I have read the documents and confirm that all the statements above are true"
+            onChange={toggleConfirmed}
+          />
+        </View>
         <Button
           type="Primary"
           size={"Large"}
           onPress={onSubmitButton}
           label={"Submit answers"}
-          disabled={disableSubmitButton}
+          disabled={disableSubmitButton || !confirmed}
         />
       </ScrollView>
     </SafeAreaView>
@@ -114,4 +120,13 @@ const styles = StyleSheet.create({
     width: "100%",
     textAlign: "center",
   } as TextStyle,
+});
+
+const checkboxStyles = StyleSheet.create({
+  wrapper: {
+    maxWidth: Style.DEVICE_WIDTH - 128,
+    alignItems: "center",
+    alignSelf: "center",
+    marginVertical: Style.adjust(32)
+  } as ViewStyle,
 });

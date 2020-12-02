@@ -31,6 +31,7 @@ export { default as Logo } from "./logo";
 export { default as YuCoinIcon } from "./yucoin-icon/yucoin.icon";
 export { Yumoji } from "./yumoji/yumoji";
 export { UnauthorisedGradient } from "./unauthorised-gradient/unauthorised-gradient";
+export { default as ArrowRightSvg } from "./arrow-right-svg/arrow-right-svg";
 
 // error :( https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-8.html#export--as-ns-syntax
 import * as ProductSvg from "./product-svg";

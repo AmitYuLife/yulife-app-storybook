@@ -322,14 +322,14 @@ export function shouldSecondButtonBeDisabled(
   fibAnswers: FibAnswers
 ) {
   if (currentQuestion.id === FIB_ENTER_YOUR_NAME) {
-    return fibAnswers.firstName.length < 1 || fibAnswers.lastName.length < 1;
+    return (fibAnswers.firstName || "").length < 1 || (fibAnswers.lastName || "").length < 1;
   }
 
   return false;
 }
 
 export function useInternationalFormat(dayOrMonth: string): string {
-  return `${dayOrMonth.length === 1 ? "0" : ""}${dayOrMonth}`;
+  return `${dayOrMonth?.length === 1 ? "0" : ""}${dayOrMonth}`;
 }
 
 interface CalculatePayoutAmountInput {

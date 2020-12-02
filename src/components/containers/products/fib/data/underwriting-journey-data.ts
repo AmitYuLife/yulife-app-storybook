@@ -29,6 +29,7 @@ import {
   MENTAL_ILLNESS_ICON,
 } from "@atoms/fib/svg-assets/underwriting/medical-history-svg-strings";
 import { ChipIconType } from "@atoms/chip/chip.types";
+import { Colours } from "@styles";
 
 interface OtherQuestionResponse {
   id: string;
@@ -584,7 +585,7 @@ const _data: UnderwritingJourneyScreen[] = [
     id: FIB_MEDICAL_HISTORY_SCREEN_ID,
     heading: "Medical",
     icon: MEDICAL_HISTORY_ICON,
-    title: "Medical History",
+    title: "Medical Diagnosis",
     question: "Have you been diagnosed with one of the following?",
     firstButton: { label: "No", actionId: FIB_MEDICAL_THREE_OR_MORE_CONSULTATION_SCREEN_ID },
     secondButton: { label: "Yes", actionId: FIB_MEDICAL_THREE_OR_MORE_CONSULTATION_SCREEN_ID },
@@ -669,15 +670,15 @@ const _data: UnderwritingJourneyScreen[] = [
     id: FIB_THREE_YEAR_MEDICAL_HISTORY_SCREEN_ID,
     category: "fib_medical_journey",
     heading: "Medical",
-    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M6.89124 13.3275H19.9968V6.7169H15.4686L13.1218 4.37012H6.89124V13.3275Z" stroke="#828284" stroke-width="1.31056" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="M13.9928 4.91602H19.9995V6.55422" stroke="#828284" stroke-width="1.31056" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="M13.4381 7.64258V11.4272" stroke="#828284" stroke-width="1.31056" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="M15.336 9.54297H11.5514" stroke="#828284" stroke-width="1.31056" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="M7.38372 8.85271C4.97679 7.31891 2.87805 6.6705 2.87805 4.00336V1.09375H11.9099V3.98132C11.8894 6.6705 10.0263 6.99127 7.38372 8.85271Z" fill="white" stroke="#828284" stroke-width="1.31056" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="M7.38552 8.89648C10.0281 10.9226 11.8912 11.0787 11.8912 13.7458V16.6334H2.85938V13.7679C2.85938 11.0787 5.27559 10.595 7.38552 8.89648Z" fill="white" stroke="#828284" stroke-width="1.31056" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="M0.996094 1.09375H13.7144" stroke="#828284" stroke-width="1.31056" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="M0.996094 16.6553H13.7144" stroke="#828284" stroke-width="1.31056" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+    icon: `<svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M6.89124 13.3275H19.9968V6.7169H15.4686L13.1218 4.37012H6.89124V13.3275Z" stroke="${Colours.neutral.n800}" stroke-width="1.31056" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M13.9928 4.91602H19.9995V6.55422" stroke="${Colours.neutral.n800}" stroke-width="1.31056" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M13.4381 7.64258V11.4272" stroke="${Colours.neutral.n800}" stroke-width="1.31056" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M15.336 9.54297H11.5514" stroke="${Colours.neutral.n800}" stroke-width="1.31056" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M7.38372 8.85271C4.97679 7.31891 2.87805 6.6705 2.87805 4.00336V1.09375H11.9099V3.98132C11.8894 6.6705 10.0263 6.99127 7.38372 8.85271Z" fill="white" stroke="${Colours.neutral.n800}" stroke-width="1.31056" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M7.38552 8.89648C10.0281 10.9226 11.8912 11.0787 11.8912 13.7458V16.6334H2.85938V13.7679C2.85938 11.0787 5.27559 10.595 7.38552 8.89648Z" fill="white" stroke="${Colours.neutral.n800}" stroke-width="1.31056" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M0.996094 1.09375H13.7144" stroke="${Colours.neutral.n800}" stroke-width="1.31056" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M0.996094 16.6553H13.7144" stroke="${Colours.neutral.n800}" stroke-width="1.31056" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
     </svg>
     `,
     title: "Three Year Medical History",
@@ -772,13 +773,13 @@ const _data: UnderwritingJourneyScreen[] = [
     category: "fib_medical_journey_high_blood",
     heading: "Medical",
     title: "Blood Pressure",
-    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M17.1887 6.72559H5.2688V15.2398H17.1887V6.72559Z" stroke="#828284" stroke-width="1.44741" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="M9.90136 2.35107H4.84382C2.62461 2.35107 0.808885 4.25356 0.808885 6.57881C0.808885 8.90407 2.62461 10.8066 4.84382 10.8066" stroke="#828284" stroke-width="1.44741" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="M12.9299 19.4966H17.6127C19.7534 19.4966 21.5049 17.5809 21.5049 15.2395C21.5049 12.8981 19.7534 10.9824 17.6127 10.9824" stroke="#828284" stroke-width="1.44741" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="M12.082 4.1713C13.0224 4.1713 13.7848 3.40892 13.7848 2.46846C13.7848 1.52801 13.0224 0.765625 12.082 0.765625C11.1415 0.765625 10.3792 1.52801 10.3792 2.46846C10.3792 3.40892 11.1415 4.1713 12.082 4.1713Z" stroke="#828284" stroke-width="1.44741" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="M12.162 19.4146C12.162 20.2954 11.4895 21 10.6489 21H7.82446V17.7939H10.6489C11.4895 17.7939 12.162 18.5338 12.162 19.4146Z" stroke="#828284" stroke-width="1.44741" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="M12.8729 9.61634C12.4209 9.1676 11.6736 9.1676 11.2216 9.61634L10.8914 9.84071L10.6654 9.61634C10.2135 9.1676 9.46614 9.1676 9.01423 9.61634C8.56232 10.0651 8.56232 10.79 8.99685 11.2387L10.6654 12.9474C10.8219 13.1027 11.0652 13.1027 11.2043 12.9474L12.8902 11.2387C13.3248 10.79 13.3248 10.0651 12.8729 9.61634Z" fill="white" stroke="#828284" stroke-width="1.44741" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+    icon: `<svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M18.1894 7.72534H6.26953V16.2395H18.1894V7.72534Z" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M10.9011 3.35083H5.84358C3.62436 3.35083 1.80864 5.25331 1.80864 7.57857C1.80864 9.90382 3.62436 11.8063 5.84358 11.8063" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M13.9297 20.4966H18.6125C20.7532 20.4966 22.5047 18.5809 22.5047 16.2395C22.5047 13.8981 20.7532 11.9824 18.6125 11.9824" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M13.0817 5.17106C14.0222 5.17106 14.7846 4.40867 14.7846 3.46822C14.7846 2.52777 14.0222 1.76538 13.0817 1.76538C12.1413 1.76538 11.3789 2.52777 11.3789 3.46822C11.3789 4.40867 12.1413 5.17106 13.0817 5.17106Z" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M13.1618 20.4143C13.1618 21.2951 12.4893 21.9997 11.6487 21.9997H8.82422V18.7937H11.6487C12.4893 18.7937 13.1618 19.5336 13.1618 20.4143Z" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M13.8736 10.6161C13.4217 10.1674 12.6743 10.1674 12.2224 10.6161L11.8921 10.8405L11.6662 10.6161C11.2143 10.1674 10.4669 10.1674 10.015 10.6161C9.56305 11.0648 9.56305 11.7897 9.99758 12.2385L11.6662 13.9471C11.8226 14.1025 12.0659 14.1025 12.205 13.9471L13.891 12.2385C14.3255 11.7897 14.3255 11.0648 13.8736 10.6161Z" fill="${Colours.neutral.n800}" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
     </svg>
     `,
     question: "Has your blood pressure been checked by a medical professional in the last 12 months?",
@@ -795,12 +796,12 @@ const _data: UnderwritingJourneyScreen[] = [
     id: FIB_HIGH_BLOOD_PRESSURE_EXTRA_SCREEN,
     category: "fib_medical_journey_high_blood",
     heading: "Medical",
-    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M15.5799 21.0001H2.94479C2.17846 21.0001 1.54297 20.3957 1.54297 19.6265V3.94882C1.54297 3.19791 2.15977 2.5752 2.94479 2.5752H15.5986C16.3649 2.5752 17.0004 3.17959 17.0004 3.94882V19.6448C16.9817 20.3957 16.3649 21.0001 15.5799 21.0001Z" stroke="#828284" stroke-width="1.66667" stroke-miterlimit="10"/>
-    <path d="M12.1791 3.58242H6.2728V2.35531C6.2728 1.6044 6.8896 1 7.65593 1H10.8147C11.581 1 12.1978 1.6044 12.1978 2.35531V3.58242H12.1791Z" fill="white" stroke="#828284" stroke-width="1.66667" stroke-miterlimit="10"/>
-    <path d="M9.87909 14.333H4.87909V17.6663H9.87909V14.333Z" stroke="#828284" stroke-width="1.41667" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="M9.87891 10.9369V11.8332H4.87891V7.6665H7.37891" stroke="#828284" stroke-width="1.41667" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="M6.96094 9.33301L7.78125 10.1663L9.8776 8.08301" stroke="#828284" stroke-width="1.41667" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+    icon: `<svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M18.2381 21.8H5.603C4.83667 21.8 4.20117 21.1956 4.20117 20.4264V4.74875C4.20117 3.99783 4.81797 3.37512 5.603 3.37512H18.2568C19.0231 3.37512 19.6586 3.97952 19.6586 4.74875V20.4447C19.6399 21.1956 19.0231 21.8 18.2381 21.8Z" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-miterlimit="10"/>
+    <path d="M14.838 4.38235H8.93164V3.15524C8.93164 2.40432 9.54844 1.79993 10.3148 1.79993H13.4735C14.2399 1.79993 14.8567 2.40432 14.8567 3.15524V4.38235H14.838Z" fill="white" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-miterlimit="10"/>
+    <path d="M12.5371 15.1328H7.53711V18.4661H12.5371V15.1328Z" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M12.5371 11.7367V12.633H7.53711V8.46631H10.0371" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M9.61914 10.1328L10.4395 10.9661L12.5358 8.88281" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
     </svg>
     `,
     accumulatedProgress: ACCUMULATED_PROGRESS.FIB_HIGH_BLOOD_PRESSURE_EXTRA_SCREEN,
@@ -815,13 +816,13 @@ const _data: UnderwritingJourneyScreen[] = [
     category: FIB_HIGH_CHOLESTEROL_SCREEN_ID,
     heading: "Medical",
     title: "Cholesterol Check",
-    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M17.1887 6.72559H5.2688V15.2398H17.1887V6.72559Z" stroke="#828284" stroke-width="1.44741" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="M9.90136 2.35107H4.84382C2.62461 2.35107 0.808885 4.25356 0.808885 6.57881C0.808885 8.90407 2.62461 10.8066 4.84382 10.8066" stroke="#828284" stroke-width="1.44741" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="M12.9299 19.4966H17.6127C19.7534 19.4966 21.5049 17.5809 21.5049 15.2395C21.5049 12.8981 19.7534 10.9824 17.6127 10.9824" stroke="#828284" stroke-width="1.44741" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="M12.082 4.1713C13.0224 4.1713 13.7848 3.40892 13.7848 2.46846C13.7848 1.52801 13.0224 0.765625 12.082 0.765625C11.1415 0.765625 10.3792 1.52801 10.3792 2.46846C10.3792 3.40892 11.1415 4.1713 12.082 4.1713Z" stroke="#828284" stroke-width="1.44741" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="M12.162 19.4146C12.162 20.2954 11.4895 21 10.6489 21H7.82446V17.7939H10.6489C11.4895 17.7939 12.162 18.5338 12.162 19.4146Z" stroke="#828284" stroke-width="1.44741" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="M12.8729 9.61634C12.4209 9.1676 11.6736 9.1676 11.2216 9.61634L10.8914 9.84071L10.6654 9.61634C10.2135 9.1676 9.46614 9.1676 9.01423 9.61634C8.56232 10.0651 8.56232 10.79 8.99685 11.2387L10.6654 12.9474C10.8219 13.1027 11.0652 13.1027 11.2043 12.9474L12.8902 11.2387C13.3248 10.79 13.3248 10.0651 12.8729 9.61634Z" fill="white" stroke="#828284" stroke-width="1.44741" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+    icon: `<svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M18.1894 7.72534H6.26953V16.2395H18.1894V7.72534Z" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M10.9011 3.35083H5.84358C3.62436 3.35083 1.80864 5.25331 1.80864 7.57857C1.80864 9.90382 3.62436 11.8063 5.84358 11.8063" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M13.9297 20.4966H18.6125C20.7532 20.4966 22.5047 18.5809 22.5047 16.2395C22.5047 13.8981 20.7532 11.9824 18.6125 11.9824" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M13.0817 5.17106C14.0222 5.17106 14.7846 4.40867 14.7846 3.46822C14.7846 2.52777 14.0222 1.76538 13.0817 1.76538C12.1413 1.76538 11.3789 2.52777 11.3789 3.46822C11.3789 4.40867 12.1413 5.17106 13.0817 5.17106Z" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M13.1618 20.4143C13.1618 21.2951 12.4893 21.9997 11.6487 21.9997H8.82422V18.7937H11.6487C12.4893 18.7937 13.1618 19.5336 13.1618 20.4143Z" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M13.8736 10.6161C13.4217 10.1674 12.6743 10.1674 12.2224 10.6161L11.8921 10.8405L11.6662 10.6161C11.2143 10.1674 10.4669 10.1674 10.015 10.6161C9.56305 11.0648 9.56305 11.7897 9.99758 12.2385L11.6662 13.9471C11.8226 14.1025 12.0659 14.1025 12.205 13.9471L13.891 12.2385C14.3255 11.7897 14.3255 11.0648 13.8736 10.6161Z" fill="${Colours.neutral.n800}" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
     </svg>
     `,
     question: "Has your cholesterol been checked by a medical professional in the last 12 months?",
@@ -838,12 +839,12 @@ const _data: UnderwritingJourneyScreen[] = [
     id: FIB_HIGH_CHOLESTEROL_EXTRA_SCREEN,
     category: FIB_HIGH_CHOLESTEROL_SCREEN_ID,
     heading: "Medical",
-    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M15.5799 21.0001H2.94479C2.17846 21.0001 1.54297 20.3957 1.54297 19.6265V3.94882C1.54297 3.19791 2.15977 2.5752 2.94479 2.5752H15.5986C16.3649 2.5752 17.0004 3.17959 17.0004 3.94882V19.6448C16.9817 20.3957 16.3649 21.0001 15.5799 21.0001Z" stroke="#828284" stroke-width="1.66667" stroke-miterlimit="10"/>
-    <path d="M12.1791 3.58242H6.2728V2.35531C6.2728 1.6044 6.8896 1 7.65593 1H10.8147C11.581 1 12.1978 1.6044 12.1978 2.35531V3.58242H12.1791Z" fill="white" stroke="#828284" stroke-width="1.66667" stroke-miterlimit="10"/>
-    <path d="M9.87909 14.333H4.87909V17.6663H9.87909V14.333Z" stroke="#828284" stroke-width="1.41667" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="M9.87891 10.9369V11.8332H4.87891V7.6665H7.37891" stroke="#828284" stroke-width="1.41667" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="M6.96094 9.33301L7.78125 10.1663L9.8776 8.08301" stroke="#828284" stroke-width="1.41667" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+    icon: `<svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M18.2381 21.8H5.603C4.83667 21.8 4.20117 21.1956 4.20117 20.4264V4.74875C4.20117 3.99783 4.81797 3.37512 5.603 3.37512H18.2568C19.0231 3.37512 19.6586 3.97952 19.6586 4.74875V20.4447C19.6399 21.1956 19.0231 21.8 18.2381 21.8Z" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-miterlimit="10"/>
+    <path d="M14.838 4.38235H8.93164V3.15524C8.93164 2.40432 9.54844 1.79993 10.3148 1.79993H13.4735C14.2399 1.79993 14.8567 2.40432 14.8567 3.15524V4.38235H14.838Z" fill="white" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-miterlimit="10"/>
+    <path d="M12.5371 15.1328H7.53711V18.4661H12.5371V15.1328Z" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M12.5371 11.7367V12.633H7.53711V8.46631H10.0371" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M9.61914 10.1328L10.4395 10.9661L12.5358 8.88281" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
     </svg>
     `,
     title: "Cholesterol Readings Satisfactory?",
@@ -860,8 +861,9 @@ const _data: UnderwritingJourneyScreen[] = [
     heading: "Medical",
     title: "Digestive",
     reviewAnswerTitle: "Digestive Issues",
-    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M5.4116 21.9998C6.36231 18.4895 6.50855 17.9044 6.50855 17.9044C8.33687 20.8297 11.2621 21.561 11.2621 21.561C19.4529 23.9743 25.5228 12.4195 20.1111 6.64212C15.65 2.54675 11.9203 6.3496 11.9203 6.3496C9.06818 6.3496 10.1651 1.81543 10.1651 1.81543H7.09361C7.09361 1.81543 4.60713 8.39728 11.0427 10.0793C11.0427 10.0793 11.9934 12.8583 9.79948 15.8567C9.79948 15.8567 5.77726 12.0539 3.36389 16.2224C3.36389 16.2224 2.12067 18.6357 1.82812 21.9998H4.60713H5.4116Z" stroke="#828284" stroke-width="1.7" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+    icon: `<svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M6.00209 20.8526C6.85297 17.7109 6.98386 17.1873 6.98386 17.1873C8.62018 19.8054 11.2382 20.4599 11.2382 20.4599C18.5689 22.6198 24.0014 12.2784 19.158 7.10768C15.1654 3.44236 11.8273 6.84587 11.8273 6.84587C9.2747 6.84587 10.2565 2.78784 10.2565 2.78784H7.50748C7.50748 2.78784 5.2821 8.67853 11.0419 10.1839C11.0419 10.1839 11.8928 12.6711 9.9292 15.3547C9.9292 15.3547 6.32935 11.9511 4.16942 15.6819C4.16942 15.6819 3.05675 17.8418 2.79492 20.8526H5.2821H6.00209Z" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M15.1621 8.08942C15.1621 8.08942 18.1729 7.76216 18.2384 11.2311" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
     </svg>
     `,
     question: "Were all of your digestive issues in the list below?",
@@ -890,8 +892,10 @@ const _data: UnderwritingJourneyScreen[] = [
     category: "fib_medical_journey",
     heading: "Medical",
     title: "Ears, Nose, Throat",
-    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M15.6892 16.22C14.7952 17.3637 16.1898 21.2596 16.1898 21.2596H7.69668C7.69668 21.2596 7.5894 18.9185 6.24838 19.0078C4.90735 19.1151 3.35177 19.2044 3.65573 17.4173C3.72725 16.9527 3.74513 16.5595 3.70937 16.2557C3.69149 15.9698 3.63785 15.7375 3.56633 15.5766C3.42329 15.1835 3.24449 15.0405 3.24449 15.0405L3.17296 14.2899L3.1372 13.9861C3.1372 13.9861 3.08356 13.8253 2.85112 13.7002C2.70808 13.6287 2.36835 13.5036 2.06439 13.3785C1.18825 13.039 1.43858 12.4313 1.97498 11.788C2.63656 11.0017 3.88818 10.0009 2.79748 8.58909C2.79748 8.58909 1.65314 -1.23993 13.6687 1.10117C13.6687 1.10117 20.6063 2.35213 18.6573 10.8766C18.6752 10.8766 18.1388 13.2713 15.6892 16.22Z" stroke="#828284" stroke-width="1.45342" stroke-linecap="round" stroke-linejoin="round"/>
+    icon: `<svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M13.2008 22.2L12.4008 22.2C11.7773 17.2422 7.77969 16.815 5.40078 17.0395C5.38438 16.7401 5.34612 16.6341 5.28049 16.4657C7.29846 16.1289 9.30078 15.9 9.30078 15.9C7.88984 14.3098 5.98516 14.8984 5.00078 15.1042V14.8892C5.00078 14.8892 5.01406 14.6323 4.80078 14.5013C11.6094 11.3956 12.9383 19.4499 13.2008 22.2Z" fill="${Colours.neutral.n800}" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M17.3013 17.293C16.4065 18.4377 17.8024 22.337 17.8024 22.337H9.30177C9.30177 22.337 9.1944 19.9939 7.85219 20.0833C6.50998 20.1906 4.95302 20.2801 5.25726 18.4914C5.32884 18.0263 5.34674 17.6328 5.31094 17.3287C5.29305 17.0426 5.23936 16.81 5.16778 16.6491C5.02461 16.2555 4.84565 16.1125 4.84565 16.1125L4.77406 15.3612L4.73827 15.0571C4.73827 15.0571 4.68458 14.8962 4.45193 14.7709C4.30876 14.6994 3.96874 14.5742 3.6645 14.449C2.7876 14.1091 3.03814 13.501 3.57502 12.8571C4.23718 12.0701 5.4899 11.0684 4.39824 9.65535C4.39824 9.65535 3.25289 -0.182349 15.2791 2.16081C15.2791 2.16081 22.2227 3.41288 20.2721 11.9448C20.29 11.9448 19.7531 14.3417 17.3013 17.293Z" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M12.5 11.9935C12.7039 11.6386 13.3564 10.9997 14.3352 11.2836C15.5587 11.6386 15.495 14.6357 13.3557 15.0636" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
     </svg>
     `,
     question: "Were all of your ear, nose, and throat issues in the list below?",
@@ -919,9 +923,9 @@ const _data: UnderwritingJourneyScreen[] = [
     accumulatedProgress: ACCUMULATED_PROGRESS.FIB_MEDICAL_JOURNEY_EYE_SCREEN_ID,
     category: "fib_medical_journey",
     heading: "Medical",
-    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M21 6.99984C19 10.517 15.25 12.8332 11 12.8332C6.75 12.8332 3 10.517 1 6.99984C3 3.48268 6.75 1.1665 11 1.1665C15.25 1.1665 18.9167 3.48268 21 6.99984Z" stroke="#828284" stroke-width="1.41667" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="M10.9987 11.1663C13.2999 11.1663 15.1654 9.30086 15.1654 6.99967C15.1654 4.69849 13.2999 2.83301 10.9987 2.83301C8.69751 2.83301 6.83203 4.69849 6.83203 6.99967C6.83203 9.30086 8.69751 11.1663 10.9987 11.1663Z" stroke="#828284" stroke-width="1.41667" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+    icon: `<svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M22.2004 11.95C20.1605 15.5375 16.3355 17.8999 12.0006 17.8999C7.66569 17.8999 3.84075 15.5375 1.80078 11.95C3.84075 8.36258 7.66569 6.00012 12.0006 6.00012C16.3355 6.00012 20.0755 8.36258 22.2004 11.95Z" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M11.998 16.1999C14.3451 16.1999 16.2479 14.2972 16.2479 11.95C16.2479 9.60283 14.3451 7.70007 11.998 7.70007C9.65081 7.70007 7.74805 9.60283 7.74805 11.95C7.74805 14.2972 9.65081 16.1999 11.998 16.1999Z" fill="${Colours.neutral.n800}" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
     </svg>
     `,
     title: "Eye",
@@ -950,12 +954,12 @@ const _data: UnderwritingJourneyScreen[] = [
     accumulatedProgress: ACCUMULATED_PROGRESS.FIB_MEDICAL_JOURNEY_KIDNEYS_BLADDER_SCREEN_ID,
     category: "fib_medical_journey",
     heading: "Medical",
-    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M4.90466 4.42048C4.82171 4.07726 4.93203 3.71451 5.16641 3.45042C5.74014 2.80397 6.12087 1.85003 4.73959 1.23613C2.59652 0.283652 0.929688 2.42672 0.929688 3.85544C0.929688 5.28415 1.64404 7.66534 3.78711 7.42722C5.24321 7.26543 5.18782 5.59215 4.90466 4.42048Z" stroke="#828284" stroke-width="1.41667" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="M5.09697 3.9165C7.24004 4.63086 8.43041 5.58317 8.01363 7.24984C7.59691 8.9165 4.32315 8.91634 3.84691 10.5832C3.46592 11.9166 4.38261 12.3331 5.09697 12.6665" stroke="#828284" stroke-width="1.41667" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="M17.3595 7.42722C19.5026 7.66534 20.2169 5.28415 20.2169 3.85544C20.2169 2.42672 18.5501 0.283652 16.407 1.23613C15.0386 1.84431 15.3995 2.78621 15.9642 3.43225C16.2043 3.70695 16.3113 4.08605 16.2215 4.43966C15.9243 5.61032 15.9113 7.26631 17.3595 7.42722Z" stroke="#828284" stroke-width="1.41667" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="M15.6929 12.9038C16.4072 12.5704 17.5605 11.9166 17.1795 10.5832C16.7033 8.91634 13.8462 8.9165 13.4295 7.24984C13.065 5.79185 13.7865 4.63086 15.9295 3.9165" stroke="#828284" stroke-width="1.41667" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="M9.26162 21V16.4758C7.73766 16.571 4.73736 16.2376 4.73736 14.3327C4.73736 11.9515 8.30914 10.2847 9.97597 10.2847C11.6428 10.2847 15.9289 10.999 15.9289 14.3327C15.9289 16.0471 13.2144 16.4758 11.8809 16.4758V21" stroke="#828284" stroke-width="1.41667" stroke-linecap="round" stroke-linejoin="round"/>
+    icon: `<svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M6.28497 5.03931C8.43778 5.75691 9.63355 6.71355 9.21489 8.38779C8.79627 10.062 5.50763 10.0619 5.02923 11.7363C4.64651 13.0758 5.56737 13.4942 6.28497 13.8291" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M6.09264 5.54516C6.00932 5.20038 6.12014 4.83597 6.35559 4.57068C6.93192 3.9213 7.31438 2.96302 5.92682 2.34633C3.77402 1.38953 2.09961 3.54234 2.09961 4.97754C2.09961 6.41275 2.81721 8.80476 4.97002 8.56556C6.43274 8.40303 6.37709 6.72215 6.09264 5.54516Z" fill="${Colours.neutral.n800}" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M16.9287 14.0674C17.6463 13.7325 18.8049 13.0758 18.4221 11.7363C17.9437 10.0619 15.0737 10.062 14.6551 8.38779C14.2889 6.92317 15.0136 5.75691 17.1665 5.03931" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M18.6031 8.56556C20.7559 8.80476 21.4735 6.41275 21.4735 4.97754C21.4735 3.54234 19.7991 1.38953 17.6463 2.34633C16.2716 2.95727 16.6342 3.90346 17.2014 4.55243C17.4426 4.82838 17.5501 5.2092 17.4599 5.56442C17.1613 6.7404 17.1483 8.40392 18.6031 8.56556Z" fill="${Colours.neutral.n800}" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M10.4686 22.2001V17.6553C8.93776 17.7509 5.92383 17.4161 5.92383 15.5025C5.92383 13.1104 9.51184 11.436 11.1862 11.436C12.8607 11.436 17.1663 12.1536 17.1663 15.5025C17.1663 17.2247 14.4394 17.6553 13.0999 17.6553V22.2001" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
     </svg>
     `,
     title: "Kidneys & Bladder",
@@ -986,11 +990,11 @@ const _data: UnderwritingJourneyScreen[] = [
     heading: "Medical",
     title: "Lungs",
     reviewAnswerTitle: "Lungs Issues",
-    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M7.94376 5.32998C7.94376 5.32998 5.47675 4.19426 2.13902 11.2215C-0.763351 17.8228 3.66276 18.8875 5.9121 18.5326C8.16144 18.1777 9.32239 16.971 8.81447 13.4219C8.16144 9.9438 10.3382 6.46569 7.94376 5.32998Z" stroke="#828284" stroke-width="1.52647" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="M15.1998 5.32998C15.1998 5.32998 17.6668 4.19426 21.0046 11.2215C23.9069 17.8228 19.4808 18.8875 17.2315 18.5326C14.9821 18.1777 13.8212 16.971 14.3291 13.4219C14.9096 9.9438 12.7328 6.46569 15.1998 5.32998Z" stroke="#828284" stroke-width="1.52647" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="M8.81592 13.5709C8.81592 13.5709 10.9913 11.5763 11.4992 8.4531V1" stroke="#828284" stroke-width="1.52647" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="M14.329 13.4928C14.329 13.4928 11.7894 11.7183 11.4991 8.45312" stroke="#828284" stroke-width="1.52647" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+    icon: `<svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M9.00781 15.2564C9.00781 15.2564 11.2325 13.2165 11.752 10.0224V2.40015" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M14.644 15.1766C14.644 15.1766 12.0468 13.3617 11.75 10.0225" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M8.11479 6.82834C8.11479 6.82834 5.59177 5.66685 2.17828 12.8536C-0.789967 19.6047 3.73662 20.6936 6.03701 20.3307C8.33741 19.9677 9.52471 18.7336 9.00526 15.104C8.33741 11.5469 10.5636 7.98983 8.11479 6.82834Z" fill="${Colours.neutral.n800}" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M15.535 6.82834C15.535 6.82834 18.058 5.66685 21.4715 12.8536C24.4398 19.6047 19.9132 20.6936 17.6128 20.3307C15.3124 19.9677 14.1251 18.7336 14.6445 15.104C15.2382 11.5469 13.012 7.98983 15.535 6.82834Z" fill="${Colours.neutral.n800}" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
     </svg>
     `,
     question: "Were all of your lung issues in the list below?",
@@ -1019,9 +1023,9 @@ const _data: UnderwritingJourneyScreen[] = [
     category: "fib_medical_journey",
     heading: "Medical",
     title: "Minor Injuries",
-    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M6.83519 14.3072L6.83519 3.09396C6.83519 2.14299 7.60611 1.37207 8.55708 1.37207V1.37207C9.50805 1.37207 10.279 2.14299 10.279 3.09396L10.279 9.62454C10.279 9.62454 17.1875 9.77153 16.9985 14.3072C16.8096 18.843 15.5916 20.6278 15.5916 20.6278L6.83519 20.6278L1.42909 13.9235C1.17172 13.6043 1.1964 13.1425 1.48632 12.8525L1.58955 12.7493C2.47673 11.8621 3.89661 11.8053 4.85192 12.6186L6.83519 14.3072Z" stroke="#828284" stroke-width="1.36395" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="M7.39514 2.57556V6.98834H9.80211V2.57556C9.80211 1.91089 9.26329 1.37207 8.59863 1.37207C7.93396 1.37207 7.39514 1.91089 7.39514 2.57556Z" fill="#828284" stroke="#828284" stroke-width="1.36395"/>
+    icon: `<svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M9.65579 15.348L9.65579 3.19207C9.65579 2.16116 10.4915 1.32544 11.5224 1.32544V1.32544C12.5533 1.32544 13.3891 2.16116 13.3891 3.19207L13.3891 10.2716C13.3891 10.2716 20.8784 10.431 20.6735 15.348C20.4686 20.2649 19.1483 22.1999 19.1483 22.1999L9.65579 22.1999L3.81959 14.9621C3.52674 14.599 3.55483 14.0734 3.88472 13.7436V13.7436C4.89419 12.7341 6.50979 12.6694 7.59678 13.5948L9.65579 15.348Z" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M8.99805 2.99985V6.59985H13.798V2.99985C13.798 1.67437 12.7235 0.599854 11.398 0.599854C10.0726 0.599854 8.99805 1.67437 8.99805 2.99985Z" fill="${Colours.neutral.n800}" stroke="${Colours.neutral.n800}" stroke-width="1.2"/>
     </svg>
     `,
     question: "Were all of your minor injuries in the list below?",
@@ -1049,8 +1053,9 @@ const _data: UnderwritingJourneyScreen[] = [
     accumulatedProgress: ACCUMULATED_PROGRESS.FIB_MEDICAL_JOURNEY_MUSCLES_JOINTS_SCREEN_ID,
     category: "fib_medical_journey",
     heading: "Medical",
-    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M15.6276 14.0036C15.6276 14.0036 13.5583 8.35818 7.75194 11.6461C7.75194 11.6461 5.86797 9.10262 3.21187 10.2503C0.555779 11.398 1.42055 18.8424 4.47815 19.2457C6.03916 19.5788 8.21521 18.9045 8.21521 18.9045C8.21521 18.9045 12.4773 20.8587 16.7703 19.0906C21.0633 17.3225 21.9898 15.3994 21.9898 15.3994C21.9898 15.3994 22.421 10.9567 17.913 6.40401C16.8178 5.18968 15.9787 4.27741 15.3384 3.59353C14.073 2.24201 12.4553 1.34136 10.6713 0.846099V0.846099C9.98164 0.654633 9.24201 0.803297 8.67988 1.24637L8.40239 1.46509C7.64211 2.06435 7.3413 3.07727 7.65126 3.99436V3.99436C8.03263 5.12273 9.0446 5.95534 10.2274 5.8155C10.8813 5.7382 11.5968 5.57669 12.1994 5.25632C12.1994 5.25632 16.2453 6.7142 14.2995 11.9873" stroke="#828284" stroke-width="1.46574" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+    icon: `<svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M15.8187 15.8804C15.8187 15.8804 13.7465 10.2273 7.93222 13.5198C7.93222 13.5198 6.04566 10.9728 3.38592 12.122C0.726182 13.2713 1.59214 20.726 4.65393 21.1298C6.21709 21.4633 8.39612 20.7881 8.39612 20.7881C8.39612 20.7881 12.6641 22.7449 16.963 20.9745C21.2618 19.204 22.1897 17.2782 22.1897 17.2782C22.1897 17.2782 22.6214 12.8294 18.1073 8.27045C17.0106 7.05446 16.1702 6.14093 15.5291 5.45611C14.262 4.10275 12.642 3.20086 10.8556 2.70492V2.70492C10.165 2.51319 9.42433 2.66205 8.86143 3.10574L8.58356 3.32476C7.82223 3.92484 7.52101 4.93915 7.8314 5.8575V5.8575C8.2133 6.98741 9.22665 7.82117 10.4111 7.68114C11.0659 7.60373 11.7824 7.442 12.3857 7.12119C12.3857 7.12119 16.4372 8.58107 14.4888 13.8615" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M9 15.3292C9 15.3292 9.6 14.7292 10.8 14.4292C12 14.1292 13.2 16.2292 13.2 16.2292" stroke="${Colours.neutral.n800}" stroke-width="1.2"/>
     </svg>
     `,
     title: "Muscles & Joints",
@@ -1080,15 +1085,15 @@ const _data: UnderwritingJourneyScreen[] = [
     accumulatedProgress: ACCUMULATED_PROGRESS.FIB_MEDICAL_JOURNEY_PREGNANCY_SCREEN_ID,
     category: "fib_medical_journey",
     heading: "Medical",
-    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M17.36 9.81622C17.36 5.29854 13.6977 1.63623 9.17999 1.63623C4.66231 1.63623 1 5.29854 1 9.81622C1 14.3339 4.66231 17.9962 9.17999 17.9962C11.7444 17.9962 14.0331 16.8162 15.5329 14.9696" stroke="#828284" stroke-width="1.41667" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="M12.3925 11.6521C13.317 11.6521 14.0663 11.1203 14.0663 10.4642C14.0663 9.80819 13.317 9.27637 12.3925 9.27637C11.4681 9.27637 10.7188 9.80819 10.7188 10.4642C10.7188 11.1203 11.4681 11.6521 12.3925 11.6521Z" stroke="#828284" stroke-width="1.41667" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="M14.0664 10.4639C14.0664 10.4639 15.0653 10.5719 15.7132 11.8138C16.3611 13.0556 18.7638 13.2446 19.2498 10.7879C19.5 9.13601 20.5 9.63603 21 9.63609" stroke="#828284" stroke-width="1.41667" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="M4.0737 8.81732C4.43154 8.81732 4.72162 8.52724 4.72162 8.1694C4.72162 7.81157 4.43154 7.52148 4.0737 7.52148C3.71586 7.52148 3.42578 7.81157 3.42578 8.1694C3.42578 8.52724 3.71586 8.81732 4.0737 8.81732Z" fill="#828284" stroke="#828284" stroke-width="1.41667" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="M7.26059 6.38764C7.61843 6.38764 7.90851 6.09755 7.90851 5.73972C7.90851 5.38188 7.61843 5.0918 7.26059 5.0918C6.90276 5.0918 6.61267 5.38188 6.61267 5.73972C6.61267 6.09755 6.90276 6.38764 7.26059 6.38764Z" fill="#828284" stroke="#828284" stroke-width="1.41667" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="M8.52683 14.7568C8.88466 14.7568 9.17475 14.4667 9.17475 14.1089C9.17475 13.751 8.88466 13.4609 8.52683 13.4609C8.16899 13.4609 7.87891 13.751 7.87891 14.1089C7.87891 14.4667 8.16899 14.7568 8.52683 14.7568Z" fill="#828284" stroke="#828284" stroke-width="1.41667" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="M13.4409 6.6308C13.7987 6.6308 14.0888 6.34072 14.0888 5.98288C14.0888 5.62504 13.7987 5.33496 13.4409 5.33496C13.0831 5.33496 12.793 5.62504 12.793 5.98288C12.793 6.34072 13.0831 6.6308 13.4409 6.6308Z" fill="#828284" stroke="#828284" stroke-width="1.41667" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>    
+    icon: `<svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M18.4645 11.8922C18.4645 7.25555 14.7058 3.49683 10.0692 3.49683C5.43255 3.49683 1.67383 7.25555 1.67383 11.8922C1.67383 16.5288 5.43255 20.2875 10.0692 20.2875C12.7011 20.2875 15.0501 19.0764 16.5894 17.1812" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M13.3643 13.7761C14.3131 13.7761 15.0822 13.2303 15.0822 12.557C15.0822 11.8837 14.3131 11.3379 13.3643 11.3379C12.4156 11.3379 11.6465 11.8837 11.6465 12.557C11.6465 13.2303 12.4156 13.7761 13.3643 13.7761Z" fill="${Colours.neutral.n800}" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M15.084 12.557C15.084 12.557 16.1092 12.6678 16.7741 13.9423C17.4391 15.2169 19.9051 15.4108 20.4038 12.8894C20.6606 11.1941 21.687 11.7072 22.2001 11.7073" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M4.82904 10.8666C5.1963 10.8666 5.49402 10.5689 5.49402 10.2016C5.49402 9.83434 5.1963 9.53662 4.82904 9.53662C4.46178 9.53662 4.16406 9.83434 4.16406 10.2016C4.16406 10.5689 4.46178 10.8666 4.82904 10.8666Z" fill="${Colours.neutral.n800}" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M8.10053 8.37292C8.46778 8.37292 8.7655 8.0752 8.7655 7.70795C8.7655 7.34069 8.46778 7.04297 8.10053 7.04297C7.73327 7.04297 7.43555 7.34069 7.43555 7.70795C7.43555 8.0752 7.73327 8.37292 8.10053 8.37292Z" fill="${Colours.neutral.n800}" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M9.39935 16.9623C9.76661 16.9623 10.0643 16.6646 10.0643 16.2973C10.0643 15.93 9.76661 15.6323 9.39935 15.6323C9.0321 15.6323 8.73438 15.93 8.73438 16.2973C8.73438 16.6646 9.0321 16.9623 9.39935 16.9623Z" fill="${Colours.neutral.n800}" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M14.4423 8.62219C14.8096 8.62219 15.1073 8.32447 15.1073 7.95721C15.1073 7.58996 14.8096 7.29224 14.4423 7.29224C14.0751 7.29224 13.7773 7.58996 13.7773 7.95721C13.7773 8.32447 14.0751 8.62219 14.4423 8.62219Z" fill="${Colours.neutral.n800}" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
     `,
     title: "Pregnancy",
     reviewAnswerTitle: "Pregnancy Issues",
@@ -1117,13 +1122,12 @@ const _data: UnderwritingJourneyScreen[] = [
     accumulatedProgress: ACCUMULATED_PROGRESS.FIB_MEDICAL_JOURNEY_SKIN_SCREEN_ID,
     category: "fib_medical_journey",
     heading: "Medical",
-    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M15.5488 16.0878C14.6774 17.2027 16.0368 21 16.0368 21H7.75844C7.75844 21 7.65387 18.7181 6.34676 18.8052C5.03964 18.9097 3.5234 18.9968 3.81967 17.2549C3.88939 16.802 3.90681 16.4188 3.87196 16.1227C3.85453 15.844 3.80225 15.6175 3.73253 15.4607C3.59311 15.0775 3.41883 14.9382 3.41883 14.9382L3.34911 14.2066L3.31426 13.9105C3.31426 13.9105 3.26197 13.7537 3.03541 13.6317C2.89598 13.5621 2.56485 13.4401 2.26857 13.3182C1.41459 12.9872 1.65858 12.395 2.18143 11.7679C2.82627 11.0015 4.04624 10.026 2.98312 8.64991C2.98312 8.64991 1.86772 -0.930564 13.5794 1.35133C13.5794 1.35133 20.3416 2.57066 18.4419 10.8795C18.4593 10.8795 17.9365 13.2137 15.5488 16.0878Z" stroke="#828284" stroke-width="1.41667" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="M11.9869 12.3957C11.5539 12.24 11.0765 12.4648 10.9207 12.8979C10.765 13.331 10.9898 13.8083 11.4229 13.9641C11.856 14.1198 12.3333 13.895 12.4891 13.4619C12.6448 13.0289 12.42 12.5515 11.9869 12.3957Z" fill="#828284" stroke="#828284" stroke-width="0.416667"/>
-    <path d="M8.68615 14.6643C8.25307 14.5085 7.77573 14.7334 7.61996 15.1664C7.4642 15.5995 7.68901 16.0769 8.12209 16.2326C8.55517 16.3884 9.03252 16.1636 9.18828 15.7305C9.34404 15.2974 9.11923 14.8201 8.68615 14.6643Z" fill="#828284" stroke="#828284" stroke-width="0.416667"/>
-    <path d="M8.75305 12.03C8.31997 11.8743 7.84262 12.0991 7.68686 12.5322C7.5311 12.9652 7.75591 13.4426 8.18899 13.5983C8.62207 13.7541 9.09941 13.5293 9.25517 13.0962C9.41094 12.6631 9.18613 12.1858 8.75305 12.03Z" fill="#828284" stroke="#828284" stroke-width="0.416667"/>
-    <path d="M6.61584 13.0344C6.18276 12.8787 5.70541 13.1035 5.54965 13.5365C5.39389 13.9696 5.6187 14.447 6.05178 14.6027C6.48486 14.7585 6.96221 14.5337 7.11797 14.1006C7.27373 13.6675 7.04892 13.1902 6.61584 13.0344Z" fill="#828284" stroke="#828284" stroke-width="0.416667"/>
-    <path d="M6.96276 9.61547C6.52969 9.45971 6.05234 9.68452 5.89658 10.1176C5.74082 10.5507 5.96563 11.028 6.3987 11.1838C6.83178 11.3396 7.30913 11.1147 7.46489 10.6817C7.62065 10.2486 7.39584 9.77124 6.96276 9.61547Z" fill="#828284" stroke="#828284" stroke-width="0.416667"/>
+    icon: `<svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M17.7078 17.1783C16.8196 18.3146 18.2052 22.185 18.2052 22.185H9.76749C9.76749 22.185 9.66091 19.8592 8.32864 19.948C6.99637 20.0545 5.45093 20.1433 5.75292 18.3678C5.82397 17.9062 5.84173 17.5156 5.80621 17.2138C5.78844 16.9297 5.73515 16.6989 5.6641 16.5391C5.52199 16.1485 5.34435 16.0065 5.34435 16.0065L5.2733 15.2608L5.23777 14.959C5.23777 14.959 5.18448 14.7992 4.95355 14.6749C4.81144 14.6039 4.47394 14.4796 4.17195 14.3554C3.30154 14.018 3.55023 13.4144 4.08314 12.7752C4.74039 11.994 5.98384 10.9998 4.90026 9.5972C4.90026 9.5972 3.76339 -0.167674 15.7005 2.15814C15.7005 2.15814 22.5928 3.40094 20.6566 11.8697C20.6744 11.8697 20.1414 14.2488 17.7078 17.1783Z" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M11.9802 16.8811C11.6684 16.769 11.3247 16.9308 11.2125 17.2427C11.1004 17.5545 11.2623 17.8982 11.5741 18.0103C11.8859 18.1225 12.2296 17.9606 12.3417 17.6488C12.4539 17.337 12.292 16.9933 11.9802 16.8811Z" fill="${Colours.neutral.n800}" stroke="${Colours.neutral.n800}" stroke-width="1.2"/>
+    <path d="M12.0486 12.3958C11.7367 12.2836 11.3931 12.4455 11.2809 12.7573C11.1688 13.0691 11.3306 13.4128 11.6424 13.525C11.9543 13.6371 12.2979 13.4753 12.4101 13.1634C12.5222 12.8516 12.3604 12.5079 12.0486 12.3958Z" fill="${Colours.neutral.n800}" stroke="${Colours.neutral.n800}" stroke-width="1.2"/>
+    <path d="M8.66966 14.6194C8.35784 14.5073 8.01415 14.6691 7.902 14.9809C7.78985 15.2928 7.95171 15.6365 8.26353 15.7486C8.57535 15.8607 8.91904 15.6989 9.03119 15.3871C9.14333 15.0753 8.98147 14.7316 8.66966 14.6194Z" fill="${Colours.neutral.n800}" stroke="${Colours.neutral.n800}" stroke-width="1.2"/>
+    <path d="M8.42356 11.1348C8.11174 11.0226 7.76805 11.1845 7.65591 11.4963C7.54376 11.8081 7.70562 12.1518 8.01744 12.264C8.32925 12.3761 8.67295 12.2143 8.78509 11.9024C8.89724 11.5906 8.73538 11.2469 8.42356 11.1348Z" fill="${Colours.neutral.n800}" stroke="${Colours.neutral.n800}" stroke-width="1.2"/>
     </svg>
     `,
     title: "Skin",
@@ -1153,11 +1157,11 @@ const _data: UnderwritingJourneyScreen[] = [
     accumulatedProgress: ACCUMULATED_PROGRESS.FIB_MEDICAL_JOURNEY_OTHER_SCREEN_ID,
     category: "fib_medical_journey",
     heading: "Medical",
-    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M9.9 18.9997C14.9258 18.9997 19 14.9255 19 9.89976C19 4.87399 14.9258 0.799805 9.9 0.799805C4.87424 0.799805 0.800049 4.87399 0.800049 9.89976C0.800049 14.9255 4.87424 18.9997 9.9 18.9997Z" stroke="#828284" stroke-width="1.50412"/>
-    <path d="M5.54131 10.6642C5.96365 10.6642 6.30601 10.3218 6.30601 9.89947C6.30601 9.47713 5.96365 9.13477 5.54131 9.13477C5.11898 9.13477 4.77661 9.47713 4.77661 9.89947C4.77661 10.3218 5.11898 10.6642 5.54131 10.6642Z" stroke="#828284" stroke-width="1.50412"/>
-    <path d="M9.89996 10.6642C10.3223 10.6642 10.6647 10.3218 10.6647 9.89947C10.6647 9.47713 10.3223 9.13477 9.89996 9.13477C9.47762 9.13477 9.13525 9.47713 9.13525 9.89947C9.13525 10.3218 9.47762 10.6642 9.89996 10.6642Z" stroke="#828284" stroke-width="1.50412"/>
-    <path d="M14.4881 10.6642C14.9104 10.6642 15.2528 10.3218 15.2528 9.89947C15.2528 9.47713 14.9104 9.13477 14.4881 9.13477C14.0658 9.13477 13.7234 9.47713 13.7234 9.89947C13.7234 10.3218 14.0658 10.6642 14.4881 10.6642Z" stroke="#828284" stroke-width="1.50412"/>
+    icon: `<svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M9.9 18.9997C14.9258 18.9997 19 14.9255 19 9.89976C19 4.87399 14.9258 0.799805 9.9 0.799805C4.87424 0.799805 0.800049 4.87399 0.800049 9.89976C0.800049 14.9255 4.87424 18.9997 9.9 18.9997Z" stroke="${Colours.neutral.n800}" stroke-width="1.50412"/>
+    <path d="M5.54131 10.6642C5.96365 10.6642 6.30601 10.3218 6.30601 9.89947C6.30601 9.47713 5.96365 9.13477 5.54131 9.13477C5.11898 9.13477 4.77661 9.47713 4.77661 9.89947C4.77661 10.3218 5.11898 10.6642 5.54131 10.6642Z" stroke="${Colours.neutral.n800}" stroke-width="1.50412"/>
+    <path d="M9.89996 10.6642C10.3223 10.6642 10.6647 10.3218 10.6647 9.89947C10.6647 9.47713 10.3223 9.13477 9.89996 9.13477C9.47762 9.13477 9.13525 9.47713 9.13525 9.89947C9.13525 10.3218 9.47762 10.6642 9.89996 10.6642Z" stroke="${Colours.neutral.n800}" stroke-width="1.50412"/>
+    <path d="M14.4881 10.6642C14.9104 10.6642 15.2528 10.3218 15.2528 9.89947C15.2528 9.47713 14.9104 9.13477 14.4881 9.13477C14.0658 9.13477 13.7234 9.47713 13.7234 9.89947C13.7234 10.3218 14.0658 10.6642 14.4881 10.6642Z" stroke="${Colours.neutral.n800}" stroke-width="1.50412"/>
     </svg>
     `,
     title: "Other",
@@ -1225,9 +1229,9 @@ const _data: UnderwritingJourneyScreen[] = [
       },
     ],
     heading: "Medical",
-    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M5.4116 21.9998C6.36231 18.4895 6.50855 17.9044 6.50855 17.9044C8.33687 20.8297 11.2621 21.561 11.2621 21.561C19.4529 23.9743 25.5228 12.4195 20.1111 6.64212C15.65 2.54675 11.9203 6.3496 11.9203 6.3496C9.06818 6.3496 10.1651 1.81543 10.1651 1.81543H7.09361C7.09361 1.81543 4.60713 8.39728 11.0427 10.0793C11.0427 10.0793 11.9934 12.8583 9.79948 15.8567C9.79948 15.8567 5.77726 12.0539 3.36389 16.2224C3.36389 16.2224 2.12067 18.6357 1.82812 21.9998H4.60713H5.4116Z" stroke="#828284" stroke-width="1.7" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="M15.6484 7.73919C15.6484 7.73919 19.0125 7.37353 19.0856 11.2495" stroke="#828284" stroke-width="1.7" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+    icon: `<svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M5.4116 21.9998C6.36231 18.4895 6.50855 17.9044 6.50855 17.9044C8.33687 20.8297 11.2621 21.561 11.2621 21.561C19.4529 23.9743 25.5228 12.4195 20.1111 6.64212C15.65 2.54675 11.9203 6.3496 11.9203 6.3496C9.06818 6.3496 10.1651 1.81543 10.1651 1.81543H7.09361C7.09361 1.81543 4.60713 8.39728 11.0427 10.0793C11.0427 10.0793 11.9934 12.8583 9.79948 15.8567C9.79948 15.8567 5.77726 12.0539 3.36389 16.2224C3.36389 16.2224 2.12067 18.6357 1.82812 21.9998H4.60713H5.4116Z" stroke="${Colours.neutral.n800}" stroke-width="1.7" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M15.6484 7.73919C15.6484 7.73919 19.0125 7.37353 19.0856 11.2495" stroke="${Colours.neutral.n800}" stroke-width="1.7" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
     </svg>
     `,
     title: "Hospital Stay",
@@ -1253,9 +1257,9 @@ const _data: UnderwritingJourneyScreen[] = [
     category: "fib_medical_journey",
     dependsOnOtherResponses: [{ id: FIB_HOSPITAL_STAY_SCREEN_ID, answer: "No" }],
     heading: "Medical",
-    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M5.4116 21.9998C6.36231 18.4895 6.50855 17.9044 6.50855 17.9044C8.33687 20.8297 11.2621 21.561 11.2621 21.561C19.4529 23.9743 25.5228 12.4195 20.1111 6.64212C15.65 2.54675 11.9203 6.3496 11.9203 6.3496C9.06818 6.3496 10.1651 1.81543 10.1651 1.81543H7.09361C7.09361 1.81543 4.60713 8.39728 11.0427 10.0793C11.0427 10.0793 11.9934 12.8583 9.79948 15.8567C9.79948 15.8567 5.77726 12.0539 3.36389 16.2224C3.36389 16.2224 2.12067 18.6357 1.82812 21.9998H4.60713H5.4116Z" stroke="#828284" stroke-width="1.7" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="M15.6484 7.73919C15.6484 7.73919 19.0125 7.37353 19.0856 11.2495" stroke="#828284" stroke-width="1.7" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+    icon: `<svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M5.4116 21.9998C6.36231 18.4895 6.50855 17.9044 6.50855 17.9044C8.33687 20.8297 11.2621 21.561 11.2621 21.561C19.4529 23.9743 25.5228 12.4195 20.1111 6.64212C15.65 2.54675 11.9203 6.3496 11.9203 6.3496C9.06818 6.3496 10.1651 1.81543 10.1651 1.81543H7.09361C7.09361 1.81543 4.60713 8.39728 11.0427 10.0793C11.0427 10.0793 11.9934 12.8583 9.79948 15.8567C9.79948 15.8567 5.77726 12.0539 3.36389 16.2224C3.36389 16.2224 2.12067 18.6357 1.82812 21.9998H4.60713H5.4116Z" stroke="${Colours.neutral.n800}" stroke-width="1.7" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M15.6484 7.73919C15.6484 7.73919 19.0125 7.37353 19.0856 11.2495" stroke="${Colours.neutral.n800}" stroke-width="1.7" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
     </svg>
     `,
     title: "Symptoms Resolved",
@@ -1274,9 +1278,9 @@ const _data: UnderwritingJourneyScreen[] = [
     category: "fib_medical_journey",
     dependsOnOtherResponses: [{ id: FIB_SYMPTOMS_RESOLVED_SCREEN_ID, answer: "No" }],
     heading: "Medical",
-    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M1.41064 1.2334V19.0003H20.5895" stroke="#828284" stroke-width="1.59823" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="M1.41016 16.8162L5.8053 5.229L7.80309 10.4233H19.3903" stroke="#828284" stroke-width="1.59823" stroke-linecap="round" stroke-linejoin="round"/>
+    icon: `<svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M1.41064 1.2334V19.0003H20.5895" stroke="${Colours.neutral.n800}" stroke-width="1.59823" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M1.41016 16.8162L5.8053 5.229L7.80309 10.4233H19.3903" stroke="${Colours.neutral.n800}" stroke-width="1.59823" stroke-linecap="round" stroke-linejoin="round"/>
     </svg>
     `,
     title: "Condition Stable?",
@@ -1332,9 +1336,9 @@ const _data: UnderwritingJourneyScreen[] = [
       },
     ],
     heading: "Medical",
-    icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M10.5 20.5C15.7467 20.5 20 16.2467 20 11C20 5.75329 15.7467 1.5 10.5 1.5C5.25329 1.5 1 5.75329 1 11C1 16.2467 5.25329 20.5 10.5 20.5Z" stroke="#828284" stroke-width="1.80952" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="M17.5193 4.6665L4.16797 18.0179" stroke="#828284" stroke-width="1.80952" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+    icon: `<svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M10.5 20.5C15.7467 20.5 20 16.2467 20 11C20 5.75329 15.7467 1.5 10.5 1.5C5.25329 1.5 1 5.75329 1 11C1 16.2467 5.25329 20.5 10.5 20.5Z" stroke="${Colours.neutral.n800}" stroke-width="1.80952" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M17.5193 4.6665L4.16797 18.0179" stroke="${Colours.neutral.n800}" stroke-width="1.80952" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
     </svg>
     `,
     title: "Daily Activity Rescrictons",
