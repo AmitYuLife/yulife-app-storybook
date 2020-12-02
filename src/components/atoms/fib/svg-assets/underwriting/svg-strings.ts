@@ -1,235 +1,169 @@
-export const NAME_ICON = `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <path d="M19.5 20.25H4.5C3.675 20.25 3 19.4661 3 18.5081V8.49194C3 7.53387 3.675 6.75 4.5 6.75H19.5C20.325 6.75 21 7.53387 21 8.49194V18.5081C21 19.4661 20.325 20.25 19.5 20.25Z" stroke="#828285" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M13 3H10.75V9H13V3Z" fill="#828285" stroke="#828285" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M13.501 14.251H18.251" stroke="#828285" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M13.5 16.5H18.25" stroke="#828285" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M8 14.125C9.00102 14.125 9.8125 13.3135 9.8125 12.3125C9.8125 11.3115 9.00102 10.5 8 10.5C6.99898 10.5 6.1875 11.3115 6.1875 12.3125C6.1875 13.3135 6.99898 14.125 8 14.125Z" stroke="#828285" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M10.75 17H5.375V16.8125C5.375 15.325 6.575 14.125 8.0625 14.125C9.55 14.125 10.75 15.325 10.75 16.8125V17Z" stroke="#828285" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+import { Colours } from "@styles";
+
+export const NAME_ICON = `<svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M20.3333 21.1666H3.66667C2.75 21.1666 2 20.2956 2 19.2311V8.10208C2 7.03756 2.75 6.1666 3.66667 6.1666H20.3333C21.25 6.1666 22 7.03756 22 8.10208V19.2311C22 20.2956 21.25 21.1666 20.3333 21.1666Z" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M13.2988 1.8H10.7988V8.46666H13.2988V1.8Z" fill="${Colours.neutral.n800}" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M13.666 14.5008H18.9438" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M13.666 16.9997H18.9438" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M7.55295 14.3608C8.66519 14.3608 9.56684 13.4591 9.56684 12.3469C9.56684 11.2346 8.66519 10.333 7.55295 10.333C6.44071 10.333 5.53906 11.2346 5.53906 12.3469C5.53906 13.4591 6.44071 14.3608 7.55295 14.3608Z" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M10.6089 17.555H4.63672V17.3467C4.63672 15.6939 5.97005 14.3606 7.62283 14.3606C9.27561 14.3606 10.6089 15.6939 10.6089 17.3467V17.555Z" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+`;
+
+export const BIRTHDAY_ICON = `<svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12.479 12.188C17.7368 12.188 21.999 11.4776 21.999 10.6013C21.999 9.72502 17.7368 9.01465 12.479 9.01465C7.22124 9.01465 2.95898 9.72502 2.95898 10.6013C2.95898 11.4776 7.22124 12.188 12.479 12.188Z" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round"/>
+<path d="M21.999 20.0146C21.999 20.9425 17.7286 21.708 12.479 21.708C7.22939 21.708 2.95898 20.9425 2.95898 20.0146" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round"/>
+<path d="M2.95898 10.5742V20.0846" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round"/>
+<path d="M21.998 10.5742V20.0846" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round"/>
+<path d="M6.13281 9.34194V6.63574" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round"/>
+<path d="M12.4785 8.54702V5.84082" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round"/>
+<path d="M18.8242 9.34194V6.63574" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round"/>
+<path d="M21.999 15.2832C21.999 16.211 17.7286 16.9765 12.479 16.9765C7.22939 16.9765 2.95898 16.211 2.95898 15.2832" stroke="${Colours.neutral.n800}" stroke-width="1.8" stroke-miterlimit="10" stroke-linecap="round"/>
+<path d="M6.57355 2.66797C6.57355 2.66797 7.36689 3.50797 6.57355 4.25464C6.57355 4.25464 5.58189 3.6013 6.57355 2.66797Z" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M12.9193 1.875C12.9193 1.875 13.7126 2.715 12.9193 3.46167C12.9193 3.46167 11.9276 2.80833 12.9193 1.875Z" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M19.265 2.66797C19.265 2.66797 20.0583 3.50797 19.265 4.25464C19.265 4.25464 18.2733 3.6013 19.265 2.66797Z" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>`;
 
-export const BIRTHDAY_ICON = `
-<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M12.48 12.1027C16.6111 12.1027 19.96 11.5446 19.96 10.856C19.96 10.1675 16.6111 9.60938 12.48 9.60938C8.3489 9.60938 5 10.1675 5 10.856C5 11.5446 8.3489 12.1027 12.48 12.1027Z" stroke="#828285" stroke-width="1.29861" stroke-miterlimit="10" stroke-linecap="round"/>
-<path d="M19.96 18.2529C19.96 18.9819 16.6047 19.5834 12.48 19.5834C8.35531 19.5834 5 18.9819 5 18.2529" stroke="#828285" stroke-width="1.29861" stroke-miterlimit="10" stroke-linecap="round"/>
-<path d="M5 10.835V18.3074" stroke="#828285" stroke-width="1.29861" stroke-miterlimit="10" stroke-linecap="round"/>
-<path d="M19.959 10.835V18.3074" stroke="#828285" stroke-width="1.29861" stroke-miterlimit="10" stroke-linecap="round"/>
-<path d="M7.49316 9.86652V7.74023" stroke="#828285" stroke-width="1.29861" stroke-miterlimit="10" stroke-linecap="round"/>
-<path d="M12.4795 9.2425V7.11621" stroke="#828285" stroke-width="1.29861" stroke-miterlimit="10" stroke-linecap="round"/>
-<path d="M17.4658 9.86652V7.74023" stroke="#828285" stroke-width="1.29861" stroke-miterlimit="10" stroke-linecap="round"/>
-<path d="M19.96 14.5352C19.96 15.2642 16.6047 15.8656 12.48 15.8656C8.35531 15.8656 5 15.2642 5 14.5352" stroke="#828285" stroke-width="2.59722" stroke-miterlimit="10" stroke-linecap="round"/>
-<path d="M7.83946 4.62305C7.83946 4.62305 8.46279 5.28305 7.83946 5.86971C7.83946 5.86971 7.06029 5.35638 7.83946 4.62305Z" stroke="#828285" stroke-width="1.29861" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M12.8258 4C12.8258 4 13.4491 4.66 12.8258 5.24666C12.8258 5.24666 12.0466 4.73333 12.8258 4Z" stroke="#828285" stroke-width="1.29861" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M17.8121 4.62305C17.8121 4.62305 18.4354 5.28305 17.8121 5.86971C17.8121 5.86971 17.033 5.35638 17.8121 4.62305Z" stroke="#828285" stroke-width="1.29861" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+export const UK_FLAG_ICON = `<svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<rect x="1.69336" y="4.79999" width="20.6126" height="14.6006" rx="2.57658" stroke="${Colours.neutral.n800}" stroke-width="1.71772"/>
+<rect x="11.1406" y="5.65872" width="1.71772" height="12.8829" fill="${Colours.neutral.n800}"/>
+<rect x="2.55273" y="13.3885" width="1.71772" height="18.8949" transform="rotate(-90 2.55273 13.3885)" fill="${Colours.neutral.n800}"/>
+<path d="M9.84991 9.52359V5.65872H3.83789L9.84991 9.52359Z" fill="${Colours.neutral.n800}" stroke="${Colours.neutral.n800}" stroke-width="0.42943" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M2.55166 7.3761V10.3821H7.27539L2.55166 7.3761Z" fill="${Colours.neutral.n800}" stroke="${Colours.neutral.n800}" stroke-width="0.42943" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M9.84991 15.1065L9.84991 18.9714L3.83789 18.9714L9.84991 15.1065Z" fill="${Colours.neutral.n800}" stroke="${Colours.neutral.n800}" stroke-width="0.42943" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M2.55166 17.254L2.55166 14.248L7.27539 14.248L2.55166 17.254Z" fill="${Colours.neutral.n800}" stroke="${Colours.neutral.n800}" stroke-width="0.42943" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M14.5798 9.52359V5.65872H20.5918L14.5798 9.52359Z" fill="${Colours.neutral.n800}" stroke="${Colours.neutral.n800}" stroke-width="0.42943" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M21.878 7.3761V10.3821H17.1543L21.878 7.3761Z" fill="${Colours.neutral.n800}" stroke="${Colours.neutral.n800}" stroke-width="0.42943" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M14.5798 15.1065L14.5798 18.9714L20.5918 18.9714L14.5798 15.1065Z" fill="${Colours.neutral.n800}" stroke="${Colours.neutral.n800}" stroke-width="0.42943" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M21.878 17.254L21.878 14.248L17.1543 14.248L21.878 17.254Z" fill="${Colours.neutral.n800}" stroke="${Colours.neutral.n800}" stroke-width="0.42943" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>`;
+
+export const HAZARDOUS_OCCUPATION_ICON = `<svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M21.7076 18.8827C22.2826 19.8827 21.5607 21.1304 20.4072 21.1304H3.59279C2.43927 21.1304 1.71743 19.8827 2.29243 18.8827L10.6996 4.26149C11.2764 3.25843 12.7236 3.25844 13.3004 4.26149L21.7076 18.8827Z" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M12 9.33322V14.4127" stroke="${Colours.neutral.n800}" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M12 17.1147V17.585" stroke="${Colours.neutral.n800}" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>
 `;
 
-export const UK_FLAG_ICON = `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-<rect x="2" y="4.41699" width="20" height="14.1667" rx="2.5" stroke="#828285" stroke-width="1.66667"/>
-<rect x="11.167" y="5.25" width="1.66667" height="12.5" fill="#828285"/>
-<rect x="2.83301" y="12.75" width="1.66667" height="18.3333" transform="rotate(-90 2.83301 12.75)" fill="#828285"/>
-<path d="M9.91634 9V5.25H4.08301L9.91634 9Z" fill="#828285" stroke="#828285" stroke-width="0.416667" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M2.83268 6.91634V9.83301H7.41602L2.83268 6.91634Z" fill="#828285" stroke="#828285" stroke-width="0.416667" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M9.91732 14.417L9.91732 18.167L4.08398 18.167L9.91732 14.417Z" fill="#828285" stroke="#828285" stroke-width="0.416667" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M2.83366 16.5007L2.83366 13.584L7.41699 13.584L2.83366 16.5007Z" fill="#828285" stroke="#828285" stroke-width="0.416667" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M14.5007 9V5.25H20.334L14.5007 9Z" fill="#828285" stroke="#828285" stroke-width="0.416667" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M21.5843 6.91634V9.83301H17.001L21.5843 6.91634Z" fill="#828285" stroke="#828285" stroke-width="0.416667" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M14.5007 14.417L14.5007 18.167L20.334 18.167L14.5007 14.417Z" fill="#828285" stroke="#828285" stroke-width="0.416667" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M21.5843 16.5007L21.5843 13.584L17.001 13.584L21.5843 16.5007Z" fill="#828285" stroke="#828285" stroke-width="0.416667" stroke-linecap="round" stroke-linejoin="round"/>
+export const HEIGHT_ICON = `<svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M20.3654 5.78488V22.0009H2.00977V5.78488H6.85205C6.85205 7.86594 8.55474 9.56862 10.6358 9.56862C12.7168 9.56862 14.4195 7.86594 14.4195 5.78488H20.3654Z" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M10.6373 9.56748C12.727 9.56748 14.421 7.87344 14.421 5.78374C14.421 3.69404 12.727 2 10.6373 2C8.54755 2 6.85352 3.69404 6.85352 5.78374C6.85352 7.87344 8.54755 9.56748 10.6373 9.56748Z" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M10.6367 5.78488V9.56862" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M10.6367 17.8332V21.6169" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M21.8925 2H16.8926V21.9995H21.8925V2Z" fill="white" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M16.8926 5.13687H19.3925" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M16.9707 8.52551H18.6894" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M16.9707 15.2627H18.6894" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M16.9707 11.8947H19.4707" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M16.9707 18.6308H19.4707" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>
 `;
 
-export const HAZARDOUS_OCCUPATION_ICON = `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-<mask id="mask0" mask-type="alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
-<rect width="24" height="24" fill="#C4C4C4"/>
-</mask>
-<g mask="url(#mask0)">
-<path d="M19.7076 16.0129C20.2826 17.0129 19.5607 18.2606 18.4072 18.2606H5.59279C4.43927 18.2606 3.71743 17.0129 4.29243 16.0129L10.6996 4.86989C11.2764 3.86683 12.7236 3.86684 13.3004 4.86989L19.7076 16.0129Z" stroke="#828285" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M12 8.6084V12.7643" stroke="#828285" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M12 14.9746V15.3594" stroke="#828285" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-</g>
+export const WEIGHT_ICON = `<svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M20.3654 5.78488V22.0009H2.00977V5.78488H6.85205C6.85205 7.86594 8.55474 9.56862 10.6358 9.56862C12.7168 9.56862 14.4195 7.86594 14.4195 5.78488H20.3654Z" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M10.6373 9.56748C12.727 9.56748 14.421 7.87344 14.421 5.78374C14.421 3.69404 12.727 2 10.6373 2C8.54755 2 6.85352 3.69404 6.85352 5.78374C6.85352 7.87344 8.54755 9.56748 10.6373 9.56748Z" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M10.6367 5.78488V9.56862" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M10.6367 17.8332V21.6169" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M21.8925 2H16.8926V21.9995H21.8925V2Z" fill="white" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M16.8926 5.13687H19.3925" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M16.9707 8.52551H18.6894" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M16.9707 15.2627H18.6894" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M16.9707 11.8947H19.4707" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M16.9707 18.6308H19.4707" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>
 `;
 
-export const HEIGHT_ICON = `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-<mask id="mask0" mask-type="alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
-<rect width="24" height="24" fill="#C4C4C4"/>
-</mask>
-<g mask="url(#mask0)">
-<path d="M9.21038 2.30273H3.35156V19.6961H9.21038V2.30273Z" stroke="#828285" stroke-width="1.44945" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M3.35156 5.03125H6.28097" stroke="#828285" stroke-width="1.44945" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M3.44238 7.97852H5.45635" stroke="#828285" stroke-width="1.44945" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M3.44238 13.8379H5.45635" stroke="#828285" stroke-width="1.44945" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M3.44238 10.9082H6.37179" stroke="#828285" stroke-width="1.44945" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M3.44238 16.7666H6.37179" stroke="#828285" stroke-width="1.44945" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M17.5804 7.58072C19.0379 7.58072 20.2194 6.39921 20.2194 4.94173C20.2194 3.48425 19.0379 2.30273 17.5804 2.30273C16.1229 2.30273 14.9414 3.48425 14.9414 4.94173C14.9414 6.39921 16.1229 7.58072 17.5804 7.58072Z" stroke="#828285" stroke-width="1.44945" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M18.7209 8.30078H16.4418C15.1823 8.30078 14.2227 9.32039 14.2227 10.5199V13.4588H21.0001V10.5199C21.0001 9.32039 19.9805 8.30078 18.7209 8.30078Z" stroke="#828285" stroke-width="1.44945" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M19.5017 13.5186H15.7231V19.6962H19.5017V13.5186Z" stroke="#828285" stroke-width="1.44945" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-</g>
+export const SMOKING_ICON = `<svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M18.8806 19.4404H1.97416C1.43995 19.4404 1 19.0005 1 18.4663V16.3294C1 15.7952 1.43995 15.3552 1.97416 15.3552H18.8806C19.4148 15.3552 19.8548 15.7952 19.8548 16.3294V18.4663C19.8548 19.0005 19.4148 19.4404 18.8806 19.4404Z" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M7.31836 15.3552V19.4404" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M22.209 15.3552V19.4404" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M13.4144 3.99976C13.4144 3.99976 12.1574 5.88523 14.0428 7.14222C15.9283 8.39921 19.0708 7.45647 21.2705 9.0277C22.5275 9.97044 22.2133 12.1702 22.2133 12.1702" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+`;
+
+export const ALCOHOL_ICON = `<svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M18.8174 8.81309V2.00024H15.831V8.83176C14.5244 9.11174 13.5352 10.269 13.5352 11.6502V21.8602H21.1693V11.6502C21.1879 10.2317 20.1614 9.05574 18.8174 8.81309Z" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M15.832 4.87427H18.8185" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M21.1875 12.7893H17.5664V18.1089H21.1875" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M5.75173 17.1943C3.67988 17.1943 2 15.5144 2 13.4425V11.3147H9.50347V13.4425C9.50347 15.5144 7.82359 17.1943 5.75173 17.1943Z" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M5.75195 17.1936V21.8599" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M3.51172 21.8596H8.0474" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+`;
+
+export const DRUGS_ICON = `<svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M4.65187 8.37405C6.22756 8.37405 7.50491 7.0967 7.50491 5.52101C7.50491 3.94532 6.22756 2.66797 4.65187 2.66797C3.07618 2.66797 1.79883 3.94532 1.79883 5.52101C1.79883 7.0967 3.07618 8.37405 4.65187 8.37405Z" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M2.65039 7.51794L6.64806 3.52026" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M14.4908 20.9801L14.2858 20.7751C13.4829 19.9722 13.4829 18.6738 14.2858 17.8708L16.5922 15.5645L18.4885 13.6681C19.2914 12.8652 20.5898 12.8652 21.3928 13.6681L21.5978 13.8731C22.4007 14.6761 22.4007 15.9745 21.5978 16.7774L17.3951 20.9801C16.5922 21.766 15.2938 21.766 14.4908 20.9801Z" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M19.582 18.7939L16.4727 15.6846" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M15.6133 2.66693L20.0701 7.12374" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M9.45229 16.9283L5.73828 13.2886L13.612 5.41486L17.326 9.12886L14.4291 12.0258L9.45229 16.9283Z" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M18.5168 5.78638L16.8826 4.15222L14.7285 6.30635L16.3627 7.94051L18.5168 5.78638Z" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M8.41298 15.8889L6.77882 14.2547L4.99609 16.0374L6.63026 17.6716L8.41298 15.8889Z" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M12.0039 11.1676L13.3409 12.5046" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M10.3008 12.8673L11.6378 14.2044" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M5.81325 16.8547L2.54492 20.123" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>
 `;
 
-export const WEIGHT_ICON = `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-<mask id="mask0" mask-type="alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
-<rect width="24" height="24" fill="#C4C4C4"/>
-</mask>
-<g mask="url(#mask0)">
-<path d="M20.0003 5.14941V17.8026H5.02734V5.14941H9.45597C9.45597 6.77324 10.7846 8.10183 12.4084 8.10183C14.0322 8.10183 15.3608 6.77324 15.3608 5.14941H20.0003Z" stroke="#828285" stroke-width="1.30047" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M12.4094 8.1021C14.04 8.1021 15.3619 6.78026 15.3619 5.14968C15.3619 3.51911 14.04 2.19727 12.4094 2.19727C10.7789 2.19727 9.45703 3.51911 9.45703 5.14968C9.45703 6.78026 10.7789 8.1021 12.4094 8.1021Z" stroke="#828285" stroke-width="1.30047" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M12.4087 5.14941V8.10183" stroke="#828285" stroke-width="1.30047" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M12.4087 14.5518V17.5042" stroke="#828285" stroke-width="1.30047" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-</g>
+export const DRUGS_COUNSELLING_ICON = `<svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M16.1963 20.1632L12.2771 17.1674H8.25743C4.68994 17.1674 1.80078 14.2723 1.80078 10.6975V9.94222C1.80078 6.3674 4.68994 3.47229 8.25743 3.47229H15.7441C19.3116 3.47229 22.2008 6.3674 22.2008 9.94222V10.6975C22.2008 13.945 19.8141 16.6387 16.6988 17.0919L16.1963 20.1632Z" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M10.3611 11.0427L10.3611 11.0427L10.3605 11.0417C10.2901 10.9412 10.2675 10.8909 10.2675 10.8256C10.2675 10.7013 10.3665 10.5922 10.5499 10.4685C10.6395 10.408 10.7445 10.3471 10.859 10.281L10.8704 10.2744C10.9811 10.2104 11.0998 10.1419 11.2186 10.0657C11.711 9.74994 12.2157 9.29564 12.2157 8.449C12.2157 7.8655 12.0146 7.40414 11.6367 7.08967C11.2602 6.77631 10.7143 6.614 10.0339 6.614C9.37268 6.614 8.8393 6.78968 8.47062 7.11885C8.10121 7.44869 7.90312 7.92735 7.90312 8.5204C7.90312 8.85402 8.18051 9.1314 8.51412 9.1314C8.84774 9.1314 9.12512 8.85402 9.12512 8.5204C9.12512 8.24692 9.21739 8.04768 9.37267 7.91593C9.52919 7.78312 9.75599 7.7136 10.0339 7.7136C10.354 7.7136 10.5993 7.78373 10.7635 7.90867C10.9258 8.03216 11.0141 8.21311 11.0141 8.449C11.0141 8.70154 10.8995 8.89722 10.7201 9.071C10.5545 9.2315 10.3378 9.36958 10.1111 9.51397C10.0901 9.52738 10.069 9.54084 10.0478 9.55437C9.55675 9.86824 9.03533 10.2235 9.03533 10.897C9.03533 11.1948 9.14189 11.5243 9.4277 11.7997C9.53865 11.9105 9.6837 11.9772 9.86053 11.9772C10.1376 11.9772 10.4613 11.7561 10.4613 11.3764C10.4613 11.2545 10.4279 11.1428 10.3611 11.0427ZM14.3237 11.3583L14.3237 11.3583L15.2508 11.356L15.3007 11.3584L15.3007 11.3584C15.3007 11.3583 15.3007 11.3583 15.3007 11.3583L15.4945 7.29896C15.4945 7.29895 15.4945 7.29893 15.4945 7.29892C15.5053 7.08894 15.446 6.92939 15.3229 6.8237C15.2018 6.71967 15.0273 6.6752 14.8224 6.6752C14.6127 6.6752 14.4357 6.71956 14.3132 6.82351C14.1887 6.9292 14.1293 7.08885 14.1401 7.29877C14.1401 7.29884 14.1401 7.2989 14.1401 7.29896L14.3237 11.3583ZM9.82993 14.3844C10.0518 14.3844 10.2322 14.3289 10.357 14.207C10.482 14.0848 10.5429 13.9041 10.5429 13.6714C10.5429 13.4339 10.4822 13.2484 10.3576 13.1224C10.233 12.9964 10.0524 12.938 9.82993 12.938C9.60745 12.938 9.42461 12.9964 9.29752 13.122C9.17032 13.2478 9.10673 13.4334 9.10673 13.6714C9.10673 13.9047 9.17051 14.0854 9.29813 14.2074C9.42535 14.3289 9.60803 14.3844 9.82993 14.3844ZM14.8224 14.3844C15.0443 14.3844 15.2247 14.3289 15.3495 14.207C15.4745 14.0848 15.5354 13.9041 15.5354 13.6714C15.5354 13.4339 15.4747 13.2484 15.3501 13.1224C15.2255 12.9964 15.0449 12.938 14.8224 12.938C14.5999 12.938 14.4171 12.9964 14.29 13.122C14.1628 13.2478 14.0992 13.4334 14.0992 13.6714C14.0992 13.9047 14.163 14.0854 14.2906 14.2074C14.4178 14.3289 14.6005 14.3844 14.8224 14.3844Z" fill="${Colours.neutral.n800}" stroke="${Colours.neutral.n800}" stroke-width="0.1"/>
 </svg>
 `;
 
-export const SMOKING_ICON = `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-<mask id="mask0" mask-type="alpha" maskUnits="userSpaceOnUse" x="-1" y="-1" width="24" height="24">
-<rect x="-1" y="-1" width="24" height="24" fill="#C4C4C4"/>
-</mask>
-<g mask="url(#mask0)">
-<path d="M18.1484 15.2608H3.82531C3.37272 15.2608 3 14.8881 3 14.4355V12.6251C3 12.1725 3.37272 11.7998 3.82531 11.7998H18.1484C18.601 11.7998 18.9737 12.1725 18.9737 12.6251V14.4355C18.9737 14.8881 18.601 15.2608 18.1484 15.2608Z" stroke="#838385" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M8.35254 11.7998V15.2608" stroke="#838385" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M20.9688 11.7998V15.2608" stroke="#838385" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M13.5167 2.17969C13.5167 2.17969 12.4518 3.77706 14.0491 4.84197C15.6465 5.90688 18.3088 5.1082 20.1724 6.43934C21.2373 7.23802 20.9711 9.10162 20.9711 9.10162" stroke="#838385" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-</g>
+export const MEDICAL_HISTORY_ICON = `<svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M1.80078 19.0696H21.8008V8.98136H14.8903L11.309 5.40002H1.80078V19.0696Z" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M12.168 6.23322H21.7989L21.7989 9.03302" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M11.7871 10.3942V16.1697" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M14.6876 13.2946H8.91211" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>
 `;
 
-export const ALCOHOL_ICON = `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-<mask id="mask0" mask-type="alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
-<rect width="24" height="24" fill="#C4C4C4"/>
-</mask>
-<g mask="url(#mask0)">
-<mask id="mask1" mask-type="alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
-<rect width="24" height="24" fill="#C4C4C4"/>
-</mask>
-<g mask="url(#mask1)">
-<path d="M17.7351 7.96925V2H15.1185V7.98561C13.9737 8.23092 13.1069 9.24488 13.1069 10.4551V19.4008H19.7958V10.4551C19.8121 9.21217 18.9126 8.18186 17.7351 7.96925Z" stroke="#828285" stroke-width="1.45007" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M15.1187 4.51855H17.7353" stroke="#828285" stroke-width="1.45007" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M19.8119 11.4531H16.6392V16.114H19.8119" stroke="#828285" stroke-width="1.45007" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M6.28718 15.3127C4.47187 15.3127 3 13.8408 3 12.0255V10.1611H9.57436V12.0255C9.57436 13.8408 8.10249 15.3127 6.28718 15.3127Z" stroke="#828285" stroke-width="1.45007" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M6.28711 15.3125V19.401" stroke="#828285" stroke-width="1.45007" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M4.32471 19.4004H8.29876" stroke="#828285" stroke-width="1.45007" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-</g>
-</g>
+export const MEDICAL_HISTORY_PAST_CONSULTATIONS_ICON = `<svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M7.74023 17.1205H22.8671V9.49033H17.6404L14.9317 6.78162H7.74023V17.1205Z" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M15.9375 7.4115H22.8706V9.30235" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M15.2969 10.5586V14.9269" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M17.4874 12.7521H13.1191" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M8.30798 11.9556C5.52984 10.1853 3.10742 9.43683 3.10742 6.35835V3H13.5322V6.33291C13.5085 9.43683 11.3582 9.80708 8.30798 11.9556Z" fill="white" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M8.31013 12.0061C11.3603 14.3447 13.5107 14.5249 13.5107 17.6033V20.9363H3.08594V17.6288C3.08594 14.5249 5.8748 13.9666 8.31013 12.0061Z" fill="white" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M0.935547 3H15.6153" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M0.935547 20.9615H15.6153" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>
 `;
 
-export const DRUGS_ICON = `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-<mask id="mask0" mask-type="alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
-<rect width="24" height="24" fill="#C4C4C4"/>
-</mask>
-<g mask="url(#mask0)">
-<path d="M6.23754 9.18114C7.4733 9.18114 8.47509 8.17936 8.47509 6.9436C8.47509 5.70784 7.4733 4.70605 6.23754 4.70605C5.00178 4.70605 4 5.70784 4 6.9436C4 8.17936 5.00178 9.18114 6.23754 9.18114Z" stroke="#828285" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M4.66797 8.51024L7.80321 5.375" stroke="#828285" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M13.9534 19.0682L13.7926 18.9074C13.1629 18.2777 13.1629 17.2594 13.7926 16.6296L15.6014 14.8209L17.0886 13.3336C17.7184 12.7039 18.7366 12.7039 19.3664 13.3336L19.5272 13.4944C20.1569 14.1241 20.1569 15.1424 19.5272 15.7721L16.2311 19.0682C15.6014 19.6845 14.5831 19.6845 13.9534 19.0682Z" stroke="#828285" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M17.9463 17.3536L15.5078 14.915" stroke="#828285" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M14.8359 4.70605L18.3313 8.20138" stroke="#828285" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M10.0026 15.8909L7.08984 13.0364L13.2649 6.86133L16.1777 9.7741L13.9057 12.0461L10.0026 15.8909Z" stroke="#828285" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M17.1117 7.15271L15.83 5.87109L14.1406 7.5605L15.4222 8.84212L17.1117 7.15271Z" stroke="#828285" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M9.18756 15.0756L7.90594 13.7939L6.50781 15.1921L7.78943 16.4737L9.18756 15.0756Z" stroke="#828285" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M12.0039 11.373L13.0525 12.4216" stroke="#828285" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M10.668 12.7061L11.7166 13.7547" stroke="#828285" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M7.14918 15.833L4.58594 18.3962" stroke="#828285" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-</g>
+export const OUTSTANDING_MEDICAL_INVESTIGATIONS_ICON = `<svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M4.30859 15.9267H22.9104V5.50111H16.483L13.1521 1.80005H4.30859V15.9267Z" fill="white" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M14.3867 2.66138H22.9125V5.24495" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M6.95585 17.5094C10.1341 17.5094 12.7105 14.9329 12.7105 11.7547C12.7105 8.57646 10.1341 6 6.95585 6C3.77763 6 1.20117 8.57646 1.20117 11.7547C1.20117 14.9329 3.77763 17.5094 6.95585 17.5094Z" fill="white" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M11.0684 15.8157L13.0364 17.7837" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M14.014 16.8099L11.9883 18.8357L15.7227 22.5701L17.7485 20.5444L14.014 16.8099Z" fill="white" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M6.87695 9.93848V13.9927" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M8.95208 11.9741H4.81836" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>
 `;
 
-export const DRUGS_COUNSELLING_ICON = `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-<mask id="mask0" mask-type="alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
-<rect width="24" height="24" fill="#C4C4C4"/>
-</mask>
-<g mask="url(#mask0)">
-<path d="M15.702 19.1814L12.2438 16.538H8.69704C5.54926 16.538 3 13.9835 3 10.8293V10.1629C3 7.00861 5.54926 4.4541 8.69704 4.4541H15.303C18.4507 4.4541 21 7.00861 21 10.1629V10.8293C21 13.6947 18.8941 16.0715 16.1453 16.4714L15.702 19.1814Z" stroke="#828285" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M10.6103 11.0961L10.6103 11.0961L10.6089 11.094C10.5483 11.0074 10.5392 10.9778 10.5392 10.9425C10.5392 10.872 10.5954 10.7939 10.7582 10.6841C10.835 10.6323 10.9254 10.5798 11.0269 10.5212L11.0374 10.5151C11.1348 10.4589 11.2407 10.3977 11.3469 10.3296C11.7886 10.0463 12.2582 9.62746 12.2582 8.84551C12.2582 8.31384 12.0742 7.88608 11.7227 7.59353C11.3741 7.3035 10.8749 7.15801 10.2647 7.15801C9.66972 7.15801 9.18105 7.31614 8.83978 7.62084C8.49684 7.92704 8.31621 8.3693 8.31621 8.90851C8.31621 9.24064 8.59158 9.51601 8.92371 9.51601C9.25584 9.51601 9.53121 9.24064 9.53121 8.90851C9.53121 8.68377 9.60628 8.52844 9.7255 8.42729C9.84749 8.32378 10.03 8.26501 10.2647 8.26501C10.5384 8.26501 10.7383 8.32515 10.8671 8.42316C10.9916 8.51792 11.0612 8.65653 11.0612 8.84551C11.0612 9.04405 10.9724 9.2001 10.8226 9.34522C10.6817 9.48173 10.4965 9.59981 10.2949 9.72828C10.2768 9.73984 10.2585 9.75147 10.2401 9.76322C9.81183 10.037 9.31521 10.369 9.31521 11.0055C9.31521 11.285 9.41549 11.5938 9.68191 11.8508C9.79205 11.9606 9.93706 12.027 10.1117 12.027C10.3864 12.027 10.7102 11.8084 10.7102 11.4285C10.7102 11.3077 10.6769 11.1959 10.6103 11.0961ZM13.9815 11.4156L13.9815 11.4156L14.8678 11.4105L14.9802 11.4159L14.9802 11.4158C14.9802 11.4157 14.9802 11.4157 14.9802 11.4156L15.1512 7.83427C15.1512 7.83421 15.1512 7.83415 15.1512 7.8341C15.1614 7.63371 15.1047 7.47003 14.976 7.35954C14.8517 7.25277 14.6788 7.21201 14.4898 7.21201C14.297 7.21201 14.1219 7.25252 13.9963 7.35912C13.8661 7.46963 13.8093 7.63356 13.8195 7.83389C13.8195 7.83402 13.8195 7.83414 13.8195 7.83427L13.9815 11.4156ZM10.0847 14.151C10.291 14.151 10.4703 14.0994 10.5976 13.975C10.7254 13.8501 10.7822 13.6702 10.7822 13.4535C10.7822 13.233 10.7257 13.0493 10.599 12.921C10.472 12.7926 10.2924 12.738 10.0847 12.738C9.87708 12.738 9.69587 12.7926 9.56686 12.9202C9.4376 13.048 9.37821 13.2318 9.37821 13.4535C9.37821 13.6714 9.43802 13.8514 9.56824 13.9759C9.69754 14.0994 9.87839 14.151 10.0847 14.151ZM14.4898 14.151C14.6962 14.151 14.8754 14.0994 15.0027 13.975C15.1305 13.8501 15.1873 13.6702 15.1873 13.4535C15.1873 13.233 15.1309 13.0493 15.0041 12.921C14.8771 12.7926 14.6975 12.738 14.4898 12.738C14.2822 12.738 14.101 12.7926 13.972 12.9202C13.8427 13.048 13.7833 13.2318 13.7833 13.4535C13.7833 13.6714 13.8431 13.8514 13.9734 13.9759C14.1027 14.0994 14.2835 14.151 14.4898 14.151Z" fill="#828285" stroke="#828285" stroke-width="0.225"/>
-</g>
+export const CIRCLE_WITH_ELLIPSES_ICON = `<svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M11.9412 21.6C17.2763 21.6 21.6012 17.2751 21.6012 11.94C21.6012 6.60495 17.2763 2.28003 11.9412 2.28003C6.60617 2.28003 2.28125 6.60495 2.28125 11.94C2.28125 17.2751 6.60617 21.6 11.9412 21.6Z" stroke="${Colours.neutral.n800}" stroke-width="1.2"/>
+<path d="M7.31372 12.7517C7.76204 12.7517 8.12548 12.3883 8.12548 11.9399C8.12548 11.4916 7.76204 11.1282 7.31372 11.1282C6.86539 11.1282 6.50195 11.4916 6.50195 11.9399C6.50195 12.3883 6.86539 12.7517 7.31372 12.7517Z" fill="${Colours.neutral.n800}" stroke="${Colours.neutral.n800}" stroke-width="1.2"/>
+<path d="M11.9407 12.7519C12.389 12.7519 12.7524 12.3885 12.7524 11.9402C12.7524 11.4919 12.389 11.1284 11.9407 11.1284C11.4923 11.1284 11.1289 11.4919 11.1289 11.9402C11.1289 12.3885 11.4923 12.7519 11.9407 12.7519Z" fill="${Colours.neutral.n800}" stroke="${Colours.neutral.n800}" stroke-width="1.2"/>
+<path d="M16.8118 12.7519C17.2601 12.7519 17.6235 12.3885 17.6235 11.9402C17.6235 11.4919 17.2601 11.1284 16.8118 11.1284C16.3634 11.1284 16 11.4919 16 11.9402C16 12.3885 16.3634 12.7519 16.8118 12.7519Z" fill="${Colours.neutral.n800}" stroke="${Colours.neutral.n800}" stroke-width="1.2"/>
 </svg>
 `;
 
-export const MEDICAL_HISTORY_ICON = `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-<mask id="mask0" mask-type="alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
-<rect width="24" height="24" fill="#C4C4C4"/>
-</mask>
-<g mask="url(#mask0)">
-<path d="M2 18.0368H22V7.94852H15.0895L11.5082 4.36719H2V18.0368Z" stroke="#828284" stroke-width="1.66667" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M12.3691 5.2002H22L22.0001 8" stroke="#828284" stroke-width="1.66667" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M11.9863 9.36133V15.1369" stroke="#828284" stroke-width="1.66667" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M14.8875 12.2617H9.11194" stroke="#828284" stroke-width="1.66667" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-</g>
-</svg>
-`;
+export const PERSON_FACEMASK_ICON = `<svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M18.3611 17.7267C17.3802 18.9817 18.9105 23.2564 18.9105 23.2564H9.59142C9.59142 23.2564 9.47371 20.6876 8.00228 20.7857C6.53085 20.9033 4.82399 21.0014 5.15752 19.0405C5.23599 18.5307 5.25561 18.0993 5.21638 17.7659C5.19676 17.4522 5.1379 17.1973 5.05942 17.0208C4.90247 16.5894 4.70628 16.4325 4.70628 16.4325L4.6278 15.609L4.58857 15.2756C4.58857 15.2756 4.52971 15.0991 4.27466 14.9619C4.11771 14.8834 3.74495 14.7462 3.41142 14.6089C2.45009 14.2363 2.72476 13.5696 3.31333 12.8637C4.03923 12.0009 5.41257 10.9029 4.2158 9.35376C4.2158 9.35376 2.96019 -1.43107 16.1442 1.13768C16.1442 1.13768 23.7564 2.5103 21.6179 11.8637C21.6375 11.8637 21.0489 14.4913 18.3611 17.7267Z" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M13.0996 11.9173C13.3232 11.5282 14.0385 10.8278 15.1115 11.1391C16.4527 11.5282 16.3829 14.8139 14.0377 15.2829" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M10.2797 12.9386C5.12022 13.8767 4.70835 12.9386 3.45756 12.0005C2.51946 13.4076 2.05041 15.7529 3.9266 19.0362C4.9987 20.9124 6.74085 22.2127 8.40354 21.3814C9.34163 20.9124 10.7488 19.5052 11.6869 18.0981C10.2797 17.16 9.49798 13.8767 10.2797 12.9386Z" fill="white" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-linejoin="round"/>
+<path d="M13.3619 12.5371C13.6583 12.389 13.7784 12.0285 13.6302 11.7322C13.482 11.4358 13.1216 11.3156 12.8252 11.4638L13.3619 12.5371ZM10.469 13.5078C11.1561 13.2788 11.6 13.1685 12.0272 13.0464C12.4596 12.9229 12.849 12.7936 13.3619 12.5371L12.8252 11.4638C12.4 11.6764 12.0859 11.7816 11.6975 11.8926C11.3038 12.0051 10.8096 12.1294 10.0896 12.3694L10.469 13.5078Z" fill="${Colours.neutral.n800}"/>
+<path d="M11.1968 17.7525C11.0059 18.0234 11.0707 18.3977 11.3415 18.5886C11.6123 18.7796 11.9867 18.7148 12.1776 18.444L11.1968 17.7525ZM13.5963 14.8736C12.944 15.5644 11.8901 16.7692 11.1968 17.7525L12.1776 18.444C12.8244 17.5265 13.8353 16.3683 14.4688 15.6975L13.5963 14.8736Z" fill="${Colours.neutral.n800}"/>
+</svg>`;
 
-export const MEDICAL_HISTORY_PAST_CONSULTATIONS_ICON = `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-<mask id="mask0" mask-type="alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
-<rect width="24" height="24" fill="#C4C4C4"/>
-</mask>
-<g mask="url(#mask0)">
-<path d="M7.89124 15.3275H20.9968V8.7169H16.4686L14.1218 6.37012H7.89124V15.3275Z" stroke="#828284" stroke-width="1.31056" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M14.9928 6.91602H20.9995V8.55422" stroke="#828284" stroke-width="1.31056" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M14.4381 9.64258V13.4272" stroke="#828284" stroke-width="1.31056" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M16.336 11.543H12.5514" stroke="#828284" stroke-width="1.31056" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M8.38372 10.8527C5.97679 9.31891 3.87805 8.6705 3.87805 6.00336V3.09375H12.9099V5.98132C12.8894 8.6705 11.0263 8.99127 8.38372 10.8527Z" fill="white" stroke="#828284" stroke-width="1.31056" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M8.38552 10.8965C11.0281 12.9226 12.8912 13.0787 12.8912 15.7458V18.6334H3.85938V15.7679C3.85938 13.0787 6.27559 12.595 8.38552 10.8965Z" fill="white" stroke="#828284" stroke-width="1.31056" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M1.99609 3.09375H14.7144" stroke="#828284" stroke-width="1.31056" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M1.99609 18.6553H14.7144" stroke="#828284" stroke-width="1.31056" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-</g>
-</svg>
-`;
-
-export const OUTSTANDING_MEDICAL_INVESTIGATIONS_ICON = `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <mask id="mask0" mask-type="alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
-  <rect width="24" height="24" fill="#C4C4C4"/>
-  </mask>
-  <g mask="url(#mask0)">
-  <path d="M4.92969 17.893H21.9071V8.37788H16.041L13.0009 5H4.92969V17.893Z" fill="white" stroke="#828284" stroke-width="1.65058" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M14.1289 5.78613H21.9102V8.1441" stroke="#828284" stroke-width="1.65058" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M7.34591 19.2768C10.2466 19.2768 12.5981 16.9253 12.5981 14.0246C12.5981 11.1239 10.2466 8.77246 7.34591 8.77246C4.44522 8.77246 2.09375 11.1239 2.09375 14.0246C2.09375 16.9253 4.44522 19.2768 7.34591 19.2768Z" fill="white" stroke="#828284" stroke-width="1.65058" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M11.0978 17.7305L12.894 19.5267" stroke="#828284" stroke-width="1.65058" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M13.787 18.6375L11.9382 20.4863L15.3465 23.8947L17.1954 22.0458L13.787 18.6375Z" fill="white" stroke="#828284" stroke-width="1.65058" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M7.27399 12.4277V16.1279" stroke="#828284" stroke-width="1.65058" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M9.16729 14.2861H5.39453" stroke="#828284" stroke-width="1.65058" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-  </g>
-  </svg>
-`;
-
-export const CIRCLE_WITH_ELLIPSES_ICON = `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <mask id="mask0" mask-type="alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
-  <rect width="24" height="24" fill="#C4C4C4"/>
-  </mask>
-  <g mask="url(#mask0)">
-  <path d="M11.9 20.9997C16.9258 20.9997 21 16.9255 21 11.8998C21 6.87399 16.9258 2.7998 11.9 2.7998C6.87428 2.7998 2.80009 6.87399 2.80009 11.8998C2.80009 16.9255 6.87428 20.9997 11.9 20.9997Z" stroke="#828284" stroke-width="1.50412"/>
-  <path d="M7.54127 12.6642C7.9636 12.6642 8.30597 12.3218 8.30597 11.8995C8.30597 11.4771 7.9636 11.1348 7.54127 11.1348C7.11893 11.1348 6.77657 11.4771 6.77657 11.8995C6.77657 12.3218 7.11893 12.6642 7.54127 12.6642Z" stroke="#828284" stroke-width="1.50412"/>
-  <path d="M11.8999 12.6642C12.3222 12.6642 12.6646 12.3218 12.6646 11.8995C12.6646 11.4771 12.3222 11.1348 11.8999 11.1348C11.4775 11.1348 11.1352 11.4771 11.1352 11.8995C11.1352 12.3218 11.4775 12.6642 11.8999 12.6642Z" stroke="#828284" stroke-width="1.50412"/>
-  <path d="M16.4881 12.6642C16.9104 12.6642 17.2528 12.3218 17.2528 11.8995C17.2528 11.4771 16.9104 11.1348 16.4881 11.1348C16.0657 11.1348 15.7234 11.4771 15.7234 11.8995C15.7234 12.3218 16.0657 12.6642 16.4881 12.6642Z" stroke="#828284" stroke-width="1.50412"/>
-  </g>
-  </svg>
-`;
-
-export const PERSON_FACEMASK_ICON = `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-<mask id="mask0" mask-type="alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
-<rect width="24" height="24" fill="#C4C4C4"/>
-</mask>
-<g mask="url(#mask0)">
-<path d="M18.3611 17.7267C17.3801 18.9817 18.9104 23.2564 18.9104 23.2564H9.59136C9.59136 23.2564 9.47365 20.6876 8.00222 20.7857C6.53079 20.9033 4.82393 21.0014 5.15746 19.0405C5.23593 18.5307 5.25555 18.0993 5.21632 17.7659C5.1967 17.4522 5.13784 17.1973 5.05936 17.0208C4.90241 16.5894 4.70622 16.4325 4.70622 16.4325L4.62774 15.609L4.58851 15.2756C4.58851 15.2756 4.52965 15.0991 4.2746 14.9619C4.11765 14.8834 3.74489 14.7462 3.41136 14.6089C2.45003 14.2363 2.7247 13.5696 3.31327 12.8637C4.03917 12.0009 5.41251 10.9029 4.21574 9.35376C4.21574 9.35376 2.96013 -1.43107 16.1441 1.13768C16.1441 1.13768 23.7563 2.5103 21.6178 11.8637C21.6375 11.8637 21.0489 14.4913 18.3611 17.7267Z" stroke="#828284" stroke-width="1.59476" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M13.099 11.9173C13.3225 11.5282 14.0378 10.8278 15.1109 11.1391C16.4521 11.5282 16.3823 14.8139 14.0371 15.2829" stroke="#828284" stroke-width="1.59476" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M10.2797 12.9381C5.12022 13.8762 4.70835 12.9381 3.45756 12C2.51946 13.4071 2.05041 15.7524 3.9266 19.0357C4.9987 20.9119 6.74085 22.2123 8.40354 21.3809C9.34163 20.9119 10.7488 19.5047 11.6869 18.0976C10.2797 17.1595 9.49798 13.8762 10.2797 12.9381Z" fill="white" stroke="#828284" stroke-width="1.59476" stroke-linejoin="round"/>
-<path d="M13.4509 12.7132C13.8448 12.5163 14.0044 12.0373 13.8075 11.6434C13.6105 11.2495 13.1316 11.0899 12.7377 11.2868L13.4509 12.7132ZM10.5322 13.6946C11.2138 13.4673 11.6495 13.3594 12.0821 13.2357C12.5217 13.1101 12.9236 12.9769 13.4509 12.7132L12.7377 11.2868C12.3269 11.4922 12.0251 11.5934 11.644 11.7023C11.2558 11.8133 10.7533 11.9398 10.0278 12.1816L10.5322 13.6946Z" fill="#828284"/>
-<path d="M11.0346 17.6386C10.7809 17.9985 10.8669 18.496 11.2269 18.7497C11.5868 19.0034 12.0843 18.9174 12.338 18.5574L11.0346 17.6386ZM13.4518 14.7379C12.7965 15.4319 11.7355 16.6444 11.0346 17.6386L12.338 18.5574C12.9772 17.6508 13.981 16.5003 14.6114 15.8327L13.4518 14.7379Z" fill="#828284"/>
-</g>
-</svg>
-`;
-
-export const FINANCIAL_QUESTIONS_ICON = `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-<mask id="mask0" mask-type="alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
-<rect width="24" height="24" fill="#C4C4C4"/>
-</mask>
-<g mask="url(#mask0)">
-<path d="M4 16.54H21" stroke="#838385" stroke-width="1.41667" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M4 18.665H21" stroke="#838385" stroke-width="1.41667" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M4 6.92285H21" stroke="#838385" stroke-width="1.41667" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M6.125 9.04785V16.0589" stroke="#838385" stroke-width="1.41667" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M12.5 9.04785V16.0589" stroke="#838385" stroke-width="1.41667" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M18.875 9.04785V16.0589" stroke="#838385" stroke-width="1.41667" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M4 4.79818L12.391 1.96484L21 4.79818H4Z" stroke="#838385" stroke-width="1.41667" stroke-linecap="round" stroke-linejoin="round"/>
-</g>
+export const FINANCIAL_QUESTIONS_ICON = `<svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M1.79883 19.1184H21.9988" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M1.79883 21.6433H21.9988" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M1.79883 7.69141H21.9988" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M4.32422 10.2163V18.5471" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M11.8984 10.2163V18.5471" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M19.4746 10.2163V18.5471" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M1.79883 5.16672L11.7693 1.80005L21.9988 5.16672H1.79883Z" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>
 `;

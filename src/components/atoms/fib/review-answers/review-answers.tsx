@@ -2,10 +2,9 @@ import React, { memo } from "react";
 import { StyleSheet, View, ViewStyle, TextStyle } from "react-native";
 import { Style } from "../../../../styles";
 import { SvgFromXml } from "react-native-svg";
-import { arrowRightSvg } from "../../../screens/products/fib/browse-packages/subcomponents/faqs/svgs/svgArrowRight";
 import TouchableOpacityWithDelay from "../../../molecules/touchable-opacity-delay/touchable-opacity-delay";
 import Warning from "@atoms/text-input/assets/warning";
-import { Text } from "@atoms";
+import { ArrowRightSvg, Text } from "@atoms";
 
 export interface IReviewAnswersProps {
   icon: string;
@@ -35,7 +34,7 @@ export const ReviewAnswers = memo(function (props: IReviewAnswersProps) {
         )}
       </View>
       <View style={styles.imageWrapper}>
-        <SvgFromXml height={18} width={18} xml={arrowRightSvg} />
+        <ArrowRightSvg />
       </View>
       <View style={styles.delimiter} />
     </TouchableOpacityWithDelay>
@@ -79,8 +78,8 @@ const styles = StyleSheet.create({
   } as ViewStyle,
   imageWrapper: {
     marginLeft: "auto",
-    paddingRight: Style.adjust(24),
     alignSelf: "center",
+    marginRight: Style.adjust(7),
   } as ViewStyle,
   incompleteWrapper: {
     flexDirection: "row",
