@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from "react";
-import { View, Keyboard, StyleSheet } from "react-native";
+import { Keyboard, StyleSheet, ScrollView } from "react-native";
 import { useMutation } from "@apollo/react-hooks";
 import { Navigation } from "react-native-navigation";
 import { ROUTES } from "@navigation/constants";
@@ -22,9 +22,9 @@ const ChangeMemberNicknameContainer: FunctionComponent = () => {
   };
 
   return (
-    <View style={styles.wrapper}>
+    <ScrollView style={styles.wrapper} keyboardShouldPersistTaps="handled">
       <ChangeMemberNickname enableButton={true} onPress={handleOnPress} isLoading={loading} />
-    </View>
+    </ScrollView>
   );
 };
 

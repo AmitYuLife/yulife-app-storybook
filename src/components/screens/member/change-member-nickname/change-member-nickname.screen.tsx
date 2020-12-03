@@ -69,7 +69,6 @@ const ChangeMemberNickname: FunctionComponent<Props> = ({ enableButton, isLoadin
 
 const styles = StyleSheet.create({
   fullWidth: {
-    height: Style.DEVICE_HEIGHT,
     width: Style.DEVICE_WIDTH,
   },
   image: {
