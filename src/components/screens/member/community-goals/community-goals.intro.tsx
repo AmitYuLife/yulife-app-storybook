@@ -33,6 +33,9 @@ const data: OnboardingSwiperData[] = [
   },
   {
     id: "community_goals_onboarding_3",
+    buttonLabel: "Let's go",
+    title: "Choose a nickname",
+    subtitle: "Enter a nickname for other YuLifers to see, or leave it blank to be anonymous. ",
   },
 ];
 
