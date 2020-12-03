@@ -18,6 +18,7 @@ import { ReviewAnswers } from "@atoms/fib/review-answers/review-answers";
 import { Button, CheckBox } from "@atoms";
 import { IAnswer } from "../../../../../redux/product/product.selectors";
 import { NativeScrollPoint } from "react-native";
+import { IRightIcon } from "@atoms/generic-heading/generic-heading.types";
 
 export interface IFibUnderwritingReviewAnswersScreenProps {
   onNavigateBack: () => void;
@@ -27,6 +28,8 @@ export interface IFibUnderwritingReviewAnswersScreenProps {
   onScrollEnd: (event: NativeSyntheticEvent<NativeScrollEvent>) => void;
   offset: NativeScrollPoint;
 }
+
+const RIGHT_ICON = { icon: "CLOSE" } as IRightIcon;
 
 const _FibUnderwritingReviewAnswersScreen = memo(function (props: IFibUnderwritingReviewAnswersScreenProps) {
   const { onNavigateBack, onSubmitButton, onAnswerPress, onScrollEnd, answers, offset } = props;
@@ -58,7 +61,7 @@ const _FibUnderwritingReviewAnswersScreen = memo(function (props: IFibUnderwriti
 
   return (
     <SafeAreaView style={styles.wrapper}>
-      <GenericHeading heading={"Review"} rightIcon={{ icon: "CLOSE" }} onRightIconPress={onNavigateBack} />
+      <GenericHeading heading={"Review"} rightIcon={RIGHT_ICON} onRightIconPress={onNavigateBack} />
       <ScrollView
         contentContainerStyle={styles.scrollViewContentStyle}
         onMomentumScrollEnd={onScrollEnd}
@@ -127,6 +130,6 @@ const checkboxStyles = StyleSheet.create({
     maxWidth: Style.DEVICE_WIDTH - 128,
     alignItems: "center",
     alignSelf: "center",
-    marginVertical: Style.adjust(32)
+    marginVertical: Style.adjust(32),
   } as ViewStyle,
 });
