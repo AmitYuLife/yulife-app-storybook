@@ -4,9 +4,11 @@ import { getActiveLevel } from "../../levels/levels.selectors";
 import { numericId } from "../notifications.helpers";
 
 export default function* cancelChallengeNotificationSaga() {
-    const active = yield select(getActiveLevel);
+  const active = yield select(getActiveLevel);
 
-    if (active.levelSlotId) {
-        yield call(() => PushNotification.cancelLocalNotifications({ id: numericId(active.levelSlotId) }));
-    }
+  const id = Number(numericId(active.levelSlotId)).toString() as string;
+
+  if (active.levelSlotId) {
+    yield call(() => PushNotification.cancelLocalNotifications({ id }));
+  }
 }
