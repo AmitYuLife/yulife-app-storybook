@@ -335,7 +335,8 @@ export const CUSTOMER_22_TOGGLES = {
             "showStats": true,
             hideSmartHealthScreen: true,
             hideYuMatterScreen: false,
-            newGamePlus:true
+            newGamePlus:true,
+            unitySurge:true,
         }
     }
 } as IDatabaseItem
@@ -437,7 +438,8 @@ export const CUSTOMER_24_TOGGLES = {
             "showStats": true,
             hideSmartHealthScreen: true,
             hideYuMatterScreen: false,
-            newGamePlus: true
+            newGamePlus: true,
+            unitySurge:true
         }
     }
 } as IDatabaseItem
