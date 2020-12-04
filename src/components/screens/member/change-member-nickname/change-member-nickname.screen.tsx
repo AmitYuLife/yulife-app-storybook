@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
   } as ImageStyle,
   title: {
     alignSelf: "center",
-    marginTop: Style.adjust(Style.isShortToMediumAndroid() ? 17 : 34),
+    marginTop: Style.adjust(Style.isShortToMediumAndroid() ? 10 : 34),
     fontSize: 24,
     letterSpacing: 0.8,
     color: "#000000",
@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     alignContent: "center",
     textAlign: "center",
-    marginTop: 18,
+    marginTop: Style.adjust(Style.isShortToMediumAndroid() ? 10 : 18),
     fontFamily: Style.FONT_FAMILY_PRIMARY,
     fontSize: 16,
     lineHeight: 24,
