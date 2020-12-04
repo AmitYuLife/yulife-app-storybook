@@ -170,7 +170,7 @@ export function findQuestion(
   const question = data.find((element) => nextQuestionId === element.id);
 
   if (
-    question.id === FIB_LIFESTYLE_SMOKING_CIGARETTES_FOLLOW_UP_SCREEN_ID &&
+    question?.id === FIB_LIFESTYLE_SMOKING_CIGARETTES_FOLLOW_UP_SCREEN_ID &&
     !FOLLOW_UP_SMOKING_ANSWERS_TRIGGER.includes(answers[FIB_LIFESTYLE_SMOKING_CIGARETTES_SCREEN_ID])
   ) {
     const newOptions = { ...options, currentQuestion: question };

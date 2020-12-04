@@ -11,6 +11,7 @@ import {
   RefreshFIBStoreAction,
   UpdateFIBValuesFromQuoteAction,
   UPDATE_FIB_VALUES_FROM_QUOTE,
+  UpdateFIBStoreAction,
 } from "./product.types";
 import { REHYDRATE } from "redux-persist";
 import { LOGOUT, GET_USER_SUCCESS } from "@redux/user/user.actions";
@@ -91,16 +92,7 @@ function personalProductReducer<T>(state: IProductStore = initialState, action: 
         },
       };
     case UPDATE_FIB_ANSWER_VALUE:
-      return {
-        ...state,
-        fib: {
-          ...state.fib,
-          answers: {
-            ...state.fib.answers,
-            [action.payload.key]: action.payload.value,
-          },
-        },
-      };
+      return updateFibAnswerValue(state, action);
     case UPDATE_FIB_MEDICAL_VALUE:
       return {
         ...state,
@@ -141,7 +133,10 @@ function personalProductReducer<T>(state: IProductStore = initialState, action: 
         ...state,
         fib: {
           ...state.fib,
-          medicalHistory: {},
+          answers: {
+            ...state.fib.answers,
+            medicalHistory: {},
+          },
         },
       };
     case RESET_FIB_UNDERWRITING_JOURNEY:
@@ -155,9 +150,9 @@ function personalProductReducer<T>(state: IProductStore = initialState, action: 
           lastQuestionId: "",
           hasPriceChanged: false,
           actualCost: 0,
-          medicalHistory: {},
           answers: {
             ...initialState.fib.answers,
+            medicalHistory: {},
             height: {
               ...initialState.fib.answers.height,
             },
@@ -374,6 +369,25 @@ const updateFibValuesFromQuote = (state: IProductStore, action: UpdateFIBValuesF
       },
     },
   };
+
+  return newState;
+};
+
+const updateFibAnswerValue = (state: IProductStore, action: UpdateFIBStoreAction<any>) => {
+  const newState = {
+    ...state,
+    fib: {
+      ...state.fib,
+      answers: {
+        ...state.fib.answers,
+        [action.payload.key]: action.payload.value,
+      },
+    },
+  };
+
+  if (!action.payload.value) {
+    delete newState.fib.answers[action.payload.key];
+  }
 
   return newState;
 };
