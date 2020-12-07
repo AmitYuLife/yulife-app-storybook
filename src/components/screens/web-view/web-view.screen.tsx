@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import WebView from "react-native-webview";
-import { SafeAreaView, View, StyleSheet, KeyboardAvoidingView } from "react-native";
-import { Style } from "@styles";
+import { SafeAreaView, View, StyleSheet, KeyboardAvoidingView, Linking } from "react-native";
+import { Style, TOP_BAR } from "@styles";
 import { GenericHeading } from "@atoms";
 import Config from "react-native-config";
+import { ShouldStartLoadRequest } from "react-native-webview/lib/WebViewTypes";
 
 export interface Props {
   uri: string;
@@ -14,6 +15,15 @@ export interface Props {
 export function WebViewScreen(props: Props) {
   const { uri, handleCloseWebView, title } = props;
   const [hasError, setErrorState] = useState(false);
+
+  const handleInsideLinks = (event: ShouldStartLoadRequest) => {
+    if (!event.url.toLowerCase().startsWith("http")) {
+      Linking.openURL(event.url);
+      return false;
+    }
+
+    return true;
+  };
 
   if (hasError) {
     // the error boundary expects an error to be thrown in side of a render,
@@ -37,6 +47,7 @@ export function WebViewScreen(props: Props) {
             onError={() => setErrorState(true)}
             style={{ width: Style.DEVICE_WIDTH }}
             source={{ uri, headers: { yu_client_token: Config.YU_CLIENT_TOKEN } }}
+            onShouldStartLoadWithRequest={handleInsideLinks}
           />
         </KeyboardAvoidingView>
       </View>
@@ -46,7 +57,7 @@ export function WebViewScreen(props: Props) {
 
 const styles = StyleSheet.create({
   webViewWrapper: {
-    height: Style.DEVICE_HEIGHT - GenericHeading.GENERIC_HEADING_HEIGHT - 20,
+    height: Style.DEVICE_HEIGHT - TOP_BAR.HEIGHT_WITH_PADDING - 20,
     width: "100%",
   },
   flex: {

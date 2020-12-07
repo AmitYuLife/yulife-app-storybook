@@ -1,7 +1,8 @@
 import React, { memo, useContext, createContext } from "react";
 import { ProgressBar } from "@molecules";
+import { FINAL_PROGRESS } from "@components/containers/products/fib/data/underwriting-journey-data";
 
-const ProgressBarContext = createContext({ currentPosition: 0, maxLength: 1 });
+const ProgressBarContext = createContext({ currentPosition: 0, maxLength: FINAL_PROGRESS });
 
 const _FIBProgressBar = () => {
   const { currentPosition, maxLength } = useContext(ProgressBarContext);

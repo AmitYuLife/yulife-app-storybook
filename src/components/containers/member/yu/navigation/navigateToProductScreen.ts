@@ -62,6 +62,7 @@ export const navigateToProductScreen = ({
       });
     }
 
+    // TODO: This condition should only be checked if the product hasn't been purchased
     const isQuoteExpired = moment().diff(moment(fibState.quoteDate), "months") >= FIB_EXPIRE_QUOTE_MONTHS;
     if (isQuoteExpired) {
       resetFibJourney();

@@ -23,6 +23,7 @@ export function _FinancialQuestionsFormScreen(props: Props) {
     onPreviousButtonPressed,
     existingCovers,
     updateExistingCovers,
+    hideProgressBar,
   } = props;
 
   const [formValue, setFormValue] = useState<FormValue>(defaultFormValue);
@@ -43,10 +44,10 @@ export function _FinancialQuestionsFormScreen(props: Props) {
 
   return (
     <FibUnderwritingJourneyLayout
-      heading={data.heading}
+      centreLogo="yulife"
       onClose={onNavigateBack}
       onPreviousQuestion={onPreviousButtonPressed}
-      progressBar={props.progressBar}
+      hideProgressBar={hideProgressBar}
     >
       <ScrollView showsVerticalScrollIndicator={false} style={styles.wrapper} keyboardShouldPersistTaps="handled">
         <FibTitle title={data.question} />

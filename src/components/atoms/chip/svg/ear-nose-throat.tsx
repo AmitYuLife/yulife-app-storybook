@@ -1,8 +1,8 @@
 import React from "react";
-import Svg, { Path } from "react-native-svg";
+import { Path } from "react-native-svg";
 
 export const EarNoseThroatSvg = () => (
-  <Svg width={40} height={40} viewBox="0 0 40 40">
+  <>
     <Path
       d="M22 37h-1.333c-1.04-8.263-7.702-8.975-11.667-8.601-.027-.499-.091-.676-.2-.956 3.363-.562 6.7-.943 6.7-.943-2.352-2.65-5.526-1.67-7.167-1.326v-.359s.022-.428-.333-.646C19.348 18.993 21.563 32.416 22 37z"
       fill="#5BA9D5"
@@ -25,5 +25,5 @@ export const EarNoseThroatSvg = () => (
       strokeLinecap="round"
       strokeLinejoin="round"
     />
-  </Svg>
+  </>
 );

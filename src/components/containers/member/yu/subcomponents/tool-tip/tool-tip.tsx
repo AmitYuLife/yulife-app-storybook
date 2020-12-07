@@ -16,6 +16,7 @@ import { getFIBState } from "@redux/product/product.selectors";
 import { getUserFeatures } from "@redux/user/user.selectors";
 import { resetFIBUnderwritingJourney } from "@redux/product/product.actions";
 import { CoinLabel } from "./coin-label";
+import { useBackHandler } from "@services/hooks/useBackHandler";
 
 export interface IToolTipProps {
   code: ProductCode;
@@ -62,6 +63,11 @@ export const ToolTip = ({ code, onClose }: IToolTipProps) => {
       resetFibJourney: () => dispatch(resetFIBUnderwritingJourney()),
     });
   }, [product, fibState, shouldResetFib, dispatch, onClose]);
+
+  useBackHandler(() => {
+    onClose();
+    return true;
+  });
 
   if (!code || !product) {
     return null;

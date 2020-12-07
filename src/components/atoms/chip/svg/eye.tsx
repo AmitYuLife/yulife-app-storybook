@@ -1,8 +1,8 @@
 import React from "react";
-import Svg, { Path } from "react-native-svg";
+import { Path } from "react-native-svg";
 
 export const EyeSvg = () => (
-  <Svg width={40} height={40} viewBox="0 0 40 40">
+  <>
     <Path
       d="M37 19.916c-3.4 5.98-9.775 9.917-17 9.917S6.4 25.896 3 19.917C6.4 13.936 12.775 10 20 10s13.458 3.937 17 9.916z"
       stroke="#6E6E70"
@@ -20,5 +20,5 @@ export const EyeSvg = () => (
       strokeLinecap="round"
       strokeLinejoin="round"
     />
-  </Svg>
+  </>
 );

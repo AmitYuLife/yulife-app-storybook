@@ -170,7 +170,7 @@ export function findQuestion(
   const question = data.find((element) => nextQuestionId === element.id);
 
   if (
-    question.id === FIB_LIFESTYLE_SMOKING_CIGARETTES_FOLLOW_UP_SCREEN_ID &&
+    question?.id === FIB_LIFESTYLE_SMOKING_CIGARETTES_FOLLOW_UP_SCREEN_ID &&
     !FOLLOW_UP_SMOKING_ANSWERS_TRIGGER.includes(answers[FIB_LIFESTYLE_SMOKING_CIGARETTES_SCREEN_ID])
   ) {
     const newOptions = { ...options, currentQuestion: question };
@@ -322,14 +322,14 @@ export function shouldSecondButtonBeDisabled(
   fibAnswers: FibAnswers
 ) {
   if (currentQuestion.id === FIB_ENTER_YOUR_NAME) {
-    return fibAnswers.firstName.length < 1 || fibAnswers.lastName.length < 1;
+    return (fibAnswers.firstName || "").length < 1 || (fibAnswers.lastName || "").length < 1;
   }
 
   return false;
 }
 
 export function useInternationalFormat(dayOrMonth: string): string {
-  return `${dayOrMonth.length === 1 ? "0" : ""}${dayOrMonth}`;
+  return `${dayOrMonth?.length === 1 ? "0" : ""}${dayOrMonth}`;
 }
 
 interface CalculatePayoutAmountInput {

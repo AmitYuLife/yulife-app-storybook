@@ -13,6 +13,7 @@ interface Props {
   buttonAction: () => void;
   secondButtonAction: () => void;
   isInlineCTA?: boolean;
+  removeCtaFade?: boolean;
 }
 
 const CTA_HEIGHT = Style.hasNotch ? 144 : 128;
@@ -26,6 +27,7 @@ const _CTA = ({
   buttonAction,
   isButtonLoading,
   isInlineCTA = false,
+  removeCtaFade,
 }: Props) => {
   const hasSecondButton = !!(secondButtonLabel && secondButtonAction);
 
@@ -37,13 +39,15 @@ const _CTA = ({
 
   return (
     <View pointerEvents="box-none" style={[styles.button, absolutelyPositionedStyles]}>
-      <LinearGradient
-        pointerEvents="none"
-        colors={["rgba(255,255,255,1)", "rgba(255,255,255,1)", "rgba(255,255,255,0)"]}
-        style={styles.gradient}
-        start={{ x: 1, y: 1 }}
-        end={{ x: 1, y: 0 }}
-      />
+      {removeCtaFade ? null : (
+        <LinearGradient
+          pointerEvents="none"
+          colors={["rgba(255,255,255,1)", "rgba(255,255,255,1)", "rgba(255,255,255,0)"]}
+          style={styles.gradient}
+          start={{ x: 1, y: 1 }}
+          end={{ x: 1, y: 0 }}
+        />
+      )}
       <Button
         show={!hideFirstButton}
         disabled={isButtonDisabled}

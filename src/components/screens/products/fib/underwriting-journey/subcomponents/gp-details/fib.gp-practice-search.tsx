@@ -33,12 +33,11 @@ function _FibGPPracticeSearchScreen(props: Props) {
       onRightIconPress={onClose}
       isButtonDisabled={!practiceName.length}
       isButtonLoading={loading}
+      removeCtaFade={true}
     >
-      <View style={styles.wrapper}>
-        <FibTitle title="Please enter the name of your local medical practice below." />
-        <View>
-          <TextField onChange={(val) => setPracticeName(val)} placeholder="" inputTextStyle={styles.text} />
-        </View>
+      <FibTitle title="Please enter the name of your local medical practice below." />
+      <View style={styles.paddingHorizontal}>
+        <TextField onChange={(val) => setPracticeName(val)} placeholder="" inputTextStyle={styles.text} />
       </View>
     </ScrollableLayout>
   );
@@ -47,9 +46,6 @@ function _FibGPPracticeSearchScreen(props: Props) {
 export const FibGPPracticeSearchScreen = memo(_FibGPPracticeSearchScreen);
 
 const styles = StyleSheet.create({
-  wrapper: {
-    marginHorizontal: 32,
-  } as ViewStyle,
   text: {
     fontSize: 20,
     lineHeight: 24,
@@ -58,4 +54,7 @@ const styles = StyleSheet.create({
     color: Colours.neutral.n900,
     marginBottom: 6,
   } as TextStyle,
+  paddingHorizontal: {
+    paddingHorizontal: Style.adjust(24),
+  } as ViewStyle,
 });

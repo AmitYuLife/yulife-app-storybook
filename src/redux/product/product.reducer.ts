@@ -9,15 +9,21 @@ import {
   RESET_FIB_UNDERWRITING_JOURNEY,
   REFRESH_FIB_STORE,
   RefreshFIBStoreAction,
-  FIBStore,
   UpdateFIBValuesFromQuoteAction,
   UPDATE_FIB_VALUES_FROM_QUOTE,
+  UpdateFIBStoreAction,
 } from "./product.types";
 import { REHYDRATE } from "redux-persist";
 import { LOGOUT, GET_USER_SUCCESS } from "@redux/user/user.actions";
 import { IReduxState } from "@redux/_core/reducers";
-import { GetCurrentUser, GetTopUpsQuote_getTopUpsQuote_userAnswers } from "@graphql/_core/schema";
+import { GetCurrentUser } from "@graphql/_core/schema";
 import moment from "moment";
+import {
+  FIB_THREE_YEAR_MEDICAL_HISTORY_SCREEN_ID,
+  FIB_FINANCIAL_COVER_LIST_SCREEN_ID,
+  FIB_LIFESTYLE_ALCOHOL_SCREEN_ID,
+  FIB_UNDERWRITING_REVIEW_ANSWERS_SCREEN_ID,
+} from "../../components/containers/products/fib/data/underwriting-journey-data";
 
 export { IProductStore } from "./product.types";
 
@@ -86,16 +92,7 @@ function personalProductReducer<T>(state: IProductStore = initialState, action: 
         },
       };
     case UPDATE_FIB_ANSWER_VALUE:
-      return {
-        ...state,
-        fib: {
-          ...state.fib,
-          answers: {
-            ...state.fib.answers,
-            [action.payload.key]: action.payload.value,
-          },
-        },
-      };
+      return updateFibAnswerValue(state, action);
     case UPDATE_FIB_MEDICAL_VALUE:
       return {
         ...state,
@@ -136,7 +133,10 @@ function personalProductReducer<T>(state: IProductStore = initialState, action: 
         ...state,
         fib: {
           ...state.fib,
-          medicalHistory: {},
+          answers: {
+            ...state.fib.answers,
+            medicalHistory: {},
+          },
         },
       };
     case RESET_FIB_UNDERWRITING_JOURNEY:
@@ -150,9 +150,9 @@ function personalProductReducer<T>(state: IProductStore = initialState, action: 
           lastQuestionId: "",
           hasPriceChanged: false,
           actualCost: 0,
-          medicalHistory: {},
           answers: {
             ...initialState.fib.answers,
+            medicalHistory: {},
             height: {
               ...initialState.fib.answers.height,
             },
@@ -312,15 +312,23 @@ const refreshFibStore = (state: IProductStore, action: RefreshFIBStoreAction) =>
   const quoteResult = action.payload;
 
   userAnswers.forEach((answer) => {
-    const questionId = answer.questionId;
+    let questionId = answer.questionId;
     const value = JSON.parse(answer.value);
-    // Check for fibStore to build rest of fields
-    if (questionId === "fibStore") {
-      value.forEach((fibStore: GetTopUpsQuote_getTopUpsQuote_userAnswers) => {
-        const fibField = fibStore.questionId as keyof FIBStore;
-        const fibValue = JSON.parse(fibStore.value);
-        newState.fib[fibField] = fibValue;
-      });
+    if (questionId === "salary") {
+      newState.fib.salary = value;
+      return;
+    }
+
+    if (questionId === FIB_LIFESTYLE_ALCOHOL_SCREEN_ID) {
+      questionId = "weeklyAlcoholDrinks";
+    }
+
+    if (questionId === FIB_THREE_YEAR_MEDICAL_HISTORY_SCREEN_ID) {
+      questionId = "medicalHistory";
+    }
+
+    if (questionId === FIB_FINANCIAL_COVER_LIST_SCREEN_ID) {
+      questionId = "existingCovers";
     }
 
     newState.fib.answers[questionId] = value;
@@ -330,6 +338,12 @@ const refreshFibStore = (state: IProductStore, action: RefreshFIBStoreAction) =>
   newState.fib.medicalInvestigationRequired = quoteResult.medicalInvestigationRequired;
   newState.fib.actualCost = quoteResult.actualCost;
   newState.fib.status = quoteResult.status;
+  newState.fib.selectedPackage = quoteResult.coverType;
+  newState.fib.latestQuoteId = quoteResult.quoteId;
+  newState.fib.productEntityId = quoteResult.productEntityId;
+  newState.fib.quoteDate = quoteResult.createdAt;
+  // TODO: Save latestQuestionId in user session?
+  newState.fib.lastQuestionId = newState.fib.latestQuoteId ? FIB_UNDERWRITING_REVIEW_ANSWERS_SCREEN_ID : "";
 
   return newState;
 };
@@ -355,6 +369,25 @@ const updateFibValuesFromQuote = (state: IProductStore, action: UpdateFIBValuesF
       },
     },
   };
+
+  return newState;
+};
+
+const updateFibAnswerValue = (state: IProductStore, action: UpdateFIBStoreAction<any>) => {
+  const newState = {
+    ...state,
+    fib: {
+      ...state.fib,
+      answers: {
+        ...state.fib.answers,
+        [action.payload.key]: action.payload.value,
+      },
+    },
+  };
+
+  if (!action.payload.value) {
+    delete newState.fib.answers[action.payload.key];
+  }
 
   return newState;
 };

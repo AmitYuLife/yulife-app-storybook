@@ -1,4 +1,4 @@
-import React, { memo, useMemo, Dispatch, useCallback } from "react";
+import React, { memo, useMemo, Dispatch, useCallback, useState } from "react";
 import { Image, StyleSheet, ViewStyle, ImageStyle, Platform, ActivityIndicator } from "react-native";
 import { Style, Colours } from "@styles";
 import { ItemSet } from "./item-set/item-set";
@@ -15,6 +15,7 @@ interface Props {
 }
 
 const _AvatarAndEquipment = ({ setProduct, product }: Props) => {
+  const [showLoading, setShowLoading] = useState(true);
   const { data } = useQuery<GetYulifer>(GQL_QUERY_GET_YULIFER, {
     fetchPolicy: "cache-only",
   });
@@ -37,8 +38,12 @@ const _AvatarAndEquipment = ({ setProduct, product }: Props) => {
       products: { employer, charms, personal },
     } = data.getYulifer;
 
-    return [personal, [...employer, ...charms]];
+    const activeEmployerProducts = employer.filter((item) => item.active);
+
+    return [personal, [...activeEmployerProducts, ...charms]];
   }, [data]);
+
+  const handleImageLoad = () => setShowLoading(false);
 
   if (!avatarSource) {
     return null;
@@ -48,8 +53,8 @@ const _AvatarAndEquipment = ({ setProduct, product }: Props) => {
     <TouchableOpacityWithDelay onPress={dismissOverlay} activeOpacity={1} style={styles.wrapper}>
       <ItemSet product={product} setProduct={setProduct} items={left} />
       <TouchableOpacityWithDelay onPress={navigateToAvatarModal} style={styles.avatarWrapper}>
-        <ActivityIndicator color={Colours.darkHotPink} style={styles.activityIndicator} />
-        <Image resizeMode="contain" style={styles.avatar} source={avatarSource} />
+        {!showLoading ? null : <ActivityIndicator color={Colours.darkHotPink} style={styles.activityIndicator} />}
+        <Image resizeMode="contain" style={styles.avatar} source={avatarSource} onLoad={handleImageLoad} />
       </TouchableOpacityWithDelay>
       <ItemSet product={product} setProduct={setProduct} items={right} />
     </TouchableOpacityWithDelay>

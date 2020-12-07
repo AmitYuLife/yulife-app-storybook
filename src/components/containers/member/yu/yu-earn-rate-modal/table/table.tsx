@@ -46,6 +46,9 @@ const styles = StyleSheet.create({
     letterSpacing: 0.4,
     fontFamily: Style.FONT_FAMILY_PRIMARY_BOLD,
   },
+  pad: {
+    height: Style.adjust(8),
+  } as ViewStyle,
   table: {
     marginBottom: Style.adjust(16),
     flex: 1,
@@ -83,10 +86,12 @@ function TableData({ loading, explainData, earnRate }: IProps) {
   }
 
   const hasProducts = earnRate !== 1;
+
   return (
     <View style={styles.table}>
-      <TableBackground width={EARN_RATE_COLUMN_WIDTH} />
-      <TableHeader earnRate={earnRate} show={hasProducts} />
+      {earnRate < 2 ? null : <TableBackground width={EARN_RATE_COLUMN_WIDTH} />}
+      <TableHeader earnRate={earnRate} />
+      <View style={styles.pad} />
       {explainData.map((data, index) => (
         <TableRow
           key={index} // no reorder

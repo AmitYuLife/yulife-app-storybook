@@ -166,11 +166,11 @@ function _FibGPManuallyInputScreen(props: Props) {
       isButtonDisabled={isValidForm}
       scrollViewForwardRef={scrollViewRef}
     >
-      <View style={styles.wrapper}>
+      <View>
         <View onLayout={handleTitleLayout}>
           <FibTitle title="Please enter your medical practice and GP details below:" />
         </View>
-        <View>
+        <View style={styles.contentWrapper}>
           {forms.map(({ updateFormKey, placeholder, value }, formIndex) => (
             <View key={updateFormKey} style={styles.formWrapper}>
               <TextField
@@ -194,8 +194,8 @@ export const FibGPManuallyInputScreen = memo(_FibGPManuallyInputScreen);
 const FONT_SIZE = Style.adjust(20);
 
 const styles = StyleSheet.create({
-  wrapper: {
-    marginHorizontal: 32,
+  contentWrapper: {
+    paddingHorizontal: Style.adjust(24),
   } as ViewStyle,
   text: {
     fontSize: FONT_SIZE,

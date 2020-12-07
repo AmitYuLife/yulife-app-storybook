@@ -1,5 +1,6 @@
 import React, { FC } from "react";
-import { TouchableWithoutFeedback, View, Text, Platform, Image } from "react-native";
+import { TouchableWithoutFeedback, View, Platform, Image } from "react-native";
+import { Text } from "@atoms";
 import styles from "./wager-dropdown.styles";
 import OptionPicker from "../../picker";
 import images from "./wager-dropdown.images";

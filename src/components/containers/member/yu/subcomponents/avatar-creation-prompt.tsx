@@ -8,7 +8,7 @@ import { GetYulifer } from "@graphql/_core/schema";
 import { GQL_QUERY_GET_YULIFER } from "@graphql/yuscreen";
 import { navigateToAvatarCreationScreen } from "../navigation/navigateToAvatarCreationScreen";
 
-const CREATE_AVATAR_CAPTION_COPY = "Create your avatar to unlock personal protection and earn 100 YuCoin.";
+const CREATE_AVATAR_CAPTION_COPY = "Build your Yumoji to unlock power-ups and earn 100 YuCoin!";
 const CREATE_AVATAR_CTA_COPY = "Get started";
 
 const _AvatarCreationPrompt = () => {

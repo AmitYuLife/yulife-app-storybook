@@ -60,29 +60,31 @@ function _FibGPPracticesResultsScreen(props: Props) {
       secondButtonLabel={secondButtonLabel}
       secondButtonAction={onEnterManually}
     >
-      <View style={styles.wrapper}>
+      <View>
         <FibTitle title={title} />
-        <View style={styles.resultsWrapper} />
-        {data?.length > 0 ? (
-          data?.map((medicalPractice: any, index: number) => {
-            return (
-              <FibMedicalResult
-                key={medicalPractice.organisationCode + index}
-                icon={resultType}
-                index={index}
-                header={medicalPractice?.name}
-                firstLine={medicalPractice?.address1}
-                secondLine={medicalPractice?.address2}
-                thirdLine={medicalPractice?.postCode}
-                onPress={() => onPress(medicalPractice)}
-              />
-            );
-          })
-        ) : (
-          <Text style={styles.text}>
-            Please try again and make sure you enter the correct name. Alternatively, you enter the details in manually.
-          </Text>
-        )}
+        <View style={styles.resultsWrapper}>
+          {data?.length > 0 ? (
+            data?.map((medicalPractice: any, index: number) => {
+              return (
+                <FibMedicalResult
+                  key={medicalPractice.organisationCode + index}
+                  icon={resultType}
+                  index={index}
+                  header={medicalPractice?.name}
+                  firstLine={medicalPractice?.address1}
+                  secondLine={medicalPractice?.address2}
+                  thirdLine={medicalPractice?.postCode}
+                  onPress={() => onPress(medicalPractice)}
+                />
+              );
+            })
+          ) : (
+            <Text style={styles.text}>
+              Please try again and make sure you enter the correct name. Alternatively, you enter the details in
+              manually.
+            </Text>
+          )}
+        </View>
       </View>
     </ScrollableLayout>
   );
@@ -91,17 +93,14 @@ function _FibGPPracticesResultsScreen(props: Props) {
 export const FibGPPracticesResultsScreen = memo(_FibGPPracticesResultsScreen);
 
 const styles = StyleSheet.create({
-  wrapper: {
-    marginHorizontal: 32,
-  } as ViewStyle,
   text: {
-    fontSize: 16,
-    lineHeight: 24,
-    fontFamily: Style.FONT_FAMILY_PRIMARY,
+    fontSize: Style.adjust(16),
+    lineHeight: Style.adjust(24),
     letterSpacing: 1,
     color: Colours.neutral.n900,
   } as TextStyle,
   resultsWrapper: {
-    marginBottom: 32,
+    marginTop: Style.adjust(32),
+    paddingHorizontal: Style.adjust(24),
   } as ViewStyle,
 });

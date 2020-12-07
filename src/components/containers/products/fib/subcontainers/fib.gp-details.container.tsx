@@ -8,7 +8,7 @@ import { updateFIBAnswerValue } from "@redux/product/product.actions";
 import { FibGPPracticeSearchScreen } from "@components/screens/products/fib/underwriting-journey/subcomponents/gp-details/fib.gp-practice-search";
 import { useBackHandler } from "@services/hooks/useBackHandler";
 import { useLazyQuery, useMutation } from "@apollo/react-hooks";
-import { GQL_GET_MEDICAL_PRACTICES, GQL_MUTATION_UPDATE_CUSTOMER_GP_DETAILS } from "@graphql/products/products.gql";
+import { GQL_GET_MEDICAL_PRACTICES, GQL_MUTATION_UPDATE_CUSTOMER_GP_DETAILS } from "@graphql/products";
 import { FibGPPracticesResultsScreen } from "@components/screens/products/fib/underwriting-journey/subcomponents/gp-details/fib.gp-practices-results";
 import {
   MedicalPractices,
