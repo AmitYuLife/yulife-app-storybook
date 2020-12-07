@@ -5,14 +5,18 @@ import { GetTopUpsQuote, GetTopUpsQuoteVariables, GetYulifer } from "@graphql/_c
 import { GQL_QUERY_GET_YULIFER } from "@graphql/yuscreen";
 import { YuScreenLoading } from "./yu-screen-loading";
 import { useQuery } from "@apollo/react-hooks";
-import { useDispatch, useSelector } from "react-redux";
+import { connect, useDispatch, useSelector } from "react-redux";
 import { getShowYuscreenIntro } from "@redux/onboarding/onboarding.selectors";
 import { YuScreenIntro } from "./yu-screen-intro/yu-screen-intro";
 import { GQL_QUERY_GET_TOP_UPS_QUOTE } from "../../../../graphql/products";
 import { refreshFIBStore } from "../../../../redux/product/product.actions";
 import { ProductCode } from "../../../../graphql/_core/schema/globalTypes";
+import { getFIBState } from "../../../../redux/product/product.selectors";
+import { IReduxState } from "../../../../redux/_core/reducers";
 
-const _YuScreenContainer = () => {
+type ConnectedState = ReturnType<typeof mapStateToProps>;
+
+const _YuScreenContainer = (props: ConnectedState) => {
   /*
    * useCacheFirstAndNetworkOnAppearQuery shows an undesirable flicker
    * of the cached state before transitioning to loading
@@ -20,14 +24,21 @@ const _YuScreenContainer = () => {
   const { data, loading } = useQuery<GetYulifer>(GQL_QUERY_GET_YULIFER, {
     fetchPolicy: "network-only",
   });
+
+  const { productEntityId, latestQuoteId } = props.fibStore;
+
   const { data: topUpsData, loading: topUpsLoading } = useQuery<GetTopUpsQuote, GetTopUpsQuoteVariables>(
     GQL_QUERY_GET_TOP_UPS_QUOTE,
     {
       variables: {
         product: ProductCode.YULFIB,
-        input: {},
+        input: {
+          customerProductEntityId: productEntityId,
+          quoteId: latestQuoteId,
+        },
       },
       fetchPolicy: "network-only",
+      skip: !latestQuoteId,
     }
   );
 
@@ -60,6 +71,12 @@ const _YuScreenContainer = () => {
   );
 };
 
+function mapStateToProps(store: IReduxState) {
+  return {
+    fibStore: getFIBState(store),
+  };
+}
+
 const YuScreenContainer = memo(_YuScreenContainer);
 
-export default YuScreenContainer;
+export default connect<ConnectedState>(mapStateToProps)(YuScreenContainer);

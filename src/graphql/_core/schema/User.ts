@@ -174,4 +174,9 @@ export interface User {
   activeStreak: User_activeStreak | null;
   todayActivity: (User_todayActivity | null)[] | null;
   leaderboards: (User_leaderboards | null)[] | null;
+  phone: string | null;
+  addressFirstLine: string | null;
+  addressSecondLine: string | null;
+  addressCity: string | null;
+  addressPostCode: string | null;
 }

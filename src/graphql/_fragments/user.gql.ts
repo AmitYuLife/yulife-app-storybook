@@ -127,5 +127,11 @@ export const GQL_FRAGMENT_USER = gql`
       hasAccepted
       inviteFrom
     }
+    # Contact Details
+    phone
+    addressFirstLine
+    addressSecondLine
+    addressCity
+    addressPostCode
   }
 `;

@@ -1073,6 +1073,18 @@
             "deprecationReason": null
           },
           {
+            "name": "getTopUpsIds",
+            "description": "Query to obtain product and quote ids",
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "GetTopUpsIdsResult",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "getRewards",
             "description": null,
             "args": [],
@@ -13831,6 +13843,41 @@
           {
             "name": "value",
             "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "GetTopUpsIdsResult",
+        "description": null,
+        "fields": [
+          {
+            "name": "productId",
+            "description": "Customer product entity id",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "quoteId",
+            "description": "Latest top ups quote id",
             "args": [],
             "type": {
               "kind": "SCALAR",

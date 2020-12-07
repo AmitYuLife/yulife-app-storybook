@@ -176,6 +176,11 @@ export interface LoginUser_loginUser_user {
   activeStreak: LoginUser_loginUser_user_activeStreak | null;
   todayActivity: (LoginUser_loginUser_user_todayActivity | null)[] | null;
   leaderboards: (LoginUser_loginUser_user_leaderboards | null)[] | null;
+  phone: string | null;
+  addressFirstLine: string | null;
+  addressSecondLine: string | null;
+  addressCity: string | null;
+  addressPostCode: string | null;
 }
 
 export interface LoginUser_loginUser {
