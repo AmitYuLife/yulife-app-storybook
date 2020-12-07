@@ -176,6 +176,11 @@ export interface GetCurrentUser_getCurrentUser {
   activeStreak: GetCurrentUser_getCurrentUser_activeStreak | null;
   todayActivity: (GetCurrentUser_getCurrentUser_todayActivity | null)[] | null;
   leaderboards: (GetCurrentUser_getCurrentUser_leaderboards | null)[] | null;
+  phone: string | null;
+  addressFirstLine: string | null;
+  addressSecondLine: string | null;
+  addressCity: string | null;
+  addressPostCode: string | null;
 }
 
 export interface GetCurrentUser_getDuels_opponents_name {
@@ -200,6 +205,17 @@ export interface GetCurrentUser_getDuels {
   status: string | null;
 }
 
+export interface GetCurrentUser_getTopUpsIds {
+  /**
+   * Latest top ups quote id
+   */
+  quoteId: string | null;
+  /**
+   * Customer product entity id
+   */
+  productId: string | null;
+}
+
 export interface GetCurrentUser {
   getIntercomHash: string | null;
   getCurrentUser: GetCurrentUser_getCurrentUser | null;
@@ -207,6 +223,10 @@ export interface GetCurrentUser {
    * Get all of a specific user's duels.
    */
   getDuels: (GetCurrentUser_getDuels | null)[] | null;
+  /**
+   * Query to obtain product and quote ids
+   */
+  getTopUpsIds: GetCurrentUser_getTopUpsIds | null;
 }
 
 export interface GetCurrentUserVariables {

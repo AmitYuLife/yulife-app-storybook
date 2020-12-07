@@ -30,6 +30,10 @@ export const GQL_QUERY_GET_CURRENT_USER = gql`
       yucoin
       status
     }
+    getTopUpsIds {
+      quoteId
+      productId
+    }
   }
 `;
 

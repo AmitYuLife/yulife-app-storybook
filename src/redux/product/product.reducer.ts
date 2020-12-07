@@ -279,7 +279,7 @@ function rehydratePersonalProductStore(state: IProductStore, payload: IReduxStat
 /**
  * Update default values DoB and name if there's no value
  */
-const getUserSuccess = (state: IProductStore, { getCurrentUser }: GetCurrentUser): IProductStore => {
+const getUserSuccess = (state: IProductStore, { getCurrentUser, getTopUpsIds }: GetCurrentUser): IProductStore => {
   const newState = { ...state };
 
   const hasFIBDoB = state.fib?.answers?.birthDay && state.fib?.answers?.birthMonth && state.fib?.answers?.birthYear;
@@ -294,6 +294,17 @@ const getUserSuccess = (state: IProductStore, { getCurrentUser }: GetCurrentUser
     newState.fib.answers.firstName = getCurrentUser.firstName;
     newState.fib.answers.lastName = getCurrentUser.lastName;
   }
+
+  // Contact details
+  newState.fib.answers.contactDetails.firstAddressLine = getCurrentUser.addressFirstLine;
+  newState.fib.answers.contactDetails.phoneNumber = getCurrentUser.phone;
+  newState.fib.answers.contactDetails.secondAddressLine = getCurrentUser.addressSecondLine;
+  newState.fib.answers.contactDetails.townOrCity = getCurrentUser.addressCity;
+  newState.fib.answers.contactDetails.postCode = getCurrentUser.addressPostCode;
+
+  // Product ids
+  newState.fib.latestQuoteId = getTopUpsIds.quoteId;
+  newState.fib.productEntityId = getTopUpsIds.productId;
 
   return newState;
 };
