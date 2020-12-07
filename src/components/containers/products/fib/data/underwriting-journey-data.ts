@@ -543,7 +543,8 @@ const _data: UnderwritingJourneyScreen[] = [
     children: [
       {
         type: "markdown",
-        text: "1 drink is a small glass of wine, ½ pint of beer or cider, or a shot (for a human, anyway).",
+        text:
+          "1 drink is a glass of wine, pint of beer or cider, or a double measure of spirits (for a human, anyway).",
       },
       {
         type: "inputAlcohol",
@@ -555,8 +556,7 @@ const _data: UnderwritingJourneyScreen[] = [
     heading: "Lifestyle",
     icon: DRUGS_ICON,
     title: "Drugs",
-    question:
-      "In the last 5 years have you used class A, B, or C drugs like, but not restricted to: heroin, cocaine, ecstasy, spice, LSD, anabolic steroids, and legal highs?",
+    question: "Have you used recreational drugs in the last 5 years?",
     firstButton: { label: "No", actionId: FIB_LIFESTYLE_DRUGS_COUNCELLING_SCREEN_ID },
     secondButton: { label: "Yes", actionId: FIB_LIFESTYLE_DRUGS_COUNCELLING_SCREEN_ID },
     previousButton: { actionId: FIB_LIFESTYLE_ALCOHOL_SCREEN_ID },
@@ -565,7 +565,7 @@ const _data: UnderwritingJourneyScreen[] = [
       {
         type: "markdown",
         text:
-          "I won’t count cannabis if it’s no more than 1 or 2 tobacco-free joints a week. I’m not like those **other** giraffes. I’m a **cool** giraffe.",
+          "Examples of recreational drugs include ecstasy, cocaine, heroin, amphetamines and anabolic steroids.\n\nI won’t count cannabis if it's no more than 1 or 2 tobacco-free joints a week. I’m not like those other giraffes. I’m a cool giraffe.",
       },
     ],
   },
@@ -1398,17 +1398,10 @@ const _data: UnderwritingJourneyScreen[] = [
     heading: "Medical",
     icon: PERSON_FACEMASK_ICON,
     title: "Covid Isolation",
-    question: "In the last 30 days have you been self-isolating for any of the reasons below:",
+    question: "In the last 12 months have you been hospitalised for COVID-19?",
     firstButton: { label: "No", actionId: FIB_MEDICAL_COVID_SYMPTOMS_SCREEN_ID },
     secondButton: { label: "Yes", actionId: FIB_MEDICAL_COVID_SYMPTOMS_SCREEN_ID },
     previousButton: { actionId: FIB_MEDICAL_OTHER_SYMPTOMS_SCREEN_ID },
-    children: [
-      {
-        type: "markdown",
-        style: { paragraph: { marginBottom: 20 } } as StyleSheet.NamedStyles<ViewStyle>,
-        text: `As a precaution because of an existing medical condition\n\nbecause you have had direct contact with someone diagnosed with, or suspected of having, coronavirus/COVID-19\n\nbecause you have experienced symptoms of coronavirus/COVID-19\n\nPlease answer "No" if you are following general government social-distancing advice and/or working from home to avoid spread of the virus`,
-      },
-    ],
   },
   {
     id: FIB_MEDICAL_COVID_SYMPTOMS_SCREEN_ID,
@@ -1416,7 +1409,7 @@ const _data: UnderwritingJourneyScreen[] = [
     heading: "Medical",
     icon: PERSON_FACEMASK_ICON,
     title: "Covid Symptoms",
-    question: "In the last 30 days have either of the following applied to you?",
+    question: "In the last 30 days have any of the following applied to you:",
     firstButton: { label: "No", actionId: FIB_FINANCIAL_QUESTIONS_SCREEN_ID },
     secondButton: { label: "Yes", actionId: FIB_FINANCIAL_QUESTIONS_SCREEN_ID },
     previousButton: { actionId: FIB_MEDICAL_COVID_ISOLATION_SCREEN_ID },
@@ -1424,7 +1417,7 @@ const _data: UnderwritingJourneyScreen[] = [
       {
         type: "markdown",
         text:
-          "- Tested positive for coronavirus / COVID-19\n- Had a new or unexplained continuous cough, fever or high temperature?",
+          "- Tested positive for COVID-19?\n\n\n- Had direct contact with someone diagnosed with, or suspected of having, COVID-19?\n\n\n- Experienced symptoms of a cough, high temperature or fever, breathing difficulties or a loss or change in smell or taste?",
       },
     ],
   },
