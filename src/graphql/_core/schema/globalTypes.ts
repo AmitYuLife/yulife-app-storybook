@@ -69,6 +69,10 @@ export enum PassiveChallengeType {
   STEPS = "STEPS",
 }
 
+export enum PaymentMethodType {
+  card = "card",
+}
+
 /**
  * Product code used internally to identify different products
  */

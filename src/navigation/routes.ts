@@ -238,4 +238,8 @@ export default [
     name: MODALS.duelRespond,
     component: require("../components/modals/duels/duel-respond.modal").default,
   },
+  {
+    name: MODALS.cardInput,
+    component: require("../components/modals/card-input-modal/card-input-modal").default,
+  },
 ];

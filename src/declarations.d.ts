@@ -1,4 +1,6 @@
 declare module "tipsi-stripe" {
+  import React from "react";
+  import ReactNative from "react-native";
   export interface StripeOptions {
     publishableKey: string;
     merchantId?: string;
@@ -332,6 +334,91 @@ declare module "tipsi-stripe" {
 
     static confirmSetupIntent(params: ConfirmSetupIntentParams): Promise<SetupIntentConfirmationResult>;
   }
+
+  export interface PaymentCardTextFieldNativeEvent {
+    valid: boolean;
+    params: Pick<CardTokenParams, "number" | "expMonth" | "expYear" | "cvc">;
+  }
+
+  export interface PaymentCardTextFieldCommonProps {
+    expirationPlaceholder?: string;
+    numberPlaceholder?: string;
+    cvcPlaceholder?: string;
+    disabled?: boolean;
+
+    onChange?(event: ReactNative.NativeSyntheticEvent<PaymentCardTextFieldNativeEvent>): void;
+
+    onParamsChange?(valid: boolean, nativeEventParams: PaymentCardTextFieldNativeEvent["params"]): void;
+
+    style?: ReactNative.StyleProp<ReactNative.ViewStyle & { color?: string }>;
+  }
+
+  export interface PaymentCardTextFieldIOSProps {
+    cursorColor?: string;
+    textErrorColor?: string;
+    placeholderColor?: string;
+    keyboardAppearance?: "default" | "light" | "dark";
+  }
+
+  export interface PaymentCardTextFieldAndroidProps {
+    setEnabled?: boolean;
+    backgroundColor?: string;
+    cardNumber?: string;
+    expDate?: string;
+    securityCode?: string;
+  }
+
+  export class PaymentCardTextField extends React.Component<
+    Omit<ReactNative.ViewProps, "style"> &
+      PaymentCardTextFieldCommonProps &
+      PaymentCardTextFieldIOSProps &
+      PaymentCardTextFieldAndroidProps
+  > {
+    isFocused(): boolean;
+    focus(): void;
+    blur(): void;
+    setParams(params: CardTokenParams): void;
+  }
+
+  export interface StripeNativeErrorDescription<Code extends StripeNativeErrorCode> {
+    errorCode: Code | string;
+    description?: string;
+  }
+
+  export const enum StripeNativeErrorCode {
+    busy = "busy",
+    cancelled = "cancelled",
+    purchaseCancelled = "purchaseCancelled",
+    sourceStatusCanceled = "sourceStatusCanceled",
+    sourceStatusPending = "sourceStatusPending",
+    sourceStatusFailed = "sourceStatusFailed",
+    sourceStatusUnknown = "sourceStatusUnknown",
+    deviceNotSupportsNativePay = "deviceNotSupportsNativePay",
+    noPaymentRequest = "noPaymentRequest",
+    noMerchantIdentifier = "noMerchantIdentifier",
+    noAmount = "noAmount",
+    parseResponse = "parseResponse",
+    activityUnavailable = "activityUnavailable",
+    playServicesUnavailable = "playServicesUnavailable",
+    redirectCancelled = "redirectCancelled",
+    redirectNoSource = "redirectNoSource",
+    redirectWrongSourceId = "redirectWrongSourceId",
+    redirectCancelledByUser = "redirectCancelledByUser",
+    redirectFailed = "redirectFailed",
+    api = "api",
+    apiConnection = "apiConnection",
+    redirectSpecific = "redirectSpecific",
+    card = "card",
+    invalidRequest = "invalidRequest",
+    stripe = "stripe",
+    rateLimit = "rateLimit",
+    authentication = "authentication",
+    permission = "permission",
+  }
+
+  export const errorCodes: {
+    [Code in StripeNativeErrorCode]: StripeNativeErrorDescription<Code>;
+  };
 
   export default Stripe;
 }

@@ -56,7 +56,7 @@ const FibUnderwritingReviewAnswersContainer = memo(function (props: Props) {
 
     const rejected = data?.createTopUpsQuote?.rejected;
     if (rejected) {
-      return navigation.push(FIB_INFO, { type: "Rejected" } as { type: InfoTypes });
+      return navigation.push(FIB_INFO, { type: InfoTypes.rejected });
     }
 
     const priceChangedFromAPI =

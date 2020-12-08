@@ -107,7 +107,7 @@ export const FibConfirmationDeclarationScreen = memo(function (props: IFibConfir
               <Text style={StyleSheet.flatten([styles.lifeInsuranceText, { color: item.color }])}>Life Insurance</Text>
               <Text style={StyleSheet.flatten([styles.packageTypeText, { color: item.color }])}>{item.type}</Text>
               <View style={styles.detailsAndPriceWrapper}>
-                <Text style={styles.priceText}>{loading ? `loading...` : `£${actualCost} per month`}</Text>
+                <Text style={styles.priceText}>{loading ? `loading...` : `£${actualCost.toFixed(2)} per month`}</Text>
                 <TouchableOpacityWithDelay onPress={onDetailsPress}>
                   <Text style={styles.detailsText}>details</Text>
                 </TouchableOpacityWithDelay>

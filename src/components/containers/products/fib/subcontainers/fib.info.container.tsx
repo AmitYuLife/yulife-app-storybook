@@ -7,7 +7,12 @@ import { ROUTES } from "../../../../../navigation/constants";
 import { FibRejectedScreen } from "@components/screens/products/fib/underwriting-journey/info/fib.rejected.screen";
 import { FibResultsInScreen } from "../../../../screens/products/fib/underwriting-journey/info/fib.results-in";
 
-export type InfoTypes = "HoldingGP" | "PaymentCongratulation" | "Rejected" | "ResultsIn";
+export enum InfoTypes {
+  holdingGP = "HoldingGP",
+  paymentCongrats = "PaymentCongratulation",
+  rejected = "Rejected",
+  resultsIn = "ResultsIn",
+}
 interface IFibInfoContainerProps {
   navigation: FibLocalNavigation;
 }
