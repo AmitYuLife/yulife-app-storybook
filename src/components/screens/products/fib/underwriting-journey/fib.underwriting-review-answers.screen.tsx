@@ -7,7 +7,6 @@ import {
   TextStyle,
   NativeSyntheticEvent,
   NativeScrollEvent,
-  SafeAreaView,
   View,
 } from "react-native";
 import { useBackHandler } from "../../../../../services/hooks/useBackHandler";
@@ -19,6 +18,8 @@ import { Button, CheckBox } from "@atoms";
 import { IAnswer } from "../../../../../redux/product/product.selectors";
 import { NativeScrollPoint } from "react-native";
 import { IRightIcon } from "@atoms/generic-heading/generic-heading.types";
+import { Yugi, YugiType } from "../layouts/yugi";
+import FibTitle from "@atoms/fib/title/title";
 
 export interface IFibUnderwritingReviewAnswersScreenProps {
   onNavigateBack: () => void;
@@ -60,14 +61,21 @@ const _FibUnderwritingReviewAnswersScreen = memo(function (props: IFibUnderwriti
   const toggleConfirmed = () => setConfirmed(!confirmed);
 
   return (
-    <SafeAreaView style={styles.wrapper}>
-      <GenericHeading heading={"Review"} rightIcon={RIGHT_ICON} onRightIconPress={onNavigateBack} />
+    <View style={styles.wrapper}>
+      <GenericHeading
+        hideBorder={true}
+        logo="yulife"
+        rightIcon={RIGHT_ICON}
+        onRightIconPress={onNavigateBack}
+      />
       <ScrollView
         contentContainerStyle={styles.scrollViewContentStyle}
         onMomentumScrollEnd={onScrollEnd}
         ref={scrollViewRef}
         showsVerticalScrollIndicator={false}
       >
+        <FibTitle title="Please take a quick look over your answers before submitting." />
+        <View style={styles.pad} />
         {answers.map((item) => {
           return (
             <ReviewAnswers
@@ -86,8 +94,9 @@ const _FibUnderwritingReviewAnswersScreen = memo(function (props: IFibUnderwriti
           <CheckBox
             checked={confirmed}
             value=""
-            label="I have read the documents and confirm that all the statements above are true"
+            label="I confirm that I have understood and answered all the questions honestly, accurately and to the best of my knowledge."
             onChange={toggleConfirmed}
+            textStyle={checkboxStyles.text}
           />
         </View>
         <Button
@@ -98,7 +107,8 @@ const _FibUnderwritingReviewAnswersScreen = memo(function (props: IFibUnderwriti
           disabled={disableSubmitButton || !confirmed}
         />
       </ScrollView>
-    </SafeAreaView>
+      <Yugi yugi={YugiType.REVIEW} />
+    </View>
   );
 });
 
@@ -123,13 +133,19 @@ const styles = StyleSheet.create({
     width: "100%",
     textAlign: "center",
   } as TextStyle,
+  pad: {
+    height: Style.adjust(40),
+  } as ViewStyle,
 });
 
 const checkboxStyles = StyleSheet.create({
   wrapper: {
-    maxWidth: Style.DEVICE_WIDTH - 128,
+    maxWidth: Style.DEVICE_WIDTH - 48,
     alignItems: "center",
     alignSelf: "center",
     marginVertical: Style.adjust(32),
   } as ViewStyle,
+  text: {
+    maxWidth: Style.DEVICE_WIDTH - 64,
+  } as TextStyle,
 });

@@ -1,8 +1,9 @@
 import React from "react";
-import { ViewStyle, TextStyle, View, TouchableOpacity, Text, StyleSheet } from "react-native";
+import { ViewStyle, TextStyle, View, Text, StyleSheet } from "react-native";
 import Svg, { Circle, Path } from "react-native-svg";
 import { Style } from "@styles/index";
 import { CHECK_BOX_STATE } from "@ids";
+import { TouchableOpacityWithDelay } from "@components/molecules";
 
 interface ICheckBox {
   checked: boolean;
@@ -34,7 +35,7 @@ function CheckBox(props: ICheckBox) {
 
   return (
     <View>
-      <TouchableOpacity style={styles.wrapper} onPress={() => onChange(value)}>
+      <TouchableOpacityWithDelay activeOpacity={1} style={styles.wrapper} onPress={() => onChange(value)}>
         <View testID={CHECK_BOX_STATE(label, checked)}>
           <Svg height="32" width="32" viewBox="0 0 32 32">
             {checked ? (
@@ -51,7 +52,7 @@ function CheckBox(props: ICheckBox) {
           </Svg>
         </View>
         <Text style={StyleSheet.flatten([styles.text, textStyle])}>{label}</Text>
-      </TouchableOpacity>
+      </TouchableOpacityWithDelay>
     </View>
   );
 }

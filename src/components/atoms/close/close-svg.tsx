@@ -1,7 +1,7 @@
 import * as React from "react";
 import Svg, { Path } from "react-native-svg";
 import { BUTTON_CLOSE } from "@ids";
-import { Style } from "@styles";
+import { Style, Colours } from "@styles";
 
 interface Props {
   type?: "encircled";
@@ -28,14 +28,26 @@ function CloseSvg({ type, stroke }: Props) {
 
   return (
     <Svg
-      width={Style.adjust(14).toString()}
-      height={Style.adjust(14).toString()}
+      width={Style.adjust(18).toString()}
+      height={Style.adjust(18).toString()}
       viewBox="0 0 14 14"
       fill="none"
       testID={BUTTON_CLOSE}
     >
-      <Path d="M1 13L13 1" stroke="#464647" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round" />
-      <Path d="M13 13L1 1" stroke="#464647" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round" />
+      <Path
+        d="M1 13L13 1"
+        stroke={Colours.neutral.n800}
+        strokeMiterlimit="10"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <Path
+        d="M13 13L1 1"
+        stroke={Colours.neutral.n800}
+        strokeMiterlimit="10"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
     </Svg>
   );
 }

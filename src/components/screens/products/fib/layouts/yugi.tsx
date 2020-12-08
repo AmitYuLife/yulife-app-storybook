@@ -2,9 +2,16 @@ import React from "react";
 import { View, StyleSheet, ViewStyle } from "react-native";
 import { YugiSvg } from "./assets/yugi-svg";
 import { Style } from "@styles";
+import Svg from "react-native-svg";
+import { YugiReviewSvg } from "./assets/yugi-review-svg";
 
 interface Props {
-  yugi: string;
+  yugi: YugiType;
+}
+
+export enum YugiType {
+  DEFAULT = "DEFAULT",
+  REVIEW = "REVIEW",
 }
 
 export const Yugi = (props: Props) => {
@@ -14,9 +21,13 @@ export const Yugi = (props: Props) => {
     return null;
   }
 
+  const Yugi = getYugi(yugi);
+
   return (
     <View style={styles.yugiWrapper}>
-      <YugiSvg />
+      <Svg width={Style.adjust(55)} height={Style.adjust(180)} viewBox="0 0 55 180">
+        <Yugi />
+      </Svg>
     </View>
   );
 };
@@ -28,3 +39,12 @@ const styles = StyleSheet.create({
     right: 0,
   } as ViewStyle,
 });
+
+function getYugi(yugi: YugiType) {
+  switch (yugi) {
+    case YugiType.REVIEW:
+      return YugiReviewSvg;
+    default:
+      return YugiSvg;
+  }
+}
