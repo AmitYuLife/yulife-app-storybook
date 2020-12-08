@@ -18,6 +18,7 @@ import {
   FIB_LIFESTYLE_SMOKING_CIGARETTES_FOLLOW_UP_SCREEN_ID,
   FIB_LIFESTYLE_SMOKING_CIGARETTES_SCREEN_ID,
   FOLLOW_UP_SMOKING_ANSWERS_TRIGGER,
+  FIB_LIFESTYLE_ALCOHOL_SCREEN_ID,
 } from "./data/underwriting-journey-data";
 import { PackageId } from "@components/screens/products/fib/fib.helper";
 import { useDispatch } from "react-redux";
@@ -312,6 +313,10 @@ export function shouldFirstButtonBeDisabled(
 
   if (SMOKING_QUESTIONS_SCREEN_IDS.includes(currentQuestion.id)) {
     return !radioInputValue;
+  }
+
+  if (currentQuestion.id === FIB_LIFESTYLE_ALCOHOL_SCREEN_ID) {
+    return !fibAnswers.weeklyAlcoholDrinks;
   }
 
   return false;
