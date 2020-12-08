@@ -3,6 +3,7 @@ import { Navigation, OptionsModalPresentationStyle } from "react-native-navigati
 import registerScreens from "./navigation/index";
 import { migrateOldAppVersionToken } from "./services/storage";
 import { DETOX_ENABLED } from "@services/socket";
+import { initStripe } from "./services/stripe";
 
 if (DETOX_ENABLED) {
   YellowBox.ignoreWarnings([
@@ -37,6 +38,9 @@ Navigation.events().registerAppLaunchedListener(async () => {
   registerScreens();
 
   setDefaultOptions();
+
+  // Init stripe
+  initStripe();
 });
 
 function setDefaultOptions() {

@@ -9,11 +9,9 @@ import { getFIBState, getFullName, getBirthday } from "../../../../../redux/prod
 import { Package } from "../../../../screens/products/fib/browse-packages/fib.browse.types";
 import { getUserDateOfBirth } from "../../../../../redux/user/user.selectors";
 import { calculatePayoutAmount, calculatePayoutCalculatorItems, packages } from "../fib.helpers";
-import stripe from "tipsi-stripe";
 import moment from "moment";
 import { Navigation } from "react-native-navigation";
-import { ROUTES } from "../../../../../navigation/constants";
-import Logger from "@services/logging/logger";
+import { MODALS, ROUTES } from "../../../../../navigation/constants";
 import { InfoTypes } from "./fib.info.container";
 import { toCapitalLetter } from "../../../../../services/utils";
 import { GQL_QUERY_GET_TOP_UPS_QUOTE } from "@graphql/products";
@@ -47,6 +45,7 @@ const FibDeclarationConfirmationContainer = memo(function (props: Props) {
   const [payoutEstimatorItems, setPayoutEstimatorItems] = useState(
     calculatePayoutCalculatorItems(props.userDateOfBirthFib || props.userDateOfBirth, deceaseAgeIndexYear)
   );
+  const [paymentProgress, setPaymentProgress] = useState({ cardDetailsSent: false, purchased: false });
 
   const handleStatementConfirmed = () => {
     setStatementConfirmed((state) => !state);
@@ -112,44 +111,39 @@ const FibDeclarationConfirmationContainer = memo(function (props: Props) {
   }, []);
 
   const onContinue = useCallback(async () => {
-    const contactDetails = fibAnswers.contactDetails;
-    const options: any = {
-      requiredBillingAddressFields: "full",
-      managedAccountCurrency: "gbp",
-      smsAutofillDisabled: true,
-      prefilledInformation: {
-        billingAddress: {
-          name: fullName,
-          line1: contactDetails.firstAddressLine,
-          line2: contactDetails.secondAddressLine,
-          city: contactDetails.townOrCity,
-          state: "",
-          country: "UK",
-          postalCode: contactDetails.postCode,
+    await Navigation.showModal({
+      component: {
+        id: MODALS.cardInput,
+        name: MODALS.cardInput,
+        passProps: {
+          contactDetails: { ...fibAnswers.contactDetails, fullName },
+          setPaymentProgress,
         },
       },
-    };
+    });
+  }, [fibAnswers.contactDetails, fullName]);
 
-    try {
-      stripe.setOptions({
-        publishableKey: "pk_test_VqumpwZa4KKxLtY7NbqR4vSp",
+  if (paymentProgress.purchased) {
+    navigation.push(FIB_INFO, {
+      type: InfoTypes.paymentCongrats,
+      packageType: toCapitalLetter(selectedPackage),
+    });
+    return;
+  }
+
+  if (paymentProgress.cardDetailsSent && !paymentProgress.purchased) {
+    if (medicalInvestigationRequired) {
+      navigation.push(FIB_INFO, { type: "HoldingGP" } as { type: InfoTypes });
+    } else {
+      // TODO: Something went wrong, show holding payment screen?
+      navigation.push(FIB_INFO, {
+        type: InfoTypes.paymentCongrats,
+        packageType: toCapitalLetter(selectedPackage),
       });
-
-      // returned token will be sent to the server to take payments
-      await stripe.paymentRequestWithCardForm(options);
-
-      if (medicalInvestigationRequired) {
-        navigation.push(FIB_INFO, { type: "HoldingGP" } as { type: InfoTypes });
-      } else {
-        navigation.push(FIB_INFO, { type: "PaymentCongratulation", packageType: toCapitalLetter(selectedPackage) } as {
-          type: InfoTypes;
-          packageType: string;
-        });
-      }
-    } catch (e) {
-      Logger.logEvent("fib_payment_failed", { message: e.message });
     }
-  }, [navigation, fibAnswers, fullName, medicalInvestigationRequired, selectedPackage]);
+
+    return;
+  }
 
   switch (screenId) {
     case "Confirmation":

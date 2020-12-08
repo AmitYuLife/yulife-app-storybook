@@ -55,8 +55,8 @@ export const navigateToProductScreen = ({
           passProps: {
             initialRoute: FIB_INFO,
             initialProps: {
-              type: "ResultsIn",
-            } as { type: InfoTypes },
+              type: InfoTypes.resultsIn,
+            },
           },
         },
       });
@@ -153,9 +153,9 @@ function handleRejected(resetFib: () => void) {
       passProps: {
         initialRoute: FIB_INFO,
         initialProps: {
-          type: "Rejected",
+          type: InfoTypes.rejected,
           onResetFib: resetFib,
-        } as { type: InfoTypes; onResetFib: () => void },
+        },
       },
     },
   });

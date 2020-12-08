@@ -75,6 +75,7 @@ export const MODALS = {
   duelRespond: "yulife.modals.duelRespond",
   earnRate: "yulife.modals.earnRate",
   yuProductDetails: "yulife.member.yuProductDetails",
+  cardInput: "yulife.modals.cardInput",
 };
 
 export const bottomTabs: OptionsBottomTabs = {

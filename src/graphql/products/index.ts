@@ -1,4 +1,5 @@
 export * from "./createTopUpsQuote";
+export * from "./collectPaymentMethod";
 export * from "./getMedicalPractices";
 export * from "./getTopUpsEstimateCost";
 export * from "./getTopUpsQuote";
