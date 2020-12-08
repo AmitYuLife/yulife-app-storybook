@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet, View, ViewStyle, TextStyle, Text, Platform } from "react-native";
-import { Style } from "../../../../styles";
+import { Style, Colours } from "../../../../styles";
 import media from "@styles/media";
 
 interface ITitleProps {
@@ -37,11 +37,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: Style.adjust(24),
   } as ViewStyle,
   title: {
-    width: Style.DEVICE_WIDTH - 120,
+    width: Style.DEVICE_WIDTH - 90,
     fontSize: TITLE_FONT_SIZE,
     lineHeight: TITLE_FONT_SIZE * 1.2,
     fontFamily: Style.FONT_FAMILY_PRIMARY_BOLD,
     letterSpacing: 1,
-    color: "#464647",
+    color: Colours.neutral.n800,
   } as TextStyle,
 });

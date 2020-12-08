@@ -25,6 +25,7 @@ import { CopyFullName } from "@organisms/fib/copy/full-name";
 import RadioInput from "../feedback-form/radio-input";
 import { FibInputAlcohol } from "@organisms/fib/input/alcohol/fib-input-alcohol";
 import { styles, getChildWrapperStyle } from "./fib.underwriting-journey.styles";
+import { YugiType } from "../layouts/yugi";
 
 export interface IFibUnderwritingJourneyScreenProps {
   onNavigateBack: () => void;
@@ -115,7 +116,7 @@ const _FibUnderwritingJourneyScreen = memo(function (props: IFibUnderwritingJour
       hideProgressBar={hideProgressBar}
       onPreviousQuestion={onPreviousButtonPressed}
       hideHeadingBorder={!hideProgressBar}
-      yugi="default"
+      yugi={YugiType.DEFAULT}
     >
       <ScrollView ref={scrollViewRef} showsVerticalScrollIndicator={false} keyboardShouldPersistTaps="handled">
         <FibTitle title={data.question} />

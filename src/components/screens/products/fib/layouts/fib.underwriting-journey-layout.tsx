@@ -3,7 +3,7 @@ import { Platform, StyleSheet, KeyboardAvoidingView, SafeAreaView, ViewStyle } f
 import { GenericHeading } from "@atoms";
 import { FIBProgressBar } from "@components/organisms";
 import { Style } from "@styles";
-import { Yugi } from "./yugi";
+import { Yugi, YugiType } from "./yugi";
 import { useBackHandler } from "@services/hooks/useBackHandler";
 
 interface Props {
@@ -13,7 +13,7 @@ interface Props {
   children: React.ReactNode;
   hideHeadingBorder?: boolean;
   hideProgressBar: boolean;
-  yugi?: "default";
+  yugi?: YugiType;
   centreLogo?: "yulife";
 }
 
