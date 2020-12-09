@@ -1,11 +1,11 @@
 import * as React from "react";
-import { StyleSheet, ListRenderItemInfo, View, Image, ImageStyle, TextStyle } from "react-native";
+import { StyleSheet, ListRenderItemInfo, View, Image, ImageStyle, TextStyle, ViewStyle } from "react-native";
 import { useMutation } from "@apollo/react-hooks";
 import { GQL_MUTATION_UPDATE_NICKNAME } from "@graphql/user";
 import { UpdateNickname, UpdateNicknameVariables } from "@graphql/_core/schema/UpdateNickname";
-import { Text, Pad } from "@atoms";
+import { Text } from "@atoms";
 import { OnboardingSwiper, OnboardingSwiperData } from "@organisms";
-import { Style } from "@styles";
+import { Style, Colours } from "@styles";
 import { ChangeMemberNickname } from "@screens";
 import { useKeyboardListeners } from "@services/hooks/useKeyboardListeners";
 
@@ -73,15 +73,13 @@ interface IntroItemProps {
   item: OnboardingSwiperData;
 }
 
-const MARGIN_TOP = Style.DEVICE_HEIGHT * 0.1;
-
 const IntroItem = React.memo((props: IntroItemProps) => {
   const isKeyboardShown = useKeyboardListeners();
   const { sliderNumber, item } = props;
 
   return (
-    <View style={styles.fullWidth}>
-      {isKeyboardShown ? <Pad height={MARGIN_TOP} /> : <Image style={styles.image} source={images[sliderNumber]} />}
+    <View style={styles.wrapper}>
+      {isKeyboardShown ? null : <Image style={styles.image} source={images[sliderNumber]} />}
       <Text style={styles.title} bold={true}>
         {item?.title}
       </Text>
@@ -91,34 +89,33 @@ const IntroItem = React.memo((props: IntroItemProps) => {
 });
 
 const styles = StyleSheet.create({
-  fullWidth: {
-    height: Style.DEVICE_HEIGHT,
+  wrapper: {
+    flex: 1,
     width: Style.DEVICE_WIDTH,
-  },
+    justifyContent: "center",
+  } as ViewStyle,
   image: {
     alignSelf: "center",
-    marginTop: MARGIN_TOP,
     height: Style.adjust(300),
     width: Style.adjust(300),
   } as ImageStyle,
   title: {
     alignSelf: "center",
     marginTop: Style.adjust(Style.isShortToMediumAndroid() ? 17 : 34),
-    fontSize: 24,
+    fontSize: Style.adjust(24),
     letterSpacing: 0.8,
-    color: "#000000",
+    color: Colours.neutral.n800,
   } as TextStyle,
   subTitle: {
     alignSelf: "center",
     alignContent: "center",
     textAlign: "center",
-    marginTop: 18,
-    fontFamily: Style.FONT_FAMILY_PRIMARY,
-    fontSize: 16,
-    lineHeight: 24,
+    marginTop: Style.adjust(18),
+    fontSize: Style.adjust(16),
+    lineHeight: Style.adjust(24),
     width: 280,
     letterSpacing: 0.8,
-    color: "#5A5A5C",
+    color: Colours.neutral.n800,
   } as TextStyle,
   inputWrapper: {
     flex: 1,
