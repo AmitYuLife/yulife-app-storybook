@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from "react";
 import { Navigation } from "react-native-navigation";
 import { useDispatch, connect } from "react-redux";
-import { View, SafeAreaView, Alert, StyleSheet } from "react-native";
+import { View, Alert, StyleSheet } from "react-native";
 import { getUserStart } from "../../../redux/user/user.actions";
 import { useMutation, useQuery } from "@apollo/react-hooks";
 import {
@@ -18,12 +18,12 @@ import { DuelBackground } from "./subcomponents";
 import { DuelStepProps, Step } from "./duels.types";
 import DuelResponseIntro from "./subcomponents/duel-response-intro/duel-response-intro";
 import DuelResponseOptions from "./subcomponents/duel-response-options/duel-response-options";
-import DuelTopbar from "./subcomponents/duel-topbar/duel-topbar";
 import { IReduxState } from "@redux/_core/reducers";
 import { getTotalCoins } from "@redux/coins/coins.selectors";
 import { Loading } from "@atoms";
 import styles from "./duel-respond.styles";
 import { GQL_QUERY_GET_DUELLER_DETAILS } from "@graphql/duels/getDuellerDetails";
+import { TopBarAbsolute } from "@organisms/top-bar/top-bar-absolute";
 
 interface IModalProps {
   duelId: string;
@@ -142,14 +142,9 @@ const DuelRespondModal: React.FC<IProps> = ({ componentId, duelId, userCoins, in
   };
 
   return (
-    <SafeAreaView style={StyleSheet.absoluteFillObject}>
+    <View style={StyleSheet.absoluteFillObject}>
       <DuelBackground />
-      <View style={StyleSheet.absoluteFillObject}>
-        <DuelTopbar
-          coins={userCoins}
-          icon={step === "INTRO" ? undefined : "coins"}
-          onClose={() => Navigation.dismissModal(componentId)}
-        />
+      <View style={styles.wrapper}>
         {loading ? (
           <View style={styles.loadingOverlay}>
             <Loading />
@@ -172,7 +167,12 @@ const DuelRespondModal: React.FC<IProps> = ({ componentId, duelId, userCoins, in
           />
         )}
       </View>
-    </SafeAreaView>
+      <TopBarAbsolute
+        leftIcon="Close"
+        onPressLeftIcon={() => Navigation.dismissModal(componentId)}
+        rightIcon={step === "INTRO" ? null : "Coins"}
+      />
+    </View>
   );
 };
 

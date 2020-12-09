@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import WebView from "react-native-webview";
-import { SafeAreaView, View, StyleSheet, KeyboardAvoidingView, Linking } from "react-native";
+import { View, StyleSheet, KeyboardAvoidingView, Linking } from "react-native";
 import { Style, TOP_BAR } from "@styles";
-import { GenericHeading } from "@atoms";
 import Config from "react-native-config";
+import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
 import { ShouldStartLoadRequest } from "react-native-webview/lib/WebViewTypes";
 
 export interface Props {
@@ -32,9 +32,8 @@ export function WebViewScreen(props: Props) {
   }
 
   return (
-    <SafeAreaView>
-      <GenericHeading onRightIconPress={handleCloseWebView} heading={title} />
-
+    <View>
+      <GenericHeadingPad />
       <View style={styles.webViewWrapper}>
         <KeyboardAvoidingView
           behavior="padding"
@@ -51,13 +50,14 @@ export function WebViewScreen(props: Props) {
           />
         </KeyboardAvoidingView>
       </View>
-    </SafeAreaView>
+      <GenericHeadingAbsolute hideBorder={false} onRightIconPress={handleCloseWebView} heading={title} />
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   webViewWrapper: {
-    height: Style.DEVICE_HEIGHT - TOP_BAR.HEIGHT_WITH_PADDING - 20,
+    height: Style.DEVICE_HEIGHT - TOP_BAR.TOP_BAR_WITH_PAD,
     width: "100%",
   },
   flex: {

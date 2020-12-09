@@ -2,13 +2,12 @@ import React, { memo, ComponentProps, useCallback, useRef, useEffect } from "rea
 import {
   StyleSheet,
   ScrollView,
-  SafeAreaView,
   View,
   NativeScrollPoint,
   NativeSyntheticEvent,
   NativeScrollEvent,
 } from "react-native";
-import { GenericHeading, Button } from "@atoms";
+import { Button } from "@atoms";
 import { Summary, SummaryDescription } from "./subcomponents";
 import { Faqs } from "./subcomponents/faqs/faqs";
 import { PayoutCalculator } from "./subcomponents/payout-calculator/payout-calculator";
@@ -17,6 +16,7 @@ import { Package } from "./fib.browse.types";
 import { useBackHandler } from "@services/hooks/useBackHandler";
 import { PackageOptions } from "./subcomponents/package-options/package-options";
 import { PackageId } from "../fib.helper";
+import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
 
 interface FibSummaryScreenProps {
   onNavigateBack: () => void;
@@ -81,14 +81,8 @@ export const FibSummaryScreen = memo(function (props: FibSummaryScreenProps) {
 
   return (
     <>
-      <SafeAreaView style={styles.wrapper}>
-        <GenericHeading
-          heading="Finalise Package"
-          isBeta={true}
-          leftIcon="BACK"
-          onLeftIconPress={onNavigateBack}
-          onRightIconPress={onExit}
-        />
+      <View style={styles.wrapper}>
+        <GenericHeadingPad />
         <ScrollView
           showsVerticalScrollIndicator={false}
           contentContainerStyle={styles.scrollView}
@@ -117,7 +111,13 @@ export const FibSummaryScreen = memo(function (props: FibSummaryScreenProps) {
           </View>
           <Faqs items={faqs} />
         </ScrollView>
-      </SafeAreaView>
+      </View>
+      <GenericHeadingAbsolute
+        heading="Finalise Package"
+        leftIcon="BACK"
+        onLeftIconPress={onNavigateBack}
+        onRightIconPress={onExit}
+      />
     </>
   );
 });

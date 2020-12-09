@@ -1,7 +1,15 @@
 import { StyleSheet, ViewStyle } from "react-native";
+import { TOP_BAR } from "@styles";
 
 const styles = StyleSheet.create({
-  loadingOverlay: { ...StyleSheet.absoluteFillObject, backgroundColor: "rgba(255,255,255, 0.5)" } as ViewStyle,
+  wrapper: {
+    ...StyleSheet.absoluteFillObject,
+    paddingTop: TOP_BAR.TOP_BAR_WITH_PAD,
+  } as ViewStyle,
+  loadingOverlay: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: "rgba(255,255,255, 0.5)",
+  } as ViewStyle,
 });
 
 export default styles;

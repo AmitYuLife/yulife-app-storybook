@@ -4,10 +4,9 @@ import { Navigation } from "react-native-navigation";
 import { useDispatch, connect } from "react-redux";
 import { getUserStart } from "../../../redux/user/user.actions";
 import { useMutation, useQuery } from "@apollo/react-hooks";
-import { SafeAreaView, Alert, View } from "react-native";
+import { Alert, View } from "react-native";
 import moment from "moment";
 import { DuelBackground, DuelOptions, DuelInviteIntro } from "./subcomponents";
-import DuelTopbar from "./subcomponents/duel-topbar/duel-topbar";
 import { DuelStepProps } from "./duels.types";
 import { Step, DEFAULT_DUEL_AMOUNT, DEFAULT_DUEL_DURATION } from "./duels.types";
 import styles from "./duel-invite.modal.styles";
@@ -15,6 +14,7 @@ import { IReduxState } from "@redux/_core/reducers";
 import { getTotalCoins } from "@redux/coins/coins.selectors";
 import { ROUTES } from "@navigation/constants";
 import { GQL_QUERY_GET_DUELLER_DETAILS } from "@graphql/duels/getDuellerDetails";
+import { TopBarAbsolute } from "@organisms/top-bar/top-bar-absolute";
 
 type IReduxProps = ReturnType<typeof mapStateToProps>;
 
@@ -143,17 +143,17 @@ const DuelInviteModal: React.FC<IDuelProps> = ({ componentId, opponentId, userCo
   };
 
   return (
-    <SafeAreaView style={styles.safeAreaWrapper}>
+    <View style={styles.safeAreaWrapper}>
       <DuelBackground />
-      <View style={[styles.wrapper]}>
-        <DuelTopbar
-          coins={userCoins}
-          icon={step === "INTRO" ? undefined : "coins"}
-          onClose={() => Navigation.dismissModal(componentId)}
-        />
+      <View style={styles.wrapper}>
         <StepComponent {...componentProps} />
       </View>
-    </SafeAreaView>
+      <TopBarAbsolute
+        leftIcon="Close"
+        onPressLeftIcon={() => Navigation.dismissModal(componentId)}
+        rightIcon={step === "INTRO" ? null : "Coins"}
+      />
+    </View>
   );
 };
 

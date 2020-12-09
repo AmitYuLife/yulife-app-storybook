@@ -1,6 +1,5 @@
 import * as React from "react";
-import { GenericHeading } from "@atoms";
-import { SafeAreaView, SectionList, View } from "react-native";
+import { SectionList, View } from "react-native";
 import styles from "./active-duels.styles";
 import { STATS_SCREEN } from "@ids";
 import { DuelHubTab } from "@components/containers/member/duels-hub/duels-hub.container";
@@ -18,6 +17,7 @@ import { renderItem, renderSectionHeader, getItemLayout, getResToList } from "./
 import { connect } from "react-redux";
 import { IReduxState } from "@redux/_core/reducers";
 import { getDailySteps } from "@redux/daily-steps/daily-steps.selectors";
+import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
 
 interface IDuels {
   data: GetDuelsHubData_getDuelsHubData;
@@ -49,8 +49,8 @@ const ActiveDuels = ({ data, onPressClose, onChangeTab, activeTab, onRefetch, re
   });
 
   return (
-    <SafeAreaView style={styles.wrapper} testID={STATS_SCREEN}>
-      <GenericHeading heading="Duels Hub" onLeftIconPress={onPressClose} />
+    <View style={styles.wrapper} testID={STATS_SCREEN}>
+      <GenericHeadingPad />
       <View style={styles.tabWrapper}>
         <DuelTabs onPress={onChangeTab} activeTab={activeTab} />
       </View>
@@ -68,7 +68,8 @@ const ActiveDuels = ({ data, onPressClose, onChangeTab, activeTab, onRefetch, re
         renderItem={renderItem}
       />
       <NavBar activeIndex={3} />
-    </SafeAreaView>
+      <GenericHeadingAbsolute heading="Duels Hub" onLeftIconPress={onPressClose} />
+    </View>
   );
 };
 

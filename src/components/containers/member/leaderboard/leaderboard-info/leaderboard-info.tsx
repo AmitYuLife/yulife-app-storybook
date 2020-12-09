@@ -1,9 +1,10 @@
 import React, { useCallback } from "react";
-import { GenericHeading, Text } from "@atoms";
-import { SafeAreaView, StyleSheet, TextStyle, ViewStyle } from "react-native";
+import { Text } from "@atoms";
+import { StyleSheet, TextStyle, ViewStyle, View } from "react-native";
 import { LEADERBOARD_INFO } from "@ids";
 import { Style } from "@styles";
 import { Navigation } from "react-native-navigation";
+import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
 
 interface IProps {
   componentId: string;
@@ -18,10 +19,11 @@ function LeaderboardInfoScreen({ componentId }: IProps) {
   }, [componentId]);
 
   return (
-    <SafeAreaView style={styles.wrapper} testID={LEADERBOARD_INFO}>
-      <GenericHeading heading="About Leaderboards" onLeftIconPress={goBack} />
+    <View style={styles.wrapper} testID={LEADERBOARD_INFO}>
+      <GenericHeadingPad />
       <Text style={styles.text}>{copy}</Text>
-    </SafeAreaView>
+      <GenericHeadingAbsolute heading="About Leaderboards" onLeftIconPress={goBack} />
+    </View>
   );
 }
 

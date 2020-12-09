@@ -10,10 +10,10 @@ import {
 } from "react-native";
 import { GetRewards_getRewards_uiSettings } from "../../../../../graphql/_core/schema";
 import { Button, Pad, Text, TextInput } from "../../../../atoms";
-import { LinkGroup, Picker, RewardsListItem, RewardTabs } from "../../../../molecules";
+import { LinkGroup, Picker, RewardsListItem } from "../../../../molecules";
 import styles from "./avios-details.screen.styles";
-import { TopBar } from "@components/organisms";
 import { TopBarLeftIconTypes } from "@components/organisms/top-bar/top-bar.helpers";
+import { TopBarAbsolute } from "@organisms/top-bar/top-bar-absolute";
 
 const noop = () => ({});
 
@@ -112,8 +112,6 @@ class AviosDetailsScreen extends React.PureComponent<Props, IState> {
       onSurnameChange,
       onPressTopBar,
       onCardChange,
-      onLeftTabPress,
-      onRightTabPress,
       loyaltyValue,
       accountNumberValue,
       forenameValue,
@@ -134,10 +132,7 @@ class AviosDetailsScreen extends React.PureComponent<Props, IState> {
         >
           {isShowingKeyboard ? null : (
             <View>
-              <Pad height={60} />
-              <View style={styles.rewardTabsWrapper}>
-                <RewardTabs activeTabIndex={0} onRightTabPress={onRightTabPress} onLeftTabPress={onLeftTabPress} />
-              </View>
+              <View style={styles.pad} />
               <RewardsListItem
                 settings={uiSettings}
                 onPress={noop}
@@ -221,9 +216,12 @@ class AviosDetailsScreen extends React.PureComponent<Props, IState> {
           </View>
           <Pad height={50} />
         </ScrollView>
-        <View style={styles.topBarWrapper}>
-          <TopBar leftIcon={TopBarLeftIconTypes.BACK} onPressLeftIcon={onPressTopBar} />
-        </View>
+        <TopBarAbsolute
+          hasShadow={true}
+          hasWhiteBackground={true}
+          leftIcon={TopBarLeftIconTypes.BACK}
+          onPressLeftIcon={onPressTopBar}
+        />
       </KeyboardAvoidingView>
     );
   }

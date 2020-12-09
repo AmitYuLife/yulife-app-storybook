@@ -1,12 +1,15 @@
 import React from "react";
 import { StyleSheet, ViewStyle, View, Platform } from "react-native";
-import { Style } from "@styles";
+import { TOP_BAR, Style } from "@styles";
 import { RewardTabs } from "@components/molecules";
 import { REWARDS_SCREEN } from "@ids";
-import { TopBar } from "@components/organisms";
-import { TOP_BAR_HEIGHT } from "@components/organisms/top-bar/top-bar.styles";
 import { NavBar } from "@components/organisms";
+import { TopBarAbsolute } from "@organisms/top-bar/top-bar-absolute";
 
+const WRAPPER_MARGIN_TOP = Platform.select({
+  ios: 0,
+  android: -20,
+});
 interface Props {
   children: React.ReactNode;
   onLeftTabPress: () => void;
@@ -26,9 +29,7 @@ export function RewardsListLayout(props: Props) {
         <RewardTabs onLeftTabPress={onLeftTabPress} onRightTabPress={onRightTabPress} activeTabIndex={activeIndex} />
       </View>
       <View style={styles.listWrapper}>{children}</View>
-      <View style={styles.topbarWrapper}>
-        <TopBar onPressLeftIcon={onLeftMenuPress} />
-      </View>
+      <TopBarAbsolute onPressLeftIcon={onLeftMenuPress} />
       <NavBar activeIndex={4} />
     </View>
   );
@@ -43,15 +44,15 @@ const styles = StyleSheet.create({
   } as ViewStyle,
   rewardTabsWrapper: {
     alignItems: "center",
-    marginTop: 8,
+    marginTop: WRAPPER_MARGIN_TOP,
   } as ViewStyle,
   topbarWrapper: {
     position: "absolute",
     left: 0,
     right: 0,
-    top: Platform.select({ ios: Style.getSafeAreaStart(), android: 0 }),
+    top: TOP_BAR.PADDING_TOP,
   } as ViewStyle,
   topbarFiller: {
-    height: TOP_BAR_HEIGHT + Platform.select({ ios: 36, android: 0 }),
+    height: TOP_BAR.HEIGHT * (Style.hasNotch ? 2.2 : 2),
   } as ViewStyle,
 });

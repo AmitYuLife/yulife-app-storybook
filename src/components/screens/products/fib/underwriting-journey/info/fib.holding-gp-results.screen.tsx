@@ -25,7 +25,6 @@ export const FibHoldingGPDetails = memo(function (props: IFibHoldingGPDetailsScr
       heading={"GP Results"}
       onClose={onClose}
       hideProgressBar={true}
-      hideHeadingBorder={false}
     >
       <View style={styles.wrapper}>
         <Text style={styles.message}>

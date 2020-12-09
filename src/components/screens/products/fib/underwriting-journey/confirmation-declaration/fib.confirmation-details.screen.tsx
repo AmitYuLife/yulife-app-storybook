@@ -43,7 +43,6 @@ export const FibConfirmationDetailsScreen = memo(function (props: IFibConfirmati
       onClose={onClose}
       onPreviousQuestion={onBackButtonPress}
       hideProgressBar={true}
-      hideHeadingBorder={false}
     >
       <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.contentContainerStyle}>
         <View style={styles.topWhiteSeparator} />

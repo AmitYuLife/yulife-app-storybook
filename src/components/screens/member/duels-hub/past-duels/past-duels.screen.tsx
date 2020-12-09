@@ -1,6 +1,5 @@
-import { GenericHeading } from "@atoms/index";
 import * as React from "react";
-import { SafeAreaView, View, FlatList } from "react-native";
+import { View, FlatList } from "react-native";
 import { ApolloQueryResult } from "apollo-client";
 import styles from "./past-duels.styles";
 import { STATS_SCREEN } from "@ids";
@@ -13,6 +12,7 @@ import {
 } from "@graphql/_core/schema";
 import { renderItem, getItemLayout } from "./past-duels.helpers";
 import { EmptyDuelHub, DuelTabs } from "../subcomponents";
+import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
 
 interface IProps {
   data: GetDuelsHubData_getDuelsHubData;
@@ -45,8 +45,8 @@ const PastDuels = ({ data, onPressClose, onChangeTab, activeTab, onRefetch, refr
     return formattedDuel;
   });
   return (
-    <SafeAreaView style={styles.wrapper} testID={STATS_SCREEN}>
-      <GenericHeading heading="Duels Hub" onLeftIconPress={onPressClose} />
+    <View style={styles.wrapper} testID={STATS_SCREEN}>
+      <GenericHeadingPad />
       <View style={styles.tabWrapper}>
         <DuelTabs onPress={onChangeTab} activeTab={activeTab} />
       </View>
@@ -61,7 +61,8 @@ const PastDuels = ({ data, onPressClose, onChangeTab, activeTab, onRefetch, refr
         renderItem={renderItem}
       />
       <NavBar activeIndex={3} />
-    </SafeAreaView>
+      <GenericHeadingAbsolute heading="Duels Hub" onLeftIconPress={onPressClose} />
+    </View>
   );
 };
 

@@ -1,15 +1,16 @@
 import React, { memo, useCallback } from "react";
-import { StyleSheet, ViewStyle, View, Platform, TextStyle, SafeAreaView } from "react-native";
+import { StyleSheet, ViewStyle, View, Platform, TextStyle } from "react-native";
 import deviceInfoModule from "react-native-device-info";
 import { SvgXml } from "react-native-svg";
 import { Style, Colours } from "@styles";
-import { GenericHeading, Button } from "@atoms";
+import { Button } from "@atoms";
 import { TextWithBoldText, HorizontalScroller } from "@molecules";
 import { personPencilSvg } from "./assets/person-pencil-svg";
 import { EstimatedCost } from "./subcomponents/estimated-cost";
 import LinearGradient from "react-native-linear-gradient";
 import { useBackHandler } from "../../../../../services/hooks/useBackHandler";
 import { CUSTOM_COVER_SCREEN } from "@ids";
+import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
 
 export interface IFibCustomPercentage {
   onNavigateBack: () => void;
@@ -46,14 +47,8 @@ export const FibCustomPercentage = memo(function (props: IFibCustomPercentage) {
   useBackHandler(backHandler);
 
   return (
-    <SafeAreaView style={styles.wrapper} testID={CUSTOM_COVER_SCREEN}>
-      <GenericHeading
-        style={styles.headingWrapper}
-        leftIcon="BACK"
-        onLeftIconPress={onNavigateBack}
-        heading="Create custom cover"
-        isBeta={true}
-      />
+    <View style={styles.wrapper} testID={CUSTOM_COVER_SCREEN}>
+      <GenericHeadingPad />
       <View style={styles.content}>
         <SvgXml xml={personPencilSvg} />
         <View>
@@ -93,13 +88,18 @@ export const FibCustomPercentage = memo(function (props: IFibCustomPercentage) {
         </View>
         <Button onPress={onNavigateToEditSalary} label="edit salary" type="Link" />
       </View>
-    </SafeAreaView>
+      <GenericHeadingAbsolute
+        style={styles.headingWrapper}
+        leftIcon="BACK"
+        onLeftIconPress={onNavigateBack}
+        heading="Create custom cover"
+      />
+    </View>
   );
 });
 
 const styles = StyleSheet.create({
   wrapper: {
-    paddingTop: Platform.select({ ios: Style.getSafeAreaStart(), android: 0 }),
     width: Style.DEVICE_WIDTH,
     flex: 1,
     backgroundColor: "white",

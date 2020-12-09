@@ -5,8 +5,8 @@ import { Pad, Text } from "../../../../atoms";
 import { RewardItemContent } from "../../../../molecules";
 import styles from "./avios-confirmed.screen.styles";
 import CardStates from "./card-states";
-import { TopBar } from "@components/organisms";
 import { TopBarLeftIconTypes } from "@components/organisms/top-bar/top-bar.helpers";
+import { TopBarAbsolute } from "@organisms/top-bar/top-bar-absolute";
 
 export type PurchaseStatus = "pending" | "failed" | "delivered";
 
@@ -75,9 +75,7 @@ class RewardsConfirmed extends React.PureComponent<Props> {
           />
           <Pad height={50} />
         </ScrollView>
-        <View style={styles.topBarWrapper}>
-          <TopBar leftIcon={TopBarLeftIconTypes.BACK} onPressLeftIcon={onPressTopBar} />
-        </View>
+        <TopBarAbsolute hasShadow={true} hasWhiteBackground={true} leftIcon={TopBarLeftIconTypes.BACK} onPressLeftIcon={onPressTopBar} />
       </>
     );
   }

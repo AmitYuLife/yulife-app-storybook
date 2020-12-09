@@ -1,6 +1,5 @@
 import React, { memo, ComponentProps, useCallback } from "react";
-import { StyleSheet, ScrollView, SafeAreaView } from "react-native";
-import { GenericHeading } from "@atoms";
+import { StyleSheet, ScrollView, View } from "react-native";
 import { Style } from "@styles";
 import { AvatarAndDescription, HowItWorks, EstimatedCost } from "./subcomponents";
 import { ContinueButton } from "./continue-button/continue-button";
@@ -11,6 +10,7 @@ import { Documents } from "./subcomponents/documents/documents";
 import { Package } from "./fib.browse.types";
 import { formatPrice } from "@components/containers/products/fib/fib.helpers";
 import { useBackHandler } from "@services/hooks/useBackHandler";
+import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
 
 interface IFibCustomCoverScreenProps {
   onNavigateBack: () => void;
@@ -50,8 +50,8 @@ export const FibCustomCoverScreen = memo(function (props: IFibCustomCoverScreenP
 
   return (
     <>
-      <SafeAreaView style={styles.wrapper}>
-        <GenericHeading heading="Create custom cover" isBeta={true} leftIcon="BACK" onLeftIconPress={onNavigateBack} />
+      <View style={styles.wrapper}>
+        <GenericHeadingPad />
         <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scrollView}>
           <AvatarAndDescription loading={loading} avatarUrl={avatarUrl} selectedPackage={selectedPackage} />
           <EstimatedCost
@@ -78,8 +78,8 @@ export const FibCustomCoverScreen = memo(function (props: IFibCustomCoverScreenP
           <Faqs items={faqs} />
           <Documents items={documents} />
         </ScrollView>
-      </SafeAreaView>
-
+      </View>
+      <GenericHeadingAbsolute heading="Create custom cover" leftIcon="BACK" onLeftIconPress={onNavigateBack} />
       <ContinueButton onPress={onContinue} />
     </>
   );

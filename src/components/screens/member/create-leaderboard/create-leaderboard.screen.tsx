@@ -5,15 +5,15 @@ import {
   KeyboardAvoidingView,
   ListRenderItemInfo,
   Platform,
-  SafeAreaView,
   StyleSheet,
   Text,
   View,
 } from "react-native";
-import { Button, CentredScreen, Close, GenericHeading, Pad, TextInput } from "../../../atoms";
+import { Button, CentredScreen, Close, Pad, TextInput } from "../../../atoms";
 import { validateEmail } from "../../../containers/login/login.helpers";
 import styles from "./create-leaderboard.screen.styles";
 import { GROUP_NAME_INPUT, LEADERBOARD_EMAIL_INPUT } from "@ids";
+import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
 
 interface IState {
   emailError: string;
@@ -42,9 +42,9 @@ class CreateLeaderboardScreen extends React.PureComponent<IProps, IState> {
     const isCreateDisabled = !emails.length || groupName === "";
 
     return (
-      <SafeAreaView style={StyleSheet.absoluteFill}>
+      <View style={StyleSheet.absoluteFill}>
         <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : null} style={{ flex: 1 }}>
-          <GenericHeading heading="create a leaderboard" hideBorder={true} onRightIconPress={this.props.onPressClose} />
+          <GenericHeadingPad />
           <CentredScreen>
             <Pad height={20} />
             <TextInput
@@ -85,7 +85,11 @@ class CreateLeaderboardScreen extends React.PureComponent<IProps, IState> {
             />
           </CentredScreen>
         </KeyboardAvoidingView>
-      </SafeAreaView>
+        <GenericHeadingAbsolute
+          heading="create a leaderboard"
+          onRightIconPress={this.props.onPressClose}
+        />
+      </View>
     );
   }
 

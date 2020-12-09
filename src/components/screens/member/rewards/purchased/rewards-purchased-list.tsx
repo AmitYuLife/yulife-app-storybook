@@ -1,23 +1,18 @@
-import { RewardTabs, YulifeRefreshHeader } from "@molecules/index";
-import { Style } from "@styles/index";
+import { YulifeRefreshHeader } from "@molecules/index";
+import { Style, TOP_BAR } from "@styles/index";
 import * as React from "react";
 import { View, Platform, ViewStyle, StyleSheet } from "react-native";
 import { IndexPath, LargeList } from "react-native-largelist-v3";
 import { GetMobileCopy_getMobileCopy_screens_purchases } from "../../../../../graphql/_core/schema";
-import { IConnectedScreenProps } from "../../../../../typings";
 import RewardsPurchasedItem, { IRewardsPurchasedItemProps } from "./purchased-item/purchased-item";
 import PurchasesEmpty from "./purchases-empty/purchases-empty";
 import { isIphoneX } from "react-native-iphone-x-helper";
-import { TopBar } from "@components/organisms";
-import { TOP_BAR_HEIGHT } from "@components/organisms/top-bar/top-bar.styles";
-import { NavBar } from "@components/organisms";
 
-interface IProps extends IConnectedScreenProps {
+interface IProps {
   data: RewardsPurchasedItemData[];
-  onLeftTabPress: () => void;
-  onRightTabPress: () => void;
   copy: GetMobileCopy_getMobileCopy_screens_purchases;
-  currentWorld?: number;
+  onPressEmptyCta: () => void;
+  onRefresh: () => void;
 }
 
 export type RewardsPurchasedItemData = IRewardsPurchasedItemProps & {
@@ -28,15 +23,10 @@ export class RewardsPurchasedList extends React.PureComponent<IProps> {
   private largeList: LargeList;
 
   public render() {
-    const { data, onLeftTabPress, onRightTabPress, onLeftMenuPress } = this.props;
+    const { data } = this.props;
 
     return (
       <View style={styles.wrapper}>
-        <View
-          style={[styles.rewardTabsWrapper, { paddingTop: TOP_BAR_HEIGHT + Platform.select({ ios: 36, android: 0 }) }]}
-        >
-          <RewardTabs activeTabIndex={1} onLeftTabPress={onLeftTabPress} onRightTabPress={onRightTabPress} />
-        </View>
         <View style={styles.listWrapper}>
           <LargeList
             ref={this.setLargeListRef}
@@ -47,12 +37,9 @@ export class RewardsPurchasedList extends React.PureComponent<IProps> {
             renderEmpty={this.renderEmpty}
             refreshHeader={YulifeRefreshHeader}
             renderFooter={this.renderFooter}
+            showsVerticalScrollIndicator={false}
           />
         </View>
-        <View style={styles.topbarWrapper}>
-          <TopBar onPressLeftIcon={onLeftMenuPress} />
-        </View>
-        <NavBar activeIndex={4} />
       </View>
     );
   }
@@ -60,9 +47,9 @@ export class RewardsPurchasedList extends React.PureComponent<IProps> {
   private renderFooter = () => <View style={styles.footer} />;
 
   private renderEmpty = () => {
-    const { onLeftTabPress, copy } = this.props;
+    const { onPressEmptyCta, copy } = this.props;
 
-    return <PurchasesEmpty onCtaPress={onLeftTabPress} copy={copy.empty} />;
+    return <PurchasesEmpty onCtaPress={onPressEmptyCta} copy={copy.empty} />;
   };
 
   private setLargeListRef = (ref: LargeList) => {
@@ -70,7 +57,7 @@ export class RewardsPurchasedList extends React.PureComponent<IProps> {
   };
 
   private handleRefresh = async () => {
-    await this.props.onRightTabPress();
+    await this.props.onRefresh();
     if (this.largeList) {
       this.largeList.endRefresh();
     }
@@ -109,7 +96,7 @@ const styles = StyleSheet.create({
   } as ViewStyle,
   rewardTabsWrapper: {
     alignItems: "center",
-    marginTop: 8,
+    marginTop: TOP_BAR.HEIGHT * 2,
   } as ViewStyle,
   footer: {
     height: Style.SCALE_UP_AND_DOWN(72),

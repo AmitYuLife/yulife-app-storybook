@@ -1,12 +1,13 @@
 import React, { useCallback, useEffect } from "react";
-import { Button, GenericHeading } from "@atoms";
+import { Button } from "@atoms";
 import { useState } from "react";
-import { SafeAreaView, Text, TouchableOpacity, View } from "react-native";
+import { Text, TouchableOpacity, View } from "react-native";
 import FemaleBody from "../svg/female-body";
 import MaleBody from "../svg/male-body";
 import styles from "./select-body.styles";
 import { AvatarBuilderHeading } from "../avatar-builder/avatar.types";
 import { useBackHandler } from "../../../../../services/hooks/useBackHandler";
+import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
 
 export type SelectedBody = "None" | "Male" | "Female";
 
@@ -60,8 +61,8 @@ function SelectBody({
   useBackHandler(backHandler);
 
   return (
-    <SafeAreaView style={styles.wrapper}>
-      <GenericHeading heading={heading} onLeftIconPress={onExitConfirmed} hideBorder={false} leftIcon="CLOSE" />
+    <View style={styles.wrapper}>
+      <GenericHeadingPad />
       <View style={styles.elementWrapper}>
         <View style={styles.selectorWrapper}>
           <TouchableOpacity onPress={selectMaleBody}>
@@ -80,7 +81,8 @@ function SelectBody({
           <Button type="Primary" disabled={isNone} onPress={() => onContinuePressed(selectedBody)} label="Continue" />
         </View>
       </View>
-    </SafeAreaView>
+      <GenericHeadingAbsolute heading={heading} onLeftIconPress={onExitConfirmed} leftIcon="CLOSE" />
+    </View>
   );
 }
 

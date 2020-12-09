@@ -31,13 +31,14 @@ const RewardsPurchasedScreen = React.memo((props: Props) => {
   }
 
   return (
-    <RewardsPurchasedList
+    <RewardsListLayout
+      activeScreen="purchased"
       onLeftTabPress={onLeftTabPress}
       onRightTabPress={onRightTabPress}
       onLeftMenuPress={onLeftMenuPress}
-      data={data}
-      copy={copy}
-    />
+    >
+      <RewardsPurchasedList onPressEmptyCta={onLeftTabPress} onRefresh={onRightTabPress} data={data} copy={copy} />
+    </RewardsListLayout>
   );
 });
 

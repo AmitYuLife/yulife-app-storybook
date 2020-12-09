@@ -1,12 +1,12 @@
 import React from "react";
 import { TouchableOpacity, View, StyleSheet, TextStyle, Platform, ViewStyle } from "react-native";
 import { BUTTON_TOP_LEFT_BAR } from "@ids";
-import { Back } from "@atoms";
+import { Back, CloseSvg } from "@atoms";
 import { Menu } from "../assets";
 import { Text } from "@atoms/index";
-import { Style } from "@styles/index";
+import { Style, TOP_BAR } from "@styles/index";
 
-export type LeftIconTypes = "Menu" | "Back";
+export type LeftIconTypes = "Menu" | "Back" | "Close";
 export const leftIconTypes = { MENU: "Menu", BACK: "Back" } as Record<"MENU" | "BACK", LeftIconTypes>;
 
 interface Props {
@@ -25,9 +25,7 @@ export default function Left({ onPress, icon, colour, label, textStyle }: Props)
       testID={BUTTON_TOP_LEFT_BAR}
       accessibilityLabel={icon}
     >
-      <View style={styles.iconWrapper}>
-        <Icon icon={icon} colour={colour} />
-      </View>
+      <Icon icon={icon} colour={colour} />
       <MenuLabel label={label} textStyle={textStyle} />
     </TouchableOpacity>
   );
@@ -39,6 +37,12 @@ function Icon({ icon, colour = "#333333" }: { icon: LeftIconTypes; colour: strin
       return <Menu color={colour} />;
     case "Back":
       return <Back color={colour} />;
+    case "Close":
+      return (
+        <View style={styles.closeIconMargins}>
+          <CloseSvg />
+        </View>
+      );
     default:
       return null;
   }
@@ -69,14 +73,17 @@ const styles = StyleSheet.create({
   menuWrapper: {
     alignItems: "center",
     flexDirection: "row",
-    height: "100%",
     paddingLeft: Style.adjust(16),
     paddingRight: Style.adjust(8),
-    paddingTop: Style.adjust(8),
+    paddingTop: Platform.select({
+      ios: Style.adjust(8),
+      android: Style.adjust(10),
+    }),
+    top: TOP_BAR.LEFT_PADDING_TOP,
     left: 0,
     position: "absolute",
   } as ViewStyle,
-  iconWrapper: {
-    marginTop: -1,
+  closeIconMargins: {
+    marginTop: Style.adjust(4),
   } as ViewStyle,
 });

@@ -1,6 +1,6 @@
-import { StyleSheet, TextStyle, ViewStyle, Platform } from "react-native";
+import { StyleSheet, TextStyle, ViewStyle } from "react-native";
 import { isIphoneX } from "react-native-iphone-x-helper";
-import { Style } from "../../../../styles";
+import { Style, TOP_BAR } from "../../../../styles";
 
 export default StyleSheet.create({
   flex: {
@@ -46,7 +46,7 @@ export default StyleSheet.create({
   } as ViewStyle,
   topbarWrapper: {
     left: 0,
-    top: Platform.select({ ios: Style.getSafeAreaStart(), android: 0 }),
+    top: TOP_BAR.PADDING_TOP,
     position: "absolute",
     right: 0,
   } as ViewStyle,

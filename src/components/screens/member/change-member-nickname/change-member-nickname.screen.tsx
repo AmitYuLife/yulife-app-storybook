@@ -1,11 +1,12 @@
 import React, { useState, FunctionComponent, memo } from "react";
-import { View, Image, StyleSheet, ImageStyle, TextStyle, SafeAreaView, Keyboard } from "react-native";
+import { View, Image, StyleSheet, ImageStyle, TextStyle, Keyboard } from "react-native";
 import { Style } from "@styles";
-import { Button, Text, TextInput, Pad, GenericHeading } from "@atoms";
+import { Button, Text, TextInput, Pad } from "@atoms";
 import { Navigation } from "react-native-navigation";
 import { ROUTES } from "@navigation/constants";
 import { useKeyboardListeners } from "@services/hooks/useKeyboardListeners";
 import { NICKNAME_INPUT, CHANGE_MEMBER_NICK_BUTTON } from "@ids";
+import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
 
 type Props = {
   enableButton: boolean;
@@ -26,8 +27,8 @@ const ChangeMemberNickname: FunctionComponent<Props> = ({ enableButton, isLoadin
   };
 
   return (
-    <SafeAreaView testID="change-member-nickname">
-      {enableButton ? <GenericHeading onLeftIconPress={handleNavigation} logo="yulife" /> : null}
+    <View testID="change-member-nickname">
+      {enableButton ? <GenericHeadingPad /> : null}
       <View style={styles.fullWidth}>
         {isKeyboardShown ? (
           <Pad height={MARGIN_TOP} />
@@ -63,7 +64,8 @@ const ChangeMemberNickname: FunctionComponent<Props> = ({ enableButton, isLoadin
           />
         ) : null}
       </View>
-    </SafeAreaView>
+      {enableButton ? <GenericHeadingAbsolute onLeftIconPress={handleNavigation} logo="yulife" /> : null}
+    </View>
   );
 };
 

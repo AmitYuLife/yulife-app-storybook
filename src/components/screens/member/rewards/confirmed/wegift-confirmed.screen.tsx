@@ -1,11 +1,10 @@
 import * as React from "react";
-import { ActivityIndicator, Image, SafeAreaView, ScrollView, View } from "react-native";
+import { ActivityIndicator, Image, ScrollView, View } from "react-native";
 import { Pad, Text } from "../../../../atoms";
 import { RewardItemContent } from "../../../../molecules";
 import styles from "./wegift-confirmed.screen.styles";
 import { WEGIFT_CONFIRMED, PURCHASE_IMAGE } from "@ids";
-import { TopBar } from "@components/organisms";
-import { TopBarLeftIconTypes } from "@components/organisms/top-bar/top-bar.helpers";
+import { TopBarAbsolute } from "@organisms/top-bar/top-bar-absolute";
 export interface IServerProps {
   rewardName: string;
   redeemInstructions: string[];
@@ -52,9 +51,7 @@ class WegiftRewardsConfirmed extends React.PureComponent<Props, IState> {
     } = this.props;
     const { hasLoaded } = this.state;
     return (
-      <SafeAreaView style={styles.wrapper}>
-        <TopBar leftIcon={TopBarLeftIconTypes.BACK} onPressLeftIcon={onPressTopBar} />
-        <Pad height={10} />
+      <View style={styles.wrapper}>
         <ScrollView
           showsVerticalScrollIndicator={false}
           style={styles.wrapper}
@@ -107,7 +104,8 @@ class WegiftRewardsConfirmed extends React.PureComponent<Props, IState> {
           />
           <Pad height={50} />
         </ScrollView>
-      </SafeAreaView>
+        <TopBarAbsolute hasWhiteBackground={true} hasShadow={true} leftIcon="Back" onPressLeftIcon={onPressTopBar} />
+      </View>
     );
   }
 

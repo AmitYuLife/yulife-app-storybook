@@ -8,6 +8,7 @@ export default StyleSheet.create({
     width: "100%",
     height: "100%",
     justifyContent: "space-between",
+    paddingBottom: Style.adjust(20),
   } as ViewStyle,
 
   headerText: {

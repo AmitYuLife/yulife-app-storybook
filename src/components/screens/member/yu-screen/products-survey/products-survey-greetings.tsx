@@ -1,8 +1,8 @@
 import { Text, Button } from "@atoms/index";
 import React from "react";
-import { View, Image, SafeAreaView } from "react-native";
+import { View, Image } from "react-native";
 import styles from "./products-survey.styles";
-import GenericHeading from "@atoms/generic-heading/generic-heading";
+import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
 
 interface IProps {
   onExitConfirmed: () => void;
@@ -10,8 +10,8 @@ interface IProps {
 
 function ProductsSurveyGreetings({ onExitConfirmed }: IProps) {
   return (
-    <SafeAreaView>
-      <GenericHeading heading="What Would You Like To See?" onLeftIconPress={onExitConfirmed} />
+    <View>
+      <GenericHeadingPad />
       <View style={styles.greetingsWrapper}>
         <View style={{ flex: 1 }}>
           <Text style={styles.headerTextGreetings}>
@@ -31,7 +31,8 @@ function ProductsSurveyGreetings({ onExitConfirmed }: IProps) {
           />
         </View>
       </View>
-    </SafeAreaView>
+      <GenericHeadingAbsolute heading="What Would You Like To See?" onLeftIconPress={onExitConfirmed} />
+    </View>
   );
 }
 

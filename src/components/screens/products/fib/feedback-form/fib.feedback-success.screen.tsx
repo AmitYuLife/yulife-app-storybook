@@ -1,6 +1,6 @@
 import React, { useCallback } from "react";
-import { View, StyleSheet, ViewStyle, ScrollView, SafeAreaView } from "react-native";
-import { Text, Button, GenericHeading, Heading } from "@atoms";
+import { View, StyleSheet, ViewStyle, ScrollView } from "react-native";
+import { Text, Button, Heading } from "@atoms";
 import { Style, Colours } from "@styles";
 import { connect } from "react-redux";
 import { IReduxState } from "@redux/_core/reducers";
@@ -8,6 +8,7 @@ import { getUserFirstName } from "@redux/user/user.selectors";
 import { Avatar } from "@components/screens/member/yu-screen/subcomponents/avatar-section/avatar";
 import { useBackHandler } from "../../../../../services/hooks/useBackHandler";
 import { FibFeedbackSuccessImage } from "./fib.feedback-success-image";
+import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
 
 type ConnectedState = ReturnType<typeof mapStateToProps>;
 
@@ -27,8 +28,8 @@ function _FibFeedbackSuccessScreen(props: Props) {
   useBackHandler(backHandler);
   return (
     <>
-      <SafeAreaView style={styles.wrapper}>
-        <GenericHeading heading="Feedback" isBeta={true} onLeftIconPress={props.onNavigateBack} />
+      <View style={styles.wrapper}>
+        <GenericHeadingPad />
         <ScrollView showsVerticalScrollIndicator={false}>
           <View style={styles.imageWrapper}>
             <FibFeedbackSuccessImage />
@@ -48,8 +49,8 @@ function _FibFeedbackSuccessScreen(props: Props) {
             </Text>
           </View>
         </ScrollView>
-      </SafeAreaView>
-
+      </View>
+      <GenericHeadingAbsolute heading="Feedback" onLeftIconPress={props.onNavigateBack} />
       <View style={styles.button}>
         <Button label="Close" onPress={props.onContinue} type="Primary" />
       </View>

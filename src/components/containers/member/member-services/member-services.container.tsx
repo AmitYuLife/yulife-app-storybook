@@ -2,18 +2,19 @@ import Yumatter from "@screens/member/member-services/yumatter.screen";
 import React, { useState, useCallback, useMemo } from "react";
 import { Navigation } from "react-native-navigation";
 import { connect } from "react-redux";
-import { View, SafeAreaView, ViewStyle } from "react-native";
+import { View, ViewStyle } from "react-native";
 import { IReduxState } from "../../../../redux/_core/reducers";
 import { getUserStart } from "../../../../redux/user/user.actions";
 import { getUserBusiness, getUserFeatures, getUserMembershipType } from "../../../../redux/user/user.selectors";
 import SmartHealth from "../../../screens/member/member-services/smart-health.screen";
 import MemberServicesTabs, { Tab } from "@components/molecules/member-services-tabs/member-services-tabs";
 import { MemberServiceId } from "@components/molecules/member-services-tabs/member-services.models";
-import { GenericHeading, Text } from "@atoms";
+import { Text } from "@atoms";
 import { Style } from "@styles";
 import { YUMATTER_SCREEN, SMART_HEALTH_SCREEN } from "@ids";
 import { getMemberServicesDisplayState } from "@components/molecules/member-services-tabs/member-services-tab/member-services.helpers";
 import { MembershipTypes } from "@redux/user/user.reducer";
+import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
 
 interface IProps {
   componentId: string;
@@ -65,26 +66,28 @@ function MemberServicesContainer({ componentId, isGroupUser, isWellbeingAccess, 
 
   if (shouldHideYuMatterScreen && shouldHideSmartHealthScreen) {
     return (
-      <SafeAreaView>
-        <GenericHeading heading="member services" onRightIconPress={handleClose} />
+      <View>
+        <GenericHeadingPad />
         <View style={styles.notEnrollredWrapper}>
           <Text>
             It looks like your team has not been enrolled in additional member services. To see what kind of coverage
             your employer has purchased, please check the Yu screen in the YuLife app navigation bar.
           </Text>
         </View>
-      </SafeAreaView>
+        <GenericHeadingAbsolute heading="member services" onRightIconPress={handleClose} />
+      </View>
     );
   }
 
   return (
-    <SafeAreaView style={styles.wrapper} testID={selectedTabId === "yumatter" ? YUMATTER_SCREEN : SMART_HEALTH_SCREEN}>
-      <GenericHeading heading="member services" onRightIconPress={handleClose} />
+    <View style={styles.wrapper} testID={selectedTabId === "yumatter" ? YUMATTER_SCREEN : SMART_HEALTH_SCREEN}>
+      <GenericHeadingPad />
       <View style={styles.tabsWrapper}>
         <MemberServicesTabs tabs={tabDetails} activeTabId={selectedTabId} />
       </View>
       {selectedTabId === "yumatter" ? <Yumatter /> : <SmartHealth isInstant={isInstant} />}
-    </SafeAreaView>
+      <GenericHeadingAbsolute heading="member services" onRightIconPress={handleClose} />
+    </View>
   );
 }
 
