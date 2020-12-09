@@ -1,14 +1,6 @@
 import { CreateLeaderboardVariables } from "@graphql/_core/schema";
 import * as React from "react";
-import {
-  FlatList,
-  KeyboardAvoidingView,
-  ListRenderItemInfo,
-  Platform,
-  StyleSheet,
-  Text,
-  View,
-} from "react-native";
+import { FlatList, KeyboardAvoidingView, ListRenderItemInfo, Platform, StyleSheet, Text, View } from "react-native";
 import { Button, CentredScreen, Close, Pad, TextInput } from "../../../atoms";
 import { validateEmail } from "../../../containers/login/login.helpers";
 import styles from "./create-leaderboard.screen.styles";
@@ -85,10 +77,7 @@ class CreateLeaderboardScreen extends React.PureComponent<IProps, IState> {
             />
           </CentredScreen>
         </KeyboardAvoidingView>
-        <GenericHeadingAbsolute
-          heading="create a leaderboard"
-          onRightIconPress={this.props.onPressClose}
-        />
+        <GenericHeadingAbsolute heading="create a leaderboard" onRightIconPress={this.props.onPressClose} />
       </View>
     );
   }

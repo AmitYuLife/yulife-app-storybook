@@ -3,7 +3,7 @@ import { FibUnderwritingJourneyLayout } from "../layouts/fib.underwriting-journe
 import { View, StyleSheet, TextStyle, ViewStyle, FlatList, ListRenderItemInfo, ActivityIndicator } from "react-native";
 import { TextField, TouchableOpacityWithDelay } from "@components/molecules";
 import { Text, Pad } from "@atoms";
-import { Style } from "@styles";
+import { Style, Colours } from "@styles";
 import FibTitle from "../../../../atoms/fib/title/title";
 import { Address_findUserAddress } from "../../../../../graphql/_core/schema/Address";
 import { useBackHandler } from "../../../../../services/hooks/useBackHandler";
@@ -60,10 +60,11 @@ export const FibFindAddressScreen = memo(function (props: IFibFindAddressScreenP
       onClose={onClose}
       hideProgressBar={true}
       onPreviousQuestion={onBackButtonPress}
+      wrapperStyle={styles.wrapper}
     >
-      <View style={styles.wrapper}>
+      <FibTitle title={"Enter your post code"} />
+      <View style={styles.contentWrapper}>
         <View style={styles.enterPostCodeWrapper}>
-          <FibTitle title={"Enter your post code"} />
           <TextField
             placeholder={""}
             onChange={(val) => startTimer(val.toUpperCase())}
@@ -79,7 +80,9 @@ export const FibFindAddressScreen = memo(function (props: IFibFindAddressScreenP
           </View>
         ) : null}
         {loading || userIsTyping ? null : data?.length < 1 || isEntryPoint || !postCodeRegex.test(postCode) ? (
-          <Text style={styles.textBold}>{isEntryPoint ? "" : "No results could be found."}</Text>
+          <Text bold={true} style={styles.textBold}>
+            {isEntryPoint ? "" : "No results could be found."}
+          </Text>
         ) : (
           <FlatList
             renderItem={({ item }: ListRenderItemInfo<Address_findUserAddress>) => (
@@ -112,7 +115,7 @@ const AddressItem = (props: ItemAddressProps) => {
   return (
     <TouchableOpacityWithDelay onPress={props.onPress}>
       <View style={styles.addressItemWrapper}>
-        <Text style={styles.itemAddressTextBold}>
+        <Text bold={true} style={styles.itemAddressText}>
           {`${props.address.addressFirstLine}, `}
           <Text style={styles.itemAddressText}>
             {props.address.addressCity}, {props.address.addressPostCode}
@@ -125,42 +128,33 @@ const AddressItem = (props: ItemAddressProps) => {
 
 const styles = StyleSheet.create({
   wrapper: {
-    backgroundColor: "#f8f8f8",
+    backgroundColor: Colours.neutral.n50,
+  } as ViewStyle,
+  contentWrapper: {
+    backgroundColor: Colours.neutral.n50,
     flex: 1,
+    paddingHorizontal: Style.adjust(24),
   } as ViewStyle,
   enterPostCodeWrapper: {
-    paddingTop: 30,
-    paddingHorizontal: 32,
-    backgroundColor: "white",
+    backgroundColor: Colours.neutral.n50,
   } as ViewStyle,
   addressItemWrapper: {
-    height: 80,
+    height: Style.adjust(80),
     borderBottomWidth: 1,
-    borderColor: "#E7E7EB",
+    borderColor: Colours.neutral.n100,
     justifyContent: "space-around",
   } as ViewStyle,
   textBold: {
-    marginTop: 16,
-    fontSize: 16,
-    lineHeight: 24,
-    color: "#5A5A5C",
+    marginTop: Style.adjust(16),
+    fontSize: Style.adjust(16),
+    lineHeight: Style.adjust(24),
+    color: Colours.neutral.n800,
     letterSpacing: 1,
-    fontFamily: Style.FONT_FAMILY_PRIMARY_BOLD,
-    paddingHorizontal: 32,
-  } as TextStyle,
-  itemAddressTextBold: {
-    fontSize: 16,
-    lineHeight: 24,
-    color: "#5A5A5C",
-    letterSpacing: 1,
-    fontFamily: Style.FONT_FAMILY_PRIMARY_BOLD,
-    paddingHorizontal: 32,
   } as TextStyle,
   itemAddressText: {
-    fontSize: 16,
-    lineHeight: 24,
-    color: "#5A5A5C",
+    fontSize: Style.adjust(16),
+    lineHeight: Style.adjust(24),
+    color: Colours.neutral.n800,
     letterSpacing: 1,
-    fontFamily: Style.FONT_FAMILY_PRIMARY,
   } as TextStyle,
 });

@@ -100,7 +100,12 @@ const _FibUnderwritingReviewAnswersScreen = memo(function (props: IFibUnderwriti
           disabled={disableSubmitButton || !confirmed}
         />
       </ScrollView>
-      <GenericHeadingAbsolute hideBorder={true} logo="yulife" rightIcon={RIGHT_ICON} onRightIconPress={onNavigateBack} />
+      <GenericHeadingAbsolute
+        hideBorder={true}
+        logo="yulife"
+        rightIcon={RIGHT_ICON}
+        onRightIconPress={onNavigateBack}
+      />
       <Yugi yugi={YugiType.REVIEW} />
     </View>
   );

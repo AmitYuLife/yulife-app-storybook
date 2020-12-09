@@ -79,7 +79,12 @@ const WegiftDetailsScreen: React.SFC<IProps> = ({
       </View>
       <Pad height={50} />
     </ScrollView>
-    <TopBarAbsolute hasShadow={true} hasWhiteBackground={true} leftIcon={TopBarLeftIconTypes.BACK} onPressLeftIcon={onPressTopBar} />
+    <TopBarAbsolute
+      hasShadow={true}
+      hasWhiteBackground={true}
+      leftIcon={TopBarLeftIconTypes.BACK}
+      onPressLeftIcon={onPressTopBar}
+    />
   </View>
 );
 

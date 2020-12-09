@@ -41,10 +41,10 @@ function _FibGPConfirmScreen(props: Props) {
       heading={"GP Report"}
       onRightIconPress={onClose}
     >
+      <FibTitle title="Please confirm this is your GP and we will get in touch with them" />
       <View style={styles.viewWrapper}>
-        <FibTitle title="Please confirm this is your GP and we will get in touch with them" />
         <View style={styles.gpWrapper}>
-          <Text bold={true} style={[styles.text, styles.header]}>
+          <Text bold={true} style={StyleSheet.flatten([styles.text, styles.header])}>
             {manualInput ? manualInput.gpName : gp.name}
           </Text>
         </View>
@@ -77,21 +77,19 @@ export const FibGPConfirmScreen = memo(_FibGPConfirmScreen);
 
 const styles = StyleSheet.create({
   viewWrapper: {
-    marginHorizontal: 32,
-    marginBottom: 48,
+    marginHorizontal: Style.adjust(24),
+    marginBottom: Style.adjust(48),
   } as ViewStyle,
   gpWrapper: {
-    marginVertical: 24,
+    marginVertical: Style.adjust(24),
   } as ViewStyle,
   text: {
-    fontFamily: Style.FONT_FAMILY_PRIMARY,
-    fontSize: 16,
-    lineHeight: 24,
+    fontSize: Style.adjust(16),
+    lineHeight: Style.adjust(24),
     letterSpacing: 1,
     color: Colours.neutral.n800,
   } as TextStyle,
   header: {
-    fontSize: 20,
-    fontFamily: Style.FONT_FAMILY_PRIMARY_BOLD,
+    fontSize: Style.adjust(20),
   } as TextStyle,
 });
