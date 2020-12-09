@@ -4,7 +4,7 @@ import { StyleSheet, View, ViewStyle, TextStyle, Platform } from "react-native";
 import { Clock } from "../assets";
 import { Logo, Text } from "@atoms/index";
 import useInterval from "@use-it/interval";
-import { Style } from "@styles/index";
+import { Style, TOP_BAR } from "@styles/index";
 import { formatSeconds } from "../top-bar.helpers";
 
 interface Props {
@@ -31,7 +31,7 @@ export default function Center(props: Props) {
     );
   }
 
-  return <Logo colour={logoColour} />;
+  return <Logo colour={logoColour} style={styles.logoWrapper} />;
 }
 
 function Timer({
@@ -76,10 +76,13 @@ const styles = StyleSheet.create({
     marginTop: Style.adjust(8),
   } as TextStyle,
   textWrapper: {
-    alignItems: "center",
-    flexDirection: "row",
-    height: "100%",
     position: "absolute",
+    top: Platform.select({
+      ios: 4,
+      android: 0
+    }),
+    flexDirection: "row",
+    alignItems: "center",
   } as ViewStyle,
   timer: {
     fontSize: Style.adjust(18),
@@ -87,11 +90,14 @@ const styles = StyleSheet.create({
     paddingLeft: Style.adjust(5),
   } as TextStyle,
   timerWrapper: {
-    alignItems: "center",
-    flexDirection: "row",
-    height: "100%",
-    left: Style.DEVICE_WIDTH / 2 - Style.adjust(10),
     position: "absolute",
-    top: Style.adjust(8),
+    top: Style.adjust(10),
+    flexDirection: "row",
+    alignItems: "center",
+    left: Style.DEVICE_WIDTH / 2 - Style.adjust(20),
+  } as ViewStyle,
+  logoWrapper: {
+    position: "absolute",
+    top: TOP_BAR.LOGO_PADDING_TOP,
   } as ViewStyle,
 });

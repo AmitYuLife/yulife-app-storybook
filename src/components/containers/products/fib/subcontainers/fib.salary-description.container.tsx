@@ -1,10 +1,11 @@
 import React, { memo, useCallback } from "react";
-import { SafeAreaView, StyleSheet, Platform } from "react-native";
-import { GenericHeading, Text } from "@atoms";
+import { StyleSheet, View } from "react-native";
+import { Text } from "@atoms";
 import * as Animatable from "react-native-animatable";
 import { Style } from "@styles";
 import { FibLocalNavigation } from "../fib.types";
 import { useBackHandler } from "../../../../../services/hooks/useBackHandler";
+import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
 
 interface IFibSalaryDescriptionContainerProps {
   navigation: FibLocalNavigation;
@@ -21,15 +22,16 @@ const FibSalaryDescriptionContainer = memo(function (props: IFibSalaryDescriptio
   useBackHandler(backHandler);
 
   return (
-    <SafeAreaView style={styles.wrapper}>
-      <GenericHeading heading="Salary" onLeftIconPress={navigation.pop} isBeta={true} />
+    <View style={styles.wrapper}>
+      <GenericHeadingPad />
       <Animatable.View duration={1000} animation="fadeIn" style={styles.mainContent} useNativeDriver={true}>
         <Text style={styles.text}>
           Your gross annual earned income for tax purposes. It does not include unearned income such as investment
           income.
         </Text>
       </Animatable.View>
-    </SafeAreaView>
+      <GenericHeadingAbsolute heading="Salary" onLeftIconPress={navigation.pop} />
+    </View>
   );
 });
 
@@ -39,7 +41,6 @@ const styles = StyleSheet.create({
   wrapper: {
     backgroundColor: "white",
     flex: 1,
-    paddingTop: Platform.select({ ios: Style.getSafeAreaStart(), android: 0 }),
     height: "100%",
   },
   mainContent: {

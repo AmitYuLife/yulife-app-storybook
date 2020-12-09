@@ -1,6 +1,5 @@
-import { GenericHeading } from "@atoms/index";
 import * as React from "react";
-import { Image, SafeAreaView, SectionList, StyleSheet, TouchableOpacity, View } from "react-native";
+import { Image, SectionList, StyleSheet, TouchableOpacity, View } from "react-native";
 import { GetHighlights_getUserStats, GetHighlights_getUserStats_data as Card } from "../../../../graphql/_core/schema";
 import { Style } from "../../../../styles";
 import { Text } from "../../../atoms";
@@ -11,6 +10,7 @@ import RecommendationInfoCard from "./cards/recommendation-info-card";
 import WeeklyGraphCard from "./cards/weekly-graph-card";
 import styles from "./stats.styles";
 import { STATS_TITLE, STATS_SCREEN } from "@ids";
+import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
 
 interface IProps {
   data?: GetHighlights_getUserStats[];
@@ -19,8 +19,8 @@ interface IProps {
 }
 
 const Stats = ({ data, onPressClose, onPressActivityHistory }: IProps) => (
-  <SafeAreaView style={styles.wrapper} testID={STATS_SCREEN}>
-    <GenericHeading heading={"statistics"} onRightIconPress={onPressClose} />
+  <View style={styles.wrapper} testID={STATS_SCREEN}>
+    <GenericHeadingPad />
     <View style={{ backgroundColor: "#FAFAFE" }}>
       {!data ? null : (
         <SectionList
@@ -36,7 +36,8 @@ const Stats = ({ data, onPressClose, onPressActivityHistory }: IProps) => (
         />
       )}
     </View>
-  </SafeAreaView>
+    <GenericHeadingAbsolute heading={"statistics"} onRightIconPress={onPressClose} />
+  </View>
 );
 
 export default Stats;

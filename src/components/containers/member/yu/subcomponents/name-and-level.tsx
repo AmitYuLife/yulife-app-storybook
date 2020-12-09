@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     marginTop: Platform.select({
-      ios: Style.adjust(8),
+      ios: Style.adjust(12),
       android: Style.adjust(4),
     }),
   } as ViewStyle,

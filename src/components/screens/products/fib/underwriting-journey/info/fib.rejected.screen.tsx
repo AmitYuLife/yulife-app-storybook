@@ -25,7 +25,6 @@ export const FibRejectedScreen = memo(function (props: IFibRejectedScreenProps) 
     <FibUnderwritingJourneyLayout
       heading={"Rejection"}
       hideProgressBar={true}
-      hideHeadingBorder={false}
       onPreviousQuestion={onClose}
     >
       <View style={styles.wrapper}>

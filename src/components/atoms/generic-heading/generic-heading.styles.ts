@@ -1,15 +1,16 @@
-import { StyleSheet, TextStyle, ViewStyle, Platform } from "react-native";
+import { StyleSheet, TextStyle, ViewStyle } from "react-native";
 import { Colours, Style, TOP_BAR } from "@styles";
+
+export const TOP_BAR_HEIGHT = TOP_BAR.HEIGHT + TOP_BAR.PADDING_TOP + TOP_BAR.PADDING_BOTTOM;
 
 const styles = StyleSheet.create({
   wrapper: {
-    height: TOP_BAR.HEIGHT_WITH_PADDING,
-    flexDirection: "row",
-    alignContent: "center",
     alignItems: "center",
-    borderBottomColor: "rgba(0,0,0,0.1)",
-    paddingHorizontal: Style.adjust(16),
-    marginTop: Platform.OS === "ios" && Style.hasNotch ? -10 : 0,
+    flexDirection: "row",
+    height: TOP_BAR_HEIGHT,
+    justifyContent: "center",
+    width: "100%",
+    paddingHorizontal: Style.adjust(16)
   } as ViewStyle,
   leftIconWrapper: {
     alignSelf: "center",

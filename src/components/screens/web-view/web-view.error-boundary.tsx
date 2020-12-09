@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import Logger from "@services/logging/logger";
 import { Linking, SafeAreaView } from "react-native";
-import { GenericHeading } from "@atoms";
+import GenericHeadingAbsolute from "@atoms/generic-heading/generic-heading-absolute";
 
 interface Props {
   children: React.ReactNode;
@@ -71,7 +71,7 @@ function WebViewFallback(props: WebViewFallbackProps): JSX.Element {
 
   return (
     <SafeAreaView>
-      <GenericHeading onRightIconPress={props.handleCloseWebView} heading={props.title} />
+      <GenericHeadingAbsolute onRightIconPress={props.handleCloseWebView} heading={props.title} />
     </SafeAreaView>
   );
 }

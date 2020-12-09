@@ -5,14 +5,14 @@ import {
   JoinCommunityGoal,
   JoinCommunityGoalVariables,
 } from "@graphql/_core/schema";
-import { SafeAreaView, StyleSheet, FlatList } from "react-native";
-import { GenericHeading } from "@atoms";
+import { StyleSheet, FlatList } from "react-native";
 import { Style } from "@styles";
 import { EmptyCommunityGoals, CommunityGoal } from "./subcomponents";
 import { View } from "react-native-animatable";
 import { Navigation } from "react-native-navigation";
 import { ROUTES } from "@navigation/constants";
 import { IRightIcon } from "@atoms/generic-heading/generic-heading.types";
+import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
 
 interface IProps {
   onClose: () => void;
@@ -35,13 +35,8 @@ const CommunityGoalsScreen: React.FC<IProps> = ({ onClose, onRefresh, joinCommun
   };
 
   return (
-    <SafeAreaView style={styles.wrapper} testID={"comunitygoals"}>
-      <GenericHeading
-        heading="Community Goals"
-        onLeftIconPress={onClose}
-        rightIcon={RIGHT_ICON}
-        onRightIconPress={handleRightIconPress}
-      />
+    <View style={styles.wrapper} testID={"comunitygoals"}>
+      <GenericHeadingPad />
       <FlatList
         style={styles.flatList}
         data={data}
@@ -53,7 +48,13 @@ const CommunityGoalsScreen: React.FC<IProps> = ({ onClose, onRefresh, joinCommun
         renderItem={({ item }) => <CommunityGoal goal={item} joinCommunityGoal={joinCommunityGoal} />}
         ListFooterComponent={<Footer />}
       />
-    </SafeAreaView>
+      <GenericHeadingAbsolute
+        heading="Community Goals"
+        onLeftIconPress={onClose}
+        rightIcon={RIGHT_ICON}
+        onRightIconPress={handleRightIconPress}
+      />
+    </View>
   );
 };
 

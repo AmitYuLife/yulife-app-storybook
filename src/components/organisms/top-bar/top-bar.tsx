@@ -6,7 +6,7 @@ import { TopBarViewProps } from "./top-bar.helpers";
 import { TOP_BAR_HEIGHT } from "./top-bar.styles";
 
 const TopBarContainer = (props: TopBarViewProps) => {
-  const { onPressLeftIcon, timer, name, menuLabel, leftIcon, middleLabel, type, onLayout } = props;
+  const { onPressLeftIcon, timer, name, menuLabel, leftIcon, middleLabel, type, onLayout, rightIcon } = props;
   const coins = useSelector(getTotalCoins);
 
   return (
@@ -20,6 +20,7 @@ const TopBarContainer = (props: TopBarViewProps) => {
       type={type}
       coins={coins}
       onLayout={onLayout}
+      rightIcon={rightIcon}
     />
   );
 };

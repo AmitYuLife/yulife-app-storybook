@@ -1,5 +1,5 @@
 import React from "react";
-import { View, TouchableOpacity, Image, StyleSheet } from "react-native";
+import { View, TouchableOpacity, Image } from "react-native";
 import Text from "../text/text";
 import Back from "./../back/back";
 import styles from "./generic-heading.styles";
@@ -14,7 +14,6 @@ import { PressableWithDelay } from "@components/molecules";
 function GenericHeading(props: IGenericHeadingProps) {
   const {
     heading,
-    hideBorder = false,
     onLeftIconPress,
     onRightIconPress,
     leftIcon = "BACK",
@@ -26,7 +25,7 @@ function GenericHeading(props: IGenericHeadingProps) {
   } = props;
 
   return (
-    <View style={StyleSheet.flatten([styles.wrapper, { borderBottomWidth: hideBorder ? 0 : 1 }])}>
+    <View style={styles.wrapper}>
       <View style={styles.leftIconWrapper}>
         {!onLeftIconPress ? null : (
           <TouchableOpacity onPress={onLeftIconPress}>

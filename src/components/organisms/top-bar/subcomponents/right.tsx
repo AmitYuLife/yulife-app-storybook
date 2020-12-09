@@ -4,14 +4,21 @@ import { Style, Colours } from "@styles/index";
 import { Coins } from "../assets";
 import { Counter } from "@components/molecules";
 
+export type RightIconTypes = "Coins";
+
 interface Props {
   coins?: number;
   textStyle?: TextStyle;
   shouldHighlightCoins?: boolean;
   colour?: string;
+  icon?: RightIconTypes;
 }
 
-export default function Right({ coins = 0, shouldHighlightCoins, textStyle, colour }: Props) {
+export default function Right({ coins = 0, shouldHighlightCoins, textStyle, colour, icon }: Props) {
+  if (!icon) {
+    return null;
+  }
+
   return (
     <View style={styles.coinsWrapper}>
       <View style={styles.coinsTextWrapper}>
@@ -33,7 +40,7 @@ export default function Right({ coins = 0, shouldHighlightCoins, textStyle, colo
 
 const styles = StyleSheet.create({
   coinsLogoWrapper: {
-    marginBottom: Platform.select({ ios: Style.adjust(-8), android: 2 }),
+    marginBottom: Platform.select({ ios: Style.adjust(-10), android: 2 }),
   } as ViewStyle,
   coinsText: {
     fontSize: Style.adjust(18),

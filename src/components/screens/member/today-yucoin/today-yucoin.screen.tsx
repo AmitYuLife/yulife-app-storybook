@@ -1,6 +1,6 @@
-import { GenericHeading, Pad } from "@atoms/index";
+import { Pad } from "@atoms/index";
 import * as React from "react";
-import { ActivityIndicator, ScrollView, View, SafeAreaView } from "react-native";
+import { ActivityIndicator, ScrollView, View } from "react-native";
 import { GetCurrentUser_getCurrentUser_todayActivity } from "../../../../graphql/_core/schema";
 import { ExchangeRateMeditation } from "../../../../redux/daily-meditation/daily-meditation.selectors";
 import { ExchangeRate } from "../../../../redux/daily-steps/daily-steps.selectors";
@@ -15,6 +15,7 @@ import Challenge from "./subcomponents/challenges";
 import { mapProps } from "./today-yucoin.helpers";
 import { TODAYS_YUCOIN } from "@ids";
 import { FitKitAvailable, FitKitAvailableChildrenProps } from "@services/fitkit/fitkit.service";
+import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
 
 type ChallengeToday = GetCurrentUser_getCurrentUser_todayActivity;
 
@@ -48,13 +49,8 @@ export default function TodayYucoinScreen(props: IProps) {
         const isGrayScale = !fitkit.available || !fitkit.authorised;
 
         return (
-          <SafeAreaView style={styles.wrapper}>
-            <GenericHeading
-              hideBorder={true}
-              heading="today's yucoin"
-              style={styles.heading}
-              onRightIconPress={onPressClose}
-            />
+          <View style={styles.wrapper}>
+            <GenericHeadingPad />
             <ScrollView testID={TODAYS_YUCOIN} style={styles.scrollView} showsVerticalScrollIndicator={false}>
               <Coin isGrayScale={isGrayScale} />
               <View style={styles.contentWrapper}>
@@ -77,7 +73,12 @@ export default function TodayYucoinScreen(props: IProps) {
               </View>
               <CTA {...enhancers.ctaProps} />
             </ScrollView>
-          </SafeAreaView>
+            <GenericHeadingAbsolute
+              heading="today's yucoin"
+              style={styles.heading}
+              onRightIconPress={onPressClose}
+            />
+          </View>
         );
       }}
     </FitKitAvailable>

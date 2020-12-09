@@ -2,14 +2,14 @@ import { SETTINGS_SCREEN } from "@ids";
 import { IYulifeNotification } from "@redux/notifications/notifications.selectors";
 import * as React from "react";
 import { PureComponent } from "react";
-import { SafeAreaView, ScrollView, View } from "react-native";
-import { GenericHeading } from "../../../atoms";
+import { ScrollView, View } from "react-native";
 import ConnectionsItem from "./items/connections-item";
 import LeaderboardItem from "./items/leaderboard-item";
 import NotificationsItem from "./items/notifications-item";
 import SectionHeading from "./section-heading/section-heading";
 import data from "./settings.data";
 import styles from "./settings.styles";
+import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
 
 export interface ILeaderboardSectionItem {
   name: string;
@@ -50,8 +50,8 @@ export default class SettingsScreen extends PureComponent<IProps> {
     const { onPressClose, sections = [] } = this.props;
 
     return (
-      <SafeAreaView style={styles.wrapper} testID={SETTINGS_SCREEN}>
-        <GenericHeading heading={data.heading} hideBorder={true} onRightIconPress={onPressClose} />
+      <View style={styles.wrapper} testID={SETTINGS_SCREEN}>
+        <GenericHeadingPad />
         <ScrollView
           showsVerticalScrollIndicator={false}
           contentContainerStyle={styles.scrollContentContainer}
@@ -59,7 +59,8 @@ export default class SettingsScreen extends PureComponent<IProps> {
         >
           {sections.map(this.renderSection)}
         </ScrollView>
-      </SafeAreaView>
+        <GenericHeadingAbsolute heading={data.heading} onRightIconPress={onPressClose} />
+      </View>
     );
   }
 

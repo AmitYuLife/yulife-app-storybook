@@ -16,15 +16,16 @@ const TopBarView: FC<TopBarViewProps> = ({
   name,
   timer,
   onLayout,
+  rightIcon = "Coins"
 }: TopBarViewProps) => {
   const calculatedStyle = getStyle(type);
   const { colour, textStyle, logoColour } = calculatedStyle;
 
   return (
-    <View style={styles.wrapper} onLayout={onLayout}>
+    <View pointerEvents="box-none" style={styles.wrapper} onLayout={onLayout}>
       <Left label={menuLabel} onPress={onPressLeftIcon} icon={leftIcon} colour={colour} textStyle={textStyle} />
       <Center name={name} timer={timer} logoColour={logoColour} colour={colour} textStyle={textStyle} />
-      <Right shouldHighlightCoins={shouldHighlightCoins} coins={coins} colour={colour} textStyle={textStyle} />
+      <Right icon={rightIcon} shouldHighlightCoins={shouldHighlightCoins} coins={coins} colour={colour} textStyle={textStyle} />
     </View>
   );
 };

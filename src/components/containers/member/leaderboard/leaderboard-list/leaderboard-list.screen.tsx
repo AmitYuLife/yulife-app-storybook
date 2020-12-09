@@ -1,8 +1,9 @@
 import React from "react";
-import { SafeAreaView, StyleSheet, ViewStyle, View, ActivityIndicator } from "react-native";
-import { GenericHeading } from "@atoms";
+import { StyleSheet, ViewStyle, View, ActivityIndicator } from "react-native";
 import { GetCurrentUser_getCurrentUser_leaderboards } from "@graphql/_core/schema";
 import { LeaderboardListItems } from "./subcomponents/leaderboard-list-item";
+import GenericHeadingAbsolute from "@atoms/generic-heading/generic-heading-absolute";
+import { TOP_BAR } from "@styles";
 
 interface IProps {
   leaderboards: GetCurrentUser_getCurrentUser_leaderboards[];
@@ -24,20 +25,22 @@ function LeaderboardOptionsScreen(props: IProps) {
   } = props;
 
   return (
-    <SafeAreaView style={styles.wrapper}>
-      <GenericHeading
-        heading="Leaderboards"
-        onLeftIconPress={onLeftIconPress}
-        onRightIconPress={onRightIconPress}
-        rightIcon={{ icon: "SETTINGS" }}
-      />
+    <View style={styles.wrapper}>
+      <View style={styles.pad} />
       <LeaderboardListItems
         leaderboards={leaderboards}
         onPress={onChangeActiveLeaderboard}
         activeLeaderboardId={activeLeaderboardId}
       />
       <LoadingPlaceholder loading={loading} />
-    </SafeAreaView>
+      <GenericHeadingAbsolute
+        heading="Leaderboards"
+        onLeftIconPress={onLeftIconPress}
+        onRightIconPress={onRightIconPress}
+        rightIcon={{ icon: "SETTINGS" }}
+        hasWhiteBackground={true}
+      />
+    </View>
   );
 }
 
@@ -47,6 +50,10 @@ const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
     backgroundColor: "#FFFFFF",
+  } as ViewStyle,
+  pad: {
+    height: TOP_BAR.TOP_BAR_WITH_PAD,
+    backgroundColor: "red"
   } as ViewStyle,
 });
 

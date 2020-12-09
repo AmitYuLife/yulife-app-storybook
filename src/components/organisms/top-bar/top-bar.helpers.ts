@@ -2,7 +2,7 @@ import { padNum } from "@services/utils";
 import { Colours } from "@styles/index";
 import { ComponentProps } from "react";
 import Left, { leftIconTypes } from "./subcomponents/left";
-import Right from "./subcomponents/right";
+import Right, { RightIconTypes } from "./subcomponents/right";
 import { LayoutChangeEvent } from "react-native";
 
 export type TopBarTypes = "default" | "white" | "desert" | "mountain" | "forest";
@@ -23,6 +23,7 @@ export type TopBarViewProps = {
   leftIcon?: React.ComponentProps<typeof Left>["icon"];
   middleLabel?: string;
   type?: TopBarTypes;
+  rightIcon?: RightIconTypes;
 } & Omit<ComponentProps<typeof Right>, "colour" | "logoColour" | "textStyle">;
 
 export const TopBarLeftIconTypes = leftIconTypes;

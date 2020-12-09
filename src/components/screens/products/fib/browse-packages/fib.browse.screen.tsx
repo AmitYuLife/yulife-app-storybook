@@ -2,16 +2,13 @@ import React, { memo, useEffect, useRef } from "react";
 import {
   StyleSheet,
   ScrollView,
-  SafeAreaView,
   ViewStyle,
   NativeScrollPoint,
   NativeSyntheticEvent,
   NativeScrollEvent,
-  Platform,
+  View,
 } from "react-native";
 import * as Animatable from "react-native-animatable";
-import { GenericHeading } from "@atoms";
-import { Style } from "@styles";
 import { AvatarAndDescription, HowItWorks, EstimatedCost } from "./subcomponents";
 import { ContinueButton } from "./continue-button/continue-button";
 import { Package } from "./fib.browse.types";
@@ -26,6 +23,7 @@ import Logger from "@services/logging/logger";
 import { CalculatorItems } from "./subcomponents/payout-calculator/subcomponents/calculator";
 import { formatPrice } from "@components/containers/products/fib/fib.helpers";
 import { FIB_BROWSE_SCREEN } from "@ids";
+import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
 
 interface IFibBrowseScreenProps {
   onNavigateToYuScreen: () => void;
@@ -96,8 +94,8 @@ export const FibBrowseScreen = memo(function (props: IFibBrowseScreenProps) {
 
   return (
     <>
-      <SafeAreaView style={styles.wrapper}>
-        <GenericHeading onRightIconPress={onNavigateToYuScreen} logo="yulife" />
+      <View style={styles.wrapper}>
+        <GenericHeadingPad />
         <ScrollView
           onMomentumScrollEnd={onScrollEnd}
           showsVerticalScrollIndicator={false}
@@ -133,8 +131,8 @@ export const FibBrowseScreen = memo(function (props: IFibBrowseScreenProps) {
             <Documents items={documents} />
           </Animatable.View>
         </ScrollView>
-      </SafeAreaView>
-
+      </View>
+      <GenericHeadingAbsolute onRightIconPress={onNavigateToYuScreen} logo="yulife" />
       <ContinueButton onPress={onContinue} />
     </>
   );
@@ -147,7 +145,6 @@ const styles = StyleSheet.create({
   wrapper: {
     backgroundColor: "white",
     flex: 1,
-    paddingTop: Platform.select({ ios: Style.getSafeAreaStart(), android: 0 }),
     height: "100%",
   },
   scrollView: {

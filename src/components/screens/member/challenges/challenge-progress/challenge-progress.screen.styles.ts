@@ -1,6 +1,5 @@
-import { ImageStyle, Platform, StyleSheet, ViewStyle } from "react-native";
-import { isIphoneX } from "react-native-iphone-x-helper";
-import { Style } from "../../../../../styles";
+import { ImageStyle, StyleSheet, ViewStyle } from "react-native";
+import { Style, TOP_BAR } from "@styles";
 
 export default StyleSheet.create({
   backgroundImage: {
@@ -12,12 +11,12 @@ export default StyleSheet.create({
   } as ImageStyle,
   navBarWrapper: {
     alignItems: "center",
-    bottom: Style.SCALE_UP_AND_DOWN(isIphoneX() ? 37 : 27),
+    bottom: Style.adjust(Style.hasNotch ? 37 : 27),
     position: "absolute",
     width: Style.DEVICE_WIDTH,
   } as ViewStyle,
   progressBarWrapper: {
-    marginTop: Style.SCALE_UP_AND_DOWN(6),
+    marginTop: -16,
   } as ViewStyle,
   wrapper: {
     flex: 1,
@@ -34,12 +33,10 @@ export default StyleSheet.create({
   } as ViewStyle,
   exitChallengeWrapper: {
     position: "absolute",
-    top: Style.SCALE_UP_AND_DOWN(
-      Platform.select({
-        ios: 120,
-        android: 100,
-      })
-    ),
-    right: Style.SCALE_UP_AND_DOWN(16),
+    top: TOP_BAR.TOP_BAR_WITH_PAD + Style.adjust(24),
+    right: Style.adjust(16),
+  } as ViewStyle,
+  pad: {
+    height: TOP_BAR.TOP_BAR_WITH_PAD,
   } as ViewStyle,
 });

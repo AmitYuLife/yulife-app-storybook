@@ -1,10 +1,9 @@
 import { useQuery } from "@apollo/react-hooks";
-import { GenericHeading } from "@atoms/index";
 import { GQL_QUERY_GET_USER_STATS } from "@graphql/yuscreen";
 import { ROUTES } from "@navigation/constants";
 import { Style } from "@styles/index";
 import React, { FC, useCallback } from "react";
-import { SafeAreaView, View } from "react-native";
+import { View, StyleSheet, ViewStyle } from "react-native";
 import { Navigation } from "react-native-navigation";
 import { connect } from "react-redux";
 import { IReduxState } from "../../../../redux/_core/reducers";
@@ -16,6 +15,8 @@ import {
   LoadingRecomendationCard,
 } from "../../../screens/member/stats/cards/general-info-card";
 import Stats from "../../../screens/member/stats/stats";
+import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
+
 interface IProps {
   componentId: string;
 }
@@ -45,8 +46,8 @@ const StatsContainer: FC<Props> = ({ componentId }) => {
 
   if (loading) {
     return (
-      <SafeAreaView style={{ flex: 1, backgroundColor: "#FFFFFF" }}>
-        <GenericHeading heading={"statistics"} onRightIconPress={handleClose} />
+      <View style={styles.wrapper}>
+        <GenericHeadingPad />
         <View style={{ backgroundColor: "#FAFAFE", padding: Style.SCALE_UP_AND_DOWN(16) }}>
           <LoadingHeader />
           <LoadingRecomendationCard />
@@ -57,7 +58,8 @@ const StatsContainer: FC<Props> = ({ componentId }) => {
           <LoadingGeneralInfoCard />
           <LoadingRecomendationCard />
         </View>
-      </SafeAreaView>
+        <GenericHeadingAbsolute heading={"statistics"} onRightIconPress={handleClose} />
+      </View>
     );
   }
 
@@ -79,3 +81,10 @@ const mapDispatchToProps = {
 };
 
 export default connect<ConnectedState, ConnectedDispatch>(mapStateToProps, mapDispatchToProps)(StatsContainer);
+
+const styles = StyleSheet.create({
+  wrapper: {
+    flex: 1,
+    backgroundColor: "#FFFFFF",
+  } as ViewStyle,
+});

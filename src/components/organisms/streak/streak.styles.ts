@@ -1,6 +1,6 @@
 import { Platform, StyleSheet, TextStyle, ViewStyle } from "react-native";
 import { isIphoneX } from "react-native-iphone-x-helper";
-import { Colours, Style } from "@styles";
+import { Colours, Style, TOP_BAR } from "@styles";
 import { StreakTypes } from "./streak";
 
 export function getColour(type: StreakTypes, isFinished: boolean, isPressed: boolean) {
@@ -42,6 +42,6 @@ export default StyleSheet.create({
     justifyContent: "flex-end",
     position: "absolute",
     right: Style.SCALE_UP_AND_DOWN(isIphoneX() ? -15 : 0),
-    top: Style.SCALE_UP_AND_DOWN(isIphoneX() ? 95 : 55),
+    top: TOP_BAR.TOP_BAR_WITH_PAD,
   } as ViewStyle,
 });

@@ -4,15 +4,11 @@ import * as React from "react";
 import { View } from "react-native";
 import { IndexPath, LargeList } from "react-native-largelist-v3";
 import { GetRewards_getRewards } from "../../../../../graphql/_core/schema";
-import { IConnectedScreenProps } from "../../../../../typings";
 
 import { StyleSheet, ViewStyle } from "react-native";
-import { RewardsListLayout } from "../subcomponents/rewards-layout";
-
-export interface IRewardsListScreenProps extends IConnectedScreenProps {
+export interface IRewardsListScreenProps {
   data: GetRewards_getRewards[];
-  onLeftTabPress: () => void;
-  onRightTabPress: () => void;
+  onRefresh: () => void;
   onItemPress: (item: GetRewards_getRewards) => void;
 }
 
@@ -20,26 +16,20 @@ export class RewardsList extends React.PureComponent<IRewardsListScreenProps> {
   private largeList: LargeList;
 
   public render() {
-    const { data, onLeftTabPress, onRightTabPress, onLeftMenuPress } = this.props;
+    const { data } = this.props;
     return (
-      <RewardsListLayout
-        activeScreen="rewards"
-        onLeftMenuPress={onLeftMenuPress}
-        onLeftTabPress={onLeftTabPress}
-        onRightTabPress={onRightTabPress}
-      >
-        <View style={styles.listWrapper}>
-          <LargeList
-            ref={this.setLargeListRef}
-            renderIndexPath={this.renderIndexPath}
-            heightForIndexPath={this.getHeight}
-            data={[{ items: data }]}
-            onRefresh={this.handleRefresh}
-            refreshHeader={YulifeRefreshHeader}
-            renderFooter={this.renderFooter}
-          />
-        </View>
-      </RewardsListLayout>
+      <View style={styles.listWrapper}>
+        <LargeList
+          ref={this.setLargeListRef}
+          renderIndexPath={this.renderIndexPath}
+          heightForIndexPath={this.getHeight}
+          data={[{ items: data }]}
+          onRefresh={this.handleRefresh}
+          refreshHeader={YulifeRefreshHeader}
+          renderFooter={this.renderFooter}
+          showsVerticalScrollIndicator={false}
+        />
+      </View>
     );
   }
 
@@ -48,7 +38,7 @@ export class RewardsList extends React.PureComponent<IRewardsListScreenProps> {
   };
 
   private handleRefresh = async () => {
-    await this.props.onLeftTabPress();
+    await this.props.onRefresh();
     if (this.largeList) {
       this.largeList.endRefresh();
     }

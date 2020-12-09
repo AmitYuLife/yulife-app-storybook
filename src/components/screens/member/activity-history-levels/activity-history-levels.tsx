@@ -3,12 +3,13 @@ import { ACTIVITY_HISTORY_SCREEN } from "@ids";
 import { YulifeLoadingFooter, YulifeRefreshHeader } from "@molecules/index";
 import { Style } from "@styles/index";
 import * as React from "react";
-import { SafeAreaView, StyleSheet, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { IndexPath, LargeList } from "react-native-largelist-v3";
 import { GetMobileCopy_getMobileCopy_screens_activityHistoryLevels } from "../../../../graphql/_core/schema";
-import { GenericHeading, Loading, Text } from "../../../atoms";
+import { Loading, Text } from "../../../atoms";
 import Item from "./activity-history-levels.item";
 import styles from "./activity-history-levels.styles";
+import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
 
 export interface IServerProps {
   items: IFormattedDatesByMonth[];
@@ -125,8 +126,8 @@ export default class ActivityHistoryLevels extends React.Component<IProps, IStat
     const { isAllDataLoaded } = this.state;
     const { items, onPressClose, copy, largeListRef, onRefresh } = this.props;
     return (
-      <SafeAreaView style={styles.wrapper} testID={ACTIVITY_HISTORY_SCREEN}>
-        <GenericHeading heading={copy.heading} onRightIconPress={onPressClose} />
+      <View style={styles.wrapper} testID={ACTIVITY_HISTORY_SCREEN}>
+        <GenericHeadingPad />
         <View style={styles.headersWrapper}>
           <View style={StyleSheet.flatten([styles.headerBase, styles.headerOneWrapper])}>
             <Text style={styles.headerSpecial} bold={true}>
@@ -160,7 +161,8 @@ export default class ActivityHistoryLevels extends React.Component<IProps, IStat
             allLoaded={isAllDataLoaded}
           />
         </View>
-      </SafeAreaView>
+        <GenericHeadingAbsolute heading={copy.heading} onRightIconPress={onPressClose} />
+      </View>
     );
   }
 

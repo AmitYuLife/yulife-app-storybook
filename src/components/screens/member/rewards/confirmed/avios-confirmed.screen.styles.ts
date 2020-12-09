@@ -1,5 +1,4 @@
-import { Platform, StyleSheet, TextStyle, ViewStyle } from "react-native";
-import { isIphoneX } from "react-native-iphone-x-helper";
+import { StyleSheet, TextStyle, ViewStyle } from "react-native";
 import { Colours, Style } from "../../../../../styles";
 
 export default StyleSheet.create({
@@ -43,15 +42,6 @@ export default StyleSheet.create({
   textSizeDefault: {
     fontSize: Style.SCALE_UP_AND_DOWN(16),
   } as TextStyle,
-  topBarWrapper: {
-    backgroundColor: "white",
-    left: 0,
-    paddingBottom: Style.SCALE_UP_AND_DOWN(8),
-    paddingTop: Style.SCALE_UP_AND_DOWN(isIphoneX() ? 40 : Platform.OS === "android" ? 0 : 20),
-    position: "absolute",
-    right: 0,
-    top: 0,
-  } as ViewStyle,
   wrapper: {
     flex: 1,
   } as ViewStyle,

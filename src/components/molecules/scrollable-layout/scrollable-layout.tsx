@@ -1,9 +1,9 @@
 import React, { RefObject } from "react";
-import { Colours, Style } from "@styles";
-import { SafeAreaView, ScrollView, View, ViewStyle, StyleSheet, Platform, KeyboardAvoidingView } from "react-native";
-import { GenericHeading } from "@atoms";
+import { Colours } from "@styles";
+import { ScrollView, View, ViewStyle, StyleSheet, Platform, KeyboardAvoidingView } from "react-native";
 import { Logo } from "../../atoms/generic-heading/generic-heading.types";
 import { CTA } from "./cta";
+import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
 
 interface Props {
   children: React.ReactNode;
@@ -51,14 +51,8 @@ export function ScrollableLayout(props: Props) {
 
   return (
     <KeyboardAvoidingView style={styles.keyboardWrapper} behavior={Platform.OS === "ios" ? "padding" : null}>
-      <SafeAreaView style={styles.wrapper}>
-        <GenericHeading
-          isBeta={isBeta}
-          logo={logo}
-          heading={heading}
-          onLeftIconPress={onLeftIconPress}
-          onRightIconPress={onRightIconPress}
-        />
+      <View style={styles.wrapper}>
+        <GenericHeadingPad />
         <ScrollView
           ref={scrollViewForwardRef}
           showsVerticalScrollIndicator={false}
@@ -78,7 +72,14 @@ export function ScrollableLayout(props: Props) {
           secondButtonLabel={secondButtonLabel}
           removeCtaFade={removeCtaFade}
         />
-      </SafeAreaView>
+      </View>
+      <GenericHeadingAbsolute
+        isBeta={isBeta}
+        logo={logo}
+        heading={heading}
+        onLeftIconPress={onLeftIconPress}
+        onRightIconPress={onRightIconPress}
+      />
     </KeyboardAvoidingView>
   );
 }
@@ -94,7 +95,6 @@ const styles = StyleSheet.create({
   wrapper: {
     backgroundColor: "white",
     flex: 1,
-    paddingTop: Platform.select({ ios: Style.getSafeAreaStart(), android: 0 }),
   },
   padTop: {
     height: 16,

@@ -1,15 +1,15 @@
 import * as React from "react";
-import { SafeAreaView, ScrollView, View } from "react-native";
+import { ScrollView, View } from "react-native";
 import {
   GetRewards_getRewards_available_denominations as Denomitation,
   GetRewards_getRewards_uiSettings as UiSettings,
-} from "../../../../../graphql/_core/schema";
-import { Pad } from "../../../../atoms";
-import { RewardItemContent, RewardsListItem, RewardTabs } from "../../../../molecules";
+} from "@graphql/_core/schema";
+import { Pad } from "@atoms";
+import { RewardItemContent, RewardsListItem } from "@molecules";
 import styles from "./wegift-details.screen.styles";
-import { TopBar } from "@components/organisms";
-import { TopBarLeftIconTypes } from "@components/organisms/top-bar/top-bar.helpers";
 import { WEGIFT_DETAILS } from "@ids";
+import { TopBarAbsolute } from "@organisms/top-bar/top-bar-absolute";
+import { TopBarLeftIconTypes } from "@organisms/top-bar/top-bar.helpers";
 
 interface IProps {
   uiSettings: UiSettings;
@@ -51,17 +51,10 @@ const WegiftDetailsScreen: React.SFC<IProps> = ({
   onPressTerms,
   onPressPolicy,
   onPressTopBar,
-  onLeftTabPress,
-  onRightTabPress,
   showWegiftPicker = false,
 }) => (
-  <SafeAreaView style={styles.wrapper}>
-    <View>
-      <TopBar leftIcon={TopBarLeftIconTypes.BACK} onPressLeftIcon={onPressTopBar} />
-    </View>
-    <View style={styles.rewardTabsWrapper}>
-      <RewardTabs onLeftTabPress={onLeftTabPress} onRightTabPress={onRightTabPress} activeTabIndex={0} />
-    </View>
+  <View style={styles.wrapper}>
+    <View style={styles.pad} />
     <ScrollView showsVerticalScrollIndicator={false} style={styles.wrapper} testID={WEGIFT_DETAILS}>
       <RewardsListItem
         settings={uiSettings}
@@ -86,7 +79,8 @@ const WegiftDetailsScreen: React.SFC<IProps> = ({
       </View>
       <Pad height={50} />
     </ScrollView>
-  </SafeAreaView>
+    <TopBarAbsolute hasShadow={true} hasWhiteBackground={true} leftIcon={TopBarLeftIconTypes.BACK} onPressLeftIcon={onPressTopBar} />
+  </View>
 );
 
 export default WegiftDetailsScreen;

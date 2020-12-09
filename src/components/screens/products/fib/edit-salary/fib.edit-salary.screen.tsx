@@ -1,12 +1,13 @@
 import React, { memo, useCallback } from "react";
-import { View, StyleSheet, SafeAreaView, ViewStyle, KeyboardAvoidingView, Platform, Keyboard } from "react-native";
-import { GenericHeading, Text } from "@atoms";
+import { View, StyleSheet, ViewStyle, KeyboardAvoidingView, Platform, Keyboard } from "react-native";
+import { Text } from "@atoms";
 import { Style, Colours } from "@styles";
 import { FibEditSalaryInput } from "./fib.edit-salary-input";
 import * as Animatable from "react-native-animatable";
 import Button from "@atoms/button/button";
 import Logger from "@services/logging/logger";
 import { useBackHandler } from "../../../../../services/hooks/useBackHandler";
+import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
 
 export interface IEditSalaryScreen {
   onNavigateBack: () => void;
@@ -34,15 +35,8 @@ export const FibEditSalaryScreen = memo(function (props: IEditSalaryScreen) {
 
   return (
     <>
-      <SafeAreaView style={styles.wrapper}>
-        <GenericHeading
-          heading="Salary"
-          isBeta={true}
-          onLeftIconPress={() => {
-            Keyboard.dismiss();
-            return onNavigateBack();
-          }}
-        />
+      <View style={styles.wrapper}>
+        <GenericHeadingPad />
         <Animatable.View useNativeDriver={true} duration={1000} animation="fadeIn" style={styles.mainContent}>
           <Text style={styles.text}>
             {`Let's get started! To begin, please enter your `}
@@ -61,12 +55,19 @@ export const FibEditSalaryScreen = memo(function (props: IEditSalaryScreen) {
             <FibEditSalaryInput value={salary} onChange={updateSalary} />
           </View>
         </Animatable.View>
-      </SafeAreaView>
+      </View>
       <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : null}>
         <View style={styles.button}>
           <Button disabled={!salary} label="Done" type="Primary" onPress={handlePress} />
         </View>
       </KeyboardAvoidingView>
+      <GenericHeadingAbsolute
+        heading="Salary"
+        onLeftIconPress={() => {
+          Keyboard.dismiss();
+          return onNavigateBack();
+        }}
+      />
     </>
   );
 });
@@ -75,7 +76,7 @@ const styles = StyleSheet.create({
   wrapper: {
     backgroundColor: "white",
     flex: 1,
-    paddingTop: Platform.select({ ios: Style.getSafeAreaStart(), android: 0 }),
+    
     height: "100%",
   },
   mainContent: {

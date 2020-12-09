@@ -8,8 +8,7 @@ import {
   ToolTip,
   AvatarCreationPrompt,
 } from "./subcomponents";
-import { TopBar } from "@organisms";
-import { Style } from "@styles";
+import { Style, TOP_BAR } from "@styles";
 import { ProductType } from "./yu-types";
 import media from "@styles/media";
 
@@ -43,12 +42,12 @@ const PAD_TOP = Platform.select({
     [
       {
         condition: Style.hasNotch,
-        value: TopBar.HEIGHT + Style.adjust(8),
+        value: TOP_BAR.HEIGHT + Style.adjust(8),
       },
     ],
-    TopBar.HEIGHT + Style.adjust(32)
+    TOP_BAR.HEIGHT + Style.adjust(22)
   ),
-  android: TopBar.HEIGHT + Style.adjust(20),
+  android: TOP_BAR.HEIGHT + Style.adjust(20),
 });
 
 const PAD_BOT = Platform.select({

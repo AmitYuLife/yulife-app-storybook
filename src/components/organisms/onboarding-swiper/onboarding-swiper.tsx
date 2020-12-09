@@ -1,7 +1,8 @@
 import React from "react";
-import { SafeAreaView, FlatList, View, TouchableOpacity, ViewToken, ListRenderItem } from "react-native";
-import { Text, PageIndicator, GenericHeading } from "@atoms";
+import { FlatList, View, TouchableOpacity, ViewToken, ListRenderItem } from "react-native";
+import { Text, PageIndicator } from "@atoms";
 import styles from "./onboarding-swiper.styles";
+import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
 
 export interface OnboardingSwiperData {
   id: string;
@@ -39,42 +40,39 @@ export class OnboardingSwiper extends React.PureComponent<Props, State> {
     const isLastPage = activePageIndex + 1 === data.length;
 
     return (
-      <SafeAreaView>
-        <View>
-          <FlatList
-            pagingEnabled={true}
-            renderItem={renderItem}
-            decelerationRate="fast"
-            keyExtractor={this.keyExtractor}
-            data={data}
-            ref={this.setFlatListRef}
-            showsVerticalScrollIndicator={false}
-            horizontal={true}
-            showsHorizontalScrollIndicator={false}
-            onViewableItemsChanged={this.handleSwipe}
-            viewabilityConfig={this.viewabilityConfig}
-          />
+      <View>
+        <GenericHeadingPad />
+        <FlatList
+          pagingEnabled={true}
+          renderItem={renderItem}
+          decelerationRate="fast"
+          keyExtractor={this.keyExtractor}
+          data={data}
+          ref={this.setFlatListRef}
+          showsVerticalScrollIndicator={false}
+          horizontal={true}
+          showsHorizontalScrollIndicator={false}
+          onViewableItemsChanged={this.handleSwipe}
+          viewabilityConfig={this.viewabilityConfig}
+        />
 
-          <View style={styles.navigationViewWrapper}>
-            <View style={styles.pageIndicatorWrapper}>
-              <PageIndicator activePage={activePageIndex} pageCount={3} />
-            </View>
-            {isLastPage ? (
-              <View />
-            ) : (
-              <TouchableOpacity onPress={this.props.onClose}>
-                <Text style={styles.skipButton}>Skip</Text>
-              </TouchableOpacity>
-            )}
-            <TouchableOpacity onPress={this.scrollToNext}>
-              <Text style={styles.actionButton}>{buttonLabel}</Text>
-            </TouchableOpacity>
+        <View style={styles.navigationViewWrapper}>
+          <View style={styles.pageIndicatorWrapper}>
+            <PageIndicator activePage={activePageIndex} pageCount={3} />
           </View>
+          {isLastPage ? (
+            <View />
+          ) : (
+            <TouchableOpacity onPress={this.props.onClose}>
+              <Text style={styles.skipButton}>Skip</Text>
+            </TouchableOpacity>
+          )}
+          <TouchableOpacity onPress={this.scrollToNext}>
+            <Text style={styles.actionButton}>{buttonLabel}</Text>
+          </TouchableOpacity>
         </View>
-        <View style={styles.absoluteTop}>
-          <GenericHeading logo="yulife" hideBorder={true} />
-        </View>
-      </SafeAreaView>
+        <GenericHeadingAbsolute logo="yulife"/>
+      </View>
     );
   }
 

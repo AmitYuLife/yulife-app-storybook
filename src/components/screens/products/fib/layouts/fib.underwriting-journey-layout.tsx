@@ -1,17 +1,16 @@
 import React, { ComponentProps } from "react";
-import { Platform, StyleSheet, KeyboardAvoidingView, SafeAreaView, ViewStyle } from "react-native";
+import { Platform, StyleSheet, KeyboardAvoidingView, ViewStyle, View } from "react-native";
 import { GenericHeading } from "@atoms";
 import { FIBProgressBar } from "@components/organisms";
-import { Style } from "@styles";
 import { Yugi, YugiType } from "./yugi";
 import { useBackHandler } from "@services/hooks/useBackHandler";
+import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
 
 interface Props {
   heading?: string;
   onClose?: () => void;
   onPreviousQuestion?: () => void | null;
   children: React.ReactNode;
-  hideHeadingBorder?: boolean;
   hideProgressBar: boolean;
   yugi?: YugiType;
   centreLogo?: "yulife";
@@ -22,16 +21,7 @@ const RIGHT_ICON = { icon: "CLOSE" } as ComponentProps<typeof GenericHeading>["r
 const keyboardBehavior = Platform.select({ ios: "padding" as "padding", android: null });
 
 export function FibUnderwritingJourneyLayout(props: Props) {
-  const {
-    centreLogo,
-    heading,
-    onClose,
-    onPreviousQuestion = null,
-    children,
-    hideProgressBar,
-    hideHeadingBorder,
-    yugi,
-  } = props;
+  const { centreLogo, heading, onClose, onPreviousQuestion = null, children, hideProgressBar, yugi } = props;
 
   useBackHandler(() => {
     onPreviousQuestion();
@@ -39,30 +29,33 @@ export function FibUnderwritingJourneyLayout(props: Props) {
   });
 
   return (
-    <KeyboardAvoidingView behavior={keyboardBehavior} style={styles.wrapper}>
-      <SafeAreaView style={styles.safeAreaView}>
-        <GenericHeading
-          heading={!centreLogo ? heading : null}
-          logo={centreLogo}
-          rightIcon={RIGHT_ICON}
-          onLeftIconPress={onPreviousQuestion}
-          onRightIconPress={onClose}
-          hideBorder={hideHeadingBorder}
-        />
-        {hideProgressBar ? null : <FIBProgressBar />}
-        {children}
-        <Yugi yugi={yugi} />
-      </SafeAreaView>
-    </KeyboardAvoidingView>
+    <View style={styles.wrapper}>
+      <GenericHeadingPad />
+      <KeyboardAvoidingView behavior={keyboardBehavior} style={styles.kav}>
+        <View style={styles.safeAreaView}>
+          {hideProgressBar ? null : <FIBProgressBar />}
+          {children}
+          <Yugi yugi={yugi} />
+        </View>
+      </KeyboardAvoidingView>
+      <GenericHeadingAbsolute
+        heading={!centreLogo ? heading : null}
+        logo={centreLogo}
+        rightIcon={RIGHT_ICON}
+        onLeftIconPress={onPreviousQuestion}
+        onRightIconPress={onClose}
+      />
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   wrapper: {
-    paddingTop: Platform.select({ ios: Style.getSafeAreaStart(), android: 0 }),
+    flex: 1,
+  } as ViewStyle,
+  kav: {
     flex: 1,
     height: "100%",
-    backgroundColor: "white",
   } as ViewStyle,
   safeAreaView: {
     height: "100%",

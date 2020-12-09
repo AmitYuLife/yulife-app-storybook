@@ -1,7 +1,6 @@
 import React, { useState, useRef, useCallback } from "react";
-import { GenericHeading, Button } from "@atoms";
+import { Button } from "@atoms";
 import {
-  SafeAreaView,
   Keyboard,
   View,
   Platform,
@@ -17,6 +16,7 @@ import Logger from "@services/logging/logger";
 import { FeedbackInputWrapper } from "./feedback-input-wrapper";
 import LinearGradient from "react-native-linear-gradient";
 import { useBackHandler } from "../../../../../services/hooks/useBackHandler";
+import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
 
 export interface Props {
   onContinue: () => void;
@@ -57,16 +57,8 @@ export function FibFeedbackFormScreen(props: Props) {
 
   return (
     <>
-      <SafeAreaView style={styles.wrapper}>
-        <GenericHeading
-          heading="Feedback"
-          isBeta={true}
-          onLeftIconPress={() => {
-            Keyboard.dismiss();
-            return props.onNavigateBack();
-          }}
-        />
-
+      <View style={styles.wrapper}>
+        <GenericHeadingPad />
         <ScrollView ref={scrollViewRef} style={styles.formWrapper} showsHorizontalScrollIndicator={false}>
           {formInputsData.map((data) => {
             return (
@@ -80,7 +72,7 @@ export function FibFeedbackFormScreen(props: Props) {
             );
           })}
         </ScrollView>
-      </SafeAreaView>
+      </View>
       <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : null}>
         <LinearGradient colors={["#ffffff00", "#fafafe"]} locations={[0, 0.25]} style={styles.buttonWrapper}>
           <View style={styles.button}>
@@ -97,6 +89,13 @@ export function FibFeedbackFormScreen(props: Props) {
           </View>
         </LinearGradient>
       </KeyboardAvoidingView>
+      <GenericHeadingAbsolute
+        heading="Feedback"
+        onLeftIconPress={() => {
+          Keyboard.dismiss();
+          return props.onNavigateBack();
+        }}
+      />
     </>
   );
 }
@@ -109,7 +108,6 @@ const styles = StyleSheet.create({
   wrapper: {
     backgroundColor: "white",
     flex: 1,
-    paddingTop: Platform.select({ ios: Style.getSafeAreaStart(), android: 0 }),
   },
   buttonWrapper: {
     width: "100%",

@@ -1,12 +1,13 @@
 import React, { memo } from "react";
-import { StyleSheet, ScrollView, Platform, ViewStyle, SafeAreaView } from "react-native";
+import { StyleSheet, ScrollView, ViewStyle, View } from "react-native";
 import * as Animatable from "react-native-animatable";
-import { GenericHeading, Heading } from "@atoms";
+import { Heading } from "@atoms";
 import { Style } from "@styles";
 import Markdown from "@components/molecules/markdown/markdown";
 import { IFibFAQ } from "@components/containers/products/fib/data/faq-fib-data";
 import { Faq } from "../browse-packages/subcomponents/faqs/faq";
 import { useBackHandler } from "../../../../../services/hooks/useBackHandler";
+import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
 
 export interface IRedirectFAQ {
   faq: IFibFAQ;
@@ -30,8 +31,8 @@ export const FibFaqScreen = memo(function (props: IFibFaqScreenProps) {
   useBackHandler(backHandler);
 
   return (
-    <SafeAreaView style={styles.wrapper}>
-      <GenericHeading isBeta={true} heading="FAQ" onLeftIconPress={onNavigateBack} />
+    <View style={styles.wrapper}>
+      <GenericHeadingPad />
       <ScrollView>
         <Animatable.View duration={500} animation="fadeIn" style={styles.flex} useNativeDriver={true}>
           <Heading label={faq.question} style={styles.header} />
@@ -46,7 +47,8 @@ export const FibFaqScreen = memo(function (props: IFibFaqScreenProps) {
           )}
         </Animatable.View>
       </ScrollView>
-    </SafeAreaView>
+      <GenericHeadingAbsolute heading="FAQ" onLeftIconPress={onNavigateBack} />
+    </View>
   );
 });
 
@@ -55,7 +57,6 @@ const styles = StyleSheet.create({
     flex: 1,
   } as ViewStyle,
   wrapper: {
-    paddingTop: Platform.select({ ios: Style.getSafeAreaStart(), android: 0 }),
     height: "100%",
   },
   markdownContainer: {

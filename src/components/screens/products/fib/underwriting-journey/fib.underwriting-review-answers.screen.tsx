@@ -2,7 +2,6 @@ import React, { memo, useEffect, useRef, useState } from "react";
 import {
   StyleSheet,
   ViewStyle,
-  Platform,
   ScrollView,
   TextStyle,
   NativeSyntheticEvent,
@@ -10,14 +9,13 @@ import {
   View,
 } from "react-native";
 import { useBackHandler } from "../../../../../services/hooks/useBackHandler";
-
 import Style from "../../../../../styles/style";
-import GenericHeading from "../../../../atoms/generic-heading/generic-heading";
 import { ReviewAnswers } from "@atoms/fib/review-answers/review-answers";
 import { Button, CheckBox } from "@atoms";
 import { IAnswer } from "../../../../../redux/product/product.selectors";
 import { NativeScrollPoint } from "react-native";
 import { IRightIcon } from "@atoms/generic-heading/generic-heading.types";
+import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
 import { Yugi, YugiType } from "../layouts/yugi";
 import FibTitle from "@atoms/fib/title/title";
 
@@ -62,12 +60,7 @@ const _FibUnderwritingReviewAnswersScreen = memo(function (props: IFibUnderwriti
 
   return (
     <View style={styles.wrapper}>
-      <GenericHeading
-        hideBorder={true}
-        logo="yulife"
-        rightIcon={RIGHT_ICON}
-        onRightIconPress={onNavigateBack}
-      />
+      <GenericHeadingPad />
       <ScrollView
         contentContainerStyle={styles.scrollViewContentStyle}
         onMomentumScrollEnd={onScrollEnd}
@@ -107,6 +100,7 @@ const _FibUnderwritingReviewAnswersScreen = memo(function (props: IFibUnderwriti
           disabled={disableSubmitButton || !confirmed}
         />
       </ScrollView>
+      <GenericHeadingAbsolute hideBorder={true} logo="yulife" rightIcon={RIGHT_ICON} onRightIconPress={onNavigateBack} />
       <Yugi yugi={YugiType.REVIEW} />
     </View>
   );
@@ -116,7 +110,6 @@ export const FibUnderwritingReviewAnswersScreen = memo(_FibUnderwritingReviewAns
 
 const styles = StyleSheet.create({
   wrapper: {
-    paddingTop: Platform.select({ ios: Style.getSafeAreaStart(), android: 0 }),
     height: "100%",
   },
   scrollViewContentStyle: {

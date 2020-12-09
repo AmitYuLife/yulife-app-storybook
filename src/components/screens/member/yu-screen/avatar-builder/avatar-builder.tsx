@@ -1,9 +1,9 @@
-import { Button, Text, GenericHeading } from "@atoms/index";
+import { Button, Text } from "@atoms/index";
 import { useQuery } from "@apollo/react-hooks";
 import Logger from "@services/logging/logger";
 import React from "react";
 import { useState, useRef, useCallback, useMemo, FC } from "react";
-import { FlatList, SafeAreaView, View, ScrollView } from "react-native";
+import { FlatList, View, ScrollView } from "react-native";
 import { AvatarPartType } from "@graphql/_core/schema/globalTypes";
 import { Avatar, Avatar_getAvatarColors } from "@graphql/_core/schema";
 import { GQL_QUERY_AVATAR } from "@graphql/yuscreen";
@@ -22,6 +22,7 @@ import { IAvatar, Category, AvatarBuilderHeading } from "./avatar.types";
 import { AVATAR_BUILDER_LIST, BUILDER_BODY, NO_ITEM_SELECTED, HEAD_TYPE } from "@ids";
 import { IBodyItemCategory } from "../../../../../redux/avatar/avatar.all.data";
 import { useBackHandler } from "../../../../../services/hooks/useBackHandler";
+import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
 
 interface IProps {
   avatar: IAvatar;
@@ -173,21 +174,8 @@ const AvatarBuilder: FC<IProps> = ({ avatar: defaultAvatar, onBackPressed, updat
   };
 
   return (
-    <SafeAreaView style={styles.wrapper}>
-      <GenericHeading
-        leftIcon="BACK"
-        heading={heading}
-        onLeftIconPress={() => {
-          setBackPressed(true);
-          onBackPressed();
-        }}
-        onRightIconPress={() => {
-          showDoneModal(() => updateUserAvatar(avatar), setBackPressed, setDoneModalShown);
-          setDoneModalShown(true);
-        }}
-        rightIcon="Done"
-        hideBorder={false}
-      />
+    <View style={styles.wrapper}>
+      <GenericHeadingPad />
       <View style={styles.elementWrapper} testID={HEAD_TYPE(avatar.head.partId)}>
         <View
           style={bodyItemType === AvatarPartType.body ? styles.fullAvatarWrapper : styles.halfAvatarWrapper}
@@ -307,7 +295,20 @@ const AvatarBuilder: FC<IProps> = ({ avatar: defaultAvatar, onBackPressed, updat
           )}
         </View>
       </View>
-    </SafeAreaView>
+      <GenericHeadingAbsolute
+        leftIcon="BACK"
+        heading={heading}
+        onLeftIconPress={() => {
+          setBackPressed(true);
+          onBackPressed();
+        }}
+        onRightIconPress={() => {
+          showDoneModal(() => updateUserAvatar(avatar), setBackPressed, setDoneModalShown);
+          setDoneModalShown(true);
+        }}
+        rightIcon="Done"
+      />
+    </View>
   );
 };
 

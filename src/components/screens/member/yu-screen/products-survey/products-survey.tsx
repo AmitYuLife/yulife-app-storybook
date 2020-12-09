@@ -5,17 +5,16 @@ import ReactNative, {
   View,
   TextInput,
   StyleSheet,
-  SafeAreaView,
   ScrollView,
   KeyboardAvoidingView,
   Platform,
 } from "react-native";
 import styles from "./products-survey.styles";
-import GenericHeading from "@atoms/generic-heading/generic-heading";
 import Logger from "@services/logging/logger";
 import ProductsSurveyGreetings from "./products-survey-greetings";
 import { Colours } from "@styles";
 import { SURVEY_SCREEN, SURVEY_TEXT_BOX } from "@ids";
+import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
 
 interface IProductSurvey {
   label: string;
@@ -175,8 +174,8 @@ function ProductsSurvey({ onExitConfirmed }: IProps) {
   };
 
   return (
-    <SafeAreaView>
-      <GenericHeading heading="What Would You Like To See?" onLeftIconPress={onBackButton} />
+    <View>
+      <GenericHeadingPad />
       <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : null}>
         <ScrollView
           testID={SURVEY_SCREEN}
@@ -229,7 +228,8 @@ function ProductsSurvey({ onExitConfirmed }: IProps) {
           </View>
         </ScrollView>
       </KeyboardAvoidingView>
-    </SafeAreaView>
+      <GenericHeadingAbsolute heading="What Would You Like To See?" onLeftIconPress={onBackButton} />
+    </View>
   );
 }
 

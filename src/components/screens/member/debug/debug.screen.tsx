@@ -1,10 +1,11 @@
-import { GenericHeading, Text } from "@atoms/index";
+import { Text } from "@atoms/index";
 import { TouchableOpacityWithDelay } from "@molecules/index";
 import * as React from "react";
 import { PureComponent } from "react";
-import { FlatList, ListRenderItemInfo, SafeAreaView, View } from "react-native";
+import { FlatList, ListRenderItemInfo, View } from "react-native";
 import Svg, { Polygon } from "react-native-svg";
 import styles from "./debug.styles";
+import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
 
 interface ItemProps {
   id: string;
@@ -21,8 +22,8 @@ export default class DebugScreen extends PureComponent<IProps> {
     const { data, onPressClose } = this.props;
 
     return (
-      <SafeAreaView style={styles.wrapper}>
-        <GenericHeading heading="debug" hideBorder={true} onRightIconPress={onPressClose} />
+      <View style={styles.wrapper}>
+        <GenericHeadingPad />
         <View style={styles.wrapper}>
           <FlatList
             data={data}
@@ -31,7 +32,8 @@ export default class DebugScreen extends PureComponent<IProps> {
             showsVerticalScrollIndicator={false}
           />
         </View>
-      </SafeAreaView>
+        <GenericHeadingAbsolute heading="debug" onRightIconPress={onPressClose} />
+      </View>
     );
   }
 
