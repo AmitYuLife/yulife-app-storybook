@@ -71,7 +71,7 @@ export class OnboardingSwiper extends React.PureComponent<Props, State> {
             <Text style={styles.actionButton}>{buttonLabel}</Text>
           </TouchableOpacity>
         </View>
-        <GenericHeadingAbsolute logo="yulife"/>
+        <GenericHeadingAbsolute logo="yulife" />
       </View>
     );
   }

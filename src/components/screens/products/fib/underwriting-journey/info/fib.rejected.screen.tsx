@@ -22,11 +22,7 @@ export const FibRejectedScreen = memo(function (props: IFibRejectedScreenProps) 
   useBackHandler(backHandler);
 
   return (
-    <FibUnderwritingJourneyLayout
-      heading={"Rejection"}
-      hideProgressBar={true}
-      onPreviousQuestion={onClose}
-    >
+    <FibUnderwritingJourneyLayout heading={"Rejection"} hideProgressBar={true} onPreviousQuestion={onClose}>
       <View style={styles.wrapper}>
         <FibTitle title={`Sorry about that!`} textStyle={styles.fibTitle} />
         <View style={styles.padding}>

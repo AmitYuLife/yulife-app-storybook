@@ -14,6 +14,7 @@ interface Props {
   hideProgressBar: boolean;
   yugi?: YugiType;
   centreLogo?: "yulife";
+  wrapperStyle?: ViewStyle;
 }
 
 const RIGHT_ICON = { icon: "CLOSE" } as ComponentProps<typeof GenericHeading>["rightIcon"];
@@ -21,7 +22,16 @@ const RIGHT_ICON = { icon: "CLOSE" } as ComponentProps<typeof GenericHeading>["r
 const keyboardBehavior = Platform.select({ ios: "padding" as "padding", android: null });
 
 export function FibUnderwritingJourneyLayout(props: Props) {
-  const { centreLogo, heading, onClose, onPreviousQuestion = null, children, hideProgressBar, yugi } = props;
+  const {
+    centreLogo,
+    heading,
+    onClose,
+    onPreviousQuestion = null,
+    children,
+    hideProgressBar,
+    yugi,
+    wrapperStyle,
+  } = props;
 
   useBackHandler(() => {
     onPreviousQuestion();
@@ -29,7 +39,7 @@ export function FibUnderwritingJourneyLayout(props: Props) {
   });
 
   return (
-    <View style={styles.wrapper}>
+    <View style={StyleSheet.flatten([styles.wrapper, wrapperStyle])}>
       <GenericHeadingPad />
       <KeyboardAvoidingView behavior={keyboardBehavior} style={styles.kav}>
         <View style={styles.safeAreaView}>

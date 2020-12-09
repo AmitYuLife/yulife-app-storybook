@@ -1,7 +1,7 @@
 import React, { memo, useCallback } from "react";
 import { View, StyleSheet, TextStyle, ViewStyle } from "react-native";
 import { Text, Button } from "@atoms";
-import { Style } from "@styles";
+import { Style, Colours } from "@styles";
 import { FibUnderwritingJourneyLayout } from "../../layouts/fib.underwriting-journey-layout";
 import { useBackHandler } from "../../../../../../services/hooks/useBackHandler";
 import FibTitle from "@atoms/fib/title/title";
@@ -24,8 +24,8 @@ export const FibPaymentCongratulationScreen = memo(function (props: IFibPaymentC
 
   return (
     <FibUnderwritingJourneyLayout heading={"Congratulation"} hideProgressBar={true}>
+      <FibTitle title={`You have successfully purchased ${toCapitalLetter(packageType)} Life Insurance!`} />
       <View style={styles.wrapper}>
-        <FibTitle title={`You have successfully\npurchased ${toCapitalLetter(packageType)} Life Insurance!`} />
         <Text style={styles.message}>{`Congratulation Congratulation Congratulation!!!`}</Text>
       </View>
 
@@ -38,19 +38,18 @@ export const FibPaymentCongratulationScreen = memo(function (props: IFibPaymentC
 
 const styles = StyleSheet.create({
   wrapper: {
-    paddingTop: 28,
-    paddingHorizontal: 32,
+    paddingTop: Style.adjust(28),
+    paddingHorizontal: Style.adjust(24),
   } as ViewStyle,
   buttonWrapper: {
     marginTop: "auto",
-    marginBottom: 48,
+    marginBottom: Style.adjust(48),
   } as ViewStyle,
   message: {
-    fontSize: 16,
-    lineHeight: 24,
-    fontFamily: Style.FONT_FAMILY_PRIMARY,
+    fontSize: Style.adjust(16),
+    lineHeight: Style.adjust(24),
     letterSpacing: 1,
-    color: "#5A5A5C",
-    marginTop: 20,
+    color: Colours.neutral.n800,
+    marginTop: Style.adjust(20),
   } as TextStyle,
 });

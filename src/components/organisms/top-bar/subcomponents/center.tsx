@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     top: Platform.select({
       ios: 4,
-      android: 0
+      android: 0,
     }),
     flexDirection: "row",
     alignItems: "center",

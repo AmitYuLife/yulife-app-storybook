@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
   wrapper: {
     backgroundColor: "white",
     flex: 1,
-    
+
     height: "100%",
   },
   mainContent: {

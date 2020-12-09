@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
   } as ViewStyle,
   pad: {
     height: TOP_BAR.TOP_BAR_WITH_PAD,
-    backgroundColor: "red"
+    backgroundColor: "red",
   } as ViewStyle,
 });
 

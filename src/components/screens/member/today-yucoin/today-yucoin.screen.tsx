@@ -73,11 +73,7 @@ export default function TodayYucoinScreen(props: IProps) {
               </View>
               <CTA {...enhancers.ctaProps} />
             </ScrollView>
-            <GenericHeadingAbsolute
-              heading="today's yucoin"
-              style={styles.heading}
-              onRightIconPress={onPressClose}
-            />
+            <GenericHeadingAbsolute heading="today's yucoin" style={styles.heading} onRightIconPress={onPressClose} />
           </View>
         );
       }}

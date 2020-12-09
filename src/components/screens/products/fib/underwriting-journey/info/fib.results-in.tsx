@@ -43,11 +43,7 @@ export const FibResultsInScreen = memo(function (props: IFibResultsInScreenProps
   }, [navigation]);
 
   return (
-    <FibUnderwritingJourneyLayout
-      heading={"Results"}
-      hideProgressBar={true}
-      onPreviousQuestion={onClose}
-    >
+    <FibUnderwritingJourneyLayout heading={"Results"} hideProgressBar={true} onPreviousQuestion={onClose}>
       <View style={styles.wrapper}>
         <FibTitle title="Your results are in" textStyle={{ fontSize: 20, lineHeight: 24 }} />
         <Text style={styles.message}>{`We assessed your case it's done`}</Text>

@@ -1,12 +1,5 @@
 import React, { memo, ComponentProps, useCallback, useRef, useEffect } from "react";
-import {
-  StyleSheet,
-  ScrollView,
-  View,
-  NativeScrollPoint,
-  NativeSyntheticEvent,
-  NativeScrollEvent,
-} from "react-native";
+import { StyleSheet, ScrollView, View, NativeScrollPoint, NativeSyntheticEvent, NativeScrollEvent } from "react-native";
 import { Button } from "@atoms";
 import { Summary, SummaryDescription } from "./subcomponents";
 import { Faqs } from "./subcomponents/faqs/faqs";

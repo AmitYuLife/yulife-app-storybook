@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
     height: TOP_BAR_HEIGHT,
     justifyContent: "center",
     width: "100%",
-    paddingHorizontal: Style.adjust(16)
+    paddingHorizontal: Style.adjust(16),
   } as ViewStyle,
   leftIconWrapper: {
     alignSelf: "center",

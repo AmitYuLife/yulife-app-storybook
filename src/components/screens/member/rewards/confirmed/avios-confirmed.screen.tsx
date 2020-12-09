@@ -75,7 +75,12 @@ class RewardsConfirmed extends React.PureComponent<Props> {
           />
           <Pad height={50} />
         </ScrollView>
-        <TopBarAbsolute hasShadow={true} hasWhiteBackground={true} leftIcon={TopBarLeftIconTypes.BACK} onPressLeftIcon={onPressTopBar} />
+        <TopBarAbsolute
+          hasShadow={true}
+          hasWhiteBackground={true}
+          leftIcon={TopBarLeftIconTypes.BACK}
+          onPressLeftIcon={onPressTopBar}
+        />
       </>
     );
   }
