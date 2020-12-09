@@ -1,7 +1,7 @@
 import React, { useState, FunctionComponent, memo } from "react";
-import { View, Image, StyleSheet, ImageStyle, TextStyle, Keyboard } from "react-native";
-import { Style } from "@styles";
-import { Button, Text, TextInput, Pad } from "@atoms";
+import { View, Image, StyleSheet, ImageStyle, TextStyle, Keyboard, ViewStyle } from "react-native";
+import { Style, Colours } from "@styles";
+import { Button, Text, TextInput } from "@atoms";
 import { Navigation } from "react-native-navigation";
 import { ROUTES } from "@navigation/constants";
 import { useKeyboardListeners } from "@services/hooks/useKeyboardListeners";
@@ -15,8 +15,6 @@ type Props = {
   onPress?: (arg: string) => void;
 };
 
-const MARGIN_TOP = Style.DEVICE_HEIGHT * 0.1;
-
 const ChangeMemberNickname: FunctionComponent<Props> = ({ enableButton, isLoading, onChange, onPress }) => {
   const [nickname, setNickname] = useState<string>("");
   const isKeyboardShown = useKeyboardListeners();
@@ -29,10 +27,8 @@ const ChangeMemberNickname: FunctionComponent<Props> = ({ enableButton, isLoadin
   return (
     <View testID="change-member-nickname">
       {enableButton ? <GenericHeadingPad /> : null}
-      <View style={styles.fullWidth}>
-        {isKeyboardShown ? (
-          <Pad height={MARGIN_TOP} />
-        ) : (
+      <View style={StyleSheet.flatten([styles.fullWidth, isKeyboardShown && styles.wrapperWithKeyboard])}>
+        {isKeyboardShown ? null : (
           <Image style={styles.image} source={require("@assets/community-goals/intro/third.png")} />
         )}
         <Text style={styles.title} bold={true}>
@@ -72,31 +68,34 @@ const ChangeMemberNickname: FunctionComponent<Props> = ({ enableButton, isLoadin
 const styles = StyleSheet.create({
   fullWidth: {
     width: Style.DEVICE_WIDTH,
-  },
+    flex: 1,
+    justifyContent: "center",
+  } as ViewStyle,
+  wrapperWithKeyboard: {
+    justifyContent: "flex-start",
+  } as ViewStyle,
   image: {
     alignSelf: "center",
-    marginTop: MARGIN_TOP,
     height: Style.adjust(300),
     width: Style.adjust(300),
   } as ImageStyle,
   title: {
     alignSelf: "center",
     marginTop: Style.adjust(Style.isShortToMediumAndroid() ? 10 : 34),
-    fontSize: 24,
+    fontSize: Style.adjust(24),
     letterSpacing: 0.8,
-    color: "#000000",
+    color: Colours.neutral.n800,
   } as TextStyle,
   subTitle: {
     alignSelf: "center",
     alignContent: "center",
     textAlign: "center",
     marginTop: Style.adjust(Style.isShortToMediumAndroid() ? 10 : 18),
-    fontFamily: Style.FONT_FAMILY_PRIMARY,
-    fontSize: 16,
-    lineHeight: 24,
+    fontSize: Style.adjust(16),
+    lineHeight: Style.adjust(24),
     width: 280,
     letterSpacing: 0.8,
-    color: "#5A5A5C",
+    color: Colours.neutral.n800,
   } as TextStyle,
   inputWrapper: {
     width: "100%",

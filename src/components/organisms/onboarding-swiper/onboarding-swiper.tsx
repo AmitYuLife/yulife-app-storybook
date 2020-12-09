@@ -40,7 +40,7 @@ export class OnboardingSwiper extends React.PureComponent<Props, State> {
     const isLastPage = activePageIndex + 1 === data.length;
 
     return (
-      <View>
+      <View style={styles.wrapper}>
         <GenericHeadingPad />
         <FlatList
           pagingEnabled={true}
@@ -55,7 +55,7 @@ export class OnboardingSwiper extends React.PureComponent<Props, State> {
           onViewableItemsChanged={this.handleSwipe}
           viewabilityConfig={this.viewabilityConfig}
         />
-
+        <View style={styles.navigationViewPad} />
         <View style={styles.navigationViewWrapper}>
           <View style={styles.pageIndicatorWrapper}>
             <PageIndicator activePage={activePageIndex} pageCount={3} />
