@@ -1,35 +1,62 @@
-import React, { useState } from "react";
-import { FibUnderwritingJourneyLayout } from "../../../layouts/fib.underwriting-journey-layout";
-import { ScrollView, StyleSheet, ViewStyle } from "react-native";
+import React, { useState, useEffect, useRef, useCallback } from "react";
+import {
+  ScrollView,
+  StyleSheet,
+  ViewStyle,
+  View,
+  KeyboardAvoidingView,
+  Keyboard,
+  Platform,
+  LayoutChangeEvent,
+} from "react-native";
 import FibTitle from "@atoms/fib/title/title";
 import { FinancialQuestionsForm, defaultFormValue, FormValue } from "./financial-questions-form";
-import { Style } from "@styles";
 import { IFibUnderwritingJourneyScreenProps } from "../../fib.underwriting-journey.screen";
-import Footer from "../footer/footer";
 import { connect } from "react-redux";
 import { updateFIBAnswerValue } from "@redux/product/product.actions";
 import { getFIBState } from "@redux/product/product.selectors";
 import { IReduxState } from "@redux/_core/reducers";
 import { Cover } from "@components/containers/products/fib/fib.types";
+import GenericOverlay from "@components/modals/generic-overlay/generic-overlay";
+import { Navigation } from "react-native-navigation";
+import { MODALS } from "@navigation/constants";
+import { Button } from "@atoms";
+import { Style } from "@styles";
+import { useBackHandler } from "@services/hooks/useBackHandler";
 
 type Props = IFibUnderwritingJourneyScreenProps & ConnectedState;
 type ConnectedState = ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps;
 
+const FORM_HEIGHT = Style.adjust(72);
+
 export function _FinancialQuestionsFormScreen(props: Props) {
-  const {
-    onNavigateBack,
-    data,
-    onFirstButtonPressed,
-    onPreviousButtonPressed,
-    existingCovers,
-    updateExistingCovers,
-    hideProgressBar,
-  } = props;
+  const { data, existingCovers, updateExistingCovers } = props;
+  const scrollViewRef = useRef<ScrollView>(null);
+  const isKeyboardUp = useRef(false);
+  const keyboardAnimationTimeout = useRef<ReturnType<typeof setTimeout>>(null);
+  const [titleHeight, setTitleHeight] = useState(0);
+
+  const setIsKeyboardUp = (bool: boolean) => {
+    return () => (isKeyboardUp.current = bool);
+  };
+
+  useEffect(() => {
+    Keyboard.addListener("keyboardWillShow", setIsKeyboardUp(true));
+    Keyboard.addListener("keyboardWillHide", setIsKeyboardUp(false));
+
+    return () => {
+      Keyboard.removeListener("keyboardWillShow", setIsKeyboardUp(true));
+      Keyboard.removeListener("keyboardWillHide", setIsKeyboardUp(false));
+      clearTimeout(keyboardAnimationTimeout.current);
+    };
+  }, []);
+
+  const keyboardTimeout = useRef(null);
 
   const [formValue, setFormValue] = useState<FormValue>(defaultFormValue);
   const [isFormValid, setFormValidState] = useState(false);
 
-  function submitForm() {
+  async function submitForm() {
     const cover: Cover = {
       companyName: formValue["company-held"],
       coverAmount: Number(formValue["amount-of-cover"]),
@@ -39,26 +66,67 @@ export function _FinancialQuestionsFormScreen(props: Props) {
     };
 
     updateExistingCovers([...existingCovers, cover]);
-    return onFirstButtonPressed();
+    dismissOverlay();
   }
 
+  function dismissOverlay() {
+    Keyboard.dismiss();
+    /*
+     * Nasty RNN issue
+     * https://github.com/wix/react-native-navigation/issues/2318
+     * Also, we can disregard await-ing Navigation.dismissOverlay here
+     * setTimeout doesn't return a promise
+     * and it's too much bloat to have to promisify it
+     */
+    keyboardTimeout.current = setTimeout(async () => {
+      Navigation.dismissOverlay(MODALS.financialCoverForm);
+    }, 300);
+  }
+
+  useBackHandler(() => {
+    dismissOverlay();
+    return true;
+  });
+
+  const handleFocus = useCallback(
+    (formIndex: number) => {
+      const KEYBOARD_ANIMATION_MS = Platform.select({
+        ios: isKeyboardUp.current ? 0 : 700,
+        android: isKeyboardUp.current ? 0 : 500,
+      });
+
+      return () => {
+        keyboardAnimationTimeout.current = setTimeout(() => {
+          scrollViewRef?.current.scrollTo({ y: titleHeight + formIndex * FORM_HEIGHT });
+        }, KEYBOARD_ANIMATION_MS);
+      };
+    },
+    [titleHeight]
+  );
+
+  const handleTitleLayout = useCallback((event: LayoutChangeEvent) => {
+    setTitleHeight(event.nativeEvent.layout.height);
+  }, []);
+
   return (
-    <FibUnderwritingJourneyLayout
-      centreLogo="yulife"
-      onClose={onNavigateBack}
-      onPreviousQuestion={onPreviousButtonPressed}
-      hideProgressBar={hideProgressBar}
-    >
-      <ScrollView showsVerticalScrollIndicator={false} style={styles.wrapper} keyboardShouldPersistTaps="handled">
-        <FibTitle title={data.question} />
-        <FinancialQuestionsForm
-          setFormValidState={setFormValidState}
-          formValue={formValue}
-          setFormValue={setFormValue}
-        />
-      </ScrollView>
-      <Footer firstButton={{ action: submitForm, label: "Done", disabled: !isFormValid }} />
-    </FibUnderwritingJourneyLayout>
+    <GenericOverlay onClose={dismissOverlay}>
+      <KeyboardAvoidingView style={styles.kav} behavior="padding">
+        <ScrollView ref={scrollViewRef} showsVerticalScrollIndicator={false} keyboardShouldPersistTaps="handled">
+          <View onLayout={handleTitleLayout}>
+            <View style={styles.pad} />
+            <FibTitle title={data.question} />
+          </View>
+          <FinancialQuestionsForm
+            setFormValidState={setFormValidState}
+            formValue={formValue}
+            setFormValue={setFormValue}
+            handleFocus={handleFocus}
+          />
+          <Button wrapperStyle={styles.cta} label="Done" type="Primary" onPress={submitForm} disabled={!isFormValid} />
+          <View style={styles.bottomPad} />
+        </ScrollView>
+      </KeyboardAvoidingView>
+    </GenericOverlay>
   );
 }
 
@@ -72,17 +140,20 @@ const mapDispatchToProps = {
   updateExistingCovers: (value: Cover[]) => updateFIBAnswerValue({ key: "existingCovers", value }),
 };
 
-export const FinancialQuestionsFormScreen = connect(mapStateToProps, mapDispatchToProps)(_FinancialQuestionsFormScreen);
-
-const MARGIN_BOTTOM = Style.hasNotch ? 60 : 100;
+const FinancialQuestionsFormScreen = connect(mapStateToProps, mapDispatchToProps)(_FinancialQuestionsFormScreen);
+export default FinancialQuestionsFormScreen;
 
 const styles = StyleSheet.create({
-  wrapper: {
-    marginBottom: MARGIN_BOTTOM,
+  pad: {
+    height: Style.adjust(32),
   } as ViewStyle,
-  buttonWrapper: {
-    width: Style.DEVICE_WIDTH - 70,
-    alignSelf: "center",
-    height: 90,
-  },
+  cta: {
+    marginTop: Style.adjust(24),
+  } as ViewStyle,
+  bottomPad: {
+    height: Style.adjust(80),
+  } as ViewStyle,
+  kav: {
+    flex: 1,
+  } as ViewStyle,
 });

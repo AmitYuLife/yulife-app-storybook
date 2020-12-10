@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, StyleSheet, Platform } from "react-native";
+import { View, StyleSheet, Platform, ViewStyle } from "react-native";
 import { TextField } from "@components/molecules";
 import { CheckBox, Text, Pad } from "@atoms";
 import { Style, Colours } from "@styles";
@@ -46,6 +46,7 @@ interface Props {
   setFormValidState: (isValid: boolean) => void;
   formValue: FormValue;
   setFormValue: (formValue: FormValue) => void;
+  handleFocus: (index: number) => () => void;
 }
 
 export const defaultFormValue = fields.reduce((prev, curr) => {
@@ -57,7 +58,7 @@ export const defaultFormValue = fields.reduce((prev, curr) => {
 
 export function FinancialQuestionsForm(props: Props) {
   const [errors, setErrors] = useState<Errors>(defaultFormValue);
-  const { setFormValidState, formValue, setFormValue } = props;
+  const { setFormValidState, formValue, setFormValue, handleFocus } = props;
 
   function checkIfFormIsValid(newErrors: Errors, newFormValue: FormValue) {
     const hasErrors = Object.values(newErrors).some((error) => error);
@@ -96,14 +97,25 @@ export function FinancialQuestionsForm(props: Props) {
 
   return (
     <View style={styles.wrapper}>
-      <TextField onChange={(val) => updateFormValue(fields[0].id, val)} placeholder={fields[0].label} />
-      <Pad height={10} />
-      <TextField onChange={(val) => updateFormValue(fields[1].id, val)} placeholder={fields[1].label} />
-      <Pad height={10} />
-      <View>
-        <Text style={styles.poundSign}>£</Text>
+      <TextField
+        onFocus={handleFocus(0)}
+        onChange={(val) => updateFormValue(fields[0].id, val)}
+        placeholder={fields[0].label}
+      />
+      <View style={styles.padBig} />
+      <TextField
+        onFocus={handleFocus(1)}
+        onChange={(val) => updateFormValue(fields[1].id, val)}
+        placeholder={fields[1].label}
+      />
+      <View style={styles.pad} />
+      <View style={styles.marginTop}>
+        <Text bold={true} style={styles.poundSign}>
+          £
+        </Text>
         <View style={styles.textFieldWrapper}>
           <TextField
+            onFocus={handleFocus(2)}
             onChange={(val) => updateFormValue(fields[2].id, val)}
             placeholder={fields[2].label}
             type="Number"
@@ -114,8 +126,13 @@ export function FinancialQuestionsForm(props: Props) {
       <View style={styles.errorWrapper}>
         {errors[fields[2].id] ? <Text style={{ color: Colours.darkGray }}>{errors[fields[2].id]}</Text> : null}
       </View>
-      <TextField onChange={(val) => updateFormValue(fields[3].id, val)} placeholder={fields[3].label} />
-      <Pad height={34} />
+      <View style={styles.pad} />
+      <TextField
+        onFocus={handleFocus(3)}
+        onChange={(val) => updateFormValue(fields[3].id, val)}
+        placeholder={fields[3].label}
+      />
+      <View style={styles.padBig} />
       <RadioInput onChange={(val) => updateFormValue(fields[4].id, val)} selectedValue={formValue[fields[4].id]} />
     </View>
   );
@@ -143,20 +160,35 @@ const styles = StyleSheet.create({
   wrapper: {
     width: Style.DEVICE_WIDTH - 48,
     alignSelf: "center",
-    marginTop: Style.adjust(28),
-    marginBottom: Style.adjust(60),
+    marginTop: Style.adjust(40),
   },
+  pad: {
+    height: Style.adjust(16),
+  } as ViewStyle,
+  padBig: {
+    height: Style.adjust(32),
+  } as ViewStyle,
   radioWrapper: {
     flexDirection: "row",
   },
-  textFieldWrapper: { flex: 1 },
-  errorWrapper: { height: 20 },
-  radioInputLabel: { marginBottom: 16, fontFamily: Style.FONT_FAMILY_PRIMARY, fontSize: 20, color: "#979799" },
+  textFieldWrapper: {
+    flex: 1,
+  },
+  marginTop: {
+    marginTop: Style.adjust(16),
+  } as ViewStyle,
+  errorWrapper: {
+    height: Style.adjust(20),
+  },
+  radioInputLabel: {
+    marginBottom: Style.adjust(16),
+    fontSize: Style.adjust(20),
+    color: Colours.neutral.n700,
+  },
   poundSign: {
     position: "absolute",
     bottom: Platform.OS === "ios" ? 5 : 4,
     fontSize: Style.adjust(22),
-    fontFamily: Style.FONT_FAMILY_PRIMARY_BOLD,
     marginRight: 4,
   },
 });

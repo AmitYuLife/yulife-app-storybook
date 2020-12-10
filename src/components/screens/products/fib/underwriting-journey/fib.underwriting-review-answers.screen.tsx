@@ -101,7 +101,7 @@ const _FibUnderwritingReviewAnswersScreen = memo(function (props: IFibUnderwriti
         />
       </ScrollView>
       <GenericHeadingAbsolute
-        hideBorder={true}
+        hideBorder={false}
         logo="yulife"
         rightIcon={RIGHT_ICON}
         onRightIconPress={onNavigateBack}

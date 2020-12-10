@@ -61,6 +61,7 @@ export const MODALS = {
   collectReward: "yulife.modals.CollectReward",
   feedback: "yulife.modals.Feedback",
   generic: "yulife.modals.Generic",
+  genericOverlay: "yulife.modals.GenericOverlay",
   genericConnectionError: "yulife.modals.GenericConnectionError",
   leaderboards: "yulife.modals.Leaderboards",
   leaderboardInvite: "yulife.modals.LeaderboardInvite",
@@ -75,6 +76,7 @@ export const MODALS = {
   duelRespond: "yulife.modals.duelRespond",
   earnRate: "yulife.modals.earnRate",
   yuProductDetails: "yulife.member.yuProductDetails",
+  financialCoverForm: "yulife.member.financialCoverForm",
   cardInput: "yulife.modals.cardInput",
 };
 
