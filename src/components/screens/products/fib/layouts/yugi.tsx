@@ -7,6 +7,7 @@ import { YugiReviewSvg } from "./assets/yugi-review-svg";
 
 interface Props {
   yugi: YugiType;
+  wrapperStyle?: ViewStyle;
 }
 
 export enum YugiType {
@@ -15,7 +16,7 @@ export enum YugiType {
 }
 
 export const Yugi = (props: Props) => {
-  const { yugi } = props;
+  const { yugi, wrapperStyle } = props;
 
   if (!yugi) {
     return null;
@@ -24,7 +25,7 @@ export const Yugi = (props: Props) => {
   const Yugi = getYugi(yugi);
 
   return (
-    <View style={styles.yugiWrapper}>
+    <View style={StyleSheet.flatten([styles.yugiWrapper, wrapperStyle])}>
       <Svg width={Style.adjust(55)} height={Style.adjust(180)} viewBox="0 0 55 180">
         <Yugi />
       </Svg>
