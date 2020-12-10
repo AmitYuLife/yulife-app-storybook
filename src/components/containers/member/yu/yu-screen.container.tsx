@@ -25,7 +25,7 @@ const _YuScreenContainer = (props: ConnectedState) => {
     fetchPolicy: "network-only",
   });
 
-  const { productEntityId, latestQuoteId } = props.fibStore;
+  const { productEntityId, latestQuoteId } = props;
 
   const { data: topUpsData, loading: topUpsLoading } = useQuery<GetTopUpsQuote, GetTopUpsQuoteVariables>(
     GQL_QUERY_GET_TOP_UPS_QUOTE,
@@ -37,15 +37,13 @@ const _YuScreenContainer = (props: ConnectedState) => {
           quoteId: latestQuoteId,
         },
       },
-      fetchPolicy: "network-only",
       skip: !latestQuoteId,
     }
   );
-
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (topUpsData?.getTopUpsQuote?.userAnswers.length) {
+    if (topUpsData?.getTopUpsQuote?.quoteId) {
       dispatch(refreshFIBStore(topUpsData.getTopUpsQuote));
     }
   }, [dispatch, topUpsData]);
@@ -73,7 +71,8 @@ const _YuScreenContainer = (props: ConnectedState) => {
 
 function mapStateToProps(store: IReduxState) {
   return {
-    fibStore: getFIBState(store),
+    productEntityId: getFIBState(store).productEntityId,
+    latestQuoteId: getFIBState(store).latestQuoteId,
   };
 }
 

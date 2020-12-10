@@ -53,7 +53,7 @@ const documents: IFaq[] = [...fibDocumentsItems, policyScheduleDocument].map((do
 
 const FibConfirmPackagesContainer = memo(function (props: FibConfirmPackagesContainerProps) {
   const { navigation, userDateOfBirth, userDateOfBirthFib, selectFaq, fibState, userAnswers } = props;
-  const { salary: grossSalary, selectedPackage } = fibState;
+  const { salary: grossSalary, selectedPackage, productEntityId, latestQuoteId } = fibState;
   const dispatch = useDispatch();
 
   const [selectedCoverType, selectCoverType] = useCover(selectedPackage || "common");
@@ -92,12 +92,11 @@ const FibConfirmPackagesContainer = memo(function (props: FibConfirmPackagesCont
   const { loading, data, error } = useQuery<GetTopUpsQuote, GetTopUpsQuoteVariables>(GQL_QUERY_GET_TOP_UPS_QUOTE, {
     variables: {
       input: {
-        customerProductEntityId: fibState.productEntityId,
-        quoteId: fibState.latestQuoteId,
+        customerProductEntityId: productEntityId,
+        quoteId: latestQuoteId,
       },
       product: ProductCode.YULFIB,
     },
-    fetchPolicy: "cache-first",
   });
 
   const [createFibQuote] = useMutation<CreateTopUpsQuote, CreateTopUpsQuoteVariables>(
@@ -117,7 +116,7 @@ const FibConfirmPackagesContainer = memo(function (props: FibConfirmPackagesCont
         })
       );
     }
-  }, [data, dispatch, selectedCoverType, fibState.actualCost]);
+  }, [data, dispatch, fibState.actualCost]);
 
   useEffect(() => {
     async function createNewQuote() {
@@ -127,6 +126,7 @@ const FibConfirmPackagesContainer = memo(function (props: FibConfirmPackagesCont
           product: ProductCode.YULFIB,
         },
       });
+
       dispatch(updateFIBValuesFromNewQuote(newFibQuoteData?.createTopUpsQuote));
     }
 

@@ -27,7 +27,7 @@ import {
 
 export { IProductStore } from "./product.types";
 
-export const initialState: IProductStore = {
+export const initialState: IProductStore = Object.freeze({
   fib: {
     answers: {
       contactDetails: {
@@ -73,12 +73,12 @@ export const initialState: IProductStore = {
     latestQuoteId: "",
     status: "no_status",
   },
-};
+});
 
 function personalProductReducer<T>(state: IProductStore = initialState, action: ProductActionTypes<T>) {
   switch (action.type) {
     case REHYDRATE:
-      return rehydratePersonalProductStore(state, action.payload as IReduxState);
+      return rehydratePersonalProductStore({ ...state }, action.payload as IReduxState);
     case LOGOUT:
       return initialState;
     case GET_USER_SUCCESS:
@@ -123,7 +123,7 @@ function personalProductReducer<T>(state: IProductStore = initialState, action: 
             contactDetails: {
               ...initialState.fib.answers.contactDetails,
             },
-            existingCovers: initialState.fib.answers.existingCovers,
+            existingCovers: [],
             medicalHistory: {},
           },
         },
@@ -150,6 +150,7 @@ function personalProductReducer<T>(state: IProductStore = initialState, action: 
           lastQuestionId: "",
           hasPriceChanged: false,
           actualCost: 0,
+          salary: 0,
           answers: {
             ...initialState.fib.answers,
             medicalHistory: {},
@@ -164,7 +165,7 @@ function personalProductReducer<T>(state: IProductStore = initialState, action: 
             birthDay: state.fib.answers.birthDay,
             birthMonth: state.fib.answers.birthMonth,
             birthYear: state.fib.answers.birthYear,
-            existingCovers: initialState.fib.answers.existingCovers,
+            existingCovers: [],
           },
         },
       };
