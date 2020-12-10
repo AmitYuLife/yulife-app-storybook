@@ -167,6 +167,11 @@ export default [
     component: require("../components/containers/member/yu/yu-earn-rate-modal/yu-earn-rate-modal").default,
   },
   {
+    name: MODALS.financialCoverForm,
+    component: require("../components/screens/products/fib/underwriting-journey/subcomponents/financial-questions/financial-questions-form.screen")
+      .default,
+  },
+  {
     name: MODALS.leaderboardLean,
     component: require("../components/containers/member/leaderboard/leaderboard-lean/leaderboard-lean").default,
   },
@@ -193,6 +198,10 @@ export default [
   {
     name: MODALS.generic,
     component: require("../components/modals/generic-modal/generic-modal").default,
+  },
+  {
+    name: MODALS.genericOverlay,
+    component: require("../components/modals/generic-overlay/generic-overlay-template").default,
   },
   {
     name: MODALS.leaderboardInvite,

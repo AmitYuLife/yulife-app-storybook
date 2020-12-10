@@ -107,7 +107,6 @@ export const FIB_MEDICAL_OTHER_SYMPTOMS_SCREEN_ID = "fib_medical_other_symptoms"
 export const FIB_MEDICAL_COVID_ISOLATION_SCREEN_ID = "fib_medical_covid_isolation";
 export const FIB_MEDICAL_COVID_SYMPTOMS_SCREEN_ID = "fib_medical_covid_symptoms";
 export const FIB_FINANCIAL_QUESTIONS_SCREEN_ID = "fib_financial_questions";
-export const FIB_FINANCIAL_OTHER_COVER_SCREEN_ID = "fib_financial_other_cover";
 export const FIB_FINANCIAL_COVER_LIST_SCREEN_ID = "fib_financial_cover_list";
 export const FIB_LIFESTYLE_DRUGS_SCREEN_ID = "fib_lifestyle_drugs";
 
@@ -180,7 +179,7 @@ export const FOLLOW_UP_SMOKING_ANSWERS_TRIGGER = ["In the past month", "In the p
 
 export const FINAL_PROGRESS = 2400;
 
-enum ACCUMULATED_PROGRESS {
+export enum ACCUMULATED_PROGRESS {
   FIB_ENTER_YOUR_NAME = 100,
   FIB_YOUR_DATE_OF_BIRTH_SCREEN_ID = 200,
   FIB_ENTER_YOUR_DATE_OF_BIRTH = 250,
@@ -1434,23 +1433,10 @@ const _data: UnderwritingJourneyScreen[] = [
     firstButton: {
       label: "No",
       actionId: FIB_UNDERWRITING_REVIEW_ANSWERS_SCREEN_ID,
-      answersIdToInvalidate: [FIB_FINANCIAL_OTHER_COVER_SCREEN_ID],
+      answersIdToInvalidate: [FIB_FINANCIAL_COVER_LIST_SCREEN_ID],
     },
-    secondButton: { label: "Yes", actionId: FIB_FINANCIAL_OTHER_COVER_SCREEN_ID },
-    previousButton: { actionId: FIB_MEDICAL_COVID_SYMPTOMS_SCREEN_ID },
-  },
-  {
-    id: FIB_FINANCIAL_OTHER_COVER_SCREEN_ID,
-    accumulatedProgress: ACCUMULATED_PROGRESS.FIB_FINANCIAL_OTHER_COVER_SCREEN_ID,
-    category: "fib_financial",
-    heading: "Financial",
-    icon: FINANCIAL_QUESTIONS_ICON,
-    title: "Financial Questions",
-    reviewAnswerTitle: "Additional Life Insurance Products",
-    question: "Do you have, or have you applied for any additional life insurance products?",
-    firstButton: { label: "No", actionId: FIB_UNDERWRITING_REVIEW_ANSWERS_SCREEN_ID },
     secondButton: { label: "Yes", actionId: FIB_FINANCIAL_COVER_LIST_SCREEN_ID },
-    previousButton: { actionId: FIB_FINANCIAL_QUESTIONS_SCREEN_ID },
+    previousButton: { actionId: FIB_MEDICAL_COVID_SYMPTOMS_SCREEN_ID },
   },
   {
     id: FIB_FINANCIAL_COVER_LIST_SCREEN_ID,
@@ -1461,19 +1447,8 @@ const _data: UnderwritingJourneyScreen[] = [
     title: "Cover Details",
     question: "Okay! Please add or remove your existing life insurance products below.",
     firstButton: { label: "Continue", actionId: FIB_UNDERWRITING_REVIEW_ANSWERS_SCREEN_ID },
-    secondButton: { label: "Add cover", actionId: FIB_FINANCIAL_CUSTOM_COVER_FORM_SCREEN_ID },
-    previousButton: { actionId: FIB_FINANCIAL_OTHER_COVER_SCREEN_ID },
-  },
-  {
-    id: FIB_FINANCIAL_CUSTOM_COVER_FORM_SCREEN_ID,
-    accumulatedProgress: ACCUMULATED_PROGRESS.FIB_FINANCIAL_CUSTOM_COVER_FORM_SCREEN_ID,
-    category: "fib_financial",
-    heading: "Financial",
-    icon: FINANCIAL_QUESTIONS_ICON,
-    title: "Cover Details",
-    question: "We’ll need some details about your cover.",
-    firstButton: { label: "Continue", actionId: FIB_FINANCIAL_COVER_LIST_SCREEN_ID },
-    previousButton: { actionId: FIB_FINANCIAL_COVER_LIST_SCREEN_ID },
+    secondButton: { label: "Add cover", actionId: FIB_FINANCIAL_QUESTIONS_SCREEN_ID },
+    previousButton: { actionId: FIB_FINANCIAL_QUESTIONS_SCREEN_ID },
   },
 ];
 
@@ -1483,7 +1458,6 @@ function getData(): OrderedUnderwritingJourneyScreen[] {
   const ROUTES_WITHOUT_PROGRESS = [
     FIB_ENTER_YOUR_DATE_OF_BIRTH,
     FIB_ENTER_YOUR_NAME,
-    FIB_FINANCIAL_CUSTOM_COVER_FORM_SCREEN_ID,
   ];
 
   let progressCounter = 0;

@@ -9,6 +9,14 @@ import Footer from "../footer/footer";
 import { connect } from "react-redux";
 import { IReduxState } from "@redux/_core/reducers";
 import { getFIBState } from "@redux/product/product.selectors";
+import { Navigation } from "react-native-navigation";
+import { MODALS } from "@navigation/constants";
+import { FINANCIAL_QUESTIONS_ICON } from "@atoms/fib/svg-assets/underwriting/svg-strings";
+import {
+  FIB_FINANCIAL_COVER_LIST_SCREEN_ID,
+  FIB_FINANCIAL_CUSTOM_COVER_FORM_SCREEN_ID,
+  ACCUMULATED_PROGRESS,
+} from "@components/containers/products/fib/data/underwriting-journey-data";
 
 type Props = IFibUnderwritingJourneyScreenProps & ConnectedState;
 
@@ -19,7 +27,6 @@ function _FinancialQuestionsCoverListScreen(props: Props) {
     data,
     onNavigateBack,
     onFirstButtonPressed,
-    onSecondButtonPressed,
     onPreviousButtonPressed,
     existingCovers = [],
     hideProgressBar,
@@ -32,9 +39,9 @@ function _FinancialQuestionsCoverListScreen(props: Props) {
       hideProgressBar={hideProgressBar}
       onPreviousQuestion={onPreviousButtonPressed}
     >
-      <ScrollView style={styles.wrapper}>
+      <ScrollView showsVerticalScrollIndicator={false} style={styles.wrapper}>
         <FibTitle title={data.question} />
-        <FinancialQuestionsCoverList existingCovers={existingCovers} onAddCover={onSecondButtonPressed} />
+        <FinancialQuestionsCoverList existingCovers={existingCovers} onAddCover={showFinancialCoverOverlay} />
       </ScrollView>
       <Footer firstButton={{ action: onFirstButtonPressed, label: "Done", disabled: existingCovers.length === 0 }} />
     </FibUnderwritingJourneyLayout>
@@ -61,3 +68,30 @@ const styles = StyleSheet.create({
     height: 90,
   },
 });
+
+export function showFinancialCoverOverlay() {
+  Navigation.showOverlay({
+    component: {
+      id: MODALS.financialCoverForm,
+      name: MODALS.financialCoverForm,
+      options: {
+        layout: {
+          componentBackgroundColor: "transparent",
+        },
+      },
+      passProps: {
+        data: {
+          id: FIB_FINANCIAL_CUSTOM_COVER_FORM_SCREEN_ID,
+          accumulatedProgress: ACCUMULATED_PROGRESS.FIB_FINANCIAL_CUSTOM_COVER_FORM_SCREEN_ID,
+          category: "fib_financial",
+          heading: "Financial",
+          icon: FINANCIAL_QUESTIONS_ICON,
+          title: "Cover Details",
+          question: "We’ll need some details about your cover.",
+          firstButton: { label: "Continue", actionId: FIB_FINANCIAL_COVER_LIST_SCREEN_ID },
+          previousButton: { actionId: FIB_FINANCIAL_COVER_LIST_SCREEN_ID },
+        },
+      },
+    },
+  });
+}
