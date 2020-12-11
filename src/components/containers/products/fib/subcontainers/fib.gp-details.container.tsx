@@ -28,6 +28,7 @@ import {
 import { IReduxState } from "../../../../../redux/_core/reducers";
 import { getFIBState } from "../../../../../redux/product/product.selectors";
 import { getUserFeatures } from "../../../../../redux/user/user.selectors";
+import { MODALS } from "../../../../../navigation/constants";
 
 interface IFibGPDetailsContainerProps {
   navigation: FibLocalNavigation;
@@ -150,7 +151,26 @@ const FibGPDetailsContainer = memo(function (props: IFibGPDetailsContainerProps 
   ]);
 
   const handleOnClose = useCallback(async () => {
-    await Navigation.popTo(ROUTES.yuScreen);
+    await Navigation.showModal({
+      component: {
+        id: MODALS.generic,
+        name: MODALS.generic,
+        passProps: {
+          onPress: async () => {
+            await Navigation.dismissModal(MODALS.generic);
+          },
+          heading: "Leave Application?",
+          subheading: "We’ll save your progress for you.",
+          ctaLabel: "Stay",
+          ctaLabelSecondary: "Exit",
+          onPressSecondary: async () => {
+            await Navigation.dismissModal(MODALS.generic);
+            await Navigation.popTo(ROUTES.yuScreen);
+            return;
+          },
+        },
+      },
+    });
   }, []);
 
   const handleBack = useCallback(() => {
