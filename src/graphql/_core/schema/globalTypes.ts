@@ -80,6 +80,18 @@ export enum ProductCode {
   YULFIB = "YULFIB",
 }
 
+export enum ScreeningStatus {
+  IN_PROGRESS = "IN_PROGRESS",
+  NONE = "NONE",
+  PROCESSING = "PROCESSING",
+  PURCHASED = "PURCHASED",
+  REJECTED = "REJECTED",
+  RGA_APPLIED = "RGA_APPLIED",
+  RGA_LOADING = "RGA_LOADING",
+  RGA_REJECTED = "RGA_REJECTED",
+  WAITING_MSS = "WAITING_MSS",
+}
+
 export interface AnswerInput {
   key: string;
   value: string;
@@ -113,6 +125,10 @@ export interface CreateTopUpsQuoteInput {
   customCoverPercentage?: number | null;
   userAnswers?: (LifeInsuranceTopUpsUserAnswers | null)[] | null;
   productEntityId?: string | null;
+}
+
+export interface FibQuote {
+  screeningStatus?: ScreeningStatus | null;
 }
 
 /**

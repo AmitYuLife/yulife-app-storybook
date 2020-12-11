@@ -62,6 +62,7 @@ export * from "./UpdateDuel";
 export * from "./UpdateLeaderboardConsent";
 export * from "./UpdateMemberConsent";
 export * from "./UpdateNickname";
+export * from "./UpdateTopUpsQuote";
 export * from "./UpsertOnboardingChallenge";
 export * from "./UpsertPassiveChallenge";
 export * from "./UpsertTopUpsProductEntity";

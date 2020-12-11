@@ -3,6 +3,7 @@ import { Cover } from "@components/containers/products/fib/fib.types";
 import { RehydrateAction } from "redux-persist";
 import { logOut, getUserSuccess } from "@redux/user/user.actions";
 import { CreateTopUpsQuote_createTopUpsQuote, GetTopUpsQuote_getTopUpsQuote } from "../../graphql/_core/schema";
+import { ScreeningStatus } from "../../graphql/_core/schema/globalTypes";
 export const UPDATE_FIB_VALUE = "UPDATE_FIB_VALUE";
 export const UPDATE_FIB_MEDICAL_VALUE = "UPDATE_FIB_MEDICAL_VALUE";
 export const UPDATE_FIB_ANSWER_VALUE = "UPDATE_FIB_ANSWER_VALUE";
@@ -78,7 +79,7 @@ export interface FIBStore {
   rejected: boolean;
   productEntityId: string;
   latestQuoteId: string;
-  status: string;
+  status: ScreeningStatus;
 }
 
 export interface UpdateFIBStoreAction<T> {
