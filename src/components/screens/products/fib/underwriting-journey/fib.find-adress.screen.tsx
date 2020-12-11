@@ -54,6 +54,10 @@ export const FibFindAddressScreen = memo(function (props: IFibFindAddressScreenP
     },
     [timer, onPostCodeAdded]
   );
+
+  const isLoading = loading || userIsTyping;
+  const hasNoResults = data?.length < 1 || isEntryPoint || !postCodeRegex.test(postCode);
+
   return (
     <FibUnderwritingJourneyLayout
       heading={"Contact Details"}
@@ -61,8 +65,11 @@ export const FibFindAddressScreen = memo(function (props: IFibFindAddressScreenP
       hideProgressBar={true}
       onPreviousQuestion={onBackButtonPress}
       wrapperStyle={styles.wrapper}
+      hideBorder={false}
     >
-      <FibTitle title={"Enter your post code"} />
+      <View style={styles.titleWrapper}>
+        <FibTitle title="Enter your post code:" />
+      </View>
       <View style={styles.contentWrapper}>
         <View style={styles.enterPostCodeWrapper}>
           <TextField
@@ -73,27 +80,32 @@ export const FibFindAddressScreen = memo(function (props: IFibFindAddressScreenP
           />
           <Pad height={20} />
         </View>
-
-        {loading || userIsTyping ? (
-          <View style={{ marginTop: 16 }}>
-            <ActivityIndicator />
-          </View>
-        ) : null}
-        {loading || userIsTyping ? null : data?.length < 1 || isEntryPoint || !postCodeRegex.test(postCode) ? (
-          <Text bold={true} style={styles.textBold}>
-            {isEntryPoint ? "" : "No results could be found."}
-          </Text>
-        ) : (
-          <FlatList
-            renderItem={({ item }: ListRenderItemInfo<Address_findUserAddress>) => (
-              <AddressItem onPress={() => onAddressSelected(item)} address={item} />
-            )}
-            keyExtractor={(item: Address_findUserAddress) => item.addressFirstLine}
-            data={data}
-            showsVerticalScrollIndicator={false}
-            keyboardShouldPersistTaps={"always"}
-          />
-        )}
+        <View style={styles.resultsWrapper}>
+          {isLoading ? (
+            <View style={styles.loadingWrapper}>
+              <ActivityIndicator />
+            </View>
+          ) : null}
+          {isLoading ? null : !postCode ? (
+            <Text bold={true} style={styles.textBold}>
+              Start typing your post code to generate results.
+            </Text>
+          ) : hasNoResults ? (
+            <Text bold={true} style={styles.textBold}>
+              {isEntryPoint ? "" : "No results could be found."}
+            </Text>
+          ) : (
+            <FlatList
+              renderItem={({ item }: ListRenderItemInfo<Address_findUserAddress>) => (
+                <AddressItem onPress={() => onAddressSelected(item)} address={item} />
+              )}
+              keyExtractor={(item: Address_findUserAddress) => item.addressFirstLine}
+              data={data}
+              showsVerticalScrollIndicator={false}
+              keyboardShouldPersistTaps={"always"}
+            />
+          )}
+        </View>
       </View>
     </FibUnderwritingJourneyLayout>
   );
@@ -126,17 +138,21 @@ const AddressItem = (props: ItemAddressProps) => {
   );
 };
 
+const STANDARD_PADDING_HORIZONTAL = Style.adjust(32);
+
 const styles = StyleSheet.create({
   wrapper: {
-    backgroundColor: Colours.neutral.n50,
+    paddingTop: Style.adjust(16),
   } as ViewStyle,
   contentWrapper: {
-    backgroundColor: Colours.neutral.n50,
     flex: 1,
-    paddingHorizontal: Style.adjust(24),
+  } as ViewStyle,
+  titleWrapper: {
+    paddingHorizontal: Style.adjust(8),
   } as ViewStyle,
   enterPostCodeWrapper: {
-    backgroundColor: Colours.neutral.n50,
+    paddingHorizontal: STANDARD_PADDING_HORIZONTAL,
+    paddingBottom: Style.adjust(16),
   } as ViewStyle,
   addressItemWrapper: {
     height: Style.adjust(80),
@@ -157,4 +173,14 @@ const styles = StyleSheet.create({
     color: Colours.neutral.n800,
     letterSpacing: 1,
   } as TextStyle,
+  resultsWrapper: {
+    flex: 1,
+    backgroundColor: Colours.neutral.n50,
+    paddingHorizontal: STANDARD_PADDING_HORIZONTAL,
+    borderTopWidth: 2,
+    borderColor: Colours.neutral.n100,
+  } as ViewStyle,
+  loadingWrapper: {
+    marginTop: Style.adjust(16),
+  } as ViewStyle,
 });

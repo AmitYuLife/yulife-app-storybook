@@ -16,6 +16,7 @@ interface Props {
   yugi?: YugiType;
   centreLogo?: "yulife";
   wrapperStyle?: ViewStyle;
+  hideBorder?: boolean;
 }
 
 const RIGHT_ICON = { icon: "CLOSE" } as ComponentProps<typeof GenericHeading>["rightIcon"];
@@ -32,6 +33,7 @@ export function FibUnderwritingJourneyLayout(props: Props) {
     hideProgressBar,
     yugi,
     wrapperStyle,
+    hideBorder = true,
   } = props;
 
   useBackHandler(() => {
@@ -55,6 +57,7 @@ export function FibUnderwritingJourneyLayout(props: Props) {
         rightIcon={RIGHT_ICON}
         onLeftIconPress={onPreviousQuestion}
         onRightIconPress={onClose}
+        hideBorder={hideBorder}
       />
     </View>
   );

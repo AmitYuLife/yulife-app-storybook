@@ -54,10 +54,15 @@ export const FibContactDetailsScreen = memo(function (props: IFibContactDetailsS
   );
 
   return (
-    <FibUnderwritingJourneyLayout heading={"Contact Details"} onClose={onClose} hideProgressBar={true}>
-      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 50 }}>
+    <FibUnderwritingJourneyLayout
+      hideBorder={false}
+      heading={"Contact Details"}
+      onClose={onClose}
+      hideProgressBar={true}
+    >
+      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.contentWrapper}>
         <View style={styles.wrapper}>
-          <FibTitle title={"Great! Please enter your contact details below"} />
+          <FibTitle title="Please enter your contact details:" />
           <View style={styles.paddingHorizontal}>
             <TouchableOpacityWithDelay onPress={onFindAdress}>
               <View style={styles.lookUpAdressWrapper}>
@@ -140,19 +145,19 @@ const postCodeValid = (postCode: string) => {
 const styles = StyleSheet.create({
   wrapper: {
     alignSelf: "center",
-    marginTop: 30,
     width: "100%",
+    paddingTop: Style.adjust(16),
   } as ViewStyle,
   paddingHorizontal: {
     paddingHorizontal: Style.adjust(24),
   } as ViewStyle,
   lookUpAdressWrapper: {
-    marginTop: 34,
-    marginBottom: 16,
-    height: 40,
-    width: 176,
+    marginTop: Style.adjust(16),
+    marginBottom: Style.adjust(24),
+    height: Style.adjust(40),
+    width: Style.adjust(176),
     borderColor: "#D3D3D6",
-    borderWidth: 1.5,
+    borderWidth: 1,
     borderRadius: 8,
     paddingLeft: 16,
     alignItems: "center",
@@ -168,5 +173,8 @@ const styles = StyleSheet.create({
   imageWrapper: {
     marginLeft: "auto",
     paddingRight: Style.adjust(14),
+  } as ViewStyle,
+  contentWrapper: {
+    paddingBottom: Style.adjust(50),
   } as ViewStyle,
 });
