@@ -20182,10 +20182,33 @@
           },
           {
             "name": "collectPaymentMethod",
-            "description": "Collect client token for stripe payment method",
+            "description": "Collect client stripe payment method",
             "args": [
               {
-                "name": "token",
+                "name": "input",
+                "description": null,
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "CollectPaymentMethodInput",
+                  "ofType": null
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "OBJECT",
+              "name": "CollectPaymentMethodResponse",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "confirmPaymentMethod",
+            "description": "Confirm client stripe payment method",
+            "args": [
+              {
+                "name": "paymentMethodId",
                 "description": null,
                 "type": {
                   "kind": "SCALAR",
@@ -20195,11 +20218,11 @@
                 "defaultValue": null
               },
               {
-                "name": "type",
+                "name": "productCode",
                 "description": null,
                 "type": {
                   "kind": "ENUM",
-                  "name": "PaymentMethodType",
+                  "name": "ProductCode",
                   "ofType": null
                 },
                 "defaultValue": null
@@ -20207,7 +20230,7 @@
             ],
             "type": {
               "kind": "OBJECT",
-              "name": "CollectPaymentMethodResponse",
+              "name": "ConfirmPaymentMethodResponse",
               "ofType": null
             },
             "isDeprecated": false,
@@ -24483,6 +24506,47 @@
         "possibleTypes": null
       },
       {
+        "kind": "INPUT_OBJECT",
+        "name": "CollectPaymentMethodInput",
+        "description": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "paymentMethodId",
+            "description": null,
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "type",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "PaymentMethodType",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "productCode",
+            "description": null,
+            "type": {
+              "kind": "ENUM",
+              "name": "ProductCode",
+              "ofType": null
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
         "kind": "ENUM",
         "name": "PaymentMethodType",
         "description": null,
@@ -24509,9 +24573,64 @@
             "description": null,
             "args": [],
             "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "nextStepUrl",
+            "description": null,
+            "args": [],
+            "type": {
               "kind": "SCALAR",
-              "name": "Boolean",
+              "name": "String",
               "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "clientSecret",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "ConfirmPaymentMethodResponse",
+        "description": null,
+        "fields": [
+          {
+            "name": "confirmed",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              }
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -24521,9 +24640,13 @@
             "description": null,
             "args": [],
             "type": {
-              "kind": "SCALAR",
-              "name": "Boolean",
-              "ofType": null
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              }
             },
             "isDeprecated": false,
             "deprecationReason": null

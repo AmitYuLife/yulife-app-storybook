@@ -113,9 +113,9 @@ declare module "tipsi-stripe" {
 
   export type ConfirmSetupIntentParams = {
     clientSecret: string;
-    paymentMethod: CreatePaymentMethodParams;
+    paymentMethod?: CreatePaymentMethodParams;
     paymentMethodId: string;
-    returnURL: string;
+    returnURL?: string;
   };
 
   export type SetupIntentConfirmationResult = {
@@ -227,32 +227,54 @@ declare module "tipsi-stripe" {
     description: string;
   }
 
+  export interface StripePaymentRequestToken {
+    billingDetails: {
+      email: string;
+      phone: string;
+      name: string;
+      addressstring;
+      postalCode: string;
+      state: string;
+      line2: string;
+      line1: string;
+      country: string;
+      city: string;
+    };
+    id: string;
+    card: PaymentMethodCard;
+    livemode: boolean;
+    created: number;
+    customerId: string;
+    type: string;
+    metadata: any;
+  }
+
   export interface CardFormParams {
     requiredBillingAddressFields: "full" | "zip";
     managedAccountCurrency: string;
-    smsAutofillDisabled: boolean;
-    prefilledInformation: {
-      email: string;
-      phone: string;
-      billingAddress: {
-        name: string;
-        line1: string;
-        line2: string;
-        city: string;
-        state: string;
-        postalCode: string;
-        country: string;
-        phone: string;
-        email: string;
+    smsAutofillDisabled?: boolean;
+    prefilledInformation?: {
+      email?: string;
+      phone?: string;
+      billingAddress?: {
+        name?: string;
+        line1?: string;
+        line2?: string;
+        city?: string;
+        state?: string;
+        postalCode?: string;
+        country?: string;
+        phone?: string;
+        email?: string;
       };
     };
-    theme: {
-      primaryBackgroundColor: string;
-      secondaryBackgroundColor: string;
-      primaryForegroundColor: string;
-      secondaryForegroundColor: string;
-      accentColor: string;
-      errorColor: string;
+    theme?: {
+      primaryBackgroundColor?: string;
+      secondaryBackgroundColor?: string;
+      primaryForegroundColor?: string;
+      secondaryForegroundColor?: string;
+      accentColor?: string;
+      errorColor?: string;
     };
   }
 
@@ -318,7 +340,7 @@ declare module "tipsi-stripe" {
     static cancelNativePayRequest(): Promise<void>;
     static openNativePaySetup(): Promise<void>;
 
-    static paymentRequestWithCardForm(params: CardFormParams): Promise<StripeToken>;
+    static paymentRequestWithCardForm(params: CardFormParams): Promise<StripePaymentRequestToken>;
     static createTokenWithCard(params: CardTokenParams): Promise<StripeToken>;
     static createTokenWithBankAccount(params: BankAccountParams): Promise<StripeToken>;
 
