@@ -29,7 +29,7 @@ export function openModal(removeItem: () => void) {
           },
           {
             label: "Don't remove",
-            onPress: () => Navigation.dismissModal(MODALS.genericOverlay),
+            onPress: () => Navigation.dismissOverlay(MODALS.genericOverlay),
           },
         ],
       },
