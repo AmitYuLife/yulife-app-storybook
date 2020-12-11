@@ -17,6 +17,7 @@ import {
   FIB_FINANCIAL_CUSTOM_COVER_FORM_SCREEN_ID,
   ACCUMULATED_PROGRESS,
 } from "@components/containers/products/fib/data/underwriting-journey-data";
+import { YugiType } from "../../../layouts/yugi";
 
 type Props = IFibUnderwritingJourneyScreenProps & ConnectedState;
 
@@ -38,6 +39,7 @@ function _FinancialQuestionsCoverListScreen(props: Props) {
       onClose={onNavigateBack}
       hideProgressBar={hideProgressBar}
       onPreviousQuestion={onPreviousButtonPressed}
+      yugi={YugiType.FINANCIAL}
     >
       <ScrollView showsVerticalScrollIndicator={false} style={styles.wrapper}>
         <FibTitle title={data.question} />

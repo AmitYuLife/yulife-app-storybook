@@ -4,6 +4,7 @@ import { YugiSvg } from "./assets/yugi-svg";
 import { Style } from "@styles";
 import Svg from "react-native-svg";
 import { YugiReviewSvg } from "./assets/yugi-review-svg";
+import { YugiFinancialSvg } from "./assets/yugi-financial-svg";
 
 interface Props {
   yugi: YugiType;
@@ -13,6 +14,7 @@ interface Props {
 export enum YugiType {
   DEFAULT = "DEFAULT",
   REVIEW = "REVIEW",
+  FINANCIAL = "FINANCIAL",
 }
 
 export const Yugi = (props: Props) => {
@@ -45,6 +47,8 @@ function getYugi(yugi: YugiType) {
   switch (yugi) {
     case YugiType.REVIEW:
       return YugiReviewSvg;
+    case YugiType.FINANCIAL:
+      return YugiFinancialSvg;
     default:
       return YugiSvg;
   }
