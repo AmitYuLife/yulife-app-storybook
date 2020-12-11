@@ -77,7 +77,6 @@ export const MODALS = {
   earnRate: "yulife.modals.earnRate",
   yuProductDetails: "yulife.member.yuProductDetails",
   financialCoverForm: "yulife.member.financialCoverForm",
-  cardInput: "yulife.modals.cardInput",
 };
 
 export const bottomTabs: OptionsBottomTabs = {

@@ -147,7 +147,8 @@ export const FibConfirmationDeclarationScreen = memo(function (props: IFibConfir
           size={"Large"}
           onPress={onContinueButton}
           label={"Continue"}
-          disabled={!statementConfirmed}
+          disabled={!statementConfirmed || loading}
+          isLoading={loading}
         />
       </ScrollView>
     </FibUnderwritingJourneyLayout>

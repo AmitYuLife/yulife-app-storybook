@@ -1,5 +1,5 @@
 import React, { memo, useState, useCallback } from "react";
-import { FibLocalNavigation, FIB_DECLARATION_CONFIRMATION } from "../fib.types";
+import { FibLocalNavigation, FIB_DECLARATION_CONFIRMATION, FIB_FEEDBACK_FORM } from "../fib.types";
 import { connect, useDispatch } from "react-redux";
 import { Navigation } from "react-native-navigation";
 import { ROUTES } from "@navigation/constants";
@@ -27,6 +27,7 @@ import {
 } from "../../../../../graphql/_core/schema/UpdateCustomerGPDetails";
 import { IReduxState } from "../../../../../redux/_core/reducers";
 import { getFIBState } from "../../../../../redux/product/product.selectors";
+import { getUserFeatures } from "../../../../../redux/user/user.selectors";
 
 interface IFibGPDetailsContainerProps {
   navigation: FibLocalNavigation;
@@ -41,7 +42,7 @@ type GPView =
   | "medical_confirm";
 
 const FibGPDetailsContainer = memo(function (props: IFibGPDetailsContainerProps & ReturnType<typeof mapStateToProps>) {
-  const { navigation, fibAnswers } = props;
+  const { navigation, fibAnswers, hasEnabledPayments } = props;
   const [gpView, setGPView] = useState<GPView>("consent");
   const [gpMedicalPracticeName, setGPMedicalPracticeName] = useState<string>("");
   const [searchGP, setSearchGP] = useState<boolean>(false);
@@ -135,8 +136,18 @@ const FibGPDetailsContainer = memo(function (props: IFibGPDetailsContainerProps 
         },
       },
     });
-    navigation.push(FIB_DECLARATION_CONFIRMATION);
-  }, [manualInput, selectedGP, selectedMedicalPractice, updateCustomerGPDetailsMutation, navigation, fibAnswers]);
+    // FIXME: Payments feature toggle (Remove feature toggle when is ready)
+    const nextScreen = hasEnabledPayments ? FIB_DECLARATION_CONFIRMATION : FIB_FEEDBACK_FORM;
+    navigation.push(nextScreen);
+  }, [
+    manualInput,
+    selectedGP,
+    selectedMedicalPractice,
+    updateCustomerGPDetailsMutation,
+    navigation,
+    fibAnswers,
+    hasEnabledPayments,
+  ]);
 
   const handleOnClose = useCallback(async () => {
     await Navigation.popTo(ROUTES.yuScreen);
@@ -270,6 +281,7 @@ const FibGPDetailsContainer = memo(function (props: IFibGPDetailsContainerProps 
 
 const mapStateToProps = (state: IReduxState) => ({
   fibAnswers: getFIBState(state).answers,
+  hasEnabledPayments: getUserFeatures(state).paymentsEnabled,
 });
 
 export default connect<ReturnType<typeof mapStateToProps>>(mapStateToProps)(FibGPDetailsContainer);

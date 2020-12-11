@@ -1,12 +1,13 @@
 import { MutationTuple } from "@apollo/react-hooks";
 import gql from "graphql-tag";
-import { CollectPaymentMethod, CollectPaymentMethodVariables } from "../_core/schema/CollectPaymentMethod";
+import { CollectPaymentMethod, CollectPaymentMethodVariables } from "../_core/schema";
 
 export const GQL_MUTATION_COLLECT_PAYMENT_METHOD = gql`
-  mutation CollectPaymentMethod($token: String!, $type: PaymentMethodType!) {
-    collectPaymentMethod(token: $token, type: $type) {
+  mutation CollectPaymentMethod($input: CollectPaymentMethodInput) {
+    collectPaymentMethod(input: $input) {
       collected
-      purchased
+      nextStepUrl
+      clientSecret
     }
   }
 `;

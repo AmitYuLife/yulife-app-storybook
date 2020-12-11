@@ -1455,10 +1455,7 @@ const _data: UnderwritingJourneyScreen[] = [
 export type OrderedUnderwritingJourneyScreen = UnderwritingJourneyScreen & { order: number };
 
 function getData(): OrderedUnderwritingJourneyScreen[] {
-  const ROUTES_WITHOUT_PROGRESS = [
-    FIB_ENTER_YOUR_DATE_OF_BIRTH,
-    FIB_ENTER_YOUR_NAME,
-  ];
+  const ROUTES_WITHOUT_PROGRESS = [FIB_ENTER_YOUR_DATE_OF_BIRTH, FIB_ENTER_YOUR_NAME];
 
   let progressCounter = 0;
 

@@ -3,25 +3,25 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { PaymentMethodType } from "./globalTypes";
+import { CollectPaymentMethodInput } from "./globalTypes";
 
 // ====================================================
 // GraphQL mutation operation: CollectPaymentMethod
 // ====================================================
 
 export interface CollectPaymentMethod_collectPaymentMethod {
-  collected: boolean | null;
-  purchased: boolean | null;
+  collected: boolean;
+  nextStepUrl: string | null;
+  clientSecret: string | null;
 }
 
 export interface CollectPaymentMethod {
   /**
-   * Collect client token for stripe payment method
+   * Collect client stripe payment method
    */
   collectPaymentMethod: CollectPaymentMethod_collectPaymentMethod | null;
 }
 
 export interface CollectPaymentMethodVariables {
-  token: string;
-  type: PaymentMethodType;
+  input?: CollectPaymentMethodInput | null;
 }

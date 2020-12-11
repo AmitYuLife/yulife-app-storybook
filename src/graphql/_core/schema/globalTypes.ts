@@ -98,6 +98,12 @@ export interface ChallengePayload {
   value?: number | null;
 }
 
+export interface CollectPaymentMethodInput {
+  paymentMethodId?: string | null;
+  type?: PaymentMethodType | null;
+  productCode?: ProductCode | null;
+}
+
 /**
  * Input to create a top ups quote
  */
