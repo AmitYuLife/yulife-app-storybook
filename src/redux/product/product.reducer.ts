@@ -24,6 +24,7 @@ import {
   FIB_LIFESTYLE_ALCOHOL_SCREEN_ID,
   FIB_UNDERWRITING_REVIEW_ANSWERS_SCREEN_ID,
 } from "../../components/containers/products/fib/data/underwriting-journey-data";
+import { ScreeningStatus } from "@graphql/_core/schema/globalTypes";
 
 export { IProductStore } from "./product.types";
 
@@ -71,7 +72,7 @@ export const initialState: IProductStore = {
     rejected: false,
     productEntityId: "",
     latestQuoteId: "",
-    status: "no_status",
+    status: ScreeningStatus.NONE,
   },
 };
 

@@ -9,15 +9,21 @@ import FibTitle from "../../../../../atoms/fib/title/title";
 export interface IFibRejectedScreenProps {
   onClose?: () => void;
   onResetFib?: () => void;
+  updateStatus: () => void;
 }
 
 export const FibRejectedScreen = memo(function (props: IFibRejectedScreenProps) {
-  const { onClose, onResetFib } = props;
+  const { onClose, onResetFib, updateStatus } = props;
 
   const backHandler = useCallback(() => {
     onClose();
     return true;
   }, [onClose]);
+
+  const onContinue = () => {
+    updateStatus();
+    onClose();
+  };
 
   useBackHandler(backHandler);
 
@@ -36,7 +42,7 @@ export const FibRejectedScreen = memo(function (props: IFibRejectedScreenProps) 
         {onResetFib ? (
           <Button type="Primary" size={"Large"} onPress={onResetFib} label={"restart journey (beta only)"} />
         ) : null}
-        <Button type="Primary" size={"Large"} onPress={onClose} label={"Continue"} />
+        <Button type="Primary" size={"Large"} onPress={onContinue} label={"Continue"} />
       </View>
     </FibUnderwritingJourneyLayout>
   );

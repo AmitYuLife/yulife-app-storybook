@@ -12,6 +12,7 @@ import moment from "moment";
 import { InfoTypes } from "@components/containers/products/fib/subcontainers/fib.info.container";
 import { getIsPersonalItem, ItemSlot } from "../yu-types";
 import { FIBStore } from "@redux/product/product.types";
+import { ScreeningStatus } from "../../../../../graphql/_core/schema/globalTypes";
 
 interface INavigateToProductScreen {
   product: GetYulifer_getYulifer_products_personal;
@@ -43,11 +44,15 @@ export const navigateToProductScreen = ({
     }
 
     const resetFib = shouldResetFib ? () => resetFibJourney() : null;
-    if (fibState.rejected) {
+    if (fibState.rejected || fibState.status === ScreeningStatus.REJECTED) {
       return handleRejected(resetFib);
     }
 
-    if (fibState.status === "RGA_LOADING") {
+    if (
+      fibState.status === ScreeningStatus.RGA_LOADING ||
+      fibState.status === ScreeningStatus.RGA_REJECTED ||
+      fibState.status === ScreeningStatus.RGA_APPLIED
+    ) {
       return Navigation.push(ROUTES.yuScreen, {
         component: {
           id: ROUTES.fib,

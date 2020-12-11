@@ -3,7 +3,7 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { GetTopUpsQuoteInput, ProductCode, CoverType } from "./globalTypes";
+import { GetTopUpsQuoteInput, ProductCode, ScreeningStatus, CoverType } from "./globalTypes";
 
 // ====================================================
 // GraphQL query operation: GetTopUpsQuote
@@ -40,7 +40,7 @@ export interface GetTopUpsQuote_getTopUpsQuote {
   /**
    * Quote status e.g: PAYMENT_PENDING, RGA_INVESTIGATION ...
    */
-  status: string | null;
+  status: ScreeningStatus | null;
   /**
    * Flag to require medical investigations
    */

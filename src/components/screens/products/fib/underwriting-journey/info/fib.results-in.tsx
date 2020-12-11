@@ -8,14 +8,19 @@ import FibTitle from "../../../../../atoms/fib/title/title";
 import { Navigation } from "react-native-navigation";
 import { MODALS } from "../../../../../../navigation/constants";
 import { FibLocalNavigation, FIB_CONFIRM_PACKAGES } from "../../../../../containers/products/fib/fib.types";
+import { ScreeningStatus } from "../../../../../../graphql/_core/schema/globalTypes";
+import Logger from "../../../../../../services/logging/logger";
 
 export interface IFibResultsInScreenProps {
   onClose?: () => void;
   navigation: FibLocalNavigation;
+  showRejectedScreen: () => void;
+  showCongratulationScreen: () => void;
+  fibStatus: ScreeningStatus;
 }
 
 export const FibResultsInScreen = memo(function (props: IFibResultsInScreenProps) {
-  const { onClose, navigation } = props;
+  const { onClose, showRejectedScreen, showCongratulationScreen, fibStatus, navigation } = props;
 
   const backHandler = useCallback(() => {
     onClose();
@@ -42,6 +47,22 @@ export const FibResultsInScreen = memo(function (props: IFibResultsInScreenProps
     });
   }, [navigation]);
 
+  const onPressContinue = useCallback(() => {
+    switch (fibStatus) {
+      case ScreeningStatus.RGA_LOADING:
+        priceChanged();
+        break;
+      case ScreeningStatus.RGA_REJECTED:
+        showRejectedScreen();
+        break;
+      case ScreeningStatus.RGA_APPLIED:
+        showCongratulationScreen();
+        break;
+      default:
+        Logger.logMixpanelEvent("Unhandled ScreeningStatus", { screeningStatus: fibStatus });
+    }
+  }, [fibStatus, priceChanged, showRejectedScreen, showCongratulationScreen]);
+
   return (
     <FibUnderwritingJourneyLayout heading={"Results"} hideProgressBar={true} onPreviousQuestion={onClose}>
       <View style={styles.wrapper}>
@@ -50,7 +71,7 @@ export const FibResultsInScreen = memo(function (props: IFibResultsInScreenProps
       </View>
 
       <View style={styles.buttonWrapper}>
-        <Button type="Primary" size={"Large"} onPress={priceChanged} label={"Continue"} />
+        <Button type="Primary" size={"Large"} onPress={onPressContinue} label={"Continue"} />
       </View>
     </FibUnderwritingJourneyLayout>
   );
