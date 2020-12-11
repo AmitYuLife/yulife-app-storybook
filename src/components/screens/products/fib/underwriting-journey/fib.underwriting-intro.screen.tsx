@@ -18,7 +18,7 @@ interface Props extends ConnectedState {
   onContinue: () => void;
 }
 
-const COPY = `In order to get you covered, I’ll need to know a bit about you. Your answers will stay between you and me (and our friends at AIG who issue your policy).\n\nI’ll send you 100 YuCoin for the approximately <bold>6 minutes</bold> it takes to complete my questions! Ready?`;
+const COPY = `In order to get you covered, I’ll need to know a bit about you. Your answers will not be seen by your employer.\n\nI’ll send you 100 YuCoin for the approximately 6 minutes it takes to complete my questions! Ready?`;
 
 function _FibUnderwritingIntroduction(props: Props) {
   const { onNavigateBack, onContinue } = props;
