@@ -11,6 +11,7 @@ import {
 import { Style, TOP_BAR } from "@styles";
 import { ProductType } from "./yu-types";
 import media from "@styles/media";
+import { YUSCREEN } from "@ids";
 
 export const YuScreen = () => {
   const [product, setProduct] = useState(null);
@@ -20,7 +21,7 @@ export const YuScreen = () => {
   }, [setProduct]);
 
   return (
-    <View style={styles.wrapper}>
+    <View style={styles.wrapper} testID={YUSCREEN}>
       <ScrollView showsVerticalScrollIndicator={false} style={styles.list}>
         <View style={styles.padTop} />
         <NameAndLevel />

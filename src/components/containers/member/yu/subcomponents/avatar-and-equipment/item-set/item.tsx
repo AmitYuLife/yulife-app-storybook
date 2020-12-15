@@ -6,6 +6,7 @@ import { SvgUnlockable } from "../../product/assets/svg-unlockable";
 import { SvgLocked } from "../../product/assets/svg-locked";
 import { ItemIcon } from "./item-icon";
 import { ItemSlot, ProductStatus } from "../../../yu-types";
+import { AVATAR_ITEM } from "@ids";
 
 export interface ItemProps {
   onPress: () => void;
@@ -19,7 +20,12 @@ export const Item = (props: ItemProps) => {
   const { onPress, earnRate, status, isSelected, itemSlot } = props;
 
   return (
-    <TouchableOpacityWithDelay activeOpacity={1} onPress={onPress} style={styles.wrapper}>
+    <TouchableOpacityWithDelay
+      activeOpacity={1}
+      onPress={onPress}
+      style={styles.wrapper}
+      testID={AVATAR_ITEM(itemSlot, status)}
+    >
       <ItemIcon isSelected={isSelected} itemSlot={itemSlot as ItemSlot} status={status as ProductStatus} />
       <View style={styles.tagWrapper}>{getTag(status, earnRate)}</View>
     </TouchableOpacityWithDelay>

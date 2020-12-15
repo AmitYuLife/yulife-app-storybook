@@ -8,6 +8,7 @@ import { useQuery } from "@apollo/react-hooks";
 import { GetYulifer } from "@graphql/_core/schema";
 import { GQL_QUERY_GET_YULIFER } from "@graphql/yuscreen";
 import { navigateToAvatarModal } from "../../navigation/navigateToAvatarModal";
+import { YUSCREEN_AVATAR } from "@ids";
 
 interface Props {
   setProduct: Dispatch<string>;
@@ -50,7 +51,12 @@ const _AvatarAndEquipment = ({ setProduct, product }: Props) => {
   }
 
   return (
-    <TouchableOpacityWithDelay onPress={dismissOverlay} activeOpacity={1} style={styles.wrapper}>
+    <TouchableOpacityWithDelay
+      onPress={dismissOverlay}
+      activeOpacity={1}
+      style={styles.wrapper}
+      testID={YUSCREEN_AVATAR}
+    >
       <ItemSet product={product} setProduct={setProduct} items={left} />
       <TouchableOpacityWithDelay onPress={navigateToAvatarModal} style={styles.avatarWrapper}>
         {!showLoading ? null : <ActivityIndicator color={Colours.darkHotPink} style={styles.activityIndicator} />}

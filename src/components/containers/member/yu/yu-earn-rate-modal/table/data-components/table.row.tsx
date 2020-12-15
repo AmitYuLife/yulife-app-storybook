@@ -7,6 +7,7 @@ import { PrefixIcon } from "./prefix-icon";
 import { StandardRates } from "./standard-rates";
 import { Label } from "./label";
 import { RATE_COLUMN_PAD, SINGLE_COLUMN_MAX_WIDTH, ROW_HEIGHT } from "../table.styles";
+import { EARN_RATE_ROW } from "@ids";
 
 export interface ITableRowProps {
   data: EarnRateDetails_getEarnRateDetails;
@@ -24,7 +25,10 @@ export function TableRow(props: ITableRowProps) {
   const noEarnRateIncrease = totalEarnRate < 2;
 
   return (
-    <View style={StyleSheet.flatten([styles.wrapper, noEarnRateIncrease && styles.noEarnRateIncrease])}>
+    <View
+      style={StyleSheet.flatten([styles.wrapper, noEarnRateIncrease && styles.noEarnRateIncrease])}
+      testID={EARN_RATE_ROW(label, standardValue)}
+    >
       <View style={styles.flex}>
         <PrefixIcon icon={icon} />
         <Label label={label} />

@@ -12,6 +12,7 @@ if (DETOX_ENABLED) {
     "currentlyFocusedField is deprecated",
     "Warning: An effect function",
     "An effect function",
+    "Possible Unhandled",
   ]);
 }
 
