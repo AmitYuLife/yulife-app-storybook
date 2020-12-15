@@ -29,6 +29,7 @@ import {
 } from "@atoms/fib/svg-assets/underwriting/medical-history-svg-strings";
 import { ChipIconType } from "@atoms/chip/chip.types";
 import { Colours } from "@styles";
+import { CANCER_ICON } from "../../../../atoms/fib/svg-assets/underwriting/medical-history-svg-strings";
 
 interface OtherQuestionResponse {
   id: string;
@@ -593,7 +594,7 @@ const _data: UnderwritingJourneyScreen[] = [
       {
         type: "medicalHistory",
         showDelimiter: false,
-        icon: DIABETES_ICON,
+        icon: CANCER_ICON,
         title: "Cancer",
         description: "Cancer including leukaemia, Hodgkin’s lymphoma, brain or spinal tumours",
       },
@@ -623,7 +624,7 @@ const _data: UnderwritingJourneyScreen[] = [
         type: "medicalHistory",
         showDelimiter: false,
         icon: LIVER_KIDNEY_DISEASE_ICON,
-        title: "Liver / kidney disease",
+        title: "Liver / Kidney disease",
         description:
           "Cirrhosis of the liver or impaired liver function, Polycystic Kidney Disease or impaired kidney function",
       },
@@ -639,7 +640,6 @@ const _data: UnderwritingJourneyScreen[] = [
         showDelimiter: false,
         icon: HIV_AIDS_ICON,
         title: "HIV / AIDS",
-        description: "A virus that damages the cells in your immune system",
       },
       {
         type: "medicalHistory",
