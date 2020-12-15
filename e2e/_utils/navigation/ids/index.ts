@@ -1,4 +1,10 @@
 
+// types
+export type ProductStatus = "active" | "locked" | "unlockable";
+export type ItemSlot = "pants" | "chest" | "gloves" | "boots" | "compass" | "map" | "binoculars" | "clockPendant";
+
+
+
 // screens
 export const COMPONENT_HOME_SCREEN = "COMPONENT_HOME_SCREEN";
 export const DAILY_STEPS_SCREEN = "DAILY_STEPS_SCREEN";
@@ -36,20 +42,14 @@ export const BUTTON_CLOSE_CHALLENGE = "BUTTON_CLOSE_CHALLENGE"
 export const BACK_BUTTON = "BACK_BUTTON"
 export const EDIT_BUTTON = "EDIT_BUTTON"
 export const CHANGE_MEMBER_NICK_BUTTON = "CHANGE_MEMBER_NICK_BUTTON"
-
 export const INPUT_LOGIN_EMAIL = "INPUT_LOGIN_EMAIL";
 export const INPUT_LOGIN_PASSWORD = (pw: any) => `INPUT_LOGIN_PASSWORD_${pw}`;
-
 export const INPUT_BUTTON = (label: string) => `INPUT_BUTTON_${label}`;
 export const TAB_BUTTON = (label: string) => `TAB_BUTTON_${label}`;
-
 export const MENU_ITEM = (label: string) => `MENU_ITEM_${label.toString().replace(/ /g, "")}`;
 export const MENU_ICON = "MENU_ICON"
-
 export const LEVEL_CHALLENGE_BUTTON = (level: number) => `LEVEL_CHALLENGE_BUTTON_${level}`;
-
 export const YUCOIN = "YUCOIN"
-
 export const NAV_BAR = (icon: "yucoin" | "quests" | "yu" | "leaderboard" | "rewards") => `NAV_BAR_${icon}`
 export const CHECK_REWARDS_BUTTON = "CHECK_REWARDS_BUTTON"
 
@@ -60,6 +60,7 @@ export const INPUT_RESET_PASSWORD = "INPUT_RESET_PASSWORD"
 export const REWARD_ITEM = (code: string) => `REWARD_ITEM_${code}`
 export const LOCKED_REWARD_ITEM = (code: string) => `LOCKED_REWARD_ITEM_${code}`
 export const CHALLENGE_HISTORY_STARS = (starCount: number, challengeType: string) => `CHALLENGE_HISTORY_STARS+${starCount}_${challengeType}`
+export const EARN_RATE_ROW = (label:string, standardValue:number) => `EARN_RATE_ROW_${label}_${standardValue}`
 
 // modals
 export const WELCOME_MODAL = (heading: string) => `WELCOME_MODAL${heading}`
@@ -97,6 +98,8 @@ export const EARN_RATE_BUTTON = (earnRate: number) => `EARN_RATE_BUTTON_${earnRa
 export const PACKAGE_SCREEN = "PACKAGE_SCREEN"
 export const YOUR_YUCOIN_SCREEN = "YOUR_YUCOIN_SCREEN"
 export const EARN_RATE_TABLE = "EARN_RATE_TABLE"
+export const YUCOIN_POWER = (powerNum: string) => `YUCOIN_POWER_${powerNum}`
+export const AVATAR_ITEM = (label:string, status:string) => `AVATAR_ITEM_${label}_${status}`
 
 // AVATAR BUILDER
 export const BODY_ITEM_TITLE = (title: string) => `BODY_ITEM_TITLE_${title}`

@@ -1,17 +1,17 @@
-import { Feature, Scenario, Given, When, Then, ScenarioOnly, FeatureOnly, FeatureSkip } from "@bdd";
+import { Feature, Scenario, Given, When, Then, FeatureOnly } from "@bdd";
 import * as scenario from "./_steps/scenario"
 import * as given from "./_steps/given"
 import * as when from "./_steps/when"
 import * as then from "./_steps/then"
-import { CUSTOMER_1, CUSTOMER_18, AUTH_18, CUSTOMER_17, AUTH_17, USER_17, AUTH_19, CUSTOMER_19, USER_18_LEADERBOARD, CUSTOMER_14, AUTH_14, CUSTOMER_21, AUTH_21, CUSTOMER_23, AUTH_23, USER_23 } from "_utils/data/stubs";
+import { CUSTOMER_1, CUSTOMER_18, AUTH_18, CUSTOMER_17, AUTH_17, AUTH_19, CUSTOMER_19, USER_18_LEADERBOARD } from "_utils/data/stubs";
 import {
     GET_STARTED_BUTTON, MALE_BODY, SKIN_TONE, VIEW_TOP_RIGHT_COIN_COUNTER, NAV_BAR, PERSONAL_PRODUCT,
     CHECK_BOX_STATE, SURVEY_SCREEN, SURVEY_TEXT_BOX, FEMALE_BODY, AVATAR_BUILDER_LIST, NO_ITEM_SELECTED, 
-    HEAD_TYPE, YUSCREEN_AVATAR, EARN_RATE_BUTTON, PACKAGE_SCREEN, FIB_SALARY_INPUT, FIB_SALARY_INPUT_VALUE, YUSCREEN, YUMOJI_PODIUM, LEADERBOARD_TITLE,
+    HEAD_TYPE, YUSCREEN_AVATAR, YUSCREEN, YUMOJI_PODIUM, LEADERBOARD_TITLE, YUCOIN_POWER,
 } from "@ids";
 
 
-FeatureSkip("I am able to use the yuscreen, create, and edit an Yumoji", async () => {
+Feature("I am able to use the yuscreen, create, and edit an Yumoji", async () => {
 
     Scenario("I can create an Yumoji on the yuscreen for the male body", scenario.start, async () => {
         Given("I login as a user", given.logInAndGoToTab("yu", CUSTOMER_18, AUTH_18), async () => {
@@ -93,12 +93,17 @@ FeatureSkip("I am able to use the yuscreen, create, and edit an Yumoji", async (
     Scenario("My earn rate and employer benefits should be correct", scenario.start, async () => {
         Given("I login", given.loginToYuScreen(), async () => {
             Then("I should be on an empty yuscreen tab", then.onEmptyYuscreen(CUSTOMER_1))
-            Then("I should see 1x Earn Rate", then.idVisible(EARN_RATE_BUTTON(1)))
-            When("I scroll to the bottom", when.scrollFromID(YUSCREEN, "up", "fast"), async () => {
-                Then("I should see my Employer benefits", then.textVisible("Employer Benefits"))
-                Then("I should see Life Insurance", then.textVisible("Life Insurance"))
-                When("I tap the earn rate", when.tapID(EARN_RATE_BUTTON(1)), async () => {
-                    Then("I should be on the 'Your YuCoin' screen", then.onYourYuCoin)
+            Then("I should see 1x Yucoin power", then.idVisible(YUCOIN_POWER("1")))
+            When("I scroll to the bottom", when.scrollFromID(YUSCREEN, "up", "slow"), async () => {
+                Then("I should see my Employer benefits", then.textVisible("Your company has equipped you with:"))
+                Then("I should see Life Insurance", then.textVisible("Group Life Insurance"))
+                When("I scroll back up", when.scrollFromID(YUSCREEN, "down", "slow"), async () => {
+                    When("I tap the earn rate", when.tapID(YUCOIN_POWER("1")), async () => {
+                        Then("I should be on the 'Your YuCoin' screen", then.onYourYuCoin)
+                    })
+                    When("I tap Got it!", when.tapText("Got it!"), async()=>{
+                        Then("I should be back on the empty yuscreen", then.onEmptyYuscreen(CUSTOMER_1))
+                    })
                 })
             })
         })
@@ -162,8 +167,11 @@ FeatureSkip("I am able to use the yuscreen, create, and edit an Yumoji", async (
     Scenario("I can complete a survey on the yuscreen", scenario.start, async () => {
         Given("I login", given.loginToYuScreen(true, CUSTOMER_17, AUTH_17), async () => {
             Then("I should see my Yumoji", then.idVisible(YUSCREEN_AVATAR))
+            When("I scroll to the bottom", when.scrollFromID(YUSCREEN, "up", "fast"), async () => {
+            Then("I should see the product list title", then.textVisible("Power up and protect yourself:"))
             Then("I should see a list of 'Coming Soon' options", then.personalProductsVisible)
-            When("I tap the gloves", when.tapID(PERSONAL_PRODUCT("LifeInsurance")), async () => {
+            })
+            When("I tap the gloves", when.tapID(PERSONAL_PRODUCT("Life Insurance")), async () => {
                 Then("I should be on the survey screen", then.onSurveyScreen)
                 Then("I should a dental insurance option, and it should not be selected", then.idVisible(CHECK_BOX_STATE("Dental insurance", false)))
                 When("I tap an option", when.tapText("Dental insurance"), async () => {
@@ -182,8 +190,7 @@ FeatureSkip("I am able to use the yuscreen, create, and edit an Yumoji", async (
                         When("I tap this submit button", when.tapText("Submit"), async () => {
                             Then("I should see a Thank You screen", then.onSurveySubmitScreen)
                             When("I tap Close", when.tapText("Close"), async () => {
-                                Then("I should be on the yuscreen", then.onYuscreen(CUSTOMER_17))
-                                Then("I should see my Yumoji", then.idVisible(YUSCREEN_AVATAR))
+                                Then("I should be on the yuscreen", then.textVisible("Power up and protect yourself:"))
                             })
                         })
                     })

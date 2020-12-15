@@ -7,6 +7,7 @@ import { TouchableOpacityWithDelay } from "@components/molecules";
 import { ProductCtaIcon } from "./product-cta-icon";
 import { getProductIcon } from "../../assets/getProductIcon";
 import { ItemSlot, ProductStatus } from "../../yu-types";
+import { PERSONAL_PRODUCT } from "@ids";
 
 export interface IProductProps {
   itemSlot: ItemSlot;
@@ -28,7 +29,7 @@ export const Product = (props: IProductProps) => {
       <Separator show={showSeparator} />
       <TouchableOpacityWithDelay activeOpacity={1} onPress={onPress} style={styles.wrapper}>
         <IconSvg style={StyleSheet.flatten([styles.productIconWrapper, { opacity: status !== "active" ? 0.6 : 1 }])} />
-        <View style={styles.productInfoWrapper}>
+        <View style={styles.productInfoWrapper} testID={PERSONAL_PRODUCT(heading)}>
           <ProductHeading text={heading} />
           <View style={styles.productSubheadingWrapper}>
             <ProductSubHeading {...subheading} />

@@ -8,6 +8,7 @@ import { showEarnRateOverlay } from "../../navigation/showEarnRateOverlay";
 import { useQuery } from "@apollo/react-hooks";
 import { GetYulifer } from "@graphql/_core/schema";
 import { GQL_QUERY_GET_YULIFER } from "@graphql/yuscreen";
+import { YUCOIN_POWER } from "@ids";
 
 const POWER_LABEL_TOP = "YuCoin Power";
 const getInfo = (power: number) =>
@@ -23,7 +24,12 @@ const _YuCoinPower = () => {
   const yuCoinPower = data?.getYulifer?.earnRate || 1;
 
   return (
-    <TouchableOpacityWithDelay activeOpacity={1} onPress={showEarnRateOverlay} style={styles.wrapper}>
+    <TouchableOpacityWithDelay
+      activeOpacity={1}
+      onPress={showEarnRateOverlay}
+      style={styles.wrapper}
+      testID={YUCOIN_POWER(yuCoinPower.toString())}
+    >
       <View style={styles.backgroundWrapper}>
         <Image resizeMode="contain" style={styles.backgroundImage} source={require("./background.png")} />
       </View>

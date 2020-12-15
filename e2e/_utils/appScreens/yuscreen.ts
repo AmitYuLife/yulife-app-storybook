@@ -4,7 +4,7 @@ import {
     AVATAR_BODY, PERSONAL_PRODUCT, SURVEY_SCREEN, BUILDER_BODY, PACKAGE_SCREEN, FIB_BROWSE_SCREEN, booleanTextVisible, wait,
 } from "@utils"
 import { scrollFromText, scrollFromID } from "_utils/navigation/scrolling"
-import { EARN_RATE_TABLE } from "@ids"
+import { EARN_RATE_ROW, EARN_RATE_TABLE } from "@ids"
 
 
 export const {
@@ -90,27 +90,21 @@ export const onAvatarCompletionScreen = async () => {
 
 export const onYourYuCoin = async () => {
     const copy = [
-        "Your YuCoin",
-        "Earn Rate Explained",
-        "2000 Steps",
-        "5 Mindful Minutes",
-        "1 Challenge",
+        "2000 steps",
+        "5 mindful mins",
+        "1 challenge",
         "Streaks",
         "Chests",
-        "Power-Ups",
-        "Life Insurance",
     ]
 
-    for (let i = 0; i < copy.length; i++) {
-        try {
-            await expect(element(by.text(copy[i]))).toBeVisible()
-            console.log(`Found ${copy[i]}`)
-        } catch (e) {
-            await scrollFromID(EARN_RATE_TABLE, "up", "fast")()
-            await expect(element(by.text(copy[i]))).toBeVisible()
-        }
+    const value = [1, 1, 6, 250, 20]
 
+    await expect(element(by.text("Your YuCoin Power"))).toBeVisible()
+
+    for (let i = 0; i < copy.length; i++) {
+        await expect(element(by.id(EARN_RATE_ROW(copy[i], value[i])))).toBeVisible()
     }
+
 }
 
 export const avatarBodyVisible = (eyes: string, hair: string, facialHair: string, glasses: string) => async () => {
@@ -139,7 +133,7 @@ export const leaderboardAvatarVisible = (facialHair: string, eyes: string, hair:
 }
 
 export const personalProductsVisible = async () => {
-    const products = ["LifeInsurance", "IncomeProtection", "CriticalIllness", "TravelInsurance"]
+    const products = ["Life Insurance", "Income Protection", "Critical Illness", "Travel Insurance"]
 
     for (const i of products) {
         await expect(element(by.id(PERSONAL_PRODUCT(i)))).toBeVisible()
