@@ -7,6 +7,91 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [2.9.0] - 2020-12-16
+
+### Features
+
+- Feature TP-574: Financial Questions
+- Feature TP-565: Review Screen icons and checkbox
+- Feature TP-564: Add new progress bar and center logo
+- Feature TP-566: Underwriting 2.0 - Medical Inputs
+- Feature TP-525: Restructure YuScreen
+
+### Bugfixes
+
+- Bugfix: Fix GP ContactDetails' FindAddress screen
+- Bugfix: Remove fetchPolicies to allow finalise package create new quotes
+- Bugfix: Fix yugi position
+- Bugfix EN-1389: Challenge completed notification mistake on iOS
+- Bugfix: Fix OnboardingSwiper controller positions
+- Bugfix: Various FIB scaling and margin fixes
+- Bugfix TP-565: Update FIB review to add yugi, title, copy, checkbox width
+- Bugfix ENG-1420: Community Goals Intro buttons on top of content on small devices screen
+- Bugfix ENG-1389: Challenge completed notification mistake
+- Bugfix: Open non http links in native browser
+- Bugfix TE-849: Input field font
+- Bugfix: Fix YuScreen ProductSet margins
+- Bugfix: Various YuScreen and Underwriting fixes
+- Bugfix: Rehydrate fib answers
+- Bugfix ENG-1345: Update duels to get steps from db
+- Bugfix: YuScreen separator and margin, missing avatar creation prompt
+- Bugfix: Add Charms to YuScreen
+- (origin/bugfix/steps-fetching) Bugfix: steps fetching at initial load
+- Bugfix TP-553: Height & Weight switch
+- Bugfix: sync the API on every 50 steps
+
+### Tasks
+
+- Task TP-580: Create stripe payment on client to use native form
+- Task TP-564: Top bar standardisation
+- Task TP-573 Card input form and collect payment mutation
+- Task TP-582: Add missing data to redux on getUserSuccess
+- Task: Define constant outside function
+- Task: Standardise TopBar and GenericHeading heights
+- Task TP-534: Send to API fib store data
+- Task ENG-1269: Create test build
+- Task TP-555: Send missing data to extract all evidence
+- Task ENG-1381: Improve component logic and apply suggestions from the PR
+- Task ENG-1381: Change nickname
+- (origin/task/add-yu-token-to-webview, task/add-yu-token-to-webview) Task: Add yu token to header webview
+- (origin/task/tp-569-update-tipsi-stripe-to-version-8.0.0-beta) Update tipsi stripe to version 8.0.0
+- Task TP-550: Refresh fib product store
+- Task: fix android runtime fitkit permissions
+
+### Extra
+
+- Detox: Yuscreen update
+- Add exit modal for gp
+- Add rga rejected and payed status
+- Fix financial covers list missing yugi, close modal
+- Introduction and medical copy change
+- Alcohol disable cta
+- Alcohol, Drugs, COVID copy update
+- fix: package.json to reduce vulnerabilities
+- Detox: Earn rate multiplier fix
+- Fix reset medical journey
+- Bugxfix: Nickname (community goals) "Save" button bug
+- fix: package.json to reduce vulnerabilities
+- Enable Android hardware back button for underwriting journey
+- Fix ENG-1381: Unable to change nickname on android
+- Fix GP details margins
+- Fix atoms/chip for small devices
+- Finish new progress bar progress accumulation logic
+- Detox: Feedback form
+- Fix underwriting rejected screen
+- Detox: Extended earn rate fix
+- Enable Contact details, GP and Payments screen
+- No need of useCallbakc
+- wip
+- goals updatE
+- updated min steps sent
+- Added skip to yuscreen tests
+- Use dob from underiting for payout calculator
+- Add Dr. on client, check for Town
+- Hotfix: goals caching
+- Detox: Goals
+- Hotfix: target sdk version
+
 ## [2.8.0] - 2020-11-05
 
 ### Features
