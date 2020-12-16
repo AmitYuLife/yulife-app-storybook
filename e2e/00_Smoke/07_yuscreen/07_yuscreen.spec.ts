@@ -1,4 +1,4 @@
-import { Feature, Scenario, Given, When, Then, FeatureOnly } from "@bdd";
+import { Feature, Scenario, Given, When, Then, FeatureOnly, ScenarioOnly } from "@bdd";
 import * as scenario from "./_steps/scenario"
 import * as given from "./_steps/given"
 import * as when from "./_steps/when"
@@ -93,21 +93,21 @@ Feature("I am able to use the yuscreen, create, and edit an Yumoji", async () =>
     Scenario("My earn rate and employer benefits should be correct", scenario.start, async () => {
         Given("I login", given.loginToYuScreen(), async () => {
             Then("I should be on an empty yuscreen tab", then.onEmptyYuscreen(CUSTOMER_1))
-            Then("I should see 1x Yucoin power", then.idVisible(YUCOIN_POWER("1")))
+            Then("I should see 1x Yucoin power", then.swipeToID(YUSCREEN, YUCOIN_POWER("1"), "up", 3))
             When("I scroll to the bottom", when.scrollFromID(YUSCREEN, "up", "slow"), async () => {
                 Then("I should see my Employer benefits", then.textVisible("Your company has equipped you with:"))
-                Then("I should see Life Insurance", then.textVisible("Group Life Insurance"))
-                When("I scroll back up", when.scrollFromID(YUSCREEN, "down", "slow"), async () => {
-                    When("I tap the earn rate", when.tapID(YUCOIN_POWER("1")), async () => {
-                        Then("I should be on the 'Your YuCoin' screen", then.onYourYuCoin)
-                    })
-                    When("I tap Got it!", when.tapText("Got it!"), async()=>{
-                        Then("I should be back on the empty yuscreen", then.onEmptyYuscreen(CUSTOMER_1))
+                Then("I should see Group Life Insurance", then.textVisible("Group Life Insurance"))
+                        When("I tap the earn rate", when.tapEarnRate, async () => {
+                            Then("I should be on the 'Your YuCoin' screen", then.onYourYuCoin)
+                        })
+                        When("I tap Got it!", when.tapText("Got it!"), async()=>{
+                            When("I scroll to the top", when.scrollFromID(YUSCREEN, "down", "fast"), async()=>{
+                                Then("I should be back on the empty yuscreen", then.onEmptyYuscreen(CUSTOMER_1))
+                            })
+                        })
                     })
                 })
             })
-        })
-    })
 
     Scenario("I can view my Yumoji after I login, and edit it", scenario.start, async () => {
         Given("I login", given.loginToYuScreen(true, CUSTOMER_17, AUTH_17), async () => {
@@ -167,30 +167,32 @@ Feature("I am able to use the yuscreen, create, and edit an Yumoji", async () =>
     Scenario("I can complete a survey on the yuscreen", scenario.start, async () => {
         Given("I login", given.loginToYuScreen(true, CUSTOMER_17, AUTH_17), async () => {
             Then("I should see my Yumoji", then.idVisible(YUSCREEN_AVATAR))
-            When("I scroll to the bottom", when.scrollFromID(YUSCREEN, "up", "fast"), async () => {
-            Then("I should see the product list title", then.textVisible("Power up and protect yourself:"))
-            Then("I should see a list of 'Coming Soon' options", then.personalProductsVisible)
-            })
-            When("I tap the gloves", when.tapID(PERSONAL_PRODUCT("Life Insurance")), async () => {
-                Then("I should be on the survey screen", then.onSurveyScreen)
-                Then("I should a dental insurance option, and it should not be selected", then.idVisible(CHECK_BOX_STATE("Dental insurance", false)))
-                When("I tap an option", when.tapText("Dental insurance"), async () => {
-                    Then("This option should be selected", then.idVisible(CHECK_BOX_STATE("Dental insurance", true)))
-                    When("I tap another option", when.tapText("Bicycle insurance"), async () => {
-                        Then("This option should be selected", then.idVisible(CHECK_BOX_STATE("Bicycle insurance", true)))
-                        Then("This Dental insurance should still be selected", then.idVisible(CHECK_BOX_STATE("Dental insurance", true)))
-                        Then("Another option should not be selected", then.idNotVisible(CHECK_BOX_STATE("Car insurance (pay for usage only", false)))
-                    })
-                    When("I scroll to the bottom", when.scrollFromID(SURVEY_SCREEN, "up", "fast"), async () => {
-                        Then("I should see a text box", then.idVisible(SURVEY_TEXT_BOX))
-                        When("I type in the text box", when.typeViaID(SURVEY_TEXT_BOX, "new features!"), async () => {
-                            Then("I should see the text I just typed", then.textVisible("new features!"))
+            When("I scroll to Power up and protect yourself", when.swipeToText(YUSCREEN, "Power up and protect yourself:", "up", 5), async()=>{
+                Then("I should see Power up and protect yourself:", then.textVisible("Power up and protect yourself:"))
+                When("I scroll to the bottom", when.scrollFromID(YUSCREEN, "up", "fast"), async () => {
+                    Then("I should see a list of 'Coming Soon' options", then.personalProductsVisible)
+                })
+                When("I tap the gloves", when.tapID(PERSONAL_PRODUCT("Life Insurance")), async () => {
+                    Then("I should be on the survey screen", then.onSurveyScreen)
+                    Then("I should a dental insurance option, and it should not be selected", then.idVisible(CHECK_BOX_STATE("Dental insurance", false)))
+                    When("I tap an option", when.tapText("Dental insurance"), async () => {
+                        Then("This option should be selected", then.idVisible(CHECK_BOX_STATE("Dental insurance", true)))
+                        When("I tap another option", when.tapText("Bicycle insurance"), async () => {
+                            Then("This option should be selected", then.idVisible(CHECK_BOX_STATE("Bicycle insurance", true)))
+                            Then("This Dental insurance should still be selected", then.idVisible(CHECK_BOX_STATE("Dental insurance", true)))
+                            Then("Another option should not be selected", then.idNotVisible(CHECK_BOX_STATE("Car insurance (pay for usage only", false)))
                         })
-                        Then("I should see a submit button", then.textVisible("Submit"))
-                        When("I tap this submit button", when.tapText("Submit"), async () => {
-                            Then("I should see a Thank You screen", then.onSurveySubmitScreen)
-                            When("I tap Close", when.tapText("Close"), async () => {
-                                Then("I should be on the yuscreen", then.textVisible("Power up and protect yourself:"))
+                        When("I scroll to the bottom", when.scrollFromID(SURVEY_SCREEN, "up", "fast"), async () => {
+                            Then("I should see a text box", then.idVisible(SURVEY_TEXT_BOX))
+                            When("I type in the text box", when.typeViaID(SURVEY_TEXT_BOX, "new features!"), async () => {
+                                Then("I should see the text I just typed", then.textVisible("new features!"))
+                            })
+                            Then("I should see a submit button", then.textVisible("Submit"))
+                            When("I tap this submit button", when.tapText("Submit"), async () => {
+                                Then("I should see a Thank You screen", then.onSurveySubmitScreen)
+                                When("I tap Close", when.tapText("Close"), async () => {
+                                    Then("I should be on the yuscreen", then.personalProductsVisible)
+                                })
                             })
                         })
                     })

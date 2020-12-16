@@ -27,3 +27,7 @@ export const {
     onPackageScreen,
     packageScreenCorrect
 } = screens.yuscreen
+
+export const {
+    swipeToID
+} = navigation.scrolling
