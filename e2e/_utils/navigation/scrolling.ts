@@ -1,4 +1,4 @@
-import { booleanTextVisible } from "./common"
+import { booleanIdVisible, booleanTextVisible } from "./common"
 
 export const scrollFromText = (text: string, direction: any, speed: any, percentage?: any) => async () => {
     const target = element(by.text(text))
@@ -33,3 +33,34 @@ export const swipeToText = (scrollID: any, targetText: string, direction: "up" |
         currentAttempt +=1
     }
 }
+
+
+export const swipeToID = (scrollID: any, targetID: string, direction: 'left' | 'right' | 'top' | 'bottom' | 'up' | 'down', maxAttempts = 10) => async () => {
+    try{
+        expect(element(by.id(targetID))).toBeVisible()
+    }catch(e){
+        let targetIDVisible = await booleanIdVisible(targetID)
+        let scroller = element(by.id(scrollID))
+        
+        let currentAttempt = 0
+        while (targetIDVisible === false && currentAttempt < maxAttempts) {
+            console.log("starting scroll.........")
+            await scroller.swipe(direction, "slow")
+            console.log("just scrolled.........")
+            targetIDVisible = await booleanIdVisible(targetID)
+            
+            if (targetIDVisible === true) {
+                await expect(element(by.text(targetID))).toBeVisible()
+                targetIDVisible = await booleanIdVisible(targetID)
+                currentAttempt = maxAttempts
+                return true
+            }
+            
+            if (targetIDVisible === false && currentAttempt === maxAttempts) {
+                throw new Error(`Could not find target text ${targetID} scrolling through ${scrollID}`)
+            }
+            currentAttempt += 1
+        }
+    }
+}
+

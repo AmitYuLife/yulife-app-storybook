@@ -1,9 +1,11 @@
-import { navigation, BODY_ITEM_TITLE, BODY_PART_ITEM, SKIN_TONE } from "@utils"
+import { navigation, BODY_ITEM_TITLE, BODY_PART_ITEM, SKIN_TONE, YUSCREEN, YUCOIN_POWER } from "@utils"
 
 
 export const {
     scrollFromText,
     scrollFromID,
+    swipeToID,
+    swipeToText
 } = navigation.scrolling
 
 export const {
@@ -13,6 +15,9 @@ export const {
     typeViaID,
     replaceTextViaID
 } = navigation.common
+
+export const {
+} = navigation.scrolling
 
 export const tapTab = (tabName: string) => async () => {
     const tab = element(by.id(BODY_ITEM_TITLE(tabName)))
@@ -27,4 +32,19 @@ export const tapItem = (partID: string) => async () => {
 export const tapColour = (hexValue: string) => async () => {
     const colour = element(by.id(SKIN_TONE(hexValue)))
     await colour.tap()
+}
+
+export const tapEarnRate = async()=>{
+    await scrollFromID(YUSCREEN, "down", "fast")()
+    await scrollFromID(YUSCREEN, "down", "fast")()
+
+    await swipeToID(YUSCREEN, YUCOIN_POWER("1"), "up", 5)()
+    try{
+        await expect(element(by.id(YUCOIN_POWER("1")))).toBeVisible()
+        await (element(by.id(YUCOIN_POWER("1")))).tap()
+    }catch(e){
+        await scrollFromID(YUSCREEN, "up", "slow")()
+        await expect(element(by.id(YUCOIN_POWER("1")))).toBeVisible()
+        await (element(by.id(YUCOIN_POWER("1")))).tap()
+    }
 }
