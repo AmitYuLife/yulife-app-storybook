@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from "react";
-import { Keyboard, StyleSheet, ScrollView } from "react-native";
+import { Keyboard } from "react-native";
 import { useMutation } from "@apollo/react-hooks";
 import { Navigation } from "react-native-navigation";
 import { ROUTES } from "@navigation/constants";
@@ -21,17 +21,7 @@ const ChangeMemberNicknameContainer: FunctionComponent = () => {
     }
   };
 
-  return (
-    <ScrollView style={styles.wrapper} keyboardShouldPersistTaps="handled">
-      <ChangeMemberNickname enableButton={true} onPress={handleOnPress} isLoading={loading} />
-    </ScrollView>
-  );
+  return <ChangeMemberNickname enableButton={true} onPress={handleOnPress} isLoading={loading} />;
 };
-
-const styles = StyleSheet.create({
-  wrapper: {
-    flex: 1,
-  },
-});
 
 export default ChangeMemberNicknameContainer;

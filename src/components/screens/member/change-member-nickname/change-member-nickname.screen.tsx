@@ -1,5 +1,5 @@
 import React, { useState, FunctionComponent, memo } from "react";
-import { View, Image, StyleSheet, ImageStyle, TextStyle, Keyboard, ViewStyle } from "react-native";
+import { View, Image, StyleSheet, ImageStyle, TextStyle, Keyboard, ViewStyle, ScrollView } from "react-native";
 import { Style, Colours } from "@styles";
 import { Button, Text, TextInput } from "@atoms";
 import { Navigation } from "react-native-navigation";
@@ -25,47 +25,52 @@ const ChangeMemberNickname: FunctionComponent<Props> = ({ enableButton, isLoadin
   };
 
   return (
-    <View testID="change-member-nickname">
-      {enableButton ? <GenericHeadingPad /> : null}
-      <View style={StyleSheet.flatten([styles.fullWidth, isKeyboardShown && styles.wrapperWithKeyboard])}>
-        {isKeyboardShown ? null : (
-          <Image style={styles.image} source={require("@assets/community-goals/intro/third.png")} />
-        )}
-        <Text style={styles.title} bold={true}>
-          Choose a nickname
-        </Text>
-        <Text style={styles.subTitle}>Enter a nickname for other YuLifers to see.</Text>
-        <View style={styles.inputWrapper}>
-          <TextInput
-            maxLength={32}
-            testID={NICKNAME_INPUT}
-            onChange={(text) => {
-              setNickname(text);
-              if (onChange) {
-                onChange(text);
-              }
-            }}
-            value={nickname}
-            type={TextInput.Types.TEXT}
-          />
+    <View style={styles.wrapper} testID="change-member-nickname">
+      <ScrollView style={styles.wrapper} keyboardShouldPersistTaps="handled">
+        {enableButton ? <GenericHeadingPad /> : null}
+        <View style={StyleSheet.flatten([styles.fullWidth, isKeyboardShown && styles.wrapperWithKeyboard])}>
+          {isKeyboardShown ? null : (
+            <Image style={styles.image} source={require("@assets/community-goals/intro/third.png")} />
+          )}
+          <Text style={styles.title} bold={true}>
+            Choose a nickname
+          </Text>
+          <Text style={styles.subTitle}>Enter a nickname for other YuLifers to see.</Text>
+          <View style={styles.inputWrapper}>
+            <TextInput
+              maxLength={32}
+              testID={NICKNAME_INPUT}
+              onChange={(text) => {
+                setNickname(text);
+                if (onChange) {
+                  onChange(text);
+                }
+              }}
+              value={nickname}
+              type={TextInput.Types.TEXT}
+            />
+          </View>
+          {enableButton ? (
+            <Button
+              disabled={!nickname}
+              testID={CHANGE_MEMBER_NICK_BUTTON}
+              type="Primary"
+              label="Save"
+              isLoading={isLoading}
+              onPress={() => onPress(nickname)}
+            />
+          ) : null}
         </View>
-        {enableButton ? (
-          <Button
-            disabled={!nickname}
-            testID={CHANGE_MEMBER_NICK_BUTTON}
-            type="Primary"
-            label="Save"
-            isLoading={isLoading}
-            onPress={() => onPress(nickname)}
-          />
-        ) : null}
-      </View>
+      </ScrollView>
       {enableButton ? <GenericHeadingAbsolute onLeftIconPress={handleNavigation} logo="yulife" /> : null}
     </View>
   );
 };
 
 const styles = StyleSheet.create({
+  wrapper: {
+    flex: 1,
+  } as ViewStyle,
   fullWidth: {
     width: Style.DEVICE_WIDTH,
     flex: 1,
