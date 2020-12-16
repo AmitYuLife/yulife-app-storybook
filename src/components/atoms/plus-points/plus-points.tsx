@@ -14,7 +14,7 @@ const PlusPoints: SFC<IProps> = ({ coins }) => (
     <View style={styles.plusWrapper}>
       <Plus scale={0.8} />
     </View>
-    <Text style={styles.text}>{`${coins}`}</Text>
+    <Text bold={true} style={styles.text}>{`${coins}`}</Text>
   </View>
 );
 

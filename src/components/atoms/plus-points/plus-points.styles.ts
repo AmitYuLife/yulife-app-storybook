@@ -7,9 +7,7 @@ export default StyleSheet.create({
   } as ViewStyle,
   text: {
     color: Colours.darkHotPink,
-    fontFamily: Style.FONT_FAMILY_PRIMARY,
     fontSize: Style.SCALE_UP_AND_DOWN(34),
-    fontWeight: "bold",
     marginBottom: Style.SCALE_UP_AND_DOWN(Platform.OS === "android" ? 2 : -4),
   } as TextStyle,
   textWrapper: {
