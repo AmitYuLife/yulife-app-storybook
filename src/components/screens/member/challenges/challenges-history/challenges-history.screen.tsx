@@ -2,7 +2,7 @@ import { Button } from "@atoms/index";
 import { getSlotDuration } from "@containers/member/quests/challenges-list/challenges-list.helpers";
 import { GetCurrentQuestLevels_getCurrentQuestLevels } from "@graphql/_core/schema";
 import * as React from "react";
-import { Image, SafeAreaView, ScrollView, StyleSheet, View } from "react-native";
+import { Image, ScrollView, StyleSheet, View } from "react-native";
 import AutoHeightImage from "react-native-auto-height-image";
 import { IConnectedScreenProps } from "../../../../../typings";
 import ChallengesHistorySlot from "./challenges-history-slot";
@@ -23,10 +23,11 @@ export default function ChallengesHistory({ level, onPressActivityHistory, onLef
   const { backgroundWrapperStyle, backgroundImage, topBarType } = getWorldStyle(normalizedWorld);
 
   return (
-    <SafeAreaView style={styles.wrapper}>
-      <SafeAreaView style={backgroundWrapperStyle}>
+    <View style={styles.wrapper}>
+      <View style={styles.topPad} />
+      <View style={backgroundWrapperStyle}>
         <Image resizeMode="cover" style={styles.background} source={backgroundImage} />
-      </SafeAreaView>
+      </View>
       <TopBar
         leftIcon="Back"
         menuLabel="map"
@@ -60,7 +61,7 @@ export default function ChallengesHistory({ level, onPressActivityHistory, onLef
         <Button type="Primary" onPress={onPressActivityHistory} label="full history" />
       </View>
       <NavBar activeIndex={1} />
-    </SafeAreaView>
+    </View>
   );
 }
 

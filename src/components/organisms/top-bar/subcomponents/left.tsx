@@ -1,5 +1,5 @@
 import React from "react";
-import { TouchableOpacity, View, StyleSheet, TextStyle, Platform, ViewStyle } from "react-native";
+import { TouchableOpacity, View, StyleSheet, TextStyle, ViewStyle } from "react-native";
 import { BUTTON_TOP_LEFT_BAR } from "@ids";
 import { Back, CloseSvg } from "@atoms";
 import { Menu } from "../assets";
@@ -19,12 +19,7 @@ interface Props {
 
 export default function Left({ onPress, icon, colour, label, textStyle }: Props) {
   return (
-    <TouchableOpacity
-      style={styles.menuWrapper}
-      onPress={onPress}
-      testID={BUTTON_TOP_LEFT_BAR}
-      accessibilityLabel={icon}
-    >
+    <TouchableOpacity style={styles.wrapper} onPress={onPress} testID={BUTTON_TOP_LEFT_BAR} accessibilityLabel={icon}>
       <Icon icon={icon} colour={colour} />
       <MenuLabel label={label} textStyle={textStyle} />
     </TouchableOpacity>
@@ -34,12 +29,20 @@ export default function Left({ onPress, icon, colour, label, textStyle }: Props)
 function Icon({ icon, colour = "#333333" }: { icon: LeftIconTypes; colour: string }) {
   switch (icon) {
     case "Menu":
-      return <Menu color={colour} />;
+      return (
+        <View style={StyleSheet.flatten([styles.iconHeight, styles.menuIconMargins])}>
+          <Menu color={colour} />
+        </View>
+      );
     case "Back":
-      return <Back color={colour} />;
+      return (
+        <View style={styles.iconHeight}>
+          <Back color={colour} />
+        </View>
+      );
     case "Close":
       return (
-        <View style={styles.closeIconMargins}>
+        <View style={StyleSheet.flatten([styles.iconHeight, styles.closeIconMargins])}>
           <CloseSvg />
         </View>
       );
@@ -61,29 +64,33 @@ function MenuLabel({ label, textStyle }: { label: string; textStyle: TextStyle }
 }
 
 const styles = StyleSheet.create({
+  wrapper: {
+    flexDirection: "row",
+    alignItems: "center",
+    paddingLeft: Style.adjust(16),
+    paddingRight: Style.adjust(8),
+    top: TOP_BAR.LEFT_PADDING_TOP,
+    height: Style.adjust(32),
+    left: 0,
+    position: "absolute",
+    marginTop: Style.adjust(2),
+  } as ViewStyle,
   menuLabel: {
     fontSize: Style.adjust(20),
     marginLeft: Style.adjust(4),
-    marginTop: Style.adjust(-6),
   } as TextStyle,
   menuLabelWrapper: {
-    marginBottom: Style.adjust(Platform.OS === "ios" ? -6 : 0),
     marginLeft: Style.adjust(8),
+    marginTop: Style.adjust(2),
   } as ViewStyle,
-  menuWrapper: {
-    alignItems: "center",
-    flexDirection: "row",
-    paddingLeft: Style.adjust(16),
-    paddingRight: Style.adjust(8),
-    paddingTop: Platform.select({
-      ios: Style.adjust(8),
-      android: Style.adjust(10),
-    }),
-    top: TOP_BAR.LEFT_PADDING_TOP,
-    left: 0,
-    position: "absolute",
+  menuIconMargins: {
+    marginTop: Style.adjust(4),
   } as ViewStyle,
   closeIconMargins: {
     marginTop: Style.adjust(4),
   } as ViewStyle,
+  iconHeight: {
+    justifyContent: "center",
+    alignItems: "center",
+  },
 });

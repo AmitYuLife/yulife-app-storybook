@@ -21,7 +21,7 @@ interface IProps {
 const Stats = ({ data, onPressClose, onPressActivityHistory }: IProps) => (
   <View style={styles.wrapper} testID={STATS_SCREEN}>
     <GenericHeadingPad />
-    <View style={{ backgroundColor: "#FAFAFE" }}>
+    <View style={styles.listWrapper}>
       {!data ? null : (
         <SectionList
           contentContainerStyle={styles.sectionListContainer}
