@@ -9,7 +9,6 @@
 
 export interface GetMobileCopy_getMobileCopy_screens_login {
   heading: string | null;
-  subheading: string | null;
   ctaLabel: string | null;
   ctaLabelSecondary: string | null;
 }

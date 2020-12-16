@@ -4,16 +4,7 @@ import { PureComponent } from "react";
 import { EmitterSubscription, Keyboard, KeyboardAvoidingView, Platform, View } from "react-native";
 import * as Animatable from "react-native-animatable";
 import { GetMobileCopy_getMobileCopy_screens_login as LoginCopy } from "../../../graphql/_core/schema";
-import {
-  Blurb,
-  Button,
-  CentredScreen,
-  Heading,
-  Pad,
-  TextInput,
-  TextInputError,
-  UnauthorisedGradient,
-} from "../../atoms";
+import { Button, CentredScreen, Heading, Pad, TextInput, TextInputError, UnauthorisedGradient } from "../../atoms";
 import { LinkGroup } from "../../molecules";
 import styles from "./login.screen.styles";
 
@@ -83,7 +74,6 @@ class LoginScreen extends PureComponent<IProps, IState> {
               <View>
                 <Pad height={100} />
                 <Heading label={copy.heading} size="large" />
-                <Blurb label={copy.subheading} wrapperStyle={styles.blurbWrapper} />
               </View>
             )}
             <Pad height={44} />
