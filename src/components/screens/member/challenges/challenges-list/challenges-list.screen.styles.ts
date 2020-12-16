@@ -24,4 +24,7 @@ export default StyleSheet.create({
   wrapper: {
     flex: 1,
   } as ViewStyle,
+  topPad: {
+    height: Platform.OS === "ios" ? Style.getSafeAreaStart() : 0,
+  } as ViewStyle,
 });

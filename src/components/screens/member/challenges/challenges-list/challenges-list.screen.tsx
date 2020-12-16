@@ -2,13 +2,12 @@ import { CHALLENGE_SCREEN } from "@ids";
 import { ChallengesList, IChallengesListProps } from "@molecules/index";
 import { getCurrentWorld } from "@services/utils";
 import * as React from "react";
-import { Image, SafeAreaView, StyleSheet, View } from "react-native";
+import { Image, StyleSheet, View } from "react-native";
 import { IMilestoneProps } from "../challenge-details/milestones";
 import styles from "./challenges-list.screen.styles";
 import { ChallengeType } from "@molecules/challenge-tile/challenge-tile.types";
 import { TopBar } from "@components/organisms";
 import { NavBar } from "@components/organisms";
-
 interface IProps extends IChallengesListProps {
   currentLevel?: number;
   name: string;
@@ -57,21 +56,22 @@ export default class ChallengesListScreen extends React.Component<IProps, IState
     const { backgroundWrapperStyle, backgroundImage, topBarType } = getWorldStyle(currentLevel) as any;
 
     return (
-      <SafeAreaView style={styles.wrapper} testID={CHALLENGE_SCREEN}>
-        <SafeAreaView style={backgroundWrapperStyle}>
+      <View style={styles.wrapper} testID={CHALLENGE_SCREEN}>
+        <View style={styles.topPad} />
+        <View style={backgroundWrapperStyle}>
           <Image
             onLayout={this.showChallengeTiles}
             resizeMode="cover"
             style={styles.background}
             source={backgroundImage}
           />
-        </SafeAreaView>
+        </View>
         <View style={styles.challengeSetWrapper}>
           {this.state.hideChallengeTiles ? null : <ChallengesList challenges={challenges} />}
         </View>
         <TopBar type={topBarType} leftIcon="Back" menuLabel="map" name={name} onPressLeftIcon={onPressLeftIcon} />
         <NavBar activeIndex={1} additionalBottom={2} />
-      </SafeAreaView>
+      </View>
     );
   }
 

@@ -5,14 +5,13 @@ import { Style } from "@styles";
 
 interface Props {
   color?: string;
-  scale?: number;
 }
 
-function Back({ color = "#464647", scale = 1 }: Props) {
+function Back({ color = "#464647" }: Props) {
   return (
     <Svg
-      height={String(Style.adjust(22 * scale))}
-      width={String(Style.adjust(12 * scale))}
+      height={String(Style.adjust(22))}
+      width={String(Style.adjust(12))}
       viewBox="0 0 12 22"
       fill="none"
       testID={BACK_BUTTON}

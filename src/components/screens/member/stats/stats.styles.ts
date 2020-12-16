@@ -6,6 +6,10 @@ export default StyleSheet.create({
     flex: 1,
     backgroundColor: "#FFFFFF",
   } as ViewStyle,
+  listWrapper: {
+    backgroundColor: "#FAFAFE",
+    paddingBottom: Style.hasNotch ? Style.adjust(80) : Style.adjust(40),
+  } as ViewStyle,
   sectionList: {
     paddingLeft: Style.SCALE_UP_AND_DOWN(16),
     paddingRight: Style.SCALE_UP_AND_DOWN(16),
@@ -38,6 +42,7 @@ export default StyleSheet.create({
     alignItems: "center",
     width: "100%",
     height: Style.SCALE_UP_AND_DOWN(40),
+    justifyContent: "center",
   } as ViewStyle,
   activityHistory: {
     textDecorationLine: "underline",

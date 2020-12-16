@@ -49,4 +49,7 @@ export default StyleSheet.create({
     height: Style.SCALE_UP_AND_DOWN(430),
   } as ViewStyle,
   contentContainer: { paddingBottom: Style.SCALE_UP_AND_DOWN(70) } as ViewStyle,
+  topPad: {
+    height: Platform.OS === "ios" ? Style.getSafeAreaStart() : 0,
+  } as ViewStyle,
 });
