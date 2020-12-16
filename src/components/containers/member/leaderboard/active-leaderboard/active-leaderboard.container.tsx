@@ -49,7 +49,7 @@ const _ActiveLeaderboard = (props: Props) => {
   }, [refetch]);
 
   const setConsent = useCallback(() => {
-    updateLeaderboardConsent({ leaderboardId: activeLeaderboard.leaderboardId, consent: true });
+    updateLeaderboardConsent({ leaderboardId: activeLeaderboard?.leaderboardId, consent: true });
   }, [activeLeaderboard, updateLeaderboardConsent]);
 
   const openModal = useCallback(async () => {
