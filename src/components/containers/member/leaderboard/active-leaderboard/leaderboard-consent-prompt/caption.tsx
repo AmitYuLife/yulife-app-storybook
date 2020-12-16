@@ -20,11 +20,14 @@ export function Caption(props: Props) {
       <Text style={captionStyle.heading} bold={true}>
         {heading}
       </Text>
-      {subheading.split("\n").map((segment, i) => (
-        <Text key={i} style={captionStyle.subheading}>
-          {segment}
-        </Text>
-      ))}
+      {subheading
+        .split("\n")
+        .filter((segment) => !!segment)
+        .map((segment, i) => (
+          <Text key={i} style={captionStyle.subheading}>
+            {segment}
+          </Text>
+        ))}
       <Button wrapperStyle={captionStyle.button} label={ctaLabel} onPress={setConsent} type="Primary" />
     </View>
   );

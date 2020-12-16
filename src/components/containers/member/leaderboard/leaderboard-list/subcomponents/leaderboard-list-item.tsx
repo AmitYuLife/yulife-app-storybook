@@ -13,7 +13,7 @@ interface Props {
 export const LeaderboardListItems = (props: Props) => {
   const { leaderboards, activeLeaderboardId, onPress } = props;
 
-  if (!leaderboards.length) {
+  if (!leaderboards || !leaderboards.length) {
     return null;
   }
 
