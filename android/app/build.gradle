@@ -1,5 +1,16 @@
+import groovy.json.JsonSlurper
+
 def safeExtGet(prop, fallback) {
     rootProject.ext.has(prop) ? rootProject.ext.get(prop) : fallback
+}
+
+def getVersionFromNpm() {
+    //  Read and parse package.json file from project root
+    def inputFile = new File("$rootDir/../package.json")
+    def packageJson = new JsonSlurper().parseText(inputFile.text)
+
+    // Return the version, you can get any value this way
+    return packageJson["version"]
 }
 
 apply plugin: "com.android.application"
@@ -169,6 +180,7 @@ android {
             applicationIdSuffix ".debug"
             debuggable true
             matchingFallbacks = ['debug']
+            resValue 'string', 'app_name', "YuLife (local v${getVersionFromNpm()})"
         }
         local {
             initWith debug
@@ -179,12 +191,14 @@ android {
             applicationIdSuffix  ".release"
             matchingFallbacks = ['release']
             manifestPlaceholders = [deepLinkHost: "join-develop.yulife.com", deepLinkAppName:"yulife-develop"]
+            resValue 'string', 'app_name', "YuLife (develop v${getVersionFromNpm()})"
         }
         uat {
             initWith release
             applicationIdSuffix ".release"
             matchingFallbacks = ['release']
             manifestPlaceholders = [deepLinkHost: "join-uat.yulife.com", deepLinkAppName:"yulife-uat"]
+            resValue 'string', 'app_name', "YuLife (uat v${getVersionFromNpm()})"
         }
         production {
             initWith uat
@@ -193,6 +207,7 @@ android {
             manifestPlaceholders = [deepLinkHost: "join.yulife.com", deepLinkAppName:"yulife"]
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+            resValue 'string', 'app_name', 'YuLife'
         }
     }
 
