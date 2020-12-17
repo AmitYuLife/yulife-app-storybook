@@ -57,7 +57,9 @@ export default function* sendPassiveActivity() {
             isUpdated = true;
             yield put(meditationSinceLastUpdateSuccess());
           } catch (e) {
-            yield spawn(() => Logger.logMixpanelError(e, "sendMeditationSinceLastUpdated"));
+            yield spawn(() => {
+              Logger.error(e, { event: "sendMeditationSinceLastUpdated" });
+            });
             yield delay(15000);
           }
         }
@@ -93,7 +95,9 @@ export default function* sendPassiveActivity() {
               isUpdated = true;
               yield put(stepsSinceLastUpdateSuccess());
             } catch (e) {
-              yield spawn(() => Logger.logMixpanelError(e, "sendStepsSinceLastUpdated"));
+              yield spawn(() => {
+                Logger.error(e, { event: "sendStepsSinceLastUpdated" });
+              });
               yield delay(15000);
             }
           }
@@ -152,7 +156,9 @@ export default function* sendPassiveActivity() {
       }
     }
   } catch (e) {
-    yield spawn(() => Logger.logMixpanelError(e, "sendPassiveActivitySinceLastUpdate"));
+    yield spawn(() => {
+      Logger.error(e, { event: "sendPassiveActivitySinceLastUpdate" });
+    });
   }
 }
 

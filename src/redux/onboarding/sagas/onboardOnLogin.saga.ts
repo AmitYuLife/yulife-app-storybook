@@ -22,6 +22,8 @@ export default function* onboardOnLogin({ payload }: ReturnType<typeof loginUser
       yield call(redeemOnboarding);
     }
   } catch (e) {
-    yield spawn(() => Logger.logMixpanelError(e, "onboardOnLogin"));
+    yield spawn(() => {
+      Logger.error(e, { event: "onboardOnLogin" });
+    });
   }
 }

@@ -26,7 +26,7 @@ export class WebViewErrorBoundary extends React.Component<Props, State> {
   }
 
   componentDidCatch(error: Error) {
-    Logger.logMixpanelError(error, `@webview-${this.props.uri}`);
+    Logger.error(error, { url: this.props.uri });
   }
 
   render() {

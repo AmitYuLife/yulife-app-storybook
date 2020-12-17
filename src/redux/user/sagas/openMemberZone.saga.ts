@@ -16,6 +16,8 @@ export default function* openMemberZoneSaga() {
 
     yield call(handleOpenWebView, { uri: data.getMagicLink, title: "member zone" });
   } catch (e) {
-    yield spawn(() => Logger.logMixpanelError(e, "openMemberZone"));
+    yield spawn(() => {
+      Logger.error(e, { event: "openMemberZone" });
+    });
   }
 }

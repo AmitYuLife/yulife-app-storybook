@@ -13,6 +13,8 @@ export default function* updateLeaderboardConsentSaga({ payload }: ReturnType<ty
     yield put(updateLeaderboardConsentSuccess(payload));
   } catch (e) {
     yield put(updateLeaderboardConsentFailed(payload));
-    yield spawn(() => Logger.logMixpanelError(e, "updateLeaderboardConsentSaga"));
+    yield spawn(() => {
+      Logger.error(e, { event: "updateLeaderboardConsentSaga" });
+    });
   }
 }

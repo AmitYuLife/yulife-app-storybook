@@ -13,6 +13,9 @@ export default function* redeemOnboarding() {
       yield put(getUserStart());
     }
   } catch (e) {
-    yield spawn(() => Logger.logEvent("onboarding_challenge_failed", { message: e.message }));
+    yield spawn(() => {
+      Logger.error(e, { event: "onboarding_challenge_failed" });
+      Logger.logEvent("onboarding_challenge_failed", { message: e.message });
+    });
   }
 }

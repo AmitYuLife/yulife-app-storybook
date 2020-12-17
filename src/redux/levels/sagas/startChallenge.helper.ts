@@ -101,7 +101,9 @@ export default function* startChallenge({ subtype, levelSlotId, startDateTime, e
         inProgress = false;
       } catch (e) {
         yield put(challengeResetFailAction());
-        yield spawn(() => Logger.logMixpanelError(e, "startChallenge"));
+        yield spawn(() => {
+          Logger.error(e, { event: "startChallenge" });
+        });
       }
     } else if (challengeTimeUp) {
       inProgress = false;

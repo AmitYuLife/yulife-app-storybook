@@ -2,6 +2,7 @@ import { setOfflineRoot } from "@navigation/root";
 import { call, select } from "redux-saga/effects";
 import { ROUTES } from "@navigation/constants";
 import { getRouteState } from "../app.selectors";
+import Logger from "@services/logging/logger";
 
 interface IMainRootPayload {
   payload: boolean;
@@ -17,7 +18,7 @@ export default function* showOfflineScreenSaga({ payload: isOffline }: IMainRoot
         yield call(setOfflineRoot);
       }
     } catch (e) {
-      console.error(e);
+      Logger.error(e, { event: "showOfflineScreen" });
     }
   }
 }

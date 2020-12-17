@@ -80,7 +80,7 @@ const LinkRewardDetailsContainer: FC<Props> = (props) => {
     try {
       await redeemReward({ variables: { id: code, amount: value } });
     } catch (e) {
-      Logger.logMixpanelError(e, "linkRewardDetailsContainer");
+      Logger.error(e, { event: "linkRewardDetailsContainer", file: "link-details-container" });
     }
 
     Logger.logEvent("reward_redeem_pressed", {

@@ -13,6 +13,8 @@ export default function* sendHistoricalDataOnPushSaga() {
       yield call(sendHistoricalData, moment(onboardingDate));
     }
   } catch (e) {
-    yield spawn(() => Logger.logMixpanelError(e, "sendHistoricalDataOnPushSaga"));
+    yield spawn(() => {
+      Logger.error(e, { event: "sendHistoricalDataOnPushSaga" });
+    });
   }
 }

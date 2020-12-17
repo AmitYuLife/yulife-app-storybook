@@ -16,7 +16,7 @@ export function createPushNotificationsChannel() {
         emitter(result);
       },
       onRegistrationError: (err) => {
-        Logger.logMixpanelError(`Push notification error: ${err?.message}`, {});
+        Logger.error(err, { event: "pushNotification" });
       },
       permissions: {
         alert: true,

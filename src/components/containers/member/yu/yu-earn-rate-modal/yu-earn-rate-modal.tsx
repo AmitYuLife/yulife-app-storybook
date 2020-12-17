@@ -35,7 +35,7 @@ const YuEarnRateModal = () => {
 
   const earnRate = useMemo(() => data?.getYulifer?.earnRate || 1, [data]);
   const explainData = useMemo(() => earnRateData?.getEarnRateDetails || [], [earnRateData]);
-  console.log(explainData);
+
   const backHandler = useCallback(() => {
     dismissOverlay();
     return true;

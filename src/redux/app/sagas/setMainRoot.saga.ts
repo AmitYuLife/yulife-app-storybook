@@ -57,7 +57,10 @@ async function getTokenStatus(): Promise<TokenStatus> {
     const { data, errors } = await getSession();
 
     if (errors && errors.length) {
-      Logger.logMixpanelError("error trying to get user session", errors);
+      for (const error of errors) {
+        Logger.error(error, { message: "error trying to get user session" });
+      }
+
       return null;
     }
 

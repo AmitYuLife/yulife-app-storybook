@@ -26,7 +26,7 @@ export default function* listenToSteps() {
       const currentSteps = yield select(getSteps);
 
       if (results === ERROR_NOT_AUTHORISED) {
-        yield spawn(() => Logger.logMixpanelError(ERROR_NOT_AUTHORISED, "listenToSteps"));
+        yield spawn(() => Logger.error(new Error(ERROR_NOT_AUTHORISED), { event: "listenToSteps" }));
         yield put(updatePedometerNoNewDataAction());
         continue;
       }
@@ -41,7 +41,9 @@ export default function* listenToSteps() {
         yield put(updatePedometerNoNewDataAction());
       }
     } catch (e) {
-      yield spawn(() => Logger.logMixpanelError(e, "listenToSteps"));
+      yield spawn(() => {
+        Logger.error(e, { event: "listenToSteps" });
+      });
     } finally {
       if (yield cancelled()) {
         channel.close();

@@ -7,6 +7,7 @@ import { GetMobileCopy_getMobileCopy_screens_pushNotification } from "../../../g
 import { requirePushEnabled } from "../../../redux/device/device.actions";
 import { IPushNotification } from "../../../redux/device/device.selectors";
 import { GenericScreen } from "../../screens";
+import Logger from "@services/logging/logger";
 
 type ConnectedDispatch = typeof mapDispatchToProps;
 
@@ -51,8 +52,7 @@ class PushNotificationsModal extends PureComponent<Props> {
     try {
       await Linking.openURL("app-settings:");
     } catch (e) {
-      // tslint:disable-next-line
-      // console.log(e);
+      Logger.error(e, { url: "app-settings" });
     }
 
     this.dismissModal();

@@ -23,7 +23,9 @@ export default function* updateDailyStepsSaga({ payload }: ReturnType<typeof upd
       yield put(stepsWithNoUpdate());
     }
   } catch (e) {
-    yield spawn(() => Logger.logMixpanelError(e, "updateDailySteps"));
+    yield spawn(() => {
+      Logger.error(e, { event: "updateDailySteps" });
+    });
     yield put(updateDailyStepsFailed(e.message));
   }
 }
