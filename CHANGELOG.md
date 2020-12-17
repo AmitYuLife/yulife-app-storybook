@@ -7,6 +7,24 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.0.0] - 2020-12-17
+
+### Bugfixes
+
+- Bugfix: Fix TopBar left menu icon position
+- Bugfix ENG-1481: Nonsensical copy in the "Welcome" screen of the app
+- Bugfix: Fix community goals change nickname screen, plus points font
+- Bugfix: Fix leaderboard issues
+
+### Chores
+
+- Chore: Bugsnag errors
+- Chore/better naming for android builds
+
+### Extra
+
+- Fix copy and icon color
+
 ## [2.9.0] - 2020-12-16
 
 ### Features
