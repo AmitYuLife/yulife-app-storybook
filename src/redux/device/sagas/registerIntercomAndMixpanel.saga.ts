@@ -5,6 +5,7 @@ import Intercom from "react-native-intercom";
 import Mixpanel from "react-native-mixpanel";
 import { call, spawn } from "redux-saga/effects";
 import { addDeviceToken } from "../device.actions";
+import Logger from "@services/logging/logger";
 
 function* registerDeviceOnYuServer(deviceToken: string) {
   try {
@@ -15,7 +16,7 @@ function* registerDeviceOnYuServer(deviceToken: string) {
       subscribed: true,
     });
   } catch (e) {
-    // log?
+    Logger.error(e, { event: "registerDevice" });
   }
 }
 

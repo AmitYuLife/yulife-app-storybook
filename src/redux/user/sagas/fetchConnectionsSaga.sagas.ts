@@ -33,6 +33,6 @@ export default function* fetchConnectionsSaga({ payload }: ReturnType<typeof upd
       }
     }
   } catch (e) {
-    Logger.logMixpanelError(e, "fetchConnectionsSaga");
+    Logger.error(e, { event: "fetchConnectionsSaga" });
   }
 }

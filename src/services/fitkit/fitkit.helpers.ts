@@ -135,7 +135,7 @@ export const authoriseCycling = async () => {
       read: [FitKitTypes.Types.Biking],
     });
   } catch (e) {
-    // console.log("welp... ", e);
+    Logger.error(e, { event: "authoriseCycling" });
   }
 };
 

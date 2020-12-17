@@ -4,6 +4,7 @@ import { SplashScreen } from "@screens/index";
 import * as React from "react";
 import { Linking, Platform, StyleSheet, Text, View } from "react-native";
 import { PersistGate } from "redux-persist/integration/react";
+import Logger from "@services/logging/logger";
 
 interface IProps {
   componentId: string;
@@ -21,8 +22,8 @@ export const AppLoadingContainer: React.FC<IProps> = () => {
     if (Platform.OS === "android") {
       Linking.getInitialURL()
         .then(setUrl)
-        .catch(() => {
-          // console.log(e.message);
+        .catch((error) => {
+          Logger.error(error, { file: "app-loading-container" });
         });
     }
   }, []);

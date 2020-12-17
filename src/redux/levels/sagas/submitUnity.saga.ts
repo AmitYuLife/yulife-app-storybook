@@ -5,10 +5,12 @@ import { getUserStart } from "../../user/user.actions";
 import { submitUnityAction } from "../levels.actions";
 
 export default function* submitUnitySaga({ payload }: ReturnType<typeof submitUnityAction>) {
-    try {
-        yield call(submitUnityChallengeWithClient, payload.levelId);
-        yield put(getUserStart());
-    } catch (e) {
-        yield spawn(() => Logger.logMixpanelError(e, "submitUnity"));
-    }
+  try {
+    yield call(submitUnityChallengeWithClient, payload.levelId);
+    yield put(getUserStart());
+  } catch (e) {
+    yield spawn(() => {
+      Logger.error(e, { event: "submitUnity" });
+    });
+  }
 }

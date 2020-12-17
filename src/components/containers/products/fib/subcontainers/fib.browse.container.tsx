@@ -42,7 +42,7 @@ const documents: IFaq[] = fibDocumentsItems.map((document) => ({
       try {
         await Linking.openURL(document.url);
       } catch (e) {
-        Logger.logMixpanelError(e, `${document.id}_error`);
+        Logger.error(e, { documentId: document.id, file: "fib-browse.container" });
       }
     }
   },

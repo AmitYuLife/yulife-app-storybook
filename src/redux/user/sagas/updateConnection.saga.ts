@@ -18,7 +18,9 @@ export default function* updateConnectionSaga({ payload }: ReturnType<typeof upd
       }
     } catch (e) {
       yield put(updateConnectionFailed(payload));
-      yield spawn(() => Logger.logMixpanelError(e, "updateConnectionSaga_onDisconnect"));
+      yield spawn(() => {
+        Logger.error(e, { event: "updateConnectionSaga_onDisconnect" });
+      });
     }
   } else {
     // connect
@@ -32,7 +34,9 @@ export default function* updateConnectionSaga({ payload }: ReturnType<typeof upd
       }
     } catch (e) {
       yield put(updateConnectionFailed(payload));
-      yield spawn(() => Logger.logMixpanelError(e, "updateConnectionSaga_onConnect"));
+      yield spawn(() => {
+        Logger.error(e, { event: "updateConnectionSaga_onConnect" });
+      });
     }
   }
 }

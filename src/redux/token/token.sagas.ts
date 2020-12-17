@@ -2,7 +2,7 @@ import { IntercomHashMethod } from "@graphql/_core/schema/globalTypes";
 import refreshSession, { RefreshSessionExecutionResult } from "@graphql/user/refreshSession.gql";
 import { REFRESH_USER_TOKEN } from "@redux/user/user.actions";
 import { TOKEN_EXPIRATION } from "@services/constants";
-import logger from "@services/logging/logger";
+import Logger from "@services/logging/logger";
 import { setToken } from "@services/storage";
 import { Platform } from "react-native";
 import { call, takeLatest } from "redux-saga/effects";
@@ -15,7 +15,11 @@ export function* updateTokenIfExpired() {
     });
 
     if (result.errors && result.errors.length) {
-      yield call(() => logger.logMixpanelError("error trying to refresh session", result.errors));
+      yield call(() => {
+        for (const error of result.errors) {
+          Logger.error(error, { event: "refreshSession" });
+        }
+      });
       return;
     }
 

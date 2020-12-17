@@ -77,10 +77,10 @@ const ActivityHistoryContainer: FC<Props> = ({
             dispatchGetUserStart();
           }
         } catch (e) {
-          Logger.logMixpanelError(error, "@activity_history_reload_catched");
+          Logger.error(error, { event: "@activity_history_reload_catched" });
         }
       } else {
-        Logger.logMixpanelError(error, "@activity_history_reload");
+        Logger.error(error, { event: "@activity_history_reload" });
       }
     } else {
       refetch();

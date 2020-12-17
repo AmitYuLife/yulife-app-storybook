@@ -31,7 +31,9 @@ export default function* endChallengeSaga() {
         }
       } catch (e) {
         yield put(challengeEndFailAction());
-        yield spawn(() => Logger.logMixpanelError(e, "endChallenge"));
+        yield spawn(() => {
+          Logger.error(e, { event: "endChallenge" });
+        });
       }
     }
   } else {

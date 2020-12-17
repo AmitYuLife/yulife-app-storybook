@@ -6,7 +6,7 @@ import { getToken } from "@services/storage";
 import { pathOr } from "@services/utils";
 import { call, put, spawn } from "redux-saga/effects";
 import { getUserSuccess, setUserNoAccessAction } from "../user.actions";
-
+import Logger from "@services/logging/logger";
 import setLoggerIdentity from "./setLoggerIdentity.helper";
 
 export default function* getUserDataSaga() {
@@ -32,7 +32,6 @@ export default function* getUserDataSaga() {
       }
     }
   } catch (e) {
-    // tslint:disable-next-line
-    console.log(e);
+    Logger.error(e, { event: "getUserData" });
   }
 }

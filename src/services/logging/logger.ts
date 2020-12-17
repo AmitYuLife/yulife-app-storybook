@@ -57,8 +57,21 @@ class LoggerInstance {
     });
   }
 
-  public logMixpanelError(e: Error | string, where: any) {
-    this.logMixpanelEvent("app_catched_error", { message: typeof e === "string" ? e : e.message, where });
+  public error(error: Error, tags: Record<string, string | number | boolean>) {
+    if (Config.ENV == "dev") {
+      // tslint:disable-next-line
+      console.error(error, tags);
+    }
+
+    this.bugsnag.notify(error, function (event) {
+      // TODO: Omit tags we don't want to see in bugsnag
+      if (Object.keys(tags).length) {
+        for (const tag of Object.keys(tags)) {
+          event.addMetadata("tags", tag, tags[tag]);
+        }
+      }
+      // If this function returns false, the event won't be emitted
+    });
   }
 }
 

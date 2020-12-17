@@ -49,7 +49,9 @@ export default function* getDailyMeditation() {
 
                 isUpdated = true;
               } catch (e) {
-                yield spawn(() => Logger.logMixpanelError(e, "getDailyMeditation"));
+                yield spawn(() => {
+                  Logger.error(e, { event: "getDailyMeditation" });
+                });
                 yield delay(15000);
               }
             }
@@ -59,7 +61,9 @@ export default function* getDailyMeditation() {
         }
       }
     } catch (e) {
-      yield spawn(() => Logger.logMixpanelError(e, "getDailyMeditation"));
+      yield spawn(() => {
+        Logger.error(e, { event: "getDailyMeditation" });
+      });
       yield delay(15000);
     }
   }

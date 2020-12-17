@@ -6,6 +6,7 @@ import { Navigation } from "react-native-navigation";
 import { connect } from "react-redux";
 import { CreateLeaderboardScreen } from "../../screens";
 import { useMutation } from "@apollo/react-hooks";
+import Logger from "@services/logging/logger";
 
 type ConnectedDispatch = typeof mapDispatchToProps;
 
@@ -32,7 +33,7 @@ const CreateLeaderboardModal: React.FC<Props> = ({ componentId, getUserStart: di
       dispatchGetUserStart();
       await Navigation.dismissModal(componentId);
     } catch (e) {
-      // console.log(e);
+      Logger.error(e, { file: "create-leaderboard.modal" });
     }
   };
 

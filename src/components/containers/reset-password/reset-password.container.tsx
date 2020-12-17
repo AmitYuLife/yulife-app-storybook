@@ -12,6 +12,7 @@ import { getCopy } from "../../../redux/copy/copy.selectors";
 import { EmailSentScreen, ResetPasswordScreen } from "../../screens";
 import { validateEmail } from "../login/login.helpers";
 import { useMutation } from "@apollo/react-hooks";
+import Logger from "@services/logging/logger";
 
 interface IProps {
   componentId: string;
@@ -45,8 +46,7 @@ const ResetPasswordContainer: FC<Props> = ({ copy, copyEmailSent, componentId }:
           setState({ wasEmailSent: true, emailError, email });
         }
       } catch (e) {
-        // tslint:disable-next-line
-        console.log(e);
+        Logger.error(e, { file: "reset-password.container" });
       }
     }
   }, [email, emailError, sendMagicLink]);

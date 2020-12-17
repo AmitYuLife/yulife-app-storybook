@@ -13,12 +13,15 @@ export default function* sendHistoricalData(onboardingDate: Moment) {
   try {
     const { results } = yield call(queryHistoricalData, onboardingDate);
 
-    if (!!results.length) {
+    if (results.length) {
       yield call(addHistoricalSteps, results, false);
       yield put(setHistoricalDataCollected());
     }
   } catch (e) {
-    yield spawn(() => Logger.logEvent("historical_steps_sync_failed", { message: e.message }));
+    yield spawn(() => {
+      Logger.error(e, { event: "historical_steps_sync_failed" });
+      Logger.logEvent("historical_steps_sync_failed", { message: e.message });
+    });
   }
 }
 
@@ -28,11 +31,14 @@ export function* sendHistoricalMeditationData(onboardingDate: Moment) {
 
     const results = yield call(queryHistoricalMeditationData, onboardingDate, userFeatures);
 
-    if (!!results.length) {
+    if (results.length) {
       yield call(addHistoricalData, results, PassiveChallengeType.MEDITATION);
       yield put(setHistoricalMeditationDataCollected());
     }
   } catch (e) {
-    yield spawn(() => Logger.logEvent("historical_meditation_sync_failed", { message: e.message }));
+    yield spawn(() => {
+      Logger.error(e, { event: "historical_meditation_sync_failed" });
+      Logger.logEvent("historical_meditation_sync_failed", { message: e.message });
+    });
   }
 }

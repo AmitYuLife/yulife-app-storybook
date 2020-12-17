@@ -43,6 +43,8 @@ export default function* onboardOnGetUser({ payload }: ReturnType<typeof getUser
       yield put(setShowIntro(true));
     }
   } catch (e) {
-    yield spawn(() => Logger.logMixpanelError(e, "onboardOnGetUser"));
+    yield spawn(() => {
+      Logger.error(e, { event: "onboardOnGetUser" });
+    });
   }
 }

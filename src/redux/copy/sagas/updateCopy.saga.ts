@@ -16,6 +16,8 @@ export default function* updateCopySaga() {
       }
     }
   } catch (e) {
-    yield spawn(() => Logger.logMixpanelError(e, "updateCopySaga"));
+    yield spawn(() => {
+      Logger.error(e, { event: "updateCopySaga" });
+    });
   }
 }
