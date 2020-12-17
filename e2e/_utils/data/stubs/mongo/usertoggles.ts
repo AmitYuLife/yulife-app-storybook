@@ -112,7 +112,8 @@ export const CUSTOMER_12_TOGGLES = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_12.data.customerId,
-        features: { hideSmartHealthScreen: true, hideYuMatterScreen: true },
+        features: {
+            hideSmartHealthScreen: true, hideYuMatterScreen: true, unitySurge: true},
     }
 } as IDatabaseItem
 
