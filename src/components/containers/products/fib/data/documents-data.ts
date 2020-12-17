@@ -48,14 +48,38 @@ export const policyScheduleDocument = {
 export default [
   {
     id: "policy-terms-conditions",
-    question: "Policy Terms & Conditions",
+    question: "Terms & Conditions",
     iconSvgXml: policyTermsConditions,
-    url: `${Config.WEB_SITE_URL}static/docs/insurance-top-up/terms-and-conditions/4.0.0/life-Insurance-top-up-cover-terms-and-conditions.pdf`,
+    url: `${Config.WEB_SITE_URL}static/docs/insurance/personal/1.0.0/personal-life-insurance-terms-and-conditions.pdf`,
+  },
+  {
+    id: "privacy-policy",
+    question: "Privacy Policy",
+    iconSvgXml: policySummary,
+    url: `${Config.WEB_SITE_URL}privacy-policy/`,
+  },
+  {
+    id: "rewards-policy",
+    question: "Rewards Policy",
+    iconSvgXml: policySummary,
+    url: `${Config.WEB_SITE_URL}rewards-policy/`,
+  },
+  {
+    id: "key-facts",
+    question: "Key Facts",
+    iconSvgXml: policySummary,
+    url: `${Config.WEB_SITE_URL}static/docs/insurance/personal/1.0.0/personal-life-insurance-key-facts.pdf`,
   },
   {
     id: "policy-summary",
-    question: "Policy summary",
+    question: "Policy Guide",
     iconSvgXml: policySummary,
-    url: `${Config.WEB_SITE_URL}static/docs/insurance-top-up/policy/4.0.0/life-insurance-top-up-policy-guide.pdf`,
+    url: `${Config.WEB_SITE_URL}static/docs/insurance/personal/1.0.0/personal-life-insurance-policy-guide.pdf`,
+  },
+  {
+    id: "general-term-of-business",
+    question: "YuLife General Terms of Business:",
+    iconSvgXml: policyTermsConditions,
+    url: `${Config.WEB_SITE_URL}`, // TODO: Change placeholder
   },
 ];

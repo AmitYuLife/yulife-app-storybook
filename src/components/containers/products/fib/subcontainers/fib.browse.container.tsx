@@ -37,12 +37,16 @@ const documents: IFaq[] = fibDocumentsItems.map((document) => ({
   label: document.question,
   onPress: async () => {
     if (Platform.OS === "ios") {
-      handleOpenWebView({ uri: document.url, title: "Policy" });
+      try {
+        handleOpenWebView({ uri: document.url, title: document.question });
+      } catch (e) {
+        Logger.error(e, { documentId: document.id, file: "fib-browse.container", platform: "ios" });
+      }
     } else {
       try {
         await Linking.openURL(document.url);
       } catch (e) {
-        Logger.error(e, { documentId: document.id, file: "fib-browse.container" });
+        Logger.error(e, { documentId: document.id, file: "fib-browse.container", platform: "android" });
       }
     }
   },
