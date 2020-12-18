@@ -63,6 +63,9 @@ export function _FinancialQuestionsFormScreen(props: Props) {
       coverName: formValue["cover-name"],
       coverReason: formValue["reason-for-cover"],
       coverRemainInForce: formValue["will-the-policy-remain"],
+      coverId: !existingCovers.length
+        ? 0
+        : existingCovers.reduce((acc, curr) => (acc > curr.coverId ? acc : curr.coverId || 0), 0) + 1,
     };
 
     updateExistingCovers([...existingCovers, cover]);

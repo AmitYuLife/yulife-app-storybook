@@ -48,4 +48,5 @@ export interface Cover {
   coverAmount: number;
   coverReason: string;
   coverRemainInForce: string;
+  coverId?: number;
 }
