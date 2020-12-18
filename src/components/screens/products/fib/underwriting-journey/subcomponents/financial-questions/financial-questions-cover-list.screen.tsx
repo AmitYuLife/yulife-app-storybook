@@ -1,6 +1,6 @@
 import React from "react";
 import { FibUnderwritingJourneyLayout } from "../../../layouts/fib.underwriting-journey-layout";
-import { ScrollView, StyleSheet, ViewStyle } from "react-native";
+import { ScrollView, StyleSheet, ViewStyle, View } from "react-native";
 import FibTitle from "@atoms/fib/title/title";
 import { Style } from "@styles";
 import { FinancialQuestionsCoverList } from "./financial-questions-cover-list";
@@ -44,6 +44,7 @@ function _FinancialQuestionsCoverListScreen(props: Props) {
       <ScrollView showsVerticalScrollIndicator={false} style={styles.wrapper}>
         <FibTitle title={data.question} />
         <FinancialQuestionsCoverList existingCovers={existingCovers} onAddCover={showFinancialCoverOverlay} />
+        <View style={styles.paddingBottom} />
       </ScrollView>
       <Footer firstButton={{ action: onFirstButtonPressed, label: "Done", disabled: existingCovers.length === 0 }} />
     </FibUnderwritingJourneyLayout>
@@ -69,6 +70,9 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     height: 90,
   },
+  paddingBottom: {
+    height: Style.adjust(40),
+  } as ViewStyle,
 });
 
 export function showFinancialCoverOverlay() {

@@ -26,7 +26,7 @@ function _FinancialQuestionsCoverList(props: Props) {
           updateExistingCovers(covers);
         }
 
-        const { iconColor, backgroundColor, borderColor } = getColorScheme(index);
+        const { iconColor, backgroundColor, borderColor } = getColorScheme(cover.coverId);
 
         return (
           <View
