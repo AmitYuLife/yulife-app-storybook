@@ -7,7 +7,6 @@ import {
   FIB_YOUR_DATE_OF_BIRTH_SCREEN_ID,
   FIB_LIFESTYLE_ALCOHOL_SCREEN_ID,
   FIB_ENTER_YOUR_NAME,
-  FIB_ENTER_YOUR_DATE_OF_BIRTH,
   FIB_LIFESTYLE_HEIGHT_SCREEN_ID,
   FIB_LIFESTYLE_WEIGHT_SCREEN_ID,
   FIB_MEDICAL_THREE_OR_MORE_CONSULTATION_SCREEN_ID,
@@ -120,7 +119,7 @@ export const getReviewAnswers = (state: IReduxState): any => {
       icon = item.icon;
       title = item.title;
       answer = getBirthday(state);
-      questionId = FIB_ENTER_YOUR_DATE_OF_BIRTH;
+      questionId = item.id;
     }
 
     if (item.id === FIB_LIFESTYLE_HEIGHT_SCREEN_ID) {
