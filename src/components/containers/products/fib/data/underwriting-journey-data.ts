@@ -117,7 +117,6 @@ export const FIB_HIGH_CHOLESTEROL_EXTRA_SCREEN = "fib_medical_journey_high_chole
 export const FIB_DIGESTIVE_SCREEN_ID = "fib_medical_journey_digestive";
 export const FIB_THREE_YEAR_MEDICAL_HISTORY_SCREEN_ID = "fib_medical_journey_three_year_medical_history";
 export const FIB_ENTER_YOUR_NAME = "fib_enter_your_name";
-export const FIB_ENTER_YOUR_DATE_OF_BIRTH = "fib_enter_your_date_of_birth";
 export const FIB_LIFESTYLE_HEIGHT_SCREEN_ID = "fib_lifestyle_height";
 export const FIB_LIFESTYLE_WEIGHT_SCREEN_ID = "fib_lifestyle_weight";
 export const FIB_FINANCIAL_CUSTOM_COVER_FORM_SCREEN_ID = "fib_financial_custom_cover_form";
@@ -159,7 +158,7 @@ export const MEDICAL_CHIPS_QUESTIONS = [
 export const FIB_UNDERWRITING_REVIEW_ANSWERS_SCREEN_ID = "fib_review_screen";
 
 export const RELEVANT_SCREEN_ID_FOR_PRICES_UPDATES = [
-  FIB_ENTER_YOUR_DATE_OF_BIRTH,
+  FIB_YOUR_DATE_OF_BIRTH_SCREEN_ID,
   FIB_LIFESTYLE_SMOKING_CIGARETTES_SCREEN_ID,
   FIB_LIFESTYLE_SMOKING_CIGARETTES_FOLLOW_UP_SCREEN_ID,
   FIB_LIFESTYLE_SMOKING_CIGARS_SCREEN_ID,
@@ -242,29 +241,13 @@ const _data: UnderwritingJourneyScreen[] = [
     icon: BIRTHDAY_ICON,
     title: "Birthday",
     question: "And is this your birthday?",
-    firstButton: { label: "No", actionId: FIB_ENTER_YOUR_DATE_OF_BIRTH },
-    secondButton: { label: "Yes", actionId: FIB_UK_RESIDENT_SCREEN_ID },
+    firstButton: { label: "Yes", actionId: FIB_UK_RESIDENT_SCREEN_ID },
     previousButton: { actionId: FIB_ENTER_YOUR_NAME },
-    children: [
-      {
-        type: "copyBirthday",
-      },
-    ],
-    accumulatedProgress: ACCUMULATED_PROGRESS.FIB_YOUR_DATE_OF_BIRTH_SCREEN_ID,
-  },
-  {
-    id: FIB_ENTER_YOUR_DATE_OF_BIRTH,
-    heading: "About You",
-    icon: BIRTHDAY_ICON,
-    title: "Birthday",
-    question: "Okay, what is the correct date?",
     children: [
       {
         type: "inputBirth",
       },
     ],
-    firstButton: { label: "Continue", actionId: FIB_UK_RESIDENT_SCREEN_ID },
-    previousButton: { actionId: FIB_YOUR_DATE_OF_BIRTH_SCREEN_ID },
     accumulatedProgress: ACCUMULATED_PROGRESS.FIB_YOUR_DATE_OF_BIRTH_SCREEN_ID,
   },
   {
@@ -1407,7 +1390,7 @@ const _data: UnderwritingJourneyScreen[] = [
 export type OrderedUnderwritingJourneyScreen = UnderwritingJourneyScreen & { order: number };
 
 function getData(): OrderedUnderwritingJourneyScreen[] {
-  const ROUTES_WITHOUT_PROGRESS = [FIB_ENTER_YOUR_DATE_OF_BIRTH, FIB_ENTER_YOUR_NAME];
+  const ROUTES_WITHOUT_PROGRESS = [FIB_ENTER_YOUR_NAME];
 
   let progressCounter = 0;
 

@@ -5,6 +5,8 @@ import { usePressedInWithDelay } from "@services/hooks/usePressedInWithDelay";
 import { ButtonBase } from "./button.base";
 import { LinkButtonBase } from "./link-button.base";
 import { BUTTON_TYPES, Types, Sizes, BUTTON_SIZES } from "./button.types";
+import { TertiaryButtonBase } from "./tertiary-button/tertiary-button.base";
+import { BUTTON_ICON } from "./tertiary-button/tertiary-button.helpers";
 
 interface IProps {
   isLoading?: boolean;
@@ -21,6 +23,8 @@ interface IProps {
   backgroundColor?: string;
   shadowColor?: string;
   textColor?: string;
+  leftIcon?: BUTTON_ICON;
+  rightIcon?: BUTTON_ICON;
 }
 
 const DEFAULT_HEIGHT = Style.adjust(53);
@@ -41,6 +45,8 @@ function Button(props: IProps) {
     backgroundColor = Colours.darkHotPink,
     shadowColor = Colours.darkHotPinkShadow,
     textColor = "white",
+    leftIcon,
+    rightIcon,
   } = props;
 
   const { handlePress } = usePressedInWithDelay({ onPress, delay });
@@ -87,6 +93,22 @@ function Button(props: IProps) {
           borderRadius={50}
           delay={delay}
           disableAnimation={disableAnimation}
+        />
+      </View>
+    );
+  }
+
+  if (type === BUTTON_TYPES.TERTIARY) {
+    return (
+      <View style={StyleSheet.flatten([styles.wrapper, wrapperStyle, widthStyles])}>
+        <TertiaryButtonBase
+          disabled={disabled}
+          testID={testID}
+          title={label}
+          onPress={handlePress}
+          delay={delay}
+          leftIcon={leftIcon}
+          rightIcon={rightIcon}
         />
       </View>
     );

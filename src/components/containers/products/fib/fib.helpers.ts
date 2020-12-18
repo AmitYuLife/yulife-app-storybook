@@ -9,7 +9,6 @@ import {
   FIB_HIGH_CHOLESTEROL_EXTRA_SCREEN,
   FIB_HIGH_CHOLESTEROL_SCREEN_ID,
   FIB_ENTER_YOUR_NAME,
-  FIB_ENTER_YOUR_DATE_OF_BIRTH,
   FIB_LIFESTYLE_HEIGHT_SCREEN_ID,
   FIB_LIFESTYLE_WEIGHT_SCREEN_ID,
   FIB_YOUR_DATE_OF_BIRTH_SCREEN_ID,
@@ -289,7 +288,7 @@ export function shouldFirstButtonBeDisabled(
     return !inputFirstName || !inputLastName;
   }
 
-  if (currentQuestion.id === FIB_ENTER_YOUR_DATE_OF_BIRTH) {
+  if (currentQuestion.id === FIB_YOUR_DATE_OF_BIRTH_SCREEN_ID) {
     const { birthDay, birthMonth, birthYear } = fibAnswers;
     const isValidDates = !!Number(birthDay) && !!Number(birthMonth) && !!Number(birthYear);
     return !isValidDates;
