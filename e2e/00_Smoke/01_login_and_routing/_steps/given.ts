@@ -47,7 +47,7 @@ export const loginToDailySteps = async (): Promise<void> => {
 }
 
 export const onLoginScreen = async () => {
-    const welcomeLabel = element(by.label("welcome!"));
+    const welcomeLabel = element(by.label("Welcome!"));
     const loginField = element(by.id(INPUT_LOGIN_EMAIL));
     const passwordField = element(by.id(INPUT_LOGIN_PASSWORD("Password")));
     const needHelp = "need help logging in?"
