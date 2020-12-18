@@ -208,7 +208,6 @@ export enum ACCUMULATED_PROGRESS {
   FIB_MEDICAL_JOURNEY_LUNGS_SCREEN_ID = 1480,
   FIB_MEDICAL_JOURNEY_MINOR_INJURIES_SCREEN_ID = 1490,
   FIB_MEDICAL_JOURNEY_MUSCLES_JOINTS_SCREEN_ID = 1500,
-  FIB_MEDICAL_JOURNEY_PREGNANCY_SCREEN_ID = 1510,
   FIB_MEDICAL_JOURNEY_SKIN_SCREEN_ID = 1520,
   FIB_MEDICAL_JOURNEY_OTHER_SCREEN_ID = 1530,
   FIB_HOSPITAL_STAY_SCREEN_ID = 1540,
@@ -1067,52 +1066,15 @@ const _data: UnderwritingJourneyScreen[] = [
     ],
     firstButton: {
       label: "No",
-      actionId: FIB_MEDICAL_JOURNEY_PREGNANCY_SCREEN_ID,
+      actionId: FIB_MEDICAL_JOURNEY_SKIN_SCREEN_ID,
       actionIdReview: FIB_HOSPITAL_STAY_SCREEN_ID,
     },
     secondButton: {
       label: "Yes",
-      actionId: FIB_MEDICAL_JOURNEY_PREGNANCY_SCREEN_ID,
+      actionId: FIB_MEDICAL_JOURNEY_SKIN_SCREEN_ID,
       actionIdReview: FIB_UNDERWRITING_REVIEW_ANSWERS_SCREEN_ID,
     },
     previousButton: { actionId: FIB_MEDICAL_JOURNEY_MINOR_INJURIES_SCREEN_ID },
-  },
-  {
-    id: FIB_MEDICAL_JOURNEY_PREGNANCY_SCREEN_ID,
-    accumulatedProgress: ACCUMULATED_PROGRESS.FIB_MEDICAL_JOURNEY_PREGNANCY_SCREEN_ID,
-    category: "fib_medical_journey",
-    heading: "Medical",
-    icon: `<svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-    <path d="M18.4645 11.8922C18.4645 7.25555 14.7058 3.49683 10.0692 3.49683C5.43255 3.49683 1.67383 7.25555 1.67383 11.8922C1.67383 16.5288 5.43255 20.2875 10.0692 20.2875C12.7011 20.2875 15.0501 19.0764 16.5894 17.1812" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="M13.3643 13.7761C14.3131 13.7761 15.0822 13.2303 15.0822 12.557C15.0822 11.8837 14.3131 11.3379 13.3643 11.3379C12.4156 11.3379 11.6465 11.8837 11.6465 12.557C11.6465 13.2303 12.4156 13.7761 13.3643 13.7761Z" fill="${Colours.neutral.n800}" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="M15.084 12.557C15.084 12.557 16.1092 12.6678 16.7741 13.9423C17.4391 15.2169 19.9051 15.4108 20.4038 12.8894C20.6606 11.1941 21.687 11.7072 22.2001 11.7073" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="M4.82904 10.8666C5.1963 10.8666 5.49402 10.5689 5.49402 10.2016C5.49402 9.83434 5.1963 9.53662 4.82904 9.53662C4.46178 9.53662 4.16406 9.83434 4.16406 10.2016C4.16406 10.5689 4.46178 10.8666 4.82904 10.8666Z" fill="${Colours.neutral.n800}" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="M8.10053 8.37292C8.46778 8.37292 8.7655 8.0752 8.7655 7.70795C8.7655 7.34069 8.46778 7.04297 8.10053 7.04297C7.73327 7.04297 7.43555 7.34069 7.43555 7.70795C7.43555 8.0752 7.73327 8.37292 8.10053 8.37292Z" fill="${Colours.neutral.n800}" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="M9.39935 16.9623C9.76661 16.9623 10.0643 16.6646 10.0643 16.2973C10.0643 15.93 9.76661 15.6323 9.39935 15.6323C9.0321 15.6323 8.73438 15.93 8.73438 16.2973C8.73438 16.6646 9.0321 16.9623 9.39935 16.9623Z" fill="${Colours.neutral.n800}" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="M14.4423 8.62219C14.8096 8.62219 15.1073 8.32447 15.1073 7.95721C15.1073 7.58996 14.8096 7.29224 14.4423 7.29224C14.0751 7.29224 13.7773 7.58996 13.7773 7.95721C13.7773 8.32447 14.0751 8.62219 14.4423 8.62219Z" fill="${Colours.neutral.n800}" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-    `,
-    title: "Pregnancy",
-    reviewAnswerTitle: "Pregnancy Issues",
-    question: "Were all of your issues relating to pregnancy in the list below?",
-    children: [
-      {
-        type: "markdown",
-        text:
-          "- Regular pregnancy check ups/scans\n- Abortion\n- Eclampsia\n- Fertility treatment\n- Any complications from which you have fully recovered",
-      },
-    ],
-    firstButton: {
-      label: "No",
-      actionId: FIB_MEDICAL_JOURNEY_SKIN_SCREEN_ID,
-      actionIdReview: FIB_HOSPITAL_STAY_SCREEN_ID,
-    },
-    secondButton: {
-      label: "Yes",
-      actionId: FIB_MEDICAL_JOURNEY_SKIN_SCREEN_ID,
-      actionIdReview: FIB_UNDERWRITING_REVIEW_ANSWERS_SCREEN_ID,
-    },
-    previousButton: { actionId: FIB_MEDICAL_JOURNEY_MUSCLES_JOINTS_SCREEN_ID },
   },
   {
     id: FIB_MEDICAL_JOURNEY_SKIN_SCREEN_ID,
@@ -1147,7 +1109,7 @@ const _data: UnderwritingJourneyScreen[] = [
       actionId: FIB_MEDICAL_JOURNEY_OTHER_SCREEN_ID,
       actionIdReview: FIB_UNDERWRITING_REVIEW_ANSWERS_SCREEN_ID,
     },
-    previousButton: { actionId: FIB_MEDICAL_JOURNEY_PREGNANCY_SCREEN_ID },
+    previousButton: { actionId: FIB_MEDICAL_JOURNEY_MUSCLES_JOINTS_SCREEN_ID },
   },
   {
     id: FIB_MEDICAL_JOURNEY_OTHER_SCREEN_ID,
@@ -1210,10 +1172,6 @@ const _data: UnderwritingJourneyScreen[] = [
       },
       {
         id: FIB_MEDICAL_JOURNEY_MUSCLES_JOINTS_SCREEN_ID,
-        answer: "No",
-      },
-      {
-        id: FIB_MEDICAL_JOURNEY_PREGNANCY_SCREEN_ID,
         answer: "No",
       },
       {
@@ -1317,10 +1275,6 @@ const _data: UnderwritingJourneyScreen[] = [
       },
       {
         id: FIB_MEDICAL_JOURNEY_MUSCLES_JOINTS_SCREEN_ID,
-        answer: "No",
-      },
-      {
-        id: FIB_MEDICAL_JOURNEY_PREGNANCY_SCREEN_ID,
         answer: "No",
       },
       {
