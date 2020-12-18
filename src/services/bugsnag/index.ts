@@ -10,7 +10,7 @@ export default function getClient() {
   config.autoCaptureSessions = true;
   config.releaseStage = Config.ENV;
 
-  if (Config.ENV === "devo" || Config.ENV === "test") {
+  if (Config.ENV === "dev" || Config.ENV === "test") {
     // don't send in dev or test mode
     config.beforeSendCallbacks.push((report) => false && report);
   }
