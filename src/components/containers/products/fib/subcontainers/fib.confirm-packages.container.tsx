@@ -39,12 +39,16 @@ const documents: IFaq[] = [...fibDocumentsItems, policyScheduleDocument].map((do
   label: document.question,
   onPress: async () => {
     if (Platform.OS === "ios") {
-      handleOpenWebView({ uri: document.url, title: "Policy" });
+      try {
+        handleOpenWebView({ uri: document.url, title: document.question });
+      } catch (e) {
+        Logger.error(e, { documentId: document.id, file: "fib-confirm-packages.container", platform: "ios" });
+      }
     } else {
       try {
         await Linking.openURL(document.url);
       } catch (e) {
-        Logger.error(e, { documentId: document.id, file: "fib-confirm-packages.container" });
+        Logger.error(e, { documentId: document.id, file: "fib-confirm-packages.container", platform: "android" });
       }
     }
   },
