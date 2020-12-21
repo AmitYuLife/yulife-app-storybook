@@ -17,20 +17,19 @@ interface IFibCustomCoverScreenProps {
   navigateToEditSalary: () => void;
   onContinue: () => void;
   avatarUrl: string;
-  faqs: ComponentProps<typeof Faqs>["items"];
-  documents: ComponentProps<typeof Faqs>["items"];
+  documents: ComponentProps<typeof Documents>["items"];
   selectedPackage: Package;
   payoutEstimatorItems: ComponentProps<typeof PayoutCalculator>["items"];
   setDeceaseAgeIndexYear: (index: number) => void;
   setDeceaseAgeIndexMonth: (index: number) => void;
   loading: boolean;
+  onNavigateToFaqsList: () => void;
 }
 
 export const FibCustomCoverScreen = memo(function (props: IFibCustomCoverScreenProps) {
   const {
     onNavigateBack,
     avatarUrl,
-    faqs,
     navigateToEditSalary,
     documents,
     selectedPackage,
@@ -39,6 +38,7 @@ export const FibCustomCoverScreen = memo(function (props: IFibCustomCoverScreenP
     setDeceaseAgeIndexMonth,
     loading,
     onContinue,
+    onNavigateToFaqsList,
   } = props;
 
   const backHandler = useCallback(() => {
@@ -75,7 +75,7 @@ export const FibCustomCoverScreen = memo(function (props: IFibCustomCoverScreenP
             packageEarnRate={selectedPackage?.newEarnRate}
             loading={loading}
           />
-          <Faqs items={faqs} />
+          <Faqs navigateToFaqsList={onNavigateToFaqsList} />
           <Documents items={documents} />
         </ScrollView>
       </View>

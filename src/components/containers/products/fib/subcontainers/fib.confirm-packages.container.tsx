@@ -3,7 +3,7 @@ import React, { memo, useState, useEffect, useCallback } from "react";
 import { View, Linking, Platform } from "react-native";
 import { connect, useDispatch } from "react-redux";
 import { Text } from "@atoms";
-import { FibLocalNavigation, FIB_FAQ, FIB_CONTACT_DETAILS } from "../fib.types";
+import { FibLocalNavigation, FIB_CONTACT_DETAILS, FIB_FAQ_LIST } from "../fib.types";
 import { GQL_MUTATION_CREATE_TOP_UPS_QUOTE, GQL_QUERY_GET_TOP_UPS_QUOTE } from "@graphql/products";
 import { getFIBState, getLifeInsuranceUserAnswers } from "@redux/product/product.selectors";
 import { IReduxState } from "@redux/_core/reducers";
@@ -13,7 +13,6 @@ import { Package } from "@components/screens/products/fib/browse-packages/fib.br
 import { getUserDateOfBirth } from "@redux/user/user.selectors";
 import { IFaq } from "@components/screens/products/fib/browse-packages/subcomponents/faqs/faq";
 import fibDocumentsItems, { policyScheduleDocument } from "../data/documents-data";
-import fibFaqItems from "../data/faq-fib-data";
 import moment from "moment";
 import { updateFIBValue, updateFIBValuesFromNewQuote } from "@redux/product/product.actions";
 import { MODALS } from "@navigation/constants";
@@ -56,7 +55,7 @@ const documents: IFaq[] = [...fibDocumentsItems, policyScheduleDocument].map((do
 }));
 
 const FibConfirmPackagesContainer = memo(function (props: FibConfirmPackagesContainerProps) {
-  const { navigation, userDateOfBirth, userDateOfBirthFib, selectFaq, fibState, userAnswers } = props;
+  const { navigation, userDateOfBirth, userDateOfBirthFib, fibState, userAnswers } = props;
   const { salary: grossSalary, selectedPackage, productEntityId, latestQuoteId } = fibState;
   const dispatch = useDispatch();
 
@@ -164,15 +163,6 @@ const FibConfirmPackagesContainer = memo(function (props: FibConfirmPackagesCont
     actualCost: data?.getTopUpsQuote?.actualCost || 0,
   };
 
-  const faqs: IFaq[] = fibFaqItems.map((faq) => ({
-    label: faq.question,
-    redirectType: "internal",
-    onPress: () => {
-      navigation.push(FIB_FAQ);
-      return selectFaq(faq.id);
-    },
-  }));
-
   const onExitHandler = useCallback(async () => {
     await Navigation.showModal({
       component: {
@@ -199,6 +189,8 @@ const FibConfirmPackagesContainer = memo(function (props: FibConfirmPackagesCont
     return navigation.push(FIB_CONTACT_DETAILS);
   }, [navigation]);
 
+  const navigateToFaqsList = () => navigation.push(FIB_FAQ_LIST);
+
   if (error) {
     return (
       <View>
@@ -213,7 +205,6 @@ const FibConfirmPackagesContainer = memo(function (props: FibConfirmPackagesCont
       onExit={onExitHandler}
       selectedPackage={packageDetails}
       selectCoverType={selectCoverType}
-      faqs={faqs}
       documents={documents}
       payoutEstimatorItems={payoutEstimatorItems}
       setDeceaseAgeIndexYear={setDeceaseAgeIndexYear}
@@ -223,6 +214,7 @@ const FibConfirmPackagesContainer = memo(function (props: FibConfirmPackagesCont
       customerAge={customerAge}
       onScrollEnd={navigation.onScrollEnd}
       offset={navigation.currentRoute.offset || { x: 0, y: 0 }}
+      navigateToFaqsList={navigateToFaqsList}
     />
   );
 });

@@ -14,16 +14,16 @@ import { ContinueButton } from "./continue-button/continue-button";
 import { Package } from "./fib.browse.types";
 import { PackageOptions } from "./subcomponents/package-options/package-options";
 import { Faqs } from "./subcomponents/faqs/faqs";
-import AdditionalBenefits from "./additional-benefits/additional-benefits";
 import { PayoutCalculator } from "./subcomponents/payout-calculator/payout-calculator";
+import AdditionalBenefits from "./additional-benefits/additional-benefits";
 import { Documents } from "./subcomponents/documents/documents";
 import { PackageId } from "../fib.helper";
 import { IFaq } from "./subcomponents/faqs/faq";
 import Logger from "@services/logging/logger";
 import { CalculatorItems } from "./subcomponents/payout-calculator/subcomponents/calculator";
-import { formatPrice } from "@components/containers/products/fib/fib.helpers";
 import { FIB_BROWSE_SCREEN } from "@ids";
 import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
+import { formatPrice } from "@components/containers/products/fib/fib.helpers";
 
 interface IFibBrowseScreenProps {
   onNavigateToYuScreen: () => void;
@@ -36,19 +36,19 @@ interface IFibBrowseScreenProps {
   setDeceaseAgeIndexYear: (index: number) => void;
   setDeceaseAgeIndexMonth: (index: number) => void;
   loading: boolean;
-  faqs: IFaq[];
   documents: IFaq[];
   avatarUrl: string;
   maxTermAge: number;
   offset: NativeScrollPoint;
   onScrollEnd: (event: NativeSyntheticEvent<NativeScrollEvent>) => void;
+  onNavigateToFaqsList: () => void;
 }
 
 export const FibBrowseScreen = memo(function (props: IFibBrowseScreenProps) {
   const {
     onNavigateToYuScreen,
+    onNavigateToFaqsList,
     avatarUrl,
-    faqs,
     navigateToEditSalary,
     documents,
     onContinue,
@@ -103,7 +103,13 @@ export const FibBrowseScreen = memo(function (props: IFibBrowseScreenProps) {
           contentContainerStyle={styles.scrollView}
           testID={FIB_BROWSE_SCREEN}
         >
-          <Animatable.View duration={1000} animation="fadeIn" style={styles.flex} useNativeDriver={true}>
+          <Animatable.View
+            duration={1000}
+            easing="ease-in"
+            animation="fadeIn"
+            style={styles.flex}
+            useNativeDriver={true}
+          >
             <PackageOptions selectedPackageId={selectedPackage.label} onSelectPackage={onSelectPackage} />
             <AvatarAndDescription loading={loading} avatarUrl={avatarUrl} selectedPackage={selectedPackage} />
             <EstimatedCost
@@ -127,7 +133,7 @@ export const FibBrowseScreen = memo(function (props: IFibBrowseScreenProps) {
               packageEarnRate={selectedPackage.newEarnRate}
               loading={loading}
             />
-            <Faqs items={faqs} />
+            <Faqs navigateToFaqsList={onNavigateToFaqsList} />
             <Documents items={documents} />
           </Animatable.View>
         </ScrollView>

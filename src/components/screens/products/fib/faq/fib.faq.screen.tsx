@@ -1,8 +1,8 @@
 import React, { memo } from "react";
 import { StyleSheet, ScrollView, ViewStyle, View } from "react-native";
 import * as Animatable from "react-native-animatable";
-import { Heading } from "@atoms";
-import { Style } from "@styles";
+import { Text } from "@atoms";
+import { Style, Colours } from "@styles";
 import Markdown from "@components/molecules/markdown/markdown";
 import { IFibFAQ } from "@components/containers/products/fib/data/faq-fib-data";
 import { Faq } from "../browse-packages/subcomponents/faqs/faq";
@@ -35,8 +35,12 @@ export const FibFaqScreen = memo(function (props: IFibFaqScreenProps) {
       <GenericHeadingPad />
       <ScrollView>
         <Animatable.View duration={500} animation="fadeIn" style={styles.flex} useNativeDriver={true}>
-          <Heading label={faq.question} style={styles.header} />
-          <Markdown text={faq.answer} containerStyle={styles.markdownContainer} markdownStyles={styles} />
+          <View style={styles.padding}>
+            <Text bold={true} style={styles.header}>
+              {faq.question}
+            </Text>
+            <Markdown text={faq.answer} containerStyle={styles.markdownContainer} markdownStyles={markdownStyles} />
+          </View>
           {!childFaqs ? null : (
             <Faq
               label={childFaqs.faq.question}
@@ -47,7 +51,7 @@ export const FibFaqScreen = memo(function (props: IFibFaqScreenProps) {
           )}
         </Animatable.View>
       </ScrollView>
-      <GenericHeadingAbsolute heading="FAQ" onLeftIconPress={onNavigateBack} />
+      <GenericHeadingAbsolute logo="yulife" onLeftIconPress={onNavigateBack} />
     </View>
   );
 });
@@ -60,26 +64,27 @@ const styles = StyleSheet.create({
     height: "100%",
   },
   markdownContainer: {
-    marginHorizontal: 32,
-    marginBottom: 32,
-  },
-  text: {
-    fontFamily: Style.FONT_FAMILY_PRIMARY,
-    fontSize: 16,
-    lineHeight: 24,
-    letterSpacing: 1,
-    color: "#5A5A5C",
+    marginBottom: Style.adjust(32),
+    marginTop: Style.adjust(16),
   },
   header: {
-    fontFamily: Style.FONT_FAMILY_PRIMARY_BOLD,
-    fontSize: 20,
-    lineHeight: 24,
+    fontSize: Style.adjust(28),
+    lineHeight: Style.adjust(32),
     letterSpacing: 1,
-    color: "#464647",
-    marginTop: 32,
-    textAlign: "left",
-    marginHorizontal: 32,
-    marginBottom: 16,
+    color: Colours.neutral.n800,
+    marginTop: Style.adjust(24),
+  },
+  padding: {
+    paddingHorizontal: Style.adjust(24),
+  } as ViewStyle,
+});
+
+const markdownStyles = {
+  text: {
+    fontSize: Style.adjust(16),
+    lineHeight: Style.adjust(24),
+    letterSpacing: 1,
+    color: Colours.neutral.n700,
   },
   list: {
     marginBottom: 8,
@@ -97,14 +102,15 @@ const styles = StyleSheet.create({
     borderRadius: 2,
     marginRight: 10,
   },
-});
+};
 
 const redirectFAQStyles = StyleSheet.create({
   wrapper: {
     flexDirection: "row",
     alignItems: "center",
-    backgroundColor: "white",
-    paddingLeft: Style.adjust(16),
     minHeight: Style.adjust(64),
+    paddingHorizontal: Style.adjust(8),
+    borderBottomWidth: 1,
+    borderColor: Colours.neutral.n100,
   },
 });

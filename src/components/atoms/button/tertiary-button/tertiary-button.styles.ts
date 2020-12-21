@@ -11,7 +11,6 @@ export const styles = StyleSheet.create({
     opacity: 0.3,
   } as ViewStyle,
   outer: {
-    height: Style.adjust(84),
     backgroundColor: Colours.neutral.n100,
     borderRadius: 8,
     overflow: "hidden",
@@ -25,7 +24,6 @@ export const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: Colours.neutral.n100,
     backgroundColor: "white",
-    height: Style.adjust(80),
     borderRadius: 8,
   } as ViewStyle,
   leftSide: {

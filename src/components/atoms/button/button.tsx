@@ -25,6 +25,7 @@ interface IProps {
   textColor?: string;
   leftIcon?: BUTTON_ICON;
   rightIcon?: BUTTON_ICON;
+  height?: number;
 }
 
 const DEFAULT_HEIGHT = Style.adjust(53);
@@ -47,6 +48,7 @@ function Button(props: IProps) {
     textColor = "white",
     leftIcon,
     rightIcon,
+    height,
   } = props;
 
   const { handlePress } = usePressedInWithDelay({ onPress, delay });
@@ -109,6 +111,7 @@ function Button(props: IProps) {
           delay={delay}
           leftIcon={leftIcon}
           rightIcon={rightIcon}
+          height={height}
         />
       </View>
     );

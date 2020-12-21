@@ -54,7 +54,7 @@ const defaultStyles = StyleSheet.create({
   } as ViewStyle,
   labelWrapper: {
     marginLeft: Style.adjust(16),
-    maxWidth: Style.adjust(240),
+    maxWidth: Style.DEVICE_WIDTH - 128,
   } as ViewStyle,
   label: {
     letterSpacing: 1,

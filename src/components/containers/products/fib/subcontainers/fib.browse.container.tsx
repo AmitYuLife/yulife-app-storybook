@@ -8,12 +8,11 @@ import { FibBrowseScreen, FibCustomCoverScreen } from "@screens";
 import { GQL_QUERY_GET_TOP_UPS_ESTIMATE_COST } from "@graphql/products";
 import {
   FIB_EDIT_SALARY,
-  FIB_FAQ,
   FibLocalNavigation,
   FIB_CUSTOM_PERCENTAGE,
   FIB_UNDERWRITING_JOURNEY_INTRODUCTION,
+  FIB_FAQ_LIST,
 } from "../fib.types";
-import fibFaqItems from "../data/faq-fib-data";
 import fibDocumentsItems from "../data/documents-data";
 import { GetTopUpsEstimateCost, GetTopUpsEstimateCostVariables, GetYulifer } from "@graphql/_core/schema";
 import { GQL_QUERY_GET_YULIFER } from "@graphql/yuscreen";
@@ -29,7 +28,6 @@ import { CoverType, ProductCode } from "../../../../../graphql/_core/schema/glob
 
 interface IFibContainer {
   navigation: FibLocalNavigation;
-  selectFaq: (fabId: string) => void;
 }
 
 const documents: IFaq[] = fibDocumentsItems.map((document) => ({
@@ -54,7 +52,7 @@ const documents: IFaq[] = fibDocumentsItems.map((document) => ({
 }));
 
 const _FibBrowseContainer = memo(function (props: IFibContainer & ReturnType<typeof mapStateToProps>) {
-  const { navigation, selectFaq, grossSalary, selectedPackage, userDateOfBirth } = props;
+  const { navigation, grossSalary, selectedPackage, userDateOfBirth } = props;
   const { isCustomCover, customCoverPercentage = null } = navigation.currentRoute.passProps;
   const [selectedCoverType, selectCoverType] = useCover(
     isCustomCover ? CoverType.custom : selectedPackage || CoverType.common
@@ -105,15 +103,6 @@ const _FibBrowseContainer = memo(function (props: IFibContainer & ReturnType<typ
     dateOfBirth: userDateOfBirth,
   });
 
-  const faqs: IFaq[] = fibFaqItems.map((faq) => ({
-    label: faq.question,
-    redirectType: "internal",
-    onPress: () => {
-      navigation.push(FIB_FAQ);
-      return selectFaq(faq.id);
-    },
-  }));
-
   if (error) {
     // TODO: Don't show this! Add back button?
     return (
@@ -140,6 +129,8 @@ const _FibBrowseContainer = memo(function (props: IFibContainer & ReturnType<typ
     monthlyAmountProtected,
   };
 
+  const navigateToFaqsList = () => navigation.push(FIB_FAQ_LIST);
+
   if (isCustomCover) {
     return (
       <FibCustomCoverScreen
@@ -147,13 +138,13 @@ const _FibBrowseContainer = memo(function (props: IFibContainer & ReturnType<typ
         onNavigateBack={navigation.pop}
         navigateToEditSalary={() => navigation.push(FIB_EDIT_SALARY, { onPressDone: navigation.pop })}
         onContinue={() => navigation.push(FIB_UNDERWRITING_JOURNEY_INTRODUCTION)}
-        faqs={faqs}
-        documents={documents}
         selectedPackage={packageDetails}
         payoutEstimatorItems={payoutEstimatorItems}
         setDeceaseAgeIndexYear={setDeceaseAgeIndexYear}
         setDeceaseAgeIndexMonth={setDeceaseAgeIndexMonth}
         loading={loading}
+        onNavigateToFaqsList={navigateToFaqsList}
+        documents={documents}
       />
     );
   }
@@ -167,7 +158,6 @@ const _FibBrowseContainer = memo(function (props: IFibContainer & ReturnType<typ
       onContinue={() => navigation.push(FIB_UNDERWRITING_JOURNEY_INTRODUCTION)}
       selectCoverType={selectCoverType}
       selectedPackage={packageDetails}
-      faqs={faqs}
       documents={documents}
       payoutEstimatorItems={payoutEstimatorItems}
       setDeceaseAgeIndexYear={setDeceaseAgeIndexYear}
@@ -176,6 +166,7 @@ const _FibBrowseContainer = memo(function (props: IFibContainer & ReturnType<typ
       offset={navigation.currentRoute.offset || { x: 0, y: 0 }}
       loading={loading}
       maxTermAge={maxTermAge}
+      onNavigateToFaqsList={navigateToFaqsList}
     />
   );
 });
