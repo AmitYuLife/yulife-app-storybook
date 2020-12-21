@@ -63,6 +63,8 @@ export default function* sendPassiveActivity() {
             yield delay(15000);
           }
         }
+      } else {
+        yield put(meditationSinceLastUpdateSuccess());
       }
     }
 
@@ -101,6 +103,8 @@ export default function* sendPassiveActivity() {
               yield delay(15000);
             }
           }
+        } else {
+          yield put(stepsSinceLastUpdateSuccess());
         }
       }
     }
@@ -116,7 +120,7 @@ export default function* sendPassiveActivity() {
         let startDateTime;
         let endDateTime;
 
-        if (meditationHistoricalDataResponse && stepsHistoricalDataResponse) {
+        if (meditationHistoricalDataResponse?.yucoin && stepsHistoricalDataResponse?.yucoin) {
           startDateTime = moment(meditationHistoricalDataResponse.startDateTime).isBefore(
             moment(stepsHistoricalDataResponse.startDateTime)
           )
@@ -128,10 +132,10 @@ export default function* sendPassiveActivity() {
           )
             ? meditationHistoricalDataResponse.endDateTime
             : stepsHistoricalDataResponse.endDateTime;
-        } else if (meditationHistoricalDataResponse && !stepsHistoricalDataResponse) {
+        } else if (meditationHistoricalDataResponse?.yucoin && !stepsHistoricalDataResponse?.yucoin) {
           startDateTime = meditationHistoricalDataResponse.startDateTime;
           endDateTime = meditationHistoricalDataResponse.endDateTime;
-        } else if (stepsHistoricalDataResponse && !meditationHistoricalDataResponse) {
+        } else if (stepsHistoricalDataResponse?.yucoin && !meditationHistoricalDataResponse?.yucoin) {
           startDateTime = stepsHistoricalDataResponse.startDateTime;
           endDateTime = stepsHistoricalDataResponse.endDateTime;
         }
