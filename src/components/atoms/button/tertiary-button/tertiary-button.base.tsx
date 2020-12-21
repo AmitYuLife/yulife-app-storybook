@@ -1,5 +1,5 @@
 import React, { ComponentProps } from "react";
-import { Animated, TouchableWithoutFeedback, View } from "react-native";
+import { Animated, TouchableWithoutFeedback, View, StyleSheet } from "react-native";
 import { usePressedInWithDelay } from "@services/hooks/usePressedInWithDelay";
 import Text from "@atoms/text/text";
 import { Style } from "@styles";
@@ -16,10 +16,11 @@ interface IProps {
   delay?: number;
   rightIcon?: BUTTON_ICON;
   leftIcon?: BUTTON_ICON;
+  height?: number;
 }
 
 export function TertiaryButtonBase(props: IProps) {
-  const { onPress, delay, leftIcon, rightIcon } = props;
+  const { onPress, delay, leftIcon, rightIcon, height } = props;
   const { handlePressIn, handlePressOut, handlePress } = usePressedInWithDelay({ onPress, delay });
 
   return (
@@ -33,6 +34,7 @@ export function TertiaryButtonBase(props: IProps) {
         title={props.title}
         leftIcon={leftIcon}
         rightIcon={rightIcon}
+        height={height}
       />
     </View>
   );
@@ -40,7 +42,7 @@ export function TertiaryButtonBase(props: IProps) {
 
 type IMainProps = IProps & ComponentProps<typeof TouchableWithoutFeedback>;
 
-function Main({ testID, disabled, onPress, title, rightIcon, leftIcon }: IMainProps) {
+function Main({ testID, disabled, onPress, title, rightIcon, leftIcon, height = Style.adjust(84) }: IMainProps) {
   const disabledStyles = disabled ? styles.disabled : {};
 
   const RightIcon = getIcon(rightIcon);
@@ -53,8 +55,8 @@ function Main({ testID, disabled, onPress, title, rightIcon, leftIcon }: IMainPr
       disabled={disabled}
       onPress={onPress}
     >
-      <View style={styles.outer}>
-        <Animated.View style={styles.main} testID={`${testID}-text-view`}>
+      <View style={StyleSheet.flatten([styles.outer, { height }])}>
+        <Animated.View style={StyleSheet.flatten([styles.main, { height: height - 4 }])} testID={`${testID}-text-view`}>
           <View style={styles.leftSide}>
             <Svg width={Style.adjust(24)} height={Style.adjust(24)} viewBox="0 0 24 24">
               <LeftIcon />

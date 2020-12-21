@@ -2,7 +2,6 @@ import React from "react";
 import { storiesOf } from "@storybook/react-native";
 import { FibBrowseScreen } from "./fib.browse.screen";
 import { View } from "react-native";
-import faqData from "@components/containers/products/fib/data/faq-fib-data";
 import documentsData from "@components/containers/products/fib/data/documents-data";
 import { Package } from "./fib.browse.types";
 import { IFaq } from "./subcomponents/faqs/faq";
@@ -22,7 +21,6 @@ const selectedPackage: Package = {
 };
 
 const onPress = (): null => null;
-const faqs: IFaq[] = faqData.map(({ question }) => ({ label: question, onPress, redirectType: "internal" }));
 const documents: IFaq[] = documentsData.map(({ question, iconSvgXml }) => ({
   label: question,
   onPress,
@@ -39,10 +37,10 @@ storiesOf("FibBrowse", module)
       onNavigateToYuScreen={(): void => null}
       onContinue={(): void => null}
       avatarUrl={""}
-      faqs={faqs}
       offset={{ x: 0, y: 0 }}
       onScrollEnd={() => null}
       selectCoverType={() => null}
+      onNavigateToFaqsList={() => null}
       documents={documents}
       navigateToCustomCover={() => null}
       payoutEstimatorItems={{
@@ -67,10 +65,10 @@ storiesOf("FibBrowse", module)
     <FibCustomCoverScreen
       selectedPackage={selectedPackage}
       navigateToEditSalary={() => null}
+      onNavigateToFaqsList={() => null}
       onNavigateBack={(): void => null}
       onContinue={() => null}
       avatarUrl={""}
-      faqs={faqs}
       documents={documents}
       payoutEstimatorItems={{
         years: Array.from({ length: 31 }).map((_, i) => i + 40),

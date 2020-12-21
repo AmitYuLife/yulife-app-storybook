@@ -16,7 +16,8 @@ export type FibRoute =
   | "FibDeclarationConfirmation"
   | "FibInfo"
   | "FibContactDetails"
-  | "FibGPDetails";
+  | "FibGPDetails"
+  | "FibFaqList";
 
 export type FibLocalNavigation = LocalNavigation<FibRoute>;
 
@@ -35,6 +36,7 @@ export const FIB_CONTACT_DETAILS = "FibContactDetails";
 export const FIB_DECLARATION_CONFIRMATION = "FibDeclarationConfirmation";
 export const FIB_INFO = "FibInfo";
 export const FIB_GP_DETAILS = "FibGPDetails";
+export const FIB_FAQ_LIST = "FibFaqList";
 
 export interface FAQ {
   id: string;

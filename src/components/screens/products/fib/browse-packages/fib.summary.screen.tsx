@@ -1,5 +1,13 @@
 import React, { memo, ComponentProps, useCallback, useRef, useEffect } from "react";
-import { StyleSheet, ScrollView, View, NativeScrollPoint, NativeSyntheticEvent, NativeScrollEvent } from "react-native";
+import {
+  StyleSheet,
+  ScrollView,
+  View,
+  NativeScrollPoint,
+  NativeSyntheticEvent,
+  NativeScrollEvent,
+  ViewStyle,
+} from "react-native";
 import { Button } from "@atoms";
 import { Summary, SummaryDescription } from "./subcomponents";
 import { Faqs } from "./subcomponents/faqs/faqs";
@@ -10,13 +18,14 @@ import { useBackHandler } from "@services/hooks/useBackHandler";
 import { PackageOptions } from "./subcomponents/package-options/package-options";
 import { PackageId } from "../fib.helper";
 import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
+import { Style } from "@styles";
+import * as Animated from "react-native-animatable";
 
 interface FibSummaryScreenProps {
   onNavigateBack: () => void;
   onContinue: () => void;
   onExit: () => void;
-  faqs: ComponentProps<typeof Faqs>["items"];
-  documents: ComponentProps<typeof Faqs>["items"];
+  documents: any;
   selectedPackage: Package;
   selectCoverType: (coverType: PackageId) => void;
   payoutEstimatorItems: ComponentProps<typeof PayoutCalculator>["items"];
@@ -26,12 +35,12 @@ interface FibSummaryScreenProps {
   loading: boolean;
   offset: NativeScrollPoint;
   onScrollEnd: (event: NativeSyntheticEvent<NativeScrollEvent>) => void;
+  navigateToFaqsList: () => void;
 }
 
 export const FibSummaryScreen = memo(function (props: FibSummaryScreenProps) {
   const {
     onNavigateBack,
-    faqs,
     documents,
     selectedPackage,
     payoutEstimatorItems,
@@ -44,6 +53,7 @@ export const FibSummaryScreen = memo(function (props: FibSummaryScreenProps) {
     onScrollEnd,
     offset,
     onExit,
+    navigateToFaqsList,
   } = props;
 
   const backHandler = useCallback(() => {
@@ -74,7 +84,7 @@ export const FibSummaryScreen = memo(function (props: FibSummaryScreenProps) {
 
   return (
     <>
-      <View style={styles.wrapper}>
+      <Animated.View animation="fadeIn" duration={1000} easing="ease-in" useNativeDriver={true} style={styles.wrapper}>
         <GenericHeadingPad />
         <ScrollView
           showsVerticalScrollIndicator={false}
@@ -102,9 +112,10 @@ export const FibSummaryScreen = memo(function (props: FibSummaryScreenProps) {
           <View style={styles.buttonWrapper}>
             <Button label="Continue" onPress={onContinue} type="Primary" />
           </View>
-          <Faqs items={faqs} />
+          <Faqs navigateToFaqsList={navigateToFaqsList} />
+          <View style={styles.padBot} />
         </ScrollView>
-      </View>
+      </Animated.View>
       <GenericHeadingAbsolute
         heading="Finalise Package"
         leftIcon="BACK"
@@ -130,4 +141,7 @@ const styles = StyleSheet.create({
     marginTop: 47,
     marginBottom: -5,
   },
+  padBot: {
+    height: Style.hasNotch ? 40 : 20,
+  } as ViewStyle,
 });

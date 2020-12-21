@@ -10,7 +10,7 @@ import { getUserStart } from "../../../../redux/user/user.actions";
 import { getUserFeatures } from "../../../../redux/user/user.selectors";
 import { DebugScreen } from "../../../screens";
 import { ROUTES } from "@navigation/constants";
-import { FIB_GP_DETAILS } from "@components/containers/products/fib/fib.types";
+import { FIB_GP_DETAILS, FIB_CONFIRM_PACKAGES } from "@components/containers/products/fib/fib.types";
 import { FIB_CONTACT_DETAILS, FIB_DECLARATION_CONFIRMATION } from "../../products/fib/fib.types";
 
 interface IProps {
@@ -27,6 +27,7 @@ enum CODES {
   ROUTE_TO_FIB_CONTACT_DETAILS_SCREEN = "ROUTE_TO_FIB_CONTACT_DETAILS_SCREEN",
   ROUTE_TO_FIB_CONFIRMATION_DECLARATION = "ROUTE_TO_FIB_CONFIRMATION_DECLARATION",
   ROUTE_TO_FIB_GP_DETAILS = "ROUTE_TO_FIB_GP_DETAILS",
+  ROUTE_TO_FIB_CONFIRM_PACKAGES = "ROUTE_TO_FIB_CONFIRM_PACKAGES",
 }
 
 const DEFAULT_LIST = [
@@ -50,6 +51,7 @@ const ActivityHistoryContainer: React.FC<Props> = (props) => {
     CODES.ROUTE_TO_FIB_CONTACT_DETAILS_SCREEN,
     CODES.ROUTE_TO_FIB_CONFIRMATION_DECLARATION,
     CODES.ROUTE_TO_FIB_GP_DETAILS,
+    CODES.ROUTE_TO_FIB_CONFIRM_PACKAGES,
   ];
 
   const handleClose = () => {
@@ -104,6 +106,18 @@ const ActivityHistoryContainer: React.FC<Props> = (props) => {
               name: ROUTES.fib,
               passProps: {
                 initialRoute: FIB_GP_DETAILS,
+              },
+            },
+          });
+        }
+
+        if (code === CODES.ROUTE_TO_FIB_CONFIRM_PACKAGES) {
+          return Navigation.push(props.componentId, {
+            component: {
+              id: ROUTES.fib,
+              name: ROUTES.fib,
+              passProps: {
+                initialRoute: FIB_CONFIRM_PACKAGES,
               },
             },
           });

@@ -21,6 +21,6 @@ const styles = StyleSheet.create({
     fontSize: Style.adjust(24),
     lineHeight: Style.adjust(32),
     letterSpacing: 1,
-    color: Colours.products.fib.n900,
+    color: Colours.neutral.n700,
   } as TextStyle,
 });

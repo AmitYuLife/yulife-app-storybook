@@ -24,6 +24,7 @@ import {
   FIB_CONTACT_DETAILS,
   FIB_DECLARATION_CONFIRMATION,
   FIB_GP_DETAILS,
+  FIB_FAQ_LIST,
 } from "./fib.types";
 import { Navigation } from "react-native-navigation";
 import { ROUTES } from "@navigation/constants";
@@ -39,6 +40,7 @@ import FibConfirmPackagesContainer from "./subcontainers/fib.confirm-packages.co
 import FibContactDetailsContainer from "./subcontainers/fib.contact-details.container";
 import FibDeclarationConfirmationContainer from "./subcontainers/fib.declaration-confirmation.container";
 import FibInfoContainer from "./subcontainers/fib.info.container";
+import FibFaqListContainer from "./subcontainers/fib.faqs-list.container";
 import { FIB_INFO } from "./fib.types";
 import FibGpDetailsContainer from "./subcontainers/fib.gp-details.container";
 
@@ -92,8 +94,10 @@ function getComponent(routeProps: RouteProps) {
       return <FibInfoContainer navigation={navigation} />;
     case FIB_GP_DETAILS:
       return <FibGpDetailsContainer navigation={navigation} />;
+    case FIB_FAQ_LIST:
+      return <FibFaqListContainer navigation={navigation} selectFaq={selectFaq} />;
     default:
-      return <FibBrowseContainer selectFaq={selectFaq} navigation={navigation} />;
+      return <FibBrowseContainer navigation={navigation} />;
   }
 }
 
