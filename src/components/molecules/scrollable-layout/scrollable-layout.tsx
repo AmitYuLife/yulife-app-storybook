@@ -7,11 +7,11 @@ import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-headin
 
 interface Props {
   children: React.ReactNode;
-  buttonTitle: string;
+  buttonTitle?: string;
   isBeta?: boolean;
   isButtonDisabled?: boolean;
   isButtonLoading?: boolean;
-  buttonAction: () => void;
+  buttonAction?: () => void;
   onLeftIconPress?: () => void;
   onRightIconPress?: () => void;
   logo?: Logo;
@@ -62,16 +62,18 @@ export function ScrollableLayout(props: Props) {
           {children}
           <View style={styles.padBot} />
         </ScrollView>
-        <CTA
-          buttonTitle={buttonTitle}
-          buttonAction={buttonAction}
-          isButtonDisabled={isButtonDisabled}
-          isButtonLoading={isButtonLoading}
-          hideFirstButton={hideFirstButton}
-          secondButtonAction={secondButtonAction}
-          secondButtonLabel={secondButtonLabel}
-          removeCtaFade={removeCtaFade}
-        />
+        {!buttonAction ? null : (
+          <CTA
+            buttonTitle={buttonTitle}
+            buttonAction={buttonAction}
+            isButtonDisabled={isButtonDisabled}
+            isButtonLoading={isButtonLoading}
+            hideFirstButton={hideFirstButton}
+            secondButtonAction={secondButtonAction}
+            secondButtonLabel={secondButtonLabel}
+            removeCtaFade={removeCtaFade}
+          />
+        )}
       </View>
       <GenericHeadingAbsolute
         isBeta={isBeta}
