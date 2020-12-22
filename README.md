@@ -130,6 +130,28 @@ yarn start:android:{profile}
 # config = local | uat | production
 ```
 
+**Using a physical device (Android)**
+
+To run the app locally on a physical device, you need:
+
+- Android 5.0 (Lollipop) or newer,
+- USB debugging enabled (in Developer Settings),
+- a USB connecting your mobile device to your computer.
+
+Once connected, find your device name by running:
+
+```sh
+adb devices
+```
+
+Then, trigger a reverse proxy:
+
+```sh
+adb -s <device name> reverse tcp:8081 tcp:8081
+```
+
+You can then run `yarn start` and `yarn start:android` as above.
+
 #### Building from Android Studio
 
 You should have installed Android Studio during the React Native installation process as described above.
