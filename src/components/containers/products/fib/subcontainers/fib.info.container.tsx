@@ -1,5 +1,5 @@
 import React, { memo, useCallback, useState } from "react";
-import { FibLocalNavigation, FIB_INTRODUCTION } from "../fib.types";
+import { FibLocalNavigation, FIB_INTRO_YUGI } from "../fib.types";
 import { FibHoldingGPDetails } from "../../../../screens/products/fib/underwriting-journey/info/fib.holding-gp-results.screen";
 import { FibPaymentCongratulationScreen } from "@components/screens/products/fib/underwriting-journey/info/fib.payment-congratulation.screen";
 import { Navigation } from "react-native-navigation";
@@ -17,6 +17,7 @@ import { useMutation } from "@apollo/react-hooks";
 import { GQL_MUTATION_UPDATE_TOP_UPS_QUOTE } from "../../../../../graphql/products/updateTopUpsQuote";
 import { ScreeningStatus } from "../../../../../graphql/_core/schema/globalTypes";
 import { updateFIBValue } from "../../../../../redux/product/product.actions";
+import { YUGI_INTRO_TYPE } from "./fib.yugi-intro.container";
 
 export enum InfoTypes {
   holdingGP = "HoldingGP",
@@ -53,7 +54,9 @@ const _FibInfoContainer = memo(function (props: Props) {
   const resetFib = onResetFib
     ? () => {
         onResetFib();
-        navigation.push(FIB_INTRODUCTION);
+        navigation.push(FIB_INTRO_YUGI, {
+          type: YUGI_INTRO_TYPE.INTRO_UNDERWRITING,
+        });
       }
     : null;
 

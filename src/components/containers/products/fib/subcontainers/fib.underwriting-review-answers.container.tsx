@@ -22,6 +22,8 @@ import { useMutation } from "@apollo/react-hooks";
 import { InfoTypes } from "./fib.info.container";
 import { CreateTopUpsQuote, CreateTopUpsQuoteVariables } from "../../../../../graphql/_core/schema";
 import { CoverType, CreateTopUpsQuoteInput, ProductCode } from "../../../../../graphql/_core/schema/globalTypes";
+import { FIB_INTRO_YUGI } from "../fib.types";
+import { YUGI_INTRO_TYPE } from "./fib.yugi-intro.container";
 
 type ConnectedState = ReturnType<typeof mapStateToProps>;
 
@@ -82,7 +84,7 @@ const FibUnderwritingReviewAnswersContainer = memo(function (props: Props) {
         },
       });
     } else {
-      navigation.push(FIB_CONFIRM_PACKAGES);
+      navigation.push(FIB_INTRO_YUGI, { type: YUGI_INTRO_TYPE.ANSWERS_SUBMITTED });
     }
   };
 

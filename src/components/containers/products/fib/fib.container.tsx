@@ -25,6 +25,7 @@ import {
   FIB_DECLARATION_CONFIRMATION,
   FIB_GP_DETAILS,
   FIB_FAQ_LIST,
+  FIB_INTRO_YUGI,
 } from "./fib.types";
 import { Navigation } from "react-native-navigation";
 import { ROUTES } from "@navigation/constants";
@@ -44,6 +45,7 @@ import FibFaqListContainer from "./subcontainers/fib.faqs-list.container";
 import { FIB_INFO } from "./fib.types";
 import FibGpDetailsContainer from "./subcontainers/fib.gp-details.container";
 import { useBackHandler } from "@services/hooks/useBackHandler";
+import FibYugiIntroContainer from "./subcontainers/fib.yugi-intro.container";
 
 interface RouteProps {
   navigation: FibLocalNavigation;
@@ -97,6 +99,8 @@ function getComponent(routeProps: RouteProps) {
       return <FibGpDetailsContainer navigation={navigation} />;
     case FIB_FAQ_LIST:
       return <FibFaqListContainer navigation={navigation} selectFaq={selectFaq} />;
+    case FIB_INTRO_YUGI:
+      return <FibYugiIntroContainer navigation={navigation} />;
     default:
       return <FibBrowseContainer navigation={navigation} />;
   }
@@ -115,7 +119,7 @@ function getInitialRoute(props: Props): FibRoute {
     return FIB_BROWSE;
   }
 
-  return FIB_INTRODUCTION;
+  return FIB_INTRO_YUGI;
 }
 
 function _FibContainer(props: Props) {

@@ -207,6 +207,9 @@ export default {
       epic: "#956AFF",
       n800: "#5A5A5C",
       n900: "#464647",
+      u100S4: "#FFD600",
+      u50S4: "#FFEB80",
+      u10S4: "#FFFBE5",
     },
   },
   primary: {

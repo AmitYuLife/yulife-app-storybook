@@ -4,8 +4,8 @@ import { GetYulifer_getYulifer_products_personal } from "@graphql/_core/schema";
 import {
   FIB_UNDERWRITING_REVIEW_ANSWERS,
   FIB_UNDERWRITING_JOURNEY,
-  FIB_INTRODUCTION,
   FIB_INFO,
+  FIB_INTRO_YUGI,
 } from "@components/containers/products/fib/fib.types";
 import { FIB_UNDERWRITING_REVIEW_ANSWERS_SCREEN_ID } from "@components/containers/products/fib/data/underwriting-journey-data";
 import moment from "moment";
@@ -13,6 +13,7 @@ import { InfoTypes } from "@components/containers/products/fib/subcontainers/fib
 import { getIsPersonalItem, ItemSlot } from "../yu-types";
 import { FIBStore } from "@redux/product/product.types";
 import { ScreeningStatus } from "../../../../../graphql/_core/schema/globalTypes";
+import { YUGI_INTRO_TYPE } from "../../../products/fib/subcontainers/fib.yugi-intro.container";
 
 interface INavigateToProductScreen {
   product: GetYulifer_getYulifer_products_personal;
@@ -113,7 +114,10 @@ export const navigateToProductScreen = ({
                   id: ROUTES.fib,
                   name: ROUTES.fib,
                   passProps: {
-                    initialRoute: FIB_INTRODUCTION,
+                    initialRoute: FIB_INTRO_YUGI,
+                    initialProps: {
+                      type: YUGI_INTRO_TYPE.INTRO_UNDERWRITING,
+                    },
                   },
                 },
               });
@@ -127,6 +131,11 @@ export const navigateToProductScreen = ({
       component: {
         id: ROUTES.fib,
         name: ROUTES.fib,
+        passProps: {
+          initialProps: {
+            type: YUGI_INTRO_TYPE.INTRO_UNDERWRITING,
+          },
+        },
       },
     });
   }

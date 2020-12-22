@@ -12,6 +12,7 @@ import {
   FIB_CUSTOM_PERCENTAGE,
   FIB_UNDERWRITING_JOURNEY_INTRODUCTION,
   FIB_FAQ_LIST,
+  FIB_INTRO_YUGI,
 } from "../fib.types";
 import fibDocumentsItems from "../data/documents-data";
 import { GetTopUpsEstimateCost, GetTopUpsEstimateCostVariables, GetYulifer } from "@graphql/_core/schema";
@@ -25,6 +26,7 @@ import { calculatePayoutCalculatorItems, packages, useCover, calculatePayoutAmou
 import { handleOpenWebView } from "@navigation/utils";
 import Logger from "@services/logging/logger";
 import { CoverType, ProductCode } from "../../../../../graphql/_core/schema/globalTypes";
+import { YUGI_INTRO_TYPE } from "./fib.yugi-intro.container";
 
 interface IFibContainer {
   navigation: FibLocalNavigation;
@@ -155,7 +157,11 @@ const _FibBrowseContainer = memo(function (props: IFibContainer & ReturnType<typ
       onNavigateToYuScreen={navigation.popToMain}
       navigateToEditSalary={() => navigation.push(FIB_EDIT_SALARY)}
       navigateToCustomCover={() => navigation.push(FIB_CUSTOM_PERCENTAGE)}
-      onContinue={() => navigation.push(FIB_UNDERWRITING_JOURNEY_INTRODUCTION)}
+      onContinue={() => {
+        navigation.push(FIB_INTRO_YUGI, {
+          type: YUGI_INTRO_TYPE.PACKAGE_CHOSEN,
+        });
+      }}
       selectCoverType={selectCoverType}
       selectedPackage={packageDetails}
       documents={documents}
