@@ -5,6 +5,7 @@ import { LEADERBOARD_INFO } from "@ids";
 import { Style } from "@styles";
 import { Navigation } from "react-native-navigation";
 import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
+import { useBackHandler } from "@services/hooks/useBackHandler";
 
 interface IProps {
   componentId: string;
@@ -17,6 +18,11 @@ function LeaderboardInfoScreen({ componentId }: IProps) {
   const goBack = useCallback(() => {
     Navigation.pop(componentId);
   }, [componentId]);
+
+  useBackHandler(() => {
+    goBack();
+    return true;
+  });
 
   return (
     <View style={styles.wrapper} testID={LEADERBOARD_INFO}>

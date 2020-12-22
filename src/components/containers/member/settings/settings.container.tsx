@@ -18,6 +18,7 @@ import DateTimePicker from "react-native-modal-datetime-picker";
 import { Navigation } from "react-native-navigation";
 import { connect } from "react-redux";
 import { getCopy } from "../../../../redux/copy/copy.selectors";
+import { BackHandler } from "react-native";
 
 type ConnectedState = ReturnType<typeof mapStateToProps>;
 type ConnectedDispatch = typeof mapDispatchToProps;
@@ -40,6 +41,14 @@ class SettingsContainer extends PureComponent<IProps, IState> {
     modalDate: null,
     selectedNotification: null,
   };
+
+  public componentDidMount() {
+    BackHandler.addEventListener("hardwareBackPress", this.handleClose);
+  }
+
+  public componentWillUnmount() {
+    BackHandler.removeEventListener("hardwareBackPress", this.handleClose);
+  }
 
   public render() {
     const { isTimeModalVisible, modalDate } = this.state;
@@ -208,6 +217,7 @@ class SettingsContainer extends PureComponent<IProps, IState> {
 
   private handleClose = () => {
     Navigation.popToRoot(this.props.componentId);
+    return true;
   };
 }
 

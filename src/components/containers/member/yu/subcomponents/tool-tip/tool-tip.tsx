@@ -65,6 +65,10 @@ export const ToolTip = ({ code, onClose }: IToolTipProps) => {
   }, [product, fibState, shouldResetFib, dispatch, onClose]);
 
   useBackHandler(() => {
+    if (!code || !product) {
+      return false;
+    }
+
     onClose();
     return true;
   });

@@ -8,6 +8,7 @@ import { getCopy } from "../../../redux/copy/copy.selectors";
 import { getStreakAwardId } from "../../../redux/streaks/streaks.selectors";
 import { getUserStart } from "../../../redux/user/user.actions";
 import { StreaksScreen } from "../../screens";
+import { useBackHandler } from "@services/hooks/useBackHandler";
 
 type ConnectedState = ReturnType<typeof mapStateToProps>;
 type ConnectedDispatch = typeof mapDispatchToProps;
@@ -112,6 +113,15 @@ const StreaksModal: React.FC<Props> = ({
 }) => {
   const [isLoading, setLoading] = React.useState(false);
   const [timeRemaining, setTimeRemaining] = React.useState(getTimeRemaining(nextStreakAvailableAt));
+
+  useBackHandler(() => {
+    if (onPressCtaSecondary) {
+      onPressCtaSecondary();
+      return true;
+    }
+
+    return false;
+  });
 
   React.useEffect(() => {
     if (streakMax === streakCompleted && !streakAwardId) {

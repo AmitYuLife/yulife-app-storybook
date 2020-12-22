@@ -17,6 +17,7 @@ import { BlurProvider } from "../../../../atoms";
 import { ListPicker } from "../../../../molecules";
 import { AviosRewardDetailsScreen } from "../../../../screens";
 import { handleOpenWebView } from "@navigation/utils";
+import { useBackHandler } from "@services/hooks/useBackHandler";
 
 enum Programmes {
   aerLingus = "aerclub",
@@ -80,6 +81,11 @@ const AviosRewardDetailsContainer: FC<Props> = (props) => {
       loyalty_programme,
     },
   } = props;
+
+  useBackHandler(() => {
+    Navigation.pop(componentId);
+    return true;
+  });
 
   useEffect(() => {
     Logger.logEvent("reward_viewed", {
