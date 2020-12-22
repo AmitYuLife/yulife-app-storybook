@@ -78,7 +78,7 @@ export default [
   },
   {
     id: "general-term-of-business",
-    question: "YuLife General Terms of Business:",
+    question: "YuLife General Terms of Business",
     iconSvgXml: policyTermsConditions,
     url: `${Config.WEB_SITE_URL}`, // TODO: Change placeholder
   },
