@@ -6,7 +6,7 @@ import { MODALS } from "@navigation/constants";
 import { getLastUpdatedBeforeToday as getStepsLastUpdateBeforeToday } from "@redux/daily-steps/daily-steps.selectors";
 import moment from "moment";
 import { Navigation } from "react-native-navigation";
-import { call, put, select, spawn, delay } from "redux-saga/effects";
+import { call, CallEffect, put, PutEffect, select, SelectEffect, all, AllEffect, delay } from "redux-saga/effects";
 import { queryMindfulSessions, querySteps } from "@services/fitkit/fitkit.helpers";
 import Logger from "@services/logging/logger";
 import { pathOr } from "@services/utils";
@@ -15,103 +15,122 @@ import { meditationSinceLastUpdateSuccess } from "../../daily-meditation/daily-m
 import { getLastUpdatedBeforeToday as getMeditationLastUpdatedBeforeToday } from "../../daily-meditation/daily-meditation.selectors"; // tslint:disable-line
 import { stepsSinceLastUpdateSuccess } from "../../daily-steps/daily-steps.actions";
 import { getUserFeatures } from "../../user/user.selectors";
+import { IFeature } from "../../user/user.reducer";
 
 type HistoricalData = AddHistoricalSteps_addHistoricalSteps;
 
-export default function* sendPassiveActivity() {
-  try {
-    const features = yield select(getUserFeatures);
-    const startOfDay = moment().startOf("day");
+type SendPassiveActivityYieldResult = SelectEffect | CallEffect<void> | AllEffect<CallEffect<HistoricalData>>;
 
-    const meditationLastUpdatedBeforeToday = yield select(getMeditationLastUpdatedBeforeToday);
+type SendPassiveActivityGenerator = Generator<SendPassiveActivityYieldResult, void, any>;
 
-    let meditationHistoricalDataResponse: HistoricalData;
+const defaultData: HistoricalData = {
+  endDateTime: moment().format(),
+  startDateTime: moment().format(),
+  yucoin: 0,
+};
 
-    if (
-      meditationLastUpdatedBeforeToday &&
-      moment(meditationLastUpdatedBeforeToday).isBefore(startOfDay) &&
-      features.usePassiveMeditation
-    ) {
-      const startTime = moment(meditationLastUpdatedBeforeToday).startOf("day").format();
-      const endTime = moment().subtract(1, "day").endOf("day").format();
+export function* sendMeditation(
+  features: IFeature,
+  startOfDay: moment.Moment
+): Generator<SelectEffect | CallEffect<any> | PutEffect<{ type: string }>, HistoricalData, any> {
+  let meditationHistoricalDataResponse: HistoricalData;
+  const meditationLastUpdatedBeforeToday = yield select(getMeditationLastUpdatedBeforeToday);
 
-      const meditationResults = yield call(queryMindfulSessions, startTime, endTime, features);
+  if (
+    meditationLastUpdatedBeforeToday &&
+    moment(meditationLastUpdatedBeforeToday).isBefore(startOfDay) &&
+    features.usePassiveMeditation
+  ) {
+    const startTime = moment(meditationLastUpdatedBeforeToday).startOf("day").format();
+    const endTime = moment().subtract(1, "day").endOf("day").format();
 
-      if (meditationResults.length > 0) {
-        const aggregateMeditationChallengeArray: ChallengePayload[] = sampleMeditationDataToAggregatedData(
-          startTime,
-          endTime,
-          meditationResults
-        );
-        let isUpdated = false;
+    const meditationResults = yield call(queryMindfulSessions, startTime, endTime, features);
+
+    if (meditationResults.length > 0) {
+      const aggregateMeditationChallengeArray: ChallengePayload[] = sampleMeditationDataToAggregatedData(
+        startTime,
+        endTime,
+        meditationResults
+      );
+      let isUpdated = false;
+      while (!isUpdated) {
+        try {
+          const res = yield call(addData, aggregateMeditationChallengeArray, PassiveChallengeType.MEDITATION);
+
+          meditationHistoricalDataResponse = pathOr<HistoricalData>(res, "data.addData", defaultData);
+
+          isUpdated = true;
+          yield put(meditationSinceLastUpdateSuccess());
+        } catch (e) {
+          yield call(() => {
+            Logger.error(e, { event: "sendMeditationSinceLastUpdated" });
+          });
+          yield delay(15000);
+        }
+      }
+    } else {
+      yield put(meditationSinceLastUpdateSuccess());
+    }
+  }
+
+  return meditationHistoricalDataResponse;
+}
+
+export function* sendSteps(
+  features: IFeature,
+  startOfDay: moment.Moment
+): Generator<SelectEffect | CallEffect<any> | PutEffect<{ type: string }>, HistoricalData, any> {
+  let stepsHistoricalDataResponse: HistoricalData;
+  const lastUpdatedBeforeToday = yield select(getStepsLastUpdateBeforeToday);
+
+  if (lastUpdatedBeforeToday) {
+    const momentLastUpdatedBeforeToday = moment(lastUpdatedBeforeToday);
+
+    if (momentLastUpdatedBeforeToday.isBefore(startOfDay)) {
+      let isUpdated = false;
+      // get steps from start of last updated date until the end of previous day
+      const { results } = yield call(
+        querySteps,
+        momentLastUpdatedBeforeToday.clone().startOf("day"),
+        moment().subtract(1, "day").endOf("day"),
+        features
+      );
+
+      if (results.length > 0) {
         while (!isUpdated) {
           try {
-            const res = yield call(addData, aggregateMeditationChallengeArray, PassiveChallengeType.MEDITATION);
-
-            meditationHistoricalDataResponse = pathOr<HistoricalData>(res, "data.addData", {
-              endDateTime: "",
-              startDateTime: "",
-              yucoin: 0,
-            });
+            const res = yield call(addHistoricalSteps, results, true, true);
+            stepsHistoricalDataResponse = pathOr<HistoricalData>(res, "data.addHistoricalSteps", defaultData);
 
             isUpdated = true;
-            yield put(meditationSinceLastUpdateSuccess());
+            yield put(stepsSinceLastUpdateSuccess());
           } catch (e) {
-            yield spawn(() => {
-              Logger.error(e, { event: "sendMeditationSinceLastUpdated" });
+            yield call(() => {
+              Logger.error(e, { event: "sendStepsSinceLastUpdated" });
             });
             yield delay(15000);
           }
         }
       } else {
-        yield put(meditationSinceLastUpdateSuccess());
+        yield put(stepsSinceLastUpdateSuccess());
       }
     }
+  }
 
-    const lastUpdatedBeforeToday = yield select(getStepsLastUpdateBeforeToday);
-    let stepsHistoricalDataResponse: HistoricalData;
+  return stepsHistoricalDataResponse;
+}
 
-    if (lastUpdatedBeforeToday) {
-      const momentLastUpdatedBeforeToday = moment(lastUpdatedBeforeToday);
+export default function* sendPassiveActivity(): SendPassiveActivityGenerator {
+  try {
+    const features = yield select(getUserFeatures);
+    const startOfDay = moment().startOf("day");
 
-      if (momentLastUpdatedBeforeToday.isBefore(startOfDay)) {
-        let isUpdated = false;
-        // get steps from start of last updated date until the end of previous day
-        const { results } = yield call(
-          querySteps,
-          momentLastUpdatedBeforeToday.clone().startOf("day"),
-          moment().subtract(1, "day").endOf("day"),
-          features
-        );
+    const [steps, meditation]: HistoricalData[] = yield all([
+      call(sendSteps, features, startOfDay.clone()),
+      call(sendMeditation, features, startOfDay.clone()),
+    ]) as AllEffect<CallEffect<HistoricalData>>;
 
-        if (results.length > 0) {
-          while (!isUpdated) {
-            try {
-              const res = yield call(addHistoricalSteps, results, true, true);
-              stepsHistoricalDataResponse = pathOr<HistoricalData>(res, "data.addHistoricalSteps", {
-                endDateTime: "",
-                startDateTime: "",
-                yucoin: 0,
-              });
-
-              isUpdated = true;
-              yield put(stepsSinceLastUpdateSuccess());
-            } catch (e) {
-              yield spawn(() => {
-                Logger.error(e, { event: "sendStepsSinceLastUpdated" });
-              });
-              yield delay(15000);
-            }
-          }
-        } else {
-          yield put(stepsSinceLastUpdateSuccess());
-        }
-      }
-    }
-
-    const awardedYucoin =
-      (meditationHistoricalDataResponse ? meditationHistoricalDataResponse.yucoin : 0) +
-      (stepsHistoricalDataResponse ? stepsHistoricalDataResponse.yucoin : 0);
+    const awardedYucoin = (meditation?.yucoin || 0) + (steps?.yucoin || 0);
 
     if (awardedYucoin > 0) {
       const route = yield select(getRouteState);
@@ -120,24 +139,15 @@ export default function* sendPassiveActivity() {
         let startDateTime;
         let endDateTime;
 
-        if (meditationHistoricalDataResponse?.yucoin && stepsHistoricalDataResponse?.yucoin) {
-          startDateTime = moment(meditationHistoricalDataResponse.startDateTime).isBefore(
-            moment(stepsHistoricalDataResponse.startDateTime)
-          )
-            ? meditationHistoricalDataResponse.startDateTime
-            : stepsHistoricalDataResponse.startDateTime;
-
-          endDateTime = moment(meditationHistoricalDataResponse.endDateTime).isBefore(
-            moment(stepsHistoricalDataResponse.endDateTime)
-          )
-            ? meditationHistoricalDataResponse.endDateTime
-            : stepsHistoricalDataResponse.endDateTime;
-        } else if (meditationHistoricalDataResponse?.yucoin && !stepsHistoricalDataResponse?.yucoin) {
-          startDateTime = meditationHistoricalDataResponse.startDateTime;
-          endDateTime = meditationHistoricalDataResponse.endDateTime;
-        } else if (stepsHistoricalDataResponse?.yucoin && !meditationHistoricalDataResponse?.yucoin) {
-          startDateTime = stepsHistoricalDataResponse.startDateTime;
-          endDateTime = stepsHistoricalDataResponse.endDateTime;
+        if (meditation?.yucoin && steps?.yucoin) {
+          startDateTime = moment.min(moment(meditation.startDateTime), moment(steps.startDateTime));
+          endDateTime = moment.min(moment(meditation.endDateTime), moment(steps.endDateTime));
+        } else if (meditation?.yucoin && !steps?.yucoin) {
+          startDateTime = meditation.startDateTime;
+          endDateTime = meditation.endDateTime;
+        } else if (steps?.yucoin && !meditation?.yucoin) {
+          startDateTime = steps.startDateTime;
+          endDateTime = steps.endDateTime;
         }
 
         const firstDay = moment(startDateTime).format("DD MMM");
@@ -160,7 +170,7 @@ export default function* sendPassiveActivity() {
       }
     }
   } catch (e) {
-    yield spawn(() => {
+    yield call(() => {
       Logger.error(e, { event: "sendPassiveActivitySinceLastUpdate" });
     });
   }
