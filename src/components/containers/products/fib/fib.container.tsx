@@ -43,6 +43,7 @@ import FibInfoContainer from "./subcontainers/fib.info.container";
 import FibFaqListContainer from "./subcontainers/fib.faqs-list.container";
 import { FIB_INFO } from "./fib.types";
 import FibGpDetailsContainer from "./subcontainers/fib.gp-details.container";
+import { useBackHandler } from "@services/hooks/useBackHandler";
 
 interface RouteProps {
   navigation: FibLocalNavigation;
@@ -117,7 +118,7 @@ function getInitialRoute(props: Props): FibRoute {
   return FIB_INTRODUCTION;
 }
 
-function FIBContainer(props: Props) {
+function _FibContainer(props: Props) {
   const initialRoute = getInitialRoute(props);
 
   const fibRouter = useLocalNavigation<FibRoute>({
@@ -128,6 +129,11 @@ function FIBContainer(props: Props) {
   });
 
   const [selectedFaq, selectFaq] = useState("");
+
+  useBackHandler(() => {
+    fibRouter.pop();
+    return true;
+  });
 
   const component = getComponent({
     navigation: fibRouter,
@@ -145,4 +151,6 @@ function mapStateToProps(store: IReduxState) {
   };
 }
 
-export default connect<ConnectedState>(mapStateToProps)(FIBContainer);
+const FibContainer = connect<ConnectedState>(mapStateToProps)(_FibContainer);
+
+export default FibContainer;

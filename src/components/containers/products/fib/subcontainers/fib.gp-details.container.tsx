@@ -6,7 +6,6 @@ import { ROUTES } from "@navigation/constants";
 import { FibGPConsentScreen } from "@components/screens/products/fib/underwriting-journey/subcomponents/gp-details/fib.gp-details.screen";
 import { updateFIBAnswerValue } from "@redux/product/product.actions";
 import { FibGPPracticeSearchScreen } from "@components/screens/products/fib/underwriting-journey/subcomponents/gp-details/fib.gp-practice-search";
-import { useBackHandler } from "@services/hooks/useBackHandler";
 import { useLazyQuery, useMutation } from "@apollo/react-hooks";
 import { GQL_GET_MEDICAL_PRACTICES, GQL_MUTATION_UPDATE_CUSTOMER_GP_DETAILS } from "@graphql/products";
 import { FibGPPracticesResultsScreen } from "@components/screens/products/fib/underwriting-journey/subcomponents/gp-details/fib.gp-practices-results";
@@ -63,13 +62,6 @@ const FibGPDetailsContainer = memo(function (props: IFibGPDetailsContainerProps 
   >(GQL_MUTATION_UPDATE_CUSTOMER_GP_DETAILS);
 
   const dispatch = useDispatch();
-
-  const backHandler = useCallback(() => {
-    navigation.pop();
-    return true;
-  }, [navigation]);
-
-  useBackHandler(backHandler);
 
   const onContinueConsentScreen = useCallback(() => {
     setGPView("medical_practice_search");

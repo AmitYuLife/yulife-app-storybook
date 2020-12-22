@@ -8,6 +8,8 @@ import { GQL_QUERY_GET_DUELS_HUB_DATA } from "@graphql/duels";
 import { GetDuelsHubData } from "@graphql/_core/schema";
 import { Loading } from "@atoms";
 import { SafeAreaView, StyleSheet } from "react-native";
+import { useBackHandler } from "@services/hooks/useBackHandler";
+import { ROUTES } from "@navigation/constants";
 
 export type DuelHubTab = "active" | "past";
 
@@ -26,6 +28,11 @@ function DuelsHubContainer({ componentId }: Props) {
   const handleChangeTab = (pressedTab: DuelHubTab) => () => {
     setTab(pressedTab);
   };
+
+  useBackHandler(() => {
+    Navigation.pop(ROUTES.duelsHub);
+    return true;
+  });
 
   const { data, loading, refetch, networkStatus } = useQuery<GetDuelsHubData>(GQL_QUERY_GET_DUELS_HUB_DATA, {
     fetchPolicy: "network-only",

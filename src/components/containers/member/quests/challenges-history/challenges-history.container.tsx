@@ -3,6 +3,7 @@ import { Navigation } from "react-native-navigation";
 import { GetCurrentQuestLevels_getCurrentQuestLevels } from "../../../../../graphql/_core/schema";
 import { IConnectedScreenProps } from "../../../../../typings";
 import { ChallengesHistoryScreen } from "../../../../screens";
+import { useBackHandler } from "@services/hooks/useBackHandler";
 
 interface IProps extends IConnectedScreenProps {
   componentId?: string;
@@ -13,6 +14,11 @@ interface IProps extends IConnectedScreenProps {
 
 function ChallengesHistoryContainer({ level, onPressActivityHistory, componentId }: IProps) {
   const handleClose = useCallback(() => Navigation.popToRoot(componentId), [componentId]);
+
+  useBackHandler(() => {
+    handleClose();
+    return true;
+  });
 
   return (
     <ChallengesHistoryScreen

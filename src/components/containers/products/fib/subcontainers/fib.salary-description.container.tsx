@@ -1,10 +1,9 @@
-import React, { memo, useCallback } from "react";
+import React, { memo } from "react";
 import { StyleSheet, View } from "react-native";
 import { Text } from "@atoms";
 import * as Animatable from "react-native-animatable";
 import { Style } from "@styles";
 import { FibLocalNavigation } from "../fib.types";
-import { useBackHandler } from "../../../../../services/hooks/useBackHandler";
 import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
 
 interface IFibSalaryDescriptionContainerProps {
@@ -13,13 +12,6 @@ interface IFibSalaryDescriptionContainerProps {
 
 const FibSalaryDescriptionContainer = memo(function (props: IFibSalaryDescriptionContainerProps) {
   const { navigation } = props;
-
-  const backHandler = useCallback(() => {
-    navigation.pop();
-    return true;
-  }, [navigation]);
-
-  useBackHandler(backHandler);
 
   return (
     <View style={styles.wrapper}>

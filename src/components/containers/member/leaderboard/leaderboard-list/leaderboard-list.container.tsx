@@ -9,6 +9,7 @@ import { ROUTES } from "@navigation/constants";
 import { useQuery } from "@apollo/react-hooks";
 import { GQL_QUERY_GET_CURRENT_USER_LEADERBOARD } from "@graphql/user";
 import { GetCurrentUser } from "@graphql/_core/schema";
+import { useBackHandler } from "@services/hooks/useBackHandler";
 
 type ConnectedState = ReturnType<typeof mapStateToProps>;
 
@@ -33,6 +34,11 @@ function LeaderboardListContainer(props: Props) {
   const goBack = useCallback(() => {
     Navigation.popToRoot(componentId);
   }, [componentId]);
+
+  useBackHandler(() => {
+    goBack();
+    return true;
+  });
 
   const goToSettings = useCallback(() => {
     Navigation.push(componentId, {

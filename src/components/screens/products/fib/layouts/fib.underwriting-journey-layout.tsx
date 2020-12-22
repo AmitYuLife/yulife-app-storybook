@@ -3,7 +3,6 @@ import { Platform, StyleSheet, KeyboardAvoidingView, ViewStyle, View } from "rea
 import { GenericHeading } from "@atoms";
 import { FIBProgressBar } from "@components/organisms";
 import { Yugi, YugiType } from "./yugi";
-import { useBackHandler } from "@services/hooks/useBackHandler";
 import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
 import { Style } from "@styles";
 
@@ -35,11 +34,6 @@ export function FibUnderwritingJourneyLayout(props: Props) {
     wrapperStyle,
     hideBorder = true,
   } = props;
-
-  useBackHandler(() => {
-    onPreviousQuestion();
-    return true;
-  });
 
   return (
     <View style={StyleSheet.flatten([styles.wrapper, wrapperStyle])}>

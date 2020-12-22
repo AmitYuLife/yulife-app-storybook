@@ -16,6 +16,7 @@ import {
 } from "../../../screens/member/stats/cards/general-info-card";
 import Stats from "../../../screens/member/stats/stats";
 import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
+import { useBackHandler } from "@services/hooks/useBackHandler";
 
 interface IProps {
   componentId: string;
@@ -30,6 +31,11 @@ const StatsContainer: FC<Props> = ({ componentId }) => {
   const handleClose = useCallback(() => {
     Navigation.popToRoot(componentId);
   }, [componentId]);
+
+  useBackHandler(() => {
+    handleClose();
+    return true;
+  });
 
   const handleActivityHistoryPress = useCallback(() => {
     Navigation.push(componentId, {

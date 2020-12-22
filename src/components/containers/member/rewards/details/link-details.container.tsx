@@ -11,6 +11,8 @@ import { WegiftRewardDetailsScreen } from "../../../../screens";
 import { handleOpenWebView } from "@navigation/utils";
 import { Platform } from "react-native";
 import { handleLinkPress } from "@services/app-link";
+import { useBackHandler } from "@services/hooks/useBackHandler";
+import { Navigation } from "react-native-navigation";
 
 interface IProps {
   componentId: string;
@@ -40,6 +42,11 @@ const LinkRewardDetailsContainer: FC<Props> = (props) => {
       reward_sticker,
     },
   } = props;
+
+  useBackHandler(() => {
+    Navigation.pop(componentId);
+    return true;
+  });
 
   useEffect(() => {
     Logger.logEvent("reward_viewed", {

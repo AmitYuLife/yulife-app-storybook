@@ -62,12 +62,22 @@ const _FibUnderwritingJourneyScreen = memo(function (props: IFibUnderwritingJour
     hideProgressBar,
   } = props;
   const scrollViewRef = useRef(null as ScrollView);
+  const timer = useRef(null as ReturnType<typeof setTimeout>);
 
   function handleResetScroll() {
-    if (scrollViewRef?.current) {
-      scrollViewRef.current.scrollTo({ y: 0 });
+    if (scrollViewRef?.current?.scrollTo) {
+      timer.current = setTimeout(() => {
+        scrollViewRef.current.scrollTo({ y: 0 });
+      }, 0);
     }
   }
+
+  useEffect(() => {
+    return () => {
+      clearTimeout(timer.current);
+      timer.current = null;
+    };
+  }, []);
 
   const handleScrollToKeyboardOffset = useCallback(() => {
     if (scrollViewRef?.current) {

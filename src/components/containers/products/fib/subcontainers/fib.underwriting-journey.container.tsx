@@ -44,7 +44,7 @@ interface IFibUnderwritingJourneyContainer {
   initialQuestionId?: string;
 }
 
-const FibUnderwritingJourneyContainer = memo(function (props: Props) {
+const _FibUnderwritingJourneyContainer = memo(function (props: Props) {
   const { navigation, medicalHistory, updateFibAnswer, initialQuestionId, fibAnswers } = props;
   const dispatch = useDispatch();
 
@@ -322,4 +322,6 @@ const mapDispatchToProps = {
   updateFibAnswer: (key: string, value: string) => updateFIBAnswerValue({ key, value }),
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(FibUnderwritingJourneyContainer);
+const FibUnderwritingJourneyContainer = connect(mapStateToProps, mapDispatchToProps)(_FibUnderwritingJourneyContainer);
+
+export default FibUnderwritingJourneyContainer;

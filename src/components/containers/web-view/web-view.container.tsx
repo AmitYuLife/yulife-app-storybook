@@ -3,6 +3,7 @@ import { WebViewScreen } from "@components/screens/web-view/web-view.screen";
 import { Navigation } from "react-native-navigation";
 import { ROUTES } from "@navigation/constants";
 import { WebViewErrorBoundary } from "@components/screens/web-view/web-view.error-boundary";
+import { useBackHandler } from "@services/hooks/useBackHandler";
 
 export interface WebViewContainerProps {
   uri: string;
@@ -16,6 +17,11 @@ function handleCloseWebView() {
 
 function WebViewContainer(props: WebViewContainerProps) {
   const { uri, title, onBothLinksFail = () => null } = props;
+
+  useBackHandler(() => {
+    handleCloseWebView();
+    return true;
+  });
 
   return (
     <WebViewErrorBoundary

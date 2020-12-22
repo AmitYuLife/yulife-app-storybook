@@ -2,12 +2,14 @@ import { CHALLENGE_SCREEN } from "@ids";
 import { ChallengesList, IChallengesListProps } from "@molecules/index";
 import { getCurrentWorld } from "@services/utils";
 import * as React from "react";
-import { Image, StyleSheet, View } from "react-native";
+import { Image, StyleSheet, View, BackHandler } from "react-native";
 import { IMilestoneProps } from "../challenge-details/milestones";
 import styles from "./challenges-list.screen.styles";
 import { ChallengeType } from "@molecules/challenge-tile/challenge-tile.types";
-import { TopBar } from "@components/organisms";
-import { NavBar } from "@components/organisms";
+import { TopBar, NavBar } from "@components/organisms";
+import { Navigation } from "react-native-navigation";
+import { ROUTES } from "@navigation/constants";
+
 interface IProps extends IChallengesListProps {
   currentLevel?: number;
   name: string;
@@ -36,6 +38,15 @@ export default class ChallengesListScreen extends React.Component<IProps, IState
     hideChallengeTiles: true,
   };
 
+  private handleBackPress() {
+    Navigation.pop(ROUTES.questsChallengesList);
+    return true;
+  }
+
+  public componentDidMount() {
+    BackHandler.addEventListener("hardwareBackPress", this.handleBackPress);
+  }
+
   public shouldComponentUpdate(nextProps: IProps, nextState: IState) {
     return (
       this.props.currentLevel !== nextProps.currentLevel ||
@@ -49,6 +60,8 @@ export default class ChallengesListScreen extends React.Component<IProps, IState
     if (this.timeout) {
       global.clearTimeout(this.timeout);
     }
+
+    BackHandler.removeEventListener("hardwareBackPress", this.handleBackPress);
   }
 
   public render() {
