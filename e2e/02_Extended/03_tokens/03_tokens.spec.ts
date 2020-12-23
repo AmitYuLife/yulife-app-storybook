@@ -1,4 +1,4 @@
-import { Feature, Scenario, Given, When, Then, ScenarioOnly } from "@bdd";
+import { Feature, Scenario, Given, When, Then, ScenarioOnly, FeatureOnly } from "@bdd";
 import * as scenario from "./_steps/scenario"
 import * as given from "./_steps/given"
 import { CUSTOMER_10, AUTH_10, CUSTOMER_11, AUTH_11 } from "_utils/data/stubs";
