@@ -132,6 +132,7 @@ export const SCROLLER_VALUE = (value: number) => `SCROLLER_VALUE${value}`
 export const HIGHLIGHTED_SCROLLER_VALUE = (value:number) => `HIGHLIGHTED_SCROLLER_VALUE_${value}`
 export const CUSTOM_COVER_SCREEN = "CUSTOM_COVER_SCREEN"
 export const PERCENTAGE_COVERED = (value:number) => `PERCENTAGE_COVERD_${value}`
+export const FIB_INTRO_SCREEN = "FIB_INTRO_SCREEN"
 
 // DUELS
 export const DUELS_HUB = "DUELS_HUB"

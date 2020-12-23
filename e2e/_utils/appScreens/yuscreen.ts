@@ -164,8 +164,8 @@ export const onPackageScreen = async () => {
 
 export const packageScreenCorrect = (estimatedCost: number) => async () => {
     const textElements = ["How it works", "How much would it pay out?", "Additional benefits",
-        "FAQs", "Documents",
-        "Policy Terms & Conditions", "Policy summary"]
+       "Have a question?", "FAQs", "Documents", "Terms & Conditions", "Privacy Policy", "Rewards Policy",
+        "Key Facts", "Policy Guide", "YuLife General Terms of Business"]
 
     await scrollFromID(PACKAGE_SCREEN, "up", "slow")()
     await expect(element(by.text(`£${estimatedCost} per month`))).toBeVisible()

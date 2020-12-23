@@ -1,4 +1,4 @@
-import { navigation, BODY_ITEM_TITLE, BODY_PART_ITEM, SKIN_TONE, PERSONAL_PRODUCT, FIB_SALARY_INPUT, YUSCREEN } from "@utils"
+import { navigation, BODY_ITEM_TITLE, BODY_PART_ITEM, SKIN_TONE, PERSONAL_PRODUCT, FIB_SALARY_INPUT, YUSCREEN, navigateViaText } from "@utils"
 
 
 
@@ -34,5 +34,19 @@ export const tapColour = (hexValue: string) => async () => {
 export const goToLifeInsurance = async () =>{
     await scrollFromID(YUSCREEN, "up", "fast")()
     await tapID(PERSONAL_PRODUCT("Life Insurance"))()
-    await tapText("Continue")()
+    try {
+        await navigateViaText("Okay")
+        await navigateViaText("Okay")
+    } catch (e) {
+        await navigateViaText("Okay")
+    }
+}
+
+export const dismissFibIntro = async()=>{
+    try{
+        await navigateViaText("Okay")
+        await navigateViaText("Okay")
+    }catch(e){
+        await navigateViaText("Okay")
+    }
 }
