@@ -4,7 +4,7 @@ import * as given from "./_steps/given"
 import * as when from "./_steps/when"
 import * as then from "./_steps/then"
 import { CUSTOMER_23, AUTH_23 } from "_utils/data/stubs";
-import { FIB_SALARY_INPUT, PERSONAL_PRODUCT, FIB_SALARY_INPUT_VALUE, PACKAGE_SCREEN, FIB_BROWSE_SCREEN, YUSCREEN_AVATAR, YEAR_SCROLLER, MONTH_SCROLLER, HIGHLIGHTED_SCROLLER_VALUE, AVATAR_ITEM, YUSCREEN } from "@ids";
+import { FIB_SALARY_INPUT, PERSONAL_PRODUCT, FIB_SALARY_INPUT_VALUE, PACKAGE_SCREEN, FIB_BROWSE_SCREEN, YUSCREEN_AVATAR, YEAR_SCROLLER, MONTH_SCROLLER, HIGHLIGHTED_SCROLLER_VALUE, AVATAR_ITEM, YUSCREEN, FIB_INTRO_SCREEN } from "@ids";
 
 
 Feature("I am able to use the yuscreens extended features", async () => {
@@ -17,30 +17,30 @@ Feature("I am able to use the yuscreens extended features", async () => {
             When("I tap life insurance", when.tapID(AVATAR_ITEM("chest", "unlockable")), async () => {
                 Then("I should see the unlock modal", then.multipleTextVisible(["Unlock", "not equipped"]))
                 When("I tap Unlock", when.tapText("Unlock"), async()=>{
-                    Then("I should see the FIB intro screen", then.textVisible(`Welcome, ${CUSTOMER_23.data.firstName}`))
-                    When("I tap continue", when.tapText("Continue"), async()=>{
-                        Then("I should see the salary input", then.idVisible(FIB_SALARY_INPUT))
-                        When("I enter a salary", when.typeViaID(FIB_SALARY_INPUT, "40000"), async ()=>{
-                            Then("I should see my salary has been input", then.idVisible(FIB_SALARY_INPUT_VALUE(40000)))
-                            When("I tap done", when.tapText("Done"), async()=>{
-                                Then("I should be on the package screen for life insurance", then.onPackageScreen)
-                                Then("The common option should be selected", then.textVisible("Designed to cover the basics"))
-                                Then("the rest of the package screen should be visible", then.packageScreenCorrect(17.63))
+                    Then("I should be on the intro screen", then.idVisible(FIB_INTRO_SCREEN))
+                    When("I dismiss this screen", when.dismissFibIntro, async()=>{
+                            Then("I should see the salary input", then.idVisible(FIB_SALARY_INPUT))
+                            When("I enter a salary", when.typeViaID(FIB_SALARY_INPUT, "40000"), async ()=>{
+                                Then("I should see my salary has been input", then.idVisible(FIB_SALARY_INPUT_VALUE(40000)))
+                                When("I tap done", when.tapText("Done"), async()=>{
+                                    Then("I should be on the package screen for life insurance", then.onPackageScreen)
+                                    Then("The common option should be selected", then.textVisible("Designed to cover the basics"))
+                                    Then("the rest of the package screen should be visible", then.packageScreenCorrect(17.63))
+                                })
                             })
                         })
                     })
                 })
             })
         })
-    })
 
     Scenario("The payout calculator should work correctly", scenario.start, async()=>{
         Given("I go to the yuscreen as a user with the correct toggle", given.loginToYuScreen(true, CUSTOMER_23, AUTH_23), async () => {
             Then("I should be on the yuscreen", then.onYuscreen(CUSTOMER_23))
             When("I scroll to the bottom", when.scrollFromID(YUSCREEN, "up", "fast"), async () => {
             When("I tap life insurance", when.tapID(PERSONAL_PRODUCT("Life Insurance")), async () => {
-                Then("I should see the FIB intro screen", then.textVisible(`Welcome, ${CUSTOMER_23.data.firstName}`))
-                When("I tap continue", when.tapText("Continue"), async () => {
+                Then("I should be on the intro screen", then.idVisible(FIB_INTRO_SCREEN))
+                When("I dismiss this screen", when.dismissFibIntro, async () => {
                     Then("I should see the salary input", then.idVisible(FIB_SALARY_INPUT))
                     When("I enter a salary", when.typeViaID(FIB_SALARY_INPUT, "40000"), async () => {
                         Then("I should see my salary has been input", then.idVisible(FIB_SALARY_INPUT_VALUE(40000)))
@@ -113,8 +113,10 @@ Feature("I am able to use the yuscreens extended features", async () => {
                     When("I scroll past the package screen", when.scrollFromID(PACKAGE_SCREEN, "up", "slow"), async () => {
                         When("I scroll to the FAQs", when.swipeToText(FIB_BROWSE_SCREEN, "FAQs", "up", 15), async () => {
                             Then("I should see the FAQs", then.textVisible("FAQs"))
-                            When("I tap what is the lump sum", when.tapText("What is a lump sum?"), async()=>{
-                                Then("I should be on the lump sum FAQ screen", then.textVisible("What is a lump sum?"))
+                            When("I tap FAQs", when.tapText("FAQs"), async()=>{
+                                When("I tap what is the lump sum", when.tapText("What is a lump sum?"), async()=>{
+                                    Then("I should be on the lump sum FAQ screen", then.textVisible("What is a lump sum?"))
+                                })
                                 })
                             })
                         })

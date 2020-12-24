@@ -8,6 +8,7 @@ import { YUGI_INTRO_TYPE } from "../../../../containers/products/fib/subcontaine
 import { getData } from "./data";
 import { ArrowUp } from "./assets/arrowUp";
 import colours from "@styles/colours";
+import { FIB_INTRO_SCREEN } from "@ids";
 export interface IFibYugiIntroScreenProps {
   onNavigateBack: () => void;
   onNavigateToSalary: () => void;
@@ -68,7 +69,7 @@ export const FibYugiIntroScreen = memo(function (props: IFibYugiIntroScreenProps
       isBeta={false}
       shouldCenterContent={true}
     >
-      <View style={styles.lottieWrapper}>
+      <View style={styles.lottieWrapper} testID={FIB_INTRO_SCREEN}>
         <LottieView
           resizeMode="cover"
           style={styles.lottie}
