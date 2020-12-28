@@ -15,16 +15,20 @@ import { LeaderboardContentContainer } from "./leaderboard-content/leaderboard-c
 import { LeaderboardSkeleton } from "./leaderboard-layout/subcomponents/leaderboard-skeleton/leaderboard-skeleton";
 import { Navigation } from "react-native-navigation";
 import { MODALS } from "@navigation/constants";
+import { IMainTabsProps } from "@navigation/root";
+import { useTapBackTwiceToExit } from "@services/hooks/useTapBackTwiceToExit";
 
+type OwnProps = IMainTabsProps;
 type ConnectedState = ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps;
 
-type Props = ConnectedState;
+type Props = ConnectedState & OwnProps;
 
 export const PAGE_SIZE = 501; // number of rows to show +1
 
 const _ActiveLeaderboard = (props: Props) => {
   const { appState, activeLeaderboard, userId, consentCopy, updateLeaderboardConsent } = props;
   const appStateRef = useRef(appState);
+  useTapBackTwiceToExit(props.componentId);
 
   const { data, refetch, networkStatus } = useQuery<GetLeaderboard, GetLeaderboardVariables>(GQL_QUERY_LEADERBOARD, {
     variables: {
@@ -101,7 +105,7 @@ const mapStateToProps = (state: IReduxState) => ({
 
 const mapDispatchToProps = { updateLeaderboardConsent };
 
-const redux = connect<ReturnType<typeof mapStateToProps>, typeof mapDispatchToProps, null>(
+const redux = connect<ReturnType<typeof mapStateToProps>, typeof mapDispatchToProps, OwnProps>(
   mapStateToProps,
   mapDispatchToProps
 );
