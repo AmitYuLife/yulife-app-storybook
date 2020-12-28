@@ -3,11 +3,14 @@ import { Navigation } from "react-native-navigation";
 import { IMainTabsProps } from "@navigation/root";
 import RewardsListContainer from "./rewards.list";
 import RewardsPurchasesContainer from "./rewards.purchases";
+import { useTapBackTwiceToExit } from "@services/hooks/useTapBackTwiceToExit";
 
 type Tab = "rewards" | "purchases";
 
 function RewardsMainContainer(props: IMainTabsProps) {
   const [tab, setTab] = useState("rewards");
+
+  useTapBackTwiceToExit(props.componentId);
 
   const onTabChange = useCallback(async (newTab: Tab, componentId: string = "") => {
     setTab(newTab);

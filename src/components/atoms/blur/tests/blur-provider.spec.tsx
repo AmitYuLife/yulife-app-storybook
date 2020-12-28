@@ -20,15 +20,14 @@ describe("BlurProvider", () => {
     const overlayContainer = getByTestId("blur-provider.overlay-container");
 
     const showOverlayButton = getByText("Show");
-    const hideOverlayButton = getByText("Hide");
 
     expect(overlayContainer).toHaveStyle({ opacity: 0 });
 
     fireEvent.press(showOverlayButton);
 
     jest.runAllTimers();
-
     expect(overlayContainer).toHaveStyle({ opacity: 1 });
+    const hideOverlayButton = getByText("Hide");
 
     fireEvent.press(hideOverlayButton);
 

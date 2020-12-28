@@ -103,7 +103,7 @@ function BlurProvider({ render, renderOverlay, backgroundColor = "default" }: IP
           ],
         }}
       >
-        {renderOverlay(renderProps)}
+        {!isVisible ? null : renderOverlay(renderProps)}
       </Animated.View>
     </View>
   );

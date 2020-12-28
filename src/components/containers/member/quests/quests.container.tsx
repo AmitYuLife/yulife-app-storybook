@@ -23,6 +23,7 @@ import {
 } from "../../../screens";
 import QuestsScreenContainer from "@screens/member/quests/quests-scroll-screen/quests-screen.container";
 import { BlurProvider } from "@atoms/index";
+import { useTapBackTwiceToExit } from "@services/hooks/useTapBackTwiceToExit";
 
 export type ConnectedState = ReturnType<typeof mapStateToProps>;
 
@@ -46,6 +47,8 @@ const QuestsContainer: FC<Props> = (props) => {
     unit,
     isLoading,
   } = activeLevel;
+
+  useTapBackTwiceToExit(props.componentId);
 
   const currentWorld = useMemo(() => getCurrentWorld(level), [level]);
 
