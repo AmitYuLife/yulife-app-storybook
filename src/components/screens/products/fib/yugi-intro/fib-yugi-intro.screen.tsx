@@ -115,6 +115,7 @@ export const FibYugiIntroScreen = memo(function (props: IFibYugiIntroScreenProps
             play();
             swipe();
           }}
+          delay={300}
           label="Okay"
         />
       </View>
