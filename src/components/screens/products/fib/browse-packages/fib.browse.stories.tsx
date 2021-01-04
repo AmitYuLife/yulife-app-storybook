@@ -33,7 +33,6 @@ storiesOf("FibBrowse", module)
   .add("default", () => (
     <FibBrowseScreen
       selectedPackage={selectedPackage}
-      navigateToEditSalary={() => null}
       onNavigateToYuScreen={(): void => null}
       onContinue={(): void => null}
       avatarUrl={""}
@@ -43,20 +42,6 @@ storiesOf("FibBrowse", module)
       onNavigateToFaqsList={() => null}
       documents={documents}
       navigateToCustomCover={() => null}
-      payoutEstimatorItems={{
-        years: Array.from({ length: 31 }).map((_, i) => i + 40),
-        months: Array.from({ length: 12 }).map((_, i) => i),
-        max: {
-          year: 70,
-          month: 1,
-        },
-        min: {
-          year: 30,
-          month: 1,
-        },
-      }}
-      setDeceaseAgeIndexYear={(_: number): void => null}
-      setDeceaseAgeIndexMonth={(_: number): void => null}
       loading={false}
       maxTermAge={40}
     />

@@ -155,7 +155,6 @@ const _FibBrowseContainer = memo(function (props: IFibContainer & ReturnType<typ
     <FibBrowseScreen
       avatarUrl={yuliferData?.getYulifer.avatarRemoteFiles?.pngFull}
       onNavigateToYuScreen={navigation.popToMain}
-      navigateToEditSalary={() => navigation.push(FIB_EDIT_SALARY)}
       navigateToCustomCover={() => navigation.push(FIB_CUSTOM_PERCENTAGE)}
       onContinue={() => {
         navigation.push(FIB_INTRO_YUGI, {
@@ -165,9 +164,6 @@ const _FibBrowseContainer = memo(function (props: IFibContainer & ReturnType<typ
       selectCoverType={selectCoverType}
       selectedPackage={packageDetails}
       documents={documents}
-      payoutEstimatorItems={payoutEstimatorItems}
-      setDeceaseAgeIndexYear={setDeceaseAgeIndexYear}
-      setDeceaseAgeIndexMonth={setDeceaseAgeIndexMonth}
       onScrollEnd={navigation.onScrollEnd}
       offset={navigation.currentRoute.offset || { x: 0, y: 0 }}
       loading={loading}

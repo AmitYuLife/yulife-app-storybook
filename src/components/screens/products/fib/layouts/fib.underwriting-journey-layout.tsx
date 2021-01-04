@@ -70,6 +70,6 @@ const styles = StyleSheet.create({
     flex: 1,
   } as ViewStyle,
   yugiWrapper: {
-    top: Style.adjust(44),
+    top: Style.adjust(84),
   } as ViewStyle,
 });

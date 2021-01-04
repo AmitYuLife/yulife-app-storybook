@@ -22,7 +22,7 @@ export default function MarkdownFib(props: IMarkdownFibProps) {
 }
 
 const marginTop = Platform.select({
-  ios: Style.adjust(24),
+  ios: Style.adjust(12),
   android: media.select(
     [
       {
@@ -30,7 +30,7 @@ const marginTop = Platform.select({
         value: 0,
       },
     ],
-    Style.adjust(24)
+    Style.adjust(12)
   ),
 });
 
@@ -65,7 +65,7 @@ const markdownStyles = {
   text: {
     fontFamily: Style.FONT_FAMILY_PRIMARY,
     fontSize,
-    lineHeight: fontSize * 1.2,
+    lineHeight: fontSize * 1.5,
     letterSpacing: 1,
     color: "#5A5A5C",
   },

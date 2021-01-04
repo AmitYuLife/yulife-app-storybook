@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 import { IReduxState } from "@redux/_core/reducers";
 import { getUserFirstName } from "@redux/user/user.selectors";
 import {
-  FIB_EDIT_SALARY,
   FibLocalNavigation,
   FIB_BROWSE,
   FIB_UNDERWRITING_JOURNEY_INTRODUCTION,
@@ -35,14 +34,9 @@ const _FibYugiIntroContainer = memo(function FibYugiIntroContainer(props: Props)
 
   const { type }: { type: YUGI_INTRO_TYPE } = navigation.currentRoute.passProps;
 
-  const handleNavigateToSalary = async () => {
-    return navigation.push(FIB_EDIT_SALARY);
-  };
-
   const onNavigateToNextScreen = () => {
     switch (type) {
       case YUGI_INTRO_TYPE.INTRO_UNDERWRITING:
-        return handleNavigateToSalary();
       case YUGI_INTRO_TYPE.FOREST_STYLE_SELECTED:
       case YUGI_INTRO_TYPE.OCEAN_STYLE_SELECTED:
       case YUGI_INTRO_TYPE.DESERT_STYLE_SELECTED:
