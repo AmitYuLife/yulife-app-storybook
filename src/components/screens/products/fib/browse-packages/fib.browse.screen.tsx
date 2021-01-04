@@ -9,32 +9,25 @@ import {
   View,
 } from "react-native";
 import * as Animatable from "react-native-animatable";
-import { AvatarAndDescription, HowItWorks, EstimatedCost } from "./subcomponents";
+import { AvatarAndDescription, HowItWorks } from "./subcomponents";
 import { ContinueButton } from "./continue-button/continue-button";
 import { Package } from "./fib.browse.types";
 import { PackageOptions } from "./subcomponents/package-options/package-options";
 import { Faqs } from "./subcomponents/faqs/faqs";
-import { PayoutCalculator } from "./subcomponents/payout-calculator/payout-calculator";
 import AdditionalBenefits from "./additional-benefits/additional-benefits";
 import { Documents } from "./subcomponents/documents/documents";
 import { PackageId } from "../fib.helper";
 import { IFaq } from "./subcomponents/faqs/faq";
 import Logger from "@services/logging/logger";
-import { CalculatorItems } from "./subcomponents/payout-calculator/subcomponents/calculator";
 import { FIB_BROWSE_SCREEN } from "@ids";
 import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
-import { formatPrice } from "@components/containers/products/fib/fib.helpers";
 
 interface IFibBrowseScreenProps {
   onNavigateToYuScreen: () => void;
-  navigateToEditSalary: () => void;
   navigateToCustomCover: () => void;
   onContinue: () => void;
   selectCoverType: (coverType: PackageId) => void;
   selectedPackage: Package;
-  payoutEstimatorItems: CalculatorItems;
-  setDeceaseAgeIndexYear: (index: number) => void;
-  setDeceaseAgeIndexMonth: (index: number) => void;
   loading: boolean;
   documents: IFaq[];
   avatarUrl: string;
@@ -49,14 +42,10 @@ export const FibBrowseScreen = memo(function (props: IFibBrowseScreenProps) {
     onNavigateToYuScreen,
     onNavigateToFaqsList,
     avatarUrl,
-    navigateToEditSalary,
     documents,
     onContinue,
     selectCoverType,
     selectedPackage,
-    payoutEstimatorItems,
-    setDeceaseAgeIndexYear,
-    setDeceaseAgeIndexMonth,
     loading,
     maxTermAge,
     offset,
@@ -112,21 +101,9 @@ export const FibBrowseScreen = memo(function (props: IFibBrowseScreenProps) {
           >
             <PackageOptions selectedPackageId={selectedPackage.label} onSelectPackage={onSelectPackage} />
             <AvatarAndDescription loading={loading} avatarUrl={avatarUrl} selectedPackage={selectedPackage} />
-            <EstimatedCost
-              navigateToEditSalary={navigateToEditSalary}
-              heading={`${formatPrice(selectedPackage.estimatedCost)} per month`}
-              loading={loading}
-            />
             <HowItWorks
               header={selectedPackage.id}
               content={`In the event of death, your loved ones will receive ${selectedPackage.salaryPercentageCovered}% of your future earnings from the date of death ${howItWorksMaxCoverAge} (based on your current salary).\n\nThis means if you pass away near the beginning of the insurance term, your loved ones will receive more money than if you pass away near the end.\n\nThis is paid as a single payment.`}
-            />
-            <PayoutCalculator
-              items={payoutEstimatorItems}
-              payoutAmount={selectedPackage.payoutAmount}
-              setDeceaseAgeIndexYear={setDeceaseAgeIndexYear}
-              setDeceaseAgeIndexMonth={setDeceaseAgeIndexMonth}
-              loading={loading}
             />
             <AdditionalBenefits
               earnRate={selectedPackage.earnRate}

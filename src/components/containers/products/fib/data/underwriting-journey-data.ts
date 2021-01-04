@@ -117,6 +117,7 @@ export const FIB_HIGH_CHOLESTEROL_EXTRA_SCREEN = "fib_medical_journey_high_chole
 export const FIB_DIGESTIVE_SCREEN_ID = "fib_medical_journey_digestive";
 export const FIB_THREE_YEAR_MEDICAL_HISTORY_SCREEN_ID = "fib_medical_journey_three_year_medical_history";
 export const FIB_ENTER_YOUR_NAME = "fib_enter_your_name";
+export const FIB_INPUT_SALARY = "fib_input_salary";
 export const FIB_LIFESTYLE_HEIGHT_SCREEN_ID = "fib_lifestyle_height";
 export const FIB_LIFESTYLE_WEIGHT_SCREEN_ID = "fib_lifestyle_weight";
 export const FIB_FINANCIAL_CUSTOM_COVER_FORM_SCREEN_ID = "fib_financial_custom_cover_form";
@@ -182,6 +183,7 @@ export enum ACCUMULATED_PROGRESS {
   FIB_ENTER_YOUR_NAME = 100,
   FIB_YOUR_DATE_OF_BIRTH_SCREEN_ID = 200,
   FIB_ENTER_YOUR_DATE_OF_BIRTH = 250,
+  FIB_INPUT_SALARY = 275,
   FIB_UK_RESIDENT_SCREEN_ID = 300,
   FIB_MEMBER_OF_ARMED_FORCES_SCREEN_ID = 400,
   FIB_LIFESTYLE_HEIGHT_SCREEN_ID = 500,
@@ -241,7 +243,7 @@ const _data: UnderwritingJourneyScreen[] = [
     icon: BIRTHDAY_ICON,
     title: "Birthday",
     question: "And is this your birthday?",
-    firstButton: { label: "Yes", actionId: FIB_UK_RESIDENT_SCREEN_ID },
+    firstButton: { label: "Yes", actionId: FIB_INPUT_SALARY },
     previousButton: { actionId: FIB_ENTER_YOUR_NAME },
     children: [
       {
@@ -251,6 +253,26 @@ const _data: UnderwritingJourneyScreen[] = [
     accumulatedProgress: ACCUMULATED_PROGRESS.FIB_YOUR_DATE_OF_BIRTH_SCREEN_ID,
   },
   {
+    id: FIB_INPUT_SALARY,
+    heading: "Input Salary",
+    icon: FINANCIAL_QUESTIONS_ICON,
+    title: "Salary",
+    question: "What is your current annual salary?",
+    firstButton: { label: "Continue", actionId: FIB_UK_RESIDENT_SCREEN_ID },
+    previousButton: { actionId: FIB_YOUR_DATE_OF_BIRTH_SCREEN_ID },
+    children: [
+      {
+        type: "markdown",
+        text:
+          "Your premiums and payouts are based on your current annual gross salary.  This is your base salary before taxes, excluding bonuses and commission.",
+      },
+      {
+        type: "inputSalary",
+      },
+    ],
+    accumulatedProgress: ACCUMULATED_PROGRESS.FIB_INPUT_SALARY,
+  },
+  {
     id: FIB_UK_RESIDENT_SCREEN_ID,
     heading: "About You",
     icon: UK_FLAG_ICON,
@@ -258,7 +280,7 @@ const _data: UnderwritingJourneyScreen[] = [
     question: "Are you a British Citizen or Resident in the UK?",
     firstButton: { label: "No", actionId: FIB_MEMBER_OF_ARMED_FORCES_SCREEN_ID },
     secondButton: { label: "Yes", actionId: FIB_MEMBER_OF_ARMED_FORCES_SCREEN_ID },
-    previousButton: { actionId: FIB_YOUR_DATE_OF_BIRTH_SCREEN_ID },
+    previousButton: { actionId: FIB_INPUT_SALARY },
     children: [
       {
         type: "markdown",

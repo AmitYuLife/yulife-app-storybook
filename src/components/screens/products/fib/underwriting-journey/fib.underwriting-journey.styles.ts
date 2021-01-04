@@ -6,6 +6,9 @@ export const styles = StyleSheet.create({
   radioInputStyles: {
     marginTop: Style.adjust(48),
   } as ViewStyle,
+  topPad: {
+    height: Style.adjust(32),
+  } as ViewStyle,
 });
 
 export function getChildWrapperStyle(childType: UnderwritingJourneyChild["type"]) {

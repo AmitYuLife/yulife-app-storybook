@@ -18,6 +18,7 @@ import { FibInputBirth } from "@components/organisms/fib/input/birth/fib-input-b
 import { FibInputHeight } from "@components/organisms/fib/input/height/fib-input-height";
 import { FibInputName } from "@components/organisms/fib/input/name/fib-input-name";
 import { FibInputWeight } from "@components/organisms/fib/input/weight/fib-input-weight";
+import { FibInputSalary } from "@components/organisms/fib/input/salary";
 import { getCustomComponent } from "./getCustomComponent";
 import MedicalChipList from "./subcomponents/medical-chip-list/medical-chip-list";
 import { CopyBirthday } from "@organisms/fib/copy/birthday";
@@ -128,6 +129,7 @@ const _FibUnderwritingJourneyScreen = memo(function (props: IFibUnderwritingJour
       yugi={YugiType.DEFAULT}
     >
       <ScrollView ref={scrollViewRef} showsVerticalScrollIndicator={false} keyboardShouldPersistTaps="handled">
+        <View style={styles.topPad} />
         <FibTitle title={data.question} />
         {data.children?.map((child: UnderwritingJourneyChild, i) => {
           const key = data.id + i;
@@ -169,6 +171,7 @@ function renderChildren(child: UnderwritingJourneyChild, extraProps: RenderChild
     inputBirth: <FibInputBirth />,
     inputHeight: <FibInputHeight />,
     inputWeight: <FibInputWeight />,
+    inputSalary: <FibInputSalary />,
     inputFullName: (
       <FibInputName
         setInputFirstName={extraProps.setInputFirstName}

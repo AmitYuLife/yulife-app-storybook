@@ -30,6 +30,7 @@ export interface InputFieldProps {
   maxBeforeTruncate?: number;
   shadowStyle?: ViewStyle;
   hasFocusActive?: (focus: boolean) => void;
+  wrapperStyle?: ViewStyle;
 }
 
 const _InputField = (props: InputFieldProps) => {
@@ -47,6 +48,7 @@ const _InputField = (props: InputFieldProps) => {
     keyboardType = "number-pad",
     style,
     hasFocusActive,
+    wrapperStyle,
   } = props;
 
   const [isFocused, setIsFocused] = useState(false);
@@ -74,7 +76,7 @@ const _InputField = (props: InputFieldProps) => {
   };
 
   return (
-    <View style={styles.fieldWrapper}>
+    <View style={StyleSheet.flatten([styles.fieldWrapper, wrapperStyle])}>
       <View>
         <TextInput
           onFocus={handleFocus(true)}
