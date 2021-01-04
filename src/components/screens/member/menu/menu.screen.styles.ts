@@ -2,6 +2,19 @@ import { ImageStyle, StyleSheet, TextStyle, ViewStyle, Platform } from "react-na
 import { isIphoneX } from "react-native-iphone-x-helper";
 import { Style } from "../../../../styles";
 import deviceInfoModule from "react-native-device-info";
+import media from "@styles/media";
+
+const CLOSE_WRAPPER_TOP_MARGIN = media.select(
+  [
+    {
+      condition:
+        Platform.OS === "ios" &&
+        [media.DEVICES.iPhone12.height, media.DEVICES.iPhone12ProMax.height].includes(Style.DEVICE_HEIGHT),
+      value: Style.getSafeAreaStart() + 16,
+    },
+  ],
+  Style.getSafeAreaStart()
+);
 
 export default StyleSheet.create({
   close: {
@@ -14,7 +27,7 @@ export default StyleSheet.create({
     justifyContent: "center",
     position: "absolute",
     right: 0,
-    top: Style.SCALE_UP_AND_DOWN(isIphoneX() ? 40 : 10),
+    top: CLOSE_WRAPPER_TOP_MARGIN,
     width: Style.SCALE_UP_AND_DOWN(46),
   } as ViewStyle,
   iconWrapper: {

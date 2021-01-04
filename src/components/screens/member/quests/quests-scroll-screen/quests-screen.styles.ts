@@ -1,6 +1,6 @@
-import { StyleSheet, ViewStyle, Platform } from "react-native";
+import { StyleSheet, ViewStyle } from "react-native";
 import { isIphoneX } from "react-native-iphone-x-helper";
-import { Style } from "../../../../../styles";
+import { Style, TOP_BAR } from "../../../../../styles";
 
 function scrollViewAdjustPosition() {
   if (isIphoneX()) {
@@ -33,7 +33,7 @@ export default StyleSheet.create({
     left: 0,
     position: "absolute",
     right: 0,
-    top: Platform.select({ ios: Style.getSafeAreaStart(), android: 0 }),
+    top: TOP_BAR.PADDING_TOP,
   } as ViewStyle,
   wrapper: {
     flex: 1,

@@ -9,11 +9,18 @@ export const DEVICES = {
     width: 414,
     height: 736,
   },
+  iPhone11: {
+    // iPhone XR, iPhone 11 Pro Max, iPhone Xs Max
+    width: 414,
+    height: 896,
+  },
   iPhone12Mini: {
+    // iPhone 11 Pro, iPhone X, iPhone Xs,
     width: 375,
     height: 812,
   },
   iPhone12: {
+    // iPhone 12 Pro
     width: 390,
     height: 844,
   },
