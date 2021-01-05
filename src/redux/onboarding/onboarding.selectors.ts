@@ -9,3 +9,4 @@ export const getShowIntro = (state: IReduxState) => state.onboarding.showIntro;
 export const getOnboardingReward = (state: IReduxState) => state.onboarding.reward;
 export const getShowYuscreenIntro = (state: IReduxState) => state.onboarding.showYuscreenIntro;
 export const getShowCommunityGoalsIntro = (state: IReduxState) => state.onboarding.showCommunityGoalsIntro;
+export const getDuelsGoalsIntro = (state: IReduxState) => state.onboarding.showDuelsIntro;

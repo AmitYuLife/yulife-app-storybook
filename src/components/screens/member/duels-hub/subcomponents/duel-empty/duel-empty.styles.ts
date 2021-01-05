@@ -1,4 +1,4 @@
-import { Colours } from "@styles";
+import { Colours, Style } from "@styles";
 import { StyleSheet, TextStyle, ViewStyle, ImageStyle } from "react-native";
 
 export default StyleSheet.create({
@@ -17,10 +17,9 @@ export default StyleSheet.create({
     flexDirection: "row",
   } as ViewStyle,
   emptyStateText: {
-    fontSize: 24,
-    lineHeight: 24,
+    fontSize: Style.adjust(20),
+    lineHeight: Style.adjust(24),
     color: Colours.neutral.n500,
-    flexShrink: 1,
     paddingLeft: 24,
     // maxWidth: 260,
   } as TextStyle,
