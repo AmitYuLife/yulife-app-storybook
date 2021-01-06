@@ -2,7 +2,7 @@ import { StarInline, Text } from "@atoms/index";
 import { GetActivityHistory_getActivityHistoryWithLevels_sources as Sources } from "@graphql/_core/schema";
 import * as React from "react";
 import { View } from "react-native";
-import { displaySecondsAsMinutes, padNum } from "../../../../services/utils";
+import { displaySecondsAsMinutes, padNum, addCommasToNumber } from "../../../../services/utils";
 import styles from "./activity-history-levels.styles";
 
 export interface IChallenge {
@@ -69,7 +69,7 @@ export default function ActivityHistoryLevelsItem({
           <View style={styles.activityLabelsWrapper}>
             <View style={styles.activityLabelWrapper}>
               <Text numberOfLines={1} style={styles.activityLabel}>
-                {`${steps} ${typeText}`}
+                {`${addCommasToNumber(steps)} ${typeText}`}
               </Text>
             </View>
 
