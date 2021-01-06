@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, ViewStyle, View } from "react-native";
-import Svg, { G, Path, Defs, ClipPath } from "react-native-svg";
-import { Style } from "@styles";
+import Svg, { Path } from "react-native-svg";
+import { Style, Colours } from "@styles";
 import { TouchableOpacityWithDelay } from "@components/molecules";
 import { Navigation } from "react-native-navigation";
 import { ROUTES } from "@navigation/constants";
@@ -17,7 +17,9 @@ function navigateToYunionGoals() {
   });
 }
 
-const ICON_SIZE = Style.adjust(14);
+const ICON_SIZE = 16;
+const ICON_HEIGHT = Style.adjust(ICON_SIZE);
+const ICON_WIDTH = Style.adjust((ICON_SIZE * 16) / 14);
 
 const HIT_SLOP = {
   top: 8,
@@ -26,7 +28,7 @@ const HIT_SLOP = {
   right: 8,
 };
 
-export function CommunityGoalsButton() {
+function _CommunityGoalsButton() {
   return (
     <TouchableOpacityWithDelay
       style={styles.wrapper}
@@ -35,25 +37,26 @@ export function CommunityGoalsButton() {
       testID={GOALS_BUTTON}
     >
       <View style={styles.innerWrapper}>
-        <View style={styles.iconWrapper}>
-          <Svg width={ICON_SIZE} height={ICON_SIZE} viewBox="0 0 10 10" fill="none">
-            <G clipPath="url(#prefix__clip0)" stroke="#6AA3DC" strokeLinecap="round" strokeLinejoin="round">
-              <Path d="M7.083 8.75v-.833A1.667 1.667 0 005.417 6.25H2.083A1.667 1.667 0 00.417 7.917v.833M3.75 4.583a1.667 1.667 0 100-3.333 1.667 1.667 0 000 3.333zM9.583 8.75v-.833a1.667 1.667 0 00-1.25-1.613M6.667 1.304a1.667 1.667 0 010 3.23" />
-            </G>
-            <Defs>
-              <ClipPath id="prefix__clip0">
-                <Path fill="#fff" d="M0 0h10v10H0z" />
-              </ClipPath>
-            </Defs>
-          </Svg>
-        </View>
-        <Text style={styles.mainText} bold={true}>
+        <Text style={styles.text} bold={true}>
           Goals
         </Text>
+        <View style={styles.iconWrapper}>
+          <Svg width={ICON_WIDTH} height={ICON_HEIGHT} viewBox="0 0 16 14" fill="none">
+            <Path
+              d="M3 8.44V1h12l-3.086 3.72L15 8.44H3zm0 0V13M1 13h6"
+              stroke={Colours.blue.b200}
+              strokeWidth={1.35}
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </Svg>
+        </View>
       </View>
     </TouchableOpacityWithDelay>
   );
 }
+
+export const CommunityGoalsButton = React.memo(_CommunityGoalsButton);
 
 const styles = StyleSheet.create({
   wrapper: {
@@ -61,24 +64,22 @@ const styles = StyleSheet.create({
     top: Style.adjust(-20),
     position: "absolute",
     paddingTop: Style.adjust(16),
-    paddingVertical: Style.adjust(2),
   } as ViewStyle,
   innerWrapper: {
-    backgroundColor: "#6AA3DC",
-    padding: Style.adjust(2),
-    paddingRight: Style.adjust(8),
+    backgroundColor: Colours.neutral.white,
+    borderColor: Colours.blue.b200,
+    borderWidth: Style.adjust(1),
+    paddingHorizontal: Style.adjust(10),
+    paddingVertical: Style.adjust(6),
     borderRadius: Style.adjust(24),
     flexDirection: "row",
     alignItems: "center",
   },
   iconWrapper: {
-    backgroundColor: "#fff",
     opacity: 0.8,
-    marginRight: Style.adjust(8),
-    padding: Style.adjust(6),
     borderRadius: Style.adjust(15),
+    paddingLeft: Style.adjust(2),
     flexDirection: "row",
   },
-  mainText: { color: "white", fontSize: Style.adjust(12) },
-  iconText: { color: "#6AA3DC", fontSize: Style.adjust(20) },
+  text: { color: Colours.blue.b200, fontSize: Style.adjust(16) },
 });

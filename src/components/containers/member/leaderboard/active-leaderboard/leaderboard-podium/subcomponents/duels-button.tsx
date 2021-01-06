@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, ViewStyle, View } from "react-native";
 import Svg, { Path } from "react-native-svg";
-import { Style } from "@styles";
+import { Style, Colours } from "@styles";
 import { TouchableOpacityWithDelay } from "@components/molecules";
 import { Navigation } from "react-native-navigation";
 import { ROUTES } from "@navigation/constants";
@@ -17,7 +17,10 @@ function navigateToDuelsHub() {
   });
 }
 
-const ICON_SIZE = Style.adjust(14);
+const ICON_SIZE = 16;
+const ICON_HEIGHT = Style.adjust(ICON_SIZE);
+const ICON_WIDTH = Style.adjust((ICON_SIZE * 18) / 15);
+
 const HIT_SLOP = {
   top: 8,
   bottom: 8,
@@ -25,7 +28,7 @@ const HIT_SLOP = {
   right: 16,
 };
 
-export function DuelsButton() {
+function _DuelsButton() {
   return (
     <TouchableOpacityWithDelay
       style={styles.wrapper}
@@ -34,16 +37,40 @@ export function DuelsButton() {
       testID={DUELS_BUTTON}
     >
       <View style={styles.innerWrapper}>
-        <Text style={styles.mainText} bold={true}>
+        <Text style={styles.text} bold={true}>
           Duels
         </Text>
         <View style={styles.iconWrapper}>
-          <Svg width={ICON_SIZE} height={ICON_SIZE} viewBox="0 0 14 10" fill="none">
+          <Svg width={ICON_WIDTH} height={ICON_HEIGHT} viewBox="0 0 18 15" fill="none">
             <Path
-              d="M4.606 8.293a.874.874 0 01-.22.331.711.711 0 01-.42.136.732.732 0 01-.44-.136.874.874 0 01-.219-.331L1.01 1.927a.987.987 0 010-.273.712.712 0 01.19-.42.744.744 0 01.41-.222.651.651 0 01.399.116c.116.081.2.198.24.331l2.358 6.834zm1.139-6.931a.67.67 0 01.267-.267.694.694 0 01.372-.083c.193.01.373.093.504.23.13.14.2.322.195.51a.57.57 0 010 .272L4.686 8.293a.7.7 0 01-.22.331.67.67 0 01-.42.136.773.773 0 01-.44-.136.874.874 0 01-.219-.331l2.358-6.931zm5.994 1.46a.756.756 0 00.802.239.683.683 0 00.406-.374.645.645 0 00.05-.274.897.897 0 00-.12-.409c-.3-.347-.682-.619-1.113-.792a2.966 2.966 0 00-1.364-.2 2.66 2.66 0 00-1.878.623 2.112 2.112 0 00-.6 1.499c-.018.285.027.57.134.836.107.266.273.505.486.702.39.331.846.583 1.338.74l.36.116c.34.137.66.253.92.39.156.066.29.175.385.313a.86.86 0 01.154.466.8.8 0 01-.3.7c-.303.17-.65.25-.999.234a2.243 2.243 0 01-.9-.238 2.186 2.186 0 01-.718-.58.636.636 0 00-.333-.262.655.655 0 00-.427 0 .636.636 0 00-.332.264.61.61 0 00-.087.407.722.722 0 000 .37c.29.439.69.797 1.161 1.043.472.245 1.001.369 1.536.359a2.907 2.907 0 001.998-.623c.235-.213.42-.473.54-.762.12-.29.175-.6.16-.912a2.09 2.09 0 00-.14-.861 2.135 2.135 0 00-.48-.736 3.781 3.781 0 00-1.339-.76l-.679-.174a4.214 4.214 0 01-.6-.254.809.809 0 01-.402-.397c-.08-.175-.067-.343-.068-.505 0-.1.052-.249.093-.34a.702.702 0 01.178-.237 1.24 1.24 0 01.839-.253 2.02 2.02 0 011.379.642h-.04z"
-              fill="#6AA3DC"
-              stroke="#6AA3DC"
-              strokeWidth={0.133}
+              d="M14.25 10.483l-1.3-.7c-.7-.4-1.2-1-1.4-1.7l-1.1-3.1c-.2-.7-.2-.5-1.6-1-.8-.3-1.8-.7-2.6-1-.7-.3-1.2-.9-1.3-1.7 0-.2-.4-.4-.6-.2l-2.5 3.2-.7.8c-.2.3-.2.7 0 1l7.4 7.2c.3.3.7.4 1.1.4h3.7c.7 0 1.2-.4 1.4-1l.2-.6c.2-.6-.1-1.3-.7-1.6z"
+              fill="#fff"
+              stroke={Colours.blue.b200}
+              strokeWidth={1.35}
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            <Path
+              d="M10.55 6.183l-1.6.3M11.25 7.783l-1.7.4"
+              stroke={Colours.blue.b200}
+              strokeWidth={1.35}
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            <Path
+              d="M16.85 5.083l-.7-.8-2.5-3.1c-.2-.2-.5-.1-.6.2-.1.8-.6 1.4-1.3 1.6-.8.3-1.8.7-2.6 1-1.4.5-1.4.3-1.5.9l-1.2 3.1c-.2.7-.7 1.3-1.4 1.7l-1.3.7c-.6.3-.9 1-.7 1.6l.2.7c.2.6.8 1 1.4 1h3.7c.4 0 .8-.2 1.1-.4l7.3-7.2c.3-.3.3-.7.1-1z"
+              fill="#fff"
+              stroke={Colours.blue.b200}
+              strokeWidth={1.35}
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+            <Path
+              d="M8 6l1.7.3M7 8l1.7.3"
+              stroke={Colours.blue.b200}
+              strokeWidth={1.35}
+              strokeLinecap="round"
+              strokeLinejoin="round"
             />
           </Svg>
         </View>
@@ -52,6 +79,8 @@ export function DuelsButton() {
     </TouchableOpacityWithDelay>
   );
 }
+
+export const DuelsButton = React.memo(_DuelsButton);
 
 const styles = StyleSheet.create({
   wrapper: {
@@ -65,28 +94,27 @@ const styles = StyleSheet.create({
     marginLeft: Style.adjust(10),
   } as ViewStyle,
   innerWrapper: {
-    backgroundColor: "#6AA3DC",
-    padding: Style.adjust(2),
-    paddingLeft: Style.adjust(8),
+    backgroundColor: Colours.neutral.white,
+    borderColor: Colours.blue.b200,
+    borderWidth: Style.adjust(1),
+    paddingHorizontal: Style.adjust(10),
+    paddingVertical: Style.adjust(6),
     borderRadius: Style.adjust(24),
     flexDirection: "row",
     alignItems: "center",
   },
   iconWrapper: {
-    backgroundColor: "#fff",
     opacity: 0.8,
-    marginLeft: Style.adjust(8),
-    padding: Style.adjust(6),
     borderRadius: Style.adjust(15),
+    paddingLeft: Style.adjust(2),
     flexDirection: "row",
   },
-  mainText: { color: "white", fontSize: Style.adjust(12) },
-  iconText: { color: "#6AA3DC", fontSize: Style.adjust(20) },
+  text: { color: Colours.blue.b200, fontSize: Style.adjust(16) },
   notification: {
     borderRadius: Style.adjust(8),
     height: Style.adjust(8),
     width: Style.adjust(8),
-    backgroundColor: "#F86F63",
+    backgroundColor: Colours.world.desert,
     right: 0,
     top: Style.adjust(2),
     position: "absolute",
