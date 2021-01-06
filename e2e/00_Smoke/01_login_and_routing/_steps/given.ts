@@ -1,10 +1,10 @@
-import { records } from "@data";
+
 import { INPUT_LOGIN_EMAIL, INPUT_LOGIN_PASSWORD, BUTTON_LOGIN } from "@ids";
 export { authoriseFitkit, sendSteps } from "@socket";
 import * as when from "./when";
 import { sendReduxEvent } from "@socket";
 import { navigation } from "@navigation"
-import { CUSTOMER_4 } from "_utils/data/stubs";
+import { AUTH_1, CUSTOMER_1, CUSTOMER_4 } from "@data";
 
 export const {
     loginOnly,
@@ -19,7 +19,7 @@ export const enterInvalidCredentials = async (): Promise<void> => {
     await passwordField.replaceText("wrongpass");
 };
 
-export const enterValidCredentials = (user = records.CUSTOMER_1, auth = records.AUTH_1) => async (): Promise<void> => {
+export const enterValidCredentials = (user = CUSTOMER_1, auth = AUTH_1) => async (): Promise<void> => {
     const loginField = element(by.id(INPUT_LOGIN_EMAIL));
     const passwordField = element(by.id(INPUT_LOGIN_PASSWORD("Password")));
     await loginField.tap();

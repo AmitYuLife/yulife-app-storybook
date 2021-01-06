@@ -52,6 +52,7 @@ export const LEVEL_CHALLENGE_BUTTON = (level: number) => `LEVEL_CHALLENGE_BUTTON
 export const YUCOIN = "YUCOIN"
 export const NAV_BAR = (icon: "yucoin" | "quests" | "yu" | "leaderboard" | "rewards") => `NAV_BAR_${icon}`
 export const CHECK_REWARDS_BUTTON = "CHECK_REWARDS_BUTTON"
+export const YUNIVERSAL_CONTNIUE_BUTTON = "YUNIVERSAL_CONTNIUE_BUTTON"
 
 // components
 export const VIEW_CONFETTI_COIN = (coins: number) => `VIEW_CONFETTI_COIN_${coins}`;
@@ -82,6 +83,7 @@ export const LEADERBOARD_INFO = "LEADERBOARD_INFO"
 export const LEADERBOARD_TITLE = (title:string) => `LEADERBOARD_TITLE_${title}`
 export const DUELS_BUTTON = "DUELS_BUTTON"
 export const GOALS_BUTTON = "GOALS_BUTTON"
+export const LEADERBOARD_SCROLL_LIST = "LEADERBOARD_SCROLL_LIST"
 
 // create a leaderboard
 export const GROUP_NAME_INPUT = "GROUP_NAME_INPUT"
@@ -100,6 +102,7 @@ export const YOUR_YUCOIN_SCREEN = "YOUR_YUCOIN_SCREEN"
 export const EARN_RATE_TABLE = "EARN_RATE_TABLE"
 export const YUCOIN_POWER = (powerNum: string) => `YUCOIN_POWER_${powerNum}`
 export const AVATAR_ITEM = (label:string, status:string) => `AVATAR_ITEM_${label}_${status}`
+export const YUSCREEN_SCROLL_VIEW = "YUSCREEN_SCROLL_VIEW"
 
 // AVATAR BUILDER
 export const BODY_ITEM_TITLE = (title: string) => `BODY_ITEM_TITLE_${title}`

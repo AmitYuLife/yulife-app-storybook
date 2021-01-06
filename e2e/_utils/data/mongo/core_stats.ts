@@ -1,6 +1,6 @@
-import { generateRandomMongoId } from '../../utils';
-import { IDatabaseItem } from '../../types';
-import { CUSTOMER_1, CUSTOMER_2 } from '../postgres/customers';
+import { generateRandomMongoId } from "@yu-life/yulife-bdd-framework"
+import { IDatabaseItem } from "@yu-life/yulife-bdd-framework";
+import { CUSTOMER_1, CUSTOMER_2 } from '@data';
 
 export const STATS_2 = {
     type: "mongo",

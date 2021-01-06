@@ -19,11 +19,12 @@ interface IProps {
 }
 
 const Stats = ({ data, onPressClose, onPressActivityHistory }: IProps) => (
-  <View style={styles.wrapper} testID={STATS_SCREEN}>
+  <View style={styles.wrapper}>
     <GenericHeadingPad />
     <View style={styles.listWrapper}>
       {!data ? null : (
         <SectionList
+          testID={STATS_SCREEN}
           contentContainerStyle={styles.sectionListContainer}
           style={styles.sectionList}
           sections={data}

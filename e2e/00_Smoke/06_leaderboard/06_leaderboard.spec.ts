@@ -1,10 +1,10 @@
-import { Feature, Scenario, Given, When, Then, FeatureOnly, ScenarioOnly } from "@bdd";
+import { Feature, Scenario, Given, When, Then, FeatureOnly, ScenarioOnly } from "@yu-life/yulife-bdd-framework";
 import * as scenario from "./_steps/scenario"
 import * as given from "./_steps/given"
 import * as when from "./_steps/when"
 import * as then from "./_steps/then"
 import { NAV_BAR, LEADERBOARD_INFO_BUTTON, LEADERBOARD_INFO, BACK_BUTTON, LEADERBOARD_TOP_SCREEN, MENU_ICON, MENU_ITEM, SETTINGS_SCREEN, LEADERBOARD_EMAIL_INPUT, GROUP_NAME_INPUT, LEADERBOARD_STATUS, BUTTON_CLOSE, DAILY_STEPS_SCREEN, LEADERBOARD_NAME, LEADERBOARD_TITLE } from "@ids";
-import { CUSTOMER_16, AUTH_16, CUSTOMER_17, AUTH_17, CUSTOMER_18, USER_18_LEADERBOARD, CUSTOMER_19, AUTH_19, CUSTOMER_20, CUSTOMER_21, AUTH_21, AUTH_20, USER_19_LEADERBOARD_B } from "_utils/data/stubs";
+import { CUSTOMER_16, AUTH_16, CUSTOMER_17, AUTH_17, CUSTOMER_18, USER_18_LEADERBOARD, CUSTOMER_19, AUTH_19, CUSTOMER_20, CUSTOMER_21, AUTH_21, AUTH_20, USER_19_LEADERBOARD_B } from "@data";
 
 Feature("As a user I can see my achievements on the leaderboard", async () => {
 
@@ -14,11 +14,11 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
                 Then("I should see the leaderboard consent screen", then.onLeaderboardConsent)
                 When("I tap 'Yes'", when.tapText("Yes"), async () => {
                     Then("I should see the leaderboard title", then.idVisible(LEADERBOARD_TITLE(USER_18_LEADERBOARD.data.name)))
-                    Then("I should see the leaderboard", then.leaderboardVisible([CUSTOMER_18, CUSTOMER_17, CUSTOMER_19, CUSTOMER_21], [800, 50]))
+                    Then("I should see the leaderboard", then.leaderboardVisible([CUSTOMER_18, CUSTOMER_17, CUSTOMER_19, CUSTOMER_21], [800, undefined, 50, 0]))
                     When("I tap the ? icon", when.tapID(LEADERBOARD_INFO_BUTTON), async () => {
                         Then("I should be on the about leaderboard page", then.idVisible(LEADERBOARD_INFO))
                         When("I tap the back button", when.tapID(BACK_BUTTON), async () => {
-                            Then("I should be back on the leaderboard", then.idVisible(LEADERBOARD_TOP_SCREEN))
+                            Then("I should be back on the leaderboard", then.leaderboardVisible([CUSTOMER_18, CUSTOMER_17, CUSTOMER_19, CUSTOMER_21]))
                         })
                     })
                 })

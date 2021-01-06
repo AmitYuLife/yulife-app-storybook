@@ -1,7 +1,7 @@
-import { Feature, Scenario, Given, When, Then, ScenarioOnly, FeatureOnly } from "@bdd";
+import { Feature, Scenario, Given, When, Then, ScenarioOnly, FeatureOnly } from "@yu-life/yulife-bdd-framework";
 import * as scenario from "./_steps/scenario"
 import * as given from "./_steps/given"
-import { CUSTOMER_10, AUTH_10, CUSTOMER_11, AUTH_11 } from "_utils/data/stubs";
+import { CUSTOMER_10, AUTH_10, CUSTOMER_11, AUTH_11 } from "@data";
 import * as when from "./_steps/when"
 import * as then from "./_steps/then"
 import { DAILY_STEPS_SCREEN, NAV_BAR, REWARDS_SCREEN } from "@ids";

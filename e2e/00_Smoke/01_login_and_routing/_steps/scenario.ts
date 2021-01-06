@@ -1,5 +1,5 @@
-import { dataManager } from "@data";
 import { restart } from "@navigation";
+import { dataManager } from "@yu-life/yulife-bdd-framework";
 
 export const start = async () => {
     await dataManager.reseed();

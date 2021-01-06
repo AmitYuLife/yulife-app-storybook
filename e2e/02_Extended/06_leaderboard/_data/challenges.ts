@@ -1,8 +1,7 @@
 import { LEADERBOARD_CUSTOMERS } from "./customers";
-import { CHALLENGE_TEMPLATE } from "../../../_utils/data/stubs/mongo/_templates";
-import { generateRandomMongoId } from "../../../_utils/data/utils";
-import { SHORT_STROLL_MILESTONE_1 } from "../../../_utils/data/stubs";
+import { generateRandomMongoId } from "@yu-life/yulife-bdd-framework";
 import moment = require("moment");
+import { CHALLENGE_TEMPLATE, SHORT_STROLL_MILESTONE_1 } from "@data";
 
 export const LEADERBOARD_CHALLENGES = LEADERBOARD_CUSTOMERS.map((item, i) => ({
   type: "mongo",

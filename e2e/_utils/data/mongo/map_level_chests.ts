@@ -1,5 +1,6 @@
-import { generateRandomMongoId } from "_utils/data/utils";
-import { IDatabaseItem } from "_utils/data/types";
+import { generateRandomMongoId } from "@yu-life/yulife-bdd-framework";
+;
+import { IDatabaseItem } from "@yu-life/yulife-bdd-framework";
 
 export const MAP_CHEST_1 = {
     type: "mongo",

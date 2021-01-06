@@ -1,6 +1,6 @@
 
-import { generateRandomMongoId } from '../../utils';
-import { IDatabaseItem } from '../../types';
+import { generateRandomMongoId } from "@yu-life/yulife-bdd-framework"
+import { IDatabaseItem } from "@yu-life/yulife-bdd-framework";
 import { CUSTOMER_2, CUSTOMER_3, CUSTOMER_4, CUSTOMER_16, CUSTOMER_17, CUSTOMER_18, CUSTOMER_ALPHA, CUSTOMER_21, CUSTOMER_23, CUSTOMER_20, CUSTOMER_19, CUSTOMER_5, CUSTOMER_6, CUSTOMER_7, CUSTOMER_9, CUSTOMER_15, CUSTOMER_22, CUSTOMER_24, CUSTOMER_13, CUSTOMER_25, CUSTOMER_12 } from '../postgres/customers';
 
 const USER_DATA_TEMPLATE = {

@@ -1,9 +1,9 @@
-import { Feature, Scenario, Given, When, Then, ScenarioOnly, FeatureOnly, ScenarioSkip, FeatureSkip } from "@bdd";
+import { Feature, Scenario, Given, When, Then, ScenarioOnly, FeatureOnly, ScenarioSkip, FeatureSkip } from "@yu-life/yulife-bdd-framework";
 import * as scenario from "./_steps/scenario"
 import * as given from "./_steps/given"
 import * as when from "./_steps/when"
 import * as then from "./_steps/then"
-import { CUSTOMER_23, AUTH_23 } from "_utils/data/stubs";
+import { CUSTOMER_23, AUTH_23 } from "@data";
 import { FIB_SALARY_INPUT, PERSONAL_PRODUCT, FIB_SALARY_INPUT_VALUE, PACKAGE_SCREEN, FIB_BROWSE_SCREEN, YUSCREEN_AVATAR, YEAR_SCROLLER, MONTH_SCROLLER, HIGHLIGHTED_SCROLLER_VALUE, AVATAR_ITEM, YUSCREEN, FIB_INTRO_SCREEN } from "@ids";
 
 
@@ -47,19 +47,16 @@ Feature("I am able to use the yuscreens extended features", async () => {
                         When("I tap done", when.tapText("Done"), async () => {
                             Then("I should be on the package screen for life insurance", then.onPackageScreen)
                             When("I scroll past the package screen", when.scrollFromID(PACKAGE_SCREEN, "up", "slow"), async()=>{
-                                When("I scroll to the payout calculator", when.swipeToText(FIB_BROWSE_SCREEN,"How much would it pay out?", "up", 15), async()=>{
+                                When("I scroll to the payout calculator", when.scrollUntilTextVisible(FIB_BROWSE_SCREEN, "How much would it pay out?", "down"), async()=>{
                                     Then("I should see the 'how much would it pay out?' drop down", then.textVisible("How much would it pay out?"))
                                     When("I tap 'how much would it pay out?'", when.tapText("How much would it pay out?"), async()=>{
-                                        When("I scroll down slightly", when.scrollFromID(FIB_BROWSE_SCREEN, "up", "slow", 0.25), async () => {
-
-                                            Then("I should see the payment calculator", then.paymentCalcVisible)
                                             Then("I should see years set at 40", then.idVisible(HIGHLIGHTED_SCROLLER_VALUE(40)))
                                             Then("I should see months set at 0", then.idVisible(HIGHLIGHTED_SCROLLER_VALUE(0)))
                                             Then("I should see the default payment calculation", then.textVisible("£300,000"))
-                                            When("I scroll the years scroller", when.scrollFromID(YEAR_SCROLLER, "left", "fast"), async()=>{
+                                            When("I scroll the years scroller", when.scrollUntilIdVisible(YEAR_SCROLLER, HIGHLIGHTED_SCROLLER_VALUE(43), "right"), async()=>{
                                                 Then("The years, months, and payout should be correct", then.yearsScrollCorrect)
                                             })
-                                            When("I scroll the months scroller", when.scrollFromID(MONTH_SCROLLER, "left", "fast"), async () => {
+                                            When("I scroll the months scroller", when.scrollUntilIdVisible(MONTH_SCROLLER, HIGHLIGHTED_SCROLLER_VALUE(3), "right"), async () => {
                                                 Then("The years, months, and payout should be correct", then.monthsScrollCorrect)
                                                 })
                                             })
@@ -72,7 +69,6 @@ Feature("I am able to use the yuscreens extended features", async () => {
                 })
             })
         })
-    })
 
 
     ScenarioSkip("I should be able to create customer cover", scenario.start, async()=>{
@@ -111,7 +107,7 @@ Feature("I am able to use the yuscreens extended features", async () => {
                     When("I tap done", when.tapText("Done"), async () => {
                     Then("I should be on the package screen for life insurance", then.onPackageScreen)
                     When("I scroll past the package screen", when.scrollFromID(PACKAGE_SCREEN, "up", "slow"), async () => {
-                        When("I scroll to the FAQs", when.swipeToText(FIB_BROWSE_SCREEN, "FAQs", "up", 15), async () => {
+                        When("I scroll to the FAQs", when.scrollUntilTextVisible(FIB_BROWSE_SCREEN, "FAQs", "down"), async () => {
                             Then("I should see the FAQs", then.textVisible("FAQs"))
                             When("I tap FAQs", when.tapText("FAQs"), async()=>{
                                 When("I tap what is the lump sum", when.tapText("What is a lump sum?"), async()=>{

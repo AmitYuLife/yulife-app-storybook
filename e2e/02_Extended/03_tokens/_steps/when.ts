@@ -1,6 +1,6 @@
 import { navigation, INPUT_LOGIN_EMAIL, INPUT_LOGIN_PASSWORD, navigateViaID, BUTTON_LOGIN } from "@utils"
 import { authoriseFitkit } from "@socket"
-import { AUTH_10, CUSTOMER_10 } from "_utils/data/stubs"
+import { AUTH_10, CUSTOMER_10 } from "@data"
 
 export const {
     wait,

@@ -1,6 +1,6 @@
+import { AUTH_1, CUSTOMER_1 } from "@data";
 import { navigation, INPUT_LOGIN_PASSWORD, INPUT_LOGIN_EMAIL, BUTTON_LOGIN, navigateViaID, navigateViaText } from "@navigation"
 import { authoriseFitkit } from "@socket";
-import { records } from "@data";
 
 export const {
     loginAsUser,
@@ -10,7 +10,7 @@ export const {
     completeIntro,
 } = navigation.login
 
-export const logInWithStreakScreen = (customer = records.CUSTOMER_1, auth = records.AUTH_1, fitkitAuth = true) => async () => {
+export const logInWithStreakScreen = (customer = CUSTOMER_1, auth = AUTH_1, fitkitAuth = true) => async () => {
     await authoriseFitkit(fitkitAuth)()
     const loginField = element(by.id(INPUT_LOGIN_EMAIL));
     const passwordField = element(by.id(INPUT_LOGIN_PASSWORD("Password")));

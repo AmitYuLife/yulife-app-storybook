@@ -105,9 +105,10 @@ const HorizontalScroller: FC<Props> & StaticProps = ({
   };
 
   return (
-    <View style={styles.wrapper} testID={testID}>
+    <View style={styles.wrapper}>
       <Highlight style={highlightStyle} />
       <Animated.ScrollView
+        testID={testID}
         ref={scrollViewRef}
         onScroll={Animated.event([{ nativeEvent: { contentOffset: { x: scrollX } } }], { useNativeDriver: true })}
         onScrollEndDrag={handleScrollEndDrag}

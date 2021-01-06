@@ -1,10 +1,15 @@
 import { INPUT_LOGIN_EMAIL, INPUT_LOGIN_PASSWORD, BUTTON_LOGIN, NAV_BAR } from "@ids";
-import { records } from "@data";
-import { navigateViaID, navigateViaText, restart, restartWithData } from "./common";
+import { IDatabaseItem } from "@yu-life/yulife-bdd-framework"
+import { navigateViaID, navigateViaText } from "./common";
 import { authoriseFitkit } from "@socket";
+import { CUSTOMER_1, AUTH_1 } from "@data";
 
 
-export const loginAsUser = (customer = records.CUSTOMER_1, auth = records.AUTH_1, fitkitAuth = true) => async () => {
+export const loginAsUser = (
+    customer = CUSTOMER_1,
+    auth = AUTH_1 as IDatabaseItem,
+    fitkitAuth = true,
+) => async () => {
     await authoriseFitkit(fitkitAuth)()
     const loginField = element(by.id(INPUT_LOGIN_EMAIL));
     const passwordField = element(by.id(INPUT_LOGIN_PASSWORD("Password")));
@@ -19,12 +24,12 @@ export const loginAsUser = (customer = records.CUSTOMER_1, auth = records.AUTH_1
     await completeIntro()
 }
 
-export const logInAndGoToTab = (tab?: "yucoin" | "quests" | "leaderboard" | "rewards" | "yu", customer = records.CUSTOMER_1, auth = records.AUTH_1, fitkitAuth = true) => async () => {
+export const logInAndGoToTab = (tab?: "yucoin" | "quests" | "leaderboard" | "rewards" | "yu", customer = CUSTOMER_1, auth = AUTH_1, fitkitAuth = true) => async () => {
     await loginAsUser(customer, auth, fitkitAuth)()
     await navigateViaID(NAV_BAR(tab))
 }
 
-export const restartAndLoginToTab = (tab?: "yucoin" | "quests" | "leaderboard" | "rewards" | "yu", customer = records.CUSTOMER_1, auth = records.AUTH_1, fitkitAuth = true) => async () => {
+export const restartAndLoginToTab = (tab?: "yucoin" | "quests" | "leaderboard" | "rewards" | "yu", customer = CUSTOMER_1, auth = AUTH_1, fitkitAuth = true) => async () => {
     await device.terminateApp();
     await device.launchApp({ delete: true, });
     await loginAsUser(customer, auth, fitkitAuth)()

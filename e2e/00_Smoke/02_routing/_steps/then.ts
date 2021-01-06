@@ -1,7 +1,5 @@
 import { screens } from "@appScreens"
-import { navigation, STATS_TITLE, Then, STATS_SCREEN, expectDoesNotExistViaText } from "@utils"
-import detoxExport = require("detox")
-import { promises } from "dns"
+import { navigation, STATS_TITLE, STATS_SCREEN } from "@utils"
 
 export const {
     onDailySteps,

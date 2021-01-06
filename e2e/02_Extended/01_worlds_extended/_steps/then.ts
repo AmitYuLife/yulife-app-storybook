@@ -1,4 +1,4 @@
-import { navigation, multipleTextVisible, Then, expectIsVisibleViaText, CHALLENGE_HISTORY_STARS, YUNITY_REACHED, navigateViaText, wait, YUNITY_HEADER } from "@utils"
+import { navigation, multipleTextVisible, expectIsVisibleViaText, CHALLENGE_HISTORY_STARS, YUNITY_REACHED, navigateViaText, wait, YUNITY_HEADER } from "@utils"
 import { screens } from "@appScreens"
 
 export const {

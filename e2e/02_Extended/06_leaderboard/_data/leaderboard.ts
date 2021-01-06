@@ -1,4 +1,5 @@
-import { generateRandomMongoId } from "_utils/data/utils";
+import { generateRandomMongoId } from "@yu-life/yulife-bdd-framework";
+;
 import { LEADERBOARD_CUSTOMERS } from "./customers";
 
 const LEADERBOARD_ID = generateRandomMongoId();

@@ -1,5 +1,5 @@
-import { generateRandomMongoId } from '../../utils';
-import { IDatabaseItem } from '../../types';
+import { generateRandomMongoId } from "@yu-life/yulife-bdd-framework"
+import { IDatabaseItem } from "@yu-life/yulife-bdd-framework";
 import { CUSTOMER_1, CUSTOMER_2, CUSTOMER_3, CUSTOMER_4, CUSTOMER_5, CUSTOMER_6, CUSTOMER_7, CUSTOMER_8, CUSTOMER_9, CUSTOMER_10, CUSTOMER_11, CUSTOMER_12, CUSTOMER_13, CUSTOMER_14, CUSTOMER_ARCHIVED, CUSTOMER_15, CUSTOMER_16, CUSTOMER_17, CUSTOMER_18, CUSTOMER_19, CUSTOMER_20, CUSTOMER_21, CUSTOMER_22, CUSTOMER_23, CUSTOMER_ALPHA, CUSTOMER_24, CUSTOMER_25 } from '../postgres/customers';
 import moment = require('moment');
 import { AUTH_TEMPLATE } from "./_templates"
@@ -274,7 +274,7 @@ export const AUTH_22 = {
     modelName: "auth",
     data: {
         ...AUTH_TEMPLATE.data,
-        lastIp: "35.176.60.444",
+        lastIp: "35.176.60.44422",
         _id: generateRandomMongoId(),
         userId: CUSTOMER_22.data.customerId,
     }

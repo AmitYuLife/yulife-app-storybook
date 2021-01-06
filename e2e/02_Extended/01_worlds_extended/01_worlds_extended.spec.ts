@@ -1,10 +1,10 @@
-import { Feature, Scenario, Given, When, Then, ScenarioOnly, FeatureOnly } from "@bdd";
+import { Feature, Scenario, Given, When, Then, ScenarioOnly, FeatureOnly } from "@yu-life/yulife-bdd-framework";
 import * as scenario from "./_steps/scenario"
 import * as given from "./_steps/given"
 import * as when from "./_steps/when"
 import * as then from "./_steps/then"
-import { CUSTOMER_22, AUTH_22, CUSTOMER_23, AUTH_23, CUSTOMER_24, AUTH_24 } from "_utils/data/stubs";
-import { LEVEL_CHALLENGE_BUTTON, NAV_BAR, QUESTS_SCREEN, VIEW_TOP_RIGHT_COIN_COUNTER, YUCOIN } from "@ids";
+import { CUSTOMER_22, AUTH_22, CUSTOMER_23, AUTH_23, CUSTOMER_24, AUTH_24 } from "@data";
+import { LEVEL_CHALLENGE_BUTTON, NAV_BAR, QUESTS_SCREEN, VIEW_TOP_RIGHT_COIN_COUNTER, YUCOIN, YUNIVERSAL_CONTNIUE_BUTTON } from "@ids";
 
 
 Feature("As a user I can complete challenges across multiple worlds", async () => {
@@ -103,7 +103,7 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
                         Then("I should see the level 200 unity challenge", then.idVisible(LEVEL_CHALLENGE_BUTTON(200)))
                         When("I tap the level 200 unity challenge", when.tapID(LEVEL_CHALLENGE_BUTTON(200)), async () => {
                             Then("The yunity screens should be correct", then.yunityCorrect(4, "Mountain1"))
-                            When("I tap 'Continue'", when.tapText("Continue"), async () => {
+                            When("I tap 'Continue'", when.tapID(YUNIVERSAL_CONTNIUE_BUTTON), async () => {
                                 Then("I should be on the second world", then.idVisible(QUESTS_SCREEN(0)))
                                 When("I go back to the daily steps screen", when.tapID(NAV_BAR("yucoin")), async () => {
                                     When("I tap the yucoin image", when.tapID(YUCOIN), async () => {

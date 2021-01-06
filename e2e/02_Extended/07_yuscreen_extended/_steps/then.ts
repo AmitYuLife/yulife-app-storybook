@@ -29,47 +29,41 @@ export const {
     packageScreenCorrect
 } = screens.yuscreen
 
-export const paymentCalcVisible = async()=>{
-    await expect(element(by.text("If you were to pass away at the age of:"))).toBeVisible()
-    await expect(element(by.id(YEAR_SCROLLER))).toBeVisible()
-    await expect(element(by.id(MONTH_SCROLLER))).toBeVisible()
-}
-
 
 export const yearsScrollCorrect = async () => {
     await wait(2500)()
     try {
-        await expect(element(by.id(HIGHLIGHTED_SCROLLER_VALUE(50)))).toBeVisible()
-        await expect(element(by.text("£200,000"))).toBeVisible()
+        await expect(element(by.id(HIGHLIGHTED_SCROLLER_VALUE(41)))).toBeVisible()
+        await expect(element(by.text("£290,000"))).toBeVisible()
     }catch(e){
-        await expect(element(by.id(HIGHLIGHTED_SCROLLER_VALUE(51)))).toBeVisible()
-        await expect(element(by.text("£190,000"))).toBeVisible()
+        await expect(element(by.id(HIGHLIGHTED_SCROLLER_VALUE(42)))).toBeVisible()
+        await expect(element(by.text("£280,000"))).toBeVisible()
     }
 }
 
 export const monthsScrollCorrect = async()=>{
     await wait(2500)()
-    const yearIsFifty = await booleanIdVisible(HIGHLIGHTED_SCROLLER_VALUE(50))
-    const yearIsFiftyOne = await booleanTextVisible(HIGHLIGHTED_SCROLLER_VALUE(51))
+    const yearIsFourtyOne = await booleanIdVisible(HIGHLIGHTED_SCROLLER_VALUE(41))
+    const yearIsFourtyTwo = await booleanTextVisible(HIGHLIGHTED_SCROLLER_VALUE(42))
     
-    if(yearIsFifty===true && yearIsFiftyOne === false){
-        await expect(element(by.id(HIGHLIGHTED_SCROLLER_VALUE(50)))).toBeVisible()
+    if(yearIsFourtyOne===true && yearIsFourtyTwo === false){
+        await expect(element(by.id(HIGHLIGHTED_SCROLLER_VALUE(41)))).toBeVisible()
         try{ 
-            await expect(element(by.id(HIGHLIGHTED_SCROLLER_VALUE(10)))).toBeVisible()
-            await expect(element(by.text("£191,667"))).toBeVisible()
+            await expect(element(by.id(HIGHLIGHTED_SCROLLER_VALUE(1)))).toBeVisible()
+            await expect(element(by.text("£289,167"))).toBeVisible()
         }catch(e){
-            await expect(element(by.id(HIGHLIGHTED_SCROLLER_VALUE(11)))).toBeVisible()
-            await expect(element(by.text("£190,833"))).toBeVisible()
+            await expect(element(by.id(HIGHLIGHTED_SCROLLER_VALUE(2)))).toBeVisible()
+            await expect(element(by.text("£288,833"))).toBeVisible()
         }
-    } else if(yearIsFiftyOne === true && yearIsFifty===false){
+    } else if(yearIsFourtyTwo === true && yearIsFourtyOne===false){
         try{
-            await expect(element(by.id(HIGHLIGHTED_SCROLLER_VALUE(51)))).toBeVisible()
-            await expect(element(by.id(HIGHLIGHTED_SCROLLER_VALUE(10)))).toBeVisible()
-            await expect(element(by.text("£181,667"))).toBeVisible()
+            await expect(element(by.id(HIGHLIGHTED_SCROLLER_VALUE(42)))).toBeVisible()
+            await expect(element(by.id(HIGHLIGHTED_SCROLLER_VALUE(1)))).toBeVisible()
+            await expect(element(by.text("£279,167"))).toBeVisible()
         }catch(e){
-            await expect(element(by.id(HIGHLIGHTED_SCROLLER_VALUE(51)))).toBeVisible()
-            await expect(element(by.id(HIGHLIGHTED_SCROLLER_VALUE(11)))).toBeVisible()
-            await expect(element(by.text("£180,833"))).toBeVisible()
+            await expect(element(by.id(HIGHLIGHTED_SCROLLER_VALUE(42)))).toBeVisible()
+            await expect(element(by.id(HIGHLIGHTED_SCROLLER_VALUE(2)))).toBeVisible()
+            await expect(element(by.text("278,833"))).toBeVisible()
         }
     }
 }

@@ -1,6 +1,7 @@
 import moment = require("moment")
-import { IDatabaseItem } from "_utils/data/types"
-import { generateRandomMongoId } from "_utils/data/utils"
+import { IDatabaseItem } from "@yu-life/yulife-bdd-framework"
+import { generateRandomMongoId } from "@yu-life/yulife-bdd-framework";
+
 
 const type = "mongo"
 const modelName = "communitygoals"

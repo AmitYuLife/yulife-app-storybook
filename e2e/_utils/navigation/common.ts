@@ -1,4 +1,4 @@
-import { dataManager } from '../data/dataManager';
+import { dataManager } from "@yu-life/yulife-bdd-framework";
 import { NAV_BAR } from '@ids';
 
 export const restart = async () => {

@@ -1,9 +1,9 @@
-import { Feature, Scenario, Given, When, Then, FeatureOnly, ScenarioOnly } from "@bdd";
+import { Feature, Scenario, Given, When, Then, FeatureOnly, ScenarioOnly } from "@yu-life/yulife-bdd-framework";
 import * as scenario from "./_steps/scenario"
 import * as given from "./_steps/given"
 import * as when from "./_steps/when"
 import * as then from "./_steps/then"
-import { CUSTOMER_20, AUTH_20, CUSTOMER_19, AUTH_19, CUSTOMER_17, AUTH_17, CUSTOMER_16 } from "_utils/data/stubs";
+import { CUSTOMER_20, AUTH_20, CUSTOMER_19, AUTH_19, CUSTOMER_17, AUTH_17, CUSTOMER_16 } from "@data";
 import { COMMUNITY_GOAL_DROPDOWN, GOALS_BUTTON, NICKNAME_INPUT } from "@ids";
 
 Feature("As an enabled user I am able to use the goals feature", async () => {

@@ -1,7 +1,7 @@
-import { generateRandomMongoId } from '../../utils';
-import { IDatabaseItem } from '../../types';
+
 import { allTogglesTrue } from "./_templates";
 import { CUSTOMER_2, CUSTOMER_5, CUSTOMER_6, CUSTOMER_7, CUSTOMER_8, CUSTOMER_9, CUSTOMER_14, CUSTOMER_3, CUSTOMER_15, CUSTOMER_16, CUSTOMER_17, CUSTOMER_20, CUSTOMER_23, CUSTOMER_10, CUSTOMER_12, CUSTOMER_13, CUSTOMER_18, CUSTOMER_22, CUSTOMER_24, CUSTOMER_19 } from '../postgres/customers';
+import { generateRandomMongoId, IDatabaseItem } from "@yu-life/yulife-bdd-framework";
 
 export const CUSTOMER_2_TOGGLES = {
     type: "mongo",
@@ -42,7 +42,7 @@ export const CUSTOMER_3_TOGGLES = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_3.data.customerId,
-        features: allTogglesTrue
+        features: allTogglesTrue.data.features
     }
 } as IDatabaseItem
 
@@ -52,7 +52,7 @@ export const CUSTOMER_5_TOGGLES = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_5.data.customerId,
-        features: allTogglesTrue
+        features: allTogglesTrue.data.features
     }
 } as IDatabaseItem
 
@@ -62,7 +62,7 @@ export const CUSTOMER_6_TOGGLES = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_6.data.customerId,
-        features: allTogglesTrue
+        features: allTogglesTrue.data.features
     }
 } as IDatabaseItem
 
@@ -72,7 +72,7 @@ export const CUSTOMER_7_TOGGLES = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_7.data.customerId,
-        features: allTogglesTrue
+        features: allTogglesTrue.data.features
     }
 } as IDatabaseItem
 
@@ -82,7 +82,7 @@ export const CUSTOMER_8_TOGGLES = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_8.data.customerId,
-        features: allTogglesTrue
+        features: allTogglesTrue.data.features
     }
 } as IDatabaseItem
 
@@ -92,7 +92,7 @@ export const CUSTOMER_9_TOGGLES = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_9.data.customerId,
-        features: allTogglesTrue
+        features: allTogglesTrue.data.features
     }
 } as IDatabaseItem
 
@@ -186,7 +186,7 @@ export const CUSTOMER_15_TOGGLES = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_15.data.customerId,
-        features: allTogglesTrue
+        features: allTogglesTrue.data.features
     }
 } as IDatabaseItem
 
@@ -196,7 +196,7 @@ export const CUSTOMER_16_TOGGLES = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_16.data.customerId,
-        features: allTogglesTrue
+        features: allTogglesTrue.data.features
     }
 } as IDatabaseItem
 
@@ -206,7 +206,7 @@ export const CUSTOMER_17_TOGGLES = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_17.data.customerId,
-        features: allTogglesTrue
+        features: allTogglesTrue.data.features
     }
 } as IDatabaseItem
 

@@ -1,11 +1,11 @@
-import { Feature, Scenario, Given, When, Then, FeatureOnly, ScenarioOnly } from "@bdd";
+import { Feature, Scenario, Given, When, Then, FeatureOnly, ScenarioOnly } from "@yu-life/yulife-bdd-framework";
 import * as scenario from "./_steps/scenario"
 import * as given from "./_steps/given"
 import * as when from "./_steps/when"
 import * as then from "./_steps/then"
-import { AUTH_25, CUSTOMER_25 } from "_utils/data/stubs";
+import { AUTH_25, CUSTOMER_25, FEEDBACK_FORM_1 } from "@data";
 import { FEEDBACK_FORM_QUESTION, FEEDBACK_TEXT_INPUT, NAV_BAR, SLIDER_INPUT, SLIDER_LABEL, DAILY_STEPS_SCREEN } from "@ids";
-import { FEEDBACK_FORM_1 } from "_utils/data/stubs/mongo/feedback_forms";
+
 
 Feature("Feedback forms should behave correctly", async()=>{
 

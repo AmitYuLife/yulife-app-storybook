@@ -5,7 +5,9 @@ import { navigation, BODY_ITEM_TITLE, BODY_PART_ITEM, SKIN_TONE, PERSONAL_PRODUC
 export const {
     scrollFromText,
     scrollFromID,
-    swipeToText
+    swipeToText,
+    scrollUntilTextVisible,
+    scrollUntilIdVisible,
 } = navigation.scrolling
 
 export const {

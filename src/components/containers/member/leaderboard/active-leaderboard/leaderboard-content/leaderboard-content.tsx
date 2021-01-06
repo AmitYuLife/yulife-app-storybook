@@ -21,6 +21,7 @@ import { getUserFeatures } from "@redux/user/user.selectors";
 import { connect } from "react-redux";
 import { LEADERBOARD_ITEM_HEIGHT } from "../../items/leaderboard-rank-item/subcomponents";
 import { TOP_PADDING_HEIGHT } from "./helpers/constants";
+import { LEADERBOARD_SCROLL_LIST } from "@ids";
 
 export interface LeaderboardContentContainerProps {
   query: GetLeaderboard;
@@ -93,6 +94,7 @@ const _LeaderboardContentContainer = ({
   return (
     <View style={styles.flex}>
       <FlatList
+        testID={LEADERBOARD_SCROLL_LIST}
         onLayout={handleLayout}
         onRefresh={onRefetch}
         refreshing={isRefetching}
