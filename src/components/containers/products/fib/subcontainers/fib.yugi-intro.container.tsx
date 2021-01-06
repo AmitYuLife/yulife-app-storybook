@@ -1,5 +1,5 @@
 import React, { memo } from "react";
-import { connect } from "react-redux";
+import { connect, useDispatch } from "react-redux";
 import { IReduxState } from "@redux/_core/reducers";
 import { getUserFirstName } from "@redux/user/user.selectors";
 import {
@@ -9,6 +9,13 @@ import {
   FIB_CONFIRM_PACKAGES,
 } from "../fib.types";
 import { FibYugiIntroScreen } from "../../../../screens/products/fib/yugi-intro/fib-yugi-intro.screen";
+import { useMutation } from "@apollo/react-hooks";
+import {
+  UpsertProductEntityMutationTuple,
+  GQL_MUTATION_UPSERT_TOP_UPS_PRODUCT_ENTITY,
+} from "../../../../../graphql/products";
+import { ProductCode } from "../../../../../graphql/_core/schema/globalTypes";
+import { updateFIBValue } from "../../../../../redux/product/product.actions";
 
 type ConnectedState = ReturnType<typeof mapStateToProps>;
 
@@ -33,9 +40,31 @@ const _FibYugiIntroContainer = memo(function FibYugiIntroContainer(props: Props)
 
   const { type, initialIndex }: { type: YUGI_INTRO_TYPE; initialIndex: number } = navigation.currentRoute.passProps;
 
-  const onNavigateToNextScreen = () => {
+  const [upsertProductEntity]: UpsertProductEntityMutationTuple = useMutation(
+    GQL_MUTATION_UPSERT_TOP_UPS_PRODUCT_ENTITY
+  );
+  const dispatch = useDispatch();
+
+  const upsertProductEntityQuery = async () => {
+    const productEntity = await upsertProductEntity({
+      variables: {
+        product: ProductCode.YULFIB,
+      },
+    });
+    dispatch(
+      updateFIBValue({
+        key: "productEntityId",
+        value: productEntity.data?.upsertTopUpsProductEntity?.id,
+      })
+    );
+    return;
+  };
+
+  const onNavigateToNextScreen = async () => {
     switch (type) {
       case YUGI_INTRO_TYPE.INTRO_UNDERWRITING:
+        await upsertProductEntityQuery();
+        return navigation.push(FIB_BROWSE);
       case YUGI_INTRO_TYPE.FOREST_STYLE_SELECTED:
       case YUGI_INTRO_TYPE.OCEAN_STYLE_SELECTED:
       case YUGI_INTRO_TYPE.DESERT_STYLE_SELECTED:

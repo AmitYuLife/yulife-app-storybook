@@ -3,7 +3,7 @@ import React, { memo, useCallback, useState } from "react";
 import { View } from "react-native";
 import { connect } from "react-redux";
 import { Text } from "@atoms";
-import { FibLocalNavigation, FIB_EDIT_SALARY, FIB_BROWSE } from "../fib.types";
+import { FibLocalNavigation, FIB_BROWSE } from "../fib.types";
 import { FibCustomPercentage } from "@components/screens/products/fib/custom-percentage/fib.custom-percentage";
 import { GQL_QUERY_GET_TOP_UPS_ESTIMATE_COST } from "@graphql/products";
 import { getFIBState } from "@redux/product/product.selectors";
@@ -11,6 +11,7 @@ import { IReduxState } from "@redux/_core/reducers";
 import { formatPrice } from "../fib.helpers";
 import { GetTopUpsEstimateCost, GetTopUpsEstimateCostVariables } from "../../../../../graphql/_core/schema";
 import { CoverType, ProductCode } from "../../../../../graphql/_core/schema/globalTypes";
+import { noop } from "../../../../../services/utils";
 
 type ConnectedState = ReturnType<typeof mapStateToProps>;
 
@@ -42,12 +43,6 @@ const FibCustomPercentageContainer = memo(function (props: FibCustomPercentageCo
     }
   );
 
-  const handleNavigateToEditSalary = useCallback(() => {
-    navigation.push(FIB_EDIT_SALARY, {
-      onPressDone: navigation.pop,
-    });
-  }, [navigation]);
-
   const handleNavigateForward = useCallback(() => {
     navigation.push(FIB_BROWSE, {
       isCustomCover: true,
@@ -71,7 +66,7 @@ const FibCustomPercentageContainer = memo(function (props: FibCustomPercentageCo
       onNavigateForward={handleNavigateForward}
       salaryPercentageRange={percentageRange}
       estimatedCost={formatPrice(data?.getTopUpsEstimateCost?.estimatedCost || 0)}
-      onNavigateToEditSalary={handleNavigateToEditSalary}
+      onNavigateToEditSalary={noop}
     />
   );
 });

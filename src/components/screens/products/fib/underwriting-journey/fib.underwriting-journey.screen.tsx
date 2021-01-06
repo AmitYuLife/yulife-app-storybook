@@ -43,6 +43,8 @@ export interface IFibUnderwritingJourneyScreenProps {
   radioInputValue?: string;
   setRadioInputValue?: (text: string) => void;
   hideProgressBar: boolean;
+  salary?: number;
+  setInputSalary?: (salary: number) => void;
 }
 
 const _FibUnderwritingJourneyScreen = memo(function (props: IFibUnderwritingJourneyScreenProps) {
@@ -61,6 +63,8 @@ const _FibUnderwritingJourneyScreen = memo(function (props: IFibUnderwritingJour
     radioInputValue,
     setRadioInputValue,
     hideProgressBar,
+    salary,
+    setInputSalary,
   } = props;
   const scrollViewRef = useRef(null as ScrollView);
   const timer = useRef(null as ReturnType<typeof setTimeout>);
@@ -142,6 +146,8 @@ const _FibUnderwritingJourneyScreen = memo(function (props: IFibUnderwritingJour
                 setInputLastName,
                 radioInputValue,
                 setRadioInputValue,
+                salary,
+                setInputSalary,
               })}
             </View>
           );
@@ -162,6 +168,8 @@ interface RenderChildrenExtraProps {
   setInputLastName?: (text: string) => void;
   radioInputValue?: string;
   setRadioInputValue?: (value: string) => void;
+  salary?: number;
+  setInputSalary?: (salary: number) => void;
 }
 
 function renderChildren(child: UnderwritingJourneyChild, extraProps: RenderChildrenExtraProps) {
@@ -171,7 +179,7 @@ function renderChildren(child: UnderwritingJourneyChild, extraProps: RenderChild
     inputBirth: <FibInputBirth />,
     inputHeight: <FibInputHeight />,
     inputWeight: <FibInputWeight />,
-    inputSalary: <FibInputSalary />,
+    inputSalary: <FibInputSalary setInputSalary={extraProps.setInputSalary} salary={extraProps.salary} />,
     inputFullName: (
       <FibInputName
         setInputFirstName={extraProps.setInputFirstName}
