@@ -7,7 +7,6 @@ import { Text } from "@atoms";
 import { FibBrowseScreen, FibCustomCoverScreen } from "@screens";
 import { GQL_QUERY_GET_TOP_UPS_ESTIMATE_COST } from "@graphql/products";
 import {
-  FIB_EDIT_SALARY,
   FibLocalNavigation,
   FIB_CUSTOM_PERCENTAGE,
   FIB_UNDERWRITING_JOURNEY_INTRODUCTION,
@@ -27,6 +26,7 @@ import { handleOpenWebView } from "@navigation/utils";
 import Logger from "@services/logging/logger";
 import { CoverType, ProductCode } from "../../../../../graphql/_core/schema/globalTypes";
 import { YUGI_INTRO_TYPE } from "./fib.yugi-intro.container";
+import { noop } from "../../../../../services/utils";
 
 interface IFibContainer {
   navigation: FibLocalNavigation;
@@ -54,6 +54,7 @@ const documents: IFaq[] = fibDocumentsItems.map((document) => ({
 }));
 
 const _FibBrowseContainer = memo(function (props: IFibContainer & ReturnType<typeof mapStateToProps>) {
+  // TODO: Clean up this function once we merge new yulifer query with products fetched from db
   const { navigation, grossSalary, selectedPackage, userDateOfBirth } = props;
   const { isCustomCover, customCoverPercentage = null } = navigation.currentRoute.passProps;
   const [selectedCoverType, selectCoverType] = useCover(
@@ -143,7 +144,7 @@ const _FibBrowseContainer = memo(function (props: IFibContainer & ReturnType<typ
       <FibCustomCoverScreen
         avatarUrl={yuliferData?.getYulifer.avatarRemoteFiles?.pngFull}
         onNavigateBack={navigation.pop}
-        navigateToEditSalary={() => navigation.push(FIB_EDIT_SALARY, { onPressDone: navigation.pop })}
+        navigateToEditSalary={noop}
         onContinue={() => navigation.push(FIB_UNDERWRITING_JOURNEY_INTRODUCTION)}
         selectedPackage={packageDetails}
         payoutEstimatorItems={payoutEstimatorItems}

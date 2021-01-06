@@ -350,3 +350,6 @@ export type Unpacked<T> = T extends Array<infer U>
   : T extends Promise<infer U>
   ? U
   : T;
+
+type Noop = () => void;
+export const noop: Noop = () => void 0;

@@ -22,10 +22,10 @@ import {
   FIB_LIFESTYLE_SMOKING_CIGARETTES_SCREEN_ID,
   FOLLOW_UP_SMOKING_ANSWERS_TRIGGER,
   FIB_FINANCIAL_COVER_LIST_SCREEN_ID,
+  FIB_INPUT_SALARY,
 } from "../../components/containers/products/fib/data/underwriting-journey-data";
 import { FINANCIAL_QUESTIONS_ICON } from "@atoms/fib/svg-assets/underwriting/svg-strings";
 import { addCommasToNumber } from "@services/utils";
-import { FIB_EDIT_SALARY } from "@components/containers/products/fib/fib.types";
 import { LifeInsuranceTopUpsUserAnswers } from "../../graphql/_core/schema/globalTypes";
 
 export const getFIBState = (state: IReduxState): FIBStore => {
@@ -255,7 +255,7 @@ export const getReviewAnswers = (state: IReduxState): any => {
     icon: FINANCIAL_QUESTIONS_ICON,
     title: "Salary",
     answer: `£${addCommasToNumber(state.product.fib.salary)}`,
-    questionId: FIB_EDIT_SALARY,
+    questionId: FIB_INPUT_SALARY,
     incomplete: !state.product.fib.salary,
   });
 

@@ -12,6 +12,7 @@ import {
   FIB_LIFESTYLE_SMOKING_VAPES_SCREEN_ID,
   FIB_LIFESTYLE_SMOKING_CIGARETTES_FOLLOW_UP_SCREEN_ID,
   FINAL_PROGRESS,
+  FIB_INPUT_SALARY,
 } from "../data/underwriting-journey-data";
 import { FIBProgressBar } from "@organisms";
 import { IReduxState } from "@redux/_core/reducers";
@@ -45,7 +46,7 @@ interface IFibUnderwritingJourneyContainer {
 }
 
 const _FibUnderwritingJourneyContainer = memo(function (props: Props) {
-  const { navigation, medicalHistory, updateFibAnswer, initialQuestionId, fibAnswers } = props;
+  const { navigation, medicalHistory, updateFibAnswer, initialQuestionId, fibAnswers, salary } = props;
   const dispatch = useDispatch();
 
   const { redirectedFromReviewScreen, initialQuestionIdFromReviewScreen } = navigation.currentRoute.passProps;
@@ -75,6 +76,7 @@ const _FibUnderwritingJourneyContainer = memo(function (props: Props) {
   const [inputFirstName, setInputFirstName] = useState(fibAnswers.firstName);
   const [inputLastName, setInputLastName] = useState(fibAnswers.lastName);
   const [radioInputValue, setRadioInputValue] = useState<string>(null);
+  const [inputSalary, setInputSalary] = useState(salary);
 
   const currentAnswer = fibAnswers[currentQuestion.id];
 
@@ -164,6 +166,10 @@ const _FibUnderwritingJourneyContainer = memo(function (props: Props) {
     if (currentQuestion.id === FIB_ENTER_YOUR_NAME) {
       updateFibAnswer("firstName", inputFirstName);
       updateFibAnswer("lastName", inputLastName);
+    }
+
+    if (currentQuestion.id === FIB_INPUT_SALARY) {
+      dispatch(updateFIBValue({ key: "salary", value: inputSalary }));
     }
 
     if (currentQuestion.firstButton.actionId === FIB_UNDERWRITING_REVIEW_ANSWERS_SCREEN_ID) {
@@ -308,6 +314,8 @@ const _FibUnderwritingJourneyContainer = memo(function (props: Props) {
         disableSecondButton={disableSecondButton}
         radioInputValue={radioInputValue}
         setRadioInputValue={setRadioInputValue}
+        setInputSalary={setInputSalary}
+        salary={inputSalary}
       />
     </FIBProgressBar.ProgressBarContext.Provider>
   );
@@ -316,6 +324,7 @@ const _FibUnderwritingJourneyContainer = memo(function (props: Props) {
 const mapStateToProps = (state: IReduxState) => ({
   medicalHistory: getFIBState(state).answers.medicalHistory,
   fibAnswers: getFIBState(state).answers,
+  salary: getFIBState(state).salary,
 });
 
 const mapDispatchToProps = {

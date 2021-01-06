@@ -1,29 +1,39 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { Text } from "@atoms";
 import { InputField } from "../input-field";
-import { getFIBState } from "@redux/product/product.selectors";
-import { updateFIBValue } from "@redux/product/product.actions";
 import { StyleSheet, View } from "react-native";
 import { styles } from "./fib-input-salary.styles";
 import { Style } from "@styles";
+import { addCommasToNumber } from "../../../../../services/utils";
 
-export const FibInputSalary = () => {
+interface FibInputSalaryProps {
+  salary: number;
+  setInputSalary?: (salary: number) => void;
+}
+
+function getDisplayValue(val: number) {
+  if (val === 0 || !val) {
+    return "";
+  }
+
+  return addCommasToNumber(val);
+}
+
+export const FibInputSalary = (props: FibInputSalaryProps) => {
+  const { salary, setInputSalary } = props;
+
   const [isFocus, setIsFocus] = useState(false);
-  const dispatch = useDispatch();
-  const salary = useSelector(getFIBState).salary;
-
-  const updateSalary = (value: number) => dispatch(updateFIBValue({ key: "salary", value }));
+  const [displayValue, setDisplayValue] = useState(getDisplayValue(salary));
 
   const validateNumber = (text: string) => {
-    const parsedText = parseInt(text, 10);
-    const validText = !isNaN(parsedText) && parsedText >= 0;
-
-    if (!validText) {
-      return updateSalary(0);
+    const castedValue = Number(text.replace(/,/g, "").substring(0, 7));
+    if (isNaN(castedValue)) {
+      return;
     }
 
-    return updateSalary(parsedText);
+    setDisplayValue(getDisplayValue(castedValue));
+
+    return setInputSalary(castedValue);
   };
 
   return (
@@ -34,9 +44,9 @@ export const FibInputSalary = () => {
         </Text>
       </View>
       <InputField
-        value={salary.toString()}
+        value={displayValue}
         onChangeText={validateNumber}
-        maxLength={6}
+        maxLength={9}
         style={StyleSheet.flatten([styles.textInput, isFocus ? {} : styles.textInputOnBlur])}
         hasFocusActive={setIsFocus}
         width={Style.adjust(112)}

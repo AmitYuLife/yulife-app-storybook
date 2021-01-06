@@ -1,11 +1,5 @@
 import React, { memo, useCallback } from "react";
-import {
-  FibLocalNavigation,
-  FIB_UNDERWRITING_JOURNEY,
-  FIB_CONFIRM_PACKAGES,
-  FIB_EDIT_SALARY,
-  FIB_INFO,
-} from "../fib.types";
+import { FibLocalNavigation, FIB_UNDERWRITING_JOURNEY, FIB_CONFIRM_PACKAGES, FIB_INFO } from "../fib.types";
 import { IReduxState } from "../../../../../redux/_core/reducers";
 import { connect, useDispatch } from "react-redux";
 import { FibUnderwritingReviewAnswersScreen } from "@components/screens/products/fib/underwriting-journey/fib.underwriting-review-answers.screen";
@@ -89,10 +83,6 @@ const FibUnderwritingReviewAnswersContainer = memo(function (props: Props) {
   };
 
   const onAnswerPress = (questionId: string) => {
-    if (questionId === FIB_EDIT_SALARY) {
-      return navigation.push(FIB_EDIT_SALARY, { onPressDone: navigation.pop });
-    }
-
     return navigation.push(FIB_UNDERWRITING_JOURNEY, {
       initialQuestionIdFromReviewScreen: questionId,
       redirectedFromReviewScreen: true,

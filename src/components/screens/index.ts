@@ -58,4 +58,3 @@ export { default as SplashScreen } from "./splash/splash.screen";
 export { FibFaqScreen } from "./products/fib/faq/fib.faq.screen";
 export { FibBrowseScreen } from "./products/fib/browse-packages/fib.browse.screen";
 export { FibCustomCoverScreen } from "./products/fib/browse-packages/fib.custom-cover";
-export { FibEditSalaryScreen } from "./products/fib/edit-salary/fib.edit-salary.screen";

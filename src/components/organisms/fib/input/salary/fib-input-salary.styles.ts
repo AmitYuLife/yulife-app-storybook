@@ -15,12 +15,18 @@ const marginTop = Platform.select({
   ),
 });
 
+const alignItems = Platform.select({
+  ios: null,
+  android: "center",
+});
+
 export const styles = StyleSheet.create({
   wrapper: {
     justifyContent: "center",
     width: "100%",
     marginTop,
     flexDirection: "row",
+    alignItems: alignItems,
   } as ViewStyle,
   label: {
     fontSize: Style.adjust(16),
@@ -47,7 +53,7 @@ export const styles = StyleSheet.create({
     borderBottomColor: Colours.neutral.n200,
   } as TextStyle,
   preInputWrapper: {
-    marginRight: Style.adjust(12),
+    marginRight: Style.adjust(4),
   } as ViewStyle,
   preInputLabel: {
     color: Colours.neutral.n900,

@@ -1,19 +1,10 @@
 import React, { useState } from "react";
-import {
-  FibBrowseContainer,
-  FibIntroductionContainer,
-  FibEditSalaryContainer,
-  FibFaqContainer,
-  FibSalaryDescriptionContainer,
-} from "./subcontainers";
+import { FibBrowseContainer, FibFaqContainer } from "./subcontainers";
 import { useLocalNavigation } from "@services/hooks/useLocalNavigation";
 import {
   FibRoute,
   FibLocalNavigation,
-  FIB_INTRODUCTION,
-  FIB_SALARY_DESCRIPTION,
   FIB_FAQ,
-  FIB_EDIT_SALARY,
   FIB_BROWSE,
   FIB_CUSTOM_PERCENTAGE,
   FIB_FEEDBACK_FORM,
@@ -69,14 +60,8 @@ function getComponent(routeProps: RouteProps) {
   } = navigation;
 
   switch (route) {
-    case FIB_SALARY_DESCRIPTION:
-      return <FibSalaryDescriptionContainer navigation={navigation} />;
-    case FIB_EDIT_SALARY:
-      return <FibEditSalaryContainer navigation={navigation} />;
     case FIB_FAQ:
       return <FibFaqContainer selectedFaqId={selectedFaq} navigation={navigation} selectFaq={selectFaq} />;
-    case FIB_INTRODUCTION:
-      return <FibIntroductionContainer navigation={navigation} />;
     case FIB_CUSTOM_PERCENTAGE:
       return <FibCustomPercentage navigation={navigation} />;
     case FIB_FEEDBACK_FORM:
