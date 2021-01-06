@@ -1,13 +1,13 @@
-import { Feature, Scenario, Given, When, Then, FeatureOnly, ScenarioOnly } from "@bdd";
+import { Feature, Scenario, Given, When, Then, FeatureOnly, ScenarioOnly, ScenarioSkip } from "@yu-life/yulife-bdd-framework";
 import * as scenario from "./_steps/scenario"
 import * as given from "./_steps/given"
 import * as when from "./_steps/when"
 import * as then from "./_steps/then"
-import { CUSTOMER_1, CUSTOMER_18, AUTH_18, CUSTOMER_17, AUTH_17, AUTH_19, CUSTOMER_19, USER_18_LEADERBOARD } from "_utils/data/stubs";
+import { CUSTOMER_1, CUSTOMER_18, AUTH_18, CUSTOMER_17, AUTH_17, AUTH_19, CUSTOMER_19, USER_18_LEADERBOARD } from "@data";
 import {
     GET_STARTED_BUTTON, MALE_BODY, SKIN_TONE, VIEW_TOP_RIGHT_COIN_COUNTER, NAV_BAR, PERSONAL_PRODUCT,
     CHECK_BOX_STATE, SURVEY_SCREEN, SURVEY_TEXT_BOX, FEMALE_BODY, AVATAR_BUILDER_LIST, NO_ITEM_SELECTED, 
-    HEAD_TYPE, YUSCREEN_AVATAR, YUSCREEN, YUMOJI_PODIUM, LEADERBOARD_TITLE, YUCOIN_POWER,
+    HEAD_TYPE, YUSCREEN_AVATAR, YUSCREEN, YUMOJI_PODIUM, LEADERBOARD_TITLE, YUCOIN_POWER, YUSCREEN_SCROLL_VIEW,
 } from "@ids";
 
 
@@ -94,10 +94,11 @@ Feature("I am able to use the yuscreen, create, and edit an Yumoji", async () =>
         Given("I login", given.loginToYuScreen(), async () => {
             Then("I should be on an empty yuscreen tab", then.onEmptyYuscreen(CUSTOMER_1))
             Then("I should see 1x Yucoin power", then.swipeToID(YUSCREEN, YUCOIN_POWER("1"), "up", 3))
-            When("I scroll to the bottom", when.scrollFromID(YUSCREEN, "up", "slow"), async () => {
+            When("I scroll to the bottom", when.scrollUntilTextVisible(YUSCREEN_SCROLL_VIEW, "Group Life Insurance", "down"), async () => {
                 Then("I should see my Employer benefits", then.textVisible("Your company has equipped you with:"))
                 Then("I should see Group Life Insurance", then.textVisible("Group Life Insurance"))
-                        When("I tap the earn rate", when.tapEarnRate, async () => {
+                When("I go to the earn rate", when.scrollUntilIdVisible(YUSCREEN_SCROLL_VIEW, YUCOIN_POWER("1"), "up"), async () => {
+                        When("I tap the earn rate", when.tapID(YUCOIN_POWER("1")), async () => {
                             Then("I should be on the 'Your YuCoin' screen", then.onYourYuCoin)
                         })
                         When("I tap Got it!", when.tapText("Got it!"), async()=>{
@@ -108,6 +109,7 @@ Feature("I am able to use the yuscreen, create, and edit an Yumoji", async () =>
                     })
                 })
             })
+        })
 
     Scenario("I can view my Yumoji after I login, and edit it", scenario.start, async () => {
         Given("I login", given.loginToYuScreen(true, CUSTOMER_17, AUTH_17), async () => {

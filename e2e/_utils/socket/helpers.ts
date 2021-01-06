@@ -1,6 +1,6 @@
 import socketServer from "./server";
 import { EVENT, ReduxEvent, FitkitSampleQueriesAdd } from "./events";
-import * as moment from 'moment';
+import moment from 'moment';
 import { wait } from "@navigation";
 
 export const authoriseFitkit = (authorised = true) => async () => {

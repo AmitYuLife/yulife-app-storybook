@@ -11,6 +11,17 @@ export const scrollFromID = (id: string, direction: any, speed: any, percentage?
     await target.swipe(direction, speed, percentage)
 } 
 
+// down is down
+export const scrollUntilTextVisible = (scrollViewid:string, text:string, direction:"up"|"down", xscroll=0.5, yscroll=0.5) => async()=>{
+    await waitFor(element(by.text(text))).toBeVisible().whileElement(by.id(scrollViewid)).scroll(100, direction, xscroll, yscroll)
+}
+
+export const scrollUntilIdVisible = (scrollViewid: string, id: string, direction: "up" | "down" | "left" | "right", xscroll = 0.5, yscroll = 0.5) => async () => {
+    await waitFor(element(by.id(id))).toBeVisible().whileElement(by.id(scrollViewid)).scroll(100, direction, xscroll, yscroll)
+}
+
+
+
 export const swipeToText = (scrollID: any, targetText: string, direction: "up" | "down", maxAttempts = 10) => async()=>{
     let targetTextVisible = await booleanTextVisible(targetText)
     let scroller = element(by.id(scrollID))

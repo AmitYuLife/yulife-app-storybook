@@ -9,6 +9,7 @@
         "target": "es2017",
         "experimentalDecorators": true,
         "noImplicitAny": false,
+        "esModuleInterop": true,
         "moduleResolution": "node",
         "typeRoots": [
             "node_modules/@types",
@@ -27,9 +28,6 @@
             "@utils": [
                 "./_utils/index"
             ],
-            "@bdd": [
-                "./_utils/bdd"
-            ],
             "@navigation": [
                 "./_utils/navigation/index"
             ],
@@ -39,24 +37,12 @@
             "@ids": [
                 "./_utils/navigation/ids"
             ],
+            "@socket": [
+                "./_utils/socket/index"
+            ],
             "@data": [
                 "./_utils/data/index"
             ],
-            "@socket": [
-                "./_utils/socket/index"
-            ]
-            // "@stubs/*": [
-            //     "./_utils/api/stubs/*"
-            // ],
-            // "@stubs": [
-            //     "./_utils/api/stubs/index"
-            // ],
-            // "@detox/prepay": [
-            //     "./_utils/prepay/index"
-            // ],
-            // "@detox/device": [
-            //     "./_utils/device/index"
-            // ],
         }
     }
 }

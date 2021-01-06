@@ -1,7 +1,8 @@
-import { generateRandomMongoId } from "_utils/data/utils";
+import { generateRandomMongoId } from "@yu-life/yulife-bdd-framework";
+;
 import { SHORT_STROLL_1 } from "./map_level_slot_templates";
 import { SHORT_STROLL_MILESTONE_1 } from "./map_milestone_templates";
-import { IDatabaseItem } from "_utils/data/types";
+import { IDatabaseItem } from "@yu-life/yulife-bdd-framework";
 
 export const MAP_LEVEL_1 = {
     type: "mongo",

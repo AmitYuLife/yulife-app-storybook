@@ -1,11 +1,11 @@
-import { Feature, Given, Scenario, Then, When, ScenarioOnly, FeatureOnly } from "@bdd";
+import { Feature, Given, Scenario, Then, When, ScenarioOnly, FeatureOnly } from "@yu-life/yulife-bdd-framework";
 
 import * as given from "./_steps/given";
 import * as then from "./_steps/then";
 import * as when from "./_steps/when";
 import * as scenario from "./_steps/scenario";
 import { INPUT_LOGIN_EMAIL, INPUT_RESET_PASSWORD } from "@ids";
-import { CUSTOMER_4, AUTH_4, CUSTOMER_ARCHIVED, AUTH_ARCHIVED } from "_utils/data/stubs";
+import { CUSTOMER_4, AUTH_4, CUSTOMER_ARCHIVED, AUTH_ARCHIVED } from "@data";
 
 Feature("As a user I can get past the login screen", async () => {
 

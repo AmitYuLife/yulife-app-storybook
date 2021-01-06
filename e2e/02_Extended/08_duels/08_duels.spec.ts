@@ -1,9 +1,9 @@
-import { Feature, Scenario, Given, When, Then, FeatureOnly } from "@bdd";
+import { Feature, Scenario, Given, When, Then, FeatureOnly, ScenarioOnly } from "@yu-life/yulife-bdd-framework";
 import * as scenario from "./_steps/scenario"
 import * as given from "./_steps/given"
 import * as when from "./_steps/when"
 import * as then from "./_steps/then"
-import { CUSTOMER_20, AUTH_20, CUSTOMER_19, AUTH_19, CUSTOMER_17, AUTH_17, CUSTOMER_16 } from "_utils/data/stubs";
+import { CUSTOMER_20, AUTH_20, CUSTOMER_19, AUTH_19, CUSTOMER_17, AUTH_17, CUSTOMER_16 } from "@data";
 import { DUELS_BUTTON, DUELS_HUB, DUEL_OPTIONS_SCREEN, DUEL_RESPONSE, EMPTY_DUELS_HUB, LEADERBOARD_TOP_SCREEN, NAV_BAR } from "@ids";
 import moment = require("moment");
 

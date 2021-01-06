@@ -1,6 +1,6 @@
 import { LEADERBOARD_CUSTOMERS } from "./customers";
-import { generateRandomMongoId } from "_utils/data/utils";
-import { CHALLENGE_TEMPLATE } from "_utils/data/stubs/mongo/_templates";
+import { generateRandomMongoId } from "@yu-life/yulife-bdd-framework";
+import { CHALLENGE_TEMPLATE } from "@data";
 
 export const LEADERBOARD_COINLEDGER = LEADERBOARD_CUSTOMERS.map((item) => ({
     type: "mongo",

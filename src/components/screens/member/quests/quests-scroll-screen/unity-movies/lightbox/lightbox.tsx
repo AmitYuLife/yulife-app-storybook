@@ -6,7 +6,7 @@ import { Heading } from "@atoms";
 import YuCoin from "../../../../../../screens/member/daily-steps/assets/yu-coin";
 import LinearGradient from "react-native-linear-gradient";
 import { getHeading, getText, getButtonLabel } from "./lightbox.data";
-import { YUNITY_HEADER } from "@ids";
+import { YUNITY_HEADER, YUNIVERSAL_CONTNIUE_BUTTON } from "@ids";
 import { DETOX_ENABLED } from "@services/socket";
 
 interface IProps {
@@ -77,7 +77,13 @@ const Lightbox: FC<IProps> = ({ level, goToNextScreen }) => {
         </ScrollView>
         <View style={styles.bottomSectionWrapper}>
           <View style={styles.buttonWrapper}>
-            <Button type="Primary" size="Fill" onPress={goToNextScreen} label={getButtonLabel(level)} />
+            <Button
+              type="Primary"
+              size="Fill"
+              onPress={goToNextScreen}
+              label={getButtonLabel(level)}
+              testID={YUNIVERSAL_CONTNIUE_BUTTON}
+            />
           </View>
           <LinearGradient colors={["#ffffff00", "#ffffff"]} locations={[0, 1]} style={styles.whiteFade} />
         </View>

@@ -1,9 +1,9 @@
-import { Feature, Scenario, Given, When, Then, ScenarioOnly, FeatureOnly } from "@bdd";
+import { Feature, Scenario, Given, When, Then, ScenarioOnly, FeatureOnly } from "@yu-life/yulife-bdd-framework";
 import * as scenario from "./_steps/scenario"
 import * as given from "./_steps/given"
 import * as when from "./_steps/when"
 import * as then from "./_steps/then"
-import { CUSTOMER_5, AUTH_5, CUSTOMER_6, AUTH_6, CUSTOMER_7, AUTH_7, CUSTOMER_8, AUTH_8, CUSTOMER_15, AUTH_15 } from "_utils/data/stubs";
+import { CUSTOMER_5, AUTH_5, CUSTOMER_6, AUTH_6, CUSTOMER_7, AUTH_7, CUSTOMER_8, AUTH_8, CUSTOMER_15, AUTH_15 } from "@data";
 import { QUESTS_SCREEN, LEVEL_CHALLENGE_BUTTON, CHALLENGE_SET, CHALLENGE_TILE, GENERIC_SCREEN_CTA, GENERIC_SCREEN_HEADING, CHALLENGE_PROGRESS_BAR, NAV_BAR, DAILY_STEPS_SCREEN, VIEW_TOP_RIGHT_COIN_COUNTER, CHALLENGE_UNAVAILABLE } from "@ids";
 import { idVisible } from "@utils";
 

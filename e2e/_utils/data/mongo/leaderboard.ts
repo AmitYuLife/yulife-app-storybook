@@ -1,5 +1,4 @@
-import { IDatabaseItem } from "_utils/data/types";
-import { generateRandomMongoId, generateRandomPostgresId, hashPassword } from "_utils/data/utils";
+import { generateRandomPostgresId, IDatabaseItem } from "@yu-life/yulife-bdd-framework";
 import { CUSTOMER_18, CUSTOMER_16, CUSTOMER_17, CUSTOMER_19, CUSTOMER_20, CUSTOMER_21 } from "../postgres/customers";
 
 const LEADERBOARD_1_ID = generateRandomPostgresId()

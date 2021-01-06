@@ -1,5 +1,6 @@
-import { generateRandomMongoId } from "_utils/data/utils";
-import { IDatabaseItem } from '../../types';
+import { generateRandomMongoId } from "@yu-life/yulife-bdd-framework";
+;
+import { IDatabaseItem } from "@yu-life/yulife-bdd-framework";
 
 export const REWARDS_JOHN_LEWIS = {
     type: "mongo",

@@ -1,4 +1,4 @@
-import { Feature, Scenario, Given, When, Then, FeatureOnly, ScenarioOnly } from "@bdd";
+import { Feature, Scenario, Given, When, Then, FeatureOnly, ScenarioOnly } from "@yu-life/yulife-bdd-framework";
 import * as scenario from "./_steps/scenario"
 import * as given from "./_steps/given"
 import * as when from "./_steps/when"
@@ -7,7 +7,7 @@ import {
     CUSTOMER_3, AUTH_3, CUSTOMER_5, AUTH_5, CUSTOMER_6, AUTH_6, CUSTOMER_10, AUTH_10, CUSTOMER_12,
     AUTH_12, CUSTOMER_13, AUTH_13, CUSTOMER_18, AUTH_18, CUSTOMER_20, AUTH_20, CUSTOMER_22, AUTH_23,
     CUSTOMER_23, AUTH_22, CUSTOMER_ALPHA, AUTH_ALPHA
-} from "_utils/data/stubs";
+} from "@data";
 import { MENU_ICON, MENU_ITEM, YUMATTER_SCREEN, SMART_HEALTH_SCREEN } from "@ids";
 
 

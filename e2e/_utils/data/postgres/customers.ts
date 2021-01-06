@@ -1,6 +1,5 @@
-import { generateRandomMongoId } from '../../utils';
-import { IDatabaseItem } from '../../types';
-import * as moment from "moment";
+import { generateRandomMongoId, IDatabaseItem } from "@yu-life/yulife-bdd-framework";
+import moment = require("moment");
 
 export const CUSTOMER_1 = {
     type: "postgres",

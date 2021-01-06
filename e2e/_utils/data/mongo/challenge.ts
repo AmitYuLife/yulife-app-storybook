@@ -1,5 +1,5 @@
-import { generateRandomMongoId } from '../../utils';
-import { IDatabaseItem } from '../../types';
+import { generateRandomMongoId } from "@yu-life/yulife-bdd-framework"
+import { IDatabaseItem } from "@yu-life/yulife-bdd-framework";
 import { CUSTOMER_2, CUSTOMER_6, CUSTOMER_7, CUSTOMER_8, CUSTOMER_9, CUSTOMER_14, CUSTOMER_15, CUSTOMER_18, CUSTOMER_17, CUSTOMER_3, CUSTOMER_19, CUSTOMER_16 } from '../postgres/customers';
 import moment = require('moment');
 import { SHORT_STROLL_MILESTONE_1, LONG_WALK_MILESTONE_1, MEDITATION_MILESTONE_1 } from './map_milestone_templates';

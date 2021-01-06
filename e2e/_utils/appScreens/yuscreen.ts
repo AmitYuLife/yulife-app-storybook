@@ -3,7 +3,7 @@ import {
     MALE_BODY, FEMALE_BODY, BODY_ITEM_TITLE,
     AVATAR_BODY, PERSONAL_PRODUCT, SURVEY_SCREEN, BUILDER_BODY, PACKAGE_SCREEN, FIB_BROWSE_SCREEN, booleanTextVisible, wait,
 } from "@utils"
-import { scrollFromText, scrollFromID } from "_utils/navigation/scrolling"
+import { scrollFromText, scrollFromID, scrollUntilIdVisible, scrollUntilTextVisible } from "_utils/navigation/scrolling"
 import { EARN_RATE_ROW, EARN_RATE_TABLE } from "@ids"
 
 
@@ -163,21 +163,12 @@ export const onPackageScreen = async () => {
 }
 
 export const packageScreenCorrect = (estimatedCost: number) => async () => {
-    const textElements = ["How it works", "How much would it pay out?", "Additional benefits",
+    const textElements = [`£${estimatedCost} per month`, "How it works", "How much would it pay out?", "Additional benefits",
        "Have a question?", "FAQs", "Documents", "Terms & Conditions", "Privacy Policy", "Rewards Policy",
         "Key Facts", "Policy Guide", "YuLife General Terms of Business"]
 
-    await scrollFromID(PACKAGE_SCREEN, "up", "slow")()
-    await expect(element(by.text(`£${estimatedCost} per month`))).toBeVisible()
-
     for (const i of textElements) {
-        let isTextVisible = await booleanTextVisible(i)
-        let attempt = 0
-        while (isTextVisible === false && attempt < 10) {
-            await scrollFromID(FIB_BROWSE_SCREEN, "up", "slow", 0.2)()
-            isTextVisible = await booleanTextVisible(i)
-            attempt += 1
-        }
+        await scrollUntilTextVisible(FIB_BROWSE_SCREEN, i, "down")()
         await expect(element(by.text(i))).toBeVisible()
     }
 }

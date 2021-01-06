@@ -1,4 +1,4 @@
-import { IDatabaseItem } from "_utils/data/types";
+import { IDatabaseItem } from "@yu-life/yulife-bdd-framework";
 
 export const CORE_STREAK_1 = {
     type: "mongo",

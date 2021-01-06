@@ -1,6 +1,6 @@
 import { LEADERBOARD_CUSTOMERS } from "./customers";
-import { generateRandomMongoId } from "../../../_utils/data/utils";
-import { allTogglesTrue } from "../../../_utils/data/stubs/mongo/_templates";
+import { generateRandomMongoId } from "@yu-life/yulife-bdd-framework";
+import { allTogglesTrue } from "@data";
 
 export const LEADERBOARD_TOGGLES = LEADERBOARD_CUSTOMERS.map((item) => ({
   type: "mongo",
@@ -8,6 +8,6 @@ export const LEADERBOARD_TOGGLES = LEADERBOARD_CUSTOMERS.map((item) => ({
   data: {
       _id: generateRandomMongoId(),
       userId: item.data.customerId,
-      features: allTogglesTrue
+      features: allTogglesTrue.data.features
   }
 }))

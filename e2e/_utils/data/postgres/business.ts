@@ -1,5 +1,4 @@
-import { generateRandomMongoId } from '_utils/data/utils';
-import { IDatabaseItem } from '../../types';
+import { generateRandomMongoId, IDatabaseItem } from "@yu-life/yulife-bdd-framework";
 
 
 export const BUSINESS_ACCOUNT_1 = {

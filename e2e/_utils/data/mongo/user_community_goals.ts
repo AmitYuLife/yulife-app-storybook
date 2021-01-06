@@ -1,6 +1,7 @@
 import moment = require("moment")
-import { IDatabaseItem } from "_utils/data/types"
-import { generateRandomMongoId } from "_utils/data/utils"
+import { IDatabaseItem } from "@yu-life/yulife-bdd-framework"
+import { generateRandomMongoId } from "@yu-life/yulife-bdd-framework";
+
 import { CUSTOMER_19, CUSTOMER_20 } from "../postgres/customers"
 import { CORE_COMMUNITY_GOAL_1 } from "./core_community_goals"
 import { USER_20_LEADERBOARD } from "./leaderboard"

@@ -1,5 +1,5 @@
-import { generateRandomMongoId } from "../../../_utils/data/utils";
-import { IDatabaseItem } from "../../../_utils/data/types";
+import { generateRandomMongoId } from "@yu-life/yulife-bdd-framework";
+import { IDatabaseItem } from "@yu-life/yulife-bdd-framework";
 import moment = require("moment");
 
 export const LEADERBOARD_CUSTOMERS = Array.from({ length: 120 }).map((_, i) => ({

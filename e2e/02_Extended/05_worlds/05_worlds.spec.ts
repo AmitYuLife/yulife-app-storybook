@@ -1,9 +1,9 @@
-import { Feature, Scenario, Given, When, Then } from "@bdd";
+import { Feature, Scenario, Given, When, Then } from "@yu-life/yulife-bdd-framework";
 import * as scenario from "./_steps/scenario"
 import * as given from "./_steps/given"
 import * as when from "./_steps/when"
 import * as then from "./_steps/then"
-import { CUSTOMER_7, AUTH_7, CUSTOMER_3, AUTH_3, CUSTOMER_12, AUTH_12, CUSTOMER_13, AUTH_13 } from "_utils/data/stubs";
+import { CUSTOMER_7, AUTH_7, CUSTOMER_3, AUTH_3, CUSTOMER_12, AUTH_12, CUSTOMER_13, AUTH_13 } from "@data";
 import { QUESTS_SCREEN, NAV_BAR, VIEW_TOP_RIGHT_COIN_COUNTER, LEVEL_CHALLENGE_BUTTON, CHALLENGE_TILE } from "@ids";
 
 Feature("As a user I can complete challenges across multiple worlds", async () => {

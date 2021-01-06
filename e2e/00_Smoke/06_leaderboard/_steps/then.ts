@@ -1,4 +1,4 @@
-import { navigation, LEADERBOARD_NAME, LEADERBOARD_TOP_SCREEN, LEADERBOARD_SCREEN, LEADERBOARD_PEDESTAL, LEADERBOARD_STATUS } from "@utils"
+import { navigation, LEADERBOARD_NAME, LEADERBOARD_TOP_SCREEN, LEADERBOARD_SCREEN, LEADERBOARD_PEDESTAL, LEADERBOARD_STATUS, LEADERBOARD_SCROLL_LIST } from "@utils"
 
 export const {
     textVisible,
@@ -10,7 +10,8 @@ export const {
 
 export const {
     scrollFromID,
-    scrollFromText
+    scrollFromText,
+    scrollUntilIdVisible
 } = navigation.scrolling
 
 export const onLeaderboardConsent = async () => {
@@ -25,29 +26,17 @@ export const onLeaderboardConsent = async () => {
 }
 
 export const leaderboardVisible = (customers: any[], steps?: number[], scrollToTop = true) => async () => {
-    for (const i of customers) {
-        const name = i.data.firstName + " " + i.data.lastName
-        try {
-            await expect(element(by.id(LEADERBOARD_NAME(name)))).toBeVisible()
-        } catch (e) {
-            await scrollFromID(LEADERBOARD_PEDESTAL, "up", "fast")()
-            await expect(element(by.id(LEADERBOARD_NAME(name)))).toBeVisible()
-        }
-    }
+    let i = 0
 
-    if (steps) {
-        for (const i of steps) {
-            try {
-                await expect(element(by.text(i.toString()))).toBeVisible()
-            } catch (e) {
-                await scrollFromID(LEADERBOARD_PEDESTAL, "up", "fast")()
-                await expect(element(by.text(i.toString()))).toBeVisible()
-            }
+    for(const customer of customers){
+        const name = customer.data.firstName + " " + customer.data.lastName
+        await scrollUntilIdVisible(LEADERBOARD_SCROLL_LIST, LEADERBOARD_NAME(name), "down")()
+        await expect(element(by.id(LEADERBOARD_NAME(name)))).toBeVisible()
+        const stepCount = steps?.[i]
+        if(stepCount){
+            await expect(element(by.text(stepCount.toString()))).toBeVisible()
         }
-    }
-
-    if (scrollToTop === true) {
-        await scrollFromID(LEADERBOARD_PEDESTAL, "down", "fast")()
+        i++
     }
 }
 

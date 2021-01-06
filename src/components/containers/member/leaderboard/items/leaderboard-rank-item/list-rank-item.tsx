@@ -24,6 +24,7 @@ const _ListRankItem = ({
   return (
     <>
       <TouchableOpacityWithDelay
+        testID={LEADERBOARD_NAME(name)}
         delay={200}
         style={baseStyles.wrapper}
         onPress={() => {
@@ -34,7 +35,7 @@ const _ListRankItem = ({
       >
         <Animated.View style={baseStyles.wrapper}>
           {isCurrentUser && <View style={baseStyles.currentUser} />}
-          <View style={baseStyles.borderWrapper} testID={LEADERBOARD_NAME(name)}>
+          <View style={baseStyles.borderWrapper}>
             <Rank rank={rank} />
             <Image uri={uri} />
             <Name name={name} bold={isCurrentUser} />

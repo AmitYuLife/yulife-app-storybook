@@ -1,4 +1,4 @@
-import { IDatabaseItem } from '../../types';
+import { IDatabaseItem } from "@yu-life/yulife-bdd-framework";
 import { BUSINESS_ACCOUNT_1, BUSINESS_ACCOUNT_2 } from './business';
 import {
     CUSTOMER_1, CUSTOMER_2, CUSTOMER_3, CUSTOMER_4, CUSTOMER_5, CUSTOMER_6, CUSTOMER_7, CUSTOMER_8,

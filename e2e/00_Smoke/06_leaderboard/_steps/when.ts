@@ -13,6 +13,10 @@ export const {
     loginOnly
 } = navigation.login
 
+export const {
+    scrollFromID
+} = navigation.scrolling
+
 export const turnOffLeaderboard = (leaderboardID: string) => async () => {
     const leaderboard = element(by.id(leaderboardID))
     const offButton = element(by.text("Turn it off"))

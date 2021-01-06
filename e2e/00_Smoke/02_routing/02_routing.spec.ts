@@ -1,11 +1,10 @@
-import { Feature, Scenario, Given, When, Then, ScenarioOnly, ScenarioSkip } from "@bdd";
+import { Feature, Scenario, Given, When, Then, ScenarioOnly, ScenarioSkip } from "@yu-life/yulife-bdd-framework";
 import * as scenario from "./_steps/scenario"
 import * as given from "./_steps/given"
 import * as when from "./_steps/when"
 import * as then from "./_steps/then"
 import { YUCOIN, BUTTON_CLOSE, QUESTS_SCREEN, NAV_BAR, LEADERBOARD_SCREEN, REWARDS_SCREEN, MENU_ICON, STATS_SCREEN, ACTIVITY_HISTORY_SCREEN, SETTINGS_SCREEN, YUMATTER_SCREEN, LEVEL_CHALLENGE_BUTTON, CHALLENGE_SET, CHALLENGE_TILE, GENERIC_SCREEN_HEADING, GENERIC_SCREEN_CTA, CHALLENGE_PROGRESS_BAR, BUTTON_CLOSE_CHALLENGE, CHECK_REWARDS_BUTTON, LEADERBOARD_TOP_SCREEN } from "@ids";
-import { records } from "@data";
-import { REWARDS_JOHN_LEWIS, REAWARDS_AVIOS, REWARDS_BLOOM_UNAVAILABLE, CUSTOMER_2, AUTH_2 } from "_utils/data/stubs";
+import { REWARDS_JOHN_LEWIS, REAWARDS_AVIOS, REWARDS_BLOOM_UNAVAILABLE, CUSTOMER_2, AUTH_2, CUSTOMER_8, AUTH_8 } from "@data";
 Feature("As a user I can navigate through member routes correctly", async () => {
 
     Scenario("I can view the core screens of the app", scenario.start, async () => {
@@ -31,7 +30,7 @@ Feature("As a user I can navigate through member routes correctly", async () => 
     
     Scenario("I can view the menu screens in the app", scenario.start, async () => {
 
-        Given("I login as a user", given.loginAsUser(records.CUSTOMER_2, records.AUTH_2), async () => {
+        Given("I login as a user", given.loginAsUser(CUSTOMER_2, AUTH_2), async () => {
             Then("I should see a menu icon in the top left", then.idVisible(MENU_ICON, 1500))
             When("I tap the menu icon in the top left", when.tapID(MENU_ICON, 1500), async () => {
                 Then("I should see the menu items", then.menuItemsVisible)
@@ -98,7 +97,7 @@ Feature("As a user I can navigate through member routes correctly", async () => 
     })
 
     Scenario("I can view all the reward screens", scenario.start, async () => {
-        Given("I login as a user", given.loginAsUser(records.CUSTOMER_2, records.AUTH_2), async () => {
+        Given("I login as a user", given.loginAsUser(CUSTOMER_2, AUTH_2), async () => {
             When("I go to rewards", when.tapID(NAV_BAR("rewards")), async () => {
                 Then("I should be on the rewards screen", then.idVisible(REWARDS_SCREEN))
                 Then("I should see a John Lewis reward", then.rewardVisible(REWARDS_JOHN_LEWIS))
@@ -120,7 +119,7 @@ Feature("As a user I can navigate through member routes correctly", async () => 
 
 
     Scenario("I can view quest screens", scenario.start, async () => {
-        Given("I login", given.loginAsUser(records.CUSTOMER_8, records.AUTH_8), async () => {
+        Given("I login", given.loginAsUser(CUSTOMER_8, AUTH_8), async () => {
             When("I go to quests", when.tapID(NAV_BAR("quests")), async () => {
                 Then("I should be on quests", then.idVisible(QUESTS_SCREEN(0)))
                 When("I tap the locked level 4 button", when.tapID(LEVEL_CHALLENGE_BUTTON(4)), async () => {
