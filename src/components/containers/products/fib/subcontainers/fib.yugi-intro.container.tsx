@@ -1,6 +1,5 @@
 import React, { memo } from "react";
 import { connect } from "react-redux";
-
 import { IReduxState } from "@redux/_core/reducers";
 import { getUserFirstName } from "@redux/user/user.selectors";
 import {
@@ -32,7 +31,7 @@ type Props = IFibEditSalaryContainerProps & ConnectedState;
 const _FibYugiIntroContainer = memo(function FibYugiIntroContainer(props: Props) {
   const { navigation } = props;
 
-  const { type }: { type: YUGI_INTRO_TYPE } = navigation.currentRoute.passProps;
+  const { type, initialIndex }: { type: YUGI_INTRO_TYPE; initialIndex: number } = navigation.currentRoute.passProps;
 
   const onNavigateToNextScreen = () => {
     switch (type) {
@@ -62,6 +61,7 @@ const _FibYugiIntroContainer = memo(function FibYugiIntroContainer(props: Props)
 
   return (
     <FibYugiIntroScreen
+      initialIndex={initialIndex}
       onNavigateBack={onNavigateBack}
       onNavigateToSalary={onNavigateToNextScreen}
       type={type}

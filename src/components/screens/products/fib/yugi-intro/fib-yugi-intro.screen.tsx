@@ -1,5 +1,6 @@
-import React, { memo, useState, useRef, RefObject, useCallback } from "react";
-import { View, StyleSheet, ViewStyle, TextStyle, FlatList, ListRenderItemInfo, ViewToken } from "react-native";
+import React, { memo, useRef, RefObject, useEffect } from "react";
+import * as Animated from "react-native-animatable";
+import { View, StyleSheet, ViewStyle, TextStyle, FlatList, ListRenderItemInfo } from "react-native";
 import { Button, Text } from "@atoms";
 import { Style, TOP_BAR } from "@styles";
 import { ScrollableLayout } from "@molecules";
@@ -9,19 +10,23 @@ import { getData } from "./data";
 import { ArrowUp } from "./assets/arrowUp";
 import colours from "@styles/colours";
 import { FIB_INTRO_SCREEN } from "@ids";
+import { useBackHandler } from "@services/hooks/useBackHandler";
+
 export interface IFibYugiIntroScreenProps {
   onNavigateBack: () => void;
   onNavigateToSalary: () => void;
   onClose: () => void;
   type: YUGI_INTRO_TYPE;
+  initialIndex?: number;
 }
 
 const intro_yugi = { lottieJson: require("./assets/yugi.json") };
 
 export const FibYugiIntroScreen = memo(function (props: IFibYugiIntroScreenProps) {
-  const { onNavigateBack, onClose, onNavigateToSalary, type } = props;
+  const { onNavigateBack, onClose, onNavigateToSalary, type, initialIndex = 0 } = props;
+  const delay = useRef(null);
 
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const currentIndex = useRef(initialIndex);
 
   const lottie_yugi_ref: RefObject<LottieView> = useRef();
   const swiper: RefObject<FlatList> = useRef();
@@ -31,33 +36,43 @@ export const FibYugiIntroScreen = memo(function (props: IFibYugiIntroScreenProps
   };
 
   const swipe = () => {
-    const isLastPage = currentIndex + 1 === data.length;
+    currentIndex.current += 1;
+    const isLastPage = currentIndex.current === data.length;
     if (isLastPage) {
       onNavigateToSalary();
     } else {
-      swiper.current?.scrollToIndex({ index: currentIndex + 1, animated: true });
+      swiper.current?.scrollToIndex({ index: currentIndex.current, animated: true });
     }
   };
+
+  useEffect(() => {
+    delay.current = setTimeout(() => {
+      swiper.current?.scrollToIndex({ index: currentIndex.current, animated: false });
+    }, 100);
+
+    return () => {
+      clearTimeout(delay.current);
+      delay.current = null;
+    };
+  }, [initialIndex]);
 
   const swipeBack = () => {
-    swiper.current?.scrollToIndex({ index: currentIndex - 1, animated: true });
+    currentIndex.current -= 1;
+    swiper.current?.scrollToIndex({ index: currentIndex.current, animated: true });
   };
 
-  const handleSwipe = useCallback(({ viewableItems }: { viewableItems: ViewToken[] }) => {
-    const visibleItem = viewableItems[0];
-
-    if (visibleItem) {
-      setCurrentIndex(visibleItem.index);
-    }
-  }, []);
-
   const onLeftIconPress = () => {
-    if (currentIndex === 0) {
+    if (!currentIndex.current) {
       onNavigateBack();
     } else {
       swipeBack();
     }
   };
+
+  useBackHandler(() => {
+    onLeftIconPress();
+    return true;
+  });
 
   const data = getData(type);
 
@@ -99,7 +114,6 @@ export const FibYugiIntroScreen = memo(function (props: IFibYugiIntroScreenProps
           showsVerticalScrollIndicator={false}
           horizontal={true}
           showsHorizontalScrollIndicator={false}
-          onViewableItemsChanged={handleSwipe}
           style={{
             width: Style.adjust(282),
           }}
@@ -117,6 +131,7 @@ export const FibYugiIntroScreen = memo(function (props: IFibYugiIntroScreenProps
           }}
           delay={300}
           label="Okay"
+          disableAnimation={true}
         />
       </View>
     </ScrollableLayout>
@@ -127,9 +142,15 @@ const keyExtractor = (item: { text: string }) => item?.text;
 
 function renderItem({ item }: ListRenderItemInfo<{ text: string }>) {
   return (
-    <View style={{ width: Style.adjust(282) }}>
+    <Animated.View
+      useNativeDriver={true}
+      animation="fadeIn"
+      duration={2000}
+      easing="ease-in"
+      style={styles.copyWrapper}
+    >
       <Text style={styles.message}>{item.text}</Text>
-    </View>
+    </Animated.View>
   );
 }
 
@@ -146,6 +167,9 @@ const styles = StyleSheet.create({
     paddingTop: 24,
     paddingLeft: 24,
     paddingBottom: 24,
+  } as ViewStyle,
+  copyWrapper: {
+    width: Style.adjust(282),
   } as ViewStyle,
   arrowUp: {
     right: 0,

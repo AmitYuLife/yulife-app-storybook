@@ -17,10 +17,11 @@ export interface IFibContactDetailsScreenProps {
   onFindAdress: () => void;
   contactDetails: ContactDetails;
   onClose?: () => void;
+  pop: () => void;
 }
 
 export const FibContactDetailsScreen = memo(function (props: IFibContactDetailsScreenProps) {
-  const { onContinue, onContactDetailsChange, contactDetails, onFindAdress, onClose } = props;
+  const { onContinue, onContactDetailsChange, contactDetails, onFindAdress, onClose, pop } = props;
   const [isEmailValid, setIsEmailValid] = useState(validator.validate(contactDetails.personalEmail));
   const [isPhoneNumberValid, setIsPhoneNumberValid] = useState(phoneNumberIsValid(contactDetails.phoneNumber));
   const [isPostCodeValide, setIsPostCodeValid] = useState(postCodeValid(contactDetails.postCode));
@@ -59,6 +60,7 @@ export const FibContactDetailsScreen = memo(function (props: IFibContactDetailsS
       heading={"Contact Details"}
       onClose={onClose}
       hideProgressBar={true}
+      onPreviousQuestion={pop}
     >
       <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.contentWrapper}>
         <View style={styles.wrapper}>

@@ -44,6 +44,7 @@ storiesOf("FibBrowse", module)
       navigateToCustomCover={() => null}
       loading={false}
       maxTermAge={40}
+      onNavigateToIntroScreen={() => null}
     />
   ))
   .add("browse custom cover", () => (

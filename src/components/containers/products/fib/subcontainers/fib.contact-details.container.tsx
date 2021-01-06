@@ -155,6 +155,7 @@ const FibContactDetailsContainer = memo(function (props: Props) {
           contactDetails={contactDetails}
           onFindAdress={() => setScreenId("FindAddress")}
           onClose={onClose}
+          pop={navigation.pop}
         />
       );
     case "ConfirmEmailAddress":

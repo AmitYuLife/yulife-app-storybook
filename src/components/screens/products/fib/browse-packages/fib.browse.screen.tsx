@@ -35,6 +35,7 @@ interface IFibBrowseScreenProps {
   offset: NativeScrollPoint;
   onScrollEnd: (event: NativeSyntheticEvent<NativeScrollEvent>) => void;
   onNavigateToFaqsList: () => void;
+  onNavigateToIntroScreen: () => void;
 }
 
 export const FibBrowseScreen = memo(function (props: IFibBrowseScreenProps) {
@@ -50,6 +51,7 @@ export const FibBrowseScreen = memo(function (props: IFibBrowseScreenProps) {
     maxTermAge,
     offset,
     onScrollEnd,
+    onNavigateToIntroScreen,
   } = props;
 
   const scrollViewRef = useRef<ScrollView>(null);
@@ -115,7 +117,11 @@ export const FibBrowseScreen = memo(function (props: IFibBrowseScreenProps) {
           </Animatable.View>
         </ScrollView>
       </View>
-      <GenericHeadingAbsolute onRightIconPress={onNavigateToYuScreen} logo="yulife" />
+      <GenericHeadingAbsolute
+        onLeftIconPress={onNavigateToIntroScreen}
+        onRightIconPress={onNavigateToYuScreen}
+        logo="yulife"
+      />
       <ContinueButton onPress={onContinue} />
     </>
   );
