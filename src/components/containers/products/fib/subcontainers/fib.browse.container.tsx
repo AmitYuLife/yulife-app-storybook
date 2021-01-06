@@ -132,6 +132,11 @@ const _FibBrowseContainer = memo(function (props: IFibContainer & ReturnType<typ
   };
 
   const navigateToFaqsList = () => navigation.push(FIB_FAQ_LIST);
+  const navigateToIntroScreen = () =>
+    navigation.replace(FIB_INTRO_YUGI, {
+      type: YUGI_INTRO_TYPE.INTRO_UNDERWRITING,
+      initialIndex: 1,
+    });
 
   if (isCustomCover) {
     return (
@@ -169,6 +174,7 @@ const _FibBrowseContainer = memo(function (props: IFibContainer & ReturnType<typ
       loading={loading}
       maxTermAge={maxTermAge}
       onNavigateToFaqsList={navigateToFaqsList}
+      onNavigateToIntroScreen={navigateToIntroScreen}
     />
   );
 });

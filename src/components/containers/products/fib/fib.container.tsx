@@ -45,7 +45,7 @@ import FibFaqListContainer from "./subcontainers/fib.faqs-list.container";
 import { FIB_INFO } from "./fib.types";
 import FibGpDetailsContainer from "./subcontainers/fib.gp-details.container";
 import { useBackHandler } from "@services/hooks/useBackHandler";
-import FibYugiIntroContainer from "./subcontainers/fib.yugi-intro.container";
+import FibYugiIntroContainer, { YUGI_INTRO_TYPE } from "./subcontainers/fib.yugi-intro.container";
 
 interface RouteProps {
   navigation: FibLocalNavigation;
@@ -135,6 +135,18 @@ function _FibContainer(props: Props) {
   const [selectedFaq, selectFaq] = useState("");
 
   useBackHandler(() => {
+    if ([FIB_INTRO_YUGI, FIB_UNDERWRITING_REVIEW_ANSWERS].includes(fibRouter.currentRoute.route)) {
+      return false;
+    }
+
+    if (fibRouter.currentRoute.route === FIB_BROWSE) {
+      fibRouter.replace(FIB_INTRO_YUGI, {
+        type: YUGI_INTRO_TYPE.INTRO_UNDERWRITING,
+        initialIndex: 1,
+      });
+      return true;
+    }
+
     fibRouter.pop();
     return true;
   });
