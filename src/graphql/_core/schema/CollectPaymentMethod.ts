@@ -23,5 +23,5 @@ export interface CollectPaymentMethod {
 }
 
 export interface CollectPaymentMethodVariables {
-  input?: CollectPaymentMethodInput | null;
+  input: CollectPaymentMethodInput;
 }

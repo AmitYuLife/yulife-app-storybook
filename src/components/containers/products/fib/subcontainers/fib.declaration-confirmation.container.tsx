@@ -153,6 +153,7 @@ const FibDeclarationConfirmationContainer = memo(function (props: Props) {
         input: {
           paymentMethodId: stripeToken.id,
           type: PaymentMethodType.card,
+          productCode: ProductCode.YULFIB,
         },
       },
     });

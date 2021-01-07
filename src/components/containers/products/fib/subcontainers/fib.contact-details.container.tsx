@@ -9,7 +9,7 @@ import { useMutation, useQuery } from "@apollo/react-hooks";
 import { GQL_QUERY_GET_ADDRESS_BY_POSTCODE } from "../../../../../graphql/yuscreen/getAdress.gql";
 import { Address_findUserAddress } from "../../../../../graphql/_core/schema/Address";
 import { IReduxState } from "../../../../../redux/_core/reducers";
-import { getContactDetails } from "../../../../../redux/product/product.selectors";
+import { getContactDetails, getFIBState } from "../../../../../redux/product/product.selectors";
 import { ContactDetails } from "@redux/product/product.types";
 import { Navigation } from "react-native-navigation";
 import { MODALS, ROUTES } from "../../../../../navigation/constants";
@@ -32,7 +32,7 @@ type Props = IContactDetailsContainer & ConnectedDispatch & ConnectedState;
 type ScreenId = "ContactDetails" | "FindAddress" | "ConfirmEmailAddress";
 
 const FibContactDetailsContainer = memo(function (props: Props) {
-  const { updateFibAnswer, updateContactDetails, contactDetailsFromStore, navigation } = props;
+  const { updateFibAnswer, updateContactDetails, contactDetailsFromStore, navigation, firstName, lastName } = props;
   const initialScreenId = navigation.currentRoute.passProps?.initialScreenId || "ContactDetails";
   const [screenId, setScreenId] = useState<ScreenId>(initialScreenId);
   const [contactDetails, setContactDetails] = useState<ContactDetails>(
@@ -86,6 +86,8 @@ const FibContactDetailsContainer = memo(function (props: Props) {
           addressPostCode: contactDetails.postCode,
           email: contactDetails.personalEmail,
           personalEmailConsent: false,
+          firstName,
+          lastName,
         },
       },
     });
@@ -104,6 +106,8 @@ const FibContactDetailsContainer = memo(function (props: Props) {
           addressPostCode: contactDetails.postCode,
           email: contactDetails.personalEmail,
           personalEmailConsent: true,
+          firstName,
+          lastName,
         },
       },
     });
@@ -192,6 +196,8 @@ const FibContactDetailsContainer = memo(function (props: Props) {
 
 const mapStateToProps = (state: IReduxState) => ({
   contactDetailsFromStore: getContactDetails(state),
+  firstName: getFIBState(state).answers.firstName,
+  lastName: getFIBState(state).answers.lastName,
 });
 
 const mapDispatchToProps = {
