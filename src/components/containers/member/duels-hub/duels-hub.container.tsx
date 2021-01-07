@@ -1,6 +1,7 @@
 import React, { useCallback, useState } from "react";
 import { Navigation } from "react-native-navigation";
-import { ActiveDuelsScreen, PastDuelsScreen } from "@screens/index";
+import { useSelector, useDispatch } from "react-redux";
+import { ActiveDuelsScreen, PastDuelsScreen, DuelsIntroScreen } from "@screens/index";
 import { IMainTabsProps } from "@navigation/root";
 import { NetworkStatus } from "apollo-client";
 import { useQuery } from "@apollo/react-hooks";
@@ -10,6 +11,8 @@ import { Loading } from "@atoms";
 import { SafeAreaView, StyleSheet } from "react-native";
 import { useBackHandler } from "@services/hooks/useBackHandler";
 import { ROUTES } from "@navigation/constants";
+import { getDuelsGoalsIntro } from "@redux/onboarding/onboarding.selectors";
+import { setDuelsIntroShown } from "@redux/onboarding/onboarding.actions";
 
 export type DuelHubTab = "active" | "past";
 
@@ -21,6 +24,8 @@ type Props = IProps;
 
 function DuelsHubContainer({ componentId }: Props) {
   const [tab, setTab] = useState<DuelHubTab>("active");
+  const introShown = useSelector(getDuelsGoalsIntro);
+  const dispatch = useDispatch();
   const handleClose = useCallback(() => {
     Navigation.pop(componentId);
   }, [componentId]);
@@ -40,6 +45,10 @@ function DuelsHubContainer({ componentId }: Props) {
   const duelsData = data
     ? data.getDuelsHubData
     : { activeDuels: [], upcomingDuels: [], duelInvitations: [], pastDuels: [] };
+
+  if (introShown) {
+    return <DuelsIntroScreen setOnboardingShown={() => dispatch(setDuelsIntroShown())} />;
+  }
 
   if (loading) {
     return (

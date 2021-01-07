@@ -2,12 +2,15 @@ import { REHYDRATE } from "redux-persist";
 import { GetCurrentUser, LoginUser } from "../../graphql/_core/schema";
 import { SyncAction } from "../_core/types";
 import { GET_USER_SUCCESS, LOGIN_USER_SUCCESS } from "../user/user.actions";
-import { SET_YUSCREEN_INTRO_SHOWN, SET_COMMUNITY_GOALS_INTRO_SHOWN } from "./onboarding.actions";
+import {} from "./onboarding.actions";
 import {
   SET_HISTORICAL_DATA_COLLECTED,
   SET_HISTORICAL_MEDITATION_DATA_COLLECTED,
   SET_REDEEMED_ONBOARDING,
   SET_SHOW_INTRO,
+  SET_YUSCREEN_INTRO_SHOWN,
+  SET_COMMUNITY_GOALS_INTRO_SHOWN,
+  SET_DUELS_INTRO_SHOWN,
 } from "./onboarding.actions";
 
 export interface IOnboardingStore {
@@ -19,6 +22,7 @@ export interface IOnboardingStore {
   showIntro: boolean;
   showYuscreenIntro: boolean;
   showCommunityGoalsIntro: boolean;
+  showDuelsIntro: boolean;
 }
 
 export const initialState: IOnboardingStore = {
@@ -30,6 +34,7 @@ export const initialState: IOnboardingStore = {
   showIntro: false,
   showYuscreenIntro: true,
   showCommunityGoalsIntro: true,
+  showDuelsIntro: true,
 };
 
 export const userReducer = (state: IOnboardingStore = initialState, action: SyncAction): IOnboardingStore => {
@@ -52,6 +57,7 @@ export const userReducer = (state: IOnboardingStore = initialState, action: Sync
             isOnboarding: false,
             showYuscreenIntro: true,
             showCommunityGoalsIntro: true,
+            showDuelsIntro: true,
           };
         }
       }
@@ -82,6 +88,12 @@ export const userReducer = (state: IOnboardingStore = initialState, action: Sync
         showCommunityGoalsIntro: false,
       };
 
+    case SET_DUELS_INTRO_SHOWN:
+      return {
+        ...state,
+        showDuelsIntro: false,
+      };
+
     case SET_YUSCREEN_INTRO_SHOWN:
       return {
         ...state,
@@ -101,19 +113,26 @@ export default userReducer;
  * @param persistedState
  */
 const updatePersistedState = (persistedState: IOnboardingStore) => {
+  const newState = { ...persistedState };
+
   if (typeof persistedState.showIntro === "undefined") {
-    return { ...persistedState, showIntro: false };
+    newState.showIntro = false;
   }
 
   if (typeof persistedState.showYuscreenIntro === "undefined") {
-    return { ...persistedState, showYuscreenIntro: true };
+    newState.showYuscreenIntro = true;
   }
 
   if (typeof persistedState.showCommunityGoalsIntro === "undefined") {
+    newState.showCommunityGoalsIntro = true;
     return { ...persistedState, showCommunityGoalsIntro: true };
   }
 
-  return persistedState;
+  if (typeof persistedState.showDuelsIntro === "undefined") {
+    newState.showDuelsIntro = true;
+  }
+
+  return newState;
 };
 
 const setRedeemedOnboarding = (state: IOnboardingStore, reward: number) => ({

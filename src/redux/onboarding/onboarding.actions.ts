@@ -6,6 +6,7 @@ export const SET_ONBOARDING_DONE = "SET_ONBOARDING_DONE";
 export const SET_SHOW_INTRO = "SET_SHOW_INTRO";
 export const SET_YUSCREEN_INTRO_SHOWN = "SET_YUSCREEN_INTRO_SHOWN";
 export const SET_COMMUNITY_GOALS_INTRO_SHOWN = "SET_COMMUNITY_GOALS_INTRO_SHOWN";
+export const SET_DUELS_INTRO_SHOWN = "SET_DUELS_INTRO_SHOWN";
 
 export const setRedeemedOnboarding = (payload: number) => ({
   payload,
@@ -31,4 +32,8 @@ export const setYuscreenIntroShown = () => ({
 
 export const setCommunityGoalsIntroShown = () => ({
   type: SET_COMMUNITY_GOALS_INTRO_SHOWN,
+});
+
+export const setDuelsIntroShown = () => ({
+  type: SET_DUELS_INTRO_SHOWN,
 });
