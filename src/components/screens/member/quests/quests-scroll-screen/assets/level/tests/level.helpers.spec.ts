@@ -36,11 +36,7 @@ const level = {
 
 describe("getBackgroundColor", () => {
   it("should return pink if active/done/next for unity levels", () => {
-    expect(getBackgroundColor(nextAvailable, { ...level, isActive: true }, 3)).toBe("transparent");
-  });
-
-  it("should return pink if active/done/next for unity levels", () => {
-    expect(getBackgroundColor(nextAvailable, { ...level, isDone: true }, 1)).toBe("transparent");
+    expect(getBackgroundColor(nextAvailable, { ...level, isActive: true }, 1)).toBe("#8DE0B0");
   });
 
   it("should return white if not active/done/next for unity levels", () => {

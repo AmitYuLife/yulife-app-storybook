@@ -133,11 +133,30 @@ const worldBubbleColours: IBubbleColours = {
   },
 };
 
+function getGemColor(level: IChallenge) {
+  if (level.isDone || level.isActive || level.isNext) {
+    switch (level.level) {
+      case 50:
+        return "#8DE0B0";
+      case 100:
+        return "#80DAEF";
+      case 150:
+        return "#FA906A";
+      case 200:
+        return "#FFD2DB";
+      default:
+        return "white";
+    }
+  }
+
+  return "white";
+}
+
 export function getBackgroundColor(nextAvailable: number, level: IChallenge, normalizedWorld: number): string {
   // time for more of that fucking awful logic
 
   if (level.level % 50 === 0) {
-    return level.isDone || level.isActive || level.isNext ? "transparent" : "white";
+    return getGemColor(level);
   }
 
   if (level.isActive) {
