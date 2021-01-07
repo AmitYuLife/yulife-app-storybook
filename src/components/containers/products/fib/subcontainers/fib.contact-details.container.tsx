@@ -33,7 +33,8 @@ type ScreenId = "ContactDetails" | "FindAddress" | "ConfirmEmailAddress";
 
 const FibContactDetailsContainer = memo(function (props: Props) {
   const { updateFibAnswer, updateContactDetails, contactDetailsFromStore, navigation } = props;
-  const [screenId, setScreenId] = useState<ScreenId>("ContactDetails");
+  const initialScreenId = navigation.currentRoute.passProps?.initialScreenId || "ContactDetails";
+  const [screenId, setScreenId] = useState<ScreenId>(initialScreenId);
   const [contactDetails, setContactDetails] = useState<ContactDetails>(
     contactDetailsFromStore || {
       firstAddressLine: "",
@@ -44,8 +45,15 @@ const FibContactDetailsContainer = memo(function (props: Props) {
       phoneNumber: "",
     }
   );
-
   const [postCode, setPostCode] = useState("");
+
+  const setScreen = (_screenId: ScreenId) => {
+    setScreenId(_screenId);
+    navigation.currentRoute.passProps = {
+      ...navigation.currentRoute.passProps,
+      initialScreenId: _screenId,
+    };
+  };
 
   const { loading, data, error } = useQuery(GQL_QUERY_GET_ADDRESS_BY_POSTCODE, {
     variables: { postcode: postCode },
@@ -63,7 +71,7 @@ const FibContactDetailsContainer = memo(function (props: Props) {
 
   const onContinuePress = () => {
     updateContactDetails(contactDetails);
-    setScreenId("ConfirmEmailAddress");
+    setScreen("ConfirmEmailAddress");
   };
 
   const onFirstButton = async () => {
@@ -110,7 +118,7 @@ const FibContactDetailsContainer = memo(function (props: Props) {
       townOrCity: address.addressCity,
       postCode: formatPostCode(address.addressPostCode),
     }));
-    setScreenId("ContactDetails");
+    setScreen("ContactDetails");
   };
 
   const onClose = useCallback(async () => {
@@ -153,7 +161,7 @@ const FibContactDetailsContainer = memo(function (props: Props) {
           onContinue={onContinuePress}
           onContactDetailsChange={onContactDetailsChange}
           contactDetails={contactDetails}
-          onFindAdress={() => setScreenId("FindAddress")}
+          onFindAdress={() => setScreen("FindAddress")}
           onClose={onClose}
           pop={navigation.pop}
         />
@@ -164,7 +172,7 @@ const FibContactDetailsContainer = memo(function (props: Props) {
           firstButtonAction={onFirstButton}
           secondButtonAction={onSecondButton}
           email={contactDetails.personalEmail}
-          onBackButtonPress={() => setScreenId("ContactDetails")}
+          onBackButtonPress={() => setScreen("ContactDetails")}
           onClose={onClose}
         />
       );
@@ -172,7 +180,7 @@ const FibContactDetailsContainer = memo(function (props: Props) {
       return (
         <FibFindAddressScreen
           onAddressSelected={onAddressSelected}
-          onBackButtonPress={() => setScreenId("ContactDetails")}
+          onBackButtonPress={() => setScreen("ContactDetails")}
           data={data && !error ? data.findUserAddress : []}
           onPostCodeAdded={setPostCode}
           loading={loading}

@@ -18,6 +18,7 @@ import {
   FIB_LIFESTYLE_SMOKING_CIGARETTES_SCREEN_ID,
   FOLLOW_UP_SMOKING_ANSWERS_TRIGGER,
   FIB_LIFESTYLE_ALCOHOL_SCREEN_ID,
+  FIB_INPUT_SALARY,
 } from "./data/underwriting-journey-data";
 import { PackageId } from "@components/screens/products/fib/fib.helper";
 import { useDispatch } from "react-redux";
@@ -25,6 +26,8 @@ import { useState, useMemo } from "react";
 import { updateFIBValue } from "@redux/product/product.actions";
 import { FibAnswers } from "@redux/product/product.types";
 import { FIB_MEDICAL_THREE_OR_MORE_CONSULTATION_SCREEN_ID } from "./data/underwriting-journey-data";
+import { Navigation } from "react-native-navigation";
+import { MODALS, ROUTES } from "../../../../navigation/constants";
 
 export type FibButtonType = "firstButton" | "secondButton" | "previousButton";
 
@@ -274,7 +277,8 @@ export function shouldFirstButtonBeDisabled(
   fibAnswers: FibAnswers,
   inputFirstName: string,
   inputLastName: string,
-  radioInputValue: string
+  radioInputValue: string,
+  inputSalary: number
 ) {
   if (currentQuestion.id === FIB_THREE_YEAR_MEDICAL_HISTORY_SCREEN_ID) {
     return !Object.entries(medicalHistory)
@@ -292,6 +296,10 @@ export function shouldFirstButtonBeDisabled(
     const { birthDay, birthMonth, birthYear } = fibAnswers;
     const isValidDates = !!Number(birthDay) && !!Number(birthMonth) && !!Number(birthYear);
     return !isValidDates;
+  }
+
+  if (currentQuestion.id === FIB_INPUT_SALARY) {
+    return !inputSalary;
   }
 
   if (currentQuestion.id === FIB_LIFESTYLE_HEIGHT_SCREEN_ID) {
@@ -368,4 +376,26 @@ export function calculatePayoutAmount({
 
   const payoutAmount = sumAssured * ((totalPayoutMonths - payoutMonths) / totalPayoutMonths);
   return payoutAmount;
+}
+
+export async function onUnderwritingClose() {
+  await Navigation.showModal({
+    component: {
+      id: MODALS.generic,
+      name: MODALS.generic,
+      passProps: {
+        onPress: async () => {
+          await Navigation.dismissModal(MODALS.generic);
+        },
+        heading: "Leave Application?",
+        subheading: "We’ll save your progress for you.",
+        ctaLabel: "Stay",
+        ctaLabelSecondary: "Exit",
+        onPressSecondary: async () => {
+          await Navigation.dismissModal(MODALS.generic);
+          return await Navigation.popTo(ROUTES.yuScreen);
+        },
+      },
+    },
+  });
 }

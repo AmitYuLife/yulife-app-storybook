@@ -105,7 +105,6 @@ const _FibUnderwritingReviewAnswersScreen = memo(function (props: IFibUnderwriti
         logo="yulife"
         rightIcon={RIGHT_ICON}
         onRightIconPress={onNavigateBack}
-        onLeftIconPress={onNavigateBack}
       />
       <Yugi yugi={YugiType.REVIEW} />
     </View>

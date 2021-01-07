@@ -10,10 +10,8 @@ import { useMutation, useQuery } from "@apollo/react-hooks";
 import { getFIBState, getFullName, getBirthday } from "../../../../../redux/product/product.selectors";
 import { Package } from "../../../../screens/products/fib/browse-packages/fib.browse.types";
 import { getUserDateOfBirth } from "../../../../../redux/user/user.selectors";
-import { calculatePayoutAmount, calculatePayoutCalculatorItems, packages } from "../fib.helpers";
+import { calculatePayoutAmount, calculatePayoutCalculatorItems, onUnderwritingClose, packages } from "../fib.helpers";
 import moment from "moment";
-import { Navigation } from "react-native-navigation";
-import { ROUTES } from "../../../../../navigation/constants";
 import { InfoTypes } from "./fib.info.container";
 import { toCapitalLetter } from "../../../../../services/utils";
 import {
@@ -119,10 +117,6 @@ const FibDeclarationConfirmationContainer = memo(function (props: Props) {
     monthlyAmountProtected,
     actualCost: data?.getTopUpsQuote?.actualCost || 0,
   };
-
-  const onClose = useCallback(async () => {
-    await Navigation.popTo(ROUTES.yuScreen);
-  }, []);
 
   // TODO: Move function to a helper
   const onContinue = useCallback(async () => {
@@ -237,8 +231,11 @@ const FibDeclarationConfirmationContainer = memo(function (props: Props) {
     case "Confirmation":
       return (
         <FibConfirmationDeclarationScreen
-          onClose={onClose}
-          onBackButtonPress={() => navigation.pop()}
+          onClose={onUnderwritingClose}
+          onBackButtonPress={() => {
+            navigation.history[navigation.history.length - 2].passProps.navigatingBack = true;
+            navigation.pop();
+          }}
           onContinueButton={onContinue}
           onDetailsPress={() => setScreenId("ConfirmationDetails")}
           selectedPackage={selectedPackage}
@@ -252,7 +249,7 @@ const FibDeclarationConfirmationContainer = memo(function (props: Props) {
     case "ConfirmationDetails":
       return (
         <FibConfirmationDetailsScreen
-          onClose={onClose}
+          onClose={onUnderwritingClose}
           onBackButtonPress={() => setScreenId("Confirmation")}
           selectedPackage={packageDetails}
           payoutEstimatorItems={payoutEstimatorItems}
