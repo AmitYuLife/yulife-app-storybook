@@ -18,12 +18,13 @@ export interface IFibYugiIntroScreenProps {
   onClose: () => void;
   type: YUGI_INTRO_TYPE;
   initialIndex?: number;
+  buttonLabel?: string;
 }
 
 const intro_yugi = { lottieJson: require("./assets/yugi.json") };
 
 export const FibYugiIntroScreen = memo(function (props: IFibYugiIntroScreenProps) {
-  const { onNavigateBack, onClose, onNavigateToSalary, type, initialIndex = 0 } = props;
+  const { onNavigateBack, onClose, onNavigateToSalary, type, initialIndex = 0, buttonLabel = "Okay" } = props;
   const delay = useRef(null);
 
   const currentIndex = useRef(initialIndex);
@@ -130,7 +131,7 @@ export const FibYugiIntroScreen = memo(function (props: IFibYugiIntroScreenProps
             swipe();
           }}
           delay={300}
-          label="Okay"
+          label={buttonLabel}
           disableAnimation={true}
         />
       </View>

@@ -67,6 +67,14 @@ export interface FibAnswers {
   [questionId: string]: any;
 }
 
+export interface GPDetails {
+  practiceName: string;
+  practiceAddress: string;
+  practiceTown: string;
+  practicePostCode: string;
+  gpName: string;
+}
+
 export interface FIBStore {
   answers: FibAnswers;
   salary: number;
@@ -80,6 +88,7 @@ export interface FIBStore {
   productEntityId: string;
   latestQuoteId: string;
   status: ScreeningStatus;
+  gpDetails: GPDetails;
 }
 
 export interface UpdateFIBStoreAction<T> {

@@ -62,6 +62,13 @@ export const initialState: IProductStore = Object.freeze({
       existingCovers: [],
       medicalHistory: {},
     },
+    gpDetails: {
+      practiceName: "",
+      practiceAddress: "",
+      practiceTown: "",
+      practicePostCode: "",
+      gpName: "",
+    },
     salary: 0,
     selectedPackage: "common",
     quoteDate: "",
@@ -113,6 +120,9 @@ function personalProductReducer<T>(state: IProductStore = initialState, action: 
         ...state,
         fib: {
           ...state.fib,
+          gpDetails: {
+            ...initialState.fib.gpDetails,
+          },
           answers: {
             ...initialState.fib.answers,
             height: {
@@ -152,6 +162,9 @@ function personalProductReducer<T>(state: IProductStore = initialState, action: 
           hasPriceChanged: false,
           actualCost: 0,
           salary: 0,
+          gpDetails: {
+            ...initialState.fib.gpDetails,
+          },
           answers: {
             ...initialState.fib.answers,
             medicalHistory: {},

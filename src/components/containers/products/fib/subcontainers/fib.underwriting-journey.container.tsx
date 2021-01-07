@@ -271,7 +271,8 @@ const _FibUnderwritingJourneyContainer = memo(function (props: Props) {
     fibAnswers,
     inputFirstName,
     inputLastName,
-    radioInputValue
+    radioInputValue,
+    inputSalary
   );
   const disableSecondButton = shouldSecondButtonBeDisabled(currentQuestion, fibAnswers);
 

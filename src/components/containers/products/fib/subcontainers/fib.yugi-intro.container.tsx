@@ -16,6 +16,7 @@ import {
 } from "../../../../../graphql/products";
 import { ProductCode } from "../../../../../graphql/_core/schema/globalTypes";
 import { updateFIBValue } from "../../../../../redux/product/product.actions";
+import { onUnderwritingClose } from "../fib.helpers";
 
 type ConnectedState = ReturnType<typeof mapStateToProps>;
 
@@ -88,13 +89,28 @@ const _FibYugiIntroContainer = memo(function FibYugiIntroContainer(props: Props)
     }
   };
 
+  const onClose = () => {
+    switch (type) {
+      case YUGI_INTRO_TYPE.INTRO_UNDERWRITING:
+        return navigation.popToMain();
+      case YUGI_INTRO_TYPE.OCEAN_STYLE_SELECTED:
+      case YUGI_INTRO_TYPE.PACKAGE_CHOSEN:
+        return navigation.pop();
+      case YUGI_INTRO_TYPE.ANSWERS_SUBMITTED:
+        return onUnderwritingClose();
+    }
+  };
+
+  const buttonLabel = type === YUGI_INTRO_TYPE.ANSWERS_SUBMITTED ? "Show me" : "Okay";
+
   return (
     <FibYugiIntroScreen
       initialIndex={initialIndex}
       onNavigateBack={onNavigateBack}
       onNavigateToSalary={onNavigateToNextScreen}
       type={type}
-      onClose={onNavigateBack} // create a onClose method fo each screen
+      onClose={onClose}
+      buttonLabel={buttonLabel}
     />
   );
 });
