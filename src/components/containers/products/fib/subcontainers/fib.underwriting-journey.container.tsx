@@ -12,6 +12,7 @@ import {
   FIB_LIFESTYLE_SMOKING_VAPES_SCREEN_ID,
   FIB_LIFESTYLE_SMOKING_CIGARETTES_FOLLOW_UP_SCREEN_ID,
   FINAL_PROGRESS,
+  FIB_INTRO,
   FIB_INPUT_SALARY,
 } from "../data/underwriting-journey-data";
 import { FIBProgressBar } from "@organisms";
@@ -31,7 +32,7 @@ import { FibAnswers } from "@redux/product/product.types";
 import { Navigation } from "react-native-navigation";
 import { MODALS } from "@navigation/constants";
 import {
-  OrderedUnderwritingJourneyScreen,
+  UnderwritingJourneyScreen,
   FIB_MEDICAL_FOLLOW_UP_QUESTIONS,
   MEDICAL_CHIPS_QUESTIONS,
 } from "../data/underwriting-journey-data";
@@ -57,7 +58,7 @@ const _FibUnderwritingJourneyContainer = memo(function (props: Props) {
         : question.id === initialQuestionId
     ) || data[0];
 
-  const [currentQuestion, setCurrentQuestion] = useState<OrderedUnderwritingJourneyScreen>(initialQuestion);
+  const [currentQuestion, setCurrentQuestion] = useState<UnderwritingJourneyScreen>(initialQuestion);
 
   const isSmokingQuestion = [
     FIB_LIFESTYLE_SMOKING_CIGARETTES_SCREEN_ID,
@@ -65,7 +66,7 @@ const _FibUnderwritingJourneyContainer = memo(function (props: Props) {
     FIB_LIFESTYLE_SMOKING_CIGARS_SCREEN_ID,
     FIB_LIFESTYLE_SMOKING_VAPES_SCREEN_ID,
   ].includes(currentQuestion.id);
-  const isFirstQuestion = currentQuestion.id === FIB_ENTER_YOUR_NAME;
+  const isFirstQuestion = currentQuestion.id === FIB_INTRO;
 
   useEffect(() => {
     if (isFirstQuestion && !redirectedFromReviewScreen) {
@@ -104,7 +105,7 @@ const _FibUnderwritingJourneyContainer = memo(function (props: Props) {
     return { ...answers, [questionId]: value };
   };
 
-  const findQuestion = (options: FindFibQuestionOptions): OrderedUnderwritingJourneyScreen => {
+  const findQuestion = (options: FindFibQuestionOptions): UnderwritingJourneyScreen => {
     const newOptions = initialQuestionIdFromReviewScreen
       ? { ...options, initialQuesionIdFromReviewSession: initialQuestionIdFromReviewScreen }
       : options;
@@ -306,7 +307,7 @@ const _FibUnderwritingJourneyContainer = memo(function (props: Props) {
         onFirstButtonPressed={onFirstButtonPressed}
         onSecondButtonPressed={onSecondButtonPressed}
         onPreviousButtonPressed={onPreviousButtonPressed}
-        hideProgressBar={redirectedFromReviewScreen}
+        hideProgressBar={isFirstQuestion || redirectedFromReviewScreen}
         disableFirstButton={disableFirstButton}
         inputFirstName={inputFirstName}
         inputLastName={inputLastName}

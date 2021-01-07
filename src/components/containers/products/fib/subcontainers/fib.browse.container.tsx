@@ -6,13 +6,7 @@ import { View, Linking, Platform } from "react-native";
 import { Text } from "@atoms";
 import { FibBrowseScreen, FibCustomCoverScreen } from "@screens";
 import { GQL_QUERY_GET_TOP_UPS_ESTIMATE_COST } from "@graphql/products";
-import {
-  FibLocalNavigation,
-  FIB_CUSTOM_PERCENTAGE,
-  FIB_UNDERWRITING_JOURNEY_INTRODUCTION,
-  FIB_FAQ_LIST,
-  FIB_INTRO_YUGI,
-} from "../fib.types";
+import { FibLocalNavigation, FIB_CUSTOM_PERCENTAGE, FIB_FAQ_LIST, FIB_INTRO_YUGI } from "../fib.types";
 import fibDocumentsItems from "../data/documents-data";
 import { GetTopUpsEstimateCost, GetTopUpsEstimateCostVariables, GetYulifer } from "@graphql/_core/schema";
 import { GQL_QUERY_GET_YULIFER } from "@graphql/yuscreen";
@@ -139,13 +133,19 @@ const _FibBrowseContainer = memo(function (props: IFibContainer & ReturnType<typ
       initialIndex: 1,
     });
 
+  const handleContinue = () => {
+    navigation.push(FIB_INTRO_YUGI, {
+      type: YUGI_INTRO_TYPE.PACKAGE_CHOSEN,
+    });
+  };
+
   if (isCustomCover) {
     return (
       <FibCustomCoverScreen
         avatarUrl={yuliferData?.getYulifer.avatarRemoteFiles?.pngFull}
         onNavigateBack={navigation.pop}
+        onContinue={handleContinue}
         navigateToEditSalary={noop}
-        onContinue={() => navigation.push(FIB_UNDERWRITING_JOURNEY_INTRODUCTION)}
         selectedPackage={packageDetails}
         payoutEstimatorItems={payoutEstimatorItems}
         setDeceaseAgeIndexYear={setDeceaseAgeIndexYear}
@@ -162,11 +162,7 @@ const _FibBrowseContainer = memo(function (props: IFibContainer & ReturnType<typ
       avatarUrl={yuliferData?.getYulifer.avatarRemoteFiles?.pngFull}
       onNavigateToYuScreen={navigation.popToMain}
       navigateToCustomCover={() => navigation.push(FIB_CUSTOM_PERCENTAGE)}
-      onContinue={() => {
-        navigation.push(FIB_INTRO_YUGI, {
-          type: YUGI_INTRO_TYPE.PACKAGE_CHOSEN,
-        });
-      }}
+      onContinue={handleContinue}
       selectCoverType={selectCoverType}
       selectedPackage={packageDetails}
       documents={documents}

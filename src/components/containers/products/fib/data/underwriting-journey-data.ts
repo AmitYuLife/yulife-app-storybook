@@ -80,6 +80,7 @@ export interface UnderwritingJourneyChild {
   style?: StyleSheet.NamedStyles<ViewStyle | TextStyle>;
 }
 
+export const FIB_INTRO = "fib_intro";
 export const FIB_YOUR_DATE_OF_BIRTH_SCREEN_ID = "fib_your_date_of_birth";
 export const FIB_UK_RESIDENT_SCREEN_ID = "fib_uk_resident";
 export const FIB_MEMBER_OF_ARMED_FORCES_SCREEN_ID = "fib_member_of_armed_forces";
@@ -180,6 +181,7 @@ export const FOLLOW_UP_SMOKING_ANSWERS_TRIGGER = ["In the past month", "In the p
 export const FINAL_PROGRESS = 2400;
 
 export enum ACCUMULATED_PROGRESS {
+  FIB_INTRO = 0,
   FIB_ENTER_YOUR_NAME = 100,
   FIB_YOUR_DATE_OF_BIRTH_SCREEN_ID = 200,
   FIB_ENTER_YOUR_DATE_OF_BIRTH = 250,
@@ -225,7 +227,17 @@ export enum ACCUMULATED_PROGRESS {
   FIB_FINANCIAL_CUSTOM_COVER_FORM_SCREEN_ID = FINAL_PROGRESS,
 }
 
-const _data: UnderwritingJourneyScreen[] = [
+export const data: UnderwritingJourneyScreen[] = [
+  {
+    id: FIB_INTRO,
+    heading: "Intro",
+    icon: NAME_ICON,
+    title: "Intro",
+    question: "",
+    firstButton: { label: "Continue", actionId: FIB_ENTER_YOUR_NAME },
+    children: [{ type: "copyIntro" }],
+    accumulatedProgress: ACCUMULATED_PROGRESS.FIB_INTRO,
+  },
   {
     id: FIB_ENTER_YOUR_NAME,
     heading: "About You",
@@ -233,7 +245,7 @@ const _data: UnderwritingJourneyScreen[] = [
     title: "Name",
     question: "Okay! Let’s start with the easy stuff: is this your name?",
     firstButton: { label: "Continue", actionId: FIB_YOUR_DATE_OF_BIRTH_SCREEN_ID },
-    previousButton: { actionId: FIB_ENTER_YOUR_NAME },
+    previousButton: { actionId: FIB_INTRO },
     children: [{ type: "inputFullName" }],
     accumulatedProgress: ACCUMULATED_PROGRESS.FIB_ENTER_YOUR_NAME,
   },
@@ -1408,24 +1420,3 @@ const _data: UnderwritingJourneyScreen[] = [
     previousButton: { actionId: FIB_FINANCIAL_QUESTIONS_SCREEN_ID },
   },
 ];
-
-export type OrderedUnderwritingJourneyScreen = UnderwritingJourneyScreen & { order: number };
-
-function getData(): OrderedUnderwritingJourneyScreen[] {
-  const ROUTES_WITHOUT_PROGRESS = [FIB_ENTER_YOUR_NAME];
-
-  let progressCounter = 0;
-
-  return _data.map((item) => {
-    if (!ROUTES_WITHOUT_PROGRESS.includes(item.id)) {
-      progressCounter++;
-    }
-
-    return {
-      ...item,
-      order: progressCounter,
-    };
-  });
-}
-
-export const data = getData();

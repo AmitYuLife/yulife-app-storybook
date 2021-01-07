@@ -27,6 +27,7 @@ import RadioInput from "../feedback-form/radio-input";
 import { FibInputAlcohol } from "@organisms/fib/input/alcohol/fib-input-alcohol";
 import { styles, getChildWrapperStyle } from "./fib.underwriting-journey.styles";
 import { YugiType } from "../layouts/yugi";
+import { CopyIntro } from "@organisms/fib/copy/intro";
 
 export interface IFibUnderwritingJourneyScreenProps {
   onNavigateBack: () => void;
@@ -192,6 +193,7 @@ function renderChildren(child: UnderwritingJourneyChild, extraProps: RenderChild
     inputAlcohol: <FibInputAlcohol />,
     copyBirthday: <CopyBirthday />,
     copyFullName: <CopyFullName />,
+    copyIntro: <CopyIntro />,
     radioInput: (
       <RadioInput
         options={child.radioInputOptions}

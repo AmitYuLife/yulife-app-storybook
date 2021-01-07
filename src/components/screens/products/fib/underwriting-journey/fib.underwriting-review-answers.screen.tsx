@@ -67,6 +67,7 @@ const _FibUnderwritingReviewAnswersScreen = memo(function (props: IFibUnderwriti
         ref={scrollViewRef}
         showsVerticalScrollIndicator={false}
       >
+        <View style={styles.topPad} />
         <FibTitle title="Please take a quick look over your answers before submitting." />
         <View style={styles.pad} />
         {answers.map((item) => {
@@ -106,7 +107,7 @@ const _FibUnderwritingReviewAnswersScreen = memo(function (props: IFibUnderwriti
         rightIcon={RIGHT_ICON}
         onRightIconPress={onNavigateBack}
       />
-      <Yugi yugi={YugiType.REVIEW} />
+      <Yugi wrapperStyle={styles.yugi} yugi={YugiType.REVIEW} />
     </View>
   );
 });
@@ -117,6 +118,9 @@ const styles = StyleSheet.create({
   wrapper: {
     height: "100%",
   },
+  yugi: {
+    top: Style.adjust(148),
+  } as ViewStyle,
   scrollViewContentStyle: {
     paddingBottom: 16,
   } as ViewStyle,
@@ -133,6 +137,9 @@ const styles = StyleSheet.create({
   } as TextStyle,
   pad: {
     height: Style.adjust(40),
+  } as ViewStyle,
+  topPad: {
+    height: Style.adjust(48),
   } as ViewStyle,
 });
 
