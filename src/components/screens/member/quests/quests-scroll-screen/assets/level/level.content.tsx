@@ -6,7 +6,6 @@ import { IChallenge } from "../../quests-screen";
 import { getTime } from "./level.helpers";
 import LevelStar from "./level.star";
 import styles from "./level.styles";
-import { ForestGem, OceanGem, DesertGem, MountainGem } from "./level.gem";
 
 const getTextColor = (level: number) => {
   switch (true) {
@@ -62,29 +61,18 @@ export default function getLevelButton(
   currentLevel: number,
   level: IChallenge,
   normalizedLevel: number
-): any {
+) {
   // step right up, we have more horrible logic, come and see the horrible logic!
   if (level.level % 50 === 0) {
     if (level.level > currentLevel) {
       return <Lock colour={getLockColor(normalizedLevel)} />;
     }
 
-    switch (normalizedLevel) {
-      case 50:
-        return <ForestGem />;
-      case 100:
-        return <OceanGem />;
-      case 150:
-        return <DesertGem />;
-      case 200:
-        return <MountainGem />;
-      default:
-        return (
-          <Text style={styles.text} bold={true}>
-            {level.level}
-          </Text>
-        );
-    }
+    return (
+      <Text style={styles.text} bold={true}>
+        {level.level}
+      </Text>
+    );
   }
 
   if (level.level === currentLevel) {
@@ -93,7 +81,7 @@ export default function getLevelButton(
       const nextAvailableFormatted = getTime(Math.abs(nextAvailable));
 
       return (
-        <View style={{ flexDirection: "column" }}>
+        <View style={styles.column}>
           <Text style={style} bold={true}>
             in
           </Text>
@@ -122,9 +110,9 @@ export default function getLevelButton(
   if (level.level < currentLevel) {
     const color = getTextColor(normalizedLevel);
     return (
-      <View style={{ flexDirection: "column" }}>
+      <View style={styles.column}>
         <Text style={StyleSheet.flatten([styles.text, { textAlign: "center", color }])}>{level.level}</Text>
-        <View style={{ flexDirection: "row", justifyContent: "center", alignItems: "center" }}>
+        <View style={styles.stars}>
           {Array.from({ length: 3 }).map((_, i) => (
             <LevelStar key={`${level.id}_${i}`} colour={getStarColor(normalizedLevel, level.rating > i)} />
           ))}

@@ -26,12 +26,15 @@ interface IProps {
   slice: IMapSlice;
 }
 
+const PULSE_MAX_SIZE = Style.SCALE_UP_AND_DOWN(66);
+
 function LevelBubble(props: IProps) {
   const { slice, index, level, currentLevel } = props;
   const [nextAvailableTimer, setNextAvailableTimer] = useState(null);
   const style = getButtonPosition(slice, index, false);
   const pulseStyle = getButtonPosition(slice, index, true);
   const ONE_SECOND = 1000;
+
   useInterval(
     () => {
       const diff = moment().diff(moment(level.nextAvailableAt), "seconds");
@@ -39,18 +42,20 @@ function LevelBubble(props: IProps) {
     },
     level.nextAvailableAt ? ONE_SECOND : null
   );
+
   const currentWorld = getCurrentWorld(level.level);
   const normalizedLevel = getNormalizedLevel(level.level);
   const bubbleBackgroundColor = getBackgroundColor(nextAvailableTimer, level, currentWorld);
   const shadowStyle = getShadowPosition(style);
   const shadowColor = getShadowColor(normalizedLevel);
   const bubblePulseColor = getPulseColor(normalizedLevel);
+
   return (
     <>
       {!level.isActive ? null : (
         <Pulse
           size={CIRCLE_SIZE + 6}
-          pulseMaxSize={Style.adjust(66)}
+          pulseMaxSize={PULSE_MAX_SIZE}
           interval={nextAvailableTimer < 0 ? 1500 : 1000}
           backgroundColor={bubblePulseColor}
           style={pulseStyle}

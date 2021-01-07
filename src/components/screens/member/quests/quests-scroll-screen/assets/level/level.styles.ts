@@ -32,6 +32,10 @@ const styles = StyleSheet.create({
     lineHeight: Style.SCALE_UP_AND_DOWN(11),
     textAlign: "center",
   },
+  column: {
+    flexDirection: "column",
+  },
+  stars: { flexDirection: "row", justifyContent: "center", alignItems: "center" },
 });
 
 export default styles;
