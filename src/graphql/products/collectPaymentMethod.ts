@@ -3,7 +3,7 @@ import gql from "graphql-tag";
 import { CollectPaymentMethod, CollectPaymentMethodVariables } from "../_core/schema";
 
 export const GQL_MUTATION_COLLECT_PAYMENT_METHOD = gql`
-  mutation CollectPaymentMethod($input: CollectPaymentMethodInput) {
+  mutation CollectPaymentMethod($input: CollectPaymentMethodInput!) {
     collectPaymentMethod(input: $input) {
       collected
       nextStepUrl

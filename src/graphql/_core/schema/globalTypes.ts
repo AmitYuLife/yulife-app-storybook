@@ -111,9 +111,9 @@ export interface ChallengePayload {
 }
 
 export interface CollectPaymentMethodInput {
-  paymentMethodId?: string | null;
-  type?: PaymentMethodType | null;
-  productCode?: ProductCode | null;
+  paymentMethodId: string;
+  type: PaymentMethodType;
+  productCode: ProductCode;
 }
 
 /**
@@ -161,7 +161,7 @@ export interface ProductMetadata {
 }
 
 /**
- * Input for calculate top ups estimated cost
+ * Deprecated on v2.8.1 Input for calculate top ups estimated cost
  */
 export interface TopUpsEstimateCostInput {
   grossSalary?: number | null;
@@ -177,6 +177,8 @@ export interface UpdateContactDetailsInput {
   addressPostCode?: string | null;
   email?: string | null;
   personalEmailConsent?: boolean | null;
+  firstName?: string | null;
+  lastName?: string | null;
 }
 
 export interface UpdateCustomerGPDetailsInput {
