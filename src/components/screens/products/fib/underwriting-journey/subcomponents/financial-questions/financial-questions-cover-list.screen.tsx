@@ -42,6 +42,7 @@ function _FinancialQuestionsCoverListScreen(props: Props) {
       yugi={YugiType.FINANCIAL}
     >
       <ScrollView showsVerticalScrollIndicator={false} style={styles.wrapper}>
+        <View style={styles.topPad} />
         <FibTitle title={data.question} />
         <FinancialQuestionsCoverList existingCovers={existingCovers} onAddCover={showFinancialCoverOverlay} />
         <View style={styles.paddingBottom} />
@@ -72,6 +73,9 @@ const styles = StyleSheet.create({
   },
   paddingBottom: {
     height: Style.adjust(40),
+  } as ViewStyle,
+  topPad: {
+    height: Style.adjust(32),
   } as ViewStyle,
 });
 

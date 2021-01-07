@@ -1,7 +1,6 @@
 import moment from "moment";
 import { CalculatorItems } from "@components/screens/products/fib/browse-packages/subcomponents/payout-calculator/subcomponents/calculator";
 import {
-  OrderedUnderwritingJourneyScreen,
   FIB_THREE_YEAR_MEDICAL_HISTORY_SCREEN_ID,
   FIB_MEDICAL_FOLLOW_UP_QUESTIONS,
   FIB_HIGH_BLOOD_PRESSURE_EXTRA_SCREEN,
@@ -18,6 +17,7 @@ import {
   FIB_LIFESTYLE_SMOKING_CIGARETTES_SCREEN_ID,
   FOLLOW_UP_SMOKING_ANSWERS_TRIGGER,
   FIB_LIFESTYLE_ALCOHOL_SCREEN_ID,
+  UnderwritingJourneyScreen,
   FIB_INPUT_SALARY,
 } from "./data/underwriting-journey-data";
 import { PackageId } from "@components/screens/products/fib/fib.helper";
@@ -137,25 +137,22 @@ function getMonthsTillBirthday(dateOfBirth: moment.Moment) {
 }
 
 export interface FindFibQuestionOptions {
-  data: OrderedUnderwritingJourneyScreen[];
+  data: UnderwritingJourneyScreen[];
   buttonType: FibButtonType;
-  currentQuestion: OrderedUnderwritingJourneyScreen;
+  currentQuestion: UnderwritingJourneyScreen;
   medicalHistory: Record<string, boolean>;
   answers: FibAnswers;
   initialQuesionIdFromReviewSession?: string;
 }
 interface FindFibMedicalQuestionOptions {
-  data: OrderedUnderwritingJourneyScreen[];
+  data: UnderwritingJourneyScreen[];
   buttonType: FibButtonType;
-  question: OrderedUnderwritingJourneyScreen;
+  question: UnderwritingJourneyScreen;
   medicalHistory: Record<string, boolean>;
   answers: FibAnswers;
 }
 
-export function findQuestion(
-  options: FindFibQuestionOptions,
-  reviewScreenSession: boolean
-): OrderedUnderwritingJourneyScreen {
+export function findQuestion(options: FindFibQuestionOptions, reviewScreenSession: boolean): UnderwritingJourneyScreen {
   const { data, buttonType, currentQuestion, medicalHistory, answers, initialQuesionIdFromReviewSession } = options;
 
   let nextQuestionId =
@@ -195,7 +192,7 @@ export function findQuestion(
   return question;
 }
 
-function findMedicalQuestion(options: FindFibMedicalQuestionOptions): OrderedUnderwritingJourneyScreen {
+function findMedicalQuestion(options: FindFibMedicalQuestionOptions): UnderwritingJourneyScreen {
   const { data, buttonType, medicalHistory, answers, question } = options;
 
   const activeChips = Object.entries(medicalHistory)
@@ -237,7 +234,7 @@ function findMedicalQuestion(options: FindFibMedicalQuestionOptions): OrderedUnd
 export function getIsActiveOnMedicalJourney(
   screenId: string,
   answers: FibAnswers,
-  question: OrderedUnderwritingJourneyScreen
+  question: UnderwritingJourneyScreen
 ): boolean {
   // High Blood pressure
   if (FIB_HIGH_BLOOD_PRESSURE_EXTRA_SCREEN === screenId) {
@@ -273,7 +270,7 @@ export function shouldAnswerBeStored(label: string, currentQuestionId: string): 
 
 export function shouldFirstButtonBeDisabled(
   medicalHistory: Record<string, boolean>,
-  currentQuestion: OrderedUnderwritingJourneyScreen,
+  currentQuestion: UnderwritingJourneyScreen,
   fibAnswers: FibAnswers,
   inputFirstName: string,
   inputLastName: string,
@@ -329,10 +326,7 @@ export function shouldFirstButtonBeDisabled(
   return false;
 }
 
-export function shouldSecondButtonBeDisabled(
-  currentQuestion: OrderedUnderwritingJourneyScreen,
-  fibAnswers: FibAnswers
-) {
+export function shouldSecondButtonBeDisabled(currentQuestion: UnderwritingJourneyScreen, fibAnswers: FibAnswers) {
   if (currentQuestion.id === FIB_ENTER_YOUR_NAME) {
     return (fibAnswers.firstName || "").length < 1 || (fibAnswers.lastName || "").length < 1;
   }

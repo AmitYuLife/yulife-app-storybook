@@ -1,9 +1,20 @@
 import { Platform } from "react-native";
 import Style from "./style";
+import media from "./media";
 
 export const HEIGHT = Style.adjust(36);
+
+const IOS_PADDING_TOP = media.select(
+  [
+    {
+      condition: [media.DEVICES.iPhone12.height, media.DEVICES.iPhone12ProMax.height].includes(Style.DEVICE_HEIGHT),
+      value: Style.getSafeAreaStart() + 8,
+    },
+  ],
+  Style.getSafeAreaStart()
+);
 export const PADDING_TOP = Platform.select({
-  ios: Style.getSafeAreaStart() + 8,
+  ios: IOS_PADDING_TOP,
   android: 0,
 });
 export const PADDING_BOTTOM = Platform.select({ ios: 0, android: 16 });

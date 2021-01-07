@@ -2,12 +2,7 @@ import React, { memo } from "react";
 import { connect, useDispatch } from "react-redux";
 import { IReduxState } from "@redux/_core/reducers";
 import { getUserFirstName } from "@redux/user/user.selectors";
-import {
-  FibLocalNavigation,
-  FIB_BROWSE,
-  FIB_UNDERWRITING_JOURNEY_INTRODUCTION,
-  FIB_CONFIRM_PACKAGES,
-} from "../fib.types";
+import { FibLocalNavigation, FIB_BROWSE, FIB_UNDERWRITING_JOURNEY, FIB_CONFIRM_PACKAGES } from "../fib.types";
 import { FibYugiIntroScreen } from "../../../../screens/products/fib/yugi-intro/fib-yugi-intro.screen";
 import { useMutation } from "@apollo/react-hooks";
 import {
@@ -72,7 +67,7 @@ const _FibYugiIntroContainer = memo(function FibYugiIntroContainer(props: Props)
       case YUGI_INTRO_TYPE.MOUNTAIN_STYLE_SELECTED:
         return navigation.push(FIB_BROWSE);
       case YUGI_INTRO_TYPE.PACKAGE_CHOSEN:
-        return navigation.push(FIB_UNDERWRITING_JOURNEY_INTRODUCTION);
+        return navigation.push(FIB_UNDERWRITING_JOURNEY);
       case YUGI_INTRO_TYPE.ANSWERS_SUBMITTED:
         return navigation.push(FIB_CONFIRM_PACKAGES);
     }

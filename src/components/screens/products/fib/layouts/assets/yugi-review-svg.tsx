@@ -4,7 +4,6 @@ import { G, Path, Rect, Circle } from "react-native-svg";
 export const YugiReviewSvg = () => (
   <>
     <G>
-      <Path fill="#fff" d="M0 0h55v180H0z" />
       <Path
         d="M5.266 35.295s-1.123.423-.782 1.778c7.026 1.532 10.333 2.384 12.381 1.868 2.049-.516 4.504.165 6.405.459.405.073.808-1.117.262-1.19-8.124-1.01-18.266-2.915-18.266-2.915z"
         fill="#5E5E5E"

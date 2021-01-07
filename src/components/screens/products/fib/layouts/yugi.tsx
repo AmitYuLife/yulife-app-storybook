@@ -38,7 +38,7 @@ export const Yugi = (props: Props) => {
 const styles = StyleSheet.create({
   yugiWrapper: {
     position: "absolute",
-    top: Style.adjust(100),
+    top: Style.adjust(72),
     right: 0,
   } as ViewStyle,
 });

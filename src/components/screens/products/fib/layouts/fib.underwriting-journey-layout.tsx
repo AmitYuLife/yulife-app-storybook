@@ -4,7 +4,6 @@ import { GenericHeading } from "@atoms";
 import { FIBProgressBar } from "@components/organisms";
 import { Yugi, YugiType } from "./yugi";
 import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
-import { Style } from "@styles";
 
 interface Props {
   heading?: string;
@@ -42,7 +41,7 @@ export function FibUnderwritingJourneyLayout(props: Props) {
         <View style={styles.safeAreaView}>
           {hideProgressBar ? null : <FIBProgressBar />}
           {children}
-          <Yugi yugi={yugi} wrapperStyle={styles.yugiWrapper} />
+          <Yugi yugi={yugi} />
         </View>
       </KeyboardAvoidingView>
       <GenericHeadingAbsolute
@@ -68,8 +67,5 @@ const styles = StyleSheet.create({
   safeAreaView: {
     height: "100%",
     flex: 1,
-  } as ViewStyle,
-  yugiWrapper: {
-    top: Style.adjust(84),
   } as ViewStyle,
 });

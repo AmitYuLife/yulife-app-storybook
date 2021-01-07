@@ -7,7 +7,7 @@ export const styles = StyleSheet.create({
     marginTop: Style.adjust(48),
   } as ViewStyle,
   topPad: {
-    height: Style.adjust(32),
+    height: Style.adjust(24),
   } as ViewStyle,
 });
 
