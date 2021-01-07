@@ -87,9 +87,9 @@ const _FibYugiIntroContainer = memo(function FibYugiIntroContainer(props: Props)
   const onClose = () => {
     switch (type) {
       case YUGI_INTRO_TYPE.INTRO_UNDERWRITING:
+      case YUGI_INTRO_TYPE.PACKAGE_CHOSEN:
         return navigation.popToMain();
       case YUGI_INTRO_TYPE.OCEAN_STYLE_SELECTED:
-      case YUGI_INTRO_TYPE.PACKAGE_CHOSEN:
         return navigation.pop();
       case YUGI_INTRO_TYPE.ANSWERS_SUBMITTED:
         return onUnderwritingClose();

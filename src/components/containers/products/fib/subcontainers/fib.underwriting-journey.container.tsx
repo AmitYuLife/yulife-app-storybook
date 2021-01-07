@@ -238,7 +238,12 @@ const _FibUnderwritingJourneyContainer = memo(function (props: Props) {
   const onSecondButtonPressed = !currentQuestion.secondButton ? null : handleSetCurrentQuestion;
 
   const handleSetPreviousQuestion = () => {
-    if ((redirectedFromReviewScreen && initialQuestionIdFromReviewScreen === currentQuestion.id) || isFirstQuestion) {
+    if (redirectedFromReviewScreen && initialQuestionIdFromReviewScreen === currentQuestion.id) {
+      return navigation.pop();
+    }
+
+    if (isFirstQuestion) {
+      dispatch(updateFIBValue({ key: "lastQuestionId", value: "" }));
       return navigation.pop();
     }
 
