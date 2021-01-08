@@ -20,7 +20,7 @@ export const loginAsUser = (
     await navigateViaID(BUTTON_LOGIN)
     await navigateViaText("next") // sign-up reward screen
     await dismissStreakIfVisible()
-    await navigateViaText("let’s begin")
+    await navigateViaText("let’s begin", 2500)
     await completeIntro()
 }
 

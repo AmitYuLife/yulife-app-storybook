@@ -4,10 +4,14 @@ import { scrollFromID, scrollFromText } from "_utils/navigation/scrolling"
 
 type rewardType = "avios"
 
+export function addCommasToNumber(x: number) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
 export const rewardVisible = (reward: any) => async () => {
 
     const minValue = reward.data.minimum_value
-    const minYucoin = reward.data.available_denominations[0].yuCoin
+    const minYucoin = addCommasToNumber(reward.data.available_denominations[0].yuCoin)
     const rewardItem = REWARD_ITEM(reward.data.code)
 
     let rewardItemVisible = await booleanIdVisible(rewardItem)
@@ -20,9 +24,9 @@ export const rewardVisible = (reward: any) => async () => {
         currentAttempt += 1
     }
 
-    await expectIsVisibleViaText(`£${minValue} voucher`)
-    await expectIsVisibleViaText(`yucoin x ${minYucoin}`)
-    await expectIsVisibleViaID(rewardItem)
+    await expectIsVisibleViaText(`£${minValue} voucher`, 1500)
+    await expectIsVisibleViaText(`yucoin x ${minYucoin}`, 1500)
+    await expectIsVisibleViaID(rewardItem, 1500)
 }
 
 export const specialRewardVisible = (reward: any, type: rewardType) => async () => {
@@ -33,7 +37,7 @@ export const specialRewardVisible = (reward: any, type: rewardType) => async () 
     switch (type) {
         case "avios":
             const minValue = reward.data.available_denominations[0].value
-            const minYucoin = reward.data.available_denominations[0].yuCoin
+            const minYucoin = addCommasToNumber(reward.data.available_denominations[0].yuCoin)
 
             rewardItem = REWARD_ITEM(reward.data.code)
             rewardTitle = `${minValue} avios`
@@ -43,9 +47,9 @@ export const specialRewardVisible = (reward: any, type: rewardType) => async () 
     }
 
 
-    await expectIsVisibleViaID(rewardItem)
-    await expectIsVisibleViaText(rewardTitle)
-    await expectIsVisibleViaText(rewardSubText)
+    await expectIsVisibleViaID(rewardItem, 1500)
+    await expectIsVisibleViaText(rewardTitle, 1500)
+    await expectIsVisibleViaText(rewardSubText, 1500)
 }
 
 export const tapRewardInList = (reward: any) => async () => {
@@ -57,7 +61,7 @@ export const tapRewardInList = (reward: any) => async () => {
 export const onRewardScreen = (reward: any) => async () => {
     const description = reward.data.description
     const minValue = reward.data.available_denominations[0].value
-    const minYucoin = reward.data.available_denominations[0].yuCoin
+    const minYucoin = addCommasToNumber(reward.data.available_denominations[0].yuCoin)
 
     const rewardItem = REWARD_ITEM(reward.data.code)
     const rewardTitle = `£${minValue} voucher`
@@ -80,7 +84,7 @@ export const onSpecialRewardScreen = (reward: any, type: rewardType) => async ()
     switch (type) {
         case "avios":
             const minValue = reward.data.available_denominations[0].value
-            const minYucoin = reward.data.available_denominations[0].yuCoin
+            const minYucoin = addCommasToNumber(reward.data.available_denominations[0].yuCoin)
 
             rewardItem = REWARD_ITEM(reward.data.code)
             rewardTitle = `${minValue} avios`
@@ -99,8 +103,8 @@ export const onSpecialRewardScreen = (reward: any, type: rewardType) => async ()
 export const lockedRewardVisible = (reward: any) => async () => {
     const rewardItem = LOCKED_REWARD_ITEM(reward.data.code)
 
-    await expectIsVisibleViaID(rewardItem)
-    await expectIsVisibleViaText("locked")
+    await expectIsVisibleViaID(rewardItem, 1500)
+    await expectIsVisibleViaText("locked", 1500)
 }
 
 export const rewardDenominationsVisible = (reward: any) => async () => {
@@ -125,7 +129,6 @@ export const denominationListVisible = (reward: any, index = 0) => async () => {
 
 export const tapDenominationList = (reward: any, index = 0) => async () => {
     const denomination = reward.data.available_denominations[index]
-    console.log(`£${denomination.value}.00`)
     await wait(5000)()
     const denominationText = element(by.text(`£${denomination.value}.00`))
     await expect(denominationText).toBeVisible()

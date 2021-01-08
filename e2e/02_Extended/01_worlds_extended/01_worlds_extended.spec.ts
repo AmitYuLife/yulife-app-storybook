@@ -78,7 +78,7 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
                 Then("I should be on the second world", then.idVisible(QUESTS_SCREEN(1)))
                 Then("I should still see level 99", then.idVisible(LEVEL_CHALLENGE_BUTTON(99)))
                 When("I complete a level 99 meditation challenge", when.completeNewWorldMeditation(99), async () => {
-                    Then("I should see the level 100 unity challenge", then.idVisible(LEVEL_CHALLENGE_BUTTON(100)))
+                    Then("I should see the level 100 unity challenge", then.idVisible(LEVEL_CHALLENGE_BUTTON(100), 2500))
                     When("I tap the level 100 unity challenge", when.tapID(LEVEL_CHALLENGE_BUTTON(100)), async () => {
                         Then("The yunity screens should be correct", then.yunityCorrect(2, "Ocean"))
                             When("I tap 'On to the next world!'", when.tapText("On to the next world"), async () => {

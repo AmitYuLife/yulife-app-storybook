@@ -7,7 +7,7 @@ import { CUSTOMER_23, AUTH_23 } from "@data";
 import { FIB_SALARY_INPUT, PERSONAL_PRODUCT, FIB_SALARY_INPUT_VALUE, PACKAGE_SCREEN, FIB_BROWSE_SCREEN, YUSCREEN_AVATAR, YEAR_SCROLLER, MONTH_SCROLLER, HIGHLIGHTED_SCROLLER_VALUE, AVATAR_ITEM, YUSCREEN, FIB_INTRO_SCREEN } from "@ids";
 
 
-Feature("I am able to use the yuscreens extended features", async () => {
+FeatureSkip("I am able to use the yuscreens extended features", async () => {
 
     Scenario("As a user with the correct toggle, I am able to browse a package", scenario.start, async () => {
         Given("I go to the yuscreen as a user with the correct toggle", given.loginToYuScreen(true, CUSTOMER_23, AUTH_23), async () => {

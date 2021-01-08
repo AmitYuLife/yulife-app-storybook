@@ -120,7 +120,7 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
 
     Scenario("I can join a new leaderboard", scenario.start, async () => {
         Given("I login", given.loginOnly(CUSTOMER_21, AUTH_21, true), async () => {
-            Then("I should see a leaderboard invite screen", then.textVisible("join Boris' leaderboard"))
+            Then("I should see a leaderboard invite screen", then.textVisible("join Boris' leaderboard", 2500))
             When("I accept", when.tapText("accept invite"), async () => {
                 When("I continue the login process", when.continueLogin, async () => {
                     Then("I should be on the yuscreen", then.idVisible(DAILY_STEPS_SCREEN))

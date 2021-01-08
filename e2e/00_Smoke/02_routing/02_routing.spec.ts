@@ -99,15 +99,15 @@ Feature("As a user I can navigate through member routes correctly", async () => 
     Scenario("I can view all the reward screens", scenario.start, async () => {
         Given("I login as a user", given.loginAsUser(CUSTOMER_2, AUTH_2), async () => {
             When("I go to rewards", when.tapID(NAV_BAR("rewards")), async () => {
-                Then("I should be on the rewards screen", then.idVisible(REWARDS_SCREEN))
+                Then("I should be on the rewards screen", then.idVisible(REWARDS_SCREEN, 2000))
                 Then("I should see a John Lewis reward", then.rewardVisible(REWARDS_JOHN_LEWIS))
                 Then("I should see an Avois reward", then.specialRewardVisible(REAWARDS_AVIOS, "avios"))
                 Then("I should see a locked reward", then.lockedRewardVisible(REWARDS_BLOOM_UNAVAILABLE))
-                Then("I should see the purchased tab", then.textVisible("purchased"))
+                Then("I should see the purchased tab", then.textVisible("purchased", 1500))
                 When("I tap the purchased tab", when.tapText("purchased"), async () => {
-                    Then("the tab should be in an empty state, as I have not purchases anything", then.idVisible(CHECK_REWARDS_BUTTON))
+                    Then("the tab should be in an empty state, as I have not purchases anything", then.idVisible(CHECK_REWARDS_BUTTON, 1500))
                     When("I tap 'check rewards", when.tapID(CHECK_REWARDS_BUTTON), async () => {
-                        Then("I should be back on the rewards tab", then.idVisible(REWARDS_SCREEN))
+                        Then("I should be back on the rewards tab", then.idVisible(REWARDS_SCREEN, 1500))
                     })
                 })
                 When("I tap on the Avois reward", when.tapRewardInList(REAWARDS_AVIOS), async () => {
