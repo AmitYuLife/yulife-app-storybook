@@ -53,6 +53,7 @@ export interface GetTopUpsQuote_getTopUpsQuote {
    * Selected cover
    */
   coverType: CoverType | null;
+  salary: number | null;
   /**
    * User answers to medical underwriting. IMPORTANT: Answers are stringify, client needs to JSON.parse
    */

@@ -14,6 +14,7 @@ export const GQL_MUTATION_CREATE_TOP_UPS_QUOTE = gql`
       term
       rejected
       medicalInvestigationRequired
+      salary
     }
   }
 `;

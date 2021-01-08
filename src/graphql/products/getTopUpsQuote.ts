@@ -17,6 +17,7 @@ export const GQL_QUERY_GET_TOP_UPS_QUOTE = gql`
       medicalInvestigationRequired
       createdAt
       coverType
+      salary
       userAnswers {
         questionId
         value
