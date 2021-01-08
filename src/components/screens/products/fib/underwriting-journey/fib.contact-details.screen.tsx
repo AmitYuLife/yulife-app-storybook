@@ -10,6 +10,7 @@ import { arrowRightSvg } from "../browse-packages/subcomponents/faqs/svgs/svgArr
 import validator from "email-validator";
 import { ContactDetails } from "@redux/product/product.types";
 import { postCodeRegexSpecial, postCodeRegex } from "./fib.find-adress.screen";
+import { useBackHandler } from "@services/hooks/useBackHandler";
 
 export interface IFibContactDetailsScreenProps {
   onContinue: () => void;
@@ -27,6 +28,11 @@ export const FibContactDetailsScreen = memo(function (props: IFibContactDetailsS
   const [isPostCodeValide, setIsPostCodeValid] = useState(postCodeValid(contactDetails.postCode));
   const layouts = useRef([] as number[]);
   const scrollViewRef = useRef(null);
+
+  useBackHandler(() => {
+    pop();
+    return true;
+  });
 
   const isButtonEnable =
     isEmailValid &&

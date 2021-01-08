@@ -8,6 +8,7 @@ import { IFaq } from "@components/screens/products/fib/browse-packages/subcompon
 import { FibFaqsList } from "./fib.faqs-list";
 import { IFibFAQ } from "../../data/faq-fib-data";
 import { Style, Colours } from "@styles";
+import { useBackHandler } from "@services/hooks/useBackHandler";
 
 interface Props {
   navigation: FibLocalNavigation;
@@ -24,6 +25,11 @@ const FibFaqListContainer = (props: Props) => {
       return selectFaq(faq.id);
     },
   }));
+
+  useBackHandler(() => {
+    navigation.pop();
+    return true;
+  });
 
   return (
     <View style={styles.wrapper}>
