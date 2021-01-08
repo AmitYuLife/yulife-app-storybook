@@ -49,6 +49,21 @@ export const navigateToProductScreen = ({
       return handleRejected(resetFib);
     }
 
+    if (fibState.status === ScreeningStatus.WAITING_MSS) {
+      return Navigation.push(ROUTES.yuScreen, {
+        component: {
+          id: ROUTES.fib,
+          name: ROUTES.fib,
+          passProps: {
+            initialRoute: FIB_INFO,
+            initialProps: {
+              type: InfoTypes.holdingGP,
+            },
+          },
+        },
+      });
+    }
+
     if (
       fibState.status === ScreeningStatus.RGA_LOADING ||
       fibState.status === ScreeningStatus.RGA_REJECTED ||

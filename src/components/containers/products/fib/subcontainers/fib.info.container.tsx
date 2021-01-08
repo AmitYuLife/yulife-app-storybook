@@ -3,12 +3,12 @@ import { FibLocalNavigation, FIB_INTRO_YUGI } from "../fib.types";
 import { FibHoldingGPDetails } from "../../../../screens/products/fib/underwriting-journey/info/fib.holding-gp-results.screen";
 import { FibPaymentCongratulationScreen } from "@components/screens/products/fib/underwriting-journey/info/fib.payment-congratulation.screen";
 import { Navigation } from "react-native-navigation";
-import { ROUTES } from "../../../../../navigation/constants";
+import { MODALS, ROUTES } from "../../../../../navigation/constants";
 import { FibRejectedScreen } from "@components/screens/products/fib/underwriting-journey/info/fib.rejected.screen";
 import { FibResultsInScreen } from "../../../../screens/products/fib/underwriting-journey/info/fib.results-in";
 import { IReduxState } from "../../../../../redux/_core/reducers";
 import { getFIBState } from "../../../../../redux/product/product.selectors";
-import { connect, useDispatch } from "react-redux";
+import { connect, useDispatch, useSelector } from "react-redux";
 import {
   UpdateTopUpsQuote_updateFibQuote,
   UpdateTopUpsQuoteVariables,
@@ -16,8 +16,9 @@ import {
 import { useMutation } from "@apollo/react-hooks";
 import { GQL_MUTATION_UPDATE_TOP_UPS_QUOTE } from "../../../../../graphql/products/updateTopUpsQuote";
 import { ScreeningStatus } from "../../../../../graphql/_core/schema/globalTypes";
-import { updateFIBValue } from "../../../../../redux/product/product.actions";
+import { resetFIBUnderwritingJourney, updateFIBValue } from "../../../../../redux/product/product.actions";
 import { YUGI_INTRO_TYPE } from "./fib.yugi-intro.container";
+import { getUserFeatures } from "../../../../../redux/user/user.selectors";
 
 export enum InfoTypes {
   holdingGP = "HoldingGP",
@@ -34,7 +35,8 @@ interface IFibInfoContainerProps {
 type Props = IFibInfoContainerProps & ConnectedState;
 
 const _FibInfoContainer = memo(function (props: Props) {
-  const { navigation } = props;
+  const { navigation, fibStore } = props;
+  const { status, latestQuoteId: quoteId } = fibStore;
   const {
     type,
     packageType,
@@ -47,27 +49,59 @@ const _FibInfoContainer = memo(function (props: Props) {
     GQL_MUTATION_UPDATE_TOP_UPS_QUOTE
   );
 
-  const { status, latestQuoteId: quoteId } = props.fibStore;
-
   const [screenType, setScreenType] = useState<string>(type);
+  const canResetFib = useSelector(getUserFeatures).resetFib;
 
-  const resetFib = onResetFib
-    ? () => {
-        onResetFib();
-        navigation.push(FIB_INTRO_YUGI, {
-          type: YUGI_INTRO_TYPE.INTRO_UNDERWRITING,
-        });
-      }
-    : null;
+  const resetFib = useCallback(async () => {
+    if (!onResetFib && !canResetFib) {
+      return;
+    }
+
+    await Navigation.showModal({
+      component: {
+        id: MODALS.generic,
+        name: MODALS.generic,
+        passProps: {
+          onPressSecondary: async () => {
+            await Navigation.dismissModal(MODALS.generic);
+          },
+          heading: "Restart journey?",
+          subheading: "All your progress will be lost",
+          ctaLabelSecondary: "Stay",
+          ctaLabel: "Restart journey",
+          onPress: async () => {
+            await Navigation.dismissModal(MODALS.generic);
+            if (onResetFib) {
+              await onResetFib();
+            }
+
+            if (canResetFib && !onResetFib) {
+              if (quoteId) {
+                await updateFibQuote({
+                  variables: { archiveQuote: true, quoteId },
+                });
+              }
+
+              dispatch(resetFIBUnderwritingJourney());
+            }
+
+            return navigation.push(FIB_INTRO_YUGI, {
+              type: YUGI_INTRO_TYPE.INTRO_UNDERWRITING,
+            });
+          },
+        },
+      },
+    });
+  }, [onResetFib, navigation, canResetFib, dispatch, quoteId, updateFibQuote]);
 
   const onClose = useCallback(() => {
     Navigation.popTo(ROUTES.yuScreen);
   }, []);
 
-  const updateQuoteStatus = async (status: ScreeningStatus) => {
+  const updateQuoteStatus = async (_status: ScreeningStatus) => {
     await updateFibQuote({
       variables: {
-        fibQuote: { screeningStatus: status },
+        fibQuote: { screeningStatus: _status },
         quoteId,
       },
     });
@@ -75,7 +109,7 @@ const _FibInfoContainer = memo(function (props: Props) {
     dispatch(
       updateFIBValue({
         key: "status",
-        value: status,
+        value: _status,
       })
     );
   };
