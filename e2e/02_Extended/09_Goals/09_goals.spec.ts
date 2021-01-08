@@ -24,9 +24,11 @@ Feature("As an enabled user I am able to use the goals feature", async () => {
                     Then("I should see my nickname", then.textVisible("Oscar"))
                 })
             })
-            When("I tap let's go", when.tapText("Let's go"), async()=>{
-                Then("I should be the community goals screen", then.textVisible("Community Goals"))
-                Then("I should see the community goal I am part of", then.multipleTextVisible(["Reach 250,000 steps", "these boots are made for walking", "2 / 100 have joined"]))
+            When("I tap to dismiss the keyboard", when.tapText("Choose a nickname"), async()=>{
+                When("I tap let's go", when.tapText("Let's go"), async()=>{
+                    Then("I should be the community goals screen", then.textVisible("Community Goals"))
+                    Then("I should see the community goal I am part of", then.multipleTextVisible(["Reach 250,000 steps", "these boots are made for walking", "2 / 100 have joined"]))
+                })
             })
             When("I tap the + icon", when.tapID(COMMUNITY_GOAL_DROPDOWN), async()=>{
                 Then("I should see people who have joined this goal", then.textVisible("Oscar"))

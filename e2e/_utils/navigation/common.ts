@@ -46,8 +46,8 @@ export const navigateViaLabel = async (label: string) => {
     await element(by.label(label)).tap();
 }
 
-export const navigateViaText = async (text: string) => {
-    await (waitFor(element(by.text(text)))).toBeVisible();
+export const navigateViaText = async (text: string, timeout=0) => {
+    await (waitFor(element(by.text(text)))).toBeVisible().withTimeout(timeout);
     await element(by.text(text)).tap();
 }
 
