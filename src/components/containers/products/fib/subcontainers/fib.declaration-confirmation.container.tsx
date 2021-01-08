@@ -1,6 +1,6 @@
 import React, { memo, useState, useEffect, useCallback } from "react";
 import { Linking } from "react-native";
-import stripe from "tipsi-stripe";
+import stripe, { StripePaymentRequestToken } from "tipsi-stripe";
 import { FibLocalNavigation, FIB_INFO } from "../fib.types";
 import { connect } from "react-redux";
 import { IReduxState } from "../../../../../redux/_core/reducers";
@@ -25,6 +25,7 @@ import {
   ConfirmPaymentMethodMutationTuple,
   GQL_MUTATION_CONFIRM_PAYMENT_METHOD,
 } from "../../../../../graphql/products/confirmPaymentMethod";
+import { ConfirmPaymentMethod } from "../../../../../graphql/_core/schema";
 
 type ConnectedDispatch = typeof mapDispatchToProps;
 type ConnectedState = ReturnType<typeof mapStateToProps>;
@@ -82,7 +83,20 @@ const FibDeclarationConfirmationContainer = memo(function (props: Props) {
   });
 
   const [collectPaymentMethod]: CollectPaymentMethodMutationTuple = useMutation(GQL_MUTATION_COLLECT_PAYMENT_METHOD);
-  const [confirmPaymentMethod]: ConfirmPaymentMethodMutationTuple = useMutation(GQL_MUTATION_CONFIRM_PAYMENT_METHOD);
+  const [confirmPaymentMethod]: ConfirmPaymentMethodMutationTuple = useMutation(GQL_MUTATION_CONFIRM_PAYMENT_METHOD, {
+    refetchQueries: [
+      {
+        query: GQL_QUERY_GET_TOP_UPS_QUOTE,
+        variables: {
+          product: ProductCode.YULFIB,
+          input: {
+            customerProductEntityId: productEntityId,
+            quoteId: latestQuoteId,
+          },
+        },
+      },
+    ], // Update waiting for MSS quote status
+  });
 
   const deceaseAgeMonth =
     Number(payoutEstimatorItems.months[deceaseAgeIndexMonth]) ===
@@ -120,33 +134,41 @@ const FibDeclarationConfirmationContainer = memo(function (props: Props) {
 
   // TODO: Move function to a helper
   const onContinue = useCallback(async () => {
-    const stripeToken = await stripe.paymentRequestWithCardForm({
-      requiredBillingAddressFields: "full",
-      managedAccountCurrency: "gbp",
-      prefilledInformation: {
-        email: fibAnswers.contactDetails.personalEmail,
-        phone: fibAnswers.contactDetails.phoneNumber,
-        billingAddress: {
-          name: fullName,
-          line1: fibAnswers.contactDetails.firstAddressLine,
-          line2: fibAnswers.contactDetails.secondAddressLine,
-          city: fibAnswers.contactDetails.townOrCity,
-          postalCode: fibAnswers.contactDetails.postCode,
-          country: "GB",
+    let stripeToken: StripePaymentRequestToken;
+    try {
+      stripeToken = await stripe.paymentRequestWithCardForm({
+        requiredBillingAddressFields: "full",
+        managedAccountCurrency: "gbp",
+        prefilledInformation: {
           email: fibAnswers.contactDetails.personalEmail,
           phone: fibAnswers.contactDetails.phoneNumber,
+          billingAddress: {
+            name: fullName,
+            line1: fibAnswers.contactDetails.firstAddressLine,
+            line2: fibAnswers.contactDetails.secondAddressLine,
+            city: fibAnswers.contactDetails.townOrCity,
+            postalCode: fibAnswers.contactDetails.postCode,
+            country: "GB",
+            email: fibAnswers.contactDetails.personalEmail,
+            phone: fibAnswers.contactDetails.phoneNumber,
+          },
         },
-      },
-      // TODO: Customize theme
-      theme: {
-        primaryBackgroundColor: "",
-        secondaryBackgroundColor: "",
-        primaryForegroundColor: "",
-        secondaryForegroundColor: "",
-        accentColor: "",
-        errorColor: "",
-      },
-    });
+        // TODO: Customize theme
+        theme: {
+          primaryBackgroundColor: "",
+          secondaryBackgroundColor: "",
+          primaryForegroundColor: "",
+          secondaryForegroundColor: "",
+          accentColor: "",
+          errorColor: "",
+        },
+      });
+    } catch (error) {
+      // Cancelled by user, show cancelled screen?
+      console.error(error);
+      return;
+    }
+
     setPaymentLoading(true);
     const { data: collectPaymentResponse } = await collectPaymentMethod({
       variables: {
@@ -159,6 +181,7 @@ const FibDeclarationConfirmationContainer = memo(function (props: Props) {
     });
 
     if (collectPaymentResponse?.collectPaymentMethod?.clientSecret) {
+      let confirmPaymentResponse: ConfirmPaymentMethod;
       try {
         const confirm = await stripe.confirmSetupIntent({
           paymentMethodId: stripeToken.id,
@@ -169,27 +192,22 @@ const FibDeclarationConfirmationContainer = memo(function (props: Props) {
           // TODO: Show error
         }
 
-        const { data: confirmPaymentResponse } = await confirmPaymentMethod({
+        const { data: confirmMutation } = await confirmPaymentMethod({
           variables: {
             paymentMethodId: confirm.paymentMethodId,
             productCode: ProductCode.YULFIB,
           },
         });
-
-        setPaymentProgress({
-          purchased: confirmPaymentResponse?.confirmPaymentMethod?.purchased,
-          canceled: false,
-          collected: collectPaymentResponse?.collectPaymentMethod?.collected,
-        });
-        setPaymentLoading(false);
+        confirmPaymentResponse = confirmMutation;
       } catch (error) {
         // TODO: Don't change screen, show cancelled message
+      } finally {
+        setPaymentLoading(false);
         setPaymentProgress({
-          purchased: false,
+          purchased: confirmPaymentResponse?.confirmPaymentMethod?.purchased || false,
           canceled: true,
           collected: collectPaymentResponse?.collectPaymentMethod?.collected,
         });
-        setPaymentLoading(false);
       }
     }
 
@@ -206,27 +224,23 @@ const FibDeclarationConfirmationContainer = memo(function (props: Props) {
    * Redirect to screens in function of quote status
    *  */
 
-  if (paymentProgress.purchased) {
-    navigation.push(FIB_INFO, {
-      type: InfoTypes.paymentCongrats,
-      packageType: toCapitalLetter(selectedPackage),
-    });
-    return;
-  }
-
-  if (paymentProgress.collected && !paymentProgress.purchased) {
-    if (medicalInvestigationRequired) {
-      navigation.push(FIB_INFO, { type: InfoTypes.holdingGP });
-    } else {
-      // TODO: Something went wrong, show holding payment screen? error screen?
-      navigation.push(FIB_INFO, {
+  useEffect(() => {
+    if (paymentProgress.purchased) {
+      return navigation.push(FIB_INFO, {
         type: InfoTypes.paymentCongrats,
         packageType: toCapitalLetter(selectedPackage),
       });
     }
 
-    return;
-  }
+    if (paymentProgress.collected && medicalInvestigationRequired) {
+      return navigation.push(FIB_INFO, { type: InfoTypes.holdingGP });
+    }
+
+    // TODO: Something went wrong, show holding payment screen? error screen?
+    if ((paymentProgress.collected && !paymentProgress.purchased) || paymentProgress.canceled) {
+      return navigation.push(FIB_INFO, { type: InfoTypes.holdingGP });
+    }
+  }, [paymentProgress, selectedPackage, medicalInvestigationRequired, navigation]);
 
   switch (screenId) {
     case "Confirmation":

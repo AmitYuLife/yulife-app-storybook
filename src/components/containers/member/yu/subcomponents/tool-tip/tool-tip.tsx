@@ -4,8 +4,13 @@ import { Text, Button } from "@atoms";
 import { Style, Colours } from "@styles";
 import { CloseSvg } from "@atoms";
 import { TouchableOpacityWithDelay } from "@molecules";
-import { useQuery } from "@apollo/react-hooks";
-import { GetYulifer, GetYuliferWithAvatar_getYulifer_products_personal } from "@graphql/_core/schema";
+import { useMutation, useQuery } from "@apollo/react-hooks";
+import {
+  GetYulifer,
+  GetYuliferWithAvatar_getYulifer_products_personal,
+  UpdateTopUpsQuoteVariables,
+  UpdateTopUpsQuote_updateFibQuote,
+} from "@graphql/_core/schema";
 import { GQL_QUERY_GET_YULIFER } from "@graphql/yuscreen";
 import LinearGradient from "react-native-linear-gradient";
 import { getProductIcon } from "../../assets/getProductIcon";
@@ -17,6 +22,7 @@ import { getUserFeatures } from "@redux/user/user.selectors";
 import { resetFIBUnderwritingJourney } from "@redux/product/product.actions";
 import { CoinLabel } from "./coin-label";
 import { useBackHandler } from "@services/hooks/useBackHandler";
+import { GQL_MUTATION_UPDATE_TOP_UPS_QUOTE } from "../../../../../../graphql/products/updateTopUpsQuote";
 
 export interface IToolTipProps {
   code: ProductCode;
@@ -52,7 +58,21 @@ export const ToolTip = ({ code, onClose }: IToolTipProps) => {
 
   const fibState = useSelector(getFIBState);
   const dispatch = useDispatch();
+
   const shouldResetFib = useSelector(getUserFeatures).resetFib;
+  const [updateFibQuote] = useMutation<UpdateTopUpsQuote_updateFibQuote, UpdateTopUpsQuoteVariables>(
+    GQL_MUTATION_UPDATE_TOP_UPS_QUOTE
+  );
+  const quoteId = fibState.latestQuoteId;
+  const resetFibJourney = useCallback(async () => {
+    if (quoteId) {
+      await updateFibQuote({
+        variables: { archiveQuote: true, quoteId },
+      });
+    }
+
+    dispatch(resetFIBUnderwritingJourney());
+  }, [dispatch, quoteId, updateFibQuote]);
 
   const handleNavigateToProductScreen = useCallback(() => {
     onClose();
@@ -60,9 +80,9 @@ export const ToolTip = ({ code, onClose }: IToolTipProps) => {
       product,
       fibState,
       shouldResetFib,
-      resetFibJourney: () => dispatch(resetFIBUnderwritingJourney()),
+      resetFibJourney,
     });
-  }, [product, fibState, shouldResetFib, dispatch, onClose]);
+  }, [product, fibState, shouldResetFib, onClose, resetFibJourney]);
 
   useBackHandler(() => {
     if (!code || !product) {

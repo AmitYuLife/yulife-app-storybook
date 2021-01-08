@@ -2,8 +2,8 @@ import React, { useCallback } from "react";
 import { View, ViewStyle, StyleSheet } from "react-native";
 import { Product } from "./product";
 import { Heading } from "../heading";
-import { useQuery } from "@apollo/react-hooks";
-import { GetYulifer } from "@graphql/_core/schema";
+import { useMutation, useQuery } from "@apollo/react-hooks";
+import { GetYulifer, UpdateTopUpsQuoteVariables, UpdateTopUpsQuote_updateFibQuote } from "@graphql/_core/schema";
 import { GQL_QUERY_GET_YULIFER } from "@graphql/yuscreen";
 import { navigateToProductScreen } from "../../navigation/navigateToProductScreen";
 import { ItemSlot, ProductStatus, ProductType } from "../../yu-types";
@@ -12,6 +12,7 @@ import { getFIBState } from "@redux/product/product.selectors";
 import { resetFIBUnderwritingJourney } from "@redux/product/product.actions";
 import { getUserFeatures } from "@redux/user/user.selectors";
 import { Style } from "@styles";
+import { GQL_MUTATION_UPDATE_TOP_UPS_QUOTE } from "../../../../../../graphql/products/updateTopUpsQuote";
 
 export interface IProductSetProps {
   type: ProductType;
@@ -25,9 +26,20 @@ export const ProductSet = (props: IProductSetProps) => {
   const fibState = useSelector(getFIBState);
   const dispatch = useDispatch();
   const shouldResetFib = useSelector(getUserFeatures).resetFib;
-  const resetFibJourney = useCallback(() => {
+  const [updateFibQuote] = useMutation<UpdateTopUpsQuote_updateFibQuote, UpdateTopUpsQuoteVariables>(
+    GQL_MUTATION_UPDATE_TOP_UPS_QUOTE
+  );
+
+  const quoteId = fibState.latestQuoteId;
+  const resetFibJourney = useCallback(async () => {
+    if (quoteId) {
+      await updateFibQuote({
+        variables: { archiveQuote: true, quoteId },
+      });
+    }
+
     dispatch(resetFIBUnderwritingJourney());
-  }, [dispatch]);
+  }, [dispatch, quoteId, updateFibQuote]);
 
   const products = getProducts({ type, data, fibState, resetFibJourney, shouldResetFib });
   const heading = getHeading(type);

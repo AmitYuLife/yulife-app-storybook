@@ -14,10 +14,14 @@ export interface UpdateTopUpsQuote_updateFibQuote {
 }
 
 export interface UpdateTopUpsQuote {
+  /**
+   * Update a new quote for top ups
+   */
   updateFibQuote: UpdateTopUpsQuote_updateFibQuote | null;
 }
 
 export interface UpdateTopUpsQuoteVariables {
   fibQuote?: FibQuote | null;
-  quoteId?: string | null;
+  quoteId: string;
+  archiveQuote?: boolean | null;
 }

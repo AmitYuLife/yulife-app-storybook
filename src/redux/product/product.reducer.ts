@@ -154,14 +154,7 @@ function personalProductReducer<T>(state: IProductStore = initialState, action: 
       return {
         ...state,
         fib: {
-          ...state.fib,
-          rejected: false,
-          medicalInvestigationRequired: false,
-          quoteDate: "",
-          lastQuestionId: "",
-          hasPriceChanged: false,
-          actualCost: 0,
-          salary: 0,
+          ...initialState.fib,
           gpDetails: {
             ...initialState.fib.gpDetails,
           },
@@ -339,7 +332,7 @@ const refreshFibStore = (state: IProductStore, action: RefreshFIBStoreAction) =>
 
   userAnswers.forEach((answer) => {
     let questionId = answer.questionId;
-    const value = JSON.parse(answer.value);
+    let value = JSON.parse(answer.value);
     if (questionId === "salary") {
       newState.fib.salary = value;
       return;
@@ -355,6 +348,17 @@ const refreshFibStore = (state: IProductStore, action: RefreshFIBStoreAction) =>
 
     if (questionId === FIB_FINANCIAL_COVER_LIST_SCREEN_ID) {
       questionId = "existingCovers";
+    }
+
+    if (questionId === "contactDetails") {
+      value = {
+        firstAddressLine: value?.addressFirstLine,
+        secondAddressLine: value?.addressSecondLine,
+        townOrCity: value?.addressCity,
+        postCode: value?.addressPostCode,
+        personalEmail: value?.email,
+        phoneNumber: value?.phone,
+      };
     }
 
     newState.fib.answers[questionId] = value;
