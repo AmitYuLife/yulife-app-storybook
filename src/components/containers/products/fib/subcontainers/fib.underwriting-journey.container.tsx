@@ -1,5 +1,5 @@
 import React, { memo, useState, useCallback, useEffect } from "react";
-import { FibLocalNavigation, FIB_UNDERWRITING_REVIEW_ANSWERS } from "../fib.types";
+import { FibLocalNavigation, FIB_UNDERWRITING_REVIEW_ANSWERS, FIB_INTRO_YUGI } from "../fib.types";
 import { FibUnderwritingJourneyScreen } from "../../../../screens/products/fib/underwriting-journey/fib.underwriting-journey.screen";
 import {
   data,
@@ -36,6 +36,7 @@ import {
   FIB_MEDICAL_FOLLOW_UP_QUESTIONS,
   MEDICAL_CHIPS_QUESTIONS,
 } from "../data/underwriting-journey-data";
+import { YUGI_INTRO_TYPE } from "./fib.yugi-intro.container";
 
 type ConnectedProps = ReturnType<typeof mapStateToProps>;
 type ConnecteDispatch = typeof mapDispatchToProps;
@@ -244,7 +245,10 @@ const _FibUnderwritingJourneyContainer = memo(function (props: Props) {
 
     if (isFirstQuestion) {
       dispatch(updateFIBValue({ key: "lastQuestionId", value: "" }));
-      return navigation.pop();
+      return navigation.replace(FIB_INTRO_YUGI, {
+        type: YUGI_INTRO_TYPE.PACKAGE_CHOSEN,
+        initialIndex: 1,
+      });
     }
 
     const question = findQuestion({
