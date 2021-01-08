@@ -1,6 +1,6 @@
-import React, { memo, useState, useCallback } from "react";
+import React, { memo, useState, useCallback, useRef } from "react";
 import { FibUnderwritingJourneyLayout } from "../layouts/fib.underwriting-journey-layout";
-import { View, StyleSheet, TextStyle, ViewStyle, ScrollView } from "react-native";
+import { View, StyleSheet, TextStyle, ViewStyle, ScrollView, LayoutChangeEvent } from "react-native";
 import { TextField, TouchableOpacityWithDelay } from "@components/molecules";
 import { Text, Pad, Button } from "@atoms";
 import { Style } from "@styles";
@@ -25,6 +25,8 @@ export const FibContactDetailsScreen = memo(function (props: IFibContactDetailsS
   const [isEmailValid, setIsEmailValid] = useState(validator.validate(contactDetails.personalEmail));
   const [isPhoneNumberValid, setIsPhoneNumberValid] = useState(phoneNumberIsValid(contactDetails.phoneNumber));
   const [isPostCodeValide, setIsPostCodeValid] = useState(postCodeValid(contactDetails.postCode));
+  const layouts = useRef([] as number[]);
+  const scrollViewRef = useRef(null);
 
   const isButtonEnable =
     isEmailValid &&
@@ -54,6 +56,64 @@ export const FibContactDetailsScreen = memo(function (props: IFibContactDetailsS
     [setIsPostCodeValid, onContactDetailsChange]
   );
 
+  function onTextInputFocus(index: number) {
+    return () => {
+      scrollViewRef.current.scrollTo({ y: layouts.current[index] });
+    };
+  }
+
+  function setLayout(index: number) {
+    return (event: LayoutChangeEvent) => {
+      layouts.current[index] = event.nativeEvent.layout.y;
+    };
+  }
+
+  const inputs = [
+    {
+      onChange: (val: string) => onContactDetailsChange("firstAddressLine", val),
+      placeholder: "Address Line 1",
+      value: contactDetails.firstAddressLine,
+    },
+    {
+      onChange: (val: string) => onContactDetailsChange("secondAddressLine", val),
+      placeholder: "Address Line 2 (optional)",
+      value: contactDetails.secondAddressLine,
+    },
+    {
+      onChange: (val: string) => onContactDetailsChange("townOrCity", val),
+      placeholder: "Town or City",
+      value: contactDetails.townOrCity,
+    },
+    {
+      onChange: (val: string) => onPostCodeChange(val),
+      placeholder: "Postcode",
+      type: "PostCode" as "PostCode",
+      maxLength: 8,
+      value: contactDetails.postCode,
+      showError: contactDetails.postCode && !isPostCodeValide,
+      errorMessage: "Not a valid postcode",
+    },
+    {
+      onChange: (val: string) => {
+        setIsEmailValid(validator.validate(val));
+        onContactDetailsChange("personalEmail", val);
+      },
+      placeholder: "Personal Email",
+      value: contactDetails.personalEmail,
+      showError: contactDetails.personalEmail && !isEmailValid,
+      errorMessage: "Not a valid email",
+    },
+    {
+      onChange: (val: string) => onPhoneNumberChange(val),
+      placeholder: "Phone number",
+      value: contactDetails.phoneNumber,
+      type: "PhoneNumber" as "PhoneNumber",
+      showError: contactDetails.phoneNumber && !isPhoneNumberValid,
+      errorMessage: "Not a valid UK phone number",
+      maxLength: 11,
+    },
+  ];
+
   return (
     <FibUnderwritingJourneyLayout
       hideBorder={false}
@@ -62,7 +122,12 @@ export const FibContactDetailsScreen = memo(function (props: IFibContactDetailsS
       hideProgressBar={true}
       onPreviousQuestion={pop}
     >
-      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.contentWrapper}>
+      <ScrollView
+        ref={scrollViewRef}
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={styles.contentWrapper}
+        keyboardShouldPersistTaps="always"
+      >
         <View style={styles.wrapper}>
           <FibTitle title="Please enter your contact details:" />
           <View style={styles.paddingHorizontal}>
@@ -74,58 +139,12 @@ export const FibContactDetailsScreen = memo(function (props: IFibContactDetailsS
                 </View>
               </View>
             </TouchableOpacityWithDelay>
-            <TextField
-              onChange={(val) => onContactDetailsChange("firstAddressLine", val)}
-              placeholder={"Address Line 1"}
-              value={contactDetails.firstAddressLine}
-            />
-            <Pad height={20} />
-            <TextField
-              onChange={(val) => onContactDetailsChange("secondAddressLine", val)}
-              placeholder={"Address Line 2 (optional)"}
-              value={contactDetails.secondAddressLine}
-            />
-            <Pad height={20} />
-
-            <TextField
-              onChange={(val) => onContactDetailsChange("townOrCity", val)}
-              placeholder={"Town or City"}
-              value={contactDetails.townOrCity}
-            />
-            <Pad height={20} />
-
-            <TextField
-              onChange={(val) => onPostCodeChange(val)}
-              placeholder={"Postcode"}
-              type={"PostCode"}
-              maxLength={8}
-              value={contactDetails.postCode}
-              showError={contactDetails.postCode && !isPostCodeValide}
-              errorMessage={"Not a valid postcode"}
-            />
-            <Pad height={20} />
-
-            <TextField
-              onChange={(val) => {
-                setIsEmailValid(validator.validate(val));
-                onContactDetailsChange("personalEmail", val);
-              }}
-              placeholder={"Personal Email"}
-              value={contactDetails.personalEmail}
-              showError={contactDetails.personalEmail && !isEmailValid}
-              errorMessage={"Not a valid email"}
-            />
-            <Pad height={20} />
-
-            <TextField
-              onChange={(val) => onPhoneNumberChange(val)}
-              placeholder={"Phone number"}
-              value={contactDetails.phoneNumber}
-              type={"PhoneNumber"}
-              showError={contactDetails.phoneNumber && !isPhoneNumberValid}
-              errorMessage={"Not a valid UK phone number"}
-              maxLength={11}
-            />
+            {inputs.map((item, index) => (
+              <View onLayout={setLayout(index)} key={index}>
+                <TextField onFocus={onTextInputFocus(index)} {...item} />
+                <Pad height={20} />
+              </View>
+            ))}
             <Pad height={40} />
           </View>
           <Button type="Primary" size={"Large"} onPress={onContinue} label={"Continue"} disabled={!isButtonEnable} />
