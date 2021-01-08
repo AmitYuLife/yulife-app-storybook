@@ -245,6 +245,8 @@ const _FibUnderwritingJourneyContainer = memo(function (props: Props) {
 
     if (isFirstQuestion) {
       dispatch(updateFIBValue({ key: "lastQuestionId", value: "" }));
+      navigation.pop();
+
       return navigation.replace(FIB_INTRO_YUGI, {
         type: YUGI_INTRO_TYPE.PACKAGE_CHOSEN,
         initialIndex: 1,

@@ -21,6 +21,7 @@ import { IFaq } from "./subcomponents/faqs/faq";
 import Logger from "@services/logging/logger";
 import { FIB_BROWSE_SCREEN } from "@ids";
 import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
+import { useBackHandler } from "@services/hooks/useBackHandler";
 
 interface IFibBrowseScreenProps {
   onNavigateToYuScreen: () => void;
@@ -53,6 +54,11 @@ export const FibBrowseScreen = memo(function (props: IFibBrowseScreenProps) {
     onScrollEnd,
     onNavigateToIntroScreen,
   } = props;
+
+  useBackHandler(() => {
+    onNavigateToIntroScreen();
+    return true;
+  });
 
   const scrollViewRef = useRef<ScrollView>(null);
   const onSelectPackage = (packageId: string) => {
