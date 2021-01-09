@@ -1,42 +1,26 @@
-import { Style } from "@styles/index";
-import { StyleSheet, TextStyle, ViewStyle, Platform } from "react-native";
+import { Style, Colours } from "@styles/index";
+import { StyleSheet, ViewStyle, Platform } from "react-native";
 import deviceInfoModule from "react-native-device-info";
 
+const BORDER_RADIUS = Style.adjust(8);
+const OUTER_PADDING = Style.adjust(16);
+const NAV_BAR_HEIGHT = Style.adjust(58);
+
 const styles = StyleSheet.create({
-  labelsWrapper: {
-    flexDirection: "row",
-    height: Style.SCALE_UP_AND_DOWN(51),
-    position: "absolute",
-    bottom: 0,
-    width: "100%",
-  } as ViewStyle,
-  text: {
-    fontFamily: Style.FONT_FAMILY_PRIMARY_BOLD,
-    fontSize: Style.SCALE_UP_AND_DOWN(12),
-    textAlign: "center",
-    width: "100%",
-  } as TextStyle,
-  textWrapper: {
-    alignItems: "center",
-    height: Style.SCALE_UP_AND_DOWN(60),
-    flex: 1,
-    justifyContent: "flex-end",
-  } as ViewStyle,
   wrapper: {
-    backgroundColor: "#fff",
-    borderRadius: Style.SCALE_UP_AND_DOWN(8),
-    height: Style.adjust(58),
+    backgroundColor: Colours.neutral.white,
+    borderRadius: BORDER_RADIUS,
+    height: NAV_BAR_HEIGHT,
     justifyContent: "space-around",
     alignItems: "center",
-    paddingHorizontal: Style.SCALE_UP_AND_DOWN(20),
     flexDirection: "row",
     width: "100%",
     overflow: "hidden",
   } as ViewStyle,
   outerWrapper: {
     position: "absolute",
-    left: Style.adjust(10),
-    right: Style.adjust(10),
+    left: OUTER_PADDING,
+    right: OUTER_PADDING,
     // ios box shadow
     shadowColor: "#000",
     shadowOffset: {
