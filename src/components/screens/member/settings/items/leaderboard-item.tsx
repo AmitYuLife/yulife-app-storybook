@@ -10,7 +10,7 @@ const LeaderboardItem = ({ name, onPress, status, isLoading }: ILeaderboardSecti
   <View style={styles.wrapper}>
     <TouchableOpacity style={styles.button} onPress={onPress} testID={LEADERBOARD_STATUS(name, status)}>
       <Text numberOfLines={1} bold={false} style={styles.name}>
-        {name.length > 11 ? `${name.slice(0, 8)}...` : name}
+        {name}
       </Text>
       <LeaderboardCircle status={status} isLoading={isLoading} />
     </TouchableOpacity>

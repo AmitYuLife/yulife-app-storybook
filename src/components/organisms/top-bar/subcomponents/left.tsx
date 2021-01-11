@@ -19,7 +19,13 @@ interface Props {
 
 export default function Left({ onPress, icon, colour, label, textStyle }: Props) {
   return (
-    <TouchableOpacity style={styles.wrapper} onPress={onPress} testID={BUTTON_TOP_LEFT_BAR} accessibilityLabel={icon}>
+    <TouchableOpacity
+      hitSlop={TOP_BAR.HIT_SLOP}
+      style={styles.wrapper}
+      onPress={onPress}
+      testID={BUTTON_TOP_LEFT_BAR}
+      accessibilityLabel={icon}
+    >
       <Icon icon={icon} colour={colour} />
       <MenuLabel label={label} textStyle={textStyle} />
     </TouchableOpacity>

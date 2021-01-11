@@ -18,7 +18,6 @@ export default function* checkConnectionSaga() {
   if (isCurrentlyOffline) {
     try {
       const response = yield call(getSession);
-
       if (response?.data) {
         yield call(setAuthenticatedRoot);
       }

@@ -92,6 +92,15 @@ export enum ScreeningStatus {
   WAITING_MSS = "WAITING_MSS",
 }
 
+export enum UserNotificationsType {
+  activityInduced = "activityInduced",
+  challengeCompletion = "challengeCompletion",
+  dailyChallengeReminder = "dailyChallengeReminder",
+  duels = "duels",
+  intercom = "intercom",
+  streakSaver = "streakSaver",
+}
+
 export interface AnswerInput {
   key: string;
   value: string;

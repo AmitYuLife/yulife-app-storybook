@@ -1,24 +1,28 @@
 import { Text } from "@atoms/index";
 import * as React from "react";
-import { SFC } from "react";
-import { StyleSheet, Switch, TouchableOpacity, View } from "react-native";
+import { FC } from "react";
+import { StyleSheet, View } from "react-native";
+import { Switch, TouchableOpacityWithDelay } from "@molecules";
 import { INotificationsSectionItem } from "../settings.screen";
-import styles, { thumbColor, trackColor } from "./notifications-item.styles";
+import styles from "./item.styles";
 
-const NotificationsItem: SFC<INotificationsSectionItem> = ({ active, name, onSwitchPress, onTimePress, time }) => (
-    <View style={styles.wrapper}>
-        <View style={styles.nameWrapper}>
-            <Text style={StyleSheet.flatten([styles.text, active ? null : styles.textGrey])}>{name}</Text>
-            {!time ? null : (
-                <TouchableOpacity onPress={onTimePress}>
-                    <Text style={StyleSheet.flatten([styles.textSmall, active ? null : styles.textGrey])}>
-                        {time || ""}
-                    </Text>
-                </TouchableOpacity>
-            )}
-        </View>
-        <Switch trackColor={trackColor} thumbColor={thumbColor} onValueChange={onSwitchPress} value={active} />
+const NotificationsItem: FC<INotificationsSectionItem> = ({ isActive, name, onSwitchPress, onTimePress, time }) => (
+  <View style={styles.wrapper}>
+    <View style={styles.nameWrapper}>
+      <Text style={styles.text}>{name}</Text>
+      {time ? null : (
+        <Text style={StyleSheet.flatten([styles.textSmall, isActive ? styles.active : null])}>
+          {isActive ? "On" : "Off"}
+        </Text>
+      )}
+      {!time ? null : (
+        <TouchableOpacityWithDelay onPress={onTimePress}>
+          <Text style={StyleSheet.flatten([styles.textSmall, isActive ? styles.active : null])}>{time || ""}</Text>
+        </TouchableOpacityWithDelay>
+      )}
     </View>
+    <Switch onPress={onSwitchPress} value={isActive} />
+  </View>
 );
 
 export default NotificationsItem;

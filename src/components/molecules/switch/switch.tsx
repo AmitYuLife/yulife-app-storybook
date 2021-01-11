@@ -1,0 +1,91 @@
+import React from "react";
+import { StyleSheet, View, Animated } from "react-native";
+import { Style, Colours } from "@styles";
+import { noop } from "@services/utils";
+import TouchableOpacityWithDelay from "../touchable-opacity-delay/touchable-opacity-delay";
+
+const CIRCLE_SIZE = Style.adjust(24);
+const SWITCH_WIDTH = Style.adjust(48);
+const TRANSFORM_X = Style.adjust(28);
+const ANIMATION_SPEED = 300;
+
+interface Props {
+  value: boolean;
+  onPress: () => void;
+  disabled?: boolean;
+}
+
+function _Switch(props: Props) {
+  const { value, onPress, disabled = false } = props;
+  const translateX = React.useRef(new Animated.Value(0)).current;
+
+  React.useEffect(() => {
+    const toValue = value ? SWITCH_WIDTH - TRANSFORM_X : 0;
+    const animation = Animated.timing(translateX, {
+      toValue,
+      duration: ANIMATION_SPEED,
+      useNativeDriver: true,
+    });
+
+    animation.start();
+
+    return animation.stop;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [value]);
+
+  return (
+    <View style={styles.wrapper}>
+      <TouchableOpacityWithDelay
+        style={[styles.innerWrapper, disabled ? styles.disabled : value ? styles.on : styles.off]}
+        activeOpacity={0.8}
+        onPress={disabled ? noop : onPress}
+      >
+        <Animated.View style={[styles.circle, { transform: [{ translateX }] }]} />
+      </TouchableOpacityWithDelay>
+    </View>
+  );
+}
+
+const Switch = React.memo(_Switch);
+
+export default Switch;
+
+const styles = StyleSheet.create({
+  wrapper: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  innerWrapper: {
+    justifyContent: "center",
+    width: SWITCH_WIDTH,
+    borderRadius: Style.adjust(20),
+    padding: Style.adjust(14),
+  },
+  on: {
+    backgroundColor: Colours.heavyPink,
+  },
+  off: {
+    backgroundColor: Colours.checkMilestone.unfilledCircle,
+  },
+  disabled: {
+    backgroundColor: Colours.slider.inactive,
+  },
+  circle: {
+    alignItems: "center",
+    justifyContent: "center",
+    margin: Style.adjust(2),
+    position: "absolute",
+    backgroundColor: Colours.neutral.white,
+    width: CIRCLE_SIZE,
+    height: CIRCLE_SIZE,
+    borderRadius: CIRCLE_SIZE / 2,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.2,
+    shadowRadius: 2.5,
+    elevation: 1.5,
+  },
+});

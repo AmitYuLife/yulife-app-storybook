@@ -7,6 +7,7 @@ import { IGenericHeadingProps } from "./generic-heading.types";
 import { Heading } from "./subcomponents/heading";
 import { Logo } from "./subcomponents/logo";
 import { Beta } from "./subcomponents/beta";
+import { TOP_BAR } from "@styles";
 import CloseSvg from "@atoms/close/close-svg";
 import EditSvg from "@atoms/edit/edit-svg";
 import { PressableWithDelay } from "@components/molecules";
@@ -28,7 +29,7 @@ function GenericHeading(props: IGenericHeadingProps) {
     <View style={styles.wrapper}>
       <View style={styles.leftIconWrapper}>
         {!onLeftIconPress ? null : (
-          <TouchableOpacity onPress={onLeftIconPress}>
+          <TouchableOpacity hitSlop={TOP_BAR.HIT_SLOP} onPress={onLeftIconPress}>
             <LeftIcon icon={leftIcon} />
           </TouchableOpacity>
         )}
@@ -54,7 +55,7 @@ function GenericHeading(props: IGenericHeadingProps) {
       )}
       <View style={styles.rightIconWrapper}>
         {onRightIconPress ? (
-          <PressableWithDelay hitSlop={16} onPress={onRightIconPress} style={styles.rightIconTouchable}>
+          <PressableWithDelay hitSlop={TOP_BAR.HIT_SLOP} onPress={onRightIconPress} style={styles.rightIconTouchable}>
             <RightIcon icon={rightIcon} />
           </PressableWithDelay>
         ) : null}
