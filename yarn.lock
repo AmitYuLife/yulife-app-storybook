@@ -13530,10 +13530,10 @@ react-native-linear-gradient@^2.5.6:
   resolved "https://registry.yarnpkg.com/react-native-linear-gradient/-/react-native-linear-gradient-2.5.6.tgz#96215cbc5ec7a01247a20890888aa75b834d44a0"
   integrity sha512-HDwEaXcQIuXXCV70O+bK1rizFong3wj+5Q/jSyifKFLg0VWF95xh8XQgfzXwtq0NggL9vNjPKXa016KuFu+VFg==
 
-react-native-mixpanel@^1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/react-native-mixpanel/-/react-native-mixpanel-1.2.0.tgz#17c24151cf2039482cd20decc54ccf0e49ccebc5"
-  integrity sha512-Xy+KEIEVFidWuASBdexZquXTJBb3JCyFM7xSgnIOZt5PRzpARGFrYMDErTUZ1wSPK+KFaf1oylInOoC2DddI/Q==
+react-native-mixpanel@^1.2.5:
+  version "1.2.5"
+  resolved "https://registry.yarnpkg.com/react-native-mixpanel/-/react-native-mixpanel-1.2.5.tgz#1d3348625a82786e860c5a41d3d9d73939f2eeda"
+  integrity sha512-Xbpcj99Wo4NJa/Idp/nLY5m9r/H+v7szRWfQGxZGxDFiqz3VPs87c7hTMQP9OpgId6BFycxWGbkJOptiDSKqQQ==
 
 react-native-modal-datetime-picker@^7.4.2:
   version "7.6.1"

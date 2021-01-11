@@ -48,14 +48,15 @@ static void InitializeFlipper(UIApplication *application) {
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Intercom
+  // Intercom
   NSString *intercomApiKey = [ReactNativeConfig envFor:@"INTERCOM_API_KEY_IOS"];
   NSString *intercomAppId = [ReactNativeConfig envFor:@"INTERCOM_APP_ID"];
   [Intercom setApiKey:intercomApiKey forAppId:intercomAppId];
   
   // Mixpanel
   NSString *mixpanelApiKey = [ReactNativeConfig envFor:@"MIXPANEL_API_TOKEN"];
-  [Mixpanel sharedInstanceWithToken:mixpanelApiKey launchOptions:launchOptions];
+  Mixpanel *mixpanel = [Mixpanel sharedInstanceWithToken:mixpanelApiKey launchOptions:launchOptions];
+  mixpanel.showNotificationOnActive = NO;
 
   // Bugsnag
   NSString *bugsnagApiKey = [ReactNativeConfig envFor:@"BUGSNAG_API_KEY"];
