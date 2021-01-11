@@ -1,11 +1,13 @@
 import React, { useCallback, memo, useState } from "react";
 import { View, StyleSheet, ViewStyle, TextStyle } from "react-native";
+import Config from "react-native-config";
 import { Text, CheckBox } from "@atoms";
 import { Style, Colours } from "@styles";
 import { useBackHandler } from "../../../../../../../services/hooks/useBackHandler";
 import { ScrollableLayout } from "@molecules";
 import { useDispatch } from "react-redux";
 import { updateFIBAnswerValue } from "../../../../../../../redux/product/product.actions";
+import { handleOpenWebView } from "../../../../../../../navigation/utils";
 
 interface Props {
   onClose: () => void;
@@ -43,6 +45,14 @@ function _FibGPConsentScreen(props: Props) {
 
   useBackHandler(backHandler);
 
+  const handlePrivacyPolicy = useCallback(async () => {
+    const url = `${Config.WEB_SITE_URL}privacy-policy`;
+    await handleOpenWebView({
+      uri: url,
+      title: "Privacy Policy",
+    });
+  }, []);
+
   return (
     <ScrollableLayout
       buttonAction={handleOnContinue}
@@ -54,21 +64,26 @@ function _FibGPConsentScreen(props: Props) {
     >
       <View style={styles.viewWrapper}>
         <View style={styles.headerWrapper}>
-          <Text style={[styles.text, { fontFamily: Style.FONT_FAMILY_PRIMARY_BOLD }]} bold={true}>
+          <Text style={styles.text}>
             We may need to request a medical report from your doctor to verify the accuracy of the answers you have
-            given during this sign-up journey. We will guard this information carefully and only share it with our
-            insurance partners in accordance with our privacy policy.
+            given during your application. We will guard this information carefully and only share it with our insurance
+            partners in accordance with our{" "}
+            <Text style={[styles.text, styles.linkText]} onPress={handlePrivacyPolicy}>
+              Privacy Policy.
+            </Text>
           </Text>
         </View>
         <View style={styles.textWrapper}>
           <Text style={[styles.text, styles.textParagraph]}>
-            You have the following rights relating to any medical report we request from your doctor: you can ask your
-            doctor to see the report within 6 months of it being issued;
+            You have the following rights relating to any medical report we request from your doctor:
+          </Text>
+          <Text style={[styles.text, styles.textParagraph]}>
+            You can ask your doctor to see the report within 6 months of it being issued.
           </Text>
           <Text style={[styles.text, styles.textParagraph]}>
             You can also ask to see the report before your doctor sends it to us. It’s up to your doctor which parts of
             the report they share with you. You’ll have 21 days to arrange with your doctor to see your report. If you
-            haven’t reviewed your report in this time, your doctor will send it to us;
+            haven’t reviewed your report during this time, your doctor will send it to us.
           </Text>
           <Text style={[styles.text, styles.textParagraph]}>
             You can ask your doctor to amend any part of the report you consider misleading or incorrect before giving
@@ -143,5 +158,9 @@ const styles = StyleSheet.create({
     lineHeight: 20,
     letterSpacing: 0.8,
     color: Colours.neutral.n800,
+  } as TextStyle,
+  linkText: {
+    color: Colours.darkHotPink,
+    fontFamily: Style.FONT_FAMILY_PRIMARY_BOLD,
   } as TextStyle,
 });
