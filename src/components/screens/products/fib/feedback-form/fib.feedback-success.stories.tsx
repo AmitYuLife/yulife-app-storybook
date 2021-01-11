@@ -9,4 +9,4 @@ function voidFunc(): void {
 
 storiesOf("FibFeedbackSuccessScreen", module)
   .addDecorator(withProvider)
-  .add("default", () => <FibFeedbackSuccessScreen avatar={null} onContinue={voidFunc} onNavigateBack={voidFunc} />);
+  .add("default", () => <FibFeedbackSuccessScreen avatar={null} onContinue={voidFunc} />);

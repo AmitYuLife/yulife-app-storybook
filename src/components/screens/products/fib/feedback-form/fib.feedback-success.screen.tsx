@@ -14,16 +14,15 @@ type ConnectedState = ReturnType<typeof mapStateToProps>;
 
 interface Props extends ConnectedState {
   avatar: string;
-  onNavigateBack: () => void;
   onContinue: () => void;
 }
 
 function _FibFeedbackSuccessScreen(props: Props) {
-  const { onNavigateBack } = props;
+  const { onContinue } = props;
   const backHandler = useCallback(() => {
-    onNavigateBack();
+    onContinue();
     return true;
-  }, [onNavigateBack]);
+  }, [onContinue]);
 
   useBackHandler(backHandler);
   return (
@@ -50,7 +49,7 @@ function _FibFeedbackSuccessScreen(props: Props) {
           </View>
         </ScrollView>
       </View>
-      <GenericHeadingAbsolute heading="Feedback" onLeftIconPress={props.onNavigateBack} />
+      <GenericHeadingAbsolute heading="Feedback" />
       <View style={styles.button}>
         <Button label="Close" onPress={props.onContinue} type="Primary" />
       </View>
