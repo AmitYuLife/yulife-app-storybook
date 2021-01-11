@@ -333,8 +333,8 @@ const refreshFibStore = (state: IProductStore, action: RefreshFIBStoreAction) =>
   userAnswers.forEach((answer) => {
     let questionId = answer.questionId;
     let value = JSON.parse(answer.value);
+
     if (questionId === "salary") {
-      newState.fib.salary = value;
       return;
     }
 
@@ -372,6 +372,7 @@ const refreshFibStore = (state: IProductStore, action: RefreshFIBStoreAction) =>
   newState.fib.latestQuoteId = quoteResult.quoteId;
   newState.fib.productEntityId = quoteResult.productEntityId;
   newState.fib.quoteDate = quoteResult.createdAt;
+  newState.fib.salary = quoteResult.salary;
   // TODO: Save latestQuestionId in user session?
   newState.fib.lastQuestionId = newState.fib.latestQuoteId ? FIB_UNDERWRITING_REVIEW_ANSWERS_SCREEN_ID : "";
 
@@ -384,6 +385,7 @@ const updateFibValuesFromQuote = (state: IProductStore, action: UpdateFIBValuesF
   const actualCost = newQuoteData?.actualCost;
   const medicalInvestigationRequired = newQuoteData?.medicalInvestigationRequired;
   const rejected = newQuoteData?.rejected;
+  const salary = newQuoteData?.salary;
 
   const newState: IProductStore = {
     ...state,
@@ -394,6 +396,7 @@ const updateFibValuesFromQuote = (state: IProductStore, action: UpdateFIBValuesF
       medicalInvestigationRequired: medicalInvestigationRequired || state.fib.medicalInvestigationRequired,
       rejected: rejected || state.fib.rejected,
       quoteDate: moment().format("YYYY-MM-DD"),
+      salary: salary || state.fib.salary,
       answers: {
         ...state.fib.answers,
       },

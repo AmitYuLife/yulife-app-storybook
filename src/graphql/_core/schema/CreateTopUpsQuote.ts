@@ -36,6 +36,7 @@ export interface CreateTopUpsQuote_createTopUpsQuote {
    * Flag to require medical investigations
    */
   medicalInvestigationRequired: boolean | null;
+  salary: number | null;
 }
 
 export interface CreateTopUpsQuote {
