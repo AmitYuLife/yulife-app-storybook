@@ -16,7 +16,6 @@ const styles = StyleSheet.create({
     marginTop: Style.SCALE_UP_AND_DOWN(15),
     marginHorizontal: Style.SCALE_UP_AND_DOWN(15),
     width: Style.SCALE_UP_AND_DOWN(65),
-    overflow: "hidden",
   } as ViewStyle,
 });
 

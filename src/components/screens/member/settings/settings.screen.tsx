@@ -1,8 +1,8 @@
 import { SETTINGS_SCREEN } from "@ids";
-import { IYulifeNotification } from "@redux/notifications/notifications.selectors";
 import * as React from "react";
 import { PureComponent } from "react";
 import { ScrollView, View } from "react-native";
+import { GetUserNotificationsSettings_getUserNotificationsSettings } from "@graphql/_core/schema";
 import ConnectionsItem from "./items/connections-item";
 import LeaderboardItem from "./items/leaderboard-item";
 import NotificationsItem from "./items/notifications-item";
@@ -18,7 +18,7 @@ export interface ILeaderboardSectionItem {
   isLoading: boolean;
 }
 
-export interface INotificationsSectionItem extends IYulifeNotification {
+export interface INotificationsSectionItem extends GetUserNotificationsSettings_getUserNotificationsSettings {
   name: string;
   onSwitchPress: () => void;
   onTimePress: () => void;
@@ -86,9 +86,9 @@ export default class SettingsScreen extends PureComponent<IProps> {
       <View key={index} style={styles.wrapper}>
         <SectionHeading heading={section.name} />
         <View style={styles.leaderboardItemsWrapper}>
-          {section.items.map((item, i) => {
-            return <LeaderboardItem {...item} key={i} />;
-          })}
+          {section.items.map((item, i) => (
+            <LeaderboardItem {...item} key={i} />
+          ))}
         </View>
       </View>
     );
@@ -99,7 +99,9 @@ export default class SettingsScreen extends PureComponent<IProps> {
       <View key={index} style={styles.wrapper}>
         <SectionHeading heading={section.name} />
         <View style={styles.notificationsItemsWrapper}>
-          {section.items.map((item, i) => (item.available ? <NotificationsItem {...item} key={i} /> : null))}
+          {section.items.map((item, i) => (
+            <NotificationsItem {...item} key={i} />
+          ))}
         </View>
       </View>
     );

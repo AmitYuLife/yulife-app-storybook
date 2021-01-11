@@ -8,7 +8,7 @@ import combinedReducers, { IReduxState } from "./reducers";
 import sagas from "./sagas";
 
 const persistConfig = {
-  blacklist: ["app", "pedometer", "avatarCache"],
+  blacklist: ["app", "pedometer", "avatarCache", "notifications"],
   key: "root",
   storage: AsyncStorage,
 };

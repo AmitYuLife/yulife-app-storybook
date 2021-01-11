@@ -6,17 +6,17 @@ export default StyleSheet.create({
     flexDirection: "row",
     flexWrap: "wrap",
     justifyContent: "center",
-    marginTop: Style.SCALE_UP_AND_DOWN(15),
-    paddingHorizontal: Style.SCALE_UP_AND_DOWN(40),
+    marginTop: Style.adjust(15),
+    paddingHorizontal: Style.adjust(40),
   } as ViewStyle,
   notificationsItemsWrapper: {
     flexDirection: "column",
     justifyContent: "center",
-    marginHorizontal: Style.SCALE_UP_AND_DOWN(15),
-    marginTop: Style.SCALE_UP_AND_DOWN(15),
+    marginHorizontal: Style.adjust(15),
+    marginVertical: Style.adjust(15),
   } as ViewStyle,
   scrollContentContainer: {
-    paddingBottom: Style.SCALE_UP_AND_DOWN(30),
+    paddingBottom: Style.adjust(30),
   } as ViewStyle,
   scrollView: {
     flex: 1,

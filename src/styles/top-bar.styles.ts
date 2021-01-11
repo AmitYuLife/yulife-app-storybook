@@ -3,6 +3,13 @@ import Style from "./style";
 import media from "./media";
 
 export const HEIGHT = Style.adjust(36);
+const HIT_SLOP_SIZE = Style.adjust(16);
+const HIT_SLOP = {
+  left: HIT_SLOP_SIZE,
+  right: HIT_SLOP_SIZE,
+  bottom: HIT_SLOP_SIZE,
+  top: HIT_SLOP_SIZE,
+};
 
 const IOS_PADDING_TOP = media.select(
   [
@@ -29,4 +36,5 @@ export default {
   LOGO_PADDING_TOP,
   LEFT_PADDING_TOP,
   TOP_BAR_WITH_PAD,
+  HIT_SLOP,
 };

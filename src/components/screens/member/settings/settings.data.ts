@@ -1,3 +1,3 @@
 export default {
-    heading: "settings"
+  heading: "Settings",
 };

@@ -1,9 +1,9 @@
 /* tslint:disable */
 import * as React from "react";
-import { SFC } from "react";
+import { FC } from "react";
 import Svg, { G, Circle, Line, Polyline } from "react-native-svg";
-import { Colours } from "../../../../../styles";
-import { ActivityIndicator, View } from "react-native";
+import { ActivityIndicator, View, StyleSheet } from "react-native";
+import { Colours } from "@styles";
 
 interface IProps {
   status: "active" | "inactive" | "create";
@@ -73,11 +73,11 @@ const getIcon = (status: IProps["status"]) => {
   }
 };
 
-const LeaderboardCircle: SFC<IProps> = ({ status, isLoading }) => (
-  <Svg width="55" height="55" viewBox="0 0 110 110">
+const LeaderboardCircle: FC<IProps> = ({ status, isLoading }) => (
+  <Svg width="36" height="36" viewBox="0 0 110 110">
     <Circle fill={getColour(status)} cx="55" cy="55" r="55" />
     {isLoading ? (
-      <View style={{ width: 55, height: 55, justifyContent: "center", alignItems: "center" }}>
+      <View style={styles.loadingWrapper}>
         <ActivityIndicator color="white" />
       </View>
     ) : (
@@ -87,3 +87,7 @@ const LeaderboardCircle: SFC<IProps> = ({ status, isLoading }) => (
 );
 
 export default LeaderboardCircle;
+
+const styles = StyleSheet.create({
+  loadingWrapper: { width: 36, height: 36, justifyContent: "center", alignItems: "center" },
+});

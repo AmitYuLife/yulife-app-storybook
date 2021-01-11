@@ -1,11 +1,12 @@
 import { Logo, Text } from "@atoms/index";
 import { MENU_ITEM, MENU_SCREEN } from "@ids";
 import { TouchableOpacityWithDelay } from "@molecules/index";
+import { Pad } from "@atoms/index";
 import * as React from "react";
 import { SFC } from "react";
-import { Image, ImageRequireSource, TouchableOpacity, View } from "react-native";
-import assets from "./assets";
-import styles from "./menu.screen.styles";
+import { Image, ImageRequireSource, View } from "react-native";
+import GenericHeadingAbsolute from "@atoms/generic-heading/generic-heading-absolute";
+import styles, { CLOSE_WRAPPER_TOP_MARGIN } from "./menu.screen.styles";
 
 export interface IMenuLink {
   condition?: boolean;
@@ -24,9 +25,7 @@ interface IProps {
 const MenuScreen: SFC<IProps> = ({ onDebugPress, onPressClose, links, version }) => (
   <>
     <View style={styles.wrapper} testID={MENU_SCREEN}>
-      <TouchableOpacity style={styles.closeWrapper} onPress={onPressClose}>
-        <Image resizeMode="contain" style={styles.close} source={assets.close} />
-      </TouchableOpacity>
+      <Pad height={CLOSE_WRAPPER_TOP_MARGIN} />
       <View style={styles.logoWrapper}>
         <Logo scale={0.7} type="full" />
       </View>
@@ -60,6 +59,7 @@ const MenuScreen: SFC<IProps> = ({ onDebugPress, onPressClose, links, version })
       )}
       <Text style={styles.versionText}>{version}</Text>
     </View>
+    <GenericHeadingAbsolute onRightIconPress={onPressClose} />
   </>
 );
 

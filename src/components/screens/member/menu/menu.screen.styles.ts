@@ -4,7 +4,7 @@ import { Style } from "../../../../styles";
 import deviceInfoModule from "react-native-device-info";
 import media from "@styles/media";
 
-const CLOSE_WRAPPER_TOP_MARGIN = media.select(
+export const CLOSE_WRAPPER_TOP_MARGIN = media.select(
   [
     {
       condition:
@@ -17,55 +17,41 @@ const CLOSE_WRAPPER_TOP_MARGIN = media.select(
 );
 
 export default StyleSheet.create({
-  close: {
-    height: Style.SCALE_UP_AND_DOWN(13),
-    width: Style.SCALE_UP_AND_DOWN(13),
-  } as ImageStyle,
-  closeWrapper: {
-    alignItems: "center",
-    height: Style.SCALE_UP_AND_DOWN(56),
-    justifyContent: "center",
-    position: "absolute",
-    right: 0,
-    top: CLOSE_WRAPPER_TOP_MARGIN,
-    width: Style.SCALE_UP_AND_DOWN(46),
-  } as ViewStyle,
   iconWrapper: {
-    width: Style.SCALE_UP_AND_DOWN(56),
+    width: Style.adjust(56),
   } as ViewStyle,
   itemWrapper: {
     alignItems: "center",
     flexDirection: "row",
-    height: Style.SCALE_UP_AND_DOWN(48),
+    height: Style.adjust(48),
   } as ViewStyle,
   logo: {} as ImageStyle,
   logoWrapper: {
-    marginBottom: Style.SCALE_UP_AND_DOWN(30),
-    width: Style.SCALE_UP_AND_DOWN(56),
+    marginBottom: Style.adjust(30),
+    width: Style.adjust(56),
   } as ViewStyle,
   text: {
     borderColor: "transparent",
     borderWidth: 1,
     color: "#333333",
-    fontSize: Style.SCALE_UP_AND_DOWN(16),
-    fontFamily: Style.FONT_FAMILY_PRIMARY,
+    fontSize: Style.adjust(16),
     width: "100%",
   } as TextStyle,
   textWrapper: {
-    paddingRight: Style.SCALE_UP_AND_DOWN(8),
+    paddingRight: Style.adjust(8),
   } as ViewStyle,
   debugText: {
     color: "rgb(51,51,51)",
-    fontSize: Style.SCALE_UP_AND_DOWN(17),
+    fontSize: Style.adjust(17),
   } as TextStyle,
   versionText: {
     color: "rgb(201,201,201)",
-    fontSize: Style.SCALE_UP_AND_DOWN(10),
+    fontSize: Style.adjust(10),
     textAlign: "center",
   } as TextStyle,
   versionTextWrapper: {
     alignItems: "center",
-    bottom: Platform.OS === "ios" && deviceInfoModule.hasNotch() ? 44 : Style.SCALE_UP_AND_DOWN(10),
+    bottom: Platform.OS === "ios" && deviceInfoModule.hasNotch() ? 44 : Style.adjust(10),
     justifyContent: "center",
     position: "absolute",
     width: "100%",
@@ -73,7 +59,7 @@ export default StyleSheet.create({
   wrapper: {
     backgroundColor: "white",
     flex: 1,
-    paddingLeft: Style.SCALE_UP_AND_DOWN(105),
-    paddingTop: Style.SCALE_UP_AND_DOWN(isIphoneX() ? 130 : 90),
+    paddingLeft: Style.adjust(105),
+    paddingTop: Style.adjust(isIphoneX() ? 130 : 90),
   } as ViewStyle,
 });
