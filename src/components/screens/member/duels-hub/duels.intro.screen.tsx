@@ -15,7 +15,7 @@ const data: OnboardingSwiperData[] = [
     id: "duels_onboarding_1",
     buttonLabel: "Next",
     title: "Challenge a friend!",
-    subtitle: "Ready to go head-to-head? Select a friend from the leaderboard, and challenge them to a duel!",
+    subtitle: "Want to go head-to-head? Select a friend from the leaderboard, and challenge them to a duel!",
   },
   {
     id: "duels_onboarding_2",
@@ -27,7 +27,7 @@ const data: OnboardingSwiperData[] = [
     id: "duels_onboarding_3",
     buttonLabel: "Let's go",
     title: "Out-step your opponent",
-    subtitle: "When the duel begins, you’ll have 24 hours to log more steps than your opponent...so get stepping!",
+    subtitle: "Your duel will begin the next day and you’ll have 24 hours to get in as many steps as you can!",
   },
 ];
 
