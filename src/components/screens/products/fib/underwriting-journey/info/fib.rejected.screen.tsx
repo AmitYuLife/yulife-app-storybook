@@ -10,10 +10,11 @@ export interface IFibRejectedScreenProps {
   onClose?: () => void;
   onResetFib?: () => void;
   updateStatus: () => void;
+  canResetFib: boolean;
 }
 
 export const FibRejectedScreen = memo(function (props: IFibRejectedScreenProps) {
-  const { onClose, onResetFib, updateStatus } = props;
+  const { onClose, onResetFib, updateStatus, canResetFib } = props;
 
   const backHandler = useCallback(() => {
     onClose();
@@ -39,7 +40,7 @@ export const FibRejectedScreen = memo(function (props: IFibRejectedScreenProps) 
       </View>
 
       <View style={styles.buttonWrapper}>
-        {onResetFib ? (
+        {canResetFib ? (
           <Button type="Primary" size={"Large"} onPress={onResetFib} label={"restart journey (beta only)"} />
         ) : null}
         <Button type="Primary" size={"Large"} onPress={onContinue} label={"Continue"} />

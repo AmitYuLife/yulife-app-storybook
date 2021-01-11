@@ -8,10 +8,11 @@ import { useBackHandler } from "../../../../../../services/hooks/useBackHandler"
 export interface IFibHoldingGPDetailsScreenProps {
   onClose?: () => void;
   onResetFib?: () => void;
+  canResetFib: boolean;
 }
 
 export const FibHoldingGPDetails = memo(function (props: IFibHoldingGPDetailsScreenProps) {
-  const { onClose, onResetFib } = props;
+  const { onClose, onResetFib, canResetFib } = props;
 
   const backHandler = useCallback(() => {
     onClose();
@@ -28,7 +29,7 @@ export const FibHoldingGPDetails = memo(function (props: IFibHoldingGPDetailsScr
         </Text>
       </View>
       <View style={styles.buttonWrapper}>
-        {onResetFib ? (
+        {canResetFib ? (
           <Button type="Primary" size={"Large"} onPress={onResetFib} label={"restart journey (beta only)"} />
         ) : null}
       </View>

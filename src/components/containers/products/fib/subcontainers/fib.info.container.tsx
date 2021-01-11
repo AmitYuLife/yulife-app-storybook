@@ -116,7 +116,7 @@ const _FibInfoContainer = memo(function (props: Props) {
 
   switch (screenType) {
     case "HoldingGP":
-      return <FibHoldingGPDetails onClose={onClose} onResetFib={resetFib} />;
+      return <FibHoldingGPDetails onClose={onClose} onResetFib={resetFib} canResetFib={canResetFib} />;
     case "PaymentCongratulation":
       return <FibPaymentCongratulationScreen onClose={onClose} packageType={packageType} />;
     case "Rejected":
@@ -124,6 +124,7 @@ const _FibInfoContainer = memo(function (props: Props) {
         <FibRejectedScreen
           onClose={onClose}
           onResetFib={resetFib}
+          canResetFib={canResetFib}
           updateStatus={() => updateQuoteStatus(ScreeningStatus.REJECTED)}
         />
       );
