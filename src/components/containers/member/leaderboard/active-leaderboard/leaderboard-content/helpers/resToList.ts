@@ -28,7 +28,7 @@ interface ResToListArgs {
   isLoading: boolean;
   scrollValue: Animated.Value;
   duelDialogId: string;
-  setDuelDialogId: React.Dispatch<React.SetStateAction<string>>;
+  setDuelDialogId: (value: string) => void;
   showDuels: boolean;
 }
 

@@ -55,6 +55,19 @@ const _LeaderboardContentContainer = ({
   const flatListRef: RefObject<_FlatList> = useRef();
   const leaderboardItems = query?.getLeaderboard || [];
   const myLeaderboardItem = leaderboardItems.find((item) => item.userId === currentUserId);
+  const setDuelDialog = useCallback(
+    (value: string) => {
+      setDuelDialogId(value);
+      const index = leaderboardItems.findIndex((item) => `lead_${item.userId}` === value);
+      if (index === leaderboardItems.length - 1) {
+        setTimeout(() => {
+          flatListRef.current?.scrollToIndex({ index, animated: true });
+        }, 200);
+      }
+    },
+    [leaderboardItems]
+  );
+
   const list = resToList({
     leaderboardItems,
     currentUserId,
@@ -63,7 +76,7 @@ const _LeaderboardContentContainer = ({
     scrollValue,
     isLoading,
     duelDialogId,
-    setDuelDialogId,
+    setDuelDialogId: setDuelDialog,
     showDuels,
   });
 
