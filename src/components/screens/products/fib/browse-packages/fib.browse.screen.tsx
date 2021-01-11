@@ -83,7 +83,6 @@ export const FibBrowseScreen = memo(function (props: IFibBrowseScreenProps) {
       name: selectedPackage.label,
       salary_percentage: selectedPackage.salaryPercentageCovered,
       yucount_multiplier: selectedPackage.earnRate,
-      estimated_cost: selectedPackage.estimatedCost,
     });
   }, [selectedPackage]);
 

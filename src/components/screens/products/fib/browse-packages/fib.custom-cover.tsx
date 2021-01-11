@@ -56,7 +56,7 @@ export const FibCustomCoverScreen = memo(function (props: IFibCustomCoverScreenP
           <AvatarAndDescription loading={loading} avatarUrl={avatarUrl} selectedPackage={selectedPackage} />
           <EstimatedCost
             navigateToEditSalary={navigateToEditSalary}
-            heading={`${formatPrice(selectedPackage.estimatedCost)} per month`}
+            heading={`${formatPrice(selectedPackage.actualCost || 0)} per month`}
             loading={loading}
           />
           <HowItWorks

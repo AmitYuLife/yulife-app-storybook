@@ -7,11 +7,11 @@ import { Navigation } from "react-native-navigation";
 import { Style } from "@styles";
 import { TextWithBoldText } from "@components/molecules";
 import { getProductIcon } from "../assets/getProductIcon";
-import { ItemSlot } from "../yu-types";
 import { useBackHandler } from "@services/hooks/useBackHandler";
+import { YuItemSlot } from "../../../../../graphql/_core/schema/globalTypes";
 
 interface IYuProductDetails {
-  itemSlot: ItemSlot;
+  itemSlot: YuItemSlot;
   description: string;
   name: string;
   status: string;

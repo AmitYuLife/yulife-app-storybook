@@ -9,6 +9,7 @@ import { GetYulifer } from "@graphql/_core/schema";
 import { GQL_QUERY_GET_YULIFER } from "@graphql/yuscreen";
 import { navigateToAvatarModal } from "../../navigation/navigateToAvatarModal";
 import { YUSCREEN_AVATAR } from "@ids";
+import { YuProductStatus } from "../../../../../../graphql/_core/schema/globalTypes";
 
 interface Props {
   setProduct: Dispatch<string>;
@@ -35,11 +36,9 @@ const _AvatarAndEquipment = ({ setProduct, product }: Props) => {
       return [[], []];
     }
 
-    const {
-      products: { employer, charms, personal },
-    } = data.getYulifer;
+    const { employer, charms, personal } = data;
 
-    const activeEmployerProducts = employer.filter((item) => item.active);
+    const activeEmployerProducts = employer.filter((item) => item.status === YuProductStatus.active);
 
     return [personal, [...activeEmployerProducts, ...charms]];
   }, [data]);

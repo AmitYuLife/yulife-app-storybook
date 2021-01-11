@@ -16,7 +16,8 @@ export type FibRoute =
   | "FibContactDetails"
   | "FibGPDetails"
   | "FibFaqList"
-  | "FIbIntroYugi";
+  | "FIbIntroYugi"
+  | "FibChooseStyle";
 
 export type FibLocalNavigation = LocalNavigation<FibRoute>;
 
@@ -35,6 +36,7 @@ export const FIB_INFO = "FibInfo";
 export const FIB_GP_DETAILS = "FibGPDetails";
 export const FIB_FAQ_LIST = "FibFaqList";
 export const FIB_INTRO_YUGI = "FIbIntroYugi";
+export const FIB_CHOOSE_STYLE = "FibChooseStyle";
 
 export interface FAQ {
   id: string;

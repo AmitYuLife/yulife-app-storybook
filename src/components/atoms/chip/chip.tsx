@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
   } as ViewStyle,
   activeWrapper: {
-    borderColor: Colours.blue.up306,
+    borderColor: Colours.ocean.up306,
   } as ViewStyle,
   viewWrapper: {
     height: "100%",

@@ -1,24 +1,24 @@
 import { ProductSvg } from "@atoms";
-import { ItemSlot } from "../yu-types";
 import { View } from "react-native";
+import { YuItemSlot } from "../../../../../graphql/_core/schema/globalTypes";
 
-export function getProductIcon(icon: ItemSlot) {
+export function getProductIcon(icon: YuItemSlot) {
   switch (icon) {
-    case "clockPendant":
+    case YuItemSlot.clockPendant:
       return ProductSvg.ClockPendantSvg;
-    case "gloves":
+    case YuItemSlot.gloves:
       return ProductSvg.GlovesSvg;
-    case "binoculars":
+    case YuItemSlot.binoculars:
       return ProductSvg.BinocularsSvg;
-    case "map":
+    case YuItemSlot.map:
       return ProductSvg.MapSvg;
-    case "compass":
+    case YuItemSlot.compass:
       return ProductSvg.CompassSvg;
-    case "pants":
+    case YuItemSlot.pants:
       return ProductSvg.PantsSvg;
-    case "chest":
+    case YuItemSlot.chest:
       return ProductSvg.ChestSvg;
-    case "boots":
+    case YuItemSlot.boots:
       return ProductSvg.BootsSvg;
     default:
       // ask design for other placeholder image?

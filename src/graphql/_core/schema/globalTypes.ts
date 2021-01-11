@@ -80,6 +80,12 @@ export enum ProductCode {
   YULFIB = "YULFIB",
 }
 
+export enum ProductType {
+  alpha = "alpha",
+  employer = "employer",
+  personal = "personal",
+}
+
 export enum ScreeningStatus {
   IN_PROGRESS = "IN_PROGRESS",
   NONE = "NONE",
@@ -90,6 +96,43 @@ export enum ScreeningStatus {
   RGA_LOADING = "RGA_LOADING",
   RGA_REJECTED = "RGA_REJECTED",
   WAITING_MSS = "WAITING_MSS",
+}
+
+export enum YuItemSlot {
+  binoculars = "binoculars",
+  boots = "boots",
+  chest = "chest",
+  clockPendant = "clockPendant",
+  compass = "compass",
+  gloves = "gloves",
+  map = "map",
+  pants = "pants",
+}
+
+export enum YuProductId {
+  critical_illness = "critical_illness",
+  family_income_benefit = "family_income_benefit",
+  group_critical_illness = "group_critical_illness",
+  group_income_protection = "group_income_protection",
+  group_life_insurance = "group_life_insurance",
+  income_protection = "income_protection",
+  travel = "travel",
+  yulife_alpha = "yulife_alpha",
+  yulife_premium_offer = "yulife_premium_offer",
+  yulife_standard_offer = "yulife_standard_offer",
+}
+
+export enum YuProductStatus {
+  active = "active",
+  locked = "locked",
+  unlockable = "unlockable",
+}
+
+export enum YuWorld {
+  desert = "desert",
+  forest = "forest",
+  mountain = "mountain",
+  ocean = "ocean",
 }
 
 export enum UserNotificationsType {

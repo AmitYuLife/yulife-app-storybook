@@ -1,9 +1,9 @@
 import React from "react";
+import { YuItemSlot } from "../../../../../../graphql/_core/schema/globalTypes";
 import { getProductIcon } from "../../assets/getProductIcon";
-import { ItemSlot } from "../../yu-types";
 
 interface IconProps {
-  itemSlot: ItemSlot;
+  itemSlot: YuItemSlot;
 }
 
 export const Icon = (props: IconProps) => {

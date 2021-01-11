@@ -10,7 +10,6 @@ import { FibCustomCoverScreen } from "./fib.custom-cover";
 const selectedPackage: Package = {
   earnRate: 20,
   salaryPercentageCovered: 50,
-  estimatedCost: 20,
   id: "common",
   label: "Common",
   descriptionHeading: "basic cover",

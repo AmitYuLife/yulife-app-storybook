@@ -1,10 +1,11 @@
 import { Cloudinary, Transformation } from "cloudinary-core";
 import { PixelRatio } from "react-native";
+import Config from "react-native-config";
 
 const pixelRatio = PixelRatio.get();
 
 const cloudinary = Cloudinary.new({
-  cloud_name: "yu-life",
+  cloud_name: Config.CLOUDINARY_CLOUD_NAME,
   protocol: "https://",
 });
 

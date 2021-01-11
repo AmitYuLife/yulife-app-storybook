@@ -1,25 +1,19 @@
-export type ProductCode =
-  | "GroupLife"
-  | "GroupCritical"
-  | "GroupIncome"
-  | "LifeInsurance"
-  | "IncomeProtection"
-  | "CriticalIllness"
-  | "TravelInsurance"
-  | "Alpha";
+import { YuItemSlot, YuProductId } from "../../../../graphql/_core/schema/globalTypes";
 
-export type ProductType = "employer" | "personal" | "charms";
+export const employerItems: YuItemSlot[] = [
+  YuItemSlot.map,
+  YuItemSlot.compass,
+  YuItemSlot.clockPendant,
+  YuItemSlot.binoculars,
+];
+export const employerProducts: YuProductId[] = [
+  YuProductId.yulife_alpha,
+  YuProductId.group_life_insurance,
+  YuProductId.group_critical_illness,
+  YuProductId.group_income_protection,
+];
+export const personalItems: YuItemSlot[] = [YuItemSlot.chest, YuItemSlot.gloves, YuItemSlot.boots, YuItemSlot.pants];
 
-export type ItemSlot = "pants" | "chest" | "gloves" | "boots" | "compass" | "map" | "binoculars" | "clockPendant";
-
-export type ProductStatus = "active" | "locked" | "unlockable";
-
-export type Rarity = "common" | "rare" | "epic";
-
-export const employerItems = ["map", "compass", "clockPendant", "binoculars"];
-export const employerProducts = ["Alpha", "GroupLife", "GroupCritical", "GroupIncome"];
-export const personalItems = ["chest", "gloves", "boots", "pants"];
-
-export const isEmployerItem = (item: string) => employerItems.includes(item);
-export const getIsEmployerProduct = (item: string) => employerProducts.includes(item);
-export const getIsPersonalItem = (item: ItemSlot) => personalItems.includes(item);
+export const isEmployerItem = (item: YuItemSlot) => employerItems.includes(item);
+export const getIsEmployerProduct = (item: YuProductId) => employerProducts.includes(item);
+export const getIsPersonalItem = (item: YuItemSlot) => personalItems.includes(item);

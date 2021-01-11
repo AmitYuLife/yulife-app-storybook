@@ -1,15 +1,16 @@
 import React from "react";
 import { View, StyleSheet, ViewStyle, TextStyle } from "react-native";
 import { Text } from "@atoms";
-import { ProductStatus, ItemSlot, employerItems } from "../../../yu-types";
+import { employerItems } from "../../../yu-types";
 import { getProductIcon } from "../../../assets/getProductIcon";
 import { Style, Colours } from "@styles";
 import { toCapitalLetter } from "@services/utils";
+import { YuProductStatus, YuItemSlot } from "../../../../../../../graphql/_core/schema/globalTypes";
 
 interface Props {
   isSelected: boolean;
-  status: ProductStatus;
-  itemSlot: ItemSlot;
+  status: YuProductStatus;
+  itemSlot: YuItemSlot;
 }
 
 export const ItemIcon = (props: Props) => {
@@ -43,8 +44,8 @@ const styles = StyleSheet.create({
   } as ViewStyle,
 });
 
-function getStyle(status: string) {
-  if (status === "active") {
+function getStyle(status: YuProductStatus) {
+  if (status === YuProductStatus.active) {
     return {};
   }
 
@@ -81,7 +82,7 @@ function getForegroundStyle(props: Props) {
 function getLightOverlay(props: Props) {
   const { status, itemSlot } = props;
 
-  if (status === "locked" || !itemSlot) {
+  if (status === YuProductStatus.locked || !itemSlot) {
     return {};
   }
 
@@ -106,15 +107,15 @@ function getFontStyle(props: Props) {
     defaultStyle.color = Colours.primary.p600;
   }
 
-  if (props.status === "active") {
+  if (props.status === YuProductStatus.active) {
     defaultStyle.color = Colours.neutral.n700;
   }
 
   return defaultStyle;
 }
 
-function getName(item: ItemSlot) {
-  if (item === "clockPendant") {
+function getName(item: YuItemSlot) {
+  if (item === YuItemSlot.clockPendant) {
     return "Clock";
   }
 

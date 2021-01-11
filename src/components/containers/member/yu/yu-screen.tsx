@@ -9,8 +9,8 @@ import {
   AvatarCreationPrompt,
 } from "./subcomponents";
 import { Style, TOP_BAR } from "@styles";
-import { ProductType } from "./yu-types";
 import media from "@styles/media";
+import { ProductType } from "../../../../graphql/_core/schema/globalTypes";
 import { YUSCREEN, YUSCREEN_SCROLL_VIEW } from "@ids";
 
 export const YuScreen = () => {
@@ -32,7 +32,7 @@ export const YuScreen = () => {
           <ProductSet key={index} type={type} />
         ))}
         <View style={styles.padBot} />
-        <ToolTip code={product} onClose={handleCloseModal} />
+        <ToolTip productId={product} onClose={handleCloseModal} />
       </ScrollView>
     </View>
   );
