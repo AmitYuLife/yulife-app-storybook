@@ -2,16 +2,23 @@ import React, { useCallback } from "react";
 import { View, ViewStyle, StyleSheet } from "react-native";
 import { Product } from "./product";
 import { Heading } from "../heading";
+import {
+  GetYulifer,
+  GetYulifer_charms,
+  GetYulifer_employer,
+  GetYulifer_personal,
+  UpdateTopUpsQuoteVariables,
+  UpdateTopUpsQuote_updateFibQuote,
+} from "@graphql/_core/schema";
 import { useMutation, useQuery } from "@apollo/react-hooks";
-import { GetYulifer, UpdateTopUpsQuoteVariables, UpdateTopUpsQuote_updateFibQuote } from "@graphql/_core/schema";
 import { GQL_QUERY_GET_YULIFER } from "@graphql/yuscreen";
 import { navigateToProductScreen } from "../../navigation/navigateToProductScreen";
-import { ItemSlot, ProductStatus, ProductType } from "../../yu-types";
 import { useSelector, useDispatch } from "react-redux";
 import { getFIBState } from "@redux/product/product.selectors";
 import { resetFIBUnderwritingJourney } from "@redux/product/product.actions";
 import { getUserFeatures } from "@redux/user/user.selectors";
 import { Style } from "@styles";
+import { ProductType, YuProductStatus } from "../../../../../../graphql/_core/schema/globalTypes";
 import { GQL_MUTATION_UPDATE_TOP_UPS_QUOTE } from "../../../../../../graphql/products/updateTopUpsQuote";
 
 export interface IProductSetProps {
@@ -51,20 +58,20 @@ export const ProductSet = (props: IProductSetProps) => {
   return (
     <View style={styles.wrapper}>
       <Heading text={heading} />
-      {products.map((product, index) => (
+      {products.map((product: any, index: number) => (
         <Product showSeparator={!!index} key={index} {...product} />
       ))}
     </View>
   );
 };
 
-function getHeading(type: IProductSetProps["type"]) {
+function getHeading(type: ProductType) {
   switch (type) {
-    case "employer":
+    case ProductType.employer:
       return "Your company has equipped you with:";
-    case "charms":
+    case ProductType.alpha:
       return "As an early adopter, you get:";
-    case "personal":
+    case ProductType.personal:
       return "Power up and protect yourself:";
     default:
       return null;
@@ -72,35 +79,36 @@ function getHeading(type: IProductSetProps["type"]) {
 }
 
 interface GetProducts {
-  type: IProductSetProps["type"];
+  type: ProductType;
   data: GetYulifer;
   fibState: ReturnType<typeof getFIBState>;
   resetFibJourney: () => void;
   shouldResetFib: boolean;
 }
 
-function getProducts({ type, data, fibState, resetFibJourney, shouldResetFib }: GetProducts) {
-  if (!data?.getYulifer?.products) {
+function getProducts({ type, data, fibState, resetFibJourney, shouldResetFib }: GetProducts): any[] {
+  if (!data) {
     return [];
   }
 
-  return data.getYulifer.products[type]
-    .map((item) => {
+  const dataKey = type === ProductType.alpha ? "charms" : type;
+
+  return (data as any)[dataKey]
+    .map((item: GetYulifer_employer | GetYulifer_personal | GetYulifer_charms) => {
       if (!item) {
         return null;
       }
 
-      const { itemSlot, icon, status, name, earnRate, description } = item;
+      const { itemSlot, status, name, earnRate, description } = item;
 
-      if (type === "employer" && status !== "active") {
+      if (type === ProductType.employer && status !== YuProductStatus.active) {
         return null;
       }
 
       return {
-        itemSlot: itemSlot as ItemSlot,
-        icon,
+        itemSlot,
         heading: name,
-        status: status as ProductStatus,
+        status,
         subheading: {
           activeYuCoinPower: earnRate,
           description,

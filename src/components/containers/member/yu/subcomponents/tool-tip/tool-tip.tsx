@@ -4,17 +4,19 @@ import { Text, Button } from "@atoms";
 import { Style, Colours } from "@styles";
 import { CloseSvg } from "@atoms";
 import { TouchableOpacityWithDelay } from "@molecules";
-import { useMutation, useQuery } from "@apollo/react-hooks";
 import {
   GetYulifer,
-  GetYuliferWithAvatar_getYulifer_products_personal,
+  GetYulifer_charms,
+  GetYulifer_employer,
+  GetYulifer_personal,
   UpdateTopUpsQuoteVariables,
   UpdateTopUpsQuote_updateFibQuote,
 } from "@graphql/_core/schema";
+import { useMutation, useQuery } from "@apollo/react-hooks";
 import { GQL_QUERY_GET_YULIFER } from "@graphql/yuscreen";
 import LinearGradient from "react-native-linear-gradient";
 import { getProductIcon } from "../../assets/getProductIcon";
-import { ProductCode, ItemSlot, getIsEmployerProduct, isEmployerItem } from "../../yu-types";
+import { getIsEmployerProduct, isEmployerItem } from "../../yu-types";
 import { navigateToProductScreen } from "../../navigation/navigateToProductScreen";
 import { useSelector, useDispatch } from "react-redux";
 import { getFIBState } from "@redux/product/product.selectors";
@@ -22,39 +24,40 @@ import { getUserFeatures } from "@redux/user/user.selectors";
 import { resetFIBUnderwritingJourney } from "@redux/product/product.actions";
 import { CoinLabel } from "./coin-label";
 import { useBackHandler } from "@services/hooks/useBackHandler";
+import { YuProductId, YuProductStatus } from "../../../../../../graphql/_core/schema/globalTypes";
 import { GQL_MUTATION_UPDATE_TOP_UPS_QUOTE } from "../../../../../../graphql/products/updateTopUpsQuote";
 
 export interface IToolTipProps {
-  code: ProductCode;
+  productId: YuProductId;
   onClose: () => void;
 }
 
-const getCaption = (status: string) => {
+const getCaption = (status: YuProductStatus) => {
   return `We’re working hard to bring you the best insurance products on the market.${
-    status !== "locked" ? "" : " Vote for what you want to see here."
+    status !== YuProductStatus.locked ? "" : " Vote for what you want to see here."
   }`;
 };
 
-export const ToolTip = ({ code, onClose }: IToolTipProps) => {
+export const ToolTip = ({ productId, onClose }: IToolTipProps) => {
   const { data } = useQuery<GetYulifer>(GQL_QUERY_GET_YULIFER, {
     fetchPolicy: "cache-only",
   });
 
   const product = useMemo(() => {
-    if (!data?.getYulifer) {
+    if (!data) {
       return null;
     }
 
-    const { products } = data.getYulifer;
+    const { employer, charms, personal } = data;
 
-    const allProducts = [...products.employer, ...products.charms, ...products.personal];
+    const allProducts = [...employer, ...charms, ...personal];
 
-    const item = allProducts.find((i) => i?.icon === code);
+    const item = allProducts.find((i) => i?.productId === productId);
 
     return item;
-  }, [data, code]);
+  }, [data, productId]);
 
-  const IconSvg = useMemo(() => getProductIcon(product?.itemSlot as ItemSlot), [product]);
+  const IconSvg = useMemo(() => getProductIcon(product?.itemSlot), [product]);
 
   const fibState = useSelector(getFIBState);
   const dispatch = useDispatch();
@@ -85,7 +88,7 @@ export const ToolTip = ({ code, onClose }: IToolTipProps) => {
   }, [product, fibState, shouldResetFib, onClose, resetFibJourney]);
 
   useBackHandler(() => {
-    if (!code || !product) {
+    if (!productId || !product) {
       return false;
     }
 
@@ -93,26 +96,26 @@ export const ToolTip = ({ code, onClose }: IToolTipProps) => {
     return true;
   });
 
-  if (!code || !product) {
+  if (!productId || !product) {
     return null;
   }
 
   const { name, status } = product;
 
-  const isEmployerProduct = getIsEmployerProduct(code);
+  const isEmployerProduct = getIsEmployerProduct(productId);
 
   return (
-    <View style={StyleSheet.flatten([styles.wrapper, getHorizontalPosition(code)])}>
+    <View style={StyleSheet.flatten([styles.wrapper, getHorizontalPosition(productId)])}>
       <View style={styles.shadow} />
-      <View style={getContentWrapperStyle(code)}>
-        <View style={getTopWrapperStyle(code)}>
+      <View style={getContentWrapperStyle(productId)}>
+        <View style={getTopWrapperStyle(productId)}>
           <IconSvg style={StyleSheet.flatten([styles.iconWrapper, { opacity: status !== "active" ? 0.6 : 1 }])} />
           <View style={styles.nameWrapper}>
-            <Text bold={true} style={getNameStyle(code)}>
+            <Text bold={true} style={getNameStyle(productId)}>
               {name}
             </Text>
           </View>
-          {status !== "unlockable" ? null : (
+          {status !== YuProductStatus.unlockable ? null : (
             <View style={styles.statusTextWrapper}>
               <Text style={styles.statusText}>{"not equipped"}</Text>
             </View>
@@ -126,9 +129,9 @@ export const ToolTip = ({ code, onClose }: IToolTipProps) => {
             end={{ x: 1, y: 0 }}
           />
         )}
-        <View style={getBottomWrapperStyle(code)}>
+        <View style={getBottomWrapperStyle(productId)}>
           <CoinLabel yuCoinPower={product.earnRate} />
-          <Text style={getCaptionStyle(code)}>{getCaption(status)}</Text>
+          <Text style={getCaptionStyle(productId)}>{getCaption(status)}</Text>
           <Button
             wrapperStyle={styles.cta}
             type="Primary"
@@ -145,21 +148,22 @@ export const ToolTip = ({ code, onClose }: IToolTipProps) => {
   );
 };
 
-function getButtonProps({ product }: { product: GetYuliferWithAvatar_getYulifer_products_personal }) {
+function getButtonProps({ product }: { product: GetYulifer_personal | GetYulifer_employer | GetYulifer_charms }) {
   let label = "";
   let backgroundColor = Colours.darkHotPink;
   let shadowColor = Colours.darkHotPinkShadow;
   let textColor = "white";
 
   switch (product.status) {
-    case "locked":
+    case YuProductStatus.locked:
       label = "Vote now";
       break;
-    case "unlockable":
+    case YuProductStatus.unlockable:
       label = "Unlock";
       break;
-    case "active":
+    case YuProductStatus.active:
       label = "Inspect";
+      break;
   }
 
   if (isEmployerItem(product.itemSlot)) {
@@ -231,8 +235,8 @@ const styles = StyleSheet.create({
   } as ImageStyle,
 });
 
-function getHorizontalPosition(code: ProductCode) {
-  if (getIsEmployerProduct(code)) {
+function getHorizontalPosition(productId: YuProductId) {
+  if (getIsEmployerProduct(productId)) {
     return {
       left: Style.adjust(26),
     };
@@ -243,7 +247,7 @@ function getHorizontalPosition(code: ProductCode) {
   };
 }
 
-function getContentWrapperStyle(code: ProductCode) {
+function getContentWrapperStyle(productId: YuProductId) {
   const defaultStyle = {
     backgroundColor: "white",
     width: Style.adjust(268),
@@ -253,7 +257,7 @@ function getContentWrapperStyle(code: ProductCode) {
     overflow: "hidden",
   } as ViewStyle;
 
-  if (getIsEmployerProduct(code)) {
+  if (getIsEmployerProduct(productId)) {
     defaultStyle.borderColor = Colours.blue.dp306;
     defaultStyle.borderWidth = 2;
   }
@@ -261,35 +265,35 @@ function getContentWrapperStyle(code: ProductCode) {
   return defaultStyle;
 }
 
-function getTopWrapperStyle(code: ProductCode) {
+function getTopWrapperStyle(productId: YuProductId) {
   const defaultStyle = {
     paddingVertical: Style.adjust(24),
     paddingHorizontal: Style.adjust(24),
     backgroundColor: "white",
   };
 
-  if (getIsEmployerProduct(code)) {
+  if (getIsEmployerProduct(productId)) {
     defaultStyle.backgroundColor = Colours.blue.dp306;
   }
 
   return defaultStyle;
 }
 
-function getBottomWrapperStyle(code: ProductCode) {
+function getBottomWrapperStyle(productId: YuProductId) {
   const defaultStyle = {
     paddingVertical: Style.adjust(24),
     paddingHorizontal: Style.adjust(24),
     backgroundColor: "white",
   };
 
-  if (getIsEmployerProduct(code)) {
+  if (getIsEmployerProduct(productId)) {
     defaultStyle.backgroundColor = Colours.blue.dp307;
   }
 
   return defaultStyle;
 }
 
-function getNameStyle(code: ProductCode) {
+function getNameStyle(productId: YuProductId) {
   const defaultStyle = {
     letterSpacing: 1,
     color: Colours.neutral.n700,
@@ -298,14 +302,14 @@ function getNameStyle(code: ProductCode) {
     textAlign: "center",
   } as TextStyle;
 
-  if (getIsEmployerProduct(code)) {
+  if (getIsEmployerProduct(productId)) {
     defaultStyle.color = Colours.neutral.n800;
   }
 
   return defaultStyle;
 }
 
-function getCaptionStyle(code: ProductCode) {
+function getCaptionStyle(productId: YuProductId) {
   const defaultStyle = {
     fontSize: Style.adjust(16),
     lineHeight: Style.adjust(20),
@@ -314,7 +318,7 @@ function getCaptionStyle(code: ProductCode) {
     color: Colours.neutral.n700,
   } as TextStyle;
 
-  if (getIsEmployerProduct(code)) {
+  if (getIsEmployerProduct(productId)) {
     defaultStyle.textAlign = "left";
     defaultStyle.color = Colours.neutral.n800;
   }

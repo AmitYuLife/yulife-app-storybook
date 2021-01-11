@@ -123,7 +123,6 @@ const FibDeclarationConfirmationContainer = memo(function (props: Props) {
     payoutAmount: Math.round(payoutAmount),
     earnRate: data?.getTopUpsQuote?.earnRate || 0,
     salaryPercentageCovered: data?.getTopUpsQuote?.salaryPercentageCovered || 0,
-    estimatedCost: data?.getTopUpsQuote?.actualCost || 0,
     id: selectedPackage,
     label: packages[selectedPackage].label,
     descriptionHeading: data?.getTopUpsQuote?.descriptionHeading || "",

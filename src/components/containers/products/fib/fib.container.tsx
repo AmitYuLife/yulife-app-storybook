@@ -17,6 +17,8 @@ import {
   FIB_GP_DETAILS,
   FIB_FAQ_LIST,
   FIB_INTRO_YUGI,
+  FIB_INFO,
+  FIB_CHOOSE_STYLE,
 } from "./fib.types";
 import { Navigation } from "react-native-navigation";
 import { ROUTES } from "@navigation/constants";
@@ -33,8 +35,8 @@ import FibContactDetailsContainer from "./subcontainers/fib.contact-details.cont
 import FibDeclarationConfirmationContainer from "./subcontainers/fib.declaration-confirmation.container";
 import FibInfoContainer from "./subcontainers/fib.info.container";
 import FibFaqListContainer from "./subcontainers/fib.faqs-list.container";
-import { FIB_INFO } from "./fib.types";
 import FibGpDetailsContainer from "./subcontainers/fib.gp-details.container";
+import FibChooseStyleContainer from "./subcontainers/fib.choose-style.container";
 import FibYugiIntroContainer from "./subcontainers/fib.yugi-intro.container";
 
 interface RouteProps {
@@ -85,6 +87,8 @@ function getComponent(routeProps: RouteProps) {
       return <FibFaqListContainer navigation={navigation} selectFaq={selectFaq} />;
     case FIB_INTRO_YUGI:
       return <FibYugiIntroContainer navigation={navigation} />;
+    case FIB_CHOOSE_STYLE:
+      return <FibChooseStyleContainer navigation={navigation} />;
     default:
       return <FibBrowseContainer navigation={navigation} />;
   }

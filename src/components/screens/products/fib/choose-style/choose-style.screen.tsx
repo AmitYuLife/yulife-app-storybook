@@ -1,0 +1,111 @@
+import React, { memo, useState } from "react";
+import { StyleSheet, View } from "react-native";
+import { Button, Text } from "@atoms";
+import { TouchableOpacityWithDelay } from "@molecules";
+import { CoverType, YuWorld } from "../../../../../graphql/_core/schema/globalTypes";
+import { Colours, Style } from "@styles";
+import colours from "@styles/colours";
+import { GetYulifer_personal_options_styles } from "../../../../../graphql/_core/schema";
+import { SvgUri } from "react-native-svg";
+import GenericHeadingAbsolute from "@atoms/generic-heading/generic-heading-absolute";
+import { styles } from "./choose-style.styles";
+interface IFibStyleSelectionScreenProps {
+  productStyleOptions: GetYulifer_personal_options_styles[];
+  onContinue: (word: YuWorld) => void;
+  type?: CoverType;
+  onClose: () => void;
+  onBackPress: () => void;
+}
+export const FibStyleSelectionScreen = memo(function (props: IFibStyleSelectionScreenProps) {
+  const { productStyleOptions, onContinue, onBackPress, onClose } = props;
+  const forest = productStyleOptions.find((optionStyle) => optionStyle.world === YuWorld.forest);
+  const [selectedStyle, setSelectedStyle] = useState<GetYulifer_personal_options_styles>(forest);
+
+  return (
+    <View style={styles.wrapper}>
+      <View style={styles.backgroundWrapper}>
+        <SvgUri uri={selectedStyle.background} width={"100%"} height={"100%"} preserveAspectRatio={"xMaxYMax slice"} />
+        <View style={styles.worldTextWrapper}>
+          <Text
+            style={{
+              fontSize: Style.adjust(28),
+              fontFamily: Style.FONT_FAMILY_PRIMARY_BOLD,
+              lineHeight: Style.adjust(32),
+              letterSpacing: Style.adjust(1),
+              color: (worldColours as any)[`${selectedStyle.world}`],
+              textAlign: "center",
+            }}
+          >
+            {selectedStyle.name}
+          </Text>
+        </View>
+        <View style={styles.armorWrapper}>
+          <SvgUri
+            uri={selectedStyle.armor}
+            style={{
+              alignSelf: "center",
+            }}
+            preserveAspectRatio={"xMaxYMax slice"}
+          />
+        </View>
+        <View style={styles.topRoundedView} />
+      </View>
+      <View style={styles.selectorWrapper}>
+        <View style={styles.chooseStyleTextWrapper}>
+          <Text style={styles.titleText} bold={true}>
+            Choose your style
+          </Text>
+        </View>
+        <View style={styles.stylesWrapper}>
+          {productStyleOptions.map((option) => (
+            <TouchableOpacityWithDelay
+              key={option.world}
+              onPress={() => {
+                setSelectedStyle(option);
+              }}
+            >
+              <View
+                style={StyleSheet.flatten([
+                  {
+                    width: Style.isShortAndroid() || Style.isShortAndLowScaledPixelAndroid() ? 48 : 72,
+                    height: Style.isShortAndroid() || Style.isShortAndLowScaledPixelAndroid() ? 48 : 72,
+                    borderRadius: 8,
+                    borderWidth: 2,
+                    borderColor: "transparent",
+                    overflow: "hidden",
+                  },
+                  option.world === selectedStyle.world ? { borderColor: colours.heavyPink } : { borderColor: "white" },
+                ])}
+              >
+                <SvgUri uri={option.icon} />
+              </View>
+            </TouchableOpacityWithDelay>
+          ))}
+        </View>
+        <View style={styles.descriptionWrapper}>
+          <Text style={styles.text}>
+            Your selected style will be reflected on your Yumoji, and will not affect your policy details.
+          </Text>
+        </View>
+        <View style={styles.buttonWrapper}>
+          <Button label="Continue" onPress={() => onContinue(selectedStyle.world)} type="Primary" />
+        </View>
+      </View>
+      <GenericHeadingAbsolute
+        heading={""}
+        rightIcon={{ icon: "CLOSE" }}
+        onLeftIconPress={onBackPress}
+        onRightIconPress={onClose}
+        hideBorder={true}
+        hasWhiteBackground={false}
+      />
+    </View>
+  );
+});
+
+const worldColours = {
+  forest: Colours.forest.fp304,
+  ocean: Colours.ocean.up204,
+  desert: Colours.desert.ds106,
+  mountain: Colours.ocean.us105,
+};

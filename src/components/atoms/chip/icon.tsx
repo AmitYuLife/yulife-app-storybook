@@ -27,7 +27,7 @@ const SIZE = Platform.select({
     [
       {
         condition: Style.DEVICE_HEIGHT <= media.DEVICES.SamsungGalaxyA5.height,
-        value: Style.adjust(32)
+        value: Style.adjust(32),
       },
     ],
     Style.adjust(40)
@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
     width: "100%",
   } as TextStyle,
   active: {
-    color: Colours.blue.up204,
+    color: Colours.ocean.up204,
   } as TextStyle,
 });
 

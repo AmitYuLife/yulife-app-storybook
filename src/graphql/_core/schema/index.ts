@@ -38,6 +38,7 @@ export * from "./GetRewards";
 export * from "./GetSession";
 export * from "./GetTopUpsEstimateCost";
 export * from "./GetTopUpsQuote";
+export * from "./GetYuProducts";
 export * from "./GetUserNotificationsSettings";
 export * from "./GetYulifer";
 export * from "./GetYuliferWithAvatar";

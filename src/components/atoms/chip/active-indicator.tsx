@@ -24,7 +24,7 @@ export const ActiveIndicator = ({ isActive }: Props) => {
 const styles = StyleSheet.create({
   wrapper: {
     ...StyleSheet.absoluteFillObject,
-    backgroundColor: Colours.blue.up306,
+    backgroundColor: Colours.ocean.up306,
   } as ViewStyle,
   absoluteUpperRight: {
     position: "absolute",

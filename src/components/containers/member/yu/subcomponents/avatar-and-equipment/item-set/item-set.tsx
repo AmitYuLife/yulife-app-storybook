@@ -2,14 +2,12 @@ import React, { useMemo, Dispatch } from "react";
 import { StyleSheet, ViewStyle, View } from "react-native";
 import { Style } from "@styles";
 import { Item } from "./item";
-import {
-  GetYulifer_getYulifer_products_personal,
-  GetYulifer_getYulifer_products_employer,
-} from "@graphql/_core/schema";
-import { ProductCode, ItemSlot, getIsPersonalItem } from "../../../yu-types";
+import { GetYulifer_personal, GetYulifer_employer } from "@graphql/_core/schema";
+import { getIsPersonalItem } from "../../../yu-types";
+import { YuProductStatus } from "../../../../../../../graphql/_core/schema/globalTypes";
 
 export interface ItemSetProps {
-  items: GetYulifer_getYulifer_products_personal[] | GetYulifer_getYulifer_products_employer[];
+  items: GetYulifer_personal[] | GetYulifer_employer[];
   setProduct: Dispatch<string>;
   product: string;
 }
@@ -24,9 +22,8 @@ export const ItemSet = (props: ItemSetProps) => {
 
         return {
           onPress: !item ? null : handlePressProduct(item, setProduct, product),
-          icon: item?.icon as ProductCode,
-          isSelected: item?.icon === product,
-          itemSlot: item?.itemSlot as ItemSlot,
+          isSelected: item?.productId === product,
+          itemSlot: item?.itemSlot,
           earnRate: item?.earnRate || 0,
           status: item?.status,
         };
@@ -51,17 +48,17 @@ const styles = StyleSheet.create({
 });
 
 function handlePressProduct(
-  item: GetYulifer_getYulifer_products_personal,
+  item: GetYulifer_personal | GetYulifer_employer,
   setProduct: Dispatch<string>,
   product: string
 ) {
-  if (item?.status === "locked") {
-    if (getIsPersonalItem(item.itemSlot as ItemSlot)) {
-      return () => setProduct(item?.icon === product ? null : item?.icon);
+  if (item?.status === YuProductStatus.locked) {
+    if (getIsPersonalItem(item.itemSlot)) {
+      return () => setProduct(item?.productId === product ? null : item?.productId);
     }
 
     return null;
   }
 
-  return () => setProduct(item?.icon === product ? null : item?.icon);
+  return () => setProduct(item?.productId === product ? null : item?.productId);
 }

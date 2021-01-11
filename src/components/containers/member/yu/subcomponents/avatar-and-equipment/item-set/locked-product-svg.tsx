@@ -1,13 +1,13 @@
 import React from "react";
 import { View, StyleSheet, ViewStyle } from "react-native";
 import Svg, { Rect } from "react-native-svg";
+import { YuItemSlot, YuProductStatus } from "../../../../../../../graphql/_core/schema/globalTypes";
 import { getProductIcon } from "../../../assets/getProductIcon";
-import { ItemSlot } from "../../../yu-types";
 
 interface Props {
-  itemSlot: ItemSlot;
+  itemSlot: YuItemSlot;
   isEmpty: boolean;
-  status: string;
+  status: YuProductStatus;
 }
 
 export function LockedProductSvg({ itemSlot, isEmpty, status }: Props) {

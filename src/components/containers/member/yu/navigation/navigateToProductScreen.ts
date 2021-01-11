@@ -1,6 +1,5 @@
 import { MODALS, ROUTES } from "@navigation/constants";
 import { Navigation } from "react-native-navigation";
-import { GetYulifer_getYulifer_products_personal } from "@graphql/_core/schema";
 import {
   FIB_UNDERWRITING_REVIEW_ANSWERS,
   FIB_UNDERWRITING_JOURNEY,
@@ -10,13 +9,14 @@ import {
 import { FIB_UNDERWRITING_REVIEW_ANSWERS_SCREEN_ID } from "@components/containers/products/fib/data/underwriting-journey-data";
 import moment from "moment";
 import { InfoTypes } from "@components/containers/products/fib/subcontainers/fib.info.container";
-import { getIsPersonalItem, ItemSlot } from "../yu-types";
+import { getIsPersonalItem } from "../yu-types";
 import { FIBStore } from "@redux/product/product.types";
 import { ScreeningStatus } from "../../../../../graphql/_core/schema/globalTypes";
 import { YUGI_INTRO_TYPE } from "../../../products/fib/subcontainers/fib.yugi-intro.container";
+import { GetYulifer_personal, GetYulifer_employer, GetYulifer_charms } from "../../../../../graphql/_core/schema";
 
 interface INavigateToProductScreen {
-  product: GetYulifer_getYulifer_products_personal;
+  product: GetYulifer_personal | GetYulifer_employer | GetYulifer_charms;
   shouldResetFib: boolean;
   fibState: FIBStore;
   resetFibJourney: () => void;
@@ -32,7 +32,7 @@ export const navigateToProductScreen = ({
 }: INavigateToProductScreen) => {
   // TODO: Implement different journeys for different products
 
-  const isPersonalItem = getIsPersonalItem(product.itemSlot as ItemSlot);
+  const isPersonalItem = getIsPersonalItem(product.itemSlot);
 
   if (isPersonalItem) {
     if (product.status === "locked") {

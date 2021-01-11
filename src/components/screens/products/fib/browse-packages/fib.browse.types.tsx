@@ -1,13 +1,12 @@
 import { PackageId } from "../fib.helper";
 
 interface IServerPackageProps {
-  payoutAmount: number;
-  estimatedCost: number;
+  payoutAmount?: number;
   earnRate: number;
   newEarnRate: number;
   salaryPercentageCovered: number;
-  term: number;
-  monthlyAmountProtected: number;
+  term?: number;
+  monthlyAmountProtected?: number;
   actualCost?: number;
 }
 

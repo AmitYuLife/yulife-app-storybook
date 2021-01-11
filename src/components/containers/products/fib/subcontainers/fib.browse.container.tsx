@@ -1,26 +1,26 @@
-import React, { memo, useState, useEffect } from "react";
+import React, { memo } from "react";
 import moment from "moment";
 import { useQuery } from "@apollo/react-hooks";
 import { connect } from "react-redux";
 import { View, Linking, Platform } from "react-native";
 import { Text } from "@atoms";
 import { FibBrowseScreen, FibCustomCoverScreen } from "@screens";
-import { GQL_QUERY_GET_TOP_UPS_ESTIMATE_COST } from "@graphql/products";
 import { FibLocalNavigation, FIB_CUSTOM_PERCENTAGE, FIB_FAQ_LIST, FIB_INTRO_YUGI } from "../fib.types";
 import fibDocumentsItems from "../data/documents-data";
-import { GetTopUpsEstimateCost, GetTopUpsEstimateCostVariables, GetYulifer } from "@graphql/_core/schema";
+import { GetYulifer } from "@graphql/_core/schema";
 import { GQL_QUERY_GET_YULIFER } from "@graphql/yuscreen";
 import { Package } from "@components/screens/products/fib/browse-packages/fib.browse.types";
 import { getFIBState } from "@redux/product/product.selectors";
 import { IReduxState } from "@redux/_core/reducers";
 import { IFaq } from "@components/screens/products/fib/browse-packages/subcomponents/faqs/faq";
 import { getUserDateOfBirth } from "@redux/user/user.selectors";
-import { calculatePayoutCalculatorItems, packages, useCover, calculatePayoutAmount } from "../fib.helpers";
+import { packages, useCover } from "../fib.helpers";
 import { handleOpenWebView } from "@navigation/utils";
 import Logger from "@services/logging/logger";
-import { CoverType, ProductCode } from "../../../../../graphql/_core/schema/globalTypes";
+import { CoverType, YuProductId } from "../../../../../graphql/_core/schema/globalTypes";
 import { YUGI_INTRO_TYPE } from "./fib.yugi-intro.container";
 import { noop } from "../../../../../services/utils";
+import { useBackHandler } from "../../../../../services/hooks/useBackHandler";
 
 interface IFibContainer {
   navigation: FibLocalNavigation;
@@ -48,57 +48,30 @@ const documents: IFaq[] = fibDocumentsItems.map((document) => ({
 }));
 
 const _FibBrowseContainer = memo(function (props: IFibContainer & ReturnType<typeof mapStateToProps>) {
-  // TODO: Clean up this function once we merge new yulifer query with products fetched from db
-  const { navigation, grossSalary, selectedPackage, userDateOfBirth } = props;
-  const { isCustomCover, customCoverPercentage = null } = navigation.currentRoute.passProps;
+  const { navigation, selectedPackage, userDateOfBirth } = props;
+  const { isCustomCover } = navigation.currentRoute.passProps;
   const [selectedCoverType, selectCoverType] = useCover(
-    isCustomCover ? CoverType.custom : selectedPackage || CoverType.common
+    isCustomCover ? CoverType.custom : selectedPackage || CoverType.epic
   );
-  const [deceaseAgeIndexYear, setDeceaseAgeIndexYear] = useState(0);
-  const [deceaseAgeIndexMonth, setDeceaseAgeIndexMonth] = useState(0);
-  const [payoutEstimatorItems, setPayoutEstimatorItems] = useState(
-    calculatePayoutCalculatorItems(userDateOfBirth, deceaseAgeIndexYear)
-  );
+
   const maxTermAge = moment().diff(moment(userDateOfBirth), "years") + 40;
 
-  useEffect(() => {
-    const newItems = calculatePayoutCalculatorItems(userDateOfBirth, deceaseAgeIndexYear);
-    setPayoutEstimatorItems(newItems);
-  }, [deceaseAgeIndexYear, userDateOfBirth]);
+  const { data: yuliferData, loading, error } = useQuery<GetYulifer>(GQL_QUERY_GET_YULIFER);
 
-  //TODO: deceaseAgeIndexMonth should be handle on calculate payout calculator items
-  const deceaseAgeMonth =
-    Number(payoutEstimatorItems.months[deceaseAgeIndexMonth]) ===
-    Number(payoutEstimatorItems.months[deceaseAgeIndexMonth])
-      ? payoutEstimatorItems.months[deceaseAgeIndexMonth]
-      : payoutEstimatorItems.months[payoutEstimatorItems.months.length - 1] || 0; // Never show error, default to 0
-  const deceaseAgeYear = payoutEstimatorItems.years[deceaseAgeIndexYear];
-
-  const topUpsQueryVariables = {
-    grossSalary,
-    coverType: selectedCoverType as CoverType,
-    customCoverPercentage,
+  const navigateToIntroScreen = () => {
+    navigation.pop();
+    return true;
   };
 
-  const { loading, error, data } = useQuery<GetTopUpsEstimateCost, GetTopUpsEstimateCostVariables>(
-    GQL_QUERY_GET_TOP_UPS_ESTIMATE_COST,
-    {
-      variables: {
-        input: topUpsQueryVariables,
-        product: ProductCode.YULFIB,
-      },
-      fetchPolicy: "cache-first",
-    }
-  );
+  useBackHandler(navigateToIntroScreen);
 
-  const { data: yuliferData } = useQuery<GetYulifer>(GQL_QUERY_GET_YULIFER);
-  const payoutAmount = calculatePayoutAmount({
-    term: data?.getTopUpsEstimateCost?.term,
-    deceaseAgeMonth,
-    deceaseAgeYear,
-    sumAssured: data?.getTopUpsEstimateCost?.sumAssured,
-    dateOfBirth: userDateOfBirth,
-  });
+  const navigateToFaqsList = () => navigation.push(FIB_FAQ_LIST);
+
+  const handleContinue = () => {
+    navigation.push(FIB_INTRO_YUGI, {
+      type: YUGI_INTRO_TYPE.PACKAGE_CHOSEN,
+    });
+  };
 
   if (error) {
     // TODO: Don't show this! Add back button?
@@ -109,34 +82,22 @@ const _FibBrowseContainer = memo(function (props: IFibContainer & ReturnType<typ
     );
   }
 
-  const monthlyAmountProtected = Math.round(
-    ((data?.getTopUpsEstimateCost?.sumAssured / (data?.getTopUpsEstimateCost?.term * 12)) * 100) / 100
-  );
+  const fibProduct = yuliferData?.personal?.filter(
+    (product) => product.productId === YuProductId.family_income_benefit
+  )[0];
+
+  const selectedProductOption = fibProduct?.options.filter(
+    (productOption) => productOption.type === selectedCoverType
+  )[0];
 
   const packageDetails: Package = {
-    newEarnRate: data?.getTopUpsEstimateCost?.newEarnRate || 0,
-    payoutAmount: Math.round(payoutAmount),
-    earnRate: data?.getTopUpsEstimateCost?.earnRate || 0,
-    salaryPercentageCovered: data?.getTopUpsEstimateCost?.salaryPercentageCovered || 0,
-    estimatedCost: data?.getTopUpsEstimateCost?.estimatedCost || 0,
+    newEarnRate: (yuliferData?.getYulifer?.earnRate || 0) + (selectedProductOption?.earnRate || 0),
+    earnRate: yuliferData?.getYulifer?.earnRate || 0,
+    salaryPercentageCovered: selectedProductOption?.percentageCovered * 100 || 0,
     id: selectedCoverType,
     label: packages[selectedCoverType].label,
-    descriptionHeading: data?.getTopUpsEstimateCost?.descriptionHeading || "",
-    term: data?.getTopUpsEstimateCost?.term,
-    monthlyAmountProtected,
-  };
-
-  const navigateToFaqsList = () => navigation.push(FIB_FAQ_LIST);
-  const navigateToIntroScreen = () =>
-    navigation.replace(FIB_INTRO_YUGI, {
-      type: YUGI_INTRO_TYPE.INTRO_UNDERWRITING,
-      initialIndex: 1,
-    });
-
-  const handleContinue = () => {
-    navigation.push(FIB_INTRO_YUGI, {
-      type: YUGI_INTRO_TYPE.PACKAGE_CHOSEN,
-    });
+    descriptionHeading: selectedProductOption?.heading || "",
+    term: maxTermAge,
   };
 
   if (isCustomCover) {
@@ -147,9 +108,9 @@ const _FibBrowseContainer = memo(function (props: IFibContainer & ReturnType<typ
         onContinue={handleContinue}
         navigateToEditSalary={noop}
         selectedPackage={packageDetails}
-        payoutEstimatorItems={payoutEstimatorItems}
-        setDeceaseAgeIndexYear={setDeceaseAgeIndexYear}
-        setDeceaseAgeIndexMonth={setDeceaseAgeIndexMonth}
+        payoutEstimatorItems={{} as any}
+        setDeceaseAgeIndexYear={noop}
+        setDeceaseAgeIndexMonth={noop}
         loading={loading}
         onNavigateToFaqsList={navigateToFaqsList}
         documents={documents}

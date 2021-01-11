@@ -245,8 +245,8 @@ const _FibUnderwritingJourneyContainer = memo(function (props: Props) {
 
     if (isFirstQuestion) {
       dispatch(updateFIBValue({ key: "lastQuestionId", value: "" }));
+      // If we don't pop first we need to click twice the back button on the intro screen
       navigation.pop();
-
       return navigation.replace(FIB_INTRO_YUGI, {
         type: YUGI_INTRO_TYPE.PACKAGE_CHOSEN,
         initialIndex: 1,

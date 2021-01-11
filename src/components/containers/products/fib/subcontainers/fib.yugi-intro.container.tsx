@@ -2,7 +2,13 @@ import React, { memo } from "react";
 import { connect, useDispatch } from "react-redux";
 import { IReduxState } from "@redux/_core/reducers";
 import { getUserFirstName } from "@redux/user/user.selectors";
-import { FibLocalNavigation, FIB_BROWSE, FIB_UNDERWRITING_JOURNEY, FIB_CONFIRM_PACKAGES } from "../fib.types";
+import {
+  FibLocalNavigation,
+  FIB_BROWSE,
+  FIB_UNDERWRITING_JOURNEY,
+  FIB_CONFIRM_PACKAGES,
+  FIB_CHOOSE_STYLE,
+} from "../fib.types";
 import { FibYugiIntroScreen } from "../../../../screens/products/fib/yugi-intro/fib-yugi-intro.screen";
 import { useMutation } from "@apollo/react-hooks";
 import {
@@ -60,7 +66,7 @@ const _FibYugiIntroContainer = memo(function FibYugiIntroContainer(props: Props)
     switch (type) {
       case YUGI_INTRO_TYPE.INTRO_UNDERWRITING:
         await upsertProductEntityQuery();
-        return navigation.push(FIB_BROWSE);
+        return navigation.push(FIB_CHOOSE_STYLE);
       case YUGI_INTRO_TYPE.FOREST_STYLE_SELECTED:
       case YUGI_INTRO_TYPE.OCEAN_STYLE_SELECTED:
       case YUGI_INTRO_TYPE.DESERT_STYLE_SELECTED:
@@ -77,7 +83,10 @@ const _FibYugiIntroContainer = memo(function FibYugiIntroContainer(props: Props)
     switch (type) {
       case YUGI_INTRO_TYPE.INTRO_UNDERWRITING:
         return navigation.popToMain();
+      case YUGI_INTRO_TYPE.FOREST_STYLE_SELECTED:
       case YUGI_INTRO_TYPE.OCEAN_STYLE_SELECTED:
+      case YUGI_INTRO_TYPE.DESERT_STYLE_SELECTED:
+      case YUGI_INTRO_TYPE.MOUNTAIN_STYLE_SELECTED:
       case YUGI_INTRO_TYPE.PACKAGE_CHOSEN:
       case YUGI_INTRO_TYPE.ANSWERS_SUBMITTED:
         return navigation.pop();
@@ -88,9 +97,11 @@ const _FibYugiIntroContainer = memo(function FibYugiIntroContainer(props: Props)
     switch (type) {
       case YUGI_INTRO_TYPE.INTRO_UNDERWRITING:
       case YUGI_INTRO_TYPE.PACKAGE_CHOSEN:
-        return navigation.popToMain();
+      case YUGI_INTRO_TYPE.FOREST_STYLE_SELECTED:
       case YUGI_INTRO_TYPE.OCEAN_STYLE_SELECTED:
-        return navigation.pop();
+      case YUGI_INTRO_TYPE.DESERT_STYLE_SELECTED:
+      case YUGI_INTRO_TYPE.MOUNTAIN_STYLE_SELECTED:
+        return navigation.popToMain();
       case YUGI_INTRO_TYPE.ANSWERS_SUBMITTED:
         return onUnderwritingClose();
     }

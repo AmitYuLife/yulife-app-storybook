@@ -27,6 +27,6 @@ const styles = StyleSheet.create({
     width: "100%",
   } as TextStyle,
   active: {
-    color: Colours.blue.up204,
+    color: Colours.ocean.up204,
   } as TextStyle,
 });

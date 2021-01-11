@@ -6,14 +6,14 @@ import { Style, Colours } from "@styles";
 import { TouchableOpacityWithDelay } from "@components/molecules";
 import { ProductCtaIcon } from "./product-cta-icon";
 import { getProductIcon } from "../../assets/getProductIcon";
-import { ItemSlot, ProductStatus } from "../../yu-types";
 import { PERSONAL_PRODUCT } from "@ids";
+import { YuItemSlot, YuProductStatus } from "../../../../../../graphql/_core/schema/globalTypes";
 
 export interface IProductProps {
-  itemSlot: ItemSlot;
+  itemSlot: YuItemSlot;
   tag?: string;
   heading: string;
-  status?: ProductStatus;
+  status?: YuProductStatus;
   subheading: ISubHeadingProps;
   onPress?: () => void;
   showSeparator?: boolean;

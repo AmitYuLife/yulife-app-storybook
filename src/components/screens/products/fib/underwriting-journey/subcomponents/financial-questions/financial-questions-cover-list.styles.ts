@@ -56,31 +56,31 @@ export const styles = StyleSheet.create({
 export function getColorScheme(index: number) {
   if (index % 4 === 1) {
     return {
-      iconColor: Colours.fp101,
-      backgroundColor: Colours.fp106,
-      borderColor: Colours.fp103,
+      iconColor: Colours.forest.fp101,
+      backgroundColor: Colours.forest.fp106,
+      borderColor: Colours.forest.fp103,
     };
   }
 
   if (index % 4 === 2) {
     return {
-      iconColor: Colours.fp305,
-      backgroundColor: Colours.fp309,
-      borderColor: Colours.fp308,
+      iconColor: Colours.forest.fp305,
+      backgroundColor: Colours.forest.fp309,
+      borderColor: Colours.forest.fp308,
     };
   }
 
   if (index % 4 === 3) {
     return {
       iconColor: Colours.mp304,
-      backgroundColor: Colours.fp205,
-      borderColor: Colours.fp204,
+      backgroundColor: Colours.forest.fp205,
+      borderColor: Colours.forest.fp204,
     };
   }
 
   return {
-    iconColor: Colours.blue.up204,
-    backgroundColor: Colours.blue.up306,
+    iconColor: Colours.ocean.up204,
+    backgroundColor: Colours.ocean.up306,
     borderColor: Colours.blue.mp108,
   };
 }

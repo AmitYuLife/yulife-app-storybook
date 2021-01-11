@@ -5,15 +5,15 @@ import { Style } from "@styles";
 import { SvgUnlockable } from "../../product/assets/svg-unlockable";
 import { SvgLocked } from "../../product/assets/svg-locked";
 import { ItemIcon } from "./item-icon";
-import { ItemSlot, ProductStatus } from "../../../yu-types";
 import { AVATAR_ITEM } from "@ids";
+import { YuItemSlot, YuProductStatus } from "../../../../../../../graphql/_core/schema/globalTypes";
 
 export interface ItemProps {
   onPress: () => void;
   isSelected: boolean;
-  itemSlot: string;
+  itemSlot: YuItemSlot;
   earnRate?: number;
-  status: string;
+  status: YuProductStatus;
 }
 
 export const Item = (props: ItemProps) => {
@@ -26,7 +26,7 @@ export const Item = (props: ItemProps) => {
       style={styles.wrapper}
       testID={AVATAR_ITEM(itemSlot, status)}
     >
-      <ItemIcon isSelected={isSelected} itemSlot={itemSlot as ItemSlot} status={status as ProductStatus} />
+      <ItemIcon isSelected={isSelected} itemSlot={itemSlot} status={status} />
       <View style={styles.tagWrapper}>{getTag(status, earnRate)}</View>
     </TouchableOpacityWithDelay>
   );
@@ -51,11 +51,11 @@ const styles = StyleSheet.create({
 
 function getTag(status: string, earnRate: number) {
   switch (status) {
-    case "unlockable":
+    case YuProductStatus.unlockable:
       return <SvgUnlockable />;
-    case "locked":
+    case YuProductStatus.locked:
       return <SvgLocked />;
-    case "active":
+    case YuProductStatus.active:
       return <PowerCoin power={earnRate} />;
     default:
       return null;
