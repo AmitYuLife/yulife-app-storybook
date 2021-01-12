@@ -15,7 +15,6 @@ export default function* getUserDataSaga() {
 
     if (token) {
       const { data, errors }: ApolloQueryResult<GetCurrentUser> = yield call(getCurrentUserWithClient);
-
       if (data && data.getCurrentUser === null && !errors) {
         yield call(expireSession);
         return;
