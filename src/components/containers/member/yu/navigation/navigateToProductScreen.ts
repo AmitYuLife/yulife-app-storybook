@@ -49,6 +49,21 @@ export const navigateToProductScreen = ({
       return handleRejected(resetFib);
     }
 
+    if (fibState.status === ScreeningStatus.PURCHASED) {
+      return Navigation.push(ROUTES.yuScreen, {
+        component: {
+          id: ROUTES.fib,
+          name: ROUTES.fib,
+          passProps: {
+            initialRoute: FIB_INFO,
+            initialProps: {
+              type: InfoTypes.paymentCongrats,
+            },
+          },
+        },
+      });
+    }
+
     if (fibState.status === ScreeningStatus.WAITING_MSS) {
       return Navigation.push(ROUTES.yuScreen, {
         component: {
