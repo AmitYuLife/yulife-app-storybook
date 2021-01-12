@@ -100,12 +100,15 @@ const ChallengesListContainer: FC<Props> = ({
       render={({ showOverlay }: IToggleBlur) => (
         <ChallengesListScreen
           challenges={level.slots.map((levelSlot) => {
+            const minValue = levelSlot?.milestones[0]?.coins || 0;
+            const maxValue = reduceMilestones(levelSlot.milestones);
+
             const formattedSlot = {
               challengeType: levelSlot.subtype as ChallengeType,
               duration: getSlotDuration(levelSlot),
               id: levelSlot.id,
               milestones: formatMilestones(levelSlot.milestones, levelSlot.subtype),
-              reward: `0-${reduceMilestones(levelSlot.milestones)}`,
+              reward: `${minValue} - ${maxValue}`,
               unit: levelSlot.unit as Unit,
             };
             const isLocked = currentLevel < levelSlot.availableAtLevel;
