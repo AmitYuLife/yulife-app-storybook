@@ -48,6 +48,8 @@
 
       <meta-data android:name="com.mixpanel.android.MPConfig.ResourcePackageName" android:value="com.yulife" />
 
+      <meta-data android:name="com.mixpanel.android.MPConfig.AutoShowMixpanelUpdates" android:value="false" />
+
       <meta-data
           android:name="com.google.firebase.messaging.default_notification_icon"
           android:resource="@drawable/intercom_push_icon" />
