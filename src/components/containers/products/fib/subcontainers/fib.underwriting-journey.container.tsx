@@ -14,6 +14,11 @@ import {
   FINAL_PROGRESS,
   FIB_INTRO,
   FIB_INPUT_SALARY,
+  FIB_THREE_YEAR_MEDICAL_HISTORY_SCREEN_ID,
+  FIB_HIGH_BLOOD_PRESSURE_EXTRA_SCREEN,
+  FIB_HIGH_BLOOD_PRESSURE_SCREEN_ID,
+  FIB_HIGH_CHOLESTEROL_EXTRA_SCREEN,
+  FIB_HIGH_CHOLESTEROL_SCREEN_ID,
 } from "../data/underwriting-journey-data";
 import { FIBProgressBar } from "@organisms";
 import { IReduxState } from "@redux/_core/reducers";
@@ -156,6 +161,29 @@ const _FibUnderwritingJourneyContainer = memo(function (props: Props) {
         currentQuestion.firstButton.answersIdToInvalidate.map((answerIdToInvalidate) => {
           updateFibAnswer(answerIdToInvalidate, "");
         });
+      }
+    }
+
+    if (currentQuestion.id === FIB_THREE_YEAR_MEDICAL_HISTORY_SCREEN_ID) {
+      // Clear previous values
+      const inactiveChips: string[] = [];
+      Object.entries(fibAnswers.medicalHistory).forEach(([questionId, value]) => {
+        if (!value) {
+          inactiveChips.push(questionId);
+          if (questionId === FIB_HIGH_BLOOD_PRESSURE_SCREEN_ID) {
+            inactiveChips.push(FIB_HIGH_BLOOD_PRESSURE_EXTRA_SCREEN);
+          }
+
+          if (questionId === FIB_HIGH_CHOLESTEROL_SCREEN_ID) {
+            inactiveChips.push(FIB_HIGH_CHOLESTEROL_EXTRA_SCREEN);
+          }
+        }
+      });
+
+      for (const questionId of Object.keys(fibAnswers)) {
+        if (inactiveChips.includes(questionId)) {
+          updateFibAnswer(questionId, "");
+        }
       }
     }
 

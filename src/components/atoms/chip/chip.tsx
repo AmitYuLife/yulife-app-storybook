@@ -9,7 +9,7 @@ import { ActiveIndicator } from "./active-indicator";
 
 export interface ChipProps {
   id: string;
-  relatedId?: string[];
+  relatedIds?: string[];
   active: boolean;
   label: string;
   icon: ChipIconType;

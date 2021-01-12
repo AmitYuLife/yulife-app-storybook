@@ -722,7 +722,6 @@ export const data: UnderwritingJourneyScreen[] = [
           },
           {
             id: FIB_DIGESTIVE_SCREEN_ID,
-            relatedId: [FIB_DIGESTIVE_SCREEN_ID],
             active: false,
             label: "Digestive",
             icon: ChipIconType.DIGESTIVE,
@@ -756,6 +755,7 @@ export const data: UnderwritingJourneyScreen[] = [
             active: false,
             label: "Pregnancy",
             icon: ChipIconType.PREGNANCY,
+            relatedIds: [...FIB_MEDICAL_FOLLOW_UP_QUESTIONS],
           },
           {
             id: FIB_MEDICAL_JOURNEY_MUSCLES_JOINTS_SCREEN_ID,

@@ -30,8 +30,8 @@ function MedicalChipList(props: ChipListProps & ConnectedState) {
         })
       );
       // Reset previous answers
-      if (item.relatedId) {
-        item.relatedId.map((id) => {
+      if (item.relatedIds) {
+        item.relatedIds.map((id) => {
           dispatch(updateFIBAnswerValue({ key: id, value: "" }));
         });
       } else {
