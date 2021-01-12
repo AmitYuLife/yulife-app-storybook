@@ -29,7 +29,7 @@ describe("ChallengeTile", () => {
 
     expect(Image).toHaveProp("source", "tortoise");
     expect(queryByText("60 minutes")).toBeTruthy();
-    expect(queryByText(/big money yucoin/)).toBeTruthy();
+    expect(queryByText(/big money YuCoin/)).toBeTruthy();
   });
 
   it("should display the default animal if no feasible event is passed through", () => {
@@ -48,7 +48,7 @@ describe("ChallengeTile", () => {
     expect(Image).toHaveProp("source", "snail");
     expect(queryByText("level 99")).toBeTruthy();
     expect(queryByText("60 minutes")).toBeNull();
-    expect(queryByText(/big money yucoin/)).toBeNull();
+    expect(queryByText(/big money YuCoin/)).toBeNull();
   });
 
   it("not display the challenge if no type is presented ", () => {
@@ -56,6 +56,6 @@ describe("ChallengeTile", () => {
 
     expect(queryByText("level")).toBeNull();
     expect(queryByText("60 minutes")).toBeNull();
-    expect(queryByText(/big money yucoin/)).toBeNull();
+    expect(queryByText(/big money YuCoin/)).toBeNull();
   });
 });

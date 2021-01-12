@@ -106,7 +106,7 @@ const Content: FunctionComponent<Partial<Props>> = ({ challengeType, duration, r
         </Text>
       </View>
       <View style={styles.contentRewardWrapper}>
-        <Text style={styles.contentReward}>{reward} yucoin</Text>
+        <Text style={styles.contentReward}>{reward} YuCoin</Text>
       </View>
     </View>
     <View style={styles.imageWrapperNext}>
