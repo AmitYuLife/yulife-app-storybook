@@ -46,12 +46,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginTop: WRAPPER_MARGIN_TOP,
   } as ViewStyle,
-  topbarWrapper: {
-    position: "absolute",
-    left: 0,
-    right: 0,
-    top: TOP_BAR.PADDING_TOP,
-  } as ViewStyle,
   topbarFiller: {
     height: TOP_BAR.HEIGHT * (Style.hasNotch ? 2.2 : 2),
   } as ViewStyle,

@@ -98,6 +98,15 @@ export enum ScreeningStatus {
   WAITING_MSS = "WAITING_MSS",
 }
 
+export enum UserNotificationsType {
+  activityInduced = "activityInduced",
+  challengeCompletion = "challengeCompletion",
+  dailyChallengeReminder = "dailyChallengeReminder",
+  duels = "duels",
+  intercom = "intercom",
+  streakSaver = "streakSaver",
+}
+
 export enum YuItemSlot {
   binoculars = "binoculars",
   boots = "boots",
@@ -117,7 +126,9 @@ export enum YuProductId {
   group_life_insurance = "group_life_insurance",
   income_protection = "income_protection",
   travel = "travel",
+  yulife = "yulife",
   yulife_alpha = "yulife_alpha",
+  yulife_lite = "yulife_lite",
   yulife_premium_offer = "yulife_premium_offer",
   yulife_standard_offer = "yulife_standard_offer",
 }
@@ -133,15 +144,6 @@ export enum YuWorld {
   forest = "forest",
   mountain = "mountain",
   ocean = "ocean",
-}
-
-export enum UserNotificationsType {
-  activityInduced = "activityInduced",
-  challengeCompletion = "challengeCompletion",
-  dailyChallengeReminder = "dailyChallengeReminder",
-  duels = "duels",
-  intercom = "intercom",
-  streakSaver = "streakSaver",
 }
 
 export interface AnswerInput {

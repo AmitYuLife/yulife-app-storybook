@@ -81,6 +81,10 @@ export default [
     component: require("../components/containers/member/duels-hub/duels-hub.container").default,
   },
   {
+    name: ROUTES.duelsSearch,
+    component: require("../components/containers/member/duels-search/duels-search.container").default,
+  },
+  {
     name: ROUTES.communityGoals,
     component: require("../components/containers/member/community-goals/comunity-goals.container").default,
   },

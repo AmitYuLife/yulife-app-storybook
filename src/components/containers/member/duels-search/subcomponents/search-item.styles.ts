@@ -1,0 +1,36 @@
+import { Colours, Style } from "@styles";
+import { StyleSheet, TextStyle, ViewStyle } from "react-native";
+
+export default StyleSheet.create({
+  opponentCard: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    paddingLeft: Style.adjust(24),
+    paddingRight: Style.adjust(24),
+    paddingTop: Style.adjust(8),
+    paddingBottom: Style.adjust(8),
+    backgroundColor: Colours.neutral.white,
+    borderBottomWidth: 1,
+    borderBottomColor: Colours.neutral.n100,
+  } as ViewStyle,
+  firstCard: {
+    borderTopWidth: 1,
+    borderTopColor: Colours.neutral.n100,
+  } as ViewStyle,
+  nameSection: {
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+  } as ViewStyle,
+  nameText: {
+    color: Colours.neutral.n800,
+    fontSize: Style.adjust(16),
+    marginLeft: Style.adjust(2),
+  } as TextStyle,
+  duelText: {
+    color: Colours.primary.p600,
+    fontSize: Style.adjust(16),
+  } as TextStyle,
+});

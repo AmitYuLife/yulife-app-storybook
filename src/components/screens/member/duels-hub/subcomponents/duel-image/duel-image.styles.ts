@@ -2,12 +2,12 @@ import { StyleSheet, ImageStyle as RnImageStyle, ViewStyle } from "react-native"
 import { ImageStyle } from "react-native-fast-image";
 import { Style } from "@styles";
 
-const AVATAR_WIDTH = Style.adjust(42);
+const AVATAR_SIZE = Style.adjust(42);
 
 export const emptyStyles = StyleSheet.create({
   wrapper: {
-    height: "100%",
-    width: AVATAR_WIDTH,
+    height: AVATAR_SIZE,
+    width: AVATAR_SIZE,
     overflow: "hidden",
     justifyContent: "flex-start",
     alignItems: "center",
@@ -23,15 +23,15 @@ export const emptyStyles = StyleSheet.create({
 export const filledStyles = StyleSheet.create({
   wrapper: {
     alignSelf: "flex-end",
-    height: AVATAR_WIDTH,
-    width: AVATAR_WIDTH,
+    height: AVATAR_SIZE,
+    width: AVATAR_SIZE,
     overflow: "hidden",
     justifyContent: "flex-start",
     alignItems: "center",
     marginRight: Style.adjust(10),
   } as ViewStyle,
   image: {
-    width: AVATAR_WIDTH,
+    width: AVATAR_SIZE,
     height: Style.adjust(90),
   } as ImageStyle,
 });

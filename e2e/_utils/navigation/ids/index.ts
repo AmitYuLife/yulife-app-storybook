@@ -142,6 +142,7 @@ export const DUELS_HUB = "DUELS_HUB"
 export const EMPTY_DUELS_HUB = "EMPTY_DUELS_HUB"
 export const DUEL_OPTIONS_SCREEN = "DUEL_OPTIONS_SCREEN"
 export const DUEL_RESPONSE = (opponentName:string) => `DUEL_RESPONSE_${opponentName}`
+export const DUELS_SEARCH = "DUELS_SEARCH"
 
 // COMMUNITY GOALS
 export const NICKNAME_INPUT = "NICKNAME_INPUT"
