@@ -206,10 +206,11 @@ export const getReviewAnswers = (state: IReduxState): any => {
       questionId = item.id;
     }
 
-    if (
-      item.id === FIB_SYMPTOMS_RESOLVED_SCREEN_ID &&
-      state.product.fib.answers[FIB_DAILY_ACTIVITIES_RESTRICTIONS_SCREEN_ID] === "No"
-    ) {
+    if (item.id === FIB_SYMPTOMS_RESOLVED_SCREEN_ID) {
+      if (state.product.fib.answers[FIB_HOSPITAL_STAY_SCREEN_ID] !== "No") {
+        return;
+      }
+
       icon = item.icon;
       title = item.title;
       answer = state.product.fib.answers[item.id];

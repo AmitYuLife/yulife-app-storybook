@@ -23,6 +23,9 @@ import {
   FIB_FINANCIAL_COVER_LIST_SCREEN_ID,
   FIB_LIFESTYLE_ALCOHOL_SCREEN_ID,
   FIB_UNDERWRITING_REVIEW_ANSWERS_SCREEN_ID,
+  FIB_MEDICAL_FOLLOW_UP_QUESTIONS,
+  FIB_HIGH_BLOOD_PRESSURE_EXTRA_SCREEN,
+  FIB_HIGH_CHOLESTEROL_EXTRA_SCREEN,
 } from "../../components/containers/products/fib/data/underwriting-journey-data";
 import { ScreeningStatus } from "@graphql/_core/schema/globalTypes";
 
@@ -139,17 +142,27 @@ function personalProductReducer<T>(state: IProductStore = initialState, action: 
           },
         },
       };
-    case RESET_FIB_MEDICAL_VALUE:
+    case RESET_FIB_MEDICAL_VALUE: {
+      const answers: IProductStore["fib"]["answers"] = { ...state.fib.answers, medicalHistory: {} };
+      [
+        ...FIB_MEDICAL_FOLLOW_UP_QUESTIONS,
+        FIB_HIGH_CHOLESTEROL_EXTRA_SCREEN,
+        FIB_HIGH_BLOOD_PRESSURE_EXTRA_SCREEN,
+      ].forEach((questionId) => {
+        if (answers[questionId]) {
+          delete answers[questionId];
+        }
+      });
+
       return {
         ...state,
         fib: {
           ...state.fib,
-          answers: {
-            ...state.fib.answers,
-            medicalHistory: {},
-          },
+          answers,
         },
       };
+    }
+
     case RESET_FIB_UNDERWRITING_JOURNEY:
       return {
         ...state,
