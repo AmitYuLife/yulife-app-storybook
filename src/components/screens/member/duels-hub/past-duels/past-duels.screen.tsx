@@ -53,7 +53,7 @@ const PastDuels = ({ data, onPressClose, onChangeTab, activeTab, onRefetch, refr
       <FlatList
         style={styles.flatList}
         data={formattedPastDuels}
-        ListEmptyComponent={<EmptyDuelHub activeTab={activeTab} onPressClose={onPressClose} />}
+        ListEmptyComponent={<EmptyDuelHub activeTab={activeTab} />}
         getItemLayout={getItemLayout}
         refreshing={refreshing}
         onRefresh={onRefetch}

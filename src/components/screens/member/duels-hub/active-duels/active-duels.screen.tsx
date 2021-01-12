@@ -60,7 +60,7 @@ const ActiveDuels = ({ data, onPressClose, onChangeTab, activeTab, onRefetch, re
         sections={sections}
         refreshing={refreshing}
         stickySectionHeadersEnabled={false}
-        ListEmptyComponent={<EmptyDuelHub activeTab={activeTab} onPressClose={onPressClose} />}
+        ListEmptyComponent={<EmptyDuelHub activeTab={activeTab} />}
         onRefresh={onRefetch}
         getItemLayout={getItemLayout}
         keyExtractor={({ id }) => id}

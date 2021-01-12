@@ -10,7 +10,7 @@ interface IProps {
   onPress: () => void;
 }
 
-const DuelEmpty = ({ text, buttonText, onPress }: IProps) => {
+function _DuelEmpty({ text, buttonText, onPress }: IProps) {
   return (
     <View>
       <View style={styles.emptyStateOutsideWrapper}>
@@ -22,6 +22,8 @@ const DuelEmpty = ({ text, buttonText, onPress }: IProps) => {
       <Button label={buttonText} type="Primary" onPress={onPress} />
     </View>
   );
-};
+}
+
+const DuelEmpty = React.memo(_DuelEmpty);
 
 export default DuelEmpty;

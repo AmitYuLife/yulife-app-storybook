@@ -23,6 +23,7 @@ export const ROUTES = {
   activityHistory: "yulife.member.ActivityHistory",
   stats: "yulife.member.Stats",
   duelsHub: "yulife.member.DuelsHub",
+  duelsSearch: "yulife.member.DuelsSearch",
   leaderboards: "yulife.member.Leaderboards",
   leaderboardInfo: "yulife.member.LeaderboardInfo",
   leaderboardsList: "yulife.member.LeaderboardsList",

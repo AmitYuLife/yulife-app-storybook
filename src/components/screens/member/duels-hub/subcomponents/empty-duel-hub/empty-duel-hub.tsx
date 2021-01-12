@@ -1,16 +1,26 @@
-import React, { FC } from "react";
+import React from "react";
 import { View } from "react-native";
 import { DuelEmpty } from "..";
 import { DuelHubTab } from "@components/containers/member/duels-hub/duels-hub.container";
 import { EMPTY_DUELS_HUB } from "@ids";
+import { Navigation } from "react-native-navigation";
+import { ROUTES } from "@navigation/constants";
 
-interface IProps {
-  onPressClose: () => void;
+interface Props {
   activeTab: DuelHubTab;
 }
 
-const EmptyDuelHub: FC<IProps> = ({ onPressClose, activeTab }) => {
-  const copy =
+async function navigateToDuelsSearch() {
+  await Navigation.push(ROUTES.duelsHub, {
+    component: {
+      id: ROUTES.duelsSearch,
+      name: ROUTES.duelsSearch,
+    },
+  });
+}
+
+function _EmptyDuelHub({ activeTab }: Props) {
+  const { text, buttonText } =
     activeTab === "active"
       ? {
           text: "You don’t have any upcoming duels. Why not challenge a colleague?",
@@ -20,11 +30,14 @@ const EmptyDuelHub: FC<IProps> = ({ onPressClose, activeTab }) => {
           text: "You don’t have any past duels recorded. Why not challenge a colleague?",
           buttonText: "Challenge a colleague",
         };
+
   return (
     <View testID={EMPTY_DUELS_HUB}>
-      <DuelEmpty {...copy} onPress={onPressClose} />
+      <DuelEmpty text={text} buttonText={buttonText} onPress={navigateToDuelsSearch} />
     </View>
   );
-};
+}
+
+const EmptyDuelHub = React.memo(_EmptyDuelHub);
 
 export default EmptyDuelHub;
