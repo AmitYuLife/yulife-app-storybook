@@ -559,7 +559,7 @@ export const data: UnderwritingJourneyScreen[] = [
       {
         type: "markdown",
         text:
-          "1 drink is a glass of wine, pint of beer or cider, or a double measure of spirits (for a human, anyway).",
+          "1 drink is a glass of wine, pint of beer or cider, or a double measure of spirits (for a human, anyway). As a reminder, these answers will not be shared with your employer.",
       },
       {
         type: "inputAlcohol",
@@ -580,7 +580,7 @@ export const data: UnderwritingJourneyScreen[] = [
       {
         type: "markdown",
         text:
-          "Examples of recreational drugs include ecstasy, cocaine, heroin, amphetamines and anabolic steroids.\n\nI won’t count cannabis if it's no more than 1 or 2 tobacco-free joints a week. I’m not like those other giraffes. I’m a cool giraffe.",
+          "Examples of recreational drugs include ecstasy, cocaine, heroin, amphetamines and anabolic steroids. As a reminder, these answers will not be shared with your employer.\n\nI won’t count cannabis if it's no more than 1 or 2 tobacco-free joints a week. I’m not like those other giraffes. I’m a cool giraffe.",
       },
     ],
   },
