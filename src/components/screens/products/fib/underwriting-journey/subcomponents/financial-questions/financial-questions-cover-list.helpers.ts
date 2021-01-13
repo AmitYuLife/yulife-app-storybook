@@ -18,7 +18,7 @@ export function openModal(removeItem: () => void) {
         },
       },
       passProps: {
-        heading: "Are you sure you want to remove cover?",
+        heading: "Are you sure you want to remove this cover?",
         buttons: [
           {
             label: "Yes, please remove",
