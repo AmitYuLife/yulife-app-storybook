@@ -157,7 +157,6 @@ function renderItem({ item }: ListRenderItemInfo<{ text: string }>) {
 
 const styles = StyleSheet.create({
   speechWrapper: {
-    marginLeft: 19,
     marginBottom: 16,
     width: Style.DEVICE_WIDTH - 45,
     marginTop: Style.DEVICE_HEIGHT * 0.15,
@@ -208,7 +207,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "flex-end",
     width: Style.DEVICE_WIDTH - 45,
-    marginLeft: 19,
   } as ViewStyle,
   lottieWrapper: {
     alignItems: "center",

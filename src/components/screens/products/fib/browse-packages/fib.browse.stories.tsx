@@ -17,6 +17,14 @@ const selectedPackage: Package = {
   payoutAmount: 400000,
   term: 40,
   monthlyAmountProtected: 1000,
+  powers: [
+    {
+      id: "double_chest",
+      title: "Double Chest",
+      description: "Increase your chances of getting a double chest on a quest.",
+      icon: "",
+    },
+  ],
 };
 
 const onPress = (): null => null;
@@ -34,7 +42,6 @@ storiesOf("FibBrowse", module)
       selectedPackage={selectedPackage}
       onNavigateToYuScreen={(): void => null}
       onContinue={(): void => null}
-      avatarUrl={""}
       offset={{ x: 0, y: 0 }}
       onScrollEnd={() => null}
       selectCoverType={() => null}
