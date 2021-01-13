@@ -39,6 +39,12 @@ export const GQL_QUERY_GET_YULIFER = gql`
           background
           armor
         }
+        powers {
+          id
+          title
+          description
+          icon
+        }
       }
     }
     employer: getYuProducts(productType: employer) {

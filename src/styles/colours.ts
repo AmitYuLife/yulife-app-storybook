@@ -220,6 +220,11 @@ export default {
     p500: "#F50D78",
     p600: "#E30D76",
   },
+  secondary: {
+    s10S1: "#E4FCF4",
+    s10S2: "#E3F7FC",
+    s10S3: "#F4F0FF",
+  },
   neutral: {
     white: "#FFFFFF",
     n50: "#FAFAFE",

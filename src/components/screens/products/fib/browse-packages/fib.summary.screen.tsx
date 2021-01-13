@@ -16,6 +16,7 @@ import { Documents } from "./subcomponents/documents/documents";
 import { Package } from "./fib.browse.types";
 import { useBackHandler } from "@services/hooks/useBackHandler";
 import { PackageOptions } from "./subcomponents/package-options/package-options";
+import PackageInfo from "./subcomponents/package-info/package-info";
 import { PackageId } from "../fib.helper";
 import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
 import { Style } from "@styles";
@@ -93,6 +94,9 @@ export const FibSummaryScreen = memo(function (props: FibSummaryScreenProps) {
           ref={scrollViewRef}
         >
           <PackageOptions selectedPackageId={selectedPackage.label} onSelectPackage={onSelectPackage} />
+          <View style={styles.packageInfo}>
+            <PackageInfo selectedPackage={selectedPackage} packagePrice={selectedPackage.actualCost} />
+          </View>
           <SummaryDescription
             customerAge={customerAge}
             selectedPackage={selectedPackage}
@@ -140,6 +144,9 @@ const styles = StyleSheet.create({
   buttonWrapper: {
     marginTop: 47,
     marginBottom: -5,
+  },
+  packageInfo: {
+    marginBottom: 10,
   },
   padBot: {
     height: Style.hasNotch ? 40 : 20,

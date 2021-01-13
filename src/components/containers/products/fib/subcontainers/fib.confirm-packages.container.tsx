@@ -19,10 +19,11 @@ import { MODALS } from "@navigation/constants";
 import { handleOpenWebView } from "@navigation/utils";
 import Logger from "@services/logging/logger";
 import { Navigation } from "react-native-navigation";
-import { CreateTopUpsQuote, CreateTopUpsQuoteVariables } from "../../../../../graphql/_core/schema";
-import { CoverType, CreateTopUpsQuoteInput, ProductCode } from "../../../../../graphql/_core/schema/globalTypes";
-import { GetTopUpsQuote, GetTopUpsQuoteVariables } from "../../../../../graphql/_core/schema/GetTopUpsQuote";
-import { getBirthday } from "../../../../../redux/product/product.selectors";
+import { CreateTopUpsQuote, CreateTopUpsQuoteVariables, GetYulifer } from "@graphql/_core/schema";
+import { CoverType, CreateTopUpsQuoteInput, ProductCode, YuProductId } from "@graphql/_core/schema/globalTypes";
+import { GetTopUpsQuote, GetTopUpsQuoteVariables } from "@graphql/_core/schema/GetTopUpsQuote";
+import { getBirthday } from "@redux/product/product.selectors";
+import { GQL_QUERY_GET_YULIFER } from "@graphql/yuscreen";
 
 type ConnectedState = ReturnType<typeof mapStateToProps>;
 
@@ -102,6 +103,10 @@ const FibConfirmPackagesContainer = memo(function (props: FibConfirmPackagesCont
     },
   });
 
+  const { data: yuliferData } = useQuery<GetYulifer>(GQL_QUERY_GET_YULIFER, {
+    fetchPolicy: "cache-only",
+  });
+
   const [createFibQuote] = useMutation<CreateTopUpsQuote, CreateTopUpsQuoteVariables>(
     GQL_MUTATION_CREATE_TOP_UPS_QUOTE
   );
@@ -149,6 +154,14 @@ const FibConfirmPackagesContainer = memo(function (props: FibConfirmPackagesCont
     ((data?.getTopUpsQuote?.sumAssured / (data?.getTopUpsQuote?.term * 12)) * 100) / 100
   );
 
+  const fibProduct = yuliferData?.personal?.filter(
+    (product) => product.productId === YuProductId.family_income_benefit
+  )[0];
+
+  const selectedProductOption = fibProduct?.options.filter(
+    (productOption) => productOption.type === selectedCoverType
+  )[0];
+
   const packageDetails: Package = {
     newEarnRate: data?.getTopUpsQuote?.newEarnRate || 0,
     payoutAmount: Math.round(payoutAmount),
@@ -160,6 +173,8 @@ const FibConfirmPackagesContainer = memo(function (props: FibConfirmPackagesCont
     term: data?.getTopUpsQuote?.term,
     monthlyAmountProtected,
     actualCost: data?.getTopUpsQuote?.actualCost || 0,
+    title: fibProduct?.name,
+    powers: selectedProductOption?.powers || [],
   };
 
   const onExitHandler = useCallback(async () => {

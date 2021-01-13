@@ -9,10 +9,12 @@ import {
   View,
 } from "react-native";
 import * as Animatable from "react-native-animatable";
-import { AvatarAndDescription, HowItWorks } from "./subcomponents";
+import { HowItWorks } from "./subcomponents";
 import { ContinueButton } from "./continue-button/continue-button";
 import { Package } from "./fib.browse.types";
 import { PackageOptions } from "./subcomponents/package-options/package-options";
+import PackageInfo from "./subcomponents/package-info/package-info";
+import { Colours } from "@styles";
 import { Faqs } from "./subcomponents/faqs/faqs";
 import AdditionalBenefits from "./additional-benefits/additional-benefits";
 import { Documents } from "./subcomponents/documents/documents";
@@ -31,7 +33,6 @@ interface IFibBrowseScreenProps {
   selectedPackage: Package;
   loading: boolean;
   documents: IFaq[];
-  avatarUrl: string;
   maxTermAge: number;
   offset: NativeScrollPoint;
   onScrollEnd: (event: NativeSyntheticEvent<NativeScrollEvent>) => void;
@@ -43,7 +44,6 @@ export const FibBrowseScreen = memo(function (props: IFibBrowseScreenProps) {
   const {
     onNavigateToYuScreen,
     onNavigateToFaqsList,
-    avatarUrl,
     documents,
     onContinue,
     selectCoverType,
@@ -107,7 +107,7 @@ export const FibBrowseScreen = memo(function (props: IFibBrowseScreenProps) {
             useNativeDriver={true}
           >
             <PackageOptions selectedPackageId={selectedPackage.label} onSelectPackage={onSelectPackage} />
-            <AvatarAndDescription loading={loading} avatarUrl={avatarUrl} selectedPackage={selectedPackage} />
+            <PackageInfo selectedPackage={selectedPackage} />
             <HowItWorks
               header={selectedPackage.id}
               content={`In the event of death, your loved ones will receive ${selectedPackage.salaryPercentageCovered}% of your future earnings from the date of death ${howItWorksMaxCoverAge} (based on your current salary).\n\nThis means if you pass away near the beginning of the insurance term, your loved ones will receive more money than if you pass away near the end.\n\nThis is paid as a single payment.`}
@@ -135,6 +135,7 @@ export const FibBrowseScreen = memo(function (props: IFibBrowseScreenProps) {
 const styles = StyleSheet.create({
   flex: {
     flex: 1,
+    backgroundColor: Colours.neutral.white,
   } as ViewStyle,
   wrapper: {
     backgroundColor: "white",

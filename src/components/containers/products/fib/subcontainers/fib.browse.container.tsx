@@ -17,7 +17,7 @@ import { getUserDateOfBirth } from "@redux/user/user.selectors";
 import { packages, useCover } from "../fib.helpers";
 import { handleOpenWebView } from "@navigation/utils";
 import Logger from "@services/logging/logger";
-import { CoverType, YuProductId } from "../../../../../graphql/_core/schema/globalTypes";
+import { CoverType, YuProductId } from "@graphql/_core/schema/globalTypes";
 import { YUGI_INTRO_TYPE } from "./fib.yugi-intro.container";
 import { noop } from "../../../../../services/utils";
 import { useBackHandler } from "../../../../../services/hooks/useBackHandler";
@@ -98,6 +98,8 @@ const _FibBrowseContainer = memo(function (props: IFibContainer & ReturnType<typ
     label: packages[selectedCoverType].label,
     descriptionHeading: selectedProductOption?.heading || "",
     term: maxTermAge,
+    title: fibProduct?.name,
+    powers: selectedProductOption?.powers || [],
   };
 
   if (isCustomCover) {
@@ -120,7 +122,6 @@ const _FibBrowseContainer = memo(function (props: IFibContainer & ReturnType<typ
 
   return (
     <FibBrowseScreen
-      avatarUrl={yuliferData?.getYulifer.avatarRemoteFiles?.pngFull}
       onNavigateToYuScreen={navigation.popToMain}
       navigateToCustomCover={() => navigation.push(FIB_CUSTOM_PERCENTAGE)}
       onContinue={handleContinue}

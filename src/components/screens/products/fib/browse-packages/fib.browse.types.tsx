@@ -1,5 +1,11 @@
 import { PackageId } from "../fib.helper";
 
+interface IPackagePowersProps {
+  id: string;
+  title: string;
+  description: string;
+  icon: string;
+}
 interface IServerPackageProps {
   payoutAmount?: number;
   earnRate: number;
@@ -8,6 +14,8 @@ interface IServerPackageProps {
   term?: number;
   monthlyAmountProtected?: number;
   actualCost?: number;
+  title?: string;
+  powers?: IPackagePowersProps[];
 }
 
 interface ILocalPackageProps {

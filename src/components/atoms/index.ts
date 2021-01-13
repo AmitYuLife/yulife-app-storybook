@@ -32,6 +32,9 @@ export { default as YuCoinIcon } from "./yucoin-icon/yucoin.icon";
 export { Yumoji } from "./yumoji/yumoji";
 export { UnauthorisedGradient } from "./unauthorised-gradient/unauthorised-gradient";
 export { default as ArrowRightSvg } from "./arrow-right-svg/arrow-right-svg";
+export { default as DoubleChest } from "./fib/double-chest/double-chest";
+export { default as Streak } from "./fib/streak/streak";
+export { default as Shoe } from "./fib/shoe/shoe";
 
 // error :( https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-8.html#export--as-ns-syntax
 import * as ProductSvg from "./product-svg";

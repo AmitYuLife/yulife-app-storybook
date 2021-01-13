@@ -31,12 +31,20 @@ export interface GetYulifer_personal_options_styles {
   armor: string | null;
 }
 
+export interface GetYulifer_personal_options_powers {
+  id: string | null;
+  title: string | null;
+  description: string | null;
+  icon: string | null;
+}
+
 export interface GetYulifer_personal_options {
   type: CoverType | null;
   earnRate: number | null;
   heading: string | null;
   percentageCovered: number | null;
   styles: (GetYulifer_personal_options_styles | null)[] | null;
+  powers: (GetYulifer_personal_options_powers | null)[] | null;
 }
 
 export interface GetYulifer_personal {
