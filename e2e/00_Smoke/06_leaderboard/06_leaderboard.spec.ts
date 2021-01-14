@@ -3,7 +3,7 @@ import * as scenario from "./_steps/scenario"
 import * as given from "./_steps/given"
 import * as when from "./_steps/when"
 import * as then from "./_steps/then"
-import { NAV_BAR, LEADERBOARD_INFO_BUTTON, LEADERBOARD_INFO, BACK_BUTTON, LEADERBOARD_TOP_SCREEN, MENU_ICON, MENU_ITEM, SETTINGS_SCREEN, LEADERBOARD_EMAIL_INPUT, GROUP_NAME_INPUT, LEADERBOARD_STATUS, BUTTON_CLOSE, DAILY_STEPS_SCREEN, LEADERBOARD_NAME, LEADERBOARD_TITLE } from "@ids";
+import { NAV_BAR, LEADERBOARD_INFO_BUTTON, LEADERBOARD_INFO, BACK_BUTTON, LEADERBOARD_TOP_SCREEN, MENU_ICON, MENU_ITEM, SETTINGS_SCREEN, LEADERBOARD_EMAIL_INPUT, GROUP_NAME_INPUT, LEADERBOARD_STATUS, BUTTON_CLOSE, DAILY_STEPS_SCREEN, LEADERBOARD_NAME, LEADERBOARD_TITLE, BUTTON_CLOSE_HEADER } from "@ids";
 import { CUSTOMER_16, AUTH_16, CUSTOMER_17, AUTH_17, CUSTOMER_18, USER_18_LEADERBOARD, CUSTOMER_19, AUTH_19, CUSTOMER_20, CUSTOMER_21, AUTH_21, AUTH_20, USER_19_LEADERBOARD_B } from "@data";
 
 Feature("As a user I can see my achievements on the leaderboard", async () => {
@@ -93,7 +93,7 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
                         Then("I should see my active leaderboard", then.leaderboardStatus(USER_18_LEADERBOARD.data.name, "active"))
                         When("I turn off this leaderboard", when.turnOffLeaderboard(LEADERBOARD_STATUS(USER_18_LEADERBOARD.data.name, "active")), async () => {
                             Then("I should be back on the settings page and this leaderboard should be off", then.leaderboardStatus(USER_18_LEADERBOARD.data.name, "inactive"))
-                            When("I close the setting menu", when.tapID(BUTTON_CLOSE), async () => {
+                            When("I close the setting menu", when.tapID(BUTTON_CLOSE_HEADER("Settings")), async () => {
                                 Then("I should be back on an empty leaderboard screen", then.onLeaderboardConsent)
                             })
                         })

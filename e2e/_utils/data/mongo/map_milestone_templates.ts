@@ -59,3 +59,22 @@ export const LONG_WALK_MILESTONE_1 = {
         ],
     }
 } as IDatabaseItem
+
+export const BRISK_WALK_MILESTONE_1 = {
+    type: "mongo",
+    modelName: "map_milestone_templates",
+    updateKey: "id",
+    data: {
+        "id": "YU_MILESTONE_BW0001",
+        "milestones": [
+            {
+                "id": "YU_MILESTONE_BW0001_0",
+                "XP": 0,
+                "coins": 6.0,
+                "target": {
+                    "steps": 700
+                }
+            }
+        ],
+    }
+} as IDatabaseItem

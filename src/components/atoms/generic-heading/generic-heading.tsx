@@ -11,6 +11,7 @@ import { TOP_BAR } from "@styles";
 import CloseSvg from "@atoms/close/close-svg";
 import EditSvg from "@atoms/edit/edit-svg";
 import { PressableWithDelay } from "@components/molecules";
+import { BUTTON_CLOSE_HEADER } from "@ids";
 
 function GenericHeading(props: IGenericHeadingProps) {
   const {
@@ -55,7 +56,12 @@ function GenericHeading(props: IGenericHeadingProps) {
       )}
       <View style={styles.rightIconWrapper}>
         {onRightIconPress ? (
-          <PressableWithDelay hitSlop={TOP_BAR.HIT_SLOP} onPress={onRightIconPress} style={styles.rightIconTouchable}>
+          <PressableWithDelay
+            hitSlop={TOP_BAR.HIT_SLOP}
+            onPress={onRightIconPress}
+            style={styles.rightIconTouchable}
+            testID={BUTTON_CLOSE_HEADER(heading)}
+          >
             <RightIcon icon={rightIcon} />
           </PressableWithDelay>
         ) : null}

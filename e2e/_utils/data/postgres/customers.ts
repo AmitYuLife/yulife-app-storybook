@@ -279,6 +279,7 @@ export const CUSTOMER_19 = {
         dateOfBirth: moment().subtract(42, "years").toDate(),
         membershipType: "Yulife",
         status: "onboarded",
+        fullName: "Angela Martin"
     }
 } as IDatabaseItem
 

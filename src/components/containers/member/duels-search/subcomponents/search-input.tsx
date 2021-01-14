@@ -1,4 +1,5 @@
 import { Text } from "@atoms";
+import { SEARCH_INPUT } from "@ids";
 import React from "react";
 import { TextInput, View } from "react-native";
 import styles from "./search-input.styles";
@@ -16,7 +17,13 @@ function _SearchInput({ title, query, onChangeText }: Props) {
         <Text bold={true} style={styles.text}>
           {title}
         </Text>
-        <TextInput style={styles.textInput} onChangeText={onChangeText} value={query} autoFocus={true} />
+        <TextInput
+          style={styles.textInput}
+          onChangeText={onChangeText}
+          value={query}
+          autoFocus={true}
+          testID={SEARCH_INPUT}
+        />
       </View>
     </View>
   );

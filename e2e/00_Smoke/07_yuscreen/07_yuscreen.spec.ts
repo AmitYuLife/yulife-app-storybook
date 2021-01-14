@@ -94,9 +94,9 @@ Feature("I am able to use the yuscreen, create, and edit an Yumoji", async () =>
         Given("I login", given.loginToYuScreen(), async () => {
             Then("I should be on an empty yuscreen tab", then.onEmptyYuscreen(CUSTOMER_1))
             Then("I should see 1x Yucoin power", then.swipeToID(YUSCREEN, YUCOIN_POWER("1"), "up", 3))
-            When("I scroll to the bottom", when.scrollUntilTextVisible(YUSCREEN_SCROLL_VIEW, "Group Life Insurance", "down"), async () => {
+            When("I scroll to the bottom", when.scrollUntilTextVisible(YUSCREEN_SCROLL_VIEW, "The Compass of Group Life Insurance", "down"), async () => {
                 Then("I should see my Employer benefits", then.textVisible("Your company has equipped you with:"))
-                Then("I should see Group Life Insurance", then.textVisible("Group Life Insurance"))
+                Then("I should see The Compass of Group Life Insurance ", then.textVisible("The Compass of Group Life Insurance"))
                 When("I go to the earn rate", when.scrollUntilIdVisible(YUSCREEN_SCROLL_VIEW, YUCOIN_POWER("1"), "up"), async () => {
                         When("I tap the earn rate", when.tapID(YUCOIN_POWER("1")), async () => {
                             Then("I should be on the 'Your YuCoin' screen", then.onYourYuCoin)
@@ -174,7 +174,7 @@ Feature("I am able to use the yuscreen, create, and edit an Yumoji", async () =>
                 When("I scroll to the bottom", when.scrollFromID(YUSCREEN, "up", "fast"), async () => {
                     Then("I should see a list of 'Coming Soon' options", then.personalProductsVisible)
                 })
-                When("I tap the gloves", when.tapID(PERSONAL_PRODUCT("Life Insurance")), async () => {
+                When("I tap the gloves", when.tapID(PERSONAL_PRODUCT("Income Protection")), async () => {
                     Then("I should be on the survey screen", then.onSurveyScreen)
                     Then("I should a dental insurance option, and it should not be selected", then.idVisible(CHECK_BOX_STATE("Dental insurance", false)))
                     When("I tap an option", when.tapText("Dental insurance"), async () => {
