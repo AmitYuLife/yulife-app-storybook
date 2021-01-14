@@ -133,7 +133,7 @@ export const leaderboardAvatarVisible = (facialHair: string, eyes: string, hair:
 }
 
 export const personalProductsVisible = async () => {
-    const products = ["Life Insurance", "Income Protection", "Critical Illness", "Travel Insurance"]
+    const products = ["Income Protection", "Family Income Benefit", "Critical Illness", "Travel Insurance"]
 
     for (const i of products) {
         await expect(element(by.id(PERSONAL_PRODUCT(i)))).toBeVisible()

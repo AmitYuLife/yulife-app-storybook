@@ -38,6 +38,7 @@ export const BUTTON_SIGNUP_BONUS_NEXT = "BUTTON_SIGNUP_BONUS_NEXT";
 export const BUTTON_INTRO_SCREEN = (index: number) => `BUTTON_INTRO_SCREEN_${index}`;
 export const BUTTON_TOP_LEFT_BAR = "BUTTON_TOP_LEFT_BAR";
 export const BUTTON_CLOSE = "BUTTON_CLOSE";
+export const BUTTON_CLOSE_HEADER = (header:any) => `BUTTON_CLOSE_HEADER_${header}`
 export const BUTTON_CLOSE_CHALLENGE = "BUTTON_CLOSE_CHALLENGE"
 export const BACK_BUTTON = "BACK_BUTTON"
 export const EDIT_BUTTON = "EDIT_BUTTON"
@@ -145,6 +146,7 @@ export const EMPTY_DUELS_HUB = "EMPTY_DUELS_HUB"
 export const DUEL_OPTIONS_SCREEN = "DUEL_OPTIONS_SCREEN"
 export const DUEL_RESPONSE = (opponentName:string) => `DUEL_RESPONSE_${opponentName}`
 export const DUELS_SEARCH = "DUELS_SEARCH"
+export const SEARCH_INPUT = "SEARCH_INPUT"
 
 // COMMUNITY GOALS
 export const NICKNAME_INPUT = "NICKNAME_INPUT"

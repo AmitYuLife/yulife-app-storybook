@@ -4,13 +4,13 @@ import * as given from "./_steps/given"
 import * as when from "./_steps/when"
 import * as then from "./_steps/then"
 import { CUSTOMER_20, AUTH_20, CUSTOMER_19, AUTH_19, CUSTOMER_17, AUTH_17, CUSTOMER_16 } from "@data";
-import { DUELS_BUTTON, DUELS_HUB, DUEL_OPTIONS_SCREEN, DUEL_RESPONSE, EMPTY_DUELS_HUB, LEADERBOARD_TOP_SCREEN, NAV_BAR } from "@ids";
+import { DUELS_BUTTON, DUELS_HUB, DUEL_OPTIONS_SCREEN, DUEL_RESPONSE, EMPTY_DUELS_HUB, LEADERBOARD_TOP_SCREEN, NAV_BAR, SEARCH_INPUT } from "@ids";
 import moment = require("moment");
 
 Feature("As an enabled user I am able to use the duels feature", async()=>{
 
     Scenario("As a user I am able to invite another user to a duel, and the opponent is able to accept the duel", scenario.start, async()=>{
-        Given("I login as a user with duels enabled and go to the duels hub", given.logInAndGoToTab("leaderboard",CUSTOMER_20, AUTH_20),async()=>{
+    Given("I login as a user with duels enabled and go to the duels hub", given.logInAndGoToTab("leaderboard",CUSTOMER_20, AUTH_20),async()=>{
             Then("I should see the duels icon", then.idVisible(DUELS_BUTTON))
             When("I tap duels icon", when.tapID(DUELS_BUTTON), async()=>{
                 Then("I should be on the first duels intro screen", then.multipleTextVisible(["Challenge a friend!", "Skip", "Next"]))
@@ -26,13 +26,13 @@ Feature("As an enabled user I am able to use the duels feature", async()=>{
                 Then("The duels hub should be in an empty state", then.idVisible(EMPTY_DUELS_HUB))
             })
             When("I tap challenge a colleague", when.tapText("Challenge a colleague"), async()=>{
-                Then("I should be back on the leaderboard screen", then.idVisible(LEADERBOARD_TOP_SCREEN))
+                Then("I should be on the Search for a friend screen", then.textVisible("Search for a friend:"))
+                Then("I should see Angela Martin", then.textVisible("Angela Martin"))
             })
-            When("I tap a colleauges name", when.tapText("Angela Martin"), async()=>{
-                Then("I should see the challenge to duel CTA", then.textVisible("challenge to duel"))
-            })
-            When("I tap the challenge to duel CTA", when.tapText("challenge to duel"), async()=>{
+            When("I tap a Duel >", when.tapText("Duel >"), async()=>{
+                When("I tap a Duel >", when.tapText("Duel >"), async () => { // quick detox fix for bug - remove when bret fixes double tap bug
                 Then("I should be on the start duel screen", then.multipleTextVisible(["It’s time to duel!", "Set the duel"]))
+                })
             })
             When("I tap the 'Set the duel' CTA", when.tapText("Set the duel"), async()=>{
                 Then("I should be on the yucoin wager screen", then.idVisible(DUEL_OPTIONS_SCREEN))
