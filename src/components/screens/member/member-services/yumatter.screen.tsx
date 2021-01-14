@@ -1,11 +1,11 @@
 import { Text } from "@atoms/index";
 import * as React from "react";
-import { Linking, ScrollView, TouchableOpacity } from "react-native";
+import { ScrollView, TouchableOpacity } from "react-native";
 import { StyleSheet, View } from "react-native";
 import { Style } from "../../../../styles";
 import { yuMatterData } from "./member-services.data";
 import styles from "./yumatter.screen.styles";
-import { handleOpenWebView } from "@navigation/utils";
+import { handleLinkPress } from "@services/app-link";
 
 const Yumatter = () => {
   return (
@@ -27,7 +27,7 @@ const Yumatter = () => {
         <View style={styles.loginDetailsWrapper}>
           <Text style={styles.loginHeader}>To login and access YuMatter services:</Text>
           <Text style={styles.content}>Website: </Text>
-          <TouchableOpacity onPress={() => handleOpenWebView({ uri: yuMatterData.website, title: "YuMatter" })}>
+          <TouchableOpacity onPress={handleLinkPress(yuMatterData.website)}>
             <Text style={styles.globalHyperLink}>{yuMatterData.website}</Text>
           </TouchableOpacity>
 
@@ -40,13 +40,13 @@ const Yumatter = () => {
           <Text
             style={StyleSheet.flatten([styles.content, { marginTop: Style.adjust(30) }])}
           >{`Contact number: `}</Text>
-          <TouchableOpacity onPress={() => Linking.openURL(`tel:${yuMatterData.contactNumber.split(" ").join("")}`)}>
+          <TouchableOpacity onPress={handleLinkPress(`tel:${yuMatterData.contactNumber.split(" ").join("")}`)}>
             <Text style={styles.globalHyperLink}>{yuMatterData.contactNumber}</Text>
           </TouchableOpacity>
           <Text style={StyleSheet.flatten([styles.content, { marginTop: Style.adjust(30) }])}>
             Customer service email:
           </Text>
-          <TouchableOpacity onPress={() => Linking.openURL(`mailto:${yuMatterData.customerServiceEmail}`)}>
+          <TouchableOpacity onPress={handleLinkPress(`mailto:${yuMatterData.customerServiceEmail}`)}>
             <Text
               style={StyleSheet.flatten([
                 styles.globalHyperLink,
@@ -63,9 +63,7 @@ const Yumatter = () => {
           <Text style={StyleSheet.flatten([styles.content, { marginTop: Style.adjust(1) }])}>
             more about YuMatter in our{" "}
           </Text>
-          <TouchableOpacity
-            onPress={() => handleOpenWebView({ uri: yuMatterData.yulifeHelpCenter, title: "YuMatter" })}
-          >
+          <TouchableOpacity onPress={handleLinkPress(yuMatterData.yulifeHelpCenter)}>
             <Text style={styles.globalHyperLink}>Help Center</Text>
           </TouchableOpacity>
         </View>

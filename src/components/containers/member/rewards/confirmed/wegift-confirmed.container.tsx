@@ -5,7 +5,7 @@ import { Clipboard } from "react-native";
 import Config from "react-native-config";
 import { GetAllPurchases_getAllPurchases } from "../../../../../graphql/_core/schema";
 import { WegiftRewardConfirmedScreen } from "../../../../screens";
-import { handleOpenWebView } from "@navigation/utils";
+import { handleLinkPress } from "@services/app-link";
 
 interface IProps {
   componentId: string;
@@ -50,27 +50,14 @@ class WegiftRewardConfirmedContainer extends Component<IProps, IState> {
 
   public copyToClipboard = async () => Clipboard.setString(this.props.purchase.delivery_url);
 
-  public openPDFs = (pdf: "policy" | "terms") => async () => {
-    const data =
-      pdf === "policy"
-        ? {
-            uri: Config.REWARDS_POLICY_URL,
-            title: "Rewards Policy",
-          }
-        : {
-            uri: this.props.purchase.reward.terms_and_conditions_url,
-            title: "T&Cs",
-          };
-
-    handleOpenWebView(data);
-  };
+  public openPDFs = (pdf: "policy" | "terms") =>
+    handleLinkPress(pdf === "policy" ? Config.REWARDS_POLICY_URL : this.props.purchase.reward.terms_and_conditions_url);
 
   public linkToUrl = async () => {
     try {
       this.setState({ isAccessingUrl: true });
-      const uri = this.props.purchase.delivery_url;
-
-      handleOpenWebView({ uri, title: "Wegift" });
+      const openLink = handleLinkPress(this.props.purchase.delivery_url);
+      await openLink();
     } catch (e) {
       // console.warn("unable to open url because: ", e);
     } finally {

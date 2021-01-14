@@ -4,7 +4,7 @@ import { RedeemRewardMutationTuple, GQL_MUTATION_REDEEM_REWARD } from "@graphql/
 import ListPicker from "@molecules/list-picker/list-picker";
 import { getUserFeatures } from "@redux/user/user.selectors";
 import React, { useEffect, FC, useCallback, useState, useMemo } from "react";
-import { Alert, Platform } from "react-native";
+import { Alert } from "react-native";
 import Config from "react-native-config";
 import { Navigation } from "react-native-navigation";
 import { connect } from "react-redux";
@@ -17,7 +17,6 @@ import { getCopy } from "../../../../../redux/copy/copy.selectors";
 import { getUserStart } from "../../../../../redux/user/user.actions";
 import Logger from "../../../../../services/logging/logger";
 import { WegiftRewardDetailsScreen } from "../../../../screens";
-import { handleOpenWebView } from "@navigation/utils";
 import { handleLinkPress } from "@services/app-link";
 
 interface IProps {
@@ -65,18 +64,8 @@ const WegiftRewardDetailsContainer: FC<Props> = (props) => {
   const onRewardsTabPress = useCallback(() => onTabChange("rewards", componentId), [componentId, onTabChange]);
   const onPurchasesTabPress = useCallback(() => onTabChange("purchases", componentId), [componentId, onTabChange]);
 
-  const handlePolicyPress = useMemo(() => {
-    return () => handleOpenWebView({ uri: Config.REWARDS_POLICY_URL, title: "Rewards Policy" });
-  }, []);
-
-  const handleTermsPress = useMemo(() => {
-    const uri = terms_and_conditions_url;
-    if (Platform.OS === "ios") {
-      return () => handleOpenWebView({ uri, title: "T&Cs" });
-    }
-
-    return handleLinkPress(terms_and_conditions_url);
-  }, [terms_and_conditions_url]);
+  const handlePolicyPress = useMemo(() => handleLinkPress(Config.REWARDS_POLICY_URL), []);
+  const handleTermsPress = useMemo(() => handleLinkPress(terms_and_conditions_url), [terms_and_conditions_url]);
 
   const [denomination, setDenomination] = useState(available_denominations[0]);
 

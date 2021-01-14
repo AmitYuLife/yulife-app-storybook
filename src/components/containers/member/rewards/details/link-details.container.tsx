@@ -8,8 +8,7 @@ import { IReduxState } from "../../../../../redux/_core/reducers";
 import { getOfflineState } from "../../../../../redux/app/app.selectors";
 import Logger from "../../../../../services/logging/logger";
 import { WegiftRewardDetailsScreen } from "../../../../screens";
-import { handleOpenWebView } from "@navigation/utils";
-import { Platform } from "react-native";
+import { Alert, Linking } from "react-native";
 import { handleLinkPress } from "@services/app-link";
 import { useBackHandler } from "@services/hooks/useBackHandler";
 import { Navigation } from "react-native-navigation";
@@ -65,47 +64,51 @@ const LinkRewardDetailsContainer: FC<Props> = (props) => {
   const onRewardsTabPress = useCallback(() => onTabChange("rewards", componentId), [componentId, onTabChange]);
   const onPurchasesTabPress = useCallback(() => onTabChange("purchases", componentId), [componentId, onTabChange]);
 
-  const handlePolicyPress = useMemo(() => {
-    return () => handleOpenWebView({ uri: Config.REWARDS_POLICY_URL, title: "Rewards Policy" });
-  }, []);
-
-  const handleTermsPress = useMemo(() => {
-    const uri = terms_and_conditions_url;
-
-    if (Platform.OS === "ios") {
-      return () => handleOpenWebView({ uri, title: "T&Cs" });
-    }
-
-    return handleLinkPress(terms_and_conditions_url);
-  }, [terms_and_conditions_url]);
+  const handlePolicyPress = useMemo(() => handleLinkPress(Config.REWARDS_POLICY_URL), []);
+  const handleTermsPress = useMemo(() => handleLinkPress(terms_and_conditions_url), [terms_and_conditions_url]);
 
   const [redeemReward, { loading }]: RedeemRewardMutationTuple = useMutation(GQL_MUTATION_REDEEM_REWARD);
 
-  const handleSubmit = useCallback(async () => {
+  const handleSubmit = useCallback(() => {
     const [{ value }] = available_denominations;
 
-    try {
-      await redeemReward({ variables: { id: code, amount: value } });
-    } catch (e) {
-      Logger.error(e, { event: "linkRewardDetailsContainer", file: "link-details-container" });
-    }
+    Alert.alert(
+      uiSettings.alertHeading || "Claim reward",
+      uiSettings.alertSubheading || `You will be redirected to ${name}.`,
+      [
+        { text: uiSettings.alertCancelLabel || "Cancel", style: "cancel" },
+        {
+          onPress: async () => {
+            try {
+              await redeemReward({ variables: { id: code, amount: value } });
+            } catch (e) {
+              Logger.error(e, { event: "linkRewardDetailsContainer", file: "link-details-container" });
+            }
 
-    Logger.logEvent("reward_redeem_pressed", {
-      reward_amount: 0,
-      reward_code: code,
-      reward_name: name,
-      reward_yucoin_spent: 0,
-    });
+            const supported = await Linking.canOpenURL(availability);
 
-    function onWebViewFail() {
-      Logger.logEvent("reward_redeem_link_unsupported", {
-        reward_code: code,
-        reward_name: name,
-      });
-    }
-
-    handleOpenWebView({ uri: availability, title: "Rewards", onBothLinksFail: onWebViewFail });
-  }, [available_denominations, code, name, redeemReward, availability]);
+            if (supported) {
+              Logger.logEvent("reward_redeem_pressed", {
+                reward_amount: 0,
+                reward_code: code,
+                reward_name: name,
+                reward_yucoin_spent: 0,
+              });
+              await Linking.openURL(availability);
+            } else {
+              // Record the fact that the user didn't see the link.
+              Logger.logEvent("reward_redeem_link_unsupported", {
+                reward_code: code,
+                reward_name: name,
+              });
+            }
+          },
+          text: uiSettings.alertOkLabel || "OK",
+        },
+      ]
+    );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <WegiftRewardDetailsScreen
