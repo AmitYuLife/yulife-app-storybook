@@ -9,7 +9,7 @@ import { GetAllPurchases_getAllPurchases } from "../../../../../graphql/_core/sc
 import { IReduxState } from "../../../../../redux/_core/reducers";
 import { getCopy } from "../../../../../redux/copy/copy.selectors";
 import { AviosRewardConfirmedScreen } from "../../../../screens";
-import { handleOpenWebView } from "@navigation/utils";
+import { handleLinkPress } from "@services/app-link";
 
 interface IProps {
   componentId: string;
@@ -72,11 +72,7 @@ class AviosRewardConfirmedContainer extends Component<Props> {
     ]);
   };
 
-  public openRewardsPolicy = async () => {
-    const url = Config.REWARDS_POLICY_URL;
-
-    handleOpenWebView({ uri: url, title: "Rewards Policy" });
-  };
+  public openRewardsPolicy = handleLinkPress(Config.REWARDS_POLICY_URL);
 
   public goBack = async () => {
     await this.props.onTabChange("purchases", this.props.componentId);

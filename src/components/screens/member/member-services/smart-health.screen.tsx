@@ -1,11 +1,11 @@
 import { Text } from "@atoms/index";
 import * as React from "react";
-import { Image, Linking, Platform, SafeAreaView, ScrollView, StyleSheet, TouchableOpacity, View } from "react-native";
+import { Image, Platform, SafeAreaView, ScrollView, StyleSheet, TouchableOpacity, View } from "react-native";
 import { Style } from "../../../../styles";
 import { smartHealthData } from "./member-services.data";
 import styles from "./smart-health.screen.styles";
 import { TextWithBoldText } from "@components/molecules";
-import { handleOpenWebView } from "@navigation/utils";
+import { handleLinkPress } from "@services/app-link";
 
 const defaultInstructionCopy = "your group life scheme number, which can be provided by your HR manager";
 const instantInstructionCopy = "<bold>“yulifeinstant”</bold> in the Policy number / Scheme code field.";
@@ -33,7 +33,7 @@ const SmartHealth = (props: Props) => {
           <Text style={styles.content}>To access SmartHealth, you can download the SmartHealth by AIG app.</Text>
           <View style={styles.hyperlinkWrapper}>
             <Text style={styles.content}>You can also </Text>
-            <TouchableOpacity onPress={() => handleOpenWebView({ uri: smartHealthData.website, title: "SmartHealth" })}>
+            <TouchableOpacity onPress={handleLinkPress(smartHealthData.website)}>
               <Text style={styles.globalHyperLink}>request services online here.</Text>
             </TouchableOpacity>
           </View>
@@ -44,7 +44,7 @@ const SmartHealth = (props: Props) => {
 
           <Text style={styles.header}>SmartHealth by AIG</Text>
 
-          <TouchableOpacity onPress={() => Linking.openURL(getStoreUrl())}>
+          <TouchableOpacity onPress={handleLinkPress(getStoreUrl())}>
             <Image style={styles.storeImage} source={getStoreImage()} />
           </TouchableOpacity>
 
@@ -53,14 +53,7 @@ const SmartHealth = (props: Props) => {
             <Text style={StyleSheet.flatten([styles.content, { marginTop: Style.adjust(1) }])}>
               more about SmartHealth in our{" "}
             </Text>
-            <TouchableOpacity
-              onPress={() =>
-                handleOpenWebView({
-                  uri: smartHealthData.yulifeHelpCenter,
-                  title: "SmartHealth",
-                })
-              }
-            >
+            <TouchableOpacity onPress={handleLinkPress(smartHealthData.yulifeHelpCenter)}>
               <Text style={styles.globalHyperLinkNoMargin}>Help Center.</Text>
             </TouchableOpacity>
           </View>
