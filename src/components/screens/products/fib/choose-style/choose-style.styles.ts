@@ -10,6 +10,10 @@ export const styles = StyleSheet.create({
     flexGrow: 1,
     flex: 1,
   } as ViewStyle,
+  backgroundImage: {
+    width: "100%",
+    height: "100%",
+  },
   worldTextWrapper: {
     position: "absolute",
     width: "100%",
@@ -24,6 +28,10 @@ export const styles = StyleSheet.create({
     width: "100%",
     height: "100%",
   } as ViewStyle,
+  armorImage: {
+    width: "100%",
+    height: "50%",
+  },
   chooseStyleTextWrapper: {
     marginBottom: Style.isShortAndroid() || Style.isShortAndLowScaledPixelAndroid() ? 16 : 24,
     justifyContent: "center",

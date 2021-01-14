@@ -1,12 +1,12 @@
 import React, { memo, useState } from "react";
 import { StyleSheet, View } from "react-native";
+import FastImage from "react-native-fast-image";
 import { Button, Text } from "@atoms";
 import { TouchableOpacityWithDelay } from "@molecules";
 import { CoverType, YuWorld } from "../../../../../graphql/_core/schema/globalTypes";
 import { Colours, Style } from "@styles";
 import colours from "@styles/colours";
 import { GetYulifer_personal_options_styles } from "../../../../../graphql/_core/schema";
-import { SvgUri } from "react-native-svg";
 import GenericHeadingAbsolute from "@atoms/generic-heading/generic-heading-absolute";
 import { styles } from "./choose-style.styles";
 interface IFibStyleSelectionScreenProps {
@@ -24,7 +24,7 @@ export const FibStyleSelectionScreen = memo(function (props: IFibStyleSelectionS
   return (
     <View style={styles.wrapper}>
       <View style={styles.backgroundWrapper}>
-        <SvgUri uri={selectedStyle.background} width={"100%"} height={"100%"} preserveAspectRatio={"xMaxYMax slice"} />
+        <FastImage source={{ uri: selectedStyle.background }} style={styles.backgroundImage} />
         <View style={styles.worldTextWrapper}>
           <Text
             style={{
@@ -40,12 +40,10 @@ export const FibStyleSelectionScreen = memo(function (props: IFibStyleSelectionS
           </Text>
         </View>
         <View style={styles.armorWrapper}>
-          <SvgUri
-            uri={selectedStyle.armor}
-            style={{
-              alignSelf: "center",
-            }}
-            preserveAspectRatio={"xMaxYMax slice"}
+          <FastImage
+            source={{ uri: selectedStyle.armor }}
+            style={styles.armorImage}
+            resizeMode={FastImage.resizeMode.contain}
           />
         </View>
         <View style={styles.topRoundedView} />
@@ -77,7 +75,11 @@ export const FibStyleSelectionScreen = memo(function (props: IFibStyleSelectionS
                   option.world === selectedStyle.world ? { borderColor: colours.heavyPink } : { borderColor: "white" },
                 ])}
               >
-                <SvgUri uri={option.icon} />
+                <FastImage
+                  source={{ uri: option.icon }}
+                  style={styles.backgroundImage}
+                  resizeMode={FastImage.resizeMode.center}
+                />
               </View>
             </TouchableOpacityWithDelay>
           ))}

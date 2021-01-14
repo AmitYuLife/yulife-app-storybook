@@ -1,11 +1,15 @@
-import React, { memo } from "react";
+import React, { memo, useEffect } from "react";
+import FastImage, { Source } from "react-native-fast-image";
 import { FibLocalNavigation, FIB_INTRO_YUGI } from "../fib.types";
 import { FibStyleSelectionScreen } from "../../../../screens/products/fib/choose-style/choose-style.screen";
 import { useQuery } from "@apollo/react-hooks";
 import { GQL_QUERY_GET_YULIFER } from "@graphql/yuscreen";
 import { GetYulifer } from "@graphql/_core/schema";
 import { CoverType, YuProductId } from "@graphql/_core/schema/globalTypes";
-import { GetYulifer_personal_options } from "../../../../../graphql/_core/schema/GetYulifer";
+import {
+  GetYulifer_personal_options,
+  GetYulifer_personal_options_styles,
+} from "../../../../../graphql/_core/schema/GetYulifer";
 import { YuWorld } from "../../../../../graphql/_core/schema/globalTypes";
 import { YUGI_INTRO_TYPE } from "./fib.yugi-intro.container";
 import { useBackHandler } from "../../../../../services/hooks/useBackHandler";
@@ -29,6 +33,16 @@ const FibStyleSelectionContainer = memo(function FibStyleSelectionContainer(prop
     acc = product.options.find((option) => option.type === CoverType.epic);
     return acc;
   }, null);
+
+  useEffect(() => {
+    const preload: Source[] = [];
+    epic.styles.forEach((epicStyle) => {
+      ["armor", "background", "icon"].forEach((key: keyof GetYulifer_personal_options_styles) =>
+        preload.push({ uri: epicStyle[key] })
+      );
+    });
+    FastImage.preload(preload);
+  }, [epic]);
 
   const onContinue = (world: YuWorld) => {
     switch (world) {
