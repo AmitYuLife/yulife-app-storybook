@@ -21,7 +21,7 @@ const UserSteps = () => {
 
   return (
     <View style={styles.wrapper}>
-      <DuelImage uri={avatarSource} />
+      <DuelImage size="medium" uri={avatarSource} />
       <Text bold={true} style={styles.text}>
         {addCommasToNumber(dailySteps)} steps today
       </Text>

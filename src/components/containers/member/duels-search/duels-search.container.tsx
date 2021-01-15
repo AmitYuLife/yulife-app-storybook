@@ -1,4 +1,4 @@
-import { ROUTES } from "@navigation/constants";
+import { MODALS, ROUTES } from "@navigation/constants";
 import React, { useCallback } from "react";
 import { View } from "react-native";
 import { Navigation } from "react-native-navigation";
@@ -9,13 +9,34 @@ import SearchList from "./subcomponents/search-list";
 import { GQL_QUERY_SEARCH_FOR_DUEL_OPPONENT } from "@graphql/duels/searchForDuelOpponents.gql";
 import { TopBarAbsolute } from "@organisms/top-bar/top-bar-absolute";
 import { useDebouncedQuery } from "@services/hooks/useDebouncedQuery";
-import { SearchForDuelOpponent, SearchForDuelOpponentVariables } from "@graphql/_core/schema/SearchForDuelOpponent";
+import {
+  SearchForDuelOpponent,
+  SearchForDuelOpponentVariables,
+  SearchForDuelOpponent_searchForDuelOpponent,
+} from "@graphql/_core/schema/SearchForDuelOpponent";
+import RecentOpponents from "./subcomponents/recent-opponents";
+
+export interface SearchedOpponent extends SearchForDuelOpponent_searchForDuelOpponent {
+  onPress: () => Promise<void>;
+}
 
 function navigateBack() {
   Navigation.popTo(ROUTES.duelsHub);
 }
 
 const DEBOUNCE = 750;
+
+const inviteToDuel = async (opponentId: string) => {
+  await Navigation.showModal({
+    component: {
+      id: MODALS.duelInvite,
+      name: MODALS.duelInvite,
+      passProps: {
+        opponentId,
+      },
+    },
+  });
+};
 
 function DuelsSearchContainer() {
   const [query, setQuery] = React.useState("");
@@ -37,18 +58,24 @@ function DuelsSearchContainer() {
     search({ query });
   }, [search, query]);
 
+  const opponents = (data?.searchForDuelOpponent || []).map((opponent) => ({
+    ...opponent,
+    onPress: () => inviteToDuel(opponent.customerId),
+  }));
+
   return (
     <View style={styles.wrapper} testID={DUELS_SEARCH}>
       <View style={styles.topbarFiller} />
+      <RecentOpponents inviteToDuel={inviteToDuel} />
       <SearchInput title="Search for a friend:" query={query} onChangeText={onChangeText} />
       <SearchList
-        data={data?.searchForDuelOpponent}
+        data={opponents}
         networkStatus={networkStatus}
         onRefresh={onRefresh}
-        emptyText="We could not find the friend you’re looking for."
+        emptyText={loading ? "" : "We could not find the friend you’re looking for."}
         loading={loading}
       />
-      <TopBarAbsolute onPressLeftIcon={navigateBack} leftIcon="Back" />
+      <TopBarAbsolute hasShadow={true} hasWhiteBackground={true} onPressLeftIcon={navigateBack} leftIcon="Back" />
     </View>
   );
 }
