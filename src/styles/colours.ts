@@ -272,6 +272,9 @@ export default {
     mp108: "#A5D1FB",
   },
   mp304: "#FA906A",
+  fp204: "#FCD9D9",
+  fp205: "#FFEEEE",
+  ds106: "#F86F63",
   solid: {
     grey: "#F0F0F0",
   },

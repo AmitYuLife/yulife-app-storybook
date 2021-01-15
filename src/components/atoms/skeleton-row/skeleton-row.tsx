@@ -8,7 +8,7 @@ interface Props {
   width: number;
 }
 
-export const SkeletonRow = ({ width = 105 }: Props) => {
+const SkeletonRow = ({ width = 105 }: Props) => {
   return (
     <View style={styles.wrapper}>
       <SkeletonHead />
@@ -43,3 +43,5 @@ const styles = StyleSheet.create({
     overflow: "hidden",
   } as ViewStyle,
 });
+
+export default SkeletonRow;

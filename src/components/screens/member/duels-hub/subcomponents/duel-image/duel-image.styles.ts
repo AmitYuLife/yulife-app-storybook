@@ -2,7 +2,7 @@ import { StyleSheet, ImageStyle as RnImageStyle, ViewStyle } from "react-native"
 import { ImageStyle } from "react-native-fast-image";
 import { Style } from "@styles";
 
-const AVATAR_SIZE = Style.adjust(42);
+const AVATAR_SIZE = Style.adjust(48);
 
 export const emptyStyles = StyleSheet.create({
   wrapper: {
@@ -32,6 +32,6 @@ export const filledStyles = StyleSheet.create({
   } as ViewStyle,
   image: {
     width: AVATAR_SIZE,
-    height: Style.adjust(90),
+    height: Style.adjust(122),
   } as ImageStyle,
 });

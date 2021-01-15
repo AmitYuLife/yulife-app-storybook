@@ -1,25 +1,29 @@
 import React from "react";
 import { View } from "react-native";
 import styles from "./duels-tabs.styles";
-import { DuelHeading } from "../index";
 import { TouchableOpacityWithDelay } from "@components/molecules";
 import { DUELS_HUB } from "@ids";
-
-export type DuelHubTab = "active" | "past";
+import { Text } from "@atoms";
 
 interface IProps {
-  onPress: (tab: DuelHubTab) => () => void;
-  activeTab: DuelHubTab;
+  onPress: (index: number) => () => void;
+  activePageIndex: number;
 }
 
-const DuelTab = ({ onPress, activeTab }: IProps) => {
+const DuelTab = ({ onPress, activePageIndex }: IProps) => {
+  const isActive = activePageIndex === 0;
+  const isCompleted = activePageIndex === 1;
   return (
     <View style={styles.wrapper} testID={DUELS_HUB}>
-      <TouchableOpacityWithDelay disabled={activeTab === "active"} style={styles.tab} onPress={onPress("active")}>
-        <DuelHeading inactive={activeTab !== "active"} label="Active Duels" />
+      <TouchableOpacityWithDelay disabled={activePageIndex === 0} style={styles.tab} onPress={onPress(0)}>
+        <Text style={[styles.heading, isActive ? styles.pinkText : {}]} bold={isActive}>
+          Active
+        </Text>
       </TouchableOpacityWithDelay>
-      <TouchableOpacityWithDelay disabled={activeTab === "past"} style={styles.tab} onPress={onPress("past")}>
-        <DuelHeading inactive={activeTab !== "past"} label="Past Duels" />
+      <TouchableOpacityWithDelay disabled={activePageIndex === 1} style={styles.tab} onPress={onPress(1)}>
+        <Text style={[styles.heading, isCompleted ? styles.pinkText : {}]} bold={isCompleted}>
+          Completed
+        </Text>
       </TouchableOpacityWithDelay>
     </View>
   );

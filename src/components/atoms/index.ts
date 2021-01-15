@@ -33,6 +33,7 @@ export { Yumoji } from "./yumoji/yumoji";
 export { UnauthorisedGradient } from "./unauthorised-gradient/unauthorised-gradient";
 export { default as ArrowRightSvg } from "./arrow-right-svg/arrow-right-svg";
 export { default as DoubleChest } from "./fib/double-chest/double-chest";
+export { default as SkeletonRow } from "./skeleton-row/skeleton-row";
 export { default as Streak } from "./fib/streak/streak";
 export { default as Shoe } from "./fib/shoe/shoe";
 
