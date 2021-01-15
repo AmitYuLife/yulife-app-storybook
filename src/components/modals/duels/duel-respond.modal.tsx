@@ -89,15 +89,6 @@ const DuelRespondModal: React.FC<IProps> = ({ componentId, duelId, userCoins, in
       } catch (e) {
         setLoadingLabel(null);
         setIsLoading(false);
-        const message = e?.message || "There was a problem trying to respond to the duel. Try again later!";
-        Alert.alert("Duel response error", message, [
-          {
-            text: "Got it",
-            onPress: () => {
-              Navigation.dismissModal(componentId);
-            },
-          },
-        ]);
       }
     },
     [componentId, dispatch, duelId, respondToInvite, startDateTime]

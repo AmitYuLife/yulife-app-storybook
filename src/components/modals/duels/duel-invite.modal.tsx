@@ -43,11 +43,17 @@ const showInviterNotEnoughYucoinAlert = (componentId: string) => {
 interface IProps {
   componentId: string;
   opponentId: string;
+  isDuelsHubInNavigationStack: boolean;
 }
 
 type IDuelProps = IProps & IReduxProps;
 
-const DuelInviteModal: React.FC<IDuelProps> = ({ componentId, opponentId, userCoins }) => {
+const DuelInviteModal: React.FC<IDuelProps> = ({
+  componentId,
+  opponentId,
+  isDuelsHubInNavigationStack = false,
+  userCoins,
+}) => {
   const dispatch = useDispatch();
 
   const [step, setStep] = useState<Step>("INTRO");
@@ -82,27 +88,22 @@ const DuelInviteModal: React.FC<IDuelProps> = ({ componentId, opponentId, userCo
         },
       });
       await Navigation.dismissModal(componentId);
-      await Navigation.push(ROUTES.leaderboards, {
-        component: {
-          id: ROUTES.duelsHub,
-          name: ROUTES.duelsHub,
-        },
-      });
+
+      if (isDuelsHubInNavigationStack) {
+        await Navigation.popTo(ROUTES.duelsHub);
+      } else {
+        await Navigation.push(ROUTES.leaderboards, {
+          component: {
+            id: ROUTES.duelsHub,
+            name: ROUTES.duelsHub,
+          },
+        });
+      }
+
       dispatch(getUserStart());
     } catch (e) {
-      const catchAction = () => {
-        setIsLoading(false);
-        Navigation.dismissModal(componentId);
-      };
-
-      const message = e?.message || "There was a problem trying to invite the user. Try again later!";
-      const sanitizedMessage = message.replace("GraphQL error: ", "");
-      Alert.alert("Duel invite error", sanitizedMessage, [
-        {
-          text: "Got it",
-          onPress: () => catchAction(),
-        },
-      ]);
+      setIsLoading(false);
+      Navigation.dismissModal(componentId);
     }
   };
 
