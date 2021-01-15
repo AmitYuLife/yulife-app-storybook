@@ -54,7 +54,7 @@ export const filledStyles = StyleSheet.create({
     height: Style.adjust(90),
   } as ImageStyle,
   imageMedium: {
-    width: AVATAR_SM,
+    width: AVATAR_MD,
     height: Style.adjust(122),
   } as ImageStyle,
 });

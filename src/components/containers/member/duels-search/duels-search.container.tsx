@@ -33,6 +33,7 @@ const inviteToDuel = async (opponentId: string) => {
       name: MODALS.duelInvite,
       passProps: {
         opponentId,
+        isDuelsHubInNavigationStack: true,
       },
     },
   });
