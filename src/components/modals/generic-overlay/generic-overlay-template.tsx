@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import GenericOverlay from "./generic-overlay";
 import { Navigation } from "react-native-navigation";
 import { MODALS } from "@navigation/constants";
@@ -6,6 +6,7 @@ import { View, StyleSheet, ViewStyle, TextStyle } from "react-native";
 import { Text, Button } from "@atoms";
 import { Style, Colours } from "@styles";
 import { BUTTON_TYPES } from "@atoms/button/button.types";
+import { useBackHandler } from "../../../services/hooks/useBackHandler";
 
 interface IButton {
   label: string;
@@ -20,6 +21,13 @@ export interface GenericOverlayTemplateProps {
 
 const GenericOverlayTemplate = (props: GenericOverlayTemplateProps) => {
   const { onClose = dismissOverlay, heading = "", buttons = [] } = props;
+
+  const backHandler = useCallback(() => {
+    onClose();
+    return true;
+  }, [onClose]);
+
+  useBackHandler(backHandler);
   return (
     <GenericOverlay onClose={onClose}>
       <View style={styles.wrapper}>
