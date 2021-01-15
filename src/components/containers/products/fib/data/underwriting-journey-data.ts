@@ -26,10 +26,10 @@ import {
   NEUROLOGICAL_DISORDERS_ICON,
   HIV_AIDS_ICON,
   MENTAL_ILLNESS_ICON,
+  CANCER_ICON,
 } from "@atoms/fib/svg-assets/underwriting/medical-history-svg-strings";
 import { ChipIconType } from "@atoms/chip/chip.types";
 import { Colours } from "@styles";
-import { CANCER_ICON } from "../../../../atoms/fib/svg-assets/underwriting/medical-history-svg-strings";
 
 interface OtherQuestionResponse {
   id: string;
@@ -654,15 +654,15 @@ export const data: UnderwritingJourneyScreen[] = [
       {
         type: "medicalHistory",
         showDelimiter: false,
-        icon: HIV_AIDS_ICON,
-        title: "HIV / AIDS",
+        icon: MENTAL_ILLNESS_ICON,
+        title: "Mental illness",
+        description: "A mental illness which has resulted in any suicide attempt, overdose or overnight inpatient stay",
       },
       {
         type: "medicalHistory",
         showDelimiter: false,
-        icon: MENTAL_ILLNESS_ICON,
-        title: "Mental illness",
-        description: "A mental illness which has resulted in any suicide attempt, overdose or overnight inpatient stay",
+        icon: HIV_AIDS_ICON,
+        title: "HIV / AIDS",
       },
     ],
   },
