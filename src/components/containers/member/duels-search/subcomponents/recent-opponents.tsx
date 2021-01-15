@@ -1,0 +1,65 @@
+import React from "react";
+import { View } from "react-native";
+import { Loading, Text } from "@atoms";
+import { useQuery } from "@apollo/react-hooks";
+import { GQL_QUERY_GET_RECENT_DUEL_OPPONENTS } from "@graphql/duels/getRecentDuelOpponents.gql";
+import { GetRecentDuelOpponents } from "@graphql/_core/schema";
+import { DuelImage } from "@components/screens/member/duels-hub/subcomponents";
+import styles from "./recent-opponents.styles";
+import { TouchableOpacityWithDelay } from "@components/molecules";
+
+interface Props {
+  inviteToDuel: (opponentId: string) => Promise<void>;
+}
+
+function _RecentOpponents({ inviteToDuel }: Props) {
+  const { data, loading } = useQuery<GetRecentDuelOpponents>(GQL_QUERY_GET_RECENT_DUEL_OPPONENTS, {
+    fetchPolicy: "cache-and-network",
+  });
+
+  const opponents = data?.getRecentDuelOpponents || [];
+
+  if (loading) {
+    return (
+      <View style={styles.wrapper}>
+        <View style={styles.loadingWrapper}>
+          <Loading />
+        </View>
+      </View>
+    );
+  }
+
+  if (opponents.length < 3) {
+    return null;
+  }
+
+  return (
+    <View style={styles.wrapper}>
+      <View>
+        <Text style={styles.heading} bold={true}>
+          Recent
+        </Text>
+        <View style={styles.flexRow}>
+          {opponents.map((opponent) => {
+            return (
+              <TouchableOpacityWithDelay
+                key={opponent?.customerId}
+                onPress={() => inviteToDuel(opponent?.customerId)}
+                style={styles.opponent}
+              >
+                <Text bold={true} style={styles.name}>
+                  {opponent.fullName}
+                </Text>
+                <DuelImage size="medium" uri={opponent?.avatar} />
+              </TouchableOpacityWithDelay>
+            );
+          })}
+        </View>
+      </View>
+    </View>
+  );
+}
+
+const RecentOpponents = React.memo(_RecentOpponents);
+
+export default RecentOpponents;

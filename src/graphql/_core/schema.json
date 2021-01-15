@@ -768,6 +768,33 @@
             "deprecationReason": null
           },
           {
+            "name": "getRecentDuelOpponents",
+            "description": "Get the names and avatars of the people you've most recently duelled.",
+            "args": [
+              {
+                "name": "limit",
+                "description": null,
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "DuelSearchResult",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "pendingFeedbackForm",
             "description": null,
             "args": [],
@@ -8292,7 +8319,7 @@
       {
         "kind": "OBJECT",
         "name": "DuelSearchResult",
-        "description": "The response given when searching for a duel opponent.",
+        "description": "The response given when viewing recent duel opponents or\nsearching for a duel opponent.",
         "fields": [
           {
             "name": "fullName",

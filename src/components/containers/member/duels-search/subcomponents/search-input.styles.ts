@@ -1,14 +1,8 @@
 import { Colours, Style } from "@styles";
-import { Platform, StyleSheet, TextStyle, ViewStyle } from "react-native";
-
-const WRAPPER_MARGIN_TOP = Platform.select({
-  ios: 0,
-  android: -20,
-});
+import { StyleSheet, TextStyle, ViewStyle } from "react-native";
 
 export default StyleSheet.create({
   searchWrapper: {
-    marginTop: WRAPPER_MARGIN_TOP,
     paddingTop: Style.adjust(32),
     paddingBottom: Style.adjust(44),
     borderColor: Colours.neutral.n100,

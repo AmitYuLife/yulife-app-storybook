@@ -1,19 +1,20 @@
-import { SearchForDuelOpponent_searchForDuelOpponent } from "@graphql/_core/schema/SearchForDuelOpponent";
 import React, { useEffect, useState } from "react";
 import { View, FlatList } from "react-native";
 import SearchListEmpty from "./search-list-empty";
 import { Colours } from "@styles";
 import { StyleSheet, ViewStyle } from "react-native";
-import renderSearchItem from "./search-item";
+import SearchItem from "./search-item";
+import { SearchedOpponent } from "../duels-search.container";
+
 interface Props {
-  data: SearchForDuelOpponent_searchForDuelOpponent[];
+  data: SearchedOpponent[];
   networkStatus: number;
   onRefresh: () => Promise<void>;
   emptyText: string;
   loading: boolean;
 }
 
-function keyExtractor(item: SearchForDuelOpponent_searchForDuelOpponent) {
+function keyExtractor(item: SearchedOpponent) {
   return item.customerId;
 }
 
@@ -30,7 +31,7 @@ function SearchList({ data = [], networkStatus, onRefresh, emptyText, loading }:
     <View style={styles.peopleZone}>
       <FlatList
         data={data}
-        renderItem={renderSearchItem}
+        renderItem={SearchItem}
         keyExtractor={keyExtractor}
         refreshing={!hasLoaded || networkStatus === 4}
         onRefresh={onRefresh}

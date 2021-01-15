@@ -18,6 +18,7 @@ export default StyleSheet.create({
   firstCard: {
     borderTopWidth: 1,
     borderTopColor: Colours.neutral.n100,
+    marginTop: -1,
   } as ViewStyle,
   nameSection: {
     display: "flex",
@@ -33,4 +34,7 @@ export default StyleSheet.create({
     color: Colours.primary.p600,
     fontSize: Style.adjust(16),
   } as TextStyle,
+  duelImageWrapper: {
+    marginTop: Style.adjust(-4),
+  } as ViewStyle,
 });

@@ -21,7 +21,7 @@ function _SearchInput({ title, query, onChangeText }: Props) {
           style={styles.textInput}
           onChangeText={onChangeText}
           value={query}
-          autoFocus={true}
+          autoFocus={false}
           testID={SEARCH_INPUT}
         />
       </View>
