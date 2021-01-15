@@ -1,87 +1,54 @@
-import React from "react";
-import styles from "./duel-entry.styles";
+import React, { FC } from "react";
 import { Text } from "@atoms";
-import { View } from "react-native";
-import { DUELLER_DUEL_STATUS } from "@components/containers/member/duels-hub/duels-hub.types";
+import { View, StyleSheet, ViewStyle, TextStyle } from "react-native";
 import { DuelImage } from "../";
+import { Style } from "@styles";
+import { GetDuelsTomorrow_getDuelsTomorrow, GetDuelsToday_getDuelsToday } from "@graphql/_core/schema";
+import Description from "./description";
+import DuelIcon from "./duel-icon";
 
 interface IProps {
-  opponent: string;
-  yucoin: number;
-  date?: string;
-  isActive?: boolean;
-  status?: string;
-  isFirst?: boolean;
-  isLast?: boolean;
-  uri?: string;
+  duel: GetDuelsTomorrow_getDuelsTomorrow | GetDuelsToday_getDuelsToday;
+  type: "today" | "tomorrow" | "completed";
+  userId: string;
+  dailySteps?: number;
 }
 
-const DuelEntry = ({ opponent, yucoin, date, isActive, status, isFirst, isLast, uri }: IProps) => {
-  const wrapperStyle = isActive ? styles.activeWrapper : styles.wrapper;
-  const firstItemStyle = isFirst ? styles.firstItem : {};
-  const lastItemStyle = isLast ? styles.lastItem : {};
-
+const DuelEntry: FC<IProps> = ({ duel, type, userId, dailySteps }) => {
+  const opponent = duel.opponents.find((user) => user.userId !== userId);
   return (
-    <View style={[wrapperStyle, firstItemStyle, lastItemStyle]}>
-      <View style={styles.yumojiSection}>
-        <DuelImage uri={uri} />
-        <View style={styles.centered}>
-          {isActive ? (
-            <Text>
-              <Text style={styles.text} bold={true}>
-                vs.{" "}
-              </Text>
-              <Text style={styles.text}>{opponent}</Text>
-            </Text>
-          ) : (
-            <View style={styles.pastDuelTextWrapper}>
-              <Text numberOfLines={1}>
-                <Text style={styles.text} bold={true}>
-                  vs.{" "}
-                </Text>
-                <Text style={styles.text}>{opponent}</Text>
-              </Text>
-              <Text style={styles.date}>{date}</Text>
-            </View>
-          )}
-        </View>
+    <View style={styles.wrapper}>
+      <DuelImage uri={opponent.avatar} />
+      <View style={styles.descriptionWrapper}>
+        <Text style={styles.nameText} bold={true}>
+          {opponent.name.firstName} {opponent.name.lastName}
+        </Text>
+        <Description duel={duel} type={type} userId={userId} dailySteps={dailySteps} />
       </View>
-      <View style={styles.duelStatusWrapper}>
-        <DuelStatus status={status} yucoin={yucoin} />
-      </View>
+      <DuelIcon duel={duel} type={type} userId={userId} />
     </View>
   );
 };
 
-const DuelStatus: React.FC<Partial<IProps>> = ({ status, yucoin }) => {
-  if (status === DUELLER_DUEL_STATUS.DECLINED) {
-    return <Text>Declined</Text>;
-  }
+export const DUEL_ENTRY_HEIGHT = Style.adjust(48);
 
-  if (status === DUELLER_DUEL_STATUS.DRAW) {
-    return <Text>Draw</Text>;
-  }
-
-  if ([DUELLER_DUEL_STATUS.WON, DUELLER_DUEL_STATUS.LOST].includes(status as DUELLER_DUEL_STATUS)) {
-    const hasWon = status === DUELLER_DUEL_STATUS.WON;
-    const style = hasWon ? styles.victory : styles.defeat;
-    if (yucoin === 0) {
-      return <Text style={style}>0 YuCoin</Text>;
-    }
-
-    const icon = hasWon ? "+" : "-";
-    return (
-      <Text style={style}>
-        {icon} {Math.abs(yucoin)} YuCoin
-      </Text>
-    );
-  }
-
-  if (status === DUELLER_DUEL_STATUS.PENDING_SUBMISSION) {
-    return <Text>Pending</Text>;
-  }
-
-  return <Text>{yucoin} YuCoin</Text>;
-};
+const styles = StyleSheet.create({
+  wrapper: {
+    flexDirection: "row",
+    flex: 1,
+    height: DUEL_ENTRY_HEIGHT,
+    paddingLeft: Style.adjust(8),
+    marginBottom: Style.adjust(16),
+  } as ViewStyle,
+  descriptionWrapper: {
+    flex: 1,
+    flexDirection: "column",
+    justifyContent: "center",
+  } as ViewStyle,
+  nameText: {
+    fontSize: Style.adjust(18),
+    lineHeight: Style.adjust(22),
+  } as TextStyle,
+});
 
 export default DuelEntry;

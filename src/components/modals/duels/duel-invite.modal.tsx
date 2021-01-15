@@ -1,4 +1,4 @@
-import { GQL_MUTATION_INVITE_TO_DUEL, InviteToDuelMutationTuple, GQL_QUERY_GET_DUELS_HUB_DATA } from "@graphql/duels";
+import { GQL_MUTATION_INVITE_TO_DUEL, InviteToDuelMutationTuple } from "@graphql/duels";
 import React, { useState } from "react";
 import { Navigation } from "react-native-navigation";
 import { useDispatch, connect } from "react-redux";
@@ -15,6 +15,7 @@ import { getTotalCoins } from "@redux/coins/coins.selectors";
 import { ROUTES } from "@navigation/constants";
 import { GQL_QUERY_GET_DUELLER_DETAILS } from "@graphql/duels/getDuellerDetails";
 import { TopBarAbsolute } from "@organisms/top-bar/top-bar-absolute";
+import { GQL_QUERY_GET_DUEL_INVITATIONS } from "@graphql/duels/getDuelInvitations.gql";
 
 type IReduxProps = ReturnType<typeof mapStateToProps>;
 
@@ -56,7 +57,7 @@ const DuelInviteModal: React.FC<IDuelProps> = ({ componentId, opponentId, userCo
 
   const { StepComponent, NEXT } = STEPS[step];
   const [inviteToDuel]: InviteToDuelMutationTuple = useMutation(GQL_MUTATION_INVITE_TO_DUEL, {
-    refetchQueries: [{ query: GQL_QUERY_GET_DUELS_HUB_DATA }],
+    refetchQueries: [{ query: GQL_QUERY_GET_DUEL_INVITATIONS }],
   });
 
   const { data, loading } = useQuery(GQL_QUERY_GET_DUELLER_DETAILS, {

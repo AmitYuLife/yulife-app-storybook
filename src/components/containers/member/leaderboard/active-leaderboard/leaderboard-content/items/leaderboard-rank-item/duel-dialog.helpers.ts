@@ -12,14 +12,15 @@ const buttons = [
   },
 ];
 
-export const showExistingDuelAlert = ({ existingDuel }: { existingDuel: ValidDuel }) => {
+export const showExistingDuelAlert = (existingDuel: ValidDuel) => {
   const now = moment();
   const name = existingDuel.name.firstName || "your colleague";
   const duelStart = existingDuel.startDateTime.calendar(now.startOf("day"), calendarOptions);
+  const isAlreadyAccepted = existingDuel.status === "accepted";
+  const title = isAlreadyAccepted ? "It’s already on!" : "Hang on a sec!";
+  const description = isAlreadyAccepted
+    ? `Your duel with ${name} will take place ${duelStart}. You can challenge them to a rematch afterwards, or challenge another friend now.`
+    : `You’ve already invited ${name} to duel. Wait for them to respond, or challenge another friend now.`;
 
-  Alert.alert(
-    "It’s already on!",
-    `Your duel with ${name} will take place ${duelStart}. You can challenge them to a rematch afterwards, or challenge another friend now.`,
-    buttons
-  );
+  Alert.alert(title, description, buttons);
 };

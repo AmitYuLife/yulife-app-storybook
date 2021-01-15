@@ -13,23 +13,6 @@ export const GQL_QUERY_GET_CURRENT_USER = gql`
     getCurrentUser {
       ...User
     }
-    getDuels {
-      id
-      opponents {
-        userId
-        score
-        status
-        startDateTime
-        name {
-          firstName
-          lastName
-        }
-      }
-      duration
-      type
-      yucoin
-      status
-    }
     getTopUpsIds {
       quoteId
       productId

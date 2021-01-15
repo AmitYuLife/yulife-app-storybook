@@ -1,18 +1,17 @@
 import React, { useEffect, memo, FunctionComponent, useMemo } from "react";
-import { Animated, Platform } from "react-native";
+import { Animated } from "react-native";
 import { styles } from "./duel-dialog.styles";
 import { Navigation } from "react-native-navigation";
 import { MODALS } from "@navigation/constants";
 import { Button } from "@atoms";
-import { GQL_QUERY_GET_CURRENT_USER } from "@graphql/user";
-import { GetCurrentUser } from "@graphql/_core/schema";
+import { GetDuels } from "@graphql/_core/schema";
 import { useQuery } from "@apollo/react-hooks";
-import { IntercomHashMethod } from "@graphql/_core/schema/globalTypes";
 import { useSelector } from "react-redux";
 import { getCurrentUserId } from "@redux/user/user.selectors";
 import { DATE_FORMAT_WITH_TZ } from "@services/utils";
 import { showExistingDuelAlert } from "./duel-dialog.helpers";
 import moment from "moment";
+import { GQL_QUERY_GET_DUELS } from "@graphql/duels";
 
 interface Props {
   id: string;
@@ -22,6 +21,7 @@ export interface ValidDuel {
   name: { firstName?: string; lastName?: string };
   userId?: string;
   startDateTime?: moment.Moment;
+  status: string;
 }
 
 const _DuelDialog: FunctionComponent<Props> = ({ id }) => {
@@ -51,11 +51,8 @@ const _DuelDialog: FunctionComponent<Props> = ({ id }) => {
     };
   }, [fadeIn, grow]);
 
-  const { data } = useQuery<GetCurrentUser>(GQL_QUERY_GET_CURRENT_USER, {
+  const { data } = useQuery<GetDuels>(GQL_QUERY_GET_DUELS, {
     fetchPolicy: "cache-only",
-    variables: {
-      intercomHashMethod: Platform.OS as IntercomHashMethod,
-    },
   });
 
   const opponentId = id.replace("lead_", "");
@@ -65,16 +62,12 @@ const _DuelDialog: FunctionComponent<Props> = ({ id }) => {
     const now = moment();
     return duels.reduce((acc, duel) => {
       if (["accepted", "pending"].includes(duel.status)) {
-        const opponents = duel.opponents.reduce((accumulator, opponent) => {
-          const startDateTime = moment(opponent.startDateTime, DATE_FORMAT_WITH_TZ);
+        const opponent = duel.opponents.find((dueller) => dueller.userId !== userId);
+        const startDateTime = moment(duel.opponents[0].startDateTime, DATE_FORMAT_WITH_TZ);
 
-          if (opponent.userId !== userId && startDateTime.isAfter(now, "day")) {
-            accumulator.push({ userId: opponent.userId, name: opponent.name, startDateTime });
-          }
-
-          return acc;
-        }, []);
-        return opponents;
+        if (startDateTime.isAfter(now, "day")) {
+          acc.push({ userId: opponent.userId, name: opponent.name, startDateTime, status: duel.status });
+        }
       }
 
       return acc;
@@ -90,7 +83,7 @@ const _DuelDialog: FunctionComponent<Props> = ({ id }) => {
         onPress={async () => {
           const existingDuel = validDuels.find(({ userId: duelistId }) => duelistId === opponentId);
           if (existingDuel) {
-            showExistingDuelAlert({ existingDuel });
+            showExistingDuelAlert(existingDuel);
             return;
           }
 

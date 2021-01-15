@@ -1,9 +1,8 @@
 import gql from "graphql-tag";
-import client from "../_core/client";
 
-export const GQL_QUERY_GET_DUELS = gql`
-  query GetDuels {
-    getDuels {
+export const GQL_QUERY_GET_DUEL_INVITATIONS = gql`
+  query GetDuelInvitations {
+    getDuelInvitations {
       id
       opponents {
         userId
@@ -19,13 +18,7 @@ export const GQL_QUERY_GET_DUELS = gql`
       type
       yucoin
       status
+      inviteStatus
     }
   }
 `;
-
-export default function getDuelsWithClient() {
-  return client().query({
-    fetchPolicy: "network-only",
-    query: GQL_QUERY_GET_DUELS,
-  });
-}

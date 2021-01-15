@@ -1,28 +1,21 @@
 import React from "react";
 import styles from "./duel-empty.styles";
-import { Button, Text } from "@atoms";
+import { Text } from "@atoms";
 import { Image, View } from "react-native";
-import images from "../../duels-hub.images";
+import images from "./duel-empty.images";
 
-interface IProps {
-  text: string;
-  buttonText: string;
-  onPress: () => void;
-}
-
-function _DuelEmpty({ text, buttonText, onPress }: IProps) {
+const _DuelEmpty = () => {
   return (
-    <View>
-      <View style={styles.emptyStateOutsideWrapper}>
+    <>
+      <View style={styles.wrapper}>
         <Image style={styles.image} source={images.yugi} />
-        <View style={styles.emptyStateWrapper}>
-          <Text style={styles.emptyStateText}>{text}</Text>
+        <View style={styles.textWrapper}>
+          <Text style={styles.text}>You don’t have any past duels recorded. Why not challenge a friend?</Text>
         </View>
       </View>
-      <Button label={buttonText} type="Primary" onPress={onPress} />
-    </View>
+    </>
   );
-}
+};
 
 const DuelEmpty = React.memo(_DuelEmpty);
 

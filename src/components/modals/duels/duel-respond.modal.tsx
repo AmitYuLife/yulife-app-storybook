@@ -4,12 +4,7 @@ import { useDispatch, connect } from "react-redux";
 import { View, Alert, StyleSheet } from "react-native";
 import { getUserStart } from "../../../redux/user/user.actions";
 import { useMutation, useQuery } from "@apollo/react-hooks";
-import {
-  GQL_MUTATION_RESPOND_TO_DUEL,
-  GQL_QUERY_GET_DUELS,
-  RespondToDuelMutationTuple,
-  GQL_QUERY_GET_DUELS_HUB_DATA,
-} from "@graphql/duels";
+import { GQL_MUTATION_RESPOND_TO_DUEL, GQL_QUERY_GET_DUELS, RespondToDuelMutationTuple } from "@graphql/duels";
 import { GetDuels_getDuels } from "@graphql/_core/schema/GetDuels";
 import { GetDuellerDetails_getDuellerDetails } from "@graphql/_core/schema/GetDuellerDetails";
 import moment from "moment";
@@ -24,6 +19,8 @@ import { Loading } from "@atoms";
 import styles from "./duel-respond.styles";
 import { GQL_QUERY_GET_DUELLER_DETAILS } from "@graphql/duels/getDuellerDetails";
 import { TopBarAbsolute } from "@organisms/top-bar/top-bar-absolute";
+import { GQL_QUERY_GET_DUEL_TOMORROW } from "@graphql/duels/getDuelsTomorrow.gql";
+import { GQL_QUERY_GET_DUEL_INVITATIONS } from "@graphql/duels/getDuelInvitations.gql";
 
 interface IModalProps {
   duelId: string;
@@ -73,7 +70,7 @@ const DuelRespondModal: React.FC<IProps> = ({ componentId, duelId, userCoins, in
   const startDateTime = inviteStartDateTime || moment().add(1, "day").startOf("day").format(DATE_FORMAT_WITHOUT_TZ);
 
   const [respondToInvite]: RespondToDuelMutationTuple = useMutation(GQL_MUTATION_RESPOND_TO_DUEL, {
-    refetchQueries: [{ query: GQL_QUERY_GET_DUELS_HUB_DATA }],
+    refetchQueries: [{ query: GQL_QUERY_GET_DUEL_TOMORROW }, { query: GQL_QUERY_GET_DUEL_INVITATIONS }],
   });
 
   const handlePress = useCallback(

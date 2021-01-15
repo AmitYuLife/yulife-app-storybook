@@ -183,28 +183,6 @@ export interface GetCurrentUser_getCurrentUser {
   addressPostCode: string | null;
 }
 
-export interface GetCurrentUser_getDuels_opponents_name {
-  firstName: string | null;
-  lastName: string | null;
-}
-
-export interface GetCurrentUser_getDuels_opponents {
-  userId: string | null;
-  score: number | null;
-  status: string | null;
-  startDateTime: string | null;
-  name: GetCurrentUser_getDuels_opponents_name | null;
-}
-
-export interface GetCurrentUser_getDuels {
-  id: string | null;
-  opponents: (GetCurrentUser_getDuels_opponents | null)[] | null;
-  duration: number | null;
-  type: string | null;
-  yucoin: number | null;
-  status: string | null;
-}
-
 export interface GetCurrentUser_getTopUpsIds {
   /**
    * Latest top ups quote id
@@ -219,10 +197,6 @@ export interface GetCurrentUser_getTopUpsIds {
 export interface GetCurrentUser {
   getIntercomHash: string | null;
   getCurrentUser: GetCurrentUser_getCurrentUser | null;
-  /**
-   * Get all of a specific user's duels.
-   */
-  getDuels: (GetCurrentUser_getDuels | null)[] | null;
   /**
    * Query to obtain product and quote ids
    */

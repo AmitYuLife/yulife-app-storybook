@@ -1,25 +1,13 @@
-import { Style } from "@styles";
-import { StyleSheet, ViewStyle, TextStyle } from "react-native";
+import { Style, Colours } from "@styles";
+import { StyleSheet, ViewStyle } from "react-native";
 
 export default StyleSheet.create({
   wrapper: {
-    flex: 1,
-    backgroundColor: "#FFFFFF",
-  } as ViewStyle,
-  sectionList: {
+    width: Style.DEVICE_WIDTH,
+    backgroundColor: Colours.neutral.white,
     paddingHorizontal: Style.adjust(24),
-    marginBottom: Style.adjust(80),
   } as ViewStyle,
-  tabWrapper: {
-    marginHorizontal: Style.adjust(24),
+  list: {
+    paddingBottom: Style.adjust(78),
   } as ViewStyle,
-  keyText: {
-    fontFamily: Style.FONT_FAMILY_PRIMARY,
-    fontStyle: "normal",
-    fontSize: 18,
-    lineHeight: 24,
-    color: "#5A5A5C",
-    textAlign: "right",
-    paddingVertical: 4,
-  } as TextStyle,
 });

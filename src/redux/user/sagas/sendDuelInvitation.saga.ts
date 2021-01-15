@@ -1,23 +1,26 @@
+import { ApolloQueryResult } from "apollo-client";
 import moment from "moment";
 import { ROUTES, MODALS } from "@navigation/constants";
-import { pathOr, DATE_FORMAT_WITH_TZ } from "@services/utils";
+import { DATE_FORMAT_WITH_TZ } from "@services/utils";
 import { Navigation } from "react-native-navigation";
 import { call, select, take, delay } from "redux-saga/effects";
 import { UPDATE_NAVIGATION_STATE } from "../../app/app.actions";
 import { getRouteState } from "../../app/app.selectors";
-import { getUserSuccess } from "../user.actions";
 import updateDuelWithClient from "../../../graphql/duels/updateDuel.gql";
-import { getUserFeatures } from "../user.selectors";
+import { getUserFeatures, getCurrentUserId } from "../user.selectors";
+import getDuelsWithClient from "@graphql/duels/getDuels.gql";
+import { GetDuels } from "@graphql/_core/schema";
 
-export default function* sendDuelInvitation({ payload }: ReturnType<typeof getUserSuccess>) {
+export default function* sendDuelInvitation() {
   const currentRoute = yield select(getRouteState);
-  const getCurrentUser = payload.getCurrentUser;
-
-  const userId = getCurrentUser.id;
-
-  const duels: typeof payload.getDuels = pathOr(payload.getDuels, []);
+  const userId = yield select(getCurrentUserId);
   const features = yield select(getUserFeatures);
+
   const isDuelsEnabled = features.showDuels;
+
+  const { data }: ApolloQueryResult<GetDuels> = yield call(getDuelsWithClient);
+
+  const duels = data?.getDuels || [];
 
   // do not show duel invite on onboarding reward screen
   if (currentRoute === ROUTES.onboardingSignUpReward) {
@@ -26,7 +29,7 @@ export default function* sendDuelInvitation({ payload }: ReturnType<typeof getUs
 
   const whitelist = [ROUTES.dailySteps, ROUTES.quests, ROUTES.yuScreen, ROUTES.leaderboards, ROUTES.rewards];
 
-  if (duels && duels.length > 0 && isDuelsEnabled && whitelist.includes(currentRoute)) {
+  if (duels.length && isDuelsEnabled && whitelist.includes(currentRoute)) {
     const invitation = duels.find((duel) => {
       const invitee = duel.opponents[1];
       return duel.status === "pending" && invitee.userId === userId && invitee.status === "pending";
