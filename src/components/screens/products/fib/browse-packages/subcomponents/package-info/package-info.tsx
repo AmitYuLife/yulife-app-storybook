@@ -6,10 +6,11 @@ import { Package } from "@components/screens/products/fib/browse-packages/fib.br
 import { Style, Colours } from "@styles";
 import { DoubleChest, Streak, Shoe, Text } from "@atoms";
 import { PACKAGE_INFO } from "@ids";
+import { formatMoney } from "@services/money";
 
 export interface Props {
   selectedPackage: Package;
-  packagePrice?: number | string;
+  packagePrice?: number;
 }
 
 interface Key {
@@ -91,7 +92,7 @@ const PackageInfo: React.FC<Props> = ({ selectedPackage, packagePrice }) => {
       >
         <View style={styles.priceWrapper}>
           <PackageTypes type={selectedPackage?.id as IType} />
-          {packagePrice ? <Text style={styles.price}>£{packagePrice}/month</Text> : null}
+          {packagePrice ? <Text style={styles.price}>£{formatMoney(packagePrice)}/month</Text> : null}
         </View>
         <View style={styles.titleWrapper}>
           <Text bold={true} style={styles.title}>
@@ -147,10 +148,8 @@ const PackageInfo: React.FC<Props> = ({ selectedPackage, packagePrice }) => {
 
 const styles = StyleSheet.create({
   wrapper: {
-    width: Style.adjust(328),
-    alignSelf: "center",
     borderRadius: 16,
-    marginTop: 5,
+    marginTop: 10,
   } as ViewStyle,
   header: {
     marginLeft: 2,

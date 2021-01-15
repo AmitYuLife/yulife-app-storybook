@@ -51,11 +51,7 @@ export const PayoutCalculator = memo(
 
 const styles = StyleSheet.create({
   wrapper: {
-    width: Style.DEVICE_WIDTH,
-    paddingVertical: Style.adjust(16),
-    paddingHorizontal: Style.adjust(16),
     borderRadius: 8,
-    marginTop: Style.adjust(12),
   } as ViewStyle,
   innerWrapper: {
     backgroundColor: "white",

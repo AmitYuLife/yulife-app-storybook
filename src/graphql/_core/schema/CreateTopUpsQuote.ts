@@ -9,6 +9,37 @@ import { CreateTopUpsQuoteInput, ProductCode } from "./globalTypes";
 // GraphQL mutation operation: CreateTopUpsQuote
 // ====================================================
 
+export interface CreateTopUpsQuote_createTopUpsQuote_coverTypesInfo_common {
+  actualCost: number | null;
+  sumAssured: number | null;
+  salaryPercentageCovered: number | null;
+}
+
+export interface CreateTopUpsQuote_createTopUpsQuote_coverTypesInfo_rare {
+  actualCost: number | null;
+  sumAssured: number | null;
+  salaryPercentageCovered: number | null;
+}
+
+export interface CreateTopUpsQuote_createTopUpsQuote_coverTypesInfo_epic {
+  actualCost: number | null;
+  sumAssured: number | null;
+  salaryPercentageCovered: number | null;
+}
+
+export interface CreateTopUpsQuote_createTopUpsQuote_coverTypesInfo_custom {
+  actualCost: number | null;
+  sumAssured: number | null;
+  salaryPercentageCovered: number | null;
+}
+
+export interface CreateTopUpsQuote_createTopUpsQuote_coverTypesInfo {
+  common: CreateTopUpsQuote_createTopUpsQuote_coverTypesInfo_common | null;
+  rare: CreateTopUpsQuote_createTopUpsQuote_coverTypesInfo_rare | null;
+  epic: CreateTopUpsQuote_createTopUpsQuote_coverTypesInfo_epic | null;
+  custom: CreateTopUpsQuote_createTopUpsQuote_coverTypesInfo_custom | null;
+}
+
 export interface CreateTopUpsQuote_createTopUpsQuote {
   /**
    * Quote id
@@ -37,6 +68,7 @@ export interface CreateTopUpsQuote_createTopUpsQuote {
    */
   medicalInvestigationRequired: boolean | null;
   salary: number | null;
+  coverTypesInfo: CreateTopUpsQuote_createTopUpsQuote_coverTypesInfo | null;
 }
 
 export interface CreateTopUpsQuote {

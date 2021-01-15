@@ -1,27 +1,30 @@
 import { useMutation, useQuery } from "@apollo/react-hooks";
 import React, { memo, useState, useEffect, useCallback } from "react";
-import { View, Linking, Platform } from "react-native";
+import { Linking, Platform } from "react-native";
 import { connect, useDispatch } from "react-redux";
-import { Text } from "@atoms";
 import { FibLocalNavigation, FIB_CONTACT_DETAILS, FIB_FAQ_LIST } from "../fib.types";
-import { GQL_MUTATION_CREATE_TOP_UPS_QUOTE, GQL_QUERY_GET_TOP_UPS_QUOTE } from "@graphql/products";
+import { GQL_MUTATION_CREATE_TOP_UPS_QUOTE } from "@graphql/products";
 import { getFIBState, getLifeInsuranceUserAnswers } from "@redux/product/product.selectors";
 import { IReduxState } from "@redux/_core/reducers";
-import { packages, useCover, calculatePayoutCalculatorItems, calculatePayoutAmount } from "../fib.helpers";
+import { packages, calculatePayoutCalculatorItems, calculatePayoutAmount } from "../fib.helpers";
 import { FibSummaryScreen } from "@components/screens/products/fib/browse-packages/fib.summary.screen";
 import { Package } from "@components/screens/products/fib/browse-packages/fib.browse.types";
 import { getUserDateOfBirth } from "@redux/user/user.selectors";
 import { IFaq } from "@components/screens/products/fib/browse-packages/subcomponents/faqs/faq";
 import fibDocumentsItems, { policyScheduleDocument } from "../data/documents-data";
 import moment from "moment";
-import { updateFIBValue, updateFIBValuesFromNewQuote } from "@redux/product/product.actions";
+import { updateFIBValuesFromNewQuote } from "@redux/product/product.actions";
 import { MODALS } from "@navigation/constants";
 import { handleOpenWebView } from "@navigation/utils";
 import Logger from "@services/logging/logger";
 import { Navigation } from "react-native-navigation";
-import { CreateTopUpsQuote, CreateTopUpsQuoteVariables, GetYulifer } from "@graphql/_core/schema";
+import {
+  CreateTopUpsQuote,
+  CreateTopUpsQuoteVariables,
+  CreateTopUpsQuote_createTopUpsQuote,
+  GetYulifer,
+} from "@graphql/_core/schema";
 import { CoverType, CreateTopUpsQuoteInput, ProductCode, YuProductId } from "@graphql/_core/schema/globalTypes";
-import { GetTopUpsQuote, GetTopUpsQuoteVariables } from "@graphql/_core/schema/GetTopUpsQuote";
 import { getBirthday } from "@redux/product/product.selectors";
 import { GQL_QUERY_GET_YULIFER } from "@graphql/yuscreen";
 
@@ -56,19 +59,26 @@ const documents: IFaq[] = [...fibDocumentsItems, policyScheduleDocument].map((do
 }));
 
 const FibConfirmPackagesContainer = memo(function (props: FibConfirmPackagesContainerProps) {
-  const { navigation, userDateOfBirth, userDateOfBirthFib, fibState, userAnswers } = props;
-  const { salary: grossSalary, selectedPackage, productEntityId, latestQuoteId } = fibState;
-  const dispatch = useDispatch();
-
-  const [selectedCoverType, selectCoverType] = useCover(selectedPackage || "common");
-
+  const [selectedCoverType, setSelectedCoverType] = useState(props?.fibState.selectedPackage || "common");
+  const [fibQuoteData, setFibQuoteData] = useState<CreateTopUpsQuote_createTopUpsQuote>();
   const [deceaseAgeIndexYear, setDeceaseAgeIndexYear] = useState(0);
   const [deceaseAgeIndexMonth, setDeceaseAgeIndexMonth] = useState(0);
   const [payoutEstimatorItems, setPayoutEstimatorItems] = useState(
     calculatePayoutCalculatorItems(props.userDateOfBirthFib || props.userDateOfBirth, deceaseAgeIndexYear)
   );
+  const { navigation, userDateOfBirth, userDateOfBirthFib, fibState, userAnswers } = props;
+  const { salary: grossSalary } = fibState;
+
+  const dispatch = useDispatch();
 
   const customerAge = moment().diff(moment(userDateOfBirthFib || userDateOfBirth), "years");
+  const { data: yuliferData } = useQuery<GetYulifer>(GQL_QUERY_GET_YULIFER, {
+    fetchPolicy: "cache-only",
+  });
+
+  const [createFibQuote] = useMutation<CreateTopUpsQuote, CreateTopUpsQuoteVariables>(
+    GQL_MUTATION_CREATE_TOP_UPS_QUOTE
+  );
 
   useEffect(() => {
     const newItems = calculatePayoutCalculatorItems(
@@ -78,11 +88,9 @@ const FibConfirmPackagesContainer = memo(function (props: FibConfirmPackagesCont
     setPayoutEstimatorItems(newItems);
   }, [deceaseAgeIndexYear, props.userDateOfBirth, props.userDateOfBirthFib]);
 
-  const deceaseAgeMonth =
-    Number(payoutEstimatorItems.months[deceaseAgeIndexMonth]) ===
-    Number(payoutEstimatorItems.months[deceaseAgeIndexMonth])
-      ? payoutEstimatorItems.months[deceaseAgeIndexMonth]
-      : payoutEstimatorItems.months[payoutEstimatorItems.months.length - 1] || 0; // Never show error, default to 0
+  const deceaseAgeMonth = Number(payoutEstimatorItems.months[deceaseAgeIndexMonth])
+    ? payoutEstimatorItems.months[deceaseAgeIndexMonth]
+    : payoutEstimatorItems.months[payoutEstimatorItems.months.length - 1] || 0; // Never show error, default to 0
 
   const deceaseAgeYear = payoutEstimatorItems.years[deceaseAgeIndexYear];
 
@@ -93,65 +101,33 @@ const FibConfirmPackagesContainer = memo(function (props: FibConfirmPackagesCont
     userAnswers,
   };
 
-  const { loading, data, error } = useQuery<GetTopUpsQuote, GetTopUpsQuoteVariables>(GQL_QUERY_GET_TOP_UPS_QUOTE, {
-    variables: {
-      input: {
-        customerProductEntityId: productEntityId,
-        quoteId: latestQuoteId,
+  const createNewQuote = async () => {
+    const { data: newFibQuoteData } = await createFibQuote({
+      variables: {
+        input: queryVariables,
+        product: ProductCode.YULFIB,
       },
-      product: ProductCode.YULFIB,
-    },
-  });
+    });
 
-  const { data: yuliferData } = useQuery<GetYulifer>(GQL_QUERY_GET_YULIFER, {
-    fetchPolicy: "cache-only",
-  });
-
-  const [createFibQuote] = useMutation<CreateTopUpsQuote, CreateTopUpsQuoteVariables>(
-    GQL_MUTATION_CREATE_TOP_UPS_QUOTE
-  );
+    setFibQuoteData(newFibQuoteData?.createTopUpsQuote);
+    dispatch(updateFIBValuesFromNewQuote(newFibQuoteData?.createTopUpsQuote));
+  };
 
   useEffect(() => {
-    if (data?.getTopUpsQuote?.actualCost && fibState.actualCost !== data.getTopUpsQuote.actualCost) {
-      dispatch(updateFIBValue({ key: "actualCost", value: data.getTopUpsQuote.actualCost }));
-    }
-
-    if (data?.getTopUpsQuote?.medicalInvestigationRequired) {
-      dispatch(
-        updateFIBValue({
-          key: "medicalInvestigationRequired",
-          value: data.getTopUpsQuote?.medicalInvestigationRequired,
-        })
-      );
-    }
-  }, [data, dispatch, fibState.actualCost]);
-
-  useEffect(() => {
-    async function createNewQuote() {
-      const { data: newFibQuoteData } = await createFibQuote({
-        variables: {
-          input: queryVariables,
-          product: ProductCode.YULFIB,
-        },
-      });
-
-      dispatch(updateFIBValuesFromNewQuote(newFibQuoteData?.createTopUpsQuote));
-    }
-
     createNewQuote();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedCoverType, createFibQuote]);
+  }, []);
 
   const payoutAmount = calculatePayoutAmount({
     deceaseAgeMonth,
     deceaseAgeYear,
-    sumAssured: data?.getTopUpsQuote?.sumAssured,
-    term: data?.getTopUpsQuote?.term,
+    sumAssured: fibQuoteData?.coverTypesInfo[selectedCoverType]?.sumAssured,
+    term: fibQuoteData?.term,
     dateOfBirth: userDateOfBirthFib || userDateOfBirth,
   });
 
   const monthlyAmountProtected = Math.round(
-    ((data?.getTopUpsQuote?.sumAssured / (data?.getTopUpsQuote?.term * 12)) * 100) / 100
+    ((fibQuoteData?.coverTypesInfo[selectedCoverType]?.sumAssured / (fibQuoteData?.term * 12)) * 100) / 100
   );
 
   const fibProduct = yuliferData?.personal?.filter(
@@ -163,16 +139,16 @@ const FibConfirmPackagesContainer = memo(function (props: FibConfirmPackagesCont
   )[0];
 
   const packageDetails: Package = {
-    newEarnRate: data?.getTopUpsQuote?.newEarnRate || 0,
+    newEarnRate: fibQuoteData?.newEarnRate || 0,
     payoutAmount: Math.round(payoutAmount),
-    earnRate: data?.getTopUpsQuote?.earnRate || 0,
-    salaryPercentageCovered: data?.getTopUpsQuote?.salaryPercentageCovered || 0,
+    earnRate: fibQuoteData?.earnRate || 0,
+    salaryPercentageCovered: fibQuoteData?.coverTypesInfo[selectedCoverType]?.salaryPercentageCovered || 0,
     id: selectedCoverType,
     label: packages[selectedCoverType].label,
-    descriptionHeading: data?.getTopUpsQuote?.descriptionHeading || "",
-    term: data?.getTopUpsQuote?.term,
+    descriptionHeading: fibQuoteData?.descriptionHeading || "",
+    term: fibQuoteData?.term,
     monthlyAmountProtected,
-    actualCost: data?.getTopUpsQuote?.actualCost || 0,
+    actualCost: fibQuoteData?.coverTypesInfo[selectedCoverType]?.actualCost || 0,
     title: fibProduct?.name,
     powers: selectedProductOption?.powers || [],
   };
@@ -200,30 +176,24 @@ const FibConfirmPackagesContainer = memo(function (props: FibConfirmPackagesCont
   }, [navigation]);
 
   const handleOnContinue = useCallback(async () => {
+    await createNewQuote();
     return navigation.push(FIB_CONTACT_DETAILS);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [navigation]);
 
   const navigateToFaqsList = () => navigation.push(FIB_FAQ_LIST);
-
-  if (error) {
-    return (
-      <View>
-        <Text>Error</Text>
-      </View>
-    );
-  }
 
   return (
     <FibSummaryScreen
       onContinue={handleOnContinue}
       onExit={onExitHandler}
       selectedPackage={packageDetails}
-      selectCoverType={selectCoverType}
+      selectCoverType={(cover) => setSelectedCoverType(cover)}
       documents={documents}
       payoutEstimatorItems={payoutEstimatorItems}
       setDeceaseAgeIndexYear={setDeceaseAgeIndexYear}
       setDeceaseAgeIndexMonth={setDeceaseAgeIndexMonth}
-      loading={loading}
+      loading={false}
       onNavigateBack={navigation.pop}
       customerAge={customerAge}
       onScrollEnd={navigation.onScrollEnd}

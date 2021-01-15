@@ -48,16 +48,18 @@ const FibUnderwritingReviewAnswersContainer = memo(function (props: Props) {
         product: ProductCode.YULFIB,
       },
     });
-    dispatch(updateFIBValuesFromNewQuote(data?.createTopUpsQuote));
 
-    const rejected = data?.createTopUpsQuote?.rejected;
+    const fibData = data.createTopUpsQuote;
+    dispatch(updateFIBValuesFromNewQuote(fibData));
+
+    const rejected = fibData?.rejected;
     if (rejected) {
       return navigation.push(FIB_INFO, { type: InfoTypes.rejected });
     }
 
     const priceChangedFromAPI =
-      !!Number(fibState.actualCost) && !!Number(data?.createTopUpsQuote?.actualCost)
-        ? fibState.actualCost !== data.createTopUpsQuote?.actualCost
+      !!Number(fibState.actualCost) && !!Number(fibData?.actualCost)
+        ? fibState.actualCost !== fibData?.actualCost
         : false;
 
     if (fibState.hasPriceChanged || priceChangedFromAPI) {

@@ -23,9 +23,11 @@ export const HowItWorks = memo(({ header, content }: Props) => {
 
 const styles = StyleSheet.create({
   wrapper: {
-    marginTop: Style.adjust(16),
     padding: DEFAULT_TEXT_PAD_LEFT,
     backgroundColor: "white",
+    borderWidth: 1,
+    borderColor: Colours.neutral.n100,
+    borderRadius: 10,
   } as ViewStyle,
   headingWrapper: {
     marginTop: Style.adjust(16),

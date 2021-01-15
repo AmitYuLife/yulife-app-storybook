@@ -16,22 +16,25 @@ const AdditionalBenefits = memo(function (props: IProps) {
   return (
     <View>
       <Text style={styles.title}>Additional benefits</Text>
-      {getAdditionalBenefitsData(earnRate, packageEarnRate, loading).map((item) => {
-        return <AdditionalBenefitsCard key={item.id} text={item.text} svg={item.svg} />;
-      })}
+      {getAdditionalBenefitsData(earnRate, packageEarnRate, loading).map((item) => (
+        <View key={item.id} style={styles.wrapper}>
+          <AdditionalBenefitsCard key={item.id} text={item.text} svg={item.svg} />
+        </View>
+      ))}
     </View>
   );
 });
 
 const styles = StyleSheet.create({
+  wrapper: {
+    paddingHorizontal: Style.adjust(16),
+  },
   title: {
-    fontSize: Style.SCALE_UP_AND_DOWN(24),
+    fontSize: Style.adjust(24),
     fontFamily: Style.FONT_FAMILY_PRIMARY_BOLD,
     lineHeight: 32,
     color: "#464647",
     letterSpacing: 1,
-    marginLeft: Style.adjust(32),
-    marginTop: Style.adjust(48),
     marginBottom: Style.adjust(8),
   } as TextStyle,
 });
