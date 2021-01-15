@@ -10,13 +10,14 @@ const TRANSFORM_X = Style.adjust(28);
 const ANIMATION_SPEED = 300;
 
 interface Props {
+  testID?: string;
   value: boolean;
   onPress: () => void;
   disabled?: boolean;
 }
 
 function _Switch(props: Props) {
-  const { value, onPress, disabled = false } = props;
+  const { value, onPress, disabled = false, testID } = props;
   const translateX = React.useRef(new Animated.Value(0)).current;
 
   React.useEffect(() => {
@@ -36,6 +37,7 @@ function _Switch(props: Props) {
   return (
     <View style={styles.wrapper}>
       <TouchableOpacityWithDelay
+        testID={testID}
         style={[styles.innerWrapper, disabled ? styles.disabled : value ? styles.on : styles.off]}
         activeOpacity={0.8}
         onPress={disabled ? noop : onPress}

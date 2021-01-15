@@ -9,7 +9,7 @@ interface Props {
 }
 
 const ENCIRCLED_SIZE = Style.adjust(30);
-const DEFAULT_SIZE = Style.adjust(14);
+const DEFAULT_SIZE = Style.adjust(24);
 
 function CloseSvg({ type }: Props) {
   if (type === "encircled") {
@@ -32,21 +32,9 @@ function CloseSvg({ type }: Props) {
   }
 
   return (
-    <Svg width={DEFAULT_SIZE} height={DEFAULT_SIZE} viewBox="0 0 14 14" fill="none" testID={BUTTON_CLOSE}>
-      <Path
-        d="M1 13L13 1"
-        stroke={Colours.neutral.n800}
-        strokeMiterlimit="10"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <Path
-        d="M13 13L1 1"
-        stroke={Colours.neutral.n800}
-        strokeMiterlimit="10"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
+    <Svg width={DEFAULT_SIZE} height={DEFAULT_SIZE} viewBox="0 0 24 24" fill="none" testID={BUTTON_CLOSE}>
+      <Path d="M4 20L20 4" stroke={Colours.neutral.n800} strokeLinecap="round" strokeLinejoin="round" />
+      <Path d="M20 20L4 4" stroke={Colours.neutral.n800} strokeLinecap="round" strokeLinejoin="round" />
     </Svg>
   );
 }

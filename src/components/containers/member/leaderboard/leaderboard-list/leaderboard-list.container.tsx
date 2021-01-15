@@ -1,27 +1,43 @@
 import React, { useCallback } from "react";
-import { connect, useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Navigation } from "react-native-navigation";
 import LeaderboardListScreen from "./leaderboard-list.screen";
-import { IReduxState } from "@redux/_core/reducers";
-import { getActiveLeaderboardId } from "@redux/user/user.selectors";
-import { updateActiveLeaderboardId } from "@redux/user/user.actions";
-import { ROUTES } from "@navigation/constants";
-import { useQuery } from "@apollo/react-hooks";
-import { GQL_QUERY_GET_CURRENT_USER_LEADERBOARD } from "@graphql/user";
-import { GetCurrentUser } from "@graphql/_core/schema";
+import { getActiveLeaderboardId, getUserFeatures } from "@redux/user/user.selectors";
+import { getAcceptedLeaderboards } from "@redux/user/user.selectors";
+import { updateActiveLeaderboardId, updateLeaderboardConsent } from "@redux/user/user.actions";
+import { MODALS } from "@navigation/constants";
 import { useBackHandler } from "@services/hooks/useBackHandler";
-
-type ConnectedState = ReturnType<typeof mapStateToProps>;
+import { getCopySelector } from "@redux/copy/copy.selectors";
 
 interface OwnProps {
   componentId: string;
 }
 
-type Props = ConnectedState & OwnProps;
+type Props = OwnProps;
+
+const leaderboardCopySelector = getCopySelector("leaderboards");
+
+function dismissGenericModal() {
+  Navigation.dismissModal(MODALS.generic);
+}
+
+function handleCreateNewLeaderboard() {
+  Navigation.showModal({
+    component: {
+      id: MODALS.createLeaderboard,
+      name: MODALS.createLeaderboard,
+    },
+  });
+}
 
 function LeaderboardListContainer(props: Props) {
-  const { componentId, activeLeaderboardId } = props;
+  const { componentId } = props;
   const dispatch = useDispatch();
+
+  const features = useSelector(getUserFeatures);
+  const activeLeaderboardId = useSelector(getActiveLeaderboardId);
+  const leaderboards = useSelector(getAcceptedLeaderboards);
+  const leaderboardCopy = useSelector(leaderboardCopySelector);
 
   const handleChangeActiveLeaderboardId = useCallback(
     (leaderboardId: string) => {
@@ -40,35 +56,55 @@ function LeaderboardListContainer(props: Props) {
     return true;
   });
 
-  const goToSettings = useCallback(() => {
-    Navigation.push(componentId, {
-      component: {
-        id: ROUTES.settings,
-        name: ROUTES.settings,
-      },
-    });
-  }, [componentId]);
+  const handleChangeLeaderboardConsent = React.useCallback(
+    (leaderboardId: string, consent: boolean) => {
+      const { turnBoardOff, turnBoardOn } = leaderboardCopy;
+      const passProps = consent
+        ? {
+            ctaLabel: turnBoardOff.ctaLabel,
+            ctaLabelSecondary: turnBoardOff.ctaLabelSecondary,
+            heading: turnBoardOff.heading,
+            onPress: dismissGenericModal,
+            onPressSecondary: () => {
+              dispatch(updateLeaderboardConsent({ consent: !consent, leaderboardId }));
+              dismissGenericModal();
+            },
+            subheading: turnBoardOff.subheading,
+          }
+        : {
+            ctaLabel: turnBoardOn.ctaLabel,
+            ctaLabelSecondary: turnBoardOn.ctaLabelSecondary,
+            heading: turnBoardOn.heading,
+            onPress: () => {
+              dispatch(updateLeaderboardConsent({ consent: !consent, leaderboardId }));
+              dismissGenericModal();
+            },
+            onPressSecondary: dismissGenericModal,
+            subheading: turnBoardOn.subheading,
+          };
 
-  const { data, loading } = useQuery<GetCurrentUser>(GQL_QUERY_GET_CURRENT_USER_LEADERBOARD, {
-    fetchPolicy: "cache-only",
-  });
+      Navigation.showModal({
+        component: {
+          id: MODALS.generic,
+          name: MODALS.generic,
+          passProps,
+        },
+      });
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [leaderboardCopy]
+  );
 
   return (
     <LeaderboardListScreen
-      leaderboards={data?.getCurrentUser?.leaderboards}
+      leaderboards={leaderboards}
       activeLeaderboardId={activeLeaderboardId}
-      loading={loading}
       onChangeActiveLeaderboard={handleChangeActiveLeaderboardId}
+      onChangeLeaderboardConsent={handleChangeLeaderboardConsent}
       onLeftIconPress={goBack}
-      onRightIconPress={goToSettings}
+      onRightIconPress={!features.showCreateLeaderboard ? null : handleCreateNewLeaderboard}
     />
   );
 }
 
-const mapStateToProps = (state: IReduxState) => ({
-  activeLeaderboardId: getActiveLeaderboardId(state),
-});
-
-const redux = connect<ConnectedState, null, OwnProps>(mapStateToProps);
-
-export default redux(LeaderboardListContainer);
+export default LeaderboardListContainer;

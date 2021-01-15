@@ -4,14 +4,8 @@ import DateTimePicker from "react-native-modal-datetime-picker";
 import { Navigation } from "react-native-navigation";
 import { useSelector, useDispatch } from "react-redux";
 import { MODALS } from "@navigation/constants";
-import { updateConnectionStart, updateLeaderboardConsent } from "@redux/user/user.actions";
-import {
-  Connection,
-  getAcceptedLeaderboards,
-  getUserConnections,
-  getUserFeatures,
-  Leaderboard,
-} from "@redux/user/user.selectors";
+import { updateConnectionStart } from "@redux/user/user.actions";
+import { Connection, getUserConnections, getUserFeatures } from "@redux/user/user.selectors";
 import { SettingsScreen } from "@screens/index";
 import { getCopySelector } from "@redux/copy/copy.selectors";
 import { useQuery, useMutation } from "@apollo/react-hooks";
@@ -40,23 +34,16 @@ function handleCreateNewLeaderboard() {
   });
 }
 
-const leaderboardCopySelector = getCopySelector("leaderboards");
 const settingsCopySelector = getCopySelector("settingsInfo");
 const updateNotificationOptions = { refetchQueries: ["GetUserNotificationsSettings"] };
 const getNotificationsOptions = { fetchPolicy: "cache-and-network" as "cache-and-network" };
-
-function dismissGenericModal() {
-  Navigation.dismissModal(MODALS.generic);
-}
 
 function SettingsContainer({ componentId }: IOwnProps) {
   const dispatch = useDispatch();
 
   // redux selectors
-  const leaderboards = useSelector(getAcceptedLeaderboards);
   const connections = useSelector(getUserConnections);
   const features = useSelector(getUserFeatures);
-  const leaderboardCopy = useSelector(leaderboardCopySelector);
   const settingsCopy = useSelector(settingsCopySelector);
 
   // local state
@@ -94,55 +81,6 @@ function SettingsContainer({ componentId }: IOwnProps) {
     [selectedNotification]
   );
 
-  const handleUpdateLeaderboardConsent = React.useCallback(
-    (l: Leaderboard) => () => {
-      const { turnBoardOff, turnBoardOn } = leaderboardCopy;
-      const passProps = l.consent
-        ? {
-            ctaLabel: turnBoardOff.ctaLabel,
-            ctaLabelSecondary: turnBoardOff.ctaLabelSecondary,
-            heading: turnBoardOff.heading,
-            onPress: dismissGenericModal,
-            onPressSecondary: () => {
-              dispatch(
-                updateLeaderboardConsent({
-                  consent: !l.consent,
-                  leaderboardId: l.leaderboardId,
-                })
-              );
-              dismissGenericModal();
-            },
-            subheading: turnBoardOff.subheading,
-          }
-        : {
-            ctaLabel: turnBoardOn.ctaLabel,
-            ctaLabelSecondary: turnBoardOn.ctaLabelSecondary,
-            heading: turnBoardOn.heading,
-            onPress: () => {
-              dispatch(
-                updateLeaderboardConsent({
-                  consent: !l.consent,
-                  leaderboardId: l.leaderboardId,
-                })
-              );
-              dismissGenericModal();
-            },
-            onPressSecondary: dismissGenericModal,
-            subheading: turnBoardOn.subheading,
-          };
-
-      Navigation.showModal({
-        component: {
-          id: MODALS.generic,
-          name: MODALS.generic,
-          passProps,
-        },
-      });
-    },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [leaderboardCopy]
-  );
-
   const handleConnectionItemPress = React.useCallback(
     (c: Connection) => () => {
       dispatch(updateConnectionStart(c));
@@ -170,26 +108,6 @@ function SettingsContainer({ componentId }: IOwnProps) {
     },
     [settingsCopy]
   );
-
-  const leaderboard = {
-    isVisible: true,
-    items: leaderboards.map((l) => ({
-      isLoading: l.isLoading,
-      name: l.name,
-      onPress: handleUpdateLeaderboardConsent(l),
-      status: l.consent ? "active" : "inactive",
-    })),
-    name: "leaderboard",
-  } as any;
-
-  if (features.showCreateLeaderboard) {
-    leaderboard.items.push({
-      isLoading: false,
-      name: "create",
-      onPress: handleCreateNewLeaderboard,
-      status: "create",
-    });
-  }
 
   const connection = {
     isVisible: features.showConnections,
@@ -238,7 +156,7 @@ function SettingsContainer({ componentId }: IOwnProps) {
       <SettingsScreen
         onCreateLeaderboard={handleCreateNewLeaderboard}
         onPressClose={handleClose}
-        sections={[notification, connection, leaderboard]}
+        sections={[notification, connection]}
       />
       <DateTimePicker
         date={modalDate}

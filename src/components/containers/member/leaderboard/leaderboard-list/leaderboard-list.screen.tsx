@@ -1,18 +1,20 @@
 import React from "react";
-import { StyleSheet, ViewStyle, View, ActivityIndicator } from "react-native";
-import { GetCurrentUser_getCurrentUser_leaderboards } from "@graphql/_core/schema";
+import { StyleSheet, ViewStyle, View } from "react-native";
 import { LeaderboardListItems } from "./subcomponents/leaderboard-list-item";
 import GenericHeadingAbsolute from "@atoms/generic-heading/generic-heading-absolute";
 import { TOP_BAR } from "@styles";
+import { ILeaderboard } from "@redux/user/user.reducer";
 
 interface IProps {
-  leaderboards: GetCurrentUser_getCurrentUser_leaderboards[];
-  loading: boolean;
+  leaderboards: ILeaderboard[];
   activeLeaderboardId: string;
   onLeftIconPress?: () => void;
   onRightIconPress?: () => void;
   onChangeActiveLeaderboard: (id: string) => void;
+  onChangeLeaderboardConsent: (leaderboardId: string, consent: boolean) => void;
 }
+
+const RIGHT_ICON = { icon: "PLUS" as "PLUS" };
 
 function LeaderboardOptionsScreen(props: IProps) {
   const {
@@ -20,7 +22,7 @@ function LeaderboardOptionsScreen(props: IProps) {
     onRightIconPress,
     leaderboards,
     onChangeActiveLeaderboard,
-    loading,
+    onChangeLeaderboardConsent,
     activeLeaderboardId,
   } = props;
 
@@ -30,14 +32,14 @@ function LeaderboardOptionsScreen(props: IProps) {
       <LeaderboardListItems
         leaderboards={leaderboards}
         onPress={onChangeActiveLeaderboard}
+        onChangeLeaderboardConsent={onChangeLeaderboardConsent}
         activeLeaderboardId={activeLeaderboardId}
       />
-      <LoadingPlaceholder loading={loading} />
       <GenericHeadingAbsolute
         heading="Leaderboards"
         onLeftIconPress={onLeftIconPress}
         onRightIconPress={onRightIconPress}
-        rightIcon={{ icon: "SETTINGS" }}
+        rightIcon={RIGHT_ICON}
         hasWhiteBackground={true}
       />
     </View>
@@ -54,25 +56,5 @@ const styles = StyleSheet.create({
   pad: {
     height: TOP_BAR.TOP_BAR_WITH_PAD,
     backgroundColor: "red",
-  } as ViewStyle,
-});
-
-function LoadingPlaceholder({ loading }: { loading: boolean }) {
-  if (!loading) {
-    return null;
-  }
-
-  return (
-    <View style={loadingStyles.wrapper}>
-      <ActivityIndicator />
-    </View>
-  );
-}
-
-const loadingStyles = StyleSheet.create({
-  wrapper: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
   } as ViewStyle,
 });

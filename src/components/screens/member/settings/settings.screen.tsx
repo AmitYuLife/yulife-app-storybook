@@ -4,7 +4,6 @@ import { PureComponent } from "react";
 import { ScrollView, View } from "react-native";
 import { GetUserNotificationsSettings_getUserNotificationsSettings } from "@graphql/_core/schema";
 import ConnectionsItem from "./items/connections-item";
-import LeaderboardItem from "./items/leaderboard-item";
 import NotificationsItem from "./items/notifications-item";
 import SectionHeading from "./section-heading/section-heading";
 import data from "./settings.data";
@@ -67,8 +66,6 @@ export default class SettingsScreen extends PureComponent<IProps> {
   private renderSection = (section: ISettingSection<any>, index: number) => {
     if (section.isVisible) {
       switch (section.name) {
-        case "leaderboard":
-          return this.renderLeaderboard(section, index);
         case "notifications":
           return this.renderNotifications(section, index);
         case "connections":
@@ -79,19 +76,6 @@ export default class SettingsScreen extends PureComponent<IProps> {
     }
 
     return null;
-  };
-
-  private renderLeaderboard = (section: ISettingSection<ILeaderboardSectionItem>, index: number) => {
-    return (
-      <View key={index} style={styles.wrapper}>
-        <SectionHeading heading={section.name} />
-        <View style={styles.leaderboardItemsWrapper}>
-          {section.items.map((item, i) => (
-            <LeaderboardItem {...item} key={i} />
-          ))}
-        </View>
-      </View>
-    );
   };
 
   private renderNotifications = (section: ISettingSection<INotificationsSectionItem>, index: number) => {

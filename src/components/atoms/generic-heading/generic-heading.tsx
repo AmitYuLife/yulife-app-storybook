@@ -10,6 +10,7 @@ import { Beta } from "./subcomponents/beta";
 import { TOP_BAR } from "@styles";
 import CloseSvg from "@atoms/close/close-svg";
 import EditSvg from "@atoms/edit/edit-svg";
+import PlusSvg from "@atoms/plus/plus-svg";
 import { PressableWithDelay } from "@components/molecules";
 import { BUTTON_CLOSE_HEADER } from "@ids";
 
@@ -96,6 +97,14 @@ function RightIcon({ icon }: { icon: IGenericHeadingProps["rightIcon"] }) {
           <EditSvg />
         </View>
       );
+
+    case "PLUS":
+      return (
+        <View>
+          <PlusSvg />
+        </View>
+      );
+
     case "CLOSE":
       return (
         <View>
