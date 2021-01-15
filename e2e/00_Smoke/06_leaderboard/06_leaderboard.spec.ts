@@ -3,8 +3,8 @@ import * as scenario from "./_steps/scenario"
 import * as given from "./_steps/given"
 import * as when from "./_steps/when"
 import * as then from "./_steps/then"
-import { NAV_BAR, LEADERBOARD_INFO_BUTTON, LEADERBOARD_INFO, BACK_BUTTON, LEADERBOARD_TOP_SCREEN, MENU_ICON, MENU_ITEM, SETTINGS_SCREEN, LEADERBOARD_EMAIL_INPUT, GROUP_NAME_INPUT, LEADERBOARD_STATUS, BUTTON_CLOSE, DAILY_STEPS_SCREEN, LEADERBOARD_NAME, LEADERBOARD_TITLE, BUTTON_CLOSE_HEADER } from "@ids";
-import { CUSTOMER_16, AUTH_16, CUSTOMER_17, AUTH_17, CUSTOMER_18, USER_18_LEADERBOARD, CUSTOMER_19, AUTH_19, CUSTOMER_20, CUSTOMER_21, AUTH_21, AUTH_20, USER_19_LEADERBOARD_B } from "@data";
+import { NAV_BAR, LEADERBOARD_INFO_BUTTON, LEADERBOARD_INFO, BACK_BUTTON, PLUS_BUTTON, LEADERBOARD_EMAIL_INPUT, GROUP_NAME_INPUT, LEADERBOARD_STATUS, LEADERBOARD_SWITCH, BUTTON_CLOSE, DAILY_STEPS_SCREEN, LEADERBOARD_NAME, LEADERBOARD_TITLE } from "@ids";
+import { CUSTOMER_16, AUTH_16, USER_16_LEADERBOARD, CUSTOMER_17, AUTH_17, CUSTOMER_18, USER_18_LEADERBOARD, CUSTOMER_19, AUTH_19, CUSTOMER_20, USER_20_LEADERBOARD, CUSTOMER_21, AUTH_21, AUTH_20, USER_19_LEADERBOARD_B } from "@data";
 
 Feature("As a user I can see my achievements on the leaderboard", async () => {
 
@@ -28,12 +28,11 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
 
     Scenario("I can create a custom leaderboard, invite a user, and turn it on and off", scenario.start, async () => {
         Given("I login", given.loginAsUser(CUSTOMER_17, AUTH_17), async () => {
-            When("I go to the menu", when.tapID(MENU_ICON), async () => {
-                Then("I should see the settings CTA", then.idVisible(MENU_ITEM("settings")))
-                When("I tap settings", when.tapID(MENU_ITEM("settings")), async () => {
-                    Then("I should be on settings", then.idVisible(SETTINGS_SCREEN))
-                    Then("I should see create", then.textVisible("create"))
-                    When("I tap create", when.tapText("create"), async () => {
+            When("I go to the leaderboard", when.tapID(NAV_BAR("leaderboard")), async () => {
+                Then("I should see the leaderboard title", then.idVisible(LEADERBOARD_TITLE(USER_16_LEADERBOARD.data.name)))
+                When("I tap the leaderboard drop down", when.tapID(LEADERBOARD_TITLE(USER_16_LEADERBOARD.data.name)), async () => {
+                    Then("I should see create", then.idVisible(PLUS_BUTTON))
+                    When("I tap create", when.tapID(PLUS_BUTTON), async () => {
                         Then("I should be on the create a leaderboard screen", then.textVisible("create a leaderboard"))
                         Then("I should see the leaderboard name and email inputs", then.multipleIDVisible([LEADERBOARD_EMAIL_INPUT, GROUP_NAME_INPUT]))
                         When("I enter a group name", when.replaceTextByID(GROUP_NAME_INPUT, "Group 1"), async () => {
@@ -46,33 +45,33 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
                             Then("I should see the email I just entered", then.textVisible(CUSTOMER_16.data.email))
                         })
                         When("I tap create", when.tapText("create"), async () => {
-                            Then("I should be back on the settings page", then.idVisible(SETTINGS_SCREEN))
+                            Then("I should be back on the leaderboards list page", then.idVisible(PLUS_BUTTON))
                             Then("I should see the group I just created", then.textVisible("Group 1"))
                             Then("The status of the group should be online", then.leaderboardStatus("Group 1", "active"))
                         })
-                        When("I tap the leaderboard in settings", when.tapText("Group 1"), async () => {
+                        When("I try to switch off the leaderboard", when.tapID(LEADERBOARD_SWITCH("Group 1")), async () => {
                             Then("I should be on the Turn it off screen", then.textVisible("Turn it off?"))
                             When("I tap Keep it on!", when.tapText("Keep it on!"), async () => {
                                 Then("I should be back on the settings screen the group still visible", then.textVisible("Group 1"))
                                 Then("The status of the group should be online", then.leaderboardStatus("Group 1", "active"))
                             })
                         })
-                        When("I tap the leaderboard in settings", when.tapText("Group 1"), async () => {
+                        When("I switch off the leaderboard", when.tapID(LEADERBOARD_SWITCH("Group 1")), async () => {
                             Then("I should be on the Turn it off screen", then.textVisible("Turn it off?"))
                             When("I tap Turn it off", when.tapText("Turn it off"), async () => {
-                                Then("I should be on the settings page with the leaderboard turned off", then.leaderboardStatus("Group 1", "inactive"))
+                                Then("I should be on the leaderboard selection page with the leaderboard turned off", then.leaderboardStatus("Group 1", "inactive"))
                             })
                         })
-                        When("I tap the leaderboard", when.tapID(LEADERBOARD_STATUS("Group 1", "inactive")), async () => {
+                        When("I try to switch on the leaderboard", when.tapID(LEADERBOARD_SWITCH("Group 1")), async () => {
                             Then("I should be on the Turn on Leaderboard screen", then.textVisible("Turn on Leaderboard?"))
                             When("I tap 'no thanks'", when.tapText("No thanks"), async () => {
-                                Then("I should be back on the settings page and the leaderboard should be inactive", then.leaderboardStatus("Group 1", "inactive"))
+                                Then("I should be back on the leaderboard selection page and the leaderboard should be inactive", then.leaderboardStatus("Group 1", "inactive"))
                             })
                         })
-                        When("I tap the leaderboard", when.tapID(LEADERBOARD_STATUS("Group 1", "inactive")), async () => {
+                        When("I switch on the leaderboard", when.tapID(LEADERBOARD_SWITCH("Group 1")), async () => {
                             Then("I should be on the Turn on Leaderboard screen", then.textVisible("Turn on Leaderboard?"))
                             When("I tap Yes", when.tapText("Yes"), async () => {
-                                Then("I should be back on the settings page and the leaderboard should be active", then.leaderboardStatus("Group 1", "active"))
+                                Then("I should be back on the leaderboard selection page and the leaderboard should be active", then.leaderboardStatus("Group 1", "active"))
                             })
                         })
                     })
@@ -86,16 +85,12 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
             When("I go to the leaderboard", when.tapID(NAV_BAR("leaderboard")), async () => {
                 Then("I should see the leaderboard title", then.idVisible(LEADERBOARD_TITLE(USER_18_LEADERBOARD.data.name)))
                 Then("I should see the leaderboard", then.leaderboardVisible([CUSTOMER_18, CUSTOMER_19, CUSTOMER_21], [800]))
-                When("I go to the menu", when.tapID(MENU_ICON), async () => {
-                    Then("I should see the settings CTA", then.idVisible(MENU_ITEM("settings")))
-                    When("I tap settings", when.tapID(MENU_ITEM("settings")), async () => {
-                        Then("I should be on settings", then.idVisible(SETTINGS_SCREEN))
-                        Then("I should see my active leaderboard", then.leaderboardStatus(USER_18_LEADERBOARD.data.name, "active"))
-                        When("I turn off this leaderboard", when.turnOffLeaderboard(LEADERBOARD_STATUS(USER_18_LEADERBOARD.data.name, "active")), async () => {
-                            Then("I should be back on the settings page and this leaderboard should be off", then.leaderboardStatus(USER_18_LEADERBOARD.data.name, "inactive"))
-                            When("I close the setting menu", when.tapID(BUTTON_CLOSE_HEADER("Settings")), async () => {
-                                Then("I should be back on an empty leaderboard screen", then.onLeaderboardConsent)
-                            })
+                When("I tap the leaderboard drop down", when.tapID(LEADERBOARD_TITLE(USER_18_LEADERBOARD.data.name)), async () => {
+                    Then("I should see my active leaderboard", then.leaderboardStatus(USER_18_LEADERBOARD.data.name, "active"))
+                    When("I turn off this leaderboard", when.turnOffLeaderboard(LEADERBOARD_SWITCH(USER_18_LEADERBOARD.data.name)), async () => {
+                        Then("I should be back on the leaderboard selection page and this leaderboard should be off", then.leaderboardStatus(USER_18_LEADERBOARD.data.name, "inactive"))
+                        When("I close the leaderboard selection screen", when.tapID(BACK_BUTTON), async () => {
+                            Then("I should be back on an empty leaderboard screen", then.onLeaderboardConsent)
                         })
                     })
                 })
@@ -141,12 +136,11 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
 
     Scenario("I can invite a user, and they can accept", scenario.start, async () => {
         Given("I login", given.loginAsUser(CUSTOMER_20, AUTH_20), async () => {
-            When("I go to the menu", when.tapID(MENU_ICON), async () => {
-                Then("I should see the settings CTA", then.idVisible(MENU_ITEM("settings")))
-                When("I tap settings", when.tapID(MENU_ITEM("settings")), async () => {
-                    Then("I should be on settings", then.idVisible(SETTINGS_SCREEN))
-                    Then("I should see create", then.textVisible("create"))
-                    When("I tap create", when.tapText("create"), async () => {
+            When("I go to the leaderboard", when.tapID(NAV_BAR("leaderboard")), async () => {
+                Then("I should see the leaderboard title", then.idVisible(LEADERBOARD_TITLE(USER_20_LEADERBOARD.data.name)))
+                When("I tap the leaderboard drop down", when.tapID(LEADERBOARD_TITLE(USER_20_LEADERBOARD.data.name)), async () => {
+                    Then("I should see create", then.idVisible(PLUS_BUTTON))
+                    When("I tap create", when.tapID(PLUS_BUTTON), async () => {
                         Then("I should be on the create a leaderboard screen", then.textVisible("create a leaderboard"))
                         Then("I should see the leaderboard name and email inputs", then.multipleIDVisible([LEADERBOARD_EMAIL_INPUT, GROUP_NAME_INPUT]))
                         When("I enter a group name", when.replaceTextByID(GROUP_NAME_INPUT, "Lb3"), async () => {
@@ -159,7 +153,6 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
                             Then("I should see the email I just entered", then.textVisible(CUSTOMER_19.data.email))
                         })
                         When("I tap create", when.tapText("create"), async () => {
-                            Then("I should be back on the settings page", then.idVisible(SETTINGS_SCREEN))
                             Then("I should see the group I just created", then.textVisible("Lb3"))
                             Then("The status of the group should be online", then.leaderboardStatus("Lb3", "active"))
                         })

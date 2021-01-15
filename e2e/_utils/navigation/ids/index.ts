@@ -42,6 +42,7 @@ export const BUTTON_CLOSE_HEADER = (header:any) => `BUTTON_CLOSE_HEADER_${header
 export const BUTTON_CLOSE_CHALLENGE = "BUTTON_CLOSE_CHALLENGE"
 export const BACK_BUTTON = "BACK_BUTTON"
 export const EDIT_BUTTON = "EDIT_BUTTON"
+export const PLUS_BUTTON = "PLUS_BUTTON"
 export const CHANGE_MEMBER_NICK_BUTTON = "CHANGE_MEMBER_NICK_BUTTON"
 export const INPUT_LOGIN_EMAIL = "INPUT_LOGIN_EMAIL";
 export const INPUT_LOGIN_PASSWORD = (pw: any) => `INPUT_LOGIN_PASSWORD_${pw}`;
@@ -90,6 +91,7 @@ export const LEADERBOARD_SCROLL_LIST = "LEADERBOARD_SCROLL_LIST"
 export const GROUP_NAME_INPUT = "GROUP_NAME_INPUT"
 export const LEADERBOARD_EMAIL_INPUT = "LEADERBOARD_EMAIL_INPUT"
 export const LEADERBOARD_STATUS = (leaderboardName: string, leaderboardStatus: string) => `LEADERBOARD_STATUS_${leaderboardName}_${leaderboardStatus}`
+export const LEADERBOARD_SWITCH = (leaderboardName: string) => `LEADERBOARD_SWITCH_${leaderboardName}`
 
 // YUSCREEN
 export const YUSCREEN = "YUSCREEN"

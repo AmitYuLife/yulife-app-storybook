@@ -416,6 +416,13 @@ On `api-server`
 
 - `detox:start`
 
+### Gotchas
+
+- If `detox:build` fails with the `package was built for iOS not iOS Simulator` error, change detox build step in `package.json` to:
+```
+"build": "xcodebuild -workspace ios/YuLife.xcworkspace -scheme local -configuration Debug -sdk iphonesimulator -derivedDataPath ios/build EXCLUDED_ARCHS=arm64",
+```
+
 ## Garmin Sync
 
 Trying to sync Garmin? On `api-server`, do `yarn develop:develop` before trying to toggle Garmin sync.

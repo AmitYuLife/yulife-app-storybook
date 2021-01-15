@@ -41,10 +41,5 @@ export const leaderboardVisible = (customers: any[], steps?: number[], scrollToT
 }
 
 export const leaderboardStatus = (leaderboardName: string, status: "active" | "inactive") => async () => {
-    try {
-        await expect(element(by.id(LEADERBOARD_STATUS(leaderboardName, status)))).toBeVisible()
-    } catch (e) {
-        await scrollFromText("connections", "up", "fast")()
-        await expect(element(by.id(LEADERBOARD_STATUS(leaderboardName, status)))).toBeVisible()
-    }
+    await expect(element(by.id(LEADERBOARD_STATUS(leaderboardName, status)))).toBeVisible()
 }
