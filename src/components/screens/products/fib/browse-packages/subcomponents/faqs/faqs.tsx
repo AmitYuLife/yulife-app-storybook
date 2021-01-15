@@ -1,6 +1,6 @@
 import React, { memo } from "react";
 import { View, StyleSheet, ViewStyle, TextStyle } from "react-native";
-import { Heading, DEFAULT_TEXT_PAD_LEFT } from "../common";
+import { Heading } from "../common";
 import { Text, Button } from "@atoms";
 import { Style, Colours } from "@styles";
 import { BUTTON_ICON } from "@atoms/button/tertiary-button/tertiary-button.helpers";
@@ -12,7 +12,7 @@ interface IFaqs {
 }
 
 export const Faqs = memo(({ navigateToFaqsList }: IFaqs) => (
-  <View style={styles.wrapper}>
+  <View>
     <Heading title="Have a question?" />
     <Text style={styles.content}>{CONTENT}</Text>
     <Button
@@ -29,10 +29,6 @@ export const Faqs = memo(({ navigateToFaqsList }: IFaqs) => (
 ));
 
 const styles = StyleSheet.create({
-  wrapper: {
-    marginTop: Style.adjust(48),
-    paddingHorizontal: DEFAULT_TEXT_PAD_LEFT,
-  } as ViewStyle,
   content: {
     fontSize: Style.adjust(16),
     lineHeight: Style.adjust(24),

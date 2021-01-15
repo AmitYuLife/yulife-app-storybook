@@ -3,11 +3,8 @@ import { Style } from "@styles";
 
 export default StyleSheet.create({
   wrapper: {
-    backgroundColor: "white",
     height: Style.adjust(165),
     flexDirection: "row",
-    paddingLeft: Style.adjust(21),
-    paddingRight: Style.adjust(21),
   } as ViewStyle,
   transparentView: {
     backgroundColor: "rgba(255, 255, 255, 0.3)",

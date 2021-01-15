@@ -4,6 +4,8 @@ import { StyleSheet, View, ViewStyle, TextStyle } from "react-native";
 import { Text } from "@atoms";
 import { Colours, Style } from "@styles";
 import { Package } from "../fib.browse.types";
+import { addCommasToNumber } from "@services/utils";
+import { formatMoney } from "@services/money";
 
 interface Props {
   selectedPackage: Partial<Package>;
@@ -12,42 +14,31 @@ interface Props {
 const dateFormat = "DD/MM/YYYY";
 
 export const Summary = memo(({ selectedPackage, loading }: Props) => {
-  const { newEarnRate, earnRate, actualCost, term = 40 } = selectedPackage;
+  const { actualCost, term = 40, monthlyAmountProtected } = selectedPackage;
   const startDate = moment().format(dateFormat);
   const endDate = moment().add(term, "years").format(dateFormat);
 
   return (
     <View style={styles.summaryWrapper}>
       <View style={styles.blockWrapper}>
-        <View style={styles.headingWrapper}>
-          <Text style={styles.heading}>Policy term</Text>
-        </View>
-        <Text style={styles.text}>{`${loading ? "..." : term} `}years</Text>
+        <Text style={styles.heading}>Policy term</Text>
         <View style={styles.dates}>
+          <Text style={styles.text}>{`${loading ? "..." : term} `}years</Text>
           <Text style={styles.text}>Start date: {`${loading ? "..." : startDate}`}</Text>
           <Text style={styles.text}>End date: {`${loading ? "..." : endDate}`}</Text>
         </View>
+        <View style={styles.separator} />
       </View>
-      <View style={styles.separator} />
       <View style={styles.blockWrapper}>
-        <View style={styles.headingWrapper}>
-          <Text style={styles.heading}>Additional yucoin Earn Rate</Text>
-        </View>
-        <Text style={styles.text}>{`${loading ? ".." : newEarnRate - earnRate}`}x</Text>
+        <Text style={styles.heading}>Amount protected</Text>
+        <Text style={styles.text}>
+          £{addCommasToNumber(monthlyAmountProtected)} for every month remaining in policy at time of death.
+        </Text>
+        <View style={styles.separator} />
       </View>
-      <View style={styles.separator} />
-      <View style={styles.blockWrapper}>
-        <View style={styles.headingWrapper}>
-          <Text style={styles.heading}>Yulife App</Text>
-        </View>
-        <Text style={styles.text}>Continue to enjoy the app no matter where your career takes you</Text>
-      </View>
-      <View style={styles.separator} />
       <View>
-        <View style={styles.headingWrapper}>
-          <Text style={styles.heading}>Cost</Text>
-        </View>
-        <Text style={styles.text}>£{`${loading ? "..." : actualCost}`} per month</Text>
+        <Text style={styles.heading}>Cost</Text>
+        <Text style={styles.text}>£{`${loading ? "..." : formatMoney(actualCost)}`} per month</Text>
       </View>
     </View>
   );
@@ -55,8 +46,11 @@ export const Summary = memo(({ selectedPackage, loading }: Props) => {
 
 const styles = StyleSheet.create({
   summaryWrapper: {
-    backgroundColor: "white",
-    padding: 32,
+    backgroundColor: Colours.neutral.white,
+    padding: 24,
+    borderRadius: 10,
+    borderColor: Colours.neutral.n100,
+    borderWidth: 1,
   } as ViewStyle,
   blockWrapper: {
     marginBottom: 23,
@@ -64,24 +58,22 @@ const styles = StyleSheet.create({
   separator: {
     borderBottomColor: "#F1F1F1",
     borderBottomWidth: 1,
-    marginBottom: 24,
-  } as ViewStyle,
-  headingWrapper: {
-    marginBottom: 8,
+    marginTop: 16,
   } as ViewStyle,
   heading: {
     fontFamily: Style.FONT_FAMILY_PRIMARY_BOLD,
-    fontSize: 16,
+    fontSize: 20,
     lineHeight: 24,
-    letterSpacing: 1,
-    color: Colours.neutral.n900,
+    letterSpacing: 0.6,
+    color: Colours.neutral.n700,
+    marginBottom: 13,
   } as TextStyle,
   text: {
     fontFamily: Style.FONT_FAMILY_PRIMARY,
     fontSize: 16,
     lineHeight: 24,
     letterSpacing: 1,
-    color: Colours.neutral.n800,
+    color: Colours.neutral.n700,
   } as TextStyle,
   dates: {
     marginTop: 8,

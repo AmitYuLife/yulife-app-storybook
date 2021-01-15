@@ -9,7 +9,7 @@ import {
   ViewStyle,
 } from "react-native";
 import { Button } from "@atoms";
-import { Summary, SummaryDescription } from "./subcomponents";
+import { Summary } from "./subcomponents";
 import { Faqs } from "./subcomponents/faqs/faqs";
 import { PayoutCalculator } from "./subcomponents/payout-calculator/payout-calculator";
 import { Documents } from "./subcomponents/documents/documents";
@@ -50,7 +50,6 @@ export const FibSummaryScreen = memo(function (props: FibSummaryScreenProps) {
     loading,
     onContinue,
     selectCoverType,
-    customerAge,
     onScrollEnd,
     offset,
     onExit,
@@ -94,26 +93,25 @@ export const FibSummaryScreen = memo(function (props: FibSummaryScreenProps) {
           ref={scrollViewRef}
         >
           <PackageOptions selectedPackageId={selectedPackage.label} onSelectPackage={onSelectPackage} />
-          <View style={styles.packageInfo}>
+          <View style={styles.separator}>
             <PackageInfo selectedPackage={selectedPackage} packagePrice={selectedPackage.actualCost} />
           </View>
-          <SummaryDescription
-            customerAge={customerAge}
-            selectedPackage={selectedPackage}
-            amountProtected={selectedPackage.monthlyAmountProtected}
-            term={selectedPackage.term}
-            loading={loading}
-          />
-          <PayoutCalculator
-            items={payoutEstimatorItems}
-            setDeceaseAgeIndexYear={setDeceaseAgeIndexYear}
-            setDeceaseAgeIndexMonth={setDeceaseAgeIndexMonth}
-            payoutAmount={selectedPackage.payoutAmount}
-            loading={loading}
-          />
-          <Summary selectedPackage={selectedPackage} loading={loading} />
-          <Documents items={documents} />
-          <View style={styles.buttonWrapper}>
+          <View style={styles.separator}>
+            <Summary selectedPackage={selectedPackage} loading={loading} />
+          </View>
+          <View style={styles.separator}>
+            <PayoutCalculator
+              items={payoutEstimatorItems}
+              setDeceaseAgeIndexYear={setDeceaseAgeIndexYear}
+              setDeceaseAgeIndexMonth={setDeceaseAgeIndexMonth}
+              payoutAmount={selectedPackage.payoutAmount}
+              loading={loading}
+            />
+          </View>
+          <View style={styles.documents}>
+            <Documents items={documents} />
+          </View>
+          <View style={styles.separator}>
             <Button label="Continue" onPress={onContinue} type="Primary" />
           </View>
           <Faqs navigateToFaqsList={navigateToFaqsList} />
@@ -132,21 +130,26 @@ export const FibSummaryScreen = memo(function (props: FibSummaryScreenProps) {
 
 const styles = StyleSheet.create({
   wrapper: {
-    backgroundColor: "white",
+    backgroundColor: "#fafafe",
     flex: 1,
     height: "100%",
+    paddingLeft: Style.adjust(24),
+    paddingRight: Style.adjust(24),
   },
   scrollView: {
     backgroundColor: "#fafafe",
     paddingBottom: 32,
-    marginTop: 24,
+    marginTop: 10,
   },
   buttonWrapper: {
     marginTop: 47,
     marginBottom: -5,
   },
-  packageInfo: {
-    marginBottom: 10,
+  separator: {
+    marginBottom: Style.adjust(40),
+  },
+  documents: {
+    marginBottom: Style.adjust(26),
   },
   padBot: {
     height: Style.hasNotch ? 40 : 20,

@@ -2,7 +2,7 @@ import React, { memo } from "react";
 import { View, ImageStyle, StyleSheet, TextStyle, ViewStyle } from "react-native";
 import { SvgXml } from "react-native-svg";
 import { TextWithBoldText } from "@components/molecules";
-import { Style } from "../../../../../../../styles";
+import { Colours, Style } from "@styles";
 
 interface IProps {
   text: string;
@@ -24,28 +24,29 @@ const AdditionalBenefitsCard = memo(function (props: IProps) {
 
 const styles = StyleSheet.create({
   wrapper: {
-    paddingHorizontal: Style.adjust(16),
     marginTop: Style.adjust(16),
-    width: Style.DEVICE_WIDTH,
+    borderWidth: 1,
+    borderColor: Colours.neutral.n100,
+    borderRadius: 10,
   } as ViewStyle,
   innerWrapper: {
     flexDirection: "row",
     backgroundColor: "#FFFFFF",
-    borderRadius: Style.SCALE_UP_AND_DOWN(8),
+    borderRadius: Style.adjust(8),
     alignItems: "center",
     paddingVertical: Style.adjust(24),
     paddingHorizontal: Style.adjust(16),
   } as ViewStyle,
   infoText: {
-    fontSize: Style.SCALE_UP_AND_DOWN(16),
+    fontSize: Style.adjust(16),
     lineHeight: 24,
     color: "#5A5A5C",
     letterSpacing: 1,
-    width: Style.SCALE_UP_AND_DOWN(224),
+    width: Style.adjust(224),
   } as TextStyle,
   imageWrapper: {
-    height: Style.SCALE_UP_AND_DOWN(72),
-    width: Style.SCALE_UP_AND_DOWN(72),
+    height: Style.adjust(72),
+    width: Style.adjust(72),
     marginRight: Style.adjust(16),
   } as ImageStyle,
 });

@@ -59,10 +59,12 @@ export const FibCustomCoverScreen = memo(function (props: IFibCustomCoverScreenP
             heading={`${formatPrice(selectedPackage.actualCost || 0)} per month`}
             loading={loading}
           />
-          <HowItWorks
-            header={selectedPackage.id}
-            content={`In the event of death, your loved ones will receive ${selectedPackage.salaryPercentageCovered}% of your future earnings from the date of death until age 70 (based on your current salary).\n\nThis means if you pass away near the beginning of the insurance term, your loved ones will receive more money than if you pass away near the end.\n\nThis is paid as a single payment.`}
-          />
+          <View style={styles.howitworks}>
+            <HowItWorks
+              header={selectedPackage.id}
+              content={`In the event of death, your loved ones will receive ${selectedPackage.salaryPercentageCovered}% of your future earnings from the date of death until age 70 (based on your current salary).\n\nThis means if you pass away near the beginning of the insurance term, your loved ones will receive more money than if you pass away near the end.\n\nThis is paid as a single payment.`}
+            />
+          </View>
           <PayoutCalculator
             items={payoutEstimatorItems}
             setDeceaseAgeIndexYear={setDeceaseAgeIndexYear}
@@ -70,11 +72,13 @@ export const FibCustomCoverScreen = memo(function (props: IFibCustomCoverScreenP
             payoutAmount={selectedPackage.payoutAmount}
             loading={loading}
           />
-          <AdditionalBenefits
-            earnRate={selectedPackage?.earnRate}
-            packageEarnRate={selectedPackage?.newEarnRate}
-            loading={loading}
-          />
+          <View style={styles.benefits}>
+            <AdditionalBenefits
+              earnRate={selectedPackage?.earnRate}
+              packageEarnRate={selectedPackage?.newEarnRate}
+              loading={loading}
+            />
+          </View>
           <Faqs navigateToFaqsList={onNavigateToFaqsList} />
           <Documents items={documents} />
         </ScrollView>
@@ -95,5 +99,12 @@ const styles = StyleSheet.create({
     backgroundColor: "#fafafe",
     paddingBottom: 120,
     marginTop: 24,
+  },
+  benefits: {
+    marginLeft: Style.adjust(32),
+    marginTop: Style.adjust(48),
+  },
+  howitworks: {
+    marginTop: Style.adjust(16),
   },
 });

@@ -14,7 +14,6 @@ import { ContinueButton } from "./continue-button/continue-button";
 import { Package } from "./fib.browse.types";
 import { PackageOptions } from "./subcomponents/package-options/package-options";
 import PackageInfo from "./subcomponents/package-info/package-info";
-import { Colours } from "@styles";
 import { Faqs } from "./subcomponents/faqs/faqs";
 import AdditionalBenefits from "./additional-benefits/additional-benefits";
 import { Documents } from "./subcomponents/documents/documents";
@@ -107,17 +106,25 @@ export const FibBrowseScreen = memo(function (props: IFibBrowseScreenProps) {
             useNativeDriver={true}
           >
             <PackageOptions selectedPackageId={selectedPackage.label} onSelectPackage={onSelectPackage} />
-            <PackageInfo selectedPackage={selectedPackage} />
-            <HowItWorks
-              header={selectedPackage.id}
-              content={`In the event of death, your loved ones will receive ${selectedPackage.salaryPercentageCovered}% of your future earnings from the date of death ${howItWorksMaxCoverAge} (based on your current salary).\n\nThis means if you pass away near the beginning of the insurance term, your loved ones will receive more money than if you pass away near the end.\n\nThis is paid as a single payment.`}
-            />
-            <AdditionalBenefits
-              earnRate={selectedPackage.earnRate}
-              packageEarnRate={selectedPackage.newEarnRate}
-              loading={loading}
-            />
-            <Faqs navigateToFaqsList={onNavigateToFaqsList} />
+            <View style={styles.separator}>
+              <PackageInfo selectedPackage={selectedPackage} />
+            </View>
+            <View style={styles.separator}>
+              <HowItWorks
+                header={selectedPackage.id}
+                content={`In the event of death, your loved ones will receive ${selectedPackage.salaryPercentageCovered}% of your future earnings from the date of death ${howItWorksMaxCoverAge} (based on your current salary).\n\nThis means if you pass away near the beginning of the insurance term, your loved ones will receive more money than if you pass away near the end.\n\nThis is paid as a single payment.`}
+              />
+            </View>
+            <View style={styles.separator}>
+              <AdditionalBenefits
+                earnRate={selectedPackage.earnRate}
+                packageEarnRate={selectedPackage.newEarnRate}
+                loading={loading}
+              />
+            </View>
+            <View style={styles.separator}>
+              <Faqs navigateToFaqsList={onNavigateToFaqsList} />
+            </View>
             <Documents items={documents} />
           </Animatable.View>
         </ScrollView>
@@ -135,12 +142,16 @@ export const FibBrowseScreen = memo(function (props: IFibBrowseScreenProps) {
 const styles = StyleSheet.create({
   flex: {
     flex: 1,
-    backgroundColor: Colours.neutral.white,
+    marginLeft: 24,
+    marginRight: 24,
   } as ViewStyle,
   wrapper: {
     backgroundColor: "white",
     flex: 1,
     height: "100%",
+  },
+  separator: {
+    marginBottom: 40,
   },
   scrollView: {
     backgroundColor: "#fafafe",

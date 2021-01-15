@@ -70,7 +70,7 @@ describe("PackageInfo", () => {
     expect(queryByText(shoe.title)).toBeTruthy();
     expect(queryByText(shoe.description)).toBeTruthy();
 
-    rerender(<PackageInfo selectedPackage={selectedPackage} packagePrice="100" />);
+    rerender(<PackageInfo selectedPackage={selectedPackage} packagePrice={100} />);
     expect(queryByText("£100/month")).toBeTruthy();
   });
 });

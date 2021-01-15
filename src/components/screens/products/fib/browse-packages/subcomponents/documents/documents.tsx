@@ -1,7 +1,6 @@
 import React, { memo, ComponentProps } from "react";
 import { View, StyleSheet, ViewStyle } from "react-native";
-import { Heading, DEFAULT_TEXT_PAD_LEFT } from "../common";
-import { Style } from "@styles";
+import { Heading } from "../common";
 import { Faq } from "../faqs/faq";
 
 interface IFaqs {
@@ -9,19 +8,18 @@ interface IFaqs {
 }
 
 export const Documents = memo(({ items = [] }: IFaqs) => (
-  <View style={styles.wrapper}>
+  <View>
     <Heading wrapperStyle={styles.headingWrapper} title="Documents" />
     {items.map((item, i) => (
-      <Faq key={i} {...item} />
+      <View key={i} style={{ marginBottom: 10 }}>
+        <Faq {...item} />
+      </View>
     ))}
   </View>
 ));
 
 const styles = StyleSheet.create({
-  wrapper: {
-    marginTop: Style.adjust(48),
-  } as ViewStyle,
   headingWrapper: {
-    paddingLeft: DEFAULT_TEXT_PAD_LEFT,
+    marginBottom: 24,
   } as ViewStyle,
 });
