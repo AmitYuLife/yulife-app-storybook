@@ -11,6 +11,7 @@ import { TouchableOpacityWithDelay } from "@components/molecules";
 import { Navigation } from "react-native-navigation";
 import { MODALS } from "@navigation/constants";
 import { DuelSkeleton } from "../../subcomponents/duel-skeleton/duel-skeleton";
+import { DUELS_HUB_INVITATION } from "@ids";
 
 const DuelInvitationsw: FC = () => {
   const { data, loading } = useQuery<GetDuelInvitations>(GQL_QUERY_GET_DUEL_INVITATIONS, {
@@ -39,10 +40,19 @@ const DuelInvitationsw: FC = () => {
         {duels.map((duel, index) => {
           const opponent = duel.opponents?.find((user) => user.userId !== userId);
           const hasDeclined = duel.inviteStatus === "declined";
+
           return (
             <View style={styles.invitationRow} key={index}>
               <View style={styles.nameWrapper}>
-                <Text style={[styles.text, styles.grayText, hasDeclined ? styles.declinedText : {}]}>
+                <Text
+                  style={[styles.text, styles.grayText, hasDeclined ? styles.declinedText : {}]}
+                  testID={DUELS_HUB_INVITATION(
+                    opponent.name.firstName,
+                    opponent.name.lastName,
+                    duel.yucoin,
+                    duel.inviteStatus
+                  )}
+                >
                   {opponent.name.firstName} {opponent.name.lastName}
                 </Text>
               </View>

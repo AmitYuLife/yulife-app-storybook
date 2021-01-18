@@ -149,6 +149,11 @@ export const DUEL_OPTIONS_SCREEN = "DUEL_OPTIONS_SCREEN"
 export const DUEL_RESPONSE = (opponentName:string) => `DUEL_RESPONSE_${opponentName}`
 export const DUELS_SEARCH = "DUELS_SEARCH"
 export const SEARCH_INPUT = "SEARCH_INPUT"
+export const CHALLENGE_FRIEND_BUTTON = "CHALLENGE_FRIEND_BUTTON"
+export const DUELS_HUB_INVITATION = (firstName:string, lastName:string, wager:number, status:string) => `DUELS_HUB_INVITATION_${firstName}_${lastName}_${wager}_${status}`
+export const DUEL_ENTRY = (firstName: string, lastName: string, wager: number, status: string) => `DUEL_ENTRY${firstName}_${lastName}_${wager}_${status}`
+export const DUEL_ICON = (firstName:string, lastName:string, status:any) => `DUEL_ICON_${firstName}_${lastName}_${status}`
+export const DUEL_DESCRIPTION = (opponentSteps: number, userSteps:number) => `DUEL_DESCRIPTION_${opponentSteps}_${userSteps}`
 
 // COMMUNITY GOALS
 export const NICKNAME_INPUT = "NICKNAME_INPUT"

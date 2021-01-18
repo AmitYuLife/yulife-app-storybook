@@ -4,8 +4,8 @@ import * as given from "./_steps/given"
 import * as when from "./_steps/when"
 import * as then from "./_steps/then"
 import { CUSTOMER_20, AUTH_20, CUSTOMER_19, AUTH_19, CUSTOMER_17, AUTH_17, CUSTOMER_16 } from "@data";
-import { DUELS_BUTTON, DUELS_HUB, DUEL_OPTIONS_SCREEN, DUEL_RESPONSE, EMPTY_DUELS_HUB, LEADERBOARD_TOP_SCREEN, NAV_BAR, SEARCH_INPUT } from "@ids";
-import moment = require("moment");
+import { DUELS_BUTTON, DUELS_HUB, DUELS_HUB_INVITATION, DUEL_OPTIONS_SCREEN, DUEL_RESPONSE, NAV_BAR, CHALLENGE_FRIEND_BUTTON, DUEL_ENTRY, DUEL_ICON, DUEL_DESCRIPTION} from "@ids";
+
 
 Feature("As an enabled user I am able to use the duels feature", async()=>{
 
@@ -22,10 +22,9 @@ Feature("As an enabled user I am able to use the duels feature", async()=>{
                 Then("I should be on the third duels intro screen", then.multipleTextVisible(["Out-step your opponent", "Let's go"]))
             })
             When("I tap Let's go", when.tapText("Let's go"), async()=>{          
-                Then("I should be on the duels hub", then.onEmptyDuelsHub)
-                Then("The duels hub should be in an empty state", then.idVisible(EMPTY_DUELS_HUB))
+                Then("I should be on the empty duels hub", then.onEmptyDuelsHub)
             })
-            When("I tap challenge a colleague", when.tapText("Challenge a colleague"), async()=>{
+            When("I tap challenge a colleague", when.tapID(CHALLENGE_FRIEND_BUTTON), async()=>{
                 Then("I should be on the Search for a friend screen", then.textVisible("Search for a friend:"))
                 Then("I should see Angela Martin", then.textVisible("Angela Martin"))
             })
@@ -49,7 +48,7 @@ Feature("As an enabled user I am able to use the duels feature", async()=>{
             })
             When("I tap confirm", when.tapText("Confirm"), async()=>{
                 Then("I should be on the duels hub", then.idVisible(DUELS_HUB))
-                Then("I should see the duel I just requested", then.multipleTextVisible(["vs. Angela Martin", "25 YuCoin", "Pending"]))
+                Then("I should see the duel I just requested", then.idVisible(DUELS_HUB_INVITATION("Angela", "Martin", 25, "invited")))
             })
             When("I restart and login as the invited user", when.restartAndLoginToTab("leaderboard", CUSTOMER_19, AUTH_19), async()=>{
                 Then("I should see the duels button", then.idVisible(DUELS_BUTTON))
@@ -59,9 +58,9 @@ Feature("As an enabled user I am able to use the duels feature", async()=>{
             })
             When("I tap skip", when.tapText("Skip"), async()=>{
                 Then("I should be on the duels hub", then.onDuelsHub)
-                Then("I should see the duel I was just invited to", then.multipleTextVisible(["vs. Oscar Martinez", "25 YuCoin", "Accept?"]))
+                Then("I should see the duel I was just invited to", then.idVisible(DUELS_HUB_INVITATION("Oscar", "Martinez", 25, "awaiting_response")))
             })
-            When("I tap accept", when.tapText("Accept?"), async()=>{
+            When("I tap Respond", when.tapText("Respond"), async()=>{
                 Then("I should see the vs screen", then.textVisible("Oscar has invited you to duel!"))
             })
             When("I tap see the details", when.tapText("See the details"), async()=>{
@@ -71,7 +70,7 @@ Feature("As an enabled user I am able to use the duels feature", async()=>{
                 Then("I should see the are you sure iOS modal", then.textVisible("Are you sure?"))
             })
             When("I tap confirm", when.tapText("Confirm"), async()=>{
-                Then("I should see my upcoming duel", then.upcomingDuelVisible(CUSTOMER_20, 25, moment().add(1,"day")))
+                Then("I should see my upcoming duel", then.idVisible(DUEL_ENTRY("Oscar", "Martinez", 25, "accepted")))
             })
         })
     })
@@ -84,8 +83,7 @@ Feature("As an enabled user I am able to use the duels feature", async()=>{
             })
             When("I tap skip", when.tapText("Skip"), async () => {
                 Then("I should be on the duels hub", then.idVisible(DUELS_HUB))
-                Then("I should see my active duel", then.multipleTextVisible(["vs. Stanley Hudson", "10 YuCoin"]))
-                Then("I should see the amount I'm wagering", then.textVisible("You’re wagering 10 YuCoin"))
+                Then("I should see my active duel", then.idVisible(DUEL_ENTRY("Stanley", "Hudson", 10, "accepted")))
             })
             When("I go back to the today screen", when.tapID(NAV_BAR("yucoin")), async()=>{
                 When("I walk 200 steps", when.sendSteps(200), async()=>{
@@ -93,7 +91,7 @@ Feature("As an enabled user I am able to use the duels feature", async()=>{
                 })
             })
             When("I go back to the leaderboard", when.tapID(NAV_BAR("leaderboard")), async()=>{
-                    Then("I should see the number of steps I just walked", then.textVisible("You’ve walked 200 steps today"))
+                    Then("I should see the number of steps I just walked", then.textVisible("200 steps today"))
             })
         })
     })
@@ -107,9 +105,13 @@ Feature("As an enabled user I am able to use the duels feature", async()=>{
             When("I tap skip", when.tapText("Skip"), async () => {
                 Then("I should be on the duels hub", then.idVisible(DUELS_HUB))
             })
-            When("I tap Past Duels", when.tapText("Past Duels"), async()=>{
-                Then("I should see my past duel with Stanely Hudson", then.pastDuelVisible(CUSTOMER_16, 10, moment().subtract(8, "days"), "lose"))
-                Then("I should see my past duel with Oscar Martinez", then.pastDuelVisible(CUSTOMER_20, 10, moment().subtract(5, "days"), "win"))
+            When("I tap Completed", when.tapText("Completed"), async()=>{
+                Then("I should see my past duel with Stanely Hudson", then.idVisible(DUEL_ENTRY("Stanley", "Hudson", 10, "finished")))
+                Then("I should see I lost this duel", then.idVisible(DUEL_ICON("Stanley", "Hudson", false)))
+                Then("I should see the steps for this duel", then.idVisible(DUEL_DESCRIPTION(500, 300)))
+                Then("I should see my past duel with Oscar Martinez", then.idVisible(DUEL_ENTRY("Oscar", "Martinez", 10, "finished")))
+                Then("I should see I won this duel", then.idVisible(DUEL_ICON("Oscar", "Martinez", true)))
+                Then("I should see the steps for this duel", then.idVisible(DUEL_DESCRIPTION(400, 600)))
             })
         })
     })

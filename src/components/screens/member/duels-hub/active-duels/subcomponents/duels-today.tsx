@@ -12,6 +12,7 @@ import { getDailySteps } from "@redux/daily-steps/daily-steps.selectors";
 import { Navigation } from "react-native-navigation";
 import { ROUTES } from "@navigation/constants";
 import { DuelSkeleton } from "../../subcomponents/duel-skeleton/duel-skeleton";
+import { EMPTY_DUELS_HUB, CHALLENGE_FRIEND_BUTTON } from "@ids";
 
 async function navigateToDuelsSearch() {
   await Navigation.push(ROUTES.duelsHub, {
@@ -46,10 +47,11 @@ const TodaysDuels: FC = () => {
     return (
       <>
         <Text bold={true}>Today’s Duels</Text>
-        <View style={styles.emptyWrapper}>
+        <View style={styles.emptyWrapper} testID={EMPTY_DUELS_HUB}>
           <Text style={styles.emptyText}>You’re not duelling with anybody today.</Text>
         </View>
         <Button
+          testID={CHALLENGE_FRIEND_BUTTON}
           wrapperStyle={styles.buttonWrapper}
           label="Challenge a friend"
           type="Primary"

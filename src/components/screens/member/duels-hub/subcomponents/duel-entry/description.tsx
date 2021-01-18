@@ -5,6 +5,7 @@ import { addCommasToNumber } from "@services/utils";
 import { GetDuelsTomorrow_getDuelsTomorrow, GetDuelsToday_getDuelsToday } from "@graphql/_core/schema";
 import moment from "moment";
 import { Colours, Style } from "@styles";
+import { DUEL_DESCRIPTION } from "@ids";
 
 interface IProps {
   duel: GetDuelsTomorrow_getDuelsTomorrow | GetDuelsToday_getDuelsToday;
@@ -38,7 +39,7 @@ const Description: FC<IProps> = ({ duel, type, userId }) => {
 
     return (
       <View style={styles.wrapper}>
-        <Text style={styles.text}>
+        <Text style={styles.text} testID={DUEL_DESCRIPTION(opponent.score, user.score)}>
           {addCommasToNumber(opponent.score || 0)} vs. {addCommasToNumber(user.score || 0)} steps
         </Text>
       </View>
