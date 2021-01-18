@@ -5,7 +5,7 @@ import { Style, Colours } from "@styles";
 import YuCoin from "./yucoin";
 import Award from "./award";
 import { GetDuelsTomorrow_getDuelsTomorrow, GetDuelsToday_getDuelsToday } from "@graphql/_core/schema";
-
+import { DUEL_ICON } from "@ids";
 interface IProps {
   duel: GetDuelsTomorrow_getDuelsTomorrow | GetDuelsToday_getDuelsToday;
   type: "today" | "tomorrow" | "completed";
@@ -25,7 +25,10 @@ const DuelIcon: FC<Partial<IProps>> = ({ duel, type, userId }) => {
     }
 
     return (
-      <View style={styles.completedWrapper}>
+      <View
+        style={styles.completedWrapper}
+        testID={DUEL_ICON(opponent.name.firstName, opponent.name.lastName, hasWon || hasDrawn)}
+      >
         <View style={styles.wrapper}>
           <Text style={[styles.yucoin, colorStyle]} bold={true}>
             {hasDrawn ? "-" : duel.yucoin === 0 ? "BR" : duel.yucoin}

@@ -6,6 +6,7 @@ import { Style } from "@styles";
 import { GetDuelsTomorrow_getDuelsTomorrow, GetDuelsToday_getDuelsToday } from "@graphql/_core/schema";
 import Description from "./description";
 import DuelIcon from "./duel-icon";
+import { DUEL_ENTRY } from "@ids";
 
 interface IProps {
   duel: GetDuelsTomorrow_getDuelsTomorrow | GetDuelsToday_getDuelsToday;
@@ -16,11 +17,16 @@ interface IProps {
 
 const DuelEntry: FC<IProps> = ({ duel, type, userId, dailySteps }) => {
   const opponent = duel.opponents.find((user) => user.userId !== userId);
+
   return (
     <View style={styles.wrapper}>
       <DuelImage uri={opponent.avatar} />
       <View style={styles.descriptionWrapper}>
-        <Text style={styles.nameText} bold={true}>
+        <Text
+          style={styles.nameText}
+          bold={true}
+          testID={DUEL_ENTRY(opponent.name.firstName, opponent.name.lastName, duel.yucoin, duel.status)}
+        >
           {opponent.name.firstName} {opponent.name.lastName}
         </Text>
         <Description duel={duel} type={type} userId={userId} dailySteps={dailySteps} />
