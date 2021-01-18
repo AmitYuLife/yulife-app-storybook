@@ -1,4 +1,4 @@
-import React, { useEffect, memo, FunctionComponent, useMemo } from "react";
+import React, { useEffect, memo, FunctionComponent, useMemo, useCallback } from "react";
 import { Animated } from "react-native";
 import { styles } from "./duel-dialog.styles";
 import { Navigation } from "react-native-navigation";
@@ -18,10 +18,12 @@ interface Props {
 }
 
 export interface ValidDuel {
+  id: string;
   name: { firstName?: string; lastName?: string };
   userId?: string;
   startDateTime?: moment.Moment;
   status: string;
+  isOpponentInviter: boolean;
 }
 
 const _DuelDialog: FunctionComponent<Props> = ({ id }) => {
@@ -62,11 +64,20 @@ const _DuelDialog: FunctionComponent<Props> = ({ id }) => {
     const now = moment();
     return duels.reduce((acc, duel) => {
       if (["accepted", "pending"].includes(duel.status)) {
-        const opponent = duel.opponents.find((dueller) => dueller.userId !== userId);
+        const opponentIndex = duel.opponents.findIndex((dueller) => dueller.userId !== userId);
+        const opponent = duel.opponents[opponentIndex];
+        const isOpponentInviter = opponentIndex === 0;
         const startDateTime = moment(duel.opponents[0].startDateTime, DATE_FORMAT_WITH_TZ);
 
         if (startDateTime.isAfter(now, "day")) {
-          acc.push({ userId: opponent.userId, name: opponent.name, startDateTime, status: duel.status });
+          acc.push({
+            id: duel.id,
+            userId: opponent.userId,
+            name: opponent.name,
+            startDateTime,
+            status: duel.status,
+            isOpponentInviter,
+          });
         }
       }
 
@@ -74,30 +85,45 @@ const _DuelDialog: FunctionComponent<Props> = ({ id }) => {
     }, []);
   }, [duels, userId]);
 
+  const navigateToDuelInvite = useCallback(async () => {
+    await Navigation.showModal({
+      component: {
+        id: MODALS.duelInvite,
+        name: MODALS.duelInvite,
+        passProps: {
+          opponentId: id.replace("lead_", ""),
+        },
+      },
+    });
+  }, [id]);
+
+  const onPress = useCallback(async () => {
+    const existingDuel = validDuels.find(({ userId: duelistId }) => duelistId === opponentId);
+    if (existingDuel) {
+      const shouldShowDuelRespond = existingDuel.isOpponentInviter && existingDuel.status === "pending";
+      if (shouldShowDuelRespond) {
+        await Navigation.showModal({
+          component: {
+            id: MODALS.duelRespond,
+            name: MODALS.duelRespond,
+            passProps: {
+              duelId: existingDuel.id,
+            },
+          },
+        });
+      } else {
+        showExistingDuelAlert(existingDuel);
+      }
+
+      return;
+    }
+
+    await navigateToDuelInvite();
+  }, [opponentId, validDuels, navigateToDuelInvite]);
+
   return (
     <Animated.View style={[styles.centered, { opacity, transform: [{ scaleY: height }] }]}>
-      <Button
-        label="challenge to duel"
-        type="Primary"
-        size="Large"
-        onPress={async () => {
-          const existingDuel = validDuels.find(({ userId: duelistId }) => duelistId === opponentId);
-          if (existingDuel) {
-            showExistingDuelAlert(existingDuel);
-            return;
-          }
-
-          await Navigation.showModal({
-            component: {
-              id: MODALS.duelInvite,
-              name: MODALS.duelInvite,
-              passProps: {
-                opponentId: id.replace("lead_", ""),
-              },
-            },
-          });
-        }}
-      />
+      <Button label="challenge to duel" type="Primary" size="Large" onPress={onPress} />
     </Animated.View>
   );
 };
