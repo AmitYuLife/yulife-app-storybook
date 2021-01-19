@@ -31,7 +31,7 @@ import { ScreeningStatus } from "@graphql/_core/schema/globalTypes";
 
 export { IProductStore } from "./product.types";
 
-export const initialState: IProductStore = Object.freeze({
+export const initialState = (): IProductStore => ({
   fib: {
     answers: {
       contactDetails: {
@@ -86,12 +86,12 @@ export const initialState: IProductStore = Object.freeze({
   },
 });
 
-function personalProductReducer<T>(state: IProductStore = initialState, action: ProductActionTypes<T>) {
+function personalProductReducer<T>(state: IProductStore = initialState(), action: ProductActionTypes<T>) {
   switch (action.type) {
     case REHYDRATE:
       return rehydratePersonalProductStore({ ...state }, action.payload as IReduxState);
     case LOGOUT:
-      return initialState;
+      return initialState();
     case GET_USER_SUCCESS:
       return getUserSuccess(state, action.payload);
     case UPDATE_FIB_VALUE:
@@ -118,30 +118,33 @@ function personalProductReducer<T>(state: IProductStore = initialState, action: 
           },
         },
       };
-    case RESET_FIB_ANSWERS:
+    case RESET_FIB_ANSWERS: {
+      const _initialState = initialState();
       return {
         ...state,
         fib: {
           ...state.fib,
           gpDetails: {
-            ...initialState.fib.gpDetails,
+            ..._initialState.fib.gpDetails,
           },
           answers: {
-            ...initialState.fib.answers,
+            ..._initialState.fib.answers,
             height: {
-              ...initialState.fib.answers.height,
+              ..._initialState.fib.answers.height,
             },
             weight: {
-              ...initialState.fib.answers.weight,
+              ..._initialState.fib.answers.weight,
             },
             contactDetails: {
-              ...initialState.fib.answers.contactDetails,
+              ..._initialState.fib.answers.contactDetails,
             },
             existingCovers: [],
             medicalHistory: {},
           },
         },
       };
+    }
+
     case RESET_FIB_MEDICAL_VALUE: {
       const answers: IProductStore["fib"]["answers"] = { ...state.fib.answers, medicalHistory: {} };
       [
@@ -163,22 +166,23 @@ function personalProductReducer<T>(state: IProductStore = initialState, action: 
       };
     }
 
-    case RESET_FIB_UNDERWRITING_JOURNEY:
+    case RESET_FIB_UNDERWRITING_JOURNEY: {
+      const _initialState = initialState();
       return {
         ...state,
         fib: {
-          ...initialState.fib,
+          ..._initialState.fib,
           gpDetails: {
-            ...initialState.fib.gpDetails,
+            ..._initialState.fib.gpDetails,
           },
           answers: {
-            ...initialState.fib.answers,
+            ..._initialState.fib.answers,
             medicalHistory: {},
             height: {
-              ...initialState.fib.answers.height,
+              ..._initialState.fib.answers.height,
             },
             weight: {
-              ...initialState.fib.answers.weight,
+              ..._initialState.fib.answers.weight,
             },
             firstName: state.fib.answers.firstName,
             lastName: state.fib.answers.lastName,
@@ -189,6 +193,8 @@ function personalProductReducer<T>(state: IProductStore = initialState, action: 
           },
         },
       };
+    }
+
     case REFRESH_FIB_STORE:
       return refreshFibStore(state, action);
     case UPDATE_FIB_VALUES_FROM_QUOTE:
@@ -236,23 +242,23 @@ function rehydratePersonalProductStore(state: IProductStore, payload: IReduxStat
     // a persisted store might not have the additional keys we added
     // we need to ensure that the persisted store structure is up-to-date with the initialState
     const persistedKeys = Object.keys(payload.product.fib);
-
-    const fibNewPersistedState = Object.keys(initialState.fib).reduce(
+    const _initialState = initialState();
+    const fibNewPersistedState = Object.keys(_initialState.fib).reduce(
       (newPersistedState, key: keyof IProductStore["fib"]) => {
         // check that the key from initial state is present in persisted store
         // if it's not - default to initalState
         if (!persistedKeys.includes(key)) {
-          (newPersistedState.fib as any)[key] = initialState.fib[key];
+          (newPersistedState.fib as any)[key] = _initialState.fib[key];
         }
 
         // Do the same for answers object
         if (key === "answers") {
           const persistedAnswers = Object.keys(payload.product.fib.answers);
 
-          (newPersistedState.fib as any)[key] = Object.keys(initialState.fib.answers).reduce(
+          (newPersistedState.fib as any)[key] = Object.keys(_initialState.fib.answers).reduce(
             (newPersistedAnswers, answerKey) => {
               if (!persistedAnswers.includes(answerKey)) {
-                newPersistedAnswers[answerKey] = initialState.fib.answers[answerKey];
+                newPersistedAnswers[answerKey] = _initialState.fib.answers[answerKey];
               }
 
               return newPersistedAnswers;
