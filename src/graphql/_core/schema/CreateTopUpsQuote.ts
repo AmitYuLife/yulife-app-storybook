@@ -12,29 +12,21 @@ import { CreateTopUpsQuoteInput, ProductCode } from "./globalTypes";
 export interface CreateTopUpsQuote_createTopUpsQuote_coverTypesInfo_common {
   actualCost: number | null;
   sumAssured: number | null;
-  salaryPercentageCovered: number | null;
-  earnRate: number | null;
 }
 
 export interface CreateTopUpsQuote_createTopUpsQuote_coverTypesInfo_rare {
   actualCost: number | null;
   sumAssured: number | null;
-  salaryPercentageCovered: number | null;
-  earnRate: number | null;
 }
 
 export interface CreateTopUpsQuote_createTopUpsQuote_coverTypesInfo_epic {
   actualCost: number | null;
   sumAssured: number | null;
-  salaryPercentageCovered: number | null;
-  earnRate: number | null;
 }
 
 export interface CreateTopUpsQuote_createTopUpsQuote_coverTypesInfo_custom {
   actualCost: number | null;
   sumAssured: number | null;
-  salaryPercentageCovered: number | null;
-  earnRate: number | null;
 }
 
 export interface CreateTopUpsQuote_createTopUpsQuote_coverTypesInfo {

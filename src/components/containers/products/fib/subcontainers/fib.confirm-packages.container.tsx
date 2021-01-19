@@ -141,8 +141,8 @@ const FibConfirmPackagesContainer = memo(function (props: FibConfirmPackagesCont
   const packageDetails: Package = {
     newEarnRate: fibQuoteData?.newEarnRate || 0,
     payoutAmount: Math.round(payoutAmount),
-    earnRate: fibQuoteData?.coverTypesInfo[selectedCoverType]?.earnRate || 0,
-    salaryPercentageCovered: fibQuoteData?.coverTypesInfo[selectedCoverType]?.salaryPercentageCovered || 0,
+    earnRate: selectedProductOption?.earnRate || 0,
+    salaryPercentageCovered: selectedProductOption?.percentageCovered * 100 || 0,
     id: selectedCoverType,
     label: packages[selectedCoverType].label,
     descriptionHeading: fibQuoteData?.descriptionHeading || "",
