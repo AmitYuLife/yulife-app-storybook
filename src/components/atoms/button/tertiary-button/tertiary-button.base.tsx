@@ -1,8 +1,8 @@
 import React, { ComponentProps } from "react";
-import { Animated, TouchableWithoutFeedback, View, StyleSheet } from "react-native";
+import { TouchableWithoutFeedback, View } from "react-native";
 import { usePressedInWithDelay } from "@services/hooks/usePressedInWithDelay";
 import Text from "@atoms/text/text";
-import { Style } from "@styles";
+import { Style, Colours } from "@styles";
 import { PressableWithDelay } from "@components/molecules";
 import Svg from "react-native-svg";
 import { getIcon, BUTTON_ICON } from "./tertiary-button.helpers";
@@ -54,24 +54,29 @@ function Main({ testID, disabled, onPress, title, rightIcon, leftIcon, height = 
       accessibilityLabel={disabled ? "disabled" : "enabled"}
       disabled={disabled}
       onPress={onPress}
+      style={({ pressed }) => [
+        !pressed && {
+          bottom: 4,
+          borderBottomColor: Colours.neutral.n100,
+          borderBottomWidth: 5,
+        },
+        styles.main,
+        { height },
+      ]}
     >
-      <View style={StyleSheet.flatten([styles.outer, { height }])}>
-        <Animated.View style={StyleSheet.flatten([styles.main, { height: height - 4 }])} testID={`${testID}-text-view`}>
-          <View style={styles.leftSide}>
-            <Svg width={Style.adjust(24)} height={Style.adjust(24)} viewBox="0 0 24 24">
-              <LeftIcon />
-            </Svg>
-            <View style={styles.titleWrapper}>
-              <Text bold={true} style={[styles.title, disabledStyles]}>
-                {title}
-              </Text>
-            </View>
-          </View>
-          <Svg style={styles.rightIcon} width={Style.adjust(24)} height={Style.adjust(24)} viewBox="0 0 24 24">
-            <RightIcon />
-          </Svg>
-        </Animated.View>
+      <View style={styles.leftSide} testID={`${testID}-text-view`}>
+        <Svg width={Style.adjust(24)} height={Style.adjust(24)} viewBox="0 0 24 24">
+          <LeftIcon />
+        </Svg>
+        <View style={styles.titleWrapper}>
+          <Text bold={true} style={[styles.title, disabledStyles]}>
+            {title}
+          </Text>
+        </View>
       </View>
+      <Svg style={styles.rightIcon} width={Style.adjust(24)} height={Style.adjust(24)} viewBox="0 0 24 24">
+        <RightIcon />
+      </Svg>
     </PressableWithDelay>
   );
 }
