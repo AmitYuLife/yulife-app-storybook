@@ -48,8 +48,6 @@ storiesOf("FibBrowse", module)
       onNavigateToFaqsList={() => null}
       documents={documents}
       navigateToCustomCover={() => null}
-      loading={false}
-      maxTermAge={40}
       onNavigateToIntroScreen={() => null}
     />
   ))

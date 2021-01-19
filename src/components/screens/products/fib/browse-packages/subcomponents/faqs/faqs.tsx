@@ -33,7 +33,6 @@ const styles = StyleSheet.create({
     fontSize: Style.adjust(16),
     lineHeight: Style.adjust(24),
     letterSpacing: 0.6,
-    marginTop: Style.adjust(16),
     color: Colours.neutral.n700,
   } as TextStyle,
   margin: {

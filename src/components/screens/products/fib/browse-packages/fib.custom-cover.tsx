@@ -73,11 +73,7 @@ export const FibCustomCoverScreen = memo(function (props: IFibCustomCoverScreenP
             loading={loading}
           />
           <View style={styles.benefits}>
-            <AdditionalBenefits
-              earnRate={selectedPackage?.earnRate}
-              packageEarnRate={selectedPackage?.newEarnRate}
-              loading={loading}
-            />
+            <AdditionalBenefits />
           </View>
           <Faqs navigateToFaqsList={onNavigateToFaqsList} />
           <Documents items={documents} />

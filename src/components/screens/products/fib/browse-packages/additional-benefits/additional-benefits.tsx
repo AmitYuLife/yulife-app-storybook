@@ -1,42 +1,37 @@
-import { Text } from "@atoms/index";
 import React, { memo } from "react";
-import { View, StyleSheet, TextStyle } from "react-native";
+import { View, StyleSheet } from "react-native";
 import AdditionalBenefitsCard from "./subcomponents/additional-benefits.card";
 import { getAdditionalBenefitsData } from "./additional-benefits.helper";
-import { Style } from "../../../../../../styles";
+import { Heading } from "../subcomponents/common";
+import { Colours, Style } from "@styles";
 
-interface IProps {
-  earnRate: number;
-  packageEarnRate: number;
-  loading: boolean;
-}
-
-const AdditionalBenefits = memo(function (props: IProps) {
-  const { earnRate, packageEarnRate, loading } = props;
+const AdditionalBenefits = memo(function () {
+  const items = getAdditionalBenefitsData();
   return (
-    <View>
-      <Text style={styles.title}>Additional benefits</Text>
-      {getAdditionalBenefitsData(earnRate, packageEarnRate, loading).map((item) => (
-        <View key={item.id} style={styles.wrapper}>
-          <AdditionalBenefitsCard key={item.id} text={item.text} svg={item.svg} />
-        </View>
-      ))}
-    </View>
+    <>
+      <Heading title="Other benefits" />
+      <View style={styles.wrapper}>
+        {items.map((item, index) => (
+          <AdditionalBenefitsCard
+            key={item.id}
+            text={item.text}
+            title={item.title}
+            showSeparator={index + 1 !== items.length}
+          />
+        ))}
+      </View>
+    </>
   );
 });
 
 const styles = StyleSheet.create({
   wrapper: {
-    paddingHorizontal: Style.adjust(16),
+    backgroundColor: Colours.neutral.white,
+    padding: Style.adjust(24),
+    borderColor: Colours.neutral.n100,
+    borderWidth: 1,
+    borderRadius: 10,
   },
-  title: {
-    fontSize: Style.adjust(24),
-    fontFamily: Style.FONT_FAMILY_PRIMARY_BOLD,
-    lineHeight: 32,
-    color: "#464647",
-    letterSpacing: 1,
-    marginBottom: Style.adjust(8),
-  } as TextStyle,
 });
 
 export default AdditionalBenefits;

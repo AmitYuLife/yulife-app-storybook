@@ -30,9 +30,7 @@ interface IFibBrowseScreenProps {
   onContinue: () => void;
   selectCoverType: (coverType: PackageId) => void;
   selectedPackage: Package;
-  loading: boolean;
   documents: IFaq[];
-  maxTermAge: number;
   offset: NativeScrollPoint;
   onScrollEnd: (event: NativeSyntheticEvent<NativeScrollEvent>) => void;
   onNavigateToFaqsList: () => void;
@@ -47,8 +45,6 @@ export const FibBrowseScreen = memo(function (props: IFibBrowseScreenProps) {
     onContinue,
     selectCoverType,
     selectedPackage,
-    loading,
-    maxTermAge,
     offset,
     onScrollEnd,
     onNavigateToIntroScreen,
@@ -85,7 +81,7 @@ export const FibBrowseScreen = memo(function (props: IFibBrowseScreenProps) {
     });
   }, [selectedPackage]);
 
-  const howItWorksMaxCoverAge = maxTermAge < 70 ? `until age ${maxTermAge}` : `up to age 70`;
+  // const howItWorksMaxCoverAge = maxTermAge < 70 ? `until age ${maxTermAge}` : `up to age 70`;
 
   return (
     <>
@@ -112,15 +108,11 @@ export const FibBrowseScreen = memo(function (props: IFibBrowseScreenProps) {
             <View style={styles.separator}>
               <HowItWorks
                 header={selectedPackage.id}
-                content={`In the event of death, your loved ones will receive ${selectedPackage.salaryPercentageCovered}% of your future earnings from the date of death ${howItWorksMaxCoverAge} (based on your current salary).\n\nThis means if you pass away near the beginning of the insurance term, your loved ones will receive more money than if you pass away near the end.\n\nThis is paid as a single payment.`}
+                content={`We will pay your chosen beneficiaries ${selectedPackage.salaryPercentageCovered}% of your monthly salary as a lump sum from the date you passed away until you would have turned 70 years old.`}
               />
             </View>
             <View style={styles.separator}>
-              <AdditionalBenefits
-                earnRate={selectedPackage.earnRate}
-                packageEarnRate={selectedPackage.newEarnRate}
-                loading={loading}
-              />
+              <AdditionalBenefits />
             </View>
             <View style={styles.separator}>
               <Faqs navigateToFaqsList={onNavigateToFaqsList} />
