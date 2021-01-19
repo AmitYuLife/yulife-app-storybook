@@ -1,54 +1,48 @@
 import React, { memo } from "react";
-import { View, ImageStyle, StyleSheet, TextStyle, ViewStyle } from "react-native";
-import { SvgXml } from "react-native-svg";
+import { View, StyleSheet, TextStyle } from "react-native";
 import { TextWithBoldText } from "@components/molecules";
 import { Colours, Style } from "@styles";
+import { Text } from "@atoms";
 
 interface IProps {
   text: string;
-  svg: string;
+  title: string;
+  showSeparator: boolean;
 }
 const AdditionalBenefitsCard = memo(function (props: IProps) {
-  const { text, svg } = props;
+  const { text, title, showSeparator } = props;
+
   return (
-    <View style={styles.wrapper}>
-      <View style={styles.innerWrapper}>
-        <View style={styles.imageWrapper}>
-          <SvgXml xml={svg} width={72} height={72} />
-        </View>
-        <TextWithBoldText style={styles.infoText} value={text} />
-      </View>
+    <View>
+      <Text bold={true} style={styles.title}>
+        {title}
+      </Text>
+      <TextWithBoldText style={styles.infoText} value={text} />
+      {showSeparator ? <View style={styles.separator} /> : null}
     </View>
   );
 });
 
 const styles = StyleSheet.create({
-  wrapper: {
-    marginTop: Style.adjust(16),
-    borderWidth: 1,
-    borderColor: Colours.neutral.n100,
-    borderRadius: 10,
-  } as ViewStyle,
-  innerWrapper: {
-    flexDirection: "row",
-    backgroundColor: "#FFFFFF",
-    borderRadius: Style.adjust(8),
-    alignItems: "center",
-    paddingVertical: Style.adjust(24),
-    paddingHorizontal: Style.adjust(16),
-  } as ViewStyle,
+  title: {
+    color: Colours.neutral.n700,
+    fontSize: Style.adjust(20),
+    lineHeight: Style.adjust(24),
+    marginBottom: 16,
+  },
+  separator: {
+    width: "100%",
+    paddingTop: Style.adjust(16),
+    marginBottom: Style.adjust(24),
+    borderBottomWidth: 1,
+    borderBottomColor: Colours.neutral.n100,
+  },
   infoText: {
     fontSize: Style.adjust(16),
-    lineHeight: 24,
-    color: "#5A5A5C",
-    letterSpacing: 1,
-    width: Style.adjust(224),
+    lineHeight: Style.adjust(24),
+    color: Colours.neutral.n800,
+    letterSpacing: 0.6,
   } as TextStyle,
-  imageWrapper: {
-    height: Style.adjust(72),
-    width: Style.adjust(72),
-    marginRight: Style.adjust(16),
-  } as ImageStyle,
 });
 
 export default AdditionalBenefitsCard;

@@ -18,9 +18,10 @@ export const Heading = memo(({ title, wrapperStyle }: Props) => (
 
 const styles = StyleSheet.create({
   label: {
-    fontSize: Style.adjust(24),
+    fontSize: Style.adjust(28),
     lineHeight: Style.adjust(32),
     letterSpacing: 1,
-    color: Colours.neutral.n700,
+    color: Colours.neutral.n800,
+    marginBottom: Style.adjust(24),
   } as TextStyle,
 });

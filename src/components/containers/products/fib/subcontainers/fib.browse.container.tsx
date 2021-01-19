@@ -92,7 +92,7 @@ const _FibBrowseContainer = memo(function (props: IFibContainer & ReturnType<typ
 
   const packageDetails: Package = {
     newEarnRate: (yuliferData?.getYulifer?.earnRate || 0) + (selectedProductOption?.earnRate || 0),
-    earnRate: yuliferData?.getYulifer?.earnRate || 0,
+    earnRate: selectedProductOption?.earnRate || 0,
     salaryPercentageCovered: selectedProductOption?.percentageCovered * 100 || 0,
     id: selectedCoverType,
     label: packages[selectedCoverType].label,
@@ -130,8 +130,6 @@ const _FibBrowseContainer = memo(function (props: IFibContainer & ReturnType<typ
       documents={documents}
       onScrollEnd={navigation.onScrollEnd}
       offset={navigation.currentRoute.offset || { x: 0, y: 0 }}
-      loading={loading}
-      maxTermAge={maxTermAge}
       onNavigateToFaqsList={navigateToFaqsList}
       onNavigateToIntroScreen={navigateToIntroScreen}
     />
