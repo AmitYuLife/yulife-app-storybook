@@ -17,6 +17,7 @@ export * from "./DeleteConnection";
 export * from "./EarnRateDetails";
 export * from "./GetActivityHistory";
 export * from "./GetAllPurchases";
+export * from "./GetCheckoutDetails";
 export * from "./GetCommunityGoals";
 export * from "./GetConnections";
 export * from "./GetCurrentLevel";

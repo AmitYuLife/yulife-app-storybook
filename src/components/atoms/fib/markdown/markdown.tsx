@@ -7,15 +7,16 @@ import media from "@styles/media";
 export interface IMarkdownFibProps {
   text: string;
   style?: StyleSheet.NamedStyles<ViewStyle>;
+  wrapperStyle?: ViewStyle;
 }
 
 export default function MarkdownFib(props: IMarkdownFibProps) {
-  const { text } = props;
+  const { text, wrapperStyle } = props;
 
   return (
     <Markdown
       text={text}
-      containerStyle={styles.markdownContainer}
+      containerStyle={StyleSheet.flatten([styles.markdownContainer, wrapperStyle])}
       markdownStyles={StyleSheet.flatten([markdownStyles, props.style])}
     />
   );

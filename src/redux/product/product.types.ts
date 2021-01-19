@@ -3,8 +3,9 @@ import { Cover } from "@components/containers/products/fib/fib.types";
 import { RehydrateAction } from "redux-persist";
 import { logOut, getUserSuccess } from "@redux/user/user.actions";
 import { CreateTopUpsQuote_createTopUpsQuote, GetTopUpsQuote_getTopUpsQuote } from "../../graphql/_core/schema";
-import { ScreeningStatus } from "../../graphql/_core/schema/globalTypes";
+import { ScreeningStatus, YuWorld } from "../../graphql/_core/schema/globalTypes";
 export const UPDATE_FIB_VALUE = "UPDATE_FIB_VALUE";
+export const RESET_FIB = "RESET_FIB";
 export const UPDATE_FIB_MEDICAL_VALUE = "UPDATE_FIB_MEDICAL_VALUE";
 export const UPDATE_FIB_ANSWER_VALUE = "UPDATE_FIB_ANSWER_VALUE";
 export const RESET_FIB_ANSWERS = "RESET_FIB_ANSWERS";
@@ -12,6 +13,7 @@ export const RESET_FIB_MEDICAL_VALUE = "RESET_FIB_MEDICAL_VALUE";
 export const RESET_FIB_UNDERWRITING_JOURNEY = "RESET_FIB_UNDERWRITING_JOURNEY";
 export const REFRESH_FIB_STORE = "REFRESH_FIB_STORE";
 export const UPDATE_FIB_VALUES_FROM_QUOTE = "UPDATE_FIB_VALUES_FROM_QUOTE";
+export const UPDATE_FIB_STYLE = "UPDATE_FIB_STYLE";
 
 export interface IProductStore {
   fib: FIBStore;
@@ -89,6 +91,7 @@ export interface FIBStore {
   latestQuoteId: string;
   status: ScreeningStatus;
   gpDetails: GPDetails;
+  fibStyle: YuWorld;
 }
 
 export interface UpdateFIBStoreAction<T> {
@@ -110,6 +113,15 @@ export interface UpdateFIBValuesFromQuoteAction {
   payload: CreateTopUpsQuote_createTopUpsQuote;
 }
 
+export interface UpdateFIBStyle {
+  type: typeof UPDATE_FIB_STYLE;
+  payload: YuWorld;
+}
+
+export interface ResetFIB {
+  type: typeof RESET_FIB;
+}
+
 export type ProductActionTypes<T> =
   | UpdateFIBStoreAction<T>
   | ResetFIBStoreAction
@@ -117,4 +129,6 @@ export type ProductActionTypes<T> =
   | ReturnType<typeof logOut>
   | ReturnType<typeof getUserSuccess>
   | RefreshFIBStoreAction
-  | UpdateFIBValuesFromQuoteAction;
+  | UpdateFIBValuesFromQuoteAction
+  | UpdateFIBStyle
+  | ResetFIB;

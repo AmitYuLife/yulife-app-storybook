@@ -1,9 +1,8 @@
-import { useMutation, useQuery } from "@apollo/react-hooks";
 import React, { memo, useState, useEffect, useCallback } from "react";
 import { Linking, Platform } from "react-native";
 import { connect, useDispatch } from "react-redux";
-import { FibLocalNavigation, FIB_CONTACT_DETAILS, FIB_FAQ_LIST } from "../fib.types";
-import { GQL_MUTATION_CREATE_TOP_UPS_QUOTE } from "@graphql/products";
+import { useMutation, useQuery } from "@apollo/react-hooks";
+import { FibLocalNavigation, FIB_DECLARATION_CONFIRMATION, FIB_FAQ_LIST } from "../fib.types";
 import { getFIBState, getLifeInsuranceUserAnswers } from "@redux/product/product.selectors";
 import { IReduxState } from "@redux/_core/reducers";
 import { packages, calculatePayoutCalculatorItems, calculatePayoutAmount } from "../fib.helpers";
@@ -27,6 +26,7 @@ import {
 import { CoverType, CreateTopUpsQuoteInput, ProductCode, YuProductId } from "@graphql/_core/schema/globalTypes";
 import { getBirthday } from "@redux/product/product.selectors";
 import { GQL_QUERY_GET_YULIFER } from "@graphql/yuscreen";
+import { GQL_MUTATION_CREATE_TOP_UPS_QUOTE } from "@graphql/products";
 
 type ConnectedState = ReturnType<typeof mapStateToProps>;
 
@@ -177,7 +177,7 @@ const FibConfirmPackagesContainer = memo(function (props: FibConfirmPackagesCont
 
   const handleOnContinue = useCallback(async () => {
     await createNewQuote();
-    return navigation.push(FIB_CONTACT_DETAILS);
+    return navigation.push(FIB_DECLARATION_CONFIRMATION);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [navigation]);
 

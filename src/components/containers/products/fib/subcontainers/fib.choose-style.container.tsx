@@ -13,6 +13,8 @@ import {
 import { YuWorld } from "../../../../../graphql/_core/schema/globalTypes";
 import { YUGI_INTRO_TYPE } from "./fib.yugi-intro.container";
 import { useBackHandler } from "../../../../../services/hooks/useBackHandler";
+import { useDispatch } from "react-redux";
+import { updateFIBStyle } from "@redux/product/product.actions";
 
 interface IFibStyleSelectionProps {
   navigation: FibLocalNavigation;
@@ -20,6 +22,7 @@ interface IFibStyleSelectionProps {
 
 const FibStyleSelectionContainer = memo(function FibStyleSelectionContainer(props: IFibStyleSelectionProps) {
   const { navigation } = props;
+  const dispatch = useDispatch();
 
   const { data } = useQuery<GetYulifer>(GQL_QUERY_GET_YULIFER, {
     fetchPolicy: "cache-only",
@@ -45,6 +48,8 @@ const FibStyleSelectionContainer = memo(function FibStyleSelectionContainer(prop
   }, [epic]);
 
   const onContinue = (world: YuWorld) => {
+    dispatch(updateFIBStyle(world));
+
     switch (world) {
       case YuWorld.forest:
         return navigation.push(FIB_INTRO_YUGI, {

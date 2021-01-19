@@ -12,6 +12,9 @@ import {
   UpdateFIBValuesFromQuoteAction,
   UPDATE_FIB_VALUES_FROM_QUOTE,
   UpdateFIBStoreAction,
+  UPDATE_FIB_STYLE,
+  UpdateFIBStyle,
+  RESET_FIB,
 } from "./product.types";
 import { REHYDRATE } from "redux-persist";
 import { LOGOUT, GET_USER_SUCCESS } from "@redux/user/user.actions";
@@ -27,7 +30,7 @@ import {
   FIB_HIGH_BLOOD_PRESSURE_EXTRA_SCREEN,
   FIB_HIGH_CHOLESTEROL_EXTRA_SCREEN,
 } from "../../components/containers/products/fib/data/underwriting-journey-data";
-import { ScreeningStatus } from "@graphql/_core/schema/globalTypes";
+import { ScreeningStatus, YuWorld } from "@graphql/_core/schema/globalTypes";
 
 export { IProductStore } from "./product.types";
 
@@ -83,6 +86,7 @@ export const initialState: IProductStore = Object.freeze({
     productEntityId: "",
     latestQuoteId: "",
     status: ScreeningStatus.NONE,
+    fibStyle: YuWorld.forest,
   },
 });
 
@@ -90,6 +94,7 @@ function personalProductReducer<T>(state: IProductStore = initialState, action: 
   switch (action.type) {
     case REHYDRATE:
       return rehydratePersonalProductStore({ ...state }, action.payload as IReduxState);
+    case RESET_FIB:
     case LOGOUT:
       return initialState;
     case GET_USER_SUCCESS:
@@ -193,6 +198,8 @@ function personalProductReducer<T>(state: IProductStore = initialState, action: 
       return refreshFibStore(state, action);
     case UPDATE_FIB_VALUES_FROM_QUOTE:
       return updateFibValuesFromQuote(state, action);
+    case UPDATE_FIB_STYLE:
+      return updateStoreFibStyle(state, action);
     default:
       return state;
   }
@@ -437,5 +444,17 @@ const updateFibAnswerValue = (state: IProductStore, action: UpdateFIBStoreAction
 
   return newState;
 };
+
+function updateStoreFibStyle(state: IProductStore, action: UpdateFIBStyle) {
+  const newState = {
+    ...state,
+    fib: {
+      ...state.fib,
+      fibStyle: action.payload,
+    },
+  } as IProductStore;
+
+  return newState;
+}
 
 export default personalProductReducer;
