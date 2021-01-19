@@ -1,12 +1,13 @@
 import React, { memo } from "react";
 import { StyleSheet, TextStyle, View, ViewStyle } from "react-native";
 import LinearGradient from "react-native-linear-gradient";
-import PackageTypes, { IType } from "../package-types/package-types";
+import { PackageType } from "@atoms";
 import { Package } from "@components/screens/products/fib/browse-packages/fib.browse.types";
 import { Style, Colours } from "@styles";
 import { DoubleChest, Streak, Shoe, Text } from "@atoms";
 import { PACKAGE_INFO } from "@ids";
 import { formatMoney } from "@services/money";
+import { CoverType } from "@graphql/_core/schema/globalTypes";
 
 export interface Props {
   selectedPackage: Package;
@@ -91,7 +92,7 @@ const PackageInfo: React.FC<Props> = ({ selectedPackage, packagePrice }) => {
         locations={selectedPackageInfo.header.locations}
       >
         <View style={styles.priceWrapper}>
-          <PackageTypes type={selectedPackage?.id as IType} />
+          <PackageType type={selectedPackage?.id as CoverType} />
           {packagePrice ? <Text style={styles.price}>£{formatMoney(packagePrice)}/month</Text> : null}
         </View>
         <View style={styles.titleWrapper}>

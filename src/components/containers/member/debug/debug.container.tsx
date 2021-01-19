@@ -3,15 +3,16 @@ import { GQL_QUERY_DEBUG_CODES, GQL_MUTATION_RESET_DATA, ResetDataMutationTuple 
 import * as React from "react";
 import { Alert } from "react-native";
 import { Navigation } from "react-native-navigation";
-import { connect } from "react-redux";
+import { connect, useDispatch } from "react-redux";
 import { IReduxState } from "../../../../redux/_core/reducers";
 import { sendTestPush } from "../../../../redux/notifications/notifications.actions";
 import { getUserStart } from "../../../../redux/user/user.actions";
 import { getUserFeatures } from "../../../../redux/user/user.selectors";
 import { DebugScreen } from "../../../screens";
 import { ROUTES } from "@navigation/constants";
-import { FIB_GP_DETAILS, FIB_CONFIRM_PACKAGES } from "@components/containers/products/fib/fib.types";
+import { FIB_GP_DETAILS, FIB_CONFIRM_PACKAGES, FIB_CHOOSE_STYLE } from "@components/containers/products/fib/fib.types";
 import { FIB_CONTACT_DETAILS, FIB_DECLARATION_CONFIRMATION } from "../../products/fib/fib.types";
+import { resetFIBAnswers } from "@redux/product/product.actions";
 
 interface IProps {
   componentId: string;
@@ -28,6 +29,8 @@ enum CODES {
   ROUTE_TO_FIB_CONFIRMATION_DECLARATION = "ROUTE_TO_FIB_CONFIRMATION_DECLARATION",
   ROUTE_TO_FIB_GP_DETAILS = "ROUTE_TO_FIB_GP_DETAILS",
   ROUTE_TO_FIB_CONFIRM_PACKAGES = "ROUTE_TO_FIB_CONFIRM_PACKAGES",
+  ROUTE_TO_CHOOSE_STYLE = "ROUTE_TO_CHOOSE_STYLE",
+  RESET_FIB = "remove-family-income-benefit",
 }
 
 const DEFAULT_LIST = [
@@ -40,6 +43,7 @@ const DEFAULT_LIST = [
 
 const ActivityHistoryContainer: React.FC<Props> = (props) => {
   const [resetData]: ResetDataMutationTuple = useMutation(GQL_MUTATION_RESET_DATA);
+  const dispatch = useDispatch();
   const { data } = useQuery(GQL_QUERY_DEBUG_CODES, {
     fetchPolicy: "cache-and-network",
   });
@@ -52,6 +56,7 @@ const ActivityHistoryContainer: React.FC<Props> = (props) => {
     CODES.ROUTE_TO_FIB_CONFIRMATION_DECLARATION,
     CODES.ROUTE_TO_FIB_GP_DETAILS,
     CODES.ROUTE_TO_FIB_CONFIRM_PACKAGES,
+    CODES.ROUTE_TO_CHOOSE_STYLE,
   ];
 
   const handleClose = () => {
@@ -121,6 +126,23 @@ const ActivityHistoryContainer: React.FC<Props> = (props) => {
               },
             },
           });
+        }
+
+        if (code === CODES.ROUTE_TO_CHOOSE_STYLE) {
+          return Navigation.push(props.componentId, {
+            component: {
+              id: ROUTES.fib,
+              name: ROUTES.fib,
+              passProps: {
+                initialRoute: FIB_CHOOSE_STYLE,
+              },
+            },
+          });
+        }
+
+        if (code === CODES.RESET_FIB) {
+          await resetData({ variables: { code } });
+          return dispatch(resetFIBAnswers());
         }
 
         await resetData({ variables: { code } });

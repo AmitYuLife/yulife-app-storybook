@@ -1,5 +1,5 @@
 import { CreateTopUpsQuote_createTopUpsQuote, GetTopUpsQuote_getTopUpsQuote } from "../../graphql/_core/schema";
-import { FIBStoreAnswerValue } from "./product.types";
+import { FIBStoreAnswerValue, UPDATE_FIB_STYLE, RESET_FIB } from "./product.types";
 import {
   ProductActionTypes,
   FIBStoreValue,
@@ -12,6 +12,7 @@ import {
   REFRESH_FIB_STORE,
   UPDATE_FIB_VALUES_FROM_QUOTE,
 } from "./product.types";
+import { YuWorld } from "@graphql/_core/schema/globalTypes";
 
 export function updateFIBValue<T>(payload: FIBStoreValue<T>): ProductActionTypes<T> {
   return {
@@ -24,6 +25,12 @@ export function updateFIBAnswerValue<T>(payload: FIBStoreAnswerValue<T>): Produc
   return {
     type: UPDATE_FIB_ANSWER_VALUE,
     payload,
+  };
+}
+
+export function resetFIB<T>(): ProductActionTypes<T> {
+  return {
+    type: RESET_FIB,
   };
 }
 
@@ -62,6 +69,13 @@ export function refreshFIBStore<T>(payload: GetTopUpsQuote_getTopUpsQuote): Prod
 export function updateFIBValuesFromNewQuote<T>(payload: CreateTopUpsQuote_createTopUpsQuote): ProductActionTypes<T> {
   return {
     type: UPDATE_FIB_VALUES_FROM_QUOTE,
+    payload,
+  };
+}
+
+export function updateFIBStyle(payload: YuWorld) {
+  return {
+    type: UPDATE_FIB_STYLE,
     payload,
   };
 }

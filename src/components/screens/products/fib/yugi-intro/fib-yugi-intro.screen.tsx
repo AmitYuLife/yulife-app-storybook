@@ -1,6 +1,6 @@
 import React, { memo, useRef, RefObject, useEffect } from "react";
 import * as Animated from "react-native-animatable";
-import { View, StyleSheet, ViewStyle, TextStyle, FlatList, ListRenderItemInfo } from "react-native";
+import { View, StyleSheet, ViewStyle, TextStyle, FlatList, ListRenderItemInfo, Platform } from "react-native";
 import { Button, Text } from "@atoms";
 import { Style, TOP_BAR } from "@styles";
 import { ScrollableLayout } from "@molecules";
@@ -96,7 +96,13 @@ export const FibYugiIntroScreen = memo(function (props: IFibYugiIntroScreenProps
         />
       </View>
 
-      <View style={styles.speechWrapper}>
+      <Animated.View
+        useNativeDriver={true}
+        animation="fadeIn"
+        duration={Platform.select({ ios: 0, android: 2000 })}
+        easing="ease-in"
+        style={styles.speechWrapper}
+      >
         <View style={styles.speakerNameWrapper}>
           <Text style={styles.speakerName}>Yugi</Text>
         </View>
@@ -115,12 +121,10 @@ export const FibYugiIntroScreen = memo(function (props: IFibYugiIntroScreenProps
           showsVerticalScrollIndicator={false}
           horizontal={true}
           showsHorizontalScrollIndicator={false}
-          style={{
-            width: Style.adjust(282),
-          }}
+          style={styles.width100}
           scrollEnabled={false}
         />
-      </View>
+      </Animated.View>
 
       <View style={styles.buttonWrapper}>
         <Button
@@ -143,33 +147,33 @@ const keyExtractor = (item: { text: string }) => item?.text;
 
 function renderItem({ item }: ListRenderItemInfo<{ text: string }>) {
   return (
-    <Animated.View
-      useNativeDriver={true}
-      animation="fadeIn"
-      duration={2000}
-      easing="ease-in"
-      style={styles.copyWrapper}
-    >
+    <View style={styles.copyWrapper}>
       <Text style={styles.message}>{item.text}</Text>
-    </Animated.View>
+    </View>
   );
 }
 
+const SPEECH_WRAPPER_WIDTH = Style.DEVICE_WIDTH - 45;
+const MESSAGE_WIDTH = SPEECH_WRAPPER_WIDTH - 48;
+
 const styles = StyleSheet.create({
+  width100: {
+    width: "100%",
+  } as ViewStyle,
   speechWrapper: {
     marginBottom: 16,
-    width: Style.DEVICE_WIDTH - 45,
+    width: SPEECH_WRAPPER_WIDTH,
     marginTop: Style.DEVICE_HEIGHT * 0.15,
     backgroundColor: colours.products.fib.u10S4,
     borderRadius: 16,
     borderColor: colours.products.fib.u50S4,
     borderWidth: 2,
-    paddingTop: 24,
-    paddingLeft: 24,
-    paddingBottom: 24,
+    paddingTop: Style.adjust(24),
+    paddingBottom: Style.adjust(24),
   } as ViewStyle,
   copyWrapper: {
-    width: Style.adjust(282),
+    width: SPEECH_WRAPPER_WIDTH,
+    paddingHorizontal: Style.adjust(24),
   } as ViewStyle,
   arrowUp: {
     right: 0,
@@ -200,8 +204,8 @@ const styles = StyleSheet.create({
     fontSize: Style.adjust(16),
     lineHeight: Style.adjust(24),
     letterSpacing: 0.6,
-    maxWidth: Style.adjust(282),
     flex: 1,
+    width: MESSAGE_WIDTH,
   } as TextStyle,
   buttonWrapper: {
     flexDirection: "row",

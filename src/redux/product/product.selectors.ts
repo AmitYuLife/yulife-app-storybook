@@ -26,7 +26,7 @@ import {
 } from "../../components/containers/products/fib/data/underwriting-journey-data";
 import { FINANCIAL_QUESTIONS_ICON } from "@atoms/fib/svg-assets/underwriting/svg-strings";
 import { addCommasToNumber } from "@services/utils";
-import { LifeInsuranceTopUpsUserAnswers } from "../../graphql/_core/schema/globalTypes";
+import { LifeInsuranceTopUpsUserAnswers, YuWorld } from "../../graphql/_core/schema/globalTypes";
 
 export const getFIBState = (state: IReduxState): FIBStore => {
   return state.product.fib;
@@ -289,4 +289,8 @@ export const getLifeInsuranceUserAnswers = (state: IReduxState): LifeInsuranceTo
   });
 
   return userAnswers;
+};
+
+export const getFIBStyle = (state: IReduxState): YuWorld => {
+  return state?.product.fib.fibStyle || YuWorld.forest;
 };

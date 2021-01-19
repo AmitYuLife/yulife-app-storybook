@@ -1,5 +1,5 @@
 import React, { memo, useState, useCallback } from "react";
-import { FibLocalNavigation, FIB_GP_DETAILS } from "../fib.types";
+import { FibLocalNavigation } from "../fib.types";
 import { FibContactDetailsScreen } from "@components/screens/products/fib/underwriting-journey/fib.contact-details.screen";
 import { FibConfirmScreen } from "../../../../screens/products/fib/underwriting-journey/fib.confirm-email.screen";
 import { connect } from "react-redux";
@@ -91,7 +91,7 @@ const FibContactDetailsContainer = memo(function (props: Props) {
         },
       },
     });
-    navigation.push(FIB_GP_DETAILS);
+    navigation.pop();
   };
 
   const onSecondButton = async () => {
@@ -111,7 +111,7 @@ const FibContactDetailsContainer = memo(function (props: Props) {
         },
       },
     });
-    navigation.push(FIB_GP_DETAILS);
+    navigation.pop();
   };
 
   const onAddressSelected = (address: Address_findUserAddress) => {
