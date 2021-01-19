@@ -51,7 +51,7 @@ export const initialState: IReduxState = {
   device: initialDeviceState,
   levels: initialLevelsState,
   onboarding: initialOnboardingState,
-  product: initialProductState,
+  product: initialProductState(),
   pedometer: initialPedometerState,
   streaks: initialStreaksState,
   theme: initialThemeState,

@@ -1,11 +1,12 @@
 import { Cloudinary, Transformation } from "cloudinary-core";
 import { PixelRatio } from "react-native";
-import Config from "react-native-config";
 
 const pixelRatio = PixelRatio.get();
-
+/**
+ * TODO: Use Config.CLOUDINARY_CLOUD_NAME, currently we can't use cause rewards assets are hosted only in prod cloudinary cloud
+ */
 const cloudinary = Cloudinary.new({
-  cloud_name: Config.CLOUDINARY_CLOUD_NAME,
+  cloud_name: "yu-life",
   protocol: "https://",
 });
 

@@ -1,10 +1,12 @@
-import React, { useMemo, useCallback } from "react";
+import React, { useMemo, useCallback, useEffect } from "react";
 import { StyleSheet, View, ViewStyle, TextStyle, ImageStyle } from "react-native";
 import { Text, Button } from "@atoms";
 import { Style, Colours } from "@styles";
 import { CloseSvg } from "@atoms";
 import { TouchableOpacityWithDelay } from "@molecules";
 import {
+  GetTopUpsQuote,
+  GetTopUpsQuoteVariables,
   GetYulifer,
   GetYulifer_charms,
   GetYulifer_employer,
@@ -12,7 +14,7 @@ import {
   UpdateTopUpsQuoteVariables,
   UpdateTopUpsQuote_updateFibQuote,
 } from "@graphql/_core/schema";
-import { useMutation, useQuery } from "@apollo/react-hooks";
+import { useLazyQuery, useMutation, useQuery } from "@apollo/react-hooks";
 import { GQL_QUERY_GET_YULIFER } from "@graphql/yuscreen";
 import LinearGradient from "react-native-linear-gradient";
 import { getProductIcon } from "../../assets/getProductIcon";
@@ -21,11 +23,12 @@ import { navigateToProductScreen } from "../../navigation/navigateToProductScree
 import { useSelector, useDispatch } from "react-redux";
 import { getFIBState } from "@redux/product/product.selectors";
 import { getUserFeatures } from "@redux/user/user.selectors";
-import { resetFIBUnderwritingJourney } from "@redux/product/product.actions";
+import { refreshFIBStore, resetFIBUnderwritingJourney } from "@redux/product/product.actions";
 import { CoinLabel } from "./coin-label";
 import { useBackHandler } from "@services/hooks/useBackHandler";
-import { YuProductId, YuProductStatus } from "../../../../../../graphql/_core/schema/globalTypes";
+import { ProductCode, YuProductId, YuProductStatus } from "../../../../../../graphql/_core/schema/globalTypes";
 import { GQL_MUTATION_UPDATE_TOP_UPS_QUOTE } from "../../../../../../graphql/products/updateTopUpsQuote";
+import { GQL_QUERY_GET_TOP_UPS_QUOTE } from "../../../../../../graphql/products";
 
 export interface IToolTipProps {
   productId: YuProductId;
@@ -39,9 +42,42 @@ const getCaption = (status: YuProductStatus) => {
 };
 
 export const ToolTip = ({ productId, onClose }: IToolTipProps) => {
+  const dispatch = useDispatch();
+
   const { data } = useQuery<GetYulifer>(GQL_QUERY_GET_YULIFER, {
     fetchPolicy: "cache-only",
   });
+
+  const [getTopUpsQuery, { data: topUpsData }] = useLazyQuery<GetTopUpsQuote, GetTopUpsQuoteVariables>(
+    GQL_QUERY_GET_TOP_UPS_QUOTE,
+    {
+      onCompleted: (responseData) => {
+        if (responseData?.getTopUpsQuote?.quoteId) {
+          dispatch(refreshFIBStore(responseData.getTopUpsQuote));
+        }
+      },
+    }
+  );
+  const fibState = useSelector(getFIBState);
+  const { productEntityId, latestQuoteId } = fibState;
+
+  useEffect(() => {
+    (async () => {
+      if (productId === YuProductId.family_income_benefit && !topUpsData?.getTopUpsQuote?.quoteId) {
+        if (productEntityId && latestQuoteId) {
+          await getTopUpsQuery({
+            variables: {
+              product: ProductCode.YULFIB,
+              input: {
+                customerProductEntityId: productEntityId,
+                quoteId: latestQuoteId,
+              },
+            },
+          });
+        }
+      }
+    })();
+  }, [getTopUpsQuery, productId, productEntityId, latestQuoteId, topUpsData]);
 
   const product = useMemo(() => {
     if (!data) {
@@ -58,9 +94,6 @@ export const ToolTip = ({ productId, onClose }: IToolTipProps) => {
   }, [data, productId]);
 
   const IconSvg = useMemo(() => getProductIcon(product?.itemSlot), [product]);
-
-  const fibState = useSelector(getFIBState);
-  const dispatch = useDispatch();
 
   const shouldResetFib = useSelector(getUserFeatures).resetFib;
   const [updateFibQuote] = useMutation<UpdateTopUpsQuote_updateFibQuote, UpdateTopUpsQuoteVariables>(
