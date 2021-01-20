@@ -21,6 +21,7 @@ import { GQL_QUERY_GET_DUELLER_DETAILS } from "@graphql/duels/getDuellerDetails"
 import { TopBarAbsolute } from "@organisms/top-bar/top-bar-absolute";
 import { GQL_QUERY_GET_DUEL_TOMORROW } from "@graphql/duels/getDuelsTomorrow.gql";
 import { GQL_QUERY_GET_DUEL_INVITATIONS } from "@graphql/duels/getDuelInvitations.gql";
+import { useBackHandler } from "@services/hooks/useBackHandler";
 
 interface IModalProps {
   duelId: string;
@@ -36,6 +37,10 @@ const DuelRespondModal: React.FC<IProps> = ({ componentId, duelId, userCoins, in
   const [step, setStep] = useState<Step>("INTRO");
   const [isLoading, setIsLoading] = useState(false);
   const [loadingLabel, setLoadingLabel] = React.useState<"primary" | "secondary">(null);
+  useBackHandler(() => {
+    Navigation.dismissModal(componentId);
+    return true;
+  });
 
   const getDuelsQuery = useQuery(GQL_QUERY_GET_DUELS, {
     fetchPolicy: "cache-and-network",

@@ -16,6 +16,7 @@ import { ROUTES } from "@navigation/constants";
 import { GQL_QUERY_GET_DUELLER_DETAILS } from "@graphql/duels/getDuellerDetails";
 import { TopBarAbsolute } from "@organisms/top-bar/top-bar-absolute";
 import { GQL_QUERY_GET_DUEL_INVITATIONS } from "@graphql/duels/getDuelInvitations.gql";
+import { useBackHandler } from "@services/hooks/useBackHandler";
 
 type IReduxProps = ReturnType<typeof mapStateToProps>;
 
@@ -60,6 +61,10 @@ const DuelInviteModal: React.FC<IDuelProps> = ({
   const [yucoin, setYucoin] = useState(DEFAULT_DUEL_AMOUNT);
   const [duration, setDuration] = useState(DEFAULT_DUEL_DURATION);
   const [isLoading, setIsLoading] = useState(false);
+  useBackHandler(() => {
+    Navigation.dismissModal(componentId);
+    return true;
+  });
 
   const { StepComponent, NEXT } = STEPS[step];
   const [inviteToDuel]: InviteToDuelMutationTuple = useMutation(GQL_MUTATION_INVITE_TO_DUEL, {
