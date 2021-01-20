@@ -7,10 +7,16 @@ interface Props {
   color?: string;
 }
 
-function Back({ color = Colours.neutral.n800 }: Props) {
+function Back({ color = Colours.neutral.n900 }: Props) {
   return (
-    <Svg width={Style.adjust(24)} height={Style.adjust(24)} viewBox="0 0 24 24" testID={BACK_BUTTON}>
-      <Path d="M16 4l-8 8 8 8" stroke={color} strokeMiterlimit={10} strokeLinecap="round" strokeLinejoin="round" />
+    <Svg
+      height={String(Style.adjust(22))}
+      width={String(Style.adjust(12))}
+      viewBox="0 0 12 22"
+      fill="none"
+      testID={BACK_BUTTON}
+    >
+      <Path d="M11.25 0.5L0.75 11L11.25 21.5" stroke={color} strokeMiterlimit="10" strokeLinecap="round" />
     </Svg>
   );
 }
