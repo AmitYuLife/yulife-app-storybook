@@ -10,9 +10,8 @@ import { GetDuellerDetails_getDuellerDetails } from "@graphql/_core/schema/GetDu
 import moment from "moment";
 import { DATE_FORMAT_WITHOUT_TZ } from "@services/utils";
 import { DuelBackground } from "./subcomponents";
-import { DuelStepProps, Step } from "./duels.types";
+import { DuelStepProps } from "./duels.types";
 import DuelResponseIntro from "./subcomponents/duel-response-intro/duel-response-intro";
-import DuelResponseOptions from "./subcomponents/duel-response-options/duel-response-options";
 import { IReduxState } from "@redux/_core/reducers";
 import { getTotalCoins } from "@redux/coins/coins.selectors";
 import { Loading } from "@atoms";
@@ -21,6 +20,7 @@ import { GQL_QUERY_GET_DUELLER_DETAILS } from "@graphql/duels/getDuellerDetails"
 import { GQL_QUERY_GET_DUEL_TOMORROW } from "@graphql/duels/getDuelsTomorrow.gql";
 import { GQL_QUERY_GET_DUEL_INVITATIONS } from "@graphql/duels/getDuelInvitations.gql";
 import { useBackHandler } from "@services/hooks/useBackHandler";
+import { TopBarAbsolute } from "@organisms/top-bar/top-bar-absolute";
 
 interface IModalProps {
   duelId: string;
@@ -33,7 +33,6 @@ type IMapStateToProps = ReturnType<typeof mapStateToProps>;
 type IProps = IModalProps & IMapStateToProps;
 
 const DuelRespondModal: React.FC<IProps> = ({ componentId, duelId, userCoins, invitation }) => {
-  const [step, setStep] = useState<Step>("INTRO");
   const [isLoading, setIsLoading] = useState(false);
   const [loadingLabel, setLoadingLabel] = React.useState<"primary" | "secondary">(null);
   useBackHandler(() => {
@@ -63,11 +62,8 @@ const DuelRespondModal: React.FC<IProps> = ({ componentId, duelId, userCoins, in
   const DuellerDetails: GetDuellerDetails_getDuellerDetails = getDuellerDetailsQuery?.data?.getDuellerDetails;
   const user = DuellerDetails?.user;
   const opponent = DuellerDetails?.opponent;
-  const userAvatar = user?.avatar;
-  const opponentAvatar = opponent?.avatar;
 
   const yucoin = invitation?.yucoin;
-  const duration = invitation?.duration;
 
   const dispatch = useDispatch();
 
@@ -99,20 +95,21 @@ const DuelRespondModal: React.FC<IProps> = ({ componentId, duelId, userCoins, in
   );
 
   const submitDuel = async () => {
-    Alert.alert(
-      `Are you sure?`,
-      `Remember, if you accept this duel, you could lose ${yucoin} YuCoin. Are you happy to proceed?`,
-      [
-        {
-          style: "cancel",
-          text: "Cancel",
-        },
-        {
-          onPress: await handlePress(true),
-          text: "Confirm",
-        },
-      ]
-    );
+    const description =
+      yucoin === 0
+        ? "This duel is just for bragging rights, so you won't win or lose any YuCoin. Are you happy to proceed?"
+        : `Remember, if you accept this duel, you could lose ${yucoin} YuCoin. Are you happy to proceed?`;
+
+    Alert.alert(`Are you sure?`, description, [
+      {
+        style: "cancel",
+        text: "Cancel",
+      },
+      {
+        onPress: handlePress(true),
+        text: "Confirm",
+      },
+    ]);
   };
 
   const loading = getDuelsQuery?.loading || getDuellerDetailsQuery?.loading;
@@ -122,7 +119,7 @@ const DuelRespondModal: React.FC<IProps> = ({ componentId, duelId, userCoins, in
     user,
     opponent,
     loading,
-    goToNextStep: () => setStep("OPTIONS"),
+    goToNextStep: submitDuel,
     onDeclinePress: handlePress(false),
     isLoading,
     submitDuel,
@@ -139,25 +136,11 @@ const DuelRespondModal: React.FC<IProps> = ({ componentId, duelId, userCoins, in
           <View style={styles.loadingOverlay}>
             <Loading />
           </View>
-        ) : step === "INTRO" ? (
-          <DuelResponseIntro {...componentProps} />
         ) : (
-          <DuelResponseOptions
-            startDateTime={startDateTime}
-            opponentFirstName={opponent.firstName}
-            duration={duration}
-            yucoin={yucoin}
-            userCoins={userCoins}
-            submitDuel={submitDuel}
-            onDeclinePress={handlePress(false)}
-            isLoading={isLoading}
-            loadingLabel={loadingLabel}
-            userAvatar={userAvatar}
-            opponentAvatar={opponentAvatar}
-            componentId={componentId}
-          />
+          <DuelResponseIntro {...componentProps} />
         )}
       </View>
+      <TopBarAbsolute leftIcon="Close" onPressLeftIcon={() => Navigation.dismissModal(componentId)} rightIcon="Coins" />
     </View>
   );
 };

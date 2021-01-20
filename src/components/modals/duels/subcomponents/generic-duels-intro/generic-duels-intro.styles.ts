@@ -9,7 +9,9 @@ export default StyleSheet.create({
   } as TextStyle,
   headingResponse: {
     color: "rgb(51,51,51)",
-    fontSize: 40,
+    fontSize: 20,
+    lineHeight: 24,
+    letterSpacing: 0.8,
     textAlign: "center",
   } as TextStyle,
   versusImage: {
