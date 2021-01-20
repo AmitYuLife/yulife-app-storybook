@@ -2,9 +2,14 @@ import * as React from "react";
 import Svg, { Path, Defs, LinearGradient, Stop } from "react-native-svg";
 import { Style } from "@styles";
 
-const _DuelYuCoin = () => {
+interface IProps {
+  height?: number;
+  width?: number;
+}
+
+const _DuelYuCoin: React.FC<IProps> = ({ height = 18, width = 18 }) => {
   return (
-    <Svg width={Style.adjust(18)} height={Style.adjust(18)} viewBox="0 0 18 18" fill="none">
+    <Svg width={Style.adjust(height)} height={Style.adjust(width)} viewBox="0 0 18 18" fill="none">
       <Path d="M9 18A9 9 0 109 0a9 9 0 000 18z" fill="url(#prefix__paint0_linear)" />
       <Path
         d="M9 2.076c2.23 0 4.272.78 5.88 2.082A7.61 7.61 0 009 1.386a7.603 7.603 0 00-5.88 2.775A9.31 9.31 0 019 2.076z"

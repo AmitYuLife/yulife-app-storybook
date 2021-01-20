@@ -1,5 +1,5 @@
 import { StyleSheet, ViewStyle, TextStyle, ImageStyle } from "react-native";
-import { Style, Colours } from "@styles";
+import { Style, Colours, TOP_BAR } from "@styles";
 
 export default StyleSheet.create({
   headingInvite: {
@@ -25,7 +25,7 @@ export default StyleSheet.create({
     paddingHorizontal: 40,
   } as ViewStyle,
   avatarSection: {
-    flex: 9,
+    flex: 3,
     display: "flex",
     flexDirection: "row",
     justifyContent: "center",
@@ -33,11 +33,11 @@ export default StyleSheet.create({
     alignItems: "center",
   } as ViewStyle,
   versusSection: {
-    display: "flex",
+    flex: 1,
     flexDirection: "row",
     overflow: "hidden",
     justifyContent: "space-between",
-    alignItems: "center",
+    alignItems: "flex-start",
     width: "100%",
   } as ViewStyle,
   buttonSection: {
@@ -77,5 +77,9 @@ export default StyleSheet.create({
   } as TextStyle,
   secondaryBtnWrapper: {
     marginTop: 8,
+  } as ViewStyle,
+  introWrapper: {
+    ...StyleSheet.absoluteFillObject,
+    paddingTop: TOP_BAR.TOP_BAR_WITH_PAD,
   } as ViewStyle,
 });

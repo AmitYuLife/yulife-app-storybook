@@ -1,48 +1,43 @@
-import React, { useEffect, useState, useMemo } from "react";
-import { View, ActionSheetIOS } from "react-native";
-import { Text, Button, Loading } from "@atoms/index";
+import React, { useState, useMemo } from "react";
+import { View } from "react-native";
+import { Text, Button, Loading, BlurProvider } from "@atoms/index";
 import styles from "./duel-options.styles";
-import { DuelStepProps } from "../../duels.types";
+import { DuelStepProps, DEFAULT_DUEL_AMOUNT_LABEL } from "../../duels.types";
 import { GQL_QUERY_GET_DUEL_TEMPLATES } from "@graphql/duels/getDuelTemplates.gql";
 import { useQuery } from "@apollo/react-hooks";
 import { GetDuelTemplates } from "@graphql/_core/schema";
-import { Coins } from "@organisms/top-bar/assets";
-import WagerDropdown from "./subcomponents/wager-dropdown";
-import { Colours } from "@styles";
+import WagerDropdown from "./subcomponents/wager-dropdown/wager-dropdown";
 import { DUEL_OPTIONS_SCREEN } from "@ids";
+import { ListPicker } from "@components/molecules";
+import { TopBarAbsolute } from "@organisms/top-bar/top-bar-absolute";
+import { Navigation } from "react-native-navigation";
+
+interface IOptions {
+  id: string;
+  label: string;
+  value: number;
+}
 
 export default function DuelOptions({
+  componentId,
   opponent,
   setYucoin,
   yucoin,
   userCoins,
-  setDuration,
   submitDuel,
   isLoading,
 }: DuelStepProps) {
-  // Picker control values
-  const [pickerYuCoinAmount, setPickerYuCoinAmount] = useState(`${yucoin} YuCoin`);
-  const disabled = userCoins < 0;
-  const { data, loading: areTemplatesLoading } = useQuery<GetDuelTemplates>(GQL_QUERY_GET_DUEL_TEMPLATES, {
+  const [pickerAmountLabel, setPickerAmountLabel] = useState(DEFAULT_DUEL_AMOUNT_LABEL);
+  const { data, loading } = useQuery<GetDuelTemplates>(GQL_QUERY_GET_DUEL_TEMPLATES, {
     fetchPolicy: "network-only",
   });
   const wagers = data?.getDuelTemplates?.wagerTemplate || [];
 
-  useEffect(() => {
-    if (wagers && wagers.length) {
-      const { yucoin } = wagers[0];
-      setYucoin(yucoin);
-
-      const label = yucoin === 0 ? `${yucoin} YuCoin (pride)` : `${yucoin} YuCoin`;
-      setPickerYuCoinAmount(label);
-    }
-  }, [wagers, setDuration, setYucoin, setPickerYuCoinAmount]);
-
-  const wagerOptions = useMemo(
+  const wagerOptions: IOptions[] = useMemo(
     () =>
       wagers.reduce((acc, { id, yucoin: wagerYuCoin }) => {
         if (userCoins >= wagerYuCoin) {
-          const label = wagerYuCoin === 0 ? `${wagerYuCoin} YuCoin (pride)` : `${wagerYuCoin} YuCoin`;
+          const label = wagerYuCoin === 0 ? `Bragging Rights!` : `${wagerYuCoin} YuCoin`;
 
           acc.push({
             id,
@@ -56,70 +51,61 @@ export default function DuelOptions({
     [wagers, userCoins]
   );
 
-  const onWagerPress = () => {
-    ActionSheetIOS.showActionSheetWithOptions(
-      {
-        title: "YuCoin to wager",
-        options: ["Cancel", ...wagerOptions.map(({ label }) => label)],
-        cancelButtonIndex: 0,
-      },
-      (buttonIndex) => {
-        if (buttonIndex !== 0) {
-          const index = buttonIndex - 1;
-          setYucoin(wagerOptions[index].value);
-          setPickerYuCoinAmount(wagerOptions[index].label);
-        }
-      }
-    );
-  };
+  const onPressLeftIcon = () => Navigation.dismissModal(componentId);
 
   return (
-    <>
-      <View style={styles.wrapper} testID={DUEL_OPTIONS_SCREEN}>
-        <View>
-          <Text style={styles.description}>
-            You&apos;re challenging{" "}
-            <Text style={styles.description} bold={true}>
-              {opponent.firstName} {opponent.lastName}
-            </Text>{" "}
-            to a duel, to see who can walk the most steps.
-          </Text>
-          <Text style={styles.description}>The duel will start tomorrow and last until the end of the day.</Text>
-          <View style={styles.flexRow}>
-            <Text style={styles.question} bold={true}>
-              How much YuCoin to wager?
+    <BlurProvider
+      backgroundColor="dark"
+      render={({ toggleOverlay }) => (
+        <View style={styles.safeAreaView}>
+          <TopBarAbsolute leftIcon="Close" onPressLeftIcon={onPressLeftIcon} rightIcon="Coins" />
+          <View style={styles.wrapper} testID={DUEL_OPTIONS_SCREEN}>
+            <Text style={styles.description}>
+              You&apos;re challenging{" "}
+              <Text style={styles.description} bold={true}>
+                {opponent.firstName} {opponent.lastName}
+              </Text>{" "}
+              to a duel. Whoever registers the most steps during the duel, wins!
             </Text>
-          </View>
-          <View style={styles.dropdownWrapper}>
-            <View style={styles.coinsWrapper}>
-              <Coins color={disabled ? Colours.neutral.n500 : "#5A5A5C"} />
+            <Text style={styles.description}>
+              The duel starts tomorrow and lasts all day. Results announcing the winner will appear the next morning.
+            </Text>
+            <View style={styles.flexRow}>
+              <Text style={styles.question} bold={true}>
+                What are you duelling for?
+              </Text>
             </View>
-            <WagerDropdown
-              wagerOptions={wagerOptions}
-              disabled={disabled}
-              yucoin={yucoin}
-              pickerYuCoinAmount={pickerYuCoinAmount}
-              onWagerPress={onWagerPress}
-              setYucoin={setYucoin}
-              setPickerYuCoinAmount={setPickerYuCoinAmount}
+            <View>
+              <WagerDropdown yucoin={yucoin} pickerAmountLabel={pickerAmountLabel} onPress={toggleOverlay} />
+            </View>
+          </View>
+          <View style={styles.buttonWrapper}>
+            <Button
+              disabled={yucoin === null || isLoading}
+              isLoading={isLoading}
+              onPress={submitDuel}
+              label="Send duel request"
+              type="Primary"
             />
           </View>
+          {loading ? (
+            <View style={[styles.safeAreaView, styles.loadingOverlay]}>
+              <Loading />
+            </View>
+          ) : null}
         </View>
-      </View>
-      <View style={styles.buttonWrapper}>
-        <Button
-          disabled={disabled || isLoading}
-          isLoading={isLoading}
-          onPress={submitDuel}
-          label="Send duel request"
-          type="Primary"
-        />
-      </View>
-      {areTemplatesLoading ? (
-        <View style={styles.loadingOverlay}>
-          <Loading />
-        </View>
-      ) : null}
-    </>
+      )}
+      renderOverlay={({ toggleOverlay }) => {
+        const items = wagerOptions.map((option) => ({
+          ...option,
+          onPress() {
+            setPickerAmountLabel(option.label);
+            setYucoin(option.value);
+            toggleOverlay();
+          },
+        }));
+        return <ListPicker onPressCancel={toggleOverlay} instruction="What are you duelling for?" items={items} />;
+      }}
+    />
   );
 }
