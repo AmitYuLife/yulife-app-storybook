@@ -22,6 +22,19 @@ const FibDeclarationConfirmationContainer = memo(function (props: Props) {
   });
 
   useEffect(() => {
+    if (checkoutData?.gpDetails) {
+      const gpDetails = {
+        practiceName: checkoutData.gpDetails.gpPractice,
+        practiceAddress: checkoutData.gpDetails.gpAddress,
+        practiceTown: checkoutData.gpDetails.gpTown,
+        practicePostCode: checkoutData.gpDetails.gpPostcode,
+        gpName: checkoutData.gpDetails.gpName,
+      };
+      dispatch(updateFIBValue({ key: "gpDetails", value: gpDetails }));
+    }
+  }, [checkoutData, dispatch]);
+
+  useEffect(() => {
     dispatch(updateFIBValue({ key: "lastQuestionId", value: FIB_CHECKOUT_SCREEN_ID }));
   }, [dispatch]);
 
