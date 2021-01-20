@@ -5,15 +5,9 @@ export const styles = StyleSheet.create({
   flex: {
     justifyContent: "center",
     alignItems: "center",
-    overflow: "hidden",
   } as ViewStyle,
   disabled: {
     opacity: 0.3,
-  } as ViewStyle,
-  outer: {
-    backgroundColor: Colours.neutral.n100,
-    borderRadius: 8,
-    overflow: "hidden",
   } as ViewStyle,
   main: {
     width: "100%",
@@ -21,10 +15,10 @@ export const styles = StyleSheet.create({
     justifyContent: "center",
     flexDirection: "row",
     alignItems: "center",
-    borderWidth: 2,
+    backgroundColor: Colours.neutral.white,
+    borderWidth: 1,
     borderColor: Colours.neutral.n100,
-    backgroundColor: "white",
-    borderRadius: 8,
+    borderRadius: 10,
   } as ViewStyle,
   leftSide: {
     flexDirection: "row",
