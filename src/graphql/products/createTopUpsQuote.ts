@@ -20,26 +20,18 @@ export const GQL_MUTATION_CREATE_TOP_UPS_QUOTE = gql`
         common {
           actualCost
           sumAssured
-          salaryPercentageCovered
-          earnRate
         }
         rare {
           actualCost
           sumAssured
-          salaryPercentageCovered
-          earnRate
         }
         epic {
           actualCost
           sumAssured
-          salaryPercentageCovered
-          earnRate
         }
         custom {
           actualCost
           sumAssured
-          salaryPercentageCovered
-          earnRate
         }
       }
     }
