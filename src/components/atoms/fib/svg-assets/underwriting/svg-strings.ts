@@ -168,6 +168,8 @@ export const FINANCIAL_QUESTIONS_ICON = `<svg width="24" height="24" viewBox="0 
 </svg>
 `;
 
+export const GENDER_ICON = `<svg width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0)" stroke="#6E6E70" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.785 6.858l4.342-4.342M7.187 6.858a5.373 5.373 0 117.599 7.6 5.373 5.373 0 01-7.599-7.6zM16.693 1.787h3.07v3.07M11.416 16.213v6.141M9.6 20.4h3.6"/></g><defs><clipPath id="clip0"><path fill="#fff" d="M0 0h24v24H0z"/></clipPath></defs></svg>
+`;
 export const READINGS_SATISFACTORY_ICON = `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M18.2361 21.8002H5.60104C4.83471 21.8002 4.19922 21.1958 4.19922 20.4265V4.74887C4.19922 3.99795 4.81602 3.37524 5.60104 3.37524H18.2548C19.0212 3.37524 19.6567 3.97964 19.6567 4.74887V20.4448C19.638 21.1958 19.0212 21.8002 18.2361 21.8002Z" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-miterlimit="10"/>
 <path d="M14.836 4.38247H8.92969V3.15536C8.92969 2.40444 9.54649 1.80005 10.3128 1.80005H13.4716C14.2379 1.80005 14.8547 2.40444 14.8547 3.15536V4.38247H14.836Z" fill="white" stroke="${Colours.neutral.n800}" stroke-width="1.2" stroke-miterlimit="10"/>

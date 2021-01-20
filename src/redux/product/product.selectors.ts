@@ -23,6 +23,7 @@ import {
   FOLLOW_UP_SMOKING_ANSWERS_TRIGGER,
   FIB_FINANCIAL_COVER_LIST_SCREEN_ID,
   FIB_INPUT_SALARY,
+  FIB_GENDER_SCREEN_ID,
 } from "../../components/containers/products/fib/data/underwriting-journey-data";
 import { FINANCIAL_QUESTIONS_ICON } from "@atoms/fib/svg-assets/underwriting/svg-strings";
 import { addCommasToNumber } from "@services/utils";
@@ -239,6 +240,10 @@ export const getReviewAnswers = (state: IReduxState): any => {
         questionId = item.id;
         answer = state.product.fib.answers[item.id];
       }
+    }
+
+    if (item.id === FIB_GENDER_SCREEN_ID) {
+      answer = answer === "F" ? "Female" : "Male";
     }
 
     if (icon && title) {

@@ -37,6 +37,7 @@ export { default as SkeletonRow } from "./skeleton-row/skeleton-row";
 export { default as Streak } from "./fib/streak/streak";
 export { default as Shoe } from "./fib/shoe/shoe";
 export { default as PackageType } from "./package-types/package-types";
+export { default as GenderIcon } from "./gender/gender";
 
 // error :( https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-8.html#export--as-ns-syntax
 import * as ProductSvg from "./product-svg";
