@@ -1,11 +1,15 @@
-import React, { memo } from "react";
+import React, { memo, FC } from "react";
 import { View, StyleSheet, ViewStyle } from "react-native";
 import { SkeletonRow } from "@atoms";
 
-const _DuelSkeleton = () => {
+interface IProps {
+  length?: number;
+}
+
+const _DuelSkeleton: FC<IProps> = ({ length = 20 }) => {
   return (
     <View style={styles.wrapper}>
-      {Array.from({ length: 20 }).map((_, i) => (
+      {Array.from({ length }).map((_, i) => (
         <SkeletonRow key={i} width={i % 2 ? 105 : 150} />
       ))}
     </View>

@@ -22,7 +22,7 @@ const TomorrowsDuels: FC = () => {
   if (loading) {
     return (
       <View style={styles.skeletonWrapper}>
-        <DuelSkeleton />
+        <DuelSkeleton length={2} />
       </View>
     );
   }
@@ -45,7 +45,7 @@ const TomorrowsDuels: FC = () => {
 
 const styles = StyleSheet.create({
   wrapper: { marginBottom: Style.adjust(24) } as ViewStyle,
-  entriesWrapper: { flex: 1, marginVertical: Style.adjust(16) } as ViewStyle,
+  entriesWrapper: { flex: 1, marginTop: Style.adjust(16) } as ViewStyle,
   skeletonWrapper: {
     flex: 1,
     height: Style.adjust(100),
