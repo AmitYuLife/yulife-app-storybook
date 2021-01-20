@@ -17,6 +17,7 @@ import {
   CIRCLE_WITH_ELLIPSES_ICON,
   PERSON_FACEMASK_ICON,
   FINANCIAL_QUESTIONS_ICON,
+  READINGS_SATISFACTORY_ICON,
 } from "@atoms/fib/svg-assets/underwriting/svg-strings";
 import {
   DIABETES_ICON,
@@ -1201,11 +1202,7 @@ export const data: UnderwritingJourneyScreen[] = [
       },
     ],
     heading: "Medical",
-    icon: `<svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-    <path d="M5.4116 21.9998C6.36231 18.4895 6.50855 17.9044 6.50855 17.9044C8.33687 20.8297 11.2621 21.561 11.2621 21.561C19.4529 23.9743 25.5228 12.4195 20.1111 6.64212C15.65 2.54675 11.9203 6.3496 11.9203 6.3496C9.06818 6.3496 10.1651 1.81543 10.1651 1.81543H7.09361C7.09361 1.81543 4.60713 8.39728 11.0427 10.0793C11.0427 10.0793 11.9934 12.8583 9.79948 15.8567C9.79948 15.8567 5.77726 12.0539 3.36389 16.2224C3.36389 16.2224 2.12067 18.6357 1.82812 21.9998H4.60713H5.4116Z" stroke="${Colours.neutral.n800}" stroke-width="1.7" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="M15.6484 7.73919C15.6484 7.73919 19.0125 7.37353 19.0856 11.2495" stroke="${Colours.neutral.n800}" stroke-width="1.7" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-    `,
+    icon: READINGS_SATISFACTORY_ICON,
     title: "Hospital Stay",
     question:
       "For the issues you had that were not on the list(s), have you required an overnight stay in hospital in the last 2 years?",
@@ -1229,11 +1226,7 @@ export const data: UnderwritingJourneyScreen[] = [
     category: "fib_medical_journey",
     dependsOnOtherResponses: [{ id: FIB_HOSPITAL_STAY_SCREEN_ID, answer: "No" }],
     heading: "Medical",
-    icon: `<svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-    <path d="M5.4116 21.9998C6.36231 18.4895 6.50855 17.9044 6.50855 17.9044C8.33687 20.8297 11.2621 21.561 11.2621 21.561C19.4529 23.9743 25.5228 12.4195 20.1111 6.64212C15.65 2.54675 11.9203 6.3496 11.9203 6.3496C9.06818 6.3496 10.1651 1.81543 10.1651 1.81543H7.09361C7.09361 1.81543 4.60713 8.39728 11.0427 10.0793C11.0427 10.0793 11.9934 12.8583 9.79948 15.8567C9.79948 15.8567 5.77726 12.0539 3.36389 16.2224C3.36389 16.2224 2.12067 18.6357 1.82812 21.9998H4.60713H5.4116Z" stroke="${Colours.neutral.n800}" stroke-width="1.7" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="M15.6484 7.73919C15.6484 7.73919 19.0125 7.37353 19.0856 11.2495" stroke="${Colours.neutral.n800}" stroke-width="1.7" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-    `,
+    icon: READINGS_SATISFACTORY_ICON,
     title: "Symptoms Resolved",
     question: "Are these conditions or symptoms fully resolved?",
     firstButton: { label: "No", actionId: FIB_CONDITION_STABLE_SCREEN_ID },
