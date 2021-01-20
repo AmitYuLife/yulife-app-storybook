@@ -31,6 +31,10 @@ export default StyleSheet.create({
   } as ViewStyle,
   opponent: {
     flex: 1,
+    justifyContent: "space-between",
+  } as ViewStyle,
+  middleOpponent: {
+    marginHorizontal: Style.adjust(4),
   } as ViewStyle,
   name: {
     textAlign: "center",

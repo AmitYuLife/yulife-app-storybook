@@ -21,7 +21,9 @@ const UserSteps = () => {
 
   return (
     <View style={styles.wrapper}>
-      <DuelImage size="medium" uri={avatarSource} />
+      <View style={styles.imageWrapper}>
+        <DuelImage size="medium" uri={avatarSource} />
+      </View>
       <Text bold={true} style={styles.text}>
         {addCommasToNumber(dailySteps)} steps today
       </Text>
@@ -45,6 +47,13 @@ const styles = StyleSheet.create({
     fontSize: Style.adjust(18),
     lineHeight: Style.adjust(22),
   } as TextStyle,
+  imageWrapper: {
+    justifyContent: "flex-end",
+    alignItems: "flex-end",
+    height: Style.adjust(50),
+    paddingTop: 10,
+    marginRight: Style.adjust(8),
+  } as ViewStyle,
 });
 
 export default UserSteps;
