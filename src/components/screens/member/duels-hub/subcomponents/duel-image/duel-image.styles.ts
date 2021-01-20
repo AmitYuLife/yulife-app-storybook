@@ -3,7 +3,7 @@ import { ImageStyle } from "react-native-fast-image";
 import { Style } from "@styles";
 
 const AVATAR_SM = Style.adjust(42);
-const AVATAR_MD = Style.adjust(48);
+const AVATAR_MD = Style.adjust(54);
 
 const EMPTY_AVATAR_SM = Style.adjust(45);
 const EMPTY_AVATAR_MD = Style.adjust(56);
@@ -48,6 +48,7 @@ export const filledStyles = StyleSheet.create({
   medium: {
     height: AVATAR_MD,
     width: AVATAR_MD,
+    paddingTop: Style.adjust(5),
   } as ViewStyle,
   imageSmall: {
     width: AVATAR_SM,

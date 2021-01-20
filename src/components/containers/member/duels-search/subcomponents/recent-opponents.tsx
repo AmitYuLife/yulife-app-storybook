@@ -40,12 +40,13 @@ function _RecentOpponents({ inviteToDuel }: Props) {
           Recent
         </Text>
         <View style={styles.flexRow}>
-          {opponents.map((opponent) => {
+          {opponents.map((opponent, index) => {
+            const isMiddleRecentOpponent = index === 1;
             return (
               <TouchableOpacityWithDelay
                 key={opponent?.customerId}
                 onPress={() => inviteToDuel(opponent?.customerId)}
-                style={styles.opponent}
+                style={[styles.opponent, isMiddleRecentOpponent ? styles.middleOpponent : {}]}
               >
                 <Text bold={true} style={styles.name}>
                   {opponent.fullName}
