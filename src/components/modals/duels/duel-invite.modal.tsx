@@ -7,15 +7,15 @@ import { useMutation, useQuery } from "@apollo/react-hooks";
 import { Alert, View } from "react-native";
 import moment from "moment";
 import { DuelBackground, DuelOptions, DuelInviteIntro } from "./subcomponents";
-import { DuelStepProps } from "./duels.types";
-import { Step, DEFAULT_DUEL_AMOUNT, DEFAULT_DUEL_DURATION } from "./duels.types";
+import { DEFAULT_DUEL_AMOUNT, DuelStepProps } from "./duels.types";
+import { Step } from "./duels.types";
 import styles from "./duel-invite.modal.styles";
 import { IReduxState } from "@redux/_core/reducers";
 import { getTotalCoins } from "@redux/coins/coins.selectors";
 import { ROUTES } from "@navigation/constants";
 import { GQL_QUERY_GET_DUELLER_DETAILS } from "@graphql/duels/getDuellerDetails";
-import { TopBarAbsolute } from "@organisms/top-bar/top-bar-absolute";
 import { GQL_QUERY_GET_DUEL_INVITATIONS } from "@graphql/duels/getDuelInvitations.gql";
+import { useBackHandler } from "@services/hooks/useBackHandler";
 
 type IReduxProps = ReturnType<typeof mapStateToProps>;
 
@@ -55,11 +55,13 @@ const DuelInviteModal: React.FC<IDuelProps> = ({
   userCoins,
 }) => {
   const dispatch = useDispatch();
-
   const [step, setStep] = useState<Step>("INTRO");
   const [yucoin, setYucoin] = useState(DEFAULT_DUEL_AMOUNT);
-  const [duration, setDuration] = useState(DEFAULT_DUEL_DURATION);
   const [isLoading, setIsLoading] = useState(false);
+  useBackHandler(() => {
+    Navigation.dismissModal(componentId);
+    return true;
+  });
 
   const { StepComponent, NEXT } = STEPS[step];
   const [inviteToDuel]: InviteToDuelMutationTuple = useMutation(GQL_MUTATION_INVITE_TO_DUEL, {
@@ -84,7 +86,7 @@ const DuelInviteModal: React.FC<IDuelProps> = ({
           startDateTime: moment().add(1, "day").startOf("day").format(),
           opponentUserIds: [opponentId],
           yucoin: yucoin,
-          duration: duration,
+          duration: 86400,
         },
       });
       await Navigation.dismissModal(componentId);
@@ -113,48 +115,36 @@ const DuelInviteModal: React.FC<IDuelProps> = ({
       return;
     }
 
-    Alert.alert(
-      "Confirm duel request",
-      "If you send this duel invitation, it will be listed in your upcoming duels and will begin tomorrow",
-      [
-        {
-          text: "Cancel",
-          style: "cancel",
-        },
-        {
-          text: "Confirm",
-          onPress: onSubmit,
-        },
-      ]
-    );
+    Alert.alert("Confirm invitation?", "If accepted, it will be listed in your upcoming duels and begin tomorrow", [
+      {
+        text: "Cancel",
+        style: "cancel",
+      },
+      {
+        text: "Confirm",
+        onPress: onSubmit,
+      },
+    ]);
   };
 
   const componentProps: DuelStepProps = {
     yucoin,
-    duration,
     user,
     opponent,
     loading,
     setYucoin,
-    setDuration,
     goToNextStep: () => setStep(NEXT),
     onDeclinePress: () => Navigation.dismissModal(componentId),
     isLoading,
     submitDuel,
     userCoins,
+    componentId,
   };
 
   return (
     <View style={styles.safeAreaWrapper}>
       <DuelBackground />
-      <View style={styles.wrapper}>
-        <StepComponent {...componentProps} />
-      </View>
-      <TopBarAbsolute
-        leftIcon="Close"
-        onPressLeftIcon={() => Navigation.dismissModal(componentId)}
-        rightIcon={step === "INTRO" ? null : "Coins"}
-      />
+      <StepComponent {...componentProps} />
     </View>
   );
 };

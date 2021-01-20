@@ -4,6 +4,8 @@ import { Text, Button } from "@atoms";
 import styles from "./duel-response-options.styles";
 import { getDaysAndMinutesFromSeconds } from "@services/utils";
 import { DUEL_RESPONSE } from "@ids";
+import { TopBarAbsolute } from "@organisms/top-bar/top-bar-absolute";
+import { Navigation } from "react-native-navigation";
 
 interface IProps {
   startDateTime: string;
@@ -17,6 +19,7 @@ interface IProps {
   submitDuel: () => Promise<void>;
   onDeclinePress: () => Promise<void>;
   loadingLabel: "primary" | "secondary";
+  componentId: string;
 }
 
 const Options: React.FC<IProps> = ({
@@ -29,10 +32,12 @@ const Options: React.FC<IProps> = ({
   submitDuel,
   onDeclinePress,
   loadingLabel,
+  componentId,
 }) => {
   const disabled = yucoin > userCoins;
   return (
     <>
+      <TopBarAbsolute leftIcon="Close" onPressLeftIcon={() => Navigation.dismissModal(componentId)} rightIcon="Coins" />
       <View style={styles.wrapper} testID={DUEL_RESPONSE(opponentFirstName)}>
         <View style={styles.bodyWrapper}>
           <Text style={styles.description}>
