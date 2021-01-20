@@ -32,8 +32,8 @@ export default StyleSheet.create({
     alignItems: "center",
   },
   image: {
-    width: scaleAvatarBasedOnDeviceHeight(WIDTH + 180),
-    height: scaleAvatarBasedOnDeviceHeight(WIDTH + 400),
+    width: scaleAvatarBasedOnDeviceHeight(WIDTH),
+    height: scaleAvatarBasedOnDeviceHeight(WIDTH + 300),
   } as ImageStyle,
   border: {
     width: AVATAR_WIDTH,
