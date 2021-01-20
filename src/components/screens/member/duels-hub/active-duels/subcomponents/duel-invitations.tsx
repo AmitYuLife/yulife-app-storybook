@@ -34,7 +34,7 @@ const DuelInvitationsw: FC = () => {
   }
 
   return (
-    <>
+    <View>
       <Text bold={true}>Invitations</Text>
       <View style={styles.wrapper}>
         {duels.map((duel, index) => {
@@ -66,7 +66,7 @@ const DuelInvitationsw: FC = () => {
           );
         })}
       </View>
-    </>
+    </View>
   );
 };
 

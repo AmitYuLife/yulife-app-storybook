@@ -34,48 +34,42 @@ const TodaysDuels: FC = () => {
 
   if (loading) {
     return (
-      <>
+      <View>
         <Text bold={true}>Today’s Duels</Text>
         <View style={styles.skeletonWrapper}>
-          <DuelSkeleton />
+          <DuelSkeleton length={2} />
         </View>
-      </>
+      </View>
     );
   }
 
   if (isEmpty) {
     return (
-      <>
+      <View style={styles.sectionWrapper}>
         <Text bold={true}>Today’s Duels</Text>
         <View style={styles.emptyWrapper} testID={EMPTY_DUELS_HUB}>
           <Text style={styles.emptyText}>You’re not duelling with anybody today.</Text>
         </View>
         <Button
           testID={CHALLENGE_FRIEND_BUTTON}
-          wrapperStyle={styles.buttonWrapper}
           label="Challenge a friend"
           type="Primary"
           onPress={navigateToDuelsSearch}
         />
-      </>
+      </View>
     );
   }
 
   return (
-    <>
+    <View style={styles.sectionWrapper}>
       <Text bold={true}>Today’s Duels</Text>
       <View style={styles.wrapper}>
         {duels.map((duel) => (
           <DuelEntry key={duel.id} userId={userId} type="today" dailySteps={dailySteps} duel={duel} />
         ))}
       </View>
-      <Button
-        wrapperStyle={styles.buttonWrapper}
-        label="Challenge a friend"
-        type="Primary"
-        onPress={navigateToDuelsSearch}
-      />
-    </>
+      <Button label="Challenge a friend" type="Primary" onPress={navigateToDuelsSearch} />
+    </View>
   );
 };
 
@@ -101,8 +95,8 @@ const styles = StyleSheet.create({
     lineHeight: Style.adjust(24),
     color: Colours.neutral.n500,
   } as TextStyle,
-  buttonWrapper: {
-    marginBottom: Style.adjust(24),
+  sectionWrapper: {
+    marginBottom: Style.adjust(40),
   } as ViewStyle,
 });
 
