@@ -29,9 +29,7 @@ Feature("As an enabled user I am able to use the duels feature", async()=>{
                 Then("I should see Angela Martin", then.textVisible("Angela Martin"))
             })
             When("I tap a Duel >", when.tapText("Duel >"), async()=>{
-                When("I tap a Duel >", when.tapText("Duel >"), async () => { // quick detox fix for bug - remove when bret fixes double tap bug
                 Then("I should be on the start duel screen", then.multipleTextVisible(["It’s time to duel!", "Set the duel"]))
-                })
             })
             When("I tap the 'Set the duel' CTA", when.tapText("Set the duel"), async()=>{
                 Then("I should be on the yucoin wager screen", then.idVisible(DUEL_OPTIONS_SCREEN))
