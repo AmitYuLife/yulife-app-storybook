@@ -5,11 +5,8 @@ import { FibStyleSelectionScreen } from "../../../../screens/products/fib/choose
 import { useQuery } from "@apollo/react-hooks";
 import { GQL_QUERY_GET_YULIFER } from "@graphql/yuscreen";
 import { GetYulifer } from "@graphql/_core/schema";
-import { CoverType, YuProductId } from "@graphql/_core/schema/globalTypes";
-import {
-  GetYulifer_personal_options,
-  GetYulifer_personal_options_styles,
-} from "../../../../../graphql/_core/schema/GetYulifer";
+import { CoverType } from "@graphql/_core/schema/globalTypes";
+import { GetYulifer_personal_chest_options_styles } from "../../../../../graphql/_core/schema/GetYulifer";
 import { YuWorld } from "../../../../../graphql/_core/schema/globalTypes";
 import { YUGI_INTRO_TYPE } from "./fib.yugi-intro.container";
 import { useBackHandler } from "../../../../../services/hooks/useBackHandler";
@@ -28,19 +25,12 @@ const FibStyleSelectionContainer = memo(function FibStyleSelectionContainer(prop
     fetchPolicy: "cache-only",
   });
 
-  const epic = data.personal.reduce((acc: GetYulifer_personal_options, product) => {
-    if (product.productId !== YuProductId.family_income_benefit) {
-      return acc;
-    }
-
-    acc = product.options.find((option) => option.type === CoverType.epic);
-    return acc;
-  }, null);
+  const epic = data.personal.chest.options.find((option) => option.type === CoverType.epic);
 
   useEffect(() => {
     const preload: Source[] = [];
     epic.styles.forEach((epicStyle) => {
-      ["armor", "background", "icon"].forEach((key: keyof GetYulifer_personal_options_styles) =>
+      ["armor", "background", "icon"].forEach((key: keyof GetYulifer_personal_chest_options_styles) =>
         preload.push({ uri: epicStyle[key] })
       );
     });

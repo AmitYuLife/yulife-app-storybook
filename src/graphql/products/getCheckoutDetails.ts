@@ -13,17 +13,19 @@ export const GQL_QUERY_GET_CHECKOUT_DETAILS = gql`
       actualCost
       coverType
     }
-    personal: getYuProducts(productType: personal) {
-      productId
-      name
-      options {
-        type
-        styles {
-          world
-          name
-          icon
-          background
-          armor
+    personal: getPersonalProducts {
+      chest {
+        productId
+        name
+        options {
+          type
+          styles {
+            world
+            name
+            icon
+            background
+            armor
+          }
         }
       }
     }

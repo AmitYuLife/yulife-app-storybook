@@ -23,7 +23,7 @@ import {
   CreateTopUpsQuote_createTopUpsQuote,
   GetYulifer,
 } from "@graphql/_core/schema";
-import { CoverType, CreateTopUpsQuoteInput, ProductCode, YuProductId } from "@graphql/_core/schema/globalTypes";
+import { CoverType, CreateTopUpsQuoteInput, ProductCode } from "@graphql/_core/schema/globalTypes";
 import { getBirthday } from "@redux/product/product.selectors";
 import { GQL_QUERY_GET_YULIFER } from "@graphql/yuscreen";
 import { GQL_MUTATION_CREATE_TOP_UPS_QUOTE } from "@graphql/products";
@@ -130,9 +130,7 @@ const FibConfirmPackagesContainer = memo(function (props: FibConfirmPackagesCont
     ((fibQuoteData?.coverTypesInfo[selectedCoverType]?.sumAssured / (fibQuoteData?.term * 12)) * 100) / 100
   );
 
-  const fibProduct = yuliferData?.personal?.filter(
-    (product) => product.productId === YuProductId.family_income_benefit
-  )[0];
+  const fibProduct = yuliferData?.personal?.chest;
 
   const selectedProductOption = fibProduct?.options.filter(
     (productOption) => productOption.type === selectedCoverType

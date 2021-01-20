@@ -1,13 +1,10 @@
 import gql from "graphql-tag";
 import { GQL_FRAGMENT_AVATAR_REMOTE_FILES } from "../_fragments/avatarRemoteFiles.gql";
-import { GetYulifer_getYulifer } from "@graphql/_core/schema";
-
-export interface GetYuliferData {
-  getYulifer: GetYulifer_getYulifer;
-}
+import { GQL_FRAGMENT_YU_PRODUCT } from "../_fragments/yuProduct.gql";
 
 export const GQL_QUERY_GET_YULIFER = gql`
   ${GQL_FRAGMENT_AVATAR_REMOTE_FILES}
+  ${GQL_FRAGMENT_YU_PRODUCT}
 
   query GetYulifer {
     getYulifer {
@@ -18,46 +15,21 @@ export const GQL_QUERY_GET_YULIFER = gql`
         ...YumojiRemoteFiles
       }
     }
-    personal: getYuProducts(productType: personal) {
-      productId
-      productType
-      status
-      name
-      code
-      itemSlot
-      earnRate
-      description
-      options {
-        type
-        earnRate
-        heading
-        percentageCovered
-        styles {
-          world
-          name
-          icon
-          background
-          armor
-        }
-        powers {
-          id
-          title
-          description
-          icon
-        }
+    personal: getPersonalProducts {
+      pants {
+        ...PersonalProduct
+      }
+      chest {
+        ...PersonalProduct
+      }
+      gloves {
+        ...PersonalProduct
+      }
+      boots {
+        ...PersonalProduct
       }
     }
-    employer: getYuProducts(productType: employer) {
-      productId
-      productType
-      status
-      name
-      code
-      itemSlot
-      earnRate
-      description
-    }
-    charms: getYuProducts(productType: alpha) {
+    additional: getAdditionalProducts {
       productId
       productType
       status

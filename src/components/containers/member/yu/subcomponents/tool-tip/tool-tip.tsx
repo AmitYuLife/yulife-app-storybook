@@ -8,9 +8,6 @@ import {
   GetTopUpsQuote,
   GetTopUpsQuoteVariables,
   GetYulifer,
-  GetYulifer_charms,
-  GetYulifer_employer,
-  GetYulifer_personal,
   UpdateTopUpsQuoteVariables,
   UpdateTopUpsQuote_updateFibQuote,
 } from "@graphql/_core/schema";
@@ -29,6 +26,8 @@ import { useBackHandler } from "@services/hooks/useBackHandler";
 import { ProductCode, YuProductId, YuProductStatus } from "../../../../../../graphql/_core/schema/globalTypes";
 import { GQL_MUTATION_UPDATE_TOP_UPS_QUOTE } from "../../../../../../graphql/products/updateTopUpsQuote";
 import { GQL_QUERY_GET_TOP_UPS_QUOTE } from "../../../../../../graphql/products";
+import { personalProductsToArray } from "../../../../products/fib/fib.helpers";
+import { IProduct } from "../../../../products/fib/fib.types";
 
 export interface IToolTipProps {
   productId: YuProductId;
@@ -84,9 +83,9 @@ export const ToolTip = ({ productId, onClose }: IToolTipProps) => {
       return null;
     }
 
-    const { employer, charms, personal } = data;
+    const personal = personalProductsToArray(data.personal);
 
-    const allProducts = [...employer, ...charms, ...personal];
+    const allProducts: IProduct[] = [...data.additional, ...personal];
 
     const item = allProducts.find((i) => i?.productId === productId);
 
@@ -181,7 +180,7 @@ export const ToolTip = ({ productId, onClose }: IToolTipProps) => {
   );
 };
 
-function getButtonProps({ product }: { product: GetYulifer_personal | GetYulifer_employer | GetYulifer_charms }) {
+function getButtonProps({ product }: { product: IProduct }) {
   let label = "";
   let backgroundColor = Colours.darkHotPink;
   let shadowColor = Colours.darkHotPinkShadow;

@@ -1,4 +1,11 @@
 import { LocalNavigation } from "@services/hooks/useLocalNavigation";
+import {
+  GetYulifer_personal_pants,
+  GetYulifer_personal_chest,
+  GetYulifer_personal_gloves,
+  GetYulifer_personal_boots,
+  GetYulifer_additional,
+} from "../../../../graphql/_core/schema";
 
 export type FibRoute =
   | "FibBrowse"
@@ -54,3 +61,17 @@ export interface Cover {
   coverRemainInForce: string;
   coverId?: number;
 }
+
+export type PersonalProduct = (
+  | GetYulifer_personal_pants
+  | GetYulifer_personal_chest
+  | GetYulifer_personal_gloves
+  | GetYulifer_personal_boots
+)[];
+
+export type IProduct =
+  | GetYulifer_personal_pants
+  | GetYulifer_personal_chest
+  | GetYulifer_personal_gloves
+  | GetYulifer_personal_boots
+  | GetYulifer_additional;

@@ -11,7 +11,6 @@ import { GpDetails } from "./gp-details";
 import { PaymentDetails } from "./payment-details";
 import { useSelector } from "react-redux";
 import { getFIBStyle } from "@redux/product/product.selectors";
-import { YuProductId } from "@graphql/_core/schema/globalTypes";
 import { GetCheckoutDetails } from "@graphql/_core/schema/GetCheckoutDetails";
 import { StripePaymentRequestToken } from "tipsi-stripe";
 import { useBackHandler } from "@services/hooks/useBackHandler";
@@ -37,8 +36,7 @@ export const FibCheckoutHubContainer = memo((props: Props) => {
     return true;
   });
 
-  const personalProduct = (data?.personal || []).find((item) => item.productId === YuProductId.family_income_benefit);
-  const personalProductArmor = personalProduct?.options
+  const personalProductArmor = data?.personal?.chest?.options
     ?.find((item) => item.type === data.quote.coverType)
     ?.styles?.find((item) => item.world === fibStyle)?.armor;
 
@@ -58,7 +56,7 @@ export const FibCheckoutHubContainer = memo((props: Props) => {
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.topPad} />
         <Card
-          name={personalProduct.name}
+          name={data?.personal?.chest?.name}
           armor={personalProductArmor}
           coverType={data.quote.coverType}
           actualCost={data.quote.actualCost.toFixed(2)}
