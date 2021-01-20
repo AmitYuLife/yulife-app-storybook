@@ -10,6 +10,7 @@ import { GQL_QUERY_GET_YULIFER } from "@graphql/yuscreen";
 import { navigateToAvatarModal } from "../../navigation/navigateToAvatarModal";
 import { YUSCREEN_AVATAR } from "@ids";
 import { YuProductStatus } from "../../../../../../graphql/_core/schema/globalTypes";
+import { personalProductsToArray } from "../../../../products/fib/fib.helpers";
 
 interface Props {
   setProduct: Dispatch<string>;
@@ -36,11 +37,12 @@ const _AvatarAndEquipment = ({ setProduct, product }: Props) => {
       return [[], []];
     }
 
-    const { employer, charms, personal } = data;
+    const { additional, personal } = data;
 
-    const activeEmployerProducts = employer.filter((item) => item.status === YuProductStatus.active);
+    const activeEmployerProducts = additional.filter((item) => item.status === YuProductStatus.active);
+    const personalProducts = personalProductsToArray(personal);
 
-    return [personal, [...activeEmployerProducts, ...charms]];
+    return [personalProducts, activeEmployerProducts];
   }, [data]);
 
   const handleImageLoad = () => setShowLoading(false);

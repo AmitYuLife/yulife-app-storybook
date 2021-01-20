@@ -2,12 +2,12 @@ import React, { useMemo, Dispatch } from "react";
 import { StyleSheet, ViewStyle, View } from "react-native";
 import { Style } from "@styles";
 import { Item } from "./item";
-import { GetYulifer_personal, GetYulifer_employer } from "@graphql/_core/schema";
 import { getIsPersonalItem } from "../../../yu-types";
 import { YuProductStatus } from "../../../../../../../graphql/_core/schema/globalTypes";
+import { IProduct } from "../../../../../products/fib/fib.types";
 
 export interface ItemSetProps {
-  items: GetYulifer_personal[] | GetYulifer_employer[];
+  items: IProduct[];
   setProduct: Dispatch<string>;
   product: string;
 }
@@ -47,11 +47,7 @@ const styles = StyleSheet.create({
   } as ViewStyle,
 });
 
-function handlePressProduct(
-  item: GetYulifer_personal | GetYulifer_employer,
-  setProduct: Dispatch<string>,
-  product: string
-) {
+function handlePressProduct(item: IProduct, setProduct: Dispatch<string>, product: string) {
   if (item?.status === YuProductStatus.locked) {
     if (getIsPersonalItem(item.itemSlot)) {
       return () => setProduct(item?.productId === product ? null : item?.productId);

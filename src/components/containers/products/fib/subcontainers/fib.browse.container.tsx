@@ -17,7 +17,7 @@ import { getUserDateOfBirth } from "@redux/user/user.selectors";
 import { packages, useCover } from "../fib.helpers";
 import { handleOpenWebView } from "@navigation/utils";
 import Logger from "@services/logging/logger";
-import { CoverType, YuProductId } from "@graphql/_core/schema/globalTypes";
+import { CoverType } from "@graphql/_core/schema/globalTypes";
 import { YUGI_INTRO_TYPE } from "./fib.yugi-intro.container";
 import { noop } from "../../../../../services/utils";
 import { useBackHandler } from "../../../../../services/hooks/useBackHandler";
@@ -82,9 +82,7 @@ const _FibBrowseContainer = memo(function (props: IFibContainer & ReturnType<typ
     );
   }
 
-  const fibProduct = yuliferData?.personal?.filter(
-    (product) => product.productId === YuProductId.family_income_benefit
-  )[0];
+  const fibProduct = yuliferData?.personal?.chest;
 
   const selectedProductOption = fibProduct?.options.filter(
     (productOption) => productOption.type === selectedCoverType

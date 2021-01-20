@@ -6,11 +6,11 @@ import { TouchableOpacityWithDelay } from "@molecules";
 import { CoverType, YuWorld } from "../../../../../graphql/_core/schema/globalTypes";
 import { Colours, Style } from "@styles";
 import colours from "@styles/colours";
-import { GetYulifer_personal_options_styles } from "../../../../../graphql/_core/schema";
 import GenericHeadingAbsolute from "@atoms/generic-heading/generic-heading-absolute";
 import { styles } from "./choose-style.styles";
+import { GetYulifer_personal_chest_options_styles } from "../../../../../graphql/_core/schema";
 interface IFibStyleSelectionScreenProps {
-  productStyleOptions: GetYulifer_personal_options_styles[];
+  productStyleOptions: GetYulifer_personal_chest_options_styles[];
   onContinue: (word: YuWorld) => void;
   type?: CoverType;
   onClose: () => void;
@@ -19,7 +19,7 @@ interface IFibStyleSelectionScreenProps {
 export const FibStyleSelectionScreen = memo(function (props: IFibStyleSelectionScreenProps) {
   const { productStyleOptions, onContinue, onBackPress, onClose } = props;
   const forest = productStyleOptions.find((optionStyle) => optionStyle.world === YuWorld.forest);
-  const [selectedStyle, setSelectedStyle] = useState<GetYulifer_personal_options_styles>(forest);
+  const [selectedStyle, setSelectedStyle] = useState<GetYulifer_personal_chest_options_styles>(forest);
 
   return (
     <View style={styles.wrapper}>

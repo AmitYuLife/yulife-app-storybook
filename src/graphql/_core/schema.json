@@ -1242,20 +1242,21 @@
             "deprecationReason": null
           },
           {
-            "name": "getYuProducts",
-            "description": "Get products by product type",
-            "args": [
-              {
-                "name": "productType",
-                "description": null,
-                "type": {
-                  "kind": "ENUM",
-                  "name": "ProductType",
-                  "ofType": null
-                },
-                "defaultValue": null
-              }
-            ],
+            "name": "getPersonalProducts",
+            "description": "Get personal products",
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "PersonalProductsResponse",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "getAdditionalProducts",
+            "description": "Get additional products",
+            "args": [],
             "type": {
               "kind": "LIST",
               "name": null,
@@ -14319,32 +14320,62 @@
         "possibleTypes": null
       },
       {
-        "kind": "ENUM",
-        "name": "ProductType",
+        "kind": "OBJECT",
+        "name": "PersonalProductsResponse",
         "description": null,
-        "fields": null,
-        "inputFields": null,
-        "interfaces": null,
-        "enumValues": [
+        "fields": [
           {
-            "name": "employer",
+            "name": "pants",
             "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "YuProduct",
+              "ofType": null
+            },
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "personal",
+            "name": "chest",
             "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "YuProduct",
+              "ofType": null
+            },
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "alpha",
+            "name": "gloves",
             "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "YuProduct",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "boots",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "YuProduct",
+              "ofType": null
+            },
             "isDeprecated": false,
             "deprecationReason": null
           }
         ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
         "possibleTypes": null
       },
       {
@@ -14546,6 +14577,35 @@
           },
           {
             "name": "yulife_lite",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "possibleTypes": null
+      },
+      {
+        "kind": "ENUM",
+        "name": "ProductType",
+        "description": null,
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "enumValues": [
+          {
+            "name": "employer",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "personal",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "alpha",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null

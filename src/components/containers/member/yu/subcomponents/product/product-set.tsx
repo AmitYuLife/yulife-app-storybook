@@ -2,14 +2,7 @@ import React, { useCallback } from "react";
 import { View, ViewStyle, StyleSheet } from "react-native";
 import { Product } from "./product";
 import { Heading } from "../heading";
-import {
-  GetYulifer,
-  GetYulifer_charms,
-  GetYulifer_employer,
-  GetYulifer_personal,
-  UpdateTopUpsQuoteVariables,
-  UpdateTopUpsQuote_updateFibQuote,
-} from "@graphql/_core/schema";
+import { GetYulifer, UpdateTopUpsQuoteVariables, UpdateTopUpsQuote_updateFibQuote } from "@graphql/_core/schema";
 import { useMutation, useQuery } from "@apollo/react-hooks";
 import { GQL_QUERY_GET_YULIFER } from "@graphql/yuscreen";
 import { navigateToProductScreen } from "../../navigation/navigateToProductScreen";
@@ -20,6 +13,8 @@ import { getUserFeatures } from "@redux/user/user.selectors";
 import { Style } from "@styles";
 import { ProductType, YuProductStatus } from "../../../../../../graphql/_core/schema/globalTypes";
 import { GQL_MUTATION_UPDATE_TOP_UPS_QUOTE } from "../../../../../../graphql/products/updateTopUpsQuote";
+import { personalProductsToArray } from "../../../../products/fib/fib.helpers";
+import { IProduct } from "../../../../products/fib/fib.types";
 
 export interface IProductSetProps {
   type: ProductType;
@@ -91,10 +86,13 @@ function getProducts({ type, data, fibState, resetFibJourney, shouldResetFib }: 
     return [];
   }
 
-  const dataKey = type === ProductType.alpha ? "charms" : type;
+  const personalProducts = personalProductsToArray(data.personal);
+  const products: IProduct[] = [...data.additional, ...personalProducts].filter(
+    (product) => product.productType === type
+  );
 
-  return (data as any)[dataKey]
-    .map((item: GetYulifer_employer | GetYulifer_personal | GetYulifer_charms) => {
+  return products
+    .map((item) => {
       if (!item) {
         return null;
       }

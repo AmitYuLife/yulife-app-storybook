@@ -25,7 +25,7 @@ export interface GetCheckoutDetails_quote {
   coverType: CoverType | null;
 }
 
-export interface GetCheckoutDetails_personal_options_styles {
+export interface GetCheckoutDetails_personal_chest_options_styles {
   world: YuWorld | null;
   name: string | null;
   icon: string | null;
@@ -33,15 +33,19 @@ export interface GetCheckoutDetails_personal_options_styles {
   armor: string | null;
 }
 
-export interface GetCheckoutDetails_personal_options {
+export interface GetCheckoutDetails_personal_chest_options {
   type: CoverType | null;
-  styles: (GetCheckoutDetails_personal_options_styles | null)[] | null;
+  styles: (GetCheckoutDetails_personal_chest_options_styles | null)[] | null;
+}
+
+export interface GetCheckoutDetails_personal_chest {
+  productId: YuProductId | null;
+  name: string | null;
+  options: (GetCheckoutDetails_personal_chest_options | null)[] | null;
 }
 
 export interface GetCheckoutDetails_personal {
-  productId: YuProductId | null;
-  name: string | null;
-  options: (GetCheckoutDetails_personal_options | null)[] | null;
+  chest: GetCheckoutDetails_personal_chest | null;
 }
 
 export interface GetCheckoutDetails_gpDetails {
@@ -62,9 +66,9 @@ export interface GetCheckoutDetails {
    */
   quote: GetCheckoutDetails_quote | null;
   /**
-   * Get products by product type
+   * Get personal products
    */
-  personal: (GetCheckoutDetails_personal | null)[] | null;
+  personal: GetCheckoutDetails_personal | null;
   /**
    * Get user gp details
    */

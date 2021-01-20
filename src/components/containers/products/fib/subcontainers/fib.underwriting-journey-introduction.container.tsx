@@ -1,7 +1,7 @@
 import React from "react";
 import { FibLocalNavigation, FIB_UNDERWRITING_JOURNEY } from "../fib.types";
 import { useMutation, useQuery } from "@apollo/react-hooks";
-import { GetYuliferData, GQL_QUERY_GET_YULIFER } from "@graphql/yuscreen";
+import { GQL_QUERY_GET_YULIFER } from "@graphql/yuscreen";
 import { Loading } from "@atoms";
 import { FibUnderwritingIntroduction } from "../../../../screens/products/fib/underwriting-journey/fib.underwriting-intro.screen";
 import { useDispatch } from "react-redux";
@@ -11,6 +11,7 @@ import {
 } from "../../../../../graphql/products";
 import { ProductCode } from "../../../../../graphql/_core/schema/globalTypes";
 import { updateFIBValue } from "../../../../../redux/product/product.actions";
+import { GetYulifer } from "../../../../../graphql/_core/schema";
 
 interface Props {
   navigation: FibLocalNavigation;
@@ -18,7 +19,7 @@ interface Props {
 
 function FibUnderwritingJourneyIntroductionContainer(props: Props) {
   const { navigation } = props;
-  const { loading, error, data } = useQuery<GetYuliferData>(GQL_QUERY_GET_YULIFER, {
+  const { loading, error, data } = useQuery<GetYulifer>(GQL_QUERY_GET_YULIFER, {
     fetchPolicy: "cache-only",
   });
 

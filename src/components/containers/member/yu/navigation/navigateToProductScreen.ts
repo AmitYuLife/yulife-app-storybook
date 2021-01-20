@@ -5,6 +5,7 @@ import {
   FIB_UNDERWRITING_JOURNEY,
   FIB_INFO,
   FIB_INTRO_YUGI,
+  IProduct,
 } from "@components/containers/products/fib/fib.types";
 import { FIB_UNDERWRITING_REVIEW_ANSWERS_SCREEN_ID } from "@components/containers/products/fib/data/underwriting-journey-data";
 import moment from "moment";
@@ -13,10 +14,9 @@ import { getIsPersonalItem } from "../yu-types";
 import { FIBStore } from "@redux/product/product.types";
 import { ScreeningStatus } from "../../../../../graphql/_core/schema/globalTypes";
 import { YUGI_INTRO_TYPE } from "../../../products/fib/subcontainers/fib.yugi-intro.container";
-import { GetYulifer_personal, GetYulifer_employer, GetYulifer_charms } from "../../../../../graphql/_core/schema";
 
 interface INavigateToProductScreen {
-  product: GetYulifer_personal | GetYulifer_employer | GetYulifer_charms;
+  product: IProduct;
   shouldResetFib: boolean;
   fibState: FIBStore;
   resetFibJourney: () => void;
