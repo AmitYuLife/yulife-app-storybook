@@ -19,7 +19,7 @@ export const GpDetails = memo((props: Props) => {
   const practiceTown = localGpDetails?.practiceTown || gpDetails?.gpTown;
   const practicePostCode = localGpDetails?.practicePostCode || gpDetails?.gpPostcode;
 
-  const prompt = "Add GP Details";
+  const prompt = "Add GP details";
   const info = `**GP Details**\n${gpName}\n${practiceName}, ${practiceAddress}, ${practiceTown}, ${practicePostCode}`;
   const isEmpty = !gpName || !practiceName || !practiceAddress || !practiceTown;
   const markdown = isEmpty ? prompt : info;

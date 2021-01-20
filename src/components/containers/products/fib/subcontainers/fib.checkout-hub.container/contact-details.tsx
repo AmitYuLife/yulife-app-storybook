@@ -21,7 +21,7 @@ export const ContactDetails = memo(({ goToContactDetails }: Props) => {
   const info = `**Contact Details**\n${fullName}\n${firstAddressLine}, ${
     secondAddressLine ? `${secondAddressLine}, ` : ""
   }${townOrCity},\n${postCode}\n\n${personalEmail}\n${phoneNumber}`;
-  const prompt = "Add Contact Details";
+  const prompt = "Add contact details";
   const isEmpty = !firstAddressLine || !townOrCity || !postCode || !personalEmail || !phoneNumber;
   const markdown = isEmpty ? prompt : info;
 

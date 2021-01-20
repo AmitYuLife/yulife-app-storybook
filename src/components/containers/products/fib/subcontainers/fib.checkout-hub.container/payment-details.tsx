@@ -18,7 +18,7 @@ export const PaymentDetails = memo(({ goToPaymentDetails, paymentProviderDetails
   const expMonth = paymentProviderDetails?.card?.expMonth || "";
   const expYear = paymentProviderDetails?.card?.expYear || "";
   const hasCompleteData = brand && last4 && name && expMonth && !!expYear;
-  const prompt = "Payment Details";
+  const prompt = "Add payment details";
   const info = `**Payment Details**\n${transformBrandName(
     brand
   )} ending in ${last4}\n${name.toUpperCase()}\nExpires: ${expMonth}/${expYear}`;
