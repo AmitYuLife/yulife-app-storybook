@@ -28,6 +28,7 @@ import { FibInputAlcohol } from "@organisms/fib/input/alcohol/fib-input-alcohol"
 import { styles, getChildWrapperStyle } from "./fib.underwriting-journey.styles";
 import { YugiType } from "../layouts/yugi";
 import { CopyIntro } from "@organisms/fib/copy/intro";
+import GenderQuestion from "./subcomponents/gender/gender-question";
 
 export interface IFibUnderwritingJourneyScreenProps {
   onNavigateBack: () => void;
@@ -203,6 +204,7 @@ function renderChildren(child: UnderwritingJourneyChild, extraProps: RenderChild
         extraVerticalPadding={4}
       />
     ),
+    gender: <GenderQuestion />,
   };
   return FIELDS[child.type] || null;
 }

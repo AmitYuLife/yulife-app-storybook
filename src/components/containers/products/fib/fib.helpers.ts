@@ -19,6 +19,7 @@ import {
   FIB_LIFESTYLE_ALCOHOL_SCREEN_ID,
   UnderwritingJourneyScreen,
   FIB_INPUT_SALARY,
+  FIB_GENDER_SCREEN_ID,
 } from "./data/underwriting-journey-data";
 import { PackageId } from "@components/screens/products/fib/fib.helper";
 import { useDispatch } from "react-redux";
@@ -321,6 +322,10 @@ export function shouldFirstButtonBeDisabled(
 
   if (currentQuestion.id === FIB_LIFESTYLE_ALCOHOL_SCREEN_ID) {
     return !fibAnswers.weeklyAlcoholDrinks;
+  }
+
+  if (currentQuestion.id === FIB_GENDER_SCREEN_ID) {
+    return !fibAnswers[FIB_GENDER_SCREEN_ID];
   }
 
   return false;
