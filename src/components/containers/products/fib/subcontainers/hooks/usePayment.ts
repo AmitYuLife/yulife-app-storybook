@@ -2,7 +2,7 @@ import stripe, { StripePaymentRequestToken } from "tipsi-stripe";
 import { useState, useEffect, useCallback } from "react";
 import { getFIBState, getFullName } from "@redux/product/product.selectors";
 import { useSelector } from "react-redux";
-import { FIB_INFO, FibLocalNavigation } from "../../fib.types";
+import { FIB_INFO, FibLocalNavigation, FIB_FEEDBACK_FORM } from "../../fib.types";
 import { InfoTypes } from "../fib.info.container";
 import { toCapitalLetter } from "@services/utils";
 import { Linking } from "react-native";
@@ -19,6 +19,7 @@ import {
   GQL_MUTATION_CONFIRM_PAYMENT_METHOD,
 } from "@graphql/products/confirmPaymentMethod";
 import Logger from "@services/logging/logger";
+import { getUserFeatures } from "@redux/user/user.selectors";
 
 interface IUsePayment {
   navigation: FibLocalNavigation;
@@ -33,6 +34,7 @@ export const usePayment = ({ navigation }: IUsePayment) => {
   const [paymentProviderDetails, setPaymentProviderDetails] = useState(null as StripePaymentRequestToken);
   const [paymentProgress, setPaymentProgress] = useState({ collected: false, purchased: false, canceled: false });
   const [paymentLoading, setPaymentLoading] = useState(false);
+  const paymentsEnabled = useSelector(getUserFeatures).paymentsEnabled;
 
   const [collectPaymentMethod]: CollectPaymentMethodMutationTuple = useMutation(GQL_MUTATION_COLLECT_PAYMENT_METHOD);
   const [confirmPaymentMethod]: ConfirmPaymentMethodMutationTuple = useMutation(GQL_MUTATION_CONFIRM_PAYMENT_METHOD, {
@@ -107,6 +109,10 @@ export const usePayment = ({ navigation }: IUsePayment) => {
   }, [setPaymentProviderDetails, contactDetails, fullName]);
 
   const handleConfirmPayment = useCallback(async () => {
+    if (!paymentsEnabled) {
+      return await navigation.push(FIB_FEEDBACK_FORM);
+    }
+
     setPaymentLoading(true);
     const { data: collectPaymentResponse } = await collectPaymentMethod({
       variables: {
@@ -157,7 +163,7 @@ export const usePayment = ({ navigation }: IUsePayment) => {
     }
 
     setPaymentLoading(false);
-  }, [collectPaymentMethod, confirmPaymentMethod, paymentProviderDetails]);
+  }, [collectPaymentMethod, confirmPaymentMethod, paymentProviderDetails, navigation, paymentsEnabled]);
 
   useEffect(() => {
     if (paymentProgress.purchased) {

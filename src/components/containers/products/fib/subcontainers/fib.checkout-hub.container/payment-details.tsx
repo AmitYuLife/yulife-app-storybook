@@ -4,6 +4,7 @@ import { toCapitalLetter } from "@services/utils";
 import { StripePaymentRequestToken } from "tipsi-stripe";
 import { useSelector } from "react-redux";
 import { getFullName } from "@redux/product/product.selectors";
+import { Platform } from "react-native";
 
 interface Props {
   goToPaymentDetails: () => void;
@@ -24,9 +25,16 @@ export const PaymentDetails = memo(({ goToPaymentDetails, paymentProviderDetails
   )} ending in ${last4}\n${name.toUpperCase()}\nExpires: ${expMonth}/${expYear}`;
   const markdown = hasCompleteData ? info : prompt;
 
+  if (Platform.OS === "android" && !fullName) {
+    // Android stripe form needs derived data
+    // Should be an edge case to not have name and email at this point
+    // but guarding just in case
+    return null;
+  }
+
   return (
     <InfoCard
-      center={!hasCompleteData}
+      isPrompt={!hasCompleteData}
       leftIcon={getLeftIcon(hasCompleteData)}
       markdown={markdown}
       onPress={goToPaymentDetails}

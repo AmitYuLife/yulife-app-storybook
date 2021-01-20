@@ -30,7 +30,7 @@ export const ContactDetails = memo(({ goToContactDetails }: Props) => {
       leftIcon={getLeftIcon({ fullName, firstAddressLine, townOrCity, postCode, phoneNumber })}
       markdown={markdown}
       onPress={goToContactDetails}
-      center={isEmpty}
+      isPrompt={isEmpty}
     />
   );
 });

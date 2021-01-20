@@ -1,25 +1,23 @@
 import React, { memo, useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { FibLocalNavigation } from "../fib.types";
 import { FibCheckoutHubContainer } from "./fib.checkout-hub.container";
 import { useCheckoutQuery } from "./hooks/useCheckoutQuery";
 import { usePayment } from "./hooks/usePayment";
 import { onUnderwritingClose } from "../fib.helpers";
-import { useDispatch } from "react-redux";
 import { updateFIBValue } from "@redux/product/product.actions";
 
 interface Props {
   navigation: FibLocalNavigation;
 }
 
-export const FIB_CHECKOUT_SCREEN_ID = "FIB_CHECKOUT_SCREEN_ID";
-
 const FibDeclarationConfirmationContainer = memo(function (props: Props) {
   const { navigation } = props;
-  const dispatch = useDispatch();
   const { data: checkoutData, loading: checkoutLoading } = useCheckoutQuery();
   const { paymentProviderDetails, handlePressPayment, handleConfirmPayment, paymentLoading } = usePayment({
     navigation,
   });
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (checkoutData?.gpDetails) {
@@ -30,13 +28,10 @@ const FibDeclarationConfirmationContainer = memo(function (props: Props) {
         practicePostCode: checkoutData.gpDetails.gpPostcode,
         gpName: checkoutData.gpDetails.gpName,
       };
+
       dispatch(updateFIBValue({ key: "gpDetails", value: gpDetails }));
     }
   }, [checkoutData, dispatch]);
-
-  useEffect(() => {
-    dispatch(updateFIBValue({ key: "lastQuestionId", value: FIB_CHECKOUT_SCREEN_ID }));
-  }, [dispatch]);
 
   return (
     <FibCheckoutHubContainer

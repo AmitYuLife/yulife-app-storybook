@@ -1,5 +1,5 @@
 import React, { memo, useState, useCallback } from "react";
-import { FibLocalNavigation, FIB_DECLARATION_CONFIRMATION, FIB_FEEDBACK_FORM } from "../fib.types";
+import { FibLocalNavigation } from "../fib.types";
 import { connect, useDispatch } from "react-redux";
 import { Navigation } from "react-native-navigation";
 import { ROUTES } from "@navigation/constants";
@@ -26,7 +26,6 @@ import {
 } from "../../../../../graphql/_core/schema/UpdateCustomerGPDetails";
 import { IReduxState } from "../../../../../redux/_core/reducers";
 import { getFIBState } from "../../../../../redux/product/product.selectors";
-import { getUserFeatures } from "../../../../../redux/user/user.selectors";
 import { MODALS } from "../../../../../navigation/constants";
 
 interface IFibGPDetailsContainerProps {
@@ -43,7 +42,7 @@ type GPView =
 
 // TODO: Refactor this container, navigation handled in a complex way and not effective
 const FibGPDetailsContainer = memo(function (props: IFibGPDetailsContainerProps & ReturnType<typeof mapStateToProps>) {
-  const { navigation, fibAnswers, hasEnabledPayments, savedGpDetails } = props;
+  const { navigation, fibAnswers, savedGpDetails } = props;
   const dispatch = useDispatch();
 
   const initialGPView = navigation.currentRoute.passProps?.initialGPView || "consent";
@@ -155,9 +154,8 @@ const FibGPDetailsContainer = memo(function (props: IFibGPDetailsContainerProps 
         },
       },
     });
-    // FIXME: Payments feature toggle (Remove feature toggle when is ready)
-    const nextScreen = hasEnabledPayments ? FIB_DECLARATION_CONFIRMATION : FIB_FEEDBACK_FORM;
-    navigation.push(nextScreen);
+
+    navigation.pop();
   }, [
     manualInput,
     selectedGP,
@@ -165,7 +163,6 @@ const FibGPDetailsContainer = memo(function (props: IFibGPDetailsContainerProps 
     updateCustomerGPDetailsMutation,
     navigation,
     fibAnswers,
-    hasEnabledPayments,
     dispatch,
   ]);
 
@@ -325,7 +322,6 @@ const FibGPDetailsContainer = memo(function (props: IFibGPDetailsContainerProps 
 
 const mapStateToProps = (state: IReduxState) => ({
   fibAnswers: getFIBState(state).answers,
-  hasEnabledPayments: getUserFeatures(state).paymentsEnabled,
   savedGpDetails: getFIBState(state).gpDetails,
 });
 

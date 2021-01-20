@@ -20,7 +20,7 @@ export const GpDetails = memo((props: Props) => {
   const practicePostCode = localGpDetails?.practicePostCode || gpDetails?.gpPostcode;
 
   const prompt = "Add GP details";
-  const info = `**GP Details**\n${gpName}\n${practiceName}, ${practiceAddress}, ${practiceTown}, ${practicePostCode}`;
+  const info = `**GP Details**\n${gpName}\n${practiceName}, ${practiceAddress}, ${practiceTown}\n${practicePostCode}`;
   const isEmpty = !gpName || !practiceName || !practiceAddress || !practiceTown;
   const markdown = isEmpty ? prompt : info;
 
@@ -29,7 +29,7 @@ export const GpDetails = memo((props: Props) => {
       leftIcon={getLeftIcon({ gpName, practiceAddress, practiceName, practicePostCode, practiceTown })}
       markdown={markdown}
       onPress={goToGpDetails}
-      center={isEmpty}
+      isPrompt={isEmpty}
     />
   );
 });

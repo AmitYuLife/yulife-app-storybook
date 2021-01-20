@@ -24,19 +24,19 @@ interface Props {
   leftIcon: LEFT_ICON;
   markdown: string;
   onPress: () => void;
-  center?: boolean;
+  isPrompt?: boolean;
 }
 
 export const InfoCard = (props: Props) => {
-  const { markdown, onPress, center } = props;
+  const { markdown, onPress, isPrompt } = props;
   const LeftIcon = getIcon(props);
 
   return (
     <PressableWithDelay onPress={onPress}>
-      <View style={[styles.wrapper, { alignItems: center ? "center" : "flex-start" }]}>
+      <View style={StyleSheet.flatten([styles.wrapper, isPrompt ? styles.wrapperPrompt : styles.wrapperFilled])}>
         <View style={styles.background} />
         <LeftIcon />
-        {center ? ( // ugly design decision, but it's because of some weird Android margin that I can't solve in time
+        {isPrompt ? ( // ugly design decision, but it's because of some weird Android margin that I can't solve in time
           <View style={styles.promptWrapper}>
             <Text style={styles.prompt} bold={true}>
               {markdown}
@@ -45,7 +45,7 @@ export const InfoCard = (props: Props) => {
         ) : (
           <MarkdownFib wrapperStyle={styles.markdownWrapper} style={markdownStyles} text={markdown} />
         )}
-        <View style={styles.iconRight}>
+        <View style={StyleSheet.flatten([styles.iconRight, isPrompt ? null : styles.alignSelfCenter])}>
           <ArrowRightSvg />
         </View>
       </View>
@@ -79,15 +79,15 @@ const styles = StyleSheet.create({
     borderColor: Colours.neutral.n100,
     backgroundColor: Colours.neutral.n100,
     marginHorizontal: Style.adjust(24),
-    paddingVertical: Style.adjust(24),
-    borderRadius: 10,
+    borderRadius: 16,
     overflow: "hidden",
     flexDirection: "row",
+    borderWidth: 1,
   } as ViewStyle,
   background: {
     backgroundColor: "white",
     flex: 1,
-    borderRadius: 10,
+    borderRadius: 16,
     overflow: "hidden",
     position: "absolute",
     top: 0,
@@ -118,6 +118,16 @@ const styles = StyleSheet.create({
     letterSpacing: 0.6,
     color: Colours.neutral.n700,
   } as TextStyle,
+  alignSelfCenter: {
+    alignSelf: "center",
+  } as ViewStyle,
+  wrapperPrompt: {
+    paddingVertical: Style.adjust(30),
+    alignItems: "center",
+  } as ViewStyle,
+  wrapperFilled: {
+    paddingVertical: Style.adjust(16),
+  } as ViewStyle,
 });
 
 const markdownStyles = {

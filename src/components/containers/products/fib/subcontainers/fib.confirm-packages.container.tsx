@@ -175,6 +175,7 @@ const FibConfirmPackagesContainer = memo(function (props: FibConfirmPackagesCont
 
   const handleOnContinue = useCallback(async () => {
     await createNewQuote();
+
     return navigation.push(FIB_DECLARATION_CONFIRMATION);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [navigation]);

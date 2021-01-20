@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
     color: Colours.neutral.n800,
   } as TextStyle,
   paragraphWrapper: {
-    marginTop: Style.adjust(8),
+    marginTop: Style.adjust(16),
   } as ViewStyle,
   paragraph: {
     fontSize: Style.adjust(16),
