@@ -204,6 +204,8 @@ export default {
     fib: {
       common: "#00ED9D",
       rare: "#00C0F3",
+      rareGradientLight: "#8FDEFF",
+      rareShadow: "#00ADDB",
       epic: "#956AFF",
       custom: "#956AFF", // temporary, for CoverType type
       n800: "#5A5A5C",

@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
   wrapper: {
     flexDirection: "row",
     flex: 1,
-    paddingHorizontal: Style.adjust(17),
+    paddingHorizontal: Style.adjust(16),
     paddingTop: Style.adjust(24),
   } as ViewStyle,
   emptyAvatarWrapper: {
@@ -65,10 +65,10 @@ const styles = StyleSheet.create({
     paddingBottom: Style.adjust(32),
   } as ViewStyle,
   promptLabel: {
-    letterSpacing: 1,
     color: Colours.neutral.n700,
-    fontSize: Style.adjust(13),
-    lineHeight: Style.adjust(20),
+    fontSize: Style.adjust(16),
+    lineHeight: Style.adjust(24),
+    letterSpacing: 0.6,
   } as TextStyle,
   promptCtaWrapper: {
     marginTop: Style.adjust(20),

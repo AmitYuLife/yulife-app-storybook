@@ -1,4 +1,4 @@
-import React, { useMemo, useCallback, useEffect } from "react";
+import React, { memo, useMemo, useCallback, useEffect } from "react";
 import { StyleSheet, View, ViewStyle, TextStyle, ImageStyle } from "react-native";
 import { Text, Button } from "@atoms";
 import { Style, Colours } from "@styles";
@@ -35,9 +35,14 @@ export interface IToolTipProps {
 }
 
 const getCaption = (status: YuProductStatus) => {
-  return `We’re working hard to bring you the best insurance products on the market.${
-    status !== YuProductStatus.locked ? "" : " Vote for what you want to see here."
-  }`;
+  switch (status) {
+    case YuProductStatus.unlockable:
+      return "Equip your Yumoji with upgraded chest items by purchasing life insurance.";
+    case YuProductStatus.locked:
+      return "We’re working hard to bring you the best insurance products on the market. Vote for what you want to see here.";
+    default:
+      return "";
+  }
 };
 
 export const ToolTip = ({ productId, onClose }: IToolTipProps) => {
@@ -141,15 +146,16 @@ export const ToolTip = ({ productId, onClose }: IToolTipProps) => {
       <View style={styles.shadow} />
       <View style={getContentWrapperStyle(productId)}>
         <View style={getTopWrapperStyle(productId)}>
+          <MemoizedLinearGradient colorTheme={getLinearGradientColorTheme(isEmployerProduct)} />
           <IconSvg style={StyleSheet.flatten([styles.iconWrapper, { opacity: status !== "active" ? 0.6 : 1 }])} />
           <View style={styles.nameWrapper}>
             <Text bold={true} style={getNameStyle(productId)}>
               {name}
             </Text>
           </View>
-          {status !== YuProductStatus.unlockable ? null : (
+          {status === YuProductStatus.active ? null : (
             <View style={styles.statusTextWrapper}>
-              <Text style={styles.statusText}>{"not equipped"}</Text>
+              <Text style={styles.statusText}>{"Not equipped"}</Text>
             </View>
           )}
         </View>
@@ -180,6 +186,20 @@ export const ToolTip = ({ productId, onClose }: IToolTipProps) => {
   );
 };
 
+const MemoizedLinearGradient = memo(({ colorTheme = [] }: { colorTheme: string[] }) => {
+  if (!colorTheme.length) {
+    return null;
+  }
+
+  return (
+    <LinearGradient style={styles.backgroundGradient} colors={colorTheme} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} />
+  );
+});
+
+function getLinearGradientColorTheme(isEmployerProduct: boolean) {
+  return isEmployerProduct ? [Colours.products.fib.rare, Colours.products.fib.rareGradientLight] : [];
+}
+
 function getButtonProps({ product }: { product: IProduct }) {
   let label = "";
   let backgroundColor = Colours.darkHotPink;
@@ -191,7 +211,7 @@ function getButtonProps({ product }: { product: IProduct }) {
       label = "Vote now";
       break;
     case YuProductStatus.unlockable:
-      label = "Unlock";
+      label = "Upgrade";
       break;
     case YuProductStatus.active:
       label = "Inspect";
@@ -199,9 +219,9 @@ function getButtonProps({ product }: { product: IProduct }) {
   }
 
   if (isEmployerItem(product.itemSlot)) {
-    backgroundColor = Colours.blue.dp306;
-    shadowColor = Colours.blue.dp305;
-    textColor = Colours.neutral.n800;
+    backgroundColor = Colours.products.fib.rare;
+    shadowColor = Colours.products.fib.rareShadow;
+    textColor = Colours.neutral.white;
   }
 
   return {
@@ -243,6 +263,9 @@ const styles = StyleSheet.create({
     width: "100%",
     opacity: 0.4,
   } as ViewStyle,
+  backgroundGradient: {
+    ...StyleSheet.absoluteFillObject,
+  } as ViewStyle,
   cta: {
     marginTop: Style.adjust(24),
   } as ViewStyle,
@@ -251,7 +274,9 @@ const styles = StyleSheet.create({
   } as ViewStyle,
   statusText: {
     fontSize: Style.adjust(16),
-    color: Colours.darkHotPink,
+    lineHeight: Style.adjust(24),
+    letterSpacing: 0.6,
+    color: Colours.primary.p600,
     textAlign: "center",
   } as TextStyle,
   iconWrapper: {
@@ -290,7 +315,7 @@ function getContentWrapperStyle(productId: YuProductId) {
   } as ViewStyle;
 
   if (getIsEmployerProduct(productId)) {
-    defaultStyle.borderColor = Colours.blue.dp306;
+    defaultStyle.borderColor = Colours.products.fib.rare;
     defaultStyle.borderWidth = 2;
   }
 
@@ -305,7 +330,7 @@ function getTopWrapperStyle(productId: YuProductId) {
   };
 
   if (getIsEmployerProduct(productId)) {
-    defaultStyle.backgroundColor = Colours.blue.dp306;
+    defaultStyle.backgroundColor = Colours.products.fib.rare;
   }
 
   return defaultStyle;
@@ -319,7 +344,7 @@ function getBottomWrapperStyle(productId: YuProductId) {
   };
 
   if (getIsEmployerProduct(productId)) {
-    defaultStyle.backgroundColor = Colours.blue.dp307;
+    defaultStyle.backgroundColor = Colours.secondary.s10S2;
   }
 
   return defaultStyle;
@@ -335,7 +360,7 @@ function getNameStyle(productId: YuProductId) {
   } as TextStyle;
 
   if (getIsEmployerProduct(productId)) {
-    defaultStyle.color = Colours.neutral.n800;
+    defaultStyle.color = Colours.neutral.white;
   }
 
   return defaultStyle;
@@ -344,15 +369,15 @@ function getNameStyle(productId: YuProductId) {
 function getCaptionStyle(productId: YuProductId) {
   const defaultStyle = {
     fontSize: Style.adjust(16),
-    lineHeight: Style.adjust(20),
+    lineHeight: Style.adjust(24),
+    letterSpacing: 0.6,
     textAlign: "center",
-    letterSpacing: 1,
     color: Colours.neutral.n700,
   } as TextStyle;
 
   if (getIsEmployerProduct(productId)) {
     defaultStyle.textAlign = "left";
-    defaultStyle.color = Colours.neutral.n800;
+    defaultStyle.color = Colours.neutral.white;
   }
 
   return defaultStyle;
