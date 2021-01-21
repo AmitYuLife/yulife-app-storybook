@@ -6,7 +6,7 @@ import { CloseSvg } from "@atoms";
 
 interface IGenericOverlay {
   onClose: () => void;
-  children: React.ReactChild;
+  children: React.ReactNode;
 }
 
 const GenericOverlay = (props: IGenericOverlay) => {

@@ -31,6 +31,13 @@ export const styles = StyleSheet.create({
     fontSize: Style.adjust(16),
     color: Colours.neutral.n700,
   } as TextStyle,
+  subTitle: {
+    fontSize: Style.adjust(16),
+    color: Colours.neutral.n600,
+    letterSpacing: 0.6,
+    marginTop: 4,
+    lineHeight: Style.adjust(24),
+  } as TextStyle,
   rightIcon: {
     marginLeft: "auto",
   } as ViewStyle,

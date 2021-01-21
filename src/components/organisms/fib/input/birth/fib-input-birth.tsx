@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { View } from "react-native";
+import { View, ViewStyle, StyleSheet } from "react-native";
 import moment from "moment";
 import { styles } from "./fib-input-birth.styles";
 import { updateFIBAnswerValue } from "@redux/product/product.actions";
@@ -11,7 +11,12 @@ import { BUTTON_ICON } from "@atoms/button/tertiary-button/tertiary-button.helpe
 import DateTimePicker from "react-native-modal-datetime-picker";
 import { BUTTON_TYPES } from "@atoms/button/button.types";
 
-type ConnectedProps = ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps;
+type ConnectedProps = ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps & IProps;
+interface IProps {
+  label?: string;
+  subLabel?: string;
+  wrapperStyle?: ViewStyle;
+}
 
 const _FibInputBirth = (props: ConnectedProps) => {
   const {
@@ -19,6 +24,9 @@ const _FibInputBirth = (props: ConnectedProps) => {
     updateBirthDay,
     updateBirthMonth,
     updateBirthYear,
+    label,
+    subLabel,
+    wrapperStyle,
   } = props;
 
   const [showPicker, setShowPicker] = useState(false);
@@ -43,7 +51,7 @@ const _FibInputBirth = (props: ConnectedProps) => {
   }
 
   return (
-    <View style={styles.wrapper}>
+    <View style={StyleSheet.flatten([styles.wrapper, wrapperStyle])}>
       <View style={styles.hiddenDatePickerWrapper} />
       <Button
         size="Fill"
@@ -51,7 +59,8 @@ const _FibInputBirth = (props: ConnectedProps) => {
         rightIcon={BUTTON_ICON.EDIT}
         type={BUTTON_TYPES.TERTIARY}
         onPress={handlePress}
-        label={`${birthDay} / ${birthMonth} / ${birthYear}`}
+        label={label || `${birthDay} / ${birthMonth} / ${birthYear}`}
+        tertiarySubLabel={subLabel}
       />
       <DateTimePicker
         date={moment(`${birthYear}-${birthMonth}-${birthDay}`, "YYYY-MM-DD").toDate()}

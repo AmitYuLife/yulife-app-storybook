@@ -49,6 +49,7 @@ storiesOf("FibBrowse", module)
       documents={documents}
       navigateToCustomCover={() => null}
       onNavigateToIntroScreen={() => null}
+      navigateToPayoutCalculator={() => null}
     />
   ))
   .add("browse custom cover", () => (

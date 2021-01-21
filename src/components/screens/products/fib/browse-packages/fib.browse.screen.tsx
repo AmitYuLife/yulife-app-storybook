@@ -18,11 +18,12 @@ import { Faqs } from "./subcomponents/faqs/faqs";
 import AdditionalBenefits from "./additional-benefits/additional-benefits";
 import { Documents } from "./subcomponents/documents/documents";
 import { PackageId } from "../fib.helper";
-import { IFaq } from "./subcomponents/faqs/faq";
+import { Faq, IFaq } from "./subcomponents/faqs/faq";
 import Logger from "@services/logging/logger";
 import { FIB_BROWSE_SCREEN } from "@ids";
 import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
 import { useBackHandler } from "@services/hooks/useBackHandler";
+import { payoutCalculatorSvg } from "./subcomponents/payout-calculator/assets/payout-calculator-svg";
 
 interface IFibBrowseScreenProps {
   onNavigateToYuScreen: () => void;
@@ -35,6 +36,7 @@ interface IFibBrowseScreenProps {
   onScrollEnd: (event: NativeSyntheticEvent<NativeScrollEvent>) => void;
   onNavigateToFaqsList: () => void;
   onNavigateToIntroScreen: () => void;
+  navigateToPayoutCalculator: () => void;
 }
 
 export const FibBrowseScreen = memo(function (props: IFibBrowseScreenProps) {
@@ -48,6 +50,7 @@ export const FibBrowseScreen = memo(function (props: IFibBrowseScreenProps) {
     offset,
     onScrollEnd,
     onNavigateToIntroScreen,
+    navigateToPayoutCalculator,
   } = props;
 
   useBackHandler(() => {
@@ -109,6 +112,15 @@ export const FibBrowseScreen = memo(function (props: IFibBrowseScreenProps) {
               <HowItWorks
                 header={selectedPackage.id}
                 content={`We will pay your chosen beneficiaries ${selectedPackage.salaryPercentageCovered}% of your monthly salary as a lump sum from the date you passed away until you would have turned 70 years old.`}
+              />
+            </View>
+
+            <View style={styles.separator}>
+              <Faq
+                iconSvgXml={payoutCalculatorSvg}
+                label="How much would it pay out?"
+                onPress={navigateToPayoutCalculator}
+                redirectType="internal"
               />
             </View>
             <View style={styles.separator}>

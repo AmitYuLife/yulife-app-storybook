@@ -3,12 +3,14 @@ import { EditSvg } from "../icons/edit-svg";
 import { BirthdaySvg } from "../icons/birthday-svg";
 import { QuestionBubbleSvg } from "../icons/question-bubble";
 import { ArrowRightSvg } from "../icons/arrow-right";
+import { SalarySvg } from "../icons/salary-svg";
 
 export enum BUTTON_ICON {
   BIRTHDAY = "BIRTHDAY",
   EDIT = "EDIT",
   QUESTION_BUBBLE = "QUESTION_BUBBLE",
   ARROW_RIGHT = "ARROW_RIGHT",
+  SALARY = "SALARY",
 }
 
 export function getIcon(icon: BUTTON_ICON) {
@@ -21,6 +23,8 @@ export function getIcon(icon: BUTTON_ICON) {
       return QuestionBubbleSvg;
     case BUTTON_ICON.ARROW_RIGHT:
       return ArrowRightSvg;
+    case BUTTON_ICON.SALARY:
+      return SalarySvg;
     default:
       return View;
   }

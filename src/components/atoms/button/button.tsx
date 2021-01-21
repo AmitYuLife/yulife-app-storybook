@@ -13,6 +13,7 @@ interface IProps {
   type: Types;
   onPress: () => void;
   label: string;
+  tertiarySubLabel?: string;
   wrapperStyle?: ViewStyle;
   disabled?: boolean;
   testID?: string;
@@ -33,6 +34,7 @@ const DEFAULT_HEIGHT = Style.adjust(53);
 function Button(props: IProps) {
   const {
     label,
+    tertiarySubLabel,
     type,
     size = "Large",
     wrapperStyle,
@@ -107,6 +109,7 @@ function Button(props: IProps) {
           disabled={disabled}
           testID={testID}
           title={label}
+          subTitle={tertiarySubLabel}
           onPress={handlePress}
           delay={delay}
           leftIcon={leftIcon}

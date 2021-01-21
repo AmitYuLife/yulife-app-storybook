@@ -171,6 +171,10 @@ export default [
     component: require("../components/containers/member/yu/yu-earn-rate-modal/yu-earn-rate-modal").default,
   },
   {
+    name: MODALS.enterSalary,
+    component: require("../components/containers/products/fib/subcontainers/fib.enter-salary.container").default,
+  },
+  {
     name: MODALS.financialCoverForm,
     component: require("../components/screens/products/fib/underwriting-journey/subcomponents/financial-questions/financial-questions-form.screen")
       .default,
