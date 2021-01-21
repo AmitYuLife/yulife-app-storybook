@@ -7,7 +7,11 @@ export const employerItems: YuItemSlot[] = [
   YuItemSlot.binoculars,
 ];
 export const employerProducts: YuProductId[] = [
+  YuProductId.yulife,
   YuProductId.yulife_alpha,
+  YuProductId.yulife_lite,
+  YuProductId.yulife_premium_offer,
+  YuProductId.yulife_standard_offer,
   YuProductId.group_life_insurance,
   YuProductId.group_critical_illness,
   YuProductId.group_income_protection,

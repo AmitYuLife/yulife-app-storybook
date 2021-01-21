@@ -14,7 +14,7 @@ const _YuScreenLayout = ({ children }: Props) => {
   return (
     <View style={styles.wrapper}>
       {children}
-      <TopBarAbsolute hasShadow={true} hasWhiteBackground={true} onPressLeftIcon={openMenu} />
+      <TopBarAbsolute hasWhiteBackground={true} onPressLeftIcon={openMenu} />
       <NavBar activeIndex={2} />
     </View>
   );
@@ -25,7 +25,7 @@ export const YuScreenLayout = memo(_YuScreenLayout);
 const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
-    backgroundColor: Colours.neutral.n50,
+    backgroundColor: Colours.neutral.white,
   } as ViewStyle,
 });
 
