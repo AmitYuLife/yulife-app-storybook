@@ -21,6 +21,8 @@ import { PackageId } from "../fib.helper";
 import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
 import { Style } from "@styles";
 import * as Animated from "react-native-animatable";
+import { Faq } from "./subcomponents/faqs/faq";
+import { payoutCalculatorSvg } from "./subcomponents/payout-calculator/assets/payout-calculator-svg";
 
 interface FibSummaryScreenProps {
   onNavigateBack: () => void;
@@ -37,6 +39,7 @@ interface FibSummaryScreenProps {
   offset: NativeScrollPoint;
   onScrollEnd: (event: NativeSyntheticEvent<NativeScrollEvent>) => void;
   navigateToFaqsList: () => void;
+  navigateToPayoutCalculator: () => void;
 }
 
 export const FibSummaryScreen = memo(function (props: FibSummaryScreenProps) {
@@ -44,9 +47,6 @@ export const FibSummaryScreen = memo(function (props: FibSummaryScreenProps) {
     onNavigateBack,
     documents,
     selectedPackage,
-    payoutEstimatorItems,
-    setDeceaseAgeIndexYear,
-    setDeceaseAgeIndexMonth,
     loading,
     onContinue,
     selectCoverType,
@@ -54,6 +54,7 @@ export const FibSummaryScreen = memo(function (props: FibSummaryScreenProps) {
     offset,
     onExit,
     navigateToFaqsList,
+    navigateToPayoutCalculator,
   } = props;
 
   const backHandler = useCallback(() => {
@@ -100,12 +101,11 @@ export const FibSummaryScreen = memo(function (props: FibSummaryScreenProps) {
             <Summary selectedPackage={selectedPackage} loading={loading} />
           </View>
           <View style={styles.separator}>
-            <PayoutCalculator
-              items={payoutEstimatorItems}
-              setDeceaseAgeIndexYear={setDeceaseAgeIndexYear}
-              setDeceaseAgeIndexMonth={setDeceaseAgeIndexMonth}
-              payoutAmount={selectedPackage.payoutAmount}
-              loading={loading}
+            <Faq
+              iconSvgXml={payoutCalculatorSvg}
+              label="How much would it pay out?"
+              onPress={navigateToPayoutCalculator}
+              redirectType="internal"
             />
           </View>
           <View style={styles.documents}>

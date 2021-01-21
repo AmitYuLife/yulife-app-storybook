@@ -5,7 +5,13 @@ import { connect } from "react-redux";
 import { View, Linking, Platform } from "react-native";
 import { Text } from "@atoms";
 import { FibBrowseScreen, FibCustomCoverScreen } from "@screens";
-import { FibLocalNavigation, FIB_CUSTOM_PERCENTAGE, FIB_FAQ_LIST, FIB_INTRO_YUGI } from "../fib.types";
+import {
+  FibLocalNavigation,
+  FIB_CUSTOM_PERCENTAGE,
+  FIB_FAQ_LIST,
+  FIB_INTRO_YUGI,
+  FIB_PAYOUT_CALCULATOR,
+} from "../fib.types";
 import fibDocumentsItems from "../data/documents-data";
 import { GetYulifer } from "@graphql/_core/schema";
 import { GQL_QUERY_GET_YULIFER } from "@graphql/yuscreen";
@@ -21,6 +27,7 @@ import { CoverType } from "@graphql/_core/schema/globalTypes";
 import { YUGI_INTRO_TYPE } from "./fib.yugi-intro.container";
 import { noop } from "../../../../../services/utils";
 import { useBackHandler } from "../../../../../services/hooks/useBackHandler";
+import { FIB_PAYOUT_CALCULATOR_INITIAL_STATE } from "./fib.payout-calculator.conainer";
 
 interface IFibContainer {
   navigation: FibLocalNavigation;
@@ -66,6 +73,9 @@ const _FibBrowseContainer = memo(function (props: IFibContainer & ReturnType<typ
   useBackHandler(navigateToIntroScreen);
 
   const navigateToFaqsList = () => navigation.push(FIB_FAQ_LIST);
+
+  const navigateToPayoutCalculator = () =>
+    navigation.push(FIB_PAYOUT_CALCULATOR, { type: FIB_PAYOUT_CALCULATOR_INITIAL_STATE.needData });
 
   const handleContinue = () => {
     navigation.push(FIB_INTRO_YUGI, {
@@ -130,6 +140,7 @@ const _FibBrowseContainer = memo(function (props: IFibContainer & ReturnType<typ
       offset={navigation.currentRoute.offset || { x: 0, y: 0 }}
       onNavigateToFaqsList={navigateToFaqsList}
       onNavigateToIntroScreen={navigateToIntroScreen}
+      navigateToPayoutCalculator={navigateToPayoutCalculator}
     />
   );
 });

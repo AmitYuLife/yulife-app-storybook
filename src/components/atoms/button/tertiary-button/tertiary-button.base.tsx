@@ -13,6 +13,7 @@ interface IProps {
   testID?: string;
   onPress: () => void;
   title: string;
+  subTitle?: string;
   delay?: number;
   rightIcon?: BUTTON_ICON;
   leftIcon?: BUTTON_ICON;
@@ -20,7 +21,7 @@ interface IProps {
 }
 
 export function TertiaryButtonBase(props: IProps) {
-  const { onPress, delay, leftIcon, rightIcon, height } = props;
+  const { onPress, delay, leftIcon, rightIcon, height, subTitle } = props;
   const { handlePressIn, handlePressOut, handlePress } = usePressedInWithDelay({ onPress, delay });
 
   return (
@@ -32,6 +33,7 @@ export function TertiaryButtonBase(props: IProps) {
         disabled={props.disabled}
         onPress={handlePress}
         title={props.title}
+        subTitle={subTitle}
         leftIcon={leftIcon}
         rightIcon={rightIcon}
         height={height}
@@ -42,7 +44,16 @@ export function TertiaryButtonBase(props: IProps) {
 
 type IMainProps = IProps & ComponentProps<typeof TouchableWithoutFeedback>;
 
-function Main({ testID, disabled, onPress, title, rightIcon, leftIcon, height = Style.adjust(84) }: IMainProps) {
+function Main({
+  testID,
+  disabled,
+  onPress,
+  title,
+  rightIcon,
+  leftIcon,
+  height = Style.adjust(84),
+  subTitle = null,
+}: IMainProps) {
   const disabledStyles = disabled ? styles.disabled : {};
 
   const RightIcon = getIcon(rightIcon);
@@ -72,6 +83,7 @@ function Main({ testID, disabled, onPress, title, rightIcon, leftIcon, height = 
           <Text bold={true} style={[styles.title, disabledStyles]}>
             {title}
           </Text>
+          {!subTitle ? null : <Text style={[styles.subTitle, disabledStyles]}>{subTitle}</Text>}
         </View>
       </View>
       <Svg style={styles.rightIcon} width={Style.adjust(24)} height={Style.adjust(24)} viewBox="0 0 24 24">

@@ -2,7 +2,7 @@ import React, { memo, useState, useEffect, useCallback } from "react";
 import { Linking, Platform } from "react-native";
 import { connect, useDispatch } from "react-redux";
 import { useMutation, useQuery } from "@apollo/react-hooks";
-import { FibLocalNavigation, FIB_DECLARATION_CONFIRMATION, FIB_FAQ_LIST } from "../fib.types";
+import { FibLocalNavigation, FIB_DECLARATION_CONFIRMATION, FIB_FAQ_LIST, FIB_PAYOUT_CALCULATOR } from "../fib.types";
 import { getFIBState, getLifeInsuranceUserAnswers } from "@redux/product/product.selectors";
 import { IReduxState } from "@redux/_core/reducers";
 import { packages, calculatePayoutCalculatorItems, calculatePayoutAmount } from "../fib.helpers";
@@ -27,6 +27,7 @@ import { CoverType, CreateTopUpsQuoteInput, ProductCode } from "@graphql/_core/s
 import { getBirthday } from "@redux/product/product.selectors";
 import { GQL_QUERY_GET_YULIFER } from "@graphql/yuscreen";
 import { GQL_MUTATION_CREATE_TOP_UPS_QUOTE } from "@graphql/products";
+import { FIB_PAYOUT_CALCULATOR_INITIAL_STATE } from "./fib.payout-calculator.conainer";
 
 type ConnectedState = ReturnType<typeof mapStateToProps>;
 
@@ -182,6 +183,12 @@ const FibConfirmPackagesContainer = memo(function (props: FibConfirmPackagesCont
 
   const navigateToFaqsList = () => navigation.push(FIB_FAQ_LIST);
 
+  const navigateToPayoutCalculator = () =>
+    navigation.push(FIB_PAYOUT_CALCULATOR, {
+      type: FIB_PAYOUT_CALCULATOR_INITIAL_STATE.dataAdded,
+      coverTypesInfo: fibQuoteData.coverTypesInfo,
+    });
+
   return (
     <FibSummaryScreen
       onContinue={handleOnContinue}
@@ -198,6 +205,7 @@ const FibConfirmPackagesContainer = memo(function (props: FibConfirmPackagesCont
       onScrollEnd={navigation.onScrollEnd}
       offset={navigation.currentRoute.offset || { x: 0, y: 0 }}
       navigateToFaqsList={navigateToFaqsList}
+      navigateToPayoutCalculator={navigateToPayoutCalculator}
     />
   );
 });
