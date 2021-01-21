@@ -49,11 +49,11 @@ export interface GetCheckoutDetails_personal {
 }
 
 export interface GetCheckoutDetails_gpDetails {
-  gpAddress: string;
-  gpName: string;
-  gpPostcode: string;
-  gpPractice: string;
-  gpTown: string;
+  gpAddress: string | null;
+  gpName: string | null;
+  gpPostcode: string | null;
+  gpPractice: string | null;
+  gpTown: string | null;
 }
 
 export interface GetCheckoutDetails {
