@@ -10,7 +10,7 @@ import { useSelector } from "react-redux";
 import { getCurrentUserId } from "@redux/user/user.selectors";
 import { DuelSkeleton } from "../../subcomponents/duel-skeleton/duel-skeleton";
 
-const TomorrowsDuels: FC = () => {
+const DuelsTomorrow: FC = () => {
   const { data, loading } = useQuery<GetDuelsTomorrow>(GQL_QUERY_GET_DUEL_TOMORROW, {
     fetchPolicy: "cache-and-network",
   });
@@ -56,4 +56,4 @@ const styles = StyleSheet.create({
   } as ViewStyle,
 });
 
-export default TomorrowsDuels;
+export default DuelsTomorrow;

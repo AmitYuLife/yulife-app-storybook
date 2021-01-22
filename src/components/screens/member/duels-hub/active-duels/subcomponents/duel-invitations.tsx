@@ -13,7 +13,7 @@ import { MODALS } from "@navigation/constants";
 import { DuelSkeleton } from "../../subcomponents/duel-skeleton/duel-skeleton";
 import { DUELS_HUB_INVITATION } from "@ids";
 
-const DuelInvitationsw: FC = () => {
+const DuelInvitations: FC = () => {
   const { data, loading } = useQuery<GetDuelInvitations>(GQL_QUERY_GET_DUEL_INVITATIONS, {
     fetchPolicy: "cache-and-network",
   });
@@ -155,4 +155,4 @@ const styles = StyleSheet.create({
   } as TextStyle,
 });
 
-export default DuelInvitationsw;
+export default DuelInvitations;
