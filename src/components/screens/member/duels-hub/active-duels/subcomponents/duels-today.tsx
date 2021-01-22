@@ -23,7 +23,7 @@ async function navigateToDuelsSearch() {
   });
 }
 
-const TodaysDuels: FC = () => {
+const DuelsToday: FC = () => {
   const { data, loading } = useQuery<GetDuelsToday>(GQL_QUERY_GET_DUELS_TODAY, {
     fetchPolicy: "cache-and-network",
   });
@@ -100,4 +100,4 @@ const styles = StyleSheet.create({
   } as ViewStyle,
 });
 
-export default TodaysDuels;
+export default DuelsToday;
