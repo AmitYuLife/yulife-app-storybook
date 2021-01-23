@@ -26,7 +26,7 @@ export default function* listenToSteps() {
       const currentSteps = yield select(getSteps);
 
       if (results === ERROR_NOT_AUTHORISED) {
-        yield spawn(() => Logger.error(new Error(ERROR_NOT_AUTHORISED), { event: "listenToSteps" }));
+        yield spawn(() => Logger.logEvent("pedometer_unauthorised", { event: "listenToSteps" }));
         yield put(updatePedometerNoNewDataAction());
         continue;
       }
