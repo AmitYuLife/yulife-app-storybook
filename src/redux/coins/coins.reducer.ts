@@ -1,5 +1,6 @@
 import moment from "moment";
 import { REHYDRATE } from "redux-persist";
+import { DATE_FORMAT } from "@services/utils";
 import {
   GetCurrentUser,
   GetCurrentUser_getCurrentUser_todayActivity,
@@ -14,7 +15,6 @@ import {
 import { UPDATE_DAILY_STEPS_SUCCESS, START_DAILY_STEPS } from "../daily-steps/daily-steps.actions";
 import { GET_USER_SUCCESS, LOGIN_USER_SUCCESS, LOGOUT } from "../user/user.actions";
 
-const FORMAT = "YYYY-MM-DD";
 export interface ICoinsStore {
   dailyChallengeEarned: number; // number of coins earned in the current day through challenges
   dailyStepsEarned: number; // number of coins earned in the current day through daily steps
@@ -28,7 +28,7 @@ export const getInitialState = (): ICoinsStore => ({
   dailyStepsEarned: 0,
   dailyMeditationEarned: 0,
   total: 0,
-  lastUpdated: moment().format(FORMAT),
+  lastUpdated: moment().format(DATE_FORMAT),
 });
 
 const getDailyResetCoinStore = () => ({
@@ -68,7 +68,7 @@ const coinsReducer = (state: ICoinsStore = getInitialState(), action: SyncAction
 export default coinsReducer;
 
 function getShouldResetCoinStore(lastUpdated: string) {
-  const today = moment().format(FORMAT);
+  const today = moment().format(DATE_FORMAT);
 
   return lastUpdated !== today;
 }
@@ -89,7 +89,7 @@ const updatePersistedState = (persistedState: ICoinsStore) => {
     }
 
     if (!persistedState.lastUpdated) {
-      newState.lastUpdated = moment().format(FORMAT);
+      newState.lastUpdated = moment().format(DATE_FORMAT);
     }
 
     return newState;
@@ -125,7 +125,7 @@ const updateDailyStepsSuccess = (
   ...state,
   dailyStepsEarned: upsertPassiveChallenge?.challenge?.yuCoinAwarded || 0,
   total: upsertPassiveChallenge?.totalCoins || state.total,
-  lastUpdated: moment().format(FORMAT),
+  lastUpdated: moment().format(DATE_FORMAT),
 });
 
 const updateDailyMeditationSuccess = (
@@ -135,19 +135,19 @@ const updateDailyMeditationSuccess = (
   ...state,
   dailyMeditationEarned: upsertPassiveChallenge?.challenge?.yuCoinAwarded || 0,
   total: upsertPassiveChallenge?.totalCoins || state.total,
-  lastUpdated: moment().format(FORMAT),
+  lastUpdated: moment().format(DATE_FORMAT),
 });
 
 const loginUserSuccess = (state: ICoinsStore, { loginUser }: LoginUser): ICoinsStore => ({
   ...state,
   dailyChallengeEarned: sumCompletedChallenges(loginUser?.user?.todayActivity),
   total: loginUser?.user?.coinLedger?.currentBalance || state.total,
-  lastUpdated: moment().format(FORMAT),
+  lastUpdated: moment().format(DATE_FORMAT),
 });
 
 const getUserSuccess = (state: ICoinsStore, { getCurrentUser }: GetCurrentUser): ICoinsStore => ({
   ...state,
   dailyChallengeEarned: sumCompletedChallenges(getCurrentUser?.todayActivity),
   total: getCurrentUser?.coinLedger?.currentBalance || state.total,
-  lastUpdated: moment().format(FORMAT),
+  lastUpdated: moment().format(DATE_FORMAT),
 });

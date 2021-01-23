@@ -22,6 +22,7 @@ import { LOGOUT, GET_USER_SUCCESS } from "@redux/user/user.actions";
 import { IReduxState } from "@redux/_core/reducers";
 import { GetCurrentUser } from "@graphql/_core/schema";
 import moment from "moment";
+import { DATE_FORMAT } from "@services/utils";
 import {
   FIB_THREE_YEAR_MEDICAL_HISTORY_SCREEN_ID,
   FIB_FINANCIAL_COVER_LIST_SCREEN_ID,
@@ -218,18 +219,21 @@ function validateBirthday(
   year: string,
   payload: IReduxState
 ): { birthDay: string; birthMonth: string; birthYear: string } {
-  const dob = moment(`${year}-${month}-${day}`);
+  const dob = moment(`${year}-${month}-${day}`, DATE_FORMAT);
+
   if (dob.isValid()) {
     return { birthDay: day, birthMonth: month, birthYear: year };
   }
 
-  const dateOfBirth = moment(payload?.user?.dateOfBirth);
+  const dateOfBirth = moment(payload?.user?.dateOfBirth, DATE_FORMAT);
+
   if (dateOfBirth.isValid()) {
-    const parsedDateOfBirth = dateOfBirth.format("DD-MM-YYYY").split("-");
-    return { birthDay: parsedDateOfBirth[0], birthMonth: parsedDateOfBirth[1], birthYear: parsedDateOfBirth[2] };
+    const [birthYear, birthMonth, birthDay] = dateOfBirth.format(DATE_FORMAT).split("-");
+    return { birthDay, birthMonth, birthYear };
   }
 
   const now = moment();
+
   return {
     birthDay: now.date().toString(),
     birthMonth: `${now.month() + 1}`,
