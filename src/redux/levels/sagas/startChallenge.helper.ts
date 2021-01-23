@@ -1,9 +1,13 @@
 import cancelActiveChallengeWithClient from "@graphql/challenges/cancelActiveChallenge.gql";
 import updateActiveChallengeWithClient from "@graphql/challenges/updateActiveChallenge.gql";
+import { ChallengePayload } from "@graphql/_core/schema/globalTypes";
+import {
+  CreateActiveChallenge_createActiveChallenge_challenge,
+  CreateActiveChallenge_createActiveChallenge_levelSlot,
+} from "@graphql/_core/schema";
 import { queryMindfulSessions, queryCycling } from "@services/fitkit/fitkit.helpers";
 import Logger from "@services/logging/logger";
 import { DATE_FORMAT_WITH_TZ } from "@services/utils";
-import { pathOr } from "@services/utils";
 import moment from "moment";
 import { call, cancel, cancelled, fork, put, race, select, spawn, take, delay } from "redux-saga/effects";
 import { cancelLocalPush } from "../../device/device.actions";
@@ -29,7 +33,7 @@ export function* startTracking(levelSlotId: string, startDateTime: string, endDa
 
     try {
       const features = yield select(getUserFeatures);
-      const queryResult = yield call(
+      const queryResult: ChallengePayload[] = yield call(
         isCycling ? queryCycling : queryMindfulSessions,
         start,
         end.format(DATE_FORMAT_WITH_TZ),
@@ -40,13 +44,13 @@ export function* startTracking(levelSlotId: string, startDateTime: string, endDa
         const results = {
           endDateTime,
           startDateTime,
-          value: Math.floor(queryResult.reduce((accumulator: number, session: any) => accumulator + session.value, 0)),
+          value: Math.floor(queryResult.reduce((accumulator, session) => accumulator + session.value, 0)),
         };
 
         const { data } = yield call(updateActiveChallengeWithClient, levelSlotId, results);
         yield put(challengeUpdateSuccessAction(data));
 
-        if (pathOr<string>(data, "updateActiveChallenge.challenge.status", "") === "completed") {
+        if ((data?.updateActiveChallenge?.challenge?.status || "") === "completed") {
           yield put(cancelLocalPush());
           yield put(challengeTimeUpAction());
           return;
@@ -73,7 +77,10 @@ export function* startTrackingTime(endDateTime: string) {
   yield put(challengeTimeUpAction());
 }
 
-export default function* startChallenge({ subtype, levelSlotId, startDateTime, endDateTime }: any) {
+type Args = Omit<CreateActiveChallenge_createActiveChallenge_challenge, "level" | "status"> &
+  Pick<CreateActiveChallenge_createActiveChallenge_levelSlot, "subtype">;
+
+export default function* startChallenge({ subtype, levelSlotId, startDateTime, endDateTime }: Args) {
   const isMeditation = subtype === "meditation";
   const isCycling = subtype === "cycling";
   const challengeTask =

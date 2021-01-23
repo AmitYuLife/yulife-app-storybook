@@ -3,15 +3,15 @@ import { AppState, AppStateStatus } from "react-native";
 import { SyncAction } from "../_core/types";
 import { UPDATE_APP_STATE, UPDATE_NAVIGATION_STATE, UPDATE_OFFLINE_STATE } from "./app.actions";
 
-export const initialState = {
+export const getInitialState = () => ({
   appState: AppState.currentState,
   currentRoute: ROUTES.dailySteps,
   isOffline: false,
-};
+});
 
-export type IAppStore = typeof initialState;
+export type IAppStore = ReturnType<typeof getInitialState>;
 
-const appReducer = (state = initialState, action: SyncAction) => {
+const appReducer = (state = getInitialState(), action: SyncAction) => {
   switch (action.type) {
     case UPDATE_APP_STATE:
       return updateAppState(state, action.payload);

@@ -1,31 +1,31 @@
 import { combineReducers } from "redux";
 import dailyMeditationReducer, {
   IDailyMeditationStore,
-  initialState as initialDailyMeditation,
+  getInitialState as getInitialDailyMeditation,
 } from "../daily-meditation/daily-meditation.reducer";
 
-import appReducer, { IAppStore, initialState as initialAppState } from "../app/app.reducer";
-import coinsReducer, { ICoinsStore, initialState as initialCoinsState } from "../coins/coins.reducer";
-import avatarReducer, { IAvatarStore, initialMaleState as initialStateAvatar } from "../avatar/avatar.reducer";
-import copyReducer, { ICopyStore, initialState as initialCopyState } from "../copy/copy.reducer";
+import appReducer, { IAppStore, getInitialState as getInitialAppState } from "../app/app.reducer";
+import coinsReducer, { ICoinsStore, getInitialState as getInitialCoinsState } from "../coins/coins.reducer";
+import avatarReducer, { IAvatarStore, getInitialMaleState } from "../avatar/avatar.reducer";
+import copyReducer, { ICopyStore, getInitialState as getInitialCopyState } from "../copy/copy.reducer";
 import dailyStepsReducer, {
   IDailyStepsStore,
-  initialState as initialDailyStepsState,
+  getInitialState as getInitialDailyStepsState,
 } from "../daily-steps/daily-steps.reducer";
-import deviceReducer, { IDeviceStore, initialState as initialDeviceState } from "../device/device.reducer";
-import levelsReducer, { ILevelsStore, initialState as initialLevelsState } from "../levels/levels.reducer";
+import deviceReducer, { IDeviceStore, getInitialState as getInitialDeviceState } from "../device/device.reducer";
+import levelsReducer, { ILevelsStore, getInitialState as getInitialLevelsState } from "../levels/levels.reducer";
 import onboardingReducer, {
-  initialState as initialOnboardingState,
+  getInitialState as getInitialOnboardingState,
   IOnboardingStore,
 } from "../onboarding/onboarding.reducer";
 import pedometerReducer, {
-  initialState as initialPedometerState,
+  getInitialState as getInitialPedometerState,
   IPedometerStore,
 } from "../pedometer/pedometer.reducer";
-import streaksReducer, { initialState as initialStreaksState, IStreaksStore } from "../streaks/streaks.reducer";
-import themeReducer, { initialState as initialThemeState, IThemeStore } from "../theme/theme.reducer";
-import userReducer, { initialState as initialUserState, IUserStore } from "../user/user.reducer";
-import productReducer, { initialState as initialProductState, IProductStore } from "../product/product.reducer";
+import streaksReducer, { getInitialState as getInitialStreaksState, IStreaksStore } from "../streaks/streaks.reducer";
+import themeReducer, { getInitialState as getInitialThemeState, IThemeStore } from "../theme/theme.reducer";
+import userReducer, { getInitialState as getInitialUserState, IUserStore } from "../user/user.reducer";
+import productReducer, { getInitialState as getInitialProductState, IProductStore } from "../product/product.reducer";
 
 export interface IReduxState {
   app: IAppStore;
@@ -45,20 +45,20 @@ export interface IReduxState {
 }
 
 export const initialState: IReduxState = {
-  app: initialAppState,
-  coins: initialCoinsState,
-  dailySteps: initialDailyStepsState,
-  device: initialDeviceState,
-  levels: initialLevelsState,
-  onboarding: initialOnboardingState,
-  product: initialProductState(),
-  pedometer: initialPedometerState,
-  streaks: initialStreaksState,
-  theme: initialThemeState,
-  user: initialUserState,
-  copy: initialCopyState,
-  dailyMeditation: initialDailyMeditation,
-  avatar: initialStateAvatar,
+  app: getInitialAppState(),
+  coins: getInitialCoinsState(),
+  dailySteps: getInitialDailyStepsState(),
+  device: getInitialDeviceState(),
+  levels: getInitialLevelsState(),
+  onboarding: getInitialOnboardingState(),
+  product: getInitialProductState(),
+  pedometer: getInitialPedometerState(),
+  streaks: getInitialStreaksState(),
+  theme: getInitialThemeState(),
+  user: getInitialUserState(),
+  copy: getInitialCopyState(),
+  dailyMeditation: getInitialDailyMeditation(),
+  avatar: getInitialMaleState(),
 };
 
 // this alias is created for testing purposes

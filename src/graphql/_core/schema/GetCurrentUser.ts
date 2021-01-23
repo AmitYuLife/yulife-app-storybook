@@ -91,6 +91,7 @@ export interface GetCurrentUser_getCurrentUser_activeChallenge_challenge_incomin
 }
 
 export interface GetCurrentUser_getCurrentUser_activeChallenge_challenge {
+  id: string | null;
   level: number | null;
   levelSlotId: string | null;
   status: string | null;
@@ -98,6 +99,7 @@ export interface GetCurrentUser_getCurrentUser_activeChallenge_challenge {
   startDateTime: string | null;
   rating: number | null;
   subtype: string | null;
+  yuCoinAwarded: number | null;
   incomingData: GetCurrentUser_getCurrentUser_activeChallenge_challenge_incomingData | null;
 }
 

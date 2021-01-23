@@ -1,10 +1,9 @@
 import { PedometerResponse } from "@services/fitkit/fitkit.service";
 import moment from "moment";
 import { GetCurrentUser, LoginUser, UpdateActiveChallenge } from "../../graphql/_core/schema";
-import { pathOr } from "../../services/utils";
 import { SyncAction } from "../_core/types";
 import { PEDOMETER_UPDATES_SUCCESS } from "../pedometer/pedometer.actions";
-import { GET_USER_SUCCESS, LOGIN_USER_SUCCESS } from "../user/user.actions";
+import { GET_USER_SUCCESS, LOGIN_USER_SUCCESS, LOGOUT } from "../user/user.actions";
 import {
   CHALLENGE_CANCEL,
   CHALLENGE_END_FAIL,
@@ -27,7 +26,7 @@ export interface ILevelsStore {
   nextLevelAvailableAt: string;
 }
 
-export const initialState: ILevelsStore = {
+export const getInitialState = (): ILevelsStore => ({
   active: {
     chest: {
       type: "yucoin",
@@ -53,9 +52,9 @@ export const initialState: ILevelsStore = {
   challengesDoneToday: 0,
   level: 1,
   nextLevelAvailableAt: "",
-};
+});
 
-const levelsReducer = (state: ILevelsStore = initialState, action: SyncAction): ILevelsStore => {
+const levelsReducer = (state: ILevelsStore = getInitialState(), action: SyncAction): ILevelsStore => {
   switch (action.type) {
     case GET_USER_SUCCESS:
       return getUserSuccess(state, action.payload);
@@ -97,6 +96,9 @@ const levelsReducer = (state: ILevelsStore = initialState, action: SyncAction): 
     case CHALLENGE_START_INITIAL_STEPS:
       return { ...state, active: { ...state.active, initialPedometerResult: action.payload } };
 
+    case LOGOUT:
+      return getInitialState();
+
     default:
       return state;
   }
@@ -109,44 +111,24 @@ const getUserSuccess = (state: ILevelsStore, data: GetCurrentUser): ILevelsStore
   active: {
     ...state.active,
     isLoading: false,
-    endDateTime: pathOr<string>(
-      data,
-      "getCurrentUser.activeChallenge.challenge.endDateTime",
-      initialState.active.endDateTime
-    ),
-    levelSlotId: pathOr<string>(
-      data,
-      "getCurrentUser.activeChallenge.challenge.levelSlotId",
-      initialState.active.levelSlotId
-    ),
-    milestones: pathOr<any[]>(
-      data,
-      "getCurrentUser.activeChallenge.levelSlot.milestones",
-      initialState.active.milestones
-    ),
-    rating: pathOr<number>(data, "getCurrentUser.activeChallenge.challenge.rating", initialState.active.rating),
-    startDateTime: pathOr<string>(
-      data,
-      "getCurrentUser.activeChallenge.challenge.startDateTime",
-      initialState.active.startDateTime
-    ),
-    subtype: pathOr<string>(data, "getCurrentUser.activeChallenge.levelSlot.subtype", initialState.active.subtype),
-    unit: pathOr<string>(data, "getCurrentUser.activeChallenge.levelSlot.unit", initialState.active.unit),
+    endDateTime: data?.getCurrentUser?.activeChallenge?.challenge?.endDateTime || "",
+    levelSlotId: data?.getCurrentUser?.activeChallenge?.challenge?.levelSlotId || "",
+    milestones: data?.getCurrentUser?.activeChallenge?.levelSlot?.milestones || [],
+    rating: data?.getCurrentUser?.activeChallenge?.challenge?.rating || 0,
+    startDateTime: data?.getCurrentUser?.activeChallenge?.challenge?.startDateTime || "",
+    subtype: data?.getCurrentUser?.activeChallenge?.levelSlot?.subtype || "",
+    unit: data?.getCurrentUser?.activeChallenge?.levelSlot?.unit || "",
   },
-  challengesDoneToday: pathOr<number>(data, "getCurrentUser.challengesDoneToday", 0),
-  level: pathOr<number>(data, "getCurrentUser.coinLedger.currentLevel", 1),
-  nextLevelAvailableAt: pathOr<string>(data, "getCurrentUser.coinLedger.nextLevelAvailableAt", ""),
+  challengesDoneToday: data?.getCurrentUser?.challengesDoneToday || 0,
+  level: data?.getCurrentUser?.coinLedger?.currentLevel || 1,
+  nextLevelAvailableAt: data?.getCurrentUser?.coinLedger?.nextLevelAvailableAt || "",
 });
 
 const loginUserSuccess = (state: ILevelsStore, data: LoginUser): ILevelsStore => ({
   ...state,
-  challengesDoneToday: pathOr<number>(data, "loginUser.user.challengesDoneToday", 0),
-  level: pathOr<number>(data, "loginUser.user.coinLedger.currentLevel", initialState.level),
-  nextLevelAvailableAt: pathOr<string>(
-    data,
-    "loginUser.user.coinLedger.nextLevelAvailableAt",
-    initialState.nextLevelAvailableAt
-  ),
+  challengesDoneToday: data?.loginUser?.user?.challengesDoneToday || 0,
+  level: data?.loginUser?.user?.coinLedger?.currentLevel || 1,
+  nextLevelAvailableAt: data?.loginUser?.user?.coinLedger?.nextLevelAvailableAt || "",
 });
 
 const isCancellingChallenge = (state: ILevelsStore): ILevelsStore => ({
@@ -165,8 +147,8 @@ const challengeStartSuccess = (
   active: {
     ...state.active,
     chest: {
-      type: pathOr<string>(chest, "type", initialState.active.chest.type),
-      value: pathOr<number>(chest, "value", initialState.active.chest.value),
+      type: chest?.type || "yucoin",
+      value: chest?.value || null,
     },
     endDateTime: challenge.endDateTime,
     level: challenge.level,
@@ -185,19 +167,16 @@ const challengeUpdateSuccess = (
   ...state,
   active: {
     ...state.active,
-    coins: pathOr<number>(res, "challenge.yuCoinAwarded", initialState.active.coins),
-    isCompleted: pathOr<string>(res, "challenge.status", "") === "completed",
-    milestonesLog: pathOr<any[]>(res, "challenge.milestoneLog", initialState.active.milestonesLog),
-    rating: pathOr<number>(res, "challenge.rating", initialState.active.rating),
-    score: pathOr<number>(
-      res,
-      state.active.subtype === "meditation"
-        ? "challenge.incomingData.meditation"
+    coins: res?.challenge?.yuCoinAwarded || 0,
+    isCompleted: (res?.challenge?.status || "") === "completed",
+    milestonesLog: res?.challenge?.milestoneLog || [],
+    rating: res?.challenge?.rating || 0,
+    score:
+      (state.active.subtype === "meditation"
+        ? res?.challenge?.incomingData?.meditation
         : state.active.subtype === "cycling"
-        ? "challenge.incomingData.distance"
-        : "challenge.incomingData.steps",
-      initialState.active.score
-    ),
+        ? res?.challenge?.incomingData?.distance
+        : res?.challenge?.incomingData?.steps) || 0,
   },
 });
 
@@ -205,24 +184,18 @@ const challengeEndSuccess = (state: ILevelsStore, res: UpdateActiveChallenge): I
   ...state,
   active: {
     ...state.active,
-    coins: pathOr<number>(res, "updateActiveChallenge.challenge.yuCoinAwarded", state.active.coins),
-    level: pathOr<number>(res, "updateActiveChallenge.challenge.level", state.active.level),
+    coins: res?.updateActiveChallenge?.challenge?.yuCoinAwarded || 0,
+    level: res?.updateActiveChallenge?.challenge?.level || 1,
     isLoading: false,
-    milestonesLog: pathOr<any[]>(res, "updateActiveChallenge.challenge.milestoneLog", state.active.milestonesLog),
-    rating: pathOr<number>(res, "updateActiveChallenge.challenge.rating", state.active.rating),
-    score: pathOr<number>(
-      res,
-      state.active.subtype === "meditation"
-        ? "updateActiveChallenge.challenge.incomingData.meditation"
+    milestonesLog: res?.updateActiveChallenge?.challenge?.milestoneLog || [],
+    rating: res?.updateActiveChallenge?.challenge?.rating || 0,
+    score:
+      (state.active.subtype === "meditation"
+        ? res?.updateActiveChallenge?.challenge?.incomingData?.meditation
         : state.active.subtype === "cycling"
-        ? "updateActiveChallenge.challenge.incomingData.distance"
-        : "updateActiveChallenge.challenge.incomingData.steps",
-      state.active.score
-    ),
-    status:
-      pathOr<any[]>(res, "updateActiveChallenge.challenge.milestoneLog", state.active.milestonesLog).length > 0
-        ? "success"
-        : "failed",
+        ? res?.updateActiveChallenge?.challenge?.incomingData?.distance
+        : res?.updateActiveChallenge?.challenge?.incomingData?.steps) || state.active.score,
+    status: (res?.updateActiveChallenge?.challenge?.milestoneLog || []).length > 0 ? "success" : "failed",
     timeUp: false,
   },
 });
@@ -238,7 +211,7 @@ const challengeTimeUp = (state: ILevelsStore): ILevelsStore => ({
 const challengeResetSuccess = (state: ILevelsStore): ILevelsStore => ({
   ...state,
   active: {
-    ...initialState.active,
+    ...getInitialState().active,
     isLoading: false,
   },
 });

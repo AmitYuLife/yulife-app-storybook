@@ -89,6 +89,7 @@ export interface User_activeChallenge_challenge_incomingData {
 }
 
 export interface User_activeChallenge_challenge {
+  id: string | null;
   level: number | null;
   levelSlotId: string | null;
   status: string | null;
@@ -96,6 +97,7 @@ export interface User_activeChallenge_challenge {
   startDateTime: string | null;
   rating: number | null;
   subtype: string | null;
+  yuCoinAwarded: number | null;
   incomingData: User_activeChallenge_challenge_incomingData | null;
 }
 

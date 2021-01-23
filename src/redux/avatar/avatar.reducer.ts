@@ -1,7 +1,7 @@
 import { REHYDRATE } from "redux-persist";
 import { SyncAction } from "../_core/types";
-import { FEMALE_BODY_SELECTED, MALE_BODY_SELECTED } from "./avatar.actions";
-import { SAVE_AVATAR } from "./avatar.actions";
+import { LOGOUT } from "@redux/user/user.actions";
+import { FEMALE_BODY_SELECTED, MALE_BODY_SELECTED, SAVE_AVATAR } from "./avatar.actions";
 import {
   femaleBootsDefault,
   femaleChestDefault,
@@ -30,6 +30,7 @@ export interface IAvatarStore extends IAvatar {
 export interface IBodyElements {
   name: string;
   // elements?: any;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   attributes: any;
 }
 
@@ -70,7 +71,7 @@ const defaultBodyColor = {
   tongue: "#D85B77",
 };
 
-const initialFemaleState: IAvatarStore = {
+const getInitialFemaleState = (): IAvatarStore => ({
   isAvatarCreated: false,
   head: {
     partId: "female_head_1",
@@ -122,9 +123,9 @@ const initialFemaleState: IAvatarStore = {
     bodyElements: [],
     colors: { colorScheme: defaultColors, colorSchemeId: "" },
   },
-};
+});
 
-export const initialMaleState: IAvatarStore = {
+export const getInitialMaleState = (): IAvatarStore => ({
   isAvatarCreated: false,
   head: {
     partId: "male_head_1",
@@ -177,12 +178,12 @@ export const initialMaleState: IAvatarStore = {
     bodyElements: [],
     colors: { colorScheme: defaultColors, colorSchemeId: "" },
   },
-};
+});
 
-const avatarReducer = (state: IAvatarStore = initialMaleState, action: SyncAction): IAvatarStore => {
+const avatarReducer = (state: IAvatarStore = getInitialMaleState(), action: SyncAction): IAvatarStore => {
   switch (action.type) {
     case REHYDRATE:
-      return initialMaleState;
+      return getInitialMaleState();
 
     case FEMALE_BODY_SELECTED:
       if (state.head.partId === "female_head_1") {
@@ -190,7 +191,7 @@ const avatarReducer = (state: IAvatarStore = initialMaleState, action: SyncActio
       }
 
       return {
-        ...initialFemaleState,
+        ...getInitialFemaleState(),
         avatarForYuscreen: state.avatarForYuscreen,
       };
 
@@ -200,7 +201,7 @@ const avatarReducer = (state: IAvatarStore = initialMaleState, action: SyncActio
       }
 
       return {
-        ...initialMaleState,
+        ...getInitialMaleState(),
         avatarForYuscreen: state.avatarForYuscreen,
       };
 
@@ -263,6 +264,9 @@ const avatarReducer = (state: IAvatarStore = initialMaleState, action: SyncActio
           partId: action.payload.gloves.partId,
         },
       };
+
+    case LOGOUT:
+      return getInitialMaleState();
 
     default:
       return state;

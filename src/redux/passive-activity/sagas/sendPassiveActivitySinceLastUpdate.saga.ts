@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import addData from "@graphql/challenges/addData.gql";
 import { AddHistoricalSteps_addHistoricalSteps } from "@graphql/_core/schema";
 import addHistoricalSteps from "@graphql/challenges/addHistoricalSteps.gql";
@@ -9,7 +10,6 @@ import { Navigation } from "react-native-navigation";
 import { call, CallEffect, put, PutEffect, select, SelectEffect, all, AllEffect, delay } from "redux-saga/effects";
 import { queryMindfulSessions, querySteps } from "@services/fitkit/fitkit.helpers";
 import Logger from "@services/logging/logger";
-import { pathOr } from "@services/utils";
 import { getRouteState } from "../../app/app.selectors";
 import { meditationSinceLastUpdateSuccess } from "../../daily-meditation/daily-meditation.actions";
 import { getLastUpdatedBeforeToday as getMeditationLastUpdatedBeforeToday } from "../../daily-meditation/daily-meditation.selectors"; // tslint:disable-line
@@ -57,7 +57,7 @@ export function* sendMeditation(
         try {
           const res = yield call(addData, aggregateMeditationChallengeArray, PassiveChallengeType.MEDITATION);
 
-          meditationHistoricalDataResponse = pathOr<HistoricalData>(res, "data.addData", defaultData);
+          meditationHistoricalDataResponse = res?.data?.addData || defaultData;
 
           isUpdated = true;
           yield put(meditationSinceLastUpdateSuccess());
@@ -100,7 +100,7 @@ export function* sendSteps(
         while (!isUpdated) {
           try {
             const res = yield call(addHistoricalSteps, results, true, true);
-            stepsHistoricalDataResponse = pathOr<HistoricalData>(res, "data.addHistoricalSteps", defaultData);
+            stepsHistoricalDataResponse = res?.data?.addHistoricalSteps || defaultData;
 
             isUpdated = true;
             yield put(stepsSinceLastUpdateSuccess());

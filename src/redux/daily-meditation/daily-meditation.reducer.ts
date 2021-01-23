@@ -1,15 +1,15 @@
 import moment from "moment";
 import { REHYDRATE } from "redux-persist";
 import { GetCurrentUser, LoginUser, UpsertPassiveChallenge } from "../../graphql/_core/schema";
-import { pathOr } from "../../services/utils";
 import { ExchangeRate } from "../daily-steps/daily-steps.selectors";
-import { GET_USER_SUCCESS, LOGIN_USER_SUCCESS } from "../user/user.actions";
+import { GET_USER_SUCCESS, LOGIN_USER_SUCCESS, LOGOUT } from "../user/user.actions";
 import {
   MEDITATION_SINCE_LAST_UPDATE_SUCCESS,
   UPDATE_DAILY_MEDITATION_EMPTY_RESULT,
   UPDATE_DAILY_MEDITATION_SUCCESS,
 } from "./daily-meditation.actions";
 import { PassiveMeditationMilestones } from "./daily-meditation.selectors";
+import { SyncAction } from "@redux/_core/types";
 export interface IDailyMeditationStore {
   dailyMeditation: number;
   exchangeRate: ExchangeRate;
@@ -28,7 +28,7 @@ export interface IDailyMeditationStore {
   lastUpdatedBeforeToday: string;
 }
 
-export const initialState: IDailyMeditationStore = {
+export const getInitialState = (): IDailyMeditationStore => ({
   dailyMeditation: 0,
   exchangeRate: {
     yucoin: 1,
@@ -39,9 +39,12 @@ export const initialState: IDailyMeditationStore = {
   meditationPassiveMilestones: [],
   lastUpdated: moment().startOf("day").format(),
   lastUpdatedBeforeToday: null,
-};
+});
 
-const dailyMeditationReducer = (state: IDailyMeditationStore = initialState, action: any): IDailyMeditationStore => {
+const dailyMeditationReducer = (
+  state: IDailyMeditationStore = getInitialState(),
+  action: SyncAction
+): IDailyMeditationStore => {
   switch (action.type) {
     case REHYDRATE:
       if (action.payload && action.payload.dailyMeditation) {
@@ -64,6 +67,9 @@ const dailyMeditationReducer = (state: IDailyMeditationStore = initialState, act
 
     case MEDITATION_SINCE_LAST_UPDATE_SUCCESS:
       return { ...state, lastUpdatedBeforeToday: null };
+
+    case LOGOUT:
+      return getInitialState();
 
     default:
       return state;
@@ -103,17 +109,13 @@ const updatePersistedState = (state: IDailyMeditationStore, persistedState: IDai
 
 const getUserSuccess = (state: IDailyMeditationStore, res: GetCurrentUser) => ({
   ...state,
-  exchangeRate: pathOr<ExchangeRate>(res, "getCurrentUser.passiveMeditation.exchange", initialState.exchangeRate),
-  meditationPassiveMilestones: pathOr<PassiveMeditationMilestones>(
-    res,
-    "getCurrentUser.passiveMeditation.levelSlot.milestones",
-    initialState.meditationPassiveMilestones
-  ),
+  exchangeRate: res?.getCurrentUser?.passiveMeditation?.exchange || getInitialState().exchangeRate,
+  meditationPassiveMilestones: res?.getCurrentUser?.passiveMeditation?.levelSlot?.milestones || [],
 });
 
 const loginUserSuccess = (state: IDailyMeditationStore, res: LoginUser) => ({
   ...state,
-  exchangeRate: pathOr<ExchangeRate>(res, "loginUser.user.passiveMeditation.exchange", initialState.exchangeRate),
+  exchangeRate: res?.loginUser?.user?.passiveMeditation?.exchange || getInitialState().exchangeRate,
 });
 
 export default dailyMeditationReducer;

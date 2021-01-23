@@ -76,6 +76,7 @@ export const GQL_FRAGMENT_USER = gql`
     }
     activeChallenge {
       challenge {
+        id
         level
         levelSlotId
         status
@@ -83,6 +84,7 @@ export const GQL_FRAGMENT_USER = gql`
         startDateTime
         rating
         subtype
+        yuCoinAwarded
         incomingData {
           steps
           meditation
