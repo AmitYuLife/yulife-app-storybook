@@ -11,15 +11,25 @@ export const Heading = (props: IHeadingProps) => {
   const { text } = props;
 
   return (
-    <View style={styles.wrapper}>
-      <Text bold={true} style={styles.text}>
+    <View style={headingStyles.wrapper}>
+      <Text bold={true} style={headingStyles.text}>
         {text}
       </Text>
     </View>
   );
 };
 
-const styles = StyleSheet.create({
+export const Subheading = (props: IHeadingProps) => {
+  const { text } = props;
+
+  return (
+    <View style={subheadingStyles.wrapper}>
+      <Text style={subheadingStyles.text}>{text}</Text>
+    </View>
+  );
+};
+
+const headingStyles = StyleSheet.create({
   wrapper: {
     marginHorizontal: Style.adjust(16),
     paddingRight: Style.adjust(16),
@@ -27,8 +37,23 @@ const styles = StyleSheet.create({
   } as ViewStyle,
   text: {
     fontSize: Style.adjust(28),
-    lineHeight: Style.adjust(34),
+    lineHeight: Style.adjust(32),
     letterSpacing: 1,
+    color: Colours.neutral.n700,
+  } as TextStyle,
+});
+
+const subheadingStyles = StyleSheet.create({
+  wrapper: {
+    marginHorizontal: Style.adjust(16),
+    paddingRight: Style.adjust(16),
+    paddingLeft: Style.adjust(12),
+    marginTop: Style.adjust(8),
+  } as ViewStyle,
+  text: {
+    fontSize: Style.adjust(16),
+    lineHeight: Style.adjust(24),
+    letterSpacing: 0.6,
     color: Colours.neutral.n700,
   } as TextStyle,
 });

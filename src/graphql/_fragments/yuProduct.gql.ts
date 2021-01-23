@@ -47,6 +47,8 @@ export const GQL_FRAGMENT_YU_PRODUCT = gql`
     itemSlot
     earnRate
     description
+    policyNumber
+    coverType
     options {
       ...ProductOptions
     }

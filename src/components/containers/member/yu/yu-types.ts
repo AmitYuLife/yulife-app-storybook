@@ -18,6 +18,5 @@ export const employerProducts: YuProductId[] = [
 ];
 export const personalItems: YuItemSlot[] = [YuItemSlot.chest, YuItemSlot.gloves, YuItemSlot.boots, YuItemSlot.pants];
 
-export const isEmployerItem = (item: YuItemSlot) => employerItems.includes(item);
 export const getIsEmployerProduct = (item: YuProductId) => employerProducts.includes(item);
 export const getIsPersonalItem = (item: YuItemSlot) => personalItems.includes(item);

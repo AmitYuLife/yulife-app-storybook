@@ -83,53 +83,6 @@ export default {
     desert: "#f86f63",
     mountain: "#ca45b3",
   },
-  navBar: {
-    blue: {
-      active: "rgba(29,100,163,1)",
-      inactive: "rgba(29,100,163,0.4)",
-      pressed: "rgba(29,100,163,0.6)",
-      activeIcon: "rgb(4, 39, 89)",
-    },
-    dark: {
-      active: "rgba(64,98,94,1)",
-      inactive: "rgba(71,108,104,0.5)",
-      pressed: "rgba(71,108,104,0.75)",
-    },
-    darker: {
-      active: "rgb(0,0,0)",
-      inactive: "rgba(71,108,104,0.5)",
-      pressed: "rgba(71,108,104,0.75)",
-    },
-    desert: {
-      active: "rgba(84,12,0,1)",
-      inactive: "rgba(84,12,0,0.4)",
-      pressed: "rgba(84,12,0,0.6)",
-      activeIcon: "rgb(118, 92, 50)",
-    },
-    forest: {
-      active: "rgb(108, 205, 158)",
-      inactive: "rgb(108, 205, 158)",
-      pressed: "rgb(108, 205, 158)",
-      activeIcon: "rgb(51, 88, 66)",
-    },
-    light: {
-      active: "rgba(255,255,255,1)",
-      inactive: "rgba(255,255,255,0.4)",
-      pressed: "rgba(255,255,255,0.2)",
-      activeIcon: "rgb(51, 88, 84)",
-    },
-    highlight: {
-      active: "rgb(227, 13, 118)",
-      inactive: "rgb(227, 13, 118)",
-      pressed: "rgb(227, 13, 118)",
-    },
-    mountain: {
-      active: "rgb(150, 179, 204)",
-      inactive: "rgba(150, 179, 204, 0.4)",
-      pressed: "rgba(150, 179, 204, 0.6)",
-      activeIcon: "rgb(4, 39, 89)",
-    },
-  },
   navNotification: {
     body: "rgb(226, 1, 119)",
     border: "white",
@@ -203,10 +156,15 @@ export default {
   products: {
     fib: {
       common: "#00ED9D",
+      commonShadow: "#00CC87",
+      commonGradientDark: "#06AE75",
+      commonGradientLight: "#0CF0A3",
       rare: "#00C0F3",
       rareGradientLight: "#8FDEFF",
       rareShadow: "#00ADDB",
       epic: "#956AFF",
+      epicShadow: "#825CDE",
+      epicGradientLight: "#BFA6FF",
       custom: "#956AFF", // temporary, for CoverType type
       n800: "#5A5A5C",
       n900: "#464647",
@@ -225,9 +183,29 @@ export default {
     p600: "#E30D76",
   },
   secondary: {
+    /** Uncommon Green */
     s10S1: "#E4FCF4",
+    s20S1: "#CAF8E8",
+    s30S1: "#B1F9E0",
+    s40S1: "#99F8D7",
+    s50S1: "#80F6CD",
+    s100S1: "#00ED9D",
+
+    /** Rare Blue */
     s10S2: "#E3F7FC",
+    s20S2: "#CAEFF9",
+    s30S2: "#B2ECFB",
+    s40S2: "#94DDF1",
+    s50S2: "#7EDCF5",
+    s100S2: "#00C0F3",
+
+    /** Epic Purple */
     s10S3: "#F4F0FF",
+    s20S3: "#EAE1FF",
+    s30S3: "#DFD3FF",
+    s40S3: "#D2C2FD",
+    s50S3: "#C7B4FD",
+    s100S3: "#956AFF",
   },
   neutral: {
     white: "#FFFFFF",
@@ -263,6 +241,7 @@ export default {
     ds106: "#F86F63",
   },
   orange: "#DB8200",
+  orangeNew: "#EDAD25",
   blue: {
     b100: "#D5ECFF",
     b200: "#6AA3DC",
