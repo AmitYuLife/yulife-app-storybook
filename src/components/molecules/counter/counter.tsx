@@ -36,6 +36,11 @@ class Counter extends React.PureComponent<IProps, IState> {
     }
   }
 
+  public componentWillUnmount() {
+    this.animatedValue.stopAnimation();
+    this.animatedValue.removeAllListeners();
+  }
+
   public render() {
     const { textAfterValue = "", textBeforeValue = "", textStyle } = this.props;
     const { value } = this.state;
