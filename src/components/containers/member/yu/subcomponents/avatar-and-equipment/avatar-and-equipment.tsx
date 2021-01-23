@@ -1,5 +1,5 @@
-import React, { memo, useMemo, Dispatch, useCallback, useState } from "react";
-import { Image, StyleSheet, ViewStyle, ImageStyle, Platform, ActivityIndicator } from "react-native";
+import React, { memo, useMemo, useState } from "react";
+import { Image, StyleSheet, ViewStyle, ImageStyle, Platform, ActivityIndicator, View } from "react-native";
 import { Style, Colours } from "@styles";
 import { ItemSet } from "./item-set/item-set";
 import { TouchableOpacityWithDelay } from "@components/molecules";
@@ -9,14 +9,8 @@ import { GetYulifer } from "@graphql/_core/schema";
 import { GQL_QUERY_GET_YULIFER } from "@graphql/yuscreen";
 import { navigateToAvatarModal } from "../../navigation/navigateToAvatarModal";
 import { YUSCREEN_AVATAR } from "@ids";
-import { personalProductsToArray } from "../../../../products/fib/fib.helpers";
 
-interface Props {
-  setProduct: Dispatch<string>;
-  product: string;
-}
-
-const _AvatarAndEquipment = ({ setProduct, product }: Props) => {
+const _AvatarAndEquipment = () => {
   const [showLoading, setShowLoading] = useState(true);
   const { data } = useQuery<GetYulifer>(GQL_QUERY_GET_YULIFER, { fetchPolicy: "cache-only" });
 
@@ -25,20 +19,15 @@ const _AvatarAndEquipment = ({ setProduct, product }: Props) => {
     return uri ? { uri } : null;
   }, [data]);
 
-  const dismissOverlay = useCallback(() => {
-    setProduct(null);
-  }, [setProduct]);
-
   const [left, right] = useMemo(() => {
-    if (!data?.getYulifer) {
+    if (!data?.personal || !data?.additional) {
       return [[], []];
     }
 
     const { additional, personal } = data;
+    const { chest, pants, gloves, boots } = personal;
 
-    const personalProducts = personalProductsToArray(personal);
-
-    return [personalProducts, additional];
+    return [[chest, gloves, pants, boots], additional];
   }, [data]);
 
   const handleImageLoad = () => setShowLoading(false);
@@ -48,19 +37,14 @@ const _AvatarAndEquipment = ({ setProduct, product }: Props) => {
   }
 
   return (
-    <TouchableOpacityWithDelay
-      onPress={dismissOverlay}
-      activeOpacity={1}
-      style={styles.wrapper}
-      testID={YUSCREEN_AVATAR}
-    >
-      <ItemSet product={product} setProduct={setProduct} items={left} />
+    <View style={styles.wrapper} testID={YUSCREEN_AVATAR}>
+      <ItemSet items={left} />
       <TouchableOpacityWithDelay onPress={navigateToAvatarModal} style={styles.avatarWrapper}>
         {!showLoading ? null : <ActivityIndicator color={Colours.darkHotPink} style={styles.activityIndicator} />}
         <Image resizeMode="contain" style={styles.avatar} source={avatarSource} onLoad={handleImageLoad} />
       </TouchableOpacityWithDelay>
-      <ItemSet product={product} setProduct={setProduct} items={right} />
-    </TouchableOpacityWithDelay>
+      <ItemSet items={right} />
+    </View>
   );
 };
 

@@ -1,27 +1,28 @@
-import React from "react";
+import React, { useCallback, useContext, useMemo } from "react";
 import { StyleSheet, ViewStyle, View, ImageStyle } from "react-native";
 import { TouchableOpacityWithDelay, PowerCoin } from "@molecules";
 import { Style } from "@styles";
-import { YuItemSlot, YuProductStatus, CoverType } from "@graphql/_core/schema/globalTypes";
+import { YuProductStatus } from "@graphql/_core/schema/globalTypes";
 import { AVATAR_ITEM } from "@ids";
 import { SvgUnlockable } from "../../product/assets/svg-unlockable";
 import { SvgLocked } from "../../product/assets/svg-locked";
 import { ItemIcon } from "./item-icon";
+import { IProduct } from "../../../../../products/fib/fib.types";
+import { YuScreenProductContext } from "../../../yu-screen.context";
 
-export interface ItemProps {
-  onPress: () => void;
-  isSelected: boolean;
-  itemSlot: YuItemSlot;
-  earnRate?: number;
-  coverType?: CoverType;
-  status: YuProductStatus;
-}
+export const Item = (props: IProduct) => {
+  const { earnRate, status, itemSlot, coverType, productId } = props;
+  const { productId: selectedProductId, setProductId } = useContext(YuScreenProductContext);
 
-export const Item = (props: ItemProps) => {
-  const { onPress, earnRate, status, isSelected, itemSlot, coverType } = props;
+  const onPress = useCallback(() => {
+    setProductId(productId === selectedProductId ? null : productId);
+  }, [productId, selectedProductId, setProductId]);
+
+  const isSelected = useMemo(() => selectedProductId === productId, [selectedProductId, productId]);
 
   return (
     <TouchableOpacityWithDelay
+      delay={350}
       activeOpacity={1}
       onPress={onPress}
       style={styles.wrapper}

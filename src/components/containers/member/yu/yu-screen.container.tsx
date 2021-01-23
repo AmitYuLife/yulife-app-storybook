@@ -18,9 +18,7 @@ const _YuScreenContainer = (props: ConnectedState) => {
    * useCacheFirstAndNetworkOnAppearQuery shows an undesirable flicker
    * of the cached state before transitioning to loading
    */
-  const { data, loading } = useQuery<GetYulifer>(GQL_QUERY_GET_YULIFER, {
-    fetchPolicy: "network-only",
-  });
+  const { data, loading } = useQuery<GetYulifer>(GQL_QUERY_GET_YULIFER, { fetchPolicy: "network-only" });
 
   useTapBackTwiceToExit(props.componentId);
 

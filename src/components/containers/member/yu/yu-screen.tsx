@@ -1,5 +1,12 @@
 import React, { useCallback, useState, useMemo } from "react";
 import { StyleSheet, ViewStyle, View, ScrollView, Platform } from "react-native";
+import { Style, TOP_BAR } from "@styles";
+import media from "@styles/media";
+import { ProductType, YuProductStatus } from "@graphql/_core/schema/globalTypes";
+import { YUSCREEN, YUSCREEN_SCROLL_VIEW } from "@ids";
+import { useQuery } from "@apollo/react-hooks";
+import { GetYulifer } from "@graphql/_core/schema";
+import { GQL_QUERY_GET_YULIFER } from "@graphql/yuscreen";
 import {
   NameAndLevel,
   AvatarAndEquipment,
@@ -8,20 +15,14 @@ import {
   ToolTip,
   AvatarCreationPrompt,
 } from "./subcomponents";
-import { Style, TOP_BAR } from "@styles";
-import media from "@styles/media";
-import { ProductType, YuProductStatus } from "../../../../graphql/_core/schema/globalTypes";
-import { YUSCREEN, YUSCREEN_SCROLL_VIEW } from "@ids";
-import { useQuery } from "@apollo/react-hooks";
-import { GetYulifer } from "@graphql/_core/schema";
-import { GQL_QUERY_GET_YULIFER } from "@graphql/yuscreen";
+import { YuScreenProductContext } from "./yu-screen.context";
 
 export const YuScreen = () => {
-  const [product, setProduct] = useState(null);
+  const [productId, setProductId] = useState(null);
 
   const handleCloseModal = useCallback(() => {
-    setProduct(null);
-  }, [setProduct]);
+    setProductId(null);
+  }, []);
 
   const { data } = useQuery<GetYulifer>(GQL_QUERY_GET_YULIFER, {
     fetchPolicy: "cache-only",
@@ -37,20 +38,22 @@ export const YuScreen = () => {
   );
 
   return (
-    <View style={styles.wrapper} testID={YUSCREEN}>
-      <ScrollView showsVerticalScrollIndicator={false} style={styles.list} testID={YUSCREEN_SCROLL_VIEW}>
-        <View style={styles.padTop} />
-        <NameAndLevel />
-        <AvatarCreationPrompt />
-        <AvatarAndEquipment product={product} setProduct={setProduct} />
-        <YuCoinPower />
-        {productSets.map(({ productType, isHidden }, index) =>
-          isHidden ? null : <ProductSet key={index} type={productType} />
-        )}
-        <View style={styles.padBot} />
-        <ToolTip productId={product} onClose={handleCloseModal} />
-      </ScrollView>
-    </View>
+    <YuScreenProductContext.Provider value={{ productId, setProductId }}>
+      <View style={styles.wrapper} testID={YUSCREEN}>
+        <ScrollView showsVerticalScrollIndicator={false} style={styles.list} testID={YUSCREEN_SCROLL_VIEW}>
+          <View style={styles.padTop} />
+          <NameAndLevel />
+          <AvatarCreationPrompt />
+          <AvatarAndEquipment />
+          <YuCoinPower />
+          {productSets.map(({ productType, isHidden }, index) =>
+            isHidden ? null : <ProductSet key={index} type={productType} />
+          )}
+          <View style={styles.padBot} />
+          <ToolTip productId={productId} onClose={handleCloseModal} />
+        </ScrollView>
+      </View>
+    </YuScreenProductContext.Provider>
   );
 };
 

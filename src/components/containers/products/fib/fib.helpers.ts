@@ -1,4 +1,8 @@
 import moment from "moment";
+import { useDispatch } from "react-redux";
+import { useState, useMemo } from "react";
+import { Navigation } from "react-native-navigation";
+import { MODALS, ROUTES } from "@navigation/constants";
 import { CalculatorItems } from "@components/screens/products/fib/browse-packages/subcomponents/payout-calculator/subcomponents/calculator";
 import {
   FIB_THREE_YEAR_MEDICAL_HISTORY_SCREEN_ID,
@@ -22,16 +26,9 @@ import {
   FIB_GENDER_SCREEN_ID,
 } from "./data/underwriting-journey-data";
 import { PackageId } from "@components/screens/products/fib/fib.helper";
-import { useDispatch } from "react-redux";
-import { useState, useMemo } from "react";
 import { updateFIBValue } from "@redux/product/product.actions";
 import { FibAnswers } from "@redux/product/product.types";
 import { FIB_MEDICAL_THREE_OR_MORE_CONSULTATION_SCREEN_ID } from "./data/underwriting-journey-data";
-import { Navigation } from "react-native-navigation";
-import { MODALS, ROUTES } from "../../../../navigation/constants";
-import { GetYulifer_personal } from "../../../../graphql/_core/schema";
-import { IProduct } from "./fib.types";
-import { YuItemSlot } from "../../../../graphql/_core/schema/globalTypes";
 
 export type FibButtonType = "firstButton" | "secondButton" | "previousButton";
 
@@ -401,16 +398,3 @@ export async function onUnderwritingClose() {
     },
   });
 }
-
-const itemSlotOrder: Partial<Record<YuItemSlot, number>> = {
-  chest: 1,
-  gloves: 2,
-  pants: 3,
-  boots: 4,
-};
-// TODO: Change components to accept product by slot instead of arrays
-export const personalProductsToArray = (personalProducts: GetYulifer_personal) => {
-  return Object.values(personalProducts).sort(
-    (a: IProduct, b: IProduct) => itemSlotOrder[a.itemSlot] - itemSlotOrder[b.itemSlot]
-  );
-};

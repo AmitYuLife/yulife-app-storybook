@@ -1,6 +1,6 @@
 import React, { useCallback } from "react";
 import { View, ViewStyle, StyleSheet } from "react-native";
-import { Product } from "./product";
+import { IProductProps, Product } from "./product";
 import { Heading, Subheading } from "../heading";
 import { GetYulifer, UpdateTopUpsQuoteVariables, UpdateTopUpsQuote_updateFibQuote } from "@graphql/_core/schema";
 import { useMutation, useQuery } from "@apollo/react-hooks";
@@ -13,7 +13,6 @@ import { getUserFeatures } from "@redux/user/user.selectors";
 import { Style } from "@styles";
 import { ProductType, YuProductStatus } from "../../../../../../graphql/_core/schema/globalTypes";
 import { GQL_MUTATION_UPDATE_TOP_UPS_QUOTE } from "../../../../../../graphql/products/updateTopUpsQuote";
-import { personalProductsToArray } from "../../../../products/fib/fib.helpers";
 import { IProduct } from "../../../../products/fib/fib.types";
 
 export interface IProductSetProps {
@@ -22,9 +21,7 @@ export interface IProductSetProps {
 
 export const ProductSet = (props: IProductSetProps) => {
   const { type } = props;
-  const { data } = useQuery<GetYulifer>(GQL_QUERY_GET_YULIFER, {
-    fetchPolicy: "cache-only",
-  });
+  const { data } = useQuery<GetYulifer>(GQL_QUERY_GET_YULIFER, { fetchPolicy: "cache-only" });
   const fibState = useSelector(getFIBState);
   const dispatch = useDispatch();
   const shouldResetFib = useSelector(getUserFeatures).resetFib;
@@ -54,7 +51,7 @@ export const ProductSet = (props: IProductSetProps) => {
     <View style={styles.wrapper}>
       <Heading text={heading} />
       <Subheading text={subheading} />
-      {products.map((product: any, index: number) => (
+      {products.map((product, index) => (
         <Product showSeparator={!!index} key={index} {...product} />
       ))}
     </View>
@@ -94,13 +91,14 @@ interface GetProducts {
   shouldResetFib: boolean;
 }
 
-function getProducts({ type, data, fibState, resetFibJourney, shouldResetFib }: GetProducts): any[] {
+function getProducts({ type, data, fibState, resetFibJourney, shouldResetFib }: GetProducts): IProductProps[] {
   if (!data) {
     return [];
   }
 
-  const personalProducts = personalProductsToArray(data.personal);
-  const products: IProduct[] = [...data.additional, ...personalProducts].filter(
+  const { chest, pants, gloves, boots } = data?.personal || {};
+
+  const products: IProduct[] = [...data.additional, chest, pants, gloves, boots].filter(
     (product) => product.productType === type
   );
 

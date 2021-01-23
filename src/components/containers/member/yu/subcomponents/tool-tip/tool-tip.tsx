@@ -23,15 +23,9 @@ import { getUserFeatures } from "@redux/user/user.selectors";
 import { refreshFIBStore, resetFIBUnderwritingJourney } from "@redux/product/product.actions";
 import { CoinLabel } from "./coin-label";
 import { useBackHandler } from "@services/hooks/useBackHandler";
-import {
-  ProductCode,
-  YuProductId,
-  YuProductStatus,
-  CoverType,
-} from "../../../../../../graphql/_core/schema/globalTypes";
-import { GQL_MUTATION_UPDATE_TOP_UPS_QUOTE } from "../../../../../../graphql/products/updateTopUpsQuote";
-import { GQL_QUERY_GET_TOP_UPS_QUOTE } from "../../../../../../graphql/products";
-import { personalProductsToArray } from "../../../../products/fib/fib.helpers";
+import { ProductCode, YuProductId, YuProductStatus, CoverType } from "@graphql/_core/schema/globalTypes";
+import { GQL_MUTATION_UPDATE_TOP_UPS_QUOTE } from "@graphql/products/updateTopUpsQuote";
+import { GQL_QUERY_GET_TOP_UPS_QUOTE } from "@graphql/products";
 import { IProduct } from "../../../../products/fib/fib.types";
 
 export interface IToolTipProps {
@@ -82,9 +76,9 @@ export const ToolTip = ({ productId, onClose }: IToolTipProps) => {
       return null;
     }
 
-    const personal = personalProductsToArray(data.personal);
+    const { chest, pants, gloves, boots } = data.personal;
 
-    const allProducts: IProduct[] = [...data.additional, ...personal];
+    const allProducts: IProduct[] = [...data.additional, chest, pants, gloves, boots];
 
     const item = allProducts.find((i) => i?.productId === productId);
 
