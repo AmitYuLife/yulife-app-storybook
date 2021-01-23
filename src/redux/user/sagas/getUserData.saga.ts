@@ -3,7 +3,6 @@ import { GetCurrentUser } from "@graphql/_core/schema";
 import getCurrentUserWithClient from "@graphql/user/getCurrentUser.gql";
 import { expireSession } from "@navigation/root";
 import { getToken } from "@services/storage";
-import { pathOr } from "@services/utils";
 import { call, put, spawn } from "redux-saga/effects";
 import { getUserSuccess, setUserNoAccessAction } from "../user.actions";
 import Logger from "@services/logging/logger";
@@ -22,7 +21,7 @@ export default function* getUserDataSaga() {
 
       yield spawn(setLoggerIdentity, data.getCurrentUser.id, data.getCurrentUser.membershipType, data.getIntercomHash);
 
-      const isArchived = pathOr<boolean>(data, "getCurrentUser.archived", false);
+      const isArchived = data?.getCurrentUser?.archived ?? false;
 
       if (isArchived) {
         yield put(setUserNoAccessAction());

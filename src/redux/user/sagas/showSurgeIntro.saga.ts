@@ -1,6 +1,5 @@
 import { getMeditationExchangeRate } from "@redux/daily-meditation/daily-meditation.selectors";
 import { getExchangeRate } from "@redux/daily-steps/daily-steps.selectors";
-import { pathOr } from "@services/utils";
 import { put, select, take } from "redux-saga/effects";
 import { GET_USER_SUCCESS, getUserSuccess, setShowSurgeIntro } from "../user.actions";
 import { getUserFeatures } from "../user.selectors";
@@ -20,8 +19,8 @@ export default function* showSurgeIntroSaga() {
     const hasShowSurgeFeature = !!(features && features.showSurge);
     const hasPassiveMeditation = !!(features && features.usePassiveMeditation);
 
-    const stepsSurgeMultiplier = pathOr(payload, "getCurrentUser.passiveSteps.exchange.surge", 1);
-    const meditationSurgeMultiplier = pathOr(payload, "getCurrentUser.passiveMeditation.exchange.surge", 1);
+    const stepsSurgeMultiplier = payload?.getCurrentUser?.passiveSteps?.exchange?.surge || 1;
+    const meditationSurgeMultiplier = payload?.getCurrentUser?.passiveMeditation?.exchange?.surge || 1;
 
     if (hasShowSurgeFeature) {
       if (

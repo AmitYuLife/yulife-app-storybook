@@ -2,6 +2,7 @@ import { Platform } from "react-native";
 import DeviceInfo from "react-native-device-info";
 import { ADD_DEVICE_TOKEN, REQUIRE_PUSH_ENABLED, SET_PUSH_PERMISSIONS } from "./device.actions";
 import { IPushNotification } from "./device.selectors";
+import { SyncAction } from "@redux/_core/types";
 
 export interface IDeviceStore {
   deviceId: string;
@@ -10,7 +11,7 @@ export interface IDeviceStore {
   pushNotifications: IPushNotification;
 }
 
-export const initialState: IDeviceStore = {
+export const getInitialState = (): IDeviceStore => ({
   deviceId: DeviceInfo.getUniqueId(),
   deviceToken: "",
   os: Platform.OS,
@@ -18,9 +19,9 @@ export const initialState: IDeviceStore = {
     requested: false,
     status: "notyet",
   },
-};
+});
 
-const deviceReducer = (state: IDeviceStore = initialState, action: any): IDeviceStore => {
+const deviceReducer = (state: IDeviceStore = getInitialState(), action: SyncAction): IDeviceStore => {
   switch (action.type) {
     case ADD_DEVICE_TOKEN:
       return addDeviceToken(state, action.payload);

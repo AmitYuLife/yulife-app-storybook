@@ -26,6 +26,7 @@ import {
   // UPDATE_SURGE_POPUP_VISIBILITY,
   UPDATE_USER_CONSENT_SUCCESS,
   UPDATE_ACTIVE_LEADERBOARD_ID,
+  LOGOUT,
 } from "./user.actions";
 import { reduceUserFeatures } from "./user.helpers";
 import moment from "moment";
@@ -80,7 +81,7 @@ export interface IUserStore {
   business: Business;
 }
 
-export const initialState: IUserStore = {
+export const getInitialState = (): IUserStore => ({
   id: "",
   archived: false,
   firstName: "",
@@ -106,9 +107,9 @@ export const initialState: IUserStore = {
     isGroup: false,
     isWellbeingAccess: false,
   },
-};
+});
 
-export const userReducer = (state: IUserStore = initialState, action: SyncAction): IUserStore => {
+export const userReducer = (state: IUserStore = getInitialState(), action: SyncAction): IUserStore => {
   switch (action.type) {
     case UPDATE_ACTIVE_LEADERBOARD_ID:
       return { ...state, activeLeaderboardId: action.payload };
@@ -153,6 +154,9 @@ export const userReducer = (state: IUserStore = initialState, action: SyncAction
 
     case SET_SHOW_SURGE_INTRO:
       return updateSurgeIntro(state, action.payload);
+
+    case LOGOUT:
+      return getInitialState();
 
     default:
       return state;
@@ -324,7 +328,7 @@ const updateLeaderboardConsent = (state: IUserStore, payload: UpdateLeaderboardC
 });
 
 // Only updates loading states
-const updateConnectionsLoading = (state: IUserStore, payload: any, isLoading: boolean): IUserStore => ({
+const updateConnectionsLoading = (state: IUserStore, payload: { name: string }, isLoading: boolean): IUserStore => ({
   ...state,
   connections: state.connections.map((connection) => {
     if (connection.name === payload.name) {
@@ -335,7 +339,7 @@ const updateConnectionsLoading = (state: IUserStore, payload: any, isLoading: bo
   }),
 });
 
-const updateConnectionsSuccess = (state: IUserStore, payload: any): IUserStore => ({
+const updateConnectionsSuccess = (state: IUserStore, payload: { name: string; isConnected: boolean }): IUserStore => ({
   ...state,
   connections: state.connections.map((connection) => {
     if (connection.name === payload.name) {

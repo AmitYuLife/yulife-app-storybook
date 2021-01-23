@@ -30,7 +30,7 @@ export interface IThemeStore {
   };
 }
 
-export const initialState: IThemeStore = {
+export const getInitialState = (): IThemeStore => ({
   dailyStepsScreen: {
     centredScreen: {
       offline: { image: "gray_forest", style: { backgroundColor: "rgb(235, 235, 235)" } },
@@ -45,9 +45,9 @@ export const initialState: IThemeStore = {
   questsOfflineScreen: {
     image: "forest",
   },
-};
+});
 
-const themeReducer = (state: IThemeStore = initialState, action: SyncAction) => {
+const themeReducer = (state: IThemeStore = getInitialState(), action: SyncAction) => {
   switch (action.type) {
     case GET_USER_SUCCESS:
     case LOGIN_USER_SUCCESS:
@@ -135,7 +135,7 @@ const getCurrentWorldTheme = (
       };
     case 0:
     default:
-      return initialState;
+      return getInitialState();
   }
 };
 

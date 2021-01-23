@@ -6,14 +6,13 @@ import {
   LoginUser,
   UpsertPassiveChallenge,
 } from "../../graphql/_core/schema";
-import { pathOr } from "../../services/utils";
 import { SyncAction } from "../_core/types";
 import {
   UPDATE_DAILY_MEDITATION_EMPTY_RESULT,
   UPDATE_DAILY_MEDITATION_SUCCESS,
 } from "../daily-meditation/daily-meditation.actions";
 import { UPDATE_DAILY_STEPS_SUCCESS, START_DAILY_STEPS } from "../daily-steps/daily-steps.actions";
-import { GET_USER_SUCCESS, LOGIN_USER_SUCCESS } from "../user/user.actions";
+import { GET_USER_SUCCESS, LOGIN_USER_SUCCESS, LOGOUT } from "../user/user.actions";
 
 const FORMAT = "YYYY-MM-DD";
 export interface ICoinsStore {
@@ -24,21 +23,21 @@ export interface ICoinsStore {
   lastUpdated: string; // total coins the user has earned
 }
 
-export const initialState: ICoinsStore = {
+export const getInitialState = (): ICoinsStore => ({
   dailyChallengeEarned: 0,
   dailyStepsEarned: 0,
   dailyMeditationEarned: 0,
   total: 0,
   lastUpdated: moment().format(FORMAT),
-};
+});
 
-const dailyResetCoinStore = {
+const getDailyResetCoinStore = () => ({
   dailyChallengeEarned: 0,
   dailyStepsEarned: 0,
   dailyMeditationEarned: 0,
-};
+});
 
-const coinsReducer = (state: ICoinsStore = initialState, action: SyncAction) => {
+const coinsReducer = (state: ICoinsStore = getInitialState(), action: SyncAction) => {
   switch (action.type) {
     case REHYDRATE:
       if (action.payload && action.payload.coins) {
@@ -58,6 +57,9 @@ const coinsReducer = (state: ICoinsStore = initialState, action: SyncAction) => 
       return getUserSuccess(state, action.payload);
     case UPDATE_DAILY_MEDITATION_EMPTY_RESULT:
       return { ...state, dailyMeditationEarned: 0 };
+
+    case LOGOUT:
+      return getInitialState();
     default:
       return state;
   }
@@ -96,7 +98,7 @@ const updatePersistedState = (persistedState: ICoinsStore) => {
   const shouldResetCoinStore = getShouldResetCoinStore(persistedState.lastUpdated);
 
   if (shouldResetCoinStore) {
-    return { ...persistedState, ...dailyResetCoinStore };
+    return { ...persistedState, ...getDailyResetCoinStore() };
   }
 
   return { ...persistedState };
@@ -107,7 +109,7 @@ const startDailyStepsSuccess = (state: ICoinsStore) => {
   const shouldResetCoinStore = getShouldResetCoinStore(state.lastUpdated);
 
   if (shouldResetCoinStore) {
-    return { ...state, ...dailyResetCoinStore };
+    return { ...state, ...getDailyResetCoinStore() };
   }
 
   return state;
@@ -121,8 +123,8 @@ const updateDailyStepsSuccess = (
   { upsertPassiveChallenge }: UpsertPassiveChallenge
 ): ICoinsStore => ({
   ...state,
-  dailyStepsEarned: pathOr<number>(upsertPassiveChallenge, "challenge.yuCoinAwarded", initialState.dailyStepsEarned),
-  total: pathOr<number>(upsertPassiveChallenge, "totalCoins", initialState.total),
+  dailyStepsEarned: upsertPassiveChallenge?.challenge?.yuCoinAwarded || 0,
+  total: upsertPassiveChallenge?.totalCoins || state.total,
   lastUpdated: moment().format(FORMAT),
 });
 
@@ -131,25 +133,21 @@ const updateDailyMeditationSuccess = (
   { upsertPassiveChallenge }: UpsertPassiveChallenge
 ): ICoinsStore => ({
   ...state,
-  dailyMeditationEarned: pathOr<number>(
-    upsertPassiveChallenge,
-    "challenge.yuCoinAwarded",
-    initialState.dailyMeditationEarned
-  ),
-  total: pathOr<number>(upsertPassiveChallenge, "totalCoins", initialState.total),
+  dailyMeditationEarned: upsertPassiveChallenge?.challenge?.yuCoinAwarded || 0,
+  total: upsertPassiveChallenge?.totalCoins || state.total,
   lastUpdated: moment().format(FORMAT),
 });
 
 const loginUserSuccess = (state: ICoinsStore, { loginUser }: LoginUser): ICoinsStore => ({
   ...state,
-  dailyChallengeEarned: sumCompletedChallenges(loginUser.user.todayActivity),
-  total: pathOr<number>(loginUser, "user.coinLedger.currentBalance", initialState.total),
+  dailyChallengeEarned: sumCompletedChallenges(loginUser?.user?.todayActivity),
+  total: loginUser?.user?.coinLedger?.currentBalance || state.total,
   lastUpdated: moment().format(FORMAT),
 });
 
 const getUserSuccess = (state: ICoinsStore, { getCurrentUser }: GetCurrentUser): ICoinsStore => ({
   ...state,
-  dailyChallengeEarned: sumCompletedChallenges(getCurrentUser.todayActivity),
-  total: pathOr<number>(getCurrentUser, "coinLedger.currentBalance", initialState.total),
+  dailyChallengeEarned: sumCompletedChallenges(getCurrentUser?.todayActivity),
+  total: getCurrentUser?.coinLedger?.currentBalance || state.total,
   lastUpdated: moment().format(FORMAT),
 });

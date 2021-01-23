@@ -25,7 +25,7 @@ export interface IOnboardingStore {
   showDuelsIntro: boolean;
 }
 
-export const initialState: IOnboardingStore = {
+export const getInitialState = (): IOnboardingStore => ({
   redeemedOnboarding: false,
   historicalDataCollected: false,
   historicalMeditationDataCollected: false,
@@ -35,9 +35,9 @@ export const initialState: IOnboardingStore = {
   showYuscreenIntro: true,
   showCommunityGoalsIntro: true,
   showDuelsIntro: true,
-};
+});
 
-export const userReducer = (state: IOnboardingStore = initialState, action: SyncAction): IOnboardingStore => {
+export const userReducer = (state: IOnboardingStore = getInitialState(), action: SyncAction): IOnboardingStore => {
   switch (action.type) {
     case REHYDRATE:
       // the first time app opens there is no data in the persisted state

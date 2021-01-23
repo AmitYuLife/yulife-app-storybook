@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { GetMobileCopy_getMobileCopy } from "@graphql/_core/schema";
 import { REHYDRATE } from "redux-persist";
 import { SyncAction } from "../_core/types";
@@ -6,12 +7,12 @@ import defaultData from "./copy.data";
 
 export type ICopyStore = GetMobileCopy_getMobileCopy;
 
-export const initialState: ICopyStore = {
+export const getInitialState = (): ICopyStore => ({
   version: "",
   screens: defaultData,
-};
+});
 
-const copyReducer = (state: ICopyStore = initialState, action: SyncAction): ICopyStore => {
+const copyReducer = (state: ICopyStore = getInitialState(), action: SyncAction): ICopyStore => {
   switch (action.type) {
     case REHYDRATE:
       if (action.payload && action.payload.copy) {
@@ -35,7 +36,7 @@ export default copyReducer;
 const rehydrate = (persistedState: ICopyStore) => {
   const defaultDataKeys = Object.keys(defaultData);
 
-  const state: any = { version: persistedState.version, screens: {} };
+  const state: any = { version: persistedState.version, screens: {} } as GetMobileCopy_getMobileCopy;
 
   for (const key of defaultDataKeys) {
     const defaultCopy = (defaultData as any)[key];

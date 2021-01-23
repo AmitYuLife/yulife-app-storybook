@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import {
   UPDATE_FIB_VALUE,
   ProductActionTypes,
@@ -34,7 +35,7 @@ import { ScreeningStatus, YuWorld } from "@graphql/_core/schema/globalTypes";
 
 export { IProductStore } from "./product.types";
 
-export const initialState = (): IProductStore => ({
+export const getInitialState = (): IProductStore => ({
   fib: {
     answers: {
       contactDetails: {
@@ -90,13 +91,13 @@ export const initialState = (): IProductStore => ({
   },
 });
 
-function personalProductReducer<T>(state: IProductStore = initialState(), action: ProductActionTypes<T>) {
+function personalProductReducer<T>(state: IProductStore = getInitialState(), action: ProductActionTypes<T>) {
   switch (action.type) {
     case REHYDRATE:
       return rehydratePersonalProductStore({ ...state }, action.payload as IReduxState);
     case RESET_FIB:
     case LOGOUT:
-      return initialState();
+      return getInitialState();
     case GET_USER_SUCCESS:
       return getUserSuccess(state, action.payload);
     case UPDATE_FIB_VALUE:
@@ -124,7 +125,7 @@ function personalProductReducer<T>(state: IProductStore = initialState(), action
         },
       };
     case RESET_FIB_ANSWERS: {
-      const _initialState = initialState();
+      const _initialState = getInitialState();
       return {
         ...state,
         fib: {
@@ -172,7 +173,7 @@ function personalProductReducer<T>(state: IProductStore = initialState(), action
     }
 
     case RESET_FIB_UNDERWRITING_JOURNEY: {
-      const _initialState = initialState();
+      const _initialState = getInitialState();
       return {
         ...state,
         fib: {
@@ -249,7 +250,7 @@ function rehydratePersonalProductStore(state: IProductStore, payload: IReduxStat
     // a persisted store might not have the additional keys we added
     // we need to ensure that the persisted store structure is up-to-date with the initialState
     const persistedKeys = Object.keys(payload.product.fib);
-    const _initialState = initialState();
+    const _initialState = getInitialState();
     const fibNewPersistedState = Object.keys(_initialState.fib).reduce(
       (newPersistedState, key: keyof IProductStore["fib"]) => {
         // check that the key from initial state is present in persisted store

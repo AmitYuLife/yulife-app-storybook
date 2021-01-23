@@ -6,15 +6,15 @@ import {
   UpsertPassiveChallenge,
 } from "../../graphql/_core/schema";
 import { LoginUser } from "../../graphql/_core/schema";
-import { pathOr } from "../../services/utils";
 import { PEDOMETER_UPDATES_NO_NEW_DATA, PEDOMETER_UPDATES_START } from "../pedometer/pedometer.actions";
-import { GET_USER_SUCCESS, LOGIN_USER_SUCCESS } from "../user/user.actions";
+import { GET_USER_SUCCESS, LOGIN_USER_SUCCESS, LOGOUT } from "../user/user.actions";
 import {
   STEPS_SINCE_LAST_UPDATED_SUCCESS,
   UPDATE_DAILY_STEPS_FAILED,
   UPDATE_DAILY_STEPS_SUCCESS,
   UPDATE_DAILY_STEPS_NO_NEW_DATA,
 } from "./daily-steps.actions";
+import { SyncAction } from "@redux/_core/types";
 
 type ExchangeRate = GetCurrentUser_getCurrentUser_passiveSteps_exchange;
 
@@ -36,7 +36,7 @@ export interface IDailyStepsStore {
   lastUpdatedBeforeToday: string;
 }
 
-export const initialState: IDailyStepsStore = {
+export const getInitialState = (): IDailyStepsStore => ({
   dailySteps: 0,
   exchangeRate: {
     steps: 2000,
@@ -47,9 +47,9 @@ export const initialState: IDailyStepsStore = {
   isFetching: true,
   lastUpdated: moment().startOf("day").format(),
   lastUpdatedBeforeToday: null,
-};
+});
 
-const dailyStepsReducer = (state: IDailyStepsStore = initialState, action: any): IDailyStepsStore => {
+const dailyStepsReducer = (state: IDailyStepsStore = getInitialState(), action: SyncAction): IDailyStepsStore => {
   switch (action.type) {
     case REHYDRATE:
       if (action.payload && action.payload.dailySteps) {
@@ -79,6 +79,9 @@ const dailyStepsReducer = (state: IDailyStepsStore = initialState, action: any):
 
     case STEPS_SINCE_LAST_UPDATED_SUCCESS:
       return { ...state, lastUpdatedBeforeToday: null };
+
+    case LOGOUT:
+      return getInitialState();
 
     default:
       return state;
@@ -122,10 +125,10 @@ const updateDailyStepsSuccess = (
 
 const getUserSuccess = (state: IDailyStepsStore, res: GetCurrentUser) => ({
   ...state,
-  exchangeRate: pathOr<ExchangeRate>(res, "getCurrentUser.passiveSteps.exchange", initialState.exchangeRate),
+  exchangeRate: res?.getCurrentUser?.passiveSteps?.exchange || getInitialState().exchangeRate,
 });
 
 const loginUserSuccess = (state: IDailyStepsStore, res: LoginUser) => ({
   ...state,
-  exchangeRate: pathOr<ExchangeRate>(res, "loginUser.user.passiveSteps.exchange", initialState.exchangeRate),
+  exchangeRate: res?.loginUser?.user?.passiveSteps?.exchange || getInitialState().exchangeRate,
 });
