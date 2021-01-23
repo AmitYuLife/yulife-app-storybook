@@ -1,14 +1,4 @@
-import { getActionConditions, GetActionConditionArgs } from "../quests-screen.container.helpers";
-
-const defaultConditions = {
-  shouldSetUnity: false,
-  shouldGoToChallengesList: false,
-  shouldShowLevelCompleteModal: false,
-  shouldDispatchSubmitUnityAction: false,
-  shouldShowChestModal: false,
-  shouldShowChallengeUnavailableModal: false,
-  shouldShowLevelUnavailableModal: false,
-};
+import { getLevelAction, GetActionConditionArgs } from "../quests-screen.container.helpers";
 
 describe("getActionConditions", () => {
   const defaultGetActionConditionArgs: GetActionConditionArgs = {
@@ -33,9 +23,9 @@ describe("getActionConditions", () => {
     it("should correctly set unity", () => {
       const args = defaultGetActionConditionArgs;
 
-      const res = getActionConditions(args);
+      const res = getLevelAction(args);
 
-      expect(res).toEqual({ ...defaultConditions, shouldSetUnity: true });
+      expect(res).toEqual("SetUnity");
     });
 
     it("should go to challenges list", () => {
@@ -52,9 +42,9 @@ describe("getActionConditions", () => {
         },
       };
 
-      const res = getActionConditions(args);
+      const res = getLevelAction(args);
 
-      expect(res).toEqual({ ...defaultConditions, shouldGoToChallengesList: true });
+      expect(res).toEqual("GoToChallengesList");
     });
 
     it("should show level complete modal", () => {
@@ -76,9 +66,9 @@ describe("getActionConditions", () => {
         showCompletedLevel: true,
       };
 
-      const res = getActionConditions(args);
+      const res = getLevelAction(args);
 
-      expect(res).toEqual({ ...defaultConditions, shouldShowLevelCompleteModal: true });
+      expect(res).toEqual("ShowLevelCompleteModal");
     });
   });
 
@@ -93,13 +83,9 @@ describe("getActionConditions", () => {
         },
       };
 
-      const res = getActionConditions(args);
+      const res = getLevelAction(args);
 
-      expect(res).toEqual({
-        ...defaultConditions,
-        shouldSetUnity: true,
-        shouldDispatchSubmitUnityAction: true,
-      });
+      expect(res).toEqual("DispatchSubmitUnityAction");
     });
 
     it("should show chest modal", () => {
@@ -117,12 +103,9 @@ describe("getActionConditions", () => {
         levelAvailable: true,
       };
 
-      const res = getActionConditions(args);
+      const res = getLevelAction(args);
 
-      expect(res).toEqual({
-        ...defaultConditions,
-        shouldShowChestModal: true,
-      });
+      expect(res).toEqual("ShowChestModal");
     });
 
     it("should go to challenges list", () => {
@@ -139,12 +122,9 @@ describe("getActionConditions", () => {
         levelAvailable: true,
       };
 
-      const res = getActionConditions(args);
+      const res = getLevelAction(args);
 
-      expect(res).toEqual({
-        ...defaultConditions,
-        shouldGoToChallengesList: true,
-      });
+      expect(res).toEqual("GoToChallengesList");
     });
 
     it("should show challenge unavailable", () => {
@@ -160,12 +140,9 @@ describe("getActionConditions", () => {
         },
       };
 
-      const res = getActionConditions(args);
+      const res = getLevelAction(args);
 
-      expect(res).toEqual({
-        ...defaultConditions,
-        shouldShowChallengeUnavailableModal: true,
-      });
+      expect(res).toEqual("ShowChallengeUnavailableModal");
     });
   });
 
@@ -180,12 +157,9 @@ describe("getActionConditions", () => {
         },
       };
 
-      const res = getActionConditions(args);
+      const res = getLevelAction(args);
 
-      expect(res).toEqual({
-        ...defaultConditions,
-        shouldShowChestModal: true,
-      });
+      expect(res).toEqual("ShowChestModal");
     });
 
     it("should should level unavailable", () => {
@@ -201,12 +175,9 @@ describe("getActionConditions", () => {
         },
       };
 
-      const res = getActionConditions(args);
+      const res = getLevelAction(args);
 
-      expect(res).toEqual({
-        ...defaultConditions,
-        shouldShowLevelUnavailableModal: true,
-      });
+      expect(res).toEqual("ShowLevelUnavailableModal");
     });
   });
 });

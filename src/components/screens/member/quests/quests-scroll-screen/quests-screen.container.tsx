@@ -3,20 +3,20 @@ import { GetCurrentQuestLevels } from "@graphql/_core/schema";
 import QuestsScreen from "./quests-screen";
 import { submitUnityAction } from "@redux/levels/levels.actions";
 import moment from "moment";
-import { connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { IConnectedScreenProps } from "@app/typings";
-import { IReduxState } from "@redux/_core/reducers";
-import { getChallengesStatus, getNextLevelAvailableAt } from "@redux/levels/levels.selectors";
+import { getChallengesStatus, getCurrentLevel, getNextLevelAvailableAt } from "@redux/levels/levels.selectors";
 import {
   goToChallengesList,
   showLevelCompleteModal,
   showChestModal,
   showChallengeUnavailableModal,
   showLevelUnavailableModal,
-  getActionConditions,
+  getLevelAction,
 } from "./quests-screen.container.helpers";
 import { useQuery } from "@apollo/react-hooks";
 import { GQL_QUERY_GET_CURRENT_QUEST_LEVELS } from "@graphql/challenges/getCurrentQuestLevels.gql";
+import { getShowChestCopy } from "@redux/copy/copy.selectors";
 
 function isAvailable(nextAvailableAt: string): boolean {
   const nextAvailable = nextAvailableAt ? moment().diff(moment(nextAvailableAt), "seconds") : 0;
@@ -25,7 +25,7 @@ function isAvailable(nextAvailableAt: string): boolean {
 }
 
 function getLevelStatus(
-  challengesStatus: ConnectedState["challengesStatus"],
+  challengesStatus: ReturnType<typeof getChallengesStatus>,
   currentLevel: number,
   level: number,
   nextAvailableAt: string
@@ -76,33 +76,20 @@ export function getActiveLevel(formatedData: any[]) {
   return formatedData[0] ? formatedData[0].level : 0;
 }
 
-type ConnectedState = ReturnType<typeof mapStateToProps>;
-type ConnectedDispatch = typeof mapDispatchToProps;
-
-interface Props extends ConnectedDispatch, ConnectedState, IConnectedScreenProps {
+interface Props extends IConnectedScreenProps {
   componentId: string;
-  currentLevel: number;
   showCompletedLevel: boolean;
-  showChestModalCopy: {
-    ctaLabelIsNext: string;
-    ctaLabelIsNotNext: string;
-    headingIsNext: string;
-    headingIsNotNext: string;
-  };
 }
 
 function QuestsScreenContainer(props: Props) {
-  const {
-    challengesStatus,
-    nextLevelAvailableAt,
-    componentId,
-    currentLevel,
-    dispatchSubmitUnityAction,
-    showChestModalCopy,
-    showCompletedLevel,
-    onLeftMenuPress,
-  } = props;
+  const { componentId, showCompletedLevel, onLeftMenuPress } = props;
   const [unity, setUnity] = useState<number | null>(null);
+
+  const dispatch = useDispatch();
+  const showChestModalCopy = useSelector(getShowChestCopy);
+  const challengesStatus = useSelector(getChallengesStatus);
+  const nextLevelAvailableAt = useSelector(getNextLevelAvailableAt);
+  const currentLevel = useSelector(getCurrentLevel);
 
   const hideUnity = useCallback(() => {
     setUnity(null);
@@ -124,7 +111,7 @@ function QuestsScreenContainer(props: Props) {
       isChestLevel,
       onPress: () => {
         const levelAvailable = isAvailable(nextLevelAvailableAt);
-        const conditions = getActionConditions({
+        const action = getLevelAction({
           levelStatus,
           challengesStatus,
           itemLevel,
@@ -132,32 +119,30 @@ function QuestsScreenContainer(props: Props) {
           showCompletedLevel,
         });
 
-        if (conditions.shouldSetUnity) {
-          setUnity(itemLevel.level);
-        }
-
-        if (conditions.shouldGoToChallengesList) {
-          goToChallengesList(componentId, itemLevel);
-        }
-
-        if (conditions.shouldShowLevelCompleteModal) {
-          showLevelCompleteModal(componentId, itemLevel);
-        }
-
-        if (conditions.shouldDispatchSubmitUnityAction) {
-          dispatchSubmitUnityAction({ levelId: itemLevel.id });
-        }
-
-        if (conditions.shouldShowChallengeUnavailableModal) {
-          showChallengeUnavailableModal(nextLevelAvailableAt);
-        }
-
-        if (conditions.shouldShowChestModal) {
-          showChestModal(componentId, itemLevel, levelStatus.isNext, showChestModalCopy);
-        }
-
-        if (conditions.shouldShowLevelUnavailableModal) {
-          showLevelUnavailableModal(itemLevel.level);
+        switch (action) {
+          case "SetUnity":
+            setUnity(itemLevel.level);
+            break;
+          case "GoToChallengesList":
+            goToChallengesList(componentId, itemLevel);
+            break;
+          case "ShowLevelCompleteModal":
+            showLevelCompleteModal(componentId, itemLevel);
+            break;
+          case "DispatchSubmitUnityAction":
+            setUnity(itemLevel.level);
+            dispatch(submitUnityAction({ levelId: itemLevel.id }));
+            break;
+          case "ShowChestModal":
+            showChestModal(componentId, itemLevel, levelStatus.isNext, showChestModalCopy);
+            break;
+          case "ShowChallengeUnavailableModal":
+            showChallengeUnavailableModal(nextLevelAvailableAt);
+            break;
+          case "ShowLevelUnavailableModal":
+          default:
+            showLevelUnavailableModal(itemLevel.level);
+            break;
         }
       },
     };
@@ -177,13 +162,4 @@ function QuestsScreenContainer(props: Props) {
   );
 }
 
-const mapStateToProps = (state: IReduxState) => ({
-  challengesStatus: getChallengesStatus(state),
-  nextLevelAvailableAt: getNextLevelAvailableAt(state),
-});
-
-const mapDispatchToProps = {
-  dispatchSubmitUnityAction: submitUnityAction,
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(QuestsScreenContainer);
+export default QuestsScreenContainer;

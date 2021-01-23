@@ -13,7 +13,6 @@ storiesOf("ChallengeSuccessScreen", module)
   ))
   .add("default", () => (
     <ChallengeSuccessScreen
-      copy={{ ctaLabel: "exit", footer: "fooooter" }}
       loading={false}
       currentWorld={0}
       onPressCta={voidFunc}

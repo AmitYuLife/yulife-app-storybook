@@ -26,12 +26,5 @@ function ChallengeExitStory() {
     }, 2000);
   }
 
-  return (
-    <ChallengeExitScreen
-      copy={{ ctaLabel: "stay", ctaLabelSecondary: "exit", heading: "heading", subheading: "ggggggg" }}
-      isCancelling={isLoading}
-      onClose={voidFunc}
-      onPressExit={handleClick}
-    />
-  );
+  return <ChallengeExitScreen isCancelling={isLoading} onClose={voidFunc} onPressExit={handleClick} />;
 }

@@ -1,18 +1,20 @@
 import { Button, Text } from "@atoms/index";
-import { GetMobileCopy_getMobileCopy_screens_challenges_newExitChallenge } from "@graphql/_core/schema";
 import * as React from "react";
 import { SafeAreaView, StyleSheet } from "react-native";
-import styles from "./challenge-exit.styles";
+import { useSelector } from "react-redux";
 import { useBackHandler } from "@services/hooks/useBackHandler";
+import { getChallengeExitCopy } from "@redux/copy/copy.selectors";
+import styles from "./challenge-exit.styles";
 
 interface IProps {
-  copy: GetMobileCopy_getMobileCopy_screens_challenges_newExitChallenge;
   onPressExit: () => void;
   onClose: () => void;
   isCancelling: boolean;
 }
 
-const ChallengeExitScreen: React.FC<IProps> = ({ onPressExit, onClose, copy, isCancelling }) => {
+const ChallengeExitScreen: React.FC<IProps> = ({ onPressExit, onClose, isCancelling }) => {
+  const copy = useSelector(getChallengeExitCopy);
+
   useBackHandler(() => {
     onClose();
     return true;
