@@ -2,8 +2,9 @@ import client from "@graphql/_core/client";
 import { setUnauthenticatedRoot } from "@navigation/root";
 import Logger from "@services/logging/logger";
 import { clearToken } from "@services/storage/token";
-import { call } from "redux-saga/effects";
+import { call, put } from "redux-saga/effects";
 import { persistor } from "../../_core/store";
+import { logOutSuccess } from "../user.actions";
 
 export default function* logOutSaga() {
   yield call(Logger.logEvent, "log_out");
@@ -11,4 +12,5 @@ export default function* logOutSaga() {
   yield call(clearToken);
   yield call(() => client().resetStore());
   yield call(() => persistor.purge());
+  yield put(logOutSuccess());
 }

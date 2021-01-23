@@ -2,7 +2,7 @@ import moment from "moment";
 import { REHYDRATE } from "redux-persist";
 import { GetCurrentUser, LoginUser, UpsertPassiveChallenge } from "../../graphql/_core/schema";
 import { ExchangeRate } from "../daily-steps/daily-steps.selectors";
-import { GET_USER_SUCCESS, LOGIN_USER_SUCCESS, LOGOUT } from "../user/user.actions";
+import { GET_USER_SUCCESS, LOGIN_USER_SUCCESS, LOGOUT_SUCCESS } from "../user/user.actions";
 import {
   MEDITATION_SINCE_LAST_UPDATE_SUCCESS,
   UPDATE_DAILY_MEDITATION_EMPTY_RESULT,
@@ -68,7 +68,7 @@ const dailyMeditationReducer = (
     case MEDITATION_SINCE_LAST_UPDATE_SUCCESS:
       return { ...state, lastUpdatedBeforeToday: null };
 
-    case LOGOUT:
+    case LOGOUT_SUCCESS:
       return getInitialState();
 
     default:

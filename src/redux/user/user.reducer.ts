@@ -26,7 +26,7 @@ import {
   // UPDATE_SURGE_POPUP_VISIBILITY,
   UPDATE_USER_CONSENT_SUCCESS,
   UPDATE_ACTIVE_LEADERBOARD_ID,
-  LOGOUT,
+  LOGOUT_SUCCESS,
 } from "./user.actions";
 import { reduceUserFeatures } from "./user.helpers";
 import moment from "moment";
@@ -155,7 +155,7 @@ export const userReducer = (state: IUserStore = getInitialState(), action: SyncA
     case SET_SHOW_SURGE_INTRO:
       return updateSurgeIntro(state, action.payload);
 
-    case LOGOUT:
+    case LOGOUT_SUCCESS:
       return getInitialState();
 
     default:

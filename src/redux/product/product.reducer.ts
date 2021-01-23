@@ -18,7 +18,7 @@ import {
   RESET_FIB,
 } from "./product.types";
 import { REHYDRATE } from "redux-persist";
-import { LOGOUT, GET_USER_SUCCESS } from "@redux/user/user.actions";
+import { LOGOUT_SUCCESS, GET_USER_SUCCESS } from "@redux/user/user.actions";
 import { IReduxState } from "@redux/_core/reducers";
 import { GetCurrentUser } from "@graphql/_core/schema";
 import moment from "moment";
@@ -97,7 +97,7 @@ function personalProductReducer<T>(state: IProductStore = getInitialState(), act
     case REHYDRATE:
       return rehydratePersonalProductStore({ ...state }, action.payload as IReduxState);
     case RESET_FIB:
-    case LOGOUT:
+    case LOGOUT_SUCCESS:
       return getInitialState();
     case GET_USER_SUCCESS:
       return getUserSuccess(state, action.payload);

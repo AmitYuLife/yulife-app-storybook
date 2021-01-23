@@ -7,7 +7,7 @@ import {
 } from "../../graphql/_core/schema";
 import { LoginUser } from "../../graphql/_core/schema";
 import { PEDOMETER_UPDATES_NO_NEW_DATA, PEDOMETER_UPDATES_START } from "../pedometer/pedometer.actions";
-import { GET_USER_SUCCESS, LOGIN_USER_SUCCESS, LOGOUT } from "../user/user.actions";
+import { GET_USER_SUCCESS, LOGIN_USER_SUCCESS, LOGOUT_SUCCESS } from "../user/user.actions";
 import {
   STEPS_SINCE_LAST_UPDATED_SUCCESS,
   UPDATE_DAILY_STEPS_FAILED,
@@ -80,7 +80,7 @@ const dailyStepsReducer = (state: IDailyStepsStore = getInitialState(), action: 
     case STEPS_SINCE_LAST_UPDATED_SUCCESS:
       return { ...state, lastUpdatedBeforeToday: null };
 
-    case LOGOUT:
+    case LOGOUT_SUCCESS:
       return getInitialState();
 
     default:

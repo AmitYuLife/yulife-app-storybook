@@ -1,6 +1,6 @@
 import { REHYDRATE } from "redux-persist";
 import { SyncAction } from "../_core/types";
-import { LOGOUT } from "@redux/user/user.actions";
+import { LOGOUT_SUCCESS } from "@redux/user/user.actions";
 import { FEMALE_BODY_SELECTED, MALE_BODY_SELECTED, SAVE_AVATAR } from "./avatar.actions";
 import {
   femaleBootsDefault,
@@ -265,7 +265,7 @@ const avatarReducer = (state: IAvatarStore = getInitialMaleState(), action: Sync
         },
       };
 
-    case LOGOUT:
+    case LOGOUT_SUCCESS:
       return getInitialMaleState();
 
     default:

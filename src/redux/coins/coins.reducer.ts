@@ -13,7 +13,7 @@ import {
   UPDATE_DAILY_MEDITATION_SUCCESS,
 } from "../daily-meditation/daily-meditation.actions";
 import { UPDATE_DAILY_STEPS_SUCCESS, START_DAILY_STEPS } from "../daily-steps/daily-steps.actions";
-import { GET_USER_SUCCESS, LOGIN_USER_SUCCESS, LOGOUT } from "../user/user.actions";
+import { GET_USER_SUCCESS, LOGIN_USER_SUCCESS, LOGOUT_SUCCESS } from "../user/user.actions";
 
 export interface ICoinsStore {
   dailyChallengeEarned: number; // number of coins earned in the current day through challenges
@@ -58,7 +58,7 @@ const coinsReducer = (state: ICoinsStore = getInitialState(), action: SyncAction
     case UPDATE_DAILY_MEDITATION_EMPTY_RESULT:
       return { ...state, dailyMeditationEarned: 0 };
 
-    case LOGOUT:
+    case LOGOUT_SUCCESS:
       return getInitialState();
     default:
       return state;

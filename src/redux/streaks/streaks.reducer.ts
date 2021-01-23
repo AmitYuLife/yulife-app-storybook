@@ -1,6 +1,6 @@
 import { GetCurrentUser, LoginUser } from "../../graphql/_core/schema";
 import { SyncAction } from "../_core/types";
-import { GET_USER_SUCCESS, LOGIN_USER_SUCCESS, LOGOUT } from "../user/user.actions";
+import { GET_USER_SUCCESS, LOGIN_USER_SUCCESS, LOGOUT_SUCCESS } from "../user/user.actions";
 import { DISPLAY_STREAKS_FIRST } from "./streaks.actions";
 
 export interface IStreaksStore {
@@ -50,7 +50,7 @@ const streaksReducer = (state: IStreaksStore = getInitialState(), action: SyncAc
     case DISPLAY_STREAKS_FIRST:
       return displayStreaks(state);
 
-    case LOGOUT:
+    case LOGOUT_SUCCESS:
       return getInitialState();
 
     default:

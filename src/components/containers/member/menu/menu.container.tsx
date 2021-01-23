@@ -10,7 +10,7 @@ import { IReduxState } from "../../../../redux/_core/reducers";
 import { getRouteState } from "../../../../redux/app/app.selectors";
 import { getCopy } from "../../../../redux/copy/copy.selectors";
 import { getPushNotifications } from "../../../../redux/device/device.selectors";
-import { logOut, openMemberZone } from "../../../../redux/user/user.actions";
+import { logOutStart, openMemberZone } from "../../../../redux/user/user.actions";
 import { getUserBusiness, getUserFeatures, getUserMembershipType } from "../../../../redux/user/user.selectors";
 import { MenuScreen } from "../../../screens";
 import assets, { LINKS, LinkTypes } from "./assets";
@@ -191,7 +191,7 @@ const mapStateToProps = (state: IReduxState) => ({
 });
 
 const mapDispatchToProps = {
-  logOut,
+  logOut: logOutStart,
   openMemberZone,
 };
 

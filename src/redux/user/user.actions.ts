@@ -30,7 +30,8 @@ export const UPDATE_CONNECTION_FAILED = "UPDATE_CONNECTION_FAILED";
 export const UPDATE_CONNECTION_SUCCESS = "UPDATE_CONNECTION_SUCCESS";
 export const UPDATE_LEADERBOARD_POPUP_VISIBILITY = "UPDATE_LEADERBOARD_POPUP_VISIBILITY";
 export const UPDATE_SURGE_POPUP_VISIBILITY = "UPDATE_SURGE_POPUP_VISIBILITY";
-export const LOGOUT = "LOGOUT";
+export const LOGOUT_START = "LOGOUT_START";
+export const LOGOUT_SUCCESS = "LOGOUT_SUCCESS";
 export const OPEN_MEMBER_ZONE = "OPEN_MEMBER_ZONE";
 export const SET_SHOW_SURGE_INTRO = "SET_SHOW_SURGE_INTRO";
 
@@ -100,8 +101,12 @@ export const updateConnectionSuccess = (payload: Connection) => ({
   type: UPDATE_CONNECTION_SUCCESS,
 });
 
-export const logOut = () => ({
-  type: LOGOUT as typeof LOGOUT,
+export const logOutStart = () => ({
+  type: LOGOUT_START as typeof LOGOUT_START,
+});
+
+export const logOutSuccess = () => ({
+  type: LOGOUT_SUCCESS as typeof LOGOUT_SUCCESS,
 });
 
 export const openMemberZone = () => ({

@@ -3,7 +3,7 @@ import moment from "moment";
 import { GetCurrentUser, LoginUser, UpdateActiveChallenge } from "../../graphql/_core/schema";
 import { SyncAction } from "../_core/types";
 import { PEDOMETER_UPDATES_SUCCESS } from "../pedometer/pedometer.actions";
-import { GET_USER_SUCCESS, LOGIN_USER_SUCCESS, LOGOUT } from "../user/user.actions";
+import { GET_USER_SUCCESS, LOGIN_USER_SUCCESS, LOGOUT_SUCCESS } from "../user/user.actions";
 import {
   CHALLENGE_CANCEL,
   CHALLENGE_END_FAIL,
@@ -96,7 +96,7 @@ const levelsReducer = (state: ILevelsStore = getInitialState(), action: SyncActi
     case CHALLENGE_START_INITIAL_STEPS:
       return { ...state, active: { ...state.active, initialPedometerResult: action.payload } };
 
-    case LOGOUT:
+    case LOGOUT_SUCCESS:
       return getInitialState();
 
     default:
