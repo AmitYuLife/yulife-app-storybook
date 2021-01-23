@@ -4,14 +4,31 @@ import { BUTTON_CLOSE } from "@ids";
 import { Style, Colours } from "@styles";
 
 interface Props {
-  type?: "encircled";
+  type?: "encircled" | "encircledMono";
   stroke?: string;
 }
 
 const ENCIRCLED_SIZE = Style.adjust(30);
 const DEFAULT_SIZE = Style.adjust(24);
 
-function CloseSvg({ type }: Props) {
+function CloseSvg({ type, stroke = Colours.neutral.white }: Props) {
+  if (type === "encircledMono") {
+    return (
+      <Svg width={Style.adjust(24)} height={Style.adjust(24)} viewBox="0 0 24 24">
+        <Path
+          d="M23.5 12C23.5 18.3513 18.3513 23.5 12 23.5C5.64873 23.5 0.5 18.3513 0.5 12C0.5 5.64873 5.64873 0.5 12 0.5C18.3513 0.5 23.5 5.64873 23.5 12Z"
+          stroke={stroke}
+        />
+        <Path
+          d="M14.6668 9.33334L9.3335 14.6667M9.3335 9.33334L14.6668 14.6667"
+          stroke={stroke}
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </Svg>
+    );
+  }
+
   if (type === "encircled") {
     return (
       <Svg width={ENCIRCLED_SIZE} height={ENCIRCLED_SIZE} viewBox="0 0 30 30">

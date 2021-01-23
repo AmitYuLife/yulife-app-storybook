@@ -9,7 +9,6 @@ import { GetYulifer } from "@graphql/_core/schema";
 import { GQL_QUERY_GET_YULIFER } from "@graphql/yuscreen";
 import { navigateToAvatarModal } from "../../navigation/navigateToAvatarModal";
 import { YUSCREEN_AVATAR } from "@ids";
-import { YuProductStatus } from "../../../../../../graphql/_core/schema/globalTypes";
 import { personalProductsToArray } from "../../../../products/fib/fib.helpers";
 
 interface Props {
@@ -19,9 +18,7 @@ interface Props {
 
 const _AvatarAndEquipment = ({ setProduct, product }: Props) => {
   const [showLoading, setShowLoading] = useState(true);
-  const { data } = useQuery<GetYulifer>(GQL_QUERY_GET_YULIFER, {
-    fetchPolicy: "cache-only",
-  });
+  const { data } = useQuery<GetYulifer>(GQL_QUERY_GET_YULIFER, { fetchPolicy: "cache-only" });
 
   const avatarSource = useMemo(() => {
     const uri = data?.getYulifer?.avatarRemoteFiles?.pngFull;
@@ -39,10 +36,9 @@ const _AvatarAndEquipment = ({ setProduct, product }: Props) => {
 
     const { additional, personal } = data;
 
-    const activeEmployerProducts = additional.filter((item) => item.status === YuProductStatus.active);
     const personalProducts = personalProductsToArray(personal);
 
-    return [personalProducts, activeEmployerProducts];
+    return [personalProducts, additional];
   }, [data]);
 
   const handleImageLoad = () => setShowLoading(false);

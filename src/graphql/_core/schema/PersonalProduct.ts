@@ -42,5 +42,7 @@ export interface PersonalProduct {
   itemSlot: YuItemSlot | null;
   earnRate: number | null;
   description: string | null;
+  policyNumber: string | null;
+  coverType: CoverType | null;
   options: (PersonalProduct_options | null)[] | null;
 }

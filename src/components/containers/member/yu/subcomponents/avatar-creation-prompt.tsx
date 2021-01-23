@@ -28,9 +28,7 @@ const _AvatarCreationPrompt = () => {
 
   return (
     <View style={styles.wrapper}>
-      <View style={styles.emptyAvatarWrapper}>
-        <EmptyAvatar />
-      </View>
+      <EmptyAvatar />
       <View style={styles.promptWrapper}>
         <Text style={styles.promptLabel} testID={EMPTY_YUSCREEN_COPY}>
           {CREATE_AVATAR_CAPTION_COPY}
@@ -55,23 +53,23 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingHorizontal: Style.adjust(16),
     paddingTop: Style.adjust(24),
-  } as ViewStyle,
-  emptyAvatarWrapper: {
-    flex: 1,
+    justifyContent: "center",
   } as ViewStyle,
   promptWrapper: {
     flex: 1,
     justifyContent: "center",
     paddingBottom: Style.adjust(32),
+    maxWidth: Style.adjust(175),
   } as ViewStyle,
   promptLabel: {
     color: Colours.neutral.n700,
     fontSize: Style.adjust(16),
     lineHeight: Style.adjust(24),
     letterSpacing: 0.6,
+    textAlign: "center",
   } as TextStyle,
   promptCtaWrapper: {
-    marginTop: Style.adjust(20),
+    marginTop: Style.adjust(8),
   } as TextStyle,
 });
 

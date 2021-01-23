@@ -2,8 +2,6 @@ import React, { useMemo, Dispatch } from "react";
 import { StyleSheet, ViewStyle, View } from "react-native";
 import { Style } from "@styles";
 import { Item } from "./item";
-import { getIsPersonalItem } from "../../../yu-types";
-import { YuProductStatus } from "../../../../../../../graphql/_core/schema/globalTypes";
 import { IProduct } from "../../../../../products/fib/fib.types";
 
 export interface ItemSetProps {
@@ -26,6 +24,7 @@ export const ItemSet = (props: ItemSetProps) => {
           itemSlot: item?.itemSlot,
           earnRate: item?.earnRate || 0,
           status: item?.status,
+          coverType: item?.coverType,
         };
       })
       .sort((a, b) => b.earnRate - a.earnRate);
@@ -33,8 +32,8 @@ export const ItemSet = (props: ItemSetProps) => {
 
   return (
     <View style={styles.wrapper}>
-      {mapped.map((_, i) => (
-        <Item {...mapped[i]} key={i} />
+      {mapped.map((item, i) => (
+        <Item {...item} key={i} />
       ))}
     </View>
   );
@@ -48,13 +47,5 @@ const styles = StyleSheet.create({
 });
 
 function handlePressProduct(item: IProduct, setProduct: Dispatch<string>, product: string) {
-  if (item?.status === YuProductStatus.locked) {
-    if (getIsPersonalItem(item.itemSlot)) {
-      return () => setProduct(item?.productId === product ? null : item?.productId);
-    }
-
-    return null;
-  }
-
   return () => setProduct(item?.productId === product ? null : item?.productId);
 }

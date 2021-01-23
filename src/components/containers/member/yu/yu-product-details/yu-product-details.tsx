@@ -8,17 +8,10 @@ import { Style } from "@styles";
 import { TextWithBoldText } from "@components/molecules";
 import { getProductIcon } from "../assets/getProductIcon";
 import { useBackHandler } from "@services/hooks/useBackHandler";
-import { YuItemSlot } from "../../../../../graphql/_core/schema/globalTypes";
+import { IProduct } from "@components/containers/products/fib/fib.types";
 
-interface IYuProductDetails {
-  itemSlot: YuItemSlot;
-  description: string;
-  name: string;
-  status: string;
-}
-
-const YuProductDetails = (props: IYuProductDetails) => {
-  const { itemSlot, description = "", name, status } = props;
+const YuProductDetails = (props: IProduct) => {
+  const { itemSlot, earnRate, name, status, policyNumber, description } = props;
 
   const Icon = getProductIcon(itemSlot);
 
@@ -29,6 +22,9 @@ const YuProductDetails = (props: IYuProductDetails) => {
 
   useBackHandler(backHandler);
 
+  // FIXME: Once we implement the certificates, we won't need this anymore.
+  const descriptionLong = `${description}\n\nThis protection is adding <bold>${earnRate}</bold> to your YuCoin Power.`;
+
   return (
     <GenericOverlay onClose={dismissOverlay}>
       <ScrollView style={styles.wrapper} showsVerticalScrollIndicator={false}>
@@ -38,9 +34,17 @@ const YuProductDetails = (props: IYuProductDetails) => {
             {name}
           </Text>
         </View>
-        <Icon style={StyleSheet.flatten([styles.iconWrapper, { opacity: status !== "active" ? 0.6 : 1 }])} />
+        <Icon status={status} style={styles.iconWrapper} />
+        {!policyNumber ? null : (
+          <View style={styles.policyNumberWrapper}>
+            <Text style={styles.policyNumberTitle} bold={true}>
+              Policy Number:
+            </Text>
+            <Text style={styles.policyNumberValue}>{policyNumber}</Text>
+          </View>
+        )}
         <View style={styles.descriptionWrapper}>
-          <TextWithBoldText style={styles.description} value={description} />
+          <TextWithBoldText style={styles.description} value={descriptionLong} />
         </View>
         <View style={styles.botPad} />
       </ScrollView>
@@ -77,10 +81,22 @@ const styles = StyleSheet.create({
     paddingHorizontal: Style.adjust(32),
   } as ViewStyle,
   description: {
-    textAlign: "center",
     letterSpacing: 1,
     fontSize: Style.adjust(16),
     lineHeight: Style.adjust(24),
+  } as TextStyle,
+  policyNumberWrapper: {
+    alignItems: "center",
+    marginTop: Style.adjust(12),
+  } as ViewStyle,
+  policyNumberTitle: {
+    fontSize: Style.adjust(16),
+    lineHeight: Style.adjust(24),
+  } as TextStyle,
+  policyNumberValue: {
+    fontSize: Style.adjust(16),
+    lineHeight: Style.adjust(24),
+    letterSpacing: 0.8,
   } as TextStyle,
 });
 

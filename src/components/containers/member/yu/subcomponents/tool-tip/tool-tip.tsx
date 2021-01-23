@@ -15,7 +15,7 @@ import { useLazyQuery, useMutation, useQuery } from "@apollo/react-hooks";
 import { GQL_QUERY_GET_YULIFER } from "@graphql/yuscreen";
 import LinearGradient from "react-native-linear-gradient";
 import { getProductIcon } from "../../assets/getProductIcon";
-import { getIsEmployerProduct, isEmployerItem } from "../../yu-types";
+import { getIsEmployerProduct } from "../../yu-types";
 import { navigateToProductScreen } from "../../navigation/navigateToProductScreen";
 import { useSelector, useDispatch } from "react-redux";
 import { getFIBState } from "@redux/product/product.selectors";
@@ -23,7 +23,12 @@ import { getUserFeatures } from "@redux/user/user.selectors";
 import { refreshFIBStore, resetFIBUnderwritingJourney } from "@redux/product/product.actions";
 import { CoinLabel } from "./coin-label";
 import { useBackHandler } from "@services/hooks/useBackHandler";
-import { ProductCode, YuProductId, YuProductStatus } from "../../../../../../graphql/_core/schema/globalTypes";
+import {
+  ProductCode,
+  YuProductId,
+  YuProductStatus,
+  CoverType,
+} from "../../../../../../graphql/_core/schema/globalTypes";
 import { GQL_MUTATION_UPDATE_TOP_UPS_QUOTE } from "../../../../../../graphql/products/updateTopUpsQuote";
 import { GQL_QUERY_GET_TOP_UPS_QUOTE } from "../../../../../../graphql/products";
 import { personalProductsToArray } from "../../../../products/fib/fib.helpers";
@@ -33,17 +38,6 @@ export interface IToolTipProps {
   productId: YuProductId;
   onClose: () => void;
 }
-
-const getCaption = (status: YuProductStatus) => {
-  switch (status) {
-    case YuProductStatus.unlockable:
-      return "Equip your Yumoji with upgraded chest items by purchasing life insurance.";
-    case YuProductStatus.locked:
-      return "We’re working hard to bring you the best insurance products on the market. Vote for what you want to see here.";
-    default:
-      return "";
-  }
-};
 
 export const ToolTip = ({ productId, onClose }: IToolTipProps) => {
   const dispatch = useDispatch();
@@ -66,10 +60,10 @@ export const ToolTip = ({ productId, onClose }: IToolTipProps) => {
   const { productEntityId, latestQuoteId } = fibState;
 
   useEffect(() => {
-    (async () => {
+    (() => {
       if (productId === YuProductId.family_income_benefit && !topUpsData?.getTopUpsQuote?.quoteId) {
         if (productEntityId && latestQuoteId) {
-          await getTopUpsQuery({
+          getTopUpsQuery({
             variables: {
               product: ProductCode.YULFIB,
               input: {
@@ -137,39 +131,34 @@ export const ToolTip = ({ productId, onClose }: IToolTipProps) => {
     return null;
   }
 
-  const { name, status } = product;
+  const { name, status, coverType } = product;
 
-  const isEmployerProduct = getIsEmployerProduct(productId);
+  const isActive = status === YuProductStatus.active;
+  const isLocked = status === YuProductStatus.locked;
+  const isUnlockable = status === YuProductStatus.unlockable;
 
   return (
     <View style={StyleSheet.flatten([styles.wrapper, getHorizontalPosition(productId)])}>
       <View style={styles.shadow} />
-      <View style={getContentWrapperStyle(productId)}>
-        <View style={getTopWrapperStyle(productId)}>
-          <MemoizedLinearGradient colorTheme={getLinearGradientColorTheme(isEmployerProduct)} />
-          <IconSvg style={StyleSheet.flatten([styles.iconWrapper, { opacity: status !== "active" ? 0.6 : 1 }])} />
+      <View style={getContentWrapperStyle(coverType, isActive)}>
+        <View style={getTopWrapperStyle(coverType, isActive)}>
+          <MemoizedLinearGradient colorTheme={getLinearGradientColorTheme(coverType, isActive)} />
+          <IconSvg status={status} style={StyleSheet.flatten([styles.iconWrapper, { opacity: !isActive ? 0.7 : 1 }])} />
           <View style={styles.nameWrapper}>
-            <Text bold={true} style={getNameStyle(productId)}>
-              {name}
+            <Text bold={true} style={getNameStyle(isActive)}>
+              {isLocked ? "Coming soon" : name}
             </Text>
           </View>
-          {status === YuProductStatus.active ? null : (
+          {!isUnlockable ? null : (
             <View style={styles.statusTextWrapper}>
               <Text style={styles.statusText}>{"Not equipped"}</Text>
             </View>
           )}
         </View>
-        {isEmployerProduct ? null : (
-          <LinearGradient
-            style={styles.separator}
-            colors={["#C4C4C400", "#5C5C5CFF", "#C4C4C400"]}
-            start={{ x: 0, y: 0 }}
-            end={{ x: 1, y: 0 }}
-          />
-        )}
-        <View style={getBottomWrapperStyle(productId)}>
+        {isActive ? null : <MemoizedLineBreak />}
+        <View style={getBottomWrapperStyle(coverType, isActive)}>
           <CoinLabel yuCoinPower={product.earnRate} />
-          <Text style={getCaptionStyle(productId)}>{getCaption(status)}</Text>
+          <Text style={getCaptionStyle(isActive)}>{product.description}</Text>
           <Button
             wrapperStyle={styles.cta}
             type="Primary"
@@ -180,11 +169,20 @@ export const ToolTip = ({ productId, onClose }: IToolTipProps) => {
         </View>
       </View>
       <TouchableOpacityWithDelay style={styles.close} onPress={onClose}>
-        <CloseSvg type="encircled" stroke={isEmployerProduct ? "white" : null} />
+        <CloseSvg type="encircledMono" stroke={isActive ? Colours.neutral.white : Colours.neutral.n200} />
       </TouchableOpacityWithDelay>
     </View>
   );
 };
+
+const MemoizedLineBreak = memo(() => (
+  <LinearGradient
+    style={styles.separator}
+    colors={["#C4C4C400", "#5C5C5CFF", "#C4C4C400"]}
+    start={{ x: 0, y: 0 }}
+    end={{ x: 1, y: 0 }}
+  />
+));
 
 const MemoizedLinearGradient = memo(({ colorTheme = [] }: { colorTheme: string[] }) => {
   if (!colorTheme.length) {
@@ -196,8 +194,24 @@ const MemoizedLinearGradient = memo(({ colorTheme = [] }: { colorTheme: string[]
   );
 });
 
-function getLinearGradientColorTheme(isEmployerProduct: boolean) {
-  return isEmployerProduct ? [Colours.products.fib.rare, Colours.products.fib.rareGradientLight] : [];
+function getLinearGradientColorTheme(coverType: CoverType, isActive: boolean) {
+  if (!isActive) {
+    return [];
+  }
+
+  if (coverType === CoverType.common) {
+    return [Colours.products.fib.commonGradientDark, Colours.products.fib.commonGradientLight];
+  }
+
+  if (coverType === CoverType.rare) {
+    return [Colours.products.fib.rare, Colours.products.fib.rareGradientLight];
+  }
+
+  if (coverType === CoverType.epic) {
+    return [Colours.products.fib.epic, Colours.products.fib.epicGradientLight];
+  }
+
+  return [];
 }
 
 function getButtonProps({ product }: { product: IProduct }) {
@@ -215,13 +229,10 @@ function getButtonProps({ product }: { product: IProduct }) {
       break;
     case YuProductStatus.active:
       label = "Inspect";
+      backgroundColor = Colours.products.fib[product.coverType];
+      shadowColor = Colours.products.fib[`${product.coverType}Shadow` as keyof typeof Colours["products"]["fib"]];
+      textColor = Colours.neutral.white;
       break;
-  }
-
-  if (isEmployerItem(product.itemSlot)) {
-    backgroundColor = Colours.products.fib.rare;
-    shadowColor = Colours.products.fib.rareShadow;
-    textColor = Colours.neutral.white;
   }
 
   return {
@@ -304,7 +315,7 @@ function getHorizontalPosition(productId: YuProductId) {
   };
 }
 
-function getContentWrapperStyle(productId: YuProductId) {
+function getContentWrapperStyle(coverType: CoverType, isActive: boolean) {
   const defaultStyle = {
     backgroundColor: "white",
     width: Style.adjust(268),
@@ -314,43 +325,50 @@ function getContentWrapperStyle(productId: YuProductId) {
     overflow: "hidden",
   } as ViewStyle;
 
-  if (getIsEmployerProduct(productId)) {
-    defaultStyle.borderColor = Colours.products.fib.rare;
+  if (isActive) {
+    defaultStyle.backgroundColor = Colours.products.fib[coverType];
+    defaultStyle.borderColor = Colours.products.fib[`${coverType}Shadow` as keyof typeof Colours["products"]["fib"]];
     defaultStyle.borderWidth = 2;
   }
 
   return defaultStyle;
 }
 
-function getTopWrapperStyle(productId: YuProductId) {
+function getTopWrapperStyle(coverType: CoverType, isActive: boolean) {
   const defaultStyle = {
     paddingVertical: Style.adjust(24),
     paddingHorizontal: Style.adjust(24),
     backgroundColor: "white",
   };
 
-  if (getIsEmployerProduct(productId)) {
-    defaultStyle.backgroundColor = Colours.products.fib.rare;
+  if (isActive) {
+    defaultStyle.backgroundColor = Colours.products.fib[coverType];
   }
 
   return defaultStyle;
 }
 
-function getBottomWrapperStyle(productId: YuProductId) {
+function getBottomWrapperStyle(coverType: CoverType, isActive: boolean) {
   const defaultStyle = {
     paddingVertical: Style.adjust(24),
     paddingHorizontal: Style.adjust(24),
     backgroundColor: "white",
   };
 
-  if (getIsEmployerProduct(productId)) {
-    defaultStyle.backgroundColor = Colours.secondary.s10S2;
+  if (isActive) {
+    if (coverType === CoverType.common) {
+      defaultStyle.backgroundColor = Colours.secondary.s10S1;
+    } else if (coverType === CoverType.rare) {
+      defaultStyle.backgroundColor = Colours.secondary.s10S2;
+    } else if (coverType === CoverType.epic) {
+      defaultStyle.backgroundColor = Colours.secondary.s10S3;
+    }
   }
 
   return defaultStyle;
 }
 
-function getNameStyle(productId: YuProductId) {
+function getNameStyle(isActive: boolean) {
   const defaultStyle = {
     letterSpacing: 1,
     color: Colours.neutral.n700,
@@ -359,14 +377,14 @@ function getNameStyle(productId: YuProductId) {
     textAlign: "center",
   } as TextStyle;
 
-  if (getIsEmployerProduct(productId)) {
+  if (isActive) {
     defaultStyle.color = Colours.neutral.white;
   }
 
   return defaultStyle;
 }
 
-function getCaptionStyle(productId: YuProductId) {
+function getCaptionStyle(isActive: boolean) {
   const defaultStyle = {
     fontSize: Style.adjust(16),
     lineHeight: Style.adjust(24),
@@ -375,9 +393,8 @@ function getCaptionStyle(productId: YuProductId) {
     color: Colours.neutral.n700,
   } as TextStyle;
 
-  if (getIsEmployerProduct(productId)) {
+  if (isActive) {
     defaultStyle.textAlign = "left";
-    defaultStyle.color = Colours.neutral.white;
   }
 
   return defaultStyle;

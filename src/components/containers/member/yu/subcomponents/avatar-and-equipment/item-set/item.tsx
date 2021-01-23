@@ -2,22 +2,23 @@ import React from "react";
 import { StyleSheet, ViewStyle, View, ImageStyle } from "react-native";
 import { TouchableOpacityWithDelay, PowerCoin } from "@molecules";
 import { Style } from "@styles";
+import { YuItemSlot, YuProductStatus, CoverType } from "@graphql/_core/schema/globalTypes";
+import { AVATAR_ITEM } from "@ids";
 import { SvgUnlockable } from "../../product/assets/svg-unlockable";
 import { SvgLocked } from "../../product/assets/svg-locked";
 import { ItemIcon } from "./item-icon";
-import { AVATAR_ITEM } from "@ids";
-import { YuItemSlot, YuProductStatus } from "../../../../../../../graphql/_core/schema/globalTypes";
 
 export interface ItemProps {
   onPress: () => void;
   isSelected: boolean;
   itemSlot: YuItemSlot;
   earnRate?: number;
+  coverType?: CoverType;
   status: YuProductStatus;
 }
 
 export const Item = (props: ItemProps) => {
-  const { onPress, earnRate, status, isSelected, itemSlot } = props;
+  const { onPress, earnRate, status, isSelected, itemSlot, coverType } = props;
 
   return (
     <TouchableOpacityWithDelay
@@ -26,7 +27,7 @@ export const Item = (props: ItemProps) => {
       style={styles.wrapper}
       testID={AVATAR_ITEM(itemSlot, status)}
     >
-      <ItemIcon isSelected={isSelected} itemSlot={itemSlot} status={status} />
+      <ItemIcon isSelected={isSelected} itemSlot={itemSlot} status={status} coverType={coverType} />
       <View style={styles.tagWrapper}>{getTag(status, earnRate)}</View>
     </TouchableOpacityWithDelay>
   );

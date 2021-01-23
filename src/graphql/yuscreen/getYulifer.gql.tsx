@@ -38,6 +38,8 @@ export const GQL_QUERY_GET_YULIFER = gql`
       itemSlot
       earnRate
       description
+      policyNumber
+      coverType
     }
   }
 `;

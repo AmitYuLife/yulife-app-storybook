@@ -38,7 +38,7 @@ const activeStyles = StyleSheet.create({
     alignItems: "center",
   } as ViewStyle,
   text: {
-    color: Colours.orange,
+    color: Colours.orangeNew,
     marginLeft: Style.adjust(8),
     letterSpacing: 1,
     marginBottom: -1,

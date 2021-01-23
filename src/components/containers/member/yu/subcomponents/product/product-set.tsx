@@ -1,7 +1,7 @@
 import React, { useCallback } from "react";
 import { View, ViewStyle, StyleSheet } from "react-native";
 import { Product } from "./product";
-import { Heading } from "../heading";
+import { Heading, Subheading } from "../heading";
 import { GetYulifer, UpdateTopUpsQuoteVariables, UpdateTopUpsQuote_updateFibQuote } from "@graphql/_core/schema";
 import { useMutation, useQuery } from "@apollo/react-hooks";
 import { GQL_QUERY_GET_YULIFER } from "@graphql/yuscreen";
@@ -44,7 +44,7 @@ export const ProductSet = (props: IProductSetProps) => {
   }, [dispatch, quoteId, updateFibQuote]);
 
   const products = getProducts({ type, data, fibState, resetFibJourney, shouldResetFib });
-  const heading = getHeading(type);
+  const { heading, subheading } = getHeading(type);
 
   if (!products.length) {
     return null;
@@ -53,6 +53,7 @@ export const ProductSet = (props: IProductSetProps) => {
   return (
     <View style={styles.wrapper}>
       <Heading text={heading} />
+      <Subheading text={subheading} />
       {products.map((product: any, index: number) => (
         <Product showSeparator={!!index} key={index} {...product} />
       ))}
@@ -63,13 +64,25 @@ export const ProductSet = (props: IProductSetProps) => {
 function getHeading(type: ProductType) {
   switch (type) {
     case ProductType.employer:
-      return "Your company has equipped you with:";
+      return {
+        heading: "Company Items",
+        subheading: "Provided by your company",
+      };
     case ProductType.alpha:
-      return "As an early adopter, you get:";
+      return {
+        heading: "Granted Items",
+        subheading: "Equipped by your company or YuLife",
+      };
     case ProductType.personal:
-      return "Power up and protect yourself:";
+      return {
+        heading: "Personal Items",
+        subheading: "The equipment you own",
+      };
     default:
-      return null;
+      return {
+        heading: "",
+        subheading: "",
+      };
   }
 }
 

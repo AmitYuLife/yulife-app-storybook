@@ -32,18 +32,18 @@ export const navigateToProductScreen = ({
 }: INavigateToProductScreen) => {
   // TODO: Implement different journeys for different products
 
+  if (product.status === "locked") {
+    return Navigation.push(ROUTES.yuScreen, {
+      component: {
+        id: ROUTES.yuProductSurvey,
+        name: ROUTES.yuProductSurvey,
+      },
+    });
+  }
+
   const isPersonalItem = getIsPersonalItem(product.itemSlot);
 
   if (isPersonalItem) {
-    if (product.status === "locked") {
-      return Navigation.push(ROUTES.yuScreen, {
-        component: {
-          id: ROUTES.yuProductSurvey,
-          name: ROUTES.yuProductSurvey,
-        },
-      });
-    }
-
     const resetFib = shouldResetFib ? () => resetFibJourney() : null;
     if (fibState.rejected || fibState.status === ScreeningStatus.REJECTED) {
       return handleRejected(resetFib);
@@ -180,10 +180,12 @@ export const navigateToProductScreen = ({
         },
       },
       passProps: {
+        earnRate: product.earnRate,
         description: product.description,
         name: product.name,
         status: product.status,
         itemSlot: product.itemSlot,
+        policyNumber: product.policyNumber,
       },
     },
   });

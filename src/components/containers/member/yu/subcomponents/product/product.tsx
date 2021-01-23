@@ -28,7 +28,13 @@ export const Product = (props: IProductProps) => {
     <View>
       <Separator show={showSeparator} />
       <TouchableOpacityWithDelay activeOpacity={1} onPress={onPress} style={styles.wrapper}>
-        <IconSvg style={StyleSheet.flatten([styles.productIconWrapper, { opacity: status !== "active" ? 0.6 : 1 }])} />
+        <IconSvg
+          status={status}
+          style={StyleSheet.flatten([
+            styles.productIconWrapper,
+            { opacity: status === YuProductStatus.active ? 1 : 0.7 },
+          ])}
+        />
         <View style={styles.productInfoWrapper} testID={PERSONAL_PRODUCT(heading)}>
           <ProductHeading text={heading} />
           <View style={styles.productSubheadingWrapper}>

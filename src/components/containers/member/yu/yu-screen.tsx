@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useState, useMemo } from "react";
 import { StyleSheet, ViewStyle, View, ScrollView, Platform } from "react-native";
 import {
   NameAndLevel,
@@ -10,8 +10,11 @@ import {
 } from "./subcomponents";
 import { Style, TOP_BAR } from "@styles";
 import media from "@styles/media";
-import { ProductType } from "../../../../graphql/_core/schema/globalTypes";
+import { ProductType, YuProductStatus } from "../../../../graphql/_core/schema/globalTypes";
 import { YUSCREEN, YUSCREEN_SCROLL_VIEW } from "@ids";
+import { useQuery } from "@apollo/react-hooks";
+import { GetYulifer } from "@graphql/_core/schema";
+import { GQL_QUERY_GET_YULIFER } from "@graphql/yuscreen";
 
 export const YuScreen = () => {
   const [product, setProduct] = useState(null);
@@ -19,6 +22,19 @@ export const YuScreen = () => {
   const handleCloseModal = useCallback(() => {
     setProduct(null);
   }, [setProduct]);
+
+  const { data } = useQuery<GetYulifer>(GQL_QUERY_GET_YULIFER, {
+    fetchPolicy: "cache-only",
+  });
+
+  const productSets = useMemo(
+    () => [
+      { productType: "alpha" as ProductType, isHidden: !(data?.additional?.[3]?.status === YuProductStatus.active) },
+      { productType: "employer" as ProductType, isHidden: false },
+      { productType: "personal" as ProductType, isHidden: !data?.getYulifer?.avatarRemoteFiles?.pngFull },
+    ],
+    [data]
+  );
 
   return (
     <View style={styles.wrapper} testID={YUSCREEN}>
@@ -28,9 +44,9 @@ export const YuScreen = () => {
         <AvatarCreationPrompt />
         <AvatarAndEquipment product={product} setProduct={setProduct} />
         <YuCoinPower />
-        {["charms", "employer", "personal"].map((type: ProductType, index) => (
-          <ProductSet key={index} type={type} />
-        ))}
+        {productSets.map(({ productType, isHidden }, index) =>
+          isHidden ? null : <ProductSet key={index} type={productType} />
+        )}
         <View style={styles.padBot} />
         <ToolTip productId={product} onClose={handleCloseModal} />
       </ScrollView>

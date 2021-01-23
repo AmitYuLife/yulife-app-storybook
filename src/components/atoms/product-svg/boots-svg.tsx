@@ -3,7 +3,11 @@ import Svg, { Path } from "react-native-svg";
 import { Style } from "@styles";
 import { ProductSvgProps } from "./product-svg.types";
 
-export const BootsSvg = ({ width = Style.adjust(80), height = Style.adjust(80), style = {} }: ProductSvgProps) => (
+export const BootsSvg = ({
+  width = Style.adjust(80),
+  height = Style.adjust(80),
+  style = { opacity: 0.7 },
+}: ProductSvgProps) => (
   <Svg width={width} height={height} style={style} viewBox="0 0 80 80">
     <Path
       d="M14.909 43.938C9.729 46.588 5.27 55.865 3.102 59.84c-.602 1.084-.602 3.976-.481 4.699.12.361 1.204.963 1.686.963.482.12 3.735.482 4.096.482 1.084.12 2.169.12 3.373.241l3.253.12h3.735l3.373-.12c1.445-.12 2.891-.12 4.216-.482.362-.12 2.53-.481 2.892-.602 2.288-.723 3.734-.602 2.65-6.024-.602-6.023 1.084-9.758.964-10.721-.12-1.446-.844-4.699-.844-4.699s-11.926-2.53-17.106.241z"

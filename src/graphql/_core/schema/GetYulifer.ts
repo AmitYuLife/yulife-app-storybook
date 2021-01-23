@@ -56,6 +56,8 @@ export interface GetYulifer_personal_pants {
   itemSlot: YuItemSlot | null;
   earnRate: number | null;
   description: string | null;
+  policyNumber: string | null;
+  coverType: CoverType | null;
   options: (GetYulifer_personal_pants_options | null)[] | null;
 }
 
@@ -92,6 +94,8 @@ export interface GetYulifer_personal_chest {
   itemSlot: YuItemSlot | null;
   earnRate: number | null;
   description: string | null;
+  policyNumber: string | null;
+  coverType: CoverType | null;
   options: (GetYulifer_personal_chest_options | null)[] | null;
 }
 
@@ -128,6 +132,8 @@ export interface GetYulifer_personal_gloves {
   itemSlot: YuItemSlot | null;
   earnRate: number | null;
   description: string | null;
+  policyNumber: string | null;
+  coverType: CoverType | null;
   options: (GetYulifer_personal_gloves_options | null)[] | null;
 }
 
@@ -164,6 +170,8 @@ export interface GetYulifer_personal_boots {
   itemSlot: YuItemSlot | null;
   earnRate: number | null;
   description: string | null;
+  policyNumber: string | null;
+  coverType: CoverType | null;
   options: (GetYulifer_personal_boots_options | null)[] | null;
 }
 
@@ -183,6 +191,8 @@ export interface GetYulifer_additional {
   itemSlot: YuItemSlot | null;
   earnRate: number | null;
   description: string | null;
+  policyNumber: string | null;
+  coverType: CoverType | null;
 }
 
 export interface GetYulifer {
