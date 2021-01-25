@@ -111,6 +111,7 @@ export const FIB_MEDICAL_COVID_ISOLATION_SCREEN_ID = "fib_medical_covid_isolatio
 export const FIB_MEDICAL_COVID_SYMPTOMS_SCREEN_ID = "fib_medical_covid_symptoms";
 export const FIB_FINANCIAL_QUESTIONS_SCREEN_ID = "fib_financial_questions";
 export const FIB_FINANCIAL_COVER_LIST_SCREEN_ID = "fib_financial_cover_list";
+export const FIB_FINANCIAL_OTHER_COVER_SCREEN_ID = "fib_financial_other_cover";
 export const FIB_LIFESTYLE_DRUGS_SCREEN_ID = "fib_lifestyle_drugs";
 
 export const FIB_HIGH_BLOOD_PRESSURE_SCREEN_ID = "fib_medical_journey_high_blood_pressure";
@@ -1416,11 +1417,34 @@ export const data: UnderwritingJourneyScreen[] = [
       "Almost done! Will the total amount of life insurance on your life (including any amount to be replaced and any other applied for) when added together exceed £20,000,000?",
     firstButton: {
       label: "No",
+      actionId: FIB_FINANCIAL_OTHER_COVER_SCREEN_ID,
+    },
+    secondButton: {
+      label: "Yes",
+      actionId: FIB_UNDERWRITING_REVIEW_ANSWERS_SCREEN_ID,
+      answersIdToInvalidate: [FIB_FINANCIAL_OTHER_COVER_SCREEN_ID, FIB_FINANCIAL_COVER_LIST_SCREEN_ID],
+    },
+    previousButton: { actionId: FIB_MEDICAL_COVID_SYMPTOMS_SCREEN_ID },
+  },
+
+  {
+    id: FIB_FINANCIAL_OTHER_COVER_SCREEN_ID,
+    accumulatedProgress: ACCUMULATED_PROGRESS.FIB_FINANCIAL_COVER_LIST_SCREEN_ID,
+    category: "fib_financial",
+    heading: "Financial",
+    icon: FINANCIAL_QUESTIONS_ICON,
+    title: "Additional Life Insurance Products",
+    question: "Do you have, or have you applied for any additional life insurance products?",
+    firstButton: {
+      label: "No",
       actionId: FIB_UNDERWRITING_REVIEW_ANSWERS_SCREEN_ID,
       answersIdToInvalidate: [FIB_FINANCIAL_COVER_LIST_SCREEN_ID],
     },
-    secondButton: { label: "Yes", actionId: FIB_FINANCIAL_COVER_LIST_SCREEN_ID },
-    previousButton: { actionId: FIB_MEDICAL_COVID_SYMPTOMS_SCREEN_ID },
+    secondButton: {
+      label: "Yes",
+      actionId: FIB_FINANCIAL_COVER_LIST_SCREEN_ID,
+    },
+    previousButton: { actionId: FIB_FINANCIAL_QUESTIONS_SCREEN_ID },
   },
   {
     id: FIB_FINANCIAL_COVER_LIST_SCREEN_ID,
@@ -1432,6 +1456,6 @@ export const data: UnderwritingJourneyScreen[] = [
     question: "Okay! Please add or remove your existing life insurance products below.",
     firstButton: { label: "Continue", actionId: FIB_UNDERWRITING_REVIEW_ANSWERS_SCREEN_ID },
     secondButton: { label: "Add cover", actionId: FIB_FINANCIAL_QUESTIONS_SCREEN_ID },
-    previousButton: { actionId: FIB_FINANCIAL_QUESTIONS_SCREEN_ID },
+    previousButton: { actionId: FIB_FINANCIAL_OTHER_COVER_SCREEN_ID },
   },
 ];

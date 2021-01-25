@@ -92,6 +92,7 @@ export interface FIBStore {
   status: ScreeningStatus;
   gpDetails: GPDetails;
   fibStyle: YuWorld;
+  sumAssured: number;
 }
 
 export interface UpdateFIBStoreAction<T> {

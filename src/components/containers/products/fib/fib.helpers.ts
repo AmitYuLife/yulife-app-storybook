@@ -398,3 +398,21 @@ export async function onUnderwritingClose() {
     },
   });
 }
+
+const MAX_AGE_LIFE_INSURANCE_COVER = 70;
+export const getTerm = (age: number) => {
+  let term = MAX_AGE_LIFE_INSURANCE_COVER - age;
+  if (term > 40) {
+    term = 40;
+  }
+
+  if (term <= 5) {
+    term = 0;
+  }
+
+  return term;
+};
+
+export function calculateSumAssured(grossSalary: number, salaryPercentageCovered: number, term: number): number {
+  return grossSalary * (salaryPercentageCovered / 100) * term;
+}

@@ -28,6 +28,10 @@ import {
 import { FINANCIAL_QUESTIONS_ICON } from "@atoms/fib/svg-assets/underwriting/svg-strings";
 import { addCommasToNumber } from "@services/utils";
 import { LifeInsuranceTopUpsUserAnswers, YuWorld } from "../../graphql/_core/schema/globalTypes";
+import {
+  FIB_FINANCIAL_OTHER_COVER_SCREEN_ID,
+  FIB_FINANCIAL_QUESTIONS_SCREEN_ID,
+} from "../../components/containers/products/fib/data/underwriting-journey-data";
 
 export const getFIBState = (state: IReduxState): FIBStore => {
   return state.product.fib;
@@ -244,6 +248,30 @@ export const getReviewAnswers = (state: IReduxState): any => {
 
     if (item.id === FIB_GENDER_SCREEN_ID) {
       answer = answer === "F" ? "Female" : "Male";
+    }
+
+    if (
+      item.id === FIB_FINANCIAL_OTHER_COVER_SCREEN_ID &&
+      state.product.fib.answers[FIB_FINANCIAL_QUESTIONS_SCREEN_ID] === "No" &&
+      !state.product.fib.answers[FIB_FINANCIAL_OTHER_COVER_SCREEN_ID]
+    ) {
+      if (state.product.fib.sumAssured > 3500000) {
+        icon = item.icon;
+        title = item.title;
+        questionId = item.id;
+        answer = null;
+      }
+    }
+
+    if (
+      item.id === FIB_FINANCIAL_OTHER_COVER_SCREEN_ID &&
+      state.product.fib.answers[FIB_FINANCIAL_OTHER_COVER_SCREEN_ID] === "Yes" &&
+      state.product.fib.answers.existingCovers.length === 0
+    ) {
+      icon = item.icon;
+      title = item.title;
+      questionId = item.id;
+      answer = null;
     }
 
     if (icon && title) {
