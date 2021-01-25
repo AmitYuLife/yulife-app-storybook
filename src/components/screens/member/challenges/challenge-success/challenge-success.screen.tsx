@@ -1,7 +1,8 @@
 import { AnimatedPlusPoints, Button, CentredScreen, LevelLine, Stars, Text } from "@atoms/index";
-import { GetMobileCopy_getMobileCopy_screens_challenges_success } from "@graphql/_core/schema";
+import { getChallengeSuccessCopy } from "@redux/copy/copy.selectors";
 import * as React from "react";
 import { Image, StyleSheet, View } from "react-native";
+import { useSelector } from "react-redux";
 import { formatCyclingMetersToKmWithOneDecimal } from "../challenge-progress/subcomponents/progress-bar.helpers";
 import Assets from "./assets";
 import { getStyle } from "./challenge-success.helpers";
@@ -15,7 +16,6 @@ interface IProps {
   reward: number;
   score: number;
   unit: "steps" | "minutes";
-  copy: GetMobileCopy_getMobileCopy_screens_challenges_success;
   currentWorld: number;
 }
 
@@ -26,11 +26,12 @@ export default function ChallengeSuccessScreen({
   reward,
   score,
   unit,
-  copy,
   loading,
   currentWorld,
 }: IProps) {
+  const copy = useSelector(getChallengeSuccessCopy);
   const { backgroundImage, backgroundStyle } = getStyle(currentWorld);
+
   return (
     <CentredScreen style={StyleSheet.flatten([styles.wrapper, backgroundStyle])} footerImage={backgroundImage}>
       <View style={styles.ratingWrapper}>

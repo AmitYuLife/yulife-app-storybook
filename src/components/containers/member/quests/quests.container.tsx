@@ -2,17 +2,11 @@ import { IMainTabsProps } from "@navigation/root";
 import { getUnitTarget, getCurrentWorld } from "@services/utils";
 import { Style } from "@styles/index";
 import React, { FC, useCallback, useMemo } from "react";
-import { connect, useDispatch } from "react-redux";
-import { IReduxState } from "../../../../redux/_core/reducers";
-import { getCopy } from "../../../../redux/copy/copy.selectors";
-import {
-  challengeCancelAction,
-  challengeEndAction,
-  challengeResetAction,
-} from "../../../../redux/levels/levels.actions";
-import { getActiveLevel, getCurrentLevel } from "../../../../redux/levels/levels.selectors";
-import { displayStreaksCompletedAction } from "../../../../redux/streaks/streaks.actions";
-import { getUserFeatures } from "../../../../redux/user/user.selectors";
+import { useSelector, useDispatch } from "react-redux";
+import { challengeCancelAction, challengeEndAction, challengeResetAction } from "@redux/levels/levels.actions";
+import { getActiveLevel } from "@redux/levels/levels.selectors";
+import { displayStreaksCompletedAction } from "@redux/streaks/streaks.actions";
+import { getUserFeatures } from "@redux/user/user.selectors";
 import {
   ChallengeExitScreen,
   ChallengeFailedScreen,
@@ -20,19 +14,19 @@ import {
   ChallengeSuccessScreen,
   QuestsScreenOffline,
   ChallengeCompleteScreen,
-} from "../../../screens";
+} from "@screens";
 import QuestsScreenContainer from "@screens/member/quests/quests-scroll-screen/quests-screen.container";
 import { BlurProvider } from "@atoms/index";
 import { useTapBackTwiceToExit } from "@services/hooks/useTapBackTwiceToExit";
 
-export type ConnectedState = ReturnType<typeof mapStateToProps>;
-
-export type Props = IMainTabsProps & ConnectedState;
+export type Props = IMainTabsProps;
 
 const QuestsContainer: FC<Props> = (props) => {
   const dispatch = useDispatch();
+  const activeLevel = useSelector(getActiveLevel);
+  const features = useSelector(getUserFeatures);
 
-  const { activeLevel, componentId, currentLevel, features, copy, onLeftMenuPress } = props;
+  const { componentId, onLeftMenuPress } = props;
 
   const {
     coins,
@@ -55,10 +49,9 @@ const QuestsContainer: FC<Props> = (props) => {
   const screenProps = useMemo(
     () => ({
       componentId,
-      currentLevel,
       onLeftMenuPress,
     }),
-    [currentLevel, componentId, onLeftMenuPress]
+    [componentId, onLeftMenuPress]
   );
 
   const handleResetChallenge = useCallback(
@@ -89,31 +82,18 @@ const QuestsContainer: FC<Props> = (props) => {
           score={score}
           unit={unit as any}
           loading={false}
-          copy={copy.success}
           currentWorld={currentWorld}
         />
       );
     }
 
     return (
-      <ChallengeFailedScreen
-        level={level}
-        onPress={handleResetChallenge}
-        loading={false}
-        copy={copy.failed}
-        currentWorld={currentWorld}
-      />
+      <ChallengeFailedScreen level={level} onPress={handleResetChallenge} loading={false} currentWorld={currentWorld} />
     );
   }
 
   if (timeUp) {
-    return (
-      <ChallengeCompleteScreen
-        isLoading={isLoading}
-        onCtaPress={() => dispatch(challengeEndAction())}
-        copy={copy.completed}
-      />
-    );
+    return <ChallengeCompleteScreen isLoading={isLoading} onCtaPress={() => dispatch(challengeEndAction())} />;
   }
 
   if (subtype) {
@@ -139,27 +119,13 @@ const QuestsContainer: FC<Props> = (props) => {
             onClose={hideOverlay}
             onPressExit={() => dispatch(challengeCancelAction())}
             isCancelling={isLoading}
-            copy={copy.exitChallenge}
           />
         )}
       />
     );
   }
 
-  return (
-    <QuestsScreenContainer
-      {...screenProps}
-      showCompletedLevel={features.showCompletedLevel}
-      showChestModalCopy={copy.showChestModal}
-    />
-  );
+  return <QuestsScreenContainer {...screenProps} showCompletedLevel={features.showCompletedLevel} />;
 };
 
-const mapStateToProps = (state: IReduxState) => ({
-  activeLevel: getActiveLevel(state),
-  currentLevel: getCurrentLevel(state),
-  features: getUserFeatures(state),
-  copy: getCopy(state, "challenges"),
-});
-
-export default connect<ConnectedState>(mapStateToProps)(QuestsContainer);
+export default QuestsContainer;

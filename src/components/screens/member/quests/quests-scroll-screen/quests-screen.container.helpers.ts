@@ -119,23 +119,22 @@ export interface GetActionConditionArgs {
   levelAvailable: boolean;
 }
 
-export function getActionConditions({
+export type LevelAction =
+  | "SetUnity"
+  | "ShowLevelCompleteModal"
+  | "DispatchSubmitUnityAction"
+  | "ShowChestModal"
+  | "GoToChallengesList"
+  | "ShowChallengeUnavailableModal"
+  | "ShowLevelUnavailableModal";
+
+export function getLevelAction({
   levelStatus,
   challengesStatus,
   itemLevel,
   showCompletedLevel,
   levelAvailable,
-}: GetActionConditionArgs) {
-  const conditions = {
-    shouldSetUnity: false,
-    shouldGoToChallengesList: false,
-    shouldShowLevelCompleteModal: false,
-    shouldDispatchSubmitUnityAction: false,
-    shouldShowChestModal: false,
-    shouldShowChallengeUnavailableModal: false,
-    shouldShowLevelUnavailableModal: false,
-  };
-
+}: GetActionConditionArgs): LevelAction {
   const isUnityLevel = itemLevel.level % 50 === 0;
   const { isPrevious, isDone, isNext } = levelStatus;
   const { hasDone, isAvailable: isChallengeAvailable } = challengesStatus;
@@ -143,30 +142,37 @@ export function getActionConditions({
 
   if (isDone) {
     if (isUnityLevel) {
-      conditions.shouldSetUnity = true;
-    } else if (isPrevious && hasDone && isChallengeAvailable) {
-      conditions.shouldGoToChallengesList = true;
-    } else if (showCompletedLevel) {
-      conditions.shouldShowLevelCompleteModal = true;
+      return "SetUnity";
     }
-  } else if (isNext) {
-    if (isUnityLevel) {
-      conditions.shouldSetUnity = true;
-      conditions.shouldDispatchSubmitUnityAction = true;
-    } else if (levelAvailable && isChestLevel) {
-      conditions.shouldShowChestModal = true;
-    } else if (levelAvailable) {
-      conditions.shouldGoToChallengesList = true;
-    } else {
-      conditions.shouldShowChallengeUnavailableModal = true;
+
+    if (isPrevious && hasDone && isChallengeAvailable) {
+      return "GoToChallengesList";
     }
-  } else {
-    if (isChestLevel) {
-      conditions.shouldShowChestModal = true;
-    } else {
-      conditions.shouldShowLevelUnavailableModal = true;
+
+    if (showCompletedLevel) {
+      return "ShowLevelCompleteModal";
     }
   }
 
-  return conditions;
+  if (isNext) {
+    if (isUnityLevel) {
+      return "DispatchSubmitUnityAction";
+    }
+
+    if (levelAvailable && isChestLevel) {
+      return "ShowChestModal";
+    }
+
+    if (levelAvailable) {
+      return "GoToChallengesList";
+    }
+
+    return "ShowChallengeUnavailableModal";
+  }
+
+  if (isChestLevel) {
+    return "ShowChestModal";
+  }
+
+  return "ShowLevelUnavailableModal";
 }

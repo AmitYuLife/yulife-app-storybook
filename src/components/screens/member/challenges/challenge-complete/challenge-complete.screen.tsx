@@ -1,18 +1,20 @@
 import React, { useEffect } from "react";
 import { Image, View } from "react-native";
+import { useSelector } from "react-redux";
 import { AnimatableImage } from "@services/animatable";
-import { GetMobileCopy_getMobileCopy_screens_challenges_completed } from "../../../../../graphql/_core/schema";
-import { Button, Text } from "../../../../atoms";
-import styles from "./challenge-complete.styles";
 import Logger from "@services/logging/logger";
+import { Button, Text } from "@atoms";
+import styles from "./challenge-complete.styles";
+import { getChallengeCompletedCopy } from "@redux/copy/copy.selectors";
 
 interface IProps {
   onCtaPress: () => void;
-  copy: GetMobileCopy_getMobileCopy_screens_challenges_completed;
   isLoading: boolean;
 }
 
-const ChallengeCompleteScreen: React.SFC<IProps> = ({ onCtaPress, copy, isLoading }) => {
+const ChallengeCompleteScreen: React.FC<IProps> = ({ onCtaPress, isLoading }) => {
+  const copy = useSelector(getChallengeCompletedCopy);
+
   useEffect(() => {
     Logger.logEvent("screen_view", { name: "timesUp" });
   }, []);

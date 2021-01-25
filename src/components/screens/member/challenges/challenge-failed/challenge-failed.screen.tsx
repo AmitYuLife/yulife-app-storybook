@@ -1,20 +1,22 @@
 import { Button, CentredScreen, LevelLine, Stars, Text } from "@atoms/index";
 import * as React from "react";
 import { StyleSheet, View, ViewStyle } from "react-native";
-import { GetMobileCopy_getMobileCopy_screens_challenges_failed } from "../../../../../graphql/_core/schema";
-import styles from "./challenge-failed.screen.styles";
+import { useSelector } from "react-redux";
 import { CenteredScreenImages } from "@atoms/centred-screen/centred-screen";
+import { getChallengeFailedCopy } from "@redux/copy/copy.selectors";
+import styles from "./challenge-failed.screen.styles";
 
 interface IProps {
   level?: number;
   loading: boolean;
   onPress: () => void;
-  copy: GetMobileCopy_getMobileCopy_screens_challenges_failed;
   currentWorld: number;
 }
 
-export default function ChallengeFailedScreen({ level, onPress, copy, loading, currentWorld }: IProps) {
+export default function ChallengeFailedScreen({ level, onPress, loading, currentWorld }: IProps) {
+  const copy = useSelector(getChallengeFailedCopy);
   const { backgroundImage, backgroundStyle } = getStyle(currentWorld);
+
   return (
     <CentredScreen
       style={StyleSheet.flatten([styles.wrapper, backgroundStyle]) as ViewStyle}

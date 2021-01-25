@@ -10,12 +10,6 @@ const voidFunc: () => void = () => null;
 storiesOf("Challenge Complete Screen", module)
   .addDecorator(withKnobs)
   .addDecorator((g: () => React.ReactNode) => <View style={styles.container}>{g()}</View>)
-  .add("default", () => (
-    <ChallengeCompleteScreen
-      isLoading={false}
-      copy={{ ctaLabel: "complete", heading: "Complete" }}
-      onCtaPress={voidFunc}
-    />
-  ));
+  .add("default", () => <ChallengeCompleteScreen isLoading={false} onCtaPress={voidFunc} />);
 
 const styles = StyleSheet.create({ container: { flex: 1, justifyContent: "center", alignItems: "center" } });
