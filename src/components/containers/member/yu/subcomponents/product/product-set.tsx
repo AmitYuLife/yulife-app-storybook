@@ -73,7 +73,7 @@ function getHeading(type: ProductType) {
     case ProductType.personal:
       return {
         heading: "Personal Items",
-        subheading: "The equipment you own",
+        subheading: "Purchased by you",
       };
     default:
       return {
