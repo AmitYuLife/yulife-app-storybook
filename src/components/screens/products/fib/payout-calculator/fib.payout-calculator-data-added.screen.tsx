@@ -12,6 +12,7 @@ import { useQuery } from "@apollo/react-hooks";
 import { GetYulifer } from "../../../../../graphql/_core/schema/GetYulifer";
 import { GQL_QUERY_GET_YULIFER } from "../../../../../graphql/yuscreen/getYulifer.gql";
 import { CoverType } from "@graphql/_core/schema/globalTypes";
+import { getTerm, calculateSumAssured } from "../../../../containers/products/fib/fib.helpers";
 export interface IFibPayoutCalculatorDataAddedScreenProps {
   onNavigateBack: () => void;
   onContinue: () => void;
@@ -67,7 +68,7 @@ export const FibPayoutCalculatorDataAddedScreen = memo(function (props: IFibPayo
 
   const sumAssured = coverTypesInfo
     ? (coverTypesInfo as any)[selectedPackage.toLowerCase()].sumAssured
-    : grossSalary * (salaryPercentageCovered / 100) * term;
+    : calculateSumAssured(grossSalary, salaryPercentageCovered, term);
 
   const yearlyAmountProtected = sumAssured / term;
   const payoutAmount = Math.round(sumAssured - yearlyAmountProtected * currentSliderValue);
@@ -136,19 +137,6 @@ export const FibPayoutCalculatorDataAddedScreen = memo(function (props: IFibPayo
     </ScrollableLayout>
   );
 });
-
-const getTerm = (age: number) => {
-  let term = 70 - age;
-  if (term > 40) {
-    term = 40;
-  }
-
-  if (term <= 5) {
-    term = 0;
-  }
-
-  return term;
-};
 
 const styles = StyleSheet.create({
   packageSelectorWrapper: {

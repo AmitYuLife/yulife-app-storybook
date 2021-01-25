@@ -89,6 +89,7 @@ export const getInitialState = (): IProductStore => ({
     latestQuoteId: "",
     status: ScreeningStatus.NONE,
     fibStyle: YuWorld.forest,
+    sumAssured: 0,
   },
 });
 

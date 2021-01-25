@@ -19,6 +19,9 @@ import {
   FIB_HIGH_BLOOD_PRESSURE_SCREEN_ID,
   FIB_HIGH_CHOLESTEROL_EXTRA_SCREEN,
   FIB_HIGH_CHOLESTEROL_SCREEN_ID,
+  FIB_FINANCIAL_QUESTIONS_SCREEN_ID,
+  FIB_FINANCIAL_OTHER_COVER_SCREEN_ID,
+  FIB_YOUR_DATE_OF_BIRTH_SCREEN_ID,
 } from "../data/underwriting-journey-data";
 import { FIBProgressBar } from "@organisms";
 import { IReduxState } from "@redux/_core/reducers";
@@ -42,6 +45,12 @@ import {
   MEDICAL_CHIPS_QUESTIONS,
 } from "../data/underwriting-journey-data";
 import { YUGI_INTRO_TYPE } from "./fib.yugi-intro.container";
+import { useQuery } from "@apollo/react-hooks";
+import { GetYulifer } from "../../../../../graphql/_core/schema/GetYulifer";
+import { GQL_QUERY_GET_YULIFER } from "../../../../../graphql/yuscreen/getYulifer.gql";
+import { CoverType } from "@graphql/_core/schema/globalTypes";
+import moment from "moment";
+import { getTerm, calculateSumAssured } from "../fib.helpers";
 
 type ConnectedProps = ReturnType<typeof mapStateToProps>;
 type ConnecteDispatch = typeof mapDispatchToProps;
@@ -52,9 +61,11 @@ interface IFibUnderwritingJourneyContainer {
   initialQuestionId?: string;
 }
 
+const SUM_ASSURED_LIMIT = 3500000;
 const _FibUnderwritingJourneyContainer = memo(function (props: Props) {
   const { navigation, medicalHistory, updateFibAnswer, initialQuestionId, fibAnswers, salary } = props;
   const dispatch = useDispatch();
+  const { birthDay, birthMonth, birthYear } = fibAnswers;
 
   const { redirectedFromReviewScreen, initialQuestionIdFromReviewScreen } = navigation.currentRoute.passProps;
   const initialQuestion =
@@ -84,6 +95,18 @@ const _FibUnderwritingJourneyContainer = memo(function (props: Props) {
   const [inputLastName, setInputLastName] = useState(fibAnswers.lastName);
   const [radioInputValue, setRadioInputValue] = useState<string>(null);
   const [inputSalary, setInputSalary] = useState(salary);
+
+  const { data: yuliferData } = useQuery<GetYulifer>(GQL_QUERY_GET_YULIFER, {
+    fetchPolicy: "cache-only",
+  });
+  const selectedProductOption = yuliferData.personal.chest?.options.filter(
+    (productOption) => productOption.type === CoverType.epic
+  )[0];
+  const salaryPercentageCovered = selectedProductOption?.percentageCovered * 100 || 0;
+
+  const term = getTerm(moment().diff(moment(`${birthDay}/${birthMonth}/${birthYear}`, "DD/MM/YYYY"), "years"));
+
+  const sumAssured = calculateSumAssured(inputSalary, salaryPercentageCovered, term);
 
   const currentAnswer = fibAnswers[currentQuestion.id];
 
@@ -198,8 +221,26 @@ const _FibUnderwritingJourneyContainer = memo(function (props: Props) {
       updateFibAnswer("lastName", inputLastName);
     }
 
+    const updateSumAssuredAndFinancialQuestions = () => {
+      dispatch(updateFIBValue({ key: "sumAssured", value: sumAssured }));
+      if (sumAssured <= SUM_ASSURED_LIMIT) {
+        updateFibAnswer(FIB_FINANCIAL_OTHER_COVER_SCREEN_ID, "");
+      }
+    };
+
+    if (currentQuestion.id === FIB_YOUR_DATE_OF_BIRTH_SCREEN_ID) {
+      updateSumAssuredAndFinancialQuestions();
+    }
+
     if (currentQuestion.id === FIB_INPUT_SALARY) {
       dispatch(updateFIBValue({ key: "salary", value: inputSalary }));
+      updateSumAssuredAndFinancialQuestions();
+    }
+
+    if (currentQuestion.id === FIB_FINANCIAL_QUESTIONS_SCREEN_ID) {
+      if (sumAssured <= SUM_ASSURED_LIMIT) {
+        return navigation.push(FIB_UNDERWRITING_REVIEW_ANSWERS);
+      }
     }
 
     if (currentQuestion.firstButton.actionId === FIB_UNDERWRITING_REVIEW_ANSWERS_SCREEN_ID) {
@@ -248,6 +289,14 @@ const _FibUnderwritingJourneyContainer = memo(function (props: Props) {
       }
     }
 
+    if (currentQuestion.secondButton.actionId === FIB_UNDERWRITING_REVIEW_ANSWERS_SCREEN_ID) {
+      if (!redirectedFromReviewScreen) {
+        dispatch(updateFIBValue({ key: "lastQuestionId", value: FIB_UNDERWRITING_REVIEW_ANSWERS_SCREEN_ID }));
+      }
+
+      return navigation.push(FIB_UNDERWRITING_REVIEW_ANSWERS);
+    }
+
     navigateToReviewScreenOrFindNextQuestion(localAnswers, "secondButton", currentQuestion.id);
 
     const question = findQuestion({
@@ -257,6 +306,7 @@ const _FibUnderwritingJourneyContainer = memo(function (props: Props) {
       medicalHistory,
       answers: localAnswers || fibAnswers,
     });
+
     if (!redirectedFromReviewScreen) {
       dispatch(updateFIBValue({ key: "lastQuestionId", value: question.id }));
     }
