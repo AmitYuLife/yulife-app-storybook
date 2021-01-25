@@ -1,5 +1,5 @@
 import { StyleSheet, TextStyle, ViewStyle, Platform } from "react-native";
-import { Style } from "@styles";
+import { Style, Colours } from "@styles";
 import media from "@styles/media";
 
 const NAVIGATION_VIEW_HEIGHT = Style.adjust(40);
@@ -14,20 +14,19 @@ const NAVIGATION_POSITION_BOTTOM = media.select(
 );
 
 export default StyleSheet.create({
-  actionButton: {
-    fontFamily: Style.FONT_FAMILY_PRIMARY_BOLD,
+  actionButtonText: {
     fontSize: 16,
+    lineHeight: 24,
     letterSpacing: 0.8,
-    color: "#E30D76",
+    color: Colours.primary.p600,
   } as TextStyle,
   wrapper: {
     height: Style.DEVICE_HEIGHT,
   } as ViewStyle,
-  skipButton: {
-    fontFamily: Style.FONT_FAMILY_PRIMARY,
+  backButton: {
     fontSize: 16,
     letterSpacing: 0.8,
-    color: "#E30D76",
+    color: Colours.primary.p600,
   } as TextStyle,
   navigationViewWrapper: {
     position: "absolute",
@@ -57,4 +56,16 @@ export default StyleSheet.create({
     right: 0,
     top: Platform.select({ ios: Style.getSafeAreaStart(), android: 0 }),
   } as ViewStyle,
+  actionButton: {
+    paddingVertical: 4,
+    paddingHorizontal: 8,
+  } as ViewStyle,
+  lastPageActionButton: {
+    backgroundColor: Colours.primary.p600,
+    borderRadius: 8,
+  } as ViewStyle,
+  lastPageActionButtonText: {
+    color: Colours.neutral.white,
+    letterSpacing: 0.4,
+  } as TextStyle,
 });
