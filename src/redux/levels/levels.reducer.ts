@@ -235,7 +235,7 @@ const pedometerUpdate = (state: ILevelsStore, { steps }: PedometerResponse): ILe
   }
 
   const current = steps - state.active.initialPedometerResult;
-  const score = current > state.active.score ? current : state.active.score;
+  const score = Math.max(current, state.active.score);
 
   return {
     ...state,

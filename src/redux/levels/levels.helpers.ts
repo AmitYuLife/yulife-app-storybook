@@ -90,40 +90,16 @@ export async function getEndResult({ startDateTime, endDateTime, subtype, score 
   try {
     const { start, end } = getStartAndEndDateTimesWithTimezone(startDateTime, endDateTime);
 
-    // we need the ability to switch the method we call to gather step data
-    if (features.changeStepsMechanism) {
-      const aggregatedResults = await querySteps(moment(start), moment(end));
+    // get steps from google services/apple health
+    const fitkitResults = await querySteps(moment(start), moment(end));
+    const fitkitValue =
+      fitkitResults && fitkitResults.results ? fitkitResults.results.reduce((a, b) => a + b.value, 0) : 0;
 
-      if (features.loggingEnabled) {
-        Logger.logMixpanelEvent("debug_end_challenge_aggregated_results", {
-          startDateTime,
-          endDateTime,
-          start,
-          end,
-          aggregatedResults,
-        });
-      }
+    // get steps from sensors
+    const pedometerResults = await RNFitKit.queryPedometerFromDate(start, end);
+    const pedometerValue = pedometerResults?.steps || 0;
 
-      if (features.loggingEnabled) {
-        const results = await RNFitKit.queryPedometerFromDate(start, end);
-        Logger.logMixpanelEvent("debug_end_challenge_pedometer_results", {
-          startDateTime,
-          endDateTime,
-          start,
-          end,
-          results,
-        });
-      }
-
-      const aggregatedSteps =
-        aggregatedResults && aggregatedResults.results ? aggregatedResults.results.reduce((a, b) => a + b.value, 0) : 0;
-
-      return {
-        value: aggregatedSteps > score ? aggregatedSteps : score,
-      };
-    }
-
-    const results = await RNFitKit.queryPedometerFromDate(start, end);
+    const value = Math.max(fitkitValue, pedometerValue, score);
 
     if (features.loggingEnabled) {
       Logger.logMixpanelEvent("debug_end_challenge_pedometer_results", {
@@ -131,21 +107,20 @@ export async function getEndResult({ startDateTime, endDateTime, subtype, score 
         endDateTime,
         start,
         end,
-        results,
+        score,
+        fitkitValue,
+        pedometerValue,
       });
     }
 
-    return {
-      value: results && results.steps > score ? results.steps : score,
-    };
+    return { value };
   } catch (e) {
-    if (features.loggingEnabled) {
-      Logger.logMixpanelEvent("debug_query_pedometer_from_date_steps_error", {
-        startDateTime,
-        endDateTime,
-        message: e.message,
-      });
-    }
+    Logger.error(e, {
+      startDateTime,
+      endDateTime,
+      message: e.message,
+      where: "debug_query_pedometer_from_date_steps_error",
+    });
 
     return {
       value: score,

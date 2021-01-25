@@ -1,11 +1,9 @@
 import { GQL_MUTATION_CREATE_ACTIVE_CHALLENGE, CreateActiveChallengeMutationTuple } from "@graphql/challenges";
-import { ApolloClient } from "apollo-client";
 import React, { FC, useState, useCallback } from "react";
 import Config from "react-native-config";
 import { Navigation } from "react-native-navigation";
-import { connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { GetCurrentQuestLevels_getCurrentQuestLevels } from "../../../../../graphql/_core/schema";
-import { IReduxState } from "../../../../../redux/_core/reducers";
 import { challengeStartSuccessAction } from "../../../../../redux/levels/levels.actions";
 import { getCurrentLevel } from "../../../../../redux/levels/levels.selectors";
 import { BlurProvider, IToggleBlur } from "../../../../atoms";
@@ -18,25 +16,16 @@ import { authoriseCycling } from "@services/fitkit/fitkit.helpers";
 import { ChallengeType } from "@molecules/challenge-tile/challenge-tile.types";
 import { getCurrentWorld } from "@services/utils";
 
-type ConnectedState = ReturnType<typeof mapStateToProps>;
-type ConnectedDispatch = typeof mapDispatchToProps;
-
 interface IProps {
   componentId: string;
   level: GetCurrentQuestLevels_getCurrentQuestLevels;
-  client: ApolloClient<any>;
 }
 
-type Props = IProps & ConnectedState & ConnectedDispatch;
+type Props = IProps;
 
 const openMeditationURL = handleLinkPress(Config.MEDITATION_SETUP_URL);
 
-const ChallengesListContainer: FC<Props> = ({
-  currentLevel,
-  level,
-  componentId,
-  challengeStartSuccessAction: dispatchChallengeStartSuccess,
-}) => {
+const ChallengesListContainer: FC<Props> = ({ level, componentId }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setErrorState] = useState(null as string);
   const [slot, setSlot] = useState({
@@ -47,6 +36,9 @@ const ChallengesListContainer: FC<Props> = ({
     reward: "",
     unit: "steps" as Unit,
   });
+
+  const dispatch = useDispatch();
+  const currentLevel = useSelector(getCurrentLevel);
 
   const [createActiveChallenge]: CreateActiveChallengeMutationTuple = useMutation(
     GQL_MUTATION_CREATE_ACTIVE_CHALLENGE,
@@ -82,10 +74,12 @@ const ChallengesListContainer: FC<Props> = ({
       const { data } = await createActiveChallenge();
 
       if (data && data.createActiveChallenge) {
-        dispatchChallengeStartSuccess({
-          ...data,
-          levelSlotId: slot.id,
-        });
+        dispatch(
+          challengeStartSuccessAction({
+            ...data,
+            levelSlotId: slot.id,
+          })
+        );
         handleNavPress();
       } else {
         setError();
@@ -93,7 +87,7 @@ const ChallengesListContainer: FC<Props> = ({
     } catch (e) {
       setError();
     }
-  }, [createActiveChallenge, dispatchChallengeStartSuccess, setError, handleNavPress, slot.id, slot.challengeType]);
+  }, [createActiveChallenge, dispatch, setError, handleNavPress, slot.id, slot.challengeType]);
 
   return (
     <BlurProvider
@@ -144,12 +138,4 @@ const ChallengesListContainer: FC<Props> = ({
   );
 };
 
-const mapStateToProps = (state: IReduxState) => ({
-  currentLevel: getCurrentLevel(state),
-});
-
-const mapDispatchToProps = {
-  challengeStartSuccessAction,
-};
-
-export default connect<ConnectedState, ConnectedDispatch>(mapStateToProps, mapDispatchToProps)(ChallengesListContainer);
+export default ChallengesListContainer;
