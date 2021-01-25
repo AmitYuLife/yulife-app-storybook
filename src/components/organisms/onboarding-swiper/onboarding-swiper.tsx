@@ -1,8 +1,9 @@
 import React from "react";
-import { FlatList, View, TouchableOpacity, ViewToken, ListRenderItem } from "react-native";
+import { FlatList, View, ViewToken, ListRenderItem, TouchableOpacity } from "react-native";
 import { Text, PageIndicator } from "@atoms";
 import styles from "./onboarding-swiper.styles";
 import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
+import { TouchableOpacityWithDelay } from "@components/molecules";
 
 export interface OnboardingSwiperData {
   id: string;
@@ -35,8 +36,9 @@ export class OnboardingSwiper extends React.PureComponent<Props, State> {
 
   render() {
     const { activePageIndex, buttonLabel } = this.state;
-    const { data, renderItem } = this.props;
+    const { data, renderItem, onClose } = this.props;
 
+    const isFirstPage = activePageIndex === 0;
     const isLastPage = activePageIndex + 1 === data.length;
 
     return (
@@ -60,16 +62,30 @@ export class OnboardingSwiper extends React.PureComponent<Props, State> {
           <View style={styles.pageIndicatorWrapper}>
             <PageIndicator activePage={activePageIndex} pageCount={3} />
           </View>
-          {isLastPage ? (
+          {isFirstPage ? (
             <View />
           ) : (
-            <TouchableOpacity onPress={this.props.onClose}>
-              <Text style={styles.skipButton}>Skip</Text>
-            </TouchableOpacity>
+            <TouchableOpacityWithDelay delay={200} onPress={this.scrollBack}>
+              <Text style={styles.backButton}>Back</Text>
+            </TouchableOpacityWithDelay>
           )}
-          <TouchableOpacity onPress={this.scrollToNext}>
-            <Text style={styles.actionButton}>{buttonLabel}</Text>
-          </TouchableOpacity>
+          {isLastPage ? (
+            <TouchableOpacity
+              delayPressIn={0}
+              onPress={onClose}
+              style={[styles.actionButton, styles.lastPageActionButton]}
+            >
+              <Text bold={true} style={[styles.actionButtonText, styles.lastPageActionButtonText]}>
+                {buttonLabel}
+              </Text>
+            </TouchableOpacity>
+          ) : (
+            <TouchableOpacityWithDelay delay={200} style={styles.actionButton} onPress={this.scrollToNext}>
+              <Text bold={true} style={styles.actionButtonText}>
+                {buttonLabel}
+              </Text>
+            </TouchableOpacityWithDelay>
+          )}
         </View>
         <GenericHeadingAbsolute logo="yulife" />
       </View>
@@ -91,10 +107,20 @@ export class OnboardingSwiper extends React.PureComponent<Props, State> {
         activePageIndex: activePageIndex + 1,
         buttonLabel: this.props.data[activePageIndex + 1]?.buttonLabel,
       });
-      return;
     }
+  };
 
-    this.props.onClose();
+  scrollBack = () => {
+    const { activePageIndex } = this.state;
+
+    const newIndex = activePageIndex - 1;
+    if (newIndex >= 0) {
+      this.swiper?.scrollToIndex({ index: newIndex, animated: true });
+      this.setState({
+        activePageIndex: newIndex,
+        buttonLabel: this.props.data[newIndex]?.buttonLabel,
+      });
+    }
   };
 
   handleSwipe = ({ viewableItems }: { viewableItems: ViewToken[] }) => {
