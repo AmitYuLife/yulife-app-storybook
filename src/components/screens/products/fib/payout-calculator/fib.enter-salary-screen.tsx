@@ -1,5 +1,5 @@
-import React, { memo } from "react";
-import { View, StyleSheet, ViewStyle, TextStyle, Platform } from "react-native";
+import React, { memo, useEffect, useState, useCallback } from "react";
+import { View, StyleSheet, ViewStyle, TextStyle, Platform, KeyboardAvoidingView, Keyboard } from "react-native";
 import { Button, Text } from "@atoms";
 import { Style, Colours } from "@styles";
 import { Navigation } from "react-native-navigation";
@@ -15,37 +15,71 @@ export interface IFibEnterSalaryScreenProps {
 
 export const FibEnterSalaryScreen = memo(function (props: IFibEnterSalaryScreenProps) {
   const { updateSalary, submitSalary, salary } = props;
+  const [titleMargin, setTitleMargin] = useState(64);
+
+  const onClose = () => {
+    Keyboard.dismiss();
+    setTimeout(() => {
+      Navigation.dismissOverlay(MODALS.enterSalary);
+    }, 50);
+  };
 
   const onDonePressed = () => {
     submitSalary();
-    Navigation.dismissOverlay(MODALS.enterSalary);
+    onClose();
   };
 
+  const handleKeyboardEventShown = useCallback(() => {
+    if (Platform.OS === "android") {
+      setTitleMargin(0);
+    }
+  }, [setTitleMargin]);
+
+  const handleKeyboardEventDismiss = useCallback(() => {
+    setTitleMargin(64);
+  }, [setTitleMargin]);
+
+  useEffect(() => {
+    Keyboard.addListener("keyboardDidShow", handleKeyboardEventShown);
+    return () => {
+      Keyboard.removeListener("keyboardDidShow", handleKeyboardEventShown);
+    };
+  }, [handleKeyboardEventShown]);
+
+  useEffect(() => {
+    Keyboard.addListener(Platform.OS === "ios" ? "keyboardWillHide" : "keyboardDidHide", handleKeyboardEventDismiss);
+    return () => {
+      Keyboard.removeListener(
+        Platform.OS === "ios" ? "keyboardWillHide" : "keyboardDidHide",
+        handleKeyboardEventDismiss
+      );
+    };
+  }, [handleKeyboardEventDismiss]);
+
   return (
-    <GenericOverlay onClose={() => Navigation.dismissOverlay(MODALS.enterSalary)}>
-      <View style={styles.wrapper}>
-        <Text bold={true} style={styles.titleStyle}>
-          Enter your salary
-        </Text>
-        <Text style={styles.text}>
-          {`Because we designed this product based on your current salary we will need your `}
-          <Text style={StyleSheet.flatten([styles.link, styles.text])}>annual gross salary.</Text>
-        </Text>
+    <GenericOverlay onClose={onClose}>
+      <KeyboardAvoidingView behavior={"padding"} style={styles.avoidingViewWrapper}>
+        <View style={styles.wrapper}>
+          <Text bold={true} style={StyleSheet.flatten([styles.titleStyle, { marginTop: titleMargin }])}>
+            Enter your salary
+          </Text>
+          <Text style={styles.text}>
+            Because we designed this product based on your current salary we will need your annual gross salary.
+          </Text>
 
-        <FibInputSalary setInputSalary={updateSalary} salary={salary} />
+          <FibInputSalary setInputSalary={updateSalary} salary={salary} />
 
-        <View style={styles.button}>
-          <Button disabled={!salary} label="Done" type="Primary" onPress={onDonePressed} />
+          <View style={styles.button}>
+            <Button disabled={!salary} label="Done" type="Primary" onPress={onDonePressed} />
+          </View>
         </View>
-      </View>
+      </KeyboardAvoidingView>
     </GenericOverlay>
   );
 });
 
 const styles = StyleSheet.create({
-  link: {
-    color: Colours.darkHotPink,
-  },
+  avoidingViewWrapper: { flex: 1 },
   text: {
     fontSize: Style.adjust(16),
     letterSpacing: 1,

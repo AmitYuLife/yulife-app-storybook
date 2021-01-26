@@ -49,7 +49,7 @@ export const FibInputSalary = (props: FibInputSalaryProps) => {
         maxLength={9}
         style={StyleSheet.flatten([styles.textInput, isFocus ? {} : styles.textInputOnBlur])}
         hasFocusActive={setIsFocus}
-        width={Style.adjust(112)}
+        width={Style.adjust(115)}
         wrapperStyle={styles.inputWrapper}
       />
     </View>
