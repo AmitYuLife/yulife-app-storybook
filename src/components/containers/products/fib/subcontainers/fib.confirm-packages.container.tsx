@@ -5,7 +5,7 @@ import { useMutation, useQuery } from "@apollo/react-hooks";
 import { FibLocalNavigation, FIB_DECLARATION_CONFIRMATION, FIB_FAQ_LIST, FIB_PAYOUT_CALCULATOR } from "../fib.types";
 import { getFIBState, getLifeInsuranceUserAnswers } from "@redux/product/product.selectors";
 import { IReduxState } from "@redux/_core/reducers";
-import { packages, calculatePayoutCalculatorItems, calculatePayoutAmount } from "../fib.helpers";
+import { packages, calculatePayoutCalculatorItems, calculatePayoutAmount, useCover } from "../fib.helpers";
 import { FibSummaryScreen } from "@components/screens/products/fib/browse-packages/fib.summary.screen";
 import { Package } from "@components/screens/products/fib/browse-packages/fib.browse.types";
 import { getUserDateOfBirth } from "@redux/user/user.selectors";
@@ -60,7 +60,7 @@ const documents: IFaq[] = [...fibDocumentsItems, policyScheduleDocument].map((do
 }));
 
 const FibConfirmPackagesContainer = memo(function (props: FibConfirmPackagesContainerProps) {
-  const [selectedCoverType, setSelectedCoverType] = useState(props?.fibState.selectedPackage || "common");
+  const [selectedCoverType, setSelectedCoverType] = useCover(props?.fibState.selectedPackage || "common");
   const [fibQuoteData, setFibQuoteData] = useState<CreateTopUpsQuote_createTopUpsQuote>();
   const [deceaseAgeIndexYear, setDeceaseAgeIndexYear] = useState(0);
   const [deceaseAgeIndexMonth, setDeceaseAgeIndexMonth] = useState(0);

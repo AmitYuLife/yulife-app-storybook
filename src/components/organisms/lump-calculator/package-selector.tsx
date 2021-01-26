@@ -5,6 +5,8 @@ import { Text } from "@atoms";
 import { Style, Colours } from "@styles";
 import PackageType from "../../atoms/package-types/package-types";
 import { CoverType } from "@graphql/_core/schema/globalTypes";
+import { useSelector } from "react-redux";
+import { getFIBState } from "../../../redux/product/product.selectors";
 
 export interface IPackageSelectorProps {
   onPackageSelected: (packageType: CoverType) => void;
@@ -15,15 +17,16 @@ export interface IPackageSelectorProps {
 
 export const PackageSelector = memo(function (props: IPackageSelectorProps) {
   const { onPackageSelected, commonCost, rareCost, epicCost } = props;
-  const [translateYAnimationCommon] = useState(new Animated.Value(0));
-  const [translateYAnimationRare] = useState(new Animated.Value(4));
-  const [translateYAnimationEpic] = useState(new Animated.Value(0));
+  const selectedPackage = useSelector(getFIBState).selectedPackage;
+  const [translateYAnimationCommon] = useState(new Animated.Value(selectedPackage === CoverType.common ? 4 : 0));
+  const [translateYAnimationRare] = useState(new Animated.Value(selectedPackage === CoverType.rare ? 4 : 0));
+  const [translateYAnimationEpic] = useState(new Animated.Value(selectedPackage === CoverType.epic ? 4 : 0));
 
   const [commonStyle, setCommonStyle] = useState(styles.packageWrapper);
   const [rareStyle, setRareStyle] = useState(styles.rarePackageWrapperActive);
   const [epicStyle, setEpicStyle] = useState(styles.packageWrapper);
 
-  const [activeId, setActiveId] = useState(CoverType.rare);
+  const [activeId, setActiveId] = useState(selectedPackage);
 
   const label = commonCost && rareCost && epicCost ? "per month" : "of salary";
 

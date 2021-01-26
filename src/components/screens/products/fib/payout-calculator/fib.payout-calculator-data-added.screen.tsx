@@ -1,7 +1,7 @@
-import React, { memo, useState } from "react";
+import React, { memo, useState, useCallback } from "react";
 import { View, StyleSheet, ViewStyle, TextStyle, Platform } from "react-native";
-import { Button, Text } from "@atoms";
-import { Colours, Style, TOP_BAR } from "@styles";
+import { Text } from "@atoms";
+import { Colours, Style } from "@styles";
 import { ScrollableLayout } from "@molecules";
 import { PackageSelector } from "../../../../organisms/lump-calculator/package-selector";
 import Slider from "@react-native-community/slider";
@@ -13,6 +13,9 @@ import { GetYulifer } from "../../../../../graphql/_core/schema/GetYulifer";
 import { GQL_QUERY_GET_YULIFER } from "../../../../../graphql/yuscreen/getYulifer.gql";
 import { CoverType } from "@graphql/_core/schema/globalTypes";
 import { getTerm, calculateSumAssured } from "../../../../containers/products/fib/fib.helpers";
+import { useSelector, useDispatch } from "react-redux";
+import { getFIBState } from "../../../../../redux/product/product.selectors";
+import { updateFIBValue } from "../../../../../redux/product/product.actions";
 export interface IFibPayoutCalculatorDataAddedScreenProps {
   onNavigateBack: () => void;
   onContinue: () => void;
@@ -47,10 +50,18 @@ const yugiRibbonColors: IYugiRibbonColors = {
 };
 
 export const FibPayoutCalculatorDataAddedScreen = memo(function (props: IFibPayoutCalculatorDataAddedScreenProps) {
+  const dispatch = useDispatch();
   const { onNavigateBack, onContinue, grossSalary, age, coverTypesInfo } = props;
   const term = getTerm(age);
-  const [selectedPackage, setSelectedPackage] = useState<CoverType>(CoverType.rare);
+  const maxSliderValue = term - 1;
+  const minSliderValue = 0;
+  const initialSelectedPackage = useSelector(getFIBState).selectedPackage;
+  const ageUpToCover = age + term;
+  const [selectedPackage, setSelectedPackage] = useState<CoverType>(initialSelectedPackage as CoverType);
   const [currentSliderValue, setCurrentSliderValue] = useState(0);
+  const remainingYearsOnPolicy = term - currentSliderValue;
+  const remainingYearsOnPolicyText =
+    remainingYearsOnPolicy === 1 ? " year remaining on policy" : " years remaining on policy";
 
   const { data: yuliferData } = useQuery<GetYulifer>(GQL_QUERY_GET_YULIFER, {
     fetchPolicy: "cache-only",
@@ -61,6 +72,16 @@ export const FibPayoutCalculatorDataAddedScreen = memo(function (props: IFibPayo
   )[0];
 
   const salaryPercentageCovered = selectedProductOption?.percentageCovered * 100 || 0;
+  const onPressContinue = useCallback(() => {
+    dispatch(
+      updateFIBValue({
+        key: "selectedPackage",
+        value: selectedPackage,
+      })
+    );
+
+    onContinue();
+  }, [selectedPackage, onContinue, dispatch]);
 
   const onSelectPackage = (packageId: CoverType) => {
     setSelectedPackage(packageId);
@@ -74,7 +95,13 @@ export const FibPayoutCalculatorDataAddedScreen = memo(function (props: IFibPayo
   const payoutAmount = Math.round(sumAssured - yearlyAmountProtected * currentSliderValue);
 
   return (
-    <ScrollableLayout onLeftIconPress={onNavigateBack} logo={"yulife"} isBeta={false}>
+    <ScrollableLayout
+      onLeftIconPress={onNavigateBack}
+      logo={"yulife"}
+      isBeta={false}
+      buttonAction={onPressContinue}
+      buttonTitle={"Continue with cover"}
+    >
       <View style={styles.wrapper}>
         <Text style={styles.title}>Your payout will be:</Text>
         <View style={styles.yugiRibbonWrapper}>
@@ -101,20 +128,20 @@ export const FibPayoutCalculatorDataAddedScreen = memo(function (props: IFibPayo
 
         <Text style={styles.description}>{`Based on ${salaryPercentageCovered}% of your £${addCommasToNumber(
           grossSalary
-        )} yearly salary and your age of ${age}, we can cover you up to the age of 70.`}</Text>
+        )} yearly salary and your age of ${age}, we can cover you up to the age of ${ageUpToCover}.`}</Text>
         <View style={styles.remainingPolicyYearWrapper}>
           <View style={{ width: 35, alignItems: "flex-end" }}>
-            <Text style={styles.remainingYearValue}>{`${term - currentSliderValue}`}</Text>
+            <Text style={styles.remainingYearValue}>{remainingYearsOnPolicy}</Text>
           </View>
-          <Text style={styles.remainingYearDescription}> years remaining on policy</Text>
+          <Text style={styles.remainingYearDescription}>{remainingYearsOnPolicyText}</Text>
         </View>
 
         <View style={styles.sliderWrapper}>
           <Slider
             minimumTrackTintColor="#e20177"
             thumbImage={require("../../../../../../assets/fib/browse-packages/grip.png")}
-            maximumValue={term}
-            minimumValue={0}
+            maximumValue={maxSliderValue}
+            minimumValue={minSliderValue}
             step={1}
             onValueChange={(item) => {
               setCurrentSliderValue(item);
@@ -130,9 +157,6 @@ export const FibPayoutCalculatorDataAddedScreen = memo(function (props: IFibPayo
             epicCost={coverTypesInfo?.epic.actualCost}
           />
         </View>
-        <View style={styles.buttonWrapper}>
-          <Button type="Primary" label="Continue with cover" onPress={onContinue} />
-        </View>
       </View>
     </ScrollableLayout>
   );
@@ -140,8 +164,7 @@ export const FibPayoutCalculatorDataAddedScreen = memo(function (props: IFibPayo
 
 const styles = StyleSheet.create({
   packageSelectorWrapper: {
-    flex: 1,
-    justifyContent: "center",
+    marginVertical: Style.adjust(40),
   } as ViewStyle,
   sliderWrapper: {
     marginHorizontal: Style.adjust(32),
@@ -176,11 +199,6 @@ const styles = StyleSheet.create({
     }),
   } as TextStyle,
   yugiRibbonWrapper: {
-    height: Platform.select({
-      ios: Style.isAnyIphoneX() ? Style.adjust(184) : Style.adjust(138),
-      android:
-        Style.isShortAndroid() || Style.isShortAndLowScaledPixelAndroid() ? Style.adjust(138) : Style.adjust(184),
-    }),
     width: Style.DEVICE_WIDTH,
     alignItems: "center",
   },
@@ -197,8 +215,8 @@ const styles = StyleSheet.create({
     }),
     letterSpacing: 1,
     marginTop: Platform.select({
-      ios: Style.isAnyIphoneX() ? Style.adjust(85) : Style.adjust(64),
-      android: Style.isShortAndroid() || Style.isShortAndLowScaledPixelAndroid() ? Style.adjust(64) : Style.adjust(85),
+      ios: Style.isAnyIphoneX() ? Style.adjust(83) : Style.adjust(62),
+      android: Style.isShortAndroid() || Style.isShortAndLowScaledPixelAndroid() ? Style.adjust(62) : Style.adjust(83),
     }),
   } as TextStyle,
   remainingPolicyYearWrapper: {
@@ -226,16 +244,8 @@ const styles = StyleSheet.create({
     letterSpacing: 1,
     color: Colours.products.fib.n800,
   } as TextStyle,
-  buttonWrapper: {
-    marginBottom: Platform.select({
-      ios: Style.isAnyIphoneX() ? Style.adjust(32) : Style.adjust(24),
-      android: Style.isShortAndroid() || Style.isShortAndLowScaledPixelAndroid() ? Style.adjust(24) : Style.adjust(32),
-    }),
-    width: Style.DEVICE_WIDTH,
-  } as ViewStyle,
   wrapper: {
     width: Style.DEVICE_WIDTH,
-    height: Style.adjust(Style.DEVICE_HEIGHT - TOP_BAR.TOP_BAR_WITH_PAD - TOP_BAR.PADDING_TOP),
   } as ViewStyle,
   customerPayoutTitle: {
     fontFamily: Style.FONT_FAMILY_PRIMARY_BOLD,
