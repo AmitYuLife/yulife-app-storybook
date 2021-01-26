@@ -186,3 +186,9 @@ export const tryCatchTextVisible = (textArr, waitTime=0) => async()=>{
         expect(element(by.text(textArr[1]))).toBeVisible()
     }
 }
+
+export const completeOnboardingIntro = async () => {
+    await navigateViaText("Next")
+    await navigateViaText("Next")
+    await navigateViaText("Let's go")
+}

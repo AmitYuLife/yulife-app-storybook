@@ -43,7 +43,7 @@ Feature("As an enabled user I am able to use the goals feature", async () => {
             When("I tap the goals button", when.tapID(GOALS_BUTTON), async () => {
                 Then("I should see the first intro screen", then.textVisible("Work together to aim higher"))
             })
-            When("I tap skip", when.tapText("Skip"), async () => {
+            When("I complete the intro", when.completeOnboardingIntro, async () => {
                 Then("I should be the community goals screen", then.textVisible("Community Goals"))
                 Then("I should see the Join the challenge button", then.textVisible("Join the challenge!"))
                 Then("I should see the number of people currently doing this challenge", then.textVisible("2 / 100 have joined"))

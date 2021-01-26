@@ -1,4 +1,4 @@
-import { navigation, BODY_ITEM_TITLE, BODY_PART_ITEM, SKIN_TONE, PERSONAL_PRODUCT, FIB_SALARY_INPUT } from "@utils"
+import { navigation, BODY_ITEM_TITLE, BODY_PART_ITEM, SKIN_TONE, PERSONAL_PRODUCT, FIB_SALARY_INPUT, navigateViaText } from "@utils"
 export { authoriseFitkit, sendSteps } from "@socket";
 
 
@@ -6,7 +6,7 @@ export { authoriseFitkit, sendSteps } from "@socket";
 export const {
     scrollFromText,
     scrollFromID,
-    swipeToText
+    swipeToText,
 } = navigation.scrolling
 
 export const {
@@ -14,7 +14,8 @@ export const {
     reloadAppToTab,
     tapID,
     typeViaID,
-    replaceTextViaID
+    replaceTextViaID,
+    completeOnboardingIntro
 } = navigation.common
 
 export const {
@@ -25,4 +26,3 @@ export const tapTab = (tabName: string) => async () => {
     const tab = element(by.id(BODY_ITEM_TITLE(tabName)))
     await tab.tap()
 }
-
