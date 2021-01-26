@@ -1,0 +1,61 @@
+import React, { memo, useCallback } from "react";
+import { View, FlatList, ListRenderItem } from "react-native";
+import SearchListEmpty from "./search-list-empty";
+import { Colours } from "@styles";
+import { StyleSheet, ViewStyle } from "react-native";
+import { NetworkStatus } from "apollo-boost";
+import { ISearchItem } from "./search-item";
+
+interface Props {
+  data: ISearchItem<any>[];
+  networkStatus: NetworkStatus;
+  onRefresh: () => Promise<void>;
+  emptyText?: string;
+  emptyElement?: JSX.Element;
+  loading: boolean;
+  keyExtractor: (item: any, index: number) => string;
+  searchItem: ListRenderItem<ISearchItem<any>>;
+}
+
+function SearchList({
+  data = [],
+  networkStatus,
+  onRefresh,
+  emptyText,
+  loading,
+  keyExtractor,
+  searchItem,
+  emptyElement,
+}: Props) {
+  const isLoading = loading || [NetworkStatus.refetch, NetworkStatus.loading].includes(networkStatus);
+
+  const emptyComponent = useCallback(() => {
+    if (!isLoading && !data.length) {
+      return emptyElement ? emptyElement : <SearchListEmpty emptyText={emptyText} />;
+    }
+
+    return null;
+  }, [isLoading, emptyText, emptyElement, data.length]);
+
+  return (
+    <View style={styles.searchListWrapper}>
+      <FlatList
+        data={data}
+        renderItem={searchItem}
+        keyExtractor={keyExtractor}
+        refreshing={isLoading}
+        onRefresh={onRefresh}
+        ListEmptyComponent={emptyComponent()}
+      />
+    </View>
+  );
+}
+
+export default memo(SearchList);
+
+const styles = StyleSheet.create({
+  searchListWrapper: {
+    flex: 1,
+    backgroundColor: Colours.neutral.n50,
+  } as ViewStyle,
+});

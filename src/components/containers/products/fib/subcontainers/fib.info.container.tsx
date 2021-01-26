@@ -53,6 +53,7 @@ const _FibInfoContainer = memo(function (props: Props) {
   const canResetFib = useSelector(getUserFeatures).resetFib;
 
   const resetFib = useCallback(async () => {
+    // TODO: Remove all trace of on reset fib and handle it only in this container
     if (!onResetFib && !canResetFib) {
       return;
     }

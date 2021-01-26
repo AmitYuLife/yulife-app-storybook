@@ -59,6 +59,7 @@ function _FibGPConsentScreen(props: Props) {
       onLeftIconPress={onNavigateBack}
       buttonTitle="Continue"
       heading={"GP Report"}
+      isBeta={false}
       onRightIconPress={onClose}
       isButtonDisabled={consent === "no"}
     >

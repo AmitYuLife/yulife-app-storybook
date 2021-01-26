@@ -6,7 +6,7 @@ import { TouchableOpacityWithDelay } from "@molecules";
 import styles from "./search-item.styles";
 import { SearchedOpponent } from "../duels-search.container";
 
-function SearchItem({ item, index }: ListRenderItemInfo<SearchedOpponent>) {
+function DuelsSearchItem({ item, index }: ListRenderItemInfo<SearchedOpponent>) {
   return (
     <TouchableOpacityWithDelay onPress={item?.onPress}>
       <View style={index === 0 ? [styles.opponentCard, styles.firstCard] : styles.opponentCard}>
@@ -22,4 +22,4 @@ function SearchItem({ item, index }: ListRenderItemInfo<SearchedOpponent>) {
   );
 }
 
-export default SearchItem;
+export default DuelsSearchItem;

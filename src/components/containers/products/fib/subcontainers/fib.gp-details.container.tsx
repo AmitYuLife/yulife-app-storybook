@@ -3,15 +3,12 @@ import { FibLocalNavigation } from "../fib.types";
 import { connect, useDispatch } from "react-redux";
 import { Navigation } from "react-native-navigation";
 import { ROUTES } from "@navigation/constants";
-import { FibGPConsentScreen } from "@components/screens/products/fib/underwriting-journey/subcomponents/gp-details/fib.gp-details.screen";
+import { FibGPConsentScreen } from "@components/screens/products/fib/underwriting-journey/subcomponents/gp-details/fib.gp-details.consent";
 import { updateFIBAnswerValue, updateFIBValue } from "@redux/product/product.actions";
-import { FibGPPracticeSearchScreen } from "@components/screens/products/fib/underwriting-journey/subcomponents/gp-details/fib.gp-practice-search";
-import { useLazyQuery, useMutation } from "@apollo/react-hooks";
-import { GQL_GET_MEDICAL_PRACTICES, GQL_MUTATION_UPDATE_CUSTOMER_GP_DETAILS } from "@graphql/products";
-import { FibGPPracticesResultsScreen } from "@components/screens/products/fib/underwriting-journey/subcomponents/gp-details/fib.gp-practices-results";
+import { FibGPPracticeSearchScreen } from "@components/screens/products/fib/underwriting-journey/subcomponents/gp-details/fib.gp-search.screen";
+import { useMutation } from "@apollo/react-hooks";
+import { GQL_MUTATION_UPDATE_CUSTOMER_GP_DETAILS } from "@graphql/products";
 import {
-  MedicalPractices,
-  MedicalPracticesVariables,
   MedicalPractices_getMedicalPractices,
   MedicalPractices_getMedicalPractices_practicioners,
 } from "@graphql/_core/schema/MedicalPractices";
@@ -27,6 +24,8 @@ import {
 import { IReduxState } from "../../../../../redux/_core/reducers";
 import { getFIBState } from "../../../../../redux/product/product.selectors";
 import { MODALS } from "../../../../../navigation/constants";
+import { FibGPDoctorSelect } from "../../../../screens/products/fib/underwriting-journey/subcomponents/gp-details/fib.gp-doctor.screen";
+import { ISearchItem } from "../../../../atoms/search/search-item";
 
 interface IFibGPDetailsContainerProps {
   navigation: FibLocalNavigation;
@@ -35,31 +34,22 @@ interface IFibGPDetailsContainerProps {
 type GPView =
   | "consent"
   | "medical_practice_search"
-  | "medical_select_practice"
   | "medical_select_gp"
   | "medical_manually_input"
   | "medical_confirm";
 
-// TODO: Refactor this container, navigation handled in a complex way and not effective
 const FibGPDetailsContainer = memo(function (props: IFibGPDetailsContainerProps & ReturnType<typeof mapStateToProps>) {
   const { navigation, fibAnswers, savedGpDetails } = props;
   const dispatch = useDispatch();
 
   const initialGPView = navigation.currentRoute.passProps?.initialGPView || "consent";
   const [gpView, setGPView] = useState<GPView>(initialGPView);
-  const [gpMedicalPracticeName, setGPMedicalPracticeName] = useState<string>("");
-  const [searchGP, setSearchGP] = useState<boolean>(false);
-  const [medicalPractices, setMedicalPractices] = useState<MedicalPractices_getMedicalPractices[]>(null);
-  const [selectedMedicalPractice, setSelectedMedicalPractice] = useState<MedicalPractices_getMedicalPractices>(null);
-  const [selectedGP, setSelectedGP] = useState<MedicalPractices_getMedicalPractices_practicioners>(null);
+  const [selectedMedicalPractice, setSelectedMedicalPractice] = useState<
+    ISearchItem<MedicalPractices_getMedicalPractices>
+  >(null);
+  const [selectedGP, setSelectedGP] = useState<ISearchItem<MedicalPractices_getMedicalPractices_practicioners>>(null);
   const [manualInput, setManualInput] = useState<GPInputForm>(savedGpDetails);
-
-  // TODO: Handle errors
-
-  const [getMedicalPractices, { loading, data, error }] = useLazyQuery<MedicalPractices, MedicalPracticesVariables>(
-    GQL_GET_MEDICAL_PRACTICES,
-    { fetchPolicy: "network-only" }
-  );
+  const [name, setName] = useState<string>(null);
 
   const [updateCustomerGPDetailsMutation, { loading: updateCustomerGpLoading }] = useMutation<
     UpdateCustomerGPDetails,
@@ -79,12 +69,8 @@ const FibGPDetailsContainer = memo(function (props: IFibGPDetailsContainerProps 
     dispatch(updateFIBAnswerValue({ key: "medicalConsent", value: true }));
   }, [dispatch, setView]);
 
-  const onContinueMedicalPracticeSearch = useCallback(() => {
-    getMedicalPractices({ variables: { name: gpMedicalPracticeName } });
-  }, [getMedicalPractices, gpMedicalPracticeName]);
-
   const onSelectMedicalPractice = useCallback(
-    (practice: MedicalPractices_getMedicalPractices) => {
+    (practice: ISearchItem<MedicalPractices_getMedicalPractices>) => {
       setSelectedMedicalPractice(practice);
       setManualInput(null);
       setView("medical_select_gp");
@@ -93,18 +79,13 @@ const FibGPDetailsContainer = memo(function (props: IFibGPDetailsContainerProps 
   );
 
   const onSelectGP = useCallback(
-    (gp: MedicalPractices_getMedicalPractices_practicioners) => {
+    (gp: ISearchItem<MedicalPractices_getMedicalPractices_practicioners>) => {
       setSelectedGP(gp);
       setManualInput(null);
       setView("medical_confirm");
     },
     [setView]
   );
-
-  const onTryAgain = useCallback(() => {
-    setMedicalPractices(null);
-    setView("medical_practice_search");
-  }, [setView]);
 
   const onManualInputContinue = useCallback(
     (form: GPInputForm) => {
@@ -113,10 +94,6 @@ const FibGPDetailsContainer = memo(function (props: IFibGPDetailsContainerProps 
     },
     [setView]
   );
-
-  const onEnterManually = useCallback(() => {
-    setView("medical_manually_input");
-  }, [setView]);
 
   const onConfirm = useCallback(async () => {
     let gpDetails: GPInputForm;
@@ -189,106 +166,63 @@ const FibGPDetailsContainer = memo(function (props: IFibGPDetailsContainerProps 
     });
   }, []);
 
+  const onManualInput = useCallback(() => {
+    if (gpView === "medical_practice_search") {
+      setSelectedMedicalPractice(null);
+    }
+
+    if (gpView === "medical_select_gp") {
+      setSelectedGP(null);
+    }
+
+    setView("medical_manually_input");
+  }, [gpView, setView]);
+
   const handleBack = useCallback(() => {
     switch (gpView) {
-      case "medical_select_practice":
-        setMedicalPractices(null);
-        setView("medical_practice_search");
-        break;
       case "medical_practice_search":
-        setView("consent");
-        break;
+        return setView("consent");
       case "medical_select_gp":
         setSelectedMedicalPractice(null);
-        break;
+        return setView("medical_practice_search");
       case "medical_confirm":
-        if (navigation.currentRoute.passProps.navigatingBack) {
-          navigation.currentRoute.passProps.navigatingBack = false;
-          return setView("medical_practice_search");
-        }
-
         if (manualInput) {
-          setView("medical_manually_input");
-        } else {
-          setView("medical_select_gp");
+          return setView("medical_manually_input");
         }
 
-        break;
+        return setView("medical_select_gp");
       case "medical_manually_input":
         if (selectedMedicalPractice) {
-          setView("medical_select_gp");
-        } else {
-          setView("medical_select_practice");
+          return setView("medical_select_gp");
         }
 
-        break;
+        return setView("medical_practice_search");
       case "consent":
       default:
         return navigation.pop();
     }
   }, [gpView, manualInput, selectedMedicalPractice, navigation, setView]);
 
-  if (loading && !searchGP) {
-    setSearchGP(true);
-  }
-
-  if (searchGP) {
-    if (data?.getMedicalPractices && gpView === "medical_practice_search") {
-      setMedicalPractices(data.getMedicalPractices);
-      setSearchGP(false);
-    }
-
-    if (error) {
-      setView("medical_select_practice");
-      setSearchGP(false);
-    }
-  }
-
-  if (
-    !searchGP &&
-    medicalPractices &&
-    !selectedMedicalPractice &&
-    !["medical_select_practice", "medical_manually_input", "medical_confirm"].includes(gpView)
-  ) {
-    setView("medical_select_practice");
-  }
-
   switch (gpView) {
     case "medical_practice_search":
       return (
         <FibGPPracticeSearchScreen
           onNavigateBack={handleBack}
-          onContinue={onContinueMedicalPracticeSearch}
+          onSelectMedicalPractice={onSelectMedicalPractice}
           onClose={handleOnClose}
-          practiceName={gpMedicalPracticeName}
-          setPracticeName={setGPMedicalPracticeName}
-          loading={loading}
-        />
-      );
-    case "medical_select_practice":
-      return (
-        <FibGPPracticesResultsScreen
-          onNavigateBack={handleBack}
-          onClose={handleOnClose}
-          loading={loading}
-          data={medicalPractices}
-          onPress={onSelectMedicalPractice}
-          resultType={"practice"}
-          onTryAgain={onTryAgain}
-          onEnterManually={onEnterManually}
+          name={name}
+          setName={setName}
+          setManualInput={onManualInput}
         />
       );
     case "medical_select_gp":
       return (
-        <FibGPPracticesResultsScreen
-          onNavigateBack={handleBack}
-          onClose={handleOnClose}
-          loading={loading}
-          data={selectedMedicalPractice?.practicioners}
-          onPress={onSelectGP}
-          resultType={"GP"}
+        <FibGPDoctorSelect
           selectedPractice={selectedMedicalPractice}
-          onEnterManually={onEnterManually}
+          onNavigateBack={handleBack}
+          onSelectGP={onSelectGP}
+          onClose={handleOnClose}
+          setManualInput={onManualInput}
         />
       );
     case "medical_manually_input":
@@ -298,6 +232,7 @@ const FibGPDetailsContainer = memo(function (props: IFibGPDetailsContainerProps 
           onClose={handleOnClose}
           selectedPractice={selectedMedicalPractice}
           onContinue={onManualInputContinue}
+          previousFormValue={manualInput}
         />
       );
     case "medical_confirm":

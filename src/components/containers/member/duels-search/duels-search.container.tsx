@@ -3,9 +3,7 @@ import React, { memo, useCallback, useMemo } from "react";
 import { View } from "react-native";
 import { Navigation } from "react-native-navigation";
 import { DUELS_SEARCH } from "@ids";
-import SearchInput from "./subcomponents/search-input";
 import styles from "./duels-search.styles";
-import SearchList from "./subcomponents/search-list";
 import { GQL_QUERY_SEARCH_FOR_DUEL_OPPONENT } from "@graphql/duels/searchForDuelOpponents.gql";
 import { TopBarAbsolute } from "@organisms/top-bar/top-bar-absolute";
 import { useDebouncedQuery } from "@services/hooks/useDebouncedQuery";
@@ -24,6 +22,8 @@ import { DATE_FORMAT_WITH_TZ } from "@services/utils";
 import { getCurrentUserId } from "@redux/user/user.selectors";
 import { useSelector } from "react-redux";
 import { showExistingDuelAlert } from "../leaderboard/active-leaderboard/leaderboard-content/items/leaderboard-rank-item/duel-dialog.helpers";
+import { SearchInput, SearchList } from "@atoms";
+import DuelsSearchItem from "./subcomponents/search-item";
 
 export interface SearchedOpponent extends SearchForDuelOpponent_searchForDuelOpponent {
   onPress: () => Promise<void>;
@@ -31,6 +31,10 @@ export interface SearchedOpponent extends SearchForDuelOpponent_searchForDuelOpp
 
 function navigateBack() {
   Navigation.popTo(ROUTES.duelsHub);
+}
+
+function keyExtractor(item: SearchedOpponent, index: number) {
+  return `${item.customerId} - ${index}`;
 }
 
 const DEBOUNCE = 750;
@@ -149,6 +153,8 @@ function _DuelsSearchContainer() {
         onRefresh={onRefresh}
         emptyText={loading ? "" : "We could not find the friend you’re looking for."}
         loading={loading}
+        searchItem={DuelsSearchItem}
+        keyExtractor={keyExtractor}
       />
       <TopBarAbsolute hasShadow={true} hasWhiteBackground={true} onPressLeftIcon={navigateBack} leftIcon="Back" />
     </View>

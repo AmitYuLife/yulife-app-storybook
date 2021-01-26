@@ -14,12 +14,14 @@ import { useBackHandler } from "../../../../../../../services/hooks/useBackHandl
 import { ScrollableLayout, TextField } from "@molecules";
 import FibTitle from "@atoms/fib/title/title";
 import { MedicalPractices_getMedicalPractices } from "@graphql/_core/schema";
+import { Text } from "@atoms";
 
 interface Props {
   onClose: () => void;
   onNavigateBack: () => void;
   onContinue: (form: GPInputForm) => void;
   selectedPractice?: MedicalPractices_getMedicalPractices;
+  previousFormValue?: GPInputForm;
 }
 
 export interface GPInputForm {
@@ -48,7 +50,7 @@ const FORM_HEIGHT = Platform.select({
 });
 
 function _FibGPManuallyInputScreen(props: Props) {
-  const { onNavigateBack, onContinue, onClose, selectedPractice } = props;
+  const { onNavigateBack, onContinue, onClose, selectedPractice, previousFormValue } = props;
 
   const scrollViewRef = useRef<ScrollView>(null);
   const isKeyboardUp = useRef(false);
@@ -86,6 +88,8 @@ function _FibGPManuallyInputScreen(props: Props) {
         practiceTown: selectedPractice.address4 || selectedPractice.address3,
         practicePostCode: selectedPractice.postCode,
       }
+    : previousFormValue
+    ? previousFormValue
     : defaultFormValue;
 
   const [formValue, setFormValue] = useState<GPInputForm>(initialState);
@@ -111,32 +115,27 @@ function _FibGPManuallyInputScreen(props: Props) {
     setTitleHeight(event.nativeEvent.layout.height);
   }, []);
 
-  const forms = useMemo(
+  const medicalPracticeForm = useMemo(
     () => [
       {
         updateFormKey: "practiceName",
-        placeholder: "Medical Practice Name",
+        placeholder: "Name",
         value: formValue.practiceName,
       },
       {
         updateFormKey: "practiceAddress",
-        placeholder: "Medical Practice Address",
+        placeholder: "Address",
         value: formValue.practiceAddress,
       },
       {
         updateFormKey: "practiceTown",
-        placeholder: "Medical Practice Town or City",
+        placeholder: "Town or City",
         value: formValue.practiceTown,
       },
       {
         updateFormKey: "practicePostCode",
-        placeholder: "Medical Practice Postcode",
+        placeholder: "Postcode",
         value: formValue.practicePostCode,
-      },
-      {
-        updateFormKey: "gpName",
-        placeholder: "GP Name",
-        value: formValue.gpName,
       },
     ],
     [formValue]
@@ -150,6 +149,10 @@ function _FibGPManuallyInputScreen(props: Props) {
       });
 
       keyboardAnimationTimeout.current = setTimeout(() => {
+        if (formIndex > 4) {
+          return scrollViewRef?.current.scrollToEnd();
+        }
+
         scrollViewRef?.current.scrollTo({ y: titleHeight + formIndex * FORM_HEIGHT });
       }, KEYBOARD_ANIMATION_MS);
     },
@@ -171,7 +174,12 @@ function _FibGPManuallyInputScreen(props: Props) {
           <FibTitle title="Please enter your medical practice and GP details below:" />
         </View>
         <View style={styles.contentWrapper}>
-          {forms.map(({ updateFormKey, placeholder, value }, formIndex) => (
+          <View style={styles.headerWrapper}>
+            <Text bold={true} style={styles.headerText}>
+              Medical Practice
+            </Text>
+          </View>
+          {medicalPracticeForm.map(({ updateFormKey, placeholder, value }, formIndex) => (
             <View key={updateFormKey} style={styles.formWrapper}>
               <TextField
                 onChange={(val) => updateForm(updateFormKey, val)}
@@ -179,9 +187,25 @@ function _FibGPManuallyInputScreen(props: Props) {
                 inputTextStyle={styles.text}
                 value={value}
                 onFocus={() => handleFocus(formIndex)}
+                baseUnderlineColor={Colours.neutral.n200}
               />
             </View>
           ))}
+          <View style={styles.headerWrapper}>
+            <Text bold={true} style={styles.headerText}>
+              General practitioner
+            </Text>
+          </View>
+          <View style={styles.formWrapper}>
+            <TextField
+              onChange={(val) => updateForm("gpName", val)}
+              placeholder="Name"
+              inputTextStyle={styles.text}
+              value={formValue.gpName}
+              onFocus={() => handleFocus(5)}
+              baseUnderlineColor={Colours.neutral.n200}
+            />
+          </View>
         </View>
       </View>
       <View style={styles.bottomPad} />
@@ -211,5 +235,15 @@ const styles = StyleSheet.create({
   } as ViewStyle,
   bottomPad: {
     height: Style.adjust(32),
+  } as ViewStyle,
+  headerText: {
+    fontSize: 16,
+    letterSpacing: 1,
+    lineHeight: 24,
+    color: Colours.neutral.n800,
+  } as TextStyle,
+  headerWrapper: {
+    marginTop: 32,
+    marginBottom: 8,
   } as ViewStyle,
 });

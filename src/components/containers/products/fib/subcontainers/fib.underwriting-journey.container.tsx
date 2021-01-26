@@ -93,7 +93,7 @@ const _FibUnderwritingJourneyContainer = memo(function (props: Props) {
 
   const [inputFirstName, setInputFirstName] = useState(fibAnswers.firstName);
   const [inputLastName, setInputLastName] = useState(fibAnswers.lastName);
-  const [radioInputValue, setRadioInputValue] = useState<string>(null);
+  const [radioInputValue, setRadioInputValue] = useState<string>(fibAnswers[currentQuestion.id]);
   const [inputSalary, setInputSalary] = useState(salary);
 
   const { data: yuliferData } = useQuery<GetYulifer>(GQL_QUERY_GET_YULIFER, {
@@ -116,7 +116,7 @@ const _FibUnderwritingJourneyContainer = memo(function (props: Props) {
       setRadioInputValue(currentAnswer);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentAnswer, isSmokingQuestion]);
+  }, [currentAnswer, isSmokingQuestion, currentQuestion]);
 
   const updateAnswer = (questionId: string, value: string, answers: FibAnswers): FibAnswers => {
     updateFibAnswer(questionId, value);
