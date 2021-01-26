@@ -83,7 +83,6 @@ export interface FIBStore {
   selectedPackage: PackageId;
   quoteDate: string;
   lastQuestionId: string;
-  hasPriceChanged: boolean;
   actualCost: number;
   medicalInvestigationRequired: boolean;
   rejected: boolean;
@@ -93,6 +92,8 @@ export interface FIBStore {
   gpDetails: GPDetails;
   fibStyle: YuWorld;
   sumAssured: number;
+  // TODO: Check if next property is needed when having RGA Loading applied, if not remove it
+  hasPriceChanged: boolean;
 }
 
 export interface UpdateFIBStoreAction<T> {
