@@ -1,4 +1,4 @@
-import { navigation } from "@utils"
+import { navigateViaText, navigation } from "@utils"
 export { authoriseFitkit, sendSteps } from "@socket";
 
 
@@ -7,4 +7,5 @@ export const {
     reloadAppToTab,
     tapID,
     typeViaID,
+    completeOnboardingIntro
 } = navigation.common

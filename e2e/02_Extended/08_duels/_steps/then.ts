@@ -27,6 +27,7 @@ export const onDuelsHub = async()=>{
 
 export const wagerModalVisible = async()=>{
     const copy = [
+        "Bragging Rights!",
         "10 YuCoin",
         "25 YuCoin",
         "100 YuCoin"

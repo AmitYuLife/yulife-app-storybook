@@ -13,10 +13,10 @@ Feature("As an enabled user I am able to use the duels feature", async()=>{
     Given("I login as a user with duels enabled and go to the duels hub", given.logInAndGoToTab("leaderboard",CUSTOMER_20, AUTH_20),async()=>{
             Then("I should see the duels icon", then.idVisible(DUELS_BUTTON))
             When("I tap duels icon", when.tapID(DUELS_BUTTON), async()=>{
-                Then("I should be on the first duels intro screen", then.multipleTextVisible(["Challenge a friend!", "Skip", "Next"]))
+                Then("I should be on the first duels intro screen", then.multipleTextVisible(["Challenge a friend!", "Next"]))
             })
             When("I tap next", when.tapText("Next"), async()=>{
-                Then("I should be on the second duels intro screen", then.multipleTextVisible(["Set the wager", "Skip", "Next"]))
+                Then("I should be on the second duels intro screen", then.multipleTextVisible(["Set the wager", "Next"]))
             })
             When("I tap next", when.tapText("Next"), async () => {
                 Then("I should be on the third duels intro screen", then.multipleTextVisible(["Out-step your opponent", "Let's go"]))
@@ -28,21 +28,21 @@ Feature("As an enabled user I am able to use the duels feature", async()=>{
                 Then("I should be on the Search for a friend screen", then.textVisible("Search for a friend:"))
                 Then("I should see Angela Martin", then.textVisible("Angela Martin"))
             })
-            When("I tap a Duel >", when.tapText("Duel >"), async()=>{
-                Then("I should be on the start duel screen", then.multipleTextVisible(["It’s time to duel!", "Set the duel"]))
+            When("I tap a Angela Martin", when.tapText("Angela Martin"), async()=>{
+                Then("I should be on the start duel screen", then.multipleTextVisible(["The matchup:", "Set the duel"]))
             })
             When("I tap the 'Set the duel' CTA", when.tapText("Set the duel"), async()=>{
                 Then("I should be on the yucoin wager screen", then.idVisible(DUEL_OPTIONS_SCREEN))
-                Then("The default wager amount should be at 0 yucoin", then.textVisible("0 YuCoin (pride)"))
+                Then("I should see the select wager button", then.textVisible("Select a wager"))
             })
-            When("I tap the wager drop down", when.tapText("0 YuCoin (pride)"), async()=>{
+            When("I tap Select a wager", when.tapText("Select a wager"), async()=>{
                 Then("I should see an native list modal with different yucoin amounts", then.wagerModalVisible)
             })
             When("I tap 25 yucoin", when.tapText("25 YuCoin"), async()=>{
-                Then("I should be on the wager screen with my wager amount shown", then.multipleTextVisible(["How much YuCoin to wager?", "25 YuCoin"]))
+                Then("I should be on the wager screen with my wager amount shown", then.multipleTextVisible(["Your wager", "25 YuCoin"]))
             })
             When("I tap send duel request", when.tapText("Send duel request"), async()=>{
-                Then("I should see a confirmation modal", then.textVisible("Confirm duel request"))
+                Then("I should see a confirmation modal", then.textVisible("Confirm invitation?"))
             })
             When("I tap confirm", when.tapText("Confirm"), async()=>{
                 Then("I should be on the duels hub", then.idVisible(DUELS_HUB))
@@ -52,23 +52,20 @@ Feature("As an enabled user I am able to use the duels feature", async()=>{
                 Then("I should see the duels button", then.idVisible(DUELS_BUTTON))
             })
             When("I tap the duels button", when.tapID(DUELS_BUTTON), async()=>{
-                Then("I should be on the first duels intro screen", then.multipleTextVisible(["Challenge a friend!", "Skip", "Next"]))
+                Then("I should be on the first duels intro screen", then.multipleTextVisible(["Challenge a friend!", "Next"]))
             })
-            When("I tap skip", when.tapText("Skip"), async()=>{
+            When("I tap complete the intro", when.completeOnboardingIntro, async () => {
                 Then("I should be on the duels hub", then.onDuelsHub)
                 Then("I should see the duel I was just invited to", then.idVisible(DUELS_HUB_INVITATION("Oscar", "Martinez", 25, "awaiting_response")))
             })
             When("I tap Respond", when.tapText("Respond"), async()=>{
-                Then("I should see the vs screen", then.textVisible("Oscar has invited you to duel!"))
+                Then("I should see the vs screen", then.textVisible("Oscar has invited you to a 1-day duel for 25 YuCoin!"))
             })
-            When("I tap see the details", when.tapText("See the details"), async()=>{
-                Then("I should see the duels details", then.idVisible(DUEL_RESPONSE("Oscar")))
-            })
-            When("I accept the duel", when.tapText("Accept the duel"), async()=>{
+            When("I accept the duel", when.tapText("Accept"), async()=>{
                 Then("I should see the are you sure iOS modal", then.textVisible("Are you sure?"))
             })
             When("I tap confirm", when.tapText("Confirm"), async()=>{
-                Then("I should see my upcoming duel", then.idVisible(DUEL_ENTRY("Oscar", "Martinez", 25, "accepted")))
+                Then("I should see my upcoming duel", then.idVisible(DUEL_ENTRY("Oscar", "Martinez", 25, "accepted"), 1500))
             })
         })
     })
@@ -77,9 +74,9 @@ Feature("As an enabled user I am able to use the duels feature", async()=>{
         Given("I login as a user with duels enabled and go to the duels hub", given.logInAndGoToTab("leaderboard", CUSTOMER_17, AUTH_17), async () => {
             Then("I should see the duels icon", then.idVisible(DUELS_BUTTON))
             When("I tap the duels button", when.tapID(DUELS_BUTTON), async () => {
-                Then("I should be on the first duels intro screen", then.multipleTextVisible(["Challenge a friend!", "Skip", "Next"]))
+                Then("I should be on the first duels intro screen", then.multipleTextVisible(["Challenge a friend!", "Next"]))
             })
-            When("I tap skip", when.tapText("Skip"), async () => {
+            When("I tap complete the intro", when.completeOnboardingIntro, async () => {
                 Then("I should be on the duels hub", then.idVisible(DUELS_HUB))
                 Then("I should see my active duel", then.idVisible(DUEL_ENTRY("Stanley", "Hudson", 10, "accepted")))
             })
@@ -98,9 +95,9 @@ Feature("As an enabled user I am able to use the duels feature", async()=>{
         Given("I login as a user with duels enabled and go to the duels hub", given.logInAndGoToTab("leaderboard", CUSTOMER_19, AUTH_19), async () => {
             Then("I should see the duels icon", then.idVisible(DUELS_BUTTON))
             When("I tap the duels button", when.tapID(DUELS_BUTTON), async () => {
-                Then("I should be on the first duels intro screen", then.multipleTextVisible(["Challenge a friend!", "Skip", "Next"]))
+                Then("I should be on the first duels intro screen", then.multipleTextVisible(["Challenge a friend!", "Next"]))
             })
-            When("I tap skip", when.tapText("Skip"), async () => {
+            When("I tap complete the intro", when.completeOnboardingIntro, async () => {
                 Then("I should be on the duels hub", then.idVisible(DUELS_HUB))
             })
             When("I tap Completed", when.tapText("Completed"), async()=>{

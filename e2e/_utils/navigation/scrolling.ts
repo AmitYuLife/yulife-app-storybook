@@ -1,4 +1,4 @@
-import { booleanIdVisible, booleanTextVisible } from "./common"
+import { booleanIdVisible, booleanTextVisible, navigateViaText } from "./common"
 
 export const scrollFromText = (text: string, direction: any, speed: any, percentage?: any) => async () => {
     const target = element(by.text(text))
@@ -74,4 +74,3 @@ export const swipeToID = (scrollID: any, targetID: string, direction: 'left' | '
         }
     }
 }
-
