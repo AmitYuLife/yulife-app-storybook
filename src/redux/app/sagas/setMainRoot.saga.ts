@@ -8,7 +8,6 @@ import NetInfo, { NetInfoState } from "@react-native-community/netinfo";
 import moment from "moment";
 import { call, put } from "redux-saga/effects";
 import { setAuthenticated, setUnauthenticated } from "../app.actions";
-import Mixpanel from "react-native-mixpanel";
 
 interface IMainRootPayload {
   payload: string;
@@ -43,8 +42,6 @@ export default function* setMainRootSaga({ payload }: IMainRootPayload) {
     }
 
     yield put(setAuthenticated());
-
-    yield call(() => Mixpanel.showInAppMessageIfAvailable());
   } else {
     yield call(setUnauthenticatedRoot);
     yield put(setUnauthenticated());
