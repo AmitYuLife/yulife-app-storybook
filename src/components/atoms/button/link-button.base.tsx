@@ -10,7 +10,7 @@ import {
 } from "react-native";
 import { usePressedInWithDelay } from "@services/hooks/usePressedInWithDelay";
 import Text from "../text/text";
-import { Style } from "@styles";
+import { Style, Colours } from "@styles";
 import { PressableWithDelay } from "@components/molecules";
 
 interface IProps {
@@ -22,10 +22,11 @@ interface IProps {
   color?: string;
   height: number;
   delay?: number;
+  underline?: boolean;
 }
 
 export function LinkButtonBase(props: IProps) {
-  const { onPress, height = 50, delay } = props;
+  const { onPress, height = 50, delay, underline } = props;
   const { handlePressIn, handlePressOut, handlePress } = usePressedInWithDelay({ onPress, delay });
 
   return (
@@ -39,6 +40,7 @@ export function LinkButtonBase(props: IProps) {
         disabled={props.disabled}
         onPress={handlePress}
         title={props.title}
+        underline={underline}
       />
     </View>
   );
@@ -46,7 +48,7 @@ export function LinkButtonBase(props: IProps) {
 
 type IMainProps = IProps & ComponentProps<typeof TouchableWithoutFeedback>;
 
-function Main({ height, color, testID, disabled, onPressIn, onPressOut, onPress, title }: IMainProps) {
+function Main({ height, color, testID, disabled, onPressIn, onPressOut, onPress, title, underline }: IMainProps) {
   const disabledStyles = disabled ? styles.disabled : {};
   const fadeAnim = useRef(new Animated.Value(1)).current;
 
@@ -80,7 +82,7 @@ function Main({ height, color, testID, disabled, onPressIn, onPressOut, onPress,
       onPress={onPress}
     >
       <Animated.View style={[styles.main, { height, opacity: fadeAnim }]} testID={`${testID}-text-view`}>
-        <Text bold={true} style={[styles.title, { color }, disabledStyles]}>
+        <Text bold={true} style={[styles.title, { color }, underline && styles.underline, disabledStyles]}>
           {title}
         </Text>
       </Animated.View>
@@ -97,6 +99,10 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   } as ViewStyle,
+  underline: {
+    textDecorationLine: "underline",
+    textDecorationColor: Colours.primary.p600,
+  } as TextStyle,
   disabled: {
     opacity: 0.3,
   },
@@ -104,8 +110,8 @@ const styles = StyleSheet.create({
     opacity: 0.5,
   },
   title: {
-    fontFamily: Style.FONT_FAMILY_PRIMARY_BOLD,
     fontSize: Style.adjust(16),
+    letterSpacing: 0.4,
   } as TextStyle,
   flex: {
     justifyContent: "center",

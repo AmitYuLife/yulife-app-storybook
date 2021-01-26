@@ -6,11 +6,12 @@ import { Faq } from "../faqs/faq";
 
 interface IFaqs {
   items: Array<ComponentProps<typeof Faq>>;
+  title?: string;
 }
 
-export const Documents = memo(({ items = [] }: IFaqs) => (
+export const Documents = memo(({ items = [], title = "Documents" }: IFaqs) => (
   <View>
-    <Heading title="Documents" />
+    <Heading title={title} />
     {items.map((item, i) => (
       <View key={i} style={styles.wrapper}>
         <Faq {...item} />

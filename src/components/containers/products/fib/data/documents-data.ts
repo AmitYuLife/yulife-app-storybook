@@ -50,41 +50,48 @@ export const policyScheduleDocument = {
   url: `${Config.WEB_SITE_URL}`,
 };
 
-export default [
-  {
-    id: "policy-terms-conditions",
-    question: "Terms & Conditions",
-    iconSvgXml: yellowDoc,
-    url: `${Config.WEB_SITE_URL}static/docs/insurance/personal/1.0.0/personal-life-insurance-terms-and-conditions.pdf`,
-  },
-  {
-    id: "privacy-policy",
-    question: "Privacy Policy",
-    iconSvgXml: blueDocWithShieldIcon,
-    url: `${Config.WEB_SITE_URL}privacy-policy/`,
-  },
-  {
-    id: "rewards-policy",
-    question: "Rewards Policy",
-    iconSvgXml: blueDocWithShieldIcon,
-    url: `${Config.WEB_SITE_URL}rewards-policy/`,
-  },
-  {
-    id: "key-facts",
-    question: "Key Facts",
-    iconSvgXml: pdfIcon,
-    url: `${Config.WEB_SITE_URL}static/docs/insurance/personal/1.0.0/personal-life-insurance-key-facts.pdf`,
-  },
-  {
-    id: "policy-summary",
-    question: "Policy Guide",
-    iconSvgXml: pdfIcon,
-    url: `${Config.WEB_SITE_URL}static/docs/insurance/personal/1.0.0/personal-life-insurance-policy-guide.pdf`,
-  },
-  {
-    id: "general-term-of-business",
-    question: "General Terms of Business",
-    iconSvgXml: pdfIcon,
-    url: `${Config.WEB_SITE_URL}`, // TODO: Change placeholder
-  },
-];
+export const policyTermsConditions = {
+  id: "policy-terms-conditions",
+  question: "Terms & Conditions",
+  iconSvgXml: yellowDoc,
+  url: `${Config.WEB_SITE_URL}static/docs/insurance/personal/1.0.0/personal-life-insurance-terms-and-conditions.pdf`,
+};
+
+export const privacyPolicy = {
+  id: "privacy-policy",
+  question: "Privacy Policy",
+  iconSvgXml: blueDocWithShieldIcon,
+  url: `${Config.WEB_SITE_URL}privacy-policy/`,
+};
+
+export const rewardsPolicy = {
+  id: "rewards-policy",
+  question: "Rewards Policy",
+  iconSvgXml: blueDocWithShieldIcon,
+  url: `${Config.WEB_SITE_URL}rewards-policy/`,
+};
+
+export const keyFacts = {
+  id: "key-facts",
+  question: "Key Facts",
+  iconSvgXml: pdfIcon,
+  url: `${Config.WEB_SITE_URL}static/docs/insurance/personal/1.0.0/personal-life-insurance-key-facts.pdf`,
+};
+
+export const policySummary = {
+  id: "policy-summary",
+  question: "Policy Guide",
+  iconSvgXml: pdfIcon,
+  url: `${Config.WEB_SITE_URL}static/docs/insurance/personal/1.0.0/personal-life-insurance-policy-guide.pdf`,
+};
+
+export const generalTermsOfBusiness = {
+  id: "general-term-of-business",
+  question: "General Terms of Business",
+  iconSvgXml: pdfIcon,
+  url: `${Config.WEB_SITE_URL}`, // TODO: Change placeholder
+};
+
+export default [policyTermsConditions, privacyPolicy, rewardsPolicy, keyFacts, policySummary, generalTermsOfBusiness];
+
+export const checkoutDocs = [rewardsPolicy, keyFacts, policySummary];
