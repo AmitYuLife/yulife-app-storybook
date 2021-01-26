@@ -5,7 +5,6 @@ import {
   data,
   FIB_MEDICAL_THREE_OR_MORE_CONSULTATION_SCREEN_ID,
   FIB_UNDERWRITING_REVIEW_ANSWERS_SCREEN_ID,
-  RELEVANT_SCREEN_ID_FOR_PRICES_UPDATES,
   FIB_ENTER_YOUR_NAME,
   FIB_LIFESTYLE_SMOKING_CIGARETTES_SCREEN_ID,
   FIB_LIFESTYLE_SMOKING_CIGARS_SCREEN_ID,
@@ -142,17 +141,9 @@ const _FibUnderwritingJourneyContainer = memo(function (props: Props) {
     return nextQuestion;
   };
 
-  const navigateToReviewScreenOrFindNextQuestion = (
-    localAnswers: FibAnswers,
-    buttonType: FibButtonType,
-    currentQuestionId: string
-  ) => {
+  const navigateToReviewScreenOrFindNextQuestion = (localAnswers: FibAnswers, buttonType: FibButtonType) => {
     if (!redirectedFromReviewScreen) {
       return;
-    }
-
-    if (RELEVANT_SCREEN_ID_FOR_PRICES_UPDATES.includes(currentQuestionId)) {
-      dispatch(updateFIBValue({ key: "hasPriceChanged", value: true }));
     }
 
     if (!initialQuestion.category && !initialQuestion.nextQuestionBeforeQuit) {
@@ -251,7 +242,7 @@ const _FibUnderwritingJourneyContainer = memo(function (props: Props) {
       return navigation.push(FIB_UNDERWRITING_REVIEW_ANSWERS);
     }
 
-    navigateToReviewScreenOrFindNextQuestion(localAnswers, "firstButton", currentQuestion.id);
+    navigateToReviewScreenOrFindNextQuestion(localAnswers, "firstButton");
 
     const question = findQuestion({
       data,
@@ -297,7 +288,7 @@ const _FibUnderwritingJourneyContainer = memo(function (props: Props) {
       return navigation.push(FIB_UNDERWRITING_REVIEW_ANSWERS);
     }
 
-    navigateToReviewScreenOrFindNextQuestion(localAnswers, "secondButton", currentQuestion.id);
+    navigateToReviewScreenOrFindNextQuestion(localAnswers, "secondButton");
 
     const question = findQuestion({
       data,

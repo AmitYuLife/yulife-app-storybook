@@ -62,7 +62,7 @@ const FibUnderwritingReviewAnswersContainer = memo(function (props: Props) {
         ? fibState.actualCost !== fibData?.actualCost
         : false;
 
-    if (fibState.hasPriceChanged || priceChangedFromAPI) {
+    if (priceChangedFromAPI) {
       await Navigation.showModal({
         component: {
           id: MODALS.generic,
