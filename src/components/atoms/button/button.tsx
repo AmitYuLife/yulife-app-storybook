@@ -27,6 +27,7 @@ interface IProps {
   leftIcon?: BUTTON_ICON;
   rightIcon?: BUTTON_ICON;
   height?: number;
+  underline?: boolean;
 }
 
 const DEFAULT_HEIGHT = Style.adjust(53);
@@ -51,6 +52,7 @@ function Button(props: IProps) {
     leftIcon,
     rightIcon,
     height,
+    underline,
   } = props;
 
   const { handlePress } = usePressedInWithDelay({ onPress, delay });
@@ -130,6 +132,7 @@ function Button(props: IProps) {
         onPress={handlePress}
         color={Colours.darkHotPink}
         delay={delay}
+        underline={underline}
       />
     </View>
   );

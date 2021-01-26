@@ -11,6 +11,7 @@ interface ICheckBox {
   label: string;
   onChange: (value: string) => void;
   textStyle?: TextStyle;
+  children?: React.ReactChild;
 }
 
 const styles = {
@@ -31,7 +32,7 @@ const styles = {
 };
 
 function CheckBox(props: ICheckBox) {
-  const { checked, value, onChange, label, textStyle } = props;
+  const { checked, value, onChange, label, textStyle, children } = props;
 
   return (
     <View>
@@ -51,7 +52,7 @@ function CheckBox(props: ICheckBox) {
             )}
           </Svg>
         </View>
-        <Text style={StyleSheet.flatten([styles.text, textStyle])}>{label}</Text>
+        {children || <Text style={StyleSheet.flatten([styles.text, textStyle])}>{label}</Text>}
       </TouchableOpacityWithDelay>
     </View>
   );
