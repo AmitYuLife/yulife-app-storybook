@@ -22,6 +22,7 @@ interface Props {
   inputTextStyle?: TextStyle;
   autoFocus?: boolean;
   onFocus?: () => void;
+  baseUnderlineColor?: string;
 }
 
 function stripPunctuation(text: string, type: Type) {
@@ -64,6 +65,7 @@ export default function TextField(props: Props) {
     errorMessage,
     maxLength,
     onFocus,
+    baseUnderlineColor,
   } = props;
   const [isFocused, setFocused] = useState(autoFocus);
   const [placeholderScale] = useState(new Animated.Value(1));
@@ -159,7 +161,7 @@ export default function TextField(props: Props) {
           hasInput={Boolean(textInputValue)}
           paddingLeft={placeholderIndentSize}
         />
-        <BaseUnderline color={showError ? "#FC0000" : null} />
+        <BaseUnderline color={showError ? "#FC0000" : baseUnderlineColor} />
         <ColouredUnderline scaleX={materialUnderlineScaleX} />
 
         {showError && !isFocused ? (
