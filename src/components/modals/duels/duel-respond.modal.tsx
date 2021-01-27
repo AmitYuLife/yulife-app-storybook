@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from "react";
 import { Navigation } from "react-native-navigation";
-import { useDispatch, connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { View, Alert, StyleSheet } from "react-native";
 import { getUserStart } from "../../../redux/user/user.actions";
 import { useMutation, useQuery } from "@apollo/react-hooks";
@@ -12,7 +12,6 @@ import { DATE_FORMAT_WITHOUT_TZ } from "@services/utils";
 import { DuelBackground } from "./subcomponents";
 import { DuelStepProps } from "./duels.types";
 import DuelResponseIntro from "./subcomponents/duel-response-intro/duel-response-intro";
-import { IReduxState } from "@redux/_core/reducers";
 import { getTotalCoins } from "@redux/coins/coins.selectors";
 import { Loading } from "@atoms";
 import styles from "./duel-respond.styles";
@@ -28,11 +27,9 @@ interface IModalProps {
   invitation?: GetDuels_getDuels;
 }
 
-type IMapStateToProps = ReturnType<typeof mapStateToProps>;
+type IProps = IModalProps;
 
-type IProps = IModalProps & IMapStateToProps;
-
-const DuelRespondModal: React.FC<IProps> = ({ componentId, duelId, userCoins, invitation }) => {
+const DuelRespondModal: React.FC<IProps> = ({ componentId, duelId, invitation }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [loadingLabel, setLoadingLabel] = React.useState<"primary" | "secondary">(null);
   useBackHandler(() => {
@@ -40,6 +37,7 @@ const DuelRespondModal: React.FC<IProps> = ({ componentId, duelId, userCoins, in
     return true;
   });
 
+  const userCoins = useSelector(getTotalCoins);
   const getDuelsQuery = useQuery(GQL_QUERY_GET_DUELS, {
     fetchPolicy: "cache-and-network",
   });
@@ -145,8 +143,4 @@ const DuelRespondModal: React.FC<IProps> = ({ componentId, duelId, userCoins, in
   );
 };
 
-const mapStateToProps = (state: IReduxState) => ({
-  userCoins: getTotalCoins(state),
-});
-
-export default connect(mapStateToProps)(DuelRespondModal);
+export default DuelRespondModal;
