@@ -3,9 +3,8 @@ import { StyleSheet, TextInput, View, Animated, ViewStyle, Text, TextStyle } fro
 import { Style } from "@styles/index";
 import { Placeholder } from "./subcomponents/placeholder";
 import { BaseUnderline, ColouredUnderline } from "./subcomponents/underlines";
-import { addCommasToNumber } from "@services/utils";
+import { addCommasToNumber, formatPostCode } from "@services/utils";
 import Warning from "@atoms/text-input/assets/warning";
-import { formatPostCode } from "../../screens/products/fib/underwriting-journey/fib.find-adress.screen";
 
 type Type = "Text" | "Number" | "PhoneNumber" | "PostCode" | "PostCodeFinder";
 

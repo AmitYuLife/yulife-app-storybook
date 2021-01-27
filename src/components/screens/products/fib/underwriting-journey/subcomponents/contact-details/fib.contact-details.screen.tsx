@@ -1,31 +1,29 @@
 import React, { memo, useState, useCallback, useRef } from "react";
-import { FibUnderwritingJourneyLayout } from "../layouts/fib.underwriting-journey-layout";
+import { FibUnderwritingJourneyLayout } from "../../../layouts/fib.underwriting-journey-layout";
 import { View, StyleSheet, TextStyle, ViewStyle, ScrollView, LayoutChangeEvent } from "react-native";
 import { TextField, TouchableOpacityWithDelay } from "@components/molecules";
-import { Text, Pad, Button } from "@atoms";
-import { Style } from "@styles";
-import FibTitle from "../../../../atoms/fib/title/title";
-import { SvgXml } from "react-native-svg";
-import { arrowRightSvg } from "../browse-packages/subcomponents/faqs/svgs/svgArrowRight";
+import { Text, Pad, Button, SearchIcon } from "@atoms";
+import { Colours, Style } from "@styles";
 import validator from "email-validator";
 import { ContactDetails } from "@redux/product/product.types";
-import { postCodeRegexSpecial, postCodeRegex } from "./fib.find-adress.screen";
+import { postCodeRegexSpecial, postCodeRegex } from "./fib.find-address.screen";
 import { useBackHandler } from "@services/hooks/useBackHandler";
+import ContactDetailsTitle from "./fib.contact-details.title";
 
 export interface IFibContactDetailsScreenProps {
   onContinue: () => void;
   onContactDetailsChange: (key: keyof ContactDetails, value: string) => void;
-  onFindAdress: () => void;
+  onFindAddress: () => void;
   contactDetails: ContactDetails;
   onClose?: () => void;
   pop: () => void;
 }
 
 export const FibContactDetailsScreen = memo(function (props: IFibContactDetailsScreenProps) {
-  const { onContinue, onContactDetailsChange, contactDetails, onFindAdress, onClose, pop } = props;
+  const { onContinue, onContactDetailsChange, contactDetails, onFindAddress, onClose, pop } = props;
   const [isEmailValid, setIsEmailValid] = useState(validator.validate(contactDetails.personalEmail));
   const [isPhoneNumberValid, setIsPhoneNumberValid] = useState(phoneNumberIsValid(contactDetails.phoneNumber));
-  const [isPostCodeValide, setIsPostCodeValid] = useState(postCodeValid(contactDetails.postCode));
+  const [isPostCodeValid, setIsPostCodeValid] = useState(postCodeValid(contactDetails.postCode));
   const layouts = useRef([] as number[]);
   const scrollViewRef = useRef(null);
 
@@ -96,7 +94,7 @@ export const FibContactDetailsScreen = memo(function (props: IFibContactDetailsS
       type: "PostCode" as "PostCode",
       maxLength: 8,
       value: contactDetails.postCode,
-      showError: contactDetails.postCode && !isPostCodeValide,
+      showError: contactDetails.postCode && !isPostCodeValid,
       errorMessage: "Not a valid postcode",
     },
     {
@@ -135,19 +133,21 @@ export const FibContactDetailsScreen = memo(function (props: IFibContactDetailsS
         keyboardShouldPersistTaps="always"
       >
         <View style={styles.wrapper}>
-          <FibTitle title="Please enter your contact details:" />
+          <ContactDetailsTitle title="Please enter your contact details:" />
           <View style={styles.paddingHorizontal}>
-            <TouchableOpacityWithDelay onPress={onFindAdress}>
-              <View style={styles.lookUpAdressWrapper}>
-                <Text style={styles.lookUpAdressText}>Look up address</Text>
+            <TouchableOpacityWithDelay onPress={onFindAddress}>
+              <View style={styles.lookUpAddressWrapper}>
                 <View style={styles.imageWrapper}>
-                  <SvgXml height={12} width={6} xml={arrowRightSvg} />
+                  <SearchIcon />
                 </View>
+                <Text bold={true} style={styles.lookUpAddressText}>
+                  Look up address
+                </Text>
               </View>
             </TouchableOpacityWithDelay>
             {inputs.map((item, index) => (
               <View onLayout={setLayout(index)} key={index}>
-                <TextField onFocus={onTextInputFocus(index)} {...item} />
+                <TextField onFocus={onTextInputFocus(index)} {...item} baseUnderlineColor={Colours.neutral.n200} />
                 <Pad height={20} />
               </View>
             ))}
@@ -176,30 +176,28 @@ const styles = StyleSheet.create({
     paddingTop: Style.adjust(16),
   } as ViewStyle,
   paddingHorizontal: {
-    paddingHorizontal: Style.adjust(24),
+    paddingHorizontal: Style.adjust(32),
   } as ViewStyle,
-  lookUpAdressWrapper: {
+  lookUpAddressWrapper: {
     marginTop: Style.adjust(16),
     marginBottom: Style.adjust(24),
-    height: Style.adjust(40),
-    width: Style.adjust(176),
-    borderColor: "#D3D3D6",
+    height: Style.adjust(48),
+    borderColor: Colours.neutral.n800,
     borderWidth: 1,
-    borderRadius: 8,
-    paddingLeft: 16,
+    borderRadius: 53,
     alignItems: "center",
     flexDirection: "row",
+    justifyContent: "center",
   } as ViewStyle,
-  lookUpAdressText: {
+  lookUpAddressText: {
     fontSize: 16,
     lineHeight: 24,
-    color: "#464647",
+    color: Colours.neutral.n800,
     letterSpacing: 1,
-    fontFamily: Style.FONT_FAMILY_PRIMARY_BOLD,
+    alignSelf: "center",
   } as TextStyle,
   imageWrapper: {
-    marginLeft: "auto",
-    paddingRight: Style.adjust(14),
+    paddingRight: Style.adjust(8),
   } as ViewStyle,
   contentWrapper: {
     paddingBottom: Style.adjust(50),

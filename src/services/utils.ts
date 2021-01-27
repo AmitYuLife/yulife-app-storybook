@@ -353,3 +353,10 @@ export type Unpacked<T> = T extends Array<infer U>
 
 type Noop = () => void;
 export const noop: Noop = () => void 0;
+
+export const formatPostCode = (postCode: string) => {
+  return postCode
+    .replace(/ /g, "")
+    .toUpperCase()
+    .replace(/^(.*)(\d)/, "$1 $2");
+};
