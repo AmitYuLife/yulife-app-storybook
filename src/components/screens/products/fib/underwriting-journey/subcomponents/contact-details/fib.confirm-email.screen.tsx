@@ -1,12 +1,11 @@
 import React, { memo, useCallback } from "react";
-import { FibUnderwritingJourneyLayout } from "../layouts/fib.underwriting-journey-layout";
+import { FibUnderwritingJourneyLayout } from "../../../layouts/fib.underwriting-journey-layout";
 import { View, StyleSheet, TextStyle, ViewStyle } from "react-native";
 import { Text } from "@atoms";
 import { Style, Colours } from "@styles";
-import FibTitle from "../../../../atoms/fib/title/title";
-
-import Footer from "./subcomponents/footer/footer";
-import { useBackHandler } from "../../../../../services/hooks/useBackHandler";
+import Footer from "../footer/footer";
+import { useBackHandler } from "../../../../../../../services/hooks/useBackHandler";
+import ContactDetailsTitle from "./fib.contact-details.title";
 
 export interface IFibConfirmEmailScreenProps {
   firstButtonAction: () => void;
@@ -33,11 +32,13 @@ export const FibConfirmScreen = memo(function (props: IFibConfirmEmailScreenProp
       onPreviousQuestion={onBackButtonPress}
       hideProgressBar={true}
     >
-      <FibTitle title={"Would you like to use:"} />
+      <ContactDetailsTitle title="Would you like to use:" />
       <View style={styles.content}>
-        <Text bold={true} style={styles.email}>
-          {email}
-        </Text>
+        <View style={styles.emailWrapper}>
+          <Text bold={true} style={styles.email} numberOfLines={1}>
+            {email}
+          </Text>
+        </View>
         <Text style={styles.message}>
           as your email address for logging into the YuLife app in the future? Your password will remain the same.
         </Text>
@@ -52,17 +53,27 @@ export const FibConfirmScreen = memo(function (props: IFibConfirmEmailScreenProp
 
 const styles = StyleSheet.create({
   content: {
-    paddingHorizontal: Style.adjust(24),
+    paddingHorizontal: Style.adjust(32),
+  } as ViewStyle,
+  emailWrapper: {
+    backgroundColor: Colours.neutral.n100,
+    borderColor: Colours.neutral.n200,
+    borderWidth: 1,
+    borderRadius: 53,
+    alignItems: "center",
+    width: "100%",
+    justifyContent: "center",
+    height: 48,
   } as ViewStyle,
   email: {
-    marginTop: Style.adjust(24),
     fontSize: Style.adjust(20),
     lineHeight: Style.adjust(24),
     letterSpacing: 1,
-    color: Colours.neutral.n800,
+    color: Colours.neutral.n400,
+    paddingHorizontal: Style.adjust(16),
   } as TextStyle,
   message: {
-    marginTop: Style.adjust(24),
+    marginTop: Style.adjust(16),
     fontSize: Style.adjust(16),
     lineHeight: Style.adjust(24),
     letterSpacing: 1,

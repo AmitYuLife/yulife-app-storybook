@@ -64,7 +64,7 @@ export const Placeholder = ({ scale, translateY, opacity, title, isFocused, hasI
     }
 
     if (hasInput) {
-      return Colours.gray;
+      return Colours.neutral.n400;
     }
 
     return "black";
