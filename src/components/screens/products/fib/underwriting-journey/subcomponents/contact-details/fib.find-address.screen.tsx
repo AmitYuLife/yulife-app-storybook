@@ -106,7 +106,11 @@ function _FibFindAddressScreen(props: IFibFindAddressScreenProps) {
         keyExtractor={keyExtractor}
         emptyElement={<SearchListEmpty emptyText={emptyText} />}
       />
-      <GenericHeadingAbsolute heading="GP Report" onLeftIconPress={onBackButtonPress} onRightIconPress={onClose} />
+      <GenericHeadingAbsolute
+        heading="Contact Details"
+        onLeftIconPress={onBackButtonPress}
+        onRightIconPress={onClose}
+      />
     </View>
   );
 }
