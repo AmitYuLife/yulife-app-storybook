@@ -1,6 +1,6 @@
 import { MODALS, ROUTES } from "@navigation/constants";
 import React, { memo, useCallback, useMemo } from "react";
-import { View } from "react-native";
+import { View, Keyboard } from "react-native";
 import { Navigation } from "react-native-navigation";
 import { DUELS_SEARCH } from "@ids";
 import styles from "./duels-search.styles";
@@ -22,6 +22,7 @@ import { DATE_FORMAT_WITH_TZ } from "@services/utils";
 import { getCurrentUserId } from "@redux/user/user.selectors";
 import { useSelector } from "react-redux";
 import { showExistingDuelAlert } from "../leaderboard/active-leaderboard/leaderboard-content/items/leaderboard-rank-item/duel-dialog.helpers";
+import { useBackHandler } from "@services/hooks/useBackHandler";
 import { SearchInput, SearchList } from "@atoms";
 import DuelsSearchItem from "./subcomponents/search-item";
 
@@ -30,7 +31,9 @@ export interface SearchedOpponent extends SearchForDuelOpponent_searchForDuelOpp
 }
 
 function navigateBack() {
+  Keyboard.dismiss();
   Navigation.popTo(ROUTES.duelsHub);
+  return true;
 }
 
 function keyExtractor(item: SearchedOpponent, index: number) {
@@ -68,6 +71,7 @@ function _DuelsSearchContainer() {
   const [query, setQuery] = React.useState("");
   const userId = useSelector(getCurrentUserId);
 
+  useBackHandler(navigateBack);
   const [search, { loading, data, networkStatus }] = useDebouncedQuery<
     SearchForDuelOpponent,
     SearchForDuelOpponentVariables
