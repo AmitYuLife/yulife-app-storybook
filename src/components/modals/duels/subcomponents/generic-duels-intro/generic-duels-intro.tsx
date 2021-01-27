@@ -28,23 +28,26 @@ function GenericDuelsIntro({
   loadingLabel,
   componentId,
 }: IGenericDuelsIntro) {
-  const opacity = new Animated.Value(0);
-  const fadeAnim = Animated.timing(opacity, {
-    toValue: 1,
-    duration: 400,
-    useNativeDriver: true,
-  });
+  const [opacity] = React.useState(new Animated.Value(0));
 
   React.useEffect(() => {
-    fadeAnim.start();
-    return fadeAnim.stop;
-  }, [fadeAnim]);
+    if (!loading) {
+      Animated.timing(opacity, {
+        toValue: 1,
+        duration: 400,
+        useNativeDriver: true,
+      }).start();
+    }
+  }, [loading, opacity]);
 
   const onPressLeftIcon = () => Navigation.dismissModal(componentId);
 
   if (loading) {
     return null;
   }
+
+  const isPrimaryButtonLoading = (isLoading || loading) && loadingLabel === "primary";
+  const isSecondaryButtonLoading = (isLoading || loading) && loadingLabel === "secondary";
 
   return (
     <View style={styles.introWrapper}>
@@ -86,11 +89,17 @@ function GenericDuelsIntro({
           </View>
         </View>
         <View style={styles.buttonSection}>
-          <Button onPress={goToNextStep} label={primaryBtnLabel} type="Primary" />
+          <Button
+            isLoading={isPrimaryButtonLoading}
+            disabled={isPrimaryButtonLoading || isSecondaryButtonLoading}
+            onPress={goToNextStep}
+            label={primaryBtnLabel}
+            type="Primary"
+          />
           {secondaryBtnLabel ? (
             <Button
-              isLoading={(isLoading || loading) && loadingLabel === "secondary"}
-              disabled={(isLoading || loading) && loadingLabel === "secondary"}
+              isLoading={isSecondaryButtonLoading}
+              disabled={isPrimaryButtonLoading || isSecondaryButtonLoading}
               onPress={onDeclinePress}
               label={secondaryBtnLabel}
               type="Secondary"
