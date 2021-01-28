@@ -58,7 +58,7 @@ class LoggerInstance {
   }
 
   public error(error: Error, tags: Record<string, string | number | boolean>) {
-    if (Config.ENV == "dev") {
+    if (Config.ENV === "dev") {
       // tslint:disable-next-line
       console.error(error, tags);
     }

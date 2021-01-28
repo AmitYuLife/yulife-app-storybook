@@ -4,11 +4,8 @@ import { DAILY_STEPS_SCREEN } from "@ids";
 import { TouchableOpacityWithDelay } from "@molecules/index";
 import { View, Platform } from "react-native";
 import * as Animatable from "react-native-animatable";
-import { GetMobileCopy_getMobileCopy_screens_popUp } from "@graphql/_core/schema";
-import { IUserStore } from "@redux/user/user.reducer";
 import { IConnectedScreenProps } from "../../../../typings";
 import { CentredScreen, Pad } from "@atoms";
-import { LeaderboardPopup } from "@molecules";
 import { Streak } from "@components/organisms";
 import YuCoin from "./assets/yu-coin";
 import styles from "./daily-steps.screen.styles";
@@ -25,10 +22,6 @@ interface IProps extends IConnectedScreenProps {
   onCoinPress: () => void;
   onStreakPress?: () => void;
   theme: IThemeStore["dailyStepsScreen"];
-  popUpCopy: GetMobileCopy_getMobileCopy_screens_popUp;
-  onUpdateSurgePopupVisibility?: (payload: boolean) => void;
-  onUpdateLeaderboardPopupVisibility?: (payload: boolean) => void;
-  popupVisibility?: IUserStore["popupVisibility"];
 }
 
 type Props = IProps;
@@ -38,11 +31,6 @@ export default function DailyStepsScreen({
   onCoinPress,
   onLeftMenuPress,
   theme: { centredScreen, hasWhiteGlow, topBarType },
-  popUpCopy,
-  onUpdateLeaderboardPopupVisibility,
-  popupVisibility = {
-    leaderboard: false,
-  },
 }: Props) {
   return (
     <Animatable.View duration={750} animation="fadeIn" style={styles.flex} useNativeDriver={true}>
@@ -57,11 +45,7 @@ export default function DailyStepsScreen({
         </TouchableOpacityWithDelay>
         <DailyStepsContent />
         <Streak />
-        {popupVisibility.leaderboard ? (
-          <LeaderboardPopup copy={popUpCopy} onUpdateLeaderboardPopupVisibility={onUpdateLeaderboardPopupVisibility} />
-        ) : (
-          <NavBar activeIndex={0} />
-        )}
+        <NavBar activeIndex={0} />
       </CentredScreen>
       <View style={styles.topbarWrapper}>
         <TopBar type={topBarType} onPressLeftIcon={onLeftMenuPress} />

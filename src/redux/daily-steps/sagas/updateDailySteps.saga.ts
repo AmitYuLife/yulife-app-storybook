@@ -4,19 +4,26 @@ import { call, put, spawn, select } from "redux-saga/effects";
 import { mapPedometerResults } from "@services/fitkit/fitkit.helpers";
 import Logger from "@services/logging/logger";
 
-import { getDailySteps } from "../../daily-steps/daily-steps.selectors";
+import { getDailyStepsStateForPedometerUpdate } from "../../daily-steps/daily-steps.selectors";
 import { updatePedometerSuccessAction } from "../../pedometer/pedometer.actions";
-import { updateDailyStepsFailed, updateDailyStepsSuccess, stepsWithNoUpdate } from "../daily-steps.actions";
+import {
+  updateDailyStepsFailed,
+  updateDailyStepsSuccess,
+  stepsWithNoUpdate,
+  startStepsSyncing,
+} from "../daily-steps.actions";
 
 export default function* updateDailyStepsSaga({ payload }: ReturnType<typeof updatePedometerSuccessAction>) {
   try {
     // get the last synced steps from the server
-    const oldServerSteps = yield select(getDailySteps);
+    const state = yield select(getDailyStepsStateForPedometerUpdate);
+    const { isSyncing, isServerFetchedThisSession, dailySteps: oldServerSteps } = state;
 
-    if (checkIfAPIRequestNeeded(payload.steps, oldServerSteps)) {
+    if (!isSyncing && (!isServerFetchedThisSession || checkIfAPIRequestNeeded(payload.steps, oldServerSteps))) {
+      yield put(startStepsSyncing());
       const { data } = yield call(upsertStepsChallenge, [mapPedometerResults(payload)]);
 
-      if (data && data.upsertPassiveChallenge) {
+      if (data?.upsertPassiveChallenge) {
         yield put(updateDailyStepsSuccess(data));
       }
     } else {
