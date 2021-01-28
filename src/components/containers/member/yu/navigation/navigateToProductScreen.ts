@@ -17,19 +17,13 @@ import { YUGI_INTRO_TYPE } from "../../../products/fib/subcontainers/fib.yugi-in
 
 interface INavigateToProductScreen {
   product: IProduct;
-  shouldResetFib: boolean;
   fibState: FIBStore;
   resetFibJourney: () => void;
 }
 
 const FIB_EXPIRE_QUOTE_MONTHS = 3;
 
-export const navigateToProductScreen = ({
-  product,
-  fibState,
-  shouldResetFib,
-  resetFibJourney,
-}: INavigateToProductScreen) => {
+export const navigateToProductScreen = ({ product, fibState, resetFibJourney }: INavigateToProductScreen) => {
   // TODO: Implement different journeys for different products
 
   if (product.status === "locked") {
@@ -44,39 +38,16 @@ export const navigateToProductScreen = ({
   const isPersonalItem = getIsPersonalItem(product.itemSlot);
 
   if (isPersonalItem) {
-    const resetFib = shouldResetFib ? () => resetFibJourney() : null;
     if (fibState.rejected || fibState.status === ScreeningStatus.REJECTED) {
-      return handleRejected(resetFib);
+      return redirectToInfoScreen(InfoTypes.rejected);
     }
 
     if (fibState.status === ScreeningStatus.PURCHASED) {
-      return Navigation.push(ROUTES.yuScreen, {
-        component: {
-          id: ROUTES.fib,
-          name: ROUTES.fib,
-          passProps: {
-            initialRoute: FIB_INFO,
-            initialProps: {
-              type: InfoTypes.paymentCongrats,
-            },
-          },
-        },
-      });
+      return redirectToInfoScreen(InfoTypes.paymentCongrats);
     }
 
     if (fibState.status === ScreeningStatus.WAITING_MSS) {
-      return Navigation.push(ROUTES.yuScreen, {
-        component: {
-          id: ROUTES.fib,
-          name: ROUTES.fib,
-          passProps: {
-            initialRoute: FIB_INFO,
-            initialProps: {
-              type: InfoTypes.holdingGP,
-            },
-          },
-        },
-      });
+      return redirectToInfoScreen(InfoTypes.holdingGP);
     }
 
     if (
@@ -84,21 +55,11 @@ export const navigateToProductScreen = ({
       fibState.status === ScreeningStatus.RGA_REJECTED ||
       fibState.status === ScreeningStatus.RGA_APPLIED
     ) {
-      return Navigation.push(ROUTES.yuScreen, {
-        component: {
-          id: ROUTES.fib,
-          name: ROUTES.fib,
-          passProps: {
-            initialRoute: FIB_INFO,
-            initialProps: {
-              type: InfoTypes.resultsIn,
-            },
-          },
-        },
-      });
+      return redirectToInfoScreen(InfoTypes.resultsIn);
     }
 
     // TODO: This condition should only be checked if the product hasn't been purchased
+    // TODO: Check if we should archive quote and do a fresh start, should we show an expired quote screen?
     const isQuoteExpired = moment().diff(moment(fibState.quoteDate), "months") >= FIB_EXPIRE_QUOTE_MONTHS;
     if (isQuoteExpired) {
       resetFibJourney();
@@ -191,7 +152,7 @@ export const navigateToProductScreen = ({
   });
 };
 
-function handleRejected(resetFib: () => void) {
+function redirectToInfoScreen(infoTypeScreen: InfoTypes) {
   return Navigation.push(ROUTES.yuScreen, {
     component: {
       id: ROUTES.fib,
@@ -199,8 +160,7 @@ function handleRejected(resetFib: () => void) {
       passProps: {
         initialRoute: FIB_INFO,
         initialProps: {
-          type: InfoTypes.rejected,
-          onResetFib: resetFib,
+          type: infoTypeScreen,
         },
       },
     },

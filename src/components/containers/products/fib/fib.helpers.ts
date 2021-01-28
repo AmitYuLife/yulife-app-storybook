@@ -25,10 +25,10 @@ import {
   FIB_INPUT_SALARY,
   FIB_GENDER_SCREEN_ID,
 } from "./data/underwriting-journey-data";
-import { PackageId } from "@components/screens/products/fib/fib.helper";
 import { updateFIBValue } from "@redux/product/product.actions";
 import { FibAnswers } from "@redux/product/product.types";
 import { FIB_MEDICAL_THREE_OR_MORE_CONSULTATION_SCREEN_ID } from "./data/underwriting-journey-data";
+import { CoverType } from "../../../../graphql/_core/schema/globalTypes";
 
 export type FibButtonType = "firstButton" | "secondButton" | "previousButton";
 
@@ -47,14 +47,14 @@ export const packages = {
   },
 };
 
-export function useCover(packageId: PackageId): [PackageId, (packageId: PackageId) => void] {
+export function useCover(packageId: CoverType): [CoverType, (packageId: CoverType) => void] {
   const dispatch = useDispatch();
-  const [selectedCoverType, selectCoverType] = useState<PackageId>(packageId);
+  const [selectedCoverType, selectCoverType] = useState<CoverType>(packageId);
 
   return useMemo(
     () => [
       selectedCoverType,
-      function selectCover(newPackageId: PackageId) {
+      function selectCover(newPackageId: CoverType) {
         selectCoverType(newPackageId);
         dispatch(
           updateFIBValue({

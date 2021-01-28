@@ -3,10 +3,10 @@ import { StyleSheet, View, TextStyle } from "react-native";
 import { Style, Colours } from "@styles";
 import { Heading } from "./common";
 import { Text } from "@atoms";
-import { PackageId } from "../../fib.helper";
+import { CoverType } from "../../../../../../graphql/_core/schema/globalTypes";
 
 interface Props {
-  header: PackageId;
+  header: CoverType;
   content: string;
 }
 

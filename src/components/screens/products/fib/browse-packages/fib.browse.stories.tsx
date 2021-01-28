@@ -6,11 +6,12 @@ import documentsData from "@components/containers/products/fib/data/documents-da
 import { Package } from "./fib.browse.types";
 import { IFaq } from "./subcomponents/faqs/faq";
 import { FibCustomCoverScreen } from "./fib.custom-cover";
+import { CoverType } from "../../../../../graphql/_core/schema/globalTypes";
 
 const selectedPackage: Package = {
   earnRate: 20,
   salaryPercentageCovered: 50,
-  id: "common",
+  id: CoverType.common,
   label: "Common",
   descriptionHeading: "basic cover",
   newEarnRate: 40,

@@ -15,8 +15,7 @@ import {
 } from "../../../../../graphql/_core/schema/UpdateTopUpsQuote";
 import { useMutation } from "@apollo/react-hooks";
 import { GQL_MUTATION_UPDATE_TOP_UPS_QUOTE } from "../../../../../graphql/products/updateTopUpsQuote";
-import { ScreeningStatus } from "../../../../../graphql/_core/schema/globalTypes";
-import { resetFIBUnderwritingJourney, updateFIBValue } from "../../../../../redux/product/product.actions";
+import { resetFIBUnderwritingJourney } from "../../../../../redux/product/product.actions";
 import { YUGI_INTRO_TYPE } from "./fib.yugi-intro.container";
 import { getUserFeatures } from "../../../../../redux/user/user.selectors";
 
@@ -37,11 +36,7 @@ type Props = IFibInfoContainerProps & ConnectedState;
 const _FibInfoContainer = memo(function (props: Props) {
   const { navigation, fibStore } = props;
   const { status, latestQuoteId: quoteId } = fibStore;
-  const {
-    type,
-    packageType,
-    onResetFib,
-  }: { type: InfoTypes; packageType: string; onResetFib: () => {} } = navigation.currentRoute.passProps;
+  const { type, packageType }: { type: InfoTypes; packageType: string } = navigation.currentRoute.passProps;
 
   const dispatch = useDispatch();
 
@@ -53,8 +48,7 @@ const _FibInfoContainer = memo(function (props: Props) {
   const canResetFib = useSelector(getUserFeatures).resetFib;
 
   const resetFib = useCallback(async () => {
-    // TODO: Remove all trace of on reset fib and handle it only in this container
-    if (!onResetFib && !canResetFib) {
+    if (!canResetFib) {
       return;
     }
 
@@ -72,16 +66,10 @@ const _FibInfoContainer = memo(function (props: Props) {
           ctaLabel: "Restart journey",
           onPress: async () => {
             await Navigation.dismissModal(MODALS.generic);
-            if (onResetFib) {
-              await onResetFib();
-            }
-
-            if (canResetFib && !onResetFib) {
-              if (quoteId) {
-                await updateFibQuote({
-                  variables: { archiveQuote: true, quoteId },
-                });
-              }
+            if (canResetFib && quoteId) {
+              await updateFibQuote({
+                variables: { archiveQuote: true, quoteId },
+              });
 
               dispatch(resetFIBUnderwritingJourney());
             }
@@ -93,27 +81,11 @@ const _FibInfoContainer = memo(function (props: Props) {
         },
       },
     });
-  }, [onResetFib, navigation, canResetFib, dispatch, quoteId, updateFibQuote]);
+  }, [navigation, canResetFib, dispatch, quoteId, updateFibQuote]);
 
   const onClose = useCallback(() => {
     Navigation.popTo(ROUTES.yuScreen);
   }, []);
-
-  const updateQuoteStatus = async (_status: ScreeningStatus) => {
-    await updateFibQuote({
-      variables: {
-        fibQuote: { screeningStatus: _status },
-        quoteId,
-      },
-    });
-
-    dispatch(
-      updateFIBValue({
-        key: "status",
-        value: _status,
-      })
-    );
-  };
 
   switch (screenType) {
     case "HoldingGP":
@@ -121,14 +93,7 @@ const _FibInfoContainer = memo(function (props: Props) {
     case "PaymentCongratulation":
       return <FibPaymentCongratulationScreen onClose={onClose} packageType={packageType} />;
     case "Rejected":
-      return (
-        <FibRejectedScreen
-          onClose={onClose}
-          onResetFib={resetFib}
-          canResetFib={canResetFib}
-          updateStatus={() => updateQuoteStatus(ScreeningStatus.REJECTED)}
-        />
-      );
+      return <FibRejectedScreen onClose={onClose} onResetFib={resetFib} canResetFib={canResetFib} />;
     case "ResultsIn":
       return (
         <FibResultsInScreen

@@ -9,7 +9,6 @@ import { navigateToProductScreen } from "../../navigation/navigateToProductScree
 import { useSelector, useDispatch } from "react-redux";
 import { getFIBState } from "@redux/product/product.selectors";
 import { resetFIBUnderwritingJourney } from "@redux/product/product.actions";
-import { getUserFeatures } from "@redux/user/user.selectors";
 import { Style } from "@styles";
 import { ProductType, YuProductStatus } from "../../../../../../graphql/_core/schema/globalTypes";
 import { GQL_MUTATION_UPDATE_TOP_UPS_QUOTE } from "../../../../../../graphql/products/updateTopUpsQuote";
@@ -24,7 +23,7 @@ export const ProductSet = (props: IProductSetProps) => {
   const { data } = useQuery<GetYulifer>(GQL_QUERY_GET_YULIFER, { fetchPolicy: "cache-only" });
   const fibState = useSelector(getFIBState);
   const dispatch = useDispatch();
-  const shouldResetFib = useSelector(getUserFeatures).resetFib;
+
   const [updateFibQuote] = useMutation<UpdateTopUpsQuote_updateFibQuote, UpdateTopUpsQuoteVariables>(
     GQL_MUTATION_UPDATE_TOP_UPS_QUOTE
   );
@@ -40,7 +39,7 @@ export const ProductSet = (props: IProductSetProps) => {
     dispatch(resetFIBUnderwritingJourney());
   }, [dispatch, quoteId, updateFibQuote]);
 
-  const products = getProducts({ type, data, fibState, resetFibJourney, shouldResetFib });
+  const products = getProducts({ type, data, fibState, resetFibJourney });
   const { heading, subheading } = getHeading(type);
 
   if (!products.length) {
@@ -88,10 +87,9 @@ interface GetProducts {
   data: GetYulifer;
   fibState: ReturnType<typeof getFIBState>;
   resetFibJourney: () => void;
-  shouldResetFib: boolean;
 }
 
-function getProducts({ type, data, fibState, resetFibJourney, shouldResetFib }: GetProducts): IProductProps[] {
+function getProducts({ type, data, fibState, resetFibJourney }: GetProducts): IProductProps[] {
   if (!data) {
     return [];
   }
@@ -127,7 +125,6 @@ function getProducts({ type, data, fibState, resetFibJourney, shouldResetFib }: 
             product: item,
             fibState,
             resetFibJourney,
-            shouldResetFib,
           }),
       };
     })

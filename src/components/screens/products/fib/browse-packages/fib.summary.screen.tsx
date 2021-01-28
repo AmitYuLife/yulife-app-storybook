@@ -17,12 +17,12 @@ import { Package } from "./fib.browse.types";
 import { useBackHandler } from "@services/hooks/useBackHandler";
 import { PackageOptions } from "./subcomponents/package-options/package-options";
 import PackageInfo from "./subcomponents/package-info/package-info";
-import { PackageId } from "../fib.helper";
 import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
 import { Style } from "@styles";
 import * as Animated from "react-native-animatable";
 import { Faq } from "./subcomponents/faqs/faq";
 import { payoutCalculatorSvg } from "./subcomponents/payout-calculator/assets/payout-calculator-svg";
+import { CoverType } from "../../../../../graphql/_core/schema/globalTypes";
 
 interface FibSummaryScreenProps {
   onNavigateBack: () => void;
@@ -30,7 +30,7 @@ interface FibSummaryScreenProps {
   onExit: () => void;
   documents: any;
   selectedPackage: Package;
-  selectCoverType: (coverType: PackageId) => void;
+  selectCoverType: (coverType: CoverType) => void;
   payoutEstimatorItems: ComponentProps<typeof PayoutCalculator>["items"];
   setDeceaseAgeIndexYear: (index: number) => void;
   setDeceaseAgeIndexMonth: (index: number) => void;
@@ -65,7 +65,7 @@ export const FibSummaryScreen = memo(function (props: FibSummaryScreenProps) {
   useBackHandler(backHandler);
 
   const onSelectPackage = (packageId: string) => {
-    const coverType = packageId.toLowerCase() as PackageId;
+    const coverType = packageId.toLowerCase() as CoverType;
     selectCoverType(coverType);
   };
 

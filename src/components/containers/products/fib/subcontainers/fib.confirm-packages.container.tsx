@@ -60,7 +60,7 @@ const documents: IFaq[] = [...fibDocumentsItems, policyScheduleDocument].map((do
 }));
 
 const FibConfirmPackagesContainer = memo(function (props: FibConfirmPackagesContainerProps) {
-  const [selectedCoverType, setSelectedCoverType] = useCover(props?.fibState.selectedPackage || "common");
+  const [selectedCoverType, setSelectedCoverType] = useCover(props?.fibState.selectedPackage || CoverType.epic);
   const [fibQuoteData, setFibQuoteData] = useState<CreateTopUpsQuote_createTopUpsQuote>();
   const [deceaseAgeIndexYear, setDeceaseAgeIndexYear] = useState(0);
   const [deceaseAgeIndexMonth, setDeceaseAgeIndexMonth] = useState(0);

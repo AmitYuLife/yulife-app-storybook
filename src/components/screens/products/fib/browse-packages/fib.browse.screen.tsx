@@ -17,19 +17,19 @@ import PackageInfo from "./subcomponents/package-info/package-info";
 import { Faqs } from "./subcomponents/faqs/faqs";
 import AdditionalBenefits from "./additional-benefits/additional-benefits";
 import { Documents } from "./subcomponents/documents/documents";
-import { PackageId } from "../fib.helper";
 import { Faq, IFaq } from "./subcomponents/faqs/faq";
 import Logger from "@services/logging/logger";
 import { FIB_BROWSE_SCREEN } from "@ids";
 import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
 import { useBackHandler } from "@services/hooks/useBackHandler";
 import { payoutCalculatorSvg } from "./subcomponents/payout-calculator/assets/payout-calculator-svg";
+import { CoverType } from "../../../../../graphql/_core/schema/globalTypes";
 
 interface IFibBrowseScreenProps {
   onNavigateToYuScreen: () => void;
   navigateToCustomCover: () => void;
   onContinue: () => void;
-  selectCoverType: (coverType: PackageId) => void;
+  selectCoverType: (coverType: CoverType) => void;
   selectedPackage: Package;
   documents: IFaq[];
   offset: NativeScrollPoint;
@@ -60,7 +60,7 @@ export const FibBrowseScreen = memo(function (props: IFibBrowseScreenProps) {
 
   const scrollViewRef = useRef<ScrollView>(null);
   const onSelectPackage = (packageId: string) => {
-    const coverType = packageId.toLowerCase() as PackageId;
+    const coverType = packageId.toLowerCase() as CoverType;
     selectCoverType(coverType);
   };
 
