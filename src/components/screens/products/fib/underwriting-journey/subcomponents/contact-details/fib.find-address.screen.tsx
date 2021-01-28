@@ -20,7 +20,7 @@ interface IFibFindAddressScreenProps {
 }
 
 function keyExtractor(item: ISearchItem<Address_findUserAddress>, index: number) {
-  return item.addressPostCode + index;
+  return `${item.addressPostCode}-${item.addressFirstLine}-${item.addressSecondLine}-${index}`;
 }
 
 export const postCodeRegex = /^[A-Z]{1,2}[0-9][A-Z0-9]? ?[0-9][A-Z]{2}$/;
@@ -50,10 +50,7 @@ function _FibFindAddressScreen(props: IFibFindAddressScreenProps) {
   const onChangeText = useCallback(
     (postCode: string) => {
       setPostCode(postCode);
-      const formattedPostCode = formatPostCode(postCode);
-      if (postCodeRegex.test(formattedPostCode) || postCodeRegexSpecial.test(formattedPostCode)) {
-        search({ postcode: formattedPostCode });
-      }
+      search({ postcode: formatPostCode(postCode) });
 
       if (onLoad) {
         setOnLoad(false);
@@ -77,13 +74,14 @@ function _FibFindAddressScreen(props: IFibFindAddressScreenProps) {
   if (data?.findUserAddress.length >= 0 && data.findUserAddress.length !== addressList.length && called) {
     setAddressList(
       data.findUserAddress.map((address: Address_findUserAddress, index: number) => {
+        const addressLine = address.addressSecondLine
+          ? `${address.addressFirstLine}, ${address.addressSecondLine}`
+          : address.addressFirstLine;
         return {
           ...address,
-          onPress: (address: ISearchItem<Address_findUserAddress>) => {
-            onAddressSelected(address);
-          },
+          onPress: () => onAddressSelected(address),
           icon: <AddressIcon color={!index ? Colours.primary.p600 : null} />,
-          text: [address.addressFirstLine, `${address.addressCity}, ${address.addressPostCode} `],
+          text: [addressLine, `${address.addressCity}, ${address.addressPostCode} `],
         };
       })
     );
@@ -110,6 +108,7 @@ function _FibFindAddressScreen(props: IFibFindAddressScreenProps) {
         heading="Contact Details"
         onLeftIconPress={onBackButtonPress}
         onRightIconPress={onClose}
+        hideBorder={false}
       />
     </View>
   );

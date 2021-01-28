@@ -173,7 +173,6 @@ const styles = StyleSheet.create({
   wrapper: {
     alignSelf: "center",
     width: "100%",
-    paddingTop: Style.adjust(16),
   } as ViewStyle,
   paddingHorizontal: {
     paddingHorizontal: Style.adjust(32),

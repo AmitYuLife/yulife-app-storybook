@@ -10,8 +10,7 @@ export default StyleSheet.create({
     backgroundColor: Colours.neutral.white,
   } as ViewStyle,
   padding: {
-    marginLeft: Style.adjust(24),
-    marginRight: Style.adjust(24),
+    marginHorizontal: Style.adjust(32),
   } as ViewStyle,
   text: {
     color: Colours.neutral.n800,

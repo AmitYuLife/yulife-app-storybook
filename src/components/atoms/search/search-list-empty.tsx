@@ -21,7 +21,7 @@ export default SearchListEmpty;
 
 const styles = StyleSheet.create({
   emptyStateView: {
-    paddingHorizontal: Style.adjust(24),
+    paddingHorizontal: Style.adjust(32),
     paddingVertical: Style.adjust(16),
     color: Colours.neutral.n800,
     fontSize: Style.adjust(16),

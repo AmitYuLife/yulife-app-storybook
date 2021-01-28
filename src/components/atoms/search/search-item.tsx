@@ -5,7 +5,7 @@ import { TouchableOpacityWithDelay } from "@molecules";
 import { Colours, Style } from "@styles";
 
 export type ISearchItem<T> = T & {
-  onPress?: (data: T) => void;
+  onPress?: () => void;
   text: string[];
   isConfirm?: boolean;
   icon: JSX.Element;
@@ -16,9 +16,9 @@ function SearchItem({ item, index }: ListRenderItemInfo<ISearchItem<any>>) {
 
   return (
     <TouchableOpacityWithDelay
-      onPress={() => item?.onPress(item)}
+      onPress={item?.onPress}
       style={wrapperStyle}
-      disabled={item?.isConfirm}
+      disabled={!!item?.isConfirm}
       activeOpacity={item?.onPress ? 0.2 : 1}
     >
       <View style={styles.viewWrapper}>

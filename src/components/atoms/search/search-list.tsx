@@ -1,5 +1,5 @@
 import React, { memo, useCallback } from "react";
-import { View, FlatList, ListRenderItem } from "react-native";
+import { FlatList, ListRenderItem, KeyboardAvoidingView, Platform } from "react-native";
 import SearchListEmpty from "./search-list-empty";
 import { Colours } from "@styles";
 import { StyleSheet, ViewStyle } from "react-native";
@@ -38,7 +38,7 @@ function SearchList({
   }, [isLoading, emptyText, emptyElement, data.length]);
 
   return (
-    <View style={styles.searchListWrapper}>
+    <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : null} style={styles.searchListWrapper}>
       <FlatList
         data={data}
         renderItem={searchItem}
@@ -46,8 +46,9 @@ function SearchList({
         refreshing={isLoading}
         onRefresh={onRefresh}
         ListEmptyComponent={emptyComponent()}
+        keyboardShouldPersistTaps="handled"
       />
-    </View>
+    </KeyboardAvoidingView>
   );
 }
 

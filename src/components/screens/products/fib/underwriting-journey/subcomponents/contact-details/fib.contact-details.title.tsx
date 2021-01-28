@@ -20,7 +20,7 @@ export default function ContactDetailsTitle({ title }: ContactDetailsTitleProps)
 const styles = StyleSheet.create({
   wrapper: {
     marginBottom: Style.adjust(16),
-    marginTop: Style.adjust(24),
+    marginTop: Style.adjust(32),
     marginHorizontal: Style.adjust(32),
   },
   text: {

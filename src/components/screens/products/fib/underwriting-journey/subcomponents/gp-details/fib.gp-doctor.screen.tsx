@@ -16,7 +16,7 @@ import GPTitle from "./fib.gp-title";
 interface FibDoctorSelectProps {
   onClose: () => void;
   onNavigateBack: () => void;
-  onSelectGP: (gp: ISearchItem<MedicalPractices_getMedicalPractices_practicioners>) => void;
+  onSelectGP: (gp: MedicalPractices_getMedicalPractices_practicioners) => void;
   selectedPractice: MedicalPractices_getMedicalPractices;
   setManualInput: () => void;
 }
@@ -41,9 +41,7 @@ function _FibGPDoctorSelect(props: FibDoctorSelectProps) {
     (doctor: MedicalPractices_getMedicalPractices_practicioners, index: number) => {
       return {
         ...doctor,
-        onPress: (doctor: ISearchItem<MedicalPractices_getMedicalPractices_practicioners>) => {
-          onSelectGP(doctor);
-        },
+        onPress: () => onSelectGP(doctor),
         icon: <DoctorIcon color={!index ? Colours.primary.p600 : null} />,
         text: [`Dr. ${doctor.name}`],
       };
