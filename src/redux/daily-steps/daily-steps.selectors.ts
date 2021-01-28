@@ -8,3 +8,6 @@ export const getLastUpdated = (state: IReduxState) => state.dailySteps.lastUpdat
 export const getLastUpdatedBeforeToday = (state: IReduxState) => state.dailySteps.lastUpdatedBeforeToday;
 export const getExchangeRate = (state: IReduxState) => state.dailySteps.exchangeRate;
 export const getDailyStepsIsFetching = (state: IReduxState) => state.dailySteps.isFetching;
+export const getDailyStepsStateForPedometerUpdate = ({
+  dailySteps: { isServerFetchedThisSession, dailySteps, isSyncing },
+}: IReduxState) => ({ isServerFetchedThisSession, dailySteps, isSyncing });

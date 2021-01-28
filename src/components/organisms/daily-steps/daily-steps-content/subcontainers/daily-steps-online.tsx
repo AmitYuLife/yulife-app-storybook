@@ -1,11 +1,10 @@
-import React from "react";
+import React, { memo } from "react";
 import { Button, Pad, Text } from "@atoms";
 import { Counter } from "@molecules";
 import { StyleSheet, TextStyle, View, ViewStyle } from "react-native";
 import { displaySecondsAsMinutes, padNum } from "@services/utils";
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
 import { getDailyEarnedCoins } from "@redux/coins/coins.selectors";
-import { IReduxState } from "@redux/_core/reducers";
 import { Style } from "@styles";
 import { getUserFeatures } from "@redux/user/user.selectors";
 import { getChallengesStatus } from "@redux/levels/levels.selectors";
@@ -14,23 +13,13 @@ import { getDailySteps } from "@redux/daily-steps/daily-steps.selectors";
 import { getDailyMeditation } from "@redux/daily-meditation/daily-meditation.selectors";
 import { getDailyStepsTheme } from "@redux/theme/theme.selectors";
 
-type ConnectedProps = ReturnType<typeof mapStateToProps>;
-
-type Props = ConnectedProps;
-
-const _DailyStepsOnline = (props: Props) => {
-  const {
-    dailyEarnedCoins,
-    usePassiveMeditation,
-    showCounter = false,
-    displayEarnMore,
-    dailySteps,
-    dailyMeditation,
-    textStyle,
-  } = props;
+const _DailyStepsOnline = () => {
+  const dailyMeditation = useSelector(getDailyMeditation);
+  const { usePassiveMeditation } = useSelector(getUserFeatures);
+  const { isAvailable: displayEarnMore } = useSelector(getChallengesStatus);
+  const { textStyle } = useSelector(getDailyStepsTheme);
 
   const flattenStyle = StyleSheet.flatten([styles.heading, textStyle]);
-  const counterType = dailySteps === 1 ? "step" : "steps";
   const mindfulTotal = displaySecondsAsMinutes(dailyMeditation);
   const mindfulTotalToDisplay =
     mindfulTotal.minutes === 1
@@ -39,26 +28,17 @@ const _DailyStepsOnline = (props: Props) => {
 
   return (
     <View style={styles.dailyStepsOnlineWrapper}>
-      {showCounter ? (
+      {
         <View style={styles.counterWrapper}>
-          <Counter value={dailySteps} textStyle={textStyle} textAfterValue={counterType} />
+          <StepCounter textStyle={textStyle} />
           {usePassiveMeditation && dailyMeditation > 0 ? (
             <Text style={textStyle}>{dailyMeditation ? mindfulTotalToDisplay : ""}</Text>
           ) : null}
         </View>
-      ) : (
-        <Text style={textStyle}>
-          {dailySteps} {counterType}
-          {usePassiveMeditation && dailyMeditation > 0 ? mindfulTotalToDisplay : ""}
-        </Text>
-      )}
+      }
       <Pad height={4} />
       <Text>
-        {showCounter ? (
-          <Counter duration={1200} value={dailyEarnedCoins} textStyle={flattenStyle} />
-        ) : (
-          <Text style={flattenStyle}>{dailyEarnedCoins}</Text>
-        )}
+        <YuCoinCounter textStyle={flattenStyle} />
         <Text style={flattenStyle} bold={true}>
           {` yu`}
         </Text>
@@ -73,19 +53,24 @@ const _DailyStepsOnline = (props: Props) => {
   );
 };
 
-const mapStateToProps = (state: IReduxState) => ({
-  dailyEarnedCoins: getDailyEarnedCoins(state),
-  usePassiveMeditation: getUserFeatures(state).usePassiveMeditation,
-  showCounter: getUserFeatures(state).showCounter,
-  displayEarnMore: getChallengesStatus(state).isAvailable,
-  dailySteps: getDailySteps(state),
-  dailyMeditation: getDailyMeditation(state),
-  textStyle: getDailyStepsTheme(state).textStyle,
+interface CounterProps {
+  textStyle: TextStyle;
+}
+
+const StepCounter = memo(function _StepsCounter({ textStyle }: CounterProps) {
+  const dailySteps = useSelector(getDailySteps);
+  const counterType = dailySteps === 1 ? "step" : "steps";
+
+  return <Counter value={dailySteps} textStyle={textStyle} textAfterValue={counterType} />;
 });
 
-const redux = connect(mapStateToProps);
+const YuCoinCounter = memo(function _YuCoinCounter({ textStyle }: CounterProps) {
+  const dailyEarnedCoins = useSelector(getDailyEarnedCoins);
 
-export const DailyStepsOnline = redux(_DailyStepsOnline);
+  return <Counter duration={1200} value={dailyEarnedCoins} textStyle={textStyle} />;
+});
+
+export const DailyStepsOnline = memo(_DailyStepsOnline);
 
 const styles = {
   counterWrapper: {
