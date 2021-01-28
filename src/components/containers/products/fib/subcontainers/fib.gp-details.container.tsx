@@ -102,16 +102,16 @@ const FibGPDetailsContainer = memo(function (props: IFibGPDetailsContainerProps 
     } else {
       const address3 =
         selectedMedicalPractice.address4 && selectedMedicalPractice.address5 && selectedMedicalPractice.address3
-          ? `\n\n${selectedMedicalPractice.address3}`
+          ? `\n${selectedMedicalPractice.address3}`
           : "";
 
       const practiceTown =
         selectedMedicalPractice.address4 || selectedMedicalPractice.address5
-          ? `${selectedMedicalPractice.address4 ?? ""}\n\n${selectedMedicalPractice.address5 ?? ""}`
+          ? `${selectedMedicalPractice.address4 ?? ""}\n${selectedMedicalPractice.address5 ?? ""}`
           : selectedMedicalPractice.address3;
       gpDetails = {
         practiceName: selectedMedicalPractice.name,
-        practiceAddress: `${selectedMedicalPractice.address1 ?? ""}\n\n${
+        practiceAddress: `${selectedMedicalPractice.address1 ?? ""}\n${
           selectedMedicalPractice.address2 ?? ""
         }${address3}`,
         practiceTown: practiceTown,
