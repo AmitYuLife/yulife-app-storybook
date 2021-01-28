@@ -7,6 +7,7 @@ import { SFC } from "react";
 import { Image, ImageRequireSource, View } from "react-native";
 import GenericHeadingAbsolute from "@atoms/generic-heading/generic-heading-absolute";
 import styles, { CLOSE_WRAPPER_TOP_MARGIN } from "./menu.screen.styles";
+import { Style } from "@styles";
 
 export interface IMenuLink {
   condition?: boolean;
@@ -21,6 +22,8 @@ interface IProps {
   onDebugPress: (() => void) | null;
   version: string;
 }
+
+const HIT_SLOP = { left: Style.DEVICE_WIDTH / 3 };
 
 const MenuScreen: SFC<IProps> = ({ onDebugPress, onPressClose, links, version }) => (
   <>
@@ -38,6 +41,7 @@ const MenuScreen: SFC<IProps> = ({ onDebugPress, onPressClose, links, version })
                 style={styles.itemWrapper}
                 onPress={onPress}
                 testID={MENU_ITEM(label)}
+                hitSlop={HIT_SLOP}
               >
                 {!source ? null : (
                   <View style={styles.iconWrapper}>
