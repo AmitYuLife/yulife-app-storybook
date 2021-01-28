@@ -10,6 +10,7 @@ import { Button } from "@atoms";
 import { BUTTON_ICON } from "@atoms/button/tertiary-button/tertiary-button.helpers";
 import DateTimePicker from "react-native-modal-datetime-picker";
 import { BUTTON_TYPES } from "@atoms/button/button.types";
+import { Colours } from "@styles";
 
 type ConnectedProps = ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps & IProps;
 interface IProps {
@@ -70,6 +71,7 @@ const _FibInputBirth = (props: ConnectedProps) => {
         onConfirm={handleChange}
         onCancel={handleCancel}
         maximumDate={moment().toDate()}
+        textColor={Colours.neutral.n900}
       />
     </View>
   );
