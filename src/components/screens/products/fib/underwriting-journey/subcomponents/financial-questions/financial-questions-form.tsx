@@ -3,6 +3,7 @@ import { View, StyleSheet, Platform, ViewStyle } from "react-native";
 import { TextField } from "@components/molecules";
 import { CheckBox, Text, Pad } from "@atoms";
 import { Style, Colours } from "@styles";
+import { addCommasToNumber } from "@services/utils";
 
 const canStringBeValidNumber = (val: string) => Boolean(Number(val));
 
@@ -17,24 +18,24 @@ interface Field {
 
 const fields: Field[] = [
   {
-    id: "cover-name",
+    id: "coverName",
     label: "Cover name",
   },
   {
-    id: "company-held",
+    id: "companyName",
     label: "Company held / proposed with",
   },
   {
-    id: "amount-of-cover",
+    id: "coverAmount",
     label: "Amount of cover",
     validate: { validator: canStringBeValidNumber, errorMessage: "Amount of cover should be a number" },
   },
   {
-    id: "reason-for-cover",
+    id: "coverReason",
     label: "Reason for cover",
   },
   {
-    id: "will-the-policy-remain",
+    id: "coverRemainInForce",
     label: "Will the policy remain in force?",
   },
 ];
@@ -101,12 +102,14 @@ export function FinancialQuestionsForm(props: Props) {
         onFocus={handleFocus(0)}
         onChange={(val) => updateFormValue(fields[0].id, val)}
         placeholder={fields[0].label}
+        value={formValue?.coverName}
       />
       <View style={styles.padBig} />
       <TextField
         onFocus={handleFocus(1)}
         onChange={(val) => updateFormValue(fields[1].id, val)}
         placeholder={fields[1].label}
+        value={formValue?.companyName}
       />
       <View style={styles.pad} />
       <View style={styles.marginTop}>
@@ -120,6 +123,7 @@ export function FinancialQuestionsForm(props: Props) {
             placeholder={fields[2].label}
             type="Number"
             placeholderIndentSize={16}
+            value={addCommasToNumber(parseInt(formValue?.coverAmount, 10) || 0)}
           />
         </View>
       </View>
@@ -131,9 +135,13 @@ export function FinancialQuestionsForm(props: Props) {
         onFocus={handleFocus(3)}
         onChange={(val) => updateFormValue(fields[3].id, val)}
         placeholder={fields[3].label}
+        value={formValue?.coverReason}
       />
       <View style={styles.padBig} />
-      <RadioInput onChange={(val) => updateFormValue(fields[4].id, val)} selectedValue={formValue[fields[4].id]} />
+      <RadioInput
+        onChange={(val) => updateFormValue(fields[4].id, val)}
+        selectedValue={formValue?.coverRemainsInForce || formValue[fields[4].id]}
+      />
     </View>
   );
 }

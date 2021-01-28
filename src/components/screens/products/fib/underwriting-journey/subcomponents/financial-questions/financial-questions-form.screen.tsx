@@ -12,10 +12,9 @@ import {
 import FibTitle from "@atoms/fib/title/title";
 import { FinancialQuestionsForm, defaultFormValue, FormValue } from "./financial-questions-form";
 import { IFibUnderwritingJourneyScreenProps } from "../../fib.underwriting-journey.screen";
-import { connect } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { updateFIBAnswerValue } from "@redux/product/product.actions";
 import { getFIBState } from "@redux/product/product.selectors";
-import { IReduxState } from "@redux/_core/reducers";
 import { Cover } from "@components/containers/products/fib/fib.types";
 import GenericOverlay from "@components/modals/generic-overlay/generic-overlay";
 import { Navigation } from "react-native-navigation";
@@ -24,13 +23,23 @@ import { Button } from "@atoms";
 import { Style } from "@styles";
 import { useBackHandler } from "@services/hooks/useBackHandler";
 
-type Props = IFibUnderwritingJourneyScreenProps & ConnectedState;
-type ConnectedState = ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps;
+type Props = IFibUnderwritingJourneyScreenProps & {
+  data: {
+    coverForm: Cover;
+    question: string;
+  };
+};
 
 const FORM_HEIGHT = Style.adjust(72);
+const INITIAL_COVER_ID = 1;
 
-export function _FinancialQuestionsFormScreen(props: Props) {
-  const { data, existingCovers, updateExistingCovers } = props;
+export default function FinancialQuestionsFormScreen(props: Props) {
+  const existingCovers = useSelector(getFIBState).answers.existingCovers;
+  const dispatch = useDispatch();
+  const updateExistingCovers = (value: Cover[]) => dispatch(updateFIBAnswerValue({ key: "existingCovers", value }));
+  const { data } = props;
+  const { coverForm } = data;
+
   const scrollViewRef = useRef<ScrollView>(null);
   const isKeyboardUp = useRef(false);
   const keyboardAnimationTimeout = useRef<ReturnType<typeof setTimeout>>(null);
@@ -53,20 +62,30 @@ export function _FinancialQuestionsFormScreen(props: Props) {
 
   const keyboardTimeout = useRef(null);
 
-  const [formValue, setFormValue] = useState<FormValue>(defaultFormValue);
-  const [isFormValid, setFormValidState] = useState(false);
+  const [formValue, setFormValue] = useState<FormValue>(coverForm || defaultFormValue);
+  const [isFormValid, setFormValidState] = useState(!!coverForm);
 
   async function submitForm() {
     const cover: Cover = {
-      companyName: formValue["company-held"],
-      coverAmount: Number(formValue["amount-of-cover"]),
-      coverName: formValue["cover-name"],
-      coverReason: formValue["reason-for-cover"],
-      coverRemainInForce: formValue["will-the-policy-remain"],
+      companyName: formValue.companyName,
+      coverAmount: Number(formValue.coverAmount),
+      coverName: formValue.coverName,
+      coverReason: formValue.coverReason,
+      coverRemainInForce: formValue.coverRemainInForce,
       coverId: !existingCovers.length
-        ? 0
-        : existingCovers.reduce((acc, curr) => (acc > curr.coverId ? acc : curr.coverId || 0), 0) + 1,
+        ? INITIAL_COVER_ID
+        : existingCovers.reduce(
+            (acc, curr) => (acc > curr.coverId ? acc : curr.coverId || INITIAL_COVER_ID),
+            INITIAL_COVER_ID
+          ) + 1,
     };
+
+    if (coverForm) {
+      const activeCoverIndex = existingCovers.findIndex((item: Cover) => item.coverId === coverForm.coverId);
+      existingCovers[activeCoverIndex] = { ...cover, coverId: coverForm.coverId };
+      updateExistingCovers(existingCovers);
+      return dismissOverlay();
+    }
 
     updateExistingCovers([...existingCovers, cover]);
     dismissOverlay();
@@ -132,19 +151,6 @@ export function _FinancialQuestionsFormScreen(props: Props) {
     </GenericOverlay>
   );
 }
-
-function mapStateToProps(store: IReduxState) {
-  return {
-    existingCovers: getFIBState(store).answers.existingCovers,
-  };
-}
-
-const mapDispatchToProps = {
-  updateExistingCovers: (value: Cover[]) => updateFIBAnswerValue({ key: "existingCovers", value }),
-};
-
-const FinancialQuestionsFormScreen = connect(mapStateToProps, mapDispatchToProps)(_FinancialQuestionsFormScreen);
-export default FinancialQuestionsFormScreen;
 
 const styles = StyleSheet.create({
   pad: {
