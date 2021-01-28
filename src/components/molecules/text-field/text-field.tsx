@@ -5,6 +5,7 @@ import { Placeholder } from "./subcomponents/placeholder";
 import { BaseUnderline, ColouredUnderline } from "./subcomponents/underlines";
 import { addCommasToNumber, formatPostCode } from "@services/utils";
 import Warning from "@atoms/text-input/assets/warning";
+import { useMaterialInputAnimation } from "./useMaterialInputAnimation";
 
 type Type = "Text" | "Number" | "PhoneNumber" | "PostCode" | "PostCodeFinder";
 
@@ -82,33 +83,14 @@ export default function TextField(props: Props) {
     setActiveMaterial(false);
   }, [isFocused, textInputValue]);
 
-  useEffect(() => {
-    const scaleAnim = Animated.timing(placeholderScale, {
-      toValue: activeMaterial ? 0.7 : 1,
-      useNativeDriver: true,
-      duration: 100,
-    });
-
-    const translateYAnim = Animated.timing(placeholderTranslateY, {
-      toValue: activeMaterial ? -32 : 0,
-      useNativeDriver: true,
-      duration: 100,
-    });
-
-    const materialUnderlineScaleXAnim = Animated.timing(materialUnderlineScaleX, {
-      toValue: isFocused ? 105 : 0,
-      useNativeDriver: true,
-      duration: 200,
-    });
-
-    const placeholderOpacityAnim = Animated.timing(placeholderOpacity, {
-      toValue: activeMaterial ? 1 : 0.5,
-      useNativeDriver: true,
-      duration: 100,
-    });
-
-    Animated.parallel([scaleAnim, translateYAnim, materialUnderlineScaleXAnim, placeholderOpacityAnim]).start();
-  }, [activeMaterial, placeholderScale, placeholderTranslateY, isFocused, materialUnderlineScaleX, placeholderOpacity]);
+  useMaterialInputAnimation({
+    activeMaterial,
+    isFocused,
+    materialUnderlineScaleX,
+    placeholderOpacity,
+    placeholderScale,
+    placeholderTranslateY,
+  });
 
   return (
     <>

@@ -1,5 +1,5 @@
 import React from "react";
-import { connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { View, StyleSheet } from "react-native";
 import { Text, BorderedPlus, Bin } from "@atoms";
 import { PressableWithDelay } from "@components/molecules";
@@ -8,19 +8,23 @@ import { updateFIBAnswerValue } from "@redux/product/product.actions";
 import { addCommasToNumber, truncate } from "@services/utils";
 import { styles, getColorScheme } from "./financial-questions-cover-list.styles";
 import { removeByIndex, openModal } from "./financial-questions-cover-list.helpers";
+import { getFIBState } from "@redux/product/product.selectors";
 
-type Props = typeof mapDispatchToProps & {
-  existingCovers: Cover[];
-  onAddCover: () => void;
+type Props = {
+  onAddCover: (cover?: Cover) => () => void;
 };
 
-function _FinancialQuestionsCoverList(props: Props) {
-  const { updateExistingCovers, onAddCover, existingCovers } = props;
+export function FinancialQuestionsCoverList(props: Props) {
+  const dispatch = useDispatch();
+  const existingCovers: Cover[] = useSelector(getFIBState).answers.existingCovers;
+  const updateExistingCovers = (value: Cover[]) => dispatch(updateFIBAnswerValue({ key: "existingCovers", value }));
+
+  const { onAddCover } = props;
 
   return (
     <View style={styles.wrapper}>
       {(existingCovers || []).map((cover, index) => {
-        const covers = removeByIndex(props.existingCovers, index);
+        const covers = removeByIndex(existingCovers, index);
 
         function removeItem() {
           updateExistingCovers(covers);
@@ -29,7 +33,7 @@ function _FinancialQuestionsCoverList(props: Props) {
         const { iconColor, backgroundColor, borderColor } = getColorScheme(cover.coverId);
 
         return (
-          <View
+          <PressableWithDelay
             style={StyleSheet.flatten([
               styles.coverCardWrapper,
               {
@@ -38,6 +42,7 @@ function _FinancialQuestionsCoverList(props: Props) {
               },
             ])}
             key={cover.coverName}
+            onPress={onAddCover(cover)}
           >
             <View style={styles.coverCardTextWrapper}>
               <Text style={StyleSheet.flatten([styles.coverCardText, styles.bold])}>
@@ -49,10 +54,10 @@ function _FinancialQuestionsCoverList(props: Props) {
             <PressableWithDelay style={styles.bin} hitSlop={{ left: 10 }} onPress={() => openModal(removeItem)}>
               <Bin color={iconColor} />
             </PressableWithDelay>
-          </View>
+          </PressableWithDelay>
         );
       })}
-      <PressableWithDelay onPress={onAddCover}>
+      <PressableWithDelay onPress={onAddCover()}>
         <View style={styles.addCoverWrapper}>
           <BorderedPlus />
           <Text style={styles.addCoverText}>Add cover</Text>
@@ -61,9 +66,3 @@ function _FinancialQuestionsCoverList(props: Props) {
     </View>
   );
 }
-
-const mapDispatchToProps = {
-  updateExistingCovers: (value: Cover[]) => updateFIBAnswerValue({ key: "existingCovers", value }),
-};
-
-export const FinancialQuestionsCoverList = connect(null, mapDispatchToProps)(_FinancialQuestionsCoverList);
