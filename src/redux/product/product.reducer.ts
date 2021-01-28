@@ -32,7 +32,7 @@ import {
   FIB_HIGH_BLOOD_PRESSURE_EXTRA_SCREEN,
   FIB_HIGH_CHOLESTEROL_EXTRA_SCREEN,
 } from "../../components/containers/products/fib/data/underwriting-journey-data";
-import { ScreeningStatus, YuWorld } from "@graphql/_core/schema/globalTypes";
+import { CoverType, ScreeningStatus, YuWorld } from "@graphql/_core/schema/globalTypes";
 
 export { IProductStore } from "./product.types";
 
@@ -78,7 +78,7 @@ export const getInitialState = (): IProductStore => ({
       gpName: "",
     },
     salary: 0,
-    selectedPackage: "common",
+    selectedPackage: CoverType.epic,
     quoteDate: "",
     lastQuestionId: "",
     hasPriceChanged: false,

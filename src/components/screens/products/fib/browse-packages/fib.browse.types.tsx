@@ -1,4 +1,4 @@
-import { PackageId } from "../fib.helper";
+import { CoverType } from "../../../../../graphql/_core/schema/globalTypes";
 
 interface IPackagePowersProps {
   id: string;
@@ -19,7 +19,7 @@ interface IServerPackageProps {
 }
 
 interface ILocalPackageProps {
-  id: PackageId;
+  id: CoverType;
   label: string;
   descriptionHeading: string;
 }

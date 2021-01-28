@@ -1,9 +1,8 @@
-import { PackageId } from "../../components/screens/products/fib/fib.helper";
 import { Cover } from "@components/containers/products/fib/fib.types";
 import { RehydrateAction } from "redux-persist";
 import { logOutSuccess, getUserSuccess } from "@redux/user/user.actions";
 import { CreateTopUpsQuote_createTopUpsQuote, GetTopUpsQuote_getTopUpsQuote } from "../../graphql/_core/schema";
-import { ScreeningStatus, YuWorld } from "../../graphql/_core/schema/globalTypes";
+import { CoverType, ScreeningStatus, YuWorld } from "../../graphql/_core/schema/globalTypes";
 export const UPDATE_FIB_VALUE = "UPDATE_FIB_VALUE";
 export const RESET_FIB = "RESET_FIB";
 export const UPDATE_FIB_MEDICAL_VALUE = "UPDATE_FIB_MEDICAL_VALUE";
@@ -80,7 +79,7 @@ export interface GPDetails {
 export interface FIBStore {
   answers: FibAnswers;
   salary: number;
-  selectedPackage: PackageId;
+  selectedPackage: CoverType;
   quoteDate: string;
   lastQuestionId: string;
   actualCost: number;

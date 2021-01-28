@@ -19,7 +19,6 @@ import { getIsEmployerProduct } from "../../yu-types";
 import { navigateToProductScreen } from "../../navigation/navigateToProductScreen";
 import { useSelector, useDispatch } from "react-redux";
 import { getFIBState } from "@redux/product/product.selectors";
-import { getUserFeatures } from "@redux/user/user.selectors";
 import { refreshFIBStore, resetFIBUnderwritingJourney } from "@redux/product/product.actions";
 import { CoinLabel } from "./coin-label";
 import { useBackHandler } from "@services/hooks/useBackHandler";
@@ -87,7 +86,6 @@ export const ToolTip = ({ productId, onClose }: IToolTipProps) => {
 
   const IconSvg = useMemo(() => getProductIcon(product?.itemSlot), [product]);
 
-  const shouldResetFib = useSelector(getUserFeatures).resetFib;
   const [updateFibQuote] = useMutation<UpdateTopUpsQuote_updateFibQuote, UpdateTopUpsQuoteVariables>(
     GQL_MUTATION_UPDATE_TOP_UPS_QUOTE
   );
@@ -107,10 +105,9 @@ export const ToolTip = ({ productId, onClose }: IToolTipProps) => {
     navigateToProductScreen({
       product,
       fibState,
-      shouldResetFib,
       resetFibJourney,
     });
-  }, [product, fibState, shouldResetFib, onClose, resetFibJourney]);
+  }, [product, fibState, onClose, resetFibJourney]);
 
   useBackHandler(() => {
     if (!productId || !product) {

@@ -9,12 +9,11 @@ import FibTitle from "../../../../../atoms/fib/title/title";
 export interface IFibRejectedScreenProps {
   onClose?: () => void;
   onResetFib?: () => void;
-  updateStatus: () => void;
   canResetFib: boolean;
 }
 
 export const FibRejectedScreen = memo(function (props: IFibRejectedScreenProps) {
-  const { onClose, onResetFib, updateStatus, canResetFib } = props;
+  const { onClose, onResetFib, canResetFib } = props;
 
   const backHandler = useCallback(() => {
     onClose();
@@ -22,7 +21,6 @@ export const FibRejectedScreen = memo(function (props: IFibRejectedScreenProps) 
   }, [onClose]);
 
   const onContinue = () => {
-    updateStatus();
     onClose();
   };
 
