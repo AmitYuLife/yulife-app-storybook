@@ -89,7 +89,7 @@ export const generalTermsOfBusiness = {
   id: "general-term-of-business",
   question: "General Terms of Business",
   iconSvgXml: pdfIcon,
-  url: `${Config.WEB_SITE_URL}`, // TODO: Change placeholder
+  url: `${Config.WEB_SITE_URL}static/docs/e2e/general-terms-of-business/1.0.3/general-terms-of-business.pdf`,
 };
 
 export default [policyTermsConditions, privacyPolicy, rewardsPolicy, keyFacts, policySummary, generalTermsOfBusiness];
