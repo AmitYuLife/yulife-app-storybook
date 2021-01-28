@@ -19,7 +19,7 @@ import { Colours } from "../../../../../../../styles";
 interface GpPracticeSearchScreenProps {
   onClose: () => void;
   onNavigateBack: () => void;
-  onSelectMedicalPractice: (practice: ISearchItem<MedicalPractices_getMedicalPractices>) => void;
+  onSelectMedicalPractice: (practice: MedicalPractices_getMedicalPractices) => void;
   name: string;
   setName: (value: React.SetStateAction<string>) => void;
   setManualInput: () => void;
@@ -82,9 +82,7 @@ function _FibGPPracticeSearchScreen(props: GpPracticeSearchScreenProps) {
         const thirdLine = `${practiceTown}, ${practice.postCode}`;
         return {
           ...practice,
-          onPress: (practice: ISearchItem<MedicalPractices_getMedicalPractices>) => {
-            onSelectMedicalPractice(practice);
-          },
+          onPress: () => onSelectMedicalPractice(practice),
           icon: <MedicalPracticeIcon color={!index ? Colours.primary.p600 : null} />,
           text: [firstLine, secondLine, thirdLine],
         };
