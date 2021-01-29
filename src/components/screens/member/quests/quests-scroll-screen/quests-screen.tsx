@@ -48,6 +48,7 @@ class QuestsScreen extends React.PureComponent<IProps, IState> {
     UI: getInitialState(this.props.currentLevel),
   };
   public flatList: FlatList<IMapSlice>;
+  public timer: NodeJS.Timeout = null;
 
   public constructor(props: IProps) {
     super(props);
@@ -64,6 +65,10 @@ class QuestsScreen extends React.PureComponent<IProps, IState> {
     if ((prevProps.loading && !this.props.loading) || (prevProps.unity && !this.props.unity)) {
       this.scrollToActiveLevel();
     }
+  }
+
+  public componentWillUnmount() {
+    clearTimeout(this.timer);
   }
 
   public render() {
@@ -115,7 +120,7 @@ class QuestsScreen extends React.PureComponent<IProps, IState> {
     if (result && result.episodeSettings) {
       const { topBarType } = result.episodeSettings;
 
-      global.setTimeout(() => {
+      this.timer = global.setTimeout(() => {
         if (this.flatList) {
           this.setState({ UI: { topBarType } }, () => {
             const currentEpisode = getCurrentEpisode(normalizedLevel);

@@ -1,4 +1,4 @@
-import React, { useRef, RefObject, useCallback, useState } from "react";
+import React, { useRef, RefObject, useCallback, useState, useEffect } from "react";
 import {
   Animated,
   FlatList as _FlatList,
@@ -53,6 +53,7 @@ const _LeaderboardContentContainer = ({
   const [scrollValue] = useState(new Animated.Value(0));
   const [flatListHeight, setFlatListHeight] = useState(0);
   const flatListRef: RefObject<_FlatList> = useRef();
+  const timer = useRef<NodeJS.Timeout>(null);
   const leaderboardItems = query?.getLeaderboard || [];
   const myLeaderboardItem = leaderboardItems.find((item) => item.userId === currentUserId);
   const setDuelDialog = useCallback(
@@ -60,13 +61,21 @@ const _LeaderboardContentContainer = ({
       setDuelDialogId(value);
       const index = leaderboardItems.findIndex((item) => `lead_${item.userId}` === value);
       if (index === leaderboardItems.length - 1) {
-        setTimeout(() => {
+        timer.current = setTimeout(() => {
           flatListRef.current?.scrollToIndex({ index, animated: true });
         }, 200);
       }
     },
     [leaderboardItems]
   );
+
+  useEffect(() => {
+    return () => {
+      if (timer?.current) {
+        clearTimeout(timer.current);
+      }
+    };
+  }, []);
 
   const list = resToList({
     leaderboardItems,

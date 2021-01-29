@@ -66,11 +66,12 @@ export const FibBrowseScreen = memo(function (props: IFibBrowseScreenProps) {
 
   useEffect(() => {
     if (offset && offset.y > 0) {
-      setTimeout(() => {
+      const timer = setTimeout(() => {
         if (scrollViewRef.current && scrollViewRef.current.scrollTo) {
           scrollViewRef.current.scrollTo({ ...offset, animated: false });
         }
       }, 0);
+      return () => clearTimeout(timer);
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
