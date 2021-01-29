@@ -14,6 +14,8 @@ type Props = {
   onAddCover: (cover?: Cover) => () => void;
 };
 
+const BIN_HIT_SLOP = { left: 20, top: 20, bottom: 20 };
+
 export function FinancialQuestionsCoverList(props: Props) {
   const dispatch = useDispatch();
   const existingCovers: Cover[] = useSelector(getFIBState).answers.existingCovers;
@@ -51,7 +53,7 @@ export function FinancialQuestionsCoverList(props: Props) {
               <Text style={styles.coverCardText}>{truncate(cover.companyName, 20)}</Text>
               <Text style={styles.coverCardText}>{`£${addCommasToNumber(cover.coverAmount)}`}</Text>
             </View>
-            <PressableWithDelay style={styles.bin} hitSlop={{ left: 10 }} onPress={() => openModal(removeItem)}>
+            <PressableWithDelay style={styles.bin} hitSlop={BIN_HIT_SLOP} onPress={() => openModal(removeItem)}>
               <Bin color={iconColor} />
             </PressableWithDelay>
           </PressableWithDelay>

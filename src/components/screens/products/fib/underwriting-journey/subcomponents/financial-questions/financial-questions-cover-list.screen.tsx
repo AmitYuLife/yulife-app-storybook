@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
     height: Style.adjust(40),
   } as ViewStyle,
   topPad: {
-    height: Style.adjust(32),
+    height: Style.adjust(24),
   } as ViewStyle,
 });
 
