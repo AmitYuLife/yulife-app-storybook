@@ -40,7 +40,7 @@ function _FibFindAddressScreen(props: IFibFindAddressScreenProps) {
   const [onLoad, setOnLoad] = useState(true);
   const [postCode, setPostCode] = useState<string>(null);
 
-  const [search, { loading, data, networkStatus, called }] = useDebouncedQuery<Address, AddressVariables>(
+  const [search, { loading, data, networkStatus, called, error }] = useDebouncedQuery<Address, AddressVariables>(
     GQL_QUERY_GET_ADDRESS_BY_POSTCODE,
     { fetchPolicy: "cache-and-network" },
     null,
@@ -85,6 +85,10 @@ function _FibFindAddressScreen(props: IFibFindAddressScreenProps) {
         };
       })
     );
+  }
+
+  if (error && addressList.length !== 0) {
+    setAddressList([]);
   }
 
   const emptyText = onLoad

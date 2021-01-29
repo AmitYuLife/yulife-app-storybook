@@ -66,7 +66,12 @@ function _FibGPDoctorSelect(props: FibDoctorSelectProps) {
           }
         />
       </View>
-      <GenericHeadingAbsolute heading="GP Report" onLeftIconPress={onNavigateBack} onRightIconPress={onClose} />
+      <GenericHeadingAbsolute
+        heading="GP Report"
+        onLeftIconPress={onNavigateBack}
+        onRightIconPress={onClose}
+        hideBorder={false}
+      />
     </View>
   );
 }
@@ -76,9 +81,18 @@ export const FibGPDoctorSelect = memo(_FibGPDoctorSelect);
 const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
+    backgroundColor: Colours.neutral.n50,
   } as ViewStyle,
-  listWrapper: { marginBottom: Style.adjust(16), flex: 1, backgroundColor: Colours.neutral.n50 } as ViewStyle,
-  footerWrapper: { paddingHorizontal: Style.adjust(32), flex: 1, marginVertical: Style.adjust(24) } as ViewStyle,
+  listWrapper: {
+    marginBottom: Style.adjust(16),
+    flex: 1,
+    backgroundColor: Colours.neutral.n50,
+  } as ViewStyle,
+  footerWrapper: {
+    paddingHorizontal: Style.adjust(32),
+    flex: 1,
+    marginVertical: Style.adjust(24),
+  } as ViewStyle,
   textStyle: {
     fontSize: 16,
     lineHeight: 24,

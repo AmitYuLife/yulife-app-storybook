@@ -183,8 +183,8 @@ const FibGPDetailsContainer = memo(function (props: IFibGPDetailsContainerProps 
       case "medical_practice_search":
         return setView("consent");
       case "medical_select_gp":
-        setSelectedMedicalPractice(null);
-        return setView("medical_practice_search");
+        setView("medical_practice_search");
+        return setSelectedMedicalPractice(null);
       case "medical_confirm":
         if (manualInput) {
           return setView("medical_manually_input");
