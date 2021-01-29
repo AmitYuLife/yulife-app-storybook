@@ -27,6 +27,12 @@ export function useDebouncedQuery<TData, TVariables>(
     if (initialQuery) {
       fireQuery(initialQuery);
     }
+
+    () => {
+      if (timerId?.current) {
+        clearTimeout(timerId.current);
+      }
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
