@@ -1,17 +1,14 @@
 import { SyncAction } from "../_core/types";
 
-export const DAILY_STEPS_COIN_CLICKED = "DAILY_STEPS_COIN_CLICKED";
-export const VIEW_LEADERBOARD_SCREEN = "VIEW_LEADERBOARD_SCREEN";
+export const PRODUCT_ITEM_VIEWED = "PRODUCT_ITEM_VIEWED";
+export const PRODUCT_ITEM_INSPECTED = "PRODUCT_ITEM_INSPECTED";
 
-export const dailyStepsCoinClicked = (): SyncAction => ({
-  type: DAILY_STEPS_COIN_CLICKED,
+export const logProductItemViewedActionCreator = (productId: string): SyncAction => ({
+  type: PRODUCT_ITEM_VIEWED,
+  payload: { productId },
 });
 
-interface ViewLeaderboardScreenPayload {
-  newId: string;
-}
-
-export const viewLeaderboardScreen = (payload: ViewLeaderboardScreenPayload): SyncAction => ({
-  payload,
-  type: VIEW_LEADERBOARD_SCREEN,
+export const logProductItemInspectedActionCreator = (productId: string): SyncAction => ({
+  type: PRODUCT_ITEM_INSPECTED,
+  payload: { productId },
 });
