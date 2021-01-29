@@ -1,19 +1,27 @@
 import { call, takeEvery } from "redux-saga/effects";
 import Logger from "../../services/logging/logger";
-import { DAILY_STEPS_COIN_CLICKED, VIEW_LEADERBOARD_SCREEN, viewLeaderboardScreen } from "./logging.actions";
+import {
+  PRODUCT_ITEM_VIEWED,
+  PRODUCT_ITEM_INSPECTED,
+  logProductItemViewedActionCreator,
+  logProductItemInspectedActionCreator,
+} from "./logging.actions";
 
-export function* logDailyStepsCoinClickedSaga() {
-  yield call(Logger.logMixpanelEvent, "user_action", { action_type: "coin_pressed" });
+export function* logProductItemInspected({ payload }: ReturnType<typeof logProductItemInspectedActionCreator>) {
+  yield call(Logger.logMixpanelEvent, "user_action", {
+    action_type: "product_item_inspected",
+    productId: payload.productId,
+  });
 }
 
-export function* logViewLeaderboardScreenSaga({ payload }: ReturnType<typeof viewLeaderboardScreen>) {
-  yield call(Logger.logEvent, "screen_view", {
-    name: payload.newId.length === 32 ? "yulife.member.Leaderboards.Primary" : "yulife.member.Leaderboards.Secondary",
-    leaderboard_id: payload.newId,
+export function* logProductItemViewed({ payload }: ReturnType<typeof logProductItemViewedActionCreator>) {
+  yield call(Logger.logMixpanelEvent, "user_action", {
+    action_type: "product_item_viewed",
+    productId: payload.productId,
   });
 }
 
 export default [
-  takeEvery(DAILY_STEPS_COIN_CLICKED, logDailyStepsCoinClickedSaga),
-  takeEvery(VIEW_LEADERBOARD_SCREEN, logViewLeaderboardScreenSaga),
+  takeEvery(PRODUCT_ITEM_VIEWED, logProductItemViewed),
+  takeEvery(PRODUCT_ITEM_INSPECTED, logProductItemInspected),
 ];

@@ -26,6 +26,10 @@ import { ProductCode, YuProductId, YuProductStatus, CoverType } from "@graphql/_
 import { GQL_MUTATION_UPDATE_TOP_UPS_QUOTE } from "@graphql/products/updateTopUpsQuote";
 import { GQL_QUERY_GET_TOP_UPS_QUOTE } from "@graphql/products";
 import { IProduct } from "../../../../products/fib/fib.types";
+import {
+  logProductItemInspectedActionCreator,
+  logProductItemViewedActionCreator,
+} from "@redux/logging/logging.actions";
 
 export interface IToolTipProps {
   productId: YuProductId;
@@ -51,6 +55,10 @@ export const ToolTip = ({ productId, onClose }: IToolTipProps) => {
   );
   const fibState = useSelector(getFIBState);
   const { productEntityId, latestQuoteId } = fibState;
+
+  useEffect(() => {
+    dispatch(logProductItemViewedActionCreator(productId));
+  }, [productId, dispatch]);
 
   useEffect(() => {
     (() => {
@@ -101,13 +109,15 @@ export const ToolTip = ({ productId, onClose }: IToolTipProps) => {
   }, [dispatch, quoteId, updateFibQuote]);
 
   const handleNavigateToProductScreen = useCallback(() => {
+    dispatch(logProductItemInspectedActionCreator(productId));
+
     onClose();
     navigateToProductScreen({
       product,
       fibState,
       resetFibJourney,
     });
-  }, [product, fibState, onClose, resetFibJourney]);
+  }, [product, fibState, onClose, resetFibJourney, productId, dispatch]);
 
   useBackHandler(() => {
     if (!productId || !product) {
