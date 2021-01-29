@@ -28,7 +28,7 @@ export function useDebouncedQuery<TData, TVariables>(
       fireQuery(initialQuery);
     }
 
-    () => {
+    return () => {
       if (timerId?.current) {
         clearTimeout(timerId.current);
       }
