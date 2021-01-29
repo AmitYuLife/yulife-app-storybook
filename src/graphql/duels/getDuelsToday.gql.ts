@@ -14,6 +14,7 @@ export const GQL_QUERY_GET_DUELS_TODAY = gql`
           lastName
         }
         avatar
+        duelId
       }
       duration
       type

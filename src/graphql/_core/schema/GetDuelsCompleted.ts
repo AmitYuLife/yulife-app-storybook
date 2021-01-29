@@ -19,6 +19,7 @@ export interface GetDuelsCompleted_getDuelsCompleted_duels_opponents {
   startDateTime: string | null;
   name: GetDuelsCompleted_getDuelsCompleted_duels_opponents_name | null;
   avatar: string | null;
+  duelId: string | null;
 }
 
 export interface GetDuelsCompleted_getDuelsCompleted_duels {

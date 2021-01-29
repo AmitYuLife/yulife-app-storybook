@@ -16,6 +16,7 @@ export const GQL_QUERY_GET_DUELS_COMPLETED = gql`
             lastName
           }
           avatar
+          duelId
         }
         duration
         type

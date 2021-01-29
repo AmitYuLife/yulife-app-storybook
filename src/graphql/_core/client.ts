@@ -33,10 +33,12 @@ const dataIdFromObject = (object: any) => {
       return `${object.__typename}-${object.userId}-${object.stats.value}`;
     case "CommunityGoalParticipantStats":
       return `${object.__typename}-${object.value}`;
+    case "Duel":
+      return `${object.__typename}-${object.id}`;
+    case "DuelOpponent":
+      return `${object.__typename}-${object.duelId}-${object.userId}-${object.score}`;
     case "DuelSearchResult":
       return `${object.__typename}-${object.customerId}`;
-    case "DuelOpponent":
-      return `${object.__typename}-${object.userId}-${object.score}`;
     case "LevelSlot":
       return `${object.__typename}-${object.id}`;
     case "LevelSlotMilestone":
