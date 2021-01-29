@@ -15,6 +15,7 @@ import { MedicalPracticeIcon, SearchInput, SearchList } from "@atoms";
 import EmptyGpElement from "./fib.gp-no-results";
 import SearchItem, { ISearchItem } from "../../../../../../atoms/search/search-item";
 import { Colours } from "../../../../../../../styles";
+import { getPracticeAddress } from "@components/screens/products/fib/underwriting-journey/subcomponents/gp-details/fib.gp.helper";
 
 interface GpPracticeSearchScreenProps {
   onClose: () => void;
@@ -72,19 +73,11 @@ function _FibGPPracticeSearchScreen(props: GpPracticeSearchScreenProps) {
   if (data?.getMedicalPractices.length >= 0 && data.getMedicalPractices.length !== practices.length && called) {
     setPractices(
       data.getMedicalPractices.map((practice: MedicalPractices_getMedicalPractices, index: number) => {
-        const practiceTown =
-          practice.address4 || practice.address5
-            ? `${practice.address4 ?? ""} ${practice.address5 ?? ""}`
-            : practice.address3;
-        const address3 = practice.address4 && practice.address5 && practice.address3 ? `${practice.address3}` : "";
-        const firstLine = practice.name;
-        const secondLine = `${practice.address1} ${practice.address2} ${address3}`;
-        const thirdLine = `${practiceTown}, ${practice.postCode}`;
         return {
           ...practice,
           onPress: () => onSelectMedicalPractice(practice),
           icon: <MedicalPracticeIcon color={!index ? Colours.primary.p600 : null} />,
-          text: [firstLine, secondLine, thirdLine],
+          text: getPracticeAddress(practice),
         };
       })
     );
@@ -103,7 +96,12 @@ function _FibGPPracticeSearchScreen(props: GpPracticeSearchScreenProps) {
         keyExtractor={keyExtractor}
         emptyElement={<EmptyGpElement setManualInput={setManualInput} onLoad={onLoad} />}
       />
-      <GenericHeadingAbsolute heading="GP Report" onLeftIconPress={onNavigateBack} onRightIconPress={onClose} />
+      <GenericHeadingAbsolute
+        heading="GP Report"
+        onLeftIconPress={onNavigateBack}
+        onRightIconPress={onClose}
+        hideBorder={false}
+      />
     </View>
   );
 }

@@ -19,9 +19,8 @@ export default function GPTitle({ title }: GPTitleProps) {
 
 const styles = StyleSheet.create({
   wrapper: {
-    marginBottom: Style.adjust(24),
-    marginHorizontal: Style.adjust(32),
-    marginVertical: Style.adjust(32),
+    padding: Style.adjust(32),
+    backgroundColor: Colours.neutral.white,
   },
   text: {
     fontSize: Style.adjust(24),

@@ -23,6 +23,7 @@ interface Props {
   isInlineCTA?: boolean;
   scrollViewForwardRef?: RefObject<ScrollView>;
   removeCtaFade?: boolean;
+  hideTopBarBorder?: boolean;
 }
 
 export function ScrollableLayout(props: Props) {
@@ -43,6 +44,7 @@ export function ScrollableLayout(props: Props) {
     secondButtonAction,
     scrollViewForwardRef,
     removeCtaFade,
+    hideTopBarBorder = true,
   } = props;
 
   const contentContainerStyle: ViewStyle = shouldCenterContent
@@ -81,6 +83,7 @@ export function ScrollableLayout(props: Props) {
         heading={heading}
         onLeftIconPress={onLeftIconPress}
         onRightIconPress={onRightIconPress}
+        hideBorder={hideTopBarBorder}
       />
     </KeyboardAvoidingView>
   );

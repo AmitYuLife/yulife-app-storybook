@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, TextStyle, View, ViewStyle } from "react-native";
+import { Platform, StyleSheet, TextStyle, View, ViewStyle } from "react-native";
 import { Text } from "@atoms";
 import { Style, Colours } from "../../../../../../../styles";
 
@@ -18,9 +18,8 @@ export default function EmptyGpElement({ setManualInput, onLoad }: EmptyGpElemen
       <Text bold={true} style={styles.textStyle}>
         {text}
         <Text bold={true} onPress={setManualInput} style={[styles.textStyle, styles.textColor]}>
-          {" "}
-          enter full address
-        </Text>{" "}
+          {" enter full address "}
+        </Text>
         manually.
       </Text>
     </View>
@@ -40,5 +39,6 @@ const styles = StyleSheet.create({
   } as TextStyle,
   textColor: {
     color: Colours.darkHotPink,
+    fontSize: Platform.OS === "android" ? Style.adjust(14) : Style.adjust(16),
   } as TextStyle,
 });

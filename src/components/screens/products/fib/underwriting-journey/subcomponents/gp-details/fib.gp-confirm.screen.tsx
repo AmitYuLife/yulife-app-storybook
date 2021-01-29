@@ -13,6 +13,7 @@ import GenericHeadingAbsolute, {
 import GPTitle from "./fib.gp-title";
 import { Button, DoctorIcon, MedicalPracticeIcon } from "@atoms";
 import SearchItem, { ISearchItem } from "../../../../../../atoms/search/search-item";
+import { getPracticeAddress } from "@components/screens/products/fib/underwriting-journey/subcomponents/gp-details/fib.gp.helper";
 
 interface Props {
   onClose: () => void;
@@ -43,11 +44,13 @@ function _FibGPConfirmScreen(props: Props) {
         `${manualInput.practiceTown} ${manualInput.practicePostCode}`,
       ]
     : null;
+
   const gpPracticeItem = {
+    ...practice,
     isConfirm: true,
     manualInput,
     icon: <MedicalPracticeIcon color={Colours.primary.p600} />,
-    text: manualInputText ? manualInputText : practice.text,
+    text: manualInputText || getPracticeAddress(practice),
   };
 
   return (
@@ -65,7 +68,12 @@ function _FibGPConfirmScreen(props: Props) {
       <View style={styles.buttonWrapper}>
         <Button label="Continue" onPress={onContinue} type="Primary" />
       </View>
-      <GenericHeadingAbsolute heading="GP Report" onLeftIconPress={onNavigateBack} onRightIconPress={onClose} />
+      <GenericHeadingAbsolute
+        heading="GP Report"
+        onLeftIconPress={onNavigateBack}
+        onRightIconPress={onClose}
+        hideBorder={false}
+      />
     </View>
   );
 }

@@ -168,6 +168,7 @@ function _FibGPManuallyInputScreen(props: Props) {
       onRightIconPress={onClose}
       isButtonDisabled={isValidForm}
       scrollViewForwardRef={scrollViewRef}
+      isBeta={false}
     >
       <View>
         <View onLayout={handleTitleLayout}>
