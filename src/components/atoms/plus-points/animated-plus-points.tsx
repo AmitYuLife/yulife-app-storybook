@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import { Animated, Easing, Platform } from "react-native";
 import PlusPoints from "./plus-points";
 import styles from "./plus-points.styles";
@@ -23,11 +23,13 @@ export default class AnimatedCoinConfetti extends React.PureComponent<IProps, IS
     scale: new Animated.Value(1),
   };
 
+  public timeout: NodeJS.Timeout = null;
+
   public componentDidMount() {
     const { translateX, translateY, scale } = this.state;
     // Wait to be mounted properly before starting animation
 
-    setTimeout(() => {
+    this.timeout = setTimeout(() => {
       if (this.props.type === "collect-reward") {
         Animated.timing(translateY, {
           toValue: -5,
@@ -75,6 +77,10 @@ export default class AnimatedCoinConfetti extends React.PureComponent<IProps, IS
         ]).start();
       }
     }, 500);
+  }
+
+  public componentWillUnmount() {
+    clearTimeout(this.timeout);
   }
 
   public render() {

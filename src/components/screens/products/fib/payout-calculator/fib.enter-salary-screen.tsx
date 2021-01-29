@@ -1,4 +1,4 @@
-import React, { memo, useEffect, useState, useCallback } from "react";
+import React, { memo, useEffect, useState, useCallback, useRef } from "react";
 import { View, StyleSheet, ViewStyle, TextStyle, Platform, KeyboardAvoidingView, Keyboard } from "react-native";
 import { Button, Text } from "@atoms";
 import { Style, Colours } from "@styles";
@@ -16,10 +16,11 @@ export interface IFibEnterSalaryScreenProps {
 export const FibEnterSalaryScreen = memo(function (props: IFibEnterSalaryScreenProps) {
   const { updateSalary, submitSalary, salary } = props;
   const [titleMargin, setTitleMargin] = useState(64);
+  const timer = useRef<NodeJS.Timeout>(null);
 
   const onClose = () => {
     Keyboard.dismiss();
-    setTimeout(() => {
+    timer.current = setTimeout(() => {
       Navigation.dismissOverlay(MODALS.enterSalary);
     }, 50);
   };
@@ -38,6 +39,10 @@ export const FibEnterSalaryScreen = memo(function (props: IFibEnterSalaryScreenP
   const handleKeyboardEventDismiss = useCallback(() => {
     setTitleMargin(64);
   }, [setTitleMargin]);
+
+  useEffect(() => {
+    return () => clearTimeout(timer.current);
+  }, []);
 
   useEffect(() => {
     Keyboard.addListener("keyboardDidShow", handleKeyboardEventShown);
