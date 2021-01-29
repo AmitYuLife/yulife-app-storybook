@@ -19,6 +19,7 @@ export interface GetDuelsTomorrow_getDuelsTomorrow_opponents {
   startDateTime: string | null;
   name: GetDuelsTomorrow_getDuelsTomorrow_opponents_name | null;
   avatar: string | null;
+  duelId: string | null;
 }
 
 export interface GetDuelsTomorrow_getDuelsTomorrow {

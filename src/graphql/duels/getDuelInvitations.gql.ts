@@ -13,6 +13,7 @@ export const GQL_QUERY_GET_DUEL_INVITATIONS = gql`
           firstName
           lastName
         }
+        duelId
       }
       duration
       type

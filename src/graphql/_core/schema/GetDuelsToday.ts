@@ -19,6 +19,7 @@ export interface GetDuelsToday_getDuelsToday_opponents {
   startDateTime: string | null;
   name: GetDuelsToday_getDuelsToday_opponents_name | null;
   avatar: string | null;
+  duelId: string | null;
 }
 
 export interface GetDuelsToday_getDuelsToday {
