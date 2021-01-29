@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { View, ViewStyle, StyleSheet } from "react-native";
+import { View, ViewStyle, StyleSheet, Appearance } from "react-native";
 import moment from "moment";
 import { styles } from "./fib-input-birth.styles";
 import { updateFIBAnswerValue } from "@redux/product/product.actions";
@@ -71,7 +71,7 @@ const _FibInputBirth = (props: ConnectedProps) => {
         onConfirm={handleChange}
         onCancel={handleCancel}
         maximumDate={moment().toDate()}
-        textColor={Colours.neutral.n900}
+        textColor={Appearance.getColorScheme() === "dark" ? Colours.neutral.white : Colours.neutral.n900}
       />
     </View>
   );
