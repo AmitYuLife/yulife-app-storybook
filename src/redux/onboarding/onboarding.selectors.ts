@@ -1,12 +1,35 @@
+import { createSelector } from "reselect";
 import { IReduxState } from "../_core/reducers";
 
-export const getIsOnboardingRedeemed = (state: IReduxState) => state.onboarding.redeemedOnboarding;
-export const getIsHistoricalDataCollected = (state: IReduxState) => state.onboarding.historicalDataCollected;
-export const getIsHistoricalMeditationDataCollected = (state: IReduxState) =>
-  state.onboarding.historicalMeditationDataCollected;
-export const getIsOnboarding = (state: IReduxState) => state.onboarding.isOnboarding;
-export const getShowIntro = (state: IReduxState) => state.onboarding.showIntro;
-export const getOnboardingReward = (state: IReduxState) => state.onboarding.reward;
-export const getShowYuscreenIntro = (state: IReduxState) => state.onboarding.showYuscreenIntro;
-export const getShowCommunityGoalsIntro = (state: IReduxState) => state.onboarding.showCommunityGoalsIntro;
-export const getDuelsGoalsIntro = (state: IReduxState) => state.onboarding.showDuelsIntro;
+type State = IReduxState["onboarding"];
+const reducer = (state: IReduxState) => state.onboarding;
+
+const isOnboardingRedeemedSelector = (state: State) => state.redeemedOnboarding;
+export const getIsOnboardingRedeemed = createSelector(reducer, isOnboardingRedeemedSelector);
+
+const isHistoricalDataCollectedSelector = (state: State) => state.historicalDataCollected;
+export const getIsHistoricalDataCollected = createSelector(reducer, isHistoricalDataCollectedSelector);
+
+const isHistoricalMeditationDataCollectedSelector = (state: State) => state.historicalMeditationDataCollected;
+export const getIsHistoricalMeditationDataCollected = createSelector(
+  reducer,
+  isHistoricalMeditationDataCollectedSelector
+);
+
+const isOnboardingSelector = (state: State) => state.isOnboarding;
+export const getIsOnboarding = createSelector(reducer, isOnboardingSelector);
+
+const showIntroSelector = (state: State) => state.showIntro;
+export const getShowIntro = createSelector(reducer, showIntroSelector);
+
+const onboardingRewardSelector = (state: State) => state.reward;
+export const getOnboardingReward = createSelector(reducer, onboardingRewardSelector);
+
+const showYuscreenIntroSelector = (state: State) => state.showYuscreenIntro;
+export const getShowYuscreenIntro = createSelector(reducer, showYuscreenIntroSelector);
+
+const showCommunityGoalsIntroSelector = (state: State) => state.showCommunityGoalsIntro;
+export const getShowCommunityGoalsIntro = createSelector(reducer, showCommunityGoalsIntroSelector);
+
+const duelsGoalsIntroSelector = (state: State) => state.showDuelsIntro;
+export const getDuelsGoalsIntro = createSelector(reducer, duelsGoalsIntroSelector);

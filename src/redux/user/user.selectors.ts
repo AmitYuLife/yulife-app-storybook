@@ -1,3 +1,4 @@
+import { createSelector } from "reselect";
 import {
   GetCurrentUser_getCurrentUser_connections,
   GetCurrentUser_getCurrentUser_leaderboards,
@@ -7,26 +8,66 @@ import { IReduxState } from "../_core/reducers";
 export type Connection = GetCurrentUser_getCurrentUser_connections;
 export type Leaderboard = GetCurrentUser_getCurrentUser_leaderboards;
 
-export const getIsUserArchived = (state: IReduxState) => state.user.archived;
-export const getUserConnections = (state: IReduxState) => state.user.connections;
-export const getUserConsent = (state: IReduxState) => state.user.consent;
-export const getUserFeatures = (state: IReduxState) => state.user.features;
-export const getAllLeaderboards = (state: IReduxState) => state.user.leaderboards;
-export const getVisiblePopups = (state: IReduxState) => state.user.popupVisibility;
-export const getSurgeIntro = (state: IReduxState) => state.user.surgeIntro;
-export const getUserBusiness = (state: IReduxState) => state.user.business;
-export const getUserFirstName = (state: IReduxState) => state.user.firstName;
-export const getUserLastName = (state: IReduxState) => state.user.lastName;
-export const getUserName = (state: IReduxState) => state.user.firstName + " " + state.user.lastName;
-export const getUserDateOfBirth = (state: IReduxState) => state.user.dateOfBirth;
-export const getUserMembershipType = (state: IReduxState) => state.user.membershipType;
-export const getAcceptedLeaderboards = (state: IReduxState) => state.user.leaderboards.filter((l) => l.hasAccepted);
-export const getActiveLeaderboardId = (state: IReduxState) => state.user.activeLeaderboardId;
-export const getActiveLeaderboard = (state: IReduxState) =>
-  state.user.leaderboards.find((leaderboard) => leaderboard.leaderboardId === state.user.activeLeaderboardId);
-export const getCurrentUserId = (state: IReduxState) => state.user.id;
-export const getConsentedLeaderboards = (state: IReduxState) =>
-  state.user.leaderboards.reduce((prev: Leaderboard[], curr) => {
+type State = IReduxState["user"];
+const reducer = (state: IReduxState) => state.user;
+
+const isUserArchivedSelector = (state: State) => state.archived;
+export const getIsUserArchived = createSelector(reducer, isUserArchivedSelector);
+
+const userConnectionsSelector = (state: State) => state.connections;
+export const getUserConnections = createSelector(reducer, userConnectionsSelector);
+
+const userConsentSelector = (state: State) => state.consent;
+export const getUserConsent = createSelector(reducer, userConsentSelector);
+
+const userFeaturesSelector = (state: State) => state.features;
+export const getUserFeatures = createSelector(reducer, userFeaturesSelector);
+
+const allLeaderboardsSelector = (state: State) => state.leaderboards;
+export const getAllLeaderboards = createSelector(reducer, allLeaderboardsSelector);
+
+const visiblePopupsSelector = (state: State) => state.popupVisibility;
+export const getVisiblePopups = createSelector(reducer, visiblePopupsSelector);
+
+const surgeIntroSelector = (state: State) => state.surgeIntro;
+export const getSurgeIntro = createSelector(reducer, surgeIntroSelector);
+
+const userBusinessSelector = (state: State) => state.business;
+export const getUserBusiness = createSelector(reducer, userBusinessSelector);
+
+const userFirstNameSelector = (state: State) => state.firstName;
+export const getUserFirstName = createSelector(reducer, userFirstNameSelector);
+
+const userLastNameSelector = (state: State) => state.lastName;
+export const getUserLastName = createSelector(reducer, userLastNameSelector);
+
+const userNameSelector = (state: State) => state.firstName + " " + state.lastName;
+export const getUserName = createSelector(reducer, userNameSelector);
+
+const userDateOfBirthSelector = (state: State) => state.dateOfBirth;
+export const getUserDateOfBirth = createSelector(reducer, userDateOfBirthSelector);
+
+const userMembershipTypeSelector = (state: State) => state.membershipType;
+export const getUserMembershipType = createSelector(reducer, userMembershipTypeSelector);
+
+const acceptedLeaderboardsSelector = (state: State) => state.leaderboards.filter((l) => l.hasAccepted);
+export const getAcceptedLeaderboards = createSelector(reducer, acceptedLeaderboardsSelector);
+
+const activeLeaderboardIdSelector = (state: State) => state.activeLeaderboardId;
+export const getActiveLeaderboardId = createSelector(reducer, activeLeaderboardIdSelector);
+
+const activeLeaderboardSelector = (state: State) =>
+  state.leaderboards.find((leaderboard) => leaderboard.leaderboardId === state.activeLeaderboardId);
+export const getActiveLeaderboard = createSelector(reducer, activeLeaderboardSelector);
+
+const currentUserIdSelector = (state: State) => state.id;
+export const getCurrentUserId = createSelector(reducer, currentUserIdSelector);
+
+const businessLeaderboardConsentSelector = (state: State) => !!state.leaderboards.find(checkIsCompanyLeaderbaord);
+export const hasBusinessLeaderboardConsent = createSelector(reducer, businessLeaderboardConsentSelector);
+
+const consentedLeaderboardsSelector = (state: State) =>
+  state.leaderboards.reduce((prev: Leaderboard[], curr) => {
     if (checkIsCompanyLeaderbaord(curr)) {
       return [curr, ...prev];
     }
@@ -37,9 +78,9 @@ export const getConsentedLeaderboards = (state: IReduxState) =>
 
     return prev;
   }, []);
-export const hasBusinessLeaderboardConsent = (state: IReduxState) =>
-  !!state.user.leaderboards.find(checkIsCompanyLeaderbaord);
+export const getConsentedLeaderboards = createSelector(reducer, consentedLeaderboardsSelector);
 
+// helpers
 const checkIsCompanyLeaderbaord = (board: GetCurrentUser_getCurrentUser_leaderboards) =>
   // company leaderboard has 32 chars (and it should be first), custom leaderboards have 38
   !!(board.leaderboardId && board.leaderboardId.length === 32 && board.consent);

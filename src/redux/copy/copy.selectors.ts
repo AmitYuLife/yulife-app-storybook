@@ -1,16 +1,44 @@
+import { createSelector } from "reselect";
 import { IReduxState } from "../_core/reducers";
 
+// legacy
 export const getCopy = <Key extends keyof IReduxState["copy"]["screens"]>({ copy }: IReduxState, screen: Key) =>
   copy.screens[screen];
-export const getCopySelector = <Key extends keyof IReduxState["copy"]["screens"]>(screen: Key) => ({
-  copy,
-}: IReduxState) => copy.screens[screen];
-export const getCopyVersion = ({ copy }: IReduxState) => copy.version;
-export const getRawCopy = ({ copy }: IReduxState) => copy.screens;
 
-// specifics
-export const getChallengeSuccessCopy = ({ copy }: IReduxState) => copy.screens.challenges.success;
-export const getChallengeFailedCopy = ({ copy }: IReduxState) => copy.screens.challenges.failed;
-export const getChallengeCompletedCopy = ({ copy }: IReduxState) => copy.screens.challenges.completed;
-export const getChallengeExitCopy = ({ copy }: IReduxState) => copy.screens.challenges.exitChallenge;
-export const getShowChestCopy = ({ copy }: IReduxState) => copy.screens.challenges.showChestModal;
+// main
+type State = IReduxState["copy"];
+const reducer = (state: IReduxState) => state.copy;
+
+const versionSelector = (state: State) => state.version;
+export const getCopyVersion = createSelector(reducer, versionSelector);
+
+// screen specifics
+
+type ScreensState = IReduxState["copy"]["screens"];
+const screensReducer = (state: IReduxState) => state.copy.screens;
+
+const settingsCopySelector = (state: ScreensState) => state.settingsInfo;
+export const getSettingsCopy = createSelector(screensReducer, settingsCopySelector);
+
+const leaderboardsCopySelector = (state: ScreensState) => state.leaderboards;
+export const getLeaderboardsCopy = createSelector(screensReducer, leaderboardsCopySelector);
+
+// challenge specifics
+
+type ChallengesScreensState = IReduxState["copy"]["screens"]["challenges"];
+const challengesReducer = (state: IReduxState) => state.copy.screens.challenges;
+
+const challengeSuccessCopySelector = (state: ChallengesScreensState) => state.success;
+export const getChallengeSuccessCopy = createSelector(challengesReducer, challengeSuccessCopySelector);
+
+const challengeFailedCopySelector = (state: ChallengesScreensState) => state.failed;
+export const getChallengeFailedCopy = createSelector(challengesReducer, challengeFailedCopySelector);
+
+const challengeCompletedCopySelector = (state: ChallengesScreensState) => state.completed;
+export const getChallengeCompletedCopy = createSelector(challengesReducer, challengeCompletedCopySelector);
+
+const challengeExitCopySelector = (state: ChallengesScreensState) => state.exitChallenge;
+export const getChallengeExitCopy = createSelector(challengesReducer, challengeExitCopySelector);
+
+const showChestCopySelector = (state: ChallengesScreensState) => state.showChestModal;
+export const getShowChestCopy = createSelector(challengesReducer, showChestCopySelector);

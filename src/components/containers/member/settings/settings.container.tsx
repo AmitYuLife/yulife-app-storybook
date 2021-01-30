@@ -7,7 +7,7 @@ import { MODALS } from "@navigation/constants";
 import { updateConnectionStart } from "@redux/user/user.actions";
 import { Connection, getUserConnections, getUserFeatures } from "@redux/user/user.selectors";
 import { SettingsScreen } from "@screens/index";
-import { getCopySelector } from "@redux/copy/copy.selectors";
+import { getSettingsCopy } from "@redux/copy/copy.selectors";
 import { useQuery, useMutation } from "@apollo/react-hooks";
 import {
   GQL_QUERY_GET_USER_NOTIFICATIONS_SETTINGS,
@@ -36,7 +36,6 @@ function handleCreateNewLeaderboard() {
   });
 }
 
-const settingsCopySelector = getCopySelector("settingsInfo");
 const updateNotificationOptions = { refetchQueries: ["GetUserNotificationsSettings"] };
 const getNotificationsOptions = { fetchPolicy: "cache-and-network" as "cache-and-network" };
 
@@ -46,7 +45,7 @@ function SettingsContainer({ componentId }: IOwnProps) {
   // redux selectors
   const connections = useSelector(getUserConnections);
   const features = useSelector(getUserFeatures);
-  const settingsCopy = useSelector(settingsCopySelector);
+  const settingsCopy = useSelector(getSettingsCopy);
 
   // local state
   const [isTimeModalVisible, setIsTimeModalVisible] = React.useState<boolean>(false);

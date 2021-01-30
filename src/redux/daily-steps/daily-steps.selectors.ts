@@ -1,13 +1,27 @@
+import { createSelector } from "reselect";
 import { GetCurrentUser_getCurrentUser_passiveSteps_exchange } from "../../graphql/_core/schema";
 import { IReduxState } from "../_core/reducers";
 
 export type ExchangeRate = GetCurrentUser_getCurrentUser_passiveSteps_exchange;
 
-export const getDailySteps = (state: IReduxState) => state.dailySteps.dailySteps;
-export const getLastUpdated = (state: IReduxState) => state.dailySteps.lastUpdated;
-export const getLastUpdatedBeforeToday = (state: IReduxState) => state.dailySteps.lastUpdatedBeforeToday;
-export const getExchangeRate = (state: IReduxState) => state.dailySteps.exchangeRate;
-export const getDailyStepsIsFetching = (state: IReduxState) => state.dailySteps.isFetching;
-export const getDailyStepsStateForPedometerUpdate = ({
-  dailySteps: { isServerFetchedThisSession, dailySteps, isSyncing },
-}: IReduxState) => ({ isServerFetchedThisSession, dailySteps, isSyncing });
+type State = IReduxState["dailySteps"];
+const reducer = (state: IReduxState) => state.dailySteps;
+
+const dailyStepsSelector = (state: State) => state.dailySteps;
+export const getDailySteps = createSelector(reducer, dailyStepsSelector);
+
+const lastUpdatedBeforeTodaySelector = (state: State) => state.lastUpdatedBeforeToday;
+export const getLastUpdatedBeforeToday = createSelector(reducer, lastUpdatedBeforeTodaySelector);
+
+const exchangeRateSelector = (state: State) => state.exchangeRate;
+export const getExchangeRate = createSelector(reducer, exchangeRateSelector);
+
+const dailyStepsIsFetchingSelector = (state: State) => state.isFetching;
+export const getDailyStepsIsFetching = createSelector(reducer, dailyStepsIsFetchingSelector);
+
+const dailyStepsStateForPedometerSelector = ({ isServerFetchedThisSession, dailySteps, isSyncing }: State) => ({
+  isServerFetchedThisSession,
+  dailySteps,
+  isSyncing,
+});
+export const getDailyStepsStateForPedometerUpdate = createSelector(reducer, dailyStepsStateForPedometerSelector);

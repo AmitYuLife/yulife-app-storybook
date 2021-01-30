@@ -1,27 +1,30 @@
+import { createSelector } from "reselect";
 import moment from "moment";
 import { IReduxState } from "../_core/reducers";
 
 export interface IStreaks {
-    currentStreak: number;
-    displayStreak: boolean;
-    isAvailable: boolean;
-    isDoneToday: boolean;
-    maxStreak: number;
-    nextStreakAvailableAt: string;
-    reward: string;
+  currentStreak: number;
+  displayStreak: boolean;
+  isAvailable: boolean;
+  isDoneToday: boolean;
+  maxStreak: number;
+  nextStreakAvailableAt: string;
+  reward: string;
 }
 
-export const getStreaks = ({ streaks }: IReduxState): IStreaks => ({
-    currentStreak: streaks.streak,
-    displayStreak: streaks.displayStreak,
-    isAvailable: streaks.isAvailable,
-    isDoneToday:
-        moment()
-            .add(1, "day")
-            .startOf("day")
-            .format("YYYY-MM-DDTHH:mm:ss") <= streaks.nextStreakAvailableAt,
-    maxStreak: streaks.maxStreak,
-    nextStreakAvailableAt: streaks.nextStreakAvailableAt,
-    reward: `${streaks.value} ${streaks.type}`
+type State = IReduxState["streaks"];
+const reducer = (state: IReduxState) => state.streaks;
+
+const streakAwardIdSelector = (state: State) => state.streakAwardId;
+export const getStreakAwardId = createSelector(reducer, streakAwardIdSelector);
+
+const streaksSelector = (state: State) => ({
+  currentStreak: state.streak,
+  displayStreak: state.displayStreak,
+  isAvailable: state.isAvailable,
+  isDoneToday: moment().add(1, "day").startOf("day").format("YYYY-MM-DDTHH:mm:ss") <= state.nextStreakAvailableAt,
+  maxStreak: state.maxStreak,
+  nextStreakAvailableAt: state.nextStreakAvailableAt,
+  reward: `${state.value} ${state.type}`,
 });
-export const getStreakAwardId = ({ streaks }: IReduxState) => streaks.streakAwardId;
+export const getStreaks = createSelector(reducer, streaksSelector);

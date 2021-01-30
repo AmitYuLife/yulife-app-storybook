@@ -1,9 +1,22 @@
 // tslint:disable:max-line-length
+import { createSelector } from "reselect";
 import { IReduxState } from "../_core/reducers";
 
-export const getDailyChallengeCoins = (state: IReduxState): number => state.coins.dailyChallengeEarned;
-export const getDailyEarnedCoins = ({ coins }: IReduxState): number =>
+type State = IReduxState["coins"];
+const reducer = (state: IReduxState) => state.coins;
+
+const dailyChallengeCoinsSelector = (coins: State) => coins.dailyChallengeEarned;
+export const getDailyChallengeCoins = createSelector(reducer, dailyChallengeCoinsSelector);
+
+const dailyEarnedCoinsSelector = (coins: State) =>
   coins.dailyChallengeEarned + coins.dailyStepsEarned + coins.dailyMeditationEarned;
-export const getDailyStepsCoins = (state: IReduxState): number => state.coins.dailyStepsEarned;
-export const getDailyMeditationCoins = (state: IReduxState): number => state.coins.dailyMeditationEarned;
-export const getTotalCoins = (state: IReduxState): number => state.coins.total;
+export const getDailyEarnedCoins = createSelector(reducer, dailyEarnedCoinsSelector);
+
+const dailyStepsCoins = (coins: State) => coins.dailyStepsEarned;
+export const getDailyStepsCoins = createSelector(reducer, dailyStepsCoins);
+
+const dailyMeditationCoins = (coins: State) => coins.dailyMeditationEarned;
+export const getDailyMeditationCoins = createSelector(reducer, dailyMeditationCoins);
+
+const dailyTotalCoins = (coins: State) => coins.total;
+export const getTotalCoins = createSelector(reducer, dailyTotalCoins);

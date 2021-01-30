@@ -7,15 +7,13 @@ import { getAcceptedLeaderboards } from "@redux/user/user.selectors";
 import { updateActiveLeaderboardId, updateLeaderboardConsent } from "@redux/user/user.actions";
 import { MODALS } from "@navigation/constants";
 import { useBackHandler } from "@services/hooks/useBackHandler";
-import { getCopySelector } from "@redux/copy/copy.selectors";
+import { getLeaderboardsCopy } from "@redux/copy/copy.selectors";
 
 interface OwnProps {
   componentId: string;
 }
 
 type Props = OwnProps;
-
-const leaderboardCopySelector = getCopySelector("leaderboards");
 
 function dismissGenericModal() {
   Navigation.dismissModal(MODALS.generic);
@@ -37,7 +35,7 @@ function LeaderboardListContainer(props: Props) {
   const features = useSelector(getUserFeatures);
   const activeLeaderboardId = useSelector(getActiveLeaderboardId);
   const leaderboards = useSelector(getAcceptedLeaderboards);
-  const leaderboardCopy = useSelector(leaderboardCopySelector);
+  const leaderboardCopy = useSelector(getLeaderboardsCopy);
 
   const handleChangeActiveLeaderboardId = useCallback(
     (leaderboardId: string) => {

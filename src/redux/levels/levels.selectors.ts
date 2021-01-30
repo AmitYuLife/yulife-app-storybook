@@ -1,3 +1,4 @@
+import { createSelector } from "reselect";
 import { CreateActiveChallenge_createActiveChallenge_levelSlot_milestones } from "../../graphql/_core/schema";
 import { IReduxState } from "../_core/reducers";
 import { getChallengesAmountAvailable, isChallengeAvailable } from "./levels.helpers";
@@ -32,21 +33,35 @@ export interface ITodayChallengesStatus {
   isAvailable: boolean;
 }
 
-export const getChallengesStatus = (state: IReduxState): ITodayChallengesStatus => {
-  const available = getChallengesAmountAvailable(state.levels.level);
-  const done = state.levels.challengesDoneToday;
+type State = IReduxState["levels"];
+const reducer = (state: IReduxState) => state.levels;
+
+const getChallengesDoneSelector = (state: State) => state.challengesDoneToday;
+export const getChallengesDone = createSelector(reducer, getChallengesDoneSelector);
+
+const getCurrentLevelSelector = (state: State) => state.level;
+export const getCurrentLevel = createSelector(reducer, getCurrentLevelSelector);
+
+const getNextLevelAvailableAtSelector = (state: State) => state.nextLevelAvailableAt;
+export const getNextLevelAvailableAt = createSelector(reducer, getNextLevelAvailableAtSelector);
+
+const getActiveLevelSelector = (state: State) => state.active;
+export const getActiveLevel = createSelector(reducer, getActiveLevelSelector);
+
+const getHasNotificationSelector = (state: State) =>
+  !!state.active.levelSlotId || state.active.timeUp || !!state.active.status;
+export const getHasNotification = createSelector(reducer, getHasNotificationSelector);
+
+const challengesStatusSelector = (state: State) => {
+  const available = getChallengesAmountAvailable(state.level);
+  const done = state.challengesDoneToday;
 
   return {
     available,
     done,
     hasDone: done > 0,
-    isAvailable: isChallengeAvailable(state.levels.level, done, available, state.levels.nextLevelAvailableAt),
-  };
+    isAvailable: isChallengeAvailable(state.level, done, available, state.nextLevelAvailableAt),
+  } as ITodayChallengesStatus;
 };
 
-export const getChallengesDone = (state: IReduxState): number => state.levels.challengesDoneToday;
-export const getCurrentLevel = (state: IReduxState): number => state.levels.level;
-export const getNextLevelAvailableAt = (state: IReduxState): string => state.levels.nextLevelAvailableAt;
-export const getActiveLevel = (state: IReduxState): IActiveLevel => state.levels.active;
-export const getHasNotification = (state: IReduxState) =>
-  !!state.levels.active.levelSlotId || state.levels.active.timeUp || !!state.levels.active.status;
+export const getChallengesStatus = createSelector(reducer, challengesStatusSelector);

@@ -1,41 +1,56 @@
+import { createSelector } from "reselect";
+
 import { IReduxState } from "../_core/reducers";
-export const getAvatarHead = ({ avatar }: IReduxState) => avatar.head;
 
-export const getAvatarEyes = ({ avatar }: IReduxState) => avatar.eyes;
+type State = IReduxState["avatar"];
+const reducer = (state: IReduxState) => state.avatar;
 
-export const getAvatarHair = ({ avatar }: IReduxState) => avatar.hair;
+const avatarHeadSelector = (state: State) => state.head;
+export const getAvatarHead = createSelector(reducer, avatarHeadSelector);
 
-export const getAvatarBody = ({ avatar }: IReduxState) => avatar.body;
+const avatarEyesSelector = (state: State) => state.eyes;
+export const getAvatarEyes = createSelector(reducer, avatarEyesSelector);
 
-export const getAvatarPants = ({ avatar }: IReduxState) => avatar.pants;
+const avatarHairSelector = (state: State) => state.hair;
+export const getAvatarHair = createSelector(reducer, avatarHairSelector);
 
-export const getAvatarBoots = ({ avatar }: IReduxState) => avatar.boots;
+const avatarBodySelector = (state: State) => state.body;
+export const getAvatarBody = createSelector(reducer, avatarBodySelector);
 
-export const getAvatarChest = ({ avatar }: IReduxState) => avatar.chest;
+const avatarPantsSelector = (state: State) => state.pants;
+export const getAvatarPants = createSelector(reducer, avatarPantsSelector);
 
-export const getAvatarGloves = ({ avatar }: IReduxState) => avatar.gloves;
+const avatarBootsSelector = (state: State) => state.boots;
+export const getAvatarBoots = createSelector(reducer, avatarBootsSelector);
 
-export const getAvatarGlasses = ({ avatar }: IReduxState) => avatar.glasses;
+const avatarChestSelector = (state: State) => state.chest;
+export const getAvatarChest = createSelector(reducer, avatarChestSelector);
 
-export const getAvatarFacialHair = ({ avatar }: IReduxState) => avatar.facialHair;
+const avatarGlovesSelector = (state: State) => state.gloves;
+export const getAvatarGloves = createSelector(reducer, avatarGlovesSelector);
 
-export const getIsAvatarCreated = ({ avatar }: IReduxState) => avatar.isAvatarCreated;
+const avatarGlassesSelector = (state: State) => state.glasses;
+export const getAvatarGlasses = createSelector(reducer, avatarGlassesSelector);
 
-export const getAvatar = ({ avatar }: IReduxState) => {
-  return {
-    head: avatar.head,
-    eyes: avatar.eyes,
-    hair: avatar.hair,
-    body: avatar.body,
-    pants: avatar.pants,
-    boots: avatar.boots,
-    chest: avatar.chest,
-    gloves: avatar.gloves,
-    facialHair: avatar.facialHair,
-    glasses: avatar.glasses,
-  };
-};
+const avatarFacialHairSelector = (state: State) => state.facialHair;
+export const getAvatarFacialHair = createSelector(reducer, avatarFacialHairSelector);
 
-export const getAvatarForYuscreen = ({ avatar }: IReduxState) => {
-  return avatar.avatarForYuscreen;
-};
+const isAvatarCreatedSelector = (state: State) => state.isAvatarCreated;
+export const getIsAvatarCreated = createSelector(reducer, isAvatarCreatedSelector);
+
+const avatarForYuScreen = (state: State) => state.avatarForYuscreen;
+export const getAvatarForYuscreen = createSelector(reducer, avatarForYuScreen);
+
+const avatarSelector = ({ head, eyes, hair, body, pants, boots, chest, gloves, facialHair, glasses }: State) => ({
+  head,
+  eyes,
+  hair,
+  body,
+  pants,
+  boots,
+  chest,
+  gloves,
+  facialHair,
+  glasses,
+});
+export const getAvatar = createSelector(reducer, avatarSelector);
