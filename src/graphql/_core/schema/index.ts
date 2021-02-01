@@ -24,6 +24,7 @@ export * from "./GetCurrentLevel";
 export * from "./GetCurrentQuestLevels";
 export * from "./GetCurrentUser";
 export * from "./GetCurrentUserLeaderboard";
+export * from "./GetCustomCoverPricesByPercentages";
 export * from "./GetDebugCodes";
 export * from "./GetDuelInvitations";
 export * from "./GetDuelTemplates";

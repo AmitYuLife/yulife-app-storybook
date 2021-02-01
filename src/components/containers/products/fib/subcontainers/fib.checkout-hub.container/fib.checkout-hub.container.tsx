@@ -21,12 +21,14 @@ import Logger from "@services/logging/logger";
 import * as docs from "@containers/products/fib/data/documents-data";
 import { CheckBox, Text, Button } from "@atoms";
 import { formatMoney } from "@services/money";
+import { CoverType } from "@graphql/_core/schema/globalTypes";
 
 interface Props {
   navigation: FibLocalNavigation;
   paymentProviderDetails: StripePaymentRequestToken;
   loading?: boolean;
   data: GetCheckoutDetails;
+  coverType: CoverType;
   onPressPayment: () => void;
   onContinue: () => void;
   onClose: () => void;
@@ -58,7 +60,7 @@ const documents: IFaq[] = docs.checkoutDocs.map((document) => ({
 }));
 
 export const FibCheckoutHubContainer = memo((props: Props) => {
-  const { navigation, loading, onPressPayment, onContinue, onClose, data, paymentProviderDetails } = props;
+  const { navigation, loading, onPressPayment, onContinue, onClose, data, paymentProviderDetails, coverType } = props;
   const fibStyle = useSelector(getFIBStyle);
   const goToContactDetails = () => navigation.push(FIB_CONTACT_DETAILS);
   const goToGpDetails = () => navigation.push(FIB_GP_DETAILS);
@@ -93,7 +95,7 @@ export const FibCheckoutHubContainer = memo((props: Props) => {
         <Card
           name={data?.personal?.chest?.name}
           armor={personalProductArmor}
-          coverType={data?.quote?.coverType}
+          coverType={coverType}
           actualCost={formatMoney(data?.quote?.actualCost || 0)}
         />
         <Heading />
@@ -141,7 +143,7 @@ export const FibCheckoutHubContainer = memo((props: Props) => {
         <Cta
           disable={!confirmed}
           paymentProviderDetails={paymentProviderDetails}
-          coverType={data?.quote?.coverType}
+          coverType={coverType}
           onPress={onContinue}
         />
         <Button

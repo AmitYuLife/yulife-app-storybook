@@ -1,5 +1,6 @@
 import React, { memo } from "react";
-import { View, StyleSheet, Text, TouchableOpacity, Image } from "react-native";
+import { View, StyleSheet, Text, Image } from "react-native";
+import { TouchableOpacityWithDelay } from "@components/molecules";
 import styles from "./package-options.styles";
 
 const data = [
@@ -32,18 +33,22 @@ const data = [
 interface Props {
   onSelectPackage: (packageType: string) => void;
   selectedPackageId: string;
+  filterBySelected?: boolean;
 }
 
 export const PackageOptions = memo(function (props: Props) {
-  const { onSelectPackage, selectedPackageId } = props;
+  const { onSelectPackage, selectedPackageId, filterBySelected } = props;
+
+  const options = filterBySelected ? data.filter((i) => filterBySelected && i.type === selectedPackageId) : data;
+  const wrapper = filterBySelected ? styles.componentWrapperFiltered : styles.componentWrapper;
 
   return (
     <View style={styles.wrapper}>
-      {data.map((item) => {
+      {options.map((item) => {
         const isPackageActive = item.type === selectedPackageId;
         return (
-          <TouchableOpacity key={item.id} style={styles.componentWrapper} onPress={() => onSelectPackage(item.type)}>
-            <View style={styles.componentWrapper}>
+          <TouchableOpacityWithDelay key={item.id} style={wrapper} onPress={() => onSelectPackage(item.type)}>
+            <View style={wrapper}>
               {!isPackageActive ? (
                 <>
                   <View style={styles.armourWrapper}>
@@ -76,7 +81,7 @@ export const PackageOptions = memo(function (props: Props) {
                 </>
               )}
             </View>
-          </TouchableOpacity>
+          </TouchableOpacityWithDelay>
         );
       })}
     </View>

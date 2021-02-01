@@ -1,54 +1,51 @@
 import { useQuery } from "@apollo/react-hooks";
 import React, { memo, useCallback, useState } from "react";
+import { useDispatch } from "react-redux";
 import { View } from "react-native";
-import { connect } from "react-redux";
 import { Text } from "@atoms";
-import { FibLocalNavigation, FIB_BROWSE } from "../fib.types";
+import { FibLocalNavigation, FIB_CONFIRM_PACKAGES } from "../fib.types";
 import { FibCustomPercentage } from "@components/screens/products/fib/custom-percentage/fib.custom-percentage";
-import { GQL_QUERY_GET_TOP_UPS_ESTIMATE_COST } from "@graphql/products";
-import { getFIBState } from "@redux/product/product.selectors";
-import { IReduxState } from "@redux/_core/reducers";
-import { formatPrice } from "../fib.helpers";
-import { GetTopUpsEstimateCost, GetTopUpsEstimateCostVariables } from "../../../../../graphql/_core/schema";
-import { CoverType, ProductCode } from "../../../../../graphql/_core/schema/globalTypes";
-import { noop } from "../../../../../services/utils";
-
-type ConnectedState = ReturnType<typeof mapStateToProps>;
+import { GQL_QUERY_GET_CUSTOM_COVER_PRICES_BY_PERCENTAGES } from "@graphql/products";
+import { formatPrice, getCoverTypeByPercentage } from "../fib.helpers";
+import { GetCustomCoverPricesByPercentages, GetCustomCoverPricesByPercentagesVariables } from "@graphql/_core/schema";
+import { ProductCode } from "@graphql/_core/schema/globalTypes";
+import { updateFIBValue } from "@redux/product/product.actions";
 
 interface OwnProps {
   navigation: FibLocalNavigation;
 }
 
-type FibCustomPercentageContainerProps = ConnectedState & OwnProps;
-
 const range = [25, 75];
 const percentageRange = Array.from({ length: range[1] - range[0] + 1 }).map((_, i) => i + range[0]);
 
-const FibCustomPercentageContainer = memo(function (props: FibCustomPercentageContainerProps) {
-  const { navigation, salary } = props;
+const FibCustomPercentageContainer = memo(function (props: OwnProps) {
   const [activeIndex, setActiveIndex] = useState(0);
+  const { navigation } = props;
+  const dispatch = useDispatch();
 
-  const { loading, error, data } = useQuery<GetTopUpsEstimateCost, GetTopUpsEstimateCostVariables>(
-    GQL_QUERY_GET_TOP_UPS_ESTIMATE_COST,
-    {
-      variables: {
-        input: {
-          grossSalary: salary,
-          coverType: "custom" as CoverType,
-          customCoverPercentage: percentageRange[activeIndex],
-        },
-        product: ProductCode.YULFIB,
-      },
-      fetchPolicy: "network-only",
-    }
-  );
+  const { loading, error, data } = useQuery<
+    GetCustomCoverPricesByPercentages,
+    GetCustomCoverPricesByPercentagesVariables
+  >(GQL_QUERY_GET_CUSTOM_COVER_PRICES_BY_PERCENTAGES, {
+    variables: {
+      product: ProductCode.YULFIB,
+    },
+    fetchPolicy: "network-only",
+  });
 
   const handleNavigateForward = useCallback(() => {
-    navigation.push(FIB_BROWSE, {
+    dispatch(
+      updateFIBValue({
+        key: "selectedPackage",
+        value: getCoverTypeByPercentage(percentageRange[activeIndex]),
+      })
+    );
+    navigation.push(FIB_CONFIRM_PACKAGES, {
       isCustomCover: true,
-      customCoverPercentage: percentageRange[activeIndex],
+      coverType: getCoverTypeByPercentage(percentageRange[activeIndex]),
+      percentage: percentageRange[activeIndex],
     });
-  }, [navigation, activeIndex]);
+  }, [navigation, activeIndex, dispatch]);
 
   if (error) {
     return (
@@ -65,14 +62,9 @@ const FibCustomPercentageContainer = memo(function (props: FibCustomPercentageCo
       loadingEstimatedCost={loading}
       onNavigateForward={handleNavigateForward}
       salaryPercentageRange={percentageRange}
-      estimatedCost={formatPrice(data?.getTopUpsEstimateCost?.estimatedCost || 0)}
-      onNavigateToEditSalary={noop}
+      estimatedCost={formatPrice(data?.getCustomCoverPricesByPercentages?.prices[activeIndex])}
     />
   );
 });
 
-const mapStateToProps = (state: IReduxState) => ({
-  salary: getFIBState(state).salary,
-});
-
-export default connect(mapStateToProps)(FibCustomPercentageContainer);
+export default FibCustomPercentageContainer;

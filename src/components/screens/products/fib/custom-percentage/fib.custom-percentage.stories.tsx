@@ -30,7 +30,6 @@ const Demo = () => {
       salaryPercentageRange={percentageRange}
       loadingEstimatedCost={loading}
       onChangeSalary={handleChangeActiveIndex}
-      onNavigateToEditSalary={() => null}
     />
   );
 };

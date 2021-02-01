@@ -16,6 +16,10 @@ export default StyleSheet.create({
     width: (Style.DEVICE_WIDTH - 42) / 3,
     justifyContent: "center",
   } as ViewStyle,
+  componentWrapperFiltered: {
+    width: "100%",
+    justifyContent: "center",
+  } as ViewStyle,
   armourWrapper: {
     height: Style.adjust(64),
     width: Style.adjust(64),

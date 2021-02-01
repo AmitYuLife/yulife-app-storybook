@@ -32,7 +32,9 @@ import {
   FIB_HIGH_BLOOD_PRESSURE_EXTRA_SCREEN,
   FIB_HIGH_CHOLESTEROL_EXTRA_SCREEN,
 } from "../../components/containers/products/fib/data/underwriting-journey-data";
+
 import { CoverType, ScreeningStatus, YuWorld } from "@graphql/_core/schema/globalTypes";
+import { getCoverTypeByPercentage } from "@components/containers/products/fib/fib.helpers";
 
 export { IProductStore } from "./product.types";
 
@@ -400,7 +402,7 @@ const refreshFibStore = (state: IProductStore, action: RefreshFIBStoreAction) =>
   newState.fib.medicalInvestigationRequired = quoteResult.medicalInvestigationRequired;
   newState.fib.actualCost = quoteResult.actualCost;
   newState.fib.status = quoteResult.status;
-  newState.fib.selectedPackage = quoteResult.coverType;
+  newState.fib.selectedPackage = getCoverTypeByPercentage(quoteResult.salaryPercentageCovered);
   newState.fib.latestQuoteId = quoteResult.quoteId;
   newState.fib.productEntityId = quoteResult.productEntityId;
   newState.fib.quoteDate = quoteResult.createdAt;

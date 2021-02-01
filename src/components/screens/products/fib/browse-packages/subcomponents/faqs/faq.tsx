@@ -13,6 +13,8 @@ export interface IFaq {
   redirectType: "internal" | "external";
 }
 
+//@TODO: Remove this component in favour of using  <Button type="Tertiary"
+
 export const Faq = memo(({ label = "", onPress, styles, iconSvgXml }: IFaq) => {
   const style = { ...defaultStyles, ...styles };
 

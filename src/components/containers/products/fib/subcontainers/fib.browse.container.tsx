@@ -4,14 +4,8 @@ import { useQuery } from "@apollo/react-hooks";
 import { connect } from "react-redux";
 import { View, Linking, Platform } from "react-native";
 import { Text } from "@atoms";
-import { FibBrowseScreen, FibCustomCoverScreen } from "@screens";
-import {
-  FibLocalNavigation,
-  FIB_CUSTOM_PERCENTAGE,
-  FIB_FAQ_LIST,
-  FIB_INTRO_YUGI,
-  FIB_PAYOUT_CALCULATOR,
-} from "../fib.types";
+import { FibDetailsScreen } from "@screens";
+import { FibLocalNavigation, FIB_FAQ_LIST, FIB_INTRO_YUGI, FIB_PAYOUT_CALCULATOR } from "../fib.types";
 import fibDocumentsItems from "../data/documents-data";
 import { GetYulifer } from "@graphql/_core/schema";
 import { GQL_QUERY_GET_YULIFER } from "@graphql/yuscreen";
@@ -25,7 +19,6 @@ import { handleOpenWebView } from "@navigation/utils";
 import Logger from "@services/logging/logger";
 import { CoverType } from "@graphql/_core/schema/globalTypes";
 import { YUGI_INTRO_TYPE } from "./fib.yugi-intro.container";
-import { noop } from "../../../../../services/utils";
 import { useBackHandler } from "../../../../../services/hooks/useBackHandler";
 import { FIB_PAYOUT_CALCULATOR_INITIAL_STATE } from "./fib.payout-calculator.conainer";
 
@@ -54,16 +47,30 @@ const documents: IFaq[] = fibDocumentsItems.map((document) => ({
   iconSvgXml: document.iconSvgXml,
 }));
 
+const otherBenefits = {
+  title: "Other benefits",
+  items: [
+    {
+      id: "yuLifeApp",
+      title: "YuLife app",
+      description: "Continue to enjoy the app no matter where your career takes you.",
+    },
+    {
+      id: "smartHealth",
+      title: "Smart Health",
+      description:
+        "Have access to Smart Health, a doctor / on demand service where you can have Video/Phone consultations with a GP.",
+    },
+  ],
+};
+
 const _FibBrowseContainer = memo(function (props: IFibContainer & ReturnType<typeof mapStateToProps>) {
   const { navigation, selectedPackage, userDateOfBirth } = props;
-  const { isCustomCover } = navigation.currentRoute.passProps;
-  const [selectedCoverType, selectCoverType] = useCover(
-    isCustomCover ? CoverType.custom : selectedPackage || CoverType.epic
-  );
+  const [selectedCoverType, selectCoverType] = useCover(selectedPackage || CoverType.epic);
 
   const maxTermAge = moment().diff(moment(userDateOfBirth), "years") + 40;
 
-  const { data: yuliferData, loading, error } = useQuery<GetYulifer>(GQL_QUERY_GET_YULIFER);
+  const { data: yuliferData, error } = useQuery<GetYulifer>(GQL_QUERY_GET_YULIFER);
 
   const navigateToIntroScreen = () => {
     navigation.pop();
@@ -77,7 +84,7 @@ const _FibBrowseContainer = memo(function (props: IFibContainer & ReturnType<typ
   const navigateToPayoutCalculator = () =>
     navigation.push(FIB_PAYOUT_CALCULATOR, { type: FIB_PAYOUT_CALCULATOR_INITIAL_STATE.needData });
 
-  const handleContinue = () => {
+  const navigateToContinue = () => {
     navigation.push(FIB_INTRO_YUGI, {
       type: YUGI_INTRO_TYPE.PACKAGE_CHOSEN,
     });
@@ -110,36 +117,22 @@ const _FibBrowseContainer = memo(function (props: IFibContainer & ReturnType<typ
     powers: selectedProductOption?.powers || [],
   };
 
-  if (isCustomCover) {
-    return (
-      <FibCustomCoverScreen
-        avatarUrl={yuliferData?.getYulifer.avatarRemoteFiles?.pngFull}
-        onNavigateBack={navigation.pop}
-        onContinue={handleContinue}
-        navigateToEditSalary={noop}
-        selectedPackage={packageDetails}
-        payoutEstimatorItems={{} as any}
-        setDeceaseAgeIndexYear={noop}
-        setDeceaseAgeIndexMonth={noop}
-        loading={loading}
-        onNavigateToFaqsList={navigateToFaqsList}
-        documents={documents}
-      />
-    );
-  }
+  const howItWorks = `We’ve designed this policy to protect your loved ones. It’s for YuLifers who want to make sure their family will be taken care of in the event that they should pass unexpectedly.\n\nEquipping this item means we will pay your chosen beneficiaries ${packageDetails.salaryPercentageCovered}% of your monthly salary as a lump sum from the date you passed away until you would have turned 70 years old.`;
 
   return (
-    <FibBrowseScreen
-      onNavigateToYuScreen={navigation.popToMain}
-      navigateToCustomCover={() => navigation.push(FIB_CUSTOM_PERCENTAGE)}
-      onContinue={handleContinue}
-      selectCoverType={selectCoverType}
+    <FibDetailsScreen
       selectedPackage={packageDetails}
-      documents={documents}
+      selectCoverType={selectCoverType}
+      continueButtonIsFixed={true}
       onScrollEnd={navigation.onScrollEnd}
       offset={navigation.currentRoute.offset || { x: 0, y: 0 }}
-      onNavigateToFaqsList={navigateToFaqsList}
-      onNavigateToIntroScreen={navigateToIntroScreen}
+      documents={documents}
+      otherBenefits={otherBenefits}
+      howItWorks={howItWorks}
+      navigateToContinue={navigateToContinue}
+      navigateToBack={navigation.pop}
+      navigateToExit={navigation.popToMain}
+      navigateToFaqsList={navigateToFaqsList}
       navigateToPayoutCalculator={navigateToPayoutCalculator}
     />
   );

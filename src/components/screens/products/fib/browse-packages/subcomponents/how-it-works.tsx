@@ -3,12 +3,11 @@ import { StyleSheet, View, TextStyle } from "react-native";
 import { Style, Colours } from "@styles";
 import { Heading } from "./common";
 import { Text } from "@atoms";
-import { CoverType } from "../../../../../../graphql/_core/schema/globalTypes";
-
 interface Props {
-  header: CoverType;
   content: string;
 }
+
+// @TODO: Remove this component in the future
 
 export const HowItWorks = memo(({ content }: Props) => {
   return (
