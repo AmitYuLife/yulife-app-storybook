@@ -227,6 +227,7 @@ export default {
     fp205: "#FFEEEE",
     fp304: "#3C9172",
     fp305: "#5DB489",
+    fp306: "#6DC694",
     fp308: "#96E2B5",
     fp309: "#AAF0C7",
   },

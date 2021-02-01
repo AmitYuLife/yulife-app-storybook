@@ -12,7 +12,7 @@ import moment from "moment";
 import { InfoTypes } from "@components/containers/products/fib/subcontainers/fib.info.container";
 import { getIsPersonalItem } from "../yu-types";
 import { FIBStore } from "@redux/product/product.types";
-import { ScreeningStatus } from "../../../../../graphql/_core/schema/globalTypes";
+import { CoverType, ScreeningStatus } from "../../../../../graphql/_core/schema/globalTypes";
 import { YUGI_INTRO_TYPE } from "../../../products/fib/subcontainers/fib.yugi-intro.container";
 
 interface INavigateToProductScreen {
@@ -43,7 +43,7 @@ export const navigateToProductScreen = ({ product, fibState, resetFibJourney }: 
     }
 
     if (fibState.status === ScreeningStatus.PURCHASED) {
-      return redirectToInfoScreen(InfoTypes.paymentCongrats);
+      return redirectToInfoScreen(InfoTypes.paymentCongrats, fibState.selectedPackage);
     }
 
     if (fibState.status === ScreeningStatus.WAITING_MSS) {
@@ -152,7 +152,7 @@ export const navigateToProductScreen = ({ product, fibState, resetFibJourney }: 
   });
 };
 
-function redirectToInfoScreen(infoTypeScreen: InfoTypes) {
+function redirectToInfoScreen(infoTypeScreen: InfoTypes, packageType?: CoverType) {
   return Navigation.push(ROUTES.yuScreen, {
     component: {
       id: ROUTES.fib,
@@ -161,6 +161,7 @@ function redirectToInfoScreen(infoTypeScreen: InfoTypes) {
         initialRoute: FIB_INFO,
         initialProps: {
           type: infoTypeScreen,
+          packageType,
         },
       },
     },

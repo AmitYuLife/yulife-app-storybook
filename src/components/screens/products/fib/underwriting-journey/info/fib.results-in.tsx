@@ -28,7 +28,7 @@ export const FibResultsInScreen = memo(function (props: IFibResultsInScreenProps
   }, [onClose]);
 
   useBackHandler(backHandler);
-
+  // TODO: Display price change modal when removing this screen.
   const priceChanged = useCallback(() => {
     return Navigation.showModal({
       component: {

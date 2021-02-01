@@ -79,6 +79,7 @@ export const MODALS = {
   enterSalary: "yulife.modals.enterSalary",
   yuProductDetails: "yulife.member.yuProductDetails",
   financialCoverForm: "yulife.member.financialCoverForm",
+  priceChanged: "yulife.member.priceChanged",
 };
 
 export const bottomTabs: OptionsBottomTabs = {
