@@ -1,10 +1,8 @@
 import React, { memo, useCallback, useState } from "react";
 import { FibLocalNavigation, FIB_INTRO_YUGI } from "../fib.types";
 import { FibHoldingGPDetails } from "../../../../screens/products/fib/underwriting-journey/info/fib.holding-gp-results.screen";
-import { FibPaymentCongratulationScreen } from "@components/screens/products/fib/underwriting-journey/info/fib.payment-congratulation.screen";
 import { Navigation } from "react-native-navigation";
 import { MODALS, ROUTES } from "../../../../../navigation/constants";
-import { FibRejectedScreen } from "@components/screens/products/fib/underwriting-journey/info/fib.rejected.screen";
 import { FibResultsInScreen } from "../../../../screens/products/fib/underwriting-journey/info/fib.results-in";
 import { IReduxState } from "../../../../../redux/_core/reducers";
 import { getFIBState } from "../../../../../redux/product/product.selectors";
@@ -18,12 +16,15 @@ import { GQL_MUTATION_UPDATE_TOP_UPS_QUOTE } from "../../../../../graphql/produc
 import { resetFIBUnderwritingJourney } from "../../../../../redux/product/product.actions";
 import { YUGI_INTRO_TYPE } from "./fib.yugi-intro.container";
 import { getUserFeatures } from "../../../../../redux/user/user.selectors";
+import { FibInfoScreen, InfoYugiType } from "@components/screens/products/fib/info-screens/fib.info.screen";
+import { toCapitalLetter } from "@services/utils";
 
 export enum InfoTypes {
   holdingGP = "HoldingGP",
   paymentCongrats = "PaymentCongratulation",
   rejected = "Rejected",
   resultsIn = "ResultsIn",
+  priceChanged = "PriceChanged",
 }
 
 type ConnectedState = ReturnType<typeof mapStateToProps>;
@@ -44,7 +45,7 @@ const _FibInfoContainer = memo(function (props: Props) {
     GQL_MUTATION_UPDATE_TOP_UPS_QUOTE
   );
 
-  const [screenType, setScreenType] = useState<string>(type);
+  const [screenType, setScreenType] = useState<InfoTypes>(type);
   const canResetFib = useSelector(getUserFeatures).resetFib;
 
   const resetFib = useCallback(async () => {
@@ -87,20 +88,34 @@ const _FibInfoContainer = memo(function (props: Props) {
     Navigation.popTo(ROUTES.yuScreen);
   }, []);
 
+  // TODO: Show here FibHoldingScreen (HoldingGp | ResultsIn)
   switch (screenType) {
+    case "PaymentCongratulation":
+    case "Rejected": {
+      const screenData = getFibInfoScreenData(screenType, packageType);
+      if (!screenData) {
+        return <></>;
+      }
+
+      return (
+        <FibInfoScreen
+          onBackHandler={onClose}
+          icon={screenData.icon}
+          title={screenData.title}
+          message={screenData.message}
+        />
+      );
+    }
+
     case "HoldingGP":
       return <FibHoldingGPDetails onClose={onClose} onResetFib={resetFib} canResetFib={canResetFib} />;
-    case "PaymentCongratulation":
-      return <FibPaymentCongratulationScreen onClose={onClose} packageType={packageType} />;
-    case "Rejected":
-      return <FibRejectedScreen onClose={onClose} onResetFib={resetFib} canResetFib={canResetFib} />;
     case "ResultsIn":
       return (
         <FibResultsInScreen
           onClose={onClose}
           navigation={navigation}
-          showRejectedScreen={() => setScreenType("Rejected")}
-          showCongratulationScreen={() => setScreenType("PaymentCongratulation")}
+          showRejectedScreen={() => setScreenType(InfoTypes.rejected)}
+          showCongratulationScreen={() => setScreenType(InfoTypes.paymentCongrats)}
           fibStatus={status}
         />
       );
@@ -112,6 +127,42 @@ const _FibInfoContainer = memo(function (props: Props) {
 function mapStateToProps(store: IReduxState) {
   return {
     fibStore: getFIBState(store),
+  };
+}
+
+export function getFibInfoScreenData(screenType: InfoTypes, packageType?: string) {
+  let icon: InfoYugiType;
+  let title: string;
+  let message: string;
+
+  switch (screenType) {
+    case "PaymentCongratulation": {
+      const packageMsg = packageType ? `${toCapitalLetter(packageType) + " Life Insurance"}` : "Life Insurance";
+      icon = "success";
+      title = "Your purchase was successful!";
+      message = `Thank you for purchasing ${packageMsg}. Your policy is now live!`;
+
+      break;
+    }
+
+    case "Rejected":
+      icon = "rejected";
+      title = "Sorry about this!";
+      message = "Based on your answers, we’re not able to offer you personal life insurance right now. ";
+      break;
+    case "PriceChanged":
+      icon = "priceChanged";
+      title = "Price change!";
+      message = "Based on your answers, the final price of your life insurance packages has changed.";
+      break;
+    default:
+      return;
+  }
+
+  return {
+    icon,
+    title,
+    message,
   };
 }
 

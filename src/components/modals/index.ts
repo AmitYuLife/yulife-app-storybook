@@ -12,3 +12,4 @@ export { default as StreaksModal } from "./streaks/streaks.modal";
 export { default as TodayYucoinModal } from "./today-yucoin/today-yucoin.modal";
 export { default as DuelInviteModal } from "./duels/duel-invite.modal";
 export { default as DuelRespondModal } from "./duels/duel-respond.modal";
+export { default as PriceChangeModal } from "./price-changed/price-changed";

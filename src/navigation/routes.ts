@@ -255,4 +255,8 @@ export default [
     name: MODALS.duelRespond,
     component: require("../components/modals/duels/duel-respond.modal").default,
   },
+  {
+    name: MODALS.priceChanged,
+    component: require("../components/modals/price-changed/price-changed").default,
+  },
 ];

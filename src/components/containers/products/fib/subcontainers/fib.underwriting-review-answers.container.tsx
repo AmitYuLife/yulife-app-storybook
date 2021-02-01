@@ -18,6 +18,7 @@ import { CreateTopUpsQuote, CreateTopUpsQuoteVariables } from "../../../../../gr
 import { CoverType, CreateTopUpsQuoteInput, ProductCode } from "../../../../../graphql/_core/schema/globalTypes";
 import { FIB_INTRO_YUGI } from "../fib.types";
 import { YUGI_INTRO_TYPE } from "./fib.yugi-intro.container";
+import { PriceChangedModalProps } from "@components/modals/price-changed/price-changed";
 
 type ConnectedState = ReturnType<typeof mapStateToProps>;
 
@@ -63,19 +64,15 @@ const FibUnderwritingReviewAnswersContainer = memo(function (props: Props) {
         : false;
 
     if (priceChangedFromAPI) {
-      await Navigation.showModal({
+      await Navigation.showModal<PriceChangedModalProps>({
         component: {
-          id: MODALS.generic,
-          name: MODALS.generic,
+          id: MODALS.priceChanged,
+          name: MODALS.priceChanged,
           passProps: {
-            onPress: async () => {
+            onBackHandler: () => {
               dispatch(updateFIBValue({ key: "hasPriceChanged", value: false }));
-              await Navigation.dismissModal(MODALS.generic);
               navigation.push(FIB_CONFIRM_PACKAGES);
             },
-            heading: "Price change",
-            subheading: "Based on your answers, the final price of your life insurance package has changed.",
-            ctaLabel: "Continue",
           },
         },
       });
