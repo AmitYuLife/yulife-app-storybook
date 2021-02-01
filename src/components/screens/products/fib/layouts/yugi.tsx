@@ -17,7 +17,7 @@ export enum YugiType {
   FINANCIAL = "FINANCIAL",
 }
 
-export const Yugi = (props: Props) => {
+const _Yugi = (props: Props) => {
   const { yugi, wrapperStyle } = props;
 
   if (!yugi) {
@@ -34,6 +34,8 @@ export const Yugi = (props: Props) => {
     </View>
   );
 };
+
+export const Yugi = Object.assign(_Yugi, { DEFAULT_TOP_OFFSET: Style.adjust(68) });
 
 const styles = StyleSheet.create({
   yugiWrapper: {

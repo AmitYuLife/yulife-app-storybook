@@ -30,7 +30,7 @@ export const FibConfirmScreen = memo(function (props: IFibConfirmEmailScreenProp
       heading={"Contact Details"}
       onClose={onClose}
       onPreviousQuestion={onBackButtonPress}
-      hideProgressBar={true}
+      progressBarHideType="unrendered"
     >
       <ContactDetailsTitle title="Would you like to use:" />
       <View style={styles.content}>

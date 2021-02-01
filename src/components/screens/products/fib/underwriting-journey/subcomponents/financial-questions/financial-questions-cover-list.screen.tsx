@@ -24,13 +24,13 @@ type Props = IFibUnderwritingJourneyScreenProps;
 export function FinancialQuestionsCoverListScreen(props: Props) {
   const existingCovers = useSelector(getFIBState).answers.existingCovers;
 
-  const { data, onNavigateBack, onFirstButtonPressed, onPreviousButtonPressed, hideProgressBar } = props;
+  const { data, onNavigateBack, onFirstButtonPressed, onPreviousButtonPressed, progressBarHideType } = props;
 
   return (
     <FibUnderwritingJourneyLayout
       centreLogo="yulife"
       onClose={onNavigateBack}
-      hideProgressBar={hideProgressBar}
+      progressBarHideType={progressBarHideType}
       onPreviousQuestion={onPreviousButtonPressed}
       yugi={YugiType.FINANCIAL}
     >

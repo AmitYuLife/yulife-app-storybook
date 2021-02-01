@@ -18,6 +18,7 @@ import { IRightIcon } from "@atoms/generic-heading/generic-heading.types";
 import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
 import { Yugi, YugiType } from "../layouts/yugi";
 import FibTitle from "@atoms/fib/title/title";
+import { TOP_BAR } from "@styles";
 
 export interface IFibUnderwritingReviewAnswersScreenProps {
   onNavigateBack: () => void;
@@ -108,7 +109,7 @@ const _FibUnderwritingReviewAnswersScreen = memo(function (props: IFibUnderwriti
         rightIcon={RIGHT_ICON}
         onRightIconPress={onNavigateBack}
       />
-      <Yugi wrapperStyle={styles.yugi} yugi={YugiType.REVIEW} />
+      <Yugi wrapperStyle={styles.yugiWrapperStyle} yugi={YugiType.REVIEW} />
     </View>
   );
 });
@@ -119,9 +120,6 @@ const styles = StyleSheet.create({
   wrapper: {
     height: "100%",
   },
-  yugi: {
-    top: Style.adjust(148),
-  } as ViewStyle,
   scrollViewContentStyle: {
     paddingBottom: 16,
   } as ViewStyle,
@@ -140,7 +138,10 @@ const styles = StyleSheet.create({
     height: Style.adjust(40),
   } as ViewStyle,
   topPad: {
-    height: Style.adjust(48),
+    height: Style.adjust(58),
+  } as ViewStyle,
+  yugiWrapperStyle: {
+    top: TOP_BAR.TOP_BAR_WITH_PAD + Yugi.DEFAULT_TOP_OFFSET,
   } as ViewStyle,
 });
 
