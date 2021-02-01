@@ -22,7 +22,7 @@ export const FibHoldingGPDetails = memo(function (props: IFibHoldingGPDetailsScr
   useBackHandler(backHandler);
 
   return (
-    <FibUnderwritingJourneyLayout heading={"GP Results"} onClose={onClose} hideProgressBar={true}>
+    <FibUnderwritingJourneyLayout heading={"GP Results"} onClose={onClose} progressBarHideType="unrendered">
       <View style={styles.wrapper}>
         <Text style={styles.message}>
           {`We are going to contact your GP.\n\nWe cannot issue your insurance until your medical assessment and further checks have been completed.\n\nWe have not taken payment, and will inform you when we have your results.`}

@@ -1,4 +1,4 @@
-import React, { memo, useRef, useEffect, useCallback } from "react";
+import React, { memo, useRef, useEffect, useCallback, ComponentProps } from "react";
 import { ScrollView, View, Keyboard } from "react-native";
 import { useBackHandler } from "../../../../../services/hooks/useBackHandler";
 import FibTitle from "@atoms/fib/title/title";
@@ -29,6 +29,7 @@ import { styles, getChildWrapperStyle } from "./fib.underwriting-journey.styles"
 import { YugiType } from "../layouts/yugi";
 import { CopyIntro } from "@organisms/fib/copy/intro";
 import GenderQuestion from "./subcomponents/gender/gender-question";
+import { ProgressBar } from "@components/molecules";
 
 export interface IFibUnderwritingJourneyScreenProps {
   onNavigateBack: () => void;
@@ -44,7 +45,7 @@ export interface IFibUnderwritingJourneyScreenProps {
   disableSecondButton?: boolean;
   radioInputValue?: string;
   setRadioInputValue?: (text: string) => void;
-  hideProgressBar: boolean;
+  progressBarHideType: ComponentProps<typeof ProgressBar>["hideType"];
   salary?: number;
   setInputSalary?: (salary: number) => void;
 }
@@ -64,7 +65,7 @@ const _FibUnderwritingJourneyScreen = memo(function (props: IFibUnderwritingJour
     disableSecondButton,
     radioInputValue,
     setRadioInputValue,
-    hideProgressBar,
+    progressBarHideType,
     salary,
     setInputSalary,
   } = props;
@@ -130,13 +131,13 @@ const _FibUnderwritingJourneyScreen = memo(function (props: IFibUnderwritingJour
     <FibUnderwritingJourneyLayout
       centreLogo="yulife"
       onClose={onNavigateBack}
-      hideProgressBar={hideProgressBar}
+      progressBarHideType={progressBarHideType}
       onPreviousQuestion={onPreviousButtonPressed}
       yugi={YugiType.DEFAULT}
     >
       <ScrollView ref={scrollViewRef} showsVerticalScrollIndicator={false} keyboardShouldPersistTaps="handled">
         <View style={styles.topPad} />
-        <FibTitle title={data.question} />
+        {!data?.question ? null : <FibTitle title={data.question} />}
         {data.children?.map((child: UnderwritingJourneyChild, i) => {
           const key = data.id + i;
           return (

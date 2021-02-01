@@ -8,6 +8,7 @@ import { Text } from "@atoms";
 interface IProgressBarProps {
   currentPosition: number;
   maxLength: number;
+  hideType?: "unrendered" | "invisible";
 }
 
 const YU_COIN_IMAGE_AND_TEXT_WIDTH = 58;
@@ -15,11 +16,19 @@ const HORIZONTAL_MARGINS = 48;
 const MAX_UI_LENGTH = Style.DEVICE_WIDTH - HORIZONTAL_MARGINS - YU_COIN_IMAGE_AND_TEXT_WIDTH;
 
 export default function ProgressBar(props: IProgressBarProps) {
-  const { currentPosition, maxLength } = props;
+  const { currentPosition, maxLength, hideType } = props;
   const currentProgressPercent = currentPosition / maxLength;
   const currentProgressUI = MAX_UI_LENGTH * currentProgressPercent;
   const shineWidth = currentProgressUI - 10;
   const safeShineWidth = shineWidth < 10 ? 0 : shineWidth;
+
+  if (hideType === "unrendered") {
+    return null;
+  }
+
+  if (hideType === "invisible") {
+    return <View style={styles.emptyWrapper} />;
+  }
 
   return (
     <View style={styles.wrapper}>
@@ -38,14 +47,19 @@ export default function ProgressBar(props: IProgressBarProps) {
   );
 }
 
+const PROGRESS_BAR_HEIGHT = Style.adjust(18);
+
 const styles = StyleSheet.create({
   wrapper: {
     flexDirection: "row",
-    height: Style.adjust(18),
+    height: PROGRESS_BAR_HEIGHT,
     alignSelf: "center",
     width: Style.DEVICE_WIDTH - 48,
     alignItems: "center",
     marginTop: Style.adjust(16),
+  } as ViewStyle,
+  emptyWrapper: {
+    height: PROGRESS_BAR_HEIGHT,
   } as ViewStyle,
   yuCoin: {
     marginLeft: Style.adjust(8),

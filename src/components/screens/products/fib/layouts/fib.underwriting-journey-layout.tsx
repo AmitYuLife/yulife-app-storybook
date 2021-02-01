@@ -4,13 +4,14 @@ import { GenericHeading } from "@atoms";
 import { FIBProgressBar } from "@components/organisms";
 import { Yugi, YugiType } from "./yugi";
 import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
+import { ProgressBar } from "@components/molecules";
 
 interface Props {
   heading?: string;
   onClose?: () => void;
   onPreviousQuestion?: () => void | null;
   children: React.ReactNode;
-  hideProgressBar: boolean;
+  progressBarHideType?: ComponentProps<typeof ProgressBar>["hideType"];
   yugi?: YugiType;
   centreLogo?: "yulife";
   wrapperStyle?: ViewStyle;
@@ -28,7 +29,7 @@ export function FibUnderwritingJourneyLayout(props: Props) {
     onClose,
     onPreviousQuestion = null,
     children,
-    hideProgressBar,
+    progressBarHideType,
     yugi,
     wrapperStyle,
     hideBorder = true,
@@ -39,9 +40,9 @@ export function FibUnderwritingJourneyLayout(props: Props) {
       <GenericHeadingPad />
       <KeyboardAvoidingView behavior={keyboardBehavior} style={styles.kav}>
         <View style={styles.safeAreaView}>
-          {hideProgressBar ? null : <FIBProgressBar />}
+          <FIBProgressBar hideType={progressBarHideType} />
           {children}
-          <Yugi yugi={yugi} />
+          <Yugi wrapperStyle={styles.yugiWrapperStyle} yugi={yugi} />
         </View>
       </KeyboardAvoidingView>
       <GenericHeadingAbsolute
@@ -67,5 +68,8 @@ const styles = StyleSheet.create({
   safeAreaView: {
     height: "100%",
     flex: 1,
+  } as ViewStyle,
+  yugiWrapperStyle: {
+    top: Yugi.DEFAULT_TOP_OFFSET,
   } as ViewStyle,
 });

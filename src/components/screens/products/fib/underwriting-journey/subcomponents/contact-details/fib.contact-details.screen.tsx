@@ -122,7 +122,7 @@ export const FibContactDetailsScreen = memo(function (props: IFibContactDetailsS
     <FibUnderwritingJourneyLayout
       heading={"Contact Details"}
       onClose={onClose}
-      hideProgressBar={true}
+      progressBarHideType="unrendered"
       onPreviousQuestion={pop}
     >
       <ScrollView
