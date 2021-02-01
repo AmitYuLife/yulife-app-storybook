@@ -1,4 +1,4 @@
-import React, { memo, ComponentProps, useCallback, useRef, useEffect } from "react";
+import React, { memo, useCallback, useRef, useEffect } from "react";
 import {
   StyleSheet,
   ScrollView,
@@ -9,9 +9,8 @@ import {
   ViewStyle,
 } from "react-native";
 import { Button } from "@atoms";
-import { Summary } from "./subcomponents";
+import { HowItWorks } from "./subcomponents";
 import { Faqs } from "./subcomponents/faqs/faqs";
-import { PayoutCalculator } from "./subcomponents/payout-calculator/payout-calculator";
 import { Documents } from "./subcomponents/documents/documents";
 import { Package } from "./fib.browse.types";
 import { useBackHandler } from "@services/hooks/useBackHandler";
@@ -20,47 +19,56 @@ import PackageInfo from "./subcomponents/package-info/package-info";
 import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
 import { Style } from "@styles";
 import * as Animated from "react-native-animatable";
-import { Faq } from "./subcomponents/faqs/faq";
 import { payoutCalculatorSvg } from "./subcomponents/payout-calculator/assets/payout-calculator-svg";
-import { CoverType } from "../../../../../graphql/_core/schema/globalTypes";
+import { CoverType } from "@graphql/_core/schema/globalTypes";
+import { CustomCoverPrompt } from "./subcomponents/custom-cover-prompt/custom-cover-prompt";
+import { BUTTON_ICON } from "@atoms/button/tertiary-button/tertiary-button.helpers";
+import AdditionalInformation, {
+  IAdditionalInformation,
+} from "./subcomponents/additional-information/additional-information";
+import { ContinueButton } from "@components/screens/products/fib/browse-packages/continue-button/continue-button";
 
-interface FibSummaryScreenProps {
-  onNavigateBack: () => void;
-  onContinue: () => void;
-  onExit: () => void;
+interface FibDetailsScreenProps {
   documents: any;
+  howItWorks?: string;
+  additionalInformation?: IAdditionalInformation;
+  otherBenefits?: IAdditionalInformation;
   selectedPackage: Package;
   selectCoverType: (coverType: CoverType) => void;
-  payoutEstimatorItems: ComponentProps<typeof PayoutCalculator>["items"];
-  setDeceaseAgeIndexYear: (index: number) => void;
-  setDeceaseAgeIndexMonth: (index: number) => void;
-  customerAge: number;
-  loading: boolean;
+  continueButtonIsFixed?: boolean;
   offset: NativeScrollPoint;
   onScrollEnd: (event: NativeSyntheticEvent<NativeScrollEvent>) => void;
+  navigateToBack: () => void;
+  navigateToExit: () => void;
+  navigateToContinue: () => void;
   navigateToFaqsList: () => void;
   navigateToPayoutCalculator: () => void;
+  navigateToCustomCover?: () => void;
 }
 
-export const FibSummaryScreen = memo(function (props: FibSummaryScreenProps) {
+export const FibDetailsScreen = memo(function (props: FibDetailsScreenProps) {
   const {
-    onNavigateBack,
     documents,
+    howItWorks,
+    additionalInformation,
+    otherBenefits,
     selectedPackage,
-    loading,
-    onContinue,
     selectCoverType,
+    continueButtonIsFixed,
     onScrollEnd,
     offset,
-    onExit,
+    navigateToBack,
+    navigateToExit,
+    navigateToContinue,
     navigateToFaqsList,
     navigateToPayoutCalculator,
+    navigateToCustomCover,
   } = props;
 
   const backHandler = useCallback(() => {
-    onNavigateBack();
+    navigateToBack();
     return true;
-  }, [onNavigateBack]);
+  }, [navigateToBack]);
 
   useBackHandler(backHandler);
 
@@ -94,37 +102,65 @@ export const FibSummaryScreen = memo(function (props: FibSummaryScreenProps) {
           onMomentumScrollEnd={onScrollEnd}
           ref={scrollViewRef}
         >
-          <PackageOptions selectedPackageId={selectedPackage.label} onSelectPackage={onSelectPackage} />
+          <PackageOptions
+            selectedPackageId={selectedPackage.label}
+            onSelectPackage={onSelectPackage}
+            filterBySelected={selectedPackage?.filterBySelected}
+          />
           <View style={styles.separator}>
             <PackageInfo selectedPackage={selectedPackage} packagePrice={selectedPackage.actualCost} />
           </View>
+          {howItWorks ? (
+            <View style={styles.separator}>
+              <HowItWorks content={howItWorks} />
+            </View>
+          ) : null}
+          {additionalInformation ? (
+            <View style={styles.separator}>
+              <AdditionalInformation items={additionalInformation.items} />
+            </View>
+          ) : null}
           <View style={styles.separator}>
-            <Summary selectedPackage={selectedPackage} loading={loading} />
-          </View>
-          <View style={styles.separator}>
-            <Faq
-              iconSvgXml={payoutCalculatorSvg}
-              label="How much would it pay out?"
+            <Button
+              type="Tertiary"
+              size="Fill"
               onPress={navigateToPayoutCalculator}
-              redirectType="internal"
+              label="How much would it pay out?"
+              height={Style.adjust(60)}
+              iconSvgXml={payoutCalculatorSvg}
+              rightIcon={BUTTON_ICON.ARROW_RIGHT}
             />
           </View>
-          <View style={styles.documents}>
-            <Documents items={documents} />
-          </View>
+          {otherBenefits ? (
+            <View style={styles.separator}>
+              <AdditionalInformation title={otherBenefits.title} items={otherBenefits.items} />
+            </View>
+          ) : null}
+
+          {documents ? (
+            <View style={styles.documents}>
+              <Documents items={documents} />
+            </View>
+          ) : null}
           <View style={styles.separator}>
-            <Button label="Continue" onPress={onContinue} type="Primary" />
+            <Faqs navigateToFaqsList={navigateToFaqsList} />
           </View>
-          <Faqs navigateToFaqsList={navigateToFaqsList} />
+          {navigateToCustomCover ? (
+            <View style={styles.separator}>
+              <CustomCoverPrompt onPressCustomCoverPrompt={navigateToCustomCover} />
+            </View>
+          ) : null}
+          {!continueButtonIsFixed ? <Button label="Continue" onPress={navigateToContinue} type="Primary" /> : null}
           <View style={styles.padBot} />
         </ScrollView>
       </Animated.View>
       <GenericHeadingAbsolute
-        heading="Finalise Package"
         leftIcon="BACK"
-        onLeftIconPress={onNavigateBack}
-        onRightIconPress={onExit}
+        onLeftIconPress={navigateToBack}
+        onRightIconPress={navigateToExit}
+        logo="yulife"
       />
+      {continueButtonIsFixed ? <ContinueButton onPress={navigateToContinue} /> : null}
     </>
   );
 });

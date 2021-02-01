@@ -3,28 +3,23 @@ import { StyleSheet, ViewStyle, View, Platform, TextStyle } from "react-native";
 import deviceInfoModule from "react-native-device-info";
 import { SvgXml } from "react-native-svg";
 import { Style, Colours } from "@styles";
-import { Button } from "@atoms";
-import { TextWithBoldText, HorizontalScroller } from "@molecules";
-import { personPencilSvg } from "./assets/person-pencil-svg";
+import { Button, Text } from "@atoms";
+import { HorizontalScroller } from "@molecules";
 import { EstimatedCost } from "./subcomponents/estimated-cost";
 import LinearGradient from "react-native-linear-gradient";
 import { useBackHandler } from "../../../../../services/hooks/useBackHandler";
 import { CUSTOM_COVER_SCREEN } from "@ids";
 import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
+import { customCoverPromptSVG } from "../browse-packages/subcomponents/custom-cover-prompt/assets/icon";
 
 export interface IFibCustomPercentage {
   onNavigateBack: () => void;
   onNavigateForward: () => void;
-  onNavigateToEditSalary: () => void;
   onChangeSalary: (activeIndex: number) => void;
   salaryPercentageRange: number[];
   estimatedCost: string;
   loadingEstimatedCost: boolean;
 }
-
-const copy = {
-  caption: `Get an estimated quote using a\n<bold>custom percentage</bold> of your salary`,
-};
 
 const GRADIENT_COLOR = ["rgba(255, 255, 255, 0)", "rgba(217, 217, 217, 0.67)", "rgba(243, 243, 243, 0)"];
 
@@ -36,7 +31,6 @@ export const FibCustomPercentage = memo(function (props: IFibCustomPercentage) {
     estimatedCost,
     loadingEstimatedCost,
     salaryPercentageRange,
-    onNavigateToEditSalary,
   } = props;
 
   const backHandler = useCallback(() => {
@@ -50,9 +44,9 @@ export const FibCustomPercentage = memo(function (props: IFibCustomPercentage) {
     <View style={styles.wrapper} testID={CUSTOM_COVER_SCREEN}>
       <GenericHeadingPad />
       <View style={styles.content}>
-        <SvgXml xml={personPencilSvg} />
+        <SvgXml xml={customCoverPromptSVG} width={48} height={48} />
         <View>
-          <TextWithBoldText style={styles.caption} value={copy.caption} />
+          <Text style={styles.caption}>Select the percentage of your salary you want to cover</Text>
         </View>
         <LinearGradient
           pointerEvents="none"
@@ -86,13 +80,12 @@ export const FibCustomPercentage = memo(function (props: IFibCustomPercentage) {
         <View style={styles.promptForward}>
           <Button onPress={onNavigateForward} label="Continue" type="Primary" />
         </View>
-        <Button onPress={onNavigateToEditSalary} label="edit salary" type="Link" />
       </View>
       <GenericHeadingAbsolute
         style={styles.headingWrapper}
         leftIcon="BACK"
         onLeftIconPress={onNavigateBack}
-        heading="Create custom cover"
+        logo="yulife"
       />
     </View>
   );
@@ -112,7 +105,7 @@ const styles = StyleSheet.create({
     width: Style.DEVICE_WIDTH,
     height: "100%",
     alignItems: "center",
-    paddingTop: 88, // auto layout?
+    paddingTop: 96, // auto layout?
   } as ViewStyle,
   headingWrapper: {
     width: Style.DEVICE_WIDTH,
@@ -126,7 +119,8 @@ const styles = StyleSheet.create({
     fontSize: Style.adjust(16),
     lineHeight: Style.adjust(24),
     textAlign: "center",
-    maxWidth: Style.adjust(260),
+    marginTop: Style.adjust(8),
+    maxWidth: Style.adjust(277),
   } as TextStyle,
   promptForward: {
     width: Style.DEVICE_WIDTH - 70,
@@ -156,7 +150,7 @@ const styles = StyleSheet.create({
   gradientBottom: {
     width: Style.DEVICE_WIDTH,
     height: 1,
-    marginTop: Style.adjust(23),
+    marginTop: Style.adjust(28),
   } as ViewStyle,
   gradientTop: {
     width: Style.DEVICE_WIDTH,

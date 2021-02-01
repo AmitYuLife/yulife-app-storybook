@@ -35,6 +35,7 @@ const FibDeclarationConfirmationContainer = memo(function (props: Props) {
 
   return (
     <FibCheckoutHubContainer
+      coverType={navigation.currentRoute?.passProps?.coverType}
       data={checkoutData}
       loading={checkoutLoading || paymentLoading}
       onPressPayment={handlePressPayment}

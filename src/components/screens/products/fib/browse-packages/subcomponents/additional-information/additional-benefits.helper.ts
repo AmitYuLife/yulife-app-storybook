@@ -16,7 +16,7 @@ export const getAdditionalBenefitsData = () => [
   </defs>
   </svg>`,
     title: "YuLife app",
-    text: "Continue to enjoy the app no matter where your career takes you.",
+    description: "Continue to enjoy the app no matter where your career takes you.",
   },
 
   {
@@ -36,7 +36,7 @@ export const getAdditionalBenefitsData = () => [
     </svg>
     `,
     title: "Smart Health",
-    text:
+    description:
       "Have access to Smart Health, a doctor / on demand service where you can have Video/Phone consultations with a GP.",
   },
 ];

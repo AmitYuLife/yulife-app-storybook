@@ -26,6 +26,7 @@ interface IProps {
   textColor?: string;
   leftIcon?: BUTTON_ICON;
   rightIcon?: BUTTON_ICON;
+  iconSvgXml?: string;
   height?: number;
   underline?: boolean;
 }
@@ -51,6 +52,7 @@ function Button(props: IProps) {
     textColor = "white",
     leftIcon,
     rightIcon,
+    iconSvgXml,
     height,
     underline,
   } = props;
@@ -116,6 +118,7 @@ function Button(props: IProps) {
           delay={delay}
           leftIcon={leftIcon}
           rightIcon={rightIcon}
+          iconSvgXml={iconSvgXml}
           height={height}
         />
       </View>

@@ -2,13 +2,18 @@ import React, { memo, useState, useEffect, useCallback } from "react";
 import { Linking, Platform } from "react-native";
 import { connect, useDispatch } from "react-redux";
 import { useMutation, useQuery } from "@apollo/react-hooks";
-import { FibLocalNavigation, FIB_DECLARATION_CONFIRMATION, FIB_FAQ_LIST, FIB_PAYOUT_CALCULATOR } from "../fib.types";
+import {
+  FibLocalNavigation,
+  FIB_DECLARATION_CONFIRMATION,
+  FIB_FAQ_LIST,
+  FIB_PAYOUT_CALCULATOR,
+  FIB_CUSTOM_PERCENTAGE,
+} from "../fib.types";
 import { getFIBState, getLifeInsuranceUserAnswers } from "@redux/product/product.selectors";
 import { IReduxState } from "@redux/_core/reducers";
-import { packages, calculatePayoutCalculatorItems, calculatePayoutAmount, useCover } from "../fib.helpers";
-import { FibSummaryScreen } from "@components/screens/products/fib/browse-packages/fib.summary.screen";
+import { packages, useCover } from "../fib.helpers";
+import { FibDetailsScreen } from "@screens";
 import { Package } from "@components/screens/products/fib/browse-packages/fib.browse.types";
-import { getUserDateOfBirth } from "@redux/user/user.selectors";
 import { IFaq } from "@components/screens/products/fib/browse-packages/subcomponents/faqs/faq";
 import fibDocumentsItems, { policyScheduleDocument } from "../data/documents-data";
 import moment from "moment";
@@ -24,10 +29,11 @@ import {
   GetYulifer,
 } from "@graphql/_core/schema";
 import { CoverType, CreateTopUpsQuoteInput, ProductCode } from "@graphql/_core/schema/globalTypes";
-import { getBirthday } from "@redux/product/product.selectors";
 import { GQL_QUERY_GET_YULIFER } from "@graphql/yuscreen";
 import { GQL_MUTATION_CREATE_TOP_UPS_QUOTE } from "@graphql/products";
 import { FIB_PAYOUT_CALCULATOR_INITIAL_STATE } from "./fib.payout-calculator.conainer";
+import { addCommasToNumber } from "@services/utils";
+import { formatMoney } from "@services/money";
 
 type ConnectedState = ReturnType<typeof mapStateToProps>;
 
@@ -62,17 +68,11 @@ const documents: IFaq[] = [...fibDocumentsItems, policyScheduleDocument].map((do
 const FibConfirmPackagesContainer = memo(function (props: FibConfirmPackagesContainerProps) {
   const [selectedCoverType, setSelectedCoverType] = useCover(props?.fibState.selectedPackage || CoverType.epic);
   const [fibQuoteData, setFibQuoteData] = useState<CreateTopUpsQuote_createTopUpsQuote>();
-  const [deceaseAgeIndexYear, setDeceaseAgeIndexYear] = useState(0);
-  const [deceaseAgeIndexMonth, setDeceaseAgeIndexMonth] = useState(0);
-  const [payoutEstimatorItems, setPayoutEstimatorItems] = useState(
-    calculatePayoutCalculatorItems(props.userDateOfBirthFib || props.userDateOfBirth, deceaseAgeIndexYear)
-  );
-  const { navigation, userDateOfBirth, userDateOfBirthFib, fibState, userAnswers } = props;
+  const { navigation, fibState, userAnswers } = props;
   const { salary: grossSalary } = fibState;
-
+  const isCustomCover = navigation?.currentRoute?.passProps?.isCustomCover;
   const dispatch = useDispatch();
 
-  const customerAge = moment().diff(moment(userDateOfBirthFib || userDateOfBirth), "years");
   const { data: yuliferData } = useQuery<GetYulifer>(GQL_QUERY_GET_YULIFER, {
     fetchPolicy: "cache-only",
   });
@@ -81,24 +81,10 @@ const FibConfirmPackagesContainer = memo(function (props: FibConfirmPackagesCont
     GQL_MUTATION_CREATE_TOP_UPS_QUOTE
   );
 
-  useEffect(() => {
-    const newItems = calculatePayoutCalculatorItems(
-      props.userDateOfBirthFib || props.userDateOfBirth,
-      deceaseAgeIndexYear
-    );
-    setPayoutEstimatorItems(newItems);
-  }, [deceaseAgeIndexYear, props.userDateOfBirth, props.userDateOfBirthFib]);
-
-  const deceaseAgeMonth = Number(payoutEstimatorItems.months[deceaseAgeIndexMonth])
-    ? payoutEstimatorItems.months[deceaseAgeIndexMonth]
-    : payoutEstimatorItems.months[payoutEstimatorItems.months.length - 1] || 0; // Never show error, default to 0
-
-  const deceaseAgeYear = payoutEstimatorItems.years[deceaseAgeIndexYear];
-
   const queryVariables: CreateTopUpsQuoteInput = {
     grossSalary: grossSalary,
-    coverType: selectedCoverType as CoverType,
-    customCoverPercentage: 0,
+    coverType: isCustomCover ? CoverType.custom : (selectedCoverType as CoverType),
+    customCoverPercentage: props?.navigation?.currentRoute?.passProps?.percentage || 0,
     userAnswers,
   };
 
@@ -117,18 +103,13 @@ const FibConfirmPackagesContainer = memo(function (props: FibConfirmPackagesCont
   useEffect(() => {
     createNewQuote();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  const payoutAmount = calculatePayoutAmount({
-    deceaseAgeMonth,
-    deceaseAgeYear,
-    sumAssured: fibQuoteData?.coverTypesInfo[selectedCoverType]?.sumAssured,
-    term: fibQuoteData?.term,
-    dateOfBirth: userDateOfBirthFib || userDateOfBirth,
-  });
+  }, [navigation?.currentRoute?.passProps?.coverType]);
 
   const monthlyAmountProtected = Math.round(
-    ((fibQuoteData?.coverTypesInfo[selectedCoverType]?.sumAssured / (fibQuoteData?.term * 12)) * 100) / 100
+    ((fibQuoteData?.coverTypesInfo[isCustomCover ? CoverType.custom : selectedCoverType]?.sumAssured /
+      (fibQuoteData?.term * 12)) *
+      100) /
+      100
   );
 
   const fibProduct = yuliferData?.personal?.chest;
@@ -137,22 +118,55 @@ const FibConfirmPackagesContainer = memo(function (props: FibConfirmPackagesCont
     (productOption) => productOption.type === selectedCoverType
   )[0];
 
+  const salaryPercentageCovered =
+    props?.navigation?.currentRoute?.passProps?.percentage || selectedProductOption?.percentageCovered * 100;
+
+  // @TODO: Maybe move all this content to a different file
+
+  // Start
+  const dateFormat = "DD/MM/YYYY";
+  const now = moment();
   const packageDetails: Package = {
     newEarnRate: fibQuoteData?.newEarnRate || 0,
-    payoutAmount: Math.round(payoutAmount),
     earnRate: selectedProductOption?.earnRate || 0,
-    salaryPercentageCovered: selectedProductOption?.percentageCovered * 100 || 0,
+    salaryPercentageCovered: salaryPercentageCovered || 0,
     id: selectedCoverType,
     label: packages[selectedCoverType].label,
     descriptionHeading: fibQuoteData?.descriptionHeading || "",
     term: fibQuoteData?.term,
     monthlyAmountProtected,
-    actualCost: fibQuoteData?.coverTypesInfo[selectedCoverType]?.actualCost || 0,
+    actualCost: fibQuoteData?.coverTypesInfo[isCustomCover ? CoverType.custom : selectedCoverType]?.actualCost || 0,
     title: fibProduct?.name,
     powers: selectedProductOption?.powers || [],
+    filterBySelected: isCustomCover,
   };
 
-  const onExitHandler = useCallback(async () => {
+  const additionalInformation = {
+    items: [
+      {
+        id: "policyTerm",
+        title: "Policy term",
+        description: `${packageDetails?.term} years\nStart date: ${now.format(dateFormat)}\nEnd date: ${now
+          .add(packageDetails?.term, "years")
+          .format(dateFormat)}`,
+      },
+      {
+        id: "amountProtected",
+        title: "Amount protected",
+        description: `£${addCommasToNumber(
+          packageDetails?.monthlyAmountProtected
+        )} for every month remaining in policy at time of death.`,
+      },
+      {
+        id: "cost",
+        title: "Cost",
+        description: `£${formatMoney(packageDetails?.actualCost)} per month`,
+      },
+    ],
+  };
+  // End
+
+  const navigateToExit = useCallback(async () => {
     await Navigation.showModal({
       component: {
         id: MODALS.generic,
@@ -174,46 +188,49 @@ const FibConfirmPackagesContainer = memo(function (props: FibConfirmPackagesCont
     });
   }, [navigation]);
 
-  const handleOnContinue = useCallback(async () => {
+  const navigateToContinue = useCallback(async () => {
     await createNewQuote();
 
-    return navigation.push(FIB_DECLARATION_CONFIRMATION);
+    return navigation.push(FIB_DECLARATION_CONFIRMATION, {
+      coverType: selectedCoverType,
+    });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [navigation]);
 
   const navigateToFaqsList = () => navigation.push(FIB_FAQ_LIST);
 
-  const navigateToPayoutCalculator = () =>
+  const navigateToPayoutCalculator = () => {
     navigation.push(FIB_PAYOUT_CALCULATOR, {
       type: FIB_PAYOUT_CALCULATOR_INITIAL_STATE.dataAdded,
       coverTypesInfo: fibQuoteData.coverTypesInfo,
     });
+  };
+
+  const navigateToCustomCover = () =>
+    navigation.push(FIB_CUSTOM_PERCENTAGE, {
+      percentage: salaryPercentageCovered,
+    });
 
   return (
-    <FibSummaryScreen
-      onContinue={handleOnContinue}
-      onExit={onExitHandler}
+    <FibDetailsScreen
       selectedPackage={packageDetails}
-      selectCoverType={(cover) => setSelectedCoverType(cover)}
-      documents={documents}
-      payoutEstimatorItems={payoutEstimatorItems}
-      setDeceaseAgeIndexYear={setDeceaseAgeIndexYear}
-      setDeceaseAgeIndexMonth={setDeceaseAgeIndexMonth}
-      loading={false}
-      onNavigateBack={navigation.pop}
-      customerAge={customerAge}
+      selectCoverType={setSelectedCoverType}
       onScrollEnd={navigation.onScrollEnd}
       offset={navigation.currentRoute.offset || { x: 0, y: 0 }}
+      documents={documents}
+      additionalInformation={additionalInformation}
+      navigateToContinue={navigateToContinue}
+      navigateToBack={navigation.pop}
+      navigateToExit={navigateToExit}
       navigateToFaqsList={navigateToFaqsList}
       navigateToPayoutCalculator={navigateToPayoutCalculator}
+      navigateToCustomCover={!isCustomCover ? navigateToCustomCover : null}
     />
   );
 });
 
 const mapStateToProps = (state: IReduxState) => ({
   fibState: getFIBState(state),
-  userDateOfBirth: getUserDateOfBirth(state),
-  userDateOfBirthFib: getBirthday(state, "YYYY-MM-DD"),
   userAnswers: getLifeInsuranceUserAnswers(state),
 });
 

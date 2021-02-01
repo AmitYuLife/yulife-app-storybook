@@ -18,7 +18,7 @@ export const styles = StyleSheet.create({
     backgroundColor: Colours.neutral.white,
     borderWidth: 1,
     borderColor: Colours.neutral.n100,
-    borderRadius: 10,
+    borderRadius: 16,
   } as ViewStyle,
   leftSide: {
     flexDirection: "row",
@@ -28,8 +28,10 @@ export const styles = StyleSheet.create({
     marginLeft: Style.adjust(16),
   } as TextStyle,
   title: {
+    letterSpacing: 1,
+    color: Colours.products.fib.n800,
+    lineHeight: Style.adjust(24),
     fontSize: Style.adjust(16),
-    color: Colours.neutral.n700,
   } as TextStyle,
   subTitle: {
     fontSize: Style.adjust(16),

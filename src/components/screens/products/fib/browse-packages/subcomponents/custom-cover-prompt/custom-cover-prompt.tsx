@@ -1,8 +1,5 @@
 import React, { memo } from "react";
-import { View, StyleSheet, ViewStyle } from "react-native";
-import { Heading, DEFAULT_TEXT_PAD_LEFT } from "../common";
-import { Style } from "@styles";
-import { Faq } from "../faqs/faq";
+import { CommonWrapperWithButton } from "../common";
 import { customCoverPromptSVG } from "./assets/icon";
 
 interface ICustomCoverPrompt {
@@ -10,22 +7,11 @@ interface ICustomCoverPrompt {
 }
 
 export const CustomCoverPrompt = memo(({ onPressCustomCoverPrompt }: ICustomCoverPrompt) => (
-  <View style={styles.wrapper}>
-    <Heading wrapperStyle={styles.headingWrapper} title="Need something different?" />
-    <Faq
-      iconSvgXml={customCoverPromptSVG}
-      label="Create custom cover"
-      onPress={onPressCustomCoverPrompt}
-      redirectType="internal"
-    />
-  </View>
+  <CommonWrapperWithButton
+    title="Custom cover"
+    description="Looking for a different amount of cover? Tap below to set a custom percentage."
+    buttonLabel="Create custom cover"
+    onPress={onPressCustomCoverPrompt}
+    iconSvgXml={customCoverPromptSVG}
+  />
 ));
-
-const styles = StyleSheet.create({
-  wrapper: {
-    marginTop: Style.adjust(48),
-  } as ViewStyle,
-  headingWrapper: {
-    paddingLeft: DEFAULT_TEXT_PAD_LEFT,
-  } as ViewStyle,
-});

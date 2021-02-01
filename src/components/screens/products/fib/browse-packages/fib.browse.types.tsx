@@ -16,6 +16,7 @@ interface IServerPackageProps {
   actualCost?: number;
   title?: string;
   powers?: IPackagePowersProps[];
+  filterBySelected?: boolean;
 }
 
 interface ILocalPackageProps {

@@ -10,7 +10,7 @@ import { Button } from "@atoms";
 import { BUTTON_ICON } from "@atoms/button/tertiary-button/tertiary-button.helpers";
 import DateTimePicker from "react-native-modal-datetime-picker";
 import { BUTTON_TYPES } from "@atoms/button/button.types";
-import { Colours } from "@styles";
+import { Colours, Style } from "@styles";
 
 type ConnectedProps = ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps & IProps;
 interface IProps {
@@ -62,6 +62,7 @@ const _FibInputBirth = (props: ConnectedProps) => {
         onPress={handlePress}
         label={label || `${birthDay} / ${birthMonth} / ${birthYear}`}
         tertiarySubLabel={subLabel}
+        wrapperStyle={{ height: Style.adjust(84) }}
       />
       <DateTimePicker
         date={moment(`${birthYear}-${birthMonth}-${birthDay}`, "YYYY-MM-DD").toDate()}

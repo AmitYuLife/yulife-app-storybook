@@ -7,3 +7,4 @@ export * from "./updateCustomerContactDetails";
 export * from "./updateCustomerGPDetails";
 export * from "./upsertTopUpsProductEntity";
 export * from "./getCheckoutDetails";
+export * from "./getCustomCoverPricesByPercentages";

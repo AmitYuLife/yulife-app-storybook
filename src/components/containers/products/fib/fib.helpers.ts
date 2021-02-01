@@ -28,7 +28,7 @@ import {
 import { updateFIBValue } from "@redux/product/product.actions";
 import { FibAnswers } from "@redux/product/product.types";
 import { FIB_MEDICAL_THREE_OR_MORE_CONSULTATION_SCREEN_ID } from "./data/underwriting-journey-data";
-import { CoverType } from "../../../../graphql/_core/schema/globalTypes";
+import { CoverType } from "@graphql/_core/schema/globalTypes";
 
 export type FibButtonType = "firstButton" | "secondButton" | "previousButton";
 
@@ -75,6 +75,7 @@ export function formatPrice(price: number | null) {
 
   return `£${price.toFixed(2)}`;
 }
+//@TODO: Check if we still need this function
 
 export const calculatePayoutCalculatorItems = (
   userDateOfBirth: string,
@@ -343,40 +344,6 @@ export function useInternationalFormat(dayOrMonth: string): string {
   return `${dayOrMonth?.length === 1 ? "0" : ""}${dayOrMonth}`;
 }
 
-interface CalculatePayoutAmountInput {
-  deceaseAgeYear: number;
-  deceaseAgeMonth: number;
-  sumAssured: number;
-  term: number;
-  dateOfBirth: string;
-}
-export function calculatePayoutAmount({
-  deceaseAgeYear,
-  deceaseAgeMonth,
-  sumAssured,
-  term,
-  dateOfBirth,
-}: CalculatePayoutAmountInput) {
-  const totalPayoutMonths = term * 12;
-
-  const deceaseTotalMonths = deceaseAgeYear * 12 + deceaseAgeMonth;
-  const ageInMonths = moment().diff(moment(dateOfBirth), "months");
-
-  let payoutMonths = deceaseTotalMonths - ageInMonths;
-
-  if (payoutMonths < 0) {
-    payoutMonths = 0;
-  }
-
-  // Decease age over max term
-  if (totalPayoutMonths - payoutMonths <= 0) {
-    return 0;
-  }
-
-  const payoutAmount = sumAssured * ((totalPayoutMonths - payoutMonths) / totalPayoutMonths);
-  return payoutAmount;
-}
-
 export async function onUnderwritingClose() {
   await Navigation.showModal({
     component: {
@@ -416,3 +383,17 @@ export const getTerm = (age: number) => {
 export function calculateSumAssured(grossSalary: number, salaryPercentageCovered: number, term: number): number {
   return grossSalary * (salaryPercentageCovered / 100) * term;
 }
+
+export const getCoverTypeByPercentage = (percentage: number) => {
+  if (percentage >= 25 && percentage <= 49) {
+    return CoverType.common;
+  }
+
+  if (percentage >= 50 && percentage <= 74) {
+    return CoverType.rare;
+  }
+
+  if (percentage > 74) {
+    return CoverType.epic;
+  }
+};
