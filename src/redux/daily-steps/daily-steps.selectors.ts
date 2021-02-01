@@ -18,10 +18,3 @@ export const getExchangeRate = createSelector(reducer, exchangeRateSelector);
 
 const dailyStepsIsFetchingSelector = (state: State) => state.isFetching;
 export const getDailyStepsIsFetching = createSelector(reducer, dailyStepsIsFetchingSelector);
-
-const dailyStepsStateForPedometerSelector = ({ isServerFetchedThisSession, dailySteps, isSyncing }: State) => ({
-  isServerFetchedThisSession,
-  dailySteps,
-  isSyncing,
-});
-export const getDailyStepsStateForPedometerUpdate = createSelector(reducer, dailyStepsStateForPedometerSelector);

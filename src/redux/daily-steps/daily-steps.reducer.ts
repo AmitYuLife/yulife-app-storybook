@@ -6,18 +6,13 @@ import {
   UpsertPassiveChallenge,
 } from "../../graphql/_core/schema";
 import { LoginUser } from "../../graphql/_core/schema";
-import {
-  PEDOMETER_UPDATES_NO_NEW_DATA,
-  PEDOMETER_UPDATES_START,
-  PEDOMETER_START,
-} from "../pedometer/pedometer.actions";
+import { PEDOMETER_UPDATES_NO_NEW_DATA, PEDOMETER_UPDATES_START } from "../pedometer/pedometer.actions";
 import { GET_USER_SUCCESS, LOGIN_USER_SUCCESS, LOGOUT_SUCCESS } from "../user/user.actions";
 import {
   STEPS_SINCE_LAST_UPDATED_SUCCESS,
   UPDATE_DAILY_STEPS_FAILED,
   UPDATE_DAILY_STEPS_SUCCESS,
   UPDATE_DAILY_STEPS_NO_NEW_DATA,
-  START_STEPS_SYNCING,
 } from "./daily-steps.actions";
 import { SyncAction } from "@redux/_core/types";
 
@@ -27,8 +22,6 @@ export interface IDailyStepsStore {
   dailySteps: number;
   exchangeRate: ExchangeRate;
   isFetching: boolean;
-  isSyncing: boolean;
-  isServerFetchedThisSession: boolean;
   lastUpdated: string;
   /**
    * When the app is opened first thing in the day, there is a steps gap betwen yesterday's lastUpdated
@@ -52,8 +45,6 @@ export const getInitialState = (): IDailyStepsStore => ({
     surge: 1,
   },
   isFetching: true,
-  isSyncing: false,
-  isServerFetchedThisSession: false,
   lastUpdated: moment().startOf("day").format(),
   lastUpdatedBeforeToday: null,
 });
@@ -80,9 +71,6 @@ const dailyStepsReducer = (state: IDailyStepsStore = getInitialState(), action: 
     case UPDATE_DAILY_STEPS_FAILED:
       return { ...state, isFetching: false };
 
-    case PEDOMETER_START:
-      return { ...state, isServerFetchedThisSession: false };
-
     case GET_USER_SUCCESS:
       return getUserSuccess(state, action.payload);
 
@@ -91,9 +79,6 @@ const dailyStepsReducer = (state: IDailyStepsStore = getInitialState(), action: 
 
     case STEPS_SINCE_LAST_UPDATED_SUCCESS:
       return { ...state, lastUpdatedBeforeToday: null };
-
-    case START_STEPS_SYNCING:
-      return { ...state, isSyncing: true };
 
     case LOGOUT_SUCCESS:
       return getInitialState();
@@ -107,7 +92,7 @@ export default dailyStepsReducer;
 
 const updatePersistedState = (state: IDailyStepsStore, persistedState: IDailyStepsStore) => {
   if (!persistedState.lastUpdated) {
-    return { ...state, isServerFetchedThisSession: false };
+    return { ...state };
   }
 
   const lastUpdated = moment(persistedState.lastUpdated).startOf("day").format();
@@ -118,12 +103,11 @@ const updatePersistedState = (state: IDailyStepsStore, persistedState: IDailySte
       ...persistedState,
       dailySteps: 0,
       isFetching: true,
-      isServerFetchedThisSession: false,
       lastUpdatedBeforeToday: persistedState.lastUpdatedBeforeToday || lastUpdated,
     };
   }
 
-  return { ...persistedState, isServerFetchedThisSession: false };
+  return { ...persistedState };
 };
 
 const updateDailyStepsSuccess = (
@@ -135,8 +119,6 @@ const updateDailyStepsSuccess = (
     ...state,
     dailySteps: challenge.incomingData.steps,
     isFetching: false,
-    isSyncing: false,
-    isServerFetchedThisSession: true,
     lastUpdated,
   };
 };
