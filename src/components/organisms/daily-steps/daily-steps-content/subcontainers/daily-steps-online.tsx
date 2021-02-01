@@ -9,7 +9,7 @@ import { Style } from "@styles";
 import { getUserFeatures } from "@redux/user/user.selectors";
 import { getChallengesStatus } from "@redux/levels/levels.selectors";
 import { handleNavigateToQuestsTab } from "@navigation/utils";
-import { getSteps } from "@redux/pedometer/pedometer.selectors";
+import { getDailySteps } from "@redux/daily-steps/daily-steps.selectors";
 import { getDailyMeditation } from "@redux/daily-meditation/daily-meditation.selectors";
 import { getDailyStepsTheme } from "@redux/theme/theme.selectors";
 
@@ -55,7 +55,7 @@ interface CounterProps {
 }
 
 const StepCounter = memo(function _StepsCounter({ textStyle }: CounterProps) {
-  const dailySteps = useSelector(getSteps);
+  const dailySteps = useSelector(getDailySteps);
   const counterType = dailySteps === 1 ? "step" : "steps";
 
   return <Counter value={dailySteps} textStyle={textStyle} textAfterValue={counterType} />;
