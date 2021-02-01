@@ -94,9 +94,9 @@ Feature("I am able to use the yuscreen, create, and edit an Yumoji", async () =>
         Given("I login", given.loginToYuScreen(), async () => {
             Then("I should be on an empty yuscreen tab", then.onEmptyYuscreen(CUSTOMER_1))
             Then("I should see 1x Yucoin power", then.swipeToID(YUSCREEN, YUCOIN_POWER("1"), "up", 3))
-            When("I scroll to the bottom", when.scrollUntilTextVisible(YUSCREEN_SCROLL_VIEW, "The Compass of Group Life Insurance", "down"), async () => {
-                Then("I should see my Employer benefits", then.textVisible("Your company has equipped you with:"))
-                Then("I should see The Compass of Group Life Insurance ", then.textVisible("The Compass of Group Life Insurance"))
+            When("I scroll to the bottom", when.scrollUntilTextVisible(YUSCREEN_SCROLL_VIEW, "Compass of Life Insurance", "down"), async () => {
+                Then("I should see my Employer benefits", then.multipleTextVisible(["Company Items", "Provided by your company"]))
+                Then("I should see The Compass of Group Life Insurance ", then.textVisible("Compass of Life Insurance"))
                 When("I go to the earn rate", when.scrollUntilIdVisible(YUSCREEN_SCROLL_VIEW, YUCOIN_POWER("1"), "up"), async () => {
                         When("I tap the earn rate", when.tapID(YUCOIN_POWER("1")), async () => {
                             Then("I should be on the 'Your YuCoin' screen", then.onYourYuCoin)
@@ -169,8 +169,8 @@ Feature("I am able to use the yuscreen, create, and edit an Yumoji", async () =>
     Scenario("I can complete a survey on the yuscreen", scenario.start, async () => {
         Given("I login", given.loginToYuScreen(true, CUSTOMER_17, AUTH_17), async () => {
             Then("I should see my Yumoji", then.idVisible(YUSCREEN_AVATAR))
-            When("I scroll to Power up and protect yourself", when.swipeToText(YUSCREEN, "Power up and protect yourself:", "up", 5), async()=>{
-                Then("I should see Power up and protect yourself:", then.textVisible("Power up and protect yourself:"))
+            When("I scroll to Power up and protect yourself", when.swipeToText(YUSCREEN, "Personal Items", "up", 5), async()=>{
+                Then("I should see Power up and protect yourself:", then.textVisible("Personal Items"))
                 When("I scroll to the bottom", when.scrollFromID(YUSCREEN, "up", "fast"), async () => {
                     Then("I should see a list of 'Coming Soon' options", then.personalProductsVisible)
                 })
