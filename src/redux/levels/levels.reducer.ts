@@ -184,18 +184,21 @@ const challengeEndSuccess = (state: ILevelsStore, res: UpdateActiveChallenge): I
   ...state,
   active: {
     ...state.active,
-    coins: res?.updateActiveChallenge?.challenge?.yuCoinAwarded || 0,
-    level: res?.updateActiveChallenge?.challenge?.level || 1,
+    coins: res?.updateActiveChallenge?.challenge?.yuCoinAwarded || state.active.coins,
+    level: res?.updateActiveChallenge?.challenge?.level || state.active.level,
     isLoading: false,
-    milestonesLog: res?.updateActiveChallenge?.challenge?.milestoneLog || [],
-    rating: res?.updateActiveChallenge?.challenge?.rating || 0,
+    milestonesLog: res?.updateActiveChallenge?.challenge?.milestoneLog || state.active.milestonesLog,
+    rating: res?.updateActiveChallenge?.challenge?.rating || state.active.rating,
     score:
       (state.active.subtype === "meditation"
         ? res?.updateActiveChallenge?.challenge?.incomingData?.meditation
         : state.active.subtype === "cycling"
         ? res?.updateActiveChallenge?.challenge?.incomingData?.distance
         : res?.updateActiveChallenge?.challenge?.incomingData?.steps) || state.active.score,
-    status: (res?.updateActiveChallenge?.challenge?.milestoneLog || []).length > 0 ? "success" : "failed",
+    status:
+      (res?.updateActiveChallenge?.challenge?.milestoneLog || state.active.milestonesLog).length > 0
+        ? "success"
+        : "failed",
     timeUp: false,
   },
 });
