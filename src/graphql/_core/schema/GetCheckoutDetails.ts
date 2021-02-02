@@ -56,6 +56,17 @@ export interface GetCheckoutDetails_gpDetails {
   gpTown: string | null;
 }
 
+export interface GetCheckoutDetails_contactDetails {
+  addressFirstLine: string | null;
+  addressSecondLine: string | null;
+  addressCity: string | null;
+  addressPostCode: string | null;
+  email: string | null;
+  phone: string | null;
+  firstName: string | null;
+  lastName: string | null;
+}
+
 export interface GetCheckoutDetails {
   /**
    * Get user stripe payment details
@@ -73,6 +84,10 @@ export interface GetCheckoutDetails {
    * Get user gp details
    */
   gpDetails: GetCheckoutDetails_gpDetails | null;
+  /**
+   * Get user personal contact details
+   */
+  contactDetails: GetCheckoutDetails_contactDetails | null;
 }
 
 export interface GetCheckoutDetailsVariables {

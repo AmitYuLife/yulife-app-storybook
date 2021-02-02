@@ -36,5 +36,15 @@ export const GQL_QUERY_GET_CHECKOUT_DETAILS = gql`
       gpPractice
       gpTown
     }
+    contactDetails: getContactDetails(contactDetailType: personal) {
+      addressFirstLine
+      addressSecondLine
+      addressCity
+      addressPostCode
+      email
+      phone
+      firstName
+      lastName
+    }
   }
 `;
