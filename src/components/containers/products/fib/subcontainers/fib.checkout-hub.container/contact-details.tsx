@@ -1,50 +1,33 @@
 import React, { memo } from "react";
 import { InfoCard, LEFT_ICON } from "./info-card/info-card";
-import { useCheckoutQuery } from "../hooks/useCheckoutQuery";
-import { GetCheckoutDetails_contactDetails } from "@graphql/_core/schema";
+import { useSelector } from "react-redux";
+import { getContactDetails, getFullName } from "@redux/product/product.selectors";
 
 interface Props {
   goToContactDetails: () => void;
 }
 
 export const ContactDetails = memo(({ goToContactDetails }: Props) => {
-  const { data } = useCheckoutQuery("cache-only");
-  const prompt = "Add contact details";
-
-  if (!data?.contactDetails) {
-    return (
-      <InfoCard leftIcon={LEFT_ICON.CONTACT_DETAILS} markdown={prompt} onPress={goToContactDetails} isPrompt={true} />
-    );
-  }
-
   const {
-    contactDetails: {
-      addressCity,
-      addressFirstLine,
-      addressPostCode,
-      addressSecondLine,
-      email,
-      firstName,
-      lastName,
-      phone,
-    },
-  } = data;
+    firstAddressLine = "",
+    secondAddressLine = "",
+    townOrCity = "",
+    postCode = "",
+    personalEmail = "",
+    phoneNumber = "",
+  } = useSelector(getContactDetails);
+  const fullName = useSelector(getFullName);
 
-  const info = `**Contact Details**\n${firstName} ${lastName}\n${addressFirstLine}, ${
-    addressSecondLine ? `${addressSecondLine}, ` : ""
-  }${addressCity},\n${addressPostCode}\n\n${email}\n${phone}`;
-  const isEmpty = !addressFirstLine || !addressCity || !addressPostCode || !email || !phone;
+  const info = `**Contact Details**\n${fullName}\n${firstAddressLine}, ${
+    secondAddressLine ? `${secondAddressLine}, ` : ""
+  }${townOrCity},\n${postCode}\n\n${personalEmail}\n${phoneNumber}`;
+  const prompt = "Add contact details";
+  const isEmpty = !firstAddressLine || !townOrCity || !postCode || !personalEmail || !phoneNumber;
   const markdown = isEmpty ? prompt : info;
 
   return (
     <InfoCard
-      leftIcon={getLeftIcon({
-        addressCity,
-        addressFirstLine,
-        addressPostCode,
-        email,
-        phone,
-      })}
+      leftIcon={getLeftIcon({ fullName, firstAddressLine, townOrCity, postCode, phoneNumber })}
       markdown={markdown}
       onPress={goToContactDetails}
       isPrompt={isEmpty}
@@ -53,13 +36,14 @@ export const ContactDetails = memo(({ goToContactDetails }: Props) => {
 });
 
 const getLeftIcon = ({
-  addressCity,
-  addressFirstLine,
-  addressPostCode,
-  email,
-  phone,
-}: Partial<GetCheckoutDetails_contactDetails>) => {
-  if (addressFirstLine && addressCity && addressPostCode && email && phone) {
+  fullName,
+  firstAddressLine,
+  townOrCity,
+  postCode,
+}: {
+  fullName: ReturnType<typeof getFullName>;
+} & Partial<ReturnType<typeof getContactDetails>>) => {
+  if (fullName && firstAddressLine && townOrCity && postCode) {
     return LEFT_ICON.CONTACT_DETAILS_COLOURED;
   }
 
