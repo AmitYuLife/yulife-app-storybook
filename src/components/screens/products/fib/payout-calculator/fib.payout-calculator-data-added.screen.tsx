@@ -12,7 +12,11 @@ import { useQuery } from "@apollo/react-hooks";
 import { GetYulifer } from "../../../../../graphql/_core/schema/GetYulifer";
 import { GQL_QUERY_GET_YULIFER } from "../../../../../graphql/yuscreen/getYulifer.gql";
 import { CoverType } from "@graphql/_core/schema/globalTypes";
-import { getTerm, calculateSumAssured } from "../../../../containers/products/fib/fib.helpers";
+import {
+  getTerm,
+  calculateSumAssured,
+  getCoverTypeByPercentage,
+} from "../../../../containers/products/fib/fib.helpers";
 import { useSelector, useDispatch } from "react-redux";
 import { getFIBState } from "../../../../../redux/product/product.selectors";
 import { updateFIBValue } from "../../../../../redux/product/product.actions";
@@ -22,6 +26,8 @@ export interface IFibPayoutCalculatorDataAddedScreenProps {
   grossSalary: number;
   age: number;
   coverTypesInfo?: CreateTopUpsQuote_createTopUpsQuote_coverTypesInfo;
+  isCustomCover?: boolean;
+  customCoverPercentage?: number;
 }
 
 interface IYugiRibbonColors {
@@ -51,11 +57,12 @@ const yugiRibbonColors: IYugiRibbonColors = {
 
 export const FibPayoutCalculatorDataAddedScreen = memo(function (props: IFibPayoutCalculatorDataAddedScreenProps) {
   const dispatch = useDispatch();
-  const { onNavigateBack, onContinue, grossSalary, age, coverTypesInfo } = props;
+  const { onNavigateBack, onContinue, grossSalary, age, coverTypesInfo, isCustomCover, customCoverPercentage } = props;
   const term = getTerm(age);
   const maxSliderValue = term - 1;
   const minSliderValue = 0;
-  const initialSelectedPackage = useSelector(getFIBState).selectedPackage;
+  const selectedCoverFromRedux = useSelector(getFIBState).selectedPackage;
+  const initialSelectedPackage = isCustomCover ? CoverType.custom : selectedCoverFromRedux;
   const ageUpToCover = age + term;
   const [selectedPackage, setSelectedPackage] = useState<CoverType>(initialSelectedPackage as CoverType);
   const [currentSliderValue, setCurrentSliderValue] = useState(0);
@@ -71,17 +78,22 @@ export const FibPayoutCalculatorDataAddedScreen = memo(function (props: IFibPayo
     (productOption) => productOption.type === selectedPackage.toLowerCase()
   )[0];
 
-  const salaryPercentageCovered = selectedProductOption?.percentageCovered * 100 || 0;
+  const salaryPercentageCovered = isCustomCover
+    ? customCoverPercentage
+    : (selectedProductOption?.percentageCovered || 0) * 100;
+
   const onPressContinue = useCallback(() => {
-    dispatch(
-      updateFIBValue({
-        key: "selectedPackage",
-        value: selectedPackage,
-      })
-    );
+    if (!isCustomCover) {
+      dispatch(
+        updateFIBValue({
+          key: "selectedPackage",
+          value: selectedPackage,
+        })
+      );
+    }
 
     onContinue();
-  }, [selectedPackage, onContinue, dispatch]);
+  }, [selectedPackage, onContinue, dispatch, isCustomCover]);
 
   const onSelectPackage = (packageId: CoverType) => {
     setSelectedPackage(packageId);
@@ -102,6 +114,8 @@ export const FibPayoutCalculatorDataAddedScreen = memo(function (props: IFibPayo
     android: Style.isShortAndroid() || Style.isShortAndLowScaledPixelAndroid() ? "207" : "276",
   });
 
+  const yugiRibbonPackage = isCustomCover ? getCoverTypeByPercentage(salaryPercentageCovered) : selectedPackage;
+
   return (
     <ScrollableLayout
       onLeftIconPress={onNavigateBack}
@@ -116,9 +130,9 @@ export const FibPayoutCalculatorDataAddedScreen = memo(function (props: IFibPayo
           <YugiRibbon height={yugiRibbonHeight} width={yugiRibbonWidth} />
           <View style={styles.ribbonWrapper}>
             <Ribbon
-              leftAndRightItemsColor={yugiRibbonColors[selectedPackage].leftAndRightItemsColor}
-              smallElementColor={yugiRibbonColors[selectedPackage].smallElementColor}
-              bigItemColor={yugiRibbonColors[selectedPackage].bigItemColor}
+              leftAndRightItemsColor={yugiRibbonColors[yugiRibbonPackage].leftAndRightItemsColor}
+              smallElementColor={yugiRibbonColors[yugiRibbonPackage].smallElementColor}
+              bigItemColor={yugiRibbonColors[yugiRibbonPackage].bigItemColor}
               height={yugiRibbonHeight}
               width={yugiRibbonWidth}
             />
@@ -126,7 +140,7 @@ export const FibPayoutCalculatorDataAddedScreen = memo(function (props: IFibPayo
           <Text
             style={StyleSheet.flatten([
               styles.sumAssured,
-              { color: (yugiRibbonColors as any)[selectedPackage].textColor },
+              { color: (yugiRibbonColors as any)[yugiRibbonPackage].textColor },
             ])}
           >{`£${addCommasToNumber(payoutAmount)}`}</Text>
         </View>
@@ -153,15 +167,16 @@ export const FibPayoutCalculatorDataAddedScreen = memo(function (props: IFibPayo
             }}
           />
         </View>
-
-        <View style={styles.packageSelectorWrapper}>
-          <PackageSelector
-            onPackageSelected={onSelectPackage}
-            commonCost={coverTypesInfo?.common.actualCost}
-            rareCost={coverTypesInfo?.rare.actualCost}
-            epicCost={coverTypesInfo?.epic.actualCost}
-          />
-        </View>
+        {isCustomCover ? null : (
+          <View style={styles.packageSelectorWrapper}>
+            <PackageSelector
+              onPackageSelected={onSelectPackage}
+              commonCost={coverTypesInfo?.common.actualCost}
+              rareCost={coverTypesInfo?.rare.actualCost}
+              epicCost={coverTypesInfo?.epic.actualCost}
+            />
+          </View>
+        )}
       </View>
     </ScrollableLayout>
   );

@@ -26,12 +26,15 @@ const FibPayoutCalculatorContainer = memo(function (props: Props) {
   const {
     type,
     coverTypesInfo,
+    customCoverPercentage,
   }: {
     type: FIB_PAYOUT_CALCULATOR_INITIAL_STATE;
     coverTypesInfo: CreateTopUpsQuote_createTopUpsQuote_coverTypesInfo;
+    customCoverPercentage: number;
   } = navigation.currentRoute.passProps;
 
   const [dataAdded, setDataAdded] = useState(type === FIB_PAYOUT_CALCULATOR_INITIAL_STATE.needData ? false : true);
+  const isCustomCover = type === FIB_PAYOUT_CALCULATOR_INITIAL_STATE.custom;
 
   const backHandler = useCallback(() => {
     if (dataAdded && type === FIB_PAYOUT_CALCULATOR_INITIAL_STATE.needData) {
@@ -44,7 +47,7 @@ const FibPayoutCalculatorContainer = memo(function (props: Props) {
   }, [navigation, setDataAdded, dataAdded, type]);
 
   const onNavigateBackDataAdddedScreen = () => {
-    if (type === FIB_PAYOUT_CALCULATOR_INITIAL_STATE.dataAdded) {
+    if (type === FIB_PAYOUT_CALCULATOR_INITIAL_STATE.dataAdded || isCustomCover) {
       navigation.pop();
     } else {
       setDataAdded(false);
@@ -62,6 +65,8 @@ const FibPayoutCalculatorContainer = memo(function (props: Props) {
       grossSalary={fibStore.salary}
       age={moment().diff(moment(`${birthDay}/${birthMonth}/${birthYear}`, "DD/MM/YYYY"), "years")}
       coverTypesInfo={coverTypesInfo}
+      isCustomCover={isCustomCover}
+      customCoverPercentage={customCoverPercentage}
     />
   ) : (
     <FibPayoutCalculatorAddDataScreen
