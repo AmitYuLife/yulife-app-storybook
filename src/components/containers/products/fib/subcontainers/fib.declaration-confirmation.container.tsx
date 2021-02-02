@@ -5,7 +5,7 @@ import { FibCheckoutHubContainer } from "./fib.checkout-hub.container";
 import { useCheckoutQuery } from "./hooks/useCheckoutQuery";
 import { usePayment } from "./hooks/usePayment";
 import { onUnderwritingClose } from "../fib.helpers";
-import { updateFIBValue, updateFIBAnswerValue } from "@redux/product/product.actions";
+import { updateFIBValue } from "@redux/product/product.actions";
 
 interface Props {
   navigation: FibLocalNavigation;
@@ -31,24 +31,11 @@ const FibDeclarationConfirmationContainer = memo(function (props: Props) {
 
       dispatch(updateFIBValue({ key: "gpDetails", value: gpDetails }));
     }
-
-    if (checkoutData?.contactDetails) {
-      const contactDetails = {
-        firstAddressLine: checkoutData.contactDetails.addressFirstLine,
-        secondAddressLine: checkoutData.contactDetails.addressSecondLine,
-        townOrCity: checkoutData.contactDetails.addressCity,
-        postCode: checkoutData.contactDetails.addressPostCode,
-        personalEmail: checkoutData.contactDetails.email,
-        phoneNumber: checkoutData.contactDetails.phone,
-      };
-
-      dispatch(updateFIBAnswerValue({ key: "contactDetails", value: contactDetails }));
-    }
   }, [checkoutData, dispatch]);
 
   return (
     <FibCheckoutHubContainer
-      coverType={checkoutData?.quote.coverType}
+      coverType={navigation.currentRoute?.passProps?.coverType}
       data={checkoutData}
       loading={checkoutLoading || paymentLoading}
       onPressPayment={handlePressPayment}
