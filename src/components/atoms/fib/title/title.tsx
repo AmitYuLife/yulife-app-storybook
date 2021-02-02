@@ -8,12 +8,12 @@ interface ITitleProps {
   textStyle?: TextStyle;
 }
 
-export default function FibTitle(props: ITitleProps) {
+function _FibTitle(props: ITitleProps) {
   const { title, textStyle } = props;
 
   return (
     <View style={styles.wrapper}>
-      <Text style={StyleSheet.flatten([styles.title, textStyle])}>{title}</Text>
+      <Text style={StyleSheet.flatten([titleStyle, textStyle])}>{title}</Text>
     </View>
   );
 }
@@ -31,17 +31,22 @@ const TITLE_FONT_SIZE = Platform.select({
   ),
 });
 
+const titleStyle = {
+  width: Style.DEVICE_WIDTH - 90,
+  fontSize: TITLE_FONT_SIZE,
+  lineHeight: TITLE_FONT_SIZE * 1.2,
+  fontFamily: Style.FONT_FAMILY_PRIMARY_BOLD,
+  letterSpacing: 1,
+  color: Colours.neutral.n800,
+} as TextStyle;
+
 const styles = StyleSheet.create({
   wrapper: {
     marginTop: Style.adjust(16),
     paddingHorizontal: Style.adjust(24),
   } as ViewStyle,
-  title: {
-    width: Style.DEVICE_WIDTH - 90,
-    fontSize: TITLE_FONT_SIZE,
-    lineHeight: TITLE_FONT_SIZE * 1.2,
-    fontFamily: Style.FONT_FAMILY_PRIMARY_BOLD,
-    letterSpacing: 1,
-    color: Colours.neutral.n800,
-  } as TextStyle,
 });
+
+const FibTitle = Object.assign(_FibTitle, { TITLE_STYLE: titleStyle });
+
+export default FibTitle;
