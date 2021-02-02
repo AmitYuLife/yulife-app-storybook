@@ -20,7 +20,6 @@ import {
   UpdateUserNotificationsSettings as ReturnedData,
 } from "@graphql/_core/schema";
 import Logger from "@services/logging/logger";
-import { Appearance } from "react-native";
 import { Colours } from "@styles";
 
 interface IOwnProps {
@@ -166,7 +165,8 @@ function SettingsContainer({ componentId }: IOwnProps) {
         isVisible={isTimeModalVisible}
         onConfirm={handleTimeModalConfirm}
         onCancel={handleTimeModalCancel}
-        textColor={Appearance.getColorScheme() === "dark" ? Colours.neutral.white : Colours.neutral.n900}
+        isDarkModeEnabled={false}
+        textColor={Colours.neutral.n900}
       />
     </>
   );
