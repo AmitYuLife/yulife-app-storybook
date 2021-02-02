@@ -201,8 +201,9 @@ const FibConfirmPackagesContainer = memo(function (props: FibConfirmPackagesCont
 
   const navigateToPayoutCalculator = () => {
     navigation.push(FIB_PAYOUT_CALCULATOR, {
-      type: FIB_PAYOUT_CALCULATOR_INITIAL_STATE.dataAdded,
+      type: isCustomCover ? FIB_PAYOUT_CALCULATOR_INITIAL_STATE.custom : FIB_PAYOUT_CALCULATOR_INITIAL_STATE.dataAdded,
       coverTypesInfo: fibQuoteData.coverTypesInfo,
+      customCoverPercentage: props?.navigation?.currentRoute?.passProps?.percentage,
     });
   };
 
