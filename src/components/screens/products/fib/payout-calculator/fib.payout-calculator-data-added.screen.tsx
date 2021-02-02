@@ -6,7 +6,7 @@ import { ScrollableLayout } from "@molecules";
 import { PackageSelector } from "../../../../organisms/lump-calculator/package-selector";
 import Slider from "@react-native-community/slider";
 import { addCommasToNumber } from "@services/utils";
-import { YugiRibbon } from "./assets/yugi-ribbon";
+import { YugiRibbon, Ribbon } from "./assets/yugi-ribbon";
 import { CreateTopUpsQuote_createTopUpsQuote_coverTypesInfo } from "../../../../../graphql/_core/schema/CreateTopUpsQuote";
 import { useQuery } from "@apollo/react-hooks";
 import { GetYulifer } from "../../../../../graphql/_core/schema/GetYulifer";
@@ -93,6 +93,14 @@ export const FibPayoutCalculatorDataAddedScreen = memo(function (props: IFibPayo
 
   const yearlyAmountProtected = sumAssured / term;
   const payoutAmount = Math.round(sumAssured - yearlyAmountProtected * currentSliderValue);
+  const yugiRibbonHeight = Platform.select({
+    ios: Style.isAnyIphoneX() ? "184" : "138",
+    android: Style.isShortAndroid() || Style.isShortAndLowScaledPixelAndroid() ? "138" : "184",
+  });
+  const yugiRibbonWidth = Platform.select({
+    ios: Style.isAnyIphoneX() ? "276" : "207",
+    android: Style.isShortAndroid() || Style.isShortAndLowScaledPixelAndroid() ? "207" : "276",
+  });
 
   return (
     <ScrollableLayout
@@ -105,19 +113,16 @@ export const FibPayoutCalculatorDataAddedScreen = memo(function (props: IFibPayo
       <View style={styles.wrapper}>
         <Text style={styles.title}>Your payout will be:</Text>
         <View style={styles.yugiRibbonWrapper}>
-          <YugiRibbon
-            leftAndRightItemsColor={yugiRibbonColors[selectedPackage].leftAndRightItemsColor}
-            smallElementColor={yugiRibbonColors[selectedPackage].smallElementColor}
-            bigItemColor={yugiRibbonColors[selectedPackage].bigItemColor}
-            height={Platform.select({
-              ios: Style.isAnyIphoneX() ? "184" : "138",
-              android: Style.isShortAndroid() || Style.isShortAndLowScaledPixelAndroid() ? "138" : "184",
-            })}
-            width={Platform.select({
-              ios: Style.isAnyIphoneX() ? "276" : "207",
-              android: Style.isShortAndroid() || Style.isShortAndLowScaledPixelAndroid() ? "207" : "276",
-            })}
-          />
+          <YugiRibbon height={yugiRibbonHeight} width={yugiRibbonWidth} />
+          <View style={styles.ribbonWrapper}>
+            <Ribbon
+              leftAndRightItemsColor={yugiRibbonColors[selectedPackage].leftAndRightItemsColor}
+              smallElementColor={yugiRibbonColors[selectedPackage].smallElementColor}
+              bigItemColor={yugiRibbonColors[selectedPackage].bigItemColor}
+              height={yugiRibbonHeight}
+              width={yugiRibbonWidth}
+            />
+          </View>
           <Text
             style={StyleSheet.flatten([
               styles.sumAssured,
@@ -163,6 +168,7 @@ export const FibPayoutCalculatorDataAddedScreen = memo(function (props: IFibPayo
 });
 
 const styles = StyleSheet.create({
+  ribbonWrapper: { position: "absolute" },
   packageSelectorWrapper: {
     marginVertical: Style.adjust(40),
   } as ViewStyle,
