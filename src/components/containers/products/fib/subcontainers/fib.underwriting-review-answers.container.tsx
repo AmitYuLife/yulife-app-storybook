@@ -71,6 +71,7 @@ const FibUnderwritingReviewAnswersContainer = memo(function (props: Props) {
           passProps: {
             onBackHandler: () => {
               dispatch(updateFIBValue({ key: "hasPriceChanged", value: false }));
+              Navigation.dismissModal(MODALS.priceChanged);
               navigation.push(FIB_CONFIRM_PACKAGES);
             },
           },

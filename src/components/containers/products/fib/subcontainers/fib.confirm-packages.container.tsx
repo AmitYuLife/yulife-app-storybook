@@ -15,7 +15,7 @@ import { packages, useCover } from "../fib.helpers";
 import { FibDetailsScreen } from "@screens";
 import { Package } from "@components/screens/products/fib/browse-packages/fib.browse.types";
 import { IFaq } from "@components/screens/products/fib/browse-packages/subcomponents/faqs/faq";
-import fibDocumentsItems, { policyScheduleDocument } from "../data/documents-data";
+import fibDocumentsItems from "../data/documents-data";
 import moment from "moment";
 import { updateFIBValuesFromNewQuote } from "@redux/product/product.actions";
 import { MODALS } from "@navigation/constants";
@@ -44,7 +44,7 @@ interface OwnProps {
 
 type FibConfirmPackagesContainerProps = ConnectedState & OwnProps;
 
-const documents: IFaq[] = [...fibDocumentsItems, policyScheduleDocument].map((document) => ({
+const documents: IFaq[] = fibDocumentsItems.map((document) => ({
   redirectType: "external",
   label: document.question,
   onPress: async () => {
