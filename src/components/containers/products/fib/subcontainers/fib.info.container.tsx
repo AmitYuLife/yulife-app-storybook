@@ -99,7 +99,7 @@ const _FibInfoContainer = memo(function (props: Props) {
 
       return (
         <FibInfoScreen
-          onBackHandler={onClose}
+          onActionHandler={onClose}
           icon={screenData.icon}
           title={screenData.title}
           message={screenData.message}

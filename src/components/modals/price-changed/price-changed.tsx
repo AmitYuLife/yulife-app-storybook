@@ -1,6 +1,4 @@
 import React from "react";
-import { Navigation } from "react-native-navigation";
-import { MODALS } from "@navigation/constants";
 import { useBackHandler } from "@services/hooks/useBackHandler";
 import { FibInfoScreen } from "@components/screens/products/fib/info-screens/fib.info.screen";
 import { getFibInfoScreenData, InfoTypes } from "@components/containers/products/fib/subcontainers/fib.info.container";
@@ -15,10 +13,11 @@ export default function PriceChangeModal(props: PriceChangedModalProps) {
   const { onBackHandler, title, message } = props;
 
   const backHandler = () => {
-    Navigation.dismissModal(MODALS.priceChanged);
-    if (onBackHandler) {
-      onBackHandler();
-    }
+    /**
+     * This is an alert modal, we don't want any action to happen
+     * on android back handler. Only clicking continue should dismiss
+     * the modal and move to next screen.
+     **/
 
     return true;
   };
@@ -29,7 +28,7 @@ export default function PriceChangeModal(props: PriceChangedModalProps) {
 
   return (
     <FibInfoScreen
-      onBackHandler={backHandler}
+      onActionHandler={onBackHandler}
       icon="priceChanged"
       title={title || defaultScreenData.title}
       message={message || defaultScreenData.message}

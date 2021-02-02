@@ -11,20 +11,20 @@ import YugiSuccess from "@components/screens/products/fib/info-screens/yugi-asse
 export type InfoYugiType = "priceChanged" | "success" | "rejected";
 
 export interface FibHoldingScreenProps {
-  onBackHandler: () => void;
+  onActionHandler: () => void;
   icon: InfoYugiType;
   title: string;
   message: string;
 }
 
 export const FibInfoScreen = memo(function (props: FibHoldingScreenProps) {
-  const { onBackHandler, icon, title, message } = props;
+  const { onActionHandler, icon, title, message } = props;
   const isPriceChangeScreen = icon === "priceChanged";
 
   const backHandler = useCallback(() => {
-    onBackHandler();
+    onActionHandler();
     return true;
-  }, [onBackHandler]);
+  }, [onActionHandler]);
 
   useBackHandler(backHandler);
 
@@ -39,9 +39,9 @@ export const FibInfoScreen = memo(function (props: FibHoldingScreenProps) {
         <Text style={styles.message}>{message}</Text>
       </View>
       <View style={styles.buttonWrapper}>
-        <Button label="Continue" type="Primary" onPress={onBackHandler} />
+        <Button label="Continue" type="Primary" onPress={onActionHandler} />
       </View>
-      <GenericHeadingAbsolute onLeftIconPress={!isPriceChangeScreen && onBackHandler} />
+      <GenericHeadingAbsolute onLeftIconPress={!isPriceChangeScreen && onActionHandler} />
     </View>
   );
 });

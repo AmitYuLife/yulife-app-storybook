@@ -1,16 +1,6 @@
 import Config from "react-native-config";
 
-const policySchedule = `<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-<circle cx="20" cy="20" r="20" fill="#CAF8E8"/>
-<path d="M12.3301 13.5791V29.9996H28.7505V13.5791H12.3301Z" fill="#CAF8E8" stroke="#34DBA3" stroke-width="1.3" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M16.1934 23.2373H17.6422M20.057 23.2373H24.8865" stroke="#34DBA3" stroke-width="1.3" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M16.1934 26.1377H20.54M22.9547 26.1377H24.8865" stroke="#34DBA3" stroke-width="1.3" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-<circle cx="13.2955" cy="14.5455" r="5.14545" fill="#CAF8E8" stroke="#34DBA3" stroke-width="1.3"/>
-<path d="M13.2949 12.6123V15.0271H15.2267" stroke="#34DBA3" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M24.8857 11.6465L24.8857 15.5101" stroke="#34DBA3" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M24.8862 20.3408H20.0566" stroke="#34DBA3" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>
-`;
+// TODO: This icons won't be send by the API, use react native svg components instead of xml strings (TP-704)
 
 const pdfIcon = `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M6.05469 22C4.95012 22 4.05469 21.1046 4.05469 20V4C4.05469 2.89543 4.95012 2 6.05469 2H15.0547L20.0547 7V20C20.0547 21.1046 19.1593 22 18.0547 22H6.05469Z" fill="#FAD4D4"/>
@@ -41,14 +31,6 @@ const yellowDoc = `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" x
 <path d="M14 17.9306L16 17.9306" stroke="#FFB13B" stroke-width="1.3" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>
 `;
-
-// Generated document, linking to website for now
-export const policyScheduleDocument = {
-  id: "policy-schedule",
-  question: "Policy schedule",
-  iconSvgXml: policySchedule,
-  url: `${Config.WEB_SITE_URL}`,
-};
 
 export const policyTermsConditions = {
   id: "policy-terms-conditions",
