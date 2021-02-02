@@ -28,19 +28,7 @@ const _YuScreenContainer = (props: ConnectedState) => {
     return <YuScreenIntro />;
   }
 
-  if (loading || !data) {
-    return (
-      <YuScreenLayout>
-        <YuScreenLoading />
-      </YuScreenLayout>
-    );
-  }
-
-  return (
-    <YuScreenLayout>
-      <YuScreen />
-    </YuScreenLayout>
-  );
+  return <YuScreenLayout>{loading || !data ? <YuScreenLoading /> : <YuScreen />}</YuScreenLayout>;
 };
 
 const YuScreenContainer = memo(_YuScreenContainer);
