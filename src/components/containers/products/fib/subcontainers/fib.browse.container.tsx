@@ -59,7 +59,7 @@ const otherBenefits = {
       id: "smartHealth",
       title: "Smart Health",
       description:
-        "Have access to Smart Health, a doctor / on demand service where you can have Video/Phone consultations with a GP.",
+        "Receive and keep access to Smart Health, a doctor-on-demand service with video and phone GP consultations.",
     },
   ],
 };
@@ -117,7 +117,7 @@ const _FibBrowseContainer = memo(function (props: IFibContainer & ReturnType<typ
     powers: selectedProductOption?.powers || [],
   };
 
-  const howItWorks = `We’ve designed this policy to protect your loved ones. It’s for YuLifers who want to make sure their family will be taken care of in the event that they should pass unexpectedly.\n\nEquipping this item means we will pay your chosen beneficiaries ${packageDetails.salaryPercentageCovered}% of your monthly salary as a lump sum from the date you passed away until you would have turned 70 years old.`;
+  const howItWorks = `We’ve designed this policy to protect your loved ones. It’s for YuLifers who want to make sure their family will be taken care of in the event that they should pass away unexpectedly.\n\nEquipping this item means we will pay your chosen beneficiaries ${packageDetails.salaryPercentageCovered}% of your salary as a lump sum based on the date you passed away until the policy would have ended.\n\nOur policies aim to cover you as long as possible and will last for a maximum of 40 years or until you reach 70 years old.`;
 
   return (
     <FibDetailsScreen

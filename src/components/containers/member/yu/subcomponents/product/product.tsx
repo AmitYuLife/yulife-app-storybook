@@ -1,13 +1,13 @@
 import React from "react";
 import { StyleSheet, View, ViewStyle } from "react-native";
 import { ProductHeading } from "./product-heading";
-import { ProductSubHeading, ISubHeadingProps } from "./product-sub-heading";
+import { ISubHeadingProps } from "./product-sub-heading";
 import { Style, Colours } from "@styles";
 import { TouchableOpacityWithDelay } from "@components/molecules";
 import { ProductCtaIcon } from "./product-cta-icon";
 import { getProductIcon } from "../../assets/getProductIcon";
 import { PERSONAL_PRODUCT } from "@ids";
-import { YuItemSlot, YuProductStatus } from "../../../../../../graphql/_core/schema/globalTypes";
+import { YuItemSlot, YuProductStatus, YuProductId } from "@graphql/_core/schema/globalTypes";
 
 export interface IProductProps {
   itemSlot: YuItemSlot;
@@ -17,15 +17,16 @@ export interface IProductProps {
   subheading: ISubHeadingProps;
   onPress?: () => void;
   showSeparator?: boolean;
+  productId: YuProductId;
 }
 
 export const Product = (props: IProductProps) => {
-  const { itemSlot, heading, subheading, status, onPress, showSeparator } = props;
+  const { itemSlot, heading, status, onPress, showSeparator } = props;
 
   const IconSvg = getProductIcon(itemSlot);
 
   return (
-    <View>
+    <View style={{ zIndex: -1 }}>
       <Separator show={showSeparator} />
       <TouchableOpacityWithDelay activeOpacity={1} onPress={onPress} style={styles.wrapper}>
         <IconSvg
@@ -37,9 +38,6 @@ export const Product = (props: IProductProps) => {
         />
         <View style={styles.productInfoWrapper} testID={PERSONAL_PRODUCT(heading)}>
           <ProductHeading text={heading} />
-          <View style={styles.productSubheadingWrapper}>
-            <ProductSubHeading {...subheading} />
-          </View>
         </View>
         <ProductCtaIcon status={status} />
       </TouchableOpacityWithDelay>
@@ -54,6 +52,7 @@ const styles = StyleSheet.create({
     paddingRight: Style.adjust(16),
     minHeight: Style.adjust(128),
     alignItems: "center",
+    zIndex: -1,
   } as ViewStyle,
   productIconWrapper: {
     width: Style.adjust(80),

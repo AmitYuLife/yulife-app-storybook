@@ -27,7 +27,6 @@ import AdditionalInformation, {
   IAdditionalInformation,
 } from "./subcomponents/additional-information/additional-information";
 import { ContinueButton } from "@components/screens/products/fib/browse-packages/continue-button/continue-button";
-
 interface FibDetailsScreenProps {
   documents: any;
   howItWorks?: string;

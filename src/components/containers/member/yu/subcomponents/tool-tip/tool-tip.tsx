@@ -146,9 +146,20 @@ export const ToolTip = ({ productId, onClose }: IToolTipProps) => {
           <MemoizedLinearGradient colorTheme={getLinearGradientColorTheme(coverType, isActive)} />
           <IconSvg status={status} style={StyleSheet.flatten([styles.iconWrapper, { opacity: !isActive ? 0.7 : 1 }])} />
           <View style={styles.nameWrapper}>
-            <Text bold={true} style={getNameStyle(isActive)}>
-              {isLocked ? "Coming soon" : name}
-            </Text>
+            {isLocked ? (
+              <Text bold={true} style={getNameStyle(isActive)}>
+                Coming soon
+              </Text>
+            ) : (
+              <>
+                <Text bold={true} style={getNameStyle(isActive)}>
+                  {name.substring(0, 9)}
+                </Text>
+                <Text bold={true} style={getNameStyle(isActive)}>
+                  {name.substring(9, name?.length)}
+                </Text>
+              </>
+            )}
           </View>
           {!isUnlockable ? null : (
             <View style={styles.statusTextWrapper}>
