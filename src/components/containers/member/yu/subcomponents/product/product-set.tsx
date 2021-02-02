@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useState } from "react";
 import { View, ViewStyle, StyleSheet } from "react-native";
 import { IProductProps, Product } from "./product";
 import { Heading, Subheading } from "../heading";
@@ -10,15 +10,17 @@ import { useSelector, useDispatch } from "react-redux";
 import { getFIBState } from "@redux/product/product.selectors";
 import { resetFIBUnderwritingJourney } from "@redux/product/product.actions";
 import { Style } from "@styles";
-import { ProductType, YuProductStatus } from "../../../../../../graphql/_core/schema/globalTypes";
-import { GQL_MUTATION_UPDATE_TOP_UPS_QUOTE } from "../../../../../../graphql/products/updateTopUpsQuote";
+import { ProductType, YuProductStatus, YuProductId } from "@graphql/_core/schema/globalTypes";
+import { GQL_MUTATION_UPDATE_TOP_UPS_QUOTE } from "@graphql/products/updateTopUpsQuote";
 import { IProduct } from "../../../../products/fib/fib.types";
+import { ToolTip } from "@components/containers/member/yu/subcomponents";
 
 export interface IProductSetProps {
   type: ProductType;
 }
 
 export const ProductSet = (props: IProductSetProps) => {
+  const [currentProductId, setCurrentProductId] = useState<YuProductId>(null);
   const { type } = props;
   const { data } = useQuery<GetYulifer>(GQL_QUERY_GET_YULIFER, { fetchPolicy: "cache-only" });
   const fibState = useSelector(getFIBState);
@@ -48,10 +50,18 @@ export const ProductSet = (props: IProductSetProps) => {
 
   return (
     <View style={styles.wrapper}>
+      <View style={currentProductId === YuProductId.family_income_benefit ? styles.chestPosition : null}>
+        <ToolTip productId={currentProductId} onClose={() => setCurrentProductId(null)} />
+      </View>
       <Heading text={heading} />
       <Subheading text={subheading} />
       {products.map((product, index) => (
-        <Product showSeparator={!!index} key={index} {...product} />
+        <Product
+          showSeparator={!!index}
+          key={index}
+          {...product}
+          onPress={() => setCurrentProductId(currentProductId === product.productId ? null : product.productId)}
+        />
       ))}
     </View>
   );
@@ -72,7 +82,7 @@ function getHeading(type: ProductType) {
     case ProductType.personal:
       return {
         heading: "Personal Items",
-        subheading: "Purchased by you",
+        subheading: "Equipped by you.",
       };
     default:
       return {
@@ -106,7 +116,7 @@ function getProducts({ type, data, fibState, resetFibJourney }: GetProducts): IP
         return null;
       }
 
-      const { itemSlot, status, name, earnRate, description } = item;
+      const { itemSlot, status, name, earnRate, description, productId } = item;
 
       if (type === ProductType.employer && status !== YuProductStatus.active) {
         return null;
@@ -116,6 +126,7 @@ function getProducts({ type, data, fibState, resetFibJourney }: GetProducts): IP
         itemSlot,
         heading: name,
         status,
+        productId,
         subheading: {
           activeYuCoinPower: earnRate,
           description,
@@ -135,4 +146,7 @@ const styles = StyleSheet.create({
   wrapper: {
     marginTop: Style.adjust(40),
   } as ViewStyle,
+  chestPosition: {
+    bottom: 60,
+  },
 });
