@@ -1,4 +1,4 @@
-import React, { useCallback, useState, useMemo } from "react";
+import React, { useState, useMemo } from "react";
 import { StyleSheet, ViewStyle, View, ScrollView, Platform } from "react-native";
 import { Style, TOP_BAR } from "@styles";
 import media from "@styles/media";
@@ -19,10 +19,6 @@ import { YuScreenProductContext } from "./yu-screen.context";
 
 export const YuScreen = () => {
   const [productId, setProductId] = useState(null);
-
-  const handleCloseModal = useCallback(() => {
-    setProductId(null);
-  }, []);
 
   const { data } = useQuery<GetYulifer>(GQL_QUERY_GET_YULIFER, {
     fetchPolicy: "cache-only",
@@ -50,7 +46,7 @@ export const YuScreen = () => {
             isHidden ? null : <ProductSet key={index} type={productType} />
           )}
           <View style={styles.padBot} />
-          <ToolTip productId={productId} onClose={handleCloseModal} />
+          <ToolTip />
         </ScrollView>
       </View>
     </YuScreenProductContext.Provider>

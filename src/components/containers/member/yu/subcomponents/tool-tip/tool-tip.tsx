@@ -1,4 +1,4 @@
-import React, { memo, useMemo, useCallback, useEffect } from "react";
+import React, { memo, useMemo, useCallback, useEffect, useContext } from "react";
 import { StyleSheet, View, ViewStyle, TextStyle, ImageStyle } from "react-native";
 import { Text, Button } from "@atoms";
 import { Style, Colours } from "@styles";
@@ -30,14 +30,13 @@ import {
   logProductItemInspectedActionCreator,
   logProductItemViewedActionCreator,
 } from "@redux/logging/logging.actions";
+import { YuScreenProductContext } from "../../yu-screen.context";
 
-export interface IToolTipProps {
-  productId: YuProductId;
-  onClose: () => void;
-}
-
-export const ToolTip = ({ productId, onClose }: IToolTipProps) => {
+export const ToolTip = () => {
   const dispatch = useDispatch();
+  const { productId, setProductId } = useContext(YuScreenProductContext);
+
+  const onClose = useCallback(() => setProductId(null), [setProductId]);
 
   const { data } = useQuery<GetYulifer>(GQL_QUERY_GET_YULIFER, {
     fetchPolicy: "cache-only",
@@ -146,20 +145,9 @@ export const ToolTip = ({ productId, onClose }: IToolTipProps) => {
           <MemoizedLinearGradient colorTheme={getLinearGradientColorTheme(coverType, isActive)} />
           <IconSvg status={status} style={StyleSheet.flatten([styles.iconWrapper, { opacity: !isActive ? 0.7 : 1 }])} />
           <View style={styles.nameWrapper}>
-            {isLocked ? (
-              <Text bold={true} style={getNameStyle(isActive)}>
-                Coming soon
-              </Text>
-            ) : (
-              <>
-                <Text bold={true} style={getNameStyle(isActive)}>
-                  {name.substring(0, 9)}
-                </Text>
-                <Text bold={true} style={getNameStyle(isActive)}>
-                  {name.substring(9, name?.length)}
-                </Text>
-              </>
-            )}
+            <Text bold={true} style={getNameStyle(isActive)}>
+              {isLocked ? "Coming soon" : getToolTipName(name)}
+            </Text>
           </View>
           {!isUnlockable ? null : (
             <View style={styles.statusTextWrapper}>
@@ -410,4 +398,14 @@ function getCaptionStyle(isActive: boolean) {
   }
 
   return defaultStyle;
+}
+
+function getToolTipName(name: string) {
+  const arr = name.split("of ");
+
+  if (arr.length > 1) {
+    return arr.join("of\n");
+  }
+
+  return name;
 }
