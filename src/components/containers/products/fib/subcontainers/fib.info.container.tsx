@@ -103,6 +103,8 @@ const _FibInfoContainer = memo(function (props: Props) {
           icon={screenData.icon}
           title={screenData.title}
           message={screenData.message}
+          onResetFib={resetFib}
+          canResetFib={canResetFib}
         />
       );
     }

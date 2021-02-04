@@ -83,7 +83,7 @@ export const FibCheckoutHubContainer = memo((props: Props) => {
         <View style={styles.indicatorWrapper}>
           <ActivityIndicator color={Colours.primary.p600} animating={true} />
         </View>
-        <GenericHeadingAbsolute heading="Checkout" onLeftIconPress={props.navigation.pop} />
+        <GenericHeadingAbsolute heading="Checkout" />
       </View>
     );
   }

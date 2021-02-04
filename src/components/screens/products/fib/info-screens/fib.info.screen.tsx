@@ -15,10 +15,12 @@ export interface FibHoldingScreenProps {
   icon: InfoYugiType;
   title: string;
   message: string;
+  canResetFib?: boolean;
+  onResetFib?: () => void;
 }
 
 export const FibInfoScreen = memo(function (props: FibHoldingScreenProps) {
-  const { onActionHandler, icon, title, message } = props;
+  const { onActionHandler, icon, title, message, canResetFib, onResetFib } = props;
   const isPriceChangeScreen = icon === "priceChanged";
 
   const backHandler = useCallback(() => {
@@ -39,6 +41,7 @@ export const FibInfoScreen = memo(function (props: FibHoldingScreenProps) {
         <Text style={styles.message}>{message}</Text>
       </View>
       <View style={styles.buttonWrapper}>
+        {canResetFib ? <Button type="Primary" onPress={onResetFib} label={"restart journey (beta only)"} /> : null}
         <Button label="Continue" type="Primary" onPress={onActionHandler} />
       </View>
       <GenericHeadingAbsolute onLeftIconPress={!isPriceChangeScreen && onActionHandler} />
@@ -46,14 +49,16 @@ export const FibInfoScreen = memo(function (props: FibHoldingScreenProps) {
   );
 });
 
+const isShortScreen = Style.DEVICE_HEIGHT < 700;
 const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
   } as ViewStyle,
   yugiWrapper: {
-    margin: Style.adjust(32),
+    marginHorizontal: Style.adjust(32),
     alignItems: "center",
-    marginTop: Style.DEVICE_HEIGHT < 700 ? 0 : Style.adjust(32),
+    marginTop: isShortScreen ? 0 : Style.adjust(32),
+    marginBottom: isShortScreen ? 0 : Style.adjust(32),
   } as ViewStyle,
   textWrapper: {
     marginHorizontal: Style.adjust(32),
@@ -83,7 +88,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   } as ViewStyle,
   buttonWrapper: {
-    marginBottom: Style.adjust(32),
+    marginBottom: isShortScreen ? Style.adjust(16) : Style.adjust(32),
   } as ViewStyle,
   text: {
     fontSize: Style.adjust(16),
