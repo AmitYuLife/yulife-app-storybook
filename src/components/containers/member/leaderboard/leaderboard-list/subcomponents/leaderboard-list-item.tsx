@@ -1,8 +1,8 @@
 import React from "react";
-import { View, StyleSheet, ViewStyle } from "react-native";
+import { View, StyleSheet, ViewStyle, TextStyle } from "react-native";
 import { Text } from "@atoms";
 import { TouchableOpacityWithDelay } from "@molecules";
-import { Style } from "@styles";
+import { Colours, Style } from "@styles";
 import Switch from "@molecules/switch/switch";
 import { ILeaderboard } from "@redux/user/user.reducer";
 import { LEADERBOARD_STATUS, LEADERBOARD_SWITCH } from "@ids";
@@ -22,7 +22,11 @@ export const LeaderboardListItems = (props: Props) => {
   }
 
   return (
-    <View>
+    <View style={styles.wrapper}>
+      <Text style={styles.description}>
+        By turning on a leaderboard, you are opting in to share your most recent 30 day step data with other members of
+        the leaderboard. This can be toggled off at any time.
+      </Text>
       {leaderboards.map((item) => (
         <LeaderboardListItem
           key={item.leaderboardId}
@@ -37,6 +41,21 @@ export const LeaderboardListItems = (props: Props) => {
   );
 };
 
+const MARGIN = Style.adjust(24);
+
+const styles = StyleSheet.create({
+  wrapper: {
+    marginTop: Style.adjust(40),
+    marginHorizontal: MARGIN,
+  },
+  description: {
+    lineHeight: Style.adjust(24),
+    letterSpacing: 0.6,
+    marginBottom: Style.adjust(24),
+    color: Colours.neutral.n800,
+  },
+});
+
 interface LeaderboardListItemProps {
   onPress: () => void;
   onSwitchPress: () => void;
@@ -49,25 +68,35 @@ const LeaderboardListItem = ({ onPress, onSwitchPress, isActive, name, consent }
   return (
     <View style={buttonStyles.wrapper} testID={LEADERBOARD_STATUS(name, consent ? "active" : "inactive")}>
       <TouchableOpacityWithDelay style={buttonStyles.nameWrapper} onPress={onPress}>
-        <Text bold={isActive}>{name}</Text>
+        <Text bold={isActive} style={isActive ? buttonStyles.active : null}>
+          {name}
+        </Text>
+        <Text style={StyleSheet.flatten([buttonStyles.textSmall, consent ? buttonStyles.active : null])}>
+          {consent ? "On" : "Off"}
+        </Text>
       </TouchableOpacityWithDelay>
       <Switch testID={LEADERBOARD_SWITCH(name)} value={consent} onPress={onSwitchPress} />
     </View>
   );
 };
 
-const MARGIN = Style.adjust(16);
-
 const buttonStyles = StyleSheet.create({
   wrapper: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    marginHorizontal: MARGIN,
     borderBottomWidth: StyleSheet.hairlineWidth,
     borderBottomColor: "rgba(0,0,0,0.1)",
   } as ViewStyle,
   nameWrapper: {
     paddingVertical: MARGIN,
   },
+  textSmall: {
+    color: Colours.neutral.n400,
+    fontSize: Style.adjust(12),
+    marginTop: 5,
+  } as TextStyle,
+  active: {
+    color: Colours.primary.p600,
+  } as TextStyle,
 });
