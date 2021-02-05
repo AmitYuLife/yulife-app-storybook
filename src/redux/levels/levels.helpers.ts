@@ -7,7 +7,10 @@ import { IActiveLevel } from "./levels.selectors";
 
 const MAX_AVAILABLE = 4;
 
-export async function getEndResult({ startDateTime, endDateTime, subtype, score }: IActiveLevel, features: any = {}) {
+export async function getEndResult(
+  { startDateTime, endDateTime, subtype, score }: IActiveLevel,
+  features: Record<string, boolean> = {}
+) {
   if (subtype === "meditation") {
     try {
       const { start, end } = getStartAndEndDateTimesWithTimezone(startDateTime, endDateTime);
@@ -99,19 +102,17 @@ export async function getEndResult({ startDateTime, endDateTime, subtype, score 
     const pedometerResults = await RNFitKit.queryPedometerFromDate(start, end);
     const pedometerValue = pedometerResults?.steps || 0;
 
-    const value = Math.max(fitkitValue, pedometerValue, score);
+    Logger.logMixpanelEvent("end_challenge_result", {
+      startDateTime,
+      endDateTime,
+      start,
+      end,
+      score,
+      fitkitValue,
+      pedometerValue,
+    });
 
-    if (features.loggingEnabled) {
-      Logger.logMixpanelEvent("debug_end_challenge_pedometer_results", {
-        startDateTime,
-        endDateTime,
-        start,
-        end,
-        score,
-        fitkitValue,
-        pedometerValue,
-      });
-    }
+    const value = Math.max(pedometerValue, score);
 
     return { value };
   } catch (e) {
