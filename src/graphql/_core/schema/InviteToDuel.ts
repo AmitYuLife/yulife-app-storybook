@@ -23,4 +23,6 @@ export interface InviteToDuelVariables {
   startDateTime: string;
   duration: number;
   yucoin: number;
+  requestLocation?: string | null;
+  leaderboardPlacement?: number | null;
 }

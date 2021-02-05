@@ -14,4 +14,5 @@ export interface ILeaderboardRankItemProps {
   duelDialogId: string;
   setDuelDialogId: React.Dispatch<React.SetStateAction<string>>;
   showDuels: boolean;
+  index: number;
 }

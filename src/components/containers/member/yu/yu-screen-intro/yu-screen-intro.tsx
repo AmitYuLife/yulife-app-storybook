@@ -11,7 +11,7 @@ export function YuScreenIntro() {
   const dispatch = useDispatch();
   const handleClose = () => dispatch(setYuscreenIntroShown());
 
-  return <OnboardingSwiper data={data} renderItem={renderItem} onClose={handleClose} />;
+  return <OnboardingSwiper type="yuscreen" data={data} renderItem={renderItem} onClose={handleClose} />;
 }
 
 function renderItem({ item, index }: ListRenderItemInfo<OnboardingSwiperData>) {

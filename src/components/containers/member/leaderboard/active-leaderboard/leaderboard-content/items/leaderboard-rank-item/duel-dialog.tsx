@@ -1,4 +1,4 @@
-import React, { useEffect, memo, FunctionComponent, useMemo, useCallback } from "react";
+import React, { useEffect, memo, FC, useMemo, useCallback } from "react";
 import { Animated } from "react-native";
 import { styles } from "./duel-dialog.styles";
 import { Navigation } from "react-native-navigation";
@@ -15,6 +15,7 @@ import { GQL_QUERY_GET_DUELS } from "@graphql/duels";
 
 interface Props {
   id: string;
+  index: number;
 }
 
 export interface ValidDuel {
@@ -26,7 +27,7 @@ export interface ValidDuel {
   isOpponentInviter: boolean;
 }
 
-const _DuelDialog: FunctionComponent<Props> = ({ id }) => {
+const _DuelDialog: FC<Props> = ({ id, index }) => {
   const userId = useSelector(getCurrentUserId);
   const opacity = new Animated.Value(0.15);
   const height = new Animated.Value(0);
@@ -92,10 +93,12 @@ const _DuelDialog: FunctionComponent<Props> = ({ id }) => {
         name: MODALS.duelInvite,
         passProps: {
           opponentId: id.replace("lead_", ""),
+          requestLocation: "leaderboads",
+          leaderboardPlacement: index + 1,
         },
       },
     });
-  }, [id]);
+  }, [id, index]);
 
   const onPress = useCallback(async () => {
     const existingDuel = validDuels.find(({ userId: duelistId }) => duelistId === opponentId);
@@ -108,18 +111,20 @@ const _DuelDialog: FunctionComponent<Props> = ({ id }) => {
             name: MODALS.duelRespond,
             passProps: {
               duelId: existingDuel.id,
+              requestLocation: "leaderboads",
+              leaderboardPlacement: index + 1,
             },
           },
         });
       } else {
-        showExistingDuelAlert(existingDuel);
+        showExistingDuelAlert(existingDuel, "leaderboards");
       }
 
       return;
     }
 
     await navigateToDuelInvite();
-  }, [opponentId, validDuels, navigateToDuelInvite]);
+  }, [opponentId, index, validDuels, navigateToDuelInvite]);
 
   return (
     <Animated.View style={[styles.centered, { opacity, transform: [{ scaleY: height }] }]}>

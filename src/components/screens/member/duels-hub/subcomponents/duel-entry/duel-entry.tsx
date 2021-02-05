@@ -27,7 +27,7 @@ const DuelEntry: FC<IProps> = ({ duel, type, userId, dailySteps }) => {
           bold={true}
           testID={DUEL_ENTRY(opponent.name.firstName, opponent.name.lastName, duel.yucoin, duel.status)}
         >
-          {opponent.name.firstName} {opponent.name.lastName}
+          {opponent?.name.firstName} {opponent?.name.lastName}
         </Text>
         <Description duel={duel} type={type} userId={userId} dailySteps={dailySteps} />
       </View>

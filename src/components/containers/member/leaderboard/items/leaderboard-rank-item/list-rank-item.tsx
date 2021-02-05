@@ -20,6 +20,7 @@ const _ListRankItem = ({
   duelDialogId,
   setDuelDialogId,
   showDuels,
+  index,
 }: ILeaderboardRankItemProps) => {
   return (
     <>
@@ -43,7 +44,7 @@ const _ListRankItem = ({
           </View>
         </Animated.View>
       </TouchableOpacityWithDelay>
-      {duelDialogId !== id ? null : <DuelDialog id={id} />}
+      {duelDialogId !== id ? null : <DuelDialog id={id} index={index} />}
     </>
   );
 };

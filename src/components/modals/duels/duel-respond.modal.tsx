@@ -21,15 +21,21 @@ import { GQL_QUERY_GET_DUEL_INVITATIONS } from "@graphql/duels/getDuelInvitation
 import { useBackHandler } from "@services/hooks/useBackHandler";
 import { TopBarAbsolute } from "@organisms/top-bar/top-bar-absolute";
 
-interface IModalProps {
+interface IProps {
   duelId: string;
   componentId: string;
   invitation?: GetDuels_getDuels;
+  requestLocation: "leaderboards" | "search_list" | "recents";
+  leaderboardPlacement: number;
 }
 
-type IProps = IModalProps;
-
-const DuelRespondModal: React.FC<IProps> = ({ componentId, duelId, invitation }) => {
+const DuelRespondModal: React.FC<IProps> = ({
+  componentId,
+  duelId,
+  invitation,
+  requestLocation,
+  leaderboardPlacement,
+}) => {
   const [isLoading, setIsLoading] = useState(false);
   const [loadingLabel, setLoadingLabel] = React.useState<"primary" | "secondary">(null);
   useBackHandler(() => {
@@ -78,7 +84,7 @@ const DuelRespondModal: React.FC<IProps> = ({ componentId, duelId, invitation })
 
       try {
         await respondToInvite({
-          variables: { duelId, hasAccepted, startDateTime },
+          variables: { duelId, hasAccepted, startDateTime, requestLocation, leaderboardPlacement },
         });
         setLoadingLabel(null);
         setIsLoading(false);
@@ -89,7 +95,7 @@ const DuelRespondModal: React.FC<IProps> = ({ componentId, duelId, invitation })
         setIsLoading(false);
       }
     },
-    [componentId, dispatch, duelId, respondToInvite, startDateTime]
+    [componentId, dispatch, duelId, respondToInvite, startDateTime, requestLocation, leaderboardPlacement]
   );
 
   const submitDuel = async () => {
