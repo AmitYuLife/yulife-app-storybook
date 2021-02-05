@@ -63,7 +63,7 @@ const CommunityGoalsIntro: React.FunctionComponent<Props> = ({ setOnboardingShow
     );
   };
 
-  return <OnboardingSwiper data={data} renderItem={renderItem} onClose={handleClose} />;
+  return <OnboardingSwiper type="communityGoals" data={data} renderItem={renderItem} onClose={handleClose} />;
 };
 
 export default CommunityGoalsIntro;

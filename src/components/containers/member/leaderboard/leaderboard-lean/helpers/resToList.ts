@@ -64,6 +64,7 @@ function addRankItems(
       duelDialogId,
       setDuelDialogId,
       showDuels,
+      index: i,
     };
 
     list.push({

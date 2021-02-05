@@ -4,6 +4,8 @@ import { Text, PageIndicator } from "@atoms";
 import styles from "./onboarding-swiper.styles";
 import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
 import { TouchableOpacityWithDelay } from "@components/molecules";
+import Logger from "@services/logging/logger";
+import { ROUTES } from "@navigation/constants";
 
 export interface OnboardingSwiperData {
   id: string;
@@ -16,12 +18,26 @@ interface Props {
   data: OnboardingSwiperData[];
   onClose: () => void;
   renderItem: ListRenderItem<OnboardingSwiperData>;
+  type: "yuscreen" | "communityGoals" | "duels";
 }
 
 interface State {
   buttonLabel: string;
   activePageIndex: number;
 }
+
+const getScreenViewName = (type: Props["type"], page = 0) => {
+  switch (type) {
+    case "yuscreen":
+      return `${ROUTES.yuScreen}.Onboarding.${page}`;
+    case "duels":
+      return `${ROUTES.duelsHub}.Onboarding.${page}`;
+    case "communityGoals":
+      return `${ROUTES.communityGoals}.Onboarding.${page}`;
+    default:
+      return "";
+  }
+};
 
 export class OnboardingSwiper extends React.PureComponent<Props, State> {
   private swiper: FlatList;
@@ -33,6 +49,13 @@ export class OnboardingSwiper extends React.PureComponent<Props, State> {
     buttonLabel: "Next",
     activePageIndex: 0,
   };
+
+  componentDidMount() {
+    const name = getScreenViewName(this.props.type, 0);
+    if (name) {
+      Logger.logMixpanelEvent("screen_view", { name });
+    }
+  }
 
   render() {
     const { activePageIndex, buttonLabel } = this.state;
@@ -65,7 +88,7 @@ export class OnboardingSwiper extends React.PureComponent<Props, State> {
           {isFirstPage ? (
             <View />
           ) : (
-            <TouchableOpacityWithDelay delay={200} onPress={this.scrollBack}>
+            <TouchableOpacityWithDelay delay={300} onPress={this.scrollBack}>
               <Text style={styles.backButton}>Back</Text>
             </TouchableOpacityWithDelay>
           )}
@@ -80,7 +103,7 @@ export class OnboardingSwiper extends React.PureComponent<Props, State> {
               </Text>
             </TouchableOpacity>
           ) : (
-            <TouchableOpacityWithDelay delay={200} style={styles.actionButton} onPress={this.scrollToNext}>
+            <TouchableOpacityWithDelay delay={300} style={styles.actionButton} onPress={this.scrollToNext}>
               <Text bold={true} style={styles.actionButtonText}>
                 {buttonLabel}
               </Text>
@@ -100,13 +123,17 @@ export class OnboardingSwiper extends React.PureComponent<Props, State> {
 
   scrollToNext = () => {
     const { activePageIndex } = this.state;
+    const { type, data } = this.props;
 
-    if (activePageIndex + 1 < this.props.data.length) {
-      this.swiper?.scrollToIndex({ index: activePageIndex + 1, animated: true });
+    const newIndex = activePageIndex + 1;
+    if (newIndex < data.length) {
+      const name = getScreenViewName(type, newIndex);
+      this.swiper?.scrollToIndex({ index: newIndex, animated: true });
       this.setState({
-        activePageIndex: activePageIndex + 1,
-        buttonLabel: this.props.data[activePageIndex + 1]?.buttonLabel,
+        activePageIndex: newIndex,
+        buttonLabel: this.props.data[newIndex]?.buttonLabel,
       });
+      Logger.logMixpanelEvent("screen_view", { name });
     }
   };
 
@@ -114,23 +141,29 @@ export class OnboardingSwiper extends React.PureComponent<Props, State> {
     const { activePageIndex } = this.state;
 
     const newIndex = activePageIndex - 1;
+    const name = getScreenViewName(this.props.type, newIndex);
     if (newIndex >= 0) {
       this.swiper?.scrollToIndex({ index: newIndex, animated: true });
       this.setState({
         activePageIndex: newIndex,
         buttonLabel: this.props.data[newIndex]?.buttonLabel,
       });
+      Logger.logMixpanelEvent("screen_view", { name });
     }
   };
 
   handleSwipe = ({ viewableItems }: { viewableItems: ViewToken[] }) => {
+    const { data, type } = this.props;
     const visibleItem = viewableItems[0];
 
     if (visibleItem) {
       this.setState({
         activePageIndex: visibleItem.index,
-        buttonLabel: this.props.data[visibleItem.index]?.buttonLabel || "Next",
+        buttonLabel: data[visibleItem.index]?.buttonLabel || "Next",
       });
+
+      const name = getScreenViewName(type, visibleItem.index);
+      Logger.logMixpanelEvent("screen_view", { name });
     }
   };
 }

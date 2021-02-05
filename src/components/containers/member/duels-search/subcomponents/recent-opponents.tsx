@@ -9,7 +9,7 @@ import styles from "./recent-opponents.styles";
 import { TouchableOpacityWithDelay } from "@components/molecules";
 
 interface Props {
-  inviteToDuel: (opponentId: string) => Promise<void>;
+  inviteToDuel: (opponentId: string, type: "recents") => Promise<void>;
 }
 
 function _RecentOpponents({ inviteToDuel }: Props) {
@@ -45,7 +45,7 @@ function _RecentOpponents({ inviteToDuel }: Props) {
             return (
               <TouchableOpacityWithDelay
                 key={opponent?.customerId}
-                onPress={() => inviteToDuel(opponent?.customerId)}
+                onPress={() => inviteToDuel(opponent?.customerId, "recents")}
                 style={[styles.opponent, isMiddleRecentOpponent ? styles.middleOpponent : {}]}
               >
                 <Text bold={true} style={styles.name}>

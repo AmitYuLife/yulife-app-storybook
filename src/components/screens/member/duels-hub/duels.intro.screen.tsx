@@ -36,7 +36,7 @@ interface Props {
 }
 
 function _DuelsIntroScreen(props: Props) {
-  return <OnboardingSwiper data={data} renderItem={renderItem} onClose={props.setOnboardingShown} />;
+  return <OnboardingSwiper data={data} renderItem={renderItem} onClose={props.setOnboardingShown} type="duels" />;
 }
 
 const DuelsIntroScreen = React.memo(_DuelsIntroScreen);

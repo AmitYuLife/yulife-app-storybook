@@ -22,4 +22,6 @@ export interface RespondToDuelVariables {
   duelId: string;
   startDateTime: string;
   hasAccepted: boolean;
+  requestLocation?: string | null;
+  leaderboardPlacement?: number | null;
 }

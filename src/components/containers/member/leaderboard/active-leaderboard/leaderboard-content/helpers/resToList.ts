@@ -49,6 +49,7 @@ export const resToList = ({
 
   const list = [] as ILeaderboardListItem[];
 
+  const userIndex = leaderboardItems.findIndex(({ id }) => id === `lead_${currentUserId}`);
   const currentUserData: ILeaderboardRankItemProps = {
     isCurrentUser: true,
     name: "",
@@ -61,9 +62,9 @@ export const resToList = ({
     duelDialogId,
     setDuelDialogId,
     showDuels,
+    index: userIndex,
   };
 
-  const userIndex = leaderboardItems.findIndex(({ id }) => id === `lead_${currentUserId}`);
   const user = leaderboardItems[userIndex];
 
   addTopPadding({ list, leaderboardName, leaderboardItems, isRefetching, scrollValue, isLoading });
@@ -167,6 +168,7 @@ function addRankItems(
       duelDialogId,
       setDuelDialogId,
       showDuels,
+      index: i,
     };
 
     if (leaderboardItem.position < PAGE_SIZE) {

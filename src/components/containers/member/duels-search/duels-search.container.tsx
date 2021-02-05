@@ -42,7 +42,7 @@ function keyExtractor(item: SearchedOpponent, index: number) {
 
 const DEBOUNCE = 750;
 
-const inviteToDuel = async (opponentId: string) => {
+const inviteToDuel = async (opponentId: string, requestLocation: "search_list" | "recents") => {
   await Navigation.showModal({
     component: {
       id: MODALS.duelInvite,
@@ -50,18 +50,20 @@ const inviteToDuel = async (opponentId: string) => {
       passProps: {
         opponentId,
         isDuelsHubInNavigationStack: true,
+        requestLocation,
       },
     },
   });
 };
 
-const showDuelRespond = async (duelId: string) => {
+const showDuelRespond = async (duelId: string, requestLocation: "search_list" | "recents") => {
   await Navigation.showModal({
     component: {
       id: MODALS.duelRespond,
       name: MODALS.duelRespond,
       passProps: {
         duelId: duelId,
+        requestLocation,
       },
     },
   });
@@ -109,22 +111,22 @@ function _DuelsSearchContainer() {
   }, [duels, userId]);
 
   const onPress = useCallback(
-    async (opponentId: string) => {
+    async (opponentId: string, requestLocation: "search_list" | "recents") => {
       const existingDuel = validDuels.find(({ userId: duelistId }) => duelistId === opponentId);
 
       if (existingDuel) {
         const shouldShowDuelRespond = existingDuel.isOpponentInviter && existingDuel.status === "pending";
 
         if (shouldShowDuelRespond) {
-          showDuelRespond(existingDuel.id);
+          showDuelRespond(existingDuel.id, requestLocation);
         } else {
-          showExistingDuelAlert(existingDuel);
+          showExistingDuelAlert(existingDuel, requestLocation);
         }
 
         return;
       }
 
-      await inviteToDuel(opponentId);
+      await inviteToDuel(opponentId, requestLocation);
     },
     [validDuels]
   );
@@ -143,7 +145,7 @@ function _DuelsSearchContainer() {
 
   const opponents = (data?.searchForDuelOpponent || []).map((opponent) => ({
     ...opponent,
-    onPress: () => onPress(opponent.customerId),
+    onPress: () => onPress(opponent.customerId, "search_list"),
   }));
 
   return (

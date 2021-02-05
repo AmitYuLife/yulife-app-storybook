@@ -1,7 +1,7 @@
 import { GQL_MUTATION_INVITE_TO_DUEL, InviteToDuelMutationTuple } from "@graphql/duels";
 import React, { useState } from "react";
 import { Navigation } from "react-native-navigation";
-import { useDispatch, connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getUserStart } from "../../../redux/user/user.actions";
 import { useMutation, useQuery } from "@apollo/react-hooks";
 import { Alert, View } from "react-native";
@@ -10,14 +10,11 @@ import { DuelBackground, DuelOptions, DuelInviteIntro } from "./subcomponents";
 import { DEFAULT_DUEL_AMOUNT, DuelStepProps } from "./duels.types";
 import { Step } from "./duels.types";
 import styles from "./duel-invite.modal.styles";
-import { IReduxState } from "@redux/_core/reducers";
 import { getTotalCoins } from "@redux/coins/coins.selectors";
 import { ROUTES } from "@navigation/constants";
 import { GQL_QUERY_GET_DUELLER_DETAILS } from "@graphql/duels/getDuellerDetails";
 import { GQL_QUERY_GET_DUEL_INVITATIONS } from "@graphql/duels/getDuelInvitations.gql";
 import { useBackHandler } from "@services/hooks/useBackHandler";
-
-type IReduxProps = ReturnType<typeof mapStateToProps>;
 
 const STEPS = {
   INTRO: {
@@ -44,17 +41,19 @@ interface IProps {
   componentId: string;
   opponentId: string;
   isDuelsHubInNavigationStack: boolean;
+  requestLocation: "leaderboards" | "search_list" | "recents";
+  leaderboardPlacement: number;
 }
 
-type IDuelProps = IProps & IReduxProps;
-
-const DuelInviteModal: React.FC<IDuelProps> = ({
+const DuelInviteModal: React.FC<IProps> = ({
   componentId,
   opponentId,
   isDuelsHubInNavigationStack = false,
-  userCoins,
+  requestLocation,
+  leaderboardPlacement,
 }) => {
   const dispatch = useDispatch();
+  const userCoins = useSelector(getTotalCoins);
   const [step, setStep] = useState<Step>("INTRO");
   const [yucoin, setYucoin] = useState(DEFAULT_DUEL_AMOUNT);
   const [isLoading, setIsLoading] = useState(false);
@@ -87,6 +86,8 @@ const DuelInviteModal: React.FC<IDuelProps> = ({
           opponentUserIds: [opponentId],
           yucoin: yucoin,
           duration: 86400,
+          requestLocation,
+          leaderboardPlacement,
         },
       });
       await Navigation.dismissModal(componentId);
@@ -149,8 +150,4 @@ const DuelInviteModal: React.FC<IDuelProps> = ({
   );
 };
 
-const mapStateToProps = (state: IReduxState) => ({
-  userCoins: getTotalCoins(state),
-});
-
-export default connect(mapStateToProps)(DuelInviteModal);
+export default DuelInviteModal;

@@ -16,8 +16,8 @@ interface IProps {
 const DuelIcon: FC<Partial<IProps>> = ({ duel, type, userId }) => {
   const opponent = duel.opponents.find((dueller) => dueller.userId !== userId);
   const user = duel.opponents.find((dueller) => dueller.userId === userId);
-  const hasWon = user.score > opponent.score;
-  const hasDrawn = user.score === opponent.score;
+  const hasWon = user?.score > opponent?.score;
+  const hasDrawn = user?.score === opponent?.score;
   const colorStyle = hasWon ? styles.greenText : hasDrawn ? styles.grayText : styles.redText;
   if (type === "completed") {
     if (duel.status === "pending_submission") {
@@ -43,9 +43,9 @@ const DuelIcon: FC<Partial<IProps>> = ({ duel, type, userId }) => {
   return (
     <View style={styles.wrapper}>
       <Text bold={true} style={styles.yucoin}>
-        {duel.yucoin > 0 ? duel.yucoin : null}
+        {duel?.yucoin > 0 ? duel.yucoin : null}
       </Text>
-      <View style={styles.iconWrapper}>{duel.yucoin === 0 ? <Award /> : <YuCoin />}</View>
+      <View style={styles.iconWrapper}>{duel?.yucoin === 0 ? <Award /> : <YuCoin />}</View>
     </View>
   );
 };

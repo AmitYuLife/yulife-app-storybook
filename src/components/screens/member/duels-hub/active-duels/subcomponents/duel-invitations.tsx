@@ -79,6 +79,7 @@ const DuelInvitationStatus: FC<{ duel: GetDuelInvitations["getDuelInvitations"][
         passProps: {
           invitation: duel,
           duelId: duel.id,
+          requestLocation: "duels_hub",
         },
       },
     });
