@@ -76,16 +76,19 @@ const dailyMeditationReducer = (
   }
 };
 
-const updateDailyMeditationSucces = (
-  state: IDailyMeditationStore,
-  { upsertPassiveChallenge: { challenge } }: UpsertPassiveChallenge
-) => {
-  const updatedAt = moment.unix(challenge.updatedAt).format();
-  return {
-    ...state,
-    dailyMeditation: challenge.incomingData.meditation,
-    lastUpdated: updatedAt,
-  };
+const updateDailyMeditationSucces = (state: IDailyMeditationStore, data: UpsertPassiveChallenge) => {
+  if (data?.upsertPassiveChallenge?.challenge?.updatedAt) {
+    const {
+      upsertPassiveChallenge: { challenge },
+    } = data;
+    const updatedAt = moment.unix(challenge.updatedAt).format();
+
+    return {
+      ...state,
+      dailyMeditation: challenge.incomingData.meditation,
+      lastUpdated: updatedAt,
+    };
+  }
 };
 
 const updatePersistedState = (state: IDailyMeditationStore, persistedState: IDailyMeditationStore) => {
