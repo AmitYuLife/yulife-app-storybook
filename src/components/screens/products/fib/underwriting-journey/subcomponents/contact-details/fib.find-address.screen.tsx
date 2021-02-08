@@ -42,9 +42,7 @@ function _FibFindAddressScreen(props: IFibFindAddressScreenProps) {
 
   const [search, { loading, data, networkStatus, called, error }] = useDebouncedQuery<Address, AddressVariables>(
     GQL_QUERY_GET_ADDRESS_BY_POSTCODE,
-    { fetchPolicy: "cache-and-network" },
-    null,
-    null
+    { fetchPolicy: "cache-and-network" }
   );
 
   const onChangeText = useCallback(

@@ -45,7 +45,7 @@ function _FibGPPracticeSearchScreen(props: GpPracticeSearchScreenProps) {
   const [search, { loading, data, networkStatus, called }] = useDebouncedQuery<
     MedicalPractices,
     MedicalPracticesVariables
-  >(GQL_GET_MEDICAL_PRACTICES, { fetchPolicy: "cache-and-network" }, null, null);
+  >(GQL_GET_MEDICAL_PRACTICES, { fetchPolicy: "cache-and-network" });
 
   const onChangeText = useCallback(
     (text: string) => {
