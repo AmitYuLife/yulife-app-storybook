@@ -114,29 +114,24 @@ export const getImageStyle = (image: Images): ImageStyle => {
     case IMAGES.WOLF:
       position.left = 0;
       position.bottom = 0;
-      dimensions.height = Style.adjust(134);
-      dimensions.width = Style.adjust(108);
       break;
     case IMAGES.DEER:
       position.left = Style.defaultShrinkThreshold ? -12 : 0;
       position.bottom = 0;
-      dimensions.height = Style.adjust(128);
       break;
     case IMAGES.WHITE_BIGHORN_SHEEP:
       position.right = Style.defaultShrinkThreshold ? -10 : 0;
       position.bottom = 0;
-      dimensions.height = Style.adjust(128);
       break;
     case IMAGES.OWL:
       position.right = Style.defaultShrinkThreshold ? -10 : 0;
       position.bottom = 0;
-      dimensions.height = Style.adjust(128);
       break;
     case IMAGES.BEAR:
       position.right = 0;
       position.bottom = 0;
-      dimensions.height = Style.adjust(182);
       dimensions.width = Style.adjust(182);
+      dimensions.height = Style.adjust(182);
       break;
     case IMAGES.CHAMELEON:
       position.left = 0;
