@@ -100,7 +100,7 @@ const Content: FunctionComponent<Partial<Props>> = ({ challengeType, duration, r
           {challengeType}
         </Text>
       </View>
-      <View style={styles.contentDurationWrapper}>
+      <View>
         <Text bold={true} style={styles.contentTitle}>
           {duration}
         </Text>

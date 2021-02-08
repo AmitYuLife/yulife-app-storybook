@@ -6,10 +6,9 @@ const BOTOM_HEIGHT = Style.adjust(79);
 const RADIUS = Style.adjust(20);
 
 const styles = StyleSheet.create({
-  contentDurationWrapper: {} as ViewStyle,
   contentReward: {
     color: "rgb(51,51,51)",
-    fontSize: Style.adjust(13),
+    fontSize: Style.adjust(12),
   } as TextStyle,
   contentRewardWrapper: {
     marginTop: 2,
@@ -104,7 +103,7 @@ const styles = StyleSheet.create({
     marginTop: Style.adjust(26),
     width: Style.adjust(165, {
       shrinkThreshold: Style.DEVICE_WIDTH < 361,
-      shrinkMultiplier: Platform.select({ ios: 0.15, android: 0.05 }),
+      shrinkMultiplier: Platform.select({ ios: 0.15, android: Style.DEVICE_WIDTH < 360 ? 0.15 : 0.05 }),
       growThreshold: Platform.select({ ios: Style.DEVICE_WIDTH > 413 }),
       growMultiplier: 0.1,
     }),
