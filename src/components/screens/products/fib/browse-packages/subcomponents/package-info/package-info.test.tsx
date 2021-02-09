@@ -9,8 +9,7 @@ const renderComponent = (props: Props) => {
 };
 
 const packageCommonInfo = {
-  title1: "Chest of",
-  title2: "Life Insurance",
+  title: "Chest of Life Insurance",
   symbol: "%",
   salaryCover: "of salary covered",
   yuCoin: "YuCoin Power",
@@ -57,8 +56,7 @@ describe("PackageInfo", () => {
   it("should render PackageInfo", () => {
     const { queryByText, rerender } = renderComponent({ selectedPackage });
     expect(queryByText("common")).toBeTruthy();
-    expect(queryByText(packageCommonInfo.title1)).toBeTruthy();
-    expect(queryByText(packageCommonInfo.title2)).toBeTruthy();
+    expect(queryByText(packageCommonInfo.title)).toBeTruthy();
     expect(queryByText("75")).toBeTruthy();
     expect(queryByText(packageCommonInfo.symbol)).toBeTruthy();
     expect(queryByText(packageCommonInfo.salaryCover)).toBeTruthy();

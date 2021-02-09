@@ -8,7 +8,7 @@ import { DoubleChest, Streak, Shoe, Text } from "@atoms";
 import { PACKAGE_INFO } from "@ids";
 import { formatMoney } from "@services/money";
 import { CoverType } from "@graphql/_core/schema/globalTypes";
-
+import { getToolTipName } from "@services/products";
 export interface Props {
   selectedPackage: Package;
   packagePrice?: number;
@@ -97,10 +97,7 @@ const PackageInfo: React.FC<Props> = ({ selectedPackage, packagePrice }) => {
         </View>
         <View style={styles.titleWrapper}>
           <Text bold={true} style={styles.title}>
-            {selectedPackage?.title.substring(0, 9)}
-          </Text>
-          <Text bold={true} style={styles.title}>
-            {selectedPackage?.title.substring(9, selectedPackage?.title?.length)}
+            {getToolTipName(selectedPackage?.title)}
           </Text>
         </View>
       </LinearGradient>
@@ -111,6 +108,9 @@ const PackageInfo: React.FC<Props> = ({ selectedPackage, packagePrice }) => {
           <Text style={[styles.numberText, styles.percentage]}>%</Text>
           <Text style={styles.numberText}> of salary covered </Text>
         </View>
+        <Text style={styles.percentageDescription}>
+          Protect your family financially with a proportion of your monthly income should the worst happen.
+        </Text>
 
         <View style={[styles.description, styles.marginTop16]}>
           <Text style={[styles.number, styles.yuCoin]}>{selectedPackage?.earnRate}</Text>
@@ -256,6 +256,11 @@ const styles = StyleSheet.create({
   marginTop16: {
     marginTop: 16,
   } as ViewStyle,
+  percentageDescription: {
+    lineHeight: Style.adjust(24),
+    letterSpacing: 0.6,
+    marginTop: Style.adjust(16),
+  } as TextStyle,
 });
 
 export default memo(PackageInfo);

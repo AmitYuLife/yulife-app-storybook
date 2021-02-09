@@ -31,6 +31,7 @@ import {
   logProductItemViewedActionCreator,
 } from "@redux/logging/logging.actions";
 import { YuScreenProductContext } from "../../yu-screen.context";
+import { getToolTipName } from "@services/products";
 
 export const ToolTip = () => {
   const dispatch = useDispatch();
@@ -398,14 +399,4 @@ function getCaptionStyle(isActive: boolean) {
   }
 
   return defaultStyle;
-}
-
-function getToolTipName(name: string) {
-  const arr = name.split("of ");
-
-  if (arr.length > 1) {
-    return arr.join("of\n");
-  }
-
-  return name;
 }
