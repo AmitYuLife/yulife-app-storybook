@@ -13,7 +13,7 @@ import { addCommasToNumber } from "@services/utils";
 const UserSteps = () => {
   const dailySteps = useSelector(getDailySteps);
   const { data } = useQuery<GetYulifer>(GQL_QUERY_GET_YULIFER, {
-    fetchPolicy: "cache-only",
+    fetchPolicy: "cache-and-network",
   });
   const avatarSource = useMemo(() => {
     return data?.getYulifer?.avatarRemoteFiles?.pngMini;

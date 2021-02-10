@@ -80,7 +80,7 @@ function _DuelsSearchContainer() {
   >(GQL_QUERY_SEARCH_FOR_DUEL_OPPONENT, { fetchPolicy: "cache-and-network" }, DEBOUNCE, { query: "" });
 
   const getDuels = useQuery<GetDuels>(GQL_QUERY_GET_DUELS, {
-    fetchPolicy: "cache-only",
+    fetchPolicy: "cache-and-network",
   });
 
   const duels = getDuels?.data?.getDuels || [];
@@ -151,8 +151,10 @@ function _DuelsSearchContainer() {
   return (
     <View style={styles.wrapper} testID={DUELS_SEARCH}>
       <View style={styles.topbarFiller} />
-      <RecentOpponents inviteToDuel={onPress} />
-      <SearchInput title="Search for a friend:" query={query} onChangeText={onChangeText} />
+      <View style={styles.searchContainer}>
+        <RecentOpponents inviteToDuel={onPress} />
+        <SearchInput title="Search for a friend:" query={query} onChangeText={onChangeText} />
+      </View>
       <SearchList
         data={opponents}
         networkStatus={networkStatus}
@@ -162,7 +164,7 @@ function _DuelsSearchContainer() {
         searchItem={DuelsSearchItem}
         keyExtractor={keyExtractor}
       />
-      <TopBarAbsolute hasShadow={true} hasWhiteBackground={true} onPressLeftIcon={navigateBack} leftIcon="Back" />
+      <TopBarAbsolute hasWhiteBackground={false} onPressLeftIcon={navigateBack} leftIcon="Back" />
     </View>
   );
 }

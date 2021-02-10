@@ -7,6 +7,10 @@ const HEIGHT_ADJUSTMENT = Platform.select({
 });
 
 export default StyleSheet.create({
+  searchContainer: {
+    borderTopWidth: 1,
+    borderTopColor: Colours.neutral.n100,
+  } as ViewStyle,
   topZone: {
     backgroundColor: Colours.neutral.white,
   } as ViewStyle,
@@ -18,6 +22,5 @@ export default StyleSheet.create({
     height: TOP_BAR.HEIGHT * (Style.hasNotch ? 2.2 : 2) + HEIGHT_ADJUSTMENT,
     width: "100%",
     backgroundColor: Colours.neutral.white,
-    borderColor: Colours.neutral.n100,
   } as ViewStyle,
 });
