@@ -17,13 +17,20 @@ interface IProps {
 const Description: FC<IProps> = ({ duel, type, userId }) => {
   const opponent = duel.opponents.find((dueller) => dueller.userId !== userId);
   const user = duel.opponents.find((dueller) => dueller.userId === userId);
+
+  const updatedAt = moment((duel as GetDuelsToday_getDuelsToday).updatedAt);
+  const fromNow = updatedAt
+    .fromNow()
+    .replace(/an hour/i, "1h")
+    .replace(/ hours/i, "h")
+    .replace(/a minute/i, "1m")
+    .replace(/ minutes/i, "m");
+
   if (type === "today") {
     return (
       <View style={styles.wrapper}>
-        <Text style={styles.text}>{addCommasToNumber(opponent.score || 0)} </Text>
-        <Text style={[styles.text, styles.syncText]}>
-          (synced {moment((duel as GetDuelsToday_getDuelsToday).updatedAt).fromNow()})
-        </Text>
+        <Text style={styles.text}>{addCommasToNumber(opponent.score || 0)} steps</Text>
+        <Text style={[styles.text, styles.syncText]}> (synced {fromNow})</Text>
       </View>
     );
   }
@@ -32,7 +39,7 @@ const Description: FC<IProps> = ({ duel, type, userId }) => {
     if (duel.status === "pending_submission") {
       return (
         <View style={styles.wrapper}>
-          <Text style={styles.text}>In progress</Text>
+          <Text style={styles.text}>Syncing steps</Text>
         </View>
       );
     }

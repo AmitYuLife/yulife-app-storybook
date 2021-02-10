@@ -1,4 +1,4 @@
-import { GQL_MUTATION_INVITE_TO_DUEL, InviteToDuelMutationTuple } from "@graphql/duels";
+import { GQL_MUTATION_INVITE_TO_DUEL, GQL_QUERY_GET_DUELS, InviteToDuelMutationTuple } from "@graphql/duels";
 import React, { useState } from "react";
 import { Navigation } from "react-native-navigation";
 import { useDispatch, useSelector } from "react-redux";
@@ -64,7 +64,7 @@ const DuelInviteModal: React.FC<IProps> = ({
 
   const { StepComponent, NEXT } = STEPS[step];
   const [inviteToDuel]: InviteToDuelMutationTuple = useMutation(GQL_MUTATION_INVITE_TO_DUEL, {
-    refetchQueries: [{ query: GQL_QUERY_GET_DUEL_INVITATIONS }],
+    refetchQueries: [{ query: GQL_QUERY_GET_DUEL_INVITATIONS }, { query: GQL_QUERY_GET_DUELS }],
   });
 
   const { data, loading } = useQuery(GQL_QUERY_GET_DUELLER_DETAILS, {

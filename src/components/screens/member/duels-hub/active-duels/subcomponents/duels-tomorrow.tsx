@@ -50,7 +50,6 @@ const styles = StyleSheet.create({
     flex: 1,
     height: Style.adjust(100),
     marginBottom: Style.adjust(20),
-    marginTop: 0,
     marginHorizontal: -Style.adjust(24),
     overflow: "hidden",
   } as ViewStyle,

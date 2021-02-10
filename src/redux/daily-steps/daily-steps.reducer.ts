@@ -24,7 +24,7 @@ export interface IDailyStepsStore {
   isFetching: boolean;
   lastUpdated: string;
   /**
-   * When the app is opened first thing in the day, there is a steps gap betwen yesterday's lastUpdated
+   * When the app is opened first thing in the day, there is a steps gap between yesterday's lastUpdated
    * and midnight this morning. This value `lastUpdatedBeforeToday` records that gap.
    *
    * We can't use `lastUpdated` for that, because as soon as the app opens,
