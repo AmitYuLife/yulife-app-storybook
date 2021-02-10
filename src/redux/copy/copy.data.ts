@@ -119,7 +119,7 @@ export default {
     aviosConfirmed: {
       title: "AVIOS Sent",
       message:
-        "Your ${amount} AVIOS points will appear on your account within the next 24hrs. We will email you as soon as they are there.",
+        "Your ${amount} AVIOS points will appear on your account within a few days. We will email you as soon as they are there.",
       cancelButtonText: "OK, got it",
     },
     newLockedReward: {
