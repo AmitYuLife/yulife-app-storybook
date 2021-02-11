@@ -21,7 +21,7 @@ export const FibEnterSalaryScreen = memo(function (props: IFibEnterSalaryScreenP
   const onClose = () => {
     Keyboard.dismiss();
     timer.current = setTimeout(() => {
-      Navigation.dismissOverlay(MODALS.enterSalary);
+      Navigation.dismissModal(MODALS.enterSalary);
     }, 50);
   };
 

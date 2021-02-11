@@ -122,5 +122,5 @@ const styles = StyleSheet.create({
 export default YuEarnRateModal;
 
 async function dismissOverlay() {
-  await Navigation.dismissOverlay(MODALS.earnRate);
+  await Navigation.dismissModal(MODALS.earnRate);
 }

@@ -8,15 +8,10 @@ export function removeByIndex<T>(arr: T[], index: number) {
 }
 
 export function openModal(removeItem: () => void) {
-  return Navigation.showOverlay({
+  return Navigation.showModal({
     component: {
       id: MODALS.genericOverlay,
       name: MODALS.genericOverlay,
-      options: {
-        layout: {
-          componentBackgroundColor: "transparent",
-        },
-      },
       passProps: {
         heading: "Are you sure you want to remove this cover?",
         buttons: [
@@ -24,12 +19,12 @@ export function openModal(removeItem: () => void) {
             label: "Yes, please remove",
             onPress: () => {
               removeItem();
-              return Navigation.dismissOverlay(MODALS.genericOverlay);
+              return Navigation.dismissModal(MODALS.genericOverlay);
             },
           },
           {
             label: "Don't remove",
-            onPress: () => Navigation.dismissOverlay(MODALS.genericOverlay),
+            onPress: () => Navigation.dismissModal(MODALS.genericOverlay),
           },
         ],
       },

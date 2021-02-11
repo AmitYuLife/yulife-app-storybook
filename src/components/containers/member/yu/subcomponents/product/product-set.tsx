@@ -125,7 +125,7 @@ function getProducts({ type, data, fibState, resetFibJourney }: GetProducts): IP
   const { chest, pants, gloves, boots } = data?.personal || {};
 
   const products: IProduct[] = [...data.additional, chest, pants, gloves, boots].filter(
-    (product) => product.productType === type
+    (product) => product?.productType === type
   );
 
   return products

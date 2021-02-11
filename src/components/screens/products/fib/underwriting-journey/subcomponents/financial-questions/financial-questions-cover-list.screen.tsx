@@ -66,15 +66,10 @@ const styles = StyleSheet.create({
 
 export function showFinancialCoverOverlay(coverForm?: Cover) {
   return () => {
-    Navigation.showOverlay({
+    Navigation.showModal({
       component: {
         id: MODALS.financialCoverForm,
         name: MODALS.financialCoverForm,
-        options: {
-          layout: {
-            componentBackgroundColor: "transparent",
-          },
-        },
         passProps: {
           data: {
             id: FIB_FINANCIAL_CUSTOM_COVER_FORM_SCREEN_ID,

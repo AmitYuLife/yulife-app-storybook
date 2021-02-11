@@ -96,12 +96,12 @@ export default function FinancialQuestionsFormScreen(props: Props) {
     /*
      * Nasty RNN issue
      * https://github.com/wix/react-native-navigation/issues/2318
-     * Also, we can disregard await-ing Navigation.dismissOverlay here
+     * Also, we can disregard await-ing Navigation.dismissModal here
      * setTimeout doesn't return a promise
      * and it's too much bloat to have to promisify it
      */
     keyboardTimeout.current = setTimeout(async () => {
-      Navigation.dismissOverlay(MODALS.financialCoverForm);
+      Navigation.dismissModal(MODALS.financialCoverForm);
     }, 300);
   }
 

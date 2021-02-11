@@ -1,5 +1,5 @@
-import React, { useRef, useEffect } from "react";
-import { StyleSheet, View, ViewStyle, Animated, Easing } from "react-native";
+import React from "react";
+import { StyleSheet, View, ViewStyle } from "react-native";
 import { Style } from "@styles";
 import { TouchableOpacityWithDelay } from "@components/molecules";
 import { CloseSvg } from "@atoms";
@@ -12,33 +12,22 @@ interface IGenericOverlay {
 const GenericOverlay = (props: IGenericOverlay) => {
   const { onClose, children } = props;
 
-  const translateY = useRef(new Animated.Value(Style.DEVICE_HEIGHT)).current;
-
-  useEffect(() => {
-    Animated.timing(translateY, {
-      toValue: 0,
-      useNativeDriver: true,
-      easing: Easing.elastic(0.7),
-    }).start();
-  }, [translateY]);
-
   return (
     <View style={styles.wrapper}>
-      <Animated.View style={[styles.innerWrapper, { transform: [{ translateY }] }]}>
+      <View style={styles.innerWrapper}>
         {children}
         <TouchableOpacityWithDelay style={styles.close} onPress={onClose}>
           <CloseSvg type="encircled" />
         </TouchableOpacityWithDelay>
-      </Animated.View>
+      </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   wrapper: {
-    paddingTop: Style.adjust(40),
     flex: 1,
-    backgroundColor: "rgba(0,0,0,0.4)",
+    paddingTop: Style.adjust(40),
   } as ViewStyle,
   innerWrapper: {
     height: Style.DEVICE_HEIGHT,

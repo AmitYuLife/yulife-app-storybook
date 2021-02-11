@@ -37,15 +37,10 @@ export const FibPayoutCalculatorAddDataScreen = memo(function (props: IFibPayout
   const buttonDisabled = !(birthDay && birthMonth && birthYear && salary);
 
   const showEnterSalaryModal = () => {
-    Navigation.showOverlay({
+    Navigation.showModal({
       component: {
         id: MODALS.enterSalary,
         name: MODALS.enterSalary,
-        options: {
-          layout: {
-            componentBackgroundColor: "transparent",
-          },
-        },
       },
     });
   };

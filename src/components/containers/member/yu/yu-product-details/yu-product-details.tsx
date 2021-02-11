@@ -103,5 +103,5 @@ const styles = StyleSheet.create({
 export default YuProductDetails;
 
 async function dismissOverlay() {
-  await Navigation.dismissOverlay(MODALS.yuProductDetails);
+  await Navigation.dismissModal(MODALS.yuProductDetails);
 }
