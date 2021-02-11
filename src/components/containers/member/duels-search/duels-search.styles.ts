@@ -7,7 +7,10 @@ const HEIGHT_ADJUSTMENT = Platform.select({
 });
 
 export default StyleSheet.create({
-  searchContainer: {} as ViewStyle,
+  searchContainer: {
+    borderTopWidth: 1,
+    borderTopColor: Colours.neutral.n100,
+  } as ViewStyle,
   topZone: {
     backgroundColor: Colours.neutral.white,
   } as ViewStyle,
