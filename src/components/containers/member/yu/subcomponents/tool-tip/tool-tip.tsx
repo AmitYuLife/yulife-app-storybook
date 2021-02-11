@@ -35,9 +35,9 @@ import { getToolTipName } from "@services/products";
 
 export const ToolTip = () => {
   const dispatch = useDispatch();
-  const { productId, setProductId } = useContext(YuScreenProductContext);
+  const { product: productType, setProduct } = useContext(YuScreenProductContext);
 
-  const onClose = useCallback(() => setProductId(null), [setProductId]);
+  const onClose = useCallback(() => setProduct({ type: "avatar", id: null }), [setProduct]);
 
   const { data } = useQuery<GetYulifer>(GQL_QUERY_GET_YULIFER, {
     fetchPolicy: "cache-only",
@@ -57,12 +57,12 @@ export const ToolTip = () => {
   const { productEntityId, latestQuoteId } = fibState;
 
   useEffect(() => {
-    dispatch(logProductItemViewedActionCreator(productId));
-  }, [productId, dispatch]);
+    dispatch(logProductItemViewedActionCreator(productType.id));
+  }, [productType.id, dispatch]);
 
   useEffect(() => {
     (() => {
-      if (productId === YuProductId.family_income_benefit && !topUpsData?.getTopUpsQuote?.quoteId) {
+      if (productType.id === YuProductId.family_income_benefit && !topUpsData?.getTopUpsQuote?.quoteId) {
         if (productEntityId && latestQuoteId) {
           getTopUpsQuery({
             variables: {
@@ -76,7 +76,7 @@ export const ToolTip = () => {
         }
       }
     })();
-  }, [getTopUpsQuery, productId, productEntityId, latestQuoteId, topUpsData]);
+  }, [getTopUpsQuery, productType.id, productEntityId, latestQuoteId, topUpsData]);
 
   const product = useMemo(() => {
     if (!data) {
@@ -87,10 +87,10 @@ export const ToolTip = () => {
 
     const allProducts: IProduct[] = [...data.additional, chest, pants, gloves, boots];
 
-    const item = allProducts.find((i) => i?.productId === productId);
+    const item = allProducts.find((i) => i?.productId === productType.id);
 
     return item;
-  }, [data, productId]);
+  }, [data, productType.id]);
 
   const IconSvg = useMemo(() => getProductIcon(product?.itemSlot), [product]);
 
@@ -109,7 +109,7 @@ export const ToolTip = () => {
   }, [dispatch, quoteId, updateFibQuote]);
 
   const handleNavigateToProductScreen = useCallback(() => {
-    dispatch(logProductItemInspectedActionCreator(productId));
+    dispatch(logProductItemInspectedActionCreator(productType.id));
 
     onClose();
     navigateToProductScreen({
@@ -117,10 +117,10 @@ export const ToolTip = () => {
       fibState,
       resetFibJourney,
     });
-  }, [product, fibState, onClose, resetFibJourney, productId, dispatch]);
+  }, [product, fibState, onClose, resetFibJourney, productType.id, dispatch]);
 
   useBackHandler(() => {
-    if (!productId || !product) {
+    if (!productType.id || !product) {
       return false;
     }
 
@@ -128,7 +128,7 @@ export const ToolTip = () => {
     return true;
   });
 
-  if (!productId || !product) {
+  if (!productType.id || !product) {
     return null;
   }
 
@@ -139,7 +139,7 @@ export const ToolTip = () => {
   const isUnlockable = status === YuProductStatus.unlockable;
 
   return (
-    <View style={StyleSheet.flatten([styles.wrapper, getHorizontalPosition(productId)])}>
+    <View style={StyleSheet.flatten([styles.wrapper, getHorizontalPosition(productType.id)])}>
       <View style={styles.shadow} />
       <View style={getContentWrapperStyle(coverType, isActive)}>
         <View style={getTopWrapperStyle(coverType, isActive)}>
@@ -247,7 +247,6 @@ function getButtonProps({ product }: { product: IProduct }) {
 const styles = StyleSheet.create({
   wrapper: {
     position: "absolute",
-    top: 160,
     width: Style.adjust(272),
     paddingBottom: 4,
     zIndex: 999,

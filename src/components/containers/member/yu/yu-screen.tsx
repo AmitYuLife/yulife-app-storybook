@@ -18,7 +18,7 @@ import {
 import { YuScreenProductContext } from "./yu-screen.context";
 
 export const YuScreen = () => {
-  const [productId, setProductId] = useState(null);
+  const [product, setProduct] = useState({ type: "avatar", id: null });
 
   const { data } = useQuery<GetYulifer>(GQL_QUERY_GET_YULIFER, {
     fetchPolicy: "cache-only",
@@ -34,7 +34,7 @@ export const YuScreen = () => {
   );
 
   return (
-    <YuScreenProductContext.Provider value={{ productId, setProductId }}>
+    <YuScreenProductContext.Provider value={{ product, setProduct }}>
       <View style={styles.wrapper} testID={YUSCREEN}>
         <ScrollView showsVerticalScrollIndicator={false} style={styles.list} testID={YUSCREEN_SCROLL_VIEW}>
           <View style={styles.padTop} />
@@ -46,7 +46,11 @@ export const YuScreen = () => {
             isHidden ? null : <ProductSet key={index} type={productType} />
           )}
           <View style={styles.padBot} />
-          <ToolTip />
+          {product.type === "avatar" ? (
+            <View style={styles.avatar}>
+              <ToolTip />
+            </View>
+          ) : null}
         </ScrollView>
       </View>
     </YuScreenProductContext.Provider>
@@ -91,5 +95,10 @@ const styles = StyleSheet.create({
   } as ViewStyle,
   padBot: {
     height: PAD_BOT,
+  } as ViewStyle,
+  avatar: {
+    position: "absolute",
+    width: "100%",
+    top: 160,
   } as ViewStyle,
 });
