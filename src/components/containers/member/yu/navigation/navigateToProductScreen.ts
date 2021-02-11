@@ -131,15 +131,10 @@ export const navigateToProductScreen = ({ product, fibState, resetFibJourney }: 
     });
   }
 
-  Navigation.showOverlay({
+  Navigation.showModal({
     component: {
       id: MODALS.yuProductDetails,
       name: MODALS.yuProductDetails,
-      options: {
-        layout: {
-          componentBackgroundColor: "transparent",
-        },
-      },
       passProps: {
         earnRate: product.earnRate,
         description: product.description,

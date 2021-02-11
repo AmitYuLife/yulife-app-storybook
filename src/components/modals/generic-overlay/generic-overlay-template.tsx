@@ -1,7 +1,6 @@
 import React, { useCallback } from "react";
 import GenericOverlay from "./generic-overlay";
 import { Navigation } from "react-native-navigation";
-import { MODALS } from "@navigation/constants";
 import { View, StyleSheet, ViewStyle, TextStyle } from "react-native";
 import { Text, Button } from "@atoms";
 import { Style, Colours } from "@styles";
@@ -52,7 +51,7 @@ const GenericOverlayTemplate = (props: GenericOverlayTemplateProps) => {
 export default GenericOverlayTemplate;
 
 function dismissOverlay() {
-  Navigation.dismissOverlay(MODALS.genericOverlay);
+  Navigation.dismissAllModals();
 }
 
 const styles = StyleSheet.create({

@@ -27,7 +27,7 @@ function FibEditSalaryContainer() {
   }
 
   const backHandler = useCallback(() => {
-    Navigation.dismissOverlay(MODALS.enterSalary);
+    Navigation.dismissModal(MODALS.enterSalary);
     return true;
   }, []);
 
