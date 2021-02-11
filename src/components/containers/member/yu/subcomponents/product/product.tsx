@@ -7,7 +7,7 @@ import { TouchableOpacityWithDelay } from "@components/molecules";
 import { ProductCtaIcon } from "./product-cta-icon";
 import { getProductIcon } from "../../assets/getProductIcon";
 import { PERSONAL_PRODUCT } from "@ids";
-import { YuItemSlot, YuProductStatus } from "@graphql/_core/schema/globalTypes";
+import { YuItemSlot, YuProductId, YuProductStatus } from "@graphql/_core/schema/globalTypes";
 
 export interface IProductProps {
   itemSlot: YuItemSlot;
@@ -17,6 +17,7 @@ export interface IProductProps {
   subheading: ISubHeadingProps;
   onPress?: () => void;
   showSeparator?: boolean;
+  productId: YuProductId;
 }
 
 export const Product = (props: IProductProps) => {

@@ -12,13 +12,19 @@ import { YuScreenProductContext } from "../../../yu-screen.context";
 
 export const Item = (props: IProduct) => {
   const { earnRate, status, itemSlot, coverType, productId } = props;
-  const { productId: selectedProductId, setProductId } = useContext(YuScreenProductContext);
+  const { product: selectedProduct, setProduct } = useContext(YuScreenProductContext);
 
   const onPress = useCallback(() => {
-    setProductId(productId === selectedProductId ? null : productId);
-  }, [productId, selectedProductId, setProductId]);
+    setProduct({
+      type: "avatar",
+      id: productId === selectedProduct.id ? null : productId,
+    });
+  }, [productId, selectedProduct, setProduct]);
 
-  const isSelected = useMemo(() => selectedProductId === productId, [selectedProductId, productId]);
+  const isSelected = useMemo(() => selectedProduct.id === productId && selectedProduct.type === "avatar", [
+    selectedProduct,
+    productId,
+  ]);
 
   return (
     <TouchableOpacityWithDelay
