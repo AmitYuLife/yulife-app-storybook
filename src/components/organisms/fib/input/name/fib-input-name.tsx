@@ -1,6 +1,7 @@
 import React, { memo } from "react";
 import { View, ViewStyle, StyleSheet } from "react-native";
 import { TextField } from "@components/molecules";
+import { FIB_FIRST_NAME_INPUT } from "@ids";
 
 interface FibInputNameProps {
   inputFirstName?: string;
@@ -16,6 +17,7 @@ const _FibInputName = (props: FibInputNameProps) => {
     <View>
       <View style={styles.inputWrapper}>
         <TextField
+          testID={FIB_FIRST_NAME_INPUT}
           placeholder="First name"
           onChange={(value: string) => {
             setInputFirstName(value);

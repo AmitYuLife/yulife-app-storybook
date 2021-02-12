@@ -5,7 +5,7 @@ import { PackageType } from "@atoms";
 import { Package } from "@components/screens/products/fib/browse-packages/fib.browse.types";
 import { Style, Colours } from "@styles";
 import { DoubleChest, Streak, Shoe, Text } from "@atoms";
-import { PACKAGE_INFO } from "@ids";
+import { PACKAGE_INFO, SALARY_COVERED, PACKAGE_YUCOIN_POWER, SELECTED_PACKAGE_TITLE } from "@ids";
 import { formatMoney } from "@services/money";
 import { CoverType } from "@graphql/_core/schema/globalTypes";
 import { getToolTipName } from "@services/products";
@@ -95,7 +95,7 @@ const PackageInfo: React.FC<Props> = ({ selectedPackage, packagePrice }) => {
           <PackageType type={selectedPackage?.id as CoverType} />
           {packagePrice ? <Text style={styles.price}>£{formatMoney(packagePrice)}/month</Text> : null}
         </View>
-        <View style={styles.titleWrapper}>
+        <View style={styles.titleWrapper} testID={SELECTED_PACKAGE_TITLE(selectedPackage?.title)}>
           <Text bold={true} style={styles.title}>
             {getToolTipName(selectedPackage?.title)}
           </Text>
@@ -104,7 +104,9 @@ const PackageInfo: React.FC<Props> = ({ selectedPackage, packagePrice }) => {
 
       <View style={[styles.body, { backgroundColor: selectedPackageInfo.body.backgroundColor }]}>
         <View style={styles.description}>
-          <Text style={styles.number}>{selectedPackage?.salaryPercentageCovered}</Text>
+          <Text style={styles.number} testID={SALARY_COVERED(selectedPackage?.salaryPercentageCovered)}>
+            {selectedPackage?.salaryPercentageCovered}
+          </Text>
           <Text style={[styles.numberText, styles.percentage]}>%</Text>
           <Text style={styles.numberText}> of salary covered </Text>
         </View>
@@ -112,7 +114,7 @@ const PackageInfo: React.FC<Props> = ({ selectedPackage, packagePrice }) => {
           Protect your family financially with a proportion of your monthly income should the worst happen.
         </Text>
 
-        <View style={[styles.description, styles.marginTop16]}>
+        <View style={[styles.description, styles.marginTop16]} testID={PACKAGE_YUCOIN_POWER(selectedPackage?.earnRate)}>
           <Text style={[styles.number, styles.yuCoin]}>{selectedPackage?.earnRate}</Text>
           <Text style={[styles.numberText, styles.yuCoinPower]}>YuCoin Power</Text>
         </View>

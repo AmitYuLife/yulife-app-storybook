@@ -28,6 +28,7 @@ import { FibInputAlcohol } from "@organisms/fib/input/alcohol/fib-input-alcohol"
 import { styles, getChildWrapperStyle } from "./fib.underwriting-journey.styles";
 import { YugiType } from "../layouts/yugi";
 import { CopyIntro } from "@organisms/fib/copy/intro";
+import { UNDERWRITING_JOURNEY_SCREEN } from "@ids";
 import GenderQuestion from "./subcomponents/gender/gender-question";
 import { ProgressBar } from "@components/molecules";
 
@@ -135,7 +136,12 @@ const _FibUnderwritingJourneyScreen = memo(function (props: IFibUnderwritingJour
       onPreviousQuestion={onPreviousButtonPressed}
       yugi={YugiType.DEFAULT}
     >
-      <ScrollView ref={scrollViewRef} showsVerticalScrollIndicator={false} keyboardShouldPersistTaps="handled">
+      <ScrollView
+        ref={scrollViewRef}
+        showsVerticalScrollIndicator={false}
+        keyboardShouldPersistTaps="handled"
+        testID={UNDERWRITING_JOURNEY_SCREEN}
+      >
         <View style={styles.topPad} />
         {!data?.question ? null : <FibTitle title={data.question} />}
         {data.children?.map((child: UnderwritingJourneyChild, i) => {

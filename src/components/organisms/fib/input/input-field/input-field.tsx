@@ -12,7 +12,7 @@ import {
 } from "react-native";
 import { Text } from "@atoms";
 import { Colours, Style } from "@styles";
-
+import { INPUT_FIELD, INPUT_FIELD_VALUE } from "@ids";
 export interface InputFieldProps {
   onChangeText: (text: string) => void;
   maxLength: number;
@@ -31,6 +31,7 @@ export interface InputFieldProps {
   shadowStyle?: ViewStyle;
   hasFocusActive?: (focus: boolean) => void;
   wrapperStyle?: ViewStyle;
+  testID?: string;
 }
 
 const _InputField = (props: InputFieldProps) => {
@@ -49,6 +50,7 @@ const _InputField = (props: InputFieldProps) => {
     style,
     hasFocusActive,
     wrapperStyle,
+    testID,
   } = props;
 
   const [isFocused, setIsFocused] = useState(false);
@@ -76,9 +78,10 @@ const _InputField = (props: InputFieldProps) => {
   };
 
   return (
-    <View style={StyleSheet.flatten([styles.fieldWrapper, wrapperStyle])}>
-      <View>
+    <View style={StyleSheet.flatten([styles.fieldWrapper, wrapperStyle])} testID={INPUT_FIELD}>
+      <View testID={INPUT_FIELD_VALUE(value)}>
         <TextInput
+          testID={testID}
           onFocus={handleFocus(true)}
           onBlur={handleFocus(false)}
           clearTextOnFocus={false}

@@ -3,6 +3,7 @@ import { StyleSheet, View, ViewStyle } from "react-native";
 import { Button } from "@atoms";
 import { Style } from "@styles";
 import LinearGradient from "react-native-linear-gradient";
+import { GP_CONTINUE } from "@ids";
 
 interface Props {
   hideFirstButton: boolean;
@@ -14,6 +15,7 @@ interface Props {
   secondButtonAction: () => void;
   isInlineCTA?: boolean;
   removeCtaFade?: boolean;
+  testID?: string;
 }
 
 const CTA_HEIGHT = Style.hasNotch ? 144 : 128;
@@ -28,6 +30,7 @@ const _CTA = ({
   isButtonLoading,
   isInlineCTA = false,
   removeCtaFade,
+  testID,
 }: Props) => {
   const hasSecondButton = !!(secondButtonLabel && secondButtonAction);
 
@@ -38,7 +41,7 @@ const _CTA = ({
   const absolutelyPositionedStyles = !isInlineCTA ? styles.absolute : {};
 
   return (
-    <View pointerEvents="box-none" style={[styles.button, absolutelyPositionedStyles]}>
+    <View pointerEvents="box-none" style={[styles.button, absolutelyPositionedStyles]} testID={testID}>
       {removeCtaFade ? null : (
         <LinearGradient
           pointerEvents="none"
@@ -55,6 +58,7 @@ const _CTA = ({
         onPress={buttonAction}
         type="Primary"
         isLoading={isButtonLoading}
+        testID={GP_CONTINUE}
       />
       <Button
         show={hasSecondButton}

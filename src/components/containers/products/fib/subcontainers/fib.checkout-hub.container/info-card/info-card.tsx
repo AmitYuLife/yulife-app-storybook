@@ -25,15 +25,19 @@ interface Props {
   markdown: string;
   onPress: () => void;
   isPrompt?: boolean;
+  testID?: string;
 }
 
 export const InfoCard = (props: Props) => {
-  const { markdown, onPress, isPrompt } = props;
+  const { markdown, onPress, isPrompt, testID } = props;
   const LeftIcon = getIcon(props);
 
   return (
     <PressableWithDelay onPress={onPress}>
-      <View style={StyleSheet.flatten([styles.wrapper, isPrompt ? styles.wrapperPrompt : styles.wrapperFilled])}>
+      <View
+        style={StyleSheet.flatten([styles.wrapper, isPrompt ? styles.wrapperPrompt : styles.wrapperFilled])}
+        testID={testID}
+      >
         <View style={styles.background} />
         <LeftIcon />
         {isPrompt ? ( // ugly design decision, but it's because of some weird Android margin that I can't solve in time

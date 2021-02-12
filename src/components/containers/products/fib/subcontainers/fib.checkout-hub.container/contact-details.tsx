@@ -2,6 +2,7 @@ import React, { memo } from "react";
 import { InfoCard, LEFT_ICON } from "./info-card/info-card";
 import { useSelector } from "react-redux";
 import { getContactDetails, getFullName } from "@redux/product/product.selectors";
+import { CONTACT_DETAILS_CARD } from "@ids";
 
 interface Props {
   goToContactDetails: () => void;
@@ -27,6 +28,7 @@ export const ContactDetails = memo(({ goToContactDetails }: Props) => {
 
   return (
     <InfoCard
+      testID={CONTACT_DETAILS_CARD(fullName, firstAddressLine, postCode, personalEmail, phoneNumber)}
       leftIcon={getLeftIcon({ fullName, firstAddressLine, townOrCity, postCode, phoneNumber })}
       markdown={markdown}
       onPress={goToContactDetails}

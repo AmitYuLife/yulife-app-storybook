@@ -1,3 +1,4 @@
+import { PACKAGE_OPTION } from "@ids";
 import React, { memo } from "react";
 import { View, StyleSheet, Text, Image } from "react-native";
 import { TouchableOpacityWithDelay } from "@components/molecules";
@@ -57,7 +58,12 @@ export const PackageOptions = memo(function (props: Props) {
                       source={item.source}
                     />
                   </View>
-                  <Text style={StyleSheet.flatten([styles.packageText, { color: item.color }])}>{item.type}</Text>
+                  <Text
+                    style={StyleSheet.flatten([styles.packageText, { color: item.color }])}
+                    testID={PACKAGE_OPTION(item.type)}
+                  >
+                    {item.type}
+                  </Text>
                   <View style={styles.transparentView} />
                 </>
               ) : (

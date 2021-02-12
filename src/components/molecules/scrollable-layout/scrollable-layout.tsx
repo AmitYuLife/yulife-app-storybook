@@ -4,6 +4,7 @@ import { ScrollView, View, ViewStyle, StyleSheet, Platform, KeyboardAvoidingView
 import { Logo } from "../../atoms/generic-heading/generic-heading.types";
 import { CTA } from "./cta";
 import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
+import { SCROLLABLE_LAYOUT } from "@ids";
 
 interface Props {
   children: React.ReactNode;
@@ -56,6 +57,7 @@ export function ScrollableLayout(props: Props) {
       <View style={styles.wrapper}>
         <GenericHeadingPad />
         <ScrollView
+          testID={SCROLLABLE_LAYOUT}
           ref={scrollViewForwardRef}
           showsVerticalScrollIndicator={false}
           contentContainerStyle={contentContainerStyle}

@@ -7,6 +7,7 @@ import { updateFIBAnswerValue } from "@redux/product/product.actions";
 import { Height } from "@redux/product/product.types";
 import { TextInput, View, StyleSheet } from "react-native";
 import { styles } from "./fib.input-height.styles";
+import { FOOT_INPUT, INCH_INPUT } from "@ids";
 
 type ConnectedProps = ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps;
 
@@ -67,6 +68,7 @@ const _FibInputFt = (props: ConnectedProps) => {
   return (
     <View style={styles.ftWrapper}>
       <InputField
+        testID={FOOT_INPUT}
         value={height.ft}
         onChangeText={validateFt}
         maxLength={1}
@@ -77,6 +79,7 @@ const _FibInputFt = (props: ConnectedProps) => {
         width={24}
       />
       <InputField
+        testID={INCH_INPUT}
         onBackSpace={handleBackspaceInch}
         value={height.in}
         onChangeText={validateIn}

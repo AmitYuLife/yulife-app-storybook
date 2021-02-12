@@ -7,9 +7,25 @@ export const scrollFromText = (text: string, direction: any, speed: any, percent
 
 export const scrollFromID = (id: string, direction: any, speed: any, percentage?: any) => async () => {
     const target = element(by.id(id))
-
     await target.swipe(direction, speed, percentage)
 } 
+
+export const swipeFromText = (text: string, direction: any, speed: any, percentage?: any) => async () => {
+    const target = element(by.text(text))
+    await target.swipe(direction, speed, percentage)
+}
+
+export const scrollFromIDMultiple = (id: string, direction: any, speed: any, scrollCount:number, percentage?: any) => async () => {
+    
+    let i = 0
+    const target = element(by.id(id))
+
+    while(i<scrollCount){
+        await target.swipe(direction, speed, percentage)
+        i++
+    }
+
+}
 
 // down is down
 export const scrollUntilTextVisible = (scrollViewid:string, text:string, direction:"up"|"down", xscroll=0.5, yscroll=0.5) => async()=>{
@@ -18,6 +34,11 @@ export const scrollUntilTextVisible = (scrollViewid:string, text:string, directi
 
 export const scrollUntilIdVisible = (scrollViewid: string, id: string, direction: "up" | "down" | "left" | "right", xscroll = 0.5, yscroll = 0.5) => async () => {
     await waitFor(element(by.id(id))).toBeVisible().whileElement(by.id(scrollViewid)).scroll(100, direction, xscroll, yscroll)
+}
+
+export const scrollToAndTapText = (scrollViewid: string, text: string, direction: "up" | "down", xscroll = 0.5, yscroll = 0.5) => async () => {
+    await waitFor(element(by.text(text))).toBeVisible().whileElement(by.id(scrollViewid)).scroll(100, direction, xscroll, yscroll)
+    await element(by.text(text)).tap()
 }
 
 

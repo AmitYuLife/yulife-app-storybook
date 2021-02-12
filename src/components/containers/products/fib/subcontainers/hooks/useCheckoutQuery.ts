@@ -18,6 +18,5 @@ export const useCheckoutQuery = () => {
       product: ProductCode.YULFIB,
     },
   });
-
   return { data, loading };
 };

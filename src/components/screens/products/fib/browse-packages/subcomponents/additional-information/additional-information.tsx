@@ -16,7 +16,6 @@ export interface IAdditionalInformation {
   title?: string;
   items: AdditionalInformationItem[];
 }
-
 const AdditionalInformation = ({ title, items }: IAdditionalInformation) => (
   <>
     {title ? <Heading title={title} /> : null}

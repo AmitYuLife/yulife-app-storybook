@@ -3,6 +3,7 @@ import { View, ListRenderItemInfo, StyleSheet, TextStyle, ViewStyle } from "reac
 import { Text } from "@atoms";
 import { TouchableOpacityWithDelay } from "@molecules";
 import { Colours, Style } from "@styles";
+import { SEARCH_ITEM } from "@ids";
 
 export type ISearchItem<T> = T & {
   onPress?: () => void;
@@ -25,7 +26,7 @@ function SearchItem({ item, index }: ListRenderItemInfo<ISearchItem<any>>) {
         <View style={styles.iconWrapper}>{item.icon}</View>
         <View style={styles.textWrapper}>
           {item.text?.map((text: string) => (
-            <Text key={text} style={styles.textStyle} bold={!index && !item.isConfirm}>
+            <Text key={text} style={styles.textStyle} bold={!index && !item.isConfirm} testID={SEARCH_ITEM(text)}>
               {text}
             </Text>
           ))}

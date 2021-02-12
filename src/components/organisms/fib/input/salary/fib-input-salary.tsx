@@ -5,6 +5,7 @@ import { StyleSheet, View } from "react-native";
 import { styles } from "./fib-input-salary.styles";
 import { Style } from "@styles";
 import { addCommasToNumber } from "../../../../../services/utils";
+import { FIB_SALARY_INPUT, FIB_SALARY_INPUT_VALUE } from "@ids";
 
 interface FibInputSalaryProps {
   salary: number;
@@ -39,11 +40,12 @@ export const FibInputSalary = (props: FibInputSalaryProps) => {
   return (
     <View style={styles.wrapper}>
       <View style={styles.preInputWrapper}>
-        <Text bold={true} style={styles.preInputLabel}>
+        <Text bold={true} style={styles.preInputLabel} testID={FIB_SALARY_INPUT_VALUE(displayValue)}>
           £
         </Text>
       </View>
       <InputField
+        testID={FIB_SALARY_INPUT}
         value={displayValue}
         onChangeText={validateNumber}
         maxLength={9}

@@ -8,6 +8,7 @@ import { FIB_GENDER_SCREEN_ID } from "../../../../../../containers/products/fib/
 import { GenderIcon, Text } from "@atoms";
 import { GenderIconType } from "../../../../../../atoms/gender/gender";
 import { TouchableOpacityWithDelay } from "../../../../../../molecules";
+import { SEX_BUTTON } from "@ids";
 
 interface GenderBoxProps {
   title: string;
@@ -37,11 +38,13 @@ const genders = [
 
 const GenderBox = memo(function ({ icon, color, title, active, backgroundColor, onGenderPress }: GenderBoxProps) {
   const shadow = active ? {} : { borderBottomColor: Colours.neutral.n100, borderBottomWidth: 4 };
+
   return (
     <TouchableOpacityWithDelay
       onPress={onGenderPress}
       activeOpacity={1}
       style={[styles.boxWrapper, { backgroundColor: active ? backgroundColor : null }, shadow]}
+      testID={SEX_BUTTON(title, active)}
     >
       <View style={styles.iconWrapper}>
         <GenderIcon gender={icon} svgProps={{ color }} />

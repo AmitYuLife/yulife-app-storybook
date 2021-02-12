@@ -3,6 +3,7 @@ import { InfoCard, LEFT_ICON } from "./info-card/info-card";
 import { useSelector } from "react-redux";
 import { getFIBState } from "@redux/product/product.selectors";
 import { GetCheckoutDetails_gpDetails } from "@graphql/_core/schema";
+import { GP_DETAILS_CARD } from "@ids";
 
 interface Props {
   goToGpDetails: () => void;
@@ -30,6 +31,7 @@ export const GpDetails = memo((props: Props) => {
       markdown={markdown}
       onPress={goToGpDetails}
       isPrompt={isEmpty}
+      testID={GP_DETAILS_CARD(gpName, practicePostCode)}
     />
   );
 });

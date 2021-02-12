@@ -7,6 +7,7 @@ import {
   MedicalPractices_getMedicalPractices,
 } from "@graphql/_core/schema";
 import { GPInputForm } from "./fib.gp-manually-input.screen";
+import { GP_CONFIRMATION } from "@ids";
 import GenericHeadingAbsolute, {
   GenericHeadingPad,
 } from "../../../../../../atoms/generic-heading/generic-heading-absolute";
@@ -58,7 +59,10 @@ function _FibGPConfirmScreen(props: Props) {
       <GenericHeadingPad />
       <GPTitle title="Please confirm this is your GP:" />
       <View style={styles.viewWrapper}>
-        <View style={styles.doctorWrapper}>
+        <View
+          style={styles.doctorWrapper}
+          testID={GP_CONFIRMATION(gp.name, practice.name, practice.address1, practice.postCode)}
+        >
           <SearchItem item={gpDoctorItem} index={0} separators={null} />
         </View>
         <View style={styles.practiceWrapper}>

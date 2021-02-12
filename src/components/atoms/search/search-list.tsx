@@ -5,6 +5,7 @@ import { Colours } from "@styles";
 import { StyleSheet, ViewStyle } from "react-native";
 import { NetworkStatus } from "apollo-boost";
 import { ISearchItem } from "./search-item";
+import { SEARCH_FLAT_LIST } from "@ids";
 
 interface Props {
   data: ISearchItem<any>[];
@@ -40,6 +41,7 @@ function SearchList({
   return (
     <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : null} style={styles.searchListWrapper}>
       <FlatList
+        testID={SEARCH_FLAT_LIST}
         data={data}
         renderItem={searchItem}
         keyExtractor={keyExtractor}
