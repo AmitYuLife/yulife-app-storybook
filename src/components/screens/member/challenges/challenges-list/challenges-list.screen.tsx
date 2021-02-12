@@ -82,7 +82,9 @@ export default class ChallengesListScreen extends React.Component<IProps, IState
         <View style={styles.challengeSetWrapper}>
           {this.state.hideChallengeTiles ? null : <ChallengesList challenges={challenges} />}
         </View>
-        <TopBar type={topBarType} leftIcon="Back" menuLabel="map" name={name} onPressLeftIcon={onPressLeftIcon} />
+        <View style={styles.topBarWrapper}>
+          <TopBar type={topBarType} leftIcon="Back" menuLabel="map" name={name} onPressLeftIcon={onPressLeftIcon} />
+        </View>
         <NavBar activeIndex={1} additionalBottom={2} />
       </View>
     );
