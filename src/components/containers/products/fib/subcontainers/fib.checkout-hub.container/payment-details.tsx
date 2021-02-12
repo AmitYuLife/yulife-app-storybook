@@ -5,20 +5,22 @@ import { StripePaymentRequestToken } from "tipsi-stripe";
 import { useSelector } from "react-redux";
 import { getFullName } from "@redux/product/product.selectors";
 import { Platform } from "react-native";
+import { GetCheckoutDetails_paymentDetails } from "@graphql/_core/schema";
 import { PAYMENT_DETAILS_CARD } from "@ids";
 
 interface Props {
   goToPaymentDetails: () => void;
   paymentProviderDetails: StripePaymentRequestToken;
+  paymentDetails?: GetCheckoutDetails_paymentDetails;
 }
 
-export const PaymentDetails = memo(({ goToPaymentDetails, paymentProviderDetails }: Props) => {
+export const PaymentDetails = memo(({ goToPaymentDetails, paymentProviderDetails, paymentDetails }: Props) => {
   const fullName = useSelector(getFullName);
-  const brand = paymentProviderDetails?.card?.brand || "";
-  const last4 = paymentProviderDetails?.card?.last4 || "";
-  const name = paymentProviderDetails?.billingDetails?.name || fullName;
-  const expMonth = paymentProviderDetails?.card?.expMonth || "";
-  const expYear = paymentProviderDetails?.card?.expYear || "";
+  const brand = paymentDetails?.brand || paymentProviderDetails?.card?.brand || "";
+  const last4 = paymentDetails?.last4 || paymentProviderDetails?.card?.last4 || "";
+  const name = paymentDetails?.name || paymentProviderDetails?.billingDetails?.name || fullName;
+  const expMonth = paymentDetails?.expMonth || paymentProviderDetails?.card?.expMonth || "";
+  const expYear = paymentDetails?.expYear || paymentProviderDetails?.card?.expYear || "";
   const hasCompleteData = brand && last4 && name && expMonth && !!expYear;
   const prompt = "Add payment details";
   const info = `**Payment Details**\n${transformBrandName(

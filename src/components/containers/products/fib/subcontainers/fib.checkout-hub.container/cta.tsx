@@ -7,12 +7,13 @@ import { getContactDetails, getFullName, getFIBState } from "@redux/product/prod
 import { CoverType } from "@graphql/_core/schema/globalTypes";
 import { toCapitalLetter } from "@services/utils";
 import { StripePaymentRequestToken } from "tipsi-stripe";
+import { GetCheckoutDetails_paymentDetails } from "@graphql/_core/schema";
 
 interface Props {
   onPress: () => void;
   coverType: CoverType;
   disable?: boolean;
-  paymentProviderDetails?: StripePaymentRequestToken;
+  paymentProviderDetails?: StripePaymentRequestToken | GetCheckoutDetails_paymentDetails;
 }
 
 export const Cta = memo((props: Props) => {

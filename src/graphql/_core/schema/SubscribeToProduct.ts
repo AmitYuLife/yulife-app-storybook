@@ -6,22 +6,21 @@
 import { ProductCode } from "./globalTypes";
 
 // ====================================================
-// GraphQL mutation operation: ConfirmPaymentMethod
+// GraphQL mutation operation: SubscribeToProduct
 // ====================================================
 
-export interface ConfirmPaymentMethod_confirmPaymentMethod {
+export interface SubscribeToProduct_subscribeToProduct {
   confirmed: boolean;
   purchased: boolean;
 }
 
-export interface ConfirmPaymentMethod {
+export interface SubscribeToProduct {
   /**
    * Confirm client stripe payment method
    */
-  confirmPaymentMethod: ConfirmPaymentMethod_confirmPaymentMethod | null;
+  subscribeToProduct: SubscribeToProduct_subscribeToProduct | null;
 }
 
-export interface ConfirmPaymentMethodVariables {
-  paymentMethodId?: string | null;
+export interface SubscribeToProductVariables {
   productCode?: ProductCode | null;
 }
