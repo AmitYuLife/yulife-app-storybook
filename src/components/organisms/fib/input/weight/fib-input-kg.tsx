@@ -7,6 +7,7 @@ import { updateFIBAnswerValue } from "@redux/product/product.actions";
 import { Weight } from "@redux/product/product.types";
 import { StyleSheet } from "react-native";
 import { styles } from "./fib-input-weight.styles";
+import { KG_INPUT } from "@ids";
 
 type ConnectedProps = ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps;
 
@@ -33,6 +34,7 @@ const _FibInputKg = (props: ConnectedProps) => {
 
   return (
     <InputField
+      testID={KG_INPUT}
       value={weight.kg}
       onChangeText={validateKg}
       maxLength={3}

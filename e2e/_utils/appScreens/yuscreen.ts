@@ -4,7 +4,7 @@ import {
     AVATAR_BODY, PERSONAL_PRODUCT, SURVEY_SCREEN, BUILDER_BODY, PACKAGE_SCREEN, FIB_BROWSE_SCREEN, booleanTextVisible, wait,
 } from "@utils"
 import { scrollFromText, scrollFromID, scrollUntilIdVisible, scrollUntilTextVisible } from "_utils/navigation/scrolling"
-import { EARN_RATE_ROW, EARN_RATE_TABLE } from "@ids"
+import { EARN_RATE_ROW, EARN_RATE_TABLE, PACKAGE_INFO, SELECTED_PACKAGE_TITLE, SUMMARY_SCROLL_VIEW } from "@ids"
 
 
 export const {
@@ -158,17 +158,23 @@ export const onSurveySubmitScreen = async () => {
 }
 
 export const onPackageScreen = async () => {
-    await expectIsVisibleViaID(PACKAGE_SCREEN)
+    await expectIsVisibleViaID(PACKAGE_INFO)
     await multipleTextVisible(["Common", "Rare", "Epic"])()
 }
 
-export const packageScreenCorrect = (estimatedCost: number) => async () => {
-    const textElements = [`£${estimatedCost} per month`, "How it works", "How much would it pay out?", "Additional benefits",
-       "Have a question?", "FAQs", "Documents", "Terms & Conditions", "Privacy Policy", "Rewards Policy",
-        "Key Facts", "Policy Guide", "YuLife General Terms of Business"]
-
+export const packageScreenCorrect = async () => {
+    const textElements = ["How it works", "How much would it pay out?", "Other benefits", "YuLife app", "Smart Health",
+                            "Documents", "Terms & Conditions", "Privacy Policy", "Rewards Policy",
+                                "Key Facts", "Policy Guide", "General Terms of Business", "Have a question?", "FAQs",]
+        
     for (const i of textElements) {
-        await scrollUntilTextVisible(FIB_BROWSE_SCREEN, i, "down")()
-        await expect(element(by.text(i))).toBeVisible()
+        try{
+            await scrollUntilTextVisible(FIB_BROWSE_SCREEN, i, "down")()
+            await expect(element(by.text(i))).toBeVisible()
+        }
+        catch(e){
+            await scrollUntilTextVisible(SUMMARY_SCROLL_VIEW, i, "down")()
+            await expect(element(by.text(i))).toBeVisible()
+        }
     }
 }

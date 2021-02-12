@@ -65,6 +65,7 @@ export const allTogglesTrue = {
       "showStats": true,
       "showDuels": true,
       showCommunityGoals: true,
+      hasFibActive: true,
       }
     }
 } as IDatabaseItem

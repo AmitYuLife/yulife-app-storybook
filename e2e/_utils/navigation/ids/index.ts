@@ -30,6 +30,7 @@ export const CHALLENGE_UNAVAILABLE = `CHALLENGE_UNAVAILABLE`
 export const WEGIFT_DETAILS = "WEGIFT_DETAILS"
 export const YUNITY_REACHED = (yunityNum:number) => `YUNITY_REACHED_${yunityNum}`
 export const YUNITY_HEADER = (levelName:string) => `YUNITY_HEADER_${levelName}`
+export const SCROLLABLE_LAYOUT = "SCROLLABLE_LAYOUT"
 
 
 // buttons
@@ -55,6 +56,7 @@ export const YUCOIN = "YUCOIN"
 export const NAV_BAR = (icon: "yucoin" | "quests" | "yu" | "leaderboard" | "rewards") => `NAV_BAR_${icon}`
 export const CHECK_REWARDS_BUTTON = "CHECK_REWARDS_BUTTON"
 export const YUNIVERSAL_CONTNIUE_BUTTON = "YUNIVERSAL_CONTNIUE_BUTTON"
+export const GP_CONTINUE = "GP_CONTINUE"
 
 // components
 export const VIEW_CONFETTI_COIN = (coins: number) => `VIEW_CONFETTI_COIN_${coins}`;
@@ -64,6 +66,8 @@ export const REWARD_ITEM = (code: string) => `REWARD_ITEM_${code}`
 export const LOCKED_REWARD_ITEM = (code: string) => `LOCKED_REWARD_ITEM_${code}`
 export const CHALLENGE_HISTORY_STARS = (starCount: number, challengeType: string) => `CHALLENGE_HISTORY_STARS+${starCount}_${challengeType}`
 export const EARN_RATE_ROW = (label:string, standardValue:number) => `EARN_RATE_ROW_${label}_${standardValue}`
+export const INPUT_FIELD = "INPUT_FIELD"
+export const INPUT_FIELD_VALUE = (value:any) => `INPUT_FIELD_VALUE_${value}`
 
 // modals
 export const WELCOME_MODAL = (heading: string) => `WELCOME_MODAL${heading}`
@@ -128,7 +132,7 @@ export const YUSCREEN_AVATAR = "YUSCREEN_AVATAR"
 
 // FIB
 export const FIB_SALARY_INPUT = "FIB_SALARY_INPUT"
-export const FIB_SALARY_INPUT_VALUE =(value:number) => `FIB_SALARY_INPUT_VALUE_${value}`
+export const FIB_SALARY_INPUT_VALUE =(value:string) => `FIB_SALARY_INPUT_VALUE_${value}`
 export const FIB_BROWSE_SCREEN =  "FIB_BROWSE_SCREEN"
 export const YUMOJI_PODIUM = (index: number) => `YUMOJI_PODIUM${index}`
 export const EMPTY_AVATAR = "EMPTY_AVATAR";
@@ -139,8 +143,38 @@ export const HIGHLIGHTED_SCROLLER_VALUE = (value:number) => `HIGHLIGHTED_SCROLLE
 export const CUSTOM_COVER_SCREEN = "CUSTOM_COVER_SCREEN"
 export const PERCENTAGE_COVERED = (value:number) => `PERCENTAGE_COVERD_${value}`
 export const FIB_INTRO_SCREEN = "FIB_INTRO_SCREEN"
-export const PACKAGE_TYPES = "PACKAGE_TYPES"
 export const PACKAGE_INFO = "PACKAGE_INFO"
+export const ARMOR_OPTION = (style: string) => `ARMOR_OPTION${style}`
+export const SELECTED_ARMOR = (uri: string) => `SELECTED_ARMOR${uri}`
+export const FIB_FIRST_NAME_INPUT = "FIB_FIRST_NAME_INPUT"
+export const FOOT_INPUT = "FOOT_INPUT"
+export const INCH_INPUT = "INCH_INPUT"
+export const CM_INPUT = "CM_INPUT"
+export const KG_INPUT = "KG_INPUT"
+export const DRINKS_INPUT = "DRINKS_INPUT"
+export const UNDERWRITING_JOURNEY_SCREEN = "UNDERWRITING_JOURNEY_SCREEN"
+export const UNDERWRITING_REVIEW_SCREEN = "UNDERWRITING_REVIEW_SCREEN"
+export const UNDERWRITING_REVIEW_ANSWERS = (question: string, answer: string) => `UNDERWRITING_REVIEW_ANSWERS_${question}_${answer}`
+export const UNDERWRITING_REVIEW_CONFIRM = "UNDERWRITING_REVIEW_CONFIRM"
+export const SEX_BUTTON = (title: string, state: boolean) => `SEX_BUTTON_${title}_${state}`
+export const PACKAGE_OPTION = (type:string) => `PACKAGE_OPTION_${type}`
+export const PACKAGE_TYPES = "PACKAGE_TYPES"
+export const SALARY_COVERED = (percentage:number) => `SALARY_COVERED_${percentage}`
+export const PACKAGE_YUCOIN_POWER = (yucoinPower:number)=> `YUCOIN_POWER_${yucoinPower}`
+export const SELECTED_PACKAGE_TITLE = (title:string) => `SELECTED_PACKAGE_TITLE_${title}`
+export const SUMMARY_SCROLL_VIEW = "SUMMARY_SCROLL_VIEW"
+export const SEARCH_ITEM = (text: string) => `SEARCH_ITEM${text}`
+export const SEARCH_FLAT_LIST = "SEARCH_FLAT_LIST"
+export const CONTACT_DETAILS_INPUT = (placeHolder: string) => `CONTACT_DETAILS_INPUT_${placeHolder}`
+export const CONTACT_DETAILS_SCROLL_VIEW = "CONTACT_DETAILS_SCROLL_VIEW"
+export const CONTACT_DETAILS_CARD = (name: string, firstAddressLine: string, postCode:string, email: string, phoneNumber: string) => `CONTACT_DETAILS_CARD_${name}__${firstAddressLine}_${postCode}_${email}_${phoneNumber}`
+export const GP_INPUT = "GP_INPUT"
+export const GP_LIST_ITEM = (name: string) => `GP_LIST_ITEM_${name}`
+export const GP_CONFIRMATION = (gpName: string, practiceName: string, address1: string, postCode: string) => `GP_CONFIRMATION_${gpName}_${practiceName}_${address1}_${postCode}`
+export const GP_DETAILS_CARD = (name: string, postCode: string) => `GP_DETAILS_CARD_${name}_${postCode}`
+export const CHECKOUT_SCROLL_VIEW = "CHECKOUT_SCROLL_VIEW"
+export const PAYMENT_DETAILS_CARD = (endDigits: string, name: string, expiry: string) => `PAYMENT_DETAILS_CARD_${endDigits}_${name}_${expiry}`
+export const CHECKOUT_CHECKBOX = "CHECKOUT_CHECKBOX"
 
 // DUELS
 export const DUELS_HUB = "DUELS_HUB"

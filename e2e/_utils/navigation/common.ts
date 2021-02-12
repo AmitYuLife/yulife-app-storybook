@@ -103,10 +103,42 @@ export const tapID = (id: string, waitTime = 0) => async () => {
     await target.tap()
 }
 
+// to be used for debugging only, EG when a double tap bug appears
+export const tryTapID =(id:string, waitTime=0) => async()=>{
+    const target = element(by.id(id))
+    await waitFor(target).toBeVisible().withTimeout(waitTime)
+    try{
+        await target.tap()
+        await expect(target).toBeNotVisible()
+    }catch(e){
+        await target.tap()
+        await expect(target).toBeNotVisible()
+    }
+}
+
+export const tryTapText = (text: string, waitTime = 0) => async () => {
+    const target = element(by.text(text))
+    await waitFor(target).toBeVisible().withTimeout(waitTime)
+    try {
+        await target.tap()
+        await expect(target).toBeNotVisible()
+    } catch (e) {
+        await target.tap()
+        await expect(target).toBeNotVisible()
+    }
+}
+
+
 export const tapIDAtPoint = (id: string, x: number, y: number, waitTime = 0) => async () => {
     const target = element(by.id(id))
     await waitFor(target).toBeVisible().withTimeout(waitTime)
     await (target as any).tap({ x, y })
+}
+
+export const tapTextWithParentID = (parentID:string, childText:string, waitTime=0) => async()=>{
+    const target = element(by.id(parentID).withDescendant(by.text(childText)))
+    await waitFor(target).toBeVisible().withTimeout(waitTime)
+    await target.tap()
 }
 
 export const idVisible = (id: string, waitTime = 0) => async () => {

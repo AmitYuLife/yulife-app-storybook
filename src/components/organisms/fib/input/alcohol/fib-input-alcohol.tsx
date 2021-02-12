@@ -7,6 +7,7 @@ import { updateFIBAnswerValue } from "@redux/product/product.actions";
 import { StyleSheet, View } from "react-native";
 import { styles } from "./fib-input-alcohol.styles";
 import { Style } from "@styles";
+import { DRINKS_INPUT } from "@ids";
 
 type ConnectedProps = ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps;
 
@@ -28,6 +29,7 @@ const _FibInputAlcohol = (props: ConnectedProps) => {
   return (
     <View style={styles.wrapper}>
       <InputField
+        testID={DRINKS_INPUT}
         value={weeklyAlcoholDrinks}
         onChangeText={validateNumber}
         maxLength={3}

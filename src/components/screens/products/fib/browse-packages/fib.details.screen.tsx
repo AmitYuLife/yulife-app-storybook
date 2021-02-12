@@ -27,6 +27,8 @@ import AdditionalInformation, {
   IAdditionalInformation,
 } from "./subcomponents/additional-information/additional-information";
 import { ContinueButton } from "@components/screens/products/fib/browse-packages/continue-button/continue-button";
+import { SUMMARY_SCROLL_VIEW } from "@ids";
+
 interface FibDetailsScreenProps {
   documents: any;
   howItWorks?: string;
@@ -96,6 +98,7 @@ export const FibDetailsScreen = memo(function (props: FibDetailsScreenProps) {
       <Animated.View animation="fadeIn" duration={1000} easing="ease-in" useNativeDriver={true} style={styles.wrapper}>
         <GenericHeadingPad />
         <ScrollView
+          testID={SUMMARY_SCROLL_VIEW}
           showsVerticalScrollIndicator={false}
           contentContainerStyle={styles.scrollView}
           onMomentumScrollEnd={onScrollEnd}

@@ -22,6 +22,7 @@ interface Props {
   inputTextStyle?: TextStyle;
   autoFocus?: boolean;
   onFocus?: () => void;
+  testID?: string;
   baseUnderlineColor?: string;
 }
 
@@ -65,6 +66,7 @@ export default function TextField(props: Props) {
     errorMessage,
     maxLength,
     onFocus,
+    testID,
     baseUnderlineColor,
   } = props;
   const [isFocused, setFocused] = useState(autoFocus);
@@ -96,6 +98,7 @@ export default function TextField(props: Props) {
     <>
       <View style={styles.wrapper}>
         <TextInput
+          testID={testID}
           style={StyleSheet.flatten([styles.inputBase, { paddingLeft: placeholderIndentSize }, inputTextStyle])}
           onBlur={() => {
             if (onBlur) {

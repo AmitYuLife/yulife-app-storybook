@@ -7,6 +7,7 @@ import { updateFIBAnswerValue } from "@redux/product/product.actions";
 import { Height } from "@redux/product/product.types";
 import { StyleSheet } from "react-native";
 import { styles } from "./fib.input-height.styles";
+import { CM_INPUT } from "@ids";
 
 type ConnectedProps = ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps;
 
@@ -35,6 +36,7 @@ const _FibInputCm = (props: ConnectedProps) => {
 
   return (
     <InputField
+      testID={CM_INPUT}
       value={height.cm}
       onChangeText={validateCm}
       maxLength={3}

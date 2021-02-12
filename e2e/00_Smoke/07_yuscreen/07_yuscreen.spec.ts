@@ -172,14 +172,11 @@ Feature("I am able to use the yuscreen, create, and edit an Yumoji", async () =>
             When("I scroll to Power up and protect yourself", when.swipeToText(YUSCREEN, "Personal Items", "up", 5), async()=>{
                 Then("I should see Power up and protect yourself:", then.textVisible("Personal Items"))
                 When("I scroll to the bottom", when.scrollFromID(YUSCREEN, "up", "fast"), async () => {
-                    Then("I should see a list of 'Coming Soon' options", then.personalProductsVisible)
+                    Then("I should see a list of 'Coming Soon' options", then.idVisible(PERSONAL_PRODUCT("Income Protection")))
                 })
                 When("I tap the gloves", when.tapID(PERSONAL_PRODUCT("Income Protection")), async () => {
-                    Then("I should see the coming soon modal", then.multipleTextVisible(["Coming soon", "Vote now"]))
-                    When("I tap Vote now", when.tapText("Vote now"), async()=>{
-                        Then("I should be on the survey screen", then.onSurveyScreen)
-                        Then("I should a dental insurance option, and it should not be selected", then.idVisible(CHECK_BOX_STATE("Dental insurance", false)))
-                        })
+                    Then("I should be on the survey screen", then.onSurveyScreen)
+                    Then("I should a dental insurance option, and it should not be selected", then.idVisible(CHECK_BOX_STATE("Dental insurance", false)))
                     When("I tap an option", when.tapText("Dental insurance"), async () => {
                         Then("This option should be selected", then.idVisible(CHECK_BOX_STATE("Dental insurance", true)))
                         When("I tap another option", when.tapText("Bicycle insurance"), async () => {
@@ -196,7 +193,7 @@ Feature("I am able to use the yuscreen, create, and edit an Yumoji", async () =>
                             When("I tap this submit button", when.tapText("Submit"), async () => {
                                 Then("I should see a Thank You screen", then.onSurveySubmitScreen)
                                 When("I tap Close", when.tapText("Close"), async () => {
-                                    Then("I should be on the yuscreen", then.personalProductsVisible)
+                                    Then("I should be on the yuscreen", then.idVisible(PERSONAL_PRODUCT("Income Protection")))
                                 })
                             })
                         })

@@ -4,6 +4,7 @@ import { Colours } from "@styles";
 import { Text } from "@atoms";
 import Svg, { Path, Rect } from "react-native-svg";
 import { TouchableOpacityWithDelay } from "@components/molecules";
+import { GP_LIST_ITEM } from "@ids";
 
 interface MedicalResultProps {
   icon: "practice" | "GP";
@@ -95,7 +96,7 @@ export const FibMedicalResult = ({
   onPress,
 }: MedicalResultProps) => {
   return (
-    <TouchableOpacityWithDelay onPress={onPress}>
+    <TouchableOpacityWithDelay onPress={onPress} testID={GP_LIST_ITEM(header)}>
       <View style={styles.wrapper}>
         <View style={styles.iconWrapper}>
           {icon === "practice" ? (

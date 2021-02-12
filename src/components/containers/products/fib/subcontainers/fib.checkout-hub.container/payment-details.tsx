@@ -5,6 +5,7 @@ import { StripePaymentRequestToken } from "tipsi-stripe";
 import { useSelector } from "react-redux";
 import { getFullName } from "@redux/product/product.selectors";
 import { Platform } from "react-native";
+import { PAYMENT_DETAILS_CARD } from "@ids";
 
 interface Props {
   goToPaymentDetails: () => void;
@@ -34,6 +35,7 @@ export const PaymentDetails = memo(({ goToPaymentDetails, paymentProviderDetails
 
   return (
     <InfoCard
+      testID={PAYMENT_DETAILS_CARD(last4, name, `${expMonth}/${expYear}`)}
       isPrompt={!hasCompleteData}
       leftIcon={getLeftIcon(hasCompleteData)}
       markdown={markdown}

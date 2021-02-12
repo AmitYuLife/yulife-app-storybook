@@ -8,6 +8,7 @@ import validator from "email-validator";
 import { ContactDetails } from "@redux/product/product.types";
 import { postCodeRegexSpecial, postCodeRegex } from "./fib.find-address.screen";
 import { useBackHandler } from "@services/hooks/useBackHandler";
+import { CONTACT_DETAILS_INPUT } from "@ids";
 import ContactDetailsTitle from "./fib.contact-details.title";
 
 export interface IFibContactDetailsScreenProps {
@@ -146,7 +147,12 @@ export const FibContactDetailsScreen = memo(function (props: IFibContactDetailsS
             </TouchableOpacityWithDelay>
             {inputs.map((item, index) => (
               <View onLayout={setLayout(index)} key={index}>
-                <TextField onFocus={onTextInputFocus(index)} {...item} baseUnderlineColor={Colours.neutral.n200} />
+                <TextField
+                  onFocus={onTextInputFocus(index)}
+                  {...item}
+                  baseUnderlineColor={Colours.neutral.n200}
+                  testID={CONTACT_DETAILS_INPUT(item.placeholder)}
+                />
                 <Pad height={20} />
               </View>
             ))}

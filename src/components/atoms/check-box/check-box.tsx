@@ -12,6 +12,7 @@ interface ICheckBox {
   onChange: (value: string) => void;
   textStyle?: TextStyle;
   children?: React.ReactChild;
+  testID?: string;
 }
 
 const styles = {
@@ -32,13 +33,13 @@ const styles = {
 };
 
 function CheckBox(props: ICheckBox) {
-  const { checked, value, onChange, label, textStyle, children } = props;
+  const { checked, value, onChange, label, textStyle, children, testID } = props;
 
   return (
     <View>
       <TouchableOpacityWithDelay activeOpacity={1} style={styles.wrapper} onPress={() => onChange(value)}>
         <View testID={CHECK_BOX_STATE(label, checked)}>
-          <Svg height="32" width="32" viewBox="0 0 32 32">
+          <Svg height="32" width="32" viewBox="0 0 32 32" testID={testID}>
             {checked ? (
               <>
                 <Circle cx="16" cy="16" r="16" fill="#F43E8E" />

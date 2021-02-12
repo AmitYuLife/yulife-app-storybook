@@ -1,8 +1,8 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { Style, Colours } from "@styles";
-import { PACKAGE_TYPES } from "@ids";
 import { CoverType } from "@graphql/_core/schema/globalTypes";
+import { PACKAGE_TYPES } from "@ids";
 
 export interface Props {
   type: CoverType;
@@ -10,7 +10,7 @@ export interface Props {
 
 const PackageType: React.FC<Props> = ({ type }) => {
   return (
-    <View testID={PACKAGE_TYPES} style={[styles.wrapper, { backgroundColor: Colours.products.fib[type] }]}>
+    <View style={[styles.wrapper, { backgroundColor: Colours.products.fib[type] }]} testID={PACKAGE_TYPES}>
       <Text style={styles.text}>{type}</Text>
     </View>
   );

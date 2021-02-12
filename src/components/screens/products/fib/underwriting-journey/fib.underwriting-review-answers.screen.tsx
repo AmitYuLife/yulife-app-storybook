@@ -18,6 +18,7 @@ import { IRightIcon } from "@atoms/generic-heading/generic-heading.types";
 import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
 import { Yugi, YugiType } from "../layouts/yugi";
 import FibTitle from "@atoms/fib/title/title";
+import { UNDERWRITING_REVIEW_CONFIRM, UNDERWRITING_REVIEW_SCREEN } from "@ids";
 import { TOP_BAR } from "@styles";
 
 export interface IFibUnderwritingReviewAnswersScreenProps {
@@ -64,6 +65,7 @@ const _FibUnderwritingReviewAnswersScreen = memo(function (props: IFibUnderwriti
     <View style={styles.wrapper}>
       <GenericHeadingPad />
       <ScrollView
+        testID={UNDERWRITING_REVIEW_SCREEN}
         contentContainerStyle={styles.scrollViewContentStyle}
         onMomentumScrollEnd={onScrollEnd}
         ref={scrollViewRef}
@@ -86,7 +88,7 @@ const _FibUnderwritingReviewAnswersScreen = memo(function (props: IFibUnderwriti
             />
           );
         })}
-        <View style={checkboxStyles.wrapper}>
+        <View style={checkboxStyles.wrapper} testID={UNDERWRITING_REVIEW_CONFIRM}>
           <CheckBox
             checked={confirmed}
             value=""

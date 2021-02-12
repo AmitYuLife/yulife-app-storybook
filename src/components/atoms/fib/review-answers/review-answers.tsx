@@ -5,6 +5,7 @@ import { SvgFromXml } from "react-native-svg";
 import TouchableOpacityWithDelay from "../../../molecules/touchable-opacity-delay/touchable-opacity-delay";
 import Warning from "@atoms/text-input/assets/warning";
 import { ArrowRightSvg, Text } from "@atoms";
+import { UNDERWRITING_REVIEW_ANSWERS } from "@ids";
 
 export interface IReviewAnswersProps {
   icon: string;
@@ -20,7 +21,7 @@ export const ReviewAnswers = memo(function (props: IReviewAnswersProps) {
   return (
     <TouchableOpacityWithDelay style={styles.wrapper} onPress={onAnswerPress}>
       <SvgFromXml xml={icon} />
-      <View style={styles.textWrapper}>
+      <View style={styles.textWrapper} testID={UNDERWRITING_REVIEW_ANSWERS(title, answer)}>
         <Text style={styles.title}>{title}</Text>
         {!incomplete ? (
           <Text style={styles.answer}>{answer}</Text>

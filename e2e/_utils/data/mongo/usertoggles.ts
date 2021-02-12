@@ -102,7 +102,11 @@ export const CUSTOMER_10_TOGGLES = {
     data: {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_10.data.customerId,
-        features: { hideSmartHealthScreen: true, hideYuMatterScreen: true },
+        features: {
+            hideSmartHealthScreen: true,
+            hideYuMatterScreen: true, 
+            hasFibActive: true, 
+        },
     }
 } as IDatabaseItem
 

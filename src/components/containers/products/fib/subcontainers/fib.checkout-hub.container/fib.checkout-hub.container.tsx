@@ -21,6 +21,7 @@ import Logger from "@services/logging/logger";
 import * as docs from "@containers/products/fib/data/documents-data";
 import { CheckBox, Text, Button } from "@atoms";
 import { formatMoney } from "@services/money";
+import { CHECKOUT_CHECKBOX, CHECKOUT_SCROLL_VIEW } from "@ids";
 import { CoverType } from "@graphql/_core/schema/globalTypes";
 
 interface Props {
@@ -90,7 +91,7 @@ export const FibCheckoutHubContainer = memo((props: Props) => {
 
   return (
     <View style={styles.wrapper}>
-      <ScrollView showsVerticalScrollIndicator={false}>
+      <ScrollView showsVerticalScrollIndicator={false} testID={CHECKOUT_SCROLL_VIEW}>
         <View style={styles.topPad} />
         <Card
           name={data?.personal?.chest?.name}
@@ -111,6 +112,7 @@ export const FibCheckoutHubContainer = memo((props: Props) => {
             value=""
             label="I confirm that I have understood and answered all the questions honestly, accurately and to the best of my knowledge."
             onChange={toggleConfirmed}
+            testID={CHECKOUT_CHECKBOX}
           >
             <View style={styles.checkboxContentWrapper}>
               <Text style={styles.checkboxContent}>{"I have read and agree to the "}</Text>

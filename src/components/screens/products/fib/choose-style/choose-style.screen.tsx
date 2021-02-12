@@ -8,6 +8,7 @@ import { Colours, Style } from "@styles";
 import colours from "@styles/colours";
 import GenericHeadingAbsolute from "@atoms/generic-heading/generic-heading-absolute";
 import { styles } from "./choose-style.styles";
+import { ARMOR_OPTION, SELECTED_ARMOR } from "@ids";
 import { GetYulifer_personal_chest_options_styles } from "../../../../../graphql/_core/schema";
 interface IFibStyleSelectionScreenProps {
   productStyleOptions: GetYulifer_personal_chest_options_styles[];
@@ -41,6 +42,7 @@ export const FibStyleSelectionScreen = memo(function (props: IFibStyleSelectionS
         </View>
         <View style={styles.armorWrapper}>
           <FastImage
+            testID={SELECTED_ARMOR(selectedStyle.world)}
             source={{ uri: selectedStyle.armor }}
             style={styles.armorImage}
             resizeMode={FastImage.resizeMode.contain}
@@ -58,6 +60,7 @@ export const FibStyleSelectionScreen = memo(function (props: IFibStyleSelectionS
           {productStyleOptions.map((option) => (
             <TouchableOpacityWithDelay
               key={option.world}
+              testID={ARMOR_OPTION(option.world)}
               onPress={() => {
                 setSelectedStyle(option);
               }}
