@@ -102,7 +102,11 @@ export const FibCheckoutHubContainer = memo((props: Props) => {
         <Heading />
         <ContactDetails goToContactDetails={goToContactDetails} />
         <GpDetails gpDetails={data?.gpDetails} goToGpDetails={goToGpDetails} />
-        <PaymentDetails paymentProviderDetails={paymentProviderDetails} goToPaymentDetails={onPressPayment} />
+        <PaymentDetails
+          paymentDetails={data?.paymentDetails}
+          paymentProviderDetails={paymentProviderDetails}
+          goToPaymentDetails={onPressPayment}
+        />
         <View style={styles.documents}>
           <Documents items={documents} title="Key documents" />
         </View>
@@ -144,7 +148,7 @@ export const FibCheckoutHubContainer = memo((props: Props) => {
         </View>
         <Cta
           disable={!confirmed}
-          paymentProviderDetails={paymentProviderDetails}
+          paymentProviderDetails={data?.paymentDetails || paymentProviderDetails}
           coverType={coverType}
           onPress={onContinue}
         />

@@ -69,10 +69,6 @@ export enum PassiveChallengeType {
   STEPS = "STEPS",
 }
 
-export enum PaymentMethodType {
-  card = "card",
-}
-
 /**
  * Product code used internally to identify different products
  */
@@ -162,12 +158,6 @@ export interface ChallengePayload {
   startDateTime?: string | null;
   endDateTime?: string | null;
   value?: number | null;
-}
-
-export interface CollectPaymentMethodInput {
-  paymentMethodId: string;
-  type: PaymentMethodType;
-  productCode: ProductCode;
 }
 
 /**
