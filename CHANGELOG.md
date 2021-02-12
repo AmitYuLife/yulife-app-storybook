@@ -7,6 +7,210 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.2.0] - 2021-02-12
+
+### Features
+
+- Feature TP-558: New designs for holding/info screens
+- Feature TP-591: Finalise Packages - Custom Cover + Refactor
+- Feature TP-620: Financial Underwriting - Add the ability to edit an existing cover
+- Feature TP-608 Update contact details UI
+- Feature TP-629: Add declarations to the Checkout hub
+- Feature TP-605 Update GP Details component
+- Feature TP-577 Add gender question
+- Feature: Add new animation to TertiaryButton
+- Feature: Update Summary Screen to follow current design
+- Feature TP-524: Checkout v2.0 - HUB
+- Feature TP-603: Finalise Packages - Design
+- Feature TE-960: recent opponents (client)
+- Feature TE-869: New duels hub
+- Feature/TP-631: Update icons
+- Feature/TP-663: Update Underwriting Copy
+- Feature TP-600: Browse Packages - Top Section Redesign
+- Feature TE-847: colleague search
+- Feature TE-876: Already challenge pop-up
+- Feature TP-601: Select package style
+- (origin/feature/mixpanel-in-app-messages) Task: Support mixpanel messages
+- Feature TE-826: Fix challenge button on last place
+- Feature: Move user notifications settings into the api
+- Hide button if not has feature toggle
+- Feature TP-594 Reset fib journey for allowed beta users
+- Feature TP-618: Update Introduction to Underwriting
+- Feature TP-599 Remove salary from introduction
+- Feature TE-868: Duels onboarding
+- Feature TE-873: goals/duels buttons
+- Feature TP-612: Salary Question
+- Feature Tp-598: Yugi Introduction
+- Feature TP-575: New birthday input
+
+### Bugfixes
+
+- Bugfix ENG-1661: Duels UI improvements
+- Bugfix: Prevent gp and address input to send request to api on every character
+- Bugfix ENG-1632: Commit challenge-tile.helpers that wasnt added on the previous MR
+- Bugfix ENG-1632: Challenge YuCoin display
+- Bugfix: Add reset journey button on new info screens
+- Bugfix: Add the correct margin on the continue button on browser package on android
+- Revert "Bugfix: Get cover type and contact details from api for checkout"
+- Bugfix: Wrong pdf & android back button on price change modal
+- Bugfix: Get cover type and contact details from api for checkout
+- Bugfix: Align underwriting intro layout with the rest
+- Bugfix: Align review layout with underwriting journey layout
+- Bugfix TE-982: Include duelId for better caching
+- Bugfix: GP details screens
+- Bugfix: steps syncing
+- Bugfix: Contact address search
+- Bugfix TP-687: Fix iOS date picker color
+- Bugfix TE-988: Colleague search keyboard bug
+- Bugfix TE-989: Prevent duel intro re-render
+- Bugfix: remove mixpanel in-app messages
+- Bugfix ENG-1562: query steps
+- Bugfix TP-674: Fix YuScreen UI and copy and add proper gradients
+- Bugfix TE-982: Step sync problem
+- Bugfix TP-674: Fix YuScreen UI and copy
+- Bugfix TP-524: Fix checkout hub margins and alignment
+- Bugfix TE-987: Duel hub spacing
+- Bugfix: duels updated response screen
+- Bugfix: duel already on
+- Bugfix TE-875: Duel invite font fix
+- Bugfix: Fix duel avatars
+- Bugfix TP-524: Sync GP details gql and redux
+- Bugfix: Revert back button SVG
+- Bugfix: Update hospital stay and symptoms resolved icon on riview screen
+- Bugfix: big hair in duels animation
+- Bugfix: Add useBackHandler for duel
+- Bugfix: fetch fib quote
+- Bugfix TE-962: Show correct duel invite response
+- Bugfix: Fix medical journey navigation
+- (origin/bugfix/detox-crash-fix) Bugfix: detox crash
+- Bugfix: Remove back button from success feedback screen
+- Bugfix: Fix Android back button from underwriting journey
+- Bugfix: Improve contact details screen UX
+- Bugfix ENG-1541: yunity level fixes
+- Bugfix: Go to yuscreen after close second yugi intro
+- Bugfix: Disable continue button if there's no salary
+- Bugfix TP-622, TP-624: Fix Android back handler and yugi intro cta
+- Bugfix: Fix iPhone 12 series top bar
+- Bugfix TP-622: Fix Android back button
+- Bugfix TP-622: Fix android back button
+- Bugfix ENG-1485: Wrong date - passive YuCoin
+- Bugfix TP-574: Keep financial cover colours
+- Bugfix: Fix TopBar left menu icon position
+- Bugfix ENG-1481: Nonsensical copy in the "Welcome" screen of the app
+- Bugfix: Fix community goals change nickname screen, plus points font
+- Bugfix: Fix leaderboard issues
+
+### Tasks
+
+- Task: Change overlay to modal
+- Task TP-694: Yu screen - Reveal tooltip when tapping on table cells
+- Task TP-667: Add insurance description to tooltip on Browse packages & Finalise packages
+- Task TE-983: More duels tracking
+- Task Leaderboard: Add on/off text and description at the top
+- Task TP-692/TP-693/TP-694: Update yu screen - personal Items, remove description from purchasable items and reveal tooltip when tapping on table cells
+- Task: Change product queries
+- Task ENG-1550: correct challenge reward
+- Task TP-604 Update GP copy
+- Task ENG-1485: refactor passive saga
+
+### Chores
+
+- Chore: move payments
+- Chore: remove fitkit values from level steps queries and log the results
+- Chore: show steps from dailySteps reducer
+- Chore: use pedometer steps on daily steps screen
+- Chore: use reselect
+- Chore: Clear timeouts
+- Chore: Remove status change functionality
+- Chore: upgrade android mixpanel version
+- Chore TE-956: Update onboarding component
+- Chore: use selector in screens
+- Chore: reset store on logOutSuccess
+- Chore: log pedometer_unauthorised
+- Chore: use date_format const
+- Chore: yu-screen improvements
+- Chore: use funcs for initial states
+- Chore: move leaderboard consent to leaderboards list
+- Chore ENG-1536: remove webview on rewards
+- Chore: add commas to numbers
+- Chore: add script for retrospective bugsnag upload
+- Chore: Bugsnag errors
+- Chore/better naming for android builds
+
+### Improvements
+
+- Improve color for dark mode
+
+### Extra
+
+- Detox: Browse package
+- Hotfix: add the border back
+- Hotfix: remove border
+- Update avios copy
+- Hotfix: daily meditation safe checks
+- Add missing slash
+- Fix copy
+- Hotfix: yu screen fixes
+- fixed survey journey
+- Only render once YuScreenLayout
+- Hotfix: correct deepLinks for android
+- Hotfix: return current state on endChallenge event
+- Revert: request on every pedometer update
+- Handle custom cover use case for payout calculator
+- Force light mode
+- Fix Yugi svg
+- TP-679: Mixpanel Event Taxonomy #65 and #66
+- Fix
+- Hotfix: for debounced query's hotfix
+- Hotfix: unmount query properly
+- Working - copy updates
+- Add general terms of business link to the app
+- Only one line break on gp address
+- Increase hit slop
+- Fix contact detail header
+- Hotfix: downgrade mixpanel lib
+- Detox: Onboarding and duels update
+- Don't show price modal on client changes
+- Remove link
+- Copy update
+- Add additional financial screen & logic
+- Hotfix: counter state update issue
+- Create Salary tertiary input and refactor base button
+- Update schema and types
+- Fix
+- removed detox bug workaround
+- Update yucoin power and remove unnecessary from createTopUpsQuote
+- Detox: Duels update
+- Update calculator icon
+- Hotfix: removed the network state listener
+- Hotfix TE-960: duplicate stack components
+- Handle back navigation on android directly on generic overlay
+- Use FastImage instead of svgs
+- Detox: Fixes
+- Show payment congrat if customer purchased product
+- Hotfix: duels onboarding copy
+- Hotfix: nav-bar spacing
+- Detox: Fixes
+- Get salary from quote
+- Fix
+- Hotfix: refetch community goals on nickname change
+- Make input query not null
+- merged stub data and tests, then find/replaced paths yulife-bdd-framework and data as merged from develop
+- Update stripe credentials
+- Fix
+- Decrease delay for yugi intro screens
+- FIxed
+- Tokens updated
+- Fix typo
+- Revert "Implement browse packages intercom"
+- Added githooks
+- Fix environment
+- Copy update
+- Pregnancy only skip medical logic
+- Update & Add static documents
+- (origin/e2e/extended_Fix) earn rate fix for user
+- Fix copy and icon color
+
 ## [3.1.0] - 2021-02-04
 
 ### Features
