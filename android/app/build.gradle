@@ -248,7 +248,7 @@ dependencies {
 
     // Mixpanel
     implementation project(':react-native-mixpanel')
-    implementation "com.mixpanel.android:mixpanel-android:5.6.8"
+    implementation "com.mixpanel.android:mixpanel-android:5.8.6"
 
     // Bugsnag
     implementation project(':bugsnag-react-native')
