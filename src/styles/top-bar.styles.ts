@@ -15,7 +15,7 @@ const IOS_PADDING_TOP = media.select(
   [
     {
       condition: [media.DEVICES.iPhone12.height, media.DEVICES.iPhone12ProMax.height].includes(Style.DEVICE_HEIGHT),
-      value: Style.getSafeAreaStart() + 8,
+      value: Style.getSafeAreaStart() + 16,
     },
   ],
   Style.getSafeAreaStart()

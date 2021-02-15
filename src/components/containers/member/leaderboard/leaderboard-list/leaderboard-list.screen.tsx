@@ -40,7 +40,6 @@ function LeaderboardOptionsScreen(props: IProps) {
         onLeftIconPress={onLeftIconPress}
         onRightIconPress={onRightIconPress}
         rightIcon={RIGHT_ICON}
-        hasWhiteBackground={true}
       />
     </View>
   );

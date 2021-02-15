@@ -18,6 +18,10 @@ interface Props {
 }
 
 export default function Left({ onPress, icon, colour, label, textStyle }: Props) {
+  if (!onPress) {
+    return null;
+  }
+
   return (
     <TouchableOpacity
       hitSlop={TOP_BAR.HIT_SLOP}
