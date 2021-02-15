@@ -4,7 +4,7 @@ import { USER_2 } from "./users";
 
 export const REWARD_LEDGER_1 = {
     type:"mongo",
-    modelName:"rewardsledger",
+    modelName:"rewardsledgers",
     data: {
         "_id": generateRandomMongoId(),
         "userId": USER_2.data.userId,
