@@ -1,25 +1,22 @@
 import React from "react";
 import { StyleSheet, View, ViewStyle } from "react-native";
 import { Style } from "@styles";
-import { TouchableOpacityWithDelay } from "@components/molecules";
-import { CloseSvg } from "@atoms";
+import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
 
 interface IGenericOverlay {
   onClose: () => void;
   children: React.ReactNode;
+  heading?: string;
 }
 
 const GenericOverlay = (props: IGenericOverlay) => {
-  const { onClose, children } = props;
+  const { onClose, children, heading = "" } = props;
 
   return (
     <View style={styles.wrapper}>
-      <View style={styles.innerWrapper}>
-        {children}
-        <TouchableOpacityWithDelay style={styles.close} onPress={onClose}>
-          <CloseSvg type="encircled" />
-        </TouchableOpacityWithDelay>
-      </View>
+      <GenericHeadingPad />
+      <View style={styles.innerWrapper}>{children}</View>
+      <GenericHeadingAbsolute heading={heading} onRightIconPress={onClose} />
     </View>
   );
 };
@@ -27,7 +24,6 @@ const GenericOverlay = (props: IGenericOverlay) => {
 const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
-    paddingTop: Style.adjust(40),
   } as ViewStyle,
   innerWrapper: {
     height: Style.DEVICE_HEIGHT,

@@ -1,19 +1,18 @@
 import React, { ComponentProps } from "react";
 import GenericHeading from "./generic-heading";
 import { View, StyleSheet, ViewStyle, Platform } from "react-native";
-import { TOP_BAR } from "@styles";
+import { TOP_BAR, Colours } from "@styles";
 
-type Props = ComponentProps<typeof GenericHeading> & {
-  hasWhiteBackground?: boolean;
-};
+interface OwnProps {
+  backgroundColor?: string;
+}
+
+type Props = ComponentProps<typeof GenericHeading> & OwnProps;
 
 const GenericHeadingAbsolute = (props: Props) => {
-  const { hasWhiteBackground = true, hideBorder = true } = props;
+  const { backgroundColor = Colours.neutral.white, hideBorder = true } = props;
   return (
-    <View
-      pointerEvents="box-none"
-      style={StyleSheet.flatten([styles.wrapper, hasWhiteBackground && styles.whiteBackground])}
-    >
+    <View pointerEvents="box-none" style={StyleSheet.flatten([styles.wrapper, { backgroundColor }])}>
       <GenericHeading {...props} />
       {hideBorder ? null : <View style={styles.topBarShadow} />}
     </View>

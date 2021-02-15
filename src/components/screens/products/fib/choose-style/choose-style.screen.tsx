@@ -102,7 +102,7 @@ export const FibStyleSelectionScreen = memo(function (props: IFibStyleSelectionS
         onLeftIconPress={onBackPress}
         onRightIconPress={onClose}
         hideBorder={true}
-        hasWhiteBackground={false}
+        backgroundColor="transparent"
       />
     </View>
   );

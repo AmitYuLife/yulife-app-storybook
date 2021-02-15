@@ -73,7 +73,7 @@ const headingWrapperMarginTop = Platform.select({
     ],
     Style.adjust(80)
   ),
-  android: Style.adjust(80),
+  android: Style.adjust(20),
 });
 
 const styles = StyleSheet.create({

@@ -1,9 +1,10 @@
 import * as React from "react";
 import { Image, StyleSheet, View } from "react-native";
-import { Button, Close, Text } from "../../../../atoms";
+import { Button, Text } from "@atoms";
 import { data, getCardBackgroundColor, getImageAndStyle } from "./challenge-details.helpers";
 import styles from "./challenge-details.styles";
 import Milestones, { IMilestone, IMilestoneProps } from "./milestones";
+import GenericHeadingAbsolute from "@atoms/generic-heading/generic-heading-absolute";
 
 interface IOwnProps {
   challengeType: string;
@@ -31,37 +32,39 @@ function ChallengeDetailsScreen({
   unit,
 }: Props) {
   return (
-    <View style={styles.wrapper}>
-      <Close onPress={onPressClose} />
-      <Image {...getImageAndStyle(challengeType, currentWorld)} />
-      <View
-        style={StyleSheet.flatten([
-          styles.contentWrapper,
-          {
-            backgroundColor: getCardBackgroundColor(currentWorld),
-          },
-        ])}
-      >
-        <Text bold={true} style={styles.heading}>
-          {getChallengeDetailsTitle(challengeType, duration, milestones)}
-        </Text>
-        <Milestones milestones={milestones} unit={unit} />
+    <>
+      <View style={styles.wrapper}>
+        <Image {...getImageAndStyle(challengeType, currentWorld)} />
+        <View
+          style={StyleSheet.flatten([
+            styles.contentWrapper,
+            {
+              backgroundColor: getCardBackgroundColor(currentWorld),
+            },
+          ])}
+        >
+          <Text bold={true} style={styles.heading}>
+            {getChallengeDetailsTitle(challengeType, duration, milestones)}
+          </Text>
+          <Milestones milestones={milestones} unit={unit} />
+        </View>
+        <Button
+          disabled={isLoading}
+          isLoading={isLoading}
+          label={isLoading ? data.loading : data.ctaLabel}
+          onPress={onPressCta}
+          type="Primary"
+          wrapperStyle={styles.ctaButton}
+        />
+        {!onPressSetUp ? (
+          <Text style={styles.footer}>{data.footer}</Text>
+        ) : (
+          <Button label={data.setUpLabel} onPress={onPressSetUp} type="Secondary" wrapperStyle={styles.setUp} />
+        )}
+        {!error ? null : <Text style={styles.error}>{error}</Text>}
       </View>
-      <Button
-        disabled={isLoading}
-        isLoading={isLoading}
-        label={isLoading ? data.loading : data.ctaLabel}
-        onPress={onPressCta}
-        type="Primary"
-        wrapperStyle={styles.ctaButton}
-      />
-      {!onPressSetUp ? (
-        <Text style={styles.footer}>{data.footer}</Text>
-      ) : (
-        <Button label={data.setUpLabel} onPress={onPressSetUp} type="Secondary" wrapperStyle={styles.setUp} />
-      )}
-      {!error ? null : <Text style={styles.error}>{error}</Text>}
-    </View>
+      <GenericHeadingAbsolute backgroundColor="transparent" onRightIconPress={onPressClose} />
+    </>
   );
 }
 
