@@ -107,9 +107,15 @@ Feature("Rewards should act correctly", async () => {
         })
     })
 
-    ScenarioOnly("I can login and view my previously purchased rewards", scenario.start, async () => {
+    Scenario("I can login and view my previously purchased rewards", scenario.start, async () => {
         Given("I login and go to rewards", given.logInAndGoToTab("rewards", CUSTOMER_2, AUTH_2), async () => {
             Then("I should be on the rewards tab", then.idVisible(REWARDS_SCREEN))
+            When("I tap the purchased tab", when.tapText("purchased"), async () => {
+                Then("I should see my nike reward", then.purchasedRewardVisible(REWARDS_NIKE, 0))
+                When("I tap this reward", when.tapPurchasedReward(REWARDS_NIKE, 0), async () => {
+                    Then("I should be on the purchase screen for this reward", then.onRewardPurchasedScreen(REWARDS_NIKE))
+                })
+            })
         })
     })
 })
