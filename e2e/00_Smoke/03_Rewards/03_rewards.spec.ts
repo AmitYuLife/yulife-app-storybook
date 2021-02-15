@@ -4,7 +4,7 @@ import * as given from "./_steps/given"
 import * as when from "./_steps/when"
 import * as then from "./_steps/then"
 import { REWARDS_SCREEN, VIEW_TOP_RIGHT_COIN_COUNTER, WEGIFT_DETAILS } from "@ids";
-import { REWARDS_JOHN_LEWIS, REWARDS_BLOOM_UNAVAILABLE, CUSTOMER_3, AUTH_3, REWARDS_NIKE, CUSTOMER_4, AUTH_4 } from "@data";
+import { REWARDS_JOHN_LEWIS, REWARDS_BLOOM_UNAVAILABLE, CUSTOMER_3, AUTH_3, REWARDS_NIKE, CUSTOMER_4, AUTH_4, CUSTOMER_2, AUTH_2 } from "@data";
 
 
 
@@ -104,6 +104,12 @@ Feature("Rewards should act correctly", async () => {
                     })
                 })
             })
+        })
+    })
+
+    ScenarioOnly("I can login and view my previously purchased rewards", scenario.start, async () => {
+        Given("I login and go to rewards", given.logInAndGoToTab("rewards", CUSTOMER_2, AUTH_2), async () => {
+            Then("I should be on the rewards tab", then.idVisible(REWARDS_SCREEN))
         })
     })
 })
