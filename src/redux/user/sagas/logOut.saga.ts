@@ -10,7 +10,17 @@ export default function* logOutSaga() {
   yield call(Logger.logEvent, "log_out");
   yield call(setUnauthenticatedRoot);
   yield call(clearToken);
-  yield call(() => client().resetStore());
-  yield call(() => persistor.purge());
+  yield call(() => {
+    // we can't await the following two because their libs rely on a weird promise lib and it gets stuck
+    client()
+      .resetStore()
+      .catch((e) => {
+        Logger.error(e, { location: "logout-reset-apollo-store" });
+      });
+
+    persistor.purge().catch((e) => {
+      Logger.error(e, { location: "logout-purge-persistor" });
+    });
+  });
   yield put(logOutSuccess());
 }
