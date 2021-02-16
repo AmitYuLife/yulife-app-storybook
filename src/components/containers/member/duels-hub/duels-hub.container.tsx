@@ -3,13 +3,14 @@ import { Navigation } from "react-native-navigation";
 import { useSelector, useDispatch } from "react-redux";
 import { ActiveDuelsScreen, CompletedDuelsScreen, DuelsIntroScreen } from "@screens/index";
 import { IMainTabsProps } from "@navigation/root";
-import { SafeAreaView, StyleSheet, FlatList, ListRenderItemInfo, ViewToken, ViewStyle } from "react-native";
+import { StyleSheet, FlatList, ListRenderItemInfo, ViewToken, ViewStyle, View } from "react-native";
 import { useBackHandler } from "@services/hooks/useBackHandler";
-import { ROUTES } from "@navigation/constants";
 import { getDuelsGoalsIntro } from "@redux/onboarding/onboarding.selectors";
 import { setDuelsIntroShown } from "@redux/onboarding/onboarding.actions";
 import { DuelTabs } from "@components/screens/member/duels-hub/subcomponents";
-import { TopBar, NavBar } from "@organisms";
+import { NavBar } from "@organisms";
+import { TopBarAbsolute } from "@organisms/top-bar/top-bar-absolute";
+import { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
 
 interface IProps {
   componentId?: IMainTabsProps["componentId"];
@@ -51,7 +52,7 @@ function DuelsHubContainer({ componentId }: Props) {
   });
 
   useBackHandler(() => {
-    Navigation.pop(ROUTES.duelsHub);
+    handleClose();
     return true;
   });
 
@@ -65,11 +66,11 @@ function DuelsHubContainer({ componentId }: Props) {
   }
 
   return (
-    <SafeAreaView style={StyleSheet.absoluteFill}>
-      <TopBar leftIcon="Back" onPressLeftIcon={handleClose} />
+    <View style={styles.flex}>
+      <GenericHeadingPad />
       <DuelTabs onPress={handleChangeTab} activePageIndex={activePageIndex} />
       <FlatList
-        style={styles.swiper}
+        style={styles.flex}
         pagingEnabled={true}
         renderItem={renderItem}
         decelerationRate="fast"
@@ -83,12 +84,13 @@ function DuelsHubContainer({ componentId }: Props) {
         viewabilityConfig={viewabilityConfig}
       />
       <NavBar activeIndex={3} />
-    </SafeAreaView>
+      <TopBarAbsolute leftIcon="Back" onPressLeftIcon={handleClose} />
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-  swiper: {
+  flex: {
     flex: 1,
   } as ViewStyle,
 });
