@@ -17,6 +17,7 @@ export * from "./mongo/_templates";
 export * from "./mongo/feedback_forms";
 export * from "./mongo/feedback_submission";
 export * from "./mongo/core_products";
+export * from "./mongo/rewards_ledgers"
 
 
 export * from "./postgres/business";
