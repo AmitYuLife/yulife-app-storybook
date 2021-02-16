@@ -16,12 +16,12 @@ const DuelTab = ({ onPress, activePageIndex }: IProps) => {
   return (
     <View style={styles.wrapper} testID={DUELS_HUB}>
       <TouchableOpacityWithDelay disabled={activePageIndex === 0} style={styles.tab} onPress={onPress(0)}>
-        <Text style={[styles.heading, isActive ? styles.pinkText : {}]} bold={isActive}>
+        <Text style={[styles.heading, isActive ? styles.pinkText : {}]} bold={true}>
           Active
         </Text>
       </TouchableOpacityWithDelay>
       <TouchableOpacityWithDelay disabled={activePageIndex === 1} style={styles.tab} onPress={onPress(1)}>
-        <Text style={[styles.heading, isCompleted ? styles.pinkText : {}]} bold={isCompleted}>
+        <Text style={[styles.heading, isCompleted ? styles.pinkText : {}]} bold={true}>
           Completed
         </Text>
       </TouchableOpacityWithDelay>
