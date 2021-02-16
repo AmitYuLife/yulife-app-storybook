@@ -43,11 +43,13 @@ export const goToLifeInsurance = async () =>{
     await tapID(PERSONAL_PRODUCT("Chest of Life Insurance"))()
 
     try {
+        await navigateViaText("Upgrade")
         await navigateViaText("Okay")
         await navigateViaText("Okay")
         await navigateViaText("Continue")
         await navigateViaText("Okay")
     } catch (e) {
+        await navigateViaText("Upgrade")
         await navigateViaText("Okay")
         await navigateViaText("Continue")
         await navigateViaText("Okay")
