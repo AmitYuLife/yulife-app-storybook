@@ -297,10 +297,13 @@ Feature("I am able to use the yuscreens extended features", async () => {
             Then("I should be on the yuscreen", then.onYuscreen(CUSTOMER_23))
             When("I scroll to the bottom", when.scrollFromID(YUSCREEN, "up", "fast"), async () => {
                 When("I tap life insurance", when.tapID(PERSONAL_PRODUCT("Chest of Life Insurance")), async () => {
-                    When("I dismiss this screen", when.dismissFibIntro, async () => {
-                        Then("I should be on the choose your style screen", then.textVisible("Choose your style"))
-                        Then("I should see the style options", then.styleOptionsVisible)
-                })
+                    Then("I should see the upgrade modal", then.textVisible("Upgrade"))
+                    When("I dismiss the upgrade modal", when.tapText("Upgrade"), async()=>{
+                        When("I dismiss this screen", when.dismissFibIntro, async () => {
+                            Then("I should be on the choose your style screen", then.textVisible("Choose your style"))
+                            Then("I should see the style options", then.styleOptionsVisible)
+                        })
+                    })
                 When("I tap continue", when.tapText("Continue"), async () => {
                     Then("I should see the great choice screen", then.multipleTextVisible(["Yugi", "Okay"]))
                     })
