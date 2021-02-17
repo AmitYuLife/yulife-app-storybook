@@ -56,25 +56,28 @@ const YuEarnRateModal = () => {
         <View style={styles.footerWrapper}>
           <TextWithBoldText style={styles.footer} value={COPY} />
         </View>
-        <Button wrapperStyle={styles.confirm} size="Large" type="Primary" onPress={dismissOverlay} label="Got it!" />
         <View style={styles.bottomPad} />
       </ScrollView>
+      <View pointerEvents="box-none" style={styles.confirmWrapper}>
+        <Button wrapperStyle={styles.confirm} size="Large" type="Primary" onPress={dismissOverlay} label="Got it!" />
+      </View>
     </GenericOverlay>
   );
 };
 
-const headingWrapperMarginTop = Platform.select({
-  ios: media.select(
-    [
-      {
-        condition: Style.DEVICE_HEIGHT <= media.DEVICES.iPhone8.height,
-        value: Style.adjust(80),
-      },
-    ],
-    Style.adjust(80)
-  ),
-  android: Style.adjust(20),
-});
+const CTA_BOTTOM = media.select(
+  [
+    {
+      condition: Platform.OS === "ios" && Style.DEVICE_HEIGHT >= media.DEVICES.iPhone12ProMax.height,
+      value: 128,
+    },
+    {
+      condition: Platform.OS === "ios" && Style.hasNotch,
+      value: 120,
+    },
+  ],
+  92
+);
 
 const styles = StyleSheet.create({
   wrapper: {
@@ -99,7 +102,7 @@ const styles = StyleSheet.create({
     width: "100%",
     justifyContent: "center",
     alignItems: "center",
-    marginTop: headingWrapperMarginTop,
+    marginTop: Style.adjust(20),
   } as ViewStyle,
   heading: {
     fontSize: Style.adjust(30),
@@ -115,7 +118,16 @@ const styles = StyleSheet.create({
     lineHeight: Style.adjust(24),
   } as TextStyle,
   confirm: {
-    marginTop: Style.adjust(24),
+    position: "absolute",
+    bottom: CTA_BOTTOM,
+  } as ViewStyle,
+  confirmWrapper: {
+    position: "absolute",
+    top: 0,
+    bottom: 0,
+    left: 0,
+    right: 0,
+    height: Style.DEVICE_HEIGHT,
   } as ViewStyle,
 });
 
