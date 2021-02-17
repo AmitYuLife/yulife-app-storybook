@@ -1,5 +1,6 @@
 import React, { memo, useMemo, useState } from "react";
-import { Image, StyleSheet, ViewStyle, ImageStyle, Platform, ActivityIndicator, View } from "react-native";
+import { StyleSheet, ViewStyle, Platform, ActivityIndicator, View } from "react-native";
+import FastImage from "react-native-fast-image";
 import { Style, Colours } from "@styles";
 import { ItemSet } from "./item-set/item-set";
 import { TouchableOpacityWithDelay } from "@components/molecules";
@@ -30,7 +31,7 @@ const _AvatarAndEquipment = () => {
     return [[chest, gloves, pants, boots], additional];
   }, [data]);
 
-  const handleImageLoad = () => setShowLoading(false);
+  const handleImageLoad = (isLoading: boolean) => () => setShowLoading(isLoading);
 
   if (!avatarSource) {
     return null;
@@ -41,7 +42,13 @@ const _AvatarAndEquipment = () => {
       <ItemSet items={left} />
       <TouchableOpacityWithDelay onPress={navigateToAvatarModal} style={styles.avatarWrapper}>
         {!showLoading ? null : <ActivityIndicator color={Colours.darkHotPink} style={styles.activityIndicator} />}
-        <Image resizeMode="contain" style={styles.avatar} source={avatarSource} onLoad={handleImageLoad} />
+        <FastImage
+          onLoadStart={handleImageLoad(true)}
+          onLoad={handleImageLoad(false)}
+          style={styles.avatar}
+          resizeMode="contain"
+          source={avatarSource}
+        />
       </TouchableOpacityWithDelay>
       <ItemSet items={right} />
     </View>
@@ -96,7 +103,7 @@ const styles = StyleSheet.create({
   avatar: {
     width: AVATAR_WIDTH,
     height: AVATAR_HEIGHT,
-  } as ImageStyle,
+  },
 });
 
 export const AvatarAndEquipment = memo(_AvatarAndEquipment);
