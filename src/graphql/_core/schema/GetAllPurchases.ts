@@ -31,6 +31,7 @@ export interface GetAllPurchases_getAllPurchases_reward {
   name: string | null;
   code: string | null;
   description: string | null;
+  expiry_date_policy: string | null;
   card_image_url: string | null;
   terms_and_conditions_url: string | null;
   loyalty_programme: (string | null)[] | null;

@@ -26,9 +26,15 @@ class WegiftRewardConfirmedContainer extends Component<IProps, IState> {
     const {
       purchase: { name, reward, createdAt, expiry_date },
     } = this.props;
+    const { expiry_date_policy } = reward;
+
     const { isAccessingUrl } = this.state;
+
     const purchaseDate = moment(new Date(createdAt).toISOString()).format("DD MMM YYYY");
-    const validDate = moment(new Date(expiry_date).toISOString()).format("DD MMM YYYY");
+
+    const validDate = expiry_date
+      ? moment(new Date(expiry_date).toISOString()).format("DD MMM YYYY")
+      : expiry_date_policy || null;
 
     return (
       <WegiftRewardConfirmedScreen

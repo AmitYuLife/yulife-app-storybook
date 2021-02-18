@@ -19,6 +19,7 @@ const Description: FC<IProps> = ({ duel, type, userId }) => {
   const user = duel.opponents.find((dueller) => dueller.userId === userId);
 
   const updatedAt = moment((duel as GetDuelsToday_getDuelsToday).updatedAt);
+
   const fromNow = updatedAt
     .fromNow()
     .replace(/an hour/i, "1h")

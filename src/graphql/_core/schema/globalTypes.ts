@@ -95,7 +95,6 @@ export enum ScreeningStatus {
 }
 
 export enum UserNotificationsType {
-  activityInduced = "activityInduced",
   challengeCompletion = "challengeCompletion",
   dailyChallengeReminder = "dailyChallengeReminder",
   duels = "duels",
