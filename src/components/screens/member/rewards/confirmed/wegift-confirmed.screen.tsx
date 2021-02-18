@@ -83,14 +83,16 @@ class WegiftRewardsConfirmed extends React.PureComponent<Props, IState> {
               <Text style={styles.textSizeDefault}>{purchaseDate}</Text>
             </View>
           </View>
-          <View style={styles.dateRowWrapper}>
-            <View style={styles.dateLabelWrapper}>
-              <Text style={styles.textSizeDefault}>Valid date</Text>
+          {validDate ? (
+            <View style={styles.dateRowWrapper}>
+              <View style={styles.dateLabelWrapper}>
+                <Text style={styles.textSizeDefault}>Valid date</Text>
+              </View>
+              <View style={styles.dateWrapper}>
+                <Text style={styles.textSizeDefault}>{validDate}</Text>
+              </View>
             </View>
-            <View style={styles.dateWrapper}>
-              <Text style={styles.textSizeDefault}>{validDate}</Text>
-            </View>
-          </View>
+          ) : null}
           <RewardItemContent
             description={description}
             instructions={redeemInstructions}

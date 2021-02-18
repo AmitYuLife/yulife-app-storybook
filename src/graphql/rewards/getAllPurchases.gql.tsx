@@ -33,6 +33,7 @@ export const GQL_QUERY_GET_ALL_PURCHASES = gql`
         name
         code
         description
+        expiry_date_policy
         card_image_url
         terms_and_conditions_url
         loyalty_programme

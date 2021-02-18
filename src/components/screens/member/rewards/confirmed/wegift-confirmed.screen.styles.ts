@@ -32,6 +32,7 @@ export default StyleSheet.create({
   } as ViewStyle,
   image: {
     ...imageDimensions,
+    resizeMode: "contain",
   } as ImageStyle,
   imageWrapper: {
     marginBottom: Style.SCALE_UP_AND_DOWN(50),
