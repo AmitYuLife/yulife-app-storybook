@@ -23,7 +23,7 @@ describe("getImageStyle", () => {
   it("should return bottom & right of 0", () => {
     expect(getImageStyle("desertFox")).toHaveProperty("position", "absolute");
     expect(getImageStyle("desertFox")).toHaveProperty("bottom", 0);
-    expect(getImageStyle("desertFox")).toHaveProperty("right", 0);
+    expect(getImageStyle("desertFox")).toHaveProperty("left", 0);
   });
 
   it("should return top & right of 0 when input is null", () => {
