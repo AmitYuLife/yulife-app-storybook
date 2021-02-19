@@ -49,106 +49,37 @@ export const getLockedImageStyle = (image: Images): ImageStyle => {
 
 export const getImageStyle = (image: Images): ImageStyle => {
   const position = {} as { bottom?: number; left?: number; right?: number; top?: number };
-  const dimensions = {} as { height?: number; width?: number };
+  const dimensions = { width: Style.adjust(165), height: Style.adjust(166) } as { height?: number; width?: number };
 
   switch (image) {
     case IMAGES.SQUIRREL:
-      position.bottom = 0;
-      position.left = 0;
-      break;
     case IMAGES.RABBIT:
-      position.bottom = 0;
-      position.left = 0;
-      dimensions.height = Style.adjust(119);
-      dimensions.width = Style.adjust(101);
-      break;
-    case IMAGES.SNAIL:
-      position.bottom = 0;
-      position.right = Style.adjust(5);
-      break;
-    case IMAGES.BIRD:
-      position.bottom = 0;
-      position.right = 0;
-      dimensions.width = 143;
-      dimensions.height = 99;
-      break;
-    case IMAGES.OTTER:
-      position.bottom = 0;
-      position.right = 0;
-      dimensions.height = Style.adjust(128);
-      break;
-    case IMAGES.WHALE:
-      position.bottom = 0;
-      position.right = Style.adjust(10);
-      dimensions.height = Style.adjust(120);
-      break;
-    case IMAGES.DOLPHIN:
-      position.bottom = 0;
-      position.right = Style.adjust(5);
-      dimensions.height = Style.adjust(128);
-      break;
-    case IMAGES.TORTOISE:
-      position.bottom = 0;
-      position.right = 0;
-      dimensions.height = Style.adjust(128);
-      break;
-    case IMAGES.BIGHORN_SHEEP:
-      position.bottom = 0;
-      position.right = -10;
-      dimensions.height = Style.adjust(130);
-      break;
-    case IMAGES.CAMEL:
-      position.bottom = 0;
-      position.right = 0;
-      dimensions.height = Style.adjust(128);
-      break;
-    case IMAGES.MEERKAT:
-      position.bottom = 0;
-      position.right = Style.adjust(15);
-      break;
-    case IMAGES.DESERT_FOX:
-      position.bottom = 0;
-      position.right = 0;
-      dimensions.height = Style.adjust(130);
-      break;
     case IMAGES.WOLF:
+    case IMAGES.DEER:
+    case IMAGES.CHAMELEON:
+    case IMAGES.HEDGEDOG:
+    case IMAGES.HEDGEDOG_FISH:
+    case IMAGES.OTTER:
+    case IMAGES.BEAR:
+    case IMAGES.WHALE:
+    case IMAGES.MEERKAT:
+    case IMAGES.DESERT_FOX:
       position.left = 0;
       position.bottom = 0;
       break;
-    case IMAGES.DEER:
-      position.left = Style.defaultShrinkThreshold ? -12 : 0;
-      position.bottom = 0;
-      break;
+
+    case IMAGES.SNAIL:
+    case IMAGES.BIRD:
+    case IMAGES.DOLPHIN:
+    case IMAGES.TORTOISE:
+    case IMAGES.BIGHORN_SHEEP:
+    case IMAGES.CAMEL:
     case IMAGES.WHITE_BIGHORN_SHEEP:
-      position.right = Style.defaultShrinkThreshold ? -10 : 0;
-      position.bottom = 0;
-      break;
     case IMAGES.OWL:
-      position.right = Style.defaultShrinkThreshold ? -10 : 0;
-      position.bottom = 0;
-      break;
-    case IMAGES.BEAR:
       position.right = 0;
       position.bottom = 0;
-      dimensions.width = Style.adjust(182);
-      dimensions.height = Style.adjust(182);
       break;
-    case IMAGES.CHAMELEON:
-      position.left = 0;
-      position.bottom = 0;
-      break;
-    case IMAGES.HEDGEDOG:
-      position.left = 0;
-      position.bottom = 0;
-      dimensions.height = Style.adjust(128);
-      dimensions.width = Style.adjust(128);
-      break;
-    case IMAGES.HEDGEDOG_FISH:
-      position.left = 0;
-      position.bottom = 0;
-      dimensions.height = Style.adjust(165);
-      dimensions.width = Style.adjust(165);
-      break;
+
     default:
       position.top = 0;
       position.right = 0;
