@@ -96,7 +96,7 @@ Feature("As a user I can navigate through member routes correctly", async () => 
     })
 
     Scenario("I can view all the reward screens", scenario.start, async () => {
-        Given("I login as a user", given.loginAsUser(CUSTOMER_2, AUTH_2), async () => {
+        Given("I login as a user", given.loginAsUser(CUSTOMER_8, AUTH_8), async () => {
             When("I go to rewards", when.tapID(NAV_BAR("rewards")), async () => {
                 Then("I should be on the rewards screen", then.idVisible(REWARDS_SCREEN, 2000))
                 Then("I should see a John Lewis reward", then.rewardVisible(REWARDS_JOHN_LEWIS))
