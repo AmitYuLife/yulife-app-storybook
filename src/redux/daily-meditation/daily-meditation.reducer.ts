@@ -89,6 +89,8 @@ const updateDailyMeditationSucces = (state: IDailyMeditationStore, data: UpsertP
       lastUpdated: updatedAt,
     };
   }
+
+  return state;
 };
 
 const updatePersistedState = (state: IDailyMeditationStore, persistedState: IDailyMeditationStore) => {
