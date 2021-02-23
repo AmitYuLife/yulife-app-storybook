@@ -17,6 +17,5 @@ export const employerProducts: YuProductId[] = [
   YuProductId.group_income_protection,
 ];
 export const personalItems: YuItemSlot[] = [YuItemSlot.chest, YuItemSlot.gloves, YuItemSlot.boots, YuItemSlot.pants];
-
 export const getIsEmployerProduct = (item: YuProductId) => employerProducts.includes(item);
 export const getIsPersonalItem = (item: YuItemSlot) => personalItems.includes(item);
