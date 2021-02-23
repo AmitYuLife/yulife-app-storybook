@@ -1,5 +1,6 @@
 import React, { memo } from "react";
 import { YuScreen } from "./yu-screen";
+import { YuScreen as YuScreenTP715 } from "./yu-screen_tp_712";
 import { YuScreenLayout } from "./yu-screen-layout";
 import { GetYulifer } from "@graphql/_core/schema";
 import { GQL_QUERY_GET_YULIFER } from "@graphql/yuscreen";
@@ -7,6 +8,7 @@ import { YuScreenLoading } from "./yu-screen-loading";
 import { useQuery } from "@apollo/react-hooks";
 import { useSelector } from "react-redux";
 import { getShowYuscreenIntro } from "@redux/onboarding/onboarding.selectors";
+import { getUserFeatures } from "@redux/user/user.selectors";
 import { YuScreenIntro } from "./yu-screen-intro/yu-screen-intro";
 import { useTapBackTwiceToExit } from "@services/hooks/useTapBackTwiceToExit";
 import { IMainTabsProps } from "@navigation/root";
@@ -23,12 +25,17 @@ const _YuScreenContainer = (props: ConnectedState) => {
   useTapBackTwiceToExit(props.componentId);
 
   const showIntro = useSelector(getShowYuscreenIntro);
+  const showNewYuScreen = useSelector(getUserFeatures).showNewYuScreen;
 
   if (showIntro) {
     return <YuScreenIntro />;
   }
 
-  return <YuScreenLayout>{loading || !data ? <YuScreenLoading /> : <YuScreen />}</YuScreenLayout>;
+  return (
+    <YuScreenLayout>
+      {loading || !data ? <YuScreenLoading /> : showNewYuScreen ? <YuScreenTP715 /> : <YuScreen />}
+    </YuScreenLayout>
+  );
 };
 
 const YuScreenContainer = memo(_YuScreenContainer);

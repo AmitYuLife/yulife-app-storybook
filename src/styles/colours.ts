@@ -262,6 +262,11 @@ export default {
   solid: {
     grey: "#F0F0F0",
   },
+  metallic: {
+    m100: "#EFF0FA",
+    m300: "#B9B9CC",
+    m500: "#87879F",
+  },
   hexToRGB,
   rgbToHex,
   toGrayScale,

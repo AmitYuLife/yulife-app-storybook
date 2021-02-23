@@ -1,7 +1,8 @@
 import { ProductSvg } from "@atoms";
+import { YuItemSlot } from "@graphql/_core/schema/globalTypes";
 import { View } from "react-native";
-import { YuItemSlot } from "../../../../../graphql/_core/schema/globalTypes";
 
+// @TODO: Confirm with the team if we can delete this function/svgs, since this icons will come from the api from now on
 export function getProductIcon(icon: YuItemSlot) {
   switch (icon) {
     case YuItemSlot.clockPendant:
