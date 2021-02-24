@@ -31,7 +31,6 @@ const _AvatarAndEquipment = () => {
         <TouchableOpacityWithDelay onPress={navigateToAvatarModal} style={styles.avatarWrapper}>
           {avatarSource ? (
             <>
-              {showLoading ? <ActivityIndicator color={Colours.darkHotPink} /> : null}
               <FastImage
                 onLoadStart={handleImageLoad(true)}
                 onLoad={handleImageLoad(false)}
@@ -39,6 +38,7 @@ const _AvatarAndEquipment = () => {
                 resizeMode="contain"
                 source={avatarSource}
               />
+              {showLoading ? <ActivityIndicator style={{ position: "absolute" }} color={Colours.darkHotPink} /> : null}
             </>
           ) : (
             <EmptyAvatar />
