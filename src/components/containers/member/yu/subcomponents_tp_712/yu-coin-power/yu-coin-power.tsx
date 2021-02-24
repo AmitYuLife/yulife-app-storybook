@@ -66,6 +66,7 @@ const INFO_WRAPPER_MARGIN_RIGHT = Platform.select({
 const styles = StyleSheet.create({
   wrapper: {
     marginTop: Style.adjust(24),
+    marginBottom: 40,
     height: Style.adjust(144),
     flexDirection: "row",
     borderWidth: 1,

@@ -83,11 +83,12 @@ export const ToolTip = () => {
       return null;
     }
 
-    const { left, right } = DATA;
+    const { left, right, bottom } = DATA;
 
     const itemsLeft = Object.keys(left).map((i) => left[i]);
     const itemsRight = Object.keys(right).map((i) => right[i]);
-    const allProducts = [...itemsLeft, ...itemsRight];
+    const itemsBottom = Object.keys(bottom).map((i) => bottom[i]);
+    const allProducts = [...itemsLeft, ...itemsRight, ...itemsBottom];
     const item = allProducts.find((i) => i?.productId === productType.id);
     //TODO: There is a better way of doing this, which we can do when we have the api ready, because involve changing the YuScreenProductContext
 
