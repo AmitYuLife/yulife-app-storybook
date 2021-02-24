@@ -18,3 +18,11 @@ export const getExchangeRate = createSelector(reducer, exchangeRateSelector);
 
 const dailyStepsIsFetchingSelector = (state: State) => state.isFetching;
 export const getDailyStepsIsFetching = createSelector(reducer, dailyStepsIsFetchingSelector);
+
+const dailyStepsSyncSelector = ({ isServerFetchedThisSession, serverSteps, isSyncing, exchangeRate }: State) => ({
+  serverSteps,
+  isServerFetchedThisSession,
+  isSyncing,
+  exchangeRate,
+});
+export const getDailyStepsSyncState = createSelector(reducer, dailyStepsSyncSelector);
