@@ -23,17 +23,6 @@ export const GQL_QUERY_GET_YULIFER_WITH_AVATAR = gql`
       avatar {
         ...YuAvatar
       }
-      products {
-        employer {
-          ...YuProduct
-        }
-        personal {
-          ...YuProduct
-        }
-        charms {
-          ...YuProduct
-        }
-      }
     }
   }
 `;
