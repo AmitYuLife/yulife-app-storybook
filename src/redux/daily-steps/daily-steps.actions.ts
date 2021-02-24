@@ -4,7 +4,8 @@ import { SyncAction } from "../_core/types";
 export const START_DAILY_STEPS = "START_DAILY_STEPS";
 export const START_STEPS_SYNCING = "START_STEPS_SYNCING";
 export const UPDATE_DAILY_STEPS_NO_NEW_DATA = "UPDATE_DAILY_STEPS_NO_NEW_DATA";
-export const UPDATE_DAILY_STEPS_SUCCESS = "UPDATE_DAILY_STEPS_SUCCESS";
+export const UPDATE_DAILY_STEPS_SUCCESS_FROM_REMOTE = "UPDATE_DAILY_STEPS_SUCCESS_FROM_REMOTE";
+export const UPDATE_DAILY_STEPS_SUCCESS_FROM_LOCAL = "UPDATE_DAILY_STEPS_SUCCESS_FROM_LOCAL";
 export const UPDATE_DAILY_STEPS_FAILED = "UPDATE_DAILY_STEPS_FAILED";
 export const STEPS_SINCE_LAST_UPDATED_SUCCESS = "STEPS_SINCE_LAST_UPDATED_SUCCESS";
 
@@ -16,9 +17,14 @@ export const startStepsSyncing = (): SyncAction => ({
   type: START_STEPS_SYNCING,
 });
 
-export const updateDailyStepsSuccess = (results: UpsertPassiveChallenge) => ({
+export const updateDailyStepsSuccessFromRemote = (results: UpsertPassiveChallenge) => ({
   payload: results,
-  type: UPDATE_DAILY_STEPS_SUCCESS,
+  type: UPDATE_DAILY_STEPS_SUCCESS_FROM_REMOTE,
+});
+
+export const updateDailyStepsSuccessFromLocal = (steps: number) => ({
+  payload: steps,
+  type: UPDATE_DAILY_STEPS_SUCCESS_FROM_LOCAL,
 });
 
 export const updateDailyStepsFailed = (error: string) => ({

@@ -12,7 +12,7 @@ import {
   UPDATE_DAILY_MEDITATION_EMPTY_RESULT,
   UPDATE_DAILY_MEDITATION_SUCCESS,
 } from "../daily-meditation/daily-meditation.actions";
-import { UPDATE_DAILY_STEPS_SUCCESS, START_DAILY_STEPS } from "../daily-steps/daily-steps.actions";
+import { UPDATE_DAILY_STEPS_SUCCESS_FROM_REMOTE, START_DAILY_STEPS } from "../daily-steps/daily-steps.actions";
 import { GET_USER_SUCCESS, LOGIN_USER_SUCCESS, LOGOUT_SUCCESS } from "../user/user.actions";
 
 export interface ICoinsStore {
@@ -49,7 +49,7 @@ const coinsReducer = (state: ICoinsStore = getInitialState(), action: SyncAction
       return startDailyStepsSuccess(state);
     case UPDATE_DAILY_MEDITATION_SUCCESS:
       return updateDailyMeditationSuccess(state, action.payload);
-    case UPDATE_DAILY_STEPS_SUCCESS:
+    case UPDATE_DAILY_STEPS_SUCCESS_FROM_REMOTE:
       return updateDailyStepsSuccess(state, action.payload);
     case LOGIN_USER_SUCCESS:
       return loginUserSuccess(state, action.payload);
