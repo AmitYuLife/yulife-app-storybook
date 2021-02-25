@@ -360,3 +360,13 @@ export const formatPostCode = (postCode: string) => {
     .toUpperCase()
     .replace(/^(.*)(\d)/, "$1 $2");
 };
+
+// Re-formats the result of moment.fromNow() so that "minute" becomes "m" and "hour" becomes "h"
+export const minifiedFromNow = (time: moment.Moment): string => {
+  return time
+    .fromNow()
+    .replace(/an hour/i, "1h")
+    .replace(/ hours/i, "h")
+    .replace(/a minute/i, "1m")
+    .replace(/ minutes/i, "m");
+};

@@ -14,6 +14,7 @@ export * from "./CreateActiveChallenge";
 export * from "./CreateLeaderboard";
 export * from "./CreateTopUpsQuote";
 export * from "./DeleteConnection";
+export * from "./DuelOpponent";
 export * from "./EarnRateDetails";
 export * from "./GetActivityHistory";
 export * from "./GetAllPurchases";

@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { Text } from "@atoms";
 import { View, StyleSheet, ViewStyle, TextStyle } from "react-native";
-import { addCommasToNumber } from "@services/utils";
+import { addCommasToNumber, minifiedFromNow } from "@services/utils";
 import { GetDuelsTomorrow_getDuelsTomorrow, GetDuelsToday_getDuelsToday } from "@graphql/_core/schema";
 import moment from "moment";
 import { Colours, Style } from "@styles";
@@ -18,14 +18,11 @@ const Description: FC<IProps> = ({ duel, type, userId }) => {
   const opponent = duel.opponents.find((dueller) => dueller.userId !== userId);
   const user = duel.opponents.find((dueller) => dueller.userId === userId);
 
-  const updatedAt = moment((duel as GetDuelsToday_getDuelsToday).updatedAt);
+  const lastTimeOpponentDataRetrieved = opponent.lastTimeOpponentDataRetrieved
+    ? moment(opponent.lastTimeOpponentDataRetrieved)
+    : moment().startOf("day");
 
-  const fromNow = updatedAt
-    .fromNow()
-    .replace(/an hour/i, "1h")
-    .replace(/ hours/i, "h")
-    .replace(/a minute/i, "1m")
-    .replace(/ minutes/i, "m");
+  const fromNow = minifiedFromNow(lastTimeOpponentDataRetrieved);
 
   if (type === "today") {
     return (
@@ -40,7 +37,7 @@ const Description: FC<IProps> = ({ duel, type, userId }) => {
     if (duel.status === "pending_submission") {
       return (
         <View style={styles.wrapper}>
-          <Text style={styles.text}>Syncing steps</Text>
+          <Text style={styles.text}>Waiting for their steps to sync</Text>
         </View>
       );
     }
