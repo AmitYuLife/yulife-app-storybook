@@ -19,11 +19,10 @@ export const YuScreen = () => {
           <AvatarAndEquipment />
           <YuCoinPower />
           <View style={styles.padBot} />
-          {product.type === "avatar" ? (
-            <View style={styles.avatar}>
-              <ToolTip />
-            </View>
-          ) : null}
+          <View style={styles.avatar}>
+            <ToolTip />
+          </View>
+          <View style={styles.padBot} />
         </ScrollView>
       </View>
     </YuScreenProductContext.Provider>
@@ -48,12 +47,12 @@ const PAD_BOT = Platform.select({
     [
       {
         condition: Style.hasNotch,
-        value: Style.adjust(60),
+        value: Style.adjust(50),
       },
     ],
     Style.adjust(88)
   ),
-  android: Style.adjust(60),
+  android: Style.adjust(50),
 });
 
 const styles = StyleSheet.create({

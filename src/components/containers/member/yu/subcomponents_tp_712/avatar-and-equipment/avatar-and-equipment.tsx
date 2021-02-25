@@ -64,7 +64,6 @@ const AVATAR_HEIGHT = Style.adjust(328) * 0.95;
 const styles = StyleSheet.create({
   wrapper: {
     flexDirection: "row",
-    marginTop: Style.adjust(12),
     height: Style.adjust(328),
     justifyContent: "space-between",
     paddingLeft: BASE_PADDING,
