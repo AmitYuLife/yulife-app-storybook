@@ -1,19 +1,14 @@
+import { GQL_FRAGMENT_DUEL_OPPONENTS } from "@graphql/_fragments/duel.gql";
 import gql from "graphql-tag";
 import client from "../_core/client";
 
 export const GQL_QUERY_GET_DUELS = gql`
+  ${GQL_FRAGMENT_DUEL_OPPONENTS}
   query GetDuels {
     getDuels {
       id
       opponents {
-        userId
-        score
-        status
-        startDateTime
-        name {
-          firstName
-          lastName
-        }
+        ...DuelOpponent
       }
       duration
       type

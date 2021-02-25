@@ -18,6 +18,7 @@ export interface GetDuels_getDuels_opponents {
   status: string | null;
   startDateTime: string | null;
   name: GetDuels_getDuels_opponents_name | null;
+  lastTimeOpponentDataRetrieved: string | null;
 }
 
 export interface GetDuels_getDuels {

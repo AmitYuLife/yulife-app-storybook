@@ -20,6 +20,7 @@ export interface GetDuelsCompleted_getDuelsCompleted_duels_opponents {
   name: GetDuelsCompleted_getDuelsCompleted_duels_opponents_name | null;
   avatar: string | null;
   duelId: string | null;
+  lastTimeOpponentDataRetrieved: string | null;
 }
 
 export interface GetDuelsCompleted_getDuelsCompleted_duels {

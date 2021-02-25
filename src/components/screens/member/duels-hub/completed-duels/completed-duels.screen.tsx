@@ -28,8 +28,24 @@ async function navigateToDuelsSearch() {
   });
 }
 
-const renderItem: SectionListRenderItem<ItemData> = ({ item }) => {
-  return <DuelEntry duel={item} type="completed" userId={item.userId} dailySteps={item.dailySteps} />;
+const renderItem: SectionListRenderItem<ItemData> = ({
+  item: { id, opponents, duration, type, yucoin, status, userId, dailySteps },
+}) => {
+  return (
+    <DuelEntry
+      duel={{
+        id,
+        opponents,
+        duration,
+        type,
+        yucoin,
+        status,
+      }}
+      type="completed"
+      userId={userId}
+      dailySteps={dailySteps}
+    />
+  );
 };
 
 const renderSectionHeader: SectionListRenderItem<ItemData> = ({ section }) => {
