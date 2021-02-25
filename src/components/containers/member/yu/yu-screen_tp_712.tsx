@@ -19,6 +19,7 @@ export const YuScreen = () => {
           <View style={styles.avatar}>
             <ToolTip />
           </View>
+          <View style={styles.padBot} />
         </ScrollView>
       </View>
     </YuScreenProductContext.Provider>
@@ -43,12 +44,12 @@ const PAD_BOT = Platform.select({
     [
       {
         condition: Style.hasNotch,
-        value: Style.adjust(60),
+        value: Style.adjust(100),
       },
     ],
     Style.adjust(88)
   ),
-  android: Style.adjust(60),
+  android: Style.adjust(115),
 });
 
 const styles = StyleSheet.create({
