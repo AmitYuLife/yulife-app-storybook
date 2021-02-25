@@ -408,55 +408,12 @@ export interface GetYuliferWithAvatar_getYulifer_avatar {
   glasses: GetYuliferWithAvatar_getYulifer_avatar_glasses | null;
 }
 
-export interface GetYuliferWithAvatar_getYulifer_products_employer {
-  productId: string | null;
-  policyNumber: string | null;
-  earnRate: number | null;
-  description: string | null;
-  active: boolean | null;
-  icon: string | null;
-  name: string | null;
-  itemSlot: string | null;
-  status: string | null;
-}
-
-export interface GetYuliferWithAvatar_getYulifer_products_personal {
-  productId: string | null;
-  policyNumber: string | null;
-  earnRate: number | null;
-  description: string | null;
-  active: boolean | null;
-  icon: string | null;
-  name: string | null;
-  itemSlot: string | null;
-  status: string | null;
-}
-
-export interface GetYuliferWithAvatar_getYulifer_products_charms {
-  productId: string | null;
-  policyNumber: string | null;
-  earnRate: number | null;
-  description: string | null;
-  active: boolean | null;
-  icon: string | null;
-  name: string | null;
-  itemSlot: string | null;
-  status: string | null;
-}
-
-export interface GetYuliferWithAvatar_getYulifer_products {
-  employer: (GetYuliferWithAvatar_getYulifer_products_employer | null)[] | null;
-  personal: (GetYuliferWithAvatar_getYulifer_products_personal | null)[] | null;
-  charms: (GetYuliferWithAvatar_getYulifer_products_charms | null)[] | null;
-}
-
 export interface GetYuliferWithAvatar_getYulifer {
   userId: string | null;
   earnRate: number | null;
   isAvatarCreated: boolean | null;
   avatarRemoteFiles: GetYuliferWithAvatar_getYulifer_avatarRemoteFiles | null;
   avatar: GetYuliferWithAvatar_getYulifer_avatar | null;
-  products: GetYuliferWithAvatar_getYulifer_products | null;
 }
 
 export interface GetYuliferWithAvatar {
