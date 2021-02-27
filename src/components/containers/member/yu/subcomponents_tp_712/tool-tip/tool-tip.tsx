@@ -1,0 +1,389 @@
+import React, { memo, useMemo, useCallback, useEffect, useContext } from "react";
+import { StyleSheet, View, ViewStyle, TextStyle, ImageStyle, Image } from "react-native";
+import { Text, Button } from "@atoms";
+import { Style, Colours } from "@styles";
+import { CloseSvg } from "@atoms";
+import { TouchableOpacityWithDelay } from "@molecules";
+import {
+  GetTopUpsQuote,
+  GetTopUpsQuoteVariables,
+  GetYulifer,
+  UpdateTopUpsQuoteVariables,
+  UpdateTopUpsQuote_updateFibQuote,
+} from "@graphql/_core/schema";
+import { useLazyQuery, useMutation, useQuery } from "@apollo/react-hooks";
+import { GQL_QUERY_GET_YULIFER } from "@graphql/yuscreen";
+import LinearGradient from "react-native-linear-gradient";
+import { navigateToProductScreen } from "../../navigation/navigateToProductScreen";
+import { useSelector, useDispatch } from "react-redux";
+import { getFIBState } from "@redux/product/product.selectors";
+import { refreshFIBStore, resetFIBUnderwritingJourney } from "@redux/product/product.actions";
+import { CoinLabel } from "./coin-label";
+import { useBackHandler } from "@services/hooks/useBackHandler";
+import { ProductCode, YuProductId, YuProductStatus, CoverType } from "@graphql/_core/schema/globalTypes";
+import { GQL_MUTATION_UPDATE_TOP_UPS_QUOTE } from "@graphql/products/updateTopUpsQuote";
+import { GQL_QUERY_GET_TOP_UPS_QUOTE } from "@graphql/products";
+import { IProduct } from "../../../../products/fib/fib.types";
+import {
+  logProductItemInspectedActionCreator,
+  logProductItemViewedActionCreator,
+} from "@redux/logging/logging.actions";
+import { YuScreenProductContext } from "../../yu-screen.context";
+import { getToolTipName } from "@services/products";
+
+import { DATA } from "../avatar-and-equipment/mock-delete-this-later/apiResponse.delete.this";
+
+export const ToolTip = () => {
+  const dispatch = useDispatch();
+  const { product: productType, setProduct } = useContext(YuScreenProductContext);
+
+  const onClose = useCallback(() => setProduct({ type: "avatar", id: null }), [setProduct]);
+
+  const { data } = useQuery<GetYulifer>(GQL_QUERY_GET_YULIFER, {
+    fetchPolicy: "cache-only",
+  });
+
+  const [getTopUpsQuery, { data: topUpsData }] = useLazyQuery<GetTopUpsQuote, GetTopUpsQuoteVariables>(
+    GQL_QUERY_GET_TOP_UPS_QUOTE,
+    {
+      onCompleted: (responseData) => {
+        if (responseData?.getTopUpsQuote?.quoteId) {
+          dispatch(refreshFIBStore(responseData.getTopUpsQuote));
+        }
+      },
+    }
+  );
+  const fibState = useSelector(getFIBState);
+  const { productEntityId, latestQuoteId } = fibState;
+
+  useEffect(() => {
+    dispatch(logProductItemViewedActionCreator(productType.id));
+  }, [productType.id, dispatch]);
+
+  useEffect(() => {
+    (() => {
+      if (productType.id === YuProductId.family_income_benefit && !topUpsData?.getTopUpsQuote?.quoteId) {
+        if (productEntityId && latestQuoteId) {
+          getTopUpsQuery({
+            variables: {
+              product: ProductCode.YULFIB,
+              input: {
+                customerProductEntityId: productEntityId,
+                quoteId: latestQuoteId,
+              },
+            },
+          });
+        }
+      }
+    })();
+  }, [getTopUpsQuery, productType.id, productEntityId, latestQuoteId, topUpsData]);
+
+  const product = useMemo(() => {
+    if (!data) {
+      return null;
+    }
+
+    const { left, right, bottom } = DATA;
+
+    const itemsLeft = Object.keys(left).map((i) => left[i]);
+    const itemsRight = Object.keys(right).map((i) => right[i]);
+    const itemsBottom = Object.keys(bottom).map((i) => bottom[i]);
+    const allProducts = [...itemsLeft, ...itemsRight, ...itemsBottom];
+    const item = allProducts.find((i) => i?.productId === productType.id);
+    //TODO: There is a better way of doing this, which we can do when we have the api ready, because involve changing the YuScreenProductContext
+
+    return item;
+  }, [data, productType.id]);
+
+  const [updateFibQuote] = useMutation<UpdateTopUpsQuote_updateFibQuote, UpdateTopUpsQuoteVariables>(
+    GQL_MUTATION_UPDATE_TOP_UPS_QUOTE
+  );
+  const quoteId = fibState.latestQuoteId;
+  const resetFibJourney = useCallback(async () => {
+    if (quoteId) {
+      await updateFibQuote({
+        variables: { archiveQuote: true, quoteId },
+      });
+    }
+
+    dispatch(resetFIBUnderwritingJourney());
+  }, [dispatch, quoteId, updateFibQuote]);
+
+  const handleNavigateToProductScreen = useCallback(() => {
+    dispatch(logProductItemInspectedActionCreator(productType.id));
+
+    onClose();
+    navigateToProductScreen({
+      product,
+      fibState,
+      resetFibJourney,
+    });
+  }, [product, fibState, onClose, resetFibJourney, productType.id, dispatch]);
+
+  useBackHandler(() => {
+    if (!productType.id || !product) {
+      return false;
+    }
+
+    onClose();
+    return true;
+  });
+
+  if (!productType.id || !product) {
+    return null;
+  }
+
+  const { name, status, coverType, picture } = product;
+
+  const isActive = status === YuProductStatus.active;
+  const isLocked = status === YuProductStatus.locked;
+  const isUnlockable = status === YuProductStatus.unlockable;
+
+  return (
+    <View style={StyleSheet.flatten(styles.wrapper)}>
+      <View style={styles.shadow} />
+      <View style={getContentWrapperStyle(coverType, isActive)}>
+        <View style={getTopWrapperStyle(coverType, isActive)}>
+          <MemoizedLinearGradient colorTheme={getLinearGradientColorTheme(coverType, isActive)} />
+
+          <Image resizeMode="contain" source={picture} style={styles.iconWrapper} />
+          <View style={styles.nameWrapper}>
+            <Text bold={true} style={getNameStyle(isActive)}>
+              {isLocked ? "Coming soon" : getToolTipName(name)}
+            </Text>
+          </View>
+          {!isUnlockable ? null : (
+            <View style={styles.statusTextWrapper}>
+              <Text style={styles.statusText}>{"Not equipped"}</Text>
+            </View>
+          )}
+        </View>
+        {isActive ? null : <MemoizedLineBreak />}
+        <View style={getBottomWrapperStyle(coverType, isActive)}>
+          <CoinLabel yuCoinPower={product.earnRate} />
+          <Text style={getCaptionStyle(isActive)}>{product.description}</Text>
+          <Button
+            wrapperStyle={styles.cta}
+            type="Primary"
+            size="Fill"
+            onPress={handleNavigateToProductScreen}
+            {...getButtonProps({ product })}
+          />
+        </View>
+      </View>
+      <TouchableOpacityWithDelay style={styles.close} onPress={onClose}>
+        <CloseSvg type="encircledMono" stroke={isActive ? Colours.neutral.white : Colours.neutral.n200} />
+      </TouchableOpacityWithDelay>
+    </View>
+  );
+};
+
+const MemoizedLineBreak = memo(() => (
+  <LinearGradient
+    style={styles.separator}
+    colors={["#C4C4C400", "#5C5C5CFF", "#C4C4C400"]}
+    start={{ x: 0, y: 0 }}
+    end={{ x: 1, y: 0 }}
+  />
+));
+
+const MemoizedLinearGradient = memo(({ colorTheme = [] }: { colorTheme: string[] }) => {
+  if (!colorTheme.length) {
+    return null;
+  }
+
+  return (
+    <LinearGradient style={styles.backgroundGradient} colors={colorTheme} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} />
+  );
+});
+
+function getLinearGradientColorTheme(coverType: CoverType, isActive: boolean) {
+  if (!isActive) {
+    return [];
+  }
+
+  if (coverType === CoverType.common) {
+    return [Colours.products.fib.commonGradientDark, Colours.products.fib.commonGradientLight];
+  }
+
+  if (coverType === CoverType.rare) {
+    return [Colours.products.fib.rare, Colours.products.fib.rareGradientLight];
+  }
+
+  if (coverType === CoverType.epic) {
+    return [Colours.products.fib.epic, Colours.products.fib.epicGradientLight];
+  }
+
+  return [];
+}
+
+function getButtonProps({ product }: { product: IProduct }) {
+  let label = "";
+  let backgroundColor = Colours.darkHotPink;
+  let shadowColor = Colours.darkHotPinkShadow;
+  let textColor = "white";
+
+  switch (product.status) {
+    case YuProductStatus.locked:
+      label = "Vote now";
+      break;
+    case YuProductStatus.unlockable:
+      label = "Upgrade";
+      break;
+    case YuProductStatus.active:
+      label = "Inspect";
+      backgroundColor = Colours.products.fib[product.coverType];
+      shadowColor = Colours.products.fib[`${product.coverType}Shadow` as keyof typeof Colours["products"]["fib"]];
+      textColor = Colours.neutral.white;
+      break;
+  }
+
+  return {
+    label,
+    backgroundColor,
+    shadowColor,
+    textColor,
+  };
+}
+
+const styles = StyleSheet.create({
+  wrapper: {
+    alignSelf: "center",
+    width: Style.adjust(272),
+    paddingBottom: 4,
+    left: 0,
+  } as ViewStyle,
+  shadow: {
+    position: "absolute",
+    bottom: 0,
+    right: 0,
+    top: 4,
+    left: 4,
+    backgroundColor: "rgba(0,0,0,0.04)",
+    borderRadius: 16,
+  } as ViewStyle,
+  close: {
+    position: "absolute",
+    top: 0,
+    right: 4,
+    padding: 16,
+  } as ViewStyle,
+  nameWrapper: {
+    marginTop: Style.adjust(12),
+  } as TextStyle,
+  separator: {
+    height: 1,
+    width: "100%",
+    opacity: 0.4,
+  } as ViewStyle,
+  backgroundGradient: {
+    ...StyleSheet.absoluteFillObject,
+  } as ViewStyle,
+  cta: {
+    marginTop: Style.adjust(24),
+  } as ViewStyle,
+  statusTextWrapper: {
+    marginTop: Style.adjust(8),
+  } as ViewStyle,
+  statusText: {
+    fontSize: Style.adjust(16),
+    lineHeight: Style.adjust(24),
+    letterSpacing: 0.6,
+    color: Colours.primary.p600,
+    textAlign: "center",
+  } as TextStyle,
+  iconWrapper: {
+    width: Style.adjust(80),
+    height: Style.adjust(80),
+    alignSelf: "center",
+  },
+  icon: {
+    ...StyleSheet.absoluteFillObject,
+    height: 70,
+  } as ImageStyle,
+});
+
+function getContentWrapperStyle(coverType: CoverType, isActive: boolean) {
+  const defaultStyle = {
+    backgroundColor: "white",
+    width: Style.adjust(268),
+    borderWidth: 1,
+    borderColor: Colours.neutral.n400,
+    borderRadius: 16,
+    overflow: "hidden",
+  } as ViewStyle;
+
+  if (isActive) {
+    defaultStyle.backgroundColor = Colours.products.fib[coverType];
+    defaultStyle.borderColor = Colours.products.fib[`${coverType}Shadow` as keyof typeof Colours["products"]["fib"]];
+    defaultStyle.borderWidth = 2;
+  }
+
+  return defaultStyle;
+}
+
+function getTopWrapperStyle(coverType: CoverType, isActive: boolean) {
+  const defaultStyle = {
+    paddingVertical: Style.adjust(24),
+    paddingHorizontal: Style.adjust(24),
+    backgroundColor: "white",
+  };
+
+  if (isActive) {
+    defaultStyle.backgroundColor = Colours.products.fib[coverType];
+  }
+
+  return defaultStyle;
+}
+
+function getBottomWrapperStyle(coverType: CoverType, isActive: boolean) {
+  const defaultStyle = {
+    paddingVertical: Style.adjust(24),
+    paddingHorizontal: Style.adjust(24),
+    backgroundColor: "white",
+  };
+
+  if (isActive) {
+    if (coverType === CoverType.common) {
+      defaultStyle.backgroundColor = Colours.secondary.s10S1;
+    } else if (coverType === CoverType.rare) {
+      defaultStyle.backgroundColor = Colours.secondary.s10S2;
+    } else if (coverType === CoverType.epic) {
+      defaultStyle.backgroundColor = Colours.secondary.s10S3;
+    }
+  }
+
+  return defaultStyle;
+}
+
+function getNameStyle(isActive: boolean) {
+  const defaultStyle = {
+    letterSpacing: 1,
+    color: Colours.neutral.n700,
+    lineHeight: Style.adjust(24),
+    fontSize: Style.adjust(20),
+    textAlign: "center",
+  } as TextStyle;
+
+  if (isActive) {
+    defaultStyle.color = Colours.neutral.white;
+  }
+
+  return defaultStyle;
+}
+
+function getCaptionStyle(isActive: boolean) {
+  const defaultStyle = {
+    fontSize: Style.adjust(16),
+    lineHeight: Style.adjust(24),
+    letterSpacing: 0.6,
+    textAlign: "center",
+    color: Colours.neutral.n700,
+  } as TextStyle;
+
+  if (isActive) {
+    defaultStyle.textAlign = "left";
+  }
+
+  return defaultStyle;
+}

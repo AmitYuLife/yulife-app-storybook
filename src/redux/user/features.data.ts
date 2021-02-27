@@ -44,4 +44,5 @@ export const features = [
   "hideSmartHealthScreen",
   "hideFeedbackModals",
   "showDuels",
+  "showNewYuScreen",
 ];

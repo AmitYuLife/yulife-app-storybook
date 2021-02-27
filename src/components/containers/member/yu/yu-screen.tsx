@@ -1,37 +1,13 @@
-import React, { useState, useMemo } from "react";
+import React, { useState } from "react";
 import { StyleSheet, ViewStyle, View, ScrollView, Platform } from "react-native";
 import { Style, TOP_BAR } from "@styles";
 import media from "@styles/media";
-import { ProductType, YuProductStatus } from "@graphql/_core/schema/globalTypes";
 import { YUSCREEN, YUSCREEN_SCROLL_VIEW } from "@ids";
-import { useQuery } from "@apollo/react-hooks";
-import { GetYulifer } from "@graphql/_core/schema";
-import { GQL_QUERY_GET_YULIFER } from "@graphql/yuscreen";
-import {
-  NameAndLevel,
-  AvatarAndEquipment,
-  YuCoinPower,
-  ProductSet,
-  ToolTip,
-  AvatarCreationPrompt,
-} from "./subcomponents";
+import { NameAndLevel, AvatarAndEquipment, YuCoinPower, ToolTip, AvatarCreationPrompt } from "./subcomponents";
 import { YuScreenProductContext } from "./yu-screen.context";
 
 export const YuScreen = () => {
   const [product, setProduct] = useState({ type: "avatar", id: null });
-
-  const { data } = useQuery<GetYulifer>(GQL_QUERY_GET_YULIFER, {
-    fetchPolicy: "cache-only",
-  });
-
-  const productSets = useMemo(
-    () => [
-      { productType: "alpha" as ProductType, isHidden: !(data?.additional?.[3]?.status === YuProductStatus.active) },
-      { productType: "employer" as ProductType, isHidden: false },
-      { productType: "personal" as ProductType, isHidden: !data?.getYulifer?.avatarRemoteFiles?.pngFull },
-    ],
-    [data]
-  );
 
   return (
     <YuScreenProductContext.Provider value={{ product, setProduct }}>
@@ -42,15 +18,11 @@ export const YuScreen = () => {
           <AvatarCreationPrompt />
           <AvatarAndEquipment />
           <YuCoinPower />
-          {productSets.map(({ productType, isHidden }, index) =>
-            isHidden ? null : <ProductSet key={index} type={productType} />
-          )}
           <View style={styles.padBot} />
-          {product.type === "avatar" ? (
-            <View style={styles.avatar}>
-              <ToolTip />
-            </View>
-          ) : null}
+          <View style={styles.avatar}>
+            <ToolTip />
+          </View>
+          <View style={styles.padBot} />
         </ScrollView>
       </View>
     </YuScreenProductContext.Provider>
@@ -75,12 +47,12 @@ const PAD_BOT = Platform.select({
     [
       {
         condition: Style.hasNotch,
-        value: Style.adjust(60),
+        value: Style.adjust(50),
       },
     ],
     Style.adjust(88)
   ),
-  android: Style.adjust(60),
+  android: Style.adjust(50),
 });
 
 const styles = StyleSheet.create({

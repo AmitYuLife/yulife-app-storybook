@@ -7,7 +7,7 @@ import { CUSTOMER_1, CUSTOMER_18, AUTH_18, CUSTOMER_17, AUTH_17, AUTH_19, CUSTOM
 import {
     GET_STARTED_BUTTON, MALE_BODY, SKIN_TONE, VIEW_TOP_RIGHT_COIN_COUNTER, NAV_BAR, PERSONAL_PRODUCT,
     CHECK_BOX_STATE, SURVEY_SCREEN, SURVEY_TEXT_BOX, FEMALE_BODY, AVATAR_BUILDER_LIST, NO_ITEM_SELECTED, 
-    HEAD_TYPE, YUSCREEN_AVATAR, YUSCREEN, YUMOJI_PODIUM, LEADERBOARD_TITLE, YUCOIN_POWER, YUSCREEN_SCROLL_VIEW,
+    HEAD_TYPE, YUSCREEN_AVATAR, YUSCREEN, YUMOJI_PODIUM, LEADERBOARD_TITLE, YUCOIN_POWER, YUSCREEN_SCROLL_VIEW, AVATAR_ITEM,
 } from "@ids";
 
 
@@ -90,7 +90,8 @@ Feature("I am able to use the yuscreen, create, and edit an Yumoji", async () =>
         })
     })
 
-    Scenario("My earn rate and employer benefits should be correct", scenario.start, async () => {
+    // skipped while new yuscreen in development
+    ScenarioSkip("My earn rate and employer benefits should be correct", scenario.start, async () => {
         Given("I login", given.loginToYuScreen(), async () => {
             Then("I should be on an empty yuscreen tab", then.onEmptyYuscreen(CUSTOMER_1))
             Then("I should see 1x Yucoin power", then.swipeToID(YUSCREEN, YUCOIN_POWER("1"), "up", 3))
@@ -169,42 +170,38 @@ Feature("I am able to use the yuscreen, create, and edit an Yumoji", async () =>
     Scenario("I can complete a survey on the yuscreen", scenario.start, async () => {
         Given("I login", given.loginToYuScreen(true, CUSTOMER_17, AUTH_17), async () => {
             Then("I should see my Yumoji", then.idVisible(YUSCREEN_AVATAR))
-            When("I scroll to Power up and protect yourself", when.swipeToText(YUSCREEN, "Personal Items", "up", 5), async()=>{
-                Then("I should see Power up and protect yourself:", then.textVisible("Personal Items"))
-                When("I scroll to the bottom", when.scrollFromID(YUSCREEN, "up", "fast"), async () => {
-                    Then("I should see a list of 'Coming Soon' options", then.idVisible(PERSONAL_PRODUCT("Income Protection")))
-                })
-                When("I tap the gloves", when.tapID(PERSONAL_PRODUCT("Income Protection")), async () => {
+            When("I tap the locked boots", when.tapID(AVATAR_ITEM("boots", "locked")), async () => {
                     Then("I should see the coming soon modal", then.textVisible("Vote now"))
-                    When("I tap Vote now", when.tapText("Vote now"), async () => {
-                        Then("I should be on the survey screen", then.onSurveyScreen)
-                        Then("I should a dental insurance option, and it should not be selected", then.idVisible(CHECK_BOX_STATE("Dental insurance", false)))
-                    })
-                    When("I tap an option", when.tapText("Dental insurance"), async () => {
-                        Then("This option should be selected", then.idVisible(CHECK_BOX_STATE("Dental insurance", true)))
-                        When("I tap another option", when.tapText("Bicycle insurance"), async () => {
-                            Then("This option should be selected", then.idVisible(CHECK_BOX_STATE("Bicycle insurance", true)))
-                            Then("This Dental insurance should still be selected", then.idVisible(CHECK_BOX_STATE("Dental insurance", true)))
-                            Then("Another option should not be selected", then.idNotVisible(CHECK_BOX_STATE("Car insurance (pay for usage only", false)))
-                        })
-                        When("I scroll to the bottom", when.scrollFromID(SURVEY_SCREEN, "up", "fast"), async () => {
-                            Then("I should see a text box", then.idVisible(SURVEY_TEXT_BOX))
-                            When("I type in the text box", when.typeViaID(SURVEY_TEXT_BOX, "new features!"), async () => {
-                                Then("I should see the text I just typed", then.textVisible("new features!"))
-                            })
-                            Then("I should see a submit button", then.textVisible("Submit"))
-                            When("I tap this submit button", when.tapText("Submit"), async () => {
-                                Then("I should see a Thank You screen", then.onSurveySubmitScreen)
-                                When("I tap Close", when.tapText("Close"), async () => {
-                                    Then("I should be on the yuscreen", then.idVisible(PERSONAL_PRODUCT("Income Protection")))
-                                })
-                            })
-                        })
-                    })
-                })
+            })
+            When("I tap Vote now", when.tapText("Vote now"), async () => {
+                Then("I should be on the survey screen", then.onSurveyScreen)
+                Then("I should a dental insurance option, and it should not be selected", then.idVisible(CHECK_BOX_STATE("Dental insurance", false)))
+            })
+            When("I tap an option", when.tapText("Dental insurance"), async () => {
+                Then("This option should be selected", then.idVisible(CHECK_BOX_STATE("Dental insurance", true)))
+            })
+            When("I tap another option", when.tapText("Bicycle insurance"), async () => {
+                Then("This option should be selected", then.idVisible(CHECK_BOX_STATE("Bicycle insurance", true)))
+                Then("This Dental insurance should still be selected", then.idVisible(CHECK_BOX_STATE("Dental insurance", true)))
+                Then("Another option should not be selected", then.idNotVisible(CHECK_BOX_STATE("Car insurance pay for usage only", false)))
+            })
+            When("I scroll to the bottom", when.scrollFromID(SURVEY_SCREEN, "up", "fast"), async () => {
+                Then("I should see a text box", then.idVisible(SURVEY_TEXT_BOX))
+            })
+            When("I type in the text box", when.typeViaID(SURVEY_TEXT_BOX, "new features!"), async () => {
+                Then("I should see the text I just typed", then.textVisible("new features!"))
+                Then("I should see a submit button", then.textVisible("Submit"))
+            })
+            When("I tap this submit button", when.tapText("Submit"), async () => {
+                Then("I should see a Thank You screen", then.onSurveySubmitScreen)
+            })
+            When("I tap Close", when.tapText("Close"), async () => {
+                Then("I should be on the yuscreen", then.idVisible(AVATAR_ITEM("boots", "locked")))
             })
         })
     })
+
+                       
 
     Scenario("I can create an Yumoji using the female body type", scenario.start, async () => {
         Given("I login and go to the yuscreen", given.loginToYuScreen(true, CUSTOMER_19, AUTH_19), async () => {

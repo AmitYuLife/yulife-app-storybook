@@ -20,6 +20,7 @@ export interface GetDuelsToday_getDuelsToday_opponents {
   name: GetDuelsToday_getDuelsToday_opponents_name | null;
   avatar: string | null;
   duelId: string | null;
+  lastTimeOpponentDataRetrieved: string | null;
 }
 
 export interface GetDuelsToday_getDuelsToday {

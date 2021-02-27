@@ -1,19 +1,5 @@
 import gql from "graphql-tag";
 
-export const GQL_FRAGMENT_PRODUCT = gql`
-  fragment YuProduct on YuliferProduct {
-    productId
-    policyNumber
-    earnRate
-    description
-    active
-    icon
-    name
-    itemSlot
-    status
-  }
-`;
-
 export const GQL_FRAGMENT_AVATAR_PART = gql`
   fragment YuAvatarPart on AvatarPart {
     partId
