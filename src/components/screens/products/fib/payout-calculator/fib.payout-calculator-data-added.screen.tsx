@@ -170,6 +170,7 @@ export const FibPayoutCalculatorDataAddedScreen = memo(function (props: IFibPayo
         {isCustomCover ? null : (
           <View style={styles.packageSelectorWrapper}>
             <PackageSelector
+              selectedPackage={selectedPackage}
               onPackageSelected={onSelectPackage}
               commonCost={coverTypesInfo?.common.actualCost}
               rareCost={coverTypesInfo?.rare.actualCost}

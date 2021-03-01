@@ -1,23 +1,14 @@
 import React, { memo } from "react";
-import { StyleSheet, ViewStyle, View, TextStyle } from "react-native";
+import { StyleSheet, ViewStyle, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { getFIBState } from "@redux/product/product.selectors";
 import { updateFIBAnswerValue } from "@redux/product/product.actions";
 import { Colours, Style } from "@styles";
-import { FIB_GENDER_SCREEN_ID } from "../../../../../../containers/products/fib/data/underwriting-journey-data";
-import { GenderIcon, Text } from "@atoms";
-import { GenderIconType } from "../../../../../../atoms/gender/gender";
-import { TouchableOpacityWithDelay } from "../../../../../../molecules";
+import { FIB_GENDER_SCREEN_ID } from "@containers/products/fib/data/underwriting-journey-data";
+import { BoxOption } from "@atoms";
+import { GenderIconType } from "@atoms/gender/gender";
 import { SEX_BUTTON } from "@ids";
-
-interface GenderBoxProps {
-  title: string;
-  icon: GenderIconType;
-  color: string;
-  active: boolean;
-  backgroundColor: string;
-  onGenderPress: () => void;
-}
+import { BoxLabel } from "./box-label";
 
 const genders = [
   {
@@ -36,47 +27,31 @@ const genders = [
   },
 ];
 
-const GenderBox = memo(function ({ icon, color, title, active, backgroundColor, onGenderPress }: GenderBoxProps) {
-  const shadow = active ? {} : { borderBottomColor: Colours.neutral.n100, borderBottomWidth: 4 };
-
-  return (
-    <TouchableOpacityWithDelay
-      onPress={onGenderPress}
-      activeOpacity={1}
-      style={[styles.boxWrapper, { backgroundColor: active ? backgroundColor : null }, shadow]}
-      testID={SEX_BUTTON(title, active)}
-    >
-      <View style={styles.iconWrapper}>
-        <GenderIcon gender={icon} svgProps={{ color }} />
-      </View>
-      <View style={styles.textWrapper}>
-        <Text bold={true} style={{ color }}>
-          {title}
-        </Text>
-      </View>
-    </TouchableOpacityWithDelay>
-  );
-});
-
 const GenderQuestion = memo(function _GenderQuestion() {
   const dispatch = useDispatch();
   const currentGender = useSelector(getFIBState).answers[FIB_GENDER_SCREEN_ID];
 
   return (
     <View style={styles.wrapper}>
-      {genders.map((genderOptions) => (
-        <GenderBox
-          key={genderOptions.value}
-          title={genderOptions.title}
-          icon={genderOptions.icon}
-          color={genderOptions.color}
-          backgroundColor={genderOptions.backgroundColor}
-          active={currentGender === genderOptions.value}
-          onGenderPress={() =>
-            dispatch(updateFIBAnswerValue({ key: FIB_GENDER_SCREEN_ID, value: genderOptions.value }))
-          }
-        />
-      ))}
+      {genders.map(({ title, color, icon, value, backgroundColor }) => {
+        const active = currentGender === value;
+
+        return (
+          <View key={value} style={styles.boxWrapper}>
+            <BoxOption
+              onPress={() => dispatch(updateFIBAnswerValue({ key: FIB_GENDER_SCREEN_ID, value }))}
+              testID={SEX_BUTTON(title, active)}
+              isSelected={active}
+              selectedStyle={{
+                borderColor: color,
+                backgroundColor,
+              }}
+            >
+              <BoxLabel color={color} icon={icon} title={title} />
+            </BoxOption>
+          </View>
+        );
+      })}
     </View>
   );
 });
@@ -85,25 +60,13 @@ const styles = StyleSheet.create({
   wrapper: {
     flexDirection: "row",
     marginTop: Style.adjust(112, { shrinkMultiplier: 0.5, shrinkThreshold: Style.DEVICE_HEIGHT < 700 }),
-    marginLeft: Style.adjust(32),
-    marginRight: Style.adjust(8),
+    justifyContent: "center",
+    alignItems: "center",
   } as ViewStyle,
   boxWrapper: {
-    borderWidth: 1,
-    borderColor: Colours.neutral.n100,
-    borderRadius: 16,
-    width: "40%",
-    alignItems: "center",
-    marginRight: Style.adjust(24),
-    height: Style.adjust(104),
+    marginHorizontal: Style.adjust(12),
+    flex: 1,
   } as ViewStyle,
-  iconWrapper: { flexDirection: "column", height: "50%", paddingTop: Style.adjust(16) } as ViewStyle,
-  textWrapper: { height: "50%", paddingVertical: Style.adjust(16) } as ViewStyle,
-  genderBoxText: {
-    fontSize: Style.adjust(16),
-    lineHeight: Style.adjust(24),
-    letterSpacing: Style.adjust(0.6),
-  } as TextStyle,
 });
 
 export default GenderQuestion;
