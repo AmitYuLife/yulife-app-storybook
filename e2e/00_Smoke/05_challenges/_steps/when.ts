@@ -26,10 +26,10 @@ export const finishIntro = async () => {
 
 export const dismissStreakIfVisible = (streakDay=1) => async()=>{
     try {
-        await expectIsVisibleViaText(`Completed streak day ${streakDay}`, 2500)
+        await expectIsVisibleViaText(`Completed streak day ${streakDay}`, 5000)
         await navigateViaText("done")
     } catch (e) {
-        return true
+        throw new Error(`Error: Could not find "Completed streak day ${streakDay}"`)
     }
 
 }
