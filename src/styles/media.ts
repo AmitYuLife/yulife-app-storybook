@@ -33,6 +33,10 @@ export const DEVICES = {
     width: 360,
     height: 592,
   },
+  Pixel2: {
+    width: 411,
+    height: 683,
+  },
 };
 
 interface IMediaQuery {
