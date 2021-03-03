@@ -7,6 +7,58 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.3.0] - 2021-03-03
+
+### Features
+
+- Feature: userDuels lastSyncedAt field
+
+### Bugfixes
+
+- Bugfix TP-734: Fix Yugi Ribbon Payout Calculator UI
+- Bugfix: Editing avatar by removing unused GQL_FRAGMENT_PRODUCT from gql
+- Bugfix TP-712: YuScreen margins and align yucoin power card
+- Bugfix: steps infinite fetch after log in
+- Bugfix TP-712: New YuScreen
+- Bugfix ENG-1675: Challenge levels images have transparent space
+- Bugfix: Return previous state on daily meditation reducer
+- Bugfix ENG-1366: redeemed rewards
+- Bugfix TP-703: Pin the button bottom on yucoin power explainer
+- Bugfix ENG-1698: Standardise top bar on duels
+
+### Tasks
+
+- Task TP-741: Add Story for ValueDescriptionText
+- Task TP-716: Refactor box buttons
+- Task TP-715: Personal Products / Task TP-714 Employer Products
+- Task: Remove product from YuScreen
+
+### Improvements
+
+- Improvement: step requests
+
+### Extra
+
+- Fix
+- Detox: Chest scenario fix
+- [HOTFIX] payment method no longer needed for detox
+- Detox: New yuscreen quick fix
+- Hotfix: remove products from getYuliferWithAvatar
+- quick update
+- Done
+- Detox: yuscreen extended updates
+- Hotfix: log out promise not being resolved
+- Revert "Revert "Investigate android push crash""
+- Revert "Investigate android push crash"
+- rewardsledgers name change
+- copy
+- working
+- Working
+- wip
+- Revert "Challenges list"
+- Challenges list
+- Investigate android push crash
+
 ## [3.2.0] - 2021-02-12
 
 ### Features
