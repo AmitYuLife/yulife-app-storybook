@@ -1,7 +1,18 @@
-import { StyleSheet, TextStyle, ViewStyle } from "react-native";
+import { StyleSheet, TextStyle, ViewStyle, Platform } from "react-native";
 import { Colours, Style, TOP_BAR } from "@styles";
+import media from "@styles/media";
 
 export const TOP_BAR_HEIGHT = TOP_BAR.HEIGHT + TOP_BAR.PADDING_TOP + TOP_BAR.PADDING_BOTTOM;
+
+const rightIconTextFontSize = media.select(
+  [
+    {
+      condition: Platform.OS === "ios" && Style.DEVICE_HEIGHT >= media.DEVICES.iPhone12ProMax.height,
+      value: Style.adjust(18),
+    },
+  ],
+  Style.adjust(20)
+);
 
 const styles = StyleSheet.create({
   wrapper: {
@@ -30,12 +41,12 @@ const styles = StyleSheet.create({
   rightIconWrapper: { width: 32, alignSelf: "center" } as ViewStyle,
   rightIconTouchable: { alignSelf: "flex-end" },
   rightIconText: {
-    fontSize: Style.adjust(20),
+    fontSize: rightIconTextFontSize,
     lineHeight: Style.adjust(22),
     letterSpacing: 1,
     fontFamily: Style.FONT_FAMILY_PRIMARY,
     flexWrap: "nowrap",
-    marginLeft: -16,
+    marginLeft: Style.adjust(-16),
   } as TextStyle,
 });
 
