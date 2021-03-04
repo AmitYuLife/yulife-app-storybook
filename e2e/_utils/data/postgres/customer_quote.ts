@@ -59,7 +59,6 @@ export const QUOTE_1 = {
         mail_sent: false,
         salary_percentage: 0.75,
         cover_type: "epic",
-        screening_status: "IN_PROGRESS",
         underwriting_loading: null,
         risk_premium_wl_gender_spec: 100.75063,
         risk_rate_gender_spec: 0.08325
