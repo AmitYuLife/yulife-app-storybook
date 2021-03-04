@@ -8,6 +8,7 @@ import styles from "./select-body.styles";
 import { AvatarBuilderHeading } from "../avatar-builder/avatar.types";
 import { useBackHandler } from "../../../../../services/hooks/useBackHandler";
 import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
+import { useBackButtonHandler } from "../avatar-builder/useBackButtonHandler";
 
 export type SelectedBody = "None" | "Male" | "Female";
 
@@ -53,12 +54,8 @@ function SelectBody({
     [onContinue, onMaleBodySelected, onFemaleBodySelected]
   );
 
-  const backHandler = useCallback(() => {
-    onExitConfirmed();
-    return true;
-  }, [onExitConfirmed]);
-
-  useBackHandler(backHandler);
+  const { backButtonHandler } = useBackButtonHandler(onExitConfirmed);
+  useBackHandler(backButtonHandler);
 
   return (
     <View style={styles.wrapper}>

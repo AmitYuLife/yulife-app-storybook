@@ -1,6 +1,6 @@
-import SelectBody, { SelectedBody } from "@screens/member/yu-screen/select-body/select-body";
 import * as React from "react";
 import { connect, useDispatch } from "react-redux";
+import SelectBody, { SelectedBody } from "@screens/member/yu-screen/select-body/select-body";
 import { SaveAvatarMutationTuple, GQL_MUTATION_SAVE_AVATAR } from "@graphql/yuscreen";
 import Logger from "@services/logging/logger";
 import { IReduxState } from "../../../../redux/_core/reducers";
