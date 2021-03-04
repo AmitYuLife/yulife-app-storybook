@@ -44,6 +44,7 @@ export { default as SearchIcon } from "./search-icon/search-icon";
 export { default as AddressIcon } from "./address-icon/address-icon";
 export * from "./gp-icons";
 export { BoxOption } from "./box-option/box-option";
+export { default as ProductColorTheme } from "./product-color-theme";
 
 // error :( https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-8.html#export--as-ns-syntax
 import * as ProductSvg from "./product-svg";
