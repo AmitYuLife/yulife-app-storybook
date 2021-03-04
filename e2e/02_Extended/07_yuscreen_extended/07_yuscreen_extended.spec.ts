@@ -296,7 +296,7 @@ Feature("I am able to use the yuscreens extended features", async () => {
         Given("I go to the yuscreen as a user with the correct toggle", given.loginToYuScreen(true, CUSTOMER_23, AUTH_23), async () => {
             Then("I should be on the yuscreen", then.onYuscreen(CUSTOMER_23))
             When("I scroll to the bottom", when.scrollFromID(YUSCREEN, "up", "fast"), async () => {
-                When("I tap life insurance", when.tapID(PERSONAL_PRODUCT("Chest of Life Insurance")), async () => {
+                When("I tap life insurance", when.tapID(AVATAR_ITEM("chest", "unlockable")), async () => {
                     Then("I should see the upgrade modal", then.textVisible("Upgrade"))
                     When("I dismiss the upgrade modal", when.tapText("Upgrade"), async()=>{
                         When("I dismiss this screen", when.dismissFibIntro, async () => {
@@ -346,6 +346,12 @@ Feature("I am able to use the yuscreens extended features", async () => {
     Scenario("I am able to view the initial package screen and browse the FAQs", scenario.start, async()=>{
         Given("I login to the yuscreen", given.loginToYuScreen(true, CUSTOMER_23, AUTH_23), async () => {
             When("I go to the life insurance screen", when.goToLifeInsurance, async () => {
+                Then("I should see the style options", then.styleOptionsVisible)
+            })
+            When("I tap continue", when.tapText("Continue"), async () => {
+                Then("I should see the great choice screen", then.multipleTextVisible(["Yugi", "Okay"]))
+            })
+            When("I tap Okay", when.tapText("Okay", 500), async () => {
                 Then("I should be on the package screen", then.idVisible(PACKAGE_INFO))
                 Then("I should see all elements on the package screen", then.packageScreenCorrect)
             })

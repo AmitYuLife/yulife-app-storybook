@@ -1,4 +1,4 @@
-import { navigation, BODY_ITEM_TITLE, BODY_PART_ITEM, SKIN_TONE, PERSONAL_PRODUCT, YUSCREEN, navigateViaText, CHECK_BOX_STATE, SCROLLABLE_LAYOUT, INPUT_FIELD, CM_INPUT, KG_INPUT, DRINKS_INPUT, navigateViaID, SEX_BUTTON} from "@utils"
+import { navigation, BODY_ITEM_TITLE, BODY_PART_ITEM, SKIN_TONE, PERSONAL_PRODUCT, YUSCREEN, navigateViaText, CHECK_BOX_STATE, SCROLLABLE_LAYOUT, INPUT_FIELD, CM_INPUT, KG_INPUT, DRINKS_INPUT, navigateViaID, SEX_BUTTON, AVATAR_ITEM} from "@utils"
 
 
 
@@ -39,19 +39,13 @@ export const tapColour = (hexValue: string) => async () => {
 }
 
 export const goToLifeInsurance = async () =>{
-    await scrollFromID(YUSCREEN, "up", "fast")()
-    await tapID(PERSONAL_PRODUCT("Chest of Life Insurance"))()
+    await navigateViaID(AVATAR_ITEM("chest", "unlockable"))
+    await navigateViaText("Upgrade")
 
     try {
-        await navigateViaText("Upgrade")
         await navigateViaText("Okay")
-        await navigateViaText("Okay")
-        await navigateViaText("Continue")
         await navigateViaText("Okay")
     } catch (e) {
-        await navigateViaText("Upgrade")
-        await navigateViaText("Okay")
-        await navigateViaText("Continue")
         await navigateViaText("Okay")
     }
 }

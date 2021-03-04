@@ -1,4 +1,4 @@
-import { Feature, Scenario, Given, When, Then, ScenarioOnly, FeatureOnly } from "@yu-life/yulife-bdd-framework";
+import { Feature, Scenario, Given, When, Then, ScenarioOnly, FeatureOnly, ScenarioSkip } from "@yu-life/yulife-bdd-framework";
 import * as scenario from "./_steps/scenario"
 import * as given from "./_steps/given"
 import * as when from "./_steps/when"
@@ -8,7 +8,6 @@ import { LEVEL_CHALLENGE_BUTTON, NAV_BAR, QUESTS_SCREEN, VIEW_TOP_RIGHT_COIN_COU
 
 
 Feature("As a user I can complete challenges across multiple worlds", async () => {
-
     Scenario("I can transition from the first world to the second one", scenario.start, () => {
         Given("I login as a user on level 49", given.logInAndGoToTab("quests", CUSTOMER_22, AUTH_22), async () => {
             Then("I should see my coin amount", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(17700)))
@@ -62,29 +61,6 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
                                         })
                                     })
                                 })
-                            })
-                        })
-                    })
-                })
-            })
-        })
-
-    Scenario("I can transition from the second to third world without tapping the level 100 challenge button", scenario.start, async () => {
-        Given("I login as a user on level 99", given.logInAndGoToTab("quests", CUSTOMER_23, AUTH_23), async () => {
-            Then("I should my current coin amount", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(17700)))
-            Then("I should be on the second world", then.idVisible(QUESTS_SCREEN(1)))
-            Then("I should see level 99", then.idVisible(LEVEL_CHALLENGE_BUTTON(99)))
-            When("I complete the level 99 challenge", when.completeNewWorldShortStroll(99), async () => {
-                Then("I should be on the second world", then.idVisible(QUESTS_SCREEN(1)))
-                Then("I should still see level 99", then.idVisible(LEVEL_CHALLENGE_BUTTON(99)))
-                When("I complete a level 99 meditation challenge", when.completeNewWorldMeditation(99), async () => {
-                    Then("I should see the level 100 unity challenge", then.idVisible(LEVEL_CHALLENGE_BUTTON(100), 2500))
-                    When("I tap the level 100 unity challenge", when.tapID(LEVEL_CHALLENGE_BUTTON(100)), async () => {
-                        Then("The yunity screens should be correct", then.yunityCorrect(2, "Ocean"))
-                            When("I tap 'On to the next world!'", when.tapText("On to the next world"), async () => {
-                            Then("I should be on the third world", then.idVisible(QUESTS_SCREEN(2)))
-                            Then("I should see the level 101 challenge button", then.idVisible(LEVEL_CHALLENGE_BUTTON(101)))
-                            Then("I should see my updated coin amount", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(17930)))
                             })
                         })
                     })
