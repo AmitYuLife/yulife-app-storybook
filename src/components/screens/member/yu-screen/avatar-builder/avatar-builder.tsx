@@ -2,7 +2,7 @@ import { Button, Text } from "@atoms/index";
 import { useQuery } from "@apollo/react-hooks";
 import Logger from "@services/logging/logger";
 import React from "react";
-import { useState, useRef, useCallback, useMemo, FC } from "react";
+import { useState, useRef, useMemo, FC } from "react";
 import { FlatList, View, ScrollView } from "react-native";
 import { AvatarPartType } from "@graphql/_core/schema/globalTypes";
 import { Avatar, Avatar_getAvatarColors } from "@graphql/_core/schema";
@@ -23,6 +23,7 @@ import { AVATAR_BUILDER_LIST, BUILDER_BODY, NO_ITEM_SELECTED, HEAD_TYPE } from "
 import { IBodyItemCategory } from "../../../../../redux/avatar/avatar.all.data";
 import { useBackHandler } from "../../../../../services/hooks/useBackHandler";
 import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
+import { useBackButtonHandler } from "./useBackButtonHandler";
 
 interface IProps {
   avatar: IAvatar;
@@ -40,26 +41,11 @@ const AvatarBuilder: FC<IProps> = ({ avatar: defaultAvatar, onBackPressed, updat
   const [isSavingItem, setIsSavingItem] = useState(false);
   const [avatar, setAvatar] = useState<Record<keyof IAvatar, IBodyItem>>(defaultAvatar);
   const [selectedColor, setSelectedColor] = useState(avatar.body.colors.colorScheme.main);
-  const [isBackButtonPressed, setBackPressed] = useState(false);
-  const [isDoneModalShown, setDoneModalShown] = useState(false);
   const flatListRef = useRef<FlatList | null>(null);
   const flatListColorRef = useRef<FlatList | null>(null);
   const scrollViewRef = useRef<ScrollView | null>(null);
 
-  const backButtonHandler = useCallback(() => {
-    if (!isBackButtonPressed) {
-      if (!isDoneModalShown) {
-        setBackPressed(true);
-        onBackPressed();
-        return true;
-      }
-
-      setDoneModalShown(false);
-    }
-
-    setBackPressed(false);
-    return false;
-  }, [setBackPressed, setDoneModalShown, isBackButtonPressed, isDoneModalShown, onBackPressed]);
+  const { backButtonHandler, setBackPressed, setDoneModalShown } = useBackButtonHandler(onBackPressed);
 
   useBackHandler(backButtonHandler);
 
