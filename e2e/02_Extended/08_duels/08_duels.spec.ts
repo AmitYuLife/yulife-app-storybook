@@ -8,7 +8,6 @@ import { DUELS_BUTTON, DUELS_HUB, DUELS_HUB_INVITATION, DUEL_OPTIONS_SCREEN, DUE
 
 
 Feature("As an enabled user I am able to use the duels feature", async()=>{
-
     Scenario("As a user I am able to invite another user to a duel, and the opponent is able to accept the duel", scenario.start, async()=>{
     Given("I login as a user with duels enabled and go to the duels hub", given.logInAndGoToTab("leaderboard",CUSTOMER_20, AUTH_20),async()=>{
             Then("I should see the duels icon", then.idVisible(DUELS_BUTTON))
