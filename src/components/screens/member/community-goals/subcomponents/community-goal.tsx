@@ -18,7 +18,7 @@ import { CommunityGoalProgressBar } from "./community-goal.progress-bar";
 
 interface IProps {
   goal: GetCommunityGoals_getCommunityGoals;
-  joinCommunityGoal: (options: MutationFunctionOptions<JoinCommunityGoal, JoinCommunityGoalVariables>) => Promise<{}>;
+  joinCommunityGoal: (options: MutationFunctionOptions<JoinCommunityGoal, JoinCommunityGoalVariables>) => Promise<any>;
 }
 
 export function CommunityGoal({ goal, joinCommunityGoal }: IProps) {

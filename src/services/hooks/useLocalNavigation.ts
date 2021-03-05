@@ -5,10 +5,10 @@ export interface LocalNavigation<T> {
   history: IHistoryRoute<T>[];
   length: number;
   currentRoute: IHistoryRoute<T>;
-  push: (route: T, passProps?: object) => void;
+  push: (route: T, passProps?: Record<string, unknown>) => void;
   pop: () => void;
   popToMain: () => void;
-  replace: (route: T, passProps?: object) => void;
+  replace: (route: T, passProps?: Record<string, unknown>) => void;
   onScrollEnd: (event: NativeSyntheticEvent<NativeScrollEvent>) => void;
 }
 
@@ -46,7 +46,7 @@ export function useLocalNavigation<T>({
       length: history.length,
       currentRoute,
       popToMain,
-      push(route: T, passProps: object = {}) {
+      push(route: T, passProps: Record<string, unknown> = {}) {
         const newHistory = [...history, { route, passProps }];
 
         newHistory[newHistory.length - 2].offset = offset;
@@ -64,7 +64,7 @@ export function useLocalNavigation<T>({
 
         return prevRoute;
       },
-      replace(route: T, passProps: object = {}) {
+      replace(route: T, passProps: Record<string, unknown> = {}) {
         setHistory(removeOrReplaceLastHistoryItem({ route, passProps }));
       },
       onScrollEnd(event: NativeSyntheticEvent<NativeScrollEvent>) {

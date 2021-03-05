@@ -24,23 +24,23 @@ class LoggerInstance {
     this.bugsnag.setUser(userId, "", "");
   };
 
-  public logEvent(event: string, metadata: { [x: string]: any } = {}) {
+  public logEvent(event: string, metadata: Record<string, any> = {}) {
     metadata.app_version = this.appVersion;
     Intercom.logEvent(event, metadata);
     Mixpanel.trackWithProperties(event, metadata);
   }
 
-  public logMixpanelEvent(event: string, metadata: { [x: string]: any } = {}) {
+  public logMixpanelEvent(event: string, metadata: Record<string, any> = {}) {
     metadata.app_version = this.appVersion;
     Mixpanel.trackWithProperties(event, metadata);
   }
 
-  public logIntercomEvent(event: string, metadata: { [key: string]: any } = {}) {
+  public logIntercomEvent(event: string, metadata: Record<string, any> = {}) {
     metadata.app_version = this.appVersion;
     Intercom.logEvent(event, metadata);
   }
 
-  public setUserProperties(props: {}, customAttrs = false) {
+  public setUserProperties(props: Record<string, any>, customAttrs = false) {
     if (customAttrs) {
       Intercom.updateUser({ custom_attributes: props });
     } else {

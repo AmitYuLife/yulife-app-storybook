@@ -4,7 +4,7 @@ import { getActiveLevel } from "../../levels/levels.selectors";
 import { numericId } from "../notifications.helpers";
 
 export default function* cancelChallengeNotificationSaga() {
-  const active = yield select(getActiveLevel);
+  const active: ReturnType<typeof getActiveLevel> = yield select(getActiveLevel);
 
   const id = Number(numericId(active.levelSlotId)).toString() as string;
 

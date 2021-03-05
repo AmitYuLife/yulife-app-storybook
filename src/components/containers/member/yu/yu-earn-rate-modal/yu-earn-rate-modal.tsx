@@ -9,7 +9,7 @@ import EarnRateTable from "./table/table";
 import { useQuery } from "@apollo/react-hooks";
 import { GetYulifer } from "@graphql/_core/schema";
 import { GQL_QUERY_GET_YULIFER, GQL_QUERY_GET_EARN_RATE_DETAILS } from "@graphql/yuscreen";
-import { EarnRateDetails } from "@graphql/_core/schema/EarnRateDetails.ts";
+import { EarnRateDetails } from "@graphql/_core/schema/EarnRateDetails";
 import media from "@styles/media";
 import { SurgedInfo } from "./surged-info";
 import GenericOverlay from "@components/modals/generic-overlay/generic-overlay";

@@ -21,18 +21,21 @@ import {
   challengeUpdateSuccessAction,
 } from "../levels.actions";
 import { DETOX_ENABLED } from "@services/socket";
+import { Task } from "redux-saga";
 
 export function* startTracking(levelSlotId: string, startDateTime: string, endDateTime: string, isCycling = false) {
   const start = moment(startDateTime).format(DATE_FORMAT_WITH_TZ);
   const end = moment(endDateTime);
 
   while (moment().isBefore(end)) {
-    if (yield cancelled()) {
+    const isCancelled: boolean = yield cancelled();
+
+    if (isCancelled) {
       return;
     }
 
     try {
-      const features = yield select(getUserFeatures);
+      const features: ReturnType<typeof getUserFeatures> = yield select(getUserFeatures);
       const queryResult: ChallengePayload[] = yield call(
         isCycling ? queryCycling : queryMindfulSessions,
         start,
@@ -83,7 +86,7 @@ type Args = Omit<CreateActiveChallenge_createActiveChallenge_challenge, "level" 
 export default function* startChallenge({ subtype, levelSlotId, startDateTime, endDateTime }: Args) {
   const isMeditation = subtype === "meditation";
   const isCycling = subtype === "cycling";
-  const challengeTask =
+  const challengeTask: Task =
     isMeditation || isCycling
       ? yield fork(startTracking, levelSlotId, startDateTime, endDateTime, isCycling)
       : yield fork(startTrackingTime, endDateTime);

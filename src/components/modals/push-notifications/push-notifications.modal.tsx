@@ -97,4 +97,4 @@ const mapDispatchToProps = {
   requirePushEnabled,
 };
 
-export default connect<{}, ConnectedDispatch>(null, mapDispatchToProps)(PushNotificationsModal);
+export default connect<null, ConnectedDispatch>(null, mapDispatchToProps)(PushNotificationsModal);

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Animated } from "react-native";
+import { Animated, ViewStyle } from "react-native";
 import Svg, { ClipPath, Defs, LinearGradient, Rect, Stop, SvgProps } from "react-native-svg";
 
 export interface IContentLoaderProps extends SvgProps {
@@ -73,7 +73,7 @@ class NativeSvg extends Component<IContentLoaderProps, { offset: number }> {
     const offset2 = offsetValueBound(offset);
     const offset3 = offsetValueBound(offset + 1);
 
-    const rtlStyle: object = rtl ? { transform: [{ rotateY: "180deg" }] } : {};
+    const rtlStyle: ViewStyle = rtl ? { transform: [{ rotateY: "180deg" }] } : {};
     const svgStyle = { ...style, ...rtlStyle };
 
     return (

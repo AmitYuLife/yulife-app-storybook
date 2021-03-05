@@ -17,7 +17,7 @@ import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-headin
 interface IProps {
   onClose: () => void;
   onRefresh: () => void;
-  joinCommunityGoal: (options: MutationFunctionOptions<JoinCommunityGoal, JoinCommunityGoalVariables>) => Promise<{}>;
+  joinCommunityGoal: (options: MutationFunctionOptions<JoinCommunityGoal, JoinCommunityGoalVariables>) => Promise<any>;
   data: GetCommunityGoals_getCommunityGoals[];
   loading: boolean;
 }

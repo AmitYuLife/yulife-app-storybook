@@ -8,6 +8,7 @@ import NetInfo, { NetInfoState } from "@react-native-community/netinfo";
 import moment from "moment";
 import { call, put } from "redux-saga/effects";
 import { setAuthenticated, setUnauthenticated } from "../app.actions";
+import { Unpacked } from "@services/utils";
 
 interface IMainRootPayload {
   payload: string;
@@ -17,7 +18,7 @@ interface IMainRootPayload {
 type TokenStatus = "refreshing" | "valid" | "invalid" | null;
 
 export default function* setMainRootSaga({ payload }: IMainRootPayload) {
-  const token = yield call(getToken);
+  const token: Unpacked<typeof getToken> = yield call(getToken);
 
   if (token) {
     const connectionInfo: NetInfoState = yield call(() => NetInfo.fetch());
@@ -48,7 +49,7 @@ export default function* setMainRootSaga({ payload }: IMainRootPayload) {
   }
 
   if (payload) {
-    yield call(handleDeepLink, payload, token);
+    yield call(handleDeepLink, payload, !!token);
   }
 }
 

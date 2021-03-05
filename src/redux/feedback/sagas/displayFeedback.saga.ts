@@ -6,7 +6,7 @@ import { pendingFeedbackFormQuery } from "@graphql/member";
 import { Unpacked } from "../../../services/utils";
 
 export default function* displayFeedbackSaga() {
-  const features = yield select(getUserFeatures);
+  const features: ReturnType<typeof getUserFeatures> = yield select(getUserFeatures);
   const areFeedbackScreensEnabled = !features.hideFeedbackModal;
 
   if (!areFeedbackScreensEnabled) {

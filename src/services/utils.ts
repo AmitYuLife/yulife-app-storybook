@@ -6,6 +6,7 @@ export const DATE_FORMAT = "YYYY-MM-DD";
 export const DATE_FORMAT_WITH_TZ = "YYYY-MM-DDTHH:mm:ssZ";
 export const DATE_FORMAT_WITHOUT_TZ = "YYYY-MM-DDTHH:mm:ss";
 
+// eslint-disable-next-line @typescript-eslint/ban-types
 export function throttle(func: Function, wait: number) {
   let timeout: NodeJS.Timeout;
   let last: number;

@@ -1,5 +1,6 @@
 import { deleteConnectionWithClient, getNewConnectionLinkWithClient } from "@graphql/connections";
 import Logger from "@services/logging/logger";
+import { Unpacked } from "@services/utils";
 import { Linking } from "react-native";
 import { call, put, spawn } from "redux-saga/effects";
 
@@ -9,7 +10,7 @@ export default function* updateConnectionSaga({ payload }: ReturnType<typeof upd
   if (payload.isConnected) {
     // disconnect
     try {
-      const result = yield call(deleteConnectionWithClient, payload.name);
+      const result: Unpacked<typeof deleteConnectionWithClient> = yield call(deleteConnectionWithClient, payload.name);
 
       if (result && result.data && result.data.deleteConnection) {
         yield put(updateConnectionSuccess({ ...payload, isConnected: false }));
@@ -25,7 +26,10 @@ export default function* updateConnectionSaga({ payload }: ReturnType<typeof upd
   } else {
     // connect
     try {
-      const result = yield call(getNewConnectionLinkWithClient, payload.name);
+      const result: Unpacked<typeof getNewConnectionLinkWithClient> = yield call(
+        getNewConnectionLinkWithClient,
+        payload.name
+      );
 
       if (result && result.data && result.data.getNewConnectionLink) {
         yield call(() => Linking.openURL(result.data.getNewConnectionLink));

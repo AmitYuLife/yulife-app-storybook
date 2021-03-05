@@ -88,4 +88,4 @@ const mapStateToProps = (state: IReduxState) => ({
   copyEmailSent: getCopy(state, "emailSent") as EmailSentCopy,
 });
 
-export default connect<ConnectedState, {}>(mapStateToProps, null)(ResetPasswordContainer);
+export default connect<ConnectedState>(mapStateToProps, null)(ResetPasswordContainer);

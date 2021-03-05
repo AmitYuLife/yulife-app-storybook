@@ -1,4 +1,5 @@
 import upsertStepsChallenge from "@graphql/challenges/upsertPassiveChallenge.gql";
+import { Unpacked } from "@services/utils";
 import moment from "moment";
 import { REHYDRATE } from "redux-persist";
 import { call, put, race, select, spawn, take, delay } from "redux-saga/effects";
@@ -17,7 +18,7 @@ export default function* getDailyMeditation() {
         appUpdated: take(UPDATE_APP_STATE),
       });
 
-      const userFeatures = yield select(getUserFeatures);
+      const userFeatures: ReturnType<typeof getUserFeatures> = yield select(getUserFeatures);
 
       if (userFeatures.usePassiveMeditation) {
         if (appStart || appUpdated.payload === "active") {
@@ -25,10 +26,15 @@ export default function* getDailyMeditation() {
 
           const endTime = moment().format();
 
-          const results = yield call(queryMindfulSessions, startTime, endTime, userFeatures);
+          const results: Unpacked<typeof queryMindfulSessions> = yield call(
+            queryMindfulSessions,
+            startTime,
+            endTime,
+            userFeatures
+          );
 
           if (results.length > 0) {
-            const meditationValue = Math.floor(results.reduce((acc: number, item: any) => acc + item.value, 0));
+            const meditationValue = Math.floor(results.reduce((acc, item) => acc + item.value, 0));
             let isUpdated = false;
 
             while (!isUpdated) {

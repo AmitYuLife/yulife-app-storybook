@@ -9,7 +9,7 @@ export default function* updateCopySaga() {
     const { data } = yield call(getMobileCopy);
 
     if (data && data.getMobileCopy) {
-      const currentVersion = yield select(getCopyVersion);
+      const currentVersion: ReturnType<typeof getCopyVersion> = yield select(getCopyVersion);
 
       if (data.getMobileCopy.version !== currentVersion) {
         yield put(updateCopy(data));

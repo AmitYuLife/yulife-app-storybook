@@ -1,3 +1,4 @@
+import { PedometerResponse } from "@services/fitkit/fitkit.service";
 import Logger from "@services/logging/logger";
 import moment from "moment";
 import { call, cancelled, put, select, spawn, take } from "redux-saga/effects";
@@ -15,15 +16,15 @@ const ERROR_NOT_AUTHORISED = "Pedometer not authorised";
 export default function* listenToSteps() {
   yield put(updatePedometerStartAction());
 
-  const features = yield select(getUserFeatures);
+  const features: ReturnType<typeof getUserFeatures> = yield select(getUserFeatures);
   const momentStartDay = moment().startOf("day");
   const startOfDay = momentStartDay.format();
-  const channel = yield call(stepsChannel, startOfDay);
+  const channel: ReturnType<typeof stepsChannel> = yield call(stepsChannel, startOfDay);
 
   while (true) {
     try {
-      const results = yield take(channel);
-      const currentSteps = yield select(getSteps);
+      const results: typeof ERROR_NOT_AUTHORISED | PedometerResponse = yield take(channel);
+      const currentSteps: ReturnType<typeof getSteps> = yield select(getSteps);
 
       if (results === ERROR_NOT_AUTHORISED) {
         yield spawn(() => Logger.logEvent("pedometer_unauthorised", { event: "listenToSteps" }));
@@ -45,7 +46,9 @@ export default function* listenToSteps() {
         Logger.error(e, { event: "listenToSteps" });
       });
     } finally {
-      if (yield cancelled()) {
+      const isCancelled: boolean = yield cancelled();
+
+      if (isCancelled) {
         channel.close();
       }
     }

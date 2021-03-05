@@ -7,13 +7,13 @@ import { getUserFeatures } from "../../user/user.selectors";
 import { getStreaks } from "../streaks.selectors";
 
 export default function* showStreakOnChallengeCompleteSaga() {
-  const streaksBeforeUpdate = yield select(getStreaks);
+  const streaksBeforeUpdate: ReturnType<typeof getStreaks> = yield select(getStreaks);
 
   yield take(GET_USER_SUCCESS);
 
-  const streaks = yield select(getStreaks);
-  const currentRoute = yield select(getRouteState);
-  const features = yield select(getUserFeatures);
+  const streaks: ReturnType<typeof getStreaks> = yield select(getStreaks);
+  const currentRoute: ReturnType<typeof getRouteState> = yield select(getRouteState);
+  const features: ReturnType<typeof getUserFeatures> = yield select(getUserFeatures);
 
   if (
     features.showStreaks &&
@@ -28,7 +28,7 @@ export default function* showStreakOnChallengeCompleteSaga() {
   }
 }
 
-export function showModal(streaks: any) {
+export function showModal(streaks: ReturnType<typeof getStreaks>) {
   Navigation.showModal({
     component: {
       id: MODALS.streaks,
