@@ -8,6 +8,7 @@ import addHistoricalData from "../../../graphql/challenges/addHistoricalData.gql
 import { queryHistoricalMeditationData } from "../../../services/fitkit/fitkit.helpers";
 import { getUserFeatures } from "../../user/user.selectors";
 import { setHistoricalDataCollected, setHistoricalMeditationDataCollected } from "../onboarding.actions";
+import { Unpacked } from "@services/utils";
 
 export default function* sendHistoricalData(onboardingDate: Moment) {
   try {
@@ -27,9 +28,13 @@ export default function* sendHistoricalData(onboardingDate: Moment) {
 
 export function* sendHistoricalMeditationData(onboardingDate: Moment) {
   try {
-    const userFeatures = yield select(getUserFeatures);
+    const userFeatures: ReturnType<typeof getUserFeatures> = yield select(getUserFeatures);
 
-    const results = yield call(queryHistoricalMeditationData, onboardingDate, userFeatures);
+    const results: Unpacked<typeof queryHistoricalMeditationData> = yield call(
+      queryHistoricalMeditationData,
+      onboardingDate,
+      userFeatures
+    );
 
     if (results.length) {
       yield call(addHistoricalData, results, PassiveChallengeType.MEDITATION);

@@ -2,7 +2,7 @@ export interface SyncAction<Payload = any> {
   // tslint:disable-line
   type: string;
   payload?: Payload;
-  meta?: {};
+  meta?: Record<string, any>;
 }
 
 export interface AsyncAction extends SyncAction {

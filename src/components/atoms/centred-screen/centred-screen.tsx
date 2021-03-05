@@ -128,7 +128,7 @@ const IMAGES: Record<CenteredScreenImages, { style: ImageStyle; isLottie: boolea
   },
 };
 
-const BackgroundWrapper: React.FC<{}> = ({ children }) => {
+const BackgroundWrapper: React.FC = ({ children }) => {
   if (Style.DEVICE_HEIGHT < 750) {
     const translateY = 750 - Style.DEVICE_HEIGHT;
 

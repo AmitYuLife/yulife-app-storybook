@@ -1,13 +1,14 @@
 import updateActiveChallengeWithClient from "@graphql/challenges/updateActiveChallenge.gql";
 import { getUserFeatures } from "@redux/user/user.selectors";
 import Logger from "@services/logging/logger";
+import { Unpacked } from "@services/utils";
 import { call, put, select, spawn } from "redux-saga/effects";
 import { challengeEndFailAction, challengeEndSuccessAction, challengeResetSuccessAction } from "../levels.actions";
 import { getEndResult } from "../levels.helpers";
 import { getActiveLevel } from "../levels.selectors";
 
 export default function* endChallengeSaga() {
-  const active = yield select(getActiveLevel);
+  const active: ReturnType<typeof getActiveLevel> = yield select(getActiveLevel);
 
   if (active) {
     const { milestones, milestonesLog, ...metaData } = active; // eslint-disable-line @typescript-eslint/no-unused-vars
@@ -20,9 +21,13 @@ export default function* endChallengeSaga() {
       yield put(challengeEndSuccessAction({ updateActiveChallenge: null }));
     } else {
       try {
-        const features = yield select(getUserFeatures);
-        const result = yield call(getEndResult, active, features);
-        const { data } = yield call(updateActiveChallengeWithClient, active.levelSlotId, result);
+        const features: ReturnType<typeof getUserFeatures> = yield select(getUserFeatures);
+        const result: Unpacked<typeof getEndResult> = yield call(getEndResult, active, features);
+        const { data }: Unpacked<typeof updateActiveChallengeWithClient> = yield call(
+          updateActiveChallengeWithClient,
+          active.levelSlotId,
+          result
+        );
 
         if (data.updateActiveChallenge) {
           yield put(challengeEndSuccessAction(data));

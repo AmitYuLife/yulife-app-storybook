@@ -5,8 +5,8 @@ import { challengeResetSuccessAction } from "../levels.actions";
 import { getActiveLevel, getChallengesStatus, IActiveLevel } from "../levels.selectors";
 
 export default function* resetChallengeSaga() {
-  const { done } = yield select(getChallengesStatus);
-  const active = yield select(getActiveLevel);
+  const { done }: ReturnType<typeof getChallengesStatus> = yield select(getChallengesStatus);
+  const active: ReturnType<typeof getActiveLevel> = yield select(getActiveLevel);
 
   if (done < 1 && active.chest.value > 0 && active.status === "success") {
     yield call(showModal, active);

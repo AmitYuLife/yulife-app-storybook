@@ -1,6 +1,5 @@
 import { Text } from "@atoms/index";
 import * as React from "react";
-import { SFC } from "react";
 import { StyleSheet, View } from "react-native";
 import { Circle, Path, Rect } from "react-native-svg";
 import NativeSvg from "../../../../molecules/native-svg/native-svg";
@@ -13,7 +12,7 @@ interface IProps {
   value: string;
   unit?: string;
 }
-const GeneralInfoCard: SFC<IProps> = ({ titleColor, title, value, unit }) => {
+const GeneralInfoCard: React.FC<IProps> = ({ titleColor, title, value, unit }) => {
   return (
     <View style={styles.wrapper}>
       <Text style={StyleSheet.flatten([styles.title, { color: titleColor }])}>{title}</Text>
@@ -27,7 +26,7 @@ const GeneralInfoCard: SFC<IProps> = ({ titleColor, title, value, unit }) => {
   );
 };
 
-export const LoadingGeneralInfoCard: SFC<{}> = () => {
+export const LoadingGeneralInfoCard: React.FC = () => {
   return (
     <View style={styles.mediumLoadingCard}>
       <NativeSvg
@@ -55,7 +54,7 @@ export const LoadingGeneralInfoCard: SFC<{}> = () => {
   );
 };
 
-export const LoadingRecomendationCard: SFC<{}> = () => {
+export const LoadingRecomendationCard: React.FC = () => {
   return (
     <View style={styles.smallLoadingCard}>
       <NativeSvg
@@ -73,7 +72,7 @@ export const LoadingRecomendationCard: SFC<{}> = () => {
   );
 };
 
-export const LoadingHeader: SFC<{}> = () => {
+export const LoadingHeader: React.FC = () => {
   return (
     <View style={styles.headerLoadingCard}>
       <NativeSvg

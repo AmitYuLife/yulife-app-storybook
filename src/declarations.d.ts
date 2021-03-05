@@ -84,7 +84,7 @@ declare module "tipsi-stripe" {
   export type CreatePaymentMethodParams = {
     billingDetails?: PaymentMethodBillingDetails;
     card: PaymentMethodCard;
-    metadata?: object;
+    metadata?: Record<string, unknown>;
   };
 
   export type ConfirmPaymentIntentParams = {
@@ -210,7 +210,7 @@ declare module "tipsi-stripe" {
     livemode: boolean;
     card?: StripeCardDetails;
     bankAccount?: StripeBankDetails;
-    extra?: object;
+    extra?: Record<string, unknown>;
   }
 
   export interface ApplePaymentRequestItem {

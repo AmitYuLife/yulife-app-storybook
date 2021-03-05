@@ -50,4 +50,4 @@ const mapDispatchToProps = {
   getUserStart,
 };
 
-export default connect<{}, ConnectedDispatch>(null, mapDispatchToProps)(CreateLeaderboardModal);
+export default connect<null, ConnectedDispatch>(null, mapDispatchToProps)(CreateLeaderboardModal);

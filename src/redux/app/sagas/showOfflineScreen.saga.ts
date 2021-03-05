@@ -12,7 +12,7 @@ interface IMainRootPayload {
 export default function* showOfflineScreenSaga({ payload: isOffline }: IMainRootPayload) {
   if (isOffline) {
     try {
-      const currentRoute = yield select(getRouteState);
+      const currentRoute: ReturnType<typeof getRouteState> = yield select(getRouteState);
 
       if (currentRoute !== ROUTES.offline) {
         yield call(setOfflineRoot);

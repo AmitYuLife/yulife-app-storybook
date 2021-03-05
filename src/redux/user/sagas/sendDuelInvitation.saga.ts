@@ -9,9 +9,9 @@ import getDuelsWithClient from "@graphql/duels/getDuels.gql";
 import { GetDuels } from "@graphql/_core/schema";
 
 export default function* sendDuelInvitation() {
-  const currentRoute = yield select(getRouteState);
-  const userId = yield select(getCurrentUserId);
-  const features = yield select(getUserFeatures);
+  const currentRoute: ReturnType<typeof getRouteState> = yield select(getRouteState);
+  const userId: ReturnType<typeof getCurrentUserId> = yield select(getCurrentUserId);
+  const features: ReturnType<typeof getUserFeatures> = yield select(getUserFeatures);
 
   const isDuelsEnabled = features.showDuels;
 

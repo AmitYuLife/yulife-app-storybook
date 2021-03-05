@@ -7,9 +7,9 @@ import { displayStreaksFirstAction } from "../streaks.actions";
 import { getStreaks } from "../streaks.selectors";
 
 export default function* showFirstStreakModalSaga() {
-  const streaks = yield select(getStreaks);
-  const currentRoute = yield select(getRouteState);
-  const features = yield select(getUserFeatures);
+  const streaks: ReturnType<typeof getStreaks> = yield select(getStreaks);
+  const currentRoute: ReturnType<typeof getRouteState> = yield select(getRouteState);
+  const features: ReturnType<typeof getUserFeatures> = yield select(getUserFeatures);
 
   if (features.showStreaks && !streaks.displayStreak && streaks.isAvailable && currentRoute !== MODALS.streaks) {
     if (!(streaks.currentStreak > 0)) {

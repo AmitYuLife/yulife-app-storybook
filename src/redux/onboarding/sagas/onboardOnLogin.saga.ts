@@ -10,7 +10,7 @@ import sendHistoricalData, { sendHistoricalMeditationData } from "./sendHistoric
 
 export default function* onboardOnLogin({ payload }: ReturnType<typeof loginUserSuccess>) {
   try {
-    const features = yield select(getUserFeatures);
+    const features: ReturnType<typeof getUserFeatures> = yield select(getUserFeatures);
 
     if (!payload.loginUser.user.redeemedOnboarding) {
       yield call(sendHistoricalData, moment());

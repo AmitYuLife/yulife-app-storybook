@@ -17,10 +17,14 @@ import { sendHistoricalMeditationData } from "./sendHistoricalData.helper";
 
 export default function* onboardOnGetUser({ payload }: ReturnType<typeof getUserSuccess>) {
   try {
-    const features = yield select(getUserFeatures);
-    const isHistoricalDataCollected = yield select(getIsHistoricalDataCollected);
-    const isHistoricalMeditationDataCollected = yield select(getIsHistoricalMeditationDataCollected);
-    const isOnboardingRedeemed = yield select(getIsOnboardingRedeemed);
+    const features: ReturnType<typeof getUserFeatures> = yield select(getUserFeatures);
+    const isHistoricalDataCollected: ReturnType<typeof getIsHistoricalDataCollected> = yield select(
+      getIsHistoricalDataCollected
+    );
+    const isHistoricalMeditationDataCollected: ReturnType<typeof getIsHistoricalMeditationDataCollected> = yield select(
+      getIsHistoricalMeditationDataCollected
+    );
+    const isOnboardingRedeemed: ReturnType<typeof getIsOnboardingRedeemed> = yield select(getIsOnboardingRedeemed);
 
     if (!isHistoricalDataCollected || !isHistoricalMeditationDataCollected) {
       const onboardingDate = payload && payload.getCurrentUser ? payload.getCurrentUser.onboardingDate : null;

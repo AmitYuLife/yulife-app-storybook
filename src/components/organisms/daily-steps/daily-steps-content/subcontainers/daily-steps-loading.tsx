@@ -29,7 +29,7 @@ interface IState {
   animationStateIndex: number;
 }
 
-export class DailyStepsLoading extends PureComponent<{}, IState> {
+export class DailyStepsLoading extends PureComponent<Record<string, unknown>, IState> {
   public state: IState = {
     animationStateIndex: 0,
     animationStates: [First, Second, Third, Third, Third, Third],

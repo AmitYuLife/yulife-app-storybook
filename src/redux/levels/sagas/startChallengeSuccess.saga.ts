@@ -12,7 +12,7 @@ export default function* startChallengeSuccessSaga({ payload }: ReturnType<typeo
     levelSlotId,
   } = payload;
 
-  const initialPedometerSteps = yield select(getSteps);
+  const initialPedometerSteps: ReturnType<typeof getSteps> = yield select(getSteps);
   yield put(pedometerStepsChallengeStarted(initialPedometerSteps));
 
   if (startDateTime && endDateTime && subtype) {

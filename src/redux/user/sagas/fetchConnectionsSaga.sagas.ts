@@ -12,8 +12,8 @@ interface IConnectionWithLoading extends Connection {
 
 export default function* fetchConnectionsSaga({ payload }: ReturnType<typeof updateAppState>) {
   try {
-    const active = yield select(getActiveLevel);
-    const connections = yield select(getUserConnections);
+    const active: ReturnType<typeof getActiveLevel> = yield select(getActiveLevel);
+    const connections: ReturnType<typeof getUserConnections> = yield select(getUserConnections);
     const loadingConnections: IConnectionWithLoading[] = connections.filter(
       (connection: IConnectionWithLoading) => connection.isLoading
     );

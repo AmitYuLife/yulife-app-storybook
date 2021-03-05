@@ -3,6 +3,7 @@ import { QueryHookOptions, useQuery } from "@apollo/react-hooks";
 import useNavigationComponentDidAppear from "./useNavigationComponentDidAppear";
 import { useState } from "react";
 
+// eslint-disable-next-line @typescript-eslint/ban-types
 function useCacheFirstAndNetworkOnAppearQuery<TData, TVariables = {}>(
   query: DocumentNode,
   componentId: string,

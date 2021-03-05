@@ -6,7 +6,7 @@ import { getUserSuccess } from "../user.actions";
 import showLeaderboardInvite from "./showLeaderboardInvite.helper";
 
 export default function* showLeaderboardInviteSaga({ payload }: ReturnType<typeof getUserSuccess>) {
-  const currentRoute = yield select(getRouteState);
+  const currentRoute: ReturnType<typeof getRouteState> = yield select(getRouteState);
   const leaderboards = payload?.getCurrentUser?.leaderboards || [];
 
   // do not show leaderboard invite on onboarding reward screen
