@@ -16,9 +16,15 @@ export default function GenericModal(props: IGenericModalProps) {
     isPrimaryLoading,
     isPrimaryOnePressOnly,
     isSecondaryLoading,
+    onPressBack,
   } = props;
 
   const backHandler = () => {
+    if (onPressBack) {
+      onPressBack();
+      return true;
+    }
+
     Navigation.dismissModal(MODALS.generic);
     return true;
   };
