@@ -2,7 +2,6 @@ import * as React from "react";
 import { connect, useDispatch } from "react-redux";
 import SelectBody, { SelectedBody } from "@screens/member/yu-screen/select-body/select-body";
 import { SaveAvatarMutationTuple, GQL_MUTATION_SAVE_AVATAR } from "@graphql/yuscreen";
-import Logger from "@services/logging/logger";
 import { IReduxState } from "../../../../redux/_core/reducers";
 import {
   femaleBodySelected,
@@ -137,35 +136,10 @@ const AvatarCreationContainer: React.FC<Props> = (props) => {
         dispatch(femaleBodySelected());
       }}
       onContinue={handleBodySelected}
-      onExitConfirmed={() => showExitModal(onExitConfirmed)}
       heading={heading}
       bodyType={bodyType}
     />
   );
-};
-
-const showExitModal = (onExitConfirmed: () => void) => {
-  Navigation.showModal({
-    component: {
-      id: MODALS.generic,
-      name: MODALS.generic,
-      passProps: {
-        onPress: () => {
-          Navigation.dismissModal(MODALS.generic);
-        },
-        heading: "Exit Yumoji builder?",
-        subheading: "Are you sure you want to exit? You will lose any unsaved changes.",
-        ctaLabel: "Keep Editing",
-        ctaLabelSecondary: "Exit",
-        onPressSecondary: onExitConfirmed,
-      },
-    },
-  });
-};
-
-const onExitConfirmed = () => {
-  Logger.logMixpanelEvent("avatar_save", { type: "discarded" });
-  returnToYuScreen();
 };
 
 const returnToYuScreen = () => {

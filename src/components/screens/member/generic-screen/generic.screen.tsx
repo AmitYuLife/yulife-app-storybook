@@ -15,6 +15,7 @@ export interface IGenericModalProps {
   isPrimaryLoading?: boolean;
   isPrimaryOnePressOnly?: boolean;
   isSecondaryLoading?: boolean;
+  onPressBack?: () => void;
 }
 
 export default function GenericScreen({
