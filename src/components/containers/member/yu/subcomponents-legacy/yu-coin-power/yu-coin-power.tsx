@@ -1,8 +1,9 @@
 import React, { memo } from "react";
-import { View, Image, StyleSheet, ViewStyle, ImageStyle, TextStyle } from "react-native";
+import { View, Image, StyleSheet, ViewStyle, ImageStyle, TextStyle, Platform } from "react-native";
 import { Text } from "@atoms";
 import { TextWithBoldText, TouchableOpacityWithDelay } from "@components/molecules";
 import { Style, Colours } from "@styles";
+import media from "@styles/media";
 import { showEarnRateOverlay } from "../../navigation/showEarnRateOverlay";
 import { useQuery } from "@apollo/react-hooks";
 import { GetYulifer } from "@graphql/_core/schema";
@@ -29,8 +30,8 @@ const _YuCoinPower = () => {
       style={styles.wrapper}
       testID={YUCOIN_POWER(yuCoinPower.toString())}
     >
-      <View style={[styles.backgroundWrapper]}>
-        <Image resizeMode="stretch" style={styles.backgroundImage} source={require("./background.png")} />
+      <View style={styles.backgroundWrapper}>
+        <Image resizeMode="contain" style={styles.backgroundImage} source={require("./background.png")} />
       </View>
       <View style={styles.contentWrapper}>
         <View style={styles.powerWrapper}>
@@ -49,14 +50,26 @@ const _YuCoinPower = () => {
   );
 };
 
+const INFO_WRAPPER_MARGIN_RIGHT = Platform.select({
+  ios: Style.adjust(20),
+  android: media.select(
+    [
+      {
+        condition: Style.DEVICE_HEIGHT <= media.DEVICES.SamsungGalaxyA5.height,
+        value: Style.adjust(12),
+      },
+    ],
+    Style.adjust(20)
+  ),
+});
+
 const styles = StyleSheet.create({
   wrapper: {
-    marginTop: Style.adjust(24),
+    marginTop: Style.adjust(32),
     height: Style.adjust(144),
     flexDirection: "row",
     borderWidth: 1,
     borderColor: "transparent",
-    marginHorizontal: Style.adjust(22),
   } as ViewStyle,
   backgroundWrapper: {
     ...StyleSheet.absoluteFillObject,
@@ -64,7 +77,7 @@ const styles = StyleSheet.create({
   backgroundImage: {
     alignSelf: "center",
     borderRadius: 8,
-    width: "100%",
+    width: Style.adjust(343),
     height: Style.adjust(144),
   } as ImageStyle,
   contentWrapper: {
@@ -72,12 +85,13 @@ const styles = StyleSheet.create({
     flex: 1,
     marginLeft: "auto",
     marginRight: "auto",
+    maxWidth: Style.adjust(343),
     marginBottom: Style.adjust(8),
   } as ViewStyle,
   powerWrapper: {
     justifyContent: "center",
     alignItems: "center",
-    width: "45%",
+    width: Style.adjust(144),
     marginTop: 12,
   } as ViewStyle,
   powerLabelTop: {
@@ -97,8 +111,8 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     marginTop: Style.adjust(8),
-    width: "50%",
-    paddingRight: Style.adjust(24),
+    maxWidth: Style.adjust(152),
+    marginRight: INFO_WRAPPER_MARGIN_RIGHT,
   } as TextStyle,
   info: {
     color: Colours.orange,

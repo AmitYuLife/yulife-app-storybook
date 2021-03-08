@@ -7,41 +7,39 @@ import { AVATAR_ITEM } from "@ids";
 import { SvgUnlockable } from "../../product/assets/svg-unlockable";
 import { SvgLocked } from "../../product/assets/svg-locked";
 import { ItemIcon } from "./item-icon";
+import { IProduct } from "../../../../../products/fib/fib.types";
 import { YuScreenProductContext } from "../../../yu-screen.context";
 
-export const Item = (props: any) => {
-  // This is set to "any" for now, because were using mock data
-  const { earnRate, status, itemSlot, coverType, productId, picture, style } = props;
+export const Item = (props: IProduct) => {
+  const { earnRate, status, itemSlot, coverType, productId } = props;
   const { product: selectedProduct, setProduct } = useContext(YuScreenProductContext);
 
   const onPress = useCallback(() => {
-    setProduct({
-      type: "avatar",
-      id: productId === selectedProduct.id ? null : productId,
-    });
-  }, [productId, selectedProduct, setProduct]);
+    setProduct(productId === selectedProduct?.productId ? null : props);
+  }, [setProduct, productId, selectedProduct, props]);
 
-  const isSelected = useMemo(() => selectedProduct.id === productId && selectedProduct.type === "avatar", [
-    selectedProduct,
-    productId,
-  ]);
+  const isSelected = useMemo(() => selectedProduct?.productId === productId, [selectedProduct, productId]);
 
   return (
     <TouchableOpacityWithDelay
       delay={350}
       activeOpacity={1}
       onPress={onPress}
-      style={[styles.wrapper, style]}
+      style={styles.wrapper}
       testID={AVATAR_ITEM(itemSlot, status)}
     >
-      <ItemIcon isSelected={isSelected} itemSlot={itemSlot} status={status} coverType={coverType} picture={picture} />
+      <ItemIcon isSelected={isSelected} itemSlot={itemSlot} status={status} coverType={coverType} />
       <View style={styles.tagWrapper}>{getTag(status, earnRate)}</View>
     </TouchableOpacityWithDelay>
   );
 };
 
 const styles = StyleSheet.create({
-  wrapper: { marginBottom: 6 } as ViewStyle,
+  wrapper: {
+    width: Style.adjust(76),
+    height: Style.adjust(64),
+    marginTop: Style.adjust(12),
+  } as ViewStyle,
   image: {
     maxHeight: Style.adjust(76),
     maxWidth: Style.adjust(64),
@@ -49,7 +47,7 @@ const styles = StyleSheet.create({
   tagWrapper: {
     position: "absolute",
     top: Style.adjust(4),
-    right: -4,
+    right: 0,
   } as ViewStyle,
 });
 

@@ -1,30 +1,33 @@
-import React, { useMemo } from "react";
+import React from "react";
 import { StyleSheet, ViewStyle, View } from "react-native";
-import { Style } from "@styles";
+import { Colours } from "@styles";
 import { Item } from "./item";
-import { IProduct } from "../../../../../products/fib/fib.types";
+import { YuScreenProductSlot } from "@graphql/_core/schema";
 
 export interface ItemSetProps {
-  items: IProduct[];
+  items: YuScreenProductSlot;
 }
 
 export const ItemSet = (props: ItemSetProps) => {
   const { items } = props;
 
-  const mapped = useMemo(() => Array.from({ length: 4 }).map((_, i) => items[i]), [items]);
-
   return (
-    <View style={styles.wrapper}>
-      {mapped.map((item, i) => (
-        <Item {...item} key={i} />
-      ))}
+    <View style={styleItemSet.wrapper}>
+      <Item {...items?.slot1} />
+      <Item {...items?.slot2} />
+      <Item {...items?.slot3} />
+      <Item {...items?.slot4} />
     </View>
   );
 };
 
-const styles = StyleSheet.create({
+export const styleItemSet = StyleSheet.create({
   wrapper: {
-    width: Style.adjust(76),
     marginTop: "auto",
+    alignItems: "center",
+    paddingTop: 8,
+    paddingBottom: 2,
+    backgroundColor: Colours.metallic.m100,
+    borderRadius: 8,
   } as ViewStyle,
 });

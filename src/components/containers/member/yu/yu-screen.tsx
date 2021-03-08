@@ -3,22 +3,19 @@ import { StyleSheet, ViewStyle, View, ScrollView, Platform } from "react-native"
 import { Style, TOP_BAR } from "@styles";
 import media from "@styles/media";
 import { YUSCREEN, YUSCREEN_SCROLL_VIEW } from "@ids";
-import { NameAndLevel, AvatarAndEquipment, YuCoinPower, ToolTip, AvatarCreationPrompt } from "./subcomponents";
+import { NameAndLevel, AvatarAndEquipment, YuCoinPower, ToolTip } from "./subcomponents";
 import { YuScreenProductContext } from "./yu-screen.context";
 
 export const YuScreen = () => {
-  const [product, setProduct] = useState({ type: "avatar", id: null });
-
+  const [product, setProduct] = useState(null);
   return (
     <YuScreenProductContext.Provider value={{ product, setProduct }}>
       <View style={styles.wrapper} testID={YUSCREEN}>
         <ScrollView showsVerticalScrollIndicator={false} style={styles.list} testID={YUSCREEN_SCROLL_VIEW}>
           <View style={styles.padTop} />
           <NameAndLevel />
-          <AvatarCreationPrompt />
           <AvatarAndEquipment />
           <YuCoinPower />
-          <View style={styles.padBot} />
           <View style={styles.avatar}>
             <ToolTip />
           </View>
@@ -47,12 +44,12 @@ const PAD_BOT = Platform.select({
     [
       {
         condition: Style.hasNotch,
-        value: Style.adjust(50),
+        value: Style.adjust(100),
       },
     ],
     Style.adjust(88)
   ),
-  android: Style.adjust(50),
+  android: Style.adjust(115),
 });
 
 const styles = StyleSheet.create({
@@ -70,7 +67,7 @@ const styles = StyleSheet.create({
   } as ViewStyle,
   avatar: {
     position: "absolute",
-    width: "100%",
+    alignSelf: "center",
     top: 160,
   } as ViewStyle,
 });

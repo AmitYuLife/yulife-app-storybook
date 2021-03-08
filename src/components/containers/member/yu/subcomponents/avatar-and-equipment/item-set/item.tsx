@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useMemo } from "react";
+import React, { useCallback, useContext } from "react";
 import { StyleSheet, ViewStyle, View, ImageStyle } from "react-native";
 import { TouchableOpacityWithDelay, PowerCoin } from "@molecules";
 import { Style } from "@styles";
@@ -7,45 +7,37 @@ import { AVATAR_ITEM } from "@ids";
 import { SvgUnlockable } from "../../product/assets/svg-unlockable";
 import { SvgLocked } from "../../product/assets/svg-locked";
 import { ItemIcon } from "./item-icon";
-import { IProduct } from "../../../../../products/fib/fib.types";
 import { YuScreenProductContext } from "../../../yu-screen.context";
+import { YuScreenProductSlotItem } from "@graphql/_core/schema";
 
-export const Item = (props: IProduct) => {
-  const { earnRate, status, itemSlot, coverType, productId } = props;
-  const { product: selectedProduct, setProduct } = useContext(YuScreenProductContext);
+interface IItem extends YuScreenProductSlotItem {
+  style?: ViewStyle;
+}
+
+export const Item = (props: IItem) => {
+  const { earnRate, status, itemUrl, style, icon } = props;
+  const { setProduct, product } = useContext(YuScreenProductContext);
 
   const onPress = useCallback(() => {
-    setProduct({
-      type: "avatar",
-      id: productId === selectedProduct.id ? null : productId,
-    });
-  }, [productId, selectedProduct, setProduct]);
-
-  const isSelected = useMemo(() => selectedProduct.id === productId && selectedProduct.type === "avatar", [
-    selectedProduct,
-    productId,
-  ]);
+    setProduct(product?.itemUrl === itemUrl ? null : props);
+  }, [setProduct, product, itemUrl, props]);
 
   return (
     <TouchableOpacityWithDelay
       delay={350}
       activeOpacity={1}
       onPress={onPress}
-      style={styles.wrapper}
-      testID={AVATAR_ITEM(itemSlot, status)}
+      style={[styles.wrapper, style]}
+      testID={AVATAR_ITEM(icon?.name, status)}
     >
-      <ItemIcon isSelected={isSelected} itemSlot={itemSlot} status={status} coverType={coverType} />
+      <ItemIcon item={{ name: icon?.name, itemUrl, backgroundUrl: icon?.backgroundUrl }} status={status} />
       <View style={styles.tagWrapper}>{getTag(status, earnRate)}</View>
     </TouchableOpacityWithDelay>
   );
 };
 
 const styles = StyleSheet.create({
-  wrapper: {
-    width: Style.adjust(76),
-    height: Style.adjust(64),
-    marginTop: Style.adjust(12),
-  } as ViewStyle,
+  wrapper: { marginBottom: 6 } as ViewStyle,
   image: {
     maxHeight: Style.adjust(76),
     maxWidth: Style.adjust(64),
@@ -53,7 +45,7 @@ const styles = StyleSheet.create({
   tagWrapper: {
     position: "absolute",
     top: Style.adjust(4),
-    right: 0,
+    right: -5,
   } as ViewStyle,
 });
 

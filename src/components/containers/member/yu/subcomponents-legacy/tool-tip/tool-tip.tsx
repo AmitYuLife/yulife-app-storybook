@@ -1,5 +1,5 @@
 import React, { memo, useMemo, useCallback, useEffect, useContext } from "react";
-import { StyleSheet, View, ViewStyle, TextStyle, ImageStyle, Image } from "react-native";
+import { StyleSheet, View, ViewStyle, TextStyle, ImageStyle } from "react-native";
 import { Text, Button } from "@atoms";
 import { Style, Colours } from "@styles";
 import { CloseSvg } from "@atoms";
@@ -7,13 +7,13 @@ import { TouchableOpacityWithDelay } from "@molecules";
 import {
   GetTopUpsQuote,
   GetTopUpsQuoteVariables,
-  GetYulifer,
   UpdateTopUpsQuoteVariables,
   UpdateTopUpsQuote_updateFibQuote,
 } from "@graphql/_core/schema";
-import { useLazyQuery, useMutation, useQuery } from "@apollo/react-hooks";
-import { GQL_QUERY_GET_YULIFER } from "@graphql/yuscreen";
+import { useLazyQuery, useMutation } from "@apollo/react-hooks";
 import LinearGradient from "react-native-linear-gradient";
+import { getProductIcon } from "../../assets/getProductIcon";
+import { getIsEmployerProduct } from "../../yu-types";
 import { navigateToProductScreen } from "../../navigation/navigateToProductScreen";
 import { useSelector, useDispatch } from "react-redux";
 import { getFIBState } from "@redux/product/product.selectors";
@@ -31,17 +31,12 @@ import {
 import { YuScreenProductContext } from "../../yu-screen.context";
 import { getToolTipName } from "@services/products";
 
-import { DATA } from "../avatar-and-equipment/mock-delete-this-later/apiResponse.delete.this";
-
 export const ToolTip = () => {
   const dispatch = useDispatch();
-  const { product: productType, setProduct } = useContext(YuScreenProductContext);
+  const { product, setProduct } = useContext(YuScreenProductContext);
 
-  const onClose = useCallback(() => setProduct({ type: "avatar", id: null }), [setProduct]);
-
-  const { data } = useQuery<GetYulifer>(GQL_QUERY_GET_YULIFER, {
-    fetchPolicy: "cache-only",
-  });
+  const onClose = useCallback(() => setProduct(null), [setProduct]);
+  const isProductEmpty = Object.keys(product || {}).length > 0;
 
   const [getTopUpsQuery, { data: topUpsData }] = useLazyQuery<GetTopUpsQuote, GetTopUpsQuoteVariables>(
     GQL_QUERY_GET_TOP_UPS_QUOTE,
@@ -57,12 +52,12 @@ export const ToolTip = () => {
   const { productEntityId, latestQuoteId } = fibState;
 
   useEffect(() => {
-    dispatch(logProductItemViewedActionCreator(productType.id));
-  }, [productType.id, dispatch]);
+    dispatch(logProductItemViewedActionCreator(product?.productId));
+  }, [product, dispatch]);
 
   useEffect(() => {
     (() => {
-      if (productType.id === YuProductId.family_income_benefit && !topUpsData?.getTopUpsQuote?.quoteId) {
+      if (product?.productId === YuProductId.family_income_benefit && !topUpsData?.getTopUpsQuote?.quoteId) {
         if (productEntityId && latestQuoteId) {
           getTopUpsQuery({
             variables: {
@@ -76,24 +71,9 @@ export const ToolTip = () => {
         }
       }
     })();
-  }, [getTopUpsQuery, productType.id, productEntityId, latestQuoteId, topUpsData]);
+  }, [getTopUpsQuery, product, productEntityId, latestQuoteId, topUpsData]);
 
-  const product = useMemo(() => {
-    if (!data) {
-      return null;
-    }
-
-    const { left, right, bottom } = DATA;
-
-    const itemsLeft = Object.keys(left).map((i) => left[i]);
-    const itemsRight = Object.keys(right).map((i) => right[i]);
-    const itemsBottom = Object.keys(bottom).map((i) => bottom[i]);
-    const allProducts = [...itemsLeft, ...itemsRight, ...itemsBottom];
-    const item = allProducts.find((i) => i?.productId === productType.id);
-    //TODO: There is a better way of doing this, which we can do when we have the api ready, because involve changing the YuScreenProductContext
-
-    return item;
-  }, [data, productType.id]);
+  const IconSvg = useMemo(() => getProductIcon(product?.itemSlot), [product]);
 
   const [updateFibQuote] = useMutation<UpdateTopUpsQuote_updateFibQuote, UpdateTopUpsQuoteVariables>(
     GQL_MUTATION_UPDATE_TOP_UPS_QUOTE
@@ -110,7 +90,7 @@ export const ToolTip = () => {
   }, [dispatch, quoteId, updateFibQuote]);
 
   const handleNavigateToProductScreen = useCallback(() => {
-    dispatch(logProductItemInspectedActionCreator(productType.id));
+    dispatch(logProductItemInspectedActionCreator(product?.productId));
 
     onClose();
     navigateToProductScreen({
@@ -118,10 +98,10 @@ export const ToolTip = () => {
       fibState,
       resetFibJourney,
     });
-  }, [product, fibState, onClose, resetFibJourney, productType.id, dispatch]);
+  }, [product, fibState, onClose, resetFibJourney, dispatch]);
 
   useBackHandler(() => {
-    if (!productType.id || !product) {
+    if (!isProductEmpty) {
       return false;
     }
 
@@ -129,24 +109,23 @@ export const ToolTip = () => {
     return true;
   });
 
-  if (!productType.id || !product) {
+  if (!isProductEmpty) {
     return null;
   }
 
-  const { name, status, coverType, picture } = product;
+  const { name, status, coverType } = product;
 
   const isActive = status === YuProductStatus.active;
   const isLocked = status === YuProductStatus.locked;
   const isUnlockable = status === YuProductStatus.unlockable;
 
   return (
-    <View style={StyleSheet.flatten(styles.wrapper)}>
+    <View style={StyleSheet.flatten([styles.wrapper, getHorizontalPosition(product?.productId)])}>
       <View style={styles.shadow} />
       <View style={getContentWrapperStyle(coverType, isActive)}>
         <View style={getTopWrapperStyle(coverType, isActive)}>
           <MemoizedLinearGradient colorTheme={getLinearGradientColorTheme(coverType, isActive)} />
-
-          <Image resizeMode="contain" source={picture} style={styles.iconWrapper} />
+          <IconSvg status={status} style={StyleSheet.flatten([styles.iconWrapper, { opacity: !isActive ? 0.7 : 1 }])} />
           <View style={styles.nameWrapper}>
             <Text bold={true} style={getNameStyle(isActive)}>
               {isLocked ? "Coming soon" : getToolTipName(name)}
@@ -160,8 +139,8 @@ export const ToolTip = () => {
         </View>
         {isActive ? null : <MemoizedLineBreak />}
         <View style={getBottomWrapperStyle(coverType, isActive)}>
-          <CoinLabel yuCoinPower={product.earnRate} />
-          <Text style={getCaptionStyle(isActive)}>{product.description}</Text>
+          <CoinLabel yuCoinPower={product?.earnRate} />
+          <Text style={getCaptionStyle(isActive)}>{product?.description}</Text>
           <Button
             wrapperStyle={styles.cta}
             type="Primary"
@@ -248,10 +227,10 @@ function getButtonProps({ product }: { product: IProduct }) {
 
 const styles = StyleSheet.create({
   wrapper: {
-    alignSelf: "center",
+    position: "absolute",
     width: Style.adjust(272),
     paddingBottom: 4,
-    left: 0,
+    zIndex: 999,
   } as ViewStyle,
   shadow: {
     position: "absolute",
@@ -293,15 +272,29 @@ const styles = StyleSheet.create({
     textAlign: "center",
   } as TextStyle,
   iconWrapper: {
+    justifyContent: "center",
+    alignItems: "center",
     width: Style.adjust(80),
     height: Style.adjust(80),
     alignSelf: "center",
-  },
+  } as ViewStyle,
   icon: {
     ...StyleSheet.absoluteFillObject,
     height: 70,
   } as ImageStyle,
 });
+
+function getHorizontalPosition(productId: YuProductId) {
+  if (getIsEmployerProduct(productId)) {
+    return {
+      left: Style.adjust(26),
+    };
+  }
+
+  return {
+    right: Style.adjust(26),
+  };
+}
 
 function getContentWrapperStyle(coverType: CoverType, isActive: boolean) {
   const defaultStyle = {

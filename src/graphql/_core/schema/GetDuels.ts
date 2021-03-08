@@ -18,6 +18,8 @@ export interface GetDuels_getDuels_opponents {
   status: string | null;
   startDateTime: string | null;
   name: GetDuels_getDuels_opponents_name | null;
+  avatar: string | null;
+  duelId: string | null;
   lastTimeOpponentDataRetrieved: string | null;
 }
 
