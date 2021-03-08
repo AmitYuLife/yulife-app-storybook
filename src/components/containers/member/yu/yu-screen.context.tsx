@@ -1,17 +1,13 @@
-import { YuProductId } from "@graphql/_core/schema/globalTypes";
+import { IProduct } from "@components/containers/products/fib/fib.types";
+import { YuScreenProductSlotItem } from "@graphql/_core/schema";
 import { createContext, Dispatch } from "react";
-
-interface Product {
-  id: YuProductId;
-  type: string;
-}
-
-interface ProductContext {
-  product: Product;
-  setProduct: Dispatch<Product>;
+export interface ProductContext {
+  product: YuScreenProductSlotItem & IProduct;
+  setProduct: Dispatch<YuScreenProductSlotItem | IProduct | null>;
 }
 
 export const YuScreenProductContext = createContext<ProductContext>({
-  product: { type: "avatar", id: null },
+  product: null,
+
   setProduct: () => null,
 });

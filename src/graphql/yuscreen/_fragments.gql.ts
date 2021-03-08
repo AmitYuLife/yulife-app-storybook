@@ -1,5 +1,46 @@
 import gql from "graphql-tag";
 
+export const GQL_YU_SCREEN_PRODUCT_SLOT_ITEM = gql`
+  fragment YuScreenProductSlotItem on YuScreenProductSlotItem {
+    itemUrl
+    status
+    earnRate
+    productId
+    coverType
+    icon {
+      name
+      backgroundUrl
+    }
+    toolTip {
+      name
+      heading
+      itemUrl
+      description {
+        short
+        long
+      }
+    }
+  }
+`;
+
+export const GQL_YU_SCREEN_PRODUCT_SLOT = gql`
+  ${GQL_YU_SCREEN_PRODUCT_SLOT_ITEM}
+  fragment YuScreenProductSlot on YuScreenProductSlot {
+    slot1 {
+      ...YuScreenProductSlotItem
+    }
+    slot2 {
+      ...YuScreenProductSlotItem
+    }
+    slot3 {
+      ...YuScreenProductSlotItem
+    }
+    slot4 {
+      ...YuScreenProductSlotItem
+    }
+  }
+`;
+
 export const GQL_FRAGMENT_AVATAR_PART = gql`
   fragment YuAvatarPart on AvatarPart {
     partId

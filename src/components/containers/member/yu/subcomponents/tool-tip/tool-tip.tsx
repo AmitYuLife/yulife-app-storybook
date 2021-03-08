@@ -1,5 +1,5 @@
-import React, { memo, useMemo, useCallback, useEffect, useContext } from "react";
-import { StyleSheet, View, ViewStyle, TextStyle, ImageStyle } from "react-native";
+import React, { memo, useCallback, useEffect, useContext } from "react";
+import { StyleSheet, View, ViewStyle, TextStyle, ImageStyle, Image } from "react-native";
 import { Text, Button } from "@atoms";
 import { Style, Colours } from "@styles";
 import { CloseSvg } from "@atoms";
@@ -7,41 +7,35 @@ import { TouchableOpacityWithDelay } from "@molecules";
 import {
   GetTopUpsQuote,
   GetTopUpsQuoteVariables,
-  GetYulifer,
   UpdateTopUpsQuoteVariables,
   UpdateTopUpsQuote_updateFibQuote,
+  YuScreenProductSlotItem,
 } from "@graphql/_core/schema";
-import { useLazyQuery, useMutation, useQuery } from "@apollo/react-hooks";
-import { GQL_QUERY_GET_YULIFER } from "@graphql/yuscreen";
+import { useLazyQuery, useMutation } from "@apollo/react-hooks";
 import LinearGradient from "react-native-linear-gradient";
-import { getProductIcon } from "../../assets/getProductIcon";
-import { getIsEmployerProduct } from "../../yu-types";
 import { navigateToProductScreen } from "../../navigation/navigateToProductScreen";
 import { useSelector, useDispatch } from "react-redux";
 import { getFIBState } from "@redux/product/product.selectors";
 import { refreshFIBStore, resetFIBUnderwritingJourney } from "@redux/product/product.actions";
 import { CoinLabel } from "./coin-label";
 import { useBackHandler } from "@services/hooks/useBackHandler";
-import { ProductCode, YuProductId, YuProductStatus, CoverType } from "@graphql/_core/schema/globalTypes";
+import { ProductCode, YuProductId, YuProductStatus, CoverType, YuItemSlot } from "@graphql/_core/schema/globalTypes";
 import { GQL_MUTATION_UPDATE_TOP_UPS_QUOTE } from "@graphql/products/updateTopUpsQuote";
 import { GQL_QUERY_GET_TOP_UPS_QUOTE } from "@graphql/products";
-import { IProduct } from "../../../../products/fib/fib.types";
+
 import {
   logProductItemInspectedActionCreator,
   logProductItemViewedActionCreator,
 } from "@redux/logging/logging.actions";
 import { YuScreenProductContext } from "../../yu-screen.context";
-import { getToolTipName } from "@services/products";
+import { ValueDescription } from "@components/molecules/text-template/value-description-text";
 
 export const ToolTip = () => {
   const dispatch = useDispatch();
-  const { product: productType, setProduct } = useContext(YuScreenProductContext);
+  const { product, setProduct } = useContext(YuScreenProductContext);
 
-  const onClose = useCallback(() => setProduct({ type: "avatar", id: null }), [setProduct]);
-
-  const { data } = useQuery<GetYulifer>(GQL_QUERY_GET_YULIFER, {
-    fetchPolicy: "cache-only",
-  });
+  const onClose = useCallback(() => setProduct(null), [setProduct]);
+  const isProductEmpty = Object.keys(product || {}).length > 0;
 
   const [getTopUpsQuery, { data: topUpsData }] = useLazyQuery<GetTopUpsQuote, GetTopUpsQuoteVariables>(
     GQL_QUERY_GET_TOP_UPS_QUOTE,
@@ -57,12 +51,12 @@ export const ToolTip = () => {
   const { productEntityId, latestQuoteId } = fibState;
 
   useEffect(() => {
-    dispatch(logProductItemViewedActionCreator(productType.id));
-  }, [productType.id, dispatch]);
+    dispatch(logProductItemViewedActionCreator(product?.productId));
+  }, [product, dispatch]);
 
   useEffect(() => {
     (() => {
-      if (productType.id === YuProductId.family_income_benefit && !topUpsData?.getTopUpsQuote?.quoteId) {
+      if (product?.productId === YuProductId.family_income_benefit && !topUpsData?.getTopUpsQuote?.quoteId) {
         if (productEntityId && latestQuoteId) {
           getTopUpsQuery({
             variables: {
@@ -76,23 +70,7 @@ export const ToolTip = () => {
         }
       }
     })();
-  }, [getTopUpsQuery, productType.id, productEntityId, latestQuoteId, topUpsData]);
-
-  const product = useMemo(() => {
-    if (!data) {
-      return null;
-    }
-
-    const { chest, pants, gloves, boots } = data.personal;
-
-    const allProducts: IProduct[] = [...data.additional, chest, pants, gloves, boots];
-
-    const item = allProducts.find((i) => i?.productId === productType.id);
-
-    return item;
-  }, [data, productType.id]);
-
-  const IconSvg = useMemo(() => getProductIcon(product?.itemSlot), [product]);
+  }, [getTopUpsQuery, product, productEntityId, latestQuoteId, topUpsData]);
 
   const [updateFibQuote] = useMutation<UpdateTopUpsQuote_updateFibQuote, UpdateTopUpsQuoteVariables>(
     GQL_MUTATION_UPDATE_TOP_UPS_QUOTE
@@ -109,18 +87,20 @@ export const ToolTip = () => {
   }, [dispatch, quoteId, updateFibQuote]);
 
   const handleNavigateToProductScreen = useCallback(() => {
-    dispatch(logProductItemInspectedActionCreator(productType.id));
-
+    dispatch(logProductItemInspectedActionCreator(product.productId));
     onClose();
     navigateToProductScreen({
-      product,
+      product: {
+        ...product,
+        itemSlot: product?.icon?.name.toLowerCase() as YuItemSlot, //we will have this just until we can remove the legacy
+      },
       fibState,
       resetFibJourney,
     });
-  }, [product, fibState, onClose, resetFibJourney, productType.id, dispatch]);
+  }, [product, fibState, onClose, resetFibJourney, dispatch]);
 
   useBackHandler(() => {
-    if (!productType.id || !product) {
+    if (!isProductEmpty) {
       return false;
     }
 
@@ -128,26 +108,25 @@ export const ToolTip = () => {
     return true;
   });
 
-  if (!productType.id || !product) {
+  if (!isProductEmpty) {
     return null;
   }
 
-  const { name, status, coverType } = product;
+  const { toolTip, status, coverType } = product;
 
   const isActive = status === YuProductStatus.active;
-  const isLocked = status === YuProductStatus.locked;
   const isUnlockable = status === YuProductStatus.unlockable;
 
   return (
-    <View style={StyleSheet.flatten([styles.wrapper, getHorizontalPosition(productType.id)])}>
+    <View style={StyleSheet.flatten(styles.wrapper)}>
       <View style={styles.shadow} />
       <View style={getContentWrapperStyle(coverType, isActive)}>
         <View style={getTopWrapperStyle(coverType, isActive)}>
           <MemoizedLinearGradient colorTheme={getLinearGradientColorTheme(coverType, isActive)} />
-          <IconSvg status={status} style={StyleSheet.flatten([styles.iconWrapper, { opacity: !isActive ? 0.7 : 1 }])} />
+          <Image resizeMode="contain" source={{ uri: toolTip.itemUrl }} style={styles.iconWrapper} />
           <View style={styles.nameWrapper}>
             <Text bold={true} style={getNameStyle(isActive)}>
-              {isLocked ? "Coming soon" : getToolTipName(name)}
+              {toolTip?.name}
             </Text>
           </View>
           {!isUnlockable ? null : (
@@ -156,10 +135,18 @@ export const ToolTip = () => {
             </View>
           )}
         </View>
-        {isActive ? null : <MemoizedLineBreak />}
         <View style={getBottomWrapperStyle(coverType, isActive)}>
-          <CoinLabel yuCoinPower={product.earnRate} />
-          <Text style={getCaptionStyle(isActive)}>{product.description}</Text>
+          {toolTip?.heading ? (
+            <ValueDescription
+              description={toolTip.heading.replace(/\d+/g, "")}
+              value={toolTip?.heading.match(/\d+/g).toString()}
+              type="default"
+              style={styles.heading}
+            />
+          ) : null}
+          {product?.earnRate ? <CoinLabel yuCoinPower={product?.earnRate} /> : null}
+          <MemoizedLineBreak />
+          <Text style={getCaptionStyle(isActive)}>{toolTip?.description.short}</Text>
           <Button
             wrapperStyle={styles.cta}
             type="Primary"
@@ -215,7 +202,7 @@ function getLinearGradientColorTheme(coverType: CoverType, isActive: boolean) {
   return [];
 }
 
-function getButtonProps({ product }: { product: IProduct }) {
+function getButtonProps({ product }: { product: YuScreenProductSlotItem }) {
   let label = "";
   let backgroundColor = Colours.darkHotPink;
   let shadowColor = Colours.darkHotPinkShadow;
@@ -246,10 +233,10 @@ function getButtonProps({ product }: { product: IProduct }) {
 
 const styles = StyleSheet.create({
   wrapper: {
-    position: "absolute",
+    alignSelf: "center",
     width: Style.adjust(272),
     paddingBottom: 4,
-    zIndex: 999,
+    left: 0,
   } as ViewStyle,
   shadow: {
     position: "absolute",
@@ -273,6 +260,7 @@ const styles = StyleSheet.create({
     height: 1,
     width: "100%",
     opacity: 0.4,
+    marginBottom: Style.adjust(8),
   } as ViewStyle,
   backgroundGradient: {
     ...StyleSheet.absoluteFillObject,
@@ -291,29 +279,18 @@ const styles = StyleSheet.create({
     textAlign: "center",
   } as TextStyle,
   iconWrapper: {
-    justifyContent: "center",
-    alignItems: "center",
-    width: Style.adjust(80),
-    height: Style.adjust(80),
+    width: Style.adjust(72),
+    height: Style.adjust(72),
     alignSelf: "center",
-  } as ViewStyle,
+  },
   icon: {
     ...StyleSheet.absoluteFillObject,
     height: 70,
   } as ImageStyle,
+  heading: {
+    marginBottom: Style.adjust(8),
+  } as ViewStyle,
 });
-
-function getHorizontalPosition(productId: YuProductId) {
-  if (getIsEmployerProduct(productId)) {
-    return {
-      left: Style.adjust(26),
-    };
-  }
-
-  return {
-    right: Style.adjust(26),
-  };
-}
 
 function getContentWrapperStyle(coverType: CoverType, isActive: boolean) {
   const defaultStyle = {
@@ -350,12 +327,14 @@ function getTopWrapperStyle(coverType: CoverType, isActive: boolean) {
 
 function getBottomWrapperStyle(coverType: CoverType, isActive: boolean) {
   const defaultStyle = {
-    paddingVertical: Style.adjust(24),
+    paddingVertical: 0,
     paddingHorizontal: Style.adjust(24),
+    paddingBottom: 24,
     backgroundColor: "white",
   };
 
   if (isActive) {
+    defaultStyle.paddingVertical = 24;
     if (coverType === CoverType.common) {
       defaultStyle.backgroundColor = Colours.secondary.s10S1;
     } else if (coverType === CoverType.rare) {
@@ -388,6 +367,7 @@ function getCaptionStyle(isActive: boolean) {
   const defaultStyle = {
     fontSize: Style.adjust(16),
     lineHeight: Style.adjust(24),
+    marginTop: Style.adjust(16),
     letterSpacing: 0.6,
     textAlign: "center",
     color: Colours.neutral.n700,

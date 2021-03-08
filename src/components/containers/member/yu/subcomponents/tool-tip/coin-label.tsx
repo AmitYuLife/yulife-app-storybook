@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
   wrapper: {
     alignItems: "center",
     flexDirection: "row",
-    marginBottom: Style.adjust(16),
+    marginBottom: Style.adjust(8),
   } as ViewStyle,
   coin: {
     color: Colours.orange,

@@ -1,6 +1,6 @@
 import React, { memo } from "react";
+import { YuScreen as YuScreenLegacy } from "./yu-screen-legacy";
 import { YuScreen } from "./yu-screen";
-import { YuScreen as YuScreenTP715 } from "./yu-screen_tp_712";
 import { YuScreenLayout } from "./yu-screen-layout";
 import { GetYulifer } from "@graphql/_core/schema";
 import { GQL_QUERY_GET_YULIFER } from "@graphql/yuscreen";
@@ -33,7 +33,7 @@ const _YuScreenContainer = (props: ConnectedState) => {
 
   return (
     <YuScreenLayout>
-      {loading || !data ? <YuScreenLoading /> : showNewYuScreen ? <YuScreenTP715 /> : <YuScreen />}
+      {loading || !data ? <YuScreenLoading /> : showNewYuScreen ? <YuScreen /> : <YuScreenLegacy />}
     </YuScreenLayout>
   );
 };

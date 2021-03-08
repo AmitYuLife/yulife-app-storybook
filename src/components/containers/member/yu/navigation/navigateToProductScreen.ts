@@ -14,9 +14,10 @@ import { getIsPersonalItem } from "../yu-types";
 import { FIBStore } from "@redux/product/product.types";
 import { CoverType, ScreeningStatus } from "../../../../../graphql/_core/schema/globalTypes";
 import { YUGI_INTRO_TYPE } from "../../../products/fib/subcontainers/fib.yugi-intro.container";
+import { YuScreenProductSlotItem } from "@graphql/_core/schema";
 
 interface INavigateToProductScreen {
-  product: IProduct;
+  product: IProduct & YuScreenProductSlotItem; //we have set his way to support the legacy yuscreen
   fibState: FIBStore;
   resetFibJourney: () => void;
 }
@@ -35,7 +36,7 @@ export const navigateToProductScreen = ({ product, fibState, resetFibJourney }: 
     });
   }
 
-  const isPersonalItem = getIsPersonalItem(product.itemSlot);
+  const isPersonalItem = getIsPersonalItem(product?.itemSlot);
 
   if (isPersonalItem) {
     if (fibState.rejected || fibState.status === ScreeningStatus.REJECTED) {
@@ -140,7 +141,6 @@ export const navigateToProductScreen = ({ product, fibState, resetFibJourney }: 
         description: product.description,
         name: product.name,
         status: product.status,
-        itemSlot: product.itemSlot,
         policyNumber: product.policyNumber,
       },
     },
