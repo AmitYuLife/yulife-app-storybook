@@ -156,6 +156,10 @@ export default [
     name: ROUTES.fib,
     component: require("../components/containers/products/fib/fib.container").default,
   },
+  {
+    name: ROUTES.productDetails,
+    component: require("../components/containers/products/product-details/product-details.container").default,
+  },
   // webview
   {
     name: ROUTES.webView,
@@ -169,6 +173,10 @@ export default [
   {
     name: MODALS.earnRate,
     component: require("../components/containers/member/yu/yu-earn-rate-modal/yu-earn-rate-modal").default,
+  },
+  {
+    name: MODALS.policyCertificate,
+    component: require("../components/containers/products/product-details/product-details.container").default,
   },
   {
     name: MODALS.enterSalary,

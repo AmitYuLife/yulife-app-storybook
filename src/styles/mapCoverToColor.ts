@@ -14,6 +14,13 @@ export const mapCoverToColor = (coverType?: CoverType) => {
         border,
         separator,
         shadow,
+        solidBorder: Colours.secondary.s100S3,
+        cornerFlower: Colours.secondary.s50S3,
+        cornerFlowerAccent: Colours.secondary.s20S3,
+        concentricCircles: Colours.secondary.s20S3,
+        medalBorder: "#CAB5FF",
+        certificateBackground: Colours.secondary.s10S3,
+        certificatePrimary: Colours.products.fib.epic,
       };
     case CoverType.rare:
       return {
@@ -22,6 +29,13 @@ export const mapCoverToColor = (coverType?: CoverType) => {
         border,
         separator,
         shadow,
+        solidBorder: Colours.blue.dp305,
+        cornerFlower: "#96D8F3",
+        cornerFlowerAccent: Colours.secondary.s20S2,
+        concentricCircles: "#CAEFF9",
+        medalBorder: "#8CE7FF",
+        certificateBackground: Colours.secondary.s10S2,
+        certificatePrimary: Colours.products.fib.rare,
       };
     case CoverType.common:
       return {
@@ -30,6 +44,13 @@ export const mapCoverToColor = (coverType?: CoverType) => {
         border,
         separator,
         shadow,
+        solidBorder: "#37C4A0",
+        cornerFlower: Colours.secondary.s50S1,
+        cornerFlowerAccent: Colours.secondary.s20S1,
+        concentricCircles: Colours.secondary.s20S1,
+        medalBorder: "#71F1D0",
+        certificateBackground: "#F4FFFB",
+        certificatePrimary: "#37C4A0",
       };
     default:
       return {
@@ -38,6 +59,13 @@ export const mapCoverToColor = (coverType?: CoverType) => {
         border,
         separator,
         shadow,
+        solidBorder: Colours.neutral.n800,
+        cornerFlower: Colours.neutral.n800,
+        cornerFlowerAccent: Colours.neutral.n800,
+        concentricCircles: Colours.neutral.n800,
+        medalBorder: Colours.neutral.n800,
+        certificateBackground: Colours.neutral.n800,
+        certificatePrimary: Colours.neutral.white,
       };
   }
 };

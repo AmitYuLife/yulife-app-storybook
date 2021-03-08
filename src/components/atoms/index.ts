@@ -20,6 +20,7 @@ export { default as StarInline } from "./star-inline/star-inline";
 export { SliderInput } from "./slider-input/slider-input";
 export { default as Stars } from "./stars/stars";
 export { default as Text } from "./text/text";
+export { TextTemplate } from "./text/text-template";
 export { default as TextInput } from "./text-input/text-input";
 export { default as TextInputError } from "./text-input/text-input-error";
 export { default as GenericHeading } from "./generic-heading/generic-heading";
@@ -45,6 +46,7 @@ export { default as AddressIcon } from "./address-icon/address-icon";
 export * from "./gp-icons";
 export { BoxOption } from "./box-option/box-option";
 export { default as ProductColorTheme } from "./product-color-theme";
+export { default as Icon } from "./icon";
 
 // error :( https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-8.html#export--as-ns-syntax
 import * as ProductSvg from "./product-svg";

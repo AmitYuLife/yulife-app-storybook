@@ -31,12 +31,6 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     overflow: "hidden",
   } as ViewStyle,
-  close: {
-    position: "absolute",
-    top: 0,
-    right: 0,
-    padding: Style.adjust(16),
-  } as ViewStyle,
 });
 
 export default GenericOverlay;
