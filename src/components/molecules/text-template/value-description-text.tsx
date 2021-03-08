@@ -1,17 +1,30 @@
 import React from "react";
 import { StyleSheet, ViewStyle, TextStyle, View, Platform } from "react-native";
-import { Text } from "@atoms";
+import { Text, TextTemplate } from "@atoms";
 import { Style, Colours } from "@styles";
 
 interface Props {
   value: string;
   description: string;
-  type?: "default" | "yucoin";
+  type?: "default" | "yucoin" | "vertical";
   style?: ViewStyle;
 }
 
 export const ValueDescription = (props: Props) => {
   const { value, description, type = "default", style } = props;
+
+  if (type === "vertical") {
+    return (
+      <View style={StyleSheet.flatten([verticalStyles.wrapper, style])}>
+        <TextTemplate textAlign="center" type="l2">
+          {description}
+        </TextTemplate>
+        <TextTemplate textAlign="center" type="b1b">
+          {value}
+        </TextTemplate>
+      </View>
+    );
+  }
 
   const { valueStyle, descriptionStyle } = getStyle(type);
 
@@ -49,6 +62,13 @@ const styles = StyleSheet.create({
   } as ViewStyle,
 });
 
+const verticalStyles = StyleSheet.create({
+  wrapper: {
+    width: "100%",
+    alignItems: "center",
+  } as ViewStyle,
+});
+
 const defaultStyle = StyleSheet.create({
   value: {
     fontSize: Style.adjust(28),
@@ -62,7 +82,7 @@ const defaultStyle = StyleSheet.create({
     letterSpacing: 0.8,
     color: Colours.neutral.n800,
     marginBottom: Platform.select({
-      ios: 0,
+      ios: 1,
       android: 2,
     }),
   } as TextStyle,
@@ -84,6 +104,6 @@ const yucoinStyle = StyleSheet.create({
       ios: 2,
       android: Style.adjust(4),
     }),
-    marginLeft: 2,
+    marginLeft: Style.adjust(8),
   } as TextStyle,
 });
