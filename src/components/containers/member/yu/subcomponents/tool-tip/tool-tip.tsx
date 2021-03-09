@@ -1,9 +1,8 @@
 import React, { memo, useCallback, useEffect, useContext } from "react";
 import { StyleSheet, View, ViewStyle, TextStyle, ImageStyle, Image } from "react-native";
-import { Text, Button } from "@atoms";
+import { Text, Button, CloseSvg } from "@atoms";
 import { Style, Colours } from "@styles";
-import { CloseSvg } from "@atoms";
-import { TouchableOpacityWithDelay } from "@molecules";
+import { TouchableOpacityWithDelay, ValueDescription } from "@molecules";
 import {
   GetTopUpsQuote,
   GetTopUpsQuoteVariables,
@@ -28,7 +27,6 @@ import {
   logProductItemViewedActionCreator,
 } from "@redux/logging/logging.actions";
 import { YuScreenProductContext } from "../../yu-screen.context";
-import { ValueDescription } from "@components/molecules/text-template/value-description-text";
 
 export const ToolTip = () => {
   const dispatch = useDispatch();

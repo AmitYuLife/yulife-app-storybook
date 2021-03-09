@@ -4,6 +4,7 @@ import { BirthdaySvg } from "../icons/birthday-svg";
 import { QuestionBubbleSvg } from "../icons/question-bubble";
 import { ArrowRightSvg } from "../icons/arrow-right";
 import { SalarySvg } from "../icons/salary-svg";
+import Icon from "@atoms/icon";
 
 export enum BUTTON_ICON {
   BIRTHDAY = "BIRTHDAY",
@@ -11,6 +12,7 @@ export enum BUTTON_ICON {
   QUESTION_BUBBLE = "QUESTION_BUBBLE",
   ARROW_RIGHT = "ARROW_RIGHT",
   SALARY = "SALARY",
+  DOCUMENT = "DOCUMENT",
 }
 
 export function getIcon(icon: BUTTON_ICON) {
@@ -25,6 +27,8 @@ export function getIcon(icon: BUTTON_ICON) {
       return ArrowRightSvg;
     case BUTTON_ICON.SALARY:
       return SalarySvg;
+    case BUTTON_ICON.DOCUMENT:
+      return Icon.Document;
     default:
       return View;
   }

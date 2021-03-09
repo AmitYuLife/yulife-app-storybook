@@ -1,0 +1,57 @@
+import React from "react";
+import { View, StyleSheet, ViewStyle } from "react-native";
+import { Medal } from "./background-medal";
+import { mapCoverToColor, Style } from "@styles";
+import { CoverType } from "@graphql/_core/schema/globalTypes";
+import { ConcentricSet } from "./background-concentric";
+import { CornerFlowerSet } from "./background-corner-flower";
+
+interface Props {
+  children: React.ReactChild | React.ReactChild[];
+  coverType: CoverType;
+}
+
+export const CertificateLayout = (props: Props) => {
+  const { children, coverType } = props;
+  const {
+    solidBorder,
+    certificateBackground,
+    cornerFlower,
+    cornerFlowerAccent,
+    concentricCircles,
+    medalBorder,
+    certificatePrimary,
+  } = mapCoverToColor(coverType);
+
+  return (
+    <View style={styles.shapeWrapper}>
+      <View style={[styles.borderWrapper, { borderColor: solidBorder, backgroundColor: certificateBackground }]}>
+        <ConcentricSet color={concentricCircles} />
+        <CornerFlowerSet color={cornerFlower} accent={cornerFlowerAccent} />
+        {children}
+      </View>
+      <View style={styles.medalWrapper}>
+        <Medal medalBorder={medalBorder} medalFill={certificatePrimary} />
+      </View>
+    </View>
+  );
+};
+
+const styles = StyleSheet.create({
+  shapeWrapper: {
+    width: "100%",
+    paddingBottom: Style.adjust(27),
+  } as ViewStyle,
+  borderWrapper: {
+    borderRadius: 8,
+    borderWidth: 2,
+    paddingHorizontal: Style.adjust(24),
+  } as ViewStyle,
+  medalWrapper: {
+    position: "absolute",
+    left: 0,
+    right: 0,
+    bottom: 0,
+    alignItems: "center",
+  } as ViewStyle,
+});

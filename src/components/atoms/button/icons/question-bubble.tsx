@@ -1,9 +1,10 @@
 import React from "react";
-import { Path } from "react-native-svg";
+import Svg, { Path } from "react-native-svg";
+import { Style } from "@styles";
 
 export const QuestionBubbleSvg = () => {
   return (
-    <>
+    <Svg width={Style.adjust(24)} height={Style.adjust(24)} viewBox="0 0 24 24" fill="none">
       <Path
         d="M16.166 18.562H9.833C5.505 18.562 2 15.061 2 10.738v-.914C2 5.501 5.505 2 9.833 2h6.333C20.495 2 24 5.501 24 9.824v.914a7.812 7.812 0 01-6.675 7.733l-1.159.091z"
         fill="#F7B7D6"
@@ -18,6 +19,6 @@ export const QuestionBubbleSvg = () => {
         stroke="#fff"
         strokeWidth={0.304}
       />
-    </>
+    </Svg>
   );
 };

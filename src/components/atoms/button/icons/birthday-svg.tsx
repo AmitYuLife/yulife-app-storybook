@@ -1,9 +1,10 @@
 import React from "react";
-import { Path, Rect } from "react-native-svg";
+import Svg, { Path, Rect } from "react-native-svg";
+import { Style } from "@styles";
 
 export const BirthdaySvg = () => {
   return (
-    <>
+    <Svg width={Style.adjust(24)} height={Style.adjust(24)} viewBox="0 0 24 24" fill="none">
       <Path fill="#FFEB80" d="M2.913 10.565h18.174v10.522H2.913z" />
       <Path
         d="M1.917 11.25a2 2 0 012-2h16.166a2 2 0 012 2v2.513a.987.987 0 01-.987.987.846.846 0 01-.846-.846v-1.56a.802.802 0 00-.802-.802h-.115a.917.917 0 00-.916.916v.459a.917.917 0 01-1.834 0v-.688a.687.687 0 10-1.375 0v1.834a.687.687 0 11-1.375 0v-1.834a.687.687 0 10-1.375 0v.917a.687.687 0 11-1.375 0v-.917a.687.687 0 00-.687-.687h-.138a.55.55 0 00-.55.55.83.83 0 01-1.661 0 .55.55 0 00-.55-.55h-.138a.688.688 0 00-.687.687v2.664a.773.773 0 11-1.547 0V12.23a.688.688 0 00-1.375 0v1.604a.917.917 0 11-1.833 0V11.25z"
@@ -32,6 +33,6 @@ export const BirthdaySvg = () => {
         strokeLinecap="round"
         strokeLinejoin="round"
       />
-    </>
+    </Svg>
   );
 };
