@@ -29,4 +29,4 @@ export { AvatarEmpty } from "./avatar/avatar-empty";
 export { EmptyAvatar } from "./avatar/empty-avatar";
 export { default as ProgressBar } from "./progress-bar/progress-bar";
 export { PowerCoin } from "./power-coin/power-coin";
-export { default as TextTemplate } from "./text-template";
+export { ValueDescription } from "./text-template/value-description-text";

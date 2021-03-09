@@ -4,7 +4,7 @@ import { usePressedInWithDelay } from "@services/hooks/usePressedInWithDelay";
 import Text from "@atoms/text/text";
 import { Style, Colours } from "@styles";
 import { PressableWithDelay } from "@components/molecules";
-import Svg, { SvgXml } from "react-native-svg";
+import { SvgXml } from "react-native-svg";
 import { getIcon, BUTTON_ICON } from "./tertiary-button.helpers";
 import { styles } from "./tertiary-button.styles";
 
@@ -59,13 +59,7 @@ export function TertiaryButtonBase(props: IProps) {
         ]}
       >
         <View style={styles.leftSide} testID={`${testID}-text-view`}>
-          {iconSvgXml ? (
-            <SvgXml xml={iconSvgXml} width={24} height={24} />
-          ) : (
-            <Svg width={Style.adjust(24)} height={Style.adjust(24)} viewBox="0 0 24 24">
-              <LeftIcon />
-            </Svg>
-          )}
+          {iconSvgXml ? <SvgXml xml={iconSvgXml} width={24} height={24} /> : <LeftIcon />}
           <View style={styles.titleWrapper}>
             <Text bold={true} style={[styles.title, disabledStyles]}>
               {title}
@@ -73,9 +67,9 @@ export function TertiaryButtonBase(props: IProps) {
             {!subTitle ? null : <Text style={[styles.subTitle, disabledStyles]}>{subTitle}</Text>}
           </View>
         </View>
-        <Svg style={styles.rightIcon} width={Style.adjust(24)} height={Style.adjust(24)} viewBox="0 0 24 24">
+        <View style={styles.rightIcon}>
           <RightIcon />
-        </Svg>
+        </View>
       </PressableWithDelay>
     </View>
   );

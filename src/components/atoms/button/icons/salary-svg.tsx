@@ -1,9 +1,10 @@
 import React from "react";
 import { Circle, Svg, Path } from "react-native-svg";
+import { Style } from "@styles";
 
 export const SalarySvg = () => {
   return (
-    <Svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+    <Svg width={Style.adjust(24)} height={Style.adjust(24)} viewBox="0 0 24 24" fill="none">
       <Path
         d="M20.7312 3.99285C21.2323 4.22497 21.4504 4.8194 21.2183 5.32053L14.0728 20.7469C13.8407 21.248 13.2463 21.4661 12.7452 21.234L5.03237 17.6614C4.53124 17.4293 4.31316 16.8349 4.54529 16.3337L11.6907 0.907411C11.9228 0.406275 12.5172 0.188198 13.0184 0.420322L20.7312 3.99285Z"
         fill="#37C4A0"

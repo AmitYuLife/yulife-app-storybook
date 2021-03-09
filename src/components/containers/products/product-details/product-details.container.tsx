@@ -1,6 +1,10 @@
 import React from "react";
 import { View } from "react-native";
 
-const ProductDetailsContainer = () => <View />;
+const ProductDetailsContainer = () => {
+  // pending api integration
+
+  return <View />;
+};
 
 export default ProductDetailsContainer;
