@@ -1,4 +1,5 @@
 import { Linking, Platform } from "react-native";
+import Logger from "@services/logging/logger";
 
 interface IAppLinkConfig {
   appName: string;
@@ -12,16 +13,24 @@ const noop = (): null => null;
 async function openApp(url: string, { appName, appStoreId, appStoreLocale = "gb", playStoreId }: IAppLinkConfig) {
   Linking.openURL(url).catch((err) => {
     if (err.code === "EUNSPECIFIED") {
-      if (Platform.OS === "ios") {
-        // check if appStoreLocale is set
-        const locale = typeof appStoreLocale === "undefined" ? "us" : appStoreLocale;
-
-        Linking.openURL(`https://itunes.apple.com/${locale}/app/${appName}/id${appStoreId}`).catch(noop);
-      } else {
-        Linking.openURL(`https://play.google.com/store/apps/details?id=${playStoreId}`).catch(noop);
-      }
+      openStore({ appName, appStoreId, appStoreLocale, playStoreId });
     }
   });
+}
+
+async function openStore({ appName, appStoreId, appStoreLocale = "gb", playStoreId }: IAppLinkConfig) {
+  try {
+    if (Platform.OS === "ios") {
+      // check if appStoreLocale is set
+      const locale = typeof appStoreLocale === "undefined" ? "us" : appStoreLocale;
+
+      Linking.openURL(`https://itunes.apple.com/${locale}/app/${appName}/id${appStoreId}`).catch(noop);
+    } else {
+      Linking.openURL(`https://play.google.com/store/apps/details?id=${playStoreId}`).catch(noop);
+    }
+  } catch (error) {
+    Logger.error(error, { file: "app-link index" });
+  }
 }
 
 export async function openCalm() {
@@ -37,6 +46,14 @@ export async function openHeadspace() {
     appName: "headspace-meditation",
     appStoreId: "493145008",
     playStoreId: null,
+  });
+}
+
+export async function openYulife() {
+  return openStore({
+    appName: "yulife",
+    appStoreId: "1348287598",
+    playStoreId: "com.yulife.app",
   });
 }
 

@@ -8,6 +8,7 @@ export const ROUTES = {
   emailSent: "yulife.EmailSent",
   signUp: "yulife.SignUp",
   offline: "yulife.Offline",
+  update: "yulife.Update",
 
   // onboarding screens
   onboardingFitKitConnect: "yulife.onboarding.FitKitConnect",
@@ -82,6 +83,7 @@ export const MODALS = {
   financialCoverForm: "yulife.member.financialCoverForm",
   priceChanged: "yulife.member.priceChanged",
   policyCertificate: "yulife.modals.policyCertificate",
+  mobileUpdate: "yulife.member.MobileUpdate",
 };
 
 export const bottomTabs: OptionsBottomTabs = {

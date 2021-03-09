@@ -8,6 +8,12 @@ export const GQL_QUERY_GET_SESSION = gql`
       id
       expires
     }
+    mobileUpgradeRequired {
+      title
+      message
+      imageUrl
+      isDismissable
+    }
   }
 `;
 

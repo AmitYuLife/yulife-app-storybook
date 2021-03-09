@@ -269,7 +269,7 @@ export interface YuScreenProductSlots_getYuScreenProductSlots_bottom {
 export interface YuScreenProductSlots_getYuScreenProductSlots {
   left: YuScreenProductSlots_getYuScreenProductSlots_left;
   right: YuScreenProductSlots_getYuScreenProductSlots_right;
-  bottom: (YuScreenProductSlots_getYuScreenProductSlots_bottom | null)[] | null;
+  bottom: (YuScreenProductSlots_getYuScreenProductSlots_bottom | null)[];
 }
 
 export interface YuScreenProductSlots {

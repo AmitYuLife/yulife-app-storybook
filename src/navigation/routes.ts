@@ -17,6 +17,10 @@ export default [
     name: ROUTES.offline,
     component: require("../components/containers/offline/offline.container").default,
   },
+  {
+    name: ROUTES.update,
+    component: require("../components/containers/update/update.container").default,
+  },
 
   // onboarding screens
   {
@@ -214,6 +218,10 @@ export default [
   {
     name: MODALS.generic,
     component: require("../components/modals/generic-modal/generic-modal").default,
+  },
+  {
+    name: MODALS.mobileUpdate,
+    component: require("../components/modals/mobile-update/mobile-update-modal").default,
   },
   {
     name: MODALS.genericOverlay,
