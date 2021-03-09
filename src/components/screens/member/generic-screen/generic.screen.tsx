@@ -5,17 +5,18 @@ import { Button, Text } from "../../../atoms";
 import styles from "./generic.styles";
 import { GENERIC_SCREEN_HEADING, GENERIC_SCREEN_CTA } from "@ids";
 
+type ButtonProps = React.ComponentProps<typeof Button>;
 export interface IGenericModalProps {
-  onPress?: () => void;
   heading: string;
   subheading: string;
-  ctaLabel: string;
-  onPressSecondary?: () => void;
-  ctaLabelSecondary?: string;
-  isPrimaryLoading?: boolean;
   isPrimaryOnePressOnly?: boolean;
-  isSecondaryLoading?: boolean;
   onPressBack?: () => void;
+  ctaLabel: ButtonProps["label"];
+  onPress?: ButtonProps["onPress"];
+  onPressSecondary?: ButtonProps["onPress"];
+  ctaLabelSecondary?: ButtonProps["label"];
+  isPrimaryLoading?: ButtonProps["isLoading"];
+  isSecondaryLoading?: ButtonProps["isLoading"];
 }
 
 export default function GenericScreen({

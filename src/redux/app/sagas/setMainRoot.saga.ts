@@ -1,6 +1,13 @@
 import getSession from "@graphql/user/getSession.gql";
 import handleDeepLink from "@navigation/handleDeepLink";
-import { setAuthenticatedRoot, setOfflineRoot, setUnauthenticatedRoot, expireSession } from "@navigation/root";
+import {
+  setAuthenticatedRoot,
+  setOfflineRoot,
+  setUnauthenticatedRoot,
+  expireSession,
+  setForceUpdateRoot,
+  showUpdateAppModal,
+} from "@navigation/root";
 import { refreshUserToken } from "@redux/user/user.actions";
 import Logger from "@services/logging/logger";
 import { getToken } from "@services/storage";
@@ -9,10 +16,16 @@ import moment from "moment";
 import { call, put } from "redux-saga/effects";
 import { setAuthenticated, setUnauthenticated } from "../app.actions";
 import { Unpacked } from "@services/utils";
+import { GetSession_mobileUpgradeRequired } from "@graphql/_core/schema";
 
 interface IMainRootPayload {
   payload: string;
   type: string;
+}
+
+interface TokenAndMobileUpgrateStatus {
+  tokenStatus: TokenStatus;
+  mobileUpgrade: GetSession_mobileUpgradeRequired;
 }
 
 type TokenStatus = "refreshing" | "valid" | "invalid" | null;
@@ -26,7 +39,7 @@ export default function* setMainRootSaga({ payload }: IMainRootPayload) {
     if (connectionInfo.type === "none") {
       yield call(setOfflineRoot);
     } else {
-      const tokenStatus: TokenStatus = yield call(getTokenStatus);
+      const { tokenStatus, mobileUpgrade }: TokenAndMobileUpgrateStatus = yield call(getTokenAndMobileUpgrateStatus);
 
       if (tokenStatus === "refreshing") {
         yield put(refreshUserToken());
@@ -38,7 +51,19 @@ export default function* setMainRootSaga({ payload }: IMainRootPayload) {
        * are timing out
        **/
       if (!!tokenStatus && tokenStatus !== "invalid") {
-        yield call(setAuthenticatedRoot);
+        if (mobileUpgrade && !mobileUpgrade.isDismissable) {
+          yield call(setForceUpdateRoot, {
+            title: mobileUpgrade.title,
+            description: mobileUpgrade.message,
+            imageUrl: mobileUpgrade.imageUrl,
+          });
+        } else {
+          yield call(setAuthenticatedRoot);
+        }
+
+        if (mobileUpgrade && mobileUpgrade.isDismissable) {
+          showUpdateAppModal(mobileUpgrade.title, mobileUpgrade.message);
+        }
       }
     }
 
@@ -53,7 +78,7 @@ export default function* setMainRootSaga({ payload }: IMainRootPayload) {
   }
 }
 
-async function getTokenStatus(): Promise<TokenStatus> {
+async function getTokenAndMobileUpgrateStatus(): Promise<TokenAndMobileUpgrateStatus> {
   try {
     const { data, errors } = await getSession();
 
@@ -67,7 +92,7 @@ async function getTokenStatus(): Promise<TokenStatus> {
 
     if (data && data.getSession === null) {
       await expireSession();
-      return "invalid";
+      return { tokenStatus: "invalid", mobileUpgrade: data.mobileUpgradeRequired };
     }
 
     const expiresAt = moment.unix(data.getSession.expires);
@@ -75,10 +100,11 @@ async function getTokenStatus(): Promise<TokenStatus> {
 
     if (isExpired) {
       await expireSession();
-      return "invalid";
+      return { tokenStatus: "invalid", mobileUpgrade: data.mobileUpgradeRequired };
     }
 
-    return !isExpired && moment().add(30, "days").isAfter(expiresAt) ? "refreshing" : "valid";
+    const tokenStatus = !isExpired && moment().add(30, "days").isAfter(expiresAt) ? "refreshing" : "valid";
+    return { tokenStatus, mobileUpgrade: data.mobileUpgradeRequired };
   } catch (e) {
     return null;
   }

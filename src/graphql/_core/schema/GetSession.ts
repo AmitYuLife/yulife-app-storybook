@@ -12,6 +12,14 @@ export interface GetSession_getSession {
   expires: number | null;
 }
 
+export interface GetSession_mobileUpgradeRequired {
+  title: string;
+  message: string;
+  imageUrl: string | null;
+  isDismissable: boolean;
+}
+
 export interface GetSession {
   getSession: GetSession_getSession | null;
+  mobileUpgradeRequired: GetSession_mobileUpgradeRequired | null;
 }

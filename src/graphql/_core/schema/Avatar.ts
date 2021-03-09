@@ -74,7 +74,13 @@ export interface Avatar_getAvatarColors {
 }
 
 export interface Avatar {
+  /**
+   * Gets all the avatar parts svg.
+   */
   listAvatarParts: (Avatar_listAvatarParts | null)[] | null;
+  /**
+   * Gets all the colours for a particular partType.
+   */
   getAvatarColors: (Avatar_getAvatarColors | null)[] | null;
 }
 

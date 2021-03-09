@@ -170,6 +170,9 @@ export interface CreateTopUpsQuoteInput {
   productEntityId?: string | null;
 }
 
+/**
+ * @deprecated - can remove from updateFibQuote. This is only used for betas
+ */
 export interface FibQuote {
   screeningStatus?: ScreeningStatus | null;
 }

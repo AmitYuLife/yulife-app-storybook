@@ -2,8 +2,9 @@ import { Platform } from "react-native";
 import { Navigation } from "react-native-navigation";
 import { clearToken } from "@services/storage";
 import { Style } from "../styles";
-import { bottomTabs, ROUTES } from "./constants";
+import { bottomTabs, MODALS, ROUTES } from "./constants";
 import { ILabel } from "@components/organisms/nav-bar/nav-bar.helpers";
+import { IUpdateContainerProps } from "@components/containers/update/update.container";
 
 // eslint-disable-next-line
 const icon = require("../../assets/icons/clock.png");
@@ -237,6 +238,37 @@ export async function setUnauthenticatedRoot(passProps: any = {}) {
             component: {
               id: ROUTES.login,
               name: ROUTES.login,
+              passProps,
+            },
+          },
+        ],
+      },
+    },
+  });
+}
+
+export async function showUpdateAppModal(heading: string, subheading: string) {
+  Navigation.showModal({
+    component: {
+      id: MODALS.mobileUpdate,
+      name: MODALS.mobileUpdate,
+      passProps: {
+        heading,
+        subheading,
+      },
+    },
+  });
+}
+
+export async function setForceUpdateRoot(passProps: IUpdateContainerProps) {
+  await Navigation.setRoot({
+    root: {
+      stack: {
+        children: [
+          {
+            component: {
+              id: ROUTES.update,
+              name: ROUTES.update,
               passProps,
             },
           },

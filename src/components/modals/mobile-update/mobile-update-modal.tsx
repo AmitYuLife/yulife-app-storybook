@@ -1,0 +1,28 @@
+import React from "react";
+import { Navigation } from "react-native-navigation";
+import { MODALS } from "@navigation/constants";
+import { useBackHandler } from "@services/hooks/useBackHandler";
+import MobileUpdateModalScreen, {
+  IMobileUpdateModalProps,
+} from "@components/modals/mobile-update/update-mobile-modal.screen";
+import { openYulife } from "@services/app-link";
+
+export default function MobileUpdateModal(props: IMobileUpdateModalProps) {
+  const { heading, subheading } = props;
+
+  const backHandler = () => {
+    Navigation.dismissModal(MODALS.mobileUpdate);
+    return true;
+  };
+
+  useBackHandler(backHandler);
+
+  return (
+    <MobileUpdateModalScreen
+      heading={heading}
+      subheading={subheading}
+      onPress={openYulife}
+      onPressSecondary={() => Navigation.dismissModal(MODALS.mobileUpdate)}
+    />
+  );
+}
