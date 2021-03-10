@@ -41,6 +41,7 @@ const styles = StyleSheet.create({
   shapeWrapper: {
     width: "100%",
     paddingBottom: Style.adjust(27),
+    marginTop: Style.adjust(16),
   } as ViewStyle,
   borderWrapper: {
     borderRadius: 8,
