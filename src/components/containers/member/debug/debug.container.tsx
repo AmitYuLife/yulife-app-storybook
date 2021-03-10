@@ -30,6 +30,7 @@ enum CODES {
   ROUTE_TO_FIB_GP_DETAILS = "ROUTE_TO_FIB_GP_DETAILS",
   ROUTE_TO_FIB_CONFIRM_PACKAGES = "ROUTE_TO_FIB_CONFIRM_PACKAGES",
   ROUTE_TO_CHOOSE_STYLE = "ROUTE_TO_CHOOSE_STYLE",
+  ROUTE_TO_PRODUCT_DETAILS = "ROUTE_TO_PRODUCT_DETAILS",
   RESET_FIB = "remove-family-income-benefit",
 }
 
@@ -57,6 +58,7 @@ const ActivityHistoryContainer: React.FC<Props> = (props) => {
     CODES.ROUTE_TO_FIB_GP_DETAILS,
     CODES.ROUTE_TO_FIB_CONFIRM_PACKAGES,
     CODES.ROUTE_TO_CHOOSE_STYLE,
+    CODES.ROUTE_TO_PRODUCT_DETAILS,
   ];
 
   const handleClose = () => {
@@ -136,6 +138,15 @@ const ActivityHistoryContainer: React.FC<Props> = (props) => {
               passProps: {
                 initialRoute: FIB_CHOOSE_STYLE,
               },
+            },
+          });
+        }
+
+        if (code === CODES.ROUTE_TO_PRODUCT_DETAILS) {
+          return Navigation.push(props.componentId, {
+            component: {
+              id: ROUTES.productDetails,
+              name: ROUTES.productDetails,
             },
           });
         }

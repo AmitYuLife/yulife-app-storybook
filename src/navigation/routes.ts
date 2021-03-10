@@ -180,7 +180,7 @@ export default [
   },
   {
     name: MODALS.policyCertificate,
-    component: require("../components/containers/products/product-details/product-details.container").default,
+    component: require("../components/containers/products/product-details/product-details.modal").default,
   },
   {
     name: MODALS.enterSalary,

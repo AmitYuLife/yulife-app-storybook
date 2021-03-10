@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useCallback, ComponentProps } from "react";
-import { StyleSheet, View, ViewStyle, Animated, ScrollView } from "react-native";
+import { StyleSheet, View, ViewStyle, Animated, ScrollView, Platform } from "react-native";
 import { Style } from "@styles";
 import { Navigation } from "react-native-navigation";
 import { MODALS } from "@navigation/constants";
@@ -11,6 +11,7 @@ import { ContentKeyValues } from "./subcomponents/certificate/content-key-values
 import { ProductColorTheme } from "@atoms";
 import { ContentBody } from "./subcomponents/certificate/content-body";
 import { ContentHead } from "./subcomponents/certificate/content-head";
+import media from "@styles/media";
 
 interface Pair {
   label: string;
@@ -25,7 +26,7 @@ interface Props {
 }
 
 const ProductDetailsModal = (props: Props) => {
-  const { coverType, keyValuePairs, content, title } = props;
+  const { coverType = CoverType.common, keyValuePairs = [], content = [], title = "" } = props;
 
   const translateY = useRef(new Animated.Value(Style.DEVICE_HEIGHT)).current;
 
@@ -60,6 +61,16 @@ const ProductDetailsModal = (props: Props) => {
   );
 };
 
+const BOTTOM_PADDING = media.select(
+  [
+    {
+      condition: Platform.OS === "ios" && Style.hasNotch,
+      value: Style.adjust(140),
+    },
+  ],
+  Style.adjust(100)
+);
+
 const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
@@ -68,7 +79,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: Style.adjust(16),
   } as ViewStyle,
   bottomPad: {
-    height: Style.adjust(140),
+    height: BOTTOM_PADDING,
   } as ViewStyle,
 });
 
