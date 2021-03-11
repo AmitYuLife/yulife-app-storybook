@@ -15,7 +15,7 @@ import { DUELS_HUB_INVITATION } from "@ids";
 
 const DuelInvitations: FC = () => {
   const { data, loading } = useQuery<GetDuelInvitations>(GQL_QUERY_GET_DUEL_INVITATIONS, {
-    fetchPolicy: "cache-and-network",
+    fetchPolicy: "no-cache",
   });
   const userId = useSelector(getCurrentUserId);
   const duels = data?.getDuelInvitations || [];
