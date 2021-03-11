@@ -1,7 +1,9 @@
-import React from "react";
+import React, { ComponentProps } from "react";
 import { storiesOf } from "@storybook/react-native";
 import { ProductDetailsScreen } from "./product-details.screen";
 import { CoverType } from "@graphql/_core/schema/globalTypes";
+import { PRODUCT_DETAILS_MODAL_FIXTURE } from "./product-details.modal.fixture";
+import ProductDetailsModal from "./product-details.modal";
 
 const NAME = "ProductDetailsScreen";
 
@@ -19,6 +21,7 @@ for (const cover of covers) {
       yuCoinValue="20"
       benefitDescriptionLong="Your loved ones will receive a single payment equal to £1000000 in the event of a claim."
       lastUpdated="Policy last updated on 17/03/2020"
+      modalProps={PRODUCT_DETAILS_MODAL_FIXTURE as ComponentProps<typeof ProductDetailsModal>}
     />
   ));
 }

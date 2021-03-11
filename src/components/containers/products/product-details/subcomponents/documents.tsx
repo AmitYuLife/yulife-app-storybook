@@ -6,14 +6,12 @@ import { BUTTON_ICON } from "@atoms/button/tertiary-button/tertiary-button.helpe
 import { Navigation } from "react-native-navigation";
 import { MODALS } from "@navigation/constants";
 import ProductDetailsModal from "../product-details.modal";
-import { CoverType } from "@graphql/_core/schema/globalTypes";
-import { PRODUCT_DETAILS_MODAL_FIXTURE } from "../product-details.modal.fixture";
 
 interface Props {
-  coverType: CoverType;
+  modalProps: ComponentProps<typeof ProductDetailsModal>;
 }
 
-export const Documents = ({ coverType }: Props) => (
+export const Documents = ({ modalProps }: Props) => (
   <>
     <View style={styles.headingWrapper}>
       <TextTemplate type="h2">Documents</TextTemplate>
@@ -22,7 +20,7 @@ export const Documents = ({ coverType }: Props) => (
       <Button
         type="Tertiary"
         size="Fill"
-        onPress={showCertificateModal(coverType)}
+        onPress={showCertificateModal(modalProps)}
         label="Policy Details"
         height={Style.adjust(60)}
         leftIcon={BUTTON_ICON.DOCUMENT}
@@ -41,17 +39,13 @@ const styles = StyleSheet.create({
   } as ViewStyle,
 });
 
-const showCertificateModal = (coverType: CoverType) => {
-  const testData = PRODUCT_DETAILS_MODAL_FIXTURE;
+const showCertificateModal = (modalProps: Props["modalProps"]) => {
   return () =>
     Navigation.showModal({
       component: {
         id: MODALS.policyCertificate,
         name: MODALS.policyCertificate,
-        passProps: {
-          ...testData,
-          coverType,
-        } as ComponentProps<typeof ProductDetailsModal>,
+        passProps: modalProps,
       },
     });
 };

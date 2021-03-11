@@ -19,7 +19,7 @@ export const ValueDescription = (props: Props) => {
         <TextTemplate textAlign="center" type="l2">
           {description}
         </TextTemplate>
-        <TextTemplate textAlign="center" type="b1b">
+        <TextTemplate textAlign="center" type="b2b">
           {value}
         </TextTemplate>
       </View>
@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
 
 const verticalStyles = StyleSheet.create({
   wrapper: {
-    width: "100%",
+    flex: 1,
     alignItems: "center",
   } as ViewStyle,
 });

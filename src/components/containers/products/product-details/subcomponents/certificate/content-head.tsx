@@ -15,7 +15,7 @@ export const ContentHead = ({ title, coverType }: Props) => {
     <View style={styles.wrapper}>
       <Icon.YugiCertificateHead accent={certificateBackground} fill={certificatePrimary} />
       <View style={styles.titleWrapper}>
-        <TextTemplate color={certificatePrimary} type="h3">
+        <TextTemplate textAlign="center" color={certificatePrimary} type="h3">
           {title}
         </TextTemplate>
       </View>

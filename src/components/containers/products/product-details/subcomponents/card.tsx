@@ -1,6 +1,6 @@
-import React, { memo } from "react";
+import React, { memo, useState } from "react";
 import { ProductColorTheme, PackageType, TextTemplate } from "@atoms";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, ActivityIndicator } from "react-native";
 import { Style, Colours } from "@styles";
 import FastImage from "react-native-fast-image";
 import { ValueDescription } from "@molecules";
@@ -44,8 +44,16 @@ export const Card = memo((props: Props) => {
   );
 });
 
-const CardTop = memo(
-  ({ coverType, productName, productIconUri }: Pick<Props, "coverType" | "productName" | "productIconUri">) => (
+type CardTopProps = Pick<Props, "coverType" | "productName" | "productIconUri">;
+
+const CardTop = memo(({ coverType, productName, productIconUri }: CardTopProps) => {
+  const [imgLoading, setImgLoading] = useState(false);
+
+  const handleLoadState = (value: boolean) => () => {
+    setImgLoading(value);
+  };
+
+  return (
     <View style={cardTopStyles.padding}>
       <ProductColorTheme.GradientBackground coverType={coverType} />
       <PackageType type={coverType} />
@@ -56,12 +64,22 @@ const CardTop = memo(
           </TextTemplate>
         </View>
         <View style={cardTopStyles.iconWrapper}>
-          <FastImage style={cardTopStyles.icon} source={{ uri: productIconUri }} />
+          <FastImage
+            onLoadStart={handleLoadState(true)}
+            onLoad={handleLoadState(false)}
+            style={cardTopStyles.icon}
+            source={{ uri: productIconUri }}
+          />
+          {!imgLoading ? null : (
+            <View style={cardTopStyles.indicatorWrapper}>
+              <ActivityIndicator />
+            </View>
+          )}
         </View>
       </View>
     </View>
-  )
-);
+  );
+});
 
 const cardTopStyles = StyleSheet.create({
   padding: {
@@ -71,16 +89,25 @@ const cardTopStyles = StyleSheet.create({
     width: Style.adjust(80),
     height: Style.adjust(80),
   },
+  indicatorWrapper: {
+    width: Style.adjust(80),
+    height: Style.adjust(80),
+    justifyContent: "center",
+    alignItems: "center",
+    position: "absolute",
+    right: 0,
+  },
   row: {
     flexDirection: "row",
     marginTop: Style.adjust(16),
   },
   title: {
-    maxWidth: Style.adjust(192),
+    maxWidth: Style.adjust(200),
   },
   iconWrapper: {
     flex: 1,
     alignItems: "flex-end",
+    justifyContent: "center",
   },
 });
 
