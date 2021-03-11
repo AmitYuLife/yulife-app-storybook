@@ -34,10 +34,16 @@ async function openStore({ appName, appStoreId, appStoreLocale = "gb", playStore
 }
 
 export async function openCalm() {
-  return openApp("calm://", {
+  const playStoreId = "com.calm.android";
+  const deepLink = Platform.select({
+    ios: "calm://",
+    android: `android-app://${playStoreId}`,
+  });
+
+  return openApp(deepLink, {
     appName: "calm",
     appStoreId: "571800810",
-    playStoreId: "com.calm.android",
+    playStoreId,
   });
 }
 
