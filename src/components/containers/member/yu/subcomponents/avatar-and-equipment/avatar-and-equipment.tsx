@@ -3,13 +3,14 @@ import { StyleSheet, ViewStyle, ActivityIndicator, View } from "react-native";
 import FastImage from "react-native-fast-image";
 import { Style, Colours } from "@styles";
 import { ItemSet } from "./item-set/item-set";
-import { TouchableOpacityWithDelay, EmptyAvatar } from "@components/molecules";
+import { TouchableOpacityWithDelay } from "@components/molecules";
 import { useQuery } from "@apollo/react-hooks";
 import { GetYulifer, YuScreenProductSlots } from "@graphql/_core/schema";
 import { GQL_QUERY_GET_YULIFER, GQL_QUERY_GET_YU_SCREEN_PRODUCTS_SLOTS } from "@graphql/yuscreen";
 import { navigateToAvatarModal } from "../../navigation/navigateToAvatarModal";
 import { YUSCREEN_AVATAR } from "@ids";
 import { AvatarCreationPrompt } from "../../subcomponents";
+import { EmptyAvatar } from "./empty-avatar";
 
 import { Text } from "@atoms";
 import { ItemBottom } from "./item-set/item-bottom";
