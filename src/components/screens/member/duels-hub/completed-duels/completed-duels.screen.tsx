@@ -66,7 +66,7 @@ const keyExtractor = (item: GetDuelsCompleted_getDuelsCompleted_duels) => item.i
 
 const CompletedDuelsScreen = () => {
   const { data, loading, networkStatus } = useQuery<GetDuelsCompleted>(GQL_QUERY_GET_DUELS_COMPLETED, {
-    fetchPolicy: "cache-and-network",
+    fetchPolicy: "no-cache",
   });
   const userId = useSelector(getCurrentUserId);
   const dailySteps = useSelector(getDailySteps);
