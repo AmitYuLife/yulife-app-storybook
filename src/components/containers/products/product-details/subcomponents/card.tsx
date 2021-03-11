@@ -86,8 +86,8 @@ const cardTopStyles = StyleSheet.create({
     padding: Style.adjust(24),
   },
   icon: {
-    width: Style.adjust(80),
-    height: Style.adjust(80),
+    width: Style.adjust(72),
+    height: Style.adjust(72),
   },
   indicatorWrapper: {
     width: Style.adjust(80),
@@ -108,6 +108,7 @@ const cardTopStyles = StyleSheet.create({
     flex: 1,
     alignItems: "flex-end",
     justifyContent: "center",
+    marginLeft: Style.adjust(16),
   },
 });
 

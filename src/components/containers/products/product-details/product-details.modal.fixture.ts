@@ -129,7 +129,7 @@ export const TEST_POLICY_FIXTURES = [
   {
     productName: "Group Life Insurance",
     productIconUri:
-      "http://res.cloudinary.com/yu-life-develop/image/upload/s--dJggb3aZ--/h_200,w_200/v1/api/local/yuscreen_products_assets/default/compass_active.png",
+      "http://res.cloudinary.com/yu-life-develop/image/upload/s--aOCkQPZJ--/h_200,w_200/v1/api/local/yuscreen_products_assets/default/compass_active_plain.png",
     benefitDescription: "x salary as lump sum",
     benefitValue: "6",
     yuCoinDescription: "YuCoin Power",
@@ -140,7 +140,7 @@ export const TEST_POLICY_FIXTURES = [
   {
     productName: "Group Critical Illness",
     productIconUri:
-      "http://res.cloudinary.com/yu-life-develop/image/upload/s--vbvCpmne--/h_200,w_200/v1/api/local/yuscreen_products_assets/default/binoculars_active.png",
+      "http://res.cloudinary.com/yu-life-develop/image/upload/s--MU5hg4C0--/h_200,w_200/v1/api/local/yuscreen_products_assets/default/binoculars_active_plain.png",
 
     benefitDescription: " total cover",
     benefitValue: "£100,000",
@@ -153,7 +153,7 @@ export const TEST_POLICY_FIXTURES = [
   {
     productName: "Group Income Protection",
     productIconUri:
-      "http://res.cloudinary.com/yu-life-develop/image/upload/s--j-fbbr9x--/h_200,w_200/v1/api/local/yuscreen_products_assets/default/map_active.png",
+      "http://res.cloudinary.com/yu-life-develop/image/upload/s--3JblOGcQ--/h_200,w_200/v1/api/local/yuscreen_products_assets/default/map_active_plain.png",
     benefitDescription: " total cover",
     benefitValue: "£100,000",
     yuCoinDescription: "YuCoin Power",
@@ -165,7 +165,7 @@ export const TEST_POLICY_FIXTURES = [
   {
     productName: "Group Death in Service Pension",
     productIconUri:
-      "http://res.cloudinary.com/yu-life-develop/image/upload/s--pkruzjmc--/h_200,w_200/v1/api/local/yuscreen_products_assets/default/lantern_active.png",
+      "http://res.cloudinary.com/yu-life-develop/image/upload/s--jGP7GfGz--/h_200,w_200/v1/api/local/yuscreen_products_assets/default/lantern_active_plain.png",
     benefitDescription: " total cover",
     benefitValue: "£100,000",
     yuCoinDescription: "YuCoin Power",
