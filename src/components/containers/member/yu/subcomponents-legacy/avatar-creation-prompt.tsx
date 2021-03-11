@@ -1,13 +1,13 @@
 import React, { memo, useMemo } from "react";
-import { View, StyleSheet, ViewStyle, TextStyle } from "react-native";
+import { Platform, View, StyleSheet, ViewStyle, TextStyle } from "react-native";
 import { Text, Button } from "@atoms";
-import { EmptyAvatar } from "@components/molecules";
 import { Colours, Style } from "@styles";
 import { useQuery } from "@apollo/react-hooks";
 import { GetYulifer } from "@graphql/_core/schema";
 import { GQL_QUERY_GET_YULIFER } from "@graphql/yuscreen";
 import { navigateToAvatarCreationScreen } from "../navigation/navigateToAvatarCreationScreen";
 import { GET_STARTED_BUTTON, EMPTY_YUSCREEN_COPY } from "@ids";
+import { EmptyAvatar } from "./avatar-and-equipment/empty-avatar";
 
 const CREATE_AVATAR_CAPTION_COPY = "Build your Yumoji to unlock power-ups and earn 100 YuCoin!";
 const CREATE_AVATAR_CTA_COPY = "Get started";
@@ -51,9 +51,15 @@ const styles = StyleSheet.create({
   wrapper: {
     flexDirection: "row",
     flex: 1,
-    paddingHorizontal: Style.adjust(16),
-    paddingTop: Style.adjust(24),
-    justifyContent: "center",
+    paddingHorizontal: Platform.select({
+      ios: Style.adjust(16),
+      android: Style.adjust(48),
+    }),
+    paddingTop: Platform.select({
+      ios: Style.adjust(48),
+      android: Style.adjust(24),
+    }),
+    justifyContent: "space-around",
   } as ViewStyle,
   promptWrapper: {
     flex: 1,

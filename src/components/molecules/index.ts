@@ -26,7 +26,6 @@ export { default as TextWithBoldText } from "./text-with-bold-text/text-with-bol
 export { default as HorizontalScroller } from "./horizontal-scroller/horizontal-scroller";
 export * from "./beta-text/beta-text";
 export { AvatarEmpty } from "./avatar/avatar-empty";
-export { EmptyAvatar } from "./avatar/empty-avatar";
 export { default as ProgressBar } from "./progress-bar/progress-bar";
 export { PowerCoin } from "./power-coin/power-coin";
 export { ValueDescription } from "./text-template/value-description-text";
