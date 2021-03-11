@@ -86,5 +86,8 @@ const styles = StyleSheet.create({
   pairsWrapper: {
     flexDirection: "row",
     justifyContent: "space-evenly",
+    maxWidth: Style.adjust(240),
+    alignSelf: "center",
+    marginTop: Style.adjust(24),
   } as ViewStyle,
 });
