@@ -25,7 +25,7 @@ async function navigateToDuelsSearch() {
 
 const DuelsToday: FC = () => {
   const { data, loading } = useQuery<GetDuelsToday>(GQL_QUERY_GET_DUELS_TODAY, {
-    fetchPolicy: "cache-and-network",
+    fetchPolicy: "no-cache",
   });
   const duels = data?.getDuelsToday || [];
   const isEmpty = duels.length === 0;

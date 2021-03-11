@@ -12,7 +12,7 @@ import { DuelSkeleton } from "../../subcomponents/duel-skeleton/duel-skeleton";
 
 const DuelsTomorrow: FC = () => {
   const { data, loading } = useQuery<GetDuelsTomorrow>(GQL_QUERY_GET_DUEL_TOMORROW, {
-    fetchPolicy: "cache-and-network",
+    fetchPolicy: "no-cache",
   });
   const duels = data?.getDuelsTomorrow || [];
   const userId = useSelector(getCurrentUserId);
