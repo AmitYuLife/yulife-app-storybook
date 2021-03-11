@@ -1,10 +1,9 @@
-import { useQuery } from "@apollo/react-hooks";
 import { GQL_QUERY_GET_REWARDS } from "@graphql/rewards";
 import { bottomTabs } from "@navigation/constants";
 import React, { useCallback } from "react";
 import { Navigation } from "react-native-navigation";
 import { connect } from "react-redux";
-import { GetRewards_getRewards } from "@graphql/_core/schema";
+import { GetRewards, GetRewards_getRewards } from "@graphql/_core/schema";
 import { MODALS, ROUTES } from "@navigation/constants";
 import { IReduxState } from "@redux/_core/reducers";
 import { getCopy } from "@redux/copy/copy.selectors";
@@ -12,6 +11,7 @@ import { getCurrentLevel } from "@redux/levels/levels.selectors";
 import Logger from "@services/logging/logger";
 import { RewardsListScreen } from "@screens/index";
 import { IMainTabsProps } from "@navigation/root";
+import { useQueryOnceScreenSeen } from "@services/hooks/useQueryOnceScreenSeen";
 
 interface IProps {
   onTabChange: (newTab: "rewards" | "purchases", componentId?: string) => void;
@@ -37,7 +37,11 @@ const getDetailsRoute = (rewardProviderId: string) => {
 
 function RewardsListContainer(props: Props) {
   const { copy, onTabChange } = props;
-  const { loading, data: rewards, refetch: refetchRewards } = useQuery(GQL_QUERY_GET_REWARDS);
+
+  const [getRewards, { loading, data: rewards }] = useQueryOnceScreenSeen<GetRewards>(
+    GQL_QUERY_GET_REWARDS,
+    ROUTES.rewards
+  );
 
   const handleRewardDetailsItemPress = useCallback(
     async (reward: GetRewards_getRewards) => {
@@ -82,7 +86,6 @@ function RewardsListContainer(props: Props) {
     [props.copy]
   );
 
-  const handleRewardsRefetch = useCallback(() => refetchRewards().catch(() => null), [refetchRewards]);
   const handleRightTabPress = useCallback(() => onTabChange("purchases"), [onTabChange]);
 
   return (
@@ -90,7 +93,7 @@ function RewardsListContainer(props: Props) {
       data={rewards?.getRewards || []}
       onItemPress={handleRewardDetailsItemPress}
       onLeftMenuPress={props.onLeftMenuPress}
-      onLeftTabPress={handleRewardsRefetch}
+      onLeftTabPress={getRewards}
       onRightTabPress={handleRightTabPress}
       loading={loading}
     />
@@ -101,5 +104,4 @@ const mapStateToProps = (state: IReduxState) => ({
   copy: getCopy(state, "purchases"),
   currentLevel: getCurrentLevel(state),
 });
-
 export default connect<ConnectedState>(mapStateToProps)(RewardsListContainer);
