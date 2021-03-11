@@ -3,6 +3,7 @@ import { View } from "react-native";
 import { Button, Text } from "@atoms";
 import { StyleSheet, TextStyle, ViewStyle } from "react-native";
 import { Colours, Style } from "@styles";
+import GenericHeadingAbsolute from "@atoms/generic-heading/generic-heading-absolute";
 
 type ButtonProps = React.ComponentProps<typeof Button>;
 
@@ -21,17 +22,23 @@ export default function MobileUpdateModalScreen({
 }: IMobileUpdateModalProps) {
   return (
     <View style={styles.wrapper}>
-      <Text style={styles.heading} bold={true}>
-        {heading}
-      </Text>
-      <Text style={styles.subheading}>{subheading}</Text>
-      <Button wrapperStyle={styles.buttonWrapper} label="Update my app" onPress={onPress} type="Primary" />
-      <Button wrapperStyle={styles.buttonWrapperSecondary} label="Not now" onPress={onPressSecondary} type={"Link"} />
+      <View style={styles.contentWrapper}>
+        <Text style={styles.heading} bold={true}>
+          {heading}
+        </Text>
+        <Text style={styles.subheading}>{subheading}</Text>
+        <Button wrapperStyle={styles.buttonWrapper} label="Update my app" onPress={onPress} type="Primary" />
+        <Button wrapperStyle={styles.buttonWrapperSecondary} label="Not now" onPress={onPressSecondary} type={"Link"} />
+      </View>
+      <GenericHeadingAbsolute onRightIconPress={onPressSecondary} />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
+  wrapper: {
+    flex: 1,
+  } as ViewStyle,
   buttonWrapper: {
     marginTop: Style.adjust(32),
   } as ViewStyle,
@@ -52,7 +59,7 @@ const styles = StyleSheet.create({
     marginTop: Style.adjust(20),
     textAlign: "center",
   } as TextStyle,
-  wrapper: {
+  contentWrapper: {
     alignItems: "center",
     backgroundColor: "rgba(255,255,255,0.9)",
     flex: 1,
