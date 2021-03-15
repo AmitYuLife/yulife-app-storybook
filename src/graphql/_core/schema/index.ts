@@ -42,7 +42,6 @@ export * from "./GetNewConnectionLink";
 export * from "./GetRecentDuelOpponents";
 export * from "./GetRewards";
 export * from "./GetSession";
-export * from "./GetTopUpsEstimateCost";
 export * from "./GetTopUpsQuote";
 export * from "./GetUserNotificationsSettings";
 export * from "./GetYulifer";

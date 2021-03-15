@@ -206,15 +206,6 @@ export interface ProductMetadata {
   avios?: AviosMetadata | null;
 }
 
-/**
- * Deprecated on v2.8.1 Input for calculate top ups estimated cost
- */
-export interface TopUpsEstimateCostInput {
-  grossSalary?: number | null;
-  coverType?: CoverType | null;
-  customCoverPercentage?: number | null;
-}
-
 export interface UpdateContactDetailsInput {
   phone?: string | null;
   addressFirstLine?: string | null;
