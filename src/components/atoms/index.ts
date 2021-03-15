@@ -47,6 +47,7 @@ export * from "./gp-icons";
 export { BoxOption } from "./box-option/box-option";
 export { default as ProductColorTheme } from "./product-color-theme";
 export { default as Icon } from "./icon";
+export { RemoteImage } from "./remote-image/remote-image";
 
 // error :( https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-8.html#export--as-ns-syntax
 import * as ProductSvg from "./product-svg";
