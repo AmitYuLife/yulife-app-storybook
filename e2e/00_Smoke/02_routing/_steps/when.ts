@@ -8,7 +8,8 @@ export const {
 export const {
     tapID,
     tapText,
-    tapIDAtPoint
+    tapIDAtPoint,
+    wait
 } = navigation.common
 
 export const {
