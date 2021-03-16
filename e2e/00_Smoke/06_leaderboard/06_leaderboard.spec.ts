@@ -63,13 +63,13 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
                             })
                         })
                         When("I try to switch on the leaderboard", when.tapID(LEADERBOARD_SWITCH("Group 1")), async () => {
-                            Then("I should be on the Turn on Leaderboard screen", then.textVisible("Turn on Leaderboard?"))
+                            Then("I should be on the Join the Leaderboard screen", then.textVisible("Join the Leaderboard?"))
                             When("I tap 'no thanks'", when.tapText("No thanks"), async () => {
                                 Then("I should be back on the leaderboard selection page and the leaderboard should be inactive", then.leaderboardStatus("Group 1", "inactive"))
                             })
                         })
                         When("I switch on the leaderboard", when.tapID(LEADERBOARD_SWITCH("Group 1")), async () => {
-                            Then("I should be on the Turn on Leaderboard screen", then.textVisible("Turn on Leaderboard?"))
+                            Then("I should be on the Join the Leaderboard screen", then.textVisible("Join the Leaderboard?"))
                             When("I tap Yes", when.tapText("Yes"), async () => {
                                 Then("I should be back on the leaderboard selection page and the leaderboard should be active", then.leaderboardStatus("Group 1", "active"))
                             })
