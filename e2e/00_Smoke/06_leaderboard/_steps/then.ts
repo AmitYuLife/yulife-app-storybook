@@ -15,9 +15,9 @@ export const {
 } = navigation.scrolling
 
 export const onLeaderboardConsent = async () => {
-    const firstParagraph = "This will let us share details about your activity with other members on this leaderboard."
-    const secondParagraph ="If you change your mind, you can opt out at any point in settings. Are you ready to take part?"
-    const copy = ["Turn on Leaderboard?", firstParagraph,secondParagraph, "Yes"]
+    const firstParagraph = "By joining the leaderboard, you are consenting to share details about your activity with other members of this leaderboard."
+    const secondParagraph ="You can opt out at any time by tapping the name of the leaderboard and adjusting your settings."
+    const copy = ["Join the Leaderboard?", firstParagraph,secondParagraph, "Yes"]
 
     for (const i of copy) {
         await expect(element(by.text(i))).toBeVisible()
