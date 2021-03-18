@@ -27,10 +27,12 @@ import {
   logProductItemViewedActionCreator,
 } from "@redux/logging/logging.actions";
 import { YuScreenProductContext } from "../../yu-screen.context";
+import { getUserFeatures } from "@redux/user/user.selectors";
 
 export const ToolTip = () => {
   const dispatch = useDispatch();
   const { product, setProduct } = useContext(YuScreenProductContext);
+  const showNewYuScreen = useSelector(getUserFeatures).showNewYuScreen;
 
   const onClose = useCallback(() => setProduct(null), [setProduct]);
   const isProductEmpty = Object.keys(product || {}).length > 0;
@@ -94,8 +96,9 @@ export const ToolTip = () => {
       },
       fibState,
       resetFibJourney,
+      showNewYuScreen,
     });
-  }, [product, fibState, onClose, resetFibJourney, dispatch]);
+  }, [product, fibState, onClose, resetFibJourney, dispatch, showNewYuScreen]);
 
   useBackHandler(() => {
     if (!isProductEmpty) {

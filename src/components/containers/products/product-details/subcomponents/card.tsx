@@ -14,7 +14,7 @@ interface Props {
   yuCoinValue: string;
   yuCoinDescription: string;
   benefitDescriptionLong: string;
-  productIconUri: string;
+  productIconUri?: string;
 }
 
 export const Card = memo((props: Props) => {
@@ -63,19 +63,21 @@ const CardTop = memo(({ coverType, productName, productIconUri }: CardTopProps) 
             {productName}
           </TextTemplate>
         </View>
-        <View style={cardTopStyles.iconWrapper}>
-          <FastImage
-            onLoadStart={handleLoadState(true)}
-            onLoad={handleLoadState(false)}
-            style={cardTopStyles.icon}
-            source={{ uri: productIconUri }}
-          />
-          {!imgLoading ? null : (
-            <View style={cardTopStyles.indicatorWrapper}>
-              <ActivityIndicator />
-            </View>
-          )}
-        </View>
+        {!productIconUri ? null : (
+          <View style={cardTopStyles.iconWrapper}>
+            <FastImage
+              onLoadStart={handleLoadState(true)}
+              onLoad={handleLoadState(false)}
+              style={cardTopStyles.icon}
+              source={{ uri: productIconUri }}
+            />
+            {!imgLoading ? null : (
+              <View style={cardTopStyles.indicatorWrapper}>
+                <ActivityIndicator />
+              </View>
+            )}
+          </View>
+        )}
       </View>
     </View>
   );
@@ -126,23 +128,21 @@ const CardBottom = memo(
   >) => (
     <View style={cardBottomStyles.padding}>
       <ProductColorTheme.FlatBackground coverType={coverType} />
-      <ValueDescription value={benefitValue} description={benefitDescription} />
+      <ValueDescription style={cardBottomStyles.marginBottom} value={benefitValue} description={benefitDescription} />
       <ValueDescription
-        style={cardBottomStyles.margin}
+        style={cardBottomStyles.marginBottom}
         value={yuCoinValue}
         description={yuCoinDescription}
         type="yucoin"
       />
-      <View style={cardBottomStyles.margin}>
-        <TextTemplate type="b2">{benefitDescriptionLong}</TextTemplate>
-      </View>
+      <TextTemplate type="b2">{benefitDescriptionLong}</TextTemplate>
     </View>
   )
 );
 
 const cardBottomStyles = StyleSheet.create({
-  margin: {
-    marginTop: Style.adjust(16),
+  marginBottom: {
+    marginBottom: Style.adjust(16),
   },
   padding: {
     padding: Style.adjust(24),

@@ -20,11 +20,17 @@ interface INavigateToProductScreen {
   product: IProduct & YuScreenProductSlotItem; //we have set his way to support the legacy yuscreen
   fibState: FIBStore;
   resetFibJourney: () => void;
+  showNewYuScreen: boolean;
 }
 
 const FIB_EXPIRE_QUOTE_MONTHS = 3;
 
-export const navigateToProductScreen = ({ product, fibState, resetFibJourney }: INavigateToProductScreen) => {
+export const navigateToProductScreen = ({
+  product,
+  fibState,
+  resetFibJourney,
+  showNewYuScreen,
+}: INavigateToProductScreen) => {
   // TODO: Implement different journeys for different products
 
   if (product.status === "locked") {
@@ -128,6 +134,15 @@ export const navigateToProductScreen = ({ product, fibState, resetFibJourney }: 
             type: YUGI_INTRO_TYPE.INTRO_UNDERWRITING,
           },
         },
+      },
+    });
+  }
+
+  if (showNewYuScreen) {
+    return Navigation.push(ROUTES.yuScreen, {
+      component: {
+        id: ROUTES.productDetails,
+        name: ROUTES.productDetails,
       },
     });
   }

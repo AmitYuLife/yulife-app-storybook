@@ -39,6 +39,7 @@ export * from "./GetLeaderboard";
 export * from "./GetMagicLink";
 export * from "./GetMobileCopy";
 export * from "./GetNewConnectionLink";
+export * from "./GetProductDetails";
 export * from "./GetRecentDuelOpponents";
 export * from "./GetRewards";
 export * from "./GetSession";
