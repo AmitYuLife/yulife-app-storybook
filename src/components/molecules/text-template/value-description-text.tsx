@@ -6,20 +6,24 @@ import { Style, Colours } from "@styles";
 interface Props {
   value: string;
   description: string;
-  type?: "default" | "yucoin" | "vertical";
+  type?: "default" | "yucoin" | "vertical" | "verticalLarge";
   style?: ViewStyle;
 }
 
 export const ValueDescription = (props: Props) => {
   const { value, description, type = "default", style } = props;
 
-  if (type === "vertical") {
+  if (!value || !description) {
+    return null;
+  }
+
+  if (["vertical", "verticalLarge"].includes(type)) {
     return (
       <View style={StyleSheet.flatten([verticalStyles.wrapper, style])}>
         <TextTemplate textAlign="center" type="l2">
           {description}
         </TextTemplate>
-        <TextTemplate textAlign="center" type="b2b">
+        <TextTemplate textAlign="center" type={type === "verticalLarge" ? "b1b" : "b2b"}>
           {value}
         </TextTemplate>
       </View>

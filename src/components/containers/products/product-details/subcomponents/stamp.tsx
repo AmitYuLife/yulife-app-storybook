@@ -7,14 +7,15 @@ interface Props {
   value: string;
 }
 
-export const Stamp = ({ value }: Props) => (
-  <View style={styles.wrapper}>
-    <Icon.Clock height={ICON_HEIGHT} width={ICON_HEIGHT} />
-    <View style={styles.textWrapper}>
-      <TextTemplate type="l1">{value}</TextTemplate>
+export const Stamp = ({ value }: Props) =>
+  !value ? null : (
+    <View style={styles.wrapper}>
+      <Icon.Clock height={ICON_HEIGHT} width={ICON_HEIGHT} />
+      <View style={styles.textWrapper}>
+        <TextTemplate type="l1">{value}</TextTemplate>
+      </View>
     </View>
-  </View>
-);
+  );
 
 const ICON_HEIGHT = Style.adjust(16);
 const styles = StyleSheet.create({

@@ -18,14 +18,14 @@ interface Pair {
   value: string;
 }
 
-interface Props {
+export interface ProductDetailsModalProps {
   coverType: CoverType;
   keyValuePairs: Pair[];
   content: ComponentProps<typeof ContentBody>["items"];
   title: string;
 }
 
-const ProductDetailsModal = (props: Props) => {
+const ProductDetailsModal = (props: ProductDetailsModalProps) => {
   const { coverType = CoverType.common, keyValuePairs = [], content = [], title = "" } = props;
 
   const translateY = useRef(new Animated.Value(Style.DEVICE_HEIGHT)).current;

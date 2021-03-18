@@ -30,10 +30,12 @@ import {
 } from "@redux/logging/logging.actions";
 import { YuScreenProductContext } from "../../yu-screen.context";
 import { getToolTipName } from "@services/products";
+import { getUserFeatures } from "@redux/user/user.selectors";
 
 export const ToolTip = () => {
   const dispatch = useDispatch();
   const { product, setProduct } = useContext(YuScreenProductContext);
+  const showNewYuScreen = useSelector(getUserFeatures).showNewYuScreen;
 
   const onClose = useCallback(() => setProduct(null), [setProduct]);
   const isProductEmpty = Object.keys(product || {}).length > 0;
@@ -97,8 +99,9 @@ export const ToolTip = () => {
       product,
       fibState,
       resetFibJourney,
+      showNewYuScreen,
     });
-  }, [product, fibState, onClose, resetFibJourney, dispatch]);
+  }, [product, fibState, onClose, resetFibJourney, dispatch, showNewYuScreen]);
 
   useBackHandler(() => {
     if (!isProductEmpty) {
@@ -231,6 +234,9 @@ const styles = StyleSheet.create({
     width: Style.adjust(272),
     paddingBottom: 4,
     zIndex: 999,
+  } as ViewStyle,
+  remoteImage: {
+    alignSelf: "center",
   } as ViewStyle,
   shadow: {
     position: "absolute",

@@ -46,7 +46,7 @@ export const ContentBody = ({ items }: Props) => (
       if (item.type === "pair") {
         return (
           <View key={`${item.type}-${index}`} style={styles.marginTop}>
-            <ValueDescription type="vertical" description={item.content.label} value={item.content.value} />
+            <ValueDescription type="verticalLarge" description={item.content.label} value={item.content.value} />
           </View>
         );
       }
