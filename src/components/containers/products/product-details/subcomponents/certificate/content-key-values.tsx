@@ -19,7 +19,9 @@ export const ContentKeyValues = ({ pairs }: Props) => (
           <TextTemplate type="b2">{pair.label}</TextTemplate>
         </View>
         <View style={styles.flexRight}>
-          <TextTemplate type="b2b">{pair.value}</TextTemplate>
+          <TextTemplate textAlign="right" type="b2b">
+            {pair.value}
+          </TextTemplate>
         </View>
       </View>
     ))}
