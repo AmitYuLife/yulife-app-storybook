@@ -7,6 +7,7 @@ import {
   ViewStyle,
   Platform,
   LayoutChangeEvent,
+  AppStateStatus,
 } from "react-native";
 import { resToList, getItemLayout, renderItem } from "./helpers";
 import { GetLeaderboard } from "@graphql/_core/schema";
@@ -22,6 +23,7 @@ import { connect } from "react-redux";
 import { LEADERBOARD_ITEM_HEIGHT } from "../../items/leaderboard-rank-item/subcomponents";
 import { TOP_PADDING_HEIGHT } from "./helpers/constants";
 import { LEADERBOARD_SCROLL_LIST } from "@ids";
+import { useAppState } from "@services/hooks/useAppState";
 
 export interface LeaderboardContentContainerProps {
   query: GetLeaderboard;
@@ -68,6 +70,14 @@ const _LeaderboardContentContainer = ({
     },
     [leaderboardItems]
   );
+
+  const onChangeAppState = (appState: AppStateStatus) => {
+    if (appState === "inactive" && flatListRef.current) {
+      flatListRef.current.scrollToOffset({ offset: 0 });
+    }
+  };
+
+  useAppState(onChangeAppState);
 
   useEffect(() => {
     return () => {
