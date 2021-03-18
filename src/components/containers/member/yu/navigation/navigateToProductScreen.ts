@@ -157,6 +157,7 @@ export const navigateToProductScreen = ({
         name: product.name,
         status: product.status,
         policyNumber: product.policyNumber,
+        itemSlot: product.itemSlot,
       },
     },
   });
