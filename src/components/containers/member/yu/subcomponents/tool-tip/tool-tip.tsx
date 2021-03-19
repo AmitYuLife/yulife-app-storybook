@@ -1,6 +1,6 @@
 import React, { memo, useCallback, useEffect, useContext } from "react";
 import { StyleSheet, View, ViewStyle, TextStyle, ImageStyle, Image } from "react-native";
-import { Text, Button, CloseSvg } from "@atoms";
+import { Text, Button, CloseSvg, PackageType } from "@atoms";
 import { Style, Colours } from "@styles";
 import { TouchableOpacityWithDelay, ValueDescription } from "@molecules";
 import {
@@ -125,6 +125,9 @@ export const ToolTip = () => {
         <View style={getTopWrapperStyle(coverType, isActive)}>
           <MemoizedLinearGradient colorTheme={getLinearGradientColorTheme(coverType, isActive)} />
           <Image resizeMode="contain" source={{ uri: toolTip.itemUrl }} style={styles.iconWrapper} />
+          <View style={styles.coverTypeWrapper}>
+            <PackageType type={coverType} />
+          </View>
           <View style={styles.nameWrapper}>
             <Text bold={true} style={getNameStyle(isActive)}>
               {toolTip?.name}
@@ -238,6 +241,10 @@ const styles = StyleSheet.create({
     width: Style.adjust(272),
     paddingBottom: 4,
     left: 0,
+  } as ViewStyle,
+  coverTypeWrapper: {
+    alignSelf: "center",
+    marginTop: Style.adjust(16),
   } as ViewStyle,
   shadow: {
     position: "absolute",
