@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
     flex: 1,
     height: DUEL_ENTRY_HEIGHT,
     paddingLeft: Style.adjust(8),
-    marginBottom: Style.adjust(16),
+    marginBottom: Style.adjust(18),
   } as ViewStyle,
   descriptionWrapper: {
     flex: 1,

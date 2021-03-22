@@ -35,9 +35,18 @@ const Description: FC<IProps> = ({ duel, type, userId }) => {
 
   if (type === "completed") {
     if (duel.status === "pending_submission") {
+      const showLastKnownStepCount = opponent?.score > 0;
+
       return (
         <View style={styles.wrapper}>
-          <Text style={styles.text}>Waiting for their steps to sync</Text>
+          <Text style={styles.text}>
+            Waiting for user to open the app
+            {showLastKnownStepCount ? (
+              <Text style={[styles.text, styles.syncText]}>
+                {`\n`}Last known step count: {addCommasToNumber(opponent.score)} steps
+              </Text>
+            ) : null}
+          </Text>
         </View>
       );
     }
