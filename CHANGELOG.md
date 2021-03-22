@@ -7,6 +7,59 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.4.0] - 2021-03-22
+
+### Features
+
+- Feature TP-713: Add product detail screens
+
+### Bugfixes
+
+- Bugfix ENG-1859: Offline error
+- Bugfix TP-767: Add cover type to tooltip
+- (origin/bugfix/eng-1870) Bugfix: ENG-1870 Fix iOS inactive leaderboard app stateUI
+- Bugfix: Remove orphaned graphql query
+- Bugfix: Disable cache on Completed Duels Screen
+- (origin/bugfix/eng-1840-duels-page-yumojis) Bugfix ENG-1840: Duels page Yumojis
+- Bugfix TP-757: Fix EmptyAvatar asset and prompt spacing
+- Bugfix TP-740: Close button on update modal
+- (origin/bugfix/eng-1798-exit-modal-2) Finish
+
+### Tasks
+
+- Task TP-758: Use API on Product Details Container
+- Task ENG-1822: Request rewards when view is on screen
+- Task TP-713: Add testing method for product details screen and modal
+- Task TP-740: Force update popup
+- Task TP-745: Initialise new atoms
+- Task TP-732: Yuscreen Update - API work
+- Task TP-742: Add product color theme atom
+
+### Chores
+
+- Chore: update typescript
+- (origin/chore/patch-scrollview-again, chore/patch-scrollview-again) Chore: patch scrollview for deprecated currentlyFocusedField
+
+### Extra
+
+- Detox: Update duels and leaderboard scenarios
+- Copy: Make syncing steps copy clearer
+- Fix
+- Right align
+- Remove reset fib from debug screen
+- leaderboard copy update
+- added short wait for rewards screen test to fix most iphones
+- Initialise RemoteImage atom
+- uwu
+- Update calm deeplink on android
+- Add policy types
+- Margin
+- Initialise missing components
+- Reuse logic from avatar-builder to select-body
+- added customer_quote_screening
+- Detox: Extended updates
+- [HOTFIX] detox remove screening status
+
 ## [3.3.0] - 2021-03-03
 
 ### Features
