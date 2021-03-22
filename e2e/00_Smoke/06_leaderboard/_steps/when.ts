@@ -9,7 +9,9 @@ export const {
 
 export const {
     loginAsUser,
+    loginAndCollectSignupBonus,
     continueLogin,
+    continueLoginAfterSignupBonus,
     loginOnly
 } = navigation.login
 

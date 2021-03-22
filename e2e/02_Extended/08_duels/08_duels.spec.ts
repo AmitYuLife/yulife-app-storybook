@@ -45,26 +45,34 @@ Feature("As an enabled user I am able to use the duels feature", async()=>{
             })
             When("I tap confirm", when.tapText("Confirm"), async()=>{
                 Then("I should be on the duels hub", then.idVisible(DUELS_HUB))
-                Then("I should see the duel I just requested", then.idVisible(DUELS_HUB_INVITATION("Angela", "Martin", 25, "invited")))
             })
-            When("I restart and login as the invited user", when.restartAndLoginToTab("leaderboard", CUSTOMER_19, AUTH_19), async()=>{
-                Then("I should see the duels button", then.idVisible(DUELS_BUTTON))
+            When("I reload the app (caching not showing duels invite on detox)", when.reloadAppToTab("leaderboard"), async()=>{
+                When("I go to the duels hub", when.tapID(DUELS_BUTTON), async()=>{
+                    Then("I should see the duel I just requested", then.idVisible(DUELS_HUB_INVITATION("Angela", "Martin", 25, "invited"), 5000))
+                })
             })
-            When("I tap the duels button", when.tapID(DUELS_BUTTON), async()=>{
-                Then("I should be on the first duels intro screen", then.multipleTextVisible(["Challenge a friend!", "Next"]))
-            })
-            When("I tap complete the intro", when.completeOnboardingIntro, async () => {
-                Then("I should be on the duels hub", then.onDuelsHub)
-                Then("I should see the duel I was just invited to", then.idVisible(DUELS_HUB_INVITATION("Oscar", "Martinez", 25, "awaiting_response")))
-            })
-            When("I tap Respond", when.tapText("Respond"), async()=>{
+            When("I restart and login as the invited user", when.restartToDuelsRequest(CUSTOMER_19, AUTH_19), async()=>{
                 Then("I should see the vs screen", then.textVisible("Oscar has invited you to a 1-day duel for 25 YuCoin!"))
             })
             When("I accept the duel", when.tapText("Accept"), async()=>{
                 Then("I should see the are you sure iOS modal", then.textVisible("Are you sure?"))
             })
             When("I tap confirm", when.tapText("Confirm"), async()=>{
-                Then("I should see my upcoming duel", then.idVisible(DUEL_ENTRY("Oscar", "Martinez", 25, "accepted"), 1500))
+                Then("I should see let’s begin", then.textVisible("let’s begin"))
+                When("I tap let’s begin", when.tapText("let’s begin"), async()=>{
+                    When("I complete the app intro", when.completeIntro, async () => {
+                        When("I go to the leaderboard", when.tapID(NAV_BAR("leaderboard")), async () =>{
+                            Then("I should see the duels button", then.idVisible(DUELS_BUTTON))
+                        })
+                    })
+                })
+            })
+            When("I tap the duels button", when.tapID(DUELS_BUTTON), async()=>{
+                Then("I should be on the first duels intro screen", then.multipleTextVisible(["Challenge a friend!", "Next"]))
+                When("I tap complete the duels intro", when.completeOnboardingIntro, async () => {
+                    Then("I should be on the duels hub", then.onDuelsHub)
+                    Then("I should see my upcoming duel", then.idVisible(DUEL_ENTRY("Oscar", "Martinez", 25, "accepted"), 1500))
+                })
             })
         })
     })
