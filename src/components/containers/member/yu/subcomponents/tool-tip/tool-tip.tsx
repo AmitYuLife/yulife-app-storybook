@@ -125,9 +125,11 @@ export const ToolTip = () => {
         <View style={getTopWrapperStyle(coverType, isActive)}>
           <MemoizedLinearGradient colorTheme={getLinearGradientColorTheme(coverType, isActive)} />
           <Image resizeMode="contain" source={{ uri: toolTip.itemUrl }} style={styles.iconWrapper} />
-          <View style={styles.coverTypeWrapper}>
-            <PackageType type={coverType} />
-          </View>
+          {!coverType ? null : (
+            <View style={styles.coverTypeWrapper}>
+              <PackageType type={coverType} />
+            </View>
+          )}
           <View style={styles.nameWrapper}>
             <Text bold={true} style={getNameStyle(isActive)}>
               {toolTip?.name}
