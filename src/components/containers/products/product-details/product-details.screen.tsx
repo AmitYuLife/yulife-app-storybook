@@ -11,6 +11,8 @@ import { Card } from "./subcomponents/card";
 import { Stamp } from "./subcomponents/stamp";
 import media from "@styles/media";
 import { ProductDetailsModalProps } from "./product-details.modal";
+import { Beneficiaries } from "./subcomponents/beneficiaries";
+import { BENEFICIARIES } from "../beneficiary/beneficiary.container";
 
 interface Props {
   coverType: CoverType;
@@ -41,6 +43,7 @@ export const ProductDetailsScreen = memo((props: Props) => {
         <View style={styles.topPadding} />
         <Card {...props} />
         <Documents modalProps={modalProps} />
+        <Beneficiaries beneficiaries={BENEFICIARIES} />
         <Stamp value={lastUpdated} />
         <View style={styles.bottomPadding} />
       </ScrollView>
