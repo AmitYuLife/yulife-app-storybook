@@ -43,6 +43,7 @@ export const ROUTES = {
   // product
   fib: "yulife.product.FibBrowse",
   productDetails: "yulife.product.ProductDetails",
+  beneficiary: "yulife.product.Beneficiary",
 
   // quests
   questsChallengesList: "yulife.quests.ChallengesList",
@@ -84,6 +85,8 @@ export const MODALS = {
   priceChanged: "yulife.member.priceChanged",
   policyCertificate: "yulife.modals.policyCertificate",
   mobileUpdate: "yulife.member.MobileUpdate",
+  addBeneficiary: "yulife.modals.AddBeneficiary",
+  defaultBeneficiaries: "yulife.modals.DefaultBeneficiaries",
 };
 
 export const bottomTabs: OptionsBottomTabs = {

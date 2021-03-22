@@ -164,6 +164,10 @@ export default [
     name: ROUTES.productDetails,
     component: require("../components/containers/products/product-details/product-details.container").default,
   },
+  {
+    name: ROUTES.beneficiary,
+    component: require("../components/containers/products/beneficiary/beneficiary.container").default,
+  },
   // webview
   {
     name: ROUTES.webView,
@@ -222,6 +226,14 @@ export default [
   {
     name: MODALS.mobileUpdate,
     component: require("../components/modals/mobile-update/mobile-update-modal").default,
+  },
+  {
+    name: MODALS.addBeneficiary,
+    component: require("../components/modals/yuscreen/beneficiary/add-beneficiary-modal").default,
+  },
+  {
+    name: MODALS.defaultBeneficiaries,
+    component: require("../components/modals/yuscreen/beneficiary/default-beneficiaries-modal").default,
   },
   {
     name: MODALS.genericOverlay,

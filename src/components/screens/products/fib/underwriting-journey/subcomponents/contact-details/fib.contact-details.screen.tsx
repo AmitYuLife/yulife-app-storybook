@@ -10,6 +10,7 @@ import { postCodeRegexSpecial, postCodeRegex } from "./fib.find-address.screen";
 import { useBackHandler } from "@services/hooks/useBackHandler";
 import { CONTACT_DETAILS_INPUT } from "@ids";
 import ContactDetailsTitle from "./fib.contact-details.title";
+import { phoneNumberIsValid } from "@services/utils";
 
 export interface IFibContactDetailsScreenProps {
   onContinue: () => void;
@@ -164,11 +165,6 @@ export const FibContactDetailsScreen = memo(function (props: IFibContactDetailsS
     </FibUnderwritingJourneyLayout>
   );
 });
-
-const phoneRegEx = /^(?:(?:\(?(?:0(?:0|11)\)?[\s-]?\(?|\+)44\)?[\s-]?(?:\(?0\)?[\s-]?)?)|(?:\(?0))(?:(?:\d{5}\)?[\s-]?\d{4,5})|(?:\d{4}\)?[\s-]?(?:\d{5}|\d{3}[\s-]?\d{3}))|(?:\d{3}\)?[\s-]?\d{3}[\s-]?\d{3,4})|(?:\d{2}\)?[\s-]?\d{4}[\s-]?\d{4}))(?:[\s-]?(?:x|ext\.?|\#)\d{3,4})?$/;
-const phoneNumberIsValid = (phoneNumber: string) => {
-  return phoneRegEx.test(phoneNumber);
-};
 
 const postCodeValid = (postCode: string) => {
   return postCodeRegexSpecial.test(postCode) || postCodeRegex.test(postCode);

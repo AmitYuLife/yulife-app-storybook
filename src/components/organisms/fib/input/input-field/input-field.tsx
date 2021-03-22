@@ -31,6 +31,7 @@ export interface InputFieldProps {
   shadowStyle?: ViewStyle;
   hasFocusActive?: (focus: boolean) => void;
   wrapperStyle?: ViewStyle;
+  onFocus?: () => void;
   testID?: string;
 }
 
@@ -50,6 +51,7 @@ const _InputField = (props: InputFieldProps) => {
     style,
     hasFocusActive,
     wrapperStyle,
+    onFocus,
     testID,
   } = props;
 
@@ -68,6 +70,10 @@ const _InputField = (props: InputFieldProps) => {
   };
 
   const handleFocus = (isFocused: boolean) => {
+    if (onFocus) {
+      onFocus();
+    }
+
     return () => {
       if (hasFocusActive) {
         hasFocusActive(isFocused);

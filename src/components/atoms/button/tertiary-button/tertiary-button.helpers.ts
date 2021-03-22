@@ -1,5 +1,5 @@
 import { View } from "react-native";
-import { EditSvg } from "../icons/edit-svg";
+import { EditSvg, EditSvgGrey } from "../icons/edit-svg";
 import { BirthdaySvg } from "../icons/birthday-svg";
 import { QuestionBubbleSvg } from "../icons/question-bubble";
 import { ArrowRightSvg } from "../icons/arrow-right";
@@ -9,6 +9,7 @@ import Icon from "@atoms/icon";
 export enum BUTTON_ICON {
   BIRTHDAY = "BIRTHDAY",
   EDIT = "EDIT",
+  EDIT_GREY = "EDIT_GREY",
   QUESTION_BUBBLE = "QUESTION_BUBBLE",
   ARROW_RIGHT = "ARROW_RIGHT",
   SALARY = "SALARY",
@@ -21,6 +22,8 @@ export function getIcon(icon: BUTTON_ICON) {
       return BirthdaySvg;
     case BUTTON_ICON.EDIT:
       return EditSvg;
+    case BUTTON_ICON.EDIT_GREY:
+      return EditSvgGrey;
     case BUTTON_ICON.QUESTION_BUBBLE:
       return QuestionBubbleSvg;
     case BUTTON_ICON.ARROW_RIGHT:
