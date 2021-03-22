@@ -30,7 +30,6 @@ public class YulifeFirebaseMessaggingService extends MixpanelFCMMessagingService
                 String iconName = "intercom_push_icon";
                 intent.putExtra("mp_icnm", iconName);
                 intent.putExtra("mp_icnm_w", iconName);
-                intent.putExtra("mp_icnm_l", iconName);
             }
 
             if (!message.containsKey("mp_color")) {
