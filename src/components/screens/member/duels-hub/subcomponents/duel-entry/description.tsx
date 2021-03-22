@@ -40,7 +40,7 @@ const Description: FC<IProps> = ({ duel, type, userId }) => {
       return (
         <View style={styles.wrapper}>
           <Text style={styles.text}>
-            Waiting for user to open the app
+            Waiting for user’s steps to sync
             {showLastKnownStepCount ? (
               <Text style={[styles.text, styles.syncText]}>
                 {`\n`}Last known step count: {addCommasToNumber(opponent.score)} steps
