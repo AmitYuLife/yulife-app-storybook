@@ -38,7 +38,7 @@ export const BeneficiaryScreen = memo((props: Props) => {
   const message = localBeneficiaries?.length
     ? "Set the allocated percentage for each beneficiary. The total must add up to 100%."
     : "Looks like you haven’t set an beneficiaries yet. Tap below to get started.";
-  const bottomButtonLabel = localBeneficiaries?.length ? "Done" : "skip for now";
+  const bottomButtonLabel = localBeneficiaries?.length ? "Done" : "Skip for now";
 
   const addBeneficiary = (beneficiary: Beneficiary) => {
     const id = `${Math.floor(Math.random() * 100)}`;
