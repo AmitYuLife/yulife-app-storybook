@@ -2,5 +2,6 @@ import { navigation } from "@navigation"
 
 export const {
     loginAsUser,
-    loginOnly
+    loginOnly,
+    loginAndCollectSignupBonus
 } = navigation.login

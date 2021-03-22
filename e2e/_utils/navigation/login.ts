@@ -65,9 +65,18 @@ export const loginOnly = (customer: any, auth: any, fitkitAuth?: boolean) => asy
     await passwordField.replaceText(auth.data.password);
     await navigateViaID(BUTTON_LOGIN)
 }
-
+export const loginAndCollectSignupBonus = (customer: any, auth: any, fitkitAuth?: boolean)=> async()=>{
+    await loginOnly(customer, auth, fitkitAuth)()
+    await navigateViaText("next")
+}
 export const continueLogin = async () => {
     await navigateViaText("next")
+    await dismissStreakIfVisible()
+    await navigateViaText("let’s begin")
+    await completeIntro()
+}
+
+export const continueLoginAfterSignupBonus = async()=>{
     await dismissStreakIfVisible()
     await navigateViaText("let’s begin")
     await completeIntro()

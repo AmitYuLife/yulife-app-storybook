@@ -113,19 +113,24 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
         })
     })
 
+    // TODO: Fix issue where invite popup shows twice if fitkit is enabled:
+    // https://yulife.atlassian.net/browse/ENG-1877?atlOrigin=eyJpIjoiZWViMTE5ZGIwZjVmNDZiNWIwOGMxYjc5NTVjMmFiMzMiLCJwIjoiaiJ9
     Scenario("I can join a new leaderboard", scenario.start, async () => {
-        Given("I login", given.loginOnly(CUSTOMER_21, AUTH_21, true), async () => {
+        Given("I login", given.loginOnly(CUSTOMER_21, AUTH_21, false), async () => {
             Then("I should see a leaderboard invite screen", then.textVisible("join Boris' leaderboard", 2500))
             When("I accept", when.tapText("accept invite"), async () => {
-                When("I continue the login process", when.continueLogin, async () => {
-                    Then("I should be on the yuscreen", then.idVisible(DAILY_STEPS_SCREEN))
-                    When("I go to the leaderboard", when.tapID(NAV_BAR("leaderboard")), async () => {
-                        Then("I should see the leaderboard title", then.idVisible(LEADERBOARD_TITLE(USER_18_LEADERBOARD.data.name)))
-                        Then("I should see the leaderboard", then.leaderboardVisible([CUSTOMER_18, CUSTOMER_17, CUSTOMER_19], [800, 250]))
-                        When("I tap the leaderboard drop down", when.tapID(LEADERBOARD_TITLE(USER_18_LEADERBOARD.data.name)), async () => {
-                            Then("I should see both Lb1 and the new leaderboard I just joined", then.multipleTextVisible([USER_18_LEADERBOARD.data.name, USER_19_LEADERBOARD_B.data.name]))
-                            When("I tap Lb2", when.tapText(USER_19_LEADERBOARD_B.data.name), async () => {
-                                Then("I should be on the Lb2 leaderboard", then.leaderboardVisible([CUSTOMER_19, CUSTOMER_20]))
+                When("I skip fitkit", when.tapText("skip"), async()=>{
+                    Then("I should see the signup bonus screen", then.textVisible("sign up bonus"))
+                    When("I continue the login process", when.continueLogin, async () => {
+                        Then("I should be on the yuscreen", then.idVisible(DAILY_STEPS_SCREEN))
+                        When("I go to the leaderboard", when.tapID(NAV_BAR("leaderboard")), async () => {
+                            Then("I should see the leaderboard title", then.idVisible(LEADERBOARD_TITLE(USER_18_LEADERBOARD.data.name)))
+                            Then("I should see the leaderboard", then.leaderboardVisible([CUSTOMER_18, CUSTOMER_17, CUSTOMER_19], [800, 250]))
+                            When("I tap the leaderboard drop down", when.tapID(LEADERBOARD_TITLE(USER_18_LEADERBOARD.data.name)), async () => {
+                                Then("I should see both Lb1 and the new leaderboard I just joined", then.multipleTextVisible([USER_18_LEADERBOARD.data.name, USER_19_LEADERBOARD_B.data.name]))
+                                When("I tap Lb2", when.tapText(USER_19_LEADERBOARD_B.data.name), async () => {
+                                    Then("I should be on the Lb2 leaderboard", then.leaderboardVisible([CUSTOMER_19, CUSTOMER_20]))
+                                })
                             })
                         })
                     })
@@ -134,6 +139,8 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
         })
     })
 
+    // TODO: Fix issue where invite popup shows twice if fitkit is enabled: 
+    // https://yulife.atlassian.net/browse/ENG-1877?atlOrigin=eyJpIjoiZWViMTE5ZGIwZjVmNDZiNWIwOGMxYjc5NTVjMmFiMzMiLCJwIjoiaiJ9
     Scenario("I can invite a user, and they can accept", scenario.start, async () => {
         Given("I login", given.loginAsUser(CUSTOMER_20, AUTH_20), async () => {
             When("I go to the leaderboard", when.tapID(NAV_BAR("leaderboard")), async () => {
@@ -157,10 +164,12 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
                             Then("The status of the group should be online", then.leaderboardStatus("Lb3", "active"))
                         })
                         When("I restart the app", when.restartWithData, async () => {
-                            When("I login as the invited user", when.loginOnly(CUSTOMER_19, AUTH_19, true), async () => {
-                                Then("I should see the invite screen", then.textVisible("join Oscar's leaderboard"))
+                            When("I login as the invited user", when.loginOnly(CUSTOMER_19, AUTH_19, false), async () => {
+                                Then("I should see a leaderboard invite screen", then.textVisible("join Oscar's leaderboard", 2500))
                                 When("I accept", when.tapText("accept invite"), async () => {
-                                    When("I continue the login process", when.continueLogin, async () => {
+                                    When("I skip fitkit", when.tapText("skip"), async () => {
+                                        Then("I should see the signup bonus screen", then.textVisible("sign up bonus"))
+                                        When("I continue the login process", when.continueLogin, async () => {
                                         Then("I should be on the yuscreen", then.idVisible(DAILY_STEPS_SCREEN))
                                         When("I go to the leaderboard", when.tapID(NAV_BAR("leaderboard")), async () => {
                                             Then("I should see the leaderboard title", then.idVisible(LEADERBOARD_TITLE(USER_18_LEADERBOARD.data.name)))
@@ -171,6 +180,7 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
                                                     Then("I should see the leaderboard name Lb3", then.idVisible(LEADERBOARD_TITLE("Lb3")))
                                                     Then("I should not see any of the other leaderboards", then.textNotVisible(USER_19_LEADERBOARD_B.data.name))
                                                     Then("I should be on the Lb3 leaderboard", then.leaderboardVisible([CUSTOMER_20]))
+                                                    })
                                                 })
                                             })
                                         })
