@@ -1,5 +1,5 @@
 import React, { RefObject } from "react";
-import { Colours } from "@styles";
+import { Colours, Style } from "@styles";
 import { ScrollView, View, ViewStyle, StyleSheet, Platform, KeyboardAvoidingView } from "react-native";
 import { Logo } from "../../atoms/generic-heading/generic-heading.types";
 import { CTA } from "./cta";
@@ -67,16 +67,18 @@ export function ScrollableLayout(props: Props) {
           <View style={styles.padBot} />
         </ScrollView>
         {!buttonAction ? null : (
-          <CTA
-            buttonTitle={buttonTitle}
-            buttonAction={buttonAction}
-            isButtonDisabled={isButtonDisabled}
-            isButtonLoading={isButtonLoading}
-            hideFirstButton={hideFirstButton}
-            secondButtonAction={secondButtonAction}
-            secondButtonLabel={secondButtonLabel}
-            removeCtaFade={removeCtaFade}
-          />
+          <View style={styles.buttonWrapper}>
+            <CTA
+              buttonTitle={buttonTitle}
+              buttonAction={buttonAction}
+              isButtonDisabled={isButtonDisabled}
+              isButtonLoading={isButtonLoading}
+              hideFirstButton={hideFirstButton}
+              secondButtonAction={secondButtonAction}
+              secondButtonLabel={secondButtonLabel}
+              removeCtaFade={removeCtaFade}
+            />
+          </View>
         )}
       </View>
       <GenericHeadingAbsolute
@@ -108,5 +110,8 @@ const styles = StyleSheet.create({
   } as ViewStyle,
   padBot: {
     height: CTA.height / 1.5,
+  } as ViewStyle,
+  buttonWrapper: {
+    marginBottom: Style.adjust(17),
   } as ViewStyle,
 });

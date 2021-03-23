@@ -7,6 +7,7 @@ import {
   NativeSyntheticEvent,
   NativeScrollEvent,
   ViewStyle,
+  Platform,
 } from "react-native";
 import { Button } from "@atoms";
 import { HowItWorks } from "./subcomponents";
@@ -100,7 +101,15 @@ export const FibDetailsScreen = memo(function (props: FibDetailsScreenProps) {
         <ScrollView
           testID={SUMMARY_SCROLL_VIEW}
           showsVerticalScrollIndicator={false}
-          contentContainerStyle={styles.scrollView}
+          contentContainerStyle={[
+            styles.scrollView,
+            {
+              paddingBottom: Platform.select({
+                ios: 0,
+                android: continueButtonIsFixed ? 32 : 15,
+              }),
+            },
+          ]}
           onMomentumScrollEnd={onScrollEnd}
           ref={scrollViewRef}
         >
@@ -177,7 +186,6 @@ const styles = StyleSheet.create({
   },
   scrollView: {
     backgroundColor: "#fafafe",
-    paddingBottom: 32,
     marginTop: 10,
   },
   buttonWrapper: {

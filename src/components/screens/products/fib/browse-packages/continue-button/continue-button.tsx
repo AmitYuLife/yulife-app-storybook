@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
     width: "100%",
     alignSelf: "center",
     alignItems: "center",
-    height: 90,
+    height: Style.adjust(90),
     bottom: 0,
   } as ViewStyle,
   wrapper: {

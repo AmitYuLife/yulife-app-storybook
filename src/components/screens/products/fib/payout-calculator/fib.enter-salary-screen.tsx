@@ -73,10 +73,9 @@ export const FibEnterSalaryScreen = memo(function (props: IFibEnterSalaryScreenP
           </Text>
 
           <FibInputSalary setInputSalary={updateSalary} salary={salary} />
-
-          <View style={styles.button}>
-            <Button disabled={!salary} label="Done" type="Primary" onPress={onDonePressed} />
-          </View>
+        </View>
+        <View style={styles.button}>
+          <Button disabled={!salary} label="Done" type="Primary" onPress={onDonePressed} />
         </View>
       </KeyboardAvoidingView>
     </GenericOverlay>
@@ -84,7 +83,12 @@ export const FibEnterSalaryScreen = memo(function (props: IFibEnterSalaryScreenP
 });
 
 const styles = StyleSheet.create({
-  avoidingViewWrapper: { flex: 1 },
+  avoidingViewWrapper: { flex: 0.9 },
+  wrapper: {
+    paddingTop: 24,
+    paddingHorizontal: 24,
+    width: Style.DEVICE_WIDTH,
+  },
   text: {
     fontSize: Style.adjust(16),
     letterSpacing: 1,
@@ -102,14 +106,8 @@ const styles = StyleSheet.create({
     width: Style.DEVICE_WIDTH - 70,
     alignSelf: "center",
     position: "absolute",
-    bottom: Platform.select({ ios: 80, android: 100 }),
+    bottom: 33,
   } as ViewStyle,
-  wrapper: {
-    paddingTop: 24,
-    paddingHorizontal: 24,
-    width: Style.DEVICE_WIDTH,
-    flex: 1,
-  },
   birthDayButtonWrapper: {
     marginTop: 40,
   },
