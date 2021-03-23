@@ -117,7 +117,7 @@ export default function AddBeneficiaryModalScreen({
         firstLabel="Yes"
         secondLabel="No"
         onFirstButtonPress={onDeleteConfirmed}
-        onSecondButtonPress={onClose}
+        onSecondButtonPress={() => setDeleteBeneficiaryPressed(false)}
       />
     );
   }
