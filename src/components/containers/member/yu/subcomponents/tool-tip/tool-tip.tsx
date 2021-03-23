@@ -125,7 +125,7 @@ export const ToolTip = () => {
         <View style={getTopWrapperStyle(coverType, isActive)}>
           <MemoizedLinearGradient colorTheme={getLinearGradientColorTheme(coverType, isActive)} />
           <Image resizeMode="contain" source={{ uri: toolTip.itemUrl }} style={styles.iconWrapper} />
-          {!coverType ? null : (
+          {!coverType || status !== YuProductStatus.active ? null : (
             <View style={styles.coverTypeWrapper}>
               <PackageType type={coverType} />
             </View>
