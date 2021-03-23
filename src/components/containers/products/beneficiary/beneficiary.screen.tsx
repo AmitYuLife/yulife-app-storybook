@@ -14,7 +14,7 @@ interface Props {
 }
 
 const keyboardBehavior = Platform.select({ ios: "padding" as "padding", android: null });
-
+const MAX_SUM_ALLOCATED_PERCENTAGE = 100;
 export const BeneficiaryScreen = memo((props: Props) => {
   const handleClose = () => {
     Navigation.pop(ROUTES.beneficiary);
@@ -32,7 +32,7 @@ export const BeneficiaryScreen = memo((props: Props) => {
     localBeneficiaries?.length > 0 &&
     localBeneficiaries.reduce((accumulator, currentValue) => {
       return accumulator + currentValue?.percentage;
-    }, 0) !== 100;
+    }, 0) !== MAX_SUM_ALLOCATED_PERCENTAGE;
 
   const title = localBeneficiaries?.length ? "Edit Beneficiaries" : "Add Beneficiaries";
   const message = localBeneficiaries?.length
@@ -42,11 +42,11 @@ export const BeneficiaryScreen = memo((props: Props) => {
 
   const addBeneficiary = (beneficiary: Beneficiary) => {
     const id = `${Math.floor(Math.random() * 100)}`;
-    const allocatedAmount = Math.floor(100 / (localBeneficiaries.length + 1));
+    const allocatedAmount = Math.floor(MAX_SUM_ALLOCATED_PERCENTAGE / (localBeneficiaries.length + 1));
     const updatedBeneficiaries = [...localBeneficiaries, { ...beneficiary, id }].map((b, index) => {
       const isLastBeneficiary = index === localBeneficiaries.length;
       if (isLastBeneficiary) {
-        const lastBeneficiaryPercentage = 100 - allocatedAmount * localBeneficiaries.length;
+        const lastBeneficiaryPercentage = MAX_SUM_ALLOCATED_PERCENTAGE - allocatedAmount * localBeneficiaries.length;
         return { ...b, percentage: lastBeneficiaryPercentage };
       }
 
@@ -70,11 +70,12 @@ export const BeneficiaryScreen = memo((props: Props) => {
 
   const deleteBeneficiary = (beneficiary: Beneficiary) => {
     const newBeneficiaries = localBeneficiaries.filter((b) => b.id !== beneficiary.id);
-    const allocatedAmount = Math.floor(100 / newBeneficiaries.length);
+    const allocatedAmount = Math.floor(MAX_SUM_ALLOCATED_PERCENTAGE / newBeneficiaries.length);
     const updateBeneficiaries = newBeneficiaries.map((b, index) => {
       const isLastBeneficiary = index === newBeneficiaries.length - 1;
       if (isLastBeneficiary) {
-        const lastBeneficiaryPercentage = 100 - allocatedAmount * (newBeneficiaries.length - 1);
+        const lastBeneficiaryPercentage =
+          MAX_SUM_ALLOCATED_PERCENTAGE - allocatedAmount * (newBeneficiaries.length - 1);
         return { ...b, percentage: lastBeneficiaryPercentage };
       }
 
@@ -87,7 +88,9 @@ export const BeneficiaryScreen = memo((props: Props) => {
   const onBeneficiaryAllocatedAmountChanged = (beneficiary: Beneficiary, allocatedAmount: number) => {
     const updateBeneficiaries = localBeneficiaries.map((b) => {
       if (b.id === beneficiary.id) {
-        return { ...b, percentage: allocatedAmount };
+        const allocatedAmountLimit =
+          allocatedAmount > MAX_SUM_ALLOCATED_PERCENTAGE ? MAX_SUM_ALLOCATED_PERCENTAGE : allocatedAmount;
+        return { ...b, percentage: allocatedAmountLimit };
       }
 
       return b;
@@ -251,7 +254,7 @@ const styles = StyleSheet.create({
   },
   bottomElementsWrapperWithError: {
     flexGrow: 1,
-    minHeight: Style.adjust(Style.isShortToMediumAndroid() ? 210 : 182),
+    minHeight: Style.adjust(210),
     alignItems: "center",
   },
 });
