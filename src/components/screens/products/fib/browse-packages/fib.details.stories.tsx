@@ -4,7 +4,6 @@ import { FibDetailsScreen } from "./fib.details.screen";
 import { View } from "react-native";
 import documentsData from "@components/containers/products/fib/data/documents-data";
 import { Package } from "./fib.browse.types";
-import { IFaq } from "./subcomponents/faqs/faq";
 import { CoverType } from "@graphql/_core/schema/globalTypes";
 
 const selectedPackage: Package = {
@@ -28,11 +27,10 @@ const selectedPackage: Package = {
 };
 
 const onPress = (): null => null;
-const documents: IFaq[] = documentsData.map(({ question, iconSvgXml }) => ({
+const documents = documentsData.map(({ question, icon }) => ({
   label: question,
   onPress,
-  iconSvgXml: iconSvgXml,
-  redirectType: "external",
+  icon,
 }));
 
 storiesOf("FibBrowse", module)

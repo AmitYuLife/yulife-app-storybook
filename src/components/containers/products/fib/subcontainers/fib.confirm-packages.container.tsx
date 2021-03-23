@@ -14,7 +14,6 @@ import { IReduxState } from "@redux/_core/reducers";
 import { packages, useCover } from "../fib.helpers";
 import { FibDetailsScreen } from "@screens";
 import { Package } from "@components/screens/products/fib/browse-packages/fib.browse.types";
-import { IFaq } from "@components/screens/products/fib/browse-packages/subcomponents/faqs/faq";
 import fibDocumentsItems from "../data/documents-data";
 import moment from "moment";
 import { updateFIBValuesFromNewQuote } from "@redux/product/product.actions";
@@ -44,8 +43,7 @@ interface OwnProps {
 
 type FibConfirmPackagesContainerProps = ConnectedState & OwnProps;
 
-const documents: IFaq[] = fibDocumentsItems.map((document) => ({
-  redirectType: "external",
+const documents = fibDocumentsItems.map((document) => ({
   label: document.question,
   onPress: async () => {
     if (Platform.OS === "ios") {
@@ -62,7 +60,7 @@ const documents: IFaq[] = fibDocumentsItems.map((document) => ({
       }
     }
   },
-  iconSvgXml: document.iconSvgXml,
+  icon: document.icon,
 }));
 
 const FibConfirmPackagesContainer = memo(function (props: FibConfirmPackagesContainerProps) {

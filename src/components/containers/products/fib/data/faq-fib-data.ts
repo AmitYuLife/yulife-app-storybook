@@ -84,7 +84,7 @@ In such circumstances, the cancellation will be effective immediately and no ref
   },
   {
     id: "increase-cover",
-    question: "Can I increase my cover in future?",
+    question: "Can I increase my cover in the future?",
     answer: `Yes, you have the option to increase your amount of cover without the need for further medical questions in the event of:
 
 - Change in marital status

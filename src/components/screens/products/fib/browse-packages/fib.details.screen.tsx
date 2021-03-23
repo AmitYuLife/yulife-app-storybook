@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useRef, useEffect } from "react";
+import React, { memo, useCallback, useRef, useEffect, ComponentProps } from "react";
 import {
   StyleSheet,
   ScrollView,
@@ -30,7 +30,7 @@ import { ContinueButton } from "@components/screens/products/fib/browse-packages
 import { SUMMARY_SCROLL_VIEW } from "@ids";
 
 interface FibDetailsScreenProps {
-  documents: any;
+  documents: ComponentProps<typeof Documents>["items"];
   howItWorks?: string;
   additionalInformation?: IAdditionalInformation;
   otherBenefits?: IAdditionalInformation;

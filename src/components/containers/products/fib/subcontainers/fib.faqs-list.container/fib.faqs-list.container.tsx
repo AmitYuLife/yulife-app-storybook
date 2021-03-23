@@ -4,7 +4,6 @@ import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-headin
 import { Text } from "@atoms";
 import fibFaqItems from "../../../../../containers/products/fib/data/faq-fib-data";
 import { FibLocalNavigation, FIB_FAQ } from "../../fib.types";
-import { IFaq } from "@components/screens/products/fib/browse-packages/subcomponents/faqs/faq";
 import { FibFaqsList } from "./fib.faqs-list";
 import { IFibFAQ } from "../../data/faq-fib-data";
 import { Style, Colours } from "@styles";
@@ -17,9 +16,8 @@ interface Props {
 
 const FibFaqListContainer = (props: Props) => {
   const { navigation, selectFaq } = props;
-  const faqs: IFaq[] = fibFaqItems.map((faq: IFibFAQ) => ({
+  const faqs = fibFaqItems.map((faq: IFibFAQ) => ({
     label: faq.question,
-    redirectType: "internal",
     onPress: () => {
       navigation.push(FIB_FAQ);
       return selectFaq(faq.id);
