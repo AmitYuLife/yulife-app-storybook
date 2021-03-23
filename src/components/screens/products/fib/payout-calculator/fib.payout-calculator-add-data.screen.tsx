@@ -2,13 +2,13 @@ import React, { memo } from "react";
 import { View, StyleSheet, ViewStyle, TextStyle } from "react-native";
 import { Button, Text } from "@atoms";
 import { Colours, Style } from "@styles";
-import { ScrollableLayout } from "@molecules";
 import { FibInputBirth } from "../../../../organisms/fib/input/birth/fib-input-birth";
 import { FibAnswers } from "../../../../../redux/product/product.types";
 import { Navigation } from "react-native-navigation";
 import { MODALS } from "../../../../../navigation/constants";
 import { addCommasToNumber } from "@services/utils";
 import FibInputSalaryTertiary from "../../../../organisms/fib/input/salary/fib-input-salary-tertiary";
+import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
 
 export interface IFibPayoutCalculatorAddDataScreenProps {
   onNavigateBack: () => void;
@@ -46,7 +46,8 @@ export const FibPayoutCalculatorAddDataScreen = memo(function (props: IFibPayout
   };
 
   return (
-    <ScrollableLayout shouldCenterContent={true} onLeftIconPress={onNavigateBack} logo={"yulife"} isBeta={false}>
+    <View style={styles.container}>
+      <GenericHeadingPad />
       <View style={styles.wrapper}>
         <Text bold={true} style={styles.titleStyle}>
           Payout Calculator
@@ -68,11 +69,20 @@ export const FibPayoutCalculatorAddDataScreen = memo(function (props: IFibPayout
       <View style={styles.buttonWrapper}>
         <Button type="Primary" label="Continue" onPress={onContinue} disabled={buttonDisabled} />
       </View>
-    </ScrollableLayout>
+      <GenericHeadingAbsolute onLeftIconPress={onNavigateBack} logo={"yulife"} />
+    </View>
   );
 });
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  } as ViewStyle,
+  wrapper: {
+    paddingTop: 24,
+    paddingHorizontal: 24,
+    width: Style.DEVICE_WIDTH,
+  } as ViewStyle,
   titleStyle: {
     fontSize: Style.adjust(28),
     lineHeight: Style.adjust(32),
@@ -88,17 +98,8 @@ const styles = StyleSheet.create({
   } as TextStyle,
   buttonWrapper: {
     position: "absolute",
-    bottom: 32,
+    bottom: 33,
     width: Style.DEVICE_WIDTH,
   } as ViewStyle,
-  wrapper: {
-    paddingTop: 24,
-    paddingHorizontal: 24,
-    width: Style.DEVICE_WIDTH,
-    flex: 1,
-  },
-  birthDayButtonWrapper: {
-    marginTop: 40,
-  },
-  fibInputBirthWrapper: { marginTop: 16 },
+  fibInputBirthWrapper: { marginTop: 16 } as ViewStyle,
 });

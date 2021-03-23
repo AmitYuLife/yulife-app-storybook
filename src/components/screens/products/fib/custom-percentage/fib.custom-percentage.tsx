@@ -1,6 +1,5 @@
 import React, { memo, useCallback } from "react";
 import { StyleSheet, ViewStyle, View, Platform, TextStyle } from "react-native";
-import deviceInfoModule from "react-native-device-info";
 import { SvgXml } from "react-native-svg";
 import { Style, Colours } from "@styles";
 import { Button, Text } from "@atoms";
@@ -139,7 +138,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     left: 0,
     right: 0,
-    bottom: Platform.OS === "ios" && deviceInfoModule.hasNotch() ? 44 : 20,
+    bottom: Style.adjust(44),
   } as ViewStyle,
   percentagePickerWrapper: {
     width: Style.DEVICE_WIDTH,
