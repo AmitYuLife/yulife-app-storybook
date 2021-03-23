@@ -1,13 +1,13 @@
 import React, { memo } from "react";
 import { StyleSheet, ScrollView, ViewStyle, View } from "react-native";
 import * as Animatable from "react-native-animatable";
-import { Text } from "@atoms";
+import { Text, TextTemplate, Icon } from "@atoms";
 import { Style, Colours } from "@styles";
 import Markdown from "@components/molecules/markdown/markdown";
 import { IFibFAQ } from "@components/containers/products/fib/data/faq-fib-data";
-import { Faq } from "../browse-packages/subcomponents/faqs/faq";
 import { useBackHandler } from "../../../../../services/hooks/useBackHandler";
 import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
+import { PressableWithDelay } from "@components/molecules";
 
 export interface IRedirectFAQ {
   faq: IFibFAQ;
@@ -41,14 +41,7 @@ export const FibFaqScreen = memo(function (props: IFibFaqScreenProps) {
             </Text>
             <Markdown text={faq.answer} containerStyle={styles.markdownContainer} markdownStyles={markdownStyles} />
           </View>
-          {!childFaqs ? null : (
-            <Faq
-              label={childFaqs.faq.question}
-              onPress={childFaqs.onPress}
-              styles={redirectFAQStyles}
-              redirectType="internal"
-            />
-          )}
+          {!childFaqs ? null : <Faq label={childFaqs.faq.question} onPress={childFaqs.onPress} />}
         </Animatable.View>
       </ScrollView>
       <GenericHeadingAbsolute logo="yulife" onLeftIconPress={onNavigateBack} />
@@ -77,6 +70,19 @@ const styles = StyleSheet.create({
   padding: {
     paddingHorizontal: Style.adjust(24),
   } as ViewStyle,
+  arrowRight: {
+    marginLeft: "auto",
+  } as ViewStyle,
+  childFaqWrapper: {
+    flexDirection: "row",
+    alignItems: "center",
+    minHeight: Style.adjust(64),
+    borderBottomWidth: 1,
+    borderBottomColor: Colours.neutral.n100,
+    paddingVertical: Style.adjust(16),
+    paddingRight: Style.adjust(8),
+    paddingLeft: Style.adjust(24),
+  } as ViewStyle,
 });
 
 const markdownStyles = {
@@ -104,13 +110,11 @@ const markdownStyles = {
   },
 };
 
-const redirectFAQStyles = StyleSheet.create({
-  wrapper: {
-    flexDirection: "row",
-    alignItems: "center",
-    minHeight: Style.adjust(64),
-    paddingHorizontal: Style.adjust(8),
-    borderBottomWidth: 1,
-    borderColor: Colours.neutral.n100,
-  },
-});
+const Faq = ({ label, onPress }: { label: string; onPress: () => void }) => (
+  <PressableWithDelay style={styles.childFaqWrapper} onPress={onPress}>
+    <TextTemplate type="b2b">{label}</TextTemplate>
+    <View style={styles.arrowRight}>
+      <Icon.ArrowRight />
+    </View>
+  </PressableWithDelay>
+);

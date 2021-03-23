@@ -15,7 +15,6 @@ import { GetCheckoutDetails } from "@graphql/_core/schema/GetCheckoutDetails";
 import { StripePaymentRequestToken } from "tipsi-stripe";
 import { useBackHandler } from "@services/hooks/useBackHandler";
 import { Documents } from "@components/screens/products/fib/browse-packages/subcomponents/documents/documents";
-import { IFaq } from "@components/screens/products/fib/browse-packages/subcomponents/faqs/faq";
 import { handleOpenWebView } from "@navigation/utils";
 import Logger from "@services/logging/logger";
 import * as docs from "@containers/products/fib/data/documents-data";
@@ -53,11 +52,10 @@ const handlePressLink = ({ uri, title, id }: { uri: string; title: string; id: s
   };
 };
 
-const documents: IFaq[] = docs.checkoutDocs.map((document) => ({
-  redirectType: "external",
+const documents = docs.checkoutDocs.map((document) => ({
   label: document.question,
   onPress: handlePressLink({ uri: document.url, title: document.question, id: document.id }),
-  iconSvgXml: document.iconSvgXml,
+  icon: document.icon,
 }));
 
 export const FibCheckoutHubContainer = memo((props: Props) => {

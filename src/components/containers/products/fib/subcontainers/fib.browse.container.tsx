@@ -12,7 +12,6 @@ import { GQL_QUERY_GET_YULIFER } from "@graphql/yuscreen";
 import { Package } from "@components/screens/products/fib/browse-packages/fib.browse.types";
 import { getFIBState } from "@redux/product/product.selectors";
 import { IReduxState } from "@redux/_core/reducers";
-import { IFaq } from "@components/screens/products/fib/browse-packages/subcomponents/faqs/faq";
 import { getUserDateOfBirth } from "@redux/user/user.selectors";
 import { packages, useCover } from "../fib.helpers";
 import { handleOpenWebView } from "@navigation/utils";
@@ -26,8 +25,7 @@ interface IFibContainer {
   navigation: FibLocalNavigation;
 }
 
-const documents: IFaq[] = fibDocumentsItems.map((document) => ({
-  redirectType: "external",
+const documents = fibDocumentsItems.map((document) => ({
   label: document.question,
   onPress: async () => {
     if (Platform.OS === "ios") {
@@ -44,7 +42,7 @@ const documents: IFaq[] = fibDocumentsItems.map((document) => ({
       }
     }
   },
-  iconSvgXml: document.iconSvgXml,
+  icon: document.icon,
 }));
 
 const otherBenefits = {

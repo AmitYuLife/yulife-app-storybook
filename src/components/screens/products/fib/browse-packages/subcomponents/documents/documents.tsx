@@ -2,16 +2,21 @@ import React, { memo, ComponentProps } from "react";
 import { View, StyleSheet, ViewStyle } from "react-native";
 import { Style } from "@styles";
 import { Heading } from "../common";
-import { Faq } from "../faqs/faq";
 import { Button } from "@atoms";
 import { BUTTON_ICON } from "@atoms/button/tertiary-button/tertiary-button.helpers";
 
-interface IFaqs {
-  items: Array<ComponentProps<typeof Faq>>;
+interface IDocumentItem {
+  onPress: () => void;
+  label: string;
+  icon: ComponentProps<typeof Button>["leftIcon"];
+}
+
+interface Props {
+  items: IDocumentItem[];
   title?: string;
 }
 
-export const Documents = memo(({ items = [], title = "Documents" }: IFaqs) => {
+export const Documents = memo(({ items = [], title = "Documents" }: Props) => {
   return (
     <View>
       <Heading title={title} />
@@ -23,7 +28,7 @@ export const Documents = memo(({ items = [], title = "Documents" }: IFaqs) => {
             onPress={item?.onPress}
             label={item?.label}
             height={Style.adjust(60)}
-            iconSvgXml={item?.iconSvgXml}
+            leftIcon={item?.icon}
             rightIcon={BUTTON_ICON.ARROW_RIGHT}
           />
         </View>

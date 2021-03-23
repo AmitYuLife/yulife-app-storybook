@@ -1,12 +1,11 @@
 import React from "react";
-import { IFaq } from "@components/screens/products/fib/browse-packages/subcomponents/faqs/faq";
 import { PressableWithDelay } from "@components/molecules";
 import { View, StyleSheet, ViewStyle, TextStyle } from "react-native";
 import { Text, ArrowRightSvg } from "@atoms";
 import { Style, Colours } from "@styles";
 
 interface Props {
-  faqs: IFaq[];
+  faqs: Array<{ label: string; onPress: () => void }>;
 }
 
 export const FibFaqsList = (props: Props) => {
