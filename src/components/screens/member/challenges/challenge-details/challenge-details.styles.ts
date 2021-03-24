@@ -6,6 +6,8 @@ const styles = StyleSheet.create({
     backgroundColor: "rgb(237, 251, 248)",
     padding: Style.SCALE_UP_AND_DOWN(20),
     width: Style.SCALE_UP_AND_DOWN(285),
+    borderTopLeftRadius: 16,
+    borderTopRightRadius: 16,
   } as ViewStyle,
   ctaButton: {
     marginTop: Style.SCALE_UP_AND_DOWN(-4),
