@@ -15,11 +15,11 @@ export default StyleSheet.create({
     position: "absolute",
     width: Style.DEVICE_WIDTH,
   } as ViewStyle,
-  progressBarWrapper: {
-    marginTop: -16,
-  } as ViewStyle,
   wrapper: {
     flex: 1,
+  } as ViewStyle,
+  itemsWrapper: {
+    marginTop: Style.adjust(5),
   } as ViewStyle,
   logoWrapper: {
     flexDirection: "row",
@@ -33,7 +33,7 @@ export default StyleSheet.create({
   } as ViewStyle,
   exitChallengeWrapper: {
     position: "absolute",
-    top: TOP_BAR.TOP_BAR_WITH_PAD + Style.adjust(24),
+    top: Style.adjust(68),
     right: Style.adjust(16),
   } as ViewStyle,
   pad: {
