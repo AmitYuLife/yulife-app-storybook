@@ -11,7 +11,7 @@ import { getCurrentLevel } from "@redux/levels/levels.selectors";
 import Logger from "@services/logging/logger";
 import { RewardsListScreen } from "@screens/index";
 import { IMainTabsProps } from "@navigation/root";
-import { useQueryOnceScreenSeen } from "@services/hooks/useQueryOnceScreenSeen";
+import { useQueryOnScreenSeenOnce } from "@services/hooks/useQueryOnScreenSeenOnce";
 
 interface IProps {
   onTabChange: (newTab: "rewards" | "purchases", componentId?: string) => void;
@@ -38,7 +38,7 @@ const getDetailsRoute = (rewardProviderId: string) => {
 function RewardsListContainer(props: Props) {
   const { copy, onTabChange } = props;
 
-  const [getRewards, { loading, data: rewards }] = useQueryOnceScreenSeen<GetRewards>(
+  const [getRewards, { loading, data: rewards }] = useQueryOnScreenSeenOnce<GetRewards>(
     GQL_QUERY_GET_REWARDS,
     ROUTES.rewards
   );

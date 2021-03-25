@@ -3,17 +3,19 @@ import { View, StyleSheet, ViewStyle } from "react-native";
 import { Style } from "@styles";
 import { Text } from "@atoms";
 import { DuelEntry } from "../../subcomponents";
-import { useQuery } from "@apollo/react-hooks";
 import { GQL_QUERY_GET_DUEL_TOMORROW } from "@graphql/duels/getDuelsTomorrow.gql";
 import { GetDuelsTomorrow } from "@graphql/_core/schema";
 import { useSelector } from "react-redux";
 import { getCurrentUserId } from "@redux/user/user.selectors";
 import { DuelSkeleton } from "../../subcomponents/duel-skeleton/duel-skeleton";
+import { useQueryOnScreenSeen } from "@services/hooks/useQueryOnScreenSeen";
+import { ROUTES } from "@navigation/constants";
 
 const DuelsTomorrow: FC = () => {
-  const { data, loading } = useQuery<GetDuelsTomorrow>(GQL_QUERY_GET_DUEL_TOMORROW, {
+  const [, { data, loading }] = useQueryOnScreenSeen<GetDuelsTomorrow>(GQL_QUERY_GET_DUEL_TOMORROW, ROUTES.duelsHub, {
     fetchPolicy: "no-cache",
   });
+
   const duels = data?.getDuelsTomorrow || [];
   const userId = useSelector(getCurrentUserId);
 

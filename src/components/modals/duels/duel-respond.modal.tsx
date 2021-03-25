@@ -16,8 +16,6 @@ import { getTotalCoins } from "@redux/coins/coins.selectors";
 import { Loading } from "@atoms";
 import styles from "./duel-respond.styles";
 import { GQL_QUERY_GET_DUELLER_DETAILS } from "@graphql/duels/getDuellerDetails";
-import { GQL_QUERY_GET_DUEL_TOMORROW } from "@graphql/duels/getDuelsTomorrow.gql";
-import { GQL_QUERY_GET_DUEL_INVITATIONS } from "@graphql/duels/getDuelInvitations.gql";
 import { useBackHandler } from "@services/hooks/useBackHandler";
 import { TopBarAbsolute } from "@organisms/top-bar/top-bar-absolute";
 
@@ -73,9 +71,7 @@ const DuelRespondModal: React.FC<IProps> = ({
 
   const startDateTime = inviteStartDateTime || moment().add(1, "day").startOf("day").format(DATE_FORMAT_WITHOUT_TZ);
 
-  const [respondToInvite]: RespondToDuelMutationTuple = useMutation(GQL_MUTATION_RESPOND_TO_DUEL, {
-    refetchQueries: [{ query: GQL_QUERY_GET_DUEL_TOMORROW }, { query: GQL_QUERY_GET_DUEL_INVITATIONS }],
-  });
+  const [respondToInvite]: RespondToDuelMutationTuple = useMutation(GQL_MUTATION_RESPOND_TO_DUEL);
 
   const handlePress = useCallback(
     (hasAccepted: boolean) => async () => {
