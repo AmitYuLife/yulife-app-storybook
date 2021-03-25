@@ -10,7 +10,7 @@ import { useSelector } from "react-redux";
  * @param gqlQuery GQL query
  * @param activeView ROUTES or MODALS values
  */
-export function useQueryOnceScreenSeen<T = any, TVariables = OperationVariables>(
+export function useQueryOnScreenSeenOnce<T = any, TVariables = OperationVariables>(
   gqlQuery: DocumentNode,
   screenName: string,
   queryOptions: LazyQueryHookOptions<T, TVariables> = {}
@@ -22,6 +22,7 @@ export function useQueryOnceScreenSeen<T = any, TVariables = OperationVariables>
     fetchPolicy: "cache-and-network",
     ...queryOptions,
   });
+
   const { data } = queryResult;
 
   useEffect(() => {

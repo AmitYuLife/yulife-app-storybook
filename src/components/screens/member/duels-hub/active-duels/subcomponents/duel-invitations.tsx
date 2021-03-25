@@ -2,21 +2,26 @@ import React, { FC, useCallback } from "react";
 import { View, StyleSheet, ViewStyle, TextStyle } from "react-native";
 import { Style, Colours } from "@styles";
 import { Text } from "@atoms";
-import { useQuery } from "@apollo/react-hooks";
 import { GQL_QUERY_GET_DUEL_INVITATIONS } from "@graphql/duels/getDuelInvitations.gql";
 import { GetDuelInvitations } from "@graphql/_core/schema";
 import { useSelector } from "react-redux";
 import { getCurrentUserId } from "@redux/user/user.selectors";
 import { TouchableOpacityWithDelay } from "@components/molecules";
 import { Navigation } from "react-native-navigation";
-import { MODALS } from "@navigation/constants";
+import { MODALS, ROUTES } from "@navigation/constants";
 import { DuelSkeleton } from "../../subcomponents/duel-skeleton/duel-skeleton";
 import { DUELS_HUB_INVITATION } from "@ids";
+import { useQueryOnScreenSeen } from "@services/hooks/useQueryOnScreenSeen";
 
 const DuelInvitations: FC = () => {
-  const { data, loading } = useQuery<GetDuelInvitations>(GQL_QUERY_GET_DUEL_INVITATIONS, {
-    fetchPolicy: "no-cache",
-  });
+  const [, { data, loading }] = useQueryOnScreenSeen<GetDuelInvitations>(
+    GQL_QUERY_GET_DUEL_INVITATIONS,
+    ROUTES.duelsHub,
+    {
+      fetchPolicy: "no-cache",
+    }
+  );
+
   const userId = useSelector(getCurrentUserId);
   const duels = data?.getDuelInvitations || [];
   const isEmpty = duels.length === 0;
