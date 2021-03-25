@@ -1,11 +1,10 @@
 import React, { useCallback, useEffect, useRef } from "react";
-import { connect } from "react-redux";
-import { IReduxState } from "@redux/_core/reducers";
+import { useDispatch, useSelector } from "react-redux";
 import { getCurrentUserId, getActiveLeaderboard } from "@redux/user/user.selectors";
 import { GetLeaderboard, GetLeaderboardVariables } from "@graphql/_core/schema";
 import { GQL_QUERY_LEADERBOARD } from "@graphql/member";
 import { LeaderboardLayout } from "./leaderboard-layout/leaderboard-layout";
-import { getCopy } from "@redux/copy/copy.selectors";
+import { getLeaderboardsCopy } from "@redux/copy/copy.selectors";
 import { getAppState } from "@redux/app/app.selectors";
 import { updateLeaderboardConsent } from "@redux/user/user.actions";
 import ConsentGuard from "./consent-guard/consent-guard";
@@ -19,14 +18,19 @@ import { IMainTabsProps } from "@navigation/root";
 import { useTapBackTwiceToExit } from "@services/hooks/useTapBackTwiceToExit";
 
 type OwnProps = IMainTabsProps;
-type ConnectedState = ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps;
 
-type Props = ConnectedState & OwnProps;
+type Props = OwnProps;
 
 export const PAGE_SIZE = 501; // number of rows to show +1
 
-const _ActiveLeaderboard = (props: Props) => {
-  const { appState, activeLeaderboard, userId, consentCopy, updateLeaderboardConsent } = props;
+const ActiveLeaderboardContainer = (props: Props) => {
+  const dispatch = useDispatch();
+
+  const activeLeaderboard = useSelector(getActiveLeaderboard);
+  const userId = useSelector(getCurrentUserId);
+  const consentCopy = useSelector(getLeaderboardsCopy).turnBoardOn;
+  const appState = useSelector(getAppState);
+
   const appStateRef = useRef(appState);
   useTapBackTwiceToExit(props.componentId);
 
@@ -53,8 +57,8 @@ const _ActiveLeaderboard = (props: Props) => {
   }, [refetch]);
 
   const setConsent = useCallback(() => {
-    updateLeaderboardConsent({ leaderboardId: activeLeaderboard?.leaderboardId, consent: true });
-  }, [activeLeaderboard, updateLeaderboardConsent]);
+    dispatch(updateLeaderboardConsent({ leaderboardId: activeLeaderboard?.leaderboardId, consent: true }));
+  }, [activeLeaderboard, dispatch]);
 
   const openModal = useCallback(async () => {
     await Navigation.showModal({
@@ -96,19 +100,4 @@ const _ActiveLeaderboard = (props: Props) => {
   );
 };
 
-const mapStateToProps = (state: IReduxState) => ({
-  activeLeaderboard: getActiveLeaderboard(state),
-  userId: getCurrentUserId(state),
-  consentCopy: getCopy(state, "leaderboards").turnBoardOn,
-  appState: getAppState(state),
-});
-
-const mapDispatchToProps = { updateLeaderboardConsent };
-
-const redux = connect<ReturnType<typeof mapStateToProps>, typeof mapDispatchToProps, OwnProps>(
-  mapStateToProps,
-  mapDispatchToProps
-);
-const ConnectedActiveLeaderboard = redux(_ActiveLeaderboard);
-
-export default ConnectedActiveLeaderboard;
+export default ActiveLeaderboardContainer;

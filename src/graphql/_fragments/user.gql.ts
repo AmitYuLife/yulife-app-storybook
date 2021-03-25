@@ -18,7 +18,6 @@ export const GQL_FRAGMENT_USER = gql`
       isGroup
       isWellbeingAccess
     }
-    wootricId
     membershipType
     challengesDoneToday
     connections {
@@ -37,7 +36,6 @@ export const GQL_FRAGMENT_USER = gql`
       companyLeaderboard
       workspaceLeaderboard
     }
-    redeemedOnboarding
     coinLedger {
       currentBalance
       currentLevel
