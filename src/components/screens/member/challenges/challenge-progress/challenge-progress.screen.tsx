@@ -44,26 +44,28 @@ export default function ChallengeProgressScreen({
     <View style={StyleSheet.flatten([styles.wrapper, { backgroundColor: backgroundColour }])}>
       <View style={styles.pad} />
       <Image resizeMethod="resize" resizeMode="cover" source={source} style={style} />
-      <View style={styles.progressBarWrapper} testID={CHALLENGE_PROGRESS_BAR}>
-        <ProgressBar
-          amount={userProgress}
-          showCounter={showCounter}
-          goals={progressTargets}
-          styleType={progressBarType}
-          type={unit}
-        />
-      </View>
-      {challengeType === "meditation" && !userProgress ? (
-        <View style={styles.meditationInstructionsWrapper}>
-          <Instructions />
-          <View style={styles.logoWrapper}>
-            <HeadspaceButton />
-            <CalmButton />
-          </View>
+      <View style={styles.itemsWrapper}>
+        <View testID={CHALLENGE_PROGRESS_BAR}>
+          <ProgressBar
+            amount={userProgress}
+            showCounter={showCounter}
+            goals={progressTargets}
+            styleType={progressBarType}
+            type={unit}
+          />
         </View>
-      ) : null}
-      <View style={styles.exitChallengeWrapper} testID={BUTTON_CLOSE_CHALLENGE}>
-        <Exit onPress={onDismissPress} {...exitChallenge} />
+        {challengeType === "meditation" && !userProgress ? (
+          <View style={styles.meditationInstructionsWrapper}>
+            <Instructions />
+            <View style={styles.logoWrapper}>
+              <HeadspaceButton />
+              <CalmButton />
+            </View>
+          </View>
+        ) : null}
+        <View style={styles.exitChallengeWrapper} testID={BUTTON_CLOSE_CHALLENGE}>
+          <Exit onPress={onDismissPress} {...exitChallenge} />
+        </View>
       </View>
       <TopBarAbsolute
         type={topBarType}

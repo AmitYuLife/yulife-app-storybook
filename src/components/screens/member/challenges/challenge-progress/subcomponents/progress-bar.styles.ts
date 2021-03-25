@@ -14,6 +14,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     position: "absolute",
     top: Style.SCALE_UP_AND_DOWN(15),
+    marginTop: Style.adjust(8),
   },
   stepsText: {
     fontFamily: Style.FONT_FAMILY_PRIMARY_BOLD,

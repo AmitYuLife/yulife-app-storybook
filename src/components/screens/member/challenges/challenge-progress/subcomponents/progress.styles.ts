@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
   },
   goalText: {
     fontSize: Style.SCALE_UP_AND_DOWN(13),
-    marginTop: Style.SCALE_UP_AND_DOWN(14.5),
+    marginTop: Style.adjust(29),
     textAlign: "center",
   },
   goalTextColorBlack: {
