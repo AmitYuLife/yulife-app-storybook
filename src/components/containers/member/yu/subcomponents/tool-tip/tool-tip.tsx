@@ -51,7 +51,9 @@ export const ToolTip = () => {
   const { productEntityId, latestQuoteId } = fibState;
 
   useEffect(() => {
-    dispatch(logProductItemViewedActionCreator(product?.productId));
+    if (product?.productId) {
+      dispatch(logProductItemViewedActionCreator(product.productId));
+    }
   }, [product, dispatch]);
 
   useEffect(() => {
