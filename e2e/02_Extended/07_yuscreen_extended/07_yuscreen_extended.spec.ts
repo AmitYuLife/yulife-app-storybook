@@ -332,7 +332,7 @@ Feature("I am able to use the yuscreens extended features", async () => {
                     Then("I should be on the payout calculator", then.textVisible("Your payout will be:"))
                     Then("I should see my epic payout", then.textVisible("£900,000"))
                     })
-                When("I tap Rare", when.tapText("Rare"), async()=>{
+                When("I tap Rare", when.tapText("50%"), async()=>{
                     Then("I should see my rare payout", then.textVisible("£600,000"))
                     })
                 When("I tap Continue with cover", when.tapText("Continue with cover"), async()=>{
