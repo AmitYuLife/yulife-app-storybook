@@ -13,6 +13,11 @@ export function getStyle(currentWorld: number) {
         backgroundImage: "challenge_success_desert" as CenteredScreenImages,
         backgroundStyle: { backgroundColor: "rgb(255, 251, 205)" },
       };
+    case 1:
+      return {
+        backgroundImage: "challenge_success_ocean" as CenteredScreenImages,
+        backgroundStyle: { backgroundColor: "" },
+      };
     case 0:
       return {
         backgroundImage: "challenge_success_forest" as CenteredScreenImages,

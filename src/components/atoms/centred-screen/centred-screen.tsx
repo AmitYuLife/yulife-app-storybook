@@ -16,9 +16,11 @@ export type CenteredScreenImages =
   | "forest"
   | "large_forest"
   | "gray_forest"
+  | "challenge_success_forest"
   | "challenge_failed_forest"
   | "ocean"
   | "gray_ocean"
+  | "challenge_success_ocean"
   | "challenge_failed_ocean"
   | "desert"
   | "gray_desert"
@@ -26,8 +28,7 @@ export type CenteredScreenImages =
   | "challenge_failed_desert"
   | "gray_mountain"
   | "mountain"
-  | "challenge_mountain"
-  | "challenge_success_forest";
+  | "challenge_mountain";
 
 export default function CenteredScreen({ children, footerImage, style, testID, BackgroundGradient = null }: Props) {
   return (
@@ -75,6 +76,11 @@ const IMAGES: Record<CenteredScreenImages, { style: ImageStyle; isLottie: boolea
     isLottie: false,
   },
   challenge_failed_ocean: {
+    source: require("../../../../assets/centred-screen/challenge_failed_ocean.png"),
+    style: StyleSheet.flatten([styles.imageBase, styles.imageLargeForest]),
+    isLottie: false,
+  },
+  challenge_success_ocean: {
     source: require("../../../../assets/centred-screen/challenge_failed_ocean.png"),
     style: StyleSheet.flatten([styles.imageBase, styles.imageLargeForest]),
     isLottie: false,
