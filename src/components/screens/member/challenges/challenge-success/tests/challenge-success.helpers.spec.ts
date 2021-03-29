@@ -11,6 +11,9 @@ describe("getStyle", () => {
 
   it("should return backgroundStyle of null", () => {
     const actual = getStyle(1);
-    expect(actual).toHaveProperty("backgroundStyle", null);
+    expect(actual).toEqual({
+      backgroundImage: "challenge_success_ocean",
+      backgroundStyle: { backgroundColor: "" },
+    });
   });
 });
