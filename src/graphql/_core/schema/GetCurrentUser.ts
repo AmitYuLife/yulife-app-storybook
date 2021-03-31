@@ -165,7 +165,6 @@ export interface GetCurrentUser_getCurrentUser {
   redeemedOnboarding: boolean | null;
   businessAccountId: string | null;
   business: GetCurrentUser_getCurrentUser_business | null;
-  wootricId: string | null;
   membershipType: string | null;
   challengesDoneToday: number | null;
   connections: (GetCurrentUser_getCurrentUser_connections | null)[] | null;

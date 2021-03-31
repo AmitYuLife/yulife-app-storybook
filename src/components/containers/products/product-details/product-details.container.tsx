@@ -56,6 +56,7 @@ const ProductDetailsContainer = () => {
       yuCoinValue={productItem.earnRate.toString()}
       lastUpdated={productItem.policyLastUpdated}
       modalProps={getModalProps(productItem)}
+      productId={productItem.productId}
     />
   );
 };

@@ -1,7 +1,6 @@
 import React from "react";
 import { View, StyleSheet, ViewStyle, TextStyle, Platform } from "react-native";
 import { Colours, Style } from "@styles";
-import { Beneficiary } from "@components/modals/yuscreen/beneficiary/add-beneficiary-modal.screen";
 import { Button } from "@atoms";
 import { BUTTON_ICON } from "@atoms/button/tertiary-button/tertiary-button.helpers";
 import { BUTTON_TYPES } from "@atoms/button/button.types";
@@ -9,30 +8,37 @@ import { InputField } from "@organisms/fib/input/input-field";
 import { truncate } from "@services/utils";
 
 interface IBeneficiaryProps {
-  beneficiary: Beneficiary;
+  firstName: string;
+  lastName: string;
+  relationship: string;
+  shareOfBenefit: number;
   onBeneficiaryPress: () => void;
   onChangeText: (text: string) => void;
   isFocused: boolean;
   showError: boolean;
   hasFocusActive: (focus: boolean) => void;
+  setShareLoading?: boolean;
 }
 
 export const BeneficiaryItem = ({
-  beneficiary,
+  firstName,
+  lastName,
+  relationship,
+  shareOfBenefit,
   onBeneficiaryPress,
   onChangeText,
   hasFocusActive,
   isFocused,
   showError,
 }: IBeneficiaryProps) => {
-  const name = truncate(`${beneficiary.firstName} ${beneficiary.lastName}`, 15);
-  const relation = truncate(beneficiary.relation, 15);
+  const name = truncate(`${firstName} ${lastName}`, 15);
+  const relation = truncate(relationship, 15);
 
   const inputFieldWidth = Platform.select({ ios: 35, android: 50 });
   const onFocusStyle = isFocused ? {} : styles.textInputOnBlur;
   const errorStyle = showError ? { borderBottomColor: "#FC0000" } : {};
   const inputFieldStyle = StyleSheet.flatten([styles.textInput, onFocusStyle, errorStyle]);
-  const percentage = beneficiary?.percentage ? beneficiary?.percentage?.toString() : "";
+  const percentage = shareOfBenefit ? shareOfBenefit?.toString() : "";
   return (
     <View style={styles.beneficiaryWrapper}>
       <View style={styles.beneficiaryButtonWrapper}>

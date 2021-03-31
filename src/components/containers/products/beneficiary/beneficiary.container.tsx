@@ -1,39 +1,57 @@
-import React from "react";
-import { BeneficiaryScreen } from "./beneficiary.screen";
-import { Beneficiary } from "@components/modals/yuscreen/beneficiary/add-beneficiary-modal.screen";
+import React, { useCallback } from "react";
+import { BeneficiaryScreen } from "@components/screens/products/fib/beneficiaries/beneficiary.screen";
+import { useMutation, useQuery } from "@apollo/react-hooks";
+import { GQL_QUERY_GET_PRODUCT_BENEFICIARIES } from "@graphql/products/getProductBeneficiaries";
+import {
+  GetProductBeneficiaries,
+  GetProductBeneficiaries_getProductBeneficiaries_beneficiaries as Beneficiary,
+} from "@graphql/_core/schema";
+import {
+  GQL_MUTATION_SET_SHARE_OF_BENEFIT_FOR_PRODUCT,
+  SetShareOfBenefitForProductMutationTuple,
+} from "@graphql/products/setShareOfBenefitForProduct";
 
 interface Props {
-  beneficiaries: Beneficiary[];
+  productId: string;
 }
-const BeneficiaryContainer = ({ beneficiaries }: Props) => {
-  return <BeneficiaryScreen beneficiaries={beneficiaries} />;
-};
 
-export const BENEFICIARIES = [
-  {
-    id: "id_1",
-    firstName: "Barry Barry Barry Barry",
-    lastName: "Balotelli",
-    phoneNumber: "01234567891",
-    percentage: 33,
-    relation: "Brother",
-  },
-  {
-    id: "id_2",
-    firstName: "Maya",
-    lastName: "Balotelli",
-    phoneNumber: "01234567891",
-    percentage: 33,
-    relation: "Wife",
-  },
-  {
-    id: "id_3",
-    firstName: "Simon",
-    lastName: "Balotelli",
-    phoneNumber: "01234567891",
-    percentage: 34,
-    relation: "Dad",
-  },
-];
+const BeneficiaryContainer = ({ productId }: Props) => {
+  const { data } = useQuery<GetProductBeneficiaries>(GQL_QUERY_GET_PRODUCT_BENEFICIARIES, {
+    variables: { productId: productId },
+    fetchPolicy: "cache-and-network",
+  });
+
+  const [
+    setShareOfBenefitForProduct,
+    { loading: setShareLoading },
+  ]: SetShareOfBenefitForProductMutationTuple = useMutation(GQL_MUTATION_SET_SHARE_OF_BENEFIT_FOR_PRODUCT);
+
+  const updateShareOfBenefit = useCallback(
+    async (beneficiaries: Beneficiary[]) => {
+      const shares = beneficiaries.map((b) => ({
+        beneficiaryId: b.id,
+        percentage: b.shareOfBenefit,
+      }));
+
+      await setShareOfBenefitForProduct({
+        variables: {
+          productId: productId,
+          shares,
+        },
+        refetchQueries: ["GetProductBeneficiaries"],
+      });
+    },
+    [setShareOfBenefitForProduct, productId]
+  );
+
+  return (
+    <BeneficiaryScreen
+      beneficiaries={data?.getProductBeneficiaries?.beneficiaries}
+      updateShareOfBenefit={updateShareOfBenefit}
+      setShareLoading={setShareLoading}
+      productId={productId}
+    />
+  );
+};
 
 export default BeneficiaryContainer;

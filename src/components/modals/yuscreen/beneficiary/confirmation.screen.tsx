@@ -10,6 +10,7 @@ interface DeleteConfirmationProps {
   secondLabel: string;
   onFirstButtonPress: () => void;
   onSecondButtonPress: () => void;
+  firstButtonLoading?: boolean;
 }
 
 export const ConfirmationScreen = ({
@@ -18,13 +19,20 @@ export const ConfirmationScreen = ({
   secondLabel,
   onFirstButtonPress,
   onSecondButtonPress,
+  firstButtonLoading,
 }: DeleteConfirmationProps) => {
   return (
     <View style={styles.confirmDeleteBeneficiaryWrapper}>
       <Text style={styles.confirmDeleteBeneficiaryHeading} bold={true}>
         {title}
       </Text>
-      <Button wrapperStyle={styles.firstButtonWrapper} label={firstLabel} onPress={onFirstButtonPress} type="Primary" />
+      <Button
+        isLoading={firstButtonLoading}
+        wrapperStyle={styles.firstButtonWrapper}
+        label={firstLabel}
+        onPress={onFirstButtonPress}
+        type="Primary"
+      />
       <Button
         wrapperStyle={styles.secondButtonWrapperSecondary}
         label={secondLabel}

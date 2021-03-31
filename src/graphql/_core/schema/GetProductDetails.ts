@@ -53,6 +53,10 @@ export interface GetProductDetails_getProductDetails_certificate {
 
 export interface GetProductDetails_getProductDetails {
   /**
+   * Product's ID
+   */
+  productId: string | null;
+  /**
    * Name e.g. Group Life Insurance
    */
   productName: string;

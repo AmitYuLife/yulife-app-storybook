@@ -163,7 +163,6 @@ export interface User {
   redeemedOnboarding: boolean | null;
   businessAccountId: string | null;
   business: User_business | null;
-  wootricId: string | null;
   membershipType: string | null;
   challengesDoneToday: number | null;
   connections: (User_connections | null)[] | null;

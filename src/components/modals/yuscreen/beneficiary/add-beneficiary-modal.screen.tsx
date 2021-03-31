@@ -7,25 +7,17 @@ import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-headin
 import { TextField } from "@components/molecules";
 import { phoneNumberIsValid } from "@services/utils";
 import { ConfirmationScreen } from "./confirmation.screen";
+import { GetProductBeneficiaries_getProductBeneficiaries_beneficiaries as Beneficiary } from "@graphql/_core/schema";
 
 type ButtonProps = React.ComponentProps<typeof Button>;
 
-export interface IAddBeneficiaryModalProps {
+interface IAddBeneficiaryModalProps {
   onClose?: ButtonProps["onPress"];
   onContinue?: (beneficiary: Beneficiary) => void;
   beneficiary?: Beneficiary;
-  onAddBeneficiary: (beneficiary: Beneficiary) => void;
-  editBeneficiary?: (beneficiary: Beneficiary) => void;
   deleteBeneficiary?: (beneficiary: Beneficiary) => void;
-}
-
-export interface Beneficiary {
-  id: string;
-  firstName: string;
-  lastName: string;
-  phoneNumber: string;
-  relation: string;
-  percentage?: number;
+  updateBeneficiaryLoading: boolean;
+  removeBeneficiaryLoading: boolean;
 }
 
 const keyboardBehavior = Platform.select({ ios: "padding" as "padding", android: null });
@@ -34,15 +26,22 @@ export default function AddBeneficiaryModalScreen({
   onClose,
   onContinue,
   beneficiary: existingBeneficiary,
-  onAddBeneficiary,
-  editBeneficiary,
   deleteBeneficiary,
+  updateBeneficiaryLoading,
+  removeBeneficiaryLoading,
 }: IAddBeneficiaryModalProps) {
   const [deleteBeneficiaryPressed, setDeleteBeneficiaryPressed] = useState(false);
   const scrollViewRef = useRef(null);
   const layouts = useRef([] as number[]);
 
-  const defaultBeneficiary = { id: "test_id_1", firstName: "", lastName: "", phoneNumber: "", relation: "" };
+  const defaultBeneficiary = {
+    id: "",
+    firstName: "",
+    lastName: "",
+    phoneNumber: "",
+    relationship: "",
+    shareOfBenefit: 0,
+  };
   const [beneficiary, setBeneficiary] = useState<Beneficiary>(existingBeneficiary || defaultBeneficiary);
 
   function onTextInputFocus(index: number) {
@@ -51,16 +50,16 @@ export default function AddBeneficiaryModalScreen({
     };
   }
 
-  const onPressContinue = () => {
+  const onPressContinue = async () => {
     Keyboard.dismiss();
-    onAddBeneficiary ? onAddBeneficiary(beneficiary) : null;
-    editBeneficiary ? editBeneficiary(beneficiary) : null;
-    onContinue(beneficiary);
-    onClose();
+    await onContinue(beneficiary);
   };
 
   const allFieldsValid =
-    beneficiary.firstName && beneficiary.lastName && phoneNumberIsValid(beneficiary.phoneNumber) && beneficiary.relation
+    beneficiary.firstName &&
+    beneficiary.lastName &&
+    phoneNumberIsValid(beneficiary.phoneNumber) &&
+    beneficiary.relationship
       ? true
       : false;
 
@@ -98,16 +97,15 @@ export default function AddBeneficiaryModalScreen({
     },
     {
       onChange: (val: string) => {
-        setBeneficiary({ ...beneficiary, relation: val });
+        setBeneficiary({ ...beneficiary, relationship: val });
       },
       placeholder: "Relation",
-      value: beneficiary.relation,
+      value: beneficiary.relationship,
     },
   ];
 
-  const onDeleteConfirmed = () => {
+  const onDeleteConfirmed = async () => {
     deleteBeneficiary(beneficiary);
-    onClose();
   };
 
   if (deleteBeneficiaryPressed) {
@@ -118,6 +116,7 @@ export default function AddBeneficiaryModalScreen({
         secondLabel="No"
         onFirstButtonPress={onDeleteConfirmed}
         onSecondButtonPress={() => setDeleteBeneficiaryPressed(false)}
+        firstButtonLoading={removeBeneficiaryLoading}
       />
     );
   }
@@ -160,6 +159,7 @@ export default function AddBeneficiaryModalScreen({
               type="Primary"
               disabled={!allFieldsValid}
               wrapperStyle={styles.continueButtonWrapper}
+              isLoading={updateBeneficiaryLoading}
             />
           </View>
         </ScrollView>

@@ -5,10 +5,10 @@ import { Style } from "@styles";
 import { BUTTON_ICON } from "@atoms/button/tertiary-button/tertiary-button.helpers";
 import { Navigation } from "react-native-navigation";
 import { MODALS } from "@navigation/constants";
-import { ProductDetailsModalProps } from "../product-details.modal";
+import ProductDetailsModal from "../product-details.modal";
 
 interface Props {
-  modalProps: ProductDetailsModalProps;
+  modalProps: React.ComponentProps<typeof ProductDetailsModal>;
 }
 
 export const Documents = ({ modalProps }: Props) =>

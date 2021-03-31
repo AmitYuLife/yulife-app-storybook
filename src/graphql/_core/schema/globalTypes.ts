@@ -28,6 +28,7 @@ export enum AvatarPartType {
 
 export enum CommunityGoalType {
   meditation = "meditation",
+  quests = "quests",
   steps = "steps",
 }
 
@@ -153,6 +154,11 @@ export interface AviosMetadata {
   accountNumber: string;
 }
 
+export interface BeneficiaryShareOfBenefit {
+  beneficiaryId: string;
+  percentage: number;
+}
+
 export interface ChallengePayload {
   startDateTime?: string | null;
   endDateTime?: string | null;
@@ -168,6 +174,16 @@ export interface CreateTopUpsQuoteInput {
   customCoverPercentage?: number | null;
   userAnswers?: (LifeInsuranceTopUpsUserAnswers | null)[] | null;
   productEntityId?: string | null;
+}
+
+export interface CustomerBeneficiaryUpdate {
+  id?: string | null;
+  productId: string;
+  firstName: string;
+  lastName: string;
+  phoneNumber?: string | null;
+  relationship: string;
+  remove?: boolean | null;
 }
 
 /**
