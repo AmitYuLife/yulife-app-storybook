@@ -11,6 +11,9 @@ const styles = StyleSheet.create({
   padBottom: {
     marginBottom: Style.adjust(100),
   },
+  marginTop: {
+    marginTop: 16,
+  },
 });
 
 export default styles;

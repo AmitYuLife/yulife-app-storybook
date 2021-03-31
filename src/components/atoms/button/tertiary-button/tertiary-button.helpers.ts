@@ -6,6 +6,9 @@ import { SalarySvg } from "../icons/salary-svg";
 import Icon from "@atoms/icon";
 import { Logo } from "@atoms";
 import { DocIcon } from "@atoms/icon/doc-icon";
+import { SmartHealthIcon } from "@atoms/icon/smart-health-icon";
+import { GooglePlayIcon } from "@atoms/icon/google-play-icon";
+import { AppStoreIcon } from "@atoms/icon/app-store-icon";
 
 export enum BUTTON_ICON {
   BIRTHDAY = "BIRTHDAY",
@@ -20,6 +23,9 @@ export enum BUTTON_ICON {
   YELLOW_DOC = "YELLOW_DOC",
   YULIFE_LOGO = "YULIFE_LOGO",
   DOC = "DOC",
+  SMART_HEALTH = "SMART_HEALTH",
+  GOOGLE_PLAY = "GOOGLE_PLAY",
+  APP_STORE = "APP_STORE",
 }
 
 //@TODO: refactor this where we can pass the icon direct instead of a function with a switch
@@ -50,6 +56,12 @@ export function getIcon(icon: BUTTON_ICON) {
       return Logo;
     case BUTTON_ICON.DOC:
       return DocIcon;
+    case BUTTON_ICON.SMART_HEALTH:
+      return SmartHealthIcon;
+    case BUTTON_ICON.GOOGLE_PLAY:
+      return GooglePlayIcon;
+    case BUTTON_ICON.APP_STORE:
+      return AppStoreIcon;
     default:
       return View;
   }

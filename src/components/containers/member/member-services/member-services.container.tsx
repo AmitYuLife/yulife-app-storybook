@@ -41,7 +41,7 @@ function MemberServicesContainer({ componentId, isGroupUser, isWellbeingAccess, 
         enabled: !shouldHideYuMatterScreen,
       },
       {
-        title: "YuDoc",
+        title: "Smart Health",
         testID: SMART_HEALTH_SCREEN,
         component: <SmartHealth />,
         enabled: !shouldHideSmartHealthScreen,
