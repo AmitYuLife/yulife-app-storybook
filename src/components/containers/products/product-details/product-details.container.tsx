@@ -12,10 +12,14 @@ import { Colours } from "@styles";
 import { Navigation } from "react-native-navigation";
 import { ROUTES } from "@navigation/constants";
 
-const ProductDetailsContainer = () => {
+interface Props {
+  productId: string;
+}
+
+const ProductDetailsContainer = ({ productId = "" }: Props) => {
   const { data, loading } = useQuery<GetProductDetails, GetProductDetailsVariables>(GQL_QUERY_GET_PRODUCT_DETAILS, {
     variables: {
-      id: "productId",
+      id: productId,
     },
     fetchPolicy: "network-only", // TODO: Delete when done TESTing, keep until we use real data
   });
