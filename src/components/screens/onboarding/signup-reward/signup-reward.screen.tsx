@@ -11,22 +11,19 @@ interface IProps {
   copy: SignUpRewardCopy;
 }
 
-const SignUpRewardScreen: FC<IProps> = ({ isLoading, onCollectPress, reward, copy }) => (
+const SignUpRewardScreen: FC<IProps> = ({ isLoading, onCollectPress, reward }) => (
   <CentredScreen footerImage="forest">
     <Pad height={74} />
     <CoinConfetti coins={reward} />
-    <Heading style={styles.heading} label={copy.heading} />
-    <Pad height={10} />
-    <Blurb label={copy.subheading} />
-    <Pad height={26} />
-    <Button
-      type="Primary"
-      size="Small"
-      label={copy.ctaLabel}
-      onPress={onCollectPress}
-      isLoading={isLoading}
-      disabled={isLoading}
+    <Heading style={styles.heading} bold={true} label={"Sign-up bounty\nunlocked!"} />
+    <Pad height={16} />
+    <Blurb
+      textStyle={styles.message}
+      wrapperStyle={styles.messageWrapper}
+      label={"You can exchange your YuCoin for vouchers from Amazon, Asos, M&S, and many more!"}
     />
+    <Pad height={40} />
+    <Button type="Primary" label={"Next"} onPress={onCollectPress} isLoading={isLoading} disabled={isLoading} />
   </CentredScreen>
 );
 

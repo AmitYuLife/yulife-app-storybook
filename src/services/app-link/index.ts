@@ -63,6 +63,14 @@ export async function openYulife() {
   });
 }
 
+export async function openGoogleFit() {
+  return openStore({
+    appName: "",
+    appStoreId: "",
+    playStoreId: "com.google.android.apps.fitness",
+  });
+}
+
 export const handleLinkPress = (link: string) => async () => {
   const isValid = await Linking.canOpenURL(link);
 

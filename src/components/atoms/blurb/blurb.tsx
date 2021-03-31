@@ -1,17 +1,18 @@
 import * as React from "react";
-import { SFC } from "react";
-import { StyleSheet, Text, View, ViewStyle } from "react-native";
+import { FC } from "react";
+import { StyleSheet, Text, TextStyle, View, ViewStyle } from "react-native";
 import styles from "./blurb.styles";
 
 interface IProps {
-    label: string;
-    wrapperStyle?: ViewStyle;
+  label: string;
+  wrapperStyle?: ViewStyle;
+  textStyle?: TextStyle;
 }
 
-const Blurb: SFC<IProps> = ({ label, wrapperStyle }) => (
-    <View style={StyleSheet.flatten([styles.wrapper, wrapperStyle])}>
-        <Text style={styles.base}>{label}</Text>
-    </View>
+const Blurb: FC<IProps> = ({ label, wrapperStyle, textStyle }) => (
+  <View style={StyleSheet.flatten([styles.wrapper, wrapperStyle])}>
+    <Text style={StyleSheet.flatten([styles.base, textStyle])}>{label}</Text>
+  </View>
 );
 
 export default Blurb;
