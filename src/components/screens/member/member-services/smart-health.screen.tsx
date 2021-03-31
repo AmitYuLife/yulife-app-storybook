@@ -1,77 +1,91 @@
-import { Text } from "@atoms/index";
-import * as React from "react";
-import { Image, Platform, SafeAreaView, ScrollView, StyleSheet, TouchableOpacity, View } from "react-native";
-import { Style } from "../../../../styles";
+import React, { useMemo } from "react";
+import { SafeAreaView, ScrollView, View } from "react-native";
+import { Style } from "@styles";
 import { smartHealthData } from "./member-services.data";
-import styles from "./smart-health.screen.styles";
-import { TextWithBoldText } from "@components/molecules";
+import { CardInformation, HeadingAndCopy } from "@components/molecules";
 import { handleLinkPress } from "@services/app-link";
+import { Hyperlink, Button } from "@atoms";
+import { BUTTON_ICON } from "@atoms/button/tertiary-button/tertiary-button.helpers";
+import { ITextTemplateType } from "@atoms/text/text-template";
+import styles from "./member-services.style";
 
-const defaultInstructionCopy = "your group life scheme number, which can be provided by your HR manager";
-const instantInstructionCopy = "<bold>“yulifeinstant”</bold> in the Policy number / Scheme code field.";
+const yuDocDescription =
+  "YuDoc is an on-demand virtual service providing you with 24/7 access by phone or video to: \n\n• Remote GP appointments \n• Second opinions\n• Prescription services\n\n...and more, for you and your family.  Log in to access services, plus helpful resources on stress management, healthy eating, and keeping fit.";
 
-type Props = {
-  isInstant: boolean;
-};
+const marginBottom = 8;
 
-const SmartHealth = (props: Props) => {
-  const instructionCopy = props.isInstant ? instantInstructionCopy : defaultInstructionCopy;
+const SmartHealth = () => {
+  const accessDetails = useMemo(
+    () => ({
+      contact: [
+        { name: "Contact number", type: "b2b" as ITextTemplateType, separator: false, style: { marginBottom } },
+        {
+          component: (
+            <Hyperlink
+              title={smartHealthData.contactNumber}
+              url={`tel:${smartHealthData.contactNumber.split(" ").join("")}`}
+            />
+          ),
+          separator: true,
+        },
+        { name: "Customer service email", type: "b2b" as ITextTemplateType, separator: false, style: { marginBottom } },
+        {
+          component: (
+            <Hyperlink
+              title={smartHealthData.customerServiceEmail}
+              url={`mailto:${smartHealthData.customerServiceEmail}`}
+            />
+          ),
+        },
+      ],
+    }),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    []
+  );
   return (
-    <SafeAreaView style={styles.wrapper}>
-      <ScrollView showsVerticalScrollIndicator={false} style={styles.wrapper}>
-        <View style={styles.smartHeathWrapper}>
-          <Text style={styles.smartHealth}>{`SmartHealth`}</Text>
-          <Text style={styles.content}>
-            SmartHealth is a doctor-on-demand service offered through our partnership with AIG. It gives you 24/7 access
-            to a GP as well as a range of other health and wellbeing expertise including:
-          </Text>
+    <SafeAreaView>
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <HeadingAndCopy title="What is YuDoc?" description={yuDocDescription} />
+        <HeadingAndCopy
+          title="Accessing YuDoc"
+          description="To create a profile and request services you will need your policy number, found below."
+          marginBottom={24}
+        />
 
-          <Text style={styles.expertise}>
-            • Mental health support {`\n`}• Nutritionist consultations {`\n`}• An online fitness programme
-          </Text>
-
-          <Text style={styles.content}>To access SmartHealth, you can download the SmartHealth by AIG app.</Text>
-          <View style={styles.hyperlinkWrapper}>
-            <Text style={styles.content}>You can also </Text>
-            <TouchableOpacity onPress={handleLinkPress(smartHealthData.website)}>
-              <Text style={styles.globalHyperLink}>request services online here.</Text>
-            </TouchableOpacity>
-          </View>
-
-          <Text style={styles.content}>
-            To create a profile or request services, you will need to enter <TextWithBoldText value={instructionCopy} />
-          </Text>
-
-          <Text style={styles.header}>SmartHealth by AIG</Text>
-
-          <TouchableOpacity onPress={handleLinkPress(getStoreUrl())}>
-            <Image style={styles.storeImage} source={getStoreImage()} />
-          </TouchableOpacity>
-
-          <Text style={styles.content}>Questions? Chat to us through the app, or read </Text>
-          <View style={styles.contentHelpCenter}>
-            <Text style={StyleSheet.flatten([styles.content, { marginTop: Style.adjust(1) }])}>
-              more about SmartHealth in our{" "}
-            </Text>
-            <TouchableOpacity onPress={handleLinkPress(smartHealthData.yulifeHelpCenter)}>
-              <Text style={styles.globalHyperLinkNoMargin}>Help Center.</Text>
-            </TouchableOpacity>
-          </View>
+        <View style={styles.button}>
+          <Button
+            type="Tertiary"
+            size="Fill"
+            onPress={handleLinkPress(smartHealthData.website)}
+            label="Access YuDoc"
+            height={Style.adjust(60)}
+            leftIcon={BUTTON_ICON.DOC}
+            rightIcon={BUTTON_ICON.ARROW_RIGHT}
+          />
         </View>
+        <View style={styles.pad} />
+        <CardInformation title="Contact YuMatter services" items={accessDetails.contact} />
+        <View style={styles.pad} />
+        <HeadingAndCopy
+          title="Have a question?"
+          description="Chat to us through the app, or read more about YuDoctor in our Help Centre."
+          marginBottom={0}
+        />
+        <View style={styles.button}>
+          <Button
+            type="Tertiary"
+            size="Fill"
+            onPress={handleLinkPress(smartHealthData.yulifeHelpCenter)}
+            label="Help Centre"
+            height={Style.adjust(60)}
+            leftIcon={BUTTON_ICON.QUESTION_BUBBLE}
+            rightIcon={BUTTON_ICON.ARROW_RIGHT}
+          />
+        </View>
+        <View style={styles.padBottom} />
       </ScrollView>
     </SafeAreaView>
   );
 };
-
-function getStoreUrl(): string {
-  return Platform.select(smartHealthData.appLinks);
-}
-
-function getStoreImage() {
-  return Platform.select({
-    ios: require("../../../../../assets/member-services/appstore.png"),
-    android: require("../../../../../assets/member-services/google-play.png"),
-  });
-}
 
 export default SmartHealth;

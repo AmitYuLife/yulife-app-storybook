@@ -4,6 +4,8 @@ import { BirthdaySvg } from "../icons/birthday-svg";
 import { QuestionBubbleSvg } from "../icons/question-bubble";
 import { SalarySvg } from "../icons/salary-svg";
 import Icon from "@atoms/icon";
+import { Logo } from "@atoms";
+import { DocIcon } from "@atoms/icon/doc-icon";
 
 export enum BUTTON_ICON {
   BIRTHDAY = "BIRTHDAY",
@@ -16,8 +18,12 @@ export enum BUTTON_ICON {
   PDF = "PDF",
   BLUE_DOC = "BLUE_DOC",
   YELLOW_DOC = "YELLOW_DOC",
+  YULIFE_LOGO = "YULIFE_LOGO",
+  DOC = "DOC",
 }
 
+//@TODO: refactor this where we can pass the icon direct instead of a function with a switch
+/// this is not very scalable and can cost us performance in the future
 export function getIcon(icon: BUTTON_ICON) {
   switch (icon) {
     case BUTTON_ICON.BIRTHDAY:
@@ -40,6 +46,10 @@ export function getIcon(icon: BUTTON_ICON) {
       return Icon.YellowDoc;
     case BUTTON_ICON.PDF:
       return Icon.Pdf;
+    case BUTTON_ICON.YULIFE_LOGO:
+      return Logo;
+    case BUTTON_ICON.DOC:
+      return DocIcon;
     default:
       return View;
   }

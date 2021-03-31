@@ -5,6 +5,7 @@ import { YellowDoc } from "./yellow-doc";
 import { BlueDoc } from "./blue-doc";
 import { Pdf } from "./pdf";
 import { ArrowRight } from "./arrow-right";
+import { DocIcon } from "./doc-icon";
 
 export default {
   Clock,
@@ -14,4 +15,5 @@ export default {
   BlueDoc,
   Pdf,
   ArrowRight,
+  DocIcon,
 };

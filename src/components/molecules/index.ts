@@ -30,3 +30,5 @@ export { default as ProgressBar } from "./progress-bar/progress-bar";
 export { PowerCoin } from "./power-coin/power-coin";
 export { ValueDescription } from "./text-template/value-description-text";
 export { default as SwitchTab } from "./switch-tab/switch-tab";
+export { default as HeadingAndCopy } from "./heading-and-copy/heading-and-copy";
+export { default as CardInformation } from "./card-information/card-information";

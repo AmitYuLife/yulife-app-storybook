@@ -9,21 +9,28 @@ const Component = ({ title }: any) => (
   </View>
 );
 
+const testID = " testID";
+const enabled = true;
+
 const TABS = [
   {
-    name: "Active",
-    component: <Component title="Active" />,
+    title: "YuMatter",
+    component: <Component title="YuMatter" />,
+    testID,
+    enabled,
   },
   {
-    name: "Completed",
-    component: <Component title="Completed" />,
+    title: "YuDoc",
+    component: <Component title="YuDoc" />,
+    testID,
+    enabled,
   },
 ];
 
 storiesOf("SwitchTab", module).add("default", () => {
   return (
     <ScrollView>
-      <SwitchTab tabs={TABS} paddingHorizontal={14} />
+      <SwitchTab tabs={TABS} paddingHorizontal={30} />
     </ScrollView>
   );
 });

@@ -14,7 +14,7 @@ import { logOutStart, openMemberZone } from "../../../../redux/user/user.actions
 import { getUserBusiness, getUserFeatures, getUserMembershipType } from "../../../../redux/user/user.selectors";
 import { MenuScreen } from "../../../screens";
 import assets, { LINKS, LinkTypes } from "./assets";
-import { getMemberServicesDisplayState } from "@components/molecules/member-services-tabs/member-services-tab/member-services.helpers";
+import { getMemberServicesDisplayState } from "@components/containers/member/member-services/member-services.helpers";
 
 type ConnectedState = ReturnType<typeof mapStateToProps>;
 type ConnectedDispatch = typeof mapDispatchToProps;

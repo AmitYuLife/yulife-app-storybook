@@ -2,10 +2,12 @@ import React, { memo } from "react";
 import { StyleSheet, Text, TextProps, TextStyle } from "react-native";
 import { Style, Colours } from "@styles";
 
+export type ITextTemplateType = "h1" | "h2" | "h3" | "b1" | "b1b" | "b2" | "b2b" | "l1" | "l2";
+
 interface IProps extends TextProps {
   testID?: string;
   children: string;
-  type: "h1" | "h2" | "h3" | "b1" | "b1b" | "b2" | "b2b" | "l1" | "l2";
+  type: ITextTemplateType;
   color?: string;
   textAlign?: TextStyle["textAlign"];
 }
