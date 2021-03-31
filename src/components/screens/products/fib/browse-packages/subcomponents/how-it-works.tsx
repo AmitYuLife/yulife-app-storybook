@@ -7,8 +7,7 @@ interface Props {
   content: string;
 }
 
-// @TODO: Remove this component in the future
-
+//TODO: Replace everywhere that uses this component to HeadingAndCopy component
 export const HowItWorks = memo(({ content }: Props) => {
   return (
     <View>

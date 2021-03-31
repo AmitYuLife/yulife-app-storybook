@@ -16,6 +16,8 @@ export interface IAdditionalInformation {
   title?: string;
   items: AdditionalInformationItem[];
 }
+
+//TODO: Replace everywhere that uses this component to CardInformation component
 const AdditionalInformation = ({ title, items }: IAdditionalInformation) => (
   <>
     {title ? <Heading title={title} /> : null}
