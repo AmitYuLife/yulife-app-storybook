@@ -1,6 +1,8 @@
 import { CreateActiveChallenge_createActiveChallenge_levelSlot_milestones_target } from "@graphql/_core/schema";
 import moment from "moment";
 import { useRef } from "react";
+import { Platform } from "react-native";
+import DeviceInfo from "react-native-device-info";
 
 export const DATE_FORMAT = "YYYY-MM-DD";
 export const DATE_FORMAT_WITH_TZ = "YYYY-MM-DDTHH:mm:ssZ";
@@ -375,4 +377,12 @@ export const minifiedFromNow = (time: moment.Moment): string => {
 const phoneRegEx = /^(?:(?:\(?(?:0(?:0|11)\)?[\s-]?\(?|\+)44\)?[\s-]?(?:\(?0\)?[\s-]?)?)|(?:\(?0))(?:(?:\d{5}\)?[\s-]?\d{4,5})|(?:\d{4}\)?[\s-]?(?:\d{5}|\d{3}[\s-]?\d{3}))|(?:\d{3}\)?[\s-]?\d{3}[\s-]?\d{3,4})|(?:\d{2}\)?[\s-]?\d{4}[\s-]?\d{4}))(?:[\s-]?(?:x|ext\.?|\#)\d{3,4})?$/;
 export const phoneNumberIsValid = (phoneNumber: string) => {
   return phoneRegEx.test(phoneNumber);
+};
+
+export const isSamsung = () => {
+  if (Platform.OS === "android") {
+    return DeviceInfo.getBrand().toLowerCase().includes("samsung");
+  }
+
+  return false;
 };

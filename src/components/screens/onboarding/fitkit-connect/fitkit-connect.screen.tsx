@@ -1,7 +1,7 @@
-import * as React from "react";
-import { SFC } from "react";
+import { LinkGroup } from "@components/molecules";
+import React, { FC } from "react";
 import { GetMobileCopy_getMobileCopy_screens_fitkitConnect } from "../../../../graphql/_core/schema";
-import { Button, CentredScreen, Loading, Pad } from "../../../atoms";
+import { CentredScreen, Loading, Pad } from "@atoms";
 import FitKitAvailable from "./fitkit-available";
 import FitKitUnavailable from "./fitkit-unavailable";
 
@@ -15,7 +15,7 @@ interface IProps {
   copy: GetMobileCopy_getMobileCopy_screens_fitkitConnect;
 }
 
-const FitKitConnectScreen: SFC<IProps> = ({
+const FitKitConnectScreen: FC<IProps> = ({
   connecting,
   fitKitAvailable,
   loading,
@@ -34,14 +34,25 @@ const FitKitConnectScreen: SFC<IProps> = ({
           <FitKitUnavailable copy={copy} />
         )}
         <Pad height={19} />
-        <Button disabled={connecting} label={copy.secondaryButtonLabel} onPress={onSkipPress} type="Secondary" />
-        <Pad height={10} />
-        <Button label={copy.linkButtonLabel} onPress={onPrivacyPolicyPress} type="Link" />
+        <LinkGroup data={getLinks(onSkipPress, onPrivacyPolicyPress)} />
       </CentredScreen>
     ) : (
       <Loading />
     )}
   </>
 );
+
+const getLinks = (onSkip: () => void, onPrivacy: () => void) => {
+  return [
+    {
+      label: "Skip this step",
+      onPress: onSkip,
+    },
+    {
+      label: "Privacy notice",
+      onPress: onPrivacy,
+    },
+  ];
+};
 
 export default FitKitConnectScreen;
