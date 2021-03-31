@@ -10,9 +10,10 @@ import { Documents } from "./subcomponents/documents";
 import { Card } from "./subcomponents/card";
 import { Stamp } from "./subcomponents/stamp";
 import media from "@styles/media";
-import { ProductDetailsModalProps } from "./product-details.modal";
+import ProductDetailsModal from "./product-details.modal";
 import { Beneficiaries } from "./subcomponents/beneficiaries";
-import { BENEFICIARIES } from "../beneficiary/beneficiary.container";
+
+type ProductDetailsModalProps = React.ComponentProps<typeof ProductDetailsModal>;
 
 interface Props {
   coverType: CoverType;
@@ -25,10 +26,11 @@ interface Props {
   yuCoinDescription: string;
   lastUpdated: string;
   modalProps?: ProductDetailsModalProps;
+  productId: string;
 }
 
 export const ProductDetailsScreen = memo((props: Props) => {
-  const { modalProps, lastUpdated } = props;
+  const { modalProps, lastUpdated, productId } = props;
   const handleClose = () => {
     Navigation.pop(ROUTES.productDetails);
     return true;
@@ -43,7 +45,7 @@ export const ProductDetailsScreen = memo((props: Props) => {
         <View style={styles.topPadding} />
         <Card {...props} />
         <Documents modalProps={modalProps} />
-        <Beneficiaries beneficiaries={BENEFICIARIES} />
+        <Beneficiaries productId={productId} />
         <Stamp value={lastUpdated} />
         <View style={styles.bottomPadding} />
       </ScrollView>

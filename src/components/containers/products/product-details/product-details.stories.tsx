@@ -22,6 +22,7 @@ for (const cover of covers) {
       benefitDescriptionLong="Your loved ones will receive a single payment equal to £1000000 in the event of a claim."
       lastUpdated="Policy last updated on 17/03/2020"
       modalProps={PRODUCT_DETAILS_MODAL_FIXTURE as ComponentProps<typeof ProductDetailsModal>}
+      productId={""}
     />
   ));
 }

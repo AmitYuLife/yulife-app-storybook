@@ -1,20 +1,29 @@
 import * as React from "react";
 import { StyleSheet, View, ViewStyle, TextStyle } from "react-native";
 import { Colours, Style } from "@styles";
-import { Button, Text, TextTemplate } from "@atoms";
-import { Beneficiary } from "@components/modals/yuscreen/beneficiary/add-beneficiary-modal.screen";
+import { Button, TextTemplate } from "@atoms";
 import { Navigation } from "react-native-navigation";
 import { MODALS, ROUTES } from "@navigation/constants";
 import { TouchableOpacityWithDelay } from "@components/molecules";
 import { truncate } from "@services/utils";
+import { useQuery } from "@apollo/react-hooks";
+import {
+  GetProductBeneficiaries,
+  GetProductBeneficiaries_getProductBeneficiaries_beneficiaries,
+} from "@graphql/_core/schema";
+import { GQL_QUERY_GET_PRODUCT_BENEFICIARIES } from "@graphql/products/getProductBeneficiaries";
 
-interface Props {
-  beneficiaries: Beneficiary[];
-  onPress?: () => void;
+interface IBeneficiariesProps {
+  productId: string;
 }
 
-export const Beneficiaries = ({ beneficiaries }: Props) => {
-  const beneficiariesExist = beneficiaries?.length;
+export const Beneficiaries = ({ productId }: IBeneficiariesProps) => {
+  const { data } = useQuery<GetProductBeneficiaries>(GQL_QUERY_GET_PRODUCT_BENEFICIARIES, {
+    variables: { productId },
+    fetchPolicy: "cache-and-network",
+  });
+  const beneficiaries = data?.getProductBeneficiaries?.beneficiaries;
+  const beneficiariesExist = data?.getProductBeneficiaries?.beneficiaries?.length;
   const description = beneficiariesExist
     ? "Below are your beneficiaries and their allocated percentages."
     : "You haven’t added any beneficiaries for this product yet.";
@@ -22,21 +31,31 @@ export const Beneficiaries = ({ beneficiaries }: Props) => {
   return (
     <View style={styles.wrapper}>
       <TextTemplate type={"h2"}>Beneficiaries</TextTemplate>
-      <Text style={styles.description}>{description}</Text>
+      <View style={styles.description}>
+        <TextTemplate type={"b2"} color={Colours.neutral.n700}>
+          {description}
+        </TextTemplate>
+      </View>
+
       {!beneficiariesExist ? null : (
-        <BeneficiariesDetails beneficiaries={beneficiaries} onPress={() => onBeneficiaryPress(beneficiaries)} />
+        <BeneficiariesDetails beneficiaries={beneficiaries} onPress={() => onBeneficiaryPress(productId)} />
       )}
       <Button
         wrapperStyle={styles.buttonWrapper}
         type="Secondary"
         label="Add a beneficiary"
-        onPress={onAddBeneficiaryPress}
+        onPress={() => onAddBeneficiaryPress(productId)}
       />
     </View>
   );
 };
 
-const BeneficiariesDetails = ({ beneficiaries, onPress }: Props) => {
+interface IBeneficiariesDetailsProps {
+  beneficiaries: GetProductBeneficiaries_getProductBeneficiaries_beneficiaries[];
+  onPress?: () => void;
+}
+
+const BeneficiariesDetails = ({ beneficiaries, onPress }: IBeneficiariesDetailsProps) => {
   return (
     <TouchableOpacityWithDelay onPress={onPress}>
       <View style={styles.beneficiariesWrapper}>
@@ -44,12 +63,12 @@ const BeneficiariesDetails = ({ beneficiaries, onPress }: Props) => {
           <View key={index}>
             <View style={styles.beneficiary}>
               <View>
-                <Text bold={true} style={styles.beneficiaryDetails}>
+                <TextTemplate type={"b2b"}>
                   {truncate(`${beneficiary.firstName} ${beneficiary.lastName}`, 25)}
-                </Text>
-                <Text style={styles.beneficiaryDetails}>{beneficiary.relation}</Text>
+                </TextTemplate>
+                <TextTemplate type={"b2"}>{beneficiary.relationship}</TextTemplate>
               </View>
-              <Text bold={true} style={styles.beneficiaryPercentage}>{`${beneficiary.percentage}%`}</Text>
+              <TextTemplate type={"b1b"}>{`${beneficiary.shareOfBenefit}%`}</TextTemplate>
             </View>
             {index < beneficiaries.length - 1 ? <View style={styles.separator} /> : null}
           </View>
@@ -59,21 +78,25 @@ const BeneficiariesDetails = ({ beneficiaries, onPress }: Props) => {
   );
 };
 
-const onAddBeneficiaryPress = () =>
+const onAddBeneficiaryPress = (productId: string) =>
   Navigation.showModal({
     component: {
       id: MODALS.addBeneficiary,
       name: MODALS.addBeneficiary,
+      passProps: {
+        pushEditRoot: true,
+        productId,
+      },
     },
   });
 
-const onBeneficiaryPress = (beneficiaries: Beneficiary[]) =>
+const onBeneficiaryPress = (productId: string) =>
   Navigation.push(ROUTES.productDetails, {
     component: {
       id: ROUTES.beneficiary,
       name: ROUTES.beneficiary,
       passProps: {
-        beneficiaries,
+        productId,
       },
     },
   });
@@ -84,10 +107,6 @@ const styles = StyleSheet.create({
   } as ViewStyle,
   description: {
     marginTop: Style.adjust(16),
-    color: Colours.neutral.n700,
-    fontSize: Style.adjust(16),
-    lineHeight: Style.adjust(24),
-    letterSpacing: Style.adjust(0.6),
     maxWidth: Style.adjust(328),
   } as TextStyle,
   beneficiariesWrapper: {
@@ -111,18 +130,6 @@ const styles = StyleSheet.create({
     width: "100%",
     backgroundColor: Colours.neutral.n100,
   } as ViewStyle,
-  beneficiaryDetails: {
-    color: Colours.neutral.n800,
-    fontSize: Style.adjust(16),
-    lineHeight: Style.adjust(24),
-    letterSpacing: Style.adjust(0.6),
-  } as TextStyle,
-  beneficiaryPercentage: {
-    color: Colours.neutral.n800,
-    fontSize: Style.adjust(20),
-    lineHeight: Style.adjust(24),
-    letterSpacing: Style.adjust(0.8),
-  } as TextStyle,
   buttonWrapper: {
     marginTop: Style.adjust(16),
   } as ViewStyle,

@@ -1,18 +1,71 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { Navigation } from "react-native-navigation";
 import { MODALS, ROUTES } from "@navigation/constants";
 import { useBackHandler } from "@services/hooks/useBackHandler";
-import AddBeneficiaryModalScreen, { Beneficiary } from "./add-beneficiary-modal.screen";
+import AddBeneficiaryModalScreen from "./add-beneficiary-modal.screen";
+import { useMutation } from "@apollo/react-hooks";
+import {
+  CreateOrUpdateBeneficiaryMutationTuple,
+  GQL_MUTATION_CREATE_OR_UPDATE_BENEFICIARY,
+} from "@graphql/products/createOrUpdateBeneficiary";
+import { GetProductBeneficiaries_getProductBeneficiaries_beneficiaries as Beneficiary } from "@graphql/_core/schema";
+import {
+  RemoveBeneficiaryFromProductMutationTuple,
+  GQL_MUTATION_REMOVE_BENEFICIARY_FROM_PRODUCT,
+} from "@graphql/products/deleteBeneficiary";
 
-interface Props {
+interface IProps {
   beneficiary: Beneficiary;
-  onAddBeneficiary: (beneficiary: Beneficiary) => void;
-  editBeneficiary?: (beneficiary: Beneficiary) => void;
-  deleteBeneficiary?: (beneficiary: Beneficiary) => void;
+  pushEditRoot?: boolean;
+  productId: string;
 }
 
-export default function AddBeneficiaryModal(props: Props) {
-  const { beneficiary: beneficiaryToEdit, onAddBeneficiary, editBeneficiary, deleteBeneficiary } = props;
+export default function AddBeneficiaryModal(props: IProps) {
+  const { beneficiary: beneficiaryToEdit, pushEditRoot, productId } = props;
+
+  const [
+    updateBeneficiaryForProduct,
+    { loading: updateBeneficiaryLoading },
+  ]: CreateOrUpdateBeneficiaryMutationTuple = useMutation(GQL_MUTATION_CREATE_OR_UPDATE_BENEFICIARY);
+
+  const [
+    removeBeneficiaryFromProduct,
+    { loading: removeBeneficiaryLoading },
+  ]: RemoveBeneficiaryFromProductMutationTuple = useMutation(GQL_MUTATION_REMOVE_BENEFICIARY_FROM_PRODUCT);
+
+  const onSaveBeneficiary = useCallback(
+    async (beneficiary: Beneficiary) => {
+      await updateBeneficiaryForProduct({
+        variables: {
+          beneficiary: {
+            id: beneficiary.id,
+            firstName: beneficiary.firstName,
+            lastName: beneficiary.lastName,
+            phoneNumber: beneficiary.phoneNumber,
+            relationship: beneficiary.relationship,
+            productId,
+          },
+        },
+        refetchQueries: ["GetProductBeneficiaries"],
+      });
+    },
+    [updateBeneficiaryForProduct, productId]
+  );
+
+  const removeBeneficiary = useCallback(
+    async (beneficiary: Beneficiary) => {
+      await removeBeneficiaryFromProduct({
+        variables: {
+          productId,
+          beneficiaryId: beneficiary.id,
+        },
+        refetchQueries: ["GetProductBeneficiaries"],
+      });
+
+      dismissModal();
+    },
+    [removeBeneficiaryFromProduct, productId]
+  );
 
   const dismissModal = () => {
     Navigation.dismissModal(MODALS.addBeneficiary);
@@ -25,19 +78,21 @@ export default function AddBeneficiaryModal(props: Props) {
 
   useBackHandler(backHandler);
 
-  const navigateToBeneficiaryContainer = (beneficiary: Beneficiary) => {
-    if (beneficiaryToEdit || onAddBeneficiary || editBeneficiary) {
-      dismissModal();
-    } else {
+  const navigateToBeneficiaryContainer = async (beneficiary: Beneficiary) => {
+    await onSaveBeneficiary(beneficiary);
+    if (pushEditRoot) {
       Navigation.push(ROUTES.productDetails, {
         component: {
           id: ROUTES.beneficiary,
           name: ROUTES.beneficiary,
           passProps: {
-            beneficiaries: [{ ...beneficiary, percentage: 100 }],
+            productId,
           },
         },
       });
+      dismissModal();
+    } else {
+      dismissModal();
     }
   };
 
@@ -46,9 +101,9 @@ export default function AddBeneficiaryModal(props: Props) {
       onClose={dismissModal}
       onContinue={navigateToBeneficiaryContainer}
       beneficiary={beneficiaryToEdit}
-      onAddBeneficiary={onAddBeneficiary}
-      editBeneficiary={editBeneficiary}
-      deleteBeneficiary={deleteBeneficiary}
+      deleteBeneficiary={removeBeneficiary}
+      updateBeneficiaryLoading={updateBeneficiaryLoading}
+      removeBeneficiaryLoading={removeBeneficiaryLoading}
     />
   );
 }

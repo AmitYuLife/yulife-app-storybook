@@ -18,7 +18,7 @@ interface Pair {
   value: string;
 }
 
-export interface ProductDetailsModalProps {
+interface ProductDetailsModalProps {
   coverType: CoverType;
   keyValuePairs: Pair[];
   content: ComponentProps<typeof ContentBody>["items"];
