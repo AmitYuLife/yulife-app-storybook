@@ -6,6 +6,11 @@ import { BlueDoc } from "./blue-doc";
 import { Pdf } from "./pdf";
 import { ArrowRight } from "./arrow-right";
 import { DocIcon } from "./doc-icon";
+import { SmartHealthIcon } from "./smart-health-icon";
+import { GooglePlayIcon } from "./google-play-icon";
+import { AppStoreIcon } from "./app-store-icon";
+
+//TODO: check with the team if we can refactor this to support "import { Icon1, Icon2} from "@atoms/icon";
 
 export default {
   Clock,
@@ -16,4 +21,7 @@ export default {
   Pdf,
   ArrowRight,
   DocIcon,
+  SmartHealthIcon,
+  GooglePlayIcon,
+  AppStoreIcon,
 };
