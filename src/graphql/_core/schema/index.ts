@@ -47,7 +47,6 @@ export * from "./GetRewards";
 export * from "./GetSession";
 export * from "./GetTopUpsQuote";
 export * from "./GetUserNotificationsSettings";
-export * from "./GetYuDoctorPolicyNumber";
 export * from "./GetYulifer";
 export * from "./GetYuliferWithAvatar";
 export * from "./InviteToDuel";

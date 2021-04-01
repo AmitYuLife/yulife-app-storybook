@@ -1,13 +1,14 @@
-import { FitKitAuthoriseFunction, FitKitAvailable } from "@services/fitkit/fitkit.service";
 import * as React from "react";
 import Config from "react-native-config";
 import { connect } from "react-redux";
-import { IReduxState } from "../../../../redux/_core/reducers";
-import { getCopy } from "../../../../redux/copy/copy.selectors";
-import { fitKitConsentAuthorised } from "../../../../redux/user/user.actions";
-import FitKitPermissions from "../../../../services/fitkit/fitkit.permissions";
-import { FitKitConnectScreen } from "../../../screens";
+import { IReduxState } from "@redux/_core/reducers";
+import { getCopy } from "@redux/copy/copy.selectors";
+import { fitKitConsentAuthorised } from "@redux/user/user.actions";
+import FitKitPermissions from "@services/fitkit/fitkit.permissions";
+import { FitKitConnectScreen } from "@components/screens";
 import { handleLinkPress } from "@services/app-link";
+import Storage from "@services/storage";
+import { FitKitAuthoriseFunction, FitKitAvailable } from "@services/fitkit/fitkit.service";
 
 // TODO find where these props actually come from in RNN types
 interface IProps {
@@ -28,6 +29,7 @@ const FitKitConnectContainer: React.FC<Props> = (props) => {
   const handleConnect = async (authorise: FitKitAuthoriseFunction) => {
     setIsConnecting(true);
     props.fitKitConsentAuthorised();
+    await Storage.fitkit.setFitkitPermission(Storage.fitkit.REQUESTED);
     await authorise(FitKitPermissions);
     props.navigateToNext();
   };

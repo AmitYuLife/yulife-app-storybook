@@ -10,10 +10,23 @@ export const androidAlertCopy = {
 
 const androidMessage =
   "We need to collect your health and personal data to track and reward your activity. Tap below to sync to Google Fit and get started!";
-const iOSMessage =
-  "We haven’t received any data from Apple Health yet today. Please check back in a few minutes or follow the instructions below to troubleshoot.";
+const iOSFirstTimeMessage =
+  "We need to collect your health and personal data to track and reward your activity. Tap below to sync to Apple Health and get started!";
+const buttonLabel = "Yes, let's connect";
+const iOSPostPromptMessage =
+  "We haven’t received any data from Apple Health today. Please check back in a few minutes or tap below to troubleshoot.";
+const postPromptIOSButtonLabel = "Get help connecting";
 
-export const fitKitNotAuthorizedCopy = {
-  buttonLabel: "Yes, let's connect",
-  message: Platform.select({ ios: iOSMessage, android: androidMessage }),
+export const getFitKitNotAuthorizedCopy = (hasRequestedPermission: boolean) => {
+  if (Platform.OS === "ios" && !hasRequestedPermission) {
+    return {
+      buttonLabel,
+      message: iOSFirstTimeMessage,
+    };
+  }
+
+  return {
+    buttonLabel: Platform.select({ ios: postPromptIOSButtonLabel, android: buttonLabel }),
+    message: Platform.select({ ios: iOSPostPromptMessage, android: androidMessage }),
+  };
 };

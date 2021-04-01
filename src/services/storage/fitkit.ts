@@ -2,6 +2,7 @@ import Logger from "@services/logging/logger";
 import AsyncStorage from "@react-native-community/async-storage";
 
 const FITKIT_KEY = "@Store:fitkit";
+export const REQUESTED = "REQUESTED";
 
 export async function setFitkitPermission(fitkitPermision: string): Promise<void> {
   try {
