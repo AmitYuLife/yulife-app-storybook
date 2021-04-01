@@ -11,7 +11,7 @@ Feature("Feedback forms should behave correctly", async()=>{
 
     Scenario("As a user with a feedback form to compelte, I should see this on login (positive rating)", scenario.start, async () => {
         Given("I login as a user", given.loginOnly(CUSTOMER_25, AUTH_25, true), async()=>{
-            When("I tap next on the signup screen", when.tapText("next"), async()=>{
+            When("I tap next on the signup screen", when.tapText("Next"), async()=>{
                 Then("I should see the feedback form", then.feedbackFormVisible(FEEDBACK_FORM_1.data.title))
                 Then("I should see question", then.idVisible(FEEDBACK_FORM_QUESTION(FEEDBACK_FORM_1.data.questions[0].questionText)))
                 Then("I should see the left label for this question", then.idVisible(SLIDER_LABEL((FEEDBACK_FORM_1.data.questions[0].labels.left))))
@@ -38,7 +38,7 @@ Feature("Feedback forms should behave correctly", async()=>{
 
     Scenario("As a user with a feedback form to compelte, I should see this on login (negative rating)", scenario.start, async () => {
         Given("I login as a user", given.loginOnly(CUSTOMER_25, AUTH_25, true), async () => {
-            When("I tap next on the signup screen", when.tapText("next"), async () => {
+            When("I tap next on the signup screen", when.tapText("Next"), async () => {
                 Then("I should see the feedback form", then.feedbackFormVisible(FEEDBACK_FORM_1.data.title))
                 Then("I should see question", then.idVisible(FEEDBACK_FORM_QUESTION(FEEDBACK_FORM_1.data.questions[0].questionText)))
                 Then("I should see the left label for this question", then.idVisible(SLIDER_LABEL((FEEDBACK_FORM_1.data.questions[0].labels.left))))

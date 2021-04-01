@@ -19,7 +19,7 @@ export const logInWithStreakScreen = (customer = CUSTOMER_1, auth = AUTH_1, fitk
     await passwordField.tap();
     await passwordField.replaceText(auth.data.password);
     await navigateViaID(BUTTON_LOGIN)
-    await navigateViaText("next")
+    await navigateViaText("Next")
 }
 
 export const continueLoginAfterStreak = async () => {

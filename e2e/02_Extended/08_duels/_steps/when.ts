@@ -35,5 +35,5 @@ export const restartToDuelsRequest = (customer:any, auth:any, fitkitAuth=true) =
     await device.terminateApp();
     await device.launchApp({ delete: true, });
     await loginOnly(customer, auth, fitkitAuth)()
-    await navigateViaText("next")
+    await navigateViaText("Next")
 }

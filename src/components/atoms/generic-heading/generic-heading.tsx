@@ -61,7 +61,7 @@ function GenericHeading(props: IGenericHeadingProps) {
             hitSlop={TOP_BAR.HIT_SLOP}
             onPress={onRightIconPress}
             style={styles.rightIconTouchable}
-            testID={BUTTON_CLOSE_HEADER(heading)}
+            testID={BUTTON_CLOSE_HEADER(heading || logo)}
           >
             <RightIcon icon={rightIcon} />
           </PressableWithDelay>

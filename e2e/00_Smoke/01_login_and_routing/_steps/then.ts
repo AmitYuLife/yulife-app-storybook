@@ -63,7 +63,7 @@ export const notOnLoginScreen = async (): Promise<void> => {
 };
 
 export const healthAppPromptVisible = async (): Promise<void> => {
-    const target = element(by.label("connect to health app"));
+    const target = element(by.label("Sync to Apple Health"));
     await waitFor(target).toExist();
     await expect(target).toBeVisible();
 };
@@ -75,11 +75,9 @@ export const privacyLinkVisible = async (): Promise<void> => {
 };
 
 export const rewardScreenVisible = async (): Promise<void> => {
-    const check1 = element(by.label("sign up bonus"));
+    const check1 = element(by.text("Sign-up bounty\nunlocked!"));
     await waitFor(check1).toExist();
     await expect(check1).toBeVisible();
-
-    // TODO: check that image exists
 };
 
 export const given200coins = async (): Promise<void> => {
