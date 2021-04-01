@@ -18,7 +18,7 @@ export const loginAsUser = (
     await passwordField.tap();
     await passwordField.replaceText(auth.data.password);
     await navigateViaID(BUTTON_LOGIN)
-    await navigateViaText("next") // sign-up reward screen
+    await navigateViaText("Next") // sign-up reward screen
     await dismissStreakIfVisible()
     await navigateViaText("let’s begin", 2500)
     await completeIntro()
@@ -67,10 +67,10 @@ export const loginOnly = (customer: any, auth: any, fitkitAuth?: boolean) => asy
 }
 export const loginAndCollectSignupBonus = (customer: any, auth: any, fitkitAuth?: boolean)=> async()=>{
     await loginOnly(customer, auth, fitkitAuth)()
-    await navigateViaText("next")
+    await navigateViaText("Next")
 }
 export const continueLogin = async () => {
-    await navigateViaText("next")
+    await navigateViaText("Next")
     await dismissStreakIfVisible()
     await navigateViaText("let’s begin")
     await completeIntro()

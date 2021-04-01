@@ -119,8 +119,8 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
         Given("I login", given.loginOnly(CUSTOMER_21, AUTH_21, false), async () => {
             Then("I should see a leaderboard invite screen", then.textVisible("join Boris' leaderboard", 2500))
             When("I accept", when.tapText("accept invite"), async () => {
-                When("I skip fitkit", when.tapText("skip"), async()=>{
-                    Then("I should see the signup bonus screen", then.textVisible("sign up bonus"))
+                When("I skip fitkit", when.tapText("Skip this step"), async()=>{
+                    Then("I should see the signup bonus screen", then.textVisible("Sign-up bounty\nunlocked!"))
                     When("I continue the login process", when.continueLogin, async () => {
                         Then("I should be on the yuscreen", then.idVisible(DAILY_STEPS_SCREEN))
                         When("I go to the leaderboard", when.tapID(NAV_BAR("leaderboard")), async () => {
@@ -167,8 +167,8 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
                             When("I login as the invited user", when.loginOnly(CUSTOMER_19, AUTH_19, false), async () => {
                                 Then("I should see a leaderboard invite screen", then.textVisible("join Oscar's leaderboard", 2500))
                                 When("I accept", when.tapText("accept invite"), async () => {
-                                    When("I skip fitkit", when.tapText("skip"), async () => {
-                                        Then("I should see the signup bonus screen", then.textVisible("sign up bonus"))
+                                    When("I skip fitkit", when.tapText("Skip this step"), async () => {
+                                        Then("I should see the signup bonus screen", then.textVisible("Sign-up bounty\nunlocked!"))
                                         When("I continue the login process", when.continueLogin, async () => {
                                         Then("I should be on the yuscreen", then.idVisible(DAILY_STEPS_SCREEN))
                                         When("I go to the leaderboard", when.tapID(NAV_BAR("leaderboard")), async () => {

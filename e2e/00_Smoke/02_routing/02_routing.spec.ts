@@ -58,7 +58,7 @@ Feature("As a user I can navigate through member routes correctly", async () => 
                     Then("I should be the yumatter screen", then.idVisible(YUMATTER_SCREEN, 500))
                 })
 
-                When("I go back", when.tapID(BUTTON_CLOSE_HEADER("member services")), async () => {
+                When("I go back", when.tapID(BUTTON_CLOSE_HEADER("yulife")), async () => {
                     Then("I should be the yucoin tab", then.onDailySteps)
                     When("I tap the menu icon in the top left", when.tapID(MENU_ICON, 500), async () => {
                         Then("I should see the menu items", then.menuItemsVisible)

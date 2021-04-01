@@ -28,13 +28,13 @@ export const tapOnLogin = async (): Promise<void> => {
 };
 
 export const pressSkipOnHealth = async (): Promise<void> => {
-    const target = element(by.text("skip"));
+    const target = element(by.text("Skip this step"));
     await waitFor(target).toExist().withTimeout(5000);
     await target.tap();
 };
 
 export const collectOnboardingYucoin = async (): Promise<void> => {
-    const next = element(by.text("next"));
+    const next = element(by.text("Next"));
     await waitFor(next).toExist().withTimeout(5000);
     await next.tap();
 };
@@ -108,7 +108,7 @@ export const clickOnBack = async (): Promise<void> => {
 };
 
 export const tapNext = async (): Promise<void> => {
-    const target = element(by.text("next"));
+    const target = element(by.text("Next"));
     await waitFor(target).toExist().withTimeout(5000);
     await target.tap();
 }
