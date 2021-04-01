@@ -18,7 +18,7 @@ const getInfo = (power: number) =>
 
 const _YuCoinPower = () => {
   const { data } = useQuery<GetYulifer>(GQL_QUERY_GET_YULIFER, {
-    fetchPolicy: "cache-only",
+    fetchPolicy: "cache-first",
   });
 
   const yuCoinPower = data?.getYulifer?.earnRate || 1;
