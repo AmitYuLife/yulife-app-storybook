@@ -116,7 +116,11 @@ export const BeneficiaryScreen = memo((props: Props) => {
     <View style={styles.wrapper}>
       <GenericHeadingPad />
       <KeyboardAvoidingView behavior={keyboardBehavior} style={styles.kav}>
-        <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scrollViewContainer}>
+        <ScrollView
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={styles.scrollViewContainer}
+          keyboardShouldPersistTaps="handled"
+        >
           <Text bold={true} style={styles.heading}>
             {title}
           </Text>
@@ -161,6 +165,7 @@ export const BeneficiaryScreen = memo((props: Props) => {
                 onPress={onBottomButtonPress}
                 type="Primary"
                 isLoading={setShareLoading}
+                disabled={showError}
               />
             </View>
           </View>
