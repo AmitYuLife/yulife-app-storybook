@@ -13,7 +13,7 @@ import { YUSCREEN_AVATAR } from "@ids";
 
 const _AvatarAndEquipment = () => {
   const [showLoading, setShowLoading] = useState(true);
-  const { data } = useQuery<GetYulifer>(GQL_QUERY_GET_YULIFER, { fetchPolicy: "cache-only" });
+  const { data } = useQuery<GetYulifer>(GQL_QUERY_GET_YULIFER, { fetchPolicy: "cache-first" });
 
   const avatarSource = useMemo(() => {
     const uri = data?.getYulifer?.avatarRemoteFiles?.pngFull;

@@ -17,7 +17,7 @@ import { ItemBottom } from "./item-set/item-bottom";
 
 const _AvatarAndEquipment = () => {
   const [showLoading, setShowLoading] = useState(true);
-  const { data } = useQuery<GetYulifer>(GQL_QUERY_GET_YULIFER, { fetchPolicy: "cache-only" });
+  const { data } = useQuery<GetYulifer>(GQL_QUERY_GET_YULIFER, { fetchPolicy: "cache-first" }); // We cannot use cache-only as fetch policy, this query is refetch on avatar update
   const { data: yuScreenProductSlots } = useQuery<YuScreenProductSlots>(GQL_QUERY_GET_YU_SCREEN_PRODUCTS_SLOTS, {
     fetchPolicy: "cache-and-network",
   });

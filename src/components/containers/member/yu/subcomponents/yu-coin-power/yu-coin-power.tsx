@@ -17,7 +17,7 @@ const getInfo = (power: number) =>
 
 const _YuCoinPower = () => {
   const { data } = useQuery<GetYulifer>(GQL_QUERY_GET_YULIFER, {
-    fetchPolicy: "cache-only",
+    fetchPolicy: "cache-first", // We cannot use cache-only as fetch policy, this query is refetch on avatar update
   });
 
   const yuCoinPower = data?.getYulifer?.earnRate || 1;
