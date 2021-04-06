@@ -1,5 +1,7 @@
-import { MODALS, ROUTES } from "@navigation/constants";
+import { ComponentProps } from "react";
+import moment from "moment";
 import { Navigation } from "react-native-navigation";
+import { MODALS, ROUTES } from "@navigation/constants";
 import {
   FIB_UNDERWRITING_REVIEW_ANSWERS,
   FIB_UNDERWRITING_JOURNEY,
@@ -8,13 +10,13 @@ import {
   IProduct,
 } from "@components/containers/products/fib/fib.types";
 import { FIB_UNDERWRITING_REVIEW_ANSWERS_SCREEN_ID } from "@components/containers/products/fib/data/underwriting-journey-data";
-import moment from "moment";
 import { InfoTypes } from "@components/containers/products/fib/subcontainers/fib.info.container";
-import { getIsPersonalItem } from "../yu-types";
+import ProductDetailsContainer from "@components/containers/products/product-details/product-details.container";
+import { YUGI_INTRO_TYPE } from "@components/containers/products/fib/subcontainers/fib.yugi-intro.container";
 import { FIBStore } from "@redux/product/product.types";
-import { CoverType, ScreeningStatus } from "../../../../../graphql/_core/schema/globalTypes";
-import { YUGI_INTRO_TYPE } from "../../../products/fib/subcontainers/fib.yugi-intro.container";
+import { CoverType, ScreeningStatus } from "@graphql/_core/schema/globalTypes";
 import { YuScreenProductSlotItem } from "@graphql/_core/schema";
+import { getIsPersonalItem } from "../yu-types";
 
 interface INavigateToProductScreen {
   product: IProduct & YuScreenProductSlotItem; //we have set his way to support the legacy yuscreen
@@ -143,6 +145,9 @@ export const navigateToProductScreen = ({
       component: {
         id: ROUTES.productDetails,
         name: ROUTES.productDetails,
+        passProps: {
+          productId: product?.productId,
+        } as ComponentProps<typeof ProductDetailsContainer>,
       },
     });
   }
