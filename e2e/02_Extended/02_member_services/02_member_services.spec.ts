@@ -19,7 +19,7 @@ Feature("Member services should be restricted for certain users", async () => {
                 Then("I should see member services", then.idVisible(MENU_ITEM("member services")))
                 When("I tap member services", when.tapID(MENU_ITEM("member services")), async () => {
                     Then("I should be on the yumatter screen", then.idVisible(YUMATTER_SCREEN))
-                    When("I tap the smart health tab", when.tapText("SmartHealth"), async () => {
+                    When("I tap the smart health tab", when.tapText("Smart Health"), async () => {
                         Then("I should be on the smart health tab", then.idVisible(SMART_HEALTH_SCREEN))
                     })
                 })
@@ -33,7 +33,7 @@ Feature("Member services should be restricted for certain users", async () => {
                 Then("I should see member services", then.idVisible(MENU_ITEM("member services")))
                 When("I tap member services", when.tapID(MENU_ITEM("member services")), async () => {
                     Then("I should be on the yumatter screen", then.idVisible(YUMATTER_SCREEN))
-                    When("I tap the smart health tab", when.tapText("SmartHealth"), async () => {
+                    When("I tap the smart health tab", when.tapText("Smart Health"), async () => {
                         Then("I should be on the smart health tab", then.idVisible(SMART_HEALTH_SCREEN))
                     })
                 })
