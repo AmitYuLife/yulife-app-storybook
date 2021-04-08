@@ -67,10 +67,8 @@ export const enterPasswordIncorrectly = (attempts: number) => async () => {
     await loginField.replaceText(CUSTOMER_4.data.email);
     await passwordField.tap();
 
-    let i = 0
-    while (i <= attempts) {
+    for (let i = 0; i <= attempts; i += 1) {
         await passwordField.replaceText(`p_w_${i}`);
         await loginButton.tap();
-        i += 1
     }
 }
