@@ -11,7 +11,9 @@ import Storage from "@services/storage";
 
 const _DailyStepsContent = () => {
   const { authorise, loading: fitkitLoading, authorised, available } = useContext(FitkitContext);
-  const { fitkitPermission, setFitkitPermission, handleAuthoriseFitkit } = useAuthoriseFitkit({ authorise });
+  const { isIosMotionAuthorised, fitkitPermission, setFitkitPermission, handleAuthoriseFitkit } = useAuthoriseFitkit({
+    authorise,
+  });
   const dailyStepsIsFetching = useSelector(getDailyStepsIsFetching);
 
   const isLoading = fitkitLoading || dailyStepsIsFetching;
@@ -34,6 +36,7 @@ const _DailyStepsContent = () => {
     return (
       <FitkitUnauthorised
         onPress={handleAuthoriseFitkit}
+        isIosMotionAuthorised={isIosMotionAuthorised}
         hasRequestedPermission={fitkitPermission === Storage.fitkit.REQUESTED}
       />
     );
