@@ -8,10 +8,11 @@ import { androidAlertCopy, getFitKitNotAuthorizedCopy } from "./copy";
 interface Props {
   onPress: () => void;
   hasRequestedPermission: boolean;
+  isIosMotionAuthorised: boolean;
 }
 
-export const FitkitUnauthorised = ({ onPress, hasRequestedPermission }: Props) => {
-  const { buttonLabel, message } = getFitKitNotAuthorizedCopy(hasRequestedPermission);
+export const FitkitUnauthorised = ({ onPress, isIosMotionAuthorised, hasRequestedPermission }: Props) => {
+  const { buttonLabel, message } = getFitKitNotAuthorizedCopy({ hasRequestedPermission, isIosMotionAuthorised });
 
   const handlePress = () => {
     const { title, message: alertMessage, dismissLabel, downloadLabel, confirmLabel } = androidAlertCopy;

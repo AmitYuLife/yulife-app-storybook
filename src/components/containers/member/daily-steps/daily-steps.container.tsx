@@ -40,7 +40,7 @@ function _DailyStepsContainer({ componentId, onLeftMenuPress }: Props) {
 
   useNavigationComponentDidAppear(() => {
     dispatch(startDailySteps());
-  });
+  }, componentId);
 
   useTapBackTwiceToExit(componentId);
 
