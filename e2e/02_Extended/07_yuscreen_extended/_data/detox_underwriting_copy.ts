@@ -409,7 +409,7 @@ export const fibDataDetox = [
             {
                 type: "markdown",
                 text:
-                    "Examples of recreational drugs include ecstasy, cocaine, heroin, amphetamines and anabolic steroids. As a reminder, these answers will not be shared with your employer.\n\nI won’t count cannabis if it's no more than 1 or 2 tobacco-free joints a week. I’m not like those other giraffes. I’m a cool giraffe.",
+                    "Examples of recreational drugs include ecstasy, cocaine, heroin, amphetamines and anabolic steroids. As a reminder, these answers will not be shared with your employer.\n\nI won’t count cannabis if it's no more than 1 or 2 tobacco-free joints a week.",
             },
         ],
     },
@@ -417,7 +417,7 @@ export const fibDataDetox = [
         id: FIB_LIFESTYLE_DRUGS_COUNCELLING_SCREEN_ID,
         heading: "Lifestyle",
         
-        title: "Drugs Councelling",
+        title: "Drugs Counselling",
         question:
             "Have you ever been advised to receive treatment, counselling, or attend a support group to manage your alcohol or drug use?",
         firstButton: { label: "No", actionId: FIB_GENDER_SCREEN_ID },
