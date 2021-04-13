@@ -30,10 +30,7 @@ export function showStreaksModal(streaks: any) {
         onPressCtaPrimary: () => {
           Navigation.mergeOptions(ROUTES.quests, {
             bottomTabs: {
-              animate: false,
               currentTabIndex: 1,
-              drawBehind: true,
-              visible: false,
             },
             statusBar: {
               drawBehind: false,
