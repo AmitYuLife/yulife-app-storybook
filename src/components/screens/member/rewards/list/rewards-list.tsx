@@ -3,7 +3,7 @@ import { Style } from "@styles/index";
 import * as React from "react";
 import { View } from "react-native";
 import { IndexPath, LargeList } from "react-native-largelist-v3";
-import { GetRewards_getRewards } from "../../../../../graphql/_core/schema";
+import { GetRewards_getRewards } from "@graphql/_core/schema";
 
 import { StyleSheet, ViewStyle } from "react-native";
 export interface IRewardsListScreenProps {
@@ -73,7 +73,7 @@ export class RewardsList extends React.PureComponent<IRewardsListScreenProps> {
     this.props.onItemPress(item);
   };
 
-  private getHeight = () => Style.SCALE_UP_AND_DOWN(150);
+  private getHeight = () => Style.adjust(150);
 
   private renderFooter = () => <View style={styles.footer} />;
 }
