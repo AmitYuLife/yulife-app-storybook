@@ -4,16 +4,18 @@ import { getTimeRemaining } from "@services/utils";
 import * as React from "react";
 import { connect } from "react-redux";
 import { IReduxState } from "../../../redux/_core/reducers";
-import { getCopy } from "../../../redux/copy/copy.selectors";
 import { getStreakAwardId } from "../../../redux/streaks/streaks.selectors";
 import { getUserStart } from "../../../redux/user/user.actions";
 import { StreaksScreen } from "../../screens";
 import { useBackHandler } from "@services/hooks/useBackHandler";
+import { Navigation } from "react-native-navigation";
+import { streakCopy } from "./copy";
 
 type ConnectedState = ReturnType<typeof mapStateToProps>;
 type ConnectedDispatch = typeof mapDispatchToProps;
 
 interface IProps {
+  componentId: string;
   isDoneToday: boolean;
   onPressCtaPrimary: () => void;
   reward: string;
@@ -40,22 +42,21 @@ const getLabelCtaPrimary = ({
   isDoneToday,
   reward,
   streakAwardId,
-  copy,
   streakCompleted,
-}: Pick<Props, "isDoneToday" | "streakCompleted" | "streakMax" | "reward" | "streakAwardId" | "copy">) => {
+}: Pick<Props, "isDoneToday" | "streakCompleted" | "streakMax" | "reward" | "streakAwardId">) => {
   if (getStreakCompleted({ streakAwardId, streakCompleted, streakMax }) === streakMax) {
     if (!streakAwardId) {
-      return copy.ctaLabelDone;
+      return streakCopy.ctaLabelDone;
     }
 
-    return copy.ctaLabelCollect.replace("${reward}", reward);
+    return streakCopy.ctaLabelCollect.replace("${reward}", reward);
   }
 
   if (isDoneToday) {
-    return copy.ctaLabelDone;
+    return streakCopy.ctaLabelDone;
   }
 
-  return copy.ctaLabelTakeChallenge;
+  return streakCopy.ctaLabelTakeChallenge;
 };
 
 const getSubHeading = ({
@@ -63,43 +64,46 @@ const getSubHeading = ({
   streakMax,
   reward,
   streakAwardId,
-  copy,
   streakCompleted,
-}: Pick<Props, "streakCompleted" | "isDoneToday" | "streakMax" | "reward" | "streakAwardId" | "copy">) => {
+}: Pick<Props, "streakCompleted" | "isDoneToday" | "streakMax" | "reward" | "streakAwardId">) => {
   if (getStreakCompleted({ streakAwardId, streakCompleted, streakMax }) === streakMax) {
     if (!streakAwardId) {
-      return copy.subheadingCollected;
+      return streakCopy.subheadingCollected;
     }
 
-    return copy.subheadingCompleted;
+    return streakCopy.subheadingCompleted;
   }
 
   if (isDoneToday) {
-    return copy.subheadingTodayStreakDone;
+    return streakCopy.subheadingTodayStreakDone;
   }
 
-  return copy.subheadingInstrucion.replace("${streakMax}", streakMax.toString()).replace("${reward}", reward);
+  const streakNumber = streakMax - streakCompleted;
+
+  return streakCopy[streakNumber === 1 ? "subheadingInstructionsToday" : "subheadingInstructions"]
+    .replace("${streakMax}", streakNumber.toString())
+    .replace("${reward}", reward);
 };
 
 const getHeading = ({
   isDoneToday,
   streakMax,
-  copy,
   streakAwardId,
   streakCompleted,
-}: Pick<Props, "streakAwardId" | "isDoneToday" | "streakMax" | "copy" | "streakCompleted">) => {
+}: Pick<Props, "streakAwardId" | "isDoneToday" | "streakMax" | "streakCompleted">) => {
   if (getStreakCompleted({ streakAwardId, streakCompleted, streakMax }) === streakMax) {
-    return copy.headingCompleted;
+    return streakCopy.headingCompleted;
   }
 
   if (isDoneToday) {
-    return copy.headingCompletedTodayStreak.replace("${streakCompleted}", streakCompleted.toString());
+    return streakCopy.headingCompletedTodayStreak;
   }
 
-  return copy.headingStartStreakDay.replace("${streakCompleted}", (streakCompleted + 1).toString());
+  return streakCopy.headingStartStreakDay;
 };
 
 const StreaksModal: React.FC<Props> = ({
+  componentId,
   onPressCtaPrimary,
   onPressCtaSecondary,
   streakAwardId,
@@ -107,12 +111,11 @@ const StreaksModal: React.FC<Props> = ({
   isDoneToday,
   streakMax,
   nextStreakAvailableAt,
-  copy,
   reward,
   getUserStart: dispatchGetUserStart,
 }) => {
   const [isLoading, setLoading] = React.useState(false);
-  const [timeRemaining, setTimeRemaining] = React.useState(getTimeRemaining(nextStreakAvailableAt));
+  const [timeRemaining, setTimeRemaining] = React.useState(getTimeRemaining(nextStreakAvailableAt, "short"));
 
   useBackHandler(() => {
     if (onPressCtaSecondary) {
@@ -123,10 +126,14 @@ const StreaksModal: React.FC<Props> = ({
     return false;
   });
 
+  const handleClose = () => {
+    Navigation.dismissModal(componentId);
+  };
+
   React.useEffect(() => {
     if (streakMax === streakCompleted && !streakAwardId) {
       const callback = () => {
-        setTimeRemaining(getTimeRemaining(nextStreakAvailableAt));
+        setTimeRemaining(getTimeRemaining(nextStreakAvailableAt, "short"));
         timer = setTimeout(callback, 1000);
       };
 
@@ -166,14 +173,13 @@ const StreaksModal: React.FC<Props> = ({
 
   return (
     <StreaksScreen
-      heading={getHeading({ isDoneToday, streakMax, copy, streakAwardId, streakCompleted })}
-      subHeading={getSubHeading({ isDoneToday, streakMax, reward, streakAwardId, copy, streakCompleted })}
+      heading={getHeading({ isDoneToday, streakMax, streakAwardId, streakCompleted })}
+      subHeading={getSubHeading({ isDoneToday, streakMax, reward, streakAwardId, streakCompleted })}
       primaryButtonLabel={getLabelCtaPrimary({
         streakMax,
         isDoneToday,
         reward,
         streakAwardId,
-        copy,
         streakCompleted,
       })}
       streakAwardId={streakAwardId}
@@ -182,8 +188,8 @@ const StreaksModal: React.FC<Props> = ({
       onSubmit={onSubmit}
       reward={reward}
       isLoading={isLoading}
-      onPressCtaPrimary={onPressCtaPrimary}
       onPressCtaSecondary={onPressCtaSecondary}
+      onClose={handleClose}
       timeRemaining={timeRemaining}
     />
   );
@@ -191,7 +197,6 @@ const StreaksModal: React.FC<Props> = ({
 
 const mapStateToProps = (state: IReduxState) => ({
   streakAwardId: getStreakAwardId(state),
-  copy: getCopy(state, "streak"),
 });
 
 const mapDispatchToProps = {

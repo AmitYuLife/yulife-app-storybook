@@ -25,6 +25,6 @@ const streaksSelector = (state: State) => ({
   isDoneToday: moment().add(1, "day").startOf("day").format("YYYY-MM-DDTHH:mm:ss") <= state.nextStreakAvailableAt,
   maxStreak: state.maxStreak,
   nextStreakAvailableAt: state.nextStreakAvailableAt,
-  reward: `${state.value} ${state.type}`,
+  reward: `${state.value}`,
 });
 export const getStreaks = createSelector(reducer, streaksSelector);

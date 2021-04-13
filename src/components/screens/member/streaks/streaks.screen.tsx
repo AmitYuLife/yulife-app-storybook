@@ -1,13 +1,16 @@
 import * as React from "react";
-import { Image, ImageRequireSource, StyleSheet, View } from "react-native";
-import { Button, Text } from "../../../atoms";
-import assets from "./assets";
+import { View } from "react-native";
+import { Button, TextTemplate } from "@atoms";
 import styles from "./streaks.styles";
+import LottieView from "lottie-react-native";
+import StreakCompletion from "@components/screens/member/streaks/subcomponents/streak-completion";
+import StreakStart from "./subcomponents/streak-start";
+import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
 
 interface IProps {
   isLoading: boolean;
-  heading: string;
-  subHeading: string;
+  heading: string | string[];
+  subHeading: string | string[];
   timeRemaining: string;
   streakAwardId: string;
   streakCompleted: number;
@@ -15,13 +18,13 @@ interface IProps {
   primaryButtonLabel: string;
   reward: string;
   onSubmit: (() => void) | null;
-  onPressCtaPrimary: () => void;
+  onClose: () => void;
   onPressCtaSecondary?: (() => void) | null;
 }
 
-const StreaksSceen = ({
-  streakMax,
+const StreaksScreen = ({
   streakAwardId,
+  streakMax,
   streakCompleted,
   heading,
   subHeading,
@@ -29,82 +32,80 @@ const StreaksSceen = ({
   primaryButtonLabel,
   onSubmit,
   timeRemaining,
+  onClose,
   onPressCtaSecondary,
-}: IProps) => (
-  <View style={styles.wrapper}>
-    <View>
-      <Image source={getImage(streakCompleted, streakMax)} />
-    </View>
-    <View style={styles.headingWrapper}>
-      <Text bold={true} style={styles.heading}>
-        {heading}
-      </Text>
-    </View>
-    <View style={styles.subHeadingWrapper}>
-      <Text style={styles.subHeading}>{subHeading}</Text>
-    </View>
-    <View style={styles.streaksWrapper}>
-      {streakMax === streakCompleted && !streakAwardId ? (
-        <Text style={styles.subHeading}>Next streak available in {timeRemaining}</Text>
-      ) : (
-        Array.from({ length: streakMax }).map((_, index) => (
-          <View
-            key={index}
-            style={StyleSheet.flatten([styles.streakWrapper, index === streakMax ? styles.streakWrapperLast : null])}
-          >
-            <View style={styles.streak}>
-              <Image source={index < streakCompleted ? assets.streakFilled : assets.streakEmpty} />
-              <View style={styles.streak}>{renderStreakText(index, streakCompleted)}</View>
-            </View>
-          </View>
-        ))
-      )}
-    </View>
-    <Button
-      isLoading={isLoading}
-      wrapperStyle={styles.buttonPrimaryWrapper}
-      type="Primary"
-      onPress={onSubmit}
-      label={primaryButtonLabel}
-    />
-    {!onPressCtaSecondary ? null : (
-      <Button wrapperStyle={styles.buttonSecondaryWrapper} type="Link" onPress={onPressCtaSecondary} label={"later"} />
-    )}
-  </View>
-);
+  reward,
+}: IProps) => {
+  const currentStreakCompleted = onPressCtaSecondary ? streakCompleted : streakCompleted - 1;
+  const { header, subHeader, image } = buildArrayInfo(streakMax, heading, subHeading, reward)[currentStreakCompleted];
 
-function renderStreakText(index: number, streakCompleted: number) {
-  if (index < streakCompleted) {
-    return null;
+  return (
+    <>
+      <GenericHeadingPad />
+      <View style={styles.wrapper}>
+        <View style={styles.lottieWrapper}>
+          <LottieView source={image} autoPlay={true} loop={false} />
+        </View>
+        <TextTemplate type="h1">{header}</TextTemplate>
+        <View style={styles.streaksWrapper}>
+          {streakMax === streakCompleted && !streakAwardId ? (
+            <StreakCompletion reward={reward} timeRemaining={timeRemaining} />
+          ) : (
+            <StreakStart heading={subHeader} streakMax={streakMax} streakCompleted={streakCompleted} />
+          )}
+        </View>
+        <View style={styles.buttonWrapper}>
+          <Button
+            isLoading={isLoading}
+            wrapperStyle={styles.buttonPrimaryWrapper}
+            type="Primary"
+            onPress={onSubmit}
+            label={primaryButtonLabel}
+          />
+          {!onPressCtaSecondary ? null : (
+            <Button
+              wrapperStyle={styles.buttonSecondaryWrapper}
+              type="Link"
+              onPress={onPressCtaSecondary}
+              label="Later"
+            />
+          )}
+        </View>
+      </View>
+      <GenericHeadingAbsolute onRightIconPress={onClose} />
+    </>
+  );
+};
+
+const buildArrayInfo = (
+  streakMax: number,
+  heading: string | string[],
+  subHeading: string | string[],
+  reward: string
+) => {
+  const images = [
+    require("./assets/day-1.json"),
+    require("./assets/day-2.json"),
+    require("./assets/day-3.json"),
+    require("./assets/day-4.json"),
+    require("./assets/day-5.json"),
+  ];
+
+  const info = images.map((image, index) => ({
+    header: typeof heading === "string" ? heading : heading[index],
+    subHeader: typeof subHeading === "string" ? subHeading : subHeading[index].replace("${reward}", reward),
+    image,
+  }));
+
+  if (streakMax === 4) {
+    info.splice(2, 1);
   }
 
-  return <Text style={styles.streakLabel}>{`${index + 1}`}</Text>;
-}
-
-function getImage(streakCompleted: number, streakMax: number): ImageRequireSource {
-  const ratio = streakCompleted / streakMax;
-
-  if (ratio < 0.2) {
-    return assets.from0;
+  if (streakMax === 3) {
+    info.splice(1, 2);
   }
 
-  if (ratio < 0.4) {
-    return assets.from20;
-  }
+  return info;
+};
 
-  if (ratio < 0.6) {
-    return assets.from40;
-  }
-
-  if (ratio < 0.8) {
-    return assets.from60;
-  }
-
-  if (ratio < 1) {
-    return assets.from80;
-  }
-
-  return assets.from100;
-}
-
-export default StreaksSceen;
+export default StreaksScreen;

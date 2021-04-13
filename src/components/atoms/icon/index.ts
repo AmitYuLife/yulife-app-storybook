@@ -9,6 +9,7 @@ import { DocIcon } from "./doc-icon";
 import { SmartHealthIcon } from "./smart-health-icon";
 import { GooglePlayIcon } from "./google-play-icon";
 import { AppStoreIcon } from "./app-store-icon";
+import { StreakTicks } from "./streak-ticks";
 
 //TODO: check with the team if we can refactor this to support "import { Icon1, Icon2} from "@atoms/icon";
 
@@ -24,4 +25,5 @@ export default {
   SmartHealthIcon,
   GooglePlayIcon,
   AppStoreIcon,
+  StreakTicks,
 };
