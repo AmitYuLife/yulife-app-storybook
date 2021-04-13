@@ -7,15 +7,15 @@ export default StyleSheet.create({
   } as ViewStyle,
   imageBackground: {
     ...StyleSheet.absoluteFillObject,
-    height: Style.SCALE_UP_AND_DOWN(150),
-    width: Style.SCALE_UP_AND_DOWN(375),
+    height: Style.adjust(150),
+    width: Style.DEVICE_WIDTH,
   },
   overlayWrapper: {
     marginRight: "auto",
   } as ViewStyle,
   wrapper: {
-    height: Style.SCALE_UP_AND_DOWN(150),
-    width: Style.SCALE_UP_AND_DOWN(375),
+    height: Style.adjust(150),
+    width: Style.DEVICE_WIDTH,
   } as ViewStyle,
   wrapperLoading: {
     alignItems: "center",
