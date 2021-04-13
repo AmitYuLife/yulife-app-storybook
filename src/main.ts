@@ -65,7 +65,7 @@ function setDefaultOptions() {
       orientation: ["portrait"],
     },
     modalPresentationStyle: OptionsModalPresentationStyle.fullScreen,
-    popGesture: false,
+    popGesture: true,
     statusBar: {
       drawBehind: false,
       visible: true,

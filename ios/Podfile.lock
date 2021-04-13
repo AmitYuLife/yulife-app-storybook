@@ -334,8 +334,13 @@ PODS:
     - React-Core (= 0.63.2)
     - React-cxxreact (= 0.63.2)
     - React-jsi (= 0.63.2)
-  - ReactNativeNavigation (6.3.2):
-    - React
+  - ReactNativeNavigation (7.13.0):
+    - React-Core
+    - React-RCTImage
+    - React-RCTText
+    - ReactNativeNavigation/Core (= 7.13.0)
+  - ReactNativeNavigation/Core (7.13.0):
+    - React-Core
     - React-RCTImage
     - React-RCTText
   - RNCAsyncStorage (1.11.0):
@@ -608,7 +613,7 @@ SPEC CHECKSUMS:
   React-RCTText: 1b6773e776e4b33f90468c20fe3b16ca3e224bb8
   React-RCTVibration: 4d2e726957f4087449739b595f107c0d4b6c2d2d
   ReactCommon: a0a1edbebcac5e91338371b72ffc66aa822792ce
-  ReactNativeNavigation: a40889261e04413ea621ef1fa4a76d62bfd33030
+  ReactNativeNavigation: 4c4ca87edc0da4ee818158a62cb6188088454e5c
   RNCAsyncStorage: d059c3ee71738c39834a627476322a5a8cd5bf36
   RNCPushNotificationIOS: 346c804c13fb99e644c996d1af5175a35452b2cb
   RNDateTimePicker: 8eba76de1afd556bc00c874f4d0c0616e30e32f1
@@ -624,6 +629,6 @@ SPEC CHECKSUMS:
   Yoga: 7740b94929bbacbddda59bf115b5317e9a161598
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
-PODFILE CHECKSUM: f9619a5aaf28e97c713b469386d01ff3a39942d5
+PODFILE CHECKSUM: 2b51460cbc2c0509c485e7e9c0b5b1f77b816bb1
 
-COCOAPODS: 1.10.1
+COCOAPODS: 1.10.0
