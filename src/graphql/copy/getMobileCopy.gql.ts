@@ -171,7 +171,7 @@ export const GQL_QUERY_MOBILE_COPY = gql`
           subheadingCollected
           subheadingCompleted
           subheadingTodayStreakDone
-          subheadingInstrucion
+          subheadingInstructions
           headingCompleted
           headingCompletedTodayStreak
           headingStartStreakDay

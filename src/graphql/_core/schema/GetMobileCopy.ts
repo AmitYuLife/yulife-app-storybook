@@ -217,11 +217,11 @@ export interface GetMobileCopy_getMobileCopy_screens_streak {
   ctaLabelTakeChallenge: string | null;
   subheadingCollected: string | null;
   subheadingCompleted: string | null;
-  subheadingTodayStreakDone: string | null;
-  subheadingInstrucion: string | null;
+  subheadingTodayStreakDone: (string | null)[] | null;
+  subheadingInstructions: string | null;
   headingCompleted: string | null;
-  headingCompletedTodayStreak: string | null;
-  headingStartStreakDay: string | null;
+  headingCompletedTodayStreak: (string | null)[] | null;
+  headingStartStreakDay: (string | null)[] | null;
 }
 
 export interface GetMobileCopy_getMobileCopy_screens_pushNotification_toSettings {

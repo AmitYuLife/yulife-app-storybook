@@ -17,7 +17,7 @@ storiesOf("StreaksScreen", module)
       onSubmit={voidFunc}
       isLoading={false}
       timeRemaining="20"
-      onPressCtaPrimary={voidFunc}
+      onClose={voidFunc}
       reward=""
       onPressCtaSecondary={voidFunc}
       primaryButtonLabel="Primary button"
