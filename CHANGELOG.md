@@ -7,6 +7,60 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.5.0] - 2021-04-13
+
+### Features
+
+- Feature TP-736: Update Copy RGA Feedback
+- Feature TP-751: Redesign Apple Health prompt after first permission request
+
+### Bugfixes
+
+- Bugfix ENG-1945: Rewards page scrolling issue
+- Bugfix ENG-1843: Fix daily steps offline screen's infinite loading state
+- Bugfix: Use cache first in yu-screen
+- Bugfix: Add smart health screen on members services
+- Bugfix: Coin confetti position on signup reward screen
+- Bugfix: Challenge-success test
+- Bugfix: Add background image on success challenge ocean screen
+- Bugfix ENG-1918: Duels response
+- Bugfix ENG-1920: log out saga firing queries
+- Bugfix: Update confetti yucoin image
+- Bugfix TP-701: Consolidate Button position across all the screens (bottom)
+- Bugfix ENG-1813 Push notification icons
+
+### Tasks
+
+- Task TP-754: Streaks Improvements
+- Task TP-780: Update fitness and auth version
+- Task TP-744: Update Member Services (Smart Health) page
+- Task: Add sonarqube
+- Task TP-761: Challenge screen top navigation cleanup
+- Task TP-762: Build new tab component
+- Task TP-760: Update YuCoin assets where still old in app
+- Task TP-704: Translate SvgXml to Svg component
+
+### Chores
+
+- Chore: upgrade RNN
+- (origin/chore/syncing-steps-copy-2) Hotfix: tweak step sync copy to avoid confusion
+
+### Extra
+
+- Hotfix: use for loop instead of while
+- copy fix
+- Detox: Signup/login copy update
+- Handle press when keyboard active
+- Update connect screens & signup bonus
+- Pass product id to ProductDetailsContainer
+- Beneficaries sync with API
+- Detox: quick payout calc fix
+- Set allocated amount limit, fix error margin
+- Fix package type appearing on non active products
+- Remove cover type for unpurchased
+- Copy fix
+- Add key to the parent view
+
 ## [3.4.0] - 2021-03-22
 
 ### Features
