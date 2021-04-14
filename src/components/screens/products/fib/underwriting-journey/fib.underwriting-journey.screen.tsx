@@ -37,6 +37,7 @@ export interface IFibUnderwritingJourneyScreenProps {
   data: UnderwritingJourneyScreen;
   onFirstButtonPressed: () => void;
   onSecondButtonPressed?: () => void;
+  onLinkButtonPressed?: () => void;
   onPreviousButtonPressed?: () => void;
   disableFirstButton?: boolean;
   inputFirstName?: string;
@@ -58,6 +59,7 @@ const _FibUnderwritingJourneyScreen = memo(function (props: IFibUnderwritingJour
     onFirstButtonPressed,
     onSecondButtonPressed,
     onPreviousButtonPressed,
+    onLinkButtonPressed,
     disableFirstButton,
     inputFirstName,
     inputLastName,
@@ -122,6 +124,7 @@ const _FibUnderwritingJourneyScreen = memo(function (props: IFibUnderwritingJour
     ? null
     : { action: onSecondButtonPressed, label: data.secondButton.label, disabled: disableSecondButton };
 
+  const linkButton = !onLinkButtonPressed ? null : { action: onLinkButtonPressed, label: data.linkButton.label };
   const CustomComponent = getCustomComponent(data.id);
 
   if (CustomComponent) {
@@ -163,7 +166,7 @@ const _FibUnderwritingJourneyScreen = memo(function (props: IFibUnderwritingJour
         })}
         <View style={{ height: Footer.HEIGHT }} />
       </ScrollView>
-      <Footer firstButton={firstButton} secondButton={secondButton} />
+      <Footer firstButton={firstButton} secondButton={secondButton} linkButton={linkButton} />
     </FibUnderwritingJourneyLayout>
   );
 });

@@ -1,12 +1,14 @@
 import React from "react";
 import { StyleSheet, View, TextStyle, ViewStyle } from "react-native";
-import { Text } from "@atoms";
+import { Text, TextTemplate } from "@atoms";
 import { useSelector } from "react-redux";
 import { getFullName } from "@redux/product/product.selectors";
-import { Style, Colours } from "@styles";
+import { Style } from "@styles";
 import FibTitle from "@atoms/fib/title/title";
 
-const COPY = `In order to get you covered, I’ll need to know a bit about you. Your answers will not be seen by your employer.\n\nI’ll send you 200 YuCoin for the approximately 6 minutes it takes to complete my questions! Ready?`;
+const COPY1 = `In order to get you covered, I’ll need to know a bit about you. `;
+const COPY2 = `Your answers will not be seen by your employer.`;
+const COPY3 = `\n\nI’ll send you 200 YuCoin for the approximately 6 minutes it takes to complete my questions! Ready?`;
 
 export const CopyIntro = () => {
   const fullName = useSelector(getFullName);
@@ -17,7 +19,11 @@ export const CopyIntro = () => {
         {`Let's get personal, ${fullName}.`}
       </Text>
       <View style={styles.paragraphWrapper}>
-        <Text style={styles.paragraph}>{COPY}</Text>
+        <Text>
+          <TextTemplate type="b2">{COPY1}</TextTemplate>
+          <TextTemplate type="b2b">{COPY2}</TextTemplate>
+          <TextTemplate type="b2">{COPY3}</TextTemplate>
+        </Text>
       </View>
     </View>
   );
@@ -30,11 +36,5 @@ const styles = StyleSheet.create({
   } as ViewStyle,
   paragraphWrapper: {
     marginTop: Style.adjust(24),
-  } as TextStyle,
-  paragraph: {
-    fontSize: Style.adjust(16),
-    lineHeight: Style.adjust(24),
-    letterSpacing: 0.6,
-    color: Colours.neutral.n700,
   } as TextStyle,
 });

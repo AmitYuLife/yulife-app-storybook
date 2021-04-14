@@ -4,21 +4,20 @@ import LinearGradient from "react-native-linear-gradient";
 import { Style } from "@styles";
 import { Button } from "@atoms";
 
+interface FooterButton {
+  action: () => void;
+  label: string;
+  disabled?: boolean;
+}
+
 interface IFooterProps {
-  firstButton: {
-    action: () => void;
-    label: string;
-    disabled?: boolean;
-  };
-  secondButton?: {
-    action: () => void;
-    label: string;
-    disabled?: boolean;
-  };
+  firstButton: FooterButton;
+  secondButton?: FooterButton;
+  linkButton?: FooterButton;
 }
 
 function Footer(props: IFooterProps) {
-  const { firstButton, secondButton } = props;
+  const { firstButton, secondButton, linkButton } = props;
 
   return (
     <Animated.View pointerEvents="auto" style={styles.wrapper}>
@@ -30,7 +29,7 @@ function Footer(props: IFooterProps) {
         end={{ x: 1, y: 0 }}
       />
       <View style={styles.buttonsWrapper}>
-        <View style={styles.innerButtonsWrapper}>
+        <View style={linkButton ? styles.innerButtonsColumn : styles.innerButtonsRow}>
           <Button
             type="Primary"
             size={secondButton ? "Small" : "Large"}
@@ -51,13 +50,23 @@ function Footer(props: IFooterProps) {
               disabled={secondButton.disabled}
             />
           )}
+          {!linkButton ? null : (
+            <Button
+              type="Link"
+              onPress={linkButton.action}
+              label={linkButton.label}
+              delay={300}
+              disableAnimation={true}
+              disabled={linkButton.disabled}
+            />
+          )}
         </View>
       </View>
     </Animated.View>
   );
 }
 
-const HEIGHT = 120;
+const HEIGHT = 180;
 
 export default Object.assign(Footer, {
   HEIGHT,
@@ -79,10 +88,14 @@ const styles = StyleSheet.create({
     marginTop: 10,
     paddingBottom: 32,
   } as ViewStyle,
-  innerButtonsWrapper: {
+  innerButtonsRow: {
     width: "100%",
     justifyContent: "space-around",
     flexDirection: "row",
+  } as ViewStyle,
+  innerButtonsColumn: {
+    width: "100%",
+    justifyContent: "space-around",
   } as ViewStyle,
   gradient: {
     height: "100%",

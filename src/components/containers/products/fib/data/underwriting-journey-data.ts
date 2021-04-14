@@ -59,6 +59,10 @@ export interface UnderwritingJourneyScreen {
     answersIdToInvalidate?: string[];
     actionIdReview?: string;
   };
+  linkButton?: {
+    label: string;
+    actionId: string;
+  };
   previousButton?: {
     actionId: string;
     actionIdReview?: string;
@@ -138,6 +142,8 @@ export const FIB_MEDICAL_FOLLOW_UP_QUESTIONS = [
   FIB_SYMPTOMS_RESOLVED_SCREEN_ID,
   FIB_CONDITION_STABLE_SCREEN_ID,
 ];
+
+export const ACTION_OPEN_PRIVACY_LINK = "ACTION_OPEN_PRIVACY_LINK";
 
 export const MEDICAL_CHIPS_QUESTIONS = [
   FIB_DIGESTIVE_SCREEN_ID,
@@ -230,6 +236,7 @@ export const data: UnderwritingJourneyScreen[] = [
     title: "Intro",
     question: "",
     firstButton: { label: "Continue", actionId: FIB_ENTER_YOUR_NAME },
+    linkButton: { label: "Privacy policy", actionId: ACTION_OPEN_PRIVACY_LINK },
     children: [{ type: "copyIntro" }],
     accumulatedProgress: ACCUMULATED_PROGRESS.FIB_INTRO,
   },

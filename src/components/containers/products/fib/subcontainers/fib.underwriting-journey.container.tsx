@@ -1,4 +1,7 @@
 import React, { memo, useState, useCallback, useEffect } from "react";
+import { Linking, Platform } from "react-native";
+import Config from "react-native-config";
+import moment from "moment";
 import { FibLocalNavigation, FIB_UNDERWRITING_REVIEW_ANSWERS, FIB_INTRO_YUGI } from "../fib.types";
 import { FibUnderwritingJourneyScreen } from "../../../../screens/products/fib/underwriting-journey/fib.underwriting-journey.screen";
 import {
@@ -21,6 +24,7 @@ import {
   FIB_FINANCIAL_QUESTIONS_SCREEN_ID,
   FIB_FINANCIAL_OTHER_COVER_SCREEN_ID,
   FIB_YOUR_DATE_OF_BIRTH_SCREEN_ID,
+  ACTION_OPEN_PRIVACY_LINK,
 } from "../data/underwriting-journey-data";
 import { FIBProgressBar } from "@organisms";
 import { IReduxState } from "@redux/_core/reducers";
@@ -48,8 +52,9 @@ import { useQuery } from "@apollo/react-hooks";
 import { GetYulifer } from "../../../../../graphql/_core/schema/GetYulifer";
 import { GQL_QUERY_GET_YULIFER } from "../../../../../graphql/yuscreen/getYulifer.gql";
 import { CoverType } from "@graphql/_core/schema/globalTypes";
-import moment from "moment";
 import { getTerm, calculateSumAssured } from "../fib.helpers";
+import { handleOpenWebView } from "@navigation/utils";
+import Logger from "@services/logging/logger";
 
 type ConnectedProps = ReturnType<typeof mapStateToProps>;
 type ConnecteDispatch = typeof mapDispatchToProps;
@@ -305,7 +310,25 @@ const _FibUnderwritingJourneyContainer = memo(function (props: Props) {
     setCurrentQuestion(question);
   };
 
+  const handlePressLinkButton = async () => {
+    if (currentQuestion.linkButton.actionId === ACTION_OPEN_PRIVACY_LINK) {
+      try {
+        if (Platform.OS === "ios") {
+          handleOpenWebView({ uri: Config.PRIVACY_POLICY_URL, title: "Privacy Policy" });
+        } else {
+          await Linking.openURL(Config.PRIVACY_POLICY_URL);
+        }
+      } catch (error) {
+        Logger.error(error, { file: "fib.underwriting-journey.container", platform: Platform.OS });
+      }
+    }
+
+    // no default action for linkButton
+  };
+
   const onSecondButtonPressed = !currentQuestion.secondButton ? null : handleSetCurrentQuestion;
+
+  const onLinkButtonPressed = !currentQuestion.linkButton ? null : handlePressLinkButton;
 
   const handleSetPreviousQuestion = () => {
     if (redirectedFromReviewScreen && initialQuestionIdFromReviewScreen === currentQuestion.id) {
@@ -329,6 +352,7 @@ const _FibUnderwritingJourneyContainer = memo(function (props: Props) {
       medicalHistory,
       answers: fibAnswers,
     });
+
     if (!redirectedFromReviewScreen) {
       dispatch(updateFIBValue({ key: "lastQuestionId", value: question.id }));
     }
@@ -386,6 +410,7 @@ const _FibUnderwritingJourneyContainer = memo(function (props: Props) {
         data={currentQuestion}
         onFirstButtonPressed={onFirstButtonPressed}
         onSecondButtonPressed={onSecondButtonPressed}
+        onLinkButtonPressed={onLinkButtonPressed}
         onPreviousButtonPressed={onPreviousButtonPressed}
         progressBarHideType={isFirstQuestion || redirectedFromReviewScreen ? "invisible" : null}
         disableFirstButton={disableFirstButton}
