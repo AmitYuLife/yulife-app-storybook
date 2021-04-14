@@ -10,6 +10,8 @@ target 'YuLife' do
 
   pod 'tipsi-stripe', :path => '../node_modules/tipsi-stripe'
 
+  pod 'react-native-in-app-review', :path => '../node_modules/react-native-in-app-review'
+
   target 'YuLifeTests' do
     inherit! :complete
     # Pods for testing

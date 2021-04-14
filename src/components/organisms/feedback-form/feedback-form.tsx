@@ -3,11 +3,11 @@ import { Loading } from "@atoms";
 import { FeedbackFormQuestionType, AnswerInput } from "@graphql/_core/schema/globalTypes";
 import NumberSliderQuestion from "./questions/number-slider";
 import CommentQuestion from "./questions/comment";
-import { PendingFeedbackForm } from "@graphql/_core/schema";
+import { PendingPromptsForm } from "@graphql/_core/schema";
 import useFormState from "./form-state.hook";
 
 interface Props {
-  form: PendingFeedbackForm["pendingFeedbackForm"];
+  form: PendingPromptsForm["pendingFeedbackForm"];
   submitForm: (answers: AnswerInput[]) => void;
   loading: boolean;
 }

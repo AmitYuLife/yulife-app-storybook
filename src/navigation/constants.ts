@@ -87,6 +87,7 @@ export const MODALS = {
   mobileUpdate: "yulife.member.MobileUpdate",
   addBeneficiary: "yulife.modals.AddBeneficiary",
   defaultBeneficiaries: "yulife.modals.DefaultBeneficiaries",
+  appReview: "yulife.modals.AppReview",
 };
 
 export const bottomTabs: OptionsBottomTabs = {

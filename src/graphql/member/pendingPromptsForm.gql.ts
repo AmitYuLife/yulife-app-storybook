@@ -1,9 +1,17 @@
 import gql from "graphql-tag";
 import client from "../_core/client";
-import { PendingFeedbackForm } from "../_core/schema";
+import { PendingPromptsForm } from "../_core/schema";
 
-export const GQL_PENDING_FEEDBACK_FORM = gql`
-  query PendingFeedbackForm {
+export const GQL_PENDING_PROMPTS_FORM = gql`
+  query PendingPromptsForm {
+    pendingAppStoreReview {
+      __typename
+      id
+      title
+      body
+      showAfterEvent
+      showAfterSeconds
+    }
     pendingFeedbackForm {
       __typename
       id
@@ -40,7 +48,7 @@ export const GQL_PENDING_FEEDBACK_FORM = gql`
 `;
 
 export const pendingFeedbackFormQuery = () =>
-  client().query<PendingFeedbackForm>({
-    query: GQL_PENDING_FEEDBACK_FORM,
+  client().query<PendingPromptsForm>({
+    query: GQL_PENDING_PROMPTS_FORM,
     fetchPolicy: "network-only",
   });

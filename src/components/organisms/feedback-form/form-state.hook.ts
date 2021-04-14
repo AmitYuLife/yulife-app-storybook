@@ -1,10 +1,10 @@
 import { useState, useEffect, useCallback } from "react";
-import { PendingFeedbackForm } from "@graphql/_core/schema";
+import { PendingPromptsForm } from "@graphql/_core/schema";
 import { AnswerInput, FeedbackFormQuestionType } from "@graphql/_core/schema/globalTypes";
 import { useBackHandler } from "@services/hooks/useBackHandler";
 
 export default function useFormState(
-  form: PendingFeedbackForm["pendingFeedbackForm"],
+  form: PendingPromptsForm["pendingFeedbackForm"],
   submitForm: (answers: AnswerInput[]) => void,
   supportedQuestionTypes: FeedbackFormQuestionType[]
 ) {
@@ -94,7 +94,7 @@ export default function useFormState(
  * Helpers & types
  */
 
-type Question = PendingFeedbackForm["pendingFeedbackForm"]["questions"][0];
+type Question = PendingPromptsForm["pendingFeedbackForm"]["questions"][0];
 
 const getNextQuestion = (
   currentQuestion: Question,

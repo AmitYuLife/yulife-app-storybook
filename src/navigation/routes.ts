@@ -220,6 +220,10 @@ export default [
     component: require("../components/modals/feedback/feedback.modal").default,
   },
   {
+    name: MODALS.appReview,
+    component: require("../components/modals/app-review/app-review.modal").default,
+  },
+  {
     name: MODALS.generic,
     component: require("../components/modals/generic-modal/generic-modal").default,
   },

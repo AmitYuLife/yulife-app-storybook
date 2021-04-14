@@ -3,7 +3,7 @@ import { View } from "react-native";
 import { storiesOf } from "@storybook/react-native";
 import { Alert } from "react-native";
 import { withKnobs } from "@storybook/addon-knobs";
-import { PendingFeedbackForm } from "@graphql/_core/schema";
+import { PendingPromptsForm } from "@graphql/_core/schema";
 import FeedbackForm from "./feedback-form";
 
 storiesOf("Feedback Form", module)
@@ -119,4 +119,4 @@ const EXAMPLE_FORM = {
       nextConditions: [],
     },
   ],
-} as PendingFeedbackForm["pendingFeedbackForm"];
+} as PendingPromptsForm["pendingFeedbackForm"];

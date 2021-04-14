@@ -4,7 +4,7 @@ import copySagas from "../copy/sagas";
 import dailyMeditationSagas from "../daily-meditation/sagas";
 import dailyStepsSagas from "../daily-steps/sagas";
 import deviceSagas from "../device/sagas";
-import feedbackSagas from "../feedback/sagas";
+import feedbackSagas from "../prompts/sagas";
 import levelsSagas from "../levels/sagas";
 import loggingSagas from "../logging/logging.sagas";
 import notificationsSagas from "../notifications/sagas";
