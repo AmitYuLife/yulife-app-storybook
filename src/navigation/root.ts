@@ -247,6 +247,15 @@ export async function setUnauthenticatedRoot(passProps: any = {}) {
   });
 }
 
+export async function showAppReviewModal() {
+  Navigation.showModal({
+    component: {
+      id: MODALS.appReview,
+      name: MODALS.appReview,
+    },
+  });
+}
+
 export async function showUpdateAppModal(heading: string, subheading: string) {
   Navigation.showModal({
     component: {

@@ -7,6 +7,11 @@
 // START Enums and Input Objects
 //==============================================================
 
+export enum AppStoreReviewPromptAction {
+  DISMISSED = "DISMISSED",
+  REVIEWED = "REVIEWED",
+}
+
 export enum AvatarBodyType {
   female = "female",
   male = "male",
