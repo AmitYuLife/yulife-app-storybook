@@ -36,7 +36,6 @@ export const FIB_FAQ = "FibFaq";
 export const FIB_CUSTOM_PERCENTAGE = "FibCustomPercentage";
 export const FIB_FEEDBACK_FORM = "FibFeedbackForm";
 export const FIB_UNDERWRITING_JOURNEY = "FibUnderwritingJourney";
-export const FIB_UNDERWRITING_JOURNEY_INTRODUCTION = "FibUnderwritingJourneyIntroduction";
 export const FIB_UNDERWRITING_REVIEW_ANSWERS = "FibUnderwritingReviewAnswers";
 export const FIB_CONFIRM_PACKAGES = "FibConfirmPackages";
 export const FIB_CONTACT_DETAILS = "FibContactDetails";
