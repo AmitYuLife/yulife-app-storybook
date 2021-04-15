@@ -5,15 +5,12 @@ const IMAGE_SIZE = Style.isShortToMedium() ? 220 : 320;
 
 export default StyleSheet.create({
   buttonWrapper: {
-    height: Style.adjust(176),
+    flex: 1,
+    marginBottom: Style.adjust(30),
     justifyContent: "flex-end",
-  },
+  } as ViewStyle,
   buttonPrimaryWrapper: {
     marginTop: Style.adjust(32),
-  } as ViewStyle,
-  buttonPrimaryWrapperWithMargin: {
-    marginTop: Style.adjust(32),
-    marginBottom: Style.adjust(24),
   } as ViewStyle,
   buttonSecondaryWrapper: {
     marginTop: Style.adjust(16),
@@ -47,6 +44,6 @@ export default StyleSheet.create({
   lottieWrapper: {
     width: Style.adjust(IMAGE_SIZE),
     height: Style.adjust(IMAGE_SIZE),
-    marginBottom: Style.adjust(Style.isShortToMedium() ? 0 : 32),
+    marginBottom: Style.adjust(Style.isShortToMedium() ? Style.adjust(15) : Style.adjust(32)),
   },
 });

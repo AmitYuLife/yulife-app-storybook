@@ -48,7 +48,7 @@ const StreaksScreen = ({
         <View style={styles.lottieWrapper}>
           <LottieView source={streakInfo?.image} autoPlay={true} loop={false} />
         </View>
-        <TextTemplate type="h1" textAlign="center">
+        <TextTemplate type={Style.isShortToMedium() ? "h2" : "h1"} textAlign="center">
           {streakInfo?.header}
         </TextTemplate>
         <View style={styles.streaksWrapper}>
@@ -58,10 +58,10 @@ const StreaksScreen = ({
             <StreakStart heading={streakInfo?.subHeader} streakMax={streakMax} streakCompleted={streakCompleted} />
           )}
         </View>
-        <View style={[styles.buttonWrapper, { height: getButtonWrapperHeight(isStreakCompleted) }]}>
+        <View style={styles.buttonWrapper}>
           <Button
             isLoading={isLoading}
-            wrapperStyle={!onPressCtaSecondary ? styles.buttonPrimaryWrapperWithMargin : styles.buttonPrimaryWrapper}
+            wrapperStyle={styles.buttonPrimaryWrapper}
             type="Primary"
             onPress={onSubmit}
             label={primaryButtonLabel}
@@ -116,14 +116,6 @@ const getStreakInfo = (
   }
 
   return info[currentStreakCompleted];
-};
-
-const getButtonWrapperHeight = (isStreakCompleted: boolean) => {
-  if (isStreakCompleted && Style.isShortToMediumAndroid()) {
-    return Style.adjust(100);
-  }
-
-  return Style.adjust(176);
 };
 
 export default StreaksScreen;
