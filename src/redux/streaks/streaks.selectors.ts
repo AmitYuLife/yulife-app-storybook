@@ -10,6 +10,7 @@ export interface IStreaks {
   maxStreak: number;
   nextStreakAvailableAt: string;
   reward: string;
+  type: string;
 }
 
 type State = IReduxState["streaks"];
@@ -25,6 +26,7 @@ const streaksSelector = (state: State) => ({
   isDoneToday: moment().add(1, "day").startOf("day").format("YYYY-MM-DDTHH:mm:ss") <= state.nextStreakAvailableAt,
   maxStreak: state.maxStreak,
   nextStreakAvailableAt: state.nextStreakAvailableAt,
-  reward: `${state.value}`,
+  reward: state.value,
+  type: state.type,
 });
 export const getStreaks = createSelector(reducer, streaksSelector);

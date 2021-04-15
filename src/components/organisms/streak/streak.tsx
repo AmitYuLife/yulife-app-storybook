@@ -64,7 +64,7 @@ const redux = connect(mapStateToProps);
 export const Streak = redux(_Streak);
 
 function createHandlePress(streak: ConnectedProps["streak"]) {
-  const { currentStreak, isDoneToday, maxStreak, reward, nextStreakAvailableAt } = streak;
+  const { currentStreak, isDoneToday, maxStreak, reward, nextStreakAvailableAt, type } = streak;
   const modalName = MODALS.streaks;
 
   return () => {
@@ -87,6 +87,7 @@ function createHandlePress(streak: ConnectedProps["streak"]) {
                 Navigation.dismissModal(modalName);
               },
           reward,
+          type,
           streakCompleted: currentStreak,
           streakMax: maxStreak,
           nextStreakAvailableAt,

@@ -40,6 +40,7 @@ export function showModal(streaks: ReturnType<typeof getStreaks>) {
         },
         onPressCtaSecondary: null,
         reward: streaks.reward,
+        type: streaks.type,
         streakCompleted: streaks.currentStreak,
         streakMax: streaks.maxStreak,
         nextStreakAvailableAt: streaks.nextStreakAvailableAt,

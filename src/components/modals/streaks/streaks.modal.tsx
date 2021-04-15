@@ -23,6 +23,7 @@ interface IProps {
   streakCompleted: number;
   streakMax: number;
   nextStreakAvailableAt: string;
+  type: string;
 }
 
 type Props = IProps & ConnectedDispatch & ConnectedState;
@@ -43,13 +44,16 @@ const getLabelCtaPrimary = ({
   reward,
   streakAwardId,
   streakCompleted,
-}: Pick<Props, "isDoneToday" | "streakCompleted" | "streakMax" | "reward" | "streakAwardId">) => {
+  type,
+}: Pick<Props, "isDoneToday" | "streakCompleted" | "streakMax" | "reward" | "streakAwardId" | "type">) => {
   if (getStreakCompleted({ streakAwardId, streakCompleted, streakMax }) === streakMax) {
     if (!streakAwardId) {
       return streakCopy.ctaLabelDone;
     }
 
-    return streakCopy.ctaLabelCollect.replace("${reward}", reward);
+    return streakCopy.ctaLabelCollect
+      .replace("${reward}", reward)
+      .replace("${type}", type === "yucoin" ? "YuCoin" : type);
   }
 
   if (isDoneToday) {
@@ -112,6 +116,7 @@ const StreaksModal: React.FC<Props> = ({
   streakMax,
   nextStreakAvailableAt,
   reward,
+  type,
   getUserStart: dispatchGetUserStart,
 }) => {
   const [isLoading, setLoading] = React.useState(false);
@@ -181,6 +186,7 @@ const StreaksModal: React.FC<Props> = ({
         reward,
         streakAwardId,
         streakCompleted,
+        type,
       })}
       streakAwardId={streakAwardId}
       streakCompleted={getStreakCompleted({ streakAwardId, streakCompleted, streakMax })}

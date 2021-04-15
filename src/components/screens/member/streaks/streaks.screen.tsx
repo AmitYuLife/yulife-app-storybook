@@ -6,6 +6,7 @@ import LottieView from "lottie-react-native";
 import StreakCompletion from "@components/screens/member/streaks/subcomponents/streak-completion";
 import StreakStart from "./subcomponents/streak-start";
 import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
+import { Style } from "@styles";
 
 interface IProps {
   isLoading: boolean;
@@ -37,27 +38,30 @@ const StreaksScreen = ({
   reward,
 }: IProps) => {
   const currentStreakCompleted = onPressCtaSecondary ? streakCompleted : streakCompleted - 1;
-  const { header, subHeader, image } = buildArrayInfo(streakMax, heading, subHeading, reward)[currentStreakCompleted];
+  const isStreakCompleted = streakMax === streakCompleted && !streakAwardId;
 
+  const streakInfo = getStreakInfo(streakMax, heading, subHeading, reward, currentStreakCompleted);
   return (
     <>
       <GenericHeadingPad />
       <View style={styles.wrapper}>
         <View style={styles.lottieWrapper}>
-          <LottieView source={image} autoPlay={true} loop={false} />
+          <LottieView source={streakInfo?.image} autoPlay={true} loop={false} />
         </View>
-        <TextTemplate type="h1">{header}</TextTemplate>
+        <TextTemplate type="h1" textAlign="center">
+          {streakInfo?.header}
+        </TextTemplate>
         <View style={styles.streaksWrapper}>
-          {streakMax === streakCompleted && !streakAwardId ? (
+          {isStreakCompleted ? (
             <StreakCompletion reward={reward} timeRemaining={timeRemaining} />
           ) : (
-            <StreakStart heading={subHeader} streakMax={streakMax} streakCompleted={streakCompleted} />
+            <StreakStart heading={streakInfo?.subHeader} streakMax={streakMax} streakCompleted={streakCompleted} />
           )}
         </View>
-        <View style={styles.buttonWrapper}>
+        <View style={[styles.buttonWrapper, { height: getButtonWrapperHeight(isStreakCompleted) }]}>
           <Button
             isLoading={isLoading}
-            wrapperStyle={styles.buttonPrimaryWrapper}
+            wrapperStyle={!onPressCtaSecondary ? styles.buttonPrimaryWrapperWithMargin : styles.buttonPrimaryWrapper}
             type="Primary"
             onPress={onSubmit}
             label={primaryButtonLabel}
@@ -77,11 +81,12 @@ const StreaksScreen = ({
   );
 };
 
-const buildArrayInfo = (
+const getStreakInfo = (
   streakMax: number,
   heading: string | string[],
   subHeading: string | string[],
-  reward: string
+  reward: string,
+  currentStreakCompleted: number
 ) => {
   const images = [
     require("./assets/day-1.json"),
@@ -105,7 +110,20 @@ const buildArrayInfo = (
     info.splice(1, 2);
   }
 
-  return info;
+  //This a fallback in case the user is on 5/5 streaks and some how nextStreakAvailableAt is empty
+  if (!info[currentStreakCompleted]?.header) {
+    return info[info.length - 1];
+  }
+
+  return info[currentStreakCompleted];
+};
+
+const getButtonWrapperHeight = (isStreakCompleted: boolean) => {
+  if (isStreakCompleted && Style.isShortToMediumAndroid()) {
+    return Style.adjust(100);
+  }
+
+  return Style.adjust(176);
 };
 
 export default StreaksScreen;
