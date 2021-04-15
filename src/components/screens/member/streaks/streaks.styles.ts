@@ -1,7 +1,7 @@
 import { StyleSheet, TextStyle, ViewStyle } from "react-native";
 import { Style } from "@styles";
 
-const IMAGE_SIZE = Style.isShortToMediumAndroid() ? 220 : 320;
+const IMAGE_SIZE = Style.isShortToMedium() ? 220 : 320;
 
 export default StyleSheet.create({
   buttonWrapper: {
@@ -10,6 +10,10 @@ export default StyleSheet.create({
   },
   buttonPrimaryWrapper: {
     marginTop: Style.adjust(32),
+  } as ViewStyle,
+  buttonPrimaryWrapperWithMargin: {
+    marginTop: Style.adjust(32),
+    marginBottom: Style.adjust(24),
   } as ViewStyle,
   buttonSecondaryWrapper: {
     marginTop: Style.adjust(16),
@@ -38,11 +42,11 @@ export default StyleSheet.create({
     alignItems: "center",
     backgroundColor: "rgba(255,255,255,0.9)",
     flex: 1,
-    paddingHorizontal: 24,
+    paddingHorizontal: Style.adjust(24),
   } as ViewStyle,
   lottieWrapper: {
     width: Style.adjust(IMAGE_SIZE),
     height: Style.adjust(IMAGE_SIZE),
-    marginBottom: Style.adjust(Style.isShortToMediumAndroid() ? 0 : 32),
+    marginBottom: Style.adjust(Style.isShortToMedium() ? 0 : 32),
   },
 });

@@ -13,7 +13,7 @@ export interface IStreakCopy {
 
 export const streakCopy = {
   ctaLabelDone: "Done",
-  ctaLabelCollect: "Collect ${reward}",
+  ctaLabelCollect: "Collect ${reward} ${type}",
   ctaLabelTakeChallenge: "Take a challenge",
   subheadingCollected: "Well done! The reward has been collected.",
   subheadingCompleted: "You did it!",
@@ -24,7 +24,7 @@ export const streakCopy = {
     "You’re just one day away from ${reward} YuCoin.",
     "${reward} YuCoin.",
   ],
-  subheadingInstructions: "Complete challenges ${streakMax} days in a row to earn a bonus ${reward} YuCoin",
+  subheadingInstructions: "Complete challenges ${streakMax} more days in a row to earn a bonus ${reward} YuCoin",
   subheadingInstructionsToday: "Complete a challenge today to earn a bonus ${reward} YuCoin",
   headingCompleted: "You smashed that Streak!",
   headingCompletedTodayStreak: [

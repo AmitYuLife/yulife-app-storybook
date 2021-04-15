@@ -35,6 +35,10 @@ const isXShortAndroid = () => {
   return Platform.OS === "android" && y < 600;
 };
 
+const isShortToMedium = () => {
+  return y < 700;
+};
+
 const isShortToMediumAndroid = () => {
   return Platform.OS === "android" && y < 700;
 };
@@ -157,6 +161,7 @@ const Style = {
   isAnyIphoneX,
   isIphoneX,
   isIphoneXPlus,
+  isShortToMedium,
   isShortAndWideAndroid,
   isShortAndroid,
   isShortToMediumAndroid,
