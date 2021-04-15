@@ -84,9 +84,21 @@ const getSubHeading = ({
 
   const streakNumber = streakMax - streakCompleted;
 
-  return streakCopy[streakNumber === 1 ? "subheadingInstructionsToday" : "subheadingInstructions"]
+  return getSubHeadingInstructions(streakCompleted, streakNumber)
     .replace("${streakMax}", streakNumber.toString())
     .replace("${reward}", reward);
+};
+
+const getSubHeadingInstructions = (streakCompleted: number, streakNumber: number) => {
+  if (streakCompleted === 0) {
+    return streakCopy.subheadingInstructionsFirstDay;
+  }
+
+  if (streakNumber === 1) {
+    return streakCopy.subheadingInstructionsToday;
+  }
+
+  return streakCopy.subheadingInstructions;
 };
 
 const getHeading = ({

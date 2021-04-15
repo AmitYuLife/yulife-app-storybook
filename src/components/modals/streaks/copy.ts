@@ -26,6 +26,7 @@ export const streakCopy = {
   ],
   subheadingInstructions: "Complete challenges ${streakMax} more days in a row to earn a bonus ${reward} YuCoin",
   subheadingInstructionsToday: "Complete a challenge today to earn a bonus ${reward} YuCoin",
+  subheadingInstructionsFirstDay: "Complete challenges ${streakMax} days in a row to earn a bonus ${reward} YuCoin",
   headingCompleted: "You smashed that Streak!",
   headingCompletedTodayStreak: [
     "First day done!",
