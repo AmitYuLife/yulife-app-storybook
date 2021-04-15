@@ -42,6 +42,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   } as ViewStyle,
   streakTicks: {
-    marginRight: Style.adjust(14),
+    marginHorizontal: Style.adjust(7),
   },
 });
