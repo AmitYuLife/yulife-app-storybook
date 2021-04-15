@@ -8,7 +8,7 @@ import FibTitle from "@atoms/fib/title/title";
 
 const COPY1 = `In order to get you covered, I’ll need to know a bit about you. `;
 const COPY2 = `Your answers will not be seen by your employer.`;
-const COPY3 = `\n\nI’ll send you 200 YuCoin for the approximately 6 minutes it takes to complete my questions! Ready?`;
+const COPY3 = `\n\nI’ll send you 200 YuCoin for the approximately 5 minutes it takes to complete my questions! Ready?`;
 
 export const CopyIntro = () => {
   const fullName = useSelector(getFullName);
