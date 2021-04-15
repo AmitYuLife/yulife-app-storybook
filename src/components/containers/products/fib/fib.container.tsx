@@ -9,7 +9,6 @@ import {
   FIB_CUSTOM_PERCENTAGE,
   FIB_FEEDBACK_FORM,
   FIB_UNDERWRITING_JOURNEY,
-  FIB_UNDERWRITING_JOURNEY_INTRODUCTION,
   FIB_CONFIRM_PACKAGES,
   FIB_UNDERWRITING_REVIEW_ANSWERS,
   FIB_CONTACT_DETAILS,
@@ -29,7 +28,6 @@ import { connect } from "react-redux";
 import FibCustomPercentage from "./subcontainers/fib.custom-percentage.container";
 import FibFeedbackFormContainer from "./subcontainers/fib.feedback-form.container";
 import FibUnderwritingJourneyContainer from "./subcontainers/fib.underwriting-journey.container";
-import FibUnderwritingJourneyIntroductionContainer from "./subcontainers/fib.underwriting-journey-introduction.container";
 import FibUnderwritingReviewAnswersContainer from "./subcontainers/fib.underwriting-review-answers.container";
 import FibConfirmPackagesContainer from "./subcontainers/fib.confirm-packages.container";
 import FibContactDetailsContainer from "./subcontainers/fib.contact-details.container";
@@ -71,8 +69,6 @@ function getComponent(routeProps: RouteProps) {
       return <FibFeedbackFormContainer navigation={navigation} />;
     case FIB_UNDERWRITING_JOURNEY:
       return <FibUnderwritingJourneyContainer navigation={navigation} initialQuestionId={initialQuestionId} />;
-    case FIB_UNDERWRITING_JOURNEY_INTRODUCTION:
-      return <FibUnderwritingJourneyIntroductionContainer navigation={navigation} />;
     case FIB_UNDERWRITING_REVIEW_ANSWERS:
       return <FibUnderwritingReviewAnswersContainer navigation={navigation} />;
     case FIB_CONFIRM_PACKAGES:
