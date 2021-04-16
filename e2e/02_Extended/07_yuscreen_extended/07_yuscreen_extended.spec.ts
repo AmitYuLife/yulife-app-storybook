@@ -107,24 +107,29 @@ Feature("I am able to use the yuscreens extended features", async () => {
                         })
                         When("I tap Continue", when.tapText("Continue"), async()=>{
                             Then("I should on the smoker question", then.onQuestionScreen(FIB_LIFESTYLE_SMOKING_CIGARETTES_SCREEN_ID))
-                            When("I tap never", when.tapText("Never"), async()=>{
+                            When("I tap In the past month", when.tapText("In the past month"), async()=>{
                                 When("I tap continue", when.tapText("Continue"), async()=>{
-                                    Then("I should be on the cigar smoker question", then.onQuestionScreen(FIB_LIFESTYLE_SMOKING_CIGARS_SCREEN_ID))
+                                    Then("I should be on the how many cigarettes question", then.onQuestionScreen(FIB_LIFESTYLE_SMOKING_CIGARETTES_FOLLOW_UP_SCREEN_ID))
                                 })
                             })
-                            When("I tap never", when.tapText("Never"), async () => {
-                                When("I tap continue", when.tapText("Continue"), async () => {
-                                    Then("I should be on the vape smoker question", then.onQuestionScreen(FIB_LIFESTYLE_SMOKING_VAPES_SCREEN_ID))
+                            When("I tap 1-9 per day", when.tapText("1-9 per day"), async()=>{
+                                When("I tap continue", when.tapText("Continue"), async()=>{
+                                    Then("I should be on the cigar smoker question", then.onQuestionScreen(FIB_LIFESTYLE_SMOKING_CIGARS_SCREEN_ID))
                                 })
                             })
                         })
                         When("I tap in the past month", when.tapText("In the past month"), async()=>{
                             When("I tap continue", when.tapText("Continue"), async()=>{
-                                Then("I should be on the drink question", then.onQuestionScreen(FIB_LIFESTYLE_ALCOHOL_SCREEN_ID))
-                                When("I enter my weekly drinks", when.typeViaID(DRINKS_INPUT, "3"), async()=>{
-                                    Then("I should see the number I just entered", then.textVisible("3"))
-                                })
+                                Then("I should be on the e-cig question", then.onQuestionScreen(FIB_LIFESTYLE_SMOKING_VAPES_SCREEN_ID))
                             })
+                        })
+                        When("I tap in the past 6 months", when.tapText("In the past 6 months"), async()=>{
+                            When("I tap continue", when.tapText("Continue"), async()=>{
+                                Then("I should be on the drink question", then.onQuestionScreen(FIB_LIFESTYLE_ALCOHOL_SCREEN_ID))
+                            })
+                        })
+                        When("I enter my weekly drinks", when.typeViaID(DRINKS_INPUT, "3"), async()=>{
+                            Then("I should see the number I just entered", then.textVisible("3"))
                         })
                         When("I tap continue", when.tapText("Continue"), async()=>{
                             Then("I should be on the recreational drugs screen", then.onQuestionScreen(FIB_LIFESTYLE_DRUGS_SCREEN_ID))
@@ -164,8 +169,8 @@ Feature("I am able to use the yuscreens extended features", async () => {
                             Then("I should be on the under writing review screen", then.idVisible(UNDERWRITING_REVIEW_SCREEN))
                             Then("The review answers should be correct", then.customer23ReviewScreenCorrect)
                         })
-                        When("I scroll up to the cigarette question to update it", when.scrollUntilIdVisible(UNDERWRITING_REVIEW_SCREEN, UNDERWRITING_REVIEW_ANSWERS("Smoking cigarettes", "Never"), "up"), async()=>{
-                            When("I tap weight to update it", when.tapID(UNDERWRITING_REVIEW_ANSWERS("Smoking cigarettes", "Never")), async()=>{
+                        When("I scroll up to the cigarette question to update it", when.scrollUntilIdVisible(UNDERWRITING_REVIEW_SCREEN, UNDERWRITING_REVIEW_ANSWERS("Smoking cigarettes", "In the past month"), "up"), async()=>{
+                            When("I tap weight to update it", when.tapID(UNDERWRITING_REVIEW_ANSWERS("Smoking cigarettes", "In the past month")), async()=>{
                                 Then("I should be on the smoking cigarrets screen", then.onQuestionScreen(FIB_LIFESTYLE_SMOKING_CIGARETTES_SCREEN_ID))
                                 When("I tap 6 months", when.tapText("In the past 6 months"), async () => {
                                     When("I press continue", when.tapText("Continue"), async()=>{
