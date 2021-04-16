@@ -45,9 +45,9 @@ export const completeIntro = async () => {
 
 export const dismissStreakIfVisible = async () => {
     try {
-        await expect(element(by.text("take a challenge"))).toBeVisible()
-        await expect(element(by.text("later"))).toBeVisible()
-        await navigateViaText("later")
+        await expect(element(by.text("Start your Streak"))).toBeVisible()
+        await expect(element(by.text("Later"))).toBeVisible()
+        await navigateViaText("Later")
     } catch (e) {
 
     }

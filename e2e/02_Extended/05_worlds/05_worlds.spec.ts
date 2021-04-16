@@ -1,4 +1,4 @@
-import { Feature, Scenario, Given, When, Then } from "@yu-life/yulife-bdd-framework";
+import { Feature, Scenario, Given, When, Then, ScenarioOnly, FeatureOnly } from "@yu-life/yulife-bdd-framework";
 import * as scenario from "./_steps/scenario"
 import * as given from "./_steps/given"
 import * as when from "./_steps/when"
@@ -18,9 +18,9 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
                         When("I tap see result", when.tapText("see result"), async () => {
                             Then("I should be on the challenge complete screen", then.onMeditationChallengeComplete(1, 5))
                             When("I tap collect", when.tapText("collect"), async () => {
-                                Then("I should see the streak completed screen", then.textVisible("Streak completed"))
-                                Then("I should see the number of points I just earned", then.textVisible("collect 2500 yucoin"))
-                                When("I tap the collect 2500 yucoin CTA", when.tapText("collect 2500 yucoin"), async () => {
+                                Then("I should see the streak completed screen", then.completedTodayStreakCopyVisible(5))
+                                Then("I should see the number of points I just earned", then.textVisible("Collect 2500 YuCoin"))
+                                When("I tap the collect 2500 yucoin CTA", when.tapText("Collect 2500 YuCoin"), async () => {
                                     Then("I should be on quests", then.idVisible(QUESTS_SCREEN(0)))
                                     Then("I should see my updated coin amount", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(3170)))
                                     Then("I should on the quests tab", then.idVisible(QUESTS_SCREEN(0)))
@@ -48,8 +48,8 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
                     When("I tap see result", when.tapText("see result"), async () => {
                         Then("I should be on the challenge complete screen", then.onChallengeComplete(450, 90))
                         When("I tap collect", when.tapText("collect"), async () => {
-                            Then("I should see the 'Completed streak day 1' screen", then.textVisible("Completed streak day 1"))
-                            When("I tap done", when.tapText("done"), async () => {
+                            Then("I should see the 'Completed streak day 1' screen", then.completedTodayStreakCopyVisible(1))
+                            When("I tap done", when.tapText("Done"), async () => {
                                 Then("I should be on quests", then.idVisible(QUESTS_SCREEN(1)))
                                 When("I go to the yucoin tab", when.tapID(NAV_BAR("yucoin")), async () => {
                                     Then("I should see my steps and coints from today", then.stepsAndCoinsVisible(450, 20))
@@ -75,8 +75,8 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
                         When("I tap see result", when.tapText("see result"), async () => {
                             Then("I should be on the challenge complete screen", then.onMeditationChallengeComplete(3, 90))
                             When("I tap collect", when.tapText("collect"), async () => {
-                                Then("I should see the 'Completed streak day 1' screen", then.textVisible("Completed streak day 1"))
-                                When("I tap done", when.tapText("done"), async () => {
+                                Then("I should see the 'Completed streak day 1' screen", then.completedTodayStreakCopyVisible(1))
+                                When("I tap done", when.tapText("Done"), async () => {
                                     Then("I should see my updated coin amount", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(17740)))
                                     Then("I should on the quests tab", then.idVisible(QUESTS_SCREEN(1)))
                                     When("I tap a past level", when.tapID(LEVEL_CHALLENGE_BUTTON(90)), async () => {

@@ -7,6 +7,8 @@ export const {
     textVisible,
     textNotVisible,
     multipleTextVisible,
+    completedTodayStreakCopyVisible,
+    headingStartStreakCopyVisible
 } = navigation.common
 
 export const {

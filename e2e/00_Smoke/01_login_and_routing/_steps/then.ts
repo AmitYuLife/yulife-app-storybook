@@ -52,13 +52,13 @@ export const combinationErrorMessagePresent = async (): Promise<void> => {
 };
 
 export const isOnLoginScreen = async (): Promise<void> => {
-    const target = element(by.label("welcome!"));
+    const target = element(by.text("Welcome!"));
     await waitFor(target).toExist();
     await expect(target).toBeVisible();
 };
 
 export const notOnLoginScreen = async (): Promise<void> => {
-    const target = element(by.label("welcome!"));
+    const target = element(by.text("Welcome!"));
     await expect(target).toBeNotVisible();
 };
 

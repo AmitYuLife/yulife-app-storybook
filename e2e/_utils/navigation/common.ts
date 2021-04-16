@@ -224,3 +224,43 @@ export const completeOnboardingIntro = async () => {
     await navigateViaText("Next")
     await navigateViaText("Let's go")
 }
+
+export const completedTodayStreakCopyVisible = (dayNum:number) => async()=>{
+    switch(dayNum){
+        case 1: 
+            await expect(element(by.text("First day done!"))).toBeVisible()
+            break
+        case 2:
+            await expect(element(by.text("Two days down!"))).toBeVisible()
+            break
+        case 3:
+            await expect(element(by.text("You’re over the hump!"))).toBeVisible()
+            break
+        case 4:
+            await expect(element(by.text("Home stretch!"))).toBeVisible()
+            break
+        case 5:
+            await expect(element(by.text("You smashed that Streak!"))).toBeVisible()
+            break
+    }
+}
+
+export const headingStartStreakCopyVisible = (dayNum:number) => async()=>{
+    switch (dayNum) {
+        case 1:
+            await expect(element(by.text("Start your Streak"))).toBeVisible()
+            break
+        case 2:
+            await expect(element(by.text("Off to a good start"))).toBeVisible()
+            break
+        case 3:
+            await expect(element(by.text("Keep it going"))).toBeVisible()
+            break
+        case 4:
+            await expect(element(by.text("Keep it up"))).toBeVisible()
+            break
+        case 5:
+            await expect(element(by.text("Close out your Streak"))).toBeVisible()
+            break
+    }
+}
