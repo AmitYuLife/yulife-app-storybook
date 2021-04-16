@@ -33,7 +33,7 @@ export const completeNewWorldShortStroll = (levelNumber: number) => async () => 
     await navigateViaText("see result")
     await navigateViaText("collect")
     await wait(5000)()
-    await navigateViaText("done")
+    await navigateViaText("Done")
     await navigateViaText("collect")
 }
 

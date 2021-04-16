@@ -112,7 +112,6 @@ export const USER_7 = {
     }
 } as IDatabaseItem
 
-
 export const USER_9 = {
     type: "mongo",
     modelName: "users",

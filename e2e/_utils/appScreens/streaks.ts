@@ -1,11 +1,10 @@
 
-export const onStartStreak = (day = 1) => async () => {
-    const title = `Start streak day ${day}`
-    const subtitle = `Do 5 challenges in a row to earn 2500 yucoin.`
-    const challengeCTA = "take a challenge"
-    const laterCTA = "later"
+export const onStartStreak = async () => {
+    const title = `Start your Streak`
+    const challengeCTA = "Take a challenge"
+    const laterCTA = "Later"
 
-    const texts = [title, subtitle, challengeCTA, laterCTA]
+    const texts = [title, challengeCTA, laterCTA]
 
     for (const i of texts) {
         await expect(element(by.text(i))).toBeVisible()
