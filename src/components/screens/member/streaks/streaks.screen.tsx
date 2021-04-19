@@ -12,6 +12,7 @@ interface IProps {
   isLoading: boolean;
   heading: string | string[];
   subHeading: string | string[];
+  ribbonLabel: string;
   timeRemaining: string;
   streakAwardId: string;
   streakCompleted: number;
@@ -29,6 +30,7 @@ const StreaksScreen = ({
   streakCompleted,
   heading,
   subHeading,
+  ribbonLabel,
   isLoading,
   primaryButtonLabel,
   onSubmit,
@@ -39,6 +41,8 @@ const StreaksScreen = ({
 }: IProps) => {
   const currentStreakCompleted = onPressCtaSecondary ? streakCompleted : streakCompleted - 1;
   const isStreakCompleted = streakMax === streakCompleted && !streakAwardId;
+
+  const isNotValidTime = timeRemaining.startsWith("NaNd");
 
   const streakInfo = getStreakInfo(streakMax, heading, subHeading, reward, currentStreakCompleted);
   return (
@@ -53,7 +57,7 @@ const StreaksScreen = ({
         </TextTemplate>
         <View style={styles.streaksWrapper}>
           {isStreakCompleted ? (
-            <StreakCompletion reward={reward} timeRemaining={timeRemaining} />
+            <StreakCompletion timeRemaining={timeRemaining} isNotValidTime={isNotValidTime} label={ribbonLabel} />
           ) : (
             <StreakStart heading={streakInfo?.subHeader} streakMax={streakMax} streakCompleted={streakCompleted} />
           )}
@@ -66,7 +70,7 @@ const StreaksScreen = ({
             onPress={onSubmit}
             label={primaryButtonLabel}
           />
-          {!onPressCtaSecondary ? null : (
+          {!onPressCtaSecondary || isNotValidTime ? null : (
             <Button
               wrapperStyle={styles.buttonSecondaryWrapper}
               type="Link"

@@ -15,6 +15,7 @@ storiesOf("StreaksScreen", module)
     <StreaksScreen
       heading="streaks"
       onSubmit={voidFunc}
+      ribbonLabel="2000 YuCoin"
       isLoading={false}
       timeRemaining="20"
       onClose={voidFunc}

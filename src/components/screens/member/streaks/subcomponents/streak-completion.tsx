@@ -5,19 +5,24 @@ import { StyleSheet, View } from "react-native";
 
 interface IProps {
   timeRemaining: string;
-  reward: string;
+  label: string;
+  isNotValidTime: boolean;
 }
 
-const StreakCompletion = ({ timeRemaining, reward }: IProps) => {
+const StreakCompletion = ({ timeRemaining, isNotValidTime, label }: IProps) => {
   return (
     <View style={styles.wrapper}>
       <View style={styles.ribbonWrapper}>
-        <RibbonGold text={`${reward} YuCoin`} />
+        <RibbonGold text={label} />
       </View>
-      <TextTemplate type="b2">Begin your next Streak in</TextTemplate>
-      <View style={styles.timeRemainingWrapper}>
-        <TextTemplate type="h2">{timeRemaining}</TextTemplate>
-      </View>
+      {isNotValidTime ? null : (
+        <>
+          <TextTemplate type="b2">Begin your next Streak in</TextTemplate>
+          <View style={styles.timeRemainingWrapper}>
+            <TextTemplate type="h2">{timeRemaining}</TextTemplate>
+          </View>
+        </>
+      )}
     </View>
   );
 };
