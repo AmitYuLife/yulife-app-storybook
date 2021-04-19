@@ -116,8 +116,8 @@ export const queryCycling = async (
 };
 
 export const queryHistoricalData = async (onboardingDate: Moment) => {
-  const start = onboardingDate.clone().subtract(60, "days");
-  const end = onboardingDate.clone().subtract(1, "days");
+  const start = onboardingDate.clone().subtract(60, "days").startOf("day");
+  const end = onboardingDate.clone().subtract(1, "days").endOf("day");
 
   return querySteps(start, end, { disableUserEntries: false });
 };
