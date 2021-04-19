@@ -192,6 +192,7 @@ const StreaksModal: React.FC<Props> = ({
     <StreaksScreen
       heading={getHeading({ isDoneToday, streakMax, streakAwardId, streakCompleted })}
       subHeading={getSubHeading({ isDoneToday, streakMax, reward, streakAwardId, streakCompleted })}
+      ribbonLabel={`${reward} ${type === "yucoin" ? "YuCoin" : "Voucher"}`}
       primaryButtonLabel={getLabelCtaPrimary({
         streakMax,
         isDoneToday,
