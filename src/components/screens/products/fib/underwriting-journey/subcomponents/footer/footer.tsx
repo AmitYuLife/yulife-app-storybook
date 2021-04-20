@@ -2,7 +2,7 @@ import React from "react";
 import { StyleSheet, View, ViewStyle, Animated } from "react-native";
 import LinearGradient from "react-native-linear-gradient";
 import { Style } from "@styles";
-import { Button } from "@atoms";
+import { Button, LinkButton } from "@atoms";
 
 interface FooterButton {
   action: () => void;
@@ -51,12 +51,10 @@ function Footer(props: IFooterProps) {
             />
           )}
           {!linkButton ? null : (
-            <Button
-              type="Link"
+            <LinkButton
               onPress={linkButton.action}
               label={linkButton.label}
               delay={300}
-              disableAnimation={true}
               disabled={linkButton.disabled}
             />
           )}

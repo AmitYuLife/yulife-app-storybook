@@ -9,7 +9,7 @@ import {
   GestureResponderEvent,
 } from "react-native";
 import { usePressedInWithDelay } from "@services/hooks/usePressedInWithDelay";
-import Text from "../text/text";
+import Text from "../../text/text";
 import { Style, Colours } from "@styles";
 import { PressableWithDelay } from "@components/molecules";
 

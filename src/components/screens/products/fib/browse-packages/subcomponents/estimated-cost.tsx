@@ -2,8 +2,8 @@ import React, { memo } from "react";
 import { StyleSheet, View, ViewStyle } from "react-native";
 import { Style } from "@styles";
 import { Header, Heading, DEFAULT_TEXT_PAD_LEFT } from "./common";
-import Button from "@atoms/button/button";
 import Logger from "@services/logging/logger";
+import { LinkButton } from "@atoms";
 
 interface Props {
   heading: string;
@@ -22,7 +22,7 @@ export const EstimatedCost = memo(({ heading, loading, navigateToEditSalary }: P
       <Header title="Estimated cost" />
       <View style={styles.contentWrapper}>
         <Heading title={loading ? "£... per month" : heading} />
-        <Button onPress={handlePress} label="edit salary" type="Link" />
+        <LinkButton onPress={handlePress} label="edit salary" />
       </View>
     </View>
   );

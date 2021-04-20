@@ -1,7 +1,6 @@
 import * as React from "react";
-import { SFC } from "react";
 import { View } from "react-native";
-import { Button } from "../../atoms";
+import { LinkButton } from "../../atoms";
 import styles from "./link-group.styles";
 
 interface ILink {
@@ -13,11 +12,11 @@ interface IProps {
   data: ILink[];
 }
 
-const LinkGroup: SFC<IProps> = ({ data }) => (
+const LinkGroup = ({ data }: IProps) => (
   <View style={styles.wrapper}>
     {data.map(({ label, onPress }, index) => (
       <View key={index} style={styles.buttonWrapper}>
-        <Button wrapperStyle={styles.button} type="Link" label={label} onPress={onPress} />
+        <LinkButton wrapperStyle={styles.button} label={label} onPress={onPress} />
         {data.length === 1 || index + 1 !== data.length ? null : <View style={styles.divider} />}
       </View>
     ))}

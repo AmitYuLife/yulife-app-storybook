@@ -3,6 +3,7 @@ export { default as Blurb } from "./blurb/blurb";
 export { default as BlurProvider, IToggleBlur } from "./blur/blur-provider";
 export { default as BorderedPlus } from "./bordered-plus/bordered-plus";
 export { default as Button } from "./button/button";
+export { LinkButton } from "./button/link-button/link-button";
 export { default as CentredScreen } from "./centred-screen/centred-screen";
 export { default as Close } from "./close/close";
 export { default as CloseSvg } from "./close/close-svg";

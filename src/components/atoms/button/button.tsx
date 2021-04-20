@@ -1,12 +1,12 @@
 import * as React from "react";
-import { StyleSheet, ViewStyle, View, Platform } from "react-native";
-import { Colours, Style } from "@styles";
+import { StyleSheet, ViewStyle, View } from "react-native";
+import { Colours } from "@styles";
 import { usePressedInWithDelay } from "@services/hooks/usePressedInWithDelay";
 import { ButtonBase } from "./button.base";
-import { LinkButtonBase } from "./link-button.base";
-import { BUTTON_TYPES, Types, Sizes, BUTTON_SIZES } from "./button.types";
+import { BUTTON_TYPES, Types, Sizes } from "./button.types";
 import { TertiaryButtonBase } from "./tertiary-button/tertiary-button.base";
 import { BUTTON_ICON } from "./tertiary-button/tertiary-button.helpers";
+import { DEFAULT_HEIGHT, styles, getWidth } from "./button.styles";
 
 interface IProps {
   isLoading?: boolean;
@@ -28,10 +28,7 @@ interface IProps {
   rightIcon?: BUTTON_ICON;
   iconSvgXml?: string;
   height?: number;
-  underline?: boolean;
 }
-
-const DEFAULT_HEIGHT = Style.adjust(53);
 
 function Button(props: IProps) {
   const {
@@ -54,7 +51,6 @@ function Button(props: IProps) {
     rightIcon,
     iconSvgXml,
     height,
-    underline,
   } = props;
 
   const { handlePress } = usePressedInWithDelay({ onPress, delay });
@@ -125,55 +121,7 @@ function Button(props: IProps) {
     );
   }
 
-  return (
-    <View style={StyleSheet.flatten([styles.wrapper, wrapperStyle])}>
-      <LinkButtonBase
-        height={DEFAULT_HEIGHT}
-        disabled={disabled}
-        testID={testID}
-        title={label}
-        onPress={handlePress}
-        color={Colours.darkHotPink}
-        delay={delay}
-        underline={underline}
-      />
-    </View>
-  );
+  return null;
 }
-
-const styles = StyleSheet.create({
-  wrapper: {
-    alignSelf: "center",
-  },
-  fill: {
-    width: "100%",
-  },
-  medium: {
-    width: Style.adjust(210),
-  },
-  small: {
-    width: Platform.select({
-      ios: Style.adjust(170, { shrinkThreshold: Style.DEVICE_WIDTH < 400, shrinkMultiplier: 0.1 }),
-      android: Style.adjust(150),
-    }),
-  },
-  large: {
-    width: Style.DEVICE_WIDTH - 70,
-  },
-});
 
 export default Button;
-
-export function getWidth(size: Sizes) {
-  switch (size) {
-    case BUTTON_SIZES.FILL:
-      return styles.fill;
-    case BUTTON_SIZES.SMALL:
-      return styles.small;
-    case BUTTON_SIZES.MEDIUM:
-      return styles.medium;
-    case BUTTON_SIZES.LARGE:
-    default:
-      return styles.large;
-  }
-}

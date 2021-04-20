@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import { View, StyleSheet } from "react-native";
-import { Button, TextTemplate } from "@atoms";
+import { Button, LinkButton, TextTemplate } from "@atoms";
 import { Style } from "@styles";
 import { AppReviewYugi } from "./app-review-image";
 
@@ -48,7 +48,7 @@ const AppReviewModalScreen: FC<Props> = ({
           )}
         </View>
         <View style={styles.askLaterWrapper}>
-          {showSecondState ? null : <Button type={"Link"} label={"Ask me later"} onPress={onAskLaterPress} />}
+          {showSecondState ? null : <LinkButton label={"Ask me later"} onPress={onAskLaterPress} />}
         </View>
       </View>
     </View>

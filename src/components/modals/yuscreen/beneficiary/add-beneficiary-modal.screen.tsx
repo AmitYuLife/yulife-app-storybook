@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import { ScrollView, View, LayoutChangeEvent, KeyboardAvoidingView, Platform, Keyboard } from "react-native";
-import { Button, Pad, Text } from "@atoms";
+import { Button, LinkButton, Pad, Text } from "@atoms";
 import { StyleSheet, TextStyle, ViewStyle } from "react-native";
 import { Colours, Style } from "@styles";
 import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
@@ -143,12 +143,10 @@ export default function AddBeneficiaryModalScreen({
             ))}
 
             {existingBeneficiary && (
-              <Button
+              <LinkButton
                 wrapperStyle={styles.deleteButtonWrapper}
                 label="Delete Beneficiary"
-                size="Small"
                 onPress={() => setDeleteBeneficiaryPressed(true)}
-                type="Link"
               />
             )}
           </View>
