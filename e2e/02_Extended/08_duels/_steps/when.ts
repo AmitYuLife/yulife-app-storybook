@@ -16,7 +16,8 @@ export const {
     tapID,
     typeViaID,
     replaceTextViaID,
-    completeOnboardingIntro
+    completeOnboardingIntro,
+    reloadOnly
 } = navigation.common
 
 export const {

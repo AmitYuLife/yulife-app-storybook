@@ -52,7 +52,9 @@ Feature("As an enabled user I am able to use the duels feature", async()=>{
                 })
             })
             When("I restart and login as the invited user", when.restartToDuelsRequest(CUSTOMER_19, AUTH_19), async()=>{
-                Then("I should see the vs screen", then.textVisible("Oscar has invited you to a 1-day duel for 25 YuCoin!"))
+                When("I close and reopen the app", when.reloadOnly, async()=>{  
+                    Then("I should see the vs screen", then.textVisible("Oscar has invited you to a 1-day duel for 25 YuCoin!"))
+                })
             })
             When("I accept the duel", when.tapText("Accept"), async()=>{
                 Then("I should see the are you sure iOS modal", then.textVisible("Are you sure?"))
