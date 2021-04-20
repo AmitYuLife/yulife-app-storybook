@@ -18,7 +18,7 @@ import { Documents } from "@components/screens/products/fib/browse-packages/subc
 import { handleOpenWebView } from "@navigation/utils";
 import Logger from "@services/logging/logger";
 import * as docs from "@containers/products/fib/data/documents-data";
-import { CheckBox, Text, Button } from "@atoms";
+import { CheckBox, Text, LinkButton } from "@atoms";
 import { formatMoney } from "@services/money";
 import { CHECKOUT_CHECKBOX, CHECKOUT_SCROLL_VIEW } from "@ids";
 import { CoverType } from "@graphql/_core/schema/globalTypes";
@@ -150,9 +150,8 @@ export const FibCheckoutHubContainer = memo((props: Props) => {
           coverType={coverType}
           onPress={onContinue}
         />
-        <Button
+        <LinkButton
           wrapperStyle={styles.privacyButtonWrapper}
-          type="Link"
           label="Privacy policy"
           onPress={handlePressLink({
             id: docs.privacyPolicy.id,

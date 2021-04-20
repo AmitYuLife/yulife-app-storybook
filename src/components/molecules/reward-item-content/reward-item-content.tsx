@@ -1,7 +1,6 @@
-import { Button, Text, Pad } from "@atoms/index";
+import { Button, Text, Pad, LinkButton } from "@atoms/index";
 import { Instruction, Picker } from "@molecules/index";
 import * as React from "react";
-import { SFC } from "react";
 import { View } from "react-native";
 import LinkGroup from "../link-group/link-group";
 import styles from "./reward-item-content.styles";
@@ -23,7 +22,7 @@ interface IProps {
   onPressPolicy?: () => void;
 }
 
-const RewardItemContent: SFC<IProps> = ({
+const RewardItemContent = ({
   rewardValue,
   description = "",
   instructions = [],
@@ -38,7 +37,7 @@ const RewardItemContent: SFC<IProps> = ({
   onPressPolicy,
   isLoadingPrimary,
   isLoadingSecondary,
-}) => {
+}: IProps) => {
   return (
     <View style={styles.wrapper}>
       {!description ? null : (
@@ -108,7 +107,7 @@ const RewardItemContent: SFC<IProps> = ({
           ]}
         />
       ) : (
-        <Button type="Link" onPress={onPressCtaTertiary} label={labelCtaTertiary} />
+        <LinkButton onPress={onPressCtaTertiary} label={labelCtaTertiary} />
       )}
     </View>
   );

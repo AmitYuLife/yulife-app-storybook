@@ -1,6 +1,6 @@
 import * as React from "react";
 import { View } from "react-native";
-import { Button, TextTemplate } from "@atoms";
+import { Button, LinkButton, TextTemplate } from "@atoms";
 import styles from "./streaks.styles";
 import LottieView from "lottie-react-native";
 import StreakCompletion from "@components/screens/member/streaks/subcomponents/streak-completion";
@@ -71,12 +71,7 @@ const StreaksScreen = ({
             label={primaryButtonLabel}
           />
           {!onPressCtaSecondary || isNotValidTime ? null : (
-            <Button
-              wrapperStyle={styles.buttonSecondaryWrapper}
-              type="Link"
-              onPress={onPressCtaSecondary}
-              label="Later"
-            />
+            <LinkButton wrapperStyle={styles.buttonSecondaryWrapper} onPress={onPressCtaSecondary} label="Later" />
           )}
         </View>
       </View>

@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet, View, ViewStyle } from "react-native";
-import { Button } from "@atoms";
+import { Button, LinkButton } from "@atoms";
 import { Style } from "@styles";
 import LinearGradient from "react-native-linear-gradient";
 import { GP_CONTINUE } from "@ids";
@@ -60,9 +60,8 @@ const _CTA = ({
         isLoading={isButtonLoading}
         testID={GP_CONTINUE}
       />
-      <Button
+      <LinkButton
         show={hasSecondButton}
-        type="Link"
         label={secondButtonLabel}
         onPress={secondButtonAction}
         wrapperStyle={StyleSheet.flatten([

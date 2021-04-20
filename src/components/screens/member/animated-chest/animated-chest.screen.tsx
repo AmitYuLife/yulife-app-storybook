@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Animated, Image, StyleSheet, View, ViewStyle } from "react-native";
-import { Button, ChestCoin, Text } from "../../../atoms";
+import { Button, ChestCoin, LinkButton, Text } from "../../../atoms";
 import styles from "./animated-chest.styles";
 import assets from "./assets";
 import { DETOX_ENABLED } from "@services/socket";
@@ -92,7 +92,7 @@ export default class AnimatedChestScreen extends React.PureComponent<IProps> {
         </Text>
         <Button type="Primary" size="Medium" label={ctaLabel} onPress={onPressCta} />
         {onPressCtaSecondary && (
-          <Button wrapperStyle={styles.secondaryCtaWrapper} type="Link" onPress={onPressCtaSecondary} label="later" />
+          <LinkButton wrapperStyle={styles.secondaryCtaWrapper} onPress={onPressCtaSecondary} label="later" />
         )}
       </View>
     );

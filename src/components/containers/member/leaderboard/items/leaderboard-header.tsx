@@ -1,6 +1,6 @@
 import React, { memo } from "react";
 import { View, ViewStyle } from "react-native";
-import { Text, Button } from "@atoms";
+import { Text, LinkButton } from "@atoms";
 
 export interface ILeaderboardHeaderProps {
   onBack: () => void;
@@ -15,7 +15,7 @@ const _LeaderboardHeader = (props: ILeaderboardHeaderProps) => {
         <Text>...</Text>
       </View>
       <View style={styles.backWrapper}>
-        <Button label="Back to top" onPress={onBack} type="Link" />
+        <LinkButton label="Back to top" onPress={onBack} />
       </View>
     </View>
   );

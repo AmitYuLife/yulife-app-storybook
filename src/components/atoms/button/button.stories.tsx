@@ -4,6 +4,7 @@ import { storiesOf } from "@storybook/react-native";
 import { withKnobs } from "@storybook/addon-knobs";
 import Button from "./button";
 import { withProvider } from "../../storybook/withProvider";
+import { LinkButton } from "./link-button/link-button";
 
 const voidFunc: () => void = () => null;
 
@@ -36,8 +37,8 @@ storiesOf("Button", module)
   .add("Link", () => {
     return (
       <View>
-        <Button type="Link" onPress={voidFunc} label="Link" />
-        <Button disabled={true} type="Link" onPress={voidFunc} label="Disabled" />
+        <LinkButton onPress={voidFunc} label="Link" />
+        <LinkButton disabled={true} onPress={voidFunc} label="Disabled" />
       </View>
     );
   });

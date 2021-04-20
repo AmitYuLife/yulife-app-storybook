@@ -1,7 +1,7 @@
 import * as React from "react";
 import { SFC } from "react";
 import { StyleSheet, View } from "react-native";
-import { Button, CentredScreen, Heading, Pad, Text } from "../../../atoms";
+import { Button, CentredScreen, Heading, LinkButton, Pad, Text } from "../../../atoms";
 import styles from "./feedback.styles";
 import StarRating from "./star-rating";
 
@@ -29,7 +29,7 @@ const FeedbackScreen: SFC<IProps> = ({ isSubmitting, onCancel, onRatingSelect, o
         label={isSubmitting ? "submitting" : "send"}
         onPress={onSubmit}
       />
-      <Button type="Link" label="not now" onPress={onCancel} />
+      <LinkButton label="not now" onPress={onCancel} />
     </CentredScreen>
   </View>
 );

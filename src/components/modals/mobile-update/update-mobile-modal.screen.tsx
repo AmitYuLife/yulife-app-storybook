@@ -1,6 +1,6 @@
 import * as React from "react";
 import { View } from "react-native";
-import { Button, Text } from "@atoms";
+import { Button, LinkButton, Text } from "@atoms";
 import { StyleSheet, TextStyle, ViewStyle } from "react-native";
 import { Colours, Style } from "@styles";
 import GenericHeadingAbsolute from "@atoms/generic-heading/generic-heading-absolute";
@@ -28,7 +28,7 @@ export default function MobileUpdateModalScreen({
         </Text>
         <Text style={styles.subheading}>{subheading}</Text>
         <Button wrapperStyle={styles.buttonWrapper} label="Update my app" onPress={onPress} type="Primary" />
-        <Button wrapperStyle={styles.buttonWrapperSecondary} label="Not now" onPress={onPressSecondary} type={"Link"} />
+        <LinkButton wrapperStyle={styles.buttonWrapperSecondary} label="Not now" onPress={onPressSecondary} />
       </View>
       <GenericHeadingAbsolute onRightIconPress={onPressSecondary} />
     </View>
