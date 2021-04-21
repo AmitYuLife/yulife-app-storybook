@@ -3,8 +3,7 @@ import { ScrollView, View, SafeAreaView } from "react-native";
 import { yuMatterData } from "./member-services.data";
 import { handleLinkPress } from "@services/app-link";
 import { CardInformation, HeadingAndCopy } from "@molecules";
-import { Button, Hyperlink } from "@atoms";
-import { Style } from "@styles";
+import { Hyperlink, TertiaryButton } from "@atoms";
 import { BUTTON_ICON } from "@atoms/button/tertiary-button/tertiary-button.helpers";
 import { ITextTemplateType } from "@atoms/text/text-template";
 import styles from "./member-services.style";
@@ -65,12 +64,10 @@ const Yumatter = () => {
         />
         <CardInformation title="Access YuMatter services" items={accessDetails.access} />
         <View style={styles.button}>
-          <Button
-            type="Tertiary"
+          <TertiaryButton
             size="Fill"
             onPress={handleLinkPress(yuMatterData.website)}
             label="Access YuMatter"
-            height={Style.adjust(60)}
             leftIcon={BUTTON_ICON.YULIFE_LOGO}
             rightIcon={BUTTON_ICON.ARROW_RIGHT}
           />
@@ -85,12 +82,10 @@ const Yumatter = () => {
         />
 
         <View style={styles.button}>
-          <Button
-            type="Tertiary"
+          <TertiaryButton
             size="Fill"
             onPress={handleLinkPress(yuMatterData.yulifeHelpCenter)}
             label="Help Centre"
-            height={Style.adjust(60)}
             leftIcon={BUTTON_ICON.QUESTION_BUBBLE}
             rightIcon={BUTTON_ICON.ARROW_RIGHT}
           />

@@ -1,10 +1,9 @@
 import React from "react";
 import { SafeAreaView, ScrollView, View } from "react-native";
-import { Style } from "@styles";
 import { smartHealthData } from "./member-services.data";
 import { HeadingAndCopy } from "@components/molecules";
 import { handleLinkPress } from "@services/app-link";
-import { Button } from "@atoms";
+import { TertiaryButton } from "@atoms";
 import { BUTTON_ICON } from "@atoms/button/tertiary-button/tertiary-button.helpers";
 import styles from "./member-services.style";
 
@@ -23,22 +22,18 @@ const SmartHealth = () => {
         />
 
         <View style={styles.button}>
-          <Button
-            type="Tertiary"
+          <TertiaryButton
             size="Fill"
             onPress={handleLinkPress(smartHealthData.website)}
             label="Access Smart Health online"
-            height={Style.adjust(60)}
             leftIcon={BUTTON_ICON.SMART_HEALTH}
             rightIcon={BUTTON_ICON.ARROW_RIGHT}
           />
           <View style={styles.marginTop}>
-            <Button
-              type="Tertiary"
+            <TertiaryButton
               size="Fill"
               onPress={handleLinkPress(smartHealthData.appUrl)}
               label="Download Smart Health app"
-              height={Style.adjust(60)}
               leftIcon={smartHealthData.appIcon}
               rightIcon={BUTTON_ICON.ARROW_RIGHT}
             />
@@ -51,12 +46,10 @@ const SmartHealth = () => {
           marginBottom={0}
         />
         <View style={styles.button}>
-          <Button
-            type="Tertiary"
+          <TertiaryButton
             size="Fill"
             onPress={handleLinkPress(smartHealthData.yulifeHelpCenter)}
             label="Help Centre"
-            height={Style.adjust(60)}
             leftIcon={BUTTON_ICON.QUESTION_BUBBLE}
             rightIcon={BUTTON_ICON.ARROW_RIGHT}
           />

@@ -1,6 +1,6 @@
 import React, { memo } from "react";
 import { View, StyleSheet, TextStyle, ViewStyle } from "react-native";
-import { Button, Text } from "@atoms";
+import { TertiaryButton, Text } from "@atoms";
 import { Style, Colours } from "@styles";
 import { Heading } from "./heading";
 import { BUTTON_ICON } from "@atoms/button/tertiary-button/tertiary-button.helpers";
@@ -19,12 +19,10 @@ export const CommonWrapperWithButton = memo(
     <View>
       <Heading title={title} />
       <Text style={styles.content}>{description}</Text>
-      <Button
-        type="Tertiary"
+      <TertiaryButton
         size="Fill"
         onPress={onPress}
         label={buttonLabel}
-        height={Style.adjust(60)}
         leftIcon={buttonLeftIcon}
         rightIcon={BUTTON_ICON.ARROW_RIGHT}
         wrapperStyle={styles.margin}

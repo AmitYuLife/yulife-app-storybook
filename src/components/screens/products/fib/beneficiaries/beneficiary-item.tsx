@@ -1,9 +1,8 @@
 import React from "react";
 import { View, StyleSheet, ViewStyle, TextStyle, Platform } from "react-native";
 import { Colours, Style } from "@styles";
-import { Button } from "@atoms";
+import { TertiaryButton } from "@atoms";
 import { BUTTON_ICON } from "@atoms/button/tertiary-button/tertiary-button.helpers";
-import { BUTTON_TYPES } from "@atoms/button/button.types";
 import { InputField } from "@organisms/fib/input/input-field";
 import { truncate } from "@services/utils";
 
@@ -42,10 +41,9 @@ export const BeneficiaryItem = ({
   return (
     <View style={styles.beneficiaryWrapper}>
       <View style={styles.beneficiaryButtonWrapper}>
-        <Button
+        <TertiaryButton
           size="Fill"
           rightIcon={BUTTON_ICON.EDIT_GREY}
-          type={BUTTON_TYPES.TERTIARY}
           onPress={onBeneficiaryPress}
           label={name}
           tertiarySubLabel={relation}
