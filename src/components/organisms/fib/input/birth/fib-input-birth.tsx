@@ -6,10 +6,9 @@ import { styles } from "./fib-input-birth.styles";
 import { updateFIBAnswerValue } from "@redux/product/product.actions";
 import { IReduxState } from "@redux/_core/reducers";
 import { getFIBState } from "@redux/product/product.selectors";
-import { Button } from "@atoms";
+import { TertiaryButton } from "@atoms";
 import { BUTTON_ICON } from "@atoms/button/tertiary-button/tertiary-button.helpers";
 import DateTimePicker from "react-native-modal-datetime-picker";
-import { BUTTON_TYPES } from "@atoms/button/button.types";
 import { Colours, Style } from "@styles";
 
 type ConnectedProps = ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps & IProps;
@@ -54,11 +53,10 @@ const _FibInputBirth = (props: ConnectedProps) => {
   return (
     <View style={StyleSheet.flatten([styles.wrapper, wrapperStyle])}>
       <View style={styles.hiddenDatePickerWrapper} />
-      <Button
+      <TertiaryButton
         size="Fill"
         leftIcon={BUTTON_ICON.BIRTHDAY}
         rightIcon={BUTTON_ICON.EDIT}
-        type={BUTTON_TYPES.TERTIARY}
         onPress={handlePress}
         label={label || `${birthDay} / ${birthMonth} / ${birthYear}`}
         tertiarySubLabel={subLabel}

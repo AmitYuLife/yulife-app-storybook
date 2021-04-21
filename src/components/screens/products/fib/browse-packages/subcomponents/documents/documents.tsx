@@ -2,13 +2,13 @@ import React, { memo, ComponentProps } from "react";
 import { View, StyleSheet, ViewStyle } from "react-native";
 import { Style } from "@styles";
 import { Heading } from "../common";
-import { Button } from "@atoms";
+import { TertiaryButton } from "@atoms";
 import { BUTTON_ICON } from "@atoms/button/tertiary-button/tertiary-button.helpers";
 
 interface IDocumentItem {
   onPress: () => void;
   label: string;
-  icon: ComponentProps<typeof Button>["leftIcon"];
+  icon: ComponentProps<typeof TertiaryButton>["leftIcon"];
 }
 
 interface Props {
@@ -22,12 +22,10 @@ export const Documents = memo(({ items = [], title = "Documents" }: Props) => {
       <Heading title={title} />
       {items.map((item, i) => (
         <View key={i} style={styles.wrapper}>
-          <Button
-            type="Tertiary"
+          <TertiaryButton
             size="Fill"
             onPress={item?.onPress}
             label={item?.label}
-            height={Style.adjust(60)}
             leftIcon={item?.icon}
             rightIcon={BUTTON_ICON.ARROW_RIGHT}
           />

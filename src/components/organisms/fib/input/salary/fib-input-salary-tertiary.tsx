@@ -1,8 +1,7 @@
 import React from "react";
 import { View, StyleSheet, ViewStyle } from "react-native";
-import { Button } from "@atoms";
+import { TertiaryButton } from "@atoms";
 import { BUTTON_ICON } from "@atoms/button/tertiary-button/tertiary-button.helpers";
-import { BUTTON_TYPES } from "@atoms/button/button.types";
 import { Style } from "@styles";
 
 interface IProps {
@@ -16,11 +15,10 @@ const FibInputSalaryTertiary = (props: IProps) => {
 
   return (
     <View style={styles.wrapper}>
-      <Button
+      <TertiaryButton
         size="Fill"
         leftIcon={BUTTON_ICON.SALARY}
         rightIcon={BUTTON_ICON.EDIT}
-        type={BUTTON_TYPES.TERTIARY}
         onPress={onPress}
         label={label}
         tertiarySubLabel={subLabel}

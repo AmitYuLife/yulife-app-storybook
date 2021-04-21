@@ -1,10 +1,9 @@
 import React, { useMemo } from "react";
 import { SafeAreaView, ScrollView, View } from "react-native";
-import { Style } from "@styles";
 import { smartHealthData } from "./member-services.data";
 import { CardInformation, HeadingAndCopy } from "@components/molecules";
 import { handleLinkPress } from "@services/app-link";
-import { Hyperlink, Button } from "@atoms";
+import { Hyperlink, TertiaryButton } from "@atoms";
 import { BUTTON_ICON } from "@atoms/button/tertiary-button/tertiary-button.helpers";
 import { ITextTemplateType } from "@atoms/text/text-template";
 import styles from "./member-services.style";
@@ -53,12 +52,10 @@ const YuDoc = () => {
         />
 
         <View style={styles.button}>
-          <Button
-            type="Tertiary"
+          <TertiaryButton
             size="Fill"
             onPress={handleLinkPress(smartHealthData.website)}
             label="Access YuDoc"
-            height={Style.adjust(60)}
             leftIcon={BUTTON_ICON.DOC}
             rightIcon={BUTTON_ICON.ARROW_RIGHT}
           />
@@ -72,12 +69,10 @@ const YuDoc = () => {
           marginBottom={0}
         />
         <View style={styles.button}>
-          <Button
-            type="Tertiary"
+          <TertiaryButton
             size="Fill"
             onPress={handleLinkPress(smartHealthData.yulifeHelpCenter)}
             label="Help Centre"
-            height={Style.adjust(60)}
             leftIcon={BUTTON_ICON.QUESTION_BUBBLE}
             rightIcon={BUTTON_ICON.ARROW_RIGHT}
           />

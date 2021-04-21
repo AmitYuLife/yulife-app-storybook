@@ -1,7 +1,6 @@
 export enum BUTTON_TYPES {
   PRIMARY = "Primary",
   SECONDARY = "Secondary",
-  TERTIARY = "Tertiary",
 }
 
 export enum BUTTON_SIZES {
@@ -11,5 +10,5 @@ export enum BUTTON_SIZES {
   LARGE = "Large",
 }
 
-export type Types = "Primary" | "Secondary" | "Tertiary";
+export type Types = "Primary" | "Secondary";
 export type Sizes = "Fill" | "Small" | "Medium" | "Large";

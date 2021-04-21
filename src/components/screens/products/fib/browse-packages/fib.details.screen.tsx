@@ -9,7 +9,7 @@ import {
   ViewStyle,
   Platform,
 } from "react-native";
-import { Button } from "@atoms";
+import { Button, TertiaryButton } from "@atoms";
 import { HowItWorks } from "./subcomponents";
 import { Faqs } from "./subcomponents/faqs/faqs";
 import { Documents } from "./subcomponents/documents/documents";
@@ -132,12 +132,10 @@ export const FibDetailsScreen = memo(function (props: FibDetailsScreenProps) {
             </View>
           ) : null}
           <View style={styles.separator}>
-            <Button
-              type="Tertiary"
+            <TertiaryButton
               size="Fill"
               onPress={navigateToPayoutCalculator}
               label="How much would it pay out?"
-              height={Style.adjust(60)}
               iconSvgXml={payoutCalculatorSvg}
               rightIcon={BUTTON_ICON.ARROW_RIGHT}
             />

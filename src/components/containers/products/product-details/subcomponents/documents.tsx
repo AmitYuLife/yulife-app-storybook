@@ -1,6 +1,6 @@
 import React from "react";
 import { View, StyleSheet, ViewStyle } from "react-native";
-import { TextTemplate, Button } from "@atoms";
+import { TextTemplate, TertiaryButton } from "@atoms";
 import { Style } from "@styles";
 import { BUTTON_ICON } from "@atoms/button/tertiary-button/tertiary-button.helpers";
 import { Navigation } from "react-native-navigation";
@@ -18,12 +18,10 @@ export const Documents = ({ modalProps }: Props) =>
         <TextTemplate type="h2">Documents</TextTemplate>
       </View>
       <View style={styles.buttonWrapper}>
-        <Button
-          type="Tertiary"
+        <TertiaryButton
           size="Fill"
           onPress={showCertificateModal(modalProps)}
           label="Policy Details"
-          height={Style.adjust(60)}
           leftIcon={BUTTON_ICON.DOCUMENT}
           rightIcon={BUTTON_ICON.ARROW_RIGHT}
         />

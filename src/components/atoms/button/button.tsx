@@ -4,8 +4,6 @@ import { Colours } from "@styles";
 import { usePressedInWithDelay } from "@services/hooks/usePressedInWithDelay";
 import { ButtonBase } from "./button.base";
 import { BUTTON_TYPES, Types, Sizes } from "./button.types";
-import { TertiaryButtonBase } from "./tertiary-button/tertiary-button.base";
-import { BUTTON_ICON } from "./tertiary-button/tertiary-button.helpers";
 import { DEFAULT_HEIGHT, styles, getWidth } from "./button.styles";
 
 interface IProps {
@@ -13,7 +11,6 @@ interface IProps {
   type: Types;
   onPress: () => void;
   label: string;
-  tertiarySubLabel?: string;
   wrapperStyle?: ViewStyle;
   disabled?: boolean;
   testID?: string;
@@ -24,16 +21,11 @@ interface IProps {
   backgroundColor?: string;
   shadowColor?: string;
   textColor?: string;
-  leftIcon?: BUTTON_ICON;
-  rightIcon?: BUTTON_ICON;
-  iconSvgXml?: string;
-  height?: number;
 }
 
 function Button(props: IProps) {
   const {
     label,
-    tertiarySubLabel,
     type,
     size = "Large",
     wrapperStyle,
@@ -47,10 +39,6 @@ function Button(props: IProps) {
     backgroundColor = Colours.darkHotPink,
     shadowColor = Colours.darkHotPinkShadow,
     textColor = "white",
-    leftIcon,
-    rightIcon,
-    iconSvgXml,
-    height,
   } = props;
 
   const { handlePress } = usePressedInWithDelay({ onPress, delay });
@@ -97,25 +85,6 @@ function Button(props: IProps) {
           borderRadius={50}
           delay={delay}
           disableAnimation={disableAnimation}
-        />
-      </View>
-    );
-  }
-
-  if (type === BUTTON_TYPES.TERTIARY) {
-    return (
-      <View style={StyleSheet.flatten([styles.wrapper, wrapperStyle, widthStyles])}>
-        <TertiaryButtonBase
-          disabled={disabled}
-          testID={testID}
-          title={label}
-          subTitle={tertiarySubLabel}
-          onPress={handlePress}
-          delay={delay}
-          leftIcon={leftIcon}
-          rightIcon={rightIcon}
-          iconSvgXml={iconSvgXml}
-          height={height}
         />
       </View>
     );
