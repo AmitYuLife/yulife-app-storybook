@@ -1,4 +1,4 @@
-import { Button, Text } from "@atoms/index";
+import { Button, SecondaryButton, Text } from "@atoms/index";
 import * as React from "react";
 import { SafeAreaView, StyleSheet } from "react-native";
 import { useSelector } from "react-redux";
@@ -33,9 +33,8 @@ const ChallengeExitScreen: React.FC<IProps> = ({ onPressExit, onClose, isCancell
         label={copy.ctaLabel}
         onPress={onClose}
       />
-      <Button
+      <SecondaryButton
         wrapperStyle={styles.buttonStyle}
-        type="Secondary"
         label={copy.ctaLabelSecondary}
         onPress={onPressExit}
         isLoading={isCancelling}

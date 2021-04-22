@@ -5,6 +5,7 @@ import { withKnobs } from "@storybook/addon-knobs";
 import Button from "./button";
 import { withProvider } from "../../storybook/withProvider";
 import { LinkButton } from "./link-button/link-button";
+import { SecondaryButton } from "./secondary-button/secondary-button";
 
 const voidFunc: () => void = () => null;
 
@@ -27,10 +28,10 @@ storiesOf("Button", module)
   .add("Secondary", () => {
     return (
       <View>
-        <Button type="Secondary" size="Small" onPress={voidFunc} label="Small" />
-        <Button type="Secondary" size="Medium" onPress={voidFunc} label="Medium" />
-        <Button type="Secondary" onPress={voidFunc} label="Large" />
-        <Button disabled={true} type="Secondary" onPress={voidFunc} label="Disabled" />
+        <SecondaryButton size="Small" onPress={voidFunc} label="Small" />
+        <SecondaryButton size="Medium" onPress={voidFunc} label="Medium" />
+        <SecondaryButton onPress={voidFunc} label="Large" />
+        <SecondaryButton disabled={true} onPress={voidFunc} label="Disabled" />
       </View>
     );
   })

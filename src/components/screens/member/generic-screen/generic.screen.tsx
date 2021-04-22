@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useState } from "react";
 import { View } from "react-native";
-import { Button, Text } from "../../../atoms";
+import { Button, SecondaryButton, Text } from "../../../atoms";
 import styles from "./generic.styles";
 import { GENERIC_SCREEN_HEADING, GENERIC_SCREEN_CTA } from "@ids";
 
@@ -56,12 +56,11 @@ export default function GenericScreen({
         type="Primary"
       />
       {!(onPressSecondary && ctaLabelSecondary) ? null : (
-        <Button
+        <SecondaryButton
           testID={GENERIC_SCREEN_CTA(ctaLabelSecondary)}
           wrapperStyle={styles.buttonWrapperSecondary}
           label={ctaLabelSecondary}
           onPress={onPressSecondary || (() => null)}
-          type="Secondary"
           isLoading={isSecondaryLoading}
         />
       )}

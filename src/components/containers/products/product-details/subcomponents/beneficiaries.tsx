@@ -1,7 +1,7 @@
 import * as React from "react";
 import { StyleSheet, View, ViewStyle, TextStyle } from "react-native";
 import { Colours, Style } from "@styles";
-import { Button, TextTemplate } from "@atoms";
+import { SecondaryButton, TextTemplate } from "@atoms";
 import { Navigation } from "react-native-navigation";
 import { MODALS, ROUTES } from "@navigation/constants";
 import { TouchableOpacityWithDelay } from "@components/molecules";
@@ -40,9 +40,8 @@ export const Beneficiaries = ({ productId }: IBeneficiariesProps) => {
       {!beneficiariesExist ? null : (
         <BeneficiariesDetails beneficiaries={beneficiaries} onPress={() => onBeneficiaryPress(productId)} />
       )}
-      <Button
+      <SecondaryButton
         wrapperStyle={styles.buttonWrapper}
-        type="Secondary"
         label="Add a beneficiary"
         onPress={() => onAddBeneficiaryPress(productId)}
       />

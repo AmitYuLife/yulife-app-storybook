@@ -2,9 +2,8 @@ import React, { useCallback } from "react";
 import GenericOverlay from "./generic-overlay";
 import { Navigation } from "react-native-navigation";
 import { View, StyleSheet, ViewStyle, TextStyle } from "react-native";
-import { Text, Button } from "@atoms";
+import { Text, Button, SecondaryButton } from "@atoms";
 import { Style, Colours } from "@styles";
-import { BUTTON_TYPES } from "@atoms/button/button.types";
 import { useBackHandler } from "../../../services/hooks/useBackHandler";
 
 interface IButton {
@@ -36,12 +35,16 @@ const GenericOverlayTemplate = (props: GenericOverlayTemplateProps) => {
           </Text>
         </View>
         <View style={styles.buttonsWrapper}>
-          {buttons.map((button, index) => (
-            <>
-              <Button type={getButtonType(index)} label={button.label} onPress={button.onPress} />
-              <View style={styles.buttonPad} />
-            </>
-          ))}
+          {buttons.map((button, index) => {
+            const ButtonType = getButtonType(index);
+
+            return (
+              <View key={index}>
+                <ButtonType label={button.label} onPress={button.onPress} />
+                <View style={styles.buttonPad} />
+              </View>
+            );
+          })}
         </View>
       </View>
     </GenericOverlay>
@@ -82,8 +85,8 @@ const styles = StyleSheet.create({
 function getButtonType(index: number) {
   switch (index) {
     case 0:
-      return BUTTON_TYPES.PRIMARY;
+      return Button;
     default:
-      return BUTTON_TYPES.SECONDARY;
+      return SecondaryButton;
   }
 }

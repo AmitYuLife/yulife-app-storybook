@@ -4,7 +4,7 @@ import { Colours, Style } from "@styles";
 import React, { FC } from "react";
 import { Alert, StyleSheet } from "react-native";
 import { GetMobileCopy_getMobileCopy_screens_fitkitConnect } from "../../../../graphql/_core/schema";
-import { Blurb, Button, Heading, Pad } from "../../../atoms";
+import { Blurb, Button, Heading, Pad, SecondaryButton } from "../../../atoms";
 import { alertCopy, fitKitConnectCopy } from "./copy";
 
 interface IProps {
@@ -59,7 +59,7 @@ const FitKitAvailable: FC<IProps> = ({ connecting, onConnectPress }) => {
 const DownloadGoogleFitButton = () => (
   <>
     <Pad height={10} />
-    <Button label={"Download Google Fit"} onPress={openGoogleFit} type="Secondary" />
+    <SecondaryButton label={"Download Google Fit"} onPress={openGoogleFit} />
   </>
 );
 

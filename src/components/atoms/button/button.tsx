@@ -8,7 +8,7 @@ import { DEFAULT_HEIGHT, styles, getWidth } from "./button.styles";
 
 interface IProps {
   isLoading?: boolean;
-  type: Types;
+  type?: Types;
   onPress: () => void;
   label: string;
   wrapperStyle?: ViewStyle;
@@ -26,7 +26,7 @@ interface IProps {
 function Button(props: IProps) {
   const {
     label,
-    type,
+    type = "Primary",
     size = "Large",
     wrapperStyle,
     disabled,
@@ -62,26 +62,6 @@ function Button(props: IProps) {
           title={label}
           onPress={handlePress}
           color={textColor}
-          borderRadius={50}
-          delay={delay}
-          disableAnimation={disableAnimation}
-        />
-      </View>
-    );
-  }
-
-  if (type === BUTTON_TYPES.SECONDARY) {
-    return (
-      <View style={StyleSheet.flatten([styles.wrapper, wrapperStyle, widthStyles])}>
-        <ButtonBase
-          height={DEFAULT_HEIGHT}
-          disabled={disabled}
-          testID={testID}
-          isLoading={isLoading}
-          title={label}
-          onPress={handlePress}
-          borderColor={Colours.darkHotPink}
-          color={Colours.darkHotPink}
           borderRadius={50}
           delay={delay}
           disableAnimation={disableAnimation}
