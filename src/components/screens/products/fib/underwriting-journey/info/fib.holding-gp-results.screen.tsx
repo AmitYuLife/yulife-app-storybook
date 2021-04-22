@@ -29,9 +29,7 @@ export const FibHoldingGPDetails = memo(function (props: IFibHoldingGPDetailsScr
         </Text>
       </View>
       <View style={styles.buttonWrapper}>
-        {canResetFib ? (
-          <Button type="Primary" size={"Large"} onPress={onResetFib} label={"restart journey (beta only)"} />
-        ) : null}
+        {canResetFib ? <Button size={"Large"} onPress={onResetFib} label={"restart journey (beta only)"} /> : null}
       </View>
     </FibUnderwritingJourneyLayout>
   );

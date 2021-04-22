@@ -25,7 +25,7 @@ export default function OfflineScreen({ copy, level, onPress }: IProps) {
           </Text>
           <Text style={StyleSheet.flatten([styles.subheading, textStyle])}>{copy.subheading}</Text>
           <View style={styles.buttonWrapper}>
-            <Button onPress={onPress} type="Primary" size="Medium" label={copy.ctaLabel} />
+            <Button onPress={onPress} size="Medium" label={copy.ctaLabel} />
           </View>
         </View>
       </View>

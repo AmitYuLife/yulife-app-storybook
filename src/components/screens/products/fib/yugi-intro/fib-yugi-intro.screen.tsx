@@ -128,7 +128,6 @@ export const FibYugiIntroScreen = memo(function (props: IFibYugiIntroScreenProps
 
       <View style={styles.buttonWrapper}>
         <Button
-          type="Primary"
           size="Small"
           onPress={() => {
             play();

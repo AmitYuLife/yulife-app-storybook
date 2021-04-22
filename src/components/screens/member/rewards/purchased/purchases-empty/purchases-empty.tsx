@@ -20,7 +20,7 @@ const PurchasesEmpty: SFC<IProps> = ({ onCtaPress, copy }) => (
     </View>
 
     <View style={styles.ctaWrapper}>
-      <Button label={copy.ctaLabel} type="Primary" onPress={onCtaPress} testID={CHECK_REWARDS_BUTTON} />
+      <Button label={copy.ctaLabel} onPress={onCtaPress} testID={CHECK_REWARDS_BUTTON} />
     </View>
   </View>
 );

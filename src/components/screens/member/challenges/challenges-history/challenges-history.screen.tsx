@@ -58,7 +58,7 @@ export default function ChallengesHistory({ level, onPressActivityHistory, onLef
         <AutoHeightImage {...getBottomGradient(normalizedWorld)} />
       </View>
       <View style={styles.buttonsWrapper}>
-        <Button type="Primary" onPress={onPressActivityHistory} label="full history" />
+        <Button onPress={onPressActivityHistory} label="full history" />
       </View>
       <NavBar activeIndex={1} />
     </View>

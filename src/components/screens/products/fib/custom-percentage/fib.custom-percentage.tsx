@@ -77,7 +77,7 @@ export const FibCustomPercentage = memo(function (props: IFibCustomPercentage) {
       </View>
       <View style={styles.floatBottom}>
         <View style={styles.promptForward}>
-          <Button onPress={onNavigateForward} label="Continue" type="Primary" />
+          <Button onPress={onNavigateForward} label="Continue" />
         </View>
       </View>
       <GenericHeadingAbsolute

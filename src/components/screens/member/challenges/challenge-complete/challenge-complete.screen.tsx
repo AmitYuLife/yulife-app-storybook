@@ -42,7 +42,6 @@ const ChallengeCompleteScreen: React.FC<IProps> = ({ onCtaPress, isLoading }) =>
         wrapperStyle={styles.ctaWrapper}
         onPress={onCtaPress}
         label={copy.ctaLabel}
-        type="Primary"
         size="Small"
       />
     </View>

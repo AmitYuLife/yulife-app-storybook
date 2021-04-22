@@ -28,7 +28,7 @@ export function Caption(props: Props) {
             {segment}
           </Text>
         ))}
-      <Button wrapperStyle={captionStyle.button} label={ctaLabel} onPress={setConsent} type="Primary" />
+      <Button wrapperStyle={captionStyle.button} label={ctaLabel} onPress={setConsent} />
     </View>
   );
 }

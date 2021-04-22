@@ -35,14 +35,7 @@ export default function ChallengeFailedScreen({ level, onPress, loading, current
         {copy.heading}
       </Text>
       <Text style={styles.secondaryText}>{copy.footer}</Text>
-      <Button
-        isLoading={loading}
-        wrapperStyle={styles.cta}
-        onPress={onPress}
-        label={copy.ctaLabel}
-        type="Primary"
-        size="Medium"
-      />
+      <Button isLoading={loading} wrapperStyle={styles.cta} onPress={onPress} label={copy.ctaLabel} size="Medium" />
     </CentredScreen>
   );
 }

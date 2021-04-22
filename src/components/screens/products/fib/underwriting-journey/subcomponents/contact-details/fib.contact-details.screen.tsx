@@ -159,7 +159,7 @@ export const FibContactDetailsScreen = memo(function (props: IFibContactDetailsS
             ))}
             <Pad height={40} />
           </View>
-          <Button type="Primary" size={"Large"} onPress={onContinue} label={"Continue"} disabled={!isButtonEnable} />
+          <Button size={"Large"} onPress={onContinue} label={"Continue"} disabled={!isButtonEnable} />
         </View>
       </ScrollView>
     </FibUnderwritingJourneyLayout>

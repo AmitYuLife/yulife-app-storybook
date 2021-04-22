@@ -51,7 +51,7 @@ function _FibFeedbackSuccessScreen(props: Props) {
       </View>
       <GenericHeadingAbsolute heading="Feedback" />
       <View style={styles.button}>
-        <Button label="Close" onPress={props.onContinue} type="Primary" />
+        <Button label="Close" onPress={props.onContinue} />
       </View>
     </>
   );

@@ -94,7 +94,6 @@ function GenericDuelsIntro({
             disabled={isPrimaryButtonLoading || isSecondaryButtonLoading}
             onPress={goToNextStep}
             label={primaryBtnLabel}
-            type="Primary"
           />
           {secondaryBtnLabel ? (
             <SecondaryButton

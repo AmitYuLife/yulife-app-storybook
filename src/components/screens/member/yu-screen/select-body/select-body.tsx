@@ -81,7 +81,7 @@ function SelectBody({ onMaleBodySelected, onFemaleBodySelected, onContinue, head
         </View>
         <Text style={styles.pickBodyText}>Pick a body type</Text>
         <View style={styles.buttonsWrapper}>
-          <Button type="Primary" disabled={isNone} onPress={() => onContinuePressed(selectedBody)} label="Continue" />
+          <Button disabled={isNone} onPress={() => onContinuePressed(selectedBody)} label="Continue" />
         </View>
       </View>
       <GenericHeadingAbsolute

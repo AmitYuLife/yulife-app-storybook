@@ -18,10 +18,10 @@ storiesOf("Button", module)
   .add("Primary", () => {
     return (
       <View>
-        <Button type="Primary" size="Small" onPress={voidFunc} label="Small" />
-        <Button type="Primary" size="Medium" onPress={voidFunc} label="Medium" />
-        <Button type="Primary" onPress={voidFunc} label="Large" />
-        <Button disabled={true} type="Primary" onPress={voidFunc} label="Disabled" />
+        <Button size="Small" onPress={voidFunc} label="Small" />
+        <Button size="Medium" onPress={voidFunc} label="Medium" />
+        <Button onPress={voidFunc} label="Large" />
+        <Button disabled={true} onPress={voidFunc} label="Disabled" />
       </View>
     );
   })

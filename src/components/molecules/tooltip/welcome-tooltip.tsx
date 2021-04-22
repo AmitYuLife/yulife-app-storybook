@@ -33,7 +33,7 @@ export default function WelcomeTooltip({ onPressCta, copy }: IProps) {
               {copy.descriptionThree}
             </Text>
             <View style={styles.buttonWrapper}>
-              <Button type="Primary" size="Medium" onPress={onPressCta} label={copy.ctaLabel} />
+              <Button size="Medium" onPress={onPressCta} label={copy.ctaLabel} />
             </View>
           </View>
         </View>

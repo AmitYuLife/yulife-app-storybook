@@ -57,9 +57,7 @@ export const FibHoldingScreen = memo(function (props: FibHoldingScreenProps) {
           </View>
         ))}
       </View>
-      <View style={styles.buttonWrapper}>
-        {allCompleted && <Button label="Continue" type="Primary" onPress={onBackHandler} />}
-      </View>
+      <View style={styles.buttonWrapper}>{allCompleted && <Button label="Continue" onPress={onBackHandler} />}</View>
       <GenericHeadingAbsolute
         onLeftIconPress={allCompleted && onBackHandler}
         onRightIconPress={!allCompleted && onBackHandler}

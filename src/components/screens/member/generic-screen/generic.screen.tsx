@@ -53,7 +53,6 @@ export default function GenericScreen({
         wrapperStyle={styles.buttonWrapper}
         label={ctaLabel}
         onPress={onPressPrimary}
-        type="Primary"
       />
       {!(onPressSecondary && ctaLabelSecondary) ? null : (
         <SecondaryButton

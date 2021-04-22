@@ -144,7 +144,7 @@ export default function FinancialQuestionsFormScreen(props: Props) {
             setFormValue={setFormValue}
             handleFocus={handleFocus}
           />
-          <Button wrapperStyle={styles.cta} label="Done" type="Primary" onPress={submitForm} disabled={!isFormValid} />
+          <Button wrapperStyle={styles.cta} label="Done" onPress={submitForm} disabled={!isFormValid} />
           <View style={styles.bottomPad} />
         </ScrollView>
       </KeyboardAvoidingView>

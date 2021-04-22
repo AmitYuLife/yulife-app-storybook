@@ -78,7 +78,6 @@ const RewardItemContent = ({
       )}
       <Pad height={30} />
       <Button
-        type="Primary"
         isLoading={isLoadingPrimary}
         disabled={isLoadingPrimary}
         onPress={onPressCtaPrimary}

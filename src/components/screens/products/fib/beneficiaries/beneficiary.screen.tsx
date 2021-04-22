@@ -162,7 +162,6 @@ export const BeneficiaryScreen = memo((props: Props) => {
                 wrapperStyle={styles.doneButtonWrapper}
                 label={bottomButtonLabel}
                 onPress={onBottomButtonPress}
-                type="Primary"
                 isLoading={setShareLoading}
                 disabled={showError}
               />

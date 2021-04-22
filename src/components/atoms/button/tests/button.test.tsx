@@ -1,13 +1,11 @@
 import React from "react";
 import { render, fireEvent } from "@testing-library/react-native";
-import { Types } from "../button.types";
 import Button from "../button";
 import "@testing-library/jest-native/extend-expect";
 
 const onPress = jest.fn();
 
 interface Props {
-  type?: Types;
   isLoading?: boolean;
   disabled?: boolean;
 }
@@ -15,7 +13,6 @@ interface Props {
 function renderComponent(customProps: Props) {
   const props = {
     onPress,
-    type: "Primary" as Types,
     label: "Button",
     testID: "button",
     ...customProps,
@@ -30,7 +27,7 @@ describe("Button", () => {
   });
 
   it("should fire the handler onPress", () => {
-    const { getByTestId } = renderComponent({ type: "Primary" });
+    const { getByTestId } = renderComponent({});
 
     fireEvent.press(getByTestId("button"));
 

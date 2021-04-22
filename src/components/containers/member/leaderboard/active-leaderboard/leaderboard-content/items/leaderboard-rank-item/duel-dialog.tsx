@@ -128,7 +128,7 @@ const _DuelDialog: FC<Props> = ({ id, index }) => {
 
   return (
     <Animated.View style={[styles.centered, { opacity, transform: [{ scaleY: height }] }]}>
-      <Button label="challenge to duel" type="Primary" size="Large" onPress={onPress} />
+      <Button label="challenge to duel" size="Large" onPress={onPress} />
     </Animated.View>
   );
 };

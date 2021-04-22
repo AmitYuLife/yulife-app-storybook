@@ -73,7 +73,6 @@ class CreateLeaderboardScreen extends React.PureComponent<IProps, IState> {
               disabled={isCreateDisabled || isLoading}
               label="create"
               onPress={this.handleCreateLeaderboardSubmit}
-              type="Primary"
             />
           </CentredScreen>
         </KeyboardAvoidingView>

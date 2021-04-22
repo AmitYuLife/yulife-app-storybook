@@ -22,13 +22,7 @@ function ProductsSurveyGreetings({ onExitConfirmed }: IProps) {
           <Image source={require("../../../../../../assets/yuscreen/animals.png")} />
         </View>
         <View style={{ flex: 1, marginBottom: 32 }}>
-          <Button
-            onPress={onExitConfirmed}
-            type="Primary"
-            size="Medium"
-            label="Close"
-            wrapperStyle={styles.submitButton}
-          />
+          <Button onPress={onExitConfirmed} size="Medium" label="Close" wrapperStyle={styles.submitButton} />
         </View>
       </View>
       <GenericHeadingAbsolute heading="What Would You Like To See?" onLeftIconPress={onExitConfirmed} />

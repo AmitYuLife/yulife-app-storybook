@@ -46,7 +46,6 @@ const ResetPasswordScreen: FunctionComponent<IProps> = ({
       disabled={disableSubmit || isSubmitting}
       label={isSubmitting ? "submitting ..." : copy.ctaLabel}
       onPress={onSubmitPress}
-      type="Primary"
     />
     <Pad height={10} />
     <LinkButton label={copy.ctaLabelSecondary} onPress={onCancelPress} />

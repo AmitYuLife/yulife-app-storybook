@@ -29,7 +29,6 @@ const ChallengeExitScreen: React.FC<IProps> = ({ onPressExit, onClose, isCancell
 
       <Button
         wrapperStyle={StyleSheet.flatten([styles.buttonStyle, styles.exitChallengeWrapper])}
-        type="Primary"
         label={copy.ctaLabel}
         onPress={onClose}
       />

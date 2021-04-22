@@ -21,12 +21,7 @@ const _AvatarCreationPrompt = () => {
         <Text testID={EMPTY_YUSCREEN_COPY} bold={true} style={styles.promptLabel}>
           {CREATE_AVATAR_CAPTION_COPY}
         </Text>
-        <Button
-          testID={GET_STARTED_BUTTON}
-          label={CREATE_AVATAR_CTA_COPY}
-          onPress={navigateToAvatarCreationScreen}
-          type="Primary"
-        />
+        <Button testID={GET_STARTED_BUTTON} label={CREATE_AVATAR_CTA_COPY} onPress={navigateToAvatarCreationScreen} />
       </View>
     </View>
   );

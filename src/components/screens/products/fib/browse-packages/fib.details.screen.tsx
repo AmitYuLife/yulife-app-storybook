@@ -159,7 +159,7 @@ export const FibDetailsScreen = memo(function (props: FibDetailsScreenProps) {
               <CustomCoverPrompt onPressCustomCoverPrompt={navigateToCustomCover} />
             </View>
           ) : null}
-          {!continueButtonIsFixed ? <Button label="Continue" onPress={navigateToContinue} type="Primary" /> : null}
+          {!continueButtonIsFixed ? <Button label="Continue" onPress={navigateToContinue} /> : null}
           <View style={styles.padBot} />
         </ScrollView>
       </Animated.View>

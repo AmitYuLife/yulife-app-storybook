@@ -90,7 +90,7 @@ export default class AnimatedChestScreen extends React.PureComponent<IProps> {
         <Text bold={true} style={styles.heading}>
           {heading}
         </Text>
-        <Button type="Primary" size="Medium" label={ctaLabel} onPress={onPressCta} />
+        <Button size="Medium" label={ctaLabel} onPress={onPressCta} />
         {onPressCtaSecondary && (
           <LinkButton wrapperStyle={styles.secondaryCtaWrapper} onPress={onPressCtaSecondary} label="later" />
         )}

@@ -25,7 +25,7 @@ export const UpdateScreen = memo(function (props: IProps) {
           {title}
         </Text>
         <Text style={styles.description}> {description}</Text>
-        <Button type={"Primary"} label={buttonText} onPress={buttonAction} />
+        <Button label={buttonText} onPress={buttonAction} />
       </View>
     </View>
   );

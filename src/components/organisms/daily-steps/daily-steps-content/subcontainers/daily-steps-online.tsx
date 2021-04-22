@@ -74,7 +74,7 @@ const EarnMore = memo(function _EarnMore() {
     return null;
   }
 
-  return <Button onPress={handleNavigateToQuestsTab} type="Primary" size="Medium" label="earn more" />;
+  return <Button onPress={handleNavigateToQuestsTab} size="Medium" label="earn more" />;
 });
 
 export const DailyStepsOnline = memo(_DailyStepsOnline);

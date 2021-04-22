@@ -85,7 +85,6 @@ export default function DuelOptions({
               isLoading={isLoading}
               onPress={submitDuel}
               label="Send duel request"
-              type="Primary"
             />
           </View>
           {loading ? (

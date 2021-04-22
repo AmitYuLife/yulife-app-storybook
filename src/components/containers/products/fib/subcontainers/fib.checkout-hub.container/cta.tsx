@@ -43,7 +43,6 @@ export const Cta = memo((props: Props) => {
     <View style={styles.ctaWrapper}>
       <Button
         wrapperStyle={styles.cta}
-        type="Primary"
         disabled={disabled}
         onPress={onPress}
         label={`Buy ${toCapitalLetter(coverType)} cover`}

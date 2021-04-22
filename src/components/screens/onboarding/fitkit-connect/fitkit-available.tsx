@@ -44,13 +44,7 @@ const FitKitAvailable: FC<IProps> = ({ connecting, onConnectPress }) => {
         textStyle={styles.connectMessage}
       />
       <Pad height={34} />
-      <Button
-        isLoading={connecting}
-        disabled={connecting}
-        label={connectButton}
-        onPress={_onConnectPress}
-        type="Primary"
-      />
+      <Button isLoading={connecting} disabled={connecting} label={connectButton} onPress={_onConnectPress} />
       {!isSamsung() ? null : <DownloadGoogleFitButton />}
     </>
   );

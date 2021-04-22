@@ -41,8 +41,8 @@ export const FibInfoScreen = memo(function (props: FibHoldingScreenProps) {
         <Text style={styles.message}>{message}</Text>
       </View>
       <View style={styles.buttonWrapper}>
-        {canResetFib ? <Button type="Primary" onPress={onResetFib} label={"restart journey (beta only)"} /> : null}
-        <Button label="Continue" type="Primary" onPress={onActionHandler} />
+        {canResetFib ? <Button onPress={onResetFib} label={"restart journey (beta only)"} /> : null}
+        <Button label="Continue" onPress={onActionHandler} />
       </View>
       <GenericHeadingAbsolute onLeftIconPress={!isPriceChangeScreen && onActionHandler} />
     </View>

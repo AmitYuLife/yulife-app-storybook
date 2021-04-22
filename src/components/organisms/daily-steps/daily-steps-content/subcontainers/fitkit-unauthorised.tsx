@@ -43,7 +43,7 @@ export const FitkitUnauthorised = ({ onPress, isIosMotionAuthorised, hasRequeste
           {message}
         </TextTemplate>
       </View>
-      <Button label={buttonLabel} onPress={handlePress} type="Primary" size="Medium" />
+      <Button label={buttonLabel} onPress={handlePress} size="Medium" />
     </>
   );
 };

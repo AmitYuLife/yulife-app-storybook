@@ -193,7 +193,6 @@ class AviosDetailsScreen extends React.PureComponent<Props, IState> {
           </View>
           <View style={styles.ctaWrapper}>
             <Button
-              type="Primary"
               isLoading={isLoading}
               label={confirmButtonLabel}
               onPress={onPressConfirm}

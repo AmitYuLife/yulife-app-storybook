@@ -50,12 +50,7 @@ const DuelsToday: FC = () => {
         <View style={styles.emptyWrapper} testID={EMPTY_DUELS_HUB}>
           <Text style={styles.emptyText}>You’re not duelling with anybody today.</Text>
         </View>
-        <Button
-          testID={CHALLENGE_FRIEND_BUTTON}
-          label="Challenge a friend"
-          type="Primary"
-          onPress={navigateToDuelsSearch}
-        />
+        <Button testID={CHALLENGE_FRIEND_BUTTON} label="Challenge a friend" onPress={navigateToDuelsSearch} />
       </View>
     );
   }
@@ -68,7 +63,7 @@ const DuelsToday: FC = () => {
           <DuelEntry key={duel.id} userId={userId} type="today" dailySteps={dailySteps} duel={duel} />
         ))}
       </View>
-      <Button label="Challenge a friend" type="Primary" onPress={navigateToDuelsSearch} />
+      <Button label="Challenge a friend" onPress={navigateToDuelsSearch} />
     </View>
   );
 };

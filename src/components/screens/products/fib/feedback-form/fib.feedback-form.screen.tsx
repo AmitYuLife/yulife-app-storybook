@@ -83,7 +83,6 @@ export function FibFeedbackFormScreen(props: Props) {
                 Keyboard.dismiss();
                 return props.onContinue();
               }}
-              type="Primary"
               disabled={isButtonDisabled(formState)}
             />
           </View>
