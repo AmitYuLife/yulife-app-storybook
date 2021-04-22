@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import { View, StyleSheet } from "react-native";
-import { Button, LinkButton, TextTemplate } from "@atoms";
+import { Button, LinkButton, SecondaryButton, TextTemplate } from "@atoms";
 import { Style } from "@styles";
 import { AppReviewYugi } from "./app-review-image";
 
@@ -42,7 +42,7 @@ const AppReviewModalScreen: FC<Props> = ({
         <Button type={"Primary"} label={buttonLabel} onPress={onPress} />
         <View style={styles.buttonWrapper}>
           {showSecondState ? (
-            <Button type={"Secondary"} label={secondButtonLabel} onPress={onPressSecondary} />
+            <SecondaryButton label={secondButtonLabel} onPress={onPressSecondary} />
           ) : (
             <Button type={"Primary"} label={secondButtonLabel} onPress={onPressSecondary} />
           )}

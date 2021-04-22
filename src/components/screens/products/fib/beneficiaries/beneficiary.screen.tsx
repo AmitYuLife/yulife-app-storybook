@@ -5,7 +5,7 @@ import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-headin
 import { useBackHandler } from "@services/hooks/useBackHandler";
 import { MODALS, ROUTES } from "@navigation/constants";
 import { Colours, Style } from "@styles";
-import { Button, Text } from "@atoms";
+import { Button, SecondaryButton, Text } from "@atoms";
 import { BeneficiaryItem } from "./beneficiary-item";
 import { GetProductBeneficiaries_getProductBeneficiaries_beneficiaries as Beneficiary } from "@graphql/_core/schema";
 
@@ -149,11 +149,10 @@ export const BeneficiaryScreen = memo((props: Props) => {
             );
           })}
 
-          <Button
+          <SecondaryButton
             wrapperStyle={styles.addBeneficiaryButtonWrapper}
             label="Add Beneficiary"
             onPress={() => showAddBeneficiaryModal(productId, null)}
-            type="Secondary"
           />
 
           <View style={showError ? styles.bottomElementsWrapperWithError : styles.bottomElementsWrapper}>

@@ -1,4 +1,4 @@
-import { Button, Text, Pad, LinkButton } from "@atoms/index";
+import { Button, Text, Pad, LinkButton, SecondaryButton } from "@atoms/index";
 import { Instruction, Picker } from "@molecules/index";
 import * as React from "react";
 import { View } from "react-native";
@@ -85,8 +85,7 @@ const RewardItemContent = ({
         label={labelCtaPrimary}
       />
       {!onPressCtaSecondary ? null : (
-        <Button
-          type="Secondary"
+        <SecondaryButton
           onPress={onPressCtaSecondary}
           label={labelCtaSecondary}
           isLoading={isLoadingSecondary}

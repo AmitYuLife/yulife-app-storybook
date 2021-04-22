@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Image, StyleSheet, View } from "react-native";
-import { Button, Text } from "@atoms";
+import { Button, SecondaryButton, Text } from "@atoms";
 import { data, getCardBackgroundColor, getImageAndStyle } from "./challenge-details.helpers";
 import styles from "./challenge-details.styles";
 import Milestones, { IMilestone, IMilestoneProps } from "./milestones";
@@ -59,7 +59,7 @@ function ChallengeDetailsScreen({
         {!onPressSetUp ? (
           <Text style={styles.footer}>{data.footer}</Text>
         ) : (
-          <Button label={data.setUpLabel} onPress={onPressSetUp} type="Secondary" wrapperStyle={styles.setUp} />
+          <SecondaryButton label={data.setUpLabel} onPress={onPressSetUp} wrapperStyle={styles.setUp} />
         )}
         {!error ? null : <Text style={styles.error}>{error}</Text>}
       </View>
