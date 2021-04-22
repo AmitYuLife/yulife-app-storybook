@@ -66,7 +66,6 @@ const StreaksScreen = ({
           <Button
             isLoading={isLoading}
             wrapperStyle={styles.buttonPrimaryWrapper}
-            type="Primary"
             onPress={onSubmit}
             label={primaryButtonLabel}
           />

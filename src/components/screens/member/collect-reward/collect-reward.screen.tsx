@@ -18,7 +18,7 @@ const CollectReward: SFC<IProps> = ({ onPress, date, yucoin, ctaLabel }) => (
       <Pad height={8} />
       <View style={styles.dateWrapper}>{!date ? null : <Heading size="small" bold={true} label={date} />}</View>
       <Pad height={14} />
-      <Button type="Primary" size="Small" label={ctaLabel ? ctaLabel : "collect"} onPress={onPress} />
+      <Button size="Small" label={ctaLabel ? ctaLabel : "collect"} onPress={onPress} />
       <Pad height={Platform.OS === "ios" ? 100 : 50} />
     </CentredScreen>
   </View>

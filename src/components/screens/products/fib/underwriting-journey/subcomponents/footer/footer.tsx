@@ -31,7 +31,6 @@ function Footer(props: IFooterProps) {
       <View style={styles.buttonsWrapper}>
         <View style={linkButton ? styles.innerButtonsColumn : styles.innerButtonsRow}>
           <Button
-            type="Primary"
             size={secondButton ? "Small" : "Large"}
             onPress={firstButton.action}
             label={firstButton.label}
@@ -42,7 +41,6 @@ function Footer(props: IFooterProps) {
           {!secondButton ? null : (
             <Button
               size="Small"
-              type="Primary"
               onPress={secondButton.action}
               label={secondButton.label}
               delay={300}

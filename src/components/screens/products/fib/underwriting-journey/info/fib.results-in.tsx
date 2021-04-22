@@ -71,7 +71,7 @@ export const FibResultsInScreen = memo(function (props: IFibResultsInScreenProps
       </View>
 
       <View style={styles.buttonWrapper}>
-        <Button type="Primary" size={"Large"} onPress={onPressContinue} label={"Continue"} />
+        <Button size={"Large"} onPress={onPressContinue} label={"Continue"} />
       </View>
     </FibUnderwritingJourneyLayout>
   );

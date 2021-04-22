@@ -23,7 +23,7 @@ const SignUpRewardScreen: FC<IProps> = ({ isLoading, onCollectPress, reward }) =
       label={"You can exchange your YuCoin for vouchers from Amazon, Asos, M&S, and many more!"}
     />
     <Pad height={40} />
-    <Button type="Primary" label={"Next"} onPress={onCollectPress} isLoading={isLoading} disabled={isLoading} />
+    <Button label={"Next"} onPress={onCollectPress} isLoading={isLoading} disabled={isLoading} />
   </CentredScreen>
 );
 

@@ -103,7 +103,6 @@ class LoginScreen extends PureComponent<IProps, IState> {
               disabled={isLoggingIn || disabled}
               label={copy.ctaLabel}
               onPress={onLogInPress}
-              type="Primary"
               size="Large"
             />
 

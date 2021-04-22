@@ -23,7 +23,7 @@ export const CreateAvatarPrompt = memo(function ({ onUnlockPress }: Props) {
         <Text style={styles.label}>{" 100 YuCoin."}</Text>
       </View>
       <View style={styles.ctaWrapper} testID={GET_STARTED_BUTTON}>
-        <Button onPress={onUnlockPress} label="Get Started" size="Small" type="Primary" />
+        <Button onPress={onUnlockPress} label="Get Started" size="Small" />
       </View>
     </View>
   );

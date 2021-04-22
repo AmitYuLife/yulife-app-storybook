@@ -154,7 +154,6 @@ export default function AddBeneficiaryModalScreen({
             <Button
               label="Continue"
               onPress={onPressContinue}
-              type="Primary"
               disabled={!allFieldsValid}
               wrapperStyle={styles.continueButtonWrapper}
               isLoading={updateBeneficiaryLoading}

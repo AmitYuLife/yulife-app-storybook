@@ -20,7 +20,7 @@ export default function InfoScreen({ type, heading, subheading, ctaLabel, onPres
         <Image style={styles.image} resizeMethod="scale" source={assets[type]} />
         <Text style={styles.heading}>{heading}</Text>
         <Text style={styles.subheading}>{subheading}</Text>
-        <Button wrapperStyle={styles.buttonWrapper} label={ctaLabel} onPress={onPress} type="Primary" />
+        <Button wrapperStyle={styles.buttonWrapper} label={ctaLabel} onPress={onPress} />
       </View>
       <GenericHeadingAbsolute onRightIconPress={onPress} />
     </>

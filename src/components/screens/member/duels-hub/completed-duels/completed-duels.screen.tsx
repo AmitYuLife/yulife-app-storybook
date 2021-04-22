@@ -102,12 +102,7 @@ const CompletedDuelsScreen = () => {
         renderItem={renderItem}
         renderSectionHeader={renderSectionHeader}
         ListFooterComponent={
-          <Button
-            wrapperStyle={styles.buttonWrapperStyle}
-            label="Challenge a friend"
-            type="Primary"
-            onPress={navigateToDuelsSearch}
-          />
+          <Button wrapperStyle={styles.buttonWrapperStyle} label="Challenge a friend" onPress={navigateToDuelsSearch} />
         }
       />
     </View>

@@ -67,7 +67,7 @@ export const FibPayoutCalculatorAddDataScreen = memo(function (props: IFibPayout
         />
       </View>
       <View style={styles.buttonWrapper}>
-        <Button type="Primary" label="Continue" onPress={onContinue} disabled={buttonDisabled} />
+        <Button label="Continue" onPress={onContinue} disabled={buttonDisabled} />
       </View>
       <GenericHeadingAbsolute onLeftIconPress={onNavigateBack} logo={"yulife"} />
     </View>

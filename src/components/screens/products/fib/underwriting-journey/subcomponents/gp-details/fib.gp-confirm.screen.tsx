@@ -70,7 +70,7 @@ function _FibGPConfirmScreen(props: Props) {
         </View>
       </View>
       <View style={styles.buttonWrapper}>
-        <Button label="Continue" onPress={onContinue} type="Primary" />
+        <Button label="Continue" onPress={onContinue} />
       </View>
       <GenericHeadingAbsolute
         heading="GP Report"

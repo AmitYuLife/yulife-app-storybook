@@ -56,7 +56,6 @@ const _CTA = ({
         disabled={isButtonDisabled}
         label={buttonTitle}
         onPress={buttonAction}
-        type="Primary"
         isLoading={isButtonLoading}
         testID={GP_CONTINUE}
       />

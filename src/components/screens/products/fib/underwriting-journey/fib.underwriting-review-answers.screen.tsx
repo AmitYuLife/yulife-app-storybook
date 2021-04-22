@@ -98,7 +98,6 @@ const _FibUnderwritingReviewAnswersScreen = memo(function (props: IFibUnderwriti
           />
         </View>
         <Button
-          type="Primary"
           size={"Large"}
           onPress={onSubmitButton}
           label={"Submit answers"}

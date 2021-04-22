@@ -270,7 +270,6 @@ const AvatarBuilder: FC<IProps> = ({ avatar: defaultAvatar, onBackPressed, updat
           ) : (
             <View style={styles.buttonsSavingWrapper}>
               <Button
-                type="Primary"
                 onPress={() => {
                   showDoneModal(() => updateUserAvatar(avatar), setBackPressed, setDoneModalShown);
                   setDoneModalShown(true);

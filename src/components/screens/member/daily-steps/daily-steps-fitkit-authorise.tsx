@@ -12,7 +12,7 @@ interface Props {
 const DailyStepsFitKitAuthorise = ({ onPress, copy }: Props) => (
   <>
     <Text style={styles.permissionText}>{copy.permission}</Text>
-    <Button label={copy.permissionCta} onPress={onPress} type="Primary" size="Medium" />
+    <Button label={copy.permissionCta} onPress={onPress} size="Medium" />
   </>
 );
 

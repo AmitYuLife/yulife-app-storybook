@@ -75,7 +75,7 @@ export const FibEnterSalaryScreen = memo(function (props: IFibEnterSalaryScreenP
           <FibInputSalary setInputSalary={updateSalary} salary={salary} />
         </View>
         <View style={styles.button}>
-          <Button disabled={!salary} label="Done" type="Primary" onPress={onDonePressed} />
+          <Button disabled={!salary} label="Done" onPress={onDonePressed} />
         </View>
       </KeyboardAvoidingView>
     </GenericOverlay>

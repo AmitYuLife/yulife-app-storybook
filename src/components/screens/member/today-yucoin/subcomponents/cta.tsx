@@ -11,7 +11,7 @@ interface IProps {
 export default function CTA({ hide, onPress, title }: IProps) {
   return hide ? null : (
     <View style={styles.ctaWrapper}>
-      <Button onPress={onPress} label={title} type="Primary" />
+      <Button onPress={onPress} label={title} />
     </View>
   );
 }

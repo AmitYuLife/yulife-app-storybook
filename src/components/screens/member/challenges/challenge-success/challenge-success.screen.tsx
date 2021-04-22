@@ -57,14 +57,7 @@ export default function ChallengeSuccessScreen({
         </Text>
       </View>
 
-      <Button
-        label={copy.ctaLabel}
-        isLoading={loading}
-        onPress={onPressCta}
-        type="Primary"
-        size="Small"
-        wrapperStyle={styles.cta}
-      />
+      <Button label={copy.ctaLabel} isLoading={loading} onPress={onPressCta} size="Small" wrapperStyle={styles.cta} />
     </CentredScreen>
   );
 }

@@ -22,7 +22,7 @@ class LevelLockedScreen extends PureComponent<IProps> {
         <Text bold={true} style={styles.heading}>
           unlock at level {level}
         </Text>
-        <Button type="Primary" size="Medium" label="got it" onPress={onPressCta} />
+        <Button size="Medium" label="got it" onPress={onPressCta} />
       </View>
     );
   }

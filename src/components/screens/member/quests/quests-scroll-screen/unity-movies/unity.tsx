@@ -165,7 +165,6 @@ class Unity extends React.PureComponent<IProps, IState> {
             style={[{ opacity: this.buttonOpacity, transform: [{ translateY: this.buttonY }] }, styles.buttonWrapper]}
           >
             <Button
-              type="Primary"
               size="Large"
               onPress={() => {
                 this.setState({ showLightbox: true });

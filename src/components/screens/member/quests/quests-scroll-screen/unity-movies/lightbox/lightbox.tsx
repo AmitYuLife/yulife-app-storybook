@@ -78,7 +78,6 @@ const Lightbox: FC<IProps> = ({ level, goToNextScreen }) => {
         <View style={styles.bottomSectionWrapper}>
           <View style={styles.buttonWrapper}>
             <Button
-              type="Primary"
               size="Fill"
               onPress={goToNextScreen}
               label={getButtonLabel(level)}

@@ -157,7 +157,6 @@ export const ToolTip = () => {
           <Text style={getCaptionStyle(isActive)}>{toolTip?.description.short}</Text>
           <Button
             wrapperStyle={styles.cta}
-            type="Primary"
             size="Fill"
             onPress={handleNavigateToProductScreen}
             {...getButtonProps({ product })}

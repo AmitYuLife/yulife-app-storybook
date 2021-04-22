@@ -53,7 +53,6 @@ function ChallengeDetailsScreen({
           isLoading={isLoading}
           label={isLoading ? data.loading : data.ctaLabel}
           onPress={onPressCta}
-          type="Primary"
           wrapperStyle={styles.ctaButton}
         />
         {!onPressSetUp ? (

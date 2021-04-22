@@ -20,7 +20,7 @@ export function CommunityGoalJoinButton({ youHaveJoined, isExpired, isOngoing, o
     );
   }
 
-  return <Button wrapperStyle={styles.buttonWrapper} type="Primary" label="Join the challenge!" onPress={onPress} />;
+  return <Button wrapperStyle={styles.buttonWrapper} label="Join the challenge!" onPress={onPress} />;
 }
 
 const styles = StyleSheet.create({

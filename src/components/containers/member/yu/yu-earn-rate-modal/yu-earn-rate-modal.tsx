@@ -59,7 +59,7 @@ const YuEarnRateModal = () => {
         <View style={styles.bottomPad} />
       </ScrollView>
       <View pointerEvents="box-none" style={styles.confirmWrapper}>
-        <Button wrapperStyle={styles.confirm} size="Large" type="Primary" onPress={dismissOverlay} label="Got it!" />
+        <Button wrapperStyle={styles.confirm} size="Large" onPress={dismissOverlay} label="Got it!" />
       </View>
     </GenericOverlay>
   );

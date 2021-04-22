@@ -93,7 +93,7 @@ export const FibStyleSelectionScreen = memo(function (props: IFibStyleSelectionS
           </Text>
         </View>
         <View style={styles.buttonWrapper}>
-          <Button label="Continue" onPress={() => onContinue(selectedStyle.world)} type="Primary" />
+          <Button label="Continue" onPress={() => onContinue(selectedStyle.world)} />
         </View>
       </View>
       <GenericHeadingAbsolute

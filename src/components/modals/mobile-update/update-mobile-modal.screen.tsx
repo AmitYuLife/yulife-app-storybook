@@ -27,7 +27,7 @@ export default function MobileUpdateModalScreen({
           {heading}
         </Text>
         <Text style={styles.subheading}>{subheading}</Text>
-        <Button wrapperStyle={styles.buttonWrapper} label="Update my app" onPress={onPress} type="Primary" />
+        <Button wrapperStyle={styles.buttonWrapper} label="Update my app" onPress={onPress} />
         <LinkButton wrapperStyle={styles.buttonWrapperSecondary} label="Not now" onPress={onPressSecondary} />
       </View>
       <GenericHeadingAbsolute onRightIconPress={onPressSecondary} />

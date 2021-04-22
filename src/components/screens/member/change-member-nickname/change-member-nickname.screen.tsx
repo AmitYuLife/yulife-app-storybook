@@ -54,7 +54,6 @@ const ChangeMemberNickname: FunctionComponent<Props> = ({ enableButton, isLoadin
             <Button
               disabled={!nickname}
               testID={CHANGE_MEMBER_NICK_BUTTON}
-              type="Primary"
               label="Save"
               isLoading={isLoading}
               onPress={() => onPress(nickname)}

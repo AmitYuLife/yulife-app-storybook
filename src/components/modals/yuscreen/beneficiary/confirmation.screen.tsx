@@ -31,14 +31,8 @@ export const ConfirmationScreen = ({
         wrapperStyle={styles.firstButtonWrapper}
         label={firstLabel}
         onPress={onFirstButtonPress}
-        type="Primary"
       />
-      <Button
-        wrapperStyle={styles.secondButtonWrapperSecondary}
-        label={secondLabel}
-        onPress={onSecondButtonPress}
-        type={"Primary"}
-      />
+      <Button wrapperStyle={styles.secondButtonWrapperSecondary} label={secondLabel} onPress={onSecondButtonPress} />
     </View>
   );
 };

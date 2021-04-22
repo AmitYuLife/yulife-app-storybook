@@ -35,7 +35,6 @@ const _AvatarCreationPrompt = () => {
         </Text>
         <View style={styles.promptCtaWrapper}>
           <Button
-            type="Primary"
             size="Fill"
             label={CREATE_AVATAR_CTA_COPY}
             onPress={navigateToAvatarCreationScreen}

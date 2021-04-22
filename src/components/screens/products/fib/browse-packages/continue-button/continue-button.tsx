@@ -12,7 +12,7 @@ export const ContinueButton = memo(({ onPress }: Props) => {
   return (
     <LinearGradient colors={["#ffffff00", "#fafafe"]} locations={[0, 0.25]} style={styles.button}>
       <View style={styles.wrapper}>
-        <Button label="Continue" onPress={onPress} type="Primary" />
+        <Button label="Continue" onPress={onPress} />
       </View>
     </LinearGradient>
   );
