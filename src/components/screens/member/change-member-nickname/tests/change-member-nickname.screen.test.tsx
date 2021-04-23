@@ -30,9 +30,10 @@ describe("ChangeMemberNickname", () => {
   it("should render ChangeMemberNickname with button", () => {
     const { getByTestId, queryByText } = renderComponent({ enableButton: true });
     const button = getByTestId(CHANGE_MEMBER_NICK_BUTTON);
+    const buttonText = getByTestId(`${CHANGE_MEMBER_NICK_BUTTON}-text-view`);
     const goBackButton = getByTestId(BACK_BUTTON);
     expect(goBackButton).toBeTruthy();
-    expect(button).toHaveTextContent("Save");
+    expect(buttonText).toHaveTextContent("Save");
     act(() => {
       fireEvent.press(button);
     });

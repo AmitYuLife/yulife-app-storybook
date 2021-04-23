@@ -3,7 +3,7 @@ import { StyleSheet, View, ViewStyle } from "react-native";
 import { usePressedInWithDelay } from "@services/hooks/usePressedInWithDelay";
 import { Colours } from "@styles";
 import LinkButtonBase from "./link-button.base";
-import { DEFAULT_HEIGHT, styles } from "../button.styles";
+import { DEFAULT_HEIGHT, buttonStyles } from "../button.styles";
 
 interface Props {
   wrapperStyle?: ViewStyle;
@@ -26,7 +26,7 @@ export const LinkButton = (props: Props) => {
   }
 
   return (
-    <View style={StyleSheet.flatten([styles.wrapper, wrapperStyle])}>
+    <View style={StyleSheet.flatten([buttonStyles.wrapper, wrapperStyle])}>
       <LinkButtonBase
         height={DEFAULT_HEIGHT}
         disabled={disabled}

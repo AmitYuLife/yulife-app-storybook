@@ -1,31 +1,28 @@
-import React, { ComponentProps, useEffect, useState } from "react";
-import {
-  Animated,
-  StyleSheet,
-  ActivityIndicator,
-  TouchableWithoutFeedback,
-  View,
-  ViewStyle,
-  TextStyle,
-} from "react-native";
+import React, { ComponentProps, memo, useEffect, useState } from "react";
+import { Animated, StyleSheet, ActivityIndicator, TouchableWithoutFeedback, View, ViewStyle } from "react-native";
+import LinearGradient from "react-native-linear-gradient";
 import { usePressedInWithDelay } from "@services/hooks/usePressedInWithDelay";
-import Text from "../text/text";
 import { Style } from "@styles";
+import { getOptionallyDisabledColor } from "@styles/getOptionallyDisabledColor";
+import { TextTemplate } from "@atoms/text/text-template";
 
 interface IProps {
   disabled?: boolean;
   testID?: string;
   onPress: () => void;
   isLoading?: boolean;
-  title: string;
+  title?: string;
   borderColor?: string;
   color?: string;
   backgroundColor?: string;
+  backgroundGradient?: string[];
   shadowColor?: string;
   borderRadius?: number;
   height: number;
   delay?: number;
   disableAnimation?: boolean;
+  children?: React.ReactElement;
+  hideShadow?: boolean;
 }
 
 interface IState {
@@ -33,11 +30,18 @@ interface IState {
   translateYAnimation: Animated.Value;
 }
 
-const SHADOW_ALLOWANCE = 4;
-const SHADOW_DIFF = 3;
+const SHADOW_DIFF = 6;
 
 export function ButtonBase(props: IProps) {
-  const { onPress, height = Style.adjust(50), borderRadius = props.height / 2, delay, disableAnimation } = props;
+  const {
+    children = null,
+    onPress,
+    height = Style.adjust(50),
+    borderRadius = props.height / 2,
+    delay,
+    disableAnimation,
+    hideShadow,
+  } = props;
   const [translateYAnimation] = useState(new Animated.Value(0));
   const { isPressedIn, handlePressIn, handlePressOut, handlePress } = usePressedInWithDelay({ onPress, delay });
 
@@ -54,45 +58,47 @@ export function ButtonBase(props: IProps) {
   }, [isPressedIn, translateYAnimation, disableAnimation]);
 
   return (
-    <View style={[styles.flex, { height: height + SHADOW_ALLOWANCE }]}>
-      <Shadow {...props} height={height - SHADOW_DIFF} borderRadius={borderRadius} disabled={props.disabled} />
+    <View style={[styles.flex, { height }]}>
+      {hideShadow ? null : (
+        <Shadow
+          shadowColor={props.shadowColor}
+          testID={props.testID}
+          height={height - SHADOW_DIFF}
+          borderRadius={borderRadius}
+          disabled={props.disabled}
+        />
+      )}
       <Main
-        {...props}
-        height={height - SHADOW_DIFF}
+        backgroundColor={props.backgroundColor}
+        backgroundGradient={props.backgroundGradient}
+        borderColor={props.borderColor}
+        color={props.color}
+        isLoading={props.isLoading}
+        testID={props.testID}
+        disabled={props.disabled}
+        title={props.title}
+        height={height - (hideShadow ? 0 : SHADOW_DIFF)}
         borderRadius={borderRadius}
         onPressIn={handlePressIn}
         onPressOut={handlePressOut}
         onPress={handlePress}
         isPressedIn={isPressedIn}
         translateYAnimation={translateYAnimation}
-      />
-      <DisabledOverlay {...props} />
+      >
+        <View>{children}</View>
+      </Main>
     </View>
   );
 }
 
-function Shadow({ height, borderRadius, shadowColor, testID, disabled }: IProps) {
-  const opacity = disabled ? 0.5 : 1;
+type ShadowProps = "height" | "borderRadius" | "shadowColor" | "testID" | "disabled";
+
+function Shadow({ height, borderRadius, shadowColor, testID, disabled }: Pick<IProps, ShadowProps>) {
+  const backgroundColor = getOptionallyDisabledColor({ color: shadowColor, disabled });
+
   return (
-    <View style={[styles.shadow, { height, borderRadius, backgroundColor: shadowColor, opacity }]}>
+    <View style={[styles.shadow, { height, borderRadius, backgroundColor }]}>
       <View testID={`${testID}-disabled-overlay`} />
-    </View>
-  );
-}
-
-function DisabledOverlay({ disabled, borderRadius, height, borderColor }: IProps) {
-  const border = borderColor ? { borderWidth: 1, borderColor: "rgba(255,255,255,0.5)" } : {};
-  return !disabled ? null : (
-    <View
-      style={[
-        StyleSheet.absoluteFillObject,
-        styles.main,
-        {
-          height: height + SHADOW_ALLOWANCE,
-        },
-      ]}
-    >
-      <View style={[styles.disableOverlay, border, { height: height - SHADOW_DIFF, borderRadius }]} />
     </View>
   );
 }
@@ -102,6 +108,7 @@ function Main({
   borderRadius = 50,
   height,
   backgroundColor,
+  backgroundGradient,
   borderColor,
   color,
   isLoading,
@@ -111,8 +118,11 @@ function Main({
   onPressOut,
   onPress,
   title,
+  children,
 }: IProps & IState & ComponentProps<typeof TouchableWithoutFeedback>) {
-  const border = borderColor ? { borderColor, borderWidth: 1 } : {};
+  const adjustedColor = getOptionallyDisabledColor({ color, disabled });
+  const adjustedBorderColor = getOptionallyDisabledColor({ color: borderColor, disabled });
+  const border = borderColor ? { borderColor: adjustedBorderColor, borderWidth: 1 } : {};
 
   return (
     <TouchableWithoutFeedback
@@ -123,37 +133,92 @@ function Main({
       onPressOut={onPressOut}
       onPress={onPress}
     >
-      <Animated.View
-        style={[
-          styles.main,
-          { backgroundColor, height, borderRadius, transform: [{ translateY: translateYAnimation }], ...border },
-        ]}
-        testID={`${testID}-text-view`}
-      >
-        {isLoading ? (
-          <ActivityIndicator color={color} />
-        ) : (
-          <Text bold={true} style={[styles.title, { color }]}>
-            {title}
-          </Text>
-        )}
-      </Animated.View>
+      <View style={styles.mainWrapper}>
+        <Animated.View
+          style={[styles.main, backgroundStyles.wrapper, { height, transform: [{ translateY: translateYAnimation }] }]}
+        >
+          <Background disabled={disabled} backgroundColor={backgroundColor} backgroundGradient={backgroundGradient} />
+        </Animated.View>
+        <Animated.View
+          style={[styles.main, { height, borderRadius, transform: [{ translateY: translateYAnimation }], ...border }]}
+        >
+          <Content testID={`${testID}-text-view`} title={title} isLoading={isLoading} color={adjustedColor}>
+            {children}
+          </Content>
+        </Animated.View>
+      </View>
     </TouchableWithoutFeedback>
   );
 }
 
+interface ContentProps {
+  title: string;
+  isLoading: boolean;
+  color: string;
+  children: React.ReactElement;
+  testID: string;
+}
+function Content({ title, isLoading, color, children, testID }: ContentProps) {
+  if (isLoading) {
+    return <ActivityIndicator color={color} />;
+  }
+
+  if (title) {
+    return (
+      <TextTemplate type="b2b" testID={testID} color={color}>
+        {title}
+      </TextTemplate>
+    );
+  }
+
+  return children;
+}
+
 export default ButtonBase;
 
+const Background = memo(
+  ({
+    backgroundGradient,
+    backgroundColor = "transparent",
+    disabled,
+  }: {
+    backgroundGradient: string[];
+    backgroundColor: string;
+    disabled: boolean;
+  }) => {
+    if (backgroundGradient?.length) {
+      return <LinearGradient style={backgroundStyles.wrapper} colors={backgroundGradient} />;
+    }
+
+    const adjustedBackgroundColor = getOptionallyDisabledColor({ color: backgroundColor, disabled });
+
+    return (
+      <View style={StyleSheet.flatten([backgroundStyles.wrapper, { backgroundColor: adjustedBackgroundColor }])} />
+    );
+  }
+);
+
+const backgroundStyles = StyleSheet.create({
+  wrapper: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    borderRadius: 999,
+  } as ViewStyle,
+});
+
 const styles = StyleSheet.create({
+  mainWrapper: {
+    flex: 1,
+    width: "100%",
+  } as ViewStyle,
   main: {
     width: "100%",
     justifyContent: "center",
     alignItems: "center",
   } as ViewStyle,
-  title: {
-    fontFamily: Style.FONT_FAMILY_PRIMARY_BOLD,
-    fontSize: Style.adjust(16),
-  } as TextStyle,
   shadow: {
     width: "100%",
     position: "absolute",

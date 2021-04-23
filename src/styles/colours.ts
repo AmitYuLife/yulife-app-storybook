@@ -186,6 +186,7 @@ export default {
     p400: "#F43E8E",
     p500: "#F50D78",
     p600: "#E30D76",
+    p600Shadow: "#900860",
   },
   secondary: {
     /** Uncommon Green */
