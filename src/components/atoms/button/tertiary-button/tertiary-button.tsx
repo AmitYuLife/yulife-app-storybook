@@ -2,7 +2,7 @@ import React from "react";
 import { StyleSheet, View, ViewStyle } from "react-native";
 import { usePressedInWithDelay } from "@services/hooks/usePressedInWithDelay";
 import TertiaryButtonBase from "./tertiary-button.base";
-import { getWidth, styles } from "../button.styles";
+import { getWidth, buttonStyles } from "../button.styles";
 import { BUTTON_ICON } from "./tertiary-button.helpers";
 import { Sizes } from "../button.types";
 import { Style } from "@styles";
@@ -50,7 +50,7 @@ export const TertiaryButton = (props: Props) => {
   }
 
   return (
-    <View style={StyleSheet.flatten([styles.wrapper, wrapperStyle, widthStyles])}>
+    <View style={StyleSheet.flatten([buttonStyles.wrapper, wrapperStyle, widthStyles])}>
       <TertiaryButtonBase
         disabled={disabled}
         testID={testID}

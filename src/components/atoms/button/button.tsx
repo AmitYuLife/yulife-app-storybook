@@ -4,7 +4,8 @@ import { Colours } from "@styles";
 import { usePressedInWithDelay } from "@services/hooks/usePressedInWithDelay";
 import { ButtonBase } from "./button.base";
 import { Sizes } from "./button.types";
-import { DEFAULT_HEIGHT, styles, getWidth } from "./button.styles";
+import { buttonStyles, getWidth } from "./button.styles";
+import { DEFAULT_HEIGHT } from "./button.styles";
 
 interface IProps {
   isLoading?: boolean;
@@ -34,9 +35,9 @@ function Button(props: IProps) {
     delay,
     disableAnimation,
     show = true,
-    backgroundColor = Colours.darkHotPink,
-    shadowColor = Colours.darkHotPinkShadow,
-    textColor = "white",
+    backgroundColor = Colours.primary.p600,
+    shadowColor = Colours.primary.p600Shadow,
+    textColor = Colours.neutral.white,
   } = props;
 
   const { handlePress } = usePressedInWithDelay({ onPress, delay });
@@ -48,7 +49,7 @@ function Button(props: IProps) {
   const widthStyles = getWidth(size);
 
   return (
-    <View style={StyleSheet.flatten([styles.wrapper, wrapperStyle, widthStyles])}>
+    <View style={StyleSheet.flatten([buttonStyles.wrapper, wrapperStyle, widthStyles])}>
       <ButtonBase
         backgroundColor={backgroundColor}
         shadowColor={shadowColor}

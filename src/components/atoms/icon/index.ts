@@ -10,6 +10,8 @@ import { SmartHealthIcon } from "./smart-health-icon";
 import { GooglePlayIcon } from "./google-play-icon";
 import { AppStoreIcon } from "./app-store-icon";
 import { StreakTicks } from "./streak-ticks";
+import { Calm } from "./calm";
+import { Headspace } from "./headspace";
 
 //TODO: check with the team if we can refactor this to support "import { Icon1, Icon2} from "@atoms/icon";
 
@@ -26,4 +28,6 @@ export default {
   GooglePlayIcon,
   AppStoreIcon,
   StreakTicks,
+  Calm,
+  Headspace,
 };

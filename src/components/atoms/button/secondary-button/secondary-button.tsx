@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, View, ViewStyle } from "react-native";
 import { usePressedInWithDelay } from "@services/hooks/usePressedInWithDelay";
-import { DEFAULT_HEIGHT, getWidth, styles } from "../button.styles";
+import { DEFAULT_HEIGHT, getWidth, buttonStyles } from "../button.styles";
 import { Sizes } from "../button.types";
 import { Colours } from "@styles";
 import ButtonBase from "../button.base";
@@ -29,7 +29,7 @@ export const SecondaryButton = (props: Props) => {
   }
 
   return (
-    <View style={StyleSheet.flatten([styles.wrapper, wrapperStyle, widthStyles])}>
+    <View style={StyleSheet.flatten([buttonStyles.wrapper, wrapperStyle, widthStyles])}>
       <ButtonBase
         height={DEFAULT_HEIGHT}
         disabled={disabled}
