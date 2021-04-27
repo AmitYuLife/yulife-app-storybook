@@ -7,6 +7,44 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.6.0] - 2021-04-27
+
+### Features
+
+- Feature TP-776: App review prompt
+- Feature TP-650: Introduction to Underwriting - Improvements
+
+### Bugfixes
+
+- Bugfix TP-754: Remove later button from safe checker screen on streaks
+- (origin/bugfix/tp-1978-fix-missing-steps-day) get the full day data
+- Bugfix: Fix streaks alignment
+- Bugfix TP-754: Add first day streak copy
+- Bugfix TP-754: Streaks screen
+
+### Tasks
+
+- Task TP-802: Fix button spec
+- Task: Clean up button type
+- Task: Factor out secondary button
+- Task: Factor out tertiary button
+- Task: Factor out Link button type
+- Task: Update FIB intro copy minutes from 6 to 5
+
+### Chores
+
+- Chore: Remove unused UnderwritingJourneyIntroductionContainer
+
+### Extra
+
+- Purge: time's up for time's up
+- (origin/hotfix/product-entity, hotfix/product-entity) Hotfix: customer product entity fix
+- fix working
+- Detox: Extended fixes
+- Detox: Streak updates
+- Hotfix: add trailing slash for api url
+- Hotfix: copy gql revert
+
 ## [3.5.0] - 2021-04-13
 
 ### Features
