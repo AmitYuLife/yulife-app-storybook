@@ -225,7 +225,7 @@ Feature("I am able to use the yuscreens extended features", async () => {
                             Then("I should be told to enter my postcode", then.textVisible("Enter your post code:"))
                             Then("I should see the post code entry field", then.idVisible(SEARCH_INPUT))
                         })
-                            When("I enter a post code", when.typeViaID(SEARCH_INPUT, "EC1Y 8RQ"), async()=>{
+                            When("I enter a post code", when.typeViaID(SEARCH_INPUT, "EC1Y 8RQ \n"), async()=>{
                             When("I scroll to my address", when.scrollUntilIdVisible(SEARCH_FLAT_LIST, SEARCH_ITEM("14 Mallow Street"), "down"), async()=>{
                                 Then("I should see 12 mallow street", then.idVisible(SEARCH_ITEM("12 Mallow Street")))
                             })
@@ -233,10 +233,10 @@ Feature("I am able to use the yuscreens extended features", async () => {
                             When("I tap 12 Mallow Street", when.tryTapID(SEARCH_ITEM("12 Mallow Street")), async()=>{
                             Then("I should be back on the address screen with my address shown", then.multipleTextVisible(["12 Mallow Street", "London", "EC1Y 8RQ"]))
                         })
-                        When("I type an email", when.typeViaID(CONTACT_DETAILS_INPUT("Personal Email"), "myemail@email.com"), async()=>{
+                        When("I type an email", when.typeViaID(CONTACT_DETAILS_INPUT("Personal Email"), "myemail@email.com\n"), async()=>{
                             Then("I should see my email", then.textVisible("myemail@email.com"))
                         })
-                        When("I type a phone number", when.typeViaID(CONTACT_DETAILS_INPUT("Phone number"), "07352167463"), async () => {
+                        When("I type a phone number", when.typeViaID(CONTACT_DETAILS_INPUT("Phone number"), "07352167463\n"), async () => {
                             Then("I should see my phone number", then.textVisible("07352167463"))
                         })
                         When("I scroll and tap continue", when.scrollToAndTapText(CONTACT_DETAILS_SCROLL_VIEW, "Continue", "down"), async()=>{
@@ -254,7 +254,7 @@ Feature("I am able to use the yuscreens extended features", async () => {
                                 Then("I should be asked to enter the name of my GP practive", then.textVisible("Enter the name of your local medical practice:"))
                                 Then("I should see the GP input", then.idVisible(SEARCH_INPUT))
                             })
-                            When("I enter the name of my practice", when.typeViaID(SEARCH_INPUT,"The Neaman Practice"), async()=>{
+                            When("I enter the name of my practice", when.typeViaID(SEARCH_INPUT,"The Neaman Practice \n"), async()=>{
                                     Then("I should see my practice in a list", then.idVisible(SEARCH_ITEM("The Neaman Practice")))
                             })
                             When("I tap my practice", when.tryTapID(SEARCH_ITEM("The Neaman Practice")),async()=>{
@@ -327,7 +327,7 @@ Feature("I am able to use the yuscreens extended features", async () => {
                 When("I tap enter your annual salary", when.tapText("Enter your annual salary"), async()=>{
                     Then("I should be on the enter your salary screen", then.textVisible("Enter your salary"))
                     })
-                When("I enter my salary", when.typeViaID(FIB_SALARY_INPUT, "40000"), async()=>{
+                When("I enter my salary", when.typeViaID(FIB_SALARY_INPUT, "40000\n"), async()=>{
                     Then("I should see my salary", then.idVisible(FIB_SALARY_INPUT_VALUE("40,000")))
                     })
                 When("I tap Done", when.tapText("Done"), async()=>{
