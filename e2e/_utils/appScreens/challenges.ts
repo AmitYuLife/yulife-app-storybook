@@ -39,7 +39,7 @@ export const startChallenge = (challengeTile: string, ) => async () => {
 }
 
 export const dismissChestUnlock = (streakDay = 1) => async () => {
-    await navigateViaText("collect")
+    await navigateViaText("collect", 2500)
     try {
         await expectIsVisibleViaText(`Completed streak day ${streakDay}`, 2500)
         await navigateViaText("done")

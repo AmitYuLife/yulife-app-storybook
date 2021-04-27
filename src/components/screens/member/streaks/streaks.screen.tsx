@@ -7,6 +7,7 @@ import StreakCompletion from "@components/screens/member/streaks/subcomponents/s
 import StreakStart from "./subcomponents/streak-start";
 import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
 import { Style } from "@styles";
+import { DETOX_ENABLED } from "@services/socket";
 
 interface IProps {
   isLoading: boolean;
@@ -43,6 +44,7 @@ const StreaksScreen = ({
   const isStreakCompleted = streakMax === streakCompleted && !streakAwardId;
 
   const isNotValidTime = timeRemaining.startsWith("NaNd");
+  const autoPlayLottie = DETOX_ENABLED ? false : true;
 
   const streakInfo = getStreakInfo(streakMax, heading, subHeading, reward, currentStreakCompleted);
   return (
@@ -50,7 +52,7 @@ const StreaksScreen = ({
       <GenericHeadingPad />
       <View style={styles.wrapper}>
         <View style={styles.lottieWrapper}>
-          <LottieView source={streakInfo?.image} autoPlay={true} loop={false} />
+          <LottieView source={streakInfo?.image} autoPlay={autoPlayLottie} loop={false} />
         </View>
         <TextTemplate type={Style.isShortToMedium() ? "h2" : "h1"} textAlign="center">
           {streakInfo?.header}
