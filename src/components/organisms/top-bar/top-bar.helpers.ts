@@ -28,29 +28,28 @@ export type TopBarViewProps = {
 
 export const TopBarLeftIconTypes = leftIconTypes;
 
-export function formatSeconds(secondsRemaining: number): string {
+export function formatSeconds(secondsRemaining: number) {
   const days = Math.floor(secondsRemaining / 86400);
-  const hours = Math.floor(secondsRemaining / (60 * 60)) % 24;
-  const minutes = Math.floor(secondsRemaining / 60) % 60;
-  const seconds = secondsRemaining % 60;
 
   if (days) {
     return `> ${days} day${days > 1 ? "s" : ""}`;
   }
 
-  const paddedHours = padNum(hours);
-  const paddedMinutes = padNum(minutes);
-  const paddedSeconds = padNum(seconds);
+  const hours = Math.floor(secondsRemaining / (60 * 60)) % 24;
+  const minutes = Math.floor(secondsRemaining / 60) % 60;
+  const seconds = secondsRemaining % 60;
 
-  if (hours < 1) {
-    return `${paddedMinutes}:${paddedSeconds}`;
+  if (!hours && !minutes && !seconds) {
+    return "--:--";
   }
 
-  if (seconds) {
-    return `${paddedHours}:${paddedMinutes}:${paddedSeconds}`;
+  const display = `${padNum(minutes)}:${padNum(seconds)}`;
+
+  if (hours > 0) {
+    return `${padNum(hours)}:${display}`;
   }
 
-  return "--:--";
+  return display;
 }
 
 export function getStyle(type: TopBarTypes) {

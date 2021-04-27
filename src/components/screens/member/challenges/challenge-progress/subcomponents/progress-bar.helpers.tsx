@@ -5,21 +5,19 @@ import { displaySecondsAsMinutes, padNum } from "@services/utils";
 import { IProps } from "./progress-bar";
 import styles from "./progress-bar.styles";
 
-export const renderProgressLabel = ({ amount, showCounter, styleType = "black", type }: Partial<IProps>) => {
+export const renderProgressLabel = ({ amount, styleType = "black", type }: Partial<IProps>) => {
   const textColorStyle = getProgressLabelTextColor(styleType);
   const { minutes, seconds } = displaySecondsAsMinutes(amount);
 
   const typeText = type === "steps" && amount === 1 ? "step" : type;
   switch (type) {
     case "steps":
-      return showCounter ? (
+      return (
         <Counter
           value={amount}
           textStyle={StyleSheet.flatten([styles.stepsText, textColorStyle])}
           textAfterValue={typeText}
         />
-      ) : (
-        <Text style={StyleSheet.flatten([styles.stepsText, textColorStyle])}>{`${amount} ${typeText}`}</Text>
       );
 
     case "minutes":

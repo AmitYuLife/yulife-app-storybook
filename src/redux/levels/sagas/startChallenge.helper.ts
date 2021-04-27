@@ -14,10 +14,10 @@ import { cancelLocalPush } from "../../device/device.actions";
 import { getUserFeatures } from "../../user/user.selectors";
 import {
   CHALLENGE_CANCEL,
-  CHALLENGE_TIME_UP,
+  CHALLENGE_END,
+  challengeEndAction,
   challengeResetFailAction,
   challengeResetSuccessAction,
-  challengeTimeUpAction,
   challengeUpdateSuccessAction,
 } from "../levels.actions";
 import { DETOX_ENABLED } from "@services/socket";
@@ -55,7 +55,7 @@ export function* startTracking(levelSlotId: string, startDateTime: string, endDa
 
         if ((data?.updateActiveChallenge?.challenge?.status || "") === "completed") {
           yield put(cancelLocalPush());
-          yield put(challengeTimeUpAction());
+          yield put(challengeEndAction());
           return;
         }
       }
@@ -66,7 +66,7 @@ export function* startTracking(levelSlotId: string, startDateTime: string, endDa
     }
   }
 
-  yield put(challengeTimeUpAction());
+  yield put(challengeEndAction());
 }
 
 // android doesn't like big delays: Improvise. Adapt. Overcome.
@@ -77,7 +77,7 @@ export function* startTrackingTime(endDateTime: string) {
     yield delay(DETOX_ENABLED ? 2000 : 1000); // in e2e mode, timers under 1500ms will cause detox to hang infinitely
   }
 
-  yield put(challengeTimeUpAction());
+  yield put(challengeEndAction());
 }
 
 type Args = Omit<CreateActiveChallenge_createActiveChallenge_challenge, "level" | "status"> &
@@ -94,9 +94,9 @@ export default function* startChallenge({ subtype, levelSlotId, startDateTime, e
   let inProgress = true;
 
   while (inProgress) {
-    const { challengeCancelled, challengeTimeUp } = yield race({
+    const { challengeCancelled, challengeEnd } = yield race({
       challengeCancelled: take(CHALLENGE_CANCEL),
-      challengeTimeUp: take(CHALLENGE_TIME_UP),
+      challengeEnd: take(CHALLENGE_END),
     });
 
     if (challengeCancelled) {
@@ -115,7 +115,7 @@ export default function* startChallenge({ subtype, levelSlotId, startDateTime, e
           Logger.error(e, { event: "startChallenge" });
         });
       }
-    } else if (challengeTimeUp) {
+    } else if (challengeEnd) {
       inProgress = false;
       return;
     }

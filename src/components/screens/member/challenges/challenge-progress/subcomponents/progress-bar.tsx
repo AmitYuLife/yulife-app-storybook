@@ -22,12 +22,11 @@ export type ProgressBarTypes =
 export interface IProps {
   amount: number;
   goals: number[];
-  showCounter: boolean;
   styleType?: ProgressBarTypes;
   type: "steps" | "minutes" | "distance" | string;
 }
 
-export default function ProgressBar({ amount, goals, showCounter, styleType, type }: IProps) {
+export default function ProgressBar({ amount, goals, styleType, type }: IProps) {
   return (
     <View style={styles.container}>
       {goals.map((goal, i) => {
@@ -50,7 +49,7 @@ export default function ProgressBar({ amount, goals, showCounter, styleType, typ
           />
         );
       })}
-      <View style={styles.counterPosition}>{renderProgressLabel({ amount, showCounter, type, styleType })}</View>
+      <View style={styles.counterPosition}>{renderProgressLabel({ amount, type, styleType })}</View>
     </View>
   );
 }

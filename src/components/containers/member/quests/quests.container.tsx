@@ -3,17 +3,15 @@ import { getUnitTarget, getCurrentWorld } from "@services/utils";
 import { Style } from "@styles/index";
 import React, { FC, useCallback, useMemo } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { challengeCancelAction, challengeEndAction, challengeResetAction } from "@redux/levels/levels.actions";
+import { challengeCancelAction, challengeResetAction } from "@redux/levels/levels.actions";
 import { getActiveLevel } from "@redux/levels/levels.selectors";
 import { displayStreaksCompletedAction } from "@redux/streaks/streaks.actions";
-import { getUserFeatures } from "@redux/user/user.selectors";
 import {
   ChallengeExitScreen,
   ChallengeFailedScreen,
   ChallengeProgressScreen,
   ChallengeSuccessScreen,
   QuestsScreenOffline,
-  ChallengeCompleteScreen,
 } from "@screens";
 import QuestsScreenContainer from "@screens/member/quests/quests-scroll-screen/quests-screen.container";
 import { BlurProvider } from "@atoms/index";
@@ -24,23 +22,10 @@ export type Props = IMainTabsProps;
 const QuestsContainer: FC<Props> = (props) => {
   const dispatch = useDispatch();
   const activeLevel = useSelector(getActiveLevel);
-  const features = useSelector(getUserFeatures);
 
   const { componentId, onLeftMenuPress } = props;
 
-  const {
-    coins,
-    endDateTime,
-    level,
-    milestones,
-    rating,
-    score,
-    status,
-    subtype,
-    timeUp,
-    unit,
-    isLoading,
-  } = activeLevel;
+  const { coins, endDateTime, level, milestones, rating, score, status, subtype, unit, isLoading } = activeLevel;
 
   useTapBackTwiceToExit(props.componentId);
 
@@ -92,10 +77,6 @@ const QuestsContainer: FC<Props> = (props) => {
     );
   }
 
-  if (timeUp) {
-    return <ChallengeCompleteScreen isLoading={isLoading} onCtaPress={() => dispatch(challengeEndAction())} />;
-  }
-
   if (subtype) {
     const progressTargets = milestones.map((item) => item.target[getUnitTarget(subtype)]);
 
@@ -106,7 +87,6 @@ const QuestsContainer: FC<Props> = (props) => {
             {...screenProps}
             currentWorld={currentWorld}
             challengeType={subtype as any}
-            showCounter={features.showCounter}
             onDismissPress={showOverlay}
             endDateTime={endDateTime}
             userProgress={score}
@@ -125,7 +105,7 @@ const QuestsContainer: FC<Props> = (props) => {
     );
   }
 
-  return <QuestsScreenContainer {...screenProps} showCompletedLevel={features.showCompletedLevel} />;
+  return <QuestsScreenContainer {...screenProps} />;
 };
 
 export default QuestsContainer;

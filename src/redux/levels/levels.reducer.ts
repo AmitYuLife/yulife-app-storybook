@@ -1,6 +1,7 @@
 import { PedometerResponse } from "@services/fitkit/fitkit.service";
 import moment from "moment";
-import { GetCurrentUser, LoginUser, UpdateActiveChallenge } from "../../graphql/_core/schema";
+import { addSecondsToChallengeEndDateTime } from "@services/utils";
+import { GetCurrentUser, LoginUser, UpdateActiveChallenge } from "@graphql/_core/schema";
 import { SyncAction } from "../_core/types";
 import { PEDOMETER_UPDATES_SUCCESS } from "../pedometer/pedometer.actions";
 import { GET_USER_SUCCESS, LOGIN_USER_SUCCESS, LOGOUT_SUCCESS } from "../user/user.actions";
@@ -12,7 +13,6 @@ import {
   CHALLENGE_RESET_FAIL,
   CHALLENGE_RESET_SUCCESS,
   CHALLENGE_START_SUCCESS,
-  CHALLENGE_TIME_UP,
   CHALLENGE_UPDATE_SUCCESS,
   CHALLENGE_END,
 } from "./levels.actions";
@@ -81,9 +81,6 @@ const levelsReducer = (state: ILevelsStore = getInitialState(), action: SyncActi
     case CHALLENGE_END_SUCCESS:
       return challengeEndSuccess(state, action.payload);
 
-    case CHALLENGE_TIME_UP:
-      return challengeTimeUp(state);
-
     case CHALLENGE_RESET_SUCCESS:
       return challengeResetSuccess(state);
 
@@ -150,7 +147,7 @@ const challengeStartSuccess = (
       type: chest?.type || "yucoin",
       value: chest?.value || null,
     },
-    endDateTime: challenge.endDateTime,
+    endDateTime: addSecondsToChallengeEndDateTime(challenge.endDateTime),
     level: challenge.level,
     levelSlotId: challenge.levelSlotId,
     milestones: levelSlot.milestones,
@@ -200,14 +197,6 @@ const challengeEndSuccess = (state: ILevelsStore, res: UpdateActiveChallenge): I
         ? "success"
         : "failed",
     timeUp: false,
-  },
-});
-
-const challengeTimeUp = (state: ILevelsStore): ILevelsStore => ({
-  ...state,
-  active: {
-    ...state.active,
-    timeUp: true,
   },
 });
 

@@ -15,7 +15,6 @@ describe("getActionConditions", () => {
       level: 50,
       levelChestId: "1234",
     },
-    showCompletedLevel: false,
     levelAvailable: false,
   };
 
