@@ -11,8 +11,6 @@ export const CHALLENGE_UPDATE_FAIL = "CHALLENGE_UPDATE_FAIL";
 
 export const CHALLENGE_CONTINUE = "CHALLENGE_CONTINUE";
 
-export const CHALLENGE_TIME_UP = "CHALLENGE_TIME_UP";
-
 export const CHALLENGE_END = "CHALLENGE_END";
 export const CHALLENGE_END_SUCCESS = "CHALLENGE_END_SUCCESS";
 export const CHALLENGE_END_FAIL = "CHALLENGE_END_FAIL";
@@ -44,10 +42,6 @@ export const pedometerStepsChallengeStarted = (payload: number) => ({
 export const challengeUpdateSuccessAction = (payload: UpdateActiveChallenge) => ({
   payload,
   type: CHALLENGE_UPDATE_SUCCESS,
-});
-
-export const challengeTimeUpAction = () => ({
-  type: CHALLENGE_TIME_UP,
 });
 
 export const challengeContinueAction = () => ({

@@ -16,7 +16,6 @@ import { TopBarAbsolute } from "@organisms/top-bar/top-bar-absolute";
 interface IProps extends IConnectedScreenProps {
   challengeType: ChallengeType;
   endDateTime: string;
-  showCounter?: boolean;
   userProgress: number;
   currentWorld: number;
   progressTargets: number[];
@@ -30,7 +29,6 @@ export default function ChallengeProgressScreen({
   endDateTime,
   onDismissPress,
   onLeftMenuPress,
-  showCounter = false,
   progressTargets,
   unit,
   userProgress,
@@ -48,7 +46,6 @@ export default function ChallengeProgressScreen({
         <View testID={CHALLENGE_PROGRESS_BAR}>
           <ProgressBar
             amount={userProgress}
-            showCounter={showCounter}
             goals={progressTargets}
             styleType={progressBarType}
             type={unit}

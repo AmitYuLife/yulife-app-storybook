@@ -115,7 +115,6 @@ export interface GetActionConditionArgs {
     level: number;
     levelChestId?: string;
   };
-  showCompletedLevel: boolean;
   levelAvailable: boolean;
 }
 
@@ -132,7 +131,6 @@ export function getLevelAction({
   levelStatus,
   challengesStatus,
   itemLevel,
-  showCompletedLevel,
   levelAvailable,
 }: GetActionConditionArgs): LevelAction {
   const isUnityLevel = itemLevel.level % 50 === 0;
@@ -149,9 +147,7 @@ export function getLevelAction({
       return "GoToChallengesList";
     }
 
-    if (showCompletedLevel) {
-      return "ShowLevelCompleteModal";
-    }
+    return "ShowLevelCompleteModal";
   }
 
   if (isNext) {

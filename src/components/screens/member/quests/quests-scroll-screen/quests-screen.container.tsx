@@ -78,11 +78,10 @@ export function getActiveLevel(formatedData: any[]) {
 
 interface Props extends IConnectedScreenProps {
   componentId: string;
-  showCompletedLevel: boolean;
 }
 
 function QuestsScreenContainer(props: Props) {
-  const { componentId, showCompletedLevel, onLeftMenuPress } = props;
+  const { componentId, onLeftMenuPress } = props;
   const [unity, setUnity] = useState<number | null>(null);
 
   const dispatch = useDispatch();
@@ -116,7 +115,6 @@ function QuestsScreenContainer(props: Props) {
           challengesStatus,
           itemLevel,
           levelAvailable,
-          showCompletedLevel,
         });
 
         switch (action) {

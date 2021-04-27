@@ -51,15 +51,12 @@ Feature("As a user I can take a challenge", async () => {
                         When("I dismiss this screen", when.tapID(GENERIC_SCREEN_CTA("maybe later")), async () => {
                             Then("I should be on the challenge screen", then.idVisible(CHALLENGE_PROGRESS_BAR))
                             When("I wait for the challenge to end", when.wait(35000), async () => {
-                                Then("I should see the times up modal", then.textVisible("time’s up!"))
-                                When("I tap see result", when.tapText("see result"), async () => {
-                                    Then("I should see the didn't make it screen", then.textVisible("you didn’t make it"))
-                                    Then("I should see the sub copy", then.textVisible("so close! why not try again?"))
-                                    When("I tap back to quests", when.tapText("back to quests"), async () => {
-                                        Then("I should be back on quests", then.idVisible(QUESTS_SCREEN(0)))
-                                        When("I go back to the yuicoin tab", when.tapID(NAV_BAR("yucoin")), async () => {
-                                            Then("I should see the number of points I started with", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(200)))
-                                        })
+                                Then("I should see the didn't make it screen", then.textVisible("you didn’t make it"))
+                                Then("I should see the sub copy", then.textVisible("so close! why not try again?"))
+                                When("I tap back to quests", when.tapText("back to quests"), async () => {
+                                    Then("I should be back on quests", then.idVisible(QUESTS_SCREEN(0)))
+                                    When("I go back to the yuicoin tab", when.tapID(NAV_BAR("yucoin")), async () => {
+                                        Then("I should see the number of points I started with", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(200)))
                                     })
                                 })
                             })

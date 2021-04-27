@@ -9,6 +9,7 @@ import { UserNotificationsType } from "@graphql/_core/schema/globalTypes";
 import getUserNotificationsSettings from "@graphql/pushNotifications/getUserNotificationsSettings.gql";
 import { challengeStartSuccessAction } from "../../levels/levels.actions";
 import { defaultNotificationSettings, getNotificationTitleAndMessage, numericId } from "../notifications.helpers";
+import { addSecondsToChallengeEndDateTime } from "@services/utils";
 
 export default function* scheduleChallengeNotificationSaga({
   payload: { createActiveChallenge },
@@ -34,7 +35,7 @@ export default function* scheduleChallengeNotificationSaga({
         yield call(() =>
           PushNotification.localNotificationSchedule({
             ...defaultNotificationSettings,
-            date: moment(endDateTime).toDate(),
+            date: moment(addSecondsToChallengeEndDateTime(endDateTime)).toDate(),
             channelId: YULIFE_PN_CHANNEL_ID,
             group: "Yu Life Challenges", // (optional) add group to message
             id,
