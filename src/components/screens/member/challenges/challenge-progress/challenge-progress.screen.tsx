@@ -5,13 +5,12 @@ import { getWorldStyle } from "./challenge-progress.screen.helpers";
 import styles from "./challenge-progress.screen.styles";
 import Exit from "./subcomponents/exit";
 import ProgressBar from "./subcomponents/progress-bar";
-import { Instructions } from "./subcomponents/instructions";
 import { ChallengeType } from "@molecules/challenge-tile/challenge-tile.types";
 import { BUTTON_CLOSE_CHALLENGE, CHALLENGE_PROGRESS_BAR } from "@ids";
-import { HeadspaceButton } from "./subcomponents/headspace-button";
-import { CalmButton } from "./subcomponents/calm-button";
 import { NavBar } from "@components/organisms";
 import { TopBarAbsolute } from "@organisms/top-bar/top-bar-absolute";
+import { SecondaryButton } from "@atoms";
+import { MeditationOverlay } from "./subcomponents/meditation-overlay";
 
 interface IProps extends IConnectedScreenProps {
   challengeType: ChallengeType;
@@ -33,6 +32,7 @@ export default function ChallengeProgressScreen({
   unit,
   userProgress,
 }: IProps) {
+  const [showMeditation, setShowMeditation] = React.useState(false);
   const { backgroundColour, progressBarType, source, style, topBarType, exitChallenge } = getWorldStyle(
     challengeType,
     currentWorld
@@ -51,18 +51,19 @@ export default function ChallengeProgressScreen({
             type={unit}
           />
         </View>
-        {challengeType === "meditation" && !userProgress ? (
-          <View style={styles.meditationInstructionsWrapper}>
-            <Instructions />
-            <View style={styles.logoWrapper}>
-              <HeadspaceButton />
-              <CalmButton />
-            </View>
-          </View>
-        ) : null}
         <View style={styles.exitChallengeWrapper} testID={BUTTON_CLOSE_CHALLENGE}>
           <Exit onPress={onDismissPress} {...exitChallenge} />
         </View>
+      </View>
+      <View style={styles.meditationButtonWrapper}>
+        <SecondaryButton
+          backgroundColor={exitChallenge.primaryColour}
+          borderColor={exitChallenge.primaryColour}
+          textColor={exitChallenge.secondaryColour}
+          onPress={() => setShowMeditation(true)}
+          label="Open a meditation app"
+          size="Medium"
+        />
       </View>
       <TopBarAbsolute
         type={topBarType}
@@ -71,6 +72,7 @@ export default function ChallengeProgressScreen({
         timer={endDateTime}
       />
       <NavBar activeIndex={1} additionalBottom={2} />
+      <MeditationOverlay showScreen={showMeditation} setShowScreen={setShowMeditation} />
     </View>
   );
 }

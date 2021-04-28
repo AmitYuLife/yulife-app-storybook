@@ -16,10 +16,26 @@ interface Props {
   show?: boolean;
   size?: Sizes;
   isLoading?: boolean;
+  borderColor?: string;
+  backgroundColor?: string;
+  textColor?: string;
 }
 
 export const SecondaryButton = (props: Props) => {
-  const { wrapperStyle, onPress, delay, disabled, testID, label, show = true, size, isLoading } = props;
+  const {
+    wrapperStyle,
+    onPress,
+    delay,
+    disabled,
+    testID,
+    label,
+    show = true,
+    size,
+    isLoading,
+    borderColor = Colours.primary.p600,
+    backgroundColor = "transparent",
+    textColor = Colours.primary.p600,
+  } = props;
 
   const { handlePress } = usePressedInWithDelay({ onPress, delay });
   const widthStyles = getWidth(size);
@@ -37,8 +53,9 @@ export const SecondaryButton = (props: Props) => {
         isLoading={isLoading}
         title={label}
         onPress={handlePress}
-        borderColor={Colours.primary.p600}
-        color={Colours.primary.p600}
+        borderColor={borderColor}
+        color={textColor}
+        backgroundColor={backgroundColor}
         borderRadius={50}
         delay={delay}
       />

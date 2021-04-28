@@ -5,14 +5,13 @@
  */
 
 import * as React from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View, ViewStyle } from "react-native";
 import { Colours, Style } from "@styles";
 import { usePressedInWithDelay } from "@services/hooks/usePressedInWithDelay";
 import { ButtonBase } from "../button.base";
-import { getWidth } from "../button.styles";
+import { getWidth, buttonStyles } from "../button.styles";
 import { Sizes } from "../button.types";
 import { Icon } from "@atoms";
-import { buttonStyles } from "../button.styles";
 
 type IconType = "calm" | "headspace";
 
@@ -29,6 +28,7 @@ interface IProps {
   shadowColor?: string;
   size?: Sizes;
   icon: IconType;
+  wrapperStyle?: ViewStyle;
 }
 
 const DEFAULT_HEIGHT = Style.adjust(53);
@@ -47,6 +47,7 @@ export function ImageButton(props: IProps) {
     backgroundGradient,
     shadowColor = Colours.primary.p600Shadow,
     icon,
+    wrapperStyle,
   } = props;
 
   const { handlePress } = usePressedInWithDelay({ onPress, delay });
@@ -64,7 +65,7 @@ export function ImageButton(props: IProps) {
   }
 
   return (
-    <View style={StyleSheet.flatten([buttonStyles.wrapper, widthStyles])}>
+    <View style={StyleSheet.flatten([buttonStyles.wrapper, widthStyles, wrapperStyle])}>
       <ButtonBase
         backgroundColor={backgroundColor}
         backgroundGradient={backgroundGradient}

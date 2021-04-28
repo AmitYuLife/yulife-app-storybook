@@ -79,4 +79,4 @@ const NavBarView = (props: NavBarProps) => {
   );
 };
 
-export default NavBarView;
+export default Object.assign(NavBarView, { getPositionBottom });

@@ -3,6 +3,7 @@ import { Platform, StyleSheet } from "react-native";
 import { BUTTON_SIZES, Sizes } from "./button.types";
 
 export const DEFAULT_HEIGHT = Style.adjust(53);
+
 export const buttonStyles = StyleSheet.create({
   wrapper: {
     alignSelf: "center",
