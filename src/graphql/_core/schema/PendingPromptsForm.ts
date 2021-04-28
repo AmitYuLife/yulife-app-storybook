@@ -10,6 +10,7 @@ import { FeedbackFormQuestionType } from "./globalTypes";
 // ====================================================
 
 export interface PendingPromptsForm_pendingAppStoreReview {
+  __typename: "AppStoreReviewPrompt";
   id: string;
   title: string;
   body: string;

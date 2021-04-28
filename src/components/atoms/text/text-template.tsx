@@ -2,7 +2,7 @@ import React, { memo } from "react";
 import { StyleSheet, Text, TextProps, TextStyle } from "react-native";
 import { Style, Colours } from "@styles";
 
-export type ITextTemplateType = "h1" | "h2" | "h3" | "b1" | "b1b" | "b2" | "b2b" | "l1" | "l2";
+export type ITextTemplateType = "h1" | "h2" | "h3" | "b1" | "b1b" | "b2" | "b2b" | "l1" | "l1b" | "l2" | "l2b";
 
 interface IProps extends TextProps {
   testID?: string;
@@ -78,7 +78,19 @@ const styles = StyleSheet.create({
     lineHeight: Style.adjust(16),
     letterSpacing: 0.4,
   },
+  l1b: {
+    fontFamily: Style.FONT_FAMILY_PRIMARY_BOLD,
+    fontSize: Style.adjust(14),
+    lineHeight: Style.adjust(16),
+    letterSpacing: 0.4,
+  },
   l2: {
+    fontSize: Style.adjust(12),
+    lineHeight: Style.adjust(16),
+    letterSpacing: 0.4,
+  },
+  l2b: {
+    fontFamily: Style.FONT_FAMILY_PRIMARY_BOLD,
     fontSize: Style.adjust(12),
     lineHeight: Style.adjust(16),
     letterSpacing: 0.4,

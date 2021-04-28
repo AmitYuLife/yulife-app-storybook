@@ -168,6 +168,14 @@ export default [
     name: ROUTES.beneficiary,
     component: require("../components/containers/products/beneficiary/beneficiary.container").default,
   },
+  {
+    name: ROUTES.wellbeingHubItems,
+    component: require("../components/containers/wellbeing-hub/wellbeing-hub-items.container").default,
+  },
+  {
+    name: ROUTES.wellbeingHubDetails,
+    component: require("../components/containers/wellbeing-hub/wellbeing-hub-details.container").default,
+  },
   // webview
   {
     name: ROUTES.webView,

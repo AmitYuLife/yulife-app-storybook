@@ -164,18 +164,6 @@ export const GQL_QUERY_MOBILE_COPY = gql`
             ctaLabelSecondary
           }
         }
-        streak {
-          ctaLabelDone
-          ctaLabelCollect
-          ctaLabelTakeChallenge
-          subheadingCollected
-          subheadingCompleted
-          subheadingTodayStreakDone
-          subheadingInstrucion
-          headingCompleted
-          headingCompletedTodayStreak
-          headingStartStreakDay
-        }
         pushNotification {
           toSettings {
             ctaLabel

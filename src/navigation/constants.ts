@@ -45,6 +45,10 @@ export const ROUTES = {
   productDetails: "yulife.product.ProductDetails",
   beneficiary: "yulife.product.Beneficiary",
 
+  // wellbeing hub
+  wellbeingHubItems: "yulife.wellbeingHub.WellbeingHubItems",
+  wellbeingHubDetails: "yulife.wellbeingHub.WellbeingHubDetails",
+
   // quests
   questsChallengesList: "yulife.quests.ChallengesList",
   questsChallengesHistory: "yulife.quests.ChallengesHistory",

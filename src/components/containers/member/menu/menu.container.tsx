@@ -43,43 +43,43 @@ class MenuContainer extends PureComponent<Props> {
         links={[
           {
             condition: features.showStats,
-            label: "statistics",
+            label: "Statistics",
             onPress: this.handlePressLink(LINKS.STATS),
             source: assets[LINKS.STATS],
           },
           {
             condition: features.showActivity,
-            label: "activity history",
+            label: "Activity History",
             onPress: this.handlePressLink(LINKS.ACTIVITY),
             source: assets[LINKS.ACTIVITY],
           },
           {
             condition: true,
-            label: "member zone",
+            label: "Member Zone",
             onPress: this.handlePressLink(LINKS.MEMBER),
             source: assets[LINKS.MEMBER],
           },
           {
             condition: shouldDisplayMemberServices,
-            label: "member services",
+            label: "Wellbeing Hub",
             onPress: this.handlePressLink(LINKS.MEMBER_SERVICES),
             source: assets[LINKS.MEMBER_SERVICES],
           },
           {
             condition: true,
-            label: "settings",
+            label: "Settings",
             onPress: this.handlePressLink(LINKS.SETTINGS),
             source: assets[LINKS.SETTINGS],
           },
           {
             condition: true,
-            label: "support",
+            label: "Chat",
             onPress: this.handlePressLink(LINKS.SUPPORT),
             source: assets[LINKS.SUPPORT],
           },
           {
             condition: true,
-            label: "log out",
+            label: "Log out",
             onPress: this.handlePressLink(LINKS.LOGOUT),
             source: assets[LINKS.LOGOUT],
           },
@@ -117,7 +117,7 @@ class MenuContainer extends PureComponent<Props> {
         this.handleMemberZone();
         return null;
       case LINKS.MEMBER_SERVICES:
-        this.handlePush(ROUTES.memberServices);
+        this.handlePush(ROUTES.wellbeingHubItems);
         return null;
       default:
         return null;

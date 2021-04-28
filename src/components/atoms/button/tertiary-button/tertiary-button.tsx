@@ -21,6 +21,7 @@ interface Props {
   height?: number;
   show?: boolean;
   size?: Sizes;
+  iconUri?: string;
 }
 
 const DEFAULT_HEIGHT = Style.adjust(60);
@@ -40,6 +41,7 @@ export const TertiaryButton = (props: Props) => {
     height = DEFAULT_HEIGHT,
     show = true,
     size,
+    iconUri,
   } = props;
 
   const { handlePress } = usePressedInWithDelay({ onPress, delay });
@@ -62,6 +64,7 @@ export const TertiaryButton = (props: Props) => {
         rightIcon={rightIcon}
         iconSvgXml={iconSvgXml}
         height={height}
+        iconUri={iconUri}
       />
     </View>
   );
