@@ -114,10 +114,6 @@ export default [
   },
 
   {
-    name: ROUTES.memberServices,
-    component: require("../components/containers/member/member-services/member-services.container").default,
-  },
-  {
     name: ROUTES.changeMemberNickname,
     component: require("../components/containers/member/change-member-nickname/change-member-nickname.container")
       .default,
