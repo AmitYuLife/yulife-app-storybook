@@ -8,7 +8,7 @@ export type LinkTypes =
   | "survey"
   | "logout"
   | "member"
-  | "memeberServices"
+  | "wellbeingHub"
   | "play"
   | "settings"
   | "stats";
@@ -20,7 +20,7 @@ export enum LINKS {
   SUPPORT = "support",
   LOGOUT = "logout",
   MEMBER = "member",
-  MEMBER_SERVICES = "memeberServices",
+  WELLBEING_HUB = "wellbeingHub",
   PLAY = "play",
   SETTINGS = "settings",
   STATS = "stats",
@@ -35,5 +35,5 @@ export default {
   [LINKS.PLAY]: require("../../../../../../assets/menu/play.png"),
   [LINKS.SETTINGS]: require("../../../../../../assets/menu/settings.png"),
   [LINKS.LEADERBOARD]: require("../../../../../../assets/menu/leaderboard.png"),
-  [LINKS.MEMBER_SERVICES]: require("../../../../../../assets/menu/memberServices.png"),
+  [LINKS.WELLBEING_HUB]: require("../../../../../../assets/menu/memberServices.png"),
 } as { [key: string]: ImageRequireSource };

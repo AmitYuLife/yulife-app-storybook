@@ -11,10 +11,9 @@ import { getRouteState } from "../../../../redux/app/app.selectors";
 import { getCopy } from "../../../../redux/copy/copy.selectors";
 import { getPushNotifications } from "../../../../redux/device/device.selectors";
 import { logOutStart, openMemberZone } from "../../../../redux/user/user.actions";
-import { getUserBusiness, getUserFeatures, getUserMembershipType } from "../../../../redux/user/user.selectors";
+import { getUserFeatures } from "../../../../redux/user/user.selectors";
 import { MenuScreen } from "../../../screens";
 import assets, { LINKS, LinkTypes } from "./assets";
-import { getMemberServicesDisplayState } from "@components/containers/member/member-services/member-services.helpers";
 
 type ConnectedState = ReturnType<typeof mapStateToProps>;
 type ConnectedDispatch = typeof mapDispatchToProps;
@@ -27,15 +26,7 @@ class MenuContainer extends PureComponent<Props> {
   private deviceVersion = DeviceInfo.getVersion();
 
   public render() {
-    const { features = {}, membershipType, isWellbeingAccess, isGroupUser } = this.props;
-
-    const { shouldHideSmartHealthScreen, shouldHideYuMatterScreen } = getMemberServicesDisplayState(features, {
-      membershipType,
-      isGroupUser,
-      isWellbeingAccess,
-    });
-
-    const shouldDisplayMemberServices = !(shouldHideSmartHealthScreen && shouldHideYuMatterScreen);
+    const { features = {} } = this.props;
 
     return (
       <MenuScreen
@@ -60,10 +51,10 @@ class MenuContainer extends PureComponent<Props> {
             source: assets[LINKS.MEMBER],
           },
           {
-            condition: shouldDisplayMemberServices,
+            condition: true,
             label: "Wellbeing Hub",
-            onPress: this.handlePressLink(LINKS.MEMBER_SERVICES),
-            source: assets[LINKS.MEMBER_SERVICES],
+            onPress: this.handlePressLink(LINKS.WELLBEING_HUB),
+            source: assets[LINKS.WELLBEING_HUB],
           },
           {
             condition: true,
@@ -116,7 +107,7 @@ class MenuContainer extends PureComponent<Props> {
       case LINKS.MEMBER:
         this.handleMemberZone();
         return null;
-      case LINKS.MEMBER_SERVICES:
+      case LINKS.WELLBEING_HUB:
         this.handlePush(ROUTES.wellbeingHubItems);
         return null;
       default:
@@ -184,10 +175,7 @@ const mapStateToProps = (state: IReduxState) => ({
   currentRoute: getRouteState(state),
   features: getUserFeatures(state),
   permissions: getPushNotifications(state),
-  isGroupUser: getUserBusiness(state)?.isGroup,
-  isWellbeingAccess: getUserBusiness(state)?.isWellbeingAccess,
   pushNotificationCopy: getCopy(state, "pushNotification"),
-  membershipType: getUserMembershipType(state),
 });
 
 const mapDispatchToProps = {

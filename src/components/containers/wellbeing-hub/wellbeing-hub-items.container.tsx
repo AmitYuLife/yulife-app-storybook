@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { FC, useCallback } from "react";
 import { PixelRatio, Platform, View, ViewStyle } from "react-native";
 import { Navigation } from "react-native-navigation";
 import { Style } from "@styles";
@@ -12,7 +12,7 @@ interface IProps {
   componentId: string;
 }
 
-const MemberServicesContainer = ({ componentId }: IProps) => {
+const WellbeingHubItemsContainer: FC<IProps> = ({ componentId }) => {
   const handleClose = useCallback(() => Navigation.popToRoot(componentId), [componentId]);
 
   const { loading: userLoading, data: user } = useQuery(GQL_QUERY_GET_CURRENT_USER, {
@@ -41,7 +41,7 @@ const MemberServicesContainer = ({ componentId }: IProps) => {
   );
 };
 
-export default MemberServicesContainer;
+export default WellbeingHubItemsContainer;
 
 const styles = {
   wrapper: {
