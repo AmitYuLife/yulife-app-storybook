@@ -16,6 +16,22 @@ export const CLOSE_WRAPPER_TOP_MARGIN = media.select(
   Style.getSafeAreaStart()
 );
 
+const getPaddingTop = () => {
+  if (isIphoneX()) {
+    return 130;
+  }
+
+  if (Style.isXShort()) {
+    return 40;
+  }
+
+  if (Style.isShortToMedium()) {
+    return 80;
+  }
+
+  return 90;
+};
+
 export default StyleSheet.create({
   iconWrapper: {
     width: Style.adjust(56),
@@ -23,11 +39,11 @@ export default StyleSheet.create({
   itemWrapper: {
     alignItems: "center",
     flexDirection: "row",
-    height: Style.adjust(48),
+    marginTop: Style.adjust(Style.isShortToMedium() ? 20 : 24),
   } as ViewStyle,
   logo: {} as ImageStyle,
   logoWrapper: {
-    marginBottom: Style.adjust(30),
+    marginBottom: Style.adjust(16),
     width: Style.adjust(56),
   } as ViewStyle,
   text: {
@@ -60,6 +76,6 @@ export default StyleSheet.create({
     backgroundColor: "white",
     flex: 1,
     paddingLeft: Style.adjust(105),
-    paddingTop: Style.adjust(isIphoneX() ? 130 : 90),
+    paddingTop: Style.adjust(getPaddingTop()),
   } as ViewStyle,
 });

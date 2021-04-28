@@ -12,6 +12,7 @@ import { AppStoreIcon } from "./app-store-icon";
 import { StreakTicks } from "./streak-ticks";
 import { Calm } from "./calm";
 import { Headspace } from "./headspace";
+import { CopyIcon } from "./copy-icon";
 
 //TODO: check with the team if we can refactor this to support "import { Icon1, Icon2} from "@atoms/icon";
 
@@ -30,4 +31,5 @@ export default {
   StreakTicks,
   Calm,
   Headspace,
+  CopyIcon,
 };

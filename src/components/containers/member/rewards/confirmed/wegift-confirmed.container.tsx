@@ -1,7 +1,7 @@
 import moment from "moment";
 import { Component } from "react";
 import * as React from "react";
-import { Clipboard } from "react-native";
+import Clipboard from "@react-native-community/clipboard";
 import Config from "react-native-config";
 import { GetAllPurchases_getAllPurchases } from "../../../../../graphql/_core/schema";
 import { WegiftRewardConfirmedScreen } from "../../../../screens";

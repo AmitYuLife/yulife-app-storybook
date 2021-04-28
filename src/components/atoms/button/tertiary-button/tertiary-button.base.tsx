@@ -7,6 +7,7 @@ import { PressableWithDelay } from "@components/molecules";
 import { SvgXml } from "react-native-svg";
 import { getIcon, BUTTON_ICON } from "./tertiary-button.helpers";
 import { styles } from "./tertiary-button.styles";
+import FastImage from "react-native-fast-image";
 
 interface IProps {
   disabled?: boolean;
@@ -19,6 +20,7 @@ interface IProps {
   leftIcon?: BUTTON_ICON;
   height?: number;
   iconSvgXml?: string;
+  iconUri?: string;
 }
 
 export function TertiaryButtonBase(props: IProps) {
@@ -33,6 +35,7 @@ export function TertiaryButtonBase(props: IProps) {
     subTitle,
     disabled,
     iconSvgXml,
+    iconUri,
   } = props;
   const { handlePressIn, handlePressOut, handlePress } = usePressedInWithDelay({ onPress, delay });
   const disabledStyles = disabled ? styles.disabled : {};
@@ -59,7 +62,7 @@ export function TertiaryButtonBase(props: IProps) {
         ]}
       >
         <View style={styles.leftSide} testID={`${testID}-text-view`}>
-          {iconSvgXml ? <SvgXml xml={iconSvgXml} width={24} height={24} /> : <LeftIcon />}
+          {getLeftIcon(iconSvgXml, iconUri) || <LeftIcon />}
           <View style={styles.titleWrapper}>
             <Text bold={true} style={[styles.title, disabledStyles]}>
               {title}
@@ -74,5 +77,19 @@ export function TertiaryButtonBase(props: IProps) {
     </View>
   );
 }
+
+const getLeftIcon = (iconSvgXml: string, iconUri: string) => {
+  const fastImageStyle = { width: Style.adjust(24), height: Style.adjust(24) };
+
+  if (iconSvgXml) {
+    return <SvgXml xml={iconSvgXml} width={24} height={24} />;
+  }
+
+  if (iconUri) {
+    return <FastImage resizeMode="contain" style={fastImageStyle} source={{ uri: iconUri }} />;
+  }
+
+  return null;
+};
 
 export default TertiaryButtonBase;
