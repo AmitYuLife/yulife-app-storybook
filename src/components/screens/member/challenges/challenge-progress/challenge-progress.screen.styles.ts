@@ -1,5 +1,6 @@
 import { ImageStyle, StyleSheet, ViewStyle } from "react-native";
 import { Style, TOP_BAR } from "@styles";
+import NavBarView from "@organisms/nav-bar/nav-bar.view";
 
 export default StyleSheet.create({
   backgroundImage: {
@@ -9,6 +10,12 @@ export default StyleSheet.create({
     right: 0,
     width: "100%",
   } as ImageStyle,
+  meditationButtonWrapper: {
+    position: "absolute",
+    left: 0,
+    right: 0,
+    bottom: NavBarView.getPositionBottom() + Style.adjust(84),
+  } as ViewStyle,
   navBarWrapper: {
     alignItems: "center",
     bottom: Style.adjust(Style.hasNotch ? 37 : 27),

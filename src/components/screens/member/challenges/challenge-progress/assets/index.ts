@@ -17,8 +17,6 @@ const assets = {
   owl: require("../../../../../../../assets/challenge-progress/owl.png"),
   whiteBighornSheep: require("../../../../../../../assets/challenge-progress/whiteBighornSheep.png"),
   wolf: require("../../../../../../../assets/challenge-progress/wolf.png"),
-  calm: require("../../../../../../../assets/icons/calm.png"),
-  headspace: require("../../../../../../../assets/icons/headspace.png"),
   hedgehog: require("../../../../../../../assets/challenge-progress/hedgehog.png"),
   chameleon: require("../../../../../../../assets/challenge-progress/chameleon.png"),
   bear: require("../../../../../../../assets/challenge-progress/bear.png"),

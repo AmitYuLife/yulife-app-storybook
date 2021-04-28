@@ -30,7 +30,8 @@ interface IState {
   translateYAnimation: Animated.Value;
 }
 
-const SHADOW_DIFF = 6;
+const SHADOW_DIFF = 8;
+const SHADOW_TRIM = 2;
 
 export function ButtonBase(props: IProps) {
   const {
@@ -63,7 +64,7 @@ export function ButtonBase(props: IProps) {
         <Shadow
           shadowColor={props.shadowColor}
           testID={props.testID}
-          height={height - SHADOW_DIFF}
+          height={height - SHADOW_DIFF - SHADOW_TRIM}
           borderRadius={borderRadius}
           disabled={props.disabled}
         />

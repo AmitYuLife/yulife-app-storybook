@@ -4,7 +4,7 @@ import { storiesOf } from "@storybook/react-native";
 import { withKnobs } from "@storybook/addon-knobs";
 import Button from "./button";
 import { withProvider } from "../../storybook/withProvider";
-import { ImageButton } from "./image-button/image.button";
+import { ImageButton } from "./image-button/image-button";
 import { Colours, Style } from "@styles";
 import { LinkButton } from "./link-button/link-button";
 import { SecondaryButton } from "./secondary-button/secondary-button";
