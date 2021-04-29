@@ -35,7 +35,7 @@ import { getUserFeatures } from "@redux/user/user.selectors";
 export const ToolTip = () => {
   const dispatch = useDispatch();
   const { product, setProduct } = useContext(YuScreenProductContext);
-  const showNewYuScreen = useSelector(getUserFeatures).showNewYuScreen;
+  const yuScreenV3 = useSelector(getUserFeatures).yuScreenV3;
 
   const onClose = useCallback(() => setProduct(null), [setProduct]);
   const isProductEmpty = Object.keys(product || {}).length > 0;
@@ -101,9 +101,9 @@ export const ToolTip = () => {
       product,
       fibState,
       resetFibJourney,
-      showNewYuScreen,
+      yuScreenV3,
     });
-  }, [product, fibState, onClose, resetFibJourney, dispatch, showNewYuScreen]);
+  }, [product, fibState, onClose, resetFibJourney, dispatch, yuScreenV3]);
 
   useBackHandler(() => {
     if (!isProductEmpty) {

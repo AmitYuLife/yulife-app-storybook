@@ -22,7 +22,7 @@ interface INavigateToProductScreen {
   product: IProduct & YuScreenProductSlotItem; //we have set his way to support the legacy yuscreen
   fibState: FIBStore;
   resetFibJourney: () => void;
-  showNewYuScreen: boolean;
+  yuScreenV3: boolean;
 }
 
 const FIB_EXPIRE_QUOTE_MONTHS = 3;
@@ -31,7 +31,7 @@ export const navigateToProductScreen = ({
   product,
   fibState,
   resetFibJourney,
-  showNewYuScreen,
+  yuScreenV3,
 }: INavigateToProductScreen) => {
   // TODO: Implement different journeys for different products
 
@@ -140,7 +140,7 @@ export const navigateToProductScreen = ({
     });
   }
 
-  if (showNewYuScreen) {
+  if (yuScreenV3) {
     return Navigation.push(ROUTES.yuScreen, {
       component: {
         id: ROUTES.productDetails,
