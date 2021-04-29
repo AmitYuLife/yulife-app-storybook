@@ -32,7 +32,7 @@ import { getUserFeatures } from "@redux/user/user.selectors";
 export const ToolTip = () => {
   const dispatch = useDispatch();
   const { product, setProduct } = useContext(YuScreenProductContext);
-  const showNewYuScreen = useSelector(getUserFeatures).showNewYuScreen;
+  const yuScreenV3 = useSelector(getUserFeatures).yuScreenV3;
 
   const onClose = useCallback(() => setProduct(null), [setProduct]);
   const isProductEmpty = Object.keys(product || {}).length > 0;
@@ -98,9 +98,9 @@ export const ToolTip = () => {
       },
       fibState,
       resetFibJourney,
-      showNewYuScreen,
+      yuScreenV3,
     });
-  }, [product, fibState, onClose, resetFibJourney, dispatch, showNewYuScreen]);
+  }, [product, fibState, onClose, resetFibJourney, dispatch, yuScreenV3]);
 
   useBackHandler(() => {
     if (!isProductEmpty) {
@@ -144,14 +144,14 @@ export const ToolTip = () => {
           )}
         </View>
         <View style={getBottomWrapperStyle(coverType, isActive)}>
-          {toolTip?.heading ? (
+          {!toolTip?.benefit ? null : (
             <ValueDescription
-              description={toolTip.heading.replace(/\d+/g, "")}
-              value={toolTip?.heading.match(/\d+/g).toString()}
+              description={toolTip.benefit.description}
+              value={toolTip.benefit.value}
               type="default"
               style={styles.heading}
             />
-          ) : null}
+          )}
           {product?.earnRate ? <CoinLabel yuCoinPower={product?.earnRate} /> : null}
           <MemoizedLineBreak />
           <Text style={getCaptionStyle(isActive)}>{toolTip?.description.short}</Text>

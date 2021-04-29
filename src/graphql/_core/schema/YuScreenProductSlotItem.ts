@@ -14,6 +14,11 @@ export interface YuScreenProductSlotItem_icon {
   backgroundUrl: string;
 }
 
+export interface YuScreenProductSlotItem_toolTip_benefit {
+  value: string;
+  description: string;
+}
+
 export interface YuScreenProductSlotItem_toolTip_description {
   short: string;
   long: string | null;
@@ -21,7 +26,7 @@ export interface YuScreenProductSlotItem_toolTip_description {
 
 export interface YuScreenProductSlotItem_toolTip {
   name: string;
-  heading: string | null;
+  benefit: YuScreenProductSlotItem_toolTip_benefit;
   itemUrl: string;
   description: YuScreenProductSlotItem_toolTip_description;
 }

@@ -25,7 +25,7 @@ const _YuScreenContainer = (props: ConnectedState) => {
   useTapBackTwiceToExit(props.componentId);
 
   const showIntro = useSelector(getShowYuscreenIntro);
-  const showNewYuScreen = useSelector(getUserFeatures).showNewYuScreen;
+  const yuScreenV3 = useSelector(getUserFeatures).yuScreenV3;
 
   if (showIntro) {
     return <YuScreenIntro />;
@@ -33,7 +33,7 @@ const _YuScreenContainer = (props: ConnectedState) => {
 
   return (
     <YuScreenLayout>
-      {loading || !data ? <YuScreenLoading /> : showNewYuScreen ? <YuScreen /> : <YuScreenLegacy />}
+      {loading || !data ? <YuScreenLoading /> : yuScreenV3 ? <YuScreen /> : <YuScreenLegacy />}
     </YuScreenLayout>
   );
 };
