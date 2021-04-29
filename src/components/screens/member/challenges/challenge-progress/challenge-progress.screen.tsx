@@ -44,27 +44,24 @@ export default function ChallengeProgressScreen({
       <Image resizeMethod="resize" resizeMode="cover" source={source} style={style} />
       <View style={styles.itemsWrapper}>
         <View testID={CHALLENGE_PROGRESS_BAR}>
-          <ProgressBar
-            amount={userProgress}
-            goals={progressTargets}
-            styleType={progressBarType}
-            type={unit}
-          />
+          <ProgressBar amount={userProgress} goals={progressTargets} styleType={progressBarType} type={unit} />
         </View>
         <View style={styles.exitChallengeWrapper} testID={BUTTON_CLOSE_CHALLENGE}>
           <Exit onPress={onDismissPress} {...exitChallenge} />
         </View>
       </View>
-      <View style={styles.meditationButtonWrapper}>
-        <SecondaryButton
-          backgroundColor={exitChallenge.primaryColour}
-          borderColor={exitChallenge.primaryColour}
-          textColor={exitChallenge.secondaryColour}
-          onPress={() => setShowMeditation(true)}
-          label="Open a meditation app"
-          size="Medium"
-        />
-      </View>
+      {challengeType !== "meditation" ? null : (
+        <View style={styles.meditationButtonWrapper}>
+          <SecondaryButton
+            backgroundColor={exitChallenge.primaryColour}
+            borderColor={exitChallenge.primaryColour}
+            textColor={exitChallenge.secondaryColour}
+            onPress={() => setShowMeditation(true)}
+            label="Open a meditation app"
+            size="Medium"
+          />
+        </View>
+      )}
       <TopBarAbsolute
         type={topBarType}
         menuLabel={challengeType}
