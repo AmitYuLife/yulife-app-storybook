@@ -24,7 +24,7 @@ export const WellbeingHubDetailsScreen = memo(function (props: IProps) {
       <GenericHeadingPad />
       <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scrollContentContainerStyle}>
         {item.content.map((i) => (
-          <View key={i.id}>{getItemContent(i)}</View>
+          <View key={i.id}>{getItemContent(i, item.id, item.title)}</View>
         ))}
       </ScrollView>
       <GenericHeadingAbsolute logo="yulife" onLeftIconPress={handleBack} />
@@ -32,7 +32,7 @@ export const WellbeingHubDetailsScreen = memo(function (props: IProps) {
   );
 });
 
-const getItemContent = (itemContent: ItemContent) => {
+const getItemContent = (itemContent: ItemContent, itemId: string, itemTitle: string) => {
   switch (itemContent.__typename) {
     case "ContentItemMarkdown":
       return <ContentItemMarkdown title={itemContent?.title} markdown={itemContent?.markdown} />;
@@ -41,7 +41,14 @@ const getItemContent = (itemContent: ItemContent) => {
         <ContentItemBox heading={itemContent?.title} markdown={itemContent?.markdown} canCopy={itemContent?.canCopy} />
       );
     case "ContentItemButton":
-      return <ContentItemButton label={itemContent?.label} iconUri={itemContent?.icon?.uri} uri={itemContent?.uri} />;
+      return (
+        <ContentItemButton
+          label={itemContent?.label}
+          iconUri={itemContent?.icon?.uri}
+          uri={itemContent?.uri}
+          metaData={{ id: itemId, title: itemTitle }}
+        />
+      );
     case "ContentItemImage":
       return <ContentItemImage uri={itemContent?.image?.uri} />;
     default:
