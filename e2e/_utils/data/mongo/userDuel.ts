@@ -2,7 +2,7 @@ import moment = require("moment");
 import { IDatabaseItem } from "@yu-life/yulife-bdd-framework";
 import { generateRandomMongoId } from "@yu-life/yulife-bdd-framework";
 ;
-import { CUSTOMER_16, CUSTOMER_17, CUSTOMER_19, CUSTOMER_20 } from "../postgres/customers";
+import { CUSTOMER_16, CUSTOMER_17, CUSTOMER_18, CUSTOMER_19, CUSTOMER_20, CUSTOMER_21, CUSTOMER_26, CUSTOMER_27, CUSTOMER_28, CUSTOMER_29, CUSTOMER_30 } from "../postgres/customers";
 
 const type = "mongo"
 const modelName = "userduel"
@@ -16,13 +16,13 @@ export const user_duel_1 = {
         {
                 userId: CUSTOMER_16.data.customerId,
                 status: "submitted",
-                startDateTime: moment().add(1, "hours").toISOString(),
+                startDateTime: moment().subtract(1, "hours").toISOString(),
                 score:100,
             },
             {
                 userId: CUSTOMER_17.data.customerId,
                 status: "accepted",
-                startDateTime: moment().add(1, "hours").toISOString(),
+                startDateTime: moment().subtract(1, "hours").toISOString(),
             }
         ],
         type: "steps",
@@ -47,7 +47,7 @@ export const user_duel_2 = {
             {
                 userId: CUSTOMER_20.data.customerId,
                 status: "submitted",
-                startDateTime: moment().add(5, "days").toISOString(),
+                startDateTime: moment().subtract(5, "days").toISOString(),
                 score:400
             }
         ],
@@ -73,8 +73,165 @@ export const user_duel_3 = {
             {
                 userId: CUSTOMER_16.data.customerId,
                 status: "submitted",
-                startDateTime: moment().add(8, "days").toISOString(),
+                startDateTime: moment().subtract(8, "days").toISOString(),
                 score: 500
+            }
+        ],
+        type: "steps",
+        status: "finished",
+        duration: 86400,
+        yucoin: 10,
+    }
+} as IDatabaseItem
+
+
+export const user_duel_4 = {
+    type,
+    modelName,
+    data: {
+        _id: generateRandomMongoId(),
+        opponents: [
+            {
+                userId: CUSTOMER_19.data.customerId,
+                status: "submitted",
+                startDateTime: moment().subtract(8, "days").toISOString(),
+                score: 400,
+            },
+            {
+                userId: CUSTOMER_17.data.customerId,
+                status: "submitted",
+                startDateTime: moment().subtract(8, "days").toISOString(),
+                score: 800
+            }
+        ],
+        type: "steps",
+        status: "finished",
+        duration: 86400,
+        yucoin: 10,
+    }
+} as IDatabaseItem
+
+export const user_duel_5 = {
+    type,
+    modelName,
+    data: {
+        _id: generateRandomMongoId(),
+        opponents: [
+            {
+                userId: CUSTOMER_19.data.customerId,
+                status: "submitted",
+                startDateTime: moment().subtract(8, "days").toISOString(),
+                score: 400,
+            },
+            {
+                userId: CUSTOMER_18.data.customerId,
+                status: "submitted",
+                startDateTime: moment().subtract(8, "days").toISOString(),
+                score: 500
+            }
+        ],
+        type: "steps",
+        status: "finished",
+        duration: 86400,
+        yucoin: 10,
+    }
+} as IDatabaseItem
+
+export const user_duel_6 = {
+    type,
+    modelName,
+    data: {
+        _id: generateRandomMongoId(),
+        opponents: [
+            {
+                userId: CUSTOMER_19.data.customerId,
+                status: "submitted",
+                startDateTime: moment().subtract(8, "days").toISOString(),
+                score: 300,
+            },
+            {
+                userId: CUSTOMER_21.data.customerId,
+                status: "submitted",
+                startDateTime: moment().subtract(8, "days").toISOString(),
+                score: 200
+            }
+        ],
+        type: "steps",
+        status: "finished",
+        duration: 86400,
+        yucoin: 10,
+    }
+} as IDatabaseItem
+
+export const user_duel_7 = {
+    type,
+    modelName,
+    data: {
+        _id: generateRandomMongoId(),
+        opponents: [
+            {
+                userId: CUSTOMER_27.data.customerId,
+                status: "submitted",
+                startDateTime: moment().subtract(6, "days").toISOString(),
+                score: 300,
+            },
+            {
+                userId: CUSTOMER_28.data.customerId,
+                status: "submitted",
+                startDateTime: moment().subtract(6, "days").toISOString(),
+                score: 200
+            }
+        ],
+        type: "steps",
+        status: "finished",
+        duration: 86400,
+        yucoin: 10,
+    }
+} as IDatabaseItem
+
+export const user_duel_8 = {
+    type,
+    modelName,
+    data: {
+        _id: generateRandomMongoId(),
+        opponents: [
+            {
+                userId: CUSTOMER_27.data.customerId,
+                status: "submitted",
+                startDateTime: moment().subtract(7, "days").toISOString(),
+                score: 300,
+            },
+            {
+                userId: CUSTOMER_29.data.customerId,
+                status: "submitted",
+                startDateTime: moment().subtract(7, "days").toISOString(),
+                score: 200
+            }
+        ],
+        type: "steps",
+        status: "finished",
+        duration: 86400,
+        yucoin: 10,
+    }
+} as IDatabaseItem
+
+export const user_duel_9 = {
+    type,
+    modelName,
+    data: {
+        _id: generateRandomMongoId(),
+        opponents: [
+            {
+                userId: CUSTOMER_27.data.customerId,
+                status: "submitted",
+                startDateTime: moment().subtract(8, "days").toISOString(),
+                score: 300,
+            },
+            {
+                userId: CUSTOMER_30.data.customerId,
+                status: "submitted",
+                startDateTime: moment().subtract(8, "days").toISOString(),
+                score: 200
             }
         ],
         type: "steps",

@@ -1,6 +1,6 @@
 
 import { allTogglesTrue } from "./_templates";
-import { CUSTOMER_2, CUSTOMER_5, CUSTOMER_6, CUSTOMER_7, CUSTOMER_8, CUSTOMER_9, CUSTOMER_14, CUSTOMER_3, CUSTOMER_15, CUSTOMER_16, CUSTOMER_17, CUSTOMER_20, CUSTOMER_23, CUSTOMER_10, CUSTOMER_12, CUSTOMER_13, CUSTOMER_18, CUSTOMER_22, CUSTOMER_24, CUSTOMER_19 } from '../postgres/customers';
+import { CUSTOMER_2, CUSTOMER_5, CUSTOMER_6, CUSTOMER_7, CUSTOMER_8, CUSTOMER_9, CUSTOMER_14, CUSTOMER_3, CUSTOMER_15, CUSTOMER_16, CUSTOMER_17, CUSTOMER_20, CUSTOMER_23, CUSTOMER_10, CUSTOMER_12, CUSTOMER_13, CUSTOMER_18, CUSTOMER_22, CUSTOMER_24, CUSTOMER_19, CUSTOMER_26, CUSTOMER_27, CUSTOMER_28, CUSTOMER_29, CUSTOMER_30 } from '../postgres/customers';
 import { generateRandomMongoId, IDatabaseItem } from "@yu-life/yulife-bdd-framework";
 
 export const CUSTOMER_2_TOGGLES = {
@@ -446,5 +446,55 @@ export const CUSTOMER_24_TOGGLES = {
             newGamePlus: true,
             unitySurge:true
         }
+    }
+} as IDatabaseItem
+
+export const CUSTOMER_26_TOGGLES = {
+    type: "mongo",
+    modelName: "usertoggles",
+    data: {
+        _id: generateRandomMongoId(),
+        userId: CUSTOMER_26.data.customerId,
+        features: allTogglesTrue.data.features
+    }
+} as IDatabaseItem
+
+export const CUSTOMER_27_TOGGLES = {
+    type: "mongo",
+    modelName: "usertoggles",
+    data: {
+        _id: generateRandomMongoId(),
+        userId: CUSTOMER_27.data.customerId,
+        features: allTogglesTrue.data.features
+    }
+} as IDatabaseItem
+
+export const CUSTOMER_28_TOGGLES = {
+    type: "mongo",
+    modelName: "usertoggles",
+    data: {
+        _id: generateRandomMongoId(),
+        userId: CUSTOMER_28.data.customerId,
+        features: allTogglesTrue.data.features
+    }
+} as IDatabaseItem
+
+export const CUSTOMER_29_TOGGLES = {
+    type: "mongo",
+    modelName: "usertoggles",
+    data: {
+        _id: generateRandomMongoId(),
+        userId: CUSTOMER_29.data.customerId,
+        features: allTogglesTrue.data.features
+    }
+} as IDatabaseItem
+
+export const CUSTOMER_30_TOGGLES = {
+    type: "mongo",
+    modelName: "usertoggles",
+    data: {
+        _id: generateRandomMongoId(),
+        userId: CUSTOMER_30.data.customerId,
+        features: allTogglesTrue.data.features
     }
 } as IDatabaseItem

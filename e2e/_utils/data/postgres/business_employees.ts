@@ -3,7 +3,7 @@ import { BUSINESS_ACCOUNT_1, BUSINESS_ACCOUNT_2 } from './business';
 import {
     CUSTOMER_1, CUSTOMER_2, CUSTOMER_3, CUSTOMER_4, CUSTOMER_5, CUSTOMER_6, CUSTOMER_7, CUSTOMER_8,
     CUSTOMER_9, CUSTOMER_10, CUSTOMER_11, CUSTOMER_12, CUSTOMER_13, CUSTOMER_14, CUSTOMER_15, CUSTOMER_16,
-    CUSTOMER_17, CUSTOMER_18, CUSTOMER_19, CUSTOMER_20, CUSTOMER_21, CUSTOMER_22, CUSTOMER_23, CUSTOMER_ALPHA, CUSTOMER_24, CUSTOMER_25
+    CUSTOMER_17, CUSTOMER_18, CUSTOMER_19, CUSTOMER_20, CUSTOMER_21, CUSTOMER_22, CUSTOMER_23, CUSTOMER_ALPHA, CUSTOMER_24, CUSTOMER_25, CUSTOMER_26, CUSTOMER_27, CUSTOMER_28, CUSTOMER_29, CUSTOMER_30
 } from './customers';
 import moment = require('moment');
 
@@ -290,6 +290,61 @@ export const BUSINESS_EMPLOYEE_25 = {
     data: {
         business_account_id: BUSINESS_ACCOUNT_1.data.business_account_id,
         customer_id: CUSTOMER_25.data.customerId,
+        invite_date: moment().subtract(10, "months").toDate(),
+        leave_date: moment().add(10, "years").toDate()
+    }
+} as IDatabaseItem
+
+export const BUSINESS_EMPLOYEE_26 = {
+    type: "postgres",
+    modelName: "business_employee",
+    data: {
+        business_account_id: BUSINESS_ACCOUNT_2.data.business_account_id,
+        customer_id: CUSTOMER_26.data.customerId,
+        invite_date: moment().subtract(10, "months").toDate(),
+        leave_date: moment().add(10, "years").toDate()
+    }
+} as IDatabaseItem
+
+export const BUSINESS_EMPLOYEE_27 = {
+    type: "postgres",
+    modelName: "business_employee",
+    data: {
+        business_account_id: BUSINESS_ACCOUNT_2.data.business_account_id,
+        customer_id: CUSTOMER_27.data.customerId,
+        invite_date: moment().subtract(10, "months").toDate(),
+        leave_date: moment().add(10, "years").toDate()
+    }
+} as IDatabaseItem
+
+export const BUSINESS_EMPLOYEE_28 = {
+    type: "postgres",
+    modelName: "business_employee",
+    data: {
+        business_account_id: BUSINESS_ACCOUNT_2.data.business_account_id,
+        customer_id: CUSTOMER_28.data.customerId,
+        invite_date: moment().subtract(10, "months").toDate(),
+        leave_date: moment().add(10, "years").toDate()
+    }
+} as IDatabaseItem
+
+export const BUSINESS_EMPLOYEE_29 = {
+    type: "postgres",
+    modelName: "business_employee",
+    data: {
+        business_account_id: BUSINESS_ACCOUNT_2.data.business_account_id,
+        customer_id: CUSTOMER_29.data.customerId,
+        invite_date: moment().subtract(10, "months").toDate(),
+        leave_date: moment().add(10, "years").toDate()
+    }
+} as IDatabaseItem
+
+export const BUSINESS_EMPLOYEE_30 = {
+    type: "postgres",
+    modelName: "business_employee",
+    data: {
+        business_account_id: BUSINESS_ACCOUNT_2.data.business_account_id,
+        customer_id: CUSTOMER_30.data.customerId,
         invite_date: moment().subtract(10, "months").toDate(),
         leave_date: moment().add(10, "years").toDate()
     }

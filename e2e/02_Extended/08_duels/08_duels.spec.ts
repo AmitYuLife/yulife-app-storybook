@@ -3,8 +3,8 @@ import * as scenario from "./_steps/scenario"
 import * as given from "./_steps/given"
 import * as when from "./_steps/when"
 import * as then from "./_steps/then"
-import { CUSTOMER_20, AUTH_20, CUSTOMER_19, AUTH_19, CUSTOMER_17, AUTH_17, CUSTOMER_16 } from "@data";
-import { DUELS_BUTTON, DUELS_HUB, DUELS_HUB_INVITATION, DUEL_OPTIONS_SCREEN, DUEL_RESPONSE, NAV_BAR, CHALLENGE_FRIEND_BUTTON, DUEL_ENTRY, DUEL_ICON, DUEL_DESCRIPTION} from "@ids";
+import { CUSTOMER_20, AUTH_20, CUSTOMER_19, AUTH_19, CUSTOMER_17, AUTH_17, CUSTOMER_16, CUSTOMER_26, AUTH_26, CUSTOMER_27, AUTH_27 } from "@data";
+import { DUELS_BUTTON, DUELS_HUB, DUELS_HUB_INVITATION, DUEL_OPTIONS_SCREEN, DUEL_RESPONSE, NAV_BAR, CHALLENGE_FRIEND_BUTTON, DUEL_ENTRY, DUEL_ICON, DUEL_DESCRIPTION, DUEL_AVATAR} from "@ids";
 
 
 Feature("As an enabled user I am able to use the duels feature", async()=>{
@@ -116,6 +116,26 @@ Feature("As an enabled user I am able to use the duels feature", async()=>{
                 Then("I should see my past duel with Oscar Martinez", then.idVisible(DUEL_ENTRY("Oscar", "Martinez", 10, "finished")))
                 Then("I should see I won this duel", then.idVisible(DUEL_ICON("Oscar", "Martinez", true)))
                 Then("I should see the steps for this duel", then.idVisible(DUEL_DESCRIPTION(400, 600)))
+            })
+        })
+    })
+
+    Scenario("I can view and challenge people I have dueled before", scenario.start, async () => {
+        Given("I login as a user with duels enabled and go to the duels hub", given.logInAndGoToTab("leaderboard", CUSTOMER_27, AUTH_27), async () => {
+            Then("I should see the duels icon", then.idVisible(DUELS_BUTTON))
+            When("I tap duels icon", when.tapID(DUELS_BUTTON), async() => {
+                Then("I should be on the first duels intro screen", then.multipleTextVisible(["Challenge a friend!", "Next"]))
+            })
+            When("I tap complete the intro", when.completeOnboardingIntro, async () => {
+                Then("I should be on the duels hub", then.idVisible(DUELS_HUB))
+            })
+            When("I tap Challenge a friend", when.tapID(CHALLENGE_FRIEND_BUTTON), async () => {
+                Then("I should be on the search for a friend page", then.textVisible("Search for a friend:"))
+            })
+            When("I tap on Toby Flenderson", when.tapID(DUEL_AVATAR("Toby Flenderson")), async () => {
+                Then("I should be on the matchup page", then.textVisible("The matchup:"))
+                Then("I should see You", then.textVisible("You"))
+                Then("I should see Toby Flenderson", then.textVisible("Flenderson"))
             })
         })
     })

@@ -381,3 +381,73 @@ export const CUSTOMER_25 = {
         status: "onboarded"
     }
 } as IDatabaseItem
+
+export const CUSTOMER_26 = {
+    type: "postgres",
+    modelName: "customer",
+    data: {
+        customerId: generateRandomMongoId(),
+        email: "pam@dundermifflin.com",
+        firstName: "Pam",
+        lastName: "Beesly",
+        dateOfBirth: moment().subtract(35, "years").toDate(),
+        membershipType: "Wellbeing Access",
+        status: "onboarded"
+    }
+} as IDatabaseItem
+
+export const CUSTOMER_27 = {
+    type: "postgres",
+    modelName: "customer",
+    data: {
+        customerId: generateRandomMongoId(),
+        email: "kevin@dundermifflin.com",
+        firstName: "Kevin",
+        lastName: "Malone",
+        dateOfBirth: moment().subtract(40, "years").toDate(),
+        membershipType: "Wellbeing Access",
+        status: "onboarded"
+    }
+} as IDatabaseItem
+
+export const CUSTOMER_28 = {
+    type: "postgres",
+    modelName: "customer",
+    data: {
+        customerId: generateRandomMongoId(),
+        email: "toby@dundermifflin.com",
+        firstName: "Toby",
+        lastName: "Flenderson",
+        dateOfBirth: moment().subtract(38, "years").toDate(),
+        membershipType: "Wellbeing Access",
+        status: "onboarded"
+    }
+} as IDatabaseItem
+
+export const CUSTOMER_29 = {
+    type: "postgres",
+    modelName: "customer",
+    data: {
+        customerId: generateRandomMongoId(),
+        email: "andy@dundermifflin.com",
+        firstName: "Andy",
+        lastName: "Bernard",
+        dateOfBirth: moment().subtract(32, "years").toDate(),
+        membershipType: "Wellbeing Access",
+        status: "onboarded"
+    }
+} as IDatabaseItem
+
+export const CUSTOMER_30 = {
+    type: "postgres",
+    modelName: "customer",
+    data: {
+        customerId: generateRandomMongoId(),
+        email: "phyllis@dundermifflin.com",
+        firstName: "Phyllis",
+        lastName: "Vance",
+        dateOfBirth: moment().subtract(50, "years").toDate(),
+        membershipType: "Wellbeing Access",
+        status: "onboarded"
+    }
+} as IDatabaseItem
