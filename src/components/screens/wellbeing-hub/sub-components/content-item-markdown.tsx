@@ -11,7 +11,7 @@ interface IProps {
 
 export const ContentItemMarkdown = memo(function (props: IProps) {
   const { markdown, title } = props;
-  const titleMarginTop = !title ? {} : { marginTop: Style.adjust(40) };
+  const titleMarginTop = !title ? {} : { marginTop: Style.adjust(30) };
   return (
     <View style={[styles.wrapper, titleMarginTop]}>
       {!title ? null : <TextTemplate type={"h3"}>{title}</TextTemplate>}
@@ -26,7 +26,9 @@ const styles = StyleSheet.create({
   wrapper: {
     width: "100%",
   } as ViewStyle,
-  markdownContainer: {},
+  markdownContainer: {
+    marginTop: Style.adjust(8),
+  },
 });
 
 const markdownStyles = {
