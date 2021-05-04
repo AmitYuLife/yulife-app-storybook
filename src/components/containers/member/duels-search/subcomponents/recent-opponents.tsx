@@ -7,6 +7,7 @@ import { GetRecentDuelOpponents } from "@graphql/_core/schema";
 import { DuelImage } from "@components/screens/member/duels-hub/subcomponents";
 import styles from "./recent-opponents.styles";
 import { TouchableOpacityWithDelay } from "@components/molecules";
+import { DUEL_AVATAR } from "@ids";
 
 interface Props {
   inviteToDuel: (opponentId: string, type: "recents") => Promise<void>;
@@ -42,11 +43,13 @@ function _RecentOpponents({ inviteToDuel }: Props) {
         <View style={styles.flexRow}>
           {opponents.map((opponent, index) => {
             const isMiddleRecentOpponent = index === 1;
+
             return (
               <TouchableOpacityWithDelay
                 key={opponent?.customerId}
                 onPress={() => inviteToDuel(opponent?.customerId, "recents")}
                 style={[styles.opponent, isMiddleRecentOpponent ? styles.middleOpponent : {}]}
+                testID={DUEL_AVATAR(opponent.fullName)}
               >
                 <Text bold={true} style={styles.name}>
                   {opponent.fullName}
