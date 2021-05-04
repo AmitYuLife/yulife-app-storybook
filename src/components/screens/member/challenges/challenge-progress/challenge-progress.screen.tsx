@@ -38,6 +38,12 @@ export default function ChallengeProgressScreen({
     currentWorld
   );
 
+  React.useEffect(() => {
+    if (challengeType === "meditation") {
+      setShowMeditation(true);
+    }
+  }, [challengeType]);
+
   return (
     <View style={StyleSheet.flatten([styles.wrapper, { backgroundColor: backgroundColour }])}>
       <View style={styles.pad} />
