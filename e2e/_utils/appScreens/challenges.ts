@@ -8,6 +8,7 @@ export const onChallengeComplete = (stepCount: number, level = 1) => async () =>
 
 
     for (const i of screenCopy) {
+        await waitFor(element(by.text(i))).toBeVisible().withTimeout(10000)
         await expect(element(by.text(i))).toBeVisible()
     };
 }
@@ -23,6 +24,7 @@ export const onMeditationChallengeComplete = (minutes: number, level: number) =>
     const screenCopy = ["well done!", "collect", timeSpent, challengeLevel]
 
     for (const i of screenCopy) {
+        await waitFor(element(by.text(i))).toBeVisible().withTimeout(10000)
         await expect(element(by.text(i))).toBeVisible()
     };
 

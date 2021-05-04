@@ -227,17 +227,17 @@ Feature("I am able to use the yuscreens extended features", async () => {
                         })
                             When("I enter a post code", when.typeViaID(SEARCH_INPUT, "EC1Y 8RQ \n"), async()=>{
                             When("I scroll to my address", when.scrollUntilIdVisible(SEARCH_FLAT_LIST, SEARCH_ITEM("14 Mallow Street"), "down"), async()=>{
-                                Then("I should see 12 mallow street", then.idVisible(SEARCH_ITEM("12 Mallow Street")))
+                                Then("I should see 12 mallow street", then.idVisible(SEARCH_ITEM("12 Mallow Street"), 5000))
                             })
                         })
                             When("I tap 12 Mallow Street", when.tryTapID(SEARCH_ITEM("12 Mallow Street")), async()=>{
                             Then("I should be back on the address screen with my address shown", then.multipleTextVisible(["12 Mallow Street", "London", "EC1Y 8RQ"]))
                         })
                         When("I type an email", when.typeViaID(CONTACT_DETAILS_INPUT("Personal Email"), "myemail@email.com\n"), async()=>{
-                            Then("I should see my email", then.textVisible("myemail@email.com"))
+                            Then("I should see my email", then.textVisible("myemail@email.com", 5000))
                         })
                         When("I type a phone number", when.typeViaID(CONTACT_DETAILS_INPUT("Phone number"), "07352167463\n"), async () => {
-                            Then("I should see my phone number", then.textVisible("07352167463"))
+                            Then("I should see my phone number", then.textVisible("07352167463", 5000))
                         })
                         When("I scroll and tap continue", when.scrollToAndTapText(CONTACT_DETAILS_SCROLL_VIEW, "Continue", "down"), async()=>{
                             Then("I should be on the email confirmation screen", then.multipleTextVisible(["Would you like to use:", "myemail@email.com"]))

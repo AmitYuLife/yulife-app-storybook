@@ -1,4 +1,4 @@
-import { Feature, Scenario, Given, When, Then, ScenarioOnly, FeatureOnly } from "@yu-life/yulife-bdd-framework";
+import { Feature, Scenario, Given, When, Then, FeatureOnly } from "@yu-life/yulife-bdd-framework";
 import * as scenario from "./_steps/scenario"
 import * as given from "./_steps/given"
 import * as when from "./_steps/when"
@@ -13,7 +13,7 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
             Then("I should see my current coin amount", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(640)))
             When("I send the mindfulness data", when.sendMindfulnessData(), async () => {
                 When("I start a meditation challenge", when.startChallengeFromQuests(5, "meditation"), async () => {
-                    When("I wait to complete this challenge", when.wait(60000), async () => {
+                    When("I wait to complete this challenge", when.wait(63000), async () => {
                         Then("I should be on the challenge complete screen", then.onMeditationChallengeComplete(1, 5))
                         When("I tap collect", when.tapText("collect"), async () => {
                             Then("I should see the streak completed screen", then.completedTodayStreakCopyVisible(5))
@@ -40,7 +40,7 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
         Given("I login as a user with the second world unlocked", given.logInAndGoToTab("quests", CUSTOMER_3, AUTH_3), async () => {
             When("I start a walking challenge", when.startChallengeFromQuests(90, "short stroll"), async () => {
                 Then("I should be on the short stroll challenge", then.textVisible("0 steps"))
-                When("I walk 450 steps", when.sendSteps(450, 30000), async () => {
+                When("I walk 450 steps", when.sendSteps(450, 33000), async () => {
                     Then("I should be on the challenge complete screen", then.onChallengeComplete(450, 90))
                     When("I tap collect", when.tapText("collect"), async () => {
                         Then("I should see the 'Completed streak day 1' screen", then.completedTodayStreakCopyVisible(1))
@@ -64,7 +64,7 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
             Then("I should see my updated coin amount", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(17700)))
             When("I send the mindfulness data", when.sendMindfulnessData(180), async () => {
                 When("I start a meditation challenge", when.startChallengeFromQuests(90, "meditation"), async () => {
-                    When("I wait to complete this challenge", when.wait(60000), async () => {
+                    When("I wait to complete this challenge", when.wait(63000), async () => {
                         Then("I should be on the challenge complete screen", then.onMeditationChallengeComplete(3, 90))
                         When("I tap collect", when.tapText("collect"), async () => {
                             Then("I should see the 'Completed streak day 1' screen", then.completedTodayStreakCopyVisible(1))
@@ -88,7 +88,7 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
             Then("I should be on the third world quests screen", then.idVisible(QUESTS_SCREEN(2)))
             When("I start a walking challenge", when.startChallengeFromQuests(115, "short stroll"), async () => {
                 Then("I should be on the short stroll challenge", then.textVisible("0 steps"))
-                When("I walk over 500 steps", when.sendSteps(600, 30000), async () => {
+                When("I walk over 500 steps", when.sendSteps(600, 33000), async () => {
                     Then("I should be on the challenge complete screen", then.onChallengeComplete(600, 115))
                     When("I tap collect", when.tapText("collect"), async () => {
                         Then("I should be on the third world quests screen", then.idVisible(QUESTS_SCREEN(2)))
@@ -109,7 +109,7 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
             Then("I should be on the third world quests screen", then.idVisible(QUESTS_SCREEN(2)))
             When("I send the mindfulness data", when.sendMindfulnessData(300), async () => {
                 When("I start a meditation challenge", when.startChallengeFromQuests(115, "meditation"), async () => {
-                    When("I wait to complete this challenge", when.wait(60000), async () => {
+                    When("I wait to complete this challenge", when.wait(63000), async () => {
                         Then("I should be on the challenge complete screen", then.onMeditationChallengeComplete(5, 115))
                         When("I tap collect", when.tapText("collect"), async () => {
                             Then("I should be on the third world quests screen", then.idVisible(QUESTS_SCREEN(2)))
@@ -126,7 +126,7 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
             Then("I should see my current coin amount", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(50200)))
             When("I start a walking challenge", when.startChallengeFromQuests(175, "short stroll"), async () => {
                 Then("I should be on the short stroll challenge", then.textVisible("0 steps"))
-                When("I walk over 500 steps", when.sendSteps(550, 30000), async () => {
+                When("I walk over 500 steps", when.sendSteps(550, 33000), async () => {
                     Then("I should be on the challenge complete screen", then.onChallengeComplete(550, 175))
                     When("I tap collect", when.tapText("collect"), async () => {
                         Then("I should be on quests", then.idVisible(QUESTS_SCREEN(3)))
@@ -145,7 +145,7 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
             Then("I should see my current coin amount", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(50200)))
             When("I send the mindfulness data", when.sendMindfulnessData(300), async () => {
                 When("I start a meditation challenge", when.startChallengeFromQuests(175, "meditation"), async () => {
-                    When("I wait to complete this challenge", when.wait(60000), async () => {
+                    When("I wait to complete this challenge", when.wait(63000), async () => {
                         Then("I should be on the challenge complete screen", then.onMeditationChallengeComplete(5, 175))
                         When("I tap collect", when.tapText("collect"), async () => {
                             Then("I should be on quests", then.idVisible(QUESTS_SCREEN(3)))

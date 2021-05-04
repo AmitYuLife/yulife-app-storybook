@@ -51,7 +51,7 @@ Feature("As a user I can take a challenge", async () => {
                         When("I dismiss this screen", when.tapID(GENERIC_SCREEN_CTA("maybe later")), async () => {
                             Then("I should be on the challenge screen", then.idVisible(CHALLENGE_PROGRESS_BAR))
                             When("I wait for the challenge to end", when.wait(35000), async () => {
-                                Then("I should see the didn't make it screen", then.textVisible("you didn’t make it"))
+                                Then("I should see the didn't make it screen", then.textVisible("you didn’t make it", 5000))
                                 Then("I should see the sub copy", then.textVisible("so close! why not try again?"))
                                 When("I tap back to quests", when.tapText("back to quests"), async () => {
                                     Then("I should be back on quests", then.idVisible(QUESTS_SCREEN(0)))
@@ -81,20 +81,17 @@ Feature("As a user I can take a challenge", async () => {
                     When("I start the long walk challenge", when.startChallenge("long walk"), async () => {
                         Then("I should be on the challenge screen", then.idVisible(CHALLENGE_PROGRESS_BAR))
                         When("I walk over 3000 steps", when.sendSteps(3050, 35000), async () => {
-                            Then("I should see the times up modal", then.textVisible("time’s up!"))
-                            When("I tap see result", when.tapText("see result"), async () => {
-                                Then("I should see the well done screen", then.onChallengeComplete(3050, 7))
-                                When("I tap collect on the well done screen", when.tapText("collect", 5000), async () => {
-                                    Then("I should see the first day streak screen", then.textVisible("First day done!", 10000))
-                                        When("I dismiss the streak screen", when.tapText("Done", 5000), async()=>{
-                                            Then("I should see the chest unlocked screen telling me I get 200 yucoin", then.textVisible("you get 200 yucoin"))
-                                            When("I dismiss the chest unlock screen", when.tapText("collect", 5000), async () => {
-                                                Then("I should be on the quest screen", then.idVisible(LEVEL_CHALLENGE_BUTTON(8), 3000))
-                                                When("I back to the yucoin tab", when.tapID(NAV_BAR("yucoin")), async () => {
-                                                    Then("I should see my updated coins in the top right", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(1030)))
-                                                    Then("I should see the number of steps I just completed", then.textVisible("3,050 steps"))
-                                                    Then("I should see the number of coins I've earned today (270)", then.textVisible("270 yucoin today"))
-                                                })
+                            Then("I should see the well done screen", then.onChallengeComplete(3050, 7))
+                            When("I tap collect on the well done screen", when.tapText("collect", 5000), async () => {
+                                Then("I should see the first day streak screen", then.textVisible("First day done!", 10000))
+                                    When("I dismiss the streak screen", when.tapText("Done", 5000), async()=>{
+                                        Then("I should see the chest unlocked screen telling me I get 200 yucoin", then.textVisible("you get 200 yucoin"))
+                                        When("I dismiss the chest unlock screen", when.tapText("collect", 5000), async () => {
+                                            Then("I should be on the quest screen", then.idVisible(LEVEL_CHALLENGE_BUTTON(8), 3000))
+                                            When("I back to the yucoin tab", when.tapID(NAV_BAR("yucoin")), async () => {
+                                                Then("I should see my updated coins in the top right", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(1030)))
+                                                Then("I should see the number of steps I just completed", then.textVisible("3,050 steps"))
+                                                Then("I should see the number of coins I've earned today (270)", then.textVisible("270 yucoin today"))
                                             })
                                         })
                                     })
