@@ -24,6 +24,7 @@ export interface GetWellbeingHubItem_wellbeingHubItem_content_ContentItemMarkdow
   id: string;
   title: string;
   markdown: string;
+  parsedMarkdown: string | null;
 }
 
 export interface GetWellbeingHubItem_wellbeingHubItem_content_ContentItemBox {
@@ -31,6 +32,7 @@ export interface GetWellbeingHubItem_wellbeingHubItem_content_ContentItemBox {
   id: string;
   title: string;
   markdown: string;
+  parsedMarkdown: string | null;
   canCopy: boolean | null;
 }
 

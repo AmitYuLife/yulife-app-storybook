@@ -35,10 +35,14 @@ export const WellbeingHubDetailsScreen = memo(function (props: IProps) {
 const getItemContent = (itemContent: ItemContent, itemId: string, itemTitle: string) => {
   switch (itemContent.__typename) {
     case "ContentItemMarkdown":
-      return <ContentItemMarkdown title={itemContent?.title} markdown={itemContent?.markdown} />;
+      return <ContentItemMarkdown title={itemContent?.title} markdown={itemContent?.parsedMarkdown} />;
     case "ContentItemBox":
       return (
-        <ContentItemBox heading={itemContent?.title} markdown={itemContent?.markdown} canCopy={itemContent?.canCopy} />
+        <ContentItemBox
+          heading={itemContent?.title}
+          markdown={itemContent?.parsedMarkdown}
+          canCopy={itemContent?.canCopy}
+        />
       );
     case "ContentItemButton":
       return (

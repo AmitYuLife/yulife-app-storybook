@@ -20,12 +20,14 @@ export const GQL_QUERY_GET_WELLBEING_HUB_DETAILS = gql`
           id
           title
           markdown
+          parsedMarkdown
         }
         ... on ContentItemBox {
           __typename
           id
           title
           markdown
+          parsedMarkdown
           canCopy
         }
         ... on ContentItemButton {
