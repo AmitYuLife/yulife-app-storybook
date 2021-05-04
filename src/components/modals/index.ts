@@ -13,3 +13,4 @@ export { default as TodayYucoinModal } from "./today-yucoin/today-yucoin.modal";
 export { default as DuelInviteModal } from "./duels/duel-invite.modal";
 export { default as DuelRespondModal } from "./duels/duel-respond.modal";
 export { default as PriceChangeModal } from "./price-changed/price-changed";
+export { default as ScrollPickerModal } from "./scroll-picker-modal/scroll-picker-modal";

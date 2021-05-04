@@ -6,7 +6,7 @@ export type ITextTemplateType = "h1" | "h2" | "h3" | "b1" | "b1b" | "b2" | "b2b"
 
 interface IProps extends TextProps {
   testID?: string;
-  children: string;
+  children: string | number;
   type: ITextTemplateType;
   color?: string;
   textAlign?: TextStyle["textAlign"];
