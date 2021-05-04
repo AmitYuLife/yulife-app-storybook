@@ -29,10 +29,10 @@ export const completeNewWorldShortStroll = (levelNumber: number) => async () => 
     await navigateViaID(LEVEL_CHALLENGE_BUTTON(levelNumber))
     await navigateViaText("let's do it")
     await startChallenge("short stroll")()
-    await sendSteps(400, 30000)()
-    await navigateViaText("see result")
+    await sendSteps(400, 35000)()
+    await waitFor(element(by.text("collect"))).toBeVisible().withTimeout(5000)
     await navigateViaText("collect")
-    await wait(5000)()
+    await waitFor(element(by.text("Done"))).toBeVisible().withTimeout(5000)
     await navigateViaText("Done")
     await navigateViaText("collect")
 }
@@ -55,7 +55,6 @@ export const completeNewWorldMeditation = (levelNumber: number) => async () => {
 
     await startChallenge("meditation")()
     await wait(60000)()
-    await navigateViaText("see result")
     await navigateViaText("collect")
     if (collectCTAVIsible === true) {
         await navigateViaText("collect")

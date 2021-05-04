@@ -134,12 +134,13 @@ Feature("As a user I can use the streaks functionality", async () => {
             When("I tap this I should see the start a streak screen", when.tapText("0/5"), async () => {
                 Then("I should see the streak screen", then.headingStartStreakCopyVisible(1))
                 When("I tap take a challenge", when.tapText("Take a challenge"), async () => {
-                    Then("I should see the thid level is unlocked", then.idVisible(LEVEL_CHALLENGE_BUTTON(3)))
+                    Then("I should see the third level is unlocked", then.idVisible(LEVEL_CHALLENGE_BUTTON(3)))
                     When("I tap this button", when.tapID(LEVEL_CHALLENGE_BUTTON(3)), async () => {
                         Then("I should see the short stroll challenge", then.idVisible(CHALLENGE_TILE("short stroll")))
                         When("I start the short stroll challenge", when.startChallenge("short stroll"), async () => {
                             Then("The challenge should start", idVisible(CHALLENGE_PROGRESS_BAR))
                             When("I walk over 100 steps", when.sendSteps(200, 35000), async () => {
+                                Then("I should see the well done screen", then.onChallengeComplete(200, 3))
                                 When("I tap collect", when.tapText("collect"), async () => {
                                     Then("I should see the complete streak day 1 screen", then.completedTodayStreakCopyVisible(1))
                                 })
@@ -161,7 +162,7 @@ Feature("As a user I can use the streaks functionality", async () => {
                     When("I start the short stroll challenge", when.startChallenge("short stroll"), async () => {
                         Then("The challenge should start", idVisible(CHALLENGE_PROGRESS_BAR))
                         When("I wait for the challenge to finish", when.wait(32000), async () => {
-                            Then("I should see the challenge failed screen", then.textVisible("you didn’t make it"))
+                            Then("I should see the challenge failed screen", then.textVisible("you didn’t make it", 5000))
                             When("I tap back to quests", when.tapText("back to quests"), async () => {
                                 Then("I should be on the quests screen", then.idVisible(QUESTS_SCREEN(0)))
                                 When("I go back to the yuicoin screen", when.tapID(NAV_BAR("yucoin")), async () => {
@@ -171,13 +172,10 @@ Feature("As a user I can use the streaks functionality", async () => {
                                         When("I tap take a challenge", when.tapText("Take a challenge"), async () => {
                                             Then("I should be on the quests screen", then.idVisible(QUESTS_SCREEN(0)))
                                             When("I start a challenge", when.startChallengeFromQuests(5, "short stroll"), async () => {
-                                                When("I complete the challenge", when.sendSteps(300, 30000), async () => {
-                                                    Then("I should see the times up modal", then.textVisible("time’s up!"))
-                                                    When("I tap see result", when.tapText("see result"), async () => {
-                                                        Then("I should see the challenge complete screen", then.onChallengeComplete(300, 5))
-                                                        When("I tap collect", when.tapText("collect"), async () => {
-                                                            Then("I should see my streak is completed", then.completedTodayStreakCopyVisible(5))
-                                                        })
+                                                When("I complete the challenge", when.sendSteps(300, 38000), async () => {
+                                                    Then("I should see the challenge complete screen", then.onChallengeComplete(300, 5))
+                                                    When("I tap collect", when.tapText("collect"), async () => {
+                                                        Then("I should see my streak is completed", then.completedTodayStreakCopyVisible(5))
                                                     })
                                                 })
                                             })
@@ -194,8 +192,7 @@ Feature("As a user I can use the streaks functionality", async () => {
 
     Scenario("I can redeem a challenge the next day", scenario.start, async () => {
         Given("I login as a user who activated a challenge yesterday", given.loginAsUser(CUSTOMER_15, AUTH_15), async () => {
-            // Then("I should see 4/5 streaks", then.textVisible("4/5")) // Bug where 0/5 is shown. Does not get updated when taking a challenge
-            Then("I should see my currect coin balance", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(520)))
+            Then("I should see my updated coin balance", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(580)))
             When("I tap quests", when.tapID(NAV_BAR("quests")), async () => {
                 Then("I should see the well done screen", then.onChallengeComplete(450, 4))
                 When("I tap collect", when.tapText("collect"), async () => {
