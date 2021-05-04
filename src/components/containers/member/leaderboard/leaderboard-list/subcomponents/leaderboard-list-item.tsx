@@ -1,5 +1,5 @@
 import React from "react";
-import { View, StyleSheet, ViewStyle, TextStyle } from "react-native";
+import { View, StyleSheet, ViewStyle, TextStyle, ScrollView } from "react-native";
 import { Text } from "@atoms";
 import { TouchableOpacityWithDelay } from "@molecules";
 import { Colours, Style } from "@styles";
@@ -22,7 +22,8 @@ export const LeaderboardListItems = (props: Props) => {
   }
 
   return (
-    <View style={styles.wrapper}>
+    <ScrollView showsVerticalScrollIndicator={false} style={styles.wrapper}>
+      <View style={styles.topPad} />
       <Text style={styles.description}>
         By turning on a leaderboard, you are opting in to share your most recent 30 day step data with other members of
         the leaderboard. This can be toggled off at any time.
@@ -37,7 +38,7 @@ export const LeaderboardListItems = (props: Props) => {
           onSwitchPress={() => onChangeLeaderboardConsent(item.leaderboardId, item.consent)}
         />
       ))}
-    </View>
+    </ScrollView>
   );
 };
 
@@ -45,7 +46,6 @@ const MARGIN = Style.adjust(24);
 
 const styles = StyleSheet.create({
   wrapper: {
-    marginTop: Style.adjust(40),
     marginHorizontal: MARGIN,
   },
   description: {
@@ -54,6 +54,9 @@ const styles = StyleSheet.create({
     marginBottom: Style.adjust(24),
     color: Colours.neutral.n800,
   },
+  topPad: {
+    height: Style.adjust(16),
+  } as ViewStyle,
 });
 
 interface LeaderboardListItemProps {
