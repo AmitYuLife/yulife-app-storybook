@@ -14,13 +14,17 @@ interface IProps {
 }
 
 export const ContentItemButton = memo(({ label, iconUri, uri, metaData }: IProps) => {
-  const onButtonPress = useCallback(() => {
-    Logger.logMixpanelEvent("wellbeing_item_button_pressed", {
-      ...metaData,
-      label,
-      type: uri?.split(":")?.[0],
-    });
-    handleLinkPress(uri);
+  const onButtonPress = useCallback(async () => {
+    try {
+      Logger.logMixpanelEvent("wellbeing_item_button_pressed", {
+        ...metaData,
+        label,
+        type: uri?.split(":")?.[0],
+      });
+      await handleLinkPress(uri)();
+    } catch (e) {
+      Logger.logMixpanelEvent("wellbeing_item_button_pressed_error", { error: e.message });
+    }
   }, [metaData, label, uri]);
 
   return (
