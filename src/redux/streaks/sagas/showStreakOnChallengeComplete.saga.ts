@@ -1,7 +1,7 @@
 import { MODALS } from "@navigation/constants";
 import { Navigation } from "react-native-navigation";
 import { call, select, take, delay } from "redux-saga/effects";
-import { getRouteState } from "../../app/app.selectors";
+import { getModalState } from "../../app/app.selectors";
 import { GET_USER_SUCCESS } from "../../user/user.actions";
 import { getUserFeatures } from "../../user/user.selectors";
 import { getStreaks } from "../streaks.selectors";
@@ -12,15 +12,15 @@ export default function* showStreakOnChallengeCompleteSaga() {
   yield take(GET_USER_SUCCESS);
 
   const streaks: ReturnType<typeof getStreaks> = yield select(getStreaks);
-  const currentRoute: ReturnType<typeof getRouteState> = yield select(getRouteState);
+  const activeModal: ReturnType<typeof getModalState> = yield select(getModalState);
   const features: ReturnType<typeof getUserFeatures> = yield select(getUserFeatures);
 
   if (
     features.showStreaks &&
     streaksBeforeUpdate.currentStreak !== streaks.currentStreak &&
-    currentRoute !== MODALS.streaks
+    activeModal !== MODALS.streaks
   ) {
-    if (currentRoute === MODALS.chest) {
+    if (activeModal === MODALS.chest) {
       yield delay(4000);
     }
 

@@ -19,9 +19,26 @@ export function appNetworkChannel() {
   return eventChannel((emitter) => NetInfo.addEventListener(emitter));
 }
 
-export function appNavigationChannel() {
+export function appComponentDidAppearChannel() {
   return eventChannel((emitter) => {
-    const screenEventListener = Navigation.events().registerComponentDidAppearListener(emitter);
+    const screenEventListener = Navigation.events().registerComponentDidAppearListener(({ componentId }) =>
+      emitter(componentId)
+    );
+
+    return () => {
+      if (screenEventListener) {
+        screenEventListener.remove();
+      }
+    };
+  });
+}
+
+export function appComponentDidDisappearChannel() {
+  return eventChannel((emitter) => {
+    const screenEventListener = Navigation.events().registerComponentDidDisappearListener(({ componentId }) =>
+      emitter(componentId)
+    );
+
     return () => {
       if (screenEventListener) {
         screenEventListener.remove();

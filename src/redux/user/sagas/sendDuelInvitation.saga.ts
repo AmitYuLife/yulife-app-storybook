@@ -2,7 +2,7 @@ import { ApolloQueryResult } from "apollo-client";
 import { ROUTES, MODALS } from "@navigation/constants";
 import { Navigation } from "react-native-navigation";
 import { call, select, take, delay } from "redux-saga/effects";
-import { UPDATE_NAVIGATION_STATE } from "../../app/app.actions";
+import { UPDATE_CURRENT_ROUTE } from "../../app/app.actions";
 import { getRouteState } from "../../app/app.selectors";
 import { getUserFeatures, getCurrentUserId } from "../user.selectors";
 import getDuelsWithClient from "@graphql/duels/getDuels.gql";
@@ -21,7 +21,7 @@ export default function* sendDuelInvitation() {
 
   // do not show duel invite on onboarding reward screen
   if (currentRoute === ROUTES.onboardingSignUpReward) {
-    yield take(UPDATE_NAVIGATION_STATE);
+    yield take(UPDATE_CURRENT_ROUTE);
   }
 
   const whitelist = [ROUTES.dailySteps, ROUTES.quests, ROUTES.yuScreen, ROUTES.leaderboards, ROUTES.rewards];
