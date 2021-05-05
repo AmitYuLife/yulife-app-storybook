@@ -1,4 +1,4 @@
-import { Feature, Scenario, Given, When, Then, ScenarioOnly, ScenarioSkip } from "@yu-life/yulife-bdd-framework";
+import { Feature, Scenario, Given, When, Then, ScenarioOnly, ScenarioSkip, FeatureOnly } from "@yu-life/yulife-bdd-framework";
 import * as scenario from "./_steps/scenario"
 import * as given from "./_steps/given"
 import * as when from "./_steps/when"
@@ -33,7 +33,7 @@ Feature("As a user I can navigate through member routes correctly", async () => 
             Then("I should see a menu icon in the top left", then.idVisible(MENU_ICON, 1500))
             When("I tap the menu icon in the top left", when.tapID(MENU_ICON, 1500), async () => {
                 Then("I should see the menu items", then.menuItemsVisible)
-                When("I tap statistics", when.tapMenuItem("statistics"), async () => {
+                When("I tap statistics", when.tapMenuItem("Statistics"), async () => {
                     Then("I should be on statistics", then.idVisible(STATS_SCREEN))
                     Then("I should see the correct stats elements and figures", then.statsCorrect)
                 })
@@ -43,7 +43,7 @@ Feature("As a user I can navigate through member routes correctly", async () => 
                         Then("I should see the menu items", then.menuItemsVisible)
                     })
                 })
-                When("I tap activity history", when.tapMenuItem("activity history"), async () => {
+                When("I tap activity history", when.tapMenuItem("Activity History"), async () => {
                     Then("I should be on activity history", then.idVisible(ACTIVITY_HISTORY_SCREEN, 2500))
                     Then("I should see some activity", then.textVisible("309 steps"))
                 })
@@ -54,18 +54,7 @@ Feature("As a user I can navigate through member routes correctly", async () => 
                     })
                 })
 
-                When("I tap member services", when.tapMenuItem("member services"), async () => {
-                    Then("I should be the yumatter screen", then.idVisible(YUMATTER_SCREEN, 500))
-                })
-
-                When("I go back", when.tapID(BUTTON_CLOSE_HEADER("yulife")), async () => {
-                    Then("I should be the yucoin tab", then.onDailySteps)
-                    When("I tap the menu icon in the top left", when.tapID(MENU_ICON, 500), async () => {
-                        Then("I should see the menu items", then.menuItemsVisible)
-                    })
-                })
-
-                When("I tap settings", when.tapMenuItem("settings"), async () => {
+                When("I tap settings", when.tapMenuItem("Settings"), async () => {
                     Then("I should be on the settings tab", then.idVisible(SETTINGS_SCREEN, 2500))
                 })
 
@@ -84,7 +73,7 @@ Feature("As a user I can navigate through member routes correctly", async () => 
             Then("I should see a menu icon in the top left", then.idVisible(MENU_ICON, 1500))
             When("I tap the menu icon in the top left", when.tapID(MENU_ICON, 1500), async () => {
                 Then("I should see the menu items", then.menuItemsVisible)
-                When("I tap support", when.tapMenuItem("support"), async () => {
+                When("I tap chat", when.tapMenuItem("Chat"), async () => {
                     Then("I should see the notification request, as I have not allowed this permission", then.idVisible(GENERIC_SCREEN_HEADING("notification")))
                     When("I tap skip", when.tapID(GENERIC_SCREEN_CTA("skip")), async () => {
                         Then("I should see intercom", then.textVisible("Start a conversation"))
