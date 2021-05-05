@@ -12,7 +12,7 @@ Feature("As a user with an activity history I should be able to see my statistic
         Given("I login as user", given.loginAsUser(CUSTOMER_14, AUTH_14), async () => {
             When("I go to the menu", when.tapID(MENU_ICON), async () => {
                 Then("I should see the menu icons", then.menuItemsVisible)
-                When("I tap statistics", when.tapMenuItem("statistics"), async () => {
+                When("I tap statistics", when.tapMenuItem("Statistics"), async () => {
                     Then("I should see the titles, subtitiles, and values in the statistics page", then.userStatsVisible)
                 })
             })
