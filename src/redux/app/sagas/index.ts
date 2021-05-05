@@ -3,7 +3,8 @@ import { SET_MAIN_ROOT, SHOW_MAINTENANCE, CHECK_CONNECTION, UPDATE_OFFLINE_STATE
 
 import listenToAppStateSaga from "./listenToAppState.saga";
 import listenToLinkingSaga from "./listenToIOSLinking.saga";
-import listenToNavigationSaga from "./listenToNavigation.saga";
+import listenToComponentDidAppear from "./listenToComponentDidAppear";
+import listenToComponentDidDisappear from "./listenToComponentDidDisappear";
 import listenToNetworkStateSaga from "./listenToNetworkState.saga";
 import setMainRootSaga from "./setMainRoot.saga";
 import showMaintenanceSaga from "./showMaintenance.saga";
@@ -12,7 +13,8 @@ import showOfflineScreenSaga from "./showOfflineScreen.saga";
 
 export default [
   takeLatest("INIT", listenToAppStateSaga),
-  takeLatest("INIT", listenToNavigationSaga),
+  takeLatest("INIT", listenToComponentDidAppear),
+  takeLatest("INIT", listenToComponentDidDisappear),
   takeLatest("INIT", listenToLinkingSaga),
   takeLatest(SET_MAIN_ROOT, setMainRootSaga),
   takeLatest(AUTHENTICATED, listenToNetworkStateSaga),
