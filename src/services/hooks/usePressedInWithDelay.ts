@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react";
 
 interface Args {
   delay?: number;
-  onPress: () => any;
+  onPress: () => void;
 }
 
 export function usePressedInWithDelay({ delay = 1000, onPress }: Args) {

@@ -4,32 +4,41 @@ import { TextTemplate } from "@atoms";
 import { Picker } from "./subcomponents/picker";
 import { Buttons } from "./subcomponents/buttons";
 import { Colours, Style } from "@styles";
+import { TouchableOpacityWithDelay } from "@components/molecules";
 
+export interface Item {
+  label: string;
+  value: any;
+}
 interface IPicker {
-  items: string[];
+  items: Item[];
   onIndexChange: (index: number) => void;
   defaultIndex: number;
 }
 
 interface Props {
   pickers: IPicker[];
-  toggle: () => void;
   onConfirm: () => void;
   onCancel: () => void;
-  toggleLabel: string;
+  toggle?: () => void;
+  toggleLabel?: string;
 }
 
 const ScrollPickerModal = (props: Props) => {
   const { pickers, toggle, toggleLabel, onConfirm, onCancel } = props;
+  const hasToggle = toggle && toggleLabel;
 
   return (
     <View style={styles.wrapper}>
+      <TouchableOpacityWithDelay activeOpacity={1} style={styles.pressableBackground} onPress={onCancel} />
       <View style={styles.innerWrapper}>
-        <TouchableOpacity onPress={toggle}>
-          <TextTemplate type="b2b" color={Colours.primary.p600}>
-            {toggleLabel}
-          </TextTemplate>
-        </TouchableOpacity>
+        {!hasToggle ? null : (
+          <TouchableOpacity style={styles.toggleWrapper} onPress={toggle}>
+            <TextTemplate type="b2b" color={Colours.primary.p600}>
+              {toggleLabel}
+            </TextTemplate>
+          </TouchableOpacity>
+        )}
         <View style={styles.pickerWrapper}>
           {pickers.map(({ onIndexChange, items, defaultIndex }, i) => (
             <Picker key={i} defaultIndex={defaultIndex} onIndexChange={onIndexChange} items={items} />
@@ -47,16 +56,22 @@ const styles = StyleSheet.create({
   wrapper: {
     height: Style.DEVICE_HEIGHT,
     width: Style.DEVICE_WIDTH,
+    position: "absolute",
+  } as ViewStyle,
+  pressableBackground: {
     backgroundColor: "rgba(0,0,0,0.7)",
+    ...StyleSheet.absoluteFillObject,
+  } as ViewStyle,
+  toggleWrapper: {
+    paddingTop: Style.adjust(40),
   } as ViewStyle,
   innerWrapper: {
     backgroundColor: Colours.neutral.white,
     borderRadius: 16,
-    paddingTop: Style.adjust(40),
     paddingHorizontal: Style.adjust(20),
     paddingBottom: Platform.select({
       ios: Style.hasNotch ? Style.adjust(20) : Style.adjust(8),
-      android: Style.adjust(8),
+      android: Style.adjust(28),
     }),
     width: Style.DEVICE_WIDTH,
     justifyContent: "center",

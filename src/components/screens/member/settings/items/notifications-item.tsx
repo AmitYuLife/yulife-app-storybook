@@ -1,27 +1,42 @@
-import { Text } from "@atoms/index";
+import { TextTemplate } from "@atoms/index";
 import * as React from "react";
 import { FC } from "react";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
+import moment from "moment";
 import { Switch, TouchableOpacityWithDelay } from "@molecules";
 import { INotificationsSectionItem } from "../settings.screen";
 import styles from "./item.styles";
+import { Colours } from "@styles";
 
-const NotificationsItem: FC<INotificationsSectionItem> = ({ isActive, name, onSwitchPress, onTimePress, time }) => (
+const NotificationsItem: FC<INotificationsSectionItem> = ({
+  isActive,
+  name,
+  description,
+  onSwitchPress,
+  onTimePress,
+  alertTimestamp,
+}) => (
   <View style={styles.wrapper}>
-    <View style={styles.nameWrapper}>
-      <Text style={styles.text}>{name}</Text>
-      {time ? null : (
-        <Text style={StyleSheet.flatten([styles.textSmall, isActive ? styles.active : null])}>
-          {isActive ? "On" : "Off"}
-        </Text>
-      )}
-      {!time ? null : (
-        <TouchableOpacityWithDelay onPress={onTimePress}>
-          <Text style={StyleSheet.flatten([styles.textSmall, isActive ? styles.active : null])}>{time || ""}</Text>
-        </TouchableOpacityWithDelay>
-      )}
+    {alertTimestamp && <View style={styles.seperator} />}
+    <View style={styles.container}>
+      <View style={styles.nameWrapper}>
+        <TextTemplate type="b2b">{name}</TextTemplate>
+        <TextTemplate type="l2">{description}</TextTemplate>
+      </View>
+      <Switch onPress={onSwitchPress} value={isActive} />
     </View>
-    <Switch onPress={onSwitchPress} value={isActive} />
+    {!alertTimestamp ? null : (
+      <>
+        <View style={styles.reminderTime}>
+          <TextTemplate type="b2b">Reminder time</TextTemplate>
+        </View>
+        <TouchableOpacityWithDelay onPress={onTimePress} style={styles.timer} disabled={!isActive}>
+          <TextTemplate type="b2" color={isActive ? Colours.primary.p600 : Colours.neutral.n800}>
+            {moment(alertTimestamp).format("hh:mm A") || ""}
+          </TextTemplate>
+        </TouchableOpacityWithDelay>
+      </>
+    )}
   </View>
 );
 

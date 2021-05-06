@@ -1,4 +1,4 @@
-import { Text } from "@atoms/index";
+import { TextTemplate } from "@atoms/index";
 import { Colours } from "@styles/index";
 import moment from "moment";
 import * as React from "react";
@@ -8,6 +8,7 @@ import { Switch, TouchableOpacityWithDelay } from "@molecules";
 import { IConnectionsSectionItem } from "../settings.screen";
 import assets from "./assets";
 import styles from "./item.styles";
+import { toCapitalLetter } from "@services/utils";
 
 const formatDate = (timestamp: number) => {
   const toFormat = moment.unix(timestamp).local();
@@ -32,20 +33,22 @@ const ConnectionsItem: FC<IConnectionsSectionItem> = ({
   onPress,
   onPressInfo,
 }) => (
-  <View style={styles.wrapper}>
+  <View style={[styles.wrapper, { flexDirection: "row" }]}>
     <View style={styles.nameWrapper}>
       <View>
         <TouchableOpacityWithDelay style={styles.infoButton} onPress={onPressInfo}>
-          <Text style={styles.text}>{name}</Text>
+          <TextTemplate type="b2b">{toCapitalLetter(name)}</TextTemplate>
           <Image style={styles.image} source={assets.infoIcon} />
         </TouchableOpacityWithDelay>
       </View>
       {isConnected ? (
         !lastUpdated ? null : (
-          <Text style={styles.textSmall}>Last synced at {formatDate(lastUpdated)}</Text>
+          <TextTemplate type="l2">{`Last synced at ${formatDate(lastUpdated)}`}</TextTemplate>
         )
       ) : (
-        <Text style={styles.textSmall}>Not connected</Text>
+        <TextTemplate type="l2" color={Colours.neutral.n400}>
+          Not connected
+        </TextTemplate>
       )}
     </View>
     <View style={styles.switchWrapper}>

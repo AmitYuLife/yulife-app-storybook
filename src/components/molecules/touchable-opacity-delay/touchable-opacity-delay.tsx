@@ -1,12 +1,13 @@
 import * as React from "react";
-import { TouchableOpacity, TouchableOpacityProps } from "react-native";
+import { TouchableOpacity, TouchableOpacityProps, ViewProps } from "react-native";
 import { usePressedInWithDelay } from "@services/hooks/usePressedInWithDelay";
 
-export interface IProps extends TouchableOpacityProps {
-  onPress: () => void;
-  children: React.ReactNode;
-  delay?: number;
-}
+export type IProps = Omit<TouchableOpacityProps, "onPress"> &
+  ViewProps & {
+    onPress: () => void;
+    children?: React.ReactChild | React.ReactChild[];
+    delay?: number;
+  };
 
 export default function TouchableOpacityWithDelay({ onPress, delay, ...otherProps }: IProps) {
   const { handlePress } = usePressedInWithDelay({ onPress, delay });

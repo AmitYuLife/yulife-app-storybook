@@ -10983,7 +10983,7 @@
             "deprecationReason": null
           },
           {
-            "name": "time",
+            "name": "alertTimestamp",
             "description": null,
             "args": [],
             "type": {
@@ -11020,6 +11020,46 @@
               "ofType": {
                 "kind": "SCALAR",
                 "name": "Boolean",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "description",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "time",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": true,
+            "deprecationReason": "Not supported"
+          },
+          {
+            "name": "order",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Int",
                 "ofType": null
               }
             },
@@ -11066,6 +11106,18 @@
           },
           {
             "name": "duels",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "surges",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "marketing",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -21280,6 +21332,16 @@
               },
               {
                 "name": "time",
+                "description": null,
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "alertTimestamp",
                 "description": null,
                 "type": {
                   "kind": "SCALAR",

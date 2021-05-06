@@ -1,6 +1,5 @@
 import moment from "moment";
-import * as React from "react";
-import DateTimePicker from "react-native-modal-datetime-picker";
+import React, { useMemo } from "react";
 import { Navigation } from "react-native-navigation";
 import { useSelector, useDispatch } from "react-redux";
 import { MODALS } from "@navigation/constants";
@@ -20,7 +19,7 @@ import {
   UpdateUserNotificationsSettings as ReturnedData,
 } from "@graphql/_core/schema";
 import Logger from "@services/logging/logger";
-import { Colours } from "@styles";
+import { ScrollPickerModal } from "@components/modals";
 
 interface IOwnProps {
   componentId: string;
@@ -48,7 +47,7 @@ function SettingsContainer({ componentId }: IOwnProps) {
 
   // local state
   const [isTimeModalVisible, setIsTimeModalVisible] = React.useState<boolean>(false);
-  const [modalDate, setModalDate] = React.useState<Date>(null);
+  const [modalDate, setModalDate] = React.useState<string>(null);
   const [selectedNotification, setNotification] = React.useState<Notification>(null);
 
   // gql
@@ -64,11 +63,10 @@ function SettingsContainer({ componentId }: IOwnProps) {
   const handleTimeModalCancel = React.useCallback(() => setIsTimeModalVisible(false), []);
 
   const handleTimeModalConfirm = React.useCallback(
-    async (date: Date) => {
+    async () => {
       try {
-        const time = moment(date.toISOString()).format("HH:mm");
         await updateNotification({
-          variables: { type: selectedNotification.type, isActive: true, time },
+          variables: { type: selectedNotification.type, isActive: true, time: modalDate },
         });
       } catch (e) {
         Logger.error(e, { file: "settings-container-time" });
@@ -78,7 +76,7 @@ function SettingsContainer({ componentId }: IOwnProps) {
       }
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [selectedNotification]
+    [selectedNotification, modalDate]
   );
 
   const handleConnectionItemPress = React.useCallback(
@@ -110,6 +108,7 @@ function SettingsContainer({ componentId }: IOwnProps) {
   );
 
   const connection = {
+    title: "Fitness trackers",
     isVisible: features.showConnections,
     items: connections.map((c) => ({
       ...c,
@@ -130,6 +129,7 @@ function SettingsContainer({ componentId }: IOwnProps) {
             variables: {
               type: n.type,
               isActive: !n.isActive,
+              time: n.alertTimestamp,
             },
           });
         } catch (e) {
@@ -140,16 +140,30 @@ function SettingsContainer({ componentId }: IOwnProps) {
         }
       },
       onTimePress: () => {
-        const [hours, minutes] = n.time.split(":");
-        const currentDate = moment().add(parseInt(hours, 10), "hours").add(parseInt(minutes, 10), "minutes").toDate();
-
-        setModalDate(currentDate);
         setIsTimeModalVisible(true);
+        setModalDate(n.alertTimestamp);
         setNotification(n);
       },
     })),
+    title: "Push notifications",
     name: "notifications",
   } as any;
+
+  const pickers = useMemo(
+    () => {
+      const times = generateTimes();
+      const currentTime = times.findIndex((time) => time.value === modalDate);
+      return [
+        {
+          items: times,
+          onIndexChange: (index: number) => setModalDate(times[index].value),
+          defaultIndex: currentTime,
+        },
+      ];
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [modalDate]
+  );
 
   return (
     <>
@@ -158,18 +172,29 @@ function SettingsContainer({ componentId }: IOwnProps) {
         onPressClose={handleClose}
         sections={[notification, connection]}
       />
-      <DateTimePicker
-        date={modalDate}
-        mode="time"
-        headerTextIOS="Set time"
-        isVisible={isTimeModalVisible}
-        onConfirm={handleTimeModalConfirm}
-        onCancel={handleTimeModalCancel}
-        isDarkModeEnabled={false}
-        textColor={Colours.neutral.n900}
-      />
+      {!isTimeModalVisible ? null : (
+        <ScrollPickerModal pickers={pickers} onConfirm={handleTimeModalConfirm} onCancel={handleTimeModalCancel} />
+      )}
     </>
   );
 }
+
+const generateTimes = () => {
+  const times = [];
+  const DEFAULT_DATE = "2000-01-01";
+
+  for (let hour = 0; hour < 24; hour++) {
+    times.push({
+      label: moment(DEFAULT_DATE).hour(hour).minute(0).second(0).format("hh:mm A"),
+      value: moment(DEFAULT_DATE).hour(hour).minute(0).second(0).toISOString(),
+    });
+    times.push({
+      label: moment(DEFAULT_DATE).hour(hour).minute(30).second(0).format("hh:mm A"),
+      value: moment(DEFAULT_DATE).hour(hour).minute(30).second(0).toISOString(),
+    });
+  }
+
+  return times;
+};
 
 export default SettingsContainer;

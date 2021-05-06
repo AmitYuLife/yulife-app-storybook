@@ -1,24 +1,20 @@
-import { StyleSheet, TextStyle, ViewStyle, ImageStyle } from "react-native";
-import { Colours, Style } from "../../../../../styles";
+import { StyleSheet, ViewStyle, ImageStyle } from "react-native";
+import { Colours, Style } from "@styles";
 
 const styles = StyleSheet.create({
+  wrapper: {
+    backgroundColor: Colours.neutral.white,
+    justifyContent: "center",
+    marginBottom: Style.adjust(24),
+  } as ViewStyle,
   nameWrapper: {
     flex: 1,
-    paddingLeft: Style.adjust(10),
+    paddingRight: Style.adjust(16),
   } as ViewStyle,
-  text: {
-    textTransform: "capitalize",
-    fontSize: Style.adjust(16),
-    color: Colours.neutral.n800,
-  } as TextStyle,
-  textSmall: {
-    color: Colours.neutral.n400,
-    fontSize: Style.adjust(12),
-    marginTop: 5,
-  } as TextStyle,
-  active: {
-    color: Colours.primary.p600,
-  } as TextStyle,
+  container: {
+    flexDirection: "row",
+    alignItems: "center",
+  } as ViewStyle,
   infoButton: {
     flexDirection: "row",
     alignItems: "center",
@@ -33,12 +29,20 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
   } as ViewStyle,
-  wrapper: {
-    alignItems: "center",
-    backgroundColor: "white",
+  seperator: {
+    backgroundColor: Colours.neutral.n100,
+    height: 1,
+    width: "100%",
+    marginBottom: 24,
+  } as ViewStyle,
+  reminderTime: {
     flexDirection: "row",
-    justifyContent: "center",
-    paddingVertical: Style.adjust(14),
+    marginTop: Style.adjust(24),
+  },
+  timer: {
+    position: "absolute",
+    right: 0,
+    bottom: 0,
   } as ViewStyle,
 });
 
