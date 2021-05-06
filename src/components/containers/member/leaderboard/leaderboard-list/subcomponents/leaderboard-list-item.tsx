@@ -93,6 +93,7 @@ const buttonStyles = StyleSheet.create({
   } as ViewStyle,
   nameWrapper: {
     paddingVertical: MARGIN,
+    flex: 1,
   },
   textSmall: {
     color: Colours.neutral.n400,
