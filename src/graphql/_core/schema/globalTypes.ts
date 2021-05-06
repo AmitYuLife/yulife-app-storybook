@@ -105,7 +105,9 @@ export enum UserNotificationsType {
   dailyChallengeReminder = "dailyChallengeReminder",
   duels = "duels",
   intercom = "intercom",
+  marketing = "marketing",
   streakSaver = "streakSaver",
+  surges = "surges",
 }
 
 export enum YuItemSlot {

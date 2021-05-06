@@ -9,6 +9,8 @@ import SectionHeading from "./section-heading/section-heading";
 import data from "./settings.data";
 import styles from "./settings.styles";
 import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
+import { TextTemplate } from "@atoms";
+import { Style } from "@styles";
 
 export interface ILeaderboardSectionItem {
   name: string;
@@ -18,12 +20,15 @@ export interface ILeaderboardSectionItem {
 }
 
 export interface INotificationsSectionItem extends GetUserNotificationsSettings_getUserNotificationsSettings {
+  title: string;
   name: string;
+  description: string;
   onSwitchPress: () => void;
   onTimePress: () => void;
 }
 
 export interface IConnectionsSectionItem {
+  title: string;
   name: string;
   isConnected: boolean;
   lastUpdated?: number;
@@ -35,6 +40,7 @@ export interface IConnectionsSectionItem {
 interface ISettingSection<T> {
   isVisible: boolean;
   items: T[];
+  title: string;
   name: string;
 }
 
@@ -81,7 +87,7 @@ export default class SettingsScreen extends PureComponent<IProps> {
   private renderNotifications = (section: ISettingSection<INotificationsSectionItem>, index: number) => {
     return (
       <View key={index} style={styles.wrapper}>
-        <SectionHeading heading={section.name} />
+        <SectionHeading heading={section.title} />
         <View style={styles.notificationsItemsWrapper}>
           {section.items.map((item, i) => (
             <NotificationsItem {...item} key={i} />
@@ -94,8 +100,14 @@ export default class SettingsScreen extends PureComponent<IProps> {
   private renderConnections = (section: ISettingSection<IConnectionsSectionItem>, index: number) => {
     return (
       <View key={index} style={styles.wrapper}>
-        <SectionHeading heading={section.name} />
+        <SectionHeading heading={section.title} />
         <View style={styles.notificationsItemsWrapper}>
+          <View style={{ marginBottom: Style.adjust(24) }}>
+            <TextTemplate type="b2">
+              Connect your fitness tracker to get rewarded for additional daily steps and mindfulness minutes. Don’t
+              forget to still keep your phone with you during challenges!
+            </TextTemplate>
+          </View>
           {section.items.map((item, i) => (
             <ConnectionsItem {...item} key={i} />
           ))}

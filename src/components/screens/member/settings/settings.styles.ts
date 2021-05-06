@@ -12,8 +12,8 @@ export default StyleSheet.create({
   notificationsItemsWrapper: {
     flexDirection: "column",
     justifyContent: "center",
-    marginHorizontal: Style.adjust(15),
-    marginVertical: Style.adjust(15),
+    marginHorizontal: Style.adjust(24),
+    marginVertical: Style.adjust(24),
   } as ViewStyle,
   scrollContentContainer: {
     paddingBottom: Style.adjust(30),

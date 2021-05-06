@@ -1,4 +1,4 @@
-import React, { ComponentProps, useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import {
   ScrollView,
   Animated,
@@ -14,21 +14,28 @@ import { ItemText, Wrapper } from "./item-text";
 import { Overlays } from "./overlays";
 import { Style } from "@styles";
 import { Placeholder } from "./placeholder";
+import { Item } from "../scroll-picker-modal";
 
 const ANDROID_SAFEGUARD = 0.01;
 
 interface Props {
-  items: Array<ComponentProps<typeof ItemText>["children"]>;
+  items: Item[];
   onIndexChange: (value: number) => void;
   defaultIndex: number;
 }
 export const Picker = ({ items = [], onIndexChange, defaultIndex = 0 }: Props) => {
   const listRef = useRef<ScrollView>(null);
   const scrollY = useRef(new Animated.Value(0));
+  const scrollToDefaultIndexDelay = useRef(null);
 
   useEffect(() => {
     onIndexChange(defaultIndex);
-    listRef.current.scrollTo({ y: defaultIndex * ITEM_HEIGHT, animated: false });
+
+    scrollToDefaultIndexDelay.current = setTimeout(() => {
+      listRef.current.scrollTo({ y: defaultIndex * ITEM_HEIGHT, animated: false });
+    }, 0);
+
+    return () => clearTimeout(scrollToDefaultIndexDelay.current);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [items]);
 
@@ -84,18 +91,18 @@ export const Picker = ({ items = [], onIndexChange, defaultIndex = 0 }: Props) =
         style={styles.scrollWrapper}
       >
         <Placeholder />
-        {items.map((item: string, index: number) => (
+        {items.map((item: Item, index: number) => (
           <Wrapper key={index}>
             <ItemText
               opacity={getInactiveTextOpacityValue({ scrollY: scrollY.current, index, itemHeight: ITEM_HEIGHT })}
             >
-              {item}
+              {item.label}
             </ItemText>
             <ItemText
               opacity={getActiveTextOpacityValue({ scrollY: scrollY.current, index, itemHeight: ITEM_HEIGHT })}
               active={true}
             >
-              {item}
+              {item.label}
             </ItemText>
           </Wrapper>
         ))}

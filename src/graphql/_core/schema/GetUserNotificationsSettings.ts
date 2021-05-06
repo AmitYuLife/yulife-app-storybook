@@ -13,9 +13,11 @@ export interface GetUserNotificationsSettings_getUserNotificationsSettings {
   id: string;
   type: UserNotificationsType;
   name: string;
-  time: string | null;
   isActive: boolean;
   isAvailable: boolean;
+  alertTimestamp: string | null;
+  order: number;
+  description: string | null;
 }
 
 export interface GetUserNotificationsSettings {

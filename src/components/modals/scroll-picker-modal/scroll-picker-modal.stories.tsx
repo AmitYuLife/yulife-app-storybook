@@ -6,20 +6,14 @@ const dataFeet = Array.from({ length: 3 }).map((_, i) => ({
   label: `${i + 4} ft`,
   value: i + 4,
 }));
-const dataFeetLabels = dataFeet.map(({ label }) => label);
-const dataFeetValues = dataFeet.map(({ value }) => value);
 const dataInches = Array.from({ length: 12 }).map((_, i) => ({
   label: `${i} in`,
   value: i,
 }));
-const dataInchesLabels = dataInches.map(({ label }) => label);
-const dataInchesValues = dataInches.map(({ value }) => value);
 const dataCm = Array.from({ length: 100 }).map((_, i) => ({
   label: `${i + 122} cm`,
   value: i + 122,
 }));
-const dataCmLabels = dataCm.map(({ label }) => label);
-const dataCmValues = dataCm.map(({ value }) => value);
 
 const NAME = "ScrollPickerModal";
 storiesOf(NAME, module).add("default", () => <Test />);
@@ -33,7 +27,6 @@ const Test = () => {
   const [inchesIndex, setInchIndex] = useState(0);
   const [cmIndex, setCmIndex] = useState(0);
   const [isMetric, setIsMetric] = useState(false);
-
   const handleHeightFeetChange = (newIndex: number) => {
     setFtIndex(newIndex);
   };
@@ -52,40 +45,34 @@ const Test = () => {
     setCmIndex(DEFAULT_CM_INDEX);
   }, [isMetric]);
 
-  const imperialDisplay = displayHeightInImperial({
-    feet: dataFeetValues[ftIndex],
-    inches: dataInchesValues[inchesIndex],
+  const displayArgs = {
+    feet: dataFeet[ftIndex].value,
+    inches: dataInches[inchesIndex].value,
     isMetric,
-    cm: dataCmValues[cmIndex],
-  });
-  const metricDisplay = displayHeightInMetric({
-    feet: dataFeetValues[ftIndex],
-    inches: dataInchesValues[inchesIndex],
-    isMetric,
-    cm: dataCmValues[cmIndex],
-  });
-
+    cm: dataCm[cmIndex].value,
+  };
+  const imperialDisplay = displayHeightInImperial(displayArgs);
+  const metricDisplay = displayHeightInMetric(displayArgs);
   const activePickers = isMetric
     ? [
         {
-          items: dataCmLabels,
+          items: dataCm,
           onIndexChange: handleHeightCmChange,
           defaultIndex: DEFAULT_CM_INDEX,
         },
       ]
     : [
         {
-          items: dataFeetLabels,
+          items: dataFeet,
           onIndexChange: handleHeightFeetChange,
           defaultIndex: DEFAULT_FEET_INDEX,
         },
         {
-          items: dataInchesLabels,
+          items: dataInches,
           onIndexChange: handleHeightInchChange,
           defaultIndex: DEFAULT_INCH_INDEX,
         },
       ];
-
   return (
     <ScrollPickerModal
       pickers={activePickers}
@@ -93,12 +80,10 @@ const Test = () => {
       toggleLabel={isMetric ? "switch to cm" : "switch to ft"}
       onConfirm={() => {
         console.log(`@! Do something with ${isMetric ? metricDisplay : imperialDisplay}`);
-
         return null;
       }}
       onCancel={() => {
         // e.g. hide modal
-
         return null;
       }}
     />

@@ -8,9 +8,11 @@ export const GQL_QUERY_GET_USER_NOTIFICATIONS_SETTINGS = gql`
       id
       type
       name
-      time
       isActive
       isAvailable
+      alertTimestamp
+      order
+      description
     }
   }
 `;
