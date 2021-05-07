@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { Linking, Platform } from "react-native";
-import RNFitKit, { FitKitAuthOptions } from "react-native-fitkit";
+import RNFitKit, { FitKitAuthOptions } from "@yu-life/react-native-fitkit";
 import moment from "moment";
 import Storage from "@services/storage";
 import { handleOpenWebView } from "@navigation/utils";

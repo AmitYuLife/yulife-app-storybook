@@ -1,4 +1,4 @@
-import { PedometerResponse, SampleQueryResult } from 'react-native-fitkit';
+import { PedometerResponse, SampleQueryResult } from '@yu-life/react-native-fitkit';
 import { AsyncAction, SyncAction } from "@app/redux/_core/types";
 
 export enum EVENT {

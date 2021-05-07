@@ -1,6 +1,6 @@
-export { FitKitTypes } from "react-native-fitkit";
-import { SampleQueryResult, SampleQueryOptions, PedometerResponse } from "react-native-fitkit";
-import service from "react-native-fitkit";
+export { FitKitTypes } from "@yu-life/react-native-fitkit";
+import { SampleQueryResult, SampleQueryOptions, PedometerResponse } from "@yu-life/react-native-fitkit";
+import service from "@yu-life/react-native-fitkit";
 import moment from "moment";
 import socket from "@services/socket";
 
