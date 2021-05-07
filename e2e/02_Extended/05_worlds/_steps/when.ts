@@ -23,8 +23,8 @@ export const {
 
 export const sendMindfulnessData = (value = 60, startTime = 20, endTime = 60, ) => async () => {
     const record = [{
-        startTime: moment().add(20, "seconds").toDate().toString(),
-        endTime: moment().add(60, "seconds").toDate().toString(),
+        startTime: moment().add(60, "seconds").toDate().toString(),
+        endTime: moment().add(80, "seconds").toDate().toString(),
         value: value,
         type: "MindfulSession"
     }]
