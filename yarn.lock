@@ -3484,6 +3484,11 @@
   resolved "https://registry.yarnpkg.com/@yarnpkg/lockfile/-/lockfile-1.1.0.tgz#e77a97fbd345b76d83245edcd17d393b1b41fb31"
   integrity sha512-GpSwvyXOcOOlV70vbnzjj4fW5xW/FdUF6nQEt1ENy7m4ZCczi1+/buVUPAqmGfqznsORNFzUMjctTIp8a9tuCQ==
 
+"@yu-life/react-native-fitkit@1.0.0":
+  version "1.0.0"
+  resolved "https://gitlab.com/api/v4/projects/7775989/packages/npm/@yu-life/react-native-fitkit/-/@yu-life/react-native-fitkit-1.0.0.tgz#b5dabc9400f70e7b8d0b6f737af9428d4de071f0"
+  integrity sha1-tdq8lAD3DnuNC29zevlCjU3gcfA=
+
 "@yu-life/yulife-bdd-framework@^0.0.1":
   version "0.0.1"
   resolved "https://gitlab.com/api/v4/projects/23052792/packages/npm/@yu-life/yulife-bdd-framework/-/@yu-life/yulife-bdd-framework-0.0.1.tgz#130ede56018e64bcd0b4507ce6383fbbd2b3eca0"
@@ -13527,10 +13532,6 @@ react-native-fast-image@^8.3.2:
   version "8.3.2"
   resolved "https://registry.yarnpkg.com/react-native-fast-image/-/react-native-fast-image-8.3.2.tgz#e9db271b70b9634b7be054760914d80954f9898c"
   integrity sha512-AJ0b4BEswRwa0bh4SibYUtXszEiaO88Lf4CZ1ib+t5ZfkAgsMk9Liv3L0LYnDblMJmSeGTr1+2ViIM8F2vamjg==
-
-"react-native-fitkit@ssh://git@gitlab.com:yu-life/react-native-fitkit.git#be2be22e30c0f8ee0849d2e2e607be8617fa2eed":
-  version "1.0.1"
-  resolved "ssh://git@gitlab.com:yu-life/react-native-fitkit.git#be2be22e30c0f8ee0849d2e2e607be8617fa2eed"
 
 react-native-in-app-review@^3.1.1:
   version "3.1.1"

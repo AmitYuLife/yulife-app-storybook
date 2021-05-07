@@ -1,6 +1,6 @@
 module.exports = {
   dependencies: {
-    "react-native-fitkit": {
+    "@yu-life/react-native-fitkit": {
       platforms: {
         android: null,
       },

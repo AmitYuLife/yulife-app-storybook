@@ -1,6 +1,6 @@
 import moment from "moment";
 import { Platform } from "react-native";
-import RNFitKit from "react-native-fitkit";
+import RNFitKit from "@yu-life/react-native-fitkit";
 import { call, cancelled, put, select, spawn, take } from "redux-saga/effects";
 import { PedometerResponse } from "@services/fitkit/fitkit.service";
 import Logger from "@services/logging/logger";

@@ -28,7 +28,7 @@ jest.mock("react-native/Libraries/Components/Touchable/TouchableOpacity.js", () 
 
 jest.mock("react-native-intercom", () => ({}), { virtual: true });
 
-jest.mock("react-native-fitkit", () => ({
+jest.mock("@yu-life/react-native-fitkit", () => ({
   // As strange as it is to use moment in a config file, this ensures that at whatever point this
   // mock method is used it will return a recently completed 5 minute activity worth 54 points.
   sampleQuery: jest.fn(() => [

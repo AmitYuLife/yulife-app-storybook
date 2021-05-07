@@ -1,3 +1,3 @@
-export * from "react-native-fitkit";
-import service from "react-native-fitkit";
+export * from "@yu-life/react-native-fitkit";
+import service from "@yu-life/react-native-fitkit";
 export default service;

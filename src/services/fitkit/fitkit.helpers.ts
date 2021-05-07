@@ -5,7 +5,7 @@ import { ChallengePayload } from "../../graphql/_core/schema/globalTypes";
 import Logger from "../logging/logger";
 import { DATE_FORMAT_WITH_TZ } from "../utils";
 import { createContext } from "react";
-import { FitKitAvailableChildrenProps } from "react-native-fitkit";
+import { FitKitAvailableChildrenProps } from "@yu-life/react-native-fitkit";
 
 export const mapPedometerResults = (results: PedometerResponse): ChallengePayload => ({
   endDateTime: moment(results.endTime).format(),
