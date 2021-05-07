@@ -7,7 +7,7 @@ import { updateConnectionStart } from "@redux/user/user.actions";
 import { Connection, getUserConnections, getUserFeatures } from "@redux/user/user.selectors";
 import { SettingsScreen } from "@screens/index";
 import { getSettingsCopy } from "@redux/copy/copy.selectors";
-import { useQuery, useMutation } from "@apollo/react-hooks";
+import { useQuery, useMutation, useApolloClient } from "@apollo/react-hooks";
 import {
   GQL_QUERY_GET_USER_NOTIFICATIONS_SETTINGS,
   GQL_MUTATION_UPDATE_USER_NOTIFICATIONS_SETTINGS,
@@ -20,7 +20,6 @@ import {
 } from "@graphql/_core/schema";
 import Logger from "@services/logging/logger";
 import { ScrollPickerModal } from "@components/modals";
-
 interface IOwnProps {
   componentId: string;
 }
@@ -34,7 +33,6 @@ function handleCreateNewLeaderboard() {
   });
 }
 
-const updateNotificationOptions = { refetchQueries: ["GetUserNotificationsSettings"] };
 const getNotificationsOptions = { fetchPolicy: "cache-and-network" as "cache-and-network" };
 
 function SettingsContainer({ componentId }: IOwnProps) {
@@ -51,20 +49,34 @@ function SettingsContainer({ componentId }: IOwnProps) {
   const [selectedNotification, setNotification] = React.useState<Notification>(null);
 
   // gql
-  const [updateNotification] = useMutation<ReturnedData, Variables>(
-    GQL_MUTATION_UPDATE_USER_NOTIFICATIONS_SETTINGS,
-    updateNotificationOptions
-  );
+  const [updateNotification] = useMutation<ReturnedData, Variables>(GQL_MUTATION_UPDATE_USER_NOTIFICATIONS_SETTINGS);
   const { data } = useQuery<Data>(GQL_QUERY_GET_USER_NOTIFICATIONS_SETTINGS, getNotificationsOptions);
   const notifications = data?.getUserNotificationsSettings || [];
 
   // helper functions
   const handleClose = React.useCallback(() => Navigation.popToRoot(componentId), [componentId]);
   const handleTimeModalCancel = React.useCallback(() => setIsTimeModalVisible(false), []);
+  const client = useApolloClient();
+
+  const updateQueryCache = (type: string, isActive: boolean, time?: string) => {
+    const filterNotifications = notifications.map((i) => ({
+      ...i,
+      isActive: i.type === type ? isActive : i.isActive,
+      alertTimestamp: i.type === type && time ? time : i.alertTimestamp,
+    }));
+    client.writeQuery({
+      query: GQL_QUERY_GET_USER_NOTIFICATIONS_SETTINGS,
+      data: {
+        getUserNotificationsSettings: filterNotifications,
+      },
+    });
+  };
 
   const handleTimeModalConfirm = React.useCallback(
     async () => {
       try {
+        updateQueryCache(selectedNotification.type, true, modalDate);
+        setIsTimeModalVisible(false);
         await updateNotification({
           variables: { type: selectedNotification.type, isActive: true, time: modalDate },
         });
@@ -72,7 +84,6 @@ function SettingsContainer({ componentId }: IOwnProps) {
         Logger.error(e, { file: "settings-container-time" });
       } finally {
         setNotification(null);
-        setIsTimeModalVisible(false);
       }
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -125,6 +136,7 @@ function SettingsContainer({ componentId }: IOwnProps) {
       ...n,
       onSwitchPress: async () => {
         try {
+          updateQueryCache(n.type, !n.isActive);
           await updateNotification({
             variables: {
               type: n.type,
