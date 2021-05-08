@@ -15,6 +15,9 @@ export interface GetUserNotificationsSettings_getUserNotificationsSettings {
   name: string;
   isActive: boolean;
   isAvailable: boolean;
+  /**
+   * Date string
+   */
   alertTimestamp: string | null;
   order: number;
   description: string | null;

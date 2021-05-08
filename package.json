@@ -37,7 +37,7 @@
         "test:all": "run-s test:lint tsc test",
         "tsc": "tsc --noUnusedLocals --noUnusedParameters",
         "tsc:watch": "tsc --noUnusedLocals --noUnusedParameters --watch --pretty",
-        "download:schema": "apollo client:download-schema --endpoint=http://yulife-api-server-develop.eu-west-2.elasticbeanstalk.com/graphql ./src/graphql/_core/schema.json",
+        "download:schema": "apollo client:download-schema --endpoint=https://develop.eu-west-2.api.yulife.engineering/graphql ./src/graphql/_core/schema.json",
         "download:schema:local": "apollo client:download-schema --endpoint=http://localhost:5000/graphql ./src/graphql/_core/schema.json",
         "pregenerate:gql:types": "rm -rf ./src/graphql/_core/schema && mkdir ./src/graphql/_core/schema",
         "generate:gql:types": "apollo client:codegen --tagName=gql --localSchemaFile=./src/graphql/_core/schema.json --target=typescript --no-addTypename --outputFlat src/graphql/_core/schema",

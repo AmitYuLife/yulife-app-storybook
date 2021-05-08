@@ -104,7 +104,6 @@ export enum UserNotificationsType {
   challengeCompletion = "challengeCompletion",
   dailyChallengeReminder = "dailyChallengeReminder",
   duels = "duels",
-  intercom = "intercom",
   marketing = "marketing",
   streakSaver = "streakSaver",
   surges = "surges",
