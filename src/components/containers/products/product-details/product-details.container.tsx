@@ -61,6 +61,7 @@ const ProductDetailsContainer = ({ productId = "" }: Props) => {
       lastUpdated={productItem.policyLastUpdated}
       modalProps={getModalProps(productItem)}
       productId={productItem.productId}
+      disclaimer={productItem.disclaimer}
     />
   );
 };
@@ -72,6 +73,7 @@ const getModalProps = (productItem: GetProductDetails_getProductDetails) =>
     ? null
     : ({
         coverType: productItem.coverType,
+        disclaimer: productItem.disclaimer,
         content: [
           {
             type: "pair",

@@ -26,6 +26,10 @@ export interface YuScreenProductSlot_slot1_toolTip_description {
 
 export interface YuScreenProductSlot_slot1_toolTip {
   name: string;
+  /**
+   * Uses markdown
+   */
+  disclaimer: string | null;
   benefit: YuScreenProductSlot_slot1_toolTip_benefit;
   itemUrl: string;
   description: YuScreenProductSlot_slot1_toolTip_description;
@@ -58,6 +62,10 @@ export interface YuScreenProductSlot_slot2_toolTip_description {
 
 export interface YuScreenProductSlot_slot2_toolTip {
   name: string;
+  /**
+   * Uses markdown
+   */
+  disclaimer: string | null;
   benefit: YuScreenProductSlot_slot2_toolTip_benefit;
   itemUrl: string;
   description: YuScreenProductSlot_slot2_toolTip_description;
@@ -90,6 +98,10 @@ export interface YuScreenProductSlot_slot3_toolTip_description {
 
 export interface YuScreenProductSlot_slot3_toolTip {
   name: string;
+  /**
+   * Uses markdown
+   */
+  disclaimer: string | null;
   benefit: YuScreenProductSlot_slot3_toolTip_benefit;
   itemUrl: string;
   description: YuScreenProductSlot_slot3_toolTip_description;
@@ -122,6 +134,10 @@ export interface YuScreenProductSlot_slot4_toolTip_description {
 
 export interface YuScreenProductSlot_slot4_toolTip {
   name: string;
+  /**
+   * Uses markdown
+   */
+  disclaimer: string | null;
   benefit: YuScreenProductSlot_slot4_toolTip_benefit;
   itemUrl: string;
   description: YuScreenProductSlot_slot4_toolTip_description;

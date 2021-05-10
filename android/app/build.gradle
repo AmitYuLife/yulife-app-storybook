@@ -254,7 +254,7 @@ dependencies {
     implementation project(':bugsnag-react-native')
 
     // FitKit
-    implementation project(':@yu-life/react-native-fitkit')
+    implementation project(':yulife-react-native-fitkit')
 
     // FastImage
     implementation("com.android.support:support-v4:$supportLibVersion")

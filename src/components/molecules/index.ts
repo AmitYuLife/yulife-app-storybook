@@ -32,3 +32,4 @@ export { ValueDescription } from "./text-template/value-description-text";
 export { default as SwitchTab } from "./switch-tab/switch-tab";
 export { default as HeadingAndCopy } from "./heading-and-copy/heading-and-copy";
 export { default as CardInformation } from "./card-information/card-information";
+export { default as GroupProductDisclaimer } from "./group-product-disclaimer/group-product-disclaimer";

@@ -13,6 +13,7 @@ export const GQL_YU_SCREEN_PRODUCT_SLOT_ITEM = gql`
     }
     toolTip {
       name
+      disclaimer
       benefit {
         value
         description

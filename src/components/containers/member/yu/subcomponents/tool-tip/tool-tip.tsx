@@ -2,7 +2,7 @@ import React, { memo, useCallback, useEffect, useContext } from "react";
 import { StyleSheet, View, ViewStyle, TextStyle, ImageStyle, Image } from "react-native";
 import { Text, Button, CloseSvg, PackageType } from "@atoms";
 import { Style, Colours } from "@styles";
-import { TouchableOpacityWithDelay, ValueDescription } from "@molecules";
+import { TouchableOpacityWithDelay, ValueDescription, GroupProductDisclaimer } from "@molecules";
 import {
   GetTopUpsQuote,
   GetTopUpsQuoteVariables,
@@ -161,6 +161,9 @@ export const ToolTip = () => {
             onPress={handleNavigateToProductScreen}
             {...getButtonProps({ product })}
           />
+          {!toolTip?.disclaimer ? null : (
+            <GroupProductDisclaimer text={toolTip.disclaimer} containerStyle={styles.disclaimer} />
+          )}
         </View>
       </View>
       <TouchableOpacityWithDelay style={styles.close} onPress={onClose}>
@@ -301,6 +304,9 @@ const styles = StyleSheet.create({
   heading: {
     marginBottom: Style.adjust(8),
   } as ViewStyle,
+  disclaimer: {
+    marginTop: Style.adjust(8),
+  },
 });
 
 function getContentWrapperStyle(coverType: CoverType, isActive: boolean) {
@@ -378,7 +384,6 @@ function getCaptionStyle(isActive: boolean) {
   const defaultStyle = {
     fontSize: Style.adjust(16),
     lineHeight: Style.adjust(24),
-    marginTop: Style.adjust(16),
     letterSpacing: 0.6,
     textAlign: "center",
     color: Colours.neutral.n700,

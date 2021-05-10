@@ -26,6 +26,10 @@ export interface YuScreenProductSlotItem_toolTip_description {
 
 export interface YuScreenProductSlotItem_toolTip {
   name: string;
+  /**
+   * Uses markdown
+   */
+  disclaimer: string | null;
   benefit: YuScreenProductSlotItem_toolTip_benefit;
   itemUrl: string;
   description: YuScreenProductSlotItem_toolTip_description;
