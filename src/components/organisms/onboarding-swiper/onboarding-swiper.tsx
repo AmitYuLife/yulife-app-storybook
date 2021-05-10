@@ -2,10 +2,10 @@ import React from "react";
 import { FlatList, View, ViewToken, ListRenderItem, TouchableOpacity } from "react-native";
 import { Text, PageIndicator } from "@atoms";
 import styles from "./onboarding-swiper.styles";
-import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
 import { TouchableOpacityWithDelay } from "@components/molecules";
 import Logger from "@services/logging/logger";
 import { ROUTES } from "@navigation/constants";
+import { TopBarAbsolute } from "@organisms/top-bar/top-bar-absolute";
 
 export interface OnboardingSwiperData {
   id: string;
@@ -66,7 +66,6 @@ export class OnboardingSwiper extends React.PureComponent<Props, State> {
 
     return (
       <View style={styles.wrapper}>
-        <GenericHeadingPad />
         <FlatList
           pagingEnabled={true}
           renderItem={renderItem}
@@ -110,7 +109,7 @@ export class OnboardingSwiper extends React.PureComponent<Props, State> {
             </TouchableOpacityWithDelay>
           )}
         </View>
-        <GenericHeadingAbsolute logo="yulife" />
+        <TopBarAbsolute rightIcon={null} />
       </View>
     );
   }

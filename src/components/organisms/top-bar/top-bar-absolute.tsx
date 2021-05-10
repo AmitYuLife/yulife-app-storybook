@@ -6,7 +6,7 @@ import { LeftIconTypes } from "./subcomponents/left";
 import { RightIconTypes } from "./subcomponents/right";
 
 interface Props {
-  onPressLeftIcon: () => void;
+  onPressLeftIcon?: ComponentProps<typeof TopBar>["onPressLeftIcon"];
   hasShadow?: boolean;
   leftIcon?: LeftIconTypes;
   rightIcon?: RightIconTypes;

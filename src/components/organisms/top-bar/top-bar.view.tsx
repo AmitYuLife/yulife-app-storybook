@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React from "react";
 import { View } from "react-native";
 import { getStyle, TopBarViewProps, TopBarTypes } from "./top-bar.helpers";
 import styles from "./top-bar.styles";
@@ -6,7 +6,7 @@ import Center from "./subcomponents/center";
 import Left, { LeftIconTypes } from "./subcomponents/left";
 import Right from "./subcomponents/right";
 
-const TopBarView: FC<TopBarViewProps> = ({
+const TopBarView = ({
   coins,
   leftIcon = "Menu" as LeftIconTypes,
   menuLabel,
