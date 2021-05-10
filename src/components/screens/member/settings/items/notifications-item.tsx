@@ -1,6 +1,5 @@
 import { TextTemplate } from "@atoms/index";
-import * as React from "react";
-import { FC } from "react";
+import React, { FC } from "react";
 import { View } from "react-native";
 import moment from "moment";
 import { Switch, TouchableOpacityWithDelay } from "@molecules";
