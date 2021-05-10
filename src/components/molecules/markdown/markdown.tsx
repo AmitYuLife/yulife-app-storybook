@@ -2,12 +2,13 @@ import { Text } from "@atoms/index";
 import React from "react";
 import { StyleSheet, View, Image, StyleProp, ViewStyle, TouchableOpacity, Linking } from "react-native";
 import SimpleMarkdown from "simple-markdown";
-import styles, { wrapperStyle } from "./markdown.styles";
+import mainStyles, { wrapperStyle } from "./markdown.styles";
 
 interface IProps {
   text: string;
   markdownStyles?: StyleProp<any>;
   containerStyle?: ViewStyle;
+  linkActions?: Record<string, any>;
 }
 
 interface IState {
@@ -28,7 +29,7 @@ class Markdown extends React.PureComponent<IProps, IState> {
     const syntaxTree = SimpleMarkdown.markdownToReact(this.props.text) as React.ReactElement[];
     this.state = {
       syntaxTree,
-      styles: StyleSheet.create(Object.assign(styles, this.props.markdownStyles || {})),
+      styles: StyleSheet.create(Object.assign(mainStyles, this.props.markdownStyles || {})),
     };
   }
 
@@ -115,16 +116,23 @@ class Markdown extends React.PureComponent<IProps, IState> {
 
   renderLink(node: React.ReactElement, key: string) {
     const { styles } = this.state;
+    const { linkActions } = this.props;
 
     return (
       <TouchableOpacity
         style={styles.linkWrapper}
         key={"linkWrapper_" + key}
-        onPress={() =>
-          Linking.openURL(node.props.href).catch(() => {
-            // do nothing
-          })
-        }
+        onPress={() => {
+          const action = linkActions[node.props.href];
+
+          if (action && typeof action === "function") {
+            action();
+          } else {
+            Linking.openURL(node.props.href).catch(() => {
+              // do nothing
+            });
+          }
+        }}
       >
         {this.renderNodes(node.props.children, key, concatStyles(null, styles.link))}
       </TouchableOpacity>
@@ -133,17 +141,24 @@ class Markdown extends React.PureComponent<IProps, IState> {
 
   renderInlineLink(node: React.ReactElement, key: string, extras: IExtras) {
     const { styles } = this.state;
+    const { linkActions } = this.props;
 
     if (node.props) {
       return (
         <Text
           style={styles.link}
           key={key}
-          onPress={() =>
-            Linking.openURL(node.props.href).catch(() => {
-              // do nothing.
-            })
-          }
+          onPress={() => {
+            const action = linkActions[node.props.href];
+
+            if (action && typeof action === "function") {
+              action();
+            } else {
+              Linking.openURL(node.props.href).catch(() => {
+                // do nothing
+              });
+            }
+          }}
         >
           {this.renderNodes(node.props.children, key, extras)}
         </Text>

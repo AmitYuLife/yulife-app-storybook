@@ -85,6 +85,10 @@ export interface GetProductDetails_getProductDetails {
    */
   policyLastUpdated: string | null;
   /**
+   * Uses markdown
+   */
+  disclaimer: string | null;
+  /**
    * Benefit description/value pair, appears typically on mobile product cards
    */
   benefit: GetProductDetails_getProductDetails_benefit | null;

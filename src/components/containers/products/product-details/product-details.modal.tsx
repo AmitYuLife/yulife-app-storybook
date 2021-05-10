@@ -3,6 +3,7 @@ import { StyleSheet, View, ViewStyle, Animated, ScrollView, Platform } from "rea
 import { Style } from "@styles";
 import { Navigation } from "react-native-navigation";
 import { MODALS } from "@navigation/constants";
+import { GroupProductDisclaimer } from "@molecules";
 import GenericOverlay from "@components/modals/generic-overlay/generic-overlay";
 import { useBackHandler } from "@services/hooks/useBackHandler";
 import { CoverType } from "@graphql/_core/schema/globalTypes";
@@ -23,10 +24,11 @@ interface ProductDetailsModalProps {
   keyValuePairs: Pair[];
   content: ComponentProps<typeof ContentBody>["items"];
   title: string;
+  disclaimer?: string;
 }
 
 const ProductDetailsModal = (props: ProductDetailsModalProps) => {
-  const { coverType = CoverType.common, keyValuePairs = [], content = [], title = "" } = props;
+  const { coverType = CoverType.common, keyValuePairs = [], content = [], title = "", disclaimer = null } = props;
 
   const translateY = useRef(new Animated.Value(Style.DEVICE_HEIGHT)).current;
 
@@ -55,6 +57,7 @@ const ProductDetailsModal = (props: ProductDetailsModalProps) => {
           <ProductColorTheme.Separator coverType={coverType} />
           <ContentKeyValues pairs={keyValuePairs} />
         </CertificateLayout>
+        {!disclaimer ? null : <GroupProductDisclaimer text={disclaimer} containerStyle={styles.disclaimer} />}
         <View style={styles.bottomPad} />
       </ScrollView>
     </GenericOverlay>
@@ -81,6 +84,9 @@ const styles = StyleSheet.create({
   bottomPad: {
     height: BOTTOM_PADDING,
   } as ViewStyle,
+  disclaimer: {
+    marginTop: Style.adjust(16),
+  },
 });
 
 export default ProductDetailsModal;
