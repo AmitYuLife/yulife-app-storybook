@@ -211,6 +211,19 @@ export interface GetMobileCopy_getMobileCopy_screens_challenges {
   newExitChallenge: GetMobileCopy_getMobileCopy_screens_challenges_newExitChallenge | null;
 }
 
+export interface GetMobileCopy_getMobileCopy_screens_streak {
+  ctaLabelDone: string | null;
+  ctaLabelCollect: string | null;
+  ctaLabelTakeChallenge: string | null;
+  subheadingCollected: string | null;
+  subheadingCompleted: string | null;
+  subheadingTodayStreakDone: (string | null)[] | null;
+  subheadingInstrucion: string | null;
+  headingCompleted: string | null;
+  headingCompletedTodayStreak: (string | null)[] | null;
+  headingStartStreakDay: (string | null)[] | null;
+}
+
 export interface GetMobileCopy_getMobileCopy_screens_pushNotification_toSettings {
   ctaLabel: string | null;
   ctaLabelSecondary: string | null;

@@ -30,10 +30,11 @@ interface Props {
   modalProps?: ProductDetailsModalProps;
   productId: string;
   disclaimer?: string;
+  hasBeneficiariesEnabled?: boolean;
 }
 
 export const ProductDetailsScreen = memo((props: Props) => {
-  const { modalProps, lastUpdated, productId, disclaimer } = props;
+  const { modalProps, lastUpdated, productId, disclaimer, hasBeneficiariesEnabled = false } = props;
   const handleClose = () => {
     Navigation.pop(ROUTES.productDetails);
     return true;
@@ -52,7 +53,7 @@ export const ProductDetailsScreen = memo((props: Props) => {
         <View style={styles.topPadding} />
         <Card {...props} />
         <Documents modalProps={modalProps} />
-        <Beneficiaries productId={productId} />
+        {!hasBeneficiariesEnabled ? null : <Beneficiaries productId={productId} />}
         <Stamp value={lastUpdated} />
         {!disclaimer ? null : <GroupProductDisclaimer text={disclaimer} containerStyle={styles.disclaimer} />}
         <View style={styles.bottomPadding} />

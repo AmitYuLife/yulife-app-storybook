@@ -50,6 +50,7 @@ const ProductDetailsContainer = ({ productId = "" }: Props) => {
 
   return (
     <ProductDetailsScreen
+      hasBeneficiariesEnabled={productItem.hasBeneficiariesEnabled}
       coverType={productItem.coverType}
       productName={productItem.productName}
       productIconUri={productItem.productIconUri}

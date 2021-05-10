@@ -89,6 +89,10 @@ export interface GetProductDetails_getProductDetails {
    */
   disclaimer: string | null;
   /**
+   * Not all the products can have beneficiaries attached to them. E.g an alpha product(trinket) doesn't.
+   */
+  hasBeneficiariesEnabled: boolean;
+  /**
    * Benefit description/value pair, appears typically on mobile product cards
    */
   benefit: GetProductDetails_getProductDetails_benefit | null;
