@@ -1,4 +1,4 @@
-import { Logo } from "@atoms/index";
+import Logo from "@atoms/logo";
 import { Style } from "@styles/index";
 import * as React from "react";
 import { useRef } from "react";

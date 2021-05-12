@@ -5,7 +5,7 @@ import Text from "@atoms/text/text";
 import { Style, Colours } from "@styles";
 import { PressableWithDelay } from "@components/molecules";
 import { SvgXml } from "react-native-svg";
-import { getIcon, BUTTON_ICON } from "./tertiary-button.helpers";
+import { BUTTON_ICON, iconHashMap } from "./tertiary-button.helpers";
 import { styles } from "./tertiary-button.styles";
 import FastImage from "react-native-fast-image";
 
@@ -39,8 +39,8 @@ export function TertiaryButtonBase(props: IProps) {
   } = props;
   const { handlePressIn, handlePressOut, handlePress } = usePressedInWithDelay({ onPress, delay });
   const disabledStyles = disabled ? styles.disabled : {};
-  const RightIcon = getIcon(rightIcon);
-  const LeftIcon = getIcon(leftIcon);
+  const RightIcon = iconHashMap[rightIcon] || View;
+  const LeftIcon = iconHashMap[leftIcon] || View;
 
   return (
     <View style={styles.flex}>

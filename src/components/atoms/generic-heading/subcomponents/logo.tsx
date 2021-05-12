@@ -1,5 +1,5 @@
 import React, { memo } from "react";
-import { Logo as YuLifeLogo } from "@atoms";
+import { default as YuLifeLogo } from "@atoms/logo";
 
 interface Props {
   logo: "yulife";
