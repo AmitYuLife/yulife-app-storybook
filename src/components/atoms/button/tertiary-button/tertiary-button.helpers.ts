@@ -1,10 +1,9 @@
-import { View } from "react-native";
 import { EditSvg, EditSvgGrey } from "../icons/edit-svg";
 import { BirthdaySvg } from "../icons/birthday-svg";
 import { QuestionBubbleSvg } from "../icons/question-bubble";
 import { SalarySvg } from "../icons/salary-svg";
 import Icon from "@atoms/icon";
-import { Logo } from "@atoms";
+import Logo from "@atoms/logo";
 import { DocIcon } from "@atoms/icon/doc-icon";
 import { SmartHealthIcon } from "@atoms/icon/smart-health-icon";
 import { GooglePlayIcon } from "@atoms/icon/google-play-icon";
@@ -28,41 +27,24 @@ export enum BUTTON_ICON {
   APP_STORE = "APP_STORE",
 }
 
-//@TODO: refactor this where we can pass the icon direct instead of a function with a switch
-/// this is not very scalable and can cost us performance in the future
-export function getIcon(icon: BUTTON_ICON) {
-  switch (icon) {
-    case BUTTON_ICON.BIRTHDAY:
-      return BirthdaySvg;
-    case BUTTON_ICON.EDIT:
-      return EditSvg;
-    case BUTTON_ICON.EDIT_GREY:
-      return EditSvgGrey;
-    case BUTTON_ICON.QUESTION_BUBBLE:
-      return QuestionBubbleSvg;
-    case BUTTON_ICON.ARROW_RIGHT:
-      return Icon.ArrowRight;
-    case BUTTON_ICON.SALARY:
-      return SalarySvg;
-    case BUTTON_ICON.DOCUMENT:
-      return Icon.Document;
-    case BUTTON_ICON.BLUE_DOC:
-      return Icon.BlueDoc;
-    case BUTTON_ICON.YELLOW_DOC:
-      return Icon.YellowDoc;
-    case BUTTON_ICON.PDF:
-      return Icon.Pdf;
-    case BUTTON_ICON.YULIFE_LOGO:
-      return Logo;
-    case BUTTON_ICON.DOC:
-      return DocIcon;
-    case BUTTON_ICON.SMART_HEALTH:
-      return SmartHealthIcon;
-    case BUTTON_ICON.GOOGLE_PLAY:
-      return GooglePlayIcon;
-    case BUTTON_ICON.APP_STORE:
-      return AppStoreIcon;
-    default:
-      return View;
-  }
+interface IconProps {
+  color?: string;
 }
+
+export const iconHashMap = {
+  [BUTTON_ICON.BIRTHDAY]: BirthdaySvg,
+  [BUTTON_ICON.EDIT]: EditSvg,
+  [BUTTON_ICON.EDIT_GREY]: EditSvgGrey,
+  [BUTTON_ICON.QUESTION_BUBBLE]: QuestionBubbleSvg,
+  [BUTTON_ICON.ARROW_RIGHT]: Icon.ArrowRight,
+  [BUTTON_ICON.DOCUMENT]: Icon.Document,
+  [BUTTON_ICON.BLUE_DOC]: Icon.BlueDoc,
+  [BUTTON_ICON.YELLOW_DOC]: Icon.YellowDoc,
+  [BUTTON_ICON.PDF]: Icon.Pdf,
+  [BUTTON_ICON.SALARY]: SalarySvg,
+  [BUTTON_ICON.YULIFE_LOGO]: Logo,
+  [BUTTON_ICON.DOC]: DocIcon,
+  [BUTTON_ICON.SMART_HEALTH]: SmartHealthIcon,
+  [BUTTON_ICON.GOOGLE_PLAY]: GooglePlayIcon,
+  [BUTTON_ICON.APP_STORE]: AppStoreIcon,
+} as Record<BUTTON_ICON, ({ color }: IconProps) => JSX.Element>;

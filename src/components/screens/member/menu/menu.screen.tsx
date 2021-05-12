@@ -1,9 +1,9 @@
-import { Logo, Text } from "@atoms/index";
+import * as React from "react";
+import { Text } from "@atoms/index";
+import Logo from "@atoms/logo";
 import { MENU_ITEM, MENU_SCREEN } from "@ids";
 import { TouchableOpacityWithDelay } from "@molecules/index";
 import { Pad } from "@atoms/index";
-import * as React from "react";
-import { FC } from "react";
 import { Image, ImageRequireSource, View } from "react-native";
 import GenericHeadingAbsolute from "@atoms/generic-heading/generic-heading-absolute";
 import styles, { CLOSE_WRAPPER_TOP_MARGIN } from "./menu.screen.styles";
@@ -25,7 +25,7 @@ interface IProps {
 
 const HIT_SLOP = { left: Style.DEVICE_WIDTH / 3 };
 
-const MenuScreen: FC<IProps> = ({ onDebugPress, onPressClose, links, version }) => (
+const MenuScreen = ({ onDebugPress, onPressClose, links, version }: IProps) => (
   <>
     <View style={styles.wrapper} testID={MENU_SCREEN}>
       <Pad height={CLOSE_WRAPPER_TOP_MARGIN} />
