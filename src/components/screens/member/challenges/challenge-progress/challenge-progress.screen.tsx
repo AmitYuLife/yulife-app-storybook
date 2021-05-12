@@ -11,6 +11,7 @@ import { NavBar } from "@components/organisms";
 import { TopBarAbsolute } from "@organisms/top-bar/top-bar-absolute";
 import { SecondaryButton } from "@atoms";
 import { MeditationOverlay } from "./subcomponents/meditation-overlay";
+import { DETOX_ENABLED } from "@services/socket";
 
 interface IProps extends IConnectedScreenProps {
   challengeType: ChallengeType;
@@ -37,11 +38,18 @@ export default function ChallengeProgressScreen({
     challengeType,
     currentWorld
   );
+  const meditationDelay = React.useRef(null);
 
   React.useEffect(() => {
+    const DELAY = DETOX_ENABLED ? 1000 : 0;
+
     if (challengeType === "meditation") {
-      setShowMeditation(true);
+      meditationDelay.current = setTimeout(() => {
+        setShowMeditation(true);
+      }, DELAY);
     }
+
+    return () => clearTimeout(meditationDelay.current);
   }, [challengeType]);
 
   return (
