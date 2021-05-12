@@ -25,6 +25,7 @@ export enum BUTTON_ICON {
   SMART_HEALTH = "SMART_HEALTH",
   GOOGLE_PLAY = "GOOGLE_PLAY",
   APP_STORE = "APP_STORE",
+  HEIGHT = "HEIGHT",
 }
 
 interface IconProps {
@@ -47,4 +48,5 @@ export const iconHashMap = {
   [BUTTON_ICON.SMART_HEALTH]: SmartHealthIcon,
   [BUTTON_ICON.GOOGLE_PLAY]: GooglePlayIcon,
   [BUTTON_ICON.APP_STORE]: AppStoreIcon,
+  [BUTTON_ICON.HEIGHT]: Icon.HeightSvgIcon,
 } as Record<BUTTON_ICON, ({ color }: IconProps) => JSX.Element>;
