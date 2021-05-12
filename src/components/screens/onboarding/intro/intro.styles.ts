@@ -1,6 +1,7 @@
+import media from "@styles/media";
 import { Platform, StyleSheet, TextStyle, ViewStyle } from "react-native";
 import { isIphoneX } from "react-native-iphone-x-helper";
-import { Style } from "../../../../styles";
+import { Style, TOP_BAR } from "../../../../styles";
 
 export default StyleSheet.create({
   flex: {
@@ -49,11 +50,31 @@ export default StyleSheet.create({
     backgroundColor: "#000000",
     opacity: 0.2,
   } as ViewStyle,
+  topBarWrapper: {
+    left: 0,
+    top: TOP_BAR.PADDING_TOP,
+    position: "absolute",
+    right: 0,
+  } as ViewStyle,
 });
+
+const coinsTooltipTop = media.select(
+  [
+    {
+      condition: Platform.OS === "ios" && Style.hasNotch,
+      value: Style.adjust(92),
+    },
+    {
+      condition: Platform.OS === "ios",
+      value: 74,
+    },
+  ],
+  54
+);
 
 export const tooltipStyles = StyleSheet.create({
   coinsTooltip: {
-    top: Style.SCALE_UP_AND_DOWN(Platform.OS === "android" ? 62 : isIphoneX() ? 92 : 72),
+    top: coinsTooltipTop,
     right: Style.SCALE_UP_AND_DOWN(10),
   } as ViewStyle,
   coinsCaret: {

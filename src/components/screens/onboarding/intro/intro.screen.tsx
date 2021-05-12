@@ -59,7 +59,7 @@ export default function IntroScreen({
         style={centredScreen.online.style}
         testID={DAILY_STEPS_SCREEN}
       >
-        <View style={StyleSheet.flatten([tooltipStyles.highlightWrapper, activeIndex === 1 ? styles.zIndex : null])}>
+        <View style={StyleSheet.flatten([styles.topBarWrapper, activeIndex === 1 ? styles.zIndex : null])}>
           <TopBar type={topBarType} shouldHighlightCoins={activeIndex === 1} />
         </View>
         <Pad height={getPadHeight(true)} />
