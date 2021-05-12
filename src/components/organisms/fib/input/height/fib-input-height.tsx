@@ -1,65 +1,44 @@
-import React, { useCallback } from "react";
-import { connect } from "react-redux";
-import { getFIBState } from "@redux/product/product.selectors";
-import { IReduxState } from "@redux/_core/reducers";
-import { updateFIBAnswerValue } from "@redux/product/product.actions";
-import { Height } from "@redux/product/product.types";
-import { FibInputFt } from "./fib-input-ft";
-import { FibInputCm } from "./fib-input-cm";
-import { Text } from "@atoms";
+import React, { useContext } from "react";
+import { TertiaryButton } from "@atoms";
 import { View } from "react-native";
-import { TouchableOpacityWithDelay } from "@components/molecules";
 import { styles } from "./fib.input-height.styles";
-import { ftToCm, cmToFt } from "../../../../../services/utils";
+import { BUTTON_ICON } from "@atoms/button/tertiary-button/tertiary-button.helpers";
+import { FIBUnderwritingJourneyOverlayContext } from "@components/screens/products/fib/layouts/fib.underwriting-journey-overlay";
+import { useSelector } from "react-redux";
+import { getFIBState } from "@redux/product/product.selectors";
+import { Height } from "@redux/product/product.types";
+import { Style } from "@styles";
 
-type ConnectedProps = ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps;
+const _FibInputHeight = () => {
+  const { setOverlay } = useContext(FIBUnderwritingJourneyOverlayContext);
+  const height = useSelector(getFIBState).answers.height;
 
-const _FibInputHeight = (props: ConnectedProps) => {
-  const { height, updateHeight } = props;
-
-  const Input = height.unit === "ft" ? FibInputFt : FibInputCm;
-  const buttonLabel = `Switch to ${height.unit === "ft" ? "cm" : "ft, in"}`;
-
-  const handleSwitch = useCallback(() => {
-    const isCm = height.unit === "cm";
-    let cm;
-    let ft;
-    let inc;
-
-    if (height.unit === "ft") {
-      cm = ftToCm(parseInt(height.ft || "0"), parseInt(height.in || "0"));
-    } else {
-      const _height = cmToFt(parseInt(height.cm || "0"));
-      ft = _height.ft;
-      inc = _height.inc;
-    }
-
-    updateHeight({
-      unit: isCm ? "ft" : "cm",
-      cm: isCm ? "" : `${cm || ""}`,
-      ft: isCm && ft ? `${ft}` : "",
-      in: isCm && inc ? `${inc}` : "",
-    });
-  }, [height, updateHeight]);
+  const heightDisplay = getHeightDisplay(height);
 
   return (
     <View style={styles.wrapper}>
-      <Input />
-      <TouchableOpacityWithDelay onPress={handleSwitch}>
-        <Text style={styles.label}>{buttonLabel}</Text>
-      </TouchableOpacityWithDelay>
+      <TertiaryButton
+        rightIcon={BUTTON_ICON.EDIT_GREY}
+        leftIcon={BUTTON_ICON.HEIGHT}
+        label={heightDisplay}
+        onPress={() => setOverlay("height")}
+        height={Style.adjust(80)}
+        size="Fill"
+      />
     </View>
   );
 };
 
-const mapStateToProps = (state: IReduxState) => ({
-  height: getFIBState(state).answers.height,
-});
+export const FibInputHeight = _FibInputHeight;
 
-const mapDispatchToProps = {
-  updateHeight: (value: Height) => updateFIBAnswerValue({ key: "height", value }),
+const getHeightDisplay = (height: Height) => {
+  const isInvalidMetric = height.unit === "cm" && !height.cm;
+  const isInvalidImperial = height.unit === "ft" && !height.ft;
+  const isInvalidHeight = isInvalidMetric || isInvalidImperial;
+
+  if (isInvalidHeight) {
+    return "Enter your height";
+  }
+
+  return height.unit === "cm" ? `${height.cm}cm` : `${height.ft}ft ${height.in}in`;
 };
-
-const redux = connect(mapStateToProps, mapDispatchToProps);
-
-export const FibInputHeight = redux(_FibInputHeight);

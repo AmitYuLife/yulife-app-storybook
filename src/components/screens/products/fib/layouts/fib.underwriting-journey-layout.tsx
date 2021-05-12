@@ -1,10 +1,15 @@
-import React, { ComponentProps } from "react";
+import React, { ComponentProps, useState } from "react";
 import { Platform, StyleSheet, KeyboardAvoidingView, ViewStyle, View } from "react-native";
 import { GenericHeading } from "@atoms";
 import { FIBProgressBar } from "@components/organisms";
 import { Yugi, YugiType } from "./yugi";
 import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
 import { ProgressBar } from "@components/molecules";
+import {
+  FIBUnderwritingJourneyOverlayContext,
+  FIBUnderwritingJourneyOverlay,
+} from "./fib.underwriting-journey-overlay";
+import { IOverlay } from "@screens/products/fib/layouts/fib.underwriting-journey-overlay";
 
 interface Props {
   heading?: string;
@@ -35,25 +40,30 @@ export function FibUnderwritingJourneyLayout(props: Props) {
     hideBorder = true,
   } = props;
 
+  const [overlay, setOverlay] = useState(null as IOverlay);
+
   return (
-    <View style={StyleSheet.flatten([styles.wrapper, wrapperStyle])}>
-      <GenericHeadingPad />
-      <KeyboardAvoidingView behavior={keyboardBehavior} style={styles.kav}>
-        <View style={styles.safeAreaView}>
-          <FIBProgressBar hideType={progressBarHideType} />
-          {children}
-          <Yugi wrapperStyle={styles.yugiWrapperStyle} yugi={yugi} />
-        </View>
-      </KeyboardAvoidingView>
-      <GenericHeadingAbsolute
-        heading={!centreLogo ? heading : null}
-        logo={centreLogo}
-        rightIcon={RIGHT_ICON}
-        onLeftIconPress={onPreviousQuestion}
-        onRightIconPress={onClose}
-        hideBorder={hideBorder}
-      />
-    </View>
+    <FIBUnderwritingJourneyOverlayContext.Provider value={{ overlay, setOverlay }}>
+      <View style={StyleSheet.flatten([styles.wrapper, wrapperStyle])}>
+        <GenericHeadingPad />
+        <KeyboardAvoidingView behavior={keyboardBehavior} style={styles.kav}>
+          <View style={styles.safeAreaView}>
+            <FIBProgressBar hideType={progressBarHideType} />
+            {children}
+            <Yugi wrapperStyle={styles.yugiWrapperStyle} yugi={yugi} />
+          </View>
+        </KeyboardAvoidingView>
+        <GenericHeadingAbsolute
+          heading={!centreLogo ? heading : null}
+          logo={centreLogo}
+          rightIcon={RIGHT_ICON}
+          onLeftIconPress={onPreviousQuestion}
+          onRightIconPress={onClose}
+          hideBorder={hideBorder}
+        />
+        <FIBUnderwritingJourneyOverlay />
+      </View>
+    </FIBUnderwritingJourneyOverlayContext.Provider>
   );
 }
 

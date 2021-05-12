@@ -53,10 +53,12 @@ const _FibInputFt = (props: ConnectedProps) => {
       });
     }
 
-    return updateHeight({
+    const updateHeightValueFeet = {
       ...height,
       in: text,
-    });
+    } as Height;
+
+    return updateHeight(updateHeightValueFeet);
   };
 
   const handleBackspaceInch = () => {

@@ -13,6 +13,7 @@ import { StreakTicks } from "./streak-ticks";
 import { Calm } from "./calm";
 import { Headspace } from "./headspace";
 import { CopyIcon } from "./copy-icon";
+import { HeightSvgIcon } from "./height";
 
 //TODO: check with the team if we can refactor this to support "import { Icon1, Icon2} from "@atoms/icon";
 
@@ -32,4 +33,5 @@ export default {
   Calm,
   Headspace,
   CopyIcon,
+  HeightSvgIcon,
 };
