@@ -1,5 +1,5 @@
 import React, { memo, useCallback } from "react";
-import { View, StyleSheet, TextStyle, ViewStyle } from "react-native";
+import { View, StyleSheet, TextStyle, ViewStyle, ScrollView } from "react-native";
 import { Text, Button } from "@atoms";
 import { Colours, Style } from "@styles";
 import { useBackHandler } from "@services/hooks/useBackHandler";
@@ -38,25 +38,27 @@ export const FibHoldingScreen = memo(function (props: FibHoldingScreenProps) {
   return (
     <View style={styles.wrapper}>
       <GenericHeadingPad />
-      <View style={styles.yugiWrapper}>{getYugiIcon(icon)}</View>
-      <View style={styles.textWrapper}>
-        <Text bold={true} style={styles.title}>
-          {title}
-        </Text>
-        <Text style={styles.message}>{message}</Text>
-      </View>
-      <View style={styles.stepsWrapper}>
-        {steps.map((step, index) => (
-          <View key={step.title + index} style={styles.iconTextWrapper}>
-            <View style={styles.iconWrapper}>
-              <StepNumber completed={step.completed} number={(index + 1) as ValidStepNumber} active={step.active} />
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <View style={styles.yugiWrapper}>{getYugiIcon(icon)}</View>
+        <View style={styles.textWrapper}>
+          <Text bold={true} style={styles.title}>
+            {title}
+          </Text>
+          <Text style={styles.message}>{message}</Text>
+        </View>
+        <View style={styles.stepsWrapper}>
+          {steps.map((step, index) => (
+            <View key={step.title + index} style={styles.iconTextWrapper}>
+              <View style={styles.iconWrapper}>
+                <StepNumber completed={step.completed} number={(index + 1) as ValidStepNumber} active={step.active} />
+              </View>
+              <Text bold={true} style={[styles.text, step.active && styles.activeText]}>
+                {step.title}
+              </Text>
             </View>
-            <Text bold={true} style={[styles.text, step.active && styles.activeText]}>
-              {step.title}
-            </Text>
-          </View>
-        ))}
-      </View>
+          ))}
+        </View>
+      </ScrollView>
       <View style={styles.buttonWrapper}>{allCompleted && <Button label="Continue" onPress={onBackHandler} />}</View>
       <GenericHeadingAbsolute
         onLeftIconPress={allCompleted && onBackHandler}
