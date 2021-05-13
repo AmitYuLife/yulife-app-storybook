@@ -1,4 +1,4 @@
-import { navigateViaText, navigateViaID, CHALLENGE_TILE, idVisible, CHALLENGE_PROGRESS_BAR, expectIsVisibleViaText, QUESTS_SCREEN, wait, LEVEL_CHALLENGE_BUTTON, expectIsVisibleViaID } from "@navigation"
+import { navigateViaText, navigateViaID, CHALLENGE_TILE, idVisible, CHALLENGE_PROGRESS_BAR, expectIsVisibleViaText, QUESTS_SCREEN, wait, LEVEL_CHALLENGE_BUTTON, expectIsVisibleViaID, textVisible, CALM_BUTTON, HEADSPACE_BUTTON } from "@navigation"
 
 export const onChallengeComplete = (stepCount: number, level = 1) => async () => {
     const steps = `${stepCount} steps`
@@ -30,6 +30,12 @@ export const onMeditationChallengeComplete = (minutes: number, level: number) =>
 
 }
 
+export const meditationAppModalVisible = () => async () => {
+    await textVisible("Choose an app to start")
+    await idVisible(CALM_BUTTON)
+    await idVisible(HEADSPACE_BUTTON)
+}
+
 export const startChallenge = (challengeTile: string, ) => async () => {
     await navigateViaID(CHALLENGE_TILE(challengeTile))
     await navigateViaText("take challenge")
@@ -54,6 +60,11 @@ export const startChallengeFromQuests = (levelButton: number, challengeName: str
     await navigateViaID(LEVEL_CHALLENGE_BUTTON(levelButton))
     await navigateViaID(CHALLENGE_TILE(challengeName))
     await navigateViaText("take challenge")
+
+    if(challengeName === "meditation"){
+        await wait(5000)()
+    }
+    
     try {
         await navigateViaText("maybe later")
     } catch (e) {

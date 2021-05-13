@@ -5,7 +5,8 @@ export const {
     idVisible,
     textVisible,
     multipleIDVisible,
-    completedTodayStreakCopyVisible
+    completedTodayStreakCopyVisible,
+    textNotVisible
 } = navigation.common
 
 export const {
@@ -13,7 +14,8 @@ export const {
 
 export const {
     onChallengeComplete,
-    onMeditationChallengeComplete
+    onMeditationChallengeComplete,
+    meditationAppModalVisible
 } = screens.challenges
 
 export const onMeditation = async () => {

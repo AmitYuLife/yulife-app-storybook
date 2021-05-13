@@ -29,7 +29,7 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
                     })
                 })
             })
-        })
+        }) 
 
     Scenario("I can transition from the second to third world, when I tap the level 100 challenge button", scenario.start, async () => {
         Given("I login as a user on level 99", given.logInAndGoToTab("quests", CUSTOMER_23, AUTH_23), async () => {

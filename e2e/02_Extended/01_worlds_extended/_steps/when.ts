@@ -54,7 +54,8 @@ export const completeNewWorldMeditation = (levelNumber: number) => async () => {
     }
 
     await startChallenge("meditation")()
-    await wait(60000)()
+    await navigateViaText("I'm using a different app")
+    await wait(70000)()
     await navigateViaText("collect")
     if (collectCTAVIsible === true) {
         await navigateViaText("collect")

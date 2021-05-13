@@ -2,6 +2,7 @@ import React, { ComponentProps } from "react";
 import { openHeadspace } from "@services/app-link";
 import ImageButton from "./image-button";
 import { Platform } from "react-native";
+import { HEADSPACE_BUTTON } from "@ids";
 
 interface Props {
   style?: ComponentProps<typeof ImageButton>["wrapperStyle"];
@@ -26,6 +27,7 @@ export const HeadspaceButton = ({ style, onPressCallback }: Props) => {
       shadowColor={"#C9C9C9"}
       backgroundColor="white"
       icon="headspace"
+      testID={HEADSPACE_BUTTON}
     />
   );
 };

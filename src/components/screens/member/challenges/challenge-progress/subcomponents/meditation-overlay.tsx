@@ -5,7 +5,6 @@ import { CalmButton } from "@atoms/button/image-button/calm-button";
 import { HeadspaceButton } from "@atoms/button/image-button/headspace-button";
 import { Colours, Style } from "@styles";
 import { useBackHandler } from "@services/hooks/useBackHandler";
-
 interface Props {
   showScreen?: boolean;
   setShowScreen?: (val: boolean) => void;
