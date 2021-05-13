@@ -57,6 +57,8 @@ export const NAV_BAR = (icon: "yucoin" | "quests" | "yu" | "leaderboard" | "rewa
 export const CHECK_REWARDS_BUTTON = "CHECK_REWARDS_BUTTON"
 export const YUNIVERSAL_CONTNIUE_BUTTON = "YUNIVERSAL_CONTNIUE_BUTTON"
 export const GP_CONTINUE = "GP_CONTINUE"
+export const CALM_BUTTON = "CALM_BUTTON"
+export const HEADSPACE_BUTTON = "HEADSPACE_BUTTON"
 
 // components
 export const VIEW_CONFETTI_COIN = (coins: number) => `VIEW_CONFETTI_COIN_${coins}`;
