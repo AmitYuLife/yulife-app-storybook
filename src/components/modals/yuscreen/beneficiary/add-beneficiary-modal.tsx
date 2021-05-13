@@ -1,4 +1,5 @@
 import React, { useCallback } from "react";
+import { Keyboard } from "react-native";
 import { Navigation } from "react-native-navigation";
 import { MODALS, ROUTES } from "@navigation/constants";
 import { useBackHandler } from "@services/hooks/useBackHandler";
@@ -22,7 +23,6 @@ interface IProps {
 
 export default function AddBeneficiaryModal(props: IProps) {
   const { beneficiary: beneficiaryToEdit, pushEditRoot, productId } = props;
-
   const [
     updateBeneficiaryForProduct,
     { loading: updateBeneficiaryLoading },
@@ -68,11 +68,13 @@ export default function AddBeneficiaryModal(props: IProps) {
   );
 
   const dismissModal = () => {
+    Keyboard.dismiss();
     Navigation.dismissModal(MODALS.addBeneficiary);
   };
 
   const backHandler = () => {
     dismissModal();
+
     return true;
   };
 
