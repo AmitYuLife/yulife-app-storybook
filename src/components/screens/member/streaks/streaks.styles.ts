@@ -1,8 +1,6 @@
 import { StyleSheet, TextStyle, ViewStyle } from "react-native";
 import { Style } from "@styles";
 
-const IMAGE_SIZE = Style.isShortToMedium() ? 220 : 320;
-
 export default StyleSheet.create({
   buttonWrapper: {
     flex: 1,
@@ -42,8 +40,8 @@ export default StyleSheet.create({
     paddingHorizontal: Style.adjust(24),
   } as ViewStyle,
   lottieWrapper: {
-    width: Style.adjust(IMAGE_SIZE),
-    height: Style.adjust(IMAGE_SIZE),
+    width: Style.adjust(220),
+    height: Style.adjust(220),
     marginBottom: Style.adjust(Style.isShortToMedium() ? Style.adjust(15) : Style.adjust(32)),
   },
 });

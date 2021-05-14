@@ -39,9 +39,7 @@ const isXShort = () => {
   return y < 600;
 };
 
-const isShortToMedium = () => {
-  return y < 700;
-};
+const isShortToMedium = () => y < 700;
 
 const isShortToMediumAndroid = () => {
   return Platform.OS === "android" && y < 700;
