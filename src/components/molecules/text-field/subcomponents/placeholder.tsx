@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState } from "react";
-import { Animated, TextStyle, StyleSheet, LayoutChangeEvent, Platform, ViewStyle } from "react-native";
+import { Animated, TextStyle, StyleSheet, LayoutChangeEvent, ViewStyle } from "react-native";
 import { Style, Colours } from "@styles";
 
 interface Props {
@@ -37,6 +37,7 @@ export const Placeholder = ({ scale, translateY, opacity, title, isFocused, hasI
   const dynamicStyles = {
     transform: [{ translateY }],
     paddingLeft: isFocused || hasInput ? 0 : paddingLeft,
+    bottom: isFocused ? 0 : 8,
   };
 
   const dynamicTextStyles = { transform: [{ scale }, { translateX: placeholderTranslateX }] };
@@ -75,7 +76,6 @@ const styles = StyleSheet.create({
   placeholderWrapper: {
     height: 24,
     position: "absolute",
-    bottom: Platform.OS === "android" ? 0 : 8,
     left: 0,
     width: "100%",
     justifyContent: "flex-end",

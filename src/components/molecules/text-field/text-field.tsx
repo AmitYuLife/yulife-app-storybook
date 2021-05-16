@@ -127,7 +127,7 @@ export default function TextField(props: Props) {
             const formattedText = formatText(strippedPunctuation, type);
             return setTextInputValue(formattedText);
           }}
-          value={textInputValue}
+          value={textInputValue} //@TODO: Discuss with the team, that instead of using local state we should use the props "value" here, for better control
           keyboardType={type === "Number" || type === "PhoneNumber" ? "number-pad" : "default"}
           underlineColorAndroid="transparent"
           autoCapitalize={type === "PostCode" || type === "PostCodeFinder" ? "characters" : "none"}

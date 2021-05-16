@@ -93,7 +93,7 @@ export default function AddBeneficiaryModalScreen({
       type: "PhoneNumber" as "PhoneNumber",
       showError: beneficiary.phoneNumber && !phoneNumberIsValid(beneficiary.phoneNumber),
       errorMessage: "Not a valid UK phone number",
-      maxLength: 11,
+      maxLength: 14,
     },
     {
       onChange: (val: string) => {
