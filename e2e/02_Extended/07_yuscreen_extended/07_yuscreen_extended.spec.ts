@@ -36,7 +36,7 @@ import {
 
 
 
-Feature("I am able to use the yuscreens extended features", async () => {
+FeatureSkip("I am able to use the yuscreens extended features", async () => {
     Scenario("As a user with the correct toggle, I am able to browse a package and fill out the questionnaire", scenario.start, async () => {
         Given("I go to the yuscreen as a user with the correct toggle", given.loginToYuScreen(true, CUSTOMER_23, AUTH_23), async () => {
             Then("I should be on the yuscreen", then.onYuscreen(CUSTOMER_23))
