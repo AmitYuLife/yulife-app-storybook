@@ -37,10 +37,6 @@ export function createPushNotificationsChannel() {
       (created) => emitter({ created })
     );
 
-    // PushNotification.popInitialNotification((notification) => {
-    //     console.log("@DEVICE CHANNEL ... ", notification);
-    // });
-
     return () => null;
   });
 }
