@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import { View, Linking, Platform } from "react-native";
 import { Text } from "@atoms";
 import { FibDetailsScreen } from "@screens";
-import { FibLocalNavigation, FIB_FAQ_LIST, FIB_INTRO_YUGI, FIB_PAYOUT_CALCULATOR } from "../fib.types";
+import { FibLocalNavigation, FIB_FAQ_LIST, FIB_PAYOUT_CALCULATOR, FIB_UNDERWRITING_JOURNEY } from "../fib.types";
 import fibDocumentsItems from "../data/documents-data";
 import { GetYulifer } from "@graphql/_core/schema";
 import { GQL_QUERY_GET_YULIFER } from "@graphql/yuscreen";
@@ -17,7 +17,6 @@ import { packages, useCover } from "../fib.helpers";
 import { handleOpenWebView } from "@navigation/utils";
 import Logger from "@services/logging/logger";
 import { CoverType } from "@graphql/_core/schema/globalTypes";
-import { YUGI_INTRO_TYPE } from "./fib.yugi-intro.container";
 import { useBackHandler } from "../../../../../services/hooks/useBackHandler";
 import { FIB_PAYOUT_CALCULATOR_INITIAL_STATE } from "./fib.payout-calculator.conainer";
 
@@ -83,9 +82,7 @@ const _FibBrowseContainer = memo(function (props: IFibContainer & ReturnType<typ
     navigation.push(FIB_PAYOUT_CALCULATOR, { type: FIB_PAYOUT_CALCULATOR_INITIAL_STATE.needData });
 
   const navigateToContinue = () => {
-    navigation.push(FIB_INTRO_YUGI, {
-      type: YUGI_INTRO_TYPE.PACKAGE_CHOSEN,
-    });
+    navigation.push(FIB_UNDERWRITING_JOURNEY);
   };
 
   if (error) {

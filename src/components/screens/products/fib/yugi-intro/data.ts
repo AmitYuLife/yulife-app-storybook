@@ -40,10 +40,8 @@ export const getData = (type: YUGI_INTRO_TYPE) => {
     case YUGI_INTRO_TYPE.PACKAGE_CHOSEN:
       return [
         {
-          text: "Excellent choice! On to the “final fitting” to gather some additional info about you!",
-        },
-        {
-          text: "Please answer honestly and accurately, to ensure I get you the perfect fit!",
+          text:
+            "Do you promise to answer as honestly and accurately as possible? If your answers are not true, claims may not be paid out.",
         },
       ];
 

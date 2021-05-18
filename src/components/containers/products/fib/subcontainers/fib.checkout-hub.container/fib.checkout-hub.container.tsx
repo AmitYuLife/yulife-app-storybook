@@ -62,7 +62,10 @@ export const FibCheckoutHubContainer = memo((props: Props) => {
   const { navigation, loading, onPressPayment, onContinue, onClose, data, paymentProviderDetails, coverType } = props;
   const fibStyle = useSelector(getFIBStyle);
   const goToContactDetails = () => navigation.push(FIB_CONTACT_DETAILS);
-  const goToGpDetails = () => navigation.push(FIB_GP_DETAILS);
+  const goToGpDetails = () =>
+    navigation.push(FIB_GP_DETAILS, {
+      initialGPView: "intro",
+    });
   const [confirmed, setConfirmed] = useState(false);
 
   const toggleConfirmed = () => setConfirmed(!confirmed);

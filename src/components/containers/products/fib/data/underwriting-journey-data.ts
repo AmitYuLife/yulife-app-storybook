@@ -32,6 +32,7 @@ import {
 } from "@atoms/fib/svg-assets/underwriting/medical-history-svg-strings";
 import { ChipIconType } from "@atoms/chip/chip.types";
 import { Colours } from "@styles";
+import { FIB_BROWSE, FIB_INTRO_YUGI } from "@components/containers/products/fib/fib.types";
 
 interface OtherQuestionResponse {
   id: string;
@@ -235,7 +236,8 @@ export const data: UnderwritingJourneyScreen[] = [
     icon: NAME_ICON,
     title: "Intro",
     question: "",
-    firstButton: { label: "Continue", actionId: FIB_ENTER_YOUR_NAME },
+    firstButton: { label: "Continue", actionId: FIB_INTRO_YUGI },
+    previousButton: { actionId: FIB_BROWSE },
     linkButton: { label: "Privacy policy", actionId: ACTION_OPEN_PRIVACY_LINK },
     children: [{ type: "copyIntro" }],
     accumulatedProgress: ACCUMULATED_PROGRESS.FIB_INTRO,
@@ -247,7 +249,7 @@ export const data: UnderwritingJourneyScreen[] = [
     title: "Name",
     question: "Okay! Let’s start with the easy stuff: is this your name?",
     firstButton: { label: "Continue", actionId: FIB_YOUR_DATE_OF_BIRTH_SCREEN_ID },
-    previousButton: { actionId: FIB_INTRO },
+    previousButton: { actionId: FIB_INTRO_YUGI },
     children: [{ type: "inputFullName" }],
     accumulatedProgress: ACCUMULATED_PROGRESS.FIB_ENTER_YOUR_NAME,
   },

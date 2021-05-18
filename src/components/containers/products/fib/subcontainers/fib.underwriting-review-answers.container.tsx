@@ -84,7 +84,7 @@ const FibUnderwritingReviewAnswersContainer = memo(function (props: Props) {
 
   const onAnswerPress = (questionId: string) => {
     return navigation.push(FIB_UNDERWRITING_JOURNEY, {
-      initialQuestionIdFromReviewScreen: questionId,
+      initialQuestionIdFromNavigation: questionId,
       redirectedFromReviewScreen: true,
     });
   };

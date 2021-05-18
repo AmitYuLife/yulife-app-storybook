@@ -9,15 +9,13 @@ import {
   FIB_CONFIRM_PACKAGES,
   FIB_CHOOSE_STYLE,
 } from "../fib.types";
-import { FibYugiIntroScreen } from "../../../../screens/products/fib/yugi-intro/fib-yugi-intro.screen";
+import { FibYugiIntroScreen } from "@screens/products/fib/yugi-intro/fib-yugi-intro.screen";
 import { useMutation } from "@apollo/react-hooks";
-import {
-  UpsertProductEntityMutationTuple,
-  GQL_MUTATION_UPSERT_TOP_UPS_PRODUCT_ENTITY,
-} from "../../../../../graphql/products";
-import { ProductCode } from "../../../../../graphql/_core/schema/globalTypes";
-import { updateFIBValue } from "../../../../../redux/product/product.actions";
+import { UpsertProductEntityMutationTuple, GQL_MUTATION_UPSERT_TOP_UPS_PRODUCT_ENTITY } from "@graphql/products";
+import { ProductCode } from "@graphql/_core/schema/globalTypes";
+import { updateFIBValue } from "@redux/product/product.actions";
 import { onUnderwritingClose } from "../fib.helpers";
+import { FIB_ENTER_YOUR_NAME, FIB_INTRO } from "@components/containers/products/fib/data/underwriting-journey-data";
 
 type ConnectedState = ReturnType<typeof mapStateToProps>;
 
@@ -73,7 +71,9 @@ const _FibYugiIntroContainer = memo(function FibYugiIntroContainer(props: Props)
       case YUGI_INTRO_TYPE.MOUNTAIN_STYLE_SELECTED:
         return navigation.push(FIB_BROWSE);
       case YUGI_INTRO_TYPE.PACKAGE_CHOSEN:
-        return navigation.push(FIB_UNDERWRITING_JOURNEY);
+        return navigation.push(FIB_UNDERWRITING_JOURNEY, {
+          initialQuestionIdFromReviewScreen: FIB_ENTER_YOUR_NAME,
+        });
       case YUGI_INTRO_TYPE.ANSWERS_SUBMITTED:
         return navigation.push(FIB_CONFIRM_PACKAGES);
     }
@@ -88,6 +88,9 @@ const _FibYugiIntroContainer = memo(function FibYugiIntroContainer(props: Props)
       case YUGI_INTRO_TYPE.DESERT_STYLE_SELECTED:
       case YUGI_INTRO_TYPE.MOUNTAIN_STYLE_SELECTED:
       case YUGI_INTRO_TYPE.PACKAGE_CHOSEN:
+        return navigation.push(FIB_UNDERWRITING_JOURNEY, {
+          initialQuestionIdFromReviewScreen: FIB_INTRO,
+        });
       case YUGI_INTRO_TYPE.ANSWERS_SUBMITTED:
         return navigation.pop();
     }
