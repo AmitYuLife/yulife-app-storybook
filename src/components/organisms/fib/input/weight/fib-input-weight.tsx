@@ -1,65 +1,44 @@
-import React, { useCallback } from "react";
-import { connect } from "react-redux";
-import { getFIBState } from "@redux/product/product.selectors";
-import { IReduxState } from "@redux/_core/reducers";
-import { Weight } from "@redux/product/product.types";
-import { FibInputSt } from "./fib-input-st";
-import { FibInputKg } from "./fib-input-kg";
-import { Text } from "@atoms";
+import React, { useContext } from "react";
 import { View } from "react-native";
-import { TouchableOpacityWithDelay } from "@components/molecules";
-import { updateFIBAnswerValue } from "../../../../../redux/product/product.actions";
+import { useSelector } from "react-redux";
+import { TertiaryButton } from "@atoms";
 import { styles } from "./fib-input-weight.styles";
-import { stToKg, kgToSt } from "../../../../../services/utils";
+import { BUTTON_ICON } from "@atoms/button/tertiary-button/tertiary-button.helpers";
+import { FIBUnderwritingJourneyOverlayContext } from "@components/screens/products/fib/layouts/fib.underwriting-journey-overlay";
+import { getFIBState } from "@redux/product/product.selectors";
+import { Weight } from "@redux/product/product.types";
+import { Style } from "@styles";
 
-type ConnectedProps = ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps;
+const _FibInputWeight = () => {
+  const { setOverlay } = useContext(FIBUnderwritingJourneyOverlayContext);
+  const weight = useSelector(getFIBState).answers.weight;
 
-const _FibInputWeight = (props: ConnectedProps) => {
-  const { weight, updateWeight } = props;
-
-  const Input = weight.unit === "st" ? FibInputSt : FibInputKg;
-  const buttonLabel = `Switch to ${weight.unit === "st" ? "kg" : "st, lb"}`;
-
-  const handleSwitch = useCallback(() => {
-    const isKg = weight.unit === "kg";
-    let kg;
-    let st;
-    let lb;
-
-    if (weight.unit === "st") {
-      kg = stToKg(parseInt(weight.st || "0"), parseInt(weight.lb || "0"));
-    } else {
-      const _weight = kgToSt(parseInt(weight.kg || "0"));
-      st = _weight.st;
-      lb = _weight.lb;
-    }
-
-    updateWeight({
-      unit: weight.unit === "st" ? "kg" : "st",
-      st: isKg && st ? `${st}` : "",
-      lb: isKg && lb ? `${lb}` : "",
-      kg: isKg ? "" : `${kg}`,
-    });
-  }, [weight, updateWeight]);
+  const weightDisplay = getWeightDisplay(weight);
 
   return (
     <View style={styles.wrapper}>
-      <Input />
-      <TouchableOpacityWithDelay onPress={handleSwitch}>
-        <Text style={styles.label}>{buttonLabel}</Text>
-      </TouchableOpacityWithDelay>
+      <TertiaryButton
+        rightIcon={BUTTON_ICON.EDIT_GREY}
+        leftIcon={BUTTON_ICON.WEIGHT}
+        label={weightDisplay}
+        onPress={() => setOverlay("weight")}
+        height={Style.adjust(80)}
+        size="Fill"
+      />
     </View>
   );
 };
 
-const mapStateToProps = (state: IReduxState) => ({
-  weight: getFIBState(state).answers.weight,
-});
+export const FibInputWeight = _FibInputWeight;
 
-const mapDispatchToProps = {
-  updateWeight: (value: Weight) => updateFIBAnswerValue({ key: "weight", value }),
+const getWeightDisplay = (weight: Weight) => {
+  const isInvalidMetric = weight.unit === "kg" && !weight.kg;
+  const isInvalidImperial = weight.unit === "st" && !weight.st;
+  const isInvalidWeight = isInvalidMetric || isInvalidImperial;
+
+  if (isInvalidWeight) {
+    return "Enter your Weight";
+  }
+
+  return weight.unit === "kg" ? `${weight.kg}kg` : `${weight.st}st ${weight.lb}lb`;
 };
-
-const redux = connect(mapStateToProps, mapDispatchToProps);
-
-export const FibInputWeight = redux(_FibInputWeight);
