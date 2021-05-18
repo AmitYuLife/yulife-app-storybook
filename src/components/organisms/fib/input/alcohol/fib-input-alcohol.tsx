@@ -1,55 +1,41 @@
-import React, { useState } from "react";
-import { connect } from "react-redux";
-import { InputField } from "../input-field";
-import { getWeeklyAlcoholDrinks } from "@redux/product/product.selectors";
-import { IReduxState } from "@redux/_core/reducers";
-import { updateFIBAnswerValue } from "@redux/product/product.actions";
-import { StyleSheet, View } from "react-native";
+import React, { useContext } from "react";
+import { View } from "react-native";
+import { useSelector } from "react-redux";
+import { TertiaryButton } from "@atoms";
 import { styles } from "./fib-input-alcohol.styles";
+import { BUTTON_ICON } from "@atoms/button/tertiary-button/tertiary-button.helpers";
+import { FIBUnderwritingJourneyOverlayContext } from "@components/screens/products/fib/layouts/fib.underwriting-journey-overlay";
+import { getFIBState } from "@redux/product/product.selectors";
 import { Style } from "@styles";
-import { DRINKS_INPUT } from "@ids";
 
-type ConnectedProps = ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps;
+const _FibInputAlcohol = () => {
+  const { setOverlay } = useContext(FIBUnderwritingJourneyOverlayContext);
+  const drinks = useSelector(getFIBState).answers.weeklyAlcoholDrinks;
 
-const _FibInputAlcohol = (props: ConnectedProps) => {
-  const { updateWeeklyAlcoholDrinks, weeklyAlcoholDrinks } = props;
-  const [isFocus, setIsFocus] = useState(false);
-
-  const validateNumber = (text: string) => {
-    const parsedText = Number(text);
-    const validText = !isNaN(parsedText) && parsedText >= 0;
-
-    if (!validText) {
-      return updateWeeklyAlcoholDrinks("");
-    }
-
-    return updateWeeklyAlcoholDrinks(text);
-  };
+  const drinksDisplay = getDisplay(parseInt(drinks, 10));
 
   return (
     <View style={styles.wrapper}>
-      <InputField
-        testID={DRINKS_INPUT}
-        value={weeklyAlcoholDrinks}
-        onChangeText={validateNumber}
-        maxLength={3}
-        sideLabel="drinks"
-        style={StyleSheet.flatten([styles.textInput, isFocus ? {} : styles.textInputOnBlur])}
-        hasFocusActive={setIsFocus}
-        width={Style.adjust(48)}
+      <TertiaryButton
+        rightIcon={BUTTON_ICON.EDIT_GREY}
+        leftIcon={BUTTON_ICON.DRINKS}
+        label={drinksDisplay}
+        onPress={() => setOverlay("drinks")}
+        height={Style.adjust(80)}
+        size="Fill"
       />
     </View>
   );
 };
 
-const mapStateToProps = (state: IReduxState) => ({
-  weeklyAlcoholDrinks: getWeeklyAlcoholDrinks(state),
-});
+export const FibInputAlcohol = _FibInputAlcohol;
 
-const mapDispatchToProps = {
-  updateWeeklyAlcoholDrinks: (value: string) => updateFIBAnswerValue({ key: "weeklyAlcoholDrinks", value }),
+const getDisplay = (drinks: number) => {
+  const isInvalid = typeof drinks !== "number" || isNaN(drinks);
+
+  if (isInvalid) {
+    return "Enter number of drinks";
+  }
+
+  return `${drinks} drinks`;
 };
-
-const redux = connect(mapStateToProps, mapDispatchToProps);
-
-export const FibInputAlcohol = redux(_FibInputAlcohol);

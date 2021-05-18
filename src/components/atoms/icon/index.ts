@@ -13,7 +13,9 @@ import { StreakTicks } from "./streak-ticks";
 import { Calm } from "./calm";
 import { Headspace } from "./headspace";
 import { CopyIcon } from "./copy-icon";
-import { HeightSvgIcon } from "./height";
+import { HeightSvgIcon } from "./height-icon";
+import { WeighingScaleSvg } from "./weighing-scale-icon";
+import { AlcoholDrinksSvg } from "./alcohol-drinks-icon";
 import { GPRequestIcon } from "./gp-request-icon";
 import { HandshakeHeartIcon } from "./handshake-heart-icon";
 import { LockHeartIcon } from "./lock-heart-icon";
@@ -43,6 +45,8 @@ export default {
   Headspace,
   CopyIcon,
   HeightSvgIcon,
+  WeighingScaleSvg,
+  AlcoholDrinksSvg,
   GPRequestIcon,
   HandshakeHeartIcon,
   LockHeartIcon,

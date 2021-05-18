@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { TertiaryButton } from "@atoms";
 import { View } from "react-native";
-import { styles } from "./fib.input-height.styles";
+import { styles } from "./fib-input-height.styles";
 import { BUTTON_ICON } from "@atoms/button/tertiary-button/tertiary-button.helpers";
 import { FIBUnderwritingJourneyOverlayContext } from "@components/screens/products/fib/layouts/fib.underwriting-journey-overlay";
 import { useSelector } from "react-redux";
