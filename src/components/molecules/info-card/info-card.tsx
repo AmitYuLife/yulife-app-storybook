@@ -2,6 +2,7 @@ import React, { memo } from "react";
 import { StyleSheet, View, ViewStyle } from "react-native";
 import { Colours, Style } from "@styles";
 import { TextTemplate } from "@atoms/text/text-template";
+import Markdown from "@components/molecules/markdown/markdown";
 
 interface IProps {
   icon: React.ReactNode;
@@ -25,7 +26,9 @@ const InfoCard = memo(({ icon, title, description, customBody, iconAlign = "cent
                 <TextTemplate type="b2b">{title}</TextTemplate>
               </View>
             )}
-            {!description ? null : <TextTemplate type="b2">{description}</TextTemplate>}
+            {!description ? null : (
+              <Markdown text={description} containerStyle={styles.markdownContainer} markdownStyles={markdownStyles} />
+            )}
           </>
         )}
       </View>
@@ -33,9 +36,21 @@ const InfoCard = memo(({ icon, title, description, customBody, iconAlign = "cent
   );
 });
 
+const markdownStyles = {
+  text: {
+    fontFamily: Style.FONT_FAMILY_PRIMARY,
+    fontSize: Style.adjust(16),
+    lineHeight: Style.adjust(24),
+    letterSpacing: 0.6,
+    color: Colours.neutral.n800,
+  },
+};
+
 const styles = StyleSheet.create({
+  markdownContainer: {},
   flex: {
     flex: 1,
+    justifyContent: "center",
   } as ViewStyle,
   wrapper: {
     backgroundColor: Colours.neutral.white,

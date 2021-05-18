@@ -35,7 +35,6 @@ export function FibUnderwritingJourneyLayout(props: Props) {
     onPreviousQuestion = null,
     children,
     progressBarHideType,
-    yugi,
     wrapperStyle,
     hideBorder = true,
   } = props;
@@ -50,7 +49,6 @@ export function FibUnderwritingJourneyLayout(props: Props) {
           <View style={styles.safeAreaView}>
             <FIBProgressBar hideType={progressBarHideType} />
             {children}
-            <Yugi wrapperStyle={styles.yugiWrapperStyle} yugi={yugi} />
           </View>
         </KeyboardAvoidingView>
         <GenericHeadingAbsolute

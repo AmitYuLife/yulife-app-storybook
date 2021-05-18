@@ -8,12 +8,9 @@ import {
   UnderwritingJourneyScreen,
   UnderwritingJourneyChild,
 } from "@components/containers/products/fib/data/underwriting-journey-data";
-import {
-  MedicalHistoryItem,
-  IMedicalHistoryItemProps,
-} from "../../../../atoms/fib/medical-history-item/medical-history-item";
-import MarkdownFib from "../../../../atoms/fib/markdown/markdown";
-import { IMarkdownFibProps } from "../../../../atoms/fib/markdown/markdown";
+import { MedicalHistoryItem, IMedicalHistoryItemProps } from "@atoms/fib/medical-history-item/medical-history-item";
+import MarkdownFib from "@atoms/fib/markdown/markdown";
+import { IMarkdownFibProps } from "@atoms/fib/markdown/markdown";
 import { FibInputBirth } from "@components/organisms/fib/input/birth/fib-input-birth";
 import { FibInputHeight } from "@components/organisms/fib/input/height/fib-input-height";
 import { FibInputName } from "@components/organisms/fib/input/name/fib-input-name";
@@ -26,11 +23,15 @@ import { CopyFullName } from "@organisms/fib/copy/full-name";
 import RadioInput from "../feedback-form/radio-input";
 import { FibInputAlcohol } from "@organisms/fib/input/alcohol/fib-input-alcohol";
 import { styles, getChildWrapperStyle } from "./fib.underwriting-journey.styles";
-import { YugiType } from "../layouts/yugi";
 import { CopyIntro } from "@organisms/fib/copy/intro";
 import { UNDERWRITING_JOURNEY_SCREEN } from "@ids";
 import GenderQuestion from "./subcomponents/gender/gender-question";
 import { ProgressBar } from "@components/molecules";
+import { HandshakeHeartIcon } from "@atoms/icon/handshake-heart-icon";
+import { NotVisibleEyeIcon } from "@atoms/icon/not-visible-eye-icon";
+import { YuCoinPileIcon } from "@atoms/icon/yucoin-pile-icon";
+import { useSelector } from "react-redux";
+import { getFullName } from "@redux/product/product.selectors";
 
 export interface IFibUnderwritingJourneyScreenProps {
   onNavigateBack: () => void;
@@ -137,7 +138,6 @@ const _FibUnderwritingJourneyScreen = memo(function (props: IFibUnderwritingJour
       onClose={onNavigateBack}
       progressBarHideType={progressBarHideType}
       onPreviousQuestion={onPreviousButtonPressed}
-      yugi={YugiType.DEFAULT}
     >
       <ScrollView
         ref={scrollViewRef}
@@ -173,6 +173,21 @@ const _FibUnderwritingJourneyScreen = memo(function (props: IFibUnderwritingJour
 
 export const FibUnderwritingJourneyScreen = memo(_FibUnderwritingJourneyScreen);
 
+const copyIntroCards = [
+  {
+    icon: <HandshakeHeartIcon />,
+    description: "In order to get you covered, we’ll need to know a bit about you.",
+  },
+  {
+    icon: <NotVisibleEyeIcon />,
+    description: "Your answers will **not** be seen by your employer.",
+  },
+  {
+    icon: <YuCoinPileIcon />,
+    description: "You’ll get 200 YuCoin for completing the questions.",
+  },
+];
+
 interface RenderChildrenExtraProps {
   inputFirstName?: string;
   inputLastName?: string;
@@ -183,6 +198,11 @@ interface RenderChildrenExtraProps {
   salary?: number;
   setInputSalary?: (salary: number) => void;
 }
+
+const Intro = () => {
+  const fullName = useSelector(getFullName);
+  return <CopyIntro title={`Let's get personal, ${fullName}.`} cards={copyIntroCards} />;
+};
 
 function renderChildren(child: UnderwritingJourneyChild, extraProps: RenderChildrenExtraProps) {
   const FIELDS: Record<string, React.ReactNode> = {
@@ -204,7 +224,7 @@ function renderChildren(child: UnderwritingJourneyChild, extraProps: RenderChild
     inputAlcohol: <FibInputAlcohol />,
     copyBirthday: <CopyBirthday />,
     copyFullName: <CopyFullName />,
-    copyIntro: <CopyIntro />,
+    copyIntro: <Intro />,
     radioInput: (
       <RadioInput
         options={child.radioInputOptions}

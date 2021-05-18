@@ -20,18 +20,19 @@ import {
 import {
   UpdateCustomerGPDetails,
   UpdateCustomerGPDetailsVariables,
-} from "../../../../../graphql/_core/schema/UpdateCustomerGPDetails";
-import { IReduxState } from "../../../../../redux/_core/reducers";
-import { getFIBState } from "../../../../../redux/product/product.selectors";
-import { MODALS } from "../../../../../navigation/constants";
-import { FibGPDoctorSelect } from "../../../../screens/products/fib/underwriting-journey/subcomponents/gp-details/fib.gp-doctor.screen";
-import { ISearchItem } from "../../../../atoms/search/search-item";
-
+} from "@graphql/_core/schema/UpdateCustomerGPDetails";
+import { IReduxState } from "@redux/_core/reducers";
+import { getFIBState } from "@redux/product/product.selectors";
+import { MODALS } from "@navigation/constants";
+import { FibGPDoctorSelect } from "@screens/products/fib/underwriting-journey/subcomponents/gp-details/fib.gp-doctor.screen";
+import { ISearchItem } from "@atoms/search/search-item";
+import GPIntro from "@components/screens/products/fib/underwriting-journey/subcomponents/gp-details/fib.gp-intro";
 interface IFibGPDetailsContainerProps {
   navigation: FibLocalNavigation;
 }
 
 type GPView =
+  | "intro"
   | "consent"
   | "medical_practice_search"
   | "medical_select_gp"
@@ -68,6 +69,10 @@ const FibGPDetailsContainer = memo(function (props: IFibGPDetailsContainerProps 
     setView("medical_practice_search");
     dispatch(updateFIBAnswerValue({ key: "medicalConsent", value: true }));
   }, [dispatch, setView]);
+
+  const onContinueIntroScreen = useCallback(() => {
+    setView("consent");
+  }, [setView]);
 
   const onSelectMedicalPractice = useCallback(
     (practice: ISearchItem<MedicalPractices_getMedicalPractices>) => {
@@ -198,6 +203,7 @@ const FibGPDetailsContainer = memo(function (props: IFibGPDetailsContainerProps 
 
         return setView("medical_practice_search");
       case "consent":
+        return setView("intro");
       default:
         return navigation.pop();
     }
@@ -248,10 +254,11 @@ const FibGPDetailsContainer = memo(function (props: IFibGPDetailsContainerProps 
         />
       );
     case "consent":
-    default:
       return (
         <FibGPConsentScreen onNavigateBack={handleBack} onContinue={onContinueConsentScreen} onClose={handleOnClose} />
       );
+    default:
+      return <GPIntro onNavigateBack={handleBack} onContinue={onContinueIntroScreen} onClose={handleOnClose} />;
   }
 });
 

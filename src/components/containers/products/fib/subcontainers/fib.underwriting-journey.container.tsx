@@ -2,7 +2,7 @@ import React, { memo, useState, useCallback, useEffect } from "react";
 import { Linking, Platform } from "react-native";
 import Config from "react-native-config";
 import moment from "moment";
-import { FibLocalNavigation, FIB_UNDERWRITING_REVIEW_ANSWERS, FIB_INTRO_YUGI } from "../fib.types";
+import { FibLocalNavigation, FIB_UNDERWRITING_REVIEW_ANSWERS, FIB_INTRO_YUGI, FIB_BROWSE } from "../fib.types";
 import { FibUnderwritingJourneyScreen } from "../../../../screens/products/fib/underwriting-journey/fib.underwriting-journey.screen";
 import {
   data,
@@ -71,11 +71,11 @@ const _FibUnderwritingJourneyContainer = memo(function (props: Props) {
   const dispatch = useDispatch();
   const { birthDay, birthMonth, birthYear } = fibAnswers;
 
-  const { redirectedFromReviewScreen, initialQuestionIdFromReviewScreen } = navigation.currentRoute.passProps;
+  const { redirectedFromReviewScreen, initialQuestionIdFromNavigation } = navigation.currentRoute.passProps;
   const initialQuestion =
     data.find((question) =>
-      initialQuestionIdFromReviewScreen
-        ? question.id === initialQuestionIdFromReviewScreen
+      initialQuestionIdFromNavigation
+        ? question.id === initialQuestionIdFromNavigation
         : question.id === initialQuestionId
     ) || data[0];
 
@@ -122,6 +122,12 @@ const _FibUnderwritingJourneyContainer = memo(function (props: Props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentAnswer, isSmokingQuestion, currentQuestion]);
 
+  const handleIntroYugi = () =>
+    navigation.push(FIB_INTRO_YUGI, {
+      type: YUGI_INTRO_TYPE.PACKAGE_CHOSEN,
+      initialIndex: 0,
+    });
+
   const updateAnswer = (questionId: string, value: string, answers: FibAnswers): FibAnswers => {
     updateFibAnswer(questionId, value);
 
@@ -139,8 +145,8 @@ const _FibUnderwritingJourneyContainer = memo(function (props: Props) {
   };
 
   const findQuestion = (options: FindFibQuestionOptions): UnderwritingJourneyScreen => {
-    const newOptions = initialQuestionIdFromReviewScreen
-      ? { ...options, initialQuesionIdFromReviewSession: initialQuestionIdFromReviewScreen }
+    const newOptions = initialQuestionIdFromNavigation
+      ? { ...options, initialQuesionIdFromReviewSession: initialQuestionIdFromNavigation }
       : options;
     const nextQuestion = findNextQuestion(newOptions, redirectedFromReviewScreen);
     return nextQuestion;
@@ -247,6 +253,10 @@ const _FibUnderwritingJourneyContainer = memo(function (props: Props) {
       return navigation.push(FIB_UNDERWRITING_REVIEW_ANSWERS);
     }
 
+    if (currentQuestion.firstButton.actionId === FIB_INTRO_YUGI) {
+      return handleIntroYugi();
+    }
+
     navigateToReviewScreenOrFindNextQuestion(localAnswers, "firstButton");
 
     const question = findQuestion({
@@ -331,7 +341,11 @@ const _FibUnderwritingJourneyContainer = memo(function (props: Props) {
   const onLinkButtonPressed = !currentQuestion.linkButton ? null : handlePressLinkButton;
 
   const handleSetPreviousQuestion = () => {
-    if (redirectedFromReviewScreen && initialQuestionIdFromReviewScreen === currentQuestion.id) {
+    if (currentQuestion.previousButton.actionId === FIB_INTRO_YUGI) {
+      return handleIntroYugi();
+    }
+
+    if (redirectedFromReviewScreen && initialQuestionIdFromNavigation === currentQuestion.id) {
       return navigation.pop();
     }
 
@@ -339,10 +353,7 @@ const _FibUnderwritingJourneyContainer = memo(function (props: Props) {
       dispatch(updateFIBValue({ key: "lastQuestionId", value: "" }));
       // If we don't pop first we need to click twice the back button on the intro screen
       navigation.pop();
-      return navigation.replace(FIB_INTRO_YUGI, {
-        type: YUGI_INTRO_TYPE.PACKAGE_CHOSEN,
-        initialIndex: 1,
-      });
+      return navigation.replace(FIB_BROWSE);
     }
 
     const question = findQuestion({
