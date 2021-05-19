@@ -7,6 +7,71 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.7.0] - 2021-05-19
+
+### Features
+
+- Feature TP-839: Implement meditation tagging
+- Feature TP-739: Update weight and drink inputs to use scrollers
+- Feature TP-837: Use scroller on underwriting height input
+- Feature TP-781: wellbeing hub
+- Feature TP-789: Improve Meditation
+
+### Bugfixes
+
+- Bugfix TP-841: Fix modal appearing on top of modal
+- Bugfix: Push yugi-intro navigation changes
+- Bugfix: Update Podfile for the push-notifications
+- Bugfix TP-840: Update react-native-push-notification
+- (origin/bugfix/beneficiary-input) Bugfix: Increase maxLength for phone number input and fix focus label on iOS
+- Bugfix TP-834: Streak modal on iPhone 6 series
+- Bugfix: Beneficiaries keyboard not dismissing when modal is closed
+- Bugfix TP-770: Fix daily steps intro top bar alignment
+- Bugfix ENG-2019: Missing data for completed challenge
+- (origin/bugfix/tp-770-align-logos) Bugfix TP-770: Fix onboarding swiper logo alignment
+- Bugfix ENG-2024: Name leaderboard problems
+- (origin/bugfix/tp-825-leaderboard) Bugfix TP-825: Make leaderboard list scrollable
+
+### Tasks
+
+- Task TP-835 / TP-836: Underwriting Introduction Changes / GP Details Introduction Changes
+- Task TP-828: Info Card Component
+- Task: Use hashmap instead of switch-case
+- Task: Add one second delay to challenge modal to help with fast sequence events like detox
+- Task TF-115: yuScreen disclaimer
+- Task ENG-2047: Switch react-native-fitkit to GitLab hosted package
+- (origin/task/improve-notifications-toggles-ux) Task: Improve notifications toggles UX
+- Task TP-807: Notification Toggles
+- Task: Open modal on meditation start
+- Task: Adjust client with new tooltip benefit from server
+- (origin/task/ignore-sonar-schema) Update Sonarcloud properties to ignore generated files
+- Task TP-815: Wellbeing button action mixpanel event
+
+### Chores
+
+- Chore: updated gql schema
+- Chore: split active states for current route/modal
+
+### Extra
+
+- (HEAD -> develop, origin/develop, origin/HEAD) Hotfix: hasBeneficiariesEnabled
+- Detox: Yuscreen v3
+- (origin/e2e/pli_skip) skip for pli while it's being re-developed
+- Detox: Meditation Updates
+- Add scrollView
+- Increase sendMindfulnessData offset
+- Detox: Update Menu Items
+- Fix button action and markdown margins
+- TE-774
+- Detox: challenges fix
+- TP-810: Create new picker component
+- Make use of parsed markdown
+- Hofix: Restrict meditation button to meditation challenge
+- Purge: Member Services
+- Extended repairs
+- Detox: Smoke Bitrise fixes
+- (tag: v3.7.0) 3.7.0
+
 ## [3.6.0] - 2021-04-27
 
 ### Features
