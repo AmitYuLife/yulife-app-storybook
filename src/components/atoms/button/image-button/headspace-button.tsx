@@ -3,6 +3,7 @@ import { openHeadspace } from "@services/app-link";
 import ImageButton from "./image-button";
 import { Platform } from "react-native";
 import { HEADSPACE_BUTTON } from "@ids";
+import Logger from "@services/logging/logger";
 
 interface Props {
   style?: ComponentProps<typeof ImageButton>["wrapperStyle"];
@@ -19,6 +20,9 @@ export const HeadspaceButton = ({ style, onPressCallback }: Props) => {
       wrapperStyle={style}
       onPress={() => {
         openHeadspace();
+        Logger.logEvent("mindfulness_app_open", {
+          type: "headspace",
+        });
 
         if (onPressCallback) {
           onPressCallback();
