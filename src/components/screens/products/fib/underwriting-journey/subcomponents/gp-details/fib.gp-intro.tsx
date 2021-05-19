@@ -6,7 +6,6 @@ import Footer from "@components/screens/products/fib/underwriting-journey/subcom
 import { CopyIntro } from "@organisms/fib/copy/intro";
 import { GPRequestIcon } from "@atoms/icon/gp-request-icon";
 import { NotVisibleEyeIcon } from "@atoms/icon/not-visible-eye-icon";
-import { SignedContractIcon } from "@atoms/icon/signed-contract-icon";
 import { handleOpenWebView } from "@navigation/utils";
 import Config from "react-native-config";
 import Logger from "@services/logging/logger";
@@ -20,15 +19,11 @@ interface IProps {
 const copyIntroCards = [
   {
     icon: <GPRequestIcon />,
-    description: "We may need to request a medical report from your doctor",
+    description: "We may need to request a medical report from your doctor.",
   },
   {
     icon: <NotVisibleEyeIcon />,
-    description: "Your report will **not** be seen by your employer",
-  },
-  {
-    icon: <SignedContractIcon />,
-    description: "The following page will ask for your consent to request a medical report",
+    description: "Your report will **not** be seen by your employer.",
   },
 ];
 
