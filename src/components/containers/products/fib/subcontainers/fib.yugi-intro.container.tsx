@@ -72,7 +72,7 @@ const _FibYugiIntroContainer = memo(function FibYugiIntroContainer(props: Props)
         return navigation.push(FIB_BROWSE);
       case YUGI_INTRO_TYPE.PACKAGE_CHOSEN:
         return navigation.push(FIB_UNDERWRITING_JOURNEY, {
-          initialQuestionIdFromReviewScreen: FIB_ENTER_YOUR_NAME,
+          initialQuestionIdFromNavigation: FIB_ENTER_YOUR_NAME,
         });
       case YUGI_INTRO_TYPE.ANSWERS_SUBMITTED:
         return navigation.push(FIB_CONFIRM_PACKAGES);
@@ -89,7 +89,7 @@ const _FibYugiIntroContainer = memo(function FibYugiIntroContainer(props: Props)
       case YUGI_INTRO_TYPE.MOUNTAIN_STYLE_SELECTED:
       case YUGI_INTRO_TYPE.PACKAGE_CHOSEN:
         return navigation.push(FIB_UNDERWRITING_JOURNEY, {
-          initialQuestionIdFromReviewScreen: FIB_INTRO,
+          initialQuestionIdFromNavigation: FIB_INTRO,
         });
       case YUGI_INTRO_TYPE.ANSWERS_SUBMITTED:
         return navigation.pop();
