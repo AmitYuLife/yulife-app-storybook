@@ -1,7 +1,11 @@
 
 import { allTogglesTrue } from "./_templates";
-import { CUSTOMER_2, CUSTOMER_5, CUSTOMER_6, CUSTOMER_7, CUSTOMER_8, CUSTOMER_9, CUSTOMER_14, CUSTOMER_3, CUSTOMER_15, CUSTOMER_16, CUSTOMER_17, CUSTOMER_20, CUSTOMER_23, CUSTOMER_10, CUSTOMER_12, CUSTOMER_13, CUSTOMER_18, CUSTOMER_22, CUSTOMER_24, CUSTOMER_19, CUSTOMER_26, CUSTOMER_27, CUSTOMER_28, CUSTOMER_29, CUSTOMER_30 } from '../postgres/customers';
+import { CUSTOMER_2, CUSTOMER_5, CUSTOMER_6, CUSTOMER_7, CUSTOMER_8, CUSTOMER_9, CUSTOMER_14, CUSTOMER_3, CUSTOMER_15, CUSTOMER_16, CUSTOMER_17, CUSTOMER_20, CUSTOMER_23, CUSTOMER_10, CUSTOMER_12, CUSTOMER_13, CUSTOMER_18, CUSTOMER_22, CUSTOMER_24, CUSTOMER_19, CUSTOMER_26, CUSTOMER_27, CUSTOMER_28, CUSTOMER_29, CUSTOMER_30, CUSTOMER_31, CUSTOMER_32, CUSTOMER_ALPHA } from '../postgres/customers';
 import { generateRandomMongoId, IDatabaseItem } from "@yu-life/yulife-bdd-framework";
+
+const type = "mongo"
+const modelName = "usertoggles"
+
 
 export const CUSTOMER_2_TOGGLES = {
     type: "mongo",
@@ -496,5 +500,124 @@ export const CUSTOMER_30_TOGGLES = {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_30.data.customerId,
         features: allTogglesTrue.data.features
+    }
+} as IDatabaseItem
+
+export const CUSTOMER_31_TOGGLES = {
+    type,
+    modelName,
+    data:{
+        _id:generateRandomMongoId(),
+        userId: CUSTOMER_31.data.customerId,
+        features:{
+        "showTodayYucoin": true,
+        "showActivity": true,
+        "showNotifications": true,
+        "showStreaks": true,
+        "showCompletedLevel": true,
+        "showCounter": true,
+        "showBuildNumber": true,
+        "showSettings": true,
+        "showCreateLeaderboard": true,
+        "showAdvancedLeaderboards": true,
+        "disableUserEntries": true,
+        "fitbit": true,
+        "showConnections": true,
+        "showLastSynced": true,
+        "newPassiveValidationRule": true,
+        "showWegiftPicker": true,
+        "usePassiveMeditation": true,
+        "statsShowCoinGeneralTotalYearned": true,
+        "statsShowCoinRecommendationCard": true,
+        "statsShowCoinGeneralTotalRedeemedCard": true,
+        "statsShowCoinAchievementCard": true,
+        "statsShowChallengeGeneralCard": true,
+        "statsShowChallengeRecommendationCard": true,
+        "statsShowChallengeComparisonCard": true,
+        "statsShowStepsRecommendationCard": true,
+        "statsShowStepsGeneralCard": true,
+        "statsShowStepsBestScoreCard": true,
+        "statsShowStepsGraphCard": true,
+        "statsShowMindfulnessRecommendationCard": true,
+        "statsShowMindfulnessGeneralCard": true,
+        "statsShowMindfulnessBestScoreCard": true,
+        "statsShowMindfulnessGraphCard": true,
+        "statsShowCyclingRecommendationCard": true,
+        "statsShowCyclingGeneralCard": true,
+        "statsShowCyclingBestScoreCard": true,
+        "statsShowCyclingGraphCard": true,
+        "showStats": true,
+        hideSmartHealthScreen: true,
+        hideYuMatterScreen: false,
+        newGamePlus: true,
+        unitySurge: true,
+        yuScreenV3: true
+        }
+    }
+} as IDatabaseItem
+
+
+export const CUSTOMER_32_TOGGLES = {
+    type,
+    modelName,
+    data: {
+        _id: generateRandomMongoId(),
+        userId: CUSTOMER_32.data.customerId,
+        features: {
+            "showTodayYucoin": true,
+            "showActivity": true,
+            "showNotifications": true,
+            "showStreaks": true,
+            "showCompletedLevel": true,
+            "showCounter": true,
+            "showBuildNumber": true,
+            "showSettings": true,
+            "showCreateLeaderboard": true,
+            "showAdvancedLeaderboards": true,
+            "disableUserEntries": true,
+            "fitbit": true,
+            "showConnections": true,
+            "showLastSynced": true,
+            "newPassiveValidationRule": true,
+            "showWegiftPicker": true,
+            "usePassiveMeditation": true,
+            "statsShowCoinGeneralTotalYearned": true,
+            "statsShowCoinRecommendationCard": true,
+            "statsShowCoinGeneralTotalRedeemedCard": true,
+            "statsShowCoinAchievementCard": true,
+            "statsShowChallengeGeneralCard": true,
+            "statsShowChallengeRecommendationCard": true,
+            "statsShowChallengeComparisonCard": true,
+            "statsShowStepsRecommendationCard": true,
+            "statsShowStepsGeneralCard": true,
+            "statsShowStepsBestScoreCard": true,
+            "statsShowStepsGraphCard": true,
+            "statsShowMindfulnessRecommendationCard": true,
+            "statsShowMindfulnessGeneralCard": true,
+            "statsShowMindfulnessBestScoreCard": true,
+            "statsShowMindfulnessGraphCard": true,
+            "statsShowCyclingRecommendationCard": true,
+            "statsShowCyclingGeneralCard": true,
+            "statsShowCyclingBestScoreCard": true,
+            "statsShowCyclingGraphCard": true,
+            "showStats": true,
+            hideSmartHealthScreen: true,
+            hideYuMatterScreen: false,
+            newGamePlus: true,
+            unitySurge: true,
+            yuScreenV3: true
+        }
+    }
+} as IDatabaseItem
+
+export const CUSTOMER_ALPHA_TOGGLES = {
+    type,
+    modelName,
+    data:{
+        _id:generateRandomMongoId(),
+        userId: CUSTOMER_ALPHA.data.customerId,
+        features:{
+            yuScreenV3: true
+        }
     }
 } as IDatabaseItem

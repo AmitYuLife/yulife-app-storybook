@@ -12,6 +12,7 @@ import { getUserFeatures } from "@redux/user/user.selectors";
 import { YuScreenIntro } from "./yu-screen-intro/yu-screen-intro";
 import { useTapBackTwiceToExit } from "@services/hooks/useTapBackTwiceToExit";
 import { IMainTabsProps } from "@navigation/root";
+import { YUSCREEN_V3 } from "@ids";
 
 type ConnectedState = IMainTabsProps;
 
@@ -32,7 +33,7 @@ const _YuScreenContainer = (props: ConnectedState) => {
   }
 
   return (
-    <YuScreenLayout>
+    <YuScreenLayout testID={YUSCREEN_V3(yuScreenV3)}>
       {loading || !data ? <YuScreenLoading /> : yuScreenV3 ? <YuScreen /> : <YuScreenLegacy />}
     </YuScreenLayout>
   );

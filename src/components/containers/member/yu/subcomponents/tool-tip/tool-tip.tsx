@@ -28,6 +28,7 @@ import {
 } from "@redux/logging/logging.actions";
 import { YuScreenProductContext } from "../../yu-screen.context";
 import { getUserFeatures } from "@redux/user/user.selectors";
+import { PRODUCT_TOOL_TIP } from "@ids";
 
 export const ToolTip = () => {
   const dispatch = useDispatch();
@@ -121,7 +122,10 @@ export const ToolTip = () => {
   const isUnlockable = status === YuProductStatus.unlockable;
 
   return (
-    <View style={StyleSheet.flatten(styles.wrapper)}>
+    <View
+      style={StyleSheet.flatten(styles.wrapper)}
+      testID={PRODUCT_TOOL_TIP(coverType, toolTip?.name, toolTip?.benefit.value, product?.earnRate)}
+    >
       <View style={styles.shadow} />
       <View style={getContentWrapperStyle(coverType, isActive)}>
         <View style={getTopWrapperStyle(coverType, isActive)}>

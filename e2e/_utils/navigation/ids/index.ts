@@ -57,6 +57,7 @@ export const NAV_BAR = (icon: "yucoin" | "quests" | "yu" | "leaderboard" | "rewa
 export const CHECK_REWARDS_BUTTON = "CHECK_REWARDS_BUTTON"
 export const YUNIVERSAL_CONTNIUE_BUTTON = "YUNIVERSAL_CONTNIUE_BUTTON"
 export const GP_CONTINUE = "GP_CONTINUE"
+export const ADD_BENEFICIARY = "ADD_BENEFICIARY"
 export const CALM_BUTTON = "CALM_BUTTON"
 export const HEADSPACE_BUTTON = "HEADSPACE_BUTTON"
 
@@ -77,6 +78,8 @@ export const WELCOME_MODAL = (heading: string) => `WELCOME_MODAL${heading}`
 // text
 export const STATS_TITLE = (title: string) => `STATS_TITLES_${title}`
 export const CHALLENGE_TILE = (text: string) => `CHALLENGE_TILE_${text}`
+export const VALUE_DESCRIPTION = (value:any, description:string) => `VALUE_DESCRIPTION_${value}_${description}`
+export const TEXT_TEMPLATE = (copy:string) => `TEXT_TEMPLATE_${copy}`
 
 // reward purchased
 export const WEGIFT_CONFIRMED = "WEGIFT_CONFIRMED"
@@ -112,6 +115,16 @@ export const EARN_RATE_TABLE = "EARN_RATE_TABLE"
 export const YUCOIN_POWER = (powerNum: string) => `YUCOIN_POWER_${powerNum}`
 export const AVATAR_ITEM = (label:string, status:string) => `AVATAR_ITEM_${label}_${status}`
 export const YUSCREEN_SCROLL_VIEW = "YUSCREEN_SCROLL_VIEW"
+export const YUSCREEN_V3 = (onYuscreenV3:boolean) => `YUSCREEN_V3_${onYuscreenV3}`
+export const PRODUCT_TOOL_TIP = (coverType:string, toolTipName:string, benefitValue:string, earnRate:number) => `PRODUCT_TOOL_TIP_${coverType}_${toolTipName}_${benefitValue}_${earnRate}`
+
+// PRODUCT DETAILS
+export const PRODUCT_DETAILS_SCROLL_VIEW = "PRODUCT_DETAILS_SCROLL_VIEW"
+
+// CERTIFICATE
+export const CERTIFICATE_SCROLL_VIEW = "CERTIFICATE_SCROLL_VIEW"
+export const CERTIFICATE_KEY_VALUES = (key:string, value:string) => `CERTIFICATE_KEY_VALUES_${key}_${value}`
+
 
 // AVATAR BUILDER
 export const BODY_ITEM_TITLE = (title: string) => `BODY_ITEM_TITLE_${title}`

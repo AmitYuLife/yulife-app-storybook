@@ -6,6 +6,7 @@ import { BUTTON_ICON } from "@atoms/button/tertiary-button/tertiary-button.helpe
 import { Navigation } from "react-native-navigation";
 import { MODALS } from "@navigation/constants";
 import ProductDetailsModal from "../product-details.modal";
+import { TEXT_TEMPLATE } from "@ids";
 
 interface Props {
   modalProps: React.ComponentProps<typeof ProductDetailsModal>;
@@ -15,7 +16,9 @@ export const Documents = ({ modalProps }: Props) =>
   !modalProps ? null : (
     <>
       <View style={styles.headingWrapper}>
-        <TextTemplate type="h2">Documents</TextTemplate>
+        <TextTemplate type="h2" testID={TEXT_TEMPLATE("Documents")}>
+          Documents
+        </TextTemplate>
       </View>
       <View style={styles.buttonWrapper}>
         <TertiaryButton

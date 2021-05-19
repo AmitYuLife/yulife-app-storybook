@@ -2,6 +2,7 @@ import React from "react";
 import { View, StyleSheet, ViewStyle } from "react-native";
 import { TextTemplate } from "@atoms";
 import { Style } from "@styles";
+import { CERTIFICATE_KEY_VALUES } from "@ids";
 
 interface Pair {
   label: string;
@@ -14,7 +15,7 @@ interface Props {
 export const ContentKeyValues = ({ pairs }: Props) => (
   <View style={styles.wrapper}>
     {pairs.map((pair, index) => (
-      <View key={index} style={styles.pair}>
+      <View key={index} style={styles.pair} testID={CERTIFICATE_KEY_VALUES(pair.label, pair.value)}>
         <View style={styles.flexLeft}>
           <TextTemplate type="b2">{pair.label}</TextTemplate>
         </View>

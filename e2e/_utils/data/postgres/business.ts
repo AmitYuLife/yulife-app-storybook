@@ -1,5 +1,7 @@
-import { generateRandomMongoId, IDatabaseItem } from "@yu-life/yulife-bdd-framework";
+import { generateRandomMongoId, generateRandomPostgresId, IDatabaseItem } from "@yu-life/yulife-bdd-framework";
 
+const type = "postgres"
+const modelName = "business"
 
 export const BUSINESS_ACCOUNT_1 = {
     type: "postgres",
@@ -50,5 +52,51 @@ export const BUSINESS_ACCOUNT_2 = {
         email_template: null,
         archived: false,
         rate_table_version: '2020-01-24T00:00:00Z'
+    }
+} as IDatabaseItem
+
+export const BUSINESS_ACCOUNT_3 = {
+    type: "postgres",
+    modelName: "business",
+    data:{
+        business_account_id:generateRandomMongoId(),
+        business_account_name: "Pawnee Council",
+        product_type: "Instant Group",
+        coupon: null,
+        yu_doctor: null,
+        insurance_monthly_payment: null,
+        status: null,
+        hubspot_id: '98765432',
+        employees_insured: null,
+        trust: null,
+        assumed_age: null,
+        created_at: '2021-01-05T16:51:26Z',
+        created_by_id: '0.49.0',
+        modified_at: '2021-01-05T17:51:26Z',
+        email_template: null,
+        archived: false,
+    }
+} as IDatabaseItem
+
+export const BUSINESS_ACCOUNT_4 = {
+    type,
+    modelName,
+    data:{
+        business_account_id: generateRandomMongoId(),
+        business_account_name: "Justice League",
+        product_type: "Group",
+        coupon: null,
+        yu_doctor: null,
+        insurance_monthly_payment: null,
+        status: null,
+        hubspot_id: '98765432',
+        employees_insured: null,
+        trust: null,
+        assumed_age: null,
+        created_at: '2020-02-02T16:51:26Z',
+        created_by_id: '0.49.0',
+        modified_at: '2020-03-02T17:51:26Z',
+        email_template: null,
+        archived: false,
     }
 } as IDatabaseItem

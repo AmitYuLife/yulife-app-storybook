@@ -13,6 +13,7 @@ import { Stamp } from "./subcomponents/stamp";
 import media from "@styles/media";
 import ProductDetailsModal from "./product-details.modal";
 import { Beneficiaries } from "./subcomponents/beneficiaries";
+import { PRODUCT_DETAILS_SCROLL_VIEW } from "@ids";
 
 type ProductDetailsModalProps = React.ComponentProps<typeof ProductDetailsModal>;
 
@@ -43,7 +44,11 @@ export const ProductDetailsScreen = memo((props: Props) => {
   return (
     <View style={styles.wrapper}>
       <GenericHeadingPad />
-      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scroll}>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={styles.scroll}
+        testID={PRODUCT_DETAILS_SCROLL_VIEW}
+      >
         <View style={styles.topPadding} />
         <Card {...props} />
         <Documents modalProps={modalProps} />
