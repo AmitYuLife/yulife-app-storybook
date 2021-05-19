@@ -2,6 +2,7 @@ import React from "react";
 import { StyleSheet, ViewStyle, TextStyle, View, Platform } from "react-native";
 import { Text, TextTemplate } from "@atoms";
 import { Style, Colours } from "@styles";
+import { VALUE_DESCRIPTION } from "@ids";
 
 interface Props {
   value: string;
@@ -33,7 +34,7 @@ export const ValueDescription = (props: Props) => {
   const { valueStyle, descriptionStyle } = getStyle(type);
 
   return (
-    <View style={StyleSheet.flatten([styles.wrapper, style])}>
+    <View style={StyleSheet.flatten([styles.wrapper, style])} testID={VALUE_DESCRIPTION(value, description)}>
       <Text bold={true} style={valueStyle}>
         {value}
       </Text>

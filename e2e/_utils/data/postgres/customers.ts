@@ -1,6 +1,10 @@
 import { generateRandomMongoId, IDatabaseItem } from "@yu-life/yulife-bdd-framework";
 import moment = require("moment");
 
+const type = "postgres"
+const modelName = "customer"
+
+
 export const CUSTOMER_1 = {
     type: "postgres",
     modelName: "customer",
@@ -448,6 +452,34 @@ export const CUSTOMER_30 = {
         lastName: "Vance",
         dateOfBirth: moment().subtract(50, "years").toDate(),
         membershipType: "Wellbeing Access",
+        status: "onboarded"
+    }
+} as IDatabaseItem
+
+export const CUSTOMER_31 = {
+    type,
+    modelName,
+    data:{
+        customerId: generateRandomMongoId(),
+        email: "leslie@pawnee.com",
+        firstName: "Leslie",
+        lastName: "Knope",
+        dateOfBirth: moment().subtract(40, "years").toDate(),
+        membershipType: "Wellbeing Access",
+        status: "onboarded"
+    } 
+} as IDatabaseItem
+
+export const CUSTOMER_32 = {
+    type,
+    modelName,
+    data: {
+        customerId: generateRandomMongoId(),
+        email: "supes@jl.com",
+        firstName: "Clark",
+        lastName: "Kent",
+        dateOfBirth: moment().subtract(40, "years").toDate(),
+        membershipType: "Group",
         status: "onboarded"
     }
 } as IDatabaseItem

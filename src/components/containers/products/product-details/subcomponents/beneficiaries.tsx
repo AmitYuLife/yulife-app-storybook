@@ -12,6 +12,7 @@ import {
   GetProductBeneficiaries_getProductBeneficiaries_beneficiaries,
 } from "@graphql/_core/schema";
 import { GQL_QUERY_GET_PRODUCT_BENEFICIARIES } from "@graphql/products/getProductBeneficiaries";
+import { TEXT_TEMPLATE, ADD_BENEFICIARY } from "@ids";
 
 interface IBeneficiariesProps {
   productId: string;
@@ -30,7 +31,9 @@ export const Beneficiaries = ({ productId }: IBeneficiariesProps) => {
 
   return (
     <View style={styles.wrapper}>
-      <TextTemplate type={"h2"}>Beneficiaries</TextTemplate>
+      <TextTemplate type={"h2"} testID={TEXT_TEMPLATE("Beneficiaries")}>
+        Beneficiaries
+      </TextTemplate>
       <View style={styles.description}>
         <TextTemplate type={"b2"} color={Colours.neutral.n700}>
           {description}
@@ -41,6 +44,7 @@ export const Beneficiaries = ({ productId }: IBeneficiariesProps) => {
         <BeneficiariesDetails beneficiaries={beneficiaries} onPress={() => onBeneficiaryPress(productId)} />
       )}
       <SecondaryButton
+        testID={ADD_BENEFICIARY}
         wrapperStyle={styles.buttonWrapper}
         label="Add a beneficiary"
         onPress={() => onAddBeneficiaryPress(productId)}

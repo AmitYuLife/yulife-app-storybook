@@ -1,8 +1,8 @@
 import { INPUT_LOGIN_EMAIL, INPUT_LOGIN_PASSWORD, BUTTON_LOGIN, NAV_BAR } from "@ids";
 import { IDatabaseItem } from "@yu-life/yulife-bdd-framework"
-import { navigateViaID, navigateViaText } from "./common";
+import { completeOnboardingIntro, navigateViaID, navigateViaText } from "./common";
 import { authoriseFitkit } from "@socket";
-import { CUSTOMER_1, AUTH_1 } from "@data";
+import { CUSTOMER_1, AUTH_1, USER_32 } from "@data";
 
 
 export const loginAsUser = (
@@ -80,4 +80,11 @@ export const continueLoginAfterSignupBonus = async()=>{
     await dismissStreakIfVisible()
     await navigateViaText("let’s begin")
     await completeIntro()
+}
+
+export const loginToYuScreen = (skipIntro = true, customer = CUSTOMER_1, auth = AUTH_1) => async () => {
+    await logInAndGoToTab("yu", customer, auth, true)()
+    if (skipIntro === true) {
+        await completeOnboardingIntro()
+    }
 }

@@ -8,11 +8,12 @@ import { TopBarAbsolute } from "@organisms/top-bar/top-bar-absolute";
 
 interface Props {
   children: React.ReactChild;
+  testID?: string;
 }
 
-const _YuScreenLayout = ({ children }: Props) => {
+const _YuScreenLayout = ({ children, testID }: Props) => {
   return (
-    <View style={styles.wrapper}>
+    <View style={styles.wrapper} testID={testID}>
       {children}
       <TopBarAbsolute hasWhiteBackground={true} onPressLeftIcon={openMenu} />
       <NavBar activeIndex={2} />

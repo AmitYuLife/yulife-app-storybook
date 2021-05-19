@@ -5,6 +5,7 @@ import { Style, Colours } from "@styles";
 import FastImage from "react-native-fast-image";
 import { ValueDescription } from "@molecules";
 import { CoverType } from "@graphql/_core/schema/globalTypes";
+import { TEXT_TEMPLATE } from "@ids";
 
 interface Props {
   coverType: CoverType;
@@ -59,7 +60,7 @@ const CardTop = memo(({ coverType, productName, productIconUri }: CardTopProps) 
       <PackageType type={coverType} />
       <View style={cardTopStyles.row}>
         <View style={cardTopStyles.title}>
-          <TextTemplate color={Colours.neutral.white} type="h1">
+          <TextTemplate color={Colours.neutral.white} type="h1" testID={TEXT_TEMPLATE(productName)}>
             {productName}
           </TextTemplate>
         </View>

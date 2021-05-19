@@ -4,7 +4,8 @@ import {
     AVATAR_BODY, PERSONAL_PRODUCT, SURVEY_SCREEN, BUILDER_BODY, PACKAGE_SCREEN, FIB_BROWSE_SCREEN, booleanTextVisible, wait,
 } from "@utils"
 import { scrollFromText, scrollFromID, scrollUntilIdVisible, scrollUntilTextVisible } from "_utils/navigation/scrolling"
-import { EARN_RATE_ROW, EARN_RATE_TABLE, PACKAGE_INFO, SELECTED_PACKAGE_TITLE, SUMMARY_SCROLL_VIEW } from "@ids"
+import { ADD_BENEFICIARY, CERTIFICATE_KEY_VALUES, EARN_RATE_ROW, EARN_RATE_TABLE, PACKAGE_INFO, PRODUCT_DETAILS_SCROLL_VIEW, SELECTED_PACKAGE_TITLE, SUMMARY_SCROLL_VIEW, TEXT_TEMPLATE, VALUE_DESCRIPTION, YUSCREEN_V3 } from "@ids"
+import moment from "moment"
 
 
 export const {
@@ -177,4 +178,51 @@ export const packageScreenCorrect = async () => {
             await expect(element(by.text(i))).toBeVisible()
         }
     }
+}
+
+export const onYuscreenV3 = (customer:any)=> async()=>{
+    const firstName = customer.data.firstName
+    const lastName = customer.data.lastName
+
+    await expect(element(by.text(`${firstName} ${lastName}`))).toBeVisible()
+    await expect(element(by.id(YUSCREEN_V3(true)))).toBeVisible()
+}
+
+export const onProductDetails = (coverType: string, productName: string, benefitValue: string, earnRate: number) => async ()=>{
+    const lumpSum = `x salary as lump sum`
+    const yuCoin = `YuCoin Power`
+
+    const product = TEXT_TEMPLATE(productName)
+    const benefit = VALUE_DESCRIPTION(benefitValue, lumpSum)
+    const power = VALUE_DESCRIPTION(earnRate, yuCoin)
+
+    const documents = TEXT_TEMPLATE("Documents")
+    const beneficiary = TEXT_TEMPLATE("Beneficiaries")
+    const addBeneficiary = ADD_BENEFICIARY
+
+    await expect(element(by.text(coverType))).toBeVisible()
+    await expect(element(by.id(product))).toBeVisible()
+    await expect(element(by.id(benefit))).toBeVisible()
+    await expect(element(by.id(power))).toBeVisible()
+    await expect(element(by.id(documents))).toBeVisible()
+    await expect(element(by.text("Policy Details"))).toBeVisible()
+    await expect(element(by.id(beneficiary))).toBeVisible()
+    await scrollUntilIdVisible(PRODUCT_DETAILS_SCROLL_VIEW, addBeneficiary, "down")()
+    await expect(element(by.id(addBeneficiary))).toBeVisible()
+}
+
+export const onCertificate = (productName: string, benefitValue: string, customer:any, customerGroupPol:any, business:any, businessEmployee:any) => async()=>{
+    const salary = `${benefitValue}x salary as lump sum`
+    const customerName = `${customer.data.firstName} ${customer.data.lastName}`
+    const companyName = business.data.business_account_name
+    const policyNumber = customerGroupPol.data.business_product_id
+    const dateJoined = moment(businessEmployee.data.invite_date).format("DD/MM/YY")
+
+    await expect(element(by.text(productName))).toBeVisible()
+    await expect(element(by.text(salary))).toBeVisible()
+
+    await expect(element(by.id(CERTIFICATE_KEY_VALUES("Client name", customerName)))).toBeVisible()
+    await expect(element(by.id(CERTIFICATE_KEY_VALUES("Company name", companyName)))).toBeVisible()
+    await expect(element(by.id(CERTIFICATE_KEY_VALUES("Policy number", policyNumber)))).toBeVisible()
+    await expect(element(by.id(CERTIFICATE_KEY_VALUES("Date joined", dateJoined)))).toBeVisible()
 }
