@@ -236,7 +236,7 @@ export const data: UnderwritingJourneyScreen[] = [
     icon: NAME_ICON,
     title: "Intro",
     question: "",
-    firstButton: { label: "Continue", actionId: FIB_INTRO_YUGI },
+    firstButton: { label: "Let’s go!", actionId: FIB_INTRO_YUGI },
     previousButton: { actionId: FIB_BROWSE },
     linkButton: { label: "Privacy policy", actionId: ACTION_OPEN_PRIVACY_LINK },
     children: [{ type: "copyIntro" }],

@@ -105,6 +105,7 @@ const _InputField = (props: InputFieldProps) => {
           placeholder={inlineLabel}
           placeholderTextColor={Colours.neutral.n400}
           selectionColor={Colours.primary.p200}
+          returnKeyType="done"
         />
       </View>
       {!sideLabel ? null : (
