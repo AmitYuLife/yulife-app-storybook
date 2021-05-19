@@ -27,6 +27,7 @@ import { MODALS } from "@navigation/constants";
 import { FibGPDoctorSelect } from "@screens/products/fib/underwriting-journey/subcomponents/gp-details/fib.gp-doctor.screen";
 import { ISearchItem } from "@atoms/search/search-item";
 import GPIntro from "@components/screens/products/fib/underwriting-journey/subcomponents/gp-details/fib.gp-intro";
+import { useBackHandler } from "@services/hooks/useBackHandler";
 interface IFibGPDetailsContainerProps {
   navigation: FibLocalNavigation;
 }
@@ -64,6 +65,11 @@ const FibGPDetailsContainer = memo(function (props: IFibGPDetailsContainerProps 
     },
     [setGPView, navigation]
   );
+
+  useBackHandler(() => {
+    handleBack();
+    return true;
+  });
 
   const onContinueConsentScreen = useCallback(() => {
     setView("medical_practice_search");
