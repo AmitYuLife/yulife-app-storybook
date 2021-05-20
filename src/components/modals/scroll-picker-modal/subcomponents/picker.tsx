@@ -1,20 +1,12 @@
-import React, { useEffect, useRef } from "react";
-import {
-  ScrollView,
-  Animated,
-  StyleSheet,
-  ViewStyle,
-  NativeScrollEvent,
-  NativeSyntheticEvent,
-  View,
-} from "react-native";
-import { getInactiveTextOpacityValue, getActiveTextOpacityValue } from "../scroll-picker.animation";
+import React, { memo, useEffect, useRef } from "react";
+import { Animated, StyleSheet, ViewStyle, NativeScrollEvent, NativeSyntheticEvent, View, FlatList } from "react-native";
 import { ITEM_HEIGHT, WRAPPER_HEIGHT } from "../scroll-picker.styles";
-import { ItemText, Wrapper } from "./item-text";
 import { Overlays } from "./overlays";
 import { Style } from "@styles";
-import { Placeholder } from "./placeholder";
-import { Item } from "../scroll-picker-modal";
+import { renderItem } from "../flatlist-utils/renderItem";
+import { IListItem, LIST_ITEM, Item } from "../flatlist-utils/types";
+import { getItemLayout } from "../flatlist-utils/getItemLayout";
+import { keyExtractor } from "../flatlist-utils/keyExtractor";
 
 const ANDROID_SAFEGUARD = 0.01;
 
@@ -23,8 +15,8 @@ interface Props {
   onIndexChange: (value: number) => void;
   defaultIndex: number;
 }
-export const Picker = ({ items = [], onIndexChange, defaultIndex = 0 }: Props) => {
-  const listRef = useRef<ScrollView>(null);
+export const Picker = memo(({ items = [], onIndexChange, defaultIndex = 0 }: Props) => {
+  const listRef = useRef<FlatList>(null);
   const scrollY = useRef(new Animated.Value(0));
   const scrollToDefaultIndexDelay = useRef(null);
 
@@ -32,7 +24,7 @@ export const Picker = ({ items = [], onIndexChange, defaultIndex = 0 }: Props) =
     onIndexChange(defaultIndex);
 
     scrollToDefaultIndexDelay.current = setTimeout(() => {
-      listRef.current.scrollTo({ y: defaultIndex * ITEM_HEIGHT, animated: false });
+      listRef.current.scrollToIndex({ index: defaultIndex, animated: false });
     }, 0);
 
     return () => clearTimeout(scrollToDefaultIndexDelay.current);
@@ -71,17 +63,19 @@ export const Picker = ({ items = [], onIndexChange, defaultIndex = 0 }: Props) =
     }
 
     const activeIndex = handleSwipe(event);
-    listRef.current.scrollTo({ y: activeIndex * ITEM_HEIGHT });
+    listRef.current.scrollToIndex({ index: activeIndex });
   };
 
   const handleMomentumScrollEnd = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
     const activeIndex = handleSwipe(event);
-    listRef.current.scrollTo({ y: activeIndex * ITEM_HEIGHT, animated: false });
+    listRef.current.scrollToIndex({ index: activeIndex, animated: false });
   };
+
+  const listData = getListData(items);
 
   return (
     <View style={styles.wrapper}>
-      <Animated.ScrollView
+      <Animated.FlatList
         ref={listRef}
         scrollEventThrottle={16}
         onScrollEndDrag={handleScrollEndDrag}
@@ -89,29 +83,15 @@ export const Picker = ({ items = [], onIndexChange, defaultIndex = 0 }: Props) =
         onMomentumScrollEnd={handleMomentumScrollEnd}
         showsVerticalScrollIndicator={false}
         style={styles.scrollWrapper}
-      >
-        <Placeholder />
-        {items.map((item: Item, index: number) => (
-          <Wrapper key={index}>
-            <ItemText
-              opacity={getInactiveTextOpacityValue({ scrollY: scrollY.current, index, itemHeight: ITEM_HEIGHT })}
-            >
-              {item.label}
-            </ItemText>
-            <ItemText
-              opacity={getActiveTextOpacityValue({ scrollY: scrollY.current, index, itemHeight: ITEM_HEIGHT })}
-              active={true}
-            >
-              {item.label}
-            </ItemText>
-          </Wrapper>
-        ))}
-        <Placeholder />
-      </Animated.ScrollView>
+        getItemLayout={getItemLayout}
+        data={listData}
+        renderItem={renderItem({ scrollY: scrollY.current })}
+        keyExtractor={keyExtractor}
+      />
       <Overlays />
     </View>
   );
-};
+});
 
 const styles = StyleSheet.create({
   wrapper: {
@@ -124,3 +104,18 @@ const styles = StyleSheet.create({
     height: WRAPPER_HEIGHT,
   } as ViewStyle,
 });
+
+const getListData = (items: Props["items"]) => {
+  const list: IListItem[] = [{ type: LIST_ITEM.PLACEHOLDER, data: "top" }];
+
+  for (const item of items) {
+    list.push({
+      type: LIST_ITEM.ITEM,
+      data: item,
+    });
+  }
+
+  list.push({ type: LIST_ITEM.PLACEHOLDER, data: "bottom" });
+
+  return list;
+};

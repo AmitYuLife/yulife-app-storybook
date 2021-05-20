@@ -5,11 +5,8 @@ import { Picker } from "./subcomponents/picker";
 import { Buttons } from "./subcomponents/buttons";
 import { Colours, Style } from "@styles";
 import { TouchableOpacityWithDelay } from "@components/molecules";
+import { Item } from "./flatlist-utils/types";
 
-export interface Item {
-  label: string;
-  value: any;
-}
 interface IPicker {
   items: Item[];
   onIndexChange: (index: number) => void;
