@@ -3,7 +3,7 @@ import { GQL_MUTATION_LOGIN_USER, LoginUserMutationTuple } from "@graphql/user";
 import { bottomTabs, ROUTES } from "@navigation/constants";
 import { setAuthenticatedRoot } from "@navigation/root";
 import { TOKEN_EXPIRATION, SESSION_EXPIRED_ERROR } from "@services/constants";
-import { FitKitAvailable } from "@services/fitkit/fitkit.service";
+import { useFitKit } from "@services/fitkit/fitkit.hooks";
 import { Style } from "@styles/index";
 import React, { useState, useCallback, useMemo } from "react";
 import { Keyboard, Platform } from "react-native";
@@ -40,6 +40,7 @@ const LoginContainer: React.FC<Props> = ({
   hasSessionExpiredError = false,
 }) => {
   const dispatch = useDispatch();
+  const { authorised: fitkitAuthorised, loading: fitkitLoading } = useFitKit();
   const [isUsingOtp, setIsUsingOtp] = useState(otp && otp.length > 10);
   const [email, setEmail] = useState(isUsingOtp ? incomingEmail : "");
   const [emailError, setEmailError] = useState("");
@@ -151,35 +152,29 @@ const LoginContainer: React.FC<Props> = ({
     setSessionExpiredError("");
   }, []);
 
-  return (
-    <FitKitAvailable>
-      {({ authorised, loading: fitkitLoading }) => {
-        // checking for !fitkitLoading to wait until authorised will be assigned,
-        // otherwise it will be assigned with undefined
-        // that will lead to infinite loading on FitKitConnect screen.
-        if (isUsingOtp && !fitkitLoading && !wasLoginCalled) {
-          setWasLogginCalled(true);
-          onLogIn(authorised);
-        }
+  // checking for !fitkitLoading to wait until authorised will be assigned,
+  // otherwise it will be assigned with undefined
+  // that will lead to infinite loading on FitKitConnect screen.
+  if (isUsingOtp && !fitkitLoading && !wasLoginCalled) {
+    setWasLogginCalled(true);
+    onLogIn(fitkitAuthorised);
+  }
 
-        return (
-          <LoginScreen
-            disabled={!isFormValid || wasLoginCalled}
-            email={email}
-            emailError={emailError}
-            isLoggingIn={loading || wasLoginCalled}
-            loginError={(error && trimGraphQLError(error.message)) || sessionExpiredError}
-            onEmailChange={onEmailChange}
-            onResetPasswordPress={onResetPassword}
-            onLogInPress={() => onLogIn(authorised)}
-            onPasswordChange={onPasswordChange}
-            password={password}
-            passwordError={passwordError}
-            copy={copy}
-          />
-        );
-      }}
-    </FitKitAvailable>
+  return (
+    <LoginScreen
+      disabled={!isFormValid || wasLoginCalled}
+      email={email}
+      emailError={emailError}
+      isLoggingIn={loading || wasLoginCalled}
+      loginError={(error && trimGraphQLError(error.message)) || sessionExpiredError}
+      onEmailChange={onEmailChange}
+      onResetPasswordPress={onResetPassword}
+      onLogInPress={() => onLogIn(fitkitAuthorised)}
+      onPasswordChange={onPasswordChange}
+      password={password}
+      passwordError={passwordError}
+      copy={copy}
+    />
   );
 };
 

@@ -2,7 +2,7 @@ import { IntroContainer } from "@containers/index";
 import { MODALS } from "@navigation/constants";
 import { IMainTabsProps, labels } from "@navigation/root";
 import { getShowIntro } from "@redux/onboarding/onboarding.selectors";
-import { FitKitAvailable, FitKitAvailableChildrenProps } from "@services/fitkit/fitkit.service";
+import { useFitKit } from "@services/fitkit/fitkit.hooks";
 import React, { memo } from "react";
 import { Navigation } from "react-native-navigation";
 import { useDispatch, useSelector } from "react-redux";
@@ -31,6 +31,7 @@ function navigateToTodayYuCoin() {
 
 function _DailyStepsContainer({ componentId, onLeftMenuPress }: Props) {
   const dispatch = useDispatch();
+  const fitkit = useFitKit();
 
   const features = useSelector(getUserFeatures);
   const isFetching = useSelector(getDailyStepsIsFetching);
@@ -44,40 +45,35 @@ function _DailyStepsContainer({ componentId, onLeftMenuPress }: Props) {
 
   useTapBackTwiceToExit(componentId);
 
-  return (
-    <FitKitAvailable>
-      {(fitkit: FitKitAvailableChildrenProps) => {
-        const shouldDisplaySurge = features.showSurge;
-        if (showIntro || surgeIntro.visibility) {
-          return (
-            <FitkitContext.Provider value={fitkit}>
-              <IntroContainer
-                shouldDisplaySurge={shouldDisplaySurge}
-                isLoading={isFetching || fitkit.loading}
-                onCoinPress={navigateToTodayYuCoin}
-                onLeftMenuPress={onLeftMenuPress}
-                theme={theme}
-                showIntro={showIntro}
-                surgeIntro={surgeIntro}
-                isShowingPassiveMeditation={features.usePassiveMeditation}
-              />
-            </FitkitContext.Provider>
-          );
-        }
+  const shouldDisplaySurge = features.showSurge;
 
-        return (
-          <FitkitContext.Provider value={fitkit}>
-            <DailyStepsScreen
-              onCoinPress={navigateToTodayYuCoin}
-              theme={theme}
-              onLeftMenuPress={onLeftMenuPress}
-              fitKitAvailable={fitkit.available}
-              hasPermission={fitkit.authorised}
-            />
-          </FitkitContext.Provider>
-        );
-      }}
-    </FitKitAvailable>
+  if (showIntro || surgeIntro.visibility) {
+    return (
+      <FitkitContext.Provider value={fitkit}>
+        <IntroContainer
+          shouldDisplaySurge={shouldDisplaySurge}
+          isLoading={isFetching || fitkit.loading}
+          onCoinPress={navigateToTodayYuCoin}
+          onLeftMenuPress={onLeftMenuPress}
+          theme={theme}
+          showIntro={showIntro}
+          surgeIntro={surgeIntro}
+          isShowingPassiveMeditation={features.usePassiveMeditation}
+        />
+      </FitkitContext.Provider>
+    );
+  }
+
+  return (
+    <FitkitContext.Provider value={fitkit}>
+      <DailyStepsScreen
+        onCoinPress={navigateToTodayYuCoin}
+        theme={theme}
+        onLeftMenuPress={onLeftMenuPress}
+        fitKitAvailable={fitkit.available}
+        hasPermission={fitkit.authorised}
+      />
+    </FitkitContext.Provider>
   );
 }
 
