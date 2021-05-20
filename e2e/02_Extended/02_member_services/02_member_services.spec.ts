@@ -1,130 +1,52 @@
-import { Feature, Scenario, Given, When, Then, FeatureOnly, ScenarioOnly } from "@yu-life/yulife-bdd-framework";
+import { Feature, Scenario, Given, When, Then, FeatureOnly, ScenarioOnly, ScenarioSkip } from "@yu-life/yulife-bdd-framework";
 import * as scenario from "./_steps/scenario"
 import * as given from "./_steps/given"
 import * as when from "./_steps/when"
 import * as then from "./_steps/then"
-import {
-    CUSTOMER_3, AUTH_3, CUSTOMER_5, AUTH_5, CUSTOMER_6, AUTH_6, CUSTOMER_10, AUTH_10, CUSTOMER_12,
-    AUTH_12, CUSTOMER_13, AUTH_13, CUSTOMER_18, AUTH_18, CUSTOMER_20, AUTH_20, CUSTOMER_22, AUTH_23,
-    CUSTOMER_23, AUTH_22, CUSTOMER_ALPHA, AUTH_ALPHA
-} from "@data";
-import { MENU_ICON, MENU_ITEM, YUMATTER_SCREEN, SMART_HEALTH_SCREEN } from "@ids";
+import { CUSTOMER_3, AUTH_3 } from "@data";
+import { MENU_ICON, MENU_ITEM, WELLBEING_HUB_SCREEN, BACK_BUTTON, TEXT_TEMPLATE, MORE_INFO_BUTTON } from "@ids";
 
 
-Feature("Member services should be restricted for certain users", async () => {
-
-    Scenario("I can view the member services screen as a yulife user", scenario.start, async () => {
+Feature("Wellbeing Hub should be restricted for certain users", async () => {
+    Scenario("I can view the Wellbeing Hub screen as a yulife user", scenario.start, async () => {
         Given("I login as a grouplife user", given.loginAsUser(CUSTOMER_3, AUTH_3), async () => {
             When("I go to settings", when.tapID(MENU_ICON), async () => {
-                Then("I should see member services", then.idVisible(MENU_ITEM("member services")))
-                When("I tap member services", when.tapID(MENU_ITEM("member services")), async () => {
-                    Then("I should be on the yumatter screen", then.idVisible(YUMATTER_SCREEN))
-                    When("I tap the smart health tab", when.tapText("Smart Health"), async () => {
-                        Then("I should be on the smart health tab", then.idVisible(SMART_HEALTH_SCREEN))
+                Then("I should see Wellbeing Hub", then.idVisible(MENU_ITEM("Wellbeing Hub")))
+                When("I tap Wellbeing Hub", when.tapID(MENU_ITEM("Wellbeing Hub")), async () => {
+                    Then("I should be on the Wellbeing Hub screen", then.idVisible(WELLBEING_HUB_SCREEN))
+                    Then("I should see all Wellbeing Hub services", then.wellbeingServiceVisible)
+                    When("I tap the smart health tab", when.tapID(TEXT_TEMPLATE("Smart Health")), async () => {
+                        Then("I should be on the smart health tab", then.textVisible("What is Smart Health?"))
+                        When("I tap to go back to Wellbeing Hub", when.tapID(BACK_BUTTON), async () => {
+                            Then("I should be on the Wellbeing Hub screen", then.idVisible(WELLBEING_HUB_SCREEN))
+                            When("I tap the YuMatter tab", when.tapID(TEXT_TEMPLATE("YuMatter")), async () => {
+                                Then("I should be on the YuMatter screen", then.textVisible("How does it work?"))
+                                When("I tap to go back to Wellbeing Hub", when.tapID(BACK_BUTTON), async () => {
+                                    Then("I should be on the Wellbeing Hub screen", then.idVisible(WELLBEING_HUB_SCREEN))
+                                    When("I tap the Beam tab", when.tapID(TEXT_TEMPLATE("Beam")), async () => {
+                                        Then("I should be on the Beam screen", then.idVisible(MORE_INFO_BUTTON("Donate to Beam")))
+                                        When("I tap to go back to Wellbeing Hub", when.tapID(BACK_BUTTON), async () => {
+                                            Then("I should be on the Wellbeing Hub screen", then.idVisible(WELLBEING_HUB_SCREEN))
+                                            When("I tap the HiBob tab", when.tapID(TEXT_TEMPLATE("HiBob")), async () => {
+                                                Then("I should be on the HiBob screen", then.idVisible(MORE_INFO_BUTTON("Access HiBob")))
+                                                When("I tap to go back to Wellbeing Hub", when.tapID(BACK_BUTTON), async () => {
+                                                    Then("I should be on the Wellbeing Hub screen", then.idVisible(WELLBEING_HUB_SCREEN))
+                                                    When("I tap the More Happi tab", when.tapID(TEXT_TEMPLATE("More Happi")), async () => {
+                                                        Then("I should be on the More Happi screen", then.idVisible(MORE_INFO_BUTTON("Access More Happi")))
+                                                        When("I tap to go back to Wellbeing Hub", when.tapID(BACK_BUTTON), async () => {
+                                                            Then("I should be on the Wellbeing Hub screen", then.idVisible(WELLBEING_HUB_SCREEN))
+                                                        })
+                                                    })
+                                                })
+                                            })
+                                        })
+                                    })
+                                })
+                            })
+                        })
                     })
                 })
             })
         })
     })
-
-    Scenario("I can view the member services screen as a grouplife user", scenario.start, async () => {
-        Given("I login as a grouplife user", given.loginAsUser(CUSTOMER_5, AUTH_5), async () => {
-            When("I go to settings", when.tapID(MENU_ICON), async () => {
-                Then("I should see member services", then.idVisible(MENU_ITEM("member services")))
-                When("I tap member services", when.tapID(MENU_ITEM("member services")), async () => {
-                    Then("I should be on the yumatter screen", then.idVisible(YUMATTER_SCREEN))
-                    When("I tap the smart health tab", when.tapText("Smart Health"), async () => {
-                        Then("I should be on the smart health tab", then.idVisible(SMART_HEALTH_SCREEN))
-                    })
-                })
-            })
-        })
-    })
-
-    Scenario("I can't view the member services screen as an alpha user", scenario.start, async () => {
-        Given("I login as a alpha user", given.loginAsUser(CUSTOMER_ALPHA, AUTH_ALPHA), async () => {
-            When("I go to settings", when.tapID(MENU_ICON), async () => {
-                Then("I should not see member services", then.idNotVisible(MENU_ITEM("member services")))
-            })
-        })
-    })
-
-    Scenario("I cannot view member services as a group life user if the toggle is off", scenario.start, async () => {
-        Given("I login as a grouplife user", given.loginAsUser(CUSTOMER_10, AUTH_10), async () => {
-            When("I go to settings", when.tapID(MENU_ICON), async () => {
-                Then("I should not see member services", then.idNotVisible(MENU_ITEM("member services")))
-
-            })
-        })
-    })
-
-    Scenario("I cannot view member services as a yulife user if the toggle is off", scenario.start, async () => {
-        Given("I login as a grouplife user", given.loginAsUser(CUSTOMER_12, AUTH_12), async () => {
-            When("I go to settings", when.tapID(MENU_ICON), async () => {
-                Then("I should not see member services", then.idNotVisible(MENU_ITEM("member services")))
-            })
-        })
-    })
-
-    Scenario("I can only view the yumatter sceen on member services if toggled as such", scenario.start, async () => {
-        Given("I login as a grouplife user", given.loginAsUser(CUSTOMER_13, AUTH_13), async () => {
-            When("I go to settings", when.tapID(MENU_ICON), async () => {
-                Then("I should see member services", then.idVisible(MENU_ITEM("member services")))
-                When("I tap member services", when.tapID(MENU_ITEM("member services")), async () => {
-                    Then("I should be on the yumatter screen", then.idVisible(YUMATTER_SCREEN))
-                    Then("I should not see the smart health tab", then.textNotVisible("SmartHealth"))
-                })
-            })
-        })
-    })
-
-    Scenario("I can only view the SmartHealth sceen on member services if toggled as such", scenario.start, async () => {
-        Given("I login as a grouplife user", given.loginAsUser(CUSTOMER_18, AUTH_18), async () => {
-            When("I go to settings", when.tapID(MENU_ICON), async () => {
-                Then("I should see member services", then.idVisible(MENU_ITEM("member services")))
-                When("I tap member services", when.tapID(MENU_ITEM("member services")), async () => {
-                    Then("I should be on the yumatter screen", then.idVisible(SMART_HEALTH_SCREEN))
-                    Then("I should not see the smart health tab", then.textNotVisible("YuMatter"))
-                })
-            })
-        })
-    })
-
-
-
-    Scenario("I cannot view member services as a Wellbeing Access user if the toggle is off", scenario.start, async () => {
-        Given("I login as a Wellbeing Access user", given.loginAsUser(CUSTOMER_20, AUTH_20), async () => {
-            When("I go to settings", when.tapID(MENU_ICON), async () => {
-                Then("I should not see member services", then.idNotVisible(MENU_ITEM("member services")))
-            })
-        })
-    })
-
-    Scenario("I can only view the yumatter sceen on member services if toggled as such as a Wellbeing Access user", scenario.start, async () => {
-        Given("I login as a Wellbeing Access user", given.loginAsUser(CUSTOMER_22, AUTH_22), async () => {
-            When("I go to settings", when.tapID(MENU_ICON), async () => {
-                Then("I should see member services", then.idVisible(MENU_ITEM("member services")))
-                When("I tap member services", when.tapID(MENU_ITEM("member services")), async () => {
-                    Then("I should be on the yumatter screen", then.idVisible(YUMATTER_SCREEN))
-                    Then("I should not see the smart health tab", then.textNotVisible("SmartHealth"))
-                })
-            })
-        })
-    })
-
-    Scenario("I can only view the SmartHealth sceen on member services if toggled as such as a Wellbeing Access user", scenario.start, async () => {
-        Given("I login as a Wellbeing Access user", given.loginAsUser(CUSTOMER_23, AUTH_23), async () => {
-            When("I go to settings", when.tapID(MENU_ICON), async () => {
-                Then("I should see member services", then.idVisible(MENU_ITEM("member services")))
-                When("I tap member services", when.tapID(MENU_ITEM("member services")), async () => {
-                    Then("I should be on the yumatter screen", then.idVisible(SMART_HEALTH_SCREEN))
-                    Then("I should not see the smart health tab", then.textNotVisible("YuMatter"))
-                })
-            })
-        })
-    })
-
-
-
-
 })

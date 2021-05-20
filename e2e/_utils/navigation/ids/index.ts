@@ -31,6 +31,7 @@ export const WEGIFT_DETAILS = "WEGIFT_DETAILS"
 export const YUNITY_REACHED = (yunityNum:number) => `YUNITY_REACHED_${yunityNum}`
 export const YUNITY_HEADER = (levelName:string) => `YUNITY_HEADER_${levelName}`
 export const SCROLLABLE_LAYOUT = "SCROLLABLE_LAYOUT"
+export const WELLBEING_HUB_SCREEN = "WELLBEING_HUB_SCREEN"
 
 
 // buttons
@@ -214,3 +215,7 @@ export const FEEDBACK_FORM_QUESTION =(question:string) => `FEEDBACK_FORM_QUESTIO
 export const SLIDER_INPUT = (index:number) => `FEEDBACK_FORM_RATING_${index}`
 export const SLIDER_LABEL = (label:string) => `SLIDER_LABEL_${label}`
 export const FEEDBACK_TEXT_INPUT = "FEEDBACK_TEXT_INPUT"
+
+// WELLBEING HUB
+export const WELLBEING_HUB_SCROLL_VIEW = "WELLBEING_HUB_SCROLL_VIEW"
+export const MORE_INFO_BUTTON = (copy: string) => `MORE_INFO_BUTTON_${copy}`

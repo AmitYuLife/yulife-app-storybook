@@ -11,9 +11,10 @@ interface IProps {
   iconUri?: string;
   uri: string;
   metaData: Record<string, string>;
+  testID?: string;
 }
 
-export const ContentItemButton = memo(({ label, iconUri, uri, metaData }: IProps) => {
+export const ContentItemButton = memo(({ label, iconUri, uri, metaData, testID }: IProps) => {
   const onButtonPress = useCallback(async () => {
     try {
       Logger.logMixpanelEvent("wellbeing_item_button_pressed", {
@@ -28,7 +29,7 @@ export const ContentItemButton = memo(({ label, iconUri, uri, metaData }: IProps
   }, [metaData, label, uri]);
 
   return (
-    <View style={styles.wrapper}>
+    <View style={styles.wrapper} testID={testID}>
       <TertiaryButton size={"Fill"} label={label} onPress={onButtonPress} height={Style.adjust(60)} iconUri={iconUri} />
       {/* This is a temp fix until we merge the new button refactor */}
       <View style={styles.rightIcon}>

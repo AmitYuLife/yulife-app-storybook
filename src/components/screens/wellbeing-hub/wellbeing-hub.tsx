@@ -9,6 +9,7 @@ import WellBeingServiceCardSkeleton from "@components/screens/wellbeing-hub/sub-
 import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
 import { GetWellbeingHubItems_wellbeingHubItems as WellbeingCard } from "@graphql/_core/schema";
 import WellBeingServiceNoResults from "@components/screens/wellbeing-hub/sub-components/wellbeing-service-no-results";
+import { TEXT_TEMPLATE, WELLBEING_HUB_SCREEN, WELLBEING_HUB_SCROLL_VIEW } from "@ids";
 
 interface IProps {
   loading: boolean;
@@ -23,14 +24,14 @@ const WellBeingHub: FC<IProps> = ({ loading, userFirstName, cards, handleClose }
   }
 
   return (
-    <View style={styles.flex}>
+    <View style={styles.flex} testID={WELLBEING_HUB_SCREEN}>
       <GenericHeadingPad />
-      <ScrollView showsVerticalScrollIndicator={false}>
+      <ScrollView showsVerticalScrollIndicator={false} testID={WELLBEING_HUB_SCROLL_VIEW}>
         <View style={styles.wrapper}>
           {loading ? null : (
             <View style={styles.container}>
               <View style={styles.infoWrapper}>
-                <TextTemplate type="h3">{`Hi ${userFirstName}!`}</TextTemplate>
+                <TextTemplate type="h3" testID={TEXT_TEMPLATE(userFirstName)}>{`Hi ${userFirstName}!`}</TextTemplate>
                 <View style={styles.description}>
                   <TextTemplate type="b2">
                     Welcome to this quick-access hub to all your company’s wellbeing benefits.
