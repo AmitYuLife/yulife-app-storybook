@@ -12,8 +12,11 @@ import { FeedbackFormQuestionType } from "./globalTypes";
 export interface PendingPromptsForm_pendingAppStoreReview {
   __typename: "AppStoreReviewPrompt";
   id: string;
+  image: string;
   title: string;
   body: string;
+  rejectedTitle: string;
+  rejectedBody: string;
   showAfterEvent: string | null;
   showAfterSeconds: number;
 }

@@ -33,7 +33,7 @@ const AppReviewModal: FC = () => {
   useBackHandler(backHandler);
 
   const [isFirstStateShown, setIsFirstStateShown] = useState(true);
-
+  const { title, body, rejectedTitle, rejectedBody, image } = data?.pendingAppStoreReview;
   const submitAppReview = useCallback(
     async (action: AppStoreReviewPromptAction) => {
       await submitAppReviewAction({
@@ -81,10 +81,8 @@ const AppReviewModal: FC = () => {
     Navigation.dismissModal(MODALS.appReview);
   }, [submitAppReview]);
 
-  const heading = isFirstStateShown ? "Enjoying YuLife?" : "We’re sorry to hear that";
-  const subheading = isFirstStateShown
-    ? "(We’d love to know either way!)"
-    : "We’d love a chance to do better. Would you mind leaving us a few tips?";
+  const heading = isFirstStateShown ? title : rejectedTitle;
+  const subheading = isFirstStateShown ? body : rejectedBody;
   const buttonLabel = isFirstStateShown ? "Yeah!" : "Give feedback";
   const secondButtonLabel = isFirstStateShown ? "Not really" : "No thanks";
 
@@ -98,6 +96,7 @@ const AppReviewModal: FC = () => {
       onPress={onFirstButtonPress}
       onPressSecondary={onSecondButtonPress}
       onAskLaterPress={onAskLaterButtonPress}
+      imageUrl={image}
     />
   );
 };
