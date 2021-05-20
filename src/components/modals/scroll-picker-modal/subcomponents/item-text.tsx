@@ -3,6 +3,7 @@ import { Animated, StyleSheet, TextStyle, View, ViewStyle } from "react-native";
 import { TextTemplate } from "@atoms";
 import { ITEM_HEIGHT } from "../scroll-picker.styles";
 import { Colours } from "@styles";
+import { getActiveTextOpacityValue, getInactiveTextOpacityValue } from "../scroll-picker.animation";
 
 interface Props {
   children: string | number;
@@ -12,7 +13,30 @@ interface Props {
   testID?: string;
 }
 
-export const ItemText = memo(({ children, opacity = new Animated.Value(1), active, testID }: Props) => {
+interface ListItemProps {
+  scrollY: Animated.Value;
+  index: number;
+  label: string;
+}
+
+export const ListItem = memo(({ scrollY, index, label }: ListItemProps) => (
+  <Wrapper>
+    <ItemText
+      opacity={getInactiveTextOpacityValue({
+        scrollY,
+        index: index - 1,
+        itemHeight: ITEM_HEIGHT,
+      })}
+    >
+      {label}
+    </ItemText>
+    <ItemText opacity={getActiveTextOpacityValue({ scrollY, index: index - 1, itemHeight: ITEM_HEIGHT })} active={true}>
+      {label}
+    </ItemText>
+  </Wrapper>
+));
+
+const ItemText = ({ children, opacity = new Animated.Value(1), active, testID }: Props) => {
   const wrapperStyle = active ? styles.itemLabelActiveWrapper : styles.itemWrapper;
 
   return (
@@ -29,11 +53,11 @@ export const ItemText = memo(({ children, opacity = new Animated.Value(1), activ
       </TextTemplate>
     </Animated.View>
   );
-});
+};
 
-export const Wrapper = memo(({ children }: { children: React.ReactElement[] }) => (
+const Wrapper = ({ children }: { children: React.ReactElement[] }) => (
   <View style={styles.itemWrapper}>{children}</View>
-));
+);
 
 const styles = StyleSheet.create({
   itemWrapper: {
