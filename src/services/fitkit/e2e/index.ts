@@ -1,11 +1,7 @@
-export { FitKitTypes } from "@yu-life/react-native-fitkit";
 import { SampleQueryResult, SampleQueryOptions, PedometerResponse } from "@yu-life/react-native-fitkit";
 import service from "@yu-life/react-native-fitkit";
 import moment from "moment";
 import socket from "@services/socket";
-
-// overwrite defaults here
-export { default as FitKitAvailable } from "./fitkit-available";
 
 const steps = [] as PedometerResponse[];
 let sampleQueries = [] as SampleQueryResult[];
@@ -36,6 +32,3 @@ export default {
         );
     },
 };
-
-
-

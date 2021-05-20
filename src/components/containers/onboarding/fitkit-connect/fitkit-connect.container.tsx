@@ -8,7 +8,7 @@ import FitKitPermissions from "@services/fitkit/fitkit.permissions";
 import { FitKitConnectScreen } from "@components/screens";
 import { handleLinkPress } from "@services/app-link";
 import Storage from "@services/storage";
-import { FitKitAuthoriseFunction, FitKitAvailable } from "@services/fitkit/fitkit.service";
+import { useFitKit } from "@services/fitkit/fitkit.hooks";
 
 // TODO find where these props actually come from in RNN types
 interface IProps {
@@ -25,8 +25,9 @@ const handlePrivacyPolicy = handleLinkPress(Config.PRIVACY_POLICY_URL);
 
 const FitKitConnectContainer: React.FC<Props> = (props) => {
   const [isConnecting, setIsConnecting] = React.useState(false);
+  const { authorise, authorised, loading, available } = useFitKit();
 
-  const handleConnect = async (authorise: FitKitAuthoriseFunction) => {
+  const handleConnect = async () => {
     setIsConnecting(true);
     props.fitKitConsentAuthorised();
     await Storage.fitkit.setFitkitPermission(Storage.fitkit.REQUESTED);
@@ -35,19 +36,15 @@ const FitKitConnectContainer: React.FC<Props> = (props) => {
   };
 
   return (
-    <FitKitAvailable>
-      {({ available, authorised, authorise, loading }) => (
-        <FitKitConnectScreen
-          connecting={isConnecting}
-          loading={loading || authorised}
-          fitKitAvailable={available}
-          onConnectPress={() => handleConnect(authorise)}
-          onPrivacyPolicyPress={handlePrivacyPolicy}
-          onSkipPress={props.navigateToNext}
-          copy={props.copy}
-        />
-      )}
-    </FitKitAvailable>
+    <FitKitConnectScreen
+      connecting={isConnecting}
+      loading={loading || authorised}
+      fitKitAvailable={available}
+      onConnectPress={handleConnect}
+      onPrivacyPolicyPress={handlePrivacyPolicy}
+      onSkipPress={props.navigateToNext}
+      copy={props.copy}
+    />
   );
 };
 

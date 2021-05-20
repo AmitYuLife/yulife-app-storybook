@@ -14,7 +14,7 @@ import { ChallengesWrapper } from "./subcomponents/common";
 import Challenge from "./subcomponents/challenges";
 import { mapProps } from "./today-yucoin.helpers";
 import { TODAYS_YUCOIN } from "@ids";
-import { FitKitAvailable, FitKitAvailableChildrenProps } from "@services/fitkit/fitkit.service";
+import { useFitKit } from "@services/fitkit/fitkit.hooks";
 import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
 
 type ChallengeToday = GetCurrentUser_getCurrentUser_todayActivity;
@@ -41,42 +41,37 @@ export interface IProps {
 
 export default function TodayYucoinScreen(props: IProps) {
   const { loading, onPressClose } = props;
+  const { available, authorised } = useFitKit();
   const enhancers = mapProps(props);
 
-  return (
-    <FitKitAvailable>
-      {(fitkit: FitKitAvailableChildrenProps) => {
-        const isGrayScale = !fitkit.available || !fitkit.authorised;
+  const isGrayScale = !available || !authorised;
 
-        return (
-          <View style={styles.wrapper}>
-            <GenericHeadingPad />
-            <ScrollView testID={TODAYS_YUCOIN} style={styles.scrollView} showsVerticalScrollIndicator={false}>
-              <Coin isGrayScale={isGrayScale} />
-              <View style={styles.contentWrapper}>
-                <SectionHeading
-                  hasRoundedTop={true}
-                  isGrayScale={isGrayScale}
-                  labelLeft="activity & quests"
-                  labelRight="yucoin"
-                />
-                <ChallengesWrapper style={styles.reduceBottomPadding}>
-                  <Challenge {...enhancers.challengeStepsProps} />
-                  <Pad height={20} />
-                  <Challenge {...enhancers.challengeMeditationProps} />
-                </ChallengesWrapper>
-                {loading ? (
-                  <ActivityIndicator color={Colours.darkHotPink} />
-                ) : (
-                  <Quests isGrayScale={isGrayScale} {...enhancers.questsProps} />
-                )}
-              </View>
-              <CTA {...enhancers.ctaProps} />
-            </ScrollView>
-            <GenericHeadingAbsolute heading="today's yucoin" style={styles.heading} onRightIconPress={onPressClose} />
-          </View>
-        );
-      }}
-    </FitKitAvailable>
+  return (
+    <View style={styles.wrapper}>
+      <GenericHeadingPad />
+      <ScrollView testID={TODAYS_YUCOIN} style={styles.scrollView} showsVerticalScrollIndicator={false}>
+        <Coin isGrayScale={isGrayScale} />
+        <View style={styles.contentWrapper}>
+          <SectionHeading
+            hasRoundedTop={true}
+            isGrayScale={isGrayScale}
+            labelLeft="activity & quests"
+            labelRight="yucoin"
+          />
+          <ChallengesWrapper style={styles.reduceBottomPadding}>
+            <Challenge {...enhancers.challengeStepsProps} />
+            <Pad height={20} />
+            <Challenge {...enhancers.challengeMeditationProps} />
+          </ChallengesWrapper>
+          {loading ? (
+            <ActivityIndicator color={Colours.darkHotPink} />
+          ) : (
+            <Quests isGrayScale={isGrayScale} {...enhancers.questsProps} />
+          )}
+        </View>
+        <CTA {...enhancers.ctaProps} />
+      </ScrollView>
+      <GenericHeadingAbsolute heading="today's yucoin" style={styles.heading} onRightIconPress={onPressClose} />
+    </View>
   );
 }

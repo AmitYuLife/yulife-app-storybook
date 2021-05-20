@@ -1,11 +1,11 @@
 import { IUserStore } from "@redux/user/user.reducer";
 import RNFitKit, { FitKitTypes, PedometerResponse, SampleQueryResult } from "@services/fitkit/fitkit.service";
+import { useFitKit } from "./fitkit.hooks";
 import moment, { Moment } from "moment";
 import { ChallengePayload } from "../../graphql/_core/schema/globalTypes";
 import Logger from "../logging/logger";
 import { DATE_FORMAT_WITH_TZ } from "../utils";
 import { createContext } from "react";
-import { FitKitAvailableChildrenProps } from "@yu-life/react-native-fitkit";
 
 export const mapPedometerResults = (results: PedometerResponse): ChallengePayload => ({
   endDateTime: moment(results.endTime).format(),
@@ -139,7 +139,7 @@ export const authoriseCycling = async () => {
   }
 };
 
-const fitkitInitialState: FitKitAvailableChildrenProps = {
+const fitkitInitialState: ReturnType<typeof useFitKit> = {
   authorise: () => null,
   authorised: false,
   available: false,
