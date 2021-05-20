@@ -1,3 +1,4 @@
+export { FitKitTypes } from "@yu-life/react-native-fitkit";
 import { SampleQueryResult, SampleQueryOptions, PedometerResponse } from "@yu-life/react-native-fitkit";
 import service from "@yu-life/react-native-fitkit";
 import moment from "moment";
