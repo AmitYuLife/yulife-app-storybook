@@ -7,6 +7,7 @@ import { Navigation } from "react-native-navigation";
 import { ROUTES } from "@navigation/constants";
 import { GetWellbeingHubItems_wellbeingHubItems as WellbeingCard } from "@graphql/_core/schema";
 import { ImageStyle } from "react-native-fast-image";
+import { TEXT_TEMPLATE } from "@ids";
 
 interface IProps {
   card: WellbeingCard;
@@ -37,7 +38,9 @@ const WellBeingServiceCard: FC<IProps> = ({ card }) => (
     <View style={styles.card}>
       <View style={styles.cardContainer}>
         <View style={styles.titleContainer}>
-          <TextTemplate type="b2b">{card.title}</TextTemplate>
+          <TextTemplate type="b2b" testID={TEXT_TEMPLATE(card.title)}>
+            {card.title}
+          </TextTemplate>
           {!card?.icon?.uri ? null : (
             <RemoteImage
               uri={card?.icon?.uri}

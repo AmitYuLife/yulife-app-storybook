@@ -10,6 +10,7 @@ import { ContentItemBox } from "./sub-components/content-item-box";
 import { ContentItemButton } from "./sub-components/content-item-button";
 import { ContentItemImage } from "./sub-components/content-item-image";
 import { ContentItemMarkdown } from "./sub-components/content-item-markdown";
+import { MORE_INFO_BUTTON } from "@ids";
 
 interface IProps {
   handleBack: () => void;
@@ -51,6 +52,7 @@ const getItemContent = (itemContent: ItemContent, itemId: string, itemTitle: str
           iconUri={itemContent?.icon?.uri}
           uri={itemContent?.uri}
           metaData={{ id: itemId, title: itemTitle }}
+          testID={MORE_INFO_BUTTON(itemContent?.label)}
         />
       );
     case "ContentItemImage":
