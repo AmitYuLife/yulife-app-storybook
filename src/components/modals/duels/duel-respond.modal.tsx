@@ -71,7 +71,9 @@ const DuelRespondModal: React.FC<IProps> = ({
 
   const startDateTime = inviteStartDateTime || moment().add(1, "day").startOf("day").format(DATE_FORMAT_WITHOUT_TZ);
 
-  const [respondToInvite]: RespondToDuelMutationTuple = useMutation(GQL_MUTATION_RESPOND_TO_DUEL);
+  const [respondToInvite]: RespondToDuelMutationTuple = useMutation(GQL_MUTATION_RESPOND_TO_DUEL, {
+    refetchQueries: ["GetDuelInvitations"],
+  });
 
   const handlePress = useCallback(
     (hasAccepted: boolean) => async () => {
