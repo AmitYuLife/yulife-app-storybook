@@ -12,7 +12,7 @@ import {
   GetProductBeneficiaries_getProductBeneficiaries_beneficiaries,
 } from "@graphql/_core/schema";
 import { GQL_QUERY_GET_PRODUCT_BENEFICIARIES } from "@graphql/products/getProductBeneficiaries";
-import { TEXT_TEMPLATE, ADD_BENEFICIARY } from "@ids";
+import { TEXT_TEMPLATE, ADD_BENEFICIARY, BENEFICIARY_DETAILS } from "@ids";
 
 interface IBeneficiariesProps {
   productId: string;
@@ -63,7 +63,15 @@ const BeneficiariesDetails = ({ beneficiaries, onPress }: IBeneficiariesDetailsP
     <TouchableOpacityWithDelay onPress={onPress}>
       <View style={styles.beneficiariesWrapper}>
         {beneficiaries.map((beneficiary, index) => (
-          <View key={index}>
+          <View
+            key={index}
+            testID={BENEFICIARY_DETAILS(
+              beneficiary.shareOfBenefit,
+              beneficiary.firstName,
+              beneficiary.lastName,
+              beneficiary.relationship
+            )}
+          >
             <View style={styles.beneficiary}>
               <View>
                 <TextTemplate type={"b2b"}>

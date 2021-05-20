@@ -483,3 +483,31 @@ export const CUSTOMER_32 = {
         status: "onboarded"
     }
 } as IDatabaseItem
+
+export const CUSTOMER_33 = {
+    type,
+    modelName,
+    data: {
+        customerId: generateRandomMongoId(),
+        email: "batman@jl.com",
+        firstName: "Bruce",
+        lastName: "Wayne",
+        dateOfBirth: moment().subtract(40, "years").toDate(),
+        membershipType: "Group",
+        status: "onboarded"
+    }
+} as IDatabaseItem
+
+export const CUSTOMER_34 = {
+    type,
+    modelName,
+    data: {
+        customerId: generateRandomMongoId(),
+        email: "robin@jl.com",
+        firstName: "Tim",
+        lastName: "Drake",
+        dateOfBirth: moment().subtract(40, "years").toDate(),
+        membershipType: "Group",
+        status: "onboarded"
+    }
+} as IDatabaseItem

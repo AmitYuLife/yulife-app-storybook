@@ -264,3 +264,9 @@ export const headingStartStreakCopyVisible = (dayNum:number) => async()=>{
             break
     }
 }
+
+export const clearFieldByID = (id: string) => async () => {
+    const textField = element(by.id(id));
+    await textField.tap();
+    await textField.clearText();
+}

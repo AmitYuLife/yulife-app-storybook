@@ -1,5 +1,5 @@
 import { IDatabaseItem } from "@yu-life/yulife-bdd-framework";
-import { CUSTOMER_10, CUSTOMER_31, CUSTOMER_32, CUSTOMER_9 } from "./customers";
+import { CUSTOMER_10, CUSTOMER_31, CUSTOMER_32, CUSTOMER_33, CUSTOMER_34, CUSTOMER_9 } from "./customers";
 
 const type = "postgres"
 const modelName = "customer_product_entity"
@@ -76,6 +76,86 @@ export const CPE_32_GCI = {
     data: {
         customer_product_id: "YUCPID0000000332",
         customer_id: CUSTOMER_32.data.customerId,
+        earn_rate: 10,
+        product_variant_id: "AIG_GCI_01_03",
+        carrier: "AIG",
+        archived: false
+    }
+} as IDatabaseItem
+
+export const CPE_33_RGL = {
+    type,
+    modelName,
+    data:{
+        customer_product_id: "YUCPID0000000133",
+        customer_id: CUSTOMER_33.data.customerId,
+        earn_rate: 10,
+        product_code: "GLI",
+        product_variant_id: "AIG_ReGL_01_03",
+        carrier: "AIG",
+        archived:false
+    }
+} as IDatabaseItem
+
+export const CPE_33_GIP = {
+    type,
+    modelName,
+    data: {
+        customer_product_id: "YUCPID0000000233",
+        customer_id: CUSTOMER_33.data.customerId,
+        earn_rate: 10,
+        product_variant_id: "AIG_GIP_01_03",
+        carrier: "AIG",
+        archived: false
+    }
+} as IDatabaseItem
+
+export const CPE_33_GCI = {
+    type,
+    modelName,
+    data: {
+        customer_product_id: "YUCPID0000000333",
+        customer_id: CUSTOMER_33.data.customerId,
+        earn_rate: 10,
+        product_variant_id: "AIG_GCI_01_03",
+        carrier: "AIG",
+        archived: false
+    }
+} as IDatabaseItem
+
+export const CPE_34_RGL = {
+    type,
+    modelName,
+    data:{
+        customer_product_id: "YUCPID0000000134",
+        customer_id: CUSTOMER_34.data.customerId,
+        earn_rate: 10,
+        product_code: "GLI",
+        product_variant_id: "AIG_ReGL_01_03",
+        carrier: "AIG",
+        archived:false
+    }
+} as IDatabaseItem
+
+export const CPE_34_GIP = {
+    type,
+    modelName,
+    data: {
+        customer_product_id: "YUCPID0000000234",
+        customer_id: CUSTOMER_34.data.customerId,
+        earn_rate: 10,
+        product_variant_id: "AIG_GIP_01_03",
+        carrier: "AIG",
+        archived: false
+    }
+} as IDatabaseItem
+
+export const CPE_34_GCI = {
+    type,
+    modelName,
+    data: {
+        customer_product_id: "YUCPID0000000343",
+        customer_id: CUSTOMER_34.data.customerId,
         earn_rate: 10,
         product_variant_id: "AIG_GCI_01_03",
         carrier: "AIG",
