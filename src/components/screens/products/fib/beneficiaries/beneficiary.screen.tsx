@@ -8,6 +8,7 @@ import { Colours, Style } from "@styles";
 import { Button, SecondaryButton, Text } from "@atoms";
 import { BeneficiaryItem } from "./beneficiary-item";
 import { GetProductBeneficiaries_getProductBeneficiaries_beneficiaries as Beneficiary } from "@graphql/_core/schema";
+import { BENEFICIARY_DETAILS, BENEFICIARIES_PERCENTAGE_ERROR, BENEFICIARY_DONE, ADD_BENEFICIARY } from "@ids";
 
 interface Props {
   beneficiaries: Beneficiary[];
@@ -144,6 +145,12 @@ export const BeneficiaryScreen = memo((props: Props) => {
                   isFocused={isFocused}
                   showError={showError}
                   hasFocusActive={hasFocusActive}
+                  testID={BENEFICIARY_DETAILS(
+                    beneficiary.shareOfBenefit,
+                    beneficiary.firstName,
+                    beneficiary.lastName,
+                    beneficiary.relationship
+                  )}
                 />
               </View>
             );
@@ -153,6 +160,7 @@ export const BeneficiaryScreen = memo((props: Props) => {
             wrapperStyle={styles.addBeneficiaryButtonWrapper}
             label="Add Beneficiary"
             onPress={() => showAddBeneficiaryModal(productId, null)}
+            testID={ADD_BENEFICIARY}
           />
 
           <View style={showError ? styles.bottomElementsWrapperWithError : styles.bottomElementsWrapper}>
@@ -164,6 +172,7 @@ export const BeneficiaryScreen = memo((props: Props) => {
                 onPress={onBottomButtonPress}
                 isLoading={setShareLoading}
                 disabled={showError}
+                testID={BENEFICIARY_DONE}
               />
             </View>
           </View>
@@ -175,7 +184,11 @@ export const BeneficiaryScreen = memo((props: Props) => {
 });
 
 const Error = () => {
-  return <Text style={styles.error}>Oops! Please double-check your percentages. The sum should add up to 100%.</Text>;
+  return (
+    <Text style={styles.error} testID={BENEFICIARIES_PERCENTAGE_ERROR}>
+      Oops! Please double-check your percentages. The sum should add up to 100%.
+    </Text>
+  );
 };
 
 const styles = StyleSheet.create({

@@ -5,6 +5,7 @@ import { TertiaryButton } from "@atoms";
 import { BUTTON_ICON } from "@atoms/button/tertiary-button/tertiary-button.helpers";
 import { InputField } from "@organisms/fib/input/input-field";
 import { truncate } from "@services/utils";
+import { BENEFICIARY_SHARE_INPUT } from "@ids";
 
 interface IBeneficiaryProps {
   firstName: string;
@@ -17,6 +18,7 @@ interface IBeneficiaryProps {
   showError: boolean;
   hasFocusActive: (focus: boolean) => void;
   setShareLoading?: boolean;
+  testID?: string;
 }
 
 export const BeneficiaryItem = ({
@@ -29,6 +31,7 @@ export const BeneficiaryItem = ({
   hasFocusActive,
   isFocused,
   showError,
+  testID,
 }: IBeneficiaryProps) => {
   const name = truncate(`${firstName} ${lastName}`, 15);
   const relation = truncate(relationship, 15);
@@ -39,7 +42,7 @@ export const BeneficiaryItem = ({
   const inputFieldStyle = StyleSheet.flatten([styles.textInput, onFocusStyle, errorStyle]);
   const percentage = shareOfBenefit ? shareOfBenefit?.toString() : "";
   return (
-    <View style={styles.beneficiaryWrapper}>
+    <View style={styles.beneficiaryWrapper} testID={testID}>
       <View style={styles.beneficiaryButtonWrapper}>
         <TertiaryButton
           size="Fill"
@@ -58,6 +61,7 @@ export const BeneficiaryItem = ({
         width={inputFieldWidth}
         hasFocusActive={hasFocusActive}
         wrapperStyle={styles.percentageInputFieldWrapper}
+        testID={BENEFICIARY_SHARE_INPUT}
       />
     </View>
   );

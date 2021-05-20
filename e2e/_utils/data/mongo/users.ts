@@ -1,7 +1,7 @@
 
 import { generateRandomMongoId } from "@yu-life/yulife-bdd-framework"
 import { IDatabaseItem } from "@yu-life/yulife-bdd-framework";
-import { CUSTOMER_2, CUSTOMER_3, CUSTOMER_4, CUSTOMER_16, CUSTOMER_17, CUSTOMER_18, CUSTOMER_ALPHA, CUSTOMER_21, CUSTOMER_23, CUSTOMER_20, CUSTOMER_19, CUSTOMER_5, CUSTOMER_6, CUSTOMER_7, CUSTOMER_9, CUSTOMER_15, CUSTOMER_22, CUSTOMER_24, CUSTOMER_13, CUSTOMER_25, CUSTOMER_12, CUSTOMER_10, CUSTOMER_27, CUSTOMER_28, CUSTOMER_29, CUSTOMER_30, CUSTOMER_31, CUSTOMER_32 } from '../postgres/customers';
+import { CUSTOMER_2, CUSTOMER_3, CUSTOMER_4, CUSTOMER_16, CUSTOMER_17, CUSTOMER_18, CUSTOMER_ALPHA, CUSTOMER_21, CUSTOMER_23, CUSTOMER_20, CUSTOMER_19, CUSTOMER_5, CUSTOMER_6, CUSTOMER_7, CUSTOMER_9, CUSTOMER_15, CUSTOMER_22, CUSTOMER_24, CUSTOMER_13, CUSTOMER_25, CUSTOMER_12, CUSTOMER_10, CUSTOMER_27, CUSTOMER_28, CUSTOMER_29, CUSTOMER_30, CUSTOMER_31, CUSTOMER_32, CUSTOMER_33, CUSTOMER_34 } from '../postgres/customers';
 
 const type = "mongo"
 const modelName = "users"
@@ -473,5 +473,49 @@ export const USER_32 = {
         earnRate: 10,
         isAvatarCreated: true,
         avatarRemoteFilename: "avatars/YUGI0000000000000000000000000000.svg"
+    }
+} as IDatabaseItem
+
+export const USER_33 = {
+    type,
+    modelName,
+    data: {
+        _id: generateRandomMongoId(),
+        userId: CUSTOMER_33.data.customerId,
+        products: [{
+            productId: generateRandomMongoId(),
+            productType: "Yulife",
+            option: "epic",
+            type: "employer",
+            earnRate: 10,
+        }],
+        earnRate: 10,
+        isAvatarCreated: true,
+        cloudinaryAvatar: {
+            "filename": "api/detox/avatars/609be5870c928c573fcb3140",
+            "version": 1
+        }
+    }
+} as IDatabaseItem
+
+export const USER_34 = {
+    type,
+    modelName,
+    data: {
+        _id: generateRandomMongoId(),
+        userId: CUSTOMER_34.data.customerId,
+        products: [{
+            productId: generateRandomMongoId(),
+            productType: "Yulife",
+            option: "epic",
+            type: "employer",
+            earnRate: 10,
+        }],
+        earnRate: 10,
+        isAvatarCreated: true,
+        cloudinaryAvatar: {
+            "filename": "api/detox/avatars/609be5870c928c573fcb3140",
+            "version": 1
+        }
     }
 } as IDatabaseItem

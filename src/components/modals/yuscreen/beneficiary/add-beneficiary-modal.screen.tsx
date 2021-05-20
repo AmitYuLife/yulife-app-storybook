@@ -8,6 +8,7 @@ import { TextField } from "@components/molecules";
 import { phoneNumberIsValid } from "@services/utils";
 import { ConfirmationScreen } from "./confirmation.screen";
 import { GetProductBeneficiaries_getProductBeneficiaries_beneficiaries as Beneficiary } from "@graphql/_core/schema";
+import { INPUT_BENEFICIARY_DETAIL, BENEFICIARY_CONTINUE } from "@ids";
 
 type ButtonProps = React.ComponentProps<typeof Button>;
 
@@ -137,7 +138,12 @@ export default function AddBeneficiaryModalScreen({
             </Text>
             {inputs.map((item, index) => (
               <View onLayout={setLayout(index)} key={index}>
-                <TextField onFocus={onTextInputFocus(index)} baseUnderlineColor={Colours.neutral.n200} {...item} />
+                <TextField
+                  onFocus={onTextInputFocus(index)}
+                  baseUnderlineColor={Colours.neutral.n200}
+                  {...item}
+                  testID={INPUT_BENEFICIARY_DETAIL(item.placeholder)}
+                />
                 <Pad height={20} />
               </View>
             ))}
@@ -157,6 +163,7 @@ export default function AddBeneficiaryModalScreen({
               disabled={!allFieldsValid}
               wrapperStyle={styles.continueButtonWrapper}
               isLoading={updateBeneficiaryLoading}
+              testID={BENEFICIARY_CONTINUE}
             />
           </View>
         </ScrollView>

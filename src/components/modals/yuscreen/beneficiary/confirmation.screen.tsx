@@ -3,6 +3,7 @@ import { View } from "react-native";
 import { Button, Text } from "@atoms";
 import { StyleSheet, TextStyle, ViewStyle } from "react-native";
 import { Colours, Style } from "@styles";
+import { BENEFICIARY_DEFAULT_MODAL } from "@ids";
 
 interface DeleteConfirmationProps {
   title: string;
@@ -23,7 +24,7 @@ export const ConfirmationScreen = ({
 }: DeleteConfirmationProps) => {
   return (
     <View style={styles.confirmDeleteBeneficiaryWrapper}>
-      <Text style={styles.confirmDeleteBeneficiaryHeading} bold={true}>
+      <Text style={styles.confirmDeleteBeneficiaryHeading} bold={true} testID={BENEFICIARY_DEFAULT_MODAL}>
         {title}
       </Text>
       <Button

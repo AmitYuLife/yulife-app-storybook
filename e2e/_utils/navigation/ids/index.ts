@@ -61,6 +61,8 @@ export const GP_CONTINUE = "GP_CONTINUE"
 export const ADD_BENEFICIARY = "ADD_BENEFICIARY"
 export const CALM_BUTTON = "CALM_BUTTON"
 export const HEADSPACE_BUTTON = "HEADSPACE_BUTTON"
+export const BENEFICIARY_CONTINUE = "BENEFICIARY_CONTINUE"
+export const BENEFICIARY_DONE = "BENEFICIARY_DONE"
 
 // components
 export const VIEW_CONFETTI_COIN = (coins: number) => `VIEW_CONFETTI_COIN_${coins}`;
@@ -72,6 +74,7 @@ export const CHALLENGE_HISTORY_STARS = (starCount: number, challengeType: string
 export const EARN_RATE_ROW = (label:string, standardValue:number) => `EARN_RATE_ROW_${label}_${standardValue}`
 export const INPUT_FIELD = "INPUT_FIELD"
 export const INPUT_FIELD_VALUE = (value:any) => `INPUT_FIELD_VALUE_${value}`
+export const INPUT_BENEFICIARY_DETAIL = (placeholder: string) => `INPUT_BENEFICIARY_DETAIL_${placeholder}`
 
 // modals
 export const WELCOME_MODAL = (heading: string) => `WELCOME_MODAL${heading}`
@@ -215,6 +218,12 @@ export const FEEDBACK_FORM_QUESTION =(question:string) => `FEEDBACK_FORM_QUESTIO
 export const SLIDER_INPUT = (index:number) => `FEEDBACK_FORM_RATING_${index}`
 export const SLIDER_LABEL = (label:string) => `SLIDER_LABEL_${label}`
 export const FEEDBACK_TEXT_INPUT = "FEEDBACK_TEXT_INPUT"
+
+// BENEFICIARIES
+export const BENEFICIARY_DETAILS = (share:number, firstName:string, lastName:string, relation:string) => `BENEFICIARY_DETAILS_${share}_${firstName}_${lastName}_${relation}`
+export const BENEFICIARY_SHARE_INPUT = "BENEFICIARY_SHARE_INPUT"
+export const BENEFICIARIES_PERCENTAGE_ERROR = "BENEFICIARIES_PERCENTAGE_ERROR"
+export const BENEFICIARY_DEFAULT_MODAL = "BENEFICIARY_DEFAULT_MODAL"
 
 // WELLBEING HUB
 export const WELLBEING_HUB_SCROLL_VIEW = "WELLBEING_HUB_SCROLL_VIEW"

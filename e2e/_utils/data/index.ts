@@ -33,3 +33,5 @@ export * from "./postgres/business_product";
 export * from "./postgres/customer_product_entity";
 export * from "./postgres/business_product_category";
 export * from "./postgres/customer_group_policy";
+export * from "./postgres/customer_beneficiaries";
+export * from "./postgres/customer_product_entity_beneficiary";
