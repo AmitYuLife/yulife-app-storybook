@@ -53,6 +53,7 @@ export { RemoteImage } from "./remote-image/remote-image";
 export { default as Hyperlink } from "./hyperlink/hyperlink";
 export { default as RibbonGold } from "./ribbon-gold/ribbon-gold";
 export { default as SkeletonLoading } from "./skeleton-loading/skeleton-loading";
+export { default as PackageCardPerks } from "./package-card-perks/package-card-perks";
 
 // error :( https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-8.html#export--as-ns-syntax
 import * as ProductSvg from "./product-svg";

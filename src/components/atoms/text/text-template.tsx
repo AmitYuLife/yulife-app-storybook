@@ -75,13 +75,13 @@ const styles = StyleSheet.create({
   },
   l1: {
     fontSize: Style.adjust(14),
-    lineHeight: Style.adjust(16),
+    lineHeight: Style.adjust(18),
     letterSpacing: 0.4,
   },
   l1b: {
     fontFamily: Style.FONT_FAMILY_PRIMARY_BOLD,
     fontSize: Style.adjust(14),
-    lineHeight: Style.adjust(16),
+    lineHeight: Style.adjust(18),
     letterSpacing: 0.4,
   },
   l2: {
