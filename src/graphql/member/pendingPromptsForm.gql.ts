@@ -7,8 +7,11 @@ export const GQL_PENDING_PROMPTS_FORM = gql`
     pendingAppStoreReview {
       __typename
       id
+      image
       title
       body
+      rejectedTitle
+      rejectedBody
       showAfterEvent
       showAfterSeconds
     }

@@ -1,8 +1,7 @@
 import React, { FC } from "react";
 import { View, StyleSheet } from "react-native";
-import { Button, LinkButton, SecondaryButton, TextTemplate } from "@atoms";
+import { Button, LinkButton, RemoteImage, SecondaryButton, TextTemplate } from "@atoms";
 import { Style } from "@styles";
-import { AppReviewYugi } from "./app-review-image";
 
 type ButtonProps = React.ComponentProps<typeof Button>;
 
@@ -15,6 +14,7 @@ interface Props {
   heading: string;
   subheading: string;
   showSecondState: boolean;
+  imageUrl: string;
 }
 
 const AppReviewModalScreen: FC<Props> = ({
@@ -23,6 +23,7 @@ const AppReviewModalScreen: FC<Props> = ({
   heading,
   subheading,
   showSecondState,
+  imageUrl,
   onPress,
   onPressSecondary,
   onAskLaterPress,
@@ -30,9 +31,13 @@ const AppReviewModalScreen: FC<Props> = ({
   return (
     <View style={styles.wrapper}>
       <View style={styles.centerWrapper}>
-        <View style={styles.image}>
-          <AppReviewYugi />
-        </View>
+        <RemoteImage
+          uri={imageUrl}
+          height={Style.adjust(160)}
+          width={Style.adjust(320)}
+          theme="light"
+          style={styles.imageWrapper}
+        />
         <TextTemplate type={"h2"}>{heading}</TextTemplate>
         <View style={styles.separator16}>
           <TextTemplate type={"b2"} textAlign={"center"}>
@@ -65,6 +70,10 @@ const styles = StyleSheet.create({
     width: "100%",
   },
   image: {
+    width: Style.adjust(320),
+    height: Style.adjust(160),
+  },
+  imageWrapper: {
     width: Style.adjust(320),
     height: Style.adjust(160),
     marginBottom: Style.adjust(32),
