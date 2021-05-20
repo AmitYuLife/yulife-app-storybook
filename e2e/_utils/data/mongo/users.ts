@@ -131,10 +131,7 @@ export const USER_9 = {
             type: "employer"
         }],
         isAvatarCreated: true,
-        cloudinaryAvatar: {
-        filename: "api/local/avatars/530EDE9E07434A4EB1E251A8548D834C",
-        version: 1
-        },
+        avatarRemoteFilename: "avatars/YUGI0000000000000000000000000000.svg"
     }
 } as IDatabaseItem
 
@@ -153,10 +150,7 @@ export const USER_10 = {
             type: "employer"
         }],
         isAvatarCreated: true,
-        cloudinaryAvatar: {
-            filename: "api/local/avatars/530EDE9E07434A4EB1E251A8548D834C",
-            version: 1
-        },
+        avatarRemoteFilename: "avatars/YUGI0000000000000000000000000000.svg"
     }
 } as IDatabaseItem
 
@@ -234,10 +228,7 @@ export const USER_17 = {
         }],
         isAvatarCreated: true,
         earnRate: 10,
-        cloudinaryAvatar:{
-            filename:"api/local/avatars/530EDE9E07434A4EB1E251A8548D834C",
-            version:1
-        },
+        avatarRemoteFilename: "avatars/YUGI0000000000000000000000000000.svg"
     }
 } as IDatabaseItem
 
@@ -339,11 +330,7 @@ export const USER_23 = {
         }],
         isAvatarCreated: true,
         earnRate: 10,
-        cloudinaryAvatar: {
-            filename: "api/local/avatars/530EDE9E07434A4EB1E251A8548D834C",
-            version: 1
-        },
-
+        avatarRemoteFilename: "avatars/YUGI0000000000000000000000000000.svg"
     }
 } as IDatabaseItem
 
@@ -447,10 +434,7 @@ export const USER_30 = {
             earnRate: 7,
         }],
         earnRate: 7,
-        cloudinaryAvatar: {
-          filename: "api/local/avatars/530EDE9E07434A4EB1E251A8548D834C",
-          version: 1
-        },
+        avatarRemoteFilename: "avatars/YUGI0000000000000000000000000000.svg"
     }
 } as IDatabaseItem
 
@@ -469,10 +453,7 @@ export const USER_31 = {
         }],
         earnRate: 10,
         isAvatarCreated:true,
-        cloudinaryAvatar: {
-            "filename": "api/detox/avatars/609a614017775f1b8fb42814",
-            "version": 1
-        }
+        avatarRemoteFilename: "avatars/YUGI0000000000000000000000000000.svg"
     }
 } as IDatabaseItem
 
@@ -491,9 +472,6 @@ export const USER_32 = {
         }],
         earnRate: 10,
         isAvatarCreated: true,
-        cloudinaryAvatar: {
-            "filename": "api/detox/avatars/609be5870c928c573fcb3140",
-            "version": 1
-        }
+        avatarRemoteFilename: "avatars/YUGI0000000000000000000000000000.svg"
     }
 } as IDatabaseItem
