@@ -2,8 +2,13 @@ import React, { memo } from "react";
 import { Style } from "@styles";
 import Svg, { Path, Circle } from "react-native-svg";
 
-export const NotVisibleEyeIcon = memo(() => (
-  <Svg width={Style.adjust(64)} height={Style.adjust(64)} viewBox="0 0 64 64" fill="none">
+interface IProps {
+  width?: number;
+  height?: number;
+}
+
+export const NotVisibleEyeIcon = memo(({ width = Style.adjust(64), height = Style.adjust(64) }: IProps) => (
+  <Svg width={width} height={height} viewBox="0 0 64 64" fill="none">
     <Path
       d="M31.122 20.088c-13.04-1.057-24.618 5.95-29.907 14.046-1.002.876-.35 4.163 2.41 5.804 17.51 9.802 37.74 5.591 45.559 2.728 6.255-2.291 8.113-6.02 8.26-7.6-3.341-4.552-13.282-13.92-26.322-14.978z"
       fill="#fff"
