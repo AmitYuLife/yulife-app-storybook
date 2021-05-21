@@ -1,6 +1,6 @@
 import React from "react";
 import { View, TouchableOpacity, StyleSheet, ViewStyle, Platform } from "react-native";
-import { TextTemplate } from "@atoms";
+import { Icon, TextTemplate } from "@atoms";
 import { Picker } from "./subcomponents/picker";
 import { Buttons } from "./subcomponents/buttons";
 import { Colours, Style } from "@styles";
@@ -31,6 +31,9 @@ const ScrollPickerModal = (props: Props) => {
       <View style={styles.innerWrapper}>
         {!hasToggle ? null : (
           <TouchableOpacity style={styles.toggleWrapper} onPress={toggle}>
+            <View style={styles.iconWrapper}>
+              <Icon.SwitchIcon />
+            </View>
             <TextTemplate type="b2b" color={Colours.primary.p600}>
               {toggleLabel}
             </TextTemplate>
@@ -61,6 +64,11 @@ const styles = StyleSheet.create({
   } as ViewStyle,
   toggleWrapper: {
     paddingTop: Style.adjust(40),
+    flexDirection: "row",
+    alignItems: "center",
+  } as ViewStyle,
+  iconWrapper: {
+    marginRight: Style.adjust(16),
   } as ViewStyle,
   innerWrapper: {
     backgroundColor: Colours.neutral.white,
