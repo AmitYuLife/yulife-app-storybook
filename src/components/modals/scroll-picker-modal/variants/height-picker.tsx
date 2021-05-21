@@ -131,7 +131,7 @@ export const HeightPicker = ({ onCancel, onConfirm }: Props) => {
     <ScrollPickerModal
       pickers={activePickers}
       toggle={() => setIsMetric(!isMetric)}
-      toggleLabel={isMetric ? "switch to ft" : "switch to cm"}
+      toggleLabel={isMetric ? "Switch to ft" : "Switch to cm"}
       onConfirm={handleConfirm}
       onCancel={onCancel}
     />

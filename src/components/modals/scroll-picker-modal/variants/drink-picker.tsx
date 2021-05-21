@@ -5,7 +5,7 @@ import { getFIBState } from "@redux/product/product.selectors";
 import ScrollPickerModal from "../scroll-picker-modal";
 
 const dataDrinks = Array.from({ length: 21 }).map((_, i) => ({
-  label: `${i} kg`,
+  label: `${i} drinks`,
   value: i,
 }));
 

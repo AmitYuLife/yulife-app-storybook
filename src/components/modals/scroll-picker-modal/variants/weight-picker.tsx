@@ -131,7 +131,7 @@ export const WeightPicker = ({ onCancel, onConfirm }: Props) => {
     <ScrollPickerModal
       pickers={activePickers}
       toggle={() => setIsMetric(!isMetric)}
-      toggleLabel={isMetric ? "switch to st" : "switch to kg"}
+      toggleLabel={isMetric ? "Switch to st" : "Switch to kg"}
       onConfirm={handleConfirm}
       onCancel={onCancel}
     />
