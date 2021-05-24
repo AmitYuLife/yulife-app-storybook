@@ -197,8 +197,6 @@ export const onProductDetails = (coverType: string, productName: string, benefit
     const power = VALUE_DESCRIPTION(earnRate, yuCoin)
 
     const documents = TEXT_TEMPLATE("Documents")
-    const beneficiary = TEXT_TEMPLATE("Beneficiaries")
-    const addBeneficiary = ADD_BENEFICIARY
 
     await expect(element(by.text(coverType))).toBeVisible()
     await expect(element(by.id(product))).toBeVisible()
@@ -206,9 +204,6 @@ export const onProductDetails = (coverType: string, productName: string, benefit
     await expect(element(by.id(power))).toBeVisible()
     await expect(element(by.id(documents))).toBeVisible()
     await expect(element(by.text("Policy Details"))).toBeVisible()
-    await expect(element(by.id(beneficiary))).toBeVisible()
-    await scrollUntilIdVisible(PRODUCT_DETAILS_SCROLL_VIEW, addBeneficiary, "down")()
-    await expect(element(by.id(addBeneficiary))).toBeVisible()
 }
 
 export const onCertificate = (productName: string, benefitValue: string, customer:any, customerGroupPol:any, business:any, businessEmployee:any) => async()=>{

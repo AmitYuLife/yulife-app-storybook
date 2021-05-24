@@ -605,7 +605,8 @@ export const CUSTOMER_32_TOGGLES = {
             hideYuMatterScreen: false,
             newGamePlus: true,
             unitySurge: true,
-            yuScreenV3: true
+            yuScreenV3: true,
+            hasBeneficiariesEnabled: true
         }
     }
 } as IDatabaseItem
