@@ -18,9 +18,9 @@ const dataKg = Array.from({ length: 500 }).map((_, i) => ({
   value: i + 30,
 }));
 
-const DEFAULT_STONES_INDEX = 12;
+const DEFAULT_STONES_INDEX = 16;
 const DEFAULT_LBS_INDEX = 0;
-const DEFAULT_KG_INDEX = 80;
+const DEFAULT_KG_INDEX = 100;
 
 interface Props {
   onCancel: () => void;

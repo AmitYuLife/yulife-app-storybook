@@ -270,15 +270,23 @@ export function shouldAnswerBeStored(label: string, currentQuestionId: string): 
   );
 }
 
-export function shouldFirstButtonBeDisabled(
-  medicalHistory: Record<string, boolean>,
-  currentQuestion: UnderwritingJourneyScreen,
-  fibAnswers: FibAnswers,
-  inputFirstName: string,
-  inputLastName: string,
-  radioInputValue: string,
-  inputSalary: number
-) {
+export function shouldFirstButtonBeDisabled({
+  medicalHistory,
+  currentQuestion,
+  fibAnswers,
+  inputFirstName,
+  inputLastName,
+  radioInputValue,
+  inputSalary,
+}: {
+  medicalHistory: Record<string, boolean>;
+  currentQuestion: UnderwritingJourneyScreen;
+  fibAnswers: FibAnswers;
+  inputFirstName: string;
+  inputLastName: string;
+  radioInputValue: string;
+  inputSalary: number;
+}) {
   if (currentQuestion.id === FIB_THREE_YEAR_MEDICAL_HISTORY_SCREEN_ID) {
     return !Object.entries(medicalHistory)
       .map((entry) => {
@@ -332,7 +340,13 @@ export function shouldFirstButtonBeDisabled(
   return false;
 }
 
-export function shouldSecondButtonBeDisabled(currentQuestion: UnderwritingJourneyScreen, fibAnswers: FibAnswers) {
+export function shouldSecondButtonBeDisabled({
+  currentQuestion,
+  fibAnswers,
+}: {
+  currentQuestion: UnderwritingJourneyScreen;
+  fibAnswers: FibAnswers;
+}) {
   if (currentQuestion.id === FIB_ENTER_YOUR_NAME) {
     return (fibAnswers.firstName || "").length < 1 || (fibAnswers.lastName || "").length < 1;
   }

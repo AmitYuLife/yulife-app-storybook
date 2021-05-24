@@ -197,6 +197,6 @@ const styles = StyleSheet.create({
     marginBottom: Style.adjust(26),
   },
   padBot: {
-    height: Style.hasNotch ? 20 : 40,
+    height: Platform.OS === "ios" && Style.hasNotch ? 40 : 80,
   } as ViewStyle,
 });
