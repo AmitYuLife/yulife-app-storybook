@@ -1,4 +1,4 @@
-import React, { memo, useRef, useEffect, useCallback, ComponentProps } from "react";
+import React, { memo, useRef, useEffect, useCallback, ComponentProps, useState } from "react";
 import { ScrollView, View, Keyboard } from "react-native";
 import { useBackHandler } from "../../../../../services/hooks/useBackHandler";
 import FibTitle from "@atoms/fib/title/title";
@@ -32,6 +32,10 @@ import { NotVisibleEyeIcon } from "@atoms/icon/not-visible-eye-icon";
 import { YuCoinPileIcon } from "@atoms/icon/yucoin-pile-icon";
 import { useSelector } from "react-redux";
 import { getFullName } from "@redux/product/product.selectors";
+import { Style, TOP_BAR } from "@styles";
+
+const CONTENT_VISIBILITY_THRESHOLD = 0;
+const VIEWABLE_AREA = Style.DEVICE_HEIGHT - TOP_BAR.TOP_BAR_WITH_PAD;
 
 export interface IFibUnderwritingJourneyScreenProps {
   onNavigateBack: () => void;
@@ -51,6 +55,7 @@ export interface IFibUnderwritingJourneyScreenProps {
   progressBarHideType: ComponentProps<typeof ProgressBar>["hideType"];
   salary?: number;
   setInputSalary?: (salary: number) => void;
+  isFooterInList?: boolean;
 }
 
 const _FibUnderwritingJourneyScreen = memo(function (props: IFibUnderwritingJourneyScreenProps) {
@@ -72,9 +77,12 @@ const _FibUnderwritingJourneyScreen = memo(function (props: IFibUnderwritingJour
     progressBarHideType,
     salary,
     setInputSalary,
+    isFooterInList,
   } = props;
   const scrollViewRef = useRef(null as ScrollView);
   const timer = useRef(null as ReturnType<typeof setTimeout>);
+  const [footerInList, setFooterInList] = useState(isFooterInList);
+  const contentSizeChanged = useRef(data.id);
 
   function handleResetScroll() {
     if (scrollViewRef?.current?.scrollTo) {
@@ -140,10 +148,18 @@ const _FibUnderwritingJourneyScreen = memo(function (props: IFibUnderwritingJour
       onPreviousQuestion={onPreviousButtonPressed}
     >
       <ScrollView
+        scrollEventThrottle={16}
         ref={scrollViewRef}
         showsVerticalScrollIndicator={false}
         keyboardShouldPersistTaps="handled"
         testID={UNDERWRITING_JOURNEY_SCREEN}
+        onContentSizeChange={(_, contentHeight) => {
+          if (contentSizeChanged.current !== data.id) {
+            contentSizeChanged.current = data.id;
+            const isContentVisible = contentHeight - VIEWABLE_AREA < CONTENT_VISIBILITY_THRESHOLD;
+            setFooterInList(isFooterInList || !isContentVisible);
+          }
+        }}
       >
         <View style={styles.topPad} />
         {!data?.question ? null : <FibTitle title={data.question} />}
@@ -164,9 +180,21 @@ const _FibUnderwritingJourneyScreen = memo(function (props: IFibUnderwritingJour
             </View>
           );
         })}
-        <View style={{ height: Footer.HEIGHT }} />
+        {!footerInList ? (
+          <View style={{ height: Footer.HEIGHT }} />
+        ) : (
+          <Footer
+            id={data.id}
+            isInList={true}
+            firstButton={firstButton}
+            secondButton={secondButton}
+            linkButton={linkButton}
+          />
+        )}
       </ScrollView>
-      <Footer firstButton={firstButton} secondButton={secondButton} linkButton={linkButton} />
+      {footerInList ? null : (
+        <Footer id={data.id} firstButton={firstButton} secondButton={secondButton} linkButton={linkButton} />
+      )}
     </FibUnderwritingJourneyLayout>
   );
 });

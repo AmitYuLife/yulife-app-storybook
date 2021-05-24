@@ -48,6 +48,7 @@ export interface UnderwritingJourneyScreen {
   question: string;
   content?: React.ReactNode;
   accumulatedProgress: number;
+  isFooterInList?: boolean;
   firstButton: {
     label: string;
     actionId: string;
@@ -241,6 +242,7 @@ export const data: UnderwritingJourneyScreen[] = [
     linkButton: { label: "Privacy policy", actionId: ACTION_OPEN_PRIVACY_LINK },
     children: [{ type: "copyIntro" }],
     accumulatedProgress: ACCUMULATED_PROGRESS.FIB_INTRO,
+    isFooterInList: true,
   },
   {
     id: FIB_ENTER_YOUR_NAME,

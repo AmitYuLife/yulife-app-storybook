@@ -381,16 +381,17 @@ const _FibUnderwritingJourneyContainer = memo(function (props: Props) {
     maxLength: FINAL_PROGRESS,
   };
 
-  const disableFirstButton = shouldFirstButtonBeDisabled(
+  const disableFirstButton = shouldFirstButtonBeDisabled({
     medicalHistory,
     currentQuestion,
     fibAnswers,
     inputFirstName,
     inputLastName,
     radioInputValue,
-    inputSalary
-  );
-  const disableSecondButton = shouldSecondButtonBeDisabled(currentQuestion, fibAnswers);
+    inputSalary,
+  });
+  const disableSecondButton = shouldSecondButtonBeDisabled({ currentQuestion, fibAnswers });
+  const isFooterInList = currentQuestion.isFooterInList;
 
   const onNavigateBackHandler = useCallback(async () => {
     await Navigation.showModal({
@@ -434,6 +435,7 @@ const _FibUnderwritingJourneyContainer = memo(function (props: Props) {
         setRadioInputValue={setRadioInputValue}
         setInputSalary={setInputSalary}
         salary={inputSalary}
+        isFooterInList={isFooterInList}
       />
     </FIBProgressBar.ProgressBarContext.Provider>
   );

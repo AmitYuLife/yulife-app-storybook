@@ -1,8 +1,23 @@
 import { Style } from "@styles";
+import media from "@styles/media";
 import { Platform, StyleSheet } from "react-native";
 import { BUTTON_SIZES, Sizes } from "./button.types";
 
 export const DEFAULT_HEIGHT = Style.adjust(53);
+
+const SMALL_WIDTH = media.select(
+  [
+    {
+      condition: Platform.OS === "ios" && Style.DEVICE_WIDTH < media.DEVICES.iPhone8.width,
+      value: 160,
+    },
+    {
+      condition: Platform.OS === "ios",
+      value: 170,
+    },
+  ],
+  Style.adjust(150)
+);
 
 export const buttonStyles = StyleSheet.create({
   wrapper: {
@@ -15,10 +30,7 @@ export const buttonStyles = StyleSheet.create({
     width: Style.adjust(210),
   },
   small: {
-    width: Platform.select({
-      ios: Style.adjust(170, { shrinkThreshold: Style.DEVICE_WIDTH < 400, shrinkMultiplier: 0.1 }),
-      android: Style.adjust(150),
-    }),
+    width: SMALL_WIDTH,
   },
   large: {
     width: Style.DEVICE_WIDTH - 70,

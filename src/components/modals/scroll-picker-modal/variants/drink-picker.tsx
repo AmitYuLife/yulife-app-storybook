@@ -5,11 +5,11 @@ import { getFIBState } from "@redux/product/product.selectors";
 import ScrollPickerModal from "../scroll-picker-modal";
 
 const dataDrinks = Array.from({ length: 21 }).map((_, i) => ({
-  label: `${i} drinks`,
+  label: `${i} drink${i === 1 ? "" : "s"}`,
   value: i,
 }));
 
-const DEFAULT_DRINKS_INDEX = 0;
+const DEFAULT_DRINKS_INDEX = 10;
 
 interface Props {
   onCancel: () => void;

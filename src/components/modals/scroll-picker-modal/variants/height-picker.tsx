@@ -19,8 +19,8 @@ const dataCm = Array.from({ length: 100 }).map((_, i) => ({
 }));
 
 const DEFAULT_FEET_INDEX = 1;
-const DEFAULT_INCH_INDEX = 11;
-const DEFAULT_CM_INDEX = 59;
+const DEFAULT_INCH_INDEX = 0;
+const DEFAULT_CM_INDEX = 39;
 
 interface Props {
   onCancel: () => void;
