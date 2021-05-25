@@ -34,7 +34,7 @@ import { useSelector } from "react-redux";
 import { getFullName } from "@redux/product/product.selectors";
 import { Style, TOP_BAR } from "@styles";
 
-const CONTENT_VISIBILITY_THRESHOLD = 0;
+const CONTENT_VISIBILITY_THRESHOLD = 40;
 const VIEWABLE_AREA = Style.DEVICE_HEIGHT - TOP_BAR.TOP_BAR_WITH_PAD;
 
 export interface IFibUnderwritingJourneyScreenProps {
@@ -81,8 +81,8 @@ const _FibUnderwritingJourneyScreen = memo(function (props: IFibUnderwritingJour
   } = props;
   const scrollViewRef = useRef(null as ScrollView);
   const timer = useRef(null as ReturnType<typeof setTimeout>);
-  const [footerInList, setFooterInList] = useState(isFooterInList);
-  const contentSizeChanged = useRef(data.id);
+  const contentSizeChanged = useRef(null);
+  const [satisfiedScrollState, setSatisfiedScrollState] = useState(false);
 
   function handleResetScroll() {
     if (scrollViewRef?.current?.scrollTo) {
@@ -157,7 +157,22 @@ const _FibUnderwritingJourneyScreen = memo(function (props: IFibUnderwritingJour
           if (contentSizeChanged.current !== data.id) {
             contentSizeChanged.current = data.id;
             const isContentVisible = contentHeight - VIEWABLE_AREA < CONTENT_VISIBILITY_THRESHOLD;
-            setFooterInList(isFooterInList || !isContentVisible);
+
+            setSatisfiedScrollState(isContentVisible);
+          }
+        }}
+        onScroll={(event) => {
+          const offsetY = event.nativeEvent.contentOffset.y;
+          const contentHeight = event.nativeEvent.contentSize.height;
+
+          /**
+           * No need to revert
+           * Just need to detect
+           * If user scrolled to the edge
+           * Even for a moment
+           */
+          if (VIEWABLE_AREA + offsetY + CONTENT_VISIBILITY_THRESHOLD > contentHeight) {
+            setSatisfiedScrollState(true);
           }
         }}
       >
@@ -180,7 +195,7 @@ const _FibUnderwritingJourneyScreen = memo(function (props: IFibUnderwritingJour
             </View>
           );
         })}
-        {!footerInList ? (
+        {!isFooterInList ? (
           <View style={{ height: Footer.HEIGHT }} />
         ) : (
           <Footer
@@ -192,8 +207,14 @@ const _FibUnderwritingJourneyScreen = memo(function (props: IFibUnderwritingJour
           />
         )}
       </ScrollView>
-      {footerInList ? null : (
-        <Footer id={data.id} firstButton={firstButton} secondButton={secondButton} linkButton={linkButton} />
+      {isFooterInList ? null : (
+        <Footer
+          forceDisable={!satisfiedScrollState}
+          id={data.id}
+          firstButton={firstButton}
+          secondButton={secondButton}
+          linkButton={linkButton}
+        />
       )}
     </FibUnderwritingJourneyLayout>
   );

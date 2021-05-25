@@ -8,7 +8,7 @@ export const DEFAULT_HEIGHT = Style.adjust(53);
 const SMALL_WIDTH = media.select(
   [
     {
-      condition: Platform.OS === "ios" && Style.DEVICE_WIDTH < media.DEVICES.iPhone8.width,
+      condition: Platform.OS === "ios" && Style.DEVICE_WIDTH <= media.DEVICES.iPhone8.width,
       value: 160,
     },
     {

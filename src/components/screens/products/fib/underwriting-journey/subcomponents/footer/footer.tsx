@@ -1,6 +1,7 @@
-import React, { useEffect, useRef } from "react";
-import { StyleSheet, View, ViewStyle, Animated, Platform, Easing } from "react-native";
-import { Style } from "@styles";
+import React, { memo } from "react";
+import { StyleSheet, View, ViewStyle, Animated } from "react-native";
+import LinearGradient from "react-native-linear-gradient";
+import { Colours, Style } from "@styles";
 import { Button, LinkButton } from "@atoms";
 
 interface FooterButton {
@@ -15,78 +16,22 @@ interface IFooterProps {
   linkButton?: FooterButton;
   isInList?: boolean;
   id?: string;
+  forceDisable?: boolean;
 }
 
-const INVISIBLE_OPACITY = 0;
-const VISIBLE_OPACITY = 1;
-const INVISIBLE_TRANSLATE_Y = Style.DEVICE_HEIGHT;
-const VISIBLE_TRANSLATE_Y = 0;
-
-function Footer(props: IFooterProps) {
-  const { firstButton, secondButton, linkButton, isInList, id } = props;
-  const { current: opacity } = useRef(new Animated.Value(VISIBLE_OPACITY));
-  const { current: translateY } = useRef(new Animated.Value(VISIBLE_TRANSLATE_Y));
-
-  useEffect(() => {
-    const opacity1 = Animated.timing(opacity, {
-      toValue: INVISIBLE_OPACITY,
-      duration: 0,
-      useNativeDriver: true,
-    });
-    const opacity2 = Animated.timing(opacity, {
-      toValue: VISIBLE_OPACITY,
-      duration: Platform.select({ ios: 1000, android: 100 }),
-      easing: Easing.elastic(0.1),
-      useNativeDriver: true,
-    });
-    const translateY1 = Animated.timing(translateY, {
-      toValue: INVISIBLE_TRANSLATE_Y,
-      duration: 0,
-      useNativeDriver: true,
-    });
-    const translateY2 = Animated.timing(translateY, {
-      toValue: VISIBLE_TRANSLATE_Y,
-      duration: 1000,
-      easing: Easing.elastic(0.1),
-      useNativeDriver: true,
-    });
-
-    const step1 = Animated.parallel([opacity1, translateY1]);
-    const step2 = Animated.parallel([opacity2, translateY2]);
-    Animated.sequence([step1, step2]).start();
-
-    return () => {
-      opacity.stopAnimation();
-      translateY.stopAnimation();
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [id]);
+const Footer = memo((props: IFooterProps) => {
+  const { firstButton, secondButton, linkButton, isInList, forceDisable } = props;
 
   return (
-    <Animated.View
-      pointerEvents="box-none"
-      style={[
-        isInList ? styles.inListWrapper : styles.absoluteWrapper,
-        { opacity },
-        {
-          transform: [
-            {
-              translateY: Platform.select({
-                ios: new Animated.Value(0),
-                android: translateY,
-              }),
-            },
-          ],
-        },
-      ]}
-    >
+    <Animated.View pointerEvents="box-none" style={[isInList ? styles.inListWrapper : styles.absoluteWrapper]}>
+      <Fade />
       <View style={styles.buttonsWrapper}>
         <View style={linkButton ? styles.innerButtonsColumn : styles.innerButtonsRow}>
           <Button
             size={secondButton ? "Small" : "Large"}
             onPress={firstButton.action}
             label={firstButton.label}
-            disabled={firstButton.disabled}
+            disabled={forceDisable || firstButton.disabled}
             delay={300}
             disableAnimation={true}
           />
@@ -97,7 +42,7 @@ function Footer(props: IFooterProps) {
               label={secondButton.label}
               delay={300}
               disableAnimation={true}
-              disabled={secondButton.disabled}
+              disabled={forceDisable || secondButton.disabled}
             />
           )}
           {!linkButton ? null : (
@@ -105,20 +50,30 @@ function Footer(props: IFooterProps) {
               onPress={linkButton.action}
               label={linkButton.label}
               delay={300}
-              disabled={linkButton.disabled}
+              disabled={forceDisable || linkButton.disabled}
             />
           )}
         </View>
       </View>
     </Animated.View>
   );
-}
+});
 
 const HEIGHT = 180;
 
 export default Object.assign(Footer, {
   HEIGHT,
 });
+
+const Fade = memo(() => (
+  <LinearGradient
+    pointerEvents="none"
+    colors={[Colours.neutral.white, Colours.neutral.white, Colours.neutral.white, "rgba(255,255,255,0)"]}
+    style={styles.gradient}
+    start={{ x: 1, y: 1 }}
+    end={{ x: 1, y: 0 }}
+  />
+));
 
 const styles = StyleSheet.create({
   absoluteWrapper: {
