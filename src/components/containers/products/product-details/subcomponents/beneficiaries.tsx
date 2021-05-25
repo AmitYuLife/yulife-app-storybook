@@ -13,6 +13,7 @@ import {
 } from "@graphql/_core/schema";
 import { GQL_QUERY_GET_PRODUCT_BENEFICIARIES } from "@graphql/products/getProductBeneficiaries";
 import { TEXT_TEMPLATE, ADD_BENEFICIARY, BENEFICIARY_DETAILS } from "@ids";
+import Logger from "@services/logging/logger";
 
 interface IBeneficiariesProps {
   productId: string;
@@ -89,7 +90,12 @@ const BeneficiariesDetails = ({ beneficiaries, onPress }: IBeneficiariesDetailsP
   );
 };
 
-const onAddBeneficiaryPress = (productId: string) =>
+const onAddBeneficiaryPress = (productId: string) => {
+  /**
+   * Event Taxonomy 104
+   */
+  Logger.logEvent("benificiary_add_started");
+
   Navigation.showModal({
     component: {
       id: MODALS.addBeneficiary,
@@ -100,6 +106,7 @@ const onAddBeneficiaryPress = (productId: string) =>
       },
     },
   });
+};
 
 const onBeneficiaryPress = (productId: string) =>
   Navigation.push(ROUTES.productDetails, {

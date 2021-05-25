@@ -78,14 +78,14 @@ export const BeneficiaryScreen = memo((props: Props) => {
   );
 
   const showAddBeneficiaryModal = useCallback(
-    (productId: string, beneficiary?: Beneficiary) =>
+    (beneficiaryProductId: string, beneficiary?: Beneficiary) =>
       Navigation.showModal({
         component: {
           id: MODALS.addBeneficiary,
           name: MODALS.addBeneficiary,
           passProps: {
             beneficiary,
-            productId,
+            productId: beneficiaryProductId,
           },
         },
       }),
@@ -129,8 +129,11 @@ export const BeneficiaryScreen = memo((props: Props) => {
 
           {localBeneficiaries.map((beneficiary, index) => {
             const isFocused = focusIndex === index;
-            const onBeneficiaryPress = () => showAddBeneficiaryModal(productId, beneficiary);
-            const onChangeText = (val: string) => onBeneficiaryAllocatedAmountChanged(beneficiary, parseInt(val));
+            const onBeneficiaryPress = () => {
+              showAddBeneficiaryModal(productId, beneficiary);
+            };
+
+            const onChangeText = (val: string) => onBeneficiaryAllocatedAmountChanged(beneficiary, parseInt(val, 10));
             const hasFocusActive = (active: boolean) => (active ? setFocusIndex(index) : setFocusIndex(null));
 
             return (

@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect, useRef } from "react";
 import { Keyboard } from "react-native";
 import { Navigation } from "react-native-navigation";
 import { MODALS, ROUTES } from "@navigation/constants";
@@ -14,6 +14,7 @@ import {
   RemoveBeneficiaryFromProductMutationTuple,
   GQL_MUTATION_REMOVE_BENEFICIARY_FROM_PRODUCT,
 } from "@graphql/products/deleteBeneficiary";
+import Logger from "@services/logging/logger";
 
 interface IProps {
   beneficiary: Beneficiary;
@@ -23,6 +24,20 @@ interface IProps {
 
 export default function AddBeneficiaryModal(props: IProps) {
   const { beneficiary: beneficiaryToEdit, pushEditRoot, productId } = props;
+  const initialBeneficiary = useRef(null);
+
+  useEffect(() => {
+    initialBeneficiary.current = beneficiaryToEdit;
+
+    /**
+     * Event taxonomy 115
+     */
+    Logger.logEvent("beneficiary_edit_start", {
+      type: beneficiaryToEdit ? "edit" : "new",
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const [
     updateBeneficiaryForProduct,
     { loading: updateBeneficiaryLoading },
