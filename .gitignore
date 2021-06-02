@@ -85,3 +85,5 @@ ios/tmp.xcconfig
 
 e2e-report
 simulator.mov
+
+.yalc

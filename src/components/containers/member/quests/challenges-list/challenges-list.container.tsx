@@ -12,9 +12,10 @@ import { formatMilestones, getSlotDuration, reduceMilestones } from "./challenge
 import { useMutation } from "@apollo/react-hooks";
 import { handleLinkPress } from "@services/app-link";
 import { Unit } from "@screens/member/challenges/models";
-import { authoriseCycling } from "@services/fitkit/fitkit.helpers";
+import { authoriseCycling, authoriseWorkouts } from "@services/fitkit/fitkit.helpers";
 import { ChallengeType } from "@molecules/challenge-tile/challenge-tile.types";
 import { getCurrentWorld } from "@services/utils";
+import { Platform } from "react-native";
 
 interface IProps {
   componentId: string;
@@ -69,6 +70,12 @@ const ChallengesListContainer: FC<Props> = ({ level, componentId }) => {
     try {
       if (slot.challengeType === "cycling") {
         await authoriseCycling();
+      }
+
+      if (slot.challengeType === "fiit" && Platform.OS === "ios") {
+        // we need this authorization mostly for iOS
+        // on android we have access for fiit workouts with the activity access
+        await authoriseWorkouts();
       }
 
       const { data } = await createActiveChallenge();
