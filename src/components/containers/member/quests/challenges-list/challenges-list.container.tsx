@@ -102,7 +102,7 @@ const ChallengesListContainer: FC<Props> = ({ level, componentId }) => {
               duration: getSlotDuration(levelSlot),
               id: levelSlot.id,
               milestones: formatMilestones(levelSlot.milestones, levelSlot.subtype),
-              reward: `${minValue} - ${maxValue}`,
+              reward: minValue === maxValue ? `${maxValue}` : `${minValue} - ${maxValue}`,
               unit: levelSlot.unit as Unit,
             };
             const isLocked = currentLevel < levelSlot.availableAtLevel;
