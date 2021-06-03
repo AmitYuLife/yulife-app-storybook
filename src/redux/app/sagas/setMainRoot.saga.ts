@@ -88,7 +88,7 @@ async function getTokenAndMobileUpgrateStatus(): Promise<TokenAndMobileUpgrateSt
       }
     }
 
-    if ((data && data.getSession === null) || errors.length) {
+    if ((data && data.getSession === null) || errors?.length) {
       await expireSession();
       return { tokenStatus: "invalid", mobileUpgrade: data?.mobileUpgradeRequired };
     }
