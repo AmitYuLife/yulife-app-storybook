@@ -86,13 +86,11 @@ async function getTokenAndMobileUpgrateStatus(): Promise<TokenAndMobileUpgrateSt
       for (const error of errors) {
         Logger.error(error, { message: "error trying to get user session" });
       }
-
-      return null;
     }
 
-    if (data && data.getSession === null) {
+    if ((data && data.getSession === null) || errors.length) {
       await expireSession();
-      return { tokenStatus: "invalid", mobileUpgrade: data.mobileUpgradeRequired };
+      return { tokenStatus: "invalid", mobileUpgrade: data?.mobileUpgradeRequired };
     }
 
     const expiresAt = moment.unix(data.getSession.expires);
@@ -106,6 +104,6 @@ async function getTokenAndMobileUpgrateStatus(): Promise<TokenAndMobileUpgrateSt
     const tokenStatus = !isExpired && moment().add(30, "days").isAfter(expiresAt) ? "refreshing" : "valid";
     return { tokenStatus, mobileUpgrade: data.mobileUpgradeRequired };
   } catch (e) {
-    return null;
+    return { tokenStatus: null, mobileUpgrade: null };
   }
 }
