@@ -37,6 +37,7 @@ interface Props {
   filterBySelected?: boolean;
 }
 
+// @TODO PLI: Remove this when refactoring the new package screen
 export const PackageOptions = memo(function (props: Props) {
   const { onSelectPackage, selectedPackageId, filterBySelected } = props;
 

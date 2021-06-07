@@ -26,6 +26,10 @@ import { SignedContractIcon } from "./signed-contract-icon";
 import { YuCoinPileIcon } from "./yucoin-pile-icon";
 import { YugiGPIcon } from "./yugi-gp-icon";
 import { SwitchIcon } from "./switch-icon";
+import { QuestionMarkIcon } from "./question-mark-icon";
+import { DoubleChestIcon } from "./double-chest-icon";
+import { ShoeIcon } from "./shoe-icon";
+import { StreakIcon } from "./streak-icon";
 
 //TODO: check with the team if we can refactor this to support "import { Icon1, Icon2} from "@atoms/icon";
 
@@ -58,4 +62,8 @@ export default {
   YuCoinPileIcon,
   YugiGPIcon,
   SwitchIcon,
+  QuestionMarkIcon,
+  DoubleChestIcon,
+  ShoeIcon,
+  StreakIcon,
 };

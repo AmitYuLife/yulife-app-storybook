@@ -55,7 +55,7 @@ describe("PackageInfo", () => {
 
   it("should render PackageInfo", () => {
     const { queryByText, rerender } = renderComponent({ selectedPackage });
-    expect(queryByText("common")).toBeTruthy();
+    expect(queryByText("Common")).toBeTruthy();
     expect(queryByText(packageCommonInfo.title)).toBeTruthy();
     expect(queryByText("75")).toBeTruthy();
     expect(queryByText(packageCommonInfo.symbol)).toBeTruthy();

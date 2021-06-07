@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { memo, useEffect, useRef } from "react";
 import { Animated, Pressable, StyleSheet, View, ViewStyle } from "react-native";
 import { Colours, Style } from "@styles";
 import { TextTemplate } from "@atoms";
@@ -7,7 +7,7 @@ import { BlurView } from "react-native-blur";
 import { CoverType } from "@graphql/_core/schema/globalTypes";
 import { toCapitalLetter } from "@services/utils";
 
-interface IPackageCardPerks {
+export interface IPackageCardPerks {
   icon: React.ReactNode;
   title: string;
   description: string;
@@ -17,6 +17,8 @@ interface IPackageCardPerks {
 
 interface IProps {
   perk: IPackageCardPerks;
+  onLongPress: (key: CoverType) => void;
+  onPressOut: () => void;
 }
 
 const commonProps = {
@@ -24,7 +26,7 @@ const commonProps = {
   useNativeDriver: true,
 };
 
-const PackageCardPerks = ({ perk }: IProps) => {
+const PackageCardPerks = ({ perk, onLongPress, onPressOut }: IProps) => {
   const fadeInFadeOut = useRef(new Animated.Value(0)).current;
   const opacity = fadeInFadeOut.interpolate({
     inputRange: [0, 0.5],
@@ -50,8 +52,8 @@ const PackageCardPerks = ({ perk }: IProps) => {
 
   return (
     <Pressable
-      onLongPress={() => (!perk.locked ? null : fadeIn.start())}
-      onPressOut={() => (!perk.locked ? null : fadeOut.start())}
+      onLongPress={() => (!perk.locked ? null : fadeIn.start(() => onLongPress(perk.coverType)))}
+      onPressOut={() => fadeOut.start(() => onPressOut())}
     >
       <View style={styles.wrapper}>
         <View style={styles.icon}>{perk.icon}</View>
@@ -116,4 +118,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default PackageCardPerks;
+export default memo(PackageCardPerks);

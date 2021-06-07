@@ -35,10 +35,7 @@ export { default as YuCoinIcon } from "./yucoin-icon/yucoin.icon";
 export { Yumoji } from "./yumoji/yumoji";
 export { UnauthorisedGradient } from "./unauthorised-gradient/unauthorised-gradient";
 export { default as ArrowRightSvg } from "./arrow-right-svg/arrow-right-svg";
-export { default as DoubleChest } from "./fib/double-chest/double-chest";
 export { default as SkeletonRow } from "./skeleton-row/skeleton-row";
-export { default as Streak } from "./fib/streak/streak";
-export { default as Shoe } from "./fib/shoe/shoe";
 export { default as PackageType } from "./package-types/package-types";
 export { default as GenderIcon } from "./gender/gender";
 export { default as SearchInput } from "./search/search-input";
@@ -54,7 +51,9 @@ export { default as Hyperlink } from "./hyperlink/hyperlink";
 export { default as RibbonGold } from "./ribbon-gold/ribbon-gold";
 export { default as SkeletonLoading } from "./skeleton-loading/skeleton-loading";
 export { default as PackageCardPerks } from "./package-card-perks/package-card-perks";
-
+export { default as YuCoinPowerMini } from "./yucoin-power-mini/yucoin-power-mini";
+export { default as PackageCardHeader } from "./package-card-header/package-card-header";
+export { SlotIcon } from "./slot-icon/slot-icon";
 // error :( https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-8.html#export--as-ns-syntax
 import * as ProductSvg from "./product-svg";
 export { ProductSvg };

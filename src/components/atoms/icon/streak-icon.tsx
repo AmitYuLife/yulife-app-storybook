@@ -1,7 +1,7 @@
 import * as React from "react";
 import Svg, { Path } from "react-native-svg";
 
-const Streak: React.FC = () => {
+export const StreakIcon: React.FC = () => {
   return (
     <Svg width={24} height={24} viewBox="0 0 24 24" fill="none">
       <Path d="M3 6.5h20V19a4 4 0 01-4 4H7a4 4 0 01-4-4V6.5z" fill="#FABCBC" />
@@ -20,5 +20,3 @@ const Streak: React.FC = () => {
     </Svg>
   );
 };
-
-export default Streak;

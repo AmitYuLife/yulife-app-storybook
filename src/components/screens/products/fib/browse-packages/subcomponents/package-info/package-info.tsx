@@ -4,11 +4,16 @@ import LinearGradient from "react-native-linear-gradient";
 import { PackageType } from "@atoms";
 import { Package } from "@components/screens/products/fib/browse-packages/fib.browse.types";
 import { Style, Colours } from "@styles";
-import { DoubleChest, Streak, Shoe, Text } from "@atoms";
+import { Text } from "@atoms";
 import { PACKAGE_INFO, SALARY_COVERED, PACKAGE_YUCOIN_POWER, SELECTED_PACKAGE_TITLE } from "@ids";
 import { formatMoney } from "@services/money";
 import { CoverType } from "@graphql/_core/schema/globalTypes";
 import { getToolTipName } from "@services/products";
+import { DoubleChestIcon } from "@atoms/icon/double-chest-icon";
+import { StreakIcon } from "@atoms/icon/streak-icon";
+import { ShoeIcon } from "@atoms/icon/shoe-icon";
+
+// @TODO PLI: Replace this with the PackageCard component
 export interface Props {
   selectedPackage: Package;
   packagePrice?: number;
@@ -26,9 +31,9 @@ interface Option {
 }
 
 const powersIcons: Key = {
-  double_chest: <DoubleChest />,
-  streak_reward: <Streak />,
-  daily_step_limit: <Shoe />,
+  double_chest: <DoubleChestIcon />,
+  streak_reward: <StreakIcon />,
+  daily_step_limit: <ShoeIcon />,
 };
 
 const boxInfoData: Key = {
