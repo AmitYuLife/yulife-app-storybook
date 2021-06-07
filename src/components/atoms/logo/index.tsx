@@ -1,10 +1,11 @@
 import { Colours, Style } from "@styles/index";
 import * as React from "react";
 import { StyleProp, ViewStyle } from "react-native";
-import Svg, { Path } from "react-native-svg";
+import Svg, { G, Path, Defs, ClipPath } from "react-native-svg";
 
+type IType = "full" | "logo-only" | "text-only" | "inverted";
 interface IProps {
-  type?: "full" | "logo-only" | "text-only";
+  type?: IType;
   scale?: number;
   colour?: string;
   onLayout?: () => void;
@@ -13,7 +14,7 @@ interface IProps {
   height?: number;
 }
 
-const Logo: React.SFC<IProps> = ({
+const Logo: React.FC<IProps> = ({
   type,
   scale = 1,
   colour = Colours.darkHotPink,
@@ -104,13 +105,52 @@ const Logo: React.SFC<IProps> = ({
           />
         </Svg>
       );
+    case "inverted":
+      return (
+        <Svg
+          width={Style.adjust(width || 15)}
+          height={Style.adjust(height || 16)}
+          viewBox="0 0 15 16"
+          fill="none"
+          style={style}
+        >
+          <G clipPath="url(#prefix__clip0)">
+            <Path
+              d="M14.4.5H.6c-.33 0-.6.27-.6.6v13.8c0 .33.27.6.6.6h13.8c.33 0 .6-.27.6-.6V1.1c0-.33-.27-.6-.6-.6zM4.305 12.635h-.952s.945-2.205 1.05-2.467L2.333 5.24h.99l1.56 3.817 1.56-3.817h.997l-3.135 7.395zm8.28-4.237c0 1.995-1.298 2.227-2.273 2.227-1.552 0-2.272-.705-2.272-2.227V5.24h.908v3.158c0 .63.157 1.35 1.364 1.35 1.208 0 1.366-.72 1.366-1.35V5.24h.907v3.158z"
+              fill="#fff"
+            />
+          </G>
+          <Defs>
+            <ClipPath id="prefix__clip0">
+              <Path fill="#fff" transform="translate(0 .5)" d="M0 0h15v15H0z" />
+            </ClipPath>
+          </Defs>
+        </Svg>
+      );
     default:
       return (
-        <Svg style={style} width="24" height="24" viewBox="0 0 24 24">
-          <Path
-            d="M23.04 0H0.96C0.432 0 0 0.432 0 0.96V23.04C0 23.568 0.432 24 0.96 24H23.04C23.568 24 24 23.568 24 23.04V0.96C24 0.432 23.568 0 23.04 0ZM6.888 19.416H5.364C5.364 19.416 6.876 15.888 7.044 15.468L3.732 7.584H5.316L7.812 13.692L10.308 7.584H11.904L6.888 19.416ZM20.136 12.636C20.136 15.828 18.06 16.2 16.5 16.2C14.016 16.2 12.864 15.072 12.864 12.636V7.584H14.316V12.636C14.316 13.644 14.568 14.796 16.5 14.796C18.432 14.796 18.684 13.644 18.684 12.636V7.584H20.136V12.636Z"
-            fill={colour}
-          />
+        <Svg
+          width={Style.adjust(width || 26)}
+          height={Style.adjust(height || 26)}
+          viewBox="0 0 15 16"
+          fill="none"
+          style={style}
+        >
+          <G clipPath="url(#prefix__clip0)">
+            <Path
+              d="M14.4.5H.6c-.33 0-.6.27-.6.6v13.8c0 .33.27.6.6.6h13.8c.33 0 .6-.27.6-.6V1.1c0-.33-.27-.6-.6-.6z"
+              fill="#E30D76"
+            />
+            <Path
+              d="M3.352 12.635h.953L7.44 5.24h-.998l-1.56 3.818-1.56-3.818h-.99l2.07 4.928c-.105.262-1.05 2.467-1.05 2.467zM10.312 10.625c.975 0 2.273-.232 2.273-2.227V5.24h-.908v3.158c0 .63-.157 1.35-1.365 1.35-1.207 0-1.365-.72-1.365-1.35V5.24H8.04v3.158c0 1.522.72 2.227 2.272 2.227z"
+              fill="#fff"
+            />
+          </G>
+          <Defs>
+            <ClipPath id="prefix__clip0">
+              <Path fill="#fff" transform="translate(0 .5)" d="M0 0h15v15H0z" />
+            </ClipPath>
+          </Defs>
         </Svg>
       );
   }

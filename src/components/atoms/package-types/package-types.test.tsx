@@ -3,6 +3,7 @@ import { render } from "@testing-library/react-native";
 import { PACKAGE_TYPES } from "@ids";
 import PackageTypes, { Props } from "./package-types";
 import { CoverType } from "@graphql/_core/schema/globalTypes";
+import { toCapitalLetter } from "@services/utils";
 
 const renderComponent = (props: Props) => {
   return render(<PackageTypes {...props} />);
@@ -17,7 +18,7 @@ describe("PackageType", () => {
     const type = CoverType.common;
     const { queryByText, queryByTestId } = renderComponent({ type });
     const view = queryByTestId(PACKAGE_TYPES);
-    expect(queryByText(type)).toBeTruthy();
+    expect(queryByText(toCapitalLetter(type))).toBeTruthy();
     expect(view.props.style[1].backgroundColor).toBe("#00ED9D");
   });
 
@@ -25,7 +26,7 @@ describe("PackageType", () => {
     const type = CoverType.rare;
     const { queryByText, queryByTestId } = renderComponent({ type });
     const view = queryByTestId(PACKAGE_TYPES);
-    expect(queryByText(type)).toBeTruthy();
+    expect(queryByText(toCapitalLetter(type))).toBeTruthy();
     expect(view.props.style[1].backgroundColor).toBe("#00C0F3");
   });
 
@@ -33,7 +34,7 @@ describe("PackageType", () => {
     const type = CoverType.epic;
     const { queryByText, queryByTestId } = renderComponent({ type });
     const view = queryByTestId(PACKAGE_TYPES);
-    expect(queryByText(type)).toBeTruthy();
+    expect(queryByText(toCapitalLetter(type))).toBeTruthy();
     expect(view.props.style[1].backgroundColor).toBe("#956AFF");
   });
 });

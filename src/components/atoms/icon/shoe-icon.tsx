@@ -1,7 +1,7 @@
 import * as React from "react";
 import Svg, { Path } from "react-native-svg";
 
-const Shoe: React.FC = () => {
+export const ShoeIcon: React.FC = () => {
   return (
     <Svg width={24} height={20} viewBox="0 0 24 20" fill="none">
       <Path
@@ -31,5 +31,3 @@ const Shoe: React.FC = () => {
     </Svg>
   );
 };
-
-export default Shoe;

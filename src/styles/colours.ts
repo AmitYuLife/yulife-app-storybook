@@ -273,6 +273,7 @@ export default {
   metallic: {
     m100: "#EFF0FA",
     m300: "#B9B9CC",
+    m400: "#AAAABF",
     m500: "#87879F",
   },
   hexToRGB,

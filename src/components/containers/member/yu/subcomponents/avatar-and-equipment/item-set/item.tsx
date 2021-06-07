@@ -1,12 +1,12 @@
 import React, { useCallback, useContext } from "react";
 import { StyleSheet, ViewStyle, View, ImageStyle } from "react-native";
+import { SlotIcon } from "@atoms";
 import { TouchableOpacityWithDelay, PowerCoin } from "@molecules";
 import { Style } from "@styles";
 import { YuProductStatus } from "@graphql/_core/schema/globalTypes";
 import { AVATAR_ITEM } from "@ids";
 import { SvgUnlockable } from "../../product/assets/svg-unlockable";
 import { SvgLocked } from "../../product/assets/svg-locked";
-import { ItemIcon } from "./item-icon";
 import { YuScreenProductContext } from "../../../yu-screen.context";
 import { YuScreenProductSlotItem } from "@graphql/_core/schema";
 
@@ -22,6 +22,8 @@ export const Item = (props: IItem) => {
     setProduct(product?.itemUrl === itemUrl ? null : props);
   }, [setProduct, product, itemUrl, props]);
 
+  const slot = { name: icon?.name, itemUrl, backgroundUrl: icon?.backgroundUrl, status };
+
   return (
     <TouchableOpacityWithDelay
       delay={350}
@@ -30,7 +32,7 @@ export const Item = (props: IItem) => {
       style={[styles.wrapper, style]}
       testID={AVATAR_ITEM(icon?.name, status)}
     >
-      <ItemIcon item={{ name: icon?.name, itemUrl, backgroundUrl: icon?.backgroundUrl }} status={status} />
+      <SlotIcon slot={slot} />
       <View style={styles.tagWrapper}>{getTag(status, earnRate)}</View>
     </TouchableOpacityWithDelay>
   );

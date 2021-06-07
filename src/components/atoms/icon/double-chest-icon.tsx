@@ -1,7 +1,7 @@
 import * as React from "react";
 import Svg, { Path, Circle } from "react-native-svg";
 
-const DoubleChest: React.FC = () => {
+export const DoubleChestIcon: React.FC = () => {
   return (
     <Svg width={22} height={23} viewBox="0 0 22 23" fill="none">
       <Path d="M2 12h20v9a2 2 0 01-2 2H4a2 2 0 01-2-2v-9z" fill="#FD7841" />
@@ -16,5 +16,3 @@ const DoubleChest: React.FC = () => {
     </Svg>
   );
 };
-
-export default DoubleChest;
