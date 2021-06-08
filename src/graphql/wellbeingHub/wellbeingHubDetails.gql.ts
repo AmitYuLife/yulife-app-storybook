@@ -8,7 +8,7 @@ export const GQL_QUERY_GET_WELLBEING_HUB_DETAILS = gql`
       description
       thumbnail {
         id
-        uri
+        uri(options: { width: 800, height: 400, crop: "fit" })
       }
       icon {
         id
