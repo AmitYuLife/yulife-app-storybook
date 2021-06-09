@@ -43,42 +43,50 @@ const packagePerks: Key = {
 
 const PackageCard = ({ packageInfo, onPress }: IProps) => {
   return (
-    <View style={[styles.wrapper, { borderColor: Colours.products.fib[packageInfo?.coverType] }]}>
-      <PackageCardHeader packageInfo={{ ...packageInfo, coverType: packageInfo?.coverType }} />
-      <View style={styles.container}>
-        <View style={styles.yucoin}>
-          <YuCoinPowerMini coinValue={packageInfo.earnRate} onPress={showEarnRateOverlay} />
-        </View>
-
-        <View style={styles.perk}>
-          <TextTemplate color={Colours.neutral.n400} type="l1b">
-            Perks
-          </TextTemplate>
-        </View>
-        {packageInfo?.powers.map((perk, index: number) => (
-          <View key={index} style={styles.perk}>
-            <PackageCardPerks
-              onLongPress={(coverType: CoverType) => onPress(coverType)}
-              onPressOut={() => onPress(null)}
-              perk={{
-                ...perk,
-                icon: packagePerks[perk.icon],
-              }}
-            />
+    <View style={styles.centerContent}>
+      <View style={[styles.wrapper, { borderColor: Colours.products.fib[packageInfo?.coverType] }]}>
+        <PackageCardHeader packageInfo={{ ...packageInfo, coverType: packageInfo?.coverType }} />
+        <View style={styles.container}>
+          <View style={styles.yucoin}>
+            <YuCoinPowerMini coinValue={packageInfo.earnRate} onPress={showEarnRateOverlay} />
           </View>
-        ))}
+
+          <View style={styles.perk}>
+            <TextTemplate color={Colours.neutral.n400} type="l1b">
+              Perks
+            </TextTemplate>
+          </View>
+          {packageInfo?.powers.map((perk, index: number) => (
+            <View key={index} style={styles.perk}>
+              <PackageCardPerks
+                onLongPress={(coverType: CoverType) => onPress(coverType)}
+                onPressOut={() => onPress(null)}
+                perk={{
+                  ...perk,
+                  icon: packagePerks[perk.icon],
+                }}
+              />
+            </View>
+          ))}
+        </View>
       </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
+  centerContent: {
+    justifyContent: "center",
+    alignItems: "center",
+  },
   wrapper: {
     borderRadius: 16,
     borderWidth: 1,
   },
   container: {
-    padding: Style.adjust(24),
+    paddingHorizontal: Style.adjust(24),
+    paddingTop: Style.adjust(24),
+    paddingBottom: Style.adjust(16),
   },
   yucoin: {
     marginBottom: Style.adjust(16),

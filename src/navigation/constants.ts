@@ -58,6 +58,9 @@ export const ROUTES = {
   wegiftConfirmed: "yulife.rewards.WegiftConfirmed",
   aviosDetails: "yulife.rewards.AviosDetails",
   aviosConfirmed: "yulife.rewards.AviosConfirmed",
+
+  //debug
+  packageCard: "yulife.debug.packageCard",
 };
 
 export const MODALS = {

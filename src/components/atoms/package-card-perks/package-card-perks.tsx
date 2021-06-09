@@ -1,5 +1,5 @@
 import React, { memo, useEffect, useRef } from "react";
-import { Animated, Pressable, StyleSheet, View, ViewStyle } from "react-native";
+import { Animated, Platform, Pressable, StyleSheet, View, ViewStyle } from "react-native";
 import { Colours, Style } from "@styles";
 import { TextTemplate } from "@atoms";
 import { NotVisibleEyeIcon } from "@atoms/icon/not-visible-eye-icon";
@@ -28,6 +28,7 @@ const commonProps = {
 
 const PackageCardPerks = ({ perk, onLongPress, onPressOut }: IProps) => {
   const fadeInFadeOut = useRef(new Animated.Value(0)).current;
+  const triggerPackageSelection = useRef<ReturnType<typeof setTimeout>>(null);
   const opacity = fadeInFadeOut.interpolate({
     inputRange: [0, 0.5],
     outputRange: [1, 0.5],
@@ -47,12 +48,22 @@ const PackageCardPerks = ({ perk, onLongPress, onPressOut }: IProps) => {
     return () => {
       fadeOut.stop();
       fadeIn.stop();
+      clearTimeout(triggerPackageSelection.current);
     };
   }, [fadeIn, fadeOut]);
 
   return (
     <Pressable
-      onLongPress={() => (!perk.locked ? null : fadeIn.start(() => onLongPress(perk.coverType)))}
+      onLongPress={() => {
+        if (!perk.locked) {
+          return null;
+        }
+
+        fadeIn.start();
+        triggerPackageSelection.current = setTimeout(() => {
+          onLongPress(perk.coverType);
+        }, 110);
+      }}
       onPressOut={() => fadeOut.start(() => onPressOut())}
     >
       <View style={styles.wrapper}>
@@ -66,7 +77,7 @@ const PackageCardPerks = ({ perk, onLongPress, onPressOut }: IProps) => {
       </View>
       {!perk.locked ? null : (
         <Animated.View style={[StyleSheet.absoluteFillObject, { opacity }]}>
-          <BlurView blurAmount={5} blurType="light" style={StyleSheet.absoluteFillObject} />
+          <BlurView blurAmount={5} blurType="light" style={styles.blur} />
           <View style={styles.locked}>
             <View style={styles.lockedTitle}>
               <TextTemplate type="l1b">Tap and hold to preview </TextTemplate>
@@ -115,6 +126,10 @@ const styles = StyleSheet.create({
   lockedTitle: {
     marginBottom: Style.adjust(8),
     flexDirection: "row",
+  },
+  blur: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: Platform.OS === "android" ? "rgba(255,255,255,0.85)" : "transparent",
   },
 });
 
