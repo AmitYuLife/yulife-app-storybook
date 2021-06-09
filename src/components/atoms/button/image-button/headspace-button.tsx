@@ -1,7 +1,6 @@
 import React, { ComponentProps } from "react";
 import { openHeadspace } from "@services/app-link";
 import ImageButton from "./image-button";
-import { Platform } from "react-native";
 import { HEADSPACE_BUTTON } from "@ids";
 import Logger from "@services/logging/logger";
 
@@ -11,10 +10,6 @@ interface Props {
 }
 
 export const HeadspaceButton = ({ style, onPressCallback }: Props) => {
-  if (Platform.OS === "android") {
-    return null;
-  }
-
   return (
     <ImageButton
       wrapperStyle={style}
