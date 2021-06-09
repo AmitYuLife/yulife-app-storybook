@@ -177,6 +177,11 @@ export default [
     name: ROUTES.webView,
     component: require("../components/containers/web-view/web-view.container").default,
   },
+  // debug
+  {
+    name: ROUTES.packageCard,
+    component: require("../components/containers/member/debug/packageCard.debug").default,
+  },
   // modals
   {
     name: MODALS.yuProductDetails,

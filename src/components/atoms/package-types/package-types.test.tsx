@@ -19,7 +19,7 @@ describe("PackageType", () => {
     const { queryByText, queryByTestId } = renderComponent({ type });
     const view = queryByTestId(PACKAGE_TYPES);
     expect(queryByText(toCapitalLetter(type))).toBeTruthy();
-    expect(view.props.style[1].backgroundColor).toBe("#00ED9D");
+    expect(view.props.style[1].backgroundColor).toBe("#34B687");
   });
 
   it("should render PackageType rare ", () => {
@@ -27,7 +27,7 @@ describe("PackageType", () => {
     const { queryByText, queryByTestId } = renderComponent({ type });
     const view = queryByTestId(PACKAGE_TYPES);
     expect(queryByText(toCapitalLetter(type))).toBeTruthy();
-    expect(view.props.style[1].backgroundColor).toBe("#00C0F3");
+    expect(view.props.style[1].backgroundColor).toBe("#569DE9");
   });
 
   it("should render PackageType epic ", () => {

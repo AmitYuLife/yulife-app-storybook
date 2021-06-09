@@ -155,12 +155,12 @@ export default {
   },
   products: {
     fib: {
-      common: "#00ED9D",
+      common: "#34B687",
       commonShadow: "#00CC87",
       commonGradientDark: "#06AE75",
       commonGradientLight: "#0CF0A3",
       commonBorderGradient: "#1ABD86",
-      rare: "#00C0F3",
+      rare: "#569DE9",
       rareGradientLight: "#8FDEFF",
       rareShadow: "#00ADDB",
       rareSeparator: "#0FC3F4",

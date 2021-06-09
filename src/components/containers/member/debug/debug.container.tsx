@@ -30,6 +30,7 @@ enum CODES {
   ROUTE_TO_FIB_CONFIRM_PACKAGES = "ROUTE_TO_FIB_CONFIRM_PACKAGES",
   ROUTE_TO_CHOOSE_STYLE = "ROUTE_TO_CHOOSE_STYLE",
   ROUTE_TO_PRODUCT_DETAILS = "ROUTE_TO_PRODUCT_DETAILS",
+  ROUTE_TO_PACKAGE_CARD = "ROUTE_TO_PACKAGE_CARD",
 }
 
 const DEFAULT_LIST = [
@@ -56,6 +57,7 @@ const ActivityHistoryContainer: React.FC<Props> = (props) => {
     CODES.ROUTE_TO_FIB_CONFIRM_PACKAGES,
     CODES.ROUTE_TO_CHOOSE_STYLE,
     CODES.ROUTE_TO_PRODUCT_DETAILS,
+    CODES.ROUTE_TO_PACKAGE_CARD,
   ];
 
   const handleClose = () => {
@@ -144,6 +146,15 @@ const ActivityHistoryContainer: React.FC<Props> = (props) => {
             component: {
               id: ROUTES.productDetails,
               name: ROUTES.productDetails,
+            },
+          });
+        }
+
+        if (code === CODES.ROUTE_TO_PACKAGE_CARD) {
+          return Navigation.push(props.componentId, {
+            component: {
+              id: ROUTES.packageCard,
+              name: ROUTES.packageCard,
             },
           });
         }
