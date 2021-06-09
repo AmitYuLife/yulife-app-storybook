@@ -51,7 +51,7 @@ export async function openHeadspace() {
   return openApp("headspace://", {
     appName: "headspace-meditation",
     appStoreId: "493145008",
-    playStoreId: null,
+    playStoreId: "com.getsomeheadspace.android",
   });
 }
 
