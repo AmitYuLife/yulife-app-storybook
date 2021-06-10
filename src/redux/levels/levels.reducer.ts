@@ -154,6 +154,7 @@ const challengeStartSuccess = (
     startDateTime: challenge.startDateTime,
     subtype: levelSlot.subtype,
     unit: levelSlot.unit,
+    score: 0,
   },
 });
 
