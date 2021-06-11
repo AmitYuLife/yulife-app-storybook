@@ -1,0 +1,50 @@
+import React from "react";
+import { LinkButton, TextTemplate } from "@atoms";
+import { CalmButton } from "@atoms/button/image-button/calm-button";
+import { HeadspaceButton } from "@atoms/button/image-button/headspace-button";
+import { Style } from "@styles";
+import { Platform, StyleSheet, View, ViewStyle } from "react-native";
+
+export interface ExternalLinksProps {
+  hideOverlay: () => void;
+}
+
+export const MeditationExternalLinks = ({ hideOverlay }: ExternalLinksProps) => (
+  <>
+    <TextTemplate type="h2" textAlign="center">
+      Choose an app to start
+    </TextTemplate>
+    <View style={styles.spaceSmall} />
+    <TextTemplate type="b2" textAlign="center">
+      {`You can use any app that syncs mindfulness minutes to ${Platform.OS === "ios" ? "Apple Health" : "Google Fit"}`}
+    </TextTemplate>
+    <CalmButton style={styles.spaceMedium} onPressCallback={hideOverlay} />
+    <HeadspaceButton style={styles.spaceSmall} onPressCallback={hideOverlay} />
+    <LinkButton wrapperStyle={styles.spaceXsmall} label="I'm using a different app" onPress={hideOverlay} />
+  </>
+);
+
+export const FiitExternalLinks = ({ hideOverlay }: ExternalLinksProps) => (
+  <>
+    <TextTemplate type="h2" textAlign="center">
+      Get started with Fiit
+    </TextTemplate>
+    <View style={styles.spaceSmall} />
+    <TextTemplate type="b2" textAlign="center">
+      Complete any Fiit class to get rewarded
+    </TextTemplate>
+    <CalmButton style={styles.spaceMedium} onPressCallback={hideOverlay} />
+  </>
+);
+
+const styles = StyleSheet.create({
+  spaceXsmall: {
+    marginTop: Style.adjust(4),
+  } as ViewStyle,
+  spaceSmall: {
+    marginTop: Style.adjust(12),
+  } as ViewStyle,
+  spaceMedium: {
+    marginTop: Style.adjust(32),
+  } as ViewStyle,
+});

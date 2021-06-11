@@ -24,7 +24,7 @@ export const HeadspaceButton = ({ style, onPressCallback }: Props) => {
         }
       }}
       shadowColor={"#C9C9C9"}
-      backgroundColor="white"
+      backgroundColor={"#FDF5EB"} // https://headspace.gitbooks.io/headspace-design-guidelines/content/color/in-product.html
       icon="headspace"
       testID={HEADSPACE_BUTTON}
     />

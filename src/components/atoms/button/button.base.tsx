@@ -219,6 +219,8 @@ const styles = StyleSheet.create({
     width: "100%",
     justifyContent: "center",
     alignItems: "center",
+    borderRadius: 999,
+    overflow: "hidden",
   } as ViewStyle,
   shadow: {
     width: "100%",
