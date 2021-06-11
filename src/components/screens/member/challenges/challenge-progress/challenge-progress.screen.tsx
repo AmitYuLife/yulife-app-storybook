@@ -10,8 +10,7 @@ import { BUTTON_CLOSE_CHALLENGE, CHALLENGE_PROGRESS_BAR } from "@ids";
 import { NavBar } from "@components/organisms";
 import { TopBarAbsolute } from "@organisms/top-bar/top-bar-absolute";
 import { SecondaryButton } from "@atoms";
-import { MeditationOverlay } from "./subcomponents/meditation-overlay";
-import { DETOX_ENABLED } from "@services/socket";
+import { ExternalAppLinksOverlay } from "./subcomponents/external-app-links-overlay";
 
 interface IProps extends IConnectedScreenProps {
   challengeType: ChallengeType;
@@ -33,23 +32,17 @@ export default function ChallengeProgressScreen({
   unit,
   userProgress,
 }: IProps) {
-  const [showMeditation, setShowMeditation] = React.useState(false);
+  const [showOverlay, setShowOverlay] = React.useState(false);
+
   const { backgroundColour, progressBarType, source, style, topBarType, exitChallenge } = getWorldStyle(
     challengeType,
     currentWorld
   );
-  const meditationDelay = React.useRef(null);
 
   React.useEffect(() => {
-    const DELAY = DETOX_ENABLED ? 1000 : 0;
-
     if (challengeType === "meditation") {
-      meditationDelay.current = setTimeout(() => {
-        setShowMeditation(true);
-      }, DELAY);
+      setShowOverlay(true);
     }
-
-    return () => clearTimeout(meditationDelay.current);
   }, [challengeType]);
 
   return (
@@ -70,7 +63,7 @@ export default function ChallengeProgressScreen({
             backgroundColor={exitChallenge.primaryColour}
             borderColor={exitChallenge.primaryColour}
             textColor={exitChallenge.secondaryColour}
-            onPress={() => setShowMeditation(true)}
+            onPress={() => setShowOverlay(true)}
             label="Open a meditation app"
             size="Medium"
           />
@@ -83,7 +76,7 @@ export default function ChallengeProgressScreen({
         timer={endDateTime}
       />
       <NavBar activeIndex={1} additionalBottom={2} />
-      <MeditationOverlay showScreen={showMeditation} setShowScreen={setShowMeditation} />
+      <ExternalAppLinksOverlay showScreen={showOverlay} setShowScreen={setShowOverlay} />
     </View>
   );
 }

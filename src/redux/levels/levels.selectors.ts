@@ -48,6 +48,9 @@ export const getNextLevelAvailableAt = createSelector(reducer, getNextLevelAvail
 const getActiveLevelSelector = (state: State) => state.active;
 export const getActiveLevel = createSelector(reducer, getActiveLevelSelector);
 
+const getActiveLevelSubtypeSelector = (state: State) => state.active?.subtype;
+export const getActiveLevelSubtype = createSelector(reducer, getActiveLevelSubtypeSelector);
+
 const getHasNotificationSelector = (state: State) =>
   !!state.active.levelSlotId || state.active.timeUp || !!state.active.status;
 export const getHasNotification = createSelector(reducer, getHasNotificationSelector);
