@@ -2,11 +2,16 @@ import React, { memo } from "react";
 import moment from "moment";
 import { useQuery } from "@apollo/react-hooks";
 import { connect } from "react-redux";
-import { View, Linking, Platform } from "react-native";
+import { View } from "react-native";
 import { Text } from "@atoms";
 import { FibDetailsScreen } from "@screens";
-import { FibLocalNavigation, FIB_FAQ_LIST, FIB_PAYOUT_CALCULATOR, FIB_UNDERWRITING_JOURNEY } from "../fib.types";
-import fibDocumentsItems from "../data/documents-data";
+import {
+  FibLocalNavigation,
+  FIB_DOCUMENTS,
+  FIB_FAQ_LIST,
+  FIB_PAYOUT_CALCULATOR,
+  FIB_UNDERWRITING_JOURNEY,
+} from "../fib.types";
 import { GetYulifer } from "@graphql/_core/schema";
 import { GQL_QUERY_GET_YULIFER } from "@graphql/yuscreen";
 import { Package } from "@components/screens/products/fib/browse-packages/fib.browse.types";
@@ -14,8 +19,6 @@ import { getFIBState } from "@redux/product/product.selectors";
 import { IReduxState } from "@redux/_core/reducers";
 import { getUserDateOfBirth } from "@redux/user/user.selectors";
 import { packages, useCover } from "../fib.helpers";
-import { handleOpenWebView } from "@navigation/utils";
-import Logger from "@services/logging/logger";
 import { CoverType } from "@graphql/_core/schema/globalTypes";
 import { useBackHandler } from "../../../../../services/hooks/useBackHandler";
 import { FIB_PAYOUT_CALCULATOR_INITIAL_STATE } from "./fib.payout-calculator.conainer";
@@ -23,26 +26,6 @@ import { FIB_PAYOUT_CALCULATOR_INITIAL_STATE } from "./fib.payout-calculator.con
 interface IFibContainer {
   navigation: FibLocalNavigation;
 }
-
-const documents = fibDocumentsItems.map((document) => ({
-  label: document.question,
-  onPress: async () => {
-    if (Platform.OS === "ios") {
-      try {
-        handleOpenWebView({ uri: document.url, title: document.question });
-      } catch (e) {
-        Logger.error(e, { documentId: document.id, file: "fib-browse.container", platform: "ios" });
-      }
-    } else {
-      try {
-        await Linking.openURL(document.url);
-      } catch (e) {
-        Logger.error(e, { documentId: document.id, file: "fib-browse.container", platform: "android" });
-      }
-    }
-  },
-  icon: document.icon,
-}));
 
 const otherBenefits = {
   title: "Other benefits",
@@ -77,6 +60,7 @@ const _FibBrowseContainer = memo(function (props: IFibContainer & ReturnType<typ
   useBackHandler(navigateToIntroScreen);
 
   const navigateToFaqsList = () => navigation.push(FIB_FAQ_LIST);
+  const navigateToDocuments = () => navigation.push(FIB_DOCUMENTS);
 
   const navigateToPayoutCalculator = () =>
     navigation.push(FIB_PAYOUT_CALCULATOR, { type: FIB_PAYOUT_CALCULATOR_INITIAL_STATE.needData });
@@ -121,13 +105,14 @@ const _FibBrowseContainer = memo(function (props: IFibContainer & ReturnType<typ
       continueButtonIsFixed={true}
       onScrollEnd={navigation.onScrollEnd}
       offset={navigation.currentRoute.offset || { x: 0, y: 0 }}
-      documents={documents}
+      showDocuments={true}
       otherBenefits={otherBenefits}
       howItWorks={howItWorks}
       navigateToContinue={navigateToContinue}
       navigateToBack={navigation.pop}
       navigateToExit={navigation.popToMain}
       navigateToFaqsList={navigateToFaqsList}
+      navigateToDocuments={navigateToDocuments}
       navigateToPayoutCalculator={navigateToPayoutCalculator}
     />
   );

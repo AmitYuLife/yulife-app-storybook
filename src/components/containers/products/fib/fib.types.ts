@@ -26,7 +26,8 @@ export type FibRoute =
   | "FIbIntroYugi"
   | "FibCheckoutHub"
   | "FibChooseStyle"
-  | "FibPayoutCalculator";
+  | "FibPayoutCalculator"
+  | "FibDocuments";
 
 export type FibLocalNavigation = LocalNavigation<FibRoute>;
 
@@ -47,6 +48,7 @@ export const FIB_INTRO_YUGI = "FIbIntroYugi";
 export const FIB_CHECKOUT_HUB = "FibCheckoutHub";
 export const FIB_CHOOSE_STYLE = "FibChooseStyle";
 export const FIB_PAYOUT_CALCULATOR = "FibPayoutCalculator";
+export const FIB_DOCUMENTS = "FibDocuments";
 
 export interface FAQ {
   id: string;

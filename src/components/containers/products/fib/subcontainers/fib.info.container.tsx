@@ -1,21 +1,18 @@
 import React, { memo, useCallback, useState } from "react";
 import { FibLocalNavigation, FIB_INTRO_YUGI } from "../fib.types";
-import { FibHoldingGPDetails } from "../../../../screens/products/fib/underwriting-journey/info/fib.holding-gp-results.screen";
+import { FibHoldingGPDetails } from "@screens/products/fib/underwriting-journey/info/fib.holding-gp-results.screen";
 import { Navigation } from "react-native-navigation";
-import { MODALS, ROUTES } from "../../../../../navigation/constants";
-import { FibResultsInScreen } from "../../../../screens/products/fib/underwriting-journey/info/fib.results-in";
-import { IReduxState } from "../../../../../redux/_core/reducers";
-import { getFIBState } from "../../../../../redux/product/product.selectors";
+import { MODALS, ROUTES } from "@navigation/constants";
+import { FibResultsInScreen } from "@screens/products/fib/underwriting-journey/info/fib.results-in";
+import { IReduxState } from "@redux/_core/reducers";
+import { getFIBState } from "@redux/product/product.selectors";
 import { connect, useDispatch, useSelector } from "react-redux";
-import {
-  UpdateTopUpsQuote_updateFibQuote,
-  UpdateTopUpsQuoteVariables,
-} from "../../../../../graphql/_core/schema/UpdateTopUpsQuote";
+import { UpdateTopUpsQuote_updateFibQuote, UpdateTopUpsQuoteVariables } from "@graphql/_core/schema/UpdateTopUpsQuote";
 import { useMutation } from "@apollo/react-hooks";
-import { GQL_MUTATION_UPDATE_TOP_UPS_QUOTE } from "../../../../../graphql/products/updateTopUpsQuote";
-import { resetFIBUnderwritingJourney } from "../../../../../redux/product/product.actions";
+import { GQL_MUTATION_UPDATE_TOP_UPS_QUOTE } from "@graphql/products/updateTopUpsQuote";
+import { resetFIBUnderwritingJourney } from "@redux/product/product.actions";
 import { YUGI_INTRO_TYPE } from "./fib.yugi-intro.container";
-import { getUserFeatures } from "../../../../../redux/user/user.selectors";
+import { getUserFeatures } from "@redux/user/user.selectors";
 import { FibInfoScreen, InfoYugiType } from "@components/screens/products/fib/info-screens/fib.info.screen";
 import { toCapitalLetter } from "@services/utils";
 

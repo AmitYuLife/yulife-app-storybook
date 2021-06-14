@@ -19,7 +19,7 @@ interface Props {
 export const Documents = memo(({ items = [], title = "Documents" }: Props) => {
   return (
     <View>
-      <Heading title={title} />
+      {!title ? null : <Heading title={title} />}
       {items.map((item, i) => (
         <View key={i} style={styles.wrapper}>
           <TertiaryButton

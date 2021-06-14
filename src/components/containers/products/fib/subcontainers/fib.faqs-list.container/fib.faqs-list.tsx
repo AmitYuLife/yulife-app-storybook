@@ -1,7 +1,7 @@
 import React from "react";
 import { PressableWithDelay } from "@components/molecules";
-import { View, StyleSheet, ViewStyle, TextStyle } from "react-native";
-import { Text, ArrowRightSvg } from "@atoms";
+import { View, StyleSheet, ViewStyle } from "react-native";
+import { ArrowRightSvg, TextTemplate } from "@atoms";
 import { Style, Colours } from "@styles";
 
 interface Props {
@@ -15,11 +15,9 @@ export const FibFaqsList = (props: Props) => {
     <View style={styles.wrapper}>
       {faqs.map((item) => (
         <PressableWithDelay key={item.label} style={styles.button} onPress={item.onPress}>
-          <Text style={styles.label} bold={true}>
-            {item.label}
-          </Text>
+          <TextTemplate type="b2b">{item.label}</TextTemplate>
           <View style={styles.right}>
-            <ArrowRightSvg />
+            <ArrowRightSvg colour={Colours.primary.p600} />
           </View>
         </PressableWithDelay>
       ))}
@@ -29,24 +27,20 @@ export const FibFaqsList = (props: Props) => {
 
 const styles = StyleSheet.create({
   wrapper: {
-    paddingBottom: Style.adjust(Style.hasNotch ? 40 : 0),
+    backgroundColor: Colours.neutral.white,
+    marginHorizontal: Style.adjust(24),
+    marginTop: Style.adjust(32),
+    borderRadius: 8,
+    borderColor: Colours.metallic.m100,
+    borderWidth: 1,
+    marginBottom: Style.adjust(40),
   } as ViewStyle,
   button: {
     flexDirection: "row",
     alignItems: "center",
-    paddingRight: Style.adjust(24),
-    paddingLeft: Style.adjust(32),
-    borderBottomWidth: 1,
-    borderColor: Colours.neutral.n100,
-    minHeight: Style.adjust(64),
+    padding: Style.adjust(24),
+    minHeight: Style.adjust(56),
   } as ViewStyle,
-  label: {
-    fontSize: Style.adjust(16),
-    lineHeight: Style.adjust(24),
-    letterSpacing: 1,
-    color: Colours.neutral.n700,
-    maxWidth: Style.DEVICE_WIDTH - 100,
-  } as TextStyle,
   right: {
     marginLeft: "auto",
   } as ViewStyle,

@@ -19,6 +19,7 @@ import {
   FIB_INFO,
   FIB_CHOOSE_STYLE,
   FIB_PAYOUT_CALCULATOR,
+  FIB_DOCUMENTS,
 } from "./fib.types";
 import { Navigation } from "react-native-navigation";
 import { ROUTES } from "@navigation/constants";
@@ -38,7 +39,7 @@ import FibGpDetailsContainer from "./subcontainers/fib.gp-details.container";
 import FibChooseStyleContainer from "./subcontainers/fib.choose-style.container";
 import FibYugiIntroContainer from "./subcontainers/fib.yugi-intro.container";
 import FibPayoutCalculatorContainer from "./subcontainers/fib.payout-calculator.conainer";
-
+import FibDocumentsContainer from "./subcontainers/fib.documents.container";
 interface RouteProps {
   navigation: FibLocalNavigation;
   selectedFaq: string;
@@ -89,6 +90,8 @@ function getComponent(routeProps: RouteProps) {
       return <FibChooseStyleContainer navigation={navigation} />;
     case FIB_PAYOUT_CALCULATOR:
       return <FibPayoutCalculatorContainer navigation={navigation} />;
+    case FIB_DOCUMENTS:
+      return <FibDocumentsContainer navigation={navigation} />;
     default:
       return <FibBrowseContainer navigation={navigation} />;
   }

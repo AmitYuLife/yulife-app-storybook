@@ -1,5 +1,4 @@
 import React, { memo, useState, useEffect, useCallback } from "react";
-import { Linking, Platform } from "react-native";
 import { connect, useDispatch } from "react-redux";
 import { useMutation, useQuery } from "@apollo/react-hooks";
 import {
@@ -8,18 +7,16 @@ import {
   FIB_FAQ_LIST,
   FIB_PAYOUT_CALCULATOR,
   FIB_CUSTOM_PERCENTAGE,
+  FIB_DOCUMENTS,
 } from "../fib.types";
 import { getFIBState, getLifeInsuranceUserAnswers } from "@redux/product/product.selectors";
 import { IReduxState } from "@redux/_core/reducers";
 import { packages, useCover } from "../fib.helpers";
 import { FibDetailsScreen } from "@screens";
 import { Package } from "@components/screens/products/fib/browse-packages/fib.browse.types";
-import fibDocumentsItems from "../data/documents-data";
 import moment from "moment";
 import { updateFIBValuesFromNewQuote } from "@redux/product/product.actions";
 import { MODALS } from "@navigation/constants";
-import { handleOpenWebView } from "@navigation/utils";
-import Logger from "@services/logging/logger";
 import { Navigation } from "react-native-navigation";
 import {
   CreateTopUpsQuote,
@@ -42,26 +39,6 @@ interface OwnProps {
 }
 
 type FibConfirmPackagesContainerProps = ConnectedState & OwnProps;
-
-const documents = fibDocumentsItems.map((document) => ({
-  label: document.question,
-  onPress: async () => {
-    if (Platform.OS === "ios") {
-      try {
-        handleOpenWebView({ uri: document.url, title: document.question });
-      } catch (e) {
-        Logger.error(e, { documentId: document.id, file: "fib-confirm-packages.container", platform: "ios" });
-      }
-    } else {
-      try {
-        await Linking.openURL(document.url);
-      } catch (e) {
-        Logger.error(e, { documentId: document.id, file: "fib-confirm-packages.container", platform: "android" });
-      }
-    }
-  },
-  icon: document.icon,
-}));
 
 const FibConfirmPackagesContainer = memo(function (props: FibConfirmPackagesContainerProps) {
   const [selectedCoverType, setSelectedCoverType] = useCover(props?.fibState.selectedPackage || CoverType.epic);
@@ -196,6 +173,7 @@ const FibConfirmPackagesContainer = memo(function (props: FibConfirmPackagesCont
   }, [navigation]);
 
   const navigateToFaqsList = () => navigation.push(FIB_FAQ_LIST);
+  const navigateToDocuments = () => navigation.push(FIB_DOCUMENTS);
 
   const navigateToPayoutCalculator = () => {
     navigation.push(FIB_PAYOUT_CALCULATOR, {
@@ -216,12 +194,13 @@ const FibConfirmPackagesContainer = memo(function (props: FibConfirmPackagesCont
       selectCoverType={setSelectedCoverType}
       onScrollEnd={navigation.onScrollEnd}
       offset={navigation.currentRoute.offset || { x: 0, y: 0 }}
-      documents={documents}
+      showDocuments={true}
       additionalInformation={additionalInformation}
       navigateToContinue={navigateToContinue}
       navigateToBack={navigation.pop}
       navigateToExit={navigateToExit}
       navigateToFaqsList={navigateToFaqsList}
+      navigateToDocuments={navigateToDocuments}
       navigateToPayoutCalculator={navigateToPayoutCalculator}
       navigateToCustomCover={!isCustomCover ? navigateToCustomCover : null}
     />
