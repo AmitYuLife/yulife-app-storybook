@@ -2,7 +2,7 @@ import { Style } from "@styles";
 import React, { memo } from "react";
 import Svg, { Path, Mask, G } from "react-native-svg";
 
-const TheOwlFence = () => (
+export const TheOwlFenceIcon = memo(() => (
   <Svg width={Style.adjust(335)} height={Style.adjust(104)} viewBox="0 0 335 104" fill="none">
     <Path
       d="M167.5 104c92.508 0 167.5-5.377 167.5-12.01 0-6.632-74.992-12.008-167.5-12.008S0 85.358 0 91.99C0 98.623 74.992 104 167.5 104z"
@@ -118,6 +118,4 @@ const TheOwlFence = () => (
       fill="#B99E7F"
     />
   </Svg>
-);
-
-export default memo(TheOwlFence);
+));

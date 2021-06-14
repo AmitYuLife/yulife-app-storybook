@@ -1,7 +1,7 @@
 import React, { memo } from "react";
 import { StyleSheet, ScrollView, ViewStyle, View } from "react-native";
 import * as Animatable from "react-native-animatable";
-import { Text, TextTemplate, Icon } from "@atoms";
+import { TextTemplate, Icon } from "@atoms";
 import { Style, Colours } from "@styles";
 import Markdown from "@components/molecules/markdown/markdown";
 import { IFibFAQ } from "@components/containers/products/fib/data/faq-fib-data";
@@ -35,10 +35,8 @@ export const FibFaqScreen = memo(function (props: IFibFaqScreenProps) {
       <GenericHeadingPad />
       <ScrollView>
         <Animatable.View duration={500} animation="fadeIn" style={styles.flex} useNativeDriver={true}>
-          <View style={styles.padding}>
-            <Text bold={true} style={styles.header}>
-              {faq.question}
-            </Text>
+          <View style={styles.container}>
+            <TextTemplate type="h2">{faq.question}</TextTemplate>
             <Markdown text={faq.answer} containerStyle={styles.markdownContainer} markdownStyles={markdownStyles} />
           </View>
           {!childFaqs ? null : <Faq label={childFaqs.faq.question} onPress={childFaqs.onPress} />}
@@ -60,14 +58,8 @@ const styles = StyleSheet.create({
     marginBottom: Style.adjust(32),
     marginTop: Style.adjust(16),
   },
-  header: {
-    fontSize: Style.adjust(28),
-    lineHeight: Style.adjust(32),
-    letterSpacing: 1,
-    color: Colours.neutral.n800,
+  container: {
     marginTop: Style.adjust(24),
-  },
-  padding: {
     paddingHorizontal: Style.adjust(24),
   } as ViewStyle,
   arrowRight: {

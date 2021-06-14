@@ -2,7 +2,7 @@ import { Style } from "@styles";
 import React, { memo } from "react";
 import Svg, { G, Path, Mask, Circle, Defs, ClipPath } from "react-native-svg";
 
-const YugiProcessing = () => (
+export const YugiProcessingIcon = memo(() => (
   <Svg width={Style.adjust(320)} height={Style.adjust(320)} viewBox="0 0 320 320" fill="none">
     <G clipPath="url(#prefix__clip0)">
       <Path
@@ -144,6 +144,4 @@ const YugiProcessing = () => (
       </ClipPath>
     </Defs>
   </Svg>
-);
-
-export default memo(YugiProcessing);
+));

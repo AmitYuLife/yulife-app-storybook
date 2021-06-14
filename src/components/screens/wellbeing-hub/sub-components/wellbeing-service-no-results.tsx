@@ -1,9 +1,9 @@
 import React, { FC } from "react";
 import { StyleSheet, View, ViewStyle } from "react-native";
 import { Style } from "@styles";
-import YugiProcessing from "../assets/yugi-processing";
 import { Button, TextTemplate } from "@atoms";
 import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
+import { YugiProcessingIcon } from "@atoms/icon/yugi-processing-icon";
 
 interface IProps {
   handleClose: () => void;
@@ -13,7 +13,7 @@ const WellBeingServiceNoResults: FC<IProps> = ({ handleClose }) => (
   <View style={styles.wrapper}>
     <GenericHeadingPad />
     <View style={styles.container}>
-      <YugiProcessing />
+      <YugiProcessingIcon />
       <View style={styles.title}>
         <TextTemplate type="h1">Check back later!</TextTemplate>
       </View>

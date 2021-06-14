@@ -30,6 +30,11 @@ import { QuestionMarkIcon } from "./question-mark-icon";
 import { DoubleChestIcon } from "./double-chest-icon";
 import { ShoeIcon } from "./shoe-icon";
 import { StreakIcon } from "./streak-icon";
+import { YugiDocumentsIcon } from "./yugi-documents-icon";
+import { YugiFAQIcon } from "./yugi-faq-icon";
+import { TheOwlFenceIcon } from "./the-owl-fence-icon";
+import { YugiProcessingIcon } from "./yugi-processing-icon";
+import { YugiWellBeingIcon } from "./yugi-wellbeing-icon";
 
 //TODO: check with the team if we can refactor this to support "import { Icon1, Icon2} from "@atoms/icon";
 
@@ -66,4 +71,9 @@ export default {
   DoubleChestIcon,
   ShoeIcon,
   StreakIcon,
+  YugiDocumentsIcon,
+  YugiFAQIcon,
+  TheOwlFenceIcon,
+  YugiProcessingIcon,
+  YugiWellBeingIcon,
 };

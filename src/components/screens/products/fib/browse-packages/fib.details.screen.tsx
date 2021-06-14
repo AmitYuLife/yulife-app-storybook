@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useRef, useEffect, ComponentProps } from "react";
+import React, { memo, useCallback, useRef, useEffect } from "react";
 import {
   StyleSheet,
   ScrollView,
@@ -11,8 +11,6 @@ import {
 } from "react-native";
 import { Button, TertiaryButton } from "@atoms";
 import { HowItWorks } from "./subcomponents";
-import { Faqs } from "./subcomponents/faqs/faqs";
-import { Documents } from "./subcomponents/documents/documents";
 import { Package } from "./fib.browse.types";
 import { useBackHandler } from "@services/hooks/useBackHandler";
 import { PackageOptions } from "./subcomponents/package-options/package-options";
@@ -31,7 +29,7 @@ import { ContinueButton } from "@components/screens/products/fib/browse-packages
 import { SUMMARY_SCROLL_VIEW } from "@ids";
 
 interface FibDetailsScreenProps {
-  documents: ComponentProps<typeof Documents>["items"];
+  showDocuments: boolean;
   howItWorks?: string;
   additionalInformation?: IAdditionalInformation;
   otherBenefits?: IAdditionalInformation;
@@ -44,13 +42,14 @@ interface FibDetailsScreenProps {
   navigateToExit: () => void;
   navigateToContinue: () => void;
   navigateToFaqsList: () => void;
+  navigateToDocuments: () => void;
   navigateToPayoutCalculator: () => void;
   navigateToCustomCover?: () => void;
 }
 
 export const FibDetailsScreen = memo(function (props: FibDetailsScreenProps) {
   const {
-    documents,
+    showDocuments,
     howItWorks,
     additionalInformation,
     otherBenefits,
@@ -63,6 +62,7 @@ export const FibDetailsScreen = memo(function (props: FibDetailsScreenProps) {
     navigateToExit,
     navigateToContinue,
     navigateToFaqsList,
+    navigateToDocuments,
     navigateToPayoutCalculator,
     navigateToCustomCover,
   } = props;
@@ -146,13 +146,25 @@ export const FibDetailsScreen = memo(function (props: FibDetailsScreenProps) {
             </View>
           ) : null}
 
-          {documents ? (
+          {showDocuments ? (
             <View style={styles.documents}>
-              <Documents items={documents} />
+              <TertiaryButton
+                size="Fill"
+                onPress={navigateToDocuments}
+                label="Documents"
+                leftIcon={BUTTON_ICON.YELLOW_DOC}
+                rightIcon={BUTTON_ICON.ARROW_RIGHT}
+              />
             </View>
           ) : null}
           <View style={styles.separator}>
-            <Faqs navigateToFaqsList={navigateToFaqsList} />
+            <TertiaryButton
+              size="Fill"
+              onPress={navigateToFaqsList}
+              label="FAQs"
+              leftIcon={BUTTON_ICON.QUESTION_BUBBLE}
+              rightIcon={BUTTON_ICON.ARROW_RIGHT}
+            />
           </View>
           {navigateToCustomCover ? (
             <View style={styles.separator}>

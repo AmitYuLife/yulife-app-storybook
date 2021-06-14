@@ -2,7 +2,6 @@ import React from "react";
 import { storiesOf } from "@storybook/react-native";
 import { FibDetailsScreen } from "./fib.details.screen";
 import { View } from "react-native";
-import documentsData from "@components/containers/products/fib/data/documents-data";
 import { Package } from "./fib.browse.types";
 import { CoverType } from "@graphql/_core/schema/globalTypes";
 
@@ -27,11 +26,6 @@ const selectedPackage: Package = {
 };
 
 const onPress = (): null => null;
-const documents = documentsData.map(({ question, icon }) => ({
-  label: question,
-  onPress,
-  icon,
-}));
 
 storiesOf("FibBrowse", module)
   .addDecorator((g: any) => <View style={{ flex: 1 }}>{g()}</View>)
@@ -39,14 +33,15 @@ storiesOf("FibBrowse", module)
     <FibDetailsScreen
       selectedPackage={selectedPackage}
       offset={{ x: 0, y: 0 }}
-      onScrollEnd={() => null}
-      selectCoverType={() => null}
-      documents={documents}
-      navigateToContinue={() => null}
-      navigateToBack={() => null}
-      navigateToExit={() => null}
-      navigateToFaqsList={() => null}
-      navigateToPayoutCalculator={() => null}
-      navigateToCustomCover={() => null}
+      onScrollEnd={onPress}
+      selectCoverType={onPress}
+      showDocuments={true}
+      navigateToContinue={onPress}
+      navigateToBack={onPress}
+      navigateToExit={onPress}
+      navigateToFaqsList={onPress}
+      navigateToDocuments={onPress}
+      navigateToPayoutCalculator={onPress}
+      navigateToCustomCover={onPress}
     />
   ));

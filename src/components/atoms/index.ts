@@ -53,6 +53,7 @@ export { default as SkeletonLoading } from "./skeleton-loading/skeleton-loading"
 export { default as PackageCardPerks } from "./package-card-perks/package-card-perks";
 export { default as YuCoinPowerMini } from "./yucoin-power-mini/yucoin-power-mini";
 export { default as PackageCardHeader } from "./package-card-header/package-card-header";
+export { default as YugiHeader } from "./yugi-header/yugi-header";
 export { SlotIcon } from "./slot-icon/slot-icon";
 // error :( https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-8.html#export--as-ns-syntax
 import * as ProductSvg from "./product-svg";
