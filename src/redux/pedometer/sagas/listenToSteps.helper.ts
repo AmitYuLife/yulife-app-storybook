@@ -11,9 +11,11 @@ import {
   updatePedometerSuccessAction,
 } from "../pedometer.actions";
 import { stepsChannel } from "../pedometer.channels";
-import { getSteps } from "../pedometer.selectors";
+import { getLastUpdated, getSteps } from "../pedometer.selectors";
 
 const ERROR_NOT_AUTHORISED = "Pedometer not authorised";
+const STEPS_PER_MILLISECONDS_LIMIT = 2;
+const MAX_ANOMALY_DETECTION_WINDOW_MS = 10000; // in ms
 
 export default function* listenToSteps() {
   yield put(updatePedometerStartAction());
@@ -28,7 +30,6 @@ export default function* listenToSteps() {
       /**
        * For iOS, add initialisation phase to stop infinite fetching state if unauthorised
        */
-
       if (Platform.OS === "ios") {
         const isAuthorised: boolean = yield call(RNFitKit.isAuthorised);
 
@@ -50,7 +51,21 @@ export default function* listenToSteps() {
         yield spawn(() => Logger.logMixpanelEvent("raw_steps_results_passive", results));
       }
 
-      if (results.steps !== currentSteps) {
+      // Check pedometer limit if toggle is enabled
+      let areValidSteps = true;
+      if (features.limitPedometerSteps) {
+        const lastUpdated: ReturnType<typeof getLastUpdated> = yield select(getLastUpdated);
+        const timeSinceLastUpdate = moment(results.endTime).diff(moment(lastUpdated), "milliseconds");
+        /**
+         * If the pedometer repeats a genuine value assume it's legit
+         */
+        if (timeSinceLastUpdate < MAX_ANOMALY_DETECTION_WINDOW_MS) {
+          const stepsPerMilliseconds = (results.steps - currentSteps) / Math.max(1, timeSinceLastUpdate);
+          areValidSteps = stepsPerMilliseconds < STEPS_PER_MILLISECONDS_LIMIT;
+        }
+      }
+
+      if (results.steps !== currentSteps && areValidSteps) {
         yield put(updatePedometerSuccessAction(results));
       } else {
         yield put(updatePedometerNoNewDataAction());
