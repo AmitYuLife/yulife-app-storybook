@@ -1,5 +1,5 @@
 import { generateRandomPostgresId, IDatabaseItem } from "@yu-life/yulife-bdd-framework"
-import { BUSINESS_GROUP_QUOTE_3, BUSINESS_GROUP_QUOTE_4_GCI, BUSINESS_GROUP_QUOTE_4_GIP, BUSINESS_GROUP_QUOTE_4_RGL } from "./business_group_quote"
+import { BUSINESS_GROUP_QUOTE_3, BUSINESS_GROUP_QUOTE_4_GCI, BUSINESS_GROUP_QUOTE_4_GIP, BUSINESS_GROUP_QUOTE_4_RGL } from "./business_quote"
 
 
 const type = "postgres"
@@ -10,7 +10,7 @@ export const BUSINESS_PRODUCT_3 = {
     modelName,
     data:{
         product_id: "YUG0000001",
-        group_quote_id: BUSINESS_GROUP_QUOTE_3.data.quote_number_id,
+        quote_id: BUSINESS_GROUP_QUOTE_3.data.quote_id,
         policy_name: "Pawnee Council Policy",
         policy_type: "GLI",
         policy_start_date: "2021-01-05T00:00:00Z",
@@ -28,7 +28,7 @@ export const BUSINESS_PRODUCT_4_RGL = {
     modelName,
     data:{
         product_id: "YUG0000002",
-        group_quote_id: BUSINESS_GROUP_QUOTE_4_RGL.data.quote_number_id,
+        quote_id: BUSINESS_GROUP_QUOTE_4_RGL.data.quote_id,
         policy_name: "Justice League Policy RGL",
         policy_type: "ReGL",
         policy_start_date: "2020-02-02T00:00:00Z",
@@ -46,7 +46,7 @@ export const BUSINESS_PRODUCT_4_GIP = {
     modelName,
     data: {
         product_id: "YUG0000003",
-        group_quote_id: BUSINESS_GROUP_QUOTE_4_GIP.data.quote_number_id,
+        quote_id: BUSINESS_GROUP_QUOTE_4_GIP.data.quote_id,
         policy_name: "Justice League Policy GIP",
         policy_type: "GIP",
         policy_start_date: "2020-02-02T00:00:00Z",
@@ -64,7 +64,7 @@ export const BUSINESS_PRODUCT_4_GCI = {
     modelName,
     data: {
         product_id: "YUG0000004",
-        group_quote_id: BUSINESS_GROUP_QUOTE_4_GCI.data.quote_number_id,
+        quote_id: BUSINESS_GROUP_QUOTE_4_GCI.data.quote_id,
         policy_name: "Justice League Policy GCI",
         policy_type: "GCI",
         policy_start_date: "2020-02-02T00:00:00Z",
