@@ -3,7 +3,7 @@ import { BUSINESS_ACCOUNT_3, BUSINESS_ACCOUNT_4 } from "./business"
 
 
 const type = "postgres"
-const modelName = "business_group_quote"
+const modelName = "business_quote"
 
 const generateRanomQuoteNumber = () =>{ return Math.random().toString().substr(2, 10);}
 
@@ -11,7 +11,7 @@ export const BUSINESS_GROUP_QUOTE_3 = {
     type,
     modelName,
     data:{
-        quote_number_id: generateRanomQuoteNumber(),
+        quote_id: generateRanomQuoteNumber(),
         business_account_id: BUSINESS_ACCOUNT_3.data.business_account_id,
         benefit_basis: "multiple_of_salary",
         multiple_or_amount: 6,
@@ -24,7 +24,7 @@ export const BUSINESS_GROUP_QUOTE_4_RGL = {
     type,
     modelName,
     data:{
-        quote_number_id: generateRanomQuoteNumber(),
+        quote_id: generateRanomQuoteNumber(),
         business_account_id: BUSINESS_ACCOUNT_4.data.business_account_id,
         benefit_basis: "multiple_of_salary",
         multiple_or_amount: 9,
@@ -37,7 +37,7 @@ export const BUSINESS_GROUP_QUOTE_4_GIP = {
     type,
     modelName,
     data:{
-        quote_number_id: generateRanomQuoteNumber(),
+        quote_id: generateRanomQuoteNumber(),
         business_account_id: BUSINESS_ACCOUNT_4.data.business_account_id,
         benefit_basis:"multiple_of_salary",
         multiple_or_amount: 9,
@@ -50,7 +50,7 @@ export const BUSINESS_GROUP_QUOTE_4_GCI = {
     type,
     modelName,
     data:{
-        quote_number_id: generateRanomQuoteNumber(),
+        quote_id: generateRanomQuoteNumber(),
         business_account_id: BUSINESS_ACCOUNT_4.data.business_account_id,
         benefit_basis: "multiple_of_salary",
         multiple_or_amount: 9,

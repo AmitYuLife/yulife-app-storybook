@@ -4,7 +4,7 @@ import { CUSTOMER_31, CUSTOMER_32, CUSTOMER_33, CUSTOMER_34 } from "./customers"
 import { CPE_31, CPE_32_GCI, CPE_32_GIP, CPE_32_RGL, CPE_33_GCI, CPE_33_GIP, CPE_33_RGL, CPE_34_GCI, CPE_34_GIP, CPE_34_RGL } from "./customer_product_entity"
 
 const type = "postgres"
-const modelName = "customer_group_policy"
+const modelName = "customer_business_product"
 
 export const CGP_31 = {
     type,
