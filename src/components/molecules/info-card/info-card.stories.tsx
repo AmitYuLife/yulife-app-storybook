@@ -68,7 +68,7 @@ storiesOf("InfoCard", module).add("default", () => {
                   <TextTemplate type="b2">
                     Your description goes here. Maximum of 3 lines is ideal in this section.
                   </TextTemplate>
-                  <View style={{ marginTop: 20 }}>
+                  <View style={{ marginTop: 28 }}>
                     <Hyperlink title="See details" url="https://yulife.com" />
                   </View>
                 </>

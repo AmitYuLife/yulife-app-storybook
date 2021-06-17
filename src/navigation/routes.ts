@@ -177,11 +177,21 @@ export default [
     name: ROUTES.webView,
     component: require("../components/containers/web-view/web-view.container").default,
   },
+
   // debug
   {
     name: ROUTES.packageCard,
-    component: require("../components/containers/member/debug/packageCard.debug").default,
+    component: require("../components/containers/member/debug/pli-packages/package-card.debug").default,
   },
+  {
+    name: ROUTES.packageIntro,
+    component: require("../components/containers/member/debug/pli-packages/package-intro.debug").default,
+  },
+  {
+    name: ROUTES.packageFinalise,
+    component: require("../components/containers/member/debug/pli-packages/package-finalise.debug").default,
+  },
+
   // modals
   {
     name: MODALS.yuProductDetails,

@@ -49,11 +49,12 @@ const SHADOW_HEIGHT = media.select(
   ],
   4
 );
-const INNER_HEIGHT = Style.adjust(104);
+const INNER_HEIGHT = Style.adjust(88);
 const TOTAL_HEIGHT = SHADOW_HEIGHT + INNER_HEIGHT;
 
 const styles = StyleSheet.create({
   wrapper: {
+    width: Style.adjust(98),
     height: TOTAL_HEIGHT,
     borderRadius: 16,
     overflow: "hidden",

@@ -61,6 +61,8 @@ export const ROUTES = {
 
   //debug
   packageCard: "yulife.debug.packageCard",
+  packageIntro: "yulife.debug.packageIntro",
+  packageFinalise: "yulife.debug.packageFinalise",
 };
 
 export const MODALS = {

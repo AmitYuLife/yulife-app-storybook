@@ -35,3 +35,4 @@ export { default as CardInformation } from "./card-information/card-information"
 export { default as GroupProductDisclaimer } from "./group-product-disclaimer/group-product-disclaimer";
 export { default as InfoCard } from "./info-card/info-card";
 export { default as PackageCard } from "./package-card/package-card";
+export { default as PackageAvatarChooseStyle } from "./package-avatar-choose-style/package-avatar-choose-style";

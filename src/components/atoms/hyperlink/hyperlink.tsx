@@ -7,11 +7,12 @@ import { handleLinkPress } from "@services/app-link";
 
 interface IHyperLink {
   title: string;
-  url: string;
+  url?: string;
+  onPress?: () => void;
 }
 
-const Hyperlink = ({ title, url }: IHyperLink) => (
-  <TouchableOpacityWithDelay onPress={handleLinkPress(url)}>
+const Hyperlink = ({ title, url, onPress }: IHyperLink) => (
+  <TouchableOpacityWithDelay onPress={onPress || handleLinkPress(url)}>
     <Text style={styles.link}>{title}</Text>
   </TouchableOpacityWithDelay>
 );
@@ -23,7 +24,6 @@ const styles = StyleSheet.create({
     fontSize: Style.adjust(16),
     letterSpacing: Style.adjust(0.8),
     fontFamily: Style.FONT_FAMILY_PRIMARY,
-    marginTop: 8,
   },
 });
 
