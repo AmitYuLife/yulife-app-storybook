@@ -3,7 +3,7 @@ import { StyleSheet, ViewStyle, View, ScrollView, Platform } from "react-native"
 import { Style, TOP_BAR } from "@styles";
 import media from "@styles/media";
 import { YUSCREEN, YUSCREEN_SCROLL_VIEW } from "@ids";
-import { NameAndLevel, AvatarAndEquipment, YuCoinPower, ToolTip } from "./subcomponents";
+import { NameAndLevel, AvatarAndEquipment, YuCoinPower } from "./subcomponents";
 import { YuScreenProductContext } from "./yu-screen.context";
 
 export const YuScreen = () => {
@@ -16,9 +16,6 @@ export const YuScreen = () => {
           <NameAndLevel />
           <AvatarAndEquipment />
           <YuCoinPower />
-          <View style={styles.avatar}>
-            <ToolTip />
-          </View>
           <View style={styles.padBot} />
         </ScrollView>
       </View>
@@ -64,10 +61,5 @@ const styles = StyleSheet.create({
   } as ViewStyle,
   padBot: {
     height: PAD_BOT,
-  } as ViewStyle,
-  avatar: {
-    position: "absolute",
-    alignSelf: "center",
-    top: 160,
   } as ViewStyle,
 });

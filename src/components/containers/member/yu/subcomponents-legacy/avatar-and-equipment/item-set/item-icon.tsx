@@ -7,7 +7,6 @@ import { toCapitalLetter } from "@services/utils";
 import { YuProductStatus, YuItemSlot, CoverType } from "@graphql/_core/schema/globalTypes";
 
 interface Props {
-  isSelected: boolean;
   status: YuProductStatus;
   itemSlot: YuItemSlot;
   coverType?: CoverType;
@@ -104,15 +103,11 @@ function getLightOverlay(props: Props) {
 }
 
 function getFontStyle(props: Props) {
-  const { isSelected, status, coverType } = props;
+  const { status, coverType } = props;
   const defaultStyle = {
     fontSize: Style.adjust(12),
     color: Colours.neutral.n400,
   } as TextStyle;
-
-  if (isSelected) {
-    defaultStyle.color = Colours.primary.p600;
-  }
 
   if (status === YuProductStatus.active) {
     if (coverType === CoverType.common) {

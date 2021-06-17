@@ -7,19 +7,25 @@ import {
   FIB_UNDERWRITING_JOURNEY,
   FIB_INFO,
   FIB_INTRO_YUGI,
-  IProduct,
 } from "@components/containers/products/fib/fib.types";
 import { FIB_UNDERWRITING_REVIEW_ANSWERS_SCREEN_ID } from "@components/containers/products/fib/data/underwriting-journey-data";
 import { InfoTypes } from "@components/containers/products/fib/subcontainers/fib.info.container";
 import ProductDetailsContainer from "@components/containers/products/product-details/product-details.container";
 import { YUGI_INTRO_TYPE } from "@components/containers/products/fib/subcontainers/fib.yugi-intro.container";
 import { FIBStore } from "@redux/product/product.types";
-import { CoverType, ScreeningStatus } from "@graphql/_core/schema/globalTypes";
-import { YuScreenProductSlotItem } from "@graphql/_core/schema";
+import { CoverType, ScreeningStatus, YuItemSlot, YuProductStatus } from "@graphql/_core/schema/globalTypes";
 import { getIsPersonalItem } from "../yu-types";
 
 interface INavigateToProductScreen {
-  product: IProduct & YuScreenProductSlotItem; //we have set his way to support the legacy yuscreen
+  product: {
+    status: YuProductStatus;
+    itemSlot: YuItemSlot;
+    productId: string;
+    earnRate: number;
+    description: string;
+    name: string;
+    policyNumber: string;
+  };
   fibState: FIBStore;
   resetFibJourney: () => void;
   yuScreenV3: boolean;
@@ -27,15 +33,11 @@ interface INavigateToProductScreen {
 
 const FIB_EXPIRE_QUOTE_MONTHS = 3;
 
-export const navigateToProductScreen = ({
-  product,
-  fibState,
-  resetFibJourney,
-  yuScreenV3,
-}: INavigateToProductScreen) => {
+export const navigateToProductScreen = (props: INavigateToProductScreen) => {
+  const { product, fibState, resetFibJourney, yuScreenV3 } = props;
   // TODO: Implement different journeys for different products
 
-  if (product.status === "locked") {
+  if (product.status === YuProductStatus.locked) {
     return Navigation.push(ROUTES.yuScreen, {
       component: {
         id: ROUTES.yuProductSurvey,
@@ -152,7 +154,7 @@ export const navigateToProductScreen = ({
     });
   }
 
-  Navigation.showModal({
+  return Navigation.showModal({
     component: {
       id: MODALS.yuProductDetails,
       name: MODALS.yuProductDetails,
