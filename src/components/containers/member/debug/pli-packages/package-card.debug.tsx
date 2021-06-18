@@ -1,9 +1,10 @@
-//@TODO: Delete this when the component goes live
+//@TODO PLI: Delete this when the component goes live
 import React, { useState } from "react";
-import { SafeAreaView, ScrollView, StatusBar, StyleSheet, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { CoverType, YuProductStatus } from "@graphql/_core/schema/globalTypes";
 import { PackageCard } from "@components/molecules";
 import { PackageCardHeader } from "@atoms";
+import Wrapper from "../wrapper.debug";
 
 const NotEquipped = {
   title: "Life Insurance",
@@ -147,36 +148,24 @@ const PackageCardDemo = () => {
   );
 
   return (
-    <SafeAreaView style={styles.wrapper}>
-      <ScrollView style={styles.scrollView} contentContainerStyle={styles.center}>
-        <PackageCard
-          packageInfo={filterPackage}
-          onPress={(selected: CoverType) => setPackageType({ ...packageType, previewPackage: selected })}
-        />
-        <View style={styles.hr} />
-        <PackageCard
-          packageInfo={EpicCard}
-          onPress={(selected: CoverType) => setPackageType({ ...packageType, previewPackage: selected })}
-        />
-        <View style={styles.hr} />
-        <PackageCardHeader packageInfo={{ ...NotEquipped, coverType: null }} />
-        <View style={styles.hr} />
-      </ScrollView>
-    </SafeAreaView>
+    <Wrapper>
+      <PackageCard
+        packageInfo={filterPackage}
+        onPress={(selected: CoverType) => setPackageType({ ...packageType, previewPackage: selected })}
+      />
+      <View style={styles.hr} />
+      <PackageCard
+        packageInfo={EpicCard}
+        onPress={(selected: CoverType) => setPackageType({ ...packageType, previewPackage: selected })}
+      />
+      <View style={styles.hr} />
+      <PackageCardHeader packageInfo={{ ...NotEquipped, coverType: null }} />
+      <View style={styles.hr} />
+    </Wrapper>
   );
 };
 
 const styles = StyleSheet.create({
-  wrapper: {
-    paddingTop: StatusBar.currentHeight,
-  },
-  center: {
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  scrollView: {
-    width: "100%",
-  },
   hr: {
     marginBottom: 30,
   },

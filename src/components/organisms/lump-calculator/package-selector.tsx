@@ -62,43 +62,16 @@ export const PackageSelector = memo(function (props: IPackageSelectorProps) {
 const styles = StyleSheet.create({
   boxWrapper: {
     marginHorizontal: Style.adjust(8),
-    flex: 1,
-    width: Style.adjust(96),
-  },
-  packageWrapper: {
-    height: Style.adjust(96),
-    width: Style.adjust(96),
-    backgroundColor: "white",
-    borderWidth: 1,
-    borderColor: Colours.neutral.n100,
-    borderRadius: 16,
-  } as ViewStyle,
-  packageFullWrapper: {
-    height: Style.adjust(100),
-    width: Style.adjust(96),
-    borderRadius: 16,
   },
   commonSelectedStyle: {
-    backgroundColor: Colours.secondary.s10S1,
     borderColor: Colours.products.fib.common,
   } as ViewStyle,
   rareSelectedStyle: {
-    backgroundColor: Colours.secondary.s10S2,
     borderColor: Colours.products.fib.rare,
   } as ViewStyle,
   epicSelectedStyle: {
-    backgroundColor: Colours.secondary.s10S3,
     borderColor: Colours.products.fib.epic,
   } as ViewStyle,
-  packageWrapperGrey: {
-    height: Style.adjust(96),
-    width: Style.adjust(96),
-    backgroundColor: Colours.neutral.n100,
-    borderRadius: 16,
-    position: "absolute",
-    bottom: 0,
-  },
-
   wrapper: {
     flexDirection: "row",
     justifyContent: "space-between",

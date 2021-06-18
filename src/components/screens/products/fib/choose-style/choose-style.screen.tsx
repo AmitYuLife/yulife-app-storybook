@@ -10,6 +10,8 @@ import GenericHeadingAbsolute from "@atoms/generic-heading/generic-heading-absol
 import { styles } from "./choose-style.styles";
 import { ARMOR_OPTION, SELECTED_ARMOR } from "@ids";
 import { GetYulifer_personal_chest_options_styles } from "../../../../../graphql/_core/schema";
+
+// @TODO PLI: Purge this as part of the new PLI
 interface IFibStyleSelectionScreenProps {
   productStyleOptions: GetYulifer_personal_chest_options_styles[];
   onContinue: (word: YuWorld) => void;

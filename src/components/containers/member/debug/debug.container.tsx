@@ -31,6 +31,8 @@ enum CODES {
   ROUTE_TO_CHOOSE_STYLE = "ROUTE_TO_CHOOSE_STYLE",
   ROUTE_TO_PRODUCT_DETAILS = "ROUTE_TO_PRODUCT_DETAILS",
   ROUTE_TO_PACKAGE_CARD = "ROUTE_TO_PACKAGE_CARD",
+  ROUTE_TO_PACKAGE_INTRO = "ROUTE_TO_PACKAGE_INTRO",
+  ROUTE_TO_PACKAGE_FINALISE = "ROUTE_TO_PACKAGE_FINALISE",
 }
 
 const DEFAULT_LIST = [
@@ -58,6 +60,8 @@ const ActivityHistoryContainer: React.FC<Props> = (props) => {
     CODES.ROUTE_TO_CHOOSE_STYLE,
     CODES.ROUTE_TO_PRODUCT_DETAILS,
     CODES.ROUTE_TO_PACKAGE_CARD,
+    CODES.ROUTE_TO_PACKAGE_INTRO,
+    CODES.ROUTE_TO_PACKAGE_FINALISE,
   ];
 
   const handleClose = () => {
@@ -155,6 +159,24 @@ const ActivityHistoryContainer: React.FC<Props> = (props) => {
             component: {
               id: ROUTES.packageCard,
               name: ROUTES.packageCard,
+            },
+          });
+        }
+
+        if (code === CODES.ROUTE_TO_PACKAGE_INTRO) {
+          return Navigation.push(props.componentId, {
+            component: {
+              id: ROUTES.packageIntro,
+              name: ROUTES.packageIntro,
+            },
+          });
+        }
+
+        if (code === CODES.ROUTE_TO_PACKAGE_FINALISE) {
+          return Navigation.push(props.componentId, {
+            component: {
+              id: ROUTES.packageFinalise,
+              name: ROUTES.packageFinalise,
             },
           });
         }

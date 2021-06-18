@@ -75,6 +75,8 @@ const isLargeScreen = () => {
   return y > 810;
 };
 
+const isHuaweiMate10 = () => Platform.OS === "android" && x === 360;
+
 const platformSelect = ({ ios, android, shorterAndroid, shortAndroid }: { [key: string]: number }) => {
   if (Platform.OS === "android") {
     if (y < 600) {
@@ -182,6 +184,7 @@ const Style = {
   isWideScreen,
   hasNotch: DeviceInfo.hasNotch(),
   isLargeScreen,
+  isHuaweiMate10,
 };
 
 export default Style;
