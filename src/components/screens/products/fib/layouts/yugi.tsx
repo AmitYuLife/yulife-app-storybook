@@ -27,7 +27,7 @@ const _Yugi = (props: Props) => {
   const Yugi = getYugi(yugi);
 
   return (
-    <View style={StyleSheet.flatten([styles.yugiWrapper, wrapperStyle])}>
+    <View pointerEvents="none" style={StyleSheet.flatten([styles.yugiWrapper, wrapperStyle])}>
       <Svg width={Style.adjust(55)} height={Style.adjust(180)} viewBox="0 0 55 180">
         <Yugi />
       </Svg>
