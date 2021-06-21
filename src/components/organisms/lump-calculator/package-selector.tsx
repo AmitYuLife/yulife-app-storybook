@@ -50,6 +50,8 @@ export const PackageSelector = memo(function (props: IPackageSelectorProps) {
             selectedStyle={selectedStyle}
             isSelected={selectedPackage === coverType}
             onPress={() => onPackageChanged(coverType)}
+            wrapperStyle={styles.wrapperStyle}
+            innerHeight={Style.adjust(88)}
           >
             <BoxLabel cost={cost} coverTheme={coverTheme} coverType={coverType} label={label} />
           </BoxOption>
@@ -60,6 +62,9 @@ export const PackageSelector = memo(function (props: IPackageSelectorProps) {
 });
 
 const styles = StyleSheet.create({
+  wrapperStyle: {
+    width: Style.adjust(98),
+  } as ViewStyle,
   boxWrapper: {
     marginHorizontal: Style.adjust(8),
   },
