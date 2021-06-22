@@ -55,6 +55,8 @@ interface IOwnProps {
   surnameValue: string;
   amountValue: string;
   accountNumberValue: string;
+  logoImageUri: string;
+  backgroundImageUri: string;
   onForenameChange: (value: string) => void;
   onSurnameChange: (value: string) => void;
   onCardChange: (value: string) => void;
@@ -118,6 +120,8 @@ class AviosDetailsScreen extends React.PureComponent<Props, IState> {
       surnameValue,
       amountValue,
       isLoading,
+      logoImageUri,
+      backgroundImageUri,
     } = this.props;
     const { isShowingKeyboard } = this.state;
     return (
@@ -140,6 +144,8 @@ class AviosDetailsScreen extends React.PureComponent<Props, IState> {
                 cost={cost}
                 rewardValue={rewardValue}
                 rewardCurrency={rewardCurrency}
+                logoImageUri={logoImageUri}
+                backgroundImageUri={backgroundImageUri}
               />
               <View style={styles.contentWrapper}>
                 <Text bold={true} style={styles.heading}>

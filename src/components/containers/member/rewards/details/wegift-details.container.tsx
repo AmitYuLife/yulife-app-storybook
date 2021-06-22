@@ -47,6 +47,8 @@ const WegiftRewardDetailsContainer: FC<Props> = (props) => {
       available_denominations,
       uiSettings,
       terms_and_conditions_url,
+      logoImageUri,
+      background: { uri: backgroundImageUri },
     },
     features = {},
   } = props;
@@ -161,6 +163,8 @@ const WegiftRewardDetailsContainer: FC<Props> = (props) => {
           onPressTopBar={onRewardsTabPress}
           onLeftTabPress={onRewardsTabPress}
           onRightTabPress={onPurchasesTabPress}
+          logoImageUri={logoImageUri}
+          backgroundImageUri={backgroundImageUri}
         />
       )}
       renderOverlay={({ toggleOverlay }) => {

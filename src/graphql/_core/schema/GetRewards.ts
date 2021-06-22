@@ -35,6 +35,11 @@ export interface GetRewards_getRewards_uiSettings {
   offerSubheading: string | null;
 }
 
+export interface GetRewards_getRewards_background {
+  id: string;
+  uri: string | null;
+}
+
 export interface GetRewards_getRewards {
   __typename: "Reward";
   id: string | null;
@@ -58,8 +63,15 @@ export interface GetRewards_getRewards {
   redeem_steps: GetRewards_getRewards_redeem_steps | null;
   terms_and_conditions_url: string | null;
   uiSettings: GetRewards_getRewards_uiSettings | null;
+  logoImageUri: string | null;
+  background: GetRewards_getRewards_background | null;
 }
 
 export interface GetRewards {
   getRewards: (GetRewards_getRewards | null)[] | null;
+}
+
+export interface GetRewardsVariables {
+  width?: number | null;
+  height?: number | null;
 }

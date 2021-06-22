@@ -12,6 +12,8 @@ import Logger from "@services/logging/logger";
 import { RewardsListScreen } from "@screens/index";
 import { IMainTabsProps } from "@navigation/root";
 import { useQueryOnScreenSeenOnce } from "@services/hooks/useQueryOnScreenSeenOnce";
+import { PixelRatio } from "react-native";
+import { Style } from "@styles";
 
 interface IProps {
   onTabChange: (newTab: "rewards" | "purchases", componentId?: string) => void;
@@ -40,7 +42,13 @@ function RewardsListContainer(props: Props) {
 
   const [getRewards, { loading, data: rewards }] = useQueryOnScreenSeenOnce<GetRewards>(
     GQL_QUERY_GET_REWARDS,
-    ROUTES.rewards
+    ROUTES.rewards,
+    {
+      variables: {
+        width: PixelRatio.get() * Style.adjust(375),
+        height: PixelRatio.get() * Style.adjust(150),
+      },
+    }
   );
 
   const handleRewardDetailsItemPress = useCallback(

@@ -62,6 +62,8 @@ export class RewardsList extends React.PureComponent<IRewardsListScreenProps> {
           rewardValue={isLocked ? 0 : value}
           rewardCurrency={currency_code}
           isLocked={isLocked}
+          logoImageUri={item?.logoImageUri}
+          backgroundImageUri={item.background.uri}
         />
       );
     }
