@@ -1,7 +1,7 @@
 import gql from "graphql-tag";
 
 export const GQL_QUERY_GET_REWARDS = gql`
-  query GetRewards {
+  query GetRewards($width: Float, $height: Float) {
     getRewards {
       __typename
       id
@@ -46,6 +46,11 @@ export const GQL_QUERY_GET_REWARDS = gql`
         alertOkLabel
         offerHeading
         offerSubheading
+      }
+      logoImageUri
+      background {
+        id
+        uri(options: { width: $width, height: $height })
       }
     }
   }

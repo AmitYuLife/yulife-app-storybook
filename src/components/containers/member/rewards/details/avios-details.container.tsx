@@ -81,6 +81,8 @@ const AviosRewardDetailsContainer: FC<Props> = (props) => {
       available_denominations,
       uiSettings,
       loyalty_programme,
+      logoImageUri,
+      background: { uri: backgroundImageUri },
     },
   } = props;
 
@@ -257,6 +259,8 @@ const AviosRewardDetailsContainer: FC<Props> = (props) => {
           onPressConfirm={handleRewardPurchase}
           onPressPolicy={handlePolicyPress}
           onPressSetUp={handleAviosTermsPress}
+          logoImageUri={logoImageUri}
+          backgroundImageUri={backgroundImageUri}
         />
       )}
       renderOverlay={({ toggleOverlay }) => (

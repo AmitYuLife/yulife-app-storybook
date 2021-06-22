@@ -32,6 +32,8 @@ interface IProps {
   onLeftTabPress: () => void;
   onRightTabPress: () => void;
   testID?: string;
+  logoImageUri: string;
+  backgroundImageUri: string;
 }
 
 const WegiftDetailsScreen: React.SFC<IProps> = ({
@@ -52,6 +54,8 @@ const WegiftDetailsScreen: React.SFC<IProps> = ({
   onPressPolicy,
   onPressTopBar,
   showWegiftPicker = false,
+  logoImageUri,
+  backgroundImageUri,
 }) => (
   <View style={styles.wrapper}>
     <View style={styles.pad} />
@@ -63,6 +67,8 @@ const WegiftDetailsScreen: React.SFC<IProps> = ({
         linkType={linkType}
         rewardCurrency={rewardCurrency}
         code={code}
+        logoImageUri={logoImageUri}
+        backgroundImageUri={backgroundImageUri}
       />
       <View style={styles.scrollViewContentWrapper}>
         <RewardItemContent

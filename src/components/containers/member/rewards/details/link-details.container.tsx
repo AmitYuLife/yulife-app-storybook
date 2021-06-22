@@ -39,6 +39,8 @@ const LinkRewardDetailsContainer: FC<Props> = (props) => {
       available_denominations,
       terms_and_conditions_url,
       reward_sticker,
+      logoImageUri,
+      background: { uri: backgroundImageUri },
     },
   } = props;
 
@@ -130,6 +132,8 @@ const LinkRewardDetailsContainer: FC<Props> = (props) => {
       onPressTopBar={onRewardsTabPress}
       onLeftTabPress={onRewardsTabPress}
       onRightTabPress={onPurchasesTabPress}
+      logoImageUri={logoImageUri}
+      backgroundImageUri={backgroundImageUri}
     />
   );
 };

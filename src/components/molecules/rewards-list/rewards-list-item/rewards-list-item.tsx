@@ -1,6 +1,5 @@
 import { GetRewards_getRewards_uiSettings } from "@graphql/_core/schema";
 import { TouchableOpacityWithDelay } from "@molecules/index";
-import { getCloudinaryUrl } from "@services/cloudinary/index";
 import * as React from "react";
 import { PureComponent } from "react";
 import { ActivityIndicator, StyleSheet, View } from "react-native";
@@ -19,6 +18,8 @@ interface IProps {
   rewardCurrency: string;
   rewardValue: number;
   settings: GetRewards_getRewards_uiSettings;
+  logoImageUri: string;
+  backgroundImageUri: string;
 }
 
 interface IState {
@@ -31,7 +32,18 @@ class RewardsListItem extends PureComponent<IProps, IState> {
   };
 
   public render() {
-    const { code, cost, onPress, isLocked, linkType, rewardValue, rewardCurrency, settings } = this.props;
+    const {
+      code,
+      cost,
+      onPress,
+      linkType,
+      isLocked,
+      rewardValue,
+      rewardCurrency,
+      settings,
+      logoImageUri,
+      backgroundImageUri,
+    } = this.props;
     const { hasLoaded } = this.state;
 
     return (
@@ -51,23 +63,19 @@ class RewardsListItem extends PureComponent<IProps, IState> {
             resizeMode="cover"
             style={[styles.imageBackground, { opacity: isLocked ? 0.3 : 1 }]}
             onLoadEnd={this.handleLoadEnd}
-            source={getCloudinaryUrl(`reward/background/${code}`, {
-              height: 150,
-              transformation: [{ effect: isLocked ? "grayscale" : null }],
-              width: 375,
-            })}
+            source={{ uri: backgroundImageUri }}
           />
           <View style={styles.overlayWrapper}>
             {isLocked ? (
-              <LockedOverlay code={code} settings={settings} />
+              <LockedOverlay code={code} logoImageUri={logoImageUri} settings={settings} />
             ) : (
               <UnlockedOverlay
-                code={code}
                 cost={cost}
                 linkType={linkType}
                 rewardValue={rewardValue}
                 rewardCurrency={rewardCurrency}
                 settings={settings}
+                logoImageUri={logoImageUri}
               />
             )}
           </View>
