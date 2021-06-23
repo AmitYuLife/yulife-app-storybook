@@ -188,33 +188,29 @@ export const onYuscreenV3 = (customer:any)=> async()=>{
     await expect(element(by.id(YUSCREEN_V3(true)))).toBeVisible()
 }
 
-export const onProductDetails = (coverType: string, productName: string, benefitValue: string, earnRate: number) => async ()=>{
+export const onProductDetails = (coverType: string, productName: string, earnRate: number) => async ()=>{
     const lumpSum = `x salary as lump sum`
     const yuCoin = `YuCoin Power`
 
     const product = TEXT_TEMPLATE(productName)
-    const benefit = VALUE_DESCRIPTION(benefitValue, lumpSum)
     const power = VALUE_DESCRIPTION(earnRate, yuCoin)
 
     const documents = TEXT_TEMPLATE("Documents")
 
     await expect(element(by.text(coverType))).toBeVisible()
     await expect(element(by.id(product))).toBeVisible()
-    await expect(element(by.id(benefit))).toBeVisible()
     await expect(element(by.id(power))).toBeVisible()
     await expect(element(by.id(documents))).toBeVisible()
     await expect(element(by.text("Policy Details"))).toBeVisible()
 }
 
-export const onCertificate = (productName: string, benefitValue: string, customer:any, customerGroupPol:any, business:any, businessEmployee:any) => async()=>{
-    const salary = `${benefitValue}x salary as lump sum`
+export const onCertificate = (productName: string, customer:any, customerGroupPol:any, business:any, businessEmployee:any) => async()=>{
     const customerName = `${customer.data.firstName} ${customer.data.lastName}`
     const companyName = business.data.business_account_name
     const policyNumber = customerGroupPol.data.business_product_id
     const dateJoined = moment(businessEmployee.data.invite_date).format("DD/MM/YY")
 
     await expect(element(by.text(productName))).toBeVisible()
-    await expect(element(by.text(salary))).toBeVisible()
 
     await expect(element(by.id(CERTIFICATE_KEY_VALUES("Client name", customerName)))).toBeVisible()
     await expect(element(by.id(CERTIFICATE_KEY_VALUES("Company name", companyName)))).toBeVisible()

@@ -5,7 +5,7 @@ import { AUTH_10, CUSTOMER_10 } from "@data"
 export const {
     wait,
     reloadOnly,
-    tapID,
+    tapID
 } = navigation.common
 
 export const {

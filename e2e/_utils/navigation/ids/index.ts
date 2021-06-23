@@ -120,7 +120,7 @@ export const YUCOIN_POWER = (powerNum: string) => `YUCOIN_POWER_${powerNum}`
 export const AVATAR_ITEM = (label:string, status:string) => `AVATAR_ITEM_${label}_${status}`
 export const YUSCREEN_SCROLL_VIEW = "YUSCREEN_SCROLL_VIEW"
 export const YUSCREEN_V3 = (onYuscreenV3:boolean) => `YUSCREEN_V3_${onYuscreenV3}`
-export const PRODUCT_TOOL_TIP = (coverType:string, toolTipName:string, benefitValue:string, earnRate:number) => `PRODUCT_TOOL_TIP_${coverType}_${toolTipName}_${benefitValue}_${earnRate}`
+export const PRODUCT_TOOL_TIP = (coverType:string, toolTipName:string, earnRate:number) => `PRODUCT_TOOL_TIP_${coverType}_${toolTipName}_${earnRate}`
 
 // PRODUCT DETAILS
 export const PRODUCT_DETAILS_SCROLL_VIEW = "PRODUCT_DETAILS_SCROLL_VIEW"
