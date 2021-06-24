@@ -171,11 +171,7 @@ Feature("I am able to use the yuscreen, create, and edit an Yumoji", async () =>
         Given("I login", given.loginToYuScreen(true, CUSTOMER_17, AUTH_17), async () => {
             Then("I should see my Yumoji", then.idVisible(YUSCREEN_AVATAR))
             When("I tap the locked boots", when.tapID(AVATAR_ITEM("boots", "locked")), async () => {
-                    Then("I should see the coming soon modal", then.textVisible("Vote now"))
-            })
-            When("I tap Vote now", when.tapText("Vote now"), async () => {
-                Then("I should be on the survey screen", then.onSurveyScreen)
-                Then("I should a dental insurance option, and it should not be selected", then.idVisible(CHECK_BOX_STATE("Dental insurance", false)))
+                Then("I should be on the survey screen", then.textVisible("What Would You Like To See?"))
             })
             When("I tap an option", when.tapText("Dental insurance"), async () => {
                 Then("This option should be selected", then.idVisible(CHECK_BOX_STATE("Dental insurance", true)))

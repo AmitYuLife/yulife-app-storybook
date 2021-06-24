@@ -17,6 +17,8 @@ export const REWARDS_JOHN_LEWIS = {
             ],
             "info": "To redeem John Lewis:"
         },
+        "logo_image": "reward/logo/JLS-GB.png",
+        "background_image": "reward/background/JLS-GB.jpg",
         "loyalty_programme": [],
         "sort_order": 14,
         "rewardProviderId": "false_id_for_detox",
@@ -68,6 +70,8 @@ export const REAWARDS_AVIOS = {
     modelName: "rewards",
     data: {
         "_id": generateRandomMongoId(),
+        "background_image": "reward/background/AVI-GB.jpg",
+        "logo_image": "reward/logo/AVI-GB.png",
         "sort_order": 1,
         "rewardProviderId": "avios",
         "availability": "stocked",
@@ -157,6 +161,8 @@ export const REWARDS_BLOOM_UNAVAILABLE = {
             ],
             "info": "How to redeem Bloom & Wild:"
         },
+        "background_image": "reward/background/YLBAW-GB.jpg",
+        "logo_image": "reward/logo/YLBAW-GB.png",
         "loyalty_programme": [],
         "sort_order": 1.3,
         "rewardProviderId": "wegift",
@@ -206,6 +212,8 @@ export const REWARDS_NIKE = {
             ],
             "info": "How to redeem Nike"
         },
+        "logo_image": "reward/logo/NIKE-GB.png",
+        "background_image": "reward/background/NIKE-GB.jpg",
         "loyalty_programme": [],
         "sort_order": 18,
         "rewardProviderId": "wegift",

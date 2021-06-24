@@ -14,12 +14,9 @@ Feature("I should be able to use the yuscreen v3", async()=>{
                 Then("I shoul see the item provided by my employer", then.idVisible(AVATAR_ITEM("compass", "active")))
             })
             When("I tap the active compass", when.tapID(AVATAR_ITEM("compass", "active")), async()=>{
-                Then("I should see the product modal", then.idVisible(PRODUCT_TOOL_TIP("common", "Instant Group Life", 10)))
-                Then("I should see the inspect CTA", then.textVisible("Inspect"))
+                Then("I should be on the product screen", then.idVisible(TEXT_TEMPLATE("Instant Group Life")))
             })
-            When("I tap inspect", when.tapText("Inspect"), async()=>{
-                Then("I should be on the product details screen", then.onProductDetails("Common", "Instant Group Life", 10))
-            })
+
             When("I tap Policy Details", when.tapText("Policy Details"), async()=>{
                 Then("I should be on the certificate screen", then.onCertificate("Instant Group Life", CUSTOMER_31, CGP_31, BUSINESS_ACCOUNT_3, BUSINESS_EMPLOYEE_31 ))
             })
@@ -32,12 +29,8 @@ Feature("I should be able to use the yuscreen v3", async()=>{
                 Then("I should see the unlocked map", then.idVisible(AVATAR_ITEM("map", "active")))
                 Then("I should see the unlocked binoculars", then.idVisible(AVATAR_ITEM("binoculars", "active")))
                 })
-            When("I tap the active compass", when.tapID(AVATAR_ITEM("compass", "active")), async () => {
-                Then("I should see the product modal", then.idVisible(PRODUCT_TOOL_TIP("epic", "Registered Group Life", 10)))
-                Then("I should see the inspect CTA", then.textVisible("Inspect"))
-                })
-            When("I tap inspect", when.tapText("Inspect"), async () => {
-                Then("I should be on the product details screen", then.onProductDetails("Epic", "Registered Group Life", 10))
+            When("I tap the active compass", when.tapID(AVATAR_ITEM("compass", "active")), async()=>{
+                Then("I should be on the product screen", then.idVisible(TEXT_TEMPLATE("Registered Group Life")))
                 })
             When("I tap Policy Details", when.tapText("Policy Details"), async () => {
                 Then("I should be on the certificate screen", then.onCertificate("Registered Group Life", CUSTOMER_32, CGP_32_RGL, BUSINESS_ACCOUNT_4, BUSINESS_EMPLOYEE_32))
@@ -49,12 +42,8 @@ Feature("I should be able to use the yuscreen v3", async()=>{
                 Then("I should be back on the yuscreen and see the unlocked map", then.idVisible(AVATAR_ITEM("map", "active")))
                 })
             When("I tap the active map", when.tapID(AVATAR_ITEM("map", "active")), async () => {
-                Then("I should see the product modal", then.idVisible(PRODUCT_TOOL_TIP("epic", "Group Income Protection", 10)))
-                Then("I should see the inspect CTA", then.textVisible("Inspect"))
+                Then("I should be on the product screen", then.idVisible(TEXT_TEMPLATE("Group Income Protection")))
                 }) 
-            When("I tap inspect", when.tapText("Inspect"), async () => {
-                Then("I should be on the product details screen", then.onProductDetails("Epic", "Group Income Protection", 10))
-            })
             When("I tap Policy Details", when.tapText("Policy Details"), async () => {
                 Then("I should be on the certificate screen", then.onCertificate("Group Income Protection", CUSTOMER_32, CGP_32_GIP, BUSINESS_ACCOUNT_4, BUSINESS_EMPLOYEE_32))
             })
@@ -65,11 +54,7 @@ Feature("I should be able to use the yuscreen v3", async()=>{
                 Then("I should be back on the yuscreen and see the unlocked map", then.idVisible(AVATAR_ITEM("map", "active")))
             })
             When("I tap the active binoculars", when.tapID(AVATAR_ITEM("binoculars", "active")), async () => {
-                Then("I should see the product modal", then.idVisible(PRODUCT_TOOL_TIP("epic", "Group Critical Illness", 10)))
-                Then("I should see the inspect CTA", then.textVisible("Inspect"))
-            })
-            When("I tap inspect", when.tapText("Inspect"), async () => {
-                Then("I should be on the product details screen", then.onProductDetails("Epic", "Group Critical Illness", 10))
+                Then("I should be on the product screen", then.idVisible(TEXT_TEMPLATE("Group Critical Illness")))
             })
             When("I tap Policy Details", when.tapText("Policy Details"), async () => {
                 Then("I should be on the certificate screen", then.onCertificate("Group Critical Illness", CUSTOMER_32, CGP_32_GCI, BUSINESS_ACCOUNT_4, BUSINESS_EMPLOYEE_32))
@@ -92,10 +77,7 @@ Feature("I should be able to use the yuscreen v3", async()=>{
         Scenario("As a user with the compass unlocked, I can add beneficiaries", scenario.start, async()=>{
             Given("I login as a user with yuscreen v3", given.loginToYuScreen(true, CUSTOMER_32, AUTH_32), async () => {
                 When("I tap the active compass", when.tapID(AVATAR_ITEM("compass", "active")), async () => {
-                    Then("I should see the prouct modal", then.idVisible(PRODUCT_TOOL_TIP("epic", "Registered Group Life", 10)))
-                    When("I tap inspect", when.tapText("Inspect"), async () => {
-                        Then("I should be on the product details screen", then.onProductDetails("Epic", "Registered Group Life", 10))
-                    })
+                    Then("I should be on the product screen", then.idVisible(TEXT_TEMPLATE("Registered Group Life")))
                 })
                 When("I scroll to the add beneficiary button", when.scrollUntilIdVisible(PRODUCT_DETAILS_SCROLL_VIEW, ADD_BENEFICIARY, "down"), async () => {
                     When("I tap Add a beneficiary", when.tapID(ADD_BENEFICIARY), async () => {
@@ -173,12 +155,9 @@ Feature("I should be able to use the yuscreen v3", async()=>{
         Scenario("As a user with beneficiaries added, I can view them", scenario.start, async()=>{
             Given("I login as a user with yuscreen v3", given.loginToYuScreen(true, CUSTOMER_33, AUTH_33), async () => {
                 When("I tap the active compass", when.tapID(AVATAR_ITEM("compass", "active")), async () => {
-                    Then("I should see the prouct modal", then.idVisible(PRODUCT_TOOL_TIP("epic", "Registered Group Life", 10)))
-                    When("I tap inspect", when.tapText("Inspect"), async () => {
-                        Then("I should be on the product details screen", then.onProductDetails("Epic", "Registered Group Life", 10))
-                        When("I scroll to the add beneficiary button", when.scrollUntilIdVisible(PRODUCT_DETAILS_SCROLL_VIEW, ADD_BENEFICIARY, "down"), async () => {
-                            Then("I should see Alfred Pennyworth as a 100% beneficiary", then.idVisible(BENEFICIARY_DETAILS(100, "Alfred", "Pennyworth", "Butler")))
-                        })
+                    Then("I should be on the product screen", then.idVisible(TEXT_TEMPLATE("Registered Group Life")))
+                    When("I scroll to the add beneficiary button", when.scrollUntilIdVisible(PRODUCT_DETAILS_SCROLL_VIEW, ADD_BENEFICIARY, "down"), async () => {
+                        Then("I should see Alfred Pennyworth as a 100% beneficiary", then.idVisible(BENEFICIARY_DETAILS(100, "Alfred", "Pennyworth", "Butler")))
                     })
                 })
             })
@@ -187,13 +166,11 @@ Feature("I should be able to use the yuscreen v3", async()=>{
         Scenario("As a user with beneficiaries toggled off, I should not see any", scenario.start, async()=>{
             Given("I login as a user with yuscreen v3", given.loginToYuScreen(true, CUSTOMER_34, AUTH_34), async () => {
                 When("I tap the active compass", when.tapID(AVATAR_ITEM("compass", "active")), async () => {
-                    Then("I should see the prouct modal", then.idVisible(PRODUCT_TOOL_TIP("epic", "Registered Group Life", 10)))
-                    When("I tap inspect", when.tapText("Inspect"), async () => {
-                        Then("I should not see Beneficiaries section", then.textNotVisible("Beneficiaries"))
-                        Then("I should not see Bruce Wayne as a 100% beneficiary", then.idNotVisible(BENEFICIARY_DETAILS(100, "Bruce", "Wayne", "Bossman")))
-                    })
+                    Then("I should be on the product screen", then.idVisible(TEXT_TEMPLATE("Registered Group Life")))
+                    Then("I should not see Beneficiaries section", then.textNotVisible("Beneficiaries"))
+                    Then("I should not see Bruce Wayne as a 100% beneficiary", then.idNotVisible(BENEFICIARY_DETAILS(100, "Bruce", "Wayne", "Bossman")))
                 })
             })
         })
         
-    })
+})
