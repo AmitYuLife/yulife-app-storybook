@@ -8,6 +8,7 @@ import { DAILY_STEPS_SCREEN, NAV_BAR, REWARDS_SCREEN } from "@ids";
 
 Feature("Tokens associated with a user should work correctly", async () => {
 
+    // NEED LOOKING INTO, STALLS ON RELOAD
     Scenario("If my token has expired, I should see the session has expired message, and can log back in", scenario.start, async () => {
         Given("I login as a user", given.loginAsUser(CUSTOMER_10, AUTH_10), async () => {
             Then("I should be on the daily steps screen", then.idVisible(DAILY_STEPS_SCREEN))

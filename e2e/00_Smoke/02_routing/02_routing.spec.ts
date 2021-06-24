@@ -127,13 +127,15 @@ Feature("As a user I can navigate through member routes correctly", async () => 
                                     When("I tap 'take challenge'", when.tapText("take challenge"), async () => {
                                         Then("I should see a screen asking me to turn on notifications", then.idVisible(GENERIC_SCREEN_HEADING("don't miss out"), 2000))
                                         When("I dismiss this screen", when.tapID(GENERIC_SCREEN_CTA("maybe later")), async () => {
-                                            Then("I should be on the challenge screen", then.idVisible(CHALLENGE_PROGRESS_BAR))
-                                            When("I close this screen", when.tapID(BUTTON_CLOSE_CHALLENGE), async () => {
-                                                Then("I should see an exit challenge screen", then.multipleTextVisible(["exit challenge?", "no way!", "exit"]))
-                                                When("I tap no way", when.tapText("no way!"), async () => {
-                                                    Then("I should be back on the challenge screen", then.idVisible(CHALLENGE_PROGRESS_BAR))
-                                                    When("I close this screen again and exit the challenge", [when.tapID(BUTTON_CLOSE_CHALLENGE), when.tapText("exit")], async () => {
-                                                        Then("I should be back on the quests screen", then.idVisible(QUESTS_SCREEN(0)))
+                                            When("I tap 'I'm using a different app'", when.tapText("I'm using a different app"), async () => {
+                                                Then("I should be on the challenge screen", then.idVisible(CHALLENGE_PROGRESS_BAR))
+                                                When("I close this screen", when.tapID(BUTTON_CLOSE_CHALLENGE), async () => {
+                                                    Then("I should see an exit challenge screen", then.multipleTextVisible(["exit challenge?", "no way!", "exit"]))
+                                                    When("I tap no way", when.tapText("no way!"), async () => {
+                                                        Then("I should be back on the challenge screen", then.idVisible(CHALLENGE_PROGRESS_BAR))
+                                                        When("I close this screen again and exit the challenge", [when.tapID(BUTTON_CLOSE_CHALLENGE), when.tapText("exit")], async () => {
+                                                            Then("I should be back on the quests screen", then.idVisible(QUESTS_SCREEN(0)))
+                                                        })
                                                     })
                                                 })
                                             })
