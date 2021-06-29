@@ -247,28 +247,6 @@ export async function setUnauthenticatedRoot(passProps: any = {}) {
   });
 }
 
-/**
- *
- * FOR TESTING REFERRALS
- */
-export async function debug_setReferralsRoot(passProps: any = {}) {
-  await Navigation.setRoot({
-    root: {
-      stack: {
-        children: [
-          {
-            component: {
-              id: ROUTES.referrals,
-              name: ROUTES.referrals,
-              passProps,
-            },
-          },
-        ],
-      },
-    },
-  });
-}
-
 export async function showAppReviewModal() {
   Navigation.showModal({
     component: {
