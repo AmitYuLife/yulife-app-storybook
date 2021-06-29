@@ -33,6 +33,7 @@ enum CODES {
   ROUTE_TO_PACKAGE_CARD = "ROUTE_TO_PACKAGE_CARD",
   ROUTE_TO_PACKAGE_INTRO = "ROUTE_TO_PACKAGE_INTRO",
   ROUTE_TO_PACKAGE_FINALISE = "ROUTE_TO_PACKAGE_FINALISE",
+  ROUTE_TO_REFERRALS = "ROUTE_TO_REFERRALS",
 }
 
 const DEFAULT_LIST = [
@@ -62,6 +63,7 @@ const ActivityHistoryContainer: React.FC<Props> = (props) => {
     CODES.ROUTE_TO_PACKAGE_CARD,
     CODES.ROUTE_TO_PACKAGE_INTRO,
     CODES.ROUTE_TO_PACKAGE_FINALISE,
+    CODES.ROUTE_TO_REFERRALS,
   ];
 
   const handleClose = () => {
@@ -177,6 +179,15 @@ const ActivityHistoryContainer: React.FC<Props> = (props) => {
             component: {
               id: ROUTES.packageFinalise,
               name: ROUTES.packageFinalise,
+            },
+          });
+        }
+
+        if (code === CODES.ROUTE_TO_REFERRALS) {
+          return Navigation.push(props.componentId, {
+            component: {
+              id: ROUTES.referralInformation,
+              name: ROUTES.referralInformation,
             },
           });
         }

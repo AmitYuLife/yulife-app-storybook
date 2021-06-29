@@ -59,6 +59,9 @@ export const ROUTES = {
   aviosDetails: "yulife.rewards.AviosDetails",
   aviosConfirmed: "yulife.rewards.AviosConfirmed",
 
+  // referrals screens
+  referralInformation: "yulife.referrals.referralInformation",
+
   //debug
   packageCard: "yulife.debug.packageCard",
   packageIntro: "yulife.debug.packageIntro",

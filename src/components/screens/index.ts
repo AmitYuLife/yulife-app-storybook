@@ -58,3 +58,6 @@ export { default as SplashScreen } from "./splash/splash.screen";
 export { FibFaqScreen } from "./products/fib/faq/fib.faq.screen";
 export { FibDetailsScreen } from "./products/fib/browse-packages/fib.details.screen";
 export { default as FibDocumentsScreen } from "./products/fib/documents/fib.documents.screen";
+
+// referrals
+export { default as ReferralsScreen } from "./referrals/referrals.screen";

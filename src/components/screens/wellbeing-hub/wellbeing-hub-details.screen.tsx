@@ -6,11 +6,11 @@ import {
 } from "@graphql/_core/schema/GetWellbeingHubItem";
 import { Style } from "@styles";
 import { ScrollView, StyleSheet, View } from "react-native";
-import { ContentItemBox } from "./sub-components/content-item-box";
 import { ContentItemButton } from "./sub-components/content-item-button";
 import { ContentItemImage } from "./sub-components/content-item-image";
 import { ContentItemMarkdown } from "./sub-components/content-item-markdown";
 import { MORE_INFO_BUTTON } from "@ids";
+import { TapToCopy } from "@organisms";
 
 interface IProps {
   handleBack: () => void;
@@ -39,9 +39,10 @@ const getItemContent = (itemContent: ItemContent, itemId: string, itemTitle: str
       return <ContentItemMarkdown title={itemContent?.title} markdown={itemContent?.parsedMarkdown} />;
     case "ContentItemBox":
       return (
-        <ContentItemBox
+        <TapToCopy
+          markdown={true}
           heading={itemContent?.title}
-          markdown={itemContent?.parsedMarkdown}
+          text={itemContent?.parsedMarkdown}
           canCopy={itemContent?.canCopy}
         />
       );

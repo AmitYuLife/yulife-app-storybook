@@ -276,6 +276,11 @@ export default {
     m400: "#AAAABF",
     m500: "#87879F",
   },
+  mountain: {
+    primary: {
+      m106: "#569DE9",
+    },
+  },
   hexToRGB,
   rgbToHex,
   toGrayScale,

@@ -43,6 +43,7 @@ export * from "./GetNewConnectionLink";
 export * from "./GetProductBeneficiaries";
 export * from "./GetProductDetails";
 export * from "./GetRecentDuelOpponents";
+export * from "./GetReferralInformation";
 export * from "./GetRewards";
 export * from "./GetSession";
 export * from "./GetTopUpsQuote";

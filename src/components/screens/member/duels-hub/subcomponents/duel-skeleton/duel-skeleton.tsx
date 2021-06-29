@@ -10,7 +10,7 @@ const _DuelSkeleton: FC<IProps> = ({ length = 20 }) => {
   return (
     <View style={styles.wrapper}>
       {Array.from({ length }).map((_, i) => (
-        <SkeletonRow key={i} width={i % 2 ? 105 : 150} />
+        <SkeletonRow key={i} width={i % 2 ? 105 : 150} /> ///@TODO: Replace this with UserAvatarCoinCardSkeleton
       ))}
     </View>
   );

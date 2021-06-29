@@ -2,20 +2,22 @@ import React, { memo, useEffect, useRef, useState } from "react";
 import { StyleSheet, View, ViewStyle, Vibration } from "react-native";
 import Clipboard from "@react-native-community/clipboard";
 import { TextTemplate } from "@atoms";
-import { TouchableOpacityWithDelay } from "@components/molecules";
-import Markdown from "@components/molecules/markdown/markdown";
 import { Colours, Style } from "@styles";
 import { CopyIcon } from "@atoms/icon/copy-icon";
+import { PressableWithDelay } from "@components/molecules";
+import Markdown from "@components/molecules/markdown/markdown";
+
 interface IProps {
-  heading: string;
-  markdown: string;
+  heading?: string;
+  customCopyText?: string;
+  text: string;
   canCopy: boolean;
+  markdown: boolean;
 }
 
-export const ContentItemBox = memo(function (props: IProps) {
+const TapToCopy = ({ heading, customCopyText, text, canCopy, markdown }: IProps) => {
   const [isCopied, setIsCopied] = useState(false);
   const resetCopyMessage = useRef(null);
-  const { heading, markdown, canCopy } = props;
 
   useEffect(() => {
     resetCopyMessage.current = setTimeout(() => {
@@ -27,7 +29,7 @@ export const ContentItemBox = memo(function (props: IProps) {
   }, [isCopied]);
 
   const copyMarkdown = () => {
-    Clipboard.setString(markdown);
+    Clipboard.setString(customCopyText || text);
     Vibration.vibrate(100);
     setIsCopied(true);
   };
@@ -35,26 +37,34 @@ export const ContentItemBox = memo(function (props: IProps) {
   const color = isCopied ? "#40C057" : Colours.primary.p600;
 
   return (
-    <TouchableOpacityWithDelay onPress={copyMarkdown} disabled={!canCopy}>
+    <PressableWithDelay onPress={copyMarkdown} disabled={!canCopy}>
       <View style={styles.wrapper}>
-        <TextTemplate type={"b2b"}>{heading}</TextTemplate>
+        {!heading ? null : (
+          <View style={styles.heading}>
+            <TextTemplate type={"b2b"}>{heading}</TextTemplate>
+          </View>
+        )}
         <View style={styles.markdownWrapper}>
-          <Markdown text={markdown} containerStyle={styles.markdownContainerStyle} />
+          {markdown ? (
+            <Markdown text={text} containerStyle={styles.markdownContainerStyle} />
+          ) : (
+            <TextTemplate type="b2">{text}</TextTemplate>
+          )}
           {!canCopy ? null : (
             <View style={styles.copyWrapper}>
-              <View style={styles.copyText}>{isCopied ? <Copied /> : <TapTopCopy />}</View>
+              <View style={styles.copyText}>{isCopied ? <Copied /> : <Copy />}</View>
               <CopyIcon color={color} />
             </View>
           )}
         </View>
       </View>
-    </TouchableOpacityWithDelay>
+    </PressableWithDelay>
   );
-});
+};
 
-const TapTopCopy = memo(() => (
+const Copy = memo(() => (
   <TextTemplate type="l2b" color={Colours.primary.p600}>
-    Tap to copy
+    Copy
   </TextTemplate>
 ));
 
@@ -75,6 +85,9 @@ const styles = StyleSheet.create({
     borderColor: Colours.neutral.n100,
     backgroundColor: Colours.neutral.n50,
     marginTop: Style.adjust(24),
+  } as ViewStyle,
+  heading: {
+    marginBottom: Style.adjust(8),
   } as ViewStyle,
   markdownWrapper: {
     flexDirection: "row",
@@ -97,3 +110,5 @@ const styles = StyleSheet.create({
     maxWidth: Style.adjust(Style.DEVICE_WIDTH - 100),
   } as ViewStyle,
 });
+
+export default memo(TapToCopy);

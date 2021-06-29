@@ -178,6 +178,13 @@ export default [
     component: require("../components/containers/web-view/web-view.container").default,
   },
 
+  // referrals
+
+  {
+    name: ROUTES.referralInformation,
+    component: require("../components/containers/referrals/referrals.container").default,
+  },
+
   // debug
   {
     name: ROUTES.packageCard,

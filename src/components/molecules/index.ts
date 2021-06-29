@@ -36,3 +36,5 @@ export { default as GroupProductDisclaimer } from "./group-product-disclaimer/gr
 export { default as InfoCard } from "./info-card/info-card";
 export { default as PackageCard } from "./package-card/package-card";
 export { default as PackageAvatarChooseStyle } from "./package-avatar-choose-style/package-avatar-choose-style";
+export { default as UserAvatarCoinCard } from "./user-avatar-coin-card/user-avatar-coin-card";
+export { default as UserAvatarCoinCardSkeleton } from "./user-avatar-coin-card/user-avatar-coin-card-skeleton";

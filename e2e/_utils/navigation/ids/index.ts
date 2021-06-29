@@ -32,6 +32,7 @@ export const YUNITY_REACHED = (yunityNum:number) => `YUNITY_REACHED_${yunityNum}
 export const YUNITY_HEADER = (levelName:string) => `YUNITY_HEADER_${levelName}`
 export const SCROLLABLE_LAYOUT = "SCROLLABLE_LAYOUT"
 export const WELLBEING_HUB_SCREEN = "WELLBEING_HUB_SCREEN"
+export const REFERRALS_SCREEN = "REFERRALS_SCREEN"
 
 
 // buttons
@@ -228,3 +229,6 @@ export const BENEFICIARY_DEFAULT_MODAL = "BENEFICIARY_DEFAULT_MODAL"
 // WELLBEING HUB
 export const WELLBEING_HUB_SCROLL_VIEW = "WELLBEING_HUB_SCROLL_VIEW"
 export const MORE_INFO_BUTTON = (copy: string) => `MORE_INFO_BUTTON_${copy}`
+
+// REFERRALS
+export const REFERRALS_SCROLL_VIEW = "REFERRALS_SCROLL_VIEW"
