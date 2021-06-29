@@ -2,7 +2,7 @@ import { RetryLink } from "apollo-link-retry";
 
 export const MAX_OPERATIONS_ATTEMPTS = 3;
 
-const BLACKLIST_RETRY_OPERATIONS = ["SaveAvatar", "GetMobileCopy"];
+const BLACKLIST_RETRY_OPERATIONS = ["SaveAvatar", "GetMobileCopy", "CreateActiveChallenge"];
 
 const retryLink = (showOfflineScreen: () => void) => {
   return new RetryLink({
