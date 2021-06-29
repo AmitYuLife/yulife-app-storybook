@@ -191,10 +191,6 @@ export default [
     name: ROUTES.packageFinalise,
     component: require("../components/containers/member/debug/pli-packages/package-finalise.debug").default,
   },
-  {
-    name: ROUTES.referrals,
-    component: require("../components/containers/member/debug/referrals/referrals.debug").default,
-  },
 
   // modals
   {

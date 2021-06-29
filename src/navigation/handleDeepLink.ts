@@ -2,7 +2,7 @@ import { store } from "@redux/_core/store";
 import { GET_HISTORICAL_DATA } from "@redux/onboarding/onboarding.actions";
 import { getQueryStringObject } from "@services/utils";
 import Config from "react-native-config";
-import { debug_setReferralsRoot, labels, setUnauthenticatedRoot } from "./root";
+import { labels, setUnauthenticatedRoot } from "./root";
 
 export default async function handleDeepLink(fullUrl: string, hasToken: boolean) {
   const url = fullUrl.replace("yulifeapp://yulife/", "").replace(Config.JOIN_URL, "");
@@ -56,9 +56,7 @@ export default async function handleDeepLink(fullUrl: string, hasToken: boolean)
 
     case url.startsWith("referrals"):
       if (hasToken) {
-        debug_setReferralsRoot({
-          test: "me",
-        });
+        // TODO TPP-877: push the screen once available
       }
 
       return;
