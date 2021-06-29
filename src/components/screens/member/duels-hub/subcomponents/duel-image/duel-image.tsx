@@ -4,6 +4,8 @@ import { AvatarEmpty } from "@components/molecules";
 import { emptyStyles, filledStyles } from "./duel-image.styles";
 import FastImage from "react-native-fast-image";
 
+//TODO: Move this component outside of duels since were using it in many different places now
+
 export default function DuelImage({ uri, size = "small" }: { uri: string; size?: "small" | "medium" }) {
   if (!uri) {
     return (

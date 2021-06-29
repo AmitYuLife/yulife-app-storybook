@@ -1,17 +1,18 @@
 import React from "react";
 import { View } from "react-native-animatable";
-import { SkeletonHead } from "./assets/skeleton-head";
 import { Style } from "@styles";
 import { StyleSheet, ViewStyle } from "react-native";
+import { AvatarHeadIcon } from "@atoms/icon/avatar-head-icon";
 
 interface Props {
   width: number;
 }
 
+///TODO: Remove this and use UserAvatarCoinCard instead
 const SkeletonRow = ({ width = 105 }: Props) => {
   return (
     <View style={styles.wrapper}>
-      <SkeletonHead />
+      <AvatarHeadIcon />
       <View style={[styles.name, { width }]} />
       <View style={styles.score} />
     </View>

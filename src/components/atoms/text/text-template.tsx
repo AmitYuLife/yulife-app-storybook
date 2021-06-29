@@ -2,11 +2,11 @@ import React, { memo } from "react";
 import { StyleSheet, Text, TextProps, TextStyle } from "react-native";
 import { Style, Colours } from "@styles";
 
-export type ITextTemplateType = "h1" | "h2" | "h3" | "b1" | "b1b" | "b2" | "b2b" | "l1" | "l1b" | "l2" | "l2b";
+export type ITextTemplateType = "h1" | "h2" | "h3" | "b1" | "b1b" | "b2" | "b2b" | "l1" | "l1b" | "l2" | "l2b" | "l3";
 
 interface IProps extends TextProps {
   testID?: string;
-  children: string | number;
+  children: React.ReactNode;
   type: ITextTemplateType;
   color?: string;
   textAlign?: TextStyle["textAlign"];
@@ -92,6 +92,11 @@ const styles = StyleSheet.create({
   l2b: {
     fontFamily: Style.FONT_FAMILY_PRIMARY_BOLD,
     fontSize: Style.adjust(12),
+    lineHeight: Style.adjust(16),
+    letterSpacing: 0.4,
+  },
+  l3: {
+    fontSize: Style.adjust(10),
     lineHeight: Style.adjust(16),
     letterSpacing: 0.4,
   },

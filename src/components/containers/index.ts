@@ -29,3 +29,6 @@ export { default as WegiftRewardDetailsContainer } from "./member/rewards/detail
 export { default as WegiftRewardConfirmedContainer } from "./member/rewards/confirmed/wegift-confirmed.container";
 export { default as AviosRewardDetailsContainer } from "./member/rewards/details/avios-details.container";
 export { default as AviosRewardConfirmedContainer } from "./member/rewards/confirmed/avios-confirmed.container";
+
+// referrals containers
+export { default as ReferralsContainer } from "./referrals/referrals.container";
