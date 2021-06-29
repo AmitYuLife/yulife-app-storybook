@@ -155,6 +155,7 @@ const challengeStartSuccess = (
     subtype: levelSlot.subtype,
     unit: levelSlot.unit,
     score: 0,
+    isLoading: false,
   },
 });
 
@@ -175,6 +176,7 @@ const challengeUpdateSuccess = (
         : state.active.subtype === "cycling"
         ? res?.challenge?.incomingData?.distance
         : res?.challenge?.incomingData?.steps) || 0,
+    isLoading: false,
   },
 });
 

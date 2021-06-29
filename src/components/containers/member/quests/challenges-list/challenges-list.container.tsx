@@ -27,7 +27,6 @@ type Props = IProps;
 const openMeditationURL = handleLinkPress(Config.MEDITATION_SETUP_URL);
 
 const ChallengesListContainer: FC<Props> = ({ level, componentId }) => {
-  const [isLoading, setIsLoading] = useState(false);
   const [error, setErrorState] = useState(null as string);
   const [slot, setSlot] = useState({
     challengeType: "brisk walk",
@@ -41,7 +40,7 @@ const ChallengesListContainer: FC<Props> = ({ level, componentId }) => {
   const dispatch = useDispatch();
   const currentLevel = useSelector(getCurrentLevel);
 
-  const [createActiveChallenge]: CreateActiveChallengeMutationTuple = useMutation(
+  const [createActiveChallenge, { loading: isLoading }]: CreateActiveChallengeMutationTuple = useMutation(
     GQL_MUTATION_CREATE_ACTIVE_CHALLENGE,
     {
       variables: { levelSlotId: slot.id },
@@ -52,7 +51,6 @@ const ChallengesListContainer: FC<Props> = ({ level, componentId }) => {
 
   const setError = useCallback(() => {
     setErrorState("Sorry, there was a problem starting your challenge. \n Please try again!");
-    setIsLoading(false);
   }, []);
 
   const handleSlotPress = useCallback(
@@ -66,7 +64,6 @@ const ChallengesListContainer: FC<Props> = ({ level, componentId }) => {
   const handleNavPress = useCallback(() => Navigation.popToRoot(componentId), [componentId]);
 
   const handleSubmitChallenge = useCallback(async () => {
-    setIsLoading(true);
     try {
       if (slot.challengeType === "cycling") {
         await authoriseCycling();
