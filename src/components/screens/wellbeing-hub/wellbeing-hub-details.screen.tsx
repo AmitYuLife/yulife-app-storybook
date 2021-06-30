@@ -8,14 +8,13 @@ import {
 import { Style } from "@styles";
 import { ScrollView, StyleSheet, View, ViewStyle } from "react-native";
 import { ContentItemImage } from "./sub-components/content-item-image";
-import { ContentItemMarkdown } from "./sub-components/content-item-markdown";
 import { MORE_INFO_BUTTON } from "@ids";
 import { TapToCopy } from "@organisms";
 import Logger from "@services/logging/logger";
 import { handleLinkPress } from "@services/app-link";
 import { TertiaryButton } from "@atoms";
 import { BUTTON_ICON } from "@atoms/button/tertiary-button/tertiary-button.helpers";
-
+import { HeadingAndCopy } from "@molecules";
 interface IProps {
   handleBack: () => void;
   item: WellbeingHubItem;
@@ -40,7 +39,7 @@ export const WellbeingHubDetailsScreen = memo(function (props: IProps) {
 const getItemContent = (itemContent: ItemContent, itemId: string, itemTitle: string) => {
   switch (itemContent.__typename) {
     case "ContentItemMarkdown":
-      return <ContentItemMarkdown title={itemContent?.title} markdown={itemContent?.parsedMarkdown} />;
+      return <HeadingAndCopy title={itemContent?.title} markdown={itemContent?.parsedMarkdown} />;
     case "ContentItemBox":
       return (
         <TapToCopy

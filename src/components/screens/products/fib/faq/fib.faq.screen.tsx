@@ -37,7 +37,7 @@ export const FibFaqScreen = memo(function (props: IFibFaqScreenProps) {
         <Animatable.View duration={500} animation="fadeIn" style={styles.flex} useNativeDriver={true}>
           <View style={styles.container}>
             <TextTemplate type="h2">{faq.question}</TextTemplate>
-            <Markdown text={faq.answer} containerStyle={styles.markdownContainer} markdownStyles={markdownStyles} />
+            <Markdown text={faq.answer} containerStyle={styles.markdownContainer} />
           </View>
           {!childFaqs ? null : <Faq label={childFaqs.faq.question} onPress={childFaqs.onPress} />}
         </Animatable.View>
@@ -76,31 +76,6 @@ const styles = StyleSheet.create({
     paddingLeft: Style.adjust(24),
   } as ViewStyle,
 });
-
-const markdownStyles = {
-  text: {
-    fontSize: Style.adjust(16),
-    lineHeight: Style.adjust(24),
-    letterSpacing: 1,
-    color: Colours.neutral.n700,
-  },
-  list: {
-    marginBottom: 8,
-  },
-  listItem: {
-    flexDirection: "row",
-    justifyContent: "flex-start",
-    marginVertical: 4,
-  },
-  listItemBullet: {
-    marginTop: 10,
-    width: 4,
-    height: 4,
-    backgroundColor: "black",
-    borderRadius: 2,
-    marginRight: 10,
-  },
-};
 
 const Faq = ({ label, onPress }: { label: string; onPress: () => void }) => (
   <PressableWithDelay style={styles.childFaqWrapper} onPress={onPress}>

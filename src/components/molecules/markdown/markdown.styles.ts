@@ -1,12 +1,5 @@
 import { StyleSheet, Platform } from "react-native";
-import { Style } from "@styles";
-
-export const wrapperStyle = {
-  flex: 1,
-  marginTop: 64,
-  paddingHorizontal: 32,
-  width: "100%",
-};
+import { Colours, Style } from "@styles";
 
 export default StyleSheet.create({
   block: {
@@ -51,8 +44,11 @@ export default StyleSheet.create({
     marginVertical: 8,
   },
   text: {
-    alignSelf: "flex-start",
     fontFamily: Style.FONT_FAMILY_PRIMARY,
+    color: Colours.neutral.n800,
+    fontSize: Style.adjust(16),
+    lineHeight: Style.adjust(24),
+    letterSpacing: 0.6,
   },
   strong: {
     fontFamily: Style.FONT_FAMILY_PRIMARY_BOLD,
@@ -75,13 +71,13 @@ export default StyleSheet.create({
     alignSelf: "flex-start",
   },
   list: {
-    marginBottom: 20,
+    marginBottom: Style.adjust(8),
+    marginTop: Style.adjust(8),
   },
   listItem: {
     flexDirection: "row",
     justifyContent: "flex-start",
-    alignItems: "center",
-    marginVertical: 5,
+    marginVertical: Style.adjust(4),
   },
   listItemContent: {
     flexDirection: "row",
@@ -89,11 +85,12 @@ export default StyleSheet.create({
     alignItems: "flex-start",
   },
   listItemBullet: {
-    width: 4,
-    height: 4,
+    width: Style.adjust(4),
+    height: Style.adjust(4),
     backgroundColor: "black",
     borderRadius: 2,
-    marginRight: 10,
+    marginRight: Style.adjust(10),
+    marginTop: Style.adjust(10),
   },
   listItemNumber: {
     marginRight: 10,
