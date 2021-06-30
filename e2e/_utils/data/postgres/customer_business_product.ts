@@ -12,8 +12,7 @@ export const CGP_31 = {
     data:{
         business_product_id: BUSINESS_PRODUCT_3.data.product_id,
         customer_product_id: CPE_31.data.customer_product_id,
-        business_product_code: "GLI",
-        category_code:1,
+        category_id:1,
         salary: 60000,
         country: "UK",
         start_date: CUSTOMER_31.data.start_date,
@@ -27,8 +26,7 @@ export const CGP_32_RGL = {
     data: {
         business_product_id: BUSINESS_PRODUCT_4_RGL.data.product_id,
         customer_product_id: CPE_32_RGL.data.customer_product_id,
-        business_product_code: "GLI",
-        category_code: 1,
+        category_id: 1,
         salary: 100000,
         country: "UK",
         start_date: CUSTOMER_32.data.start_date,
@@ -42,8 +40,7 @@ export const CGP_32_GIP = {
     data: {
         business_product_id: BUSINESS_PRODUCT_4_GIP.data.product_id,
         customer_product_id: CPE_32_GIP.data.customer_product_id,
-        business_product_code: "GIP",
-        category_code: 1,
+        category_id: 1,
         salary: 100000,
         country: "UK",
         start_date: CUSTOMER_32.data.start_date,
@@ -57,8 +54,7 @@ export const CGP_32_GCI = {
     data: {
         business_product_id: BUSINESS_PRODUCT_4_GCI.data.product_id,
         customer_product_id: CPE_32_GCI.data.customer_product_id,
-        business_product_code: "GCI",
-        category_code: 1,
+        category_id: 1,
         salary: 100000,
         country: "UK",
         start_date: CUSTOMER_32.data.start_date,
@@ -72,8 +68,7 @@ export const CGP_33_RGL = {
     data: {
         business_product_id: BUSINESS_PRODUCT_4_RGL.data.product_id,
         customer_product_id: CPE_33_RGL.data.customer_product_id,
-        business_product_code: "GLI",
-        category_code: 1,
+        category_id: 1,
         salary: 100000,
         country: "UK",
         start_date: CUSTOMER_33.data.start_date,
@@ -87,8 +82,7 @@ export const CGP_33_GIP = {
     data: {
         business_product_id: BUSINESS_PRODUCT_4_GIP.data.product_id,
         customer_product_id: CPE_33_GIP.data.customer_product_id,
-        business_product_code: "GIP",
-        category_code: 1,
+        category_id: 1,
         salary: 100000,
         country: "UK",
         start_date: CUSTOMER_33.data.start_date,
@@ -102,8 +96,7 @@ export const CGP_33_GCI = {
     data: {
         business_product_id: BUSINESS_PRODUCT_4_GCI.data.product_id,
         customer_product_id: CPE_33_GCI.data.customer_product_id,
-        business_product_code: "GCI",
-        category_code: 1,
+        category_id: 1,
         salary: 100000,
         country: "UK",
         start_date: CUSTOMER_33.data.start_date,
@@ -117,8 +110,7 @@ export const CGP_34_RGL = {
     data: {
         business_product_id: BUSINESS_PRODUCT_4_RGL.data.product_id,
         customer_product_id: CPE_34_RGL.data.customer_product_id,
-        business_product_code: "GLI",
-        category_code: 1,
+        category_id: 1,
         salary: 100000,
         country: "UK",
         start_date: CUSTOMER_34.data.start_date,
@@ -132,8 +124,7 @@ export const CGP_34_GIP = {
     data: {
         business_product_id: BUSINESS_PRODUCT_4_GIP.data.product_id,
         customer_product_id: CPE_34_GIP.data.customer_product_id,
-        business_product_code: "GIP",
-        category_code: 1,
+        category_id: 1,
         salary: 100000,
         country: "UK",
         start_date: CUSTOMER_34.data.start_date,
@@ -147,8 +138,7 @@ export const CGP_34_GCI = {
     data: {
         business_product_id: BUSINESS_PRODUCT_4_GCI.data.product_id,
         customer_product_id: CPE_34_GCI.data.customer_product_id,
-        business_product_code: "GCI",
-        category_code: 1,
+        category_id: 1,
         salary: 100000,
         country: "UK",
         start_date: CUSTOMER_34.data.start_date,

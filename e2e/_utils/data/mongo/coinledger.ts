@@ -1,13 +1,13 @@
 
 import { generateRandomMongoId } from "@yu-life/yulife-bdd-framework"
 import { IDatabaseItem } from "@yu-life/yulife-bdd-framework";
-import { CUSTOMER_2, CUSTOMER_3, CUSTOMER_4, CUSTOMER_6, CUSTOMER_7, CUSTOMER_8, CUSTOMER_9, CUSTOMER_12, CUSTOMER_13, CUSTOMER_14, CUSTOMER_15, CUSTOMER_18, CUSTOMER_17, CUSTOMER_22, CUSTOMER_23, CUSTOMER_24, CUSTOMER_19, CUSTOMER_16 } from '../postgres/customers';
+import { CUSTOMER_2, CUSTOMER_3, CUSTOMER_4, CUSTOMER_6, CUSTOMER_7, CUSTOMER_8, CUSTOMER_9, CUSTOMER_12, CUSTOMER_13, CUSTOMER_14, CUSTOMER_15, CUSTOMER_18, CUSTOMER_17, CUSTOMER_22, CUSTOMER_23, CUSTOMER_24, CUSTOMER_19, CUSTOMER_16, CUSTOMER_35 } from '../postgres/customers';
 import {
     CHALLENGE_2, CHALLENGE_USER_6_A, CHALLENGE_USER_7_A, CHALLENGE_USER_7_B, CHALLENGE_USER_7_C, CHALLENGE_USER_7_D,
     CHALLENGE_USER_8_B, CHALLENGE_USER_8_A, CHALLENGE_USER_9_B, CHALLENGE_USER_9_A, CHALLENGE_USER_9_C, CHALLENGE_USER_9_D,
     CHALLENGE_USER_9_E, CHALLENGE_USER_9_F, CHALLENGE_USER_14_B, CHALLENGE_USER_14_A, CHALLENGE_USER_14_C, CHALLENGE_USER_14_D,
     CHALLENGE_USER_14_E, CHALLENGE_USER_14_F, CHALLENGE_USER_14_G, CHALLENGE_USER_14_H, CHALLENGE_USER_14_I, CHALLENGE_USER_15_B,
-    CHALLENGE_USER_15_A, CHALLENGE_USER_15_C, CHALLENGE_USER_18_A, CHALLENGE_USER_18_B, CHALLENGE_USER_17_A,
+    CHALLENGE_USER_15_A, CHALLENGE_USER_15_C, CHALLENGE_USER_18_A, CHALLENGE_USER_18_B, CHALLENGE_USER_17_A, CHALLENGE_USER_35_A, CHALLENGE_USER_35_B, CHALLENGE_USER_35_C, CHALLENGE_USER_35_D, CHALLENGE_USER_35_E,
 
 } from './challenge';
 
@@ -642,3 +642,88 @@ export const COIN_LEDGER_24 = {
         currentLevel: 199
     }
 } as IDatabaseItem
+
+export const COIN_LEDGER_35 = {
+    type: "mongo",
+    modelName: "coinledger",
+    data: {
+        _id: generateRandomMongoId(),
+        customerId: CUSTOMER_35.data.customerId,
+        userId: CUSTOMER_35.data.customerId,
+        transactions: [
+            {
+                "_id": generateRandomMongoId(),
+                "coins": 60,
+                "source": "challenge",
+                "sourceId": CHALLENGE_USER_35_A.data._id,
+                "timestamp": CHALLENGE_USER_35_A.data.endDateTime,
+                "multiplierId": null,
+                "totalCoins": 260,
+                "level": 1,
+                "currentStreak":1
+            },
+            {
+                "_id": generateRandomMongoId(),
+                "coins": 60,
+                "source": "challenge",
+                "sourceId": CHALLENGE_USER_35_B.data._id,
+                "timestamp": CHALLENGE_USER_35_B.data.endDateTime,
+                "multiplierId": null,
+                "totalCoins": 280,
+                "level": 2,
+                "currentStreak": 2
+            },
+            {
+                "_id": generateRandomMongoId(),
+                "coins": 60,
+                "source": "challenge",
+                "sourceId": CHALLENGE_USER_35_C.data._id,
+                "timestamp": CHALLENGE_USER_35_C.data.endDateTime,
+                "multiplierId": null,
+                "totalCoins": 380,
+                "level": 3,
+                "currentStreak": 3
+            },
+            {
+                "_id": generateRandomMongoId(),
+                "coins": 60,
+                "source": "challenge",
+                "sourceId": CHALLENGE_USER_35_D.data._id,
+                "timestamp": CHALLENGE_USER_35_D.data.endDateTime,
+                "multiplierId": null,
+                "totalCoins": 420,
+                "level": 4,
+                "currentStreak": 4,
+            },
+            {
+                "_id": generateRandomMongoId(),
+                "coins": 60,
+                "source": "challenge",
+                "sourceId": CHALLENGE_USER_35_E.data._id,
+                "timestamp": CHALLENGE_USER_35_E.data.endDateTime,
+                "multiplierId": null,
+                "totalCoins": 480,
+                "level": 5,
+                "currentStreak": 5
+            },
+            {
+                "coins": 2500,
+                "source": "streak",
+                "sourceId": `award_${CHALLENGE_USER_35_E.data._id}`,
+                "timestamp": CHALLENGE_USER_35_E.data.endDateTime,
+            },
+            {
+                "coins": 100,
+                "source": "avatar_creation_award",
+                "sourceId": CHALLENGE_USER_35_E.data.customerId,
+                "timestamp": moment().subtract(24, "hours").toDate(),
+            }
+        ],
+        activeStreakId: "YU_STREAK_001",
+        currentBalance: 3080,
+        currentStreak: 5,
+        currentLevel: 6,
+        nextStreakAvailableAt: moment().startOf("day").format("YYYY-MM-DDTHH:mm:ss"),
+        nextLevelAvailableAt: moment().startOf("day").format("YYYY-MM-DDTHH:mm:ss"),
+        }
+    } as IDatabaseItem
