@@ -10,6 +10,7 @@ export const loginAsUser = (
     auth = AUTH_1 as IDatabaseItem,
     fitkitAuth = true,
 ) => async () => {
+    console.log("CUSTOMER ID: ", customer.data.customerId)
     await authoriseFitkit(fitkitAuth)()
     const loginField = element(by.id(INPUT_LOGIN_EMAIL));
     const passwordField = element(by.id(INPUT_LOGIN_PASSWORD("Password")));

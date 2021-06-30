@@ -12,7 +12,6 @@ export const CPE_1 = {
         "customer_product_id": "YUCPID0000000032",
         "customer_id": CUSTOMER_9.data.customerId,
         "earn_rate": 20,
-        "product_code": "FIB",
         "product_variant_id": "Covea_FIB_01_03",
         "start_date": null,
         "end_date": null,
@@ -20,8 +19,6 @@ export const CPE_1 = {
         "final_quote_reached": false,
         "archived": false,
         "archived_at": null,
-        "sales_channel": null,
-        "carrier": null,
         "taken_up": null,
         "accounted_for_join_date": null,
         "accounted_for_leave_date": null,
@@ -36,9 +33,7 @@ export const CPE_31 = {
         customer_product_id: "YUCPID0000000031",
         customer_id: CUSTOMER_31.data.customerId,
         earn_rate: 10,
-        product_code: "GLI",
         product_variant_id:"AIG_GLI_01_01",
-        carrier: "AIG",
         archived: false
     }
 } as IDatabaseItem
@@ -50,9 +45,7 @@ export const CPE_32_RGL = {
         customer_product_id: "YUCPID0000000132",
         customer_id: CUSTOMER_32.data.customerId,
         earn_rate: 10,
-        product_code: "GLI",
         product_variant_id: "AIG_ReGL_01_03",
-        carrier: "AIG",
         archived:false
     }
 } as IDatabaseItem
@@ -65,7 +58,6 @@ export const CPE_32_GIP = {
         customer_id: CUSTOMER_32.data.customerId,
         earn_rate: 10,
         product_variant_id: "AIG_GIP_01_03",
-        carrier: "AIG",
         archived: false
     }
 } as IDatabaseItem
@@ -78,7 +70,6 @@ export const CPE_32_GCI = {
         customer_id: CUSTOMER_32.data.customerId,
         earn_rate: 10,
         product_variant_id: "AIG_GCI_01_03",
-        carrier: "AIG",
         archived: false
     }
 } as IDatabaseItem
@@ -90,9 +81,7 @@ export const CPE_33_RGL = {
         customer_product_id: "YUCPID0000000133",
         customer_id: CUSTOMER_33.data.customerId,
         earn_rate: 10,
-        product_code: "GLI",
         product_variant_id: "AIG_ReGL_01_03",
-        carrier: "AIG",
         archived:false
     }
 } as IDatabaseItem
@@ -105,7 +94,6 @@ export const CPE_33_GIP = {
         customer_id: CUSTOMER_33.data.customerId,
         earn_rate: 10,
         product_variant_id: "AIG_GIP_01_03",
-        carrier: "AIG",
         archived: false
     }
 } as IDatabaseItem
@@ -118,7 +106,6 @@ export const CPE_33_GCI = {
         customer_id: CUSTOMER_33.data.customerId,
         earn_rate: 10,
         product_variant_id: "AIG_GCI_01_03",
-        carrier: "AIG",
         archived: false
     }
 } as IDatabaseItem
@@ -130,9 +117,7 @@ export const CPE_34_RGL = {
         customer_product_id: "YUCPID0000000134",
         customer_id: CUSTOMER_34.data.customerId,
         earn_rate: 10,
-        product_code: "GLI",
         product_variant_id: "AIG_ReGL_01_03",
-        carrier: "AIG",
         archived:false
     }
 } as IDatabaseItem
@@ -145,7 +130,6 @@ export const CPE_34_GIP = {
         customer_id: CUSTOMER_34.data.customerId,
         earn_rate: 10,
         product_variant_id: "AIG_GIP_01_03",
-        carrier: "AIG",
         archived: false
     }
 } as IDatabaseItem
@@ -158,7 +142,6 @@ export const CPE_34_GCI = {
         customer_id: CUSTOMER_34.data.customerId,
         earn_rate: 10,
         product_variant_id: "AIG_GCI_01_03",
-        carrier: "AIG",
         archived: false
     }
 } as IDatabaseItem

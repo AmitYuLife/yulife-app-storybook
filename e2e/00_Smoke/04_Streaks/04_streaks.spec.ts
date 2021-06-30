@@ -201,4 +201,5 @@ Feature("As a user I can use the streaks functionality", async () => {
             })
         })
     })
+
 })

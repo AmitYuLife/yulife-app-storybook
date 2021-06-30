@@ -4,7 +4,7 @@ import * as given from "./_steps/given"
 import * as when from "./_steps/when"
 import * as then from "./_steps/then"
 import { YUCOIN, BUTTON_CLOSE, QUESTS_SCREEN, NAV_BAR, LEADERBOARD_SCREEN, REWARDS_SCREEN, MENU_ICON, STATS_SCREEN, ACTIVITY_HISTORY_SCREEN, SETTINGS_SCREEN, YUMATTER_SCREEN, LEVEL_CHALLENGE_BUTTON, CHALLENGE_SET, CHALLENGE_TILE, GENERIC_SCREEN_HEADING, GENERIC_SCREEN_CTA, CHALLENGE_PROGRESS_BAR, BUTTON_CLOSE_CHALLENGE, CHECK_REWARDS_BUTTON, LEADERBOARD_TOP_SCREEN, BUTTON_CLOSE_HEADER } from "@ids";
-import { REWARDS_JOHN_LEWIS, REAWARDS_AVIOS, REWARDS_BLOOM_UNAVAILABLE, CUSTOMER_2, AUTH_2, CUSTOMER_8, AUTH_8 } from "@data";
+import { REWARDS_JOHN_LEWIS, REAWARDS_AVIOS, REWARDS_BLOOM_UNAVAILABLE, CUSTOMER_2, AUTH_2, CUSTOMER_8, AUTH_8, CUSTOMER_35, AUTH_35 } from "@data";
 Feature("As a user I can navigate through member routes correctly", async () => {
 
     Scenario("I can view the core screens of the app", scenario.start, async () => {
@@ -149,5 +149,19 @@ Feature("As a user I can navigate through member routes correctly", async () => 
             })
         })
     })
-})
 
+    Scenario("I should see my yumoji and streak coins in activity history", scenario.start, async () => {
+        Given("I login as a user", given.loginAsUser(CUSTOMER_35, AUTH_35), async () => {
+            When("I tap the menu icon", when.tapID(MENU_ICON, 1500), async()=>{
+                Then("I should see the menu items", then.menuItemsVisible)
+            })
+            When("I tap activity history", when.tapMenuItem("Activity History"), async()=>{
+                Then("I should be on the activity history", then.idVisible(ACTIVITY_HISTORY_SCREEN, 2500))
+                Then("I should see the yucoin for completing a streak", then.multipleTextVisible(["completing a streak", "2500"]))
+                Then("I should see the yucoin for creating a yumoji", then.multipleTextVisible(["creating your Yumoji", "100"]))
+            })
+        })
+    })
+    
+
+})

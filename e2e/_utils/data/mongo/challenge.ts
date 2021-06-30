@@ -1,6 +1,6 @@
 import { generateRandomMongoId } from "@yu-life/yulife-bdd-framework"
 import { IDatabaseItem } from "@yu-life/yulife-bdd-framework";
-import { CUSTOMER_2, CUSTOMER_6, CUSTOMER_7, CUSTOMER_8, CUSTOMER_9, CUSTOMER_14, CUSTOMER_15, CUSTOMER_18, CUSTOMER_17, CUSTOMER_3, CUSTOMER_19, CUSTOMER_16 } from '../postgres/customers';
+import { CUSTOMER_2, CUSTOMER_6, CUSTOMER_7, CUSTOMER_8, CUSTOMER_9, CUSTOMER_14, CUSTOMER_15, CUSTOMER_18, CUSTOMER_17, CUSTOMER_3, CUSTOMER_19, CUSTOMER_16, CUSTOMER_35 } from '../postgres/customers';
 import moment = require('moment');
 import { SHORT_STROLL_MILESTONE_1, LONG_WALK_MILESTONE_1, MEDITATION_MILESTONE_1 } from './map_milestone_templates';
 import { MEDITATION_1, LONG_WALK_1, SHORT_STROLL_1 } from './map_level_slot_templates';
@@ -970,6 +970,145 @@ export const CHALLENGE_USER_19 = {
                 id: SHORT_STROLL_MILESTONE_1.data.id,
                 isNewType: true,
             },
+        ],
+    }
+} as IDatabaseItem;
+
+
+export const CHALLENGE_USER_35_A = {
+    type: "mongo",
+    modelName: "challenge",
+    data: {
+        ...CHALLENGE_TEMPLATE.data,
+        userId: CUSTOMER_35.data.customerId,
+        _id: generateRandomMongoId(),
+        startTime: moment().subtract(5, "days").toDate(),
+        startDateTime: moment().subtract(5, "days").toDate(),
+        endDateTime: moment().subtract(5, "days").toDate(),
+        level: 1,
+    }
+} as IDatabaseItem;
+
+export const CHALLENGE_USER_35_B = {
+    type: "mongo",
+    modelName: "challenge",
+    data: {
+        ...CHALLENGE_TEMPLATE.data,
+        _id: generateRandomMongoId(),
+        userId: CUSTOMER_35.data.customerId,
+        startTime: moment().subtract(4, "days").toDate(),
+        startDateTime: moment().subtract(4, "days").toDate(),
+        endDateTime: moment().subtract(4, "days").toDate(),
+        level: 2,
+        milestoneLog: [
+            {
+                completionData: [],
+                _id: generateRandomMongoId(),
+                data: {
+                    meditation: 0,
+                    steps: 2300
+                },
+                yuCoinAwarded: 20,
+                completed: moment().subtract(4, "day").toDate(),
+                id: SHORT_STROLL_MILESTONE_1.data.id
+            },
+        ],
+
+    }
+} as IDatabaseItem;
+
+export const CHALLENGE_USER_35_C = {
+    type: "mongo",
+    modelName: "challenge",
+    data: {
+        ...CHALLENGE_TEMPLATE.data,
+        _id: generateRandomMongoId(),
+        userId: CUSTOMER_35.data.customerId,
+        startTime: moment().subtract(3, "days").toDate(),
+        startDateTime: moment().subtract(3, "days").toDate(),
+        endDateTime: moment().subtract(3, "days").toDate(),
+        levelSlotTemplateId: MEDITATION_1.data.id,
+        subtype: MEDITATION_1.data.subtype,
+        incomingData: {
+            minutes: 10
+        },
+        level: 3,
+        milestoneLog: [
+            {
+                completionData: [],
+                _id: generateRandomMongoId(),
+                id: MEDITATION_MILESTONE_1.data.id,
+                completed: moment().subtract(3, "day").toDate(),
+                data: {
+                    steps: 0,
+                    meditation: 10,
+                    distance: 0
+                },
+                yuCoinAwarded: 60
+            }
+        ],
+
+    }
+} as IDatabaseItem;
+
+export const CHALLENGE_USER_35_D = {
+    type: "mongo",
+    modelName: "challenge",
+    data: {
+        ...CHALLENGE_TEMPLATE.data,
+        _id: generateRandomMongoId(),
+        userId: CUSTOMER_35.data.customerId,
+        startTime: moment().subtract(2, "days").toDate(),
+        startDateTime: moment().subtract(2, "days").toDate(),
+        endDateTime: moment().subtract(2, "days").toDate(),
+        incomingData: {
+            steps: 2200
+        },
+        level: 4,
+        milestoneLog: [
+            {
+                completionData: [],
+                _id: generateRandomMongoId(),
+                id: LONG_WALK_MILESTONE_1.data.id,
+                completed: moment().subtract(2, "day").toDate(),
+                data: {
+                    steps: 2500,
+                    meditation: 0,
+                    distance: 0
+                },
+                yuCoinAwarded: 60
+            }
+        ],
+    }
+} as IDatabaseItem;
+
+export const CHALLENGE_USER_35_E = {
+    type: "mongo",
+    modelName: "challenge",
+    data: {
+        ...CHALLENGE_TEMPLATE.data,
+        _id: generateRandomMongoId(),
+        userId: CUSTOMER_35.data.customerId,
+        startTime: moment().subtract(1, "days").toDate(),
+        startDateTime: moment().subtract(1, "days").toDate(),
+        endDateTime: moment().subtract(1, "days").toDate(),
+        incomingData: {
+            steps: 2200
+        },
+        level: 5,
+        milestoneLog: [
+            {
+                completionData: [],
+                _id: generateRandomMongoId(),
+                id: LONG_WALK_MILESTONE_1.data.id,
+                completed: moment().subtract(2, "day").toDate(),
+                data: {
+                    steps: 2500,
+                    meditation: 0,
+                    distance: 0
+                },
+                yuCoinAwarded: 60
+            }
         ],
     }
 } as IDatabaseItem;
