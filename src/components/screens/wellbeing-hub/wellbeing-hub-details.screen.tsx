@@ -3,14 +3,18 @@ import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-headin
 import {
   GetWellbeingHubItem_wellbeingHubItem as WellbeingHubItem,
   GetWellbeingHubItem_wellbeingHubItem_content as ItemContent,
+  GetWellbeingHubItem_wellbeingHubItem_content_ContentItemButton as ItemContentButton,
 } from "@graphql/_core/schema/GetWellbeingHubItem";
 import { Style } from "@styles";
-import { ScrollView, StyleSheet, View } from "react-native";
-import { ContentItemButton } from "./sub-components/content-item-button";
+import { ScrollView, StyleSheet, View, ViewStyle } from "react-native";
 import { ContentItemImage } from "./sub-components/content-item-image";
 import { ContentItemMarkdown } from "./sub-components/content-item-markdown";
 import { MORE_INFO_BUTTON } from "@ids";
 import { TapToCopy } from "@organisms";
+import Logger from "@services/logging/logger";
+import { handleLinkPress } from "@services/app-link";
+import { TertiaryButton } from "@atoms";
+import { BUTTON_ICON } from "@atoms/button/tertiary-button/tertiary-button.helpers";
 
 interface IProps {
   handleBack: () => void;
@@ -48,18 +52,37 @@ const getItemContent = (itemContent: ItemContent, itemId: string, itemTitle: str
       );
     case "ContentItemButton":
       return (
-        <ContentItemButton
-          label={itemContent?.label}
-          iconUri={itemContent?.icon?.uri}
-          uri={itemContent?.uri}
-          metaData={{ id: itemId, title: itemTitle }}
-          testID={MORE_INFO_BUTTON(itemContent?.label)}
-        />
+        <View style={styles.wrapper} testID={MORE_INFO_BUTTON(itemContent?.label)}>
+          <TertiaryButton
+            size={"Fill"}
+            label={itemContent?.label}
+            onPress={() => onButtonPress(itemContent, itemTitle, itemId)}
+            height={Style.adjust(60)}
+            iconUri={itemContent?.icon?.uri}
+            rightIcon={BUTTON_ICON.ARROW_RIGHT}
+          />
+        </View>
       );
     case "ContentItemImage":
       return <ContentItemImage uri={itemContent?.image?.uri} />;
     default:
       return <View />;
+  }
+};
+
+const onButtonPress = async (itemContent: ItemContentButton, itemTitle: string, itemId: string) => {
+  const { uri, label } = itemContent;
+  const metaData = { id: itemId, title: itemTitle };
+
+  try {
+    Logger.logMixpanelEvent("wellbeing_item_button_pressed", {
+      ...metaData,
+      label,
+      type: uri?.split(":")?.[0],
+    });
+    await handleLinkPress(uri)();
+  } catch (e) {
+    Logger.logMixpanelEvent("wellbeing_item_button_pressed_error", { error: e.message });
   }
 };
 
@@ -71,4 +94,7 @@ const styles = StyleSheet.create({
   scrollContentContainerStyle: {
     paddingBottom: Style.adjust(32),
   },
+  contentButtonWrapper: {
+    marginTop: Style.adjust(24),
+  } as ViewStyle,
 });
