@@ -1,29 +1,32 @@
+import { TextTemplate } from "@atoms";
+import Markdown from "@components/molecules/markdown/markdown";
+import { Style } from "@styles";
 import React, { memo } from "react";
 import { StyleSheet, View, ViewStyle } from "react-native";
-import { TextTemplate } from "@atoms";
-import { Style } from "@styles";
 
-interface Props {
-  title: string;
-  description: string;
-  marginBottom?: number;
+interface IProps {
+  markdown: string;
+  title?: string;
 }
 
-const HeadingAndCopy = ({ title, description, marginBottom = Style.adjust(40) }: Props) => {
+const HeadingAndCopy = (props: IProps) => {
+  const { markdown, title } = props;
+  const titleMarginTop = !title ? {} : { marginTop: Style.adjust(30) };
   return (
-    <View style={{ marginBottom }}>
-      <TextTemplate type="b1b">{title}</TextTemplate>
-      <View style={styles.description}>
-        <TextTemplate type="b2">{description}</TextTemplate>
-      </View>
+    <View style={[styles.wrapper, titleMarginTop]}>
+      {!title ? null : <TextTemplate type={"h3"}>{title}</TextTemplate>}
+      <Markdown text={markdown} containerStyle={styles.markdownContainer} />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  description: {
-    marginTop: Style.adjust(16),
+  wrapper: {
+    width: "100%",
   } as ViewStyle,
+  markdownContainer: {
+    marginTop: Style.adjust(8),
+  },
 });
 
 export default memo(HeadingAndCopy);

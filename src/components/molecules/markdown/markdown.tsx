@@ -2,7 +2,7 @@ import { Text } from "@atoms/index";
 import React from "react";
 import { StyleSheet, View, Image, StyleProp, ViewStyle, TouchableOpacity, Linking } from "react-native";
 import SimpleMarkdown from "simple-markdown";
-import mainStyles, { wrapperStyle } from "./markdown.styles";
+import mainStyles from "./markdown.styles";
 
 interface IProps {
   text: string;
@@ -123,7 +123,7 @@ class Markdown extends React.PureComponent<IProps, IState> {
         style={styles.linkWrapper}
         key={"linkWrapper_" + key}
         onPress={() => {
-          const action = linkActions[node.props.href];
+          const action = linkActions && linkActions[node.props.href];
 
           if (action && typeof action === "function") {
             action();
@@ -149,7 +149,7 @@ class Markdown extends React.PureComponent<IProps, IState> {
           style={styles.link}
           key={key}
           onPress={() => {
-            const action = linkActions[node.props.href];
+            const action = linkActions && linkActions[node.props.href];
 
             if (action && typeof action === "function") {
               action();
@@ -249,7 +249,7 @@ class Markdown extends React.PureComponent<IProps, IState> {
   }
 
   render() {
-    const { containerStyle = wrapperStyle } = this.props;
+    const { containerStyle = {} } = this.props;
     return <View style={containerStyle}>{this.renderNodes(this.state.syntaxTree, null, null)}</View>;
   }
 }

@@ -26,9 +26,7 @@ const InfoCard = memo(({ icon, title, description, customBody, iconAlign = "cent
                 <TextTemplate type="b2b">{title}</TextTemplate>
               </View>
             )}
-            {!description ? null : (
-              <Markdown text={description} containerStyle={styles.markdownContainer} markdownStyles={markdownStyles} />
-            )}
+            {!description ? null : <Markdown text={description} />}
           </>
         )}
       </View>
@@ -36,18 +34,7 @@ const InfoCard = memo(({ icon, title, description, customBody, iconAlign = "cent
   );
 });
 
-const markdownStyles = {
-  text: {
-    fontFamily: Style.FONT_FAMILY_PRIMARY,
-    fontSize: Style.adjust(16),
-    lineHeight: Style.adjust(24),
-    letterSpacing: 0.6,
-    color: Colours.neutral.n800,
-  },
-};
-
 const styles = StyleSheet.create({
-  markdownContainer: {},
   flex: {
     flex: 1,
     justifyContent: "center",

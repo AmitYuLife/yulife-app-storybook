@@ -26,11 +26,12 @@ const markdownLinkActions = {
 
 const markdownStyles = {
   text: {
+    // l1 TextTemplate style
+    fontFamily: Style.FONT_FAMILY_PRIMARY,
     fontSize: Style.adjust(12),
     lineHeight: Style.adjust(14),
-    letterSpacing: 0.6,
-    fontFamily: Style.FONT_FAMILY_PRIMARY,
-    color: Colours.neutral.n700,
+    letterSpacing: 0.4,
+    color: Colours.neutral.n800,
   },
   link: {
     color: Colours.primary.p600,

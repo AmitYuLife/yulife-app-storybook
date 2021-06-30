@@ -37,15 +37,6 @@ const styles = StyleSheet.create({
     textAlign: "center",
     backgroundColor: Colours.yuscreen.white,
   },
-  header: {
-    color: "#6E6E70",
-    fontSize: Style.adjust(20),
-    lineHeight: Style.adjust(24),
-    marginHorizontal: Style.adjust(16),
-    marginVertical: Style.adjust(16),
-    letterSpacing: 0.4,
-    fontFamily: Style.FONT_FAMILY_PRIMARY_BOLD,
-  },
   pad: {
     height: Style.adjust(8),
   } as ViewStyle,
