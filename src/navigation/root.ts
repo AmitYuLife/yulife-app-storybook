@@ -309,6 +309,15 @@ export async function setOfflineRoot() {
   });
 }
 
+export async function setScreen(id: string) {
+  await Navigation.push(ROUTES.dailySteps, {
+    component: {
+      id: id,
+      name: id,
+    },
+  });
+}
+
 export async function expireSession() {
   await clearToken();
   await setUnauthenticatedRoot({ hasSessionExpiredError: true });
