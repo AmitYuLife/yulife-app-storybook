@@ -9,7 +9,7 @@ export const styles = StyleSheet.create({
   userWrapper: {
     flexDirection: "row",
     alignItems: "center",
-    marginBottom: Style.adjust(16),
+    paddingBottom: Style.adjust(16),
   },
   userInfo: {
     marginLeft: Style.adjust(8),

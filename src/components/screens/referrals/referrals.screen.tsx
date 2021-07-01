@@ -46,10 +46,10 @@ const ReferralsScreen = ({ info, handleClose, loading }: IProps) => {
             </TextTemplate>
           </View>
           <TextTemplate type="b1" textAlign="center" color={Colours.mountain.primary.m106}>
-            You will earn{" "}
+            You’ll earn a bonus{" "}
             <Image source={require("@assets/icons/yucoin.png")} resizeMode="contain" style={styles.yucoin} />{" "}
-            {loading ? <SkeletonLoading style={styles.rewardForReferralLoading} /> : info?.rewardForReferral} YuCoin for
-            each person that signs up using your link
+            {loading ? <SkeletonLoading style={styles.rewardForReferralLoading} /> : info?.rewardForReferral || 0}{" "}
+            YuCoin for every colleague who signs up using your link.
           </TextTemplate>
         </View>
         <View style={styles.body}>
