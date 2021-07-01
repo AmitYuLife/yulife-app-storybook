@@ -14,6 +14,11 @@ export interface GetRewards_getRewards_available_denominations {
   stock: number | null;
 }
 
+export interface GetRewards_getRewards_cardImage {
+  id: string;
+  uri: string | null;
+}
+
 export interface GetRewards_getRewards_redeem_steps {
   __typename: "RedeemSteps";
   id: string | null;
@@ -49,7 +54,7 @@ export interface GetRewards_getRewards {
   availability: string | null;
   progression_level: string | null;
   available_denominations: (GetRewards_getRewards_available_denominations | null)[] | null;
-  card_image_url: string | null;
+  cardImage: GetRewards_getRewards_cardImage | null;
   code: string | null;
   currency_code: string | null;
   denomination_type: string | null;

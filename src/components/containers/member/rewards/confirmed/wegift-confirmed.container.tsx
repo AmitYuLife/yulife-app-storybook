@@ -43,7 +43,7 @@ class WegiftRewardConfirmedContainer extends Component<IProps, IState> {
         description={(reward && reward.description) || ""}
         purchaseDate={purchaseDate}
         validDate={validDate}
-        imageUrl={(reward && reward.card_image_url) || ""}
+        imageUrl={(reward && reward?.cardImage?.uri) || ""}
         onPressCancel={this.goToRewards}
         onPressConfirm={this.linkToUrl}
         isLoadingConfirmAction={isAccessingUrl}

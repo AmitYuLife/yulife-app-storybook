@@ -22,6 +22,11 @@ export interface RedeemReward_redeemReward_metadata {
   avios: RedeemReward_redeemReward_metadata_avios | null;
 }
 
+export interface RedeemReward_redeemReward_reward_cardImage {
+  id: string;
+  uri: string | null;
+}
+
 export interface RedeemReward_redeemReward_reward_redeem_steps {
   __typename: "RedeemSteps";
   info: string | null;
@@ -32,7 +37,7 @@ export interface RedeemReward_redeemReward_reward {
   __typename: "Reward";
   name: string | null;
   description: string | null;
-  card_image_url: string | null;
+  cardImage: RedeemReward_redeemReward_reward_cardImage | null;
   terms_and_conditions_url: string | null;
   loyalty_programme: (string | null)[] | null;
   redeem_steps: RedeemReward_redeemReward_reward_redeem_steps | null;
