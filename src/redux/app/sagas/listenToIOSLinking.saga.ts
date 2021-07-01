@@ -1,7 +1,8 @@
 import handleDeepLink from "@navigation/handleDeepLink";
+import { getRouteState } from "@redux/app/app.selectors";
 import { getToken } from "@services/storage";
 import { Unpacked } from "@services/utils";
-import { call, take } from "redux-saga/effects";
+import { call, select, take } from "redux-saga/effects";
 import { iosLinkingChannel } from "../app.channels";
 
 export default function* listenToLinkingSaga() {
@@ -12,7 +13,8 @@ export default function* listenToLinkingSaga() {
     const token: Unpacked<typeof getToken> = yield call(getToken);
 
     if (url && !!url.url) {
-      yield call(handleDeepLink, url.url, !!token);
+      const currentRoute: string = yield select(getRouteState);
+      yield call(handleDeepLink, url.url, !!token, currentRoute);
     }
   }
 }

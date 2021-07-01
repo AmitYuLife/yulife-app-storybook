@@ -5,7 +5,7 @@ import Config from "react-native-config";
 import { labels, setScreen, setUnauthenticatedRoot } from "./root";
 import { ROUTES } from "@navigation/constants";
 
-export default async function handleDeepLink(fullUrl: string, hasToken: boolean) {
+export default async function handleDeepLink(fullUrl: string, hasToken: boolean, currentRoute?: string) {
   const url = fullUrl.replace("yulifeapp://yulife/", "").replace(Config.JOIN_URL, "");
 
   switch (true) {
@@ -48,7 +48,7 @@ export default async function handleDeepLink(fullUrl: string, hasToken: boolean)
 
     case url.startsWith("referral-information"):
       if (hasToken) {
-        await setScreen(ROUTES.referralInformation);
+        await setScreen(currentRoute, ROUTES.referralInformation);
       }
 
       return;

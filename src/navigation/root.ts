@@ -309,8 +309,8 @@ export async function setOfflineRoot() {
   });
 }
 
-export async function setScreen(id: string) {
-  await Navigation.push(ROUTES.dailySteps, {
+export async function setScreen(currentRoute: string, id: string) {
+  await Navigation.push(currentRoute, {
     component: {
       id: id,
       name: id,
