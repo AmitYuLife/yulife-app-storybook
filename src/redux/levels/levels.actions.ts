@@ -5,6 +5,7 @@ export const CHALLENGE_SUBMIT_UNITY = "CHALLENGE_SUBMIT_UNITY";
 export const CHALLENGE_START_SUCCESS = "CHALLENGE_START_SUCCESS";
 export const CHALLENGE_START_FAIL = "CHALLENGE_START_FAIL";
 export const CHALLENGE_START_INITIAL_STEPS = "CHALLENGE_START_INITIAL_STEPS";
+export const CHALLENGE_IS_ACTIVE = "CHALLENGE_IS_ACTIVE";
 
 export const CHALLENGE_UPDATE_SUCCESS = "CHALLENGE_UPDATE_SUCCESS";
 export const CHALLENGE_UPDATE_FAIL = "CHALLENGE_UPDATE_FAIL";
@@ -75,4 +76,8 @@ export const challengeResetFailAction = () => ({
 
 export const challengeCancelAction = () => ({
   type: CHALLENGE_CANCEL,
+});
+
+export const challengeIsActive = () => ({
+  type: CHALLENGE_IS_ACTIVE,
 });

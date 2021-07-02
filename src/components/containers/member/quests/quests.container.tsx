@@ -1,10 +1,10 @@
 import { IMainTabsProps } from "@navigation/root";
 import { getUnitTarget, getCurrentWorld } from "@services/utils";
 import { Style } from "@styles/index";
-import React, { FC, useCallback, useMemo } from "react";
+import React, { FC, useCallback, useEffect, useMemo } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { challengeCancelAction, challengeResetAction } from "@redux/levels/levels.actions";
-import { getActiveLevel } from "@redux/levels/levels.selectors";
+import { challengeCancelAction, challengeEndAction, challengeResetAction } from "@redux/levels/levels.actions";
+import { getActiveLevel, getChallengeIsActive } from "@redux/levels/levels.selectors";
 import { displayStreaksCompletedAction } from "@redux/streaks/streaks.actions";
 import {
   ChallengeExitScreen,
@@ -16,16 +16,40 @@ import {
 import QuestsScreenContainer from "@screens/member/quests/quests-scroll-screen/quests-screen.container";
 import { BlurProvider } from "@atoms/index";
 import { useTapBackTwiceToExit } from "@services/hooks/useTapBackTwiceToExit";
+import moment from "moment";
 
 export type Props = IMainTabsProps;
 
 const QuestsContainer: FC<Props> = (props) => {
   const dispatch = useDispatch();
   const activeLevel = useSelector(getActiveLevel);
+  const challengeIsActive = useSelector(getChallengeIsActive);
 
   const { componentId, onLeftMenuPress } = props;
 
-  const { coins, endDateTime, level, milestones, rating, score, status, subtype, unit, isLoading } = activeLevel;
+  const {
+    coins,
+    endDateTime,
+    level,
+    milestones,
+    rating,
+    score,
+    status,
+    subtype,
+    unit,
+    isLoading,
+    levelSlotId,
+  } = activeLevel;
+
+  useEffect(() => {
+    if (!challengeIsActive && levelSlotId && !status) {
+      const hasChallengeEnded = moment().isBefore(endDateTime);
+
+      if (!hasChallengeEnded) {
+        dispatch(challengeEndAction());
+      }
+    }
+  }, [challengeIsActive, endDateTime, levelSlotId, dispatch, status]);
 
   useTapBackTwiceToExit(props.componentId);
 

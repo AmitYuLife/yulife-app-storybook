@@ -19,6 +19,7 @@ import {
   challengeResetFailAction,
   challengeResetSuccessAction,
   challengeUpdateSuccessAction,
+  challengeIsActive,
 } from "../levels.actions";
 import { DETOX_ENABLED } from "@services/socket";
 import { Task } from "redux-saga";
@@ -93,6 +94,7 @@ export default function* startChallenge({ subtype, levelSlotId, startDateTime, e
 
   let inProgress = true;
 
+  yield put(challengeIsActive());
   while (inProgress) {
     const { challengeCancelled, challengeEnd } = yield race({
       challengeCancelled: take(CHALLENGE_CANCEL),
