@@ -17,10 +17,11 @@ export const styles = StyleSheet.create({
   referralCoin: {
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "center",
+    marginBottom: Style.adjust(12),
   },
   yucoin: {
-    width: Style.adjust(20),
-    height: Style.adjust(20),
+    width: Style.adjust(18),
+    height: Style.adjust(18),
+    marginLeft: Style.adjust(4),
   },
 });
