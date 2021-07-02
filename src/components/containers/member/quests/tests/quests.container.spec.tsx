@@ -70,7 +70,6 @@ describe("QuestsContainer", () => {
       levelSlotId: "YU_LEVEL_0003_1",
       score: 100,
       status: null,
-      timeUp: false,
       unit: "steps",
     };
 

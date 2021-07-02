@@ -15,6 +15,7 @@ import {
   CHALLENGE_START_SUCCESS,
   CHALLENGE_UPDATE_SUCCESS,
   CHALLENGE_END,
+  CHALLENGE_IS_ACTIVE,
 } from "./levels.actions";
 import { CHALLENGE_START_INITIAL_STEPS, ChallengeStartPayload } from "./levels.actions";
 import { IActiveLevel } from "./levels.selectors";
@@ -46,8 +47,8 @@ export const getInitialState = (): ILevelsStore => ({
     startDateTime: "",
     status: null,
     subtype: "",
-    timeUp: false,
     unit: "",
+    challengeIsActive: false,
   },
   challengesDoneToday: 0,
   level: 1,
@@ -67,6 +68,9 @@ const levelsReducer = (state: ILevelsStore = getInitialState(), action: SyncActi
 
     case CHALLENGE_START_SUCCESS:
       return challengeStartSuccess(state, action.payload);
+
+    case CHALLENGE_IS_ACTIVE:
+      return { ...state, active: { ...state.active, challengeIsActive: true } };
 
     case CHALLENGE_UPDATE_SUCCESS:
       return challengeUpdateSuccess(state, action.payload);
@@ -115,6 +119,7 @@ const getUserSuccess = (state: ILevelsStore, data: GetCurrentUser): ILevelsStore
     startDateTime: data?.getCurrentUser?.activeChallenge?.challenge?.startDateTime || "",
     subtype: data?.getCurrentUser?.activeChallenge?.levelSlot?.subtype || "",
     unit: data?.getCurrentUser?.activeChallenge?.levelSlot?.unit || state.active.unit || "",
+    challengeIsActive: false,
   },
   challengesDoneToday: data?.getCurrentUser?.challengesDoneToday || 0,
   level: data?.getCurrentUser?.coinLedger?.currentLevel || 1,
@@ -199,7 +204,7 @@ const challengeEndSuccess = (state: ILevelsStore, res: UpdateActiveChallenge): I
       (res?.updateActiveChallenge?.challenge?.milestoneLog || state.active.milestonesLog).length > 0
         ? "success"
         : "failed",
-    timeUp: false,
+    challengeIsActive: false,
   },
 });
 
@@ -216,6 +221,7 @@ const challengeResetFail = (state: ILevelsStore): ILevelsStore => ({
   active: {
     ...state.active,
     isLoading: false,
+    challengeIsActive: false,
   },
 });
 
