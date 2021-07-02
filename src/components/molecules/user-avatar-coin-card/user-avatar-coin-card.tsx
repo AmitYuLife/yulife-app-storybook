@@ -22,9 +22,8 @@ const UserAvatarCoinCard = ({ name, subTitle, avatarUrl, coin }: IProps) => (
       </View>
     </View>
     <View style={styles.referralCoin}>
-      <TextTemplate type="b2b">
-        {coin || 0} <Image source={require("@assets/icons/yucoin.png")} style={styles.yucoin} />{" "}
-      </TextTemplate>
+      <TextTemplate type="b2b">{coin || 0}</TextTemplate>
+      <Image source={require("@assets/icons/yucoin.png")} resizeMode="contain" style={styles.yucoin} />
     </View>
   </View>
 );
