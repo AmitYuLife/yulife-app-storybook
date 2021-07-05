@@ -30,9 +30,12 @@ const FibStyleSelectionContainer = memo(function FibStyleSelectionContainer(prop
   useEffect(() => {
     const preload: Source[] = [];
     epic.styles.forEach((epicStyle) => {
-      ["armor", "background", "icon"].forEach((key: keyof GetYulifer_personal_chest_options_styles) =>
-        preload.push({ uri: epicStyle[key] })
-      );
+      ["armor", "background", "icon"].forEach((key: keyof GetYulifer_personal_chest_options_styles) => {
+        //@TODO PLI: keep this check until we'll have images from api, to not make the android build crash during Fast image preload
+        if (epicStyle[key]) {
+          preload.push({ uri: epicStyle[key] });
+        }
+      });
     });
     FastImage.preload(preload);
   }, [epic]);
