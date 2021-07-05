@@ -51,7 +51,7 @@ const getItemContent = (itemContent: ItemContent, itemId: string, itemTitle: str
       );
     case "ContentItemButton":
       return (
-        <View style={styles.wrapper} testID={MORE_INFO_BUTTON(itemContent?.label)}>
+        <View style={styles.contentItemButtonWrapper} testID={MORE_INFO_BUTTON(itemContent?.label)}>
           <TertiaryButton
             size={"Fill"}
             label={itemContent?.label}
@@ -90,6 +90,9 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingHorizontal: Style.adjust(24),
   },
+  contentItemButtonWrapper: {
+    marginTop: Style.adjust(24),
+  } as ViewStyle,
   scrollContentContainerStyle: {
     paddingBottom: Style.adjust(32),
   },
