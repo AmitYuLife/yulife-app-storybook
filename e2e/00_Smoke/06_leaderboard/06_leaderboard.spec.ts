@@ -117,7 +117,7 @@ Feature("As a user I can see my achievements on the leaderboard", async () => {
     // https://yulife.atlassian.net/browse/ENG-1877?atlOrigin=eyJpIjoiZWViMTE5ZGIwZjVmNDZiNWIwOGMxYjc5NTVjMmFiMzMiLCJwIjoiaiJ9
     Scenario("I can join a new leaderboard", scenario.start, async () => {
         Given("I login", given.loginOnly(CUSTOMER_21, AUTH_21, false), async () => {
-            Then("I should see a leaderboard invite screen", then.textVisible("join Boris' leaderboard", 2500))
+            Then("I should see a leaderboard invite screen", then.textVisible("join Angela's leaderboard", 2500))
             When("I accept", when.tapText("accept invite"), async () => {
                 When("I skip fitkit", when.tapText("Skip this step"), async()=>{
                     Then("I should see the signup bonus screen", then.textVisible("Sign-up bounty\nunlocked!"))
