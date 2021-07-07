@@ -2,7 +2,8 @@ import React from "react";
 import { Platform, StyleSheet, ViewStyle, TextStyle, View } from "react-native";
 import { Style, Colours } from "@styles/index";
 import { Coins } from "../assets";
-import { Counter } from "@components/molecules";
+import { Counter, TouchableOpacityWithDelay } from "@components/molecules";
+import { labels } from "@navigation/root";
 
 export type RightIconTypes = "Coins";
 
@@ -20,7 +21,7 @@ export default function Right({ coins = 0, shouldHighlightCoins, textStyle, colo
   }
 
   return (
-    <View style={styles.coinsWrapper}>
+    <TouchableOpacityWithDelay onPress={labels[4].onPress} style={styles.coinsWrapper}>
       <View style={styles.coinsTextWrapper}>
         <Counter
           value={coins || 0}
@@ -34,7 +35,7 @@ export default function Right({ coins = 0, shouldHighlightCoins, textStyle, colo
       <View style={styles.coinsLogoWrapper}>
         <Coins color={shouldHighlightCoins ? Colours.darkHotPink : colour} />
       </View>
-    </View>
+    </TouchableOpacityWithDelay>
   );
 }
 
