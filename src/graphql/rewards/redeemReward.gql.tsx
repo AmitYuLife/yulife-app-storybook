@@ -32,7 +32,10 @@ export const GQL_MUTATION_REDEEM_REWARD = gql`
         __typename
         name
         description
-        card_image_url
+        cardImage {
+          id
+          uri
+        }
         terms_and_conditions_url
         loyalty_programme
         redeem_steps {

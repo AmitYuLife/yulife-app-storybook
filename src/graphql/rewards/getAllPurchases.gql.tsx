@@ -34,7 +34,10 @@ export const GQL_QUERY_GET_ALL_PURCHASES = gql`
         code
         description
         expiry_date_policy
-        card_image_url
+        cardImage {
+          id
+          uri
+        }
         terms_and_conditions_url
         loyalty_programme
         redeem_steps {

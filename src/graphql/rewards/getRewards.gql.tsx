@@ -16,7 +16,10 @@ export const GQL_QUERY_GET_REWARDS = gql`
         value
         stock
       }
-      card_image_url
+      cardImage {
+        id
+        uri
+      }
       code
       currency_code
       denomination_type

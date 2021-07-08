@@ -20,6 +20,11 @@ export interface GetAllPurchases_getAllPurchases_metadata {
   avios: GetAllPurchases_getAllPurchases_metadata_avios | null;
 }
 
+export interface GetAllPurchases_getAllPurchases_reward_cardImage {
+  id: string;
+  uri: string | null;
+}
+
 export interface GetAllPurchases_getAllPurchases_reward_redeem_steps {
   __typename: "RedeemSteps";
   info: string | null;
@@ -32,7 +37,7 @@ export interface GetAllPurchases_getAllPurchases_reward {
   code: string | null;
   description: string | null;
   expiry_date_policy: string | null;
-  card_image_url: string | null;
+  cardImage: GetAllPurchases_getAllPurchases_reward_cardImage | null;
   terms_and_conditions_url: string | null;
   loyalty_programme: (string | null)[] | null;
   redeem_steps: GetAllPurchases_getAllPurchases_reward_redeem_steps | null;
