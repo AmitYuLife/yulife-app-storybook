@@ -23,7 +23,7 @@ function renderComponent(customProps: Props) {
 
 describe("Button", () => {
   beforeEach(() => {
-    jest.resetAllMocks();
+    jest.clearAllMocks();
   });
 
   it("should fire the handler onPress", () => {

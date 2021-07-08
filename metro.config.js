@@ -4,7 +4,7 @@
  *
  * @format
  */
-const blacklist = require("metro-config/src/defaults/blacklist");
+const blacklist = require("metro-config/src/defaults/exclusionList");
 
 const E2E_EXTENTIONS = process.env.RN_SRC_EXT ? process.env.RN_SRC_EXT.split(",") : [];
 

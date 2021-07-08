@@ -1,6 +1,6 @@
 import React from "react";
 import { GQL_MUTATION_SEND_MAGIC_LINK } from "@graphql/user";
-import { render, fireEvent, wait } from "@testing-library/react-native";
+import { render, fireEvent, waitFor } from "@testing-library/react-native";
 import { Provider } from "react-redux";
 import { MockedProvider } from "@apollo/react-testing";
 import ResetPasswordContainer from "../reset-password.container";
@@ -59,7 +59,7 @@ describe("ResetPasswordContianer", () => {
     fireEvent.changeText(emailInput, "test@yulife.com");
     fireEvent.press(sendLinkButton);
 
-    wait(() => {
+    waitFor(() => {
       expect(queryByText(/Check your inbox! If test@yulife.com matches our records/)).toBeTruthy();
     });
   });

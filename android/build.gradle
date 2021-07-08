@@ -6,8 +6,9 @@ buildscript {
         kotlin_version = "1.4.31"
         RNNKotlinVersion = "1.4.31"
         RNNKotlinCoroutinesCore = "1.4.3"
-        buildToolsVersion = "29.0.2"
-        minSdkVersion = 19
+        buildToolsVersion = "29.0.3"
+        minSdkVersion = 21
+        ndkVersion = "20.1.5948944"
         compileSdkVersion = 29
         targetSdkVersion = 29
     }
@@ -17,7 +18,7 @@ buildscript {
     }
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$RNNKotlinVersion"
-        classpath("com.android.tools.build:gradle:3.5.3")
+        classpath("com.android.tools.build:gradle:4.1.0")
         classpath 'com.google.gms:google-services:4.3.3'
 
         // NOTE: Do not place your application dependencies here; they belong
@@ -49,6 +50,7 @@ ext {
     minSdkVersion = 21
     compileSdkVersion = 29
     targetSdkVersion = 29
+    ndkVersion = "20.1.5948944"
     supportLibVersion = "29.0.3"
     googlePlayServicesVersion = "17.0.0"
     reactNativeVersion = getRNVersion()
