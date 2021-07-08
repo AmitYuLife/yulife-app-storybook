@@ -28,3 +28,15 @@ index 7a40801..7310fea 100644
      this.props.tapToHideKeyboard && Keyboard.dismiss();
      this.props.onTouchBegin && this.props.onTouchBegin();
    };
+diff --git a/node_modules/react-native-spring-scrollview/ios/SpringScrollView/STSpringScrollView.m b/node_modules/react-native-spring-scrollview/ios/SpringScrollView/STSpringScrollView.m
+index ce995cb..f47b0d1 100644
+--- a/node_modules/react-native-spring-scrollview/ios/SpringScrollView/STSpringScrollView.m
++++ b/node_modules/react-native-spring-scrollview/ios/SpringScrollView/STSpringScrollView.m
+@@ -7,6 +7,7 @@
+ //
+ 
+ #import "STSpringScrollView.h"
++#import <React/RCTEventDispatcher.h>
+ 
+ @interface STSpringScrollView ()
+ @property(nonatomic, assign) float refreshHeaderHeight;

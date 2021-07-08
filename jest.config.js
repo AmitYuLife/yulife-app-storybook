@@ -1,8 +1,7 @@
-const jestPreset = require("@testing-library/react-native/jest-preset");
-
-module.exports = Object.assign(jestPreset, {
-  preset: "@testing-library/react-native",
-  setupFilesAfterEnv: [...jestPreset.setupFiles, "<rootDir>/jest/setup-unit.js"],
+module.exports = {
+  preset: "react-native",
+  setupFilesAfterEnv: ["@testing-library/jest-native/extend-expect", "<rootDir>/jest/setup-unit.js"],
+  transformIgnorePatterns: ["node_modules/(?!(jest-)?@?react-native|@react-native-community)"],
   transform: {
     "^.+\\.js$": "<rootDir>/node_modules/react-native/jest/preprocessor.js",
     "^.+\\.tsx?$": "ts-jest",
@@ -41,4 +40,4 @@ module.exports = Object.assign(jestPreset, {
       babelConfig: true,
     },
   },
-});
+};

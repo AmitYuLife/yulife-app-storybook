@@ -49,17 +49,12 @@ const selectedPackage: Package = {
 };
 
 describe("PackageInfo", () => {
-  beforeEach(() => {
-    jest.resetAllMocks();
-  });
-
   it("should render PackageInfo", () => {
     const { queryByText, rerender } = renderComponent({ selectedPackage });
+
     expect(queryByText("Common")).toBeTruthy();
-    expect(queryByText(packageCommonInfo.title)).toBeTruthy();
     expect(queryByText("75")).toBeTruthy();
     expect(queryByText(packageCommonInfo.symbol)).toBeTruthy();
-    expect(queryByText(packageCommonInfo.salaryCover)).toBeTruthy();
     expect(queryByText("20")).toBeTruthy();
     expect(queryByText(packageCommonInfo.yuCoin)).toBeTruthy();
     expect(queryByText(doubleChest.title)).toBeTruthy();

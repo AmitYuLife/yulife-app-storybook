@@ -59,12 +59,14 @@ function ChallengeTile(props: Props) {
 
   return (
     <TouchableOpacity activeOpacity={isLocked ? 1 : 0.2} onPress={onPress} style={styles.wrapper}>
-      <AnimalImage image={getImageSource(challengeType, currentWorld)} isLocked={isLocked} />
-      {isLocked ? (
-        <LockedOverlay minimumLevel={minimumLevel} />
-      ) : (
-        <Content challengeType={challengeType} duration={duration} reward={reward} />
-      )}
+      <>
+        <AnimalImage image={getImageSource(challengeType, currentWorld)} isLocked={isLocked} />
+        {isLocked ? (
+          <LockedOverlay minimumLevel={minimumLevel} />
+        ) : (
+          <Content challengeType={challengeType} duration={duration} reward={reward} />
+        )}
+      </>
     </TouchableOpacity>
   );
 }

@@ -1,5 +1,5 @@
 import React from "react";
-import { render, fireEvent, act, wait } from "@testing-library/react-native";
+import { render, fireEvent, act, waitFor } from "@testing-library/react-native";
 import { ChangeMemberNickname } from "@screens";
 import { NICKNAME_INPUT, CHANGE_MEMBER_NICK_BUTTON, BACK_BUTTON } from "@ids";
 import "@testing-library/jest-native/extend-expect";
@@ -23,10 +23,6 @@ const renderComponent = (customProps: Props) => {
 };
 
 describe("ChangeMemberNickname", () => {
-  beforeEach(() => {
-    jest.resetAllMocks();
-  });
-
   it("should render ChangeMemberNickname with button", () => {
     const { getByTestId, queryByText } = renderComponent({ enableButton: true });
     const button = getByTestId(CHANGE_MEMBER_NICK_BUTTON);
@@ -51,8 +47,9 @@ describe("ChangeMemberNickname", () => {
     act(() => {
       fireEvent.press(button);
     });
-    wait();
-    expect(onPress).toHaveBeenCalledTimes(1);
+    waitFor(() => {
+      expect(onPress).toHaveBeenCalledTimes(1);
+    });
   });
 
   it("should render ChangeMemberNickname without button", () => {

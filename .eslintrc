@@ -13,6 +13,9 @@
     "jest": true
   },
   "globals": {
+    "React": "readonly",
+    "NodeJS": "readonly",
+    "JSX": "readonly",
     "global": "readonly"
   },
   "rules": {
@@ -32,6 +35,7 @@
     "@typescript-eslint/no-var-requires": "off",
     "react/jsx-boolean-value": ["error", "always"],
     "react/prop-types": "off",
+    "react-hooks/exhaustive-deps": "warn",
     "yulife-rn-client/no-scale-up-and-down": "warn",
     "no-else-return": [
       "error",

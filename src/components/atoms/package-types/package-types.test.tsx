@@ -10,10 +10,6 @@ const renderComponent = (props: Props) => {
 };
 
 describe("PackageType", () => {
-  beforeEach(() => {
-    jest.resetAllMocks();
-  });
-
   it("should render PackageType common ", () => {
     const type = CoverType.common;
     const { queryByText, queryByTestId } = renderComponent({ type });
