@@ -1,6 +1,8 @@
 import { RetryLink } from "apollo-link-retry";
+import moment from "moment";
 
 export const MAX_OPERATIONS_ATTEMPTS = 3;
+const MAX_RESPONSE_TIME = 30; // seconds
 
 const BLACKLIST_RETRY_OPERATIONS = ["SaveAvatar", "GetMobileCopy", "CreateActiveChallenge"];
 
@@ -30,7 +32,15 @@ const retryLink = (showOfflineScreen: () => void) => {
           return false;
         }
 
-        const { retries = 0 } = _operation.getContext();
+        const { retries = 0, headers } = _operation.getContext();
+
+        // if a request has been on the fly for more than MAX_RESPONSE_TIME seconds do not retry
+        const hasReachedMaxTime = moment().diff(moment(headers.date), "seconds") >= MAX_RESPONSE_TIME;
+
+        if (hasReachedMaxTime) {
+          return false;
+        }
+
         const maxAttemptReached = retries >= MAX_OPERATIONS_ATTEMPTS;
 
         if (!maxAttemptReached) {
