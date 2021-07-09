@@ -1,156 +1,28 @@
 import { bottomTabs, MODALS, ROUTES } from "@navigation/constants";
 import * as React from "react";
 import Config from "react-native-config";
-import { PureComponent } from "react";
 import DeviceInfo from "react-native-device-info";
 import Intercom from "react-native-intercom";
 import { Navigation, LayoutComponent } from "react-native-navigation";
-import { connect } from "react-redux";
-import { IReduxState } from "../../../../redux/_core/reducers";
-import { getRouteState } from "../../../../redux/app/app.selectors";
-import { getCopy } from "../../../../redux/copy/copy.selectors";
-import { getPushNotifications } from "../../../../redux/device/device.selectors";
-import { logOutStart, openMemberZone } from "../../../../redux/user/user.actions";
-import { getUserFeatures } from "../../../../redux/user/user.selectors";
-import { MenuScreen } from "../../../screens";
+import { useDispatch, useSelector } from "react-redux";
+import { getRouteState } from "@redux/app/app.selectors";
+import { getPushNotificationsCopy } from "@redux/copy/copy.selectors";
+import { getPushNotifications } from "@redux/device/device.selectors";
+import { logOutStart, openMemberZone } from "@redux/user/user.actions";
+import { getUserFeatures } from "@redux/user/user.selectors";
+import { MenuScreen } from "@screens";
 import assets, { LINKS, LinkTypes } from "./assets";
-
-type ConnectedState = ReturnType<typeof mapStateToProps>;
-type ConnectedDispatch = typeof mapDispatchToProps;
-
-type Props = ConnectedState & ConnectedDispatch & { componentId: string };
 
 const IS_DEVELOP = ["dev", "develop"].includes(Config.ENV);
 
-class MenuContainer extends PureComponent<Props> {
-  private deviceVersion = DeviceInfo.getVersion();
+const MenuContainer = () => {
+  const dispatch = useDispatch();
+  const currentRoute = useSelector(getRouteState);
+  const features = useSelector(getUserFeatures);
+  const permissions = useSelector(getPushNotifications);
+  const pushNotificationCopy = useSelector(getPushNotificationsCopy);
 
-  public render() {
-    const { features = {} } = this.props;
-
-    return (
-      <MenuScreen
-        onPressClose={this.handleClose}
-        links={[
-          {
-            condition: features.showStats,
-            label: "Statistics",
-            onPress: this.handlePressLink(LINKS.STATS),
-            source: assets[LINKS.STATS],
-          },
-          {
-            condition: features.showActivity,
-            label: "Activity History",
-            onPress: this.handlePressLink(LINKS.ACTIVITY),
-            source: assets[LINKS.ACTIVITY],
-          },
-          {
-            condition: true,
-            label: "Member Zone",
-            onPress: this.handlePressLink(LINKS.MEMBER),
-            source: assets[LINKS.MEMBER],
-          },
-          {
-            condition: true,
-            label: "Wellbeing Hub",
-            onPress: this.handlePressLink(LINKS.WELLBEING_HUB),
-            source: assets[LINKS.WELLBEING_HUB],
-          },
-          {
-            condition: true,
-            label: "Settings",
-            onPress: this.handlePressLink(LINKS.SETTINGS),
-            source: assets[LINKS.SETTINGS],
-          },
-          {
-            condition: true,
-            label: "Chat",
-            onPress: this.handlePressLink(LINKS.SUPPORT),
-            source: assets[LINKS.SUPPORT],
-          },
-          {
-            condition: true,
-            label: "Log out",
-            onPress: this.handlePressLink(LINKS.LOGOUT),
-            source: assets[LINKS.LOGOUT],
-          },
-        ]}
-        version={this.deviceVersion}
-        onDebugPress={features.showDebug || IS_DEVELOP ? this.handlePressLink(LINKS.DEBUG) : null}
-      />
-    );
-  }
-
-  private handlePressLink = (link: LinkTypes) => (): null => {
-    switch (link) {
-      case LINKS.STATS:
-        this.handlePush(ROUTES.stats);
-        return null;
-      case LINKS.ACTIVITY:
-        this.handlePush(ROUTES.activityHistory);
-        return null;
-      case LINKS.SETTINGS:
-        this.handlePush(ROUTES.settings);
-        return null;
-      case LINKS.SUPPORT:
-        this.handleIntercom();
-        return null;
-      case LINKS.DEBUG:
-        this.handlePush(ROUTES.debug);
-        return null;
-      case LINKS.LEADERBOARD:
-        this.handlePush(ROUTES.leaderboards);
-        return null;
-      case LINKS.LOGOUT:
-        this.props.logOut();
-        return null;
-      case LINKS.MEMBER:
-        this.handleMemberZone();
-        return null;
-      case LINKS.WELLBEING_HUB:
-        this.handlePush(ROUTES.wellbeingHubItems);
-        return null;
-      default:
-        return null;
-    }
-  };
-
-  private handleMemberZone = () => {
-    this.handleClose();
-    this.props.openMemberZone();
-  };
-
-  private handlePush = async (route: string, options: LayoutComponent["options"] = {}) => {
-    await Navigation.push(this.props.currentRoute, {
-      component: {
-        id: route,
-        name: route,
-        options: {
-          bottomTabs,
-          sideMenu: {
-            left: {
-              enabled: false,
-              visible: false,
-            },
-          },
-          ...options,
-        },
-      },
-    });
-  };
-
-  private handleClose = () =>
-    Navigation.mergeOptions(ROUTES.menu, {
-      sideMenu: {
-        left: {
-          enabled: false,
-          visible: false,
-        },
-      },
-    });
-
-  private handleIntercom = () => {
-    const { permissions, pushNotificationCopy } = this.props;
+  const handleIntercom = React.useCallback(() => {
     const callback = () => Intercom.displayConversationsList();
 
     if (permissions.status !== "enabled") {
@@ -168,19 +40,136 @@ class MenuContainer extends PureComponent<Props> {
     } else {
       callback();
     }
-  };
-}
+  }, [permissions, pushNotificationCopy]);
 
-const mapStateToProps = (state: IReduxState) => ({
-  currentRoute: getRouteState(state),
-  features: getUserFeatures(state),
-  permissions: getPushNotifications(state),
-  pushNotificationCopy: getCopy(state, "pushNotification"),
-});
+  const handlePressLink = React.useCallback(
+    (link: LinkTypes) => (): null => {
+      switch (link) {
+        case LINKS.STATS:
+          handlePush(currentRoute, ROUTES.stats);
+          return null;
+        case LINKS.ACTIVITY:
+          handlePush(currentRoute, ROUTES.activityHistory);
+          return null;
+        case LINKS.SETTINGS:
+          handlePush(currentRoute, ROUTES.settings);
+          return null;
+        case LINKS.SUPPORT:
+          handleIntercom();
+          return null;
+        case LINKS.DEBUG:
+          handlePush(currentRoute, ROUTES.debug);
+          return null;
+        case LINKS.LEADERBOARD:
+          handlePush(currentRoute, ROUTES.leaderboards);
+          return null;
+        case LINKS.LOGOUT:
+          dispatch(logOutStart());
+          return null;
+        case LINKS.MEMBER:
+          handleClose();
+          dispatch(openMemberZone());
+          return null;
+        case LINKS.WELLBEING_HUB:
+          handlePush(currentRoute, ROUTES.wellbeingHubItems);
+          return null;
+        case LINKS.REFERRALS_INFO:
+          handlePush(currentRoute, ROUTES.referralInformation);
+          return null;
+        default:
+          return null;
+      }
+    },
+    [currentRoute, dispatch, handleIntercom]
+  );
 
-const mapDispatchToProps = {
-  logOut: logOutStart,
-  openMemberZone,
+  const links = React.useMemo(
+    () => [
+      {
+        condition: true,
+        label: "Statistics",
+        onPress: handlePressLink(LINKS.STATS),
+        source: assets[LINKS.STATS],
+      },
+      {
+        condition: true,
+        label: "Activity History",
+        onPress: handlePressLink(LINKS.ACTIVITY),
+        source: assets[LINKS.ACTIVITY],
+      },
+      {
+        condition: true,
+        label: "Member Zone",
+        onPress: handlePressLink(LINKS.MEMBER),
+        source: assets[LINKS.MEMBER],
+      },
+      {
+        condition: true,
+        label: "Wellbeing Hub",
+        onPress: handlePressLink(LINKS.WELLBEING_HUB),
+        source: assets[LINKS.WELLBEING_HUB],
+      },
+      {
+        condition: true,
+        label: "Settings",
+        onPress: handlePressLink(LINKS.SETTINGS),
+        source: assets[LINKS.SETTINGS],
+      },
+      {
+        condition: true,
+        label: "Chat",
+        onPress: handlePressLink(LINKS.SUPPORT),
+        source: assets[LINKS.SUPPORT],
+      },
+      {
+        condition: true,
+        label: "Log out",
+        onPress: handlePressLink(LINKS.LOGOUT),
+        source: assets[LINKS.LOGOUT],
+      },
+    ],
+    [handlePressLink]
+  );
+
+  return (
+    <MenuScreen
+      onPressClose={handleClose}
+      links={links}
+      version={DeviceInfo.getVersion()}
+      onDebugPress={features.showDebug || IS_DEVELOP ? handlePressLink(LINKS.DEBUG) : null}
+      onInvitePress={handlePressLink(LINKS.REFERRALS_INFO)}
+      showReferralButton={features.showReferrals}
+    />
+  );
 };
 
-export default connect<ConnectedState, ConnectedDispatch>(mapStateToProps, mapDispatchToProps)(MenuContainer);
+export default MenuContainer;
+
+const handlePush = async (currentRoute: string, route: string, options: LayoutComponent["options"] = {}) => {
+  await Navigation.push(currentRoute, {
+    component: {
+      id: route,
+      name: route,
+      options: {
+        bottomTabs,
+        sideMenu: {
+          left: {
+            enabled: false,
+            visible: false,
+          },
+        },
+        ...options,
+      },
+    },
+  });
+};
+
+const handleClose = () =>
+  Navigation.mergeOptions(ROUTES.menu, {
+    sideMenu: {
+      left: {
+        enabled: false,
+        visible: false,
+      },
+    },
+  });

@@ -23,6 +23,9 @@ export const getSettingsCopy = createSelector(screensReducer, settingsCopySelect
 const leaderboardsCopySelector = (state: ScreensState) => state.leaderboards;
 export const getLeaderboardsCopy = createSelector(screensReducer, leaderboardsCopySelector);
 
+const pushNotificationsCopySelector = (state: ScreensState) => state.pushNotification;
+export const getPushNotificationsCopy = createSelector(screensReducer, pushNotificationsCopySelector);
+
 // challenge specifics
 
 type ChallengesScreensState = IReduxState["copy"]["screens"]["challenges"];

@@ -1,5 +1,5 @@
 import React, { memo } from "react";
-import { StyleSheet, Text, TextProps, TextStyle } from "react-native";
+import { StyleProp, StyleSheet, Text, TextProps, TextStyle } from "react-native";
 import { Style, Colours } from "@styles";
 
 export type ITextTemplateType = "h1" | "h2" | "h3" | "b1" | "b1b" | "b2" | "b2b" | "l1" | "l1b" | "l2" | "l2b" | "l3";
@@ -10,16 +10,18 @@ interface IProps extends TextProps {
   type: ITextTemplateType;
   color?: string;
   textAlign?: TextStyle["textAlign"];
+  underline?: boolean;
 }
 
 export const TextTemplate = memo(
-  ({ children, testID, type, color = Colours.neutral.n800, textAlign = "left" }: IProps) => {
+  ({ children, testID, type, color = Colours.neutral.n800, textAlign = "left", underline }: IProps) => {
     const alignment = { textAlign };
     const fontColor = { color };
+    const underlineStyle = !underline ? null : ({ textDecorationLine: "underline" } as StyleProp<TextStyle>);
 
     return (
       <Text
-        style={StyleSheet.flatten([styles.default, styles[type], alignment, fontColor])}
+        style={StyleSheet.flatten([styles.default, styles[type], alignment, fontColor, underlineStyle])}
         allowFontScaling={false}
         testID={testID}
       >

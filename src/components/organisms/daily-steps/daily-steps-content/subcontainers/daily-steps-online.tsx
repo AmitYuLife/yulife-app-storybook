@@ -12,10 +12,12 @@ import { handleNavigateToQuestsTab } from "@navigation/utils";
 import { getDailySteps } from "@redux/daily-steps/daily-steps.selectors";
 import { getDailyMeditation } from "@redux/daily-meditation/daily-meditation.selectors";
 import { getDailyStepsTheme } from "@redux/theme/theme.selectors";
+import { setScreen } from "@navigation/root";
+import { ROUTES } from "@navigation/constants";
 
 const _DailyStepsOnline = () => {
   const dailyMeditation = useSelector(getDailyMeditation);
-  const { usePassiveMeditation } = useSelector(getUserFeatures);
+  const { usePassiveMeditation, showReferralsOnDailyScreen } = useSelector(getUserFeatures);
   const { textStyle } = useSelector(getDailyStepsTheme);
 
   const flattenStyle = StyleSheet.flatten([styles.heading, textStyle]);
@@ -45,7 +47,7 @@ const _DailyStepsOnline = () => {
         <Text style={flattenStyle}>today</Text>
       </Text>
       <Pad height={18} />
-      <EarnMore />
+      <EarnMore hasReferralsEnabled={showReferralsOnDailyScreen} />
     </View>
   );
 };
@@ -67,14 +69,28 @@ const YuCoinCounter = memo(function _YuCoinCounter({ textStyle }: CounterProps) 
   return <Counter duration={1200} value={dailyEarnedCoins} textStyle={textStyle} />;
 });
 
-const EarnMore = memo(function _EarnMore() {
+interface EarnMoreProps {
+  hasReferralsEnabled: boolean;
+}
+
+const EarnMore = memo(function _EarnMore({ hasReferralsEnabled }: EarnMoreProps) {
   const { isAvailable } = useSelector(getChallengesStatus);
 
   if (!isAvailable) {
-    return null;
+    if (!hasReferralsEnabled) {
+      return null;
+    }
+
+    return (
+      <Button
+        onPress={() => setScreen(ROUTES.dailySteps, ROUTES.referralInformation)}
+        size="Medium"
+        label="Invite a colleague"
+      />
+    );
   }
 
-  return <Button onPress={handleNavigateToQuestsTab} size="Medium" label="earn more" />;
+  return <Button onPress={handleNavigateToQuestsTab} size="Medium" label="Earn more" />;
 });
 
 export const DailyStepsOnline = memo(_DailyStepsOnline);

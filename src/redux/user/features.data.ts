@@ -46,4 +46,5 @@ export const features = [
   "showDuels",
   "yuScreenV3",
   "limitPedometerSteps",
+  "showReferrals",
 ];

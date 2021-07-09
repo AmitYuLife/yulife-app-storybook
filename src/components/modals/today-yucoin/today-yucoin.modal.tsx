@@ -81,10 +81,10 @@ const TodayYucoinModal: React.FC<Props> = ({
       : null;
 
   const ctaLabel = activeChallenge
-    ? "back to challenge"
+    ? "Back to challenge"
     : challengesStatus.done
-    ? "take another challenge"
-    : "take a challenge";
+    ? "Take another challenge"
+    : "Take a challenge";
 
   return (
     <TodayYucoinScreen
