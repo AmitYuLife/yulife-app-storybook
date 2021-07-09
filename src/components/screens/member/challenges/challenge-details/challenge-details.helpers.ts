@@ -64,8 +64,8 @@ export function getCardBackgroundColor(currentWorld: number) {
 }
 
 export const data = {
-  ctaLabel: "take challenge",
+  ctaLabel: "Take challenge",
   footer: "",
-  loading: "loading...",
-  setUpLabel: "set up tutorial",
+  loading: "Loading...",
+  setUpLabel: "Set up tutorial",
 };

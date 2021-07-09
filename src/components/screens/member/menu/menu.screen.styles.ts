@@ -1,8 +1,24 @@
-import { ImageStyle, StyleSheet, TextStyle, ViewStyle, Platform } from "react-native";
-import { isIphoneX } from "react-native-iphone-x-helper";
-import { Style } from "../../../../styles";
-import deviceInfoModule from "react-native-device-info";
+import { StyleSheet, ViewStyle, Platform } from "react-native";
+import { Style } from "@styles";
 import media from "@styles/media";
+
+export const SCROLL_PADDING = media.select(
+  [
+    {
+      condition: Platform.OS === "ios" && Style.DEVICE_HEIGHT >= media.DEVICES.iPhone8Plus.height,
+      value: Style.getSafeAreaStart() + Style.SCALE_Y_UP_AND_DOWN(80),
+    },
+    {
+      condition: Platform.OS === "android" && Style.DEVICE_HEIGHT <= media.DEVICES.Pixel2.height + 1,
+      value: Style.SCALE_Y_UP_AND_DOWN(40),
+    },
+    {
+      condition: Platform.OS === "android",
+      value: Style.SCALE_Y_UP_AND_DOWN(80),
+    },
+  ],
+  Style.getSafeAreaStart() + Style.adjust(40)
+);
 
 export const CLOSE_WRAPPER_TOP_MARGIN = media.select(
   [
@@ -10,72 +26,72 @@ export const CLOSE_WRAPPER_TOP_MARGIN = media.select(
       condition:
         Platform.OS === "ios" &&
         [media.DEVICES.iPhone12.height, media.DEVICES.iPhone12ProMax.height].includes(Style.DEVICE_HEIGHT),
-      value: Style.getSafeAreaStart() + 16,
+      value: Style.getSafeAreaStart() + 32,
+    },
+    {
+      condition: Platform.OS === "android",
+      value: Style.adjust(16),
     },
   ],
-  Style.getSafeAreaStart()
+  Style.getSafeAreaStart() + 16
 );
-
-const getPaddingTop = () => {
-  if (isIphoneX()) {
-    return 130;
-  }
-
-  if (Style.isXShort()) {
-    return 40;
-  }
-
-  if (Style.isShortToMedium()) {
-    return 80;
-  }
-
-  return 90;
-};
 
 export default StyleSheet.create({
   iconWrapper: {
-    width: Style.adjust(56),
+    marginRight: Style.adjust(16),
   } as ViewStyle,
   itemWrapper: {
     alignItems: "center",
     flexDirection: "row",
-    marginTop: Style.adjust(Style.isShortToMedium() ? 20 : 24),
+    marginTop: Style.adjust(24),
   } as ViewStyle,
-  logo: {} as ImageStyle,
-  logoWrapper: {
-    marginBottom: Style.adjust(16),
-    width: Style.adjust(56),
-  } as ViewStyle,
-  text: {
-    borderColor: "transparent",
-    borderWidth: 1,
-    color: "#333333",
-    fontSize: Style.adjust(16),
-    width: "100%",
-  } as TextStyle,
-  textWrapper: {
-    paddingRight: Style.adjust(8),
-  } as ViewStyle,
-  debugText: {
-    color: "rgb(51,51,51)",
-    fontSize: Style.adjust(17),
-  } as TextStyle,
-  versionText: {
-    color: "rgb(201,201,201)",
-    fontSize: Style.adjust(10),
-    textAlign: "center",
-  } as TextStyle,
-  versionTextWrapper: {
-    alignItems: "center",
-    bottom: Platform.OS === "ios" && deviceInfoModule.hasNotch() ? 44 : Style.adjust(10),
-    justifyContent: "center",
+  referralSection: {
     position: "absolute",
-    width: "100%",
+    justifyContent: "flex-end",
+    paddingBottom: Style.adjust(32),
+    bottom: 0,
+    paddingTop: Style.adjust(32),
+    height: Style.adjust(150),
+    overflow: "hidden",
+    width: Style.DEVICE_WIDTH,
   } as ViewStyle,
+  referralBackgroundWrapper: {
+    position: "absolute",
+    bottom: 0,
+    left: 0,
+    right: 0,
+  } as ViewStyle,
+  referralImage: {
+    height: Style.adjust((Style.DEVICE_WIDTH * 120) / 375),
+    width: Style.DEVICE_WIDTH,
+  },
   wrapper: {
-    backgroundColor: "white",
     flex: 1,
-    paddingLeft: Style.adjust(105),
-    paddingTop: Style.adjust(getPaddingTop()),
+  } as ViewStyle,
+  closeWrapper: {
+    position: "absolute",
+    top: CLOSE_WRAPPER_TOP_MARGIN - 16,
+    right: 0,
+    padding: 16,
+  } as ViewStyle,
+  referralButtonWrapper: {
+    paddingHorizontal: 40,
+    width: Style.DEVICE_WIDTH,
+  } as ViewStyle,
+  bottomPadding: {
+    height: Style.adjust(120),
+  } as ViewStyle,
+  scrollView: {
+    paddingLeft: Platform.select({
+      ios: Style.SCALE_UP_AND_DOWN(105),
+      android: Style.SCALE_UP_AND_DOWN(120),
+    }),
+  } as ViewStyle,
+  scrollViewContentContainer: {
+    alignItems: "flex-start", // default: "stretch" expands the hit slop to the edge of the screen
+  } as ViewStyle,
+  debugVersionWrapper: {
+    marginTop: Style.adjust(8),
+    flexDirection: "row",
   } as ViewStyle,
 });
