@@ -1,11 +1,10 @@
+import React, { memo, Component } from "react";
 import { CHALLENGE_SCREEN } from "@ids";
 import { ChallengesList, IChallengesListProps } from "@molecules/index";
 import { getCurrentWorld } from "@services/utils";
-import * as React from "react";
 import { Image, StyleSheet, View, BackHandler } from "react-native";
 import { IMilestoneProps } from "../challenge-details/milestones";
 import styles from "./challenges-list.screen.styles";
-import { ChallengeType } from "@molecules/challenge-tile/challenge-tile.types";
 import { TopBar, NavBar } from "@components/organisms";
 import { Navigation } from "react-native-navigation";
 import { ROUTES } from "@navigation/constants";
@@ -18,21 +17,21 @@ interface IProps extends IChallengesListProps {
 }
 
 interface IFormattedChallenge extends IMilestoneProps {
-  challengeType: ChallengeType;
+  heading: string;
   currentWorld: number;
   duration: string;
   id: string;
   isLocked: boolean;
-  minimumLevel: number;
+  availableAtLevel: number;
   onPress: () => void;
   reward: string;
+  imageUri: string;
 }
 
 interface IState {
   hideChallengeTiles: boolean;
 }
-
-export default class ChallengesListScreen extends React.Component<IProps, IState> {
+class ChallengesListScreen extends Component<IProps, IState> {
   public timeout: NodeJS.Timer = null;
   public state = {
     hideChallengeTiles: true,
@@ -98,12 +97,14 @@ export default class ChallengesListScreen extends React.Component<IProps, IState
   };
 }
 
-function getWorldStyle(currentLevel: number) {
+export default memo(ChallengesListScreen);
+
+export function getWorldStyle(currentLevel: number) {
   const world = getCurrentWorld(currentLevel);
   switch (world) {
     case 3:
       return {
-        backgroundImage: require("../../../../../../assets/challenges/mountain.png"),
+        backgroundImage: require("@assets/challenges/mountain.png"),
         backgroundWrapperStyle: StyleSheet.flatten([
           StyleSheet.absoluteFillObject,
           { backgroundColor: "rgb(59,123,209)" },
@@ -112,7 +113,7 @@ function getWorldStyle(currentLevel: number) {
       };
     case 2:
       return {
-        backgroundImage: require("../../../../../../assets/challenges/desert.png"),
+        backgroundImage: require("@assets/challenges/desert.png"),
         backgroundWrapperStyle: StyleSheet.flatten([
           StyleSheet.absoluteFillObject,
           { backgroundColor: "rgb(254,251,205)" },
@@ -121,7 +122,7 @@ function getWorldStyle(currentLevel: number) {
       };
     case 1:
       return {
-        backgroundImage: require("../../../../../../assets/challenges/ocean.png"),
+        backgroundImage: require("@assets/challenges/ocean.png"),
         backgroundWrapperStyle: StyleSheet.flatten([
           StyleSheet.absoluteFillObject,
           { backgroundColor: "rgb(87,155,193)" },
@@ -131,7 +132,7 @@ function getWorldStyle(currentLevel: number) {
     case 0:
     default:
       return {
-        backgroundImage: require("../../../../../../assets/challenges/forest.png"),
+        backgroundImage: require("@assets/challenges/forest.png"),
         backgroundWrapperStyle: StyleSheet.flatten([
           StyleSheet.absoluteFillObject,
           { backgroundColor: "rgb(154, 231, 216)" },

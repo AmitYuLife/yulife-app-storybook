@@ -3,7 +3,7 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { IntercomHashMethod } from "./globalTypes";
+import { IntercomHashMethod, FitKitType } from "./globalTypes";
 
 // ====================================================
 // GraphQL query operation: GetCurrentUser
@@ -88,6 +88,7 @@ export interface GetCurrentUser_getCurrentUser_activeChallenge_challenge_incomin
   steps: number | null;
   meditation: number | null;
   distance: number | null;
+  duration: number | null;
 }
 
 export interface GetCurrentUser_getCurrentUser_activeChallenge_challenge {
@@ -107,6 +108,7 @@ export interface GetCurrentUser_getCurrentUser_activeChallenge_levelSlot_milesto
   steps: number | null;
   meditation: number | null;
   distance: number | null;
+  duration: number | null;
 }
 
 export interface GetCurrentUser_getCurrentUser_activeChallenge_levelSlot_milestones {
@@ -119,6 +121,8 @@ export interface GetCurrentUser_getCurrentUser_activeChallenge_levelSlot_milesto
 export interface GetCurrentUser_getCurrentUser_activeChallenge_levelSlot {
   subtype: string | null;
   unit: string | null;
+  shouldEndOnLastGoalAchieved: boolean | null;
+  fitKitTypes: FitKitType[] | null;
   milestones: (GetCurrentUser_getCurrentUser_activeChallenge_levelSlot_milestones | null)[] | null;
 }
 

@@ -5,14 +5,17 @@ import startChallenge from "./startChallenge.helper";
 
 export default function* startChallengeIfActiveSaga() {
   try {
-    const { endDateTime, levelSlotId, startDateTime, status, subtype } = yield select(getActiveLevel);
+    const { endDateTime, levelSlotId, startDateTime, status, shouldEndOnLastGoalAchieved, fitKitTypes } = yield select(
+      getActiveLevel
+    );
 
     if (levelSlotId && !status) {
       yield call(startChallenge, {
         endDateTime,
-        subtype,
+        shouldEndOnLastGoalAchieved,
         levelSlotId,
         startDateTime,
+        fitKitTypes,
       });
     }
   } catch (error) {

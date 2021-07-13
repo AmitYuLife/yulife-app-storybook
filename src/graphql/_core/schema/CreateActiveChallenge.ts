@@ -3,6 +3,8 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
+import { FitKitType } from "./globalTypes";
+
 // ====================================================
 // GraphQL mutation operation: CreateActiveChallenge
 // ====================================================
@@ -19,6 +21,7 @@ export interface CreateActiveChallenge_createActiveChallenge_levelSlot_milestone
   steps: number | null;
   meditation: number | null;
   distance: number | null;
+  duration: number | null;
 }
 
 export interface CreateActiveChallenge_createActiveChallenge_levelSlot_milestones {
@@ -31,6 +34,8 @@ export interface CreateActiveChallenge_createActiveChallenge_levelSlot_milestone
 export interface CreateActiveChallenge_createActiveChallenge_levelSlot {
   subtype: string | null;
   unit: string | null;
+  shouldEndOnLastGoalAchieved: boolean | null;
+  fitKitTypes: FitKitType[] | null;
   milestones: (CreateActiveChallenge_createActiveChallenge_levelSlot_milestones | null)[] | null;
 }
 

@@ -29,12 +29,6 @@ const styles = StyleSheet.create({
     fontSize: Style.SCALE_UP_AND_DOWN(25),
     marginBottom: Style.SCALE_UP_AND_DOWN(10),
   } as TextStyle,
-  image: {
-    marginTop: Style.SCALE_Y_UP_AND_DOWN(-50),
-  } as ImageStyle,
-  imageLongWalk: {
-    marginTop: Style.SCALE_UP_AND_DOWN(Style.isShortAndroid() ? -50 : -100),
-  } as ImageStyle,
   rewardWrapper: {
     marginLeft: "auto",
     marginRight: Style.SCALE_UP_AND_DOWN(8),

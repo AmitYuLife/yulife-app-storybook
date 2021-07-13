@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { memo } from "react";
 import { ScrollView, View } from "react-native";
 import ChallengeTile, { IChallengeTileProps } from "../challenge-tile/challenge-tile";
 import styles from "./challenges-list.styles";
@@ -8,9 +8,7 @@ export interface IChallengesListProps {
   challenges: IChallengeTileProps[];
 }
 
-const list = ["short stroll", "meditation"];
-
-export default function ChallengeSet({ challenges }: IChallengesListProps) {
+function ChallengeSet({ challenges }: IChallengesListProps) {
   return (
     <ScrollView
       showsVerticalScrollIndicator={false}
@@ -20,19 +18,21 @@ export default function ChallengeSet({ challenges }: IChallengesListProps) {
       <View testID={CHALLENGE_SET} style={styles.wrapper}>
         <View style={styles.leftColumnWrapper}>
           {challenges
-            .filter(({ challengeType }) => !list.includes(challengeType))
-            .map((challenge, index) => (
-              <ChallengeTile {...challenge} key={index} />
+            ?.filter((_, i) => !(i % 2))
+            ?.map((challenge, index) => (
+              <ChallengeTile key={index} pictureAlign="left" {...challenge} />
             ))}
         </View>
         <View style={styles.rightColumnWrapper}>
           {challenges
-            .filter(({ challengeType }) => list.includes(challengeType))
+            .filter((_, i) => i % 2)
             .map((challenge, index) => (
-              <ChallengeTile {...challenge} key={index} />
+              <ChallengeTile key={index} pictureAlign="right" {...challenge} />
             ))}
         </View>
       </View>
     </ScrollView>
   );
 }
+
+export default memo(ChallengeSet);

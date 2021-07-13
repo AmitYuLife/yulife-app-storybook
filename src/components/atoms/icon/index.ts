@@ -36,6 +36,7 @@ import { TheOwlFenceIcon } from "./the-owl-fence-icon";
 import { YugiProcessingIcon } from "./yugi-processing-icon";
 import { YugiWellBeingIcon } from "./yugi-wellbeing-icon";
 import { AvatarHeadIcon } from "./avatar-head-icon";
+import { Fiit } from "./fiit-icon";
 
 //TODO: check with the team if we can refactor this to support "import { Icon1, Icon2} from "@atoms/icon";
 
@@ -53,6 +54,7 @@ export default {
   AppStoreIcon,
   StreakTicks,
   Calm,
+  Fiit,
   Headspace,
   CopyIcon,
   HeightSvgIcon,

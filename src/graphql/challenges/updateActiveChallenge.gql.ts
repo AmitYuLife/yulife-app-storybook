@@ -16,12 +16,14 @@ export const GQL_MUTATION_UPDATE_ACTIVE_CHALLENGE = gql`
           steps
           meditation
           distance
+          duration
         }
         milestoneLog {
           data {
             steps
             meditation
             distance
+            duration
           }
         }
         yuCoinAwarded
@@ -30,6 +32,8 @@ export const GQL_MUTATION_UPDATE_ACTIVE_CHALLENGE = gql`
       levelSlot {
         subtype
         unit
+        fitKitTypes
+        shouldEndOnLastGoalAchieved
         milestones {
           id
           XP
@@ -38,6 +42,7 @@ export const GQL_MUTATION_UPDATE_ACTIVE_CHALLENGE = gql`
             steps
             meditation
             distance
+            duration
           }
         }
       }

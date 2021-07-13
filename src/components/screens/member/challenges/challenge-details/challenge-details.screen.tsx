@@ -1,40 +1,46 @@
 import * as React from "react";
-import { Image, StyleSheet, View } from "react-native";
-import { Button, SecondaryButton, Text } from "@atoms";
-import { data, getCardBackgroundColor, getImageAndStyle } from "./challenge-details.helpers";
+import { StyleSheet, View } from "react-native";
+import { Button, RemoteImage, SecondaryButton, Text } from "@atoms";
+import { data, getCardBackgroundColor } from "./challenge-details.helpers";
 import styles from "./challenge-details.styles";
-import Milestones, { IMilestone, IMilestoneProps } from "./milestones";
+import Milestones, { IMilestoneProps } from "./milestones";
 import GenericHeadingAbsolute from "@atoms/generic-heading/generic-heading-absolute";
+import { Style } from "@styles";
 
 interface IOwnProps {
-  challengeType: string;
+  heading: string;
   currentWorld?: number;
-  duration: string;
   isLoading?: boolean;
   error?: string;
   onPressClose: () => void;
   onPressCta: () => void;
   onPressSetUp?: () => void;
+  imageUri: string;
 }
 
 type Props = IOwnProps & IMilestoneProps;
 
 function ChallengeDetailsScreen({
-  challengeType,
+  heading,
   currentWorld = 0,
-  duration,
   error = null,
   isLoading = false,
   milestones,
   onPressClose,
   onPressCta,
   onPressSetUp = null,
-  unit,
+  imageUri,
 }: Props) {
   return (
     <>
       <View style={styles.wrapper}>
-        <Image {...getImageAndStyle(challengeType, currentWorld)} />
+        <RemoteImage
+          uri={imageUri}
+          width={Style.adjust(235)}
+          height={Style.adjust(141)}
+          theme="light"
+          resizeMode="contain"
+        />
         <View
           style={StyleSheet.flatten([
             styles.contentWrapper,
@@ -44,9 +50,9 @@ function ChallengeDetailsScreen({
           ])}
         >
           <Text bold={true} style={styles.heading}>
-            {getChallengeDetailsTitle(challengeType, duration, milestones)}
+            {heading}
           </Text>
-          <Milestones milestones={milestones} unit={unit} />
+          <Milestones milestones={milestones} />
         </View>
         <Button
           disabled={isLoading}
@@ -66,19 +72,5 @@ function ChallengeDetailsScreen({
     </>
   );
 }
-
-const getChallengeDetailsTitle = (challengeType: string, duration: string, milestones: IMilestone[]): string => {
-  if (challengeType === "cycling") {
-    if (milestones.length > 1) {
-      return `${challengeType} / ${(milestones[0].target / 1000).toFixed(0)}-${(
-        milestones[milestones.length - 1].target / 1000
-      ).toFixed(0)} km`;
-    }
-
-    return `${challengeType} / ${(milestones[0].target / 1000).toFixed(0)} km`;
-  }
-
-  return `${challengeType} / ${duration}`;
-};
 
 export default React.memo(ChallengeDetailsScreen);

@@ -1,11 +1,11 @@
 import cancelActiveChallengeWithClient from "@graphql/challenges/cancelActiveChallenge.gql";
 import updateActiveChallengeWithClient from "@graphql/challenges/updateActiveChallenge.gql";
-import { ChallengePayload } from "@graphql/_core/schema/globalTypes";
+import { ChallengePayload, FitKitType } from "@graphql/_core/schema/globalTypes";
 import {
   CreateActiveChallenge_createActiveChallenge_challenge,
   CreateActiveChallenge_createActiveChallenge_levelSlot,
 } from "@graphql/_core/schema";
-import { queryMindfulSessions, queryCycling } from "@services/fitkit/fitkit.helpers";
+import { queryFitKitByTypes } from "@services/fitkit/fitkit.helpers";
 import Logger from "@services/logging/logger";
 import { DATE_FORMAT_WITH_TZ } from "@services/utils";
 import moment from "moment";
@@ -24,7 +24,12 @@ import {
 import { DETOX_ENABLED } from "@services/socket";
 import { Task } from "redux-saga";
 
-export function* startTracking(levelSlotId: string, startDateTime: string, endDateTime: string, isCycling = false) {
+export function* startTracking(
+  levelSlotId: string,
+  startDateTime: string,
+  endDateTime: string,
+  fitKitTypes: FitKitType[]
+) {
   const start = moment(startDateTime).format(DATE_FORMAT_WITH_TZ);
   const end = moment(endDateTime);
 
@@ -38,9 +43,10 @@ export function* startTracking(levelSlotId: string, startDateTime: string, endDa
     try {
       const features: ReturnType<typeof getUserFeatures> = yield select(getUserFeatures);
       const queryResult: ChallengePayload[] = yield call(
-        isCycling ? queryCycling : queryMindfulSessions,
+        queryFitKitByTypes,
         start,
         end.format(DATE_FORMAT_WITH_TZ),
+        fitKitTypes,
         features
       );
 
@@ -82,15 +88,18 @@ export function* startTrackingTime(endDateTime: string) {
 }
 
 type Args = Omit<CreateActiveChallenge_createActiveChallenge_challenge, "level" | "status"> &
-  Pick<CreateActiveChallenge_createActiveChallenge_levelSlot, "subtype">;
+  Pick<CreateActiveChallenge_createActiveChallenge_levelSlot, "shouldEndOnLastGoalAchieved" | "fitKitTypes">;
 
-export default function* startChallenge({ subtype, levelSlotId, startDateTime, endDateTime }: Args) {
-  const isMeditation = subtype === "meditation";
-  const isCycling = subtype === "cycling";
-  const challengeTask: Task =
-    isMeditation || isCycling
-      ? yield fork(startTracking, levelSlotId, startDateTime, endDateTime, isCycling)
-      : yield fork(startTrackingTime, endDateTime);
+export default function* startChallenge({
+  shouldEndOnLastGoalAchieved,
+  levelSlotId,
+  startDateTime,
+  endDateTime,
+  fitKitTypes,
+}: Args) {
+  const challengeTask: Task = shouldEndOnLastGoalAchieved
+    ? yield fork(startTracking, levelSlotId, startDateTime, endDateTime, fitKitTypes)
+    : yield fork(startTrackingTime, endDateTime);
 
   let inProgress = true;
 

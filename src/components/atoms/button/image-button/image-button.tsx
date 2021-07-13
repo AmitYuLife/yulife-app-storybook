@@ -13,7 +13,7 @@ import { getWidth, buttonStyles } from "../button.styles";
 import { Sizes } from "../button.types";
 import { Icon } from "@atoms";
 
-type IconType = "calm" | "headspace";
+type IconType = "calm" | "headspace" | "fiit";
 
 interface IProps {
   isLoading?: boolean;
@@ -88,6 +88,7 @@ export function ImageButton(props: IProps) {
 const logoHashMap = {
   calm: Icon.Calm,
   headspace: Icon.Headspace,
+  fiit: Icon.Fiit,
 } as Record<IconType, () => JSX.Element>;
 
 export default ImageButton;

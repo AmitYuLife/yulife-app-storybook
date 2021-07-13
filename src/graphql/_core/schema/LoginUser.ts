@@ -3,7 +3,7 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { LoginMethod, IntercomHashMethod } from "./globalTypes";
+import { LoginMethod, IntercomHashMethod, FitKitType } from "./globalTypes";
 
 // ====================================================
 // GraphQL mutation operation: LoginUser
@@ -88,6 +88,7 @@ export interface LoginUser_loginUser_user_activeChallenge_challenge_incomingData
   steps: number | null;
   meditation: number | null;
   distance: number | null;
+  duration: number | null;
 }
 
 export interface LoginUser_loginUser_user_activeChallenge_challenge {
@@ -107,6 +108,7 @@ export interface LoginUser_loginUser_user_activeChallenge_levelSlot_milestones_t
   steps: number | null;
   meditation: number | null;
   distance: number | null;
+  duration: number | null;
 }
 
 export interface LoginUser_loginUser_user_activeChallenge_levelSlot_milestones {
@@ -119,6 +121,8 @@ export interface LoginUser_loginUser_user_activeChallenge_levelSlot_milestones {
 export interface LoginUser_loginUser_user_activeChallenge_levelSlot {
   subtype: string | null;
   unit: string | null;
+  shouldEndOnLastGoalAchieved: boolean | null;
+  fitKitTypes: FitKitType[] | null;
   milestones: (LoginUser_loginUser_user_activeChallenge_levelSlot_milestones | null)[] | null;
 }
 

@@ -1,4 +1,4 @@
-import { GetCurrentQuestLevels_getCurrentQuestLevels } from "@graphql/_core/schema";
+import { GetQuestMapLevelList_getQuestMapLevelList } from "@graphql/_core/schema";
 import { Navigation } from "react-native-navigation";
 import { ROUTES, bottomTabs, MODALS } from "@navigation/constants";
 
@@ -8,7 +8,7 @@ const dismissChallengeUnavailableModal = () => Navigation.dismissModal(MODALS.ch
 
 const dismissLevelUnavailableModal = () => Navigation.dismissModal(MODALS.levelUnavailable);
 
-export const goToChallengesList = (componentId: string, level: GetCurrentQuestLevels_getCurrentQuestLevels) =>
+export const goToChallengesList = (componentId: string, level: number) =>
   Navigation.push(componentId, {
     component: {
       id: ROUTES.questsChallengesList,
@@ -22,7 +22,7 @@ export const goToChallengesList = (componentId: string, level: GetCurrentQuestLe
 
 export const showChestModal = (
   componentId: string,
-  level: GetCurrentQuestLevels_getCurrentQuestLevels,
+  level: GetQuestMapLevelList_getQuestMapLevelList,
   isNext: boolean,
   {
     ctaLabelIsNext,
@@ -46,7 +46,7 @@ export const showChestModal = (
         isLocked: true,
         onPressCta: () => {
           if (isNext) {
-            goToChallengesList(componentId, level);
+            goToChallengesList(componentId, level.level);
           }
 
           dismissChestModal();
@@ -80,7 +80,7 @@ export const showLevelUnavailableModal = (level: number) =>
     },
   });
 
-export const showLevelCompleteModal = (componentId: string, level: GetCurrentQuestLevels_getCurrentQuestLevels) =>
+export const showLevelCompleteModal = (componentId: string, level: number) =>
   Navigation.push(componentId, {
     component: {
       id: ROUTES.questsChallengesHistory,
@@ -113,7 +113,7 @@ export interface GetActionConditionArgs {
   };
   itemLevel: {
     level: number;
-    levelChestId?: string;
+    levelChest?: string;
   };
   levelAvailable: boolean;
 }
@@ -136,7 +136,7 @@ export function getLevelAction({
   const isUnityLevel = itemLevel.level % 50 === 0;
   const { isPrevious, isDone, isNext } = levelStatus;
   const { hasDone, isAvailable: isChallengeAvailable } = challengesStatus;
-  const isChestLevel = !!itemLevel.levelChestId;
+  const isChestLevel = !!itemLevel.levelChest;
 
   if (isDone) {
     if (isUnityLevel) {

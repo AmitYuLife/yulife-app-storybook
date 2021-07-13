@@ -1,24 +1,4 @@
-import assets from "../assets";
-import { getCardBackgroundColor, getImageAndStyle } from "../challenge-details.helpers";
-import styles from "../challenge-details.styles";
-
-describe("getImageAndStyle", () => {
-  it("should return with image & style for brisk walk ", () => {
-    const actual = getImageAndStyle("brisk walk", 0);
-    expect(actual).toEqual({
-      source: assets.squirrel,
-      style: styles.image,
-    });
-  });
-
-  it("should return with image & style for brisk walk ", () => {
-    const actual = getImageAndStyle("running", 0);
-    expect(actual).toEqual({
-      source: null,
-      style: styles.image,
-    });
-  });
-});
+import { getCardBackgroundColor } from "../challenge-details.helpers";
 
 describe("getCardBackgroundColor", () => {
   it("should return pink color for mountain world", () => {

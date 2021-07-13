@@ -52,6 +52,19 @@ export enum FeedbackFormQuestionType {
   NUMBER_SLIDER = "NUMBER_SLIDER",
 }
 
+export enum FitKitType {
+  Cycling = "Cycling",
+  Flexibility = "Flexibility",
+  HIIT = "HIIT",
+  MindfulSession = "MindfulSession",
+  Pilates = "Pilates",
+  Sleep = "Sleep",
+  StepCount = "StepCount",
+  Strength = "Strength",
+  Swimming = "Swimming",
+  Yoga = "Yoga",
+}
+
 export enum IntercomHashMethod {
   android = "android",
   ios = "ios",

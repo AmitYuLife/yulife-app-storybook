@@ -14,11 +14,10 @@ storiesOf("ChallengeDetailsScreen", module)
   .add("default", () => (
     <ChallengeDetailsScreen
       onPressCta={voidFunc}
-      challengeType=""
+      heading=""
       onPressSetUp={voidFunc}
-      duration="0"
-      milestones={[{ target: 1, reward: 2 }]}
+      milestones={[{ target: "1", rewardAmount: 2, rewardType: "yucoin" }]}
       onPressClose={voidFunc}
-      unit="meters"
+      imageUri={""}
     />
   ));

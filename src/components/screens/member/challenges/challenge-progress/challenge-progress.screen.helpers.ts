@@ -254,6 +254,7 @@ export function getWorldStyle(challengeType: ChallengeType, currentWorld = 0): I
   switch (challengeType) {
     case "brisk walk":
       return BRISK_WALK[currentWorld] || BRISK_WALK[0];
+    case "fiit":
     case "cycling":
       return CYCLING[currentWorld] || CYCLING[0];
     case "day walk":

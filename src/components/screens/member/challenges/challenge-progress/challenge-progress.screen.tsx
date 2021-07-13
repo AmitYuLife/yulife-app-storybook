@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { memo } from "react";
 import { Image, StyleSheet, View } from "react-native";
 import { IConnectedScreenProps } from "../../../../../typings";
 import { getWorldStyle } from "./challenge-progress.screen.helpers";
@@ -22,7 +22,7 @@ interface IProps extends IConnectedScreenProps {
   onDismissPress: () => void;
 }
 
-export default function ChallengeProgressScreen({
+function ChallengeProgressScreen({
   challengeType,
   currentWorld = 0,
   endDateTime,
@@ -39,11 +39,13 @@ export default function ChallengeProgressScreen({
     currentWorld
   );
 
+  const { hasExternalLinks, secondaryButtonCtaLabel } = getHasExternalLinks(challengeType);
+
   React.useEffect(() => {
-    if (challengeType === "meditation") {
+    if (hasExternalLinks) {
       setShowOverlay(true);
     }
-  }, [challengeType]);
+  }, [hasExternalLinks]);
 
   return (
     <View style={StyleSheet.flatten([styles.wrapper, { backgroundColor: backgroundColour }])}>
@@ -57,14 +59,14 @@ export default function ChallengeProgressScreen({
           <Exit onPress={onDismissPress} {...exitChallenge} />
         </View>
       </View>
-      {challengeType !== "meditation" ? null : (
+      {!hasExternalLinks ? null : (
         <View style={styles.meditationButtonWrapper}>
           <SecondaryButton
             backgroundColor={exitChallenge.primaryColour}
             borderColor={exitChallenge.primaryColour}
             textColor={exitChallenge.secondaryColour}
             onPress={() => setShowOverlay(true)}
-            label="Open a meditation app"
+            label={secondaryButtonCtaLabel}
             size="Medium"
           />
         </View>
@@ -80,3 +82,24 @@ export default function ChallengeProgressScreen({
     </View>
   );
 }
+
+export default memo(ChallengeProgressScreen);
+
+const getHasExternalLinks = (challengeType: ChallengeType) => {
+  switch (challengeType) {
+    case "fiit":
+      return {
+        hasExternalLinks: true,
+        secondaryButtonCtaLabel: "Open Fiit",
+      };
+    case "meditation":
+      return {
+        hasExternalLinks: true,
+        secondaryButtonCtaLabel: "Open a meditation app",
+      };
+    default:
+      return {
+        hasExternalLinks: false,
+      };
+  }
+};

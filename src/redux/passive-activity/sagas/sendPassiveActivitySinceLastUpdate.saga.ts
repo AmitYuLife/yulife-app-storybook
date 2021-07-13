@@ -2,13 +2,13 @@
 import addData from "@graphql/challenges/addData.gql";
 import { AddHistoricalSteps_addHistoricalSteps } from "@graphql/_core/schema";
 import addHistoricalSteps from "@graphql/challenges/addHistoricalSteps.gql";
-import { ChallengePayload, PassiveChallengeType } from "@graphql/_core/schema/globalTypes";
+import { ChallengePayload, FitKitType, PassiveChallengeType } from "@graphql/_core/schema/globalTypes";
 import { MODALS } from "@navigation/constants";
 import { getLastUpdatedBeforeToday as getStepsLastUpdateBeforeToday } from "@redux/daily-steps/daily-steps.selectors";
 import moment from "moment";
 import { Navigation } from "react-native-navigation";
 import { call, CallEffect, put, PutEffect, select, SelectEffect, all, AllEffect, delay } from "redux-saga/effects";
-import { queryMindfulSessions, querySteps } from "@services/fitkit/fitkit.helpers";
+import { queryFitKitByTypes, querySteps } from "@services/fitkit/fitkit.helpers";
 import Logger from "@services/logging/logger";
 import { getRouteState } from "../../app/app.selectors";
 import { meditationSinceLastUpdateSuccess } from "../../daily-meditation/daily-meditation.actions";
@@ -44,7 +44,7 @@ export function* sendMeditation(
     const startTime = moment(meditationLastUpdatedBeforeToday).startOf("day").format();
     const endTime = moment().subtract(1, "day").endOf("day").format();
 
-    const meditationResults = yield call(queryMindfulSessions, startTime, endTime, features);
+    const meditationResults = yield call(queryFitKitByTypes, startTime, endTime, [FitKitType.MindfulSession], features);
 
     if (meditationResults.length > 0) {
       const aggregateMeditationChallengeArray: ChallengePayload[] = sampleMeditationDataToAggregatedData(

@@ -14,24 +14,10 @@ const level = {
   onPress: jest.fn(),
   id: "123",
   level: 50,
-  levelChestId: "123",
+  levelChest: "123",
   name: "name",
   rating: 1,
-  __typename: "Level",
-  slots: [
-    {
-      availableAtLevel: 7,
-      id: "YU_LEVEL_0151_0",
-      milestones: [],
-      passive: null,
-      subtype: "brisk walk",
-      timeLimit: 600,
-      type: "move",
-      unit: "steps",
-      challengesDetails: [],
-      __typename: "LevelSlot",
-    },
-  ],
+  __typename: "QuestMapLevelListItem",
 } as IChallenge;
 
 describe("getBackgroundColor", () => {

@@ -1,25 +1,22 @@
+import { FitKitType } from "@graphql/_core/schema/globalTypes";
 import RNFitKit from "@services/fitkit/fitkit.service";
 import Logger from "@services/logging/logger";
 import { DATE_FORMAT_WITH_TZ, getStartAndEndDateTimesWithTimezone } from "@services/utils";
 import moment from "moment";
-import { queryCycling, queryMindfulSessions, querySteps } from "../../services/fitkit/fitkit.helpers";
+import { querySteps, queryFitKitByTypes } from "../../services/fitkit/fitkit.helpers";
 import { IActiveLevel } from "./levels.selectors";
 
 const MAX_AVAILABLE = 4;
 
 export async function getEndResult(
-  { startDateTime, endDateTime, subtype, score }: IActiveLevel,
+  { startDateTime, endDateTime, score, fitKitTypes }: IActiveLevel,
   features: Record<string, boolean> = {}
 ) {
-  if (subtype === "meditation") {
+  if (!fitKitTypes.includes(FitKitType.StepCount)) {
     try {
       const { start, end } = getStartAndEndDateTimesWithTimezone(startDateTime, endDateTime);
 
-      if (features.loggingEnabled) {
-        Logger.logMixpanelEvent("debug_get_end_result_meditation", { startDateTime, endDateTime, start, end });
-      }
-
-      const queryResult = await queryMindfulSessions(start, end, features);
+      const queryResult = await queryFitKitByTypes(start, end, fitKitTypes, features);
 
       // the way the 3rd party apps like calm/headspace write to the history is not always consistent
       // if someone's got their timezone changed
@@ -27,19 +24,20 @@ export async function getEndResult(
       // the agreed solution for the beginning was to query the timeframe we've got at first
       // then if there are no results, make another query for the whole day
       // as of july 2019, it's changed to 2 hours before and 2 hours later
+      // as of july 2021, it's changed to 1 hour before and 1 after
       if (queryResult.length > 0) {
         return {
-          value: Math.floor(queryResult.reduce((acc: number, item: any) => acc + item.value, 0)),
+          value: Math.floor(queryResult.reduce((acc, item) => acc + item.value, 0)),
         };
       }
 
-      const startOfDay = moment(startDateTime).subtract(2, "hours").format(DATE_FORMAT_WITH_TZ);
-      const endLater = moment(endDateTime).add(2, "hours").format(DATE_FORMAT_WITH_TZ);
-      const queryResultAllDay = await queryMindfulSessions(startOfDay, endLater, features);
+      const startEarly = moment(startDateTime).subtract(1, "hours").format(DATE_FORMAT_WITH_TZ);
+      const endLater = moment(endDateTime).add(1, "hours").format(DATE_FORMAT_WITH_TZ);
+      const queryResultAllDay = await queryFitKitByTypes(startEarly, endLater, fitKitTypes, features);
 
       if (queryResultAllDay.length > 0) {
         return {
-          value: Math.floor(queryResultAllDay.reduce((acc: number, item: any) => acc + item.value, 0)),
+          value: Math.floor(queryResultAllDay.reduce((acc, item) => acc + item.value, 0)),
         };
       }
 
@@ -49,43 +47,6 @@ export async function getEndResult(
     } catch (e) {
       return {
         value: 0,
-      };
-    }
-  }
-
-  if (subtype === "cycling") {
-    try {
-      const { start, end } = getStartAndEndDateTimesWithTimezone(startDateTime, endDateTime);
-
-      if (features.loggingEnabled) {
-        Logger.logMixpanelEvent("debug_query_cycling_from_date", { startDateTime, endDateTime, start, end });
-      }
-
-      const results = await queryCycling(start, end, features);
-
-      if (results.length > 0) {
-        return {
-          value: results && results[0].value,
-        };
-      }
-
-      const startEarly = moment(startDateTime).subtract(1, "hour").format(DATE_FORMAT_WITH_TZ);
-      const endLater = moment(endDateTime).add(1, "hour").format(DATE_FORMAT_WITH_TZ);
-
-      const cyclingResultInflatedPeriod = await queryCycling(startEarly, endLater, features);
-
-      if (cyclingResultInflatedPeriod.length > 0) {
-        return {
-          value: cyclingResultInflatedPeriod && cyclingResultInflatedPeriod[0].value,
-        };
-      }
-
-      return {
-        value: 0,
-      };
-    } catch (e) {
-      return {
-        value: score,
       };
     }
   }
