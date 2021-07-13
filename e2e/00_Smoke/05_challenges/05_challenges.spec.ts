@@ -16,7 +16,7 @@ Feature("As a user I can take a challenge", async () => {
                 Then("I should see the short stroll challenge", then.idVisible(CHALLENGE_TILE("short stroll")))
                 When("I tap this challenge", when.tapID(CHALLENGE_TILE("short stroll")), async () => {
                     Then("I should see a screen with a take challenge option", then.textVisible("short stroll / 0 minute"))
-                    When("I tap 'take challenge'", when.tapText("take challenge"), async () => {
+                    When("I tap 'take challenge'", when.tapText("Take challenge"), async () => {
                         Then("I should see a screen asking me to turn on notifications", then.idVisible(GENERIC_SCREEN_HEADING("don't miss out"), 5000))
                         When("I dismiss this screen", when.tapID(GENERIC_SCREEN_CTA("maybe later")), async () => {
                             Then("I should be on the challenge screen", then.idVisible(CHALLENGE_PROGRESS_BAR))
@@ -46,7 +46,7 @@ Feature("As a user I can take a challenge", async () => {
                 Then("I should see the shor t stroll challenge", then.idVisible(CHALLENGE_TILE("short stroll")))
                 When("I tap this challenge", when.tapID(CHALLENGE_TILE("short stroll")), async () => {
                     Then("I should see a screen with a take challenge option", then.textVisible("short stroll / 0 minute"))
-                    When("I tap 'take challenge'", when.tapText("take challenge"), async () => {
+                    When("I tap 'take challenge'", when.tapText("Take challenge"), async () => {
                         Then("I should see a screen asking me to turn on notifications", then.idVisible(GENERIC_SCREEN_HEADING("don't miss out"), 5000))
                         When("I dismiss this screen", when.tapID(GENERIC_SCREEN_CTA("maybe later")), async () => {
                             Then("I should be on the challenge screen", then.idVisible(CHALLENGE_PROGRESS_BAR))

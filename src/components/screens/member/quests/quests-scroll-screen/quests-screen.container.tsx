@@ -1,5 +1,4 @@
-import React, { useCallback, useState } from "react";
-import { GetCurrentQuestLevels } from "@graphql/_core/schema";
+import React, { memo, useCallback, useState } from "react";
 import QuestsScreen from "./quests-screen";
 import { submitUnityAction } from "@redux/levels/levels.actions";
 import moment from "moment";
@@ -15,8 +14,9 @@ import {
   getLevelAction,
 } from "./quests-screen.container.helpers";
 import { useQuery } from "@apollo/react-hooks";
-import { GQL_QUERY_GET_CURRENT_QUEST_LEVELS } from "@graphql/challenges/getCurrentQuestLevels.gql";
+import { GQL_QUERY_GET_QUEST_MAP_LEVEL_LIST } from "@graphql/challenges/getQuestMapLevelList";
 import { getShowChestCopy } from "@redux/copy/copy.selectors";
+import { GetQuestMapLevelList } from "@graphql/_core/schema/GetQuestMapLevelList";
 
 function isAvailable(nextAvailableAt: string): boolean {
   const nextAvailable = nextAvailableAt ? moment().diff(moment(nextAvailableAt), "seconds") : 0;
@@ -94,15 +94,15 @@ function QuestsScreenContainer(props: Props) {
     setUnity(null);
   }, []);
 
-  const { loading, data } = useQuery<GetCurrentQuestLevels>(GQL_QUERY_GET_CURRENT_QUEST_LEVELS, {
+  const { loading, data } = useQuery<GetQuestMapLevelList>(GQL_QUERY_GET_QUEST_MAP_LEVEL_LIST, {
     fetchPolicy: "network-only",
   });
 
-  const currentWorldGQL = data?.getCurrentQuestLevels ? data?.getCurrentQuestLevels : [];
+  const currentWorldGQL = data?.getQuestMapLevelList ? data?.getQuestMapLevelList : [];
 
   const formattedData = currentWorldGQL.map((itemLevel) => {
     const levelStatus = getLevelStatus(challengesStatus, currentLevel, itemLevel.level, nextLevelAvailableAt);
-    const isChestLevel = !!itemLevel.levelChestId;
+    const isChestLevel = !!itemLevel.levelChest;
 
     return {
       ...itemLevel,
@@ -122,10 +122,10 @@ function QuestsScreenContainer(props: Props) {
             setUnity(itemLevel.level);
             break;
           case "GoToChallengesList":
-            goToChallengesList(componentId, itemLevel);
+            goToChallengesList(componentId, itemLevel.level);
             break;
           case "ShowLevelCompleteModal":
-            showLevelCompleteModal(componentId, itemLevel);
+            showLevelCompleteModal(componentId, itemLevel.level);
             break;
           case "DispatchSubmitUnityAction":
             setUnity(itemLevel.level);
@@ -160,4 +160,4 @@ function QuestsScreenContainer(props: Props) {
   );
 }
 
-export default QuestsScreenContainer;
+export default memo(QuestsScreenContainer);

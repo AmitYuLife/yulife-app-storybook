@@ -17,7 +17,6 @@ const styles = StyleSheet.create({
     color: "rgb(51,51,51)",
     fontSize: Style.adjust(17),
   } as TextStyle,
-  contentTitleWrapper: {} as ViewStyle,
   contentWrapper: {
     flex: 1,
     paddingLeft: Style.adjust(15),
@@ -48,8 +47,7 @@ const styles = StyleSheet.create({
     width: Style.adjust(25),
   } as ImageStyle,
   imageWrapper: {
-    height: Style.adjust(155),
-    overflow: "hidden",
+    height: Style.adjust(165),
   } as ViewStyle,
   imageWrapperLocked: {
     alignItems: "center",
@@ -63,9 +61,6 @@ const styles = StyleSheet.create({
     height: "100%",
     justifyContent: "center",
     width: Style.adjust(55),
-  } as ViewStyle,
-  isLockedBottomWrapper: {
-    backgroundColor: "rgba(255,255,255,0.5)",
   } as ViewStyle,
   lockedImage: {
     marginBottom: Style.adjust(9),
@@ -84,10 +79,6 @@ const styles = StyleSheet.create({
     position: "absolute",
     right: 0,
     top: 0,
-  } as ViewStyle,
-  sectionBottomInsideWrapper: {
-    flexDirection: "row",
-    height: "100%",
   } as ViewStyle,
   sectionBottomWrapper: {
     backgroundColor: "rgba(255,255,255,0.9)",
@@ -109,6 +100,10 @@ const styles = StyleSheet.create({
     }),
     borderRadius: RADIUS,
   } as ViewStyle,
+  remoteImage: {
+    position: "absolute",
+    bottom: 0,
+  },
 });
 
 export default styles;

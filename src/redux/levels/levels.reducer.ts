@@ -36,10 +36,12 @@ export const getInitialState = (): ILevelsStore => ({
     coins: 0,
     endDateTime: "",
     initialPedometerResult: 0,
+    shouldEndOnLastGoalAchieved: false,
     isCompleted: false, // for meditation, when goal reached
     isLoading: false,
     level: null,
     levelSlotId: "",
+    fitKitTypes: [],
     milestones: [],
     milestonesLog: [],
     rating: 0,
@@ -112,6 +114,8 @@ const getUserSuccess = (state: ILevelsStore, data: GetCurrentUser): ILevelsStore
   active: {
     ...state.active,
     isLoading: false,
+    shouldEndOnLastGoalAchieved: data?.getCurrentUser?.activeChallenge?.levelSlot?.shouldEndOnLastGoalAchieved,
+    fitKitTypes: data?.getCurrentUser?.activeChallenge?.levelSlot?.fitKitTypes || [],
     endDateTime: data?.getCurrentUser?.activeChallenge?.challenge?.endDateTime || "",
     levelSlotId: data?.getCurrentUser?.activeChallenge?.challenge?.levelSlotId || "",
     milestones: data?.getCurrentUser?.activeChallenge?.levelSlot?.milestones || [],
@@ -152,6 +156,8 @@ const challengeStartSuccess = (
       type: chest?.type || "yucoin",
       value: chest?.value || null,
     },
+    shouldEndOnLastGoalAchieved: levelSlot.shouldEndOnLastGoalAchieved,
+    fitKitTypes: levelSlot.fitKitTypes,
     endDateTime: addSecondsToChallengeEndDateTime(challenge.endDateTime),
     level: challenge.level,
     levelSlotId: challenge.levelSlotId,
@@ -175,12 +181,7 @@ const challengeUpdateSuccess = (
     isCompleted: (res?.challenge?.status || "") === "completed",
     milestonesLog: res?.challenge?.milestoneLog || [],
     rating: res?.challenge?.rating || 0,
-    score:
-      (state.active.subtype === "meditation"
-        ? res?.challenge?.incomingData?.meditation
-        : state.active.subtype === "cycling"
-        ? res?.challenge?.incomingData?.distance
-        : res?.challenge?.incomingData?.steps) || 0,
+    score: getScore(res?.challenge?.incomingData) || 0,
     isLoading: false,
   },
 });
@@ -194,12 +195,7 @@ const challengeEndSuccess = (state: ILevelsStore, res: UpdateActiveChallenge): I
     isLoading: false,
     milestonesLog: res?.updateActiveChallenge?.challenge?.milestoneLog || state.active.milestonesLog,
     rating: res?.updateActiveChallenge?.challenge?.rating || state.active.rating,
-    score:
-      (state.active.subtype === "meditation"
-        ? res?.updateActiveChallenge?.challenge?.incomingData?.meditation
-        : state.active.subtype === "cycling"
-        ? res?.updateActiveChallenge?.challenge?.incomingData?.distance
-        : res?.updateActiveChallenge?.challenge?.incomingData?.steps) || state.active.score,
+    score: getScore(res?.updateActiveChallenge?.challenge?.incomingData) || state.active.score,
     status:
       (res?.updateActiveChallenge?.challenge?.milestoneLog || state.active.milestonesLog).length > 0
         ? "success"
@@ -254,3 +250,11 @@ const challengeLoading = (state: ILevelsStore, isLoading: boolean): ILevelsStore
     isLoading,
   },
 });
+
+const getScore = (data: UpdateActiveChallenge["updateActiveChallenge"]["challenge"]["incomingData"]) => {
+  if (!data) {
+    return 0;
+  }
+
+  return Math.max(...Object.values(data).map((i) => (typeof i === "number" ? i : 0)));
+};

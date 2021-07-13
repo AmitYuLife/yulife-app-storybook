@@ -1,72 +1,39 @@
-import * as React from "react";
-import { SFC } from "react";
+import React, { memo } from "react";
 import { Image, View } from "react-native";
-import { Text } from "../../../../atoms";
+import { Text } from "@atoms";
 import styles from "./challenge-details.styles";
-import { Unit } from "../models";
 
 export interface IMilestone {
-  target: number;
-  reward: number;
+  target: string;
+  rewardAmount: number;
+  rewardType: string;
 }
 
 export interface IMilestoneProps {
-  milestones: IMilestone[];
-  unit: Unit;
+  milestones?: IMilestone[];
 }
 
-const formatTarget = (target: number, unit: Unit) => {
-  switch (unit) {
-    case "minutes":
-      return Math.floor(target / 60);
-    case "meters":
-      return target / 1000;
-
-    default:
-      return target;
-  }
-};
-
-const SINGULAR_UNITS = {
-  minutes: "minute",
-  steps: "step",
-  meters: "km",
-};
-
-function getUnitCopy(unit: Unit, amount: number) {
-  if (amount === 1) {
-    return SINGULAR_UNITS[unit];
-  }
-
-  if (unit === "meters") {
-    return "km";
-  }
-
-  return unit;
-}
-
-const Milestones: SFC<IMilestoneProps> = ({ milestones, unit }) => (
+const Milestones: React.FC<IMilestoneProps> = ({ milestones }) => (
   <>
-    {milestones.map(({ target, reward }, index) => {
-      const formattedTarget = formatTarget(target, unit);
-      const unitCopy = getUnitCopy(unit, formattedTarget);
-
-      return (
-        <View key={index} style={styles.row}>
-          <View style={styles.targetWrapper}>
-            <Text>{`${formattedTarget} ${unitCopy}`}</Text>
-          </View>
-          {Array.from({ length: milestones.length === 1 ? 3 : index + 1 }).map((_, i) => (
-            <Image key={i} source={require("../../../../../../assets/icons/star.png")} style={styles.starImage} />
-          ))}
-          <View style={styles.rewardWrapper}>
-            <Text>{`${reward} x`}</Text>
-          </View>
-          <Image style={styles.yucoinImage} source={require("../../../../../../assets/icons/yucoin.png")} />
+    {milestones.map(({ target, rewardAmount, rewardType }, index) => (
+      <View key={index} style={styles.row}>
+        <View style={styles.targetWrapper}>
+          <Text>{target}</Text>
         </View>
-      );
-    })}
+        {Array.from({ length: milestones.length === 1 ? 3 : index + 1 }).map((_, i) => (
+          <Image key={i} source={require("@assets/icons/star.png")} style={styles.starImage} />
+        ))}
+        <View style={styles.rewardWrapper}>
+          <Text>{`${rewardAmount} x`}</Text>
+        </View>
+        {rewardType === "yucoin" ? (
+          <Image style={styles.yucoinImage} source={require("@assets/icons/yucoin.png")} />
+        ) : (
+          <Text>{rewardType}</Text>
+        )}
+      </View>
+    ))}
   </>
 );
 
-export default Milestones;
+export default memo(Milestones);

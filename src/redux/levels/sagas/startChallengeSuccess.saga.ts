@@ -8,7 +8,7 @@ export default function* startChallengeSuccessSaga({ payload }: ReturnType<typeo
   const {
     createActiveChallenge: {
       challenge: { startDateTime, endDateTime: remoteEndDateTime },
-      levelSlot: { subtype },
+      levelSlot: { subtype, fitKitTypes, shouldEndOnLastGoalAchieved },
     },
     levelSlotId,
   } = payload;
@@ -21,9 +21,10 @@ export default function* startChallengeSuccessSaga({ payload }: ReturnType<typeo
 
     yield call(startChallenge, {
       endDateTime,
-      subtype,
       levelSlotId,
       startDateTime,
+      fitKitTypes,
+      shouldEndOnLastGoalAchieved,
     });
   }
 }

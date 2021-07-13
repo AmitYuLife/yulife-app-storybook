@@ -107,6 +107,8 @@ export function getUnitTarget(
       return "meditation";
     case "cycling":
       return "distance";
+    case "fiit":
+      return "duration";
     default:
       return "steps";
   }

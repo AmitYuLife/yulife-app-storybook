@@ -87,11 +87,14 @@ export const GQL_FRAGMENT_USER = gql`
           steps
           meditation
           distance
+          duration
         }
       }
       levelSlot {
         subtype
         unit
+        shouldEndOnLastGoalAchieved
+        fitKitTypes
         milestones {
           id
           XP
@@ -100,6 +103,7 @@ export const GQL_FRAGMENT_USER = gql`
             steps
             meditation
             distance
+            duration
           }
         }
       }

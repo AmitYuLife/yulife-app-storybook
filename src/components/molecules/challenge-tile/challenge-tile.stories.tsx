@@ -34,9 +34,9 @@ storiesOf("ChallengeTile", module)
         contentContainerStyle={{ paddingTop: 50, paddingBottom: 50 }}
       >
         {worlds.map((world, index) =>
-          challengeTypes.map((challengeType) => (
-            <View key={`${world}-${challengeType}`} style={{ justifyContent: "center", alignItems: "center" }}>
-              <ChallengeTile {...defaultProps} key={index} currentWorld={world} challengeType={challengeType} />
+          challengeTypes.map((heading) => (
+            <View key={`${world}-${heading}`} style={{ justifyContent: "center", alignItems: "center" }}>
+              <ChallengeTile {...defaultProps} imageUri={""} key={index} heading={heading} />
             </View>
           ))
         )}
@@ -56,9 +56,10 @@ storiesOf("ChallengeTile", module)
               <ChallengeTile
                 {...defaultProps}
                 key={index}
-                currentWorld={world}
-                challengeType={challengeType}
+                // currentWorld={world}
+                heading={challengeType}
                 isLocked={true}
+                imageUri={""}
               />
             </View>
           ))

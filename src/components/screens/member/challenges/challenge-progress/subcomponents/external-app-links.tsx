@@ -1,7 +1,8 @@
-import React from "react";
+import React, { memo } from "react";
 import { LinkButton, TextTemplate } from "@atoms";
 import { CalmButton } from "@atoms/button/image-button/calm-button";
 import { HeadspaceButton } from "@atoms/button/image-button/headspace-button";
+import { FiitButton } from "@atoms/button/image-button/fiit-button";
 import { Style } from "@styles";
 import { Platform, StyleSheet, View, ViewStyle } from "react-native";
 
@@ -9,7 +10,7 @@ export interface ExternalLinksProps {
   hideOverlay: () => void;
 }
 
-export const MeditationExternalLinks = ({ hideOverlay }: ExternalLinksProps) => (
+export const MeditationExternalLinks = memo(({ hideOverlay }: ExternalLinksProps) => (
   <>
     <TextTemplate type="h2" textAlign="center">
       Choose an app to start
@@ -22,9 +23,9 @@ export const MeditationExternalLinks = ({ hideOverlay }: ExternalLinksProps) => 
     <HeadspaceButton style={styles.spaceSmall} onPressCallback={hideOverlay} />
     <LinkButton wrapperStyle={styles.spaceXsmall} label="I'm using a different app" onPress={hideOverlay} />
   </>
-);
+));
 
-export const FiitExternalLinks = ({ hideOverlay }: ExternalLinksProps) => (
+export const FiitExternalLinks = memo(({ hideOverlay }: ExternalLinksProps) => (
   <>
     <TextTemplate type="h2" textAlign="center">
       Get started with Fiit
@@ -33,9 +34,9 @@ export const FiitExternalLinks = ({ hideOverlay }: ExternalLinksProps) => (
     <TextTemplate type="b2" textAlign="center">
       Complete any Fiit class to get rewarded
     </TextTemplate>
-    <CalmButton style={styles.spaceMedium} onPressCallback={hideOverlay} />
+    <FiitButton style={styles.spaceMedium} onPressCallback={hideOverlay} />
   </>
-);
+));
 
 const styles = StyleSheet.create({
   spaceXsmall: {

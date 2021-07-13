@@ -3,7 +3,7 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { ChallengePayload } from "./globalTypes";
+import { ChallengePayload, FitKitType } from "./globalTypes";
 
 // ====================================================
 // GraphQL mutation operation: UpdateActiveChallenge
@@ -13,12 +13,14 @@ export interface UpdateActiveChallenge_updateActiveChallenge_challenge_incomingD
   steps: number | null;
   meditation: number | null;
   distance: number | null;
+  duration: number | null;
 }
 
 export interface UpdateActiveChallenge_updateActiveChallenge_challenge_milestoneLog_data {
   steps: number | null;
   meditation: number | null;
   distance: number | null;
+  duration: number | null;
 }
 
 export interface UpdateActiveChallenge_updateActiveChallenge_challenge_milestoneLog {
@@ -40,6 +42,7 @@ export interface UpdateActiveChallenge_updateActiveChallenge_levelSlot_milestone
   steps: number | null;
   meditation: number | null;
   distance: number | null;
+  duration: number | null;
 }
 
 export interface UpdateActiveChallenge_updateActiveChallenge_levelSlot_milestones {
@@ -52,6 +55,8 @@ export interface UpdateActiveChallenge_updateActiveChallenge_levelSlot_milestone
 export interface UpdateActiveChallenge_updateActiveChallenge_levelSlot {
   subtype: string | null;
   unit: string | null;
+  fitKitTypes: FitKitType[] | null;
+  shouldEndOnLastGoalAchieved: boolean | null;
   milestones: (UpdateActiveChallenge_updateActiveChallenge_levelSlot_milestones | null)[] | null;
 }
 

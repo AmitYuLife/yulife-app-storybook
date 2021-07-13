@@ -1,3 +1,4 @@
+import { FitKitType } from "@graphql/_core/schema/globalTypes";
 import { createSelector } from "reselect";
 import { CreateActiveChallenge_createActiveChallenge_levelSlot_milestones } from "../../graphql/_core/schema";
 import { IReduxState } from "../_core/reducers";
@@ -15,6 +16,8 @@ export interface IActiveLevel {
   isLoading: boolean;
   level: number;
   levelSlotId: string;
+  fitKitTypes: FitKitType[];
+  shouldEndOnLastGoalAchieved: boolean;
   milestones: CreateActiveChallenge_createActiveChallenge_levelSlot_milestones[];
   milestonesLog: any;
   rating: number;

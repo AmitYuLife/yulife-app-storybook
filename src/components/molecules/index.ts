@@ -1,6 +1,5 @@
 export { default as ChallengesList, IChallengesListProps } from "./challenges-list/challenges-list";
 export { default as ChallengeTile, IChallengeTileProps } from "./challenge-tile/challenge-tile";
-export { Images, IMAGES } from "./challenge-tile/challenge-tile.types";
 export { default as Counter } from "./counter/counter";
 export { default as Instruction } from "./instruction/instruction";
 export { default as LinkGroup } from "./link-group/link-group";
@@ -38,3 +37,4 @@ export { default as PackageCard } from "./package-card/package-card";
 export { default as PackageAvatarChooseStyle } from "./package-avatar-choose-style/package-avatar-choose-style";
 export { default as UserAvatarCoinCard } from "./user-avatar-coin-card/user-avatar-coin-card";
 export { default as UserAvatarCoinCardSkeleton } from "./user-avatar-coin-card/user-avatar-coin-card-skeleton";
+export { default as ChallengesLoading } from "./challenges-loading/challenges-loading";

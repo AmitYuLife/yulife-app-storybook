@@ -1,10 +1,10 @@
+import React, { memo, PureComponent } from "react";
 import { QUESTS_SCREEN } from "@ids";
 import { getCurrentEpisode, getCurrentWorld, getNormalizedLevel } from "@services/utils";
-import * as React from "react";
 import { FlatList, SafeAreaView, View, ViewabilityConfigCallbackPair } from "react-native";
 import { isIphoneX } from "react-native-iphone-x-helper";
 import { Navigation } from "react-native-navigation";
-import { GetCurrentQuestLevels_getCurrentQuestLevels } from "../../../../../graphql/_core/schema";
+import { GetQuestMapLevelList_getQuestMapLevelList } from "../../../../../graphql/_core/schema";
 import { IConnectedScreenProps } from "../../../../../typings";
 import { IMapSlice, loadingSlices, mapSlices } from "./assets";
 import offsets from "./assets/offsets";
@@ -16,7 +16,7 @@ import QuestsLoadingOverlay from "./subcomponents/quests.loading";
 import { TopBarTypes } from "@components/organisms/top-bar/top-bar.helpers";
 import { TopBar } from "@components/organisms";
 
-export interface IChallenge extends GetCurrentQuestLevels_getCurrentQuestLevels {
+export interface IChallenge extends GetQuestMapLevelList_getQuestMapLevelList {
   isActive?: boolean;
   isDone?: boolean;
   isNext?: boolean;
@@ -43,7 +43,7 @@ interface IState {
   };
 }
 
-class QuestsScreen extends React.PureComponent<IProps, IState> {
+class QuestsScreen extends PureComponent<IProps, IState> {
   public state: IState = {
     UI: getInitialState(this.props.currentLevel),
   };
@@ -197,7 +197,7 @@ class QuestsScreen extends React.PureComponent<IProps, IState> {
   };
 }
 
-export default QuestsScreen;
+export default memo(QuestsScreen);
 
 function getInitialState(currentLevel: number) {
   const topBarTypes: { [key: number]: TopBarTypes } = {

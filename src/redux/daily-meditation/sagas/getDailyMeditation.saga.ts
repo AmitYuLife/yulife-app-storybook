@@ -3,8 +3,8 @@ import { Unpacked } from "@services/utils";
 import moment from "moment";
 import { REHYDRATE } from "redux-persist";
 import { call, put, race, select, spawn, take, delay } from "redux-saga/effects";
-import { PassiveChallengeType } from "../../../graphql/_core/schema/globalTypes";
-import { queryMindfulSessions } from "../../../services/fitkit/fitkit.helpers";
+import { FitKitType, PassiveChallengeType } from "../../../graphql/_core/schema/globalTypes";
+import { queryFitKitByTypes } from "../../../services/fitkit/fitkit.helpers";
 import Logger from "../../../services/logging/logger";
 import { UPDATE_APP_STATE } from "../../app/app.actions";
 import { getUserFeatures } from "../../user/user.selectors";
@@ -26,10 +26,11 @@ export default function* getDailyMeditation() {
 
           const endTime = moment().format();
 
-          const results: Unpacked<typeof queryMindfulSessions> = yield call(
-            queryMindfulSessions,
+          const results: Unpacked<typeof queryFitKitByTypes> = yield call(
+            queryFitKitByTypes,
             startTime,
             endTime,
+            [FitKitType.MindfulSession],
             userFeatures
           );
 

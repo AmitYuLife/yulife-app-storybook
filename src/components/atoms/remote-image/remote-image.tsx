@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { memo, useState } from "react";
 import { StyleSheet, View, ViewStyle, ActivityIndicator, StyleProp } from "react-native";
 import FastImage, { ImageStyle } from "react-native-fast-image";
 import { Colours } from "@styles";
@@ -6,14 +6,16 @@ import { Colours } from "@styles";
 interface Props {
   width: number;
   height: number;
-  style?: ViewStyle;
+  style?: StyleProp<ViewStyle>;
   imageStyle?: StyleProp<ImageStyle>;
   uri: string;
   theme: "light" | "dark";
+  testID?: string;
+  resizeMode?: "contain" | "cover" | "stretch" | "center";
 }
 
-export const RemoteImage = (props: Props) => {
-  const { width, height, style, imageStyle, theme = "light", uri } = props;
+export const RemoteImage = memo((props: Props) => {
+  const { width, height, style, imageStyle, theme = "light", uri, testID, resizeMode } = props;
   const [isLoading, setIsLoading] = useState(true);
 
   const handleLoadState = (value: boolean) => () => {
@@ -21,17 +23,18 @@ export const RemoteImage = (props: Props) => {
   };
 
   return (
-    <View style={[styles.wrapper, { height, width }, style]}>
+    <View style={[styles.wrapper, { height, width }, style]} testID={testID}>
       <FastImage
         onLoadStart={handleLoadState(true)}
         onLoad={handleLoadState(false)}
         style={[{ height, width }, imageStyle]}
         source={{ uri }}
+        resizeMode={resizeMode}
       />
       {!isLoading ? null : <ActivityIndicator color={getColor(theme)} style={styles.loader} />}
     </View>
   );
-};
+});
 
 const styles = StyleSheet.create({
   wrapper: {

@@ -1,86 +1,63 @@
-import { GQL_MUTATION_CREATE_ACTIVE_CHALLENGE, CreateActiveChallengeMutationTuple } from "@graphql/challenges";
-import React, { FC, useState, useCallback } from "react";
-import Config from "react-native-config";
+import React, { FC, useState, useCallback, memo } from "react";
+import {
+  GQL_MUTATION_CREATE_ACTIVE_CHALLENGE,
+  CreateActiveChallengeMutationTuple,
+  GQL_QUERY_GET_QUEST_MAP_LEVEL,
+} from "@graphql/challenges";
 import { Navigation } from "react-native-navigation";
-import { useDispatch, useSelector } from "react-redux";
-import { GetCurrentQuestLevels_getCurrentQuestLevels } from "../../../../../graphql/_core/schema";
-import { challengeStartSuccessAction } from "../../../../../redux/levels/levels.actions";
-import { getCurrentLevel } from "../../../../../redux/levels/levels.selectors";
-import { BlurProvider, IToggleBlur } from "../../../../atoms";
-import { ChallengesListScreen, ChallengeDetailsScreen } from "../../../../screens";
-import { formatMilestones, getSlotDuration, reduceMilestones } from "./challenges-list.helpers";
-import { useMutation } from "@apollo/react-hooks";
+import { useDispatch } from "react-redux";
+import { GetQuestMapLevel, GetQuestMapLevel_getQuestMapLevel_slots } from "@graphql/_core/schema";
+import { challengeStartSuccessAction } from "@redux/levels/levels.actions";
+import { BlurProvider, IToggleBlur } from "@atoms";
+import { ChallengesListScreen, ChallengeDetailsScreen } from "@screens";
+import { useMutation, useQuery } from "@apollo/react-hooks";
 import { handleLinkPress } from "@services/app-link";
-import { Unit } from "@screens/member/challenges/models";
-import { authoriseCycling, authoriseWorkouts } from "@services/fitkit/fitkit.helpers";
-import { ChallengeType } from "@molecules/challenge-tile/challenge-tile.types";
+import { authoriseFitKitTypes } from "@services/fitkit/fitkit.helpers";
 import { getCurrentWorld } from "@services/utils";
-import { Platform } from "react-native";
+import { ChallengesLoading } from "@components/molecules";
 
 interface IProps {
   componentId: string;
-  level: GetCurrentQuestLevels_getCurrentQuestLevels;
+  level: number;
 }
 
 type Props = IProps;
 
-const openMeditationURL = handleLinkPress(Config.MEDITATION_SETUP_URL);
-
 const ChallengesListContainer: FC<Props> = ({ level, componentId }) => {
   const [error, setErrorState] = useState(null as string);
-  const [slot, setSlot] = useState({
-    challengeType: "brisk walk",
-    duration: "",
-    id: "",
-    milestones: [],
-    reward: "",
-    unit: "steps" as Unit,
-  });
+  const [slot, setSlot] = useState(null as GetQuestMapLevel_getQuestMapLevel_slots);
 
   const dispatch = useDispatch();
-  const currentLevel = useSelector(getCurrentLevel);
 
   const [createActiveChallenge, { loading: isLoading }]: CreateActiveChallengeMutationTuple = useMutation(
-    GQL_MUTATION_CREATE_ACTIVE_CHALLENGE,
-    {
-      variables: { levelSlotId: slot.id },
-    }
+    GQL_MUTATION_CREATE_ACTIVE_CHALLENGE
   );
 
-  const currentWorld = getCurrentWorld(level.level);
+  const { loading, data } = useQuery<GetQuestMapLevel>(GQL_QUERY_GET_QUEST_MAP_LEVEL, {
+    variables: { level },
+    fetchPolicy: "cache-and-network",
+  });
+
+  const currentWorld = getCurrentWorld(level);
 
   const setError = useCallback(() => {
     setErrorState("Sorry, there was a problem starting your challenge. \n Please try again!");
   }, []);
 
-  const handleSlotPress = useCallback(
-    (newSlot: typeof slot, showOverlay: () => void) => () => {
-      setSlot(newSlot);
-      showOverlay();
-    },
-    [slot]
-  );
-
   const handleNavPress = useCallback(() => Navigation.popToRoot(componentId), [componentId]);
 
   const handleSubmitChallenge = useCallback(async () => {
     try {
-      if (slot.challengeType === "cycling") {
-        await authoriseCycling();
+      if (slot.fitKitTypes?.length) {
+        await authoriseFitKitTypes(slot.fitKitTypes);
       }
 
-      if (slot.challengeType === "fiit" && Platform.OS === "ios") {
-        // we need this authorization mostly for iOS
-        // on android we have access for fiit workouts with the activity access
-        await authoriseWorkouts();
-      }
+      const activeChallenge = await createActiveChallenge({ variables: { levelSlotId: slot.id } });
 
-      const { data } = await createActiveChallenge();
-
-      if (data && data.createActiveChallenge) {
+      if (activeChallenge?.data?.createActiveChallenge) {
         dispatch(
           challengeStartSuccessAction({
-            ...data,
+            ...activeChallenge.data,
             levelSlotId: slot.id,
           })
         );
@@ -91,55 +68,64 @@ const ChallengesListContainer: FC<Props> = ({ level, componentId }) => {
     } catch (e) {
       setError();
     }
-  }, [createActiveChallenge, dispatch, setError, handleNavPress, slot.id, slot.challengeType]);
+  }, [createActiveChallenge, dispatch, setError, handleNavPress, slot?.id]);
+
+  const slots = data?.getQuestMapLevel?.slots || [];
 
   return (
     <BlurProvider
       render={({ showOverlay }: IToggleBlur) => (
-        <ChallengesListScreen
-          challenges={level.slots.map((levelSlot) => {
-            const minValue = levelSlot?.milestones?.[0]?.coins || 0;
-            const maxValue = reduceMilestones(levelSlot?.milestones);
+        <>
+          {loading ? (
+            <ChallengesLoading currentLevel={level} />
+          ) : (
+            <ChallengesListScreen
+              challenges={slots.map((levelSlot) => {
+                const formattedSlot = {
+                  heading: levelSlot.heading,
+                  duration: levelSlot.duration,
+                  id: levelSlot.id,
+                  reward: levelSlot.reward,
+                  imageUri: levelSlot.image.uri,
+                  availableAtLevel: levelSlot.availableAtLevel || 1,
+                  isLocked: levelSlot.isLocked,
+                };
 
-            const formattedSlot = {
-              challengeType: levelSlot.subtype as ChallengeType,
-              duration: getSlotDuration(levelSlot),
-              id: levelSlot.id,
-              milestones: formatMilestones(levelSlot.milestones, levelSlot.subtype),
-              reward: minValue === maxValue ? `${maxValue}` : `${minValue} - ${maxValue}`,
-              unit: levelSlot.unit as Unit,
-            };
-            const isLocked = currentLevel < levelSlot.availableAtLevel;
+                return {
+                  ...formattedSlot,
+                  currentWorld,
+                  onPress: () => {
+                    if (levelSlot.isLocked) {
+                      return;
+                    }
 
-            return {
-              ...formattedSlot,
-              currentWorld,
-              isLocked,
-              minimumLevel: levelSlot.availableAtLevel || 0,
-              onPress: isLocked ? () => ({}) : handleSlotPress(formattedSlot, showOverlay),
-            };
-          })}
-          currentLevel={level.level}
-          name={`level ${level.level}`}
-          onPressLeftIcon={handleNavPress}
-        />
+                    setSlot(levelSlot);
+                    showOverlay();
+                  },
+                };
+              })}
+              currentLevel={level}
+              name={`level ${level}`}
+              onPressLeftIcon={handleNavPress}
+            />
+          )}
+        </>
       )}
       renderOverlay={({ hideOverlay }: IToggleBlur) => (
         <ChallengeDetailsScreen
-          challengeType={slot.challengeType}
+          heading={slot?.details?.heading}
           currentWorld={currentWorld}
-          duration={slot.duration}
           error={error}
           isLoading={isLoading}
-          milestones={slot.milestones}
+          milestones={slot?.details?.milestones}
           onPressCta={handleSubmitChallenge}
           onPressClose={hideOverlay}
-          onPressSetUp={slot.challengeType === "meditation" ? openMeditationURL : null}
-          unit={slot.unit}
+          onPressSetUp={!slot?.details?.tutorialUrl ? null : handleLinkPress(slot.details.tutorialUrl)}
+          imageUri={slot?.details?.image?.uri}
         />
       )}
     />
   );
 };
 
-export default ChallengesListContainer;
+export default memo(ChallengesListContainer);

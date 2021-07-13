@@ -1,10 +1,9 @@
+import React, { memo } from "react";
 import { Button } from "@atoms/index";
-import { getSlotDuration } from "@containers/member/quests/challenges-list/challenges-list.helpers";
-import { GetCurrentQuestLevels_getCurrentQuestLevels } from "@graphql/_core/schema";
-import * as React from "react";
+import { GetQuestMapLevel_getQuestMapLevel } from "@graphql/_core/schema";
 import { Image, ScrollView, StyleSheet, View } from "react-native";
 import AutoHeightImage from "react-native-auto-height-image";
-import { IConnectedScreenProps } from "../../../../../typings";
+import { IConnectedScreenProps } from "@app/typings";
 import ChallengesHistorySlot from "./challenges-history-slot";
 import { getBottomGradient } from "./challenges-history.helpers";
 import styles from "./challenges-history.screen.styles";
@@ -13,13 +12,13 @@ import { TopBar, NavBar } from "@components/organisms";
 import { getCurrentWorld } from "@services/utils";
 
 interface IProps extends IConnectedScreenProps {
-  level: GetCurrentQuestLevels_getCurrentQuestLevels;
+  level: GetQuestMapLevel_getQuestMapLevel;
   onPressActivityHistory: () => void;
   onPressCta: () => void;
 }
 
-export default function ChallengesHistory({ level, onPressActivityHistory, onLeftMenuPress }: IProps) {
-  const normalizedWorld = getCurrentWorld(level.level);
+function ChallengesHistory({ level, onPressActivityHistory, onLeftMenuPress }: IProps) {
+  const normalizedWorld = getCurrentWorld(level?.level);
   const { backgroundWrapperStyle, backgroundImage, topBarType } = getWorldStyle(normalizedWorld);
 
   return (
@@ -42,14 +41,15 @@ export default function ChallengesHistory({ level, onPressActivityHistory, onLef
           contentContainerStyle={styles.contentContainer}
         >
           {level.slots.map((slot) =>
-            slot.challengesDetails.length > 0 ? (
+            slot.challenges.length > 0 ? (
               <ChallengesHistorySlot
                 key={slot.id}
                 availableAtLevel={slot.availableAtLevel}
-                duration={getSlotDuration(slot)}
-                type={slot.subtype}
-                locked={slot.availableAtLevel > level.level}
-                challengesDetails={slot.challengesDetails}
+                duration={slot.duration}
+                type={slot.heading}
+                image={slot.historyImage.uri}
+                locked={slot.isLocked}
+                challenges={slot.challenges}
                 currentWorld={normalizedWorld}
               />
             ) : null
@@ -58,18 +58,20 @@ export default function ChallengesHistory({ level, onPressActivityHistory, onLef
         <AutoHeightImage {...getBottomGradient(normalizedWorld)} />
       </View>
       <View style={styles.buttonsWrapper}>
-        <Button onPress={onPressActivityHistory} label="full history" />
+        <Button onPress={onPressActivityHistory} label="Full history" />
       </View>
       <NavBar activeIndex={1} />
     </View>
   );
 }
 
+export default memo(ChallengesHistory);
+
 function getWorldStyle(currentWorld: number) {
   switch (currentWorld) {
     case 3:
       return {
-        backgroundImage: require("../../../../../../assets/challenges/mountain.png"),
+        backgroundImage: require("@assets/challenges/mountain.png"),
         backgroundWrapperStyle: StyleSheet.flatten([
           StyleSheet.absoluteFillObject,
           { backgroundColor: "rgb(59,123,209)" },
@@ -79,7 +81,7 @@ function getWorldStyle(currentWorld: number) {
       };
     case 2:
       return {
-        backgroundImage: require("../../../../../../assets/challenges/desert.png"),
+        backgroundImage: require("@assets/challenges/desert.png"),
         backgroundWrapperStyle: StyleSheet.flatten([
           StyleSheet.absoluteFillObject,
           { backgroundColor: "rgb(254,251,205)" },
@@ -89,7 +91,7 @@ function getWorldStyle(currentWorld: number) {
       };
     case 1:
       return {
-        backgroundImage: require("../../../../../../assets/challenges/ocean.png"),
+        backgroundImage: require("@assets/challenges/ocean.png"),
         backgroundWrapperStyle: StyleSheet.flatten([
           StyleSheet.absoluteFillObject,
           { backgroundColor: "rgb(87,155,193)" },
@@ -100,7 +102,7 @@ function getWorldStyle(currentWorld: number) {
     case 0:
     default:
       return {
-        backgroundImage: require("../../../../../../assets/challenges/forest.png"),
+        backgroundImage: require("@assets/challenges/forest.png"),
         backgroundWrapperStyle: StyleSheet.flatten([
           StyleSheet.absoluteFillObject,
           { backgroundColor: "rgb(255, 242, 142)" },

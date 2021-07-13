@@ -3,6 +3,8 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
+import { FitKitType } from "./globalTypes";
+
 // ====================================================
 // GraphQL fragment: User
 // ====================================================
@@ -86,6 +88,7 @@ export interface User_activeChallenge_challenge_incomingData {
   steps: number | null;
   meditation: number | null;
   distance: number | null;
+  duration: number | null;
 }
 
 export interface User_activeChallenge_challenge {
@@ -105,6 +108,7 @@ export interface User_activeChallenge_levelSlot_milestones_target {
   steps: number | null;
   meditation: number | null;
   distance: number | null;
+  duration: number | null;
 }
 
 export interface User_activeChallenge_levelSlot_milestones {
@@ -117,6 +121,8 @@ export interface User_activeChallenge_levelSlot_milestones {
 export interface User_activeChallenge_levelSlot {
   subtype: string | null;
   unit: string | null;
+  shouldEndOnLastGoalAchieved: boolean | null;
+  fitKitTypes: FitKitType[] | null;
   milestones: (User_activeChallenge_levelSlot_milestones | null)[] | null;
 }
 

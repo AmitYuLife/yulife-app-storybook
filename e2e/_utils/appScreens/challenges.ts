@@ -38,7 +38,7 @@ export const meditationAppModalVisible = () => async () => {
 
 export const startChallenge = (challengeTile: string, ) => async () => {
     await navigateViaID(CHALLENGE_TILE(challengeTile))
-    await navigateViaText("take challenge")
+    await navigateViaText("Take challenge")
     try {
         await navigateViaText("maybe later")
     } catch (e) {
@@ -59,7 +59,7 @@ export const dismissChestUnlock = (streakDay = 1) => async () => {
 export const startChallengeFromQuests = (levelButton: number, challengeName: string) => async () => {
     await navigateViaID(LEVEL_CHALLENGE_BUTTON(levelButton))
     await navigateViaID(CHALLENGE_TILE(challengeName))
-    await navigateViaText("take challenge")
+    await navigateViaText("Take challenge")
 
     if(challengeName === "meditation"){
         await wait(5000)()

@@ -124,7 +124,7 @@ Feature("As a user I can navigate through member routes correctly", async () => 
                                 Then("nothing should happen", then.idVisible(CHALLENGE_SET))
                                 When("I tap the meditation challenge", when.tapID(CHALLENGE_TILE("meditation")), async () => {
                                     Then("I should see a screen with a take challenge option", then.multipleTextVisible(["meditation / 1 min", "1 minute", "take challenge"]))
-                                    When("I tap 'take challenge'", when.tapText("take challenge"), async () => {
+                                    When("I tap 'take challenge'", when.tapText("Take challenge"), async () => {
                                         Then("I should see a screen asking me to turn on notifications", then.idVisible(GENERIC_SCREEN_HEADING("don't miss out"), 2000))
                                         When("I dismiss this screen", when.tapID(GENERIC_SCREEN_CTA("maybe later")), async () => {
                                             When("I tap 'I'm using a different app'", when.tapText("I'm using a different app"), async () => {

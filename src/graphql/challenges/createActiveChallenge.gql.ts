@@ -16,6 +16,8 @@ export const GQL_MUTATION_CREATE_ACTIVE_CHALLENGE = gql`
       levelSlot {
         subtype
         unit
+        shouldEndOnLastGoalAchieved
+        fitKitTypes
         milestones {
           id
           XP
@@ -24,6 +26,7 @@ export const GQL_MUTATION_CREATE_ACTIVE_CHALLENGE = gql`
             steps
             meditation
             distance
+            duration
           }
         }
       }

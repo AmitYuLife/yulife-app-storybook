@@ -33,6 +33,20 @@ async function openStore({ appName, appStoreId, appStoreLocale = "gb", playStore
   }
 }
 
+export async function openFiit() {
+  const playStoreId = "tv.fiit.app";
+
+  const deepLink = Platform.select({
+    ios: "fiit://",
+    android: `android-app://${playStoreId}`,
+  });
+  return openApp(deepLink, {
+    appName: "fiit-workouts-fitness-plans",
+    appStoreId: "1296861162",
+    playStoreId: "tv.fiit.app",
+  });
+}
+
 export async function openCalm() {
   const playStoreId = "com.calm.android";
   const deepLink = Platform.select({

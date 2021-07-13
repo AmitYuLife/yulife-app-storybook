@@ -13,7 +13,7 @@ describe("getActionConditions", () => {
     },
     itemLevel: {
       level: 50,
-      levelChestId: "1234",
+      levelChest: "1234",
     },
     levelAvailable: false,
   };
@@ -37,7 +37,7 @@ describe("getActionConditions", () => {
         },
         itemLevel: {
           level: 21,
-          levelChestId: "123",
+          levelChest: "123",
         },
       };
 
@@ -60,7 +60,7 @@ describe("getActionConditions", () => {
         },
         itemLevel: {
           level: 21,
-          levelChestId: "123",
+          levelChest: "123",
         },
         showCompletedLevel: true,
       };
@@ -97,7 +97,7 @@ describe("getActionConditions", () => {
         },
         itemLevel: {
           level: 21,
-          levelChestId: "123",
+          levelChest: "123",
         },
         levelAvailable: true,
       };

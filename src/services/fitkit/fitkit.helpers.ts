@@ -1,11 +1,45 @@
+import { Platform } from "react-native";
 import { IUserStore } from "@redux/user/user.reducer";
 import RNFitKit, { FitKitTypes, PedometerResponse, SampleQueryResult } from "@services/fitkit/fitkit.service";
 import { useFitKit } from "./fitkit.hooks";
 import moment, { Moment } from "moment";
-import { ChallengePayload } from "../../graphql/_core/schema/globalTypes";
+import { ChallengePayload, FitKitType } from "@graphql/_core/schema/globalTypes";
 import Logger from "../logging/logger";
 import { DATE_FORMAT_WITH_TZ } from "../utils";
 import { createContext } from "react";
+
+const mapGqlFitKitTypeToFitKitType = (gqlType: FitKitType) => {
+  switch (gqlType) {
+    case FitKitType.StepCount:
+      return FitKitTypes.Types.StepCount;
+    case FitKitType.MindfulSession:
+      return FitKitTypes.Types.MindfulSession;
+    case FitKitType.Cycling:
+      return FitKitTypes.Types.Biking;
+    case FitKitType.Flexibility:
+      return Platform.select({
+        android: FitKitTypes.Types.MixedMartialArts,
+        ios: FitKitTypes.Types.Flexibility,
+      });
+    case FitKitType.HIIT:
+      return Platform.select({
+        android: FitKitTypes.Types.HighIntensityIntervalTraining,
+        ios: FitKitTypes.Types.MixedCardio,
+      });
+    case FitKitType.Pilates:
+      return FitKitTypes.Types.Pilates;
+    case FitKitType.Sleep:
+      return FitKitTypes.Types.SleepAnalysis;
+    case FitKitType.Strength:
+      return FitKitTypes.Types.StrengthTraining;
+    case FitKitType.Swimming:
+      return FitKitTypes.Types.Swimming;
+    case FitKitType.Yoga:
+      return FitKitTypes.Types.Yoga;
+    default:
+      throw new Error("Invalid type!");
+  }
+};
 
 export const mapPedometerResults = (results: PedometerResponse): ChallengePayload => ({
   endDateTime: moment(results.endTime).format(),
@@ -19,64 +53,42 @@ export const transformSampleResultToPayload = (item: SampleQueryResult): Challen
   value: Math.floor(item.value),
 });
 
-export const queryMindfulSessions = async (
+export const queryFitKitByTypes = async (
   startTime: string,
   endTime: string,
+  fitKitTypes: FitKitType[],
   { disableUserEntries = true, loggingEnabled = false }: IUserStore["features"] = {}
 ): Promise<ChallengePayload[]> => {
-  try {
-    const args = {
-      disableUserEntries,
-      endTime,
-      startTime,
-      type: FitKitTypes.Types.MindfulSession,
-    };
+  const allResults: SampleQueryResult[] = [];
 
-    if (loggingEnabled) {
-      Logger.logMixpanelEvent("raw_meditation_query_args", args);
+  for (const fitKitType of fitKitTypes) {
+    try {
+      const args = {
+        disableUserEntries,
+        endTime,
+        startTime,
+        type: mapGqlFitKitTypeToFitKitType(fitKitType),
+      };
+
+      if (loggingEnabled) {
+        Logger.logMixpanelEvent(`raw_${fitKitType}_query_args`, args);
+      }
+
+      const results = await RNFitKit.sampleQuery(args);
+
+      if (loggingEnabled && results && results.length > 0) {
+        Logger.logMixpanelEvent(`raw_${fitKitType}_query_results`, { results });
+      }
+
+      allResults.push(...results);
+    } catch (e) {
+      Logger.logMixpanelEvent(`raw_${fitKitType}_query_error`, { error: e.message });
     }
-
-    const results = await RNFitKit.sampleQuery(args);
-
-    if (loggingEnabled && results && results.length > 0) {
-      Logger.logMixpanelEvent("raw_meditation_query_results", { results });
-    }
-
-    return results.map(transformSampleResultToPayload);
-  } catch (e) {
-    Logger.logMixpanelEvent("raw_meditation_query_error", { error: e.message });
-    return [];
   }
-};
 
-export const queryFiiTSession = async (
-  startTime: string,
-  endTime: string,
-  { disableUserEntries = true, loggingEnabled = false }: IUserStore["features"] = {}
-): Promise<ChallengePayload[]> => {
   try {
-    const args = {
-      disableUserEntries,
-      endTime,
-      startTime,
-      type: FitKitTypes.Types.StrengthTraining,
-      // FitKitTypes.Types.HighIntensityIntervalTraining,
-      // FitKitTypes.Types.Yoga,
-      // FitKitTypes.Types.Pilates,
-      // FitKitTypes.Types.MixedMartialArts,
-    };
-    if (loggingEnabled) {
-      Logger.logMixpanelEvent("raw_fiit_query_args", args);
-    }
-
-    const results = await RNFitKit.sampleQuery(args);
-    if (loggingEnabled && results && results.length > 0) {
-      Logger.logMixpanelEvent("raw_fiit_query_results", { results });
-    }
-
-    return results.map(transformSampleResultToPayload);
+    return allResults.map(transformSampleResultToPayload);
   } catch (e) {
-    Logger.logMixpanelEvent("raw_fiit_query_error", { error: e.message });
     return [];
   }
 };
@@ -158,27 +170,14 @@ export const queryHistoricalMeditationData = async (onboardingDate: Moment, user
   const start = onboardingDate.clone().subtract(60, "days");
   const end = onboardingDate.clone().subtract(1, "days");
 
-  return queryMindfulSessions(start.format(), end.format(), userFeature);
+  return queryFitKitByTypes(start.format(), end.format(), [FitKitType.MindfulSession], userFeature);
 };
 
-export const authoriseCycling = async () => {
+export const authoriseFitKitTypes = async (fitKitTypes: FitKitType[]) => {
   try {
-    await RNFitKit.authorise({
-      read: [FitKitTypes.Types.Biking],
-    });
+    await RNFitKit.authorise({ read: fitKitTypes.map(mapGqlFitKitTypeToFitKitType) });
   } catch (e) {
     Logger.error(e, { event: "authoriseCycling" });
-  }
-};
-
-export const authoriseWorkouts = async () => {
-  try {
-    await RNFitKit.authorise({
-      // we can choose one of workout types to pass here because all of them are asking for the same workout permission
-      read: [FitKitTypes.Types.Yoga],
-    });
-  } catch (e) {
-    Logger.error(e, { event: "authoriseWorkouts" });
   }
 };
 

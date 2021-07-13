@@ -12,7 +12,7 @@ storiesOf("ChallengesHistoryScreen", module)
   .add("default", () => (
     <ChallengesHistoryScreen
       onPressCta={voidFunc}
-      level={{ id: "1", level: 30, __typename: "Level", levelChestId: "123", name: "Hello", rating: 5, slots: [] }}
+      level={{ id: "1", level: 30, __typename: "QuestMapLevel", levelChest: "123", slots: [] }}
       onLeftMenuPress={voidFunc}
       onPressActivityHistory={voidFunc}
     />

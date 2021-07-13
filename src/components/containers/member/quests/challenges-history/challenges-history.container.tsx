@@ -1,13 +1,16 @@
-import React, { useCallback } from "react";
+import React, { memo, useCallback } from "react";
 import { Navigation } from "react-native-navigation";
-import { GetCurrentQuestLevels_getCurrentQuestLevels } from "../../../../../graphql/_core/schema";
-import { IConnectedScreenProps } from "../../../../../typings";
-import { ChallengesHistoryScreen } from "../../../../screens";
+import { GetQuestMapLevel } from "@graphql/_core/schema";
+import { IConnectedScreenProps } from "@app/typings";
+import { ChallengesHistoryScreen } from "@screens";
 import { useBackHandler } from "@services/hooks/useBackHandler";
+import { useQuery } from "@apollo/react-hooks";
+import { GQL_QUERY_GET_QUEST_MAP_LEVEL } from "@graphql/challenges";
+import { ChallengesLoading } from "@components/molecules";
 
 interface IProps extends IConnectedScreenProps {
   componentId?: string;
-  level: GetCurrentQuestLevels_getCurrentQuestLevels;
+  level: number;
   onPressActivityHistory: () => void;
   onPressCta?: () => void;
 }
@@ -20,9 +23,16 @@ function ChallengesHistoryContainer({ level, onPressActivityHistory, componentId
     return true;
   });
 
-  return (
+  const { loading, data } = useQuery<GetQuestMapLevel>(GQL_QUERY_GET_QUEST_MAP_LEVEL, {
+    variables: { level },
+    fetchPolicy: "network-only",
+  });
+
+  return loading ? (
+    <ChallengesLoading currentLevel={level} />
+  ) : (
     <ChallengesHistoryScreen
-      level={level}
+      level={data?.getQuestMapLevel}
       onPressActivityHistory={onPressActivityHistory}
       onPressCta={handleClose}
       onLeftMenuPress={handleClose}
@@ -30,4 +40,4 @@ function ChallengesHistoryContainer({ level, onPressActivityHistory, componentId
   );
 }
 
-export default ChallengesHistoryContainer;
+export default memo(ChallengesHistoryContainer);

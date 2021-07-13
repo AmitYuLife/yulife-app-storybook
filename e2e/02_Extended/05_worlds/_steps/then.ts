@@ -31,7 +31,7 @@ export const stepsAndCoinsVisible = (steps: number, coins: number) => async () =
 }
 
 export const onChallengeHistory = (challengeType: string, levelNum: number, yucoinNum: number, starCount: number, timeSpent?: number, steps?: number) => async () => {
-    const fullHistory = "full history"
+    const fullHistory = "Full history"
     const level = `level ${levelNum}`
     const yuCoin = `${yucoinNum} yucoin`
 
