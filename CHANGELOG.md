@@ -7,6 +7,24 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.9.0] - 2021-07-13
+
+### Features
+
+- Feature TP-882: Update Menu UI
+
+### Tasks
+
+- Task ENG-2213: Do not retry slow requests
+- (origin/task/eng-2190-migrate-reward-image-to-imgix) ENG-2190 Migrate reward image to imgix
+
+### Chores
+
+- Chore: Force light mode on iOS and Android
+- Chore: exclude arm64 from detox
+- Chore: upgrade to RN 64
+- (origin/chore/link-topbar-coin-to-rewards, chore/link-topbar-coin-to-rewards) Chore: link TopBar YuCoin to the rewards screen
+
 ## [3.7.0] - 2021-05-19
 
 ### Features
