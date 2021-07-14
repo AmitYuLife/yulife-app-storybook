@@ -61,6 +61,12 @@ export default async function handleDeepLink(fullUrl: string, hasToken: boolean,
       }
 
       return;
+    case url.startsWith("duels-hub"):
+      if (hasToken) {
+        await setScreen(currentRoute, ROUTES.duelsHub);
+      }
+
+      return;
 
     default:
       return;
