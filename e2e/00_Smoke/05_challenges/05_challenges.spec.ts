@@ -1,4 +1,4 @@
-import { Feature, Scenario, Given, When, Then, ScenarioOnly, FeatureOnly, ScenarioSkip } from "@yu-life/yulife-bdd-framework";
+import { Feature, Scenario, Given, When, Then, ScenarioOnly, FeatureOnly, ScenarioSkip, FeatureSkip } from "@yu-life/yulife-bdd-framework";
 import * as scenario from "./_steps/scenario"
 import * as given from "./_steps/given"
 import * as when from "./_steps/when"
@@ -7,7 +7,7 @@ import { QUESTS_SCREEN, LEVEL_CHALLENGE_BUTTON, CHALLENGE_TILE, GENERIC_SCREEN_H
 import { CUSTOMER_9, AUTH_9 } from "@data";
 
 Feature("As a user I can take a challenge", async () => {
-
+    
     Scenario("I can take a challenge and cancel it", scenario.start, async () => {
         Given("I login and go to the quests tab", given.logInAndGoToTab("quests"), async () => {
             Then("I should be on the quests screen", then.idVisible(QUESTS_SCREEN(0)))
@@ -15,7 +15,7 @@ Feature("As a user I can take a challenge", async () => {
             When("I tap this button", when.tapID(LEVEL_CHALLENGE_BUTTON(1)), async () => {
                 Then("I should see the short stroll challenge", then.idVisible(CHALLENGE_TILE("short stroll")))
                 When("I tap this challenge", when.tapID(CHALLENGE_TILE("short stroll")), async () => {
-                    Then("I should see a screen with a take challenge option", then.textVisible("short stroll / 0 minute"))
+                    Then("I should see a screen with a take challenge option", then.textVisible("short stroll / 0 min"))
                     When("I tap 'take challenge'", when.tapText("Take challenge"), async () => {
                         Then("I should see a screen asking me to turn on notifications", then.idVisible(GENERIC_SCREEN_HEADING("don't miss out"), 5000))
                         When("I dismiss this screen", when.tapID(GENERIC_SCREEN_CTA("maybe later")), async () => {
@@ -45,7 +45,7 @@ Feature("As a user I can take a challenge", async () => {
             When("I tap this button", when.tapID(LEVEL_CHALLENGE_BUTTON(1)), async () => {
                 Then("I should see the shor t stroll challenge", then.idVisible(CHALLENGE_TILE("short stroll")))
                 When("I tap this challenge", when.tapID(CHALLENGE_TILE("short stroll")), async () => {
-                    Then("I should see a screen with a take challenge option", then.textVisible("short stroll / 0 minute"))
+                    Then("I should see a screen with a take challenge option", then.textVisible("short stroll / 0 min"))
                     When("I tap 'take challenge'", when.tapText("Take challenge"), async () => {
                         Then("I should see a screen asking me to turn on notifications", then.idVisible(GENERIC_SCREEN_HEADING("don't miss out"), 5000))
                         When("I dismiss this screen", when.tapID(GENERIC_SCREEN_CTA("maybe later")), async () => {
@@ -67,6 +67,7 @@ Feature("As a user I can take a challenge", async () => {
         })
     })
 
+    // Challenges do not complete
     Scenario("I can complete a chest challenge", scenario.start, async () => {
         Given("I am on the quest tab as a user with a chest challenge", given.logInAndGoToTab("quests", CUSTOMER_9, AUTH_9), async () => {
             Then("I should see my coins in the top right", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(760)))

@@ -1,7 +1,5 @@
-import { generateRandomMongoId } from "@yu-life/yulife-bdd-framework";
-;
 import { IDatabaseItem } from "@yu-life/yulife-bdd-framework";
-import { LONG_WALK_MILESTONE_1, MEDITATION_MILESTONE_1, SHORT_STROLL_MILESTONE_1, BRISK_WALK_MILESTONE_1 } from "./map_milestone_templates";
+import { LONG_WALK_MILESTONE_1, MEDITATION_MILESTONE_1, BRISK_WALK_MILESTONE_1 } from "./map_milestone_templates";
 
 export const SHORT_STROLL_1 = {
     type: "mongo",
@@ -9,12 +7,13 @@ export const SHORT_STROLL_1 = {
     updateKey: "id",
     data: {
         "id": "SHORT_STROLL_001",
-        "timeLimit": 30,
         "passive": false,
-        "type": "move",
         "subtype": "short stroll",
+        "timeLimit": 30,
+        "type": "move",
         "unit": "steps",
-        milestoneTemplateId: SHORT_STROLL_MILESTONE_1
+        canFinishAtLastGoal: false,
+        fitKitTypes: ["StepCount"]
     }
 } as IDatabaseItem
 
@@ -24,12 +23,13 @@ export const LONG_WALK_1 = {
     updateKey: "id",
     data: {
         id: "LONG_WALK_001",
-        timeLimit: 30,
         passive: false,
-        type: "move",
         subtype: "long walk",
+        timeLimit: 30,
+        type: "move",
         unit: "steps",
-        milestoneTemplateId: LONG_WALK_MILESTONE_1
+        canFinishAtLastGoal: false,
+        fitKitTypes: ["StepCount"]
     }
 } as IDatabaseItem
 
@@ -39,12 +39,13 @@ export const MEDITATION_1 = {
     updateKey: "id",
     data: {
         id: "MEDITATION_001",
-        timeLimit: 60,
         passive: false,
-        type: "mindfulness",
         subtype: "meditation",
+        timeLimit: 60,
+        type: "mindfulness",
         unit: "minutes",
-        milestoneTemplateId:MEDITATION_MILESTONE_1
+        canFinishAtLastGoal: true,
+        fitKitTypes: ["MindfulSession"]
     }
 } as IDatabaseItem
 
@@ -54,11 +55,12 @@ export const BRISK_WALK_1 = {
     updateKey: "id",
     data: {
         id: "BRISK_WALK_001",
-        timeLimit: 10,
         passive: false,
-        type: "move",
         subtype: "brisk walk",
+        timeLimit: 10,
+        type: "move",
         unit: "steps",
-        milestoneTemplateId: BRISK_WALK_MILESTONE_1
+        canFinishAtLastGoal: false,
+        fitKitTypes: ["StepCount"]
     }
 } as IDatabaseItem
