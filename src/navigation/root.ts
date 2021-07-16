@@ -318,6 +318,15 @@ export async function setScreen(currentRoute: string, id: string) {
   });
 }
 
+export async function setDuelsScreen(currentRoute: string) {
+  if (currentRoute === ROUTES.duelsHub) {
+    return;
+  }
+
+  await setScreen(ROUTES.leaderboards, ROUTES.duelsHub);
+  await labels[3].onPress();
+}
+
 export async function expireSession() {
   await clearToken();
   await setUnauthenticatedRoot({ hasSessionExpiredError: true });

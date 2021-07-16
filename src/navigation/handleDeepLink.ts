@@ -2,7 +2,7 @@ import { store } from "@redux/_core/store";
 import { GET_HISTORICAL_DATA } from "@redux/onboarding/onboarding.actions";
 import { getQueryStringObject } from "@services/utils";
 import Config from "react-native-config";
-import { labels, setScreen, setUnauthenticatedRoot } from "./root";
+import { labels, setDuelsScreen, setScreen, setUnauthenticatedRoot } from "./root";
 import { ROUTES } from "@navigation/constants";
 
 export default async function handleDeepLink(fullUrl: string, hasToken: boolean, currentRoute?: string) {
@@ -63,7 +63,7 @@ export default async function handleDeepLink(fullUrl: string, hasToken: boolean,
       return;
     case url.startsWith("duels-hub"):
       if (hasToken) {
-        await setScreen(currentRoute, ROUTES.duelsHub);
+        await setDuelsScreen(currentRoute);
       }
 
       return;
