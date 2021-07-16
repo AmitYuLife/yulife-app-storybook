@@ -15,6 +15,7 @@ import { handleLinkPress } from "@services/app-link";
 import { authoriseFitKitTypes } from "@services/fitkit/fitkit.helpers";
 import { getCurrentWorld } from "@services/utils";
 import { ChallengesLoading } from "@components/molecules";
+import { DETOX_ENABLED } from "@services/socket";
 
 interface IProps {
   componentId: string;
@@ -48,7 +49,7 @@ const ChallengesListContainer: FC<Props> = ({ level, componentId }) => {
 
   const handleSubmitChallenge = useCallback(async () => {
     try {
-      if (slot.fitKitTypes?.length) {
+      if (slot.fitKitTypes?.length && !DETOX_ENABLED) {
         await authoriseFitKitTypes(slot.fitKitTypes);
       }
 

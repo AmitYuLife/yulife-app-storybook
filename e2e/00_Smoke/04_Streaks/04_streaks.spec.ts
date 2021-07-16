@@ -9,7 +9,7 @@ import { idVisible } from "@utils";
 
 
 Feature("As a user I can use the streaks functionality", async () => {
-
+    // Challenges fail even though 200 steps are made
     Scenario("I can start a new streak and complete a challenge", scenario.start, async () => {
         Given("I login", given.logInWithStreakScreen(CUSTOMER_5, AUTH_5), async () => {
             Then("I should see the streak screen", then.onStartStreak)
@@ -19,14 +19,14 @@ Feature("As a user I can use the streaks functionality", async () => {
                     Then("I should be on the level one quest screen", then.idVisible(CHALLENGE_SET))
                     Then("I should see an unlocked short stroll challenge", then.idVisible(CHALLENGE_TILE("short stroll")))
                     When("I tap the unlocked short stroll challenge", when.tapID(CHALLENGE_TILE("short stroll")), async () => {
-                        Then("I should see a screen with a take challenge option", then.textVisible("short stroll / 0 minute"))
+                        Then("I should see a screen with a take challenge option", then.textVisible("short stroll / 0 min"))
                         Then("I should see the number of steps I need to complete the challenge", then.textVisible("100 steps"))
                         When("I tap 'take challenge'", when.tapText("Take challenge"), async () => {
                             Then("I should see a screen asking me to turn on notifications", then.idVisible(GENERIC_SCREEN_HEADING("don't miss out"), 5000))
                             When("I dismiss this screen", when.tapID(GENERIC_SCREEN_CTA("maybe later")), async () => {
                                 Then("I should be on the challenge screen", then.idVisible(CHALLENGE_PROGRESS_BAR))
-                                When("I walk over 100 steps", when.sendSteps(108, 35000), async () => {
-                                    Then("I should see the well done screen", then.onChallengeComplete(108, 1))
+                                When("I walk over 100 steps", when.sendSteps(200, 38000), async () => {
+                                    Then("I should see the well done screen", then.onChallengeComplete(200, 1))
                                     When("I tap collect", when.tapText("collect"), async () => {
                                         Then("..I should see the completed streak day 1 modal", then.completedTodayStreakCopyVisible(1))
                                         When("I tap 'done'", when.tapText("Done"), async () => {

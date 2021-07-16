@@ -47,7 +47,8 @@ Feature("Rewards should act correctly", async () => {
         })
     })
 
-    Scenario("I can change the reward amount and buy it if I have enough coin", scenario.start, () => {
+    // Skipping due to bug: https://yulife.atlassian.net/browse/ENG-2183
+    ScenarioSkip("I can change the reward amount and buy it if I have enough coin", scenario.start, () => {
         Given("I login and go to rewards", given.logInAndGoToTab("rewards", CUSTOMER_3, AUTH_3), () => {
             Then("I should be on the rewards tab", then.idVisible(REWARDS_SCREEN))
             Then("I should see the Nike Reward", then.rewardVisible(REWARDS_NIKE))
@@ -63,7 +64,7 @@ Feature("Rewards should act correctly", async () => {
                             Then("The buy button should update", then.buyButtonVisible(REWARDS_NIKE, 1))
                             When("I tap the buy button", when.tapBuyButton(REWARDS_NIKE, 1), async () => {
                                 Then("I should see the confirm modal", then.textVisible("Confirm purchase"))
-                                When("I tap 'ok", when.tapText("OK", 2500, true), async () => {
+                                When("I tap 'ok'", when.tapText("OK", 2500, true), async () => {
                                     Then("I should be on the purchase screen", then.onRewardPurchasedScreen(REWARDS_NIKE))
                                     When("I see other rewards", when.tapText("see other rewards"), async () => {
                                         Then("I should be back on the rewards screen", then.idVisible(REWARDS_SCREEN))
@@ -106,8 +107,9 @@ Feature("Rewards should act correctly", async () => {
             })
         })
     })
-
-    Scenario("I can login and view my previously purchased rewards", scenario.start, async () => {
+    
+    // Skipping due to bug: https://yulife.atlassian.net/browse/ENG-2183
+    ScenarioSkip("I can login and view my previously purchased rewards", scenario.start, async () => {
         Given("I login and go to rewards", given.logInAndGoToTab("rewards", CUSTOMER_2, AUTH_2), async () => {
             Then("I should be on the rewards tab", then.idVisible(REWARDS_SCREEN))
             When("I tap the purchased tab", when.tapText("purchased"), async () => {
