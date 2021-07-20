@@ -62,7 +62,11 @@ class QuestsScreen extends PureComponent<IProps, IState> {
   }
 
   public componentDidUpdate(prevProps: IProps) {
-    if ((prevProps.loading && !this.props.loading) || (prevProps.unity && !this.props.unity)) {
+    const hasFinishedLoading = prevProps.loading && !this.props.loading;
+    const hasLeftUnity = prevProps.unity && !this.props.unity;
+    const hasChangedLevel = prevProps.activeLevel !== this.props.activeLevel;
+
+    if (hasFinishedLoading || hasLeftUnity || hasChangedLevel) {
       this.scrollToActiveLevel();
     }
   }
