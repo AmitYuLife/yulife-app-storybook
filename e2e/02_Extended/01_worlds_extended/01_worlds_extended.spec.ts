@@ -56,7 +56,7 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
                                         When("I tap the level 99 challenge button", when.tapID(LEVEL_CHALLENGE_BUTTON(99)), async () => {
                                             Then("I should see the short stroll challenge I just completed with the correct stars", then.onChallengeHistory("short stroll", 99, 10, 3))
                                             Then("I should see the meditation challenge I just completed with the correct stars", then.onChallengeHistory("meditation", 99, 20, 1))
-                                            Then("I should see the number of minutes for meditation", then.textVisible("3-10 mins"))
+                                            Then("I should see the number of minutes for meditation", then.textVisible("10 mins"))
                                             })
                                         })
                                     })
