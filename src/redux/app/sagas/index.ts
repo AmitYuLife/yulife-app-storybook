@@ -10,12 +10,14 @@ import setMainRootSaga from "./setMainRoot.saga";
 import showMaintenanceSaga from "./showMaintenance.saga";
 import checkConnectionSaga from "./checkConnection.saga";
 import showOfflineScreenSaga from "./showOfflineScreen.saga";
+import loggingNetworkState from "./loggingNetworkState.saga";
 
 export default [
   takeLatest("INIT", listenToAppStateSaga),
   takeLatest("INIT", listenToComponentDidAppear),
   takeLatest("INIT", listenToComponentDidDisappear),
   takeLatest("INIT", listenToLinkingSaga),
+  takeLatest("INIT", loggingNetworkState),
   takeLatest(SET_MAIN_ROOT, setMainRootSaga),
   takeLatest(AUTHENTICATED, listenToNetworkStateSaga),
   // takeEvery("*", logBreadcrumbsSaga),
