@@ -323,8 +323,8 @@ export async function setDuelsScreen(currentRoute: string) {
     return;
   }
 
-  await setScreen(ROUTES.leaderboards, ROUTES.duelsHub);
   await labels[3].onPress();
+  await setScreen(ROUTES.leaderboards, ROUTES.duelsHub);
 }
 
 export async function expireSession() {
