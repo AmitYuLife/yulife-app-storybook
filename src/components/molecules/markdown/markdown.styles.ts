@@ -80,6 +80,7 @@ export default StyleSheet.create({
     marginVertical: Style.adjust(4),
   },
   listItemContent: {
+    flex: 1,
     flexDirection: "row",
     justifyContent: "flex-start",
     alignItems: "flex-start",
@@ -93,7 +94,8 @@ export default StyleSheet.create({
     marginTop: Style.adjust(10),
   },
   listItemNumber: {
-    marginRight: 10,
+    marginRight: 5,
+    marginTop: 4,
   },
   imageWrapper: {
     flex: 1,
