@@ -232,3 +232,8 @@ export const MORE_INFO_BUTTON = (copy: string) => `MORE_INFO_BUTTON_${copy}`
 
 // REFERRALS
 export const REFERRALS_SCROLL_VIEW = "REFERRALS_SCROLL_VIEW"
+
+// SETTINGS SCREEN
+export const SETTINGS_NAME = (name:string) => `SETTINGS_NAME_${name}`
+export const SETTINGS_DESC = (desc:string) => `SETTINGS_DESC_${desc}`
+export const SETTINGS_SWITCH = (name:string, bool:boolean) => `SETTINGS_SWITCH_${name}_${bool}`
