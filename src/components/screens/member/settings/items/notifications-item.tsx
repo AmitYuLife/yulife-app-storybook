@@ -6,6 +6,7 @@ import { Switch, TouchableOpacityWithDelay } from "@molecules";
 import { INotificationsSectionItem } from "../settings.screen";
 import styles from "./item.styles";
 import { Colours } from "@styles";
+import { SETTINGS_NAME, SETTINGS_DESC, SETTINGS_SWITCH } from "@ids";
 
 const NotificationsItem: FC<INotificationsSectionItem> = ({
   isActive,
@@ -19,10 +20,14 @@ const NotificationsItem: FC<INotificationsSectionItem> = ({
     {alertTimestamp && <View style={styles.seperator} />}
     <View style={styles.container}>
       <View style={styles.nameWrapper}>
-        <TextTemplate type="b2b">{name}</TextTemplate>
-        <TextTemplate type="l2">{description}</TextTemplate>
+        <TextTemplate type="b2b" testID={SETTINGS_NAME(name)}>
+          {name}
+        </TextTemplate>
+        <TextTemplate type="l2" testID={SETTINGS_DESC(description)}>
+          {description}
+        </TextTemplate>
       </View>
-      <Switch onPress={onSwitchPress} value={isActive} />
+      <Switch onPress={onSwitchPress} value={isActive} testID={SETTINGS_SWITCH(name, isActive)} />
     </View>
     {!alertTimestamp ? null : (
       <>

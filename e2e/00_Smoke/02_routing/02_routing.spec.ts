@@ -3,7 +3,7 @@ import * as scenario from "./_steps/scenario"
 import * as given from "./_steps/given"
 import * as when from "./_steps/when"
 import * as then from "./_steps/then"
-import { YUCOIN, BUTTON_CLOSE, QUESTS_SCREEN, NAV_BAR, LEADERBOARD_SCREEN, REWARDS_SCREEN, MENU_ICON, STATS_SCREEN, ACTIVITY_HISTORY_SCREEN, SETTINGS_SCREEN, YUMATTER_SCREEN, LEVEL_CHALLENGE_BUTTON, CHALLENGE_SET, CHALLENGE_TILE, GENERIC_SCREEN_HEADING, GENERIC_SCREEN_CTA, CHALLENGE_PROGRESS_BAR, BUTTON_CLOSE_CHALLENGE, CHECK_REWARDS_BUTTON, LEADERBOARD_TOP_SCREEN, BUTTON_CLOSE_HEADER } from "@ids";
+import { YUCOIN, BUTTON_CLOSE, QUESTS_SCREEN, NAV_BAR, LEADERBOARD_SCREEN, REWARDS_SCREEN, MENU_ICON, STATS_SCREEN, ACTIVITY_HISTORY_SCREEN, SETTINGS_SCREEN, YUMATTER_SCREEN, LEVEL_CHALLENGE_BUTTON, CHALLENGE_SET, CHALLENGE_TILE, GENERIC_SCREEN_HEADING, GENERIC_SCREEN_CTA, CHALLENGE_PROGRESS_BAR, BUTTON_CLOSE_CHALLENGE, CHECK_REWARDS_BUTTON, LEADERBOARD_TOP_SCREEN, BUTTON_CLOSE_HEADER, SETTINGS_NAME, SETTINGS_DESC, SETTINGS_SWITCH } from "@ids";
 import { REWARDS_JOHN_LEWIS, REAWARDS_AVIOS, REWARDS_BLOOM_UNAVAILABLE, CUSTOMER_2, AUTH_2, CUSTOMER_8, AUTH_8, CUSTOMER_35, AUTH_35 } from "@data";
 Feature("As a user I can navigate through member routes correctly", async () => {
 
@@ -56,6 +56,38 @@ Feature("As a user I can navigate through member routes correctly", async () => 
 
                 When("I tap settings", when.tapMenuItem("Settings"), async () => {
                     Then("I should be on the settings tab", then.idVisible(SETTINGS_SCREEN, 2500))
+                    Then("I should see Challenge completion", then.idVisible(SETTINGS_NAME("Challenge completion")))
+                    Then("I should see 'Notify me when I have completed a challenge'", then.idVisible(SETTINGS_DESC("Notify me when I have completed a challenge.")))
+                    When("I tap on the Challenge completion switch", when.tapID(SETTINGS_SWITCH("Challenge completion", true)), async () => {
+                        Then("the switch should be off", then.idVisible(SETTINGS_SWITCH("Challenge completion", false)))
+                        When("I tap on the Challenge completion switch", when.tapID(SETTINGS_SWITCH("Challenge completion", false)), async () => {
+                            Then("the switch should be on", then.idVisible(SETTINGS_SWITCH("Challenge completion", true)))
+                        })
+                    })
+                    Then("I should see Duels", then.idVisible(SETTINGS_NAME("Duels")))
+                    Then("I should see 'Notify me when someone challenges me to a Duel, and when the results are in'", then.idVisible(SETTINGS_DESC("Notify me when someone challenges me to a Duel, and when the results are in.")))
+                    When("I tap on the Duels switch", when.tapID(SETTINGS_SWITCH("Duels", true)), async () => {
+                        Then("the switch should be off", then.idVisible(SETTINGS_SWITCH("Duels", false)))
+                        When("I tap on the Duels switch", when.tapID(SETTINGS_SWITCH("Duels", false)), async () => {
+                            Then("the switch should be on", then.idVisible(SETTINGS_SWITCH("Duels", true)))
+                        })
+                    })
+                    Then("I should see Surges", then.idVisible(SETTINGS_NAME("Surges")))
+                    Then("I should see 'Notify me when there is a YuCoin surge'", then.idVisible(SETTINGS_DESC("Notify me when there is a YuCoin surge.")))
+                    When("I tap on the Surges switch", when.tapID(SETTINGS_SWITCH("Surges", true)), async () => {
+                        Then("the switch should be off", then.idVisible(SETTINGS_SWITCH("Surges", false)))
+                        When("I tap on the Surges switch", when.tapID(SETTINGS_SWITCH("Surges", false)), async () => {
+                            Then("the switch should be on", then.idVisible(SETTINGS_SWITCH("Surges", true)))
+                        })
+                    })
+                    Then("I should see Marketing updates", then.idVisible(SETTINGS_NAME("Marketing updates")))
+                    Then("I should see 'Notify me about general YuLife marketing campaigns'", then.idVisible(SETTINGS_DESC("Notify me about general YuLife marketing campaigns.")))
+                    When("I tap on the Marketing updates switch", when.tapID(SETTINGS_SWITCH("Marketing updates", true)), async () => {
+                        Then("the switch should be off", then.idVisible(SETTINGS_SWITCH("Marketing updates", false)))
+                        When("I tap on the Marketing updates switch", when.tapID(SETTINGS_SWITCH("Marketing updates", false)), async () => {
+                            Then("the switch should be on", then.idVisible(SETTINGS_SWITCH("Marketing updates", true)))
+                        })
+                    })
                 })
 
                 When("I go back", when.tapID(BUTTON_CLOSE_HEADER("Settings")), async () => {
