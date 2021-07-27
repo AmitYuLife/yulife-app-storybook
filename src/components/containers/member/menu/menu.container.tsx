@@ -1,5 +1,6 @@
 import { bottomTabs, MODALS, ROUTES } from "@navigation/constants";
 import * as React from "react";
+import { Alert } from "react-native";
 import Config from "react-native-config";
 import DeviceInfo from "react-native-device-info";
 import Intercom from "react-native-intercom";
@@ -42,6 +43,23 @@ const MenuContainer = () => {
     }
   }, [permissions, pushNotificationCopy]);
 
+  const handlePressLogout = React.useCallback(() => {
+    Alert.alert(
+      "Log out?",
+      "Your progress and YuCoin will be waiting for you when you log back in. Are you sure you want to log out from YuLife?",
+      [
+        {
+          style: "cancel",
+          text: "Cancel",
+        },
+        {
+          onPress: () => dispatch(logOutStart()),
+          text: "Log Out",
+        },
+      ]
+    );
+  }, [dispatch]);
+
   const handlePressLink = React.useCallback(
     (link: LinkTypes) => (): null => {
       switch (link) {
@@ -64,7 +82,7 @@ const MenuContainer = () => {
           handlePush(currentRoute, ROUTES.leaderboards);
           return null;
         case LINKS.LOGOUT:
-          dispatch(logOutStart());
+          handlePressLogout();
           return null;
         case LINKS.MEMBER:
           handleClose();
