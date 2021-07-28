@@ -14,7 +14,6 @@ export const CUSTOMER_1 = {
         firstName: "Dan",
         lastName: "Greane",
         dateOfBirth: moment().subtract(28, "years").toDate(),
-        membershipType: "Yulife",
         status: "onboarded",
     }
 } as IDatabaseItem;
@@ -28,7 +27,6 @@ export const CUSTOMER_2 = {
         firstName: "Osama",
         lastName: "Rahman",
         dateOfBirth: moment().subtract(25, "years").toDate(),
-        membershipType: "Yulife",
         status: "onboarded",
     }
 } as IDatabaseItem;
@@ -42,7 +40,6 @@ export const CUSTOMER_3 = {
         firstName: "Walter",
         lastName: "White",
         dateOfBirth: moment().subtract(50, "years").toDate(),
-        membershipType: "Yulife",
         status: "onboarded",
     }
 } as IDatabaseItem
@@ -56,7 +53,6 @@ export const CUSTOMER_4 = {
         firstName: "Jesse",
         lastName: "Pinkman",
         dateOfBirth: moment().subtract(26, "years").toDate(),
-        membershipType: "Yulife",
         status: "onboarded",
     }
 } as IDatabaseItem
@@ -70,7 +66,6 @@ export const CUSTOMER_5 = {
         firstName: "Saul",
         lastName: "Goodman",
         dateOfBirth: moment().subtract(26, "years").toDate(),
-        membershipType: "Group",
         status: "onboarded",
     }
 } as IDatabaseItem
@@ -84,7 +79,6 @@ export const CUSTOMER_6 = {
         firstName: "Gustavo",
         lastName: "Fring",
         dateOfBirth: moment().subtract(48, "years").toDate(),
-        membershipType: "Yulife",
         status: "onboarded",
     }
 } as IDatabaseItem
@@ -98,7 +92,6 @@ export const CUSTOMER_7 = {
         firstName: "Skyler",
         lastName: "White",
         dateOfBirth: moment().subtract(42, "years").toDate(),
-        membershipType: "Yulife",
         status: "onboarded",
     }
 } as IDatabaseItem
@@ -112,7 +105,6 @@ export const CUSTOMER_8 = {
         firstName: "Jerry",
         lastName: "Seinfeld",
         dateOfBirth: moment().subtract(48, "years").toDate(),
-        membershipType: "Yulife",
         status: "onboarded",
     }
 } as IDatabaseItem
@@ -126,7 +118,6 @@ export const CUSTOMER_9 = {
         firstName: "George",
         lastName: "Costanza",
         dateOfBirth: moment().subtract(38, "years").toDate(),
-        membershipType: "Yulife",
         status: "onboarded",
     }
 } as IDatabaseItem
@@ -140,7 +131,6 @@ export const CUSTOMER_10 = {
         firstName: "Cosmo",
         lastName: "Kramer",
         dateOfBirth: moment().subtract(43, "years").toDate(),
-        membershipType: "Group",
         status: "onboarded",
     }
 } as IDatabaseItem
@@ -154,7 +144,6 @@ export const CUSTOMER_11 = {
         firstName: "Benes",
         lastName: "Elaine",
         dateOfBirth: moment().subtract(40, "years").toDate(),
-        membershipType: "Yulife",
         status: "onboarded",
     }
 } as IDatabaseItem
@@ -168,7 +157,6 @@ export const CUSTOMER_12 = {
         firstName: "Newman",
         lastName: "Knight",
         dateOfBirth: moment().subtract(40, "years").toDate(),
-        membershipType: "Yulife",
         status: "onboarded"
     }
 } as IDatabaseItem
@@ -182,7 +170,6 @@ export const CUSTOMER_13 = {
         firstName: "Frank",
         lastName: "Costanza",
         dateOfBirth: moment().subtract(70, "years").toDate(),
-        membershipType: "Group",
         status: "onboarded"
     }
 } as IDatabaseItem
@@ -196,7 +183,6 @@ export const CUSTOMER_14 = {
         firstName: "Mario",
         lastName: "Segale",
         dateOfBirth: moment().subtract(30, "years").toDate(),
-        membershipType: "Yulife",
         status: "onboarded"
     }
 } as IDatabaseItem
@@ -210,7 +196,6 @@ export const CUSTOMER_ARCHIVED = {
         firstName: "Ar",
         lastName: "Chived",
         dateOfBirth: moment().subtract(30, "years").toDate(),
-        membershipType: "Yulife",
         status: "onboarded",
         archived: true
     }
@@ -225,7 +210,6 @@ export const CUSTOMER_15 = {
         firstName: "Luigi",
         lastName: "Segale",
         dateOfBirth: moment().subtract(42, "years").toDate(),
-        membershipType: "Yulife",
         status: "onboarded"
     }
 } as IDatabaseItem
@@ -239,7 +223,6 @@ export const CUSTOMER_16 = {
         firstName: "Stanley",
         lastName: "Hudson",
         dateOfBirth: moment().subtract(50, "years").toDate(),
-        membershipType: "Yulife",
         status: "onboarded"
     }
 } as IDatabaseItem
@@ -253,7 +236,6 @@ export const CUSTOMER_17 = {
         firstName: "Ryan",
         lastName: "Howard",
         dateOfBirth: moment().subtract(27, "years").toDate(),
-        membershipType: "Yulife",
         status: "onboarded",
     }
 } as IDatabaseItem
@@ -267,7 +249,6 @@ export const CUSTOMER_18 = {
         firstName: "Michael",
         lastName: "Scott",
         dateOfBirth: moment().subtract(42, "years").toDate(),
-        membershipType: "Yulife",
         status: "onboarded",
     }
 } as IDatabaseItem
@@ -281,7 +262,6 @@ export const CUSTOMER_19 = {
         firstName: "Angela",
         lastName: "Martin",
         dateOfBirth: moment().subtract(42, "years").toDate(),
-        membershipType: "Yulife",
         status: "onboarded",
         fullName: "Angela Martin"
     }
@@ -296,7 +276,6 @@ export const CUSTOMER_20 = {
         firstName: "Oscar",
         lastName: "Martinez",
         dateOfBirth: moment().subtract(42, "years").toDate(),
-        membershipType: "Wellbeing Access",
         status: "onboarded",
     }
 } as IDatabaseItem
@@ -310,7 +289,6 @@ export const CUSTOMER_21 = {
         firstName: "Dwight",
         lastName: "Schrute",
         dateOfBirth: moment().subtract(38, "years").toDate(),
-        membershipType: "Yulife",
         status: "onboarded"
     }
 } as IDatabaseItem
@@ -324,7 +302,6 @@ export const CUSTOMER_22 = {
         firstName: "Craig",
         lastName: "David",
         dateOfBirth: moment().subtract(40, "years").toDate(),
-        membershipType: "Wellbeing Access",
         status: "onboarded"
     }
 } as IDatabaseItem
@@ -338,7 +315,6 @@ export const CUSTOMER_23 = {
         firstName: "Mike",
         lastName: "Skinner",
         dateOfBirth: moment().subtract(40, "years").toDate(),
-        membershipType: "Wellbeing Access",
         status: "onboarded"
     }
 } as IDatabaseItem
@@ -352,7 +328,6 @@ export const CUSTOMER_ALPHA = {
         firstName: "Al",
         lastName: "Pha",
         dateOfBirth: moment().subtract(30, "years").toDate(),
-        membershipType: "Yulife Alpha",
         status: "onboarded"
     }
 } as IDatabaseItem
@@ -366,7 +341,6 @@ export const CUSTOMER_24 = {
         firstName: "AJ",
         lastName: "Tracey",
         dateOfBirth: moment().subtract(27, "years").toDate(),
-        membershipType: "Wellbeing Access",
         status: "onboarded"
     }
 } as IDatabaseItem
@@ -381,7 +355,6 @@ export const CUSTOMER_25 = {
         firstName: "Majid",
         lastName: "Jordan",
         dateOfBirth: moment().subtract(27, "years").toDate(),
-        membershipType: "Wellbeing Access",
         status: "onboarded"
     }
 } as IDatabaseItem
@@ -395,7 +368,6 @@ export const CUSTOMER_26 = {
         firstName: "Pam",
         lastName: "Beesly",
         dateOfBirth: moment().subtract(35, "years").toDate(),
-        membershipType: "Wellbeing Access",
         status: "onboarded"
     }
 } as IDatabaseItem
@@ -409,7 +381,6 @@ export const CUSTOMER_27 = {
         firstName: "Kevin",
         lastName: "Malone",
         dateOfBirth: moment().subtract(40, "years").toDate(),
-        membershipType: "Wellbeing Access",
         status: "onboarded"
     }
 } as IDatabaseItem
@@ -423,7 +394,6 @@ export const CUSTOMER_28 = {
         firstName: "Toby",
         lastName: "Flenderson",
         dateOfBirth: moment().subtract(38, "years").toDate(),
-        membershipType: "Wellbeing Access",
         status: "onboarded"
     }
 } as IDatabaseItem
@@ -437,7 +407,6 @@ export const CUSTOMER_29 = {
         firstName: "Andy",
         lastName: "Bernard",
         dateOfBirth: moment().subtract(32, "years").toDate(),
-        membershipType: "Wellbeing Access",
         status: "onboarded"
     }
 } as IDatabaseItem
@@ -451,7 +420,6 @@ export const CUSTOMER_30 = {
         firstName: "Phyllis",
         lastName: "Vance",
         dateOfBirth: moment().subtract(50, "years").toDate(),
-        membershipType: "Wellbeing Access",
         status: "onboarded"
     }
 } as IDatabaseItem
@@ -465,7 +433,6 @@ export const CUSTOMER_31 = {
         firstName: "Leslie",
         lastName: "Knope",
         dateOfBirth: moment().subtract(40, "years").toDate(),
-        membershipType: "Wellbeing Access",
         status: "onboarded"
     } 
 } as IDatabaseItem
@@ -479,7 +446,6 @@ export const CUSTOMER_32 = {
         firstName: "Clark",
         lastName: "Kent",
         dateOfBirth: moment().subtract(40, "years").toDate(),
-        membershipType: "Group",
         status: "onboarded"
     }
 } as IDatabaseItem
@@ -493,7 +459,6 @@ export const CUSTOMER_33 = {
         firstName: "Bruce",
         lastName: "Wayne",
         dateOfBirth: moment().subtract(40, "years").toDate(),
-        membershipType: "Group",
         status: "onboarded"
     }
 } as IDatabaseItem
@@ -507,7 +472,6 @@ export const CUSTOMER_34 = {
         firstName: "Tim",
         lastName: "Drake",
         dateOfBirth: moment().subtract(40, "years").toDate(),
-        membershipType: "Group",
         status: "onboarded"
     }
 } as IDatabaseItem
@@ -521,7 +485,6 @@ export const CUSTOMER_35 = {
         firstName: "Barry",
         lastName: "Allen",
         dateOfBirth: moment().subtract(28, "years").toDate(),
-        membershipType: "Group",
         status: "onboarded"
     }
 } as IDatabaseItem

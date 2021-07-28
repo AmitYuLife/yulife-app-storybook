@@ -11,7 +11,6 @@ export const LEADERBOARD_CUSTOMERS = Array.from({ length: 120 }).map((_, i) => (
       firstName: "Mistah",
       lastName: i.toString().padStart(3, "0"),
       dateOfBirth: moment().subtract(30, "years").toDate(),
-      membershipType: "Yulife Alpha",
       status: "onboarded"
   }
 } as IDatabaseItem))
