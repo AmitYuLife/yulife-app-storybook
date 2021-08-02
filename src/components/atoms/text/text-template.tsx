@@ -31,7 +31,7 @@ export const TextTemplate = memo(
   }
 );
 
-const styles = StyleSheet.create({
+export const styles = StyleSheet.create({
   default: {
     fontFamily: Style.FONT_FAMILY_PRIMARY,
   },

@@ -1,113 +1,112 @@
-import { StyleSheet, Platform } from "react-native";
+import { Platform, StyleProp } from "react-native";
 import { Colours, Style } from "@styles";
+import { styles as textTemplateStyle } from "@components/atoms/text/text-template";
 
-export default StyleSheet.create({
-  block: {
-    marginBottom: 10,
-    flexWrap: "wrap",
-    flexDirection: "row",
-  },
-  h1: {
-    fontSize: 30,
-    marginTop: 20,
-    marginBottom: 8,
-  },
-  h2: {
-    fontSize: 20,
-    marginTop: 16,
-    marginBottom: 8,
-  },
-  h3: {
-    fontSize: 20,
-    marginTop: 16,
-    marginBottom: 8,
-  },
-  h4: {
-    fontSize: 20,
-    marginTop: 16,
-    marginBottom: 8,
-  },
-  h5: {
-    fontSize: 20,
-    marginTop: 12,
-    marginBottom: 6,
-  },
-  h6: {
-    fontSize: 20,
-    marginTop: 12,
-    marginBottom: 6,
-  },
-  hr: {
-    alignSelf: "stretch",
-    height: 1,
-    backgroundColor: "#333333",
-    marginVertical: 8,
-  },
-  text: {
-    fontFamily: Style.FONT_FAMILY_PRIMARY,
-    color: Colours.neutral.n800,
-    fontSize: Style.adjust(16),
-    lineHeight: Style.adjust(24),
-    letterSpacing: 0.6,
-  },
-  strong: {
-    fontFamily: Style.FONT_FAMILY_PRIMARY_BOLD,
-    fontWeight: Platform.select({ ios: undefined, android: "100" }),
-  },
-  em: {
-    fontStyle: "italic",
-  },
-  del: {
-    textDecorationLine: "line-through",
-  },
-  u: {
-    textDecorationLine: "underline",
-  },
-  linkWrapper: {
-    alignSelf: "flex-start",
-  },
-  link: {
-    textDecorationLine: "underline",
-    alignSelf: "flex-start",
-  },
-  list: {
-    marginBottom: Style.adjust(8),
-    marginTop: Style.adjust(8),
-  },
-  listItem: {
-    flexDirection: "row",
-    justifyContent: "flex-start",
-    marginVertical: Style.adjust(4),
-  },
-  listItemContent: {
-    flex: 1,
-    flexDirection: "row",
-    justifyContent: "flex-start",
-    alignItems: "flex-start",
-  },
-  listItemBullet: {
-    width: Style.adjust(4),
-    height: Style.adjust(4),
-    backgroundColor: "black",
-    borderRadius: 2,
-    marginRight: Style.adjust(10),
-    marginTop: Style.adjust(10),
-  },
-  listItemNumber: {
-    marginRight: 5,
-    marginTop: 4,
-  },
-  imageWrapper: {
-    flex: 1,
-    flexDirection: "row",
-    justifyContent: "flex-start",
-  },
-  image: {
-    flex: 1,
-    minWidth: 200,
-    height: 200,
-  },
-  paragraph: {
-    paddingVertical: 8,
-  },
-});
+interface IMarkdownStyle {
+  block?: Record<string, string | number>;
+  h1?: Record<string, string | number>;
+  h2?: Record<string, string | number>;
+  h3?: Record<string, string | number>;
+  text?: Record<string, string | number>;
+  imageWrapper?: Record<string, string | number>;
+  image?: Record<string, string | number>;
+  paragraph?: Record<string, string | number>;
+}
+
+const markdownStyle = (props: IMarkdownStyle) =>
+  ({
+    block: {
+      marginBottom: Style.adjust(10),
+      flexWrap: "wrap",
+      flexDirection: "row",
+      ...props?.block,
+    },
+    h1: {
+      ...textTemplateStyle.h1,
+      ...props?.h1,
+    },
+    h2: {
+      ...textTemplateStyle.h2,
+      ...props?.h2,
+    },
+    h3: {
+      ...textTemplateStyle.h3,
+      ...props?.h3,
+    },
+    hr: {
+      alignSelf: "stretch",
+      height: 1,
+      backgroundColor: "#333333",
+      marginVertical: Style.adjust(8),
+    },
+    text: {
+      ...textTemplateStyle.b2,
+      color: Colours.neutral.n800,
+      ...props?.text,
+    },
+    strong: {
+      fontFamily: Style.FONT_FAMILY_PRIMARY_BOLD,
+      fontWeight: Platform.select({ ios: undefined, android: "100" }),
+    },
+    em: {
+      fontStyle: "italic",
+    },
+    del: {
+      textDecorationLine: "line-through",
+    },
+    u: {
+      textDecorationLine: "underline",
+    },
+    linkWrapper: {
+      alignSelf: "flex-start",
+    },
+    link: {
+      textDecorationLine: "underline",
+      alignSelf: "flex-start",
+    },
+    list: {
+      marginBottom: Style.adjust(8),
+      marginTop: Style.adjust(8),
+    },
+    listItem: {
+      flexDirection: "row",
+      justifyContent: "flex-start",
+      marginVertical: Style.adjust(4),
+    },
+    listItemContent: {
+      flex: 1,
+      flexDirection: "row",
+      justifyContent: "flex-start",
+      alignItems: "flex-start",
+    },
+    listItemBullet: {
+      width: Style.adjust(4),
+      height: Style.adjust(4),
+      backgroundColor: "black",
+      borderRadius: 2,
+      marginRight: Style.adjust(10),
+      marginTop: Style.adjust(10),
+    },
+    listItemNumber: {
+      marginRight: Style.adjust(5),
+      marginTop: Style.adjust(4),
+    },
+    imageWrapper: {
+      flex: 1,
+      flexDirection: "row",
+      justifyContent: "flex-start",
+      ...props?.imageWrapper,
+    },
+    image: {
+      flex: 1,
+      width: 200,
+      height: 200,
+      ...props?.image,
+    },
+    paragraph: {
+      paddingVertical: Style.adjust(8),
+      ...props?.paragraph,
+    },
+  } as StyleProp<any>);
+
+export default markdownStyle;

@@ -2,7 +2,7 @@ import { Text } from "@atoms/index";
 import React from "react";
 import { StyleSheet, View, Image, StyleProp, ViewStyle, TouchableOpacity, Linking } from "react-native";
 import SimpleMarkdown from "simple-markdown";
-import mainStyles from "./markdown.styles";
+import markdownStyle from "./markdown.styles";
 
 interface IProps {
   text: string;
@@ -27,9 +27,10 @@ class Markdown extends React.PureComponent<IProps, IState> {
     super(props);
 
     const syntaxTree = SimpleMarkdown.markdownToReact(this.props.text) as React.ReactElement[];
+
     this.state = {
       syntaxTree,
-      styles: StyleSheet.create(Object.assign(mainStyles, this.props.markdownStyles || {})),
+      styles: StyleSheet.create(markdownStyle(this.props.markdownStyles)),
     };
   }
 
@@ -193,12 +194,6 @@ class Markdown extends React.PureComponent<IProps, IState> {
         return this.renderText(node, key, concatStyles(extras, styles.h2));
       case "h3":
         return this.renderText(node, key, concatStyles(extras, styles.h3));
-      case "h4":
-        return this.renderText(node, key, concatStyles(extras, styles.h4));
-      case "h5":
-        return this.renderText(node, key, concatStyles(extras, styles.h5));
-      case "h6":
-        return this.renderText(node, key, concatStyles(extras, styles.h6));
       case "hr":
         return this.renderLine(key);
       case "div":
