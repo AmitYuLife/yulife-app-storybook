@@ -7,6 +7,82 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.10.0] - 2021-08-02
+
+### Features
+
+- Feature Task-877: Referrals - Screen Structure
+- Feature TP-855: Remove tooltip
+- Feature TP-844: Underwriting - Package card
+- Feature TP-832: Fiit integration
+- Feature TP-721: Redesign approach for long screen CTA issues
+- Feature TP-842: Beneficiaries Tagging
+- Feature TP-721: Adaptive underwriting CTA
+
+### Bugfixes
+
+- Bugfix Do not preload images if uri is missing
+- (origin/bugfix/tp-874-add-missing-style-for-content-button) TP-874 Add missing style for content item button
+- Bugfix ENG-2154: challenge not ending
+- Bugfix TP-877: Small adjustments on the referrals screen coin
+- Bugfix TP-877: Referrals Screen - Change description, align coin and truncate on name
+- Bugfix TP-886: Deeplink not working on other screens which is not the Dailysteps
+- Bugfix ENG-2151 Ensure create challenge called only once
+- Bugfix TP-857: Fix BoxOption atom dimensions
+- (origin/bugfix/tp-720-yugi-pointer-event) Remove underwriting yugi pointer event
+- Bugfix ENG-2158: Wrap cancelChallengeNotificationSaga with try-catch, log the error
+- Bugfix ENG-2142: Limit pedometer steps
+- Bugfix: Reset steps on challenge start
+- Bugfix: Fix Scroller picker bugs
+- Bugfix TP-847: Refetch on mutate
+- (origin/bugfix/tp-836-gp-details) Bugfix TP-836: Fix android back button, rename button and remove item from the list
+
+### Tasks
+
+- Task TP-886: Deeplink to the referrals screen
+- Task TP-873 Remove duplicated style from markdown
+- Task TP-874: Move content button to common folder
+- Task TP-886: Cleanup referrals
+- Task TP-867: Purge Cloudinary
+- Task TP-856/857: Package Selection Component / Avatar Details on package selection
+- Task TP-858: Rebuild FAQs with wellbeing hub components
+- Task TP-868: Use headspace tint on headspace button, stabilize external app overlay
+- Task TP-845: Underwritting - Update perks component
+- Task TP-846: App review respect api fields
+- Task: Use FlatList to improve performance
+
+### Chores
+
+- (origin/chore/pedomoter-infinite-loading, chore/pedomoter-infinite-loading) Chore: pedometer infinite loading
+- Chore: fitkit hooks
+
+### Improvements
+
+- TP-844 Underwriting - Package card improvements and debug screen
+
+### Extra
+
+- Detox: Small Fix
+- Detox: Streak YuCoin
+- Detox: Postgres Fixes
+- Detox: Fixes
+- Detox: Extended Fixes
+- Implement TP-886: Referrals deeplink
+- wrap startChallengeIfActiveSaga with try-catch, send error to Bugsnag
+- Detox Postgres Schemas
+- add headspace on Android
+- [HOTFIX] Wellbeing hub page pass size for asset
+- Check for undefined errors array
+- Always return object with token status
+- Fix android scripts
+- Show single yuCoin value instead of range
+- Remove Consent
+- Detox: Extended Fixes
+- Export Fitkit types
+- Detox: Beneficiaries
+- Detox: Member Services Update
+- Yumoji fix
+
 ## [3.9.0] - 2021-07-13
 
 ### Features
