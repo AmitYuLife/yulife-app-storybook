@@ -9,7 +9,6 @@ import { idVisible } from "@utils";
 
 
 Feature("As a user I can use the streaks functionality", async () => {
-    // Challenges fail even though 200 steps are made
     Scenario("I can start a new streak and complete a challenge", scenario.start, async () => {
         Given("I login", given.logInWithStreakScreen(CUSTOMER_5, AUTH_5), async () => {
             Then("I should see the streak screen", then.onStartStreak)
@@ -36,7 +35,7 @@ Feature("As a user I can use the streaks functionality", async () => {
                                                 When("I continue the intro", when.finishIntro, async () => {
                                                     Then("I should see 1/5 streaks", then.textVisible("1/5"))
                                                     Then("I should see the amount of yucoin I earned today", then.textVisible("60 yucoin today"))
-                                                    Then("I should see the number of steps I walked today", then.textVisible("108 steps"))
+                                                    Then("I should see the number of steps I walked today", then.textVisible("200 steps"))
                                                     When("I tap '1/5", when.tapText("1/5"), async () => {
                                                         Then("I should see the completed modal again", then.completedTodayStreakCopyVisible(1))
                                                     })
