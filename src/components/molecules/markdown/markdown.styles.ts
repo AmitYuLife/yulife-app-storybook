@@ -1,4 +1,4 @@
-import { Platform, StyleProp } from "react-native";
+import { StyleProp } from "react-native";
 import { Colours, Style } from "@styles";
 import { styles as textTemplateStyle } from "@components/atoms/text/text-template";
 
@@ -46,7 +46,6 @@ const markdownStyle = (props: IMarkdownStyle) =>
     },
     strong: {
       fontFamily: Style.FONT_FAMILY_PRIMARY_BOLD,
-      fontWeight: Platform.select({ ios: undefined, android: "100" }),
     },
     em: {
       fontStyle: "italic",

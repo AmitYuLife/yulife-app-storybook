@@ -15,10 +15,20 @@ export interface GetReferralInformation_referralInformation_referralHistory {
   coin: number;
 }
 
+export interface GetReferralInformation_referralInformation_markdown {
+  header: string;
+  historyTitle: string;
+  historyEmptyMessage: string;
+}
+
 export interface GetReferralInformation_referralInformation {
   rewardForReferral: number;
   referralLink: string;
   referralHistory: GetReferralInformation_referralInformation_referralHistory[];
+  shareCTA: string;
+  shareMessage: string;
+  disclaimer: string;
+  markdown: GetReferralInformation_referralInformation_markdown;
 }
 
 export interface GetReferralInformation {

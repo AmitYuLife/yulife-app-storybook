@@ -37,6 +37,10 @@ export const DEVICES = {
     width: 411,
     height: 683,
   },
+  QVGA: {
+    width: 320,
+    height: 480,
+  },
 };
 
 interface IMediaQuery {
