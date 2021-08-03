@@ -12,6 +12,8 @@ interface IProps {
   onPress: () => void;
   isLoading?: boolean;
   title?: string;
+  leftIcon?: JSX.Element;
+  rightIcon?: JSX.Element;
   borderColor?: string;
   color?: string;
   backgroundColor?: string;
@@ -78,6 +80,8 @@ export function ButtonBase(props: IProps) {
         testID={props.testID}
         disabled={props.disabled}
         title={props.title}
+        leftIcon={props.leftIcon}
+        rightIcon={props.rightIcon}
         height={height - (hideShadow ? 0 : SHADOW_DIFF)}
         borderRadius={borderRadius}
         onPressIn={handlePressIn}
@@ -119,6 +123,8 @@ function Main({
   onPressOut,
   onPress,
   title,
+  leftIcon,
+  rightIcon,
   children,
 }: IProps & IState & ComponentProps<typeof TouchableWithoutFeedback>) {
   const adjustedColor = getOptionallyDisabledColor({ color, disabled });
@@ -143,7 +149,14 @@ function Main({
         <Animated.View
           style={[styles.main, { height, borderRadius, transform: [{ translateY: translateYAnimation }], ...border }]}
         >
-          <Content testID={`${testID}-text-view`} title={title} isLoading={isLoading} color={adjustedColor}>
+          <Content
+            testID={`${testID}-text-view`}
+            title={title}
+            leftIcon={leftIcon}
+            rightIcon={rightIcon}
+            isLoading={isLoading}
+            color={adjustedColor}
+          >
             {children}
           </Content>
         </Animated.View>
@@ -154,21 +167,27 @@ function Main({
 
 interface ContentProps {
   title: string;
+  leftIcon?: JSX.Element;
+  rightIcon?: JSX.Element;
   isLoading: boolean;
   color: string;
   children: React.ReactElement;
   testID: string;
 }
-function Content({ title, isLoading, color, children, testID }: ContentProps) {
+function Content({ title, leftIcon, rightIcon, isLoading, color, children, testID }: ContentProps) {
   if (isLoading) {
     return <ActivityIndicator color={color} />;
   }
 
   if (title) {
     return (
-      <TextTemplate type="b2b" testID={testID} color={color}>
-        {title}
-      </TextTemplate>
+      <View style={styles.buttonContent}>
+        {leftIcon ? <View style={styles.leftIcon}>{leftIcon}</View> : null}
+        <TextTemplate type="b2b" testID={testID} color={color}>
+          {title}
+        </TextTemplate>
+        {rightIcon ? <View style={styles.rightIcon}>{rightIcon}</View> : null}
+      </View>
     );
   }
 
@@ -238,4 +257,14 @@ const styles = StyleSheet.create({
     width: "100%",
     backgroundColor: "rgba(255,255,255,0.5)",
   } as ViewStyle,
+  buttonContent: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  leftIcon: {
+    marginRight: Style.adjust(9),
+  },
+  rightIcon: {
+    marginLeft: Style.adjust(9),
+  },
 });

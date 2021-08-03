@@ -12,6 +12,14 @@ export const GQL_QUERY_GET_REFERRAL_INFORMATION = gql`
         avatarUrl
         coin
       }
+      shareCTA
+      shareMessage
+      disclaimer
+      markdown {
+        header
+        historyTitle
+        historyEmptyMessage
+      }
     }
   }
 `;

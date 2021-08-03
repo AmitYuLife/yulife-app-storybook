@@ -1,5 +1,5 @@
 import { useQuery } from "@apollo/react-hooks";
-import { ReferralsScreen } from "@components/screens";
+import { ReferralsScreen, ReferralsLoadingScreen } from "@components/screens";
 import { GQL_QUERY_GET_REFERRAL_INFORMATION } from "@graphql/referrals";
 import { GetReferralInformation } from "@graphql/_core/schema/GetReferralInformation";
 import React, { useCallback } from "react";
@@ -16,7 +16,11 @@ const ReferralsContainer = ({ componentId }: IProps) => {
 
   const handleClose = useCallback(() => Navigation.popToRoot(componentId), [componentId]);
 
-  return <ReferralsScreen loading={loading} info={data?.referralInformation} handleClose={handleClose} />;
+  if (loading) {
+    return <ReferralsLoadingScreen handleClose={handleClose} />;
+  }
+
+  return <ReferralsScreen info={data?.referralInformation} handleClose={handleClose} />;
 };
 
 export default ReferralsContainer;

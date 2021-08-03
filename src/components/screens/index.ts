@@ -61,3 +61,4 @@ export { default as FibDocumentsScreen } from "./products/fib/documents/fib.docu
 
 // referrals
 export { default as ReferralsScreen } from "./referrals/referrals.screen";
+export { default as ReferralsLoadingScreen } from "./referrals/referrals-loading.screen";

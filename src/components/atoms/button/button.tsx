@@ -11,6 +11,8 @@ interface IProps {
   isLoading?: boolean;
   onPress: () => void;
   label: string;
+  leftIcon?: JSX.Element;
+  rightIcon?: JSX.Element;
   wrapperStyle?: ViewStyle;
   disabled?: boolean;
   testID?: string;
@@ -58,6 +60,8 @@ function Button(props: IProps) {
         isLoading={isLoading}
         disabled={disabled}
         title={label}
+        leftIcon={props.leftIcon}
+        rightIcon={props.rightIcon}
         onPress={handlePress}
         color={textColor}
         borderRadius={50}
