@@ -22793,6 +22793,61 @@
             "deprecationReason": null
           },
           {
+            "name": "testSendSampleEmails",
+            "description": null,
+            "args": [
+              {
+                "name": "template",
+                "description": null,
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "customerId",
+                "description": null,
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "variables",
+                "description": null,
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "updateAccessUser",
             "description": null,
             "args": [
@@ -28823,6 +28878,18 @@
           },
           {
             "name": "DISMISSED",
+            "description": null,
+            "isDeprecated": true,
+            "deprecationReason": "Replaced with more granular actions DISMISSED_ASK_LATER and DISMISSED_NOT_REALLY."
+          },
+          {
+            "name": "DISMISSED_ASK_LATER",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "DISMISSED_NOT_REALLY",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
