@@ -69,7 +69,7 @@ const AppReviewModal: FC = () => {
 
   const onSecondButtonPress = useCallback(async () => {
     if (isFirstStateShown) {
-      await submitAppReview(AppStoreReviewPromptAction.DISMISSED);
+      await submitAppReview(AppStoreReviewPromptAction.DISMISSED_NOT_REALLY);
       setIsFirstStateShown(false);
     } else {
       Navigation.dismissModal(MODALS.appReview);
@@ -77,7 +77,7 @@ const AppReviewModal: FC = () => {
   }, [isFirstStateShown, setIsFirstStateShown, submitAppReview]);
 
   const onAskLaterButtonPress = useCallback(async () => {
-    await submitAppReview(AppStoreReviewPromptAction.DISMISSED);
+    await submitAppReview(AppStoreReviewPromptAction.DISMISSED_ASK_LATER);
     Navigation.dismissModal(MODALS.appReview);
   }, [submitAppReview]);
 
