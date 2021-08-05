@@ -103,10 +103,12 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
                 When("I walk over 500 steps", when.sendSteps(600, 33000), async () => {
                     Then("I should be on the challenge complete screen", then.onChallengeComplete(600, 115))
                     When("I tap collect", when.tapText("collect"), async () => {
-                        Then("I should be on the third world quests screen", then.idVisible(QUESTS_SCREEN(2)))
-                        When("I go to the yucoin tab", when.tapID(NAV_BAR("yucoin")), async () => {
-                            Then("I should see my steps and coints from today", then.stepsAndCoinsVisible(600, 10))
-                            Then("I should see my updated coin amount in the top right", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(27710)))
+                        When("I tap done", when.tapText("Done"), async () => {
+                            Then("I should be on the third world quests screen", then.idVisible(QUESTS_SCREEN(2)))
+                            When("I go to the yucoin tab", when.tapID(NAV_BAR("yucoin")), async () => {
+                                Then("I should see my steps and coints from today", then.stepsAndCoinsVisible(600, 10))
+                                Then("I should see my updated coin amount in the top right", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(27710)))
+                            })
                         })
                     })
                 })
@@ -126,8 +128,10 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
                         When("I wait to complete this challenge", when.wait(66000), async () => {
                             Then("I should be on the challenge complete screen", then.onMeditationChallengeComplete(5, 115))
                             When("I tap collect", when.tapText("collect"), async () => {
-                                Then("I should be on the third world quests screen", then.idVisible(QUESTS_SCREEN(2)))
-                                Then("I should see my updated coin amount", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(27730)))
+                                When("I tap done", when.tapText("Done"), async () => {
+                                    Then("I should be on the third world quests screen", then.idVisible(QUESTS_SCREEN(2)))
+                                    Then("I should see my updated coin amount", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(27730)))
+                                })
                             })
                         })
                     })
@@ -144,10 +148,12 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
                 When("I walk over 500 steps", when.sendSteps(550, 33000), async () => {
                     Then("I should be on the challenge complete screen", then.onChallengeComplete(550, 175))
                     When("I tap collect", when.tapText("collect"), async () => {
-                        Then("I should be on quests", then.idVisible(QUESTS_SCREEN(3)))
-                        When("I go to the yucoin tab", when.tapID(NAV_BAR("yucoin")), async () => {
-                            Then("I should see my steps and coints from today", then.stepsAndCoinsVisible(550, 10))
-                            Then("I should see my updated coin amount in the top right", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(50210)))
+                        When("I tap done", when.tapText("Done"), async () => {
+                            Then("I should be on quests", then.idVisible(QUESTS_SCREEN(3)))
+                            When("I go to the yucoin tab", when.tapID(NAV_BAR("yucoin")), async () => {
+                                Then("I should see my steps and coints from today", then.stepsAndCoinsVisible(550, 10))
+                                Then("I should see my updated coin amount in the top right", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(50210)))
+                            })
                         })
                     })
                 })
