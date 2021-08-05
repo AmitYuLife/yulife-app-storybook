@@ -1,5 +1,5 @@
 import React, { memo, useCallback } from "react";
-import { Share, View, ScrollView, Image } from "react-native";
+import { Share, View, ScrollView, Image, Platform } from "react-native";
 import moment from "moment";
 import { TextTemplate, Button, Icon } from "@atoms";
 import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
@@ -45,7 +45,7 @@ const ReferralsScreen = ({ info, handleClose }: IProps) => {
     try {
       await Share.share({
         url: referralLink,
-        message: shareMessage,
+        message: Platform.select({ ios: shareMessage, android: `${shareMessage.replace(/\.$/, "")}: ${referralLink}` }),
       });
     } catch (e) {
       Logger.error(e, { file: "referrals.screen" });
