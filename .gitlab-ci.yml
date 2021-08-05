@@ -1,5 +1,16 @@
+.base:
+  image: 
+    name: 846880112034.dkr.ecr.eu-west-2.amazonaws.com/build-nodejs-eb:latest
+  tags:
+    - dev_v3
+
 stages:
   - quality
+  - release
+
+###########################################################
+# Quality
+###########################################################
 
 sonarcloud-check:
     tags:
@@ -26,3 +37,39 @@ sonarcloud-check:
         - develop
         - /^release\/.*$/
         - merge_requests
+
+###########################################################
+# Release Management
+###########################################################
+
+release-develop-to-uat:
+  extends: .base
+  stage: release
+  when: manual
+  script:
+    - BRANCH_VERSION_MAJOR=$(node -p -e "require('./package.json').version.split('.')[0]")
+    - BRANCH_VERSION_MINOR=$(node -p -e "require('./package.json').version.split('.')[1]")
+    - BRANCH_VERSION=${BRANCH_VERSION_MAJOR}.${BRANCH_VERSION_MINOR}
+    # Switch from Gitlab SSH to Service User Basic Auth
+    - git remote rm origin && git remote add origin https://oauth2:${RELEASE_GITLAB_TOKEN}@gitlab.com/$CI_PROJECT_PATH.git
+    - git config --global user.email $GITLAB_USER_EMAIL
+    - git config --global user.name $GITLAB_USER_NAME
+    - git fetch -q
+    # Update changelog
+    - git checkout develop
+    - node ./scripts/gitlab/update-changelog.js
+    - npx prettier CHANGELOG.md --write
+    - git add CHANGELOG.md
+    # Hack since colon in commit message and environment variable not possible
+    - 'echo "Release: updated changelog for " > tmp.message'
+    - git commit --no-verify -m "$(cat tmp.message)${BRANCH_VERSION}.0"
+    # Create release branch
+    - git checkout -b "release/$BRANCH_VERSION"
+    - git push -u origin "release/$BRANCH_VERSION" --no-verify
+    # Update package version on develop
+    - git checkout develop
+    - "npm version minor --commit-hooks false -m 'Release: bump version to %s'"
+    - git push --no-verify
+  only:
+    refs:
+      - develop
