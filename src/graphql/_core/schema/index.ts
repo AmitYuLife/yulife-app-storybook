@@ -43,6 +43,7 @@ export * from "./GetProductDetails";
 export * from "./GetQuestMapLevel";
 export * from "./GetQuestMapLevelList";
 export * from "./GetRecentDuelOpponents";
+export * from "./GetReferralBackground";
 export * from "./GetReferralInformation";
 export * from "./GetRewards";
 export * from "./GetSession";
