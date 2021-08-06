@@ -48,23 +48,14 @@ export default StyleSheet.create({
   referralSection: {
     position: "absolute",
     justifyContent: "flex-end",
-    paddingBottom: Style.adjust(32),
-    bottom: 0,
-    paddingTop: Style.adjust(32),
-    height: Style.adjust(150),
-    overflow: "hidden",
-    width: Style.DEVICE_WIDTH,
-  } as ViewStyle,
-  referralBackgroundWrapper: {
-    position: "absolute",
     bottom: 0,
     left: 0,
     right: 0,
+    paddingBottom: Style.adjust(32),
   } as ViewStyle,
-  referralImage: {
-    height: Style.adjust((Style.DEVICE_WIDTH * 120) / 375),
-    width: Style.DEVICE_WIDTH,
-  },
+  referralBackgroundWrapper: {
+    position: "absolute",
+  } as ViewStyle,
   wrapper: {
     flex: 1,
   } as ViewStyle,
@@ -75,8 +66,7 @@ export default StyleSheet.create({
     padding: 16,
   } as ViewStyle,
   referralButtonWrapper: {
-    paddingHorizontal: 40,
-    width: Style.DEVICE_WIDTH,
+    paddingHorizontal: Style.adjust(40),
   } as ViewStyle,
   bottomPadding: {
     height: Style.adjust(120),
