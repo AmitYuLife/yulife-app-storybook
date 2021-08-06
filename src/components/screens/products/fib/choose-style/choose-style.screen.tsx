@@ -100,7 +100,7 @@ export const FibStyleSelectionScreen = memo(function (props: IFibStyleSelectionS
       </View>
       <GenericHeadingAbsolute
         heading={""}
-        rightIcon={{ icon: "CLOSE" }}
+        rightIcon="CLOSE"
         onLeftIconPress={onBackPress}
         onRightIconPress={onClose}
         hideBorder={true}

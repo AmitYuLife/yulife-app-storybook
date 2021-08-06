@@ -14,7 +14,6 @@ import { ReviewAnswers } from "@atoms/fib/review-answers/review-answers";
 import { Button, CheckBox } from "@atoms";
 import { IAnswer } from "../../../../../redux/product/product.selectors";
 import { NativeScrollPoint } from "react-native";
-import { IRightIcon } from "@atoms/generic-heading/generic-heading.types";
 import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
 import { Yugi, YugiType } from "../layouts/yugi";
 import FibTitle from "@atoms/fib/title/title";
@@ -29,8 +28,6 @@ export interface IFibUnderwritingReviewAnswersScreenProps {
   onScrollEnd: (event: NativeSyntheticEvent<NativeScrollEvent>) => void;
   offset: NativeScrollPoint;
 }
-
-const RIGHT_ICON = { icon: "CLOSE" } as IRightIcon;
 
 const _FibUnderwritingReviewAnswersScreen = memo(function (props: IFibUnderwritingReviewAnswersScreenProps) {
   const { onNavigateBack, onSubmitButton, onAnswerPress, onScrollEnd, answers, offset } = props;
@@ -104,12 +101,7 @@ const _FibUnderwritingReviewAnswersScreen = memo(function (props: IFibUnderwriti
           disabled={disableSubmitButton || !confirmed}
         />
       </ScrollView>
-      <GenericHeadingAbsolute
-        hideBorder={false}
-        logo="yulife"
-        rightIcon={RIGHT_ICON}
-        onRightIconPress={onNavigateBack}
-      />
+      <GenericHeadingAbsolute hideBorder={false} logo="yulife" rightIcon="CLOSE" onRightIconPress={onNavigateBack} />
       <Yugi wrapperStyle={styles.yugiWrapperStyle} yugi={YugiType.REVIEW} />
     </View>
   );

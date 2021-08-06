@@ -2,7 +2,6 @@ import React from "react";
 import { StyleSheet, ViewStyle, View } from "react-native";
 import { LeaderboardListItems } from "./subcomponents/leaderboard-list-item";
 import GenericHeadingAbsolute from "@atoms/generic-heading/generic-heading-absolute";
-import { IRightIcon } from "@atoms/generic-heading/generic-heading.types";
 import { TOP_BAR } from "@styles";
 import { ILeaderboard } from "@redux/user/user.reducer";
 
@@ -14,8 +13,6 @@ interface IProps {
   onChangeActiveLeaderboard: (id: string) => void;
   onChangeLeaderboardConsent: (leaderboardId: string, consent: boolean) => void;
 }
-
-const RIGHT_ICON: IRightIcon = { icon: "PLUS" };
 
 function LeaderboardOptionsScreen(props: IProps) {
   const {
@@ -40,7 +37,7 @@ function LeaderboardOptionsScreen(props: IProps) {
         heading="Leaderboards"
         onLeftIconPress={onLeftIconPress}
         onRightIconPress={onRightIconPress}
-        rightIcon={RIGHT_ICON}
+        rightIcon="PLUS"
       />
     </View>
   );
