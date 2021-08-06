@@ -45,11 +45,15 @@ const TapToCopy = ({ heading, customCopyText, text, canCopy, markdown }: IProps)
           </View>
         )}
         <View style={styles.markdownWrapper}>
-          {markdown ? (
-            <Markdown text={text} containerStyle={styles.markdownContainerStyle} />
-          ) : (
-            <TextTemplate type="b2">{text}</TextTemplate>
-          )}
+          <View style={styles.textWrapper}>
+            {markdown ? (
+              <Markdown text={text} />
+            ) : (
+              <TextTemplate type="b2" numberOfLines={1}>
+                {text}
+              </TextTemplate>
+            )}
+          </View>
           {!canCopy ? null : (
             <View style={styles.copyWrapper}>
               <View style={styles.copyText}>{isCopied ? <Copied /> : <Copy />}</View>
@@ -93,9 +97,13 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
   } as ViewStyle,
+  textWrapper: {
+    flexShrink: 1,
+  },
   copyWrapper: {
     flexDirection: "row",
     alignItems: "center",
+    marginLeft: Style.adjust(24),
   } as ViewStyle,
   copyBox: {
     paddingHorizontal: 4,
@@ -105,9 +113,6 @@ const styles = StyleSheet.create({
   } as ViewStyle,
   copyText: {
     marginRight: Style.adjust(12),
-  } as ViewStyle,
-  markdownContainerStyle: {
-    maxWidth: Style.adjust(Style.DEVICE_WIDTH - 100),
   } as ViewStyle,
 });
 

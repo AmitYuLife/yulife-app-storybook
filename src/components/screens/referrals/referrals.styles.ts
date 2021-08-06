@@ -1,32 +1,25 @@
 import { StyleSheet } from "react-native";
-import { Style, Media } from "@styles";
-
-const HEADER_HEIGHT = Media.select(
-  [
-    {
-      condition: Style.DEVICE_WIDTH <= Media.DEVICES.QVGA.width,
-      value: 300,
-    },
-  ],
-  232
-);
+import { Style } from "@styles";
 
 export const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
   },
-  headerBackgroundImage: {
-    width: "100%",
+  backgroundImageWrapper: {
     position: "absolute",
-    left: 0,
-    top: Style.adjust(10),
+    top: Style.adjust(20),
+  },
+  headerWrapper: {
+    marginTop: Style.adjust(20),
+    marginBottom: Style.adjust(-30),
   },
   header: {
-    marginHorizontal: Style.adjust(24),
-    marginTop: Style.adjust(20),
-    height: Style.adjust(HEADER_HEIGHT),
+    position: "absolute",
+    width: "100%",
+    paddingHorizontal: Style.adjust(24),
   },
   tapToCopy: {
+    marginTop: Style.adjust(-24),
     marginBottom: Style.adjust(16),
   },
   shareButton: {
@@ -53,7 +46,6 @@ export const styles = StyleSheet.create({
 export const markdownStyles = StyleSheet.create({
   text: {
     textAlign: "center",
-    marginBottom: Style.adjust(8),
   },
   imageWrapper: {
     flexDirection: "row",

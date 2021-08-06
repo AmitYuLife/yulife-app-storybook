@@ -12,6 +12,10 @@ export const GQL_QUERY_GET_REFERRAL_INFORMATION = gql`
         avatarUrl
         coin
       }
+      background {
+        id
+        uri
+      }
       shareCTA
       shareMessage
       disclaimer

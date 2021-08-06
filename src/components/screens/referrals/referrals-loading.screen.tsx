@@ -2,8 +2,8 @@ import React, { memo } from "react";
 import { View, StyleSheet } from "react-native";
 import { SkeletonLoading } from "@atoms";
 import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
+import { UserAvatarCoinCardSkeleton } from "@molecules";
 import { Style } from "@styles";
-import { UserAvatarCoinCardSkeleton } from "@components/molecules";
 
 interface IProps {
   handleClose: () => void;
