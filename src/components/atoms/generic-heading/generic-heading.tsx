@@ -15,17 +15,7 @@ import { PressableWithDelay } from "@components/molecules";
 import { BUTTON_CLOSE_HEADER } from "@ids";
 
 function GenericHeading(props: IGenericHeadingProps) {
-  const {
-    heading,
-    onLeftIconPress,
-    onRightIconPress,
-    leftIcon = "BACK",
-    rightIcon = {
-      icon: "CLOSE",
-    },
-    isBeta,
-    logo,
-  } = props;
+  const { heading, onLeftIconPress, onRightIconPress, leftIcon = "BACK", rightIcon = "CLOSE", isBeta, logo } = props;
 
   return (
     <View style={styles.wrapper}>
@@ -83,11 +73,7 @@ function LeftIcon({ icon }: { icon: IGenericHeadingProps["leftIcon"] }) {
 }
 
 function RightIcon({ icon }: { icon: IGenericHeadingProps["rightIcon"] }) {
-  if (typeof icon === "string") {
-    return <Text style={styles.rightIconText}>{icon}</Text>;
-  }
-
-  switch (icon.icon) {
+  switch (icon) {
     case "SETTINGS":
       return <Image source={require("@assets/menu/settings.png")} />;
 
@@ -110,6 +96,12 @@ function RightIcon({ icon }: { icon: IGenericHeadingProps["rightIcon"] }) {
         <View>
           <CloseSvg />
         </View>
+      );
+    case "Done":
+      return (
+        <Text numberOfLines={1} style={styles.rightIconText}>
+          {icon}
+        </Text>
       );
     default:
       return null;

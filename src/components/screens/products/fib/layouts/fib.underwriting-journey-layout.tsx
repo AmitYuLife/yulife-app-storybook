@@ -1,6 +1,5 @@
 import React, { ComponentProps, useState } from "react";
 import { Platform, StyleSheet, KeyboardAvoidingView, ViewStyle, View } from "react-native";
-import { GenericHeading } from "@atoms";
 import { FIBProgressBar } from "@components/organisms";
 import { Yugi, YugiType } from "./yugi";
 import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
@@ -22,8 +21,6 @@ interface Props {
   wrapperStyle?: ViewStyle;
   hideBorder?: boolean;
 }
-
-const RIGHT_ICON = { icon: "CLOSE" } as ComponentProps<typeof GenericHeading>["rightIcon"];
 
 const keyboardBehavior = Platform.select({ ios: "padding" as "padding", android: null });
 
@@ -54,7 +51,7 @@ export function FibUnderwritingJourneyLayout(props: Props) {
         <GenericHeadingAbsolute
           heading={!centreLogo ? heading : null}
           logo={centreLogo}
-          rightIcon={RIGHT_ICON}
+          rightIcon="CLOSE"
           onLeftIconPress={onPreviousQuestion}
           onRightIconPress={onClose}
           hideBorder={hideBorder}

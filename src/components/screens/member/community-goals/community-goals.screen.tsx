@@ -11,7 +11,6 @@ import { EmptyCommunityGoals, CommunityGoal } from "./subcomponents";
 import { View } from "react-native-animatable";
 import { Navigation } from "react-native-navigation";
 import { ROUTES } from "@navigation/constants";
-import { IRightIcon } from "@atoms/generic-heading/generic-heading.types";
 import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
 
 interface IProps {
@@ -21,8 +20,6 @@ interface IProps {
   data: GetCommunityGoals_getCommunityGoals[];
   loading: boolean;
 }
-
-const RIGHT_ICON: IRightIcon = { icon: "EDIT" };
 
 const CommunityGoalsScreen: React.FC<IProps> = ({ onClose, onRefresh, joinCommunityGoal, data = [], loading }) => {
   const handleRightIconPress = () => {
@@ -51,7 +48,7 @@ const CommunityGoalsScreen: React.FC<IProps> = ({ onClose, onRefresh, joinCommun
       <GenericHeadingAbsolute
         heading="Community Goals"
         onLeftIconPress={onClose}
-        rightIcon={RIGHT_ICON}
+        rightIcon="EDIT"
         onRightIconPress={handleRightIconPress}
       />
     </View>
