@@ -4,8 +4,8 @@ import FastImage, { ImageStyle } from "react-native-fast-image";
 import { Colours } from "@styles";
 
 interface Props {
-  width: number;
-  height: number;
+  width: number | string;
+  height: number | string;
   style?: StyleProp<ViewStyle>;
   imageStyle?: StyleProp<ImageStyle>;
   uri: string;

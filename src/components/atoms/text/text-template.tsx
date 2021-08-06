@@ -11,10 +11,11 @@ interface IProps extends TextProps {
   color?: string;
   textAlign?: TextStyle["textAlign"];
   underline?: boolean;
+  numberOfLines?: number;
 }
 
 export const TextTemplate = memo(
-  ({ children, testID, type, color = Colours.neutral.n800, textAlign = "left", underline }: IProps) => {
+  ({ children, testID, type, color = Colours.neutral.n800, textAlign = "left", underline, numberOfLines }: IProps) => {
     const alignment = { textAlign };
     const fontColor = { color };
     const underlineStyle = !underline ? null : ({ textDecorationLine: "underline" } as StyleProp<TextStyle>);
@@ -24,6 +25,7 @@ export const TextTemplate = memo(
         style={StyleSheet.flatten([styles.default, styles[type], alignment, fontColor, underlineStyle])}
         allowFontScaling={false}
         testID={testID}
+        numberOfLines={numberOfLines}
       >
         {children}
       </Text>

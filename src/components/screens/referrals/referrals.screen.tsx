@@ -1,39 +1,28 @@
 import React, { memo, useCallback } from "react";
-import { Share, View, ScrollView, Image, Platform } from "react-native";
+import { Share, View, ScrollView, Platform } from "react-native";
+import AutoHeightImage from "react-native-auto-height-image";
 import moment from "moment";
-import { TextTemplate, Button, Icon } from "@atoms";
-import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
+import Logger from "@services/logging/logger";
 import { GetReferralInformation_referralInformation } from "@graphql/_core/schema";
 import { REFERRALS_SCREEN, REFERRALS_SCROLL_VIEW } from "@ids";
-import { Colours, Style } from "@styles";
-import { truncate } from "@services/utils";
-import { UserAvatarCoinCard } from "@components/molecules";
+import { TextTemplate, Button, Icon } from "@atoms";
 import { TheOwlFenceIcon } from "@atoms/icon/the-owl-fence-icon";
+import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
+import { UserAvatarCoinCard } from "@molecules";
+import Markdown from "@molecules/markdown/markdown";
 import { TapToCopy } from "@organisms";
-import Markdown from "@components/molecules/markdown/markdown";
+import { Colours, Style } from "@styles";
 import { styles, markdownStyles } from "./referrals.styles";
-import Logger from "@services/logging/logger";
 
 interface IProps {
   info: GetReferralInformation_referralInformation;
   handleClose: () => void;
 }
 
-const getTruncateSize = () => {
-  if (Style.DEVICE_WIDTH < 321) {
-    return 27;
-  }
-
-  if (Style.DEVICE_WIDTH < 361) {
-    return 24;
-  }
-
-  return 29;
-};
-
 const ReferralsScreen = ({ info, handleClose }: IProps) => {
   const {
     referralLink,
+    background: { uri },
     shareCTA,
     shareMessage,
     disclaimer,
@@ -56,13 +45,11 @@ const ReferralsScreen = ({ info, handleClose }: IProps) => {
     <View testID={REFERRALS_SCREEN} style={styles.wrapper}>
       <GenericHeadingPad />
       <ScrollView showsVerticalScrollIndicator={false} testID={REFERRALS_SCROLL_VIEW}>
-        <Image
-          source={require("./assets/referral-header-background.png")}
-          resizeMode="stretch"
-          style={styles.headerBackgroundImage}
-        />
-        <View style={styles.header}>
-          <Markdown text={header} markdownStyles={markdownStyles} />
+        <View style={styles.headerWrapper}>
+          <AutoHeightImage width={Style.DEVICE_WIDTH} source={{ uri }} />
+          <View style={styles.header}>
+            <Markdown text={header} markdownStyles={markdownStyles} />
+          </View>
         </View>
         <View style={styles.body}>
           <View style={styles.tapToCopy}>
@@ -70,7 +57,7 @@ const ReferralsScreen = ({ info, handleClose }: IProps) => {
               markdown={false}
               canCopy={true}
               customCopyText={referralLink}
-              text={truncate(referralLink.replace("https://", ""), getTruncateSize())}
+              text={referralLink.replace("https://", "")}
             />
           </View>
           <TextTemplate type="l2b" textAlign="center">
