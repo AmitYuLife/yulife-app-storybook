@@ -1,6 +1,7 @@
 import * as React from "react";
+import { Style } from "@styles";
 import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
-import { Text } from "../../atoms";
+import { Text, RemoteImage } from "@atoms";
 import Assets, { BoxedHeart, Coins } from "./assets";
 import styles from "./picker.styles";
 
@@ -14,20 +15,35 @@ export type Icon = "heart" | "coins";
 interface IProps {
   onPress: () => void;
   label: string;
-  icon: Icon;
+  icon?: Icon;
+  iconUri?: string;
   placeholder: string;
 }
 
 class Picker extends React.PureComponent<IProps> {
   public static Icons = ICONS;
+
+  public renderIcon() {
+    const { icon, iconUri } = this.props;
+    if (iconUri) {
+      return <RemoteImage uri={iconUri} width={Style.adjust(26)} height={Style.adjust(26)} />;
+    }
+
+    if (icon === ICONS.COINS) {
+      return <Coins scale={0.4} />;
+    }
+
+    return <BoxedHeart scale={0.5} />;
+  }
+
   public render() {
-    const { onPress, label, icon, placeholder = "" } = this.props;
+    const { onPress, label, placeholder = "" } = this.props;
     return (
       <TouchableOpacity
         onPress={onPress}
         style={StyleSheet.flatten([styles.wrapper, label ? styles.wrapperFilled : {}])}
       >
-        {icon === "coins" ? <Coins scale={0.4} /> : <BoxedHeart scale={0.5} />}
+        {this.renderIcon()}
         <View style={styles.textWrapper}>
           <Text style={styles.label}>{label || placeholder}</Text>
         </View>

@@ -4,7 +4,6 @@ import { Text } from "@atoms";
 import styles from "./list-picker.styles";
 
 interface IItem {
-  id: string;
   label: string;
   onPress: () => void;
 }
@@ -15,7 +14,7 @@ interface IProps {
   onPressCancel: () => void;
 }
 
-const ListPicker: React.SFC<IProps> = ({ items, instruction, onPressCancel }) => (
+const ListPicker: React.FC<IProps> = ({ items, instruction, onPressCancel }) => (
   <View style={styles.wrapper}>
     <View style={styles.instructionWrapper}>
       <Text style={styles.instruction}>{instruction}</Text>

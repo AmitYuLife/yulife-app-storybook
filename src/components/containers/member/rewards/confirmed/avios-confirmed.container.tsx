@@ -1,14 +1,13 @@
 import moment from "moment";
-import * as React from "react";
-import { Component } from "react";
+import React, { useEffect } from "react";
 import { Alert } from "react-native";
 import Config from "react-native-config";
 import Intercom from "react-native-intercom";
 import { connect } from "react-redux";
-import { GetAllPurchases_getAllPurchases } from "../../../../../graphql/_core/schema";
-import { IReduxState } from "../../../../../redux/_core/reducers";
-import { getCopy } from "../../../../../redux/copy/copy.selectors";
-import { AviosRewardConfirmedScreen } from "../../../../screens";
+import { GetAllPurchases_getAllPurchases } from "@graphql/_core/schema";
+import { IReduxState } from "@redux/_core/reducers";
+import { getCopy } from "@redux/copy/copy.selectors";
+import { AviosRewardConfirmedScreen } from "@screens";
 import { handleLinkPress } from "@services/app-link";
 
 interface IProps {
@@ -21,67 +20,61 @@ type ConnectedState = ReturnType<typeof mapStateToProps>;
 
 type Props = IProps & ConnectedState;
 
-class AviosRewardConfirmedContainer extends Component<Props> {
-  public componentDidMount() {
-    const { purchase } = this.props;
+const AviosRewardConfirmedContainer = ({
+  onTabChange,
+  componentId,
+  copy,
+  purchase: {
+    name,
+    status,
+    createdAt,
+    amount,
+    metadata: {
+      avios: { loyaltyProgramme },
+    },
+  },
+}: Props) => {
+  const purchaseDate = moment(new Date(createdAt).toISOString()).format("DD MMM YYYY");
 
-    if (purchase.status === "pending") {
-      this.showPendingAlert(purchase.amount);
-    }
-  }
-
-  public render() {
-    const {
-      purchase: {
-        name,
-        status,
-        createdAt,
-        metadata: {
-          avios: { loyaltyProgramme },
-        },
-      },
-    } = this.props;
-    const purchaseDate = moment(new Date(createdAt).toISOString()).format("DD MMM YYYY");
-
-    return (
-      <AviosRewardConfirmedScreen
-        rewardName={name}
-        status={status}
-        purchaseDate={purchaseDate}
-        loyaltyProgramme={loyaltyProgramme}
-        onPressCancel={this.goToRewards}
-        onPressConfirm={this.showIntercom}
-        onPressPolicy={this.openRewardsPolicy}
-        onPressTopBar={this.goBack}
-      />
-    );
-  }
-
-  public showIntercom = () => {
+  const showIntercom = () => {
     Intercom.displayConversationsList();
   };
 
-  public showPendingAlert = (amount: number) => {
-    const { aviosConfirmed } = this.props.copy;
+  const openRewardsPolicy = handleLinkPress(Config.REWARDS_POLICY_URL);
 
-    Alert.alert(aviosConfirmed.title, aviosConfirmed.message.replace("${amount}", amount.toString()), [
-      {
-        style: "cancel",
-        text: aviosConfirmed.cancelButtonText,
-      },
-    ]);
+  const goBack = async () => {
+    await onTabChange("purchases", componentId);
   };
 
-  public openRewardsPolicy = handleLinkPress(Config.REWARDS_POLICY_URL);
-
-  public goBack = async () => {
-    await this.props.onTabChange("purchases", this.props.componentId);
+  const goToRewards = async () => {
+    await onTabChange("rewards", componentId);
   };
 
-  public goToRewards = async () => {
-    await this.props.onTabChange("rewards", this.props.componentId);
-  };
-}
+  useEffect(() => {
+    if (status === "pending") {
+      const { aviosConfirmed } = copy;
+      Alert.alert(aviosConfirmed.title, aviosConfirmed.message.replace("${amount}", amount.toString()), [
+        {
+          style: "cancel",
+          text: aviosConfirmed.cancelButtonText,
+        },
+      ]);
+    }
+  }, [status, amount]);
+
+  return (
+    <AviosRewardConfirmedScreen
+      rewardName={name}
+      status={status}
+      purchaseDate={purchaseDate}
+      loyaltyProgramme={loyaltyProgramme}
+      onPressCancel={goToRewards}
+      onPressConfirm={showIntercom}
+      onPressPolicy={openRewardsPolicy}
+      onPressTopBar={goBack}
+    />
+  );
+};
 
 const mapStateToProps = (state: IReduxState) => ({
   copy: getCopy(state, "purchases"),

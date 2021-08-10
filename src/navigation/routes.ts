@@ -132,20 +132,12 @@ export default [
 
   // rewards screens
   {
-    name: ROUTES.linkDetails,
-    component: require("../components/containers/member/rewards/details/link-details.container").default,
-  },
-  {
-    name: ROUTES.wegiftDetails,
-    component: require("../components/containers/member/rewards/details/wegift-details.container").default,
+    name: ROUTES.rewardDetails,
+    component: require("../components/containers/member/rewards/details/reward-details.container").default,
   },
   {
     name: ROUTES.wegiftConfirmed,
     component: require("../components/containers/member/rewards/confirmed/wegift-confirmed.container").default,
-  },
-  {
-    name: ROUTES.aviosDetails,
-    component: require("../components/containers/member/rewards/details/avios-details.container").default,
   },
   {
     name: ROUTES.aviosConfirmed,
@@ -316,5 +308,9 @@ export default [
   {
     name: MODALS.priceChanged,
     component: require("../components/modals/price-changed/price-changed").default,
+  },
+  {
+    name: MODALS.listPicker,
+    component: require("../components/modals/list-picker-modal/list-picker-modal").default,
   },
 ];

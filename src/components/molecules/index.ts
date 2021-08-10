@@ -38,3 +38,4 @@ export { default as PackageAvatarChooseStyle } from "./package-avatar-choose-sty
 export { default as UserAvatarCoinCard } from "./user-avatar-coin-card/user-avatar-coin-card";
 export { default as UserAvatarCoinCardSkeleton } from "./user-avatar-coin-card/user-avatar-coin-card-skeleton";
 export { default as ChallengesLoading } from "./challenges-loading/challenges-loading";
+export { default as ContentItemForm } from "./content-item-form/content-item-form";

@@ -26,64 +26,61 @@ interface IContainerProps {
 
 type Props = IServerProps & IContainerProps;
 
-class RewardsConfirmed extends React.PureComponent<Props> {
-  public render() {
-    const {
-      onPressCancel,
-      onPressConfirm,
-      onPressPolicy,
-      onPressTopBar,
-      rewardName = "",
-      purchaseDate = "",
-      status,
-      loyaltyProgramme = "",
-    } = this.props;
-    return (
-      <>
-        <ScrollView
-          showsVerticalScrollIndicator={false}
-          style={styles.wrapper}
-          contentContainerStyle={styles.contentWrapper}
-        >
-          <Pad height={Style.isShortToMediumAndroid() ? 0 : 14} />
-          {status === "delivered" ? CardStates.Delivered : status === "failed" ? CardStates.Failed : CardStates.Pending}
+const RewardsConfirmedScreen = ({
+  onPressCancel,
+  onPressConfirm,
+  onPressPolicy,
+  onPressTopBar,
+  rewardName = "",
+  purchaseDate = "",
+  status,
+  loyaltyProgramme = "",
+}: Props) => {
+  return (
+    <>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        style={styles.wrapper}
+        contentContainerStyle={styles.contentWrapper}
+      >
+        <Pad height={Style.isShortToMediumAndroid() ? 0 : 14} />
+        {status === "delivered" ? CardStates.Delivered : status === "failed" ? CardStates.Failed : CardStates.Pending}
 
-          <View style={styles.rewardNameWrapper}>
-            <Text style={styles.rewardName} bold={true}>
-              {rewardName}
-            </Text>
-            <Text style={styles.loyaltyProgramme}>{loyaltyProgramme}</Text>
-          </View>
+        <View style={styles.rewardNameWrapper}>
+          <Text style={styles.rewardName} bold={true}>
+            {rewardName}
+          </Text>
+          <Text style={styles.loyaltyProgramme}>{loyaltyProgramme}</Text>
+        </View>
 
-          <View style={styles.divider} />
-          <View style={styles.dateRowWrapper}>
-            <View style={styles.dateLabelWrapper}>
-              <Text style={styles.textSizeDefault}>Purchased date</Text>
-            </View>
-            <View style={styles.dateWrapper}>
-              <Text style={styles.textSizeDefault}>{purchaseDate}</Text>
-            </View>
+        <View style={styles.divider} />
+        <View style={styles.dateRowWrapper}>
+          <View style={styles.dateLabelWrapper}>
+            <Text style={styles.textSizeDefault}>Purchased date</Text>
           </View>
-          <Pad height={Style.isShortToMediumAndroid() ? 0 : 50} />
-          <RewardItemContent
-            onPressCtaPrimary={onPressCancel}
-            labelCtaPrimary="see other rewards"
-            onPressCtaSecondary={onPressConfirm}
-            labelCtaSecondary="need help? talk to us"
-            onPressCtaTertiary={onPressPolicy}
-            labelCtaTertiary="Rewards policy"
-          />
-          <Pad height={50} />
-        </ScrollView>
-        <TopBarAbsolute
-          hasShadow={true}
-          hasWhiteBackground={true}
-          leftIcon={TopBarLeftIconTypes.BACK}
-          onPressLeftIcon={onPressTopBar}
+          <View style={styles.dateWrapper}>
+            <Text style={styles.textSizeDefault}>{purchaseDate}</Text>
+          </View>
+        </View>
+        <Pad height={Style.isShortToMediumAndroid() ? 0 : 50} />
+        <RewardItemContent
+          onPressCtaPrimary={onPressCancel}
+          labelCtaPrimary="see other rewards"
+          onPressCtaSecondary={onPressConfirm}
+          labelCtaSecondary="need help? talk to us"
+          onPressCtaTertiary={onPressPolicy}
+          labelCtaTertiary="Rewards policy"
         />
-      </>
-    );
-  }
-}
+        <Pad height={50} />
+      </ScrollView>
+      <TopBarAbsolute
+        hasShadow={true}
+        hasWhiteBackground={true}
+        leftIcon={TopBarLeftIconTypes.BACK}
+        onPressLeftIcon={onPressTopBar}
+      />
+    </>
+  );
+};
 
-export default RewardsConfirmed;
+export default RewardsConfirmedScreen;
