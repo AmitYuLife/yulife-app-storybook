@@ -115,6 +115,14 @@ export enum ScreeningStatus {
   WAITING_MSS = "WAITING_MSS",
 }
 
+export enum TopBarType {
+  DEFAULT = "DEFAULT",
+  DESERT = "DESERT",
+  FOREST = "FOREST",
+  MOUNTAIN = "MOUNTAIN",
+  WHITE = "WHITE",
+}
+
 export enum UserNotificationsType {
   challengeCompletion = "challengeCompletion",
   dailyChallengeReminder = "dailyChallengeReminder",

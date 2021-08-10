@@ -5,8 +5,8 @@ import { displaySecondsAsMinutes, padNum } from "@services/utils";
 import { IProps } from "./progress-bar";
 import styles from "./progress-bar.styles";
 
-export const renderProgressLabel = ({ amount, styleType = "black", type }: Partial<IProps>) => {
-  const textColorStyle = getProgressLabelTextColor(styleType);
+export const renderProgressLabel = ({ amount, styleType, type }: Partial<IProps>) => {
+  const textColorStyle = { color: styleType.progressTextColor };
   const { minutes, seconds } = displaySecondsAsMinutes(amount);
 
   const typeText = type === "steps" && amount === 1 ? "step" : type;
@@ -47,16 +47,4 @@ export const renderProgressLabel = ({ amount, styleType = "black", type }: Parti
 
 export const formatCyclingMetersToKmWithOneDecimal = (meters: number): string => {
   return `${(meters / 1000).toFixed(1)} km`;
-};
-
-const getProgressLabelTextColor = (styleType: IProps["styleType"]) => {
-  switch (styleType) {
-    case "ocean-white":
-    case "forest-white":
-      return styles.stepsTextWhite;
-    case "ocean-black":
-    case "black":
-    default:
-      return styles.stepsTextBlack;
-  }
 };

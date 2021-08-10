@@ -4,6 +4,7 @@ import { ComponentProps } from "react";
 import Left, { leftIconTypes } from "./subcomponents/left";
 import Right, { RightIconTypes } from "./subcomponents/right";
 import { LayoutChangeEvent } from "react-native";
+import { TopBarType } from "@graphql/_core/schema/globalTypes";
 
 export type TopBarTypes = "default" | "white" | "desert" | "mountain" | "forest";
 export enum TOP_BAR_TYPES {
@@ -27,6 +28,18 @@ export type TopBarViewProps = {
 } & Omit<ComponentProps<typeof Right>, "colour" | "logoColour" | "textStyle">;
 
 export const TopBarLeftIconTypes = leftIconTypes;
+
+const TopBarTypeMap: { [key in TopBarType]: TopBarTypes } = {
+  [TopBarType.DEFAULT]: "default",
+  [TopBarType.WHITE]: "white",
+  [TopBarType.DESERT]: "desert",
+  [TopBarType.MOUNTAIN]: "mountain",
+  [TopBarType.FOREST]: "forest",
+};
+
+export const fromGql = (value: TopBarType): TopBarTypes => {
+  return TopBarTypeMap[value];
+};
 
 export function formatSeconds(secondsRemaining: number) {
   const days = Math.floor(secondsRemaining / 86400);

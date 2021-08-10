@@ -104,6 +104,7 @@ export default function* startChallenge({
   let inProgress = true;
 
   yield put(challengeIsActive());
+
   while (inProgress) {
     const { challengeCancelled, challengeEnd } = yield race({
       challengeCancelled: take(CHALLENGE_CANCEL),
