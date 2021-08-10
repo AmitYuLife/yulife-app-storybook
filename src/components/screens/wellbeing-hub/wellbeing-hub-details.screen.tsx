@@ -7,12 +7,11 @@ import {
 } from "@graphql/_core/schema/GetWellbeingHubItem";
 import { Style } from "@styles";
 import { ScrollView, StyleSheet, View, ViewStyle } from "react-native";
-import { ContentItemImage } from "./sub-components/content-item-image";
 import { MORE_INFO_BUTTON } from "@ids";
 import { TapToCopy } from "@organisms";
 import Logger from "@services/logging/logger";
 import { handleLinkPress } from "@services/app-link";
-import { TertiaryButton } from "@atoms";
+import { TertiaryButton, ContentItemImage } from "@atoms";
 import { BUTTON_ICON } from "@atoms/button/tertiary-button/tertiary-button.helpers";
 import { HeadingAndCopy } from "@molecules";
 interface IProps {
@@ -27,8 +26,8 @@ export const WellbeingHubDetailsScreen = memo(function (props: IProps) {
     <View style={styles.wrapper}>
       <GenericHeadingPad />
       <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scrollContentContainerStyle}>
-        {item.content.map((i) => (
-          <View key={i.id}>{getItemContent(i, item.id, item.title)}</View>
+        {item.content.map((i, index) => (
+          <View key={`${i.__typename}-${index}`}>{getItemContent(i, item.id, item.title)}</View>
         ))}
       </ScrollView>
       <GenericHeadingAbsolute logo="yulife" onLeftIconPress={handleBack} />

@@ -2,7 +2,7 @@ import { StyleProp } from "react-native";
 import { Colours, Style } from "@styles";
 import { styles as textTemplateStyle } from "@components/atoms/text/text-template";
 
-interface IMarkdownStyle {
+export interface IMarkdownStyle {
   block?: Record<string, string | number>;
   h1?: Record<string, string | number>;
   h2?: Record<string, string | number>;

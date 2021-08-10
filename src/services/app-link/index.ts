@@ -92,3 +92,25 @@ export const handleLinkPress = (link: string) => async () => {
     await Linking.openURL(link);
   }
 };
+
+export interface IContentHyperLinkProps {
+  id: string;
+  title: string;
+  componentID: string;
+  uri: string;
+  label: string;
+}
+export const handleContentHyperlink = async ({ id, title, componentID, uri, label }: IContentHyperLinkProps) => {
+  try {
+    Logger.logMixpanelEvent(`${componentID}_item_button_pressed`, {
+      id,
+      title,
+      label,
+      type: uri?.split(":")?.[0],
+    });
+
+    await handleLinkPress(uri)();
+  } catch (e) {
+    Logger.logMixpanelEvent(`${componentID}_item_button_pressed_error`, { error: e.message });
+  }
+};

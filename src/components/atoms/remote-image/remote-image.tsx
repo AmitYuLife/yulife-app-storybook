@@ -9,7 +9,7 @@ interface Props {
   style?: StyleProp<ViewStyle>;
   imageStyle?: StyleProp<ImageStyle>;
   uri: string;
-  theme: "light" | "dark";
+  theme?: "light" | "dark";
   testID?: string;
   resizeMode?: "contain" | "cover" | "stretch" | "center";
 }

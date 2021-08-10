@@ -25,6 +25,7 @@ export { default as Stars } from "./stars/stars";
 export { default as Text } from "./text/text";
 export { TextTemplate } from "./text/text-template";
 export { default as TextInput } from "./text-input/text-input";
+export { default as SelectInput } from "./select-input/select-input";
 export { default as TextInputError } from "./text-input/text-input-error";
 export { default as GenericHeading } from "./generic-heading/generic-heading";
 export { default as Lock } from "./lock/lock";
@@ -55,7 +56,9 @@ export { default as YuCoinPowerMini } from "./yucoin-power-mini/yucoin-power-min
 export { default as PackageCardHeader } from "./package-card-header/package-card-header";
 export { default as YugiHeader } from "./yugi-header/yugi-header";
 export { default as PackageMonthPrice } from "./package-month-price/package-month-price";
+export { default as Wrapper } from "./wrapper/wrapper";
 export { SlotIcon } from "./slot-icon/slot-icon";
 // error :( https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-8.html#export--as-ns-syntax
 import * as ProductSvg from "./product-svg";
 export { ProductSvg };
+export { ContentItemImage } from "./content-item-image/content-item-image";

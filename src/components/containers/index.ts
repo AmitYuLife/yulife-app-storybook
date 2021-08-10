@@ -24,10 +24,8 @@ export { default as RewardsContainer } from "./member/rewards/rewards.main.conta
 export { default as CommunityGoalsContainer } from "./member/community-goals/comunity-goals.container";
 
 // reward containers
-export { default as LinkRewardDetailsContainer } from "./member/rewards/details/link-details.container";
-export { default as WegiftRewardDetailsContainer } from "./member/rewards/details/wegift-details.container";
+export { default as RewardDetailsContainer } from "./member/rewards/details/reward-details.container";
 export { default as WegiftRewardConfirmedContainer } from "./member/rewards/confirmed/wegift-confirmed.container";
-export { default as AviosRewardDetailsContainer } from "./member/rewards/details/avios-details.container";
 export { default as AviosRewardConfirmedContainer } from "./member/rewards/confirmed/avios-confirmed.container";
 
 // referrals containers

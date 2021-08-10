@@ -66,6 +66,8 @@ export const ROUTES = {
   packageCard: "yulife.debug.packageCard",
   packageIntro: "yulife.debug.packageIntro",
   packageFinalise: "yulife.debug.packageFinalise",
+  rewardsNew: "yulife.debug.rewardsNew",
+  rewardDetails: "yulife.rewards.RewardDetails",
 };
 
 export const MODALS = {
@@ -99,6 +101,7 @@ export const MODALS = {
   addBeneficiary: "yulife.modals.AddBeneficiary",
   defaultBeneficiaries: "yulife.modals.DefaultBeneficiaries",
   appReview: "yulife.modals.AppReview",
+  listPicker: "yulife.modals.listPicker",
 };
 
 export const bottomTabs: OptionsBottomTabs = {

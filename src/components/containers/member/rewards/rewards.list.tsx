@@ -25,18 +25,6 @@ type ConnectedState = ReturnType<typeof mapStateToProps>;
 
 type Props = IProps & ConnectedState;
 
-const getDetailsRoute = (rewardProviderId: string) => {
-  switch (rewardProviderId) {
-    case "avios":
-      return ROUTES.aviosDetails;
-    case "link":
-      return ROUTES.linkDetails;
-    case "wegift":
-    default:
-      return ROUTES.wegiftDetails;
-  }
-};
-
 function RewardsListContainer(props: Props) {
   const { copy, onTabChange } = props;
 
@@ -75,7 +63,7 @@ function RewardsListContainer(props: Props) {
           },
         });
       } else {
-        const route = getDetailsRoute(reward.rewardProviderId);
+        const route = ROUTES.rewardDetails;
 
         await Navigation.push(props.componentId, {
           component: {
@@ -83,7 +71,7 @@ function RewardsListContainer(props: Props) {
             name: route,
             passProps: {
               onTabChange,
-              reward,
+              rewardId: reward.id,
             },
             options: { bottomTabs },
           },

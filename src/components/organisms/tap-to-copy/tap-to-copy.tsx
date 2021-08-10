@@ -4,8 +4,9 @@ import Clipboard from "@react-native-community/clipboard";
 import { TextTemplate } from "@atoms";
 import { Colours, Style } from "@styles";
 import { CopyIcon } from "@atoms/icon/copy-icon";
-import { PressableWithDelay } from "@components/molecules";
-import Markdown from "@components/molecules/markdown/markdown";
+import { PressableWithDelay } from "@molecules";
+import Markdown from "@molecules/markdown/markdown";
+import { IMarkdownStyle } from "@molecules/markdown/markdown.styles";
 
 interface IProps {
   heading?: string;
@@ -13,9 +14,10 @@ interface IProps {
   text: string;
   canCopy: boolean;
   markdown: boolean;
+  markdownStyle?: IMarkdownStyle;
 }
 
-const TapToCopy = ({ heading, customCopyText, text, canCopy, markdown }: IProps) => {
+const TapToCopy = ({ heading, customCopyText, text, canCopy, markdown, markdownStyle }: IProps) => {
   const [isCopied, setIsCopied] = useState(false);
   const resetCopyMessage = useRef(null);
 
@@ -47,7 +49,7 @@ const TapToCopy = ({ heading, customCopyText, text, canCopy, markdown }: IProps)
         <View style={styles.markdownWrapper}>
           <View style={styles.textWrapper}>
             {markdown ? (
-              <Markdown text={text} />
+              <Markdown text={text} markdownStyles={markdownStyle} />
             ) : (
               <TextTemplate type="b2" numberOfLines={1}>
                 {text}

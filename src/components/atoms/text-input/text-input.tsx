@@ -1,4 +1,6 @@
 import * as React from "react";
+import { RemoteImage } from "@atoms";
+import { Style } from "@styles";
 import { StyleSheet, TextInput as Input, View, ViewStyle } from "react-native";
 import TextInputError from "./text-input-error";
 import {
@@ -23,6 +25,7 @@ interface IProps {
   style?: ViewStyle;
   testID?: string;
   icon?: Types;
+  iconUri?: string;
   maxLength?: number;
 }
 
@@ -43,10 +46,20 @@ class TextInput extends React.PureComponent<IProps> {
     isFocused: false,
   };
 
-  public render() {
-    const { icon, value, onChange, hasError, errorMessage, type, placeholder = "", style, maxLength } = this.props;
-    const { isFocused } = this.state;
+  public renderIcon() {
+    const { icon, iconUri, value, hasError, type } = this.props;
+
+    if (iconUri) {
+      return <RemoteImage uri={iconUri} width={Style.adjust(26)} height={Style.adjust(26)} />;
+    }
+
     const Icon = icon ? getIcon(icon) : getIcon(type);
+    return <Icon colour={getColour({ hasError, hasValue: !!value })} scale={0.5} />;
+  }
+
+  public render() {
+    const { value, onChange, hasError, errorMessage, type, placeholder = "", style, maxLength } = this.props;
+    const { isFocused } = this.state;
     return (
       <View style={StyleSheet.flatten([styles.outerWrapper, style])}>
         <View
@@ -57,7 +70,7 @@ class TextInput extends React.PureComponent<IProps> {
           })}
         >
           <View style={StyleSheet.flatten([styles.iconWrapper, type === "Text" ? styles.iconWrapperCard : {}])}>
-            <Icon colour={getColour({ hasError, hasValue: !!value })} scale={0.5} />
+            {this.renderIcon()}
           </View>
           <View style={styles.inputWrapper}>
             <Input

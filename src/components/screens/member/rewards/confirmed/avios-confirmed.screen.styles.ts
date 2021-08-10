@@ -1,5 +1,5 @@
 import { StyleSheet, TextStyle, ViewStyle } from "react-native";
-import { Colours, Style } from "../../../../../styles";
+import { Colours, Style } from "@styles";
 
 export default StyleSheet.create({
   activityIndicator: {
@@ -7,14 +7,14 @@ export default StyleSheet.create({
   } as ViewStyle,
   contentWrapper: {
     alignItems: "center",
-    paddingHorizontal: Style.SCALE_UP_AND_DOWN(15),
+    paddingHorizontal: Style.adjust(15),
   } as ViewStyle,
   dateLabelWrapper: {
     flex: 1,
   } as ViewStyle,
   dateRowWrapper: {
     flexDirection: "row",
-    marginTop: Style.SCALE_UP_AND_DOWN(12),
+    marginTop: Style.adjust(12),
   } as ViewStyle,
   dateWrapper: {
     marginLeft: "auto",
@@ -22,17 +22,17 @@ export default StyleSheet.create({
   divider: {
     borderColor: Colours.darkGray,
     borderWidth: StyleSheet.hairlineWidth,
-    marginTop: Style.SCALE_UP_AND_DOWN(12),
+    marginTop: Style.adjust(12),
     width: "100%",
   } as ViewStyle,
   loyaltyProgramme: {
-    fontSize: Style.SCALE_UP_AND_DOWN(16),
-    lineHeight: Style.SCALE_UP_AND_DOWN(20),
+    fontSize: Style.adjust(16),
+    lineHeight: Style.adjust(20),
     marginLeft: "auto",
   } as TextStyle,
   rewardName: {
-    fontSize: Style.SCALE_UP_AND_DOWN(20),
-    lineHeight: Style.SCALE_UP_AND_DOWN(20),
+    fontSize: Style.adjust(20),
+    lineHeight: Style.adjust(20),
   } as TextStyle,
   rewardNameWrapper: {
     alignItems: "flex-end",
@@ -40,7 +40,7 @@ export default StyleSheet.create({
     width: "100%",
   } as ViewStyle,
   textSizeDefault: {
-    fontSize: Style.SCALE_UP_AND_DOWN(16),
+    fontSize: Style.adjust(16),
   } as TextStyle,
   wrapper: {
     flex: 1,

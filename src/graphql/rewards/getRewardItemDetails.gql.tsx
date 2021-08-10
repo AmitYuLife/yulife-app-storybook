@@ -1,18 +1,24 @@
 import gql from "graphql-tag";
 
-export const GQL_QUERY_GET_WELLBEING_HUB_DETAILS = gql`
-  query GetWellbeingHubItem($id: ID!, $os: OS) {
-    wellbeingHubItem(id: $id, os: $os) {
+export const GQL_QUERY_GET_REWARD_ITEM_DETAILS = gql`
+  query GetRewardItemDetails($id: ID!) {
+    getRewardItemDetails(id: $id) {
       id
-      title
-      description
-      thumbnail {
-        id
-        uri(options: { width: 800, height: 400, crop: "fit" })
+      name
+      code
+      rewardProviderId
+      availability
+      rewardSticker
+      confirmAlert {
+        title
+        message
+        okLabel
+        cancelLabel
       }
-      icon {
-        id
-        uri
+      availableDenominations {
+        value
+        stock
+        yuCoin
       }
       content {
         ... on ContentItemMarkdown {
@@ -56,6 +62,11 @@ export const GQL_QUERY_GET_WELLBEING_HUB_DETAILS = gql`
               id
               name
               placeholder
+              modalPlaceholder
+              defaultOption {
+                label
+                value
+              }
               options {
                 label
                 value

@@ -46,6 +46,7 @@ export * from "./GetQuestMapLevelList";
 export * from "./GetRecentDuelOpponents";
 export * from "./GetReferralBackground";
 export * from "./GetReferralInformation";
+export * from "./GetRewardItemDetails";
 export * from "./GetRewards";
 export * from "./GetSession";
 export * from "./GetTopUpsQuote";
