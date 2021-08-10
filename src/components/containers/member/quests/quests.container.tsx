@@ -109,8 +109,8 @@ const QuestsContainer: FC<Props> = (props) => {
         render={({ showOverlay }) => (
           <ChallengeProgressScreen
             {...screenProps}
-            currentWorld={currentWorld}
             challengeType={subtype as any}
+            levelSlotId={levelSlotId}
             onDismissPress={showOverlay}
             endDateTime={endDateTime}
             userProgress={score}

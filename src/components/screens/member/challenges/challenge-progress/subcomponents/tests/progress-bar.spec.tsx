@@ -8,6 +8,17 @@ function renderComponent() {
     goals: [1000, 2000, 3000, 4000],
     amount: 100,
     type: "walk",
+    styleType: {
+      name: "black",
+      barColor: "rgb(233, 233, 233)",
+      goalTextColor: "black",
+      progressColor: "black",
+      progressGoalEmpty: "rgb(233, 233, 233)",
+      progressGoalFilled: "#000",
+      progressStarEmpty: "#FFF",
+      progressStarFilled: "#F1AF00",
+      progressTextColor: "black",
+    },
   };
 
   return render(<ProgressBar {...props} />);

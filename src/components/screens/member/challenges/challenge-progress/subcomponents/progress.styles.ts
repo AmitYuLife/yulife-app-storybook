@@ -40,10 +40,8 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     width: Style.PIXEL * 50,
   },
-  goalText: {
-    fontSize: Style.SCALE_UP_AND_DOWN(13),
-    marginTop: Style.adjust(29),
-    textAlign: "center",
+  goalContainer: {
+    paddingTop: Style.adjust(29),
   },
   goalTextColorBlack: {
     color: Colours.progressBar.black.heading,

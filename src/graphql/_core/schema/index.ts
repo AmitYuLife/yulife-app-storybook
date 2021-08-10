@@ -41,6 +41,7 @@ export * from "./GetNewConnectionLink";
 export * from "./GetProductBeneficiaries";
 export * from "./GetProductDetails";
 export * from "./GetQuestMapLevel";
+export * from "./GetQuestMapLevelChallengeDetails";
 export * from "./GetQuestMapLevelList";
 export * from "./GetRecentDuelOpponents";
 export * from "./GetReferralBackground";
