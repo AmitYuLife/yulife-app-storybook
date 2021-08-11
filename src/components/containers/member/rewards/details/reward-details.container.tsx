@@ -8,7 +8,11 @@ import {
 import { Alert, Linking } from "react-native";
 import { Navigation } from "react-native-navigation";
 import { connect } from "react-redux";
-import { RedeemReward, GetRewardItemDetails } from "@graphql/_core/schema";
+import {
+  RedeemReward,
+  GetRewardItemDetails,
+  GetRewardItemDetails_getRewardItemDetails_confirmAlert,
+} from "@graphql/_core/schema";
 import { bottomTabs, MODALS, ROUTES } from "@navigation/constants";
 import { IReduxState } from "@redux/_core/reducers";
 import { getOfflineState } from "@redux/app/app.selectors";
@@ -27,6 +31,15 @@ interface IProps {
   componentId: string;
   rewardId: string;
   onTabChange: (tab: "rewards" | "purchases", componentId: string) => void;
+}
+
+interface IDisplayAlert {
+  confirmAlert: GetRewardItemDetails_getRewardItemDetails_confirmAlert;
+  denominationYuCoin: number;
+  amount: number;
+  rewardProviderId: string;
+  code: string;
+  metadata: AviosMetadata;
 }
 
 type ConnectedState = ReturnType<typeof mapStateToProps>;
@@ -62,6 +75,36 @@ const RewardDetailsContainer: FC<Props> = ({ onTabChange, componentId, copy, rew
       reward_name: name,
     });
   }, [loadingReward, data]);
+
+  const displayAlert = ({
+    confirmAlert,
+    denominationYuCoin,
+    amount,
+    rewardProviderId,
+    code,
+    metadata,
+  }: IDisplayAlert) => {
+    const parsedMessage = confirmAlert.message
+      .replace("$PRICE", formatMoney(amount))
+      .replace("$YUCOIN", denominationYuCoin.toString());
+
+    Alert.alert(confirmAlert.title, parsedMessage, [
+      {
+        style: "cancel",
+        text: confirmAlert.cancelLabel,
+      },
+      {
+        onPress: async () => {
+          if (rewardProviderId === "link") {
+            return await redeemRewardLink(code, amount);
+          }
+
+          return await redeemRewardVoucher(code, amount, metadata);
+        },
+        text: confirmAlert.okLabel,
+      },
+    ]);
+  };
 
   const redeemRewardLink = useCallback(
     async (id: string, amount: number) => {
@@ -141,48 +184,35 @@ const RewardDetailsContainer: FC<Props> = ({ onTabChange, componentId, copy, rew
         });
       }
     },
-    [data, redeemReward, onTabChange, copy, offline, totalCoins]
+    [data, redeemReward, onTabChange, copy, offline]
   );
 
   const handleRewardPurchase = useCallback(
     async (metadata?: AviosMetadata) => {
       const { rewardProviderId, confirmAlert, code, availableDenominations } = data.getRewardItemDetails;
 
-      await showSelectInputModal({
-        title: `You have ${totalCoins} YuCoin`,
-        options: availableDenominations.map((availableDenomination, index) => ({
-          label: `£${formatMoney(availableDenomination.value)} - ${availableDenomination.yuCoin} YuCoin`,
-          value: index,
-        })),
-        onPress: async (option: ISelectInputOption) => {
-          const denominationYuCoin = availableDenominations[option.value].yuCoin;
-          const amount = availableDenominations[option.value].value;
-          const parsedMessage = confirmAlert.message
-            .replace("$PRICE", formatMoney(amount))
-            .replace("$YUCOIN", denominationYuCoin.toString());
+      let amount = availableDenominations[0].value;
+      let denominationYuCoin = availableDenominations[0].yuCoin;
 
-          await Navigation.dismissOverlay(MODALS.listPicker);
-
-          Alert.alert(confirmAlert.title, parsedMessage, [
-            {
-              style: "cancel",
-              text: confirmAlert.cancelLabel,
-            },
-            {
-              onPress: async () => {
-                if (rewardProviderId === "link") {
-                  return await redeemRewardLink(code, amount);
-                }
-
-                return await redeemRewardVoucher(code, amount, metadata);
-              },
-              text: confirmAlert.okLabel,
-            },
-          ]);
-        },
-      });
+      if (availableDenominations.length > 1) {
+        await showSelectInputModal({
+          title: `You have ${totalCoins} YuCoin`,
+          options: availableDenominations.map((availableDenomination, index) => ({
+            label: `£${formatMoney(availableDenomination.value)} - ${availableDenomination.yuCoin} YuCoin`,
+            value: index,
+          })),
+          onPress: async (option: ISelectInputOption) => {
+            denominationYuCoin = availableDenominations[option.value].yuCoin;
+            amount = availableDenominations[option.value].value;
+            await Navigation.dismissOverlay(MODALS.listPicker);
+            displayAlert({ confirmAlert, denominationYuCoin, rewardProviderId, code, amount, metadata });
+          },
+        });
+      } else {
+        displayAlert({ confirmAlert, denominationYuCoin, rewardProviderId, code, amount, metadata });
+      }
     },
-    [data, redeemRewardLink, redeemRewardVoucher]
+    [data, redeemRewardLink, redeemRewardVoucher, totalCoins]
   );
 
   return (
