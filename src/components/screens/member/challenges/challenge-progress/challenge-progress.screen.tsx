@@ -18,6 +18,11 @@ import { GQL_QUERY_GET_QUEST_MAP_CHALLENGE_DETAILS } from "@graphql/challenges/g
 import { GetQuestMapLevelChallengeDetails, GetQuestMapLevelChallengeDetailsVariables } from "@graphql/_core/schema";
 import { fromGql } from "@organisms/top-bar/top-bar.helpers";
 
+// transparent png 1x1
+const empty_uri = {
+  uri:
+    "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVQYV2NgYAAAAAMAAWgmWQ0AAAAASUVORK5CYII=",
+};
 interface IProps extends IConnectedScreenProps {
   challengeType: ChallengeType;
   levelSlotId: string;
@@ -65,10 +70,10 @@ function ChallengeProgressScreen({
       progressTextColor: "black",
     },
     assets = {
-      backgroundImage: null,
-      detailsImage: null,
-      tileImage: null,
-      historyImage: null,
+      backgroundImage: empty_uri,
+      detailsImage: empty_uri,
+      tileImage: empty_uri,
+      historyImage: empty_uri,
     },
     actionStyles = {
       primaryColour: "white",
