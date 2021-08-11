@@ -31,6 +31,7 @@ export default StyleSheet.create({
   } as ViewStyle,
   wrapper: {
     flex: 1,
+    paddingBottom: Style.adjust(30),
   } as ViewStyle,
   pad: {
     height: TOP_BAR_PAD,

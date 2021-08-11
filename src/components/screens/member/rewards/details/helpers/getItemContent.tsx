@@ -34,7 +34,7 @@ export const getItemContent = (
     const aerclubStartNumber = "308147";
     const isNumber = /^\d+$/.test(accountNumberValue);
 
-    if (button.value === "Not enough YuCoins") {
+    if (button.value === "Not enough YuCoin") {
       return { button: { error: button.value } };
     }
 
