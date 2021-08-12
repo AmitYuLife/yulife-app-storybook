@@ -1,8 +1,9 @@
-import React, { useEffect, useMemo, useRef } from "react";
-import { Animated, Platform, StyleSheet } from "react-native";
+import React, { useCallback, useEffect, useMemo, useRef } from "react";
+import { Animated, Platform, StyleSheet, View } from "react-native";
 import { ListPicker } from "@components/molecules";
 import { BlurView } from "react-native-blur";
 import { ISelectInputOption } from "@atoms/select-input/select-input.types";
+import { useBackHandler } from "@services/hooks/useBackHandler";
 
 interface IProps {
   options: ISelectInputOption[];
@@ -50,10 +51,18 @@ const ListPickerModal = ({ options, onPress, closeModal, title }: IProps) => {
     });
   };
 
+  const onTouchStart = useCallback(() => closeModal(), [closeModal]);
+
+  useBackHandler(() => {
+    closeModal();
+    return true;
+  });
+
   return (
     <>
       <Animated.View testID="blur-provider.overlay-container" style={[styles.wrapper, { opacity }]}>
         <BlurView blurAmount={5} blurType="light" style={styles.blur} />
+        <View style={styles.blur} onTouchStart={onTouchStart} />
         <ListPicker onPressCancel={handleClose} instruction={title} items={items} />
       </Animated.View>
     </>

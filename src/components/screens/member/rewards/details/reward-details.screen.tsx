@@ -41,8 +41,9 @@ const RewardDetailsScreen: FC<Props> = ({ rewardItem, onPressTopBar, isLoading, 
     (item: IContentHyperLinkProps) =>
       handleContentHyperlink({
         id: item.id,
+        name: rewardItem.name,
         title: item.title,
-        componentID: "rewards_single_view",
+        componentID: "rewards_details",
         uri: item.uri,
         label: item.label,
       }),
