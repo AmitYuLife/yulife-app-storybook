@@ -7,17 +7,16 @@ import {
 } from "@graphql/rewards";
 import { Alert, Linking } from "react-native";
 import { Navigation } from "react-native-navigation";
-import { connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   RedeemReward,
   GetRewardItemDetails,
   GetRewardItemDetails_getRewardItemDetails_confirmAlert,
 } from "@graphql/_core/schema";
 import { bottomTabs, MODALS, ROUTES } from "@navigation/constants";
-import { IReduxState } from "@redux/_core/reducers";
 import { getOfflineState } from "@redux/app/app.selectors";
 import { getTotalCoins } from "@redux/coins/coins.selectors";
-import { getCopy } from "@redux/copy/copy.selectors";
+import { getPurchasesCopy } from "@redux/copy/copy.selectors";
 import { getUserStart } from "@redux/user/user.actions";
 import Logger from "@services/logging/logger";
 import { RewardDetailsScreen, RewardDetailsLoadingScreen } from "@screens";
@@ -40,14 +39,15 @@ interface IDisplayAlert {
   rewardProviderId: string;
   code: string;
   metadata: AviosMetadata;
+  name: string;
 }
 
-type ConnectedState = ReturnType<typeof mapStateToProps>;
-type ConnectedDispatch = typeof mapDispatchToProps;
+const RewardDetailsContainer: FC<IProps> = ({ onTabChange, componentId, rewardId }) => {
+  const dispatch = useDispatch();
+  const totalCoins = useSelector(getTotalCoins);
+  const offline = useSelector(getOfflineState);
+  const copy = useSelector(getPurchasesCopy);
 
-type Props = IProps & ConnectedState & ConnectedDispatch;
-
-const RewardDetailsContainer: FC<Props> = ({ onTabChange, componentId, copy, rewardId, totalCoins, offline }) => {
   const onRewardsTabPress = useCallback(() => onTabChange("rewards", componentId), [onTabChange, componentId]);
   const onPurchasesTabPress = useCallback(() => onTabChange("purchases", componentId), [onTabChange, componentId]);
   const [redeemReward, { loading }]: RedeemRewardMutationTuple = useMutation(GQL_MUTATION_REDEEM_REWARD);
@@ -73,8 +73,9 @@ const RewardDetailsContainer: FC<Props> = ({ onTabChange, componentId, copy, rew
       reward_best_sticker: rewardSticker,
       reward_code: code,
       reward_name: name,
+      balance: totalCoins,
     });
-  }, [loadingReward, data]);
+  }, [loadingReward, data, totalCoins]);
 
   const displayAlert = ({
     confirmAlert,
@@ -83,6 +84,7 @@ const RewardDetailsContainer: FC<Props> = ({ onTabChange, componentId, copy, rew
     rewardProviderId,
     code,
     metadata,
+    name,
   }: IDisplayAlert) => {
     const parsedMessage = confirmAlert.message
       .replace("$PRICE", formatMoney(amount))
@@ -92,14 +94,18 @@ const RewardDetailsContainer: FC<Props> = ({ onTabChange, componentId, copy, rew
       {
         style: "cancel",
         text: confirmAlert.cancelLabel,
+        onPress: () =>
+          Logger.logEvent("reward_redemption_canceled", {
+            reward_name: name,
+          }),
       },
       {
-        onPress: async () => {
+        onPress: () => {
           if (rewardProviderId === "link") {
-            return await redeemRewardLink(code, amount);
+            return redeemRewardLink(code, amount);
           }
 
-          return await redeemRewardVoucher(code, amount, metadata);
+          redeemRewardVoucher(code, amount, metadata);
         },
         text: confirmAlert.okLabel,
       },
@@ -148,7 +154,7 @@ const RewardDetailsContainer: FC<Props> = ({ onTabChange, componentId, copy, rew
           //TODO-REWARDS: https://yulife.atlassian.net/browse/GS-70
           const confirmedRoute = rewardProviderId === "avios" ? ROUTES.aviosConfirmed : ROUTES.wegiftConfirmed;
 
-          getUserStart();
+          dispatch(getUserStart());
           await Navigation.push(ROUTES.rewards, {
             component: {
               id: confirmedRoute,
@@ -189,7 +195,7 @@ const RewardDetailsContainer: FC<Props> = ({ onTabChange, componentId, copy, rew
 
   const handleRewardPurchase = useCallback(
     async (metadata?: AviosMetadata) => {
-      const { rewardProviderId, confirmAlert, code, availableDenominations } = data.getRewardItemDetails;
+      const { rewardProviderId, confirmAlert, code, availableDenominations, name } = data.getRewardItemDetails;
 
       let amount = availableDenominations[0].value;
       let denominationYuCoin = availableDenominations[0].yuCoin;
@@ -205,11 +211,11 @@ const RewardDetailsContainer: FC<Props> = ({ onTabChange, componentId, copy, rew
             denominationYuCoin = availableDenominations[option.value].yuCoin;
             amount = availableDenominations[option.value].value;
             await Navigation.dismissOverlay(MODALS.listPicker);
-            displayAlert({ confirmAlert, denominationYuCoin, rewardProviderId, code, amount, metadata });
+            displayAlert({ confirmAlert, denominationYuCoin, rewardProviderId, code, amount, metadata, name });
           },
         });
       } else {
-        displayAlert({ confirmAlert, denominationYuCoin, rewardProviderId, code, amount, metadata });
+        displayAlert({ confirmAlert, denominationYuCoin, rewardProviderId, code, amount, metadata, name });
       }
     },
     [data, redeemRewardLink, redeemRewardVoucher, totalCoins]
@@ -233,14 +239,4 @@ const RewardDetailsContainer: FC<Props> = ({ onTabChange, componentId, copy, rew
   );
 };
 
-const mapStateToProps = (state: IReduxState) => ({
-  offline: getOfflineState(state),
-  totalCoins: getTotalCoins(state),
-  copy: getCopy(state, "purchases"),
-});
-
-const mapDispatchToProps = {
-  getUserStart,
-};
-
-export default connect<ConnectedState, ConnectedDispatch>(mapStateToProps, mapDispatchToProps)(RewardDetailsContainer);
+export default RewardDetailsContainer;

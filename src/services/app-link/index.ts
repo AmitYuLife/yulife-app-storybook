@@ -95,15 +95,17 @@ export const handleLinkPress = (link: string) => async () => {
 
 export interface IContentHyperLinkProps {
   id: string;
+  name: string;
   title: string;
   componentID: string;
   uri: string;
   label: string;
 }
-export const handleContentHyperlink = async ({ id, title, componentID, uri, label }: IContentHyperLinkProps) => {
+export const handleContentHyperlink = async ({ id, name, title, componentID, uri, label }: IContentHyperLinkProps) => {
   try {
-    Logger.logMixpanelEvent(`${componentID}_item_button_pressed`, {
+    Logger.logMixpanelEvent(`${componentID}_button_pressed`, {
       id,
+      name,
       title,
       label,
       type: uri?.split(":")?.[0],
@@ -111,6 +113,6 @@ export const handleContentHyperlink = async ({ id, title, componentID, uri, labe
 
     await handleLinkPress(uri)();
   } catch (e) {
-    Logger.logMixpanelEvent(`${componentID}_item_button_pressed_error`, { error: e.message });
+    Logger.logMixpanelEvent(`${componentID}_button_pressed_error`, { error: e.message });
   }
 };
