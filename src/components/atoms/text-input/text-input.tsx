@@ -1,5 +1,5 @@
 import * as React from "react";
-import { RemoteImage } from "@atoms";
+import { Image } from "@atoms";
 import { Style } from "@styles";
 import { StyleSheet, TextInput as Input, View, ViewStyle } from "react-native";
 import TextInputError from "./text-input-error";
@@ -50,7 +50,7 @@ class TextInput extends React.PureComponent<IProps> {
     const { icon, iconUri, value, hasError, type } = this.props;
 
     if (iconUri) {
-      return <RemoteImage uri={iconUri} width={Style.adjust(26)} height={Style.adjust(26)} />;
+      return <Image source={{ uri: iconUri }} width={Style.adjust(26)} height={Style.adjust(26)} />;
     }
 
     const Icon = icon ? getIcon(icon) : getIcon(type);

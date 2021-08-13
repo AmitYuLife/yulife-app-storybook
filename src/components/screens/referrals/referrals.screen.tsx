@@ -1,11 +1,10 @@
 import React, { memo, useCallback } from "react";
 import { Share, View, ScrollView, Platform } from "react-native";
-import AutoHeightImage from "react-native-auto-height-image";
 import moment from "moment";
 import Logger from "@services/logging/logger";
 import { GetReferralInformation_referralInformation } from "@graphql/_core/schema";
 import { REFERRALS_SCREEN, REFERRALS_SCROLL_VIEW } from "@ids";
-import { TextTemplate, Button, Icon } from "@atoms";
+import { TextTemplate, Button, Icon, Image } from "@atoms";
 import { TheOwlFenceIcon } from "@atoms/icon/the-owl-fence-icon";
 import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
 import { UserAvatarCoinCard } from "@molecules";
@@ -46,7 +45,7 @@ const ReferralsScreen = ({ info, handleClose }: IProps) => {
       <GenericHeadingPad />
       <ScrollView showsVerticalScrollIndicator={false} testID={REFERRALS_SCROLL_VIEW}>
         <View style={styles.headerWrapper}>
-          <AutoHeightImage width={Style.DEVICE_WIDTH} source={{ uri }} />
+          <Image width={Style.DEVICE_WIDTH} source={{ uri }} />
           <View style={styles.header}>
             <Markdown text={header} markdownStyles={markdownStyles} />
           </View>

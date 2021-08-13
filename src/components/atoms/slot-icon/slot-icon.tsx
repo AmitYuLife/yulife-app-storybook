@@ -1,6 +1,6 @@
 import React, { memo } from "react";
 import { View, StyleSheet, ViewStyle, TextStyle } from "react-native";
-import { RemoteImage, Text } from "@atoms";
+import { Image, Text } from "@atoms";
 import { Style, Colours } from "@styles";
 import { YuProductStatus } from "@graphql/_core/schema/globalTypes";
 
@@ -17,15 +17,15 @@ interface IProps {
 
 export const SlotIcon = memo(({ slot }: IProps) => (
   <View style={styles.wrapper}>
-    <RemoteImage
-      uri={slot.backgroundUrl}
+    <Image
+      source={{ uri: slot.backgroundUrl }}
       width={Style.adjust(64)}
       height={Style.adjust(64)}
       theme="light"
       style={styles.slotWrapper}
     />
-    <RemoteImage
-      uri={slot.itemUrl}
+    <Image
+      source={{ uri: slot.itemUrl }}
       width={Style.adjust(60)}
       height={Style.adjust(60)}
       theme="light"

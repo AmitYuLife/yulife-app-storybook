@@ -1,6 +1,6 @@
 import React, { memo, useState } from "react";
 import { StyleSheet, View } from "react-native";
-import { RemoteImage, TextTemplate } from "@atoms";
+import { Image, TextTemplate } from "@atoms";
 import { Colours, Style } from "@styles";
 import { PressableWithDelay } from "@components/molecules";
 
@@ -43,7 +43,7 @@ const PackageAvatarChooseStyle = ({ defaultStyle, children, stylesTitle }: IProp
 
   return (
     <View style={styles.wrapper}>
-      <RemoteImage uri={avatarUrl} width={Style.adjust(127)} height={Style.adjust(260)} theme="light" />
+      <Image source={{ uri: avatarUrl }} width={Style.adjust(127)} height={Style.adjust(260)} theme="light" />
       <View style={styles.container}>
         {children}
         <View style={styles.footer}>
@@ -51,8 +51,8 @@ const PackageAvatarChooseStyle = ({ defaultStyle, children, stylesTitle }: IProp
           <View style={styles.chooseStyles}>
             {styleImages.map((item, index: number) => (
               <PressableWithDelay key={item.id} onPress={() => setCurrentStyle(item.id)}>
-                <RemoteImage
-                  uri={item.imageUrl}
+                <Image
+                  source={{ uri: item.imageUrl }}
                   width={Style.adjust(Style.isHuaweiMate10() ? 34 : 40)}
                   height={Style.adjust(Style.isHuaweiMate10() ? 34 : 40)}
                   theme="light"

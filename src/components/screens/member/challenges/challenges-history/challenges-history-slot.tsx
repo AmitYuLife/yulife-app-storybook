@@ -1,8 +1,7 @@
 import * as React from "react";
-import { Image, StyleSheet, View } from "react-native";
-import AutoHeightImage from "react-native-auto-height-image";
+import { Image as RNImage, StyleSheet, View } from "react-native";
 import { GetQuestMapLevel_getQuestMapLevel_slots_challenges } from "@graphql/_core/schema";
-import { Text } from "@atoms";
+import { Image, Text } from "@atoms";
 import styles from "./challenges-history-slot.styles";
 import { getSlotImageProps } from "./challenges-history.helpers";
 import { CHALLENGE_HISTORY_STARS } from "@ids";
@@ -53,9 +52,9 @@ const ChallengesHistorySlot: React.FC<IProps> = ({
                   {Array.from(Array(3)).map((_, i) => (
                     <View key={i} testID={CHALLENGE_HISTORY_STARS(i, type)}>
                       {element.rating > i ? (
-                        <Image style={styles.star} source={require("@assets/level-complete/star.png")} />
+                        <RNImage style={styles.star} source={require("@assets/level-complete/star.png")} />
                       ) : (
-                        <Image style={styles.star} source={require("@assets/level-complete/no-star.png")} />
+                        <RNImage style={styles.star} source={require("@assets/level-complete/no-star.png")} />
                       )}
                     </View>
                   ))}
@@ -63,7 +62,7 @@ const ChallengesHistorySlot: React.FC<IProps> = ({
               </View>
             ))}
           </View>
-          <AutoHeightImage {...getSlotImageProps(type, currentWorld)} source={{ uri: image }} />
+          <Image {...getSlotImageProps(type, currentWorld)} source={{ uri: image }} />
         </View>
       )}
     </View>

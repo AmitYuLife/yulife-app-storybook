@@ -1,8 +1,7 @@
 import React, { memo } from "react";
-import { Button } from "@atoms/index";
+import { Button, Image } from "@atoms/index";
 import { GetQuestMapLevel_getQuestMapLevel } from "@graphql/_core/schema";
-import { Image, ScrollView, StyleSheet, View } from "react-native";
-import AutoHeightImage from "react-native-auto-height-image";
+import { Image as RNImage, ScrollView, StyleSheet, View } from "react-native";
 import { IConnectedScreenProps } from "@app/typings";
 import ChallengesHistorySlot from "./challenges-history-slot";
 import { getBottomGradient } from "./challenges-history.helpers";
@@ -25,7 +24,7 @@ function ChallengesHistory({ level, onPressActivityHistory, onLeftMenuPress }: I
     <View style={styles.wrapper}>
       <View style={styles.topPad} />
       <View style={backgroundWrapperStyle}>
-        <Image resizeMode="cover" style={styles.background} source={backgroundImage} />
+        <RNImage resizeMode="cover" style={styles.background} source={backgroundImage} />
       </View>
       <TopBar
         leftIcon="Back"
@@ -55,7 +54,7 @@ function ChallengesHistory({ level, onPressActivityHistory, onLeftMenuPress }: I
             ) : null
           )}
         </ScrollView>
-        <AutoHeightImage {...getBottomGradient(normalizedWorld)} />
+        <Image {...getBottomGradient(normalizedWorld)} />
       </View>
       <View style={styles.buttonsWrapper}>
         <Button onPress={onPressActivityHistory} label="Full history" />

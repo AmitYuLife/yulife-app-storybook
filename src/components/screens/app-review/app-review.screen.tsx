@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import { View, StyleSheet } from "react-native";
-import { Button, LinkButton, RemoteImage, SecondaryButton, TextTemplate } from "@atoms";
+import { Button, LinkButton, Image, SecondaryButton, TextTemplate } from "@atoms";
 import { Style } from "@styles";
 
 type ButtonProps = React.ComponentProps<typeof Button>;
@@ -31,8 +31,8 @@ const AppReviewModalScreen: FC<Props> = ({
   return (
     <View style={styles.wrapper}>
       <View style={styles.centerWrapper}>
-        <RemoteImage
-          uri={imageUrl}
+        <Image
+          source={{ uri: imageUrl }}
           height={Style.adjust(160)}
           width={Style.adjust(320)}
           theme="light"

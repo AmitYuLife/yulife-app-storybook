@@ -11,13 +11,16 @@ import { MORE_INFO_BUTTON } from "@ids";
 import { TapToCopy } from "@organisms";
 import Logger from "@services/logging/logger";
 import { handleLinkPress } from "@services/app-link";
-import { TertiaryButton, ContentItemImage } from "@atoms";
+import { Image, TertiaryButton } from "@atoms";
 import { BUTTON_ICON } from "@atoms/button/tertiary-button/tertiary-button.helpers";
 import { HeadingAndCopy } from "@molecules";
 interface IProps {
   handleBack: () => void;
   item: WellbeingHubItem;
 }
+
+const PADDING = Style.adjust(24);
+const IMAGE_WIDTH = Style.DEVICE_WIDTH - 2 * PADDING;
 
 export const WellbeingHubDetailsScreen = memo(function (props: IProps) {
   const { handleBack, item } = props;
@@ -62,7 +65,7 @@ const getItemContent = (itemContent: ItemContent, itemId: string, itemTitle: str
         </View>
       );
     case "ContentItemImage":
-      return <ContentItemImage uri={itemContent?.image?.uri} />;
+      return <Image width={IMAGE_WIDTH} source={{ uri: itemContent?.image?.uri }} />;
     default:
       return <View />;
   }
@@ -87,7 +90,7 @@ const onButtonPress = async (itemContent: ItemContentButton, itemTitle: string, 
 const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
-    paddingHorizontal: Style.adjust(24),
+    paddingHorizontal: PADDING,
   },
   contentItemButtonWrapper: {
     marginTop: Style.adjust(24),
