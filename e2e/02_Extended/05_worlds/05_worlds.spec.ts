@@ -172,8 +172,10 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
                         When("I wait to complete this challenge", when.wait(63000), async () => {
                             Then("I should be on the challenge complete screen", then.onMeditationChallengeComplete(5, 175))
                             When("I tap collect", when.tapText("collect"), async () => {
-                                Then("I should be on quests", then.idVisible(QUESTS_SCREEN(3)))
-                                Then("I should see my updated coin amount", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(50230)))
+                                When("I tap Done", when.tapText("Done"), async () => {
+                                    Then("I should be on quests", then.idVisible(QUESTS_SCREEN(3)))
+                                    Then("I should see my updated coin amount", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(50230)))
+                                })
                             })
                         })
                     })

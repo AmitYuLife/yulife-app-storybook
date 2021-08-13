@@ -8,9 +8,8 @@ export const QUOTE_1 = {
     data: {
         quote_id: CUSTOMER_9.data.customerId,
         customer_product_id: "YUCPID0000000032",
-        quote_origin: null,
         insurance_type: "Family Income Benefit",
-        medical_underwriting: {
+        underwriting: {
             financial_covers: [],
             uk_resident: "Yes",
             member_of_armed_forces: "No",
@@ -37,12 +36,10 @@ export const QUOTE_1 = {
             smoker_status: true,
             bmi: 23.66,
         },
-        salary: 48000.0,
         insurance_monthly_payment: 127.72,
         insurance_yearly_payment: null,
         insurance_cover_amount: 1152000.0,
         insurance_term_years: 32,
-        quote_age: 38,
         risk_rate: 0.07623054873054873,
         risk_premium_contribution: null,
         risk_premium_with_loading: 92.25556801665215,
@@ -54,11 +51,7 @@ export const QUOTE_1 = {
         terms_and_conditions_version: null,
         rewards_policy_version: null,
         payment_submission: null,
-        initial_batch_quote: null,
         archived: false,
-        mail_sent: false,
-        salary_percentage: 0.75,
-        cover_type: "epic",
         underwriting_loading: null,
         risk_premium_wl_gender_spec: 100.75063,
         risk_rate_gender_spec: 0.08325

@@ -7,7 +7,7 @@ import { CUSTOMER_20, AUTH_20, CUSTOMER_19, AUTH_19, CUSTOMER_17, AUTH_17, CUSTO
 import { COMMUNITY_GOAL_DROPDOWN, GOALS_BUTTON, NICKNAME_INPUT } from "@ids";
 
 Feature("As an enabled user I am able to use the goals feature", async () => {
-
+    //! Community goals data not pulling through
     Scenario("As a user I am able to view my community goals", scenario.start, async () => {
         Given("I login as a user with goals enabled", given.logInAndGoToTab("leaderboard", CUSTOMER_20, AUTH_20), async () => {
             Then("I should see the goals icon", then.idVisible(GOALS_BUTTON))
@@ -36,7 +36,7 @@ Feature("As an enabled user I am able to use the goals feature", async () => {
             })
         })
     })
-
+    
     Scenario("As a user I can join a community goal", scenario.start, async () => {
         Given("I login as a user with goals enabled", given.logInAndGoToTab("leaderboard", CUSTOMER_17, AUTH_17), async () => {
             Then("I should see the goals icon", then.idVisible(GOALS_BUTTON))

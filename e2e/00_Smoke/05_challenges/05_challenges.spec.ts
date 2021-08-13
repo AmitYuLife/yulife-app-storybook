@@ -7,7 +7,7 @@ import { QUESTS_SCREEN, LEVEL_CHALLENGE_BUTTON, CHALLENGE_TILE, GENERIC_SCREEN_H
 import { CUSTOMER_9, AUTH_9 } from "@data";
 
 Feature("As a user I can take a challenge", async () => {
-    //! Challenges not showing
+    
     Scenario("I can take a challenge and cancel it", scenario.start, async () => {
         Given("I login and go to the quests tab", given.logInAndGoToTab("quests"), async () => {
             Then("I should be on the quests screen", then.idVisible(QUESTS_SCREEN(0)))

@@ -2,6 +2,7 @@ import * as React from "react";
 import { StyleSheet } from "react-native";
 import { Button, Text } from "@atoms";
 import { Style, Colours } from "@styles";
+import { JOIN_COMMUNITY_GOAL_BUTTON } from "@ids";
 
 interface Props {
   isExpired: boolean;
@@ -20,7 +21,14 @@ export function CommunityGoalJoinButton({ youHaveJoined, isExpired, isOngoing, o
     );
   }
 
-  return <Button wrapperStyle={styles.buttonWrapper} label="Join the challenge!" onPress={onPress} />;
+  return (
+    <Button
+      wrapperStyle={styles.buttonWrapper}
+      label="Join the challenge!"
+      onPress={onPress}
+      testID={JOIN_COMMUNITY_GOAL_BUTTON}
+    />
+  );
 }
 
 const styles = StyleSheet.create({
