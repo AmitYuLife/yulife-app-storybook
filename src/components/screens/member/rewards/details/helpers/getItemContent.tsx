@@ -4,7 +4,7 @@ import {
   GetRewardItemDetails_getRewardItemDetails_content as ItemContent,
   GetRewardItemDetails_getRewardItemDetails_content_ContentItemForm_elements_ContentItemFormSubmitButton as ContentItemFormSubmitButton,
 } from "@graphql/_core/schema";
-import { TertiaryButton, ContentItemImage } from "@atoms";
+import { Image, TertiaryButton } from "@atoms";
 import { ContentItemForm, HeadingAndCopy } from "@molecules";
 import styles from "../reward-details.screen.styles";
 import { TapToCopy } from "@organisms";
@@ -22,6 +22,7 @@ enum Programmes {
 
 type ICustomValidation = Record<string, Record<string, string>>;
 
+const IMAGE_WIDTH = Style.DEVICE_WIDTH - 2 * Style.adjust(24);
 export const getItemContent = (
   itemContent: ItemContent,
   onSubmit: (form: any) => void,
@@ -69,7 +70,7 @@ export const getItemContent = (
     case "ContentItemImage":
       return (
         <View style={styles.image}>
-          <ContentItemImage uri={itemContent?.image?.uri} />
+          <Image width={IMAGE_WIDTH} source={itemContent?.image} />
         </View>
       );
     case "ContentItemMarkdown":

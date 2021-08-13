@@ -1,6 +1,6 @@
 import React, { useState, useCallback, memo } from "react";
 import { ImageStyle, StyleSheet, View, ViewStyle } from "react-native";
-import { RemoteImage, TextInputError } from "@atoms";
+import { Image, TextInputError } from "@atoms";
 import { TextTemplate } from "@atoms/text/text-template";
 import { TouchableOpacityWithDelay } from "@components/molecules";
 import { MODALS } from "@navigation/constants";
@@ -58,7 +58,7 @@ const SelectInput = ({
           { borderBottomColor: getBorderColour(!!errorMessage, !!value?.label) },
         ])}
       >
-        {iconUri ? <RemoteImage uri={iconUri} width={Style.adjust(24)} height={Style.adjust(24)} /> : icon}
+        {iconUri ? <Image source={{ uri: iconUri }} width={Style.adjust(24)} height={Style.adjust(24)} /> : icon}
         <View style={styles.textWrapper}>
           <TextTemplate type="b2" color={value?.label ? Colours.darkGray : Colours.neutral.n400}>
             {value?.label || placeholder}

@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Style } from "@styles";
-import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
-import { Text, RemoteImage } from "@atoms";
+import { Image as RNImage, StyleSheet, TouchableOpacity, View } from "react-native";
+import { Text, Image } from "@atoms";
 import Assets, { BoxedHeart, Coins } from "./assets";
 import styles from "./picker.styles";
 
@@ -26,7 +26,7 @@ class Picker extends React.PureComponent<IProps> {
   public renderIcon() {
     const { icon, iconUri } = this.props;
     if (iconUri) {
-      return <RemoteImage uri={iconUri} width={Style.adjust(26)} height={Style.adjust(26)} />;
+      return <Image source={{ uri: iconUri }} width={Style.adjust(26)} height={Style.adjust(26)} />;
     }
 
     if (icon === ICONS.COINS) {
@@ -47,7 +47,7 @@ class Picker extends React.PureComponent<IProps> {
         <View style={styles.textWrapper}>
           <Text style={styles.label}>{label || placeholder}</Text>
         </View>
-        <Image style={styles.arrow} source={Assets.v} />
+        <RNImage style={styles.arrow} source={Assets.v} />
         {label ? null : <View style={styles.overlay} />}
       </TouchableOpacity>
     );

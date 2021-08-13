@@ -1,6 +1,6 @@
 import * as React from "react";
 import { StyleSheet, View } from "react-native";
-import { Button, RemoteImage, SecondaryButton, Text } from "@atoms";
+import { Button, Image, SecondaryButton, Text } from "@atoms";
 import { data, getCardBackgroundColor } from "./challenge-details.helpers";
 import styles from "./challenge-details.styles";
 import Milestones, { IMilestoneProps } from "./milestones";
@@ -34,8 +34,8 @@ function ChallengeDetailsScreen({
   return (
     <>
       <View style={styles.wrapper}>
-        <RemoteImage
-          uri={imageUri}
+        <Image
+          source={{ uri: imageUri }}
           width={Style.adjust(235)}
           height={Style.adjust(141)}
           theme="light"

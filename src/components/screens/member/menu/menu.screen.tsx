@@ -1,6 +1,5 @@
 import * as React from "react";
-import { Image, ImageRequireSource, ScrollView, View } from "react-native";
-import AutoHeightImage from "react-native-auto-height-image";
+import { Image as RNImage, ImageRequireSource, ScrollView, View } from "react-native";
 import { connect } from "react-redux";
 import { IReduxState } from "@redux/_core/reducers";
 import { getCurrentLevel } from "@redux/levels/levels.selectors";
@@ -8,7 +7,7 @@ import { useDebouncedQuery } from "@services/hooks/useDebouncedQuery";
 import { GetReferralBackground, GetReferralBackground_getReferralBackground } from "@graphql/_core/schema";
 import { GQL_QUERY_GET_REFERRAL_BACKGROUND } from "@graphql/referrals";
 import { MENU_ITEM, MENU_SCREEN } from "@ids";
-import { Button, CloseSvg, Pad } from "@atoms";
+import { Button, CloseSvg, Image, Pad } from "@atoms";
 import Logo from "@atoms/logo";
 import { TextTemplate } from "@atoms/text/text-template";
 import { TouchableOpacityWithDelay } from "@molecules";
@@ -92,7 +91,7 @@ const ReferralButton = ({ loading, uri, onInvitePress }: ReferralButtonProps) =>
   <View pointerEvents="box-none" style={styles.referralSection}>
     <View style={styles.referralBackgroundWrapper}>
       {loading || !uri ? null : (
-        <AutoHeightImage
+        <Image
           width={Style.DEVICE_WIDTH}
           source={{
             uri,
@@ -121,7 +120,7 @@ const Links = ({ links }: { links: IProps["links"] }) => (
               >
                 {!source ? null : (
                   <View style={styles.iconWrapper}>
-                    <Image source={source} />
+                    <RNImage source={source} />
                   </View>
                 )}
                 <TextTemplate type="l1">{label}</TextTemplate>

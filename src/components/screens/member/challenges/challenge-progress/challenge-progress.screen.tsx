@@ -1,6 +1,5 @@
 import React, { memo } from "react";
 import { StyleSheet, View } from "react-native";
-import AutoHeightImage from "react-native-auto-height-image";
 import { IConnectedScreenProps } from "../../../../../typings";
 import styles from "./challenge-progress.screen.styles";
 import Exit from "./subcomponents/exit";
@@ -9,7 +8,7 @@ import { ChallengeType } from "@molecules/challenge-tile/challenge-tile.types";
 import { BUTTON_CLOSE_CHALLENGE, CHALLENGE_PROGRESS_BAR } from "@ids";
 import { NavBar } from "@components/organisms";
 import { TopBarAbsolute } from "@organisms/top-bar/top-bar-absolute";
-import { SecondaryButton } from "@atoms";
+import { Image, SecondaryButton } from "@atoms";
 import { ExternalAppLinksOverlay } from "./subcomponents/external-app-links-overlay";
 import { Style } from "@styles";
 import { TopBarType } from "@graphql/_core/schema/globalTypes";
@@ -90,9 +89,8 @@ function ChallengeProgressScreen({
   return (
     <View style={StyleSheet.flatten([styles.wrapper, { backgroundColor: backgroundColour }])}>
       <View style={styles.pad} />
-      <AutoHeightImage
+      <Image
         width={Style.DEVICE_WIDTH}
-        resizeMethod="resize"
         resizeMode="cover"
         style={styles.backgroundImage}
         source={assets.backgroundImage}

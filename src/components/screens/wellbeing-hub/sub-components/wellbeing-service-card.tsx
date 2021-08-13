@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import { StyleSheet, View, ViewStyle } from "react-native";
 import { Colours, Style } from "@styles";
 import { TouchableOpacityWithDelay } from "@components/molecules";
-import { ArrowRightSvg, RemoteImage, TextTemplate } from "@atoms";
+import { ArrowRightSvg, Image, TextTemplate } from "@atoms";
 import { Navigation } from "react-native-navigation";
 import { ROUTES } from "@navigation/constants";
 import { GetWellbeingHubItems_wellbeingHubItems as WellbeingCard } from "@graphql/_core/schema";
@@ -27,8 +27,8 @@ const onPress = async (id: string) => {
 
 const WellBeingServiceCard: FC<IProps> = ({ card }) => (
   <TouchableOpacityWithDelay onPress={() => onPress(card.id)} style={styles.wrapper}>
-    <RemoteImage
-      uri={card.thumbnail.uri}
+    <Image
+      source={{ uri: card.thumbnail.uri }}
       width={Style.adjust(120)}
       height={Style.adjust(104)}
       theme="light"
@@ -42,8 +42,8 @@ const WellBeingServiceCard: FC<IProps> = ({ card }) => (
             {card.title}
           </TextTemplate>
           {!card?.icon?.uri ? null : (
-            <RemoteImage
-              uri={card?.icon?.uri}
+            <Image
+              source={{ uri: card?.icon?.uri }}
               width={Style.adjust(16)}
               height={Style.adjust(16)}
               theme="light"

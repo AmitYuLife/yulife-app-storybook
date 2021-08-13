@@ -1,10 +1,10 @@
 import React, { FC, memo } from "react";
 import { FunctionComponent } from "react";
-import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
+import { Image as RNImage, StyleSheet, TouchableOpacity, View } from "react-native";
 import styles from "./challenge-tile.styles";
 import { CHALLENGE_TILE } from "@ids";
 import { Style } from "@styles";
-import { RemoteImage, Text } from "@atoms";
+import { Image, Text } from "@atoms";
 
 export interface IChallengeTileProps {
   heading?: string;
@@ -53,7 +53,7 @@ export default memo(ChallengeTile);
 
 const LockedOverlay: FunctionComponent<Partial<Props>> = ({ availableAtLevel }) => (
   <View style={styles.lockedOverlay}>
-    <Image resizeMode="contain" style={styles.lockedImage} source={require("@assets/icons/lock.png")} />
+    <RNImage resizeMode="contain" style={styles.lockedImage} source={require("@assets/icons/lock.png")} />
     <Text style={styles.lockedLabel} bold={true}>
       {`level ${availableAtLevel}`}
     </Text>
@@ -64,8 +64,8 @@ const AnimalImage: FC<Partial<Props>> = memo(({ imageUri, isLocked, pictureAlign
   return (
     <View style={isLocked ? styles.imageWrapperLocked : styles.imageWrapper}>
       <View style={StyleSheet.flatten([styles.imageBackground, isLocked ? styles.imageBackgroundLocked : null])} />
-      <RemoteImage
-        uri={imageUri}
+      <Image
+        source={{ uri: imageUri }}
         width={Style.adjust(165)}
         height={Style.adjust(165)}
         theme="light"
@@ -93,7 +93,7 @@ const Content: FC<Partial<Props>> = memo(({ heading, duration, reward }) => (
       </View>
     </View>
     <View style={styles.imageWrapperNext}>
-      <Image source={require("@assets/icons/next.png")} resizeMode="contain" style={styles.imageNext} />
+      <RNImage source={require("@assets/icons/next.png")} resizeMode="contain" style={styles.imageNext} />
     </View>
   </View>
 ));
