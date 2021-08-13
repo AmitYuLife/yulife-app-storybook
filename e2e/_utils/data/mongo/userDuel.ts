@@ -29,6 +29,7 @@ export const user_duel_1 = {
         status: "accepted",
         duration: 86400,
         yucoin: 10,
+        updatedAt: moment().toISOString()
     }
 } as IDatabaseItem
 
@@ -55,6 +56,7 @@ export const user_duel_2 = {
         status: "finished",
         duration: 86400,
         yucoin: 10,
+        updatedAt: moment().toISOString()
     }
 } as IDatabaseItem
 
@@ -81,6 +83,7 @@ export const user_duel_3 = {
         status: "finished",
         duration: 86400,
         yucoin: 10,
+        updatedAt: moment().toISOString()
     }
 } as IDatabaseItem
 
@@ -108,6 +111,7 @@ export const user_duel_4 = {
         status: "finished",
         duration: 86400,
         yucoin: 10,
+        updatedAt: moment().toISOString()
     }
 } as IDatabaseItem
 
@@ -134,6 +138,7 @@ export const user_duel_5 = {
         status: "finished",
         duration: 86400,
         yucoin: 10,
+        updatedAt: moment().toISOString()
     }
 } as IDatabaseItem
 
@@ -160,6 +165,7 @@ export const user_duel_6 = {
         status: "finished",
         duration: 86400,
         yucoin: 10,
+        updatedAt: moment().toISOString()
     }
 } as IDatabaseItem
 
@@ -186,6 +192,7 @@ export const user_duel_7 = {
         status: "finished",
         duration: 86400,
         yucoin: 10,
+        updatedAt: moment().toISOString()
     }
 } as IDatabaseItem
 
@@ -212,6 +219,7 @@ export const user_duel_8 = {
         status: "finished",
         duration: 86400,
         yucoin: 10,
+        updatedAt: moment().toISOString()
     }
 } as IDatabaseItem
 
@@ -238,5 +246,6 @@ export const user_duel_9 = {
         status: "finished",
         duration: 86400,
         yucoin: 10,
+        updatedAt: moment().toISOString()
     }
 } as IDatabaseItem

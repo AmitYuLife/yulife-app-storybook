@@ -78,7 +78,7 @@ Feature("As an enabled user I am able to use the duels feature", async()=>{
             })
         })
     })
-
+    
     Scenario("As a user who has accepted a duel, I am able to compete in it", scenario.start, async()=>{
         Given("I login as a user with duels enabled and go to the duels hub", given.logInAndGoToTab("leaderboard", CUSTOMER_17, AUTH_17), async () => {
             Then("I should see the duels icon", then.idVisible(DUELS_BUTTON))
@@ -99,7 +99,7 @@ Feature("As an enabled user I am able to use the duels feature", async()=>{
             })
         })
     })
-
+    
     Scenario("I am able to view my won and lost duels", scenario.start, async()=>{
         Given("I login as a user with duels enabled and go to the duels hub", given.logInAndGoToTab("leaderboard", CUSTOMER_19, AUTH_19), async () => {
             Then("I should see the duels icon", then.idVisible(DUELS_BUTTON))

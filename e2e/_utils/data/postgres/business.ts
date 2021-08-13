@@ -9,7 +9,6 @@ export const BUSINESS_ACCOUNT_1 = {
     data: {
         business_account_id: generateRandomMongoId(),
         business_account_name: 'YU LIFE LTD',
-        product_type: "Instant Group",
         coupon: null,
         status: null,
         hubspot_id: '3395752702',
@@ -30,7 +29,6 @@ export const BUSINESS_ACCOUNT_2 = {
     data: {
         business_account_id: generateRandomMongoId(),
         business_account_name: 'Dunder Mifflin',
-        product_type: "Instant Group",
         coupon: null,
         status: null,
         hubspot_id: '01234567',
@@ -51,7 +49,6 @@ export const BUSINESS_ACCOUNT_3 = {
     data:{
         business_account_id:generateRandomMongoId(),
         business_account_name: "Pawnee Council",
-        product_type: "Instant Group",
         coupon: null,
         status: null,
         hubspot_id: '98765432',
@@ -69,7 +66,6 @@ export const BUSINESS_ACCOUNT_4 = {
     data:{
         business_account_id: generateRandomMongoId(),
         business_account_name: "Justice League",
-        product_type: "Group",
         coupon: null,
         status: null,
         hubspot_id: '98765432',

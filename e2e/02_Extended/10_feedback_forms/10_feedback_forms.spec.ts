@@ -8,7 +8,7 @@ import { FEEDBACK_FORM_QUESTION, FEEDBACK_TEXT_INPUT, NAV_BAR, SLIDER_INPUT, SLI
 
 
 Feature("Feedback forms should behave correctly", async()=>{
-
+     
     Scenario("As a user with a feedback form to compelte, I should see this on login (positive rating)", scenario.start, async () => {
         Given("I login as a user", given.loginOnly(CUSTOMER_25, AUTH_25, true), async()=>{
             When("I tap next on the signup screen", when.tapText("Next"), async()=>{

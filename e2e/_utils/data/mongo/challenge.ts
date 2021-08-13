@@ -6,6 +6,7 @@ import { SHORT_STROLL_MILESTONE_1, LONG_WALK_MILESTONE_1, MEDITATION_MILESTONE_1
 import { MEDITATION_1, LONG_WALK_1, SHORT_STROLL_1 } from './map_level_slot_templates';
 import { CHALLENGE_TEMPLATE } from "./_templates"
 
+
 export const CHALLENGE_2 = {
     type: "mongo",
     modelName: "challenge",

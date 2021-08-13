@@ -181,7 +181,7 @@ Feature("As a user I can navigate through member routes correctly", async () => 
             })
         })
     })
-
+    
     Scenario("I should see my yumoji and streak coins in activity history", scenario.start, async () => {
         Given("I login as a user", given.loginAsUser(CUSTOMER_35, AUTH_35), async () => {
             When("I tap the menu icon", when.tapID(MENU_ICON, 1500), async()=>{

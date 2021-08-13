@@ -12,7 +12,7 @@ import {
 
 
 Feature("I am able to use the yuscreen, create, and edit an Yumoji", async () => {
-
+    
     Scenario("I can create an Yumoji on the yuscreen for the male body", scenario.start, async () => {
         Given("I login as a user", given.logInAndGoToTab("yu", CUSTOMER_18, AUTH_18), async () => {
             Then("I should see the intro screen", then.textVisible("Design your own Yumoji"))
@@ -69,7 +69,45 @@ Feature("I am able to use the yuscreen, create, and edit an Yumoji", async () =>
                                                         When("I tap 'Done' ", when.tapText("Done"), async () => {
                                                             Then("I should be on the yuscreen", then.onYuscreen(CUSTOMER_18))
                                                             Then("I should see my Yumoji", then.idVisible(YUSCREEN_AVATAR))
-                                                            Then("I should see my updated coin balance", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(620)))
+                                                            Then("I should be awarded 100 yucoin", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(620)))
+                                                        })
+                                                    })
+                                                })
+                                                // edit yumoji and should not be awarded 100 / coin balance is the same
+                                                When("I tap the edit Yumoji button", when.tapID(YUSCREEN_AVATAR), async () => {
+                                                    Then("I should see the 'Edit your Yumoji' screen", then.textVisible("Edit your Yumoji"))
+                                                    When("I tap 'yes please", when.tapText("Yes Please"), async () => {
+                                                        Then("I should be on the create Yumoji screen", then.onCreateAvatarScreen)
+                                                        When("I tap a body type", when.tapID(MALE_BODY), async () => {
+                                                            When("I tap continue", when.tapText("Continue"), async () => {
+                                                                Then("I should be on the Yumoji builder", then.onAvatarBuilder)
+                                                                Then("The male body should be selected", then.idVisible(HEAD_TYPE("male_head_1")))
+                                                                When("I go to the hair style tab", when.tapTab("Hair Style"), async () => {
+                                                                    Then("I should be on the Hair Style tab", then.textVisible("Hair Style"))
+                                                                    When("I tap a hair style", when.tapItem("scruffy_sidepart"), async () => {
+                                                                        Then("This hair style should be selected", then.avatarBodyVisible("eyes_1", "scruffy_sidepart", "fat_lumberjack", "glasses_5"))
+                                                                    })
+                                                                    When("I go to the facial hair tab", when.tapTab("Facial Hair"), async () => {
+                                                                        When("I tap no facial hair", when.tapItem("emptyElement"), async () => {
+                                                                            Then("This no facial hair should be selected", then.avatarBodyVisible("eyes_1", "scruffy_sidepart", "emptyElement", "glasses_5"))
+                                                                        })
+                                                                        When("I tap 'Done'", when.tapText("Done"), async () => {
+                                                                            Then("I should be on the 'All Set' screen", then.textVisible("All Set!"))
+                                                                            When("I tap 'keep editing'", when.tapText("Keep Editing"), async () => {
+                                                                                Then("I should be back on the Yumoji builder", then.onAvatarBuilder)
+                                                                                When("I tap 'Done' ", when.tapText("Done"), async () => {
+                                                                                    Then("I should be on the 'All Set' screen", then.textVisible("All Set!"))
+                                                                                    When("I tap 'yes'", when.tapText("Yes"), async () => {
+                                                                                        Then("I should be on the yuscreen", then.onYuscreen(CUSTOMER_18))
+                                                                                        Then("I should see my Yumoji", then.idVisible(YUSCREEN_AVATAR))
+                                                                                        Then("I should be not awarded 100 yucoin", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(620)))
+                                                                                    })
+                                                                                })
+                                                                            })
+                                                                        })
+                                                                    })
+                                                                })
+                                                            })
                                                         })
                                                     })
                                                 })
@@ -120,47 +158,16 @@ Feature("I am able to use the yuscreen, create, and edit an Yumoji", async () =>
                 Then("I should see my coin balance", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(560)))
                 When("I go back to the yuscreen", when.tapID(NAV_BAR("yu")), async () => {
                     Then("I should be on the yuscreen", then.onYuscreen(CUSTOMER_17))
+                    Then("I should be on the yuscreen", then.onYuscreen(CUSTOMER_17))
+                    Then("I should see my Yumoji", then.idVisible(YUSCREEN_AVATAR))
                     When("I tap the edit Yumoji button", when.tapID(YUSCREEN_AVATAR), async () => {
                         Then("I should see the 'Edit your Yumoji' screen", then.textVisible("Edit your Yumoji"))
-                        When("I tap 'yes please", when.tapText("Yes Please"), async () => {
-                            Then("I should be on the create Yumoji screen", then.onCreateAvatarScreen)
-                            When("I tap a body type", when.tapID(MALE_BODY), async () => {
-                                When("I tap continue", when.tapText("Continue"), async () => {
-                                    Then("I should be on the Yumoji builder", then.onAvatarBuilder)
-                                    Then("The male body should be selected", then.idVisible(HEAD_TYPE("male_head_1")))
-                                    When("I go to the hair style tab", when.tapTab("Hair Style"), async () => {
-                                        Then("I should be on the Hair Style tab", then.textVisible("Hair Style"))
-                                        When("I tap a hair style", when.tapItem("scruffy_sidepart"), async () => {
-                                            Then("This hair style should be selected", then.avatarBodyVisible("eyes_1", "scruffy_sidepart", "", ""))
-                                        })
-                                        When("I go to the facial hair tab", when.tapTab("Facial Hair"), async () => {
-                                            When("I tap no facial hair", when.tapItem("emptyElement"), async () => {
-                                                Then("This no facial hair should be selected", then.avatarBodyVisible("eyes_1", "scruffy_sidepart", "emptyElement", ""))
-                                            })
-                                            When("I tap 'Done'", when.tapText("Done"), async () => {
-                                                Then("I should be on the 'All Set' screen", then.textVisible("All Set!"))
-                                                When("I tap 'keep editing'", when.tapText("Keep Editing"), async () => {
-                                                    Then("I should be back on the Yumoji builder", then.onAvatarBuilder)
-                                                    When("I tap 'Done' ", when.tapText("Done"), async () => {
-                                                        Then("I should be on the 'All Set' screen", then.textVisible("All Set!"))
-                                                        When("I tap 'yes'", when.tapText("Yes"), async () => {
-                                                            When("I tap done", when.tapText("Done"), async()=>{ // TEMP - THIS SHOULD NOT SHOW AS USER HAS ALREADY MADE AVATAR
-                                                                Then("I should be on the yuscreen", then.onYuscreen(CUSTOMER_17))
-                                                                Then("I should see my Yumoji", then.idVisible(YUSCREEN_AVATAR))
-                                                                Then("I should see the same coin balance", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(660)))
-                                                                When("I go to the leaderboard", when.tapID(NAV_BAR("leaderboard")), async () => {
-                                                                    Then("I should see my Yumoji", then.idVisible(YUMOJI_PODIUM(1)))
-                                                                })
-                                                            })
-                                                        })
-                                                    })
-                                                })
-                                            })
-                                        })
-                                    })
-                                })
+                        When("I proceed to edit my Yumoji", when.editYumoji("MALE_BODY", "#FFC89F", "scruffy_sidepart", "#212121", "fat_lumberjack", "#2B2B2B", "#3C9172", "glasses_5"), async () => {
+                            Then("I should be awarded 100 yucoin", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(660)))
+                            When("I go to the leaderboard", when.tapID(NAV_BAR("leaderboard")), async () => {
+                                Then("I should see my Yumoji", then.idVisible(YUMOJI_PODIUM(1)))
                             })
-                        })
+                        })    
                     })
                 })
             })

@@ -14,7 +14,7 @@ before(async () => {
   await socketServer.startServer();
   console.log("Adding data...", Object.values(data).length);
   dataManager.addData(data);
-  await dataManager.connect(`http://localhost:5000/`);
+  await dataManager.connect(`http://localhost:5000/`, true);
   await dataManager.resetData();
   await dataManager.reseed();
   await detoxInstance.init(config);
@@ -29,8 +29,8 @@ afterEach(async function () {
 });
 
 // comment out for detox debugging/dev
-after(async () => {
-  await detoxInstance.cleanup();
-  await socketServer.close();
-  await dataManager.resetData();
-}); 
+// after(async () => {
+//   await detoxInstance.cleanup();
+//   await socketServer.close();
+//   await dataManager.resetData();
+// }); 
