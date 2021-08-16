@@ -39,3 +39,4 @@ export { default as UserAvatarCoinCard } from "./user-avatar-coin-card/user-avat
 export { default as UserAvatarCoinCardSkeleton } from "./user-avatar-coin-card/user-avatar-coin-card-skeleton";
 export { default as ChallengesLoading } from "./challenges-loading/challenges-loading";
 export { default as ContentItemForm } from "./content-item-form/content-item-form";
+export { Yumoji } from "./yumoji/yumoji";
