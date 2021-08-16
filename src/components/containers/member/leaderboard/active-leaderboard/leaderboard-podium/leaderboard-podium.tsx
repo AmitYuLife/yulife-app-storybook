@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { View, Animated, Platform } from "react-native";
-import { Yumoji } from "@atoms";
+import { Yumoji } from "@molecules";
 import { GetLeaderboard_getLeaderboard_avatarRemoteFiles } from "@graphql/_core/schema";
 import { YUMOJI_PODIUM } from "@ids";
 import styles, { dynamicStyles, LEADERBOARD_PODIUM_HEIGHT } from "./leaderboard-podium.styles";

@@ -1,57 +1,42 @@
-import React, { memo, useMemo, useState } from "react";
-import { StyleSheet, ViewStyle, ActivityIndicator, View } from "react-native";
-import FastImage from "react-native-fast-image";
+import React, { memo } from "react";
+import { StyleSheet, ViewStyle, View } from "react-native";
 import { Style, Colours } from "@styles";
 import { ItemSet } from "./item-set/item-set";
-import { TouchableOpacityWithDelay } from "@components/molecules";
 import { useQuery } from "@apollo/react-hooks";
 import { GetYulifer, YuScreenProductSlots } from "@graphql/_core/schema";
 import { GQL_QUERY_GET_YULIFER, GQL_QUERY_GET_YU_SCREEN_PRODUCTS_SLOTS } from "@graphql/yuscreen";
 import { navigateToAvatarModal } from "../../navigation/navigateToAvatarModal";
 import { YUSCREEN_AVATAR } from "@ids";
 import { AvatarCreationPrompt } from "../../subcomponents";
-import { EmptyAvatar } from "./empty-avatar";
-
 import { Text } from "@atoms";
+import { Yumoji, TouchableOpacityWithDelay } from "@molecules";
 import { ItemBottom } from "./item-set/item-bottom";
 
 const _AvatarAndEquipment = () => {
-  const [showLoading, setShowLoading] = useState(true);
   const { data } = useQuery<GetYulifer>(GQL_QUERY_GET_YULIFER, { fetchPolicy: "cache-first" }); // We cannot use cache-only as fetch policy, this query is refetch on avatar update
   const { data: yuScreenProductSlots } = useQuery<YuScreenProductSlots>(GQL_QUERY_GET_YU_SCREEN_PRODUCTS_SLOTS, {
     fetchPolicy: "cache-and-network",
   });
 
-  const avatarSource = useMemo(() => {
-    const uri = data?.getYulifer?.avatarRemoteFiles?.pngFull;
-    return uri ? { uri } : null;
-  }, [data]);
+  const avatarUri = data?.getYulifer?.avatarRemoteFiles?.pngFull;
 
-  const handleImageLoad = (isLoading: boolean) => () => setShowLoading(isLoading);
   return (
     <View>
       <View style={styles.wrapper} testID={YUSCREEN_AVATAR}>
         <ItemSet items={yuScreenProductSlots?.getYuScreenProductSlots.left} />
         <TouchableOpacityWithDelay onPress={navigateToAvatarModal} style={styles.avatarWrapper}>
-          {avatarSource ? (
-            <>
-              <FastImage
-                onLoadStart={handleImageLoad(true)}
-                onLoad={handleImageLoad(false)}
-                style={styles.avatar}
-                resizeMode="contain"
-                source={avatarSource}
-              />
-              {showLoading ? <ActivityIndicator style={{ position: "absolute" }} color={Colours.darkHotPink} /> : null}
-            </>
-          ) : (
-            <EmptyAvatar />
-          )}
+          <Yumoji
+            width={AVATAR_WIDTH}
+            height={AVATAR_HEIGHT}
+            emptyWidth={EMPTY_AVATAR_WIDTH}
+            emptyHeight={EMPTY_AVATAR_HEIGHT}
+            testID="YUMOJI_EQUIPMENT"
+            uri={avatarUri}
+          />
         </TouchableOpacityWithDelay>
         <ItemSet items={yuScreenProductSlots?.getYuScreenProductSlots.right} />
       </View>
-      {!avatarSource ? <AvatarCreationPrompt /> : null}
-
+      {!avatarUri ? <AvatarCreationPrompt /> : null}
       {yuScreenProductSlots?.getYuScreenProductSlots.bottom.length > 0 ? (
         <>
           <View style={styles.itemSetWrapper}>
@@ -69,6 +54,8 @@ const _AvatarAndEquipment = () => {
 const BASE_PADDING = Style.adjust(22);
 const AVATAR_WIDTH = Style.adjust(160) * 0.95;
 const AVATAR_HEIGHT = Style.adjust(328) * 0.95;
+const EMPTY_AVATAR_WIDTH = Style.adjust(111);
+const EMPTY_AVATAR_HEIGHT = Style.adjust(298);
 
 const styles = StyleSheet.create({
   wrapper: {
@@ -85,10 +72,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   } as ViewStyle,
-  avatar: {
-    width: AVATAR_WIDTH,
-    height: AVATAR_HEIGHT,
-  },
   itemSetWrapper: {
     alignSelf: "center",
     marginTop: 26,

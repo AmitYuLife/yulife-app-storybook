@@ -1,6 +1,6 @@
 import { Style } from "@styles";
 import { StyleSheet, Platform, ViewStyle } from "react-native";
-import { Yumoji } from "@atoms";
+import { Yumoji } from "@molecules";
 
 export const LEADERBOARD_PODIUM_HEIGHT = Platform.select({ ios: Style.SCALE_UP_AND_DOWN(320), android: 328 });
 
