@@ -19,7 +19,7 @@ interface IProps {
   onChange: (value: string) => void;
   hasError?: boolean;
   errorMessage?: string;
-  type: Types;
+  type: Types | ITextInputTypes;
   onBlur?: (value: string) => void;
   placeholder?: string;
   style?: ViewStyle;
@@ -38,6 +38,9 @@ export enum TEXT_INPUT_TYPES {
 }
 
 export type Types = "Email" | "Password" | "Text" | "Card" | "Board";
+
+// This is temporary until we refactor this component
+export type ITextInputTypes = "text" | "number" | "email";
 
 class TextInput extends React.PureComponent<IProps> {
   public static Types = TEXT_INPUT_TYPES;
@@ -83,7 +86,7 @@ class TextInput extends React.PureComponent<IProps> {
               value={getValue({ value, type })}
               autoCapitalize="none"
               autoCorrect={false}
-              placeholder={getPlaceholder({ type, placeholder })}
+              placeholder={placeholder || getPlaceholder({ type, placeholder })}
               style={getStyle({ type })}
               underlineColorAndroid="transparent"
               secureTextEntry={type === TEXT_INPUT_TYPES.PASSWORD}
