@@ -22,7 +22,7 @@ export interface GetWellbeingHubItem_wellbeingHubItem_icon {
 export interface GetWellbeingHubItem_wellbeingHubItem_content_ContentItemMarkdown {
   __typename: "ContentItemMarkdown";
   id: string;
-  title: string;
+  title: string | null;
   markdown: string;
   parsedMarkdown: string | null;
 }
@@ -30,7 +30,7 @@ export interface GetWellbeingHubItem_wellbeingHubItem_content_ContentItemMarkdow
 export interface GetWellbeingHubItem_wellbeingHubItem_content_ContentItemBox {
   __typename: "ContentItemBox";
   id: string;
-  title: string;
+  title: string | null;
   markdown: string;
   parsedMarkdown: string | null;
   canCopy: boolean | null;
@@ -45,7 +45,7 @@ export interface GetWellbeingHubItem_wellbeingHubItem_content_ContentItemButton 
   __typename: "ContentItemButton";
   id: string;
   label: string;
-  uri: string;
+  uri: string | null;
   icon: GetWellbeingHubItem_wellbeingHubItem_content_ContentItemButton_icon | null;
 }
 
