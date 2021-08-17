@@ -1,8 +1,11 @@
 const detoxInstance = require('detox');
 const config = require('../package.json').detox;
 const adapter = require('detox/runners/mocha/adapter');
+const addContext = require('mochawesome/addContext');
+
 import * as path from "path";
 import { socketServer } from "./_utils/socket";
+import { getTestPath } from "./mocha.utils";
 import { dataManager } from "@yu-life/yulife-bdd-framework";
 import * as data from "@data";
 
@@ -26,7 +29,13 @@ beforeEach(async function () {
 
 afterEach(async function () {
   await adapter.afterEach(this);
+  try {
+    const [before, after] = getTestPath(this.currentTest, this.currentTest.state);
+    addContext(this, before);
+    addContext(this, after);
+  } catch (e) {}
 });
+
 
 // comment out for detox debugging/dev
 // after(async () => {
