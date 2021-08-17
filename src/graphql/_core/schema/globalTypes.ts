@@ -39,6 +39,12 @@ export enum CommunityGoalType {
   steps = "steps",
 }
 
+export enum ContentItemFormTextInputType {
+  email = "email",
+  number = "number",
+  text = "text",
+}
+
 /**
  * Different cover types
  */

@@ -3,6 +3,7 @@ import { Button, SelectInput, TextInput } from "@atoms";
 import { StyleSheet } from "react-native";
 import { Style } from "@styles";
 import { ISelectInputOption } from "@atoms/select-input/select-input.types";
+import { Types } from "@atoms/text-input/text-input";
 
 interface IValidation {
   regex: string;
@@ -17,6 +18,7 @@ export interface IElement {
   defaultOption?: ISelectInputOption;
   required: boolean;
   placeholder: string;
+  type: Types;
   modalPlaceholder: string;
   icon: {
     id: string;
@@ -124,7 +126,7 @@ const ContentItemForm = ({ elements, onSubmit, isLoading, customValidation }: IP
                 value={loading ? "" : formState[element.name].value}
                 errorMessage={loading ? "" : formState[element.name]?.error}
                 hasError={loading ? false : !!formState[element.name]?.error}
-                type="Text"
+                type={element.type}
                 iconUri={element.icon?.uri}
                 style={styles.textInput}
                 onChange={(value) => onChange(index, value)}

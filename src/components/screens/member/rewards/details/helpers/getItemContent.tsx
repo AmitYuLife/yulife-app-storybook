@@ -31,7 +31,7 @@ export const getItemContent = (
 ) => {
   const customValidation = ({ loyaltyProgramme, accountNumber, button, initialValidation }: ICustomValidation) => {
     const programme = (loyaltyProgramme?.value || "").toLowerCase();
-    const accountNumberValue = accountNumber?.value || "";
+    const accountNumberValue = accountNumber?.value?.replace(/\s+/g, "") || "";
     const aerclubStartNumber = "308147";
     const isNumber = /^\d+$/.test(accountNumberValue);
 
@@ -44,7 +44,7 @@ export const getItemContent = (
         return {
           accountNumber: {
             value: accountNumberValue,
-            error: `Account number must start with ${aerclubStartNumber} and be 16 numbers`,
+            error: "Please enter a valid account number",
           },
         };
       }
@@ -55,7 +55,7 @@ export const getItemContent = (
         return {
           accountNumber: {
             value: accountNumberValue,
-            error: "Account number must be 8 numbers",
+            error: "Please enter a valid account number",
           },
         };
       }

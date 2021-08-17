@@ -86,6 +86,7 @@ export const GQL_QUERY_GET_REWARD_ITEM_DETAILS = gql`
               name
               placeholder
               defaultValue
+              type
               icon {
                 id
                 uri

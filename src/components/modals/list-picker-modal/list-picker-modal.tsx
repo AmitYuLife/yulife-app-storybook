@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useRef } from "react";
-import { Animated, Platform, StyleSheet, View } from "react-native";
+import { Animated, StyleSheet, View } from "react-native";
 import { ListPicker } from "@components/molecules";
-import { BlurView } from "react-native-blur";
+import { BlurView } from "@react-native-community/blur";
 import { ISelectInputOption } from "@atoms/select-input/select-input.types";
 import { useBackHandler } from "@services/hooks/useBackHandler";
 
@@ -76,7 +76,6 @@ const styles = StyleSheet.create({
   },
   blur: {
     ...StyleSheet.absoluteFillObject,
-    backgroundColor: Platform.select({ android: "rgba(255,255,255,0.85)", ios: "transparent" }),
   },
 });
 

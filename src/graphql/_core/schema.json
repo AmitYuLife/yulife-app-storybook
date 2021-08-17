@@ -3567,8 +3567,8 @@
               "name": "Boolean",
               "ofType": null
             },
-            "isDeprecated": false,
-            "deprecationReason": null
+            "isDeprecated": true,
+            "deprecationReason": "Not supported anymore"
           },
           {
             "name": "industryType",
@@ -4320,18 +4320,6 @@
             "deprecationReason": null
           },
           {
-            "name": "groupQuoteId",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "benefitBasis",
             "description": null,
             "args": [],
@@ -4392,7 +4380,7 @@
             "deprecationReason": null
           },
           {
-            "name": "quoteNumberId",
+            "name": "quoteId",
             "description": null,
             "args": [],
             "type": {
@@ -5057,7 +5045,7 @@
             "deprecationReason": null
           },
           {
-            "name": "quoteNumberId",
+            "name": "quoteId",
             "description": null,
             "args": [],
             "type": {
@@ -7707,6 +7695,12 @@
           },
           {
             "name": "employmentDetails",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "uniqueIdDetails",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -18604,6 +18598,18 @@
             "deprecationReason": null
           },
           {
+            "name": "type",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "ENUM",
+              "name": "ContentItemFormTextInputType",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "icon",
             "description": null,
             "args": [],
@@ -18635,6 +18641,35 @@
         "inputFields": null,
         "interfaces": [],
         "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "ENUM",
+        "name": "ContentItemFormTextInputType",
+        "description": null,
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "enumValues": [
+          {
+            "name": "text",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "number",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "email",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
         "possibleTypes": null
       },
       {
@@ -28608,7 +28643,7 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "quoteNumberId",
+            "name": "quoteId",
             "description": null,
             "type": {
               "kind": "SCALAR",
