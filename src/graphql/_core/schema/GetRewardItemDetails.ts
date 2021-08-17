@@ -3,6 +3,8 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
+import { ContentItemFormTextInputType } from "./globalTypes";
+
 // ====================================================
 // GraphQL query operation: GetRewardItemDetails
 // ====================================================
@@ -111,6 +113,7 @@ export interface GetRewardItemDetails_getRewardItemDetails_content_ContentItemFo
   name: string;
   placeholder: string;
   defaultValue: string | null;
+  type: ContentItemFormTextInputType | null;
   icon: GetRewardItemDetails_getRewardItemDetails_content_ContentItemForm_elements_ContentItemFormTextInput_icon | null;
   validation:
     | (GetRewardItemDetails_getRewardItemDetails_content_ContentItemForm_elements_ContentItemFormTextInput_validation | null)[]

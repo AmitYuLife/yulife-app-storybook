@@ -5,7 +5,7 @@ import {
   GQL_MUTATION_REDEEM_REWARD,
   GQL_QUERY_GET_REWARD_ITEM_DETAILS,
 } from "@graphql/rewards";
-import { Alert, Linking } from "react-native";
+import { Alert, Keyboard, Linking } from "react-native";
 import { Navigation } from "react-native-navigation";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -48,7 +48,10 @@ const RewardDetailsContainer: FC<IProps> = ({ onTabChange, componentId, rewardId
   const offline = useSelector(getOfflineState);
   const copy = useSelector(getPurchasesCopy);
 
-  const onRewardsTabPress = useCallback(() => onTabChange("rewards", componentId), [onTabChange, componentId]);
+  const onRewardsTabPress = useCallback(() => {
+    Keyboard.dismiss();
+    onTabChange("rewards", componentId);
+  }, [onTabChange, componentId]);
   const onPurchasesTabPress = useCallback(() => onTabChange("purchases", componentId), [onTabChange, componentId]);
   const [redeemReward, { loading }]: RedeemRewardMutationTuple = useMutation(GQL_MUTATION_REDEEM_REWARD);
   const { data, loading: loadingReward } = useQuery<GetRewardItemDetails>(GQL_QUERY_GET_REWARD_ITEM_DETAILS, {

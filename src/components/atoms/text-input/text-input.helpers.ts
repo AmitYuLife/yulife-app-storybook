@@ -1,7 +1,7 @@
 import { StyleSheet } from "react-native";
 import { Colours } from "../../../styles";
 import { Board, Card, Giraffe, Lock, Mail } from "./assets";
-import { Types } from "./text-input";
+import { ITextInputTypes, Types } from "./text-input";
 import styles from "./text-input.styles";
 
 interface IGetWrapperStyle {
@@ -9,6 +9,8 @@ interface IGetWrapperStyle {
   isFocused: boolean;
   isFilled: boolean;
 }
+
+type ITypes = Types | ITextInputTypes;
 
 export function getWrapperStyle({ hasError, isFocused, isFilled }: IGetWrapperStyle) {
   if (hasError) {
@@ -43,7 +45,7 @@ export function getColour({ hasError, hasValue }: IGetColour) {
   return Colours.textInput.inactive;
 }
 
-export const getIcon = (type: Types) => {
+export const getIcon = (type: ITypes) => {
   switch (type) {
     case "Card":
       return Card;
@@ -60,10 +62,12 @@ export const getIcon = (type: Types) => {
   }
 };
 
-export const getKeyboardType = (type: Types) => {
+export const getKeyboardType = (type: ITypes) => {
   switch (type) {
+    case "number": // this is temporary until we refactor this component
     case "Card":
       return "numeric";
+    case "email":
     case "Email":
       return "email-address";
     default:
@@ -72,14 +76,14 @@ export const getKeyboardType = (type: Types) => {
 };
 
 interface IGetPlaceholder {
-  type: Types;
+  type: ITypes;
   placeholder: string;
 }
 
 export const getPlaceholder = ({ type, placeholder }: IGetPlaceholder) => {
   switch (type) {
     case "Card":
-      return "account number";
+      return "Account number";
     case "Email":
       return "Email";
     case "Password":
@@ -95,11 +99,11 @@ export const getPlaceholder = ({ type, placeholder }: IGetPlaceholder) => {
 
 interface IGetValue {
   value: string;
-  type: Types;
+  type: ITypes;
 }
 
 export const getValue = ({ value, type }: IGetValue) => {
-  return type !== "Card"
+  return type !== "Card" && type !== "number"
     ? value
     : /* tslint:disable-next-line */
       value
@@ -111,7 +115,7 @@ export const getValue = ({ value, type }: IGetValue) => {
 };
 
 interface IGetStyle {
-  type: Types;
+  type: ITypes;
 }
 
 export const getStyle = ({ type }: IGetStyle) => {
