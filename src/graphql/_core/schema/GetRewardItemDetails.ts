@@ -25,7 +25,7 @@ export interface GetRewardItemDetails_getRewardItemDetails_availableDenomination
 export interface GetRewardItemDetails_getRewardItemDetails_content_ContentItemMarkdown {
   __typename: "ContentItemMarkdown";
   id: string;
-  title: string;
+  title: string | null;
   markdown: string;
   parsedMarkdown: string | null;
 }
@@ -33,7 +33,7 @@ export interface GetRewardItemDetails_getRewardItemDetails_content_ContentItemMa
 export interface GetRewardItemDetails_getRewardItemDetails_content_ContentItemBox {
   __typename: "ContentItemBox";
   id: string;
-  title: string;
+  title: string | null;
   markdown: string;
   parsedMarkdown: string | null;
   canCopy: boolean | null;
@@ -48,7 +48,7 @@ export interface GetRewardItemDetails_getRewardItemDetails_content_ContentItemBu
   __typename: "ContentItemButton";
   id: string;
   label: string;
-  uri: string;
+  uri: string | null;
   icon: GetRewardItemDetails_getRewardItemDetails_content_ContentItemButton_icon | null;
 }
 
