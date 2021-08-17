@@ -14,6 +14,7 @@ import DeviceInfo from "react-native-device-info";
 import { store } from "@redux/_core/store";
 import { updateOfflineState } from "@redux/app/app.actions";
 import createRetryLink from "./retryLink";
+import { Platform } from "react-native";
 
 const httpLink = () =>
   createHttpLink({
@@ -80,7 +81,7 @@ persistCache({
 const defaultHeaders = {
   app_version: DeviceInfo.getVersion(),
   device_id: DeviceInfo.getDeviceId(),
-  apollo_client_name: "react_native",
+  apollo_client_name: `react_native_${Platform.OS}`,
 };
 
 const authMiddleware = setContext(async (_, { headers }) => {
