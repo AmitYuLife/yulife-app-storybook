@@ -1,19 +1,7 @@
 const sanatize = require('sanitize-filename');
 const MAX_FILE_LENGTH = 255;
 
-import * as path from "path";
-import { readdirSync } from "fs";
-
-let assetPath = '';
-const getAssetPath = () => {
-  if (assetPath) {
-    return assetPath;
-  }
-  const items = readdirSync(path.join(__dirname, "..", "e2e-report"));
-  assetPath = items.find(i => i.includes("ios.sim.debug"));
-
-  return assetPath;
-}
+let folderPath = 'screenshots' // NOTE: this needs to be renamed from ios.debug.sim... whilst running on bitrise
 
 export const getTestPath = (test: Mocha.Test, status: string) => {
   let path = [test.title];
@@ -27,7 +15,6 @@ export const getTestPath = (test: Mocha.Test, status: string) => {
   const prefix = getStatusSign(status);
   const all = path.reverse().join(" ");
   const folder = constructSafeFilename(prefix, all);
-  const folderPath = getAssetPath();
   return [
     `./${folderPath}/${folder}/testDone.png`,
     `./${folderPath}/${folder}/testStart.png`
