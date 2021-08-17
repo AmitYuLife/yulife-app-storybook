@@ -7,6 +7,7 @@ import { shallowEqual } from "react-redux";
 interface Props {
   width: number;
   height?: number;
+  loadingHeight?: number;
   style?: StyleProp<ViewStyle>;
   imageStyle?: StyleProp<ImageStyle>;
   source: Source | number;
@@ -20,6 +21,7 @@ export const Image = memo(
     const {
       width: propWidth,
       height: propHeight = 0,
+      loadingHeight,
       style,
       imageStyle,
       theme = "light",
@@ -46,9 +48,10 @@ export const Image = memo(
     );
 
     const { width, height } = useMemo(() => {
-      const calcHeight = propHeight || (nativeSize.height / nativeSize.width) * propWidth;
+      const calcHeight =
+        (isLoading && loadingHeight) || propHeight || (nativeSize.height / nativeSize.width) * propWidth;
       return { width: propWidth, height: calcHeight };
-    }, [propHeight, propWidth, nativeSize]);
+    }, [propHeight, propWidth, isLoading, loadingHeight, nativeSize]);
 
     return (
       <View style={[styles.wrapper, { height, width }, style]} testID={testID}>

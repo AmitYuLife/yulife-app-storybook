@@ -27,7 +27,7 @@ export const styles = StyleSheet.create({
     marginBottom: Style.adjust(16),
   },
   disclaimer: {
-    marginBottom: Style.adjust(16),
+    marginBottom: Style.adjust(32),
   },
   body: {
     marginHorizontal: Style.adjust(24),
@@ -35,11 +35,6 @@ export const styles = StyleSheet.create({
   referralsWrapper: {
     marginTop: Style.adjust(16),
     marginLeft: Style.adjust(5),
-  },
-  owlFenceIcon: {
-    marginTop: Style.adjust(20),
-    marginBottom: Style.adjust(40),
-    alignItems: "flex-end",
   },
 });
 
