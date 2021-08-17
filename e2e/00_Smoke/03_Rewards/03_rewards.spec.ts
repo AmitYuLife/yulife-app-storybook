@@ -8,7 +8,7 @@ import { REWARDS_JOHN_LEWIS, REWARDS_BLOOM_UNAVAILABLE, CUSTOMER_3, AUTH_3, REWA
 
 
 
-FeatureOnly("Rewards should act correctly", async () => {
+Feature("Rewards should act correctly", async () => {
 
     Scenario("I cannot redeem a reward if I don't have enough coin", scenario.start, () => {
         Given("I log in and go to reward", given.logInAndGoToTab("rewards"), async () => {
