@@ -223,8 +223,7 @@ const challengeResetFail = (state: ILevelsStore): ILevelsStore => ({
 
 const pedometerUpdate = (state: ILevelsStore, { steps }: PedometerResponse): ILevelsStore => {
   if (
-    state.active.subtype === "meditation" ||
-    state.active.subtype === "cycling" ||
+    state.active.shouldEndOnLastGoalAchieved ||
     !state.active.levelSlotId ||
     moment().isAfter(moment(state.active.endDateTime))
   ) {
