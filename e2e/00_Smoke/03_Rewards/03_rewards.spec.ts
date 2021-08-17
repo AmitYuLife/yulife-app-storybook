@@ -4,29 +4,22 @@ import * as given from "./_steps/given"
 import * as when from "./_steps/when"
 import * as then from "./_steps/then"
 import { REWARDS_SCREEN, VIEW_TOP_RIGHT_COIN_COUNTER, WEGIFT_DETAILS } from "@ids";
-import { REWARDS_JOHN_LEWIS, REWARDS_BLOOM_UNAVAILABLE, CUSTOMER_3, AUTH_3, REWARDS_NIKE, CUSTOMER_4, AUTH_4, CUSTOMER_2, AUTH_2 } from "@data";
+import { REWARDS_JOHN_LEWIS, REWARDS_BLOOM_UNAVAILABLE, CUSTOMER_3, AUTH_3, REWARDS_NIKE, CUSTOMER_4, AUTH_4, COIN_LEDGER_4, CUSTOMER_2, AUTH_2 } from "@data";
 
 
 
-Feature("Rewards should act correctly", async () => {
+FeatureOnly("Rewards should act correctly", async () => {
 
     Scenario("I cannot redeem a reward if I don't have enough coin", scenario.start, () => {
         Given("I log in and go to reward", given.logInAndGoToTab("rewards"), async () => {
             Then("I should be on the rewards tab", then.idVisible(REWARDS_SCREEN))
             Then("I should see the John Lewis Reward", then.rewardVisible(REWARDS_JOHN_LEWIS))
             When("I tap on the John Lewis reward", when.tapRewardInList(REWARDS_JOHN_LEWIS), async () => {
-                Then("I should be on the reward page", then.onRewardScreen(REWARDS_JOHN_LEWIS))
-                When("I scroll to the bottom of the page", when.scrollFromID(WEGIFT_DETAILS, "up", "slow"), async () => {
-                    Then("I should see the buy button", then.textVisible("buy with 4130 yucoin"))
-                    Then("I should see the £ amount drop down", then.textVisible("£5.00"))
-                    When("I try to purchase the reward", when.tapText("buy with 4130 yucoin",0,true), async () => {
-                        Then("I should see a confirm modal", then.textVisible("Confirm purchase"))
-                        When("I tap OK", when.tapText("OK", 2500,true), async () => {
-                            Then("I should see a 'not enough coin' screen", then.textVisible("not enough coin"))
-                            When("I tap 'got it'", when.tapText("got it"), async () => {
-                                Then("I should be back on the John Lewis rewards screen", then.textVisible("buy with 4130 yucoin"))
-                            })
-                        })
+                Then("I should be on the reward page", then.textVisible("To redeem John Lewis:"))      //onRewardScreen(REWARDS_JOHN_LEWIS))
+                When("I scroll to the bottom of the page", when.swipeFromText("To redeem John Lewis:", "up", "slow"), async () => {
+                    Then("I should see a greyed out button saying 'Not enough YuCoin'", then.textVisible("Not enough YuCoin"))
+                    When("I tap the greyed out button", when.tapText("Not enough YuCoin",0,true), async () => {
+                        Then("I should see nothing happen", then.textVisible("Have a question?"))
                     })
                 })
             })
@@ -57,7 +50,7 @@ Feature("Rewards should act correctly", async () => {
                 Then("I should be on the reward page", then.onRewardScreen(REWARDS_NIKE))
                 When("I scroll to the bottom of the page", when.scrollFromID(WEGIFT_DETAILS, "up", "slow"), async () => {
                     Then("I should see the buy button", then.buyButtonVisible(REWARDS_NIKE))
-                    Then("I should see the £ amount drop down", then.denominationListVisible(REWARDS_NIKE))
+                    //Then("I should see the £ amount drop down", then.denominationListVisible(REWARDS_NIKE))
                     When("I tap the drop down", when.tapDenominationList(REWARDS_NIKE), async () => {
                         Then("I should see a list of options", then.rewardDenominationsVisible(REWARDS_NIKE))
                         When("I tap a denomination", when.tapDenomination(REWARDS_NIKE, 1), async () => {
@@ -92,14 +85,15 @@ Feature("Rewards should act correctly", async () => {
             Then("I should be on the rewards tab", then.idVisible(REWARDS_SCREEN))
             Then("I should see the John Lewis Reward", then.rewardVisible(REWARDS_JOHN_LEWIS))
             When("I tap this reward", when.tapRewardInList(REWARDS_JOHN_LEWIS), async () => {
-                Then("I should be on the reward page", then.onRewardScreen(REWARDS_JOHN_LEWIS))
-                When("I scroll to the bottom of the page", when.scrollFromID(WEGIFT_DETAILS, "up", "slow"), async () => {
-                    Then("I should see the buy button", then.buyButtonVisible(REWARDS_JOHN_LEWIS))
-                    When("I tap the buy button", when.tapBuyButton(REWARDS_JOHN_LEWIS, 0), async () => {
-                        When("I tap 'ok", when.tapText("OK", 2500, true), async () => {
-                            Then("I should see a screen telling me there's an issue with the reward", then.textVisible("the voucher is not currently available"))
-                            When("I tap the CTA", when.tapText("check other rewards"), async () => {
-                                Then("I should be back on the John Lewis reward page", then.buyButtonVisible(REWARDS_JOHN_LEWIS))
+                Then("I should be on the reward page", then.textVisible("To redeem John Lewis:"))        //onRewardScreen(REWARDS_JOHN_LEWIS))
+                When("I scroll to the bottom of the page", when.swipeFromText("To redeem John Lewis:", "up", "slow"), async () => {
+                    Then("I should see the buy button", then.textVisible("Buy voucher with YuCoin"))
+                    When("I tap the buy button", when.tapText("Buy voucher with YuCoin"), async () => {
+                        Then("I should see the denominations modal", then.denominationListVisible(REWARDS_JOHN_LEWIS, 15200))
+                        When("I tap to buy a denomination", when.tapDenomination(REWARDS_JOHN_LEWIS, 0), async () => {
+                            Then("I should see the confirm modal", then.textVisible("Confirm purchase"))
+                            When("I tap 'Confirm'", when.tapText("Confirm", 2500, true), async () => {
+                                Then("I should see that the voucher is unavailable", then.onRewardNotAvailableScreen)
                             })
                         })
                     })

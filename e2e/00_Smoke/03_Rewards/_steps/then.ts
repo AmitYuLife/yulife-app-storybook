@@ -16,5 +16,6 @@ export const {
     denominationListVisible,
     buyButtonVisible,
     onRewardPurchasedScreen,
-    purchasedRewardVisible
+    purchasedRewardVisible,
+    onRewardNotAvailableScreen
 } = screens.rewards

@@ -7,7 +7,6 @@ import { CopyIcon } from "@atoms/icon/copy-icon";
 import { PressableWithDelay } from "@molecules";
 import Markdown from "@molecules/markdown/markdown";
 import { IMarkdownStyle } from "@molecules/markdown/markdown.styles";
-
 interface IProps {
   heading?: string;
   customCopyText?: string;

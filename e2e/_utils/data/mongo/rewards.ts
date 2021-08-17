@@ -4,7 +4,7 @@ import { IDatabaseItem } from "@yu-life/yulife-bdd-framework";
 
 export const REWARDS_JOHN_LEWIS = {
     type: "mongo",
-    modelName: "rewards",
+    modelName: "rewards", 
     data: {
         "_id": generateRandomMongoId(),
         "redeem_steps": {
