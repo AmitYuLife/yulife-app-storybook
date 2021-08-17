@@ -243,7 +243,7 @@ dependencies {
     
     // Intercom
     implementation project(':react-native-intercom')
-    implementation 'io.intercom.android:intercom-sdk:7.1.+'
+    implementation 'io.intercom.android:intercom-sdk:9.+'
     
     // Firebase
     implementation 'com.google.firebase:firebase-core:17.5.0'
