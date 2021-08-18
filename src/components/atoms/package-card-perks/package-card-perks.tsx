@@ -1,9 +1,9 @@
 import React, { memo, useEffect, useRef } from "react";
-import { Animated, Platform, Pressable, StyleSheet, View, ViewStyle } from "react-native";
+import { Animated, Pressable, StyleSheet, View, ViewStyle } from "react-native";
 import { Colours, Style } from "@styles";
 import { TextTemplate } from "@atoms";
 import { NotVisibleEyeIcon } from "@atoms/icon/not-visible-eye-icon";
-import { BlurView } from "react-native-blur";
+import { BlurView } from "@react-native-community/blur";
 import { CoverType } from "@graphql/_core/schema/globalTypes";
 import { toCapitalLetter } from "@services/utils";
 
@@ -129,7 +129,6 @@ const styles = StyleSheet.create({
   },
   blur: {
     ...StyleSheet.absoluteFillObject,
-    backgroundColor: Platform.OS === "android" ? "rgba(255,255,255,0.85)" : "transparent",
   },
 });
 

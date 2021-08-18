@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useState, useRef, useCallback } from "react";
-import { Animated, StyleSheet, View, findNodeHandle } from "react-native";
+import { Animated, StyleSheet, View, findNodeHandle, Platform } from "react-native";
 import Blur from "./blur";
 import styles from "./blur-provider.styles";
 
@@ -18,7 +18,7 @@ interface IProps {
   backgroundColor?: BackgroundColours;
 }
 
-function BlurProvider({ render, renderOverlay, backgroundColor = "default" }: IProps) {
+function BlurProvider({ render, renderOverlay, backgroundColor: propsBackgroundColor = "default" }: IProps) {
   const [isVisible, setVisibilityState] = useState(false);
 
   const [animatedWrapperOpacity] = useState(new Animated.Value(0));
@@ -78,6 +78,11 @@ function BlurProvider({ render, renderOverlay, backgroundColor = "default" }: IP
     toggleOverlay,
   };
 
+  const backgroundColor =
+    propsBackgroundColor === "dark"
+      ? Platform.select({ ios: "rgba(0,0,0,0.5)", android: "rgba(0,0,0,0.3)" })
+      : "transparent";
+
   return (
     <View style={styles.wrapper}>
       <View ref={viewRef} onLayout={updateViewNodeHandle} style={styles.flex}>
@@ -94,7 +99,7 @@ function BlurProvider({ render, renderOverlay, backgroundColor = "default" }: IP
         testID="blur-provider.overlay-container"
         style={{
           ...StyleSheet.absoluteFillObject,
-          backgroundColor: backgroundColor === "dark" ? "rgba(0,0,0,0.5)" : "transparent",
+          backgroundColor,
           opacity: animatedWrapperOpacity,
           transform: [
             {

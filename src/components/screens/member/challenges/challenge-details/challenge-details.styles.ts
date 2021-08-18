@@ -1,4 +1,4 @@
-import { ImageStyle, StyleSheet, TextStyle, ViewStyle } from "react-native";
+import { ImageStyle, StyleSheet, TextStyle, ViewStyle, Platform } from "react-native";
 import { Style } from "../../../../../styles";
 
 const styles = StyleSheet.create({
@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
   } as ViewStyle,
   wrapper: {
     alignItems: "center",
-    backgroundColor: "rgba(255,255,255,0.7)",
+    backgroundColor: Platform.select({ ios: "rgba(255,255,255,0.7)", android: "rgba(255,255,255,0.5)" }),
     flex: 1,
     justifyContent: "center",
   } as ViewStyle,
