@@ -1,19 +1,17 @@
 import React from "react";
-import { IThemeStore } from "@app/redux/theme/theme.reducer";
-import { DAILY_STEPS_SCREEN } from "@ids";
-import { TouchableOpacityWithDelay } from "@molecules/index";
 import { View, Platform } from "react-native";
 import * as Animatable from "react-native-animatable";
+import { isIphoneX } from "react-native-iphone-x-helper";
+import { IThemeStore } from "@app/redux/theme/theme.reducer";
+import { DAILY_STEPS_SCREEN } from "@ids";
 import { IConnectedScreenProps } from "../../../../typings";
 import { CentredScreen, Pad } from "@atoms";
-import { Streak } from "@components/organisms";
-import YuCoin from "./assets/yu-coin";
-import styles from "./daily-steps.screen.styles";
-import { TopBar } from "@components/organisms";
-import { NavBar } from "@components/organisms";
-import { DailyStepsContent } from "@components/organisms";
-import { isIphoneX } from "react-native-iphone-x-helper";
+import { TouchableOpacityWithDelay } from "@molecules";
+import { Streak, TopBar, NavBar, DailyStepsContent } from "@organisms";
 import { Style } from "@styles";
+import styles from "./daily-steps.screen.styles";
+import YuCoin from "./assets/yu-coin";
+import ReferralsPopover from "./referrals-popover";
 
 interface IProps extends IConnectedScreenProps {
   showCounter?: boolean;
@@ -50,6 +48,7 @@ export default function DailyStepsScreen({
       <View style={styles.topbarWrapper}>
         <TopBar type={topBarType} onPressLeftIcon={onLeftMenuPress} />
       </View>
+      <ReferralsPopover onLeftMenuPress={onLeftMenuPress} />
     </Animatable.View>
   );
 }

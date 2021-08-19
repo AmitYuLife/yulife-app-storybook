@@ -1,10 +1,13 @@
-import React, { memo, useCallback } from "react";
+import React, { memo, useEffect, useCallback } from "react";
 import { Share, View, ScrollView, Platform } from "react-native";
+import { useDispatch } from "react-redux";
+import { setReferralsOnboardingCompleted } from "@redux/onboarding/onboarding.actions";
 import moment from "moment";
 import Logger from "@services/logging/logger";
 import { GetReferralInformation_referralInformation } from "@graphql/_core/schema";
 import { REFERRALS_SCREEN, REFERRALS_SCROLL_VIEW } from "@ids";
-import { TextTemplate, Button, Icon, Image } from "@atoms";
+import { TextTemplate, Button, Image } from "@atoms";
+import { ShareIcon } from "@atoms/icon/share-icon";
 import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
 import { UserAvatarCoinCard } from "@molecules";
 import Markdown from "@molecules/markdown/markdown";
@@ -18,6 +21,12 @@ interface IProps {
 }
 
 const ReferralsScreen = ({ info, handleClose }: IProps) => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(setReferralsOnboardingCompleted());
+  }, []);
+
   const {
     referralLink,
     background: { uri },
@@ -37,7 +46,7 @@ const ReferralsScreen = ({ info, handleClose }: IProps) => {
     } catch (e) {
       Logger.error(e, { file: "referrals.screen" });
     }
-  }, [info]);
+  }, [info, referralLink, shareMessage]);
 
   return (
     <View testID={REFERRALS_SCREEN} style={styles.wrapper}>
@@ -66,9 +75,7 @@ const ReferralsScreen = ({ info, handleClose }: IProps) => {
             onPress={onShare}
             size="Medium"
             label={shareCTA}
-            leftIcon={
-              <Icon.ShareIcon width={Style.adjust(14)} height={Style.adjust(15)} color={Colours.neutral.white} />
-            }
+            leftIcon={<ShareIcon width={Style.adjust(14)} height={Style.adjust(15)} color={Colours.neutral.white} />}
           />
           <View style={styles.disclaimer}>
             <TextTemplate type="l3" textAlign="center">

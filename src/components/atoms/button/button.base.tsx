@@ -5,6 +5,7 @@ import { usePressedInWithDelay } from "@services/hooks/usePressedInWithDelay";
 import { Style } from "@styles";
 import { getOptionallyDisabledColor } from "@styles/getOptionallyDisabledColor";
 import { TextTemplate } from "@atoms/text/text-template";
+import { BadgeIcon } from "@atoms/icon/badge-icon";
 
 interface IProps {
   disabled?: boolean;
@@ -25,6 +26,7 @@ interface IProps {
   disableAnimation?: boolean;
   children?: React.ReactElement;
   hideShadow?: boolean;
+  showBadge?: boolean;
 }
 
 interface IState {
@@ -44,6 +46,7 @@ export function ButtonBase(props: IProps) {
     delay,
     disableAnimation,
     hideShadow,
+    showBadge,
   } = props;
   const [translateYAnimation] = useState(new Animated.Value(0));
   const { isPressedIn, handlePressIn, handlePressOut, handlePress } = usePressedInWithDelay({ onPress, delay });
@@ -89,6 +92,7 @@ export function ButtonBase(props: IProps) {
         onPress={handlePress}
         isPressedIn={isPressedIn}
         translateYAnimation={translateYAnimation}
+        showBadge={showBadge}
       >
         <View>{children}</View>
       </Main>
@@ -125,6 +129,7 @@ function Main({
   title,
   leftIcon,
   rightIcon,
+  showBadge,
   children,
 }: IProps & IState & ComponentProps<typeof TouchableWithoutFeedback>) {
   const adjustedColor = getOptionallyDisabledColor({ color, disabled });
@@ -160,6 +165,11 @@ function Main({
             {children}
           </Content>
         </Animated.View>
+        {showBadge ? (
+          <View style={styles.badge}>
+            <BadgeIcon />
+          </View>
+        ) : null}
       </View>
     </TouchableWithoutFeedback>
   );
@@ -251,7 +261,6 @@ const styles = StyleSheet.create({
   flex: {
     justifyContent: "center",
     alignItems: "center",
-    overflow: "hidden",
   } as ViewStyle,
   disableOverlay: {
     width: "100%",
@@ -266,5 +275,10 @@ const styles = StyleSheet.create({
   },
   rightIcon: {
     marginLeft: Style.adjust(9),
+  },
+  badge: {
+    position: "absolute",
+    top: Style.adjust(-8),
+    right: Style.adjust(16),
   },
 });

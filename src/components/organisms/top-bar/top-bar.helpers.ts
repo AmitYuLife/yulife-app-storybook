@@ -22,6 +22,7 @@ export type TopBarViewProps = {
   name?: string;
   menuLabel?: string;
   leftIcon?: React.ComponentProps<typeof Left>["icon"];
+  leftIconHasBadge?: boolean;
   middleLabel?: string;
   type?: TopBarTypes;
   rightIcon?: RightIconTypes;

@@ -1,8 +1,8 @@
-import * as React from "react";
+import React, { useEffect } from "react";
 import { Image as RNImage, ImageRequireSource, ScrollView, View } from "react-native";
-import { connect } from "react-redux";
-import { IReduxState } from "@redux/_core/reducers";
+import { useSelector } from "react-redux";
 import { getCurrentLevel } from "@redux/levels/levels.selectors";
+import { getReferralsOnboarding } from "@redux/onboarding/onboarding.selectors";
 import { useDebouncedQuery } from "@services/hooks/useDebouncedQuery";
 import { GetReferralBackground, GetReferralBackground_getReferralBackground } from "@graphql/_core/schema";
 import { GQL_QUERY_GET_REFERRAL_BACKGROUND } from "@graphql/referrals";
@@ -21,9 +21,7 @@ export interface IMenuLink {
   source?: ImageRequireSource;
 }
 
-type ConnectedState = ReturnType<typeof mapStateToProps>;
-
-interface IProps extends ConnectedState {
+interface IProps {
   links: IMenuLink[];
   onPressClose: () => void;
   onDebugPress: (() => void) | null;
@@ -34,15 +32,7 @@ interface IProps extends ConnectedState {
 
 const HIT_SLOP = { left: 8, right: 8 };
 
-const MenuScreen = ({
-  currentLevel,
-  onDebugPress,
-  onInvitePress,
-  onPressClose,
-  links,
-  version,
-  showReferralButton,
-}: IProps) => {
+const MenuScreen = ({ onDebugPress, onInvitePress, onPressClose, links, version, showReferralButton }: IProps) => {
   const [getReferralBackground, { data, loading }] = useDebouncedQuery<
     GetReferralBackground,
     GetReferralBackground_getReferralBackground
@@ -50,11 +40,14 @@ const MenuScreen = ({
     fetchPolicy: "cache-and-network",
   });
 
-  React.useEffect(() => {
+  const currentLevel = useSelector(getCurrentLevel);
+  const { showBadge } = useSelector(getReferralsOnboarding);
+
+  useEffect(() => {
     if (showReferralButton) {
       getReferralBackground();
     }
-  }, [showReferralButton, currentLevel]);
+  }, [showReferralButton, currentLevel, getReferralBackground]);
 
   return (
     <>
@@ -75,19 +68,25 @@ const MenuScreen = ({
         <CloseSvg />
       </TouchableOpacityWithDelay>
       {!showReferralButton ? null : (
-        <ReferralButton loading={loading} uri={data?.getReferralBackground.uri} onInvitePress={onInvitePress} />
+        <ReferralButton
+          showBadge={showBadge}
+          loading={loading}
+          uri={data?.getReferralBackground.uri}
+          onInvitePress={onInvitePress}
+        />
       )}
     </>
   );
 };
 
 interface ReferralButtonProps {
+  showBadge: boolean;
   loading: boolean;
   uri: string;
   onInvitePress: () => void;
 }
 
-const ReferralButton = ({ loading, uri, onInvitePress }: ReferralButtonProps) => (
+const ReferralButton = ({ showBadge, loading, uri, onInvitePress }: ReferralButtonProps) => (
   <View pointerEvents="box-none" style={styles.referralSection}>
     <View style={styles.referralBackgroundWrapper}>
       {loading || !uri ? null : (
@@ -100,7 +99,7 @@ const ReferralButton = ({ loading, uri, onInvitePress }: ReferralButtonProps) =>
       )}
     </View>
     <View style={styles.referralButtonWrapper}>
-      <Button label="Invite a colleague" size="Fill" onPress={onInvitePress} />
+      <Button label="Invite a colleague" size="Fill" onPress={onInvitePress} showBadge={showBadge} />
     </View>
   </View>
 );
@@ -149,8 +148,4 @@ const DebugAndVersion = ({ onDebugPress, version }: Pick<IProps, "onDebugPress" 
   </TouchableOpacityWithDelay>
 );
 
-const mapStateToProps = (state: IReduxState) => ({
-  currentLevel: getCurrentLevel(state),
-});
-
-export default connect(mapStateToProps)(MenuScreen);
+export default MenuScreen;
