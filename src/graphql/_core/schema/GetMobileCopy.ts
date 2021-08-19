@@ -333,6 +333,16 @@ export interface GetMobileCopy_getMobileCopy_screens_intro {
   surge: GetMobileCopy_getMobileCopy_screens_intro_surge | null;
 }
 
+export interface GetMobileCopy_getMobileCopy_screens_rewardsDetails_notEnoughCoinsAlert {
+  title: string | null;
+  body: string | null;
+  btnLabel: string | null;
+}
+
+export interface GetMobileCopy_getMobileCopy_screens_rewardsDetails {
+  notEnoughCoinsAlert: GetMobileCopy_getMobileCopy_screens_rewardsDetails_notEnoughCoinsAlert | null;
+}
+
 export interface GetMobileCopy_getMobileCopy_screens {
   login: GetMobileCopy_getMobileCopy_screens_login | null;
   offline: GetMobileCopy_getMobileCopy_screens_offline | null;
@@ -351,6 +361,7 @@ export interface GetMobileCopy_getMobileCopy_screens {
   popUp: GetMobileCopy_getMobileCopy_screens_popUp | null;
   settingsInfo: GetMobileCopy_getMobileCopy_screens_settingsInfo | null;
   intro: GetMobileCopy_getMobileCopy_screens_intro | null;
+  rewardsDetails: GetMobileCopy_getMobileCopy_screens_rewardsDetails | null;
 }
 
 export interface GetMobileCopy_getMobileCopy {

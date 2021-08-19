@@ -1,9 +1,6 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { Platform, View } from "react-native";
-import {
-  GetRewardItemDetails_getRewardItemDetails_content as ItemContent,
-  GetRewardItemDetails_getRewardItemDetails_content_ContentItemForm_elements_ContentItemFormSubmitButton as ContentItemFormSubmitButton,
-} from "@graphql/_core/schema";
+import { GetRewardItemDetails_getRewardItemDetails_content as ItemContent } from "@graphql/_core/schema";
 import { Image, TertiaryButton } from "@atoms";
 import { ContentItemForm, HeadingAndCopy } from "@molecules";
 import styles from "../reward-details.screen.styles";
@@ -23,21 +20,17 @@ enum Programmes {
 type ICustomValidation = Record<string, Record<string, string>>;
 
 const IMAGE_WIDTH = Style.DEVICE_WIDTH - 2 * Style.adjust(24);
-export const getItemContent = (
+export const GetItemContent = (
   itemContent: ItemContent,
   onSubmit: (form: any) => void,
   onContentItemButtonPress: (item: any) => void,
   isLoading: boolean
 ) => {
-  const customValidation = ({ loyaltyProgramme, accountNumber, button, initialValidation }: ICustomValidation) => {
+  const customValidation = useCallback(({ loyaltyProgramme, accountNumber, initialValidation }: ICustomValidation) => {
     const programme = (loyaltyProgramme?.value || "").toLowerCase();
     const accountNumberValue = accountNumber?.value?.replace(/\s+/g, "") || "";
     const aerclubStartNumber = "308147";
     const isNumber = /^\d+$/.test(accountNumberValue);
-
-    if (button.value === "Not enough YuCoin") {
-      return { button: { error: button.value } };
-    }
 
     if (programme === Programmes.aerLingus || programme === Programmes.vueling) {
       if (!accountNumberValue.startsWith(aerclubStartNumber) || accountNumberValue.length !== 16 || !isNumber) {
@@ -64,7 +57,7 @@ export const getItemContent = (
     if (!programme && !initialValidation) {
       return { accountNumber: { error: "You must select a loyalty programme", value: accountNumberValue } };
     }
-  };
+  }, []);
 
   switch (itemContent.__typename) {
     case "ContentItemImage":
@@ -105,19 +98,13 @@ export const getItemContent = (
     }
 
     case "ContentItemForm": {
-      const submitButton = itemContent.elements.filter(
-        (element) => element.__typename === "ContentItemFormSubmitButton"
-      )[0] as ContentItemFormSubmitButton;
-
       return (
         <View style={styles.form}>
           <ContentItemForm
             elements={itemContent.elements as IElement[]}
             onSubmit={onSubmit}
             isLoading={isLoading}
-            customValidation={(props: ICustomValidation) =>
-              customValidation({ ...props, button: { value: submitButton.label } })
-            }
+            customValidation={(props: ICustomValidation) => customValidation({ ...props })}
           />
         </View>
       );

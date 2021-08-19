@@ -266,4 +266,11 @@ export default {
       ctaLabel: "Got it",
     },
   },
+  rewardsDetails: {
+    notEnoughCoinsAlert: {
+      title: "Not enough YuCoin",
+      body: "Earn more and come back later!",
+      btnLabel: "Got it",
+    },
+  },
 };

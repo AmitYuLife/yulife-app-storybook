@@ -29,6 +29,9 @@ export const getPushNotificationsCopy = createSelector(screensReducer, pushNotif
 const purchasesCopySelector = (state: ScreensState) => state.purchases;
 export const getPurchasesCopy = createSelector(screensReducer, purchasesCopySelector);
 
+const notEnoughCoinsAlertCopySelector = (state: ScreensState) => state.rewardsDetails.notEnoughCoinsAlert;
+export const getNotEnoughCoinsAlertCopy = createSelector(screensReducer, notEnoughCoinsAlertCopySelector);
+
 // challenge specifics
 
 type ChallengesScreensState = IReduxState["copy"]["screens"]["challenges"];

@@ -254,6 +254,13 @@ export const GQL_QUERY_MOBILE_COPY = gql`
             ctaLabel
           }
         }
+        rewardsDetails {
+          notEnoughCoinsAlert {
+            title
+            body
+            btnLabel
+          }
+        }
       }
     }
   }

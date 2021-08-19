@@ -3,7 +3,7 @@ import { Keyboard, Platform, ScrollView, StyleSheet, View } from "react-native";
 import { GetRewardItemDetails_getRewardItemDetails } from "@graphql/_core/schema";
 import { Wrapper } from "@atoms";
 import styles from "./reward-details.screen.styles";
-import { getItemContent } from "./helpers/getItemContent";
+import { GetItemContent } from "./helpers/getItemContent";
 import { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
 import { handleContentHyperlink, IContentHyperLinkProps } from "@services/app-link";
 import { TopBarLeftIconTypes } from "@organisms/top-bar/top-bar.helpers";
@@ -63,7 +63,7 @@ const RewardDetailsScreen: FC<Props> = ({ rewardItem, onPressTopBar, isLoading, 
       >
         <Wrapper>
           {rewardItem.content.map((item, index) => (
-            <View key={`${item.__typename}-${index}`}>{getItemContent(item, onSubmit, handleLink, isLoading)}</View>
+            <View key={`${item.__typename}-${index}`}>{GetItemContent(item, onSubmit, handleLink, isLoading)}</View>
           ))}
         </Wrapper>
       </ScrollView>

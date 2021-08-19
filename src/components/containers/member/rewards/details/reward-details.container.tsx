@@ -16,7 +16,7 @@ import {
 import { bottomTabs, MODALS, ROUTES } from "@navigation/constants";
 import { getOfflineState } from "@redux/app/app.selectors";
 import { getTotalCoins } from "@redux/coins/coins.selectors";
-import { getPurchasesCopy } from "@redux/copy/copy.selectors";
+import { getNotEnoughCoinsAlertCopy, getPurchasesCopy } from "@redux/copy/copy.selectors";
 import { getUserStart } from "@redux/user/user.actions";
 import Logger from "@services/logging/logger";
 import { RewardDetailsScreen, RewardDetailsLoadingScreen } from "@screens";
@@ -46,7 +46,8 @@ const RewardDetailsContainer: FC<IProps> = ({ onTabChange, componentId, rewardId
   const dispatch = useDispatch();
   const totalCoins = useSelector(getTotalCoins);
   const offline = useSelector(getOfflineState);
-  const copy = useSelector(getPurchasesCopy);
+  const purchasesCopy = useSelector(getPurchasesCopy);
+  const notEnoughCoinsAlertCopy = useSelector(getNotEnoughCoinsAlertCopy);
 
   const onRewardsTabPress = useCallback(() => {
     Keyboard.dismiss();
@@ -63,6 +64,14 @@ const RewardDetailsContainer: FC<IProps> = ({ onTabChange, componentId, rewardId
     Navigation.pop(componentId);
     return true;
   });
+
+  const notEnoughCoinsAlert = useCallback(() => {
+    Alert.alert(notEnoughCoinsAlertCopy.title, notEnoughCoinsAlertCopy.body, [
+      {
+        text: notEnoughCoinsAlertCopy.btnLabel,
+      },
+    ]);
+  }, []);
 
   useEffect(() => {
     if (loadingReward || !data.getRewardItemDetails) {
@@ -172,16 +181,16 @@ const RewardDetailsContainer: FC<IProps> = ({ onTabChange, componentId, rewardId
         }
       } catch (e) {
         const passProps = {
-          ctaLabel: copy.voucherNotAvailable.ctaLabel,
-          heading: copy.voucherNotAvailable.heading,
+          ctaLabel: purchasesCopy.voucherNotAvailable.ctaLabel,
+          heading: purchasesCopy.voucherNotAvailable.heading,
           onPress: () => Navigation.dismissModal(MODALS.rewards),
-          subheading: copy.voucherNotAvailable.subheading,
+          subheading: purchasesCopy.voucherNotAvailable.subheading,
         };
 
         if (offline) {
-          passProps.ctaLabel = copy.offline.ctaLabel;
-          passProps.heading = copy.offline.heading;
-          passProps.subheading = copy.offline.subheading;
+          passProps.ctaLabel = purchasesCopy.offline.ctaLabel;
+          passProps.heading = purchasesCopy.offline.heading;
+          passProps.subheading = purchasesCopy.offline.subheading;
         }
 
         await Navigation.showModal({
@@ -193,7 +202,7 @@ const RewardDetailsContainer: FC<IProps> = ({ onTabChange, componentId, rewardId
         });
       }
     },
-    [data, redeemReward, onTabChange, copy, offline]
+    [data, redeemReward, onTabChange, purchasesCopy, offline]
   );
 
   const handleRewardPurchase = useCallback(
@@ -214,6 +223,11 @@ const RewardDetailsContainer: FC<IProps> = ({ onTabChange, componentId, rewardId
             denominationYuCoin = availableDenominations[option.value].yuCoin;
             amount = availableDenominations[option.value].value;
             await Navigation.dismissOverlay(MODALS.listPicker);
+
+            if (totalCoins < denominationYuCoin) {
+              return notEnoughCoinsAlert();
+            }
+
             displayAlert({ confirmAlert, denominationYuCoin, rewardProviderId, code, amount, metadata, name });
           },
         });
