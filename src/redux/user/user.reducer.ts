@@ -52,6 +52,7 @@ export enum MembershipTypes {
 type SurgeActivity = "steps" | "meditation" | "all" | null;
 
 export interface IUserStore {
+  sessionCount: number;
   id: string;
   firstName: string;
   lastName: string;
@@ -81,7 +82,8 @@ export interface IUserStore {
   business: Business;
 }
 
-export const getInitialState = (): IUserStore => ({
+export const getInitialState = (sessionCount: number = 0): IUserStore => ({
+  sessionCount,
   id: "",
   archived: false,
   firstName: "",
@@ -156,7 +158,7 @@ export const userReducer = (state: IUserStore = getInitialState(), action: SyncA
       return updateSurgeIntro(state, action.payload);
 
     case LOGOUT_SUCCESS:
-      return getInitialState();
+      return getInitialState(state.sessionCount);
 
     default:
       return state;
@@ -171,49 +173,41 @@ export default userReducer;
  * @param persistedState
  */
 const updatePersistedState = (persistedState: IUserStore) => {
-  if (!persistedState.popupVisibility) {
-    // leaderboards is the first popup
-    return { ...persistedState, popupVisibility: { leaderboard: true } };
-  }
+  const newState = { ...persistedState };
 
-  // const popupVisibilityKeys = Object.keys(persistedState.popupVisibility);
-
-  // if (!popupVisibilityKeys.includes("surge")) {
-  //     return { ...persistedState, popupVisibility: { ...persistedState.popupVisibility, surge: true } };
-  // }
-  if (!persistedState.surgeIntro) {
-    return {
-      ...persistedState,
-      surgeIntro: {
-        visibility: false,
-        activity: null as SurgeActivity,
-        rate: 1,
-      },
-    };
+  if (typeof persistedState.sessionCount === "undefined") {
+    newState.sessionCount = 0;
   }
 
   if (!persistedState.business) {
-    return {
-      ...persistedState,
-      business: {
-        businessAccountName: "",
-        alpha: true,
-        isGroup: false,
-        isWellbeingAccess: false,
-        isInstantGroup: false,
-      },
+    newState.business = {
+      businessAccountName: "",
+      alpha: true,
+      isGroup: false,
+      isWellbeingAccess: false,
     };
   }
 
   if (!persistedState.lastName || !persistedState.firstName) {
-    return {
-      ...persistedState,
-      firstName: "",
-      lastName: "",
+    newState.firstName = "";
+    newState.lastName = "";
+  }
+
+  if (!persistedState.popupVisibility) {
+    // leaderboards is the first popup
+    newState.popupVisibility = { leaderboard: true };
+    return newState;
+  }
+
+  if (!persistedState.surgeIntro) {
+    newState.surgeIntro = {
+      visibility: false,
+      activity: null as SurgeActivity,
+      rate: 1,
     };
   }
 
-  return persistedState;
+  return newState;
 };
 
 const getUserSuccess = (
@@ -242,6 +236,7 @@ const getUserSuccess = (
 
   return {
     ...state,
+    sessionCount: state.sessionCount + 1,
     id,
     archived: false,
     firstName,

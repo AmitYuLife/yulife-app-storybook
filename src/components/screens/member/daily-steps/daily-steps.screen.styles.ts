@@ -1,6 +1,6 @@
 import { StyleSheet, TextStyle, ViewStyle } from "react-native";
 import { isIphoneX } from "react-native-iphone-x-helper";
-import { Style, TOP_BAR } from "../../../../styles";
+import { Style, TOP_BAR } from "@styles";
 
 export default StyleSheet.create({
   flex: {

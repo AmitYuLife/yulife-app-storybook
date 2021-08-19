@@ -9,6 +9,7 @@ import Right from "./subcomponents/right";
 const TopBarView = ({
   coins,
   leftIcon = "Menu" as LeftIconTypes,
+  leftIconHasBadge = false,
   menuLabel,
   onPressLeftIcon,
   type = "default" as TopBarTypes,
@@ -23,7 +24,14 @@ const TopBarView = ({
 
   return (
     <View pointerEvents="box-none" style={styles.wrapper} onLayout={onLayout}>
-      <Left label={menuLabel} onPress={onPressLeftIcon} icon={leftIcon} colour={colour} textStyle={textStyle} />
+      <Left
+        label={menuLabel}
+        onPress={onPressLeftIcon}
+        icon={leftIcon}
+        hasBadge={leftIconHasBadge}
+        colour={colour}
+        textStyle={textStyle}
+      />
       <Center name={name} timer={timer} logoColour={logoColour} colour={colour} textStyle={textStyle} />
       <Right
         icon={rightIcon}

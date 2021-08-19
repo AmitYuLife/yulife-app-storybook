@@ -23,6 +23,7 @@ interface IProps {
   backgroundColor?: string;
   shadowColor?: string;
   textColor?: string;
+  showBadge?: boolean;
 }
 
 function Button(props: IProps) {
@@ -40,6 +41,7 @@ function Button(props: IProps) {
     backgroundColor = Colours.primary.p600,
     shadowColor = Colours.primary.p600Shadow,
     textColor = Colours.neutral.white,
+    showBadge = false,
   } = props;
 
   const { handlePress } = usePressedInWithDelay({ onPress, delay });
@@ -67,6 +69,7 @@ function Button(props: IProps) {
         borderRadius={50}
         delay={delay}
         disableAnimation={disableAnimation}
+        showBadge={showBadge}
       />
     </View>
   );

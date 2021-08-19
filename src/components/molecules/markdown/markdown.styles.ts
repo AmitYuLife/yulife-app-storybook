@@ -11,6 +11,7 @@ export interface IMarkdownStyle {
   imageWrapper?: Record<string, string | number>;
   image?: Record<string, string | number>;
   paragraph?: Record<string, string | number>;
+  strong?: Record<string, string | number>;
 }
 
 const markdownStyle = (props: IMarkdownStyle) =>
@@ -46,6 +47,7 @@ const markdownStyle = (props: IMarkdownStyle) =>
     },
     strong: {
       fontFamily: Style.FONT_FAMILY_PRIMARY_BOLD,
+      ...props?.strong,
     },
     em: {
       fontStyle: "italic",

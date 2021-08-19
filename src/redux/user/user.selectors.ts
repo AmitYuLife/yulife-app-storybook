@@ -11,6 +11,9 @@ export type Leaderboard = GetCurrentUser_getCurrentUser_leaderboards;
 type State = IReduxState["user"];
 const reducer = (state: IReduxState) => state.user;
 
+const userSessionCountSelector = (state: State) => state.sessionCount;
+export const getUserSessionCount = createSelector(reducer, userSessionCountSelector);
+
 const isUserArchivedSelector = (state: State) => state.archived;
 export const getIsUserArchived = createSelector(reducer, isUserArchivedSelector);
 

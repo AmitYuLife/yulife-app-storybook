@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { memo } from "react";
 import Svg, { Path } from "react-native-svg";
 import { BUTTON_CLOSE } from "@ids";
 import { Style, Colours } from "@styles";
@@ -6,15 +6,16 @@ import { Style, Colours } from "@styles";
 interface Props {
   type?: "encircled" | "encircledMono";
   stroke?: string;
+  size?: number;
 }
 
 const ENCIRCLED_SIZE = Style.adjust(30);
 const DEFAULT_SIZE = Style.adjust(24);
 
-function CloseSvg({ type, stroke = Colours.neutral.white }: Props) {
+function CloseSvg({ type, stroke = Colours.neutral.white, size }: Props) {
   if (type === "encircledMono") {
     return (
-      <Svg width={Style.adjust(24)} height={Style.adjust(24)} viewBox="0 0 24 24">
+      <Svg width={size || DEFAULT_SIZE} height={size || DEFAULT_SIZE} viewBox="0 0 24 24">
         <Path
           d="M23.5 12C23.5 18.3513 18.3513 23.5 12 23.5C5.64873 23.5 0.5 18.3513 0.5 12C0.5 5.64873 5.64873 0.5 12 0.5C18.3513 0.5 23.5 5.64873 23.5 12Z"
           stroke={stroke}
@@ -31,7 +32,7 @@ function CloseSvg({ type, stroke = Colours.neutral.white }: Props) {
 
   if (type === "encircled") {
     return (
-      <Svg width={ENCIRCLED_SIZE} height={ENCIRCLED_SIZE} viewBox="0 0 30 30">
+      <Svg width={size || ENCIRCLED_SIZE} height={size || ENCIRCLED_SIZE} viewBox="0 0 30 30">
         <Path
           fillRule="evenodd"
           clipRule="evenodd"
@@ -49,11 +50,17 @@ function CloseSvg({ type, stroke = Colours.neutral.white }: Props) {
   }
 
   return (
-    <Svg width={DEFAULT_SIZE} height={DEFAULT_SIZE} viewBox="0 0 24 24" fill="none" testID={BUTTON_CLOSE}>
+    <Svg
+      width={size || DEFAULT_SIZE}
+      height={size || DEFAULT_SIZE}
+      viewBox="0 0 24 24"
+      fill="none"
+      testID={BUTTON_CLOSE}
+    >
       <Path d="M4 20L20 4" stroke={Colours.neutral.n800} strokeLinecap="round" strokeLinejoin="round" />
       <Path d="M20 20L4 4" stroke={Colours.neutral.n800} strokeLinecap="round" strokeLinejoin="round" />
     </Svg>
   );
 }
 
-export default CloseSvg;
+export default memo(CloseSvg);

@@ -60,3 +60,4 @@ export { SlotIcon } from "./slot-icon/slot-icon";
 // error :( https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-8.html#export--as-ns-syntax
 import * as ProductSvg from "./product-svg";
 export { ProductSvg };
+export { default as DarkScreen } from "./dark-screen/dark-screen";

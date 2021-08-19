@@ -7,10 +7,11 @@ import {
   getIsHistoricalDataCollected,
   getIsHistoricalMeditationDataCollected,
   getIsOnboardingRedeemed,
+  getReferralsOnboarding,
 } from "../onboarding.selectors";
 
-import { getUserFeatures } from "../../user/user.selectors";
-import { setShowIntro } from "../onboarding.actions";
+import { getUserFeatures, getUserSessionCount } from "../../user/user.selectors";
+import { setShowIntro, startReferralsOnboarding, setReferralsOnboardingCompleted } from "../onboarding.actions";
 import redeemOnboarding from "./redeemOnboarding.helper";
 import sendHistoricalData from "./sendHistoricalData.helper";
 import { sendHistoricalMeditationData } from "./sendHistoricalData.helper";
@@ -45,6 +46,18 @@ export default function* onboardOnGetUser({ payload }: ReturnType<typeof getUser
     if (!isOnboardingRedeemed) {
       yield call(redeemOnboarding);
       yield put(setShowIntro(true));
+      return;
+    }
+
+    const userSessionCount: ReturnType<typeof getUserSessionCount> = yield select(getUserSessionCount);
+    const referralsOnboarding: ReturnType<typeof getReferralsOnboarding> = yield select(getReferralsOnboarding);
+
+    // if the badge is shown but the user doesn't go to the referrals screen,
+    // we consider them onboarded anyway the next time they open the app
+    if (referralsOnboarding.showBadge && !referralsOnboarding.completed) {
+      yield put(setReferralsOnboardingCompleted());
+    } else if (features.showReferrals && !referralsOnboarding.completed && userSessionCount > 1) {
+      yield put(startReferralsOnboarding());
     }
   } catch (e) {
     yield spawn(() => {

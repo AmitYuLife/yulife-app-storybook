@@ -1,23 +1,24 @@
-import React from "react";
+import React, { memo } from "react";
 import { TouchableOpacity, View, StyleSheet, TextStyle, ViewStyle } from "react-native";
 import { BUTTON_TOP_LEFT_BAR } from "@ids";
 import { Back, CloseSvg } from "@atoms";
 import { Menu } from "../assets";
 import { Text } from "@atoms/index";
-import { Style, TOP_BAR } from "@styles/index";
+import { Style, TOP_BAR, Colours } from "@styles/index";
 
 export type LeftIconTypes = "Menu" | "Back" | "Close";
 export const leftIconTypes = { MENU: "Menu", BACK: "Back" } as Record<"MENU" | "BACK", LeftIconTypes>;
 
 interface Props {
   icon: LeftIconTypes;
+  hasBadge: boolean;
   colour: string;
   label: string;
   onPress: () => void;
   textStyle: TextStyle;
 }
 
-export default function Left({ onPress, icon, colour, label, textStyle }: Props) {
+const Left = ({ onPress, icon, hasBadge, colour, label, textStyle }: Props) => {
   if (!onPress) {
     return null;
   }
@@ -30,18 +31,21 @@ export default function Left({ onPress, icon, colour, label, textStyle }: Props)
       testID={BUTTON_TOP_LEFT_BAR}
       accessibilityLabel={icon}
     >
-      <Icon icon={icon} colour={colour} />
+      <Icon icon={icon} colour={colour} hasBadge={hasBadge} />
       <MenuLabel label={label} textStyle={textStyle} />
     </TouchableOpacity>
   );
-}
+};
 
-function Icon({ icon, colour = "#333333" }: { icon: LeftIconTypes; colour: string }) {
+export default memo(Left);
+
+function Icon({ icon, colour = "#333333", hasBadge }: { icon: LeftIconTypes; colour: string; hasBadge: boolean }) {
   switch (icon) {
     case "Menu":
       return (
         <View style={StyleSheet.flatten([styles.iconHeight, styles.menuIconMargins])}>
           <Menu color={colour} />
+          {hasBadge ? <View style={styles.badge} /> : null}
         </View>
       );
     case "Back":
@@ -102,5 +106,16 @@ const styles = StyleSheet.create({
   iconHeight: {
     justifyContent: "center",
     alignItems: "center",
-  },
+  } as ViewStyle,
+  badge: {
+    position: "absolute",
+    top: -4,
+    right: -4,
+    width: 8,
+    height: 8,
+    backgroundColor: "#FF5F5F",
+    borderWidth: 1,
+    borderColor: Colours.neutral.white,
+    borderRadius: 4,
+  } as ViewStyle,
 });

@@ -2,7 +2,11 @@ import { REHYDRATE } from "redux-persist";
 import { GetCurrentUser, LoginUser } from "../../graphql/_core/schema";
 import { SyncAction } from "../_core/types";
 import { GET_USER_SUCCESS, LOGIN_USER_SUCCESS } from "../user/user.actions";
-import {} from "./onboarding.actions";
+import {
+  SET_REFERRALS_ONBOARDING_COMPLETED,
+  START_REFERRALS_ONBOARDING,
+  SET_REFERRALS_ONBOARDING_POPOVER_SHOWN,
+} from "./onboarding.actions";
 import {
   SET_HISTORICAL_DATA_COLLECTED,
   SET_HISTORICAL_MEDITATION_DATA_COLLECTED,
@@ -23,6 +27,11 @@ export interface IOnboardingStore {
   showYuscreenIntro: boolean;
   showCommunityGoalsIntro: boolean;
   showDuelsIntro: boolean;
+  referralsOnboarding: {
+    completed: boolean;
+    showPopover: boolean;
+    showBadge: boolean;
+  };
 }
 
 export const getInitialState = (): IOnboardingStore => ({
@@ -35,6 +44,11 @@ export const getInitialState = (): IOnboardingStore => ({
   showYuscreenIntro: true,
   showCommunityGoalsIntro: true,
   showDuelsIntro: true,
+  referralsOnboarding: {
+    completed: false,
+    showPopover: false,
+    showBadge: false,
+  },
 });
 
 export const userReducer = (state: IOnboardingStore = getInitialState(), action: SyncAction): IOnboardingStore => {
@@ -58,6 +72,11 @@ export const userReducer = (state: IOnboardingStore = getInitialState(), action:
             showYuscreenIntro: true,
             showCommunityGoalsIntro: true,
             showDuelsIntro: true,
+            referralsOnboarding: {
+              completed: false,
+              showPopover: false,
+              showBadge: false,
+            },
           };
         }
       }
@@ -100,6 +119,35 @@ export const userReducer = (state: IOnboardingStore = getInitialState(), action:
         showYuscreenIntro: false,
       };
 
+    case START_REFERRALS_ONBOARDING:
+      return {
+        ...state,
+        referralsOnboarding: {
+          completed: false,
+          showPopover: true,
+          showBadge: true,
+        },
+      };
+
+    case SET_REFERRALS_ONBOARDING_POPOVER_SHOWN:
+      return {
+        ...state,
+        referralsOnboarding: {
+          ...state.referralsOnboarding,
+          showPopover: false,
+        },
+      };
+
+    case SET_REFERRALS_ONBOARDING_COMPLETED:
+      return {
+        ...state,
+        referralsOnboarding: {
+          completed: true,
+          showPopover: false,
+          showBadge: false,
+        },
+      };
+
     default:
       return state;
   }
@@ -125,11 +173,28 @@ const updatePersistedState = (persistedState: IOnboardingStore) => {
 
   if (typeof persistedState.showCommunityGoalsIntro === "undefined") {
     newState.showCommunityGoalsIntro = true;
-    return { ...persistedState, showCommunityGoalsIntro: true };
   }
 
   if (typeof persistedState.showDuelsIntro === "undefined") {
     newState.showDuelsIntro = true;
+  }
+
+  if (typeof persistedState.referralsOnboarding === "undefined") {
+    newState.referralsOnboarding = {
+      completed: false,
+      showPopover: false,
+      showBadge: false,
+    };
+  }
+
+  // if the badge is shown but the user doesn't go to the referrals screen,
+  // we consider them onboarded anyway the next time they open the app
+  if (newState.referralsOnboarding.showBadge) {
+    newState.referralsOnboarding = {
+      completed: true,
+      showPopover: false,
+      showBadge: false,
+    };
   }
 
   return newState;
