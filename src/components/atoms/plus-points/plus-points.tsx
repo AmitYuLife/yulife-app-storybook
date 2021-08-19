@@ -7,14 +7,15 @@ import styles from "./plus-points.styles";
 
 interface IProps {
   coins: number;
+  testID?: string;
 }
 
-const PlusPoints: SFC<IProps> = ({ coins }) => (
+const PlusPoints: SFC<IProps> = ({ coins, testID }) => (
   <View style={styles.textWrapper}>
     <View style={styles.plusWrapper}>
       <Plus scale={0.8} />
     </View>
-    <Text bold={true} style={styles.text}>{`${coins}`}</Text>
+    <Text bold={true} style={styles.text} testID={testID}>{`${coins}`}</Text>
   </View>
 );
 

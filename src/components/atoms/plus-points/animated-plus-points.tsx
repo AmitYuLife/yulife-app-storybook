@@ -2,6 +2,7 @@ import React from "react";
 import { Animated, Easing, Platform } from "react-native";
 import PlusPoints from "./plus-points";
 import styles from "./plus-points.styles";
+import { CHALLENGE_REWARD } from "@ids";
 
 type AnimatedType = "collect-reward" | "challenge-success";
 
@@ -101,7 +102,7 @@ export default class AnimatedCoinConfetti extends React.PureComponent<IProps, IS
           },
         ]}
       >
-        <PlusPoints coins={this.props.coins} />
+        <PlusPoints coins={this.props.coins} testID={CHALLENGE_REWARD(this.props.coins)} />
       </Animated.View>
     );
   }

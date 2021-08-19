@@ -84,6 +84,7 @@ export const WELCOME_MODAL = (heading: string) => `WELCOME_MODAL${heading}`
 // text
 export const STATS_TITLE = (title: string) => `STATS_TITLES_${title}`
 export const CHALLENGE_TILE = (text: string) => `CHALLENGE_TILE_${text}`
+export const CHALLENGE_REWARD = (reward: string|number) => `CHALLENGE_REWARD_${reward}`
 export const VALUE_DESCRIPTION = (value:any, description:string) => `VALUE_DESCRIPTION_${value}_${description}`
 export const TEXT_TEMPLATE = (copy:string) => `TEXT_TEMPLATE_${copy}`
 export const MARKDOWN_TEXT = (copy:string) => `MARKDOWN_TEXT_${copy}`
