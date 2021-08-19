@@ -2,7 +2,7 @@ import React, { FC, memo } from "react";
 import { FunctionComponent } from "react";
 import { Image as RNImage, StyleSheet, TouchableOpacity, View } from "react-native";
 import styles from "./challenge-tile.styles";
-import { CHALLENGE_TILE } from "@ids";
+import { CHALLENGE_TILE, CHALLENGE_REWARD } from "@ids";
 import { Style } from "@styles";
 import { Image, Text } from "@atoms";
 
@@ -89,7 +89,9 @@ const Content: FC<Partial<Props>> = memo(({ heading, duration, reward }) => (
         </Text>
       </View>
       <View style={styles.contentRewardWrapper}>
-        <Text style={styles.contentReward}>{reward} YuCoin</Text>
+        <Text style={styles.contentReward} testID={CHALLENGE_REWARD(reward)}>
+          {reward} YuCoin
+        </Text>
       </View>
     </View>
     <View style={styles.imageWrapperNext}>

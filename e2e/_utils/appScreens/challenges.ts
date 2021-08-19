@@ -1,4 +1,6 @@
 import { navigateViaText, navigateViaID, CHALLENGE_TILE, idVisible, CHALLENGE_PROGRESS_BAR, expectIsVisibleViaText, QUESTS_SCREEN, wait, LEVEL_CHALLENGE_BUTTON, expectIsVisibleViaID, textVisible, CALM_BUTTON, HEADSPACE_BUTTON } from "@navigation"
+import { sendSteps } from "@socket"
+
 
 export const onChallengeComplete = (stepCount: number, level = 1) => async () => {
     const steps = `${stepCount} steps`
@@ -70,4 +72,11 @@ export const startChallengeFromQuests = (levelButton: number, challengeName: str
     } catch (e) {
         await idVisible(CHALLENGE_PROGRESS_BAR)()
     }
+}
+
+export const completeShortStroll = (steps: number, waitTime: number) => async () => {
+    await navigateViaID(CHALLENGE_TILE("short stroll"))
+    await navigateViaText("Take challenge")
+    await navigateViaText("maybe later")
+    await sendSteps(steps, waitTime)()
 }
