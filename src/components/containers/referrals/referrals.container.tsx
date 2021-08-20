@@ -20,7 +20,7 @@ const ReferralsContainer = ({ componentId }: IProps) => {
     return <ReferralsLoadingScreen handleClose={handleClose} />;
   }
 
-  return <ReferralsScreen info={data?.referralInformation} handleClose={handleClose} />;
+  return <ReferralsScreen componentId={componentId} info={data?.referralInformation} handleClose={handleClose} />;
 };
 
 export default ReferralsContainer;

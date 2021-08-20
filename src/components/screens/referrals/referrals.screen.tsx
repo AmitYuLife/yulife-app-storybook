@@ -1,4 +1,4 @@
-import React, { memo, useEffect, useCallback } from "react";
+import React, { memo, useCallback, useEffect, useMemo } from "react";
 import { Share, View, ScrollView, Platform } from "react-native";
 import { useDispatch } from "react-redux";
 import { setReferralsOnboardingCompleted } from "@redux/onboarding/onboarding.actions";
@@ -18,9 +18,10 @@ import { styles, markdownStyles } from "./referrals.styles";
 interface IProps {
   info: GetReferralInformation_referralInformation;
   handleClose: () => void;
+  componentId: string;
 }
 
-const ReferralsScreen = ({ info, handleClose }: IProps) => {
+const ReferralsScreen = ({ info, handleClose, componentId }: IProps) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -37,6 +38,14 @@ const ReferralsScreen = ({ info, handleClose }: IProps) => {
     markdown: { header, historyTitle, historyEmptyMessage },
   } = info;
 
+  const tapToCopyAnalytics = useMemo(
+    () => ({
+      name: "referral_link_copied",
+      location: componentId,
+    }),
+    [componentId]
+  );
+
   const onShare = useCallback(async () => {
     try {
       await Share.share({
@@ -44,7 +53,7 @@ const ReferralsScreen = ({ info, handleClose }: IProps) => {
         message: Platform.select({ ios: shareMessage, android: `${shareMessage.replace(/\.$/, "")}: ${referralLink}` }),
       });
     } catch (e) {
-      Logger.error(e, { file: "referrals.screen" });
+      Logger.error(e, { file: componentId });
     }
   }, [info, referralLink, shareMessage]);
 
@@ -65,6 +74,7 @@ const ReferralsScreen = ({ info, handleClose }: IProps) => {
               canCopy={true}
               customCopyText={referralLink}
               text={referralLink.replace("https://", "")}
+              analyticsEvent={tapToCopyAnalytics}
             />
           </View>
           <TextTemplate type="l2b" textAlign="center">
