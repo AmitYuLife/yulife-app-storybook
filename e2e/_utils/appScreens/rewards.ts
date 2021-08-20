@@ -129,11 +129,7 @@ export const denominationListVisible = (reward: any, availableYuCoin: number) =>
     await expect(element(by.text(`You have ${availableYuCoin} YuCoin`))).toBeVisible()
 
     for (const i of denominationArr) {
-        if(i.yuCoin < availableYuCoin) {
-            await expect(element(by.text(`£${i.value} - ${i.yuCoin} YuCoin`))).toBeVisible()
-        } else {
-            return
-        }
+        await expect(element(by.text(`£${i.value} - ${i.yuCoin} YuCoin`))).toBeVisible()
     }
 
 }

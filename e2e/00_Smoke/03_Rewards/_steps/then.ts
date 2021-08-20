@@ -5,7 +5,8 @@ export const {
     idVisible,
     idNotVisible,
     textVisible,
-    textNotVisible
+    textNotVisible,
+    multipleTextVisible
 } = navigation.common
 
 export const {
