@@ -19,8 +19,6 @@ export * from "./mongo/feedback_submission";
 export * from "./mongo/core_products";
 export * from "./mongo/rewards_ledgers"
 export * from "./mongo/userAward"
-export * from "./mongo/core_coin_multipliers"
-
 
 export * from "./postgres/business";
 export * from "./postgres/customers";

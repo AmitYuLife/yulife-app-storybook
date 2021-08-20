@@ -16,10 +16,16 @@ Feature("Rewards should act correctly", async () => {
             Then("I should see the John Lewis Reward", then.rewardVisible(REWARDS_JOHN_LEWIS))
             When("I tap on the John Lewis reward", when.tapRewardInList(REWARDS_JOHN_LEWIS), async () => {
                 Then("I should be on the reward page", then.textVisible("To redeem John Lewis:"))      //onRewardScreen(REWARDS_JOHN_LEWIS))
-                When("I scroll to the bottom of the page", when.swipeFromText("To redeem John Lewis:", "up", "slow"), async () => {
-                    Then("I should see a greyed out button saying 'Not enough YuCoin'", then.textVisible("Not enough YuCoin"))
-                    When("I tap the greyed out button", when.tapText("Not enough YuCoin",0,true), async () => {
-                        Then("I should see nothing happen", then.textVisible("Have a question?"))
+                When("I scroll to the bottom of the page", when.swipeFromText("To redeem John Lewis:", "up", "fast"), async () => {
+                    Then("I should see the Buy voucher with YuCoin button", then.textVisible("Buy voucher with YuCoin"))
+                    When("I tap the button", when.tapText("Buy voucher with YuCoin",0,true), async () => {
+                        Then("I should see the denominations modal", then.denominationListVisible(REWARDS_JOHN_LEWIS, 200))
+                        When("I tap to buy a denomination", when.tapDenomination(REWARDS_JOHN_LEWIS, 0), async () => {
+                            Then("I should see the not enough YuCoin modal", then.multipleTextVisible(["Not enough YuCoin", "Earn more and come back later!"]))
+                            When("I click Got it", when.tapText("Got it"), async () => {
+                                Then("I should be back on the John Lewis reward page", then.textVisible("Have a question?"))
+                            })
+                        })
                     })
                 })
             })
@@ -86,7 +92,7 @@ Feature("Rewards should act correctly", async () => {
             Then("I should see the John Lewis Reward", then.rewardVisible(REWARDS_JOHN_LEWIS))
             When("I tap this reward", when.tapRewardInList(REWARDS_JOHN_LEWIS), async () => {
                 Then("I should be on the reward page", then.textVisible("To redeem John Lewis:"))        //onRewardScreen(REWARDS_JOHN_LEWIS))
-                When("I scroll to the bottom of the page", when.swipeFromText("To redeem John Lewis:", "up", "slow"), async () => {
+                When("I scroll to the bottom of the page", when.swipeFromText("To redeem John Lewis:", "up", "fast"), async () => {
                     Then("I should see the buy button", then.textVisible("Buy voucher with YuCoin"))
                     When("I tap the buy button", when.tapText("Buy voucher with YuCoin"), async () => {
                         Then("I should see the denominations modal", then.denominationListVisible(REWARDS_JOHN_LEWIS, 15200))
