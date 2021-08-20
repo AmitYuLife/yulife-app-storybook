@@ -7,6 +7,8 @@ import { CopyIcon } from "@atoms/icon/copy-icon";
 import { PressableWithDelay } from "@molecules";
 import Markdown from "@molecules/markdown/markdown";
 import { IMarkdownStyle } from "@molecules/markdown/markdown.styles";
+import Logger from "@services/logging/logger";
+
 interface IProps {
   heading?: string;
   customCopyText?: string;
@@ -14,9 +16,13 @@ interface IProps {
   canCopy: boolean;
   markdown: boolean;
   markdownStyle?: IMarkdownStyle;
+  analyticsEvent?: {
+    name: string;
+    location: string;
+  };
 }
 
-const TapToCopy = ({ heading, customCopyText, text, canCopy, markdown, markdownStyle }: IProps) => {
+const TapToCopy = ({ heading, customCopyText, text, canCopy, markdown, markdownStyle, analyticsEvent }: IProps) => {
   const [isCopied, setIsCopied] = useState(false);
   const resetCopyMessage = useRef(null);
 
@@ -33,6 +39,9 @@ const TapToCopy = ({ heading, customCopyText, text, canCopy, markdown, markdownS
     Clipboard.setString(customCopyText || text);
     Vibration.vibrate(100);
     setIsCopied(true);
+    if (analyticsEvent) {
+      Logger.logMixpanelEvent(analyticsEvent.name, { location: analyticsEvent.location });
+    }
   };
 
   const color = isCopied ? "#40C057" : Colours.primary.p600;
