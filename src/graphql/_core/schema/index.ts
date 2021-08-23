@@ -12,6 +12,7 @@ export * from "./CollectAward";
 export * from "./ConfirmPaymentCard";
 export * from "./ContentItemButton";
 export * from "./ContentItemHeaderBar";
+export * from "./ContentItemImage";
 export * from "./ContentItemInfoCard";
 export * from "./ContentItemMarkdown";
 export * from "./ContentItemOverlay";

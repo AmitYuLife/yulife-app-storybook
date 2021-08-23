@@ -107,6 +107,19 @@ export const GQL_FRAGMENT_CONTENT_ITEM_OVERLAY = gql`
   }
 `;
 
+export const GQL_FRAGMENT_CONTENT_ITEM_IMAGE = gql`
+  fragment ContentItemImage on ContentItemImage {
+    id
+    image {
+      id
+      uri
+    }
+    styles {
+      ...ContentItemStyle
+    }
+  }
+`;
+
 export const GQL_FRAGMENT_CONTENT_ITEM_BUTTON = gql`
   fragment ContentItemButton on ContentItemButton {
     id

@@ -2,9 +2,7 @@ import React, { memo, useCallback, useState } from "react";
 import { ActivityIndicator, LayoutChangeEvent, StyleSheet, View, ViewStyle } from "react-native";
 import { useQuery } from "@apollo/react-hooks";
 import { GQL_QUERY_GET_PERSONAL_PRODUCT_STEP } from "@graphql/personalProduct/getPersonalProductStep.gql";
-import { Body } from "./sections/body/body";
-import { Header } from "./sections/header/header";
-import { Footer } from "./sections/footer/footer";
+import { Body, Header, Footer, Absolute } from "./sections";
 import { GetPersonalProductStep, GetPersonalProductStepVariables } from "@graphql/_core/schema";
 import { ProductStepContext } from "./product-step.context";
 import { mapServerStyles } from "@components/sdui/_utils/mapServerStyles";
@@ -39,7 +37,15 @@ const ProductStepContainer = (props: Props) => {
     );
   }
 
-  const { body, header, footer, customerProductId, stepId, containerStyles = [] } = data.getPersonalProductStep;
+  const {
+    body,
+    header,
+    footer,
+    absolute,
+    customerProductId,
+    stepId,
+    containerStyles = [],
+  } = data.getPersonalProductStep;
   const style = mapServerStyles(containerStyles);
 
   return (
@@ -48,6 +54,7 @@ const ProductStepContainer = (props: Props) => {
         <Body headerHeight={headerHeight} body={body} />
         <Header onLayout={handleHeaderLayout} header={header} />
         <Footer footer={footer} />
+        <Absolute headerHeight={headerHeight} absolute={absolute} />
       </View>
     </ProductStepContext.Provider>
   );

@@ -10,6 +10,7 @@ import {
   GQL_FRAGMENT_CONTENT_ITEM_RADIO,
   GQL_FRAGMENT_CONTENT_ITEM_TEXT_INPUT,
   GQL_FRAGMENT_CONTENT_ITEM_OVERLAY,
+  GQL_FRAGMENT_CONTENT_ITEM_IMAGE,
 } from "../_fragments/content.gql";
 
 export const GQL_QUERY_GET_PERSONAL_PRODUCT_STEP = gql`
@@ -23,6 +24,7 @@ export const GQL_QUERY_GET_PERSONAL_PRODUCT_STEP = gql`
   ${GQL_FRAGMENT_CONTENT_ITEM_HEADER_BAR}
   ${GQL_FRAGMENT_CONTENT_ITEM_PROGRESS_BAR}
   ${GQL_FRAGMENT_CONTENT_ITEM_OVERLAY}
+  ${GQL_FRAGMENT_CONTENT_ITEM_IMAGE}
 
   query GetPersonalProductStep($productId: String!) {
     getPersonalProductStep(productId: $productId) {
@@ -82,6 +84,16 @@ export const GQL_QUERY_GET_PERSONAL_PRODUCT_STEP = gql`
         }
         ... on ContentItemProgressBar {
           ...ContentItemProgressBar
+        }
+      }
+      absolute {
+        id
+        shouldAccountForHeader
+        item {
+          __typename
+          ... on ContentItemImage {
+            ...ContentItemImage
+          }
         }
       }
     }

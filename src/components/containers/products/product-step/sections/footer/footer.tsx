@@ -2,7 +2,7 @@ import React from "react";
 import { StyleSheet, View, ViewStyle } from "react-native";
 import { GetPersonalProductStep_getPersonalProductStep_footer as GPPS_Footer } from "@graphql/_core/schema";
 import { ContentItemOverlay } from "@components/sdui";
-import { ProductStepContentItemButton } from "../../subcomponents/product-step.contentItemButton";
+import { ProductStepContentItemButton } from "../../subcomponents/product-step.button";
 
 interface Props {
   footer: GPPS_Footer[];
@@ -25,13 +25,13 @@ const styles = StyleSheet.create({
   } as ViewStyle,
 });
 
-const renderItemContent = (item: GPPS_Footer, index: number): JSX.Element => {
+const renderItemContent = (item: GPPS_Footer): JSX.Element => {
   switch (item.__typename) {
     case "ContentItemButton":
       return <ProductStepContentItemButton key={item.id} {...item} />;
     case "ContentItemOverlay":
       return <ContentItemOverlay key={item.id} {...item} Button={ProductStepContentItemButton} />;
     default:
-      return <View key={index} />;
+      return null;
   }
 };

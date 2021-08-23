@@ -19,6 +19,7 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemP
     | "ContentItemProgressBar"
     | "ContentItemHeaderBar"
     | "ContentItemMultiButton"
+    | "ContentItemImage"
     | "ContentItemOverlay"
     | "ContentItemPersonalProductInfo";
 }
@@ -55,7 +56,7 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemM
   markdown: string;
   perkId: string | null;
   parsedMarkdown: string | null;
-  styles: (GetPersonalProductStep_getPersonalProductStep_body_ContentItemMarkdown_styles | null)[] | null;
+  styles: GetPersonalProductStep_getPersonalProductStep_body_ContentItemMarkdown_styles[] | null;
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemRadio_choices_renderAsIcon {
@@ -108,7 +109,7 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemB
   onPress: GetPersonalProductStep_getPersonalProductStep_body_ContentItemButton_onPress | null;
   icon: GetPersonalProductStep_getPersonalProductStep_body_ContentItemButton_icon | null;
   rightIcon: GetPersonalProductStep_getPersonalProductStep_body_ContentItemButton_rightIcon | null;
-  styles: (GetPersonalProductStep_getPersonalProductStep_body_ContentItemButton_styles | null)[] | null;
+  styles: GetPersonalProductStep_getPersonalProductStep_body_ContentItemButton_styles[] | null;
   buttonSize: ContentItemButtonSize | null;
 }
 
@@ -146,7 +147,7 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemI
   id: string;
   image: GetPersonalProductStep_getPersonalProductStep_body_ContentItemInfoCard_image | null;
   markdown: string;
-  styles: (GetPersonalProductStep_getPersonalProductStep_body_ContentItemInfoCard_styles | null)[] | null;
+  styles: GetPersonalProductStep_getPersonalProductStep_body_ContentItemInfoCard_styles[] | null;
 }
 
 export type GetPersonalProductStep_getPersonalProductStep_body =
@@ -169,6 +170,7 @@ export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentIte
     | "ContentItemInfoCard"
     | "ContentItemMultiButton"
     | "ContentItemPad"
+    | "ContentItemImage"
     | "ContentItemPersonalProductInfo"
     | "ContentItemYugiConfirm";
 }
@@ -201,7 +203,7 @@ export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentIte
   onPress: GetPersonalProductStep_getPersonalProductStep_footer_ContentItemButton_onPress | null;
   icon: GetPersonalProductStep_getPersonalProductStep_footer_ContentItemButton_icon | null;
   rightIcon: GetPersonalProductStep_getPersonalProductStep_footer_ContentItemButton_rightIcon | null;
-  styles: (GetPersonalProductStep_getPersonalProductStep_footer_ContentItemButton_styles | null)[] | null;
+  styles: GetPersonalProductStep_getPersonalProductStep_footer_ContentItemButton_styles[] | null;
   buttonSize: ContentItemButtonSize | null;
 }
 
@@ -232,7 +234,7 @@ export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentIte
   onPress: GetPersonalProductStep_getPersonalProductStep_footer_ContentItemOverlay_buttons_onPress | null;
   icon: GetPersonalProductStep_getPersonalProductStep_footer_ContentItemOverlay_buttons_icon | null;
   rightIcon: GetPersonalProductStep_getPersonalProductStep_footer_ContentItemOverlay_buttons_rightIcon | null;
-  styles: (GetPersonalProductStep_getPersonalProductStep_footer_ContentItemOverlay_buttons_styles | null)[] | null;
+  styles: GetPersonalProductStep_getPersonalProductStep_footer_ContentItemOverlay_buttons_styles[] | null;
   buttonSize: ContentItemButtonSize | null;
 }
 
@@ -257,6 +259,7 @@ export interface GetPersonalProductStep_getPersonalProductStep_header_ContentIte
     | "ContentItemButton"
     | "ContentItemMultiButton"
     | "ContentItemPad"
+    | "ContentItemImage"
     | "ContentItemOverlay"
     | "ContentItemPersonalProductInfo"
     | "ContentItemYugiConfirm";
@@ -293,6 +296,49 @@ export type GetPersonalProductStep_getPersonalProductStep_header =
   | GetPersonalProductStep_getPersonalProductStep_header_ContentItemHeaderBar
   | GetPersonalProductStep_getPersonalProductStep_header_ContentItemProgressBar;
 
+export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemMarkdown {
+  __typename:
+    | "ContentItemMarkdown"
+    | "ContentItemTextInput"
+    | "ContentItemProgressBar"
+    | "ContentItemHeaderBar"
+    | "ContentItemRadio"
+    | "ContentItemInfoCard"
+    | "ContentItemButton"
+    | "ContentItemMultiButton"
+    | "ContentItemPad"
+    | "ContentItemOverlay"
+    | "ContentItemPersonalProductInfo"
+    | "ContentItemYugiConfirm";
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemImage_image {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemImage_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemImage {
+  __typename: "ContentItemImage";
+  id: string;
+  image: GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemImage_image | null;
+  styles: GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemImage_styles[] | null;
+}
+
+export type GetPersonalProductStep_getPersonalProductStep_absolute_item =
+  | GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemMarkdown
+  | GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemImage;
+
+export interface GetPersonalProductStep_getPersonalProductStep_absolute {
+  id: string;
+  shouldAccountForHeader: boolean | null;
+  item: GetPersonalProductStep_getPersonalProductStep_absolute_item;
+}
+
 export interface GetPersonalProductStep_getPersonalProductStep {
   stepId: string;
   customerProductId: string;
@@ -313,6 +359,10 @@ export interface GetPersonalProductStep_getPersonalProductStep {
    * Content displayed on the top of the screen. sticky header
    */
   header: (GetPersonalProductStep_getPersonalProductStep_header | null)[] | null;
+  /**
+   * Content that just sits on the screen. Anywhere you want. Be careful with this powerful tool.
+   */
+  absolute: (GetPersonalProductStep_getPersonalProductStep_absolute | null)[] | null;
 }
 
 export interface GetPersonalProductStep {

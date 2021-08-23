@@ -36,7 +36,7 @@ export interface ContentItemOverlay_buttons {
   onPress: ContentItemOverlay_buttons_onPress | null;
   icon: ContentItemOverlay_buttons_icon | null;
   rightIcon: ContentItemOverlay_buttons_rightIcon | null;
-  styles: (ContentItemOverlay_buttons_styles | null)[] | null;
+  styles: ContentItemOverlay_buttons_styles[] | null;
   buttonSize: ContentItemButtonSize | null;
 }
 
