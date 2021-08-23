@@ -42,9 +42,10 @@ export const Image = memo(
           return;
         }
 
-        setNativeSize({ width: nativeWidth, height: nativeHeight });
+        // In rare occasions nativeWidth can be 0
+        setNativeSize({ width: nativeWidth || propWidth, height: nativeHeight });
       },
-      [propHeight]
+      [propHeight, propWidth]
     );
 
     const { width, height } = useMemo(() => {

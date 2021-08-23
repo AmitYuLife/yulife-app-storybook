@@ -2,6 +2,7 @@ import { CreateActiveChallenge_createActiveChallenge_levelSlot_milestones_target
 import moment from "moment";
 import { useRef } from "react";
 import { Platform } from "react-native";
+import Config from "react-native-config";
 import DeviceInfo from "react-native-device-info";
 
 export const DATE_FORMAT = "YYYY-MM-DD";
@@ -399,3 +400,6 @@ export const isSamsung = () => {
 
   return false;
 };
+
+export const IS_DEVELOP = ["dev", "develop"].includes(Config.ENV);
+export const IS_LOCAL = ["dev"].includes(Config.ENV);

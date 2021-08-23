@@ -1,7 +1,6 @@
 import { bottomTabs, MODALS, ROUTES } from "@navigation/constants";
 import * as React from "react";
 import { Alert } from "react-native";
-import Config from "react-native-config";
 import DeviceInfo from "react-native-device-info";
 import Intercom from "react-native-intercom";
 import { Navigation, LayoutComponent } from "react-native-navigation";
@@ -13,8 +12,7 @@ import { logOutStart, openMemberZone } from "@redux/user/user.actions";
 import { getUserFeatures } from "@redux/user/user.selectors";
 import { MenuScreen } from "@screens";
 import assets, { LINKS, LinkTypes } from "./assets";
-
-const IS_DEVELOP = ["dev", "develop"].includes(Config.ENV);
+import { IS_DEVELOP } from "@services/utils";
 
 const MenuContainer = () => {
   const dispatch = useDispatch();
