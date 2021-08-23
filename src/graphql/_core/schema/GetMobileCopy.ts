@@ -334,13 +334,13 @@ export interface GetMobileCopy_getMobileCopy_screens_intro {
 }
 
 export interface GetMobileCopy_getMobileCopy_screens_rewardsDetails_notEnoughCoinsAlert {
-  title: string | null;
-  body: string | null;
-  btnLabel: string | null;
+  title: string;
+  body: string;
+  btnLabel: string;
 }
 
 export interface GetMobileCopy_getMobileCopy_screens_rewardsDetails {
-  notEnoughCoinsAlert: GetMobileCopy_getMobileCopy_screens_rewardsDetails_notEnoughCoinsAlert | null;
+  notEnoughCoinsAlert: GetMobileCopy_getMobileCopy_screens_rewardsDetails_notEnoughCoinsAlert;
 }
 
 export interface GetMobileCopy_getMobileCopy_screens {
@@ -361,7 +361,7 @@ export interface GetMobileCopy_getMobileCopy_screens {
   popUp: GetMobileCopy_getMobileCopy_screens_popUp | null;
   settingsInfo: GetMobileCopy_getMobileCopy_screens_settingsInfo | null;
   intro: GetMobileCopy_getMobileCopy_screens_intro | null;
-  rewardsDetails: GetMobileCopy_getMobileCopy_screens_rewardsDetails | null;
+  rewardsDetails: GetMobileCopy_getMobileCopy_screens_rewardsDetails;
 }
 
 export interface GetMobileCopy_getMobileCopy {
