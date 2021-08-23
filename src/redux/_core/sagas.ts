@@ -15,11 +15,13 @@ import streaksSagas from "../streaks/sagas";
 import tokenSagas from "../token/token.sagas";
 import userSagas from "../user/sagas";
 import detoxSagas from "../detox/detox.sagas";
+import assetsSagas from "@redux/assets/assets.saga";
 
 export default function* allSagas() {
   yield all([
     ...appSagas,
     ...copySagas,
+    ...assetsSagas,
     ...dailyStepsSagas,
     ...dailyMeditationSagas,
     ...deviceSagas,
