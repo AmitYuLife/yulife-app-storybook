@@ -39,10 +39,32 @@ export enum CommunityGoalType {
   steps = "steps",
 }
 
+export enum ContentItemButtonSize {
+  Fill = "Fill",
+  Large = "Large",
+  Medium = "Medium",
+  Small = "Small",
+}
+
+export enum ContentItemButtonType {
+  link = "link",
+  primary = "primary",
+  secondary = "secondary",
+  tertiary = "tertiary",
+}
+
 export enum ContentItemFormTextInputType {
   email = "email",
   number = "number",
   text = "text",
+}
+
+export enum ContentItemSDUIAction {
+  SDUI_ACTION_NAVIGATE = "SDUI_ACTION_NAVIGATE",
+  SDUI_ACTION_NAVIGATE_BACK = "SDUI_ACTION_NAVIGATE_BACK",
+  SDUI_ACTION_OPEN_URL = "SDUI_ACTION_OPEN_URL",
+  SDUI_ACTION_PRODUCT_UNDERWRITING_STEP_POP = "SDUI_ACTION_PRODUCT_UNDERWRITING_STEP_POP",
+  SDUI_ACTION_PRODUCT_UNDERWRITING_STEP_PUSH = "SDUI_ACTION_PRODUCT_UNDERWRITING_STEP_PUSH",
 }
 
 /**
@@ -255,6 +277,12 @@ export interface MobileConsentInput {
 
 export interface ProductMetadata {
   avios?: AviosMetadata | null;
+}
+
+export interface SubmitStepPayload {
+  productId: string;
+  stepId: string;
+  data: string;
 }
 
 export interface UpdateContactDetailsInput {

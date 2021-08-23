@@ -43,6 +43,7 @@ export const ROUTES = {
   fib: "yulife.product.FibBrowse",
   productDetails: "yulife.product.ProductDetails",
   beneficiary: "yulife.product.Beneficiary",
+  productStep: "yulife.product.ProductStep",
 
   // wellbeing hub
   wellbeingHubItems: "yulife.wellbeingHub.WellbeingHubItems",

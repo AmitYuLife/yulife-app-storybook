@@ -1,0 +1,324 @@
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+import { ContentItemButtonType, ContentItemSDUIAction, ContentItemButtonSize } from "./globalTypes";
+
+// ====================================================
+// GraphQL query operation: GetPersonalProductStep
+// ====================================================
+
+export interface GetPersonalProductStep_getPersonalProductStep_containerStyles {
+  property: string;
+  value: string;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemProgressBar {
+  __typename:
+    | "ContentItemProgressBar"
+    | "ContentItemHeaderBar"
+    | "ContentItemMultiButton"
+    | "ContentItemOverlay"
+    | "ContentItemPersonalProductInfo";
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemTextInput_validation {
+  validationName: string;
+  validationValue: string;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemTextInput {
+  __typename: "ContentItemTextInput";
+  id: string;
+  heading: string | null;
+  value: string | null;
+  answerKey: string;
+  validation: (GetPersonalProductStep_getPersonalProductStep_body_ContentItemTextInput_validation | null)[] | null;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemPad {
+  __typename: "ContentItemPad";
+  id: string;
+  amount: number;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemMarkdown_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemMarkdown {
+  __typename: "ContentItemMarkdown";
+  id: string;
+  title: string | null;
+  markdown: string;
+  perkId: string | null;
+  parsedMarkdown: string | null;
+  styles: (GetPersonalProductStep_getPersonalProductStep_body_ContentItemMarkdown_styles | null)[] | null;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemRadio_choices_renderAsIcon {
+  icon: string | null;
+  colorRoot: string | null;
+  colorBack: string | null;
+  colorFront: string | null;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemRadio_choices {
+  label: string;
+  value: string | null;
+  renderAsIcon: GetPersonalProductStep_getPersonalProductStep_body_ContentItemRadio_choices_renderAsIcon | null;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemRadio {
+  __typename: "ContentItemRadio";
+  id: string;
+  iconOptions: boolean;
+  value: string | null;
+  answerKey: string;
+  choices: (GetPersonalProductStep_getPersonalProductStep_body_ContentItemRadio_choices | null)[] | null;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemButton_onPress {
+  type: ContentItemSDUIAction;
+  payload: string | null;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemButton_icon {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemButton_rightIcon {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemButton_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemButton {
+  __typename: "ContentItemButton";
+  id: string;
+  label: string;
+  buttonType: ContentItemButtonType | null;
+  onPress: GetPersonalProductStep_getPersonalProductStep_body_ContentItemButton_onPress | null;
+  icon: GetPersonalProductStep_getPersonalProductStep_body_ContentItemButton_icon | null;
+  rightIcon: GetPersonalProductStep_getPersonalProductStep_body_ContentItemButton_rightIcon | null;
+  styles: (GetPersonalProductStep_getPersonalProductStep_body_ContentItemButton_styles | null)[] | null;
+  buttonSize: ContentItemButtonSize | null;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemYugiConfirm_content {
+  id: string;
+  parsedMarkdown: string | null;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemYugiConfirm_buttonOnPress {
+  type: ContentItemSDUIAction;
+  payload: string | null;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemYugiConfirm {
+  __typename: "ContentItemYugiConfirm";
+  id: string;
+  yugiHeading: string;
+  content: GetPersonalProductStep_getPersonalProductStep_body_ContentItemYugiConfirm_content;
+  buttonText: string;
+  buttonOnPress: GetPersonalProductStep_getPersonalProductStep_body_ContentItemYugiConfirm_buttonOnPress | null;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemInfoCard_image {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemInfoCard_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemInfoCard {
+  __typename: "ContentItemInfoCard";
+  id: string;
+  image: GetPersonalProductStep_getPersonalProductStep_body_ContentItemInfoCard_image | null;
+  markdown: string;
+  styles: (GetPersonalProductStep_getPersonalProductStep_body_ContentItemInfoCard_styles | null)[] | null;
+}
+
+export type GetPersonalProductStep_getPersonalProductStep_body =
+  | GetPersonalProductStep_getPersonalProductStep_body_ContentItemProgressBar
+  | GetPersonalProductStep_getPersonalProductStep_body_ContentItemTextInput
+  | GetPersonalProductStep_getPersonalProductStep_body_ContentItemPad
+  | GetPersonalProductStep_getPersonalProductStep_body_ContentItemMarkdown
+  | GetPersonalProductStep_getPersonalProductStep_body_ContentItemRadio
+  | GetPersonalProductStep_getPersonalProductStep_body_ContentItemButton
+  | GetPersonalProductStep_getPersonalProductStep_body_ContentItemYugiConfirm
+  | GetPersonalProductStep_getPersonalProductStep_body_ContentItemInfoCard;
+
+export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentItemMarkdown {
+  __typename:
+    | "ContentItemMarkdown"
+    | "ContentItemTextInput"
+    | "ContentItemProgressBar"
+    | "ContentItemHeaderBar"
+    | "ContentItemRadio"
+    | "ContentItemInfoCard"
+    | "ContentItemMultiButton"
+    | "ContentItemPad"
+    | "ContentItemPersonalProductInfo"
+    | "ContentItemYugiConfirm";
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentItemButton_onPress {
+  type: ContentItemSDUIAction;
+  payload: string | null;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentItemButton_icon {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentItemButton_rightIcon {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentItemButton_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentItemButton {
+  __typename: "ContentItemButton";
+  id: string;
+  label: string;
+  buttonType: ContentItemButtonType | null;
+  onPress: GetPersonalProductStep_getPersonalProductStep_footer_ContentItemButton_onPress | null;
+  icon: GetPersonalProductStep_getPersonalProductStep_footer_ContentItemButton_icon | null;
+  rightIcon: GetPersonalProductStep_getPersonalProductStep_footer_ContentItemButton_rightIcon | null;
+  styles: (GetPersonalProductStep_getPersonalProductStep_footer_ContentItemButton_styles | null)[] | null;
+  buttonSize: ContentItemButtonSize | null;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentItemOverlay_buttons_onPress {
+  type: ContentItemSDUIAction;
+  payload: string | null;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentItemOverlay_buttons_icon {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentItemOverlay_buttons_rightIcon {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentItemOverlay_buttons_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentItemOverlay_buttons {
+  id: string;
+  label: string;
+  buttonType: ContentItemButtonType | null;
+  onPress: GetPersonalProductStep_getPersonalProductStep_footer_ContentItemOverlay_buttons_onPress | null;
+  icon: GetPersonalProductStep_getPersonalProductStep_footer_ContentItemOverlay_buttons_icon | null;
+  rightIcon: GetPersonalProductStep_getPersonalProductStep_footer_ContentItemOverlay_buttons_rightIcon | null;
+  styles: (GetPersonalProductStep_getPersonalProductStep_footer_ContentItemOverlay_buttons_styles | null)[] | null;
+  buttonSize: ContentItemButtonSize | null;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentItemOverlay {
+  __typename: "ContentItemOverlay";
+  id: string;
+  markdown: string;
+  buttons: GetPersonalProductStep_getPersonalProductStep_footer_ContentItemOverlay_buttons[];
+}
+
+export type GetPersonalProductStep_getPersonalProductStep_footer =
+  | GetPersonalProductStep_getPersonalProductStep_footer_ContentItemMarkdown
+  | GetPersonalProductStep_getPersonalProductStep_footer_ContentItemButton
+  | GetPersonalProductStep_getPersonalProductStep_footer_ContentItemOverlay;
+
+export interface GetPersonalProductStep_getPersonalProductStep_header_ContentItemMarkdown {
+  __typename:
+    | "ContentItemMarkdown"
+    | "ContentItemTextInput"
+    | "ContentItemRadio"
+    | "ContentItemInfoCard"
+    | "ContentItemButton"
+    | "ContentItemMultiButton"
+    | "ContentItemPad"
+    | "ContentItemOverlay"
+    | "ContentItemPersonalProductInfo"
+    | "ContentItemYugiConfirm";
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_header_ContentItemHeaderBar_onLeftIconPress {
+  type: ContentItemSDUIAction;
+  payload: string | null;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_header_ContentItemHeaderBar_onRightIconPress {
+  type: ContentItemSDUIAction;
+  payload: string | null;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_header_ContentItemHeaderBar {
+  __typename: "ContentItemHeaderBar";
+  logo: string | null;
+  leftIcon: string | null;
+  rightIcon: string | null;
+  onLeftIconPress: GetPersonalProductStep_getPersonalProductStep_header_ContentItemHeaderBar_onLeftIconPress | null;
+  onRightIconPress: GetPersonalProductStep_getPersonalProductStep_header_ContentItemHeaderBar_onRightIconPress | null;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_header_ContentItemProgressBar {
+  __typename: "ContentItemProgressBar";
+  id: string;
+  maxLength: number;
+  currentPosition: number;
+}
+
+export type GetPersonalProductStep_getPersonalProductStep_header =
+  | GetPersonalProductStep_getPersonalProductStep_header_ContentItemMarkdown
+  | GetPersonalProductStep_getPersonalProductStep_header_ContentItemHeaderBar
+  | GetPersonalProductStep_getPersonalProductStep_header_ContentItemProgressBar;
+
+export interface GetPersonalProductStep_getPersonalProductStep {
+  stepId: string;
+  customerProductId: string;
+  introStep: boolean | null;
+  /**
+   * Container styles go here
+   */
+  containerStyles: GetPersonalProductStep_getPersonalProductStep_containerStyles[] | null;
+  /**
+   * Content displayed inside the scrollview area
+   */
+  body: (GetPersonalProductStep_getPersonalProductStep_body | null)[] | null;
+  /**
+   * Content displayed on the bottom of the screen. sticky footer
+   */
+  footer: (GetPersonalProductStep_getPersonalProductStep_footer | null)[] | null;
+  /**
+   * Content displayed on the top of the screen. sticky header
+   */
+  header: (GetPersonalProductStep_getPersonalProductStep_header | null)[] | null;
+}
+
+export interface GetPersonalProductStep {
+  getPersonalProductStep: GetPersonalProductStep_getPersonalProductStep | null;
+}
+
+export interface GetPersonalProductStepVariables {
+  productId: string;
+}

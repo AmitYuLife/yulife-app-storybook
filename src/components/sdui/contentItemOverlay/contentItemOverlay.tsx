@@ -1,0 +1,48 @@
+import React, { memo } from "react";
+import { StyleSheet, View } from "react-native";
+import { ContentItemOverlay as GqlOverlay, ContentItemButton } from "@graphql/_core/schema";
+import Markdown from "@molecules/markdown/markdown";
+import { Colours, Style } from "@styles";
+import { Pad } from "@atoms";
+import * as Animated from "react-native-animatable";
+
+const MARGIN = Style.adjust(32);
+const RADIUS = Style.adjust(16);
+
+type Props = GqlOverlay & {
+  Button: (props: Partial<ContentItemButton>) => JSX.Element;
+};
+
+export const ContentItemOverlay = memo(({ Button, markdown, buttons }: Props) => {
+  return (
+    <View style={styles.wrapper}>
+      <View style={styles.background} />
+      <Animated.View animation="slideInUp" style={styles.overlay}>
+        <Markdown text={markdown} containerStyle={styles.markdownContainer} />
+        {buttons.map((b) => (
+          <Button key={b.id} {...b} />
+        ))}
+        <Pad height={MARGIN} />
+      </Animated.View>
+    </View>
+  );
+});
+
+const styles = StyleSheet.create({
+  wrapper: {
+    height: Style.DEVICE_HEIGHT,
+    justifyContent: "flex-end",
+  },
+  background: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: "rgba(0,0,0,0.5)",
+  },
+  overlay: {
+    backgroundColor: Colours.neutral.white,
+    borderTopLeftRadius: RADIUS,
+    borderTopRightRadius: RADIUS,
+  },
+  markdownContainer: {
+    margin: MARGIN,
+  },
+});

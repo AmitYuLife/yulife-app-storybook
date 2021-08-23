@@ -64,6 +64,8 @@ const dataIdFromObject = (object: any) => {
       return `${object.__typename}-${object.colorSchemeId}-${object.displayOrder}`;
     case "YuliferProduct":
       return `${object.__typename}-${object.productId}-${object.active}`;
+    case "ContentItemStyle":
+      return `${object.__typename}-${object.property}-${object.value}`;
     default:
       return defaultDataIdFromObject(object);
   }

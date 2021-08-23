@@ -16,6 +16,7 @@ import tokenSagas from "../token/token.sagas";
 import userSagas from "../user/sagas";
 import detoxSagas from "../detox/detox.sagas";
 import assetsSagas from "@redux/assets/assets.saga";
+import serverDrivenUISagas from "../server-driven-ui/sdui.sagas";
 
 export default function* allSagas() {
   yield all([
@@ -36,5 +37,6 @@ export default function* allSagas() {
     ...tokenSagas,
     ...userSagas,
     ...detoxSagas,
+    ...serverDrivenUISagas,
   ]);
 }
