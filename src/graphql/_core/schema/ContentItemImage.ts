@@ -4,19 +4,21 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL fragment: ContentItemMarkdown
+// GraphQL fragment: ContentItemImage
 // ====================================================
 
-export interface ContentItemMarkdown_styles {
+export interface ContentItemImage_image {
+  id: string;
+  uri: string | null;
+}
+
+export interface ContentItemImage_styles {
   property: string;
   value: string;
 }
 
-export interface ContentItemMarkdown {
+export interface ContentItemImage {
   id: string;
-  title: string | null;
-  markdown: string;
-  perkId: string | null;
-  parsedMarkdown: string | null;
-  styles: ContentItemMarkdown_styles[] | null;
+  image: ContentItemImage_image | null;
+  styles: ContentItemImage_styles[] | null;
 }

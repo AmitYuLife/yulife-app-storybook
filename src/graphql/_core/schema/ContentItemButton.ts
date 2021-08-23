@@ -36,6 +36,6 @@ export interface ContentItemButton {
   onPress: ContentItemButton_onPress | null;
   icon: ContentItemButton_icon | null;
   rightIcon: ContentItemButton_rightIcon | null;
-  styles: (ContentItemButton_styles | null)[] | null;
+  styles: ContentItemButton_styles[] | null;
   buttonSize: ContentItemButtonSize | null;
 }

@@ -2,7 +2,7 @@ import React, { useMemo } from "react";
 import { ScrollView, StyleSheet, View, ViewStyle } from "react-native";
 import { GetPersonalProductStep_getPersonalProductStep_body as GPPS_Body } from "@graphql/_core/schema";
 import { ContentItemInfoCard, ContentItemMarkdown, ContentItemPad, ContentItemYugiConfirm } from "@components/sdui";
-import { ProductStepContentItemButton } from "../../subcomponents/product-step.contentItemButton";
+import { ProductStepContentItemButton } from "../../subcomponents/product-step.button";
 
 interface Props {
   body: GPPS_Body[];
@@ -15,10 +15,12 @@ export const Body = (props: Props) => {
   const headerPadStyle = useMemo(() => ({ height: headerHeight }), [headerHeight]);
 
   return (
-    <ScrollView showsVerticalScrollIndicator={false} style={styles.wrapper}>
+    <>
       {!headerHeight ? null : <View style={headerPadStyle} />}
-      {props.body.map(renderItemContent)}
-    </ScrollView>
+      <ScrollView showsVerticalScrollIndicator={false} style={styles.wrapper}>
+        {props.body.map(renderItemContent)}
+      </ScrollView>
+    </>
   );
 };
 

@@ -21,5 +21,5 @@ export interface ContentItemInfoCard {
   id: string;
   image: ContentItemInfoCard_image | null;
   markdown: string;
-  styles: (ContentItemInfoCard_styles | null)[] | null;
+  styles: ContentItemInfoCard_styles[] | null;
 }
