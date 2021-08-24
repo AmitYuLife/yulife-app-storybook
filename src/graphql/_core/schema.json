@@ -22686,19 +22686,35 @@
             "deprecationReason": null
           },
           {
-            "name": "providerIconUrl",
+            "name": "coverType",
             "description": null,
             "args": [],
             "type": {
-              "kind": "SCALAR",
-              "name": "String",
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "ENUM",
+                "name": "CoverType",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "providerImageUrl",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "RemoteImage",
               "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "insuranceType",
+            "name": "title",
             "description": null,
             "args": [],
             "type": {
@@ -22723,34 +22739,6 @@
               "ofType": {
                 "kind": "OBJECT",
                 "name": "ContentItemMarkdown",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "popoverContent",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "OBJECT",
-              "name": "ContentItemMarkdown",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "customerProductId",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
                 "ofType": null
               }
             },
@@ -22872,6 +22860,18 @@
             "deprecationReason": null
           },
           {
+            "name": "shouldAccountForHeader",
+            "description": "If you want to have have top: 100 from the header - turn this on. Otherwise display on top of the header. Unlimited power.",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "item",
             "description": null,
             "args": [],
@@ -22883,18 +22883,6 @@
                 "name": "ContentPersonalProductItem",
                 "ofType": null
               }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "shouldAccountForHeader",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "Boolean",
-              "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
