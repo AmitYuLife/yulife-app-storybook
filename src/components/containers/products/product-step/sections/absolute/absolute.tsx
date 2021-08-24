@@ -8,9 +8,13 @@ interface Props {
 }
 
 export const Absolute = (props: Props) => {
-  const { headerHeight } = props;
+  const { headerHeight, absolute = [] } = props;
 
-  return <>{props.absolute.map((item) => renderAbsoluteItemContent(item, headerHeight))}</>;
+  if (!absolute?.length) {
+    return null;
+  }
+
+  return <>{absolute.map((item) => renderAbsoluteItemContent(item, headerHeight))}</>;
 };
 
 const renderAbsoluteItemContent = (
