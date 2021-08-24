@@ -1,5 +1,4 @@
 import React, { memo } from "react";
-import { YuScreen as YuScreenLegacy } from "./yu-screen-legacy";
 import { YuScreen } from "./yu-screen";
 import { YuScreenLayout } from "./yu-screen-layout";
 import { GetYulifer } from "@graphql/_core/schema";
@@ -34,7 +33,7 @@ const _YuScreenContainer = (props: ConnectedState) => {
 
   return (
     <YuScreenLayout testID={YUSCREEN_V3(yuScreenV3)}>
-      {loading || !data ? <YuScreenLoading /> : yuScreenV3 ? <YuScreen /> : <YuScreenLegacy />}
+      {loading || !data ? <YuScreenLoading /> : <YuScreen /> }
     </YuScreenLayout>
   );
 };
