@@ -51,6 +51,9 @@ export const GQL_QUERY_GET_PERSONAL_PRODUCT_STEP = gql`
         ... on ContentItemButton {
           ...ContentItemButton
         }
+        ... on ContentItemInfoCard {
+          ...ContentItemInfoCard
+        }
         ... on ContentItemYugiConfirm {
           id
           yugiHeading
@@ -64,8 +67,18 @@ export const GQL_QUERY_GET_PERSONAL_PRODUCT_STEP = gql`
             payload
           }
         }
-        ... on ContentItemInfoCard {
-          ...ContentItemInfoCard
+        ... on ContentItemPersonalProductInfo {
+          id
+          coverType
+          productTitle: title
+          providerImageUrl {
+            id
+            uri
+          }
+          productDescription: description {
+            id
+            parsedMarkdown
+          }
         }
       }
       footer {

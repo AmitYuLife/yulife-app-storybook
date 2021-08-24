@@ -3,7 +3,7 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { ContentItemButtonType, ContentItemSDUIAction, ContentItemButtonSize } from "./globalTypes";
+import { ContentItemButtonType, ContentItemSDUIAction, ContentItemButtonSize, CoverType } from "./globalTypes";
 
 // ====================================================
 // GraphQL query operation: GetPersonalProductStep
@@ -20,8 +20,7 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemP
     | "ContentItemHeaderBar"
     | "ContentItemMultiButton"
     | "ContentItemImage"
-    | "ContentItemOverlay"
-    | "ContentItemPersonalProductInfo";
+    | "ContentItemOverlay";
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemTextInput_validation {
@@ -113,6 +112,24 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemB
   buttonSize: ContentItemButtonSize | null;
 }
 
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemInfoCard_image {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemInfoCard_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemInfoCard {
+  __typename: "ContentItemInfoCard";
+  id: string;
+  image: GetPersonalProductStep_getPersonalProductStep_body_ContentItemInfoCard_image | null;
+  markdown: string;
+  styles: GetPersonalProductStep_getPersonalProductStep_body_ContentItemInfoCard_styles[] | null;
+}
+
 export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemYugiConfirm_content {
   id: string;
   parsedMarkdown: string | null;
@@ -132,22 +149,23 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemY
   buttonOnPress: GetPersonalProductStep_getPersonalProductStep_body_ContentItemYugiConfirm_buttonOnPress | null;
 }
 
-export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemInfoCard_image {
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemPersonalProductInfo_providerImageUrl {
   id: string;
   uri: string | null;
 }
 
-export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemInfoCard_styles {
-  property: string;
-  value: string;
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemPersonalProductInfo_productDescription {
+  id: string;
+  parsedMarkdown: string | null;
 }
 
-export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemInfoCard {
-  __typename: "ContentItemInfoCard";
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemPersonalProductInfo {
+  __typename: "ContentItemPersonalProductInfo";
   id: string;
-  image: GetPersonalProductStep_getPersonalProductStep_body_ContentItemInfoCard_image | null;
-  markdown: string;
-  styles: GetPersonalProductStep_getPersonalProductStep_body_ContentItemInfoCard_styles[] | null;
+  coverType: CoverType;
+  productTitle: string;
+  providerImageUrl: GetPersonalProductStep_getPersonalProductStep_body_ContentItemPersonalProductInfo_providerImageUrl | null;
+  productDescription: GetPersonalProductStep_getPersonalProductStep_body_ContentItemPersonalProductInfo_productDescription;
 }
 
 export type GetPersonalProductStep_getPersonalProductStep_body =
@@ -157,8 +175,9 @@ export type GetPersonalProductStep_getPersonalProductStep_body =
   | GetPersonalProductStep_getPersonalProductStep_body_ContentItemMarkdown
   | GetPersonalProductStep_getPersonalProductStep_body_ContentItemRadio
   | GetPersonalProductStep_getPersonalProductStep_body_ContentItemButton
+  | GetPersonalProductStep_getPersonalProductStep_body_ContentItemInfoCard
   | GetPersonalProductStep_getPersonalProductStep_body_ContentItemYugiConfirm
-  | GetPersonalProductStep_getPersonalProductStep_body_ContentItemInfoCard;
+  | GetPersonalProductStep_getPersonalProductStep_body_ContentItemPersonalProductInfo;
 
 export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentItemMarkdown {
   __typename:
@@ -335,6 +354,9 @@ export type GetPersonalProductStep_getPersonalProductStep_absolute_item =
 
 export interface GetPersonalProductStep_getPersonalProductStep_absolute {
   id: string;
+  /**
+   * If you want to have have top: 100 from the header - turn this on. Otherwise display on top of the header. Unlimited power.
+   */
   shouldAccountForHeader: boolean | null;
   item: GetPersonalProductStep_getPersonalProductStep_absolute_item;
 }

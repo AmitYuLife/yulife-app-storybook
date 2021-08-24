@@ -80,7 +80,7 @@ function* openUrl({ payload }: ProductStepAction) {
   try {
     yield call(handleLinkPress(payload.serverPayload));
   } catch (e) {
-    // shrug
+    // shrug (log)
   }
 }
 
@@ -90,9 +90,14 @@ function* openUrl({ payload }: ProductStepAction) {
 
 function* pushStep(action: ProductStepAction) {
   const { productId, stepId, dynamicData } = action.payload;
-  yield call(submitPersonalProductStepGql, {
-    payload: { productId, stepId, data: JSON.stringify(dynamicData) },
-  });
+
+  try {
+    yield call(submitPersonalProductStepGql, {
+      payload: { productId, stepId, data: JSON.stringify(dynamicData) },
+    });
+  } catch (e) {
+    // shrug (log)
+  }
 }
 
 export default [
