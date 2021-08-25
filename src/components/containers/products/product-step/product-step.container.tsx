@@ -2,10 +2,10 @@ import React, { memo, useCallback, useState } from "react";
 import { ActivityIndicator, LayoutChangeEvent, StyleSheet, View, ViewStyle } from "react-native";
 import { useQuery } from "@apollo/react-hooks";
 import { GQL_QUERY_GET_PERSONAL_PRODUCT_STEP } from "@graphql/personalProduct/getPersonalProductStep.gql";
-import { Body, Header, Footer, Absolute } from "./sections";
 import { GetPersonalProductStep, GetPersonalProductStepVariables } from "@graphql/_core/schema";
-import { ProductStepContext } from "./product-step.context";
 import { mapServerStyles } from "@components/sdui/_utils/mapServerStyles";
+import { Body, Header, Footer, Absolute } from "./sections";
+import { ProductStepContext } from "./product-step.context";
 
 type Props = {
   productId: string;

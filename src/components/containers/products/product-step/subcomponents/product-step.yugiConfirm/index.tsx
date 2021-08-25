@@ -1,24 +1,35 @@
-import React, { useRef, RefObject, memo } from "react";
+import React, { useRef, RefObject, memo, useContext, useMemo } from "react";
 import { useDispatch } from "react-redux";
 import * as Animated from "react-native-animatable";
+import LottieView from "lottie-react-native";
 import { View, StyleSheet, ViewStyle, TextStyle, FlatList, Platform, ListRenderItemInfo } from "react-native";
 import { Button, Text, TextTemplate } from "@atoms";
-import { Style, TOP_BAR } from "@styles";
-import LottieView from "lottie-react-native";
-import colours from "@styles/colours";
+import { Style, TOP_BAR, Colours } from "@styles";
 import { FIB_INTRO_SCREEN } from "@ids";
 import { GetPersonalProductStep_getPersonalProductStep_body_ContentItemYugiConfirm } from "@graphql/_core/schema";
 
 import { ArrowUp } from "./arrowUp";
-const intro_yugi = { lottieJson: require("./yugi.json") };
+import { ProductStepContext } from "./../../product-step.context";
+
+const lottieJson = require("./yugi.json");
 
 type Props = GetPersonalProductStep_getPersonalProductStep_body_ContentItemYugiConfirm;
 
-export const ContentItemYugiConfirm = memo(function (props: Props) {
+export const ProductStepYugiConfirm = memo(function (props: Props) {
+  const contextConsumer = useContext(ProductStepContext);
+  const { productId, stepId, dynamicData } = contextConsumer;
   const { yugiHeading, content, buttonText, buttonOnPress } = props;
-  const lottie_yugi_ref: RefObject<LottieView> = useRef();
+  const lottieYugiRef: RefObject<LottieView> = useRef();
   const swiper: RefObject<FlatList> = useRef();
   const dispatch = useDispatch();
+
+  const dynamicOnPress = useMemo(
+    () => ({
+      type: buttonOnPress.type,
+      payload: { productId, stepId, dynamicData, serverPayload: buttonOnPress.payload },
+    }),
+    [buttonOnPress, productId, stepId, dynamicData]
+  );
 
   return (
     <View style={styles.yugiIntroWrapper}>
@@ -26,10 +37,10 @@ export const ContentItemYugiConfirm = memo(function (props: Props) {
         <LottieView
           resizeMode="cover"
           style={styles.lottie}
-          source={intro_yugi.lottieJson}
+          source={lottieJson}
           autoPlay={true}
           loop={false}
-          ref={lottie_yugi_ref}
+          ref={lottieYugiRef}
         />
       </View>
 
@@ -41,7 +52,7 @@ export const ContentItemYugiConfirm = memo(function (props: Props) {
         style={styles.speechWrapper}
       >
         <View style={styles.speakerNameWrapper}>
-          <TextTemplate type="b2b" color={colours.orange}>
+          <TextTemplate type="b2b" color={Colours.orange}>
             {yugiHeading}
           </TextTemplate>
         </View>
@@ -68,7 +79,7 @@ export const ContentItemYugiConfirm = memo(function (props: Props) {
       <View style={styles.buttonWrapper}>
         <Button
           size="Small"
-          onPress={() => dispatch(buttonOnPress)}
+          onPress={() => dispatch(dynamicOnPress)}
           delay={300}
           label={buttonText}
           disableAnimation={true}
@@ -102,9 +113,9 @@ const styles = StyleSheet.create({
     marginBottom: 16,
     width: SPEECH_WRAPPER_WIDTH,
     marginTop: Style.DEVICE_HEIGHT * 0.24,
-    backgroundColor: colours.products.fib.u10S4,
+    backgroundColor: Colours.products.fib.u10S4,
     borderRadius: 16,
-    borderColor: colours.products.fib.u50S4,
+    borderColor: Colours.products.fib.u50S4,
     borderWidth: 2,
     paddingTop: Style.adjust(24),
     paddingBottom: Style.adjust(24),
@@ -125,12 +136,12 @@ const styles = StyleSheet.create({
     marginTop: -12,
     width: 61,
     height: 24,
-    backgroundColor: colours.products.fib.u100S4,
+    backgroundColor: Colours.products.fib.u100S4,
     borderRadius: 16,
     alignItems: "center",
   } as ViewStyle,
   message: {
-    color: colours.products.fib.n800,
+    color: Colours.products.fib.n800,
     fontFamily: Style.FONT_FAMILY_PRIMARY_BOLD,
     fontSize: Style.adjust(16),
     lineHeight: Style.adjust(24),

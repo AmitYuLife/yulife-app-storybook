@@ -33,7 +33,7 @@ const _YuScreenContainer = (props: ConnectedState) => {
 
   return (
     <YuScreenLayout testID={YUSCREEN_V3(yuScreenV3)}>
-      {loading || !data ? <YuScreenLoading /> : <YuScreen /> }
+      {loading || !data ? <YuScreenLoading /> : <YuScreen />}
     </YuScreenLayout>
   );
 };

@@ -17,7 +17,8 @@ const MAX_UI_LENGTH = Style.DEVICE_WIDTH - HORIZONTAL_MARGINS - YU_COIN_IMAGE_AN
 
 export default function ProgressBar(props: IProgressBarProps) {
   const { currentPosition, maxLength, hideType } = props;
-  const currentProgressPercent = currentPosition / maxLength;
+  const safeCurrentPosition = currentPosition > maxLength ? maxLength : currentPosition;
+  const currentProgressPercent = safeCurrentPosition / maxLength;
   const currentProgressUI = MAX_UI_LENGTH * currentProgressPercent;
   const shineWidth = currentProgressUI - 10;
   const safeShineWidth = shineWidth < 10 ? 0 : shineWidth;

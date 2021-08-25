@@ -7,11 +7,14 @@
 // GraphQL fragment: ContentItemRadio
 // ====================================================
 
+export interface ContentItemRadio_choices_renderAsIcon_icon {
+  id: string;
+  uri: string | null;
+}
+
 export interface ContentItemRadio_choices_renderAsIcon {
-  icon: string | null;
-  colorRoot: string | null;
-  colorBack: string | null;
-  colorFront: string | null;
+  icon: ContentItemRadio_choices_renderAsIcon_icon | null;
+  textColor: string;
 }
 
 export interface ContentItemRadio_choices {

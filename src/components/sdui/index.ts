@@ -6,4 +6,3 @@ export * from "./contentItemMarkdown/contentItemMarkdown";
 export * from "./contentItemOverlay/contentItemOverlay";
 export * from "./contentItemPad/contentItemPad";
 export * from "./contentItemProgressBar/contentItemProgressBar";
-export * from "./contentItemYugiConfirm/contentItemYugiConfirm";

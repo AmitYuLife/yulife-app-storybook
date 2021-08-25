@@ -82,9 +82,7 @@ export interface GetWellbeingHubItem_wellbeingHubItem_content_ContentItemForm_el
   placeholder: string;
   options: (GetWellbeingHubItem_wellbeingHubItem_content_ContentItemForm_elements_ContentItemFormSelectInput_options | null)[];
   icon: GetWellbeingHubItem_wellbeingHubItem_content_ContentItemForm_elements_ContentItemFormSelectInput_icon | null;
-  validation:
-    | (GetWellbeingHubItem_wellbeingHubItem_content_ContentItemForm_elements_ContentItemFormSelectInput_validation | null)[]
-    | null;
+  validation: (GetWellbeingHubItem_wellbeingHubItem_content_ContentItemForm_elements_ContentItemFormSelectInput_validation | null)[] | null;
 }
 
 export interface GetWellbeingHubItem_wellbeingHubItem_content_ContentItemForm_elements_ContentItemFormTextInput_icon {
@@ -104,9 +102,7 @@ export interface GetWellbeingHubItem_wellbeingHubItem_content_ContentItemForm_el
   placeholder: string;
   defaultValue: string | null;
   icon: GetWellbeingHubItem_wellbeingHubItem_content_ContentItemForm_elements_ContentItemFormTextInput_icon | null;
-  validation:
-    | (GetWellbeingHubItem_wellbeingHubItem_content_ContentItemForm_elements_ContentItemFormTextInput_validation | null)[]
-    | null;
+  validation: (GetWellbeingHubItem_wellbeingHubItem_content_ContentItemForm_elements_ContentItemFormTextInput_validation | null)[] | null;
 }
 
 export interface GetWellbeingHubItem_wellbeingHubItem_content_ContentItemForm_elements_ContentItemFormSubmitButton {
@@ -115,22 +111,14 @@ export interface GetWellbeingHubItem_wellbeingHubItem_content_ContentItemForm_el
   label: string;
 }
 
-export type GetWellbeingHubItem_wellbeingHubItem_content_ContentItemForm_elements =
-  | GetWellbeingHubItem_wellbeingHubItem_content_ContentItemForm_elements_ContentItemFormSelectInput
-  | GetWellbeingHubItem_wellbeingHubItem_content_ContentItemForm_elements_ContentItemFormTextInput
-  | GetWellbeingHubItem_wellbeingHubItem_content_ContentItemForm_elements_ContentItemFormSubmitButton;
+export type GetWellbeingHubItem_wellbeingHubItem_content_ContentItemForm_elements = GetWellbeingHubItem_wellbeingHubItem_content_ContentItemForm_elements_ContentItemFormSelectInput | GetWellbeingHubItem_wellbeingHubItem_content_ContentItemForm_elements_ContentItemFormTextInput | GetWellbeingHubItem_wellbeingHubItem_content_ContentItemForm_elements_ContentItemFormSubmitButton;
 
 export interface GetWellbeingHubItem_wellbeingHubItem_content_ContentItemForm {
   __typename: "ContentItemForm";
   elements: (GetWellbeingHubItem_wellbeingHubItem_content_ContentItemForm_elements | null)[] | null;
 }
 
-export type GetWellbeingHubItem_wellbeingHubItem_content =
-  | GetWellbeingHubItem_wellbeingHubItem_content_ContentItemMarkdown
-  | GetWellbeingHubItem_wellbeingHubItem_content_ContentItemBox
-  | GetWellbeingHubItem_wellbeingHubItem_content_ContentItemButton
-  | GetWellbeingHubItem_wellbeingHubItem_content_ContentItemImage
-  | GetWellbeingHubItem_wellbeingHubItem_content_ContentItemForm;
+export type GetWellbeingHubItem_wellbeingHubItem_content = GetWellbeingHubItem_wellbeingHubItem_content_ContentItemMarkdown | GetWellbeingHubItem_wellbeingHubItem_content_ContentItemBox | GetWellbeingHubItem_wellbeingHubItem_content_ContentItemButton | GetWellbeingHubItem_wellbeingHubItem_content_ContentItemImage | GetWellbeingHubItem_wellbeingHubItem_content_ContentItemForm;
 
 export interface GetWellbeingHubItem_wellbeingHubItem {
   id: string;

@@ -1,9 +1,13 @@
 import React, { useMemo } from "react";
 import { ScrollView, StyleSheet, View, ViewStyle } from "react-native";
 import { GetPersonalProductStep_getPersonalProductStep_body as GPPS_Body } from "@graphql/_core/schema";
-import { ContentItemInfoCard, ContentItemMarkdown, ContentItemPad, ContentItemYugiConfirm } from "@components/sdui";
-import { ProductStepContentItemButton } from "../../subcomponents/product-step.button";
-import { ProductStepProductInfo } from "../../subcomponents/product-step.productInfo";
+import { ContentItemInfoCard, ContentItemPad } from "@components/sdui";
+import {
+  ProductStepContentItemButton,
+  ProductStepMarkdown,
+  ProductStepProductInfo,
+  ProductStepYugiConfirm,
+} from "../../subcomponents";
 
 interface Props {
   body: GPPS_Body[];
@@ -36,13 +40,13 @@ const renderItemContent = (item: GPPS_Body): JSX.Element => {
     case "ContentItemInfoCard":
       return <ContentItemInfoCard key={item.id} {...item} />;
     case "ContentItemMarkdown":
-      return <ContentItemMarkdown key={item.id} {...item} />;
+      return <ProductStepMarkdown key={item.id} {...item} />;
     case "ContentItemPad":
       return <ContentItemPad key={item.id} {...item} />;
     case "ContentItemButton":
       return <ProductStepContentItemButton key={item.id} {...item} />;
     case "ContentItemYugiConfirm":
-      return <ContentItemYugiConfirm key={item.id} {...item} />;
+      return <ProductStepYugiConfirm key={item.id} {...item} />;
     case "ContentItemPersonalProductInfo":
       return <ProductStepProductInfo key={item.id} {...item} />;
     default:
