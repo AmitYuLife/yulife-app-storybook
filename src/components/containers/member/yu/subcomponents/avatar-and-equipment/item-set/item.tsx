@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useMemo } from "react";
 import { StyleSheet, ViewStyle, View, ImageStyle } from "react-native";
 import { SlotIcon } from "@atoms";
 import { TouchableOpacityWithDelay, PowerCoin } from "@molecules";
@@ -9,6 +9,7 @@ import { SvgUnlockable } from "../../product/assets/svg-unlockable";
 import { SvgLocked } from "../../product/assets/svg-locked";
 import { YuScreenProductSlotItem } from "@graphql/_core/schema";
 import { navigateToProduct } from "../../../navigation/navigateToProduct";
+import { DETOX_ENABLED } from "@services/socket";
 
 interface IItem extends YuScreenProductSlotItem {
   style?: ViewStyle;
@@ -20,13 +21,15 @@ export const Item = (props: IItem) => {
 
   const slot = { name: icon?.name, itemUrl, backgroundUrl: icon?.backgroundUrl, status };
 
+  const detoxItemUrl = useMemo(() => (!DETOX_ENABLED ? "" : itemUrl?.split(".svg")[0]), [DETOX_ENABLED, itemUrl]);
+
   return (
     <TouchableOpacityWithDelay
       delay={350}
       activeOpacity={1}
       onPress={onPress}
       style={[styles.wrapper, style]}
-      testID={AVATAR_ITEM(icon?.name, status)}
+      testID={AVATAR_ITEM(detoxItemUrl, status)}
     >
       <SlotIcon slot={slot} />
       <View style={styles.tagWrapper}>{getTag(status, earnRate)}</View>

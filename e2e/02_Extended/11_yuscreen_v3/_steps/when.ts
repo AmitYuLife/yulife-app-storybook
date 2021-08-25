@@ -1,5 +1,5 @@
 import { navigation } from "@utils"
-import { BENEFICIARY_CONTINUE, INPUT_BENEFICIARY_DETAIL } from "@ids"
+import { BENEFICIARY_CONTINUE, INPUT_BENEFICIARY_DETAIL, AVATAR_ITEM } from "@ids"
 
 
 export const {
@@ -31,4 +31,9 @@ export const addBeneficiary = (firstName: string, lastName: string, phone: strin
     await typeViaID(INPUT_BENEFICIARY_DETAIL("Phone number"), phone)()
     await typeViaID(INPUT_BENEFICIARY_DETAIL("Relation"), relation)()
     await tapID(BENEFICIARY_CONTINUE)()
+}
+
+export const tapAvatarItem = (avatarItem: string, status: string) => async () => {
+    const item = element(by.id(AVATAR_ITEM(`https://yulife-develop.imgix.net/yuscreen_products_assets/default/${avatarItem}`, status)))
+    await item.tap()
 }

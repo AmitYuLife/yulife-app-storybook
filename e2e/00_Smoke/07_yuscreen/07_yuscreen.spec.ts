@@ -177,7 +177,7 @@ Feature("I am able to use the yuscreen, create, and edit an Yumoji", async () =>
     Scenario("I can complete a survey on the yuscreen", scenario.start, async () => {
         Given("I login", given.loginToYuScreen(true, CUSTOMER_17, AUTH_17), async () => {
             Then("I should see my Yumoji", then.idVisible(YUSCREEN_AVATAR))
-            When("I tap the locked boots", when.tapID(AVATAR_ITEM("boots", "locked")), async () => {
+            When("I tap the locked boots", when.tapAvatarItem("boots", "locked"), async () => {
                 Then("I should be on the survey screen", then.textVisible("What Would You Like To See?"))
             })
             When("I tap an option", when.tapText("Dental insurance"), async () => {
@@ -199,7 +199,7 @@ Feature("I am able to use the yuscreen, create, and edit an Yumoji", async () =>
                 Then("I should see a Thank You screen", then.onSurveySubmitScreen)
             })
             When("I tap Close", when.tapText("Close"), async () => {
-                Then("I should be on the yuscreen", then.idVisible(AVATAR_ITEM("boots", "locked")))
+                Then("I should be on the yuscreen", then.avatarItemVisible("boots", "locked"))
             })
         })
     })
