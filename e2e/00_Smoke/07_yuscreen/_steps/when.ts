@@ -1,4 +1,4 @@
-import { navigation, BODY_ITEM_TITLE, BODY_PART_ITEM, SKIN_TONE, YUSCREEN, YUCOIN_POWER, AVATAR_BUILDER_LIST, YUSCREEN_AVATAR, HEAD_TYPE } from "@utils"
+import { navigation, BODY_ITEM_TITLE, BODY_PART_ITEM, SKIN_TONE, YUSCREEN, YUCOIN_POWER, AVATAR_BUILDER_LIST, YUSCREEN_AVATAR, HEAD_TYPE, AVATAR_ITEM } from "@utils"
 
 
 export const {
@@ -17,8 +17,14 @@ export const {
     typeViaID,
     replaceTextViaID,
     textVisible,
-    idVisible
+    idVisible,
+    wait
 } = navigation.common
+
+export const tapAvatarItem = (avatarItem: string, status: string) => async () => {
+    const item = element(by.id(AVATAR_ITEM(`https://yulife-develop.imgix.net/yuscreen_products_assets/default/${avatarItem}`, status)))
+    await item.tap()
+}
 
 export const tapTab = (tabName: string) => async () => {
     const tab = element(by.id(BODY_ITEM_TITLE(tabName)))
