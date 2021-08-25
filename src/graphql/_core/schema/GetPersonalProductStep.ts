@@ -20,7 +20,13 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemP
     | "ContentItemHeaderBar"
     | "ContentItemMultiButton"
     | "ContentItemImage"
-    | "ContentItemOverlay";
+    | "ContentItemOverlay"
+    | "ContentItemYugiReminder"
+    | "ContentItemDatePicker"
+    | "ContentItemScrollPicker"
+    | "ContentItemMultiSelect"
+    | "ContentItemPersonalProductConfirm"
+    | "ContentItemReviewItem";
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemTextInput_validation {
@@ -58,11 +64,14 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemM
   styles: GetPersonalProductStep_getPersonalProductStep_body_ContentItemMarkdown_styles[] | null;
 }
 
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemRadio_choices_renderAsIcon_icon {
+  id: string;
+  uri: string | null;
+}
+
 export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemRadio_choices_renderAsIcon {
-  icon: string | null;
-  colorRoot: string | null;
-  colorBack: string | null;
-  colorFront: string | null;
+  icon: GetPersonalProductStep_getPersonalProductStep_body_ContentItemRadio_choices_renderAsIcon_icon | null;
+  textColor: string;
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemRadio_choices {
@@ -187,11 +196,16 @@ export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentIte
     | "ContentItemHeaderBar"
     | "ContentItemRadio"
     | "ContentItemInfoCard"
-    | "ContentItemMultiButton"
     | "ContentItemPad"
     | "ContentItemImage"
     | "ContentItemPersonalProductInfo"
-    | "ContentItemYugiConfirm";
+    | "ContentItemYugiConfirm"
+    | "ContentItemYugiReminder"
+    | "ContentItemDatePicker"
+    | "ContentItemScrollPicker"
+    | "ContentItemMultiSelect"
+    | "ContentItemPersonalProductConfirm"
+    | "ContentItemReviewItem";
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentItemButton_onPress {
@@ -264,10 +278,50 @@ export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentIte
   buttons: GetPersonalProductStep_getPersonalProductStep_footer_ContentItemOverlay_buttons[];
 }
 
+export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentItemMultiButton_buttons_onPress {
+  type: ContentItemSDUIAction;
+  payload: string | null;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentItemMultiButton_buttons_icon {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentItemMultiButton_buttons_rightIcon {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentItemMultiButton_buttons_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentItemMultiButton_buttons {
+  id: string;
+  label: string;
+  buttonType: ContentItemButtonType | null;
+  onPress: GetPersonalProductStep_getPersonalProductStep_footer_ContentItemMultiButton_buttons_onPress | null;
+  icon: GetPersonalProductStep_getPersonalProductStep_footer_ContentItemMultiButton_buttons_icon | null;
+  rightIcon: GetPersonalProductStep_getPersonalProductStep_footer_ContentItemMultiButton_buttons_rightIcon | null;
+  styles: GetPersonalProductStep_getPersonalProductStep_footer_ContentItemMultiButton_buttons_styles[] | null;
+  buttonSize: ContentItemButtonSize | null;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentItemMultiButton {
+  __typename: "ContentItemMultiButton";
+  id: string;
+  buttons: GetPersonalProductStep_getPersonalProductStep_footer_ContentItemMultiButton_buttons[];
+  value: string | null;
+  answerKey: string;
+}
+
 export type GetPersonalProductStep_getPersonalProductStep_footer =
   | GetPersonalProductStep_getPersonalProductStep_footer_ContentItemMarkdown
   | GetPersonalProductStep_getPersonalProductStep_footer_ContentItemButton
-  | GetPersonalProductStep_getPersonalProductStep_footer_ContentItemOverlay;
+  | GetPersonalProductStep_getPersonalProductStep_footer_ContentItemOverlay
+  | GetPersonalProductStep_getPersonalProductStep_footer_ContentItemMultiButton;
 
 export interface GetPersonalProductStep_getPersonalProductStep_header_ContentItemMarkdown {
   __typename:
@@ -281,7 +335,13 @@ export interface GetPersonalProductStep_getPersonalProductStep_header_ContentIte
     | "ContentItemImage"
     | "ContentItemOverlay"
     | "ContentItemPersonalProductInfo"
-    | "ContentItemYugiConfirm";
+    | "ContentItemYugiConfirm"
+    | "ContentItemYugiReminder"
+    | "ContentItemDatePicker"
+    | "ContentItemScrollPicker"
+    | "ContentItemMultiSelect"
+    | "ContentItemPersonalProductConfirm"
+    | "ContentItemReviewItem";
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_header_ContentItemHeaderBar_onLeftIconPress {
@@ -328,7 +388,13 @@ export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_Con
     | "ContentItemPad"
     | "ContentItemOverlay"
     | "ContentItemPersonalProductInfo"
-    | "ContentItemYugiConfirm";
+    | "ContentItemYugiConfirm"
+    | "ContentItemYugiReminder"
+    | "ContentItemDatePicker"
+    | "ContentItemScrollPicker"
+    | "ContentItemMultiSelect"
+    | "ContentItemPersonalProductConfirm"
+    | "ContentItemReviewItem";
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemImage_image {

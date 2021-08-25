@@ -33,6 +33,15 @@ export const GQL_FRAGMENT_CONTENT_ITEM_MARKDOWN = gql`
   }
 `;
 
+export const GQL_FRAGMENT_CONTENT_ITEM_RADIO_ICON = gql`
+  fragment ContentItemRadioIcon on ContentItemRadioIcon {
+    icon {
+      ...RemoteImage
+    }
+    textColor
+  }
+`;
+
 export const GQL_FRAGMENT_CONTENT_ITEM_RADIO = gql`
   fragment ContentItemRadio on ContentItemRadio {
     id
@@ -43,10 +52,7 @@ export const GQL_FRAGMENT_CONTENT_ITEM_RADIO = gql`
       label
       value
       renderAsIcon {
-        icon
-        colorRoot
-        colorBack
-        colorFront
+        ...ContentItemRadioIcon
       }
     }
   }
@@ -141,5 +147,16 @@ export const GQL_FRAGMENT_CONTENT_ITEM_BUTTON = gql`
       ...ContentItemStyle
     }
     buttonSize
+  }
+`;
+
+export const GQL_FRAGMENT_CONTENT_ITEM_MULTI_BUTTON = gql`
+  fragment ContentItemMultiButton on ContentItemMultiButton {
+    id
+    buttons {
+      ...ContentItemButton
+    }
+    value
+    answerKey
   }
 `;

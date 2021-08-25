@@ -1,11 +1,11 @@
-import React, { useContext, useMemo } from "react";
+import React, { memo, useContext, useMemo } from "react";
 import { ContentItemButton as GqlButton } from "@graphql/_core/schema/ContentItemButton";
 import { ContentItemButton } from "@components/sdui";
 import { ProductStepContext } from "../product-step.context";
 
 type Props = GqlButton;
 
-export const ProductStepContentItemButton = ({ onPress, ...otherProps }: Props) => {
+export const ProductStepContentItemButton = memo(({ onPress, ...otherProps }: Props) => {
   const { productId, stepId, dynamicData } = useContext(ProductStepContext);
 
   // TODO: sort out typings
@@ -18,4 +18,4 @@ export const ProductStepContentItemButton = ({ onPress, ...otherProps }: Props) 
   );
 
   return <ContentItemButton {...otherProps} onPress={dynamicOnPress} />;
-};
+});

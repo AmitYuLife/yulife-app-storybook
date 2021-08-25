@@ -1,4 +1,4 @@
-import React, { useCallback, useContext } from "react";
+import React, { useCallback, useContext, memo } from "react";
 import { StyleSheet, View } from "react-native";
 import { Style } from "@styles";
 import { Image, TextTemplate } from "@atoms";
@@ -10,7 +10,7 @@ import { ProductStepContext } from "../product-step.context";
 
 type Props = GqlButton;
 
-export const ProductStepProductInfo = (props: Props) => {
+export const ProductStepProductInfo = memo((props: Props) => {
   const { customerProductId, setDynamicData } = useContext(ProductStepContext);
 
   const handleYumojiPartChange = useCallback(
@@ -44,7 +44,7 @@ export const ProductStepProductInfo = (props: Props) => {
       </View>
     </View>
   );
-};
+});
 
 const styles = StyleSheet.create({
   wrapper: {
