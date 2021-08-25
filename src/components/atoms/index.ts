@@ -33,6 +33,7 @@ export { default as DoubleLock } from "./lock/double-lock";
 export { default as Chest } from "./chest/chest";
 export { default as LevelLine } from "./level-line/level-line";
 export { default as YuCoinIcon } from "./yucoin-icon/yucoin.icon";
+export * from "./yucoin-mini/yucoin-mini";
 export { UnauthorisedGradient } from "./unauthorised-gradient/unauthorised-gradient";
 export { default as ArrowRightSvg } from "./arrow-right-svg/arrow-right-svg";
 export { default as SkeletonRow } from "./skeleton-row/skeleton-row";

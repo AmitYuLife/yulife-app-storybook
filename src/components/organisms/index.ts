@@ -6,3 +6,4 @@ export { FIBProgressBar } from "./fib/progress/progress-bar";
 export { default as FeedbackForm } from "./feedback-form/feedback-form";
 export { OnboardingSwiper, OnboardingSwiperData } from "./onboarding-swiper/onboarding-swiper";
 export { default as TapToCopy } from "./tap-to-copy/tap-to-copy";
+export { default as ProgressBarYuCoin } from "./progress-bar/progress-bar-yucoin";
