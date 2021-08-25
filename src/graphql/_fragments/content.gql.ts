@@ -93,6 +93,7 @@ export const GQL_FRAGMENT_CONTENT_ITEM_PROGRESS_BAR = gql`
     id
     maxLength
     currentPosition
+    progressType: type
   }
 `;
 

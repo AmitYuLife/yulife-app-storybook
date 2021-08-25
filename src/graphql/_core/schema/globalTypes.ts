@@ -59,6 +59,11 @@ export enum ContentItemFormTextInputType {
   text = "text",
 }
 
+export enum ContentItemProgressBarType {
+  default = "default",
+  yuCoin = "yuCoin",
+}
+
 export enum ContentItemSDUIAction {
   SDUI_ACTION_NAVIGATE = "SDUI_ACTION_NAVIGATE",
   SDUI_ACTION_NAVIGATE_BACK = "SDUI_ACTION_NAVIGATE_BACK",

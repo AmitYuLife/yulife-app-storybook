@@ -1,14 +1,16 @@
-import React from "react";
+import React, { memo } from "react";
 import Svg, { LinearGradient, Path, Defs, Stop } from "react-native-svg";
 import { ViewStyle } from "react-native";
+import { Style } from "@styles";
 
 interface Props {
+  size?: number;
   style?: ViewStyle;
 }
 
-export const YuCoinSvg = ({ style }: Props) => {
+export const YuCoinMiniSvg = memo(({ style, size = Style.adjust(18) }: Props) => {
   return (
-    <Svg style={style} width={18} height={18} viewBox="0 0 18 18">
+    <Svg style={style} width={size} height={size} viewBox="0 0 18 18">
       <Path d="M9 18A9 9 0 109 0a9 9 0 000 18z" fill="url(#prefix__paint0_linear)" />
       <Path
         d="M9 2.076c2.23 0 4.272.78 5.88 2.082A7.61 7.61 0 009 1.386a7.603 7.603 0 00-5.88 2.775A9.31 9.31 0 019 2.076z"
@@ -48,4 +50,4 @@ export const YuCoinSvg = ({ style }: Props) => {
       </Defs>
     </Svg>
   );
-};
+});

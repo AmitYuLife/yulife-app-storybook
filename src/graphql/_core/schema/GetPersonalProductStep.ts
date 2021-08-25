@@ -3,7 +3,13 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { ContentItemButtonType, ContentItemSDUIAction, ContentItemButtonSize, CoverType } from "./globalTypes";
+import {
+  ContentItemButtonType,
+  ContentItemSDUIAction,
+  ContentItemButtonSize,
+  CoverType,
+  ContentItemProgressBarType,
+} from "./globalTypes";
 
 // ====================================================
 // GraphQL query operation: GetPersonalProductStep
@@ -368,6 +374,7 @@ export interface GetPersonalProductStep_getPersonalProductStep_header_ContentIte
   id: string;
   maxLength: number;
   currentPosition: number;
+  progressType: ContentItemProgressBarType | null;
 }
 
 export type GetPersonalProductStep_getPersonalProductStep_header =

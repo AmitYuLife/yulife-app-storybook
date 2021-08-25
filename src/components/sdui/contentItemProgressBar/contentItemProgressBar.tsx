@@ -1,23 +1,15 @@
 import React, { memo } from "react";
-import { StyleSheet, View, ViewStyle } from "react-native";
+import { ContentItemProgressBarType } from "@graphql/_core/schema/globalTypes";
 import { ContentItemProgressBar as GqlProgressBar } from "@graphql/_core/schema";
 import { ProgressBar } from "@molecules";
-import { Colours } from "@styles";
+import { ProgressBarYuCoin } from "@organisms";
 
 export const ContentItemProgressBar = memo((props: GqlProgressBar) => {
-  const { currentPosition, maxLength } = props;
+  const { currentPosition, maxLength, progressType } = props;
 
-  return (
-    <View style={styles.wrapper}>
-      <ProgressBar currentPosition={currentPosition} maxLength={maxLength} />
-    </View>
-  );
-});
+  if (progressType === ContentItemProgressBarType.yuCoin) {
+    return <ProgressBarYuCoin currentPosition={currentPosition} maxLength={maxLength} yuCoin={maxLength} />;
+  }
 
-const styles = StyleSheet.create({
-  wrapper: {
-    backgroundColor: Colours.neutral.white,
-    justifyContent: "center",
-    alignItems: "center",
-  } as ViewStyle,
+  return <ProgressBar currentPosition={currentPosition} maxLength={maxLength} />;
 });
