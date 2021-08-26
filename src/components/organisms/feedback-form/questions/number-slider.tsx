@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { SliderInput, Heading } from "@atoms";
+import { Image, SliderInput, YugiHeader } from "@atoms";
 import { View } from "react-native";
 import { SliderInputProps } from "@atoms/slider-input/slider-input";
 import { ScrollableLayout } from "@molecules";
-import { YugiSvg } from "../assets/yugi-svg";
 import { styles, QuestionProps } from "./common";
 import { FEEDBACK_FORM_QUESTION } from "@ids";
+import { Style } from "@styles";
 
 interface Props extends QuestionProps {
   slider: SliderInputProps;
@@ -14,8 +14,11 @@ interface Props extends QuestionProps {
 export default ({
   slider,
   questionText,
+  description,
+  icon,
   submitLabel = "submit",
   heading = `Feedback`,
+  image,
   defaultAnswer,
   onSubmitAnswer,
   onDismiss,
@@ -37,26 +40,33 @@ export default ({
       isButtonDisabled={score === -1}
       shouldCenterContent={true}
     >
-      <View style={styles.content}>
-        <Heading
-          style={styles.heading}
-          label={questionText}
-          bold={true}
-          testID={FEEDBACK_FORM_QUESTION(questionText)}
+      {!image ? null : (
+        <Image
+          source={{ uri: image }}
+          width={Style.adjust(320)}
+          height={Style.adjust(320)}
+          theme="light"
+          style={styles.image}
         />
-        <View style={styles.yugiWrapper}>
-          <YugiSvg />
-        </View>
-        <View style={styles.inputWrapper}>
-          <SliderInput
-            score={score}
-            onChange={setScore}
-            leftLabel={slider.leftLabel}
-            rightLabel={slider.rightLabel}
-            maxValue={slider.maxValue}
-            minValue={slider.minValue}
-          />
-        </View>
+      )}
+
+      <View style={styles.yugiHeader}>
+        <YugiHeader
+          testID={FEEDBACK_FORM_QUESTION(questionText)}
+          title={questionText}
+          description={description}
+          iconUrl={icon}
+        />
+      </View>
+      <View style={styles.content}>
+        <SliderInput
+          score={score}
+          onChange={setScore}
+          leftLabel={slider.leftLabel}
+          rightLabel={slider.rightLabel}
+          maxValue={slider.maxValue}
+          minValue={slider.minValue}
+        />
       </View>
     </ScrollableLayout>
   );

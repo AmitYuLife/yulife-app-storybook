@@ -84,6 +84,7 @@ export enum CoverType {
 
 export enum FeedbackFormQuestionType {
   COMMENT = "COMMENT",
+  MULTIPLE_CHOICE = "MULTIPLE_CHOICE",
   NUMBER_SLIDER = "NUMBER_SLIDER",
 }
 

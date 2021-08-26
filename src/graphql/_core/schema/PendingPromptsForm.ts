@@ -21,6 +21,16 @@ export interface PendingPromptsForm_pendingAppStoreReview {
   showAfterSeconds: number;
 }
 
+export interface PendingPromptsForm_pendingFeedbackForm_questions_image {
+  id: string;
+  uri: string | null;
+}
+
+export interface PendingPromptsForm_pendingFeedbackForm_questions_icon {
+  id: string;
+  uri: string | null;
+}
+
 export interface PendingPromptsForm_pendingFeedbackForm_questions_range {
   __typename: "FeedbackFormQuestionRange";
   id: string;
@@ -44,15 +54,25 @@ export interface PendingPromptsForm_pendingFeedbackForm_questions_nextConditions
   regexMatch: string;
 }
 
+export interface PendingPromptsForm_pendingFeedbackForm_questions_options {
+  id: string;
+  label: string;
+  value: string;
+}
+
 export interface PendingPromptsForm_pendingFeedbackForm_questions {
   __typename: "FeedbackFormQuestion";
   key: string;
   questionText: string;
+  description: string | null;
+  image: PendingPromptsForm_pendingFeedbackForm_questions_image | null;
+  icon: PendingPromptsForm_pendingFeedbackForm_questions_icon | null;
   type: FeedbackFormQuestionType;
   isRoot: boolean | null;
   range: PendingPromptsForm_pendingFeedbackForm_questions_range | null;
   labels: PendingPromptsForm_pendingFeedbackForm_questions_labels | null;
   nextConditions: PendingPromptsForm_pendingFeedbackForm_questions_nextConditions[];
+  options: (PendingPromptsForm_pendingFeedbackForm_questions_options | null)[] | null;
 }
 
 export interface PendingPromptsForm_pendingFeedbackForm {
@@ -65,4 +85,8 @@ export interface PendingPromptsForm_pendingFeedbackForm {
 export interface PendingPromptsForm {
   pendingAppStoreReview: PendingPromptsForm_pendingAppStoreReview | null;
   pendingFeedbackForm: PendingPromptsForm_pendingFeedbackForm | null;
+}
+
+export interface PendingPromptsFormVariables {
+  supportedTypes?: (FeedbackFormQuestionType | null)[] | null;
 }

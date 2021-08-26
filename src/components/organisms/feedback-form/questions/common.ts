@@ -7,29 +7,30 @@ export const styles = StyleSheet.create({
     justifyContent: "flex-start",
     position: "relative",
     height: 320,
-    paddingHorizontal: 35,
+    paddingHorizontal: Style.adjust(32),
   },
-  heading: {
-    textAlign: "left",
-    width: "75%",
-    lineHeight: Style.adjust(36),
+  image: {
+    marginBottom: Style.adjust(23),
   },
-  inputWrapper: {
-    marginTop: 40,
+  multipleChoice: {
+    marginBottom: Style.adjust(40),
   },
-  yugiWrapper: {
-    position: "absolute",
-    right: 0,
-    top: 0,
+  yugiHeader: {
+    paddingLeft: Style.adjust(32),
+    width: "100%",
+    marginBottom: Style.adjust(40),
   },
 });
 
 export interface QuestionProps {
   heading?: string;
+  image?: string;
   questionText: string;
+  description?: string;
+  icon?: string;
   submitLabel?: string;
   defaultAnswer?: string;
-  onSubmitAnswer: (answer?: string) => void;
+  onSubmitAnswer: (answer?: string | string[]) => void;
   onDismiss: () => void;
   onBack?: () => void;
 }

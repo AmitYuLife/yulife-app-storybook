@@ -3,8 +3,10 @@ import { Loading } from "@atoms";
 import { FeedbackFormQuestionType, AnswerInput } from "@graphql/_core/schema/globalTypes";
 import NumberSliderQuestion from "./questions/number-slider";
 import CommentQuestion from "./questions/comment";
+import MultipleChoice from "./questions/multiple-choice";
 import { PendingPromptsForm } from "@graphql/_core/schema";
 import useFormState from "./form-state.hook";
+import { SUPPORTED_TYPES } from "@graphql/member";
 
 interface Props {
   form: PendingPromptsForm["pendingFeedbackForm"];
@@ -16,7 +18,6 @@ interface Props {
  * These ensure graceful fail if the client sends
  * back a question type that this client doesn't support yet
  */
-const SUPPORTED_TYPES = [FeedbackFormQuestionType.COMMENT, FeedbackFormQuestionType.NUMBER_SLIDER];
 
 const FeedbackModal = ({ form, submitForm, loading }: Props) => {
   const { defaultAnswer, saveAnswer, question, answers, canGoBack, goBack } = useFormState(
@@ -40,7 +41,10 @@ const FeedbackModal = ({ form, submitForm, loading }: Props) => {
           maxValue: question.range.max,
         }}
         heading={form.title}
+        image={question.image.uri}
         questionText={question.questionText}
+        description={question.description}
+        icon={question.icon.uri}
         submitLabel={question.labels.submit}
         defaultAnswer={defaultAnswer}
         onDismiss={onDismiss}
@@ -54,11 +58,31 @@ const FeedbackModal = ({ form, submitForm, loading }: Props) => {
     return (
       <CommentQuestion
         heading={form.title}
+        image={question.image.uri}
         questionText={question.questionText}
+        description={question.description}
+        icon={question.icon.uri}
         submitLabel={question.labels.submit}
         placeholder={question.labels.placeholder}
         defaultAnswer={defaultAnswer}
         onSubmitAnswer={(value: string) => saveAnswer(question.key, value)}
+        onDismiss={onDismiss}
+        onBack={canGoBack ? goBack : null}
+      />
+    );
+  }
+
+  if (question.type === FeedbackFormQuestionType.MULTIPLE_CHOICE) {
+    return (
+      <MultipleChoice
+        heading={form.title}
+        image={question.image.uri}
+        questionText={question.questionText}
+        description={question.description}
+        icon={question.icon.uri}
+        submitLabel={question.labels.submit}
+        options={question.options}
+        onSubmitAnswer={(value: string[]) => saveAnswer(question.key, value.toString())}
         onDismiss={onDismiss}
         onBack={canGoBack ? goBack : null}
       />
