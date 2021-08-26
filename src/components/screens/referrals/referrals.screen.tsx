@@ -1,7 +1,7 @@
 import React, { memo, useCallback, useEffect, useMemo } from "react";
 import { Share, View, ScrollView, Platform } from "react-native";
 import { useDispatch } from "react-redux";
-import { setReferralsOnboardingCompleted } from "@redux/onboarding/onboarding.actions";
+import { setOnboardingReferralsBadge } from "@redux/onboarding/onboarding.actions";
 import moment from "moment";
 import Logger from "@services/logging/logger";
 import { GetReferralInformation_referralInformation } from "@graphql/_core/schema";
@@ -25,7 +25,7 @@ const ReferralsScreen = ({ info, handleClose, componentId }: IProps) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(setReferralsOnboardingCompleted());
+    dispatch(setOnboardingReferralsBadge(false));
   }, []);
 
   const {

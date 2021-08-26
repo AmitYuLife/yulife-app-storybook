@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Image as RNImage, ImageRequireSource, ScrollView, View } from "react-native";
 import { useSelector } from "react-redux";
 import { getCurrentLevel } from "@redux/levels/levels.selectors";
-import { getReferralsOnboarding } from "@redux/onboarding/onboarding.selectors";
+import { getOnboardingReferralsBadge } from "@redux/onboarding/onboarding.selectors";
 import { useDebouncedQuery } from "@services/hooks/useDebouncedQuery";
 import { GetReferralBackground, GetReferralBackground_getReferralBackground } from "@graphql/_core/schema";
 import { GQL_QUERY_GET_REFERRAL_BACKGROUND } from "@graphql/referrals";
@@ -41,7 +41,7 @@ const MenuScreen = ({ onDebugPress, onInvitePress, onPressClose, links, version,
   });
 
   const currentLevel = useSelector(getCurrentLevel);
-  const { showBadge } = useSelector(getReferralsOnboarding);
+  const showBadge = useSelector(getOnboardingReferralsBadge);
 
   useEffect(() => {
     if (showReferralButton) {

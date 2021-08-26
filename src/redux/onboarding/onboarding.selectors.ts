@@ -34,5 +34,5 @@ export const getShowCommunityGoalsIntro = createSelector(reducer, showCommunityG
 const duelsGoalsIntroSelector = (state: State) => state.showDuelsIntro;
 export const getDuelsGoalsIntro = createSelector(reducer, duelsGoalsIntroSelector);
 
-const referralsOnboardingSelector = (state: State) => state.referralsOnboarding;
-export const getReferralsOnboarding = createSelector(reducer, referralsOnboardingSelector);
+const onboardingReferralsBadgeSelector = (state: State) => state.showReferralsBadge;
+export const getOnboardingReferralsBadge = createSelector(reducer, onboardingReferralsBadgeSelector);

@@ -112,6 +112,12 @@ export enum LoginMethod {
   PASSWORD = "PASSWORD",
 }
 
+export enum MobileOnboardingStepPerformed {
+  personalProductsCoveaDIBArmour = "personalProductsCoveaDIBArmour",
+  referralsPopover = "referralsPopover",
+  yuScreenChest = "yuScreenChest",
+}
+
 export enum OS {
   android = "android",
   ios = "ios",
