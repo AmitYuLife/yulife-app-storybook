@@ -1,48 +1,66 @@
 import React, { FC, useState, useEffect, memo, useCallback } from "react";
 import { View, Image } from "react-native";
-import { useSelector, useDispatch } from "react-redux";
-import { getReferralsOnboarding } from "@redux/onboarding/onboarding.selectors";
-import { setReferralsOnboardingPopoverShown } from "@redux/onboarding/onboarding.actions";
+import { useDispatch, useSelector } from "react-redux";
+import { setOnboardingReferralsBadge } from "@redux/onboarding/onboarding.actions";
+import { useMutation } from "@apollo/react-hooks";
 import {
   GetReferralOnboardingPopover,
   GetReferralOnboardingPopover_getReferralOnboardingPopover,
 } from "@graphql/_core/schema";
 import { GQL_QUERY_GET_REFERRAL_ONBOARDING_POPOVER } from "@graphql/referrals";
+import { GQL_MUTATION_PERFORM_MOBILE_ONBOARDING_STEP } from "@graphql/onboardingSteps/performMobileOnboardingStep.gql";
+import {
+  PerformMobileOnboardingStep,
+  PerformMobileOnboardingStepVariables,
+} from "@graphql/_core/schema/PerformMobileOnboardingStep";
 import { useDebouncedQuery } from "@services/hooks/useDebouncedQuery";
 import Logger from "@services/logging/logger";
-import { Loading } from "@atoms";
 import { Popover } from "@molecules";
 import Markdown from "@molecules/markdown/markdown";
 import { TOP_BAR, Style } from "@styles";
 import styles, { markdownStyles } from "./referrals-popover.styles";
+import { getUserSessionCount } from "@redux/user/user.selectors";
 
 interface IProps {
   onLeftMenuPress: () => void;
 }
 
 const ReferralsPopover: FC<IProps> = ({ onLeftMenuPress }) => {
-  const [getReferralOnboardingPopover, { data, loading, error }] = useDebouncedQuery<
+  const [getReferralOnboardingPopover, { data, error }] = useDebouncedQuery<
     GetReferralOnboardingPopover,
     GetReferralOnboardingPopover_getReferralOnboardingPopover
   >(GQL_QUERY_GET_REFERRAL_ONBOARDING_POPOVER, {
-    fetchPolicy: "cache-and-network",
+    fetchPolicy: "network-only",
   });
-  const { showPopover } = useSelector(getReferralsOnboarding);
+  const [performOnboardingStep] = useMutation<PerformMobileOnboardingStep, PerformMobileOnboardingStepVariables>(
+    GQL_MUTATION_PERFORM_MOBILE_ONBOARDING_STEP
+  );
+
   const [popoverVisible, setPopoverVisible] = useState(false);
   const dispatch = useDispatch();
+  const sessionCount = useSelector(getUserSessionCount);
 
-  useEffect(() => {
-    if (showPopover) {
-      getReferralOnboardingPopover();
+  const startOnboarding = useCallback(async () => {
+    try {
       setPopoverVisible(true);
+      dispatch(setOnboardingReferralsBadge(true));
+      await performOnboardingStep({ variables: { step: data.getReferralOnboardingPopover.id } });
+    } catch (error) {
+      Logger.error(error, { file: "referrals-popover" });
     }
-  }, [showPopover]);
+  }, [data]);
 
   useEffect(() => {
-    if (!loading && data?.getReferralOnboardingPopover) {
-      dispatch(setReferralsOnboardingPopoverShown());
+    if (sessionCount > 1) {
+      getReferralOnboardingPopover();
     }
-  }, [loading, data]);
+  }, [sessionCount]);
+
+  useEffect(() => {
+    if (data?.getReferralOnboardingPopover?.showPopover) {
+      startOnboarding();
+    }
+  }, [data]);
 
   useEffect(() => {
     if (error) {
@@ -60,10 +78,6 @@ const ReferralsPopover: FC<IProps> = ({ onLeftMenuPress }) => {
   }
 
   const PopoverContent = () => {
-    if (loading || !data?.getReferralOnboardingPopover) {
-      return <Loading />;
-    }
-
     const {
       onboardingMessage,
       image: { uri },

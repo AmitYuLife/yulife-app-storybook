@@ -79,6 +79,7 @@ export * from "./LoginUser";
 export * from "./MedicalPractices";
 export * from "./Milestone";
 export * from "./PendingPromptsForm";
+export * from "./PerformMobileOnboardingStep";
 export * from "./PersonalProduct";
 export * from "./ProductOptionStyle";
 export * from "./ProductOptions";

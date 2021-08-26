@@ -28,6 +28,7 @@ import {
   UPDATE_ACTIVE_LEADERBOARD_ID,
   LOGOUT_SUCCESS,
 } from "./user.actions";
+import { AUTHENTICATED } from "@redux/app/app.actions";
 import { reduceUserFeatures } from "./user.helpers";
 import moment from "moment";
 import { features } from "./features.data";
@@ -160,6 +161,11 @@ export const userReducer = (state: IUserStore = getInitialState(), action: SyncA
     case LOGOUT_SUCCESS:
       return getInitialState(state.sessionCount);
 
+    case AUTHENTICATED:
+      return {
+        ...state,
+        sessionCount: state.sessionCount + 1,
+      };
     default:
       return state;
   }
@@ -236,7 +242,6 @@ const getUserSuccess = (
 
   return {
     ...state,
-    sessionCount: state.sessionCount + 1,
     id,
     archived: false,
     firstName,

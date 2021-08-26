@@ -3,6 +3,8 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
+import { MobileOnboardingStepPerformed } from "./globalTypes";
+
 // ====================================================
 // GraphQL query operation: GetReferralOnboardingPopover
 // ====================================================
@@ -13,8 +15,10 @@ export interface GetReferralOnboardingPopover_getReferralOnboardingPopover_image
 }
 
 export interface GetReferralOnboardingPopover_getReferralOnboardingPopover {
-  onboardingMessage: string;
-  image: GetReferralOnboardingPopover_getReferralOnboardingPopover_image;
+  id: MobileOnboardingStepPerformed;
+  showPopover: boolean;
+  onboardingMessage: string | null;
+  image: GetReferralOnboardingPopover_getReferralOnboardingPopover_image | null;
 }
 
 export interface GetReferralOnboardingPopover {
