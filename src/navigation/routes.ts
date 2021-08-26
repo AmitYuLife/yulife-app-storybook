@@ -317,4 +317,9 @@ export default [
     name: MODALS.listPicker,
     component: require("../components/modals/list-picker-modal/list-picker-modal").default,
   },
+  {
+    name: MODALS.personalProductStepContinue,
+    component: require("../components/modals/personal-product-step-continue/personal-product-step-continue.modal")
+      .default,
+  },
 ];

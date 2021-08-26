@@ -52,6 +52,7 @@ const styles = StyleSheet.create({
 
 function getTag(status: string, earnRate: number) {
   switch (status) {
+    case YuProductStatus.inProgress:
     case YuProductStatus.unlockable:
       return <SvgUnlockable />;
     case YuProductStatus.locked:
