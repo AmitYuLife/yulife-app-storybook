@@ -47,6 +47,7 @@ const ReferralsScreen = ({ info, handleClose, componentId }: IProps) => {
   );
 
   const onShare = useCallback(async () => {
+    Logger.logMixpanelEvent("referral_link_shared");
     try {
       await Share.share({
         url: referralLink,
