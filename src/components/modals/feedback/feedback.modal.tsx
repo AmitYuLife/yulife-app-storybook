@@ -1,7 +1,12 @@
 import React, { useCallback } from "react";
 import { Navigation } from "react-native-navigation";
 import { MODALS } from "@navigation/constants";
-import { GQL_SUBMIT_FEEDBACK_FORM, SubmitFeedbackFormMutationTuple, GQL_PENDING_PROMPTS_FORM } from "@graphql/member";
+import {
+  GQL_SUBMIT_FEEDBACK_FORM,
+  SubmitFeedbackFormMutationTuple,
+  GQL_PENDING_PROMPTS_FORM,
+  SUPPORTED_TYPES,
+} from "@graphql/member";
 import { useMutation, useQuery } from "@apollo/react-hooks";
 import { PendingPromptsForm } from "@graphql/_core/schema";
 import { AnswerInput } from "@graphql/_core/schema/globalTypes";
@@ -13,6 +18,9 @@ const FeedbackModal = () => {
   );
   const { data, loading: queryLoading } = useQuery<PendingPromptsForm>(GQL_PENDING_PROMPTS_FORM, {
     fetchPolicy: "cache-only",
+    variables: {
+      supportedTypes: SUPPORTED_TYPES,
+    },
   });
 
   const submitForm = useCallback(

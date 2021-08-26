@@ -47,7 +47,9 @@ const FibDocumentsScreen = (props: IProps) => {
       <GenericHeadingPad />
       <ScrollView>
         <View style={styles.container}>
-          <YugiHeader title="Your policy docs, in one easy place." icon={<YugiDocumentsIcon />} />
+          <View style={styles.header}>
+            <YugiHeader title="Your policy docs, in one easy place." icon={<YugiDocumentsIcon />} />
+          </View>
           <View style={styles.documents}>
             <Documents title="" items={documents} />
           </View>
@@ -69,6 +71,9 @@ const styles = StyleSheet.create({
   documents: {
     marginTop: Style.adjust(32),
     marginHorizontal: Style.adjust(24),
+  },
+  header: {
+    paddingLeft: Style.adjust(24),
   },
 });
 

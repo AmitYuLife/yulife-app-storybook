@@ -1,5 +1,5 @@
 import React from "react";
-import { View, ScrollView, StyleSheet, ViewStyle, TextStyle } from "react-native";
+import { View, ScrollView, StyleSheet, ViewStyle } from "react-native";
 import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
 import { YugiHeader } from "@atoms";
 import fibFaqItems from "@containers/products/fib/data/faq-fib-data";
@@ -34,7 +34,9 @@ const FibFaqListContainer = (props: Props) => {
     <View style={styles.wrapper}>
       <GenericHeadingPad />
       <ScrollView showsVerticalScrollIndicator={false}>
-        <YugiHeader title="Frequently Asked Questions." icon={<YugiFAQIcon />} />
+        <View style={styles.header}>
+          <YugiHeader title="Frequently Asked Questions." icon={<YugiFAQIcon />} />
+        </View>
         <FibFaqsList faqs={faqs} />
       </ScrollView>
       <GenericHeadingAbsolute logo="yulife" onLeftIconPress={navigation.pop} />
@@ -56,10 +58,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderColor: Colours.neutral.n100,
   } as ViewStyle,
-  heading: {
-    fontSize: Style.adjust(28),
-    lineHeight: Style.adjust(32),
-    letterSpacing: 1,
-    color: Colours.neutral.n700,
-  } as TextStyle,
+  header: {
+    paddingLeft: Style.adjust(24),
+  },
 });

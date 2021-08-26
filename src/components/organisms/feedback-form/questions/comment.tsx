@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { Heading } from "@atoms";
+import { Image, YugiHeader } from "@atoms";
 import { View, Keyboard } from "react-native";
 import { ScrollableLayout } from "@molecules";
-import { YugiSvg } from "../assets/yugi-svg";
 import { MultilineTextInput } from "@atoms/multiline-text-input/multiline-text-input";
 import { styles, QuestionProps } from "./common";
 import { FEEDBACK_FORM_QUESTION, FEEDBACK_TEXT_INPUT } from "@ids";
+import { Style } from "@styles";
 
 interface Props extends QuestionProps {
   placeholder?: string;
@@ -14,7 +14,10 @@ interface Props extends QuestionProps {
 export default (props: Props) => {
   const {
     heading,
+    image,
     questionText,
+    description,
+    icon,
     submitLabel,
     placeholder,
     defaultAnswer = "",
@@ -40,17 +43,25 @@ export default (props: Props) => {
       }}
       shouldCenterContent={true}
     >
-      <View style={styles.content}>
-        <Heading
-          style={styles.heading}
-          label={questionText}
-          bold={true}
-          testID={FEEDBACK_FORM_QUESTION(questionText)}
+      {!image ? null : (
+        <Image
+          source={{ uri: image }}
+          width={Style.adjust(320)}
+          height={Style.adjust(320)}
+          theme="light"
+          style={styles.image}
         />
-        <View style={styles.yugiWrapper}>
-          <YugiSvg />
-        </View>
-        <View style={styles.inputWrapper} testID={FEEDBACK_TEXT_INPUT}>
+      )}
+      <View style={styles.yugiHeader}>
+        <YugiHeader
+          testID={FEEDBACK_FORM_QUESTION(questionText)}
+          title={questionText}
+          description={description}
+          iconUrl={icon}
+        />
+      </View>
+      <View style={styles.content}>
+        <View testID={FEEDBACK_TEXT_INPUT}>
           <MultilineTextInput value={feedback} onChange={setFeedback} placeholder={placeholder} />
         </View>
       </View>

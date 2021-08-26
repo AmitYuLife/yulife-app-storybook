@@ -60,6 +60,7 @@ const styles = StyleSheet.create({
   } as ViewStyle,
   header: {
     paddingTop: Style.adjust(32),
+    paddingLeft: Style.adjust(24),
   },
   wrapper: {
     paddingLeft: Style.adjust(24),
