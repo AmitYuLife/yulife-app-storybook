@@ -1,6 +1,6 @@
-import { YuProductStatus } from "@graphql/_core/schema/globalTypes";
-import { ROUTES } from "@navigation/constants";
 import { Navigation } from "react-native-navigation";
+import { YuProductStatus } from "@graphql/_core/schema/globalTypes";
+import { MODALS, ROUTES } from "@navigation/constants";
 
 interface INavigateToProduct {
   status: YuProductStatus;
@@ -10,7 +10,19 @@ interface INavigateToProduct {
 export const navigateToProduct = (product: INavigateToProduct) => {
   const { productId, status } = product;
 
-  const nextRouteId = getNextRoute(status);
+  const { nextRouteId, nextModalId } = getNextRoute(status);
+
+  if (nextModalId) {
+    return Navigation.showModal({
+      component: {
+        id: nextModalId,
+        name: nextModalId,
+        passProps: {
+          productId,
+        },
+      },
+    });
+  }
 
   return Navigation.push(ROUTES.yuScreen, {
     component: {
@@ -24,13 +36,17 @@ export const navigateToProduct = (product: INavigateToProduct) => {
 };
 
 const getNextRoute = (status: YuProductStatus) => {
+  if (status === YuProductStatus.inProgress) {
+    return { nextModalId: MODALS.personalProductStepContinue };
+  }
+
   if (status === YuProductStatus.unlockable) {
-    return ROUTES.productStep;
+    return { nextRouteId: ROUTES.productStep };
   }
 
   if (status === YuProductStatus.active) {
-    return ROUTES.productDetails;
+    return { nextRouteId: ROUTES.productDetails };
   }
 
-  return ROUTES.yuProductSurvey;
+  return { nextRouteId: ROUTES.yuProductSurvey };
 };

@@ -200,6 +200,7 @@ export enum YuProductId {
 
 export enum YuProductStatus {
   active = "active",
+  inProgress = "inProgress",
   locked = "locked",
   unlockable = "unlockable",
 }

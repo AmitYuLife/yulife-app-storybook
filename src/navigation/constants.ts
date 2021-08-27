@@ -103,6 +103,7 @@ export const MODALS = {
   defaultBeneficiaries: "yulife.modals.DefaultBeneficiaries",
   appReview: "yulife.modals.AppReview",
   listPicker: "yulife.modals.listPicker",
+  personalProductStepContinue: "yulife.product.ContinueJourney",
 };
 
 export const bottomTabs: OptionsBottomTabs = {
