@@ -155,7 +155,7 @@ export default {
   },
   products: {
     fib: {
-      common: "#34B687",
+      common: "#36CB95",
       commonShadow: "#00CC87",
       commonGradientDark: "#06AE75",
       commonGradientLight: "#0CF0A3",
@@ -272,6 +272,7 @@ export default {
   },
   metallic: {
     m100: "#EFF0FA",
+    m200: "#DEDEF0",
     m300: "#B9B9CC",
     m400: "#AAAABF",
     m500: "#87879F",

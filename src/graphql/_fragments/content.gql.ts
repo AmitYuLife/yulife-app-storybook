@@ -69,6 +69,10 @@ export const GQL_FRAGMENT_CONTENT_ITEM_INFO_CARD = gql`
     styles {
       ...ContentItemStyle
     }
+    hyperlink {
+      title
+      url
+    }
   }
 `;
 
@@ -123,6 +127,58 @@ export const GQL_FRAGMENT_CONTENT_ITEM_IMAGE = gql`
     }
     styles {
       ...ContentItemStyle
+    }
+  }
+`;
+
+export const GQL_FRAGMENT_CONTENT_ITEM_PACKAGE_CARD_SLOT_INFO_ITEM_URL = gql`
+  fragment ContentItemPackageCardSlotInfoItemUrl on ContentItemPackageCardSlotInfoItemUrl {
+    url {
+      ...RemoteImage
+    }
+    world
+  }
+`;
+
+export const GQL_FRAGMENT_CONTENT_ITEM_PACKAGE_CARD_SLOT_INFO = gql`
+  fragment ContentItemPackageCardSlotInfo on ContentItemPackageCardSlotInfo {
+    status
+    itemUrl {
+      ...ContentItemPackageCardSlotInfoItemUrl
+    }
+    backgroundUrl {
+      ...RemoteImage
+    }
+    name
+  }
+`;
+
+export const GQL_FRAGMENT_CONTENT_ITEM_PACKAGE_CARDS = gql`
+  fragment ContentItemPackageCards on ContentItemPackageCards {
+    id
+    packageCards {
+      id
+      coverType
+      bonusEarnRate
+      header {
+        backgroundUrl {
+          ...RemoteImage
+        }
+        slotInfo {
+          ...ContentItemPackageCardSlotInfo
+        }
+      }
+      powers {
+        leftIcon {
+          ...RemoteImage
+        }
+        rightIcon {
+          ...RemoteImage
+        }
+        title
+        description
+        isLocked
+      }
     }
   }
 `;

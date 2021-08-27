@@ -16,6 +16,7 @@ export { default as CheckBox } from "./check-box/check-box";
 export { default as CoinConfetti } from "./coin-confetti/coin-confetti";
 export { default as Heading } from "./heading/heading";
 export { default as Loading } from "./loading/loading";
+export { default as Logo } from "./logo";
 export { default as Pad } from "./pad/pad";
 export { default as PageIndicator } from "./page-indicator/page-indicator";
 export { default as AnimatedPlusPoints } from "./plus-points/animated-plus-points";

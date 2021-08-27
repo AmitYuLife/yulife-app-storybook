@@ -15,8 +15,8 @@ export const ContentItemButton = memo((props: Props) => {
 
   return (
     <Component
-      iconUri={icon.uri}
-      rightIconUri={rightIcon.uri}
+      iconUri={icon?.uri}
+      rightIconUri={rightIcon?.uri}
       wrapperStyle={mapServerStyles(styles)}
       label={label}
       size={buttonSize}

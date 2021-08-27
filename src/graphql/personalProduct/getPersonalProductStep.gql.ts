@@ -14,6 +14,9 @@ import {
   GQL_FRAGMENT_CONTENT_ITEM_IMAGE,
   GQL_FRAGMENT_CONTENT_ITEM_RADIO_ICON,
   GQL_FRAGMENT_CONTENT_ITEM_MULTI_BUTTON,
+  GQL_FRAGMENT_CONTENT_ITEM_PACKAGE_CARDS,
+  GQL_FRAGMENT_CONTENT_ITEM_PACKAGE_CARD_SLOT_INFO_ITEM_URL,
+  GQL_FRAGMENT_CONTENT_ITEM_PACKAGE_CARD_SLOT_INFO,
 } from "../_fragments/content.gql";
 
 export const GQL_QUERY_GET_PERSONAL_PRODUCT_STEP = gql`
@@ -31,6 +34,9 @@ export const GQL_QUERY_GET_PERSONAL_PRODUCT_STEP = gql`
   ${GQL_FRAGMENT_CONTENT_ITEM_PROGRESS_BAR}
   ${GQL_FRAGMENT_CONTENT_ITEM_OVERLAY}
   ${GQL_FRAGMENT_CONTENT_ITEM_IMAGE}
+  ${GQL_FRAGMENT_CONTENT_ITEM_PACKAGE_CARD_SLOT_INFO_ITEM_URL}
+  ${GQL_FRAGMENT_CONTENT_ITEM_PACKAGE_CARD_SLOT_INFO}
+  ${GQL_FRAGMENT_CONTENT_ITEM_PACKAGE_CARDS}
 
   query GetPersonalProductStep($productId: String!) {
     getPersonalProductStep(productId: $productId) {
@@ -59,6 +65,9 @@ export const GQL_QUERY_GET_PERSONAL_PRODUCT_STEP = gql`
         }
         ... on ContentItemInfoCard {
           ...ContentItemInfoCard
+        }
+        ... on ContentItemPackageCards {
+          ...ContentItemPackageCards
         }
         ... on ContentItemYugiConfirm {
           id

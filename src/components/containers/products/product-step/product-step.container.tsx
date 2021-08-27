@@ -1,12 +1,11 @@
-import React, { memo, useCallback, useState } from "react";
-import { LayoutChangeEvent, StyleSheet, View, ViewStyle } from "react-native";
+import React, { memo } from "react";
+import { StyleSheet, View, ViewStyle } from "react-native";
 import { useQuery } from "@apollo/react-hooks";
 import { GQL_QUERY_GET_PERSONAL_PRODUCT_STEP } from "@graphql/personalProduct/getPersonalProductStep.gql";
 import { GetPersonalProductStep, GetPersonalProductStepVariables } from "@graphql/_core/schema";
 import { Loading } from "@atoms";
 import { mapServerStyles } from "@components/sdui/_utils/mapServerStyles";
-import { Body, Header, Footer, Absolute } from "./sections";
-import { ProductStepContext } from "./product-step.context";
+import { ProductStepScreen } from "./product-step.screen";
 
 type Props = {
   productId: string;
@@ -14,13 +13,6 @@ type Props = {
 
 const ProductStepContainer = (props: Props) => {
   const { productId } = props;
-
-  const [dynamicData, setDynamicData] = useState({});
-  const [headerHeight, setHeaderHeight] = useState(0);
-
-  const handleHeaderLayout = useCallback((event: LayoutChangeEvent) => {
-    setHeaderHeight(event.nativeEvent.layout.height);
-  }, []);
 
   const { data, loading } = useQuery<GetPersonalProductStep, GetPersonalProductStepVariables>(
     GQL_QUERY_GET_PERSONAL_PRODUCT_STEP,
@@ -50,14 +42,16 @@ const ProductStepContainer = (props: Props) => {
   const style = mapServerStyles(containerStyles);
 
   return (
-    <ProductStepContext.Provider value={{ productId, customerProductId, stepId, dynamicData, setDynamicData }}>
-      <View style={[styles.wrapper, style]}>
-        <Body headerHeight={headerHeight} body={body} />
-        <Header onLayout={handleHeaderLayout} header={header} />
-        <Footer footer={footer} />
-        <Absolute headerHeight={headerHeight} absolute={absolute} />
-      </View>
-    </ProductStepContext.Provider>
+    <ProductStepScreen
+      body={body}
+      header={header}
+      footer={footer}
+      absolute={absolute}
+      stepId={stepId}
+      style={style}
+      customerProductId={customerProductId}
+      productId={productId}
+    />
   );
 };
 

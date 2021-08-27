@@ -15,7 +15,7 @@ describe("PackageType", () => {
     const { queryByText, queryByTestId } = renderComponent({ type });
     const view = queryByTestId(PACKAGE_TYPES);
     expect(queryByText(toCapitalLetter(type))).toBeTruthy();
-    expect(view.props.style[1].backgroundColor).toBe("#34B687");
+    expect(view.props.style[1].backgroundColor).toBe("#36CB95");
   });
 
   it("should render PackageType rare ", () => {

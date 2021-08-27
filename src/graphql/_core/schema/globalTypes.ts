@@ -114,7 +114,7 @@ export enum LoginMethod {
 }
 
 export enum MobileOnboardingStepPerformed {
-  personalProductsCoveaDIBArmour = "personalProductsCoveaDIBArmour",
+  personalProductsCoveaFIBArmour = "personalProductsCoveaFIBArmour",
   referralsPopover = "referralsPopover",
   yuScreenChest = "yuScreenChest",
 }

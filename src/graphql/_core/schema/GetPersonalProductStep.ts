@@ -8,6 +8,8 @@ import {
   ContentItemSDUIAction,
   ContentItemButtonSize,
   CoverType,
+  YuProductStatus,
+  YuWorld,
   ContentItemProgressBarType,
 } from "./globalTypes";
 
@@ -137,12 +139,84 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemI
   value: string;
 }
 
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemInfoCard_hyperlink {
+  title: string;
+  url: string;
+}
+
 export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemInfoCard {
   __typename: "ContentItemInfoCard";
   id: string;
   image: GetPersonalProductStep_getPersonalProductStep_body_ContentItemInfoCard_image | null;
   markdown: string;
   styles: GetPersonalProductStep_getPersonalProductStep_body_ContentItemInfoCard_styles[] | null;
+  hyperlink: GetPersonalProductStep_getPersonalProductStep_body_ContentItemInfoCard_hyperlink | null;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemPackageCards_packageCards_header_backgroundUrl {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemPackageCards_packageCards_header_slotInfo_itemUrl_url {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemPackageCards_packageCards_header_slotInfo_itemUrl {
+  url: GetPersonalProductStep_getPersonalProductStep_body_ContentItemPackageCards_packageCards_header_slotInfo_itemUrl_url;
+  world: YuWorld;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemPackageCards_packageCards_header_slotInfo_backgroundUrl {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemPackageCards_packageCards_header_slotInfo {
+  status: YuProductStatus;
+  itemUrl:
+    | GetPersonalProductStep_getPersonalProductStep_body_ContentItemPackageCards_packageCards_header_slotInfo_itemUrl[]
+    | null;
+  backgroundUrl: GetPersonalProductStep_getPersonalProductStep_body_ContentItemPackageCards_packageCards_header_slotInfo_backgroundUrl;
+  name: string;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemPackageCards_packageCards_header {
+  backgroundUrl: GetPersonalProductStep_getPersonalProductStep_body_ContentItemPackageCards_packageCards_header_backgroundUrl;
+  slotInfo: GetPersonalProductStep_getPersonalProductStep_body_ContentItemPackageCards_packageCards_header_slotInfo;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemPackageCards_packageCards_powers_leftIcon {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemPackageCards_packageCards_powers_rightIcon {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemPackageCards_packageCards_powers {
+  leftIcon: GetPersonalProductStep_getPersonalProductStep_body_ContentItemPackageCards_packageCards_powers_leftIcon;
+  rightIcon: GetPersonalProductStep_getPersonalProductStep_body_ContentItemPackageCards_packageCards_powers_rightIcon | null;
+  title: string;
+  description: string;
+  isLocked: boolean | null;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemPackageCards_packageCards {
+  id: string;
+  coverType: CoverType;
+  bonusEarnRate: number;
+  header: GetPersonalProductStep_getPersonalProductStep_body_ContentItemPackageCards_packageCards_header;
+  powers: GetPersonalProductStep_getPersonalProductStep_body_ContentItemPackageCards_packageCards_powers[] | null;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemPackageCards {
+  __typename: "ContentItemPackageCards";
+  id: string;
+  packageCards: GetPersonalProductStep_getPersonalProductStep_body_ContentItemPackageCards_packageCards[] | null;
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemYugiConfirm_content {
@@ -191,6 +265,7 @@ export type GetPersonalProductStep_getPersonalProductStep_body =
   | GetPersonalProductStep_getPersonalProductStep_body_ContentItemRadio
   | GetPersonalProductStep_getPersonalProductStep_body_ContentItemButton
   | GetPersonalProductStep_getPersonalProductStep_body_ContentItemInfoCard
+  | GetPersonalProductStep_getPersonalProductStep_body_ContentItemPackageCards
   | GetPersonalProductStep_getPersonalProductStep_body_ContentItemYugiConfirm
   | GetPersonalProductStep_getPersonalProductStep_body_ContentItemPersonalProductInfo;
 
@@ -211,7 +286,8 @@ export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentIte
     | "ContentItemScrollPicker"
     | "ContentItemMultiSelect"
     | "ContentItemPersonalProductConfirm"
-    | "ContentItemReviewItem";
+    | "ContentItemReviewItem"
+    | "ContentItemPackageCards";
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentItemButton_onPress {
@@ -347,7 +423,8 @@ export interface GetPersonalProductStep_getPersonalProductStep_header_ContentIte
     | "ContentItemScrollPicker"
     | "ContentItemMultiSelect"
     | "ContentItemPersonalProductConfirm"
-    | "ContentItemReviewItem";
+    | "ContentItemReviewItem"
+    | "ContentItemPackageCards";
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_header_ContentItemHeaderBar_onLeftIconPress {
@@ -401,7 +478,8 @@ export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_Con
     | "ContentItemScrollPicker"
     | "ContentItemMultiSelect"
     | "ContentItemPersonalProductConfirm"
-    | "ContentItemReviewItem";
+    | "ContentItemReviewItem"
+    | "ContentItemPackageCards";
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemImage_image {
