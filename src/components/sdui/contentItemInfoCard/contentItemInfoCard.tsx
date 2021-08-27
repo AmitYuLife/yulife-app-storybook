@@ -9,11 +9,15 @@ import { Style } from "@styles";
 const SIZE = Style.adjust(64);
 
 export const ContentItemInfoCard = memo((props: GqlInfoCard) => {
-  const { image, markdown, styles = [] } = props;
+  const { image, markdown, hyperlink, styles = [] } = props;
 
   return (
     <View style={mapServerStyles(styles)}>
-      <InfoCard icon={<Image height={SIZE} width={SIZE} source={image} />} description={markdown} />
+      <InfoCard
+        icon={<Image height={SIZE} width={SIZE} source={image} />}
+        description={markdown}
+        hyperlink={hyperlink}
+      />
     </View>
   );
 });

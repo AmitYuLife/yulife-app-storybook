@@ -17,9 +17,15 @@ export interface ContentItemInfoCard_styles {
   value: string;
 }
 
+export interface ContentItemInfoCard_hyperlink {
+  title: string;
+  url: string;
+}
+
 export interface ContentItemInfoCard {
   id: string;
   image: ContentItemInfoCard_image | null;
   markdown: string;
   styles: ContentItemInfoCard_styles[] | null;
+  hyperlink: ContentItemInfoCard_hyperlink | null;
 }

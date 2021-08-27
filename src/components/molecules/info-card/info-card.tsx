@@ -1,8 +1,9 @@
-import React, { memo } from "react";
+import React, { ComponentProps, memo } from "react";
 import { StyleSheet, View, ViewStyle } from "react-native";
 import { Colours, Style } from "@styles";
 import { TextTemplate } from "@atoms/text/text-template";
 import Markdown from "@components/molecules/markdown/markdown";
+import { Hyperlink } from "@atoms";
 
 interface IProps {
   icon: React.ReactNode;
@@ -10,9 +11,10 @@ interface IProps {
   title?: string;
   description?: string;
   customBody?: React.ReactNode;
+  hyperlink?: ComponentProps<typeof Hyperlink>;
 }
 
-const InfoCard = memo(({ icon, title, description, customBody, iconAlign = "center" }: IProps) => {
+const InfoCard = memo(({ icon, title, description, customBody, iconAlign = "center", hyperlink }: IProps) => {
   return (
     <View style={styles.wrapper}>
       <View style={[styles.image, { justifyContent: iconAlign }]}>{icon}</View>
@@ -27,12 +29,19 @@ const InfoCard = memo(({ icon, title, description, customBody, iconAlign = "cent
               </View>
             )}
             {!description ? null : <Markdown text={description} />}
+            {!hyperlink ? null : <HyperlinkInstance {...hyperlink} />}
           </>
         )}
       </View>
     </View>
   );
 });
+
+const HyperlinkInstance = ({ title, url }: IProps["hyperlink"]) => (
+  <View style={styles.hyperlinkWrapper}>
+    <Hyperlink title={title} url={url} />
+  </View>
+);
 
 const styles = StyleSheet.create({
   flex: {
@@ -53,6 +62,9 @@ const styles = StyleSheet.create({
   title: {
     marginBottom: 8,
   } as ViewStyle,
+  hyperlinkWrapper: {
+    marginTop: Style.adjust(28),
+  },
 });
 
 export default InfoCard;
