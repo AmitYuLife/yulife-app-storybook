@@ -40,15 +40,17 @@ const ReferralsPopover: FC<IProps> = ({ onLeftMenuPress }) => {
   const dispatch = useDispatch();
   const sessionCount = useSelector(getUserSessionCount);
 
+  const { showPopover, id, onboardingMessage, image } = data?.getReferralOnboardingPopover || {};
+
   const startOnboarding = useCallback(async () => {
     try {
       setPopoverVisible(true);
       dispatch(setOnboardingReferralsBadge(true));
-      await performOnboardingStep({ variables: { step: data.getReferralOnboardingPopover.id } });
+      await performOnboardingStep({ variables: { step: id } });
     } catch (error) {
       Logger.error(error, { file: "referrals-popover" });
     }
-  }, [data]);
+  }, [id]);
 
   useEffect(() => {
     if (sessionCount > 1) {
@@ -57,10 +59,10 @@ const ReferralsPopover: FC<IProps> = ({ onLeftMenuPress }) => {
   }, [sessionCount]);
 
   useEffect(() => {
-    if (data?.getReferralOnboardingPopover?.showPopover) {
+    if (showPopover) {
       startOnboarding();
     }
-  }, [data]);
+  }, [showPopover]);
 
   useEffect(() => {
     if (error) {
@@ -77,25 +79,14 @@ const ReferralsPopover: FC<IProps> = ({ onLeftMenuPress }) => {
     return null;
   }
 
-  const PopoverContent = () => {
-    const {
-      onboardingMessage,
-      image: { uri },
-    } = data.getReferralOnboardingPopover;
-
-    return (
+  return (
+    <Popover {...POPOVER_TARGET} onTouchTarget={onLeftMenuPress} onClose={onPopoverClose}>
       <View style={styles.popover}>
         <View style={styles.popoverTextWrapper}>
           <Markdown text={onboardingMessage} markdownStyles={markdownStyles} />
         </View>
-        <Image style={styles.popoverImage} resizeMode="contain" source={{ uri }} />
+        <Image style={styles.popoverImage} resizeMode="contain" source={image} />
       </View>
-    );
-  };
-
-  return (
-    <Popover {...POPOVER_TARGET} onTouchTarget={onLeftMenuPress} onClose={onPopoverClose}>
-      <PopoverContent />
     </Popover>
   );
 };
