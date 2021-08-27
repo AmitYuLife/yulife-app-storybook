@@ -1,5 +1,5 @@
 import NetInfo from "@react-native-community/netinfo";
-import { AppState, Linking } from "react-native";
+import { AppState, Linking, Platform } from "react-native";
 import { Navigation } from "react-native-navigation";
 import { eventChannel } from "redux-saga";
 
@@ -25,9 +25,23 @@ export function appComponentDidAppearChannel() {
       emitter(componentId)
     );
 
+    const commandListener = Platform.select({
+      ios: null,
+      android: Navigation.events().registerCommandListener((name, params) => {
+        const { componentId } = params;
+        if (componentId && name === "mergeOptions") {
+          emitter(componentId);
+        }
+      }),
+    });
+
     return () => {
       if (screenEventListener) {
         screenEventListener.remove();
+      }
+
+      if (commandListener) {
+        commandListener.remove();
       }
     };
   });
