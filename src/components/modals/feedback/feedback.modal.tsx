@@ -11,6 +11,8 @@ import { useMutation, useQuery } from "@apollo/react-hooks";
 import { PendingPromptsForm } from "@graphql/_core/schema";
 import { AnswerInput } from "@graphql/_core/schema/globalTypes";
 import { FeedbackForm } from "@organisms";
+import { useDispatch } from "react-redux";
+import { getUserStart } from "@redux/user/user.actions";
 
 const FeedbackModal = () => {
   const [submitFeedbackForm, { loading: submitting }] = useMutation<SubmitFeedbackFormMutationTuple>(
@@ -22,6 +24,7 @@ const FeedbackModal = () => {
       supportedTypes: SUPPORTED_TYPES,
     },
   });
+  const dispatch = useDispatch();
 
   const submitForm = useCallback(
     async (answers: AnswerInput[]) => {
@@ -32,6 +35,7 @@ const FeedbackModal = () => {
             answers,
           },
         });
+        dispatch(getUserStart());
       } catch (e) {
         // silent fail
       }
