@@ -3,9 +3,9 @@ import Logger from "@services/logging/logger";
 import { call, spawn } from "redux-saga/effects";
 import { handleOpenWebView } from "@navigation/utils";
 
-export default function* openMemberZoneSaga() {
+export default function* openMyAccountSaga() {
   try {
-    const { data } = yield call(getMagicLinkWithClient);
+    const { data } = yield call(() => getMagicLinkWithClient(true));
 
     if (!data?.getMagicLink) {
       // guard even w/ low chance of happening
@@ -14,10 +14,10 @@ export default function* openMemberZoneSaga() {
       return;
     }
 
-    yield call(handleOpenWebView, { uri: data.getMagicLink, title: "member zone" });
+    yield call(handleOpenWebView, { uri: data.getMagicLink, title: "Account" });
   } catch (e) {
     yield spawn(() => {
-      Logger.error(e, { event: "openMemberZone" });
+      Logger.error(e, { event: "openMyAccount" });
     });
   }
 }

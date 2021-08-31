@@ -10,3 +10,7 @@
 export interface GetMagicLink {
   getMagicLink: string | null;
 }
+
+export interface GetMagicLinkVariables {
+  goToMyAccount?: boolean | null;
+}

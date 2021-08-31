@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getRouteState } from "@redux/app/app.selectors";
 import { getPushNotificationsCopy } from "@redux/copy/copy.selectors";
 import { getPushNotifications } from "@redux/device/device.selectors";
-import { logOutStart, openMemberZone } from "@redux/user/user.actions";
+import { logOutStart, openMyAccount } from "@redux/user/user.actions";
 import { getUserFeatures } from "@redux/user/user.selectors";
 import { MenuScreen } from "@screens";
 import assets, { LINKS, LinkTypes } from "./assets";
@@ -84,7 +84,7 @@ const MenuContainer = () => {
           return null;
         case LINKS.MEMBER:
           handleClose();
-          dispatch(openMemberZone());
+          dispatch(openMyAccount());
           return null;
         case LINKS.WELLBEING_HUB:
           handlePush(currentRoute, ROUTES.wellbeingHubItems);
@@ -115,7 +115,7 @@ const MenuContainer = () => {
       },
       {
         condition: true,
-        label: "Member Zone",
+        label: "My Account",
         onPress: handlePressLink(LINKS.MEMBER),
         source: assets[LINKS.MEMBER],
       },
