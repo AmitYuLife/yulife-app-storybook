@@ -7,7 +7,7 @@ import {
   GET_USER_SUCCESS,
   LOGIN_USER_SUCCESS,
   LOGOUT_START,
-  OPEN_MEMBER_ZONE,
+  OPEN_MY_ACCOUNT,
   SET_USER_NO_ACCESS,
   UPDATE_CONNECTION_START,
   UPDATE_LEADERBOARD_CONSENT_START,
@@ -20,7 +20,7 @@ import fitKitConsentAuthorisedSaga from "./fitKitConsentAuthorised.saga";
 import getUserDataSaga from "./getUserData.saga";
 import loginUserSuccessSaga from "./loginUserSuccess.saga";
 import logOutSaga from "./logOut.saga";
-import openMemberZoneSaga from "./openMemberZone.saga";
+import openMyAccountSaga from "./openMyAccount.saga";
 import setUserNoAccessSaga from "./setUserNoAccess.saga";
 import showLeaderboardInviteOnGetUserSaga from "./showLeaderboardInviteOnGetUser.saga";
 import showLeaderboardInviteOnLoginSaga from "./showLeaderboardInviteOnLogin.saga";
@@ -44,7 +44,7 @@ export default [
   takeLatest(UPDATE_LEADERBOARD_CONSENT_START, updateLeaderboardConsentSaga),
   takeLatest(UPDATE_USER_CONSENT, updateUserConsentSaga),
   takeLatest(LOGOUT_START, logOutSaga),
-  takeLatest(OPEN_MEMBER_ZONE, openMemberZoneSaga),
+  takeLatest(OPEN_MY_ACCOUNT, openMyAccountSaga),
   takeLatest(UPDATE_CONNECTION_START, updateConnectionSaga),
   takeLatest(UPDATE_APP_STATE, fetchConnectionsSaga),
   takeLatest(SET_MAIN_ROOT, showSurgeIntroSaga),

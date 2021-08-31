@@ -32,7 +32,7 @@ export const UPDATE_LEADERBOARD_POPUP_VISIBILITY = "UPDATE_LEADERBOARD_POPUP_VIS
 export const UPDATE_SURGE_POPUP_VISIBILITY = "UPDATE_SURGE_POPUP_VISIBILITY";
 export const LOGOUT_START = "LOGOUT_START";
 export const LOGOUT_SUCCESS = "LOGOUT_SUCCESS";
-export const OPEN_MEMBER_ZONE = "OPEN_MEMBER_ZONE";
+export const OPEN_MY_ACCOUNT = "OPEN_MY_ACCOUNT";
 export const SET_SHOW_SURGE_INTRO = "SET_SHOW_SURGE_INTRO";
 
 export const refreshUserToken = () => ({
@@ -109,8 +109,8 @@ export const logOutSuccess = () => ({
   type: LOGOUT_SUCCESS as typeof LOGOUT_SUCCESS,
 });
 
-export const openMemberZone = () => ({
-  type: OPEN_MEMBER_ZONE,
+export const openMyAccount = () => ({
+  type: OPEN_MY_ACCOUNT,
 });
 
 export const updateLeaderboardPopupVisibility = (payload: boolean) => ({

@@ -56,7 +56,18 @@
           {
             "name": "getMagicLink",
             "description": null,
-            "args": [],
+            "args": [
+              {
+                "name": "goToMyAccount",
+                "description": null,
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Boolean",
+                  "ofType": null
+                },
+                "defaultValue": null
+              }
+            ],
             "type": {
               "kind": "SCALAR",
               "name": "String",
