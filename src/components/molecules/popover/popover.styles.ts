@@ -1,5 +1,5 @@
 import { StyleSheet, ViewStyle } from "react-native";
-import { Style, Colours } from "@styles";
+import { Style } from "@styles";
 
 export default StyleSheet.create({
   absolute: {
@@ -11,10 +11,8 @@ export default StyleSheet.create({
     padding: Style.adjust(16),
     borderRadius: Style.adjust(10),
     borderWidth: 1,
-    borderColor: "#E7E7EB",
-    backgroundColor: Colours.neutral.white,
     minWidth: Style.adjust(120),
-    minHeight: Style.adjust(120),
+    minHeight: Style.adjust(80),
   } as ViewStyle,
   popoverBeak: {
     position: "absolute",
@@ -23,7 +21,6 @@ export default StyleSheet.create({
   shadowProp: {
     shadowColor: "#000000",
     shadowOffset: { width: Style.adjust(8), height: Style.adjust(8) },
-    shadowOpacity: 0.16,
     shadowRadius: 0,
     elevation: 8,
   } as ViewStyle,
