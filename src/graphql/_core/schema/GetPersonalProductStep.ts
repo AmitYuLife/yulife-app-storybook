@@ -34,7 +34,9 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemP
     | "ContentItemScrollPicker"
     | "ContentItemMultiSelect"
     | "ContentItemPersonalProductConfirm"
-    | "ContentItemReviewItem";
+    | "ContentItemReviewItem"
+    | "ContentItemPersonalProductDocuments"
+    | "ContentItemPersonalProductFaqs";
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemTextInput_validation {
@@ -287,6 +289,8 @@ export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentIte
     | "ContentItemMultiSelect"
     | "ContentItemPersonalProductConfirm"
     | "ContentItemReviewItem"
+    | "ContentItemPersonalProductDocuments"
+    | "ContentItemPersonalProductFaqs"
     | "ContentItemPackageCards";
 }
 
@@ -424,6 +428,8 @@ export interface GetPersonalProductStep_getPersonalProductStep_header_ContentIte
     | "ContentItemMultiSelect"
     | "ContentItemPersonalProductConfirm"
     | "ContentItemReviewItem"
+    | "ContentItemPersonalProductDocuments"
+    | "ContentItemPersonalProductFaqs"
     | "ContentItemPackageCards";
 }
 
@@ -479,6 +485,8 @@ export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_Con
     | "ContentItemMultiSelect"
     | "ContentItemPersonalProductConfirm"
     | "ContentItemReviewItem"
+    | "ContentItemPersonalProductDocuments"
+    | "ContentItemPersonalProductFaqs"
     | "ContentItemPackageCards";
 }
 

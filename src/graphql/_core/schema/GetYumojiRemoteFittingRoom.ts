@@ -3,11 +3,17 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { CoverType, YuWorld, AvatarPartType } from "./globalTypes";
+import { CoverType, YuWorld, MobileOnboardingStepPerformed, AvatarPartType } from "./globalTypes";
 
 // ====================================================
 // GraphQL query operation: GetYumojiRemoteFittingRoom
 // ====================================================
+
+export interface GetYumojiRemoteFittingRoom_getYumojiRemoteFittingRoom_popover {
+  id: MobileOnboardingStepPerformed;
+  title: string;
+  message: string;
+}
 
 export interface GetYumojiRemoteFittingRoom_getYumojiRemoteFittingRoom_yuWorlds_yumojiParts_remoteUrl {
   id: string;
@@ -31,6 +37,7 @@ export interface GetYumojiRemoteFittingRoom_getYumojiRemoteFittingRoom_yuWorlds 
 export interface GetYumojiRemoteFittingRoom_getYumojiRemoteFittingRoom {
   id: string;
   selectedYuWorld: YuWorld;
+  popover: GetYumojiRemoteFittingRoom_getYumojiRemoteFittingRoom_popover | null;
   yuWorlds: GetYumojiRemoteFittingRoom_getYumojiRemoteFittingRoom_yuWorlds[];
 }
 

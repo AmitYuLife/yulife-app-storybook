@@ -2,7 +2,7 @@ import React, { FC, useMemo, memo, useCallback } from "react";
 import { View, StyleSheet } from "react-native";
 import { CloseSvg } from "@atoms";
 import { TouchableOpacityWithDelay } from "@molecules";
-import { Style } from "@styles";
+import { Colours, Style } from "@styles";
 import styles from "./popover.styles";
 import PopoverBackground from "./popover-background";
 import { PopoverBeak } from "./popover-beak";
@@ -13,9 +13,28 @@ interface IProps {
   onTouchTarget?: () => void;
   onClose: () => void;
   children: React.ReactNode;
+  backgroundColor?: string;
+  borderColor?: string;
+  shadowOpacity?: number;
 }
 
-const Popover: FC<IProps> = ({ targetX, targetY, onTouchTarget, onClose, children }) => {
+const HIT_SLOP = {
+  top: 8,
+  bottom: 8,
+  left: 8,
+  right: 8,
+};
+
+const Popover: FC<IProps> = ({
+  targetX,
+  targetY,
+  onTouchTarget,
+  onClose,
+  children,
+  backgroundColor = Colours.neutral.white,
+  borderColor = Colours.neutral.n100,
+  shadowOpacity = 0.16,
+}) => {
   const handleTargetTouch = useCallback(() => {
     onClose();
     onTouchTarget();
@@ -31,16 +50,18 @@ const Popover: FC<IProps> = ({ targetX, targetY, onTouchTarget, onClose, childre
 
   return (
     <View style={StyleSheet.absoluteFillObject}>
-      <PopoverBackground targetX={targetX} targetY={targetY} onTouchTarget={handleTargetTouch} onClose={onClose} />
-      <View style={[styles.absolute, styles.shadowProp, { top, left }]}>
-        <View style={styles.popoverBody}>
+      {!onTouchTarget ? null : (
+        <PopoverBackground targetX={targetX} targetY={targetY} onTouchTarget={handleTargetTouch} onClose={onClose} />
+      )}
+      <View style={[styles.absolute, styles.shadowProp, { top, left, shadowOpacity }]}>
+        <View style={[styles.popoverBody, { backgroundColor, borderColor }]}>
           {children}
-          <TouchableOpacityWithDelay onPress={onClose} style={styles.closeWrapper}>
-            <CloseSvg size={Style.adjust(16)} />
+          <TouchableOpacityWithDelay hitSlop={HIT_SLOP} onPress={onClose} style={styles.closeWrapper}>
+            <CloseSvg size={Style.adjust(12)} />
           </TouchableOpacityWithDelay>
         </View>
         <View style={styles.popoverBeak}>
-          <PopoverBeak />
+          <PopoverBeak backgroundColor={backgroundColor} borderColor={borderColor} />
         </View>
       </View>
     </View>
