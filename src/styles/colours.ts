@@ -218,6 +218,7 @@ export default {
     n50: "#FAFAFE",
     n100: "#E7E7EB",
     n200: "#D3D3D6",
+    n300: "#BFBFC2",
     n400: "#ABABAD",
     n500: "#979799",
     n600: "#838385",
