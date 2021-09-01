@@ -2,7 +2,7 @@ import React from "react";
 import { render } from "@testing-library/react-native";
 import PackageInfo, { Props } from "./package-info";
 import { Package } from "@components/screens/products/fib/browse-packages/fib.browse.types";
-import { CoverType } from "../../../../../../../graphql/_core/schema/globalTypes";
+import { CoverType } from "@graphql/_core/schema/globalTypes";
 
 const renderComponent = (props: Props) => {
   return render(<PackageInfo {...props} />);

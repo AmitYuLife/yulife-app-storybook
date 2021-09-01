@@ -1,6 +1,6 @@
 import moment from "moment";
 import { REHYDRATE } from "redux-persist";
-import { GetCurrentUser, LoginUser, UpsertPassiveChallenge } from "../../graphql/_core/schema";
+import { GetCurrentUser, LoginUser, UpsertPassiveChallenge } from "@graphql/_core/schema";
 import { ExchangeRate } from "../daily-steps/daily-steps.selectors";
 import { GET_USER_SUCCESS, LOGIN_USER_SUCCESS, LOGOUT_SUCCESS } from "../user/user.actions";
 import {

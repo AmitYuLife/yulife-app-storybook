@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Image, View } from "react-native";
-import { Button, Text } from "../../../atoms";
+import { Button, Text } from "@atoms";
 import GenericHeadingAbsolute from "@atoms/generic-heading/generic-heading-absolute";
 import assets from "./assets";
 import styles from "./info.styles";

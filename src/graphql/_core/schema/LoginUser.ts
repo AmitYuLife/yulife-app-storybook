@@ -48,8 +48,18 @@ export interface LoginUser_loginUser_user_passiveSteps_exchange {
   surge: number | null;
 }
 
+export interface LoginUser_loginUser_user_passiveSteps_levelSlot_milestones {
+  id: string | null;
+  coins: number | null;
+}
+
+export interface LoginUser_loginUser_user_passiveSteps_levelSlot {
+  milestones: (LoginUser_loginUser_user_passiveSteps_levelSlot_milestones | null)[] | null;
+}
+
 export interface LoginUser_loginUser_user_passiveSteps {
   exchange: LoginUser_loginUser_user_passiveSteps_exchange | null;
+  levelSlot: LoginUser_loginUser_user_passiveSteps_levelSlot | null;
   isMainSurge: boolean | null;
 }
 

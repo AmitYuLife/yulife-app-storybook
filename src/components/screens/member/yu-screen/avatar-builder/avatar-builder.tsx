@@ -16,12 +16,12 @@ import BodyItem from "./body-item";
 import PartItem from "./items/part-item";
 import ColorItem from "./items/color-item";
 import { Navigation } from "react-native-navigation";
-import { MODALS } from "../../../../../navigation/constants";
+import { MODALS } from "@navigation/constants";
 import { Style } from "@styles/index";
 import { IAvatar, Category, AvatarBuilderHeading } from "./avatar.types";
 import { AVATAR_BUILDER_LIST, BUILDER_BODY, NO_ITEM_SELECTED, HEAD_TYPE } from "@ids";
-import { IBodyItemCategory } from "../../../../../redux/avatar/avatar.all.data";
-import { useBackHandler } from "../../../../../services/hooks/useBackHandler";
+import { IBodyItemCategory } from "@redux/avatar/avatar.all.data";
+import { useBackHandler } from "@services/hooks/useBackHandler";
 import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
 import { useBackButtonHandler } from "./useBackButtonHandler";
 

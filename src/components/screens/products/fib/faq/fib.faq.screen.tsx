@@ -5,7 +5,7 @@ import { TextTemplate, Icon } from "@atoms";
 import { Style, Colours } from "@styles";
 import Markdown from "@components/molecules/markdown/markdown";
 import { IFibFAQ } from "@components/containers/products/fib/data/faq-fib-data";
-import { useBackHandler } from "../../../../../services/hooks/useBackHandler";
+import { useBackHandler } from "@services/hooks/useBackHandler";
 import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
 import { PressableWithDelay } from "@components/molecules";
 

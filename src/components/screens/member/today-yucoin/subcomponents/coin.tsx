@@ -1,6 +1,6 @@
 import React from "react";
 import { View, StyleSheet, ViewStyle } from "react-native";
-import { ChestCoin } from "../../../../atoms";
+import { ChestCoin } from "@atoms";
 
 const CONSTANT = 20;
 

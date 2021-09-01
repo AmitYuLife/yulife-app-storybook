@@ -1,10 +1,10 @@
 import { Pad } from "@atoms/index";
 import * as React from "react";
 import { ActivityIndicator, ScrollView, View } from "react-native";
-import { GetCurrentUser_getCurrentUser_todayActivity } from "../../../../graphql/_core/schema";
-import { ExchangeRateMeditation } from "../../../../redux/daily-meditation/daily-meditation.selectors";
-import { ExchangeRate } from "../../../../redux/daily-steps/daily-steps.selectors";
-import { Colours } from "../../../../styles";
+import { GetCurrentUser_getCurrentUser_todayActivity } from "@graphql/_core/schema";
+import { ExchangeRateMeditation } from "@redux/daily-meditation/daily-meditation.selectors";
+import { ExchangeRate } from "@redux/daily-steps/daily-steps.selectors";
+import { Colours } from "@styles";
 import styles from "./today-yucoin.screen.styles";
 import Coin from "./subcomponents/coin";
 import CTA from "./subcomponents/cta";
@@ -36,6 +36,7 @@ export interface IProps {
   dailyMeditationEarned?: number;
   meditationSeconds?: number;
   isShowingPassiveMeditation: boolean;
+  passiveStepsAwardedMilestonesLength: number;
   passiveMeditationAwardedMilestonesLength: number;
 }
 

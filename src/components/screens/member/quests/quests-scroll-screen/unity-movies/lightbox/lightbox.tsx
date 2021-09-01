@@ -3,7 +3,7 @@ import { ScrollView, View, Text, Animated } from "react-native";
 import { Button } from "@atoms";
 import styles from "./lightbox.styles";
 import { Heading } from "@atoms";
-import YuCoin from "../../../../../../screens/member/daily-steps/assets/yu-coin";
+import YuCoin from "@screens/member/daily-steps/assets/yu-coin";
 import LinearGradient from "react-native-linear-gradient";
 import { getHeading, getText, getButtonLabel } from "./lightbox.data";
 import { YUNITY_HEADER, YUNIVERSAL_CONTNIUE_BUTTON } from "@ids";

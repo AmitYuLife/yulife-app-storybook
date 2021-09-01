@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 import { IReduxState } from "@redux/_core/reducers";
 import { getUserFirstName } from "@redux/user/user.selectors";
 import { Avatar } from "@components/screens/member/yu-screen/subcomponents/avatar-section/avatar";
-import { useBackHandler } from "../../../../../services/hooks/useBackHandler";
+import { useBackHandler } from "@services/hooks/useBackHandler";
 import { FibFeedbackSuccessImage } from "./fib.feedback-success-image";
 import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
 

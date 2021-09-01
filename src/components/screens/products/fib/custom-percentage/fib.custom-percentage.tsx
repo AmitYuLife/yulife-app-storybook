@@ -6,7 +6,7 @@ import { Button, Text } from "@atoms";
 import { HorizontalScroller } from "@molecules";
 import { EstimatedCost } from "./subcomponents/estimated-cost";
 import LinearGradient from "react-native-linear-gradient";
-import { useBackHandler } from "../../../../../services/hooks/useBackHandler";
+import { useBackHandler } from "@services/hooks/useBackHandler";
 import { CUSTOM_COVER_SCREEN } from "@ids";
 import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
 import { customCoverPromptSVG } from "../browse-packages/subcomponents/custom-cover-prompt/assets/icon";

@@ -1,4 +1,4 @@
-import { UpsertPassiveChallenge } from "../../graphql/_core/schema";
+import { UpsertPassiveChallenge } from "@graphql/_core/schema";
 import { SyncAction } from "../_core/types";
 
 export const START_DAILY_STEPS = "START_DAILY_STEPS";

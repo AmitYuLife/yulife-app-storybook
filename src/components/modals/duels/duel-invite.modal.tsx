@@ -2,7 +2,7 @@ import { GQL_MUTATION_INVITE_TO_DUEL, GQL_QUERY_GET_DUELS, InviteToDuelMutationT
 import React, { useState } from "react";
 import { Navigation } from "react-native-navigation";
 import { useDispatch, useSelector } from "react-redux";
-import { getUserStart } from "../../../redux/user/user.actions";
+import { getUserStart } from "@redux/user/user.actions";
 import { useMutation, useQuery } from "@apollo/react-hooks";
 import { Alert, View } from "react-native";
 import moment from "moment";

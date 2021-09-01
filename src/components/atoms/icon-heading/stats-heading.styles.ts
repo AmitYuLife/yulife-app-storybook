@@ -1,5 +1,5 @@
 import { ImageStyle, StyleSheet, TextStyle, ViewStyle } from "react-native";
-import { Style } from "../../../styles";
+import { Style } from "@styles";
 
 export default StyleSheet.create({
   wrapper: {

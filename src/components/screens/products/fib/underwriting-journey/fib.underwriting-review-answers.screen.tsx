@@ -8,11 +8,11 @@ import {
   NativeScrollEvent,
   View,
 } from "react-native";
-import { useBackHandler } from "../../../../../services/hooks/useBackHandler";
-import Style from "../../../../../styles/style";
+import { useBackHandler } from "@services/hooks/useBackHandler";
+import Style from "@styles/style";
 import { ReviewAnswers } from "@atoms/fib/review-answers/review-answers";
 import { Button, CheckBox } from "@atoms";
-import { IAnswer } from "../../../../../redux/product/product.selectors";
+import { IAnswer } from "@redux/product/product.selectors";
 import { NativeScrollPoint } from "react-native";
 import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
 import { Yugi, YugiType } from "../layouts/yugi";

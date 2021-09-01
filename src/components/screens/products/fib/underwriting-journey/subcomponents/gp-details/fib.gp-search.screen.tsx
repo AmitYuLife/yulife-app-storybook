@@ -1,20 +1,18 @@
 import React, { useCallback, memo, useState, useEffect } from "react";
 import { View } from "react-native";
-import { useBackHandler } from "../../../../../../../services/hooks/useBackHandler";
-import GenericHeadingAbsolute, {
-  GenericHeadingPad,
-} from "../../../../../../atoms/generic-heading/generic-heading-absolute";
-import { useDebouncedQuery } from "../../../../../../../services/hooks/useDebouncedQuery";
-import { GQL_GET_MEDICAL_PRACTICES } from "../../../../../../../graphql/products";
+import { useBackHandler } from "@services/hooks/useBackHandler";
+import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
+import { useDebouncedQuery } from "@services/hooks/useDebouncedQuery";
+import { GQL_GET_MEDICAL_PRACTICES } from "@graphql/products";
 import {
   MedicalPractices,
   MedicalPracticesVariables,
   MedicalPractices_getMedicalPractices,
-} from "../../../../../../../graphql/_core/schema";
+} from "@graphql/_core/schema";
 import { MedicalPracticeIcon, SearchInput, SearchList } from "@atoms";
 import EmptyGpElement from "./fib.gp-no-results";
-import SearchItem, { ISearchItem } from "../../../../../../atoms/search/search-item";
-import { Colours } from "../../../../../../../styles";
+import SearchItem, { ISearchItem } from "@atoms/search/search-item";
+import { Colours } from "@styles";
 import { getPracticeAddress } from "@components/screens/products/fib/underwriting-journey/subcomponents/gp-details/fib.gp.helper";
 
 interface GpPracticeSearchScreenProps {

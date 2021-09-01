@@ -3,7 +3,7 @@ import { Linking, Platform } from "react-native";
 import Config from "react-native-config";
 import moment from "moment";
 import { FibLocalNavigation, FIB_UNDERWRITING_REVIEW_ANSWERS, FIB_INTRO_YUGI, FIB_BROWSE } from "../fib.types";
-import { FibUnderwritingJourneyScreen } from "../../../../screens/products/fib/underwriting-journey/fib.underwriting-journey.screen";
+import { FibUnderwritingJourneyScreen } from "@screens/products/fib/underwriting-journey/fib.underwriting-journey.screen";
 import {
   data,
   FIB_MEDICAL_THREE_OR_MORE_CONSULTATION_SCREEN_ID,
@@ -49,8 +49,8 @@ import {
 } from "../data/underwriting-journey-data";
 import { YUGI_INTRO_TYPE } from "./fib.yugi-intro.container";
 import { useQuery } from "@apollo/react-hooks";
-import { GetYulifer } from "../../../../../graphql/_core/schema/GetYulifer";
-import { GQL_QUERY_GET_YULIFER } from "../../../../../graphql/yuscreen/getYulifer.gql";
+import { GetYulifer } from "@graphql/_core/schema/GetYulifer";
+import { GQL_QUERY_GET_YULIFER } from "@graphql/yuscreen/getYulifer.gql";
 import { CoverType } from "@graphql/_core/schema/globalTypes";
 import { getTerm, calculateSumAssured } from "../fib.helpers";
 import { handleOpenWebView } from "@navigation/utils";

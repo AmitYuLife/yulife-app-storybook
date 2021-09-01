@@ -1,7 +1,7 @@
 import * as React from "react";
 import { PureComponent } from "react";
 import { Image, View } from "react-native";
-import { Button, Text } from "../../../../atoms";
+import { Button, Text } from "@atoms";
 import assets from "./assets";
 import styles from "./level-locked.styles";
 

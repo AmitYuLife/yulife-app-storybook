@@ -15,7 +15,7 @@ import formInputsData from "./fib.feedback-form.data";
 import Logger from "@services/logging/logger";
 import { FeedbackInputWrapper } from "./feedback-input-wrapper";
 import LinearGradient from "react-native-linear-gradient";
-import { useBackHandler } from "../../../../../services/hooks/useBackHandler";
+import { useBackHandler } from "@services/hooks/useBackHandler";
 import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
 
 export interface Props {

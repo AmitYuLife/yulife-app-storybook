@@ -1,4 +1,4 @@
-import { CreateActiveChallenge, SubmitUnityVariables, UpdateActiveChallenge } from "../../graphql/_core/schema";
+import { CreateActiveChallenge, SubmitUnityVariables, UpdateActiveChallenge } from "@graphql/_core/schema";
 
 export const CHALLENGE_SUBMIT_UNITY = "CHALLENGE_SUBMIT_UNITY";
 

@@ -3,10 +3,10 @@ import { GQL_MUTATION_COLLECT_AWARD, CollectAwardMutationTuple } from "@graphql/
 import { getTimeRemaining } from "@services/utils";
 import * as React from "react";
 import { connect } from "react-redux";
-import { IReduxState } from "../../../redux/_core/reducers";
-import { getStreakAwardId } from "../../../redux/streaks/streaks.selectors";
-import { getUserStart } from "../../../redux/user/user.actions";
-import { StreaksScreen } from "../../screens";
+import { IReduxState } from "@redux/_core/reducers";
+import { getStreakAwardId } from "@redux/streaks/streaks.selectors";
+import { getUserStart } from "@redux/user/user.actions";
+import { StreaksScreen } from "@screens";
 import { useBackHandler } from "@services/hooks/useBackHandler";
 import { Navigation } from "react-native-navigation";
 import { streakCopy } from "./copy";

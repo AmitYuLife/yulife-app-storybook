@@ -1,6 +1,6 @@
 import * as React from "react";
 import { StyleSheet } from "react-native";
-import { Text } from "../../../atoms";
+import { Text } from "@atoms";
 import styles from "./daily-steps.screen.styles";
 
 export interface IProps {

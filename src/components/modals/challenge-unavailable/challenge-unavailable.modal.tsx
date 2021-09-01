@@ -1,6 +1,6 @@
 import { getTimeRemaining } from "@services/utils";
 import * as React from "react";
-import { ChallengeUnavailableScreen } from "../../screens";
+import { ChallengeUnavailableScreen } from "@screens";
 import useInterval from "@use-it/interval";
 
 interface IProps {

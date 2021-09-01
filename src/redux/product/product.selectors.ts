@@ -24,14 +24,14 @@ import {
   FIB_FINANCIAL_COVER_LIST_SCREEN_ID,
   FIB_INPUT_SALARY,
   FIB_GENDER_SCREEN_ID,
-} from "../../components/containers/products/fib/data/underwriting-journey-data";
+} from "@containers/products/fib/data/underwriting-journey-data";
 import { FINANCIAL_QUESTIONS_ICON } from "@atoms/fib/svg-assets/underwriting/svg-strings";
 import { addCommasToNumber } from "@services/utils";
-import { LifeInsuranceTopUpsUserAnswers, YuWorld } from "../../graphql/_core/schema/globalTypes";
+import { LifeInsuranceTopUpsUserAnswers, YuWorld } from "@graphql/_core/schema/globalTypes";
 import {
   FIB_FINANCIAL_OTHER_COVER_SCREEN_ID,
   FIB_FINANCIAL_QUESTIONS_SCREEN_ID,
-} from "../../components/containers/products/fib/data/underwriting-journey-data";
+} from "@containers/products/fib/data/underwriting-journey-data";
 
 export const getFIBState = (state: IReduxState): FIBStore => {
   return state.product.fib;

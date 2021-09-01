@@ -4,7 +4,7 @@ import { Navigation } from "react-native-navigation";
 import { View, StyleSheet, ViewStyle, TextStyle } from "react-native";
 import { Text, Button, SecondaryButton } from "@atoms";
 import { Style, Colours } from "@styles";
-import { useBackHandler } from "../../../services/hooks/useBackHandler";
+import { useBackHandler } from "@services/hooks/useBackHandler";
 
 interface IButton {
   label: string;

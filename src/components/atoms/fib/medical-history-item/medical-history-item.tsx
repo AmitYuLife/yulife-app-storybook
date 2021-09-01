@@ -1,6 +1,6 @@
 import React, { memo } from "react";
 import { StyleSheet, View, ViewStyle, TextStyle, Text } from "react-native";
-import { Style } from "../../../../styles";
+import { Style } from "@styles";
 import { SvgFromXml } from "react-native-svg";
 
 export interface IMedicalHistoryItemProps {

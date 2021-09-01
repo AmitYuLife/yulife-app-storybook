@@ -1,22 +1,19 @@
 import React, { memo, useState, useCallback } from "react";
 import { FibLocalNavigation } from "../fib.types";
 import { FibContactDetailsScreen } from "@components/screens/products/fib/underwriting-journey/subcomponents/contact-details/fib.contact-details.screen";
-import { FibConfirmScreen } from "../../../../screens/products/fib/underwriting-journey/subcomponents/contact-details/fib.confirm-email.screen";
+import { FibConfirmScreen } from "@screens/products/fib/underwriting-journey/subcomponents/contact-details/fib.confirm-email.screen";
 import { connect } from "react-redux";
-import { updateFIBAnswerValue } from "../../../../../redux/product/product.actions";
+import { updateFIBAnswerValue } from "@redux/product/product.actions";
 import { FibFindAddressScreen } from "@components/screens/products/fib/underwriting-journey/subcomponents/contact-details/fib.find-address.screen";
 import { useMutation } from "@apollo/react-hooks";
-import { Address_findUserAddress } from "../../../../../graphql/_core/schema/Address";
-import { IReduxState } from "../../../../../redux/_core/reducers";
-import { getContactDetails, getFIBState } from "../../../../../redux/product/product.selectors";
+import { Address_findUserAddress } from "@graphql/_core/schema/Address";
+import { IReduxState } from "@redux/_core/reducers";
+import { getContactDetails, getFIBState } from "@redux/product/product.selectors";
 import { ContactDetails } from "@redux/product/product.types";
 import { Navigation } from "react-native-navigation";
-import { MODALS, ROUTES } from "../../../../../navigation/constants";
-import { GQL_MUTATION_UPDATE_CUSTOMER_CONTACT_DETAILS } from "../../../../../graphql/products";
-import {
-  UpdateContactDetails,
-  UpdateContactDetailsVariables,
-} from "../../../../../graphql/_core/schema/UpdateContactDetails";
+import { MODALS, ROUTES } from "@navigation/constants";
+import { GQL_MUTATION_UPDATE_CUSTOMER_CONTACT_DETAILS } from "@graphql/products";
+import { UpdateContactDetails, UpdateContactDetailsVariables } from "@graphql/_core/schema/UpdateContactDetails";
 import { formatPostCode } from "@services/utils";
 
 type ConnectedDispatch = typeof mapDispatchToProps;

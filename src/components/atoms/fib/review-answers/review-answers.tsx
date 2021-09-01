@@ -1,8 +1,8 @@
 import React, { memo } from "react";
 import { StyleSheet, View, ViewStyle, TextStyle } from "react-native";
-import { Style } from "../../../../styles";
+import { Style } from "@styles";
 import { SvgFromXml } from "react-native-svg";
-import TouchableOpacityWithDelay from "../../../molecules/touchable-opacity-delay/touchable-opacity-delay";
+import TouchableOpacityWithDelay from "@molecules/touchable-opacity-delay/touchable-opacity-delay";
 import Warning from "@atoms/text-input/assets/warning";
 import { ArrowRightSvg, Text } from "@atoms";
 import { UNDERWRITING_REVIEW_ANSWERS } from "@ids";

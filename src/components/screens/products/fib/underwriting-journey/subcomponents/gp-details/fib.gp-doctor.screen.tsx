@@ -3,14 +3,12 @@ import { View, FlatList, StyleSheet, ViewStyle, TextStyle } from "react-native";
 import {
   MedicalPractices_getMedicalPractices_practicioners,
   MedicalPractices_getMedicalPractices,
-} from "../../../../../../../graphql/_core/schema";
-import { useBackHandler } from "../../../../../../../services/hooks/useBackHandler";
-import { Style, Colours } from "../../../../../../../styles";
+} from "@graphql/_core/schema";
+import { useBackHandler } from "@services/hooks/useBackHandler";
+import { Style, Colours } from "@styles";
 import { DoctorIcon, Text } from "@atoms";
-import GenericHeadingAbsolute, {
-  GenericHeadingPad,
-} from "../../../../../../atoms/generic-heading/generic-heading-absolute";
-import SearchItem, { ISearchItem } from "../../../../../../atoms/search/search-item";
+import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
+import SearchItem, { ISearchItem } from "@atoms/search/search-item";
 import GPTitle from "./fib.gp-title";
 
 interface FibDoctorSelectProps {

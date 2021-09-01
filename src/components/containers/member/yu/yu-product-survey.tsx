@@ -1,6 +1,6 @@
 import React from "react";
 import { Navigation } from "react-native-navigation";
-import { ROUTES } from "../../../../navigation/constants";
+import { ROUTES } from "@navigation/constants";
 import ProductsSurvey from "@screens/member/yu-screen/products-survey/products-survey";
 
 function YuProductSurvey() {

@@ -5,7 +5,7 @@ import LinearGradient from "react-native-linear-gradient";
 import { Text, PackageType } from "@atoms";
 import { Style, Colours } from "@styles";
 import { CoverType } from "@graphql/_core/schema/globalTypes";
-import { GetYulifer_personal_chest_options_styles } from "../../../../../../graphql/_core/schema";
+import { GetYulifer_personal_chest_options_styles } from "@graphql/_core/schema";
 
 interface Props {
   coverType: CoverType;

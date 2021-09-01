@@ -3,7 +3,7 @@ import { MODALS } from "@navigation/constants";
 import { handleLinkPress } from "@services/app-link";
 import { Navigation } from "react-native-navigation";
 import { call, takeLatest, select, ActionPattern } from "redux-saga/effects";
-// import Logger from "../../services/logging/logger";
+// import Logger from "@services/logging/logger";
 import { getRouteState } from "../app/app.selectors";
 import submitPersonalProductStepGql from "@graphql/personalProduct/submitPersonalProductStep.gql";
 import { SyncAction } from "@redux/_core/types";

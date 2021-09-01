@@ -23,6 +23,7 @@ export const mapProps = (props: IProps) => {
     isShowingPassiveMeditation,
     isStepsSurge,
     isMeditationSurge,
+    passiveStepsAwardedMilestonesLength,
     passiveMeditationAwardedMilestonesLength,
   } = props;
   const showNoChallengeDone = !challenges.length && !activeChallenge;
@@ -40,7 +41,8 @@ export const mapProps = (props: IProps) => {
     title: ctaLabel,
   };
   const stepsProgressBarProps = {
-    progressBarMultiplier: steps / (exchangeRate.steps * 6),
+    progressBarMultiplier: steps / (exchangeRate.steps * passiveStepsAwardedMilestonesLength),
+    milestoneLength: passiveStepsAwardedMilestonesLength,
     isFilling: (index: number) => (steps + 500) / 2000 >= index + 1,
     fillProgress: (index: number) => ((steps + 500 - exchangeRate.steps * (index + 1)) / 500) * 100,
   };

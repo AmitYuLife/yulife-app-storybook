@@ -1,6 +1,6 @@
 import React, { memo, useRef, useEffect, useCallback, ComponentProps, useState } from "react";
 import { ScrollView, View, Keyboard } from "react-native";
-import { useBackHandler } from "../../../../../services/hooks/useBackHandler";
+import { useBackHandler } from "@services/hooks/useBackHandler";
 import FibTitle from "@atoms/fib/title/title";
 import Footer from "./subcomponents/footer/footer";
 import { FibUnderwritingJourneyLayout } from "../layouts/fib.underwriting-journey-layout";

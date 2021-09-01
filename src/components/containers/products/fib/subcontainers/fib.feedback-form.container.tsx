@@ -5,7 +5,7 @@ import { FibFeedbackSuccessScreen } from "@components/screens/products/fib/feedb
 import { useQuery } from "@apollo/react-hooks";
 import { GQL_QUERY_GET_YULIFER } from "@graphql/yuscreen";
 import { Loading } from "@atoms";
-import { GetYulifer } from "../../../../../graphql/_core/schema";
+import { GetYulifer } from "@graphql/_core/schema";
 
 interface Props {
   navigation: FibLocalNavigation;

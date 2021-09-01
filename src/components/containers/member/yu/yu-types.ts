@@ -1,4 +1,4 @@
-import { YuItemSlot, YuProductId } from "../../../../graphql/_core/schema/globalTypes";
+import { YuItemSlot, YuProductId } from "@graphql/_core/schema/globalTypes";
 
 export const employerItems: YuItemSlot[] = [
   YuItemSlot.map,

@@ -1,7 +1,7 @@
 import * as React from "react";
 import { FunctionComponent } from "react";
-import { GetMobileCopy_getMobileCopy_screens_needHelpLoggingIn as ResetPasswordCopy } from "../../../graphql/_core/schema";
-import { Blurb, Button, CentredScreen, Heading, LinkButton, Pad, TextInput, UnauthorisedGradient } from "../../atoms";
+import { GetMobileCopy_getMobileCopy_screens_needHelpLoggingIn as ResetPasswordCopy } from "@graphql/_core/schema";
+import { Blurb, Button, CentredScreen, Heading, LinkButton, Pad, TextInput, UnauthorisedGradient } from "@atoms";
 import styles from "./reset-password.screen.styles";
 import { INPUT_RESET_PASSWORD } from "@ids";
 

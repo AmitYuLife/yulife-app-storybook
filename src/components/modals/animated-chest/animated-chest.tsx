@@ -1,5 +1,5 @@
 import * as React from "react";
-import { AnimatedChestScreen } from "../../screens";
+import { AnimatedChestScreen } from "@screens";
 import { useBackHandler } from "@services/hooks/useBackHandler";
 
 interface IProps {

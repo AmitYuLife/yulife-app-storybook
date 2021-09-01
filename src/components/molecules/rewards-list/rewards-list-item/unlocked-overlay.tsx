@@ -1,8 +1,8 @@
 import * as React from "react";
 import { View } from "react-native";
 import FastImage from "react-native-fast-image";
-import { GetRewards_getRewards_uiSettings } from "../../../../graphql/_core/schema";
-import { Text } from "../../../atoms";
+import { GetRewards_getRewards_uiSettings } from "@graphql/_core/schema";
+import { Text } from "@atoms";
 import { renderExchange, renderValue } from "./unlocked-overlay.helpers";
 import styles from "./unlocked-overlay.styles";
 

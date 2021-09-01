@@ -3,9 +3,9 @@ import { GenericScreen } from "@screens/index";
 import * as React from "react";
 import { Navigation } from "react-native-navigation";
 import { connect } from "react-redux";
-import { IReduxState } from "../../../redux/_core/reducers";
-import { getCopy } from "../../../redux/copy/copy.selectors";
-import { getUserStart } from "../../../redux/user/user.actions";
+import { IReduxState } from "@redux/_core/reducers";
+import { getCopy } from "@redux/copy/copy.selectors";
+import { getUserStart } from "@redux/user/user.actions";
 import { useMutation } from "@apollo/react-hooks";
 
 interface IProps {

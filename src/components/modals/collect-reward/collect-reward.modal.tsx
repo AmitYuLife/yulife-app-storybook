@@ -1,5 +1,5 @@
 import * as React from "react";
-import { CollectRewardScreen } from "../../screens";
+import { CollectRewardScreen } from "@screens";
 
 interface IProps {
   date?: string;

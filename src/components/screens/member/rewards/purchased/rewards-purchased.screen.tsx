@@ -1,5 +1,5 @@
 import * as React from "react";
-import { GetMobileCopy_getMobileCopy_screens_purchases } from "../../../../../graphql/_core/schema";
+import { GetMobileCopy_getMobileCopy_screens_purchases } from "@graphql/_core/schema";
 import { IConnectedScreenProps } from "../../../../../typings";
 import { RewardsListLayout } from "../subcomponents/rewards-layout";
 import { RewardsPurchasedList, RewardsPurchasedItemData } from "./rewards-purchased-list";

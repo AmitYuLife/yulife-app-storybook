@@ -2,7 +2,7 @@ import React, { FC, useCallback, useState } from "react";
 import { Navigation } from "react-native-navigation";
 import { MODALS } from "@navigation/constants";
 import { useBackHandler } from "@services/hooks/useBackHandler";
-import AppReviewModalScreen from "../../screens/app-review/app-review.screen";
+import AppReviewModalScreen from "@screens/app-review/app-review.screen";
 import InAppReview from "react-native-in-app-review";
 import { useMutation, useQuery } from "@apollo/react-hooks";
 import {

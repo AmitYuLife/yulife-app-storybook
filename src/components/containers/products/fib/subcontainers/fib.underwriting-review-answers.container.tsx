@@ -1,21 +1,17 @@
 import React, { memo, useCallback } from "react";
 import { FibLocalNavigation, FIB_UNDERWRITING_JOURNEY, FIB_CONFIRM_PACKAGES, FIB_INFO } from "../fib.types";
-import { IReduxState } from "../../../../../redux/_core/reducers";
+import { IReduxState } from "@redux/_core/reducers";
 import { connect, useDispatch } from "react-redux";
 import { FibUnderwritingReviewAnswersScreen } from "@components/screens/products/fib/underwriting-journey/fib.underwriting-review-answers.screen";
-import {
-  getFIBState,
-  getLifeInsuranceUserAnswers,
-  getReviewAnswers,
-} from "../../../../../redux/product/product.selectors";
+import { getFIBState, getLifeInsuranceUserAnswers, getReviewAnswers } from "@redux/product/product.selectors";
 import { Navigation } from "react-native-navigation";
-import { ROUTES, MODALS } from "../../../../../navigation/constants";
+import { ROUTES, MODALS } from "@navigation/constants";
 import { updateFIBValue, updateFIBValuesFromNewQuote } from "@redux/product/product.actions";
 import { GQL_MUTATION_CREATE_TOP_UPS_QUOTE } from "@graphql/products";
 import { useMutation } from "@apollo/react-hooks";
 import { InfoTypes } from "./fib.info.container";
-import { CreateTopUpsQuote, CreateTopUpsQuoteVariables } from "../../../../../graphql/_core/schema";
-import { CoverType, CreateTopUpsQuoteInput, ProductCode } from "../../../../../graphql/_core/schema/globalTypes";
+import { CreateTopUpsQuote, CreateTopUpsQuoteVariables } from "@graphql/_core/schema";
+import { CoverType, CreateTopUpsQuoteInput, ProductCode } from "@graphql/_core/schema/globalTypes";
 import { FIB_INTRO_YUGI } from "../fib.types";
 import { YUGI_INTRO_TYPE } from "./fib.yugi-intro.container";
 import { PriceChangedModalProps } from "@components/modals/price-changed/price-changed";

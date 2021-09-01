@@ -5,7 +5,7 @@ import {
   GetYulifer_personal_gloves,
   GetYulifer_personal_boots,
   GetYulifer_additional,
-} from "../../../../graphql/_core/schema";
+} from "@graphql/_core/schema";
 
 export type FibRoute =
   | "FibBrowse"

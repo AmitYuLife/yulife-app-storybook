@@ -1,5 +1,5 @@
 import { Navigation } from "react-native-navigation";
-import client from "../graphql/_core/client";
+import client from "@graphql/_core/client";
 import routes from "./routes";
 import withLazyLoad from "./withLazyLoad";
 import withProvider from "./withProvider";

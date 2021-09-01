@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Image, ImageRequireSource, View } from "react-native";
-import { Text } from "../../../../../atoms";
+import { Text } from "@atoms";
 import assets from "../assets";
 import styles from "./card-states.styles";
 

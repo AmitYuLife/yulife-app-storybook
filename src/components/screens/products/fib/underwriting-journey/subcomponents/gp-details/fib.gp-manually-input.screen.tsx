@@ -10,7 +10,7 @@ import {
   Keyboard,
 } from "react-native";
 import { Style, Colours } from "@styles";
-import { useBackHandler } from "../../../../../../../services/hooks/useBackHandler";
+import { useBackHandler } from "@services/hooks/useBackHandler";
 import { ScrollableLayout, TextField } from "@molecules";
 import FibTitle from "@atoms/fib/title/title";
 import { MedicalPractices_getMedicalPractices } from "@graphql/_core/schema";

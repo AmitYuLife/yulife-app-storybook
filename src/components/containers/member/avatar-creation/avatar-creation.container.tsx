@@ -2,13 +2,8 @@ import * as React from "react";
 import { connect, useDispatch } from "react-redux";
 import SelectBody, { SelectedBody } from "@screens/member/yu-screen/select-body/select-body";
 import { SaveAvatarMutationTuple, GQL_MUTATION_SAVE_AVATAR } from "@graphql/yuscreen";
-import { IReduxState } from "../../../../redux/_core/reducers";
-import {
-  femaleBodySelected,
-  maleBodySelected,
-  saveAvatar,
-  avatarCreated,
-} from "../../../../redux/avatar/avatar.actions";
+import { IReduxState } from "@redux/_core/reducers";
+import { femaleBodySelected, maleBodySelected, saveAvatar, avatarCreated } from "@redux/avatar/avatar.actions";
 import {
   getAvatarBody,
   getAvatarBoots,
@@ -20,17 +15,17 @@ import {
   getAvatarHead,
   getAvatarPants,
   getAvatarFacialHair,
-} from "../../../../redux/avatar/avatar.selectors";
-import { getUserFeatures } from "../../../../redux/user/user.selectors";
-import AvatarBuilder from "../../../screens/member/yu-screen/avatar-builder/avatar-builder";
+} from "@redux/avatar/avatar.selectors";
+import { getUserFeatures } from "@redux/user/user.selectors";
+import AvatarBuilder from "@screens/member/yu-screen/avatar-builder/avatar-builder";
 import { useMutation, useQuery } from "@apollo/react-hooks";
 import { Navigation } from "react-native-navigation";
-import { ROUTES, MODALS } from "../../../../navigation/constants";
+import { ROUTES, MODALS } from "@navigation/constants";
 import { IAvatar, AvatarBuilderHeading } from "@components/screens/member/yu-screen/avatar-builder/avatar.types";
 import {
   GQL_QUERY_GET_YULIFER_WITH_AVATAR,
   GetYuliferWithAvatarData,
-} from "../../../../graphql/yuscreen/GetYuliferWithAvatar.gql";
+} from "@graphql/yuscreen/GetYuliferWithAvatar.gql";
 import { transformAvatar } from "@screens/member/yu-screen/avatar-builder/avatar-builder.helper";
 import { Loading } from "@atoms";
 

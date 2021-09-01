@@ -3,8 +3,8 @@ import { isSamsung } from "@services/utils";
 import { Colours, Style } from "@styles";
 import React, { FC } from "react";
 import { Alert, StyleSheet } from "react-native";
-import { GetMobileCopy_getMobileCopy_screens_fitkitConnect } from "../../../../graphql/_core/schema";
-import { Blurb, Button, Heading, Pad, SecondaryButton } from "../../../atoms";
+import { GetMobileCopy_getMobileCopy_screens_fitkitConnect } from "@graphql/_core/schema";
+import { Blurb, Button, Heading, Pad, SecondaryButton } from "@atoms";
 import { alertCopy, fitKitConnectCopy } from "./copy";
 
 interface IProps {

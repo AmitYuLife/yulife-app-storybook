@@ -1,6 +1,6 @@
 import { LinkGroup } from "@components/molecules";
 import React, { FC } from "react";
-import { GetMobileCopy_getMobileCopy_screens_fitkitConnect } from "../../../../graphql/_core/schema";
+import { GetMobileCopy_getMobileCopy_screens_fitkitConnect } from "@graphql/_core/schema";
 import { CentredScreen, Loading, Pad } from "@atoms";
 import FitKitAvailable from "./fitkit-available";
 import FitKitUnavailable from "./fitkit-unavailable";

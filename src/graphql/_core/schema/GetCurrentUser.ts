@@ -48,8 +48,18 @@ export interface GetCurrentUser_getCurrentUser_passiveSteps_exchange {
   surge: number | null;
 }
 
+export interface GetCurrentUser_getCurrentUser_passiveSteps_levelSlot_milestones {
+  id: string | null;
+  coins: number | null;
+}
+
+export interface GetCurrentUser_getCurrentUser_passiveSteps_levelSlot {
+  milestones: (GetCurrentUser_getCurrentUser_passiveSteps_levelSlot_milestones | null)[] | null;
+}
+
 export interface GetCurrentUser_getCurrentUser_passiveSteps {
   exchange: GetCurrentUser_getCurrentUser_passiveSteps_exchange | null;
+  levelSlot: GetCurrentUser_getCurrentUser_passiveSteps_levelSlot | null;
   isMainSurge: boolean | null;
 }
 

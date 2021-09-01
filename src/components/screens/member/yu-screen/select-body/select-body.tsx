@@ -7,7 +7,7 @@ import FemaleBody from "../svg/female-body";
 import MaleBody from "../svg/male-body";
 import styles from "./select-body.styles";
 import { AvatarBuilderHeading } from "../avatar-builder/avatar.types";
-import { useBackHandler } from "../../../../../services/hooks/useBackHandler";
+import { useBackHandler } from "@services/hooks/useBackHandler";
 import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
 import { MODALS, ROUTES } from "@navigation/constants";
 import Logger from "@services/logging/logger";

@@ -6,15 +6,15 @@ import React, { FC, useCallback } from "react";
 import { View, StyleSheet, ViewStyle } from "react-native";
 import { Navigation } from "react-native-navigation";
 import { connect } from "react-redux";
-import { IReduxState } from "../../../../redux/_core/reducers";
-import { getUserStart } from "../../../../redux/user/user.actions";
-import { getUserFeatures } from "../../../../redux/user/user.selectors";
+import { IReduxState } from "@redux/_core/reducers";
+import { getUserStart } from "@redux/user/user.actions";
+import { getUserFeatures } from "@redux/user/user.selectors";
 import {
   LoadingGeneralInfoCard,
   LoadingHeader,
   LoadingRecomendationCard,
-} from "../../../screens/member/stats/cards/general-info-card";
-import Stats from "../../../screens/member/stats/stats";
+} from "@screens/member/stats/cards/general-info-card";
+import Stats from "@screens/member/stats/stats";
 import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
 import { useBackHandler } from "@services/hooks/useBackHandler";
 

@@ -4,7 +4,7 @@ import { View, StyleSheet, TextStyle, ViewStyle } from "react-native";
 import { Text } from "@atoms";
 import { Style, Colours } from "@styles";
 import Footer from "../footer/footer";
-import { useBackHandler } from "../../../../../../../services/hooks/useBackHandler";
+import { useBackHandler } from "@services/hooks/useBackHandler";
 import ContactDetailsTitle from "./fib.contact-details.title";
 
 export interface IFibConfirmEmailScreenProps {

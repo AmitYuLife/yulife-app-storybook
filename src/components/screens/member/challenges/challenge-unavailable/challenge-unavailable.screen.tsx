@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Image, View } from "react-native";
-import { Button, Text } from "../../../../atoms";
+import { Button, Text } from "@atoms";
 import assets from "./assets";
 import styles from "./challenge-unavailable.styles";
 import { CHALLENGE_UNAVAILABLE } from "@ids";

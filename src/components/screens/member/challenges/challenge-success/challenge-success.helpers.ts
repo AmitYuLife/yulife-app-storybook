@@ -1,4 +1,4 @@
-import { CenteredScreenImages } from "../../../../atoms/centred-screen/centred-screen";
+import { CenteredScreenImages } from "@atoms/centred-screen/centred-screen";
 
 export function getStyle(currentWorld: number) {
   switch (currentWorld) {

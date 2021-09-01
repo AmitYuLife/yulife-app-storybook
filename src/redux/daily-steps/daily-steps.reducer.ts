@@ -1,11 +1,7 @@
 import moment from "moment";
 import { REHYDRATE } from "redux-persist";
-import {
-  GetCurrentUser,
-  GetCurrentUser_getCurrentUser_passiveSteps_exchange,
-  UpsertPassiveChallenge,
-} from "../../graphql/_core/schema";
-import { LoginUser } from "../../graphql/_core/schema";
+import { GetCurrentUser, UpsertPassiveChallenge } from "@graphql/_core/schema";
+import { LoginUser } from "@graphql/_core/schema";
 import {
   PEDOMETER_UPDATES_NO_NEW_DATA,
   PEDOMETER_UPDATES_START,
@@ -21,8 +17,7 @@ import {
   START_STEPS_SYNCING,
 } from "./daily-steps.actions";
 import { SyncAction } from "@redux/_core/types";
-
-type ExchangeRate = GetCurrentUser_getCurrentUser_passiveSteps_exchange;
+import { ExchangeRate, PassiveStepsMilestones } from "./daily-steps.selectors";
 
 export interface IDailyStepsStore {
   /**
@@ -41,6 +36,7 @@ export interface IDailyStepsStore {
    * The default exchange rate is 1 yucoin for 2000 steps. But that varies
    */
   exchangeRate: ExchangeRate;
+  stepsPassiveMilestones: PassiveStepsMilestones;
   /**
    * @description
    * Describes if we're fetching the results from the pedometer
@@ -84,6 +80,7 @@ export const getInitialState = (): IDailyStepsStore => ({
     meditation: null,
     surge: 1,
   },
+  stepsPassiveMilestones: [],
   isFetching: true,
   isSyncing: false,
   isServerFetchedThisSession: false,
@@ -188,6 +185,7 @@ const updateDailyStepsLocal = (state: IDailyStepsStore, dailySteps: number) => (
 const getUserSuccess = (state: IDailyStepsStore, res: GetCurrentUser) => ({
   ...state,
   exchangeRate: res?.getCurrentUser?.passiveSteps?.exchange || getInitialState().exchangeRate,
+  stepsPassiveMilestones: res?.getCurrentUser?.passiveSteps?.levelSlot?.milestones || [],
 });
 
 const loginUserSuccess = (state: IDailyStepsStore, res: LoginUser) => ({

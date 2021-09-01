@@ -1,19 +1,17 @@
 import React, { useCallback, memo } from "react";
 import { StyleSheet, View, ViewStyle } from "react-native";
 import { Style, Colours } from "@styles";
-import { useBackHandler } from "../../../../../../../services/hooks/useBackHandler";
+import { useBackHandler } from "@services/hooks/useBackHandler";
 import {
   MedicalPractices_getMedicalPractices_practicioners,
   MedicalPractices_getMedicalPractices,
 } from "@graphql/_core/schema";
 import { GPInputForm } from "./fib.gp-manually-input.screen";
 import { GP_CONFIRMATION } from "@ids";
-import GenericHeadingAbsolute, {
-  GenericHeadingPad,
-} from "../../../../../../atoms/generic-heading/generic-heading-absolute";
+import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
 import GPTitle from "./fib.gp-title";
 import { Button, DoctorIcon, MedicalPracticeIcon } from "@atoms";
-import SearchItem, { ISearchItem } from "../../../../../../atoms/search/search-item";
+import SearchItem, { ISearchItem } from "@atoms/search/search-item";
 import { getPracticeAddress } from "@components/screens/products/fib/underwriting-journey/subcomponents/gp-details/fib.gp.helper";
 
 interface Props {

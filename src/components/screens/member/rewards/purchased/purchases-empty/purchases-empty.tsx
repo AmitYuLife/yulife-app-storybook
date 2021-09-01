@@ -1,8 +1,8 @@
 import * as React from "react";
 import { SFC } from "react";
 import { Image, View, ViewStyle, StyleSheet, ImageStyle, TextStyle } from "react-native";
-import { GetMobileCopy_getMobileCopy_screens_purchases_empty } from "../../../../../../graphql/_core/schema";
-import { Text, Button } from "../../../../../atoms";
+import { GetMobileCopy_getMobileCopy_screens_purchases_empty } from "@graphql/_core/schema";
+import { Text, Button } from "@atoms";
 import { CHECK_REWARDS_BUTTON } from "@ids";
 import { Style } from "@styles";
 

@@ -3,7 +3,7 @@ import { View, StyleSheet, TextStyle, ViewStyle } from "react-native";
 import { Text, Button } from "@atoms";
 import { Style } from "@styles";
 import { FibUnderwritingJourneyLayout } from "../../layouts/fib.underwriting-journey-layout";
-import { useBackHandler } from "../../../../../../services/hooks/useBackHandler";
+import { useBackHandler } from "@services/hooks/useBackHandler";
 
 export interface IFibHoldingGPDetailsScreenProps {
   onClose?: () => void;

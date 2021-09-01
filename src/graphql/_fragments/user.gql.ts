@@ -48,6 +48,12 @@ export const GQL_FRAGMENT_USER = gql`
         meditation
         surge
       }
+      levelSlot {
+        milestones {
+          id
+          coins
+        }
+      }
       isMainSurge
     }
     passiveMeditation: passiveChallenge(id: MEDITATION) {

@@ -5,11 +5,11 @@ import { connect } from "react-redux";
 import {
   GetMobileCopy_getMobileCopy_screens_emailSent as EmailSentCopy,
   GetMobileCopy_getMobileCopy_screens_needHelpLoggingIn as ResetPasswordCopy,
-} from "../../../graphql/_core/schema";
+} from "@graphql/_core/schema";
 
-import { IReduxState } from "../../../redux/_core/reducers";
-import { getCopy } from "../../../redux/copy/copy.selectors";
-import { EmailSentScreen, ResetPasswordScreen } from "../../screens";
+import { IReduxState } from "@redux/_core/reducers";
+import { getCopy } from "@redux/copy/copy.selectors";
+import { EmailSentScreen, ResetPasswordScreen } from "@screens";
 import { validateEmail } from "../login/login.helpers";
 import { useMutation } from "@apollo/react-hooks";
 import Logger from "@services/logging/logger";
