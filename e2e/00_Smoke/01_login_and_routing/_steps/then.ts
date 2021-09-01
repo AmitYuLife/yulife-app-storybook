@@ -139,7 +139,6 @@ export const settingsScreenVisible = async (): Promise<void> => {
 export const menuIsVisible = async (): Promise<void> => {
     await expectIsVisibleViaID(MENU_SCREEN);
     await expectIsVisibleViaID(MENU_ITEM("activity history"));
-    await expectIsVisibleViaID(MENU_ITEM("member zone"));
     await expectIsVisibleViaID(MENU_ITEM("leaderboard"));
 };
 
