@@ -6,7 +6,7 @@ import { getOnboardingReferralsBadge } from "@redux/onboarding/onboarding.select
 import { useDebouncedQuery } from "@services/hooks/useDebouncedQuery";
 import { GetReferralBackground, GetReferralBackground_getReferralBackground } from "@graphql/_core/schema";
 import { GQL_QUERY_GET_REFERRAL_BACKGROUND } from "@graphql/referrals";
-import { MENU_ITEM, MENU_SCREEN } from "@ids";
+import { MENU_ITEM, MENU_SCREEN, REFERRALS_BUTTON_BADGE } from "@ids";
 import { Button, CloseSvg, Image, Pad } from "@atoms";
 import Logo from "@atoms/logo";
 import { TextTemplate } from "@atoms/text/text-template";
@@ -99,7 +99,13 @@ const ReferralButton = ({ showBadge, loading, uri, onInvitePress }: ReferralButt
       )}
     </View>
     <View style={styles.referralButtonWrapper}>
-      <Button label="Invite a colleague" size="Fill" onPress={onInvitePress} showBadge={showBadge} />
+      <Button
+        label="Invite a colleague"
+        size="Fill"
+        onPress={onInvitePress}
+        showBadge={showBadge}
+        testID={REFERRALS_BUTTON_BADGE(showBadge)}
+      />
     </View>
   </View>
 );

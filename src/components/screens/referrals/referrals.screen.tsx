@@ -5,7 +5,7 @@ import { setOnboardingReferralsBadge } from "@redux/onboarding/onboarding.action
 import moment from "moment";
 import Logger from "@services/logging/logger";
 import { GetReferralInformation_referralInformation } from "@graphql/_core/schema";
-import { REFERRALS_SCREEN, REFERRALS_SCROLL_VIEW } from "@ids";
+import { REFERRALS_SCREEN, REFERRALS_SCROLL_VIEW, REFERRALS_INVITE_BUTTON } from "@ids";
 import { TextTemplate, Button, Image } from "@atoms";
 import { ShareIcon } from "@atoms/icon/share-icon";
 import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
@@ -87,6 +87,7 @@ const ReferralsScreen = ({ info, handleClose, componentId }: IProps) => {
             size="Medium"
             label={shareCTA}
             leftIcon={<ShareIcon width={Style.adjust(14)} height={Style.adjust(15)} color={Colours.neutral.white} />}
+            testID={REFERRALS_INVITE_BUTTON}
           />
           <View style={styles.disclaimer}>
             <TextTemplate type="l3" textAlign="center">

@@ -185,7 +185,9 @@ Feature("As a user I can navigate through member routes correctly", async () => 
     Scenario("I should see my yumoji and streak coins in activity history", scenario.start, async () => {
         Given("I login as a user", given.loginAsUser(CUSTOMER_35, AUTH_35), async () => {
             When("I tap the menu icon", when.tapID(MENU_ICON, 1500), async()=>{
-                Then("I should see the menu items", then.menuItemsVisible)
+                When("I tap the menu icon", when.tapID(MENU_ICON, 1500), async()=>{ // double tap due to referrals popover
+                    Then("I should see the menu items", then.menuItemsVisible)
+                })
             })
             When("I tap activity history", when.tapMenuItem("Activity History"), async()=>{
                 Then("I should be on the activity history", then.idVisible(ACTIVITY_HISTORY_SCREEN, 2500))
