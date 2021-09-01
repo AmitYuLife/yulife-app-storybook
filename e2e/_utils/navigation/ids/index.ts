@@ -235,6 +235,9 @@ export const MORE_INFO_BUTTON = (copy: string) => `MORE_INFO_BUTTON_${copy}`
 
 // REFERRALS
 export const REFERRALS_SCROLL_VIEW = "REFERRALS_SCROLL_VIEW"
+export const REFERRALS_BUTTON_BADGE = (bool: boolean) => `REFERRALS_BUTTON_BADGE_${bool}`
+export const MENU_ICON_BADGE = (bool: boolean) => `MENU_ICON_BADGE_${bool}`
+export const REFERRALS_INVITE_BUTTON = `REFERRALS_INVITE_BUTTON`
 
 // SETTINGS SCREEN
 export const SETTINGS_NAME = (name:string) => `SETTINGS_NAME_${name}`

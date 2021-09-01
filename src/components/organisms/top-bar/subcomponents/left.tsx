@@ -1,6 +1,6 @@
 import React, { memo } from "react";
 import { TouchableOpacity, View, StyleSheet, TextStyle, ViewStyle } from "react-native";
-import { BUTTON_TOP_LEFT_BAR } from "@ids";
+import { BUTTON_TOP_LEFT_BAR, MENU_ICON_BADGE } from "@ids";
 import { Back, CloseSvg } from "@atoms";
 import { Menu } from "../assets";
 import { Text } from "@atoms/index";
@@ -43,7 +43,10 @@ function Icon({ icon, colour = "#333333", hasBadge }: { icon: LeftIconTypes; col
   switch (icon) {
     case "Menu":
       return (
-        <View style={StyleSheet.flatten([styles.iconHeight, styles.menuIconMargins])}>
+        <View
+          style={StyleSheet.flatten([styles.iconHeight, styles.menuIconMargins])}
+          testID={MENU_ICON_BADGE(hasBadge)}
+        >
           <Menu color={colour} />
           {hasBadge ? <View style={styles.badge} /> : null}
         </View>
