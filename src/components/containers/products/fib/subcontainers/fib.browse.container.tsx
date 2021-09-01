@@ -20,7 +20,7 @@ import { IReduxState } from "@redux/_core/reducers";
 import { getUserDateOfBirth } from "@redux/user/user.selectors";
 import { packages, useCover } from "../fib.helpers";
 import { CoverType } from "@graphql/_core/schema/globalTypes";
-import { useBackHandler } from "../../../../../services/hooks/useBackHandler";
+import { useBackHandler } from "@services/hooks/useBackHandler";
 import { FIB_PAYOUT_CALCULATOR_INITIAL_STATE } from "./fib.payout-calculator.conainer";
 
 interface IFibContainer {

@@ -1,12 +1,12 @@
 import React, { memo, useState, useCallback } from "react";
 import { FibLocalNavigation } from "../fib.types";
-import { getFIBState } from "../../../../../redux/product/product.selectors";
+import { getFIBState } from "@redux/product/product.selectors";
 import { useSelector } from "react-redux";
-import { FibPayoutCalculatorAddDataScreen } from "../../../../screens/products/fib/payout-calculator/fib.payout-calculator-add-data.screen";
-import { FibPayoutCalculatorDataAddedScreen } from "../../../../screens/products/fib/payout-calculator/fib.payout-calculator-data-added.screen";
+import { FibPayoutCalculatorAddDataScreen } from "@screens/products/fib/payout-calculator/fib.payout-calculator-add-data.screen";
+import { FibPayoutCalculatorDataAddedScreen } from "@screens/products/fib/payout-calculator/fib.payout-calculator-data-added.screen";
 import moment from "moment";
-import { useBackHandler } from "../../../../../services/hooks/useBackHandler";
-import { CreateTopUpsQuote_createTopUpsQuote_coverTypesInfo } from "../../../../../graphql/_core/schema/CreateTopUpsQuote";
+import { useBackHandler } from "@services/hooks/useBackHandler";
+import { CreateTopUpsQuote_createTopUpsQuote_coverTypesInfo } from "@graphql/_core/schema/CreateTopUpsQuote";
 interface IFibPayoutCalculatorContainerProps {
   navigation: FibLocalNavigation;
 }

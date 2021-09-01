@@ -1,4 +1,4 @@
-import { AvatarPartType } from "../../graphql/_core/schema/globalTypes";
+import { AvatarPartType } from "@graphql/_core/schema/globalTypes";
 import { facialHairColection, facialHairColorColection } from "./avatar.facialHair.data";
 import { hairColection, hairColorColection } from "./avatar.hair.data";
 import { IBodyElements } from "./avatar.reducer";

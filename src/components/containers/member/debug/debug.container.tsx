@@ -4,13 +4,13 @@ import * as React from "react";
 import { Alert } from "react-native";
 import { Navigation } from "react-native-navigation";
 import { connect } from "react-redux";
-import { IReduxState } from "../../../../redux/_core/reducers";
-import { sendTestPush } from "../../../../redux/notifications/notifications.actions";
-import { getUserStart } from "../../../../redux/user/user.actions";
-import { getUserFeatures } from "../../../../redux/user/user.selectors";
-import { DebugScreen } from "../../../screens";
+import { IReduxState } from "@redux/_core/reducers";
+import { sendTestPush } from "@redux/notifications/notifications.actions";
+import { getUserStart } from "@redux/user/user.actions";
+import { getUserFeatures } from "@redux/user/user.selectors";
+import { DebugScreen } from "@screens";
 import { ROUTES } from "@navigation/constants";
-import { FIB_GP_DETAILS, FIB_CONFIRM_PACKAGES, FIB_CHOOSE_STYLE } from "@components/containers/products/fib/fib.types";
+import { FIB_GP_DETAILS, FIB_CONFIRM_PACKAGES, FIB_CHOOSE_STYLE } from "@containers/products/fib/fib.types";
 import { FIB_CONTACT_DETAILS, FIB_DECLARATION_CONFIRMATION } from "../../products/fib/fib.types";
 
 interface IProps {

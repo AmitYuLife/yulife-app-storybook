@@ -1,15 +1,15 @@
 import React, { memo, useEffect } from "react";
 import FastImage, { Source } from "react-native-fast-image";
 import { FibLocalNavigation, FIB_INTRO_YUGI } from "../fib.types";
-import { FibStyleSelectionScreen } from "../../../../screens/products/fib/choose-style/choose-style.screen";
+import { FibStyleSelectionScreen } from "@screens/products/fib/choose-style/choose-style.screen";
 import { useQuery } from "@apollo/react-hooks";
 import { GQL_QUERY_GET_YULIFER } from "@graphql/yuscreen";
 import { GetYulifer } from "@graphql/_core/schema";
 import { CoverType } from "@graphql/_core/schema/globalTypes";
-import { GetYulifer_personal_chest_options_styles } from "../../../../../graphql/_core/schema/GetYulifer";
-import { YuWorld } from "../../../../../graphql/_core/schema/globalTypes";
+import { GetYulifer_personal_chest_options_styles } from "@graphql/_core/schema/GetYulifer";
+import { YuWorld } from "@graphql/_core/schema/globalTypes";
 import { YUGI_INTRO_TYPE } from "./fib.yugi-intro.container";
-import { useBackHandler } from "../../../../../services/hooks/useBackHandler";
+import { useBackHandler } from "@services/hooks/useBackHandler";
 import { useDispatch } from "react-redux";
 import { updateFIBStyle } from "@redux/product/product.actions";
 

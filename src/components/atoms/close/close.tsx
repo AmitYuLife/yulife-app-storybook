@@ -9,7 +9,7 @@ import {
   ViewStyle,
   ImageStyle,
 } from "react-native";
-import { Style } from "../../../styles";
+import { Style } from "@styles";
 
 const getTop = () => {
   if (Style.isAnyIphoneX()) {

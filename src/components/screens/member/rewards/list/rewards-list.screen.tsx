@@ -1,5 +1,5 @@
 import * as React from "react";
-import { GetRewards_getRewards } from "../../../../../graphql/_core/schema";
+import { GetRewards_getRewards } from "@graphql/_core/schema";
 import { IConnectedScreenProps } from "../../../../../typings";
 import { RewardsListLayout } from "../subcomponents/rewards-layout";
 import { RewardsList } from "./rewards-list";

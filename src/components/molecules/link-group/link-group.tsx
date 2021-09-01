@@ -1,6 +1,6 @@
 import * as React from "react";
 import { View } from "react-native";
-import { LinkButton } from "../../atoms";
+import { LinkButton } from "@atoms";
 import styles from "./link-group.styles";
 
 interface ILink {

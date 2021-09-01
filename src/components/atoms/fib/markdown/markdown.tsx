@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet, ViewStyle, Platform } from "react-native";
-import { Style } from "../../../../styles";
+import { Style } from "@styles";
 import Markdown from "@components/molecules/markdown/markdown";
 import media from "@styles/media";
 

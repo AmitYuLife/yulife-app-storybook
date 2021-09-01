@@ -1,4 +1,4 @@
-import { CreateTopUpsQuote_createTopUpsQuote, GetTopUpsQuote_getTopUpsQuote } from "../../graphql/_core/schema";
+import { CreateTopUpsQuote_createTopUpsQuote, GetTopUpsQuote_getTopUpsQuote } from "@graphql/_core/schema";
 import { FIBStoreAnswerValue, UPDATE_FIB_STYLE, RESET_FIB } from "./product.types";
 import {
   ProductActionTypes,

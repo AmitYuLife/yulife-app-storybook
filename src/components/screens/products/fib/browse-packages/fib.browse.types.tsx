@@ -1,4 +1,4 @@
-import { CoverType } from "../../../../../graphql/_core/schema/globalTypes";
+import { CoverType } from "@graphql/_core/schema/globalTypes";
 
 interface IPackagePowersProps {
   id: string;

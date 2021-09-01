@@ -1,11 +1,11 @@
 // tslint:disable-next-line
-import { CenteredScreenImages } from "../../components/atoms/centred-screen/centred-screen";
-import { StreakTypes } from "@components/organisms/streak/streak";
-import { GetCurrentUser, LoginUser } from "../../graphql/_core/schema";
+import { CenteredScreenImages } from "@atoms/centred-screen/centred-screen";
+import { StreakTypes } from "@organisms/streak/streak";
+import { GetCurrentUser, LoginUser } from "@graphql/_core/schema";
 import { GET_USER_SUCCESS, LOGIN_USER_SUCCESS } from "../user/user.actions";
-import { getCurrentWorld } from "../../services/utils";
+import { getCurrentWorld } from "@services/utils";
 import { SyncAction } from "../_core/types";
-import { TopBarTypes } from "@components/organisms/top-bar/top-bar.helpers";
+import { TopBarTypes } from "@organisms/top-bar/top-bar.helpers";
 import moment from "moment";
 
 export interface ICentredScreen {

@@ -11,7 +11,7 @@ import {
   femalePantsDefault,
 } from "./avatar.data";
 import { femaleHeadDefault } from "./avatar.data";
-import { YuAvatarColor, YuAvatarColor_colorScheme } from "../../graphql/_core/schema";
+import { YuAvatarColor, YuAvatarColor_colorScheme } from "@graphql/_core/schema";
 import {
   maleBodyDefault,
   maleBootsDefault,

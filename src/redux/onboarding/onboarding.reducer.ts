@@ -1,5 +1,5 @@
 import { REHYDRATE } from "redux-persist";
-import { GetCurrentUser, LoginUser } from "../../graphql/_core/schema";
+import { GetCurrentUser, LoginUser } from "@graphql/_core/schema";
 import { SyncAction } from "../_core/types";
 import { GET_USER_SUCCESS, LOGIN_USER_SUCCESS } from "../user/user.actions";
 import {

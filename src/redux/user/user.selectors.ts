@@ -2,7 +2,7 @@ import { createSelector } from "reselect";
 import {
   GetCurrentUser_getCurrentUser_connections,
   GetCurrentUser_getCurrentUser_leaderboards,
-} from "../../graphql/_core/schema";
+} from "@graphql/_core/schema";
 import { IReduxState } from "../_core/reducers";
 
 export type Connection = GetCurrentUser_getCurrentUser_connections;

@@ -3,9 +3,9 @@ import { View, StyleSheet, ViewStyle, TextStyle, Platform, KeyboardAvoidingView,
 import { Button, Text } from "@atoms";
 import { Style, Colours } from "@styles";
 import { Navigation } from "react-native-navigation";
-import { MODALS } from "../../../../../navigation/constants";
+import { MODALS } from "@navigation/constants";
 import GenericOverlay from "@components/modals/generic-overlay/generic-overlay";
-import { FibInputSalary } from "../../../../organisms/fib/input/salary/fib-input-salary";
+import { FibInputSalary } from "@organisms/fib/input/salary/fib-input-salary";
 
 export interface IFibEnterSalaryScreenProps {
   submitSalary: () => void;

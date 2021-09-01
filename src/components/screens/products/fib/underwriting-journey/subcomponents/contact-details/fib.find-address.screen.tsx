@@ -1,17 +1,15 @@
 import React, { useCallback, memo, useState, useEffect } from "react";
 import { View } from "react-native";
-import { useBackHandler } from "../../../../../../../services/hooks/useBackHandler";
-import GenericHeadingAbsolute, {
-  GenericHeadingPad,
-} from "../../../../../../atoms/generic-heading/generic-heading-absolute";
-import { useDebouncedQuery } from "../../../../../../../services/hooks/useDebouncedQuery";
-import { Address, AddressVariables, Address_findUserAddress } from "../../../../../../../graphql/_core/schema";
+import { useBackHandler } from "@services/hooks/useBackHandler";
+import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
+import { useDebouncedQuery } from "@services/hooks/useDebouncedQuery";
+import { Address, AddressVariables, Address_findUserAddress } from "@graphql/_core/schema";
 import { AddressIcon, SearchInput, SearchList } from "@atoms";
-import SearchItem, { ISearchItem } from "../../../../../../atoms/search/search-item";
-import { Colours } from "../../../../../../../styles";
-import { GQL_QUERY_GET_ADDRESS_BY_POSTCODE } from "../../../../../../../graphql/yuscreen/getAdress.gql";
-import SearchListEmpty from "../../../../../../atoms/search/search-list-empty";
-import { formatPostCode } from "../../../../../../../services/utils";
+import SearchItem, { ISearchItem } from "@atoms/search/search-item";
+import { Colours } from "@styles";
+import { GQL_QUERY_GET_ADDRESS_BY_POSTCODE } from "@graphql/yuscreen/getAdress.gql";
+import SearchListEmpty from "@atoms/search/search-list-empty";
+import { formatPostCode } from "@services/utils";
 
 interface IFibFindAddressScreenProps {
   onBackButtonPress: () => void;

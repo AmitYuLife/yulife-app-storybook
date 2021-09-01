@@ -4,7 +4,7 @@ import { getCurrentEpisode, getCurrentWorld, getNormalizedLevel } from "@service
 import { FlatList, SafeAreaView, View, ViewabilityConfigCallbackPair } from "react-native";
 import { isIphoneX } from "react-native-iphone-x-helper";
 import { Navigation } from "react-native-navigation";
-import { GetQuestMapLevelList_getQuestMapLevelList } from "../../../../../graphql/_core/schema";
+import { GetQuestMapLevelList_getQuestMapLevelList } from "@graphql/_core/schema";
 import { IConnectedScreenProps } from "../../../../../typings";
 import { IMapSlice, loadingSlices, mapSlices } from "./assets";
 import offsets from "./assets/offsets";

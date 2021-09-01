@@ -1,6 +1,6 @@
 import * as React from "react";
 import Svg, { SvgProps, Path, Circle } from "react-native-svg";
-import { Style } from "../../../styles";
+import { Style } from "@styles";
 
 function AddressIcon(props: SvgProps = {}) {
   const color = props.color || "#6E6E70";

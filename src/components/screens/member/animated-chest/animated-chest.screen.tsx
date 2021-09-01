@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Animated, Image, StyleSheet, View, ViewStyle } from "react-native";
-import { Button, ChestCoin, LinkButton, Text } from "../../../atoms";
+import { Button, ChestCoin, LinkButton, Text } from "@atoms";
 import styles from "./animated-chest.styles";
 import assets from "./assets";
 import { DETOX_ENABLED } from "@services/socket";

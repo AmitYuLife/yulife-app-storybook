@@ -7,13 +7,13 @@ import React, { useCallback, useState, useRef, FC } from "react";
 import { LargeList } from "react-native-largelist-v3";
 import { Navigation } from "react-native-navigation";
 import { connect } from "react-redux";
-import { IReduxState } from "../../../../redux/_core/reducers";
-import { getCopy } from "../../../../redux/copy/copy.selectors";
-import { getUserStart } from "../../../../redux/user/user.actions";
-import { getUserFeatures } from "../../../../redux/user/user.selectors";
-import Logger from "../../../../services/logging/logger";
-import GenericConnectionErrorModal from "../../../modals/generic-modal/generic-connection-error-modal";
-import { ActivityHistoryLevels } from "../../../screens";
+import { IReduxState } from "@redux/_core/reducers";
+import { getCopy } from "@redux/copy/copy.selectors";
+import { getUserStart } from "@redux/user/user.actions";
+import { getUserFeatures } from "@redux/user/user.selectors";
+import Logger from "@services/logging/logger";
+import GenericConnectionErrorModal from "@modals/generic-modal/generic-connection-error-modal";
+import { ActivityHistoryLevels } from "@screens";
 import { groupDatesByMonth } from "./activity-history.helpers";
 
 interface IProps {

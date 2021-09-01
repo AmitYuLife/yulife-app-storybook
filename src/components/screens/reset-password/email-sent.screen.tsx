@@ -1,7 +1,7 @@
 import * as React from "react";
 import { SFC } from "react";
-import { GetMobileCopy_getMobileCopy_screens_emailSent as EmailSentCopy } from "../../../graphql/_core/schema";
-import { Blurb, Button, CentredScreen, Heading, LinkButton, Pad, UnauthorisedGradient } from "../../atoms";
+import { GetMobileCopy_getMobileCopy_screens_emailSent as EmailSentCopy } from "@graphql/_core/schema";
+import { Blurb, Button, CentredScreen, Heading, LinkButton, Pad, UnauthorisedGradient } from "@atoms";
 import styles from "./reset-password.screen.styles";
 
 interface IProps {

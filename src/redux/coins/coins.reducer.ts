@@ -6,7 +6,7 @@ import {
   GetCurrentUser_getCurrentUser_todayActivity,
   LoginUser,
   UpsertPassiveChallenge,
-} from "../../graphql/_core/schema";
+} from "@graphql/_core/schema";
 import { SyncAction } from "../_core/types";
 import {
   UPDATE_DAILY_MEDITATION_EMPTY_RESULT,

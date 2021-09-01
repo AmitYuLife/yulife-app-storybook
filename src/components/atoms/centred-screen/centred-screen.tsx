@@ -2,7 +2,7 @@ import * as React from "react";
 import { Image, SafeAreaView, StyleSheet, View, ViewStyle, ImageStyle } from "react-native";
 import LottieView from "lottie-react-native";
 import styles from "./centred-screen.styles";
-import { Style } from "../../../styles";
+import { Style } from "@styles";
 
 interface Props {
   children?: React.ReactNode;

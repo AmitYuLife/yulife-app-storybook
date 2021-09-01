@@ -1,8 +1,8 @@
 import * as React from "react";
 import { SFC } from "react";
 import { Platform } from "react-native";
-import { GetMobileCopy_getMobileCopy_screens_fitkitConnect } from "../../../../graphql/_core/schema";
-import { Blurb, Heading, Pad } from "../../../atoms";
+import { GetMobileCopy_getMobileCopy_screens_fitkitConnect } from "@graphql/_core/schema";
+import { Blurb, Heading, Pad } from "@atoms";
 interface IProps {
   copy: GetMobileCopy_getMobileCopy_screens_fitkitConnect;
 }

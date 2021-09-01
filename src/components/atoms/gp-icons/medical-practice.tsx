@@ -1,6 +1,6 @@
 import React from "react";
 import Svg, { Path, Rect, SvgProps } from "react-native-svg";
-import { Style } from "../../../styles";
+import { Style } from "@styles";
 
 export function MedicalPracticeIcon(props: SvgProps = {}) {
   const color = props.color || "#6E6E70";

@@ -6,19 +6,22 @@ import { GQL_QUERY_GET_CURRENT_USER } from "@graphql/user";
 import * as React from "react";
 import { Platform } from "react-native";
 import { Navigation } from "react-native-navigation";
-import { connect } from "react-redux";
-import { IReduxState } from "../../../redux/_core/reducers";
-import { getDailyMeditationCoins, getDailyStepsCoins } from "../../../redux/coins/coins.selectors";
+import { useSelector } from "react-redux";
+import { getDailyMeditationCoins, getDailyStepsCoins } from "@redux/coins/coins.selectors";
 import {
   getDailyMeditation,
   getMeditationAwardedMilestonesLength,
   getMeditationExchangeRate,
-} from "../../../redux/daily-meditation/daily-meditation.selectors";
-import { getDailySteps, getExchangeRate } from "../../../redux/daily-steps/daily-steps.selectors";
-import { getChallengesStatus } from "../../../redux/levels/levels.selectors";
-import { getUserFeatures } from "../../../redux/user/user.selectors";
-import { pathOr } from "../../../services/utils";
-import { TodayYucoinScreen } from "../../screens";
+} from "@redux/daily-meditation/daily-meditation.selectors";
+import {
+  getDailySteps,
+  getExchangeRate,
+  getStepsAwardedMilestonesLength,
+} from "@redux/daily-steps/daily-steps.selectors";
+import { getChallengesStatus } from "@redux/levels/levels.selectors";
+import { getUserFeatures } from "@redux/user/user.selectors";
+import { pathOr } from "@services/utils";
+import { TodayYucoinScreen } from "@screens";
 import { useQuery } from "@apollo/react-hooks";
 
 interface IProps {
@@ -26,26 +29,22 @@ interface IProps {
   onCtaPress: () => void;
 }
 
-type ConnectedState = ReturnType<typeof mapStateToProps>;
-
 type ActiveChallenge = GetCurrentUser_getCurrentUser_activeChallenge;
 type ChallengeToday = GetCurrentUser_getCurrentUser_todayActivity;
-type Props = IProps & ConnectedState;
 
-const TodayYucoinModal: React.FC<Props> = ({
-  challengesStatus,
-  dailyStepsEarned,
-  exchangeRate,
-  steps,
-  features,
-  dailyMeditation,
-  dailyMeditationEarned,
-  isShowingPassiveMeditation,
-  meditationExchangeRate,
-  passiveMeditationAwardedMilestonesLength,
-  componentId,
-  onCtaPress,
-}) => {
+const TodayYucoinModal: React.FC<IProps> = ({ componentId, onCtaPress }) => {
+  const challengesStatus = useSelector(getChallengesStatus);
+  const dailyStepsEarned = useSelector(getDailyStepsCoins);
+  const exchangeRate = useSelector(getExchangeRate);
+  const meditationExchangeRate = useSelector(getMeditationExchangeRate);
+  const passiveStepsAwardedMilestonesLength = useSelector(getStepsAwardedMilestonesLength);
+  const passiveMeditationAwardedMilestonesLength = useSelector(getMeditationAwardedMilestonesLength);
+  const steps = useSelector(getDailySteps);
+  const dailyMeditation = useSelector(getDailyMeditation);
+  const dailyMeditationEarned = useSelector(getDailyMeditationCoins);
+  const isShowingPassiveMeditation = useSelector(getUserFeatures).usePassiveMeditation;
+  const features = useSelector(getUserFeatures);
+
   const { loading, data } = useQuery(GQL_QUERY_GET_CURRENT_USER, {
     fetchPolicy: "network-only",
     variables: { intercomHashMethod: Platform.OS },
@@ -104,22 +103,10 @@ const TodayYucoinModal: React.FC<Props> = ({
       meditationSeconds={dailyMeditation}
       dailyMeditationEarned={dailyMeditationEarned}
       meditationExchangeRate={meditationExchangeRate}
+      passiveStepsAwardedMilestonesLength={passiveStepsAwardedMilestonesLength}
       passiveMeditationAwardedMilestonesLength={passiveMeditationAwardedMilestonesLength}
     />
   );
 };
 
-const mapStateToProps = (state: IReduxState) => ({
-  challengesStatus: getChallengesStatus(state),
-  dailyStepsEarned: getDailyStepsCoins(state),
-  exchangeRate: getExchangeRate(state),
-  meditationExchangeRate: getMeditationExchangeRate(state),
-  passiveMeditationAwardedMilestonesLength: getMeditationAwardedMilestonesLength(state),
-  steps: getDailySteps(state),
-  dailyMeditation: getDailyMeditation(state),
-  dailyMeditationEarned: getDailyMeditationCoins(state),
-  isShowingPassiveMeditation: getUserFeatures(state).usePassiveMeditation,
-  features: getUserFeatures(state),
-});
-
-export default connect<ConnectedState>(mapStateToProps)(TodayYucoinModal);
+export default TodayYucoinModal;

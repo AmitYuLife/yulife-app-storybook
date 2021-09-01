@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Style } from "../../../styles";
+import { Style } from "@styles";
 
 import { StyleSheet, Text, TextStyle } from "react-native";
 import colours from "@styles/colours";

@@ -1,5 +1,5 @@
 import { call, takeEvery } from "redux-saga/effects";
-import Logger from "../../services/logging/logger";
+import Logger from "@services/logging/logger";
 import {
   PRODUCT_ITEM_VIEWED,
   PRODUCT_ITEM_INSPECTED,

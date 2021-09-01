@@ -1,8 +1,8 @@
 import * as React from "react";
 import { Image, SectionList, StyleSheet, TouchableOpacity, View } from "react-native";
-import { GetHighlights_getUserStats, GetHighlights_getUserStats_data as Card } from "../../../../graphql/_core/schema";
-import { Style } from "../../../../styles";
-import { Text } from "../../../atoms";
+import { GetHighlights_getUserStats, GetHighlights_getUserStats_data as Card } from "@graphql/_core/schema";
+import { Style } from "@styles";
+import { Text } from "@atoms";
 import BestScoreCard from "./cards/best-score-card";
 import ComparisonCard from "./cards/comparison-card";
 import GeneralInfoCard from "./cards/general-info-card";

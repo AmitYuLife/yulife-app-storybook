@@ -3,13 +3,13 @@ import { StyleSheet, View } from "react-native";
 import FastImage from "react-native-fast-image";
 import { Button, Text } from "@atoms";
 import { TouchableOpacityWithDelay } from "@molecules";
-import { CoverType, YuWorld } from "../../../../../graphql/_core/schema/globalTypes";
+import { CoverType, YuWorld } from "@graphql/_core/schema/globalTypes";
 import { Colours, Style } from "@styles";
 import colours from "@styles/colours";
 import GenericHeadingAbsolute from "@atoms/generic-heading/generic-heading-absolute";
 import { styles } from "./choose-style.styles";
 import { ARMOR_OPTION, SELECTED_ARMOR } from "@ids";
-import { GetYulifer_personal_chest_options_styles } from "../../../../../graphql/_core/schema";
+import { GetYulifer_personal_chest_options_styles } from "@graphql/_core/schema";
 
 // @TODO PLI: Purge this as part of the new PLI
 interface IFibStyleSelectionScreenProps {

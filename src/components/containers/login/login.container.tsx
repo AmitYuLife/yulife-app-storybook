@@ -11,12 +11,12 @@ import { Navigation } from "react-native-navigation";
 import { connect, useDispatch } from "react-redux";
 import { GetMobileCopy_getMobileCopy_screens_login as LoginCopy } from "@graphql/_core/schema";
 import { LoginMethod, IntercomHashMethod } from "@graphql/_core/schema/globalTypes";
-import { IReduxState } from "../../../redux/_core/reducers";
-import { setAuthenticated } from "../../../redux/app/app.actions";
-import { getCopy } from "../../../redux/copy/copy.selectors";
-import { loginUserSuccess } from "../../../redux/user/user.actions";
-import { setToken } from "../../../services/storage";
-import { LoginScreen } from "../../screens";
+import { IReduxState } from "@redux/_core/reducers";
+import { setAuthenticated } from "@redux/app/app.actions";
+import { getCopy } from "@redux/copy/copy.selectors";
+import { loginUserSuccess } from "@redux/user/user.actions";
+import { setToken } from "@services/storage";
+import { LoginScreen } from "@screens";
 import { validateEmail, validatePassword } from "./login.helpers";
 
 const trimGraphQLError = (message: string) => message.replace(/^GraphQL error: /, "");

@@ -3,11 +3,11 @@ import { View, StyleSheet, ViewStyle, TextStyle } from "react-native";
 import Config from "react-native-config";
 import { Text, CheckBox } from "@atoms";
 import { Style, Colours } from "@styles";
-import { useBackHandler } from "../../../../../../../services/hooks/useBackHandler";
+import { useBackHandler } from "@services/hooks/useBackHandler";
 import { ScrollableLayout } from "@molecules";
 import { useDispatch } from "react-redux";
-import { updateFIBAnswerValue } from "../../../../../../../redux/product/product.actions";
-import { handleOpenWebView } from "../../../../../../../navigation/utils";
+import { updateFIBAnswerValue } from "@redux/product/product.actions";
+import { handleOpenWebView } from "@navigation/utils";
 
 interface Props {
   onClose: () => void;

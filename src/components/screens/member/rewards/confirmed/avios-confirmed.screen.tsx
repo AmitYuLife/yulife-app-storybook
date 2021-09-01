@@ -1,8 +1,8 @@
 import * as React from "react";
 import { ScrollView, View } from "react-native";
-import { Style } from "../../../../../styles";
-import { Pad, Text } from "../../../../atoms";
-import { RewardItemContent } from "../../../../molecules";
+import { Style } from "@styles";
+import { Pad, Text } from "@atoms";
+import { RewardItemContent } from "@molecules";
 import styles from "./avios-confirmed.screen.styles";
 import CardStates from "./card-states";
 import { TopBarLeftIconTypes } from "@components/organisms/top-bar/top-bar.helpers";

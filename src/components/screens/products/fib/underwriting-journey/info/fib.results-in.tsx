@@ -3,13 +3,13 @@ import { View, StyleSheet, TextStyle, ViewStyle } from "react-native";
 import { Text, Button } from "@atoms";
 import { Style } from "@styles";
 import { FibUnderwritingJourneyLayout } from "../../layouts/fib.underwriting-journey-layout";
-import { useBackHandler } from "../../../../../../services/hooks/useBackHandler";
-import FibTitle from "../../../../../atoms/fib/title/title";
+import { useBackHandler } from "@services/hooks/useBackHandler";
+import FibTitle from "@atoms/fib/title/title";
 import { Navigation } from "react-native-navigation";
-import { MODALS } from "../../../../../../navigation/constants";
-import { FibLocalNavigation, FIB_CONFIRM_PACKAGES } from "../../../../../containers/products/fib/fib.types";
-import { ScreeningStatus } from "../../../../../../graphql/_core/schema/globalTypes";
-import Logger from "../../../../../../services/logging/logger";
+import { MODALS } from "@navigation/constants";
+import { FibLocalNavigation, FIB_CONFIRM_PACKAGES } from "@containers/products/fib/fib.types";
+import { ScreeningStatus } from "@graphql/_core/schema/globalTypes";
+import Logger from "@services/logging/logger";
 
 export interface IFibResultsInScreenProps {
   onClose?: () => void;

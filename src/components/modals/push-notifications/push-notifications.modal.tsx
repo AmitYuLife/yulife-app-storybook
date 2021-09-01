@@ -3,10 +3,10 @@ import { PureComponent } from "react";
 import { Linking } from "react-native";
 import { Navigation } from "react-native-navigation";
 import { connect } from "react-redux";
-import { GetMobileCopy_getMobileCopy_screens_pushNotification } from "../../../graphql/_core/schema";
-import { requirePushEnabled } from "../../../redux/device/device.actions";
-import { IPushNotification } from "../../../redux/device/device.selectors";
-import { GenericScreen } from "../../screens";
+import { GetMobileCopy_getMobileCopy_screens_pushNotification } from "@graphql/_core/schema";
+import { requirePushEnabled } from "@redux/device/device.actions";
+import { IPushNotification } from "@redux/device/device.selectors";
+import { GenericScreen } from "@screens";
 import Logger from "@services/logging/logger";
 
 type ConnectedDispatch = typeof mapDispatchToProps;

@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet, View, ViewStyle, TextStyle, Text, Platform } from "react-native";
-import { Style, Colours } from "../../../../styles";
+import { Style, Colours } from "@styles";
 import media from "@styles/media";
 
 interface ITitleProps {

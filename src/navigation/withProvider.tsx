@@ -1,7 +1,7 @@
 import { Provider } from "react-redux";
 import { ApolloProvider } from "@apollo/react-common";
 import { ApolloClient } from "apollo-client";
-import { store } from "../redux/_core/store";
+import { store } from "@redux/_core/store";
 import { ComponentClass } from "react";
 import React from "react";
 import { generateOnLeftMenuPress } from "./root";

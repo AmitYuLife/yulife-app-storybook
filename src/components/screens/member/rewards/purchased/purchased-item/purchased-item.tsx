@@ -2,7 +2,7 @@ import { TouchableOpacityWithDelay } from "@molecules/index";
 import * as React from "react";
 import { SFC } from "react";
 import { StyleSheet, View } from "react-native";
-import { Text } from "../../../../../atoms";
+import { Text } from "@atoms";
 import styles from "./purchased-item.styles";
 
 export interface IRewardsPurchasedItemProps {

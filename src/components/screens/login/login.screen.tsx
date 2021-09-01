@@ -3,9 +3,9 @@ import * as React from "react";
 import { PureComponent } from "react";
 import { EmitterSubscription, Keyboard, KeyboardAvoidingView, Platform, View } from "react-native";
 import * as Animatable from "react-native-animatable";
-import { GetMobileCopy_getMobileCopy_screens_login as LoginCopy } from "../../../graphql/_core/schema";
+import { GetMobileCopy_getMobileCopy_screens_login as LoginCopy } from "@graphql/_core/schema";
 import { Button, CentredScreen, Heading, Pad, TextInput, TextInputError, UnauthorisedGradient } from "../../atoms";
-import { LinkGroup } from "../../molecules";
+import { LinkGroup } from "@molecules";
 import styles from "./login.screen.styles";
 
 export interface IProps {

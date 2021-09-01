@@ -1,7 +1,7 @@
 import * as React from "react";
 import { ActivityIndicator, Image, ScrollView, View } from "react-native";
-import { Pad, Text } from "../../../../atoms";
-import { RewardItemContent } from "../../../../molecules";
+import { Pad, Text } from "@atoms";
+import { RewardItemContent } from "@molecules";
 import styles from "./wegift-confirmed.screen.styles";
 import { WEGIFT_CONFIRMED, PURCHASE_IMAGE } from "@ids";
 import { TopBarAbsolute } from "@organisms/top-bar/top-bar-absolute";
