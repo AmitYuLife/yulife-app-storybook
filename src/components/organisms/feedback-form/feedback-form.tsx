@@ -7,6 +7,7 @@ import MultipleChoice from "./questions/multiple-choice";
 import { PendingPromptsForm } from "@graphql/_core/schema";
 import useFormState from "./form-state.hook";
 import { SUPPORTED_TYPES } from "@graphql/member";
+import Logger from "@services/logging/logger";
 
 interface Props {
   form: PendingPromptsForm["pendingFeedbackForm"];
@@ -25,7 +26,14 @@ const FeedbackModal = ({ form, submitForm, loading }: Props) => {
     submitForm,
     SUPPORTED_TYPES
   );
-  const onDismiss = useCallback(() => submitForm(answers), [answers, submitForm]);
+  const onDismiss = useCallback(() => {
+    submitForm(answers);
+    Logger.logMixpanelEvent("modal_dismissed", {
+      name: "feedback.modal",
+      survey_title: form.title,
+      reward_value: form.awardYucoin,
+    });
+  }, [answers, submitForm, form]);
 
   if (!question || loading) {
     return <Loading />;
