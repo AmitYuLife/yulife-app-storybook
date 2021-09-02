@@ -22,7 +22,8 @@ export const {
     tryTapText,
     wait,
     clearFieldByID,
-    restartWithData
+    restartWithData,
+    restartWithoutDelete
 } = navigation.common
 
 export const {
