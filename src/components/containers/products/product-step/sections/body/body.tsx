@@ -9,24 +9,25 @@ import {
   ProductStepPackageCards,
 } from "../../subcomponents";
 import { ContentItemInfoCard, ContentItemPad } from "@components/sdui";
+import { Style } from "@styles";
 
 interface Props {
   body: GPPS_Body[];
   headerHeight: number;
 }
 
+const DEFAULT_EXTRA_TOP_PADDING = Style.adjust(20);
+
 export const Body = (props: Props) => {
   const { headerHeight } = props;
 
-  const headerPadStyle = useMemo(() => ({ height: headerHeight }), [headerHeight]);
+  const headerPadStyle = useMemo(() => ({ height: headerHeight + DEFAULT_EXTRA_TOP_PADDING }), [headerHeight]);
 
   return (
-    <>
+    <ScrollView showsVerticalScrollIndicator={false} style={styles.wrapper}>
       {!headerHeight ? null : <View style={headerPadStyle} />}
-      <ScrollView showsVerticalScrollIndicator={false} style={styles.wrapper}>
-        {props.body.map(renderItemContent)}
-      </ScrollView>
-    </>
+      {props.body.map(renderItemContent)}
+    </ScrollView>
   );
 };
 
