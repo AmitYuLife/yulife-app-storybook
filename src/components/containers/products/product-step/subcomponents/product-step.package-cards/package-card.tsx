@@ -4,8 +4,8 @@ import { Colours, Style } from "@styles";
 import { ContentItemPackageCards_packageCards } from "@graphql/_core/schema";
 import { CoverType } from "@graphql/_core/schema/globalTypes";
 import { showEarnRateOverlay } from "@components/containers/member/yu/navigation/showEarnRateOverlay";
-import { PackageCardPerks } from "@molecules";
 import PackageCardHeader from "./package-card-header";
+import { PackageCardPerks } from "./package-card-perks";
 import YuCoinPowerMini from "./yucoin-power-mini";
 
 interface OwnProps {
