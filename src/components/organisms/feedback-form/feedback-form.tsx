@@ -80,9 +80,8 @@ const FeedbackModal = ({ form, submitForm, loading }: Props) => {
         questionText={question.questionText}
         description={question.description}
         icon={question.icon.uri}
-        submitLabel={question.labels.submit}
         options={question.options}
-        onSubmitAnswer={(value: string[]) => saveAnswer(question.key, value.toString())}
+        onSubmitAnswer={(value: string) => saveAnswer(question.key, value)}
         onDismiss={onDismiss}
         onBack={canGoBack ? goBack : null}
       />
