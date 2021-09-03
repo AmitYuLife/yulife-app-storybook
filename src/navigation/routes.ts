@@ -183,10 +183,6 @@ export default [
 
   // debug
   {
-    name: ROUTES.packageCard,
-    component: require("../components/containers/member/debug/pli-packages/package-card.debug").default,
-  },
-  {
     name: ROUTES.packageIntro,
     component: require("../components/containers/member/debug/pli-packages/package-intro.debug").default,
   },
