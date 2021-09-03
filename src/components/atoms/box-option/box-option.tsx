@@ -7,7 +7,7 @@ interface Props {
   onPress: () => void;
   children: React.ReactElement;
   isSelected: boolean;
-  selectedStyle: ViewStyle;
+  selectedStyle: ViewStyle | ViewStyle[];
   testID?: string;
   wrapperStyle?: ViewStyle;
   innerHeight?: number;

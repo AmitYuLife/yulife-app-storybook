@@ -283,6 +283,10 @@ export default {
       m106: "#569DE9",
     },
   },
+  status: {
+    su400: "#40C057",
+    er300: "#FF5F5F",
+  },
   hexToRGB,
   rgbToHex,
   toGrayScale,

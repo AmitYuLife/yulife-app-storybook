@@ -37,5 +37,6 @@ export { default as UserAvatarCoinCardSkeleton } from "./user-avatar-coin-card/u
 export { default as ChallengesLoading } from "./challenges-loading/challenges-loading";
 export { default as Popover } from "./popover/popover";
 export { default as ContentItemForm } from "./content-item-form/content-item-form";
+export { default as ConnectCheckList } from "./connect-check-list/connect-check-list";
 export { Yumoji } from "./yumoji/yumoji";
 export { PackageCardPerks } from "./package-card-perks/package-card-perks";
