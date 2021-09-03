@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect } from "react";
 import { Navigation } from "react-native-navigation";
 import { MODALS } from "@navigation/constants";
 import {
@@ -13,6 +13,7 @@ import { AnswerInput } from "@graphql/_core/schema/globalTypes";
 import { FeedbackForm } from "@organisms";
 import { useDispatch } from "react-redux";
 import { getUserStart } from "@redux/user/user.actions";
+import Logger from "@services/logging/logger";
 
 const FeedbackModal = () => {
   const [submitFeedbackForm, { loading: submitting }] = useMutation<SubmitFeedbackFormMutationTuple>(
@@ -24,6 +25,15 @@ const FeedbackModal = () => {
       supportedTypes: SUPPORTED_TYPES,
     },
   });
+
+  useEffect(() => {
+    Logger.logMixpanelEvent("modal_viewed", {
+      name: "feedback.modal",
+      survey_title: data.pendingFeedbackForm.title,
+      reward_value: data.pendingFeedbackForm.awardYucoin,
+    });
+  }, [data?.pendingFeedbackForm]);
+
   const dispatch = useDispatch();
 
   const submitForm = useCallback(

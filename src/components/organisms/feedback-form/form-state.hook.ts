@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback } from "react";
 import { PendingPromptsForm } from "@graphql/_core/schema";
 import { AnswerInput, FeedbackFormQuestionType } from "@graphql/_core/schema/globalTypes";
 import { useBackHandler } from "@services/hooks/useBackHandler";
+import Logger from "@services/logging/logger";
 
 export default function useFormState(
   form: PendingPromptsForm["pendingFeedbackForm"],
@@ -45,8 +46,18 @@ export default function useFormState(
       const nextQuestion = getNextQuestion(question, value, form.questions, supportedQuestionTypes);
       if (nextQuestion) {
         setQuestion(nextQuestion);
+        Logger.logMixpanelEvent("question_interaction", {
+          name: "feedback.modal",
+          survey_title: form.title,
+          reward_value: form.awardYucoin,
+        });
       } else {
         submitForm(newAnswers);
+        Logger.logMixpanelEvent("survey_completed", {
+          name: "feedback.modal",
+          survey_title: form.title,
+          reward_value: form.awardYucoin,
+        });
       }
     },
     [answers, submitForm, question, form, supportedQuestionTypes]
