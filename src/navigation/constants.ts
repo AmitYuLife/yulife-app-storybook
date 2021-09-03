@@ -104,6 +104,7 @@ export const MODALS = {
   appReview: "yulife.modals.AppReview",
   listPicker: "yulife.modals.listPicker",
   personalProductStepContinue: "yulife.product.ContinueJourney",
+  switchToGoogleFit: "yulife.modals.switchToGoogleFit",
 };
 
 export const bottomTabs: OptionsBottomTabs = {

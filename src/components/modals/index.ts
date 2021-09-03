@@ -15,3 +15,4 @@ export { default as DuelRespondModal } from "./duels/duel-respond.modal";
 export { default as PriceChangeModal } from "./price-changed/price-changed";
 export { default as ScrollPickerModal } from "./scroll-picker-modal/scroll-picker-modal";
 export { default as ListPickerModal } from "./list-picker-modal/list-picker-modal";
+export { default as SwitchToGoogleFitModal } from "./switch-to-googlefit-modal/switch-to-googlefit-modal";

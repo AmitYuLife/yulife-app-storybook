@@ -57,6 +57,7 @@ export { default as YugiHeader } from "./yugi-header/yugi-header";
 export { default as PackageMonthPrice } from "./package-month-price/package-month-price";
 export { default as Wrapper } from "./wrapper/wrapper";
 export { SlotIcon } from "./slot-icon/slot-icon";
+export { default as ChecklistInfoCard } from "./checklist-info-card/checklist-info-card";
 // error :( https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-8.html#export--as-ns-syntax
 import * as ProductSvg from "./product-svg";
 export { ProductSvg };

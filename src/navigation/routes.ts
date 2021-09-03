@@ -318,4 +318,8 @@ export default [
     component: require("../components/modals/personal-product-step-continue/personal-product-step-continue.modal")
       .default,
   },
+  {
+    name: MODALS.switchToGoogleFit,
+    component: require("../components/modals/switch-to-googlefit-modal/switch-to-googlefit-modal").default,
+  },
 ];
