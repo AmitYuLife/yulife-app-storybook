@@ -1,16 +1,25 @@
 import React, { memo } from "react";
 import { StyleSheet, View, ViewStyle } from "react-native";
+import { Source } from "react-native-fast-image";
 import { Colours, Style } from "@styles";
 import { Image, TextTemplate } from "@atoms";
-import { ContentItemPackageCards_packageCards_powers } from "@graphql/_core/schema";
-import { Source } from "react-native-fast-image";
+import { RemoteImage } from "@graphql/_core/schema";
 
-export const PackageCardPerks = memo((props: ContentItemPackageCards_packageCards_powers) => {
+interface Props {
+  leftIcon: RemoteImage;
+  rightIcon?: RemoteImage;
+  title: string;
+  description: string;
+  isLocked?: boolean;
+  wrapperStyle?: ViewStyle;
+}
+
+export const PackageCardPerks = memo((props: Props) => {
   const leftIcon = props.leftIcon?.uri && { uri: props.leftIcon?.uri };
   const rightIcon = props.rightIcon?.uri && { uri: props.rightIcon?.uri };
 
   return (
-    <View style={styles.marginBottom}>
+    <View style={[styles.marginBottom, props.wrapperStyle]}>
       <View style={[styles.wrapper, props.isLocked ? { alignItems: "center", borderStyle: "dashed" } : null]}>
         <Icon icon={leftIcon} />
         <View style={styles.optionDetail}>
