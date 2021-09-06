@@ -183,7 +183,7 @@ function _FibGPManuallyInputScreen(props: Props) {
           {medicalPracticeForm.map(({ updateFormKey, placeholder, value }, formIndex) => (
             <View key={updateFormKey} style={styles.formWrapper}>
               <TextField
-                onChange={(val) => updateForm(updateFormKey, val)}
+                onChange={(val) => updateForm(updateFormKey, val as string)}
                 placeholder={placeholder}
                 inputTextStyle={styles.text}
                 value={value}
@@ -199,7 +199,7 @@ function _FibGPManuallyInputScreen(props: Props) {
           </View>
           <View style={styles.formWrapper}>
             <TextField
-              onChange={(val) => updateForm("gpName", val)}
+              onChange={(val) => updateForm("gpName", val as string)}
               placeholder="Name"
               inputTextStyle={styles.text}
               value={formValue.gpName}

@@ -3,6 +3,8 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
+import { ContentItemFormTextInputType } from "./globalTypes";
+
 // ====================================================
 // GraphQL fragment: ContentItemTextInput
 // ====================================================
@@ -17,6 +19,7 @@ export interface ContentItemTextInput {
   heading: string | null;
   value: string | null;
   answerKey: string;
-  validation: (ContentItemTextInput_validation | null)[] | null;
+  type: ContentItemFormTextInputType | null;
   prefixValue: string | null;
+  validation: (ContentItemTextInput_validation | null)[] | null;
 }

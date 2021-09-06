@@ -13,11 +13,12 @@ export const GQL_FRAGMENT_CONTENT_ITEM_TEXT_INPUT = gql`
     heading
     value
     answerKey
+    type
+    prefixValue
     validation {
       validationName
       validationValue
     }
-    prefixValue
   }
 `;
 
@@ -215,6 +216,7 @@ export const GQL_FRAGMENT_CONTENT_ITEM_BUTTON = gql`
     id
     label
     buttonType: type
+    value
     onPress {
       type
       payload

@@ -33,6 +33,7 @@ export interface ContentItemButton {
   id: string;
   label: string;
   buttonType: ContentItemButtonType | null;
+  value: string | null;
   onPress: ContentItemButton_onPress | null;
   icon: ContentItemButton_icon | null;
   rightIcon: ContentItemButton_rightIcon | null;

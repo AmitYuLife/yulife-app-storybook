@@ -1,26 +1,20 @@
-import React, { memo, useCallback, useState } from "react";
+import React, { ComponentProps, memo, useCallback, useState } from "react";
 import { LayoutChangeEvent, StyleSheet, Text, View, ViewStyle } from "react-native";
 import { ContentItemTextInput as GqlTextInput } from "@graphql/_core/schema";
 import { TextField } from "@components/molecules";
 import { Style } from "@styles";
+import { ContentItemFormTextInputType } from "@graphql/_core/schema/globalTypes";
 
-interface IProps {
-  props: GqlTextInput;
+interface Props extends GqlTextInput {
   onChange: (value: string) => void;
 }
 
-type Props = IProps;
-
-export const ContentItemTextInput = memo(({ props, onChange }: Props) => {
-  const { id, heading, value, answerKey, prefixValue } = props;
-
+export const ContentItemTextInput = memo(({ onChange, id, heading, value, prefixValue, type }: Props) => {
   const [indentWidth, setIndentWidth] = useState(0);
 
   const handleTextLayout = useCallback((event: LayoutChangeEvent) => {
     setIndentWidth(event.nativeEvent.layout.width + 8);
   }, []);
-
-  const valueJson = JSON.parse(value);
 
   return (
     <View style={styles.inputWrapper}>
@@ -30,8 +24,9 @@ export const ContentItemTextInput = memo(({ props, onChange }: Props) => {
         </Text>
       ) : null}
       <TextField
+        type={mapTextFieldType(type)}
         placeholderIndentSize={indentWidth}
-        value={valueJson && answerKey in valueJson ? valueJson[answerKey] : null}
+        value={value}
         placeholder={heading}
         key={id}
         onChange={onChange}
@@ -55,3 +50,13 @@ const styles = StyleSheet.create({
     marginHorizontal: Style.adjust(24),
   } as ViewStyle,
 });
+
+const mapTextFieldType = (type: ContentItemFormTextInputType): ComponentProps<typeof TextField>["type"] => {
+  switch (type) {
+    case ContentItemFormTextInputType.number:
+      return "Number";
+    case ContentItemFormTextInputType.email:
+    default:
+      return "Text";
+  }
+};

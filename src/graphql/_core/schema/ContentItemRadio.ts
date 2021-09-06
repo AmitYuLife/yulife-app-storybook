@@ -19,7 +19,7 @@ export interface ContentItemRadio_choices_renderAsIcon {
 
 export interface ContentItemRadio_choices {
   label: string;
-  value: string | null;
+  value: string;
   renderAsIcon: ContentItemRadio_choices_renderAsIcon | null;
 }
 
@@ -28,5 +28,5 @@ export interface ContentItemRadio {
   iconOptions: boolean;
   value: string | null;
   answerKey: string;
-  choices: (ContentItemRadio_choices | null)[] | null;
+  choices: ContentItemRadio_choices[];
 }

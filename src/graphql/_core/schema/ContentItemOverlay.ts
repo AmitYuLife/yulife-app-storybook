@@ -33,6 +33,7 @@ export interface ContentItemOverlay_buttons {
   id: string;
   label: string;
   buttonType: ContentItemButtonType | null;
+  value: string | null;
   onPress: ContentItemOverlay_buttons_onPress | null;
   icon: ContentItemOverlay_buttons_icon | null;
   rightIcon: ContentItemOverlay_buttons_rightIcon | null;

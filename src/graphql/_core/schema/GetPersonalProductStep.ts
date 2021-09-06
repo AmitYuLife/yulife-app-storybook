@@ -4,6 +4,7 @@
 // This file was automatically generated and should not be edited.
 
 import {
+  ContentItemFormTextInputType,
   ContentItemButtonType,
   ContentItemSDUIAction,
   ContentItemButtonSize,
@@ -52,8 +53,9 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemT
   heading: string | null;
   value: string | null;
   answerKey: string;
-  validation: (GetPersonalProductStep_getPersonalProductStep_body_ContentItemTextInput_validation | null)[] | null;
+  type: ContentItemFormTextInputType | null;
   prefixValue: string | null;
+  validation: (GetPersonalProductStep_getPersonalProductStep_body_ContentItemTextInput_validation | null)[] | null;
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemPad {
@@ -89,7 +91,7 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemR
 
 export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemRadio_choices {
   label: string;
-  value: string | null;
+  value: string;
   renderAsIcon: GetPersonalProductStep_getPersonalProductStep_body_ContentItemRadio_choices_renderAsIcon | null;
 }
 
@@ -99,7 +101,7 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemR
   iconOptions: boolean;
   value: string | null;
   answerKey: string;
-  choices: (GetPersonalProductStep_getPersonalProductStep_body_ContentItemRadio_choices | null)[] | null;
+  choices: GetPersonalProductStep_getPersonalProductStep_body_ContentItemRadio_choices[];
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemButton_onPress {
@@ -127,6 +129,7 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemB
   id: string;
   label: string;
   buttonType: ContentItemButtonType | null;
+  value: string | null;
   onPress: GetPersonalProductStep_getPersonalProductStep_body_ContentItemButton_onPress | null;
   icon: GetPersonalProductStep_getPersonalProductStep_body_ContentItemButton_icon | null;
   rightIcon: GetPersonalProductStep_getPersonalProductStep_body_ContentItemButton_rightIcon | null;
@@ -363,6 +366,7 @@ export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentIte
   id: string;
   label: string;
   buttonType: ContentItemButtonType | null;
+  value: string | null;
   onPress: GetPersonalProductStep_getPersonalProductStep_footer_ContentItemButton_onPress | null;
   icon: GetPersonalProductStep_getPersonalProductStep_footer_ContentItemButton_icon | null;
   rightIcon: GetPersonalProductStep_getPersonalProductStep_footer_ContentItemButton_rightIcon | null;
@@ -394,6 +398,7 @@ export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentIte
   id: string;
   label: string;
   buttonType: ContentItemButtonType | null;
+  value: string | null;
   onPress: GetPersonalProductStep_getPersonalProductStep_footer_ContentItemOverlay_buttons_onPress | null;
   icon: GetPersonalProductStep_getPersonalProductStep_footer_ContentItemOverlay_buttons_icon | null;
   rightIcon: GetPersonalProductStep_getPersonalProductStep_footer_ContentItemOverlay_buttons_rightIcon | null;
@@ -432,6 +437,7 @@ export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentIte
   id: string;
   label: string;
   buttonType: ContentItemButtonType | null;
+  value: string | null;
   onPress: GetPersonalProductStep_getPersonalProductStep_footer_ContentItemMultiButton_buttons_onPress | null;
   icon: GetPersonalProductStep_getPersonalProductStep_footer_ContentItemMultiButton_buttons_icon | null;
   rightIcon: GetPersonalProductStep_getPersonalProductStep_footer_ContentItemMultiButton_buttons_rightIcon | null;

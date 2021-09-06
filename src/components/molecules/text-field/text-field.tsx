@@ -11,7 +11,7 @@ type Type = "Text" | "Number" | "PhoneNumber" | "PostCode" | "PostCodeFinder";
 
 interface Props {
   placeholder: string;
-  onChange: (val: string) => void;
+  onChange: (val: string | number) => void;
   onBlur?: () => void;
   type?: Type;
   placeholderIndentSize?: number;
@@ -122,7 +122,7 @@ export default function TextField(props: Props) {
           }}
           onChangeText={(text: string) => {
             const strippedPunctuation = stripPunctuation(text, type);
-            onChange(strippedPunctuation);
+            onChange(type === "Number" ? parseFloat(strippedPunctuation) : strippedPunctuation);
 
             const formattedText = formatText(strippedPunctuation, type);
             return setTextInputValue(formattedText);
