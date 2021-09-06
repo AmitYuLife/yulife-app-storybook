@@ -1,7 +1,7 @@
-import React, { memo, useCallback, useState } from "react";
+import React, { memo, useCallback, useEffect, useState } from "react";
 import { LayoutChangeEvent, StyleSheet, View, ViewStyle } from "react-native";
 import { Body, Header, Footer, Absolute } from "./sections";
-import { ProductStepContext } from "./product-step.context";
+import { ProductStepContext, DEFAULT_DYNAMIC_DATA } from "./product-step.context";
 import {
   GetPersonalProductStep_getPersonalProductStep_absolute,
   GetPersonalProductStep_getPersonalProductStep_body,
@@ -28,6 +28,11 @@ export const ProductStepScreen = memo((props: Props) => {
   const handleHeaderLayout = useCallback((event: LayoutChangeEvent) => {
     setHeaderHeight(event.nativeEvent.layout.height);
   }, []);
+
+  // wipe dynamic data when step changes
+  useEffect(() => {
+    setDynamicData(DEFAULT_DYNAMIC_DATA);
+  }, [stepId]);
 
   return (
     <ProductStepContext.Provider value={{ productId, customerProductId, stepId, dynamicData, setDynamicData }}>

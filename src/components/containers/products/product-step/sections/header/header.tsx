@@ -1,7 +1,8 @@
 import React from "react";
 import { LayoutChangeEvent, StyleSheet, View, ViewStyle } from "react-native";
 import { GetPersonalProductStep_getPersonalProductStep_header as GPPS_Header } from "@graphql/_core/schema";
-import { ContentItemHeaderBar, ContentItemProgressBar } from "@components/sdui";
+import { ContentItemProgressBar } from "@components/sdui";
+import { ProductStepContentItemHeader } from "../../subcomponents";
 
 interface Props {
   header: GPPS_Header[];
@@ -28,7 +29,7 @@ const styles = StyleSheet.create({
 const renderItemContent = (item: GPPS_Header): JSX.Element => {
   switch (item.__typename) {
     case "ContentItemHeaderBar":
-      return <ContentItemHeaderBar key={item.__typename} {...item} />;
+      return <ProductStepContentItemHeader key={item.__typename} {...item} />;
     case "ContentItemProgressBar":
       return <ContentItemProgressBar key={item.id} {...item} />;
     default:

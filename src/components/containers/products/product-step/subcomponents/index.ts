@@ -5,3 +5,6 @@ export * from "./product-step.multi-button";
 export * from "./product-step.productInfo";
 export * from "./product-step.yugiConfirm";
 export * from "./product-step.package-cards";
+export * from "./product-step.header";
+export * from "./product-step.text-input";
+export * from "./product-step.date-picker";

@@ -30,7 +30,6 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemP
     | "ContentItemImage"
     | "ContentItemOverlay"
     | "ContentItemYugiReminder"
-    | "ContentItemDatePicker"
     | "ContentItemScrollPicker"
     | "ContentItemMultiSelect"
     | "ContentItemPersonalProductConfirm"
@@ -51,6 +50,7 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemT
   value: string | null;
   answerKey: string;
   validation: (GetPersonalProductStep_getPersonalProductStep_body_ContentItemTextInput_validation | null)[] | null;
+  prefixValue: string | null;
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemPad {
@@ -221,6 +221,43 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemP
   packageCards: GetPersonalProductStep_getPersonalProductStep_body_ContentItemPackageCards_packageCards[] | null;
 }
 
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemDatePicker_pickerStyles {
+  property: string;
+  value: string;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemDatePicker_buttonStyles {
+  property: string;
+  value: string;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemDatePicker_buttonLeftIcon {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemDatePicker_buttonRightIcon {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemDatePicker {
+  __typename: "ContentItemDatePicker";
+  id: string;
+  initialDate: string | null;
+  maxDate: string;
+  minDate: string;
+  dateFormat: string;
+  label: string;
+  subLabel: string | null;
+  pickerStyles: GetPersonalProductStep_getPersonalProductStep_body_ContentItemDatePicker_pickerStyles[] | null;
+  buttonStyles: GetPersonalProductStep_getPersonalProductStep_body_ContentItemDatePicker_buttonStyles[] | null;
+  buttonLeftIcon: GetPersonalProductStep_getPersonalProductStep_body_ContentItemDatePicker_buttonLeftIcon | null;
+  buttonRightIcon: GetPersonalProductStep_getPersonalProductStep_body_ContentItemDatePicker_buttonRightIcon | null;
+  size: ContentItemButtonSize;
+  answerKey: string;
+}
+
 export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemYugiConfirm_content {
   id: string;
   parsedMarkdown: string | null;
@@ -268,6 +305,7 @@ export type GetPersonalProductStep_getPersonalProductStep_body =
   | GetPersonalProductStep_getPersonalProductStep_body_ContentItemButton
   | GetPersonalProductStep_getPersonalProductStep_body_ContentItemInfoCard
   | GetPersonalProductStep_getPersonalProductStep_body_ContentItemPackageCards
+  | GetPersonalProductStep_getPersonalProductStep_body_ContentItemDatePicker
   | GetPersonalProductStep_getPersonalProductStep_body_ContentItemYugiConfirm
   | GetPersonalProductStep_getPersonalProductStep_body_ContentItemPersonalProductInfo;
 

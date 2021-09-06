@@ -17,6 +17,7 @@ export const GQL_FRAGMENT_CONTENT_ITEM_TEXT_INPUT = gql`
       validationName
       validationValue
     }
+    prefixValue
   }
 `;
 
@@ -180,6 +181,32 @@ export const GQL_FRAGMENT_CONTENT_ITEM_PACKAGE_CARDS = gql`
         isLocked
       }
     }
+  }
+`;
+
+export const GQL_FRAGMENT_CONTENT_ITEM_DATE_PICKER = gql`
+  fragment ContentItemDatePicker on ContentItemDatePicker {
+    id
+    initialDate
+    maxDate
+    minDate
+    dateFormat
+    label
+    subLabel
+    pickerStyles {
+      ...ContentItemStyle
+    }
+    buttonStyles {
+      ...ContentItemStyle
+    }
+    buttonLeftIcon {
+      ...RemoteImage
+    }
+    buttonRightIcon {
+      ...RemoteImage
+    }
+    size: buttonSize
+    answerKey
   }
 `;
 
