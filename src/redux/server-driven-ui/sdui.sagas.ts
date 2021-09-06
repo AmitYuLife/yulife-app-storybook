@@ -103,9 +103,7 @@ function* pushStep(action: ProductStepAction) {
   const { productId, stepId, dynamicData } = action.payload;
 
   try {
-    yield call(submitPersonalProductStepGql, {
-      payload: { productId, stepId, data: JSON.stringify(dynamicData) },
-    });
+    yield call(submitPersonalProductStepGql, { productId, stepId, data: JSON.stringify(dynamicData) });
   } catch (e) {
     // shrug (log)
   }
