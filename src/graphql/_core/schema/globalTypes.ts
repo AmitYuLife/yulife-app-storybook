@@ -292,12 +292,6 @@ export interface ProductMetadata {
   avios?: AviosMetadata | null;
 }
 
-export interface SubmitStepPayload {
-  productId: string;
-  stepId: string;
-  data: string;
-}
-
 export interface UpdateContactDetailsInput {
   phone?: string | null;
   addressFirstLine?: string | null;
