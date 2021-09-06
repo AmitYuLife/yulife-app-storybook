@@ -30,8 +30,6 @@ enum CODES {
   ROUTE_TO_FIB_CONFIRM_PACKAGES = "ROUTE_TO_FIB_CONFIRM_PACKAGES",
   ROUTE_TO_CHOOSE_STYLE = "ROUTE_TO_CHOOSE_STYLE",
   ROUTE_TO_PRODUCT_DETAILS = "ROUTE_TO_PRODUCT_DETAILS",
-  ROUTE_TO_PACKAGE_INTRO = "ROUTE_TO_PACKAGE_INTRO",
-  ROUTE_TO_PACKAGE_FINALISE = "ROUTE_TO_PACKAGE_FINALISE",
   ROUTE_TO_REFERRALS = "ROUTE_TO_REFERRALS",
 }
 
@@ -59,8 +57,6 @@ const ActivityHistoryContainer: React.FC<Props> = (props) => {
     CODES.ROUTE_TO_FIB_CONFIRM_PACKAGES,
     CODES.ROUTE_TO_CHOOSE_STYLE,
     CODES.ROUTE_TO_PRODUCT_DETAILS,
-    CODES.ROUTE_TO_PACKAGE_INTRO,
-    CODES.ROUTE_TO_PACKAGE_FINALISE,
     CODES.ROUTE_TO_REFERRALS,
   ];
 
@@ -150,24 +146,6 @@ const ActivityHistoryContainer: React.FC<Props> = (props) => {
             component: {
               id: ROUTES.productDetails,
               name: ROUTES.productDetails,
-            },
-          });
-        }
-
-        if (code === CODES.ROUTE_TO_PACKAGE_INTRO) {
-          return Navigation.push(props.componentId, {
-            component: {
-              id: ROUTES.packageIntro,
-              name: ROUTES.packageIntro,
-            },
-          });
-        }
-
-        if (code === CODES.ROUTE_TO_PACKAGE_FINALISE) {
-          return Navigation.push(props.componentId, {
-            component: {
-              id: ROUTES.packageFinalise,
-              name: ROUTES.packageFinalise,
             },
           });
         }

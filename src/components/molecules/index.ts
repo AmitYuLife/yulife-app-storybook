@@ -31,7 +31,6 @@ export { default as HeadingAndCopy } from "./heading-and-copy/heading-and-copy";
 export { default as CardInformation } from "./card-information/card-information";
 export { default as GroupProductDisclaimer } from "./group-product-disclaimer/group-product-disclaimer";
 export { default as InfoCard } from "./info-card/info-card";
-export { default as PackageAvatarChooseStyle } from "./package-avatar-choose-style/package-avatar-choose-style";
 export { default as UserAvatarCoinCard } from "./user-avatar-coin-card/user-avatar-coin-card";
 export { default as UserAvatarCoinCardSkeleton } from "./user-avatar-coin-card/user-avatar-coin-card-skeleton";
 export { default as ChallengesLoading } from "./challenges-loading/challenges-loading";

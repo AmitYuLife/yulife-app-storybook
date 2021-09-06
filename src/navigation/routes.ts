@@ -181,16 +181,6 @@ export default [
     component: require("../components/containers/referrals/referrals.container").default,
   },
 
-  // debug
-  {
-    name: ROUTES.packageIntro,
-    component: require("../components/containers/member/debug/pli-packages/package-intro.debug").default,
-  },
-  {
-    name: ROUTES.packageFinalise,
-    component: require("../components/containers/member/debug/pli-packages/package-finalise.debug").default,
-  },
-
   // modals
   {
     name: MODALS.yuProductDetails,
