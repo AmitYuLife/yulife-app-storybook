@@ -17,6 +17,7 @@ import {
   GQL_FRAGMENT_CONTENT_ITEM_PACKAGE_CARDS,
   GQL_FRAGMENT_CONTENT_ITEM_PACKAGE_CARD_SLOT_INFO_ITEM_URL,
   GQL_FRAGMENT_CONTENT_ITEM_PACKAGE_CARD_SLOT_INFO,
+  GQL_FRAGMENT_CONTENT_ITEM_DATE_PICKER,
 } from "../_fragments/content.gql";
 
 export const GQL_QUERY_GET_PERSONAL_PRODUCT_STEP = gql`
@@ -37,6 +38,7 @@ export const GQL_QUERY_GET_PERSONAL_PRODUCT_STEP = gql`
   ${GQL_FRAGMENT_CONTENT_ITEM_PACKAGE_CARD_SLOT_INFO_ITEM_URL}
   ${GQL_FRAGMENT_CONTENT_ITEM_PACKAGE_CARD_SLOT_INFO}
   ${GQL_FRAGMENT_CONTENT_ITEM_PACKAGE_CARDS}
+  ${GQL_FRAGMENT_CONTENT_ITEM_DATE_PICKER}
 
   query GetPersonalProductStep($productId: String!) {
     getPersonalProductStep(productId: $productId) {
@@ -68,6 +70,9 @@ export const GQL_QUERY_GET_PERSONAL_PRODUCT_STEP = gql`
         }
         ... on ContentItemPackageCards {
           ...ContentItemPackageCards
+        }
+        ... on ContentItemDatePicker {
+          ...ContentItemDatePicker
         }
         ... on ContentItemYugiConfirm {
           id

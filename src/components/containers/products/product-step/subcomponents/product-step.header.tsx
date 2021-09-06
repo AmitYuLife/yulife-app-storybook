@@ -1,0 +1,35 @@
+import React, { memo, useContext, useMemo } from "react";
+import { ContentItemHeaderBar as GqlHeader } from "@graphql/_core/schema/ContentItemHeaderBar";
+import { ContentItemHeaderBar } from "@components/sdui";
+import { ProductStepContext } from "../product-step.context";
+
+type Props = GqlHeader;
+
+export const ProductStepContentItemHeader = memo(({ onLeftIconPress, onRightIconPress, ...otherProps }: Props) => {
+  const { productId, stepId } = useContext(ProductStepContext);
+
+  // TODO: sort out typings
+  const dynamicLeftIconOnPress: any = useMemo(
+    () => ({
+      type: onLeftIconPress.type,
+      payload: { productId, stepId },
+    }),
+    [onLeftIconPress, productId, stepId]
+  );
+
+  const dynamicRightIconOnPress: any = useMemo(
+    () => ({
+      type: onRightIconPress.type,
+      payload: { productId, stepId },
+    }),
+    [onRightIconPress, productId, stepId]
+  );
+
+  return (
+    <ContentItemHeaderBar
+      {...otherProps}
+      onLeftIconPress={dynamicLeftIconOnPress}
+      onRightIconPress={dynamicRightIconOnPress}
+    />
+  );
+});

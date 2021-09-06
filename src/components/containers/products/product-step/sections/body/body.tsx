@@ -7,6 +7,8 @@ import {
   ProductStepProductInfo,
   ProductStepYugiConfirm,
   ProductStepPackageCards,
+  ProductStepContentItemTextInput,
+  ProductStepContentItemDatePicker,
 } from "../../subcomponents";
 import { ContentItemInfoCard, ContentItemPad } from "@components/sdui";
 import { Style } from "@styles";
@@ -47,12 +49,16 @@ const renderItemContent = (item: GPPS_Body): JSX.Element => {
       return <ContentItemPad key={item.id} {...item} />;
     case "ContentItemButton":
       return <ProductStepContentItemButton key={item.id} {...item} />;
+    case "ContentItemTextInput":
+      return <ProductStepContentItemTextInput key={item.id} {...item} />;
     case "ContentItemYugiConfirm":
       return <ProductStepYugiConfirm key={item.id} {...item} />;
     case "ContentItemPersonalProductInfo":
       return <ProductStepProductInfo key={item.id} {...item} />;
     case "ContentItemPackageCards":
       return <ProductStepPackageCards key={item.id} {...item} />;
+    case "ContentItemDatePicker":
+      return <ProductStepContentItemDatePicker key={item.id} {...item} />;
     default:
       return null;
   }

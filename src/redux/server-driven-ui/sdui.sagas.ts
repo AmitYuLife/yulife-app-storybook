@@ -6,6 +6,7 @@ import { call, takeLatest, select, ActionPattern } from "redux-saga/effects";
 // import Logger from "@services/logging/logger";
 import { getRouteState } from "../app/app.selectors";
 import submitPersonalProductStepGql from "@graphql/personalProduct/submitPersonalProductStep.gql";
+import backPersonalProductStepGql from "@graphql/personalProduct/backPersonalProductStep.gql";
 import { SyncAction } from "@redux/_core/types";
 import { ProductStepAction } from "./sdui.types";
 import { parseJSON } from "./sdui.helpers";
@@ -86,7 +87,17 @@ function* openUrl({ payload }: ProductStepAction) {
 
 // TODO: consider splitting these into sdui, underwriting
 
-// function* popStep({ payload }: ServerPayload) {}
+function* popStep(action: ProductStepAction) {
+  const { productId } = action.payload;
+
+  try {
+    yield call(backPersonalProductStepGql, {
+      productId,
+    });
+  } catch (e) {
+    // shrug (log)
+  }
+}
 
 function* pushStep(action: ProductStepAction) {
   const { productId, stepId, dynamicData } = action.payload;
@@ -104,6 +115,6 @@ export default [
   takeLatest(ContentItemSDUIAction.SDUI_ACTION_NAVIGATE_BACK as ActionPattern, navigateBack),
   takeLatest(ContentItemSDUIAction.SDUI_ACTION_NAVIGATE as ActionPattern, navigateTo),
   takeLatest(ContentItemSDUIAction.SDUI_ACTION_OPEN_URL as ActionPattern, openUrl),
-  // takeLatest(ContentItemSDUIAction.SDUI_ACTION_PRODUCT_UNDERWRITING_STEP_POP as ActionPattern, popStep),
+  takeLatest(ContentItemSDUIAction.SDUI_ACTION_PRODUCT_UNDERWRITING_STEP_POP as ActionPattern, popStep),
   takeLatest(ContentItemSDUIAction.SDUI_ACTION_PRODUCT_UNDERWRITING_STEP_PUSH as ActionPattern, pushStep),
 ];

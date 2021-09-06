@@ -18,4 +18,5 @@ export interface ContentItemTextInput {
   value: string | null;
   answerKey: string;
   validation: (ContentItemTextInput_validation | null)[] | null;
+  prefixValue: string | null;
 }
