@@ -1,8 +1,9 @@
-import React, { memo, useCallback, useEffect, useState } from "react";
+import React, { memo, useCallback, useEffect, useRef, useState } from "react";
 import { LayoutChangeEvent, StyleSheet, View, ViewStyle } from "react-native";
 import { Body, Header, Footer, Absolute } from "./sections";
 import { ProductStepContext } from "./product-step.context";
 import {
+  ContentItemTextInput,
   GetPersonalProductStep_getPersonalProductStep_absolute,
   GetPersonalProductStep_getPersonalProductStep_body,
   GetPersonalProductStep_getPersonalProductStep_footer,
@@ -22,8 +23,10 @@ interface Props {
 
 export const ProductStepScreen = memo((props: Props) => {
   const { productId, customerProductId, stepId, style, body, header, footer, absolute } = props;
+
+  const isMounted = useRef(false);
   const [headerHeight, setHeaderHeight] = useState(0);
-  const [dynamicData, setDynamicData] = useState({});
+  const [dynamicData, setDynamicData] = useState(buildInitialProductStepDynamicDataState(body));
 
   const handleHeaderLayout = useCallback((event: LayoutChangeEvent) => {
     setHeaderHeight(event.nativeEvent.layout.height);
@@ -31,7 +34,11 @@ export const ProductStepScreen = memo((props: Props) => {
 
   // wipe dynamic data when step changes
   useEffect(() => {
-    setDynamicData({});
+    if (isMounted.current) {
+      setDynamicData(buildInitialProductStepDynamicDataState(body));
+    }
+
+    isMounted.current = true;
   }, [stepId]);
 
   return (
@@ -51,3 +58,11 @@ const styles = StyleSheet.create({
     flex: 1,
   } as ViewStyle,
 });
+
+const buildInitialProductStepDynamicDataState = (body: Props["body"]) =>
+  body
+    .filter((a) => (a as ContentItemTextInput).answerKey)
+    .reduce((acc, item) => {
+      acc[(item as ContentItemTextInput).answerKey] = (item as ContentItemTextInput).value;
+      return acc;
+    }, {} as Record<string, string | number | boolean>);
