@@ -7,7 +7,7 @@
     "plugin:react-hooks/recommended",
     "@react-native-community"
   ],
-  "plugins": ["react", "@typescript-eslint", "yulife-rn-client"],
+  "plugins": ["react", "@typescript-eslint", "yulife-rn-client", "deprecation"],
   "env": {
     "browser": true,
     "jest": true
@@ -37,6 +37,7 @@
     "react/prop-types": "off",
     "react-hooks/exhaustive-deps": "warn",
     "yulife-rn-client/no-scale-up-and-down": "warn",
+    "deprecation/deprecation": "warn",
     "no-else-return": [
       "error",
       {
@@ -67,5 +68,8 @@
       }
     }
   ],
-  "parser": "@typescript-eslint/parser"
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  }
 }

@@ -5,6 +5,7 @@ import styles from "./text.styles";
  * @param bold *** WATCH OUT *** This prop will only work if we don't pass a fontFamily alongside other styles.
  * **bold** prop changes the fontFamily to the default bold one but it can be overwriting
  */
+
 interface IProps extends TextProps {
   bold?: boolean;
   style?: TextStyle | TextStyle[];
@@ -12,6 +13,7 @@ interface IProps extends TextProps {
   children: React.ReactNode | React.ReactNode[];
 }
 
+/** @deprecated Please use TextTemplate instead; */
 const YuText = ({ children, bold, style, numberOfLines, testID, onPress }: IProps) => (
   <Text
     allowFontScaling={false}
