@@ -49,6 +49,7 @@ export const GQL_FRAGMENT_USER = gql`
         surge
       }
       levelSlot {
+        id
         milestones {
           id
           coins
@@ -64,6 +65,7 @@ export const GQL_FRAGMENT_USER = gql`
         surge
       }
       levelSlot {
+        id
         subtype
         unit
         milestones {
