@@ -12,7 +12,13 @@ export interface ContentItemRadioIcon_icon {
   uri: string | null;
 }
 
+export interface ContentItemRadioIcon_selectedStyles {
+  property: string;
+  value: string;
+}
+
 export interface ContentItemRadioIcon {
   icon: ContentItemRadioIcon_icon | null;
   textColor: string;
+  selectedStyles: ContentItemRadioIcon_selectedStyles[];
 }

@@ -12,9 +12,15 @@ export interface ContentItemRadio_choices_renderAsIcon_icon {
   uri: string | null;
 }
 
+export interface ContentItemRadio_choices_renderAsIcon_selectedStyles {
+  property: string;
+  value: string;
+}
+
 export interface ContentItemRadio_choices_renderAsIcon {
   icon: ContentItemRadio_choices_renderAsIcon_icon | null;
   textColor: string;
+  selectedStyles: ContentItemRadio_choices_renderAsIcon_selectedStyles[];
 }
 
 export interface ContentItemRadio_choices {

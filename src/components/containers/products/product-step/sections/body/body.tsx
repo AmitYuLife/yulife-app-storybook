@@ -9,6 +9,7 @@ import {
   ProductStepPackageCards,
   ProductStepContentItemTextInput,
   ProductStepContentItemDatePicker,
+  ProductStepContentItemRadio,
 } from "../../subcomponents";
 import { ContentItemInfoCard, ContentItemPad } from "@components/sdui";
 import { Style } from "@styles";
@@ -59,6 +60,8 @@ const renderItemContent = (item: GPPS_Body): JSX.Element => {
       return <ProductStepPackageCards key={item.id} {...item} />;
     case "ContentItemDatePicker":
       return <ProductStepContentItemDatePicker key={item.id} {...item} />;
+    case "ContentItemRadio":
+      return <ProductStepContentItemRadio key={item.id} {...item} />;
     default:
       return null;
   }
