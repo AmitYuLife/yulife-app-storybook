@@ -1,18 +1,39 @@
-import React, { memo } from "react";
+import React, { memo, useContext, useCallback } from "react";
 import { StyleSheet, View, ViewStyle } from "react-native";
-import { ContentItemMultiButton as GqlButton } from "@graphql/_core/schema/ContentItemMultiButton";
-import { ProductStepContentItemButton } from "./product-step.button";
+import { ContentItemMultiButton as GqlMultiButton, ContentItemButton as GqlButton } from "@graphql/_core/schema";
 import { ContentItemButtonSize } from "@graphql/_core/schema/globalTypes";
 import { Style } from "@styles";
+import { ContentItemButton } from "@components/sdui";
+import { ProductStepContext } from "../product-step.context";
 
-type Props = GqlButton;
+type Props = GqlMultiButton;
 
 export const ProductStepContentItemMultiButton = memo((props: Props) => {
+  const { productId, stepId, dynamicData } = useContext(ProductStepContext);
+
+  // TODO: sort out typings
+  const buildDynamicOnPress = useCallback(
+    ({ onPress, value }: GqlButton) => ({
+      type: onPress.type,
+      payload: {
+        productId,
+        stepId,
+        dynamicData: { ...dynamicData, [props.answerKey]: value },
+        serverPayload: onPress.payload,
+      } as any,
+    }),
+    [productId, stepId, dynamicData, props.answerKey]
+  );
+
   return (
     <View style={styles.wrapper}>
       {props.buttons.map((button) => (
         <View key={button.id} style={styles.buttonWrapper}>
-          <ProductStepContentItemButton onPress={button.onPress} {...button} buttonSize={ContentItemButtonSize.Fill} />
+          <ContentItemButton
+            {...button}
+            onPress={buildDynamicOnPress(button)}
+            buttonSize={ContentItemButtonSize.Fill}
+          />
         </View>
       ))}
     </View>

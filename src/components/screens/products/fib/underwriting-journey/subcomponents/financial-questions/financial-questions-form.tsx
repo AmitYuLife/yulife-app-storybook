@@ -100,14 +100,14 @@ export function FinancialQuestionsForm(props: Props) {
     <View style={styles.wrapper}>
       <TextField
         onFocus={handleFocus(0)}
-        onChange={(val) => updateFormValue(fields[0].id, val)}
+        onChange={(val) => updateFormValue(fields[0].id, val as string)}
         placeholder={fields[0].label}
         value={formValue?.coverName}
       />
       <View style={styles.padBig} />
       <TextField
         onFocus={handleFocus(1)}
-        onChange={(val) => updateFormValue(fields[1].id, val)}
+        onChange={(val) => updateFormValue(fields[1].id, val as string)}
         placeholder={fields[1].label}
         value={formValue?.companyName}
       />
@@ -119,7 +119,7 @@ export function FinancialQuestionsForm(props: Props) {
         <View style={styles.textFieldWrapper}>
           <TextField
             onFocus={handleFocus(2)}
-            onChange={(val) => updateFormValue(fields[2].id, val)}
+            onChange={(val) => updateFormValue(fields[2].id, val as string)}
             placeholder={fields[2].label}
             type="Number"
             placeholderIndentSize={16}
@@ -133,7 +133,7 @@ export function FinancialQuestionsForm(props: Props) {
       <View style={styles.pad} />
       <TextField
         onFocus={handleFocus(3)}
-        onChange={(val) => updateFormValue(fields[3].id, val)}
+        onChange={(val) => updateFormValue(fields[3].id, val as string)}
         placeholder={fields[3].label}
         value={formValue?.coverReason}
       />

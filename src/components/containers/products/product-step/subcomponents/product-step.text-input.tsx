@@ -13,5 +13,5 @@ export const ProductStepContentItemTextInput = memo((props: Props) => {
     setDynamicData((oldState) => ({ ...oldState, ...obj }));
   };
 
-  return <ContentItemTextInput props={props} onChange={onChange} />;
+  return <ContentItemTextInput {...props} onChange={onChange} />;
 });
