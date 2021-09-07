@@ -19,18 +19,19 @@ interface Props {
   headerHeight: number;
 }
 
-const DEFAULT_EXTRA_TOP_PADDING = Style.adjust(20);
+const DEFAULT_EXTRA_TOP_PADDING = Style.adjust(24);
 
 export const Body = (props: Props) => {
   const { headerHeight } = props;
-
   const headerPadStyle = useMemo(() => ({ height: headerHeight + DEFAULT_EXTRA_TOP_PADDING }), [headerHeight]);
 
   return (
-    <ScrollView showsVerticalScrollIndicator={false} style={styles.wrapper}>
+    <>
       {!headerHeight ? null : <View style={headerPadStyle} />}
-      {props.body.map(renderItemContent)}
-    </ScrollView>
+      <ScrollView showsVerticalScrollIndicator={false} style={styles.wrapper}>
+        {props.body.map(renderItemContent)}
+      </ScrollView>
+    </>
   );
 };
 

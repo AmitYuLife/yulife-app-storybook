@@ -1,7 +1,7 @@
 import React, { memo, useCallback, useEffect, useState } from "react";
 import { LayoutChangeEvent, StyleSheet, View, ViewStyle } from "react-native";
 import { Body, Header, Footer, Absolute } from "./sections";
-import { ProductStepContext, DEFAULT_DYNAMIC_DATA } from "./product-step.context";
+import { ProductStepContext } from "./product-step.context";
 import {
   GetPersonalProductStep_getPersonalProductStep_absolute,
   GetPersonalProductStep_getPersonalProductStep_body,
@@ -31,7 +31,7 @@ export const ProductStepScreen = memo((props: Props) => {
 
   // wipe dynamic data when step changes
   useEffect(() => {
-    setDynamicData(DEFAULT_DYNAMIC_DATA);
+    setDynamicData({});
   }, [stepId]);
 
   return (
