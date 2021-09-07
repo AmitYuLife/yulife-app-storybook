@@ -35,7 +35,7 @@ export const ProductStepScreen = memo((props: Props) => {
   }, [stepId]);
 
   return (
-    <ProductStepContext.Provider value={{ productId, customerProductId, stepId, dynamicData, setDynamicData }}>
+    <ProductStepContext.Provider value={{ body, productId, customerProductId, stepId, dynamicData, setDynamicData }}>
       <View style={[styles.wrapper, style]}>
         <Body headerHeight={headerHeight} body={body} />
         <Header onLayout={handleHeaderLayout} header={header} />

@@ -5,16 +5,19 @@ import { Button, LinkButton, SecondaryButton, TertiaryButton } from "@atoms";
 import { useDispatch } from "react-redux";
 import { mapServerStyles } from "../_utils/mapServerStyles";
 
-type Props = GqlButton;
+type Props = GqlButton & {
+  disabled?: boolean;
+};
 
 export const ContentItemButton = memo((props: Props) => {
-  const { label, onPress, styles, icon, rightIcon, buttonSize, buttonType } = props;
+  const { label, onPress, styles, icon, rightIcon, buttonSize, buttonType, disabled = false } = props;
   const dispatch = useDispatch();
 
   const Component = getComponent(buttonType);
 
   return (
     <Component
+      disabled={disabled}
       iconUri={icon?.uri}
       rightIconUri={rightIcon?.uri}
       wrapperStyle={mapServerStyles(styles)}

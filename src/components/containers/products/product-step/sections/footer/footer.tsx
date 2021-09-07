@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
 const renderItemContent = (item: GPPS_Footer): JSX.Element => {
   switch (item.__typename) {
     case "ContentItemButton":
-      return <ProductStepContentItemButton key={item.id} {...item} />;
+      return <ProductStepContentItemButton key={item.id} {...item} hasValidation={true} />;
     case "ContentItemMultiButton":
       return <ProductStepContentItemMultiButton key={item.id} {...item} />;
     case "ContentItemOverlay":
