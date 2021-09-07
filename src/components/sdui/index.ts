@@ -8,3 +8,4 @@ export * from "./contentItemPad/contentItemPad";
 export * from "./contentItemProgressBar/contentItemProgressBar";
 export * from "./contentItemTextInput/contentItemTextInput";
 export * from "./contentItemDatePicker/contentItemDatePicker";
+export * from "./contentItemRadio/contentItemRadio";

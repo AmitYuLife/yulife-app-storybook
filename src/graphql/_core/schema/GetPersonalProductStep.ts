@@ -84,9 +84,15 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemR
   uri: string | null;
 }
 
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemRadio_choices_renderAsIcon_selectedStyles {
+  property: string;
+  value: string;
+}
+
 export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemRadio_choices_renderAsIcon {
   icon: GetPersonalProductStep_getPersonalProductStep_body_ContentItemRadio_choices_renderAsIcon_icon | null;
   textColor: string;
+  selectedStyles: GetPersonalProductStep_getPersonalProductStep_body_ContentItemRadio_choices_renderAsIcon_selectedStyles[];
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemRadio_choices {

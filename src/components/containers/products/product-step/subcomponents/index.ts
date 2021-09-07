@@ -8,3 +8,4 @@ export * from "./product-step.package-cards";
 export * from "./product-step.header";
 export * from "./product-step.text-input";
 export * from "./product-step.date-picker";
+export * from "./product-step.radio";
