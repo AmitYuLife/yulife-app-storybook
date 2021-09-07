@@ -9,7 +9,7 @@ export const androidAlertCopy = {
 };
 
 const androidMessage =
-  "We need to collect your health and personal data to track and reward your activity. Tap below to sync to Google Fit and get started!";
+  "In order to reward you for your daily activity we will need to connect to Google Fit. Tap below to get started!";
 const iOSFirstTimeMessage =
   "We need to collect your health and personal data to track and reward your activity. Tap below to sync to Apple Health and get started!";
 const iOSMotionUnauthorisedMessage =
