@@ -10,18 +10,24 @@ export const ProductStepContentItemHeader = memo(({ onLeftIconPress, onRightIcon
 
   // TODO: sort out typings
   const dynamicLeftIconOnPress: any = useMemo(
-    () => ({
-      type: onLeftIconPress.type,
-      payload: { productId, stepId },
-    }),
+    () =>
+      !onLeftIconPress
+        ? null
+        : {
+            type: onLeftIconPress.type,
+            payload: { productId, stepId },
+          },
     [onLeftIconPress, productId, stepId]
   );
 
   const dynamicRightIconOnPress: any = useMemo(
-    () => ({
-      type: onRightIconPress.type,
-      payload: { productId, stepId },
-    }),
+    () =>
+      !onRightIconPress
+        ? null
+        : {
+            type: onRightIconPress.type,
+            payload: { productId, stepId },
+          },
     [onRightIconPress, productId, stepId]
   );
 
