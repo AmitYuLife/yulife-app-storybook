@@ -59,6 +59,8 @@ export * from "./GetMobileCopy";
 export * from "./GetNewConnectionLink";
 export * from "./GetPersonalProductStep";
 export * from "./GetPersonalProductStepContinueModal";
+export * from "./GetPersonalProductStepDetachedDocuments";
+export * from "./GetPersonalProductStepDetachedFaqs";
 export * from "./GetProductBeneficiaries";
 export * from "./GetProductDetails";
 export * from "./GetQuestMapLevel";

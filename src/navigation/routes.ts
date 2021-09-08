@@ -161,6 +161,14 @@ export default [
     component: require("../components/containers/products/product-step/product-step.container").default,
   },
   {
+    name: ROUTES.productStepFaqs,
+    component: require("../components/containers/products/product-step/product-step.faqs.container").default,
+  },
+  {
+    name: ROUTES.productStepDocuments,
+    component: require("../components/containers/products/product-step/product-step.documents.container").default,
+  },
+  {
     name: ROUTES.wellbeingHubItems,
     component: require("../components/containers/wellbeing-hub/wellbeing-hub-items.container").default,
   },

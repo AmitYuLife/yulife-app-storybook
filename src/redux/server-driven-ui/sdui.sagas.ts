@@ -50,7 +50,7 @@ function* navigateBack({ payload }: SyncAction<string>) {
 }
 
 function* navigateTo({ payload }: ProductStepAction) {
-  const { serverPayload } = payload;
+  const { serverPayload, productId } = payload;
 
   if (serverPayload) {
     const currentRoute: ReturnType<typeof getRouteState> = yield select(getRouteState);
@@ -68,6 +68,7 @@ function* navigateTo({ payload }: ProductStepAction) {
             id: routeId,
             name: routeId,
             passProps: {
+              productId,
               ...props,
             },
           },

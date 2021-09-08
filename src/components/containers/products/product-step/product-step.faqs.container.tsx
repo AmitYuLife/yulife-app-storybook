@@ -1,0 +1,123 @@
+import React, { memo, useState } from "react";
+import { ActivityIndicator, StyleSheet, View, ViewStyle, ScrollView, LayoutChangeEvent } from "react-native";
+import { useQuery } from "@apollo/react-hooks";
+import { GQL_QUERY_GET_PERSONAL_PRODUCT_STEP_DETACHED_FAQS } from "@graphql/personalProduct/getPersonalProductStepDetachedFaqs.gql";
+import { GetPersonalProductStepDetachedFaqs_getPersonalProductStepDetachedFaqs_body as GPPSSQ_Body } from "@graphql/_core/schema";
+import { GetPersonalProductStepDetachedFaqs, GetPersonalProductStepDetachedFaqsVariables } from "@graphql/_core/schema";
+import { ProductStepFaqsContext } from "./product-step.faqs.context";
+import { ProductStepContentItemHeaderDetached } from "./subcomponents/detached/product-step.header.detached";
+import { ContentItemSDUIAction } from "@graphql/_core/schema/globalTypes";
+import { ContentItemFaqs } from "@components/sdui";
+import { Colours, Style, TOP_BAR } from "@styles";
+
+const HEADER_HEIGHT_ESTIMATE = TOP_BAR.TOP_BAR_WITH_PAD;
+
+const ProductStepDetachedContainer = (props: any) => {
+  const { stepId, productId } = props;
+  const [headerHeight, setHeaderHeight] = useState(HEADER_HEIGHT_ESTIMATE);
+
+  const [currentStepId, setCurrentStepId] = useState(stepId);
+  const [history, setHistory] = useState([] as string[]);
+  const [nestedHistory, setNestedHistory] = useState([] as string[]);
+
+  const setCurrentStep = (step: string) => {
+    setHistory((state) => [...state, step]);
+    setCurrentStepId(step);
+  };
+
+  const pushNestedHistory = (internalStep: string) => {
+    setNestedHistory((state) => [...state, internalStep]);
+  };
+
+  const popNestedHistory = () => {
+    setNestedHistory((state) => {
+      if (state.length <= 1) {
+        return [];
+      }
+
+      return state.slice(0, -1);
+    });
+  };
+
+  const { data, loading } = useQuery<GetPersonalProductStepDetachedFaqs, GetPersonalProductStepDetachedFaqsVariables>(
+    GQL_QUERY_GET_PERSONAL_PRODUCT_STEP_DETACHED_FAQS,
+    {
+      variables: { productId },
+      fetchPolicy: "no-cache",
+    }
+  );
+
+  const handleHeaderLayout = (event: LayoutChangeEvent) => {
+    setHeaderHeight(event.nativeEvent.layout.height);
+  };
+
+  if (loading || !data?.getPersonalProductStepDetachedFaqs) {
+    return (
+      <View style={styles.loadingWrapper}>
+        <ActivityIndicator />
+      </View>
+    );
+  }
+
+  const { body } = data.getPersonalProductStepDetachedFaqs;
+
+  return (
+    <ProductStepFaqsContext.Provider
+      value={{
+        history,
+        currentStepId,
+        setCurrentStep,
+        productId,
+        popNestedHistory,
+        pushNestedHistory,
+        nestedHistory,
+      }}
+    >
+      <View style={styles.wrapper}>
+        <View style={{ height: headerHeight }} />
+        <ScrollView showsVerticalScrollIndicator={false}>{body.map(renderItemContent)}</ScrollView>
+      </View>
+      <View onLayout={handleHeaderLayout} style={styles.headerWrapper}>
+        <ProductStepContentItemHeaderDetached
+          key="faq_header"
+          logo="yulife"
+          leftIcon="BACK"
+          rightIcon="CLOSE"
+          onLeftIconPress={{ type: ContentItemSDUIAction.SDUI_ACTION_NAVIGATE_BACK, payload: null }}
+          onRightIconPress={{ type: ContentItemSDUIAction.SDUI_ACTION_NAVIGATE_BACK, payload: null }}
+        />
+      </View>
+    </ProductStepFaqsContext.Provider>
+  );
+};
+
+const styles = StyleSheet.create({
+  headerWrapper: {
+    position: "absolute",
+    left: 0,
+    right: 0,
+    top: 0,
+  } as ViewStyle,
+  wrapper: {
+    flex: 1,
+    backgroundColor: Colours.neutral.n50,
+    paddingTop: Style.adjust(32),
+  } as ViewStyle,
+  loadingWrapper: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  } as ViewStyle,
+});
+
+const renderItemContent = (item: GPPSSQ_Body): JSX.Element => {
+  switch (item.__typename) {
+    case "ContentItemPersonalProductFaqs":
+      return <ContentItemFaqs key={item.id} {...item} />;
+
+    default:
+      return null;
+  }
+};
+
+export default memo(ProductStepDetachedContainer);

@@ -9,3 +9,5 @@ export * from "./contentItemProgressBar/contentItemProgressBar";
 export * from "./contentItemTextInput/contentItemTextInput";
 export * from "./contentItemDatePicker/contentItemDatePicker";
 export * from "./contentItemRadio/contentItemRadio";
+export * from "./contentItemFaqs/contentItemFaqs";
+export * from "./contentItemDocuments/contentItemDocuments";
