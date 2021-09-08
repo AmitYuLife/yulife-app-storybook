@@ -61,6 +61,8 @@ export interface ContentItemPackageCards_packageCards_powers {
 
 export interface ContentItemPackageCards_packageCards {
   id: string;
+  value: number;
+  packageMaxValue: number;
   coverType: CoverType;
   bonusEarnRate: number;
   header: ContentItemPackageCards_packageCards_header;
@@ -69,5 +71,7 @@ export interface ContentItemPackageCards_packageCards {
 
 export interface ContentItemPackageCards {
   id: string;
+  answerKey: string;
+  answerKeyDefaultValue: number;
   packageCards: ContentItemPackageCards_packageCards[] | null;
 }

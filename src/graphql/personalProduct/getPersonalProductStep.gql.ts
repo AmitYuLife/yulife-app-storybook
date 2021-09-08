@@ -17,6 +17,9 @@ import {
   GQL_FRAGMENT_CONTENT_ITEM_PACKAGE_CARDS,
   GQL_FRAGMENT_CONTENT_ITEM_PACKAGE_CARD_SLOT_INFO_ITEM_URL,
   GQL_FRAGMENT_CONTENT_ITEM_PACKAGE_CARD_SLOT_INFO,
+  GQL_FRAGMENT_CONTENT_ITEM_PRODUCT_PREVIEW,
+  GQL_FRAGMENT_CONTENT_ITEM_COVER_PICKER,
+  GQL_FRAGMENT_CONTENT_ITEM_SCROLLABLE_ITEMS_PICKER,
   GQL_FRAGMENT_CONTENT_ITEM_DATE_PICKER,
   GQL_FRAGMENT_CONTENT_ITEM_MULTI_SELECT,
 } from "../_fragments/content.gql";
@@ -39,6 +42,9 @@ export const GQL_QUERY_GET_PERSONAL_PRODUCT_STEP = gql`
   ${GQL_FRAGMENT_CONTENT_ITEM_PACKAGE_CARD_SLOT_INFO_ITEM_URL}
   ${GQL_FRAGMENT_CONTENT_ITEM_PACKAGE_CARD_SLOT_INFO}
   ${GQL_FRAGMENT_CONTENT_ITEM_PACKAGE_CARDS}
+  ${GQL_FRAGMENT_CONTENT_ITEM_PRODUCT_PREVIEW}
+  ${GQL_FRAGMENT_CONTENT_ITEM_COVER_PICKER}
+  ${GQL_FRAGMENT_CONTENT_ITEM_SCROLLABLE_ITEMS_PICKER}
   ${GQL_FRAGMENT_CONTENT_ITEM_DATE_PICKER}
   ${GQL_FRAGMENT_CONTENT_ITEM_MULTI_SELECT}
 
@@ -72,6 +78,15 @@ export const GQL_QUERY_GET_PERSONAL_PRODUCT_STEP = gql`
         }
         ... on ContentItemPackageCards {
           ...ContentItemPackageCards
+        }
+        ... on ContentItemPersonalProductPreview {
+          ...ContentItemPersonalProductPreview
+        }
+        ... on ContentItemCoverPicker {
+          ...ContentItemCoverPicker
+        }
+        ... on ContentItemScrollableItemsPicker {
+          ...ContentItemScrollableItemsPicker
         }
         ... on ContentItemDatePicker {
           ...ContentItemDatePicker

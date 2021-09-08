@@ -62,3 +62,4 @@ export { default as ChecklistInfoCard } from "./checklist-info-card/checklist-in
 import * as ProductSvg from "./product-svg";
 export { ProductSvg };
 export { default as DarkScreen } from "./dark-screen/dark-screen";
+export { FlatList } from "./flat-list/flat-list";

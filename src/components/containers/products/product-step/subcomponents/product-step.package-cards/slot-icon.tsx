@@ -19,6 +19,7 @@ export const SlotIcon = memo(({ itemUrl, backgroundUrl }: Props) => (
       height={Style.adjust(80)}
       theme="light"
       style={styles.slotItem}
+      suppressLoadingUi={true}
     />
   </View>
 ));

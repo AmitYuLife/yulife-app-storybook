@@ -14,6 +14,12 @@ interface Props {
   theme?: "light" | "dark";
   testID?: string;
   resizeMode?: ResizeMode;
+  /**
+   * suppresses loading ui
+   * usually for prefetched assets that we know
+   * are going to be instantly loaded
+   */
+  suppressLoadingUi?: boolean;
 }
 
 export const Image = memo(
@@ -28,6 +34,7 @@ export const Image = memo(
       source,
       testID,
       resizeMode,
+      suppressLoadingUi,
     } = props;
 
     const [isLoading, setIsLoading] = useState(true);
@@ -63,11 +70,11 @@ export const Image = memo(
           source={source}
           resizeMode={resizeMode}
         />
-        {!isLoading ? null : (
+        {isLoading && !suppressLoadingUi ? (
           <View style={styles.loader}>
             <ActivityIndicator size="large" color={getColor(theme)} />
           </View>
-        )}
+        ) : null}
       </View>
     );
   },

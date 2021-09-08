@@ -7,11 +7,13 @@ export interface IProductStepContext extends ProductStepDefaultFields {
   body: GetPersonalProductStep_getPersonalProductStep_body[];
 }
 
+export const DEFAULT_DYNAMIC_DATA = Object.freeze({});
+
 export const ProductStepContext = createContext<IProductStepContext>({
   productId: null,
   customerProductId: null,
   stepId: null,
-  dynamicData: {},
+  dynamicData: DEFAULT_DYNAMIC_DATA,
   setDynamicData: () => ({}),
   body: [],
 });

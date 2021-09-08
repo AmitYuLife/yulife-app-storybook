@@ -174,11 +174,90 @@ export const GQL_FRAGMENT_CONTENT_ITEM_PACKAGE_CARD_SLOT_INFO = gql`
   }
 `;
 
+export const GQL_FRAGMENT_CONTENT_ITEM_PRODUCT_PREVIEW = gql`
+  fragment ContentItemPersonalProductPreview on ContentItemPersonalProductPreview {
+    id
+    answerKey
+    answerKeyDefaultValue
+    documentHyperlink: hyperlink {
+      title
+      url
+      leftIcon {
+        ...RemoteImage
+      }
+    }
+    styles {
+      ...ContentItemStyle
+    }
+    coverList {
+      percentCovered
+      monthlyCost
+      monthlyPayout
+      markdown
+      coverType
+    }
+    coverExpirationDate
+  }
+`;
+export const GQL_FRAGMENT_CONTENT_ITEM_COVER_PICKER = gql`
+  fragment ContentItemCoverPicker on ContentItemCoverPicker {
+    id
+    answerKey
+    answerKeyDefaultValue
+    styles {
+      ...ContentItemStyle
+    }
+    options {
+      value
+      coverType
+      subheading
+      heading
+    }
+  }
+`;
+export const GQL_FRAGMENT_CONTENT_ITEM_SCROLLABLE_ITEMS_PICKER = gql`
+  fragment ContentItemScrollableItemsPicker on ContentItemScrollableItemsPicker {
+    id
+    answerKey
+    styles {
+      ...ContentItemStyle
+    }
+    range {
+      min
+      max
+      step
+    }
+    styleVariants {
+      id
+      minVisibleIndex
+      maxVisibleIndex
+      item {
+        color
+      }
+      overlay {
+        backdropStyles {
+          ...ContentItemStyle
+        }
+        highlightLabel
+        highlightLabelColor
+        overlayTitle
+        overlayTitleWrapperStyles {
+          ...ContentItemStyle
+        }
+      }
+    }
+  }
+`;
+
 export const GQL_FRAGMENT_CONTENT_ITEM_PACKAGE_CARDS = gql`
   fragment ContentItemPackageCards on ContentItemPackageCards {
     id
+    answerKey
+    answerKeyDefaultValue
     packageCards {
       id
+      value
+      packageMaxValue
       coverType
       bonusEarnRate
       header {
