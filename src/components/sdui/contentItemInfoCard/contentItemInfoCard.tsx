@@ -6,7 +6,7 @@ import { InfoCard } from "@components/molecules";
 import { mapServerStyles } from "../_utils/mapServerStyles";
 import { Style } from "@styles";
 
-const SIZE = Style.adjust(64);
+const SIZE = Style.adjust(36);
 
 export const ContentItemInfoCard = memo((props: GqlInfoCard) => {
   const { image, markdown, hyperlink, styles = [] } = props;
