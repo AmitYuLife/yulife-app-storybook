@@ -14,7 +14,7 @@ interface OwnProps {
 
 type Props = ContentItemPackageCards_packageCards & OwnProps;
 
-export const PackageCard = memo((props: Props) => {
+export const PackageCard = memo((props: Partial<Props>) => {
   const borderColor = useMemo(() => ({ borderColor: getBorderColor(props.coverType) }), [props.coverType]);
 
   return (
@@ -44,6 +44,7 @@ const styles = StyleSheet.create({
   wrapper: {
     borderRadius: BORDER_RADIUS,
     width: "100%",
+    borderWidth: 1,
   },
   container: {
     paddingHorizontal: Style.adjust(24),

@@ -1,5 +1,5 @@
 import React, { memo } from "react";
-import { StyleProp, StyleSheet, Text, TextStyle } from "react-native";
+import { ColorValue, StyleProp, StyleSheet, Text, TextStyle } from "react-native";
 import { Style, Colours } from "@styles";
 
 export type ITextTemplateType = "h1" | "h2" | "h3" | "b1" | "b1b" | "b2" | "b2b" | "l1" | "l1b" | "l2" | "l2b" | "l3";
@@ -8,7 +8,7 @@ interface IProps {
   testID?: string;
   children: React.ReactNode;
   type: ITextTemplateType;
-  color?: string;
+  color?: ColorValue | string;
   textAlign?: TextStyle["textAlign"];
   underline?: boolean;
   numberOfLines?: number;

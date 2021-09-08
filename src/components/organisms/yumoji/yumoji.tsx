@@ -41,7 +41,14 @@ function _Yumoji(props: Props) {
     <View style={{ width, height }}>
       {urls.map((uri) =>
         !uri ? null : (
-          <Image key={uri} style={StyleSheet.absoluteFillObject} width={width} height={height} source={{ uri }} />
+          <Image
+            suppressLoadingUi={true}
+            key={uri}
+            style={StyleSheet.absoluteFillObject}
+            width={width}
+            height={height}
+            source={{ uri }}
+          />
         )
       )}
     </View>

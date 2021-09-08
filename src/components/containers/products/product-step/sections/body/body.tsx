@@ -7,6 +7,9 @@ import {
   ProductStepProductInfo,
   ProductStepYugiConfirm,
   ProductStepPackageCards,
+  ProductStepCoverPicker,
+  ProductStepPercentPicker,
+  ProductStepProductPreview,
   ProductStepContentItemTextInput,
   ProductStepContentItemDatePicker,
   ProductStepContentItemRadio,
@@ -61,6 +64,12 @@ const renderItemContent = (item: GPPS_Body): JSX.Element => {
       return <ProductStepProductInfo key={item.id} {...item} />;
     case "ContentItemPackageCards":
       return <ProductStepPackageCards key={item.id} {...item} />;
+    case "ContentItemPersonalProductPreview":
+      return <ProductStepProductPreview key={item.id} {...item} />;
+    case "ContentItemCoverPicker":
+      return <ProductStepCoverPicker key={item.id} {...item} />;
+    case "ContentItemScrollableItemsPicker":
+      return <ProductStepPercentPicker key={item.id} {...item} />;
     case "ContentItemDatePicker":
       return <ProductStepContentItemDatePicker key={item.id} {...item} />;
     case "ContentItemRadio":

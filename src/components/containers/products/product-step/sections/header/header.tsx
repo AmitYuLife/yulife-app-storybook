@@ -2,6 +2,7 @@ import React from "react";
 import { LayoutChangeEvent, StyleSheet, View, ViewStyle } from "react-native";
 import { GetPersonalProductStep_getPersonalProductStep_header as GPPS_Header } from "@graphql/_core/schema";
 import { ContentItemProgressBar } from "@components/sdui";
+import { Colours } from "@styles";
 import { ProductStepContentItemHeader } from "../../subcomponents";
 
 interface Props {
@@ -23,6 +24,7 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     top: 0,
+    backgroundColor: Colours.neutral.white,
   } as ViewStyle,
 });
 

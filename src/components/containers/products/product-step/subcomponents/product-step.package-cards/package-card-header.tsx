@@ -1,12 +1,14 @@
-import React, { memo } from "react";
+import React, { memo, useContext } from "react";
 import { View, StyleSheet, ViewStyle, Platform } from "react-native";
 import { PackageType, TextTemplate } from "@atoms";
 import { Colours, Style } from "@styles";
 import { Image, Logo } from "@atoms";
 import { SlotIcon } from "./slot-icon";
 import { ContentItemPackageCards_packageCards_header } from "@graphql/_core/schema";
-import { CoverType } from "@graphql/_core/schema/globalTypes";
+import { CoverType, YuWorld } from "@graphql/_core/schema/globalTypes";
 import media from "@styles/media";
+import { ProductStepContext } from "../../product-step.context";
+import { useSetDefaultAnswer } from "../../hooks/useSetDefaultAnswer";
 
 interface Props {
   header: ContentItemPackageCards_packageCards_header;
@@ -30,7 +32,16 @@ const OFFSET = media.select(
 );
 
 const PackageCardHeader = (props: Props) => {
+  const { dynamicData, setDynamicData } = useContext(ProductStepContext);
+
+  useSetDefaultAnswer({ dynamicData, setDynamicData, answerKey: "worldId", answerKeyDefaultValue: YuWorld.forest });
+
   const headerImage = props.header?.backgroundUrl?.uri && { uri: props.header.backgroundUrl.uri };
+  const slotInfoItem = props.header?.slotInfo?.itemUrl?.find((item) => item.world === dynamicData.worldId);
+
+  if (!slotInfoItem || !headerImage) {
+    return null;
+  }
 
   return (
     <View style={styles.wrapper}>
@@ -38,10 +49,7 @@ const PackageCardHeader = (props: Props) => {
         <Image style={styles.headerImage} source={headerImage} width={props.width + OFFSET} height={HEADER_HEIGHT} />
       )}
       <View style={styles.inner}>
-        <SlotIcon
-          backgroundUrl={props.header.slotInfo.backgroundUrl.uri}
-          itemUrl={props.header.slotInfo.itemUrl[0].url.uri}
-        />
+        <SlotIcon backgroundUrl={props.header.slotInfo.backgroundUrl.uri} itemUrl={slotInfoItem.url.uri} />
         <View style={styles.distance}>
           <PackageType type={props.coverType} />
           <View style={styles.descriptionWrapper}>
