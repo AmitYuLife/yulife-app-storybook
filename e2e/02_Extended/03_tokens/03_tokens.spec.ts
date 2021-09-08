@@ -1,4 +1,4 @@
-import { Feature, Scenario, Given, When, Then, ScenarioOnly, FeatureOnly } from "@yu-life/yulife-bdd-framework";
+import { Feature, Scenario, Given, When, Then, ScenarioOnly, FeatureOnly, FeatureSkip } from "@yu-life/yulife-bdd-framework";
 import * as scenario from "./_steps/scenario"
 import * as given from "./_steps/given"
 import { CUSTOMER_10, AUTH_10, CUSTOMER_11, AUTH_11 } from "@data";
@@ -6,7 +6,7 @@ import * as when from "./_steps/when"
 import * as then from "./_steps/then"
 import { DAILY_STEPS_SCREEN, NAV_BAR, REWARDS_SCREEN } from "@ids";
 
-Feature("Tokens associated with a user should work correctly", async () => {
+FeatureSkip("Tokens associated with a user should work correctly", async () => {
 
     // NEED LOOKING INTO, STALLS ON RELOAD
     Scenario("If my token has expired, I should see the session has expired message, and can log back in", scenario.start, async () => {
