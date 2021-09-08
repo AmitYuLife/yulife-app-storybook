@@ -215,8 +215,8 @@ const RewardDetailsContainer: FC<IProps> = ({ onTabChange, componentId, rewardId
       if (availableDenominations.length > 1) {
         await showSelectInputModal({
           title: `You have ${totalCoins} YuCoin`,
-          options: availableDenominations.map((availableDenomination, index) => ({
-            label: `£${formatMoney(availableDenomination.value)} - ${availableDenomination.yuCoin} YuCoin`,
+          options: availableDenominations.map(({ label }, index) => ({
+            label,
             value: index,
           })),
           onPress: async (option: ISelectInputOption) => {

@@ -19,6 +19,7 @@ export const GQL_QUERY_GET_REWARD_ITEM_DETAILS = gql`
         value
         stock
         yuCoin
+        label
       }
       content {
         ... on ContentItemMarkdown {
