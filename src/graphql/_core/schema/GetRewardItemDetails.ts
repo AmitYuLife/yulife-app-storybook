@@ -20,6 +20,7 @@ export interface GetRewardItemDetails_getRewardItemDetails_availableDenomination
   value: number | null;
   stock: number | null;
   yuCoin: number | null;
+  label: string | null;
 }
 
 export interface GetRewardItemDetails_getRewardItemDetails_content_ContentItemMarkdown {
@@ -92,7 +93,9 @@ export interface GetRewardItemDetails_getRewardItemDetails_content_ContentItemFo
   defaultOption: GetRewardItemDetails_getRewardItemDetails_content_ContentItemForm_elements_ContentItemFormSelectInput_defaultOption | null;
   options: (GetRewardItemDetails_getRewardItemDetails_content_ContentItemForm_elements_ContentItemFormSelectInput_options | null)[];
   icon: GetRewardItemDetails_getRewardItemDetails_content_ContentItemForm_elements_ContentItemFormSelectInput_icon | null;
-  validation: (GetRewardItemDetails_getRewardItemDetails_content_ContentItemForm_elements_ContentItemFormSelectInput_validation | null)[] | null;
+  validation:
+    | (GetRewardItemDetails_getRewardItemDetails_content_ContentItemForm_elements_ContentItemFormSelectInput_validation | null)[]
+    | null;
 }
 
 export interface GetRewardItemDetails_getRewardItemDetails_content_ContentItemForm_elements_ContentItemFormTextInput_icon {
@@ -113,7 +116,9 @@ export interface GetRewardItemDetails_getRewardItemDetails_content_ContentItemFo
   defaultValue: string | null;
   type: ContentItemFormTextInputType | null;
   icon: GetRewardItemDetails_getRewardItemDetails_content_ContentItemForm_elements_ContentItemFormTextInput_icon | null;
-  validation: (GetRewardItemDetails_getRewardItemDetails_content_ContentItemForm_elements_ContentItemFormTextInput_validation | null)[] | null;
+  validation:
+    | (GetRewardItemDetails_getRewardItemDetails_content_ContentItemForm_elements_ContentItemFormTextInput_validation | null)[]
+    | null;
 }
 
 export interface GetRewardItemDetails_getRewardItemDetails_content_ContentItemForm_elements_ContentItemFormSubmitButton {
@@ -122,14 +127,22 @@ export interface GetRewardItemDetails_getRewardItemDetails_content_ContentItemFo
   label: string;
 }
 
-export type GetRewardItemDetails_getRewardItemDetails_content_ContentItemForm_elements = GetRewardItemDetails_getRewardItemDetails_content_ContentItemForm_elements_ContentItemFormSelectInput | GetRewardItemDetails_getRewardItemDetails_content_ContentItemForm_elements_ContentItemFormTextInput | GetRewardItemDetails_getRewardItemDetails_content_ContentItemForm_elements_ContentItemFormSubmitButton;
+export type GetRewardItemDetails_getRewardItemDetails_content_ContentItemForm_elements =
+  | GetRewardItemDetails_getRewardItemDetails_content_ContentItemForm_elements_ContentItemFormSelectInput
+  | GetRewardItemDetails_getRewardItemDetails_content_ContentItemForm_elements_ContentItemFormTextInput
+  | GetRewardItemDetails_getRewardItemDetails_content_ContentItemForm_elements_ContentItemFormSubmitButton;
 
 export interface GetRewardItemDetails_getRewardItemDetails_content_ContentItemForm {
   __typename: "ContentItemForm";
   elements: (GetRewardItemDetails_getRewardItemDetails_content_ContentItemForm_elements | null)[] | null;
 }
 
-export type GetRewardItemDetails_getRewardItemDetails_content = GetRewardItemDetails_getRewardItemDetails_content_ContentItemMarkdown | GetRewardItemDetails_getRewardItemDetails_content_ContentItemBox | GetRewardItemDetails_getRewardItemDetails_content_ContentItemButton | GetRewardItemDetails_getRewardItemDetails_content_ContentItemImage | GetRewardItemDetails_getRewardItemDetails_content_ContentItemForm;
+export type GetRewardItemDetails_getRewardItemDetails_content =
+  | GetRewardItemDetails_getRewardItemDetails_content_ContentItemMarkdown
+  | GetRewardItemDetails_getRewardItemDetails_content_ContentItemBox
+  | GetRewardItemDetails_getRewardItemDetails_content_ContentItemButton
+  | GetRewardItemDetails_getRewardItemDetails_content_ContentItemImage
+  | GetRewardItemDetails_getRewardItemDetails_content_ContentItemForm;
 
 export interface GetRewardItemDetails_getRewardItemDetails {
   id: string;
