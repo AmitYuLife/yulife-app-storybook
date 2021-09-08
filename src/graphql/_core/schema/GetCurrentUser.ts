@@ -54,6 +54,7 @@ export interface GetCurrentUser_getCurrentUser_passiveSteps_levelSlot_milestones
 }
 
 export interface GetCurrentUser_getCurrentUser_passiveSteps_levelSlot {
+  id: string | null;
   milestones: (GetCurrentUser_getCurrentUser_passiveSteps_levelSlot_milestones | null)[] | null;
 }
 
@@ -83,6 +84,7 @@ export interface GetCurrentUser_getCurrentUser_passiveMeditation_levelSlot_miles
 }
 
 export interface GetCurrentUser_getCurrentUser_passiveMeditation_levelSlot {
+  id: string | null;
   subtype: string | null;
   unit: string | null;
   milestones: (GetCurrentUser_getCurrentUser_passiveMeditation_levelSlot_milestones | null)[] | null;
