@@ -9,3 +9,4 @@ export * from "./product-step.header";
 export * from "./product-step.text-input";
 export * from "./product-step.date-picker";
 export * from "./product-step.radio";
+export * from "./product-step.multi-select";

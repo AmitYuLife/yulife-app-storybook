@@ -1,6 +1,6 @@
 import { ContentItemSDUIAction } from "@graphql/_core/schema/globalTypes";
 
-export type DynamicData = Record<string, string | boolean | number>;
+export type DynamicData = Record<string, string | boolean | number | string[]>;
 
 export interface ProductStepDefaultFields {
   productId: string;

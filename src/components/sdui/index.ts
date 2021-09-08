@@ -11,3 +11,4 @@ export * from "./contentItemDatePicker/contentItemDatePicker";
 export * from "./contentItemRadio/contentItemRadio";
 export * from "./contentItemFaqs/contentItemFaqs";
 export * from "./contentItemDocuments/contentItemDocuments";
+export * from "./contentItemMultiSelect/contentItemMultiSelect";

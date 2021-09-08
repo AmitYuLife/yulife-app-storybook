@@ -41,9 +41,15 @@ export interface ContentItemMultiButton_buttons {
   buttonSize: ContentItemButtonSize | null;
 }
 
+export interface ContentItemMultiButton_styles {
+  property: string;
+  value: string;
+}
+
 export interface ContentItemMultiButton {
   id: string;
   buttons: ContentItemMultiButton_buttons[];
   value: string | null;
   answerKey: string;
+  styles: ContentItemMultiButton_styles[] | null;
 }

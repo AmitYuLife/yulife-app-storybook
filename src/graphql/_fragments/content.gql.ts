@@ -137,6 +137,21 @@ export const GQL_FRAGMENT_CONTENT_ITEM_IMAGE = gql`
   }
 `;
 
+export const GQL_FRAGMENT_CONTENT_ITEM_MULTI_SELECT = gql`
+  fragment ContentItemMultiSelect on ContentItemMultiSelect {
+    id
+    answerKey
+    selectedValues
+    choices {
+      id
+      label
+      icon {
+        ...RemoteImage
+      }
+    }
+  }
+`;
+
 export const GQL_FRAGMENT_CONTENT_ITEM_PACKAGE_CARD_SLOT_INFO_ITEM_URL = gql`
   fragment ContentItemPackageCardSlotInfoItemUrl on ContentItemPackageCardSlotInfoItemUrl {
     url {
@@ -248,5 +263,8 @@ export const GQL_FRAGMENT_CONTENT_ITEM_MULTI_BUTTON = gql`
     }
     value
     answerKey
+    styles {
+      ...ContentItemStyle
+    }
   }
 `;

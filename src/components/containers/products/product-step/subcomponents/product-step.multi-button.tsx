@@ -3,7 +3,7 @@ import { StyleSheet, View, ViewStyle } from "react-native";
 import { ContentItemMultiButton as GqlMultiButton, ContentItemButton as GqlButton } from "@graphql/_core/schema";
 import { ContentItemButtonSize } from "@graphql/_core/schema/globalTypes";
 import { Style } from "@styles";
-import { ContentItemButton } from "@components/sdui";
+import { ContentItemButton, mapServerStyles } from "@components/sdui";
 import { ProductStepContext } from "../product-step.context";
 
 type Props = GqlMultiButton;
@@ -25,8 +25,10 @@ export const ProductStepContentItemMultiButton = memo((props: Props) => {
     [productId, stepId, dynamicData, props.answerKey]
   );
 
+  const serverStyles = mapServerStyles(props.styles);
+
   return (
-    <View style={styles.wrapper}>
+    <View style={[styles.wrapper, serverStyles]}>
       {props.buttons.map((button) => (
         <View key={button.id} style={styles.buttonWrapper}>
           <ContentItemButton

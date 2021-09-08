@@ -54,6 +54,7 @@ export interface LoginUser_loginUser_user_passiveSteps_levelSlot_milestones {
 }
 
 export interface LoginUser_loginUser_user_passiveSteps_levelSlot {
+  id: string | null;
   milestones: (LoginUser_loginUser_user_passiveSteps_levelSlot_milestones | null)[] | null;
 }
 
@@ -83,6 +84,7 @@ export interface LoginUser_loginUser_user_passiveMeditation_levelSlot_milestones
 }
 
 export interface LoginUser_loginUser_user_passiveMeditation_levelSlot {
+  id: string | null;
   subtype: string | null;
   unit: string | null;
   milestones: (LoginUser_loginUser_user_passiveMeditation_levelSlot_milestones | null)[] | null;

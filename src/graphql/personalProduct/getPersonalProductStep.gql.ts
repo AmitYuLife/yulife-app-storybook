@@ -18,6 +18,7 @@ import {
   GQL_FRAGMENT_CONTENT_ITEM_PACKAGE_CARD_SLOT_INFO_ITEM_URL,
   GQL_FRAGMENT_CONTENT_ITEM_PACKAGE_CARD_SLOT_INFO,
   GQL_FRAGMENT_CONTENT_ITEM_DATE_PICKER,
+  GQL_FRAGMENT_CONTENT_ITEM_MULTI_SELECT,
 } from "../_fragments/content.gql";
 
 export const GQL_QUERY_GET_PERSONAL_PRODUCT_STEP = gql`
@@ -39,6 +40,7 @@ export const GQL_QUERY_GET_PERSONAL_PRODUCT_STEP = gql`
   ${GQL_FRAGMENT_CONTENT_ITEM_PACKAGE_CARD_SLOT_INFO}
   ${GQL_FRAGMENT_CONTENT_ITEM_PACKAGE_CARDS}
   ${GQL_FRAGMENT_CONTENT_ITEM_DATE_PICKER}
+  ${GQL_FRAGMENT_CONTENT_ITEM_MULTI_SELECT}
 
   query GetPersonalProductStep($productId: String!) {
     getPersonalProductStep(productId: $productId) {
@@ -74,6 +76,9 @@ export const GQL_QUERY_GET_PERSONAL_PRODUCT_STEP = gql`
         ... on ContentItemDatePicker {
           ...ContentItemDatePicker
         }
+        ... on ContentItemMultiSelect {
+          ...ContentItemMultiSelect
+        }
         ... on ContentItemYugiConfirm {
           id
           yugiHeading
@@ -99,6 +104,9 @@ export const GQL_QUERY_GET_PERSONAL_PRODUCT_STEP = gql`
             id
             parsedMarkdown
           }
+        }
+        ... on ContentItemMultiButton {
+          ...ContentItemMultiButton
         }
       }
       footer {
