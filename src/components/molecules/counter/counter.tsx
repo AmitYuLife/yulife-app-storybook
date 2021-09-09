@@ -2,7 +2,7 @@ import { Text } from "@atoms/index";
 import { VIEW_TOP_RIGHT_COIN_COUNTER } from "@ids";
 import * as React from "react";
 import { Animated, TextStyle } from "react-native";
-import { addCommasToNumber } from "@services/utils";
+import { addCommasToNumber } from "@utils";
 
 interface IProps {
   duration?: number;

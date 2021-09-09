@@ -1,5 +1,5 @@
 import { openGoogleFit } from "@services/app-link";
-import { isSamsung } from "@services/utils";
+import { isSamsung } from "@utils";
 import { Colours, Style } from "@styles";
 import React, { FC } from "react";
 import { Alert, StyleSheet } from "react-native";

@@ -1,5 +1,5 @@
 import { Text } from "@atoms/index";
-import { addCommasToNumber } from "@services/utils";
+import { addCommasToNumber } from "@utils";
 import * as React from "react";
 import { SFC } from "react";
 import { StyleSheet, View } from "react-native";

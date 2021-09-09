@@ -1,7 +1,7 @@
 import { Task } from "@redux-saga/types";
 import { LOGOUT_SUCCESS } from "@redux/user/user.actions";
 import { getToken } from "@services/storage";
-import { Unpacked } from "@services/utils";
+import { Unpacked } from "@utils";
 import { call, cancel, fork, put, race, select, take } from "redux-saga/effects";
 import { UPDATE_APP_STATE } from "../../app/app.actions";
 import { START_DAILY_STEPS } from "../../daily-steps/daily-steps.actions";

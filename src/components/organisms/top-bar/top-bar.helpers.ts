@@ -1,4 +1,4 @@
-import { padNum } from "@services/utils";
+import { padNum } from "@utils";
 import { Colours } from "@styles/index";
 import { ComponentProps } from "react";
 import Left, { leftIconTypes } from "./subcomponents/left";

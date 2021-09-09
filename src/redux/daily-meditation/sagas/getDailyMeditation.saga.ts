@@ -1,5 +1,5 @@
 import upsertStepsChallenge from "@graphql/challenges/upsertPassiveChallenge.gql";
-import { Unpacked } from "@services/utils";
+import { Unpacked } from "@utils";
 import moment from "moment";
 import { REHYDRATE } from "redux-persist";
 import { call, put, race, select, spawn, take, delay } from "redux-saga/effects";

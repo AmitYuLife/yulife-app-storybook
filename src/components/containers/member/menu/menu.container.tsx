@@ -12,7 +12,7 @@ import { logOutStart, openMyAccount } from "@redux/user/user.actions";
 import { getUserFeatures } from "@redux/user/user.selectors";
 import { MenuScreen } from "@screens";
 import assets, { LINKS, LinkTypes } from "./assets";
-import { IS_DEVELOP } from "@services/utils";
+import { IS_DEVELOP } from "@utils";
 
 const MenuContainer = () => {
   const dispatch = useDispatch();

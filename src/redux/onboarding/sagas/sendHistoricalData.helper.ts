@@ -8,7 +8,7 @@ import addHistoricalData from "@graphql/challenges/addHistoricalData.gql";
 import { queryHistoricalMeditationData } from "@services/fitkit/fitkit.helpers";
 import { getUserFeatures } from "../../user/user.selectors";
 import { setHistoricalDataCollected, setHistoricalMeditationDataCollected } from "../onboarding.actions";
-import { Unpacked } from "@services/utils";
+import { Unpacked } from "@utils";
 
 export default function* sendHistoricalData(onboardingDate: Moment) {
   try {

@@ -2,7 +2,7 @@ import React from "react";
 import { View, StyleSheet, TextStyle, ViewStyle } from "react-native";
 import { YugiRibbon } from "./assets/yugi-ribbon";
 import { Text } from "@atoms";
-import { addCommasToNumber } from "@services/utils";
+import { addCommasToNumber } from "@utils";
 import { Style, Colours } from "@styles";
 import { getCoverTypeByPercentage } from "@components/containers/products/fib/fib.helpers";
 import { CreateTopUpsQuote_createTopUpsQuote_coverTypesInfo } from "@graphql/_core/schema";

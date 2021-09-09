@@ -8,7 +8,7 @@ import { useQuery } from "@apollo/react-hooks";
 import { GetYulifer } from "@graphql/_core/schema";
 import { GQL_QUERY_GET_YULIFER } from "@graphql/yuscreen";
 import { DuelImage } from "../../subcomponents";
-import { addCommasToNumber } from "@services/utils";
+import { addCommasToNumber } from "@utils";
 
 const UserSteps = () => {
   const dailySteps = useSelector(getDailySteps);

@@ -20,6 +20,7 @@ module.exports = {
           "@navigation": "./src/navigation",
           "@redux": "./src/redux",
           "@services": "./src/services",
+          "@utils": "./src/utils",
           "@styles": "./src/styles",
           "@mockclient": "./e2e/_utils/socket/client",
           "@e2e": "./e2e",

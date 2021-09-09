@@ -4,7 +4,7 @@ import * as React from "react";
 import { StyleSheet, TextStyle, View, ViewStyle } from "react-native";
 import { CenteredScreenImages } from "../../atoms/centred-screen/centred-screen";
 import styles from "./offline.screen.styles";
-import { getCurrentWorld } from "@services/utils";
+import { getCurrentWorld } from "@utils";
 
 interface IProps {
   level: number;

@@ -8,7 +8,7 @@ import { getBottomGradient } from "./challenges-history.helpers";
 import styles from "./challenges-history.screen.styles";
 import { TopBarTypes } from "@components/organisms/top-bar/top-bar.helpers";
 import { TopBar, NavBar } from "@components/organisms";
-import { getCurrentWorld } from "@services/utils";
+import { getCurrentWorld } from "@utils";
 
 interface IProps extends IConnectedScreenProps {
   level: GetQuestMapLevel_getQuestMapLevel;

@@ -22,7 +22,7 @@ import { LOGOUT_SUCCESS, GET_USER_SUCCESS } from "@redux/user/user.actions";
 import { IReduxState } from "@redux/_core/reducers";
 import { GetCurrentUser } from "@graphql/_core/schema";
 import moment from "moment";
-import { DATE_FORMAT } from "@services/utils";
+import { DATE_FORMAT } from "@utils";
 import {
   FIB_THREE_YEAR_MEDICAL_HISTORY_SCREEN_ID,
   FIB_FINANCIAL_COVER_LIST_SCREEN_ID,

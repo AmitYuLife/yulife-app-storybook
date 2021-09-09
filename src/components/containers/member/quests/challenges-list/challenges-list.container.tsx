@@ -13,7 +13,7 @@ import { ChallengesListScreen, ChallengeDetailsScreen } from "@screens";
 import { useMutation, useQuery } from "@apollo/react-hooks";
 import { handleLinkPress } from "@services/app-link";
 import { authoriseFitKitTypes } from "@services/fitkit/fitkit.helpers";
-import { getCurrentWorld } from "@services/utils";
+import { getCurrentWorld } from "@utils";
 import { ChallengesLoading } from "@components/molecules";
 import { DETOX_ENABLED } from "@services/socket";
 import getChallengeDetails from "@graphql/challenges/getQuestMapChallengeDetails.gql";

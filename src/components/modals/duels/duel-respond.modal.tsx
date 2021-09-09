@@ -8,7 +8,7 @@ import { GQL_MUTATION_RESPOND_TO_DUEL, GQL_QUERY_GET_DUELS, RespondToDuelMutatio
 import { GetDuels_getDuels } from "@graphql/_core/schema/GetDuels";
 import { GetDuellerDetails_getDuellerDetails } from "@graphql/_core/schema/GetDuellerDetails";
 import moment from "moment";
-import { DATE_FORMAT_WITHOUT_TZ } from "@services/utils";
+import { DATE_FORMAT_WITHOUT_TZ } from "@utils";
 import { DuelBackground } from "./subcomponents";
 import { DuelStepProps } from "./duels.types";
 import DuelResponseIntro from "./subcomponents/duel-response-intro/duel-response-intro";

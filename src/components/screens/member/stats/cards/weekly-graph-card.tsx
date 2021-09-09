@@ -1,5 +1,5 @@
 import { Text } from "@atoms/index";
-import { addCommasToNumber } from "@services/utils";
+import { addCommasToNumber } from "@utils";
 import { Style } from "@styles/index";
 import moment from "moment";
 import * as React from "react";

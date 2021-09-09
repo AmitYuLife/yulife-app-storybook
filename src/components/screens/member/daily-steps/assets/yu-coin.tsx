@@ -18,7 +18,7 @@ import {
 import { connect } from "react-redux";
 import { IReduxState } from "@redux/_core/reducers";
 import { getCurrentLevel } from "@redux/levels/levels.selectors";
-import { getCurrentYuniverse, getCurrentWorld } from "@services/utils";
+import { getCurrentYuniverse, getCurrentWorld } from "@utils";
 
 type ConnectedState = ReturnType<typeof mapStateToProps>;
 

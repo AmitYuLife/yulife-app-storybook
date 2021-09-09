@@ -17,7 +17,7 @@ import {
 import styles, { CIRCLE_SIZE } from "./level.styles";
 import Pulse from "./pulse";
 import useInterval from "@use-it/interval";
-import { getCurrentWorld, getNormalizedLevel } from "@services/utils";
+import { getCurrentWorld, getNormalizedLevel } from "@utils";
 
 interface IProps {
   currentLevel: number;

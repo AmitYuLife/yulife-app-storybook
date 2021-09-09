@@ -3,7 +3,7 @@ import { View, StyleSheet, ViewStyle, TextStyle, ActivityIndicator, Platform } f
 import { Style } from "@styles";
 import { Text } from "@atoms";
 import HorizontalScroller from "@components/molecules/horizontal-scroller/horizontal-scroller";
-import { addCommasToNumber } from "@services/utils";
+import { addCommasToNumber } from "@utils";
 import { YEAR_SCROLLER, MONTH_SCROLLER } from "@ids";
 
 export interface CalculatorItems {

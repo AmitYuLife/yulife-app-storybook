@@ -1,4 +1,4 @@
-import { getTimeRemaining } from "@services/utils";
+import { getTimeRemaining } from "@utils";
 import * as React from "react";
 import { ChallengeUnavailableScreen } from "@screens";
 import useInterval from "@use-it/interval";

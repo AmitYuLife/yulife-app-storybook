@@ -1,4 +1,4 @@
-import { padNum } from "@services/utils";
+import { padNum } from "@utils";
 import { Style } from "../../../../../../../styles";
 import { IChallenge } from "../../quests-screen";
 import { IMapSlice } from "../slices";

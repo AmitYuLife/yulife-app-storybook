@@ -4,7 +4,7 @@ import { Colours, Style } from "@styles";
 import { TertiaryButton } from "@atoms";
 import { BUTTON_ICON } from "@atoms/button/tertiary-button/tertiary-button.helpers";
 import { InputField } from "@organisms/fib/input/input-field";
-import { truncate } from "@services/utils";
+import { truncate } from "@utils";
 import { BENEFICIARY_SHARE_INPUT } from "@ids";
 
 interface IBeneficiaryProps {

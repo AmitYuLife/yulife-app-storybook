@@ -1,6 +1,6 @@
 import { PedometerResponse } from "@services/fitkit/fitkit.service";
 import moment from "moment";
-import { addSecondsToChallengeEndDateTime } from "@services/utils";
+import { addSecondsToChallengeEndDateTime } from "@utils";
 import { GetCurrentUser, LoginUser, UpdateActiveChallenge } from "@graphql/_core/schema";
 import { SyncAction } from "../_core/types";
 import { PEDOMETER_UPDATES_SUCCESS } from "../pedometer/pedometer.actions";

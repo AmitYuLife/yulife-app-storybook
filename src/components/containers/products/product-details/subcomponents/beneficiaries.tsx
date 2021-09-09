@@ -5,7 +5,7 @@ import { SecondaryButton, TextTemplate } from "@atoms";
 import { Navigation } from "react-native-navigation";
 import { MODALS, ROUTES } from "@navigation/constants";
 import { TouchableOpacityWithDelay } from "@components/molecules";
-import { truncate } from "@services/utils";
+import { truncate } from "@utils";
 import { useQuery } from "@apollo/react-hooks";
 import {
   GetProductBeneficiaries,

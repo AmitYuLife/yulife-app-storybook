@@ -20,7 +20,7 @@ import {
 } from "@redux/daily-steps/daily-steps.selectors";
 import { getChallengesStatus } from "@redux/levels/levels.selectors";
 import { getUserFeatures } from "@redux/user/user.selectors";
-import { pathOr } from "@services/utils";
+import { pathOr } from "@utils";
 import { TodayYucoinScreen } from "@screens";
 import { useQuery } from "@apollo/react-hooks";
 

@@ -2,7 +2,7 @@ import React, { memo } from "react";
 import { View, StyleSheet, ViewStyle, Image, ImageStyle, TextStyle, Platform } from "react-native";
 import { Text } from "@atoms";
 import { Style, Colours } from "@styles";
-import { getCurrentWorld, getCurrentWorldImage, getCurrentWorldText } from "@services/utils";
+import { getCurrentWorld, getCurrentWorldImage, getCurrentWorldText } from "@utils";
 import { useSelector } from "react-redux";
 import { getUserName } from "@redux/user/user.selectors";
 import { getCurrentLevel } from "@redux/levels/levels.selectors";

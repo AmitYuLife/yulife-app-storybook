@@ -1,6 +1,6 @@
 import React, { memo, PureComponent } from "react";
 import { QUESTS_SCREEN } from "@ids";
-import { getCurrentEpisode, getCurrentWorld, getNormalizedLevel } from "@services/utils";
+import { getCurrentEpisode, getCurrentWorld, getNormalizedLevel } from "@utils";
 import { FlatList, SafeAreaView, View, ViewabilityConfigCallbackPair } from "react-native";
 import { isIphoneX } from "react-native-iphone-x-helper";
 import { Navigation } from "react-native-navigation";

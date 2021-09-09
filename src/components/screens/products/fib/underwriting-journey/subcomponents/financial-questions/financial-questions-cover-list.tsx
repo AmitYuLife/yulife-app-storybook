@@ -5,7 +5,7 @@ import { Text, BorderedPlus, Bin } from "@atoms";
 import { PressableWithDelay } from "@components/molecules";
 import { Cover } from "@components/containers/products/fib/fib.types";
 import { updateFIBAnswerValue } from "@redux/product/product.actions";
-import { addCommasToNumber, truncate } from "@services/utils";
+import { addCommasToNumber, truncate } from "@utils";
 import { styles, getColorScheme } from "./financial-questions-cover-list.styles";
 import { removeByIndex, openModal } from "./financial-questions-cover-list.helpers";
 import { getFIBState } from "@redux/product/product.selectors";

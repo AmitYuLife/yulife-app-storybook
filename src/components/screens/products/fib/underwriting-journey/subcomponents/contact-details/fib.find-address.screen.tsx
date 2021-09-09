@@ -9,7 +9,7 @@ import SearchItem, { ISearchItem } from "@atoms/search/search-item";
 import { Colours } from "@styles";
 import { GQL_QUERY_GET_ADDRESS_BY_POSTCODE } from "@graphql/yuscreen/getAdress.gql";
 import SearchListEmpty from "@atoms/search/search-list-empty";
-import { formatPostCode } from "@services/utils";
+import { formatPostCode } from "@utils";
 
 interface IFibFindAddressScreenProps {
   onBackButtonPress: () => void;

@@ -3,7 +3,7 @@ import { View, StyleSheet, ViewStyle, TextStyle } from "react-native";
 import { Text } from "@atoms";
 import { getProductIcon } from "../../../assets/getProductIcon";
 import { Style, Colours } from "@styles";
-import { toCapitalLetter } from "@services/utils";
+import { toCapitalLetter } from "@utils";
 import { YuProductStatus, YuItemSlot, CoverType } from "@graphql/_core/schema/globalTypes";
 
 interface Props {

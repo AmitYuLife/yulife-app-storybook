@@ -14,7 +14,7 @@ import { resetFIBUnderwritingJourney } from "@redux/product/product.actions";
 import { YUGI_INTRO_TYPE } from "./fib.yugi-intro.container";
 import { getUserFeatures } from "@redux/user/user.selectors";
 import { FibInfoScreen, InfoYugiType } from "@components/screens/products/fib/info-screens/fib.info.screen";
-import { toCapitalLetter } from "@services/utils";
+import { toCapitalLetter } from "@utils";
 
 export enum InfoTypes {
   holdingGP = "HoldingGP",

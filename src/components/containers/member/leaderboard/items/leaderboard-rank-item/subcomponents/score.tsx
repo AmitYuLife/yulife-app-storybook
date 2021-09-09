@@ -2,7 +2,7 @@ import React from "react";
 import { View, StyleSheet, ViewStyle, TextStyle, Platform } from "react-native";
 import { Text } from "@atoms";
 import { Style } from "@styles";
-import { addCommasToNumber } from "@services/utils";
+import { addCommasToNumber } from "@utils";
 
 interface Props {
   score: number;

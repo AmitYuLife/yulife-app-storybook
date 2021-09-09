@@ -4,7 +4,7 @@ import { getFIBState, getFullName } from "@redux/product/product.selectors";
 import { useSelector } from "react-redux";
 import { FIB_INFO, FibLocalNavigation, FIB_FEEDBACK_FORM } from "../../fib.types";
 import { InfoTypes } from "../fib.info.container";
-import { toCapitalLetter } from "@services/utils";
+import { toCapitalLetter } from "@utils";
 import { Linking } from "react-native";
 import { ProductCode } from "@graphql/_core/schema/globalTypes";
 import {

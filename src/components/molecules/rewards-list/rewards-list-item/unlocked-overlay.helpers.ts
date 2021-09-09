@@ -1,4 +1,4 @@
-import { addCommasToNumber } from "@services/utils";
+import { addCommasToNumber } from "@utils";
 
 const formatMoney = (amount: number) => {
   return amount % 1 === 0 ? String(amount) : amount.toFixed(2);

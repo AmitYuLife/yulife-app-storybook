@@ -1,5 +1,5 @@
 import { IMainTabsProps } from "@navigation/root";
-import { getUnitTarget, getCurrentWorld } from "@services/utils";
+import { getUnitTarget, getCurrentWorld } from "@utils";
 import { Style } from "@styles/index";
 import React, { FC, useCallback, useEffect, useMemo } from "react";
 import { useSelector, useDispatch } from "react-redux";

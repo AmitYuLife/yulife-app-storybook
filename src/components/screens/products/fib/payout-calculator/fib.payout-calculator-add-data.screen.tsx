@@ -6,7 +6,7 @@ import { FibInputBirth } from "@organisms/fib/input/birth/fib-input-birth";
 import { FibAnswers } from "@redux/product/product.types";
 import { Navigation } from "react-native-navigation";
 import { MODALS } from "@navigation/constants";
-import { addCommasToNumber } from "@services/utils";
+import { addCommasToNumber } from "@utils";
 import FibInputSalaryTertiary from "@organisms/fib/input/salary/fib-input-salary-tertiary";
 import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
 

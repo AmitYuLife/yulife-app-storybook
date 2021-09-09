@@ -4,7 +4,7 @@ import { Colours } from "@styles";
 import { CoverType } from "@graphql/_core/schema/globalTypes";
 import { PACKAGE_TYPES } from "@ids";
 import { TextTemplate } from "@atoms";
-import { toCapitalLetter } from "@services/utils";
+import { toCapitalLetter } from "@utils";
 
 export interface Props {
   type: CoverType;

@@ -2,7 +2,7 @@ import React from "react";
 import { View, StyleSheet, ViewStyle, Platform, TextStyle, ImageStyle } from "react-native";
 import { Text } from "@atoms";
 import { LEADERBOARD_INFO_BUTTON, LEADERBOARD_TITLE, LEADERBOARD_TOP_SCREEN } from "@ids";
-import { truncate } from "@services/utils";
+import { truncate } from "@utils";
 import { Colours, Style } from "@styles";
 import { TouchableOpacityWithDelay } from "@components/molecules";
 import Svg, { Path } from "react-native-svg";

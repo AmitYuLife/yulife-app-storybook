@@ -14,7 +14,7 @@ import { Navigation } from "react-native-navigation";
 import { MODALS, ROUTES } from "@navigation/constants";
 import { GQL_MUTATION_UPDATE_CUSTOMER_CONTACT_DETAILS } from "@graphql/products";
 import { UpdateContactDetails, UpdateContactDetailsVariables } from "@graphql/_core/schema/UpdateContactDetails";
-import { formatPostCode } from "@services/utils";
+import { formatPostCode } from "@utils";
 
 type ConnectedDispatch = typeof mapDispatchToProps;
 type ConnectedState = ReturnType<typeof mapStateToProps>;

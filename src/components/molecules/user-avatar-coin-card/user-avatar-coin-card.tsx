@@ -3,7 +3,7 @@ import { Image, View } from "react-native";
 import { TextTemplate } from "@atoms";
 import { styles } from "./styles";
 import { DuelImage } from "@components/screens/member/duels-hub/subcomponents";
-import { truncate } from "@services/utils";
+import { truncate } from "@utils";
 
 interface IProps {
   name: string;

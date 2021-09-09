@@ -1,5 +1,5 @@
 import { getToken } from "@services/storage";
-import { DATE_FORMAT_WITH_TZ } from "@services/utils";
+import { DATE_FORMAT_WITH_TZ } from "@utils";
 import { defaultDataIdFromObject, InMemoryCache, NormalizedCacheObject } from "apollo-cache-inmemory";
 import { persistCache } from "apollo-cache-persist";
 import { ApolloClient } from "apollo-client";

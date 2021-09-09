@@ -2,7 +2,7 @@ import { GetQuestMapLevelChallengeDetails_getQuestMapLevelChallengeDetails_progr
 import * as React from "react";
 import { LayoutChangeEvent, StyleSheet, View } from "react-native";
 import Svg, { Circle, Polygon } from "react-native-svg";
-import { padNum } from "@services/utils";
+import { padNum } from "@utils";
 import { TextTemplate } from "@atoms";
 import styles from "./progress.styles";
 

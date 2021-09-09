@@ -18,7 +18,7 @@ import { GetDuels } from "@graphql/_core/schema";
 import { GQL_QUERY_GET_DUELS } from "@graphql/duels";
 import { ValidDuel } from "../leaderboard/active-leaderboard/leaderboard-content/items/leaderboard-rank-item/duel-dialog";
 import moment from "moment";
-import { DATE_FORMAT_WITH_TZ } from "@services/utils";
+import { DATE_FORMAT_WITH_TZ } from "@utils";
 import { getCurrentUserId } from "@redux/user/user.selectors";
 import { useSelector } from "react-redux";
 import { showExistingDuelAlert } from "../leaderboard/active-leaderboard/leaderboard-content/items/leaderboard-rank-item/duel-dialog.helpers";

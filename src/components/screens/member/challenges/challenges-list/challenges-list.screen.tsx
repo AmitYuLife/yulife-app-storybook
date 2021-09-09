@@ -1,7 +1,7 @@
 import React, { memo, Component } from "react";
 import { CHALLENGE_SCREEN } from "@ids";
 import { ChallengesList, IChallengesListProps } from "@molecules/index";
-import { getCurrentWorld } from "@services/utils";
+import { getCurrentWorld } from "@utils";
 import { Image, StyleSheet, View, BackHandler } from "react-native";
 import { IMilestoneProps } from "../challenge-details/milestones";
 import styles from "./challenges-list.screen.styles";

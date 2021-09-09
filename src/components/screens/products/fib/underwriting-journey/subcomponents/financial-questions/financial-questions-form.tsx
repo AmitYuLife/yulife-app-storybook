@@ -3,7 +3,7 @@ import { View, StyleSheet, Platform, ViewStyle } from "react-native";
 import { TextField } from "@components/molecules";
 import { CheckBox, Text, Pad } from "@atoms";
 import { Style, Colours } from "@styles";
-import { addCommasToNumber } from "@services/utils";
+import { addCommasToNumber } from "@utils";
 
 const canStringBeValidNumber = (val: string) => Boolean(Number(val));
 

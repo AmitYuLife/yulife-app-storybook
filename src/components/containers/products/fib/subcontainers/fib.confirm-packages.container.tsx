@@ -28,7 +28,7 @@ import { CoverType, CreateTopUpsQuoteInput, ProductCode } from "@graphql/_core/s
 import { GQL_QUERY_GET_YULIFER } from "@graphql/yuscreen";
 import { GQL_MUTATION_CREATE_TOP_UPS_QUOTE } from "@graphql/products";
 import { FIB_PAYOUT_CALCULATOR_INITIAL_STATE } from "./fib.payout-calculator.conainer";
-import { addCommasToNumber } from "@services/utils";
+import { addCommasToNumber } from "@utils";
 import { formatMoney } from "@services/money";
 
 type ConnectedState = ReturnType<typeof mapStateToProps>;
