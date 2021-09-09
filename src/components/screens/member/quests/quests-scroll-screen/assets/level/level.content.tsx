@@ -1,6 +1,6 @@
 import * as React from "react";
 import { StyleSheet, View } from "react-native";
-import { getCurrentWorld, getNormalizedLevel } from "@services/utils";
+import { getCurrentWorld, getNormalizedLevel } from "@utils";
 import { Chest, DoubleLock, Lock, Text } from "@atoms";
 import { IChallenge } from "../../quests-screen";
 import { getTime } from "./level.helpers";

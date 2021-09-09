@@ -1,4 +1,4 @@
-import { toOrdinalWord, getCurrentYuniverse, getCurrentWorldName, WorldName } from "@services/utils";
+import { toOrdinalWord, getCurrentYuniverse, getCurrentWorldName, WorldName } from "@utils";
 
 interface HeadlineObject {
   [WorldName.forest]: string;

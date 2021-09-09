@@ -1,4 +1,4 @@
-import { getCurrentWorld } from "@services/utils";
+import { getCurrentWorld } from "@utils";
 import { Colours } from "@styles";
 
 interface Data {

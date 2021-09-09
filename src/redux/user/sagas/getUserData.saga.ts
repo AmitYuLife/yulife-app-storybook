@@ -3,7 +3,7 @@ import { expireSession } from "@navigation/root";
 import { getToken } from "@services/storage";
 import { call, put, spawn } from "redux-saga/effects";
 import Logger from "@services/logging/logger";
-import { Unpacked } from "@services/utils";
+import { Unpacked } from "@utils";
 import { getUserSuccess, setUserNoAccessAction } from "../user.actions";
 import setLoggerIdentity from "./setLoggerIdentity.helper";
 

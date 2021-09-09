@@ -2,7 +2,7 @@ import { Navigation } from "react-native-navigation";
 import { MODALS } from "@navigation/constants";
 import { call, delay, take } from "redux-saga/effects";
 import { pendingFeedbackFormQuery } from "@graphql/member";
-import { Unpacked } from "@services/utils";
+import { Unpacked } from "@utils";
 import { showAppReviewModal } from "@navigation/root";
 
 export default function* displayPromptsSaga() {

@@ -7,7 +7,7 @@ import {
 } from "@graphql/_core/schema";
 import { queryFitKitByTypes } from "@services/fitkit/fitkit.helpers";
 import Logger from "@services/logging/logger";
-import { DATE_FORMAT_WITH_TZ } from "@services/utils";
+import { DATE_FORMAT_WITH_TZ } from "@utils";
 import moment from "moment";
 import { call, cancel, cancelled, fork, put, race, select, spawn, take, delay } from "redux-saga/effects";
 import { cancelLocalPush } from "../../device/device.actions";

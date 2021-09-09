@@ -3,7 +3,7 @@ import { render } from "@testing-library/react-native";
 import { PACKAGE_TYPES } from "@ids";
 import PackageTypes, { Props } from "./package-types";
 import { CoverType } from "@graphql/_core/schema/globalTypes";
-import { toCapitalLetter } from "@services/utils";
+import { toCapitalLetter } from "@utils";
 
 const renderComponent = (props: Props) => {
   return render(<PackageTypes {...props} />);

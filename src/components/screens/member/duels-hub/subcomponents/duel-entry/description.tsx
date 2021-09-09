@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { Text } from "@atoms";
 import { View, StyleSheet, ViewStyle, TextStyle } from "react-native";
-import { addCommasToNumber, minifiedFromNow } from "@services/utils";
+import { addCommasToNumber, minifiedFromNow } from "@utils";
 import { GetDuelsTomorrow_getDuelsTomorrow, GetDuelsToday_getDuelsToday } from "@graphql/_core/schema";
 import moment from "moment";
 import { Colours, Style } from "@styles";

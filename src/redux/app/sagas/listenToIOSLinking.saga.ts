@@ -1,7 +1,7 @@
 import handleDeepLink from "@navigation/handleDeepLink";
 import { getRouteState } from "@redux/app/app.selectors";
 import { getToken } from "@services/storage";
-import { Unpacked } from "@services/utils";
+import { Unpacked } from "@utils";
 import { call, select, take } from "redux-saga/effects";
 import { iosLinkingChannel } from "../app.channels";
 

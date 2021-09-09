@@ -5,8 +5,8 @@ import { useFitKit } from "./fitkit.hooks";
 import moment, { Moment } from "moment";
 import { ChallengePayload, FitKitType } from "@graphql/_core/schema/globalTypes";
 import Logger from "../logging/logger";
-import { DATE_FORMAT_WITH_TZ } from "../utils";
 import { createContext } from "react";
+import { DATE_FORMAT_WITH_TZ } from "@utils";
 
 const mapGqlFitKitTypeToFitKitType = (gqlType: FitKitType) => {
   switch (gqlType) {

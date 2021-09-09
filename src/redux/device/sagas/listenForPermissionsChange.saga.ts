@@ -1,8 +1,8 @@
 import { getToken } from "@services/storage";
-import { Unpacked } from "@services/utils";
 import { Platform, AppStateStatus } from "react-native";
 import { PushNotificationPermissions } from "react-native-push-notification";
 import { call, put, race, select, take, delay } from "redux-saga/effects";
+import { Unpacked } from "@utils/types";
 import { appStateChannel } from "../../app/app.channels";
 import { updateUserConsent } from "../../user/user.actions";
 import { setPushPermissions } from "../device.actions";

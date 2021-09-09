@@ -9,7 +9,7 @@ import { UserNotificationsType } from "@graphql/_core/schema/globalTypes";
 import getUserNotificationsSettings from "@graphql/pushNotifications/getUserNotificationsSettings.gql";
 import { challengeStartSuccessAction } from "../../levels/levels.actions";
 import { defaultNotificationSettings, getNotificationTitleAndMessage, numericId } from "../notifications.helpers";
-import { addSecondsToChallengeEndDateTime } from "@services/utils";
+import { addSecondsToChallengeEndDateTime } from "@utils";
 
 export default function* scheduleChallengeNotificationSaga({
   payload: { createActiveChallenge },

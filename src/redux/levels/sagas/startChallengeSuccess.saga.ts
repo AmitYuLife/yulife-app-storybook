@@ -1,4 +1,4 @@
-import { addSecondsToChallengeEndDateTime } from "@services/utils";
+import { addSecondsToChallengeEndDateTime } from "@utils";
 import { call, put, select } from "redux-saga/effects";
 import { getSteps } from "../../pedometer/pedometer.selectors";
 import { challengeStartSuccessAction, pedometerStepsChallengeStarted } from "../levels.actions";

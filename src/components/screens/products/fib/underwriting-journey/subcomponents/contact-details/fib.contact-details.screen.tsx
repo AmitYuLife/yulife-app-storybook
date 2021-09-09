@@ -10,7 +10,7 @@ import { postCodeRegexSpecial, postCodeRegex } from "./fib.find-address.screen";
 import { useBackHandler } from "@services/hooks/useBackHandler";
 import { CONTACT_DETAILS_INPUT } from "@ids";
 import ContactDetailsTitle from "./fib.contact-details.title";
-import { phoneNumberIsValid } from "@services/utils";
+import { phoneNumberIsValid } from "@utils";
 
 export interface IFibContactDetailsScreenProps {
   onContinue: () => void;

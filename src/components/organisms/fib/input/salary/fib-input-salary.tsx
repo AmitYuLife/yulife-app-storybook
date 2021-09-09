@@ -4,7 +4,7 @@ import { InputField } from "../input-field";
 import { StyleSheet, View } from "react-native";
 import { styles } from "./fib-input-salary.styles";
 import { Style } from "@styles";
-import { addCommasToNumber } from "@services/utils";
+import { addCommasToNumber } from "@utils";
 import { FIB_SALARY_INPUT, FIB_SALARY_INPUT_VALUE } from "@ids";
 
 interface FibInputSalaryProps {

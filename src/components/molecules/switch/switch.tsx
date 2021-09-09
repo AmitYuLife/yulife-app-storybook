@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, View, Animated } from "react-native";
 import { Style, Colours } from "@styles";
-import { noop } from "@services/utils";
+import { noop } from "@utils";
 import TouchableOpacityWithDelay from "../touchable-opacity-delay/touchable-opacity-delay";
 
 const CIRCLE_SIZE = Style.adjust(24);

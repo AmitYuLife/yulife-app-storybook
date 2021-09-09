@@ -5,7 +5,7 @@ import { Colours, Style } from "@styles";
 import { ScrollableLayout } from "@molecules";
 import { PackageSelector } from "@organisms/lump-calculator/package-selector";
 import Slider from "@react-native-community/slider";
-import { addCommasToNumber } from "@services/utils";
+import { addCommasToNumber } from "@utils";
 import { CreateTopUpsQuote_createTopUpsQuote_coverTypesInfo } from "@graphql/_core/schema/CreateTopUpsQuote";
 import { useQuery } from "@apollo/react-hooks";
 import { GetYulifer } from "@graphql/_core/schema/GetYulifer";

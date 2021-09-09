@@ -1,4 +1,4 @@
-import { displaySecondsAsMinutes, padNum } from "@services/utils";
+import { displaySecondsAsMinutes, padNum } from "@utils";
 import { IProps } from "./today-yucoin.screen";
 
 export const mapProps = (props: IProps) => {

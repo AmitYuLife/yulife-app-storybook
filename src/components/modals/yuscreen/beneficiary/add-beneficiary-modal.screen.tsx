@@ -5,7 +5,7 @@ import { StyleSheet, TextStyle, ViewStyle } from "react-native";
 import { Colours, Style } from "@styles";
 import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
 import { TextField } from "@components/molecules";
-import { phoneNumberIsValid } from "@services/utils";
+import { phoneNumberIsValid } from "@utils";
 import { ConfirmationScreen } from "./confirmation.screen";
 import { GetProductBeneficiaries_getProductBeneficiaries_beneficiaries as Beneficiary } from "@graphql/_core/schema";
 import { INPUT_BENEFICIARY_DETAIL, BENEFICIARY_CONTINUE } from "@ids";

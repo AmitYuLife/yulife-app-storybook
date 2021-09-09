@@ -1,6 +1,6 @@
 import React, { memo } from "react";
 import { InfoCard, LEFT_ICON } from "./info-card/info-card";
-import { toCapitalLetter } from "@services/utils";
+import { toCapitalLetter } from "@utils";
 import { StripePaymentRequestToken } from "tipsi-stripe";
 import { useSelector } from "react-redux";
 import { getFullName } from "@redux/product/product.selectors";

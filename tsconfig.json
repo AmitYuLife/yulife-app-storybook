@@ -32,6 +32,8 @@
       "@services/*": ["./src/services/*"],
       "@styles": ["./src/styles/index"],
       "@styles/*": ["./src/styles/*"],
+      "@utils": ["./src/utils/index"],
+      "@utils/*": ["./src/utils/*"],
       "@e2e/*": ["./src/e2e/*"],
       "@ids": ["./e2e/_utils/navigation/ids"],
       "@app/*": ["./src/*"],

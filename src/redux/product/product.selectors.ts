@@ -26,7 +26,7 @@ import {
   FIB_GENDER_SCREEN_ID,
 } from "@containers/products/fib/data/underwriting-journey-data";
 import { FINANCIAL_QUESTIONS_ICON } from "@atoms/fib/svg-assets/underwriting/svg-strings";
-import { addCommasToNumber } from "@services/utils";
+import { addCommasToNumber } from "@utils";
 import { LifeInsuranceTopUpsUserAnswers, YuWorld } from "@graphql/_core/schema/globalTypes";
 import {
   FIB_FINANCIAL_OTHER_COVER_SCREEN_ID,

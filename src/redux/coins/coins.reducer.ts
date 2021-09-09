@@ -1,6 +1,6 @@
 import moment from "moment";
 import { REHYDRATE } from "redux-persist";
-import { DATE_FORMAT } from "@services/utils";
+import { DATE_FORMAT } from "@utils";
 import {
   GetCurrentUser,
   GetCurrentUser_getCurrentUser_todayActivity,

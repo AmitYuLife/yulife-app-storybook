@@ -1,7 +1,7 @@
 import { FitKitType } from "@graphql/_core/schema/globalTypes";
 import RNFitKit from "@services/fitkit/fitkit.service";
 import Logger from "@services/logging/logger";
-import { DATE_FORMAT_WITH_TZ, getStartAndEndDateTimesWithTimezone } from "@services/utils";
+import { DATE_FORMAT_WITH_TZ, getStartAndEndDateTimesWithTimezone } from "@utils";
 import moment from "moment";
 import { querySteps, queryFitKitByTypes } from "@services/fitkit/fitkit.helpers";
 import { IActiveLevel } from "./levels.selectors";

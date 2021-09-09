@@ -1,6 +1,6 @@
 import { store } from "@redux/_core/store";
 import { GET_HISTORICAL_DATA } from "@redux/onboarding/onboarding.actions";
-import { getQueryStringObject } from "@services/utils";
+import { getQueryStringObject } from "@utils";
 import Config from "react-native-config";
 import { labels, setDuelsScreen, setScreen, setUnauthenticatedRoot } from "./root";
 import { ROUTES } from "@navigation/constants";

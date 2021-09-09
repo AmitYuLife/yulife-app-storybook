@@ -2,7 +2,7 @@ import React, { memo } from "react";
 import { Button, Pad, Text } from "@atoms";
 import { Counter } from "@molecules";
 import { StyleSheet, TextStyle, View, ViewStyle } from "react-native";
-import { displaySecondsAsMinutes, padNum } from "@services/utils";
+import { displaySecondsAsMinutes, padNum } from "@utils";
 import { useSelector } from "react-redux";
 import { getDailyEarnedCoins } from "@redux/coins/coins.selectors";
 import { Style } from "@styles";

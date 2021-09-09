@@ -15,7 +15,7 @@ import NetInfo, { NetInfoState } from "@react-native-community/netinfo";
 import moment from "moment";
 import { call, put } from "redux-saga/effects";
 import { setAuthenticated, setUnauthenticated } from "../app.actions";
-import { Unpacked } from "@services/utils";
+import { Unpacked } from "@utils";
 import { GetSession_mobileUpgradeRequired } from "@graphql/_core/schema";
 
 interface IMainRootPayload {

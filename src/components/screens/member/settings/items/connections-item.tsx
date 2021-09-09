@@ -8,7 +8,7 @@ import { Switch, TouchableOpacityWithDelay } from "@molecules";
 import { IConnectionsSectionItem } from "../settings.screen";
 import assets from "./assets";
 import styles from "./item.styles";
-import { toCapitalLetter } from "@services/utils";
+import { toCapitalLetter } from "@utils";
 
 const formatDate = (timestamp: number) => {
   const toFormat = moment.unix(timestamp).local();

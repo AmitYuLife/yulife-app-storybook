@@ -1,7 +1,7 @@
 import { Counter } from "@molecules/index";
 import * as React from "react";
 import { StyleSheet, Text } from "react-native";
-import { displaySecondsAsMinutes, padNum } from "@services/utils";
+import { displaySecondsAsMinutes, padNum } from "@utils";
 import { IProps } from "./progress-bar";
 import styles from "./progress-bar.styles";
 

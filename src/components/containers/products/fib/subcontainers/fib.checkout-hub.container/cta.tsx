@@ -5,7 +5,7 @@ import { Style } from "@styles";
 import { useSelector } from "react-redux";
 import { getContactDetails, getFullName, getFIBState } from "@redux/product/product.selectors";
 import { CoverType } from "@graphql/_core/schema/globalTypes";
-import { toCapitalLetter } from "@services/utils";
+import { toCapitalLetter } from "@utils";
 import { StripePaymentRequestToken } from "tipsi-stripe";
 import { GetCheckoutDetails_paymentDetails } from "@graphql/_core/schema";
 

@@ -1,6 +1,6 @@
 import { useMutation } from "@apollo/react-hooks";
 import { GQL_MUTATION_COLLECT_AWARD, CollectAwardMutationTuple } from "@graphql/member";
-import { getTimeRemaining } from "@services/utils";
+import { getTimeRemaining } from "@utils";
 import * as React from "react";
 import { connect } from "react-redux";
 import { IReduxState } from "@redux/_core/reducers";

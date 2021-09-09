@@ -8,7 +8,7 @@ import { GetDuels } from "@graphql/_core/schema";
 import { useQuery } from "@apollo/react-hooks";
 import { useSelector } from "react-redux";
 import { getCurrentUserId } from "@redux/user/user.selectors";
-import { DATE_FORMAT_WITH_TZ } from "@services/utils";
+import { DATE_FORMAT_WITH_TZ } from "@utils";
 import { showExistingDuelAlert } from "./duel-dialog.helpers";
 import moment from "moment";
 import { GQL_QUERY_GET_DUELS } from "@graphql/duels";

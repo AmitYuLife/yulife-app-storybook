@@ -1,6 +1,6 @@
 import { deleteConnectionWithClient, getNewConnectionLinkWithClient } from "@graphql/connections";
 import Logger from "@services/logging/logger";
-import { Unpacked } from "@services/utils";
+import { Unpacked } from "@utils";
 import { Linking } from "react-native";
 import { call, put, spawn } from "redux-saga/effects";
 

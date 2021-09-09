@@ -32,7 +32,7 @@ export interface GetPersonalProductStepDetachedFaqs_getPersonalProductStepDetach
     | "ContentItemPackageCards"
     | "ContentItemPersonalProductPreview"
     | "ContentItemCoverPicker"
-    | "ContentItemPercentPicker";
+    | "ContentItemScrollableItemsPicker";
 }
 
 export interface GetPersonalProductStepDetachedFaqs_getPersonalProductStepDetachedFaqs_body_ContentItemPersonalProductFaqs_headingImage_image {

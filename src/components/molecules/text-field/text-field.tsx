@@ -3,7 +3,7 @@ import { StyleSheet, TextInput, View, Animated, ViewStyle, Text, TextStyle } fro
 import { Style } from "@styles/index";
 import { Placeholder } from "./subcomponents/placeholder";
 import { BaseUnderline, ColouredUnderline } from "./subcomponents/underlines";
-import { addCommasToNumber, formatPostCode } from "@services/utils";
+import { addCommasToNumber, formatPostCode } from "@utils";
 import Warning from "@atoms/text-input/assets/warning";
 import { useMaterialInputAnimation } from "./useMaterialInputAnimation";
 

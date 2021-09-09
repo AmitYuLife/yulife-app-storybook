@@ -1,7 +1,7 @@
 import updateActiveChallengeWithClient from "@graphql/challenges/updateActiveChallenge.gql";
 import { getUserFeatures } from "@redux/user/user.selectors";
 import Logger from "@services/logging/logger";
-import { Unpacked } from "@services/utils";
+import { Unpacked } from "@utils";
 import { call, put, select, spawn } from "redux-saga/effects";
 import { challengeEndFailAction, challengeEndSuccessAction, challengeResetSuccessAction } from "../levels.actions";
 import { getEndResult } from "../levels.helpers";

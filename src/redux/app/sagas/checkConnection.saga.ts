@@ -4,7 +4,7 @@ import { call, select } from "redux-saga/effects";
 import { getRouteState } from "../app.selectors";
 import { ROUTES } from "@navigation/constants";
 import { setAuthenticatedRoot, setUnauthenticatedRoot } from "@navigation/root";
-import { Unpacked } from "@services/utils";
+import { Unpacked } from "@utils";
 import Logger from "@services/logging/logger";
 
 export default function* checkConnectionSaga() {

@@ -4,7 +4,7 @@ import Svg, { Path } from "react-native-svg";
 import { Text } from "@atoms";
 import { Style } from "@styles";
 import { GetCommunityGoals_getCommunityGoals } from "@graphql/_core/schema";
-import { addCommasToNumber } from "@services/utils";
+import { addCommasToNumber } from "@utils";
 import { COMMUNITY_GOAL_DROPDOWN } from "@ids";
 
 interface Props {
