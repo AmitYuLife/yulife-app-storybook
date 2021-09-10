@@ -1,5 +1,5 @@
 import React, { memo, useCallback, useEffect, useRef, useState } from "react";
-import { LayoutChangeEvent, StyleSheet, View, ViewStyle } from "react-native";
+import { Keyboard, LayoutChangeEvent, StyleSheet, View, ViewStyle } from "react-native";
 import { Body, Header, Footer, Absolute } from "./sections";
 import { ProductStepContext } from "./product-step.context";
 import {
@@ -32,9 +32,15 @@ export const ProductStepScreen = memo((props: Props) => {
     setHeaderHeight(event.nativeEvent.layout.height);
   }, []);
 
+  // on component unmount dismiss the keyboard
+  useEffect(() => {
+    return () => Keyboard.dismiss();
+  }, []);
+
   // wipe dynamic data when step changes
   useEffect(() => {
     if (isMounted.current) {
+      Keyboard.dismiss();
       setDynamicData(buildInitialProductStepDynamicDataState(body));
     }
 
