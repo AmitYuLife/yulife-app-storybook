@@ -7,7 +7,6 @@ import { Button, TextTemplate } from "@atoms";
 import { Style, TOP_BAR, Colours } from "@styles";
 import { FIB_INTRO_SCREEN } from "@ids";
 import { GetPersonalProductStep_getPersonalProductStep_body_ContentItemYugiConfirm } from "@graphql/_core/schema";
-
 import { ArrowUp } from "./arrowUp";
 import { ProductStepContext } from "./../../product-step.context";
 
@@ -77,13 +76,7 @@ export const ProductStepYugiConfirm = memo(function (props: Props) {
       </Animated.View>
 
       <View style={styles.buttonWrapper}>
-        <Button
-          size="Small"
-          onPress={() => dispatch(dynamicOnPress)}
-          delay={300}
-          label={buttonText}
-          disableAnimation={true}
-        />
+        <Button size="Small" onPress={() => dispatch(dynamicOnPress)} delay={300} label={buttonText} />
       </View>
     </View>
   );
@@ -112,7 +105,7 @@ const styles = StyleSheet.create({
     height: Style.DEVICE_HEIGHT,
   },
   speechWrapper: {
-    marginBottom: 16,
+    marginBottom: Style.adjust(16),
     width: SPEECH_WRAPPER_WIDTH,
     marginTop: Style.DEVICE_HEIGHT * 0.24,
     backgroundColor: Colours.products.fib.u10S4,
@@ -129,15 +122,15 @@ const styles = StyleSheet.create({
   arrowUp: {
     right: 0,
     position: "absolute",
-    marginRight: 33,
-    marginTop: -15,
+    marginRight: Style.adjust(33),
+    marginTop: Style.adjust(-15),
   } as ViewStyle,
   speakerNameWrapper: {
     position: "absolute",
-    marginLeft: 23,
-    marginTop: -12,
-    width: 61,
-    height: 24,
+    marginLeft: Style.adjust(23),
+    marginTop: Style.adjust(-12),
+    width: Style.adjust(61),
+    height: Style.adjust(24),
     backgroundColor: Colours.products.fib.u100S4,
     borderRadius: 16,
     alignItems: "center",
