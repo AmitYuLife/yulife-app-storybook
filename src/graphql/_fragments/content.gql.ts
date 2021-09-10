@@ -11,7 +11,6 @@ export const GQL_FRAGMENT_CONTENT_ITEM_TEXT_INPUT = gql`
   fragment ContentItemTextInput on ContentItemTextInput {
     id
     heading
-    value
     answerKey
     type
     prefixValue
@@ -52,7 +51,6 @@ export const GQL_FRAGMENT_CONTENT_ITEM_RADIO = gql`
   fragment ContentItemRadio on ContentItemRadio {
     id
     iconOptions
-    value
     answerKey
     choices {
       label
@@ -141,7 +139,6 @@ export const GQL_FRAGMENT_CONTENT_ITEM_MULTI_SELECT = gql`
   fragment ContentItemMultiSelect on ContentItemMultiSelect {
     id
     answerKey
-    selectedValues
     choices {
       id
       label

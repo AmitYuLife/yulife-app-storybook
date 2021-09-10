@@ -6,6 +6,7 @@ import { Style } from "@styles";
 import { mapServerStyles } from "../_utils/mapServerStyles";
 
 interface Props extends GqlRadio {
+  value: string;
   onChange: (value: string) => void;
 }
 

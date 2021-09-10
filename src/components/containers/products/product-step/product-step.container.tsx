@@ -37,12 +37,14 @@ const ProductStepContainer = (props: Props) => {
     absolute,
     customerProductId,
     stepId,
+    stepData,
     containerStyles = [],
   } = data.getPersonalProductStep;
   const style = mapServerStyles(containerStyles);
 
   return (
     <ProductStepScreen
+      stepData={stepData}
       body={body}
       header={header}
       footer={footer}

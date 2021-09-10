@@ -32,7 +32,6 @@ export interface ContentItemRadio_choices {
 export interface ContentItemRadio {
   id: string;
   iconOptions: boolean;
-  value: string | null;
   answerKey: string;
   choices: ContentItemRadio_choices[];
 }
