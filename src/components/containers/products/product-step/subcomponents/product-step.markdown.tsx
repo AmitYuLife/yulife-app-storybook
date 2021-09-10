@@ -16,6 +16,7 @@ export const ProductStepMarkdown = memo((props: Props) => {
 
 const styles = StyleSheet.create({
   wrapper: {
-    paddingHorizontal: Style.adjust(24),
+    paddingLeft: Style.adjust(24),
+    paddingRight: Style.adjust(64),
   } as ViewStyle,
 });
