@@ -7,16 +7,15 @@ import { call, takeLatest, select, ActionPattern } from "redux-saga/effects";
 import { getRouteState } from "../app/app.selectors";
 import submitPersonalProductStepGql from "@graphql/personalProduct/submitPersonalProductStep.gql";
 import backPersonalProductStepGql from "@graphql/personalProduct/backPersonalProductStep.gql";
-import { SyncAction } from "@redux/_core/types";
 import { ProductStepAction } from "./sdui.types";
 import { parseJSON } from "./sdui.helpers";
 
-function* navigateBack({ payload }: SyncAction<string>) {
+function* navigateBack({ payload }: ProductStepAction) {
   const currentRoute: ReturnType<typeof getRouteState> = yield select(getRouteState);
   const onExit = () => Navigation.pop(currentRoute);
 
-  if (payload) {
-    const { isValid, data } = parseJSON(payload, ["title", "message", "cancelLabel", "confirmLabel"]);
+  if (payload?.serverPayload) {
+    const { isValid, data } = parseJSON(payload.serverPayload, ["title", "message", "cancelLabel", "confirmLabel"]);
 
     if (isValid) {
       const onPressSecondary = () => Navigation.dismissModal(MODALS.generic);

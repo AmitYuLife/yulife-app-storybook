@@ -15,7 +15,7 @@ export const ProductStepContentItemHeader = memo(({ onLeftIconPress, onRightIcon
         ? null
         : {
             type: onLeftIconPress.type,
-            payload: { productId, stepId },
+            payload: { productId, stepId, serverPayload: onLeftIconPress.payload },
           },
     [onLeftIconPress, productId, stepId]
   );
@@ -26,7 +26,7 @@ export const ProductStepContentItemHeader = memo(({ onLeftIconPress, onRightIcon
         ? null
         : {
             type: onRightIconPress.type,
-            payload: { productId, stepId },
+            payload: { productId, stepId, serverPayload: onRightIconPress.payload },
           },
     [onRightIconPress, productId, stepId]
   );

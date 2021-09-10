@@ -1,4 +1,4 @@
-import React, { ComponentProps, memo } from "react";
+import React, { ComponentProps, memo, useCallback } from "react";
 import { StyleSheet, View, ViewStyle } from "react-native";
 import { useDispatch } from "react-redux";
 import GenericHeading from "@atoms/generic-heading/generic-heading";
@@ -15,13 +15,16 @@ export const ContentItemHeaderBar = memo((props: Props) => {
   const { leftIcon, logo, onLeftIconPress, onRightIconPress, rightIcon } = props;
   const dispatch = useDispatch();
 
-  const pressAction = (action: ContentItemHeaderBar_onLeftIconPress | ContentItemHeaderBar_onRightIconPress) => {
-    if (!action) {
-      return null;
-    }
+  const pressAction = useCallback(
+    (action: ContentItemHeaderBar_onLeftIconPress | ContentItemHeaderBar_onRightIconPress) => {
+      if (!action) {
+        return null;
+      }
 
-    return () => dispatch(action);
-  };
+      return () => dispatch(action);
+    },
+    [dispatch]
+  );
 
   return (
     <View style={styles.wrapper}>
