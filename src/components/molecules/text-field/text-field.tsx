@@ -83,7 +83,7 @@ export default function TextField(props: Props) {
     }
 
     setActiveMaterial(false);
-  }, [isFocused, textInputValue]);
+  }, [isFocused, textInputValue, value]);
 
   useMaterialInputAnimation({
     activeMaterial,

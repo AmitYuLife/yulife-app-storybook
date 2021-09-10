@@ -17,7 +17,6 @@ export interface ContentItemTextInput_validation {
 export interface ContentItemTextInput {
   id: string;
   heading: string | null;
-  value: string | null;
   answerKey: string;
   type: ContentItemFormTextInputType | null;
   prefixValue: string | null;

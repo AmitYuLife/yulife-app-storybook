@@ -21,6 +21,5 @@ export interface ContentItemMultiSelect_choices {
 export interface ContentItemMultiSelect {
   id: string;
   answerKey: string;
-  selectedValues: string[] | null;
   choices: ContentItemMultiSelect_choices[];
 }

@@ -5,6 +5,7 @@ import { Style } from "@styles";
 import MultiSelectItem from "./multiSelectItem";
 
 interface Props extends GqlMultiSelect {
+  selectedValues: string[];
   onChange: (value: string[]) => void;
 }
 

@@ -33,7 +33,8 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemP
     | "ContentItemPersonalProductConfirm"
     | "ContentItemReviewItem"
     | "ContentItemPersonalProductDocuments"
-    | "ContentItemPersonalProductFaqs";
+    | "ContentItemPersonalProductFaqs"
+    | "ContentItemConfirm";
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemTextInput_validation {
@@ -45,7 +46,6 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemT
   __typename: "ContentItemTextInput";
   id: string;
   heading: string | null;
-  value: string | null;
   answerKey: string;
   type: ContentItemFormTextInputType | null;
   prefixValue: string | null;
@@ -99,7 +99,6 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemR
   __typename: "ContentItemRadio";
   id: string;
   iconOptions: boolean;
-  value: string | null;
   answerKey: string;
   choices: GetPersonalProductStep_getPersonalProductStep_body_ContentItemRadio_choices[];
 }
@@ -395,7 +394,6 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemM
   __typename: "ContentItemMultiSelect";
   id: string;
   answerKey: string;
-  selectedValues: string[] | null;
   choices: GetPersonalProductStep_getPersonalProductStep_body_ContentItemMultiSelect_choices[];
 }
 
@@ -594,7 +592,8 @@ export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentIte
     | "ContentItemPackageCards"
     | "ContentItemPersonalProductPreview"
     | "ContentItemCoverPicker"
-    | "ContentItemScrollableItemsPicker";
+    | "ContentItemScrollableItemsPicker"
+    | "ContentItemConfirm";
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentItemButton_onPress {
@@ -745,7 +744,8 @@ export interface GetPersonalProductStep_getPersonalProductStep_header_ContentIte
     | "ContentItemPackageCards"
     | "ContentItemPersonalProductPreview"
     | "ContentItemCoverPicker"
-    | "ContentItemScrollableItemsPicker";
+    | "ContentItemScrollableItemsPicker"
+    | "ContentItemConfirm";
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_header_ContentItemHeaderBar_onLeftIconPress {
@@ -805,7 +805,8 @@ export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_Con
     | "ContentItemPackageCards"
     | "ContentItemPersonalProductPreview"
     | "ContentItemCoverPicker"
-    | "ContentItemScrollableItemsPicker";
+    | "ContentItemScrollableItemsPicker"
+    | "ContentItemConfirm";
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemImage_image {
@@ -841,7 +842,7 @@ export interface GetPersonalProductStep_getPersonalProductStep_absolute {
 export interface GetPersonalProductStep_getPersonalProductStep {
   stepId: string;
   customerProductId: string;
-  introStep: boolean | null;
+  stepData: string | null;
   /**
    * Container styles go here
    */

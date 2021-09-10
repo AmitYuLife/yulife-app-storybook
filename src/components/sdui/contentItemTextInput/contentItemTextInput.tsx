@@ -6,6 +6,7 @@ import { Style } from "@styles";
 import { ContentItemFormTextInputType } from "@graphql/_core/schema/globalTypes";
 
 interface Props extends GqlTextInput {
+  value: string;
   onChange: (value: string) => void;
 }
 

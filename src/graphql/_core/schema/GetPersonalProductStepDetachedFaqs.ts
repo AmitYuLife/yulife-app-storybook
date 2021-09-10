@@ -32,7 +32,8 @@ export interface GetPersonalProductStepDetachedFaqs_getPersonalProductStepDetach
     | "ContentItemPackageCards"
     | "ContentItemPersonalProductPreview"
     | "ContentItemCoverPicker"
-    | "ContentItemScrollableItemsPicker";
+    | "ContentItemScrollableItemsPicker"
+    | "ContentItemConfirm";
 }
 
 export interface GetPersonalProductStepDetachedFaqs_getPersonalProductStepDetachedFaqs_body_ContentItemPersonalProductFaqs_headingImage_image {

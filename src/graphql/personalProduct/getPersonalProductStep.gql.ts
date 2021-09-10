@@ -54,7 +54,7 @@ export const GQL_QUERY_GET_PERSONAL_PRODUCT_STEP = gql`
     getPersonalProductStep(productId: $productId) {
       stepId
       customerProductId
-      introStep
+      stepData
       containerStyles {
         ...ContentItemStyle
       }
