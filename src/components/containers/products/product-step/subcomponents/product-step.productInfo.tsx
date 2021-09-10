@@ -20,13 +20,6 @@ export const ProductStepProductInfo = memo((props: Props) => {
 
   return (
     <View style={styles.wrapper}>
-      <View>
-        <TryOnYumojiPart
-          customerProductId={customerProductId}
-          coverType={props.coverType}
-          onChange={handleYumojiPartChange}
-        />
-      </View>
       <View style={styles.info}>
         <View style={styles.titleAndIcon}>
           {!props?.providerImageUrl?.uri ? null : (
@@ -42,6 +35,13 @@ export const ProductStepProductInfo = memo((props: Props) => {
         </View>
         <Markdown text={props.productDescription?.parsedMarkdown} />
       </View>
+      <View>
+        <TryOnYumojiPart
+          customerProductId={customerProductId}
+          coverType={props.coverType}
+          onChange={handleYumojiPartChange}
+        />
+      </View>
     </View>
   );
 });
@@ -49,9 +49,9 @@ export const ProductStepProductInfo = memo((props: Props) => {
 const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
-    flexDirection: "row",
+    flexDirection: "row-reverse",
     alignItems: "stretch",
-    marginLeft: Style.adjust(24),
+    marginRight: Style.adjust(24),
     marginBottom: Style.adjust(48),
   },
   info: {
