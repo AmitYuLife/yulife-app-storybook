@@ -217,6 +217,7 @@ export default {
     s100S3: "#956AFF",
   },
   neutral: {
+    black: "#000000",
     white: "#FFFFFF",
     n50: "#FAFAFE",
     n100: "#E7E7EB",

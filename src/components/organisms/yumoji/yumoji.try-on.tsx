@@ -52,7 +52,7 @@ function _TryOnYumojiPart({ customerProductId, coverType = CoverType.common, onC
   );
 
   const { yuWorlds = [], popover, selectedYuWorld } = tryOn?.data?.getYumojiRemoteFittingRoom || {};
-  const { popoverTimedOut, updateOnboardingStep, popoverTarget, handleTextLayout } = usePopover({ popover });
+  const { updateOnboardingStep, popoverTarget, handleTextLayout, popoverClosed } = usePopover({ popover });
 
   useEffect(() => {
     setSelectedWorld(selectedYuWorld || YuWorld.forest);
@@ -82,6 +82,10 @@ function _TryOnYumojiPart({ customerProductId, coverType = CoverType.common, onC
   const handlePress = (id: YuWorld) => {
     setSelectedWorld(id);
 
+    if (popover && !popoverClosed) {
+      updateOnboardingStep();
+    }
+
     if (onChange) {
       onChange(yuWorlds.find((i) => i.id === id).id);
     }
@@ -102,6 +106,12 @@ function _TryOnYumojiPart({ customerProductId, coverType = CoverType.common, onC
     <>
       <View style={styles.container}>
         <Yumoji height={AVATAR_HEIGHT} width={AVATAR_WIDTH} {...avatar} />
+        <Popover
+          popover={popover}
+          updateOnboardingStep={updateOnboardingStep}
+          popoverTarget={popoverTarget}
+          isClosed={popoverClosed}
+        />
         <View style={styles.row} onLayout={handleTextLayout}>
           <TextTemplate type="l2b" color={variant?.mainColor}>
             {variant?.title}
@@ -109,12 +119,6 @@ function _TryOnYumojiPart({ customerProductId, coverType = CoverType.common, onC
         </View>
         <WorldRadioButtons yuWorlds={yuWorlds} selectedWorld={selectedWorld} handlePress={handlePress} />
       </View>
-      <Popover
-        popover={popover}
-        popoverTimedOut={popoverTimedOut}
-        updateOnboardingStep={updateOnboardingStep}
-        popoverTarget={popoverTarget}
-      />
     </>
   );
 }
@@ -168,44 +172,29 @@ interface ITarget {
   targetY: number;
 }
 
-function usePopover({ popover }: any) {
+function usePopover({ popover }: Pick<GetYumojiRemoteFittingRoom["getYumojiRemoteFittingRoom"], "popover">) {
+  const [isClosed, setIsClosed] = useState(false);
+
   const [performOnboardingStep] = useMutation<PerformMobileOnboardingStep, PerformMobileOnboardingStepVariables>(
     GQL_MUTATION_PERFORM_MOBILE_ONBOARDING_STEP
   );
-  const [popoverTimedOut, setPopoverTimedOut] = useState(false);
   const [popoverTarget, setPopoverTarget] = useState({} as ITarget);
 
   const updateOnboardingStep = useCallback(async () => {
     try {
-      setPopoverTimedOut(true);
       await performOnboardingStep({ variables: { step: popover.id } });
+      setIsClosed(true);
     } catch (e) {
       Logger.error(e, { where: "yumoji-try-on" });
     }
   }, [popover, performOnboardingStep]);
-
-  useEffect(() => {
-    let timeout: NodeJS.Timeout;
-
-    if (popover?.id && !popoverTimedOut) {
-      timeout = setTimeout(() => {
-        updateOnboardingStep();
-      }, 2500);
-    }
-
-    return () => {
-      if (timeout) {
-        clearTimeout(timeout);
-      }
-    };
-  }, [popover, popoverTimedOut, updateOnboardingStep]);
 
   const handleTextLayout = useCallback((event: LayoutChangeEvent) => {
     const { x, y, width, height } = event.nativeEvent.layout;
     setPopoverTarget({ targetX: x + width - Style.adjust(8), targetY: y + height - Style.adjust(8) });
   }, []);
 
-  return { popoverTimedOut, updateOnboardingStep, handleTextLayout, popoverTarget };
+  return { popoverClosed: isClosed, updateOnboardingStep, handleTextLayout, popoverTarget };
 }
 
 interface WorldRadioButtons {
@@ -246,12 +235,14 @@ const WorldRadioButtons = ({ yuWorlds, selectedWorld, handlePress }: WorldRadioB
 interface Popover {
   popover: GetYumojiRemoteFittingRoom_getYumojiRemoteFittingRoom_popover;
   popoverTarget: ITarget;
-  popoverTimedOut: boolean;
   updateOnboardingStep: () => void;
+  isClosed: boolean;
 }
 
-const Popover = ({ popover, popoverTarget, popoverTimedOut, updateOnboardingStep }: Popover) => {
-  if (!popover || !popoverTarget.targetX || popoverTimedOut) {
+const POPOVER_ANIMATION_DELAY = 750;
+
+const Popover = ({ popover, popoverTarget, updateOnboardingStep, isClosed }: Popover) => {
+  if (!popover || !popoverTarget.targetX || isClosed) {
     return null;
   }
 
@@ -261,7 +252,9 @@ const Popover = ({ popover, popoverTarget, popoverTimedOut, updateOnboardingStep
       onClose={updateOnboardingStep}
       backgroundColor={Colours.metallic.m200}
       borderColor={Colours.metallic.m300}
+      closeOnOutsideTouch={true}
       shadowOpacity={0.08}
+      animationDelay={POPOVER_ANIMATION_DELAY}
     >
       <View style={styles.popover}>
         <TextTemplate type="b2b">{popover.title}</TextTemplate>

@@ -1,16 +1,21 @@
 import { StyleSheet, ViewStyle } from "react-native";
-import { Style } from "@styles";
+import { Colours, Style } from "@styles";
 
 export default StyleSheet.create({
   absolute: {
     position: "absolute",
+  } as ViewStyle,
+  fullScreen: {
+    ...StyleSheet.absoluteFillObject,
+    width: Style.DEVICE_WIDTH,
+    height: Style.DEVICE_HEIGHT,
   } as ViewStyle,
   popoverBody: {
     position: "absolute",
     left: Style.adjust(17),
     padding: Style.adjust(16),
     borderRadius: Style.adjust(10),
-    borderWidth: 1,
+    borderWidth: Style.adjust(1),
     minWidth: Style.adjust(120),
     minHeight: Style.adjust(80),
   } as ViewStyle,
@@ -19,14 +24,14 @@ export default StyleSheet.create({
     top: Style.adjust(10),
   } as ViewStyle,
   shadowProp: {
-    shadowColor: "#000000",
+    shadowColor: Colours.neutral.black,
     shadowOffset: { width: Style.adjust(8), height: Style.adjust(8) },
     shadowRadius: 0,
     elevation: 8,
   } as ViewStyle,
   closeWrapper: {
     position: "absolute",
-    top: 8,
-    right: 8,
+    top: Style.adjust(8),
+    right: Style.adjust(8),
   } as ViewStyle,
 });
