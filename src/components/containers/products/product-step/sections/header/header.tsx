@@ -13,7 +13,7 @@ interface Props {
 export const Header = (props: Props) => {
   return (
     <View onLayout={props.onLayout} style={styles.wrapper}>
-      {props.header.map(renderItemContent)}
+      {props.header?.map(renderItemContent)}
     </View>
   );
 };
