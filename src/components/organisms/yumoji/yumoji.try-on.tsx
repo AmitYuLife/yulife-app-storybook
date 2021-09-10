@@ -177,6 +177,7 @@ function usePopover({ popover }: any) {
 
   const updateOnboardingStep = useCallback(async () => {
     try {
+      setPopoverTimedOut(true);
       await performOnboardingStep({ variables: { step: popover.id } });
     } catch (e) {
       Logger.error(e, { where: "yumoji-try-on" });
@@ -188,7 +189,6 @@ function usePopover({ popover }: any) {
 
     if (popover?.id && !popoverTimedOut) {
       timeout = setTimeout(() => {
-        setPopoverTimedOut(true);
         updateOnboardingStep();
       }, 2500);
     }
