@@ -30,7 +30,6 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemP
     | "ContentItemImage"
     | "ContentItemOverlay"
     | "ContentItemYugiReminder"
-    | "ContentItemScrollPicker"
     | "ContentItemPersonalProductConfirm"
     | "ContentItemReviewItem"
     | "ContentItemPersonalProductDocuments"
@@ -400,6 +399,75 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemM
   choices: GetPersonalProductStep_getPersonalProductStep_body_ContentItemMultiSelect_choices[];
 }
 
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemScrollPicker_button_onPress {
+  type: ContentItemSDUIAction;
+  payload: string | null;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemScrollPicker_button_icon {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemScrollPicker_button_rightIcon {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemScrollPicker_button_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemScrollPicker_button {
+  id: string;
+  label: string;
+  buttonType: ContentItemButtonType | null;
+  value: string | null;
+  onPress: GetPersonalProductStep_getPersonalProductStep_body_ContentItemScrollPicker_button_onPress | null;
+  icon: GetPersonalProductStep_getPersonalProductStep_body_ContentItemScrollPicker_button_icon | null;
+  rightIcon: GetPersonalProductStep_getPersonalProductStep_body_ContentItemScrollPicker_button_rightIcon | null;
+  styles: GetPersonalProductStep_getPersonalProductStep_body_ContentItemScrollPicker_button_styles[] | null;
+  buttonSize: ContentItemButtonSize | null;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemScrollPicker_displayFormat {
+  answerKey: string;
+  plural: string | null;
+  singular: string | null;
+  singularValue: number | null;
+  isDynamic: boolean | null;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemScrollPicker_variants_wheels {
+  answerKey: string;
+  min: number;
+  max: number;
+  step: number;
+  suffixPlural: string;
+  suffixSingular: string;
+  suffixSingularValue: number;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemScrollPicker_variants {
+  id: string;
+  answerKey: string | null;
+  toggleLabel: string | null;
+  toggleIndex: number | null;
+  wheels: GetPersonalProductStep_getPersonalProductStep_body_ContentItemScrollPicker_variants_wheels[];
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemScrollPicker {
+  __typename: "ContentItemScrollPicker";
+  id: string;
+  pickerConfirmButtonLabel: string;
+  pickerCancelButtonLabel: string;
+  button: GetPersonalProductStep_getPersonalProductStep_body_ContentItemScrollPicker_button;
+  answerKey: string;
+  displayFormat: GetPersonalProductStep_getPersonalProductStep_body_ContentItemScrollPicker_displayFormat[][];
+  variants: GetPersonalProductStep_getPersonalProductStep_body_ContentItemScrollPicker_variants[];
+}
+
 export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemYugiConfirm_content {
   id: string;
   parsedMarkdown: string | null;
@@ -498,6 +566,7 @@ export type GetPersonalProductStep_getPersonalProductStep_body =
   | GetPersonalProductStep_getPersonalProductStep_body_ContentItemScrollableItemsPicker
   | GetPersonalProductStep_getPersonalProductStep_body_ContentItemDatePicker
   | GetPersonalProductStep_getPersonalProductStep_body_ContentItemMultiSelect
+  | GetPersonalProductStep_getPersonalProductStep_body_ContentItemScrollPicker
   | GetPersonalProductStep_getPersonalProductStep_body_ContentItemYugiConfirm
   | GetPersonalProductStep_getPersonalProductStep_body_ContentItemPersonalProductInfo
   | GetPersonalProductStep_getPersonalProductStep_body_ContentItemMultiButton;

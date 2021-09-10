@@ -1,7 +1,7 @@
 import React, { memo, useCallback, useEffect, useRef, useState } from "react";
 import { Keyboard, LayoutChangeEvent, StyleSheet, View, ViewStyle } from "react-native";
-import { Body, Header, Footer, Absolute } from "./sections";
-import { ProductStepContext } from "./product-step.context";
+import { Body, Header, Footer, Absolute, ProductStepScrollPicker } from "./sections";
+import { IProductStepScrollPicker, ProductStepContext } from "./product-step.context";
 import {
   ContentItemTextInput,
   GetPersonalProductStep_getPersonalProductStep_absolute,
@@ -23,8 +23,9 @@ interface Props {
 
 export const ProductStepScreen = memo((props: Props) => {
   const { productId, customerProductId, stepId, style, body, header, footer, absolute } = props;
-
   const isMounted = useRef(false);
+
+  const [scrollPicker, setScrollPicker] = useState(null as IProductStepScrollPicker);
   const [headerHeight, setHeaderHeight] = useState(0);
   const [dynamicData, setDynamicData] = useState(buildInitialProductStepDynamicDataState(body));
 
@@ -48,12 +49,15 @@ export const ProductStepScreen = memo((props: Props) => {
   }, [stepId]);
 
   return (
-    <ProductStepContext.Provider value={{ body, productId, customerProductId, stepId, dynamicData, setDynamicData }}>
+    <ProductStepContext.Provider
+      value={{ scrollPicker, setScrollPicker, body, productId, customerProductId, stepId, dynamicData, setDynamicData }}
+    >
       <View style={[styles.wrapper, style]}>
         <Body headerHeight={headerHeight} body={body} />
         <Header onLayout={handleHeaderLayout} header={header} />
         <Footer footer={footer} />
         <Absolute headerHeight={headerHeight} absolute={absolute} />
+        <ProductStepScrollPicker />
       </View>
     </ProductStepContext.Provider>
   );

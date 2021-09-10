@@ -1,4 +1,4 @@
-import React, { memo, useState } from "react";
+import React, { memo, useCallback, useState } from "react";
 import DateTimePicker from "react-native-modal-datetime-picker";
 import moment from "moment";
 import { StyleSheet, View, ViewStyle } from "react-native";
@@ -31,25 +31,28 @@ export const ContentItemDatePicker = memo(({ props, onChange }: Props) => {
   const [showPicker, setShowPicker] = useState(false);
   const [date, setDate] = useState(initialDate ? moment(initialDate, dateFormat).format(displayDateFormat) : null);
 
-  function handleChange(newDate: Date) {
-    setShowPicker(false);
+  const handleChange = useCallback(
+    (newDate: Date) => {
+      setShowPicker(false);
 
-    if (newDate) {
-      const dateStringShow = moment(newDate).format(displayDateFormat);
-      const dateStringPass = moment(newDate).format(dateFormat);
+      if (newDate) {
+        const dateStringShow = moment(newDate).format(displayDateFormat);
+        const dateStringPass = moment(newDate).format(dateFormat);
 
-      setDate(dateStringShow);
-      onChange(dateStringPass);
-    }
-  }
+        setDate(dateStringShow);
+        onChange(dateStringPass);
+      }
+    },
+    [dateFormat, onChange]
+  );
 
-  function handlePress() {
+  const handlePress = useCallback(() => {
     setShowPicker(true);
-  }
+  }, []);
 
-  function handleCancel() {
+  const handleCancel = useCallback(() => {
     setShowPicker(false);
-  }
+  }, []);
 
   return (
     <View style={styles.wrapper}>
@@ -78,7 +81,7 @@ export const ContentItemDatePicker = memo(({ props, onChange }: Props) => {
   );
 });
 
-export const styles = StyleSheet.create({
+const styles = StyleSheet.create({
   wrapper: {
     marginTop: Style.adjust(40),
   } as ViewStyle,

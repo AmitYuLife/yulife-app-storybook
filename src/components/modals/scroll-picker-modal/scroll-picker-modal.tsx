@@ -19,10 +19,12 @@ interface Props {
   onCancel: () => void;
   toggle?: () => void;
   toggleLabel?: string;
+  confirmLabel?: string;
+  cancelLabel?: string;
 }
 
 const ScrollPickerModal = (props: Props) => {
-  const { pickers, toggle, toggleLabel, onConfirm, onCancel } = props;
+  const { pickers, toggle, toggleLabel, onConfirm, onCancel, cancelLabel, confirmLabel } = props;
   const hasToggle = toggle && toggleLabel;
 
   return (
@@ -44,7 +46,7 @@ const ScrollPickerModal = (props: Props) => {
             <Picker key={i} defaultIndex={defaultIndex} onIndexChange={onIndexChange} items={items} />
           ))}
         </View>
-        <Buttons onConfirm={onConfirm} onCancel={onCancel} />
+        <Buttons onConfirm={onConfirm} onCancel={onCancel} cancelLabel={cancelLabel} confirmLabel={confirmLabel} />
       </View>
     </View>
   );

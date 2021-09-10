@@ -29,7 +29,7 @@ export const Picker = memo(({ items = [], onIndexChange, defaultIndex = 0 }: Pro
 
     return () => clearTimeout(scrollToDefaultIndexDelay.current);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [items]);
+  }, [items.length]);
 
   const handleSwipe = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
     const { y } = event.nativeEvent.contentOffset;
