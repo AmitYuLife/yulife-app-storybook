@@ -57,10 +57,12 @@ export const ContentItemFaqs = memo((props: Props) => {
         </View>
       ) : (
         <View>
-          <YugiHeader
-            title={headingMarkdown.parsedMarkdown}
-            icon={<Image width={Style.adjust(120)} source={headingImage.image} />}
-          />
+          <View style={styles.yugiHeader}>
+            <YugiHeader
+              title={headingMarkdown.parsedMarkdown}
+              icon={<Image width={Style.adjust(120)} source={headingImage.image} />}
+            />
+          </View>
           <View style={styles.bodyWrapper}>
             {faqs.map((item) => (
               <PressableWithDelay
@@ -101,7 +103,10 @@ const styles = StyleSheet.create({
     marginLeft: "auto",
   } as ViewStyle,
   nestedButton: {
-    paddingHorizontal: 20,
-    marginTop: 20,
+    paddingHorizontal: Style.adjust(20),
+    marginTop: Style.adjust(20),
+  },
+  yugiHeader: {
+    marginLeft: Style.adjust(24),
   },
 });
