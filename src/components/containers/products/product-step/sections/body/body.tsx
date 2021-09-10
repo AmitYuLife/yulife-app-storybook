@@ -15,6 +15,7 @@ import {
   ProductStepContentItemRadio,
   ProductStepContentItemMultiSelect,
   ProductStepContentItemMultiButton,
+  ProductStepContentItemScrollPicker,
 } from "../../subcomponents";
 import { ContentItemInfoCard, ContentItemPad } from "@components/sdui";
 import { Style } from "@styles";
@@ -78,6 +79,8 @@ const renderItemContent = (item: GPPS_Body): JSX.Element => {
       return <ProductStepContentItemMultiSelect key={item.id} {...item} />;
     case "ContentItemMultiButton":
       return <ProductStepContentItemMultiButton key={item.id} {...item} />;
+    case "ContentItemScrollPicker":
+      return <ProductStepContentItemScrollPicker key={item.id} {...item} />;
     default:
       return null;
   }

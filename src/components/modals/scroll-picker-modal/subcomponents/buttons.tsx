@@ -6,12 +6,14 @@ import { Style } from "@styles";
 interface Props {
   onConfirm: () => void;
   onCancel: () => void;
+  cancelLabel?: string;
+  confirmLabel?: string;
 }
 
-export const Buttons = ({ onConfirm, onCancel }: Props) => (
+export const Buttons = ({ onConfirm, onCancel, cancelLabel = "Cancel", confirmLabel = "Select" }: Props) => (
   <View style={styles.wrapper}>
-    <Button label="Select" onPress={onConfirm} />
-    <LinkButton label="Cancel" onPress={onCancel} />
+    <Button label={confirmLabel} onPress={onConfirm} />
+    <LinkButton label={cancelLabel} onPress={onCancel} />
   </View>
 );
 
