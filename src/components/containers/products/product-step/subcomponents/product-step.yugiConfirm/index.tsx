@@ -2,8 +2,8 @@ import React, { useRef, RefObject, memo, useContext, useMemo } from "react";
 import { useDispatch } from "react-redux";
 import * as Animated from "react-native-animatable";
 import LottieView from "lottie-react-native";
-import { View, StyleSheet, ViewStyle, TextStyle, FlatList, Platform, ListRenderItemInfo } from "react-native";
-import { Button, Text, TextTemplate } from "@atoms";
+import { View, StyleSheet, ViewStyle, FlatList, Platform, ListRenderItemInfo } from "react-native";
+import { Button, TextTemplate } from "@atoms";
 import { Style, TOP_BAR, Colours } from "@styles";
 import { FIB_INTRO_SCREEN } from "@ids";
 import { GetPersonalProductStep_getPersonalProductStep_body_ContentItemYugiConfirm } from "@graphql/_core/schema";
@@ -94,13 +94,14 @@ const keyExtractor = (item: { text: string }) => item?.text;
 function renderItem({ item }: ListRenderItemInfo<{ text: string }>) {
   return (
     <View style={styles.copyWrapper}>
-      <Text style={styles.message}>{item.text}</Text>
+      <TextTemplate type="b2b" color={Colours.products.fib.n800}>
+        {item.text}
+      </TextTemplate>
     </View>
   );
 }
 
 const SPEECH_WRAPPER_WIDTH = Style.DEVICE_WIDTH - 45;
-const MESSAGE_WIDTH = SPEECH_WRAPPER_WIDTH - 48;
 
 const styles = StyleSheet.create({
   width100: {
@@ -108,6 +109,7 @@ const styles = StyleSheet.create({
   } as ViewStyle,
   yugiIntroWrapper: {
     alignItems: "center",
+    height: Style.DEVICE_HEIGHT,
   },
   speechWrapper: {
     marginBottom: 16,
@@ -140,15 +142,6 @@ const styles = StyleSheet.create({
     borderRadius: 16,
     alignItems: "center",
   } as ViewStyle,
-  message: {
-    color: Colours.products.fib.n800,
-    fontFamily: Style.FONT_FAMILY_PRIMARY_BOLD,
-    fontSize: Style.adjust(16),
-    lineHeight: Style.adjust(24),
-    letterSpacing: 0.6,
-    flex: 1,
-    width: MESSAGE_WIDTH,
-  } as TextStyle,
   buttonWrapper: {
     flexDirection: "row",
     justifyContent: "flex-end",
