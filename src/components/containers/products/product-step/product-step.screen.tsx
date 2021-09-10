@@ -83,7 +83,7 @@ const buildInitialProductStepDynamicDataState = (stepData: string) => {
   try {
     const data = JSON.parse(stepData);
 
-    if (typeof data === "object") {
+    if (data && typeof data === "object") {
       return data;
     }
 
