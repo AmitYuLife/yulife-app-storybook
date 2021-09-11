@@ -31,10 +31,8 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemP
     | "ContentItemOverlay"
     | "ContentItemYugiReminder"
     | "ContentItemPersonalProductConfirm"
-    | "ContentItemReviewItem"
     | "ContentItemPersonalProductDocuments"
-    | "ContentItemPersonalProductFaqs"
-    | "ContentItemConfirm";
+    | "ContentItemPersonalProductFaqs";
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemTextInput_validation {
@@ -50,6 +48,19 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemT
   type: ContentItemFormTextInputType | null;
   prefixValue: string | null;
   validation: (GetPersonalProductStep_getPersonalProductStep_body_ContentItemTextInput_validation | null)[] | null;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemConfirm_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemConfirm {
+  __typename: "ContentItemConfirm";
+  id: string;
+  confirmLabel: string;
+  answerKey: string;
+  styles: GetPersonalProductStep_getPersonalProductStep_body_ContentItemConfirm_styles[] | null;
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemPad {
@@ -466,6 +477,31 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemS
   variants: GetPersonalProductStep_getPersonalProductStep_body_ContentItemScrollPicker_variants[];
 }
 
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemReviewItem_leftIcon {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemReviewItem_rightIcon {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemReviewItem_onPress {
+  type: ContentItemSDUIAction;
+  payload: string | null;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemReviewItem {
+  __typename: "ContentItemReviewItem";
+  id: string;
+  text: string;
+  subheading: string;
+  leftIcon: GetPersonalProductStep_getPersonalProductStep_body_ContentItemReviewItem_leftIcon;
+  rightIcon: GetPersonalProductStep_getPersonalProductStep_body_ContentItemReviewItem_rightIcon | null;
+  onPress: GetPersonalProductStep_getPersonalProductStep_body_ContentItemReviewItem_onPress | null;
+}
+
 export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemYugiConfirm_content {
   id: string;
   parsedMarkdown: string | null;
@@ -553,6 +589,7 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemM
 export type GetPersonalProductStep_getPersonalProductStep_body =
   | GetPersonalProductStep_getPersonalProductStep_body_ContentItemProgressBar
   | GetPersonalProductStep_getPersonalProductStep_body_ContentItemTextInput
+  | GetPersonalProductStep_getPersonalProductStep_body_ContentItemConfirm
   | GetPersonalProductStep_getPersonalProductStep_body_ContentItemPad
   | GetPersonalProductStep_getPersonalProductStep_body_ContentItemMarkdown
   | GetPersonalProductStep_getPersonalProductStep_body_ContentItemRadio
@@ -565,6 +602,7 @@ export type GetPersonalProductStep_getPersonalProductStep_body =
   | GetPersonalProductStep_getPersonalProductStep_body_ContentItemDatePicker
   | GetPersonalProductStep_getPersonalProductStep_body_ContentItemMultiSelect
   | GetPersonalProductStep_getPersonalProductStep_body_ContentItemScrollPicker
+  | GetPersonalProductStep_getPersonalProductStep_body_ContentItemReviewItem
   | GetPersonalProductStep_getPersonalProductStep_body_ContentItemYugiConfirm
   | GetPersonalProductStep_getPersonalProductStep_body_ContentItemPersonalProductInfo
   | GetPersonalProductStep_getPersonalProductStep_body_ContentItemMultiButton;
