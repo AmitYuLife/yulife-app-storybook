@@ -1,5 +1,5 @@
 import React, { memo, useCallback, useContext } from "react";
-import { ContentItemRadio as GqlRadio } from "@graphql/_core/schema/ContentItemRadio";
+import { ContentItemRadio as GqlRadio } from "@graphql/_core/schema";
 import { ContentItemRadio } from "@components/sdui";
 import { ProductStepContext } from "../product-step.context";
 

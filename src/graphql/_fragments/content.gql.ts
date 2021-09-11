@@ -7,6 +7,17 @@ export const GQL_FRAGMENT_CONTENT_ITEM_STYLE = gql`
   }
 `;
 
+export const GQL_FRAGMENT_CONTENT_ITEM_CONFIRM = gql`
+  fragment ContentItemConfirm on ContentItemConfirm {
+    id
+    confirmLabel: text
+    answerKey
+    styles {
+      ...ContentItemStyle
+    }
+  }
+`;
+
 export const GQL_FRAGMENT_CONTENT_ITEM_TEXT_INPUT = gql`
   fragment ContentItemTextInput on ContentItemTextInput {
     id
@@ -58,6 +69,24 @@ export const GQL_FRAGMENT_CONTENT_ITEM_RADIO = gql`
       renderAsIcon {
         ...ContentItemRadioIcon
       }
+    }
+  }
+`;
+
+export const GQL_FRAGMENT_CONTENT_ITEM_REVIEW_ITEM = gql`
+  fragment ContentItemReviewItem on ContentItemReviewItem {
+    id
+    text: heading
+    subheading
+    leftIcon {
+      ...RemoteImage
+    }
+    rightIcon {
+      ...RemoteImage
+    }
+    onPress {
+      type
+      payload
     }
   }
 `;

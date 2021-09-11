@@ -23,6 +23,8 @@ import {
   GQL_FRAGMENT_CONTENT_ITEM_DATE_PICKER,
   GQL_FRAGMENT_CONTENT_ITEM_MULTI_SELECT,
   GQL_FRAGMENT_CONTENT_ITEM_SCROLL_PICKER,
+  GQL_FRAGMENT_CONTENT_ITEM_REVIEW_ITEM,
+  GQL_FRAGMENT_CONTENT_ITEM_CONFIRM,
 } from "../_fragments/content.gql";
 
 export const GQL_QUERY_GET_PERSONAL_PRODUCT_STEP = gql`
@@ -49,6 +51,8 @@ export const GQL_QUERY_GET_PERSONAL_PRODUCT_STEP = gql`
   ${GQL_FRAGMENT_CONTENT_ITEM_DATE_PICKER}
   ${GQL_FRAGMENT_CONTENT_ITEM_MULTI_SELECT}
   ${GQL_FRAGMENT_CONTENT_ITEM_SCROLL_PICKER}
+  ${GQL_FRAGMENT_CONTENT_ITEM_REVIEW_ITEM}
+  ${GQL_FRAGMENT_CONTENT_ITEM_CONFIRM}
 
   query GetPersonalProductStep($productId: String!) {
     getPersonalProductStep(productId: $productId) {
@@ -62,6 +66,9 @@ export const GQL_QUERY_GET_PERSONAL_PRODUCT_STEP = gql`
         __typename
         ... on ContentItemTextInput {
           ...ContentItemTextInput
+        }
+        ... on ContentItemConfirm {
+          ...ContentItemConfirm
         }
         ... on ContentItemPad {
           ...ContentItemPad
@@ -98,6 +105,9 @@ export const GQL_QUERY_GET_PERSONAL_PRODUCT_STEP = gql`
         }
         ... on ContentItemScrollPicker {
           ...ContentItemScrollPicker
+        }
+        ... on ContentItemReviewItem {
+          ...ContentItemReviewItem
         }
         ... on ContentItemYugiConfirm {
           id

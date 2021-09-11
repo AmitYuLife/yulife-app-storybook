@@ -14,3 +14,4 @@ export * from "./product-step.date-picker";
 export * from "./product-step.radio";
 export * from "./product-step.multi-select";
 export * from "./product-step.scroll-picker";
+export * from "./product-step.confirm";

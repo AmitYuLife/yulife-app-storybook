@@ -12,3 +12,5 @@ export * from "./contentItemRadio/contentItemRadio";
 export * from "./contentItemFaqs/contentItemFaqs";
 export * from "./contentItemDocuments/contentItemDocuments";
 export * from "./contentItemMultiSelect/contentItemMultiSelect";
+export * from "./contentItemReviewItem/contentItemReviewItem";
+export * from "./contentItemConfirm/contentItemConfirm";
