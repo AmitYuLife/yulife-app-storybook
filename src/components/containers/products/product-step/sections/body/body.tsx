@@ -20,7 +20,7 @@ import {
   ProductStepContentItemLottie,
   ProductStepContentItemReviewAnswer,
 } from "../../subcomponents";
-import { ContentItemInfoCard, ContentItemPad, ContentItemText } from "@components/sdui";
+import { ContentItemInfoCard, ContentItemPad, ContentItemText, ContentItemImage } from "@components/sdui";
 import { Style } from "@styles";
 
 interface Props {
@@ -90,6 +90,8 @@ const renderItemContent = (item: GPPS_Body): JSX.Element => {
       return <ProductStepContentItemScrollPicker key={item.id} {...item} />;
     case "ContentItemConfirm":
       return <ProductStepContentItemConfirm key={item.id} {...item} />;
+    case "ContentItemImage":
+      return <ContentItemImage key={item.id} {...item} />;
     case "ContentItemPersonalProductReviewItem":
       return <ProductStepContentItemReviewAnswer key={item.id} {...item} />;
     default:

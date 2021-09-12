@@ -15,3 +15,4 @@ export * from "./contentItemMultiSelect/contentItemMultiSelect";
 export * from "./contentItemConfirm/contentItemConfirm";
 export * from "./contentItemLottie/contentItemLottie";
 export * from "./contentItemText/contentItemText";
+export * from "./contentItemImage/contentItemImage";

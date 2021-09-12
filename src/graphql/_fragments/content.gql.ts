@@ -110,7 +110,7 @@ export const GQL_FRAGMENT_CONTENT_ITEM_PERSONAL_PRODUCT_REVIEW_ITEM = gql`
     id
     text: heading
     subheading
-    answerKey
+    stepKey
     leftIcon {
       ...RemoteImage
     }
@@ -192,6 +192,9 @@ export const GQL_FRAGMENT_CONTENT_ITEM_IMAGE = gql`
       uri
     }
     styles {
+      ...ContentItemStyle
+    }
+    wrapperStyles {
       ...ContentItemStyle
     }
   }

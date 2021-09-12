@@ -28,7 +28,7 @@ export interface ContentItemPersonalProductReviewItem {
   id: string;
   text: string;
   subheading: string;
-  answerKey: string;
+  stepKey: string;
   leftIcon: ContentItemPersonalProductReviewItem_leftIcon;
   rightIcon: ContentItemPersonalProductReviewItem_rightIcon | null;
   onPress: ContentItemPersonalProductReviewItem_onPress | null;
