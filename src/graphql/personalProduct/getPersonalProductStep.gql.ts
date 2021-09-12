@@ -25,6 +25,8 @@ import {
   GQL_FRAGMENT_CONTENT_ITEM_SCROLL_PICKER,
   GQL_FRAGMENT_CONTENT_ITEM_REVIEW_ITEM,
   GQL_FRAGMENT_CONTENT_ITEM_CONFIRM,
+  GQL_FRAGMENT_CONTENT_ITEM_LOTTIE,
+  GQL_FRAGMENT_CONTENT_ITEM_TEXT,
 } from "../_fragments/content.gql";
 
 export const GQL_QUERY_GET_PERSONAL_PRODUCT_STEP = gql`
@@ -53,6 +55,8 @@ export const GQL_QUERY_GET_PERSONAL_PRODUCT_STEP = gql`
   ${GQL_FRAGMENT_CONTENT_ITEM_SCROLL_PICKER}
   ${GQL_FRAGMENT_CONTENT_ITEM_REVIEW_ITEM}
   ${GQL_FRAGMENT_CONTENT_ITEM_CONFIRM}
+  ${GQL_FRAGMENT_CONTENT_ITEM_LOTTIE}
+  ${GQL_FRAGMENT_CONTENT_ITEM_TEXT}
 
   query GetPersonalProductStep($productId: String!) {
     getPersonalProductStep(productId: $productId) {
@@ -78,6 +82,12 @@ export const GQL_QUERY_GET_PERSONAL_PRODUCT_STEP = gql`
         }
         ... on ContentItemRadio {
           ...ContentItemRadio
+        }
+        ... on ContentItemLottie {
+          ...ContentItemLottie
+        }
+        ... on ContentItemText {
+          ...ContentItemText
         }
         ... on ContentItemButton {
           ...ContentItemButton

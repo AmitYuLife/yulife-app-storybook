@@ -14,3 +14,5 @@ export * from "./contentItemDocuments/contentItemDocuments";
 export * from "./contentItemMultiSelect/contentItemMultiSelect";
 export * from "./contentItemReviewItem/contentItemReviewItem";
 export * from "./contentItemConfirm/contentItemConfirm";
+export * from "./contentItemLottie/contentItemLottie";
+export * from "./contentItemText/contentItemText";

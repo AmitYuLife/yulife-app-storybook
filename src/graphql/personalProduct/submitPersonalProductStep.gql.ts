@@ -12,5 +12,5 @@ export default (variables: SubmitPersonalProductStepVariables) =>
   client().mutate<SubmitPersonalProductStep>({
     mutation: GQL_MUTATION_SUBMIT_PERSONAL_PRODUCT_STEP,
     variables,
-    refetchQueries: ["GetPersonalProductStep"],
+    refetchQueries: ["GetPersonalProductStep", "YuScreenProductSlots"],
   });
