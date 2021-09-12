@@ -10,7 +10,7 @@ import { useDispatch } from "react-redux";
 type Props = GqlReviewItem;
 
 export const ProductStepContentItemReviewAnswer = memo(
-  ({ onPress, leftIcon, text, rightIcon, subheading, answerKey }: Props) => {
+  ({ onPress, leftIcon, text, rightIcon, subheading, stepKey }: Props) => {
     const { productId, stepId, dynamicData } = useContext(ProductStepContext);
 
     const dispatch = useDispatch();
@@ -22,11 +22,11 @@ export const ProductStepContentItemReviewAnswer = memo(
         payload: {
           productId,
           stepId,
-          dynamicData: { ...dynamicData, [answerKey]: onPress.payload },
+          dynamicData: { ...dynamicData, [stepKey]: onPress.payload },
           serverPayload: onPress.payload,
         },
       }),
-      [onPress, productId, stepId, dynamicData, answerKey]
+      [onPress, productId, stepId, dynamicData, stepKey]
     );
 
     return (

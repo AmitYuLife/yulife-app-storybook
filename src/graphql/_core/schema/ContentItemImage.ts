@@ -17,8 +17,14 @@ export interface ContentItemImage_styles {
   value: string;
 }
 
+export interface ContentItemImage_wrapperStyles {
+  property: string;
+  value: string;
+}
+
 export interface ContentItemImage {
   id: string;
   image: ContentItemImage_image | null;
   styles: ContentItemImage_styles[] | null;
+  wrapperStyles: ContentItemImage_wrapperStyles[] | null;
 }

@@ -101,6 +101,9 @@ export const GQL_QUERY_GET_PERSONAL_PRODUCT_STEP = gql`
         ... on ContentItemPersonalProductPreview {
           ...ContentItemPersonalProductPreview
         }
+        ... on ContentItemImage {
+          ...ContentItemImage
+        }
         ... on ContentItemCoverPicker {
           ...ContentItemCoverPicker
         }

@@ -27,7 +27,6 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemP
   __typename:
     | "ContentItemProgressBar"
     | "ContentItemHeaderBar"
-    | "ContentItemImage"
     | "ContentItemOverlay"
     | "ContentItemYugiReminder"
     | "ContentItemPersonalProductConfirm"
@@ -313,6 +312,29 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemP
   coverExpirationDate: string;
 }
 
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemImage_image {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemImage_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemImage_wrapperStyles {
+  property: string;
+  value: string;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemImage {
+  __typename: "ContentItemImage";
+  id: string;
+  image: GetPersonalProductStep_getPersonalProductStep_body_ContentItemImage_image | null;
+  styles: GetPersonalProductStep_getPersonalProductStep_body_ContentItemImage_styles[] | null;
+  wrapperStyles: GetPersonalProductStep_getPersonalProductStep_body_ContentItemImage_wrapperStyles[] | null;
+}
+
 export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemCoverPicker_styles {
   property: string;
   value: string;
@@ -534,7 +556,7 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemP
   id: string;
   text: string;
   subheading: string;
-  answerKey: string;
+  stepKey: string;
   leftIcon: GetPersonalProductStep_getPersonalProductStep_body_ContentItemPersonalProductReviewItem_leftIcon;
   rightIcon: GetPersonalProductStep_getPersonalProductStep_body_ContentItemPersonalProductReviewItem_rightIcon | null;
   onPress: GetPersonalProductStep_getPersonalProductStep_body_ContentItemPersonalProductReviewItem_onPress | null;
@@ -637,6 +659,7 @@ export type GetPersonalProductStep_getPersonalProductStep_body =
   | GetPersonalProductStep_getPersonalProductStep_body_ContentItemInfoCard
   | GetPersonalProductStep_getPersonalProductStep_body_ContentItemPackageCards
   | GetPersonalProductStep_getPersonalProductStep_body_ContentItemPersonalProductPreview
+  | GetPersonalProductStep_getPersonalProductStep_body_ContentItemImage
   | GetPersonalProductStep_getPersonalProductStep_body_ContentItemCoverPicker
   | GetPersonalProductStep_getPersonalProductStep_body_ContentItemScrollableItemsPicker
   | GetPersonalProductStep_getPersonalProductStep_body_ContentItemDatePicker
@@ -903,11 +926,17 @@ export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_Con
   value: string;
 }
 
+export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemImage_wrapperStyles {
+  property: string;
+  value: string;
+}
+
 export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemImage {
   __typename: "ContentItemImage";
   id: string;
   image: GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemImage_image | null;
   styles: GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemImage_styles[] | null;
+  wrapperStyles: GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemImage_wrapperStyles[] | null;
 }
 
 export type GetPersonalProductStep_getPersonalProductStep_absolute_item =
