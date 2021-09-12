@@ -16,3 +16,4 @@ export * from "./product-step.multi-select";
 export * from "./product-step.scroll-picker";
 export * from "./product-step.confirm";
 export * from "./product-step.lottie";
+export * from "./product-step.review-answer";

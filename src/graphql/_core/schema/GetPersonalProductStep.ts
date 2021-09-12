@@ -514,29 +514,30 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemS
   variants: GetPersonalProductStep_getPersonalProductStep_body_ContentItemScrollPicker_variants[];
 }
 
-export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemReviewItem_leftIcon {
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemPersonalProductReviewItem_leftIcon {
   id: string;
   uri: string | null;
 }
 
-export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemReviewItem_rightIcon {
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemPersonalProductReviewItem_rightIcon {
   id: string;
   uri: string | null;
 }
 
-export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemReviewItem_onPress {
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemPersonalProductReviewItem_onPress {
   type: ContentItemSDUIAction;
   payload: string | null;
 }
 
-export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemReviewItem {
-  __typename: "ContentItemReviewItem";
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemPersonalProductReviewItem {
+  __typename: "ContentItemPersonalProductReviewItem";
   id: string;
   text: string;
   subheading: string;
-  leftIcon: GetPersonalProductStep_getPersonalProductStep_body_ContentItemReviewItem_leftIcon;
-  rightIcon: GetPersonalProductStep_getPersonalProductStep_body_ContentItemReviewItem_rightIcon | null;
-  onPress: GetPersonalProductStep_getPersonalProductStep_body_ContentItemReviewItem_onPress | null;
+  answerKey: string;
+  leftIcon: GetPersonalProductStep_getPersonalProductStep_body_ContentItemPersonalProductReviewItem_leftIcon;
+  rightIcon: GetPersonalProductStep_getPersonalProductStep_body_ContentItemPersonalProductReviewItem_rightIcon | null;
+  onPress: GetPersonalProductStep_getPersonalProductStep_body_ContentItemPersonalProductReviewItem_onPress | null;
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemYugiConfirm_content {
@@ -641,7 +642,7 @@ export type GetPersonalProductStep_getPersonalProductStep_body =
   | GetPersonalProductStep_getPersonalProductStep_body_ContentItemDatePicker
   | GetPersonalProductStep_getPersonalProductStep_body_ContentItemMultiSelect
   | GetPersonalProductStep_getPersonalProductStep_body_ContentItemScrollPicker
-  | GetPersonalProductStep_getPersonalProductStep_body_ContentItemReviewItem
+  | GetPersonalProductStep_getPersonalProductStep_body_ContentItemPersonalProductReviewItem
   | GetPersonalProductStep_getPersonalProductStep_body_ContentItemYugiConfirm
   | GetPersonalProductStep_getPersonalProductStep_body_ContentItemPersonalProductInfo
   | GetPersonalProductStep_getPersonalProductStep_body_ContentItemMultiButton;
@@ -665,7 +666,7 @@ export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentIte
     | "ContentItemScrollPicker"
     | "ContentItemMultiSelect"
     | "ContentItemPersonalProductConfirm"
-    | "ContentItemReviewItem"
+    | "ContentItemPersonalProductReviewItem"
     | "ContentItemPersonalProductDocuments"
     | "ContentItemPersonalProductFaqs"
     | "ContentItemPackageCards"
@@ -819,7 +820,7 @@ export interface GetPersonalProductStep_getPersonalProductStep_header_ContentIte
     | "ContentItemScrollPicker"
     | "ContentItemMultiSelect"
     | "ContentItemPersonalProductConfirm"
-    | "ContentItemReviewItem"
+    | "ContentItemPersonalProductReviewItem"
     | "ContentItemPersonalProductDocuments"
     | "ContentItemPersonalProductFaqs"
     | "ContentItemPackageCards"
@@ -882,7 +883,7 @@ export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_Con
     | "ContentItemScrollPicker"
     | "ContentItemMultiSelect"
     | "ContentItemPersonalProductConfirm"
-    | "ContentItemReviewItem"
+    | "ContentItemPersonalProductReviewItem"
     | "ContentItemPersonalProductDocuments"
     | "ContentItemPersonalProductFaqs"
     | "ContentItemPackageCards"
