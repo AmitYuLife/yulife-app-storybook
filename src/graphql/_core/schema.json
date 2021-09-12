@@ -23227,7 +23227,7 @@
           },
           {
             "kind": "OBJECT",
-            "name": "ContentItemReviewItem",
+            "name": "ContentItemPersonalProductReviewItem",
             "ofType": null
           },
           {
@@ -25455,7 +25455,7 @@
       },
       {
         "kind": "OBJECT",
-        "name": "ContentItemReviewItem",
+        "name": "ContentItemPersonalProductReviewItem",
         "description": null,
         "fields": [
           {
@@ -25492,6 +25492,22 @@
           },
           {
             "name": "subheading",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "answerKey",
             "description": null,
             "args": [],
             "type": {

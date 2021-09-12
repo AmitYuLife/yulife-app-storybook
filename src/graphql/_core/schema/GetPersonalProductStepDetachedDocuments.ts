@@ -29,7 +29,7 @@ export interface GetPersonalProductStepDetachedDocuments_getPersonalProductStepD
     | "ContentItemScrollPicker"
     | "ContentItemMultiSelect"
     | "ContentItemPersonalProductConfirm"
-    | "ContentItemReviewItem"
+    | "ContentItemPersonalProductReviewItem"
     | "ContentItemPersonalProductFaqs"
     | "ContentItemPackageCards"
     | "ContentItemPersonalProductPreview"

@@ -105,11 +105,12 @@ export const GQL_FRAGMENT_CONTENT_ITEM_RADIO = gql`
   }
 `;
 
-export const GQL_FRAGMENT_CONTENT_ITEM_REVIEW_ITEM = gql`
-  fragment ContentItemReviewItem on ContentItemReviewItem {
+export const GQL_FRAGMENT_CONTENT_ITEM_PERSONAL_PRODUCT_REVIEW_ITEM = gql`
+  fragment ContentItemPersonalProductReviewItem on ContentItemPersonalProductReviewItem {
     id
     text: heading
     subheading
+    answerKey
     leftIcon {
       ...RemoteImage
     }

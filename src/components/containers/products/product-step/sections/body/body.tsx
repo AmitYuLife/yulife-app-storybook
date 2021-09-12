@@ -18,8 +18,9 @@ import {
   ProductStepContentItemScrollPicker,
   ProductStepContentItemConfirm,
   ProductStepContentItemLottie,
+  ProductStepContentItemReviewAnswer,
 } from "../../subcomponents";
-import { ContentItemInfoCard, ContentItemPad, ContentItemReviewItem, ContentItemText } from "@components/sdui";
+import { ContentItemInfoCard, ContentItemPad, ContentItemText } from "@components/sdui";
 import { Style } from "@styles";
 
 interface Props {
@@ -89,8 +90,8 @@ const renderItemContent = (item: GPPS_Body): JSX.Element => {
       return <ProductStepContentItemScrollPicker key={item.id} {...item} />;
     case "ContentItemConfirm":
       return <ProductStepContentItemConfirm key={item.id} {...item} />;
-    case "ContentItemReviewItem":
-      return <ContentItemReviewItem key={item.id} {...item} />;
+    case "ContentItemPersonalProductReviewItem":
+      return <ProductStepContentItemReviewAnswer key={item.id} {...item} />;
     default:
       return null;
   }
