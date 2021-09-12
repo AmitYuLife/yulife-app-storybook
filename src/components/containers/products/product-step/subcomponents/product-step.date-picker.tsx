@@ -1,17 +1,11 @@
-import React, { memo, useContext } from "react";
+import React, { memo } from "react";
 import { ContentItemDatePicker as GqlDatePicker } from "@graphql/_core/schema";
 import { ContentItemDatePicker } from "@components/sdui";
-import { ProductStepContext } from "../product-step.context";
+import { useDynamicOnChange } from "../hooks/useDynamicOnChange";
 
 type Props = GqlDatePicker;
 
 export const ProductStepContentItemDatePicker = memo((props: Props) => {
-  const { setDynamicData } = useContext(ProductStepContext);
-
-  const onChange = (data: string) => {
-    const obj = { [props.answerKey]: data };
-    setDynamicData((oldState) => ({ ...oldState, ...obj }));
-  };
-
-  return <ContentItemDatePicker props={props} onChange={onChange} />;
+  const { value, onChange } = useDynamicOnChange<string>(props.answerKey);
+  return <ContentItemDatePicker {...props} initialDate={value} onChange={onChange} />;
 });

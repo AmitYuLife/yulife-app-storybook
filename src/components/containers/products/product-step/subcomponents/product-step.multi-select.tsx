@@ -1,23 +1,13 @@
-import React, { memo, useCallback, useContext } from "react";
+import React, { memo } from "react";
 import { ContentItemMultiSelect as GqlMultiSelect } from "@graphql/_core/schema/ContentItemMultiSelect";
 import { ContentItemMultiSelect } from "@components/sdui";
-import { ProductStepContext } from "../product-step.context";
+import { useDynamicOnChange } from "../hooks/useDynamicOnChange";
 
 type Props = GqlMultiSelect;
 
 export const ProductStepContentItemMultiSelect = memo((props: Props) => {
   const { answerKey } = props;
-  const { dynamicData, setDynamicData } = useContext(ProductStepContext);
+  const { value, onChange } = useDynamicOnChange<string[]>(answerKey);
 
-  const onChange = useCallback(
-    (data: string[]) => {
-      const obj = { [answerKey]: data };
-      setDynamicData((oldState) => ({ ...oldState, ...obj }));
-    },
-    [answerKey]
-  );
-
-  const selectedValues = dynamicData?.[answerKey] as string[];
-
-  return <ContentItemMultiSelect {...props} selectedValues={selectedValues} onChange={onChange} />;
+  return <ContentItemMultiSelect {...props} selectedValues={value} onChange={onChange} />;
 });

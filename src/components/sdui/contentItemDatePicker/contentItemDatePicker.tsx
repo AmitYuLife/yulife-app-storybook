@@ -7,15 +7,15 @@ import { Colours, Style } from "@styles";
 import { TertiaryButton } from "@atoms";
 import { mapServerStyles } from "../_utils/mapServerStyles";
 
-interface IProps {
-  props: GqlDatePicker;
+interface IProps extends GqlDatePicker {
   onChange?: (value: string) => void;
 }
 
 type Props = IProps;
 
-export const ContentItemDatePicker = memo(({ props, onChange }: Props) => {
+export const ContentItemDatePicker = memo((props: Props) => {
   const {
+    onChange,
     dateFormat,
     size,
     buttonLeftIcon,

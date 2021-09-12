@@ -1,9 +1,10 @@
 import React, { ComponentProps, memo, useCallback, useState } from "react";
-import { LayoutChangeEvent, StyleSheet, Text, View, ViewStyle } from "react-native";
+import { LayoutChangeEvent, StyleSheet, View, ViewStyle } from "react-native";
 import { ContentItemTextInput as GqlTextInput } from "@graphql/_core/schema";
 import { TextField } from "@components/molecules";
 import { Style } from "@styles";
 import { ContentItemFormTextInputType } from "@graphql/_core/schema/globalTypes";
+import { TextTemplate } from "@atoms";
 
 interface Props extends GqlTextInput {
   value: string;
@@ -20,9 +21,9 @@ export const ContentItemTextInput = memo(({ onChange, id, heading, value, prefix
   return (
     <View style={styles.inputWrapper}>
       {prefixValue ? (
-        <Text style={styles.prefixWrapper} onLayout={handleTextLayout}>
-          {prefixValue}
-        </Text>
+        <View style={styles.prefixWrapper} onLayout={handleTextLayout}>
+          <TextTemplate type="h3">{prefixValue}</TextTemplate>
+        </View>
       ) : null}
       <TextField
         type={mapTextFieldType(type)}
@@ -39,12 +40,9 @@ export const ContentItemTextInput = memo(({ onChange, id, heading, value, prefix
 const styles = StyleSheet.create({
   prefixWrapper: {
     position: "absolute",
-    fontFamily: Style.FONT_FAMILY_PRIMARY,
-    fontSize: 22,
-    fontWeight: "bold",
     left: 0,
-    bottom: 3,
-    height: 24,
+    bottom: 0,
+    height: Style.adjust(32),
   },
   inputWrapper: {
     paddingTop: Style.adjust(24),
