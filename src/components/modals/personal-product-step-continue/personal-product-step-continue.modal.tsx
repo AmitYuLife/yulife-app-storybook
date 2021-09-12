@@ -1,6 +1,6 @@
 import * as React from "react";
-import { StyleSheet, TextStyle, View, ViewStyle } from "react-native";
-import { Button, Loading, TextTemplate, LinkButton, Image } from "@atoms";
+import { ScrollView, StyleSheet, TextStyle, View, ViewStyle } from "react-native";
+import { Button, Loading, TextTemplate, LinkButton, Image, Pad } from "@atoms";
 import { Style } from "@styles";
 import { useMutation, useQuery } from "@apollo/react-hooks";
 import {
@@ -17,11 +17,14 @@ import { Navigation } from "react-native-navigation";
 import { ROUTES } from "@navigation/constants";
 import Logger from "@services/logging/logger";
 import GenericHeadingAbsolute from "@atoms/generic-heading/generic-heading-absolute";
+import { TOP_BAR_HEIGHT } from "@atoms/generic-heading/generic-heading.styles";
 
 interface IProps {
   componentId?: string;
   productId: string;
 }
+
+const IMAGE_SIZE = Style.adjust(Style.isAnyIphoneX() || Style.isTallAndroid() ? 320 : 240);
 
 export default function PersonalProductStepContinueModal({ productId, componentId }: IProps) {
   const { data, loading } = useQuery<GqlModal, GqlModalVars>(GQL_QUERY_GET_PERSONAL_PRODUCT_STEP_CONTINUE_MODAL, {
@@ -58,7 +61,7 @@ export default function PersonalProductStepContinueModal({ productId, componentI
 
   if (loading && !data?.copy) {
     return (
-      <View style={styles.wrapper}>
+      <View style={[styles.flex, styles.imageWrapper]}>
         <Loading />
       </View>
     );
@@ -68,19 +71,26 @@ export default function PersonalProductStepContinueModal({ productId, componentI
 
   return (
     <View style={styles.flex}>
-      <View style={styles.wrapper}>
+      <ScrollView style={styles.flex}>
+        <Pad height={TOP_BAR_HEIGHT} />
         {!image?.uri ? null : (
-          <Image width={Style.adjust(320)} height={Style.adjust(320)} source={{ uri: image.uri }} />
+          <View style={styles.imageWrapper}>
+            <Image width={IMAGE_SIZE} height={IMAGE_SIZE} source={{ uri: image.uri }} />
+          </View>
         )}
         <View style={styles.text}>
-          <TextTemplate type="h2">{heading}</TextTemplate>
+          <TextTemplate type="h2" textAlign="center">
+            {heading}
+          </TextTemplate>
         </View>
         <View style={styles.text}>
-          <TextTemplate type="b2">{subheading}</TextTemplate>
+          <TextTemplate type="b2" textAlign="center">
+            {subheading}
+          </TextTemplate>
         </View>
         <Button wrapperStyle={styles.buttonWrapper} label={continueCtaLabel} onPress={handleContinue} />
         <LinkButton wrapperStyle={styles.buttonWrapperSecondary} label={startOverCtaLabel} onPress={handleStartOver} />
-      </View>
+      </ScrollView>
       <GenericHeadingAbsolute rightIcon="CLOSE" onRightIconPress={handleClose} />
     </View>
   );
@@ -101,9 +111,8 @@ const styles = StyleSheet.create({
     marginTop: Style.adjust(24),
     textAlign: "center",
   } as TextStyle,
-  wrapper: {
-    alignItems: "center",
-    flex: 1,
+  imageWrapper: {
     justifyContent: "center",
+    alignItems: "center",
   } as ViewStyle,
 });
