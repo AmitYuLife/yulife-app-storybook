@@ -26,9 +26,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
     alignSelf: "center",
     margin: Style.adjust(32),
-    paddingVertical: Style.adjust(16),
+    padding: Style.adjust(16),
   } as ViewStyle,
   text: {
-    maxWidth: Style.DEVICE_WIDTH - Style.adjust(64),
+    maxWidth: Style.DEVICE_WIDTH - Style.adjust(96),
+    marginLeft: Style.adjust(4),
   } as TextStyle,
 });
