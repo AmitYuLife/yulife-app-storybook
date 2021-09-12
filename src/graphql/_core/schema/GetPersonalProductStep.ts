@@ -5,8 +5,8 @@
 
 import {
   ContentItemFormTextInputType,
-  ContentItemButtonType,
   ContentItemSDUIAction,
+  ContentItemButtonType,
   ContentItemButtonSize,
   CoverType,
   YuProductStatus,
@@ -112,6 +112,43 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemR
   iconOptions: boolean;
   answerKey: string;
   choices: GetPersonalProductStep_getPersonalProductStep_body_ContentItemRadio_choices[];
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemLottie_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemLottie_onAnimationEnd {
+  type: ContentItemSDUIAction;
+  payload: string | null;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemLottie {
+  __typename: "ContentItemLottie";
+  id: string;
+  uri: string;
+  autoPlay: boolean;
+  loop: boolean;
+  styles: GetPersonalProductStep_getPersonalProductStep_body_ContentItemLottie_styles[] | null;
+  onAnimationEnd: GetPersonalProductStep_getPersonalProductStep_body_ContentItemLottie_onAnimationEnd | null;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemText_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemText {
+  __typename: "ContentItemText";
+  id: string;
+  textType: string;
+  text: string;
+  colour: string | null;
+  textAlign: string | null;
+  underline: boolean | null;
+  numberOfLines: number | null;
+  styles: GetPersonalProductStep_getPersonalProductStep_body_ContentItemText_styles[] | null;
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemButton_onPress {
@@ -593,6 +630,8 @@ export type GetPersonalProductStep_getPersonalProductStep_body =
   | GetPersonalProductStep_getPersonalProductStep_body_ContentItemPad
   | GetPersonalProductStep_getPersonalProductStep_body_ContentItemMarkdown
   | GetPersonalProductStep_getPersonalProductStep_body_ContentItemRadio
+  | GetPersonalProductStep_getPersonalProductStep_body_ContentItemLottie
+  | GetPersonalProductStep_getPersonalProductStep_body_ContentItemText
   | GetPersonalProductStep_getPersonalProductStep_body_ContentItemButton
   | GetPersonalProductStep_getPersonalProductStep_body_ContentItemInfoCard
   | GetPersonalProductStep_getPersonalProductStep_body_ContentItemPackageCards
@@ -610,6 +649,8 @@ export type GetPersonalProductStep_getPersonalProductStep_body =
 export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentItemMarkdown {
   __typename:
     | "ContentItemMarkdown"
+    | "ContentItemLottie"
+    | "ContentItemText"
     | "ContentItemTextInput"
     | "ContentItemProgressBar"
     | "ContentItemHeaderBar"
@@ -761,6 +802,8 @@ export type GetPersonalProductStep_getPersonalProductStep_footer =
 export interface GetPersonalProductStep_getPersonalProductStep_header_ContentItemMarkdown {
   __typename:
     | "ContentItemMarkdown"
+    | "ContentItemLottie"
+    | "ContentItemText"
     | "ContentItemTextInput"
     | "ContentItemRadio"
     | "ContentItemInfoCard"
@@ -821,6 +864,8 @@ export type GetPersonalProductStep_getPersonalProductStep_header =
 export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemMarkdown {
   __typename:
     | "ContentItemMarkdown"
+    | "ContentItemLottie"
+    | "ContentItemText"
     | "ContentItemTextInput"
     | "ContentItemProgressBar"
     | "ContentItemHeaderBar"

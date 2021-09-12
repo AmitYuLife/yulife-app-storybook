@@ -17,8 +17,9 @@ import {
   ProductStepContentItemMultiButton,
   ProductStepContentItemScrollPicker,
   ProductStepContentItemConfirm,
+  ProductStepContentItemLottie,
 } from "../../subcomponents";
-import { ContentItemInfoCard, ContentItemPad, ContentItemReviewItem } from "@components/sdui";
+import { ContentItemInfoCard, ContentItemPad, ContentItemReviewItem, ContentItemText } from "@components/sdui";
 import { Style } from "@styles";
 
 interface Props {
@@ -52,6 +53,10 @@ const renderItemContent = (item: GPPS_Body): JSX.Element => {
   switch (item.__typename) {
     case "ContentItemInfoCard":
       return <ContentItemInfoCard key={item.id} {...item} />;
+    case "ContentItemLottie":
+      return <ProductStepContentItemLottie key={item.id} {...item} />;
+    case "ContentItemText":
+      return <ContentItemText key={item.id} {...item} />;
     case "ContentItemMarkdown":
       return <ProductStepMarkdown key={item.id} {...item} />;
     case "ContentItemPad":

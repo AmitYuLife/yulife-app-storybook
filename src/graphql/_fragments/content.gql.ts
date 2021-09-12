@@ -18,6 +18,21 @@ export const GQL_FRAGMENT_CONTENT_ITEM_CONFIRM = gql`
   }
 `;
 
+export const GQL_FRAGMENT_CONTENT_ITEM_TEXT = gql`
+  fragment ContentItemText on ContentItemText {
+    id
+    textType: type
+    text
+    colour
+    textAlign
+    underline
+    numberOfLines
+    styles {
+      ...ContentItemStyle
+    }
+  }
+`;
+
 export const GQL_FRAGMENT_CONTENT_ITEM_TEXT_INPUT = gql`
   fragment ContentItemTextInput on ContentItemTextInput {
     id
@@ -41,6 +56,23 @@ export const GQL_FRAGMENT_CONTENT_ITEM_MARKDOWN = gql`
     parsedMarkdown
     styles {
       ...ContentItemStyle
+    }
+  }
+`;
+
+export const GQL_FRAGMENT_CONTENT_ITEM_LOTTIE = gql`
+  fragment ContentItemLottie on ContentItemLottie {
+    id
+    uri
+    autoPlay
+    loop
+    styles {
+      property
+      value
+    }
+    onAnimationEnd {
+      type
+      payload
     }
   }
 `;

@@ -10,6 +10,8 @@
 export interface GetPersonalProductStepDetachedFaqs_getPersonalProductStepDetachedFaqs_body_ContentItemMarkdown {
   __typename:
     | "ContentItemMarkdown"
+    | "ContentItemLottie"
+    | "ContentItemText"
     | "ContentItemTextInput"
     | "ContentItemProgressBar"
     | "ContentItemHeaderBar"
