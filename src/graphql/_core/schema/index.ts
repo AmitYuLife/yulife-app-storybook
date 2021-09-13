@@ -32,6 +32,7 @@ export * from "./ContentItemPersonalProductReviewItem";
 export * from "./ContentItemProgressBar";
 export * from "./ContentItemRadio";
 export * from "./ContentItemRadioIcon";
+export * from "./ContentItemRowIconTextBanner";
 export * from "./ContentItemScrollPicker";
 export * from "./ContentItemScrollableItemsPicker";
 export * from "./ContentItemStyle";

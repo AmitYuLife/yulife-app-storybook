@@ -33,6 +33,20 @@ export const GQL_FRAGMENT_CONTENT_ITEM_TEXT = gql`
   }
 `;
 
+export const GQL_FRAGMENT_CONTENT_ITEM_ROW_ICON_TEXT_BANNER = gql`
+  fragment ContentItemRowIconTextBanner on ContentItemRowIconTextBanner {
+    id
+    bannerType: type
+    markdown
+    bannerIcon: icon {
+      ...RemoteImage
+    }
+    styles {
+      ...ContentItemStyle
+    }
+  }
+`;
+
 export const GQL_FRAGMENT_CONTENT_ITEM_TEXT_INPUT = gql`
   fragment ContentItemTextInput on ContentItemTextInput {
     id
