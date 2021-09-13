@@ -5,6 +5,7 @@ import GenericHeading from "@atoms/generic-heading/generic-heading";
 import { ContentItemHeaderBar as GqlHeaderBar } from "@graphql/_core/schema";
 import { Colours, TOP_BAR } from "@styles";
 import { ProductStepFaqsContext } from "../../product-step.faqs.context";
+import { useBackHandler } from "@services/hooks/useBackHandler";
 
 type Props = GqlHeaderBar;
 
@@ -13,6 +14,11 @@ export const ProductStepContentItemHeaderDetached = memo((props: Props) => {
   const { nestedHistory, popNestedHistory } = useContext(ProductStepFaqsContext);
 
   const dispatch = useDispatch();
+
+  useBackHandler(() => {
+    dispatch(onRightIconPress);
+    return true;
+  });
 
   return (
     <View style={styles.wrapper}>
