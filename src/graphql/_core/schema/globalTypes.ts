@@ -64,6 +64,10 @@ export enum ContentItemProgressBarType {
   yuCoin = "yuCoin",
 }
 
+export enum ContentItemRowIconTextBannerType {
+  error = "error",
+}
+
 export enum ContentItemSDUIAction {
   SDUI_ACTION_NAVIGATE = "SDUI_ACTION_NAVIGATE",
   SDUI_ACTION_NAVIGATE_BACK = "SDUI_ACTION_NAVIGATE_BACK",

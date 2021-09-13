@@ -24,7 +24,6 @@ export interface GetPersonalProductStepDetachedDocuments_getPersonalProductStepD
     | "ContentItemOverlay"
     | "ContentItemPersonalProductInfo"
     | "ContentItemYugiConfirm"
-    | "ContentItemYugiReminder"
     | "ContentItemDatePicker"
     | "ContentItemScrollPicker"
     | "ContentItemMultiSelect"
@@ -35,7 +34,8 @@ export interface GetPersonalProductStepDetachedDocuments_getPersonalProductStepD
     | "ContentItemPersonalProductPreview"
     | "ContentItemCoverPicker"
     | "ContentItemScrollableItemsPicker"
-    | "ContentItemConfirm";
+    | "ContentItemConfirm"
+    | "ContentItemRowIconTextBanner";
 }
 
 export interface GetPersonalProductStepDetachedDocuments_getPersonalProductStepDetachedDocuments_body_ContentItemPersonalProductDocuments_headingImage_image {

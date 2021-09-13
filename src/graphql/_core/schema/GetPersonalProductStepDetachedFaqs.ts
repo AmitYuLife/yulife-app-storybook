@@ -24,7 +24,6 @@ export interface GetPersonalProductStepDetachedFaqs_getPersonalProductStepDetach
     | "ContentItemOverlay"
     | "ContentItemPersonalProductInfo"
     | "ContentItemYugiConfirm"
-    | "ContentItemYugiReminder"
     | "ContentItemDatePicker"
     | "ContentItemScrollPicker"
     | "ContentItemMultiSelect"
@@ -35,7 +34,8 @@ export interface GetPersonalProductStepDetachedFaqs_getPersonalProductStepDetach
     | "ContentItemPersonalProductPreview"
     | "ContentItemCoverPicker"
     | "ContentItemScrollableItemsPicker"
-    | "ContentItemConfirm";
+    | "ContentItemConfirm"
+    | "ContentItemRowIconTextBanner";
 }
 
 export interface GetPersonalProductStepDetachedFaqs_getPersonalProductStepDetachedFaqs_body_ContentItemPersonalProductFaqs_headingImage_image {

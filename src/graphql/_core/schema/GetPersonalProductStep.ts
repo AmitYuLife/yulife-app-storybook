@@ -11,6 +11,7 @@ import {
   CoverType,
   YuProductStatus,
   YuWorld,
+  ContentItemRowIconTextBannerType,
   ContentItemProgressBarType,
 } from "./globalTypes";
 
@@ -28,7 +29,6 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemP
     | "ContentItemProgressBar"
     | "ContentItemHeaderBar"
     | "ContentItemOverlay"
-    | "ContentItemYugiReminder"
     | "ContentItemPersonalProductConfirm"
     | "ContentItemPersonalProductDocuments"
     | "ContentItemPersonalProductFaqs";
@@ -562,6 +562,28 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemP
   onPress: GetPersonalProductStep_getPersonalProductStep_body_ContentItemPersonalProductReviewItem_onPress | null;
 }
 
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemRowIconTextBanner_bannerIcon {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemRowIconTextBanner_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemRowIconTextBanner {
+  __typename: "ContentItemRowIconTextBanner";
+  id: string;
+  /**
+   * determines client-side style template e.g. error for red
+   */
+  bannerType: ContentItemRowIconTextBannerType;
+  markdown: string;
+  bannerIcon: GetPersonalProductStep_getPersonalProductStep_body_ContentItemRowIconTextBanner_bannerIcon;
+  styles: GetPersonalProductStep_getPersonalProductStep_body_ContentItemRowIconTextBanner_styles[] | null;
+}
+
 export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemYugiConfirm_content {
   id: string;
   parsedMarkdown: string | null;
@@ -666,6 +688,7 @@ export type GetPersonalProductStep_getPersonalProductStep_body =
   | GetPersonalProductStep_getPersonalProductStep_body_ContentItemMultiSelect
   | GetPersonalProductStep_getPersonalProductStep_body_ContentItemScrollPicker
   | GetPersonalProductStep_getPersonalProductStep_body_ContentItemPersonalProductReviewItem
+  | GetPersonalProductStep_getPersonalProductStep_body_ContentItemRowIconTextBanner
   | GetPersonalProductStep_getPersonalProductStep_body_ContentItemYugiConfirm
   | GetPersonalProductStep_getPersonalProductStep_body_ContentItemPersonalProductInfo
   | GetPersonalProductStep_getPersonalProductStep_body_ContentItemMultiButton;
@@ -684,7 +707,6 @@ export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentIte
     | "ContentItemImage"
     | "ContentItemPersonalProductInfo"
     | "ContentItemYugiConfirm"
-    | "ContentItemYugiReminder"
     | "ContentItemDatePicker"
     | "ContentItemScrollPicker"
     | "ContentItemMultiSelect"
@@ -696,7 +718,8 @@ export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentIte
     | "ContentItemPersonalProductPreview"
     | "ContentItemCoverPicker"
     | "ContentItemScrollableItemsPicker"
-    | "ContentItemConfirm";
+    | "ContentItemConfirm"
+    | "ContentItemRowIconTextBanner";
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentItemButton_onPress {
@@ -838,7 +861,6 @@ export interface GetPersonalProductStep_getPersonalProductStep_header_ContentIte
     | "ContentItemOverlay"
     | "ContentItemPersonalProductInfo"
     | "ContentItemYugiConfirm"
-    | "ContentItemYugiReminder"
     | "ContentItemDatePicker"
     | "ContentItemScrollPicker"
     | "ContentItemMultiSelect"
@@ -850,7 +872,8 @@ export interface GetPersonalProductStep_getPersonalProductStep_header_ContentIte
     | "ContentItemPersonalProductPreview"
     | "ContentItemCoverPicker"
     | "ContentItemScrollableItemsPicker"
-    | "ContentItemConfirm";
+    | "ContentItemConfirm"
+    | "ContentItemRowIconTextBanner";
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_header_ContentItemHeaderBar_onLeftIconPress {
@@ -901,7 +924,6 @@ export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_Con
     | "ContentItemOverlay"
     | "ContentItemPersonalProductInfo"
     | "ContentItemYugiConfirm"
-    | "ContentItemYugiReminder"
     | "ContentItemDatePicker"
     | "ContentItemScrollPicker"
     | "ContentItemMultiSelect"
@@ -913,7 +935,8 @@ export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_Con
     | "ContentItemPersonalProductPreview"
     | "ContentItemCoverPicker"
     | "ContentItemScrollableItemsPicker"
-    | "ContentItemConfirm";
+    | "ContentItemConfirm"
+    | "ContentItemRowIconTextBanner";
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemImage_image {

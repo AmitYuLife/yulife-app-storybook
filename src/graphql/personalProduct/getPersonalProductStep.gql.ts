@@ -27,6 +27,7 @@ import {
   GQL_FRAGMENT_CONTENT_ITEM_CONFIRM,
   GQL_FRAGMENT_CONTENT_ITEM_LOTTIE,
   GQL_FRAGMENT_CONTENT_ITEM_TEXT,
+  GQL_FRAGMENT_CONTENT_ITEM_ROW_ICON_TEXT_BANNER,
 } from "../_fragments/content.gql";
 
 export const GQL_QUERY_GET_PERSONAL_PRODUCT_STEP = gql`
@@ -57,6 +58,7 @@ export const GQL_QUERY_GET_PERSONAL_PRODUCT_STEP = gql`
   ${GQL_FRAGMENT_CONTENT_ITEM_CONFIRM}
   ${GQL_FRAGMENT_CONTENT_ITEM_LOTTIE}
   ${GQL_FRAGMENT_CONTENT_ITEM_TEXT}
+  ${GQL_FRAGMENT_CONTENT_ITEM_ROW_ICON_TEXT_BANNER}
 
   query GetPersonalProductStep($productId: String!) {
     getPersonalProductStep(productId: $productId) {
@@ -121,6 +123,9 @@ export const GQL_QUERY_GET_PERSONAL_PRODUCT_STEP = gql`
         }
         ... on ContentItemPersonalProductReviewItem {
           ...ContentItemPersonalProductReviewItem
+        }
+        ... on ContentItemRowIconTextBanner {
+          ...ContentItemRowIconTextBanner
         }
         ... on ContentItemYugiConfirm {
           id

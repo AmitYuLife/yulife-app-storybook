@@ -19,6 +19,7 @@ import {
   ProductStepContentItemConfirm,
   ProductStepContentItemLottie,
   ProductStepContentItemReviewAnswer,
+  ProductStepRowIconTextBanner,
 } from "../../subcomponents";
 import { ContentItemInfoCard, ContentItemPad, ContentItemText, ContentItemImage } from "@components/sdui";
 import { Style } from "@styles";
@@ -94,6 +95,8 @@ const renderItemContent = (item: GPPS_Body): JSX.Element => {
       return <ContentItemImage key={item.id} {...item} />;
     case "ContentItemPersonalProductReviewItem":
       return <ProductStepContentItemReviewAnswer key={item.id} {...item} />;
+    case "ContentItemRowIconTextBanner":
+      return <ProductStepRowIconTextBanner key={item.id} {...item} />;
     default:
       return null;
   }
