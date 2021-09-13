@@ -38,6 +38,7 @@ export default function PersonalProductStepContinueModal({ productId, componentI
   const handleClose = React.useCallback(() => Navigation.dismissModal(componentId), [componentId]);
 
   const handleContinue = React.useCallback(async () => {
+    handleClose();
     await Navigation.push(ROUTES.yuScreen, {
       component: {
         id: ROUTES.productStep,
@@ -47,7 +48,6 @@ export default function PersonalProductStepContinueModal({ productId, componentI
         },
       },
     });
-    handleClose();
   }, [handleClose, productId]);
 
   const handleStartOver = React.useCallback(async () => {
