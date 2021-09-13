@@ -62,7 +62,7 @@ export const Image = memo(
     }, [propHeight, propWidth, isLoading, loadingHeight, nativeSize]);
 
     return (
-      <View style={[styles.wrapper, { height, width }, style]} testID={testID}>
+      <View pointerEvents="none" style={[styles.wrapper, { height, width }, style]} testID={testID}>
         <FastImage
           onLoadStart={handleLoadStart}
           onLoad={handleLoadState}
