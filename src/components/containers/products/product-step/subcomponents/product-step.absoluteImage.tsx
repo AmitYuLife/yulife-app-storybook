@@ -20,5 +20,7 @@ export const AbsoluteContentItemImage = memo((props: Props) => {
       : (serverStyles.top as number),
   };
 
-  return <Image width={serverStyles?.width as number} style={style} source={{ uri: props.image.uri }} />;
+  return (
+    <Image width={serverStyles?.width as number} resizeMode="contain" style={style} source={{ uri: props.image.uri }} />
+  );
 });
