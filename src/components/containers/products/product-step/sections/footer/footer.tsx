@@ -1,5 +1,5 @@
-import React from "react";
-import { Platform, StyleSheet, View, ViewStyle } from "react-native";
+import React, { useEffect, useState } from "react";
+import { Keyboard, Platform, StyleSheet, View, ViewStyle } from "react-native";
 import { GetPersonalProductStep_getPersonalProductStep_footer as GPPS_Footer } from "@graphql/_core/schema";
 import { ContentItemOverlay } from "@components/sdui";
 import { ProductStepContentItemButton, ProductStepContentItemMultiButton } from "../../subcomponents";
@@ -11,9 +11,20 @@ interface Props {
 }
 
 export const Footer = (props: Props) => {
+  const [isShowingKeyboard, setIsShowingKeyboard] = useState(false);
+
+  useEffect(() => {
+    const keyboardDidShowListener = Keyboard.addListener("keyboardDidShow", () => setIsShowingKeyboard(true));
+    const keyboardDidHideListener = Keyboard.addListener("keyboardDidHide", () => setIsShowingKeyboard(false));
+
+    return () => {
+      keyboardDidShowListener.remove();
+      keyboardDidHideListener.remove();
+    };
+  }, []);
   return (
     <View pointerEvents="box-none" style={styles.wrapper}>
-      {props.footer.map(renderItemContent)}
+      {!isShowingKeyboard || Platform.OS === "ios" ? props.footer.map(renderItemContent) : null}
     </View>
   );
 };
