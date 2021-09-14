@@ -1,10 +1,15 @@
-import { Pad } from "@atoms/index";
-import * as React from "react";
+import React, { useMemo } from "react";
 import { ActivityIndicator, ScrollView, View } from "react-native";
+import { TODAYS_YUCOIN } from "@ids";
+import { useFitKit } from "@services/fitkit/fitkit.hooks";
+import { BuffArea } from "@graphql/_core/schema/globalTypes";
 import { GetCurrentUser_getCurrentUser_todayActivity } from "@graphql/_core/schema";
 import { ExchangeRateMeditation } from "@redux/daily-meditation/daily-meditation.selectors";
 import { ExchangeRate } from "@redux/daily-steps/daily-steps.selectors";
 import { Colours } from "@styles";
+import { Pad } from "@atoms";
+import { ActiveBuffsButton } from "@organisms";
+import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
 import styles from "./today-yucoin.screen.styles";
 import Coin from "./subcomponents/coin";
 import CTA from "./subcomponents/cta";
@@ -13,9 +18,6 @@ import Quests from "./subcomponents/quests";
 import { ChallengesWrapper } from "./subcomponents/common";
 import Challenge from "./subcomponents/challenges";
 import { mapProps } from "./today-yucoin.helpers";
-import { TODAYS_YUCOIN } from "@ids";
-import { useFitKit } from "@services/fitkit/fitkit.hooks";
-import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
 
 type ChallengeToday = GetCurrentUser_getCurrentUser_todayActivity;
 
@@ -46,12 +48,16 @@ export default function TodayYucoinScreen(props: IProps) {
   const enhancers = mapProps(props);
 
   const isGrayScale = !available || !authorised;
+  const buffTypes = useMemo(() => [BuffArea.stepsMilestone], []);
 
   return (
     <View style={styles.wrapper}>
       <GenericHeadingPad />
       <ScrollView testID={TODAYS_YUCOIN} style={styles.scrollView} showsVerticalScrollIndicator={false}>
-        <Coin isGrayScale={isGrayScale} />
+        <View>
+          <Coin isGrayScale={isGrayScale} />
+          {isGrayScale ? null : <ActiveBuffsButton style={styles.activeBuffs} buffTypes={buffTypes} />}
+        </View>
         <View style={styles.contentWrapper}>
           <SectionHeading
             hasRoundedTop={true}

@@ -50,7 +50,7 @@ export const SlotIcon = memo(({ slot }: IProps) => (
 
 const styles = StyleSheet.create({
   wrapper: {
-    width: Style.adjust(74),
+    width: Style.adjust(64),
     height: Style.adjust(64),
     justifyContent: "center",
     alignItems: "center",

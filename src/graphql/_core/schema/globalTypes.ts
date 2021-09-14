@@ -33,6 +33,13 @@ export enum AvatarPartType {
   pants = "pants",
 }
 
+export enum BuffArea {
+  chest = "chest",
+  meditationMilestone = "meditationMilestone",
+  stepsMilestone = "stepsMilestone",
+  streak = "streak",
+}
+
 export enum CommunityGoalType {
   meditation = "meditation",
   quests = "quests",

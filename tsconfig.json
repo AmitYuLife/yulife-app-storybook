@@ -20,6 +20,7 @@
       "@components/*": ["./src/components/*"],
       "@containers": ["./src/components/containers/index"],
       "@containers/*": ["./src/components/containers/*"],
+      "@modals": ["./src/components/modals/index"],
       "@modals/*": ["./src/components/modals/*"],
       "@molecules": ["./src/components/molecules/index"],
       "@molecules/*": ["./src/components/molecules/*"],

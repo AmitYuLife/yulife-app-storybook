@@ -46,6 +46,16 @@ const styles = StyleSheet.create({
   reduceBottomPadding: {
     paddingBottom: 10,
   } as ViewStyle,
+  activeBuffs: {
+    position: "absolute",
+    top: Style.adjust(36),
+    right: Style.adjust(146),
+    shadowColor: "#000000",
+    shadowOffset: { width: Style.adjust(2), height: Style.adjust(2) },
+    shadowOpacity: 0.16,
+    shadowRadius: 7,
+    elevation: 2,
+  },
 });
 
 export default styles;

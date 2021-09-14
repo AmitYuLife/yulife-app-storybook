@@ -21,10 +21,11 @@ import { getUserStart } from "@redux/user/user.actions";
 import Logger from "@services/logging/logger";
 import { RewardDetailsScreen, RewardDetailsLoadingScreen } from "@screens";
 import { useBackHandler } from "@services/hooks/useBackHandler";
-import { showSelectInputModal } from "@atoms/select-input/select-input.helper";
 import { ISelectInputOption } from "@atoms/select-input/select-input.types";
 import { AviosMetadata } from "@graphql/_core/schema/globalTypes";
 import { formatMoney } from "@services/money";
+import { ListPicker } from "@molecules";
+import { showOverlayWithChild } from "@modals/blurred-overlay/showOverlayWithChild";
 
 interface IProps {
   componentId: string;
@@ -213,24 +214,32 @@ const RewardDetailsContainer: FC<IProps> = ({ onTabChange, componentId, rewardId
       let denominationYuCoin = availableDenominations[0].yuCoin;
 
       if (availableDenominations.length > 1) {
-        await showSelectInputModal({
-          title: `You have ${totalCoins} YuCoin`,
-          options: availableDenominations.map(({ label }, index) => ({
-            label,
-            value: index,
-          })),
-          onPress: async (option: ISelectInputOption) => {
-            denominationYuCoin = availableDenominations[option.value].yuCoin;
-            amount = availableDenominations[option.value].value;
-            await Navigation.dismissOverlay(MODALS.listPicker);
+        const onPress = async (option: ISelectInputOption) => {
+          denominationYuCoin = availableDenominations[option.value].yuCoin;
+          amount = availableDenominations[option.value].value;
+          await Navigation.dismissOverlay(MODALS.blurredOverlay);
 
-            if (totalCoins < denominationYuCoin) {
-              return notEnoughCoinsAlert();
-            }
+          if (totalCoins < denominationYuCoin) {
+            return notEnoughCoinsAlert();
+          }
 
-            displayAlert({ confirmAlert, denominationYuCoin, rewardProviderId, code, amount, metadata, name });
-          },
-        });
+          displayAlert({ confirmAlert, denominationYuCoin, rewardProviderId, code, amount, metadata, name });
+        };
+
+        const options = availableDenominations.map(({ label }, index) => ({
+          label,
+          value: index,
+        }));
+
+        const items = options?.map((option) => ({
+          ...option,
+          onPress: () => onPress(option),
+        }));
+
+        const title = `You have ${totalCoins} YuCoin`;
+        const child = <ListPicker instruction={title} items={items} />;
+
+        await showOverlayWithChild(child);
       } else {
         displayAlert({ confirmAlert, denominationYuCoin, rewardProviderId, code, amount, metadata, name });
       }
