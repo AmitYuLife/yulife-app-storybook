@@ -2,13 +2,13 @@ import React, { useState, useCallback, memo } from "react";
 import { ImageStyle, StyleSheet, View, ViewStyle } from "react-native";
 import { Image, TextInputError } from "@atoms";
 import { TextTemplate } from "@atoms/text/text-template";
-import { TouchableOpacityWithDelay } from "@components/molecules";
+import { ListPicker, TouchableOpacityWithDelay } from "@components/molecules";
 import { MODALS } from "@navigation/constants";
 import { Colours, Style } from "@styles";
 import { Navigation } from "react-native-navigation";
 import { ArrowRight } from "@atoms/icon/arrow-right";
 import { ISelectInput, ISelectInputOption } from "@atoms/select-input/select-input.types";
-import { showSelectInputModal } from "@atoms/select-input/select-input.helper";
+import { showOverlayWithChild } from "@modals/blurred-overlay/showOverlayWithChild";
 
 const getBorderColour = (error: boolean, value: boolean) => {
   if (error) {
@@ -33,21 +33,23 @@ const SelectInput = ({
   options,
 }: ISelectInput) => {
   const [value, setValue] = useState(defaultValue);
-  const closeModal = useCallback(() => Navigation.dismissOverlay(MODALS.listPicker), []);
+  const closeModal = useCallback(() => Navigation.dismissOverlay(MODALS.blurredOverlay), []);
 
-  const onPress = useCallback(
-    async () =>
-      await showSelectInputModal({
-        title: modalPlaceHolder,
-        options,
-        onPress: (option: ISelectInputOption) => {
-          setValue(option);
-          onChange(option.value);
-          closeModal();
-        },
-      }),
-    [closeModal, onChange, options, modalPlaceHolder]
-  );
+  const onPress = useCallback(async () => {
+    const onOptionPress = (option: ISelectInputOption) => {
+      setValue(option);
+      onChange(option.value);
+      closeModal();
+    };
+
+    const items = options?.map((option) => ({
+      ...option,
+      onPress: () => onOptionPress(option),
+    }));
+
+    const child = <ListPicker instruction={modalPlaceHolder} items={items} />;
+    await showOverlayWithChild(child);
+  }, [closeModal, onChange, options, modalPlaceHolder]);
 
   return (
     <>

@@ -14,5 +14,6 @@ export { default as DuelInviteModal } from "./duels/duel-invite.modal";
 export { default as DuelRespondModal } from "./duels/duel-respond.modal";
 export { default as PriceChangeModal } from "./price-changed/price-changed";
 export { default as ScrollPickerModal } from "./scroll-picker-modal/scroll-picker-modal";
-export { default as ListPickerModal } from "./list-picker-modal/list-picker-modal";
+export { default as BlurredOverlay } from "./blurred-overlay/blurred-overlay";
+export { default as ActiveBuffsModal } from "./active-buffs/active-buffs.modal";
 export { default as SwitchToGoogleFitModal } from "./switch-to-googlefit-modal/switch-to-googlefit-modal";

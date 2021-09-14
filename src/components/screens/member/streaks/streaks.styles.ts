@@ -44,4 +44,14 @@ export default StyleSheet.create({
     height: Style.adjust(220),
     marginBottom: Style.adjust(Style.isShortToMedium() ? Style.adjust(15) : Style.adjust(32)),
   },
+  activeBuffsButton: {
+    position: "absolute",
+    top: Style.adjust(100),
+    right: Style.adjust(34),
+    shadowColor: "#000000",
+    shadowOffset: { width: Style.adjust(2), height: Style.adjust(2) },
+    shadowOpacity: 0.16,
+    shadowRadius: 7,
+    elevation: 2,
+  },
 });

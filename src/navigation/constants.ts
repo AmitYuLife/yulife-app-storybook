@@ -104,7 +104,7 @@ export const MODALS = {
   addBeneficiary: "yulife.modals.AddBeneficiary",
   defaultBeneficiaries: "yulife.modals.DefaultBeneficiaries",
   appReview: "yulife.modals.AppReview",
-  listPicker: "yulife.modals.listPicker",
+  blurredOverlay: "yulife.modals.blurredOverlay",
   personalProductStepContinue: "yulife.product.ContinueJourney",
   switchToGoogleFit: "yulife.modals.switchToGoogleFit",
 };

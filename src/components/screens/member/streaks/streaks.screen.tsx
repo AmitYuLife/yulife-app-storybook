@@ -1,6 +1,7 @@
-import * as React from "react";
+import React, { useMemo } from "react";
 import { View } from "react-native";
 import { Button, LinkButton, TextTemplate } from "@atoms";
+import { ActiveBuffsButton } from "@organisms";
 import styles from "./streaks.styles";
 import LottieView from "lottie-react-native";
 import StreakCompletion from "@components/screens/member/streaks/subcomponents/streak-completion";
@@ -8,6 +9,7 @@ import StreakStart from "./subcomponents/streak-start";
 import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
 import { Style } from "@styles";
 import { DETOX_ENABLED } from "@services/socket";
+import { BuffArea } from "@graphql/_core/schema/globalTypes";
 
 interface IProps {
   isLoading: boolean;
@@ -47,12 +49,15 @@ const StreaksScreen = ({
   const autoPlayLottie = DETOX_ENABLED ? false : true;
 
   const streakInfo = getStreakInfo(streakMax, heading, subHeading, reward, currentStreakCompleted);
+  const buffTypes = useMemo(() => [BuffArea.streak], []);
+
   return (
     <>
       <GenericHeadingPad />
       <View style={styles.wrapper}>
         <View style={styles.lottieWrapper}>
           <LottieView source={streakInfo?.image} autoPlay={autoPlayLottie} loop={false} />
+          <ActiveBuffsButton style={styles.activeBuffsButton} buffTypes={buffTypes} />
         </View>
         <TextTemplate type={Style.isShortToMedium() ? "h2" : "h1"} textAlign="center">
           {streakInfo?.header}

@@ -308,8 +308,8 @@ export default [
     component: require("../components/modals/price-changed/price-changed").default,
   },
   {
-    name: MODALS.listPicker,
-    component: require("../components/modals/list-picker-modal/list-picker-modal").default,
+    name: MODALS.blurredOverlay,
+    component: require("../components/modals/blurred-overlay/blurred-overlay").default,
   },
   {
     name: MODALS.personalProductStepContinue,

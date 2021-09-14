@@ -45,6 +45,7 @@ export * from "./CreateTopUpsQuote";
 export * from "./DeleteConnection";
 export * from "./DuelOpponent";
 export * from "./EarnRateDetails";
+export * from "./GetActiveBuffsOverlay";
 export * from "./GetActivityHistory";
 export * from "./GetAllPurchases";
 export * from "./GetCheckoutDetails";

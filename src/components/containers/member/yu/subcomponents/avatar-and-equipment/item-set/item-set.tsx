@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet, ViewStyle, View } from "react-native";
-import { Colours } from "@styles";
+import { Colours, Style } from "@styles";
 import { Item } from "./item";
 import { YuScreenProductSlot } from "@graphql/_core/schema";
 
@@ -27,6 +27,7 @@ export const styleItemSet = StyleSheet.create({
     alignItems: "center",
     paddingTop: 8,
     paddingBottom: 2,
+    paddingHorizontal: Style.adjust(5),
     backgroundColor: Colours.metallic.m100,
     borderRadius: 8,
   } as ViewStyle,
