@@ -23,7 +23,7 @@ export const ProductStepContentItemScrollPicker = memo(
         pickerCancelButtonLabel,
         pickerConfirmButtonLabel,
       });
-    }, [answerKey]);
+    }, [answerKey, variants]);
 
     return (
       <View style={styles.wrapper}>
