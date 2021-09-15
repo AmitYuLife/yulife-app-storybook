@@ -154,18 +154,6 @@ export enum ProductType {
   personal = "personal",
 }
 
-export enum ScreeningStatus {
-  IN_PROGRESS = "IN_PROGRESS",
-  NONE = "NONE",
-  PROCESSING = "PROCESSING",
-  PURCHASED = "PURCHASED",
-  REJECTED = "REJECTED",
-  RGA_APPLIED = "RGA_APPLIED",
-  RGA_LOADING = "RGA_LOADING",
-  RGA_REJECTED = "RGA_REJECTED",
-  WAITING_MSS = "WAITING_MSS",
-}
-
 export enum TopBarType {
   DEFAULT = "DEFAULT",
   DESERT = "DESERT",
@@ -265,13 +253,6 @@ export interface CustomerBeneficiaryUpdate {
   phoneNumber?: string | null;
   relationship: string;
   remove?: boolean | null;
-}
-
-/**
- * @deprecated - can remove from updateFibQuote. This is only used for betas
- */
-export interface FibQuote {
-  screeningStatus?: ScreeningStatus | null;
 }
 
 /**

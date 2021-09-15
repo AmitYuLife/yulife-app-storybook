@@ -1,14 +1,10 @@
-import { useQuery } from "@apollo/react-hooks";
 import React, { memo, useCallback, useState } from "react";
 import { useDispatch } from "react-redux";
 import { View } from "react-native";
 import { Text } from "@atoms";
 import { FibLocalNavigation, FIB_CONFIRM_PACKAGES } from "../fib.types";
 import { FibCustomPercentage } from "@components/screens/products/fib/custom-percentage/fib.custom-percentage";
-import { GQL_QUERY_GET_CUSTOM_COVER_PRICES_BY_PERCENTAGES } from "@graphql/products";
 import { formatPrice, getCoverTypeByPercentage } from "../fib.helpers";
-import { GetCustomCoverPricesByPercentages, GetCustomCoverPricesByPercentagesVariables } from "@graphql/_core/schema";
-import { ProductCode } from "@graphql/_core/schema/globalTypes";
 import { updateFIBValue } from "@redux/product/product.actions";
 
 interface OwnProps {
@@ -23,15 +19,7 @@ const FibCustomPercentageContainer = memo(function (props: OwnProps) {
   const { navigation } = props;
   const dispatch = useDispatch();
 
-  const { loading, error, data } = useQuery<
-    GetCustomCoverPricesByPercentages,
-    GetCustomCoverPricesByPercentagesVariables
-  >(GQL_QUERY_GET_CUSTOM_COVER_PRICES_BY_PERCENTAGES, {
-    variables: {
-      product: ProductCode.YULFIB,
-    },
-    fetchPolicy: "network-only",
-  });
+  const { loading, error, data } = { loading: true, error: "", data: {} as any };
 
   const handleNavigateForward = useCallback(() => {
     dispatch(

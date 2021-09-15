@@ -200,24 +200,9 @@ export interface GetCurrentUser_getCurrentUser {
   addressPostCode: string | null;
 }
 
-export interface GetCurrentUser_getTopUpsIds {
-  /**
-   * Latest top ups quote id
-   */
-  quoteId: string | null;
-  /**
-   * Customer product entity id
-   */
-  productId: string | null;
-}
-
 export interface GetCurrentUser {
   getIntercomHash: string | null;
   getCurrentUser: GetCurrentUser_getCurrentUser | null;
-  /**
-   * Query to obtain product and quote ids
-   */
-  getTopUpsIds: GetCurrentUser_getTopUpsIds | null;
 }
 
 export interface GetCurrentUserVariables {

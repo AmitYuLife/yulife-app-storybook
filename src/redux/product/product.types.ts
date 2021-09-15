@@ -1,8 +1,7 @@
 import { Cover } from "@components/containers/products/fib/fib.types";
 import { RehydrateAction } from "redux-persist";
 import { logOutSuccess, getUserSuccess } from "@redux/user/user.actions";
-import { CreateTopUpsQuote_createTopUpsQuote, GetTopUpsQuote_getTopUpsQuote } from "@graphql/_core/schema";
-import { CoverType, ScreeningStatus, YuWorld } from "@graphql/_core/schema/globalTypes";
+import { CoverType, YuWorld } from "@graphql/_core/schema/globalTypes";
 export const UPDATE_FIB_VALUE = "UPDATE_FIB_VALUE";
 export const RESET_FIB = "RESET_FIB";
 export const UPDATE_FIB_MEDICAL_VALUE = "UPDATE_FIB_MEDICAL_VALUE";
@@ -87,7 +86,7 @@ export interface FIBStore {
   rejected: boolean;
   productEntityId: string;
   latestQuoteId: string;
-  status: ScreeningStatus;
+  status: string;
   gpDetails: GPDetails;
   fibStyle: YuWorld;
   sumAssured: number;
@@ -106,12 +105,12 @@ export interface ResetFIBStoreAction {
 
 export interface RefreshFIBStoreAction {
   type: typeof REFRESH_FIB_STORE;
-  payload: GetTopUpsQuote_getTopUpsQuote;
+  payload: any;
 }
 
 export interface UpdateFIBValuesFromQuoteAction {
   type: typeof UPDATE_FIB_VALUES_FROM_QUOTE;
-  payload: CreateTopUpsQuote_createTopUpsQuote;
+  payload: any;
 }
 
 export interface UpdateFIBStyle {

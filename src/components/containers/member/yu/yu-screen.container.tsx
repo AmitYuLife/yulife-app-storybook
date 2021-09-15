@@ -7,7 +7,6 @@ import { YuScreenLoading } from "./yu-screen-loading";
 import { useQuery } from "@apollo/react-hooks";
 import { useSelector } from "react-redux";
 import { getShowYuscreenIntro } from "@redux/onboarding/onboarding.selectors";
-import { getUserFeatures } from "@redux/user/user.selectors";
 import { YuScreenIntro } from "./yu-screen-intro/yu-screen-intro";
 import { useTapBackTwiceToExit } from "@services/hooks/useTapBackTwiceToExit";
 import { IMainTabsProps } from "@navigation/root";
@@ -25,16 +24,13 @@ const _YuScreenContainer = (props: ConnectedState) => {
   useTapBackTwiceToExit(props.componentId);
 
   const showIntro = useSelector(getShowYuscreenIntro);
-  const yuScreenV3 = useSelector(getUserFeatures).yuScreenV3;
 
   if (showIntro) {
     return <YuScreenIntro />;
   }
 
   return (
-    <YuScreenLayout testID={YUSCREEN_V3(yuScreenV3)}>
-      {loading || !data ? <YuScreenLoading /> : <YuScreen />}
-    </YuScreenLayout>
+    <YuScreenLayout testID={YUSCREEN_V3(true)}>{loading || !data ? <YuScreenLoading /> : <YuScreen />}</YuScreenLayout>
   );
 };
 
