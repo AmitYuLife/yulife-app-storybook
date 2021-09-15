@@ -28,6 +28,7 @@ export const GQL_QUERY_GET_PERSONAL_PRODUCT_STEP_DETACHED_FAQS = gql`
               id
               markdown
               parsedMarkdown
+              title
             }
             links {
               id

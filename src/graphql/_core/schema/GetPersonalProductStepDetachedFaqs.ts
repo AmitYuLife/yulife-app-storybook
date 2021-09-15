@@ -58,6 +58,7 @@ export interface GetPersonalProductStepDetachedFaqs_getPersonalProductStepDetach
   id: string;
   markdown: string;
   parsedMarkdown: string | null;
+  title: string | null;
 }
 
 export interface GetPersonalProductStepDetachedFaqs_getPersonalProductStepDetachedFaqs_body_ContentItemPersonalProductFaqs_faqs_links {
