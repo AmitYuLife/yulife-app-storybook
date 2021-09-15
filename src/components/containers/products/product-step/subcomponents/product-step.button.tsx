@@ -23,7 +23,15 @@ export const ProductStepContentItemButton = memo(({ onPress, hasValidation, ...o
   const isValid = hasValidation
     ? body
         .filter((a) => (a as ContentItemTextInput).answerKey)
-        .every((a) => dynamicData[(a as ContentItemTextInput).answerKey])
+        .every((a) => {
+          const data = dynamicData[(a as ContentItemTextInput).answerKey];
+
+          if (Array.isArray(typeof data)) {
+            return (data as string[])?.length > 0;
+          }
+
+          return data;
+        })
     : true;
 
   return <ContentItemButton {...otherProps} onPress={dynamicOnPress} disabled={!isValid} />;
