@@ -73,7 +73,7 @@ const ProductStepDetachedContainer = (props: any) => {
         nestedHistory,
       }}
     >
-      <View style={styles.wrapper}>
+      <View style={nestedHistory.length === 0 ? styles.wrapper : styles.wrapperWhite}>
         <View style={{ height: headerHeight }} />
         <ScrollView showsVerticalScrollIndicator={false}>{body.map(renderItemContent)}</ScrollView>
       </View>
@@ -100,8 +100,12 @@ const styles = StyleSheet.create({
   } as ViewStyle,
   wrapper: {
     flex: 1,
-    backgroundColor: Colours.neutral.n50,
     paddingTop: Style.adjust(32),
+    backgroundColor: Colours.neutral.n50,
+  } as ViewStyle,
+  wrapperWhite: {
+    flex: 1,
+    backgroundColor: Colours.neutral.white,
   } as ViewStyle,
   loadingWrapper: {
     flex: 1,

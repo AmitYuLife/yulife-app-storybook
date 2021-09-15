@@ -41,7 +41,7 @@ export const ContentItemFaqs = memo((props: Props) => {
             parsedMarkdown={showingContent.content.parsedMarkdown}
             id="1"
             markdown={null}
-            title={null}
+            title={showingContent.content.title}
             perkId={null}
             styles={null}
           />
