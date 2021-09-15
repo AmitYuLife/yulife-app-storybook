@@ -5,22 +5,17 @@ import { Style } from "@styles";
 import { FibUnderwritingJourneyLayout } from "../../layouts/fib.underwriting-journey-layout";
 import { useBackHandler } from "@services/hooks/useBackHandler";
 import FibTitle from "@atoms/fib/title/title";
-import { Navigation } from "react-native-navigation";
-import { MODALS } from "@navigation/constants";
-import { FibLocalNavigation, FIB_CONFIRM_PACKAGES } from "@containers/products/fib/fib.types";
-import { ScreeningStatus } from "@graphql/_core/schema/globalTypes";
-import Logger from "@services/logging/logger";
+import { FibLocalNavigation } from "@containers/products/fib/fib.types";
 
 export interface IFibResultsInScreenProps {
   onClose?: () => void;
   navigation: FibLocalNavigation;
   showRejectedScreen: () => void;
   showCongratulationScreen: () => void;
-  fibStatus: ScreeningStatus;
 }
 
 export const FibResultsInScreen = memo(function (props: IFibResultsInScreenProps) {
-  const { onClose, showRejectedScreen, showCongratulationScreen, fibStatus, navigation } = props;
+  const { onClose } = props;
 
   const backHandler = useCallback(() => {
     onClose();
@@ -28,40 +23,10 @@ export const FibResultsInScreen = memo(function (props: IFibResultsInScreenProps
   }, [onClose]);
 
   useBackHandler(backHandler);
-  // TODO: Display price change modal when removing this screen.
-  const priceChanged = useCallback(() => {
-    return Navigation.showModal({
-      component: {
-        id: MODALS.generic,
-        name: MODALS.generic,
-        passProps: {
-          onPress: async () => {
-            await Navigation.dismissModal(MODALS.generic);
-            navigation.push(FIB_CONFIRM_PACKAGES);
-          },
-          heading: "Price change",
-          subheading: "After processing your data, your price was changed",
-          ctaLabel: "Continue",
-        },
-      },
-    });
-  }, [navigation]);
 
   const onPressContinue = useCallback(() => {
-    switch (fibStatus) {
-      case ScreeningStatus.RGA_LOADING:
-        priceChanged();
-        break;
-      case ScreeningStatus.RGA_REJECTED:
-        showRejectedScreen();
-        break;
-      case ScreeningStatus.RGA_APPLIED:
-        showCongratulationScreen();
-        break;
-      default:
-        Logger.logMixpanelEvent("Unhandled ScreeningStatus", { screeningStatus: fibStatus });
-    }
-  }, [fibStatus, priceChanged, showRejectedScreen, showCongratulationScreen]);
+    return;
+  }, []);
 
   return (
     <FibUnderwritingJourneyLayout heading={"Results"} progressBarHideType="unrendered" onPreviousQuestion={onClose}>

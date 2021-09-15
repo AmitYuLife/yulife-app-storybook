@@ -7,9 +7,6 @@ import { FibResultsInScreen } from "@screens/products/fib/underwriting-journey/i
 import { IReduxState } from "@redux/_core/reducers";
 import { getFIBState } from "@redux/product/product.selectors";
 import { connect, useDispatch, useSelector } from "react-redux";
-import { UpdateTopUpsQuote_updateFibQuote, UpdateTopUpsQuoteVariables } from "@graphql/_core/schema/UpdateTopUpsQuote";
-import { useMutation } from "@apollo/react-hooks";
-import { GQL_MUTATION_UPDATE_TOP_UPS_QUOTE } from "@graphql/products/updateTopUpsQuote";
 import { resetFIBUnderwritingJourney } from "@redux/product/product.actions";
 import { YUGI_INTRO_TYPE } from "./fib.yugi-intro.container";
 import { getUserFeatures } from "@redux/user/user.selectors";
@@ -33,14 +30,10 @@ type Props = IFibInfoContainerProps & ConnectedState;
 
 const _FibInfoContainer = memo(function (props: Props) {
   const { navigation, fibStore } = props;
-  const { status, latestQuoteId: quoteId } = fibStore;
+  const { latestQuoteId: quoteId } = fibStore;
   const { type, packageType }: { type: InfoTypes; packageType: string } = navigation.currentRoute.passProps;
 
   const dispatch = useDispatch();
-
-  const [updateFibQuote] = useMutation<UpdateTopUpsQuote_updateFibQuote, UpdateTopUpsQuoteVariables>(
-    GQL_MUTATION_UPDATE_TOP_UPS_QUOTE
-  );
 
   const [screenType, setScreenType] = useState<InfoTypes>(type);
   const canResetFib = useSelector(getUserFeatures).resetFib;
@@ -65,10 +58,6 @@ const _FibInfoContainer = memo(function (props: Props) {
           onPress: async () => {
             await Navigation.dismissModal(MODALS.generic);
             if (canResetFib && quoteId) {
-              await updateFibQuote({
-                variables: { archiveQuote: true, quoteId },
-              });
-
               dispatch(resetFIBUnderwritingJourney());
             }
 
@@ -79,7 +68,7 @@ const _FibInfoContainer = memo(function (props: Props) {
         },
       },
     });
-  }, [navigation, canResetFib, dispatch, quoteId, updateFibQuote]);
+  }, [navigation, canResetFib, dispatch, quoteId]);
 
   const onClose = useCallback(() => {
     Navigation.popTo(ROUTES.yuScreen);
@@ -115,7 +104,6 @@ const _FibInfoContainer = memo(function (props: Props) {
           navigation={navigation}
           showRejectedScreen={() => setScreenType(InfoTypes.rejected)}
           showCongratulationScreen={() => setScreenType(InfoTypes.paymentCongrats)}
-          fibStatus={status}
         />
       );
     default:

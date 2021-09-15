@@ -16,7 +16,7 @@ import {
   SubscribeToProductVariables,
 } from "@graphql/_core/schema";
 import { useMutation } from "@apollo/react-hooks";
-import { GQL_QUERY_GET_TOP_UPS_QUOTE, GQL_MUTATION_SUBSCRIBE_TO_PRODUCT } from "@graphql/products";
+import { GQL_MUTATION_SUBSCRIBE_TO_PRODUCT } from "@graphql/products";
 import { GQL_MUTATION_ADD_PAYMENT_CARD, GQL_MUTATION_CONFIRM_PAYMENT_CARD } from "@graphql/payment";
 import Logger from "@services/logging/logger";
 import { getUserFeatures } from "@redux/user/user.selectors";
@@ -31,7 +31,7 @@ export const usePayment = ({ navigation }: IUsePayment) => {
   const {
     answers: { contactDetails },
   } = useSelector(getFIBState);
-  const { productEntityId, latestQuoteId, medicalInvestigationRequired, selectedPackage } = useSelector(getFIBState);
+  const { medicalInvestigationRequired, selectedPackage } = useSelector(getFIBState);
   const fullName = useSelector(getFullName);
   const [paymentProviderDetails, setPaymentProviderDetails] = useState(null as StripePaymentRequestToken);
   const [isPaymentCollected, setPaymentCollected] = useState(false);
@@ -46,20 +46,7 @@ export const usePayment = ({ navigation }: IUsePayment) => {
   const [addPaymentCard] = useMutation<AddPaymentCard, AddPaymentCardVariables>(GQL_MUTATION_ADD_PAYMENT_CARD);
   const [confirmPaymentCard] = useMutation<ConfirmPaymentCard, ConfirmPaymentCardVariables>(
     GQL_MUTATION_CONFIRM_PAYMENT_CARD,
-    {
-      refetchQueries: [
-        {
-          query: GQL_QUERY_GET_TOP_UPS_QUOTE,
-          variables: {
-            product: ProductCode.YULFIB,
-            input: {
-              customerProductEntityId: productEntityId,
-              quoteId: latestQuoteId,
-            },
-          },
-        },
-      ], // Update waiting for MSS quote status
-    }
+    {}
   );
 
   const handlePressPayment = useCallback(async () => {

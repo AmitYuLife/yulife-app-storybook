@@ -1,4 +1,3 @@
-import { CreateTopUpsQuote_createTopUpsQuote, GetTopUpsQuote_getTopUpsQuote } from "@graphql/_core/schema";
 import { FIBStoreAnswerValue, UPDATE_FIB_STYLE, RESET_FIB } from "./product.types";
 import {
   ProductActionTypes,
@@ -59,14 +58,14 @@ export function resetFIBUnderwritingJourney<T>(): ProductActionTypes<T> {
   };
 }
 
-export function refreshFIBStore<T>(payload: GetTopUpsQuote_getTopUpsQuote): ProductActionTypes<T> {
+export function refreshFIBStore<T>(payload: any): ProductActionTypes<T> {
   return {
     type: REFRESH_FIB_STORE,
     payload,
   };
 }
 
-export function updateFIBValuesFromNewQuote<T>(payload: CreateTopUpsQuote_createTopUpsQuote): ProductActionTypes<T> {
+export function updateFIBValuesFromNewQuote<T>(payload: any): ProductActionTypes<T> {
   return {
     type: UPDATE_FIB_VALUES_FROM_QUOTE,
     payload,

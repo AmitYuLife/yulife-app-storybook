@@ -1,5 +1,5 @@
 import React, { memo } from "react";
-import { connect, useDispatch } from "react-redux";
+import { connect } from "react-redux";
 import { IReduxState } from "@redux/_core/reducers";
 import { getUserFirstName } from "@redux/user/user.selectors";
 import {
@@ -10,10 +10,6 @@ import {
   FIB_CHOOSE_STYLE,
 } from "../fib.types";
 import { FibYugiIntroScreen } from "@screens/products/fib/yugi-intro/fib-yugi-intro.screen";
-import { useMutation } from "@apollo/react-hooks";
-import { UpsertProductEntityMutationTuple, GQL_MUTATION_UPSERT_TOP_UPS_PRODUCT_ENTITY } from "@graphql/products";
-import { ProductCode } from "@graphql/_core/schema/globalTypes";
-import { updateFIBValue } from "@redux/product/product.actions";
 import { onUnderwritingClose } from "../fib.helpers";
 import { FIB_ENTER_YOUR_NAME, FIB_INTRO } from "@components/containers/products/fib/data/underwriting-journey-data";
 
@@ -40,23 +36,7 @@ const _FibYugiIntroContainer = memo(function FibYugiIntroContainer(props: Props)
 
   const { type, initialIndex }: { type: YUGI_INTRO_TYPE; initialIndex: number } = navigation.currentRoute.passProps;
 
-  const [upsertProductEntity]: UpsertProductEntityMutationTuple = useMutation(
-    GQL_MUTATION_UPSERT_TOP_UPS_PRODUCT_ENTITY
-  );
-  const dispatch = useDispatch();
-
   const upsertProductEntityQuery = async () => {
-    const productEntity = await upsertProductEntity({
-      variables: {
-        product: ProductCode.YULFIB,
-      },
-    });
-    dispatch(
-      updateFIBValue({
-        key: "productEntityId",
-        value: productEntity.data?.upsertTopUpsProductEntity?.id,
-      })
-    );
     return;
   };
 

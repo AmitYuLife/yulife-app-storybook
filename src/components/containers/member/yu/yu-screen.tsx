@@ -1,25 +1,21 @@
-import React, { useState } from "react";
+import React from "react";
 import { StyleSheet, ViewStyle, View, ScrollView, Platform } from "react-native";
 import { Style, TOP_BAR } from "@styles";
 import media from "@styles/media";
 import { YUSCREEN, YUSCREEN_SCROLL_VIEW } from "@ids";
 import { NameAndLevel, AvatarAndEquipment, YuCoinPower } from "./subcomponents";
-import { YuScreenProductContext } from "./yu-screen.context";
 
 export const YuScreen = () => {
-  const [product, setProduct] = useState(null);
   return (
-    <YuScreenProductContext.Provider value={{ product, setProduct }}>
-      <View style={styles.wrapper} testID={YUSCREEN}>
-        <ScrollView showsVerticalScrollIndicator={false} style={styles.list} testID={YUSCREEN_SCROLL_VIEW}>
-          <View style={styles.padTop} />
-          <NameAndLevel />
-          <AvatarAndEquipment />
-          <YuCoinPower />
-          <View style={styles.padBot} />
-        </ScrollView>
-      </View>
-    </YuScreenProductContext.Provider>
+    <View style={styles.wrapper} testID={YUSCREEN}>
+      <ScrollView showsVerticalScrollIndicator={false} style={styles.list} testID={YUSCREEN_SCROLL_VIEW}>
+        <View style={styles.padTop} />
+        <NameAndLevel />
+        <AvatarAndEquipment />
+        <YuCoinPower />
+        <View style={styles.padBot} />
+      </ScrollView>
+    </View>
   );
 };
 

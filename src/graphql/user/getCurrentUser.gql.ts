@@ -13,10 +13,6 @@ export const GQL_QUERY_GET_CURRENT_USER = gql`
     getCurrentUser {
       ...User
     }
-    getTopUpsIds {
-      quoteId
-      productId
-    }
   }
 `;
 
