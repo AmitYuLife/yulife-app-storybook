@@ -1,7 +1,7 @@
 import React, { memo, useCallback, useState } from "react";
 import { StyleSheet, View, ViewStyle } from "react-native";
 import { ContentItemRadio as GqlRadio } from "@graphql/_core/schema";
-import { BoxOption, CheckBox, Image, Text } from "@atoms";
+import { BoxOption, CheckBox, Image, TextTemplate } from "@atoms";
 import { Style } from "@styles";
 import { mapServerStyles } from "../_utils/mapServerStyles";
 
@@ -37,9 +37,9 @@ export const ContentItemRadio = memo(({ onChange, choices, value: initialValue, 
                     <Image height={Style.adjust(32)} width={Style.adjust(32)} source={renderAsIcon.icon} />
                   </View>
                   <View style={styles.boxTextWrapper}>
-                    <Text bold={true} style={{ color: renderAsIcon.textColor }}>
+                    <TextTemplate type="b2b" color={renderAsIcon.textColor}>
                       {label}
-                    </Text>
+                    </TextTemplate>
                   </View>
                 </View>
               </BoxOption>
