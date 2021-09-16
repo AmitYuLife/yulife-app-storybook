@@ -126,10 +126,12 @@ export const GQL_FRAGMENT_CONTENT_ITEM_PERSONAL_PRODUCT_REVIEW_ITEM = gql`
     subheading
     stepKey
     leftIcon {
-      ...RemoteImage
+      id
+      uri(options: { width: 64, height: 64 })
     }
     rightIcon {
-      ...RemoteImage
+      id
+      uri(options: { width: 64, height: 64 })
     }
     onPress {
       type
