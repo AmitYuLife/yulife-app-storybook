@@ -7,6 +7,146 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.11.0] - 2021-09-16
+
+### Features
+
+- Feature: Review component
+- Feature: PLI Multi select components and multi button styles
+- Feature: PLI faqs and documents
+- Feature: PLI Radio components (with icon'd option)
+- Feature: PLI back step, text input & date picker
+- Feature: Initialise SelectPackage PackageCards
+- Feature: Implement client-side underwriting
+- Feature: Product Platform SDUI
+- [HOTFIX] Detox: FeatureOnly
+
+### Bugfixes
+
+- Bugfix PLI: Hide footer on android small devices when keyboard is showing
+- Bugfix: Remove Image atom pointer events
+- Bugfix: letterSpacing on Android devices
+- Bugfix: PLI Step continue modal doesnt close when click continue on Android
+- Bugfix: Android back button not working on FAQ and Documents screen
+- Bugfix: Yugi icon on birthday screen wrong size on android
+- Bugfix: PLI UI fixes
+- Bugfix: FAQ and Documents YugiHeader margin
+- Bugfix: use stepData json value for dynamicData initial state
+- Bugfix: PLI Popover not closing
+- Bugfix: android navigation on personalProductStep
+- Bugfix: yugi intro on android
+- Bugfix: progress bar
+- Bugfix: TextTemplate shouldnt extends TextProps
+- Bugfix: Set multiple choice quesiton to only able to select one option
+- Bugfix GS-77: Unresponsive menu and navbar
+- Bugfix: Referrals missing tracking
+- Bugfix: Guard Absolute component
+- Bugfix: Rewards - Show all availableDenominations
+- Bugfix: Android build failing due react-native-blur not fully removed
+- Bugfix: Fields "title" conflict because they return conflicting types "String" and "String!"
+- Bugfix: Rewards details, blur on android, add space on account number and dismiss keyboard
+- Task GS-69 / Bugfix ENG-2250: Rewards tracking, YuCoin total delay and small improvements
+- Bugfix: TextTemplate letterSpacing not working correctly on android
+- (origin/bugfix/reward-details) Bugfix: Rewards details, submit button validation, add bottom padding on android and small ui improvement
+- Bugfix GS-45: Add referral link to share message on android devices
+
+### Tasks
+
+- Task PLI: Replace Text component to TextTemplate
+- Task GS-54: Personal Benefit Overlay
+- Task XSE-312: Add row with icon and text
+- Task: quote loading animations
+- Task XSE-271: Scroll picker contentItem
+- Task XSE-266: Add extra padding for floating yugis
+- Task GS-89: Util clean up
+- Task: Add package-select and custom-package-select steps
+- Task GS-86: Change Action Sheet to allow non £ values
+- Task GS-80: Update Health Syncing Copy
+- Task: product step validation PoC
+- Task: multi-buttons
+- Task GS-82: Samsung Health Integration UI
+- Task: Move PackageCardPerks to Molecules
+- Revert "Merge branch 'task/package-perks' into 'develop'"
+- Task GS-84: In app survey tracking
+- Task: Add ProductStep Body default padding
+- Task: Move PackageCardPerks to Molecules
+- Task GS-63: Update Daily Steps Screen
+- Task: change Member Zone to My Account
+- Task GS-75: Assign YuCoin for completing feedback form
+- Task: Add viewability config and active package card indicator
+- Task: personal step visit logic
+- Task GS-76: Expand In App Survey
+- Task: get referrals onboarding from api
+- Task: animated underwriting progress bar
+- Task GS-65: Preload assets from server
+- Task GS-48: Referral tracking
+- Task GS-27: Onboard Referrals
+- Task GS-78: Replace react-native-blur for @react-native-community/blur
+- Task DEVOP-20: Distinguish OS in apollo client
+- Task GS-65: Improved remote image
+- Task GS-6: Rewards Details
+- Task GS-47 Challenge Progress API
+- Task GS-25: Sidebar Illustrations
+- Task GS-25: New Illustrations
+- Task DEVOP-214: one button release
+- Task GS-44: Better tagging app store review
+- Task GS-45: Share button
+
+### Chores
+
+- Chore: rejection logic
+- Chore: personal product review
+- Chore: Add deprecation eslint plugin and deprecation message on <Text> component
+- Chore: split submitPersonalStep payload
+- Chore: yumoji try-on popover
+- Chore: ContentItemProductInfo
+- Chore: try-on yumoji
+- Chore: absolute items for product step
+- Chore: updated Podfile.lock
+- Chore: unify yumoji
+- Chore: align GenericHeading left and right icon types
+
+### Extra
+
+- Hotfix: FAQs individual background should be white & show FAQ title
+- Hotfix: button validation for arrays
+- Purge: Legacy FIB Part 1
+- Detox: 18.20.3 Upgrade
+- Hotfix: keep pli picker selection 2
+- Hotfix: keep pli picker selection
+- Hotfix: continue modal
+- Bugifx ProductStepYugiConfirm: Add animation on submit button and use Style.adjust
+- Hotfix: popover timeout
+- Hotfix: null classified as object and fix for missing header
+- Hotfix: dispatch server action payload properly
+- Hotfix: Allow PLI header to have no back button
+- Detox: Skip Tokens
+- add id to levelSlot in user gql
+- Hotfix: prepopulate dynamicData on mount and step change
+- Purge: Unused PLI components
+- Detox: Fixes 6/9
+- Detox: Referrals fix + Add userOnboardings
+- Detox: Fixes 1/9
+- Detox: Referrals
+- delete PopoverContent
+- detox: fixes 25/08
+- change saga trigger
+- Revert: intercom sdk upgrade
+- Detox/rewards fix
+- Detox: Surge
+- Detox: Rewards
+- [HOTFIX] Detox run with screenshots folder
+- Hotfix: update the pod file
+- Upgrade: intercom to latest sdk
+- Hotfix: fiit steps
+- referrals screen adjustments
+- [HOTFIX] Detox add screenshot contexts
+- Detox/turbo mode
+- default uris
+- Hotfix: add NSCameraUsageDescription in info.plist
+- Detox: API Node 14 Fixes
+- Detox: Smoke Fixes
+
 ## [3.10.0] - 2021-08-02
 
 ### Features
