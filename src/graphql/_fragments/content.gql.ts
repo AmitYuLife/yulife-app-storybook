@@ -94,7 +94,8 @@ export const GQL_FRAGMENT_CONTENT_ITEM_LOTTIE = gql`
 export const GQL_FRAGMENT_CONTENT_ITEM_RADIO_ICON = gql`
   fragment ContentItemRadioIcon on ContentItemRadioIcon {
     icon {
-      ...RemoteImage
+      id
+      uri(options: { width: 64, height: 64 })
     }
     textColor
     selectedStyles {
@@ -224,7 +225,8 @@ export const GQL_FRAGMENT_CONTENT_ITEM_MULTI_SELECT = gql`
       id
       label
       icon {
-        ...RemoteImage
+        id
+        uri(options: { width: 128, height: 128 })
       }
     }
   }
