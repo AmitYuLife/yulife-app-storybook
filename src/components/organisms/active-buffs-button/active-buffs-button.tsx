@@ -11,6 +11,8 @@ import ActiveBuffsModal from "@components/modals/active-buffs/active-buffs.modal
 import { showOverlayWithChild } from "@modals/blurred-overlay/showOverlayWithChild";
 import { Style } from "@styles";
 import { useLazyQuery } from "@apollo/react-hooks";
+import Logger from "@services/logging/logger";
+import { getRouteState } from "@redux/app/app.selectors";
 
 interface IProps {
   buffTypes: BuffArea[];
@@ -26,6 +28,7 @@ const ActiveBuffsButton = ({ buffTypes, style }: IProps) => {
   );
 
   const features = useSelector(getUserFeatures);
+  const location = useSelector(getRouteState);
   const showBuffs = features.showBuffs;
 
   useEffect(() => {
@@ -35,8 +38,19 @@ const ActiveBuffsButton = ({ buffTypes, style }: IProps) => {
   }, [getActiveBuffs, showBuffs, buffTypes]);
 
   const onPress = useCallback(() => {
+    const active_boosts = data?.getActiveBuffsOverlay.equipment
+      .map((eq) => eq.buffs)
+      .reduce<string[]>((agg, current) => {
+        agg.push(...current.map((item) => item.title));
+        return agg;
+      }, []);
+
+    Logger.logMixpanelEvent("active_boosts_viewed", {
+      location,
+      active_boosts,
+    });
     showOverlayWithChild(<ActiveBuffsModal activeBuffs={data?.getActiveBuffsOverlay} />);
-  }, [data]);
+  }, [data, location]);
 
   if (!showBuffs || !data?.getActiveBuffsOverlay?.equipment?.length) {
     return null;
