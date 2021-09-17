@@ -30,7 +30,7 @@ export function* sendHistoricalMeditationData(onboardingDate: Moment) {
   try {
     const userFeatures: ReturnType<typeof getUserFeatures> = yield select(getUserFeatures);
 
-    const results: Unpacked<typeof queryHistoricalMeditationData> = yield call(
+    const { results }: Unpacked<typeof queryHistoricalMeditationData> = yield call(
       queryHistoricalMeditationData,
       onboardingDate,
       userFeatures

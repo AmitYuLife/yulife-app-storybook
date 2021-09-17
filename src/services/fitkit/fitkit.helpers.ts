@@ -53,13 +53,19 @@ export const transformSampleResultToPayload = (item: SampleQueryResult): Challen
   value: Math.floor(item.value),
 });
 
+interface QueryFitKitByTypesResponse {
+  results: ChallengePayload[];
+  error: boolean;
+}
+
 export const queryFitKitByTypes = async (
   startTime: string,
   endTime: string,
   fitKitTypes: FitKitType[],
   { disableUserEntries = true, loggingEnabled = false }: IUserStore["features"] = {}
-): Promise<ChallengePayload[]> => {
+): Promise<QueryFitKitByTypesResponse> => {
   const allResults: SampleQueryResult[] = [];
+  let error = false;
 
   for (const fitKitType of fitKitTypes) {
     try {
@@ -82,14 +88,15 @@ export const queryFitKitByTypes = async (
 
       allResults.push(...results);
     } catch (e) {
+      error = true;
       Logger.logMixpanelEvent(`raw_${fitKitType}_query_error`, { error: e.message });
     }
   }
 
   try {
-    return allResults.map(transformSampleResultToPayload);
+    return { results: allResults.map(transformSampleResultToPayload), error };
   } catch (e) {
-    return [];
+    return { results: [], error };
   }
 };
 
