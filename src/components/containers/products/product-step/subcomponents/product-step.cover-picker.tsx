@@ -7,16 +7,27 @@ import { Colours, Style } from "@styles";
 import { mapServerStyles } from "@components/sdui";
 import { useSetDefaultAnswer } from "../hooks/useSetDefaultAnswer";
 import { CoverType } from "@graphql/_core/schema/globalTypes";
+import { LOCAL_ANSWER_KEY } from "../utils/localAnswerKeys";
 
 export const ProductStepCoverPicker = memo((props: Props) => {
   const { answerKey, answerKeyDefaultValue } = props;
   const { setDynamicData, dynamicData } = useContext(ProductStepContext);
 
   useSetDefaultAnswer({ dynamicData, setDynamicData, answerKeyDefaultValue, answerKey });
+  useSetDefaultAnswer({
+    dynamicData,
+    setDynamicData,
+    answerKeyDefaultValue: CoverType.common,
+    answerKey: LOCAL_ANSWER_KEY.CoverType,
+  });
 
   const handlePickCover = useCallback(
-    (selectedValue: number) => () => {
-      setDynamicData((oldState) => ({ ...oldState, [props.answerKey]: selectedValue }));
+    ({ coverType, value }: { coverType: CoverType; value: number }) => () => {
+      setDynamicData((oldState) => ({
+        ...oldState,
+        [props.answerKey]: value,
+        [LOCAL_ANSWER_KEY.CoverType]: coverType,
+      }));
     },
     [props.options, setDynamicData]
   );
@@ -27,7 +38,7 @@ export const ProductStepCoverPicker = memo((props: Props) => {
         <BoxOption
           key={option.value}
           selectedStyle={mapCoverToStyle(option.coverType)}
-          onPress={handlePickCover(option.value)}
+          onPress={handlePickCover({ coverType: option.coverType, value: option.value })}
           isSelected={dynamicData[answerKey] === option.value}
           innerHeight={Style.adjust(100)}
           wrapperStyle={styles.boxWrapper}

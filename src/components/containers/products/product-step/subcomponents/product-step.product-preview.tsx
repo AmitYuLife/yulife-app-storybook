@@ -9,6 +9,7 @@ import { ProductStepContext } from "../product-step.context";
 import { Image, Hyperlink, TextTemplate } from "@atoms";
 import { mapServerStyles } from "@components/sdui";
 import { useSetDefaultAnswer } from "../hooks/useSetDefaultAnswer";
+import { mapCoverTypeToColor } from "../utils/mapCoverTypeToColor";
 
 export const ProductStepProductPreview = memo((props: Props) => {
   const { answerKey, answerKeyDefaultValue } = props;
@@ -21,22 +22,24 @@ export const ProductStepProductPreview = memo((props: Props) => {
 
   useSetDefaultAnswer({ answerKey, answerKeyDefaultValue, dynamicData, setDynamicData });
 
-  const { markdown, monthlyCost, priceColour, coverType } = useMemo(() => {
+  const { markdown, monthlyCost, priceColour, coverType, monthlyCostSuffix } = useMemo(() => {
     if (!dynamicData[answerKey]) {
-      return { markdown: "", monthlyCost: "", priceColour: Colours.neutral.n800 };
+      return { markdown: "", monthlyCost: "", priceColour: Colours.neutral.n800, monthlyCostSuffix: "" };
     }
 
     const answerKeyToMarkdownHashMap = props.coverList.reduce((acc, curr) => {
       acc[curr.percentCovered] = {
-        markdown: curr.markdown,
+        markdown: curr.productPreviewMarkdown,
         monthlyCost: curr.monthlyCost,
         priceColour: mapCoverTypeToColor(curr.coverType),
         coverType: curr.coverType,
+        monthlyCostSuffix: curr.monthlyCostSuffix,
       };
 
       return acc;
-    }, {} as Record<number, { markdown: string; monthlyCost: string; priceColour: string; coverType: CoverType }>);
-    const { markdown, monthlyCost, priceColour, coverType } =
+    }, {} as Record<number, { markdown: string; monthlyCost: string; priceColour: string; coverType: CoverType; monthlyCostSuffix: string }>);
+
+    const { markdown, monthlyCost, priceColour, coverType, monthlyCostSuffix } =
       answerKeyToMarkdownHashMap[dynamicData[answerKey] as number] || {};
 
     return {
@@ -44,6 +47,7 @@ export const ProductStepProductPreview = memo((props: Props) => {
       monthlyCost,
       priceColour,
       coverType,
+      monthlyCostSuffix,
     };
   }, [dynamicData, answerKey, props.coverList]);
 
@@ -61,9 +65,11 @@ export const ProductStepProductPreview = memo((props: Props) => {
           <Markdown containerStyle={styles.markdownWrapper} text={markdown} />
           <View style={styles.costWrapper}>
             <TextTemplate color={priceColour} type="h3">
-              {monthlyCost}
+              {`${monthlyCost} `}
             </TextTemplate>
-            <TextTemplate color={priceColour} type="b2">{` / month`}</TextTemplate>
+            <TextTemplate color={priceColour} type="b2">
+              {monthlyCostSuffix}
+            </TextTemplate>
           </View>
           <View style={styles.hyperlinkWrapper}>
             <Image
@@ -79,22 +85,6 @@ export const ProductStepProductPreview = memo((props: Props) => {
     </View>
   );
 });
-
-const mapCoverTypeToColor = (coverType: CoverType) => {
-  if (coverType === CoverType.epic) {
-    return Colours.products.fib.epic;
-  }
-
-  if (coverType === CoverType.rare) {
-    return Colours.products.fib.rare;
-  }
-
-  if (coverType === CoverType.common) {
-    return Colours.products.fib.common;
-  }
-
-  return Colours.neutral.n800;
-};
 
 const styles = StyleSheet.create({
   wrapper: {

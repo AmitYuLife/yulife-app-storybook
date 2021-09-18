@@ -33,6 +33,31 @@ export const GQL_FRAGMENT_CONTENT_ITEM_TEXT = gql`
   }
 `;
 
+export const GQL_FRAGMENT_COVER_LIST_ITEM = gql`
+  fragment ContentItemCoverListItem on ContentItemCoverListItem {
+    percentCovered
+    monthlyCost
+    monthlyCostSuffix
+    monthlyPayout
+    productPreviewMarkdown
+    collapsingHeaderProductInfoHeading
+    coverType
+    slotBackgroundUrl {
+      ...RemoteImage
+    }
+  }
+`;
+
+export const GQL_FRAGMENT_CONTENT_ITEM_COLLAPSING_HEADER_PRODUCT_INFO = gql`
+  fragment ContentItemCollapsingHeaderProductInfo on ContentItemCollapsingHeaderProductInfo {
+    id
+    answerKey
+    coverList {
+      ...ContentItemCoverListItem
+    }
+  }
+`;
+
 export const GQL_FRAGMENT_CONTENT_ITEM_ROW_ICON_TEXT_BANNER = gql`
   fragment ContentItemRowIconTextBanner on ContentItemRowIconTextBanner {
     id
@@ -232,21 +257,9 @@ export const GQL_FRAGMENT_CONTENT_ITEM_MULTI_SELECT = gql`
   }
 `;
 
-export const GQL_FRAGMENT_CONTENT_ITEM_PACKAGE_CARD_SLOT_INFO_ITEM_URL = gql`
-  fragment ContentItemPackageCardSlotInfoItemUrl on ContentItemPackageCardSlotInfoItemUrl {
-    url {
-      ...RemoteImage
-    }
-    world
-  }
-`;
-
 export const GQL_FRAGMENT_CONTENT_ITEM_PACKAGE_CARD_SLOT_INFO = gql`
   fragment ContentItemPackageCardSlotInfo on ContentItemPackageCardSlotInfo {
     status
-    itemUrl {
-      ...ContentItemPackageCardSlotInfoItemUrl
-    }
     backgroundUrl {
       ...RemoteImage
     }
@@ -270,15 +283,12 @@ export const GQL_FRAGMENT_CONTENT_ITEM_PRODUCT_PREVIEW = gql`
       ...ContentItemStyle
     }
     coverList {
-      percentCovered
-      monthlyCost
-      monthlyPayout
-      markdown
-      coverType
+      ...ContentItemCoverListItem
     }
     coverExpirationDate
   }
 `;
+
 export const GQL_FRAGMENT_CONTENT_ITEM_COVER_PICKER = gql`
   fragment ContentItemCoverPicker on ContentItemCoverPicker {
     id

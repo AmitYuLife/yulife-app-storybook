@@ -1,5 +1,5 @@
-import React, { useMemo } from "react";
-import { ScrollView, StyleSheet, View, ViewStyle } from "react-native";
+import React, { useContext, useMemo } from "react";
+import { Animated, Platform, StyleSheet, View, ViewStyle } from "react-native";
 import { GetPersonalProductStep_getPersonalProductStep_body as GPPS_Body } from "@graphql/_core/schema";
 import {
   ProductStepContentItemButton,
@@ -23,25 +23,43 @@ import {
 } from "../../subcomponents";
 import { ContentItemInfoCard, ContentItemPad, ContentItemText, ContentItemImage } from "@components/sdui";
 import { Style } from "@styles";
+import { ProductStepContext } from "../../product-step.context";
+import media from "@styles/media";
 
 interface Props {
   body: GPPS_Body[];
   headerHeight: number;
 }
 
-const DEFAULT_EXTRA_TOP_PADDING = Style.adjust(24);
+const DEFAULT_EXTRA_TOP_PADDING = media.select(
+  [
+    {
+      condition: Platform.OS === "ios" && Style.hasNotch,
+      value: -24,
+    },
+    {
+      condition: Platform.OS === "ios",
+      value: 0,
+    },
+  ],
+  Style.adjust(24)
+);
 
 export const Body = (props: Props) => {
   const { headerHeight } = props;
   const headerPadStyle = useMemo(() => ({ height: headerHeight + DEFAULT_EXTRA_TOP_PADDING }), [headerHeight]);
+  const { scrollValue } = useContext(ProductStepContext);
 
   return (
-    <>
+    <Animated.ScrollView
+      scrollEventThrottle={16}
+      onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: scrollValue } } }], { useNativeDriver: true })}
+      showsVerticalScrollIndicator={false}
+      style={styles.wrapper}
+    >
       {!headerHeight ? null : <View style={headerPadStyle} />}
-      <ScrollView showsVerticalScrollIndicator={false} style={styles.wrapper}>
-        {props.body.map(renderItemContent)}
-      </ScrollView>
-    </>
+      {props.body.map(renderItemContent)}
+    </Animated.ScrollView>
   );
 };
 

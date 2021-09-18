@@ -2119,11 +2119,38 @@
                 "name": "partType",
                 "description": null,
                 "type": {
+                  "kind": "ENUM",
+                  "name": "AvatarPartType",
+                  "ofType": null
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "GetYumojiPartSet",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "getProductYumojiPart",
+            "description": "Gets yumoji part type (e.g. Chest) associated to a product",
+            "args": [
+              {
+                "name": "customerProductId",
+                "description": null,
+                "type": {
                   "kind": "NON_NULL",
                   "name": null,
                   "ofType": {
-                    "kind": "ENUM",
-                    "name": "AvatarPartType",
+                    "kind": "SCALAR",
+                    "name": "String",
                     "ofType": null
                   }
                 },
@@ -2135,7 +2162,7 @@
               "name": null,
               "ofType": {
                 "kind": "OBJECT",
-                "name": "GetYumojiPartSet",
+                "name": "GetProductYumojiPartResponse",
                 "ofType": null
               }
             },
@@ -22450,6 +22477,33 @@
       },
       {
         "kind": "OBJECT",
+        "name": "GetProductYumojiPartResponse",
+        "description": null,
+        "fields": [
+          {
+            "name": "yumojiPartType",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "ENUM",
+                "name": "AvatarPartType",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
         "name": "EarnRateDetails",
         "description": null,
         "fields": [
@@ -23788,6 +23842,11 @@
           {
             "kind": "OBJECT",
             "name": "ContentItemConfirm",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "ContentItemCollapsingHeaderProductInfo",
             "ofType": null
           },
           {
@@ -26709,26 +26768,6 @@
             "deprecationReason": null
           },
           {
-            "name": "itemUrl",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "OBJECT",
-                  "name": "ContentItemPackageCardSlotInfoItemUrl",
-                  "ofType": null
-                }
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "backgroundUrl",
             "description": null,
             "args": [],
@@ -26754,49 +26793,6 @@
               "ofType": {
                 "kind": "SCALAR",
                 "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "inputFields": null,
-        "interfaces": [],
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "OBJECT",
-        "name": "ContentItemPackageCardSlotInfoItemUrl",
-        "description": null,
-        "fields": [
-          {
-            "name": "url",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "RemoteImage",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "world",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "ENUM",
-                "name": "YuWorld",
                 "ofType": null
               }
             },
@@ -26960,9 +26956,13 @@
                 "kind": "LIST",
                 "name": null,
                 "ofType": {
-                  "kind": "OBJECT",
-                  "name": "ContentItemPersonalProductPreviewCoverListItem",
-                  "ofType": null
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "ContentItemCoverListItem",
+                    "ofType": null
+                  }
                 }
               }
             },
@@ -27025,7 +27025,7 @@
       },
       {
         "kind": "OBJECT",
-        "name": "ContentItemPersonalProductPreviewCoverListItem",
+        "name": "ContentItemCoverListItem",
         "description": null,
         "fields": [
           {
@@ -27061,6 +27061,22 @@
             "deprecationReason": null
           },
           {
+            "name": "monthlyCostSuffix",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "monthlyPayout",
             "description": null,
             "args": [],
@@ -27077,7 +27093,23 @@
             "deprecationReason": null
           },
           {
-            "name": "markdown",
+            "name": "productPreviewMarkdown",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "collapsingHeaderProductInfoHeading",
             "description": null,
             "args": [],
             "type": {
@@ -27102,6 +27134,22 @@
               "ofType": {
                 "kind": "ENUM",
                 "name": "CoverType",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "slotBackgroundUrl",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "RemoteImage",
                 "ofType": null
               }
             },
@@ -27687,6 +27735,93 @@
                 "kind": "SCALAR",
                 "name": "String",
                 "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "styles",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "ContentItemStyle",
+                  "ofType": null
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "answerKey",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "ContentItemCollapsingHeaderProductInfo",
+        "description": null,
+        "fields": [
+          {
+            "name": "id",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "ID",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "coverList",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "ContentItemCoverListItem",
+                    "ofType": null
+                  }
+                }
               }
             },
             "isDeprecated": false,
