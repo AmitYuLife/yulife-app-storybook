@@ -26,7 +26,7 @@ export default function* getDailyMeditation() {
 
           const endTime = moment().format();
 
-          const results: Unpacked<typeof queryFitKitByTypes> = yield call(
+          const { results }: Unpacked<typeof queryFitKitByTypes> = yield call(
             queryFitKitByTypes,
             startTime,
             endTime,

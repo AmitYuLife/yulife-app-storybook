@@ -44,7 +44,13 @@ export function* sendMeditation(
     const startTime = moment(meditationLastUpdatedBeforeToday).startOf("day").format();
     const endTime = moment().subtract(1, "day").endOf("day").format();
 
-    const meditationResults = yield call(queryFitKitByTypes, startTime, endTime, [FitKitType.MindfulSession], features);
+    const { results: meditationResults, error } = yield call(
+      queryFitKitByTypes,
+      startTime,
+      endTime,
+      [FitKitType.MindfulSession],
+      features
+    );
 
     if (meditationResults.length > 0) {
       const aggregateMeditationChallengeArray: ChallengePayload[] = sampleMeditationDataToAggregatedData(
@@ -68,7 +74,7 @@ export function* sendMeditation(
           yield delay(15000);
         }
       }
-    } else {
+    } else if (!error) {
       yield put(meditationSinceLastUpdateSuccess());
     }
   }
