@@ -18,6 +18,8 @@ import { FlatList, TextTemplate } from "@atoms";
 import { Colours, Style } from "@styles";
 import { IProductStepContext, ProductStepContext } from "../../product-step.context";
 import { useSetDefaultAnswer } from "../../hooks/useSetDefaultAnswer";
+import { CoverType } from "@graphql/_core/schema/globalTypes";
+import { LOCAL_ANSWER_KEY } from "../../utils/localAnswerKeys";
 
 /**
  * Don't scale
@@ -39,6 +41,12 @@ export const ProductStepPackageCards = memo((props: GqlPackageCards) => {
   const snapToOffsets = Array.from({ length: props.packageCards.length }).map((_, i) => i * PACKAGE_CARD_WIDTH);
 
   useSetDefaultAnswer({ answerKey, answerKeyDefaultValue, dynamicData, setDynamicData });
+  useSetDefaultAnswer({
+    answerKey: LOCAL_ANSWER_KEY.CoverType,
+    answerKeyDefaultValue: CoverType.common,
+    dynamicData,
+    setDynamicData,
+  });
 
   const {
     listRef,
@@ -242,6 +250,7 @@ function useScrollHandler({ packageCards, setDynamicData, answerKey, answerKeyVa
       setDynamicData((oldState) => ({
         ...oldState,
         [answerKey]: packageCard.value,
+        [LOCAL_ANSWER_KEY.CoverType]: packageCard.coverType,
       }));
     }
 

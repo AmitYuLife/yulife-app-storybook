@@ -25,12 +25,20 @@ export interface ContentItemPersonalProductPreview_styles {
   value: string;
 }
 
+export interface ContentItemPersonalProductPreview_coverList_slotBackgroundUrl {
+  id: string;
+  uri: string | null;
+}
+
 export interface ContentItemPersonalProductPreview_coverList {
   percentCovered: number;
   monthlyCost: string;
+  monthlyCostSuffix: string;
   monthlyPayout: string;
-  markdown: string;
+  productPreviewMarkdown: string;
+  collapsingHeaderProductInfoHeading: string;
   coverType: CoverType;
+  slotBackgroundUrl: ContentItemPersonalProductPreview_coverList_slotBackgroundUrl;
 }
 
 export interface ContentItemPersonalProductPreview {
@@ -39,6 +47,6 @@ export interface ContentItemPersonalProductPreview {
   answerKeyDefaultValue: number;
   documentHyperlink: ContentItemPersonalProductPreview_documentHyperlink;
   styles: ContentItemPersonalProductPreview_styles[] | null;
-  coverList: (ContentItemPersonalProductPreview_coverList | null)[];
+  coverList: ContentItemPersonalProductPreview_coverList[];
   coverExpirationDate: string;
 }

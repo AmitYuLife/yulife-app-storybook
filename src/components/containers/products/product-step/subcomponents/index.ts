@@ -17,4 +17,5 @@ export * from "./product-step.scroll-picker";
 export * from "./product-step.confirm";
 export * from "./product-step.lottie";
 export * from "./product-step.review-answer";
+export * from "./product-step.collapsing-header";
 export * from "./product-step.row-icon-text-banner";

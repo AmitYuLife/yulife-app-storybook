@@ -3,7 +3,7 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { CoverType, YuProductStatus, YuWorld } from "./globalTypes";
+import { CoverType, YuProductStatus } from "./globalTypes";
 
 // ====================================================
 // GraphQL fragment: ContentItemPackageCards
@@ -14,16 +14,6 @@ export interface ContentItemPackageCards_packageCards_header_backgroundUrl {
   uri: string | null;
 }
 
-export interface ContentItemPackageCards_packageCards_header_slotInfo_itemUrl_url {
-  id: string;
-  uri: string | null;
-}
-
-export interface ContentItemPackageCards_packageCards_header_slotInfo_itemUrl {
-  url: ContentItemPackageCards_packageCards_header_slotInfo_itemUrl_url;
-  world: YuWorld;
-}
-
 export interface ContentItemPackageCards_packageCards_header_slotInfo_backgroundUrl {
   id: string;
   uri: string | null;
@@ -31,7 +21,6 @@ export interface ContentItemPackageCards_packageCards_header_slotInfo_background
 
 export interface ContentItemPackageCards_packageCards_header_slotInfo {
   status: YuProductStatus;
-  itemUrl: ContentItemPackageCards_packageCards_header_slotInfo_itemUrl[] | null;
   backgroundUrl: ContentItemPackageCards_packageCards_header_slotInfo_backgroundUrl;
   name: string;
 }
