@@ -183,6 +183,40 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemB
   buttonSize: ContentItemButtonSize | null;
 }
 
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemList_wrapperStyles {
+  property: string;
+  value: string;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemList_items_text {
+  value: string;
+  colour: string;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemList_items_circle {
+  colour: string;
+  backgroundColour: string;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemList_items_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemList_items {
+  id: string;
+  text: GetPersonalProductStep_getPersonalProductStep_body_ContentItemList_items_text;
+  circle: GetPersonalProductStep_getPersonalProductStep_body_ContentItemList_items_circle;
+  styles: GetPersonalProductStep_getPersonalProductStep_body_ContentItemList_items_styles[] | null;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemList {
+  __typename: "ContentItemList";
+  id: string;
+  wrapperStyles: GetPersonalProductStep_getPersonalProductStep_body_ContentItemList_wrapperStyles[] | null;
+  items: GetPersonalProductStep_getPersonalProductStep_body_ContentItemList_items[];
+}
+
 export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemInfoCard_image {
   id: string;
   uri: string | null;
@@ -673,6 +707,7 @@ export type GetPersonalProductStep_getPersonalProductStep_body =
   | GetPersonalProductStep_getPersonalProductStep_body_ContentItemLottie
   | GetPersonalProductStep_getPersonalProductStep_body_ContentItemText
   | GetPersonalProductStep_getPersonalProductStep_body_ContentItemButton
+  | GetPersonalProductStep_getPersonalProductStep_body_ContentItemList
   | GetPersonalProductStep_getPersonalProductStep_body_ContentItemInfoCard
   | GetPersonalProductStep_getPersonalProductStep_body_ContentItemPackageCards
   | GetPersonalProductStep_getPersonalProductStep_body_ContentItemPersonalProductPreview
@@ -715,6 +750,7 @@ export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentIte
     | "ContentItemScrollableItemsPicker"
     | "ContentItemConfirm"
     | "ContentItemCollapsingHeaderProductInfo"
+    | "ContentItemList"
     | "ContentItemRowIconTextBanner";
 }
 
@@ -870,6 +906,7 @@ export interface GetPersonalProductStep_getPersonalProductStep_header_ContentIte
     | "ContentItemScrollableItemsPicker"
     | "ContentItemConfirm"
     | "ContentItemCollapsingHeaderProductInfo"
+    | "ContentItemList"
     | "ContentItemRowIconTextBanner";
 }
 
@@ -933,6 +970,7 @@ export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_Con
     | "ContentItemCoverPicker"
     | "ContentItemScrollableItemsPicker"
     | "ContentItemConfirm"
+    | "ContentItemList"
     | "ContentItemRowIconTextBanner";
 }
 

@@ -100,10 +100,16 @@ function* popStep(action: ProductStepAction) {
 }
 
 function* pushStep(action: ProductStepAction) {
-  const { productId, stepId, dynamicData } = action.payload;
+  const { productId, stepId, dynamicData, serverPayload } = action.payload;
+  const { isValid, data } = parseJSON(serverPayload);
+  const serverDynamicData = isValid ? data : {};
 
   try {
-    yield call(submitPersonalProductStepGql, { productId, stepId, data: JSON.stringify(dynamicData) });
+    yield call(submitPersonalProductStepGql, {
+      productId,
+      stepId,
+      data: JSON.stringify({ ...serverDynamicData, ...dynamicData }),
+    });
   } catch (e) {
     // shrug (log)
   }

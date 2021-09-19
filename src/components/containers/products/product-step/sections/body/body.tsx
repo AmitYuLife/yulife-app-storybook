@@ -21,7 +21,13 @@ import {
   ProductStepContentItemReviewAnswer,
   ProductStepRowIconTextBanner,
 } from "../../subcomponents";
-import { ContentItemInfoCard, ContentItemPad, ContentItemText, ContentItemImage } from "@components/sdui";
+import {
+  ContentItemInfoCard,
+  ContentItemPad,
+  ContentItemText,
+  ContentItemImage,
+  ContentItemList,
+} from "@components/sdui";
 import { Style } from "@styles";
 import { ProductStepContext } from "../../product-step.context";
 import media from "@styles/media";
@@ -115,6 +121,8 @@ const renderItemContent = (item: GPPS_Body): JSX.Element => {
       return <ProductStepContentItemReviewAnswer key={item.id} {...item} />;
     case "ContentItemRowIconTextBanner":
       return <ProductStepRowIconTextBanner key={item.id} {...item} />;
+    case "ContentItemList":
+      return <ContentItemList key={item.id} {...item} />;
     default:
       return null;
   }
