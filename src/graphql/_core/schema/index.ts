@@ -20,6 +20,7 @@ export * from "./ContentItemDatePicker";
 export * from "./ContentItemHeaderBar";
 export * from "./ContentItemImage";
 export * from "./ContentItemInfoCard";
+export * from "./ContentItemList";
 export * from "./ContentItemLottie";
 export * from "./ContentItemMarkdown";
 export * from "./ContentItemMultiButton";

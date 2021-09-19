@@ -1,5 +1,6 @@
 import React, { memo, useEffect, useState, useCallback } from "react";
 import { LayoutChangeEvent, StyleSheet, View } from "react-native";
+import FastImage from "react-native-fast-image";
 import { useMutation, useQuery } from "@apollo/react-hooks";
 import { Colours, Style } from "@styles";
 import { Loading, TextTemplate } from "@atoms";
@@ -68,6 +69,8 @@ function _TryOnYumojiPart({ customerProductId, coverType = CoverType.common, onC
     if (!yuWorld) {
       return;
     }
+
+    FastImage.preload(yuWorld.yumojiParts.map((p) => p.remoteUrl));
 
     const newPartialAvatar = yuWorld.yumojiParts.reduce((acc, part) => {
       acc[part.partType] = part;

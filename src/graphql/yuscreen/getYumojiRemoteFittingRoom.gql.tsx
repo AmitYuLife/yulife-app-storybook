@@ -20,7 +20,7 @@ export const GQL_QUERY_GET_YUMOJI_REMOTE_FITTING_ROOM = gql`
           partType
           remoteUrl {
             id
-            uri
+            uri(options: { width: 530, height: 1106 })
           }
         }
       }

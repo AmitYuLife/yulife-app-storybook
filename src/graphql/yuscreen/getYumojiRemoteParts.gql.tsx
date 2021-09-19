@@ -5,7 +5,7 @@ export const GQL_QUERY_GET_YUMOJI_REMOTE_PARTS = gql`
     id
     remoteUrl {
       id
-      uri
+      uri(options: { width: 530, height: 1106 })
     }
   }
 

@@ -145,6 +145,29 @@ export const GQL_FRAGMENT_CONTENT_ITEM_RADIO = gql`
   }
 `;
 
+export const GQL_FRAGMENT_CONTENT_ITEM_LIST = gql`
+  fragment ContentItemList on ContentItemList {
+    id
+    wrapperStyles {
+      ...ContentItemStyle
+    }
+    items {
+      id
+      text {
+        value
+        colour
+      }
+      circle {
+        colour
+        backgroundColour
+      }
+      styles {
+        ...ContentItemStyle
+      }
+    }
+  }
+`;
+
 export const GQL_FRAGMENT_CONTENT_ITEM_PERSONAL_PRODUCT_REVIEW_ITEM = gql`
   fragment ContentItemPersonalProductReviewItem on ContentItemPersonalProductReviewItem {
     id

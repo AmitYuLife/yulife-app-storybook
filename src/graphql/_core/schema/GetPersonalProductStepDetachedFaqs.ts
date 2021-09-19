@@ -36,6 +36,7 @@ export interface GetPersonalProductStepDetachedFaqs_getPersonalProductStepDetach
     | "ContentItemScrollableItemsPicker"
     | "ContentItemConfirm"
     | "ContentItemCollapsingHeaderProductInfo"
+    | "ContentItemList"
     | "ContentItemRowIconTextBanner";
 }
 
