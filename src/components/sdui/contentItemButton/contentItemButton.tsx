@@ -5,8 +5,9 @@ import { Button, LinkButton, SecondaryButton, TertiaryButton } from "@atoms";
 import { useDispatch } from "react-redux";
 import { mapServerStyles } from "../_utils/mapServerStyles";
 
-type Props = GqlButton & {
+type Props = Omit<GqlButton, "onPress"> & {
   disabled?: boolean;
+  onPress?: GqlButton["onPress"] | (() => void);
 };
 
 export const ContentItemButton = memo((props: Props) => {
@@ -14,6 +15,7 @@ export const ContentItemButton = memo((props: Props) => {
   const dispatch = useDispatch();
 
   const Component = getComponent(buttonType);
+  const handlePress = typeof onPress === "function" ? onPress : () => dispatch(onPress);
 
   return (
     <Component
@@ -23,7 +25,7 @@ export const ContentItemButton = memo((props: Props) => {
       wrapperStyle={mapServerStyles(styles)}
       label={label}
       size={buttonSize}
-      onPress={() => dispatch(onPress)}
+      onPress={handlePress}
     />
   );
 });

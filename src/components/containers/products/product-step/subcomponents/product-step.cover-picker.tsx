@@ -1,16 +1,19 @@
-import React, { memo, useCallback, useContext } from "react";
+import React, { memo, useCallback, useContext, useState } from "react";
 import { StyleSheet, View, ViewStyle } from "react-native";
 import { BoxOption, PackageType, TextTemplate } from "@atoms";
-import { GetPersonalProductStep_getPersonalProductStep_body_ContentItemCoverPicker as Props } from "@graphql/_core/schema/GetPersonalProductStep";
+import { ContentItemCoverPicker as Props } from "@graphql/_core/schema";
 import { ProductStepContext } from "../product-step.context";
 import { Colours, Style } from "@styles";
-import { mapServerStyles } from "@components/sdui";
+import { ContentItemButton, ContentItemText, mapServerStyles } from "@components/sdui";
 import { useSetDefaultAnswer } from "../hooks/useSetDefaultAnswer";
 import { CoverType } from "@graphql/_core/schema/globalTypes";
 import { LOCAL_ANSWER_KEY } from "../utils/localAnswerKeys";
+import { ProductStepPercentPicker } from "./product-step.scrollable-items-picker";
 
 export const ProductStepCoverPicker = memo((props: Props) => {
-  const { answerKey, answerKeyDefaultValue } = props;
+  const { answerKey, answerKeyDefaultValue, hasSelectedCustomCover, coverPickerTitle, customCover } = props;
+  const [isCustom, setIsCustom] = useState(hasSelectedCustomCover);
+  const [title, setTitle] = useState(hasSelectedCustomCover ? customCover.title : coverPickerTitle.text);
   const { setDynamicData, dynamicData } = useContext(ProductStepContext);
 
   useSetDefaultAnswer({ dynamicData, setDynamicData, answerKeyDefaultValue, answerKey });
@@ -33,26 +36,42 @@ export const ProductStepCoverPicker = memo((props: Props) => {
   );
 
   return (
-    <View style={[styles.wrapper, mapServerStyles(props.styles)]}>
-      {props.options.map((option) => (
-        <BoxOption
-          key={option.value}
-          selectedStyle={mapCoverToStyle(option.coverType)}
-          onPress={handlePickCover({ coverType: option.coverType, value: option.value })}
-          isSelected={dynamicData[answerKey] === option.value}
-          innerHeight={Style.adjust(100)}
-          wrapperStyle={styles.boxWrapper}
-        >
-          <View style={styles.boxChildWrapper}>
-            <TextTemplate type="b2b">{option.heading}</TextTemplate>
-            <TextTemplate type="l2">{option.subheading}</TextTemplate>
-            <View style={styles.packageTypeWrapper}>
-              <PackageType type={option.coverType} />
-            </View>
-          </View>
-        </BoxOption>
-      ))}
-    </View>
+    <>
+      <ContentItemText {...coverPickerTitle} text={title} />
+      {isCustom ? (
+        <ProductStepPercentPicker {...customCover.itemsPicker} __typename="ContentItemScrollableItemsPicker" />
+      ) : (
+        <View style={[styles.wrapper, mapServerStyles(props.styles)]}>
+          {props.options.map((option) => (
+            <BoxOption
+              key={option.value}
+              selectedStyle={mapCoverToStyle(option.coverType)}
+              onPress={handlePickCover({ coverType: option.coverType, value: option.value })}
+              isSelected={dynamicData[answerKey] === option.value}
+              innerHeight={Style.adjust(100)}
+              wrapperStyle={styles.boxWrapper}
+            >
+              <View style={styles.boxChildWrapper}>
+                <TextTemplate type="b2b">{option.heading}</TextTemplate>
+                <TextTemplate type="l2">{option.subheading}</TextTemplate>
+                <View style={styles.packageTypeWrapper}>
+                  <PackageType type={option.coverType} />
+                </View>
+              </View>
+            </BoxOption>
+          ))}
+        </View>
+      )}
+      {!customCover?.button || isCustom ? null : (
+        <ContentItemButton
+          {...customCover.button}
+          onPress={() => {
+            setTitle(customCover.title);
+            setIsCustom(true);
+          }}
+        />
+      )}
+    </>
   );
 });
 

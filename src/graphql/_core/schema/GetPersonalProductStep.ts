@@ -376,13 +376,127 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemC
   heading: string;
 }
 
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemCoverPicker_coverPickerTitle_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemCoverPicker_coverPickerTitle {
+  id: string;
+  textType: string;
+  text: string;
+  colour: string | null;
+  textAlign: string | null;
+  underline: boolean | null;
+  numberOfLines: number | null;
+  styles: GetPersonalProductStep_getPersonalProductStep_body_ContentItemCoverPicker_coverPickerTitle_styles[] | null;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemCoverPicker_customCover_button_onPress {
+  type: ContentItemSDUIAction;
+  payload: string | null;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemCoverPicker_customCover_button_icon {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemCoverPicker_customCover_button_rightIcon {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemCoverPicker_customCover_button_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemCoverPicker_customCover_button {
+  id: string;
+  label: string;
+  buttonType: ContentItemButtonType | null;
+  value: string | null;
+  onPress: GetPersonalProductStep_getPersonalProductStep_body_ContentItemCoverPicker_customCover_button_onPress | null;
+  icon: GetPersonalProductStep_getPersonalProductStep_body_ContentItemCoverPicker_customCover_button_icon | null;
+  rightIcon: GetPersonalProductStep_getPersonalProductStep_body_ContentItemCoverPicker_customCover_button_rightIcon | null;
+  styles: GetPersonalProductStep_getPersonalProductStep_body_ContentItemCoverPicker_customCover_button_styles[] | null;
+  buttonSize: ContentItemButtonSize | null;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemCoverPicker_customCover_itemsPicker_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemCoverPicker_customCover_itemsPicker_range {
+  min: number;
+  max: number;
+  step: number;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemCoverPicker_customCover_itemsPicker_styleVariants_item {
+  color: string;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemCoverPicker_customCover_itemsPicker_styleVariants_overlay_backdropStyles {
+  property: string;
+  value: string;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemCoverPicker_customCover_itemsPicker_styleVariants_overlay_overlayTitleWrapperStyles {
+  property: string;
+  value: string;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemCoverPicker_customCover_itemsPicker_styleVariants_overlay {
+  backdropStyles:
+    | GetPersonalProductStep_getPersonalProductStep_body_ContentItemCoverPicker_customCover_itemsPicker_styleVariants_overlay_backdropStyles[]
+    | null;
+  highlightLabel: string;
+  highlightLabelColor: string;
+  overlayTitle: string;
+  overlayTitleWrapperStyles:
+    | GetPersonalProductStep_getPersonalProductStep_body_ContentItemCoverPicker_customCover_itemsPicker_styleVariants_overlay_overlayTitleWrapperStyles[]
+    | null;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemCoverPicker_customCover_itemsPicker_styleVariants {
+  id: string;
+  minVisibleIndex: number | null;
+  maxVisibleIndex: number | null;
+  item: GetPersonalProductStep_getPersonalProductStep_body_ContentItemCoverPicker_customCover_itemsPicker_styleVariants_item;
+  overlay: GetPersonalProductStep_getPersonalProductStep_body_ContentItemCoverPicker_customCover_itemsPicker_styleVariants_overlay;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemCoverPicker_customCover_itemsPicker {
+  id: string;
+  answerKey: string;
+  styles:
+    | GetPersonalProductStep_getPersonalProductStep_body_ContentItemCoverPicker_customCover_itemsPicker_styles[]
+    | null;
+  range: GetPersonalProductStep_getPersonalProductStep_body_ContentItemCoverPicker_customCover_itemsPicker_range;
+  styleVariants:
+    | GetPersonalProductStep_getPersonalProductStep_body_ContentItemCoverPicker_customCover_itemsPicker_styleVariants[]
+    | null;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemCoverPicker_customCover {
+  title: string;
+  button: GetPersonalProductStep_getPersonalProductStep_body_ContentItemCoverPicker_customCover_button;
+  itemsPicker: GetPersonalProductStep_getPersonalProductStep_body_ContentItemCoverPicker_customCover_itemsPicker;
+}
+
 export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemCoverPicker {
   __typename: "ContentItemCoverPicker";
   id: string;
   answerKey: string;
   answerKeyDefaultValue: number;
+  hasSelectedCustomCover: boolean;
   styles: GetPersonalProductStep_getPersonalProductStep_body_ContentItemCoverPicker_styles[] | null;
   options: GetPersonalProductStep_getPersonalProductStep_body_ContentItemCoverPicker_options[] | null;
+  coverPickerTitle: GetPersonalProductStep_getPersonalProductStep_body_ContentItemCoverPicker_coverPickerTitle;
+  customCover: GetPersonalProductStep_getPersonalProductStep_body_ContentItemCoverPicker_customCover | null;
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemScrollableItemsPicker_styles {

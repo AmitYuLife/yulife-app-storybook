@@ -317,6 +317,7 @@ export const GQL_FRAGMENT_CONTENT_ITEM_COVER_PICKER = gql`
     id
     answerKey
     answerKeyDefaultValue
+    hasSelectedCustomCover
     styles {
       ...ContentItemStyle
     }
@@ -325,6 +326,18 @@ export const GQL_FRAGMENT_CONTENT_ITEM_COVER_PICKER = gql`
       coverType
       subheading
       heading
+    }
+    coverPickerTitle: title {
+      ...ContentItemText
+    }
+    customCover {
+      title
+      button {
+        ...ContentItemButton
+      }
+      itemsPicker {
+        ...ContentItemScrollableItemsPicker
+      }
     }
   }
 `;
