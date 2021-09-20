@@ -25,22 +25,32 @@ export const buttonStyles = StyleSheet.create({
   },
   fill: {
     width: "100%",
+    height: DEFAULT_HEIGHT,
   },
-  medium: {
-    width: Style.adjust(210),
+  extraSmall: {
+    width: Style.adjust(61),
+    height: Style.adjust(32),
   },
   small: {
     width: SMALL_WIDTH,
+    height: DEFAULT_HEIGHT,
+  },
+  medium: {
+    width: Style.adjust(210),
+    height: DEFAULT_HEIGHT,
   },
   large: {
     width: Style.DEVICE_WIDTH - 70,
+    height: DEFAULT_HEIGHT,
   },
 });
 
-export function getWidth(size: Sizes) {
+export function getButtonDimensions(size: Sizes) {
   switch (size) {
     case BUTTON_SIZES.FILL:
       return buttonStyles.fill;
+    case BUTTON_SIZES.EXTRA_SMALL:
+      return buttonStyles.extraSmall;
     case BUTTON_SIZES.SMALL:
       return buttonStyles.small;
     case BUTTON_SIZES.MEDIUM:
