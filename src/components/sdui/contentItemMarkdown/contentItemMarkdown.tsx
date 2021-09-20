@@ -9,6 +9,7 @@ export const ContentItemMarkdown = memo((props: GqlMarkdown) => {
       title={props?.title}
       markdown={props?.parsedMarkdown}
       wrapperStyle={mapServerStyles(props.styles)}
+      markdownContainerStyle={mapServerStyles(props.markdownContainerStyle)}
     />
   );
 });

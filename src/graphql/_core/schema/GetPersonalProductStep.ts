@@ -73,6 +73,11 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemM
   value: string;
 }
 
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemMarkdown_markdownContainerStyle {
+  property: string;
+  value: string;
+}
+
 export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemMarkdown {
   __typename: "ContentItemMarkdown";
   id: string;
@@ -81,6 +86,9 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemM
   perkId: string | null;
   parsedMarkdown: string | null;
   styles: GetPersonalProductStep_getPersonalProductStep_body_ContentItemMarkdown_styles[] | null;
+  markdownContainerStyle:
+    | GetPersonalProductStep_getPersonalProductStep_body_ContentItemMarkdown_markdownContainerStyle[]
+    | null;
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemRadio_choices_renderAsIcon_icon {

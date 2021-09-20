@@ -96,6 +96,9 @@ export const GQL_FRAGMENT_CONTENT_ITEM_MARKDOWN = gql`
     styles {
       ...ContentItemStyle
     }
+    markdownContainerStyle {
+      ...ContentItemStyle
+    }
   }
 `;
 

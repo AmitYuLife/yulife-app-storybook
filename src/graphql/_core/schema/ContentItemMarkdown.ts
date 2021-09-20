@@ -12,6 +12,11 @@ export interface ContentItemMarkdown_styles {
   value: string;
 }
 
+export interface ContentItemMarkdown_markdownContainerStyle {
+  property: string;
+  value: string;
+}
+
 export interface ContentItemMarkdown {
   id: string;
   title: string | null;
@@ -19,4 +24,5 @@ export interface ContentItemMarkdown {
   perkId: string | null;
   parsedMarkdown: string | null;
   styles: ContentItemMarkdown_styles[] | null;
+  markdownContainerStyle: ContentItemMarkdown_markdownContainerStyle[] | null;
 }

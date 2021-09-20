@@ -44,6 +44,7 @@ export const ContentItemFaqs = memo((props: Props) => {
             title={showingContent.content.title}
             perkId={null}
             styles={null}
+            markdownContainerStyle={null}
           />
           {showingContent.links?.map((x: any) => (
             <TertiaryButton
