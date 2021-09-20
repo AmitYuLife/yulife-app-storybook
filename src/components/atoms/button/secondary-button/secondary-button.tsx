@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, View, ViewStyle } from "react-native";
 import { usePressedInWithDelay } from "@services/hooks/usePressedInWithDelay";
-import { DEFAULT_HEIGHT, getWidth, buttonStyles } from "../button.styles";
+import { buttonStyles, getButtonDimensions } from "../button.styles";
 import { Sizes } from "../button.types";
 import { Colours } from "@styles";
 import ButtonBase from "../button.base";
@@ -38,16 +38,16 @@ export const SecondaryButton = (props: Props) => {
   } = props;
 
   const { handlePress } = usePressedInWithDelay({ onPress, delay });
-  const widthStyles = getWidth(size);
+  const buttonDimensions = getButtonDimensions(size);
 
   if (!show) {
     return null;
   }
 
   return (
-    <View style={StyleSheet.flatten([buttonStyles.wrapper, wrapperStyle, widthStyles])}>
+    <View style={StyleSheet.flatten([buttonStyles.wrapper, wrapperStyle, buttonDimensions])}>
       <ButtonBase
-        height={DEFAULT_HEIGHT}
+        height={buttonDimensions?.height}
         disabled={disabled}
         testID={testID}
         isLoading={isLoading}

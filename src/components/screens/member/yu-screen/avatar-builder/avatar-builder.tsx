@@ -291,7 +291,7 @@ const AvatarBuilder: FC<IProps> = ({ avatar: defaultAvatar, onBackPressed, updat
           showDoneModal(() => updateUserAvatar(avatar), setBackPressed, setDoneModalShown);
           setDoneModalShown(true);
         }}
-        rightIcon="Done"
+        rightIcon="SAVE"
       />
     </View>
   );

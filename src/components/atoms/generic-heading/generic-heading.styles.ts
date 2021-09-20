@@ -25,9 +25,9 @@ const styles = StyleSheet.create({
   } as ViewStyle,
   leftIconWrapper: {
     alignSelf: "center",
-    width: Style.adjust(32),
+    flex: 0.2,
   } as ViewStyle,
-  centerWrapper: { flexDirection: "row", flex: 1, justifyContent: "center" } as ViewStyle,
+  centerWrapper: { flexDirection: "row", flex: 0.9, justifyContent: "center" } as ViewStyle,
   relative: { position: "relative" } as ViewStyle,
   logoBetaWrapper: { position: "absolute", left: 24 } as ViewStyle,
   headingBetaWrapper: { position: "absolute", right: -38 } as ViewStyle,
@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
     lineHeight: Style.adjust(24),
     fontFamily: Style.FONT_FAMILY_PRIMARY_BOLD,
   } as TextStyle,
-  rightIconWrapper: { width: 32, alignSelf: "center" } as ViewStyle,
+  rightIconWrapper: { flex: 0.2, alignSelf: "center" } as ViewStyle,
   rightIconTouchable: { alignSelf: "flex-end" },
   rightIconText: {
     fontSize: rightIconTextFontSize,
@@ -48,6 +48,9 @@ const styles = StyleSheet.create({
     flexWrap: "nowrap",
     marginLeft: Style.adjust(-16),
   } as TextStyle,
+  buttonSave: {
+    paddingTop: Style.adjust(2),
+  } as ViewStyle,
 });
 
 export default styles;

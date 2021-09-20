@@ -6,10 +6,10 @@
 
 import * as React from "react";
 import { StyleSheet, View, ViewStyle } from "react-native";
-import { Colours, Style } from "@styles";
+import { Colours } from "@styles";
 import { usePressedInWithDelay } from "@services/hooks/usePressedInWithDelay";
 import { ButtonBase } from "../button.base";
-import { getWidth, buttonStyles } from "../button.styles";
+import { buttonStyles, getButtonDimensions } from "../button.styles";
 import { Sizes } from "../button.types";
 import { Icon } from "@atoms";
 
@@ -30,8 +30,6 @@ interface IProps {
   icon: IconType;
   wrapperStyle?: ViewStyle;
 }
-
-const DEFAULT_HEIGHT = Style.adjust(53);
 
 export function ImageButton(props: IProps) {
   const {
@@ -56,7 +54,7 @@ export function ImageButton(props: IProps) {
     return null;
   }
 
-  const widthStyles = getWidth(size);
+  const buttonDimensions = getButtonDimensions(size);
 
   const Logo = logoHashMap[icon];
 
@@ -65,13 +63,13 @@ export function ImageButton(props: IProps) {
   }
 
   return (
-    <View style={StyleSheet.flatten([buttonStyles.wrapper, widthStyles, wrapperStyle])}>
+    <View style={StyleSheet.flatten([buttonStyles.wrapper, buttonDimensions, wrapperStyle])}>
       <ButtonBase
         backgroundColor={backgroundColor}
         backgroundGradient={backgroundGradient}
         shadowColor={shadowColor}
         testID={testID}
-        height={DEFAULT_HEIGHT}
+        height={buttonDimensions?.height}
         isLoading={isLoading}
         disabled={disabled}
         onPress={handlePress}

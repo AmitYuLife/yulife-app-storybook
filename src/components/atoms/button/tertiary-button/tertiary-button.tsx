@@ -2,7 +2,7 @@ import React from "react";
 import { StyleSheet, View, ViewStyle } from "react-native";
 import { usePressedInWithDelay } from "@services/hooks/usePressedInWithDelay";
 import TertiaryButtonBase from "./tertiary-button.base";
-import { getWidth, buttonStyles } from "../button.styles";
+import { buttonStyles, getButtonDimensions } from "../button.styles";
 import { BUTTON_ICON } from "./tertiary-button.helpers";
 import { Sizes } from "../button.types";
 import { Style } from "@styles";
@@ -47,14 +47,15 @@ export const TertiaryButton = (props: Props) => {
   } = props;
 
   const { handlePress } = usePressedInWithDelay({ onPress, delay });
-  const widthStyles = getWidth(size);
+
+  const buttonDimensions = getButtonDimensions(size);
 
   if (!show) {
     return null;
   }
 
   return (
-    <View style={StyleSheet.flatten([buttonStyles.wrapper, wrapperStyle, widthStyles])}>
+    <View style={StyleSheet.flatten([buttonStyles.wrapper, wrapperStyle, buttonDimensions])}>
       <TertiaryButtonBase
         disabled={disabled}
         testID={testID}

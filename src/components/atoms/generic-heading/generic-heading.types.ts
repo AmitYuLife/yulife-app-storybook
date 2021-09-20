@@ -12,7 +12,7 @@ export interface IGenericHeadingProps {
   logo?: Logo;
 }
 
-type IRightIcon = "SETTINGS" | "CLOSE" | "EDIT" | "PLUS" | "Done";
+type IRightIcon = "SETTINGS" | "CLOSE" | "EDIT" | "PLUS" | "Done" | "SAVE";
 
 type ILeftIcon = "BACK" | "CLOSE";
 

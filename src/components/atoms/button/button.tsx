@@ -4,8 +4,7 @@ import { Colours } from "@styles";
 import { usePressedInWithDelay } from "@services/hooks/usePressedInWithDelay";
 import { ButtonBase } from "./button.base";
 import { Sizes } from "./button.types";
-import { buttonStyles, getWidth } from "./button.styles";
-import { DEFAULT_HEIGHT } from "./button.styles";
+import { buttonStyles, getButtonDimensions } from "./button.styles";
 
 interface IProps {
   isLoading?: boolean;
@@ -50,15 +49,15 @@ function Button(props: IProps) {
     return null;
   }
 
-  const widthStyles = getWidth(size);
+  const buttonDimensions = getButtonDimensions(size);
 
   return (
-    <View style={StyleSheet.flatten([buttonStyles.wrapper, wrapperStyle, widthStyles])}>
+    <View style={StyleSheet.flatten([buttonStyles.wrapper, wrapperStyle, buttonDimensions])}>
       <ButtonBase
         backgroundColor={backgroundColor}
         shadowColor={shadowColor}
         testID={testID}
-        height={DEFAULT_HEIGHT}
+        height={buttonDimensions.height}
         isLoading={isLoading}
         disabled={disabled}
         title={label}
