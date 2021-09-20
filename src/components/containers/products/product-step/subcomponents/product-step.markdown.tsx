@@ -1,22 +1,16 @@
 import React, { memo } from "react";
 import { ContentItemMarkdown as GqlMarkdown } from "@graphql/_core/schema/ContentItemMarkdown";
 import { ContentItemMarkdown } from "@components/sdui";
-import { StyleSheet, View, ViewStyle } from "react-native";
-import { Style } from "@styles";
 
 type Props = GqlMarkdown;
 
-export const ProductStepMarkdown = memo((props: Props) => {
-  return (
-    <View style={styles.wrapper}>
-      <ContentItemMarkdown {...props} />
-    </View>
-  );
-});
+const DEFAULT_STYLES = [
+  { property: "paddingLeft", value: "24" },
+  { property: "paddingRight", value: "64" },
+];
 
-const styles = StyleSheet.create({
-  wrapper: {
-    paddingLeft: Style.adjust(24),
-    paddingRight: Style.adjust(64),
-  } as ViewStyle,
+export const ProductStepMarkdown = memo((props: Props) => {
+  const derivedStyles = [...DEFAULT_STYLES, ...props.styles];
+
+  return <ContentItemMarkdown {...props} styles={derivedStyles} />;
 });
