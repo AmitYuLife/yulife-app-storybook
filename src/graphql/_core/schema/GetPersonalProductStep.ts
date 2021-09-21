@@ -184,6 +184,7 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemB
   label: string;
   buttonType: ContentItemButtonType | null;
   value: string | null;
+  disabledState: string | null;
   onPress: GetPersonalProductStep_getPersonalProductStep_body_ContentItemButton_onPress | null;
   icon: GetPersonalProductStep_getPersonalProductStep_body_ContentItemButton_icon | null;
   rightIcon: GetPersonalProductStep_getPersonalProductStep_body_ContentItemButton_rightIcon | null;
@@ -464,6 +465,7 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemC
   label: string;
   buttonType: ContentItemButtonType | null;
   value: string | null;
+  disabledState: string | null;
   onPress: GetPersonalProductStep_getPersonalProductStep_body_ContentItemCoverPicker_customCover_button_onPress | null;
   icon: GetPersonalProductStep_getPersonalProductStep_body_ContentItemCoverPicker_customCover_button_icon | null;
   rightIcon: GetPersonalProductStep_getPersonalProductStep_body_ContentItemCoverPicker_customCover_button_rightIcon | null;
@@ -682,6 +684,7 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemS
   label: string;
   buttonType: ContentItemButtonType | null;
   value: string | null;
+  disabledState: string | null;
   onPress: GetPersonalProductStep_getPersonalProductStep_body_ContentItemScrollPicker_button_onPress | null;
   icon: GetPersonalProductStep_getPersonalProductStep_body_ContentItemScrollPicker_button_icon | null;
   rightIcon: GetPersonalProductStep_getPersonalProductStep_body_ContentItemScrollPicker_button_rightIcon | null;
@@ -837,6 +840,7 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemM
   label: string;
   buttonType: ContentItemButtonType | null;
   value: string | null;
+  disabledState: string | null;
   onPress: GetPersonalProductStep_getPersonalProductStep_body_ContentItemMultiButton_buttons_onPress | null;
   icon: GetPersonalProductStep_getPersonalProductStep_body_ContentItemMultiButton_buttons_icon | null;
   rightIcon: GetPersonalProductStep_getPersonalProductStep_body_ContentItemMultiButton_buttons_rightIcon | null;
@@ -943,6 +947,7 @@ export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentIte
   label: string;
   buttonType: ContentItemButtonType | null;
   value: string | null;
+  disabledState: string | null;
   onPress: GetPersonalProductStep_getPersonalProductStep_footer_ContentItemButton_onPress | null;
   icon: GetPersonalProductStep_getPersonalProductStep_footer_ContentItemButton_icon | null;
   rightIcon: GetPersonalProductStep_getPersonalProductStep_footer_ContentItemButton_rightIcon | null;
@@ -975,6 +980,7 @@ export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentIte
   label: string;
   buttonType: ContentItemButtonType | null;
   value: string | null;
+  disabledState: string | null;
   onPress: GetPersonalProductStep_getPersonalProductStep_footer_ContentItemOverlay_buttons_onPress | null;
   icon: GetPersonalProductStep_getPersonalProductStep_footer_ContentItemOverlay_buttons_icon | null;
   rightIcon: GetPersonalProductStep_getPersonalProductStep_footer_ContentItemOverlay_buttons_rightIcon | null;
@@ -1014,6 +1020,7 @@ export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentIte
   label: string;
   buttonType: ContentItemButtonType | null;
   value: string | null;
+  disabledState: string | null;
   onPress: GetPersonalProductStep_getPersonalProductStep_footer_ContentItemMultiButton_buttons_onPress | null;
   icon: GetPersonalProductStep_getPersonalProductStep_footer_ContentItemMultiButton_buttons_icon | null;
   rightIcon: GetPersonalProductStep_getPersonalProductStep_footer_ContentItemMultiButton_buttons_rightIcon | null;

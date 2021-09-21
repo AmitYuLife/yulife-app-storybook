@@ -34,6 +34,7 @@ export interface ContentItemMultiButton_buttons {
   label: string;
   buttonType: ContentItemButtonType | null;
   value: string | null;
+  disabledState: string | null;
   onPress: ContentItemMultiButton_buttons_onPress | null;
   icon: ContentItemMultiButton_buttons_icon | null;
   rightIcon: ContentItemMultiButton_buttons_rightIcon | null;

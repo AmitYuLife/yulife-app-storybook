@@ -5,7 +5,7 @@ import { Button, LinkButton, SecondaryButton, TertiaryButton } from "@atoms";
 import { useDispatch } from "react-redux";
 import { mapServerStyles } from "../_utils/mapServerStyles";
 
-type Props = Omit<GqlButton, "onPress"> & {
+type Props = Omit<GqlButton, "onPress" | "disabledState"> & {
   disabled?: boolean;
   onPress?: GqlButton["onPress"] | (() => void);
 };

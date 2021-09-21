@@ -1,5 +1,7 @@
+import convertToYup from "json-schema-yup-transformer";
 import React, { memo, useContext, useMemo } from "react";
-import { ContentItemButton as GqlButton, ContentItemTextInput } from "@graphql/_core/schema";
+import { ContentItemButton as GqlButton } from "@graphql/_core/schema";
+import { DynamicData } from "@redux/server-driven-ui/sdui.types";
 import { ContentItemButton } from "@components/sdui";
 import { ProductStepContext } from "../product-step.context";
 
@@ -7,8 +9,8 @@ type Props = GqlButton & {
   hasValidation?: boolean;
 };
 
-export const ProductStepContentItemButton = memo(({ onPress, hasValidation, ...otherProps }: Props) => {
-  const { productId, stepId, dynamicData, body } = useContext(ProductStepContext);
+export const ProductStepContentItemButton = memo(({ onPress, hasValidation, disabledState, ...otherProps }: Props) => {
+  const { productId, stepId, dynamicData } = useContext(ProductStepContext);
 
   // TODO: sort out typings
   const dynamicOnPress: any = useMemo(
@@ -19,20 +21,17 @@ export const ProductStepContentItemButton = memo(({ onPress, hasValidation, ...o
     [onPress, productId, stepId, dynamicData]
   );
 
-  // TODO: use field's validation array
-  const isValid = hasValidation
-    ? body
-        .filter((a) => (a as ContentItemTextInput).answerKey)
-        .every((a) => {
-          const data = dynamicData[(a as ContentItemTextInput).answerKey];
-
-          if (Array.isArray(typeof data)) {
-            return (data as string[])?.length > 0;
-          }
-
-          return data;
-        })
-    : true;
+  const isValid = hasValidation && disabledState ? getIsValid(disabledState, dynamicData) : true;
 
   return <ContentItemButton {...otherProps} onPress={dynamicOnPress} disabled={!isValid} />;
 });
+
+const getIsValid = (disabledState: string, dynamicData: DynamicData) => {
+  try {
+    const schema = JSON.parse(disabledState);
+    const yupSchema = convertToYup(schema);
+    return yupSchema.isValidSync(dynamicData);
+  } catch (e) {
+    return true;
+  }
+};

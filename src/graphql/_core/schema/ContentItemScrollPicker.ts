@@ -34,6 +34,7 @@ export interface ContentItemScrollPicker_button {
   label: string;
   buttonType: ContentItemButtonType | null;
   value: string | null;
+  disabledState: string | null;
   onPress: ContentItemScrollPicker_button_onPress | null;
   icon: ContentItemScrollPicker_button_icon | null;
   rightIcon: ContentItemScrollPicker_button_rightIcon | null;

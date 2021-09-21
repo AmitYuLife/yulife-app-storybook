@@ -66,6 +66,7 @@
         "bugsnag-react-native": "^2.23.6",
         "email-validator": "^2.0.4",
         "graphql": "^14.6.0",
+        "json-schema-yup-transformer": "^1.6.0",
         "lottie-ios": "^3.1.8",
         "lottie-react-native": "^4.0.2",
         "moment": "^2.24.0",
@@ -94,7 +95,8 @@
         "reselect": "^4.0.0",
         "simple-markdown": "^0.7.2",
         "snyk": "^1.425.4",
-        "tipsi-stripe": "^9.1.1"
+        "tipsi-stripe": "^9.1.1",
+        "yup": "^0.32.9"
     },
     "devDependencies": {
         "@apollo/react-testing": "^3.1.4",

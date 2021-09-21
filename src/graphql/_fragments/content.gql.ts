@@ -465,6 +465,7 @@ export const GQL_FRAGMENT_CONTENT_ITEM_BUTTON = gql`
     label
     buttonType: type
     value
+    disabledState
     onPress {
       type
       payload
