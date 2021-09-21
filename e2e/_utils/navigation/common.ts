@@ -171,6 +171,12 @@ export const typeViaID = (id: string, text: string) => async () => {
     await target.typeText(text)
 }
 
+export const typeViaPlaceholder = (placeholder: string, text: string) => async () => {
+    const target = element(by.text(placeholder))
+    await expect(target).toBeVisible()
+    await target.replaceText(text)
+}
+
 export const replaceTextViaID = (id: string, text: string) => async () => {
     const target = element(by.id(id))
     await expect(target).toBeVisible()
