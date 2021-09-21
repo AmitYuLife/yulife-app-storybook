@@ -62,6 +62,7 @@ export interface ContentItemCoverPicker_customCover_button {
   label: string;
   buttonType: ContentItemButtonType | null;
   value: string | null;
+  disabledState: string | null;
   onPress: ContentItemCoverPicker_customCover_button_onPress | null;
   icon: ContentItemCoverPicker_customCover_button_icon | null;
   rightIcon: ContentItemCoverPicker_customCover_button_rightIcon | null;
