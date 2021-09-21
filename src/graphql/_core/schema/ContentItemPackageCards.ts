@@ -19,10 +19,16 @@ export interface ContentItemPackageCards_packageCards_header_slotInfo_background
   uri: string | null;
 }
 
+export interface ContentItemPackageCards_packageCards_header_slotInfo_logoUrl {
+  id: string;
+  uri: string | null;
+}
+
 export interface ContentItemPackageCards_packageCards_header_slotInfo {
+  name: string;
   status: YuProductStatus;
   backgroundUrl: ContentItemPackageCards_packageCards_header_slotInfo_backgroundUrl;
-  name: string;
+  logoUrl: ContentItemPackageCards_packageCards_header_slotInfo_logoUrl | null;
 }
 
 export interface ContentItemPackageCards_packageCards_header {

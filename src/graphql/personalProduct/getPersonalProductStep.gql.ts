@@ -18,6 +18,7 @@ import {
   GQL_FRAGMENT_CONTENT_ITEM_PACKAGE_CARD_SLOT_INFO,
   GQL_FRAGMENT_CONTENT_ITEM_PRODUCT_PREVIEW,
   GQL_FRAGMENT_CONTENT_ITEM_COVER_PICKER,
+  GQL_FRAGMENT_CONTENT_ITEM_SELECTED_PACKAGE_CARD,
   GQL_FRAGMENT_CONTENT_ITEM_SCROLLABLE_ITEMS_PICKER,
   GQL_FRAGMENT_CONTENT_ITEM_DATE_PICKER,
   GQL_FRAGMENT_CONTENT_ITEM_MULTI_SELECT,
@@ -63,6 +64,7 @@ export const GQL_QUERY_GET_PERSONAL_PRODUCT_STEP = gql`
   ${GQL_FRAGMENT_CONTENT_ITEM_COLLAPSING_HEADER_PRODUCT_INFO}
   ${GQL_FRAGMENT_CONTENT_ITEM_ROW_ICON_TEXT_BANNER}
   ${GQL_FRAGMENT_CONTENT_ITEM_LIST}
+  ${GQL_FRAGMENT_CONTENT_ITEM_SELECTED_PACKAGE_CARD}
 
   query GetPersonalProductStep($productId: String!) {
     getPersonalProductStep(productId: $productId) {
@@ -103,6 +105,9 @@ export const GQL_QUERY_GET_PERSONAL_PRODUCT_STEP = gql`
         }
         ... on ContentItemInfoCard {
           ...ContentItemInfoCard
+        }
+        ... on ContentItemSelectedPackageCard {
+          ...ContentItemSelectedPackageCard
         }
         ... on ContentItemPackageCards {
           ...ContentItemPackageCards

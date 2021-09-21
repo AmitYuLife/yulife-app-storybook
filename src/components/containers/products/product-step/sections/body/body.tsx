@@ -20,6 +20,7 @@ import {
   ProductStepContentItemLottie,
   ProductStepContentItemReviewAnswer,
   ProductStepRowIconTextBanner,
+  ProductStepSelectedPackageCard,
 } from "../../subcomponents";
 import {
   ContentItemInfoCard,
@@ -95,6 +96,8 @@ const renderItemContent = (item: GPPS_Body): JSX.Element => {
       return <ProductStepYugiConfirm key={item.id} {...item} />;
     case "ContentItemPersonalProductInfo":
       return <ProductStepProductInfo key={item.id} {...item} />;
+    case "ContentItemSelectedPackageCard":
+      return <ProductStepSelectedPackageCard key={item.id} {...item} />;
     case "ContentItemPackageCards":
       return <ProductStepPackageCards key={item.id} {...item} />;
     case "ContentItemPersonalProductPreview":

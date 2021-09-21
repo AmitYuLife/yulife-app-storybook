@@ -14,8 +14,14 @@ export interface ContentItemPackageCardSlotInfo_backgroundUrl {
   uri: string | null;
 }
 
+export interface ContentItemPackageCardSlotInfo_logoUrl {
+  id: string;
+  uri: string | null;
+}
+
 export interface ContentItemPackageCardSlotInfo {
+  name: string;
   status: YuProductStatus;
   backgroundUrl: ContentItemPackageCardSlotInfo_backgroundUrl;
-  name: string;
+  logoUrl: ContentItemPackageCardSlotInfo_logoUrl | null;
 }

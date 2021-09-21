@@ -249,6 +249,39 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemI
   hyperlink: GetPersonalProductStep_getPersonalProductStep_body_ContentItemInfoCard_hyperlink | null;
 }
 
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemSelectedPackageCard_backgroundUrl {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemSelectedPackageCard_slotInfo_backgroundUrl {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemSelectedPackageCard_slotInfo_logoUrl {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemSelectedPackageCard_slotInfo {
+  name: string;
+  status: YuProductStatus;
+  backgroundUrl: GetPersonalProductStep_getPersonalProductStep_body_ContentItemSelectedPackageCard_slotInfo_backgroundUrl;
+  logoUrl: GetPersonalProductStep_getPersonalProductStep_body_ContentItemSelectedPackageCard_slotInfo_logoUrl | null;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemSelectedPackageCard {
+  __typename: "ContentItemSelectedPackageCard";
+  id: string;
+  previousPrice: string | null;
+  price: string;
+  priceDescription: string;
+  coverType: CoverType;
+  backgroundUrl: GetPersonalProductStep_getPersonalProductStep_body_ContentItemSelectedPackageCard_backgroundUrl;
+  slotInfo: GetPersonalProductStep_getPersonalProductStep_body_ContentItemSelectedPackageCard_slotInfo;
+}
+
 export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemPackageCards_packageCards_header_backgroundUrl {
   id: string;
   uri: string | null;
@@ -259,10 +292,16 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemP
   uri: string | null;
 }
 
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemPackageCards_packageCards_header_slotInfo_logoUrl {
+  id: string;
+  uri: string | null;
+}
+
 export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemPackageCards_packageCards_header_slotInfo {
+  name: string;
   status: YuProductStatus;
   backgroundUrl: GetPersonalProductStep_getPersonalProductStep_body_ContentItemPackageCards_packageCards_header_slotInfo_backgroundUrl;
-  name: string;
+  logoUrl: GetPersonalProductStep_getPersonalProductStep_body_ContentItemPackageCards_packageCards_header_slotInfo_logoUrl | null;
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemPackageCards_packageCards_header {
@@ -831,6 +870,7 @@ export type GetPersonalProductStep_getPersonalProductStep_body =
   | GetPersonalProductStep_getPersonalProductStep_body_ContentItemButton
   | GetPersonalProductStep_getPersonalProductStep_body_ContentItemList
   | GetPersonalProductStep_getPersonalProductStep_body_ContentItemInfoCard
+  | GetPersonalProductStep_getPersonalProductStep_body_ContentItemSelectedPackageCard
   | GetPersonalProductStep_getPersonalProductStep_body_ContentItemPackageCards
   | GetPersonalProductStep_getPersonalProductStep_body_ContentItemPersonalProductPreview
   | GetPersonalProductStep_getPersonalProductStep_body_ContentItemImage
@@ -867,6 +907,7 @@ export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentIte
     | "ContentItemPersonalProductDocuments"
     | "ContentItemPersonalProductFaqs"
     | "ContentItemPackageCards"
+    | "ContentItemSelectedPackageCard"
     | "ContentItemPersonalProductPreview"
     | "ContentItemCoverPicker"
     | "ContentItemScrollableItemsPicker"
@@ -1023,6 +1064,7 @@ export interface GetPersonalProductStep_getPersonalProductStep_header_ContentIte
     | "ContentItemPersonalProductDocuments"
     | "ContentItemPersonalProductFaqs"
     | "ContentItemPackageCards"
+    | "ContentItemSelectedPackageCard"
     | "ContentItemPersonalProductPreview"
     | "ContentItemCoverPicker"
     | "ContentItemScrollableItemsPicker"
@@ -1088,6 +1130,7 @@ export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_Con
     | "ContentItemPersonalProductDocuments"
     | "ContentItemPersonalProductFaqs"
     | "ContentItemPackageCards"
+    | "ContentItemSelectedPackageCard"
     | "ContentItemPersonalProductPreview"
     | "ContentItemCoverPicker"
     | "ContentItemScrollableItemsPicker"

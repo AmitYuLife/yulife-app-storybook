@@ -31,6 +31,7 @@ export interface GetPersonalProductStepDetachedDocuments_getPersonalProductStepD
     | "ContentItemPersonalProductReviewItem"
     | "ContentItemPersonalProductFaqs"
     | "ContentItemPackageCards"
+    | "ContentItemSelectedPackageCard"
     | "ContentItemPersonalProductPreview"
     | "ContentItemCoverPicker"
     | "ContentItemScrollableItemsPicker"

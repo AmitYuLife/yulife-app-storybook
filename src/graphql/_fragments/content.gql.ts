@@ -285,11 +285,15 @@ export const GQL_FRAGMENT_CONTENT_ITEM_MULTI_SELECT = gql`
 
 export const GQL_FRAGMENT_CONTENT_ITEM_PACKAGE_CARD_SLOT_INFO = gql`
   fragment ContentItemPackageCardSlotInfo on ContentItemPackageCardSlotInfo {
+    name
     status
     backgroundUrl {
       ...RemoteImage
     }
-    name
+    logoUrl {
+      id
+      uri(options: { width: 64, height: 64 })
+    }
   }
 `;
 
@@ -408,6 +412,23 @@ export const GQL_FRAGMENT_CONTENT_ITEM_PACKAGE_CARDS = gql`
         description
         isLocked
       }
+    }
+  }
+`;
+
+export const GQL_FRAGMENT_CONTENT_ITEM_SELECTED_PACKAGE_CARD = gql`
+  fragment ContentItemSelectedPackageCard on ContentItemSelectedPackageCard {
+    id
+    previousPrice
+    price
+    priceDescription
+    coverType
+    backgroundUrl {
+      id
+      uri
+    }
+    slotInfo {
+      ...ContentItemPackageCardSlotInfo
     }
   }
 `;

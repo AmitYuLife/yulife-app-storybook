@@ -1,5 +1,5 @@
 import React, { memo } from "react";
-import { ColorValue, StyleProp, StyleSheet, Text, TextStyle } from "react-native";
+import { ColorValue, StyleSheet, Text, TextStyle } from "react-native";
 import { Style, Colours } from "@styles";
 
 export type ITextTemplateType = "h1" | "h2" | "h3" | "b1" | "b1b" | "b2" | "b2b" | "l1" | "l1b" | "l2" | "l2b" | "l3";
@@ -10,19 +10,19 @@ interface IProps {
   type: ITextTemplateType;
   color?: ColorValue | string;
   textAlign?: TextStyle["textAlign"];
-  underline?: boolean;
+  decoration?: "underline" | "strikeThrough";
   numberOfLines?: number;
 }
 
 export const TextTemplate = memo(
-  ({ children, testID, type, color = Colours.neutral.n800, textAlign = "left", underline, numberOfLines }: IProps) => {
+  ({ children, testID, type, color = Colours.neutral.n800, textAlign = "left", decoration, numberOfLines }: IProps) => {
     const alignment = { textAlign };
     const fontColor = { color };
-    const underlineStyle = !underline ? null : ({ textDecorationLine: "underline" } as StyleProp<TextStyle>);
+    const decorationStyle = !decoration ? null : styles[decoration];
 
     return (
       <Text
-        style={StyleSheet.flatten([styles.default, styles[type], alignment, fontColor, underlineStyle])}
+        style={StyleSheet.flatten([styles.default, styles[type], alignment, fontColor, decorationStyle])}
         allowFontScaling={false}
         testID={testID}
         numberOfLines={numberOfLines}
@@ -104,4 +104,10 @@ export const styles = StyleSheet.create({
     lineHeight: Style.adjust(16),
     letterSpacing: Style.adjust(0.3),
   },
+  underline: {
+    textDecorationLine: "underline",
+  } as TextStyle,
+  strikeThrough: {
+    textDecorationLine: "line-through",
+  } as TextStyle,
 });
