@@ -147,7 +147,7 @@ const DebugAndVersion = ({ onDebugPress, version }: Pick<IProps, "onDebugPress" 
       onDebugPress ? " | " : ""
     }`}</TextTemplate>
     {!onDebugPress ? null : (
-      <TextTemplate color={Colours.neutral.n400} type="l3" underline={true}>
+      <TextTemplate color={Colours.neutral.n400} type="l3" decoration="underline">
         Debug menu
       </TextTemplate>
     )}

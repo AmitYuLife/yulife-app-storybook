@@ -2,7 +2,7 @@ import React, { memo, useContext } from "react";
 import { View, StyleSheet, ViewStyle, Platform } from "react-native";
 import { PackageType, TextTemplate } from "@atoms";
 import { Colours, Style } from "@styles";
-import { Image, Logo } from "@atoms";
+import { Image } from "@atoms";
 import { SlotIcon } from "../product-step.slot-icon";
 import { ContentItemPackageCards_packageCards_header } from "@graphql/_core/schema";
 import { CoverType, YuWorld } from "@graphql/_core/schema/globalTypes";
@@ -50,9 +50,7 @@ const PackageCardHeader = (props: Props) => {
 
   return (
     <View style={styles.wrapper}>
-      {!headerImage ? null : (
-        <Image style={styles.headerImage} source={headerImage} width={props.width + OFFSET} height={HEADER_HEIGHT} />
-      )}
+      <Image style={styles.headerImage} source={headerImage} width={props.width + OFFSET} height={HEADER_HEIGHT} />
       <View style={styles.inner}>
         <SlotIcon
           backgroundUrl={props.header.slotInfo.backgroundUrl.uri}
@@ -65,7 +63,9 @@ const PackageCardHeader = (props: Props) => {
             <TextTemplate color={Colours.neutral.white} type="h3">
               {props.header.slotInfo.name}
             </TextTemplate>
-            <Logo width={Style.adjust(16)} height={Style.adjust(16)} style={styles.logo} type="inverted" />
+            {!props.header.slotInfo?.logoUrl?.id ? null : (
+              <Image style={styles.logo} source={props.header.slotInfo.logoUrl} width={16} height={16} />
+            )}
           </View>
         </View>
       </View>
