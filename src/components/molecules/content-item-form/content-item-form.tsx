@@ -4,6 +4,7 @@ import { StyleSheet } from "react-native";
 import { Style } from "@styles";
 import { ISelectInputOption } from "@atoms/select-input/select-input.types";
 import { Types } from "@atoms/text-input/text-input";
+import { INPUT_AVIOS_FORM_FIELD } from "@ids";
 
 interface IValidation {
   regex: string;
@@ -130,6 +131,7 @@ const ContentItemForm = ({ elements, onSubmit, isLoading, customValidation }: IP
                 iconUri={element.icon?.uri}
                 style={styles.textInput}
                 onChange={(value) => onChange(index, value)}
+                testID={INPUT_AVIOS_FORM_FIELD(element.placeholder)}
               />
             );
           }

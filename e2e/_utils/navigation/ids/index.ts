@@ -77,6 +77,7 @@ export const EARN_RATE_ROW = (label:string, standardValue:number) => `EARN_RATE_
 export const INPUT_FIELD = "INPUT_FIELD"
 export const INPUT_FIELD_VALUE = (value:any) => `INPUT_FIELD_VALUE_${value}`
 export const INPUT_BENEFICIARY_DETAIL = (placeholder: string) => `INPUT_BENEFICIARY_DETAIL_${placeholder}`
+export const INPUT_AVIOS_FORM_FIELD = (placeholder: string) => `INPUT_AVIOS_FORM_FIELD_${placeholder}`
 
 // modals
 export const WELCOME_MODAL = (heading: string) => `WELCOME_MODAL${heading}`

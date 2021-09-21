@@ -1,4 +1,4 @@
-import { generateRandomMongoId, IDatabaseItem } from "@yu-life/yulife-bdd-framework";
+import { generateRandomMongoId, IDatabaseItem, generateRandomInbox } from "@yu-life/yulife-bdd-framework";
 import moment = require("moment");
 
 const type = "postgres"
@@ -485,6 +485,19 @@ export const CUSTOMER_35 = {
         firstName: "Barry",
         lastName: "Allen",
         dateOfBirth: moment().subtract(28, "years").toDate(),
+        status: "onboarded"
+    }
+} as IDatabaseItem
+
+export const CUSTOMER_36 = {
+    type,
+    modelName,
+    data:{
+        customerId: generateRandomMongoId(),
+        email: generateRandomInbox(),
+        firstName: "Harry",
+        lastName: "Potter",
+        dateOfBirth: moment().subtract(23, "years").toDate(),
         status: "onboarded"
     }
 } as IDatabaseItem
