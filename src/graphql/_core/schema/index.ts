@@ -100,6 +100,7 @@ export * from "./JoinCommunityGoal";
 export * from "./LoginUser";
 export * from "./MedicalPractices";
 export * from "./Milestone";
+export * from "./NormalisePersonalProductStep";
 export * from "./PendingPromptsForm";
 export * from "./PerformMobileOnboardingStep";
 export * from "./PersonalProduct";

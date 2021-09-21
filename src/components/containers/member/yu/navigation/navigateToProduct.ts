@@ -1,19 +1,29 @@
 import { Navigation } from "react-native-navigation";
 import { YuProductStatus } from "@graphql/_core/schema/globalTypes";
 import { MODALS, ROUTES } from "@navigation/constants";
+import { normalisePersonalProductStep } from "@graphql/personalProduct";
+import Logger from "@services/logging/logger";
 
 interface INavigateToProduct {
   status: YuProductStatus;
   productId: string;
 }
 
-export const navigateToProduct = (product: INavigateToProduct) => {
+export const navigateToProduct = async (product: INavigateToProduct) => {
   const { productId, status } = product;
 
-  const { nextRouteId, nextModalId } = getNextRoute(status);
+  const { nextRouteId, nextModalId, shouldBeNormalised } = getNextRoute(status);
+
+  if (shouldBeNormalised) {
+    try {
+      await normalisePersonalProductStep({ productId });
+    } catch (e) {
+      Logger.error(e, { where: "product-step-normalise" });
+    }
+  }
 
   if (nextModalId) {
-    return Navigation.showModal({
+    return await Navigation.showModal({
       component: {
         id: nextModalId,
         name: nextModalId,
@@ -24,7 +34,7 @@ export const navigateToProduct = (product: INavigateToProduct) => {
     });
   }
 
-  return Navigation.push(ROUTES.yuScreen, {
+  return await Navigation.push(ROUTES.yuScreen, {
     component: {
       id: nextRouteId,
       name: nextRouteId,
@@ -37,11 +47,11 @@ export const navigateToProduct = (product: INavigateToProduct) => {
 
 const getNextRoute = (status: YuProductStatus) => {
   if (status === YuProductStatus.inProgress) {
-    return { nextModalId: MODALS.personalProductStepContinue };
+    return { nextModalId: MODALS.personalProductStepContinue, shouldBeNormalised: true };
   }
 
   if (status === YuProductStatus.unlockable) {
-    return { nextRouteId: ROUTES.productStep };
+    return { nextRouteId: ROUTES.productStep, shouldBeNormalised: true };
   }
 
   if (status === YuProductStatus.active) {
