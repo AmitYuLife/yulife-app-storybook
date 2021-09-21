@@ -62,7 +62,7 @@ Feature("I am able to use the yuscreen, create, and edit an Yumoji", async () =>
                                                         })
                                                     })
                                                 })
-                                                When("I tap 'Done'", when.tapText("Done"), async () => {
+                                                When("I tap 'Save'", when.tapText("Save"), async () => {
                                                     Then("I should be on the 'All Set' screen", then.textVisible("All Set!"))
                                                     When("I tap 'yes'", when.tapText("Yes"), async () => {
                                                         Then("I should be on the Yumoji completion screen", then.onAvatarCompletionScreen)
@@ -91,11 +91,11 @@ Feature("I am able to use the yuscreen, create, and edit an Yumoji", async () =>
                                                                         When("I tap no facial hair", when.tapItem("emptyElement"), async () => {
                                                                             Then("This no facial hair should be selected", then.avatarBodyVisible("eyes_1", "scruffy_sidepart", "emptyElement", "glasses_5"))
                                                                         })
-                                                                        When("I tap 'Done'", when.tapText("Done"), async () => {
+                                                                        When("I tap 'Save'", when.tapText("Save"), async () => {
                                                                             Then("I should be on the 'All Set' screen", then.textVisible("All Set!"))
                                                                             When("I tap 'keep editing'", when.tapText("Keep Editing"), async () => {
                                                                                 Then("I should be back on the Yumoji builder", then.onAvatarBuilder)
-                                                                                When("I tap 'Done' ", when.tapText("Done"), async () => {
+                                                                                When("I tap 'Save' ", when.tapText("Save"), async () => {
                                                                                     Then("I should be on the 'All Set' screen", then.textVisible("All Set!"))
                                                                                     When("I tap 'yes'", when.tapText("Yes"), async () => {
                                                                                         Then("I should be on the yuscreen", then.onYuscreen(CUSTOMER_18))
@@ -247,7 +247,7 @@ Feature("I am able to use the yuscreen, create, and edit an Yumoji", async () =>
                                                     })
                                                 })
                                             })
-                                            When("I tap 'Done'", when.tapText("Done"), async () => {
+                                            When("I tap 'Save'", when.tapText("Save"), async () => {
                                                 Then("I should be on the 'All Set' screen", then.textVisible("All Set!"))
                                                 When("I tap 'yes'", when.tapText("Yes"), async () => {
                                                     Then("I should be on the Yumoji completion screen", then.onAvatarCompletionScreen)
