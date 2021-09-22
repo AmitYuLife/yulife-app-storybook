@@ -1,8 +1,8 @@
-import React, { memo } from "react";
+import React, { memo, useCallback } from "react";
+import { useDispatch } from "react-redux";
 import { ContentItemButton as GqlButton } from "@graphql/_core/schema";
 import { ContentItemButtonType } from "@graphql/_core/schema/globalTypes";
 import { Button, LinkButton, SecondaryButton, TertiaryButton } from "@atoms";
-import { useDispatch } from "react-redux";
 import { mapServerStyles } from "../_utils/mapServerStyles";
 
 type Props = Omit<GqlButton, "onPress" | "disabledState"> & {
@@ -11,11 +11,21 @@ type Props = Omit<GqlButton, "onPress" | "disabledState"> & {
 };
 
 export const ContentItemButton = memo((props: Props) => {
-  const { label, onPress, styles, icon, rightIcon, buttonSize, buttonType, disabled = false } = props;
+  const { label, onPress, styles, icon, rightIcon, buttonSize, buttonType, event, disabled = false } = props;
   const dispatch = useDispatch();
 
   const Component = getComponent(buttonType);
-  const handlePress = typeof onPress === "function" ? onPress : () => dispatch(onPress);
+  const handlePress = useCallback(() => {
+    if (typeof onPress === "function") {
+      onPress();
+    } else if (onPress?.type) {
+      dispatch(onPress);
+    }
+
+    if (event) {
+      dispatch(event);
+    }
+  }, [onPress, dispatch, event]);
 
   return (
     <Component

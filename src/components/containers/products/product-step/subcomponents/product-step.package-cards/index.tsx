@@ -9,10 +9,12 @@ import {
   ViewStyle,
   FlatList as RNFlatList,
 } from "react-native";
+import { useDispatch } from "react-redux";
 import {
   ContentItemPackageCards,
   GetPersonalProductStep_getPersonalProductStep_body_ContentItemPackageCards as GqlPackageCards,
 } from "@graphql/_core/schema";
+import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 import { PackageCard } from "./package-card";
 import { FlatList, TextTemplate } from "@atoms";
 import { Colours, Style } from "@styles";
@@ -36,7 +38,7 @@ const OFFSET = 1;
 
 export const ProductStepPackageCards = memo((props: GqlPackageCards) => {
   const { answerKey, answerKeyDefaultValue } = props;
-  const { dynamicData, setDynamicData } = useContext(ProductStepContext);
+  const { dynamicData, setDynamicData, productId } = useContext(ProductStepContext);
   const flatListData = useMemo(() => createFlatListData(props.packageCards), [props.packageCards]);
   const snapToOffsets = Array.from({ length: props.packageCards.length }).map((_, i) => i * PACKAGE_CARD_WIDTH);
 
@@ -59,6 +61,7 @@ export const ProductStepPackageCards = memo((props: GqlPackageCards) => {
     answerKey,
     answerKeyValue: dynamicData[answerKey] as number,
     setDynamicData,
+    productId,
   });
 
   return (
@@ -213,9 +216,12 @@ type UseScrollHandler = Pick<IProductStepContext, "setDynamicData"> & {
   packageCards: ContentItemPackageCards["packageCards"];
   answerKey: ContentItemPackageCards["answerKey"];
   answerKeyValue: ContentItemPackageCards["answerKeyDefaultValue"];
+  productId: string;
 };
 
-function useScrollHandler({ packageCards, setDynamicData, answerKey, answerKeyValue }: UseScrollHandler) {
+function useScrollHandler({ packageCards, setDynamicData, answerKey, answerKeyValue, productId }: UseScrollHandler) {
+  const dispatch = useDispatch();
+
   const listRef = useRef(null as RNFlatList);
   const [canChangeDynamicData, setCanChangeDynamicData] = useState(false);
   const scrollX = useRef(new Animated.Value(0));
@@ -252,6 +258,15 @@ function useScrollHandler({ packageCards, setDynamicData, answerKey, answerKeyVa
         [answerKey]: packageCard.value,
         [LOCAL_ANSWER_KEY.CoverType]: packageCard.coverType,
       }));
+
+      dispatch(
+        logMixpanelEventActionCreator("package_inspected", {
+          type: packageCard.coverType,
+          salary_covered: packageCard.value,
+          cs_product: productId,
+          location: "scroll-cards",
+        })
+      );
     }
 
     setCanChangeDynamicData(false);

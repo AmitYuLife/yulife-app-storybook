@@ -14,6 +14,11 @@ export interface ContentItemOverlay_buttons_onPress {
   payload: string | null;
 }
 
+export interface ContentItemOverlay_buttons_event {
+  type: ContentItemSDUIAction;
+  payload: string | null;
+}
+
 export interface ContentItemOverlay_buttons_icon {
   id: string;
   uri: string | null;
@@ -36,6 +41,7 @@ export interface ContentItemOverlay_buttons {
   value: string | null;
   disabledState: string | null;
   onPress: ContentItemOverlay_buttons_onPress | null;
+  event: ContentItemOverlay_buttons_event | null;
   icon: ContentItemOverlay_buttons_icon | null;
   rightIcon: ContentItemOverlay_buttons_rightIcon | null;
   styles: ContentItemOverlay_buttons_styles[] | null;

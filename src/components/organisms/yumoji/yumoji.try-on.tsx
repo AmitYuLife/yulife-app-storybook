@@ -1,7 +1,9 @@
 import React, { memo, useEffect, useState, useCallback } from "react";
 import { LayoutChangeEvent, StyleSheet, View } from "react-native";
 import FastImage from "react-native-fast-image";
+import { useDispatch } from "react-redux";
 import { useMutation, useQuery } from "@apollo/react-hooks";
+import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 import { Colours, Style } from "@styles";
 import { Loading, TextTemplate } from "@atoms";
 import { Popover as PopoverMolecule, TouchableOpacityWithDelay } from "@molecules";
@@ -207,6 +209,8 @@ interface WorldRadioButtons {
 }
 
 const WorldRadioButtons = ({ yuWorlds, selectedWorld, handlePress }: WorldRadioButtons) => {
+  const dispatch = useDispatch();
+
   return (
     <View style={styles.row}>
       {yuWorlds.map((v) => {
@@ -219,6 +223,7 @@ const WorldRadioButtons = ({ yuWorlds, selectedWorld, handlePress }: WorldRadioB
             style={styles.worldSelector}
             onPress={() => {
               handlePress(v.id);
+              dispatch(logMixpanelEventActionCreator("armour_inspected", { armour_style_chosen: v.id }));
             }}
           >
             <View

@@ -14,6 +14,11 @@ export interface ContentItemButton_onPress {
   payload: string | null;
 }
 
+export interface ContentItemButton_event {
+  type: ContentItemSDUIAction;
+  payload: string | null;
+}
+
 export interface ContentItemButton_icon {
   id: string;
   uri: string | null;
@@ -36,6 +41,7 @@ export interface ContentItemButton {
   value: string | null;
   disabledState: string | null;
   onPress: ContentItemButton_onPress | null;
+  event: ContentItemButton_event | null;
   icon: ContentItemButton_icon | null;
   rightIcon: ContentItemButton_rightIcon | null;
   styles: ContentItemButton_styles[] | null;
