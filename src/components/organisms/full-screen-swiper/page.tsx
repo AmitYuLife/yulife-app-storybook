@@ -1,0 +1,49 @@
+import React from "react";
+import { StyleSheet, View } from "react-native";
+import { Image, TextTemplate } from "@atoms";
+import { Colours, Style } from "@styles";
+import { IPageItem } from "@organisms/full-screen-swiper/full-screen-swiper";
+
+export const Page = ({ backgroundColor, heading, paragraph, backgroundImage }: IPageItem) => {
+  return (
+    <View style={[styles.wrapper, { backgroundColor }]}>
+      <View style={styles.container}>
+        <View style={styles.header}>
+          <TextTemplate color={Colours.neutral.white} type="h1">
+            {heading}
+          </TextTemplate>
+        </View>
+        <View style={styles.paragraph}>
+          <TextTemplate color={Colours.neutral.white} type="b2">
+            {paragraph}
+          </TextTemplate>
+        </View>
+        {!backgroundImage ? null : (
+          <View style={styles.image}>
+            <Image source={{ uri: backgroundImage }} width={Style.DEVICE_WIDTH - Style.adjust(64)} />
+          </View>
+        )}
+      </View>
+    </View>
+  );
+};
+
+const styles = StyleSheet.create({
+  wrapper: {
+    width: Style.DEVICE_WIDTH,
+    height: Style.DEVICE_HEIGHT,
+  },
+  container: {
+    marginHorizontal: Style.adjust(32),
+  },
+  header: {
+    marginTop: Style.adjust(80),
+  },
+  paragraph: {
+    marginTop: Style.adjust(8),
+  },
+  image: {
+    marginTop: Style.adjust(27),
+    alignItems: "center",
+  },
+});

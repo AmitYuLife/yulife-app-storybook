@@ -31,7 +31,8 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemP
     | "ContentItemPersonalProductConfirm"
     | "ContentItemPersonalProductDocuments"
     | "ContentItemPersonalProductFaqs"
-    | "ContentItemCollapsingHeaderProductInfo";
+    | "ContentItemCollapsingHeaderProductInfo"
+    | "ContentItemFullScreenSwiper";
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemTextInput_validation {
@@ -918,7 +919,8 @@ export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentIte
     | "ContentItemConfirm"
     | "ContentItemCollapsingHeaderProductInfo"
     | "ContentItemList"
-    | "ContentItemRowIconTextBanner";
+    | "ContentItemRowIconTextBanner"
+    | "ContentItemFullScreenSwiper";
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentItemButton_onPress {
@@ -1078,7 +1080,8 @@ export interface GetPersonalProductStep_getPersonalProductStep_header_ContentIte
     | "ContentItemConfirm"
     | "ContentItemCollapsingHeaderProductInfo"
     | "ContentItemList"
-    | "ContentItemRowIconTextBanner";
+    | "ContentItemRowIconTextBanner"
+    | "ContentItemFullScreenSwiper";
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_header_ContentItemHeaderBar_onLeftIconPress {
@@ -1143,7 +1146,8 @@ export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_Con
     | "ContentItemScrollableItemsPicker"
     | "ContentItemConfirm"
     | "ContentItemList"
-    | "ContentItemRowIconTextBanner";
+    | "ContentItemRowIconTextBanner"
+    | "ContentItemFullScreenSwiper";
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemImage_image {
