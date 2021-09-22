@@ -1,8 +1,16 @@
+import { Style } from "@styles";
 import React, { memo, Ref } from "react";
-import { Animated, FlatListProps, ViewabilityConfig, FlatList as RNFlatList } from "react-native";
+import {
+  Animated,
+  FlatListProps,
+  ViewabilityConfig,
+  FlatList as RNFlatList,
+  StyleSheet,
+  ViewStyle,
+} from "react-native";
 
 type Props = FlatListProps<any> & {
-  forwardRef: Ref<RNFlatList>;
+  forwardRef?: Ref<RNFlatList>;
 };
 
 const _FlatList = ({
@@ -17,7 +25,7 @@ const _FlatList = ({
 }: Props) => {
   return (
     <Animated.FlatList
-      {...flatListProps}
+      style={styles.defaultStyle}
       directionalLockEnabled={directionalLockEnabled}
       data={data}
       renderItem={renderItem}
@@ -29,11 +37,18 @@ const _FlatList = ({
       decelerationRate={"fast"}
       showsHorizontalScrollIndicator={false}
       showsVerticalScrollIndicator={false}
+      {...flatListProps}
     />
   );
 };
 
 export const FlatList = memo(_FlatList);
+
+const styles = StyleSheet.create({
+  defaultStyle: {
+    width: Style.DEVICE_WIDTH,
+  } as ViewStyle,
+});
 
 /**
  * Used to extract a unique key for a given item at the specified index.

@@ -113,8 +113,7 @@ export const GQL_FRAGMENT_CONTENT_ITEM_LOTTIE = gql`
       value
     }
     onAnimationEnd {
-      type
-      payload
+      ...ContentItemAction
     }
   }
 `;
@@ -145,6 +144,13 @@ export const GQL_FRAGMENT_CONTENT_ITEM_RADIO = gql`
         ...ContentItemRadioIcon
       }
     }
+  }
+`;
+
+export const GQL_FRAGMENT_CONTENT_ITEM_ACTION = gql`
+  fragment ContentItemAction on ContentItemAction {
+    type
+    payload
   }
 `;
 
@@ -186,8 +192,7 @@ export const GQL_FRAGMENT_CONTENT_ITEM_PERSONAL_PRODUCT_REVIEW_ITEM = gql`
       uri(options: { width: 64, height: 64 })
     }
     onPress {
-      type
-      payload
+      ...ContentItemAction
     }
   }
 `;
@@ -216,12 +221,10 @@ export const GQL_FRAGMENT_CONTENT_ITEM_HEADER_BAR = gql`
     leftIcon
     rightIcon
     onLeftIconPress {
-      type
-      payload
+      ...ContentItemAction
     }
     onRightIconPress {
-      type
-      payload
+      ...ContentItemAction
     }
   }
 `;
@@ -467,8 +470,7 @@ export const GQL_FRAGMENT_CONTENT_ITEM_BUTTON = gql`
     value
     disabledState
     onPress {
-      type
-      payload
+      ...ContentItemAction
     }
     icon {
       id

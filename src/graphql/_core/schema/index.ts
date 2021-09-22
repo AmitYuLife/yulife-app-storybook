@@ -11,6 +11,7 @@ export * from "./Challenge";
 export * from "./ChallengeTemplate";
 export * from "./CollectAward";
 export * from "./ConfirmPaymentCard";
+export * from "./ContentItemAction";
 export * from "./ContentItemButton";
 export * from "./ContentItemCollapsingHeaderProductInfo";
 export * from "./ContentItemConfirm";
