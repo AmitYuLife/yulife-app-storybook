@@ -2,8 +2,9 @@ import { ContentItemSDUIAction } from "@graphql/_core/schema/globalTypes";
 import { MODALS } from "@navigation/constants";
 import { handleLinkPress } from "@services/app-link";
 import { Navigation } from "react-native-navigation";
-import { call, takeLatest, select, ActionPattern } from "redux-saga/effects";
-// import Logger from "@services/logging/logger";
+import { call, takeLatest, select, ActionPattern, takeEvery } from "redux-saga/effects";
+import Logger from "@services/logging/logger";
+import { SyncAction } from "@redux/_core/types";
 import { getRouteState } from "../app/app.selectors";
 import submitPersonalProductStepGql from "@graphql/personalProduct/submitPersonalProductStep.gql";
 import backPersonalProductStepGql from "@graphql/personalProduct/backPersonalProductStep.gql";
@@ -115,10 +116,19 @@ function* pushStep(action: ProductStepAction) {
   }
 }
 
+function* logEvent(action: SyncAction<string>) {
+  const { isValid, data } = parseJSON(action.payload, ["name", "props"]);
+
+  if (isValid) {
+    yield call(Logger.logMixpanelEvent, data.name, data.props);
+  }
+}
+
 export default [
   takeLatest(ContentItemSDUIAction.SDUI_ACTION_NAVIGATE_BACK as ActionPattern, navigateBack),
   takeLatest(ContentItemSDUIAction.SDUI_ACTION_NAVIGATE as ActionPattern, navigateTo),
   takeLatest(ContentItemSDUIAction.SDUI_ACTION_OPEN_URL as ActionPattern, openUrl),
   takeLatest(ContentItemSDUIAction.SDUI_ACTION_PRODUCT_UNDERWRITING_STEP_POP as ActionPattern, popStep),
   takeLatest(ContentItemSDUIAction.SDUI_ACTION_PRODUCT_UNDERWRITING_STEP_PUSH as ActionPattern, pushStep),
+  takeEvery(ContentItemSDUIAction.SDUI_ACTION_LOG_EVENT as ActionPattern, logEvent),
 ];

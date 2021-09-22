@@ -42,6 +42,11 @@ export interface ContentItemCoverPicker_customCover_button_onPress {
   payload: string | null;
 }
 
+export interface ContentItemCoverPicker_customCover_button_event {
+  type: ContentItemSDUIAction;
+  payload: string | null;
+}
+
 export interface ContentItemCoverPicker_customCover_button_icon {
   id: string;
   uri: string | null;
@@ -64,6 +69,7 @@ export interface ContentItemCoverPicker_customCover_button {
   value: string | null;
   disabledState: string | null;
   onPress: ContentItemCoverPicker_customCover_button_onPress | null;
+  event: ContentItemCoverPicker_customCover_button_event | null;
   icon: ContentItemCoverPicker_customCover_button_icon | null;
   rightIcon: ContentItemCoverPicker_customCover_button_rightIcon | null;
   styles: ContentItemCoverPicker_customCover_button_styles[] | null;

@@ -14,6 +14,11 @@ export interface ContentItemScrollPicker_button_onPress {
   payload: string | null;
 }
 
+export interface ContentItemScrollPicker_button_event {
+  type: ContentItemSDUIAction;
+  payload: string | null;
+}
+
 export interface ContentItemScrollPicker_button_icon {
   id: string;
   uri: string | null;
@@ -36,6 +41,7 @@ export interface ContentItemScrollPicker_button {
   value: string | null;
   disabledState: string | null;
   onPress: ContentItemScrollPicker_button_onPress | null;
+  event: ContentItemScrollPicker_button_event | null;
   icon: ContentItemScrollPicker_button_icon | null;
   rightIcon: ContentItemScrollPicker_button_rightIcon | null;
   styles: ContentItemScrollPicker_button_styles[] | null;

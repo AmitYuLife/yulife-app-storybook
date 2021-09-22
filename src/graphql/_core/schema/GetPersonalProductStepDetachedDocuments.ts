@@ -39,7 +39,7 @@ export interface GetPersonalProductStepDetachedDocuments_getPersonalProductStepD
     | "ContentItemCollapsingHeaderProductInfo"
     | "ContentItemList"
     | "ContentItemRowIconTextBanner"
-    | "ContentItemFullScreenSwiper";
+    | "ContentItemGpDetails";
 }
 
 export interface GetPersonalProductStepDetachedDocuments_getPersonalProductStepDetachedDocuments_body_ContentItemPersonalProductDocuments_headingImage_image {

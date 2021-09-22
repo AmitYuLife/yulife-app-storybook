@@ -5,6 +5,8 @@ import {
   PRODUCT_ITEM_INSPECTED,
   logProductItemViewedActionCreator,
   logProductItemInspectedActionCreator,
+  logMixpanelEventActionCreator,
+  LOG_EVENT_STARTED,
 } from "./logging.actions";
 
 export function* logProductItemInspected({ payload }: ReturnType<typeof logProductItemInspectedActionCreator>) {
@@ -21,7 +23,12 @@ export function* logProductItemViewed({ payload }: ReturnType<typeof logProductI
   });
 }
 
+export function* logMixpanelEvent({ payload }: ReturnType<typeof logMixpanelEventActionCreator>) {
+  yield call(Logger.logMixpanelEvent, payload.eventName, payload.data);
+}
+
 export default [
   takeEvery(PRODUCT_ITEM_VIEWED, logProductItemViewed),
   takeEvery(PRODUCT_ITEM_INSPECTED, logProductItemInspected),
+  takeEvery(LOG_EVENT_STARTED, logMixpanelEvent),
 ];
