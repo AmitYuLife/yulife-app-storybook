@@ -462,6 +462,32 @@ export const GQL_FRAGMENT_CONTENT_ITEM_DATE_PICKER = gql`
   }
 `;
 
+export const GQL_FRAGMENT_CONTENT_ITEM_INFO_BUTTON = gql`
+  fragment ContentItemInfoButton on ContentItemInfoButton {
+    id
+    label
+    infoBtnLeftIcon: leftIcon {
+      ...RemoteImage
+    }
+    infoBtnRightIcon: rightIcon {
+      ...RemoteImage
+    }
+    onPress {
+      ...ContentItemAction
+    }
+    active {
+      label
+      leftIcon {
+        ...RemoteImage
+      }
+      rightIcon {
+        ...RemoteImage
+      }
+    }
+    answerKeys
+  }
+`;
+
 export const GQL_FRAGMENT_CONTENT_ITEM_BUTTON = gql`
   fragment ContentItemButton on ContentItemButton {
     id

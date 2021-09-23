@@ -17,6 +17,7 @@ export interface GetPersonalProductStepDetachedDocuments_getPersonalProductStepD
     | "ContentItemHeaderBar"
     | "ContentItemRadio"
     | "ContentItemInfoCard"
+    | "ContentItemInfoButton"
     | "ContentItemButton"
     | "ContentItemMultiButton"
     | "ContentItemPad"
