@@ -1,5 +1,6 @@
 export * from "./product-step.absoluteImage";
 export * from "./product-step.button";
+export * from "./product-step.info-button";
 export * from "./product-step.markdown";
 export * from "./product-step.multi-button";
 export * from "./product-step.productInfo";

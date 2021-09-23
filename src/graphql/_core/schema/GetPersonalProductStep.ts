@@ -257,6 +257,51 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemI
   hyperlink: GetPersonalProductStep_getPersonalProductStep_body_ContentItemInfoCard_hyperlink | null;
 }
 
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemInfoButton_infoBtnLeftIcon {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemInfoButton_infoBtnRightIcon {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemInfoButton_onPress {
+  type: ContentItemSDUIAction;
+  payload: string | null;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemInfoButton_active_leftIcon {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemInfoButton_active_rightIcon {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemInfoButton_active {
+  label: string;
+  leftIcon: GetPersonalProductStep_getPersonalProductStep_body_ContentItemInfoButton_active_leftIcon | null;
+  rightIcon: GetPersonalProductStep_getPersonalProductStep_body_ContentItemInfoButton_active_rightIcon | null;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemInfoButton {
+  __typename: "ContentItemInfoButton";
+  id: string;
+  /**
+   * Default passive label(placeholder)
+   */
+  label: string;
+  infoBtnLeftIcon: GetPersonalProductStep_getPersonalProductStep_body_ContentItemInfoButton_infoBtnLeftIcon | null;
+  infoBtnRightIcon: GetPersonalProductStep_getPersonalProductStep_body_ContentItemInfoButton_infoBtnRightIcon | null;
+  onPress: GetPersonalProductStep_getPersonalProductStep_body_ContentItemInfoButton_onPress | null;
+  active: GetPersonalProductStep_getPersonalProductStep_body_ContentItemInfoButton_active;
+  answerKeys: string[] | null;
+}
+
 export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemSelectedPackageCard_backgroundUrl {
   id: string;
   uri: string | null;
@@ -899,6 +944,7 @@ export type GetPersonalProductStep_getPersonalProductStep_body =
   | GetPersonalProductStep_getPersonalProductStep_body_ContentItemButton
   | GetPersonalProductStep_getPersonalProductStep_body_ContentItemList
   | GetPersonalProductStep_getPersonalProductStep_body_ContentItemInfoCard
+  | GetPersonalProductStep_getPersonalProductStep_body_ContentItemInfoButton
   | GetPersonalProductStep_getPersonalProductStep_body_ContentItemSelectedPackageCard
   | GetPersonalProductStep_getPersonalProductStep_body_ContentItemPackageCards
   | GetPersonalProductStep_getPersonalProductStep_body_ContentItemPersonalProductPreview
@@ -924,6 +970,7 @@ export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentIte
     | "ContentItemHeaderBar"
     | "ContentItemRadio"
     | "ContentItemInfoCard"
+    | "ContentItemInfoButton"
     | "ContentItemPad"
     | "ContentItemImage"
     | "ContentItemPersonalProductInfo"
@@ -1100,6 +1147,7 @@ export interface GetPersonalProductStep_getPersonalProductStep_header_ContentIte
     | "ContentItemTextInput"
     | "ContentItemRadio"
     | "ContentItemInfoCard"
+    | "ContentItemInfoButton"
     | "ContentItemButton"
     | "ContentItemMultiButton"
     | "ContentItemPad"
@@ -1168,6 +1216,7 @@ export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_Con
     | "ContentItemHeaderBar"
     | "ContentItemRadio"
     | "ContentItemInfoCard"
+    | "ContentItemInfoButton"
     | "ContentItemButton"
     | "ContentItemMultiButton"
     | "ContentItemPad"

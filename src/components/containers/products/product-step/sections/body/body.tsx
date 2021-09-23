@@ -21,6 +21,7 @@ import {
   ProductStepContentItemReviewAnswer,
   ProductStepRowIconTextBanner,
   ProductStepSelectedPackageCard,
+  ProductStepContentItemInfoButton,
 } from "../../subcomponents";
 import {
   ContentItemInfoCard,
@@ -88,6 +89,8 @@ const renderItemContent = (item: GPPS_Body): JSX.Element => {
       return <ProductStepMarkdown key={item.id} {...item} />;
     case "ContentItemPad":
       return <ContentItemPad key={item.id} {...item} />;
+    case "ContentItemInfoButton":
+      return <ProductStepContentItemInfoButton key={item.id} {...item} />;
     case "ContentItemButton":
       return <ProductStepContentItemButton key={item.id} {...item} />;
     case "ContentItemTextInput":

@@ -1,5 +1,6 @@
 export * from "./_utils/mapServerStyles";
 export * from "./contentItemButton/contentItemButton";
+export * from "./contentItemInfoButton/contentItemInfoButton";
 export * from "./contentItemHeaderBar/contentItemHeaderBar";
 export * from "./contentItemInfoCard/contentItemInfoCard";
 export * from "./contentItemMarkdown/contentItemMarkdown";
