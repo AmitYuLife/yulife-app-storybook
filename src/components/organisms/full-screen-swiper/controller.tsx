@@ -1,6 +1,7 @@
 import React from "react";
-import { StyleSheet, TouchableOpacity, View, ViewStyle } from "react-native";
+import { StyleSheet, View, ViewStyle } from "react-native";
 import { Style } from "@styles";
+import { TouchableOpacityWithDelay } from "@components/molecules";
 
 interface IProps {
   handleChangeActiveIndex: (num: number) => () => void;
@@ -8,12 +9,12 @@ interface IProps {
 
 export const Controller = ({ handleChangeActiveIndex }: IProps) => (
   <View pointerEvents="box-none" style={styles.wrapper}>
-    <TouchableOpacity
+    <TouchableOpacityWithDelay
       style={[styles.controller, styles.left]}
       activeOpacity={0}
       onPress={handleChangeActiveIndex(-1)}
     />
-    <TouchableOpacity
+    <TouchableOpacityWithDelay
       style={[styles.controller, styles.right]}
       activeOpacity={0}
       onPress={handleChangeActiveIndex(1)}

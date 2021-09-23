@@ -17,3 +17,4 @@ export { default as ScrollPickerModal } from "./scroll-picker-modal/scroll-picke
 export { default as BlurredOverlay } from "./blurred-overlay/blurred-overlay";
 export { default as ActiveBuffsModal } from "./active-buffs/active-buffs.modal";
 export { default as SwitchToGoogleFitModal } from "./switch-to-googlefit-modal/switch-to-googlefit-modal";
+export { default as WhatsNewModal } from "./whats-new/whats-new";
