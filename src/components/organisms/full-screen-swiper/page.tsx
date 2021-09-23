@@ -4,9 +4,16 @@ import { Image, TextTemplate } from "@atoms";
 import { Colours, Style } from "@styles";
 import { IPageItem } from "@organisms/full-screen-swiper/full-screen-swiper";
 
-export const Page = ({ backgroundColor, heading, paragraph, backgroundImage }: IPageItem) => {
+export const Page = (props: IPageItem) => {
+  const { heading, paragraph, backgroundImage } = props;
+
   return (
-    <View style={[styles.wrapper, { backgroundColor }]}>
+    <View style={[styles.wrapper]}>
+      {!backgroundImage ? null : (
+        <View style={styles.image}>
+          <Image source={{ uri: backgroundImage.uri }} width={Style.DEVICE_WIDTH} height={Style.DEVICE_HEIGHT} />
+        </View>
+      )}
       <View style={styles.container}>
         <View style={styles.header}>
           <TextTemplate color={Colours.neutral.white} type="h1">
@@ -18,11 +25,6 @@ export const Page = ({ backgroundColor, heading, paragraph, backgroundImage }: I
             {paragraph}
           </TextTemplate>
         </View>
-        {!backgroundImage ? null : (
-          <View style={styles.image}>
-            <Image source={{ uri: backgroundImage }} width={Style.DEVICE_WIDTH - Style.adjust(64)} />
-          </View>
-        )}
       </View>
     </View>
   );
@@ -43,7 +45,7 @@ const styles = StyleSheet.create({
     marginTop: Style.adjust(8),
   },
   image: {
-    marginTop: Style.adjust(27),
     alignItems: "center",
+    ...StyleSheet.absoluteFillObject,
   },
 });

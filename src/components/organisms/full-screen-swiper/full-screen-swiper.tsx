@@ -1,31 +1,45 @@
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { FlatList as RNFlatList, Animated, StyleSheet, View, ViewStyle, Platform } from "react-native";
 import { Colours, Style } from "@styles";
-import { Button, FlatList, TextTemplate } from "@atoms";
+import { FlatList, TextTemplate } from "@atoms";
 import { ProgressItems } from "./progress-items";
 import { Controller } from "./controller";
 import { Page } from "./page";
+import { Dismiss } from "./dismiss";
 
 export interface IPageItem {
-  backgroundColor: string;
-  backgroundImage?: string;
-  title: string;
   heading: string;
   paragraph: string;
+  styles: Array<{ property: string; value: string }>;
+  backgroundImage: {
+    uri: string;
+  };
 }
 
 interface Props {
-  button: {
-    onPress: () => void;
-    label: string;
-  };
-  onClose: () => void;
-  items: Array<IPageItem>;
+  id: string;
   title: string;
+  button: {
+    label: string;
+    onPress: () => void;
+  };
+  close: {
+    icon: {
+      id: string;
+      uri: string;
+    };
+    onPress: () => void;
+  };
+  items: Array<IPageItem>;
+  dismissMinVisibleIndex: number;
+  autoPlaySpeedMs: number;
+  theme: {
+    primaryColor: string;
+  };
 }
 
 export const FullScreenSwiper = memo((props: Props) => {
-  const { items, onClose, title, button } = props;
+  const { items, title, button, close, dismissMinVisibleIndex, autoPlaySpeedMs } = props;
   const animationRef = useRef(null as ReturnType<typeof Animated.timing>);
   const {
     activeIndex,
@@ -60,7 +74,7 @@ export const FullScreenSwiper = memo((props: Props) => {
         }
 
         if (incremented > max) {
-          onClose();
+          close.onPress();
           return activeIndex;
         }
 
@@ -74,11 +88,9 @@ export const FullScreenSwiper = memo((props: Props) => {
     [activeIndex, setActiveIndex, items.length]
   );
 
-  // This will prevent the screen to "flash" on android devices
-  const screenBackgroundColor = items[activeIndex]?.backgroundColor;
   return (
-    <View style={[styles.screen, { backgroundColor: screenBackgroundColor }]}>
-      <View style={styles.inner}>
+    <View style={styles.screen}>
+      <View style={[styles.inner, { backgroundColor: props.theme.primaryColor }]}>
         <FlatList
           forwardRef={listRef}
           snapToOffsets={snapToOffsets}
@@ -94,6 +106,7 @@ export const FullScreenSwiper = memo((props: Props) => {
           width={width}
           interpolatedValue={interpolatedValue}
           animationRef={animationRef}
+          autoPlaySpeedMs={autoPlaySpeedMs}
         />
         <Controller handleChangeActiveIndex={handleChangeActiveIndex} />
         <View style={styles.title}>
@@ -101,9 +114,7 @@ export const FullScreenSwiper = memo((props: Props) => {
             {title}
           </TextTemplate>
         </View>
-        <View style={styles.button}>
-          <Button label={button.label} onPress={button.onPress} />
-        </View>
+        {activeIndex < dismissMinVisibleIndex ? null : <Dismiss button={button} close={close} />}
       </View>
     </View>
   );
@@ -144,7 +155,7 @@ function useScrollHandler() {
   useEffect(() => {
     const offset = Style.DEVICE_WIDTH * activeIndex;
 
-    listRef.current.scrollToOffset({ offset, animated: false });
+    listRef.current.scrollToOffset({ offset, animated: true });
   }, [activeIndex]);
 
   return { listRef, activeIndex, setActiveIndex, userInteractionToggler, setUserInteractionToggler };

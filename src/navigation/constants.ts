@@ -107,6 +107,7 @@ export const MODALS = {
   blurredOverlay: "yulife.modals.blurredOverlay",
   personalProductStepContinue: "yulife.product.ContinueJourney",
   switchToGoogleFit: "yulife.modals.switchToGoogleFit",
+  whatsNew: "yulife.modals.whatsNew",
 };
 
 export const bottomTabs: OptionsBottomTabs = {

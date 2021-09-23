@@ -71,6 +71,7 @@ export * from "./GetLeaderboard";
 export * from "./GetMagicLink";
 export * from "./GetMobileAssets";
 export * from "./GetMobileCopy";
+export * from "./GetMobileWhatsNewModal";
 export * from "./GetNewConnectionLink";
 export * from "./GetPersonalProductStep";
 export * from "./GetPersonalProductStepContinueModal";

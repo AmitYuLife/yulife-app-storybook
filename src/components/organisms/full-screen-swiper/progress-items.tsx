@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect } from "react";
-import { Animated, StyleSheet, View, ViewStyle } from "react-native";
+import { Animated, Easing, StyleSheet, View, ViewStyle } from "react-native";
 import { Style, Colours } from "@styles";
 
 const ProgressItem = ({ width, translateX }: { width: number; translateX: number | Animated.Value }) => (
@@ -16,6 +16,7 @@ export const ProgressItems = ({
   width,
   interpolatedValue,
   animationRef,
+  autoPlaySpeedMs = 2000,
 }: {
   length: number;
   activeIndex: number;
@@ -24,14 +25,15 @@ export const ProgressItems = ({
   width: number;
   interpolatedValue: Animated.Value;
   animationRef: React.MutableRefObject<Animated.CompositeAnimation>;
+  autoPlaySpeedMs: number;
 }) => {
   const reanimateInterpolatedValue = useCallback(() => {
     interpolatedValue.setValue(-width);
     animationRef.current = Animated.timing(interpolatedValue, {
       toValue: 0,
-      delay: 1000,
-      duration: 2000,
+      duration: autoPlaySpeedMs,
       useNativeDriver: true,
+      easing: Easing.linear,
     });
 
     animationRef.current.start(({ finished }) => {

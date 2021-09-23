@@ -320,4 +320,8 @@ export default [
     name: MODALS.switchToGoogleFit,
     component: require("../components/modals/switch-to-googlefit-modal/switch-to-googlefit-modal").default,
   },
+  {
+    name: MODALS.whatsNew,
+    component: require("../components/modals/whats-new/whats-new").default,
+  },
 ];
