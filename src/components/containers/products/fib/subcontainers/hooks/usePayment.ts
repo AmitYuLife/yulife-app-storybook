@@ -1,11 +1,12 @@
-import stripe, { StripePaymentRequestToken } from "tipsi-stripe";
+// TODO: purge. Kept for reference.
+
 import { useState, useEffect, useCallback } from "react";
 import { getFIBState, getFullName } from "@redux/product/product.selectors";
 import { useSelector } from "react-redux";
 import { FIB_INFO, FibLocalNavigation, FIB_FEEDBACK_FORM } from "../../fib.types";
 import { InfoTypes } from "../fib.info.container";
 import { toCapitalLetter } from "@utils";
-import { Linking } from "react-native";
+// import { Linking } from "react-native";
 import { ProductCode } from "@graphql/_core/schema/globalTypes";
 import {
   AddPaymentCard,
@@ -33,7 +34,7 @@ export const usePayment = ({ navigation }: IUsePayment) => {
   } = useSelector(getFIBState);
   const { medicalInvestigationRequired, selectedPackage } = useSelector(getFIBState);
   const fullName = useSelector(getFullName);
-  const [paymentProviderDetails, setPaymentProviderDetails] = useState(null as StripePaymentRequestToken);
+  const [paymentProviderDetails, setPaymentProviderDetails] = useState(null);
   const [isPaymentCollected, setPaymentCollected] = useState(false);
   const [isProductPurchased, setProductPurchased] = useState(false);
   const [isPaymentCancelled, setPaymentCancelled] = useState(false);
@@ -50,80 +51,74 @@ export const usePayment = ({ navigation }: IUsePayment) => {
   );
 
   const handlePressPayment = useCallback(async () => {
-    const {
-      personalEmail,
-      phoneNumber,
-      firstAddressLine,
-      secondAddressLine,
-      townOrCity,
-      postCode,
-    } = contactDetails || {
-      personalEmail: "",
-      phoneNumber: "",
-      firstAddressLine: "",
-      secondAddressLine: "",
-      townOrCity: "",
-      postCode: "",
-    };
+    // const {
+    //   personalEmail,
+    //   phoneNumber,
+    //   firstAddressLine,
+    //   secondAddressLine,
+    //   townOrCity,
+    //   postCode,
+    // } = contactDetails || {
+    //   personalEmail: "",
+    //   phoneNumber: "",
+    //   firstAddressLine: "",
+    //   secondAddressLine: "",
+    //   townOrCity: "",
+    //   postCode: "",
+    // };
 
     try {
-      const response = await stripe.paymentRequestWithCardForm({
-        requiredBillingAddressFields: "full",
-        managedAccountCurrency: "gbp",
-        prefilledInformation: {
-          email: personalEmail || "",
-          phone: phoneNumber || "",
-          billingAddress: {
-            name: fullName || "",
-            line1: firstAddressLine || "",
-            line2: secondAddressLine || "",
-            city: townOrCity || "",
-            postalCode: postCode || "",
-            country: "GB",
-            email: personalEmail || "",
-            phone: phoneNumber || "",
-          },
-        },
-        // TODO: Customize theme
-        theme: {
-          primaryBackgroundColor: "",
-          secondaryBackgroundColor: "",
-          primaryForegroundColor: "",
-          secondaryForegroundColor: "",
-          accentColor: "",
-          errorColor: "",
-        },
-      });
-
-      const { data: addPaymentCardResponse } = await addPaymentCard({
-        variables: { providerPaymentMethodId: response.id || "" },
-      });
-
-      if (addPaymentCardResponse?.addPaymentCard?.clientSecret) {
-        const confirmation = await stripe.confirmSetupIntent({
-          paymentMethodId: response.id,
-          clientSecret: addPaymentCardResponse?.addPaymentCard?.clientSecret,
-        });
-
-        if (confirmation.status !== "succeeded") {
-          // TODO: Show error
-          return;
-        }
-      }
-
-      if (addPaymentCardResponse?.addPaymentCard?.redirectUrl) {
-        await Linking.openURL(addPaymentCardResponse?.addPaymentCard?.redirectUrl);
-      }
-
-      const res = await confirmPaymentCard({
-        variables: {
-          providerPaymentMethodId: response.id,
-          paymentId: addPaymentCardResponse?.addPaymentCard?.paymentId,
-        },
-      });
-
-      setPaymentCollected(res?.data?.confirmPaymentCard || false);
-      setPaymentProviderDetails(response);
+      // const response = await stripe.paymentRequestWithCardForm({
+      //   requiredBillingAddressFields: "full",
+      //   managedAccountCurrency: "gbp",
+      //   prefilledInformation: {
+      //     email: personalEmail || "",
+      //     phone: phoneNumber || "",
+      //     billingAddress: {
+      //       name: fullName || "",
+      //       line1: firstAddressLine || "",
+      //       line2: secondAddressLine || "",
+      //       city: townOrCity || "",
+      //       postalCode: postCode || "",
+      //       country: "GB",
+      //       email: personalEmail || "",
+      //       phone: phoneNumber || "",
+      //     },
+      //   },
+      //   // TODO: Customize theme
+      //   theme: {
+      //     primaryBackgroundColor: "",
+      //     secondaryBackgroundColor: "",
+      //     primaryForegroundColor: "",
+      //     secondaryForegroundColor: "",
+      //     accentColor: "",
+      //     errorColor: "",
+      //   },
+      // });
+      // const { data: addPaymentCardResponse } = await addPaymentCard({
+      //   variables: { providerPaymentMethodId: response.id || "" },
+      // });
+      // if (addPaymentCardResponse?.addPaymentCard?.clientSecret) {
+      //   const confirmation = await stripe.confirmSetupIntent({
+      //     paymentMethodId: response.id,
+      //     clientSecret: addPaymentCardResponse?.addPaymentCard?.clientSecret,
+      //   });
+      //   if (confirmation.status !== "succeeded") {
+      //     // TODO: Show error
+      //     return;
+      //   }
+      // }
+      // if (addPaymentCardResponse?.addPaymentCard?.redirectUrl) {
+      //   await Linking.openURL(addPaymentCardResponse?.addPaymentCard?.redirectUrl);
+      // }
+      // const res = await confirmPaymentCard({
+      //   variables: {
+      //     providerPaymentMethodId: response.id,
+      //     paymentId: addPaymentCardResponse?.addPaymentCard?.paymentId,
+      //   },
+      // });
+      // setPaymentCollected(res?.data?.confirmPaymentCard || false);
+      // setPaymentProviderDetails(response);
     } catch (error) {
       setPaymentCancelled(true);
       Logger.error(error, {

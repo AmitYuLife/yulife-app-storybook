@@ -1,7 +1,6 @@
 import React, { memo } from "react";
 import { InfoCard, LEFT_ICON } from "./info-card/info-card";
 import { toCapitalLetter } from "@utils";
-import { StripePaymentRequestToken } from "tipsi-stripe";
 import { useSelector } from "react-redux";
 import { getFullName } from "@redux/product/product.selectors";
 import { Platform } from "react-native";
@@ -10,7 +9,7 @@ import { PAYMENT_DETAILS_CARD } from "@ids";
 
 interface Props {
   goToPaymentDetails: () => void;
-  paymentProviderDetails: StripePaymentRequestToken;
+  paymentProviderDetails: any;
   paymentDetails?: GetCheckoutDetails_paymentDetails;
 }
 

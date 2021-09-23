@@ -16547,11 +16547,6 @@ tinycolor2@^1.4.1:
   resolved "https://registry.yarnpkg.com/tinycolor2/-/tinycolor2-1.4.1.tgz#f4fad333447bc0b07d4dc8e9209d8f39a8ac77e8"
   integrity sha1-9PrTM0R7wLB9TcjpIJ2POaisd+g=
 
-tipsi-stripe@^9.1.1:
-  version "9.1.3"
-  resolved "https://registry.yarnpkg.com/tipsi-stripe/-/tipsi-stripe-9.1.3.tgz#4cc196aff16df15910e9e8aea28cec227b6fb621"
-  integrity sha512-ASDIzhXaOTeg4MB+fzehghSL5DfL6oz+NyVriw+5BmJU/Yx7VHeA+nrEx0qWBpROXwbZVrVJhjOSMtbwFdiANg==
-
 title-case@^2.1.0:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/title-case/-/title-case-2.1.1.tgz#3e127216da58d2bc5becf137ab91dae3a7cd8faa"

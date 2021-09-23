@@ -6,14 +6,13 @@ import { useSelector } from "react-redux";
 import { getContactDetails, getFullName, getFIBState } from "@redux/product/product.selectors";
 import { CoverType } from "@graphql/_core/schema/globalTypes";
 import { toCapitalLetter } from "@utils";
-import { StripePaymentRequestToken } from "tipsi-stripe";
 import { GetCheckoutDetails_paymentDetails } from "@graphql/_core/schema";
 
 interface Props {
   onPress: () => void;
   coverType: CoverType;
   disable?: boolean;
-  paymentProviderDetails?: StripePaymentRequestToken | GetCheckoutDetails_paymentDetails;
+  paymentProviderDetails?: any | GetCheckoutDetails_paymentDetails;
 }
 
 export const Cta = memo((props: Props) => {

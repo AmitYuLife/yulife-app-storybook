@@ -12,7 +12,6 @@ import { PaymentDetails } from "./payment-details";
 import { useSelector } from "react-redux";
 import { getFIBStyle } from "@redux/product/product.selectors";
 import { GetCheckoutDetails } from "@graphql/_core/schema/GetCheckoutDetails";
-import { StripePaymentRequestToken } from "tipsi-stripe";
 import { useBackHandler } from "@services/hooks/useBackHandler";
 import { Documents } from "@components/screens/products/fib/browse-packages/subcomponents/documents/documents";
 import { handleOpenWebView } from "@navigation/utils";
@@ -25,7 +24,7 @@ import { CoverType } from "@graphql/_core/schema/globalTypes";
 
 interface Props {
   navigation: FibLocalNavigation;
-  paymentProviderDetails: StripePaymentRequestToken;
+  paymentProviderDetails: any;
   loading?: boolean;
   data: GetCheckoutDetails;
   coverType: CoverType;
