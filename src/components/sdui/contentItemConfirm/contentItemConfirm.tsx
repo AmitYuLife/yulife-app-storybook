@@ -22,14 +22,14 @@ export const ContentItemConfirm = memo(({ checked, onChange, confirmLabel, style
 
 const styles = StyleSheet.create({
   wrapper: {
-    maxWidth: Style.DEVICE_WIDTH - Style.adjust(48),
+    width: Style.DEVICE_WIDTH - Style.adjust(48),
     alignItems: "center",
     alignSelf: "center",
-    margin: Style.adjust(32),
+    marginTop: Style.adjust(16),
     padding: Style.adjust(16),
   } as ViewStyle,
   text: {
-    maxWidth: Style.DEVICE_WIDTH - Style.adjust(96),
+    maxWidth: Style.DEVICE_WIDTH - Style.adjust(120),
     marginLeft: Style.adjust(4),
   } as TextStyle,
 });

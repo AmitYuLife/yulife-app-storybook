@@ -42,6 +42,7 @@ export { default as PackageType } from "./package-types/package-types";
 export { default as GenderIcon } from "./gender/gender";
 export { default as SearchInput } from "./search/search-input";
 export { default as SearchList } from "./search/search-list";
+export { default as SearchListEmpty } from "./search/search-list-empty";
 export { default as SearchIcon } from "./search-icon/search-icon";
 export { default as AddressIcon } from "./address-icon/address-icon";
 export * from "./gp-icons";

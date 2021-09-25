@@ -10,7 +10,7 @@ import { useBackHandler } from "@services/hooks/useBackHandler";
 type Props = GqlHeaderBar;
 
 export const ProductStepContentItemHeaderDetached = memo((props: Props) => {
-  const { leftIcon, logo, onLeftIconPress, onRightIconPress, rightIcon } = props;
+  const { leftIcon, logo, heading, onLeftIconPress, onRightIconPress, rightIcon } = props;
   const { nestedHistory, popNestedHistory } = useContext(ProductStepFaqsContext);
 
   const dispatch = useDispatch();
@@ -25,6 +25,7 @@ export const ProductStepContentItemHeaderDetached = memo((props: Props) => {
       <GenericHeading
         leftIcon={leftIcon as ComponentProps<typeof GenericHeading>["leftIcon"]}
         rightIcon={rightIcon as ComponentProps<typeof GenericHeading>["rightIcon"]}
+        heading={heading}
         logo={logo as ComponentProps<typeof GenericHeading>["logo"]}
         onLeftIconPress={() => (nestedHistory.length === 0 ? dispatch(onLeftIconPress) : popNestedHistory())}
         onRightIconPress={() => dispatch(onRightIconPress)}

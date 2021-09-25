@@ -18,6 +18,7 @@ export * from "./ContentItemCoverListItem";
 export * from "./ContentItemCoverPicker";
 export * from "./ContentItemDatePicker";
 export * from "./ContentItemFullScreenSwiper";
+export * from "./ContentItemGpDetails";
 export * from "./ContentItemHeaderBar";
 export * from "./ContentItemImage";
 export * from "./ContentItemInfoButton";

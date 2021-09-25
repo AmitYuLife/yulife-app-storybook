@@ -33,6 +33,7 @@ import {
 import { Style } from "@styles";
 import { ProductStepContext } from "../../product-step.context";
 import media from "@styles/media";
+import { ProductStepContentItemGpDetails } from "../../subcomponents/product-step.gp-details";
 
 interface Props {
   body: GPPS_Body[];
@@ -129,6 +130,8 @@ const renderItemContent = (item: GPPS_Body): JSX.Element => {
       return <ProductStepRowIconTextBanner key={item.id} {...item} />;
     case "ContentItemList":
       return <ContentItemList key={item.id} {...item} />;
+    case "ContentItemGpDetails":
+      return <ProductStepContentItemGpDetails key={item.id} {...item} />;
     default:
       return null;
   }

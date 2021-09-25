@@ -35,6 +35,7 @@ import {
   GQL_FRAGMENT_CONTENT_ITEM_ROW_ICON_TEXT_BANNER,
   GQL_FRAGMENT_COVER_LIST_ITEM,
   GQL_FRAGMENT_CONTENT_ITEM_LIST,
+  GQL_FRAGMENT_CONENT_ITEM_GP_DETAILS,
   GQL_FRAGMENT_CONTENT_ITEM_FULL_SCREEN_SWIPER,
 } from "../_fragments/content.gql";
 
@@ -71,6 +72,7 @@ export const GQL_QUERY_GET_PERSONAL_PRODUCT_STEP = gql`
   ${GQL_FRAGMENT_CONTENT_ITEM_COLLAPSING_HEADER_PRODUCT_INFO}
   ${GQL_FRAGMENT_CONTENT_ITEM_ROW_ICON_TEXT_BANNER}
   ${GQL_FRAGMENT_CONTENT_ITEM_LIST}
+  ${GQL_FRAGMENT_CONENT_ITEM_GP_DETAILS}
   ${GQL_FRAGMENT_CONTENT_ITEM_SELECTED_PACKAGE_CARD}
   ${GQL_FRAGMENT_CONTENT_ITEM_FULL_SCREEN_SWIPER}
 
@@ -175,6 +177,9 @@ export const GQL_QUERY_GET_PERSONAL_PRODUCT_STEP = gql`
             id
             parsedMarkdown
           }
+        }
+        ... on ContentItemGpDetails {
+          ...ContentItemGpDetails
         }
         ... on ContentItemMultiButton {
           ...ContentItemMultiButton
