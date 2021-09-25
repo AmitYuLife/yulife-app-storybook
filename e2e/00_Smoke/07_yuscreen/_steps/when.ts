@@ -70,11 +70,12 @@ export const editYumoji = (gender: string, skinTone: string, hairStyle: string, 
     await tapTab("Accessories")()
     await tapItem(accessories)()
 
-    const doneButton = element(by.text("Done"))
-    await doneButton.tap()
+    const saveButton = element(by.text("Save"))
+    await saveButton.tap()
 
     const yesButton = element(by.text("Yes"))
     await yesButton.tap()
 
+    const doneButton = element(by.text("Done"))
     await doneButton.tap()
 }
