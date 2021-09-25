@@ -3,7 +3,7 @@ import * as scenario from "./_steps/scenario"
 import * as given from "./_steps/given"
 import * as when from "./_steps/when"
 import * as then from "./_steps/then"
-import { REWARDS_SCREEN, INPUT_RESET_PASSWORD, INPUT_AVIOS_FORM_FIELD } from "@ids"
+import { REWARDS_SCREEN, INPUT_RESET_PASSWORD, INPUT_AVIOS_FORM_FIELD, SCROLLABLE_LAYOUT } from "@ids"
 
 import { CUSTOMER_36, AUTH_36, REAWARDS_AVIOS, REWARDS_NIKE } from "@data"
 
@@ -26,8 +26,8 @@ Feature("I receive the correct emails", async () => {
             Then("I should be on the Rewards tab", then.idVisible(REWARDS_SCREEN))
             When("I tap avios reward", when.tapRewardInList(REAWARDS_AVIOS), async () => {
                 Then("I should be on thee avios reward screen", then.onRewardScreen(REAWARDS_AVIOS))
-                When("I scroll to the bottom of the page", when.swipeFromText("connect yucoin to avios", "up", "fast"), async () => {
-                    Then("I should be at the bottom of the page", then.textVisible("Have a question?"))
+                When("I scroll to the avios form", when.scrollUntilTextVisible(SCROLLABLE_LAYOUT, "Help centre", "down"), async () => {
+                    Then("I should be at the avios form", then.textVisible("Loyalty programme"))
                     When("I tap Loyalty programme dropdown", when.tapText("Loyalty programme"), async () => {
                         When("I tap British Airways", when.tapText("The British Airways Executive Club"), async () => {
                             Then("I should see that selected", then.textVisible("The British Airways Executive Club"))
@@ -56,14 +56,16 @@ Feature("I receive the correct emails", async () => {
     Scenario("I receive the correct email when redeeming a voucher reward", scenario.start, async () => {
         Given("I login as a user", given.logInAndGoToTab("rewards", CUSTOMER_36, AUTH_36), async () => {
             Then("I should be on the Rewards tab", then.idVisible(REWARDS_SCREEN))
-            When("I tap nike reward", when.tapRewardInList(REWARDS_NIKE), async () => {
-                Then("I should be on the nike reward screen", then.onRewardScreen(REWARDS_NIKE))
-                When("I scroll to the bottom of the page", when.swipeFromText("How to redeem Nike", "up", "fast"), async () => {
-                    Then("I should be at the bottom of the page", then.textVisible("Have a question?"))
-                    When("I tap buy voucher with yucoin", when.tapText("Buy voucher with YuCoin"), async () => {
-                        When("I tap 3rd denomination", when.tapDenomination(REWARDS_NIKE, 2), async () => {
-                            When("I tap confirm", when.tapText("Confirm"), async () => {
-                                Then("I should receive the correct email", then.hasReceivedNikeEmail(CUSTOMER_36.data.email))
+            When("I scroll to Nike reward", when.scrollFromID(REWARDS_SCREEN, "up", "slow"), async () => {
+                When("I tap nike reward", when.tapRewardInList(REWARDS_NIKE), async () => {
+                    Then("I should be on the nike reward screen", then.onRewardScreen(REWARDS_NIKE))
+                    When("I scroll to the bottom of the page", when.swipeFromText("How to redeem Nike", "up", "fast"), async () => {
+                        Then("I should be at the bottom of the page", then.textVisible("Have a question?"))
+                        When("I tap buy voucher with yucoin", when.tapText("Buy voucher with YuCoin"), async () => {
+                            When("I tap 3rd denomination", when.tapDenomination(REWARDS_NIKE, 2), async () => {
+                                When("I tap confirm", when.tapText("Confirm"), async () => {
+                                    Then("I should receive the correct email", then.hasReceivedNikeEmail(CUSTOMER_36.data.email))
+                                })
                             })
                         })
                     })

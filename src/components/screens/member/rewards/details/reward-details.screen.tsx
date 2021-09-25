@@ -8,6 +8,7 @@ import { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolu
 import { handleContentHyperlink, IContentHyperLinkProps } from "@services/app-link";
 import { TopBarLeftIconTypes } from "@organisms/top-bar/top-bar.helpers";
 import { TopBarAbsolute } from "@organisms/top-bar/top-bar-absolute";
+import { SCROLLABLE_LAYOUT } from "@ids";
 
 export interface Props {
   rewardItem: GetRewardItemDetails_getRewardItemDetails;
@@ -60,6 +61,7 @@ const RewardDetailsScreen: FC<Props> = ({ rewardItem, onPressTopBar, isLoading, 
           styles.contentContainerStyle,
           isShowingKeyboard ? styles.contentContainerWithKeyboard : {},
         ])}
+        testID={SCROLLABLE_LAYOUT}
       >
         <Wrapper>
           {rewardItem.content.map((item, index) => (
