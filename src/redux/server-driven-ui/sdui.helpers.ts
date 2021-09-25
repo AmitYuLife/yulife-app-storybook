@@ -1,3 +1,5 @@
+import { ProductStepAction } from "./sdui.types";
+
 type ParsedJson = {
   isValid: boolean;
   data?: Record<string, any>;
@@ -18,4 +20,18 @@ export function parseJSON(payload: string, expectedKeys: string[] = []): ParsedJ
   } catch (e) {
     return { isValid: false };
   }
+}
+
+export function getServerPayload(payload: unknown) {
+  const type = typeof payload;
+
+  if (type === "object" && !!payload) {
+    return (payload as ProductStepAction["payload"])?.serverPayload;
+  }
+
+  if (type === "string") {
+    return payload as string;
+  }
+
+  return "";
 }

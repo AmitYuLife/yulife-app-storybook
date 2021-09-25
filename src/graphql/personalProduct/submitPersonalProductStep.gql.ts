@@ -8,7 +8,7 @@ export const GQL_MUTATION_SUBMIT_PERSONAL_PRODUCT_STEP = gql`
   }
 `;
 
-export default (variables: SubmitPersonalProductStepVariables) =>
+export const submitPersonalProductStep = (variables: SubmitPersonalProductStepVariables) =>
   client().mutate<SubmitPersonalProductStep>({
     mutation: GQL_MUTATION_SUBMIT_PERSONAL_PRODUCT_STEP,
     variables,

@@ -8,7 +8,7 @@ export const GQL_MUTATION_BACK_PERSONAL_PRODUCT_STEP = gql`
   }
 `;
 
-export default (variables: BackPersonalProductStepVariables) =>
+export const backPersonalProductStep = (variables: BackPersonalProductStepVariables) =>
   client().mutate<BackPersonalProductStep>({
     mutation: GQL_MUTATION_BACK_PERSONAL_PRODUCT_STEP,
     variables,

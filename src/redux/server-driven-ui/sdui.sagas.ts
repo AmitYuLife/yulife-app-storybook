@@ -1,88 +1,95 @@
 import { SduiActionType } from "@graphql/_core/schema/globalTypes";
 import { MODALS } from "@navigation/constants";
+import { TAB_ROUTES } from "@navigation/root";
 import { handleLinkPress } from "@services/app-link";
 import { Navigation } from "react-native-navigation";
 import { call, takeLatest, select, ActionPattern, takeEvery } from "redux-saga/effects";
 import Logger from "@services/logging/logger";
 import { SyncAction } from "@redux/_core/types";
 import { getRouteState } from "../app/app.selectors";
-import submitPersonalProductStepGql from "@graphql/personalProduct/submitPersonalProductStep.gql";
-import backPersonalProductStepGql from "@graphql/personalProduct/backPersonalProductStep.gql";
+import { submitPersonalProductStep, backPersonalProductStep } from "@graphql/personalProduct";
 import { ProductStepAction } from "./sdui.types";
-import { parseJSON } from "./sdui.helpers";
-import { TAB_ROUTES } from "@navigation/root";
+import { parseJSON, getServerPayload } from "./sdui.helpers";
 
 function* navigateBack({ payload }: ProductStepAction) {
   const currentRoute: ReturnType<typeof getRouteState> = yield select(getRouteState);
   const onExit = () => Navigation.pop(currentRoute);
 
-  if (payload?.serverPayload) {
-    const { isValid, data } = parseJSON(payload.serverPayload, ["title", "message", "cancelLabel", "confirmLabel"]);
+  const { isValid, data } = parseJSON(getServerPayload(payload), ["title", "message", "cancelLabel", "confirmLabel"]);
 
-    if (isValid) {
-      const onPressSecondary = () => Navigation.dismissModal(MODALS.generic);
-      const onPress = () => {
-        onExit();
-        onPressSecondary();
-      };
+  if (isValid) {
+    const onPressSecondary = () => Navigation.dismissModal(MODALS.generic);
+    const onPress = () => {
+      onExit();
+      onPressSecondary();
+    };
 
-      yield call(() =>
-        Navigation.showModal({
-          component: {
-            id: MODALS.generic,
-            name: MODALS.generic,
-            passProps: {
-              heading: data.title,
-              subheading: data.message,
-              ctaLabel: data.confirmLabel,
-              ctaLabelSecondary: data.cancelLabel,
-              onPress,
-              onPressSecondary,
-            },
+    yield call(() =>
+      Navigation.showModal({
+        component: {
+          id: MODALS.generic,
+          name: MODALS.generic,
+          passProps: {
+            heading: data.title,
+            subheading: data.message,
+            ctaLabel: data.confirmLabel,
+            ctaLabelSecondary: data.cancelLabel,
+            onPress,
+            onPressSecondary,
           },
-        })
-      );
+        },
+      })
+    );
 
-      return;
-    }
+    return;
   }
 
   yield call(onExit);
 }
 
 function* navigateTo({ payload }: ProductStepAction) {
-  const { serverPayload, productId } = payload;
+  const currentRoute: ReturnType<typeof getRouteState> = yield select(getRouteState);
+  // const { serverPayload, productId } = payload;
 
-  if (serverPayload) {
-    const currentRoute: ReturnType<typeof getRouteState> = yield select(getRouteState);
+  const isPayloadObject = typeof payload === "object" && !!payload;
+  const { isValid, data } = parseJSON(getServerPayload(payload), ["routeId"]);
 
-    const { isValid, data } = parseJSON(serverPayload, ["routeId"]);
+  if (isValid) {
+    const { routeId, props } = data;
+    const otherProps = isPayloadObject ? { productId: payload.productId } : {};
 
-    if (isValid) {
-      const { routeId, props } = data;
+    yield call(() =>
+      Navigation.push(currentRoute, {
+        component: {
+          id: routeId,
+          name: routeId,
+          passProps: {
+            ...otherProps,
+            ...(props || {}),
+          },
+        },
+      })
+    );
+  }
+}
 
-      // TODO: validate the route
-      if (TAB_ROUTES.includes(routeId)) {
-        return Navigation.mergeOptions(routeId, {
+function* setBottomTab({ payload }: ProductStepAction) {
+  const { isValid, data } = parseJSON(getServerPayload(payload), ["routeId"]);
+
+  if (isValid) {
+    const { routeId } = data;
+
+    const currentTabIndex = TAB_ROUTES.findIndex((item) => item === routeId);
+
+    if (currentTabIndex !== -1) {
+      yield call(() =>
+        Navigation.mergeOptions(routeId, {
           bottomTabs: {
-            currentTabIndex: TAB_ROUTES.findIndex((item) => item === routeId),
+            currentTabIndex,
           },
           statusBar: {
             drawBehind: false,
             visible: true,
-          },
-        });
-      }
-
-      yield call(() =>
-        Navigation.push(currentRoute, {
-          component: {
-            id: routeId,
-            name: routeId,
-            passProps: {
-              productId,
-              ...props,
-            },
           },
         })
       );
@@ -104,9 +111,7 @@ function* popStep(action: ProductStepAction) {
   const { productId } = action.payload;
 
   try {
-    yield call(backPersonalProductStepGql, {
-      productId,
-    });
+    yield call(backPersonalProductStep, { productId });
   } catch (e) {
     // shrug (log)
   }
@@ -118,7 +123,7 @@ function* pushStep(action: ProductStepAction) {
   const serverDynamicData = isValid ? data : {};
 
   try {
-    yield call(submitPersonalProductStepGql, {
+    yield call(submitPersonalProductStep, {
       productId,
       stepId,
       data: JSON.stringify({ ...serverDynamicData, ...dynamicData }),
@@ -139,6 +144,7 @@ function* logEvent(action: SyncAction<string>) {
 export default [
   takeLatest(SduiActionType.SDUI_ACTION_NAVIGATE_BACK as ActionPattern, navigateBack),
   takeLatest(SduiActionType.SDUI_ACTION_NAVIGATE as ActionPattern, navigateTo),
+  takeLatest(SduiActionType.SDUI_ACTION_SET_BOTTOM_TAB as ActionPattern, setBottomTab),
   takeLatest(SduiActionType.SDUI_ACTION_OPEN_URL as ActionPattern, openUrl),
   takeLatest(SduiActionType.SDUI_ACTION_PRODUCT_UNDERWRITING_STEP_POP as ActionPattern, popStep),
   takeLatest(SduiActionType.SDUI_ACTION_PRODUCT_UNDERWRITING_STEP_PUSH as ActionPattern, pushStep),

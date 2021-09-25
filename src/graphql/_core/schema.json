@@ -2198,6 +2198,41 @@
             "deprecationReason": null
           },
           {
+            "name": "getYumojiBuilderInitialParts",
+            "description": "Gets the default avatar/current avatar for the user",
+            "args": [
+              {
+                "name": "bodyType",
+                "description": null,
+                "type": {
+                  "kind": "ENUM",
+                  "name": "AvatarBodyType",
+                  "ofType": null
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "YumojiBuilderPart",
+                    "ofType": null
+                  }
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "getYumojiBuilderCategoryList",
             "description": "Gets all the categories to display in the scroller for the yumoji builder",
             "args": [],
@@ -18812,6 +18847,12 @@
             "deprecationReason": null
           },
           {
+            "name": "SDUI_ACTION_SET_BOTTOM_TAB",
+            "description": "Generic: Accepts client-side route constant as payload.",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "SDUI_ACTION_OPEN_URL",
             "description": "Generic: Opens a URL, accepts a URI as payload",
             "isDeprecated": false,
@@ -22996,6 +23037,89 @@
               "ofType": {
                 "kind": "ENUM",
                 "name": "AvatarPartType",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "YumojiBuilderPart",
+        "description": null,
+        "fields": [
+          {
+            "name": "colorSchemeId",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "partId",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "partType",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "remoteUrl",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "RemoteImage",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "order",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Int",
                 "ofType": null
               }
             },
@@ -28181,6 +28305,22 @@
         "name": "ContentItemPackageCardPower",
         "description": null,
         "fields": [
+          {
+            "name": "id",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "ID",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
           {
             "name": "leftIcon",
             "description": null,
