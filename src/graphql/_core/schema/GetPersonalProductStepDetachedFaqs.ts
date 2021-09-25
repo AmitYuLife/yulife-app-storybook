@@ -40,6 +40,7 @@ export interface GetPersonalProductStepDetachedFaqs_getPersonalProductStepDetach
     | "ContentItemCollapsingHeaderProductInfo"
     | "ContentItemList"
     | "ContentItemRowIconTextBanner"
+    | "ContentItemFullScreenSwiper"
     | "ContentItemGpDetails";
 }
 

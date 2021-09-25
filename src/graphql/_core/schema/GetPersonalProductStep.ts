@@ -32,6 +32,7 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemP
     | "ContentItemPersonalProductDocuments"
     | "ContentItemPersonalProductFaqs"
     | "ContentItemCollapsingHeaderProductInfo"
+    | "ContentItemFullScreenSwiper"
     | "ContentItemGpDetails";
 }
 
@@ -991,6 +992,7 @@ export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentIte
     | "ContentItemCollapsingHeaderProductInfo"
     | "ContentItemList"
     | "ContentItemRowIconTextBanner"
+    | "ContentItemFullScreenSwiper"
     | "ContentItemGpDetails";
 }
 
@@ -1171,6 +1173,7 @@ export interface GetPersonalProductStep_getPersonalProductStep_header_ContentIte
     | "ContentItemCollapsingHeaderProductInfo"
     | "ContentItemList"
     | "ContentItemRowIconTextBanner"
+    | "ContentItemFullScreenSwiper"
     | "ContentItemGpDetails";
 }
 
@@ -1287,10 +1290,101 @@ export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_Con
   coverList: GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemCollapsingHeaderProductInfo_coverList[];
 }
 
+export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemFullScreenSwiper_theme {
+  primaryColor: string;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemFullScreenSwiper_close_icon {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemFullScreenSwiper_close_onPress {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemFullScreenSwiper_close {
+  icon: GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemFullScreenSwiper_close_icon;
+  onPress: GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemFullScreenSwiper_close_onPress;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemFullScreenSwiper_button_onPress {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemFullScreenSwiper_button_event {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemFullScreenSwiper_button_icon {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemFullScreenSwiper_button_rightIcon {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemFullScreenSwiper_button_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemFullScreenSwiper_button {
+  id: string;
+  label: string;
+  buttonType: ContentItemButtonType | null;
+  value: string | null;
+  disabledState: string | null;
+  onPress: GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemFullScreenSwiper_button_onPress | null;
+  event: GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemFullScreenSwiper_button_event | null;
+  icon: GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemFullScreenSwiper_button_icon | null;
+  rightIcon: GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemFullScreenSwiper_button_rightIcon | null;
+  styles:
+    | GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemFullScreenSwiper_button_styles[]
+    | null;
+  buttonSize: ContentItemButtonSize | null;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemFullScreenSwiper_items_backgroundImage {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemFullScreenSwiper_items_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemFullScreenSwiper_items {
+  backgroundImage: GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemFullScreenSwiper_items_backgroundImage;
+  styles: GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemFullScreenSwiper_items_styles[] | null;
+  heading: string;
+  paragraph: string;
+  title: string;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemFullScreenSwiper {
+  __typename: "ContentItemFullScreenSwiper";
+  id: string;
+  title: string;
+  dismissMinVisibleIndex: number;
+  autoPlaySpeedMs: number;
+  theme: GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemFullScreenSwiper_theme;
+  close: GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemFullScreenSwiper_close;
+  button: GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemFullScreenSwiper_button;
+  items: GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemFullScreenSwiper_items[];
+}
+
 export type GetPersonalProductStep_getPersonalProductStep_absolute_item =
   | GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemMarkdown
   | GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemImage
-  | GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemCollapsingHeaderProductInfo;
+  | GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemCollapsingHeaderProductInfo
+  | GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemFullScreenSwiper;
 
 export interface GetPersonalProductStep_getPersonalProductStep_absolute {
   id: string;

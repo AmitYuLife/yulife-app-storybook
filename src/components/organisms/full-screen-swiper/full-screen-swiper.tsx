@@ -10,7 +10,7 @@ import { Dismiss } from "./dismiss";
 export interface IPageItem {
   heading: string;
   paragraph: string;
-  styles: Array<{ property: string; value: string }>;
+  styles?: Array<{ property: string; value: string }>;
   backgroundImage: {
     uri: string;
   };

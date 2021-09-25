@@ -516,6 +516,42 @@ export const GQL_FRAGMENT_CONTENT_ITEM_MULTI_BUTTON = gql`
   }
 `;
 
+export const GQL_FRAGMENT_CONTENT_ITEM_FULL_SCREEN_SWIPER = gql`
+  fragment ContentItemFullScreenSwiper on ContentItemFullScreenSwiper {
+    id
+    title
+    dismissMinVisibleIndex
+    autoPlaySpeedMs
+    theme {
+      primaryColor
+    }
+    close {
+      icon {
+        id
+        uri
+      }
+      onPress {
+        ...SduiAction
+      }
+    }
+    button {
+      ...ContentItemButton
+    }
+    items {
+      backgroundImage {
+        id
+        uri
+      }
+      styles {
+        ...SduiStyle
+      }
+      heading
+      paragraph
+      title
+    }
+  }
+`;
+
 export const GQL_FRAGMENT_CONTENT_ITEM_SCROLL_PICKER = gql`
   fragment ContentItemScrollPicker on ContentItemScrollPicker {
     id
