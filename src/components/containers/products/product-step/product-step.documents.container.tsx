@@ -51,6 +51,7 @@ const ProductStepDetachedContainer = (props: any) => {
         <ProductStepContentItemHeaderDetached
           key="documents_header"
           logo="yulife"
+          heading={null}
           leftIcon="BACK"
           rightIcon="CLOSE"
           onLeftIconPress={{ type: SduiActionType.SDUI_ACTION_NAVIGATE_BACK, payload: null }}

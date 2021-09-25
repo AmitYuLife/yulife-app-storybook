@@ -32,8 +32,7 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemP
     | "ContentItemPersonalProductDocuments"
     | "ContentItemPersonalProductFaqs"
     | "ContentItemCollapsingHeaderProductInfo"
-    | "ContentItemFullScreenSwiper"
-    | "ContentItemGpDetails";
+    | "ContentItemFullScreenSwiper";
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemTextInput_validation {
@@ -880,6 +879,17 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemP
   productDescription: GetPersonalProductStep_getPersonalProductStep_body_ContentItemPersonalProductInfo_productDescription;
 }
 
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemGpDetails_onSubmit {
+  type: SduiActionType;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemGpDetails {
+  __typename: "ContentItemGpDetails";
+  id: string;
+  answerKey: string;
+  onSubmit: GetPersonalProductStep_getPersonalProductStep_body_ContentItemGpDetails_onSubmit;
+}
+
 export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemMultiButton_buttons_onPress {
   type: SduiActionType;
   payload: string | null;
@@ -959,6 +969,7 @@ export type GetPersonalProductStep_getPersonalProductStep_body =
   | GetPersonalProductStep_getPersonalProductStep_body_ContentItemRowIconTextBanner
   | GetPersonalProductStep_getPersonalProductStep_body_ContentItemYugiConfirm
   | GetPersonalProductStep_getPersonalProductStep_body_ContentItemPersonalProductInfo
+  | GetPersonalProductStep_getPersonalProductStep_body_ContentItemGpDetails
   | GetPersonalProductStep_getPersonalProductStep_body_ContentItemMultiButton;
 
 export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentItemMarkdown {
@@ -1190,6 +1201,7 @@ export interface GetPersonalProductStep_getPersonalProductStep_header_ContentIte
 export interface GetPersonalProductStep_getPersonalProductStep_header_ContentItemHeaderBar {
   __typename: "ContentItemHeaderBar";
   logo: string | null;
+  heading: string | null;
   leftIcon: string | null;
   rightIcon: string | null;
   onLeftIconPress: GetPersonalProductStep_getPersonalProductStep_header_ContentItemHeaderBar_onLeftIconPress | null;

@@ -18,3 +18,4 @@ export * from "./contentItemLottie/contentItemLottie";
 export * from "./contentItemText/contentItemText";
 export * from "./contentItemImage/contentItemImage";
 export * from "./contentItemList/contentItemList";
+export * from "./contentItemGpDetails/contentItemGpDetails";

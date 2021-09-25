@@ -13,7 +13,7 @@ import { useBackHandler } from "@services/hooks/useBackHandler";
 type Props = GqlHeaderBar;
 
 export const ContentItemHeaderBar = memo((props: Props) => {
-  const { leftIcon, logo, onLeftIconPress, onRightIconPress, rightIcon } = props;
+  const { leftIcon, logo, heading, onLeftIconPress, onRightIconPress, rightIcon } = props;
   const dispatch = useDispatch();
 
   const pressAction = useCallback(
@@ -46,6 +46,7 @@ export const ContentItemHeaderBar = memo((props: Props) => {
         leftIcon={leftIcon as ComponentProps<typeof GenericHeading>["leftIcon"]}
         rightIcon={rightIcon as ComponentProps<typeof GenericHeading>["rightIcon"]}
         logo={logo as ComponentProps<typeof GenericHeading>["logo"]}
+        heading={heading}
         onLeftIconPress={onLeftIconPressAction}
         onRightIconPress={onRightIconPressAction}
       />

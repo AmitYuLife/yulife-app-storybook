@@ -204,6 +204,7 @@ export const GQL_FRAGMENT_CONTENT_ITEM_INFO_CARD = gql`
 export const GQL_FRAGMENT_CONTENT_ITEM_HEADER_BAR = gql`
   fragment ContentItemHeaderBar on ContentItemHeaderBar {
     logo
+    heading
     leftIcon
     rightIcon
     onLeftIconPress {
@@ -582,6 +583,16 @@ export const GQL_FRAGMENT_CONTENT_ITEM_SCROLL_PICKER = gql`
         suffixSingular
         suffixSingularValue
       }
+    }
+  }
+`;
+
+export const GQL_FRAGMENT_CONENT_ITEM_GP_DETAILS = gql`
+  fragment ContentItemGpDetails on ContentItemGpDetails {
+    id
+    answerKey
+    onSubmit {
+      type
     }
   }
 `;

@@ -80,6 +80,7 @@ const ProductStepDetachedContainer = (props: any) => {
       <View onLayout={handleHeaderLayout} style={styles.headerWrapper}>
         <ProductStepContentItemHeaderDetached
           key="faq_header"
+          heading={null}
           logo="yulife"
           leftIcon="BACK"
           rightIcon="CLOSE"
