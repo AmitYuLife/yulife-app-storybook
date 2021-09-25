@@ -63,12 +63,12 @@ export const covea_fib_01_1 = {
         {
           property: "paddingHorizontal",
           value: "24",
-          __typename: "ContentItemStyle",
+          __typename: "SduiStyle",
         },
         {
           property: "marginTop",
           value: "16",
-          __typename: "ContentItemStyle",
+          __typename: "SduiStyle",
         },
       ],
     },

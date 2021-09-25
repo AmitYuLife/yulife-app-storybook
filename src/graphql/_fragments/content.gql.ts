@@ -1,19 +1,12 @@
 import gql from "graphql-tag";
 
-export const GQL_FRAGMENT_CONTENT_ITEM_STYLE = gql`
-  fragment ContentItemStyle on ContentItemStyle {
-    property
-    value
-  }
-`;
-
 export const GQL_FRAGMENT_CONTENT_ITEM_CONFIRM = gql`
   fragment ContentItemConfirm on ContentItemConfirm {
     id
     confirmLabel: text
     answerKey
     styles {
-      ...ContentItemStyle
+      ...SduiStyle
     }
   }
 `;
@@ -28,7 +21,7 @@ export const GQL_FRAGMENT_CONTENT_ITEM_TEXT = gql`
     underline
     numberOfLines
     styles {
-      ...ContentItemStyle
+      ...SduiStyle
     }
   }
 `;
@@ -67,7 +60,7 @@ export const GQL_FRAGMENT_CONTENT_ITEM_ROW_ICON_TEXT_BANNER = gql`
       ...RemoteImage
     }
     styles {
-      ...ContentItemStyle
+      ...SduiStyle
     }
   }
 `;
@@ -94,10 +87,10 @@ export const GQL_FRAGMENT_CONTENT_ITEM_MARKDOWN = gql`
     perkId
     parsedMarkdown
     styles {
-      ...ContentItemStyle
+      ...SduiStyle
     }
     markdownContainerStyle {
-      ...ContentItemStyle
+      ...SduiStyle
     }
   }
 `;
@@ -113,7 +106,7 @@ export const GQL_FRAGMENT_CONTENT_ITEM_LOTTIE = gql`
       value
     }
     onAnimationEnd {
-      ...ContentItemAction
+      ...SduiAction
     }
   }
 `;
@@ -147,18 +140,11 @@ export const GQL_FRAGMENT_CONTENT_ITEM_RADIO = gql`
   }
 `;
 
-export const GQL_FRAGMENT_CONTENT_ITEM_ACTION = gql`
-  fragment ContentItemAction on ContentItemAction {
-    type
-    payload
-  }
-`;
-
 export const GQL_FRAGMENT_CONTENT_ITEM_LIST = gql`
   fragment ContentItemList on ContentItemList {
     id
     wrapperStyles {
-      ...ContentItemStyle
+      ...SduiStyle
     }
     items {
       id
@@ -171,7 +157,7 @@ export const GQL_FRAGMENT_CONTENT_ITEM_LIST = gql`
         backgroundColour
       }
       styles {
-        ...ContentItemStyle
+        ...SduiStyle
       }
     }
   }
@@ -192,7 +178,7 @@ export const GQL_FRAGMENT_CONTENT_ITEM_PERSONAL_PRODUCT_REVIEW_ITEM = gql`
       uri(options: { width: 64, height: 64 })
     }
     onPress {
-      ...ContentItemAction
+      ...SduiAction
     }
   }
 `;
@@ -206,7 +192,7 @@ export const GQL_FRAGMENT_CONTENT_ITEM_INFO_CARD = gql`
     }
     markdown
     styles {
-      ...ContentItemStyle
+      ...SduiStyle
     }
     hyperlink {
       title
@@ -221,10 +207,10 @@ export const GQL_FRAGMENT_CONTENT_ITEM_HEADER_BAR = gql`
     leftIcon
     rightIcon
     onLeftIconPress {
-      ...ContentItemAction
+      ...SduiAction
     }
     onRightIconPress {
-      ...ContentItemAction
+      ...SduiAction
     }
   }
 `;
@@ -263,10 +249,10 @@ export const GQL_FRAGMENT_CONTENT_ITEM_IMAGE = gql`
       uri
     }
     styles {
-      ...ContentItemStyle
+      ...SduiStyle
     }
     wrapperStyles {
-      ...ContentItemStyle
+      ...SduiStyle
     }
   }
 `;
@@ -313,7 +299,7 @@ export const GQL_FRAGMENT_CONTENT_ITEM_PRODUCT_PREVIEW = gql`
       }
     }
     styles {
-      ...ContentItemStyle
+      ...SduiStyle
     }
     coverList {
       ...ContentItemCoverListItem
@@ -329,7 +315,7 @@ export const GQL_FRAGMENT_CONTENT_ITEM_COVER_PICKER = gql`
     answerKeyDefaultValue
     hasSelectedCustomCover
     styles {
-      ...ContentItemStyle
+      ...SduiStyle
     }
     options {
       value
@@ -356,7 +342,7 @@ export const GQL_FRAGMENT_CONTENT_ITEM_SCROLLABLE_ITEMS_PICKER = gql`
     id
     answerKey
     styles {
-      ...ContentItemStyle
+      ...SduiStyle
     }
     range {
       min
@@ -372,13 +358,13 @@ export const GQL_FRAGMENT_CONTENT_ITEM_SCROLLABLE_ITEMS_PICKER = gql`
       }
       overlay {
         backdropStyles {
-          ...ContentItemStyle
+          ...SduiStyle
         }
         highlightLabel
         highlightLabelColor
         overlayTitle
         overlayTitleWrapperStyles {
-          ...ContentItemStyle
+          ...SduiStyle
         }
       }
     }
@@ -446,10 +432,10 @@ export const GQL_FRAGMENT_CONTENT_ITEM_DATE_PICKER = gql`
     label
     subLabel
     pickerStyles {
-      ...ContentItemStyle
+      ...SduiStyle
     }
     buttonStyles {
-      ...ContentItemStyle
+      ...SduiStyle
     }
     buttonLeftIcon {
       ...RemoteImage
@@ -473,7 +459,7 @@ export const GQL_FRAGMENT_CONTENT_ITEM_INFO_BUTTON = gql`
       ...RemoteImage
     }
     onPress {
-      ...ContentItemAction
+      ...SduiAction
     }
     active {
       label
@@ -496,10 +482,10 @@ export const GQL_FRAGMENT_CONTENT_ITEM_BUTTON = gql`
     value
     disabledState
     onPress {
-      ...ContentItemAction
+      ...SduiAction
     }
     event {
-      ...ContentItemAction
+      ...SduiAction
     }
     icon {
       id
@@ -510,7 +496,7 @@ export const GQL_FRAGMENT_CONTENT_ITEM_BUTTON = gql`
       uri
     }
     styles {
-      ...ContentItemStyle
+      ...SduiStyle
     }
     buttonSize
   }
@@ -525,7 +511,7 @@ export const GQL_FRAGMENT_CONTENT_ITEM_MULTI_BUTTON = gql`
     value
     answerKey
     styles {
-      ...ContentItemStyle
+      ...SduiStyle
     }
   }
 `;

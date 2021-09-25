@@ -3,7 +3,7 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { MobileOnboardingStepPerformed } from "./globalTypes";
+import { MobileOnboardingStepPerformed, SduiActionType } from "./globalTypes";
 
 // ====================================================
 // GraphQL query operation: GetMobileWhatsNewModal
@@ -14,7 +14,7 @@ export interface GetMobileWhatsNewModal_getMobileWhatsNewModal_theme {
 }
 
 export interface GetMobileWhatsNewModal_getMobileWhatsNewModal_button_onPress {
-  type: string;
+  type: SduiActionType;
   payload: string | null;
 }
 
@@ -29,13 +29,13 @@ export interface GetMobileWhatsNewModal_getMobileWhatsNewModal_close_icon {
 }
 
 export interface GetMobileWhatsNewModal_getMobileWhatsNewModal_close_onPress {
-  type: string;
+  type: SduiActionType;
   payload: string | null;
 }
 
 export interface GetMobileWhatsNewModal_getMobileWhatsNewModal_close {
   icon: GetMobileWhatsNewModal_getMobileWhatsNewModal_close_icon;
-  onPress: GetMobileWhatsNewModal_getMobileWhatsNewModal_close_onPress;
+  onPress: GetMobileWhatsNewModal_getMobileWhatsNewModal_close_onPress | null;
 }
 
 export interface GetMobileWhatsNewModal_getMobileWhatsNewModal_items_styles {

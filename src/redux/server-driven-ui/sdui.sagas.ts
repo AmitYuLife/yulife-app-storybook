@@ -1,4 +1,4 @@
-import { ContentItemSDUIAction } from "@graphql/_core/schema/globalTypes";
+import { SduiActionType } from "@graphql/_core/schema/globalTypes";
 import { MODALS } from "@navigation/constants";
 import { handleLinkPress } from "@services/app-link";
 import { Navigation } from "react-native-navigation";
@@ -10,6 +10,7 @@ import submitPersonalProductStepGql from "@graphql/personalProduct/submitPersona
 import backPersonalProductStepGql from "@graphql/personalProduct/backPersonalProductStep.gql";
 import { ProductStepAction } from "./sdui.types";
 import { parseJSON } from "./sdui.helpers";
+import { TAB_ROUTES } from "@navigation/root";
 
 function* navigateBack({ payload }: ProductStepAction) {
   const currentRoute: ReturnType<typeof getRouteState> = yield select(getRouteState);
@@ -61,6 +62,17 @@ function* navigateTo({ payload }: ProductStepAction) {
       const { routeId, props } = data;
 
       // TODO: validate the route
+      if (TAB_ROUTES.includes(routeId)) {
+        return Navigation.mergeOptions(routeId, {
+          bottomTabs: {
+            currentTabIndex: TAB_ROUTES.findIndex((item) => item === routeId),
+          },
+          statusBar: {
+            drawBehind: false,
+            visible: true,
+          },
+        });
+      }
 
       yield call(() =>
         Navigation.push(currentRoute, {
@@ -125,10 +137,10 @@ function* logEvent(action: SyncAction<string>) {
 }
 
 export default [
-  takeLatest(ContentItemSDUIAction.SDUI_ACTION_NAVIGATE_BACK as ActionPattern, navigateBack),
-  takeLatest(ContentItemSDUIAction.SDUI_ACTION_NAVIGATE as ActionPattern, navigateTo),
-  takeLatest(ContentItemSDUIAction.SDUI_ACTION_OPEN_URL as ActionPattern, openUrl),
-  takeLatest(ContentItemSDUIAction.SDUI_ACTION_PRODUCT_UNDERWRITING_STEP_POP as ActionPattern, popStep),
-  takeLatest(ContentItemSDUIAction.SDUI_ACTION_PRODUCT_UNDERWRITING_STEP_PUSH as ActionPattern, pushStep),
-  takeEvery(ContentItemSDUIAction.SDUI_ACTION_LOG_EVENT as ActionPattern, logEvent),
+  takeLatest(SduiActionType.SDUI_ACTION_NAVIGATE_BACK as ActionPattern, navigateBack),
+  takeLatest(SduiActionType.SDUI_ACTION_NAVIGATE as ActionPattern, navigateTo),
+  takeLatest(SduiActionType.SDUI_ACTION_OPEN_URL as ActionPattern, openUrl),
+  takeLatest(SduiActionType.SDUI_ACTION_PRODUCT_UNDERWRITING_STEP_POP as ActionPattern, popStep),
+  takeLatest(SduiActionType.SDUI_ACTION_PRODUCT_UNDERWRITING_STEP_PUSH as ActionPattern, pushStep),
+  takeEvery(SduiActionType.SDUI_ACTION_LOG_EVENT as ActionPattern, logEvent),
 ];

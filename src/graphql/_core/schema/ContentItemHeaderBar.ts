@@ -3,19 +3,19 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { ContentItemSDUIAction } from "./globalTypes";
+import { SduiActionType } from "./globalTypes";
 
 // ====================================================
 // GraphQL fragment: ContentItemHeaderBar
 // ====================================================
 
 export interface ContentItemHeaderBar_onLeftIconPress {
-  type: ContentItemSDUIAction;
+  type: SduiActionType;
   payload: string | null;
 }
 
 export interface ContentItemHeaderBar_onRightIconPress {
-  type: ContentItemSDUIAction;
+  type: SduiActionType;
   payload: string | null;
 }
 

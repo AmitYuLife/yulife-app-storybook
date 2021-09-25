@@ -9,7 +9,7 @@ import { ITEM_WIDTH, styles, highlightStyles } from "./product-step.scrollable-i
 import { getActiveIndex } from "./getActiveIndex";
 import { Colours } from "@styles";
 import { TextTemplate } from "@atoms";
-import { ContentItemStyle } from "@graphql/_core/schema";
+import { SduiStyle } from "@graphql/_core/schema";
 
 export const ProductStepPercentPicker = memo((props: Props) => {
   let { current: canChangeDynamicData } = useRef(false);
@@ -109,11 +109,11 @@ interface OverlayProps {
   itemsLength: number;
   minVisibleIndex: number;
   maxVisibleIndex: number;
-  backdropStyles: ContentItemStyle[];
+  backdropStyles: SduiStyle[];
   highlightLabel: string;
   highlightLabelColor: string;
   overlayTitle: string;
-  overlayTitleWrapperStyles: ContentItemStyle[];
+  overlayTitleWrapperStyles: SduiStyle[];
 }
 
 function Overlay({

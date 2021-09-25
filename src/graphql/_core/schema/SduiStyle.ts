@@ -4,10 +4,10 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL fragment: ContentItemStyle
+// GraphQL fragment: SduiStyle
 // ====================================================
 
-export interface ContentItemStyle {
+export interface SduiStyle {
   property: string;
   value: string;
 }
