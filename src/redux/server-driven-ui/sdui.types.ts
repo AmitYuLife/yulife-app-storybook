@@ -1,4 +1,4 @@
-import { ContentItemSDUIAction } from "@graphql/_core/schema/globalTypes";
+import { SduiActionType } from "@graphql/_core/schema/globalTypes";
 
 export type DynamicDataType = string | boolean | number | string[];
 export type DynamicData = Record<string, DynamicDataType>;
@@ -11,6 +11,6 @@ export interface ProductStepDefaultFields {
 }
 
 export interface ProductStepAction {
-  type: ContentItemSDUIAction;
+  type: SduiActionType;
   payload: ProductStepDefaultFields & { serverPayload: string };
 }

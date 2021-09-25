@@ -9,7 +9,7 @@ import {
 } from "@graphql/_core/schema";
 import { ProductStepDocumentsContext } from "./product-step.documents.context";
 import { ProductStepContentItemHeaderDetached } from "./subcomponents/detached/product-step.header.detached";
-import { ContentItemSDUIAction } from "@graphql/_core/schema/globalTypes";
+import { SduiActionType } from "@graphql/_core/schema/globalTypes";
 import { ContentItemDocuments } from "@components/sdui";
 import { Style, TOP_BAR } from "@styles";
 
@@ -53,8 +53,8 @@ const ProductStepDetachedContainer = (props: any) => {
           logo="yulife"
           leftIcon="BACK"
           rightIcon="CLOSE"
-          onLeftIconPress={{ type: ContentItemSDUIAction.SDUI_ACTION_NAVIGATE_BACK, payload: null }}
-          onRightIconPress={{ type: ContentItemSDUIAction.SDUI_ACTION_NAVIGATE_BACK, payload: null }}
+          onLeftIconPress={{ type: SduiActionType.SDUI_ACTION_NAVIGATE_BACK, payload: null }}
+          onRightIconPress={{ type: SduiActionType.SDUI_ACTION_NAVIGATE_BACK, payload: null }}
         />
       </View>
     </ProductStepDocumentsContext.Provider>

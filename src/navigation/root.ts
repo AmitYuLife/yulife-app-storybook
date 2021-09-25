@@ -37,6 +37,7 @@ export function generateOnLeftMenuPress(route: string) {
 
 export const labels = [
   {
+    id: ROUTES.dailySteps,
     name: "yucoin",
     onPress: () => {
       Navigation.mergeOptions(ROUTES.dailySteps, {
@@ -51,6 +52,7 @@ export const labels = [
     },
   },
   {
+    id: ROUTES.quests,
     name: "quests",
     onPress: () => {
       Navigation.mergeOptions(ROUTES.quests, {
@@ -65,6 +67,7 @@ export const labels = [
     },
   },
   {
+    id: ROUTES.yuScreen,
     name: "yu",
     onPress: () => {
       Navigation.mergeOptions(ROUTES.yuScreen, {
@@ -79,6 +82,7 @@ export const labels = [
     },
   },
   {
+    id: ROUTES.leaderboards,
     name: "leaderboard",
     onPress: () => {
       Navigation.mergeOptions(ROUTES.leaderboards, {
@@ -93,6 +97,7 @@ export const labels = [
     },
   },
   {
+    id: ROUTES.rewards,
     name: "rewards",
     onPress: () => {
       Navigation.mergeOptions(ROUTES.rewards, {
@@ -107,6 +112,8 @@ export const labels = [
     },
   },
 ];
+
+export const TAB_ROUTES = labels.map(({ id }) => id);
 
 export async function setAuthenticatedRoot(dispatchAuthenticatedEvent?: () => void) {
   await Navigation.setRoot({

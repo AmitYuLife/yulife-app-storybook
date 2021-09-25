@@ -3,13 +3,13 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { ContentItemSDUIAction } from "./globalTypes";
+import { SduiActionType } from "./globalTypes";
 
 // ====================================================
-// GraphQL fragment: ContentItemAction
+// GraphQL fragment: SduiAction
 // ====================================================
 
-export interface ContentItemAction {
-  type: ContentItemSDUIAction;
+export interface SduiAction {
+  type: SduiActionType;
   payload: string | null;
 }

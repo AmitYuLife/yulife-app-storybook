@@ -3,7 +3,7 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { ContentItemSDUIAction } from "./globalTypes";
+import { SduiActionType } from "./globalTypes";
 
 // ====================================================
 // GraphQL fragment: ContentItemLottie
@@ -15,7 +15,7 @@ export interface ContentItemLottie_styles {
 }
 
 export interface ContentItemLottie_onAnimationEnd {
-  type: ContentItemSDUIAction;
+  type: SduiActionType;
   payload: string | null;
 }
 

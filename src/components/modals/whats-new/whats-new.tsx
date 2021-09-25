@@ -27,7 +27,10 @@ const WhatsNewModal = (props: ModalProps) => {
           try {
             performMobileOnboardingStep(performMobileOnboardingStepArgs);
             if (props.button?.onPress) {
-              dispatch(props.button.onPress);
+              dispatch({
+                type: props.button.onPress.type,
+                payload: { serverPayload: props.button.onPress.payload },
+              });
             }
           } finally {
             Navigation.dismissModal(props.componentId);

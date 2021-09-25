@@ -3,7 +3,7 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { CoverType, ContentItemButtonType, ContentItemSDUIAction, ContentItemButtonSize } from "./globalTypes";
+import { CoverType, ContentItemButtonType, SduiActionType, ContentItemButtonSize } from "./globalTypes";
 
 // ====================================================
 // GraphQL fragment: ContentItemCoverPicker
@@ -38,12 +38,12 @@ export interface ContentItemCoverPicker_coverPickerTitle {
 }
 
 export interface ContentItemCoverPicker_customCover_button_onPress {
-  type: ContentItemSDUIAction;
+  type: SduiActionType;
   payload: string | null;
 }
 
 export interface ContentItemCoverPicker_customCover_button_event {
-  type: ContentItemSDUIAction;
+  type: SduiActionType;
   payload: string | null;
 }
 

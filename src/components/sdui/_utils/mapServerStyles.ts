@@ -1,6 +1,6 @@
-import { ContentItemStyle } from "@graphql/_core/schema/ContentItemStyle";
+import { SduiStyle } from "@graphql/_core/schema/SduiStyle";
 
-type Style = ContentItemStyle;
+type Style = SduiStyle;
 
 export const mapServerStyles = (styles: Style[] = []) => {
   if (!styles?.length) {
@@ -18,7 +18,7 @@ export const mapServerStyles = (styles: Style[] = []) => {
 
 const IS_FLOAT_NUMBER = /^[0-9]*\.?[0-9]*$/;
 
-const castValue = (value: ContentItemStyle["value"]) => {
+const castValue = (value: SduiStyle["value"]) => {
   if (IS_FLOAT_NUMBER.test(value)) {
     const parsedValue = parseFloat(value);
 

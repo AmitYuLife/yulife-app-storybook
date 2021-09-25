@@ -6,7 +6,7 @@ import { GetPersonalProductStepDetachedFaqs_getPersonalProductStepDetachedFaqs_b
 import { GetPersonalProductStepDetachedFaqs, GetPersonalProductStepDetachedFaqsVariables } from "@graphql/_core/schema";
 import { ProductStepFaqsContext } from "./product-step.faqs.context";
 import { ProductStepContentItemHeaderDetached } from "./subcomponents/detached/product-step.header.detached";
-import { ContentItemSDUIAction } from "@graphql/_core/schema/globalTypes";
+import { SduiActionType } from "@graphql/_core/schema/globalTypes";
 import { ContentItemFaqs } from "@components/sdui";
 import { Colours, Style, TOP_BAR } from "@styles";
 
@@ -83,8 +83,8 @@ const ProductStepDetachedContainer = (props: any) => {
           logo="yulife"
           leftIcon="BACK"
           rightIcon="CLOSE"
-          onLeftIconPress={{ type: ContentItemSDUIAction.SDUI_ACTION_NAVIGATE_BACK, payload: null }}
-          onRightIconPress={{ type: ContentItemSDUIAction.SDUI_ACTION_NAVIGATE_BACK, payload: null }}
+          onLeftIconPress={{ type: SduiActionType.SDUI_ACTION_NAVIGATE_BACK, payload: null }}
+          onRightIconPress={{ type: SduiActionType.SDUI_ACTION_NAVIGATE_BACK, payload: null }}
         />
       </View>
     </ProductStepFaqsContext.Provider>

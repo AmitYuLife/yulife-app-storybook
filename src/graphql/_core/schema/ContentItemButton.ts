@@ -3,19 +3,19 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { ContentItemButtonType, ContentItemSDUIAction, ContentItemButtonSize } from "./globalTypes";
+import { ContentItemButtonType, SduiActionType, ContentItemButtonSize } from "./globalTypes";
 
 // ====================================================
 // GraphQL fragment: ContentItemButton
 // ====================================================
 
 export interface ContentItemButton_onPress {
-  type: ContentItemSDUIAction;
+  type: SduiActionType;
   payload: string | null;
 }
 
 export interface ContentItemButton_event {
-  type: ContentItemSDUIAction;
+  type: SduiActionType;
   payload: string | null;
 }
 

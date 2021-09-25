@@ -3,7 +3,7 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { ContentItemSDUIAction } from "./globalTypes";
+import { SduiActionType } from "./globalTypes";
 
 // ====================================================
 // GraphQL fragment: ContentItemInfoButton
@@ -20,7 +20,7 @@ export interface ContentItemInfoButton_infoBtnRightIcon {
 }
 
 export interface ContentItemInfoButton_onPress {
-  type: ContentItemSDUIAction;
+  type: SduiActionType;
   payload: string | null;
 }
 
