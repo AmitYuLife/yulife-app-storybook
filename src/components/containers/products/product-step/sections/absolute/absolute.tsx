@@ -1,6 +1,10 @@
 import React from "react";
 import { GetPersonalProductStep_getPersonalProductStep_absolute as GPPS_Absolute } from "@graphql/_core/schema";
-import { AbsoluteContentItemImage, ProductStepCollapsingHeaderProductInfo } from "../../subcomponents";
+import {
+  AbsoluteContentItemImage,
+  ProductStepCollapsingHeaderProductInfo,
+  ProductStepFullScreenSwiper,
+} from "../../subcomponents";
 
 interface Props {
   absolute: GPPS_Absolute[];
@@ -33,6 +37,8 @@ const renderAbsoluteItemContent = (
       );
     case "ContentItemCollapsingHeaderProductInfo":
       return <ProductStepCollapsingHeaderProductInfo key={item.id} {...item} />;
+    case "ContentItemFullScreenSwiper":
+      return <ProductStepFullScreenSwiper key={item.id} {...item} />;
     default:
       return null;
   }
