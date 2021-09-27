@@ -33,6 +33,7 @@ export const ROUTES = {
   communityGoals: "yulife.member.CommunityGoals",
   yuScreen: "yulife.member.Yuscreen",
   avatarCreation: "yulife.member.AvatarCreation",
+  yumojiBuilder: "yulife.member.yumojiBuilder",
   yuProductSurvey: "yulife.member.YuProductSurvey",
   changeMemberNickname: "yulife.member.changeMemberNickname",
 

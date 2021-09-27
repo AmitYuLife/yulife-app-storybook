@@ -6,8 +6,8 @@ interface IYumojiPart {
   order?: number;
   remoteUrl: {
     uri: string;
-    width: number;
-    height: number;
+    width?: number;
+    height?: number;
   };
 }
 
@@ -28,14 +28,12 @@ function _Yumoji(props: IProps) {
   const parts = useMemo(() => items.sort(({ order: order1 = 0 }, { order: order2 = 0 }) => order1 - order2), [items]);
   return (
     <View style={{ width, height }}>
-      {parts.map(({ remoteUrl: { uri, width: partWidth, height: partHeight } }) =>
+      {parts.map(({ remoteUrl: { uri } }) =>
         !uri ? null : (
           <View key={uri} style={[StyleSheet.absoluteFillObject, { width, height }]}>
             <CroppedImage
-              previewPosition={preview}
+              transform={preview}
               key={uri}
-              width={partWidth}
-              height={partHeight}
               containerWidth={width}
               containerHeight={height}
               source={{ uri }}

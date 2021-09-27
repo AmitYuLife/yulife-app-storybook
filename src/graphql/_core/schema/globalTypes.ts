@@ -215,6 +215,16 @@ export enum YuWorld {
   ocean = "ocean",
 }
 
+export enum YumojiBuilderItemMatchType {
+  exactVariant = "exactVariant",
+  partId = "partId",
+}
+
+export enum YumojiPartStatus {
+  available = "available",
+  unavailable = "unavailable",
+}
+
 export interface AnswerInput {
   key: string;
   value: string;

@@ -11,39 +11,38 @@ import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-headin
 import { MODALS, ROUTES } from "@navigation/constants";
 import Logger from "@services/logging/logger";
 import { Style } from "@styles";
-
-export type SelectedBody = "None" | "Male" | "Female";
+import { AvatarBodyType } from "@graphql/_core/schema/globalTypes";
 
 interface IProps {
   onMaleBodySelected: () => void;
   onFemaleBodySelected: () => void;
   onContinue: () => void;
   heading: AvatarBuilderHeading;
-  bodyType: SelectedBody;
+  bodyType: AvatarBodyType;
 }
 
 function SelectBody({ onMaleBodySelected, onFemaleBodySelected, onContinue, heading, bodyType }: IProps) {
-  const [selectedBody, selectBody] = useState<SelectedBody>(bodyType);
+  const [selectedBody, selectBody] = useState<AvatarBodyType>(bodyType);
   const isBackPressed = useRef(false);
 
-  const isMale = selectedBody === "Male";
-  const isFemale = selectedBody === "Female";
-  const isNone = selectedBody === "None";
+  const isMale = selectedBody === AvatarBodyType.male;
+  const isFemale = selectedBody === AvatarBodyType.female;
+  const isNone = selectedBody === AvatarBodyType.neutral;
 
   // respect if parent prop changes
   useEffect(() => selectBody(bodyType), [bodyType]);
 
   const selectMaleBody = useCallback(() => {
-    selectBody("Male");
+    selectBody(AvatarBodyType.male);
   }, []);
 
   const selectFemaleBody = useCallback(() => {
-    selectBody("Female");
+    selectBody(AvatarBodyType.female);
   }, []);
 
   const onContinuePressed = useCallback(
-    (bodySelected: SelectedBody) => {
-      bodySelected === "Male" ? onMaleBodySelected() : onFemaleBodySelected();
+    (bodySelected: AvatarBodyType) => {
+      bodySelected === AvatarBodyType.male ? onMaleBodySelected() : onFemaleBodySelected();
       onContinue();
     },
     [onContinue, onMaleBodySelected, onFemaleBodySelected]

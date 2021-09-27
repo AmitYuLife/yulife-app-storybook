@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import React, { memo, useCallback } from "react";
 import { StyleSheet, ViewStyle, View } from "react-native";
 import { Style, Colours } from "@styles";
 import { ItemSet } from "./item-set/item-set";
@@ -11,12 +11,17 @@ import { AvatarCreationPrompt } from "../../subcomponents";
 import { Text } from "@atoms";
 import { Yumoji, TouchableOpacityWithDelay } from "@molecules";
 import { ItemBottom } from "./item-set/item-bottom";
+import { useSelector } from "react-redux";
+import { getUserFeatures } from "@redux/user/user.selectors";
 
 const _AvatarAndEquipment = () => {
   const { data } = useQuery<GetYulifer>(GQL_QUERY_GET_YULIFER, { fetchPolicy: "cache-first" }); // We cannot use cache-only as fetch policy, this query is refetch on avatar update
   const { data: yuScreenProductSlots } = useQuery<YuScreenProductSlots>(GQL_QUERY_GET_YU_SCREEN_PRODUCTS_SLOTS, {
     fetchPolicy: "cache-and-network",
   });
+  const features = useSelector(getUserFeatures);
+
+  const editYumoji = useCallback(() => navigateToAvatarModal({ useNewYumojiBuilder: features.newYumojiBuilder }), []);
 
   const avatarUri = data?.getYulifer?.avatarRemoteFiles?.pngFull;
 
@@ -24,7 +29,7 @@ const _AvatarAndEquipment = () => {
     <View>
       <View style={styles.wrapper} testID={YUSCREEN_AVATAR}>
         <ItemSet items={yuScreenProductSlots?.getYuScreenProductSlots.left} />
-        <TouchableOpacityWithDelay onPress={navigateToAvatarModal} style={styles.avatarWrapper}>
+        <TouchableOpacityWithDelay onPress={editYumoji} style={styles.avatarWrapper}>
           <Yumoji
             width={AVATAR_WIDTH}
             height={AVATAR_HEIGHT}

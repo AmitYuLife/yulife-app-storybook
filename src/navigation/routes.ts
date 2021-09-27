@@ -52,6 +52,10 @@ export default [
     component: require("../components/containers/member/avatar-creation/avatar-creation.container").default,
   },
   {
+    name: ROUTES.yumojiBuilder,
+    component: require("../components/containers/member/yumoji-builder/yumoji-builder.container").default,
+  },
+  {
     name: ROUTES.settings,
     component: require("../components/containers/member/settings/settings.container").default,
   },

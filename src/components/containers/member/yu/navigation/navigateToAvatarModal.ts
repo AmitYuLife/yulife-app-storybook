@@ -5,10 +5,11 @@ import { navigateToAvatarCreationScreen } from "./navigateToAvatarCreationScreen
 interface INavigateToAvatarModal {
   heading?: string;
   subheading?: string;
+  useNewYumojiBuilder?: boolean;
 }
 
 export function navigateToAvatarModal(args: INavigateToAvatarModal = {}) {
-  const { heading = "Edit your Yumoji", subheading = "Do you want to edit your Yumoji?" } = args;
+  const { heading = "Edit your Yumoji", subheading = "Do you want to edit your Yumoji?", useNewYumojiBuilder } = args;
 
   Navigation.showModal({
     component: {
@@ -17,7 +18,7 @@ export function navigateToAvatarModal(args: INavigateToAvatarModal = {}) {
       passProps: {
         onPress: () => {
           Navigation.dismissModal(MODALS.generic);
-          navigateToAvatarCreationScreen({ heading });
+          navigateToAvatarCreationScreen({ heading, useNewYumojiBuilder });
         },
         onPressSecondary: () => {
           Navigation.dismissModal(MODALS.generic);

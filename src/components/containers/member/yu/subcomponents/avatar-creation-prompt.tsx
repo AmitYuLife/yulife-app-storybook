@@ -1,15 +1,24 @@
-import React, { memo } from "react";
+import React, { memo, useCallback } from "react";
 import { View, StyleSheet, ViewStyle, TextStyle } from "react-native";
 import { Text, Button } from "@atoms";
 import { Colours, Style } from "@styles";
 import { navigateToAvatarCreationScreen } from "../navigation/navigateToAvatarCreationScreen";
 import { GET_STARTED_BUTTON, EMPTY_YUSCREEN_COPY } from "@ids";
 import LinearGradient from "react-native-linear-gradient";
+import { useSelector } from "react-redux";
+import { getUserFeatures } from "@redux/user/user.selectors";
 
 const CREATE_AVATAR_CAPTION_COPY = "Build your Yumoji to unlock power-ups and earn 100 YuCoin!";
 const CREATE_AVATAR_CTA_COPY = "Create your Yumoji";
 
 const _AvatarCreationPrompt = () => {
+  const features = useSelector(getUserFeatures);
+
+  const createYumoji = useCallback(
+    () => navigateToAvatarCreationScreen({ useNewYumojiBuilder: features.useNewYumojiBuilder }),
+    []
+  );
+
   return (
     <View style={styles.wrapper}>
       <LinearGradient
@@ -21,7 +30,7 @@ const _AvatarCreationPrompt = () => {
         <Text testID={EMPTY_YUSCREEN_COPY} bold={true} style={styles.promptLabel}>
           {CREATE_AVATAR_CAPTION_COPY}
         </Text>
-        <Button testID={GET_STARTED_BUTTON} label={CREATE_AVATAR_CTA_COPY} onPress={navigateToAvatarCreationScreen} />
+        <Button testID={GET_STARTED_BUTTON} label={CREATE_AVATAR_CTA_COPY} onPress={createYumoji} />
       </View>
     </View>
   );
