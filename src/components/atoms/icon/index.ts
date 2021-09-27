@@ -42,6 +42,7 @@ import { BadgeIcon } from "./badge-icon";
 import { RadioIcon } from "./radio-icon";
 import { GoogleFitIcon } from "./google-fit-icon";
 import { SamsungHealthIcon } from "./samsung-health-icon";
+import { DoneIcon } from "./done-icon";
 
 // TODO: check with the team if we can refactor this to support "import { Icon1, Icon2 } from "@atoms/icon";
 
@@ -90,4 +91,5 @@ export default {
   RadioIcon,
   GoogleFitIcon,
   SamsungHealthIcon,
+  DoneIcon,
 };

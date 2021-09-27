@@ -1,15 +1,18 @@
 import { ROUTES } from "@navigation/constants";
 import { Navigation } from "react-native-navigation";
 
-const DEFAULT_ARGS = { heading: "Create your Yumoji" };
+interface INavigateToAvatarCreationScreen {
+  heading?: string;
+  useNewYumojiBuilder?: boolean;
+}
 
-export function navigateToAvatarCreationScreen(args = DEFAULT_ARGS) {
-  const { heading } = args;
+export function navigateToAvatarCreationScreen(args?: INavigateToAvatarCreationScreen) {
+  const { heading = "Create your Yumoji", useNewYumojiBuilder } = args;
 
   Navigation.push(ROUTES.yuScreen, {
     component: {
       id: ROUTES.avatarCreation,
-      name: ROUTES.avatarCreation,
+      name: useNewYumojiBuilder ? ROUTES.yumojiBuilder : ROUTES.avatarCreation,
       passProps: {
         heading,
       },
