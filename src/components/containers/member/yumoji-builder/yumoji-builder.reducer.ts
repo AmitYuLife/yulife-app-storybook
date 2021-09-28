@@ -13,6 +13,7 @@ export enum ActionTypes {
   SET_CATEGORIES = "SET_CATEGORIES",
   SET_SELECTED_CATEGORY = "SET_SELECTED_CATEGORY",
   SET_ITEM_LIST = "SET_ITEM_LIST",
+  ON_BACK_PRESSED = "ON_BACK_PRESSED",
 }
 
 export type IParts = Record<string, YumojiBuilderInitialParts>;
@@ -24,6 +25,7 @@ interface ItemListItems extends YumojiBuilderItemsForCategoryItems {
 
 export interface IItemList extends YumojiBuilderItemsForCategory {
   items: ItemListItems[];
+  loading: boolean;
 }
 
 export interface IState {
@@ -39,7 +41,7 @@ export interface IState {
 
 export interface IAction {
   type: ActionTypes;
-  payload: any;
+  payload?: any;
 }
 
 const transformParts = (parts: YumojiBuilderInitialParts[]): IParts =>
@@ -77,6 +79,7 @@ export const INITIAL_STATE: IState = {
   itemList: {
     title: "",
     items: [],
+    loading: true,
   },
   selectedCategoryId: "",
   matchType: "",
@@ -136,6 +139,10 @@ export const reducer = (state: IState, action: IAction) => {
         ...state,
         selectedCategoryId: action.payload.id,
         matchType: action.payload.matchType,
+        itemList: {
+          ...state.itemList,
+          loading: true,
+        },
       };
     }
 
@@ -145,7 +152,16 @@ export const reducer = (state: IState, action: IAction) => {
         itemList: {
           title: action.payload.title,
           items: transformItems(action.payload.items, state.parts, state.matchType),
+          loading: false,
         },
+      };
+    }
+
+    case ActionTypes.ON_BACK_PRESSED: {
+      return {
+        ...state,
+        bodySelected: false,
+        selectedCategoryId: state.categories[0].id,
       };
     }
 

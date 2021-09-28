@@ -5,7 +5,6 @@ import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-headin
 import { Colours, Style } from "@styles";
 import YumojiBuilderCategories from "./components/yumoji-builder-categories";
 import YumojiBuilderItemList from "./components/yumoji-builder-item-list";
-
 import { ActionTypes, IState, IDispatch } from "@components/containers/member/yumoji-builder/yumoji-builder.reducer";
 import { Yumoji } from "@organisms/yumoji/scalableYumoji";
 import { GetYumojiBuilderInitialParts_getYumojiBuilderInitialParts as YumojiBuilderInitialParts } from "@graphql/_core/schema";
@@ -39,6 +38,7 @@ const YumojiBuilder: FC<IProps> = ({ state, dispatch, onBackPressed, heading }) 
         />
         <YumojiBuilderItemList
           itemList={state.itemList}
+          selectedCategoryId={state.selectedCategoryId}
           updateUserAvatar={(payload) => {
             dispatch({ type: ActionTypes.SET_MULTIPLE_PARTS, payload });
           }}
@@ -47,10 +47,8 @@ const YumojiBuilder: FC<IProps> = ({ state, dispatch, onBackPressed, heading }) 
       <GenericHeadingAbsolute
         leftIcon="BACK"
         heading={heading}
-        onLeftIconPress={() => {
-          onBackPressed();
-        }}
-        onRightIconPress={() => console.log("right ")}
+        onLeftIconPress={onBackPressed}
+        onRightIconPress={() => console.log("right ")} // Yumoji TODO: Add the right action here
         rightIcon="SAVE"
       />
     </View>
