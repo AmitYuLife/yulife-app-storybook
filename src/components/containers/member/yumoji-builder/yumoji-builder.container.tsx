@@ -4,7 +4,7 @@ import { AvatarBuilderHeading } from "@components/screens/member/yu-screen/avata
 import { Loading } from "@atoms";
 import { AvatarBodyType } from "@graphql/_core/schema/globalTypes";
 import YumojiBuilder from "@components/screens/member/yu-screen/yumoji-builder/yumoji-builder";
-import { ActionTypes, INITIAL_STATE, reducer } from "./yumoji-builder.reducer";
+import { ActionTypes, IAction, INITIAL_STATE, IState, reducer } from "./yumoji-builder.reducer";
 import {
   GQL_QUERY_GET_YUMOJI_BUILDER_INITIAL_PARTS,
   GQL_QUERY_GET_YUMOJI_BUILDER_CATEGORY_LIST,
@@ -25,7 +25,7 @@ interface IProps {
 }
 
 const YumojiBuilderContainer: FC<IProps> = ({ heading }) => {
-  const [state, dispatch] = useReducer<React.Reducer<any, any>>(reducer, INITIAL_STATE);
+  const [state, dispatch] = useReducer<React.Reducer<IState, IAction>>(reducer, INITIAL_STATE);
 
   useQuery<GetYumojiBuilderCategoryList>(GQL_QUERY_GET_YUMOJI_BUILDER_CATEGORY_LIST, {
     onCompleted: ({ getYumojiBuilderCategoryList }) =>
@@ -71,48 +71,32 @@ const YumojiBuilderContainer: FC<IProps> = ({ heading }) => {
     }
   }, [state.selectedCategoryId, state.bodyType, state.partId]);
 
-  const handleBodySelected = useCallback((payload) => dispatch({ type: ActionTypes.SET_SELECTED_BODY, payload }), [
-    state.bodySelected,
-  ]);
+  const handleBodySelected = useCallback(
+    (bodyType: AvatarBodyType) => {
+      dispatch({ type: ActionTypes.SET_SELECTED_BODY, payload: true });
+
+      getYumojiBuilderInitialParts({
+        variables: {
+          bodyType,
+        },
+      });
+    },
+    [getYumojiBuilderInitialParts, dispatch]
+  );
+
+  const onBackPressed = useCallback(() => {
+    dispatch({ type: ActionTypes.ON_BACK_PRESSED });
+  }, []);
 
   if (loadingInitialParts) {
     return <Loading />;
   }
 
   if (state.bodySelected) {
-    return (
-      <YumojiBuilder
-        state={state}
-        dispatch={dispatch}
-        onBackPressed={() => handleBodySelected(false)}
-        heading={heading}
-      />
-    );
+    return <YumojiBuilder state={state} dispatch={dispatch} onBackPressed={onBackPressed} heading={heading} />;
   }
 
-  return (
-    <>
-      <SelectBody
-        onMaleBodySelected={() => {
-          getYumojiBuilderInitialParts({
-            variables: {
-              bodyType: AvatarBodyType.male,
-            },
-          });
-        }}
-        onFemaleBodySelected={() => {
-          getYumojiBuilderInitialParts({
-            variables: {
-              bodyType: AvatarBodyType.female,
-            },
-          });
-        }}
-        onContinue={() => handleBodySelected(true)}
-        heading={heading}
-        bodyType={state.bodyType}
-      />
-    </>
-  );
+  return <SelectBody onContinue={handleBodySelected} heading={heading} bodyType={state.bodyType} />;
 };
 
 export default YumojiBuilderContainer;

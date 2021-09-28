@@ -1,60 +1,73 @@
-import React, { memo, useRef, FC } from "react";
-import { ScrollView, View, StyleSheet, ViewStyle } from "react-native";
+import React, { memo, useRef, FC, useEffect } from "react";
+import { View, StyleSheet, ViewStyle, FlatList } from "react-native";
 import { Colours, Style } from "@styles";
 import { TextTemplate, BoxOption } from "@atoms";
 import { CroppedImage } from "./croppedImage";
 import ColorPreview from "./colorPreview";
 import { IItemList } from "@components/containers/member/yumoji-builder/yumoji-builder.reducer";
 import { GetYumojiBuilderInitialParts_getYumojiBuilderInitialParts as YumojiBuilderInitialParts } from "@graphql/_core/schema";
+import { loadingItemData } from "../../avatar-builder/avatar-builder.helper";
 
-interface Props {
+interface IProps {
   itemList: IItemList;
+  selectedCategoryId: string;
   updateUserAvatar: (parts: YumojiBuilderInitialParts[]) => void;
 }
 
-const YumojiBuilderItemList: FC<Props> = ({ itemList, updateUserAvatar }) => {
-  const scrollViewRef = useRef<ScrollView | null>(null);
+const YumojiBuilderItemList: FC<IProps> = ({ itemList, updateUserAvatar, selectedCategoryId }) => {
+  const flatListRef = useRef<FlatList | null>(null);
   const boxWidth = (Style.DEVICE_WIDTH - Style.adjust(70)) / 3;
   const boxHeight = boxWidth + Style.adjust(2);
   const previewSize = boxWidth - Style.adjust(8);
 
+  useEffect(() => {
+    if (itemList.items.length > 0) {
+      flatListRef?.current?.scrollToIndex({ index: 0, animated: false });
+    }
+  }, [selectedCategoryId]);
+
   return (
     <View style={styles.wrapper}>
-      <ScrollView style={styles.bodyElementsList} ref={scrollViewRef}>
-        <View style={styles.title}>
-          <TextTemplate type="b1b">{itemList?.title || ""}</TextTemplate>
-        </View>
-        <View style={styles.itemList}>
-          {itemList.items?.map((item, index) => {
-            const { representativeColor, preview } = item;
-            return (
-              <View style={styles.itemWrapper} key={index}>
-                <BoxOption
-                  onPress={() => {
-                    updateUserAvatar(item.parts);
-                  }}
-                  isSelected={item.isSelected}
-                  selectedStyle={styles.itemSelected}
-                  innerHeight={boxHeight}
-                >
-                  <View style={styles.itemPadding}>
-                    {representativeColor ? (
-                      <ColorPreview color={representativeColor} size={previewSize} />
-                    ) : (
-                      <CroppedImage
-                        source={preview.image}
-                        transform={preview.transform}
-                        containerHeight={previewSize}
-                        containerWidth={previewSize}
-                      />
-                    )}
-                  </View>
-                </BoxOption>
-              </View>
-            );
-          })}
-        </View>
-      </ScrollView>
+      <View style={styles.title}>
+        {!itemList.title ? null : <TextTemplate type="b1b">{itemList?.title}</TextTemplate>}
+      </View>
+      <View style={styles.itemList}>
+        <FlatList
+          key={"items_flat_list"}
+          keyExtractor={(keyItem, index) => `${index}${keyItem.partId}`}
+          ref={flatListRef}
+          style={styles.bodyElementsList}
+          data={itemList.loading ? loadingItemData : itemList.items}
+          numColumns={3}
+          showsVerticalScrollIndicator={false}
+          initialScrollIndex={0}
+          renderItem={({ item }) => (
+            <View style={styles.itemWrapper}>
+              <BoxOption
+                onPress={() => {
+                  updateUserAvatar(item.parts);
+                }}
+                isSelected={item.isSelected}
+                selectedStyle={styles.itemSelected}
+                innerHeight={boxHeight}
+              >
+                <View style={styles.itemPadding}>
+                  {item?.representativeColor ? (
+                    <ColorPreview color={item?.representativeColor} size={previewSize} />
+                  ) : (
+                    <CroppedImage
+                      source={item?.preview?.image}
+                      transform={item?.preview?.transform}
+                      containerHeight={previewSize}
+                      containerWidth={previewSize}
+                    />
+                  )}
+                </View>
+              </BoxOption>
+            </View>
+          )}
+        />
+      </View>
     </View>
   );
 };
@@ -69,15 +82,13 @@ const styles = StyleSheet.create({
   bodyElementsList: {
     width: "100%",
     padding: Style.adjust(8),
-    paddingTop: Style.adjust(24),
   } as ViewStyle,
   title: {
-    paddingLeft: Style.adjust(8),
+    marginTop: Style.adjust(24),
+    marginLeft: Style.adjust(16),
   },
   itemList: {
-    flexDirection: "row",
-    flexWrap: "wrap",
-    paddingTop: Style.adjust(8),
+    flex: 1,
     paddingBottom: Style.adjust(30),
   } as ViewStyle,
   itemWrapper: {

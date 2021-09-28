@@ -14,14 +14,14 @@ import { Style } from "@styles";
 import { AvatarBodyType } from "@graphql/_core/schema/globalTypes";
 
 interface IProps {
-  onMaleBodySelected: () => void;
-  onFemaleBodySelected: () => void;
-  onContinue: () => void;
+  onContinue: (bodyType: AvatarBodyType) => void;
   heading: AvatarBuilderHeading;
   bodyType: AvatarBodyType;
 }
 
-function SelectBody({ onMaleBodySelected, onFemaleBodySelected, onContinue, heading, bodyType }: IProps) {
+const BODY_HEIGHT = Style.adjust(344);
+
+function SelectBody({ onContinue, heading, bodyType }: IProps) {
   const [selectedBody, selectBody] = useState<AvatarBodyType>(bodyType);
   const isBackPressed = useRef(false);
 
@@ -40,13 +40,9 @@ function SelectBody({ onMaleBodySelected, onFemaleBodySelected, onContinue, head
     selectBody(AvatarBodyType.female);
   }, []);
 
-  const onContinuePressed = useCallback(
-    (bodySelected: AvatarBodyType) => {
-      bodySelected === AvatarBodyType.male ? onMaleBodySelected() : onFemaleBodySelected();
-      onContinue();
-    },
-    [onContinue, onMaleBodySelected, onFemaleBodySelected]
-  );
+  const onContinuePressed = useCallback(() => {
+    onContinue(selectedBody);
+  }, [onContinue, selectedBody]);
 
   const backButtonHandler = useCallback(() => {
     if (!isBackPressed.current) {
@@ -67,14 +63,14 @@ function SelectBody({ onMaleBodySelected, onFemaleBodySelected, onContinue, head
       <GenericHeadingPad />
       <View style={styles.elementWrapper}>
         <View style={styles.title}>
-          <TextTemplate type="h1"> Pick a body type</TextTemplate>
+          <TextTemplate type="h1">Pick a body type</TextTemplate>
         </View>
         <View style={styles.selectorWrapper}>
           <BoxOption
             onPress={selectMaleBody}
             isSelected={isMale}
             selectedStyle={styles.bodySelected}
-            innerHeight={Style.adjust(344)}
+            innerHeight={BODY_HEIGHT}
           >
             <MaleBody isSelected={isMale} />
           </BoxOption>
@@ -83,13 +79,13 @@ function SelectBody({ onMaleBodySelected, onFemaleBodySelected, onContinue, head
             onPress={selectFemaleBody}
             isSelected={isFemale}
             selectedStyle={styles.bodySelected}
-            innerHeight={Style.adjust(344)}
+            innerHeight={BODY_HEIGHT}
           >
             <FemaleBody isSelected={isFemale} />
           </BoxOption>
         </View>
         <View style={styles.buttonsWrapper}>
-          <Button disabled={isNone} onPress={() => onContinuePressed(selectedBody)} label="Continue" />
+          <Button disabled={isNone} onPress={onContinuePressed} label="Continue" />
         </View>
       </View>
       <GenericHeadingAbsolute
