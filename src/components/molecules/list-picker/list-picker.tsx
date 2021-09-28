@@ -2,6 +2,7 @@ import React from "react";
 import { StyleSheet, TouchableOpacity, View } from "react-native";
 import { Text } from "@atoms";
 import styles from "./list-picker.styles";
+import { TEXT_TEMPLATE } from "@ids";
 
 interface IItem {
   label: string;
@@ -27,7 +28,9 @@ const ListPicker: React.FC<IProps> = ({ items, instruction, onPressCancel, close
           style={StyleSheet.flatten([styles.itemWrapper, index + 1 === items.length ? styles.itemWrapperLast : {}])}
           onPress={item.onPress}
         >
-          <Text style={styles.item}>{item.label}</Text>
+          <Text style={styles.item} testID={TEXT_TEMPLATE(item.label)}>
+            {item.label}
+          </Text>
         </TouchableOpacity>
       ))}
       <TouchableOpacity onPress={onPressCancel ? onPressCancel : closeOverlay} style={styles.cancelWrapper}>
