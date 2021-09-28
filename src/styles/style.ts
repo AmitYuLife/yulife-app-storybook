@@ -148,6 +148,8 @@ const getSafeAreaStart = () => {
   return 20;
 };
 
+const IOS_NOTCH_HEIGHT = 48;
+
 const Style = {
   BASE_HEIGHT,
   DEVICE_HEIGHT: y,
@@ -185,6 +187,7 @@ const Style = {
   hasNotch: DeviceInfo.hasNotch(),
   isLargeScreen,
   isHuaweiMate10,
+  IOS_NOTCH_HEIGHT,
 };
 
 export default Style;

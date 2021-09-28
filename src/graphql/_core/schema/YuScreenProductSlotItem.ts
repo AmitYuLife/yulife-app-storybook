@@ -35,6 +35,11 @@ export interface YuScreenProductSlotItem_toolTip {
   description: YuScreenProductSlotItem_toolTip_description;
 }
 
+export interface YuScreenProductSlotItem_popover {
+  id: string;
+  message: string;
+}
+
 export interface YuScreenProductSlotItem {
   itemUrl: string;
   status: YuProductStatus;
@@ -43,4 +48,5 @@ export interface YuScreenProductSlotItem {
   coverType: CoverType | null;
   icon: YuScreenProductSlotItem_icon;
   toolTip: YuScreenProductSlotItem_toolTip;
+  popover: YuScreenProductSlotItem_popover | null;
 }

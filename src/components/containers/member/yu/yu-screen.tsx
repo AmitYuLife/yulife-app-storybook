@@ -19,7 +19,7 @@ export const YuScreen = () => {
   );
 };
 
-const PAD_TOP = Platform.select({
+export const PAD_TOP = Platform.select({
   ios: media.select(
     [
       {

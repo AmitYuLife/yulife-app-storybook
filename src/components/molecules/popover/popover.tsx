@@ -8,6 +8,8 @@ import styles from "./popover.styles";
 import PopoverBackground from "./popover-background";
 import { PopoverBeak } from "./popover-beak";
 
+type Side = "left" | "right";
+
 interface IProps {
   targetX: number;
   targetY: number;
@@ -21,6 +23,10 @@ interface IProps {
   animation?: Animation;
   animationDuration?: number;
   animationDelay?: number;
+  targetSize?: number;
+  width?: number;
+  side?: Side;
+  offset?: number;
 }
 
 const HIT_SLOP = {
@@ -29,6 +35,8 @@ const HIT_SLOP = {
   left: 8,
   right: 8,
 };
+
+const MAGIC_NUMBER = 69;
 
 const Popover: FC<IProps> = ({
   targetX,
@@ -43,18 +51,23 @@ const Popover: FC<IProps> = ({
   animation = "fadeIn",
   animationDuration = 750,
   animationDelay = 0,
+  targetSize = Style.adjust(48),
+  width = 0,
+  side = "left",
+  offset = 0,
 }) => {
   const handleTargetTouch = useCallback(() => {
-    onClose();
     onTouchTarget();
+    onClose();
   }, [onClose, onTouchTarget]);
 
-  const { top, left } = useMemo(
+  const { top, left, right } = useMemo(
     () => ({
       top: targetY - Style.adjust(24),
-      left: targetX + Style.adjust(16),
+      left: side === "left" ? targetX + Style.adjust(16) + targetSize / 6 : null,
+      right: side === "right" ? targetX + Style.adjust(16) - offset + targetSize / 6 : null,
     }),
-    [targetY, targetX]
+    [targetY, targetX, side]
   );
 
   return (
@@ -62,23 +75,40 @@ const Popover: FC<IProps> = ({
       {!closeOnOutsideTouch ? null : <TouchableOpacityWithDelay style={styles.fullScreen} onPress={onClose} />}
       <View style={StyleSheet.absoluteFillObject}>
         {!onTouchTarget ? null : (
-          <PopoverBackground targetX={targetX} targetY={targetY} onTouchTarget={handleTargetTouch} onClose={onClose} />
+          <PopoverBackground
+            targetSize={targetSize}
+            targetX={targetX}
+            targetY={targetY}
+            onTouchTarget={handleTargetTouch}
+            onClose={onClose}
+          />
         )}
         <AnimatedView
           animation={animation}
           delay={animationDelay}
           duration={animationDuration}
-          style={[styles.absolute, styles.shadowProp, { top, left, shadowOpacity }]}
+          style={[styles.absolute, styles.shadowProp, { top, left, right, shadowOpacity }]}
+          useNativeDriver={true}
+          pointerEvents="box-none"
         >
-          <View style={[styles.popoverBody, { backgroundColor, borderColor }]}>
+          <View pointerEvents="box-none" style={[styles.popoverBody, { backgroundColor, borderColor }]}>
             {children}
             <TouchableOpacityWithDelay hitSlop={HIT_SLOP} onPress={onClose} style={styles.closeWrapper}>
               <CloseSvg size={Style.adjust(12)} />
             </TouchableOpacityWithDelay>
           </View>
-          <View style={styles.popoverBeak}>
-            <PopoverBeak backgroundColor={backgroundColor} borderColor={borderColor} />
-          </View>
+          {side === "left" ? (
+            <View pointerEvents="none" style={styles.popoverBeak}>
+              <PopoverBeak backgroundColor={backgroundColor} borderColor={borderColor} />
+            </View>
+          ) : (
+            <View
+              pointerEvents="none"
+              style={[styles.popoverBeakRight, { left: width + MAGIC_NUMBER, transform: [{ rotate: "180deg" }] }]}
+            >
+              <PopoverBeak backgroundColor={backgroundColor} borderColor={borderColor} />
+            </View>
+          )}
         </AnimatedView>
       </View>
     </>

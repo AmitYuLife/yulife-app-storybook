@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import React, { memo, useState } from "react";
 import { YuScreen } from "./yu-screen";
 import { YuScreenLayout } from "./yu-screen-layout";
 import { GetYulifer } from "@graphql/_core/schema";
@@ -11,6 +11,7 @@ import { YuScreenIntro } from "./yu-screen-intro/yu-screen-intro";
 import { useTapBackTwiceToExit } from "@services/hooks/useTapBackTwiceToExit";
 import { IMainTabsProps } from "@navigation/root";
 import { YUSCREEN_V3 } from "@ids";
+import { YuScreenContext } from "./context/yu-screen.context";
 
 type ConnectedState = IMainTabsProps;
 
@@ -20,8 +21,8 @@ const _YuScreenContainer = (props: ConnectedState) => {
    * of the cached state before transitioning to loading
    */
   const { data, loading } = useQuery<GetYulifer>(GQL_QUERY_GET_YULIFER, { fetchPolicy: "network-only" });
-
   useTapBackTwiceToExit(props.componentId);
+  const [popover, setPopover] = useState(null);
 
   const showIntro = useSelector(getShowYuscreenIntro);
 
@@ -30,7 +31,11 @@ const _YuScreenContainer = (props: ConnectedState) => {
   }
 
   return (
-    <YuScreenLayout testID={YUSCREEN_V3(true)}>{loading || !data ? <YuScreenLoading /> : <YuScreen />}</YuScreenLayout>
+    <YuScreenContext.Provider value={{ popover, setPopover }}>
+      <YuScreenLayout testID={YUSCREEN_V3(true)}>
+        {loading || !data ? <YuScreenLoading /> : <YuScreen />}
+      </YuScreenLayout>
+    </YuScreenContext.Provider>
   );
 };
 
