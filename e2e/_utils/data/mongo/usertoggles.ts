@@ -110,7 +110,6 @@ export const CUSTOMER_10_TOGGLES = {
         features: {
             hideSmartHealthScreen: true,
             hideYuMatterScreen: true, 
-            hasFibActive: true, 
         },
     }
 } as IDatabaseItem
@@ -397,7 +396,6 @@ export const CUSTOMER_23_TOGGLES = {
             "showStats": true,
             hideSmartHealthScreen: false,
             hideYuMatterScreen: true,
-            hasFibActive: true,
         }
     }
 } as IDatabaseItem
