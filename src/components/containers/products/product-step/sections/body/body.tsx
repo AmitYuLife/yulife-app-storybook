@@ -29,6 +29,7 @@ import {
   ContentItemText,
   ContentItemImage,
   ContentItemList,
+  ContentItemPackageCardPower,
 } from "@components/sdui";
 import { Style } from "@styles";
 import { ProductStepContext } from "../../product-step.context";
@@ -132,6 +133,8 @@ const renderItemContent = (item: GPPS_Body): JSX.Element => {
       return <ContentItemList key={item.id} {...item} />;
     case "ContentItemGpDetails":
       return <ProductStepContentItemGpDetails key={item.id} {...item} />;
+    case "ContentItemPackageCardPower":
+      return <ContentItemPackageCardPower key={item.id} {...item} />;
     default:
       return null;
   }

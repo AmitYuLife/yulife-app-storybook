@@ -1,18 +1,25 @@
 import React, { useCallback, useContext, useMemo, memo } from "react";
-import { StyleSheet, View, ViewStyle } from "react-native";
+import { Animated, StyleSheet, TextStyle, View, ViewStyle } from "react-native";
 import { Colours, Style } from "@styles";
 import Markdown from "@components/molecules/markdown/markdown";
 import { TryOnYumojiPart } from "@organisms/yumoji/yumoji.try-on";
 import { CoverType, YuWorld } from "@graphql/_core/schema/globalTypes";
-import { GetPersonalProductStep_getPersonalProductStep_body_ContentItemPersonalProductPreview as Props } from "@graphql/_core/schema/GetPersonalProductStep";
+import {
+  GetPersonalProductStep_getPersonalProductStep_body_ContentItemPersonalProductPreview as Props,
+  GetPersonalProductStep_getPersonalProductStep_body_ContentItemPersonalProductPreview_percentageBox as PercentageBoxProps,
+} from "@graphql/_core/schema/GetPersonalProductStep";
 import { ProductStepContext } from "../product-step.context";
 import { Image, Hyperlink, TextTemplate } from "@atoms";
 import { mapServerStyles } from "@components/sdui";
 import { useSetDefaultAnswer } from "../hooks/useSetDefaultAnswer";
 import { mapCoverTypeToColor } from "../utils/mapCoverTypeToColor";
+import {
+  highlightStyles,
+  HIGHLIGHT_CIRCUMFERENCE,
+} from "./product-step.scrollable-items-picker/product-step.scrollable-items-picker.styles";
 
 export const ProductStepProductPreview = memo((props: Props) => {
-  const { answerKey, answerKeyDefaultValue } = props;
+  const { answerKey, answerKeyDefaultValue, showYumoji, documentHyperlink, percentageBox } = props;
   const { customerProductId, setDynamicData, dynamicData } = useContext(ProductStepContext);
 
   const handleYumojiPartChange = useCallback(
@@ -53,15 +60,18 @@ export const ProductStepProductPreview = memo((props: Props) => {
 
   return (
     <View style={[styles.wrapper, mapServerStyles(props.styles)]}>
-      <View>
-        <TryOnYumojiPart
-          customerProductId={customerProductId}
-          coverType={coverType}
-          onChange={handleYumojiPartChange}
-        />
-      </View>
+      {showYumoji ? (
+        <View>
+          <TryOnYumojiPart
+            customerProductId={customerProductId}
+            coverType={coverType}
+            onChange={handleYumojiPartChange}
+          />
+        </View>
+      ) : null}
+
       {!markdown || !monthlyCost ? null : (
-        <View style={styles.floatRight}>
+        <View style={showYumoji ? styles.floatRight : styles.floatLeft}>
           <Markdown containerStyle={styles.markdownWrapper} text={markdown} />
           <View style={styles.costWrapper}>
             <TextTemplate color={priceColour} type="h3">
@@ -71,20 +81,82 @@ export const ProductStepProductPreview = memo((props: Props) => {
               {monthlyCostSuffix}
             </TextTemplate>
           </View>
-          <View style={styles.hyperlinkWrapper}>
-            <Image
-              source={{ uri: props.documentHyperlink.leftIcon.uri }}
-              width={Style.adjust(24)}
-              height={Style.adjust(24)}
-              style={styles.hyperlinkImage}
-            />
-            <Hyperlink title={props.documentHyperlink.title} url={props.documentHyperlink.url} />
-          </View>
+          {documentHyperlink ? (
+            <View style={styles.hyperlinkWrapper}>
+              <Image
+                source={{ uri: documentHyperlink.leftIcon.uri }}
+                width={Style.adjust(24)}
+                height={Style.adjust(24)}
+                style={styles.hyperlinkImage}
+              />
+              <Hyperlink title={documentHyperlink.title} url={documentHyperlink.url} />
+            </View>
+          ) : null}
         </View>
       )}
+
+      {percentageBox ? (
+        <PercentageBox
+          selectedValue={percentageBox.selectedValue}
+          selectedCoverType={percentageBox.selectedCoverType}
+          primaryColour={percentageBox.primaryColour}
+          secondaryColour={percentageBox.secondaryColour}
+        />
+      ) : null}
     </View>
   );
 });
+
+function PercentageBox({ selectedValue, selectedCoverType, primaryColour, secondaryColour }: PercentageBoxProps) {
+  return (
+    <Animated.View pointerEvents="none" style={[styles.overlayWrapper]}>
+      <View
+        style={[
+          highlightStyles.backdrop,
+          mapServerStyles([
+            {
+              property: "backgroundColor",
+              value: secondaryColour,
+            },
+            {
+              property: "borderColor",
+              value: primaryColour,
+            },
+          ]),
+        ]}
+      />
+      {
+        <View style={styles.highlightLabelWrapper}>
+          <View style={styles.costWrapper}>
+            <TextTemplate type="h3" color={primaryColour}>
+              {selectedValue}
+            </TextTemplate>
+            <TextTemplate type="b2b" color={primaryColour}>
+              %
+            </TextTemplate>
+          </View>
+        </View>
+      }
+      {
+        <View
+          style={[
+            highlightStyles.overlayTitleWrapper,
+            mapServerStyles([
+              {
+                property: "backgroundColor",
+                value: primaryColour,
+              },
+            ]),
+          ]}
+        >
+          <TextTemplate color={Colours.neutral.white} type="l2b">
+            {selectedCoverType.replace(/^./, (c: string) => c.toUpperCase())}
+          </TextTemplate>
+        </View>
+      }
+    </Animated.View>
+  );
+}
 
 const styles = StyleSheet.create({
   wrapper: {
@@ -113,6 +185,10 @@ const styles = StyleSheet.create({
     marginBottom: Style.adjust(48),
     paddingLeft: Style.adjust(16),
   } as ViewStyle,
+  floatLeft: {
+    marginBottom: Style.adjust(48),
+    paddingLeft: Style.adjust(8),
+  } as ViewStyle,
   costWrapper: {
     flexDirection: "row",
     alignItems: "center",
@@ -125,4 +201,20 @@ const styles = StyleSheet.create({
   hyperlinkImage: {
     marginRight: Style.adjust(8),
   },
+  overlayWrapper: {
+    position: "absolute",
+    top: 25,
+    right: 40,
+    width: 78,
+    height: HIGHLIGHT_CIRCUMFERENCE,
+  } as ViewStyle,
+  highlightLabelWrapper: {
+    position: "absolute",
+    top: 16,
+    left: 8,
+    width: HIGHLIGHT_CIRCUMFERENCE,
+    height: HIGHLIGHT_CIRCUMFERENCE,
+    justifyContent: "center",
+    alignItems: "center",
+  } as TextStyle,
 });

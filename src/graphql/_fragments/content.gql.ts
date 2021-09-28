@@ -306,6 +306,13 @@ export const GQL_FRAGMENT_CONTENT_ITEM_PRODUCT_PREVIEW = gql`
       ...ContentItemCoverListItem
     }
     coverExpirationDate
+    showYumoji
+    percentageBox {
+      selectedValue
+      selectedCoverType
+      primaryColour
+      secondaryColour
+    }
   }
 `;
 
@@ -403,6 +410,21 @@ export const GQL_FRAGMENT_CONTENT_ITEM_PACKAGE_CARDS = gql`
         isLocked
       }
     }
+  }
+`;
+
+export const GQL_FRAGMENT_CONTENT_ITEM_PACKAGE_CARD_POWER = gql`
+  fragment ContentItemPackageCardPower on ContentItemPackageCardPower {
+    id
+    leftIcon {
+      ...RemoteImage
+    }
+    rightIcon {
+      ...RemoteImage
+    }
+    powerTitle: title
+    description
+    isLocked
   }
 `;
 

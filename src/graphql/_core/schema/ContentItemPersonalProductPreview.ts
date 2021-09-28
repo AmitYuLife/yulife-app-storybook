@@ -41,12 +41,21 @@ export interface ContentItemPersonalProductPreview_coverList {
   slotBackgroundUrl: ContentItemPersonalProductPreview_coverList_slotBackgroundUrl;
 }
 
+export interface ContentItemPersonalProductPreview_percentageBox {
+  selectedValue: number;
+  selectedCoverType: string;
+  primaryColour: string;
+  secondaryColour: string;
+}
+
 export interface ContentItemPersonalProductPreview {
   id: string;
   answerKey: string;
   answerKeyDefaultValue: number;
-  documentHyperlink: ContentItemPersonalProductPreview_documentHyperlink;
+  documentHyperlink: ContentItemPersonalProductPreview_documentHyperlink | null;
   styles: ContentItemPersonalProductPreview_styles[] | null;
   coverList: ContentItemPersonalProductPreview_coverList[];
   coverExpirationDate: string;
+  showYumoji: boolean;
+  percentageBox: ContentItemPersonalProductPreview_percentageBox | null;
 }

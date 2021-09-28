@@ -25693,6 +25693,11 @@
             "kind": "OBJECT",
             "name": "ContentItemGpDetails",
             "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "ContentItemPackageCardPower",
+            "ofType": null
           }
         ]
       },
@@ -29075,17 +29080,29 @@
             "deprecationReason": null
           },
           {
-            "name": "hyperlink",
+            "name": "showYumoji",
             "description": null,
             "args": [],
             "type": {
               "kind": "NON_NULL",
               "name": null,
               "ofType": {
-                "kind": "OBJECT",
-                "name": "Hyperlink",
+                "kind": "SCALAR",
+                "name": "Boolean",
                 "ofType": null
               }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "hyperlink",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "Hyperlink",
+              "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -29178,6 +29195,18 @@
                 "name": "Int",
                 "ofType": null
               }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "percentageBox",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "ContentItemPercentageBox",
+              "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -29315,6 +29344,81 @@
               "ofType": {
                 "kind": "OBJECT",
                 "name": "RemoteImage",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "ContentItemPercentageBox",
+        "description": null,
+        "fields": [
+          {
+            "name": "selectedValue",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "selectedCoverType",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "primaryColour",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "secondaryColour",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
                 "ofType": null
               }
             },
