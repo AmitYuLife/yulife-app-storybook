@@ -521,34 +521,32 @@ export const GQL_FRAGMENT_CONTENT_ITEM_FULL_SCREEN_SWIPER = gql`
   fragment ContentItemFullScreenSwiper on ContentItemFullScreenSwiper {
     id
     title
-    dismissMinVisibleIndex
     autoPlaySpeedMs
+    dismissMinVisibleIndex
     theme {
       primaryColor
     }
+    button {
+      ...ContentItemButton
+    }
     close {
       icon {
-        id
-        uri
+        ...RemoteImage
       }
       onPress {
         ...SduiAction
       }
     }
-    button {
-      ...ContentItemButton
-    }
     items {
+      heading
+      paragraph
+      title
       backgroundImage {
-        id
-        uri
+        ...RemoteImage
       }
       styles {
         ...SduiStyle
       }
-      heading
-      paragraph
-      title
     }
   }
 `;
