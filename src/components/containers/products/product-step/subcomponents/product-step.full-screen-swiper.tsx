@@ -1,30 +1,43 @@
-import React, { memo, useCallback, useContext } from "react";
+import React, { memo, useContext, useMemo } from "react";
 import { useDispatch } from "react-redux";
-import { ContentItemFullScreenSwiper } from "@graphql/_core/schema";
 import { FullScreenSwiper } from "@organisms/full-screen-swiper/full-screen-swiper";
+import { ContentItemFullScreenSwiper } from "@graphql/_core/schema/ContentItemFullScreenSwiper";
 import { ProductStepContext } from "../product-step.context";
 
 type Props = ContentItemFullScreenSwiper;
-export const ProductStepFullScreenSwiper = memo((props: Props) => {
-  const { button, close } = props;
-
+export const ProductStepFullScreenSwiper = memo(({ button, close, ...props }: Props) => {
   const dispatch = useDispatch();
   const { productId, stepId, dynamicData } = useContext(ProductStepContext);
 
-  const buildPayload = useCallback((serverPayload: string) => ({ productId, stepId, dynamicData, serverPayload }), [
-    productId,
-    stepId,
-    dynamicData,
-  ]);
+  const items = props.items.map((i) => ({
+    ...i,
+    backgroundImage: { uri: i.backgroundImage.uri },
+  }));
 
-  const handlePress = () => dispatch({ type: button.onPress.type, payload: buildPayload(button.onPress.payload) });
-  const handleClose = () => dispatch({ type: close.onPress.type, payload: buildPayload(close.onPress.payload) });
-
-  return (
-    <FullScreenSwiper
-      {...props}
-      close={{ ...close, onPress: handleClose }}
-      button={{ ...button, onPress: handlePress }}
-    />
+  const derivedProps = useMemo(
+    () => ({
+      ...props,
+      items,
+      button: {
+        ...button,
+        onPress: () => {
+          dispatch({
+            type: button.onPress.type,
+            payload: { productId, stepId, dynamicData, serverPayload: button.onPress.payload },
+          });
+        },
+      },
+      close: {
+        ...close,
+        onPress: () => {
+          dispatch({
+            type: close.onPress.type,
+          });
+        },
+      },
+    }),
+    [props, dispatch, dynamicData, items, productId, stepId, button, close]
   );
+
+  return <FullScreenSwiper {...derivedProps} />;
 });

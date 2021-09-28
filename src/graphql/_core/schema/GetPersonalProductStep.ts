@@ -1306,21 +1306,6 @@ export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_Con
   primaryColor: string;
 }
 
-export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemFullScreenSwiper_close_icon {
-  id: string;
-  uri: string | null;
-}
-
-export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemFullScreenSwiper_close_onPress {
-  type: SduiActionType;
-  payload: string | null;
-}
-
-export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemFullScreenSwiper_close {
-  icon: GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemFullScreenSwiper_close_icon;
-  onPress: GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemFullScreenSwiper_close_onPress;
-}
-
 export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemFullScreenSwiper_button_onPress {
   type: SduiActionType;
   payload: string | null;
@@ -1362,6 +1347,21 @@ export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_Con
   buttonSize: ContentItemButtonSize | null;
 }
 
+export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemFullScreenSwiper_close_icon {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemFullScreenSwiper_close_onPress {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemFullScreenSwiper_close {
+  icon: GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemFullScreenSwiper_close_icon;
+  onPress: GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemFullScreenSwiper_close_onPress;
+}
+
 export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemFullScreenSwiper_items_backgroundImage {
   id: string;
   uri: string | null;
@@ -1373,22 +1373,22 @@ export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_Con
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemFullScreenSwiper_items {
-  backgroundImage: GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemFullScreenSwiper_items_backgroundImage;
-  styles: GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemFullScreenSwiper_items_styles[] | null;
   heading: string;
   paragraph: string;
   title: string;
+  backgroundImage: GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemFullScreenSwiper_items_backgroundImage;
+  styles: GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemFullScreenSwiper_items_styles[] | null;
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemFullScreenSwiper {
   __typename: "ContentItemFullScreenSwiper";
   id: string;
   title: string;
-  dismissMinVisibleIndex: number;
   autoPlaySpeedMs: number;
+  dismissMinVisibleIndex: number;
   theme: GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemFullScreenSwiper_theme;
-  close: GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemFullScreenSwiper_close;
   button: GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemFullScreenSwiper_button;
+  close: GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemFullScreenSwiper_close;
   items: GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemFullScreenSwiper_items[];
 }
 

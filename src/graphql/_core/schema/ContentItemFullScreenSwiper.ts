@@ -3,7 +3,7 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { SduiActionType, ContentItemButtonType, ContentItemButtonSize } from "./globalTypes";
+import { ContentItemButtonType, SduiActionType, ContentItemButtonSize } from "./globalTypes";
 
 // ====================================================
 // GraphQL fragment: ContentItemFullScreenSwiper
@@ -11,21 +11,6 @@ import { SduiActionType, ContentItemButtonType, ContentItemButtonSize } from "./
 
 export interface ContentItemFullScreenSwiper_theme {
   primaryColor: string;
-}
-
-export interface ContentItemFullScreenSwiper_close_icon {
-  id: string;
-  uri: string | null;
-}
-
-export interface ContentItemFullScreenSwiper_close_onPress {
-  type: SduiActionType;
-  payload: string | null;
-}
-
-export interface ContentItemFullScreenSwiper_close {
-  icon: ContentItemFullScreenSwiper_close_icon;
-  onPress: ContentItemFullScreenSwiper_close_onPress;
 }
 
 export interface ContentItemFullScreenSwiper_button_onPress {
@@ -67,6 +52,21 @@ export interface ContentItemFullScreenSwiper_button {
   buttonSize: ContentItemButtonSize | null;
 }
 
+export interface ContentItemFullScreenSwiper_close_icon {
+  id: string;
+  uri: string | null;
+}
+
+export interface ContentItemFullScreenSwiper_close_onPress {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface ContentItemFullScreenSwiper_close {
+  icon: ContentItemFullScreenSwiper_close_icon;
+  onPress: ContentItemFullScreenSwiper_close_onPress;
+}
+
 export interface ContentItemFullScreenSwiper_items_backgroundImage {
   id: string;
   uri: string | null;
@@ -78,20 +78,20 @@ export interface ContentItemFullScreenSwiper_items_styles {
 }
 
 export interface ContentItemFullScreenSwiper_items {
-  backgroundImage: ContentItemFullScreenSwiper_items_backgroundImage;
-  styles: ContentItemFullScreenSwiper_items_styles[] | null;
   heading: string;
   paragraph: string;
   title: string;
+  backgroundImage: ContentItemFullScreenSwiper_items_backgroundImage;
+  styles: ContentItemFullScreenSwiper_items_styles[] | null;
 }
 
 export interface ContentItemFullScreenSwiper {
   id: string;
   title: string;
-  dismissMinVisibleIndex: number;
   autoPlaySpeedMs: number;
+  dismissMinVisibleIndex: number;
   theme: ContentItemFullScreenSwiper_theme;
-  close: ContentItemFullScreenSwiper_close;
   button: ContentItemFullScreenSwiper_button;
+  close: ContentItemFullScreenSwiper_close;
   items: ContentItemFullScreenSwiper_items[];
 }
