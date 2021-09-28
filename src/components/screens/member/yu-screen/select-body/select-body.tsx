@@ -23,6 +23,8 @@ interface IProps {
   bodyType: SelectedBody;
 }
 
+const BODY_HEIGHT = Style.adjust(344);
+
 function SelectBody({ onMaleBodySelected, onFemaleBodySelected, onContinue, heading, bodyType }: IProps) {
   const [selectedBody, selectBody] = useState<SelectedBody>(bodyType);
   const isBackPressed = useRef(false);
@@ -79,7 +81,7 @@ function SelectBody({ onMaleBodySelected, onFemaleBodySelected, onContinue, head
             onPress={selectMaleBody}
             isSelected={isMale}
             selectedStyle={styles.bodySelected}
-            innerHeight={Style.adjust(344)}
+            innerHeight={BODY_HEIGHT}
           >
             <MaleBody isSelected={isMale} />
           </BoxOption>
@@ -88,7 +90,7 @@ function SelectBody({ onMaleBodySelected, onFemaleBodySelected, onContinue, head
             onPress={selectFemaleBody}
             isSelected={isFemale}
             selectedStyle={styles.bodySelected}
-            innerHeight={Style.adjust(344)}
+            innerHeight={BODY_HEIGHT}
           >
             <FemaleBody isSelected={isFemale} />
           </BoxOption>

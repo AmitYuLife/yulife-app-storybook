@@ -11,7 +11,7 @@ interface IProps {
 
 const FemaleBody = ({ isSelected }: IProps) => (
   <View testID={FEMALE_BODY} style={styles.wrapper}>
-    <Svg width={Style.adjust(145)} height={Style.adjust(296)}>
+    <Svg width={Style.adjust(145)} height={Style.adjust(296)} viewBox="0 0 145 296">
       <G clipPath="url(#prefix__clip0)">
         <Path
           opacity={0.8}
