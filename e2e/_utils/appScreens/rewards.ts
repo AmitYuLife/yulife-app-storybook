@@ -1,6 +1,7 @@
 import { expectIsVisibleViaText, REWARD_ITEM, expectIsVisibleViaID, LOCKED_REWARD_ITEM, WEGIFT_CONFIRMED, PURCHASE_IMAGE, booleanIdVisible, wait, REWARDS_SCREEN, idVisible } from "@navigation"
 import moment = require("moment")
 import { scrollFromID, scrollFromText } from "_utils/navigation/scrolling"
+import { TEXT_TEMPLATE } from "@ids"
 
 type rewardType = "avios"
 
@@ -66,8 +67,6 @@ export const onRewardScreen = (reward: any) => async () => {
 
     const rewardItem = REWARD_ITEM(reward.data.code)
     const rewardTitle = `£${minValue} ${name} for ${minYucoin} YuCoins`
-
-    console.log(rewardTitle)
     
     // await idVisible(MARKDOWN_TEXT(rewardTitle))()
     // await idVisible(MARKDOWN_TEXT(description))()
@@ -119,7 +118,7 @@ export const rewardDenominationsVisible = (reward: any) => async () => {
 
 export const tapDenomination = (reward: any, index: number) => async () => {
     const denomination = reward.data.available_denominations[index]
-    const denominationText = element(by.text(`£${denomination.value} - ${denomination.yuCoin} YuCoin`))
+    const denominationText = element(by.id(TEXT_TEMPLATE(`£${denomination.value} - ${denomination.yuCoin} YuCoin`)))
     await denominationText.tap()
 }
 
