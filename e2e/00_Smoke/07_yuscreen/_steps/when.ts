@@ -1,4 +1,4 @@
-import { navigation, BODY_ITEM_TITLE, BODY_PART_ITEM, SKIN_TONE, YUSCREEN, YUCOIN_POWER, AVATAR_BUILDER_LIST, YUSCREEN_AVATAR, HEAD_TYPE, AVATAR_ITEM } from "@utils"
+import { navigation, BODY_ITEM_TITLE, BODY_PART_ITEM, SKIN_TONE, YUSCREEN, YUCOIN_POWER, AVATAR_BUILDER_LIST, YUSCREEN_AVATAR, HEAD_TYPE, AVATAR_ITEM, TEXT_TEMPLATE } from "@utils"
 
 
 export const {
@@ -49,7 +49,7 @@ export const editYumoji = (gender: string, skinTone: string, hairStyle: string, 
     const yesPlease = element(by.text("Yes Please"))
     await yesPlease.tap()
 
-    await textVisible("Pick a body type")()
+    await idVisible(TEXT_TEMPLATE("Pick a body type"))()
     const genderId = element(by.id(gender))
     await genderId.tap()
 

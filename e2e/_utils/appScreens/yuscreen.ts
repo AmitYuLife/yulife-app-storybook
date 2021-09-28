@@ -48,19 +48,21 @@ export const onYuscreen = (customer) => async () => {
 export const onCreateAvatarScreen = async () => {
     const createTitle = element(by.text("Create your Yumoji"))
     const editTitle = element(by.text("Edit your Yumoji"))
-    const subTitle = element(by.text("Pick a body type"))
+
+    const subTitle = element(by.id(TEXT_TEMPLATE("Pick a body type")))
+    await expect(subTitle).toBeVisible()
 
     const femaleBody = element(by.id(FEMALE_BODY))
+    await expect(femaleBody).toBeVisible()
+
     const maleBody = element(by.id(MALE_BODY))
+    await expect(maleBody).toBeVisible()
 
     try {
         await expect(createTitle).toBeVisible()
     } catch (e) {
         await expect(editTitle).toBeVisible()
     }
-    await expect(subTitle).toBeVisible()
-    await expect(femaleBody).toBeVisible()
-    await expect(maleBody).toBeVisible()
 }
 
 export const onAvatarBuilder = async () => {
