@@ -41,7 +41,8 @@ export interface GetPersonalProductStepDetachedDocuments_getPersonalProductStepD
     | "ContentItemList"
     | "ContentItemRowIconTextBanner"
     | "ContentItemFullScreenSwiper"
-    | "ContentItemGpDetails";
+    | "ContentItemGpDetails"
+    | "ContentItemPackageCardPower";
 }
 
 export interface GetPersonalProductStepDetachedDocuments_getPersonalProductStepDetachedDocuments_body_ContentItemPersonalProductDocuments_headingImage_image {

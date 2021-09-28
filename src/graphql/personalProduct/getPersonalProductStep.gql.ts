@@ -37,6 +37,7 @@ import {
   GQL_FRAGMENT_CONTENT_ITEM_LIST,
   GQL_FRAGMENT_CONENT_ITEM_GP_DETAILS,
   GQL_FRAGMENT_CONTENT_ITEM_FULL_SCREEN_SWIPER,
+  GQL_FRAGMENT_CONTENT_ITEM_PACKAGE_CARD_POWER,
 } from "../_fragments/content.gql";
 
 export const GQL_QUERY_GET_PERSONAL_PRODUCT_STEP = gql`
@@ -75,6 +76,7 @@ export const GQL_QUERY_GET_PERSONAL_PRODUCT_STEP = gql`
   ${GQL_FRAGMENT_CONENT_ITEM_GP_DETAILS}
   ${GQL_FRAGMENT_CONTENT_ITEM_SELECTED_PACKAGE_CARD}
   ${GQL_FRAGMENT_CONTENT_ITEM_FULL_SCREEN_SWIPER}
+  ${GQL_FRAGMENT_CONTENT_ITEM_PACKAGE_CARD_POWER}
 
   query GetPersonalProductStep($productId: String!) {
     getPersonalProductStep(productId: $productId) {
@@ -124,6 +126,9 @@ export const GQL_QUERY_GET_PERSONAL_PRODUCT_STEP = gql`
         }
         ... on ContentItemPackageCards {
           ...ContentItemPackageCards
+        }
+        ... on ContentItemPackageCardPower {
+          ...ContentItemPackageCardPower
         }
         ... on ContentItemPersonalProductPreview {
           ...ContentItemPersonalProductPreview

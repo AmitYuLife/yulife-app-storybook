@@ -398,6 +398,26 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemP
   packageCards: GetPersonalProductStep_getPersonalProductStep_body_ContentItemPackageCards_packageCards[] | null;
 }
 
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemPackageCardPower_leftIcon {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemPackageCardPower_rightIcon {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemPackageCardPower {
+  __typename: "ContentItemPackageCardPower";
+  id: string;
+  leftIcon: GetPersonalProductStep_getPersonalProductStep_body_ContentItemPackageCardPower_leftIcon;
+  rightIcon: GetPersonalProductStep_getPersonalProductStep_body_ContentItemPackageCardPower_rightIcon | null;
+  powerTitle: string;
+  description: string;
+  isLocked: boolean | null;
+}
+
 export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemPersonalProductPreview_documentHyperlink_leftIcon {
   id: string;
   uri: string | null;
@@ -430,15 +450,24 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemP
   slotBackgroundUrl: GetPersonalProductStep_getPersonalProductStep_body_ContentItemPersonalProductPreview_coverList_slotBackgroundUrl;
 }
 
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemPersonalProductPreview_percentageBox {
+  selectedValue: number;
+  selectedCoverType: string;
+  primaryColour: string;
+  secondaryColour: string;
+}
+
 export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemPersonalProductPreview {
   __typename: "ContentItemPersonalProductPreview";
   id: string;
   answerKey: string;
   answerKeyDefaultValue: number;
-  documentHyperlink: GetPersonalProductStep_getPersonalProductStep_body_ContentItemPersonalProductPreview_documentHyperlink;
+  documentHyperlink: GetPersonalProductStep_getPersonalProductStep_body_ContentItemPersonalProductPreview_documentHyperlink | null;
   styles: GetPersonalProductStep_getPersonalProductStep_body_ContentItemPersonalProductPreview_styles[] | null;
   coverList: GetPersonalProductStep_getPersonalProductStep_body_ContentItemPersonalProductPreview_coverList[];
   coverExpirationDate: string;
+  showYumoji: boolean;
+  percentageBox: GetPersonalProductStep_getPersonalProductStep_body_ContentItemPersonalProductPreview_percentageBox | null;
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemImage_image {
@@ -958,6 +987,7 @@ export type GetPersonalProductStep_getPersonalProductStep_body =
   | GetPersonalProductStep_getPersonalProductStep_body_ContentItemInfoButton
   | GetPersonalProductStep_getPersonalProductStep_body_ContentItemSelectedPackageCard
   | GetPersonalProductStep_getPersonalProductStep_body_ContentItemPackageCards
+  | GetPersonalProductStep_getPersonalProductStep_body_ContentItemPackageCardPower
   | GetPersonalProductStep_getPersonalProductStep_body_ContentItemPersonalProductPreview
   | GetPersonalProductStep_getPersonalProductStep_body_ContentItemImage
   | GetPersonalProductStep_getPersonalProductStep_body_ContentItemCoverPicker
@@ -1004,7 +1034,8 @@ export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentIte
     | "ContentItemList"
     | "ContentItemRowIconTextBanner"
     | "ContentItemFullScreenSwiper"
-    | "ContentItemGpDetails";
+    | "ContentItemGpDetails"
+    | "ContentItemPackageCardPower";
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentItemButton_onPress {
@@ -1185,7 +1216,8 @@ export interface GetPersonalProductStep_getPersonalProductStep_header_ContentIte
     | "ContentItemList"
     | "ContentItemRowIconTextBanner"
     | "ContentItemFullScreenSwiper"
-    | "ContentItemGpDetails";
+    | "ContentItemGpDetails"
+    | "ContentItemPackageCardPower";
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_header_ContentItemHeaderBar_onLeftIconPress {
@@ -1253,7 +1285,8 @@ export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_Con
     | "ContentItemConfirm"
     | "ContentItemList"
     | "ContentItemRowIconTextBanner"
-    | "ContentItemGpDetails";
+    | "ContentItemGpDetails"
+    | "ContentItemPackageCardPower";
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemImage_image {

@@ -29,6 +29,7 @@ export * from "./ContentItemMarkdown";
 export * from "./ContentItemMultiButton";
 export * from "./ContentItemMultiSelect";
 export * from "./ContentItemOverlay";
+export * from "./ContentItemPackageCardPower";
 export * from "./ContentItemPackageCardSlotInfo";
 export * from "./ContentItemPackageCards";
 export * from "./ContentItemPad";
