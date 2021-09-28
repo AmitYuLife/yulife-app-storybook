@@ -198,11 +198,11 @@ const generateTimes = () => {
   for (let hour = 0; hour < 24; hour++) {
     times.push({
       label: moment(DEFAULT_DATE).hour(hour).minute(0).second(0).format("hh:mm A"),
-      value: moment(DEFAULT_DATE).hour(hour).minute(0).second(0).toISOString(),
+      value: moment(DEFAULT_DATE).hour(hour).minute(0).second(0).utc().toISOString(),
     });
     times.push({
       label: moment(DEFAULT_DATE).hour(hour).minute(30).second(0).format("hh:mm A"),
-      value: moment(DEFAULT_DATE).hour(hour).minute(30).second(0).toISOString(),
+      value: moment(DEFAULT_DATE).hour(hour).minute(30).second(0).utc().toISOString(),
     });
   }
 
