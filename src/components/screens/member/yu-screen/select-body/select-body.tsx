@@ -11,6 +11,7 @@ import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-headin
 import { MODALS, ROUTES } from "@navigation/constants";
 import Logger from "@services/logging/logger";
 import { Style } from "@styles";
+import { TEXT_TEMPLATE } from "@ids";
 
 export type SelectedBody = "None" | "Male" | "Female";
 
@@ -68,7 +69,10 @@ function SelectBody({ onMaleBodySelected, onFemaleBodySelected, onContinue, head
       <GenericHeadingPad />
       <View style={styles.elementWrapper}>
         <View style={styles.title}>
-          <TextTemplate type="h1"> Pick a body type</TextTemplate>
+          <TextTemplate type="h1" testID={TEXT_TEMPLATE("Pick a body type")}>
+            {" "}
+            Pick a body type
+          </TextTemplate>
         </View>
         <View style={styles.selectorWrapper}>
           <BoxOption
