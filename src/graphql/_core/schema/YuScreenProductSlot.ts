@@ -35,6 +35,11 @@ export interface YuScreenProductSlot_slot1_toolTip {
   description: YuScreenProductSlot_slot1_toolTip_description;
 }
 
+export interface YuScreenProductSlot_slot1_popover {
+  id: string;
+  message: string;
+}
+
 export interface YuScreenProductSlot_slot1 {
   itemUrl: string;
   status: YuProductStatus;
@@ -43,6 +48,7 @@ export interface YuScreenProductSlot_slot1 {
   coverType: CoverType | null;
   icon: YuScreenProductSlot_slot1_icon;
   toolTip: YuScreenProductSlot_slot1_toolTip;
+  popover: YuScreenProductSlot_slot1_popover | null;
 }
 
 export interface YuScreenProductSlot_slot2_icon {
@@ -71,6 +77,11 @@ export interface YuScreenProductSlot_slot2_toolTip {
   description: YuScreenProductSlot_slot2_toolTip_description;
 }
 
+export interface YuScreenProductSlot_slot2_popover {
+  id: string;
+  message: string;
+}
+
 export interface YuScreenProductSlot_slot2 {
   itemUrl: string;
   status: YuProductStatus;
@@ -79,6 +90,7 @@ export interface YuScreenProductSlot_slot2 {
   coverType: CoverType | null;
   icon: YuScreenProductSlot_slot2_icon;
   toolTip: YuScreenProductSlot_slot2_toolTip;
+  popover: YuScreenProductSlot_slot2_popover | null;
 }
 
 export interface YuScreenProductSlot_slot3_icon {
@@ -107,6 +119,11 @@ export interface YuScreenProductSlot_slot3_toolTip {
   description: YuScreenProductSlot_slot3_toolTip_description;
 }
 
+export interface YuScreenProductSlot_slot3_popover {
+  id: string;
+  message: string;
+}
+
 export interface YuScreenProductSlot_slot3 {
   itemUrl: string;
   status: YuProductStatus;
@@ -115,6 +132,7 @@ export interface YuScreenProductSlot_slot3 {
   coverType: CoverType | null;
   icon: YuScreenProductSlot_slot3_icon;
   toolTip: YuScreenProductSlot_slot3_toolTip;
+  popover: YuScreenProductSlot_slot3_popover | null;
 }
 
 export interface YuScreenProductSlot_slot4_icon {
@@ -143,6 +161,11 @@ export interface YuScreenProductSlot_slot4_toolTip {
   description: YuScreenProductSlot_slot4_toolTip_description;
 }
 
+export interface YuScreenProductSlot_slot4_popover {
+  id: string;
+  message: string;
+}
+
 export interface YuScreenProductSlot_slot4 {
   itemUrl: string;
   status: YuProductStatus;
@@ -151,6 +174,7 @@ export interface YuScreenProductSlot_slot4 {
   coverType: CoverType | null;
   icon: YuScreenProductSlot_slot4_icon;
   toolTip: YuScreenProductSlot_slot4_toolTip;
+  popover: YuScreenProductSlot_slot4_popover | null;
 }
 
 export interface YuScreenProductSlot {

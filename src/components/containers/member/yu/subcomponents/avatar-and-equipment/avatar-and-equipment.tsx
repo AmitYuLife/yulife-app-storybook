@@ -1,5 +1,6 @@
-import React, { memo, useCallback } from "react";
+import React, { memo, useCallback, useContext, useEffect } from "react";
 import { StyleSheet, ViewStyle, View } from "react-native";
+import { useSelector } from "react-redux";
 import { Style, Colours } from "@styles";
 import { ItemSet } from "./item-set/item-set";
 import { useQuery } from "@apollo/react-hooks";
@@ -11,7 +12,7 @@ import { AvatarCreationPrompt } from "../../subcomponents";
 import { Text } from "@atoms";
 import { Yumoji, TouchableOpacityWithDelay } from "@molecules";
 import { ItemBottom } from "./item-set/item-bottom";
-import { useSelector } from "react-redux";
+import { YuScreenContext } from "../../context/yu-screen.context";
 import { getUserFeatures } from "@redux/user/user.selectors";
 
 const _AvatarAndEquipment = () => {
@@ -23,7 +24,77 @@ const _AvatarAndEquipment = () => {
 
   const editYumoji = useCallback(() => navigateToAvatarModal({ useNewYumojiBuilder: features.newYumojiBuilder }), []);
 
+  const { setPopover } = useContext(YuScreenContext);
+
   const avatarUri = data?.getYulifer?.avatarRemoteFiles?.pngFull;
+
+  useEffect(() => {
+    if (!yuScreenProductSlots?.getYuScreenProductSlots) {
+      return setPopover(null);
+    }
+
+    const left = Object.values(yuScreenProductSlots?.getYuScreenProductSlots?.left)
+      .map((item, index) => ({
+        popover: item?.popover,
+        index,
+        product: {
+          status: item.status,
+          productId: item.productId,
+        },
+      }))
+      .filter((item) => !!item.popover);
+
+    const queuedPopoverLeft = left[0];
+    if (queuedPopoverLeft?.popover && queuedPopoverLeft.product) {
+      const {
+        popover: { id, message },
+        index,
+        product: { productId, status },
+      } = queuedPopoverLeft;
+      return setPopover({
+        id,
+        message,
+        index,
+        product: {
+          productId,
+          status,
+        },
+        side: "left",
+      });
+    }
+
+    const right = Object.values(yuScreenProductSlots?.getYuScreenProductSlots?.right)
+      .map((item, index) => ({
+        popover: item?.popover,
+        index,
+        product: {
+          status: item.status,
+          productId: item.productId,
+        },
+      }))
+      .filter((item) => !!item.popover);
+
+    const queuedPopoverRight = right[0];
+    if (queuedPopoverRight?.popover && queuedPopoverRight.product) {
+      const {
+        popover: { id, message },
+        index,
+        product: { productId, status },
+      } = queuedPopoverRight;
+      return setPopover({
+        id,
+        message,
+        index,
+        product: {
+          productId,
+          status,
+        },
+        side: "right",
+      });
+    }
+
+    return setPopover(null);
+  }, [yuScreenProductSlots, setPopover]);
 
   return (
     <View>

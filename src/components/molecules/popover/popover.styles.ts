@@ -1,4 +1,4 @@
-import { StyleSheet, ViewStyle } from "react-native";
+import { Platform, StyleSheet, ViewStyle } from "react-native";
 import { Colours, Style } from "@styles";
 
 export default StyleSheet.create({
@@ -22,6 +22,18 @@ export default StyleSheet.create({
   popoverBeak: {
     position: "absolute",
     top: Style.adjust(10),
+    left: Platform.select({
+      ios: -1,
+      android: 0,
+    }),
+  } as ViewStyle,
+  popoverBeakRight: {
+    position: "absolute",
+    top: Style.adjust(10),
+    right: Platform.select({
+      ios: -1,
+      android: 0,
+    }),
   } as ViewStyle,
   shadowProp: {
     shadowColor: Colours.neutral.black,

@@ -1,6 +1,14 @@
 import gql from "graphql-tag";
 
+export const GQL_FRAGMENT_YU_SCREEN_POPOVER = gql`
+  fragment YuScreenPopover on YuScreenPopover {
+    id
+    message
+  }
+`;
+
 export const GQL_YU_SCREEN_PRODUCT_SLOT_ITEM = gql`
+  ${GQL_FRAGMENT_YU_SCREEN_POPOVER}
   fragment YuScreenProductSlotItem on YuScreenProductSlotItem {
     itemUrl
     status
@@ -23,6 +31,9 @@ export const GQL_YU_SCREEN_PRODUCT_SLOT_ITEM = gql`
         short
         long
       }
+    }
+    popover {
+      ...YuScreenPopover
     }
   }
 `;

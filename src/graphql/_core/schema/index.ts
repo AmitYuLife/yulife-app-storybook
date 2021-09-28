@@ -145,6 +145,7 @@ export * from "./User";
 export * from "./YuAvatar";
 export * from "./YuAvatarColor";
 export * from "./YuAvatarPart";
+export * from "./YuScreenPopover";
 export * from "./YuScreenProductSlot";
 export * from "./YuScreenProductSlotItem";
 export * from "./YuScreenProductSlots";
