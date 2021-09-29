@@ -1,17 +1,22 @@
 import gql from "graphql-tag";
 
-export const GQL_MUTATION_ADD_PAYMENT_CARD = gql`
-  mutation AddPaymentCard($providerPaymentMethodId: String!) {
-    addPaymentCard(providerPaymentMethodId: $providerPaymentMethodId) {
+export const GQL_QUERY_GET_MOBILE_PAYMENT_CARD_SETUP = gql`
+  query GetMobilePaymentCardSetup {
+    setup: getMobilePaymentCardSetup {
       paymentId
-      redirectUrl
+      providerCustomerId
       clientSecret
+      ephemeralSecret
     }
   }
 `;
 
 export const GQL_MUTATION_CONFIRM_PAYMENT_CARD = gql`
-  mutation ConfirmPaymentCard($paymentId: String!, $providerPaymentMethodId: String!) {
-    confirmPaymentCard(paymentId: $paymentId, providerPaymentMethodId: $providerPaymentMethodId)
+  mutation ConfirmPaymentCard($paymentId: String!) {
+    confirmPaymentCard(paymentId: $paymentId) {
+      cardValidTill
+      cardLast4
+      cardBrand
+    }
   }
 `;

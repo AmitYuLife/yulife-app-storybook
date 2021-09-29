@@ -50,6 +50,61 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemT
   validation: (GetPersonalProductStep_getPersonalProductStep_body_ContentItemTextInput_validation | null)[] | null;
 }
 
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemPersonalProductSelectPaymentButton_button_infoBtnLeftIcon {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemPersonalProductSelectPaymentButton_button_infoBtnRightIcon {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemPersonalProductSelectPaymentButton_button_onPress {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemPersonalProductSelectPaymentButton_button_active_leftIcon {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemPersonalProductSelectPaymentButton_button_active_rightIcon {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemPersonalProductSelectPaymentButton_button_active {
+  label: string;
+  leftIcon: GetPersonalProductStep_getPersonalProductStep_body_ContentItemPersonalProductSelectPaymentButton_button_active_leftIcon | null;
+  rightIcon: GetPersonalProductStep_getPersonalProductStep_body_ContentItemPersonalProductSelectPaymentButton_button_active_rightIcon | null;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemPersonalProductSelectPaymentButton_button {
+  id: string;
+  /**
+   * Default passive label(placeholder)
+   */
+  label: string;
+  infoBtnLeftIcon: GetPersonalProductStep_getPersonalProductStep_body_ContentItemPersonalProductSelectPaymentButton_button_infoBtnLeftIcon | null;
+  infoBtnRightIcon: GetPersonalProductStep_getPersonalProductStep_body_ContentItemPersonalProductSelectPaymentButton_button_infoBtnRightIcon | null;
+  onPress: GetPersonalProductStep_getPersonalProductStep_body_ContentItemPersonalProductSelectPaymentButton_button_onPress | null;
+  active: GetPersonalProductStep_getPersonalProductStep_body_ContentItemPersonalProductSelectPaymentButton_button_active;
+  answerKeys: string[] | null;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemPersonalProductSelectPaymentButton {
+  __typename: "ContentItemPersonalProductSelectPaymentButton";
+  id: string;
+  companyName: string;
+  companyCountryCode: string;
+  themeStyle: string;
+  applePayEnabled: boolean;
+  googlePayEnabled: boolean;
+  button: GetPersonalProductStep_getPersonalProductStep_body_ContentItemPersonalProductSelectPaymentButton_button;
+}
+
 export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemConfirm_styles {
   property: string;
   value: string;
@@ -975,6 +1030,7 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemM
 export type GetPersonalProductStep_getPersonalProductStep_body =
   | GetPersonalProductStep_getPersonalProductStep_body_ContentItemProgressBar
   | GetPersonalProductStep_getPersonalProductStep_body_ContentItemTextInput
+  | GetPersonalProductStep_getPersonalProductStep_body_ContentItemPersonalProductSelectPaymentButton
   | GetPersonalProductStep_getPersonalProductStep_body_ContentItemConfirm
   | GetPersonalProductStep_getPersonalProductStep_body_ContentItemPad
   | GetPersonalProductStep_getPersonalProductStep_body_ContentItemMarkdown
@@ -1035,7 +1091,8 @@ export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentIte
     | "ContentItemRowIconTextBanner"
     | "ContentItemFullScreenSwiper"
     | "ContentItemGpDetails"
-    | "ContentItemPackageCardPower";
+    | "ContentItemPackageCardPower"
+    | "ContentItemPersonalProductSelectPaymentButton";
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentItemButton_onPress {
@@ -1217,7 +1274,8 @@ export interface GetPersonalProductStep_getPersonalProductStep_header_ContentIte
     | "ContentItemRowIconTextBanner"
     | "ContentItemFullScreenSwiper"
     | "ContentItemGpDetails"
-    | "ContentItemPackageCardPower";
+    | "ContentItemPackageCardPower"
+    | "ContentItemPersonalProductSelectPaymentButton";
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_header_ContentItemHeaderBar_onLeftIconPress {
@@ -1286,7 +1344,8 @@ export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_Con
     | "ContentItemList"
     | "ContentItemRowIconTextBanner"
     | "ContentItemGpDetails"
-    | "ContentItemPackageCardPower";
+    | "ContentItemPackageCardPower"
+    | "ContentItemPersonalProductSelectPaymentButton";
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemImage_image {
