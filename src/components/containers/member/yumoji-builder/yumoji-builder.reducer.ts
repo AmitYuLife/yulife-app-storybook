@@ -3,6 +3,7 @@ import {
   GetYumojiBuilderInitialParts_getYumojiBuilderInitialParts as YumojiBuilderInitialParts,
   GetYumojiBuilderItemsForCategory_getYumojiBuilderItemsForCategory as YumojiBuilderItemsForCategory,
   GetYumojiBuilderItemsForCategory_getYumojiBuilderItemsForCategory_items as YumojiBuilderItemsForCategoryItems,
+  GetYumojiBuilderItemsForCategory_getYumojiBuilderItemsForCategory_items_parts as YumojiBuilderItemParts,
 } from "@graphql/_core/schema";
 import { AvatarBodyType } from "@graphql/_core/schema/globalTypes";
 
@@ -44,6 +45,11 @@ export interface IAction {
   payload?: any;
 }
 
+const filters: { [key: string]: Array<keyof YumojiBuilderItemParts> } = {
+  partId: ["partId"],
+  exactVariant: ["partId", "colorSchemeId"],
+};
+
 const transformParts = (parts: YumojiBuilderInitialParts[]): IParts =>
   parts.reduce((acc, part) => {
     const { partType } = part;
@@ -55,20 +61,16 @@ const transformParts = (parts: YumojiBuilderInitialParts[]): IParts =>
     };
   }, {});
 
-const transformItems = (items: any[], yumojiParts: IParts, matchType: string) =>
+const transformItems = (items: ItemListItems[], yumojiParts: IParts, matchType: string) =>
   items.map((item) => {
-    const { parts } = item;
-    const part = parts[0];
+    const { parts: [part] = [] } = item;
 
-    const checkBy = matchType === "exactVariant" ? "colorSchemeId" : matchType;
-    const yumojiPartsMatch =
-      checkBy === "colorSchemeId" ? yumojiParts[part.partType]?.colorSchemeId : yumojiParts[part.partType]?.partId;
-
-    const isSelected = yumojiPartsMatch === part[checkBy];
+    const yumojiPart = yumojiParts[part.partType];
+    const matchFilters = filters[matchType];
 
     return {
       ...item,
-      isSelected,
+      isSelected: matchFilters.every((filter) => part[filter] === yumojiPart?.[filter]),
     };
   });
 
@@ -147,11 +149,13 @@ export const reducer = (state: IState, action: IAction) => {
     }
 
     case ActionTypes.SET_ITEM_LIST: {
+      const items = transformItems(action.payload.items, state.parts, state.matchType);
       return {
         ...state,
+        partId: items.find(({ isSelected }) => isSelected)?.parts?.[0]?.partId || "",
         itemList: {
           title: action.payload.title,
-          items: transformItems(action.payload.items, state.parts, state.matchType),
+          items,
           loading: false,
         },
       };
