@@ -7,14 +7,19 @@
 // GraphQL mutation operation: ConfirmPaymentCard
 // ====================================================
 
+export interface ConfirmPaymentCard_confirmPaymentCard {
+  cardValidTill: string;
+  cardLast4: string;
+  cardBrand: string;
+}
+
 export interface ConfirmPaymentCard {
   /**
-   * Sets the payment as active.
+   * Sets the payment as active
    */
-  confirmPaymentCard: boolean | null;
+  confirmPaymentCard: ConfirmPaymentCard_confirmPaymentCard;
 }
 
 export interface ConfirmPaymentCardVariables {
   paymentId: string;
-  providerPaymentMethodId: string;
 }

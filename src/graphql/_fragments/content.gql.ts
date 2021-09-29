@@ -607,12 +607,26 @@ export const GQL_FRAGMENT_CONTENT_ITEM_SCROLL_PICKER = gql`
   }
 `;
 
-export const GQL_FRAGMENT_CONENT_ITEM_GP_DETAILS = gql`
+export const GQL_FRAGMENT_CONTENT_ITEM_GP_DETAILS = gql`
   fragment ContentItemGpDetails on ContentItemGpDetails {
     id
     answerKey
     onSubmit {
       type
+    }
+  }
+`;
+
+export const GQL_FRAGMENT_CONTENT_ITEM_SELECT_PAYMENT_BUTTON = gql`
+  fragment ContentItemPersonalProductSelectPaymentButton on ContentItemPersonalProductSelectPaymentButton {
+    id
+    companyName
+    companyCountryCode
+    themeStyle
+    applePayEnabled
+    googlePayEnabled
+    button {
+      ...ContentItemInfoButton
     }
   }
 `;

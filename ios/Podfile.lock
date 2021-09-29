@@ -393,6 +393,15 @@ PODS:
   - SDWebImageWebPCoder (0.6.1):
     - libwebp (~> 1.0)
     - SDWebImage/Core (~> 5.7)
+  - Stripe (21.8.1):
+    - Stripe/Stripe3DS2 (= 21.8.1)
+    - StripeCore (= 21.8.1)
+  - stripe-react-native (0.2.2):
+    - React
+    - Stripe (~> 21.8.1)
+  - Stripe/Stripe3DS2 (21.8.1):
+    - StripeCore (= 21.8.1)
+  - StripeCore (21.8.1)
   - Yoga (1.14.0)
   - YogaKit (1.18.1):
     - Yoga (~> 1.14)
@@ -468,6 +477,7 @@ DEPENDENCIES:
   - "RNFitKit (from `../node_modules/@yu-life/react-native-fitkit/ios`)"
   - RNSpringScrollView (from `../node_modules/react-native-spring-scrollview/ios`)
   - RNSVG (from `../node_modules/react-native-svg`)
+  - "stripe-react-native (from `../node_modules/@stripe/stripe-react-native`)"
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
@@ -488,6 +498,8 @@ SPEC REPOS:
     - OpenSSL-Universal
     - SDWebImage
     - SDWebImageWebPCoder
+    - Stripe
+    - StripeCore
     - YogaKit
 
 EXTERNAL SOURCES:
@@ -589,6 +601,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-spring-scrollview/ios"
   RNSVG:
     :path: "../node_modules/react-native-svg"
+  stripe-react-native:
+    :path: "../node_modules/@stripe/stripe-react-native"
   Yoga:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
@@ -658,6 +672,9 @@ SPEC CHECKSUMS:
   RNSVG: ce9d996113475209013317e48b05c21ee988d42e
   SDWebImage: a7f831e1a65eb5e285e3fb046a23fcfbf08e696d
   SDWebImageWebPCoder: d0dac55073088d24b2ac1b191a71a8f8d0adac21
+  Stripe: 57c6997c64042a3f5aedae9b76e331942f8b75d2
+  stripe-react-native: ae53a97cc9ab084cc6228f2250da56b0e53da276
+  StripeCore: a6e50d58119a0c7601773b56f274db2d394dcdac
   Yoga: 575c581c63e0d35c9a83f4b46d01d63abc1100ac
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 

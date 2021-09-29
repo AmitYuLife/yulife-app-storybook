@@ -9,8 +9,8 @@ import { toCapitalLetter } from "@utils";
 // import { Linking } from "react-native";
 import { ProductCode } from "@graphql/_core/schema/globalTypes";
 import {
-  AddPaymentCard,
-  AddPaymentCardVariables,
+  // AddPaymentCard,
+  // AddPaymentCardVariables,
   ConfirmPaymentCard,
   ConfirmPaymentCardVariables,
   SubscribeToProduct,
@@ -18,7 +18,7 @@ import {
 } from "@graphql/_core/schema";
 import { useMutation } from "@apollo/react-hooks";
 import { GQL_MUTATION_SUBSCRIBE_TO_PRODUCT } from "@graphql/products";
-import { GQL_MUTATION_ADD_PAYMENT_CARD, GQL_MUTATION_CONFIRM_PAYMENT_CARD } from "@graphql/payment";
+import { GQL_MUTATION_CONFIRM_PAYMENT_CARD } from "@graphql/payment";
 import Logger from "@services/logging/logger";
 import { getUserFeatures } from "@redux/user/user.selectors";
 
@@ -44,7 +44,7 @@ export const usePayment = ({ navigation }: IUsePayment) => {
   const [subscribeToProduct] = useMutation<SubscribeToProduct, SubscribeToProductVariables>(
     GQL_MUTATION_SUBSCRIBE_TO_PRODUCT
   );
-  const [addPaymentCard] = useMutation<AddPaymentCard, AddPaymentCardVariables>(GQL_MUTATION_ADD_PAYMENT_CARD);
+  // const [addPaymentCard] = useMutation<AddPaymentCard, AddPaymentCardVariables>(GQL_MUTATION_ADD_PAYMENT_CARD);
   const [confirmPaymentCard] = useMutation<ConfirmPaymentCard, ConfirmPaymentCardVariables>(
     GQL_MUTATION_CONFIRM_PAYMENT_CARD,
     {}
@@ -127,7 +127,7 @@ export const usePayment = ({ navigation }: IUsePayment) => {
       });
       return;
     }
-  }, [addPaymentCard, confirmPaymentCard, setPaymentCollected, setPaymentProviderDetails, contactDetails, fullName]);
+  }, [confirmPaymentCard, setPaymentCollected, setPaymentProviderDetails, contactDetails, fullName]);
 
   const handleConfirmPayment = useCallback(async () => {
     if (!paymentsEnabled) {
