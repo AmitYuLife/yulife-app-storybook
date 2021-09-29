@@ -342,6 +342,12 @@ export interface UserAvatarInputPart {
   colorSchemeId?: string | null;
 }
 
+export interface UserAvatarPartUpdate {
+  partId?: string | null;
+  partType: string;
+  colorSchemeId?: string | null;
+}
+
 //==============================================================
 // END Enums and Input Objects
 //==============================================================

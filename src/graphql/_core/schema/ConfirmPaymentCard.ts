@@ -15,7 +15,7 @@ export interface ConfirmPaymentCard_confirmPaymentCard {
 
 export interface ConfirmPaymentCard {
   /**
-   * Sets the payment as active
+   * Sets the payment method as active
    */
   confirmPaymentCard: ConfirmPaymentCard_confirmPaymentCard;
 }

@@ -14,12 +14,13 @@ interface IProps {
   dispatch: IDispatch;
   onBackPressed: () => void;
   heading: AvatarBuilderHeading;
+  updateAvatar: () => void;
 }
 
 const AVATAR_WIDTH = Style.adjust(160) * 0.73;
 const AVATAR_HEIGHT = Style.adjust(328) * 0.73;
 
-const YumojiBuilder: FC<IProps> = ({ state, dispatch, onBackPressed, heading }) => {
+const YumojiBuilder: FC<IProps> = ({ state, dispatch, onBackPressed, updateAvatar, heading }) => {
   return (
     <View style={styles.wrapper}>
       <GenericHeadingPad />
@@ -48,8 +49,8 @@ const YumojiBuilder: FC<IProps> = ({ state, dispatch, onBackPressed, heading }) 
         leftIcon="BACK"
         heading={heading}
         onLeftIconPress={onBackPressed}
-        onRightIconPress={() => console.log("right ")} // Yumoji TODO: Add the right action here
-        rightIcon="SAVE"
+        onRightIconPress={updateAvatar}
+        rightIcon={state.yumojiChanged ? "SAVE" : null}
       />
     </View>
   );
