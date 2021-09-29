@@ -7,6 +7,65 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.12.0] - 2021-09-29
+
+### Features
+
+- Task XSE-135: PLI new feature onboarding
+- Feature XSE-314: Conditions confirm screen
+
+### Bugfixes
+
+- Bugfix: Use UTC for preferred notification times
+- Bugfix Yumoji Builder: onBackPressed not resetting category state and...
+- Bugfix Yumoji Builder: Replace ScrollView to FlatList for Itemlist and reset scroll on category change
+- Bugfix: personal life onboarding
+- Bugfix ENG-2296: Do not update last sync if error occurs
+
+### Tasks
+
+- Task: stripe integration
+- Task GS-94:added caching service
+- Task XSE-390: Max sum assured RN
+- Task: Initialise YuScreen slot popover
+- Task XSE-135: PLI Onboarding
+- Task: New Yumoji builder
+- Task XSE-183: RN Add GP details
+- Task: Move common GQL to shared file
+- Task XSE-330: Initialise FullScreenSwiper modal logic
+- Task GS-105: Positioning avatar list items
+- Task XSE-382: pli events
+- Task XSE-330: Onboarding Stories
+- Task: product step button disabled state
+- Task: checkout - selected package card
+- Task: Batching assets preload
+- Task GS-99: Header Component Update
+- Task XSE-235: Collapsing banner
+
+### Chores
+
+- Chore: contentItemInfoButton
+- Chore: normalise personal product step
+- Chore: fix yumoji order
+- Chore: unify select cover
+- Chore: medical holding screens
+
+### Extra
+
+- Hotfix: Display reward header image loading in a visible colour
+- Detox: Remove hasFibActive toggle from all users that don't need it
+- Detox: Yumoji Fix
+- Detox: Fixes 27/9
+- Detox: Fixes 22/9
+- scalable yumoji
+- Purge: tipsi-stripe
+- Detox: Fixes 21/9
+- Detox: Emails
+- Detox: Tidy
+- Hotfix: content uri options
+- Hotfix: review item pixelated
+- added mixpanel logging
+
 ## [3.11.0] - 2021-09-16
 
 ### Features
