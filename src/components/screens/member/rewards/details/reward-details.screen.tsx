@@ -63,11 +63,13 @@ const RewardDetailsScreen: FC<Props> = ({ rewardItem, onPressTopBar, isLoading, 
         ])}
         testID={SCROLLABLE_LAYOUT}
       >
-        <Wrapper>
-          {rewardItem.content.map((item, index) => (
-            <View key={`${item.__typename}-${index}`}>{GetItemContent(item, onSubmit, handleLink, isLoading)}</View>
-          ))}
-        </Wrapper>
+        <View style={styles.paddingTop}>
+          <Wrapper>
+            {rewardItem.content.map((item, index) => (
+              <View key={`${item.__typename}-${index}`}>{GetItemContent(item, onSubmit, handleLink, isLoading)}</View>
+            ))}
+          </Wrapper>
+        </View>
       </ScrollView>
       <TopBarAbsolute hasShadow={false} leftIcon={TopBarLeftIconTypes.BACK} onPressLeftIcon={onPressTopBar} />
     </View>
