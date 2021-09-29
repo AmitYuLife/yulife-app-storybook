@@ -45,4 +45,7 @@ export default StyleSheet.create({
   form: {
     marginTop: Style.adjust(25),
   },
+  paddingTop: {
+    paddingTop: Style.adjust(24),
+  },
 });
