@@ -135,6 +135,7 @@ export * from "./SubmitPersonalProductStep";
 export * from "./SubmitUnity";
 export * from "./SubscribeToProduct";
 export * from "./UpdateActiveChallenge";
+export * from "./UpdateAvatar";
 export * from "./UpdateContactDetails";
 export * from "./UpdateCustomerGPDetails";
 export * from "./UpdateLeaderboardConsent";

@@ -38,6 +38,7 @@ export interface IState {
   matchType: string;
   bodyType: AvatarBodyType;
   bodySelected: boolean;
+  yumojiChanged: boolean;
 }
 
 export interface IAction {
@@ -87,6 +88,7 @@ export const INITIAL_STATE: IState = {
   matchType: "",
   bodyType: AvatarBodyType.neutral,
   bodySelected: false,
+  yumojiChanged: false,
 };
 
 export const reducer = (state: IState, action: IAction) => {
@@ -112,6 +114,7 @@ export const reducer = (state: IState, action: IAction) => {
         ...state,
         partId: isSinglePart ? action.payload[0].partId : "",
         parts,
+        yumojiChanged: true,
         itemList: {
           ...state.itemList,
           items: transformItems(state.itemList.items, parts, state.matchType),
@@ -122,7 +125,8 @@ export const reducer = (state: IState, action: IAction) => {
     case ActionTypes.SET_SELECTED_BODY: {
       return {
         ...state,
-        bodySelected: action.payload,
+        yumojiChanged: action.payload.bodyType !== state.bodyType,
+        bodySelected: action.payload.bodySelected,
       };
     }
 

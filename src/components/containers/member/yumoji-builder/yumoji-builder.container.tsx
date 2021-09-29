@@ -1,5 +1,5 @@
 import React, { FC, useCallback, useEffect, useReducer } from "react";
-import { useLazyQuery, useQuery } from "@apollo/react-hooks";
+import { useMutation, useLazyQuery, useQuery } from "@apollo/react-hooks";
 import { AvatarBuilderHeading } from "@components/screens/member/yu-screen/avatar-builder/avatar.types";
 import { Loading } from "@atoms";
 import { AvatarBodyType } from "@graphql/_core/schema/globalTypes";
@@ -18,6 +18,11 @@ import {
   GetYumojiBuilderItemsForCategoryVariables,
 } from "@graphql/_core/schema";
 import SelectBody from "@components/screens/member/yu-screen/select-body-new/select-body";
+import { GQL_MUTATION_UPDATE_AVATAR, UpdateAvatarMutationTuple } from "@graphql/yuscreen/updateAvatar.gql";
+import { Navigation } from "react-native-navigation";
+import { ROUTES } from "@navigation/constants";
+import { showAwardModal, showDoneModal } from "./yumoji-builder.helpers";
+import Logger from "@services/logging/logger";
 import { cache } from "@services/image";
 
 interface IProps {
@@ -27,6 +32,36 @@ interface IProps {
 
 const YumojiBuilderContainer: FC<IProps> = ({ heading }) => {
   const [state, dispatch] = useReducer<React.Reducer<IState, IAction>>(reducer, INITIAL_STATE);
+
+  const [updateUserAvatar]: UpdateAvatarMutationTuple = useMutation(GQL_MUTATION_UPDATE_AVATAR);
+
+  const handleAvatarUpdate = useCallback(async () => {
+    try {
+      const response = await updateUserAvatar({
+        variables: {
+          avatar: Object.values(state.parts).map((item) => ({
+            partId: item.partId || "",
+            partType: item.partType || "",
+            colorSchemeId: item.colorSchemeId || "",
+          })),
+        },
+        // TODO: work out how to avoid refetch and instead set the fragment direct instead of re-fetching
+        refetchQueries: ["GetYulifer", "GetLeaderboard"],
+      });
+
+      if (response.data?.updateUserAvatarParts?.rewarded) {
+        showAwardModal(returnToYuScreen, response.data.updateUserAvatarParts.rewardAmount);
+      } else {
+        returnToYuScreen();
+      }
+    } catch (e) {
+      Logger.error(e, { event: "@update_user_avatar_error", file: "yumoji-builder.container" });
+    }
+  }, [updateUserAvatar, dispatch, returnToYuScreen, state]);
+
+  const updateAvatar = useCallback(() => {
+    showDoneModal(handleAvatarUpdate);
+  }, [handleAvatarUpdate]);
 
   useQuery<GetYumojiBuilderCategoryList>(GQL_QUERY_GET_YUMOJI_BUILDER_CATEGORY_LIST, {
     onCompleted: ({ getYumojiBuilderCategoryList }) =>
@@ -87,7 +122,7 @@ const YumojiBuilderContainer: FC<IProps> = ({ heading }) => {
 
   const handleBodySelected = useCallback(
     (bodyType: AvatarBodyType) => {
-      dispatch({ type: ActionTypes.SET_SELECTED_BODY, payload: true });
+      dispatch({ type: ActionTypes.SET_SELECTED_BODY, payload: { bodySelected: true, bodyType } });
 
       getYumojiBuilderInitialParts({
         variables: {
@@ -107,10 +142,23 @@ const YumojiBuilderContainer: FC<IProps> = ({ heading }) => {
   }
 
   if (state.bodySelected) {
-    return <YumojiBuilder state={state} dispatch={dispatch} onBackPressed={onBackPressed} heading={heading} />;
+    return (
+      <YumojiBuilder
+        state={state}
+        dispatch={dispatch}
+        onBackPressed={onBackPressed}
+        heading={heading}
+        updateAvatar={updateAvatar}
+      />
+    );
   }
 
   return <SelectBody onContinue={handleBodySelected} heading={heading} bodyType={state.bodyType} />;
+};
+
+const returnToYuScreen = () => {
+  Navigation.dismissAllModals();
+  Navigation.popTo(ROUTES.yuScreen);
 };
 
 export default YumojiBuilderContainer;
