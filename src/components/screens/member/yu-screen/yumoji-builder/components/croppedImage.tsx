@@ -1,7 +1,6 @@
 import React, { useMemo, FC } from "react";
 import { Image } from "@atoms";
 import { StyleProp, View, ViewStyle } from "react-native";
-import { Style } from "@styles";
 import { Source } from "react-native-fast-image";
 
 interface IProps {
@@ -19,13 +18,14 @@ interface IProps {
   };
   containerHeight: number;
   containerWidth: number;
+  suppressLoadingUi?: boolean;
 }
 
-export const CroppedImage: FC<IProps> = ({ source, transform, containerHeight, containerWidth }) => {
+export const CroppedImage: FC<IProps> = ({ transform, source, containerHeight, containerWidth, suppressLoadingUi }) => {
   const { left = 0, top = 0, zoom = 1, height, width } = transform || {};
   const scale = (height && width ? containerWidth / width : 1) * zoom;
-  const scaledHeight = Style.adjust(scale * (height || containerHeight));
-  const scaledWidth = Style.adjust(scale * (width || containerWidth));
+  const scaledHeight = scale * (height || containerHeight);
+  const scaledWidth = scale * (width || containerWidth);
 
   const viewStyle = useMemo(
     () =>
@@ -49,7 +49,14 @@ export const CroppedImage: FC<IProps> = ({ source, transform, containerHeight, c
 
   return (
     <View style={viewStyle}>
-      <Image style={imageStyle} width={scaledWidth} height={scaledHeight} source={source} resizeMode={"cover"} />
+      <Image
+        style={imageStyle}
+        width={scaledWidth}
+        height={scaledHeight}
+        source={source}
+        suppressLoadingUi={suppressLoadingUi}
+        resizeMode={"cover"}
+      />
     </View>
   );
 };

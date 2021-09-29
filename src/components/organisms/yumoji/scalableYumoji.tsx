@@ -25,7 +25,11 @@ interface IProps {
 function _Yumoji(props: IProps) {
   const { items, preview = { top: 0, left: 0, zoom: 1 }, height, width } = props;
 
-  const parts = useMemo(() => items.sort(({ order: order1 = 0 }, { order: order2 = 0 }) => order1 - order2), [items]);
+  const parts = useMemo(
+    () =>
+      items.filter((item) => item.remoteUrl).sort(({ order: order1 = 0 }, { order: order2 = 0 }) => order1 - order2),
+    [items]
+  );
   return (
     <View style={{ width, height }}>
       {parts.map(({ remoteUrl: { uri } }) =>
@@ -37,6 +41,7 @@ function _Yumoji(props: IProps) {
               containerWidth={width}
               containerHeight={height}
               source={{ uri }}
+              suppressLoadingUi={true}
             />
           </View>
         )

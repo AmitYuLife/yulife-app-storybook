@@ -18,6 +18,7 @@ import {
   GetYumojiBuilderItemsForCategoryVariables,
 } from "@graphql/_core/schema";
 import SelectBody from "@components/screens/member/yu-screen/select-body-new/select-body";
+import { cache } from "@services/image";
 
 interface IProps {
   componentId: string;
@@ -38,7 +39,10 @@ const YumojiBuilderContainer: FC<IProps> = ({ heading }) => {
     GetYumojiBuilderInitialPartsVariables
   >(GQL_QUERY_GET_YUMOJI_BUILDER_INITIAL_PARTS, {
     fetchPolicy: "cache-and-network",
-    onCompleted: (data) => dispatch({ type: ActionTypes.INITIAL_STATE, payload: data?.getYumojiBuilderInitialParts }),
+    onCompleted: (data) => {
+      cache(data?.getYumojiBuilderInitialParts.map(({ remoteUrl: { uri } }) => ({ uri })));
+      dispatch({ type: ActionTypes.INITIAL_STATE, payload: data?.getYumojiBuilderInitialParts });
+    },
   });
 
   const [getYumojiBuilderItemsForCategory] = useLazyQuery<
@@ -46,8 +50,18 @@ const YumojiBuilderContainer: FC<IProps> = ({ heading }) => {
     GetYumojiBuilderItemsForCategoryVariables
   >(GQL_QUERY_GET_YUMOJI_BUILDER_ITEMS_FOR_CATEGORY, {
     fetchPolicy: "cache-and-network",
-    onCompleted: (data) =>
-      dispatch({ type: ActionTypes.SET_ITEM_LIST, payload: data?.getYumojiBuilderItemsForCategory }),
+    onCompleted: (data) => {
+      cache(
+        data?.getYumojiBuilderItemsForCategory.items.reduce((list, { parts, representativeColor }) => {
+          if (representativeColor) {
+            list.push(...parts.filter((part) => part.remoteUrl).map(({ remoteUrl: { uri } }) => ({ uri })));
+          }
+
+          return list;
+        }, [])
+      );
+      dispatch({ type: ActionTypes.SET_ITEM_LIST, payload: data?.getYumojiBuilderItemsForCategory });
+    },
   });
 
   useEffect(() => {
@@ -69,7 +83,7 @@ const YumojiBuilderContainer: FC<IProps> = ({ heading }) => {
 
       getYumojiBuilderItemsForCategory({ variables });
     }
-  }, [state.selectedCategoryId, state.bodyType, state.partId]);
+  }, [state.selectedCategoryId, state.bodyType]);
 
   const handleBodySelected = useCallback(
     (bodyType: AvatarBodyType) => {
