@@ -74,7 +74,6 @@ export const FullScreenSwiper = memo((props: Props) => {
         }
 
         if (incremented > max) {
-          close.onPress();
           return activeIndex;
         }
 
