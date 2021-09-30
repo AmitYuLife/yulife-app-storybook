@@ -1,6 +1,6 @@
 import React, { memo } from "react";
-import { View, StyleSheet, ViewStyle, TextStyle } from "react-native";
-import { Image, Text } from "@atoms";
+import { View, StyleSheet, ViewStyle } from "react-native";
+import { Image, TextTemplate } from "@atoms";
 import { Style, Colours } from "@styles";
 import { YuProductStatus } from "@graphql/_core/schema/globalTypes";
 
@@ -33,16 +33,14 @@ export const SlotIcon = memo(({ slot }: IProps) => (
     />
     <View>
       {slot.status !== YuProductStatus.active ? (
-        <Text
-          style={[
-            styles.itemName,
-            slot.status === YuProductStatus.locked ? styles.itemLocked : styles.itemUnlocked,
-            { marginTop: 35 },
-          ]}
-          bold={true}
-        >
-          {slot.name}
-        </Text>
+        <View style={styles.itemName}>
+          <TextTemplate
+            type="l3b"
+            color={slot.status === YuProductStatus.locked ? Colours.metallic.m300 : Colours.metallic.m500}
+          >
+            {slot.name}
+          </TextTemplate>
+        </View>
       ) : null}
     </View>
   </View>
@@ -65,14 +63,6 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   itemName: {
-    fontSize: Style.adjust(10),
-    lineHeight: Style.adjust(16),
-    letterSpacing: Style.adjust(0.4),
+    marginTop: Style.adjust(35),
   },
-  itemUnlocked: {
-    color: Colours.metallic.m500,
-  } as TextStyle,
-  itemLocked: {
-    color: Colours.metallic.m300,
-  } as TextStyle,
 });
