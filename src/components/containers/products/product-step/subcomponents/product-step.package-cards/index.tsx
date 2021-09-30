@@ -67,9 +67,11 @@ export const ProductStepPackageCards = memo((props: GqlPackageCards) => {
   return (
     <View>
       <View style={styles.flexCenter}>
-        <TextTemplate color={Colours.neutral.n400} type="l2b">
-          Swipe to discover more
-        </TextTemplate>
+        {props.packageCards.length <= 1 ? null : (
+          <TextTemplate color={Colours.neutral.n400} type="l2b">
+            Swipe to discover more
+          </TextTemplate>
+        )}
       </View>
       <FlatList
         onScroll={handleScroll}
@@ -82,7 +84,9 @@ export const ProductStepPackageCards = memo((props: GqlPackageCards) => {
         renderItem={renderItem}
         getItemLayout={getItemLayout}
       />
-      <ActiveItemIndicator length={props.packageCards.length} activeIndex={activePackageCardIndex} />
+      {props.packageCards.length <= 1 ? null : (
+        <ActiveItemIndicator length={props.packageCards.length} activeIndex={activePackageCardIndex} />
+      )}
     </View>
   );
 });
