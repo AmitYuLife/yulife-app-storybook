@@ -39,6 +39,7 @@ export interface IState {
   bodyType: AvatarBodyType;
   bodySelected: boolean;
   yumojiChanged: boolean;
+  emptyMessage: string;
 }
 
 export interface IAction {
@@ -89,6 +90,7 @@ export const INITIAL_STATE: IState = {
   bodyType: AvatarBodyType.neutral,
   bodySelected: false,
   yumojiChanged: false,
+  emptyMessage: "",
 };
 
 export const reducer = (state: IState, action: IAction) => {
@@ -145,6 +147,7 @@ export const reducer = (state: IState, action: IAction) => {
         ...state,
         selectedCategoryId: action.payload.id,
         matchType: action.payload.matchType,
+        emptyMessage: !state.partId ? action?.payload?.children?.emptyMessage : "",
         itemList: {
           ...state.itemList,
           loading: true,

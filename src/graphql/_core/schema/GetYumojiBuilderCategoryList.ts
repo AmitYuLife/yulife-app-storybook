@@ -38,6 +38,7 @@ export interface GetYumojiBuilderCategoryList_getYumojiBuilderCategoryList_child
   previewTop: number | null;
   previewLeft: number | null;
   matchType: YumojiBuilderItemMatchType;
+  emptyMessage: string | null;
 }
 
 export interface GetYumojiBuilderCategoryList_getYumojiBuilderCategoryList {

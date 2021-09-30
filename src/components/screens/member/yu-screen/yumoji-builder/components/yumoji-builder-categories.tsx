@@ -1,15 +1,16 @@
 import React, { memo, useRef, useState, FC } from "react";
 import { ScrollView, View, StyleSheet, ViewStyle } from "react-native";
 import { Colours, Style } from "@styles";
-import { PressableWithDelay } from "@molecules";
 import YumojiBuilderCategory from "./yumoji-builder-category";
-import { DoneIcon } from "@atoms/icon/done-icon";
-import { GetYumojiBuilderCategoryList_getYumojiBuilderCategoryList as YumojiBuilderCategoryList } from "@graphql/_core/schema";
+import {
+  GetYumojiBuilderCategoryList_getYumojiBuilderCategoryList as YumojiBuilderCategoryList,
+  GetYumojiBuilderCategoryList_getYumojiBuilderCategoryList_children as CategoryListChildren,
+} from "@graphql/_core/schema";
 
 interface Props {
   categories: YumojiBuilderCategoryList[];
   selectedCategoryId: string;
-  onPress: (id: string, matchType: string) => void;
+  onPress: (id: string, matchType: string, children?: CategoryListChildren) => void;
 }
 
 const YumojiBuilderCategories: FC<Props> = ({ categories, selectedCategoryId, onPress }) => {
@@ -27,15 +28,19 @@ const YumojiBuilderCategories: FC<Props> = ({ categories, selectedCategoryId, on
       >
         {categories.map((category) => {
           const showChildren = categoryDetails.hasChildren && categoryDetails.parentId === category.id;
+          const isParentSelected = category.id === selectedCategoryId;
           return (
-            <View key={category.id} style={showChildren ? styles.bodyItemWrapperSelected : styles.bodyItemWrapper}>
+            <View
+              key={category.id}
+              style={isParentSelected || showChildren ? styles.bodyItemWrapperSelected : styles.bodyItemWrapper}
+            >
               <YumojiBuilderCategory
                 category={category}
                 onPress={(id, matchType) => {
                   setCategoryDetails({ hasChildren: !!category?.children?.length, parentId: id });
                   onPress(id, matchType);
                 }}
-                isSelected={category.id === selectedCategoryId}
+                isSelected={isParentSelected}
               />
 
               {showChildren
@@ -45,7 +50,7 @@ const YumojiBuilderCategories: FC<Props> = ({ categories, selectedCategoryId, on
                         category={child}
                         onPress={(id, matchType) => {
                           setCategoryDetails({ ...categoryDetails });
-                          onPress(id, matchType);
+                          onPress(id, matchType, child);
                         }}
                         isSelected={child.id === selectedCategoryId}
                       />
@@ -55,12 +60,6 @@ const YumojiBuilderCategories: FC<Props> = ({ categories, selectedCategoryId, on
             </View>
           );
         })}
-        <PressableWithDelay
-          onPress={() => setCategoryDetails({ parentId: null, hasChildren: false })}
-          style={styles.doneIcon}
-        >
-          <DoneIcon checked={false} />
-        </PressableWithDelay>
       </ScrollView>
     </View>
   );
@@ -88,6 +87,7 @@ const styles = StyleSheet.create({
   contentBodyElementsList: {
     flexDirection: "row",
     alignItems: "center",
+    paddingHorizontal: Style.adjust(3),
   } as ViewStyle,
   bodyElementsList: {
     width: "100%",
@@ -105,12 +105,8 @@ const styles = StyleSheet.create({
   bodyItemWrapperSelected: {
     ...defaultStyles,
     borderRadius: Style.adjust(30),
-    backgroundColor: "#F1F1F1",
+    backgroundColor: Colours.primary.p50,
   } as ViewStyle,
-
-  doneIcon: {
-    marginRight: Style.adjust(12),
-  },
 });
 
 export default memo(YumojiBuilderCategories);
