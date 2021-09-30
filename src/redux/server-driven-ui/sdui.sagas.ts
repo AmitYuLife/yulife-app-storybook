@@ -3,7 +3,7 @@ import { MODALS } from "@navigation/constants";
 import { TAB_ROUTES } from "@navigation/root";
 import { handleLinkPress } from "@services/app-link";
 import { Navigation } from "react-native-navigation";
-import { call, takeLatest, select, ActionPattern, takeEvery } from "redux-saga/effects";
+import { call, select, ActionPattern, takeEvery, takeLeading } from "redux-saga/effects";
 import Logger from "@services/logging/logger";
 import { SyncAction } from "@redux/_core/types";
 import { getRouteState } from "../app/app.selectors";
@@ -142,11 +142,11 @@ function* logEvent(action: SyncAction<string>) {
 }
 
 export default [
-  takeLatest(SduiActionType.SDUI_ACTION_NAVIGATE_BACK as ActionPattern, navigateBack),
-  takeLatest(SduiActionType.SDUI_ACTION_NAVIGATE as ActionPattern, navigateTo),
-  takeLatest(SduiActionType.SDUI_ACTION_SET_BOTTOM_TAB as ActionPattern, setBottomTab),
-  takeLatest(SduiActionType.SDUI_ACTION_OPEN_URL as ActionPattern, openUrl),
-  takeLatest(SduiActionType.SDUI_ACTION_PRODUCT_UNDERWRITING_STEP_POP as ActionPattern, popStep),
-  takeLatest(SduiActionType.SDUI_ACTION_PRODUCT_UNDERWRITING_STEP_PUSH as ActionPattern, pushStep),
+  takeLeading(SduiActionType.SDUI_ACTION_NAVIGATE_BACK as ActionPattern, navigateBack),
+  takeLeading(SduiActionType.SDUI_ACTION_NAVIGATE as ActionPattern, navigateTo),
+  takeLeading(SduiActionType.SDUI_ACTION_SET_BOTTOM_TAB as ActionPattern, setBottomTab),
+  takeLeading(SduiActionType.SDUI_ACTION_OPEN_URL as ActionPattern, openUrl),
+  takeLeading(SduiActionType.SDUI_ACTION_PRODUCT_UNDERWRITING_STEP_POP as ActionPattern, popStep),
+  takeLeading(SduiActionType.SDUI_ACTION_PRODUCT_UNDERWRITING_STEP_PUSH as ActionPattern, pushStep),
   takeEvery(SduiActionType.SDUI_ACTION_LOG_EVENT as ActionPattern, logEvent),
 ];
