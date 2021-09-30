@@ -26,7 +26,6 @@ import Logger from "@services/logging/logger";
 import { cache } from "@services/image";
 
 interface IProps {
-  componentId: string;
   heading: AvatarBuilderHeading;
 }
 
@@ -64,8 +63,10 @@ const YumojiBuilderContainer: FC<IProps> = ({ heading }) => {
   }, [handleAvatarUpdate]);
 
   useQuery<GetYumojiBuilderCategoryList>(GQL_QUERY_GET_YUMOJI_BUILDER_CATEGORY_LIST, {
-    onCompleted: ({ getYumojiBuilderCategoryList }) =>
-      dispatch({ type: ActionTypes.SET_CATEGORIES, payload: getYumojiBuilderCategoryList }),
+    onCompleted: ({ getYumojiBuilderCategoryList }) => {
+      cache(getYumojiBuilderCategoryList.map(({ icon: { uri } }) => ({ uri })));
+      dispatch({ type: ActionTypes.SET_CATEGORIES, payload: getYumojiBuilderCategoryList });
+    },
     fetchPolicy: "cache-and-network",
   });
 

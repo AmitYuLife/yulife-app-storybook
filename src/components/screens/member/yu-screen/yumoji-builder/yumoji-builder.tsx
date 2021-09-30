@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useCallback, useMemo } from "react";
 import { StyleSheet, View } from "react-native";
 import { AvatarBuilderHeading } from "../avatar-builder/avatar.types";
 import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
@@ -21,28 +21,35 @@ const AVATAR_WIDTH = Style.adjust(160) * 0.73;
 const AVATAR_HEIGHT = Style.adjust(328) * 0.73;
 
 const YumojiBuilder: FC<IProps> = ({ state, dispatch, onBackPressed, updateAvatar, heading }) => {
+  const onPress = useCallback(
+    (id, matchType, children) =>
+      dispatch({ type: ActionTypes.SET_SELECTED_CATEGORY, payload: { id, matchType, children } }),
+    [dispatch]
+  );
+
+  const updateUserAvatar = useCallback((payload) => dispatch({ type: ActionTypes.SET_MULTIPLE_PARTS, payload }), [
+    dispatch,
+  ]);
+
+  const items = useMemo(() => Object.values(state?.parts) as YumojiBuilderInitialParts[], [state?.parts]);
+
   return (
     <View style={styles.wrapper}>
       <GenericHeadingPad />
       <View style={styles.elementWrapper}>
         <View style={styles.yumoji}>
-          <Yumoji
-            height={AVATAR_HEIGHT}
-            width={AVATAR_WIDTH}
-            items={Object.values(state?.parts) as YumojiBuilderInitialParts[]}
-          />
+          <Yumoji height={AVATAR_HEIGHT} width={AVATAR_WIDTH} items={items} />
         </View>
         <YumojiBuilderCategories
           categories={state.categories}
           selectedCategoryId={state.selectedCategoryId}
-          onPress={(id, matchType) => dispatch({ type: ActionTypes.SET_SELECTED_CATEGORY, payload: { id, matchType } })}
+          onPress={onPress}
         />
         <YumojiBuilderItemList
           itemList={state.itemList}
           selectedCategoryId={state.selectedCategoryId}
-          updateUserAvatar={(payload) => {
-            dispatch({ type: ActionTypes.SET_MULTIPLE_PARTS, payload });
-          }}
+          updateUserAvatar={updateUserAvatar}
+          emptyMessage={state.emptyMessage}
         />
       </View>
       <GenericHeadingAbsolute

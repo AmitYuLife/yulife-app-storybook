@@ -1,7 +1,7 @@
 import React, { memo, useRef, FC, useEffect } from "react";
 import { View, StyleSheet, ViewStyle, FlatList } from "react-native";
 import { Colours, Style } from "@styles";
-import { TextTemplate, BoxOption } from "@atoms";
+import { TextTemplate, BoxOption, SkeletonLoading } from "@atoms";
 import { CroppedImage } from "./croppedImage";
 import ColorPreview from "./colorPreview";
 import { IItemList } from "@components/containers/member/yumoji-builder/yumoji-builder.reducer";
@@ -12,9 +12,10 @@ interface IProps {
   itemList: IItemList;
   selectedCategoryId: string;
   updateUserAvatar: (parts: YumojiBuilderInitialParts[]) => void;
+  emptyMessage: string;
 }
 
-const YumojiBuilderItemList: FC<IProps> = ({ itemList, updateUserAvatar, selectedCategoryId }) => {
+const YumojiBuilderItemList: FC<IProps> = ({ itemList, updateUserAvatar, selectedCategoryId, emptyMessage }) => {
   const flatListRef = useRef<FlatList | null>(null);
   const boxWidth = (Style.DEVICE_WIDTH - Style.adjust(70)) / 3;
   const boxHeight = boxWidth + Style.adjust(2);
@@ -31,43 +32,55 @@ const YumojiBuilderItemList: FC<IProps> = ({ itemList, updateUserAvatar, selecte
       <View style={styles.title}>
         {!itemList.title ? null : <TextTemplate type="b1b">{itemList?.title}</TextTemplate>}
       </View>
-      <View style={styles.itemList}>
-        <FlatList
-          key={"items_flat_list"}
-          keyExtractor={(keyItem, index) => `${index}${keyItem.partId}`}
-          ref={flatListRef}
-          style={styles.bodyElementsList}
-          data={itemList.loading ? loadingItemData : itemList.items}
-          numColumns={3}
-          showsVerticalScrollIndicator={false}
-          initialScrollIndex={0}
-          renderItem={({ item }) => (
-            <View style={styles.itemWrapper}>
-              <BoxOption
-                onPress={() => {
-                  updateUserAvatar(item.parts);
-                }}
-                isSelected={item.isSelected}
-                selectedStyle={styles.itemSelected}
-                innerHeight={boxHeight}
-              >
-                <View style={styles.itemPadding}>
-                  {item?.representativeColor ? (
-                    <ColorPreview color={item?.representativeColor} size={previewSize} />
-                  ) : (
-                    <CroppedImage
-                      source={item?.preview?.image}
-                      transform={item?.preview?.transform}
-                      containerHeight={previewSize}
-                      containerWidth={previewSize}
-                    />
-                  )}
-                </View>
-              </BoxOption>
-            </View>
-          )}
-        />
-      </View>
+      {emptyMessage ? (
+        <View style={styles.emptyMessage}>
+          <TextTemplate type="b2" textAlign="center">
+            {emptyMessage}
+          </TextTemplate>
+        </View>
+      ) : (
+        <View style={styles.itemList}>
+          <FlatList
+            key={"items_flat_list"}
+            keyExtractor={(keyItem, index) => `${index}${keyItem.partId}`}
+            ref={flatListRef}
+            style={styles.bodyElementsList}
+            data={itemList.loading ? loadingItemData : itemList.items}
+            numColumns={3}
+            showsVerticalScrollIndicator={false}
+            initialScrollIndex={0}
+            renderItem={({ item }) => (
+              <View style={styles.itemWrapper}>
+                {itemList.loading ? (
+                  <SkeletonLoading style={{ width: boxWidth, height: boxHeight }} />
+                ) : (
+                  <BoxOption
+                    onPress={() => {
+                      updateUserAvatar(item.parts);
+                    }}
+                    isSelected={item.isSelected}
+                    selectedStyle={styles.itemSelected}
+                    innerHeight={boxHeight}
+                  >
+                    <View style={styles.itemPadding}>
+                      {item?.representativeColor ? (
+                        <ColorPreview color={item?.representativeColor} size={previewSize} />
+                      ) : (
+                        <CroppedImage
+                          source={item?.preview?.image}
+                          transform={item?.preview?.transform}
+                          containerHeight={previewSize}
+                          containerWidth={previewSize}
+                        />
+                      )}
+                    </View>
+                  </BoxOption>
+                )}
+              </View>
+            )}
+          />
+        </View>
+      )}
     </View>
   );
 };
@@ -101,6 +114,12 @@ const styles = StyleSheet.create({
     borderColor: Colours.primary.p600,
     backgroundColor: Colours.primary.p50,
   },
+  emptyMessage: {
+    alignItems: "center",
+    flex: 1,
+    marginTop: Style.adjust(40),
+    padding: Style.adjust(40),
+  } as ViewStyle,
 });
 
 export default memo(YumojiBuilderItemList);
