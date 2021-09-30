@@ -777,7 +777,6 @@ export const CUSTOMER_35_TOGGLES = {
             "showStats": true,
             "showDuels": true,
             showCommunityGoals: true,
-            hasFibActive: true,
             showReferrals: true,
         }
     }

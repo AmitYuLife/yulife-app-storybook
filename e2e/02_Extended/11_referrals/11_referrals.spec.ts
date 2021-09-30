@@ -4,7 +4,7 @@ import * as given from "./_steps/given"
 import * as when from "./_steps/when"
 import * as then from "./_steps/then"
 import { CUSTOMER_35, AUTH_35, CUSTOMER_1, AUTH_1 } from "@data"
-import { MENU_ICON, MENU_ICON_BADGE, REFERRALS_BUTTON_BADGE, BACK_BUTTON, REFERRALS_INVITE_BUTTON } from "@ids"
+import { MENU_ICON, MENU_ICON_BADGE, REFERRALS_BUTTON_BADGE, BACK_BUTTON, REFERRALS_INVITE_BUTTON, NAV_BAR } from "@ids"
 
 Feature("Referrals work as intended", async () => {
     Scenario("As a user with referrals enabled I can view the referrals popover, button and screen", scenario.start, async () => {
@@ -12,7 +12,7 @@ Feature("Referrals work as intended", async () => {
             Then("I should not see the Invite Colleagues popover", then.referralsPopoverNotVisible)
             When("I close and reopen the app", when.restartWithoutDelete, async () => {
                 Then("I should see the Invite a colleague popover", then.referralsPopoverVisible)
-                When("I tap the menu icon to close the popover", when.tapID(MENU_ICON), async () => {
+                When("I tap the menu icon to close the popover", when.tapID(NAV_BAR("yucoin")), async () => {
                     Then("I should no longer see the the popover", then.referralsPopoverNotVisible)
                     Then("the menu icon should have a badge", then.idVisible(MENU_ICON_BADGE(true)))
                     When("I go to the menu page", when.tapID(MENU_ICON), async () => {
@@ -46,7 +46,7 @@ Feature("Referrals work as intended", async () => {
             Then("I should not see the Invite Colleagues popover", then.referralsPopoverNotVisible)
                 When("I close and reopen the app", when.restartWithoutDelete, async () => {
                 Then("I should see the Invite Colleagues popover", then.referralsPopoverVisible)
-                When("I tap the menu icon to close the popover", when.tapID(MENU_ICON), async () => {
+                When("I tap the menu icon to close the popover", when.tapID(NAV_BAR("yucoin")), async () => {
                     Then("I should no longer see the the popover", then.referralsPopoverNotVisible)
                     Then("the menu icon should have a badge", then.idVisible(MENU_ICON_BADGE(true)))
                     When("I go to the menu page", when.tapID(MENU_ICON), async () => {
