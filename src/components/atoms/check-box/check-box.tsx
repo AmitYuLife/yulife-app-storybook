@@ -39,7 +39,7 @@ function CheckBox(props: ICheckBox) {
       </View>
       {children || (
         <View style={styles.textWrapper}>
-          <TextTemplate type="b2" textAlign="center" color={colour}>
+          <TextTemplate type="b2" color={colour}>
             {label}
           </TextTemplate>
         </View>
