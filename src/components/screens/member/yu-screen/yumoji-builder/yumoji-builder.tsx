@@ -8,7 +8,6 @@ import YumojiBuilderItemList from "./components/yumoji-builder-item-list";
 import { ActionTypes, IState, IDispatch } from "@components/containers/member/yumoji-builder/yumoji-builder.reducer";
 import { Yumoji } from "@organisms/yumoji/scalableYumoji";
 import { GetYumojiBuilderInitialParts_getYumojiBuilderInitialParts as YumojiBuilderInitialParts } from "@graphql/_core/schema";
-
 interface IProps {
   state: IState;
   dispatch: IDispatch;
@@ -21,6 +20,23 @@ const AVATAR_WIDTH = Style.adjust(160) * 0.73;
 const AVATAR_HEIGHT = Style.adjust(328) * 0.73;
 
 const YumojiBuilder: FC<IProps> = ({ state, dispatch, onBackPressed, updateAvatar, heading }) => {
+  const categoryProps = useMemo(() => {
+    const category =
+      state?.selectedCategoryId &&
+      state.categories?.find(
+        (cat) =>
+          cat.id === state.selectedCategoryId ||
+          cat.children?.some((childCat) => childCat.id === state.selectedCategoryId)
+      );
+    return {
+      preview: {
+        top: category?.previewTop || 0,
+        left: category?.previewLeft || 0,
+        zoom: 1,
+      },
+      zoom: category?.previewZoom || 1,
+    };
+  }, [state.categories, state.selectedCategoryId]);
   const onPress = useCallback(
     (id, matchType, children) =>
       dispatch({ type: ActionTypes.SET_SELECTED_CATEGORY, payload: { id, matchType, children } }),
@@ -38,7 +54,12 @@ const YumojiBuilder: FC<IProps> = ({ state, dispatch, onBackPressed, updateAvata
       <GenericHeadingPad />
       <View style={styles.elementWrapper}>
         <View style={styles.yumoji}>
-          <Yumoji height={AVATAR_HEIGHT} width={AVATAR_WIDTH} items={items} />
+          <Yumoji
+            preview={categoryProps.preview}
+            height={AVATAR_HEIGHT * categoryProps.zoom}
+            width={AVATAR_WIDTH * categoryProps.zoom}
+            items={items}
+          />
         </View>
         <YumojiBuilderCategories
           categories={state.categories}
@@ -73,6 +94,8 @@ const styles = StyleSheet.create({
   },
   yumoji: {
     alignItems: "center",
+    height: AVATAR_HEIGHT,
+    overflow: "hidden",
   },
 });
 

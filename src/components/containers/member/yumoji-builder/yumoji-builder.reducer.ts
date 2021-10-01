@@ -172,8 +172,8 @@ export const reducer = (state: IState, action: IAction) => {
       return {
         ...state,
         bodySelected: false,
-        selectedCategoryId: state.categories[0].id,
-        matchType: state.categories[0].matchType,
+        selectedCategoryId: state.categories[0]?.id,
+        matchType: state.categories[0]?.matchType,
       };
     }
 
