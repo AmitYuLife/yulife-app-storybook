@@ -15,7 +15,9 @@ export const ContentItemConfirm = memo(({ checked, onChange, confirmLabel, style
 
   return (
     <View style={[styles.wrapper, serverStyles]}>
-      <CheckBox checked={checked} value="" label={confirmLabel} onChange={onChange} textStyle={styles.text} />
+      <View style={styles.textWrapper}>
+        <CheckBox checked={checked} value="" label={confirmLabel} onChange={onChange} />
+      </View>
     </View>
   );
 });
@@ -28,7 +30,7 @@ const styles = StyleSheet.create({
     marginTop: Style.adjust(16),
     padding: Style.adjust(16),
   } as ViewStyle,
-  text: {
+  textWrapper: {
     maxWidth: Style.DEVICE_WIDTH - Style.adjust(120),
     marginLeft: Style.adjust(4),
   } as TextStyle,

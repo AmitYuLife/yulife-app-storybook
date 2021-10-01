@@ -86,13 +86,14 @@ const _FibUnderwritingReviewAnswersScreen = memo(function (props: IFibUnderwriti
           );
         })}
         <View style={checkboxStyles.wrapper} testID={UNDERWRITING_REVIEW_CONFIRM}>
-          <CheckBox
-            checked={confirmed}
-            value=""
-            label="I confirm that I have understood and answered all the questions honestly, accurately and to the best of my knowledge."
-            onChange={toggleConfirmed}
-            textStyle={checkboxStyles.text}
-          />
+          <View style={checkboxStyles.textWrapper}>
+            <CheckBox
+              checked={confirmed}
+              value=""
+              label="I confirm that I have understood and answered all the questions honestly, accurately and to the best of my knowledge."
+              onChange={toggleConfirmed}
+            />
+          </View>
         </View>
         <Button
           size={"Large"}
@@ -145,7 +146,7 @@ const checkboxStyles = StyleSheet.create({
     alignSelf: "center",
     marginVertical: Style.adjust(32),
   } as ViewStyle,
-  text: {
+  textWrapper: {
     maxWidth: Style.DEVICE_WIDTH - 64,
   } as TextStyle,
 });
