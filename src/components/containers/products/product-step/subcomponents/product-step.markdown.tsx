@@ -10,7 +10,7 @@ const DEFAULT_STYLES = [
 ];
 
 export const ProductStepMarkdown = memo((props: Props) => {
-  const derivedStyles = [...DEFAULT_STYLES, ...props.styles];
+  const derivedStyles = [...DEFAULT_STYLES, ...(props.styles || [])];
 
   return <ContentItemMarkdown {...props} styles={derivedStyles} />;
 });
