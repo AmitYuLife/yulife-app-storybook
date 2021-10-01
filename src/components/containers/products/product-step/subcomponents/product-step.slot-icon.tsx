@@ -1,6 +1,5 @@
 import React, { memo, useContext, useMemo } from "react";
 import { View, StyleSheet, ViewStyle } from "react-native";
-import { ImageStyle } from "react-native-fast-image";
 import { Image } from "@atoms";
 import { Style } from "@styles";
 import { CoverType, YuWorld } from "@graphql/_core/schema/globalTypes";
@@ -66,12 +65,11 @@ export const SlotIcon = memo((props: Props) => {
       <Image source={{ uri: backgroundUrl }} width={size} height={size} theme="light" style={styles.slotWrapper} />
       <Image
         source={{ uri: itemUrl }}
-        width={size * 1.4}
-        height={size * 1.4}
+        width={size}
+        height={size}
         theme="light"
         style={styles.slotItem}
         suppressLoadingUi={true}
-        imageStyle={styles.imageStyle}
       />
     </View>
   );
@@ -91,11 +89,7 @@ const styles = StyleSheet.create({
   },
   slotItem: {
     ...StyleSheet.absoluteFillObject,
-    top: 8,
     width: SIZE,
     height: SIZE,
   },
-  imageStyle: {
-    marginTop: Style.adjust(8),
-  } as ImageStyle,
 });
