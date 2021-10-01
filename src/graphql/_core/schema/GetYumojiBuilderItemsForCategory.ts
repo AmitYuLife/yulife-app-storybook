@@ -40,13 +40,34 @@ export interface GetYumojiBuilderItemsForCategory_getYumojiBuilderItemsForCatego
   transform: GetYumojiBuilderItemsForCategory_getYumojiBuilderItemsForCategory_items_preview_transform | null;
 }
 
+export interface GetYumojiBuilderItemsForCategory_getYumojiBuilderItemsForCategory_items_label_icon {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetYumojiBuilderItemsForCategory_getYumojiBuilderItemsForCategory_items_label {
+  text: string;
+  icon: GetYumojiBuilderItemsForCategory_getYumojiBuilderItemsForCategory_items_label_icon;
+  labelColor: string | null;
+  backgroundColor: string | null;
+  borderColor: string | null;
+}
+
+export interface GetYumojiBuilderItemsForCategory_getYumojiBuilderItemsForCategory_items_modal {
+  title: string;
+  message: string;
+  cta: string | null;
+  ctaText: string | null;
+}
+
 export interface GetYumojiBuilderItemsForCategory_getYumojiBuilderItemsForCategory_items {
   parts: GetYumojiBuilderItemsForCategory_getYumojiBuilderItemsForCategory_items_parts[];
   representativeColor: string | null;
   preview: GetYumojiBuilderItemsForCategory_getYumojiBuilderItemsForCategory_items_preview | null;
   status: YumojiPartStatus;
   statusIcon: string | null;
-  bottomText: string | null;
+  label: GetYumojiBuilderItemsForCategory_getYumojiBuilderItemsForCategory_items_label | null;
+  modal: GetYumojiBuilderItemsForCategory_getYumojiBuilderItemsForCategory_items_modal | null;
 }
 
 export interface GetYumojiBuilderItemsForCategory_getYumojiBuilderItemsForCategory {

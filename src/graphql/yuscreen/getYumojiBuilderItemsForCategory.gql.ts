@@ -31,7 +31,22 @@ export const GQL_QUERY_GET_YUMOJI_BUILDER_ITEMS_FOR_CATEGORY = gql`
         }
         status
         statusIcon
-        bottomText
+        label {
+          text
+          icon {
+            id
+            uri(options: { width: 64, height: 64 })
+          }
+          labelColor
+          backgroundColor
+          borderColor
+        }
+        modal {
+          title
+          message
+          cta
+          ctaText
+        }
       }
     }
   }
