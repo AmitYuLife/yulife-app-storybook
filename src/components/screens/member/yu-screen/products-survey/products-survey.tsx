@@ -227,7 +227,7 @@ function ProductsSurvey({ onExitConfirmed }: IProps) {
           </View>
         </ScrollView>
       </KeyboardAvoidingView>
-      <GenericHeadingAbsolute heading="What Would You Like To See?" onLeftIconPress={onBackButton} />
+      <GenericHeadingAbsolute heading="What would you like to see?" onLeftIconPress={onBackButton} />
     </View>
   );
 }
