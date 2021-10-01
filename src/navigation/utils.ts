@@ -1,5 +1,5 @@
 import { Navigation } from "react-native-navigation";
-import { ROUTES } from "./constants";
+import { MODALS, ROUTES } from "./constants";
 import { WebViewContainerProps } from "@components/containers/web-view/web-view.container";
 import Logger from "@services/logging/logger";
 
@@ -31,6 +31,31 @@ export function handleNavigateToQuestsTab() {
     statusBar: {
       drawBehind: false,
       visible: true,
+    },
+  });
+}
+
+export function showGenericModal(
+  heading: string,
+  subheading: string,
+  cta?: () => void,
+  ctaLabel?: string,
+  ctaLabelSecondary: string = "Close",
+  onPressSecondary: () => void = () => Navigation.dismissModal(MODALS.generic)
+) {
+  Navigation.showModal({
+    component: {
+      id: MODALS.generic,
+      name: MODALS.generic,
+      passProps: {
+        onPress: cta,
+        isPrimaryOnePressOnly: true,
+        heading,
+        subheading,
+        ctaLabel,
+        ctaLabelSecondary,
+        onPressSecondary,
+      },
     },
   });
 }

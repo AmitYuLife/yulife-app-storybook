@@ -1,13 +1,20 @@
-import React, { memo, useRef, FC, useEffect, useMemo } from "react";
+import React, { useCallback, memo, useRef, FC, useEffect, useMemo } from "react";
 import { View, StyleSheet, ViewStyle, FlatList } from "react-native";
 import { Colours, Style } from "@styles";
-import { TextTemplate, BoxOption, SkeletonLoading } from "@atoms";
-import { CroppedImage } from "./croppedImage";
-import ColorPreview from "./colorPreview";
-import { IItemList } from "@components/containers/member/yumoji-builder/yumoji-builder.reducer";
-import { GetYumojiBuilderInitialParts_getYumojiBuilderInitialParts as YumojiBuilderInitialParts } from "@graphql/_core/schema";
+import { TextTemplate } from "@atoms";
+import {
+  GetYumojiBuilderInitialParts_getYumojiBuilderInitialParts as YumojiBuilderInitialParts,
+  GetYumojiBuilderItemsForCategory_getYumojiBuilderItemsForCategory as YumojiBuilderItemsForCategory,
+} from "@graphql/_core/schema";
 import { loadingItemData } from "../../avatar-builder/avatar-builder.helper";
+import { ItemListItems, YumojiItem } from "./yumoji-item";
+import { YumojiPartStatus } from "@graphql/_core/schema/globalTypes";
+import { showGenericModal } from "@navigation/utils";
 
+export interface IItemList extends YumojiBuilderItemsForCategory {
+  items: ItemListItems[];
+  loading: boolean;
+}
 interface IProps {
   itemList: IItemList;
   selectedCategoryId: string;
@@ -17,15 +24,30 @@ interface IProps {
 
 const YumojiBuilderItemList: FC<IProps> = ({ itemList, updateUserAvatar, selectedCategoryId, emptyMessage }) => {
   const flatListRef = useRef<FlatList | null>(null);
-  const boxWidth = (Style.DEVICE_WIDTH - Style.adjust(70)) / 3;
-  const boxHeight = boxWidth + Style.adjust(2);
-  const previewSize = boxWidth - Style.adjust(8);
 
   useEffect(() => {
     if (itemList.items.length > 0) {
       flatListRef?.current?.scrollToOffset({ offset: 0, animated: false });
     }
   }, [selectedCategoryId]);
+
+  const onItemPress = useCallback(
+    (item: ItemListItems) => {
+      if (item.status === YumojiPartStatus.unavailable) {
+        showGenericModal(
+          item?.modal?.title,
+          item?.modal?.message,
+          item?.modal?.cta ? () => null : null,
+          item?.modal?.ctaText,
+          "Close"
+        );
+        return;
+      }
+
+      updateUserAvatar(item.parts);
+    },
+    [updateUserAvatar]
+  );
 
   const listHeaderComponent = useMemo(
     () => (
@@ -57,35 +79,7 @@ const YumojiBuilderItemList: FC<IProps> = ({ itemList, updateUserAvatar, selecte
             numColumns={3}
             showsVerticalScrollIndicator={false}
             initialScrollIndex={0}
-            renderItem={({ item }) => (
-              <View style={styles.itemWrapper}>
-                {itemList.loading ? (
-                  <SkeletonLoading style={{ width: boxWidth, height: boxHeight }} />
-                ) : (
-                  <BoxOption
-                    onPress={() => {
-                      updateUserAvatar(item.parts);
-                    }}
-                    isSelected={item.isSelected}
-                    selectedStyle={styles.itemSelected}
-                    innerHeight={boxHeight}
-                  >
-                    <View style={styles.itemPadding}>
-                      {item?.representativeColor ? (
-                        <ColorPreview color={item?.representativeColor} size={previewSize} />
-                      ) : (
-                        <CroppedImage
-                          source={item?.preview?.image}
-                          transform={item?.preview?.transform}
-                          containerHeight={previewSize}
-                          containerWidth={previewSize}
-                        />
-                      )}
-                    </View>
-                  </BoxOption>
-                )}
-              </View>
-            )}
+            renderItem={({ item }) => <YumojiItem loading={itemList.loading} item={item} onItemPress={onItemPress} />}
           />
         </View>
       )}
@@ -113,16 +107,6 @@ const styles = StyleSheet.create({
   itemList: {
     flex: 1,
   } as ViewStyle,
-  itemWrapper: {
-    margin: Style.adjust(8),
-  },
-  itemPadding: {
-    padding: Style.adjust(4),
-  } as ViewStyle,
-  itemSelected: {
-    borderColor: Colours.primary.p600,
-    backgroundColor: Colours.primary.p50,
-  },
   contentContainer: {
     paddingBottom: Style.adjust(30),
   },

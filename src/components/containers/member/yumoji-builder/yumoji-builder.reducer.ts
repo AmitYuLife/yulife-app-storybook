@@ -1,8 +1,8 @@
+import { IItemList } from "@components/screens/member/yu-screen/yumoji-builder/components/yumoji-builder-item-list";
+import { ItemListItems } from "@components/screens/member/yu-screen/yumoji-builder/components/yumoji-item";
 import {
   GetYumojiBuilderCategoryList_getYumojiBuilderCategoryList as YumojiBuilderCategoryList,
   GetYumojiBuilderInitialParts_getYumojiBuilderInitialParts as YumojiBuilderInitialParts,
-  GetYumojiBuilderItemsForCategory_getYumojiBuilderItemsForCategory as YumojiBuilderItemsForCategory,
-  GetYumojiBuilderItemsForCategory_getYumojiBuilderItemsForCategory_items as YumojiBuilderItemsForCategoryItems,
   GetYumojiBuilderItemsForCategory_getYumojiBuilderItemsForCategory_items_parts as YumojiBuilderItemParts,
 } from "@graphql/_core/schema";
 import { AvatarBodyType } from "@graphql/_core/schema/globalTypes";
@@ -19,15 +19,6 @@ export enum ActionTypes {
 
 export type IParts = Record<string, YumojiBuilderInitialParts>;
 export type IDispatch = ({ type, payload }: IAction) => void;
-
-interface ItemListItems extends YumojiBuilderItemsForCategoryItems {
-  isSelected: boolean;
-}
-
-export interface IItemList extends YumojiBuilderItemsForCategory {
-  items: ItemListItems[];
-  loading: boolean;
-}
 
 export interface IState {
   parts: IParts;

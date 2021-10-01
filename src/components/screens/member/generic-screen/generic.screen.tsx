@@ -41,23 +41,27 @@ export default function GenericScreen({
     }
   };
 
+  const renderPrimaryButton = onPress && ctaLabel;
+  const renderSecondaryButton = onPressSecondary && ctaLabelSecondary;
   return (
     <View style={styles.wrapper}>
       <Text style={styles.heading} bold={true} testID={GENERIC_SCREEN_HEADING(heading)}>
         {heading}
       </Text>
       <Text style={styles.subheading}>{subheading}</Text>
-      <Button
-        testID={GENERIC_SCREEN_CTA(ctaLabel)}
-        isLoading={isPrimaryLoading || hasPressedPrimary}
-        wrapperStyle={styles.buttonWrapper}
-        label={ctaLabel}
-        onPress={onPressPrimary}
-      />
-      {!(onPressSecondary && ctaLabelSecondary) ? null : (
+      {!renderPrimaryButton ? null : (
+        <Button
+          testID={GENERIC_SCREEN_CTA(ctaLabel)}
+          isLoading={isPrimaryLoading || hasPressedPrimary}
+          wrapperStyle={styles.buttonWrapper}
+          label={ctaLabel}
+          onPress={onPressPrimary}
+        />
+      )}
+      {!renderSecondaryButton ? null : (
         <SecondaryButton
           testID={GENERIC_SCREEN_CTA(ctaLabelSecondary)}
-          wrapperStyle={styles.buttonWrapperSecondary}
+          wrapperStyle={renderPrimaryButton ? styles.buttonWrapperSecondary : styles.buttonWrapper}
           label={ctaLabelSecondary}
           onPress={onPressSecondary || (() => null)}
           isLoading={isSecondaryLoading}

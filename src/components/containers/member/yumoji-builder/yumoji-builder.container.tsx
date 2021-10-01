@@ -21,9 +21,12 @@ import SelectBody from "@components/screens/member/yu-screen/select-body-new/sel
 import { GQL_MUTATION_UPDATE_AVATAR, UpdateAvatarMutationTuple } from "@graphql/yuscreen/updateAvatar.gql";
 import { Navigation } from "react-native-navigation";
 import { ROUTES } from "@navigation/constants";
-import { showAwardModal, showDoneModal } from "./yumoji-builder.helpers";
+import { showAwardModal } from "./yumoji-builder.helpers";
 import Logger from "@services/logging/logger";
 import { cache } from "@services/image";
+import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
+import { useDispatch } from "react-redux";
+import { showGenericModal } from "@navigation/utils";
 
 interface IProps {
   heading: AvatarBuilderHeading;
@@ -31,6 +34,7 @@ interface IProps {
 
 const YumojiBuilderContainer: FC<IProps> = ({ heading }) => {
   const [state, dispatch] = useReducer<React.Reducer<IState, IAction>>(reducer, INITIAL_STATE);
+  const reduxDispatch = useDispatch();
 
   const [updateUserAvatar]: UpdateAvatarMutationTuple = useMutation(GQL_MUTATION_UPDATE_AVATAR);
 
@@ -53,13 +57,21 @@ const YumojiBuilderContainer: FC<IProps> = ({ heading }) => {
       } else {
         returnToYuScreen();
       }
+
+      reduxDispatch(logMixpanelEventActionCreator("avatar_save", { type: "saved" }));
     } catch (e) {
       Logger.error(e, { event: "@update_user_avatar_error", file: "yumoji-builder.container" });
     }
   }, [updateUserAvatar, dispatch, returnToYuScreen, state]);
 
   const updateAvatar = useCallback(() => {
-    showDoneModal(handleAvatarUpdate);
+    showGenericModal(
+      "Great choices!",
+      "Do you want to keep all the changes you made? (Equipped items on the YU screen are not affected by this change)",
+      handleAvatarUpdate,
+      "Save changes",
+      "Discard changes"
+    );
   }, [handleAvatarUpdate]);
 
   useQuery<GetYumojiBuilderCategoryList>(GQL_QUERY_GET_YUMOJI_BUILDER_CATEGORY_LIST, {
