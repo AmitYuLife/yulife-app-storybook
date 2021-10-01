@@ -1,4 +1,4 @@
-import React, { memo, useRef, FC, useEffect } from "react";
+import React, { memo, useRef, FC, useEffect, useMemo } from "react";
 import { View, StyleSheet, ViewStyle, FlatList } from "react-native";
 import { Colours, Style } from "@styles";
 import { TextTemplate, BoxOption, SkeletonLoading } from "@atoms";
@@ -23,15 +23,21 @@ const YumojiBuilderItemList: FC<IProps> = ({ itemList, updateUserAvatar, selecte
 
   useEffect(() => {
     if (itemList.items.length > 0) {
-      flatListRef?.current?.scrollToIndex({ index: 0, animated: false });
+      flatListRef?.current?.scrollToOffset({ offset: 0, animated: false });
     }
   }, [selectedCategoryId]);
 
-  return (
-    <View style={styles.wrapper}>
+  const listHeaderComponent = useMemo(
+    () => (
       <View style={styles.title}>
         {!itemList.title ? null : <TextTemplate type="b1b">{itemList?.title}</TextTemplate>}
       </View>
+    ),
+    [itemList]
+  );
+
+  return (
+    <View style={styles.wrapper}>
       {emptyMessage ? (
         <View style={styles.emptyMessage}>
           <TextTemplate type="b2" textAlign="center">
@@ -41,10 +47,12 @@ const YumojiBuilderItemList: FC<IProps> = ({ itemList, updateUserAvatar, selecte
       ) : (
         <View style={styles.itemList}>
           <FlatList
+            ListHeaderComponent={listHeaderComponent}
             key={"items_flat_list"}
             keyExtractor={(keyItem, index) => `${index}${keyItem.partId}`}
             ref={flatListRef}
             style={styles.bodyElementsList}
+            contentContainerStyle={styles.contentContainer}
             data={itemList.loading ? loadingItemData : itemList.items}
             numColumns={3}
             showsVerticalScrollIndicator={false}
@@ -97,12 +105,13 @@ const styles = StyleSheet.create({
     padding: Style.adjust(8),
   } as ViewStyle,
   title: {
-    marginTop: Style.adjust(24),
-    marginLeft: Style.adjust(16),
+    marginTop: Style.adjust(16),
+    marginBottom: Style.adjust(8),
+    marginLeft: Style.adjust(8),
+    minHeight: Style.adjust(24),
   },
   itemList: {
     flex: 1,
-    paddingBottom: Style.adjust(30),
   } as ViewStyle,
   itemWrapper: {
     margin: Style.adjust(8),
@@ -113,6 +122,9 @@ const styles = StyleSheet.create({
   itemSelected: {
     borderColor: Colours.primary.p600,
     backgroundColor: Colours.primary.p50,
+  },
+  contentContainer: {
+    paddingBottom: Style.adjust(30),
   },
   emptyMessage: {
     alignItems: "center",
