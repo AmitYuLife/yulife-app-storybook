@@ -37,6 +37,10 @@ const YumojiBuilderCategories: FC<Props> = ({ categories, selectedCategoryId, on
               <YumojiBuilderCategory
                 category={category}
                 onPress={(id, matchType) => {
+                  if (isParentSelected) {
+                    return;
+                  }
+
                   setCategoryDetails({ hasChildren: !!category?.children?.length, parentId: id });
                   onPress(id, matchType);
                 }}
@@ -49,6 +53,10 @@ const YumojiBuilderCategories: FC<Props> = ({ categories, selectedCategoryId, on
                       <YumojiBuilderCategory
                         category={child}
                         onPress={(id, matchType) => {
+                          if (child.id === selectedCategoryId) {
+                            return;
+                          }
+
                           setCategoryDetails({ ...categoryDetails });
                           onPress(id, matchType, child);
                         }}
