@@ -33,7 +33,11 @@ const YumojiBuilderItemList: FC<IProps> = ({ itemList, updateUserAvatar, selecte
 
   const onItemPress = useCallback(
     (item: ItemListItems) => {
-      if (item.status === YumojiPartStatus.unavailable) {
+      if (item.status === YumojiPartStatus.available) {
+        updateUserAvatar(item.parts);
+      }
+
+      if (item?.modal) {
         showGenericModal(
           item?.modal?.title,
           item?.modal?.message,
@@ -41,10 +45,7 @@ const YumojiBuilderItemList: FC<IProps> = ({ itemList, updateUserAvatar, selecte
           item?.modal?.ctaText,
           "Close"
         );
-        return;
       }
-
-      updateUserAvatar(item.parts);
     },
     [updateUserAvatar]
   );
