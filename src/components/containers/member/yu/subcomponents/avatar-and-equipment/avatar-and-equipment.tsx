@@ -24,11 +24,15 @@ const _AvatarAndEquipment = () => {
 
   const editYumoji = useCallback(() => navigateToAvatarModal({ useNewYumojiBuilder: features.newYumojiBuilder }), []);
 
-  const { setPopover } = useContext(YuScreenContext);
+  const { setPopover, hasYumoji } = useContext(YuScreenContext);
 
   const avatarUri = data?.getYulifer?.avatarRemoteFiles?.pngFull;
 
   useEffect(() => {
+    if (!hasYumoji) {
+      return;
+    }
+
     if (!yuScreenProductSlots?.getYuScreenProductSlots) {
       return setPopover(null);
     }

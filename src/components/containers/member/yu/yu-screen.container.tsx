@@ -30,8 +30,10 @@ const _YuScreenContainer = (props: ConnectedState) => {
     return <YuScreenIntro />;
   }
 
+  const hasYumoji = !!data?.getYulifer?.avatarRemoteFiles?.pngFull;
+
   return (
-    <YuScreenContext.Provider value={{ popover, setPopover }}>
+    <YuScreenContext.Provider value={{ hasYumoji, popover, setPopover }}>
       <YuScreenLayout testID={YUSCREEN_V3(true)}>
         {loading || !data ? <YuScreenLoading /> : <YuScreen />}
       </YuScreenLayout>
