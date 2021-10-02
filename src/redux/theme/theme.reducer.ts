@@ -30,11 +30,14 @@ export interface IThemeStore {
   };
 }
 
-export const getInitialState = (): IThemeStore => ({
+export const getInitialState = (newBackgroundAssets = false): IThemeStore => ({
   dailyStepsScreen: {
     centredScreen: {
       offline: { image: "gray_forest", style: { backgroundColor: "rgb(235, 235, 235)" } },
-      online: { image: "large_forest", style: { backgroundColor: "rgb(255, 252, 216)" } },
+      online: {
+        image: newBackgroundAssets ? "new_forest" : "large_forest",
+        style: { backgroundColor: "rgb(255, 252, 216)" },
+      },
     },
     hasWhiteGlow: false,
     isLight: false,
@@ -62,10 +65,12 @@ const getCurrentWorldTheme = (
   data: GetCurrentUser | LoginUser,
   type: SyncAction["type"]
 ): IThemeStore => {
+  let newBackgroundAssets = false;
   let currentLevel = 0;
 
   if (type === GET_USER_SUCCESS) {
-    const { currentLevel: level, nextLevelAvailableAt } = (data as GetCurrentUser).getCurrentUser.coinLedger;
+    const { getCurrentUser } = data as GetCurrentUser;
+    const { currentLevel: level, nextLevelAvailableAt } = getCurrentUser.coinLedger;
     const hasChangedYuniverse = currentLevel % 200 === 1;
     const isBeforeNextLevel = nextLevelAvailableAt && moment().isBefore(moment(nextLevelAvailableAt));
     const shouldStickWithCurrentWorld = !hasChangedYuniverse && isBeforeNextLevel;
@@ -75,8 +80,12 @@ const getCurrentWorldTheme = (
     if (shouldStickWithCurrentWorld) {
       currentLevel = currentLevel - 1;
     }
+
+    newBackgroundAssets = !!getCurrentUser.userFeatures.find((f) => f.name === "newBackgroundAssets" && f.value);
   } else {
-    currentLevel = (data as LoginUser).loginUser.user.coinLedger.currentLevel;
+    const { loginUser } = data as LoginUser;
+    currentLevel = loginUser.user.coinLedger.currentLevel;
+    newBackgroundAssets = !!loginUser.user.userFeatures.find((f) => f.name === "newBackgroundAssets" && f.value);
   }
 
   const currentWorld = getCurrentWorld(currentLevel);
@@ -87,7 +96,10 @@ const getCurrentWorldTheme = (
         dailyStepsScreen: {
           centredScreen: {
             offline: { image: "gray_mountain", style: { backgroundColor: "rgb(235,235,235)" } },
-            online: { image: "mountain", style: { backgroundColor: "rgb(248, 212, 219)" } },
+            online: {
+              image: newBackgroundAssets ? "new_mountain" : "mountain",
+              style: { backgroundColor: "rgb(248, 212, 219)" },
+            },
           },
           hasWhiteGlow: true,
           isLight: false,
@@ -104,7 +116,10 @@ const getCurrentWorldTheme = (
         dailyStepsScreen: {
           centredScreen: {
             offline: { image: "gray_desert", style: { backgroundColor: "rgb(235,235,235)" } },
-            online: { image: "desert", style: { backgroundColor: "rgb(255,249,225)" } },
+            online: {
+              image: newBackgroundAssets ? "new_desert" : "desert",
+              style: { backgroundColor: "rgb(255,249,225)" },
+            },
           },
           hasWhiteGlow: true,
           isLight: false,
@@ -121,7 +136,7 @@ const getCurrentWorldTheme = (
         dailyStepsScreen: {
           centredScreen: {
             offline: { image: "gray_ocean", style: { backgroundColor: "#747474" } },
-            online: { image: "ocean", style: { backgroundColor: "rgb(1,62,116)" } },
+            online: { image: newBackgroundAssets ? "new_ocean" : "ocean", style: { backgroundColor: "rgb(1,62,116)" } },
           },
           hasWhiteGlow: false,
           isLight: true,
@@ -135,7 +150,7 @@ const getCurrentWorldTheme = (
       };
     case 0:
     default:
-      return getInitialState();
+      return getInitialState(newBackgroundAssets);
   }
 };
 

@@ -1,8 +1,9 @@
 import * as React from "react";
-import { Image, SafeAreaView, StyleSheet, View, ViewStyle, ImageStyle } from "react-native";
+import { Image as RNImage, SafeAreaView, StyleSheet, View, ViewStyle, ImageStyle } from "react-native";
 import LottieView from "lottie-react-native";
 import styles from "./centred-screen.styles";
 import { Style } from "@styles";
+import { Image } from "@atoms/image/image";
 
 interface Props {
   children?: React.ReactNode;
@@ -28,7 +29,11 @@ export type CenteredScreenImages =
   | "challenge_failed_desert"
   | "gray_mountain"
   | "mountain"
-  | "challenge_mountain";
+  | "challenge_mountain"
+  | "new_forest"
+  | "new_ocean"
+  | "new_desert"
+  | "new_mountain";
 
 export default function CenteredScreen({ children, footerImage, style, testID, BackgroundGradient = null }: Props) {
   return (
@@ -44,7 +49,10 @@ export default function CenteredScreen({ children, footerImage, style, testID, B
   );
 }
 
-const IMAGES: Record<CenteredScreenImages, { style: ImageStyle; isLottie: boolean; source: any }> = {
+const IMAGES: Record<
+  CenteredScreenImages,
+  { style?: ImageStyle; isLottie?: boolean; isFullScreen?: boolean; source: any }
+> = {
   forest: {
     source: require("../../../../assets/centred-screen/forestBackground.png"),
     style: StyleSheet.flatten([styles.imageBase, styles.imageForest]),
@@ -132,6 +140,22 @@ const IMAGES: Record<CenteredScreenImages, { style: ImageStyle; isLottie: boolea
     style: StyleSheet.flatten([styles.imageBase, styles.challengeSuccess]),
     isLottie: false,
   },
+  new_forest: {
+    source: require("../../../../assets/centred-screen/new_forest.png"),
+    isFullScreen: true,
+  },
+  new_ocean: {
+    source: require("../../../../assets/centred-screen/new_ocean.png"),
+    isFullScreen: true,
+  },
+  new_desert: {
+    source: require("../../../../assets/centred-screen/new_desert.png"),
+    isFullScreen: true,
+  },
+  new_mountain: {
+    source: require("../../../../assets/centred-screen/new_mountain.png"),
+    isFullScreen: true,
+  },
 };
 
 const BackgroundWrapper: React.FC = ({ children }) => {
@@ -153,14 +177,18 @@ const BackgroundWrapper: React.FC = ({ children }) => {
 };
 
 function _Background({ footerImage }: Pick<Props, "footerImage">) {
-  const { source, style, isLottie } = IMAGES[footerImage];
+  const { source, style, isLottie, isFullScreen } = IMAGES[footerImage];
+
+  if (isFullScreen) {
+    return <Image source={source} width={Style.DEVICE_WIDTH} height={Style.DEVICE_HEIGHT} />;
+  }
 
   return (
     <BackgroundWrapper>
       {isLottie ? (
         <LottieView style={style} source={source} autoPlay={true} loop={true} />
       ) : (
-        <Image resizeMode="cover" style={style} source={source} />
+        <RNImage resizeMode="cover" style={style} source={source} />
       )}
     </BackgroundWrapper>
   );

@@ -1,15 +1,13 @@
 import { Style } from "@styles/index";
-import { ImageStyle } from "react-native";
+import { ImageRequireSource, ImageStyle } from "react-native";
 
 interface ISlotSet {
-  source: any;
   style: ImageStyle;
   width: number;
 }
 
 const BRISK_WALK: ISlotSet[] = [
   {
-    source: require("@assets/challenge-history/squirrel.png"),
     style: {
       position: "absolute",
       left: -29,
@@ -18,7 +16,6 @@ const BRISK_WALK: ISlotSet[] = [
     width: Style.SCALE_UP_AND_DOWN(65),
   },
   {
-    source: require("@assets/challenge-history/otter.png"),
     style: {
       position: "absolute",
       left: -45,
@@ -27,7 +24,6 @@ const BRISK_WALK: ISlotSet[] = [
     width: Style.SCALE_UP_AND_DOWN(116),
   },
   {
-    source: require("@assets/challenge-history/meerkat.png"),
     style: {
       position: "absolute",
       left: -6,
@@ -36,7 +32,6 @@ const BRISK_WALK: ISlotSet[] = [
     width: Style.SCALE_UP_AND_DOWN(41),
   },
   {
-    source: require("@assets/challenge-history/wolf.png"),
     style: {
       position: "absolute",
       left: -112,
@@ -47,7 +42,6 @@ const BRISK_WALK: ISlotSet[] = [
 ];
 const SHORT_STROLL: ISlotSet[] = [
   {
-    source: require("@assets/challenge-history/snail.png"),
     style: {
       position: "absolute",
       left: -24,
@@ -56,7 +50,6 @@ const SHORT_STROLL: ISlotSet[] = [
     width: Style.SCALE_UP_AND_DOWN(61),
   },
   {
-    source: require("@assets/challenge-history/tortoise.png"),
     style: {
       position: "absolute",
       left: -10,
@@ -65,7 +58,6 @@ const SHORT_STROLL: ISlotSet[] = [
     width: Style.SCALE_UP_AND_DOWN(57),
   },
   {
-    source: require("@assets/challenge-history/bighornSheep.png"),
     style: {
       position: "absolute",
       left: -26,
@@ -74,7 +66,6 @@ const SHORT_STROLL: ISlotSet[] = [
     width: Style.SCALE_UP_AND_DOWN(77),
   },
   {
-    source: require("@assets/challenge-history/whiteBighornSheep.png"),
     style: {
       position: "absolute",
       left: -50,
@@ -85,7 +76,6 @@ const SHORT_STROLL: ISlotSet[] = [
 ];
 const LONG_WALK: ISlotSet[] = [
   {
-    source: require("@assets/challenge-history/rabbit.png"),
     style: {
       position: "absolute",
       left: -28,
@@ -94,7 +84,6 @@ const LONG_WALK: ISlotSet[] = [
     width: Style.SCALE_UP_AND_DOWN(64),
   },
   {
-    source: require("@assets/challenge-history/whale.png"),
     style: {
       position: "absolute",
       left: -34,
@@ -103,7 +92,6 @@ const LONG_WALK: ISlotSet[] = [
     width: Style.SCALE_UP_AND_DOWN(90),
   },
   {
-    source: require("@assets/challenge-history/desertFox.png"),
     style: {
       position: "absolute",
       left: -24,
@@ -112,7 +100,6 @@ const LONG_WALK: ISlotSet[] = [
     width: Style.SCALE_UP_AND_DOWN(67),
   },
   {
-    source: require("@assets/challenge-history/deer.png"),
     style: {
       position: "absolute",
       left: -74,
@@ -123,7 +110,6 @@ const LONG_WALK: ISlotSet[] = [
 ];
 const MEDITATION: ISlotSet[] = [
   {
-    source: require("@assets/challenge-history/bird.png"),
     style: {
       position: "absolute",
       left: -14,
@@ -132,7 +118,6 @@ const MEDITATION: ISlotSet[] = [
     width: Style.SCALE_UP_AND_DOWN(44),
   },
   {
-    source: require("@assets/challenge-history/dolphin.png"),
     style: {
       position: "absolute",
       left: -31,
@@ -141,7 +126,6 @@ const MEDITATION: ISlotSet[] = [
     width: Style.SCALE_UP_AND_DOWN(74),
   },
   {
-    source: require("@assets/challenge-history/camel.png"),
     style: {
       position: "absolute",
       left: -44,
@@ -150,7 +134,6 @@ const MEDITATION: ISlotSet[] = [
     width: Style.SCALE_UP_AND_DOWN(102),
   },
   {
-    source: require("@assets/challenge-history/owl.png"),
     style: {
       position: "absolute",
       left: -29,
@@ -162,7 +145,6 @@ const MEDITATION: ISlotSet[] = [
 
 const CYCLING: ISlotSet[] = [
   {
-    source: require("@assets/challenge-history/hedgehog.png"),
     style: {
       position: "absolute",
       left: -14,
@@ -171,7 +153,6 @@ const CYCLING: ISlotSet[] = [
     width: Style.SCALE_UP_AND_DOWN(57),
   },
   {
-    source: require("@assets/challenge-history/fish-hedgehog.png"),
     style: {
       position: "absolute",
       left: -10,
@@ -180,7 +161,6 @@ const CYCLING: ISlotSet[] = [
     width: Style.SCALE_UP_AND_DOWN(74),
   },
   {
-    source: require("@assets/challenge-history/chameleon.png"),
     style: {
       position: "absolute",
       left: -44,
@@ -189,7 +169,6 @@ const CYCLING: ISlotSet[] = [
     width: Style.SCALE_UP_AND_DOWN(102),
   },
   {
-    source: require("@assets/challenge-history/bear.png"),
     style: {
       position: "absolute",
       left: -100,
@@ -199,7 +178,7 @@ const CYCLING: ISlotSet[] = [
   },
 ];
 
-const BOTTOM_GRADIENT: ISlotSet[] = [
+const BOTTOM_GRADIENT: (ISlotSet & { source: ImageRequireSource })[] = [
   {
     source: require("@assets/challenge-history/forest-bottom-gradient.png"),
     style: {
@@ -252,6 +231,6 @@ export function getSlotImageProps(challengeType: string, currentWorld: number) {
     case "cycling":
       return CYCLING[currentWorld] || CYCLING[0];
     default:
-      return { source: null, style: null, width: 0 };
+      return { style: null, width: 0 };
   }
 }
