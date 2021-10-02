@@ -1,10 +1,8 @@
 import { GetCurrentUser, LoginUser } from "@graphql/_core/schema";
 import { SyncAction } from "../_core/types";
 import { GET_USER_SUCCESS, LOGIN_USER_SUCCESS, LOGOUT_SUCCESS } from "../user/user.actions";
-import { DISPLAY_STREAKS_FIRST } from "./streaks.actions";
 
 export interface IStreaksStore {
-  displayStreak: boolean;
   id: string;
   isAvailable: boolean;
   isRedeemed: boolean;
@@ -27,7 +25,6 @@ const DEFAULT_ACTIVE_STREAK = {
 };
 
 export const getInitialState = (): IStreaksStore => ({
-  displayStreak: false,
   id: "",
   isAvailable: false,
   isRedeemed: false,
@@ -46,9 +43,6 @@ const streaksReducer = (state: IStreaksStore = getInitialState(), action: SyncAc
 
     case LOGIN_USER_SUCCESS:
       return loginUserSuccess(state, action.payload);
-
-    case DISPLAY_STREAKS_FIRST:
-      return displayStreaks(state);
 
     case LOGOUT_SUCCESS:
       return getInitialState();
@@ -81,8 +75,3 @@ const loginUserSuccess = (state: IStreaksStore, data: LoginUser): IStreaksStore 
     ...activeStreak,
   };
 };
-
-const displayStreaks = (state: IStreaksStore): IStreaksStore => ({
-  ...state,
-  displayStreak: true,
-});

@@ -26,8 +26,8 @@ export type Props = ConnectedProps & OwnProps;
 
 function _Streak(props: Props) {
   const { streak, hasStreakFeature, streakType, isDim } = props;
-  const { currentStreak, isDoneToday, maxStreak, displayStreak, isAvailable } = streak;
-  const show = hasStreakFeature && displayStreak && isAvailable;
+  const { currentStreak, isDoneToday, maxStreak, isAvailable } = streak;
+  const show = hasStreakFeature && isAvailable;
 
   const defaultHandlePress = createHandlePress(streak);
   const { isPressedIn, handlePress, handlePressIn, handlePressOut } = usePressedInWithDelay({
