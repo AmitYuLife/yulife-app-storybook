@@ -6,6 +6,5 @@ describe("getSlotImageProps", () => {
 
     expect(actual.style).toHaveProperty("position", "absolute");
     expect(actual).toHaveProperty("width");
-    expect(actual).toHaveProperty("source");
   });
 });
