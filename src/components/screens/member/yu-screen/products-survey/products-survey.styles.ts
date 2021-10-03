@@ -11,21 +11,15 @@ export default StyleSheet.create({
     paddingBottom: Style.adjust(20),
   } as ViewStyle,
 
-  headerText: {
-    marginTop: 16,
-    marginBottom: 32,
-    marginHorizontal: 24,
-    fontFamily: Style.FONT_FAMILY_PRIMARY,
-    fontSize: 16,
-    lineHeight: 24,
-    letterSpacing: 0.8,
-    color: "#5A5A5C",
-  } as TextStyle,
+  headerTextWrapper: {
+    marginVertical: Style.adjust(16),
+    marginHorizontal: Style.adjust(24),
+  } as ViewStyle,
 
   checkboxWrapper: {
     width: "90%",
-    paddingLeft: 24,
-    paddingBottom: 24,
+    paddingHorizontal: Style.adjust(24),
+    paddingBottom: Style.adjust(24),
   },
 
   textArea: {

@@ -1,4 +1,4 @@
-import { Text, CheckBox, Button } from "@atoms/index";
+import { TextTemplate, CheckBox, Button } from "@atoms/index";
 import React, { useState, useRef, useEffect } from "react";
 import ReactNative, {
   Keyboard,
@@ -185,9 +185,11 @@ function ProductsSurvey({ onExitConfirmed }: IProps) {
           onLayout={onScrollViewLayout}
         >
           <View style={styles.viewWrapper}>
-            <Text style={styles.headerText}>
-              We’d love to take your feedback onboard. Out of the following, which would you like to see covered?
-            </Text>
+            <View style={styles.headerTextWrapper}>
+              <TextTemplate type="b2">
+                We’d love to take your feedback onboard. Out of the following, which would you like to see covered?
+              </TextTemplate>
+            </View>
             <View style={styles.checkboxWrapper}>
               {products.map((item) => {
                 return (
