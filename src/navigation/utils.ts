@@ -2,7 +2,7 @@ import { Navigation } from "react-native-navigation";
 import { MODALS, ROUTES } from "./constants";
 import { WebViewContainerProps } from "@components/containers/web-view/web-view.container";
 import Logger from "@services/logging/logger";
-import { Platform } from "react-native";
+import { showYuModal } from "@navigation/root";
 
 export function handleNavigateBack(componentId: string) {
   return function () {
@@ -12,7 +12,7 @@ export function handleNavigateBack(componentId: string) {
 
 export function handleOpenWebView(props: WebViewContainerProps) {
   try {
-    return Navigation.showModal({
+    return showYuModal({
       component: {
         id: ROUTES.webView,
         name: ROUTES.webView,
@@ -36,8 +36,6 @@ export function handleNavigateToQuestsTab() {
   });
 }
 
-export const drawBehindModal = Platform.OS === "android" && Platform.Version >= 30;
-
 export function showGenericModal(
   heading: string,
   subheading: string,
@@ -46,7 +44,7 @@ export function showGenericModal(
   ctaLabelSecondary: string = "Close",
   onPressSecondary: () => void = () => Navigation.dismissModal(MODALS.generic)
 ) {
-  Navigation.showModal({
+  showYuModal({
     component: {
       id: MODALS.generic,
       name: MODALS.generic,

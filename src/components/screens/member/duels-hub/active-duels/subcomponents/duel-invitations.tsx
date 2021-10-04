@@ -7,11 +7,11 @@ import { GetDuelInvitations } from "@graphql/_core/schema";
 import { useSelector } from "react-redux";
 import { getCurrentUserId } from "@redux/user/user.selectors";
 import { TouchableOpacityWithDelay } from "@components/molecules";
-import { Navigation } from "react-native-navigation";
 import { MODALS, ROUTES } from "@navigation/constants";
 import { DuelSkeleton } from "../../subcomponents/duel-skeleton/duel-skeleton";
 import { DUELS_HUB_INVITATION } from "@ids";
 import { useQueryOnScreenSeen } from "@services/hooks/useQueryOnScreenSeen";
+import { showYuModal } from "@navigation/root";
 
 const DuelInvitations: FC = () => {
   const [, { data, loading }] = useQueryOnScreenSeen<GetDuelInvitations>(
@@ -77,7 +77,7 @@ const DuelInvitations: FC = () => {
 
 const DuelInvitationStatus: FC<{ duel: GetDuelInvitations["getDuelInvitations"][0] }> = ({ duel }) => {
   const showRespondModal = useCallback(() => {
-    Navigation.showModal({
+    showYuModal({
       component: {
         id: MODALS.duelRespond,
         name: MODALS.duelRespond,

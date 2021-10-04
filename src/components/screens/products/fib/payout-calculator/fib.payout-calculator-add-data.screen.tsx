@@ -4,11 +4,11 @@ import { Button, Text } from "@atoms";
 import { Colours, Style } from "@styles";
 import { FibInputBirth } from "@organisms/fib/input/birth/fib-input-birth";
 import { FibAnswers } from "@redux/product/product.types";
-import { Navigation } from "react-native-navigation";
 import { MODALS } from "@navigation/constants";
 import { addCommasToNumber } from "@utils";
 import FibInputSalaryTertiary from "@organisms/fib/input/salary/fib-input-salary-tertiary";
 import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
+import { showYuModal } from "@navigation/root";
 
 export interface IFibPayoutCalculatorAddDataScreenProps {
   onNavigateBack: () => void;
@@ -37,7 +37,7 @@ export const FibPayoutCalculatorAddDataScreen = memo(function (props: IFibPayout
   const buttonDisabled = !(birthDay && birthMonth && birthYear && salary);
 
   const showEnterSalaryModal = () => {
-    Navigation.showModal({
+    showYuModal({
       component: {
         id: MODALS.enterSalary,
         name: MODALS.enterSalary,

@@ -14,6 +14,7 @@ import {
 import { GQL_QUERY_GET_PRODUCT_BENEFICIARIES } from "@graphql/products/getProductBeneficiaries";
 import { TEXT_TEMPLATE, ADD_BENEFICIARY, BENEFICIARY_DETAILS } from "@ids";
 import Logger from "@services/logging/logger";
+import { showYuModal } from "@navigation/root";
 
 interface IBeneficiariesProps {
   productId: string;
@@ -96,7 +97,7 @@ const onAddBeneficiaryPress = (productId: string) => {
    */
   Logger.logEvent("benificiary_add_started");
 
-  Navigation.showModal({
+  showYuModal({
     component: {
       id: MODALS.addBeneficiary,
       name: MODALS.addBeneficiary,

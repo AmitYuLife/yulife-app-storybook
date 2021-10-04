@@ -24,6 +24,7 @@ import { IBodyItemCategory } from "@redux/avatar/avatar.all.data";
 import { useBackHandler } from "@services/hooks/useBackHandler";
 import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
 import { useBackButtonHandler } from "./useBackButtonHandler";
+import { showYuModal } from "@navigation/root";
 
 interface IProps {
   avatar: IAvatar;
@@ -302,7 +303,7 @@ function showDoneModal(
   setBackPressed: (value: boolean) => void,
   setDonePressed: (value: boolean) => void
 ) {
-  Navigation.showModal({
+  showYuModal({
     component: {
       id: MODALS.generic,
       name: MODALS.generic,

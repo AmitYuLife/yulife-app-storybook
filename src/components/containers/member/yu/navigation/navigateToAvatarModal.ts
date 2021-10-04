@@ -1,6 +1,7 @@
 import { Navigation } from "react-native-navigation";
 import { MODALS } from "@navigation/constants";
 import { navigateToAvatarCreationScreen } from "./navigateToAvatarCreationScreen";
+import { showYuModal } from "@navigation/root";
 
 interface INavigateToAvatarModal {
   heading?: string;
@@ -11,7 +12,7 @@ interface INavigateToAvatarModal {
 export function navigateToAvatarModal(args: INavigateToAvatarModal = {}) {
   const { heading = "Edit your Yumoji", subheading = "Do you want to edit your Yumoji?", useNewYumojiBuilder } = args;
 
-  Navigation.showModal({
+  showYuModal({
     component: {
       id: MODALS.generic,
       name: MODALS.generic,

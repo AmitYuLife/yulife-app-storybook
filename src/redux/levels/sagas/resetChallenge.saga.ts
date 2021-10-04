@@ -1,4 +1,5 @@
 import { MODALS } from "@navigation/constants";
+import { showYuModal } from "@navigation/root";
 import { Navigation } from "react-native-navigation";
 import { call, put, select } from "redux-saga/effects";
 import { challengeResetSuccessAction } from "../levels.actions";
@@ -16,7 +17,7 @@ export default function* resetChallengeSaga() {
 }
 
 export function showModal(active: IActiveLevel) {
-  Navigation.showModal({
+  showYuModal({
     component: {
       id: MODALS.chest,
       name: MODALS.chest,

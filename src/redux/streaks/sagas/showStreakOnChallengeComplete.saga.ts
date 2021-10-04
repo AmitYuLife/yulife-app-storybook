@@ -1,4 +1,5 @@
 import { MODALS } from "@navigation/constants";
+import { showYuModal } from "@navigation/root";
 import { Navigation } from "react-native-navigation";
 import { call, select, take, delay } from "redux-saga/effects";
 import { getModalState } from "../../app/app.selectors";
@@ -29,7 +30,7 @@ export default function* showStreakOnChallengeCompleteSaga() {
 }
 
 export function showModal(streaks: ReturnType<typeof getStreaks>) {
-  Navigation.showModal({
+  showYuModal({
     component: {
       id: MODALS.streaks,
       name: MODALS.streaks,

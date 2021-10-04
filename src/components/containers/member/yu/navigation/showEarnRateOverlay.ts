@@ -1,8 +1,8 @@
-import { Navigation } from "react-native-navigation";
 import { MODALS } from "@navigation/constants";
+import { showYuModal } from "@navigation/root";
 
 export function showEarnRateOverlay() {
-  Navigation.showModal({
+  showYuModal({
     component: {
       id: MODALS.earnRate,
       name: MODALS.earnRate,

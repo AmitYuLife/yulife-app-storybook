@@ -7,6 +7,7 @@ import Logger from "@services/logging/logger";
 import { Unpacked } from "@utils";
 import { getModalState } from "@redux/app/app.selectors";
 import { UPDATE_CURRENT_MODAL } from "@redux/app/app.actions";
+import { showYuModal } from "@navigation/root";
 
 export function* getMobileWhatsNewModalSaga() {
   try {
@@ -23,7 +24,7 @@ export function* getMobileWhatsNewModalSaga() {
       }
 
       yield call(() =>
-        Navigation.showModal({
+        showYuModal({
           component: {
             id: MODALS.whatsNew,
             name: MODALS.whatsNew,

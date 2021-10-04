@@ -26,6 +26,7 @@ import { AviosMetadata } from "@graphql/_core/schema/globalTypes";
 import { formatMoney } from "@services/money";
 import { ListPicker } from "@molecules";
 import { showOverlayWithChild } from "@modals/blurred-overlay/showOverlayWithChild";
+import { showYuModal } from "@navigation/root";
 
 interface IProps {
   componentId: string;
@@ -194,7 +195,7 @@ const RewardDetailsContainer: FC<IProps> = ({ onTabChange, componentId, rewardId
           passProps.subheading = purchasesCopy.offline.subheading;
         }
 
-        await Navigation.showModal({
+        await showYuModal({
           component: {
             id: MODALS.rewards,
             name: MODALS.rewards,

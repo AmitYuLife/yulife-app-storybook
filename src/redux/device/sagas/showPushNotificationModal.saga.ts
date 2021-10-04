@@ -1,9 +1,9 @@
 import { MODALS } from "@navigation/constants";
-import { Navigation } from "react-native-navigation";
 import { call, select } from "redux-saga/effects";
 import { getRouteState } from "../../app/app.selectors";
 import { getCopy } from "../../copy/copy.selectors";
 import { getPushNotifications } from "../device.selectors";
+import { showYuModal } from "@navigation/root";
 
 export default function* showPushNotificationModalSaga() {
   const permissions: ReturnType<typeof getPushNotifications> = yield select(getPushNotifications);
@@ -14,7 +14,7 @@ export default function* showPushNotificationModalSaga() {
 
     if (currentRoute !== MODALS.pushNotifications) {
       yield call(() =>
-        Navigation.showModal({
+        showYuModal({
           component: {
             id: MODALS.pushNotifications,
             name: MODALS.pushNotifications,

@@ -15,6 +15,7 @@ import { CoverType, CreateTopUpsQuoteInput, ProductCode } from "@graphql/_core/s
 import { FIB_INTRO_YUGI } from "../fib.types";
 import { YUGI_INTRO_TYPE } from "./fib.yugi-intro.container";
 import { PriceChangedModalProps } from "@components/modals/price-changed/price-changed";
+import { showYuModal } from "@navigation/root";
 
 type ConnectedState = ReturnType<typeof mapStateToProps>;
 
@@ -60,7 +61,7 @@ const FibUnderwritingReviewAnswersContainer = memo(function (props: Props) {
         : false;
 
     if (priceChangedFromAPI) {
-      await Navigation.showModal<PriceChangedModalProps>({
+      await showYuModal<PriceChangedModalProps>({
         component: {
           id: MODALS.priceChanged,
           name: MODALS.priceChanged,
@@ -86,7 +87,7 @@ const FibUnderwritingReviewAnswersContainer = memo(function (props: Props) {
   };
 
   const onNavigateBackHandler = useCallback(async () => {
-    await Navigation.showModal({
+    await showYuModal({
       component: {
         id: MODALS.generic,
         name: MODALS.generic,

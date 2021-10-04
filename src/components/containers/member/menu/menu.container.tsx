@@ -13,6 +13,7 @@ import { getUserFeatures } from "@redux/user/user.selectors";
 import { MenuScreen } from "@screens";
 import assets, { LINKS, LinkTypes } from "./assets";
 import { IS_DEVELOP } from "@utils";
+import { showYuModal } from "@navigation/root";
 
 const MenuContainer = () => {
   const dispatch = useDispatch();
@@ -25,7 +26,7 @@ const MenuContainer = () => {
     const callback = () => Intercom.displayConversationsList();
 
     if (permissions.status !== "enabled") {
-      Navigation.showModal({
+      showYuModal({
         component: {
           id: MODALS.pushNotifications,
           name: MODALS.pushNotifications,

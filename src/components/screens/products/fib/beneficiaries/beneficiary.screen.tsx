@@ -9,6 +9,7 @@ import { Button, SecondaryButton, Text } from "@atoms";
 import { BeneficiaryItem } from "./beneficiary-item";
 import { GetProductBeneficiaries_getProductBeneficiaries_beneficiaries as Beneficiary } from "@graphql/_core/schema";
 import { BENEFICIARY_DETAILS, BENEFICIARIES_PERCENTAGE_ERROR, BENEFICIARY_DONE, ADD_BENEFICIARY } from "@ids";
+import { showYuModal } from "@navigation/root";
 
 interface Props {
   beneficiaries: Beneficiary[];
@@ -79,7 +80,7 @@ export const BeneficiaryScreen = memo((props: Props) => {
 
   const showAddBeneficiaryModal = useCallback(
     (beneficiaryProductId: string, beneficiary?: Beneficiary) =>
-      Navigation.showModal({
+      showYuModal({
         component: {
           id: MODALS.addBeneficiary,
           name: MODALS.addBeneficiary,
@@ -97,7 +98,7 @@ export const BeneficiaryScreen = memo((props: Props) => {
       return handleClose();
     }
 
-    return Navigation.showModal({
+    return showYuModal({
       component: {
         id: MODALS.defaultBeneficiaries,
         name: MODALS.defaultBeneficiaries,

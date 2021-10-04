@@ -10,10 +10,9 @@ import { IReduxState } from "@redux/_core/reducers";
 import { getStreaks } from "@redux/streaks/streaks.selectors";
 import { getDailyStepsTheme } from "@redux/theme/theme.selectors";
 import { Navigation } from "react-native-navigation";
-import { labels } from "@navigation/root";
+import { labels, showYuModal } from "@navigation/root";
 import { MODALS } from "@navigation/constants";
 import { getUserFeatures } from "@redux/user/user.selectors";
-import { drawBehindModal } from "@navigation/utils";
 
 export type StreakTypes = "forest" | "ocean" | "desert" | "mountain";
 
@@ -69,15 +68,10 @@ function createHandlePress(streak: ConnectedProps["streak"]) {
   const modalName = MODALS.streaks;
 
   return () => {
-    Navigation.showModal({
+    showYuModal({
       component: {
         id: modalName,
         name: modalName,
-        options: {
-          statusBar: {
-            drawBehind: drawBehindModal,
-          },
-        },
         passProps: {
           isDoneToday,
           onPressCtaPrimary: () => {

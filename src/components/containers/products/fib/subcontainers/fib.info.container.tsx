@@ -12,6 +12,7 @@ import { YUGI_INTRO_TYPE } from "./fib.yugi-intro.container";
 import { getUserFeatures } from "@redux/user/user.selectors";
 import { FibInfoScreen, InfoYugiType } from "@components/screens/products/fib/info-screens/fib.info.screen";
 import { toCapitalLetter } from "@utils";
+import { showYuModal } from "@navigation/root";
 
 export enum InfoTypes {
   holdingGP = "HoldingGP",
@@ -43,7 +44,7 @@ const _FibInfoContainer = memo(function (props: Props) {
       return;
     }
 
-    await Navigation.showModal({
+    await showYuModal({
       component: {
         id: MODALS.generic,
         name: MODALS.generic,

@@ -8,6 +8,7 @@ import { updateActiveLeaderboardId, updateLeaderboardConsent } from "@redux/user
 import { MODALS } from "@navigation/constants";
 import { useBackHandler } from "@services/hooks/useBackHandler";
 import { getLeaderboardsCopy } from "@redux/copy/copy.selectors";
+import { showYuModal } from "@navigation/root";
 
 interface OwnProps {
   componentId: string;
@@ -20,7 +21,7 @@ function dismissGenericModal() {
 }
 
 function handleCreateNewLeaderboard() {
-  Navigation.showModal({
+  showYuModal({
     component: {
       id: MODALS.createLeaderboard,
       name: MODALS.createLeaderboard,
@@ -81,7 +82,7 @@ function LeaderboardListContainer(props: Props) {
             subheading: turnBoardOn.subheading,
           };
 
-      Navigation.showModal({
+      showYuModal({
         component: {
           id: MODALS.generic,
           name: MODALS.generic,
