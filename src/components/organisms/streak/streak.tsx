@@ -13,6 +13,7 @@ import { Navigation } from "react-native-navigation";
 import { labels } from "@navigation/root";
 import { MODALS } from "@navigation/constants";
 import { getUserFeatures } from "@redux/user/user.selectors";
+import { drawBehindModal } from "@navigation/utils";
 
 export type StreakTypes = "forest" | "ocean" | "desert" | "mountain";
 
@@ -72,6 +73,11 @@ function createHandlePress(streak: ConnectedProps["streak"]) {
       component: {
         id: modalName,
         name: modalName,
+        options: {
+          statusBar: {
+            drawBehind: drawBehindModal,
+          },
+        },
         passProps: {
           isDoneToday,
           onPressCtaPrimary: () => {
