@@ -25,16 +25,16 @@ const POPOVER_ANIMATION_DELAY = 750;
 const DEVICE_ADJUSTMENT = media.select(
   [
     {
-      condition: Platform.OS === "ios" && Style.DEVICE_HEIGHT >= media.DEVICES.iPhone12ProMax.height,
-      value: Style.IOS_NOTCH_HEIGHT + 24,
-    },
-    {
       condition: Platform.OS === "ios" && Style.hasNotch,
       value: Style.IOS_NOTCH_HEIGHT,
     },
     {
       condition: Platform.OS === "ios",
       value: 20,
+    },
+    {
+      condition: Style.DEVICE_HEIGHT <= media.DEVICES.SamsungGalaxyA5.height,
+      value: -4,
     },
   ],
   0
@@ -49,9 +49,9 @@ const popoverProps = {
 } as ComponentProps<typeof Popover>;
 
 const WIDTH = Style.adjust(156);
-const ITEM_SLOT_POSITION_CONSTANT = 8;
-const ITEM_SLOT_POSITION_MULTIPLIER = 70;
-const NAME_AND_TITLE_HEIGHT = 80;
+const ITEM_SLOT_POSITION_CONSTANT = Style.adjust(8);
+const ITEM_SLOT_POSITION_MULTIPLIER = Style.adjust(70);
+const NAME_AND_TITLE_HEIGHT = Style.adjust(80);
 const TARGET_Y_CONSTANT = PAD_TOP + NAME_AND_TITLE_HEIGHT + DEVICE_ADJUSTMENT + ITEM_SLOT_POSITION_CONSTANT;
 const OFFSET = Style.adjust(60);
 
