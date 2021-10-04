@@ -79,7 +79,7 @@ const YumojiBuilderContainer: FC<IProps> = ({ heading }) => {
       cache(getYumojiBuilderCategoryList.map(({ icon: { uri } }) => ({ uri })));
       dispatch({ type: ActionTypes.SET_CATEGORIES, payload: getYumojiBuilderCategoryList });
     },
-    fetchPolicy: "cache-and-network",
+    fetchPolicy: "cache-first",
   });
 
   const [getYumojiBuilderInitialParts, { loading: loadingInitialParts }] = useLazyQuery<
@@ -97,7 +97,7 @@ const YumojiBuilderContainer: FC<IProps> = ({ heading }) => {
     GetYumojiBuilderItemsForCategory,
     GetYumojiBuilderItemsForCategoryVariables
   >(GQL_QUERY_GET_YUMOJI_BUILDER_ITEMS_FOR_CATEGORY, {
-    fetchPolicy: "cache-and-network",
+    fetchPolicy: "cache-first",
     onCompleted: (data) => {
       cache(
         data?.getYumojiBuilderItemsForCategory.items.reduce((list, { parts, representativeColor }) => {
