@@ -1,9 +1,8 @@
-import { Navigation } from "react-native-navigation";
 import { MODALS } from "@navigation/constants";
 import { call, delay, take } from "redux-saga/effects";
 import { pendingFeedbackFormQuery } from "@graphql/member";
 import { Unpacked } from "@utils";
-import { showAppReviewModal } from "@navigation/root";
+import { showAppReviewModal, showYuModal } from "@navigation/root";
 
 export default function* displayPromptsSaga() {
   try {
@@ -25,7 +24,7 @@ export default function* displayPromptsSaga() {
       yield delay(5000);
 
       yield call(() => {
-        Navigation.showModal({
+        showYuModal({
           component: {
             id: MODALS.feedback,
             name: MODALS.feedback,

@@ -1,5 +1,5 @@
 import { Platform } from "react-native";
-import { Navigation } from "react-native-navigation";
+import { Layout, Navigation } from "react-native-navigation";
 import { clearToken } from "@services/storage";
 import { Style } from "../styles";
 import { bottomTabs, MODALS, ROUTES } from "./constants";
@@ -7,7 +7,7 @@ import { ILabel } from "@components/organisms/nav-bar/nav-bar.helpers";
 import { IUpdateContainerProps } from "@components/containers/update/update.container";
 
 // eslint-disable-next-line
-const icon = require("../../assets/icons/clock.png");
+const icon = require("@assets/icons/clock.png");
 
 const bottomTab = {
   icon,
@@ -254,8 +254,24 @@ export async function setUnauthenticatedRoot(passProps: any = {}) {
   });
 }
 
-export async function showAppReviewModal() {
+const drawBehind = Platform.OS === "android" && Platform.Version >= 30;
+export const showYuModal = async <P>(props: Layout<P>) => {
   Navigation.showModal({
+    ...props,
+    component: {
+      ...props?.component,
+      options: {
+        ...props?.component?.options,
+        statusBar: {
+          drawBehind,
+        },
+      },
+    },
+  });
+};
+
+export async function showAppReviewModal() {
+  showYuModal({
     component: {
       id: MODALS.appReview,
       name: MODALS.appReview,
@@ -264,7 +280,7 @@ export async function showAppReviewModal() {
 }
 
 export async function showUpdateAppModal(heading: string, subheading: string) {
-  Navigation.showModal({
+  showYuModal({
     component: {
       id: MODALS.mobileUpdate,
       name: MODALS.mobileUpdate,

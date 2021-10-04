@@ -1,6 +1,6 @@
 import { GetCurrentUser_getCurrentUser_leaderboards as Leaderboard } from "@graphql/_core/schema";
 import { MODALS } from "@navigation/constants";
-import { Navigation } from "react-native-navigation";
+import { showYuModal } from "@navigation/root";
 import { call, select } from "redux-saga/effects";
 import { getRouteState } from "../../app/app.selectors";
 
@@ -12,7 +12,7 @@ export default function* showLeaderboardInvite(leaderboards: Leaderboard[]) {
 
     if (invitation) {
       yield call(() =>
-        Navigation.showModal({
+        showYuModal({
           component: {
             id: MODALS.leaderboardInvite,
             name: MODALS.leaderboardInvite,

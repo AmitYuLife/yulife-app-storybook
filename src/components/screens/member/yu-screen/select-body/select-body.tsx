@@ -12,6 +12,7 @@ import { MODALS, ROUTES } from "@navigation/constants";
 import Logger from "@services/logging/logger";
 import { Style } from "@styles";
 import { TEXT_TEMPLATE } from "@ids";
+import { showYuModal } from "@navigation/root";
 
 export type SelectedBody = "None" | "Male" | "Female";
 
@@ -118,7 +119,7 @@ const showExitModal = (isBackPressed: MutableRefObject<boolean>) => {
     isBackPressed.current = false;
   };
 
-  Navigation.showModal({
+  showYuModal({
     component: {
       id: MODALS.generic,
       name: MODALS.generic,

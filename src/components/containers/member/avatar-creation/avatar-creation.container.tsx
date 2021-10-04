@@ -28,6 +28,7 @@ import {
 } from "@graphql/yuscreen/GetYuliferWithAvatar.gql";
 import { transformAvatar } from "@screens/member/yu-screen/avatar-builder/avatar-builder.helper";
 import { Loading } from "@atoms";
+import { showYuModal } from "@navigation/root";
 
 interface IProps {
   componentId: string;
@@ -67,7 +68,7 @@ const AvatarCreationContainer: React.FC<Props> = (props) => {
         });
 
         if (response.data.updateUserAvatar?.rewarded) {
-          Navigation.showModal({
+          showYuModal({
             component: {
               id: MODALS.collectReward,
               name: MODALS.collectReward,

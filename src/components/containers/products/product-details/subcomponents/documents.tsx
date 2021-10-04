@@ -3,10 +3,10 @@ import { View, StyleSheet, ViewStyle } from "react-native";
 import { TextTemplate, TertiaryButton } from "@atoms";
 import { Style } from "@styles";
 import { BUTTON_ICON } from "@atoms/button/tertiary-button/tertiary-button.helpers";
-import { Navigation } from "react-native-navigation";
 import { MODALS } from "@navigation/constants";
 import ProductDetailsModal from "../product-details.modal";
 import { TEXT_TEMPLATE } from "@ids";
+import { showYuModal } from "@navigation/root";
 
 interface Props {
   modalProps: React.ComponentProps<typeof ProductDetailsModal>;
@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
 
 const showCertificateModal = (modalProps: Props["modalProps"]) => {
   return () =>
-    Navigation.showModal({
+    showYuModal({
       component: {
         id: MODALS.policyCertificate,
         name: MODALS.policyCertificate,

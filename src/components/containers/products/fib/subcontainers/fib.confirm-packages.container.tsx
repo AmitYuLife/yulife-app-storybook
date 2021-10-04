@@ -30,6 +30,7 @@ import { GQL_MUTATION_CREATE_TOP_UPS_QUOTE } from "@graphql/products";
 import { FIB_PAYOUT_CALCULATOR_INITIAL_STATE } from "./fib.payout-calculator.conainer";
 import { addCommasToNumber } from "@utils";
 import { formatMoney } from "@services/money";
+import { showYuModal } from "@navigation/root";
 
 type ConnectedState = ReturnType<typeof mapStateToProps>;
 
@@ -142,7 +143,7 @@ const FibConfirmPackagesContainer = memo(function (props: FibConfirmPackagesCont
   // End
 
   const navigateToExit = useCallback(async () => {
-    await Navigation.showModal({
+    await showYuModal({
       component: {
         id: MODALS.generic,
         name: MODALS.generic,

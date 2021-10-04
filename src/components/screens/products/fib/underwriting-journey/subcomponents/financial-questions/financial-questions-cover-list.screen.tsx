@@ -8,7 +8,6 @@ import { IFibUnderwritingJourneyScreenProps } from "../../fib.underwriting-journ
 import Footer from "../footer/footer";
 import { useSelector } from "react-redux";
 import { getFIBState } from "@redux/product/product.selectors";
-import { Navigation } from "react-native-navigation";
 import { MODALS } from "@navigation/constants";
 import { FINANCIAL_QUESTIONS_ICON } from "@atoms/fib/svg-assets/underwriting/svg-strings";
 import {
@@ -18,6 +17,7 @@ import {
 } from "@components/containers/products/fib/data/underwriting-journey-data";
 import { YugiType } from "../../../layouts/yugi";
 import { Cover } from "@components/containers/products/fib/fib.types";
+import { showYuModal } from "@navigation/root";
 
 type Props = IFibUnderwritingJourneyScreenProps;
 
@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
 
 export function showFinancialCoverOverlay(coverForm?: Cover) {
   return () => {
-    Navigation.showModal({
+    showYuModal({
       component: {
         id: MODALS.financialCoverForm,
         name: MODALS.financialCoverForm,

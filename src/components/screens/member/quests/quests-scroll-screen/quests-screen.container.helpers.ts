@@ -1,6 +1,7 @@
 import { GetQuestMapLevelList_getQuestMapLevelList } from "@graphql/_core/schema";
 import { Navigation } from "react-native-navigation";
 import { ROUTES, bottomTabs, MODALS } from "@navigation/constants";
+import { showYuModal } from "@navigation/root";
 
 const dismissChestModal = () => Navigation.dismissModal(MODALS.chest);
 
@@ -36,7 +37,7 @@ export const showChestModal = (
     headingIsNotNext: string;
   }
 ) =>
-  Navigation.showModal({
+  showYuModal({
     component: {
       id: MODALS.chest,
       name: MODALS.chest,
@@ -57,7 +58,7 @@ export const showChestModal = (
   });
 
 export const showChallengeUnavailableModal = (nextAvailableAt: string) =>
-  Navigation.showModal({
+  showYuModal({
     component: {
       id: MODALS.challengeUnavailable,
       name: MODALS.challengeUnavailable,
@@ -69,7 +70,7 @@ export const showChallengeUnavailableModal = (nextAvailableAt: string) =>
   });
 
 export const showLevelUnavailableModal = (level: number) =>
-  Navigation.showModal({
+  showYuModal({
     component: {
       id: MODALS.levelUnavailable,
       name: MODALS.levelUnavailable,

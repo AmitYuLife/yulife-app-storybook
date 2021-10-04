@@ -10,7 +10,7 @@ import { getCopy } from "@redux/copy/copy.selectors";
 import { getCurrentLevel } from "@redux/levels/levels.selectors";
 import Logger from "@services/logging/logger";
 import { RewardsListScreen } from "@screens/index";
-import { IMainTabsProps } from "@navigation/root";
+import { IMainTabsProps, showYuModal } from "@navigation/root";
 import { useQueryOnScreenSeenOnce } from "@services/hooks/useQueryOnScreenSeenOnce";
 import { PixelRatio } from "react-native";
 import { Style } from "@styles";
@@ -50,7 +50,7 @@ function RewardsListContainer(props: Props) {
           reward_name: reward.name,
         });
 
-        await Navigation.showModal({
+        await showYuModal({
           component: {
             id: MODALS.rewards,
             name: MODALS.rewards,

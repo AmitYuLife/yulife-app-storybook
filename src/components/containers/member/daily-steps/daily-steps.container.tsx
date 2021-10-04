@@ -1,10 +1,9 @@
 import { IntroContainer } from "@containers/index";
 import { MODALS } from "@navigation/constants";
-import { IMainTabsProps, labels } from "@navigation/root";
+import { IMainTabsProps, labels, showYuModal } from "@navigation/root";
 import { getShowIntro } from "@redux/onboarding/onboarding.selectors";
 import { useFitKit } from "@services/fitkit/fitkit.hooks";
 import React, { memo } from "react";
-import { Navigation } from "react-native-navigation";
 import { useDispatch, useSelector } from "react-redux";
 import { startDailySteps } from "@redux/daily-steps/daily-steps.actions";
 import { getDailyStepsIsFetching } from "@redux/daily-steps/daily-steps.selectors";
@@ -18,7 +17,7 @@ import { useTapBackTwiceToExit } from "@services/hooks/useTapBackTwiceToExit";
 type Props = IMainTabsProps;
 
 function navigateToTodayYuCoin() {
-  Navigation.showModal({
+  showYuModal({
     component: {
       id: MODALS.todayYucoin,
       name: MODALS.todayYucoin,

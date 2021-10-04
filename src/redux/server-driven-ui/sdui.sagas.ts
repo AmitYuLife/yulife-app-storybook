@@ -1,6 +1,6 @@
 import { SduiActionType } from "@graphql/_core/schema/globalTypes";
 import { MODALS } from "@navigation/constants";
-import { TAB_ROUTES } from "@navigation/root";
+import { showYuModal, TAB_ROUTES } from "@navigation/root";
 import { handleLinkPress } from "@services/app-link";
 import { Navigation } from "react-native-navigation";
 import { call, select, ActionPattern, takeEvery, takeLeading } from "redux-saga/effects";
@@ -25,7 +25,7 @@ function* navigateBack({ payload }: ProductStepAction) {
     };
 
     yield call(() =>
-      Navigation.showModal({
+      showYuModal({
         component: {
           id: MODALS.generic,
           name: MODALS.generic,

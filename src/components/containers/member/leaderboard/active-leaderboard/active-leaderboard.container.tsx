@@ -12,9 +12,8 @@ import { useQuery } from "@apollo/react-hooks";
 import { NetworkStatus } from "apollo-client";
 import { LeaderboardContentContainer } from "./leaderboard-content/leaderboard-content";
 import { LeaderboardSkeleton } from "./leaderboard-layout/subcomponents/leaderboard-skeleton/leaderboard-skeleton";
-import { Navigation } from "react-native-navigation";
 import { MODALS } from "@navigation/constants";
-import { IMainTabsProps } from "@navigation/root";
+import { IMainTabsProps, showYuModal } from "@navigation/root";
 import { useTapBackTwiceToExit } from "@services/hooks/useTapBackTwiceToExit";
 
 type OwnProps = IMainTabsProps;
@@ -61,7 +60,7 @@ const ActiveLeaderboardContainer = (props: Props) => {
   }, [activeLeaderboard, dispatch]);
 
   const openModal = useCallback(async () => {
-    await Navigation.showModal({
+    await showYuModal({
       component: {
         id: MODALS.leaderboardLean,
         name: MODALS.leaderboardLean,

@@ -12,6 +12,7 @@ import { MODALS, ROUTES } from "@navigation/constants";
 import Logger from "@services/logging/logger";
 import { Style } from "@styles";
 import { AvatarBodyType } from "@graphql/_core/schema/globalTypes";
+import { showYuModal } from "@navigation/root";
 
 interface IProps {
   onContinue: (bodyType: AvatarBodyType) => void;
@@ -107,7 +108,7 @@ const showExitModal = (isBackPressed: MutableRefObject<boolean>) => {
     isBackPressed.current = false;
   };
 
-  Navigation.showModal({
+  showYuModal({
     component: {
       id: MODALS.generic,
       name: MODALS.generic,

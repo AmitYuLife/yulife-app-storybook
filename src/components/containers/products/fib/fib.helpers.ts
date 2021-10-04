@@ -29,6 +29,7 @@ import { updateFIBValue } from "@redux/product/product.actions";
 import { FibAnswers } from "@redux/product/product.types";
 import { FIB_MEDICAL_THREE_OR_MORE_CONSULTATION_SCREEN_ID } from "./data/underwriting-journey-data";
 import { CoverType } from "@graphql/_core/schema/globalTypes";
+import { showYuModal } from "@navigation/root";
 
 export type FibButtonType = "firstButton" | "secondButton" | "previousButton";
 
@@ -359,7 +360,7 @@ export function useInternationalFormat(dayOrMonth: string): string {
 }
 
 export async function onUnderwritingClose() {
-  await Navigation.showModal({
+  await showYuModal({
     component: {
       id: MODALS.generic,
       name: MODALS.generic,

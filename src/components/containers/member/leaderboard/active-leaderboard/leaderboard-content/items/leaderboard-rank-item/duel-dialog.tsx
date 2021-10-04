@@ -1,7 +1,6 @@
 import React, { useEffect, memo, FC, useMemo, useCallback } from "react";
 import { Animated } from "react-native";
 import { styles } from "./duel-dialog.styles";
-import { Navigation } from "react-native-navigation";
 import { MODALS } from "@navigation/constants";
 import { Button } from "@atoms";
 import { GetDuels } from "@graphql/_core/schema";
@@ -12,6 +11,7 @@ import { DATE_FORMAT_WITH_TZ } from "@utils";
 import { showExistingDuelAlert } from "./duel-dialog.helpers";
 import moment from "moment";
 import { GQL_QUERY_GET_DUELS } from "@graphql/duels";
+import { showYuModal } from "@navigation/root";
 
 interface Props {
   id: string;
@@ -87,7 +87,7 @@ const _DuelDialog: FC<Props> = ({ id, index }) => {
   }, [duels, userId]);
 
   const navigateToDuelInvite = useCallback(async () => {
-    await Navigation.showModal({
+    await showYuModal({
       component: {
         id: MODALS.duelInvite,
         name: MODALS.duelInvite,
@@ -105,7 +105,7 @@ const _DuelDialog: FC<Props> = ({ id, index }) => {
     if (existingDuel) {
       const shouldShowDuelRespond = existingDuel.isOpponentInviter && existingDuel.status === "pending";
       if (shouldShowDuelRespond) {
-        await Navigation.showModal({
+        await showYuModal({
           component: {
             id: MODALS.duelRespond,
             name: MODALS.duelRespond,

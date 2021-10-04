@@ -15,6 +15,7 @@ import { MODALS, ROUTES } from "@navigation/constants";
 import { GQL_MUTATION_UPDATE_CUSTOMER_CONTACT_DETAILS } from "@graphql/products";
 import { UpdateContactDetails, UpdateContactDetailsVariables } from "@graphql/_core/schema/UpdateContactDetails";
 import { formatPostCode } from "@utils";
+import { showYuModal } from "@navigation/root";
 
 type ConnectedDispatch = typeof mapDispatchToProps;
 type ConnectedState = ReturnType<typeof mapStateToProps>;
@@ -116,7 +117,7 @@ const FibContactDetailsContainer = memo(function (props: Props) {
   };
 
   const onClose = useCallback(async () => {
-    await Navigation.showModal({
+    await showYuModal({
       component: {
         id: MODALS.generic,
         name: MODALS.generic,

@@ -28,6 +28,7 @@ import { FibGPDoctorSelect } from "@screens/products/fib/underwriting-journey/su
 import { ISearchItem } from "@atoms/search/search-item";
 import GPIntro from "@components/screens/products/fib/underwriting-journey/subcomponents/gp-details/fib.gp-intro";
 import { useBackHandler } from "@services/hooks/useBackHandler";
+import { showYuModal } from "@navigation/root";
 interface IFibGPDetailsContainerProps {
   navigation: FibLocalNavigation;
 }
@@ -155,7 +156,7 @@ const FibGPDetailsContainer = memo(function (props: IFibGPDetailsContainerProps 
   ]);
 
   const handleOnClose = useCallback(async () => {
-    await Navigation.showModal({
+    await showYuModal({
       component: {
         id: MODALS.generic,
         name: MODALS.generic,

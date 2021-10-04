@@ -1,5 +1,6 @@
 import { Navigation } from "react-native-navigation";
 import { MODALS } from "@navigation/constants";
+import { showYuModal } from "@navigation/root";
 
 export function removeByIndex<T>(arr: T[], index: number) {
   const slice = arr.slice();
@@ -8,7 +9,7 @@ export function removeByIndex<T>(arr: T[], index: number) {
 }
 
 export function openModal(removeItem: () => void) {
-  return Navigation.showModal({
+  return showYuModal({
     component: {
       id: MODALS.genericOverlay,
       name: MODALS.genericOverlay,

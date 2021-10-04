@@ -16,6 +16,7 @@ import { getLastUpdatedBeforeToday as getMeditationLastUpdatedBeforeToday } from
 import { stepsSinceLastUpdateSuccess } from "../../daily-steps/daily-steps.actions";
 import { getUserFeatures } from "../../user/user.selectors";
 import { IFeature } from "../../user/user.reducer";
+import { showYuModal } from "@navigation/root";
 
 type HistoricalData = AddHistoricalSteps_addHistoricalSteps;
 
@@ -161,7 +162,7 @@ export default function* sendPassiveActivity(): SendPassiveActivityGenerator {
         const date = firstDay !== lastDay ? `${firstDay} - ${lastDay}` : firstDay;
 
         yield call(() => {
-          Navigation.showModal({
+          showYuModal({
             component: {
               id: MODALS.collectReward,
               name: MODALS.collectReward,

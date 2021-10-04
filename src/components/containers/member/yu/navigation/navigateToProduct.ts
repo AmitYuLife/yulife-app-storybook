@@ -3,7 +3,7 @@ import { YuProductStatus } from "@graphql/_core/schema/globalTypes";
 import { MODALS, ROUTES } from "@navigation/constants";
 import { normalisePersonalProductStep } from "@graphql/personalProduct";
 import Logger from "@services/logging/logger";
-import { drawBehindModal } from "@navigation/utils";
+import { showYuModal } from "@navigation/root";
 
 interface INavigateToProduct {
   status: YuProductStatus;
@@ -24,15 +24,10 @@ export const navigateToProduct = async (product: INavigateToProduct) => {
   }
 
   if (nextModalId) {
-    return await Navigation.showModal({
+    return await showYuModal({
       component: {
         id: nextModalId,
         name: nextModalId,
-        options: {
-          statusBar: {
-            drawBehind: drawBehindModal,
-          },
-        },
         passProps: {
           productId,
         },

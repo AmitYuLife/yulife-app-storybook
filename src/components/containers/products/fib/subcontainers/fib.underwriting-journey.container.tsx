@@ -55,6 +55,7 @@ import { CoverType } from "@graphql/_core/schema/globalTypes";
 import { getTerm, calculateSumAssured } from "../fib.helpers";
 import { handleOpenWebView } from "@navigation/utils";
 import Logger from "@services/logging/logger";
+import { showYuModal } from "@navigation/root";
 
 type ConnectedProps = ReturnType<typeof mapStateToProps>;
 type ConnecteDispatch = typeof mapDispatchToProps;
@@ -394,7 +395,7 @@ const _FibUnderwritingJourneyContainer = memo(function (props: Props) {
   const isFooterInList = currentQuestion.isFooterInList;
 
   const onNavigateBackHandler = useCallback(async () => {
-    await Navigation.showModal({
+    await showYuModal({
       component: {
         id: MODALS.generic,
         name: MODALS.generic,

@@ -20,12 +20,13 @@ import {
 } from "@graphql/_core/schema";
 import Logger from "@services/logging/logger";
 import { ScrollPickerModal } from "@components/modals";
+import { showYuModal } from "@navigation/root";
 interface IOwnProps {
   componentId: string;
 }
 
 function handleCreateNewLeaderboard() {
-  Navigation.showModal({
+  showYuModal({
     component: {
       id: MODALS.createLeaderboard,
       name: MODALS.createLeaderboard,
@@ -101,7 +102,7 @@ function SettingsContainer({ componentId }: IOwnProps) {
   const handleConnectionInfoPress = React.useCallback(
     (c: Connection) => () => {
       const { heading, subheading, ctaLabel } = settingsCopy;
-      Navigation.showModal({
+      showYuModal({
         component: {
           id: MODALS.info,
           name: MODALS.info,

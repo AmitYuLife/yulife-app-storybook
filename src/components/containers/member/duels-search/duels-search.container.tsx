@@ -25,6 +25,7 @@ import { showExistingDuelAlert } from "../leaderboard/active-leaderboard/leaderb
 import { useBackHandler } from "@services/hooks/useBackHandler";
 import { SearchInput, SearchList } from "@atoms";
 import DuelsSearchItem from "./subcomponents/search-item";
+import { showYuModal } from "@navigation/root";
 
 export interface SearchedOpponent extends SearchForDuelOpponent_searchForDuelOpponent {
   onPress: () => Promise<void>;
@@ -43,7 +44,7 @@ function keyExtractor(item: SearchedOpponent, index: number) {
 const DEBOUNCE = 750;
 
 const inviteToDuel = async (opponentId: string, requestLocation: "search_list" | "recents") => {
-  await Navigation.showModal({
+  await showYuModal({
     component: {
       id: MODALS.duelInvite,
       name: MODALS.duelInvite,
@@ -57,7 +58,7 @@ const inviteToDuel = async (opponentId: string, requestLocation: "search_list" |
 };
 
 const showDuelRespond = async (duelId: string, requestLocation: "search_list" | "recents") => {
-  await Navigation.showModal({
+  await showYuModal({
     component: {
       id: MODALS.duelRespond,
       name: MODALS.duelRespond,
