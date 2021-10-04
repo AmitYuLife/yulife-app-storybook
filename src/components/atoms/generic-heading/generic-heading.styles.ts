@@ -1,5 +1,5 @@
 import { StyleSheet, TextStyle, ViewStyle, Platform } from "react-native";
-import { Colours, Style, TOP_BAR } from "@styles";
+import { Style, TOP_BAR } from "@styles";
 import media from "@styles/media";
 
 export const TOP_BAR_HEIGHT = TOP_BAR.HEIGHT + TOP_BAR.PADDING_TOP + TOP_BAR.PADDING_BOTTOM;
@@ -31,13 +31,6 @@ const styles = StyleSheet.create({
   relative: { position: "relative" } as ViewStyle,
   logoBetaWrapper: { position: "absolute", left: 24 } as ViewStyle,
   headingBetaWrapper: { position: "absolute", right: -38 } as ViewStyle,
-  heading: {
-    color: Colours.products.fib.n900,
-    letterSpacing: 1,
-    fontSize: Style.adjust(20),
-    lineHeight: Style.adjust(24),
-    fontFamily: Style.FONT_FAMILY_PRIMARY_BOLD,
-  } as TextStyle,
   rightIconWrapper: { flex: 0.2, alignSelf: "center" } as ViewStyle,
   rightIconTouchable: { alignSelf: "flex-end" },
   rightIconText: {

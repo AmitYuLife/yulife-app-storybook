@@ -2,12 +2,12 @@ import React from "react";
 import { View } from "react-native";
 import styles from "./generic-heading.styles";
 import { IGenericHeadingProps } from "./generic-heading.types";
-import { Heading } from "./subcomponents/heading";
 import { Logo } from "./subcomponents/logo";
 import { Beta } from "./subcomponents/beta";
 import { BUTTON_CLOSE_HEADER } from "@ids";
 import GenericHeaderRightIcon from "./subcomponents/generic-header-right-icon";
 import GenericHeaderLeftIcon from "./subcomponents/generic-header-left-icon";
+import { TextTemplate } from "@atoms";
 
 function GenericHeading(props: IGenericHeadingProps) {
   const { heading, onLeftIconPress, onRightIconPress, leftIcon = "BACK", rightIcon = "CLOSE", isBeta, logo } = props;
@@ -29,7 +29,9 @@ function GenericHeading(props: IGenericHeadingProps) {
       ) : (
         <View style={styles.centerWrapper}>
           <View style={styles.relative}>
-            <Heading heading={heading} style={styles.heading} />
+            <TextTemplate numberOfLines={1} type="b1b">
+              {heading}
+            </TextTemplate>
             <View style={styles.headingBetaWrapper}>
               <Beta show={isBeta} />
             </View>
