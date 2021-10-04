@@ -8,9 +8,9 @@ export const GQL_MUTATION_SUBMIT_PERSONAL_PRODUCT_STEP = gql`
   }
 `;
 
-export const submitPersonalProductStep = (variables: SubmitPersonalProductStepVariables) =>
+export const submitPersonalProductStep = (variables: SubmitPersonalProductStepVariables, refetchQueries: string[]) =>
   client().mutate<SubmitPersonalProductStep>({
     mutation: GQL_MUTATION_SUBMIT_PERSONAL_PRODUCT_STEP,
     variables,
-    refetchQueries: ["GetPersonalProductStep", "YuScreenProductSlots"],
+    refetchQueries,
   });
