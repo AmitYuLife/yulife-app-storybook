@@ -2,6 +2,7 @@ import { Navigation } from "react-native-navigation";
 import { MODALS, ROUTES } from "./constants";
 import { WebViewContainerProps } from "@components/containers/web-view/web-view.container";
 import Logger from "@services/logging/logger";
+import { Platform } from "react-native";
 
 export function handleNavigateBack(componentId: string) {
   return function () {
@@ -34,6 +35,8 @@ export function handleNavigateToQuestsTab() {
     },
   });
 }
+
+export const drawBehindModal = Platform.OS === "android" && Platform.Version >= 30;
 
 export function showGenericModal(
   heading: string,
