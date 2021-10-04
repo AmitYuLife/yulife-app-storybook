@@ -23,7 +23,7 @@ const YumojiBuilder: FC<IProps> = ({ state, dispatch, onBackPressed, updateAvata
   const categoryProps = useMemo(() => {
     const category =
       state?.selectedCategoryId &&
-      state.categories?.find(
+      state.categories?.items.find(
         (cat) =>
           cat.id === state.selectedCategoryId ||
           cat.children?.some((childCat) => childCat.id === state.selectedCategoryId)
@@ -62,7 +62,8 @@ const YumojiBuilder: FC<IProps> = ({ state, dispatch, onBackPressed, updateAvata
           />
         </View>
         <YumojiBuilderCategories
-          categories={state.categories}
+          categories={state.categories.items}
+          loading={state.categories.loading}
           selectedCategoryId={state.selectedCategoryId}
           onPress={onPress}
         />
