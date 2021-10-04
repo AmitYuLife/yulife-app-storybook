@@ -30,7 +30,7 @@ export const GpSearchList = memo(
     return (
       <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : null} style={styles.searchListWrapper}>
         {data.map((x) => (
-          <View key={x.name}>{searchItem({ item: x, index: x.name, separators: null })}</View>
+          <View key={x.organisationCode}>{searchItem({ item: x, index: x.organisationCode, separators: null })}</View>
         ))}
         {emptyComponent()}
       </KeyboardAvoidingView>
