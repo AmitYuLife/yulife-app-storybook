@@ -9,6 +9,7 @@ import { ProductStepContext } from "../product-step.context";
 import { SduiActionType } from "@graphql/_core/schema/globalTypes";
 import { useDispatch } from "react-redux";
 import { useDynamicOnChange } from "../hooks/useDynamicOnChange";
+import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 
 type Props = GqlGpDetails;
 
@@ -40,6 +41,8 @@ export const ProductStepContentItemGpDetails = memo((props: Props) => {
         type: dispatchType,
         payload: { dynamicData: data, stepId, productId },
       });
+
+      dispatch(logMixpanelEventActionCreator("checkout_details_submitted", { type: "gp", cs_product: productId }));
     },
     [productId, stepId, dispatch]
   );

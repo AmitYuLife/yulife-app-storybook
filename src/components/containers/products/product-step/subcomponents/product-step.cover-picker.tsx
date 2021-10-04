@@ -78,6 +78,7 @@ export const ProductStepCoverPicker = memo((props: Props) => {
         <ContentItemButton
           {...customCover.button}
           onPress={() => {
+            dispatch(logMixpanelEventActionCreator("customer_cover_viewed", { cs_product: productId }));
             setTitle(customCover.title);
             setIsCustom(true);
           }}

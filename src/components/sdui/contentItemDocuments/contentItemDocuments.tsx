@@ -1,12 +1,14 @@
 import { Image, TertiaryButton, YugiHeader } from "@atoms";
 import { Style } from "@styles";
 import React, { memo } from "react";
+import { useDispatch } from "react-redux";
 import {
   GetPersonalProductStepDetachedDocuments_getPersonalProductStepDetachedDocuments_body_ContentItemPersonalProductDocuments as GqlDocuments,
   GetPersonalProductStepDetachedDocuments_getPersonalProductStepDetachedDocuments_body_ContentItemPersonalProductDocuments_documents as GqlDocument,
 } from "@graphql/_core/schema";
 import { Linking, Platform, ScrollView, StyleSheet, View, ViewStyle } from "react-native";
 import { handleOpenWebView } from "@navigation/utils";
+import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 import Logger from "@services/logging/logger";
 
 type Props = GqlDocuments;
@@ -14,11 +16,20 @@ type Props = GqlDocuments;
 export const ContentItemDocuments = memo((props: Props) => {
   const { documents, headingMarkdown, headingImage } = props;
 
+  const dispatch = useDispatch();
+
   const onPress = async (document: GqlDocument) => {
     try {
       Platform.OS === "ios"
         ? handleOpenWebView({ uri: document.url, title: document.linkLabel })
         : await Linking.openURL(document.url);
+
+      dispatch(
+        logMixpanelEventActionCreator("document_viewed", {
+          document_id: document.id,
+          document_name: document.linkLabel,
+        })
+      );
     } catch (e) {
       Logger.error(e, {
         documentId: document.id,
