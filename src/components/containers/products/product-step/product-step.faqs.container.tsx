@@ -1,21 +1,25 @@
 import React, { memo, useState } from "react";
 import { ActivityIndicator, StyleSheet, View, ViewStyle, ScrollView, LayoutChangeEvent } from "react-native";
+import { useDispatch } from "react-redux";
 import { useQuery } from "@apollo/react-hooks";
+import { ContentItemFaqs } from "@components/sdui";
 import { GQL_QUERY_GET_PERSONAL_PRODUCT_STEP_DETACHED_FAQS } from "@graphql/personalProduct/getPersonalProductStepDetachedFaqs.gql";
 import { GetPersonalProductStepDetachedFaqs_getPersonalProductStepDetachedFaqs_body as GPPSSQ_Body } from "@graphql/_core/schema";
 import { GetPersonalProductStepDetachedFaqs, GetPersonalProductStepDetachedFaqsVariables } from "@graphql/_core/schema";
+import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 import { ProductStepFaqsContext } from "./product-step.faqs.context";
 import { ProductStepContentItemHeaderDetached } from "./subcomponents/detached/product-step.header.detached";
 import { SduiActionType } from "@graphql/_core/schema/globalTypes";
-import { ContentItemFaqs } from "@components/sdui";
 import { Colours, Style, TOP_BAR } from "@styles";
 
 const HEADER_HEIGHT_ESTIMATE = TOP_BAR.TOP_BAR_WITH_PAD;
 
 const ProductStepDetachedContainer = (props: any) => {
   const { stepId, productId } = props;
-  const [headerHeight, setHeaderHeight] = useState(HEADER_HEIGHT_ESTIMATE);
 
+  const dispatch = useDispatch();
+
+  const [headerHeight, setHeaderHeight] = useState(HEADER_HEIGHT_ESTIMATE);
   const [currentStepId, setCurrentStepId] = useState(stepId);
   const [history, setHistory] = useState([] as string[]);
   const [nestedHistory, setNestedHistory] = useState([] as string[]);
@@ -26,6 +30,7 @@ const ProductStepDetachedContainer = (props: any) => {
   };
 
   const pushNestedHistory = (internalStep: string) => {
+    dispatch(logMixpanelEventActionCreator("faq_viewed", { faq_id: internalStep }));
     setNestedHistory((state) => [...state, internalStep]);
   };
 

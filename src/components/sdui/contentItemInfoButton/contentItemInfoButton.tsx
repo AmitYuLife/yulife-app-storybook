@@ -5,6 +5,7 @@ import { Image, TextTemplate } from "@atoms";
 import { PressableWithDelay } from "@components/molecules";
 import { StyleSheet, View, ViewStyle } from "react-native";
 import { Colours, Style } from "@styles";
+import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 
 type Props = Omit<GqlInfoButton, "onPress" | "answerKeys"> & {
   additionalInfo?: string;
@@ -14,7 +15,7 @@ type Props = Omit<GqlInfoButton, "onPress" | "answerKeys"> & {
 const ICON_IMAGE_SIZE = Style.adjust(24);
 
 export const ContentItemInfoButton = memo((props: Props) => {
-  const { label, onPress, infoBtnLeftIcon, infoBtnRightIcon, active, additionalInfo } = props;
+  const { id, label, onPress, infoBtnLeftIcon, infoBtnRightIcon, active, additionalInfo } = props;
   const dispatch = useDispatch();
 
   const handlePress = useCallback(() => {
@@ -23,6 +24,8 @@ export const ContentItemInfoButton = memo((props: Props) => {
     } else if (onPress?.type) {
       dispatch(onPress);
     }
+
+    dispatch(logMixpanelEventActionCreator("button_pressed", { button_id: id }));
   }, [onPress, dispatch]);
 
   const isPrompt = !additionalInfo;
