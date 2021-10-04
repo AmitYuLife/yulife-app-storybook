@@ -6,14 +6,16 @@ import {
   GetYumojiBuilderCategoryList_getYumojiBuilderCategoryList as YumojiBuilderCategoryList,
   GetYumojiBuilderCategoryList_getYumojiBuilderCategoryList_children as CategoryListChildren,
 } from "@graphql/_core/schema";
+import { SkeletonLoading } from "@atoms";
 
 interface Props {
   categories: YumojiBuilderCategoryList[];
+  loading: boolean;
   selectedCategoryId: string;
   onPress: (id: string, matchType: string, children?: CategoryListChildren) => void;
 }
 
-const YumojiBuilderCategories: FC<Props> = ({ categories, selectedCategoryId, onPress }) => {
+const YumojiBuilderCategories: FC<Props> = ({ categories, loading, selectedCategoryId, onPress }) => {
   const [categoryDetails, setCategoryDetails] = useState({ parentId: null, hasChildren: false });
   const scrollViewRef = useRef<ScrollView | null>(null);
 
@@ -26,50 +28,64 @@ const YumojiBuilderCategories: FC<Props> = ({ categories, selectedCategoryId, on
         showsHorizontalScrollIndicator={false}
         ref={scrollViewRef}
       >
-        {categories.map((category) => {
-          const showChildren = categoryDetails.hasChildren && categoryDetails.parentId === category.id;
-          const isParentSelected = category.id === selectedCategoryId;
-          return (
-            <View
-              key={category.id}
-              style={isParentSelected || showChildren ? styles.bodyItemWrapperSelected : styles.bodyItemWrapper}
-            >
-              <YumojiBuilderCategory
-                category={category}
-                onPress={(id, matchType) => {
-                  if (isParentSelected) {
-                    return;
-                  }
+        {loading ? (
+          <CategoriesSkeleton />
+        ) : (
+          categories.map((category) => {
+            const showChildren = categoryDetails.hasChildren && categoryDetails.parentId === category.id;
+            const isParentSelected = category.id === selectedCategoryId;
+            return (
+              <View
+                key={category.id}
+                style={isParentSelected || showChildren ? styles.bodyItemWrapperSelected : styles.bodyItemWrapper}
+              >
+                <YumojiBuilderCategory
+                  category={category}
+                  onPress={(id, matchType) => {
+                    if (isParentSelected) {
+                      return;
+                    }
 
-                  setCategoryDetails({ hasChildren: !!category?.children?.length, parentId: id });
-                  onPress(id, matchType);
-                }}
-                isSelected={isParentSelected}
-              />
+                    setCategoryDetails({ hasChildren: !!category?.children?.length, parentId: id });
+                    onPress(id, matchType);
+                  }}
+                  isSelected={isParentSelected}
+                />
 
-              {showChildren
-                ? category?.children?.map((child) => (
-                    <View key={child.id} style={styles.categoryChildren}>
-                      <YumojiBuilderCategory
-                        category={child}
-                        onPress={(id, matchType) => {
-                          if (child.id === selectedCategoryId) {
-                            return;
-                          }
+                {showChildren
+                  ? category?.children?.map((child) => (
+                      <View key={child.id} style={styles.categoryChildren}>
+                        <YumojiBuilderCategory
+                          category={child}
+                          onPress={(id, matchType) => {
+                            if (child.id === selectedCategoryId) {
+                              return;
+                            }
 
-                          setCategoryDetails({ ...categoryDetails });
-                          onPress(id, matchType, child);
-                        }}
-                        isSelected={child.id === selectedCategoryId}
-                      />
-                    </View>
-                  ))
-                : null}
-            </View>
-          );
-        })}
+                            setCategoryDetails({ ...categoryDetails });
+                            onPress(id, matchType, child);
+                          }}
+                          isSelected={child.id === selectedCategoryId}
+                        />
+                      </View>
+                    ))
+                  : null}
+              </View>
+            );
+          })
+        )}
       </ScrollView>
     </View>
+  );
+};
+
+const CategoriesSkeleton = () => {
+  return (
+    <>
+      {Array.from({ length: 6 }).map((_, index) => (
+        <SkeletonLoading key={index} style={styles.skeleton} />
+      ))}
+    </>
   );
 };
 
@@ -112,8 +128,14 @@ const styles = StyleSheet.create({
   } as ViewStyle,
   bodyItemWrapperSelected: {
     ...defaultStyles,
-    borderRadius: Style.adjust(30),
+    borderRadius: 30,
     backgroundColor: Colours.primary.p50,
+  } as ViewStyle,
+  skeleton: {
+    ...defaultStyles,
+    width: Style.adjust(48),
+    height: Style.adjust(48),
+    borderRadius: 30,
   } as ViewStyle,
 });
 

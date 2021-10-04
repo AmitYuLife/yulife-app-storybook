@@ -23,7 +23,10 @@ export type IDispatch = ({ type, payload }: IAction) => void;
 export interface IState {
   parts: IParts;
   partId: string;
-  categories: YumojiBuilderCategoryList[];
+  categories: {
+    items: YumojiBuilderCategoryList[];
+    loading: boolean;
+  };
   itemList: IItemList;
   selectedCategoryId: string;
   matchType: string;
@@ -70,7 +73,10 @@ const transformItems = (items: ItemListItems[], yumojiParts: IParts, matchType: 
 export const INITIAL_STATE: IState = {
   parts: {},
   partId: "",
-  categories: [],
+  categories: {
+    items: [],
+    loading: true,
+  },
   itemList: {
     title: "",
     items: [],
@@ -127,7 +133,10 @@ export const reducer = (state: IState, action: IAction) => {
       const firstCategory = action.payload[0];
       return {
         ...state,
-        categories: action.payload,
+        categories: {
+          items: action.payload,
+          loading: false,
+        },
         selectedCategoryId: firstCategory.id,
         matchType: firstCategory.matchType,
       };
@@ -163,8 +172,8 @@ export const reducer = (state: IState, action: IAction) => {
       return {
         ...state,
         bodySelected: false,
-        selectedCategoryId: state.categories[0]?.id,
-        matchType: state.categories[0]?.matchType,
+        selectedCategoryId: state.categories.items[0]?.id,
+        matchType: state.categories.items[0]?.matchType,
       };
     }
 
