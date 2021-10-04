@@ -19429,6 +19429,12 @@
             "deprecationReason": null
           },
           {
+            "name": "SDUI_ACTION_PRODUCT_UNDERWRITING_STEP_FINISH",
+            "description": "Product UW specific step: Finishes the journey",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "SDUI_ACTION_PRODUCT_UNDERWRITING_STEP_POP",
             "description": "Product UW specific step: Gets previous step, accepts current StepId as payload",
             "isDeprecated": false,
@@ -23767,7 +23773,7 @@
             "args": [],
             "type": {
               "kind": "SCALAR",
-              "name": "Int",
+              "name": "Float",
               "ofType": null
             },
             "isDeprecated": false,
@@ -23933,7 +23939,7 @@
             "args": [],
             "type": {
               "kind": "SCALAR",
-              "name": "Int",
+              "name": "Float",
               "ofType": null
             },
             "isDeprecated": false,

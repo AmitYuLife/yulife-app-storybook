@@ -117,17 +117,44 @@ function* popStep(action: ProductStepAction) {
   }
 }
 
+function* finishStepJourney(action: ProductStepAction) {
+  const { productId, stepId, dynamicData, serverPayload } = action.payload;
+  const { isValid, data } = parseJSON(serverPayload);
+  const serverDynamicData = isValid ? data : {};
+
+  const currentRoute: ReturnType<typeof getRouteState> = yield select(getRouteState);
+
+  try {
+    yield call(
+      submitPersonalProductStep,
+      {
+        productId,
+        stepId,
+        data: JSON.stringify({ ...serverDynamicData, ...dynamicData }),
+      },
+      ["YuScreenProductSlots"]
+    );
+    yield call(() => Navigation.pop(currentRoute));
+  } catch (e) {
+    // shrug (log)
+  }
+}
+
 function* pushStep(action: ProductStepAction) {
   const { productId, stepId, dynamicData, serverPayload } = action.payload;
   const { isValid, data } = parseJSON(serverPayload);
   const serverDynamicData = isValid ? data : {};
 
   try {
-    yield call(submitPersonalProductStep, {
-      productId,
-      stepId,
-      data: JSON.stringify({ ...serverDynamicData, ...dynamicData }),
-    });
+    yield call(
+      submitPersonalProductStep,
+      {
+        productId,
+        stepId,
+        data: JSON.stringify({ ...serverDynamicData, ...dynamicData }),
+      },
+      ["GetPersonalProductStep", "YuScreenProductSlots"]
+    );
   } catch (e) {
     // shrug (log)
   }
@@ -147,6 +174,7 @@ export default [
   takeLeading(SduiActionType.SDUI_ACTION_SET_BOTTOM_TAB as ActionPattern, setBottomTab),
   takeLeading(SduiActionType.SDUI_ACTION_OPEN_URL as ActionPattern, openUrl),
   takeLeading(SduiActionType.SDUI_ACTION_PRODUCT_UNDERWRITING_STEP_POP as ActionPattern, popStep),
+  takeLeading(SduiActionType.SDUI_ACTION_PRODUCT_UNDERWRITING_STEP_FINISH as ActionPattern, finishStepJourney),
   takeLeading(SduiActionType.SDUI_ACTION_PRODUCT_UNDERWRITING_STEP_PUSH as ActionPattern, pushStep),
   takeEvery(SduiActionType.SDUI_ACTION_LOG_EVENT as ActionPattern, logEvent),
 ];
