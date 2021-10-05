@@ -26,7 +26,7 @@ const previewSize = boxWidth - Style.adjust(8);
 
 export const YumojiItem = memo(
   ({ item, loading, onItemPress }: IProps) => {
-    const [partsLoading, setPartsLoading] = useState(item?.parts?.length || 0);
+    const [partsLoading, setPartsLoading] = useState(item?.parts?.filter((part) => part?.remoteUrl?.uri).length || 0);
     const onPress = useCallback(() => {
       onItemPress(item);
     }, []);
@@ -35,7 +35,7 @@ export const YumojiItem = memo(
       return (
         <View style={styles.hiddenImageStyle}>
           {item?.parts
-            ?.filter((item) => item?.remoteUrl?.uri)
+            ?.filter((loadingItem) => loadingItem?.remoteUrl?.uri)
             ?.map(({ remoteUrl: { uri } }) => (
               <FastImage
                 onLoad={() => {
