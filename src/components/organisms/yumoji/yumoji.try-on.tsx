@@ -1,6 +1,6 @@
 import React, { memo, useEffect, useState, useCallback } from "react";
 import { LayoutChangeEvent, StyleSheet, View } from "react-native";
-import FastImage from "react-native-fast-image";
+import { Source } from "react-native-fast-image";
 import { useDispatch } from "react-redux";
 import { useMutation, useQuery } from "@apollo/react-hooks";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
@@ -22,6 +22,7 @@ import {
 import { Yumoji } from "./yumoji";
 import { GQL_MUTATION_PERFORM_MOBILE_ONBOARDING_STEP } from "@graphql/onboardingSteps/performMobileOnboardingStep.gql";
 import Logger from "@services/logging/logger";
+import { cache } from "@services/image";
 
 type Props = {
   coverType: CoverType;
@@ -51,6 +52,18 @@ function _TryOnYumojiPart({ customerProductId, coverType = CoverType.common, onC
     {
       variables: { customerProductId, coverType },
       fetchPolicy: "no-cache",
+      onCompleted: (data) => {
+        cache(
+          data.getYumojiRemoteFittingRoom.yuWorlds
+            .map((world) => world.yumojiParts)
+            .reduce((allImages, worldImages) => {
+              allImages.push(
+                ...worldImages.filter((img) => img?.remoteUrl?.uri).map((img) => ({ uri: img.remoteUrl.uri }))
+              );
+              return allImages;
+            }, [] as Source[])
+        );
+      },
     }
   );
 
@@ -71,8 +84,6 @@ function _TryOnYumojiPart({ customerProductId, coverType = CoverType.common, onC
     if (!yuWorld) {
       return;
     }
-
-    FastImage.preload(yuWorld.yumojiParts.map((p) => p.remoteUrl));
 
     const newPartialAvatar = yuWorld.yumojiParts.reduce((acc, part) => {
       acc[part.partType] = part;
