@@ -10,3 +10,13 @@ export const onStartStreak = async () => {
         await expect(element(by.text(i))).toBeVisible()
     };
 }
+
+export const onStartStreakFromHome = async () => {
+    const title = `Start your Streak`
+    const challengeCTA = "Take a challenge"
+    const texts = [title, challengeCTA]
+
+    for (const i of texts) {
+        await expect(element(by.text(i))).toBeVisible()
+    };
+}
