@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import React, { memo, useCallback, useMemo, useState } from "react";
 import { View, StyleSheet, ViewStyle } from "react-native";
 import { BoxOption, SkeletonLoading } from "@atoms";
 import { CroppedImage } from "./croppedImage";
@@ -6,6 +6,8 @@ import ColorPreview from "./colorPreview";
 import { YumojiItemLabel } from "./yumoji-item-label";
 import { Colours, Style } from "@styles";
 import { GetYumojiBuilderItemsForCategory_getYumojiBuilderItemsForCategory_items as YumojiBuilderItemsForCategoryItems } from "@graphql/_core/schema";
+import { shallowEqual } from "react-redux";
+import FastImage from "react-native-fast-image";
 
 export interface ItemListItems extends YumojiBuilderItemsForCategoryItems {
   isSelected: boolean;
@@ -22,47 +24,75 @@ const labelWidth = boxWidth * 0.84;
 const boxHeight = boxWidth + Style.adjust(2);
 const previewSize = boxWidth - Style.adjust(8);
 
-export const YumojiItem = memo(({ item, loading, onItemPress }: IProps) => {
-  return (
-    <View style={styles.itemWrapper}>
-      {loading ? (
-        <SkeletonLoading style={{ width: boxWidth, height: boxHeight }} />
-      ) : (
-        <BoxOption
-          onPress={() => onItemPress(item)}
-          isSelected={item.isSelected}
-          selectedStyle={styles.itemSelected}
-          innerHeight={boxHeight}
-        >
-          <View style={styles.itemPadding}>
-            {item?.representativeColor ? (
-              <ColorPreview color={item?.representativeColor} size={previewSize} />
-            ) : (
-              <CroppedImage
-                source={item?.preview?.image}
-                transform={item?.preview?.transform}
-                containerHeight={previewSize}
-                containerWidth={previewSize}
+export const YumojiItem = memo(
+  ({ item, loading, onItemPress }: IProps) => {
+    const [partsLoading, setPartsLoading] = useState(item?.parts?.length || 0);
+    const onPress = useCallback(() => {
+      onItemPress(item);
+    }, []);
+
+    const partLoader = useMemo(() => {
+      return (
+        <View style={styles.hiddenImageStyle}>
+          {item?.parts
+            ?.filter((item) => item?.remoteUrl?.uri)
+            ?.map(({ remoteUrl: { uri } }) => (
+              <FastImage
+                onLoad={() => {
+                  setPartsLoading((stillLoading) => stillLoading - 1);
+                }}
+                key={uri}
+                source={{ uri }}
               />
-            )}
-            {!item.label ? null : (
-              <View style={styles.labelWrapper}>
-                <YumojiItemLabel
-                  label={item?.label.text}
-                  icon={item?.label.icon.uri}
-                  width={labelWidth}
-                  labelColor={item?.label.labelColor}
-                  backgroundColor={item?.label.backgroundColor}
-                  borderColor={item?.label.borderColor}
+            ))}
+        </View>
+      );
+    }, [item?.parts]);
+
+    return (
+      <View style={styles.itemWrapper}>
+        {loading || partsLoading ? (
+          <SkeletonLoading style={{ width: boxWidth, height: boxHeight }} />
+        ) : (
+          <BoxOption
+            onPress={onPress}
+            isSelected={item.isSelected}
+            selectedStyle={styles.itemSelected}
+            innerHeight={boxHeight}
+          >
+            <View style={styles.itemPadding}>
+              {item?.representativeColor ? (
+                <ColorPreview color={item?.representativeColor} size={previewSize} />
+              ) : (
+                <CroppedImage
+                  source={item?.preview?.image}
+                  transform={item?.preview?.transform}
+                  containerHeight={previewSize}
+                  containerWidth={previewSize}
                 />
-              </View>
-            )}
-          </View>
-        </BoxOption>
-      )}
-    </View>
-  );
-});
+              )}
+              {!item.label ? null : (
+                <View style={styles.labelWrapper}>
+                  <YumojiItemLabel
+                    label={item?.label.text}
+                    icon={item?.label.icon.uri}
+                    width={labelWidth}
+                    labelColor={item?.label.labelColor}
+                    backgroundColor={item?.label.backgroundColor}
+                    borderColor={item?.label.borderColor}
+                  />
+                </View>
+              )}
+            </View>
+          </BoxOption>
+        )}
+        {partLoader}
+      </View>
+    );
+  },
+  ({ item: prevItem, ...prevProps }, { item: nextItem, ...nextProp }) =>
+    shallowEqual(prevProps, nextProp) && shallowEqual(prevItem, nextItem)
+);
 
 const styles = StyleSheet.create({
   itemWrapper: {
@@ -79,5 +109,13 @@ const styles = StyleSheet.create({
   labelWrapper: {
     position: "absolute",
     bottom: Style.adjust(8),
+  },
+  // has to be at least
+  // little visible for android to render it
+  hiddenImageStyle: {
+    position: "absolute",
+    width: 1,
+    height: 1,
+    opacity: 0.1,
   },
 });

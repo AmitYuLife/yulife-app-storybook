@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState, useRef, MutableRefObject } from "react";
+import React, { useCallback, useEffect, useState, useRef, MutableRefObject, memo } from "react";
 import { View } from "react-native";
 import { Navigation } from "react-native-navigation";
 import { Button, BoxOption, TextTemplate } from "@atoms";
@@ -100,7 +100,7 @@ function SelectBody({ onContinue, heading, bodyType }: IProps) {
   );
 }
 
-export default SelectBody;
+export default memo(SelectBody);
 
 const showExitModal = (isBackPressed: MutableRefObject<boolean>) => {
   const setInitialState = () => {

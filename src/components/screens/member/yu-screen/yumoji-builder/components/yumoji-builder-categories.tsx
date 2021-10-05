@@ -18,7 +18,6 @@ interface Props {
 const YumojiBuilderCategories: FC<Props> = ({ categories, loading, selectedCategoryId, onPress }) => {
   const [categoryDetails, setCategoryDetails] = useState({ parentId: null, hasChildren: false });
   const scrollViewRef = useRef<ScrollView | null>(null);
-
   return (
     <View style={styles.wrapper}>
       <ScrollView
