@@ -8,7 +8,7 @@ import LinearGradient from "react-native-linear-gradient";
 import { useSelector } from "react-redux";
 import { getUserFeatures } from "@redux/user/user.selectors";
 
-const CREATE_AVATAR_CAPTION_COPY = "Build your Yumoji to unlock power-ups and earn 100 YuCoin!";
+const CREATE_AVATAR_CAPTION_COPY = "Build your Yumoji to unlock equipment and earn 100 YuCoin!";
 const CREATE_AVATAR_CTA_COPY = "Create your Yumoji";
 
 const _AvatarCreationPrompt = () => {

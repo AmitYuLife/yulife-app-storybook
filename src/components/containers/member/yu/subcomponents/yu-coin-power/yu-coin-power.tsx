@@ -13,7 +13,7 @@ const POWER_LABEL_TOP = "YuCoin Power";
 const getInfo = (power: number) =>
   power < 2
     ? "To increase your YuCoin Power, check out your available gear."
-    : `Your items boosts your YuCoin. For every 1 you would have earned, you now get <bold>${power}</bold>.`;
+    : `Your items boost your YuCoin. For every 1 you would have earned, you now get <bold>${power}</bold>.`;
 
 const _YuCoinPower = () => {
   const { data } = useQuery<GetYulifer>(GQL_QUERY_GET_YULIFER, {
