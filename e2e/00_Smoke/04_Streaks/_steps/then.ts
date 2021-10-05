@@ -13,6 +13,7 @@ export const {
 
 export const {
     onStartStreak,
+    onStartStreakFromHome
 } = screens.streaks
 
 export const {
