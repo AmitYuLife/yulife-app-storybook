@@ -29,7 +29,7 @@ export const YumojiItem = memo(
     const [partsLoading, setPartsLoading] = useState(item?.parts?.filter((part) => part?.remoteUrl?.uri).length || 0);
     const onPress = useCallback(() => {
       onItemPress(item);
-    }, []);
+    }, [onItemPress, item]);
 
     const partLoader = useMemo(() => {
       return (
