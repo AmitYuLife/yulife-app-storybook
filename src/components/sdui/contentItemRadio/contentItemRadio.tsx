@@ -66,7 +66,8 @@ export const ContentItemRadio = memo(({ onChange, choices, value: initialValue, 
 const styles = StyleSheet.create({
   radioWrapper: {
     paddingTop: Style.adjust(24),
-    marginHorizontal: Style.adjust(24),
+    marginLeft: Style.adjust(24),
+    marginRight: Style.adjust(64),
   } as ViewStyle,
   radioIconWrapper: {
     flexDirection: "row",
