@@ -99,15 +99,6 @@ const YumojiBuilderContainer: FC<IProps> = ({ heading }) => {
   >(GQL_QUERY_GET_YUMOJI_BUILDER_ITEMS_FOR_CATEGORY, {
     fetchPolicy: "cache-first",
     onCompleted: (data) => {
-      cache(
-        data?.getYumojiBuilderItemsForCategory.items.reduce((list, { parts, representativeColor }) => {
-          if (representativeColor) {
-            list.push(...parts.filter((part) => part.remoteUrl).map(({ remoteUrl: { uri } }) => ({ uri })));
-          }
-
-          return list;
-        }, [])
-      );
       dispatch({ type: ActionTypes.SET_ITEM_LIST, payload: data?.getYumojiBuilderItemsForCategory });
     },
   });

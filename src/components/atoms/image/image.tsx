@@ -50,23 +50,29 @@ export const Image = memo(
         }
 
         // In rare occasions nativeWidth can be 0
-        setNativeSize({ width: nativeWidth || propWidth, height: nativeHeight });
+        const nativeDimensions = { width: nativeWidth || propWidth, height: nativeHeight };
+        if (!shallowEqual(nativeDimensions, nativeSize)) {
+          setNativeSize(nativeDimensions);
+        }
       },
       [propHeight, propWidth]
     );
 
-    const { width, height } = useMemo(() => {
-      const calcHeight =
-        (isLoading && loadingHeight) || propHeight || (nativeSize.height / nativeSize.width) * propWidth;
+    const dimensions = useMemo(() => {
+      const calcHeight = loadingHeight || propHeight || (nativeSize.height / nativeSize.width) * propWidth;
       return { width: propWidth, height: calcHeight };
-    }, [propHeight, propWidth, isLoading, loadingHeight, nativeSize]);
+    }, [propHeight, propWidth, loadingHeight, nativeSize]);
+
+    const containerStyle = useMemo(() => [styles.wrapper, dimensions, style], [dimensions, style]);
+
+    const imageStyles = useMemo(() => [dimensions, imageStyle], [dimensions, imageStyle]);
 
     return (
-      <View pointerEvents="none" style={[styles.wrapper, { height, width }, style]} testID={testID}>
+      <View pointerEvents="none" style={containerStyle} testID={testID}>
         <FastImage
           onLoadStart={handleLoadStart}
           onLoad={handleLoadState}
-          style={[{ height, width }, imageStyle]}
+          style={imageStyles}
           source={source}
           resizeMode={resizeMode}
         />

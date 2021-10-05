@@ -25,15 +25,13 @@ interface IProps {
 function _Yumoji(props: IProps) {
   const { items, preview = { top: 0, left: 0, zoom: 1 }, height, width } = props;
 
+  const dimensions = useMemo(() => ({ width, height }), [height, width]);
   const parts = useMemo(
     () =>
-      items.filter((item) => item.remoteUrl).sort(({ order: order1 = 0 }, { order: order2 = 0 }) => order1 - order2),
-    [items]
-  );
-  return (
-    <View style={{ width, height }}>
-      {parts.map(({ remoteUrl: { uri } }) =>
-        !uri ? null : (
+      items
+        .filter((item) => item.remoteUrl?.uri)
+        .sort(({ order: order1 = 0 }, { order: order2 = 0 }) => order1 - order2)
+        .map(({ remoteUrl: { uri } }) => (
           <View key={uri} style={[StyleSheet.absoluteFillObject, { width, height }]}>
             <CroppedImage
               transform={preview}
@@ -44,10 +42,10 @@ function _Yumoji(props: IProps) {
               suppressLoadingUi={true}
             />
           </View>
-        )
-      )}
-    </View>
+        )),
+    [height, items, preview, width]
   );
+  return <View style={dimensions}>{parts}</View>;
 }
 
 export const Yumoji = memo(_Yumoji);
