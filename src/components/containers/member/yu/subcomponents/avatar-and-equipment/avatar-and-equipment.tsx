@@ -98,7 +98,7 @@ const _AvatarAndEquipment = () => {
     }
 
     return setPopover(null);
-  }, [yuScreenProductSlots, setPopover]);
+  }, [yuScreenProductSlots, setPopover, hasYumoji]);
 
   return (
     <View>
