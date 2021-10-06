@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
   wrapper: {
     borderRadius: BORDER_RADIUS,
     overflow: "hidden",
-    marginHorizontal: Style.adjust(32),
+    marginHorizontal: Style.adjust(24),
   },
   inner: {
     paddingTop: Style.adjust(24),
