@@ -1,5 +1,5 @@
 import React, { useContext, useMemo } from "react";
-import { Animated, Platform, StyleSheet, View, ViewStyle } from "react-native";
+import { Animated, KeyboardAvoidingView, Platform, StyleSheet, View, ViewStyle } from "react-native";
 import { GetPersonalProductStep_getPersonalProductStep_body as GPPS_Body } from "@graphql/_core/schema";
 import {
   ProductStepContentItemButton,
@@ -56,26 +56,36 @@ const DEFAULT_EXTRA_TOP_PADDING = media.select(
   Style.adjust(24)
 );
 
+const keyboardAvoidingViewBehavior = Platform.select({
+  ios: "padding" as "padding",
+  android: null,
+});
+
 export const Body = (props: Props) => {
   const { headerHeight } = props;
   const headerPadStyle = useMemo(() => ({ height: headerHeight + DEFAULT_EXTRA_TOP_PADDING }), [headerHeight]);
   const { scrollValue } = useContext(ProductStepContext);
 
   return (
-    <Animated.ScrollView
-      scrollEventThrottle={16}
-      onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: scrollValue } } }], { useNativeDriver: true })}
-      showsVerticalScrollIndicator={false}
-      style={styles.wrapper}
-    >
-      {!headerHeight ? null : <View style={headerPadStyle} />}
-      {props.body.map(renderItemContent)}
-    </Animated.ScrollView>
+    <KeyboardAvoidingView behavior={keyboardAvoidingViewBehavior} style={styles.avoidingViewWrapper}>
+      <Animated.ScrollView
+        scrollEventThrottle={16}
+        onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: scrollValue } } }], { useNativeDriver: true })}
+        showsVerticalScrollIndicator={false}
+        style={styles.wrapper}
+      >
+        {!headerHeight ? null : <View style={headerPadStyle} />}
+        {props.body.map(renderItemContent)}
+      </Animated.ScrollView>
+    </KeyboardAvoidingView>
   );
 };
 
 const styles = StyleSheet.create({
   wrapper: {
+    flex: 1,
+  } as ViewStyle,
+  avoidingViewWrapper: {
     flex: 1,
   } as ViewStyle,
 });
