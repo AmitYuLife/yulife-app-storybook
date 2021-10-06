@@ -7,6 +7,67 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.13.0] - 2021-10-06
+
+### Bugfixes
+
+- Bugfix: Add KeyboardAvoidingView to SDUI body
+- Bugfix: Update correct body items
+- Bugfix: Fix popover UI scaling on small android
+- Bugfix: Modal header gap on android devices
+- Bugfix: Use TextTemplate on GenericHeading component
+- Bugfix: wrong checkBox icon
+- Bugfix: hide popover if no yumoji
+- Bugfix: Remove textAlign from CheckBox component
+- Bugfix: Yumoji list header and padding
+- Bugfix: Use TextTemplate on CheckBox component
+- Bugfix: Remove letterSpacing from android devices
+- Bugfix: Product step markdown issue with no styles
+- Bugfix: Prevent WhatsNew modal overlap
+- Bugfix: Use TextTemplate on SlotIcon and improve letterSpacing on Android devices
+
+### Tasks
+
+- Task: Add skeleton loading for yumoji categories
+- Task: product step finish journey
+- Task: Yumoji item label
+- Task GS: Avatar viewport zoom
+- Task GS-95: Get Yumoji customisation categories
+- Task: Remove close callback on last FullScreenSwiper index
+- Task GS-100: Save Yumoji popover
+
+### Chores
+
+- Chore: copy and padding fixes
+- Chore: Use showYuModal instead of Navigation.showModal
+- Chore: more pli events
+
+### Improvements
+
+- Improvement: yumoji builder frontend performance
+
+### Extra
+
+- Hotfix: FAQ spacing
+- detox/fixes_05_10
+- Hotfix: selected package card padding
+- Purge: markdown default styles
+- preload all fitting room assets
+- Detox: Smoke Fixes
+- Hotfix: setPopover after avatar creation
+- Bug: empty item preloading
+- Hotfix: GP Search can have duplicate keys
+- fetching category data from cache
+- Purge: first streak modal
+- Purge: unused assets
+- show modal on item press only if modal data exists
+- Hotfix: wrong PLI slotIcon
+- fix repetative category select
+- Hotfix: use takeLeading for sdui sagas
+- Hotfix XSE-392: Package cards copy & indicator shouldnt always show
+- reset matchType when pressing back
+- Detox: Referrals Fix
+
 ## [3.12.0] - 2021-09-29
 
 ### Features
