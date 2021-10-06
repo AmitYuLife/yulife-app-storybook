@@ -43,7 +43,7 @@ export const ContentItemFaqs = memo((props: Props) => {
             markdown={null}
             title={showingContent.content.title}
             perkId={null}
-            styles={null}
+            styles={showingContent.content.styles}
             markdownContainerStyle={null}
           />
           {showingContent.links?.map((x: any) => (
