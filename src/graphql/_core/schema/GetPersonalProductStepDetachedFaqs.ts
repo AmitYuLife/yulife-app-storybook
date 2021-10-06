@@ -62,11 +62,19 @@ export interface GetPersonalProductStepDetachedFaqs_getPersonalProductStepDetach
   parsedMarkdown: string | null;
 }
 
+export interface GetPersonalProductStepDetachedFaqs_getPersonalProductStepDetachedFaqs_body_ContentItemPersonalProductFaqs_faqs_content_styles {
+  property: string;
+  value: string;
+}
+
 export interface GetPersonalProductStepDetachedFaqs_getPersonalProductStepDetachedFaqs_body_ContentItemPersonalProductFaqs_faqs_content {
   id: string;
   markdown: string;
   parsedMarkdown: string | null;
   title: string | null;
+  styles:
+    | GetPersonalProductStepDetachedFaqs_getPersonalProductStepDetachedFaqs_body_ContentItemPersonalProductFaqs_faqs_content_styles[]
+    | null;
 }
 
 export interface GetPersonalProductStepDetachedFaqs_getPersonalProductStepDetachedFaqs_body_ContentItemPersonalProductFaqs_faqs_links {
