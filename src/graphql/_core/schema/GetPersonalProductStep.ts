@@ -32,7 +32,8 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemP
     | "ContentItemPersonalProductDocuments"
     | "ContentItemPersonalProductFaqs"
     | "ContentItemCollapsingHeaderProductInfo"
-    | "ContentItemFullScreenSwiper";
+    | "ContentItemFullScreenSwiper"
+    | "ContentItemSearchPostcode";
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemTextInput_validation {
@@ -1092,7 +1093,8 @@ export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentIte
     | "ContentItemFullScreenSwiper"
     | "ContentItemGpDetails"
     | "ContentItemPackageCardPower"
-    | "ContentItemPersonalProductSelectPaymentButton";
+    | "ContentItemPersonalProductSelectPaymentButton"
+    | "ContentItemSearchPostcode";
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentItemButton_onPress {
@@ -1240,9 +1242,8 @@ export type GetPersonalProductStep_getPersonalProductStep_footer =
   | GetPersonalProductStep_getPersonalProductStep_footer_ContentItemOverlay
   | GetPersonalProductStep_getPersonalProductStep_footer_ContentItemMultiButton;
 
-export interface GetPersonalProductStep_getPersonalProductStep_header_ContentItemMarkdown {
+export interface GetPersonalProductStep_getPersonalProductStep_header_ContentItemLottie {
   __typename:
-    | "ContentItemMarkdown"
     | "ContentItemLottie"
     | "ContentItemText"
     | "ContentItemTextInput"
@@ -1306,10 +1307,71 @@ export interface GetPersonalProductStep_getPersonalProductStep_header_ContentIte
   progressType: ContentItemProgressBarType | null;
 }
 
+export interface GetPersonalProductStep_getPersonalProductStep_header_ContentItemSearchPostcode_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_header_ContentItemSearchPostcode_searchInputStyles {
+  property: string;
+  value: string;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_header_ContentItemSearchPostcode_icon {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_header_ContentItemSearchPostcode_addressAnswerKeys {
+  answerKey: string;
+  addressKey: string;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_header_ContentItemSearchPostcode {
+  __typename: "ContentItemSearchPostcode";
+  id: string;
+  label: string;
+  headingText: string;
+  searchTitle: string;
+  onLoadPlaceholder: string;
+  onLoadUnsuccessfulText: string;
+  styles: GetPersonalProductStep_getPersonalProductStep_header_ContentItemSearchPostcode_styles[] | null;
+  searchInputStyles:
+    | GetPersonalProductStep_getPersonalProductStep_header_ContentItemSearchPostcode_searchInputStyles[]
+    | null;
+  icon: GetPersonalProductStep_getPersonalProductStep_header_ContentItemSearchPostcode_icon | null;
+  addressAnswerKeys: GetPersonalProductStep_getPersonalProductStep_header_ContentItemSearchPostcode_addressAnswerKeys[];
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_header_ContentItemMarkdown_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_header_ContentItemMarkdown_markdownContainerStyle {
+  property: string;
+  value: string;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_header_ContentItemMarkdown {
+  __typename: "ContentItemMarkdown";
+  id: string;
+  title: string | null;
+  markdown: string;
+  perkId: string | null;
+  parsedMarkdown: string | null;
+  styles: GetPersonalProductStep_getPersonalProductStep_header_ContentItemMarkdown_styles[] | null;
+  markdownContainerStyle:
+    | GetPersonalProductStep_getPersonalProductStep_header_ContentItemMarkdown_markdownContainerStyle[]
+    | null;
+}
+
 export type GetPersonalProductStep_getPersonalProductStep_header =
-  | GetPersonalProductStep_getPersonalProductStep_header_ContentItemMarkdown
+  | GetPersonalProductStep_getPersonalProductStep_header_ContentItemLottie
   | GetPersonalProductStep_getPersonalProductStep_header_ContentItemHeaderBar
-  | GetPersonalProductStep_getPersonalProductStep_header_ContentItemProgressBar;
+  | GetPersonalProductStep_getPersonalProductStep_header_ContentItemProgressBar
+  | GetPersonalProductStep_getPersonalProductStep_header_ContentItemSearchPostcode
+  | GetPersonalProductStep_getPersonalProductStep_header_ContentItemMarkdown;
 
 export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemMarkdown {
   __typename:
@@ -1345,7 +1407,8 @@ export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_Con
     | "ContentItemRowIconTextBanner"
     | "ContentItemGpDetails"
     | "ContentItemPackageCardPower"
-    | "ContentItemPersonalProductSelectPaymentButton";
+    | "ContentItemPersonalProductSelectPaymentButton"
+    | "ContentItemSearchPostcode";
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemImage_image {

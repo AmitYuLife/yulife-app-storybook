@@ -16,6 +16,7 @@ interface Props {
   loading: boolean;
   keyExtractor: (item: any, index: number) => string;
   searchItem: ListRenderItem<ISearchItem<any>>;
+  wrapperStyles?: ViewStyle;
 }
 
 function SearchList({
@@ -27,6 +28,7 @@ function SearchList({
   keyExtractor,
   searchItem,
   emptyElement,
+  wrapperStyles,
 }: Props) {
   const isLoading = loading || [NetworkStatus.refetch, NetworkStatus.loading].includes(networkStatus);
 
@@ -39,7 +41,10 @@ function SearchList({
   }, [isLoading, emptyText, emptyElement, data.length]);
 
   return (
-    <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : null} style={styles.searchListWrapper}>
+    <KeyboardAvoidingView
+      behavior={Platform.OS === "ios" ? "padding" : null}
+      style={StyleSheet.flatten([styles.searchListWrapper, wrapperStyles])}
+    >
       <FlatList
         testID={SEARCH_FLAT_LIST}
         data={data}

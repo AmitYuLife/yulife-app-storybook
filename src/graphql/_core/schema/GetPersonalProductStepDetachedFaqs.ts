@@ -43,7 +43,8 @@ export interface GetPersonalProductStepDetachedFaqs_getPersonalProductStepDetach
     | "ContentItemFullScreenSwiper"
     | "ContentItemGpDetails"
     | "ContentItemPackageCardPower"
-    | "ContentItemPersonalProductSelectPaymentButton";
+    | "ContentItemPersonalProductSelectPaymentButton"
+    | "ContentItemSearchPostcode";
 }
 
 export interface GetPersonalProductStepDetachedFaqs_getPersonalProductStepDetachedFaqs_body_ContentItemPersonalProductFaqs_headingImage_image {

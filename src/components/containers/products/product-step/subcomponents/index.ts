@@ -23,3 +23,4 @@ export * from "./product-step.row-icon-text-banner";
 export * from "./product-step.selected-package";
 export * from "./product-step.full-screen-swiper";
 export * from "./product-step.select-payment-button";
+export * from "./product-step.search-post-code";

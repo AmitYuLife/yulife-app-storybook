@@ -20,3 +20,4 @@ export * from "./contentItemImage/contentItemImage";
 export * from "./contentItemList/contentItemList";
 export * from "./contentItemGpDetails/contentItemGpDetails";
 export * from "./contentItemPackageCardPower/contentItemPackageCardPower";
+export * from "./contentItemSearchPostcode/contentItemSearchPostcode";
