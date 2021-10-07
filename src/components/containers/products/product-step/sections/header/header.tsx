@@ -3,7 +3,7 @@ import { LayoutChangeEvent, StyleSheet, View, ViewStyle } from "react-native";
 import { GetPersonalProductStep_getPersonalProductStep_header as GPPS_Header } from "@graphql/_core/schema";
 import { ContentItemProgressBar } from "@components/sdui";
 import { Colours } from "@styles";
-import { ProductStepContentItemHeader } from "../../subcomponents";
+import { ProductStepContentItemHeader, ProductStepMarkdown, ProductStepSearchPostcode } from "../../subcomponents";
 
 interface Props {
   header: GPPS_Header[];
@@ -34,6 +34,10 @@ const renderItemContent = (item: GPPS_Header): JSX.Element => {
       return <ProductStepContentItemHeader key={item.__typename} {...item} />;
     case "ContentItemProgressBar":
       return <ContentItemProgressBar key={item.id} {...item} />;
+    case "ContentItemSearchPostcode":
+      return <ProductStepSearchPostcode key={item.__typename} {...item} />;
+    case "ContentItemMarkdown":
+      return <ProductStepMarkdown key={item.id} {...item} />;
     default:
       return null;
   }

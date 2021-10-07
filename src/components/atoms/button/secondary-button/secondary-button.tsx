@@ -11,6 +11,7 @@ interface Props {
   onPress: () => void;
   delay?: number;
   disabled?: boolean;
+  leftIcon?: JSX.Element;
   testID?: string;
   label: string;
   show?: boolean;
@@ -23,7 +24,6 @@ interface Props {
 
 export const SecondaryButton = (props: Props) => {
   const {
-    wrapperStyle,
     onPress,
     delay,
     disabled,
@@ -31,10 +31,12 @@ export const SecondaryButton = (props: Props) => {
     label,
     show = true,
     size,
+    leftIcon,
     isLoading,
     borderColor = Colours.primary.p600,
     backgroundColor = "transparent",
     textColor = Colours.primary.p600,
+    wrapperStyle,
   } = props;
 
   const { handlePress } = usePressedInWithDelay({ onPress, delay });
@@ -52,6 +54,7 @@ export const SecondaryButton = (props: Props) => {
         testID={testID}
         isLoading={isLoading}
         title={label}
+        leftIcon={leftIcon}
         onPress={handlePress}
         borderColor={borderColor}
         color={textColor}

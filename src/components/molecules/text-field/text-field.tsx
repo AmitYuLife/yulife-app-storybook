@@ -78,6 +78,10 @@ export default function TextField(props: Props) {
   const [activeMaterial, setActiveMaterial] = useState(false);
 
   useEffect(() => {
+    if (textInputValue !== value) {
+      setTextInputValue(value);
+    }
+
     if (isFocused || textInputValue) {
       return setActiveMaterial(true);
     }

@@ -573,6 +573,30 @@ export const GQL_FRAGMENT_CONTENT_ITEM_FULL_SCREEN_SWIPER = gql`
   }
 `;
 
+export const GQL_FRAGMENT_CONTENT_ITEM_SEARCH_POSTCODE = gql`
+  fragment ContentItemSearchPostcode on ContentItemSearchPostcode {
+    id
+    label
+    headingText
+    searchTitle
+    onLoadPlaceholder
+    onLoadUnsuccessfulText
+    styles {
+      ...SduiStyle
+    }
+    searchInputStyles {
+      ...SduiStyle
+    }
+    icon {
+      ...RemoteImage
+    }
+    addressAnswerKeys {
+      answerKey
+      addressKey
+    }
+  }
+`;
+
 export const GQL_FRAGMENT_CONTENT_ITEM_SCROLL_PICKER = gql`
   fragment ContentItemScrollPicker on ContentItemScrollPicker {
     id

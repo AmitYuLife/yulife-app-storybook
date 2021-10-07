@@ -41,6 +41,7 @@ export * from "./ContentItemRadioIcon";
 export * from "./ContentItemRowIconTextBanner";
 export * from "./ContentItemScrollPicker";
 export * from "./ContentItemScrollableItemsPicker";
+export * from "./ContentItemSearchPostcode";
 export * from "./ContentItemSelectedPackageCard";
 export * from "./ContentItemText";
 export * from "./ContentItemTextInput";

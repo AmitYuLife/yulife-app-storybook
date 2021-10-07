@@ -39,3 +39,4 @@ export { default as ContentItemForm } from "./content-item-form/content-item-for
 export { default as ConnectCheckList } from "./connect-check-list/connect-check-list";
 export { Yumoji } from "./yumoji/yumoji";
 export { PackageCardPerks } from "./package-card-perks/package-card-perks";
+export { default as SearchAddress, ISearchAddress } from "./search-address/search-address";
