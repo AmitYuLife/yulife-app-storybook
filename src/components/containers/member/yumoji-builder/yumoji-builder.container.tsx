@@ -24,8 +24,6 @@ import { ROUTES } from "@navigation/constants";
 import { showAwardModal } from "./yumoji-builder.helpers";
 import Logger from "@services/logging/logger";
 import { cache } from "@services/image";
-import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
-import { useDispatch } from "react-redux";
 import { showGenericModal } from "@navigation/utils";
 
 interface IProps {
@@ -34,7 +32,6 @@ interface IProps {
 
 const YumojiBuilderContainer: FC<IProps> = ({ heading }) => {
   const [state, dispatch] = useReducer<React.Reducer<IState, IAction>>(reducer, INITIAL_STATE);
-  const reduxDispatch = useDispatch();
 
   const [updateUserAvatar]: UpdateAvatarMutationTuple = useMutation(GQL_MUTATION_UPDATE_AVATAR);
 
@@ -57,8 +54,6 @@ const YumojiBuilderContainer: FC<IProps> = ({ heading }) => {
       } else {
         returnToYuScreen();
       }
-
-      reduxDispatch(logMixpanelEventActionCreator("avatar_save", { type: "saved" }));
     } catch (e) {
       Logger.error(e, { event: "@update_user_avatar_error", file: "yumoji-builder.container" });
     }
