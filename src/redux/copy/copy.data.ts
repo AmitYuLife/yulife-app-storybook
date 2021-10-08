@@ -151,10 +151,10 @@ export default {
       heading: "time’s up!",
     },
     exitChallenge: {
-      heading: "exit challenge?",
-      subheading: "You won’t be able to come back to it.",
-      ctaLabel: "no way!",
-      ctaLabelSecondary: "exit",
+      heading: "Call it quits?",
+      subheading: "Your current progress will be lost but you can retry any time.",
+      ctaLabel: "Cancel",
+      ctaLabelSecondary: "Exit challenge",
     },
     showChestModal: {
       ctaLabelIsNext: "let's do it",
