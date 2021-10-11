@@ -1,18 +1,15 @@
 import React, { memo, useEffect, useState, useCallback } from "react";
 import { LayoutChangeEvent, StyleSheet, View } from "react-native";
-import { Source } from "react-native-fast-image";
 import { useDispatch } from "react-redux";
-import { useMutation, useQuery } from "@apollo/react-hooks";
+import { useMutation } from "@apollo/react-hooks";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 import { Colours, Style } from "@styles";
 import { Loading, TextTemplate } from "@atoms";
 import { Popover as PopoverMolecule, TouchableOpacityWithDelay } from "@molecules";
-import { GQL_QUERY_GET_YUMOJI_REMOTE_PARTS, GQL_QUERY_GET_YUMOJI_REMOTE_FITTING_ROOM } from "@graphql/yuscreen";
 import { AvatarPartType, CoverType, YuWorld } from "@graphql/_core/schema/globalTypes";
 import {
   GetYumojiRemoteParts,
   GetYumojiRemoteFittingRoom,
-  GetYumojiRemoteFittingRoomVariables,
   GetYumojiRemoteFittingRoom_getYumojiRemoteFittingRoom_yuWorlds_yumojiParts as Part,
   PerformMobileOnboardingStep,
   PerformMobileOnboardingStepVariables,
@@ -22,7 +19,7 @@ import {
 import { Yumoji } from "./yumoji";
 import { GQL_MUTATION_PERFORM_MOBILE_ONBOARDING_STEP } from "@graphql/onboardingSteps/performMobileOnboardingStep.gql";
 import Logger from "@services/logging/logger";
-import { cache } from "@services/image";
+import { useYumojiFittingRoom, AVATAR_WIDTH, AVATAR_HEIGHT } from "./hooks/useYumojiFittingRoom";
 
 type Props = {
   coverType: CoverType;
@@ -30,8 +27,6 @@ type Props = {
   onChange?: (worldId: YuWorld) => void;
 };
 
-const AVATAR_WIDTH = Style.adjust(160) * 0.73;
-const AVATAR_HEIGHT = Style.adjust(328) * 0.73;
 const HIT_SLOP = {
   top: 8,
   bottom: 8,
@@ -43,31 +38,8 @@ function _TryOnYumojiPart({ customerProductId, coverType = CoverType.common, onC
   const [selectedWorld, setSelectedWorld] = useState(null);
   const [avatar, setAvatar] = useState({} as GetYumojiRemoteParts["avatar"]);
 
-  const yumoji = useQuery<GetYumojiRemoteParts>(GQL_QUERY_GET_YUMOJI_REMOTE_PARTS, {
-    variables: { height: AVATAR_HEIGHT, width: AVATAR_WIDTH },
-    fetchPolicy: "no-cache",
-  });
-  const tryOn = useQuery<GetYumojiRemoteFittingRoom, GetYumojiRemoteFittingRoomVariables>(
-    GQL_QUERY_GET_YUMOJI_REMOTE_FITTING_ROOM,
-    {
-      variables: { customerProductId, coverType },
-      fetchPolicy: "no-cache",
-      onCompleted: (data) => {
-        cache(
-          data.getYumojiRemoteFittingRoom.yuWorlds
-            .map((world) => world.yumojiParts)
-            .reduce((allImages, worldImages) => {
-              allImages.push(
-                ...worldImages.filter((img) => img?.remoteUrl?.uri).map((img) => ({ uri: img.remoteUrl.uri }))
-              );
-              return allImages;
-            }, [] as Source[])
-        );
-      },
-    }
-  );
-
-  const { yuWorlds = [], popover, selectedYuWorld } = tryOn?.data?.getYumojiRemoteFittingRoom || {};
+  const { yumoji, fittingRoom } = useYumojiFittingRoom({ customerProductId, coverType });
+  const { yuWorlds = [], popover, selectedYuWorld } = fittingRoom;
   const { updateOnboardingStep, popoverTarget, handleTextLayout, popoverClosed } = usePopover({ popover });
 
   useEffect(() => {
@@ -75,7 +47,7 @@ function _TryOnYumojiPart({ customerProductId, coverType = CoverType.common, onC
   }, [selectedYuWorld]);
 
   useEffect(() => {
-    if (!yumoji.data) {
+    if (!yumoji) {
       return;
     }
 
@@ -90,8 +62,8 @@ function _TryOnYumojiPart({ customerProductId, coverType = CoverType.common, onC
       return acc;
     }, {} as Record<AvatarPartType, Part>);
 
-    setAvatar({ ...yumoji.data.avatar, ...newPartialAvatar });
-  }, [selectedWorld, yumoji.data, yuWorlds, coverType]);
+    setAvatar({ ...yumoji, ...newPartialAvatar });
+  }, [selectedWorld, yumoji, yuWorlds, coverType]);
 
   const variant = yuWorlds.find((item) => item.id === selectedWorld);
 
@@ -108,7 +80,7 @@ function _TryOnYumojiPart({ customerProductId, coverType = CoverType.common, onC
   };
 
   const avatarHeadUri = avatar?.head?.remoteUrl?.uri;
-  const tryOnId = tryOn.data?.getYumojiRemoteFittingRoom?.id;
+  const tryOnId = fittingRoom?.id;
 
   if (!avatarHeadUri || !tryOnId) {
     return (
