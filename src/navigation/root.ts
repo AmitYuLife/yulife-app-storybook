@@ -5,6 +5,7 @@ import { Style } from "../styles";
 import { bottomTabs, MODALS, ROUTES } from "./constants";
 import { ILabel } from "@components/organisms/nav-bar/nav-bar.helpers";
 import { IUpdateContainerProps } from "@components/containers/update/update.container";
+import { ReviewModalProps } from "@components/modals/app-review/app-review.modal";
 
 // eslint-disable-next-line
 const icon = require("@assets/icons/clock.png");
@@ -270,11 +271,20 @@ export const showYuModal = async <P>(props: Layout<P>) => {
   });
 };
 
-export async function showAppReviewModal() {
+export async function showAppReviewModal(reviewModalProps: ReviewModalProps) {
+  const { id, title, body, rejectedTitle, rejectedBody, image } = reviewModalProps;
   showYuModal({
     component: {
       id: MODALS.appReview,
       name: MODALS.appReview,
+      passProps: {
+        title,
+        body,
+        rejectedTitle,
+        rejectedBody,
+        image,
+        id,
+      },
     },
   });
 }

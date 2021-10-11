@@ -4,26 +4,28 @@ import { MODALS } from "@navigation/constants";
 import { useBackHandler } from "@services/hooks/useBackHandler";
 import AppReviewModalScreen from "@screens/app-review/app-review.screen";
 import InAppReview from "react-native-in-app-review";
-import { useMutation, useQuery } from "@apollo/react-hooks";
+import { useMutation } from "@apollo/react-hooks";
 import {
   GQL_SUBMIT_APP_STORE_REVIEW_ACTION,
   SubmitAppStoreReviewActionMutationTuple,
 } from "@graphql/member/submitAppStoreReviewAction.gql";
-import { PendingPromptsForm } from "@graphql/_core/schema";
-import { GQL_PENDING_PROMPTS_FORM } from "@graphql/member";
 import { AppStoreReviewPromptAction } from "@graphql/_core/schema/globalTypes";
 import Intercom from "react-native-intercom";
 import { openYulife } from "@services/app-link";
 import Logger from "@services/logging/logger";
 
-const AppReviewModal: FC = () => {
+export interface ReviewModalProps {
+  id: string;
+  title: string;
+  body: string;
+  rejectedTitle: string;
+  rejectedBody: string;
+  image: string;
+}
+const AppReviewModal: FC<ReviewModalProps> = (props: ReviewModalProps) => {
   const [submitAppReviewAction] = useMutation<SubmitAppStoreReviewActionMutationTuple>(
     GQL_SUBMIT_APP_STORE_REVIEW_ACTION
   );
-
-  const { data } = useQuery<PendingPromptsForm>(GQL_PENDING_PROMPTS_FORM, {
-    fetchPolicy: "cache-only",
-  });
 
   const backHandler = () => {
     Navigation.dismissModal(MODALS.appReview);
@@ -33,17 +35,18 @@ const AppReviewModal: FC = () => {
   useBackHandler(backHandler);
 
   const [isFirstStateShown, setIsFirstStateShown] = useState(true);
-  const { title, body, rejectedTitle, rejectedBody, image } = data?.pendingAppStoreReview;
+  const { id, title, body, rejectedTitle, rejectedBody, image } = props;
+
   const submitAppReview = useCallback(
     async (action: AppStoreReviewPromptAction) => {
       await submitAppReviewAction({
         variables: {
-          id: data.pendingAppStoreReview.id,
+          id,
           action,
         },
       });
     },
-    [data, submitAppReviewAction]
+    [id, submitAppReviewAction]
   );
 
   const openReview = useCallback(async () => {
