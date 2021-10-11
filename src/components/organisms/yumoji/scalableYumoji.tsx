@@ -30,7 +30,7 @@ function _Yumoji(props: IProps) {
     () =>
       items
         .filter((item) => item.remoteUrl?.uri)
-        .sort(({ order: order1 = 0 }, { order: order2 = 0 }) => order1 - order2)
+        .sort((i1, i2) => (i1?.order || 0) - (i2?.order || 0))
         .map(({ remoteUrl: { uri } }) => (
           <View key={uri} style={[StyleSheet.absoluteFillObject, { width, height }]}>
             <CroppedImage
