@@ -1,96 +1,210 @@
-import React from "react";
-import { View, StyleSheet, ActivityIndicator, ViewStyle } from "react-native";
-import { EarnRateDetails_getEarnRateDetails } from "@graphql/_core/schema";
+import { Image, TextTemplate, YuCoinIcon } from "@atoms";
+import { GetProductEarnRate_getProductEarnRate, RemoteImage } from "@graphql/_core/schema";
+import { CoverType, YuScreenEarnRateTableThemeType } from "@graphql/_core/schema/globalTypes";
 import { Colours, Style } from "@styles";
-import { TableHeader, TableBackground } from "./layout-components";
-import { TableRow } from "./data-components";
-import { EARN_RATE_COLUMN_WIDTH, MARGIN_EDGE_RIGHT } from "./table.styles";
-import { EARN_RATE_TABLE } from "@ids";
+import React from "react";
+import { StyleSheet, View, ViewStyle } from "react-native";
+import LinearGradient from "react-native-linear-gradient";
+import { mapThemeTypeToTheme, DEFAULT_THEME } from "./themes";
 
-interface IProps {
-  earnRate: number;
-  explainData: EarnRateDetails_getEarnRateDetails[];
+interface Props {
   loading: boolean;
+  columns: GetProductEarnRate_getProductEarnRate["columns"];
+  activeCoverType: CoverType;
 }
 
-export interface IColumnSize {
-  height: number;
-}
+type Theme = ReturnType<typeof mapThemeTypeToTheme>;
 
-function EarnRateTable(props: IProps) {
-  const { earnRate, explainData, loading } = props;
+export const Table = (props: Props): React.ReactElement => {
+  if (props.loading) {
+    return null;
+  }
+
+  const { columns, activeCoverType } = props;
+
   return (
-    <View style={styles.wrapper} testID={EARN_RATE_TABLE}>
-      <TableLoader loading={loading} surged={earnRate > 1} />
-      <TableData loading={loading} explainData={explainData} earnRate={earnRate} />
+    <View style={styles.wrapper}>
+      {columns.map((column, index) => {
+        const theme = mapThemeTypeToTheme(column.themeType);
+        return (
+          <View
+            key={index}
+            style={[
+              styles.column,
+              {
+                flex: column.flex,
+              },
+              getStyle(column.themeType),
+            ]}
+          >
+            <LinearGradient
+              style={[styles.background, { borderColor: theme.gradientBackgroundBorder }]}
+              colors={
+                !activeCoverType || castCoverTypeToThemeType(activeCoverType) === column.themeType
+                  ? theme.gradientBackground
+                  : DEFAULT_THEME.gradientBackground
+              }
+              useAngle={true}
+              angleCenter={{ x: 0, y: 1 }}
+              angle={95}
+            />
+            <ColumnHeader data={column.header} theme={theme} />
+            <ColumnData type={column.valueType} theme={theme} values={column.values} icons={column.icons} />
+          </View>
+        );
+      })}
     </View>
   );
-}
-
-export default EarnRateTable;
+};
 
 const styles = StyleSheet.create({
   wrapper: {
-    marginHorizontal: Style.adjust(16),
-    marginTop: Style.adjust(24),
+    width: "100%",
+    flexDirection: "row",
+    justifyContent: "center",
+    marginTop: Style.adjust(48),
+    paddingHorizontal: Style.adjust(24),
+  } as ViewStyle,
+  column: {
+    paddingTop: Style.adjust(8),
+    paddingHorizontal: Style.adjust(8),
+  } as ViewStyle,
+  background: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: "#F7F3FF",
     borderRadius: 8,
-    textAlign: "center",
-    backgroundColor: Colours.yuscreen.white,
-  },
-  pad: {
-    height: Style.adjust(8),
+    overflow: "hidden",
+    borderWidth: 1,
   } as ViewStyle,
-  table: {
-    marginBottom: Style.adjust(16),
-    flex: 1,
+  columnHeaderWrapper: {
     alignItems: "center",
-    justifyContent: "center",
-    paddingRight: MARGIN_EDGE_RIGHT,
-  },
-  loading: {
-    justifyContent: "center",
+    width: "100%",
+    paddingHorizontal: Style.adjust(4),
+    paddingTop: Style.adjust(2),
+    paddingBottom: Style.adjust(4),
+    borderRadius: 8,
+    height: Style.adjust(50),
+  } as ViewStyle,
+  yuCoinWrapper: {
+    flexDirection: "row",
     alignItems: "center",
   } as ViewStyle,
-  loadingHeight: {
-    minHeight: 240,
-  } as ViewStyle,
-  loadingHeightWithHeading: {
-    minHeight: 288,
-  } as ViewStyle,
+  columnValue: {
+    flexDirection: "row",
+    marginTop: Style.adjust(8),
+  },
+  icon: {
+    marginRight: Style.adjust(8),
+  },
 });
 
-function TableLoader({ loading, surged }: { loading: boolean; surged: boolean }) {
-  if (!loading) {
-    return null;
-  }
-
+const ColumnHeader = ({ theme = DEFAULT_THEME, data }: { theme: Theme; data: { power: string; title: string } }) => {
   return (
-    <View style={[styles.loading, surged ? styles.loadingHeight : styles.loadingHeightWithHeading]}>
-      <ActivityIndicator />
+    <View style={[styles.columnHeaderWrapper, { backgroundColor: theme.headerBackground }]}>
+      {!data ? null : (
+        <>
+          <TextTemplate color={theme.secondary} type="l2b">
+            {data.title}
+          </TextTemplate>
+          <YuCoin isBold={theme.boldHeader} color={theme.secondary} label={data.power} />
+          <TextTemplate color={theme.secondary} type={theme.boldHeader ? "l3b" : "l3"}>
+            Power
+          </TextTemplate>
+        </>
+      )}
     </View>
   );
-}
+};
 
-function TableData({ loading, explainData, earnRate }: IProps) {
-  if (loading) {
-    return null;
-  }
-
-  const hasProducts = earnRate !== 1;
-
+const ColumnData = ({
+  values = [],
+  theme = DEFAULT_THEME,
+  type = "data",
+  icons = [],
+}: {
+  icons: RemoteImage[];
+  values: string[];
+  theme: Theme;
+  type: "header" | "data";
+}) => {
   return (
-    <View style={styles.table}>
-      {earnRate < 2 ? null : <TableBackground width={EARN_RATE_COLUMN_WIDTH} />}
-      <TableHeader earnRate={earnRate} />
-      <View style={styles.pad} />
-      {explainData.map((data, index) => (
-        <TableRow
-          key={index} // no reorder
-          data={data}
-          totalEarnRate={earnRate}
-          hasProducts={hasProducts}
-        />
+    <View style={{ alignItems: type === "header" ? "flex-start" : "flex-end", paddingBottom: Style.adjust(8) }}>
+      {values.map((value, index) => (
+        <View key={index} style={styles.columnValue}>
+          {icons && icons[index] ? (
+            <Image
+              source={{ uri: icons[index].uri }}
+              suppressLoadingUi={true}
+              width={Style.adjust(16)}
+              height={Style.adjust(16)}
+              style={styles.icon}
+            />
+          ) : null}
+          {type === "header" ? (
+            <TextTemplate type="l3b">{value}</TextTemplate>
+          ) : (
+            <YuCoin key={index} isBold={true} color={theme.primary} label={value} />
+          )}
+        </View>
       ))}
     </View>
   );
-}
+};
+
+const YuCoin = ({
+  label,
+  isBold = false,
+  color = Colours.neutral.white,
+}: {
+  label: string;
+  isBold?: boolean;
+  color?: string;
+}) => {
+  return (
+    <View style={styles.yuCoinWrapper}>
+      <TextTemplate color={color} type={isBold ? "l3b" : "l3"}>
+        {label}
+      </TextTemplate>
+      <YuCoinIcon style={{ height: Style.adjust(12), width: Style.adjust(12), tintColor: color, marginLeft: 2 }} />
+    </View>
+  );
+};
+
+const castCoverTypeToThemeType = (coverType: CoverType) => {
+  switch (coverType) {
+    case CoverType.common:
+      return YuScreenEarnRateTableThemeType.common;
+    case CoverType.rare:
+      return YuScreenEarnRateTableThemeType.rare;
+    case CoverType.epic:
+      return YuScreenEarnRateTableThemeType.epic;
+    default:
+      return YuScreenEarnRateTableThemeType.base;
+  }
+};
+
+const castThemeTypeToCoverType = (coverType: YuScreenEarnRateTableThemeType) => {
+  switch (coverType) {
+    case YuScreenEarnRateTableThemeType.common:
+      return CoverType.common;
+    case YuScreenEarnRateTableThemeType.rare:
+      return CoverType.rare;
+    case YuScreenEarnRateTableThemeType.epic:
+      return CoverType.epic;
+    default:
+      return null;
+  }
+};
+
+const getStyle = (themeType: YuScreenEarnRateTableThemeType) => {
+  const isCoverType = [CoverType.common, CoverType.rare, CoverType.epic].includes(castThemeTypeToCoverType(themeType));
+  if (isCoverType) {
+    return { width: Style.adjust(72) };
+  }
+
+  if ([YuScreenEarnRateTableThemeType.prestige, YuScreenEarnRateTableThemeType.baseDecorated].includes(themeType)) {
+    return { width: Style.adjust(84), marginHorizontal: Style.adjust(4) };
+  }
+
+  return { width: "auto" };
+};

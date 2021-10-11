@@ -1,40 +1,32 @@
-import React, { useRef, useEffect, useMemo, useCallback } from "react";
-import { StyleSheet, View, ViewStyle, Animated, ScrollView, TextStyle, Platform } from "react-native";
+import React, { useCallback } from "react";
+import { StyleSheet, View, ViewStyle, ScrollView, TextStyle, Platform, ActivityIndicator } from "react-native";
 import { Style } from "@styles";
-import { TextWithBoldText } from "@components/molecules";
 import { Navigation } from "react-native-navigation";
 import { MODALS } from "@navigation/constants";
-import { Text, Button } from "@atoms";
-import EarnRateTable from "./table/table";
+import { Button, TextTemplate } from "@atoms";
+import { Table } from "./table/table";
 import { useQuery } from "@apollo/react-hooks";
-import { GetYulifer } from "@graphql/_core/schema";
-import { GQL_QUERY_GET_YULIFER, GQL_QUERY_GET_EARN_RATE_DETAILS } from "@graphql/yuscreen";
-import { EarnRateDetails } from "@graphql/_core/schema/EarnRateDetails";
 import media from "@styles/media";
-import { SurgedInfo } from "./surged-info";
 import GenericOverlay from "@components/modals/generic-overlay/generic-overlay";
 import { useBackHandler } from "@services/hooks/useBackHandler";
+import Markdown from "@components/molecules/markdown/markdown";
+import { GetProductEarnRate, GetProductEarnRateVariables } from "@graphql/_core/schema";
+import { CoverType } from "@graphql/_core/schema/globalTypes";
+import { GQL_QUERY_GET_PRODUCT_EARN_RATE } from "@graphql/yuscreen/getProductEarnRate";
 
-const COPY =
-  "To increase your <bold>YuCoin Power</bold>, check out the gear available on your Yu screen. All gear comes with <bold>power-ups</bold> that increase your earn rate and more!";
+interface Props {
+  slotIcon: React.ReactElement;
+  customerProductId: string;
+  coverType: CoverType;
+}
 
-const YuEarnRateModal = () => {
-  const translateY = useRef(new Animated.Value(Style.DEVICE_HEIGHT)).current;
-  const { data: earnRateData, loading } = useQuery<EarnRateDetails>(GQL_QUERY_GET_EARN_RATE_DETAILS);
-  const { data } = useQuery<GetYulifer>(GQL_QUERY_GET_YULIFER, {
-    fetchPolicy: "cache-only",
+const YuEarnRateModal = ({ slotIcon, customerProductId, coverType }: Props) => {
+  const { data } = useQuery<GetProductEarnRate, GetProductEarnRateVariables>(GQL_QUERY_GET_PRODUCT_EARN_RATE, {
+    variables: {
+      customerProductId,
+    },
+    fetchPolicy: "no-cache",
   });
-
-  useEffect(() => {
-    Animated.spring(translateY, {
-      toValue: 0,
-      useNativeDriver: true,
-      delay: 100,
-    }).start();
-  }, [translateY]);
-
-  const earnRate = useMemo(() => data?.getYulifer?.earnRate || 1, [data]);
-  const explainData = useMemo(() => earnRateData?.getEarnRateDetails || [], [earnRateData]);
 
   const backHandler = useCallback(() => {
     dismissOverlay();
@@ -43,18 +35,24 @@ const YuEarnRateModal = () => {
 
   useBackHandler(backHandler);
 
+  if (!data?.getProductEarnRate) {
+    return <ActivityIndicator />;
+  }
+
+  const { heading, footer, columns } = data.getProductEarnRate;
+
   return (
     <GenericOverlay onClose={dismissOverlay}>
       <ScrollView style={styles.wrapper} showsVerticalScrollIndicator={false}>
         <View style={styles.headingWrapper}>
-          <Text bold={true} style={styles.heading}>
-            Your YuCoin Power
-          </Text>
+          {slotIcon}
+          <View style={slotIcon ? styles.margin : null}>
+            <TextTemplate type="h2">{heading}</TextTemplate>
+          </View>
         </View>
-        <EarnRateTable earnRate={earnRate} explainData={explainData} loading={loading} />
-        <SurgedInfo earnRate={earnRate} />
+        <Table activeCoverType={coverType} columns={columns} loading={false} />
         <View style={styles.footerWrapper}>
-          <TextWithBoldText style={styles.footer} value={COPY} />
+          <Markdown text={footer.markdown} markdownStyles={markdownStyles} />
         </View>
         <View style={styles.bottomPad} />
       </ScrollView>
@@ -63,6 +61,12 @@ const YuEarnRateModal = () => {
       </View>
     </GenericOverlay>
   );
+};
+
+const markdownStyles = {
+  text: {
+    textAlign: "center",
+  },
 };
 
 const CTA_BOTTOM = media.select(
@@ -103,14 +107,13 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     marginTop: Style.adjust(20),
+    flexDirection: "row",
   } as ViewStyle,
-  heading: {
-    fontSize: Style.adjust(30),
-    letterSpacing: 1,
-  } as TextStyle,
   footerWrapper: {
-    paddingHorizontal: Style.adjust(30),
-    marginTop: Style.adjust(8),
+    justifyContent: "center",
+    alignItems: "center",
+    marginHorizontal: Style.adjust(24),
+    marginTop: Style.adjust(32),
   } as ViewStyle,
   footer: {
     fontSize: Style.adjust(16),
@@ -128,6 +131,9 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     height: Style.DEVICE_HEIGHT,
+  } as ViewStyle,
+  margin: {
+    marginLeft: Style.adjust(8),
   } as ViewStyle,
 });
 

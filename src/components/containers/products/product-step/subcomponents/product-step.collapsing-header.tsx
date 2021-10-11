@@ -11,7 +11,7 @@ import { mapCoverTypeToColor } from "../utils/mapCoverTypeToColor";
 import { LOCAL_ANSWER_KEY } from "../utils/localAnswerKeys";
 
 export const ProductStepCollapsingHeaderProductInfo = memo((props: Props) => {
-  const { scrollValue, headerHeight, dynamicData, setDynamicData } = useContext(ProductStepContext);
+  const { customerProductId, scrollValue, headerHeight, dynamicData, setDynamicData } = useContext(ProductStepContext);
   useSetDefaultAnswer({
     dynamicData,
     setDynamicData,
@@ -66,6 +66,7 @@ export const ProductStepCollapsingHeaderProductInfo = memo((props: Props) => {
           backgroundUrl={activeCover.backgroundUrl}
           worldId={dynamicData[LOCAL_ANSWER_KEY.WorldId] as YuWorld}
           coverType={dynamicData[LOCAL_ANSWER_KEY.CoverType] as CoverType}
+          customerProductId={customerProductId}
         />
       </View>
       <View style={styles.justifyCenter}>

@@ -33,7 +33,7 @@ const OFFSET = media.select(
 );
 
 const PackageCardHeader = (props: Props) => {
-  const { dynamicData, setDynamicData } = useContext(ProductStepContext);
+  const { customerProductId, dynamicData, setDynamicData } = useContext(ProductStepContext);
 
   useSetDefaultAnswer({
     dynamicData,
@@ -56,6 +56,7 @@ const PackageCardHeader = (props: Props) => {
           backgroundUrl={props.header.slotInfo.backgroundUrl.uri}
           worldId={dynamicData[LOCAL_ANSWER_KEY.WorldId] as YuWorld}
           coverType={props.coverType as CoverType}
+          customerProductId={customerProductId}
         />
         <View style={styles.distance}>
           <PackageType type={props.coverType} />

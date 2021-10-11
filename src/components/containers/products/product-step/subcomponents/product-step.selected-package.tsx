@@ -17,7 +17,7 @@ const BORDER_RADIUS = 12;
 
 export const ProductStepSelectedPackageCard = memo((props: GqlProps) => {
   const { backgroundUrl, slotInfo, previousPrice, price, priceDescription } = props;
-  const { dynamicData } = useContext(ProductStepContext);
+  const { dynamicData, customerProductId } = useContext(ProductStepContext);
 
   const headerImage = backgroundUrl?.uri && { uri: backgroundUrl.uri };
 
@@ -35,6 +35,7 @@ export const ProductStepSelectedPackageCard = memo((props: GqlProps) => {
           backgroundUrl={slotInfo.backgroundUrl.uri}
           worldId={dynamicData[LOCAL_ANSWER_KEY.WorldId] as YuWorld}
           coverType={props.coverType as CoverType}
+          customerProductId={customerProductId}
         />
         <View style={styles.distance}>
           <PackageType type={props.coverType} />
