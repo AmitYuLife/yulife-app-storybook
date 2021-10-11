@@ -65,13 +65,14 @@ export default StyleSheet.create({
   } as ViewStyle,
 
   headerTextGreetings: {
-    fontFamily: Style.FONT_FAMILY_PRIMARY,
-    fontSize: 16,
-    lineHeight: 24,
-    letterSpacing: 0.8,
-    color: "#5A5A5C",
-    paddingBottom: 32,
-    paddingHorizontal: 32,
-    paddingTop: 16,
-  } as TextStyle,
+    flex: 1,
+    paddingBottom: Style.adjust(32),
+    paddingTop: Style.adjust(16),
+    paddingHorizontal: Style.adjust(32),
+  } as ViewStyle,
+
+  buttonWrapper: {
+    flex: 1,
+    marginBottom: Style.adjust(32),
+  },
 });
