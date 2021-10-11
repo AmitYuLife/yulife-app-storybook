@@ -14,7 +14,7 @@ export default function* displayPromptsSaga() {
       }
 
       yield delay(result?.data?.pendingAppStoreReview.showAfterSeconds * 1000);
-      yield call(() => showAppReviewModal());
+      yield call(() => showAppReviewModal(result.data.pendingAppStoreReview));
 
       return;
     }
