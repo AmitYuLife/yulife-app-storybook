@@ -152,6 +152,7 @@ export enum SduiActionType {
   SDUI_ACTION_LOG_EVENT = "SDUI_ACTION_LOG_EVENT",
   SDUI_ACTION_NAVIGATE = "SDUI_ACTION_NAVIGATE",
   SDUI_ACTION_NAVIGATE_BACK = "SDUI_ACTION_NAVIGATE_BACK",
+  SDUI_ACTION_OPEN_MODAL = "SDUI_ACTION_OPEN_MODAL",
   SDUI_ACTION_OPEN_URL = "SDUI_ACTION_OPEN_URL",
   SDUI_ACTION_PRODUCT_UNDERWRITING_STEP_FINISH = "SDUI_ACTION_PRODUCT_UNDERWRITING_STEP_FINISH",
   SDUI_ACTION_PRODUCT_UNDERWRITING_STEP_POP = "SDUI_ACTION_PRODUCT_UNDERWRITING_STEP_POP",
@@ -207,6 +208,20 @@ export enum YuProductStatus {
   inProgress = "inProgress",
   locked = "locked",
   unlockable = "unlockable",
+}
+
+export enum YuScreenEarnRateTableThemeType {
+  base = "base",
+  baseDecorated = "baseDecorated",
+  common = "common",
+  epic = "epic",
+  prestige = "prestige",
+  rare = "rare",
+}
+
+export enum YuScreenEarnRateTableValueType {
+  data = "data",
+  header = "header",
 }
 
 export enum YuWorld {

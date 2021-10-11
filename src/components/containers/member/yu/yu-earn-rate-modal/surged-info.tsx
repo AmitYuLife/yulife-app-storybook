@@ -20,7 +20,7 @@ export const SurgedInfo = (props: ISurgedInfoProps) => {
 const styles = StyleSheet.create({
   wrapper: {
     width: "100%",
-    marginTop: Style.adjust(16),
+    marginTop: Style.adjust(32),
     paddingHorizontal: Style.adjust(30),
   } as ViewStyle,
   text: {
