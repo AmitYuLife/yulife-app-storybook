@@ -41,7 +41,7 @@ const SwitchToGoogleFitModal = () => {
             <TextTemplate type="h1">Heads up!</TextTemplate>
           </View>
           <TextTemplate type="b2" textAlign="center">
-            Samsung Health does not sync the mindful minutes we need in order to reward you for your session. To sync
+            Samsung Health does not currently sync the data we need in order to reward you for your session. To sync
             mindful minutes & 3rd party apps, please switch to Google Fit.
           </TextTemplate>
 
