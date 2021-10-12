@@ -15,7 +15,7 @@ const _AvatarCreationPrompt = () => {
   const features = useSelector(getUserFeatures);
 
   const createYumoji = useCallback(
-    () => navigateToAvatarCreationScreen({ useNewYumojiBuilder: features.useNewYumojiBuilder }),
+    () => navigateToAvatarCreationScreen({ useNewYumojiBuilder: features.newYumojiBuilder }),
     []
   );
 
