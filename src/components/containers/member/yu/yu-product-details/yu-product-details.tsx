@@ -8,9 +8,9 @@ import { Style } from "@styles";
 import { TextWithBoldText } from "@components/molecules";
 import { getProductIcon } from "../assets/getProductIcon";
 import { useBackHandler } from "@services/hooks/useBackHandler";
-import { IProduct } from "@components/containers/products/fib/fib.types";
+import { GetYulifer_personal_chest } from "@graphql/_core/schema";
 
-const YuProductDetails = (props: IProduct) => {
+const YuProductDetails = (props: GetYulifer_personal_chest) => {
   const { itemSlot, earnRate, name, status, policyNumber, description } = props;
 
   const Icon = getProductIcon(itemSlot);

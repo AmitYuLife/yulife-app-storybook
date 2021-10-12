@@ -149,10 +149,6 @@ export default [
   },
   // products
   {
-    name: ROUTES.fib,
-    component: require("../components/containers/products/fib/fib.container").default,
-  },
-  {
     name: ROUTES.productDetails,
     component: require("../components/containers/products/product-details/product-details.container").default,
   },
@@ -205,15 +201,6 @@ export default [
   {
     name: MODALS.policyCertificate,
     component: require("../components/containers/products/product-details/product-details.modal").default,
-  },
-  {
-    name: MODALS.enterSalary,
-    component: require("../components/containers/products/fib/subcontainers/fib.enter-salary.container").default,
-  },
-  {
-    name: MODALS.financialCoverForm,
-    component: require("../components/screens/products/fib/underwriting-journey/subcomponents/financial-questions/financial-questions-form.screen")
-      .default,
   },
   {
     name: MODALS.leaderboardLean,
@@ -306,10 +293,6 @@ export default [
   {
     name: MODALS.duelRespond,
     component: require("../components/modals/duels/duel-respond.modal").default,
-  },
-  {
-    name: MODALS.priceChanged,
-    component: require("../components/modals/price-changed/price-changed").default,
   },
   {
     name: MODALS.blurredOverlay,

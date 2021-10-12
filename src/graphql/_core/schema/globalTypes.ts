@@ -135,13 +135,6 @@ export enum PassiveChallengeType {
   STEPS = "STEPS",
 }
 
-/**
- * Product code used internally to identify different products
- */
-export enum ProductCode {
-  YULFIB = "YULFIB",
-}
-
 export enum ProductType {
   alpha = "alpha",
   employer = "employer",
@@ -264,17 +257,6 @@ export interface ChallengePayload {
   value?: number | null;
 }
 
-/**
- * Input to create a top ups quote
- */
-export interface CreateTopUpsQuoteInput {
-  grossSalary?: number | null;
-  coverType?: CoverType | null;
-  customCoverPercentage?: number | null;
-  userAnswers?: (LifeInsuranceTopUpsUserAnswers | null)[] | null;
-  productEntityId?: string | null;
-}
-
 export interface CustomerBeneficiaryUpdate {
   id?: string | null;
   productId: string;
@@ -283,23 +265,6 @@ export interface CustomerBeneficiaryUpdate {
   phoneNumber?: string | null;
   relationship: string;
   remove?: boolean | null;
-}
-
-/**
- * Input for getting an existing quote
- */
-export interface GetTopUpsQuoteInput {
-  customerProductEntityId?: string | null;
-  quoteId?: string | null;
-}
-
-/**
- * User answers to underwriting journey where the questionId is the unique id that
- * identifies a question and value is the answer provided by the customer (input)
- */
-export interface LifeInsuranceTopUpsUserAnswers {
-  questionId?: string | null;
-  value?: string | null;
 }
 
 export interface MobileConsentInput {
@@ -312,32 +277,6 @@ export interface MobileConsentInput {
 
 export interface ProductMetadata {
   avios?: AviosMetadata | null;
-}
-
-export interface UpdateContactDetailsInput {
-  phone?: string | null;
-  addressFirstLine?: string | null;
-  addressSecondLine?: string | null;
-  addressCity?: string | null;
-  addressPostCode?: string | null;
-  email?: string | null;
-  personalEmailConsent?: boolean | null;
-  firstName?: string | null;
-  lastName?: string | null;
-}
-
-export interface UpdateCustomerGPDetailsInput {
-  practiceName?: string | null;
-  practiceAddress?: string | null;
-  practiceTown?: string | null;
-  practicePostCode?: string | null;
-  gpName?: string | null;
-}
-
-export interface UpdateCustomerGPDetailsOptions {
-  requestMSSTests?: boolean | null;
-  medicalConsent?: boolean | null;
-  previewMedicalTests?: boolean | null;
 }
 
 export interface UserAvatarInput {
