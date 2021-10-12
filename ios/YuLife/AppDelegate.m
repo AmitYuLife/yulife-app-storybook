@@ -85,6 +85,14 @@ static void InitializeFlipper(UIApplication *application) {
 - (NSArray<id<RCTBridgeModule>> *)extraModulesForBridge:(RCTBridge *)bridge {
 	return [ReactNativeNavigation extraModulesForBridge:bridge];
 }
+-(void)applicationShouldRequestHealthAuthorization:(UIApplication *)application {
+    HKHealthStore *healthStore = [[HKHealthStore alloc] init];
+    [healthStore handleAuthorizationForExtensionWithCompletion:^(BOOL success, NSError * _Nullable error) {
+        if (success) {
+            NSLog(@"phone received health kit request");
+        }
+    }];
+}
 
 //Called when a notification is delivered to a foreground app.
 -(void)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions options))completionHandler
