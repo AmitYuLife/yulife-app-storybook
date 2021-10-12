@@ -22,8 +22,8 @@ Feature("As a user I can take a challenge", async () => {
                             Then("I should be on the challenge screen", then.idVisible(CHALLENGE_PROGRESS_BAR))
                             Then("I should see the cancel button", then.idVisible(BUTTON_CLOSE_CHALLENGE))
                             When("I tap this button", when.tapID(BUTTON_CLOSE_CHALLENGE), async () => {
-                                Then("I should see the cancel challenge confirmation screen", then.textVisible("exit challenge?"))
-                                When("I tap exit", when.tapText("exit"), async () => {
+                                Then("I should see the cancel challenge confirmation screen", then.textVisible("Call it quits?"))
+                                When("I tap exit", when.tapText("Exit challenge"), async () => {
                                     Then("I should be back on the quests screen", then.idVisible(QUESTS_SCREEN(0)))
                                     When("I go back to the yuicoin tab", when.tapID(NAV_BAR("yucoin")), async () => {
                                         Then("I should see the number of points I started with", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(200)))
