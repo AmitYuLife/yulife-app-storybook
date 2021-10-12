@@ -1,4 +1,3 @@
-import { Cover } from "@components/containers/products/fib/fib.types";
 import { RehydrateAction } from "redux-persist";
 import { logOutSuccess, getUserSuccess } from "@redux/user/user.actions";
 import { CoverType, YuWorld } from "@graphql/_core/schema/globalTypes";
@@ -62,7 +61,6 @@ export interface FibAnswers {
   lastName: string;
   medicalConsent: boolean;
   previewMedicalTests: boolean;
-  existingCovers: Cover[];
   medicalHistory: Record<string, boolean>;
   [questionId: string]: any;
 }

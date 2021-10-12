@@ -13,7 +13,6 @@ import { MedicalPracticeIcon, SearchInput } from "@atoms";
 import GpNoResults from "./gpNoResults";
 import SearchItem, { ISearchItem } from "@atoms/search/search-item";
 import { Colours } from "@styles";
-import { getPracticeAddress } from "@components/screens/products/fib/underwriting-journey/subcomponents/gp-details/fib.gp.helper";
 import { GPInputForm, GpManualEntry } from "./gpManualEntry";
 import { GpDoctorDetails } from "./gpDoctorDetails";
 import { GpConfirm } from "./gpConfirm";
@@ -158,3 +157,15 @@ const styles = StyleSheet.create({
     marginTop: -50,
   } as ViewStyle,
 });
+
+function getPracticeAddress(practice: MedicalPractices_getMedicalPractices): string[] {
+  const practiceTown =
+    practice.address4 || practice.address5
+      ? `${practice.address4 ?? ""} ${practice.address5 ?? ""}`
+      : practice.address3;
+  const address3 = practice.address4 && practice.address5 && practice.address3 ? `${practice.address3}` : "";
+  const firstLine = practice.name;
+  const secondLine = `${practice.address1} ${practice.address2} ${address3}`;
+  const thirdLine = `${practiceTown}, ${practice.postCode}`;
+  return [firstLine, secondLine, thirdLine];
+}

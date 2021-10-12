@@ -10,8 +10,6 @@ import { getUserStart } from "@redux/user/user.actions";
 import { getUserFeatures } from "@redux/user/user.selectors";
 import { DebugScreen } from "@screens";
 import { ROUTES } from "@navigation/constants";
-import { FIB_GP_DETAILS, FIB_CONFIRM_PACKAGES, FIB_CHOOSE_STYLE } from "@containers/products/fib/fib.types";
-import { FIB_CONTACT_DETAILS, FIB_DECLARATION_CONFIRMATION } from "../../products/fib/fib.types";
 
 interface IProps {
   componentId: string;
@@ -23,12 +21,6 @@ type ConnectedDispatch = typeof mapDispatchToProps;
 type Props = IProps & ConnectedState & ConnectedDispatch;
 
 enum CODES {
-  ROUTE_TO_FIB_BROWSE_PACKAGES = "ROUTE_TO_FIB_BROWSE_PACKAGES",
-  ROUTE_TO_FIB_CONTACT_DETAILS_SCREEN = "ROUTE_TO_FIB_CONTACT_DETAILS_SCREEN",
-  ROUTE_TO_FIB_CONFIRMATION_DECLARATION = "ROUTE_TO_FIB_CONFIRMATION_DECLARATION",
-  ROUTE_TO_FIB_GP_DETAILS = "ROUTE_TO_FIB_GP_DETAILS",
-  ROUTE_TO_FIB_CONFIRM_PACKAGES = "ROUTE_TO_FIB_CONFIRM_PACKAGES",
-  ROUTE_TO_CHOOSE_STYLE = "ROUTE_TO_CHOOSE_STYLE",
   ROUTE_TO_PRODUCT_DETAILS = "ROUTE_TO_PRODUCT_DETAILS",
   ROUTE_TO_REFERRALS = "ROUTE_TO_REFERRALS",
 }
@@ -50,12 +42,6 @@ const ActivityHistoryContainer: React.FC<Props> = (props) => {
   const list = [
     ...((data && data.getDebugCodes) || DEFAULT_LIST),
     "send-test-push",
-    CODES.ROUTE_TO_FIB_BROWSE_PACKAGES,
-    CODES.ROUTE_TO_FIB_CONTACT_DETAILS_SCREEN,
-    CODES.ROUTE_TO_FIB_CONFIRMATION_DECLARATION,
-    CODES.ROUTE_TO_FIB_GP_DETAILS,
-    CODES.ROUTE_TO_FIB_CONFIRM_PACKAGES,
-    CODES.ROUTE_TO_CHOOSE_STYLE,
     CODES.ROUTE_TO_PRODUCT_DETAILS,
     CODES.ROUTE_TO_REFERRALS,
   ];
@@ -70,75 +56,6 @@ const ActivityHistoryContainer: React.FC<Props> = (props) => {
       try {
         if (code === "send-test-push") {
           return props.sendTestPush();
-        }
-
-        if (code === CODES.ROUTE_TO_FIB_BROWSE_PACKAGES) {
-          return Navigation.push(props.componentId, {
-            component: {
-              id: ROUTES.fib,
-              name: ROUTES.fib,
-            },
-          });
-        }
-
-        if (code === CODES.ROUTE_TO_FIB_CONTACT_DETAILS_SCREEN) {
-          return Navigation.push(props.componentId, {
-            component: {
-              id: ROUTES.fib,
-              name: ROUTES.fib,
-              passProps: {
-                initialRoute: FIB_CONTACT_DETAILS,
-              },
-            },
-          });
-        }
-
-        if (code === CODES.ROUTE_TO_FIB_CONFIRMATION_DECLARATION) {
-          return Navigation.push(props.componentId, {
-            component: {
-              id: ROUTES.fib,
-              name: ROUTES.fib,
-              passProps: {
-                initialRoute: FIB_DECLARATION_CONFIRMATION,
-              },
-            },
-          });
-        }
-
-        if (code === CODES.ROUTE_TO_FIB_GP_DETAILS) {
-          return Navigation.push(props.componentId, {
-            component: {
-              id: ROUTES.fib,
-              name: ROUTES.fib,
-              passProps: {
-                initialRoute: FIB_GP_DETAILS,
-              },
-            },
-          });
-        }
-
-        if (code === CODES.ROUTE_TO_FIB_CONFIRM_PACKAGES) {
-          return Navigation.push(props.componentId, {
-            component: {
-              id: ROUTES.fib,
-              name: ROUTES.fib,
-              passProps: {
-                initialRoute: FIB_CONFIRM_PACKAGES,
-              },
-            },
-          });
-        }
-
-        if (code === CODES.ROUTE_TO_CHOOSE_STYLE) {
-          return Navigation.push(props.componentId, {
-            component: {
-              id: ROUTES.fib,
-              name: ROUTES.fib,
-              passProps: {
-                initialRoute: FIB_CHOOSE_STYLE,
-              },
-            },
-          });
         }
 
         if (code === CODES.ROUTE_TO_PRODUCT_DETAILS) {
