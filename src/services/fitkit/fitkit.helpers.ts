@@ -53,7 +53,7 @@ export const transformSampleResultToPayload = (item: SampleQueryResult): Challen
   value: Math.floor(item.value),
 });
 
-interface QueryFitKitByTypesResponse {
+export interface QueryFitKitByTypesResponse {
   results: ChallengePayload[];
   error: boolean;
 }
