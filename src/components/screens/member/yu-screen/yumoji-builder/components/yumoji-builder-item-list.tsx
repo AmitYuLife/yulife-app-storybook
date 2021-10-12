@@ -1,5 +1,6 @@
 import React, { useCallback, memo, useRef, FC, useEffect, useMemo } from "react";
 import { View, StyleSheet, ViewStyle, FlatList } from "react-native";
+import { Navigation } from "react-native-navigation";
 import { Colours, Style } from "@styles";
 import { TextTemplate } from "@atoms";
 import {
@@ -10,6 +11,8 @@ import { loadingItemData } from "../../avatar-builder/avatar-builder.helper";
 import { ItemListItems, YumojiItem } from "./yumoji-item";
 import { YumojiPartStatus } from "@graphql/_core/schema/globalTypes";
 import { showGenericModal } from "@navigation/utils";
+import { ROUTES, MODALS } from "@navigation/constants";
+import { labels as navigationTabs } from "@navigation/root";
 
 export interface IItemList extends YumojiBuilderItemsForCategory {
   items: ItemListItems[];
@@ -38,13 +41,22 @@ const YumojiBuilderItemList: FC<IProps> = ({ itemList, updateUserAvatar, selecte
       }
 
       if (item?.modal) {
-        showGenericModal(
-          item?.modal?.title,
-          item?.modal?.message,
-          item?.modal?.cta ? () => null : null,
-          item?.modal?.ctaText,
-          "Close"
-        );
+        const { title, message, cta, ctaText } = item.modal || {};
+        const tab = navigationTabs.find((tab) => tab.name === cta);
+        const onTabPress = tab?.onPress;
+        const route = ROUTES[cta as keyof typeof ROUTES];
+        const pushNavigation = route ? () => Navigation.push(cta, { component: { id: route, name: route } }) : null;
+
+        const onPress =
+          cta && ctaText
+            ? () => {
+                (onTabPress || pushNavigation)?.();
+                Navigation.dismissModal(MODALS.generic);
+              }
+            : null;
+        const buttonLabel = (cta && ctaText) || null;
+
+        showGenericModal(title, message, onPress, buttonLabel, "Close");
       }
     },
     [updateUserAvatar]
