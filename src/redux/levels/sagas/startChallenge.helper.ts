@@ -1,11 +1,11 @@
 import cancelActiveChallengeWithClient from "@graphql/challenges/cancelActiveChallenge.gql";
 import updateActiveChallengeWithClient from "@graphql/challenges/updateActiveChallenge.gql";
-import { ChallengePayload, FitKitType } from "@graphql/_core/schema/globalTypes";
+import { FitKitType } from "@graphql/_core/schema/globalTypes";
 import {
   CreateActiveChallenge_createActiveChallenge_challenge,
   CreateActiveChallenge_createActiveChallenge_levelSlot,
 } from "@graphql/_core/schema";
-import { queryFitKitByTypes } from "@services/fitkit/fitkit.helpers";
+import { queryFitKitByTypes, QueryFitKitByTypesResponse } from "@services/fitkit/fitkit.helpers";
 import Logger from "@services/logging/logger";
 import { DATE_FORMAT_WITH_TZ } from "@utils";
 import moment from "moment";
@@ -42,7 +42,7 @@ export function* startTracking(
 
     try {
       const features: ReturnType<typeof getUserFeatures> = yield select(getUserFeatures);
-      const queryResult: ChallengePayload[] = yield call(
+      const queryResult: QueryFitKitByTypesResponse = yield call(
         queryFitKitByTypes,
         start,
         end.format(DATE_FORMAT_WITH_TZ),
@@ -50,11 +50,11 @@ export function* startTracking(
         features
       );
 
-      if (queryResult.length > 0) {
+      if (queryResult.results.length > 0) {
         const results = {
           endDateTime,
           startDateTime,
-          value: Math.floor(queryResult.reduce((accumulator, session) => accumulator + session.value, 0)),
+          value: Math.floor(queryResult.results.reduce((accumulator, session) => accumulator + session.value, 0)),
         };
 
         const { data } = yield call(updateActiveChallengeWithClient, levelSlotId, results);
