@@ -46,7 +46,7 @@ export function useFitKit() {
         isAuthorised = await RNFitKit.isAuthorised();
       }
     } catch (e) {
-      Logger.logMixpanelEvent("rn_fitKit_isAuthorised_error", { error: e.message });
+      Logger.logMixpanelEvent("rn_fitKit_isAuthorised_error", { error: e });
     }
 
     return { available: isAvailable, authorised: isAuthorised, loading: false };
