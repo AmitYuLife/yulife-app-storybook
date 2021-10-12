@@ -10,12 +10,19 @@ import { getRouteState } from "../app/app.selectors";
 import { submitPersonalProductStep, backPersonalProductStep } from "@graphql/personalProduct";
 import { ProductStepAction } from "./sdui.types";
 import { parseJSON, getServerPayload } from "./sdui.helpers";
+import { getYuScreenProductSlots } from "@graphql/yuscreen";
 
 function* navigateBack({ payload }: ProductStepAction) {
   const currentRoute: ReturnType<typeof getRouteState> = yield select(getRouteState);
   const onExit = () => Navigation.pop(currentRoute);
 
   const { isValid, data } = parseJSON(getServerPayload(payload), ["title", "message", "cancelLabel", "confirmLabel"]);
+
+  try {
+    yield call(getYuScreenProductSlots);
+  } catch (e) {
+    // log
+  }
 
   if (isValid) {
     const onPressSecondary = () => Navigation.dismissModal(MODALS.generic);
@@ -153,7 +160,7 @@ function* pushStep(action: ProductStepAction) {
         stepId,
         data: JSON.stringify({ ...serverDynamicData, ...dynamicData }),
       },
-      ["GetPersonalProductStep", "YuScreenProductSlots"]
+      ["GetPersonalProductStep"]
     );
   } catch (e) {
     // shrug (log)
