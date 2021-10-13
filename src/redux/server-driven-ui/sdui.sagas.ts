@@ -3,7 +3,7 @@ import { MODALS } from "@navigation/constants";
 import { showYuModal, TAB_ROUTES } from "@navigation/root";
 import { handleLinkPress } from "@services/app-link";
 import { Navigation } from "react-native-navigation";
-import { call, select, ActionPattern, takeEvery, takeLeading } from "redux-saga/effects";
+import { call, select, ActionPattern, takeEvery, takeLeading, put } from "redux-saga/effects";
 import Logger from "@services/logging/logger";
 import { SyncAction } from "@redux/_core/types";
 import { getRouteState } from "../app/app.selectors";
@@ -11,6 +11,9 @@ import { submitPersonalProductStep, backPersonalProductStep } from "@graphql/per
 import { ProductStepAction } from "./sdui.types";
 import { parseJSON, getServerPayload } from "./sdui.helpers";
 import { getYuScreenProductSlots } from "@graphql/yuscreen";
+import getTotalCoins from "@graphql/user/getTotalCoins";
+import { Unpacked } from "@utils";
+import { totalCoinsUpdated } from "@redux/coins/coins.actions";
 
 function* navigateBack({ payload }: ProductStepAction) {
   const currentRoute: ReturnType<typeof getRouteState> = yield select(getRouteState);
@@ -19,7 +22,14 @@ function* navigateBack({ payload }: ProductStepAction) {
   const { isValid, data } = parseJSON(getServerPayload(payload), ["title", "message", "cancelLabel", "confirmLabel"]);
 
   try {
+    // update YusScreen slots incase any journey progression has changed
     yield call(getYuScreenProductSlots);
+
+    // update total coins incase coins have been awarded during a journey
+    const { data: coinData }: Unpacked<typeof getTotalCoins> = yield call(getTotalCoins);
+    if (coinData) {
+      yield put(totalCoinsUpdated(coinData.getTotalCoins));
+    }
   } catch (e) {
     // log
   }

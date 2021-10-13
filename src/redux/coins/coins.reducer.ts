@@ -14,6 +14,7 @@ import {
 } from "../daily-meditation/daily-meditation.actions";
 import { UPDATE_DAILY_STEPS_SUCCESS_FROM_REMOTE, START_DAILY_STEPS } from "../daily-steps/daily-steps.actions";
 import { GET_USER_SUCCESS, LOGIN_USER_SUCCESS, LOGOUT_SUCCESS } from "../user/user.actions";
+import { UPDATE_TOTAL_COINS } from "./coins.actions";
 
 export interface ICoinsStore {
   dailyChallengeEarned: number; // number of coins earned in the current day through challenges
@@ -55,6 +56,8 @@ const coinsReducer = (state: ICoinsStore = getInitialState(), action: SyncAction
       return loginUserSuccess(state, action.payload);
     case GET_USER_SUCCESS:
       return getUserSuccess(state, action.payload);
+    case UPDATE_TOTAL_COINS:
+      return totalCoinsUpdated(state, action.payload);
     case UPDATE_DAILY_MEDITATION_EMPTY_RESULT:
       return { ...state, dailyMeditationEarned: 0 };
 
@@ -150,4 +153,9 @@ const getUserSuccess = (state: ICoinsStore, { getCurrentUser }: GetCurrentUser):
   dailyChallengeEarned: sumCompletedChallenges(getCurrentUser?.todayActivity),
   total: getCurrentUser?.coinLedger?.currentBalance || state.total,
   lastUpdated: moment().format(DATE_FORMAT),
+});
+
+const totalCoinsUpdated = (state: ICoinsStore, totalCoins: number): ICoinsStore => ({
+  ...state,
+  total: totalCoins,
 });
