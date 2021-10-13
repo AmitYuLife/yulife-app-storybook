@@ -6,7 +6,6 @@ import { ItemSet } from "./item-set/item-set";
 import { useQuery } from "@apollo/react-hooks";
 import { GetYulifer, YuScreenProductSlots } from "@graphql/_core/schema";
 import { GQL_QUERY_GET_YULIFER, GQL_QUERY_GET_YU_SCREEN_PRODUCTS_SLOTS } from "@graphql/yuscreen";
-import { navigateToAvatarModal } from "../../navigation/navigateToAvatarModal";
 import { YUSCREEN_AVATAR } from "@ids";
 import { AvatarCreationPrompt } from "../../subcomponents";
 import { Text } from "@atoms";
@@ -14,6 +13,7 @@ import { Yumoji, TouchableOpacityWithDelay } from "@molecules";
 import { ItemBottom } from "./item-set/item-bottom";
 import { YuScreenContext } from "../../context/yu-screen.context";
 import { getUserFeatures } from "@redux/user/user.selectors";
+import { navigateToAvatarCreationScreen } from "../../navigation/navigateToAvatarCreationScreen";
 
 const _AvatarAndEquipment = () => {
   const { data } = useQuery<GetYulifer>(GQL_QUERY_GET_YULIFER, { fetchPolicy: "cache-first" }); // We cannot use cache-only as fetch policy, this query is refetch on avatar update
@@ -22,7 +22,11 @@ const _AvatarAndEquipment = () => {
   });
   const features = useSelector(getUserFeatures);
 
-  const editYumoji = useCallback(() => navigateToAvatarModal({ useNewYumojiBuilder: features.newYumojiBuilder }), []);
+  const editYumoji = useCallback(
+    () =>
+      navigateToAvatarCreationScreen({ useNewYumojiBuilder: features.newYumojiBuilder, heading: "Edit your Yumoji" }),
+    []
+  );
 
   const { setPopover, hasYumoji } = useContext(YuScreenContext);
 
