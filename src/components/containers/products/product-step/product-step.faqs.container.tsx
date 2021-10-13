@@ -1,4 +1,4 @@
-import React, { memo, useState } from "react";
+import React, { memo, useMemo, useState } from "react";
 import { ActivityIndicator, StyleSheet, View, ViewStyle, ScrollView, LayoutChangeEvent } from "react-native";
 import { useDispatch } from "react-redux";
 import { useQuery } from "@apollo/react-hooks";
@@ -13,6 +13,7 @@ import { SduiActionType } from "@graphql/_core/schema/globalTypes";
 import { Colours, Style, TOP_BAR } from "@styles";
 
 const HEADER_HEIGHT_ESTIMATE = TOP_BAR.TOP_BAR_WITH_PAD;
+const EXTRA_PADDING = Style.adjust(32);
 
 const ProductStepDetachedContainer = (props: any) => {
   const { stepId, productId } = props;
@@ -56,6 +57,10 @@ const ProductStepDetachedContainer = (props: any) => {
     setHeaderHeight(event.nativeEvent.layout.height);
   };
 
+  const scrollViewTopPad = useMemo(() => {
+    return { height: headerHeight + EXTRA_PADDING };
+  }, [headerHeight, EXTRA_PADDING]);
+
   if (loading || !data?.getPersonalProductStepDetachedFaqs) {
     return (
       <View style={styles.loadingWrapper}>
@@ -79,8 +84,10 @@ const ProductStepDetachedContainer = (props: any) => {
       }}
     >
       <View style={nestedHistory.length === 0 ? styles.wrapper : styles.wrapperWhite}>
-        <View style={{ height: headerHeight }} />
-        <ScrollView showsVerticalScrollIndicator={false}>{body.map(renderItemContent)}</ScrollView>
+        <ScrollView showsVerticalScrollIndicator={false}>
+          <View style={scrollViewTopPad} />
+          {body.map(renderItemContent)}
+        </ScrollView>
       </View>
       <View onLayout={handleHeaderLayout} style={styles.headerWrapper}>
         <ProductStepContentItemHeaderDetached
@@ -106,7 +113,6 @@ const styles = StyleSheet.create({
   } as ViewStyle,
   wrapper: {
     flex: 1,
-    paddingTop: Style.adjust(32),
     backgroundColor: Colours.neutral.n50,
   } as ViewStyle,
   wrapperWhite: {

@@ -1,4 +1,4 @@
-import React, { memo, useState } from "react";
+import React, { memo, useMemo, useState } from "react";
 import { ActivityIndicator, StyleSheet, View, ViewStyle, ScrollView, LayoutChangeEvent } from "react-native";
 import { useQuery } from "@apollo/react-hooks";
 import { GQL_QUERY_GET_PERSONAL_PRODUCT_STEP_DETACHED_DOCUMENTS } from "@graphql/personalProduct/getPersonalProductStepDetachedDocuments.gql";
@@ -14,6 +14,7 @@ import { ContentItemDocuments } from "@components/sdui";
 import { Style, TOP_BAR } from "@styles";
 
 const HEADER_HEIGHT_ESTIMATE = TOP_BAR.TOP_BAR_WITH_PAD;
+const EXTRA_PADDING = Style.adjust(32);
 
 const ProductStepDetachedContainer = (props: any) => {
   const { productId } = props;
@@ -31,6 +32,10 @@ const ProductStepDetachedContainer = (props: any) => {
     setHeaderHeight(event.nativeEvent.layout.height);
   };
 
+  const scrollViewTopPad = useMemo(() => {
+    return { height: headerHeight + EXTRA_PADDING };
+  }, [headerHeight, EXTRA_PADDING]);
+
   if (loading || !data?.getPersonalProductStepDetachedDocuments) {
     return (
       <View style={styles.loadingWrapper}>
@@ -44,8 +49,10 @@ const ProductStepDetachedContainer = (props: any) => {
   return (
     <ProductStepDocumentsContext.Provider value={{ productId }}>
       <View style={styles.wrapper}>
-        <View style={{ height: headerHeight }} />
-        <ScrollView showsVerticalScrollIndicator={false}>{body.map(renderItemContent)}</ScrollView>
+        <ScrollView showsVerticalScrollIndicator={false}>
+          <View style={scrollViewTopPad} />
+          {body.map(renderItemContent)}
+        </ScrollView>
       </View>
       <View onLayout={handleHeaderLayout} style={styles.headerWrapper}>
         <ProductStepContentItemHeaderDetached
@@ -72,7 +79,6 @@ const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
     backgroundColor: "#FAFAFE",
-    paddingTop: Style.adjust(32),
   } as ViewStyle,
   loadingWrapper: {
     flex: 1,
