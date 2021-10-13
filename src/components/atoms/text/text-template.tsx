@@ -46,7 +46,10 @@ export const TextTemplate = memo(
   }
 );
 
-const getLetterSpacing = (spacing: number) => Platform.select({ ios: spacing, android: 0 });
+const getLetterSpacing = (spacing: number) => {
+  const calculatedSpacing = Style.isIphone8() ? Number((spacing - 0.3).toFixed(1)) : spacing;
+  return Platform.select({ ios: calculatedSpacing, android: 0 });
+};
 
 export const styles = StyleSheet.create({
   default: {
