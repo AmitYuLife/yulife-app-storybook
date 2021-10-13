@@ -1,5 +1,5 @@
 import { StyleSheet, TextStyle, ViewStyle } from "react-native";
-import { Style } from "@styles/index";
+import { Colours, Style } from "@styles";
 
 export default StyleSheet.create({
   viewWrapper: {
@@ -24,17 +24,17 @@ export default StyleSheet.create({
 
   textArea: {
     alignSelf: "center",
-    marginBottom: 32,
-    backgroundColor: "#FAFAFE",
+    marginBottom: Style.adjust(32),
+    backgroundColor: Colours.neutral.n50,
     borderStyle: "solid",
     borderWidth: 2,
     borderColor: "#E2E2E2",
     borderRadius: 8,
     color: "#000",
-    minHeight: 160,
+    minHeight: Style.adjust(160),
     width: "85%",
-    paddingHorizontal: 16,
-    paddingTop: 16,
+    paddingHorizontal: Style.adjust(16),
+    paddingTop: Style.adjust(16),
   } as TextStyle,
 
   textAreaFocus: {
@@ -43,36 +43,39 @@ export default StyleSheet.create({
 
   footerWrapper: {
     width: "100%",
-    marginBottom: 112,
+    marginBottom: Style.adjust(112),
   } as ViewStyle,
 
   submitButton: {
     alignSelf: "center",
-    marginBottom: 32,
+    marginBottom: Style.adjust(32),
   } as ViewStyle,
 
   greetingsWrapper: {
+    flex: 1,
+  } as ViewStyle,
+
+  greetingsContainer: {
     display: "flex",
     flexDirection: "column",
     width: "100%",
-    height: "100%",
+    flex: 1,
   } as ViewStyle,
 
   imageWrapper: {
-    marginVertical: 32,
-    alignSelf: "center",
-    flex: 2,
+    justifyContent: "center",
+    alignItems: "center",
+    flex: 0.9,
   } as ViewStyle,
 
   headerTextGreetings: {
-    flex: 1,
     paddingBottom: Style.adjust(32),
     paddingTop: Style.adjust(16),
     paddingHorizontal: Style.adjust(32),
   } as ViewStyle,
 
   buttonWrapper: {
-    flex: 1,
-    marginBottom: Style.adjust(32),
+    flex: 0.2,
+    justifyContent: "flex-end",
   },
 });

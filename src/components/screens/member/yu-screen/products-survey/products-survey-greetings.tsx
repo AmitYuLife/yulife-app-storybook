@@ -10,9 +10,9 @@ interface IProps {
 
 function ProductsSurveyGreetings({ onExitConfirmed }: IProps) {
   return (
-    <View>
+    <View style={styles.greetingsWrapper}>
       <GenericHeadingPad />
-      <View style={styles.greetingsWrapper}>
+      <View style={styles.greetingsContainer}>
         <View style={styles.headerTextGreetings}>
           <TextTemplate type="b2">
             We appreciate your feedback. Thank you for helping us make YuLife the best insurance company in the world!

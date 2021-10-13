@@ -16,6 +16,7 @@ const isIPad = () => {
 };
 
 const isIphoneX = () => Platform.OS === "ios" && y === 812;
+const isIphone8 = () => Platform.OS === "ios" && x === 375 && y === 667;
 
 const isIphoneXPlus = () =>
   // XS Max, XR
@@ -167,6 +168,7 @@ const Style = {
   isAnyIphoneX,
   isIphoneX,
   isIphoneXPlus,
+  isIphone8,
   isShortToMedium,
   isShortAndWideAndroid,
   isShortAndroid,
