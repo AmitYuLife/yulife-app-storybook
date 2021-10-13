@@ -16,6 +16,7 @@ export interface GetYumojiBuilderInitialParts_getYumojiBuilderInitialParts_remot
 
 export interface GetYumojiBuilderInitialParts_getYumojiBuilderInitialParts {
   colorSchemeId: string | null;
+  categoryId: string | null;
   partId: string | null;
   partType: string;
   order: number;

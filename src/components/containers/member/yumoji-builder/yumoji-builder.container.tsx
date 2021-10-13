@@ -62,7 +62,7 @@ const YumojiBuilderContainer: FC<IProps> = ({ heading }) => {
   const updateAvatar = useCallback(() => {
     showGenericModal(
       "Great choices!",
-      "Do you want to keep all the changes you made? (Equipped items on the YU screen are not affected by this change)",
+      "Do you want to keep all the changes you made? (Equipped items on the Yu screen are not affected by this change)",
       handleAvatarUpdate,
       "Save changes",
       "Discard changes"
@@ -107,12 +107,16 @@ const YumojiBuilderContainer: FC<IProps> = ({ heading }) => {
   }, []);
 
   useEffect(() => {
-    const { selectedCategoryId, bodyType, partId } = state;
+    const { selectedCategoryId, bodyType, partId, parts } = state;
+
+    const getPart = Object.values(parts).find((part) => part.categoryId === selectedCategoryId);
+
     if (selectedCategoryId && bodyType !== AvatarBodyType.neutral) {
       const variables = {
         categoryId: selectedCategoryId,
         bodyType,
         partId,
+        colorSchemeId: getPart?.colorSchemeId,
       };
 
       getYumojiBuilderItemsForCategory({ variables });

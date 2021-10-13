@@ -1,8 +1,18 @@
 import gql from "graphql-tag";
 
 export const GQL_QUERY_GET_YUMOJI_BUILDER_ITEMS_FOR_CATEGORY = gql`
-  query GetYumojiBuilderItemsForCategory($categoryId: String!, $bodyType: AvatarBodyType!, $partId: String) {
-    getYumojiBuilderItemsForCategory(categoryId: $categoryId, bodyType: $bodyType, partId: $partId) {
+  query GetYumojiBuilderItemsForCategory(
+    $categoryId: String!
+    $bodyType: AvatarBodyType!
+    $partId: String
+    $colorSchemeId: String
+  ) {
+    getYumojiBuilderItemsForCategory(
+      categoryId: $categoryId
+      bodyType: $bodyType
+      partId: $partId
+      colorSchemeId: $colorSchemeId
+    ) {
       title
       items {
         parts {
@@ -10,6 +20,7 @@ export const GQL_QUERY_GET_YUMOJI_BUILDER_ITEMS_FOR_CATEGORY = gql`
           partType
           order
           colorSchemeId
+          categoryId
           remoteUrl {
             id
             uri
