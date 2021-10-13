@@ -191,4 +191,5 @@ const getUserSuccess = (state: IDailyStepsStore, res: GetCurrentUser) => ({
 const loginUserSuccess = (state: IDailyStepsStore, res: LoginUser) => ({
   ...state,
   exchangeRate: res?.loginUser?.user?.passiveSteps?.exchange || getInitialState().exchangeRate,
+  stepsPassiveMilestones: res?.loginUser?.user?.passiveSteps?.levelSlot?.milestones || [],
 });

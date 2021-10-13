@@ -121,6 +121,7 @@ const getUserSuccess = (state: IDailyMeditationStore, res: GetCurrentUser) => ({
 const loginUserSuccess = (state: IDailyMeditationStore, res: LoginUser) => ({
   ...state,
   exchangeRate: res?.loginUser?.user?.passiveMeditation?.exchange || getInitialState().exchangeRate,
+  meditationPassiveMilestones: res?.loginUser?.user?.passiveMeditation?.levelSlot?.milestones || [],
 });
 
 export default dailyMeditationReducer;

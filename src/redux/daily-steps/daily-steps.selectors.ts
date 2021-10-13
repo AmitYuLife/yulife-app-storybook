@@ -32,5 +32,5 @@ const dailyStepsSyncSelector = ({ isServerFetchedThisSession, serverSteps, isSyn
 export const getDailyStepsSyncState = createSelector(reducer, dailyStepsSyncSelector);
 
 const stepsAwardedMilestonesLengthSelector = (state: State) =>
-  state.stepsPassiveMilestones.filter((milestone) => milestone.coins > 0).length;
+  (state.stepsPassiveMilestones || []).filter((milestone) => milestone.coins > 0).length;
 export const getStepsAwardedMilestonesLength = createSelector(reducer, stepsAwardedMilestonesLengthSelector);

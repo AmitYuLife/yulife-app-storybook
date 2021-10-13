@@ -21,5 +21,5 @@ const meditationExchangeRateSelector = (state: State) => state.exchangeRate;
 export const getMeditationExchangeRate = createSelector(reducer, meditationExchangeRateSelector);
 
 const meditationAwardedMilestonesLengthSelector = (state: State) =>
-  state.meditationPassiveMilestones.filter((milestone) => milestone.coins > 0).length;
+  (state.meditationPassiveMilestones || []).filter((milestone) => milestone.coins > 0).length;
 export const getMeditationAwardedMilestonesLength = createSelector(reducer, meditationAwardedMilestonesLengthSelector);
