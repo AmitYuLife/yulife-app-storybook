@@ -42,6 +42,9 @@ export default StyleSheet.create({
   image: {
     marginBottom: Style.adjust(10),
   },
+  imageStyle: {
+    borderRadius: 8,
+  },
   form: {
     marginTop: Style.adjust(25),
   },

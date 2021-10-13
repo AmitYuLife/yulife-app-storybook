@@ -41,7 +41,13 @@ export const WellbeingHubDetailsScreen = memo(function (props: IProps) {
 const getItemContent = (itemContent: ItemContent, itemId: string, itemTitle: string) => {
   switch (itemContent.__typename) {
     case "ContentItemMarkdown":
-      return <HeadingAndCopy title={itemContent?.title} markdown={itemContent?.parsedMarkdown} />;
+      return (
+        <HeadingAndCopy
+          title={itemContent?.title}
+          markdown={itemContent?.parsedMarkdown}
+          wrapperStyle={styles.headerAndCopy}
+        />
+      );
     case "ContentItemBox":
       return (
         <TapToCopy
@@ -65,7 +71,14 @@ const getItemContent = (itemContent: ItemContent, itemId: string, itemTitle: str
         </View>
       );
     case "ContentItemImage":
-      return <Image width={IMAGE_WIDTH} source={{ uri: itemContent?.image?.uri }} />;
+      return (
+        <Image
+          width={IMAGE_WIDTH}
+          source={{ uri: itemContent?.image?.uri }}
+          style={styles.imageWrapper}
+          imageStyle={styles.imageStyle}
+        />
+      );
     default:
       return <View />;
   }
@@ -101,4 +114,13 @@ const styles = StyleSheet.create({
   contentButtonWrapper: {
     marginTop: Style.adjust(24),
   } as ViewStyle,
+  headerAndCopy: {
+    marginTop: Style.adjust(40),
+  },
+  imageWrapper: {
+    marginTop: Style.adjust(24),
+  } as ViewStyle,
+  imageStyle: {
+    borderRadius: 8,
+  },
 });

@@ -63,7 +63,7 @@ export const GetItemContent = (
     case "ContentItemImage":
       return (
         <View style={styles.image}>
-          <Image width={IMAGE_WIDTH} source={itemContent?.image} theme="dark" />
+          <Image width={IMAGE_WIDTH} source={itemContent?.image} theme="dark" imageStyle={styles.imageStyle} />
         </View>
       );
     case "ContentItemMarkdown":
