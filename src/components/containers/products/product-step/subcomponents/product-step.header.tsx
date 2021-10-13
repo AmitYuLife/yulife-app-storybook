@@ -2,34 +2,51 @@ import React, { memo, useContext, useMemo } from "react";
 import { ContentItemHeaderBar as GqlHeader } from "@graphql/_core/schema/ContentItemHeaderBar";
 import { ContentItemHeaderBar } from "@components/sdui";
 import { ProductStepContext } from "../product-step.context";
+import { useSelector } from "react-redux";
+import { getSduiLoadingForKey } from "@redux/server-driven-ui/sdui.selectors";
 
 type Props = GqlHeader;
 
 export const ProductStepContentItemHeader = memo(({ onLeftIconPress, onRightIconPress, ...otherProps }: Props) => {
   const { productId, stepId } = useContext(ProductStepContext);
 
-  // TODO: sort out typings
-  const dynamicLeftIconOnPress: any = useMemo(
-    () =>
-      !onLeftIconPress
-        ? null
-        : {
-            type: onLeftIconPress.type,
-            payload: { productId, stepId, serverPayload: onLeftIconPress.payload },
-          },
-    [onLeftIconPress, productId, stepId]
-  );
+  const disabled = useSelector(getSduiLoadingForKey("__disabled"));
 
-  const dynamicRightIconOnPress: any = useMemo(
-    () =>
-      !onRightIconPress
-        ? null
-        : {
-            type: onRightIconPress.type,
-            payload: { productId, stepId, serverPayload: onRightIconPress.payload },
-          },
-    [onRightIconPress, productId, stepId]
-  );
+  const dynamicLeftIconOnPress = useMemo(() => {
+    if (onLeftIconPress) {
+      if (disabled) {
+        return {
+          type: onLeftIconPress.type,
+          payload: null,
+        };
+      }
+
+      return {
+        type: onLeftIconPress.type,
+        payload: ({ productId, stepId, serverPayload: onLeftIconPress.payload } as unknown) as string,
+      };
+    }
+
+    return null;
+  }, [onLeftIconPress, productId, stepId, disabled]);
+
+  const dynamicRightIconOnPress = useMemo(() => {
+    if (onRightIconPress) {
+      if (disabled) {
+        return {
+          type: onRightIconPress.type,
+          payload: null,
+        };
+      }
+
+      return {
+        type: onRightIconPress.type,
+        payload: ({ productId, stepId, serverPayload: onRightIconPress.payload } as unknown) as string,
+      };
+    }
+
+    return null;
+  }, [onRightIconPress, productId, stepId, disabled]);
 
   return (
     <ContentItemHeaderBar

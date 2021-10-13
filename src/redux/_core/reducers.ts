@@ -26,6 +26,7 @@ import streaksReducer, { getInitialState as getInitialStreaksState, IStreaksStor
 import themeReducer, { getInitialState as getInitialThemeState, IThemeStore } from "../theme/theme.reducer";
 import userReducer, { getInitialState as getInitialUserState, IUserStore } from "../user/user.reducer";
 import productReducer, { getInitialState as getInitialProductState, IProductStore } from "../product/product.reducer";
+import sduiReducer, { getInitialState as getInitialSduiState, ISduiStore } from "../server-driven-ui/sdui.reducer";
 
 export interface IReduxState {
   app: IAppStore;
@@ -42,6 +43,7 @@ export interface IReduxState {
   copy: ICopyStore;
   dailyMeditation: IDailyMeditationStore;
   avatar: IAvatarStore;
+  sdui: ISduiStore;
 }
 
 export const initialState: IReduxState = {
@@ -59,6 +61,7 @@ export const initialState: IReduxState = {
   copy: getInitialCopyState(),
   dailyMeditation: getInitialDailyMeditation(),
   avatar: getInitialMaleState(),
+  sdui: getInitialSduiState(),
 };
 
 // this alias is created for testing purposes
@@ -79,6 +82,7 @@ const combinedReducers = combineReducers({
   copy: copyReducer,
   dailyMeditation: dailyMeditationReducer,
   avatar: avatarReducer,
+  sdui: sduiReducer,
 });
 
 export default combinedReducers;

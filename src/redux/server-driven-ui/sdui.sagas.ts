@@ -3,13 +3,14 @@ import { MODALS } from "@navigation/constants";
 import { showYuModal, TAB_ROUTES } from "@navigation/root";
 import { handleLinkPress } from "@services/app-link";
 import { Navigation } from "react-native-navigation";
-import { call, select, ActionPattern, takeEvery, takeLeading } from "redux-saga/effects";
+import { call, select, ActionPattern, takeEvery, takeLeading, put } from "redux-saga/effects";
 import Logger from "@services/logging/logger";
 import { SyncAction } from "@redux/_core/types";
 import { getRouteState } from "../app/app.selectors";
 import { submitPersonalProductStep, backPersonalProductStep } from "@graphql/personalProduct";
 import { ProductStepAction } from "./sdui.types";
 import { parseJSON, getServerPayload } from "./sdui.helpers";
+import { setLoadingState } from "./sdui.actions";
 import { getYuScreenProductSlots } from "@graphql/yuscreen";
 
 function* navigateBack({ payload }: ProductStepAction) {
@@ -121,6 +122,8 @@ function* popStep(action: ProductStepAction) {
     yield call(backPersonalProductStep, { productId });
   } catch (e) {
     // shrug (log)
+  } finally {
+    yield put(setLoadingState({ __disabled: false }));
   }
 }
 
@@ -148,11 +151,11 @@ function* finishStepJourney(action: ProductStepAction) {
 }
 
 function* pushStep(action: ProductStepAction) {
-  const { productId, stepId, dynamicData, serverPayload } = action.payload;
+  const { productId, stepId, dynamicData, serverPayload, id } = action.payload;
   const { isValid, data } = parseJSON(serverPayload);
   const serverDynamicData = isValid ? data : {};
-
   try {
+    yield put(setLoadingState({ [id]: true, __disabled: true }));
     yield call(
       submitPersonalProductStep,
       {
@@ -164,6 +167,8 @@ function* pushStep(action: ProductStepAction) {
     );
   } catch (e) {
     // shrug (log)
+  } finally {
+    yield put(setLoadingState({ __disabled: false }));
   }
 }
 
