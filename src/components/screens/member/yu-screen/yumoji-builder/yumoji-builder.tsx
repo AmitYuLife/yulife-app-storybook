@@ -79,7 +79,7 @@ const YumojiBuilder: FC<IProps> = ({ state, dispatch, onBackPressed, updateAvata
         heading={heading}
         onLeftIconPress={onBackPressed}
         onRightIconPress={updateAvatar}
-        rightIcon={state.yumojiChanged ? "SAVE" : null}
+        rightIcon="SAVE"
       />
     </View>
   );

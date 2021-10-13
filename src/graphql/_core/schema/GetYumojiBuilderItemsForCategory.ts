@@ -19,6 +19,7 @@ export interface GetYumojiBuilderItemsForCategory_getYumojiBuilderItemsForCatego
   partType: string;
   order: number;
   colorSchemeId: string | null;
+  categoryId: string | null;
   remoteUrl: GetYumojiBuilderItemsForCategory_getYumojiBuilderItemsForCategory_items_parts_remoteUrl | null;
 }
 
@@ -86,4 +87,5 @@ export interface GetYumojiBuilderItemsForCategoryVariables {
   categoryId: string;
   bodyType: AvatarBodyType;
   partId?: string | null;
+  colorSchemeId?: string | null;
 }

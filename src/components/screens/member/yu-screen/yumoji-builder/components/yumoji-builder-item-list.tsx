@@ -4,7 +4,7 @@ import { Navigation } from "react-native-navigation";
 import { Colours, Style } from "@styles";
 import { TextTemplate } from "@atoms";
 import {
-  GetYumojiBuilderInitialParts_getYumojiBuilderInitialParts as YumojiBuilderInitialParts,
+  GetYumojiBuilderItemsForCategory_getYumojiBuilderItemsForCategory_items_parts as YumojiBuilderParts,
   GetYumojiBuilderItemsForCategory_getYumojiBuilderItemsForCategory as YumojiBuilderItemsForCategory,
 } from "@graphql/_core/schema";
 import { loadingItemData } from "../../avatar-builder/avatar-builder.helper";
@@ -18,10 +18,11 @@ export interface IItemList extends YumojiBuilderItemsForCategory {
   items: ItemListItems[];
   loading: boolean;
 }
+
 interface IProps {
   itemList: IItemList;
   selectedCategoryId: string;
-  updateUserAvatar: (parts: YumojiBuilderInitialParts[]) => void;
+  updateUserAvatar: (payload: YumojiBuilderParts[]) => void;
   emptyMessage: string;
 }
 
