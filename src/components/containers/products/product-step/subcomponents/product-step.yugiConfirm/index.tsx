@@ -17,7 +17,7 @@ type Props = GetPersonalProductStep_getPersonalProductStep_body_ContentItemYugiC
 export const ProductStepYugiConfirm = memo(function (props: Props) {
   const contextConsumer = useContext(ProductStepContext);
   const { productId, stepId, dynamicData } = contextConsumer;
-  const { yugiHeading, content, buttonText, buttonOnPress } = props;
+  const { yugiHeading, content, buttonText, buttonOnPress, id } = props;
   const lottieYugiRef: RefObject<LottieView> = useRef();
   const swiper: RefObject<FlatList> = useRef();
   const dispatch = useDispatch();
@@ -25,9 +25,9 @@ export const ProductStepYugiConfirm = memo(function (props: Props) {
   const dynamicOnPress = useMemo(
     () => ({
       type: buttonOnPress.type,
-      payload: { productId, stepId, dynamicData, serverPayload: buttonOnPress.payload },
+      payload: { productId, stepId, dynamicData, serverPayload: buttonOnPress.payload, id },
     }),
-    [buttonOnPress, productId, stepId, dynamicData]
+    [buttonOnPress, productId, stepId, dynamicData, id]
   );
 
   return (

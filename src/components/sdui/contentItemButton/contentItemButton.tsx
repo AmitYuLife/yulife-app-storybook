@@ -7,11 +7,12 @@ import { mapServerStyles } from "../_utils/mapServerStyles";
 
 type Props = Omit<GqlButton, "onPress" | "disabledState"> & {
   disabled?: boolean;
+  isLoading?: boolean;
   onPress?: GqlButton["onPress"] | (() => void);
 };
 
 export const ContentItemButton = memo((props: Props) => {
-  const { label, onPress, styles, icon, rightIcon, buttonSize, buttonType, event, disabled = false } = props;
+  const { label, onPress, styles, icon, rightIcon, buttonSize, buttonType, event, disabled = false, isLoading } = props;
   const dispatch = useDispatch();
 
   const Component = getComponent(buttonType);
@@ -36,6 +37,7 @@ export const ContentItemButton = memo((props: Props) => {
       label={label}
       size={buttonSize}
       onPress={handlePress}
+      isLoading={isLoading}
     />
   );
 });
