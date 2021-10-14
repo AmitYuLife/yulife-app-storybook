@@ -1,4 +1,4 @@
-import React, { useMemo, FC, memo } from "react";
+import React, { useMemo, FC, memo, useState, useEffect, useCallback } from "react";
 import { Image } from "@atoms";
 import { StyleProp, View, ViewStyle } from "react-native";
 import { Source } from "react-native-fast-image";
@@ -21,6 +21,9 @@ interface IProps {
   containerWidth: number;
   suppressLoadingUi?: boolean;
 }
+export const sourceKeyExtractor = (source: Source | number) => {
+  return (source as Source)?.uri ?? source.toString();
+};
 
 export const CroppedImage: FC<IProps> = memo(
   ({ transform, source, containerHeight, containerWidth, suppressLoadingUi }) => {
@@ -28,7 +31,7 @@ export const CroppedImage: FC<IProps> = memo(
     const scale = (height && width ? containerWidth / width : 1) * zoom;
     const scaledHeight = scale * (height || containerHeight);
     const scaledWidth = scale * (width || containerWidth);
-
+    const [sources, setSources] = useState({ currentSource: null, loadingSource: null });
     const viewStyle = useMemo(
       () =>
         ({
@@ -49,16 +52,50 @@ export const CroppedImage: FC<IProps> = memo(
       [left, scale, top]
     );
 
+    useEffect(() => {
+      const { currentSource } = sources;
+      if (!currentSource) {
+        setSources({ currentSource: source, loadingSource: null });
+        return;
+      }
+
+      if (!shallowEqual(currentSource, source)) {
+        setSources({ currentSource, loadingSource: source });
+      }
+    }, [source]);
+
+    const onLoad = useCallback(() => {
+      const { loadingSource } = sources;
+      if (loadingSource) {
+        setSources({ currentSource: loadingSource, loadingSource: null });
+      }
+    }, [sources]);
+
     return (
       <View style={viewStyle}>
-        <Image
-          style={imageStyle}
-          width={scaledWidth}
-          height={scaledHeight}
-          source={source}
-          suppressLoadingUi={suppressLoadingUi}
-          resizeMode={"cover"}
-        />
+        {sources.currentSource ? (
+          <Image
+            style={imageStyle}
+            width={scaledWidth}
+            height={scaledHeight}
+            key={sourceKeyExtractor(sources.currentSource)}
+            source={sources.currentSource}
+            suppressLoadingUi={suppressLoadingUi}
+            resizeMode={"cover"}
+          />
+        ) : null}
+        {sources.loadingSource ? (
+          <Image
+            style={imageStyle}
+            width={scaledWidth}
+            height={scaledHeight}
+            key={sourceKeyExtractor(sources.loadingSource)}
+            source={sources.loadingSource}
+            suppressLoadingUi={suppressLoadingUi}
+            onLoad={onLoad}
+            resizeMode={"cover"}
+          />
+        ) : null}
       </View>
     );
   },

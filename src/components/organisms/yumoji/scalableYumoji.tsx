@@ -4,6 +4,7 @@ import { StyleSheet, View } from "react-native";
 
 interface IYumojiPart {
   order?: number;
+  partType: string;
   remoteUrl: {
     uri: string;
     width?: number;
@@ -31,11 +32,11 @@ function _Yumoji(props: IProps) {
       items
         .filter((item) => item.remoteUrl?.uri)
         .sort((i1, i2) => (i1?.order || 0) - (i2?.order || 0))
-        .map(({ remoteUrl: { uri } }) => (
-          <View key={uri} style={[StyleSheet.absoluteFillObject, { width, height }]}>
+        .map(({ remoteUrl: { uri }, partType }) => (
+          <View key={partType} style={[StyleSheet.absoluteFillObject, { width, height }]}>
             <CroppedImage
               transform={preview}
-              key={uri}
+              key={partType}
               containerWidth={width}
               containerHeight={height}
               source={{ uri }}

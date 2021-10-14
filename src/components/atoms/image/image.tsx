@@ -20,6 +20,7 @@ interface Props {
    * are going to be instantly loaded
    */
   suppressLoadingUi?: boolean;
+  onLoad?: (event: OnLoadEvent) => void;
 }
 
 export const Image = memo(
@@ -35,6 +36,7 @@ export const Image = memo(
       testID,
       resizeMode,
       suppressLoadingUi,
+      onLoad,
     } = props;
 
     const [isLoading, setIsLoading] = useState(true);
@@ -43,8 +45,15 @@ export const Image = memo(
     const handleLoadStart = useCallback(() => setIsLoading(true), []);
 
     const handleLoadState = useCallback(
-      ({ nativeEvent: { width: nativeWidth, height: nativeHeight } }: OnLoadEvent) => {
+      (event: OnLoadEvent) => {
+        const {
+          nativeEvent: { width: nativeWidth, height: nativeHeight },
+        } = event;
         setIsLoading(false);
+        if (onLoad) {
+          onLoad(event);
+        }
+
         if (propHeight) {
           return;
         }
