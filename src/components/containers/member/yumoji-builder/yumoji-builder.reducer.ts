@@ -172,6 +172,8 @@ export const reducer = (state: IState, action: IAction) => {
         selectedCategoryId: state.categories.items[0]?.id,
         matchType: state.categories.items[0]?.matchType,
         emptyMessage: "",
+        parts: {},
+        partId: "",
       };
     }
 
