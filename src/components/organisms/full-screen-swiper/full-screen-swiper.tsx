@@ -32,6 +32,7 @@ interface Props {
   };
   items: Array<IPageItem>;
   dismissMinVisibleIndex: number;
+  ctaMinVisibleIndex?: number;
   autoPlaySpeedMs: number;
   theme: {
     primaryColor: string;
@@ -39,7 +40,7 @@ interface Props {
 }
 
 export const FullScreenSwiper = memo((props: Props) => {
-  const { items, title, button, close, dismissMinVisibleIndex, autoPlaySpeedMs } = props;
+  const { items, title, button, close, ctaMinVisibleIndex, dismissMinVisibleIndex, autoPlaySpeedMs } = props;
   const animationRef = useRef(null as ReturnType<typeof Animated.timing>);
   const {
     activeIndex,
@@ -113,7 +114,10 @@ export const FullScreenSwiper = memo((props: Props) => {
             {title}
           </TextTemplate>
         </View>
-        {activeIndex < dismissMinVisibleIndex ? null : <Dismiss button={button} close={close} />}
+        <Dismiss
+          button={activeIndex < ctaMinVisibleIndex ? null : button}
+          close={activeIndex < dismissMinVisibleIndex ? null : close}
+        />
       </View>
     </View>
   );

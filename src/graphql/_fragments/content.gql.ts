@@ -545,6 +545,7 @@ export const GQL_FRAGMENT_CONTENT_ITEM_FULL_SCREEN_SWIPER = gql`
     title
     autoPlaySpeedMs
     dismissMinVisibleIndex
+    ctaMinVisibleIndex
     theme {
       primaryColor
     }

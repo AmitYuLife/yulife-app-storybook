@@ -90,6 +90,7 @@ export interface ContentItemFullScreenSwiper {
   title: string;
   autoPlaySpeedMs: number;
   dismissMinVisibleIndex: number;
+  ctaMinVisibleIndex: number | null;
   theme: ContentItemFullScreenSwiper_theme;
   button: ContentItemFullScreenSwiper_button;
   close: ContentItemFullScreenSwiper_close;

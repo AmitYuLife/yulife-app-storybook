@@ -21,18 +21,22 @@ interface Props {
 export const Dismiss = ({ button, close }: Props) => {
   return (
     <>
-      <View style={styles.button}>
-        <Button label={button.label} onPress={button.onPress} />
-      </View>
-      <TouchableOpacityWithDelay style={styles.closeIconWrapper} onPress={close.onPress}>
-        <Image
-          suppressLoadingUi={true}
-          width={Style.adjust(16)}
-          height={Style.adjust(16)}
-          source={{ uri: close.icon.uri }}
-          style={styles.closeIcon}
-        />
-      </TouchableOpacityWithDelay>
+      {!button ? null : (
+        <View style={styles.button}>
+          <Button label={button.label} onPress={button.onPress} />
+        </View>
+      )}
+      {!close ? null : (
+        <TouchableOpacityWithDelay style={styles.closeIconWrapper} onPress={close.onPress}>
+          <Image
+            suppressLoadingUi={true}
+            width={Style.adjust(16)}
+            height={Style.adjust(16)}
+            source={{ uri: close.icon.uri }}
+            style={styles.closeIcon}
+          />
+        </TouchableOpacityWithDelay>
+      )}
     </>
   );
 };
