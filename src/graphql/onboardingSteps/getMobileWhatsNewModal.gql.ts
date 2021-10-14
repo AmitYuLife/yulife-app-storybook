@@ -9,6 +9,7 @@ export const GQL_QUERY_GET_MOBILE_WHATS_NEW_MODAL = gql`
       title
       autoPlaySpeedMs
       dismissMinVisibleIndex
+      ctaMinVisibleIndex
       theme {
         primaryColor
       }

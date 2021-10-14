@@ -60,6 +60,7 @@ export interface GetMobileWhatsNewModal_getMobileWhatsNewModal {
   title: string;
   autoPlaySpeedMs: number;
   dismissMinVisibleIndex: number;
+  ctaMinVisibleIndex: number | null;
   theme: GetMobileWhatsNewModal_getMobileWhatsNewModal_theme;
   button: GetMobileWhatsNewModal_getMobileWhatsNewModal_button | null;
   close: GetMobileWhatsNewModal_getMobileWhatsNewModal_close;

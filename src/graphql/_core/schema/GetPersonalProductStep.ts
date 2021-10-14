@@ -1541,6 +1541,7 @@ export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_Con
   title: string;
   autoPlaySpeedMs: number;
   dismissMinVisibleIndex: number;
+  ctaMinVisibleIndex: number | null;
   theme: GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemFullScreenSwiper_theme;
   button: GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemFullScreenSwiper_button;
   close: GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemFullScreenSwiper_close;
