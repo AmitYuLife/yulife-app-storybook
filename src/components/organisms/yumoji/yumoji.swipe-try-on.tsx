@@ -1,7 +1,6 @@
 import React, { memo, useState, useRef, useEffect } from "react";
 import {
   StyleSheet,
-  TouchableOpacity,
   View,
   FlatList as RNFlatList,
   Animated,
@@ -10,6 +9,7 @@ import {
 } from "react-native";
 import { Colours, Style } from "@styles";
 import { FlatList, Loading, SwipeArrowLeft, SwipeArrowRight, TextTemplate } from "@atoms";
+import { TouchableOpacityWithDelay } from "@molecules";
 import { AvatarPartType, CoverType, YuWorld } from "@graphql/_core/schema/globalTypes";
 import {
   GetYumojiRemoteFittingRoom_getYumojiRemoteFittingRoom_yuWorlds_yumojiParts as Part,
@@ -38,9 +38,16 @@ type Props = {
 type AvatarParts = Record<AvatarPartType, Part>;
 type AvatarPartsWithYuworld = AvatarParts & { yuWorld: string; type: FLAT_LIST_ITEM };
 
-const YUMOJI_CARD_WIDTH = Style.DEVICE_WIDTH / 2;
+const YUMOJI_CARD_WIDTH = Style.DEVICE_WIDTH / 2 - Style.adjust(1);
 
 const Pad = memo(() => <View style={{ width: YUMOJI_CARD_WIDTH }} />);
+
+const HIT_SLOP = {
+  top: 8,
+  bottom: 8,
+  left: 8,
+  right: 8,
+};
 
 export const YumojiSwipeTryOn = memo(({ customerProductId, coverType = CoverType.common, onChange }: Props) => {
   const listRef = useRef(null as RNFlatList);
@@ -134,11 +141,19 @@ export const YumojiSwipeTryOn = memo(({ customerProductId, coverType = CoverType
 
   const onArrowPress = (arrowDirection: ArrowDirection) => {
     setCanScroll(true);
+
     const selectedYumojiIndex = avatars.findIndex((x: AvatarPartsWithYuworld) => x.yuWorld === selectedWorld);
+
     if (arrowDirection === ArrowDirection.RIGHT && selectedYumojiIndex < avatars.length - 1) {
       listRef.current.scrollToIndex({ index: selectedYumojiIndex + 1, animated: true });
-    } else if (arrowDirection === ArrowDirection.LEFT && selectedYumojiIndex > 0) {
+      handlePress(avatars[selectedYumojiIndex + 1].yuWorld as YuWorld);
+      return;
+    }
+
+    if (arrowDirection === ArrowDirection.LEFT && selectedYumojiIndex > 0) {
       listRef.current.scrollToIndex({ index: selectedYumojiIndex - 1, animated: true });
+      handlePress(avatars[selectedYumojiIndex - 1].yuWorld as YuWorld);
+      return;
     }
   };
 
@@ -162,14 +177,14 @@ export const YumojiSwipeTryOn = memo(({ customerProductId, coverType = CoverType
     item: GetYumojiRemoteParts["avatar"] & { yuWorld: string; type: string };
     index: number;
   }) => {
-    const opacity = selectedYumojiIndex === index - 1 ? 1 : 0.3;
     switch (item.type) {
       case FLAT_LIST_ITEM.PAD:
         return <Pad />;
       case FLAT_LIST_ITEM.YUMOJI:
         return (
-          <View style={{ opacity, width: YUMOJI_CARD_WIDTH, ...styles.flatListItem }}>
+          <View style={{ width: YUMOJI_CARD_WIDTH, ...styles.flatListItem }}>
             <Yumoji height={AVATAR_HEIGHT} width={AVATAR_WIDTH} {...item} />
+            {selectedYumojiIndex === index - 1 ? null : <View style={styles.flatListOpacity} />}
           </View>
         );
     }
@@ -194,21 +209,33 @@ export const YumojiSwipeTryOn = memo(({ customerProductId, coverType = CoverType
           onScrollEndDrag={handleScrollEndDrag}
         />
         <View style={styles.row}>
-          {selectedYumojiIndex < 1 ? null : (
-            <TouchableOpacity onPress={() => onArrowPress(ArrowDirection.LEFT)}>
-              <SwipeArrowLeft />
-            </TouchableOpacity>
-          )}
+          <View style={styles.arrow}>
+            {selectedYumojiIndex < 1 ? null : (
+              <TouchableOpacityWithDelay
+                hitSlop={HIT_SLOP}
+                delay={450}
+                onPress={() => onArrowPress(ArrowDirection.LEFT)}
+              >
+                <SwipeArrowLeft />
+              </TouchableOpacityWithDelay>
+            )}
+          </View>
           <View style={styles.variantText}>
             <TextTemplate type="l1b" color={variant?.mainColor}>
-              {variant?.title}
+              {variant.title}
             </TextTemplate>
           </View>
-          {selectedYumojiIndex > avatars.length - 2 ? null : (
-            <TouchableOpacity onPress={() => onArrowPress(ArrowDirection.RIGHT)}>
-              <SwipeArrowRight />
-            </TouchableOpacity>
-          )}
+          <View style={styles.arrow}>
+            {selectedYumojiIndex > avatars.length - 2 ? null : (
+              <TouchableOpacityWithDelay
+                hitSlop={HIT_SLOP}
+                delay={450}
+                onPress={() => onArrowPress(ArrowDirection.RIGHT)}
+              >
+                <SwipeArrowRight />
+              </TouchableOpacityWithDelay>
+            )}
+          </View>
         </View>
       </View>
     </>
@@ -217,8 +244,7 @@ export const YumojiSwipeTryOn = memo(({ customerProductId, coverType = CoverType
 
 const styles = StyleSheet.create({
   loader: {
-    height: AVATAR_HEIGHT + Style.adjust(48),
-    width: AVATAR_WIDTH,
+    flex: 1,
     alignItems: "center",
     justifyContent: "center",
   },
@@ -263,7 +289,21 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingRight: YUMOJI_CARD_WIDTH,
   },
+  flatListOpacity: {
+    ...StyleSheet.absoluteFillObject,
+    marginLeft: 0 - YUMOJI_CARD_WIDTH / 2,
+    width: YUMOJI_CARD_WIDTH,
+    height: AVATAR_HEIGHT,
+    backgroundColor: "#FAFAFE",
+    opacity: 0.7,
+  },
+  arrow: {
+    width: Style.adjust(16),
+  },
   variantText: {
+    width: Style.adjust(140),
+    justifyContent: "center",
+    alignItems: "center",
     marginLeft: Style.adjust(16),
     marginRight: Style.adjust(16),
   },

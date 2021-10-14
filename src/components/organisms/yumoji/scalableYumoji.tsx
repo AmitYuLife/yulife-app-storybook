@@ -33,18 +33,18 @@ function _Yumoji(props: IProps) {
         .filter((item) => item.remoteUrl?.uri)
         .sort((i1, i2) => (i1?.order || 0) - (i2?.order || 0))
         .map(({ remoteUrl: { uri }, partType }) => (
-          <View key={partType} style={[StyleSheet.absoluteFillObject, { width, height }]}>
+          <View key={partType} style={[StyleSheet.absoluteFillObject, dimensions]}>
             <CroppedImage
               transform={preview}
               key={partType}
-              containerWidth={width}
-              containerHeight={height}
+              containerWidth={dimensions.width}
+              containerHeight={dimensions.height}
               source={{ uri }}
               suppressLoadingUi={true}
             />
           </View>
         )),
-    [height, items, preview, width]
+    [dimensions, items, preview]
   );
   return <View style={dimensions}>{parts}</View>;
 }
