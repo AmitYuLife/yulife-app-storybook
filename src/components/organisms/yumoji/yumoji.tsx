@@ -1,4 +1,4 @@
-import React, { memo, useEffect, useMemo, useState } from "react";
+import React, { memo, useCallback, useEffect, useMemo, useState } from "react";
 import { StyleSheet, View } from "react-native";
 import FastImage from "react-native-fast-image";
 import { GetYumojiRemoteParts_avatar } from "@graphql/_core/schema";
@@ -53,18 +53,35 @@ type YumojiPartImageProps = {
 };
 
 const YumojiPartImage = ({ uri, height, width }: YumojiPartImageProps) => {
-  const [oldUri, setOldUri] = useState(uri);
+  const [sources, setSources] = useState({ currentUri: null, loadingUri: null });
 
   useEffect(() => {
-    setOldUri(uri);
+    const { currentUri } = sources;
+
+    if (!currentUri) {
+      setSources({ currentUri: uri, loadingUri: null });
+      return;
+    }
+
+    if (currentUri !== uri) {
+      setSources({ currentUri, loadingUri: uri });
+    }
   }, [uri]);
+
+  const onLoad = useCallback(() => {
+    const { loadingUri } = sources;
+
+    if (loadingUri) {
+      setSources({ currentUri: loadingUri, loadingUri: null });
+    }
+  }, [sources]);
 
   const style = useMemo(() => [yumojiPartStyles.wrapper, { width, height }], [width, height]);
 
   return (
     <View pointerEvents="none" style={style}>
-      {!oldUri ? null : <FastImage style={style} source={{ uri: oldUri }} />}
-      <FastImage style={style} onLoadEnd={() => setOldUri("")} source={{ uri }} />
+      {!sources?.currentUri ? null : <FastImage style={style} source={{ uri: sources.currentUri }} />}
+      {!sources?.loadingUri ? null : <FastImage style={style} source={{ uri: sources.loadingUri }} onLoad={onLoad} />}
     </View>
   );
 };
