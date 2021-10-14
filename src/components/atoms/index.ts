@@ -9,6 +9,8 @@ export { TertiaryButton } from "./button/tertiary-button/tertiary-button";
 export { default as CentredScreen } from "./centred-screen/centred-screen";
 export { default as Close } from "./close/close";
 export { default as CloseSvg } from "./close/close-svg";
+export { default as SwipeArrowRight } from "./swipe-arrows-vg/swipe-arrow-right-svg";
+export { default as SwipeArrowLeft } from "./swipe-arrows-vg/swipe-arrow-left-svg";
 export { default as EditSvg } from "./edit/edit-svg";
 export { default as Back } from "./back/back";
 export { default as ChestCoin } from "./chest-coin/chest-coin";

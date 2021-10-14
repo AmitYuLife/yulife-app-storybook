@@ -57,7 +57,6 @@ export const ProductStepProductPreview = memo((props: Props) => {
       monthlyCostSuffix,
     };
   }, [dynamicData, answerKey, props.coverList]);
-
   return (
     <View style={[styles.wrapper, mapServerStyles(props.styles)]}>
       {showYumoji ? (

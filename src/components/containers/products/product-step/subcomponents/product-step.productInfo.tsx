@@ -3,7 +3,7 @@ import { StyleSheet, View } from "react-native";
 import { Style } from "@styles";
 import { Image, TextTemplate } from "@atoms";
 import Markdown from "@molecules/markdown/markdown";
-import { TryOnYumojiPart } from "@organisms/yumoji/yumoji.try-on";
+import { YumojiSwipeTryOn } from "@organisms/yumoji/yumoji.swipe-try-on";
 import { GetPersonalProductStep_getPersonalProductStep_body_ContentItemPersonalProductInfo as GqlButton } from "@graphql/_core/schema";
 import { YuWorld } from "@graphql/_core/schema/globalTypes";
 import { ProductStepContext } from "../product-step.context";
@@ -33,10 +33,10 @@ export const ProductStepProductInfo = memo((props: Props) => {
           )}
           <TextTemplate type="h3">{props.productTitle}</TextTemplate>
         </View>
-        <Markdown text={props.productDescription?.parsedMarkdown} />
+        <Markdown markdownStyles={markdownStyles} text={props.productDescription?.parsedMarkdown} />
       </View>
       <View>
-        <TryOnYumojiPart
+        <YumojiSwipeTryOn
           customerProductId={customerProductId}
           coverType={props.coverType}
           onChange={handleYumojiPartChange}
@@ -48,22 +48,28 @@ export const ProductStepProductInfo = memo((props: Props) => {
 
 const styles = StyleSheet.create({
   wrapper: {
-    flex: 1,
-    flexDirection: "row-reverse",
-    alignItems: "stretch",
-    marginRight: Style.adjust(24),
+    marginRight: Style.adjust(0),
+    marginLeft: Style.adjust(0),
     marginBottom: Style.adjust(48),
   },
   info: {
-    flex: 1,
     margin: Style.adjust(16),
+    marginRight: Style.adjust(24),
+    marginLeft: Style.adjust(24),
+    marginBottom: Style.adjust(8),
   },
   titleAndIcon: {
     flexDirection: "row",
-    justifyContent: "flex-start",
+    justifyContent: "center",
     alignItems: "center",
   },
   icon: {
     marginRight: Style.adjust(8),
   },
 });
+
+const markdownStyles = {
+  text: {
+    textAlign: "center",
+  },
+};
