@@ -1,111 +1,75 @@
-import React, { memo } from "react";
-import { Button, Pad, Text } from "@atoms";
-import { Counter } from "@molecules";
-import { StyleSheet, TextStyle, View, ViewStyle } from "react-native";
-import { displaySecondsAsMinutes, padNum } from "@utils";
+import React, { memo, useMemo } from "react";
+import { Button, TextTemplate } from "@atoms";
+import { ActivityList, Counter } from "@molecules";
+import { View, ViewStyle } from "react-native";
+import { displaySecondsAsMinutes, getCurrentWorld } from "@utils";
 import { useSelector } from "react-redux";
 import { getDailyEarnedCoins } from "@redux/coins/coins.selectors";
-import { Style } from "@styles";
+import { Style, Colours } from "@styles";
 import { getUserFeatures } from "@redux/user/user.selectors";
-import { getChallengesStatus } from "@redux/levels/levels.selectors";
-import { handleNavigateToQuestsTab } from "@navigation/utils";
 import { getDailySteps } from "@redux/daily-steps/daily-steps.selectors";
 import { getDailyMeditation } from "@redux/daily-meditation/daily-meditation.selectors";
-import { getDailyStepsTheme } from "@redux/theme/theme.selectors";
-import { setScreen } from "@navigation/root";
-import { ROUTES } from "@navigation/constants";
+import { styles as textTemplateStyle } from "@components/atoms/text/text-template";
+import { getChallengesStatus, getCurrentLevel } from "@redux/levels/levels.selectors";
+import { handleNavigateToQuestsTab } from "@navigation/utils";
+import { getPositionBottom } from "@organisms/nav-bar/nav-bar.styles";
 
-const _DailyStepsOnline = () => {
+export const DailyStepsOnline = memo(() => {
   const dailyMeditation = useSelector(getDailyMeditation);
-  const { usePassiveMeditation, showReferralsOnDailyScreen } = useSelector(getUserFeatures);
-  const { textStyle } = useSelector(getDailyStepsTheme);
-
-  const flattenStyle = StyleSheet.flatten([styles.heading, textStyle]);
+  const dailySteps = useSelector(getDailySteps);
+  const dailyEarnedCoins = useSelector(getDailyEarnedCoins);
+  const { usePassiveMeditation } = useSelector(getUserFeatures);
+  const { available } = useSelector(getChallengesStatus);
+  const currentLevel = useSelector(getCurrentLevel);
+  const currentWorld = getCurrentWorld(currentLevel);
+  const textColor = currentWorld === 1 ? Colours.neutral.white : Colours.neutral.n900;
   const mindfulTotal = displaySecondsAsMinutes(dailyMeditation);
-  const mindfulTotalToDisplay =
-    mindfulTotal.minutes === 1
-      ? ` | ${mindfulTotal.minutes}:${padNum(mindfulTotal.seconds)} mindful min`
-      : ` | ${mindfulTotal.minutes}:${padNum(mindfulTotal.seconds)} mindful mins`;
+  const mindfulTotalToDisplay = `${mindfulTotal.minutes} min`;
+
+  const counterStyle = useMemo(
+    () => ({
+      ...textTemplateStyle.h1,
+      color: textColor,
+    }),
+    [textColor]
+  );
 
   return (
-    <View style={styles.dailyStepsOnlineWrapper}>
-      {
-        <View style={styles.counterWrapper}>
-          <StepCounter textStyle={textStyle} />
-          {usePassiveMeditation && dailyMeditation > 0 ? (
-            <Text style={textStyle}>{dailyMeditation ? mindfulTotalToDisplay : ""}</Text>
-          ) : null}
+    <>
+      <View style={styles.dailyStepsOnlineWrapper}>
+        <TextTemplate type="h1" color={textColor}>
+          <Counter duration={1200} value={dailyEarnedCoins} textStyle={counterStyle} /> YuCoin today
+        </TextTemplate>
+
+        <View style={styles.activityListWrapper}>
+          <ActivityList
+            textColor={textColor}
+            steps={dailySteps}
+            cycling={0} //@TODO: enable this when we have the cycling data
+            mindfulness={usePassiveMeditation && dailyMeditation > 0 ? mindfulTotalToDisplay : null}
+          />
         </View>
-      }
-      <Pad height={4} />
-      <Text>
-        <YuCoinCounter textStyle={flattenStyle} />
-        <Text style={flattenStyle} bold={true}>
-          {` yu`}
-        </Text>
-        <Text style={flattenStyle}>{`coin `}</Text>
-        <Text style={flattenStyle}>today</Text>
-      </Text>
-      <Pad height={18} />
-      <EarnMore hasReferralsEnabled={showReferralsOnDailyScreen} />
-    </View>
+      </View>
+      {available === 0 ? null : (
+        <View style={styles.buttonWrapper}>
+          <Button onPress={handleNavigateToQuestsTab} size="Large" label={`Take a challenge (${available} left)`} />
+        </View>
+      )}
+    </>
   );
-};
-
-interface CounterProps {
-  textStyle: TextStyle;
-}
-
-const StepCounter = memo(function _StepsCounter({ textStyle }: CounterProps) {
-  const dailySteps = useSelector(getDailySteps);
-  const counterType = dailySteps === 1 ? "step" : "steps";
-
-  return <Counter value={dailySteps} textStyle={textStyle} textAfterValue={counterType} />;
 });
-
-const YuCoinCounter = memo(function _YuCoinCounter({ textStyle }: CounterProps) {
-  const dailyEarnedCoins = useSelector(getDailyEarnedCoins);
-
-  return <Counter duration={1200} value={dailyEarnedCoins} textStyle={textStyle} />;
-});
-
-interface EarnMoreProps {
-  hasReferralsEnabled: boolean;
-}
-
-const EarnMore = memo(function _EarnMore({ hasReferralsEnabled }: EarnMoreProps) {
-  const { isAvailable } = useSelector(getChallengesStatus);
-
-  if (!isAvailable) {
-    if (!hasReferralsEnabled) {
-      return null;
-    }
-
-    return (
-      <Button
-        onPress={() => setScreen(ROUTES.dailySteps, ROUTES.referralInformation)}
-        size="Medium"
-        label="Invite a colleague"
-      />
-    );
-  }
-
-  return <Button onPress={handleNavigateToQuestsTab} size="Medium" label="Earn more" />;
-});
-
-export const DailyStepsOnline = memo(_DailyStepsOnline);
 
 const styles = {
-  counterWrapper: {
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
-  } as ViewStyle,
   dailyStepsOnlineWrapper: {
     alignItems: "center",
-    marginTop: Style.SCALE_UP_AND_DOWN(-2),
   } as ViewStyle,
-  heading: {
-    fontSize: Style.SCALE_UP_AND_DOWN(35),
-  } as TextStyle,
+  activityListWrapper: {
+    marginTop: Style.adjust(8),
+  } as ViewStyle,
+  buttonWrapper: {
+    left: 0,
+    right: 0,
+    bottom: getPositionBottom({ additionalBottom: Style.adjust(85) }),
+    position: "absolute",
+  } as ViewStyle,
 };
