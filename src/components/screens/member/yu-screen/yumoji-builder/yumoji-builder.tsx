@@ -65,6 +65,7 @@ const YumojiBuilder: FC<IProps> = ({ state, dispatch, onBackPressed, updateAvata
             height={AVATAR_HEIGHT * categoryProps.zoom}
             width={AVATAR_WIDTH * categoryProps.zoom}
             items={items}
+            bodyType={state.bodyType}
           />
         </View>
         <YumojiBuilderCategories

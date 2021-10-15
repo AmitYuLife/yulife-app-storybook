@@ -14,6 +14,7 @@ interface IYumojiPart {
 
 interface IProps {
   items: IYumojiPart[];
+  bodyType: string;
   width: number;
   height: number;
   preview?: {
@@ -24,7 +25,7 @@ interface IProps {
 }
 
 function _Yumoji(props: IProps) {
-  const { items, preview = { top: 0, left: 0, zoom: 1 }, height, width } = props;
+  const { items, preview = { top: 0, left: 0, zoom: 1 }, height, width, bodyType } = props;
 
   const dimensions = useMemo(() => ({ width, height }), [height, width]);
   const parts = useMemo(
@@ -33,10 +34,10 @@ function _Yumoji(props: IProps) {
         .filter((item) => item.remoteUrl?.uri)
         .sort((i1, i2) => (i1?.order || 0) - (i2?.order || 0))
         .map(({ remoteUrl: { uri }, partType }) => (
-          <View key={partType} style={[StyleSheet.absoluteFillObject, dimensions]}>
+          <View key={`${bodyType}_${partType}`} style={[StyleSheet.absoluteFillObject, dimensions]}>
             <CroppedImage
               transform={preview}
-              key={partType}
+              key={`${bodyType}_${partType}`}
               containerWidth={dimensions.width}
               containerHeight={dimensions.height}
               source={{ uri }}
