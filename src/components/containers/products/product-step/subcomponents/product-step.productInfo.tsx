@@ -7,6 +7,7 @@ import { YumojiSwipeTryOn } from "@organisms/yumoji/yumoji.swipe-try-on";
 import { GetPersonalProductStep_getPersonalProductStep_body_ContentItemPersonalProductInfo as GqlButton } from "@graphql/_core/schema";
 import { YuWorld } from "@graphql/_core/schema/globalTypes";
 import { ProductStepContext } from "../product-step.context";
+import { mapServerStyles } from "@components/sdui";
 
 type Props = GqlButton;
 
@@ -40,6 +41,7 @@ export const ProductStepProductInfo = memo((props: Props) => {
           customerProductId={customerProductId}
           coverType={props.coverType}
           onChange={handleYumojiPartChange}
+          flatListItemOverlayStyles={mapServerStyles(props.flatListItemOverlayStyles)}
         />
       </View>
     </View>

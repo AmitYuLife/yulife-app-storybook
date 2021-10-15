@@ -15,6 +15,7 @@ export const GQL_QUERY_GET_YUMOJI_REMOTE_FITTING_ROOM = gql`
         title
         mainColor
         secondaryColor
+        textColor
         yumojiParts {
           id
           partType

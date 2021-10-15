@@ -31,6 +31,7 @@ export interface GetYumojiRemoteFittingRoom_getYumojiRemoteFittingRoom_yuWorlds 
   title: string;
   mainColor: string;
   secondaryColor: string;
+  textColor: string;
   yumojiParts: GetYumojiRemoteFittingRoom_getYumojiRemoteFittingRoom_yuWorlds_yumojiParts[];
 }
 

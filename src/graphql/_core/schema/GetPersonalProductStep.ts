@@ -945,6 +945,11 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemY
   buttonOnPress: GetPersonalProductStep_getPersonalProductStep_body_ContentItemYugiConfirm_buttonOnPress | null;
 }
 
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemPersonalProductInfo_flatListItemOverlayStyles {
+  property: string;
+  value: string;
+}
+
 export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemPersonalProductInfo_providerImageUrl {
   id: string;
   uri: string | null;
@@ -960,6 +965,9 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemP
   id: string;
   coverType: CoverType;
   productTitle: string;
+  flatListItemOverlayStyles:
+    | GetPersonalProductStep_getPersonalProductStep_body_ContentItemPersonalProductInfo_flatListItemOverlayStyles[]
+    | null;
   providerImageUrl: GetPersonalProductStep_getPersonalProductStep_body_ContentItemPersonalProductInfo_providerImageUrl | null;
   productDescription: GetPersonalProductStep_getPersonalProductStep_body_ContentItemPersonalProductInfo_productDescription;
 }
