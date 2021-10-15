@@ -29540,6 +29540,18 @@
             "deprecationReason": null
           },
           {
+            "name": "suffixMax",
+            "description": "Used when the last value includes anything over that value. E.g 10+",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "suffixPlural",
             "description": null,
             "args": [],

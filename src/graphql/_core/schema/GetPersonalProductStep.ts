@@ -857,6 +857,10 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemS
   suffixPlural: string;
   suffixSingular: string;
   suffixSingularValue: number;
+  /**
+   * Used when the last value includes anything over that value. E.g 10+
+   */
+  suffixMax: string | null;
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemScrollPicker_variants {
