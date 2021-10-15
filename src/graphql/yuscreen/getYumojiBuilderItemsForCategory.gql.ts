@@ -23,14 +23,14 @@ export const GQL_QUERY_GET_YUMOJI_BUILDER_ITEMS_FOR_CATEGORY = gql`
           categoryId
           remoteUrl {
             id
-            uri(options: { width: 560, height: 1106 })
+            uri(options: { width: 530, height: 1106 })
           }
         }
         representativeColor
         preview {
           image {
             id
-            uri(options: { width: 560, height: 1106 })
+            uri(options: { width: 530, height: 1106 })
           }
           transform {
             left

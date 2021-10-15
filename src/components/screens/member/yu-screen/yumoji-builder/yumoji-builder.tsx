@@ -18,7 +18,7 @@ interface IProps {
 }
 
 const AVATAR_WIDTH = Style.adjust(160) * 0.73;
-const AVATAR_HEIGHT = Style.adjust(328) * 0.73;
+const AVATAR_HEIGHT = Style.adjust(340) * 0.73;
 
 const YumojiBuilder: FC<IProps> = ({ state, dispatch, onBackPressed, updateAvatar, heading }) => {
   const categoryProps = useMemo(() => {

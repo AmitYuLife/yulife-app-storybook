@@ -103,7 +103,6 @@ const styles = StyleSheet.create({
     borderTopWidth: 1,
     borderBottomWidth: 1,
     borderColor: Colours.metallic.m200,
-    marginTop: Style.adjust(10),
     paddingTop: Style.adjust(7),
     paddingBottom: Style.adjust(7),
   } as ViewStyle,
