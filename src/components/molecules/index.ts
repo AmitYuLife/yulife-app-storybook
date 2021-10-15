@@ -40,3 +40,4 @@ export { default as ConnectCheckList } from "./connect-check-list/connect-check-
 export { Yumoji } from "./yumoji/yumoji";
 export { PackageCardPerks } from "./package-card-perks/package-card-perks";
 export { default as SearchAddress, ISearchAddress } from "./search-address/search-address";
+export { default as ActivityList } from "./activity-list/activity-list";

@@ -28,7 +28,6 @@ import { YugiGPIcon } from "./yugi-gp-icon";
 import { SwitchIcon } from "./switch-icon";
 import { QuestionMarkIcon } from "./question-mark-icon";
 import { DoubleChestIcon } from "./double-chest-icon";
-import { ShoeIcon } from "./shoe-icon";
 import { StreakIcon } from "./streak-icon";
 import { YugiDocumentsIcon } from "./yugi-documents-icon";
 import { YugiFAQIcon } from "./yugi-faq-icon";
@@ -43,6 +42,9 @@ import { RadioIcon } from "./radio-icon";
 import { GoogleFitIcon } from "./google-fit-icon";
 import { SamsungHealthIcon } from "./samsung-health-icon";
 import { DoneIcon } from "./done-icon";
+import { StepsIcon } from "./steps-icon";
+import { CyclingIcon } from "./cycling-icon";
+import { MindfulnessIcon } from "./mindfulness-icon";
 
 // TODO: check with the team if we can refactor this to support "import { Icon1, Icon2 } from "@atoms/icon";
 
@@ -78,7 +80,6 @@ export default {
   SwitchIcon,
   QuestionMarkIcon,
   DoubleChestIcon,
-  ShoeIcon,
   StreakIcon,
   YugiDocumentsIcon,
   YugiFAQIcon,
@@ -92,4 +93,7 @@ export default {
   GoogleFitIcon,
   SamsungHealthIcon,
   DoneIcon,
+  StepsIcon,
+  CyclingIcon,
+  MindfulnessIcon,
 };

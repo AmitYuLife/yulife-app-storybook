@@ -16,6 +16,7 @@ interface IState {
   value: number;
 }
 
+// @TODO: Refactor this component to be functional component and use TextTemplate
 class Counter extends React.PureComponent<IProps, IState> {
   private animatedValue: Animated.Value;
   constructor(props: IProps) {
