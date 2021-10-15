@@ -627,6 +627,7 @@ export const GQL_FRAGMENT_CONTENT_ITEM_SCROLL_PICKER = gql`
         suffixPlural
         suffixSingular
         suffixSingularValue
+        suffixMax
       }
     }
   }

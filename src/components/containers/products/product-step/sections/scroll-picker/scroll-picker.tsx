@@ -16,11 +16,10 @@ export const ProductStepScrollPicker = () => {
   const pickers = variant.wheels.map((wheel) => {
     const items = Array.from({ length: wheel.max - wheel.min + 1 }).map((_, i) => {
       const value = i + wheel.min;
-      const labelSuffix = value === wheel.suffixSingularValue ? wheel.suffixSingular : wheel.suffixPlural;
 
       return {
         value,
-        label: `${value} ${labelSuffix}`,
+        label: buildScrollItemLabel(wheel, value),
       };
     });
 
@@ -53,7 +52,7 @@ export const ProductStepScrollPicker = () => {
             }}
             toggleLabel={variant.toggleLabel}
             onConfirm={() => {
-              setDynamicData({ ...state, [answerKey]: buildLabel(state, displayFormat) });
+              setDynamicData({ ...state, [answerKey]: buildDisplayButtonLabel(state, displayFormat) });
               setScrollPicker(null);
               setState({});
             }}
@@ -67,7 +66,14 @@ export const ProductStepScrollPicker = () => {
   );
 };
 
-const buildLabel = (
+const buildScrollItemLabel = (wheel: IProductStepScrollPicker["variants"][0]["wheels"][0], value: number) => {
+  const labelSuffix = value === wheel.suffixSingularValue ? wheel.suffixSingular : wheel.suffixPlural;
+  const suffixMax = wheel?.suffixMax && wheel.max === value ? wheel.suffixMax : "";
+
+  return `${value}${suffixMax} ${labelSuffix}`;
+};
+
+const buildDisplayButtonLabel = (
   data: Record<string, string | number>,
   displayFormat: IProductStepScrollPicker["displayFormat"]
 ) => {
