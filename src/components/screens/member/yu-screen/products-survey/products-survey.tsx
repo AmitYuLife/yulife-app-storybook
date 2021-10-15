@@ -174,7 +174,7 @@ function ProductsSurvey({ onExitConfirmed }: IProps) {
   };
 
   return (
-    <View>
+    <View style={styles.greetingsWrapper}>
       <GenericHeadingPad />
       <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : null}>
         <ScrollView

@@ -1,12 +1,11 @@
 import React, { useCallback } from "react";
-import { StyleSheet, View, ViewStyle, ScrollView, TextStyle, Platform, ActivityIndicator } from "react-native";
+import { StyleSheet, View, ViewStyle, ScrollView, TextStyle, ActivityIndicator } from "react-native";
 import { Style } from "@styles";
 import { Navigation } from "react-native-navigation";
 import { MODALS } from "@navigation/constants";
 import { Button, TextTemplate } from "@atoms";
 import { Table } from "./table/table";
 import { useQuery } from "@apollo/react-hooks";
-import media from "@styles/media";
 import GenericOverlay from "@components/modals/generic-overlay/generic-overlay";
 import { useBackHandler } from "@services/hooks/useBackHandler";
 import Markdown from "@components/molecules/markdown/markdown";
@@ -54,10 +53,9 @@ const YuEarnRateModal = ({ slotIcon, customerProductId, coverType }: Props) => {
         <View style={styles.footerWrapper}>
           <Markdown text={footer.markdown} markdownStyles={markdownStyles} />
         </View>
-        <View style={styles.bottomPad} />
       </ScrollView>
       <View pointerEvents="box-none" style={styles.confirmWrapper}>
-        <Button wrapperStyle={styles.confirm} size="Large" onPress={dismissOverlay} label="Got it!" />
+        <Button size="Large" onPress={dismissOverlay} label="Got it!" />
       </View>
     </GenericOverlay>
   );
@@ -69,38 +67,14 @@ const markdownStyles = {
   },
 };
 
-const CTA_BOTTOM = media.select(
-  [
-    {
-      condition: Platform.OS === "ios" && Style.DEVICE_HEIGHT >= media.DEVICES.iPhone12ProMax.height,
-      value: 128,
-    },
-    {
-      condition: Platform.OS === "ios" && Style.hasNotch,
-      value: 120,
-    },
-  ],
-  92
-);
-
 const styles = StyleSheet.create({
   wrapper: {
-    flex: 1,
-  } as ViewStyle,
-  bottomPad: {
-    height: Style.adjust(140),
+    flex: 0.7,
   } as ViewStyle,
   innerWrapper: {
-    height: Style.DEVICE_HEIGHT,
     borderRadius: 16,
     backgroundColor: "white",
     overflow: "hidden",
-  } as ViewStyle,
-  close: {
-    position: "absolute",
-    top: 0,
-    right: 0,
-    padding: Style.adjust(16),
   } as ViewStyle,
   headingWrapper: {
     width: "100%",
@@ -120,17 +94,8 @@ const styles = StyleSheet.create({
     letterSpacing: 0.8,
     lineHeight: Style.adjust(24),
   } as TextStyle,
-  confirm: {
-    position: "absolute",
-    bottom: CTA_BOTTOM,
-  } as ViewStyle,
   confirmWrapper: {
-    position: "absolute",
-    top: 0,
-    bottom: 0,
-    left: 0,
-    right: 0,
-    height: Style.DEVICE_HEIGHT,
+    flex: 0.3,
   } as ViewStyle,
   margin: {
     marginLeft: Style.adjust(8),

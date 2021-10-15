@@ -1,4 +1,4 @@
-import { StyleSheet, TextStyle, ViewStyle } from "react-native";
+import { Platform, StyleSheet, TextStyle, ViewStyle } from "react-native";
 import { Colours, Style } from "@styles";
 
 export default StyleSheet.create({
@@ -43,12 +43,12 @@ export default StyleSheet.create({
 
   footerWrapper: {
     width: "100%",
-    marginBottom: Style.adjust(112),
+    marginBottom: Style.adjust(60),
   } as ViewStyle,
 
   submitButton: {
     alignSelf: "center",
-    marginBottom: Style.adjust(32),
+    marginBottom: Platform.select({ ios: Style.adjust(25), android: 0 }),
   } as ViewStyle,
 
   greetingsWrapper: {
