@@ -3,7 +3,7 @@ import { MODALS } from "@navigation/constants";
 import { showYuModal, TAB_ROUTES } from "@navigation/root";
 import { handleLinkPress } from "@services/app-link";
 import { Navigation } from "react-native-navigation";
-import { call, select, ActionPattern, takeEvery, takeLeading, put } from "redux-saga/effects";
+import { call, select, ActionPattern, takeEvery, takeLeading, put, delay } from "redux-saga/effects";
 import Logger from "@services/logging/logger";
 import { SyncAction } from "@redux/_core/types";
 import { getRouteState } from "../app/app.selectors";
@@ -133,6 +133,7 @@ function* popStep(action: ProductStepAction) {
   } catch (e) {
     // shrug (log)
   } finally {
+    yield delay(250);
     yield put(setLoadingState({ __disabled: false }));
   }
 }
@@ -178,6 +179,7 @@ function* pushStep(action: ProductStepAction) {
   } catch (e) {
     // shrug (log)
   } finally {
+    yield delay(250);
     yield put(setLoadingState({ __disabled: false }));
   }
 }
