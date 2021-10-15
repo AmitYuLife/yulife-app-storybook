@@ -2,7 +2,7 @@ import { Image, TextTemplate, YuCoinIcon } from "@atoms";
 import { GetProductEarnRate_getProductEarnRate, RemoteImage } from "@graphql/_core/schema";
 import { CoverType, YuScreenEarnRateTableThemeType } from "@graphql/_core/schema/globalTypes";
 import { Colours, Style } from "@styles";
-import React from "react";
+import React, { useMemo } from "react";
 import { StyleSheet, View, ViewStyle } from "react-native";
 import LinearGradient from "react-native-linear-gradient";
 import { mapThemeTypeToTheme, DEFAULT_THEME } from "./themes";
@@ -127,8 +127,16 @@ const ColumnData = ({
   theme: Theme;
   type: "header" | "data";
 }) => {
+  const wrapperStyle = useMemo(
+    () =>
+      ({
+        alignItems: type === "header" ? "flex-start" : "flex-end",
+        paddingBottom: Style.adjust(8),
+      } as ViewStyle),
+    [type]
+  );
   return (
-    <View style={{ alignItems: type === "header" ? "flex-start" : "flex-end", paddingBottom: Style.adjust(8) }}>
+    <View style={wrapperStyle}>
       {values.map((value, index) => (
         <View key={index} style={styles.columnValue}>
           {icons && icons[index] ? (
@@ -160,12 +168,21 @@ const YuCoin = ({
   isBold?: boolean;
   color?: string;
 }) => {
+  const style = useMemo(
+    () => ({
+      height: Style.adjust(12),
+      width: Style.adjust(12),
+      tintColor: color,
+      marginLeft: Style.adjust(2),
+    }),
+    [color]
+  );
   return (
     <View style={styles.yuCoinWrapper}>
       <TextTemplate color={color} type={isBold ? "l3b" : "l3"}>
         {label}
       </TextTemplate>
-      <YuCoinIcon style={{ height: Style.adjust(12), width: Style.adjust(12), tintColor: color, marginLeft: 2 }} />
+      <YuCoinIcon style={style} />
     </View>
   );
 };
