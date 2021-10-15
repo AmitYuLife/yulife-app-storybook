@@ -65,7 +65,7 @@ const transformItems = (items: ItemListItems[], yumojiParts: IParts, matchType: 
 
     return {
       ...item,
-      isSelected: matchFilters.every((filter) => part[filter] === yumojiPart?.[filter]),
+      isSelected: matchFilters.every((filter) => part[filter] === (yumojiPart?.[filter] ?? "")),
     };
   });
 
