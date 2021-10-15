@@ -1,0 +1,12 @@
+diff --git a/node_modules/react-native-fast-image/android/src/main/java/com/dylanvann/fastimage/FastImageViewManager.java b/node_modules/react-native-fast-image/android/src/main/java/com/dylanvann/fastimage/FastImageViewManager.java
+index f97ec71..afca9b3 100644
+--- a/node_modules/react-native-fast-image/android/src/main/java/com/dylanvann/fastimage/FastImageViewManager.java
++++ b/node_modules/react-native-fast-image/android/src/main/java/com/dylanvann/fastimage/FastImageViewManager.java
+@@ -104,6 +104,7 @@ class FastImageViewManager extends SimpleViewManager<FastImageViewWithUrl> imple
+                     //    - android.resource://
+                     //    - data:image/png;base64
+                     .load(imageSource.getSourceForLoad())
++                    .dontTransform()
+                     .apply(FastImageViewConverter.getOptions(context, imageSource, source))
+                     .listener(new FastImageRequestListener(key))
+                     .into(view);

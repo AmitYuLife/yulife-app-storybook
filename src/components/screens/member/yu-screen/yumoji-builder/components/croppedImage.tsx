@@ -29,7 +29,6 @@ export const CroppedImage: FC<IProps> = memo(
   ({ transform, source, containerHeight, containerWidth, suppressLoadingUi }) => {
     const { left = 0, top = 0, zoom = 1, height, width } = transform || {};
     const scale = (height && width ? containerWidth / width : 1) * zoom;
-    const scaledHeight = scale * (height || containerHeight);
     const scaledWidth = scale * (width || containerWidth);
     const [sources, setSources] = useState({ currentSource: null, loadingSource: null });
     const viewStyle = useMemo(
@@ -77,7 +76,6 @@ export const CroppedImage: FC<IProps> = memo(
           <Image
             style={imageStyle}
             width={scaledWidth}
-            height={scaledHeight}
             key={sourceKeyExtractor(sources.currentSource)}
             source={sources.currentSource}
             suppressLoadingUi={suppressLoadingUi}
@@ -88,7 +86,6 @@ export const CroppedImage: FC<IProps> = memo(
           <Image
             style={imageStyle}
             width={scaledWidth}
-            height={scaledHeight}
             key={sourceKeyExtractor(sources.loadingSource)}
             source={sources.loadingSource}
             suppressLoadingUi={suppressLoadingUi}
