@@ -14,12 +14,17 @@ import { getChallengesStatus, getCurrentLevel } from "@redux/levels/levels.selec
 import { handleNavigateToQuestsTab } from "@navigation/utils";
 import { getPositionBottom } from "@organisms/nav-bar/nav-bar.styles";
 
-export const DailyStepsOnline = memo(() => {
+type DailyStepsOnlineProps = {
+  isIntro?: boolean;
+};
+
+export const DailyStepsOnline = memo(({ isIntro }: DailyStepsOnlineProps) => {
   const dailyMeditation = useSelector(getDailyMeditation);
   const dailySteps = useSelector(getDailySteps);
   const dailyEarnedCoins = useSelector(getDailyEarnedCoins);
   const { usePassiveMeditation } = useSelector(getUserFeatures);
-  const { available } = useSelector(getChallengesStatus);
+  const { available, done } = useSelector(getChallengesStatus);
+  const availableForToday = useMemo(() => available - done, [available, done]);
   const currentLevel = useSelector(getCurrentLevel);
   const currentWorld = getCurrentWorld(currentLevel);
   const textColor = currentWorld === 1 ? Colours.neutral.white : Colours.neutral.n900;
@@ -50,9 +55,13 @@ export const DailyStepsOnline = memo(() => {
           />
         </View>
       </View>
-      {available === 0 ? null : (
+      {isIntro || availableForToday === 0 ? null : (
         <View style={styles.buttonWrapper}>
-          <Button onPress={handleNavigateToQuestsTab} size="Large" label={`Take a challenge (${available} left)`} />
+          <Button
+            onPress={handleNavigateToQuestsTab}
+            size="Large"
+            label={`Take a challenge (${availableForToday} left)`}
+          />
         </View>
       )}
     </>

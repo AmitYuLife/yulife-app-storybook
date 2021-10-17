@@ -79,7 +79,7 @@ export default function IntroScreen({
             setDailyStepsPosition(event.nativeEvent.layout.height + event.nativeEvent.layout.y + 10)
           }
         >
-          <DailyStepsOnline />
+          <DailyStepsOnline isIntro={true} />
         </View>
         <View style={styles.dim} />
         <NavBar highlightedLabel={getHighlightedLabel(activeIndex)} activeIndex={0} />
