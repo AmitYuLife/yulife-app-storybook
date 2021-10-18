@@ -7,6 +7,7 @@ import { TextTemplate } from "@atoms";
 import { Style, Colours } from "@styles";
 import { Counter } from "@molecules";
 import { styles as textTemplateStyle } from "@components/atoms/text/text-template";
+import { STEPS_COUNT } from "@ids";
 
 interface IProps {
   steps: number;
@@ -30,7 +31,7 @@ const ActivityList = memo(({ steps, cycling, mindfulness, textColor = Colours.ne
         <View style={styles.container}>
           <StepsIcon color={textColor} />
           <View style={styles.textWrapper}>
-            <TextTemplate type="b2" color={textColor}>
+            <TextTemplate type="b2" color={textColor} testID={STEPS_COUNT(steps)}>
               <Counter duration={1200} value={steps} textStyle={counterStyle} />
             </TextTemplate>
           </View>

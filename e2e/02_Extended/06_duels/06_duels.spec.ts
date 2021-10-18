@@ -4,7 +4,7 @@ import * as given from "./_steps/given"
 import * as when from "./_steps/when"
 import * as then from "./_steps/then"
 import { CUSTOMER_20, AUTH_20, CUSTOMER_19, AUTH_19, CUSTOMER_17, AUTH_17, CUSTOMER_16, CUSTOMER_26, AUTH_26, CUSTOMER_27, AUTH_27 } from "@data";
-import { DUELS_BUTTON, DUELS_HUB, DUELS_HUB_INVITATION, DUEL_OPTIONS_SCREEN, DUEL_RESPONSE, NAV_BAR, CHALLENGE_FRIEND_BUTTON, DUEL_ENTRY, DUEL_ICON, DUEL_DESCRIPTION, DUEL_AVATAR} from "@ids";
+import { DUELS_BUTTON, DUELS_HUB, DUELS_HUB_INVITATION, DUEL_OPTIONS_SCREEN, DUEL_RESPONSE, NAV_BAR, CHALLENGE_FRIEND_BUTTON, DUEL_ENTRY, DUEL_ICON, DUEL_DESCRIPTION, DUEL_AVATAR, STEPS_COUNT} from "@ids";
 
 
 Feature("As an enabled user I am able to use the duels feature", async()=>{
@@ -91,7 +91,7 @@ Feature("As an enabled user I am able to use the duels feature", async()=>{
             })
             When("I go back to the today screen", when.tapID(NAV_BAR("yucoin")), async()=>{
                 When("I walk 200 steps", when.sendSteps(200), async()=>{
-                    Then("I should see the updated step count", then.textVisible("200 steps"))
+                    Then("I should see the updated step count", then.idVisible(STEPS_COUNT(200)))
                 })
             })
             When("I go back to the leaderboard", when.tapID(NAV_BAR("leaderboard")), async()=>{

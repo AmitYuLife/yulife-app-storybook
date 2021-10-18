@@ -4,7 +4,7 @@ import * as given from "./_steps/given";
 import * as then from "./_steps/then";
 import * as when from "./_steps/when";
 import * as scenario from "./_steps/scenario";
-import { INPUT_LOGIN_EMAIL, INPUT_RESET_PASSWORD } from "@ids";
+import { INPUT_LOGIN_EMAIL, INPUT_RESET_PASSWORD, STEPS_COUNT } from "@ids";
 import { CUSTOMER_4, AUTH_4, CUSTOMER_ARCHIVED, AUTH_ARCHIVED } from "@data";
 
 Feature("As a user I can get past the login screen", async () => {
@@ -83,10 +83,10 @@ Feature("As a user I can get past the login screen", async () => {
             Given("I login and go to the daily steps screen", given.loginToDailySteps, async () => {
                 When("I have already seen the onboarding screens", given.seenOnboardingScreens, async () => {
                     When("I have done 20 steps", given.sendSteps(20), async () => {
-                        Then("I should see 20 steps", then.textVisible("20 steps"));
+                        Then("I should see 20 steps", then.idVisible(STEPS_COUNT(20)));
                     })
                     When("I have done 60 steps", given.sendSteps(60), async () => {
-                        Then("I should see 60 steps", then.textVisible("60 steps"));
+                        Then("I should see 60 steps", then.idVisible(STEPS_COUNT(60)));
                     })
                 })
             });
