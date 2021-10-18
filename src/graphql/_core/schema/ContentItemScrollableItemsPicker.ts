@@ -3,6 +3,8 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
+import { CoverType } from "./globalTypes";
+
 // ====================================================
 // GraphQL fragment: ContentItemScrollableItemsPicker
 // ====================================================
@@ -16,6 +18,11 @@ export interface ContentItemScrollableItemsPicker_range {
   min: number;
   max: number;
   step: number;
+}
+
+export interface ContentItemScrollableItemsPicker_coverMap {
+  coverType: CoverType;
+  max: number;
 }
 
 export interface ContentItemScrollableItemsPicker_styleVariants_item {
@@ -53,5 +60,6 @@ export interface ContentItemScrollableItemsPicker {
   answerKey: string;
   styles: ContentItemScrollableItemsPicker_styles[] | null;
   range: ContentItemScrollableItemsPicker_range;
+  coverMap: ContentItemScrollableItemsPicker_coverMap[];
   styleVariants: ContentItemScrollableItemsPicker_styleVariants[] | null;
 }

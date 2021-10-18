@@ -357,6 +357,10 @@ export const GQL_FRAGMENT_CONTENT_ITEM_SCROLLABLE_ITEMS_PICKER = gql`
       max
       step
     }
+    coverMap {
+      coverType
+      max
+    }
     styleVariants {
       id
       minVisibleIndex
