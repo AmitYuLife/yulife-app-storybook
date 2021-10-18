@@ -1,4 +1,4 @@
-import React, { memo, useContext, useEffect, useRef } from "react";
+import React, { memo, useContext, useEffect, useMemo, useRef } from "react";
 import { View, FlatList as RNFlatList, Animated, NativeSyntheticEvent, NativeScrollEvent } from "react-native";
 import { GetPersonalProductStep_getPersonalProductStep_body_ContentItemScrollableItemsPicker as Props } from "@graphql/_core/schema/GetPersonalProductStep";
 import { ProductStepContext } from "../../product-step.context";
@@ -10,16 +10,44 @@ import { getActiveIndex } from "./getActiveIndex";
 import { Colours } from "@styles";
 import { TextTemplate } from "@atoms";
 import { SduiStyle } from "@graphql/_core/schema";
+import { CoverType } from "@graphql/_core/schema/globalTypes";
+import { LOCAL_ANSWER_KEY } from "../../utils";
 
 export const ProductStepPercentPicker = memo((props: Props) => {
   let { current: canChangeDynamicData } = useRef(false);
   const { answerKey, styleVariants } = props;
-  const { min, max, step } = props.range;
-  const itemRange = Array.from({ length: (max - min) / step + 1 }).map((_, i) => min + step * i);
   const { dynamicData, setDynamicData } = useContext(ProductStepContext);
   const listRef = useRef(null as RNFlatList);
   const { current: scrollX } = useRef(new Animated.Value(0));
   const renderGracePeriodTimeout = useRef(null);
+
+  const itemRange = useMemo(() => {
+    const { min, max, step } = props.range;
+
+    return Array.from({ length: (max - min) / step + 1 }).map((_, i) => min + step * i);
+  }, [props.range]);
+
+  const coverMap = useMemo(() => {
+    if (!props.coverMap?.length) {
+      return {};
+    }
+
+    const localCoverMap = [...props.coverMap];
+
+    const what = itemRange.reduce((acc, curr) => {
+      acc[curr] = {
+        coverType: localCoverMap[0].coverType,
+      };
+
+      if (curr + 1 > localCoverMap[0].max) {
+        localCoverMap.shift();
+      }
+
+      return acc;
+    }, {} as Record<number, { coverType: CoverType }>);
+
+    return what;
+  }, [props.coverMap, itemRange]);
 
   const handleTouchStart = () => {
     canChangeDynamicData = true;
@@ -53,8 +81,16 @@ export const ProductStepPercentPicker = memo((props: Props) => {
     }
 
     const activeIndex = getActiveIndex(event.nativeEvent.contentOffset.x, ITEM_WIDTH);
+
     if (canChangeDynamicData) {
-      setDynamicData((oldState) => ({ ...oldState, [answerKey]: itemRange[activeIndex] }));
+      const item = itemRange[activeIndex];
+      const coverType = coverMap[item].coverType;
+
+      setDynamicData((oldState) => ({
+        ...oldState,
+        [answerKey]: item,
+        [LOCAL_ANSWER_KEY.CoverType]: coverType,
+      }));
     }
 
     canChangeDynamicData = false;
@@ -63,7 +99,9 @@ export const ProductStepPercentPicker = memo((props: Props) => {
   const handleMomentumScrollEnd = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
     if (canChangeDynamicData) {
       const activeIndex = getActiveIndex(event.nativeEvent.contentOffset.x, ITEM_WIDTH);
-      setDynamicData((oldState) => ({ ...oldState, [answerKey]: itemRange[activeIndex] }));
+      const item = itemRange[activeIndex];
+      const coverType = coverMap[item].coverType;
+      setDynamicData((oldState) => ({ ...oldState, [answerKey]: item, [LOCAL_ANSWER_KEY.CoverType]: coverType }));
     }
 
     canChangeDynamicData = false;

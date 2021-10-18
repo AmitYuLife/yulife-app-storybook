@@ -627,6 +627,11 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemC
   step: number;
 }
 
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemCoverPicker_customCover_itemsPicker_coverMap {
+  coverType: CoverType;
+  max: number;
+}
+
 export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemCoverPicker_customCover_itemsPicker_styleVariants_item {
   color: string;
 }
@@ -668,6 +673,7 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemC
     | GetPersonalProductStep_getPersonalProductStep_body_ContentItemCoverPicker_customCover_itemsPicker_styles[]
     | null;
   range: GetPersonalProductStep_getPersonalProductStep_body_ContentItemCoverPicker_customCover_itemsPicker_range;
+  coverMap: GetPersonalProductStep_getPersonalProductStep_body_ContentItemCoverPicker_customCover_itemsPicker_coverMap[];
   styleVariants:
     | GetPersonalProductStep_getPersonalProductStep_body_ContentItemCoverPicker_customCover_itemsPicker_styleVariants[]
     | null;
@@ -700,6 +706,11 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemS
   min: number;
   max: number;
   step: number;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemScrollableItemsPicker_coverMap {
+  coverType: CoverType;
+  max: number;
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemScrollableItemsPicker_styleVariants_item {
@@ -742,6 +753,7 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemS
   answerKey: string;
   styles: GetPersonalProductStep_getPersonalProductStep_body_ContentItemScrollableItemsPicker_styles[] | null;
   range: GetPersonalProductStep_getPersonalProductStep_body_ContentItemScrollableItemsPicker_range;
+  coverMap: GetPersonalProductStep_getPersonalProductStep_body_ContentItemScrollableItemsPicker_coverMap[];
   styleVariants:
     | GetPersonalProductStep_getPersonalProductStep_body_ContentItemScrollableItemsPicker_styleVariants[]
     | null;

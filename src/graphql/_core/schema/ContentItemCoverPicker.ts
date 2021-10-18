@@ -87,6 +87,11 @@ export interface ContentItemCoverPicker_customCover_itemsPicker_range {
   step: number;
 }
 
+export interface ContentItemCoverPicker_customCover_itemsPicker_coverMap {
+  coverType: CoverType;
+  max: number;
+}
+
 export interface ContentItemCoverPicker_customCover_itemsPicker_styleVariants_item {
   color: string;
 }
@@ -124,6 +129,7 @@ export interface ContentItemCoverPicker_customCover_itemsPicker {
   answerKey: string;
   styles: ContentItemCoverPicker_customCover_itemsPicker_styles[] | null;
   range: ContentItemCoverPicker_customCover_itemsPicker_range;
+  coverMap: ContentItemCoverPicker_customCover_itemsPicker_coverMap[];
   styleVariants: ContentItemCoverPicker_customCover_itemsPicker_styleVariants[] | null;
 }
 
