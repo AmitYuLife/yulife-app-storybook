@@ -55,7 +55,6 @@ export { Image } from "./image/image";
 export { default as Hyperlink } from "./hyperlink/hyperlink";
 export { default as RibbonGold } from "./ribbon-gold/ribbon-gold";
 export { default as SkeletonLoading } from "./skeleton-loading/skeleton-loading";
-export { default as YuCoinPowerMini } from "./yucoin-power-mini/yucoin-power-mini";
 export { default as YugiHeader } from "./yugi-header/yugi-header";
 export { default as PackageMonthPrice } from "./package-month-price/package-month-price";
 export { default as Wrapper } from "./wrapper/wrapper";
