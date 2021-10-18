@@ -1,5 +1,6 @@
-import { navigation, expectIsVisibleViaText, CHALLENGE_HISTORY_STARS } from "@utils"
+import { navigation, expectIsVisibleViaText, expectIsVisibleViaID, CHALLENGE_HISTORY_STARS, STEPS_COUNT } from "@utils"
 import { screens } from "@appScreens"
+import { addCommasToNumber } from "_utils/appScreens/rewards"
 
 export const {
     idVisible,
@@ -25,9 +26,8 @@ export const onMeditation = async () => {
     }
 }
 export const stepsAndCoinsVisible = (steps: number, coins: number) => async () => {
-    await expectIsVisibleViaText(`${steps} steps`)
-    await expectIsVisibleViaText(`${coins} yucoin today`)
-
+    await expectIsVisibleViaID(STEPS_COUNT(steps))
+    await expectIsVisibleViaText(`${addCommasToNumber(coins)} YuCoin today`)
 }
 
 export const onChallengeHistory = (challengeType: string, levelNum: number, yucoinNum: number, starCount: number, timeSpent?: number, steps?: number) => async () => {

@@ -3,7 +3,7 @@ import * as scenario from "./_steps/scenario"
 import * as given from "./_steps/given"
 import * as when from "./_steps/when"
 import * as then from "./_steps/then"
-import { QUESTS_SCREEN, LEVEL_CHALLENGE_BUTTON, CHALLENGE_TILE, GENERIC_SCREEN_HEADING, CHALLENGE_PROGRESS_BAR, GENERIC_SCREEN_CTA, BUTTON_CLOSE_CHALLENGE, NAV_BAR, VIEW_TOP_RIGHT_COIN_COUNTER } from "@ids";
+import { QUESTS_SCREEN, LEVEL_CHALLENGE_BUTTON, CHALLENGE_TILE, GENERIC_SCREEN_HEADING, CHALLENGE_PROGRESS_BAR, GENERIC_SCREEN_CTA, BUTTON_CLOSE_CHALLENGE, NAV_BAR, VIEW_TOP_RIGHT_COIN_COUNTER, STEPS_COUNT } from "@ids";
 import { CUSTOMER_9, AUTH_9 } from "@data";
 
 Feature("As a user I can take a challenge", async () => {
@@ -90,8 +90,8 @@ Feature("As a user I can take a challenge", async () => {
                                             Then("I should be on the quest screen", then.idVisible(LEVEL_CHALLENGE_BUTTON(8), 3000))
                                             When("I back to the yucoin tab", when.tapID(NAV_BAR("yucoin")), async () => {
                                                 Then("I should see my updated coins in the top right", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(1030)))
-                                                Then("I should see the number of steps I just completed", then.textVisible("3,050 steps"))
-                                                Then("I should see the number of coins I've earned today (270)", then.textVisible("270 yucoin today"))
+                                                Then("I should see the number of steps I just completed", then.idVisible(STEPS_COUNT(3050)))
+                                                Then("I should see the number of coins I've earned today (270)", then.textVisible("270 YuCoin today"))
                                             })
                                         })
                                     })
