@@ -2,6 +2,7 @@ import React, { FC } from "react";
 import { View, StyleSheet } from "react-native";
 import { Button, LinkButton, Image, SecondaryButton, TextTemplate } from "@atoms";
 import { Style } from "@styles";
+import { APPREVIEW_TEXT } from "@ids";
 
 type ButtonProps = React.ComponentProps<typeof Button>;
 
@@ -38,7 +39,9 @@ const AppReviewModalScreen: FC<Props> = ({
           theme="light"
           style={styles.imageWrapper}
         />
-        <TextTemplate type={"h2"}>{heading}</TextTemplate>
+        <TextTemplate type={"h2"} testID={APPREVIEW_TEXT(heading)}>
+          {heading}
+        </TextTemplate>
         <View style={styles.separator16}>
           <TextTemplate type={"b2"} textAlign={"center"}>
             {subheading}
