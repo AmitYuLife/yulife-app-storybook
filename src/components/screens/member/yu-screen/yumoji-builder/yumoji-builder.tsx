@@ -6,7 +6,7 @@ import { Colours, Style } from "@styles";
 import YumojiBuilderCategories from "./components/yumoji-builder-categories";
 import YumojiBuilderItemList from "./components/yumoji-builder-item-list";
 import { ActionTypes, IState, IDispatch } from "@components/containers/member/yumoji-builder/yumoji-builder.reducer";
-import { Yumoji } from "@organisms/yumoji/scalableYumoji";
+import { ScalableYumoji } from "@organisms/yumoji/scalableYumoji";
 import { GetYumojiBuilderInitialParts_getYumojiBuilderInitialParts as YumojiBuilderInitialParts } from "@graphql/_core/schema";
 import { useBackHandler } from "@services/hooks/useBackHandler";
 interface IProps {
@@ -60,7 +60,7 @@ const YumojiBuilder: FC<IProps> = ({ state, dispatch, onBackPressed, updateAvata
       <GenericHeadingPad />
       <View style={styles.elementWrapper}>
         <View style={styles.yumoji}>
-          <Yumoji
+          <ScalableYumoji
             preview={categoryProps.preview}
             height={AVATAR_HEIGHT * categoryProps.zoom}
             width={AVATAR_WIDTH * categoryProps.zoom}

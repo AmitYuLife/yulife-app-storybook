@@ -25,7 +25,7 @@ interface IProps {
   };
 }
 
-function _Yumoji(props: IProps) {
+function _ScalableYumoji(props: IProps) {
   const { items, preview = { top: 0, left: 0, zoom: 1 }, height, width, bodyType } = props;
   const [partsLoading, setPartsLoading] = useState(true);
   const loadingCounter = useRef(0);
@@ -67,8 +67,8 @@ function _Yumoji(props: IProps) {
   return <View style={styles}>{parts}</View>;
 }
 
-export const Yumoji = memo(
-  _Yumoji,
+export const ScalableYumoji = memo(
+  _ScalableYumoji,
   ({ items: prevItems, ...prevProps }, { items: nextItems, ...nextProp }) =>
     shallowEqual(prevProps, nextProp) &&
     shallowEqual(
