@@ -1,6 +1,7 @@
 import { CroppedImage } from "@components/screens/member/yu-screen/yumoji-builder/components/croppedImage";
-import React, { memo, useMemo } from "react";
+import React, { memo, useEffect, useMemo, useRef, useState } from "react";
 import { StyleSheet, View } from "react-native";
+import { shallowEqual } from "react-redux";
 
 interface IYumojiPart {
   order?: number;
@@ -26,28 +27,52 @@ interface IProps {
 
 function _Yumoji(props: IProps) {
   const { items, preview = { top: 0, left: 0, zoom: 1 }, height, width, bodyType } = props;
+  const [partsLoading, setPartsLoading] = useState(true);
+  const loadingCounter = useRef(0);
 
-  const dimensions = useMemo(() => ({ width, height }), [height, width]);
+  useEffect(() => {
+    // using ref to avoid multiple rerenders for each layer being loaded
+    loadingCounter.current = items?.filter((part) => part?.remoteUrl?.uri)?.length || 0;
+    if (loadingCounter.current === 0) {
+      setPartsLoading(false);
+    }
+  }, [items]);
+
+  const styles = useMemo(() => ({ width, height, opacity: partsLoading ? 0.01 : 1 }), [height, partsLoading, width]);
   const parts = useMemo(
     () =>
       items
         .filter((item) => item.remoteUrl?.uri)
         .sort((i1, i2) => (i1?.order || 0) - (i2?.order || 0))
         .map(({ remoteUrl: { uri }, partType }) => (
-          <View key={`${bodyType}_${partType}`} style={[StyleSheet.absoluteFillObject, dimensions]}>
+          <View key={`${bodyType}_${partType}`} style={[StyleSheet.absoluteFillObject, styles]}>
             <CroppedImage
               transform={preview}
               key={`${bodyType}_${partType}`}
-              containerWidth={dimensions.width}
-              containerHeight={dimensions.height}
+              containerWidth={styles.width}
+              containerHeight={styles.height}
               source={{ uri }}
               suppressLoadingUi={true}
+              onInitialLoad={() => {
+                loadingCounter.current--;
+                if (loadingCounter.current <= 0) {
+                  setPartsLoading(false);
+                }
+              }}
             />
           </View>
         )),
-    [dimensions, items, preview]
+    [bodyType, styles, items, preview]
   );
-  return <View style={dimensions}>{parts}</View>;
+  return <View style={styles}>{parts}</View>;
 }
 
-export const Yumoji = memo(_Yumoji);
+export const Yumoji = memo(
+  _Yumoji,
+  ({ items: prevItems, ...prevProps }, { items: nextItems, ...nextProp }) =>
+    shallowEqual(prevProps, nextProp) &&
+    shallowEqual(
+      prevItems?.map((p1) => p1?.remoteUrl?.uri),
+      nextItems?.map((p2) => p2?.remoteUrl?.uri)
+    )
+);

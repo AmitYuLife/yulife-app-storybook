@@ -20,13 +20,14 @@ interface IProps {
   containerHeight: number;
   containerWidth: number;
   suppressLoadingUi?: boolean;
+  onInitialLoad?: () => void;
 }
 export const sourceKeyExtractor = (source: Source | number) => {
   return (source as Source)?.uri ?? source.toString();
 };
 
 export const CroppedImage: FC<IProps> = memo(
-  ({ transform, source, containerHeight, containerWidth, suppressLoadingUi }) => {
+  ({ transform, source, containerHeight, containerWidth, suppressLoadingUi, onInitialLoad }) => {
     const { left = 0, top = 0, zoom = 1, height, width } = transform || {};
     const scale = (height && width ? containerWidth / width : 1) * zoom;
     const scaledWidth = scale * (width || containerWidth);
@@ -54,7 +55,7 @@ export const CroppedImage: FC<IProps> = memo(
     useEffect(() => {
       const { currentSource } = sources;
       if (!currentSource) {
-        setSources({ currentSource: source, loadingSource: null });
+        setSources({ loadingSource: source, currentSource: null });
         return;
       }
 
@@ -64,9 +65,13 @@ export const CroppedImage: FC<IProps> = memo(
     }, [source]);
 
     const onLoad = useCallback(() => {
-      const { loadingSource } = sources;
+      const { loadingSource, currentSource } = sources;
       if (loadingSource) {
         setSources({ currentSource: loadingSource, loadingSource: null });
+      }
+
+      if (!currentSource) {
+        onInitialLoad?.();
       }
     }, [sources]);
 
