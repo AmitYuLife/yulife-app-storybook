@@ -89,6 +89,7 @@ export const CHALLENGE_REWARD = (reward: string|number) => `CHALLENGE_REWARD_${r
 export const VALUE_DESCRIPTION = (value:any, description:string) => `VALUE_DESCRIPTION_${value}_${description}`
 export const TEXT_TEMPLATE = (copy:string) => `TEXT_TEMPLATE_${copy}`
 export const MARKDOWN_TEXT = (copy:string) => `MARKDOWN_TEXT_${copy}`
+export const APPREVIEW_TEXT = (text:string) => `APPREVIEW_TEXT_${text}`
 export const STEPS_COUNT = (steps: number) => `STEPS_COUNT_${steps}`
 
 // reward purchased
