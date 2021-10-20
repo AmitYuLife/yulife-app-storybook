@@ -92,7 +92,7 @@ const YumojiBuilderContainer: FC<IProps> = ({ heading }) => {
     GetYumojiBuilderItemsForCategory,
     GetYumojiBuilderItemsForCategoryVariables
   >(GQL_QUERY_GET_YUMOJI_BUILDER_ITEMS_FOR_CATEGORY, {
-    fetchPolicy: "cache-first",
+    fetchPolicy: "cache-and-network",
     onCompleted: (data) => {
       dispatch({ type: ActionTypes.SET_ITEM_LIST, payload: data?.getYumojiBuilderItemsForCategory });
     },

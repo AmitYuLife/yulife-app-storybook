@@ -8,7 +8,7 @@ import {
   GetYumojiBuilderItemsForCategory_getYumojiBuilderItemsForCategory as YumojiBuilderItemsForCategory,
 } from "@graphql/_core/schema";
 import { loadingItemData } from "../../avatar-builder/avatar-builder.helper";
-import { ItemListItems, YumojiItem } from "./yumoji-item";
+import { itemHeight, ItemListItems, YumojiItem } from "./yumoji-item";
 import { YumojiPartStatus } from "@graphql/_core/schema/globalTypes";
 import { showGenericModal } from "@navigation/utils";
 import { ROUTES, MODALS } from "@navigation/constants";
@@ -25,6 +25,23 @@ interface IProps {
   updateUserAvatar: (payload: YumojiBuilderParts[]) => void;
   emptyMessage: string;
 }
+
+const keyExtractor = (keyItem: ItemListItems, index: number) => {
+  const { partId, colorSchemeId } = keyItem?.parts?.[0] ?? {};
+  if (!partId && !colorSchemeId) {
+    return index.toString();
+  }
+
+  return `${partId}_${colorSchemeId}`;
+};
+
+const NUM_COLUMNS = 3;
+
+const getItemLayout = (_: unknown, index: number) => ({
+  length: itemHeight,
+  offset: itemHeight * Math.floor(index / NUM_COLUMNS),
+  index,
+});
 
 const YumojiBuilderItemList: FC<IProps> = ({ itemList, updateUserAvatar, selectedCategoryId, emptyMessage }) => {
   const flatListRef = useRef<FlatList | null>(null);
@@ -63,6 +80,13 @@ const YumojiBuilderItemList: FC<IProps> = ({ itemList, updateUserAvatar, selecte
     [updateUserAvatar]
   );
 
+  const renderItem = useCallback(
+    ({ item }: { item: ItemListItems }) => (
+      <YumojiItem loading={itemList.loading} item={item} onItemPress={onItemPress} />
+    ),
+    []
+  );
+
   const listHeaderComponent = useMemo(
     () => (
       <View style={styles.title}>
@@ -84,16 +108,20 @@ const YumojiBuilderItemList: FC<IProps> = ({ itemList, updateUserAvatar, selecte
         <View style={styles.itemList}>
           <FlatList
             ListHeaderComponent={listHeaderComponent}
-            key={"items_flat_list"}
-            keyExtractor={(keyItem, index) => `${index}${keyItem.partId}`}
+            key={`items_flat_list_${selectedCategoryId}`}
+            keyExtractor={keyExtractor}
             ref={flatListRef}
             style={styles.bodyElementsList}
             contentContainerStyle={styles.contentContainer}
             data={itemList.loading ? loadingItemData : itemList.items}
-            numColumns={3}
+            numColumns={NUM_COLUMNS}
             showsVerticalScrollIndicator={false}
+            removeClippedSubviews={true}
+            initialNumToRender={9}
+            windowSize={15}
             initialScrollIndex={0}
-            renderItem={({ item }) => <YumojiItem loading={itemList.loading} item={item} onItemPress={onItemPress} />}
+            getItemLayout={getItemLayout}
+            renderItem={renderItem}
           />
         </View>
       )}
