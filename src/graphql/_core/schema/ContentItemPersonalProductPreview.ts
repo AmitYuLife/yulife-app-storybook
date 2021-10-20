@@ -3,7 +3,7 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { CoverType } from "./globalTypes";
+import { SduiActionType, CoverType } from "./globalTypes";
 
 // ====================================================
 // GraphQL fragment: ContentItemPersonalProductPreview
@@ -14,10 +14,15 @@ export interface ContentItemPersonalProductPreview_documentHyperlink_leftIcon {
   uri: string | null;
 }
 
+export interface ContentItemPersonalProductPreview_documentHyperlink_onPress {
+  type: SduiActionType;
+  payload: string | null;
+}
+
 export interface ContentItemPersonalProductPreview_documentHyperlink {
   title: string;
-  url: string;
   leftIcon: ContentItemPersonalProductPreview_documentHyperlink_leftIcon | null;
+  onPress: ContentItemPersonalProductPreview_documentHyperlink_onPress;
 }
 
 export interface ContentItemPersonalProductPreview_styles {

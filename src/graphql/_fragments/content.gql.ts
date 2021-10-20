@@ -294,9 +294,11 @@ export const GQL_FRAGMENT_CONTENT_ITEM_PRODUCT_PREVIEW = gql`
     answerKeyDefaultValue
     documentHyperlink: hyperlink {
       title
-      url
       leftIcon {
         ...RemoteImage
+      }
+      onPress {
+        ...SduiAction
       }
     }
     styles {

@@ -479,10 +479,15 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemP
   uri: string | null;
 }
 
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemPersonalProductPreview_documentHyperlink_onPress {
+  type: SduiActionType;
+  payload: string | null;
+}
+
 export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemPersonalProductPreview_documentHyperlink {
   title: string;
-  url: string;
   leftIcon: GetPersonalProductStep_getPersonalProductStep_body_ContentItemPersonalProductPreview_documentHyperlink_leftIcon | null;
+  onPress: GetPersonalProductStep_getPersonalProductStep_body_ContentItemPersonalProductPreview_documentHyperlink_onPress;
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemPersonalProductPreview_styles {

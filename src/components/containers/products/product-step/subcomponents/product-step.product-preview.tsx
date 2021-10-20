@@ -17,10 +17,12 @@ import {
   highlightStyles,
   HIGHLIGHT_CIRCUMFERENCE,
 } from "./product-step.scrollable-items-picker/product-step.scrollable-items-picker.styles";
+import { useDispatch } from "react-redux";
 
 export const ProductStepProductPreview = memo((props: Props) => {
   const { answerKey, answerKeyDefaultValue, showYumoji, documentHyperlink, percentageBox } = props;
-  const { customerProductId, setDynamicData, dynamicData } = useContext(ProductStepContext);
+  const { productId, customerProductId, setDynamicData, dynamicData, stepId } = useContext(ProductStepContext);
+  const dispatch = useDispatch();
 
   const handleYumojiPartChange = useCallback(
     (worldId: YuWorld) => setDynamicData((oldState) => ({ ...oldState, worldId })),
@@ -57,6 +59,22 @@ export const ProductStepProductPreview = memo((props: Props) => {
       monthlyCostSuffix,
     };
   }, [dynamicData, answerKey, props.coverList]);
+
+  const handlePressHyperlink = useCallback(
+    () =>
+      dispatch({
+        type: documentHyperlink.onPress.type,
+        payload: {
+          productId,
+          stepId,
+          dynamicData,
+          serverPayload: documentHyperlink.onPress.payload,
+          id: `${stepId} - ${documentHyperlink.title}`,
+        },
+      }),
+    [documentHyperlink, productId, stepId, dynamicData]
+  );
+
   return (
     <View style={[styles.wrapper, mapServerStyles(props.styles)]}>
       {showYumoji ? (
@@ -88,7 +106,7 @@ export const ProductStepProductPreview = memo((props: Props) => {
                 height={Style.adjust(24)}
                 style={styles.hyperlinkImage}
               />
-              <Hyperlink title={documentHyperlink.title} url={documentHyperlink.url} />
+              <Hyperlink title={documentHyperlink.title} onPress={handlePressHyperlink} />
             </View>
           ) : null}
         </View>
