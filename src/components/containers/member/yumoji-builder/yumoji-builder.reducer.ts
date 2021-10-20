@@ -33,6 +33,7 @@ export interface IState {
   bodyType: AvatarBodyType;
   bodySelected: boolean;
   emptyMessage: string;
+  hasUnsavedChanges: boolean;
 }
 
 export interface IAction {
@@ -86,6 +87,7 @@ export const INITIAL_STATE: IState = {
   bodyType: AvatarBodyType.neutral,
   bodySelected: false,
   emptyMessage: "",
+  hasUnsavedChanges: false,
 };
 
 export const reducer = (state: IState, action: IAction) => {
@@ -116,6 +118,7 @@ export const reducer = (state: IState, action: IAction) => {
           ...state.itemList,
           items: transformItems(state.itemList.items, parts, state.matchType),
         },
+        hasUnsavedChanges: true,
       };
     }
 
@@ -123,6 +126,7 @@ export const reducer = (state: IState, action: IAction) => {
       return {
         ...state,
         bodySelected: action.payload.bodySelected,
+        hasUnsavedChanges: action.payload.bodyType !== state.bodyType || state.hasUnsavedChanges,
       };
     }
 

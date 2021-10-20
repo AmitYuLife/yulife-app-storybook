@@ -1,4 +1,4 @@
-import React, { FC, useCallback, useEffect, useReducer } from "react";
+import React, { FC, useCallback, useEffect, useReducer, useRef } from "react";
 import { useMutation, useLazyQuery, useQuery } from "@apollo/react-hooks";
 import { AvatarBuilderHeading } from "@components/screens/member/yu-screen/avatar-builder/avatar.types";
 import { Loading } from "@atoms";
@@ -19,12 +19,11 @@ import {
 } from "@graphql/_core/schema";
 import SelectBody from "@components/screens/member/yu-screen/select-body-new/select-body";
 import { GQL_MUTATION_UPDATE_AVATAR, UpdateAvatarMutationTuple } from "@graphql/yuscreen/updateAvatar.gql";
-import { Navigation } from "react-native-navigation";
-import { ROUTES } from "@navigation/constants";
-import { showAwardModal } from "./yumoji-builder.helpers";
+import { showAwardModal, returnToYuScreen, showExitModal } from "./yumoji-builder.helpers";
 import Logger from "@services/logging/logger";
 import { cache } from "@services/image";
 import { showGenericModal } from "@navigation/utils";
+import { useBackHandler } from "@services/hooks/useBackHandler";
 
 interface IProps {
   heading: AvatarBuilderHeading;
@@ -92,7 +91,7 @@ const YumojiBuilderContainer: FC<IProps> = ({ heading }) => {
     GetYumojiBuilderItemsForCategory,
     GetYumojiBuilderItemsForCategoryVariables
   >(GQL_QUERY_GET_YUMOJI_BUILDER_ITEMS_FOR_CATEGORY, {
-    fetchPolicy: "cache-first",
+    fetchPolicy: "cache-and-network",
     onCompleted: (data) => {
       dispatch({ type: ActionTypes.SET_ITEM_LIST, payload: data?.getYumojiBuilderItemsForCategory });
     },
@@ -140,6 +139,31 @@ const YumojiBuilderContainer: FC<IProps> = ({ heading }) => {
     dispatch({ type: ActionTypes.ON_BACK_PRESSED });
   }, []);
 
+  const isBackPressed = useRef(false);
+
+  const backButtonHandler = useCallback(() => {
+    if (!isBackPressed.current) {
+      isBackPressed.current = true;
+      showExitModal(isBackPressed);
+
+      return true;
+    }
+
+    // never
+    return false;
+  }, [isBackPressed]);
+
+  useBackHandler(backButtonHandler);
+
+  const onPressExitButton = useCallback(() => {
+    if (state.hasUnsavedChanges) {
+      showExitModal(isBackPressed);
+      return;
+    }
+
+    returnToYuScreen();
+  }, [state.hasUnsavedChanges, isBackPressed]);
+
   if (loadingInitialParts) {
     return <Loading />;
   }
@@ -156,12 +180,14 @@ const YumojiBuilderContainer: FC<IProps> = ({ heading }) => {
     );
   }
 
-  return <SelectBody onContinue={handleBodySelected} heading={heading} bodyType={state.bodyType} />;
-};
-
-const returnToYuScreen = () => {
-  Navigation.dismissAllModals();
-  Navigation.popTo(ROUTES.yuScreen);
+  return (
+    <SelectBody
+      onContinue={handleBodySelected}
+      bodyType={state.bodyType}
+      heading={heading}
+      onPressExitButton={onPressExitButton}
+    />
+  );
 };
 
 export default YumojiBuilderContainer;
