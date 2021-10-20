@@ -12,6 +12,7 @@ export { default as RewardItemContent } from "./reward-item-content/reward-item-
 export { default as RewardsList } from "./rewards-list/rewards-list";
 export { default as RewardTabs } from "./reward-tabs/reward-tabs";
 export { ScrollableLayout } from "./scrollable-layout/scrollable-layout";
+export { default as TouchableWithDelay } from "./touchable-delay/touchable-delay";
 export { default as TouchableOpacityWithDelay } from "./touchable-opacity-delay/touchable-opacity-delay";
 export { default as PressableWithDelay } from "./pressable-delay/pressable-delay";
 export { default as Popup } from "./pop-up/pop-up";

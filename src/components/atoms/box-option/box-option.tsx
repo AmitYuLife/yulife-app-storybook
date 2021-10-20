@@ -1,7 +1,8 @@
 import React, { useEffect, memo, useRef } from "react";
-import { StyleSheet, TouchableWithoutFeedback, View, Animated, ViewStyle, Platform } from "react-native";
+import { StyleSheet, View, Animated, ViewStyle, Platform } from "react-native";
 import { Style, Colours } from "@styles";
 import * as media from "@styles/media";
+import { TouchableWithDelay } from "@components/molecules";
 
 interface Props {
   onPress: () => void;
@@ -30,7 +31,7 @@ export const BoxOption = memo(
     const totalHeight = innerHeight + SHADOW_HEIGHT;
 
     return (
-      <TouchableWithoutFeedback testID={testID} onPress={onPress}>
+      <TouchableWithDelay testID={testID} onPress={onPress}>
         <View style={StyleSheet.flatten([styles.wrapper, { height: totalHeight }, wrapperStyle])}>
           <View style={styles.shadowWrapper} />
           <Animated.View
@@ -43,7 +44,7 @@ export const BoxOption = memo(
             {children}
           </Animated.View>
         </View>
-      </TouchableWithoutFeedback>
+      </TouchableWithDelay>
     );
   }
 );
