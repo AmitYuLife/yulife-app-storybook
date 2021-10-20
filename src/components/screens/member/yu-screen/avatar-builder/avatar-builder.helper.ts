@@ -12,7 +12,7 @@ export const loadingColorData = Array(12)
 
 export const loadingItemData = Array(12)
   .fill(0)
-  .map((_) => ({ partId: "loading_item_1", bodyElements: null }));
+  .map((_, index) => ({ bodyElements: null, parts: [{ partId: `loading_item_${index}` }] }));
 
 export function parseBodyParts(bodyPartsList: Avatar_listAvatarParts[]) {
   return bodyPartsList.map((part) => {

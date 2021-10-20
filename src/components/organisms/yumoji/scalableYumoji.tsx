@@ -1,5 +1,5 @@
 import { CroppedImage } from "@components/screens/member/yu-screen/yumoji-builder/components/croppedImage";
-import React, { memo, useEffect, useMemo, useRef, useState } from "react";
+import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { shallowEqual } from "react-redux";
 
@@ -39,6 +39,14 @@ function _ScalableYumoji(props: IProps) {
   }, [items]);
 
   const styles = useMemo(() => ({ width, height, opacity: partsLoading ? 0.01 : 1 }), [height, partsLoading, width]);
+
+  const onImageLoaded = useCallback(() => {
+    loadingCounter.current -= 1;
+    if (loadingCounter.current <= 0) {
+      setPartsLoading(false);
+    }
+  }, []);
+
   const parts = useMemo(
     () =>
       items
@@ -53,24 +61,21 @@ function _ScalableYumoji(props: IProps) {
               containerHeight={styles.height}
               source={{ uri }}
               suppressLoadingUi={true}
-              onInitialLoad={() => {
-                loadingCounter.current--;
-                if (loadingCounter.current <= 0) {
-                  setPartsLoading(false);
-                }
-              }}
+              onInitialLoad={onImageLoaded}
             />
           </View>
         )),
-    [bodyType, styles, items, preview]
+    [items, bodyType, styles, preview, onImageLoaded]
   );
+
   return <View style={styles}>{parts}</View>;
 }
 
 export const ScalableYumoji = memo(
   _ScalableYumoji,
-  ({ items: prevItems, ...prevProps }, { items: nextItems, ...nextProp }) =>
+  ({ items: prevItems, preview: prevPreview, ...prevProps }, { items: nextItems, preview: nextPreview, ...nextProp }) =>
     shallowEqual(prevProps, nextProp) &&
+    shallowEqual(prevPreview, nextPreview) &&
     shallowEqual(
       prevItems?.map((p1) => p1?.remoteUrl?.uri),
       nextItems?.map((p2) => p2?.remoteUrl?.uri)
