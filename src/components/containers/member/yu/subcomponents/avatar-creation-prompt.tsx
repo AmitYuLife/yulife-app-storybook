@@ -5,19 +5,12 @@ import { Colours, Style } from "@styles";
 import { navigateToAvatarCreationScreen } from "../navigation/navigateToAvatarCreationScreen";
 import { GET_STARTED_BUTTON, EMPTY_YUSCREEN_COPY } from "@ids";
 import LinearGradient from "react-native-linear-gradient";
-import { useSelector } from "react-redux";
-import { getUserFeatures } from "@redux/user/user.selectors";
 
 const CREATE_AVATAR_CAPTION_COPY = "Build your Yumoji to unlock equipment and earn 100 YuCoin!";
 const CREATE_AVATAR_CTA_COPY = "Create your Yumoji";
 
 const _AvatarCreationPrompt = () => {
-  const features = useSelector(getUserFeatures);
-
-  const createYumoji = useCallback(
-    () => navigateToAvatarCreationScreen({ useNewYumojiBuilder: features.newYumojiBuilder }),
-    []
-  );
+  const createYumoji = useCallback(() => navigateToAvatarCreationScreen(), []);
 
   return (
     <View style={styles.wrapper}>

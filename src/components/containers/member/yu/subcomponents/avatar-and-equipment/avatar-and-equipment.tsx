@@ -1,6 +1,5 @@
 import React, { memo, useCallback, useContext, useEffect } from "react";
 import { StyleSheet, ViewStyle, View } from "react-native";
-import { useSelector } from "react-redux";
 import { Style, Colours } from "@styles";
 import { ItemSet } from "./item-set/item-set";
 import { useQuery } from "@apollo/react-hooks";
@@ -12,7 +11,6 @@ import { Text } from "@atoms";
 import { Yumoji, TouchableOpacityWithDelay } from "@molecules";
 import { ItemBottom } from "./item-set/item-bottom";
 import { YuScreenContext } from "../../context/yu-screen.context";
-import { getUserFeatures } from "@redux/user/user.selectors";
 import { navigateToAvatarCreationScreen } from "../../navigation/navigateToAvatarCreationScreen";
 
 const _AvatarAndEquipment = () => {
@@ -20,13 +18,8 @@ const _AvatarAndEquipment = () => {
   const { data: yuScreenProductSlots } = useQuery<YuScreenProductSlots>(GQL_QUERY_GET_YU_SCREEN_PRODUCTS_SLOTS, {
     fetchPolicy: "cache-and-network",
   });
-  const features = useSelector(getUserFeatures);
 
-  const editYumoji = useCallback(
-    () =>
-      navigateToAvatarCreationScreen({ useNewYumojiBuilder: features.newYumojiBuilder, heading: "Edit your Yumoji" }),
-    []
-  );
+  const editYumoji = useCallback(() => navigateToAvatarCreationScreen({ heading: "Edit your Yumoji" }), []);
 
   const { setPopover, hasYumoji } = useContext(YuScreenContext);
 

@@ -3,16 +3,15 @@ import { Navigation } from "react-native-navigation";
 
 interface INavigateToAvatarCreationScreen {
   heading?: string;
-  useNewYumojiBuilder?: boolean;
 }
 
 export function navigateToAvatarCreationScreen(args?: INavigateToAvatarCreationScreen) {
-  const { heading = "Create your Yumoji", useNewYumojiBuilder } = args;
+  const { heading = "Create your Yumoji" } = args;
 
   Navigation.push(ROUTES.yuScreen, {
     component: {
       id: ROUTES.avatarCreation,
-      name: useNewYumojiBuilder ? ROUTES.yumojiBuilder : ROUTES.avatarCreation,
+      name: ROUTES.yumojiBuilder,
       passProps: {
         heading,
       },

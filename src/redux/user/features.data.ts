@@ -48,5 +48,4 @@ export const features = [
   "limitPedometerSteps",
   "showReferrals",
   "showBuffs",
-  "newYumojiBuilder",
 ];
