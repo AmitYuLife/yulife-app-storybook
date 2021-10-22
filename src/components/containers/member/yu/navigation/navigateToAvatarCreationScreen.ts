@@ -6,11 +6,11 @@ interface INavigateToAvatarCreationScreen {
 }
 
 export function navigateToAvatarCreationScreen(args?: INavigateToAvatarCreationScreen) {
-  const { heading = "Create your Yumoji" } = args;
+  const { heading = "Create your Yumoji" } = args || {};
 
   Navigation.push(ROUTES.yuScreen, {
     component: {
-      id: ROUTES.avatarCreation,
+      id: ROUTES.yumojiBuilder,
       name: ROUTES.yumojiBuilder,
       passProps: {
         heading,
