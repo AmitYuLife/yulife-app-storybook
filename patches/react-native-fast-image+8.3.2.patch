@@ -1,0 +1,57 @@
+diff --git a/node_modules/react-native-fast-image/android/src/main/java/com/dylanvann/fastimage/FastImageViewConverter.java b/node_modules/react-native-fast-image/android/src/main/java/com/dylanvann/fastimage/FastImageViewConverter.java
+index d86f66f..7fdb4a6 100644
+--- a/node_modules/react-native-fast-image/android/src/main/java/com/dylanvann/fastimage/FastImageViewConverter.java
++++ b/node_modules/react-native-fast-image/android/src/main/java/com/dylanvann/fastimage/FastImageViewConverter.java
+@@ -16,6 +16,7 @@ import com.bumptech.glide.load.model.GlideUrl;
+ import com.bumptech.glide.load.model.Headers;
+ import com.bumptech.glide.load.model.LazyHeaders;
+ import com.bumptech.glide.request.RequestOptions;
++import com.bumptech.glide.request.target.Target;
+ import com.bumptech.glide.signature.ApplicationVersionSignature;
+ import com.facebook.react.bridge.JSApplicationIllegalArgumentException;
+ import com.facebook.react.bridge.NoSuchKeyException;
+@@ -89,6 +90,7 @@ class FastImageViewConverter {
+         final Priority priority = FastImageViewConverter.getPriority(source);
+         // Get cache control method.
+         final FastImageCacheControl cacheControl = FastImageViewConverter.getCacheControl(source);
++        final Boolean downScale = FastImageViewConverter.getDownScale(source);
+         DiskCacheStrategy diskCacheStrategy = DiskCacheStrategy.AUTOMATIC;
+         Boolean onlyFromCache = false;
+         Boolean skipMemoryCache = false;
+@@ -113,6 +115,10 @@ class FastImageViewConverter {
+             .priority(priority)
+             .placeholder(TRANSPARENT_DRAWABLE);
+         
++        if(!downScale) {
++            options = options.override(Target.SIZE_ORIGINAL);
++        }
++        
+         if (imageSource.isResource()) {
+             // Every local resource (drawable) in Android has its own unique numeric id, which are
+             // generated at build time. Although these ids are unique, they are not guaranteed unique
+@@ -134,6 +140,10 @@ class FastImageViewConverter {
+         return getValueFromSource("priority", "normal", FAST_IMAGE_PRIORITY_MAP, source);
+     }
+ 
++    private static Boolean getDownScale(ReadableMap source) {
++        return source != null && source.hasKey("downScale") ? source.getBoolean("downScale") : true;
++    }
++
+     static ScaleType getScaleType(String propValue) {
+         return getValue("resizeMode", "cover", FAST_IMAGE_RESIZE_MODE_MAP, propValue);
+     }
+diff --git a/node_modules/react-native-fast-image/dist/index.d.ts b/node_modules/react-native-fast-image/dist/index.d.ts
+index 0b1afd5..4c6e27a 100644
+--- a/node_modules/react-native-fast-image/dist/index.d.ts
++++ b/node_modules/react-native-fast-image/dist/index.d.ts
+@@ -26,6 +26,10 @@ export declare type Source = {
+     };
+     priority?: Priority;
+     cache?: Cache;
++    /**
++    * Android only. default value true
++    */
++    downScale?: boolean;
+ };
+ export interface OnLoadEvent {
+     nativeEvent: {
