@@ -12,12 +12,8 @@ import { addCommasToNumber } from "@utils";
 
 const UserSteps = () => {
   const dailySteps = useSelector(getDailySteps);
-  const { data } = useQuery<GetYulifer>(GQL_QUERY_GET_YULIFER, {
-    fetchPolicy: "cache-and-network",
-  });
-  const avatarSource = useMemo(() => {
-    return data?.getYulifer?.avatarRemoteFiles?.pngMini;
-  }, [data]);
+  const { data } = useQuery<GetYulifer>(GQL_QUERY_GET_YULIFER, { fetchPolicy: "cache-and-network" });
+  const avatarSource = useMemo(() => data?.user?.avatarRemoteFiles?.pngMini, [data]);
 
   return (
     <View style={styles.wrapper}>

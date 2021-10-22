@@ -135,12 +135,6 @@ export enum PassiveChallengeType {
   STEPS = "STEPS",
 }
 
-export enum ProductType {
-  alpha = "alpha",
-  employer = "employer",
-  personal = "personal",
-}
-
 export enum SduiActionType {
   SDUI_ACTION_LOG_EVENT = "SDUI_ACTION_LOG_EVENT",
   SDUI_ACTION_NAVIGATE = "SDUI_ACTION_NAVIGATE",
@@ -168,32 +162,6 @@ export enum UserNotificationsType {
   marketing = "marketing",
   streakSaver = "streakSaver",
   surges = "surges",
-}
-
-export enum YuItemSlot {
-  binoculars = "binoculars",
-  boots = "boots",
-  chest = "chest",
-  clockPendant = "clockPendant",
-  compass = "compass",
-  gloves = "gloves",
-  map = "map",
-  pants = "pants",
-}
-
-export enum YuProductId {
-  critical_illness = "critical_illness",
-  family_income_benefit = "family_income_benefit",
-  group_critical_illness = "group_critical_illness",
-  group_income_protection = "group_income_protection",
-  group_life_insurance = "group_life_insurance",
-  income_protection = "income_protection",
-  travel = "travel",
-  yulife = "yulife",
-  yulife_alpha = "yulife_alpha",
-  yulife_lite = "yulife_lite",
-  yulife_premium_offer = "yulife_premium_offer",
-  yulife_standard_offer = "yulife_standard_offer",
 }
 
 export enum YuProductStatus {

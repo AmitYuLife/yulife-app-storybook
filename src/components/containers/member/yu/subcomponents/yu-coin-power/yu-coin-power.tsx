@@ -1,13 +1,11 @@
-import React, { memo } from "react";
+import React, { memo, useContext } from "react";
 import { View, Image, StyleSheet, ViewStyle, ImageStyle, TextStyle } from "react-native";
 import { Text } from "@atoms";
 import { TextWithBoldText, TouchableOpacityWithDelay } from "@components/molecules";
 import { Style, Colours } from "@styles";
-import { showEarnRateOverlay } from "../../navigation/showEarnRateOverlay";
-import { useQuery } from "@apollo/react-hooks";
-import { GetYulifer } from "@graphql/_core/schema";
-import { GQL_QUERY_GET_YULIFER } from "@graphql/yuscreen";
 import { YUCOIN_POWER } from "@ids";
+import { showEarnRateOverlay } from "../../navigation/showEarnRateOverlay";
+import { YuScreenContext } from "../../context/yu-screen.context";
 
 const POWER_LABEL_TOP = "YuCoin Power";
 const getInfo = (power: number) =>
@@ -16,18 +14,14 @@ const getInfo = (power: number) =>
     : `Your items boost your YuCoin. For every 1 you would have earned, you now get <bold>${power}</bold>.`;
 
 const _YuCoinPower = () => {
-  const { data } = useQuery<GetYulifer>(GQL_QUERY_GET_YULIFER, {
-    fetchPolicy: "cache-first", // We cannot use cache-only as fetch policy, this query is refetch on avatar update
-  });
-
-  const yuCoinPower = data?.getYulifer?.earnRate || 1;
+  const { earnRate = 1 } = useContext(YuScreenContext);
 
   return (
     <TouchableOpacityWithDelay
       activeOpacity={1}
       onPress={showEarnRateOverlay}
       style={styles.wrapper}
-      testID={YUCOIN_POWER(yuCoinPower.toString())}
+      testID={YUCOIN_POWER(earnRate.toString())}
     >
       <View style={styles.backgroundWrapper}>
         <Image resizeMode="stretch" style={styles.backgroundImage} source={require("./background.png")} />
@@ -38,11 +32,11 @@ const _YuCoinPower = () => {
             {POWER_LABEL_TOP}
           </Text>
           <Text bold={true} style={styles.power}>
-            {yuCoinPower}
+            {earnRate}
           </Text>
         </View>
         <View style={styles.infoWrapper}>
-          <TextWithBoldText style={styles.info} value={getInfo(yuCoinPower)} />
+          <TextWithBoldText style={styles.info} value={getInfo(earnRate)} />
         </View>
       </View>
     </TouchableOpacityWithDelay>

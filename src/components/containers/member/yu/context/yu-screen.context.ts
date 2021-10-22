@@ -16,13 +16,15 @@ type YuScreenContextPopover = YuScreenPopover & {
 };
 
 interface IYuScreenContext {
-  hasYumoji: boolean;
+  yumojiRemoteUrl: string;
+  earnRate: number;
   popover: YuScreenContextPopover;
   setPopover: Dispatch<YuScreenContextPopover>;
 }
 
 export const YuScreenContext = createContext<IYuScreenContext>({
-  hasYumoji: false,
+  yumojiRemoteUrl: null,
+  earnRate: 1,
   popover: null,
   setPopover: () => null,
 });
