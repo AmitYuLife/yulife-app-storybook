@@ -59,7 +59,7 @@ function _ScalableYumoji(props: IProps) {
               key={`${bodyType}_${partType}`}
               containerWidth={styles.width}
               containerHeight={styles.height}
-              source={{ uri }}
+              source={{ uri, downScale: false }}
               suppressLoadingUi={true}
               onInitialLoad={onImageLoaded}
             />
