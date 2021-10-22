@@ -7,6 +7,83 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.14.0] - 2021-10-22
+
+### Bugfixes
+
+- Bugfix GS: disable double click on locked item
+- Bugfix XSE-414: Make ContentItemPersonalProductPreview hyperlink to be an action
+- Bugfix GS: Yumoji items scrolling optimizations
+- Bugfix: use scalable yumoji for pli
+- Bugfix: working env cmds
+- Bugfix GS-129: Yumoji - skin colour not loading
+- Bugfix XSE-443: Updating custom cover type updates collapsing header
+- Bugfix: earn more button wrong available challenges number
+- Bugfix: Fixed android image blur
+- Bugfix GS-130: Bottom button on modal on Iphone 13 is too low
+- Bugfix XSE-378: added a small delay for the loading state
+- Bugfix: Yumoji skin items keep loading when change body
+- Bugfix: Android Yumoji builder image flicker
+- Bugfix GS-126: Add border-radius to Wellbeing Hub/Rewards img container
+- Bugfix GS-125: Feedback form title and button
+- Bugfix GS-124: Yumoji bugs
+- Bugfix GS-118: Fix hair and facialHair colour change
+- Bugfix XSE-356: Fix top padding on detached screens
+- Bugfix: Complete challenge if milestone achieved
+- Bugfix ENG-2322: add extensive authorisation for steps coming from apple watch
+- Bugfix XSE-411: Naked yumoji
+- Bugfix: Product Survey Greetings title
+- Bugfix: Allow http and https on iOS devices
+- Bugfix GS-110: change container style
+- Bugfix: app review modal crash
+
+### Tasks
+
+- Task: Yumoji Builder Exit Modal Improvements
+- Task XSE-355 Buttons to switch armour are too small
+- Task GS-102: Today Screen - Cycling
+- Task XSE-355 Buttons to switch armour are too small
+- Task XSE-429: Enable close on each onboarding step
+- Task XSE-424: Refresh YuCoin on PLI close
+- Task GS-118: Add cta to Yumoji Builder modals
+- Task XSE-239: Add power details
+- Task XSE-388 - Search for post code
+
+### Chores
+
+- Chore: added suffixMax to the scrollPicker wheels
+- Chore: Refetch product slots on exit, not submit
+- Chore: create the useFittingRoom hook
+
+### Improvements
+
+- Improvement GS: Yumoji builder image quality
+
+### Extra
+
+- fix avatar creation navigation
+- remove yumoji toggle
+- removed fast image patch
+- fix yumoji builder save modal copy
+- add a tiny check
+- Detox: app review scenario
+- block showing yumoji until all layers are loaded
+- Detox: Overnight Fixes 18-10
+- Purge: YuCoinPowerMini
+- select empty part
+- added body type to image key
+- Hotfix: yumoji swipe try-on
+- Hotfix: naked yumoji, again
+- Removed text Yes Please because not preset anymore
+- Bug XSE-373 - Slow loadin spinner
+- Hotfix: daily activity reducer & selector defaults
+- Purge: fib purge part 2
+- fixed user toggle check
+- Detox: Overnight Fixes 12/10
+- ENG-2345 Log full error from fitkit
+- GS-120 Remove avatar tracking from client
+- changed copies
+
 ## [3.13.0] - 2021-10-06
 
 ### Bugfixes
