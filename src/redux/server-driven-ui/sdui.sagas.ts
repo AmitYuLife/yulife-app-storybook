@@ -153,7 +153,7 @@ function* finishStepJourney(action: ProductStepAction) {
         stepId,
         data: JSON.stringify({ ...serverDynamicData, ...dynamicData }),
       },
-      ["YuScreenProductSlots"]
+      ["YuScreenProductSlots", "GetYulifer"]
     );
     yield call(() => Navigation.pop(currentRoute));
   } catch (e) {

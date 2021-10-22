@@ -191,10 +191,6 @@ export default [
 
   // modals
   {
-    name: MODALS.yuProductDetails,
-    component: require("../components/containers/member/yu/yu-product-details/yu-product-details").default,
-  },
-  {
     name: MODALS.earnRate,
     component: require("../components/containers/member/yu/yu-earn-rate-modal/yu-earn-rate-modal").default,
   },

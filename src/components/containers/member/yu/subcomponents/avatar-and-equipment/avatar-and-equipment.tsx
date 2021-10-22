@@ -3,8 +3,8 @@ import { StyleSheet, ViewStyle, View } from "react-native";
 import { Style, Colours } from "@styles";
 import { ItemSet } from "./item-set/item-set";
 import { useQuery } from "@apollo/react-hooks";
-import { GetYulifer, YuScreenProductSlots } from "@graphql/_core/schema";
-import { GQL_QUERY_GET_YULIFER, GQL_QUERY_GET_YU_SCREEN_PRODUCTS_SLOTS } from "@graphql/yuscreen";
+import { YuScreenProductSlots } from "@graphql/_core/schema";
+import { GQL_QUERY_GET_YU_SCREEN_PRODUCTS_SLOTS } from "@graphql/yuscreen";
 import { YUSCREEN_AVATAR } from "@ids";
 import { AvatarCreationPrompt } from "../../subcomponents";
 import { Text } from "@atoms";
@@ -14,19 +14,16 @@ import { YuScreenContext } from "../../context/yu-screen.context";
 import { navigateToAvatarCreationScreen } from "../../navigation/navigateToAvatarCreationScreen";
 
 const _AvatarAndEquipment = () => {
-  const { data } = useQuery<GetYulifer>(GQL_QUERY_GET_YULIFER, { fetchPolicy: "cache-first" }); // We cannot use cache-only as fetch policy, this query is refetch on avatar update
   const { data: yuScreenProductSlots } = useQuery<YuScreenProductSlots>(GQL_QUERY_GET_YU_SCREEN_PRODUCTS_SLOTS, {
     fetchPolicy: "cache-and-network",
   });
 
   const editYumoji = useCallback(() => navigateToAvatarCreationScreen({ heading: "Edit your Yumoji" }), []);
 
-  const { setPopover, hasYumoji } = useContext(YuScreenContext);
-
-  const avatarUri = data?.getYulifer?.avatarRemoteFiles?.pngFull;
+  const { setPopover, yumojiRemoteUrl } = useContext(YuScreenContext);
 
   useEffect(() => {
-    if (!hasYumoji) {
+    if (!yumojiRemoteUrl) {
       return;
     }
 
@@ -95,7 +92,7 @@ const _AvatarAndEquipment = () => {
     }
 
     return setPopover(null);
-  }, [yuScreenProductSlots, setPopover, hasYumoji]);
+  }, [yuScreenProductSlots, setPopover, yumojiRemoteUrl]);
 
   return (
     <View>
@@ -108,12 +105,12 @@ const _AvatarAndEquipment = () => {
             emptyWidth={EMPTY_AVATAR_WIDTH}
             emptyHeight={EMPTY_AVATAR_HEIGHT}
             testID="YUMOJI_EQUIPMENT"
-            uri={avatarUri}
+            uri={yumojiRemoteUrl}
           />
         </TouchableOpacityWithDelay>
         <ItemSet items={yuScreenProductSlots?.getYuScreenProductSlots.right} />
       </View>
-      {!avatarUri ? <AvatarCreationPrompt /> : null}
+      {!yumojiRemoteUrl ? <AvatarCreationPrompt /> : null}
       {yuScreenProductSlots?.getYuScreenProductSlots.bottom.length > 0 ? (
         <>
           <View style={styles.itemSetWrapper}>
