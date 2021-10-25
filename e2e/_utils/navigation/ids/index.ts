@@ -141,7 +141,6 @@ export const CERTIFICATE_KEY_VALUES = (key:string, value:string) => `CERTIFICATE
 export const BODY_ITEM_TITLE = (title: string) => `BODY_ITEM_TITLE_${title}`
 export const BODY_ITEM_COLOUR = (colorItemTitle: string) => `BODY_ITEM_COLOUR_${colorItemTitle}`
 export const BODY_PART_ITEM = (partID: string) => `BODY_PART_ITEM_${partID}`
-export const SKIN_TONE = (hexColour: string) => `SKIN_TONE_${hexColour}`
 export const SELECTED_COLOR = (hexColour: string) => `SELECTED_COLOR_${hexColour}`
 export const LEADERBOARD_PEDESTAL = "LEADERBOARD_PEDESTAL"
 export const AVATAR_BODY = (bodyItems: string[]) => `AVATAR_BODY_${bodyItems}`
@@ -155,6 +154,13 @@ export const BUILDER_BODY = (bodyItems: string[]) => `BUILDER_BODY${bodyItems}`
 export const NO_ITEM_SELECTED = "NO_ITEM_SELECTED"
 export const HEAD_TYPE = (type: string) => `HEAD_TYPE_${type}`
 export const YUSCREEN_AVATAR = "YUSCREEN_AVATAR"
+
+// YUMOJI BUILDER
+export const BODY_TYPE = (type: string) => `BODY_TYPE_${type}`
+export const CATEGORY_TYPE = (type: string) => `CATEGORY_TYPE_${type}`
+export const COLOUR = (hexColour: string) => `SKIN_TONE_${hexColour}`
+export const YUMOJI_PART_ID = (id: string) => `YUMOJI_PART_ID_${id}`
+export const YUMOJI_BODY = (bodyParts: string[]) => `YUMOJI_BODY_${bodyParts}`
 
 // FIB
 export const FIB_SALARY_INPUT = "FIB_SALARY_INPUT"

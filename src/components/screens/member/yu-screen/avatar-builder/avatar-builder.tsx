@@ -19,7 +19,7 @@ import { Navigation } from "react-native-navigation";
 import { MODALS } from "@navigation/constants";
 import { Style } from "@styles/index";
 import { IAvatar, Category, AvatarBuilderHeading } from "./avatar.types";
-import { AVATAR_BUILDER_LIST, BUILDER_BODY, NO_ITEM_SELECTED, HEAD_TYPE } from "@ids";
+import { BUILDER_BODY, NO_ITEM_SELECTED, HEAD_TYPE } from "@ids";
 import { IBodyItemCategory } from "@redux/avatar/avatar.all.data";
 import { useBackHandler } from "@services/hooks/useBackHandler";
 import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
@@ -266,7 +266,6 @@ const AvatarBuilder: FC<IProps> = ({ avatar: defaultAvatar, onBackPressed, updat
               )}
               columnWrapperStyle={styles.row}
               showsVerticalScrollIndicator={false}
-              testID={AVATAR_BUILDER_LIST}
             />
           ) : (
             <View style={styles.buttonsSavingWrapper}>

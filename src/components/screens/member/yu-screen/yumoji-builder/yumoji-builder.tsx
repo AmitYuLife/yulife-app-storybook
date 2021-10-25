@@ -9,6 +9,8 @@ import { ActionTypes, IState, IDispatch } from "@components/containers/member/yu
 import { ScalableYumoji } from "@organisms/yumoji/scalableYumoji";
 import { GetYumojiBuilderInitialParts_getYumojiBuilderInitialParts as YumojiBuilderInitialParts } from "@graphql/_core/schema";
 import { useBackHandler } from "@services/hooks/useBackHandler";
+import { BODY_TYPE } from "@ids";
+
 interface IProps {
   state: IState;
   dispatch: IDispatch;
@@ -66,6 +68,7 @@ const YumojiBuilder: FC<IProps> = ({ state, dispatch, onBackPressed, updateAvata
             width={AVATAR_WIDTH * categoryProps.zoom}
             items={items}
             bodyType={state.bodyType}
+            testID={BODY_TYPE(state.bodyType)}
           />
         </View>
         <YumojiBuilderCategories

@@ -49,7 +49,7 @@ export const onCreateAvatarScreen = async () => {
     const createTitle = element(by.text("Create your Yumoji"))
     const editTitle = element(by.text("Edit your Yumoji"))
 
-    const subTitle = element(by.id(TEXT_TEMPLATE("Pick a body type")))
+    const subTitle = element(by.text("Pick a body type"))
     await expect(subTitle).toBeVisible()
 
     const femaleBody = element(by.id(FEMALE_BODY))
@@ -65,17 +65,14 @@ export const onCreateAvatarScreen = async () => {
     }
 }
 
-export const onAvatarBuilder = async () => {
+export const onAvatarBuilder = (screen: string) => async () => {
     const createTitle = element(by.text("Create your Yumoji"))
     const editTitle = element(by.text("Edit your Yumoji"))
-    const itemTitles = ["Skin Tone", "Hair Style", "Facial Hair", "Eye Colour", "Accessories"]
 
-    for (const i of itemTitles) {
-        try {
-            await expect(element(by.id(BODY_ITEM_TITLE(i)))).toBeVisible()
-        } catch (e) {
-            await expect(element(by.text(i))).toBeVisible()
-        }
+    try {
+        await expect(element(by.id(BODY_ITEM_TITLE(screen)))).toBeVisible()
+    } catch (e) {
+        await expect(element(by.text(screen))).toBeVisible()
     }
 
     try {
