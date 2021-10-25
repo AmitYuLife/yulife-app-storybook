@@ -24,6 +24,8 @@ import Logger from "@services/logging/logger";
 import { cache } from "@services/image";
 import { showGenericModal } from "@navigation/utils";
 import { useBackHandler } from "@services/hooks/useBackHandler";
+import { useDispatch } from "react-redux";
+import { refreshTotalCoins } from "@redux/coins/coins.actions";
 
 interface IProps {
   heading: AvatarBuilderHeading;
@@ -31,6 +33,7 @@ interface IProps {
 
 const YumojiBuilderContainer: FC<IProps> = ({ heading }) => {
   const [state, dispatch] = useReducer<React.Reducer<IState, IAction>>(reducer, INITIAL_STATE);
+  const appDispatch = useDispatch();
 
   const [updateUserAvatar]: UpdateAvatarMutationTuple = useMutation(GQL_MUTATION_UPDATE_AVATAR);
 
@@ -49,6 +52,7 @@ const YumojiBuilderContainer: FC<IProps> = ({ heading }) => {
       });
 
       if (response.data?.updateUserAvatarParts?.rewarded) {
+        appDispatch(refreshTotalCoins());
         showAwardModal(returnToYuScreen, response.data.updateUserAvatarParts.rewardAmount);
       } else {
         returnToYuScreen();

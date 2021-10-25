@@ -1,6 +1,7 @@
 import { all } from "redux-saga/effects";
 import appSagas from "../app/sagas";
 import copySagas from "../copy/sagas";
+import coinsSagas from "../coins/sagas";
 import dailyMeditationSagas from "../daily-meditation/sagas";
 import dailyStepsSagas from "../daily-steps/sagas";
 import deviceSagas from "../device/sagas";
@@ -23,6 +24,7 @@ export default function* allSagas() {
     ...appSagas,
     ...copySagas,
     ...assetsSagas,
+    ...coinsSagas,
     ...dailyStepsSagas,
     ...dailyMeditationSagas,
     ...deviceSagas,
