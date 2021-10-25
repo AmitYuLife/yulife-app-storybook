@@ -25,7 +25,7 @@ const WhatsNewModal = (props: ModalProps) => {
         ...props.button,
         onPress: async () => {
           try {
-            performMobileOnboardingStep(performMobileOnboardingStepArgs);
+            await performMobileOnboardingStep(performMobileOnboardingStepArgs);
             if (props.button?.onPress) {
               dispatch({
                 type: props.button.onPress.type,
@@ -41,7 +41,7 @@ const WhatsNewModal = (props: ModalProps) => {
         ...props.close,
         onPress: async () => {
           try {
-            performMobileOnboardingStep(performMobileOnboardingStepArgs);
+            await performMobileOnboardingStep(performMobileOnboardingStepArgs);
             if (props.close?.onPress) {
               dispatch(props.close.onPress);
             }
