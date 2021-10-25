@@ -65,6 +65,7 @@ export interface GetMobileWhatsNewModal_getMobileWhatsNewModal {
   button: GetMobileWhatsNewModal_getMobileWhatsNewModal_button | null;
   close: GetMobileWhatsNewModal_getMobileWhatsNewModal_close;
   items: GetMobileWhatsNewModal_getMobileWhatsNewModal_items[];
+  refetchQueries: string[] | null;
 }
 
 export interface GetMobileWhatsNewModal {
