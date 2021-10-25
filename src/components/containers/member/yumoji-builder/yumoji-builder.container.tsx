@@ -61,7 +61,7 @@ const YumojiBuilderContainer: FC<IProps> = ({ heading }) => {
   const updateAvatar = useCallback(() => {
     showGenericModal(
       "Yu look great!",
-      "Do you want to save these changes? (Unequipping items with perks will not remove it’s effect.)",
+      "Do you want to save these changes? (Unequipping items with perks will not remove its effect.)",
       handleAvatarUpdate,
       "Save changes",
       "Discard changes"
