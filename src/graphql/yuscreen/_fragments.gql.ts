@@ -19,19 +19,6 @@ export const GQL_YU_SCREEN_PRODUCT_SLOT_ITEM = gql`
       name
       backgroundUrl
     }
-    toolTip {
-      name
-      disclaimer
-      benefit {
-        value
-        description
-      }
-      itemUrl
-      description {
-        short
-        long
-      }
-    }
     popover {
       ...YuScreenPopover
     }

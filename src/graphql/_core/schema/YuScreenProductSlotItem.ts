@@ -14,27 +14,6 @@ export interface YuScreenProductSlotItem_icon {
   backgroundUrl: string;
 }
 
-export interface YuScreenProductSlotItem_toolTip_benefit {
-  value: string;
-  description: string;
-}
-
-export interface YuScreenProductSlotItem_toolTip_description {
-  short: string;
-  long: string | null;
-}
-
-export interface YuScreenProductSlotItem_toolTip {
-  name: string;
-  /**
-   * Uses markdown
-   */
-  disclaimer: string | null;
-  benefit: YuScreenProductSlotItem_toolTip_benefit;
-  itemUrl: string;
-  description: YuScreenProductSlotItem_toolTip_description;
-}
-
 export interface YuScreenProductSlotItem_popover {
   id: string;
   message: string;
@@ -47,6 +26,5 @@ export interface YuScreenProductSlotItem {
   productId: string | null;
   coverType: CoverType | null;
   icon: YuScreenProductSlotItem_icon;
-  toolTip: YuScreenProductSlotItem_toolTip;
   popover: YuScreenProductSlotItem_popover | null;
 }
