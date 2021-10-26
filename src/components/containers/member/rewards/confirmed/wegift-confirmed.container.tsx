@@ -6,6 +6,7 @@ import Config from "react-native-config";
 import { GetAllPurchases_getAllPurchases } from "@graphql/_core/schema";
 import { WegiftRewardConfirmedScreen } from "@screens";
 import { handleLinkPress } from "@services/app-link";
+import Logger from "@services/logging/logger";
 
 interface IProps {
   componentId: string;
@@ -65,7 +66,7 @@ class WegiftRewardConfirmedContainer extends Component<IProps, IState> {
       const openLink = handleLinkPress(this.props.purchase.delivery_url);
       await openLink();
     } catch (e) {
-      // console.warn("unable to open url because: ", e);
+      Logger.error(e, { event: "get voucher button", file: "wegift-confirmed.container" });
     } finally {
       // added a timeout to just show loader for a few seconds
       setTimeout(() => {
