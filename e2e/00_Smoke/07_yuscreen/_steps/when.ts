@@ -1,4 +1,4 @@
-import { navigation, BODY_ITEM_TITLE, BODY_PART_ITEM, SKIN_TONE, YUSCREEN, YUCOIN_POWER, AVATAR_BUILDER_LIST, YUSCREEN_AVATAR, HEAD_TYPE, AVATAR_ITEM, TEXT_TEMPLATE } from "@utils"
+import { navigation, CATEGORY_TYPE, YUMOJI_PART_ID, COLOUR, YUSCREEN, YUCOIN_POWER, AVATAR_BUILDER_LIST, YUSCREEN_AVATAR, HEAD_TYPE, AVATAR_ITEM, TEXT_TEMPLATE } from "@utils"
 
 
 export const {
@@ -27,50 +27,48 @@ export const tapAvatarItem = (avatarItem: string, status: string) => async () =>
 }
 
 export const tapTab = (tabName: string) => async () => {
-    const tab = element(by.id(BODY_ITEM_TITLE(tabName)))
+    const tab = element(by.id(CATEGORY_TYPE(tabName)))
     await tab.tap()
 }
 
 export const tapItem = (partID: string) => async () => {
-    await scrollUntilIdVisible(AVATAR_BUILDER_LIST, BODY_PART_ITEM(partID), "down")()
-    const item = element(by.id(BODY_PART_ITEM(partID)))
+    await scrollUntilIdVisible(AVATAR_BUILDER_LIST, YUMOJI_PART_ID(partID), "down")()
+    const item = element(by.id(YUMOJI_PART_ID(partID)))
     await item.tap()
 }
 
 export const tapColour = (hexValue: string) => async () => {
-    await scrollUntilIdVisible(AVATAR_BUILDER_LIST, SKIN_TONE(hexValue), "down")()
-    const colour = element(by.id(SKIN_TONE(hexValue)))
+    await scrollUntilIdVisible(AVATAR_BUILDER_LIST, COLOUR(hexValue), "down")()
+    const colour = element(by.id(COLOUR(hexValue)))
     await colour.tap()
 }
 
-export const editYumoji = (gender: string, skinTone: string, hairStyle: string, hairColour: string, facialHair: string, facialHairColour: string, eyeColour: string, accessories: string) => async () => {
+export const editYumoji = (skinTone: string, hairStyle: string, hairColour: string, facialHair: string, facialHairColour: string, eyeColour: string, accessories: string) => async () => {
     await textVisible("Edit your Yumoji")()
 
-    await idVisible(TEXT_TEMPLATE("Pick a body type"))()
-    const genderId = element(by.id(gender))
-    await genderId.tap()
+    await textVisible("Pick a body type")()
 
     const continueButton = element(by.text("Continue"))
     await continueButton.tap()
 
     await tapColour(skinTone)()
-    await tapTab("Hair Style")()
+    await tapTab("hairStyle")()
     await tapItem(hairStyle)()
-    await tapTab("Hair Colour")()
+    await tapTab("hairColour")()
     await tapColour(hairColour)()
-    await tapTab("Facial Hair")()
+    await tapTab("facialHair")()
     await tapItem(facialHair)()
-    await tapTab("Facial Hair Colour")()
+    await tapTab("facialHairColour")()
     await tapColour(facialHairColour)()
-    await tapTab("Eye Colour")()
+    await tapTab("eyeColour")()
     await tapColour(eyeColour)()
-    await tapTab("Accessories")()
+    await tapTab("glasses")()
     await tapItem(accessories)()
 
     const saveButton = element(by.text("Save"))
     await saveButton.tap()
 
-    const yesButton = element(by.text("Yes"))
+    const yesButton = element(by.text("Save changes"))
     await yesButton.tap()
 
     const doneButton = element(by.text("Done"))

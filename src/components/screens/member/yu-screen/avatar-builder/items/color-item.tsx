@@ -4,7 +4,6 @@ import { IAvatar, Category } from "../avatar.types";
 import styles from "../avatar-builder.styles";
 import { IBodyItem } from "@redux/avatar/avatar.reducer";
 import { AvatarPartType } from "@graphql/_core/schema/globalTypes";
-import { SKIN_TONE } from "@ids";
 
 interface Props {
   item: any;
@@ -75,7 +74,7 @@ function ColorItem(props: Props) {
 
   return (
     <View style={isSelected ? styles.itemColorSelectedWrapper : styles.itemColorWrapper}>
-      <TouchableOpacity onPress={onPress} testID={SKIN_TONE(item.colorScheme.main)}>
+      <TouchableOpacity onPress={onPress}>
         <View style={StyleSheet.flatten([styles.itemColor, { backgroundColor: item.colorScheme.main }])} />
       </TouchableOpacity>
     </View>

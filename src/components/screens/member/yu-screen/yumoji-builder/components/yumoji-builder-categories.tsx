@@ -7,6 +7,7 @@ import {
   GetYumojiBuilderCategoryList_getYumojiBuilderCategoryList_children as CategoryListChildren,
 } from "@graphql/_core/schema";
 import { SkeletonLoading } from "@atoms";
+import { CATEGORY_TYPE } from "@ids";
 
 interface Props {
   categories: YumojiBuilderCategoryList[];
@@ -33,10 +34,12 @@ const YumojiBuilderCategories: FC<Props> = ({ categories, loading, selectedCateg
           categories.map((category) => {
             const showChildren = categoryDetails.hasChildren && categoryDetails.parentId === category.id;
             const isParentSelected = category.id === selectedCategoryId;
+
             return (
               <View
                 key={category.id}
                 style={isParentSelected || showChildren ? styles.bodyItemWrapperSelected : styles.bodyItemWrapper}
+                testID={CATEGORY_TYPE(category.id)}
               >
                 <YumojiBuilderCategory
                   category={category}
@@ -53,7 +56,7 @@ const YumojiBuilderCategories: FC<Props> = ({ categories, loading, selectedCateg
 
                 {showChildren
                   ? category?.children?.map((child) => (
-                      <View key={child.id} style={styles.categoryChildren}>
+                      <View key={child.id} style={styles.categoryChildren} testID={CATEGORY_TYPE(child.id)}>
                         <YumojiBuilderCategory
                           category={child}
                           onPress={(id, matchType) => {

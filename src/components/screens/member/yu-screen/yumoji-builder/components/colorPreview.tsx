@@ -5,9 +5,10 @@ import { Style } from "@styles";
 interface Props {
   color: string;
   size: number;
+  testID?: string;
 }
 
-const ColorPreview = memo(({ color, size }: Props) => {
+const ColorPreview = memo(({ color, size, testID }: Props) => {
   const style = useMemo(
     () =>
       ({
@@ -19,7 +20,7 @@ const ColorPreview = memo(({ color, size }: Props) => {
     [color, size]
   );
 
-  return <View style={style} />;
+  return <View style={style} testID={testID} />;
 });
 
 export default ColorPreview;

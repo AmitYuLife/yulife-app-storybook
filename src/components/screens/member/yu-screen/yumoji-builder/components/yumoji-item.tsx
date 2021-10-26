@@ -7,6 +7,7 @@ import { YumojiItemLabel } from "./yumoji-item-label";
 import { Colours, Style } from "@styles";
 import { GetYumojiBuilderItemsForCategory_getYumojiBuilderItemsForCategory_items as YumojiBuilderItemsForCategoryItems } from "@graphql/_core/schema";
 import FastImage from "react-native-fast-image";
+import { COLOUR, YUMOJI_PART_ID } from "@ids";
 
 export interface ItemListItems extends YumojiBuilderItemsForCategoryItems {
   isSelected: boolean;
@@ -59,7 +60,13 @@ export const YumojiItem = memo(
 
     const image = useMemo(() => {
       if (item?.representativeColor) {
-        return <ColorPreview color={item?.representativeColor} size={previewSize} />;
+        return (
+          <ColorPreview
+            color={item?.representativeColor}
+            size={previewSize}
+            testID={COLOUR(item.representativeColor)}
+          />
+        );
       }
 
       return (
@@ -106,6 +113,7 @@ export const YumojiItem = memo(
           isSelected={item.isSelected}
           selectedStyle={styles.itemSelected}
           innerHeight={boxHeight}
+          testID={YUMOJI_PART_ID(item.parts[0].partId)}
         >
           <View style={styles.itemPadding}>
             {image}

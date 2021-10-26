@@ -13,6 +13,7 @@ import { YumojiPartStatus } from "@graphql/_core/schema/globalTypes";
 import { showGenericModal } from "@navigation/utils";
 import { ROUTES, MODALS } from "@navigation/constants";
 import { labels as navigationTabs } from "@navigation/root";
+import { AVATAR_BUILDER_LIST } from "@ids";
 
 export interface IItemList extends YumojiBuilderItemsForCategory {
   items: ItemListItems[];
@@ -122,6 +123,7 @@ const YumojiBuilderItemList: FC<IProps> = ({ itemList, updateUserAvatar, selecte
             initialScrollIndex={0}
             getItemLayout={getItemLayout}
             renderItem={renderItem}
+            testID={AVATAR_BUILDER_LIST}
           />
         </View>
       )}
