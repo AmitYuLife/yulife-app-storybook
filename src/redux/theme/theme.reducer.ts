@@ -7,6 +7,7 @@ import { getCurrentWorld } from "@utils";
 import { SyncAction } from "../_core/types";
 import { TopBarTypes } from "@organisms/top-bar/top-bar.helpers";
 import moment from "moment";
+import { Colours } from "@styles";
 
 export interface ICentredScreen {
   image: CenteredScreenImages;
@@ -42,7 +43,7 @@ export const getInitialState = (newBackgroundAssets = false): IThemeStore => ({
     hasWhiteGlow: false,
     isLight: false,
     streakType: "forest",
-    textStyle: { color: "#333333" },
+    textStyle: { color: Colours.neutral.n900 },
     topBarType: "default",
   },
   questsOfflineScreen: {
@@ -104,7 +105,7 @@ const getCurrentWorldTheme = (
           hasWhiteGlow: true,
           isLight: false,
           streakType: "mountain",
-          textStyle: { color: "rgb(51, 51, 51)" },
+          textStyle: { color: Colours.neutral.n900 },
           topBarType: "default",
         },
         questsOfflineScreen: {
@@ -124,7 +125,7 @@ const getCurrentWorldTheme = (
           hasWhiteGlow: true,
           isLight: false,
           streakType: "desert",
-          textStyle: { color: "rgb(108,59,38)" },
+          textStyle: { color: Colours.neutral.n900 },
           topBarType: "default",
         },
         questsOfflineScreen: {
@@ -141,7 +142,7 @@ const getCurrentWorldTheme = (
           hasWhiteGlow: false,
           isLight: true,
           streakType: "ocean",
-          textStyle: { color: "white" },
+          textStyle: { color: Colours.neutral.white },
           topBarType: "white",
         },
         questsOfflineScreen: {
