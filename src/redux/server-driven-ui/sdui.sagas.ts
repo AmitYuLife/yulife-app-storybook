@@ -12,9 +12,7 @@ import { ProductStepAction } from "./sdui.types";
 import { parseJSON, getServerPayload } from "./sdui.helpers";
 import { setLoadingState } from "./sdui.actions";
 import { getYuScreenProductSlots } from "@graphql/yuscreen";
-import getTotalCoins from "@graphql/user/getTotalCoins";
-import { Unpacked } from "@utils";
-import { totalCoinsUpdated } from "@redux/coins/coins.actions";
+import { refreshTotalCoins } from "@redux/coins/coins.actions";
 
 function* navigateBack({ payload }: ProductStepAction) {
   const currentRoute: ReturnType<typeof getRouteState> = yield select(getRouteState);
@@ -27,10 +25,7 @@ function* navigateBack({ payload }: ProductStepAction) {
     yield call(getYuScreenProductSlots);
 
     // update total coins incase coins have been awarded during a journey
-    const { data: coinData }: Unpacked<typeof getTotalCoins> = yield call(getTotalCoins);
-    if (coinData) {
-      yield put(totalCoinsUpdated(coinData.getTotalCoins));
-    }
+    yield put(refreshTotalCoins());
   } catch (e) {
     // log
   }
