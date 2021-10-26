@@ -15,8 +15,11 @@ const WhatsNewModal = (props: ModalProps) => {
   const [performMobileOnboardingStep] = useMutation(GQL_MUTATION_PERFORM_MOBILE_ONBOARDING_STEP);
 
   const performMobileOnboardingStepArgs = useMemo(() => {
-    return { variables: { step: props.id }, refetchQueries: ["GetMobileWhatsNewModal", ...props.refetchQueries] };
-  }, [props.id, props.refetchQueries]);
+    return {
+      variables: { step: props.id },
+      refetchQueries: props?.refetchQueries || [],
+    };
+  }, [props.id, props?.refetchQueries]);
 
   const derivedProps = useMemo(
     () => ({
