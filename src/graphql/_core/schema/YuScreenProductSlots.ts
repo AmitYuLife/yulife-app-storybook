@@ -14,27 +14,6 @@ export interface YuScreenProductSlots_getYuScreenProductSlots_left_slot1_icon {
   backgroundUrl: string;
 }
 
-export interface YuScreenProductSlots_getYuScreenProductSlots_left_slot1_toolTip_benefit {
-  value: string;
-  description: string;
-}
-
-export interface YuScreenProductSlots_getYuScreenProductSlots_left_slot1_toolTip_description {
-  short: string;
-  long: string | null;
-}
-
-export interface YuScreenProductSlots_getYuScreenProductSlots_left_slot1_toolTip {
-  name: string;
-  /**
-   * Uses markdown
-   */
-  disclaimer: string | null;
-  benefit: YuScreenProductSlots_getYuScreenProductSlots_left_slot1_toolTip_benefit;
-  itemUrl: string;
-  description: YuScreenProductSlots_getYuScreenProductSlots_left_slot1_toolTip_description;
-}
-
 export interface YuScreenProductSlots_getYuScreenProductSlots_left_slot1_popover {
   id: string;
   message: string;
@@ -47,34 +26,12 @@ export interface YuScreenProductSlots_getYuScreenProductSlots_left_slot1 {
   productId: string | null;
   coverType: CoverType | null;
   icon: YuScreenProductSlots_getYuScreenProductSlots_left_slot1_icon;
-  toolTip: YuScreenProductSlots_getYuScreenProductSlots_left_slot1_toolTip;
   popover: YuScreenProductSlots_getYuScreenProductSlots_left_slot1_popover | null;
 }
 
 export interface YuScreenProductSlots_getYuScreenProductSlots_left_slot2_icon {
   name: string;
   backgroundUrl: string;
-}
-
-export interface YuScreenProductSlots_getYuScreenProductSlots_left_slot2_toolTip_benefit {
-  value: string;
-  description: string;
-}
-
-export interface YuScreenProductSlots_getYuScreenProductSlots_left_slot2_toolTip_description {
-  short: string;
-  long: string | null;
-}
-
-export interface YuScreenProductSlots_getYuScreenProductSlots_left_slot2_toolTip {
-  name: string;
-  /**
-   * Uses markdown
-   */
-  disclaimer: string | null;
-  benefit: YuScreenProductSlots_getYuScreenProductSlots_left_slot2_toolTip_benefit;
-  itemUrl: string;
-  description: YuScreenProductSlots_getYuScreenProductSlots_left_slot2_toolTip_description;
 }
 
 export interface YuScreenProductSlots_getYuScreenProductSlots_left_slot2_popover {
@@ -89,34 +46,12 @@ export interface YuScreenProductSlots_getYuScreenProductSlots_left_slot2 {
   productId: string | null;
   coverType: CoverType | null;
   icon: YuScreenProductSlots_getYuScreenProductSlots_left_slot2_icon;
-  toolTip: YuScreenProductSlots_getYuScreenProductSlots_left_slot2_toolTip;
   popover: YuScreenProductSlots_getYuScreenProductSlots_left_slot2_popover | null;
 }
 
 export interface YuScreenProductSlots_getYuScreenProductSlots_left_slot3_icon {
   name: string;
   backgroundUrl: string;
-}
-
-export interface YuScreenProductSlots_getYuScreenProductSlots_left_slot3_toolTip_benefit {
-  value: string;
-  description: string;
-}
-
-export interface YuScreenProductSlots_getYuScreenProductSlots_left_slot3_toolTip_description {
-  short: string;
-  long: string | null;
-}
-
-export interface YuScreenProductSlots_getYuScreenProductSlots_left_slot3_toolTip {
-  name: string;
-  /**
-   * Uses markdown
-   */
-  disclaimer: string | null;
-  benefit: YuScreenProductSlots_getYuScreenProductSlots_left_slot3_toolTip_benefit;
-  itemUrl: string;
-  description: YuScreenProductSlots_getYuScreenProductSlots_left_slot3_toolTip_description;
 }
 
 export interface YuScreenProductSlots_getYuScreenProductSlots_left_slot3_popover {
@@ -131,34 +66,12 @@ export interface YuScreenProductSlots_getYuScreenProductSlots_left_slot3 {
   productId: string | null;
   coverType: CoverType | null;
   icon: YuScreenProductSlots_getYuScreenProductSlots_left_slot3_icon;
-  toolTip: YuScreenProductSlots_getYuScreenProductSlots_left_slot3_toolTip;
   popover: YuScreenProductSlots_getYuScreenProductSlots_left_slot3_popover | null;
 }
 
 export interface YuScreenProductSlots_getYuScreenProductSlots_left_slot4_icon {
   name: string;
   backgroundUrl: string;
-}
-
-export interface YuScreenProductSlots_getYuScreenProductSlots_left_slot4_toolTip_benefit {
-  value: string;
-  description: string;
-}
-
-export interface YuScreenProductSlots_getYuScreenProductSlots_left_slot4_toolTip_description {
-  short: string;
-  long: string | null;
-}
-
-export interface YuScreenProductSlots_getYuScreenProductSlots_left_slot4_toolTip {
-  name: string;
-  /**
-   * Uses markdown
-   */
-  disclaimer: string | null;
-  benefit: YuScreenProductSlots_getYuScreenProductSlots_left_slot4_toolTip_benefit;
-  itemUrl: string;
-  description: YuScreenProductSlots_getYuScreenProductSlots_left_slot4_toolTip_description;
 }
 
 export interface YuScreenProductSlots_getYuScreenProductSlots_left_slot4_popover {
@@ -173,7 +86,6 @@ export interface YuScreenProductSlots_getYuScreenProductSlots_left_slot4 {
   productId: string | null;
   coverType: CoverType | null;
   icon: YuScreenProductSlots_getYuScreenProductSlots_left_slot4_icon;
-  toolTip: YuScreenProductSlots_getYuScreenProductSlots_left_slot4_toolTip;
   popover: YuScreenProductSlots_getYuScreenProductSlots_left_slot4_popover | null;
 }
 
@@ -189,27 +101,6 @@ export interface YuScreenProductSlots_getYuScreenProductSlots_right_slot1_icon {
   backgroundUrl: string;
 }
 
-export interface YuScreenProductSlots_getYuScreenProductSlots_right_slot1_toolTip_benefit {
-  value: string;
-  description: string;
-}
-
-export interface YuScreenProductSlots_getYuScreenProductSlots_right_slot1_toolTip_description {
-  short: string;
-  long: string | null;
-}
-
-export interface YuScreenProductSlots_getYuScreenProductSlots_right_slot1_toolTip {
-  name: string;
-  /**
-   * Uses markdown
-   */
-  disclaimer: string | null;
-  benefit: YuScreenProductSlots_getYuScreenProductSlots_right_slot1_toolTip_benefit;
-  itemUrl: string;
-  description: YuScreenProductSlots_getYuScreenProductSlots_right_slot1_toolTip_description;
-}
-
 export interface YuScreenProductSlots_getYuScreenProductSlots_right_slot1_popover {
   id: string;
   message: string;
@@ -222,34 +113,12 @@ export interface YuScreenProductSlots_getYuScreenProductSlots_right_slot1 {
   productId: string | null;
   coverType: CoverType | null;
   icon: YuScreenProductSlots_getYuScreenProductSlots_right_slot1_icon;
-  toolTip: YuScreenProductSlots_getYuScreenProductSlots_right_slot1_toolTip;
   popover: YuScreenProductSlots_getYuScreenProductSlots_right_slot1_popover | null;
 }
 
 export interface YuScreenProductSlots_getYuScreenProductSlots_right_slot2_icon {
   name: string;
   backgroundUrl: string;
-}
-
-export interface YuScreenProductSlots_getYuScreenProductSlots_right_slot2_toolTip_benefit {
-  value: string;
-  description: string;
-}
-
-export interface YuScreenProductSlots_getYuScreenProductSlots_right_slot2_toolTip_description {
-  short: string;
-  long: string | null;
-}
-
-export interface YuScreenProductSlots_getYuScreenProductSlots_right_slot2_toolTip {
-  name: string;
-  /**
-   * Uses markdown
-   */
-  disclaimer: string | null;
-  benefit: YuScreenProductSlots_getYuScreenProductSlots_right_slot2_toolTip_benefit;
-  itemUrl: string;
-  description: YuScreenProductSlots_getYuScreenProductSlots_right_slot2_toolTip_description;
 }
 
 export interface YuScreenProductSlots_getYuScreenProductSlots_right_slot2_popover {
@@ -264,34 +133,12 @@ export interface YuScreenProductSlots_getYuScreenProductSlots_right_slot2 {
   productId: string | null;
   coverType: CoverType | null;
   icon: YuScreenProductSlots_getYuScreenProductSlots_right_slot2_icon;
-  toolTip: YuScreenProductSlots_getYuScreenProductSlots_right_slot2_toolTip;
   popover: YuScreenProductSlots_getYuScreenProductSlots_right_slot2_popover | null;
 }
 
 export interface YuScreenProductSlots_getYuScreenProductSlots_right_slot3_icon {
   name: string;
   backgroundUrl: string;
-}
-
-export interface YuScreenProductSlots_getYuScreenProductSlots_right_slot3_toolTip_benefit {
-  value: string;
-  description: string;
-}
-
-export interface YuScreenProductSlots_getYuScreenProductSlots_right_slot3_toolTip_description {
-  short: string;
-  long: string | null;
-}
-
-export interface YuScreenProductSlots_getYuScreenProductSlots_right_slot3_toolTip {
-  name: string;
-  /**
-   * Uses markdown
-   */
-  disclaimer: string | null;
-  benefit: YuScreenProductSlots_getYuScreenProductSlots_right_slot3_toolTip_benefit;
-  itemUrl: string;
-  description: YuScreenProductSlots_getYuScreenProductSlots_right_slot3_toolTip_description;
 }
 
 export interface YuScreenProductSlots_getYuScreenProductSlots_right_slot3_popover {
@@ -306,34 +153,12 @@ export interface YuScreenProductSlots_getYuScreenProductSlots_right_slot3 {
   productId: string | null;
   coverType: CoverType | null;
   icon: YuScreenProductSlots_getYuScreenProductSlots_right_slot3_icon;
-  toolTip: YuScreenProductSlots_getYuScreenProductSlots_right_slot3_toolTip;
   popover: YuScreenProductSlots_getYuScreenProductSlots_right_slot3_popover | null;
 }
 
 export interface YuScreenProductSlots_getYuScreenProductSlots_right_slot4_icon {
   name: string;
   backgroundUrl: string;
-}
-
-export interface YuScreenProductSlots_getYuScreenProductSlots_right_slot4_toolTip_benefit {
-  value: string;
-  description: string;
-}
-
-export interface YuScreenProductSlots_getYuScreenProductSlots_right_slot4_toolTip_description {
-  short: string;
-  long: string | null;
-}
-
-export interface YuScreenProductSlots_getYuScreenProductSlots_right_slot4_toolTip {
-  name: string;
-  /**
-   * Uses markdown
-   */
-  disclaimer: string | null;
-  benefit: YuScreenProductSlots_getYuScreenProductSlots_right_slot4_toolTip_benefit;
-  itemUrl: string;
-  description: YuScreenProductSlots_getYuScreenProductSlots_right_slot4_toolTip_description;
 }
 
 export interface YuScreenProductSlots_getYuScreenProductSlots_right_slot4_popover {
@@ -348,7 +173,6 @@ export interface YuScreenProductSlots_getYuScreenProductSlots_right_slot4 {
   productId: string | null;
   coverType: CoverType | null;
   icon: YuScreenProductSlots_getYuScreenProductSlots_right_slot4_icon;
-  toolTip: YuScreenProductSlots_getYuScreenProductSlots_right_slot4_toolTip;
   popover: YuScreenProductSlots_getYuScreenProductSlots_right_slot4_popover | null;
 }
 
@@ -364,27 +188,6 @@ export interface YuScreenProductSlots_getYuScreenProductSlots_bottom_icon {
   backgroundUrl: string;
 }
 
-export interface YuScreenProductSlots_getYuScreenProductSlots_bottom_toolTip_benefit {
-  value: string;
-  description: string;
-}
-
-export interface YuScreenProductSlots_getYuScreenProductSlots_bottom_toolTip_description {
-  short: string;
-  long: string | null;
-}
-
-export interface YuScreenProductSlots_getYuScreenProductSlots_bottom_toolTip {
-  name: string;
-  /**
-   * Uses markdown
-   */
-  disclaimer: string | null;
-  benefit: YuScreenProductSlots_getYuScreenProductSlots_bottom_toolTip_benefit;
-  itemUrl: string;
-  description: YuScreenProductSlots_getYuScreenProductSlots_bottom_toolTip_description;
-}
-
 export interface YuScreenProductSlots_getYuScreenProductSlots_bottom_popover {
   id: string;
   message: string;
@@ -397,7 +200,6 @@ export interface YuScreenProductSlots_getYuScreenProductSlots_bottom {
   productId: string | null;
   coverType: CoverType | null;
   icon: YuScreenProductSlots_getYuScreenProductSlots_bottom_icon;
-  toolTip: YuScreenProductSlots_getYuScreenProductSlots_bottom_toolTip;
   popover: YuScreenProductSlots_getYuScreenProductSlots_bottom_popover | null;
 }
 
