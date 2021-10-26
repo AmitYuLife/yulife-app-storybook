@@ -115,7 +115,7 @@ export const GQL_FRAGMENT_CONTENT_ITEM_RADIO_ICON = gql`
   fragment ContentItemRadioIcon on ContentItemRadioIcon {
     icon {
       id
-      uri(options: { width: 64, height: 64 })
+      uri
     }
     textColor
     selectedStyles {
@@ -171,11 +171,11 @@ export const GQL_FRAGMENT_CONTENT_ITEM_PERSONAL_PRODUCT_REVIEW_ITEM = gql`
     stepKey
     leftIcon {
       id
-      uri(options: { width: 64, height: 64 })
+      uri
     }
     rightIcon {
       id
-      uri(options: { width: 64, height: 64 })
+      uri
     }
     onPress {
       ...SduiAction
@@ -267,7 +267,7 @@ export const GQL_FRAGMENT_CONTENT_ITEM_MULTI_SELECT = gql`
       label
       icon {
         id
-        uri(options: { width: 128, height: 128 })
+        uri
       }
     }
   }
@@ -282,7 +282,7 @@ export const GQL_FRAGMENT_CONTENT_ITEM_PACKAGE_CARD_SLOT_INFO = gql`
     }
     logoUrl {
       id
-      uri(options: { width: 64, height: 64 })
+      uri
     }
   }
 `;
