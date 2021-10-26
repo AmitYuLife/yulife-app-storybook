@@ -77,7 +77,7 @@ const YumojiBuilderContainer: FC<IProps> = ({ heading }) => {
       cache(getYumojiBuilderCategoryList.map(({ icon: { uri } }) => ({ uri })));
       dispatch({ type: ActionTypes.SET_CATEGORIES, payload: getYumojiBuilderCategoryList });
     },
-    fetchPolicy: "cache-first",
+    fetchPolicy: "cache-and-network",
   });
 
   const [getYumojiBuilderInitialParts, { loading: loadingInitialParts }] = useLazyQuery<
