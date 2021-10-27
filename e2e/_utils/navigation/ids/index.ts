@@ -158,7 +158,7 @@ export const YUSCREEN_AVATAR = "YUSCREEN_AVATAR"
 // YUMOJI BUILDER
 export const BODY_TYPE = (type: string) => `BODY_TYPE_${type}`
 export const CATEGORY_TYPE = (type: string) => `CATEGORY_TYPE_${type}`
-export const COLOUR = (hexColour: string) => `SKIN_TONE_${hexColour}`
+export const COLOUR = (hexColour: string) => `COLOUR_${hexColour}`
 export const YUMOJI_PART_ID = (id: string) => `YUMOJI_PART_ID_${id}`
 export const YUMOJI_BODY = (bodyParts: string[]) => `YUMOJI_BODY_${bodyParts}`
 

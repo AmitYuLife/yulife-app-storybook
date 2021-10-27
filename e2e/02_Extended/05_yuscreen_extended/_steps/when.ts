@@ -1,3 +1,4 @@
+/*
 import { navigation, BODY_ITEM_TITLE, BODY_PART_ITEM, SKIN_TONE, PERSONAL_PRODUCT, YUSCREEN, navigateViaText, CHECK_BOX_STATE, SCROLLABLE_LAYOUT, INPUT_FIELD, CM_INPUT, KG_INPUT, DRINKS_INPUT, navigateViaID, SEX_BUTTON, AVATAR_ITEM} from "@utils"
 import { swipeFromText } from "_utils/navigation/scrolling"
 
@@ -152,3 +153,4 @@ export const fibNegativeJourney = async()=>{
     await navigateViaText("No")
     await navigateViaText("No")
 }
+*/
