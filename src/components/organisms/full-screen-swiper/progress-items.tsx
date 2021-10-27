@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect } from "react";
 import { Animated, Easing, StyleSheet, View, ViewStyle } from "react-native";
 import { Style, Colours } from "@styles";
+import { DETOX_ENABLED } from "@services/socket";
 
 const ProgressItem = ({ width, translateX }: { width: number; translateX: number | Animated.Value }) => (
   <View style={[styles.progressBar, { width }]}>
@@ -44,6 +45,10 @@ export const ProgressItems = ({
   }, [activeIndex, animationRef.current, width]);
 
   useEffect(() => {
+    if (DETOX_ENABLED) {
+      return;
+    }
+
     reanimateInterpolatedValue();
   }, [userInteractionToggler, activeIndex]);
 

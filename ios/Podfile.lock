@@ -66,15 +66,15 @@ PODS:
   - glog (0.3.5)
   - Intercom (6.1.0)
   - libevent (2.1.12)
-  - libwebp (1.2.0):
-    - libwebp/demux (= 1.2.0)
-    - libwebp/mux (= 1.2.0)
-    - libwebp/webp (= 1.2.0)
-  - libwebp/demux (1.2.0):
+  - libwebp (1.2.1):
+    - libwebp/demux (= 1.2.1)
+    - libwebp/mux (= 1.2.1)
+    - libwebp/webp (= 1.2.1)
+  - libwebp/demux (1.2.1):
     - libwebp/webp
-  - libwebp/mux (1.2.0):
+  - libwebp/mux (1.2.1):
     - libwebp/demux
-  - libwebp/webp (1.2.0)
+  - libwebp/webp (1.2.1)
   - lottie-ios (3.1.8)
   - lottie-react-native (4.0.2):
     - lottie-ios (~> 3.1.8)
@@ -387,9 +387,9 @@ PODS:
     - React
   - RNSVG (12.1.0):
     - React
-  - SDWebImage (5.11.1):
-    - SDWebImage/Core (= 5.11.1)
-  - SDWebImage/Core (5.11.1)
+  - SDWebImage (5.12.1):
+    - SDWebImage/Core (= 5.12.1)
+  - SDWebImage/Core (5.12.1)
   - SDWebImageWebPCoder (0.6.1):
     - libwebp (~> 1.0)
     - SDWebImage/Core (~> 5.7)
@@ -613,7 +613,7 @@ SPEC CHECKSUMS:
   CocoaAsyncSocket: 065fd1e645c7abab64f7a6a2007a48038fdc6a99
   DoubleConversion: cf9b38bf0b2d048436d9a82ad2abe1404f11e7de
   FBLazyVector: e686045572151edef46010a6f819ade377dfeb4b
-  FBReactNativeSpec: d6be4ed5eb3b88f6363d79b585b8cf43f6df6836
+  FBReactNativeSpec: d7b5b09e458e2e782688fb96b2f7ee68f87757f4
   Flipper: d3da1aa199aad94455ae725e9f3aa43f3ec17021
   Flipper-DoubleConversion: 38631e41ef4f9b12861c67d17cb5518d06badc41
   Flipper-Folly: 755929a4f851b2fb2c347d533a23f191b008554c
@@ -624,7 +624,7 @@ SPEC CHECKSUMS:
   glog: 73c2498ac6884b13ede40eda8228cb1eee9d9d62
   Intercom: b168156c4eb1b51352974cdfa47d4f3241a3df8b
   libevent: 4049cae6c81cdb3654a443be001fb9bdceff7913
-  libwebp: e90b9c01d99205d03b6bb8f2c8c415e5a4ef66f0
+  libwebp: 98a37e597e40bfdb4c911fc98f2c53d0b12d05fc
   lottie-ios: 48fac6be217c76937e36e340e2d09cf7b10b7f5f
   lottie-react-native: 4dff8fe8d10ddef9e7880e770080f4a56121397e
   Mixpanel: de8296d8568806ab17bfced0f823c908b808e1e0
@@ -670,7 +670,7 @@ SPEC CHECKSUMS:
   RNFitKit: 616d0226b7c2df643037e955434d347057eed612
   RNSpringScrollView: 8b0af44fda8b131d845b93bf5b1d0710152e4e61
   RNSVG: ce9d996113475209013317e48b05c21ee988d42e
-  SDWebImage: a7f831e1a65eb5e285e3fb046a23fcfbf08e696d
+  SDWebImage: 4dc3e42d9ec0c1028b960a33ac6b637bb432207b
   SDWebImageWebPCoder: d0dac55073088d24b2ac1b191a71a8f8d0adac21
   Stripe: 57c6997c64042a3f5aedae9b76e331942f8b75d2
   stripe-react-native: ae53a97cc9ab084cc6228f2250da56b0e53da276
@@ -680,4 +680,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: d048bdc5ea8531bb8e96017c871fdc1e18004c63
 
-COCOAPODS: 1.10.1
+COCOAPODS: 1.11.2

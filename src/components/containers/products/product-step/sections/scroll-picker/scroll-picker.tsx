@@ -28,6 +28,7 @@ export const ProductStepScrollPicker = () => {
       : items.findIndex((item) => item.value === dynamicData[wheel.answerKey]);
 
     return {
+      id: wheel.answerKey,
       defaultIndex,
       items,
       onIndexChange: (index: number) =>

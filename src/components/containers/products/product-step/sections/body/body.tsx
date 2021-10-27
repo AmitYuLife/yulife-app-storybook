@@ -32,6 +32,7 @@ import {
   ContentItemList,
   ContentItemPackageCardPower,
 } from "@components/sdui";
+import { PRODUCT_STEP_BODY_SCROLL_VIEW } from "@ids";
 import { Style } from "@styles";
 import { ProductStepContext } from "../../product-step.context";
 import media from "@styles/media";
@@ -73,6 +74,7 @@ export const Body = (props: Props) => {
         onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: scrollValue } } }], { useNativeDriver: true })}
         showsVerticalScrollIndicator={false}
         style={styles.wrapper}
+        testID={PRODUCT_STEP_BODY_SCROLL_VIEW}
       >
         {!headerHeight ? null : <View style={headerPadStyle} />}
         {props.body.map(renderItemContent)}

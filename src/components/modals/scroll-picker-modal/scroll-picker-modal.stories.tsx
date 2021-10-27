@@ -56,6 +56,7 @@ const Test = () => {
   const activePickers = isMetric
     ? [
         {
+          id: "dataCm",
           items: dataCm,
           onIndexChange: handleHeightCmChange,
           defaultIndex: DEFAULT_CM_INDEX,
@@ -63,11 +64,13 @@ const Test = () => {
       ]
     : [
         {
+          id: "dataFeet",
           items: dataFeet,
           onIndexChange: handleHeightFeetChange,
           defaultIndex: DEFAULT_FEET_INDEX,
         },
         {
+          id: "dataInches",
           items: dataInches,
           onIndexChange: handleHeightInchChange,
           defaultIndex: DEFAULT_INCH_INDEX,

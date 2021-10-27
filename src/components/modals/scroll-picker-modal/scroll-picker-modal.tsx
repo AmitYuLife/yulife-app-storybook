@@ -8,6 +8,7 @@ import { TouchableOpacityWithDelay } from "@components/molecules";
 import { Item } from "./flatlist-utils/types";
 
 interface IPicker {
+  id: string;
   items: Item[];
   onIndexChange: (index: number) => void;
   defaultIndex: number;
@@ -42,8 +43,8 @@ const ScrollPickerModal = (props: Props) => {
           </TouchableOpacity>
         )}
         <View style={styles.pickerWrapper}>
-          {pickers.map(({ onIndexChange, items, defaultIndex }, i) => (
-            <Picker key={i} defaultIndex={defaultIndex} onIndexChange={onIndexChange} items={items} />
+          {pickers.map(({ onIndexChange, items, defaultIndex, id }, i) => (
+            <Picker id={id} key={i} defaultIndex={defaultIndex} onIndexChange={onIndexChange} items={items} />
           ))}
         </View>
         <Buttons onConfirm={onConfirm} onCancel={onCancel} cancelLabel={cancelLabel} confirmLabel={confirmLabel} />

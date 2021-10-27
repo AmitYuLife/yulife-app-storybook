@@ -6,6 +6,7 @@ import { ContentItemDatePicker as GqlDatePicker } from "@graphql/_core/schema";
 import { Colours, Style } from "@styles";
 import { TertiaryButton } from "@atoms";
 import { mapServerStyles } from "../_utils/mapServerStyles";
+import { DATE_INPUT, DATE_PICKER } from "@ids";
 
 interface IProps extends GqlDatePicker {
   onChange?: (value: string) => void;
@@ -64,6 +65,7 @@ export const ContentItemDatePicker = memo((props: Props) => {
         label={date || displayDateFormat}
         tertiarySubLabel={subLabel}
         wrapperStyle={mapServerStyles(buttonStyles)}
+        testID={DATE_INPUT}
       />
       <DateTimePicker
         date={date ? moment(date, displayDateFormat).toDate() : moment().toDate()}
@@ -76,6 +78,7 @@ export const ContentItemDatePicker = memo((props: Props) => {
         maximumDate={moment(maxDate, dateFormat).toDate()}
         isDarkModeEnabled={false}
         textColor={Colours.neutral.n900}
+        testID={DATE_PICKER}
       />
     </View>
   );

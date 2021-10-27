@@ -2,6 +2,7 @@ import React from "react";
 import { StyleSheet, View, ViewStyle } from "react-native";
 import { Style } from "@styles";
 import { TouchableOpacityWithDelay } from "@components/molecules";
+import { FULL_SCREEN_SWIPER } from "@ids";
 
 interface IProps {
   handleChangeActiveIndex: (num: number) => () => void;
@@ -13,11 +14,13 @@ export const Controller = ({ handleChangeActiveIndex }: IProps) => (
       style={[styles.controller, styles.left]}
       activeOpacity={0}
       onPress={handleChangeActiveIndex(-1)}
+      testID={FULL_SCREEN_SWIPER("LEFT")}
     />
     <TouchableOpacityWithDelay
       style={[styles.controller, styles.right]}
       activeOpacity={0}
       onPress={handleChangeActiveIndex(1)}
+      testID={FULL_SCREEN_SWIPER("RIGHT")}
     />
   </View>
 );

@@ -11,6 +11,7 @@ import { ProductStepContext } from "../product-step.context";
 import { useSetDefaultAnswer } from "../hooks/useSetDefaultAnswer";
 import { LOCAL_ANSWER_KEY } from "../utils/localAnswerKeys";
 import { ProductStepPercentPicker } from "./product-step.scrollable-items-picker";
+import { PERCENTAGE_COVERED, SELECTED_PACKAGE_TITLE } from "@ids";
 
 export const ProductStepCoverPicker = memo((props: Props) => {
   const { answerKey, answerKeyDefaultValue, hasSelectedCustomCover, coverPickerTitle, customCover } = props;
@@ -62,11 +63,12 @@ export const ProductStepCoverPicker = memo((props: Props) => {
               isSelected={dynamicData[answerKey] === option.value}
               innerHeight={Style.adjust(100)}
               wrapperStyle={styles.boxWrapper}
+              testID={PERCENTAGE_COVERED(option.value)}
             >
               <View style={styles.boxChildWrapper}>
                 <TextTemplate type="b2b">{option.heading}</TextTemplate>
                 <TextTemplate type="l2">{option.subheading}</TextTemplate>
-                <View style={styles.packageTypeWrapper}>
+                <View style={styles.packageTypeWrapper} testID={SELECTED_PACKAGE_TITLE(option.coverType)}>
                   <PackageType type={option.coverType} />
                 </View>
               </View>

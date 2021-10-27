@@ -6,6 +6,7 @@ import { TouchableOpacityWithDelay } from "@components/molecules";
 import { MultiSelectActiveIndicator } from "./multiSelectActiveIndicator";
 import { MultiSelectLabel } from "./multiSelectLabel";
 import media from "@styles/media";
+import { CONDITION_OPTION } from "@ids";
 
 export interface MultiSelectItemProps {
   id: string;
@@ -40,6 +41,7 @@ function MultiSelectItem(props: MultiSelectItemProps) {
       style={StyleSheet.flatten([styles.wrapper, active && styles.activeWrapper])}
       onPress={handlePress}
       delay={50}
+      testID={CONDITION_OPTION(label, active)}
     >
       <View style={styles.viewWrapper}>
         <MultiSelectActiveIndicator isActive={active} />
