@@ -15,6 +15,7 @@ Feature("App store review should behave correctly", async()=>{
             Then("I should see text Enjoying YuLife?", then.idVisible(APPREVIEW_TEXT("Enjoying YuLife?")))
             Then("I should see text (We’d love to know either way!)", then.textVisible("(We’d love to know either way!)"))           
             When("I tap the button", when.tapText("Yeah!",1,true), async () => {
+                Then("I should not see a screen asking me Enjoying YuLife?", then.idNotVisible(APPREVIEW_TEXT("Enjoying YuLife?")))
                 When("I close and reopen the app", when.reloadOnly, async()=>{  
                     Then("I should not see a screen asking me Enjoying YuLife?", then.idNotVisible(APPREVIEW_TEXT("Enjoying YuLife?")))
                 })         
