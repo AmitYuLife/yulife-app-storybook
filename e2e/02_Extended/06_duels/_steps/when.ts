@@ -1,4 +1,4 @@
-import { navigation, BODY_ITEM_TITLE, BODY_PART_ITEM, SKIN_TONE, PERSONAL_PRODUCT, FIB_SALARY_INPUT, navigateViaText } from "@utils"
+import { navigation, BODY_ITEM_TITLE, BODY_PART_ITEM, PERSONAL_PRODUCT, FIB_SALARY_INPUT, navigateViaText } from "@utils"
 import { loginOnly } from "_utils/navigation/login";
 export { authoriseFitkit, sendSteps } from "@socket";
 

@@ -1,5 +1,4 @@
-/*
-import { navigation, BODY_ITEM_TITLE, BODY_PART_ITEM, SKIN_TONE, PERSONAL_PRODUCT, YUSCREEN, navigateViaText, CHECK_BOX_STATE, SCROLLABLE_LAYOUT, INPUT_FIELD, CM_INPUT, KG_INPUT, DRINKS_INPUT, navigateViaID, SEX_BUTTON, AVATAR_ITEM} from "@utils"
+import { navigation, BODY_ITEM_TITLE, BODY_PART_ITEM, PERSONAL_PRODUCT, YUSCREEN, navigateViaText, CHECK_BOX_STATE, SCROLLABLE_LAYOUT, INPUT_FIELD, CM_INPUT, KG_INPUT, DRINKS_INPUT, navigateViaID, SEX_BUTTON, AVATAR_ITEM} from "@utils"
 import { swipeFromText } from "_utils/navigation/scrolling"
 
 
@@ -35,10 +34,7 @@ export const tapItem = (partID: string) => async () => {
     await item.tap()
 }
 
-export const tapColour = (hexValue: string) => async () => {
-    const colour = element(by.id(SKIN_TONE(hexValue)))
-    await colour.tap()
-}
+
 
 export const goToLifeInsurance = async () =>{
     await navigateViaID(AVATAR_ITEM("chest", "unlockable"))
@@ -153,4 +149,3 @@ export const fibNegativeJourney = async()=>{
     await navigateViaText("No")
     await navigateViaText("No")
 }
-*/
