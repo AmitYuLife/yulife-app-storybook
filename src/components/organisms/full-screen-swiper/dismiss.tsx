@@ -4,6 +4,7 @@ import { Button, Image } from "@atoms";
 import { TouchableOpacityWithDelay } from "@components/molecules";
 import { Style } from "@styles";
 import media from "@styles/media";
+import { BUTTON_CLOSE } from "@ids";
 
 interface Props {
   button: {
@@ -22,7 +23,7 @@ export const Dismiss = ({ button, close }: Props) => {
   return (
     <>
       {!button ? null : (
-        <View style={styles.button}>
+        <View style={styles.button} testID={BUTTON_CLOSE}>
           <Button label={button.label} onPress={button.onPress} />
         </View>
       )}

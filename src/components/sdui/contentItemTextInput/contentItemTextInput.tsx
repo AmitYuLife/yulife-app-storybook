@@ -1,5 +1,6 @@
 import React, { ComponentProps, memo, useCallback, useState } from "react";
 import { LayoutChangeEvent, StyleSheet, View, ViewStyle } from "react-native";
+import { CONTENT_ITEM_INPUT } from "@ids";
 import { ContentItemTextInput as GqlTextInput } from "@graphql/_core/schema";
 import { TextField } from "@components/molecules";
 import { Style } from "@styles";
@@ -32,6 +33,7 @@ export const ContentItemTextInput = memo(({ onChange, id, heading, value, prefix
         placeholder={heading}
         key={id}
         onChange={onChange}
+        testID={CONTENT_ITEM_INPUT(id)}
       />
     </View>
   );

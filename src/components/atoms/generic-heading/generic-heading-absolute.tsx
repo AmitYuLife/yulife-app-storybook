@@ -2,6 +2,7 @@ import React, { ComponentProps } from "react";
 import GenericHeading from "./generic-heading";
 import { View, StyleSheet, ViewStyle, Platform } from "react-native";
 import { TOP_BAR, Colours } from "@styles";
+import { BUTTON_CLOSE } from "@ids";
 
 interface OwnProps {
   backgroundColor?: string;
@@ -14,7 +15,7 @@ const GenericHeadingAbsolute = (props: Props) => {
   return (
     <View pointerEvents="box-none" style={StyleSheet.flatten([styles.wrapper, { backgroundColor }])}>
       <GenericHeading {...props} />
-      {hideBorder ? null : <View style={styles.topBarShadow} />}
+      {hideBorder ? null : <View style={styles.topBarShadow} testID={BUTTON_CLOSE} />}
     </View>
   );
 };

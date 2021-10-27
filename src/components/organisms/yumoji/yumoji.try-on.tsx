@@ -2,6 +2,7 @@ import React, { memo, useEffect, useState, useCallback } from "react";
 import { LayoutChangeEvent, StyleSheet, View } from "react-native";
 import { useDispatch } from "react-redux";
 import { useMutation } from "@apollo/react-hooks";
+import { YUMOJI_OUTFIT_LABEL, YUMOJI_OUTFIT_RADIO } from "@ids";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 import { Colours, Style } from "@styles";
 import { Loading, TextTemplate } from "@atoms";
@@ -101,7 +102,7 @@ function _TryOnYumojiPart({ customerProductId, coverType = CoverType.common, onC
           isClosed={popoverClosed}
         />
         <View style={styles.row} onLayout={handleTextLayout}>
-          <TextTemplate type="l2b" color={variant?.mainColor}>
+          <TextTemplate type="l2b" color={variant?.mainColor} testID={YUMOJI_OUTFIT_LABEL(variant.title)}>
             {variant?.title}
           </TextTemplate>
         </View>
@@ -208,6 +209,7 @@ const WorldRadioButtons = ({ yuWorlds, selectedWorld, handlePress }: WorldRadioB
               handlePress(v.id);
               dispatch(logMixpanelEventActionCreator("armour_inspected", { armour_style_chosen: v.id }));
             }}
+            testID={YUMOJI_OUTFIT_RADIO(v.title)}
           >
             <View
               style={[

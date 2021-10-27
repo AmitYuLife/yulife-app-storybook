@@ -1,6 +1,7 @@
 import React, { memo } from "react";
 import { Animated, StyleSheet, TextStyle, View, ViewStyle } from "react-native";
 import { TextTemplate } from "@atoms";
+import { SCROLL_PICKER_ACTIVE_ITEM } from "@ids";
 import { ITEM_HEIGHT } from "../scroll-picker.styles";
 import { Colours } from "@styles";
 import { getActiveTextOpacityValue, getInactiveTextOpacityValue } from "../scroll-picker.animation";
@@ -30,7 +31,11 @@ export const ListItem = memo(({ scrollY, index, label }: ListItemProps) => (
     >
       {label}
     </ItemText>
-    <ItemText opacity={getActiveTextOpacityValue({ scrollY, index: index - 1, itemHeight: ITEM_HEIGHT })} active={true}>
+    <ItemText
+      testID={SCROLL_PICKER_ACTIVE_ITEM(label)}
+      opacity={getActiveTextOpacityValue({ scrollY, index: index - 1, itemHeight: ITEM_HEIGHT })}
+      active={true}
+    >
       {label}
     </ItemText>
   </Wrapper>

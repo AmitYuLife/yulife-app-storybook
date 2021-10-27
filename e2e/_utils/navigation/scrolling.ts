@@ -28,12 +28,12 @@ export const scrollFromIDMultiple = (id: string, direction: any, speed: any, scr
 }
 
 // down is down
-export const scrollUntilTextVisible = (scrollViewid:string, text:string, direction:"up"|"down", xscroll=0.5, yscroll=0.5) => async()=>{
-    await waitFor(element(by.text(text))).toBeVisible().whileElement(by.id(scrollViewid)).scroll(100, direction, xscroll, yscroll)
+export const scrollUntilTextVisible = (scrollViewId:string, text:string, direction:"up"|"down", xscroll=0.5, yscroll=0.5) => async()=>{
+    await waitFor(element(by.text(text))).toBeVisible().whileElement(by.id(scrollViewId)).scroll(100, direction, xscroll, yscroll)
 }
 
-export const scrollUntilIdVisible = (scrollViewid: string, id: string, direction: "up" | "down" | "left" | "right", xscroll = 0.5, yscroll = 0.5) => async () => {
-    await waitFor(element(by.id(id))).toBeVisible().whileElement(by.id(scrollViewid)).scroll(100, direction, xscroll, yscroll)
+export const scrollUntilIdVisible = (scrollViewId: string, id: string, direction: "up" | "down" | "left" | "right", xscroll = 0.5, yscroll = 0.5, offset = 100) => async () => {
+    await waitFor(element(by.id(id))).toBeVisible().whileElement(by.id(scrollViewId)).scroll(offset, direction, xscroll, yscroll)
 }
 
 export const scrollToAndTapText = (scrollViewid: string, text: string, direction: "up" | "down", xscroll = 0.5, yscroll = 0.5) => async () => {
@@ -43,13 +43,14 @@ export const scrollToAndTapText = (scrollViewid: string, text: string, direction
 
 
 
-export const swipeToText = (scrollID: any, targetText: string, direction: "up" | "down", maxAttempts = 10) => async()=>{
+export const swipeToText = (scrollID: any, targetText: string, direction: "up" | "down" = "up", maxAttempts = 10) => async()=>{
     let targetTextVisible = await booleanTextVisible(targetText)
     let scroller = element(by.id(scrollID))
 
     let currentAttempt = 0
     while(targetTextVisible === false && currentAttempt < maxAttempts){
-        await scroller.swipe("up", "slow")
+
+        await scroller.swipe(direction, "slow")
         targetTextVisible = await booleanTextVisible(targetText)
         
         if(targetTextVisible === true){
@@ -67,7 +68,7 @@ export const swipeToText = (scrollID: any, targetText: string, direction: "up" |
 }
 
 
-export const swipeToID = (scrollID: any, targetID: string, direction: 'left' | 'right' | 'top' | 'bottom' | 'up' | 'down', maxAttempts = 10) => async () => {
+export const swipeToID = (scrollID: any, targetID: string, direction: Detox.Direction, maxAttempts = 10) => async () => {
     try{
         expect(element(by.id(targetID))).toBeVisible()
     }catch(e){

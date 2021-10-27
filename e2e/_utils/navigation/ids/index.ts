@@ -78,6 +78,11 @@ export const INPUT_FIELD = "INPUT_FIELD"
 export const INPUT_FIELD_VALUE = (value:any) => `INPUT_FIELD_VALUE_${value}`
 export const INPUT_BENEFICIARY_DETAIL = (placeholder: string) => `INPUT_BENEFICIARY_DETAIL_${placeholder}`
 export const INPUT_AVIOS_FORM_FIELD = (placeholder: string) => `INPUT_AVIOS_FORM_FIELD_${placeholder}`
+export const DATE_INPUT = 'DATE_INPUT'
+export const DATE_PICKER = 'DATE_PICKER'
+export const FULL_SCREEN_SWIPER = (value: "LEFT" | "RIGHT") => `FULL_SCREEN_SWIPER_${value}`;
+export const SCROLL_PICKER = (id: string) => `SCROLL_PICKER_${id}`
+export const SCROLL_PICKER_ACTIVE_ITEM = (id: string) => `SCROLL_PICKER_ACTIVE_ITEM_${id}`
 
 // modals
 export const WELCOME_MODAL = (heading: string) => `WELCOME_MODAL${heading}`
@@ -154,6 +159,14 @@ export const BUILDER_BODY = (bodyItems: string[]) => `BUILDER_BODY${bodyItems}`
 export const NO_ITEM_SELECTED = "NO_ITEM_SELECTED"
 export const HEAD_TYPE = (type: string) => `HEAD_TYPE_${type}`
 export const YUSCREEN_AVATAR = "YUSCREEN_AVATAR"
+
+// SDUI
+export const CONTENT_ITEM_INPUT = (id: string) => `SDUI_INPUT_${id}`
+export const CONTENT_ITEM_MULTI_BUTTON = (id: string) => `SDUI_MULTI_BUTTON_${id}`
+
+// FIB new
+export const PRODUCT_STEP_BODY_SCROLL_VIEW = `PRODUCT_STEP_BODY_SCROLL_VIEW`
+export const CONDITION_OPTION = (name: string, isActive: boolean) => `CONDITION_OPTION_${name}_${isActive}`
 
 // YUMOJI BUILDER
 export const BODY_TYPE = (type: string) => `BODY_TYPE_${type}`
@@ -252,3 +265,7 @@ export const REFERRALS_INVITE_BUTTON = `REFERRALS_INVITE_BUTTON`
 export const SETTINGS_NAME = (name:string) => `SETTINGS_NAME_${name}`
 export const SETTINGS_DESC = (desc:string) => `SETTINGS_DESC_${desc}`
 export const SETTINGS_SWITCH = (name:string, bool:boolean) => `SETTINGS_SWITCH_${name}_${bool}`
+
+// PLI
+export const YUMOJI_OUTFIT_RADIO = (title: string) => `YUMOJI_OUTFIT_RADIO${title}`
+export const YUMOJI_OUTFIT_LABEL = (title: string) => `YUMOJI_OUTFIT_LABEL${title}`

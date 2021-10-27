@@ -168,6 +168,7 @@ function SettingsContainer({ componentId }: IOwnProps) {
       const currentTime = times.findIndex((time) => time.value === modalDate);
       return [
         {
+          id: "settings-date-picker",
           items: times,
           onIndexChange: (index: number) => setModalDate(times[index].value),
           defaultIndex: currentTime,

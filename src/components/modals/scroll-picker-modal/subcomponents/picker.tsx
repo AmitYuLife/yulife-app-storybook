@@ -3,6 +3,7 @@ import { Animated, StyleSheet, ViewStyle, NativeScrollEvent, NativeSyntheticEven
 import { ITEM_HEIGHT, WRAPPER_HEIGHT } from "../scroll-picker.styles";
 import { Overlays } from "./overlays";
 import { Style } from "@styles";
+import { SCROLL_PICKER } from "@ids";
 import { renderItem } from "../flatlist-utils/renderItem";
 import { IListItem, LIST_ITEM, Item } from "../flatlist-utils/types";
 import { getItemLayout } from "../flatlist-utils/getItemLayout";
@@ -11,11 +12,12 @@ import { keyExtractor } from "../flatlist-utils/keyExtractor";
 const ANDROID_SAFEGUARD = 0.01;
 
 interface Props {
+  id: string;
   items: Item[];
   onIndexChange: (value: number) => void;
   defaultIndex: number;
 }
-export const Picker = memo(({ items = [], onIndexChange, defaultIndex = 0 }: Props) => {
+export const Picker = memo(({ id, items = [], onIndexChange, defaultIndex = 0 }: Props) => {
   const listRef = useRef<FlatList>(null);
   const scrollY = useRef(new Animated.Value(0));
   const scrollToDefaultIndexDelay = useRef(null);
@@ -87,6 +89,7 @@ export const Picker = memo(({ items = [], onIndexChange, defaultIndex = 0 }: Pro
         data={listData}
         renderItem={renderItem({ scrollY: scrollY.current })}
         keyExtractor={keyExtractor}
+        testID={SCROLL_PICKER(id)}
       />
       <Overlays />
     </View>
