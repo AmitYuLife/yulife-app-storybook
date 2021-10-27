@@ -239,7 +239,7 @@ Feature("I am able to use the yuscreen, create, and edit an Yumoji", async () =>
                                                                             When("I tap 'Done' ", when.tapText("Done"), async () => {
                                                                                 Then("I should be on the yuscreen", then.onYuscreen(CUSTOMER_19))
                                                                                 Then("I should see my Yumoji", then.idVisible(YUSCREEN_AVATAR))
-                                                                                Then("I should be awarded 100 yucoin", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(620)))
+                                                                                Then("I should be awarded 100 yucoin", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(550)))
                                                                             })
                                                                         })
                                                                     })
