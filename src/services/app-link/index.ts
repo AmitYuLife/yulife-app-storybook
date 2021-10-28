@@ -8,14 +8,14 @@ interface IAppLinkConfig {
   playStoreId: string | null;
 }
 
-const noop = (): null => null;
-
 async function openApp(url: string, { appName, appStoreId, appStoreLocale = "gb", playStoreId }: IAppLinkConfig) {
-  Linking.openURL(url).catch((err) => {
+  try {
+    await Linking.openURL(url);
+  } catch (err) {
     if (err.code === "EUNSPECIFIED") {
       openStore({ appName, appStoreId, appStoreLocale, playStoreId });
     }
-  });
+  }
 }
 
 async function openStore({ appName, appStoreId, appStoreLocale = "gb", playStoreId }: IAppLinkConfig) {
@@ -24,9 +24,9 @@ async function openStore({ appName, appStoreId, appStoreLocale = "gb", playStore
       // check if appStoreLocale is set
       const locale = typeof appStoreLocale === "undefined" ? "us" : appStoreLocale;
 
-      Linking.openURL(`https://itunes.apple.com/${locale}/app/${appName}/id${appStoreId}`).catch(noop);
+      await Linking.openURL(`https://itunes.apple.com/${locale}/app/${appName}/id${appStoreId}`);
     } else {
-      Linking.openURL(`https://play.google.com/store/apps/details?id=${playStoreId}`).catch(noop);
+      await Linking.openURL(`https://play.google.com/store/apps/details?id=${playStoreId}`);
     }
   } catch (error) {
     Logger.error(error, { file: "app-link index" });
@@ -86,10 +86,10 @@ export async function openGoogleFit() {
 }
 
 export const handleLinkPress = (link: string) => async () => {
-  const isValid = await Linking.canOpenURL(link);
-
-  if (isValid) {
+  try {
     await Linking.openURL(link);
+  } catch (e) {
+    // safe fail
   }
 };
 
