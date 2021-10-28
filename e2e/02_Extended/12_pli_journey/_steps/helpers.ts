@@ -62,7 +62,7 @@ export const UNDERWRITING_DOB = async (age: number) => {
 
 export const UNDERWRITING_SALARY = async (salary: string) => {
     const salaryNr = Number(salary);
-    When("I choose the correct date of birth", when.typeViaID(CONTENT_ITEM_INPUT("salary"), salary), async () => {
+    When("I choose the correct date of birth", [when.typeViaID(CONTENT_ITEM_INPUT("salary"), salary), when.tapText("Enter your salary")], async () => {
         Then("I should see my salary input", then.textVisible(addCommasToNumber(salaryNr).toString()))
         When("I tap continue", when.scrollToAndTapText(PRODUCT_STEP_BODY_SCROLL_VIEW, "Continue", "down"), async () => {
             Then("I should be on the citizen screen", then.isOnScreen("Are you a British Citizen or resident in the UK?"))
