@@ -57,11 +57,9 @@ interface WebViewFallbackProps {
 function WebViewFallback(props: WebViewFallbackProps): JSX.Element {
   useEffect(() => {
     async function openURL() {
-      const supported = await Linking.canOpenURL(props.url);
-
-      if (supported) {
+      try {
         await Linking.openURL(props.url);
-      } else {
+      } catch (e) {
         props.onBothLinksFail();
       }
     }

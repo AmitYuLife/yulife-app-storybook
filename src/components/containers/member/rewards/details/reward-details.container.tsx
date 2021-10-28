@@ -136,17 +136,15 @@ const RewardDetailsContainer: FC<IProps> = ({ onTabChange, componentId, rewardId
         Logger.error(e, { event: "linkRewardDetailsContainer", file: "link-details-container" });
       }
 
-      const supported = await Linking.canOpenURL(availability);
-
-      if (supported) {
+      try {
+        await Linking.openURL(availability);
         Logger.logEvent("reward_redeem_pressed", {
           reward_amount: 0,
           reward_code: code,
           reward_name: name,
           reward_yucoin_spent: 0,
         });
-        await Linking.openURL(availability);
-      } else {
+      } catch (e) {
         Logger.logEvent("reward_redeem_link_unsupported", {
           reward_code: code,
           reward_name: name,
