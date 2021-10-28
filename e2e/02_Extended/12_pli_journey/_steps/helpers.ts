@@ -46,7 +46,7 @@ export const INTRO_HONESTY = async () => {
 }
 
 export const UNDERWRITING_NAME = async () => {
-    When("I tap continue", when.tapText("Continue"), async () => {
+    When("I tap continue", when.scrollToAndTapText(PRODUCT_STEP_BODY_SCROLL_VIEW, "Continue", "down"), async () => {
         Then("I should be on the DoB screen", then.isOnDoBScreen)
     })
 }
@@ -54,7 +54,7 @@ export const UNDERWRITING_NAME = async () => {
 export const UNDERWRITING_DOB = async (age: number) => {
     When("I choose the correct date of birth", when.chooseCorrectDoB(age), async () => {
         Then("I should be back on the dob screen", then.isOnDoBScreen)
-        When("I tap Continue", when.tapText("Continue"), async () => {
+        When("I tap Continue", when.scrollToAndTapText(PRODUCT_STEP_BODY_SCROLL_VIEW, "Continue", "down"), async () => {
             Then("I shuold be on the salary screen", then.isOnScreen("Enter your salary"));
         })
     })
@@ -64,7 +64,7 @@ export const UNDERWRITING_SALARY = async (salary: string) => {
     const salaryNr = Number(salary);
     When("I choose the correct date of birth", when.typeViaID(CONTENT_ITEM_INPUT("salary"), salary), async () => {
         Then("I should see my salary input", then.textVisible(addCommasToNumber(salaryNr).toString()))
-        When("I tap continue", when.tapText("Continue"), async () => {
+        When("I tap continue", when.scrollToAndTapText(PRODUCT_STEP_BODY_SCROLL_VIEW, "Continue", "down"), async () => {
             Then("I should be on the citizen screen", then.isOnScreen("Are you a British Citizen or resident in the UK?"))
         })
     })
@@ -74,7 +74,7 @@ type YesNo = "Yes" | "No"
 
 export const UNDERWRITING_CITIZEN = async (answer: YesNo) => {
     When(`I tap ${answer}`, when.chooseYesOrNo(answer), async () => {
-        Then("I should be on the citizen screen", then.isOnScreen("Are you employed in any of the following occupations?"))
+        Then("I should be on the hazardous employment screen", then.isOnScreen("Are you employed in any of the following occupations?"))
     })
 }
 
@@ -92,7 +92,7 @@ export const UNDERWRITING_HEIGHT = async (answer: string) => {
             When("I tap Select", when.tapText("Select"), async () => {
                 Then("I should be on the same screen", then.isOnScreen("Getting a bit more personal now... I’m a whopping 16ft 4in tall, what about you?"))
                 Then("I should be back on the height screen", then.textVisible(answer.replace(" ", "")))
-                When("I tap Continue", when.tapText("Continue"), async () => {
+                When("I tap Continue", when.scrollToAndTapText(PRODUCT_STEP_BODY_SCROLL_VIEW, "Continue", "down"), async () => {
                     Then("I should be on the weight screen", then.isOnScreen("I weigh in at a modest 800kg, you?"))
 
                 })
@@ -109,7 +109,7 @@ export const UNDERWRITING_WEIGHT = async (answer: string) => {
             When("I tap Select", when.tapText("Select"), async () => {
                 Then("I should be on the same screen", then.isOnScreen("I weigh in at a modest 800kg, you?"))
                 Then("I should be back on the weight screen", then.textVisible(answer.replace(" ", "")))
-                When("I tap Continue", when.tapText("Continue"), async () => {
+                When("I tap Continue", when.scrollToAndTapText(PRODUCT_STEP_BODY_SCROLL_VIEW, "Continue", "down"), async () => {
                     Then("I should be on the cigarretes screen", then.isOnScreen("When was the last time you smoked a cigarette?"))
                 })
             })
@@ -157,7 +157,7 @@ export const UNDERWRITING_ALCOHOL = async (answer: string) => {
             When("I tap Select", when.tapText("Select"), async () => {
                 Then("I should be on the same screen", then.isOnScreen("Cheers! How much do you drink in an average week?"))
                 Then("I should see the entered answer", then.textVisible(answer))
-                When("I tap Continue", when.tapText("Continue"), async () => {
+                When("I tap Continue", when.scrollToAndTapText(PRODUCT_STEP_BODY_SCROLL_VIEW, "Continue", "down"), async () => {
                     Then("I should be on the cannabis screen", then.isOnScreen("When was the last time you used cannabis?"))
                 })
             })
@@ -234,7 +234,7 @@ export const UNDERWRITING_CONDITION_SELECTION = async (conditions: Condition[]) 
     if (conditions.length > 1) conditionText = "conditions" 
     else conditionText = "condition"
 
-    When("I tap continue", when.tapText("Continue"), async () => {
+    When("I tap continue", when.scrollToAndTapText(PRODUCT_STEP_BODY_SCROLL_VIEW, "Continue", "down"), async () => {
         Then("I should be on the conditions confirmations screen", then.isOnScreen(`You’ve selected ${conditions.length.toString()} ${conditionText}.`))
         When(`I confirm I have chosen ${conditionLength} ${conditionText}`, when.tapText("I confirm these are all the conditions"), async () => {
             Then("I should be on the next screen", then.textNotVisible(`You’ve selected ${conditionLength} ${conditionText}.`))
@@ -246,7 +246,7 @@ export const UNDERWRITING_BP = async (answer: YesNo, choice: string) => {
     When(`I tap ${answer}`, when.tapText(answer), async () => {
         Then("I should be on the BP checkup screen", then.isOnScreen("What were you told at your latest blood pressure checkup?"))
         When(`I tap ${choice}`, when.tapText(choice), async () => {
-            When("I tap continue", when.tapText("Continue"), async () => {
+            When("I tap continue", when.scrollToAndTapText(PRODUCT_STEP_BODY_SCROLL_VIEW, "Continue", "down"), async () => {
                 Then("I should be on the next screen", then.textNotVisible("What were you told at your latest blood pressure checkup?"))
             })
         })
@@ -257,7 +257,7 @@ export const UNDERWRITING_CHOLESTEROL = async (answer: YesNo, choice: string) =>
     When(`I tap ${answer}`, when.tapText(answer), async () => {
         Then("I should be on the Cholesterol checkup screen", then.isOnScreen("What were you told at your latest cholesterol checkup?"))
         When(`I tap ${choice}`, when.tapText(choice), async () => {
-            When("I tap continue", when.tapText("Continue"), async () => {
+            When("I tap continue", when.scrollToAndTapText(PRODUCT_STEP_BODY_SCROLL_VIEW, "Continue", "down"), async () => {
                 Then("I should be on the next screen", then.textNotVisible("What were you told at your latest cholesterol checkup?"))
             })
         })
