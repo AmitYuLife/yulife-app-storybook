@@ -1,7 +1,7 @@
 import { Client } from "bugsnag-react-native";
 import Config from "react-native-config";
 import DeviceInfo from "react-native-device-info";
-import Intercom from "@intercom/intercom-react-native";
+import Intercom from "react-native-intercom";
 import Mixpanel from "react-native-mixpanel";
 import bugsnag from "../bugsnag";
 
@@ -42,7 +42,7 @@ class LoggerInstance {
 
   public setUserProperties(props: Record<string, any>, customAttrs = false) {
     if (customAttrs) {
-      Intercom.updateUser({ customAttributes: props });
+      Intercom.updateUser({ custom_attributes: props });
     } else {
       Intercom.updateUser(props);
     }

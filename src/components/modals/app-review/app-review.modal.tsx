@@ -10,7 +10,7 @@ import {
   SubmitAppStoreReviewActionMutationTuple,
 } from "@graphql/member/submitAppStoreReviewAction.gql";
 import { AppStoreReviewPromptAction } from "@graphql/_core/schema/globalTypes";
-import Intercom from "@intercom/intercom-react-native";
+import Intercom from "react-native-intercom";
 import { openYulife } from "@services/app-link";
 import Logger from "@services/logging/logger";
 
@@ -64,7 +64,7 @@ const AppReviewModal: FC<ReviewModalProps> = (props: ReviewModalProps) => {
       await submitAppReview(AppStoreReviewPromptAction.REVIEWED);
       await openReview();
     } else {
-      Intercom.displayMessenger();
+      Intercom.displayConversationsList();
     }
 
     Navigation.dismissModal(MODALS.appReview);
