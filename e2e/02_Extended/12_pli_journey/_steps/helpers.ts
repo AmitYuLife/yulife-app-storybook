@@ -374,7 +374,17 @@ export const UNDERWRITING_COVID_EXPOSURE = async (answer: YesNo) => {
 
 export const UNDERWRITING_OTHER_POLICIES = async (answer: YesNo) => {
     // TODO: can go to exceed 20mln
+    let nextScreen
+    if(answer === "Yes") nextScreen = "Will the total amount of life insurance on your life exceed £20,000,000?"
+    else nextScreen = "Please take a quick look over your answers before submitting."
+
     When(`I tap ${answer}`, when.chooseYesOrNo(answer), async () => {
+        Then("I should be on the next screen", then.isOnScreen(nextScreen))
+    })
+}
+
+export const UNDERWRITING_DO_POLICIES_EXCEED = async (answer: YesNo) => {
+    When(`I tap ${answer}`, when.tapText(answer), async () => {
         Then("I should be on the review screen", then.isOnScreen("Please take a quick look over your answers before submitting."))
     })
 }
@@ -395,6 +405,15 @@ type coverLevel = "common" | "rare" | "epic"
 
 export const COVER_SELECTION = async (cover: coverLevel) => {
     When(`I tap ${cover}`, when.tapID(SELECTED_PACKAGE_TITLE(cover)), async () => {
+        When("I scroll to the bottom and tap Continue to checkout", when.scrollToAndTapText(PRODUCT_STEP_BODY_SCROLL_VIEW, "Continue to checkout", "down"), async () => {
+            Then("I should be on the next page", then.textNotVisible("Choose your cover level"))
+        })
+    })
+}
+
+export const MAXIMUM_SUM_ASSURED = async () => {
+    When("I am on maximum sum assured screen and tap View full details", [then.isOnScreen("Based on the information you’ve given us, this is the maximum coverage available."), when.scrollToAndTapText(PRODUCT_STEP_BODY_SCROLL_VIEW, "View full details", "down")], async () => {
+        Then("I should be back on the cover selection screen", then.textVisible("Choose your custom cover"))
         When("I scroll to the bottom and tap Continue to checkout", when.scrollToAndTapText(PRODUCT_STEP_BODY_SCROLL_VIEW, "Continue to checkout", "down"), async () => {
             Then("I should be on the checkout page", then.isOnScreen("Your details"))
         })

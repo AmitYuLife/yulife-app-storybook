@@ -99,4 +99,47 @@ Feature("PLI POSITVE", async()=>{
             })
         })
     })
+
+    Scenario("As a healthy 33y/o, high earning male user that smokes in moderation and has existing <£20m PLI, I should be able to purchase PLI", scenario.start, async()=>{
+        Given("I login as a user with yuscreen v3", given.loginToYuScreen(true, CUSTOMER_37, AUTH_37), async()=>{
+            Then("I should be on the yuscreen", then.onYuscreenV3(CUSTOMER_37))
+            When("I create the default yumoji", when.createDefaultYumoji, async () => {
+                Then("I should be back on the YuScreen", then.onYuscreenV3(CUSTOMER_37))
+                When("I tap the chest", when.tapUnlockableItem("chest"), async () => {
+                    helper.ONBOARDING();
+                    helper.INTRO_START();
+                    helper.INTRO_INFO();
+                    helper.INTRO_HONESTY();
+                    helper.UNDERWRITING_NAME();
+                    helper.UNDERWRITING_DOB(33);
+                    helper.UNDERWRITING_SALARY("150000")
+                    helper.UNDERWRITING_CITIZEN("Yes")
+                    helper.UNDERWRITING_EMPLOYMENT("No")
+                    helper.UNDERWRITING_HEIGHT("160 cm")
+                    helper.UNDERWRITING_WEIGHT("60 kg")
+                    helper.UNDERWRITING_CIGARETTES("In the past month")
+                    helper.UNDERWRITING_CIGARETTES_QUANTITY("1-9 per day")
+                    helper.UNDERWRITING_CIGARS("In the past 12 months")
+                    helper.UNDERWRITING_SMOKING_ALTERNATIVES("In the past 6 months")
+                    helper.UNDERWRITING_ALCOHOL("2 drinks")
+                    helper.UNDERWRITING_CANNABIS("Never")
+                    helper.UNDERWRITING_RECREATIONAL_DRUGS("Never")
+                    helper.UNDERWRITING_COUNSELLING("No")
+                    helper.UNDERWRITING_SEX("Male")
+                    helper.UNDERWRITING_DIAGNOSED_WITH("No")
+                    helper.UNDERWRITING_MANY_CONSULTATIONS("No")
+                    helper.UNDERWRITING_AWAITING_TESTS("No")
+                    helper.UNDERWRITING_SYMPTOMS("No")
+                    helper.UNDERWRITING_COVID_HOSPITAL("No")
+                    helper.UNDERWRITING_COVID_EXPOSURE("No")
+                    helper.UNDERWRITING_OTHER_POLICIES("Yes")
+                    helper.UNDERWRITING_DO_POLICIES_EXCEED("No")
+                    helper.REVIEW_SCREEN()
+                    helper.COVER_SELECTION("epic")
+                    helper.MAXIMUM_SUM_ASSURED()
+                    helper.CHECKOUT()
+                })
+            })
+        })
+    })
 })
