@@ -6,39 +6,39 @@ import com.mixpanel.android.mpmetrics.MixpanelFCMMessagingService;
 import java.util.Map;
 import android.content.Intent;
 
-import io.intercom.android.sdk.push.IntercomPushClient;
+import com.intercom.reactnative.IntercomModule;
 
 public class YulifeFirebaseMessaggingService extends MixpanelFCMMessagingService {
-    private IntercomPushClient intercomPushClient = new IntercomPushClient();
 
     @Override
     public void onNewToken(String token) {
         super.onNewToken(token);
-        intercomPushClient.sendTokenToIntercom(getApplication(), token);
+        IntercomModule.sendTokenToIntercom(getApplication(), token);
     }
 
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
-        Map message = remoteMessage.getData();
+        if (IntercomModule.isIntercomPush(remoteMessage)) {
+            IntercomModule.handleRemotePushMessage(getApplication(), remoteMessage);
+        } else {
+            Map message = remoteMessage.getData();
+            if (message.containsKey("mp_message")) {
+                // default if we don't set it in MP
 
-        if (message.containsKey("mp_message")) {
-            // default if we don't set it in MP
+                Intent intent = remoteMessage.toIntent();
 
-            Intent intent = remoteMessage.toIntent();
-            
-            if (!message.containsKey("mp_icnm")) {
-                String iconName = "intercom_push_icon";
-                intent.putExtra("mp_icnm", iconName);
-                intent.putExtra("mp_icnm_w", iconName);
+                if (!message.containsKey("mp_icnm")) {
+                    String iconName = "intercom_push_icon";
+                    intent.putExtra("mp_icnm", iconName);
+                    intent.putExtra("mp_icnm_w", iconName);
+                }
+
+                if (!message.containsKey("mp_color")) {
+                    intent.putExtra("mp_color", getResources().getString(R.color.yupink));
+                }
+
+                super.onMessageReceived(getApplicationContext(), intent);
             }
-
-            if (!message.containsKey("mp_color")) {
-                intent.putExtra("mp_color", getResources().getString(R.color.yupink));
-            }
-
-            super.onMessageReceived(getApplicationContext(), intent);
-        } else if (intercomPushClient.isIntercomPush(message)) {
-            intercomPushClient.handlePush(getApplication(), message);
         }
     }
 }

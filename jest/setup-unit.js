@@ -25,7 +25,7 @@ jest.mock("react-native/Libraries/Components/Touchable/TouchableOpacity.js", () 
   return MockTouchable;
 });
 
-jest.mock("react-native-intercom", () => ({}), { virtual: true });
+jest.mock("@intercom/intercom-react-native", () => ({}), { virtual: true });
 
 jest.mock("@yu-life/react-native-fitkit", () => ({
   // As strange as it is to use moment in a config file, this ensures that at whatever point this
