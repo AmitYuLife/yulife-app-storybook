@@ -240,10 +240,6 @@ dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "com.facebook.react:react-native:0.62.0"  // From node_modules
     
-    // Intercom
-    implementation project(':react-native-intercom')
-    implementation 'io.intercom.android:intercom-sdk:7.1.+'
-    
     // Firebase
     implementation 'com.google.firebase:firebase-core:17.5.0'
     implementation 'com.google.firebase:firebase-messaging:20.2.4'

@@ -1,7 +1,7 @@
 import addDeviceTokenWithClient from "@graphql/device/addDeviceToken.gql";
 import { Platform } from "react-native";
 import DeviceInfo from "react-native-device-info";
-import Intercom from "react-native-intercom";
+import Intercom from "@intercom/intercom-react-native";
 import Mixpanel from "react-native-mixpanel";
 import { call, spawn } from "redux-saga/effects";
 import { addDeviceToken } from "../device.actions";

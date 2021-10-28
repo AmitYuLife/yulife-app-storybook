@@ -2,7 +2,7 @@ import { bottomTabs, MODALS, ROUTES } from "@navigation/constants";
 import * as React from "react";
 import { Alert } from "react-native";
 import DeviceInfo from "react-native-device-info";
-import Intercom from "react-native-intercom";
+import Intercom from "@intercom/intercom-react-native";
 import { Navigation, LayoutComponent } from "react-native-navigation";
 import { useDispatch, useSelector } from "react-redux";
 import { getRouteState } from "@redux/app/app.selectors";
@@ -23,7 +23,7 @@ const MenuContainer = () => {
   const pushNotificationCopy = useSelector(getPushNotificationsCopy);
 
   const handleIntercom = React.useCallback(() => {
-    const callback = () => Intercom.displayConversationsList();
+    const callback = () => Intercom.displayMessenger();
 
     if (permissions.status !== "enabled") {
       showYuModal({
