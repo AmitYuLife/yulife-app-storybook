@@ -56,7 +56,7 @@ const ReferralsPopover: FC<IProps> = ({ onLeftMenuPress }) => {
     if (sessionCount > 1) {
       getReferralOnboardingPopover();
     }
-  }, [sessionCount]);
+  }, []);
 
   useEffect(() => {
     if (showPopover) {
@@ -75,7 +75,7 @@ const ReferralsPopover: FC<IProps> = ({ onLeftMenuPress }) => {
     setPopoverVisible(false);
   }, []);
 
-  if (!popoverVisible) {
+  if (!popoverVisible || !onboardingMessage || !image) {
     return null;
   }
 
