@@ -1,6 +1,6 @@
 import React, { memo } from "react";
 import { ViewStyle } from "react-native";
-import Intercom from "@intercom/intercom-react-native";
+import Intercom from "react-native-intercom";
 import { Style, Colours } from "@styles";
 import Markdown from "../markdown/markdown";
 

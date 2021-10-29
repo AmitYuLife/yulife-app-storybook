@@ -2,7 +2,7 @@ import moment from "moment";
 import React, { useEffect } from "react";
 import { Alert } from "react-native";
 import Config from "react-native-config";
-import Intercom from "@intercom/intercom-react-native";
+import Intercom from "react-native-intercom";
 import { connect } from "react-redux";
 import { GetAllPurchases_getAllPurchases } from "@graphql/_core/schema";
 import { IReduxState } from "@redux/_core/reducers";
@@ -37,7 +37,7 @@ const AviosRewardConfirmedContainer = ({
   const purchaseDate = moment(new Date(createdAt).toISOString()).format("DD MMM YYYY");
 
   const showIntercom = () => {
-    Intercom.displayMessenger();
+    Intercom.displayConversationsList();
   };
 
   const openRewardsPolicy = handleLinkPress(Config.REWARDS_POLICY_URL);

@@ -1740,11 +1740,6 @@
   resolved "https://registry.yarnpkg.com/@icons/material/-/material-0.2.4.tgz#e90c9f71768b3736e76d7dd6783fc6c2afa88bc8"
   integrity sha512-QPcGmICAPbGLGb6F/yNf/KzKqvFx8z5qx3D1yFqVAjoFmXK35EgyW+cJ57Te3CNsmzblwtzakLGFqHPqrfb4Tw==
 
-"@intercom/intercom-react-native@^1.0.5":
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/@intercom/intercom-react-native/-/intercom-react-native-1.0.5.tgz#48a7b702feaf54b033d7abc75f829e8c0e3726be"
-  integrity sha512-Pa8R1x/VWZwdyFsT5Zp1tCsOCR8f06jcO2r36Yo6sYc1w0ZvJkDyH/WvSTGvxxFulW8tQeIhs5q9hXjjQCHPBQ==
-
 "@istanbuljs/load-nyc-config@^1.0.0":
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/@istanbuljs/load-nyc-config/-/load-nyc-config-1.0.0.tgz#10602de5570baea82f8afbfa2630b24e7a8cfe5b"
@@ -14165,6 +14160,11 @@ react-native-in-app-review@^3.1.1:
   resolved "https://registry.yarnpkg.com/react-native-in-app-review/-/react-native-in-app-review-3.1.1.tgz#10a028f15ab6b3b6c6da0a25935b922a9ace7db7"
   integrity sha512-UmwhWfP8mmxLKrKgrw9unjRLMu1pVa+Xe3SqRDoEdvzux+2ZL1OkZDX6s+xKomy7/4vAVNSkDiMQ9LIrVvsqWw==
 
+react-native-intercom@^16.0.0:
+  version "16.0.0"
+  resolved "https://registry.yarnpkg.com/react-native-intercom/-/react-native-intercom-16.0.0.tgz#8eae6cc6e833e581d5da66dda8f54a18bcc346d1"
+  integrity sha512-wbKt5O6thA1v1QwNvFcC02n0MrFYxSATfOamaW705lEJVi6lAmI5+K/16SxS5uxm6BolSqlQLOBqogrduPDctQ==
+
 react-native-iphone-x-helper@^1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/react-native-iphone-x-helper/-/react-native-iphone-x-helper-1.2.1.tgz#645e2ffbbb49e80844bb4cbbe34a126fda1e6772"
@@ -14215,10 +14215,10 @@ react-native-modal@^11.0.2:
     prop-types "^15.6.2"
     react-native-animatable "1.3.3"
 
-react-native-navigation@^7.20.0:
-  version "7.20.0"
-  resolved "https://registry.yarnpkg.com/react-native-navigation/-/react-native-navigation-7.20.0.tgz#aaaf1266c49552170608d2abeacfb7eb2acbd23d"
-  integrity sha512-Pr4/XXT4yvGNStDAuODyPuZ2SgvlEdpYerKuKQ/Ku7ikuKr+La1BEEH9ELcd5mz3ZRXBDWscfnzAksV3hVpvpA==
+react-native-navigation@^7.13.0:
+  version "7.13.0"
+  resolved "https://registry.yarnpkg.com/react-native-navigation/-/react-native-navigation-7.13.0.tgz#3d3d97be1825034effab2a1deb5402a1fe1ba33e"
+  integrity sha512-/mdNuTlz9YVplJRB7Rv3g5cDgHCtw4RyG6ATdvrIJvMJOCU57ivCHuZkZDI/YQv7Txm48XD/EUkNahFFUATFZg==
   dependencies:
     hoist-non-react-statics "3.x.x"
     lodash "4.17.x"

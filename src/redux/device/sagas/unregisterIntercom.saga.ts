@@ -1,4 +1,4 @@
-import Intercom from "@intercom/intercom-react-native";
+import Intercom from "react-native-intercom";
 import { call } from "redux-saga/effects";
 
 export default function* unregisterIntercomSaga() {
