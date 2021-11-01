@@ -1,4 +1,4 @@
-import React, { useContext, useMemo } from "react";
+import React, { useContext, useEffect, useMemo } from "react";
 import { Animated, KeyboardAvoidingView, Platform, StyleSheet, View, ViewStyle } from "react-native";
 import { GetPersonalProductStep_getPersonalProductStep_body as GPPS_Body } from "@graphql/_core/schema";
 import {
@@ -66,6 +66,10 @@ export const Body = (props: Props) => {
   const { headerHeight } = props;
   const headerPadStyle = useMemo(() => ({ height: headerHeight + DEFAULT_EXTRA_TOP_PADDING }), [headerHeight]);
   const { scrollValue } = useContext(ProductStepContext);
+
+  useEffect(() => {
+    scrollValue.setValue(0);
+  }, [props.body]);
 
   return (
     <KeyboardAvoidingView behavior={keyboardAvoidingViewBehavior} style={styles.avoidingViewWrapper}>

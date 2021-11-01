@@ -33,7 +33,7 @@ export const ProductStepCollapsingHeaderProductInfo = memo((props: Props) => {
       outputRange: [-Style.DEVICE_HEIGHT, -Style.DEVICE_HEIGHT, headerHeight],
       extrapolate: "clamp",
     });
-  }, [scrollValue, headerHeight]);
+  }, [scrollValue, headerHeight, safeHeaderHeight]);
 
   const activeCover = useMemo(() => {
     const selectedCover = props.coverList.find((item) => item.percentCovered === dynamicData[props.answerKey]);
