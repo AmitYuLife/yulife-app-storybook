@@ -207,7 +207,12 @@ const WorldRadioButtons = ({ yuWorlds, selectedWorld, handlePress }: WorldRadioB
             style={styles.worldSelector}
             onPress={() => {
               handlePress(v.id);
-              dispatch(logMixpanelEventActionCreator("armour_inspected", { armour_style_chosen: v.id }));
+              dispatch(
+                logMixpanelEventActionCreator("armour_inspected", {
+                  armour_style_chosen: v.id,
+                  location: "buttons_try_on",
+                })
+              );
             }}
             testID={YUMOJI_OUTFIT_RADIO(v.title)}
           >
