@@ -32,7 +32,12 @@ const ActivityList = memo(({ steps, cycling, mindfulness, textColor = Colours.ne
           <StepsIcon color={textColor} />
           <View style={styles.textWrapper}>
             <TextTemplate type="b2" color={textColor} testID={STEPS_COUNT(steps)}>
-              <Counter duration={1200} value={steps} textStyle={counterStyle} />
+              <Counter
+                duration={1200}
+                value={steps}
+                textStyle={counterStyle}
+                textAfterValue={steps === 1 ? "step" : "steps"}
+              />
             </TextTemplate>
           </View>
         </View>
@@ -42,7 +47,7 @@ const ActivityList = memo(({ steps, cycling, mindfulness, textColor = Colours.ne
           <CyclingIcon color={textColor} />
           <View style={styles.textWrapper}>
             <TextTemplate type="b2" color={textColor}>
-              <Counter duration={1200} value={cycling} textStyle={counterStyle} /> km
+              <Counter duration={1200} value={cycling} textStyle={counterStyle} textAfterValue="km" />
             </TextTemplate>
           </View>
         </View>
