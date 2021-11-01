@@ -19,6 +19,8 @@ import {
 import { Yumoji } from "./yumoji";
 
 import { useYumojiFittingRoom, AVATAR_WIDTH, AVATAR_HEIGHT } from "./hooks/useYumojiFittingRoom";
+import { useDispatch } from "react-redux";
+import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 
 enum ArrowDirection {
   LEFT = "left",
@@ -63,6 +65,8 @@ export const YumojiSwipeTryOn = memo(
     const { yumoji, fittingRoom } = useYumojiFittingRoom({ customerProductId, coverType });
     const { yuWorlds = [], selectedYuWorld } = fittingRoom;
 
+    const dispatch = useDispatch();
+
     useEffect(() => {
       setSelectedWorld(selectedYuWorld || YuWorld.forest);
     }, [selectedYuWorld]);
@@ -94,14 +98,19 @@ export const YumojiSwipeTryOn = memo(
           return { ...yumoji, ...acc, yuWorld: yw.id, type: FLAT_LIST_ITEM.YUMOJI };
         }, {} as AvatarPartsWithYuworld);
       });
+
       setAvatars(formattedAvatars);
     }, [yumoji, yuWorlds, selectedWorld]);
 
     const handlePress = (id: YuWorld) => {
-      setSelectedWorld(id);
-
-      if (onChange) {
-        onChange(id);
+      if (selectedWorld !== id) {
+        setSelectedWorld(id);
+        dispatch(
+          logMixpanelEventActionCreator("armour_inspected", { armour_style_chosen: id, location: "swipe_try_on" })
+        );
+        if (onChange) {
+          onChange(id);
+        }
       }
     };
 
