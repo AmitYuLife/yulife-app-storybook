@@ -53,9 +53,14 @@ export interface GetProductDetails_getProductDetails_certificate {
 
 export interface GetProductDetails_getProductDetails {
   /**
-   * Product's ID
+   * -> customer_product_entity.customer_product_id
    */
   productId: string | null;
+  /**
+   * -> product.product_id
+   */
+  productCodeId: string;
+  isPersonalProduct: boolean;
   /**
    * Name e.g. Group Life Insurance
    */

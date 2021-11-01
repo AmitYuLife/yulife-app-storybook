@@ -7,7 +7,7 @@ import { YuScreenProductSlots } from "@graphql/_core/schema";
 import { GQL_QUERY_GET_YU_SCREEN_PRODUCTS_SLOTS } from "@graphql/yuscreen";
 import { YUSCREEN_AVATAR } from "@ids";
 import { AvatarCreationPrompt } from "../../subcomponents";
-import { Text } from "@atoms";
+import { TextTemplate } from "@atoms";
 import { Yumoji, TouchableOpacityWithDelay } from "@molecules";
 import { ItemBottom } from "./item-set/item-bottom";
 import { YuScreenContext } from "../../context/yu-screen.context";
@@ -116,9 +116,11 @@ const _AvatarAndEquipment = () => {
           <View style={styles.itemSetWrapper}>
             <ItemBottom items={yuScreenProductSlots?.getYuScreenProductSlots.bottom} />
           </View>
-          <Text bold={true} style={styles.itemSetText}>
-            Provided by your employer
-          </Text>
+          <View style={styles.itemSetTextWrapper}>
+            <TextTemplate textAlign="center" type="l2b" color={Colours.metallic.m500}>
+              Provided by your employer
+            </TextTemplate>
+          </View>
         </>
       ) : null}
     </View>
@@ -150,13 +152,8 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     marginTop: 26,
   },
-  itemSetText: {
-    color: Colours.metallic.m500,
-    marginTop: 8,
-    textAlign: "center",
-    fontSize: Style.adjust(12),
-    lineHeight: Style.adjust(16),
-    letterSpacing: Style.adjust(0.4),
+  itemSetTextWrapper: {
+    marginTop: Style.adjust(8),
   },
 });
 

@@ -4,30 +4,35 @@ import { View, StyleSheet, ActivityIndicator } from "react-native";
 import { Style, Colours } from "@styles";
 import FastImage from "react-native-fast-image";
 import { ValueDescription } from "@molecules";
+import Markdown from "@components/molecules/markdown/markdown";
 import { CoverType } from "@graphql/_core/schema/globalTypes";
 import { TEXT_TEMPLATE } from "@ids";
 
 interface Props {
   coverType: CoverType;
   productName: string;
+  policyNumber: string;
   benefitValue: string;
   benefitDescription: string;
   yuCoinValue: string;
   yuCoinDescription: string;
   benefitDescriptionLong: string;
   productIconUri?: string;
+  isPersonalProduct?: boolean;
 }
 
 export const Card = memo((props: Props) => {
   const {
     coverType,
     productName,
+    policyNumber,
     productIconUri,
     benefitDescription,
     benefitDescriptionLong,
     benefitValue,
     yuCoinDescription,
     yuCoinValue,
+    isPersonalProduct,
   } = props;
 
   return (
@@ -40,6 +45,7 @@ export const Card = memo((props: Props) => {
         coverType={coverType}
         yuCoinDescription={yuCoinDescription}
         yuCoinValue={yuCoinValue}
+        policyNumber={isPersonalProduct ? policyNumber : ""}
       />
     </ProductColorTheme.CardWrapper>
   );
@@ -123,9 +129,16 @@ const CardBottom = memo(
     yuCoinValue,
     yuCoinDescription,
     benefitDescriptionLong,
+    policyNumber,
   }: Pick<
     Props,
-    "coverType" | "benefitValue" | "benefitDescription" | "yuCoinValue" | "yuCoinDescription" | "benefitDescriptionLong"
+    | "coverType"
+    | "benefitValue"
+    | "benefitDescription"
+    | "yuCoinValue"
+    | "yuCoinDescription"
+    | "benefitDescriptionLong"
+    | "policyNumber"
   >) => (
     <View style={cardBottomStyles.padding}>
       <ProductColorTheme.FlatBackground coverType={coverType} />
@@ -137,11 +150,17 @@ const CardBottom = memo(
         type="yucoin"
       />
       <TextTemplate type="b2">{benefitDescriptionLong}</TextTemplate>
+      {!policyNumber ? null : (
+        <Markdown text={`**Policy Number** ${policyNumber}`} containerStyle={cardBottomStyles.marginTop} />
+      )}
     </View>
   )
 );
 
 const cardBottomStyles = StyleSheet.create({
+  marginTop: {
+    marginTop: Style.adjust(16),
+  },
   marginBottom: {
     marginBottom: Style.adjust(16),
   },
