@@ -2,14 +2,16 @@ import React, { memo, useContext, useMemo } from "react";
 import { ContentItemHeaderBar as GqlHeader } from "@graphql/_core/schema/ContentItemHeaderBar";
 import { ContentItemHeaderBar } from "@components/sdui";
 import { ProductStepContext } from "../product-step.context";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { getSduiLoadingForKey } from "@redux/server-driven-ui/sdui.selectors";
+import { useBackHandler } from "@services/hooks/useBackHandler";
 
 type Props = GqlHeader;
 
 export const ProductStepContentItemHeader = memo(({ onLeftIconPress, onRightIconPress, ...otherProps }: Props) => {
   const { productId, stepId } = useContext(ProductStepContext);
 
+  const dispatch = useDispatch();
   const disabled = useSelector(getSduiLoadingForKey("__disabled"));
 
   const dynamicLeftIconOnPress = useMemo(() => {
@@ -29,6 +31,14 @@ export const ProductStepContentItemHeader = memo(({ onLeftIconPress, onRightIcon
 
     return null;
   }, [onLeftIconPress, productId, stepId, disabled]);
+
+  useBackHandler(() => {
+    if (dynamicLeftIconOnPress) {
+      dispatch(dynamicLeftIconOnPress);
+    }
+
+    return true;
+  });
 
   const dynamicRightIconOnPress = useMemo(() => {
     if (onRightIconPress) {
