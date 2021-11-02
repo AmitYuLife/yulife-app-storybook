@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useState } from "react";
 import { View } from "react-native";
-import { Button, SecondaryButton, Text } from "@atoms";
+import { Button, SecondaryButton, TextTemplate } from "@atoms";
 import styles from "./generic.styles";
 import { GENERIC_SCREEN_HEADING, GENERIC_SCREEN_CTA } from "@ids";
 
@@ -17,6 +17,7 @@ export interface IGenericModalProps {
   ctaLabelSecondary?: ButtonProps["label"];
   isPrimaryLoading?: ButtonProps["isLoading"];
   isSecondaryLoading?: ButtonProps["isLoading"];
+  textAlign?: React.ComponentProps<typeof TextTemplate>["textAlign"];
 }
 
 export default function GenericScreen({
@@ -29,6 +30,7 @@ export default function GenericScreen({
   isPrimaryLoading,
   isSecondaryLoading,
   isPrimaryOnePressOnly = false,
+  textAlign = "center",
 }: IGenericModalProps) {
   const [hasPressedPrimary, setHasTouchedPrimary] = useState(false);
   const onPressPrimary = () => {
@@ -45,10 +47,14 @@ export default function GenericScreen({
   const renderSecondaryButton = onPressSecondary && ctaLabelSecondary;
   return (
     <View style={styles.wrapper}>
-      <Text style={styles.heading} bold={true} testID={GENERIC_SCREEN_HEADING(heading)}>
+      <TextTemplate type="h2" testID={GENERIC_SCREEN_HEADING(heading)}>
         {heading}
-      </Text>
-      <Text style={styles.subheading}>{subheading}</Text>
+      </TextTemplate>
+      <View style={styles.subheadingWrapper}>
+        <TextTemplate textAlign={textAlign} type="b2">
+          {subheading}
+        </TextTemplate>
+      </View>
       {!renderPrimaryButton ? null : (
         <Button
           testID={GENERIC_SCREEN_CTA(ctaLabel)}
