@@ -31,7 +31,8 @@ export const {
     idVisible,
     navigateViaText,
     navigateViaID,
-    textVisible
+    textVisible,
+    slowType
 } = navigation.common
 
 export const {
@@ -207,9 +208,9 @@ export const addPaymentDetails = async () => {
 
     await scrollUntilTextVisible(PRODUCT_STEP_BODY_SCROLL_VIEW, "Add payment details", "down")()
     await navigateViaText("Add payment details")
-    await cardNumberInput.typeText(cardNumber)
-    await cardExpiryInput.typeText(cardExpiry)
-    await cardCVCInput.typeText(cardCVC)
-    await postcodeInput.typeText(postcode)
-    
+    await slowType(cardNumberInput, cardNumber, 500)()
+    await slowType(cardExpiryInput, cardExpiry, 500)()
+    await slowType(cardCVCInput, cardCVC, 500)()
+    await slowType(postcodeInput, postcode, 500)()
+    await tapText("Set up")()
 }

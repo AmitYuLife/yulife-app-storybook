@@ -28,7 +28,7 @@ export const correctPliIntroCopy = (header: string) => async () => {
             await textVisible("Customise your Yumoji’s style and unlock new Power in the Yuniverse.")()
             break;
         case "Owned by you":
-            await textVisible("You keep the YuLife app and this insurance policy even if you change jobs.")()
+            await textVisible("This policy will be owned by you and is not linked to any policies you have with your employer. You keep both the YuLife app and this policy even if you change jobs.")()
             break;
     }
 }
@@ -86,4 +86,12 @@ export const isOnCoverLevelScreen = async () => {
     await expect(element(by.id(PERCENTAGE_COVERED(25)))).toBeVisible()
     await expect(element(by.id(PERCENTAGE_COVERED(50)))).toBeVisible()
     await expect(element(by.id(PERCENTAGE_COVERED(75)))).toBeVisible()
+}
+
+export const canSeeCheckoutTerms = async () => {
+    const aboveStatements = "I have read and agreed to the above statements."
+    const yuLifeTerms = "I have read and agree to the Insurance Terms & Conditions, and YuLife Terms of Business."
+
+    await expect(element(by.text(aboveStatements))).toBeVisible();
+    await expect(element(by.text(yuLifeTerms))).toBeVisible();
 }

@@ -4,6 +4,7 @@ import * as then from "./then"
 import { CUSTOMER_37, AUTH_37 } from "@data";
 import { CONDITION_OPTION, CONTENT_ITEM_INPUT, PRODUCT_STEP_BODY_SCROLL_VIEW, SCROLL_PICKER, SCROLL_PICKER_ACTIVE_ITEM, SELECTED_PACKAGE_TITLE } from "@ids";
 import { addCommasToNumber } from "_utils/appScreens/rewards";
+import { capitalizeFirstLetter } from "@navigation";
 
 
 export const ONBOARDING = async () => {
@@ -420,14 +421,26 @@ export const MAXIMUM_SUM_ASSURED = async () => {
     })
 }
 
-export const CHECKOUT = async () => {
+export const CHECKOUT = async (cover: coverLevel) => {
+    const capitalCover = capitalizeFirstLetter(cover)
+
     When("I add contact details", when.addContactDetails, async () => {
         Then("I should be on the checkout page", then.isOnScreen("Your details"))
         When("I add GP details", when.addGPDetails, async () => {
             Then("I should be on the checkout page", then.isOnScreen("Your details"))
-            // When("I add payment details", when.addPaymentDetails, async () => {
-            //     Then("I should be on the checkout page", then.isOnScreen("Your details"))
-            // })
+            When("I add payment details", when.addPaymentDetails, async () => {
+                Then("I should be on the checkout page", then.isOnScreen("Your details"))
+                When(`I scroll down to 'Buy ${capitalCover} cover'`, when.scrollUntilTextVisible(PRODUCT_STEP_BODY_SCROLL_VIEW, `Buy ${capitalCover} cover`, "down"), async () => {
+                    Then("I should see the checkout T&C checkboxes", then.canSeeCheckoutTerms)
+                    When("I tap the above statements checkbox", when.tapText("I have read and agreed to the above statements."), async () => {
+                        When("I tap the YuLife terms checkbox", when.tapText("I have read and agree to the Insurance Terms & Conditions, and YuLife Terms of Business."), async () => {
+                            When(`I tap Buy ${capitalCover} cover`, when.tapText(`Buy ${capitalCover} cover`), async () => {
+                                Then("I should be on the We'll be in touch screen", then.isOnScreen("We’ll be in touch"))
+                            })
+                        })
+                    })
+                })
+            })
         })
     })
 }

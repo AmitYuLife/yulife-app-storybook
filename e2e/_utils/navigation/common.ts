@@ -281,3 +281,16 @@ export const clearFieldByID = (id: string) => async () => {
     await textField.tap();
     await textField.clearText();
 }
+
+export const slowType = (element: any, string: string, waitTime = 1000) => async () => {
+    const stringArr = string.split('')
+    await element.tap()
+    for (const char of stringArr) {
+        await element.typeText(char)
+        await wait(waitTime)()
+    }
+}
+
+export const capitalizeFirstLetter = (string: string) => {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
