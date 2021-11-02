@@ -187,6 +187,32 @@ function* logEvent(action: SyncAction<string>) {
   }
 }
 
+function* openModal(action: ProductStepAction) {
+  try {
+    const serverPayload = JSON.parse(action.payload.serverPayload);
+
+    const { heading, subheading, ctaLabel, onPress, textAlign } = serverPayload.props;
+
+    yield call(() =>
+      showYuModal({
+        component: {
+          id: MODALS.generic,
+          name: MODALS.generic,
+          passProps: {
+            heading,
+            subheading,
+            ctaLabel,
+            textAlign,
+            onPress: onPress ? onPress : () => Navigation.dismissModal(MODALS.generic),
+          },
+        },
+      })
+    );
+  } catch (error) {
+    // log
+  }
+}
+
 export default [
   takeLeading(SduiActionType.SDUI_ACTION_NAVIGATE_BACK as ActionPattern, navigateBack),
   takeLeading(SduiActionType.SDUI_ACTION_NAVIGATE as ActionPattern, navigateTo),
@@ -195,5 +221,6 @@ export default [
   takeLeading(SduiActionType.SDUI_ACTION_PRODUCT_UNDERWRITING_STEP_POP as ActionPattern, popStep),
   takeLeading(SduiActionType.SDUI_ACTION_PRODUCT_UNDERWRITING_STEP_FINISH as ActionPattern, finishStepJourney),
   takeLeading(SduiActionType.SDUI_ACTION_PRODUCT_UNDERWRITING_STEP_PUSH as ActionPattern, pushStep),
+  takeLeading(SduiActionType.SDUI_ACTION_OPEN_MODAL as ActionPattern, openModal),
   takeEvery(SduiActionType.SDUI_ACTION_LOG_EVENT as ActionPattern, logEvent),
 ];
