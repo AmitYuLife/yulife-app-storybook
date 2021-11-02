@@ -66,7 +66,8 @@ function setDefaultOptions() {
       orientation: ["portrait"],
     },
     modalPresentationStyle: OptionsModalPresentationStyle.fullScreen,
-    popGesture: true,
+    // If we enable popGesture we will need to patch ios native popGesture. It doesn't emit an event, so we don't know when it was done and can't add custom back handling logic to it. :pepe-f:
+    popGesture: false,
     statusBar: {
       drawBehind: false,
       visible: true,
