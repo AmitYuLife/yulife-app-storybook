@@ -10,7 +10,7 @@ Feature("Referrals work as intended", async () => {
     Scenario("As a user with referrals enabled I can view the referrals popover, button and screen", scenario.start, async () => {
         Given("I login as a user with a referrals enabled", given.loginAsUser(CUSTOMER_35, AUTH_35), async () => {
             Then("I should not see the Invite Colleagues popover", then.referralsPopoverNotVisible)
-            When("I close and reopen the app", when.restartWithoutDelete, async () => {
+            When("I close and reopen the app", when.restartWithoutDeleteTwoTimes, async () => {
                 Then("I should see the Invite a colleague popover", then.referralsPopoverVisible)
                 When("I tap the menu icon to close the popover", when.tapID(NAV_BAR("yucoin")), async () => {
                     Then("I should no longer see the the popover", then.referralsPopoverNotVisible)
@@ -44,7 +44,7 @@ Feature("Referrals work as intended", async () => {
     Scenario("As a user with referrals enabled I can only see the popover the second time I log in", scenario.start, async () => {
         Given("I login as a user with a referrals enabled", given.loginAsUser(CUSTOMER_35, AUTH_35), async () => {
             Then("I should not see the Invite Colleagues popover", then.referralsPopoverNotVisible)
-                When("I close and reopen the app", when.restartWithoutDelete, async () => {
+                When("I close and reopen the app", when.restartWithoutDeleteTwoTimes, async () => {
                 Then("I should see the Invite Colleagues popover", then.referralsPopoverVisible)
                 When("I tap the menu icon to close the popover", when.tapID(NAV_BAR("yucoin")), async () => {
                     Then("I should no longer see the the popover", then.referralsPopoverNotVisible)
@@ -73,7 +73,7 @@ Feature("Referrals work as intended", async () => {
     Scenario("As a user with referrals not enabled I cannot see anything to do with referrals", scenario.start, async () => {
         Given("I login as a user with a referrals not enabled", given.loginAsUser(CUSTOMER_1, AUTH_1), async () => {
             Then("I should not see the Invite Colleagues popover", then.referralsPopoverNotVisible)
-            When("I close and reopen the app", when.restartWithoutDelete, async () => {
+            When("I close and reopen the app", when.restartWithoutDeleteTwoTimes, async () => {
                 Then("I should not see the Invite Colleagues popover", then.referralsPopoverNotVisible)
                 When("I go to the menu", when.tapID(MENU_ICON), async () => {
                     Then("I should not see the invite button", then.textNotVisible("Invite a colleague"))
