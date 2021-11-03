@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { FullScreenSwiper } from "@organisms/full-screen-swiper/full-screen-swiper";
 import { ContentItemFullScreenSwiper } from "@graphql/_core/schema/ContentItemFullScreenSwiper";
 import { ProductStepContext } from "../product-step.context";
+import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 
 type Props = ContentItemFullScreenSwiper;
 export const ProductStepFullScreenSwiper = memo(({ button, close, ...props }: Props) => {
@@ -29,7 +30,14 @@ export const ProductStepFullScreenSwiper = memo(({ button, close, ...props }: Pr
       },
       close: {
         ...close,
-        onPress: () => {
+        onPress: (currentIndex: number) => {
+          dispatch(
+            logMixpanelEventActionCreator("modal_close", {
+              previous_modal_index: currentIndex,
+              previous_modal_name: items[currentIndex]?.heading,
+            })
+          );
+
           dispatch({
             type: close.onPress.type,
           });

@@ -12,14 +12,15 @@ interface Props {
     onPress: () => void;
   };
   close: {
-    onPress: () => void;
+    onPress: (currentIndex: number) => void;
     icon: {
       uri: string;
     };
   };
+  currentIndex: number;
 }
 
-export const Dismiss = ({ button, close }: Props) => {
+export const Dismiss = ({ button, close, currentIndex }: Props) => {
   return (
     <>
       {!button ? null : (
@@ -28,7 +29,7 @@ export const Dismiss = ({ button, close }: Props) => {
         </View>
       )}
       {!close ? null : (
-        <TouchableOpacityWithDelay style={styles.closeIconWrapper} onPress={close.onPress}>
+        <TouchableOpacityWithDelay style={styles.closeIconWrapper} onPress={() => close.onPress(currentIndex)}>
           <Image
             suppressLoadingUi={true}
             width={Style.adjust(16)}
