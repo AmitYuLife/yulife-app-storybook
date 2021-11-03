@@ -6,6 +6,8 @@ import { ProgressItems } from "./progress-items";
 import { Controller } from "./controller";
 import { Page } from "./page";
 import { Dismiss } from "./dismiss";
+import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
+import { useDispatch } from "react-redux";
 
 export interface IPageItem {
   heading: string;
@@ -28,7 +30,7 @@ interface Props {
       id: string;
       uri: string;
     };
-    onPress: () => void;
+    onPress: (currentIndex: number) => void;
   };
   items: Array<IPageItem>;
   dismissMinVisibleIndex: number;
@@ -40,15 +42,12 @@ interface Props {
 }
 
 export const FullScreenSwiper = memo((props: Props) => {
+  const dispatch = useDispatch();
   const { items, title, button, close, ctaMinVisibleIndex, dismissMinVisibleIndex, autoPlaySpeedMs } = props;
   const animationRef = useRef(null as ReturnType<typeof Animated.timing>);
-  const {
-    activeIndex,
-    setActiveIndex,
-    userInteractionToggler,
-    setUserInteractionToggler,
-    listRef,
-  } = useScrollHandler();
+  const { activeIndex, setActiveIndex, userInteractionToggler, setUserInteractionToggler, listRef } = useScrollHandler(
+    items
+  );
 
   const { width, interpolatedValue } = useMemo(() => {
     const width = (Style.DEVICE_WIDTH - Style.adjust(24)) / items.length;
@@ -62,7 +61,7 @@ export const FullScreenSwiper = memo((props: Props) => {
   ]);
 
   const handleChangeActiveIndex = useCallback(
-    (increment: number) => () => {
+    (increment: number, autoMove: boolean = false) => () => {
       const min = 0;
       const max = items.length - 1;
       let incremented = 0;
@@ -71,11 +70,25 @@ export const FullScreenSwiper = memo((props: Props) => {
         incremented = activeIndex + increment;
 
         if (incremented < min) {
-          return min;
+          incremented = min;
         }
 
         if (incremented > max) {
-          return activeIndex;
+          incremented = activeIndex;
+        }
+
+        if (activeIndex !== incremented) {
+          dispatch(
+            logMixpanelEventActionCreator("modal_movement", {
+              new_modal_name: items[incremented].heading,
+              previous_modal_name: items[activeIndex].heading,
+              interaction: !autoMove,
+              elapsed: autoMove,
+              direction: increment > 0 ? "Forwards" : "Backwards",
+              new_modal_index: incremented,
+              previous_modal_index: activeIndex,
+            })
+          );
         }
 
         return incremented;
@@ -102,7 +115,7 @@ export const FullScreenSwiper = memo((props: Props) => {
           userInteractionToggler={userInteractionToggler}
           activeIndex={activeIndex}
           length={items.length}
-          onChangeActiveIndex={handleChangeActiveIndex(1)}
+          onChangeActiveIndex={handleChangeActiveIndex(1, true)}
           width={width}
           interpolatedValue={interpolatedValue}
           animationRef={animationRef}
@@ -115,6 +128,7 @@ export const FullScreenSwiper = memo((props: Props) => {
           </TextTemplate>
         </View>
         <Dismiss
+          currentIndex={activeIndex}
           button={activeIndex < ctaMinVisibleIndex ? null : button}
           close={activeIndex < dismissMinVisibleIndex ? null : close}
         />
@@ -150,12 +164,20 @@ const styles = StyleSheet.create({
   } as ViewStyle,
 });
 
-function useScrollHandler() {
+function useScrollHandler(items: IPageItem[]) {
+  const dispatch = useDispatch();
   const [activeIndex, setActiveIndex] = useState(0);
   const [userInteractionToggler, setUserInteractionToggler] = useState(false);
   const listRef = useRef(null as RNFlatList);
 
   useEffect(() => {
+    dispatch(
+      logMixpanelEventActionCreator("modal_viewed", {
+        name: items[activeIndex].heading,
+        modal_index: activeIndex,
+      })
+    );
+
     const offset = Style.DEVICE_WIDTH * activeIndex;
 
     listRef.current.scrollToOffset({ offset, animated: true });
