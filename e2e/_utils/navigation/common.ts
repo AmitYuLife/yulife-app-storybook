@@ -294,3 +294,11 @@ export const slowType = (element: any, string: string, waitTime = 1000) => async
 export const capitalizeFirstLetter = (string: string) => {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
+
+export const restartWithoutDeleteTwoTimes = async () => {
+    await device.terminateApp();
+    await device.launchApp({ delete: false, });
+    await device.terminateApp();
+    await device.launchApp({ delete: false, });
+    
+}

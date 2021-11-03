@@ -23,7 +23,8 @@ export const {
     wait,
     clearFieldByID,
     restartWithData,
-    restartWithoutDelete
+    restartWithoutDelete,
+    restartWithoutDeleteTwoTimes
 } = navigation.common
 
 export const {
