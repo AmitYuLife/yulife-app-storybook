@@ -32,14 +32,6 @@ export const ProductStepContentItemHeader = memo(({ onLeftIconPress, onRightIcon
     return null;
   }, [onLeftIconPress, productId, stepId, disabled]);
 
-  useBackHandler(() => {
-    if (dynamicLeftIconOnPress) {
-      dispatch(dynamicLeftIconOnPress);
-    }
-
-    return true;
-  });
-
   const dynamicRightIconOnPress = useMemo(() => {
     if (onRightIconPress) {
       if (disabled) {
@@ -57,6 +49,22 @@ export const ProductStepContentItemHeader = memo(({ onLeftIconPress, onRightIcon
 
     return null;
   }, [onRightIconPress, productId, stepId, disabled]);
+
+  useBackHandler(() => {
+    // go back
+    if (dynamicLeftIconOnPress) {
+      dispatch(dynamicLeftIconOnPress);
+      return true;
+    }
+
+    // if can't go back, close
+    if (dynamicRightIconOnPress) {
+      dispatch(dynamicRightIconOnPress);
+    }
+
+    // if neither - :pepe-f:
+    return true;
+  });
 
   return (
     <ContentItemHeaderBar
