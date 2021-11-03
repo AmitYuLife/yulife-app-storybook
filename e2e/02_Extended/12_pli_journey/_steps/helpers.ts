@@ -421,8 +421,9 @@ export const MAXIMUM_SUM_ASSURED = async () => {
     })
 }
 
-export const CHECKOUT = async (cover: coverLevel) => {
+export const CHECKOUT = async (cover: coverLevel, isCovered: boolean) => {
     const capitalCover = capitalizeFirstLetter(cover)
+    const nextScreen = isCovered ? "We’ve got you covered." : "We’ll be in touch"
 
     When("I add contact details", when.addContactDetails, async () => {
         Then("I should be on the checkout page", then.isOnScreen("Your details"))
@@ -433,9 +434,11 @@ export const CHECKOUT = async (cover: coverLevel) => {
                 When(`I scroll down to 'Buy ${capitalCover} cover'`, when.scrollUntilTextVisible(PRODUCT_STEP_BODY_SCROLL_VIEW, `Buy ${capitalCover} cover`, "down"), async () => {
                     Then("I should see the checkout T&C checkboxes", then.canSeeCheckoutTerms)
                     When("I tap the above statements checkbox", when.tapText("I have read and agreed to the above statements."), async () => {
-                        When("I tap the YuLife terms checkbox", when.tapText("I have read and agree to the Insurance Terms & Conditions, and YuLife Terms of Business."), async () => {
-                            When(`I tap Buy ${capitalCover} cover`, when.tapText(`Buy ${capitalCover} cover`), async () => {
-                                Then("I should be on the We'll be in touch screen", then.isOnScreen("We’ll be in touch"))
+                        When("I tap the prices can change textbox", when.tapText("I understand that the monthly price may be subject to change once my medical information has been assessed and that I will receive a final price before I commit."), async () => {
+                            When("I tap the YuLife terms checkbox", when.tapText("I have read and agree to the Insurance Terms & Conditions, and YuLife Terms of Business."), async () => {
+                                When(`I tap Buy ${capitalCover} cover`, when.tapText(`Buy ${capitalCover} cover`), async () => {
+                                    Then(`I should be on the ${nextScreen} screen`, then.isOnScreen(nextScreen))
+                                })
                             })
                         })
                     })

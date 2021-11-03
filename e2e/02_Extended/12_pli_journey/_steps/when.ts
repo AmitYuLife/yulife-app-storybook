@@ -171,11 +171,11 @@ export const tapAnswerOnConditionScreen = (screen: Screen, answer: YesNo) => asy
 
 export const addContactDetails = async () => {
     await navigateViaText("Add contact details")
-    await typeViaID(CONTENT_ITEM_INPUT("contactDetailsAddress1"), "Harry's House")()
-    await typeViaID(CONTENT_ITEM_INPUT("contactDetailsTown"), "London")()
-    await typeViaID(CONTENT_ITEM_INPUT("contactDetailsPostcode"), "HA9 7FN")()
-    await typeViaID(CONTENT_ITEM_INPUT("contactDetailsEmail"), CUSTOMER_37.data.email)()
-    await typeViaID(CONTENT_ITEM_INPUT("contactDetailsPhone"), "07123456789")()
+    await typeViaID(CONTENT_ITEM_INPUT("contactDetailsAddress1"), "Harry's House\n")()
+    await typeViaID(CONTENT_ITEM_INPUT("contactDetailsTown"), "London\n")()
+    await typeViaID(CONTENT_ITEM_INPUT("contactDetailsPostcode"), "HA9 7FN\n")()
+    await typeViaID(CONTENT_ITEM_INPUT("contactDetailsEmail"), `${CUSTOMER_37.data.email}\n`)()
+    await typeViaID(CONTENT_ITEM_INPUT("contactDetailsPhone"), "07123456789\n")()
     await tapText("Continue")()
 }
 
@@ -189,17 +189,17 @@ export const addGPDetails = async () => {
     await navigateViaText(consentText)
     await navigateViaText(reportText)
     await navigateViaText("Continue")
-    await typeViaID(SEARCH_INPUT, "CT2 8SG")()
+    await typeViaID(SEARCH_INPUT, "CT2 8SG\n")()
     await tapText("London Road Surgery")()
     await tapText("Dr. London Road Surgery")()
     await navigateViaText("Continue")
 }
 
 export const addPaymentDetails = async () => {
-    const cardNumber = "4242424242424242"
-    const cardExpiry = "424"
-    const cardCVC = "242"
-    const postcode = "42424"
+    const cardNumber = "4242424242424242\n"
+    const cardExpiry = "424\n"
+    const cardCVC = "242\n"
+    const postcode = "42424\n"
 
     const cardNumberInput = element(by.type("Stripe.STPCardNumberInputTextField"))
     const cardExpiryInput = element(by.type("Stripe.STPCardExpiryInputTextField"))
