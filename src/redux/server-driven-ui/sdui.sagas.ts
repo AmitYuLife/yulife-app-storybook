@@ -3,6 +3,7 @@ import { MODALS } from "@navigation/constants";
 import { showYuModal, TAB_ROUTES } from "@navigation/root";
 import { handleLinkPress } from "@services/app-link";
 import { Navigation } from "react-native-navigation";
+import Intercom from "react-native-intercom";
 import { call, select, ActionPattern, takeEvery, takeLeading, put, delay } from "redux-saga/effects";
 import Logger from "@services/logging/logger";
 import { SyncAction } from "@redux/_core/types";
@@ -118,6 +119,14 @@ function* openUrl({ payload }: ProductStepAction) {
   }
 }
 
+function* openChat() {
+  try {
+    yield call(() => Intercom.displayConversationsList());
+  } catch (e) {
+    // shrug (log)
+  }
+}
+
 // TODO: consider splitting these into sdui, underwriting
 
 function* popStep(action: ProductStepAction) {
@@ -218,6 +227,7 @@ export default [
   takeLeading(SduiActionType.SDUI_ACTION_NAVIGATE as ActionPattern, navigateTo),
   takeLeading(SduiActionType.SDUI_ACTION_SET_BOTTOM_TAB as ActionPattern, setBottomTab),
   takeLeading(SduiActionType.SDUI_ACTION_OPEN_URL as ActionPattern, openUrl),
+  takeLeading(SduiActionType.SDUI_ACTION_OPEN_SUPPORT_CHAT as ActionPattern, openChat),
   takeLeading(SduiActionType.SDUI_ACTION_PRODUCT_UNDERWRITING_STEP_POP as ActionPattern, popStep),
   takeLeading(SduiActionType.SDUI_ACTION_PRODUCT_UNDERWRITING_STEP_FINISH as ActionPattern, finishStepJourney),
   takeLeading(SduiActionType.SDUI_ACTION_PRODUCT_UNDERWRITING_STEP_PUSH as ActionPattern, pushStep),
