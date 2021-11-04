@@ -85,7 +85,7 @@ const YumojiBuilderItemList: FC<IProps> = ({ itemList, updateUserAvatar, selecte
     ({ item }: { item: ItemListItems }) => (
       <YumojiItem loading={itemList.loading} item={item} onItemPress={onItemPress} />
     ),
-    []
+    [itemList.loading, onItemPress]
   );
 
   const listHeaderComponent = useMemo(
