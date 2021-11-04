@@ -14,6 +14,9 @@ export function showOverlayWithChild(children: ReactElement) {
         overlay: {
           interceptTouchOutside: true,
         },
+        statusBar: {
+          visible: false,
+        },
       },
       passProps: {
         children,
