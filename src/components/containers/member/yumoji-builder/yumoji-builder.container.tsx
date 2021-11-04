@@ -148,14 +148,17 @@ const YumojiBuilderContainer: FC<IProps> = ({ heading }) => {
   const backButtonHandler = useCallback(() => {
     if (!isBackPressed.current) {
       isBackPressed.current = true;
-      showExitModal(isBackPressed);
+      if (state.hasUnsavedChanges) {
+        showExitModal(isBackPressed);
+        return true;
+      }
 
-      return true;
+      return false;
     }
 
     // never
     return false;
-  }, [isBackPressed]);
+  }, [isBackPressed, state.hasUnsavedChanges]);
 
   useBackHandler(backButtonHandler);
 
