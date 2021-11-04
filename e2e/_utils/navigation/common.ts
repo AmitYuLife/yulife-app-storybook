@@ -298,6 +298,7 @@ export const capitalizeFirstLetter = (string: string) => {
 export const restartWithoutDeleteTwoTimes = async () => {
     await device.terminateApp();
     await device.launchApp({ delete: false, });
+    await wait(2000)()
     await device.terminateApp();
     await device.launchApp({ delete: false, });
     
