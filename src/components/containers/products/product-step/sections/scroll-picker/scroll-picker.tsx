@@ -57,7 +57,10 @@ export const ProductStepScrollPicker = () => {
               setScrollPicker(null);
               setState({});
             }}
-            onCancel={() => setScrollPicker(null)}
+            onCancel={() => {
+              setScrollPicker(null);
+              setState({});
+            }}
             confirmLabel={scrollPicker.pickerConfirmButtonLabel}
             cancelLabel={scrollPicker.pickerCancelButtonLabel}
           />
