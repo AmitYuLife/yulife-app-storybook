@@ -1,6 +1,7 @@
 import { ReactElement } from "react";
 import { Navigation } from "react-native-navigation";
 import { MODALS } from "@navigation/constants";
+import { drawBehind } from "@navigation/root";
 
 export function showOverlayWithChild(children: ReactElement) {
   return Navigation.showOverlay({
@@ -15,7 +16,7 @@ export function showOverlayWithChild(children: ReactElement) {
           interceptTouchOutside: true,
         },
         statusBar: {
-          visible: false,
+          drawBehind,
         },
       },
       passProps: {
