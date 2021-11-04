@@ -13,7 +13,6 @@ import { Style } from "@styles";
 import { useLazyQuery } from "@apollo/react-hooks";
 import Logger from "@services/logging/logger";
 import { getRouteState } from "@redux/app/app.selectors";
-import { Navigation } from "react-native-navigation";
 
 interface IProps {
   buffTypes: BuffArea[];
@@ -38,7 +37,7 @@ const ActiveBuffsButton = ({ buffTypes, style }: IProps) => {
     }
   }, [getActiveBuffs, showBuffs, buffTypes]);
 
-  const onPress = useCallback(async () => {
+  const onPress = useCallback(() => {
     const active_boosts = data?.getActiveBuffsOverlay.equipment
       .map((eq) => eq.buffs)
       .reduce<string[]>((agg, current) => {
@@ -50,7 +49,6 @@ const ActiveBuffsButton = ({ buffTypes, style }: IProps) => {
       location,
       active_boosts,
     });
-    await Navigation.dismissAllModals();
     showOverlayWithChild(<ActiveBuffsModal activeBuffs={data?.getActiveBuffsOverlay} />);
   }, [data, location]);
 
