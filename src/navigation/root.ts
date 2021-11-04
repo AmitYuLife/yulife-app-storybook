@@ -255,7 +255,7 @@ export async function setUnauthenticatedRoot(passProps: any = {}) {
   });
 }
 
-const drawBehind = Platform.OS === "android" && Platform.Version >= 30;
+export const drawBehind = Platform.OS === "android" && Platform.Version >= 30;
 export const showYuModal = async <P>(props: Layout<P>) => {
   Navigation.showModal({
     ...props,
