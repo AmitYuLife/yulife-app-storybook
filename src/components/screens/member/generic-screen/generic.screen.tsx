@@ -47,7 +47,7 @@ export default function GenericScreen({
   const renderSecondaryButton = onPressSecondary && ctaLabelSecondary;
   return (
     <View style={styles.wrapper}>
-      <TextTemplate type="h2" testID={GENERIC_SCREEN_HEADING(heading)}>
+      <TextTemplate textAlign={textAlign} type="h2" testID={GENERIC_SCREEN_HEADING(heading)}>
         {heading}
       </TextTemplate>
       <View style={styles.subheadingWrapper}>
