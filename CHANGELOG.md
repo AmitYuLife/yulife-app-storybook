@@ -7,6 +7,53 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.15.0] - 2021-11-04
+
+### Features
+
+- Feature XSE-469: Update Generic Modal to use TextTemplate
+
+### Bugfixes
+
+- Bugfix: Buffs popover twitch
+- Bugfix: Yumoji Builder - do not pre-select a gender when creating new yumoji
+- Bugfix: Center GenericScreen modal heading by default
+- Bugfix XSE-413: Fix SelectPackage screen CollapsingHeader being visible on mount
+- Bugfix: Add steps text on activity list
+- Bugfix: backHandler on productStep
+
+### Tasks
+
+- Task: Full screen swiper events
+- Task XSE-164: Product details screen PLI updates
+
+### Chores
+
+- Chore: update uat and prod stripe keys
+- Chore: display intercom chat sd action
+- Chore: disable ios popGesture
+- Chore: Mixpanel event on swipe yumoji try on
+- (origin/revert-e95d7b17) Revert "Merge branch 'chore/intercom-upgrade' into 'develop'"
+- Chore: upgrade intercom to latest sdk
+- Chore: try catch link openings
+
+### Extra
+
+- Hotfix: reset state when cancelling scroll picker
+- Fix/buffs popover modals dismiss
+- Fix: dismiss previous modals on buffs overlay
+- it fails on a scenario adding a little wait time betweet restart app 2 times
+- Detox: Added step to dismiss keyboard that shows on bitrise
+- see if works
+- Hotfix: product-step header
+- Detox: Checkout stage
+- prevent requery of referral popover && add more guards for render
+- Detox: Fix PLI fails on bitrise
+- Detox: PLI Happy - Male smoker / existing PLI / max sum assured
+- Scroll to and tap Continue
+- Detox: PLI steps
+- added a tiny check to make sure it changed screen
+
 ## [3.14.0] - 2021-10-22
 
 ### Bugfixes
