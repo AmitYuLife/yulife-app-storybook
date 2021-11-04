@@ -94,10 +94,11 @@ export const reducer = (state: IState, action: IAction) => {
   switch (action.type) {
     case ActionTypes.INITIAL_STATE: {
       const parts = transformParts(action.payload);
+      const bodyType = getBodyTypeFromParts(parts);
       return {
         ...state,
         parts,
-        bodyType: parts?.body?.partId?.includes("female") ? AvatarBodyType.female : AvatarBodyType.male,
+        bodyType,
       };
     }
 
@@ -185,4 +186,16 @@ export const reducer = (state: IState, action: IAction) => {
       throw new Error();
     }
   }
+};
+
+export const getBodyTypeFromParts = (parts: IParts) => {
+  if (!parts?.body?.partId) {
+    return AvatarBodyType.neutral;
+  }
+
+  if (parts.body.partId.includes("female")) {
+    return AvatarBodyType.female;
+  }
+
+  return AvatarBodyType.male;
 };
