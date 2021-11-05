@@ -2,15 +2,15 @@ import React, { memo, useCallback } from "react";
 import { View, StyleSheet, ViewStyle, TextStyle } from "react-native";
 import { Text, Button } from "@atoms";
 import { Colours, Style } from "@styles";
-import { navigateToAvatarCreationScreen } from "../navigation/navigateToAvatarCreationScreen";
+import { navigateToYumojiBuilder } from "../navigation/navigateToYumojiBuilder";
 import { GET_STARTED_BUTTON, EMPTY_YUSCREEN_COPY } from "@ids";
 import LinearGradient from "react-native-linear-gradient";
 
-const CREATE_AVATAR_CAPTION_COPY = "Build your Yumoji to unlock equipment and earn 100 YuCoin!";
-const CREATE_AVATAR_CTA_COPY = "Create your Yumoji";
+const CREATE_YUMOJI_CAPTION_COPY = "Build your Yumoji to unlock equipment and earn 100 YuCoin!";
+const CREATE_YUMOJI_CTA_COPY = "Create your Yumoji";
 
-const _AvatarCreationPrompt = () => {
-  const createYumoji = useCallback(() => navigateToAvatarCreationScreen(), []);
+const _YumojiCreationPrompt = () => {
+  const createYumoji = useCallback(() => navigateToYumojiBuilder({}), []);
 
   return (
     <View style={styles.wrapper}>
@@ -21,9 +21,9 @@ const _AvatarCreationPrompt = () => {
       />
       <View style={styles.body}>
         <Text testID={EMPTY_YUSCREEN_COPY} bold={true} style={styles.promptLabel}>
-          {CREATE_AVATAR_CAPTION_COPY}
+          {CREATE_YUMOJI_CAPTION_COPY}
         </Text>
-        <Button testID={GET_STARTED_BUTTON} label={CREATE_AVATAR_CTA_COPY} onPress={createYumoji} />
+        <Button testID={GET_STARTED_BUTTON} label={CREATE_YUMOJI_CTA_COPY} onPress={createYumoji} />
       </View>
     </View>
   );
@@ -57,4 +57,4 @@ const styles = StyleSheet.create({
   } as TextStyle,
 });
 
-export const AvatarCreationPrompt = memo(_AvatarCreationPrompt);
+export const YumojiCreationPrompt = memo(_YumojiCreationPrompt);

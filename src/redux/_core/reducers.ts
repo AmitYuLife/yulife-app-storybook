@@ -6,7 +6,6 @@ import dailyMeditationReducer, {
 
 import appReducer, { IAppStore, getInitialState as getInitialAppState } from "../app/app.reducer";
 import coinsReducer, { ICoinsStore, getInitialState as getInitialCoinsState } from "../coins/coins.reducer";
-import avatarReducer, { IAvatarStore, getInitialMaleState } from "../avatar/avatar.reducer";
 import copyReducer, { ICopyStore, getInitialState as getInitialCopyState } from "../copy/copy.reducer";
 import dailyStepsReducer, {
   IDailyStepsStore,
@@ -42,7 +41,6 @@ export interface IReduxState {
   user: IUserStore;
   copy: ICopyStore;
   dailyMeditation: IDailyMeditationStore;
-  avatar: IAvatarStore;
   sdui: ISduiStore;
 }
 
@@ -60,7 +58,6 @@ export const initialState: IReduxState = {
   user: getInitialUserState(),
   copy: getInitialCopyState(),
   dailyMeditation: getInitialDailyMeditation(),
-  avatar: getInitialMaleState(),
   sdui: getInitialSduiState(),
 };
 
@@ -81,7 +78,6 @@ const combinedReducers = combineReducers({
   user: userReducer,
   copy: copyReducer,
   dailyMeditation: dailyMeditationReducer,
-  avatar: avatarReducer,
   sdui: sduiReducer,
 });
 

@@ -1,6 +1,5 @@
 import React, { FC, useCallback, useEffect, useReducer, useRef } from "react";
 import { useMutation, useLazyQuery, useQuery } from "@apollo/react-hooks";
-import { AvatarBuilderHeading } from "@components/screens/member/yu-screen/avatar-builder/avatar.types";
 import { Loading } from "@atoms";
 import { AvatarBodyType } from "@graphql/_core/schema/globalTypes";
 import YumojiBuilder from "@components/screens/member/yu-screen/yumoji-builder/yumoji-builder";
@@ -17,7 +16,7 @@ import {
   GetYumojiBuilderItemsForCategory,
   GetYumojiBuilderItemsForCategoryVariables,
 } from "@graphql/_core/schema";
-import SelectBody from "@components/screens/member/yu-screen/select-body-new/select-body";
+import SelectBody from "@components/screens/member/yu-screen/select-body/select-body";
 import { GQL_MUTATION_UPDATE_AVATAR, UpdateAvatarMutationTuple } from "@graphql/yuscreen/updateAvatar.gql";
 import { showAwardModal, returnToYuScreen, showExitModal } from "./yumoji-builder.helpers";
 import Logger from "@services/logging/logger";
@@ -28,7 +27,7 @@ import { useDispatch } from "react-redux";
 import { refreshTotalCoins } from "@redux/coins/coins.actions";
 
 interface IProps {
-  heading: AvatarBuilderHeading;
+  heading: string;
 }
 
 const YumojiBuilderContainer: FC<IProps> = ({ heading }) => {

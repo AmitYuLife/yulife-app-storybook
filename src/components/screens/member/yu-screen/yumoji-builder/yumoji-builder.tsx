@@ -1,6 +1,5 @@
 import React, { FC, useCallback, useMemo } from "react";
 import { StyleSheet, View } from "react-native";
-import { AvatarBuilderHeading } from "../avatar-builder/avatar.types";
 import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
 import { Colours, Style } from "@styles";
 import YumojiBuilderCategories from "./components/yumoji-builder-categories";
@@ -15,7 +14,7 @@ interface IProps {
   state: IState;
   dispatch: IDispatch;
   onBackPressed: () => void;
-  heading: AvatarBuilderHeading;
+  heading: string;
   updateAvatar: () => void;
 }
 

@@ -48,10 +48,6 @@ export default [
     component: require("../components/containers/member/yu/yu-product-survey").default,
   },
   {
-    name: ROUTES.avatarCreation,
-    component: require("../components/containers/member/avatar-creation/avatar-creation.container").default,
-  },
-  {
     name: ROUTES.yumojiBuilder,
     component: require("../components/containers/member/yumoji-builder/yumoji-builder.container").default,
   },

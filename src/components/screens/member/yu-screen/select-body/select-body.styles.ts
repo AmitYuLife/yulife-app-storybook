@@ -5,7 +5,7 @@ export default StyleSheet.create({
   wrapper: {
     flex: 1,
     backgroundColor: Colours.neutral.white,
-    paddingHorizontal: Style.adjust(32),
+    paddingHorizontal: Style.adjust(16),
   } as ViewStyle,
   elementWrapper: {
     flex: 1,
