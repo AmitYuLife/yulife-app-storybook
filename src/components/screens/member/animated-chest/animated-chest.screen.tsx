@@ -47,6 +47,7 @@ export default class AnimatedChestScreen extends React.PureComponent<IProps> {
 
   public render() {
     const { ctaLabel, heading, isLocked, onPressCta, onPressCtaSecondary } = this.props;
+
     return (
       <View style={styles.wrapper}>
         <View style={styles.imageWrapper}>

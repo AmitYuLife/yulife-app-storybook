@@ -1,6 +1,18 @@
 import { StyleSheet, TextStyle, ViewStyle } from "react-native";
 import { Style } from "@styles";
 
+const offSet = () => {
+  if (Style.DEVICE_WIDTH === 360) {
+    return 19;
+  }
+
+  if (Style.DEVICE_WIDTH === 320) {
+    return 10;
+  }
+
+  return 14;
+};
+
 export default StyleSheet.create({
   chestBaseWrapper: {
     marginTop: "auto",
@@ -50,7 +62,7 @@ export default StyleSheet.create({
   activeBuffsButton: {
     position: "absolute",
     top: Style.adjust(54),
-    right: Style.adjust(128),
+    right: Style.DEVICE_WIDTH / 3 - offSet(),
     shadowColor: "#000000",
     shadowOffset: { width: Style.adjust(2), height: Style.adjust(2) },
     shadowOpacity: 0.16,
