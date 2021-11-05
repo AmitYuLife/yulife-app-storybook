@@ -1,11 +1,11 @@
 import { ROUTES } from "@navigation/constants";
 import { Navigation } from "react-native-navigation";
 
-interface INavigateToAvatarCreationScreen {
+interface INavigateToYumojiBuilder {
   heading?: string;
 }
 
-export function navigateToAvatarCreationScreen(args?: INavigateToAvatarCreationScreen) {
+export function navigateToYumojiBuilder(args?: INavigateToYumojiBuilder) {
   const { heading = "Create your Yumoji" } = args || {};
 
   Navigation.push(ROUTES.yuScreen, {

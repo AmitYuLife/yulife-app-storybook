@@ -7,7 +7,6 @@ import {
   GetYumojiBuilderItemsForCategory_getYumojiBuilderItemsForCategory_items_parts as YumojiBuilderParts,
   GetYumojiBuilderItemsForCategory_getYumojiBuilderItemsForCategory as YumojiBuilderItemsForCategory,
 } from "@graphql/_core/schema";
-import { loadingItemData } from "../../avatar-builder/avatar-builder.helper";
 import { itemHeight, ItemListItems, YumojiItem } from "./yumoji-item";
 import { YumojiPartStatus } from "@graphql/_core/schema/globalTypes";
 import { showGenericModal } from "@navigation/utils";
@@ -43,6 +42,10 @@ const getItemLayout = (_: unknown, index: number) => ({
   offset: itemHeight * Math.floor(index / NUM_COLUMNS),
   index,
 });
+
+const loadingItemData = Array(12)
+  .fill(0)
+  .map((_, index) => ({ bodyElements: null, parts: [{ partId: `loading_item_${index}` }] }));
 
 const YumojiBuilderItemList: FC<IProps> = ({ itemList, updateUserAvatar, selectedCategoryId, emptyMessage }) => {
   const flatListRef = useRef<FlatList | null>(null);

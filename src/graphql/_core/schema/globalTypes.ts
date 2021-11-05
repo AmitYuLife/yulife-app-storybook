@@ -249,24 +249,6 @@ export interface ProductMetadata {
   avios?: AviosMetadata | null;
 }
 
-export interface UserAvatarInput {
-  head?: UserAvatarInputPart | null;
-  eyes?: UserAvatarInputPart | null;
-  hair?: UserAvatarInputPart | null;
-  body?: UserAvatarInputPart | null;
-  pants?: UserAvatarInputPart | null;
-  chest?: UserAvatarInputPart | null;
-  gloves?: UserAvatarInputPart | null;
-  facialHair?: UserAvatarInputPart | null;
-  glasses?: UserAvatarInputPart | null;
-  boots?: UserAvatarInputPart | null;
-}
-
-export interface UserAvatarInputPart {
-  partId?: string | null;
-  colorSchemeId?: string | null;
-}
-
 export interface UserAvatarPartUpdate {
   partId?: string | null;
   partType: string;

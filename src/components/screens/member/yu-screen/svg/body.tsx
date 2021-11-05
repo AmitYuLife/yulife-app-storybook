@@ -2,8 +2,7 @@
 import * as React from "react";
 import Svg, { Path, Polygon, Rect, Ellipse } from "react-native-svg";
 import { Style } from "@styles/index";
-import { IBodyItem } from "@redux/avatar/avatar.reducer";
-import { IAvatar } from "../avatar-builder/avatar.types";
+import { IAvatar, IBodyItem } from "../yumoji-builder/avatar.types";
 import { AVATAR_BODY } from "@ids";
 
 interface IProps {

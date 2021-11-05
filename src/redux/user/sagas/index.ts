@@ -28,7 +28,6 @@ import showSurgeIntroSaga from "./showSurgeIntro.saga";
 import updateConnectionSaga from "./updateConnection.saga";
 import updateLeaderboardConsentSaga from "./updateLeaderboardConsent.saga";
 import updateUserConsentSaga from "./updateUserConsent.saga";
-import { AVATAR_CREATED } from "../../avatar/avatar.actions";
 import sendDuelInvitationSaga from "./sendDuelInvitation.saga";
 
 export default [
@@ -48,5 +47,4 @@ export default [
   takeLatest(UPDATE_CONNECTION_START, updateConnectionSaga),
   takeLatest(UPDATE_APP_STATE, fetchConnectionsSaga),
   takeLatest(SET_MAIN_ROOT, showSurgeIntroSaga),
-  takeLatest(AVATAR_CREATED, getUserDataSaga),
 ];

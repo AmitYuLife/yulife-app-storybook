@@ -6,19 +6,19 @@ import { useQuery } from "@apollo/react-hooks";
 import { YuScreenProductSlots } from "@graphql/_core/schema";
 import { GQL_QUERY_GET_YU_SCREEN_PRODUCTS_SLOTS } from "@graphql/yuscreen";
 import { YUSCREEN_AVATAR } from "@ids";
-import { AvatarCreationPrompt } from "../../subcomponents";
+import { YumojiCreationPrompt } from "../../subcomponents";
 import { TextTemplate } from "@atoms";
 import { Yumoji, TouchableOpacityWithDelay } from "@molecules";
 import { ItemBottom } from "./item-set/item-bottom";
 import { YuScreenContext } from "../../context/yu-screen.context";
-import { navigateToAvatarCreationScreen } from "../../navigation/navigateToAvatarCreationScreen";
+import { navigateToYumojiBuilder } from "../../navigation/navigateToYumojiBuilder";
 
 const _AvatarAndEquipment = () => {
   const { data: yuScreenProductSlots } = useQuery<YuScreenProductSlots>(GQL_QUERY_GET_YU_SCREEN_PRODUCTS_SLOTS, {
     fetchPolicy: "cache-and-network",
   });
 
-  const editYumoji = useCallback(() => navigateToAvatarCreationScreen({ heading: "Edit your Yumoji" }), []);
+  const editYumoji = useCallback(() => navigateToYumojiBuilder({ heading: "Edit your Yumoji" }), []);
 
   const { setPopover, yumojiRemoteUrl } = useContext(YuScreenContext);
 
@@ -110,7 +110,7 @@ const _AvatarAndEquipment = () => {
         </TouchableOpacityWithDelay>
         <ItemSet items={yuScreenProductSlots?.getYuScreenProductSlots.right} />
       </View>
-      {!yumojiRemoteUrl ? <AvatarCreationPrompt /> : null}
+      {!yumojiRemoteUrl ? <YumojiCreationPrompt /> : null}
       {yuScreenProductSlots?.getYuScreenProductSlots.bottom.length > 0 ? (
         <>
           <View style={styles.itemSetWrapper}>

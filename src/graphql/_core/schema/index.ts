@@ -120,7 +120,6 @@ export * from "./ReplyToLeaderboardInvite";
 export * from "./ResetData";
 export * from "./ResetPersonalProductStep";
 export * from "./RespondToDuel";
-export * from "./SaveAvatar";
 export * from "./SduiAction";
 export * from "./SduiStyle";
 export * from "./SearchForDuelOpponent";
