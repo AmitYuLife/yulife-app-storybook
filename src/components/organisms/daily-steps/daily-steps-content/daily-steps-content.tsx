@@ -1,4 +1,4 @@
-import React, { memo, useContext, useEffect } from "react";
+import React, { memo, useContext, useEffect, useCallback } from "react";
 import { useSelector } from "react-redux";
 import { DailyStepsLoading } from "./subcontainers/daily-steps-loading";
 import { FitkitUnavailable } from "./subcontainers/fitkit-unavailable";
@@ -8,6 +8,11 @@ import { getDailyStepsIsFetching } from "@redux/daily-steps/daily-steps.selector
 import { FitkitContext } from "@services/fitkit/fitkit.helpers";
 import { useAuthoriseFitkit } from "@services/hooks/useAuthoriseFitkit";
 import Storage from "@services/storage";
+import { bottomTabs, ROUTES } from "@navigation/constants";
+import { Navigation } from "react-native-navigation";
+import { isSamsung } from "@utils";
+import { Platform } from "react-native";
+import { FitKitHealthTrackingPlatform } from "@services/fitkit/fitkit.service";
 
 const _DailyStepsContent = () => {
   const { authorise, loading: fitkitLoading, authorised, available } = useContext(FitkitContext);
@@ -19,6 +24,35 @@ const _DailyStepsContent = () => {
   const isLoading = fitkitLoading || dailyStepsIsFetching;
   const unavailable = !isLoading && !available;
   const unauthorised = !isLoading && available && !authorised;
+
+  const onPress = useCallback(() => {
+    if (isSamsung()) {
+      const route = ROUTES.onboardingFitKitConnect;
+      Navigation.push(ROUTES.dailySteps, {
+        component: {
+          id: route,
+          name: route,
+          passProps: {
+            dismissButtonLabel: "Cancel",
+            dailyStepScreenHandleAuthorised: async (platform: FitKitHealthTrackingPlatform) => {
+              await handleAuthoriseFitkit(platform);
+            },
+            navigateToNext: () => {
+              Navigation.popToRoot(ROUTES.dailySteps);
+            },
+          },
+          options: { bottomTabs },
+        },
+      });
+    } else {
+      handleAuthoriseFitkit(
+        Platform.select({
+          ios: "AppleHealth",
+          android: "GoogleFit",
+        })
+      );
+    }
+  }, [handleAuthoriseFitkit, isSamsung]);
 
   useEffect(() => {
     Storage.fitkit.getFitkitPermission().then((storageValue) => setFitkitPermission(storageValue));
@@ -35,7 +69,7 @@ const _DailyStepsContent = () => {
   if (unauthorised) {
     return (
       <FitkitUnauthorised
-        onPress={handleAuthoriseFitkit}
+        onPress={onPress}
         isIosMotionAuthorised={isIosMotionAuthorised}
         hasRequestedPermission={fitkitPermission === Storage.fitkit.REQUESTED}
       />

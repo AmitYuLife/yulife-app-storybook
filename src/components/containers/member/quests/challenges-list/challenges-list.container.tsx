@@ -13,10 +13,13 @@ import { ChallengesListScreen, ChallengeDetailsScreen } from "@screens";
 import { useMutation, useQuery } from "@apollo/react-hooks";
 import { handleLinkPress } from "@services/app-link";
 import { authoriseFitKitTypes } from "@services/fitkit/fitkit.helpers";
-import { getCurrentWorld } from "@utils";
+import { getCurrentWorld, isSamsung } from "@utils";
 import { ChallengesLoading } from "@components/molecules";
 import { DETOX_ENABLED } from "@services/socket";
 import getChallengeDetails from "@graphql/challenges/getQuestMapChallengeDetails.gql";
+import { bottomTabs, MODALS, ROUTES } from "@navigation/constants";
+import RNFitKit from "@yu-life/react-native-fitkit";
+import { FitKitType } from "@graphql/_core/schema/globalTypes";
 
 interface IProps {
   componentId: string;
@@ -50,7 +53,11 @@ const ChallengesListContainer: FC<Props> = ({ level, componentId }) => {
     try {
       setSubmittingState(true);
       if (slot.fitKitTypes?.length && !DETOX_ENABLED) {
-        await authoriseFitKitTypes(slot.fitKitTypes);
+        // if we'll add new challenges that will require diff permissions that we ask for
+        // Step, Mindfulness and FiiT challenges we should ask permissions fro Samsung as well
+        if (!isSamsung()) {
+          await authoriseFitKitTypes(slot.fitKitTypes);
+        }
       }
 
       await getChallengeDetails(slot.id);
@@ -100,8 +107,69 @@ const ChallengesListContainer: FC<Props> = ({ level, componentId }) => {
                 return {
                   ...formattedSlot,
                   currentWorld,
-                  onPress: () => {
+                  onPress: async () => {
                     if (levelSlot.isLocked) {
+                      return;
+                    }
+
+                    // Check for isAuthorised only for samsung, for other devices the default will be true so the switchToGoogleFit modal will not be shown
+                    let activityFromGoogleFitAuthorised;
+                    let samsungHealthStepsAuthorised;
+                    if (isSamsung()) {
+                      activityFromGoogleFitAuthorised = await RNFitKit.isAuthorised({
+                        read: [],
+                        platform: "GoogleFit",
+                      });
+                      samsungHealthStepsAuthorised = await RNFitKit.isAuthorised({
+                        read: [],
+                        platform: "SamsungHealth",
+                      });
+                    }
+
+                    // TODO: show this popup for other devices if not authorised for the challenges that user select to start
+                    const isOtherTypesThenSteps = levelSlot.fitKitTypes.some((type) =>
+                      nonSamsungHealthTypesThatRequirePermissions.includes(type)
+                    );
+                    if (!activityFromGoogleFitAuthorised && isOtherTypesThenSteps && isSamsung()) {
+                      await Navigation.showModal({
+                        component: {
+                          id: MODALS.switchToGoogleFit,
+                          name: MODALS.switchToGoogleFit,
+                          passProps: {
+                            onConnect: async () => {
+                              await authoriseFitKitTypes(levelSlot.fitKitTypes);
+                            },
+                            onConnected: () => {
+                              setSlot(levelSlot);
+                              showOverlay();
+                            },
+                          },
+                        },
+                      });
+                      return;
+                    }
+
+                    if (
+                      isSamsung() &&
+                      levelSlot.fitKitTypes.includes(FitKitType.StepCount) &&
+                      !(samsungHealthStepsAuthorised || activityFromGoogleFitAuthorised)
+                    ) {
+                      const route = ROUTES.onboardingFitKitConnect;
+                      Navigation.push(componentId, {
+                        component: {
+                          id: route,
+                          name: route,
+                          passProps: {
+                            dismissButtonLabel: "Cancel",
+                            navigateToNext: () => {
+                              Navigation.pop(route);
+                              setSlot(levelSlot);
+                              showOverlay();
+                            },
+                          },
+                          options: { bottomTabs },
+                        },
+                      });
                       return;
                     }
 
@@ -133,5 +201,16 @@ const ChallengesListContainer: FC<Props> = ({ level, componentId }) => {
     />
   );
 };
+
+const nonSamsungHealthTypesThatRequirePermissions = [
+  FitKitType.MindfulSession,
+  FitKitType.Flexibility,
+  FitKitType.HIIT,
+  FitKitType.Pilates,
+  FitKitType.Sleep,
+  FitKitType.Strength,
+  FitKitType.Swimming,
+  FitKitType.Yoga,
+];
 
 export default memo(ChallengesListContainer);

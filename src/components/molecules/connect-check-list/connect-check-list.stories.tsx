@@ -6,7 +6,7 @@ import { ConnectCheckList } from "@molecules";
 storiesOf("ConnectCheckList", module).add("default", () => {
   return (
     <ScrollView contentContainerStyle={{ justifyContent: "center", flex: 1, alignItems: "center", margin: 24 }}>
-      <ConnectCheckList />
+      <ConnectCheckList setSelectedFitkitPlatform={() => null} />
     </ScrollView>
   );
 });

@@ -1,38 +1,52 @@
-import { openGoogleFit } from "@services/app-link";
 import { isSamsung } from "@utils";
 import { Colours, Style } from "@styles";
-import React, { FC } from "react";
+import React, { FC, useState, useCallback } from "react";
 import { Alert, StyleSheet } from "react-native";
 import { GetMobileCopy_getMobileCopy_screens_fitkitConnect } from "@graphql/_core/schema";
-import { Blurb, Button, Heading, Pad, SecondaryButton } from "@atoms";
-import { alertCopy, fitKitConnectCopy } from "./copy";
+import { Blurb, Button, Heading, Pad } from "@atoms";
+import { androidAlertCopy, fitKitConnectCopy } from "./copy";
+import { ConnectCheckList } from "@molecules";
+import { openGoogleFit } from "@services/app-link";
+import { FitKitHealthTrackingPlatform } from "@services/fitkit/fitkit.service";
 
 interface IProps {
   connecting: boolean;
-  onConnectPress: () => void;
+  onConnectPress: (platform: FitKitHealthTrackingPlatform) => void;
   copy: GetMobileCopy_getMobileCopy_screens_fitkitConnect;
 }
 
 const FitKitAvailable: FC<IProps> = ({ connecting, onConnectPress }) => {
   const { heading, connectMessage, connectButton } = fitKitConnectCopy;
-  const _onConnectPress = () => {
-    if (isSamsung()) {
-      const { title, message, confirmLabel, cancelLabel } = alertCopy;
+  // send the platform for iOS as well?
+  const [selectedFitkitPlatform, setSelectedFitkitPlatform] = useState<FitKitHealthTrackingPlatform>("GoogleFit");
+  const [connectButtonLabel, setConnectButtonLabel] = useState(isSamsung() ? "Connect Google Fit" : connectButton);
+
+  const _setSelectedFitkitPlatform = (platform: FitKitHealthTrackingPlatform) => {
+    setConnectButtonLabel(platform === "SamsungHealth" ? "Connect Samsung Health" : "Connect Google Fit");
+    setSelectedFitkitPlatform(platform);
+  };
+
+  const _onConnectPress = useCallback(() => {
+    if (isSamsung() && selectedFitkitPlatform === "GoogleFit") {
+      const { title, message: alertMessage, dismissLabel, downloadLabel, confirmLabel } = androidAlertCopy;
       const buttons = [
         {
-          text: confirmLabel,
-          onPress: onConnectPress,
+          text: dismissLabel,
         },
         {
-          text: cancelLabel,
+          text: downloadLabel,
+          onPress: openGoogleFit,
+        },
+        {
+          text: confirmLabel,
+          onPress: () => onConnectPress(selectedFitkitPlatform),
         },
       ];
-
-      return Alert.alert(title, message, buttons);
+      return Alert.alert(title, alertMessage, buttons, { cancelable: true });
     }
 
-    return onConnectPress();
-  };
+    return onConnectPress(selectedFitkitPlatform);
+  }, [openGoogleFit, onConnectPress, selectedFitkitPlatform]);
 
   return (
     <>
@@ -44,18 +58,16 @@ const FitKitAvailable: FC<IProps> = ({ connecting, onConnectPress }) => {
         textStyle={styles.connectMessage}
       />
       <Pad height={34} />
-      <Button isLoading={connecting} disabled={connecting} label={connectButton} onPress={_onConnectPress} />
-      {!isSamsung() ? null : <DownloadGoogleFitButton />}
+      {!isSamsung() ? null : (
+        <>
+          <ConnectCheckList setSelectedFitkitPlatform={_setSelectedFitkitPlatform} />
+          <Pad height={34} />
+        </>
+      )}
+      <Button isLoading={connecting} disabled={connecting} label={connectButtonLabel} onPress={_onConnectPress} />
     </>
   );
 };
-
-const DownloadGoogleFitButton = () => (
-  <>
-    <Pad height={10} />
-    <SecondaryButton label={"Download Google Fit"} onPress={openGoogleFit} />
-  </>
-);
 
 const styles = StyleSheet.create({
   heading: {

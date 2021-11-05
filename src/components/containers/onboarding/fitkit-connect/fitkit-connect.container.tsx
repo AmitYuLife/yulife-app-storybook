@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useCallback } from "react";
 import Config from "react-native-config";
 import { connect } from "react-redux";
 import { IReduxState } from "@redux/_core/reducers";
@@ -9,11 +9,19 @@ import { FitKitConnectScreen } from "@components/screens";
 import { handleLinkPress } from "@services/app-link";
 import Storage from "@services/storage";
 import { useFitKit } from "@services/fitkit/fitkit.hooks";
+import { FitKitHealthTrackingPlatform } from "@services/fitkit/fitkit.service";
 
 // TODO find where these props actually come from in RNN types
 interface IProps {
   componentId: string;
   navigateToNext: () => void;
+  /*
+    we're using this method only when the screen is shown from daily step not authorised screen,
+    if we're not using the handleAuthorised defined there, screen will not update the status to active
+    after user will grant permission (only after a force close of the app)
+  */
+  dailyStepScreenHandleAuthorised?: (platform: FitKitHealthTrackingPlatform) => void;
+  dismissButtonLabel?: string;
 }
 
 type ConnectedState = ReturnType<typeof mapStateToProps>;
@@ -24,16 +32,22 @@ type Props = IProps & ConnectedState & ConnectedDispatch;
 const handlePrivacyPolicy = handleLinkPress(Config.PRIVACY_POLICY_URL);
 
 const FitKitConnectContainer: React.FC<Props> = (props) => {
+  const { dailyStepScreenHandleAuthorised, fitKitConsentAuthorised, navigateToNext, copy, dismissButtonLabel } = props;
   const [isConnecting, setIsConnecting] = React.useState(false);
   const { authorise, authorised, loading, available } = useFitKit();
 
-  const handleConnect = async () => {
-    setIsConnecting(true);
-    props.fitKitConsentAuthorised();
-    await Storage.fitkit.setFitkitPermission(Storage.fitkit.REQUESTED);
-    await authorise(FitKitPermissions);
-    props.navigateToNext();
-  };
+  const handleConnect = useCallback(
+    async (platform: FitKitHealthTrackingPlatform) => {
+      setIsConnecting(true);
+      fitKitConsentAuthorised();
+      await Storage.fitkit.setFitkitPermission(Storage.fitkit.REQUESTED);
+      dailyStepScreenHandleAuthorised
+        ? await dailyStepScreenHandleAuthorised(platform)
+        : await authorise({ ...FitKitPermissions, platform });
+      navigateToNext();
+    },
+    [setIsConnecting, fitKitConsentAuthorised, dailyStepScreenHandleAuthorised, authorise, navigateToNext]
+  );
 
   return (
     <FitKitConnectScreen
@@ -42,8 +56,9 @@ const FitKitConnectContainer: React.FC<Props> = (props) => {
       fitKitAvailable={available}
       onConnectPress={handleConnect}
       onPrivacyPolicyPress={handlePrivacyPolicy}
-      onSkipPress={props.navigateToNext}
-      copy={props.copy}
+      onSkipPress={navigateToNext}
+      copy={copy}
+      dismissButtonLabel={dismissButtonLabel}
     />
   );
 };
