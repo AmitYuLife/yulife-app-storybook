@@ -4,16 +4,22 @@ import { GetMobileCopy_getMobileCopy_screens_fitkitConnect } from "@graphql/_cor
 import { CentredScreen, Loading, Pad } from "@atoms";
 import FitKitAvailable from "./fitkit-available";
 import FitKitUnavailable from "./fitkit-unavailable";
+import { Style } from "@styles";
+import { isSamsung } from "@utils";
+import { FitKitHealthTrackingPlatform } from "@services/fitkit/fitkit.service";
 
 interface IProps {
   connecting: boolean;
   fitKitAvailable: boolean;
   loading: boolean;
-  onConnectPress: () => void;
+  onConnectPress: (platform: FitKitHealthTrackingPlatform) => void;
   onPrivacyPolicyPress: () => void;
   onSkipPress: () => void;
   copy: GetMobileCopy_getMobileCopy_screens_fitkitConnect;
+  dismissButtonLabel?: string;
 }
+
+const isShortToMediumSamsung = Style.isShortToMedium() && isSamsung();
 
 const FitKitConnectScreen: FC<IProps> = ({
   connecting,
@@ -23,18 +29,19 @@ const FitKitConnectScreen: FC<IProps> = ({
   onPrivacyPolicyPress,
   onSkipPress,
   copy,
+  dismissButtonLabel,
 }) => (
   <>
     {!loading ? (
       <CentredScreen footerImage="forest">
-        <Pad height={120} />
+        {isShortToMediumSamsung ? <Pad height={50} /> : <Pad height={120} />}
         {fitKitAvailable ? (
           <FitKitAvailable connecting={connecting} onConnectPress={onConnectPress} copy={copy} />
         ) : (
           <FitKitUnavailable copy={copy} />
         )}
-        <Pad height={19} />
-        <LinkGroup data={getLinks(onSkipPress, onPrivacyPolicyPress)} />
+        {isShortToMediumSamsung ? null : <Pad height={19} />}
+        <LinkGroup data={getLinks(onSkipPress, onPrivacyPolicyPress, dismissButtonLabel)} />
       </CentredScreen>
     ) : (
       <Loading />
@@ -42,10 +49,10 @@ const FitKitConnectScreen: FC<IProps> = ({
   </>
 );
 
-const getLinks = (onSkip: () => void, onPrivacy: () => void) => {
+const getLinks = (onSkip: () => void, onPrivacy: () => void, dismissButtonLabel: string) => {
   return [
     {
-      label: "Skip this step",
+      label: dismissButtonLabel || "Skip this step",
       onPress: onSkip,
     },
     {

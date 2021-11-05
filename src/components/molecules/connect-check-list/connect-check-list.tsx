@@ -4,14 +4,20 @@ import { ChecklistInfoCard } from "@atoms";
 import { Style } from "@styles";
 import { GoogleFitIcon } from "@atoms/icon/google-fit-icon";
 import { SamsungHealthIcon } from "@atoms/icon/samsung-health-icon";
+import { FitKitHealthTrackingPlatform } from "@services/fitkit/fitkit.service";
 
-enum DevicePackageType {
-  SAMSUNG = "samsung",
-  GOOGLE = "google",
+interface ConnectCheckListProps {
+  setSelectedFitkitPlatform: (platform: FitKitHealthTrackingPlatform) => void;
 }
 
-const ConnectCheckList = () => {
-  const [selectedPackage, setSelectedPackage] = useState(DevicePackageType.GOOGLE);
+const ConnectCheckList = (props: ConnectCheckListProps) => {
+  const { setSelectedFitkitPlatform } = props;
+  const [selectedPackage, setSelectedPackage] = useState<FitKitHealthTrackingPlatform>("GoogleFit");
+
+  const onSelect = (platform: FitKitHealthTrackingPlatform) => {
+    setSelectedFitkitPlatform(platform);
+    setSelectedPackage(platform);
+  };
 
   const list = useMemo(
     () => ({
@@ -53,8 +59,8 @@ const ConnectCheckList = () => {
           icon={<SamsungHealthIcon />}
           title="Samsung Health"
           description="Does not support all activities for full experience & rewards"
-          isSelected={selectedPackage === DevicePackageType.SAMSUNG}
-          onPress={() => setSelectedPackage(DevicePackageType.SAMSUNG)}
+          isSelected={selectedPackage === "SamsungHealth"}
+          onPress={() => onSelect("SamsungHealth")}
           list={list.samsung}
         />
       </View>
@@ -62,8 +68,8 @@ const ConnectCheckList = () => {
         icon={<GoogleFitIcon />}
         title="Google Fit"
         description="Supports all activities for the full experience & rewards"
-        isSelected={selectedPackage === DevicePackageType.GOOGLE}
-        onPress={() => setSelectedPackage(DevicePackageType.GOOGLE)}
+        isSelected={selectedPackage === "GoogleFit"}
+        onPress={() => onSelect("GoogleFit")}
         list={list.googleFit}
       />
     </View>

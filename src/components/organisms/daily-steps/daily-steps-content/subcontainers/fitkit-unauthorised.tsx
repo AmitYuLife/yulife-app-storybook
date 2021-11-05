@@ -1,9 +1,8 @@
 import React from "react";
-import { Alert, StyleSheet, TextStyle, Platform, View } from "react-native";
+import { StyleSheet, TextStyle, View } from "react-native";
 import { Button, TextTemplate } from "@atoms";
 import { Style } from "@styles";
-import { openGoogleFit } from "@services/app-link";
-import { androidAlertCopy, getFitKitNotAuthorizedCopy } from "./copy";
+import { getFitKitNotAuthorizedCopy } from "./copy";
 
 interface Props {
   onPress: () => void;
@@ -15,24 +14,6 @@ export const FitkitUnauthorised = ({ onPress, isIosMotionAuthorised, hasRequeste
   const { buttonLabel, message } = getFitKitNotAuthorizedCopy({ hasRequestedPermission, isIosMotionAuthorised });
 
   const handlePress = () => {
-    const { title, message: alertMessage, dismissLabel, downloadLabel, confirmLabel } = androidAlertCopy;
-    if (Platform.OS === "android") {
-      const buttons = [
-        {
-          text: dismissLabel,
-        },
-        {
-          text: downloadLabel,
-          onPress: openGoogleFit,
-        },
-        {
-          text: confirmLabel,
-          onPress: onPress,
-        },
-      ];
-      return Alert.alert(title, alertMessage, buttons, { cancelable: true });
-    }
-
     return onPress();
   };
 

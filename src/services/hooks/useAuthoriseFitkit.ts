@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { Linking, Platform } from "react-native";
-import RNFitKit, { FitKitAuthOptions } from "@yu-life/react-native-fitkit";
+import RNFitKit, { FitKitAuthOptions, FitKitHealthTrackingPlatform } from "@yu-life/react-native-fitkit";
 import moment from "moment";
 import Storage from "@services/storage";
 import { handleOpenWebView } from "@navigation/utils";
@@ -42,7 +42,7 @@ export function useAuthoriseFitkit({ authorise }: { authorise: (value: FitKitAut
     }, 1000);
   };
 
-  const handleAuthoriseFitkit = async () => {
+  const handleAuthoriseFitkit = async (platform: FitKitHealthTrackingPlatform) => {
     if (Platform.OS === "ios") {
       try {
         if (!isIosMotionAuthorised) {
@@ -62,7 +62,7 @@ export function useAuthoriseFitkit({ authorise }: { authorise: (value: FitKitAut
       }
     } else {
       try {
-        return authorise(FitKitPermissions);
+        return authorise({ ...FitKitPermissions, platform });
       } catch (e) {
         Logger.error(e, { file: "daily-steps-content", platform: "android" });
       }

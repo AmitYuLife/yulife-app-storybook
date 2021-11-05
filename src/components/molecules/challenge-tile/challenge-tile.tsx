@@ -1,10 +1,11 @@
 import React, { FC, memo } from "react";
 import { FunctionComponent } from "react";
-import { Image as RNImage, StyleSheet, TouchableOpacity, View } from "react-native";
+import { Image as RNImage, StyleSheet, View } from "react-native";
 import styles from "./challenge-tile.styles";
 import { CHALLENGE_TILE, CHALLENGE_REWARD } from "@ids";
 import { Style } from "@styles";
 import { Image, Text } from "@atoms";
+import { TouchableOpacityWithDelay } from "@components/molecules";
 
 export interface IChallengeTileProps {
   heading?: string;
@@ -36,7 +37,7 @@ function ChallengeTile(props: Props) {
   }
 
   return (
-    <TouchableOpacity activeOpacity={isLocked ? 1 : 0.2} onPress={onPress} style={styles.wrapper}>
+    <TouchableOpacityWithDelay activeOpacity={isLocked ? 1 : 0.2} onPress={onPress} style={styles.wrapper}>
       <>
         <AnimalImage imageUri={imageUri} isLocked={isLocked} pictureAlign={pictureAlign} />
         {isLocked ? (
@@ -45,7 +46,7 @@ function ChallengeTile(props: Props) {
           <Content heading={heading} duration={duration} reward={reward} />
         )}
       </>
-    </TouchableOpacity>
+    </TouchableOpacityWithDelay>
   );
 }
 

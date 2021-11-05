@@ -1,17 +1,12 @@
+import { isSamsung } from "@utils";
 import { Platform } from "react-native";
 
-export const androidAlertCopy = {
-  title: "Ready to connect to Google Fit?",
-  message: "Before you connect, make sure you have the Google Fit app downloaded on your device.",
-  dismissLabel: "Go back",
-  downloadLabel: "Download Google Fit",
-  confirmLabel: "Yes - I’m ready",
-};
+const androidMessage = isSamsung()
+  ? "In order to reward you for your daily activity we will need to connect to a Health app. Tap below to get started!"
+  : "In order to reward you for your daily activity we will need to connect to Google Fit. Tap below to get started!";
 
-const androidMessage =
-  "In order to reward you for your daily activity we will need to connect to Google Fit. Tap below to get started!";
 const iOSFirstTimeMessage =
-  "We need to collect your health and personal data to track and reward your activity. Tap below to sync to Apple Health and get started!";
+  "In order to reward you for your daily activity we will need to connect to Apple Health. Tap below to get started!";
 const iOSMotionUnauthorisedMessage =
   "In order to get rewarded for your steps and mindfulness, please update your Motion and Fitness permissions.";
 const buttonLabel = "Yes, let's connect";
