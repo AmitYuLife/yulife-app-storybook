@@ -57,7 +57,7 @@ const StreaksScreen = ({
       <View style={styles.wrapper}>
         <View style={styles.lottieWrapper}>
           <LottieView source={streakInfo?.image} autoPlay={autoPlayLottie} loop={false} />
-          <ActiveBuffsButton style={styles.activeBuffsButton} buffTypes={buffTypes} />
+          <ActiveBuffsButton style={styles.activeBuffsButton} iconWidth={35} iconHeight={35} buffTypes={buffTypes} />
         </View>
         <TextTemplate type={Style.isShortToMedium() ? "h2" : "h1"} textAlign="center">
           {streakInfo?.header}

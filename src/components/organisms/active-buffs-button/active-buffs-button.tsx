@@ -17,9 +17,11 @@ import { getRouteState } from "@redux/app/app.selectors";
 interface IProps {
   buffTypes: BuffArea[];
   style?: ViewStyle;
+  iconWidth?: number;
+  iconHeight?: number;
 }
 
-const ActiveBuffsButton = ({ buffTypes, style }: IProps) => {
+const ActiveBuffsButton = ({ buffTypes, style, iconWidth = 40, iconHeight = 40 }: IProps) => {
   const [getActiveBuffs, { data }] = useLazyQuery<GetActiveBuffsOverlay, GetActiveBuffsOverlayVariables>(
     GQL_QUERY_GET_ACTIVE_BUFFS_OVERLAY,
     {
@@ -58,7 +60,11 @@ const ActiveBuffsButton = ({ buffTypes, style }: IProps) => {
 
   return (
     <TouchableOpacityWithDelay onPress={onPress} style={style}>
-      <Image width={Style.adjust(40)} height={Style.adjust(40)} source={data.getActiveBuffsOverlay.icon} />
+      <Image
+        width={Style.adjust(iconWidth)}
+        height={Style.adjust(iconHeight)}
+        source={data?.getActiveBuffsOverlay?.icon}
+      />
     </TouchableOpacityWithDelay>
   );
 };

@@ -47,7 +47,7 @@ export default StyleSheet.create({
   activeBuffsButton: {
     position: "absolute",
     top: Style.adjust(100),
-    right: Style.adjust(34),
+    right: Style.adjust(44),
     shadowColor: "#000000",
     shadowOffset: { width: Style.adjust(2), height: Style.adjust(2) },
     shadowOpacity: 0.16,
