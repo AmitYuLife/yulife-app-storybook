@@ -1,4 +1,4 @@
-import { navigation, CATEGORY_TYPE, YUMOJI_PART_ID, COLOUR, YUSCREEN, YUCOIN_POWER, AVATAR_BUILDER_LIST, YUSCREEN_AVATAR, HEAD_TYPE, AVATAR_ITEM, TEXT_TEMPLATE } from "@utils"
+import { navigation, CATEGORY_TYPE, YUMOJI_PART_ID, COLOUR, YUSCREEN, YUCOIN_POWER, AVATAR_BUILDER_LIST, YUSCREEN_AVATAR, HEAD_TYPE, AVATAR_ITEM, TEXT_TEMPLATE, MALE_BODY } from "@utils"
 
 
 export const {
@@ -47,6 +47,7 @@ export const editYumoji = (skinTone: string, hairStyle: string, hairColour: stri
     await textVisible("Edit your Yumoji")()
 
     await textVisible("Pick a body type")()
+    await tapID(MALE_BODY)()
 
     const continueButton = element(by.text("Continue"))
     await continueButton.tap()
