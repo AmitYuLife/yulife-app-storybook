@@ -396,7 +396,7 @@ export const REVIEW_SCREEN = async () => {
         Then("I should see both the accurate answer and sharing text", then.textVisible(correctAnswerText))
         When("I check both checkboxes", when.tapText(correctAnswerText), async () => {
             When("I tap submit answers", when.tapText("Submit answers"), async () => {
-                Then("I should be on the cover level screen", then.isOnCoverLevelScreen)
+                Then("I should be on the next screen", then.textNotVisible("Submit answers"))
             })
         })
     })
@@ -405,6 +405,7 @@ export const REVIEW_SCREEN = async () => {
 type coverLevel = "common" | "rare" | "epic"
 
 export const COVER_SELECTION = async (cover: coverLevel) => {
+    Then("I should be on the cover level screen", then.isOnCoverLevelScreen)
     When(`I tap ${cover}`, when.tapID(SELECTED_PACKAGE_TITLE(cover)), async () => {
         When("I scroll to the bottom and tap Continue to checkout", when.scrollToAndTapText(PRODUCT_STEP_BODY_SCROLL_VIEW, "Continue to checkout", "down"), async () => {
             Then("I should be on the next page", then.textNotVisible("Choose your cover level"))
@@ -445,5 +446,18 @@ export const CHECKOUT = async (cover: coverLevel, isCovered: boolean) => {
                 })
             })
         })
+    })
+}
+
+type RejectionScreen = "Age" | "Answers"
+
+export const REJECTED = async (screen: RejectionScreen, date?: string, time?: string) => {
+    let screenText
+    if(screen === "Age") screenText = "Based on your age we are unable to offer you personal life insurance."
+    else if(screen === "Answers") screenText = "Based on your answers, we’re not able to offer you personal life insurance right now." 
+
+    When("I wait 5 seconds", when.wait(5000), async () => {
+        Then(`I should be on the ${screen} rejection screen`, then.textVisible("Sorry about this!"))
+        Then(`I should be on the ${screen} rejection screen`, then.textVisible(screenText))
     })
 }
