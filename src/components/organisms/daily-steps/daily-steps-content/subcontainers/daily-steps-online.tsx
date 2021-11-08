@@ -10,7 +10,7 @@ import { getUserFeatures } from "@redux/user/user.selectors";
 import { getDailySteps } from "@redux/daily-steps/daily-steps.selectors";
 import { getDailyMeditation } from "@redux/daily-meditation/daily-meditation.selectors";
 import { styles as textTemplateStyle } from "@components/atoms/text/text-template";
-import { getChallengesStatus } from "@redux/levels/levels.selectors";
+import { getChallengesStatus, getHasNotification } from "@redux/levels/levels.selectors";
 import { handleNavigateToQuestsTab } from "@navigation/utils";
 import { getPositionBottom } from "@organisms/nav-bar/nav-bar.styles";
 import { getDailyStepsTheme } from "@redux/theme/theme.selectors";
@@ -28,6 +28,7 @@ export const DailyStepsOnline = memo(({ isIntro }: DailyStepsOnlineProps) => {
   const availableForToday = useMemo(() => available - done, [available, done]);
   const { textStyle } = useSelector(getDailyStepsTheme);
   const mindfulTotal = displaySecondsAsMinutes(dailyMeditation);
+  const hasNotification = useSelector(getHasNotification);
   const mindfulTotalToDisplay = `${mindfulTotal.minutes} min`;
 
   const counterStyle = useMemo(
@@ -37,6 +38,8 @@ export const DailyStepsOnline = memo(({ isIntro }: DailyStepsOnlineProps) => {
     }),
     [textStyle?.color]
   );
+
+  const buttonLabel = hasNotification ? "Back to challenge" : `Take a challenge (${availableForToday} left)`;
 
   return (
     <>
@@ -56,11 +59,7 @@ export const DailyStepsOnline = memo(({ isIntro }: DailyStepsOnlineProps) => {
       </View>
       {isIntro || availableForToday === 0 || !isAvailable ? null : (
         <View style={styles.buttonWrapper}>
-          <Button
-            onPress={handleNavigateToQuestsTab}
-            size="Large"
-            label={`Take a challenge (${availableForToday} left)`}
-          />
+          <Button onPress={handleNavigateToQuestsTab} size="Large" label={buttonLabel} />
         </View>
       )}
     </>
