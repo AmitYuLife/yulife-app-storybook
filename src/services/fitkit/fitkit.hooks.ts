@@ -4,6 +4,9 @@ import AsyncStorage from "@react-native-community/async-storage";
 import RNFitKit, { FitKitTypes } from "./fitkit.service";
 import { FitKitState } from "./fitkit.types";
 import Logger from "@services/logging/logger";
+import { FitKitType } from "@graphql/_core/schema/globalTypes";
+import { mapGqlFitKitTypeToFitKitType } from "./fitkit.helpers";
+import { isSamsung } from "@utils";
 
 const RNFITKIT_PERMISSIONS_SHOWN = "@RNFitKit:authorised";
 
@@ -49,15 +52,54 @@ export function useFitKit() {
       Logger.logMixpanelEvent("rn_fitKit_isAuthorised_error", { error: e });
     }
 
+    await setMixpanelProperties(isAuthorised);
+
     return { available: isAvailable, authorised: isAuthorised, loading: false };
   }, []);
+
+  const setMixpanelProperties = async (isAuthorised: boolean) => {
+    if (!isAuthorised) {
+      Logger.setUserProperties({ health_app: [] });
+      return;
+    }
+
+    if (Platform.OS === "ios") {
+      Logger.setUserProperties({ health_app: ["apple"] });
+      return;
+    }
+
+    if (isSamsung()) {
+      const healthApps: string[] = [];
+
+      const googleFitAuthorised = await RNFitKit.isAuthorised({
+        read: [],
+        platform: "GoogleFit",
+      });
+      if (googleFitAuthorised) {
+        healthApps.push("google");
+      }
+
+      const samsungHealthAuthorised = await RNFitKit.isAuthorised({
+        read: [],
+        platform: "SamsungHealth",
+      });
+      if (samsungHealthAuthorised) {
+        healthApps.push("samsung");
+      }
+
+      Logger.setUserProperties({ health_app: healthApps });
+      return;
+    }
+
+    Logger.setUserProperties({ health_app: ["google"] });
+  };
 
   useEffect(() => {
     (async function () {
       const newState = await getState();
       setState(newState);
     })();
-  }, [getState]);
+  }, []);
 
   const authorise = useCallback(
     async function (options) {
@@ -127,10 +169,27 @@ export function useFitKit() {
     [getState]
   );
 
+  const authoriseFitKitTypes = useCallback(
+    async (fitKitTypes: FitKitType[]) => {
+      try {
+        await RNFitKit.authorise({ read: fitKitTypes.map(mapGqlFitKitTypeToFitKitType) });
+        const newState = await getState();
+        setState(newState);
+      } catch (e) {
+        Logger.error(e, {
+          event: "authoriseFitKitTypes",
+          fitKitTypes: fitKitTypes.map((fitKitType) => fitKitType.toString()).join(", "),
+        });
+      }
+    },
+    [getState]
+  );
+
   return {
     loading,
     available,
     authorised,
     authorise,
+    authoriseFitKitTypes,
   };
 }

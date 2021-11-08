@@ -12,7 +12,6 @@ import { BlurProvider, IToggleBlur } from "@atoms";
 import { ChallengesListScreen, ChallengeDetailsScreen } from "@screens";
 import { useMutation, useQuery } from "@apollo/react-hooks";
 import { handleLinkPress } from "@services/app-link";
-import { authoriseFitKitTypes } from "@services/fitkit/fitkit.helpers";
 import { getCurrentWorld, isSamsung } from "@utils";
 import { ChallengesLoading } from "@components/molecules";
 import { DETOX_ENABLED } from "@services/socket";
@@ -20,6 +19,7 @@ import getChallengeDetails from "@graphql/challenges/getQuestMapChallengeDetails
 import { bottomTabs, MODALS, ROUTES } from "@navigation/constants";
 import RNFitKit from "@yu-life/react-native-fitkit";
 import { FitKitType } from "@graphql/_core/schema/globalTypes";
+import { useFitKit } from "@services/fitkit/fitkit.hooks";
 
 interface IProps {
   componentId: string;
@@ -33,6 +33,7 @@ const ChallengesListContainer: FC<Props> = ({ level, componentId }) => {
   const [slot, setSlot] = useState(null as GetQuestMapLevel_getQuestMapLevel_slots);
   const [submitting, setSubmittingState] = useState(false);
   const dispatch = useDispatch();
+  const { authoriseFitKitTypes } = useFitKit();
 
   const [createActiveChallenge]: CreateActiveChallengeMutationTuple = useMutation(GQL_MUTATION_CREATE_ACTIVE_CHALLENGE);
 
