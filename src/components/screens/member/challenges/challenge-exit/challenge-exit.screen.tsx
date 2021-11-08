@@ -1,10 +1,11 @@
-import { Button, SecondaryButton, Text } from "@atoms/index";
-import * as React from "react";
-import { SafeAreaView, StyleSheet } from "react-native";
+import React from "react";
+import { Button, SecondaryButton, TextTemplate } from "@atoms";
+import { SafeAreaView, StyleSheet, View } from "react-native";
 import { useSelector } from "react-redux";
 import { useBackHandler } from "@services/hooks/useBackHandler";
 import { getChallengeExitCopy } from "@redux/copy/copy.selectors";
 import styles from "./challenge-exit.styles";
+import { Colours } from "@styles";
 
 interface IProps {
   onPressExit: () => void;
@@ -19,25 +20,26 @@ const ChallengeExitScreen: React.FC<IProps> = ({ onPressExit, onClose, isCancell
     onClose();
     return true;
   });
-
   return (
     <SafeAreaView style={styles.wrapper}>
-      <Text style={styles.headingText} bold={true}>
-        {copy.heading}
-      </Text>
-      <Text style={styles.descriptionText}>{copy.subheading}</Text>
+      <View style={styles.headingWrapper}>
+        <TextTemplate type="h1" textAlign="center" color={Colours.textInput.focus}>
+          {copy.heading}
+        </TextTemplate>
+      </View>
+      <View style={styles.descriptionWrapper}>
+        <TextTemplate type="b2" textAlign="center" color={Colours.textInput.focus}>
+          {copy.subheading}
+        </TextTemplate>
+      </View>
 
       <Button
         wrapperStyle={StyleSheet.flatten([styles.buttonStyle, styles.exitChallengeWrapper])}
-        label={copy.ctaLabel}
-        onPress={onClose}
-      />
-      <SecondaryButton
-        wrapperStyle={styles.buttonStyle}
         label={copy.ctaLabelSecondary}
         onPress={onPressExit}
         isLoading={isCancelling}
       />
+      <SecondaryButton wrapperStyle={styles.buttonStyle} label={copy.ctaLabel} onPress={onClose} />
     </SafeAreaView>
   );
 };

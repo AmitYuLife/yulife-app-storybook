@@ -8,28 +8,20 @@ export default StyleSheet.create({
     alignItems: "center",
   } as ViewStyle,
   image: {
-    width: Style.SCALE_UP_AND_DOWN(Style.isShortAndroid() ? 248 : 268),
-    height: Style.SCALE_UP_AND_DOWN(Style.isShortAndroid() ? 248 : 268),
+    width: Style.adjust(Style.isShortAndroid() ? 248 : 268),
+    height: Style.adjust(Style.isShortAndroid() ? 248 : 268),
   } as ImageStyle,
-  headingText: {
-    fontSize: Style.SCALE_UP_AND_DOWN(35),
-    lineHeight: Style.SCALE_UP_AND_DOWN(40),
-    color: "#333333",
-    marginTop: Style.SCALE_UP_AND_DOWN(169),
-    marginBottom: Style.SCALE_UP_AND_DOWN(11),
-    fontFamily: Style.FONT_FAMILY_PRIMARY_BOLD,
+  headingWrapper: {
+    marginTop: Style.adjust(169),
+    marginBottom: Style.adjust(11),
   } as TextStyle,
-  descriptionText: {
-    fontSize: Style.SCALE_UP_AND_DOWN(15),
-    lineHeight: Style.SCALE_UP_AND_DOWN(22),
-    paddingHorizontal: 60,
-    color: "#333333",
-    fontFamily: Style.FONT_FAMILY_PRIMARY,
+  descriptionWrapper: {
+    paddingHorizontal: Style.adjust(60),
   } as TextStyle,
   exitChallengeWrapper: {
-    marginTop: Style.SCALE_UP_AND_DOWN(33),
+    marginTop: Style.adjust(33),
   } as ViewStyle,
   buttonStyle: {
-    marginBottom: Style.SCALE_UP_AND_DOWN(20),
+    marginBottom: Style.adjust(20),
   } as ViewStyle,
 });
