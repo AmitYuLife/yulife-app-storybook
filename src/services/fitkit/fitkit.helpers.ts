@@ -8,7 +8,7 @@ import Logger from "../logging/logger";
 import { createContext } from "react";
 import { DATE_FORMAT_WITH_TZ } from "@utils";
 
-const mapGqlFitKitTypeToFitKitType = (gqlType: FitKitType) => {
+export const mapGqlFitKitTypeToFitKitType = (gqlType: FitKitType) => {
   switch (gqlType) {
     case FitKitType.StepCount:
       return FitKitTypes.Types.StepCount;
@@ -180,16 +180,9 @@ export const queryHistoricalMeditationData = async (onboardingDate: Moment, user
   return queryFitKitByTypes(start.format(), end.format(), [FitKitType.MindfulSession], userFeature);
 };
 
-export const authoriseFitKitTypes = async (fitKitTypes: FitKitType[]) => {
-  try {
-    await RNFitKit.authorise({ read: fitKitTypes.map(mapGqlFitKitTypeToFitKitType) });
-  } catch (e) {
-    Logger.error(e, { event: "authoriseCycling" });
-  }
-};
-
 const fitkitInitialState: ReturnType<typeof useFitKit> = {
   authorise: () => null,
+  authoriseFitKitTypes: () => null,
   authorised: false,
   available: false,
   loading: true,
