@@ -53,10 +53,12 @@ export const UNDERWRITING_NAME = async () => {
 }
 
 export const UNDERWRITING_DOB = async (age: number) => {
+    const nextScreen = (age > 65 || age < 18) ? "Sorry about this!" : "Enter your salary"
+
     When("I choose the correct date of birth", when.chooseCorrectDoB(age), async () => {
         Then("I should be back on the dob screen", then.isOnDoBScreen)
         When("I tap Continue", when.scrollToAndTapText(PRODUCT_STEP_BODY_SCROLL_VIEW, "Continue", "down"), async () => {
-            Then("I shuold be on the salary screen", then.isOnScreen("Enter your salary"));
+            Then("I should be on the next screen", then.isOnScreen(nextScreen));
         })
     })
 }
@@ -231,9 +233,7 @@ export const UNDERWRITING_CONDITION_SELECTION = async (conditions: Condition[]) 
     }
 
     const conditionLength = (conditions.length - 1).toString()
-    let conditionText
-    if (conditions.length > 1) conditionText = "conditions" 
-    else conditionText = "condition"
+    const conditionText = (conditions.length > 1) ? "conditions" : "condition"
 
     When("I tap continue", when.scrollToAndTapText(PRODUCT_STEP_BODY_SCROLL_VIEW, "Continue", "down"), async () => {
         Then("I should be on the conditions confirmations screen", then.isOnScreen(`You’ve selected ${conditions.length.toString()} ${conditionText}.`))
@@ -452,9 +452,9 @@ export const CHECKOUT = async (cover: coverLevel, isCovered: boolean) => {
 type RejectionScreen = "Age" | "Answers"
 
 export const REJECTED = async (screen: RejectionScreen, date?: string, time?: string) => {
-    let screenText
-    if(screen === "Age") screenText = "Based on your age we are unable to offer you personal life insurance."
-    else if(screen === "Answers") screenText = "Based on your answers, we’re not able to offer you personal life insurance right now." 
+    const screenText = (screen === "Age") 
+        ? "Based on your age we are unable to offer you personal life insurance." 
+        : "Based on your answers, we’re not able to offer you personal life insurance right now."
 
     When("I wait 5 seconds", when.wait(5000), async () => {
         Then(`I should be on the ${screen} rejection screen`, then.textVisible("Sorry about this!"))
