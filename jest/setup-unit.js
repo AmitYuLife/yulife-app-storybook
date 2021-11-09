@@ -51,6 +51,11 @@ jest.mock("react-native-device-info", () => ({
   hasNotch: jest.fn(),
 }));
 
+jest.mock("@leanplum/react-native-sdk", () => ({
+  start: jest.fn(),
+  setUserId: jest.fn(),
+}));
+
 jest.mock("@react-native-community/push-notification-ios", () => ({
   FetchResult: {
     NoData: "no-data",

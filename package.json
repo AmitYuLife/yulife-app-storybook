@@ -49,6 +49,7 @@
     "dependencies": {
         "@apollo/react-common": "^3.1.4",
         "@apollo/react-hooks": "^3.1.4",
+        "@leanplum/react-native-sdk": "^1.2.1",
         "@react-native-community/async-storage": "^1.11.0",
         "@react-native-community/blur": "^3.6.0",
         "@react-native-community/clipboard": "^1.5.1",

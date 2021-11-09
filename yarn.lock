@@ -1973,6 +1973,11 @@
     "@types/yargs" "^15.0.0"
     chalk "^4.0.0"
 
+"@leanplum/react-native-sdk@^1.2.1":
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/@leanplum/react-native-sdk/-/react-native-sdk-1.2.1.tgz#633b6c3f80fce5080c7cfd38c17ce046c77fa3b6"
+  integrity sha512-SPqV/KkEI2rTVEFb2Z2xsdHyAamC6vRjFd0uxGk4TyFlqDkPAm1BbliJjaStwS0Wr1RTvew5+dpqCqcwlYWpdw==
+
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/@mrmlnc/readdir-enhanced/-/readdir-enhanced-2.2.1.tgz#524af240d1a360527b730475ecfa1344aa540dde"
