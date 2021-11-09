@@ -21,7 +21,8 @@ export const loginAsUser = (
     await passwordField.replaceText(auth.data.password);
     await navigateViaID(BUTTON_LOGIN)
     await navigateViaText("Next") // sign-up reward screen
-    await dismissModalIfVisible()
+    await dismissPLIModalIfVisible()
+    await dismissNewLooksModalIfVisible()
     await dismissStreakIfVisible()
     await navigateViaText("let’s begin", 2500)
     await completeIntro()
@@ -42,7 +43,8 @@ export const loginAsPLIUser = (
     await passwordField.replaceText(auth.data.password);
     await navigateViaID(BUTTON_LOGIN)
     await navigateViaText("Next") // sign-up reward screen
-    await dismissModalIfVisible()
+    await dismissPLIModalIfVisible()
+    await dismissNewLooksModalIfVisible()
     await tapText("Next")()
     await tapText("Next")()
     await tapText("Let's go")()
@@ -68,10 +70,20 @@ export const completeIntro = async () => {
     }
 }
 
-export const dismissModalIfVisible = async () => {
+export const dismissPLIModalIfVisible = async () => {
     try {
         await expect(element(by.text("Personal Insurance"))).toBeVisible()
         await navigateViaID(BUTTON_CLOSE)
+    } catch (e) {
+
+    }
+}
+
+export const dismissNewLooksModalIfVisible = async () => {
+    try {
+        await expect(element(by.text("New looks!"))).toBeVisible()
+        await expect(element(by.text("It’s time for a Yumoji makeover. You can now customise your appearance based on your level in the Yuniverse, and even mix and match! Unlock new items every 50 levels, and upgrade your Yumoji."))).toBeVisible()
+        await navigateViaText("Awesome")
     } catch (e) {
 
     }
