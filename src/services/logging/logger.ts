@@ -4,24 +4,28 @@ import DeviceInfo from "react-native-device-info";
 import Intercom from "react-native-intercom";
 import Mixpanel from "react-native-mixpanel";
 import bugsnag from "../bugsnag";
+import LeanplumClient from "./leanplum";
 
 class LoggerInstance {
   private appVersion: string = DeviceInfo.getVersion();
   private bugsnag: Client;
+  public readonly leanplum: LeanplumClient;
 
   constructor() {
     Mixpanel.sharedInstanceWithToken(Config.MIXPANEL_API_TOKEN);
     this.bugsnag = bugsnag();
+    this.leanplum = new LeanplumClient();
   }
 
   public setIntercomHash = async (hash: string) => {
-    return Intercom.setUserHash(hash);
+    await Intercom.setUserHash(hash);
   };
 
   public setUserId = (userId: string) => {
     Intercom.registerIdentifiedUser({ userId });
     Mixpanel.identify(userId);
     this.bugsnag.setUser(userId, "", "");
+    this.leanplum.setUserId(userId);
   };
 
   public logEvent(event: string, metadata: Record<string, any> = {}) {
@@ -48,13 +52,6 @@ class LoggerInstance {
     }
 
     Mixpanel.set(props);
-  }
-
-  public logRevenue(productIdentifier: string, quantity: number, price: number, receipt: string) {
-    Mixpanel.trackChargeWithProperties(price * quantity, {
-      productIdentifier,
-      receipt,
-    });
   }
 
   public error(error: Error, tags: Record<string, string | number | boolean>) {

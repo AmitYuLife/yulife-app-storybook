@@ -2,6 +2,7 @@
 #import "ReactNativeConfig.h"
 #import "Intercom/intercom.h"
 #import "Mixpanel.h"
+#import <Leanplum-iOS-SDK/Leanplum.h>
 #import <BugsnagReactNative/BugsnagReactNative.h>
 #import <ReactNativeNavigation/ReactNativeNavigation.h>
 

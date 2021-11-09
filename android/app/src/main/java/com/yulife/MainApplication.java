@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 import com.facebook.react.PackageList;
 import com.facebook.react.ReactInstanceManager;
+import com.leanplum.annotations.Parser;
 import com.reactnativenavigation.NavigationApplication;
 import com.reactnativenavigation.react.NavigationPackage;
 import com.facebook.react.ReactNativeHost;
@@ -14,7 +15,8 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
 import com.yulife.reactnative.fitkit.RNFitKitPackage;
-
+import com.leanplum.Leanplum;
+import com.leanplum.LeanplumActivityHelper;
 import com.bugsnag.BugsnagReactNative;
 import com.mixpanel.android.mpmetrics.MixpanelAPI;
 import io.intercom.android.sdk.Intercom;
@@ -62,6 +64,13 @@ public class MainApplication extends NavigationApplication {
     // Bugsnag
     BugsnagReactNative.start(this);
 
+    // Leanplum
+    Leanplum.setApplicationContext(this);
+    Parser.parseVariables(this);
+    //  For session lifecyle tracking.
+    LeanplumActivityHelper.enableLifecycleCallbacks(this);
+
+    // Flipper
     SoLoader.init(this, /* native exopackage */ false);
     initializeFlipper(this, getReactNativeHost().getReactInstanceManager());
   }
