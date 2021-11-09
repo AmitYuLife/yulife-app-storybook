@@ -45,7 +45,8 @@ export const ProgressItems = ({
   }, [activeIndex, animationRef.current, width]);
 
   useEffect(() => {
-    if (DETOX_ENABLED) {
+    if (DETOX_ENABLED || autoPlaySpeedMs <= 0) {
+      interpolatedValue.setValue(0);
       return;
     }
 
