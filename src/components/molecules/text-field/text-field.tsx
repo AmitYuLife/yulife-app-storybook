@@ -169,7 +169,7 @@ const styles = StyleSheet.create({
     overflow: "hidden",
   } as ViewStyle,
   inputBase: {
-    paddingTop: 8,
+    paddingTop: 12,
     fontSize: 22,
     paddingBottom: 4,
     fontFamily: Style.FONT_FAMILY_PRIMARY,
