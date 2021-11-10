@@ -1,3 +1,4 @@
+import { DETOX_ENABLED } from "@services/socket";
 import { getToken } from "@services/storage";
 import { DATE_FORMAT_WITH_TZ } from "@utils";
 import { defaultDataIdFromObject, InMemoryCache, NormalizedCacheObject } from "apollo-cache-inmemory";
@@ -8,13 +9,15 @@ import { setContext } from "apollo-link-context";
 import { onError } from "apollo-link-error";
 import { createHttpLink } from "apollo-link-http";
 import moment from "moment";
+import { Platform } from "react-native";
 import AsyncStorage from "@react-native-community/async-storage";
 import Config from "react-native-config";
 import DeviceInfo from "react-native-device-info";
 import { store } from "@redux/_core/store";
 import { updateOfflineState } from "@redux/app/app.actions";
 import createRetryLink from "./retryLink";
-import { Platform } from "react-native";
+
+const appJson = require("../../../package.json");
 
 const httpLink = () =>
   createHttpLink({
@@ -81,7 +84,7 @@ persistCache({
 });
 
 const defaultHeaders = {
-  app_version: DeviceInfo.getVersion(),
+  app_version: DETOX_ENABLED ? appJson.version : DeviceInfo.getVersion(),
   device_id: DeviceInfo.getDeviceId(),
   apollo_client_name: `react_native_${Platform.OS}`,
 };
