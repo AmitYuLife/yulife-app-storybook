@@ -24,6 +24,7 @@ const POPOVER_ANIMATION_DELAY = 750;
 
 const DEVICE_ADJUSTMENT = media.select(
   [
+    { condition: Style.isIphone13(), value: 43 },
     {
       condition: Platform.OS === "ios" && Style.hasNotch,
       value: Style.IOS_NOTCH_HEIGHT,

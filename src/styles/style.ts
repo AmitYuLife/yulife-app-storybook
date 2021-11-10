@@ -15,6 +15,7 @@ const isIPad = () => {
   return false;
 };
 
+const isIphone13 = () => Platform.OS === "ios" && x === 390 && y === 844;
 const isIphoneX = () => Platform.OS === "ios" && y === 812;
 const isIphone8 = () => Platform.OS === "ios" && x === 375 && y === 667;
 
@@ -166,6 +167,7 @@ const Style = {
   TOTAL_WIDTH,
   isAndroid,
   isAnyIphoneX,
+  isIphone13,
   isIphoneX,
   isIphoneXPlus,
   isIphone8,
