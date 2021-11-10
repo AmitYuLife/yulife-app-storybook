@@ -27,21 +27,19 @@ const ActivityList = memo(({ steps, cycling, mindfulness, textColor = Colours.ne
 
   return (
     <View style={styles.wrapper}>
-      {!steps ? null : (
-        <View style={styles.container}>
-          <StepsIcon color={textColor} />
-          <View style={styles.textWrapper}>
-            <TextTemplate type="b2" color={textColor} testID={STEPS_COUNT(steps)}>
-              <Counter
-                duration={1200}
-                value={steps}
-                textStyle={counterStyle}
-                textAfterValue={steps === 1 ? "step" : "steps"}
-              />
-            </TextTemplate>
-          </View>
+      <View style={styles.container}>
+        <StepsIcon color={textColor} />
+        <View style={styles.textWrapper}>
+          <TextTemplate type="b2" color={textColor} testID={STEPS_COUNT(steps)}>
+            <Counter
+              duration={1200}
+              value={steps}
+              textStyle={counterStyle}
+              textAfterValue={steps === 1 ? "step" : "steps"}
+            />
+          </TextTemplate>
         </View>
-      )}
+      </View>
       {!cycling ? null : (
         <View style={styles.container}>
           <CyclingIcon color={textColor} />
