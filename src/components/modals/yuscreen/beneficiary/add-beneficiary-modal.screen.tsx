@@ -5,7 +5,6 @@ import { StyleSheet, TextStyle, ViewStyle } from "react-native";
 import { Colours, Style } from "@styles";
 import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
 import { TextField } from "@components/molecules";
-import { phoneNumberIsValid } from "@utils";
 import { ConfirmationScreen } from "./confirmation.screen";
 import { GetProductBeneficiaries_getProductBeneficiaries_beneficiaries as Beneficiary } from "@graphql/_core/schema";
 import { INPUT_BENEFICIARY_DETAIL, BENEFICIARY_CONTINUE } from "@ids";
@@ -56,13 +55,7 @@ export default function AddBeneficiaryModalScreen({
     await onContinue(beneficiary);
   };
 
-  const allFieldsValid =
-    beneficiary.firstName &&
-    beneficiary.lastName &&
-    phoneNumberIsValid(beneficiary.phoneNumber) &&
-    beneficiary.relationship
-      ? true
-      : false;
+  const allFieldsValid = beneficiary.firstName && beneficiary.lastName && beneficiary.relationship ? true : false;
 
   function setLayout(index: number) {
     return (event: LayoutChangeEvent) => {
@@ -92,9 +85,6 @@ export default function AddBeneficiaryModalScreen({
       placeholder: "Phone number",
       value: beneficiary.phoneNumber,
       type: "PhoneNumber" as "PhoneNumber",
-      showError: beneficiary.phoneNumber && !phoneNumberIsValid(beneficiary.phoneNumber),
-      errorMessage: "Not a valid UK phone number",
-      maxLength: 14,
     },
     {
       onChange: (val: string) => {
