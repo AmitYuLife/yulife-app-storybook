@@ -1,5 +1,6 @@
 import { dataManager } from "@yu-life/yulife-bdd-framework";
 import { NAV_BAR } from '@ids';
+import { dismissNewLooksModalIfVisible } from "./login";
 
 export const restart = async () => {
     await device.terminateApp();
@@ -32,6 +33,7 @@ export const startWithoutLaunch = async () => {
 
 export const reloadAppToTab = (tab: "yucoin" | "quests" | "leaderboard" | "rewards") => async () => {
     await device.reloadReactNative();
+    await dismissNewLooksModalIfVisible()
     await navigateViaID(NAV_BAR(tab))
 }
 
@@ -301,5 +303,5 @@ export const restartWithoutDeleteTwoTimes = async () => {
     await wait(2000)()
     await device.terminateApp();
     await device.launchApp({ delete: false, });
-    
+    await dismissNewLooksModalIfVisible()
 }

@@ -17,13 +17,15 @@ export const {
     typeViaID,
     replaceTextViaID,
     completeOnboardingIntro,
-    reloadOnly
+    reloadOnly,
+    wait
 } = navigation.common
 
 export const {
     restartAndLoginToTab,
     loginAndCollectSignupBonus,
-    completeIntro
+    completeIntro,
+    dismissNewLooksModalIfVisible
 } = navigation.login
 
 

@@ -24,9 +24,11 @@ Feature("Feedback forms should behave correctly", async()=>{
                             Then("I should see the text I just input", then.textVisible("duels"))
                         })
                         When("I tap submit", when.tapText("submit"), async()=>{
-                            When("I Tap let’s begin", when.tapText("let’s begin"), async()=>{
-                                When("I continue the login journey", when.completeIntro, async()=>{
-                                    Then("I should be on the today screen", then.idVisible(DAILY_STEPS_SCREEN))
+                            When("I dismiss a modal if it is visible", [when.wait(3000), when.dismissNewLooksModalIfVisible], async () => {
+                                When("I Tap let’s begin", when.tapText("let’s begin"), async()=>{
+                                    When("I continue the login journey", when.completeIntro, async()=>{
+                                        Then("I should be on the today screen", then.idVisible(DAILY_STEPS_SCREEN))
+                                    })
                                 })
                             })
                         })
@@ -51,9 +53,11 @@ Feature("Feedback forms should behave correctly", async()=>{
                             Then("I should see the text I just input", then.textVisible("dark mode"))
                         })
                         When("I tap submit", when.tapText("submit"), async () => {
-                            When("I Tap let’s begin", when.tapText("let’s begin"), async () => {
-                                When("I continue the login journey", when.completeIntro, async () => {
-                                    Then("I should be on the today screen", then.idVisible(DAILY_STEPS_SCREEN))
+                            When("I dismiss a modal if it is visible", [when.wait(3000), when.dismissNewLooksModalIfVisible], async () => {
+                                When("I Tap let’s begin", when.tapText("let’s begin"), async()=>{
+                                    When("I continue the login journey", when.completeIntro, async()=>{
+                                        Then("I should be on the today screen", then.idVisible(DAILY_STEPS_SCREEN))
+                                    })
                                 })
                             })
                         })

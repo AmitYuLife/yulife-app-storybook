@@ -7,9 +7,11 @@ export const {
     reloadAppToTab,
     tapID,
     typeViaID,
+    wait
 } = navigation.common
 
 
 export const {
-    completeIntro
+    completeIntro,
+    dismissNewLooksModalIfVisible
 } = navigation.login
