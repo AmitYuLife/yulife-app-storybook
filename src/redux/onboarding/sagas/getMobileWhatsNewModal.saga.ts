@@ -29,6 +29,11 @@ export function* getMobileWhatsNewModalSaga() {
             id: MODALS.whatsNew,
             name: MODALS.whatsNew,
             passProps: data.getMobileWhatsNewModal,
+            options: {
+              statusBar: {
+                style: "light",
+              },
+            },
           },
         })
       );
