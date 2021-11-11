@@ -110,6 +110,7 @@ export const loginOnly = (customer: any, auth: any, fitkitAuth?: boolean) => asy
     await passwordField.tap();
     await passwordField.replaceText(auth.data.password);
     await navigateViaID(BUTTON_LOGIN)
+    await dismissNewLooksModalIfVisible()
 }
 export const loginAndCollectSignupBonus = (customer: any, auth: any, fitkitAuth?: boolean)=> async()=>{
     await loginOnly(customer, auth, fitkitAuth)()

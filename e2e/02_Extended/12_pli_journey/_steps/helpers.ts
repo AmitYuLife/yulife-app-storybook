@@ -8,7 +8,7 @@ import { capitalizeFirstLetter } from "@navigation";
 
 
 export const ONBOARDING = async () => {
-    Then("I should be on the first Life Insurance onboarding screen", then.textVisible("Personal Life Insurance"));
+    Then("I should be on the first Life Insurance onboarding screen", then.textVisible("Get your quote"));
     When("I tap on the right part of the screen", when.navigateThroughTheFullSwiper, async () => {
         Then("I should be on the 2nd onboarding screen", then.textVisible("Fill the gap"));
         When("I tap on the right part of the screen", when.navigateThroughTheFullSwiper, async () => {

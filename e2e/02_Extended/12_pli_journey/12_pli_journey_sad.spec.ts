@@ -8,7 +8,7 @@ import { CUSTOMER_37, AUTH_37 } from "@data";
 
 Feature("PLI SAD", async()=>{
     Scenario("As a user with High BMI, I cannot get PLI", scenario.start, async()=>{
-        Given("I login as a user with Covea FIB enabled", given.loginToYuScreen(true, CUSTOMER_37, AUTH_37), async()=>{
+        Given("I login as a user with Covea FIB enabled", given.loginAsPLIUser(CUSTOMER_37, AUTH_37, true), async()=>{
             Then("I should be on the yuscreen", then.onYuscreenV3(CUSTOMER_37))
             When("I create the default yumoji", when.createDefaultYumoji, async () => {
                 Then("I should be back on the YuScreen", then.onYuscreenV3(CUSTOMER_37))
@@ -47,7 +47,7 @@ Feature("PLI SAD", async()=>{
     })
 
     Scenario("As a user with 36 BMI and high cholesterol, I cannot get PLI", scenario.start, async()=>{
-        Given("I login as a user with Covea FIB enabled", given.loginToYuScreen(true, CUSTOMER_37, AUTH_37), async()=>{
+        Given("I login as a user with Covea FIB enabled", given.loginAsPLIUser(CUSTOMER_37, AUTH_37, true), async()=>{
             Then("I should be on the yuscreen", then.onYuscreenV3(CUSTOMER_37))
             When("I create the default yumoji", when.createDefaultYumoji, async () => {
                 Then("I should be back on the YuScreen", then.onYuscreenV3(CUSTOMER_37))
@@ -88,7 +88,7 @@ Feature("PLI SAD", async()=>{
     })
 
     Scenario("As a user <40 y/o and high blood pressure, I cannot get PLI", scenario.start, async()=>{
-        Given("I login as a user with Covea FIB enabled", given.loginToYuScreen(true, CUSTOMER_37, AUTH_37), async()=>{
+        Given("I login as a user with Covea FIB enabled", given.loginAsPLIUser(CUSTOMER_37, AUTH_37, true), async()=>{
             Then("I should be on the yuscreen", then.onYuscreenV3(CUSTOMER_37))
             When("I create the default yumoji", when.createDefaultYumoji, async () => {
                 Then("I should be back on the YuScreen", then.onYuscreenV3(CUSTOMER_37))
@@ -129,7 +129,7 @@ Feature("PLI SAD", async()=>{
     })
 
     Scenario("As a user <=17 y/o, I cannot get PLI", scenario.start, async()=>{
-        Given("I login as a user with Covea FIB enabled", given.loginToYuScreen(true, CUSTOMER_37, AUTH_37), async()=>{
+        Given("I login as a user with Covea FIB enabled", given.loginAsPLIUser(CUSTOMER_37, AUTH_37, true), async()=>{
             Then("I should be on the yuscreen", then.onYuscreenV3(CUSTOMER_37))
             When("I create the default yumoji", when.createDefaultYumoji, async () => {
                 Then("I should be back on the YuScreen", then.onYuscreenV3(CUSTOMER_37))
