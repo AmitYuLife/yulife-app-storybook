@@ -1,7 +1,7 @@
 
 import { generateRandomMongoId } from "@yu-life/yulife-bdd-framework"
 import { IDatabaseItem } from "@yu-life/yulife-bdd-framework";
-import { CUSTOMER_2, CUSTOMER_3, CUSTOMER_4, CUSTOMER_16, CUSTOMER_17, CUSTOMER_18, CUSTOMER_ALPHA, CUSTOMER_21, CUSTOMER_23, CUSTOMER_20, CUSTOMER_19, CUSTOMER_5, CUSTOMER_6, CUSTOMER_7, CUSTOMER_9, CUSTOMER_15, CUSTOMER_22, CUSTOMER_24, CUSTOMER_13, CUSTOMER_25, CUSTOMER_12, CUSTOMER_10, CUSTOMER_27, CUSTOMER_28, CUSTOMER_29, CUSTOMER_30, CUSTOMER_31, CUSTOMER_32, CUSTOMER_33, CUSTOMER_34, CUSTOMER_35, CUSTOMER_36, CUSTOMER_37 } from '../postgres/customers';
+import { CUSTOMER_1, CUSTOMER_2, CUSTOMER_3, CUSTOMER_4, CUSTOMER_16, CUSTOMER_17, CUSTOMER_18, CUSTOMER_ALPHA, CUSTOMER_21, CUSTOMER_23, CUSTOMER_20, CUSTOMER_19, CUSTOMER_5, CUSTOMER_6, CUSTOMER_7, CUSTOMER_9, CUSTOMER_15, CUSTOMER_22, CUSTOMER_24, CUSTOMER_13, CUSTOMER_25, CUSTOMER_12, CUSTOMER_10, CUSTOMER_27, CUSTOMER_28, CUSTOMER_29, CUSTOMER_30, CUSTOMER_31, CUSTOMER_32, CUSTOMER_33, CUSTOMER_34, CUSTOMER_35, CUSTOMER_36, CUSTOMER_37 } from '../postgres/customers';
 
 const type = "mongo"
 const modelName = "users"
@@ -23,6 +23,22 @@ const USER_DATA_TEMPLATE = {
 
 }
 
+export const USER_1 = {
+    type: "mongo",
+    modelName: "users",
+    data: {
+        _id: generateRandomMongoId(),
+        userId: CUSTOMER_1.data.customerId,
+        earnRate: 20,
+        products: [{
+            productId: generateRandomMongoId(),
+            productType: "Yulife",
+            option: "epic",
+            earnRate: 20,
+            type: "employer"
+        }]
+    }
+} as IDatabaseItem
 
 export const USER_2 = {
     type: "mongo",
