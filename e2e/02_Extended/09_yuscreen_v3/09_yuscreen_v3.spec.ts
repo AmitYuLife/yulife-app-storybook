@@ -90,15 +90,11 @@ Feature("I should be able to use the yuscreen v3", async()=>{
                 When("I enter the last name of my beneficiary", when.typeViaID(INPUT_BENEFICIARY_DETAIL("Last name"), "Todd"), async () => {
                     Then("I should see that in the field", then.textVisible("Todd"))
                 })
-                When("I enter an incorrect phone number of my beneficiary", when.typeViaID(INPUT_BENEFICIARY_DETAIL("Phone number"), "0776969"), async () => {
-                    Then("I should see that in the field", then.textVisible("0776969"))
+                When("I enter a correct phone number of my beneficiary", when.typeViaID(INPUT_BENEFICIARY_DETAIL("Phone number"), "07769692500"), async () => {
+                    Then("I should see that in the field", then.textVisible("07769692500"))
                 })
                 When("I enter the first name of my beneficiary", when.typeViaID(INPUT_BENEFICIARY_DETAIL("Relation"), "Daddy"), async () => {
                     Then("I should see that in the field", then.textVisible("Daddy"))
-                    Then("I should see the correct error message for the phone number", then.textVisible("Not a valid UK phone number"))
-                })
-                When("I correct the phone number of my beneficiary", when.typeViaID(INPUT_BENEFICIARY_DETAIL("Phone number"), "2500"), async () => {
-                    Then("I should see that in the field", then.textVisible("07769692500"))
                 })
                 When("I tap continue", when.tapID(BENEFICIARY_CONTINUE), async () => {
                     Then("I should be on the Edit Beneficiaries page", then.textVisible("Edit Beneficiaries"))
