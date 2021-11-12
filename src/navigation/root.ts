@@ -264,6 +264,7 @@ export const showYuModal = async <P>(props: Layout<P>) => {
       options: {
         ...props?.component?.options,
         statusBar: {
+          ...props?.component?.options?.statusBar,
           drawBehind,
         },
       },

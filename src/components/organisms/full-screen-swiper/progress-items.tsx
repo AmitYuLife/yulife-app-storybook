@@ -38,15 +38,19 @@ export const ProgressItems = ({
     });
 
     animationRef.current.start(({ finished }) => {
+      if (length - 1 === activeIndex) {
+        return;
+      }
+
       if (finished) {
         onChangeActiveIndex();
       }
     });
-  }, [activeIndex, animationRef.current, width]);
+  }, [activeIndex, animationRef.current, width, length]);
 
   useEffect(() => {
     if (DETOX_ENABLED || autoPlaySpeedMs <= 0) {
-      interpolatedValue.setValue(0);
+      interpolatedValue.setValue(1);
       return;
     }
 

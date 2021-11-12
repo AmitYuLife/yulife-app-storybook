@@ -66,27 +66,27 @@ export const FullScreenSwiper = memo((props: Props) => {
       const max = items.length - 1;
       let incremented = 0;
 
-      setActiveIndex((activeIndex) => {
-        incremented = activeIndex + increment;
+      setActiveIndex((i) => {
+        incremented = i + increment;
 
         if (incremented < min) {
-          incremented = min;
+          return i;
         }
 
         if (incremented > max) {
-          incremented = activeIndex;
+          return i;
         }
 
-        if (activeIndex !== incremented) {
+        if (i !== incremented) {
           dispatch(
             logMixpanelEventActionCreator("modal_movement", {
               new_modal_name: items[incremented].heading,
-              previous_modal_name: items[activeIndex].heading,
+              previous_modal_name: items[i].heading,
               interaction: !autoMove,
               elapsed: autoMove,
               direction: increment > 0 ? "Forwards" : "Backwards",
               new_modal_index: incremented,
-              previous_modal_index: activeIndex,
+              previous_modal_index: i,
             })
           );
         }
@@ -98,12 +98,12 @@ export const FullScreenSwiper = memo((props: Props) => {
         setUserInteractionToggler((val) => !val);
       }
     },
-    [activeIndex, setActiveIndex, items.length]
+    [setActiveIndex, items.length]
   );
 
   return (
-    <View style={styles.screen}>
-      <View style={[styles.inner, { backgroundColor: props.theme.primaryColor }]}>
+    <View style={[styles.screen, { backgroundColor: props.theme.primaryColor }]}>
+      <View style={styles.inner}>
         <FlatList
           forwardRef={listRef}
           snapToOffsets={snapToOffsets}
@@ -137,7 +137,6 @@ export const FullScreenSwiper = memo((props: Props) => {
   );
 });
 
-const borderRadius = Platform.select({ ios: 20, android: 0 });
 const styles = StyleSheet.create({
   screen: {
     height: Style.DEVICE_HEIGHT,
@@ -146,8 +145,6 @@ const styles = StyleSheet.create({
   } as ViewStyle,
   inner: {
     height: Style.DEVICE_HEIGHT - Platform.select({ ios: 40, android: 0 }),
-    borderTopLeftRadius: borderRadius,
-    borderTopRightRadius: borderRadius,
     flexDirection: "row",
     overflow: "hidden",
   } as ViewStyle,
