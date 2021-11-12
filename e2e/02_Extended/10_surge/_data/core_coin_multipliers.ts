@@ -1,3 +1,4 @@
+import { CUSTOMER_34 } from "@data";
 import { generateRandomMongoId } from "@yu-life/yulife-bdd-framework"
 import { IDatabaseItem } from "@yu-life/yulife-bdd-framework";
 
@@ -16,6 +17,9 @@ export const COIN_MULTIPLIER_1 = {
         isEnabled: true,
         description: "Test Surge",
         type: "challenge",
-        multiple: 10
+        multiple: 10,
+        restrictToUserIds: [
+            CUSTOMER_34.data.customerId
+        ]
     }
 } as IDatabaseItem
