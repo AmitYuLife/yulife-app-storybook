@@ -90,7 +90,7 @@ Feature("I am able to use the yuscreen, create, and edit an Yumoji", async () =>
                                                         When("I tap no facial hair", when.tapItem(""), async () => {
                                                             When("I tap 'Save'", when.tapText("Save"), async () => {
                                                                 Then("I should be on the 'Yu look great!' screen", then.textVisible("Yu look great!"))
-                                                                When("I tap 'Discard changes'", when.tapText("Discard changes"), async () => {
+                                                                When("I tap 'Back'", when.tapText("Back"), async () => {
                                                                     Then("I should be back on the Yumoji builder", then.onAvatarBuilder("Facial Hair"))
                                                                     When("I tap 'Save' ", when.tapText("Save"), async () => {
                                                                         Then("I should be on the 'Yu look great!' screen", then.textVisible("Yu look great!"))
