@@ -134,6 +134,7 @@ export const USER_ONBOARDING_37 = {
         performedSteps: {
             yuScreenChest: true,
             personalLifeIntro: true,
+            newYumojiBuilder: true
         },
         createdAt: moment().subtract(7, "d").toISOString(),
         updatedAt: moment().toISOString(),
