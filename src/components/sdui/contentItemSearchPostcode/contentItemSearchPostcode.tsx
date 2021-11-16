@@ -1,18 +1,18 @@
-import React, { forwardRef, useState, useImperativeHandle } from "react";
+import React, { memo, Dispatch, SetStateAction } from "react";
 import { ContentItemSearchPostcode as TSearchPostcode } from "@graphql/_core/schema";
 import { Image, SecondaryButton } from "@atoms";
 import { Colours, Style } from "@styles";
 import { SearchAddress, ISearchAddress } from "@molecules";
 import { mapServerStyles } from "../_utils/mapServerStyles";
 
-type Props = TSearchPostcode & Omit<ISearchAddress, "onClose">;
+type Props = TSearchPostcode &
+  Omit<ISearchAddress, "onClose"> & {
+    isSearchPostcodeDisplayed: boolean;
+    setIsSearchPostcodeDisplayed: Dispatch<SetStateAction<boolean>>;
+  };
 
-export const ContentItemSearchPostcode = forwardRef((props: Props, ref) => {
-  const { label, styles, icon, searchInputStyles } = props;
-  const [isSearchPostcodeDisplayed, setIsSearchPostcodeDisplayed] = useState<boolean>(false);
-  useImperativeHandle(ref, () => ({
-    onClose: () => setIsSearchPostcodeDisplayed(false),
-  }));
+export const ContentItemSearchPostcode = memo((props: Props) => {
+  const { label, styles, icon, searchInputStyles, isSearchPostcodeDisplayed, setIsSearchPostcodeDisplayed } = props;
 
   if (isSearchPostcodeDisplayed) {
     return (

@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useContext, useRef, useState } from "react";
+import React, { memo, useCallback, useContext, useEffect, useState } from "react";
 import {
   Address,
   AddressVariables,
@@ -22,11 +22,15 @@ const keyExtractor = (item: ISearchItem<any>, index: number) => {
 
 export const ProductStepSearchPostcode = memo((props: Props) => {
   const { addressAnswerKeys, onLoadPlaceholder, onLoadUnsuccessfulText } = props;
-  const { setDynamicData } = useContext(ProductStepContext);
+  const { setDynamicData, setHeaderBottom } = useContext(ProductStepContext);
   const [addressList, setAddressList] = useState<ISearchItem<Address_findUserAddress>[]>([]);
+  const [isSearchPostcodeDisplayed, setIsSearchPostcodeDisplayed] = useState(false);
   const [onLoad, setOnLoad] = useState(true);
   const [query, setQuery] = useState<string>(null);
-  const ref: React.MutableRefObject<{ onClose: () => void }> = useRef();
+
+  useEffect(() => {
+    setHeaderBottom(isSearchPostcodeDisplayed ? 0 : null);
+  }, [isSearchPostcodeDisplayed]);
 
   const [search, { loading, data, networkStatus, called, error }] = useDebouncedQuery<Address, AddressVariables>(
     GQL_QUERY_GET_ADDRESS_BY_POSTCODE,
@@ -71,7 +75,7 @@ export const ProductStepSearchPostcode = memo((props: Props) => {
           ...address,
           onPress: () => {
             onAddressSelected(address);
-            ref?.current?.onClose();
+            setIsSearchPostcodeDisplayed(false);
           },
           icon: <AddressIcon color={!index ? Colours.primary.p600 : null} />,
           text: [addressLine, `${address.addressCity}, ${address.addressPostCode} `],
@@ -94,7 +98,8 @@ export const ProductStepSearchPostcode = memo((props: Props) => {
       onRefresh={onRefresh}
       onChangeText={onChangeText}
       keyExtractor={keyExtractor}
-      ref={ref}
+      isSearchPostcodeDisplayed={isSearchPostcodeDisplayed}
+      setIsSearchPostcodeDisplayed={setIsSearchPostcodeDisplayed}
       {...props}
     />
   );
