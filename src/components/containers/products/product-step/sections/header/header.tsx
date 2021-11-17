@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { LayoutChangeEvent, StyleSheet, View, ViewStyle } from "react-native";
 import { GetPersonalProductStep_getPersonalProductStep_header as GPPS_Header } from "@graphql/_core/schema";
 import { ContentItemProgressBar } from "@components/sdui";
 import { Colours } from "@styles";
 import { ProductStepContentItemHeader, ProductStepMarkdown, ProductStepSearchPostcode } from "../../subcomponents";
+import { ProductStepContext } from "../../product-step.context";
 
 interface Props {
   header: GPPS_Header[];
@@ -11,8 +12,10 @@ interface Props {
 }
 
 export const Header = (props: Props) => {
+  const { headerBottom } = useContext(ProductStepContext);
+
   return (
-    <View onLayout={props.onLayout} style={styles.wrapper}>
+    <View onLayout={props.onLayout} style={[styles.wrapper, { bottom: headerBottom }]}>
       {props.header?.map(renderItemContent)}
     </View>
   );

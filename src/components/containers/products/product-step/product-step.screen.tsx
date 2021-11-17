@@ -32,6 +32,7 @@ export const ProductStepScreen = memo((props: Props) => {
 
   const [scrollPicker, setScrollPicker] = useState(null as IProductStepScrollPicker);
   const [headerHeight, setHeaderHeight] = useState(0);
+  const [headerBottom, setHeaderBottom] = useState(null);
   const [dynamicData, setDynamicData] = useState(buildInitialProductStepDynamicDataState(stepData));
   const { current: scrollValue } = useRef(new Animated.Value(0));
 
@@ -68,6 +69,8 @@ export const ProductStepScreen = memo((props: Props) => {
         setDynamicData,
         scrollValue,
         headerHeight,
+        headerBottom,
+        setHeaderBottom,
       }}
     >
       <View style={[styles.wrapper, style]}>

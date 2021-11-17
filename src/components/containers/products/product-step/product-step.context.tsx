@@ -32,6 +32,12 @@ export interface IProductStepContext extends ProductStepDefaultFields {
    * src/components/containers/products/product-step/sections/header/header.tsx
    */
   headerHeight: number;
+  /**
+   * Set to 0 when showing a fullscreen item from the header.
+   * Set to null to go back to default behaviour.
+   */
+  headerBottom: number;
+  setHeaderBottom: Dispatch<SetStateAction<number | null>>;
 }
 
 export const DEFAULT_DYNAMIC_DATA = Object.freeze({});
@@ -48,4 +54,6 @@ export const ProductStepContext = createContext<IProductStepContext>({
 
   scrollValue: null,
   headerHeight: 0,
+  headerBottom: null,
+  setHeaderBottom: () => null,
 });
