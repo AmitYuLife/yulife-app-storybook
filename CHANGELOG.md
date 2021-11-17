@@ -7,6 +7,58 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.16.0] - 2021-11-17
+
+### Features
+
+- Feature: Leanplum integration (no push)
+
+### Bugfixes
+
+- Bugfix GS-42: Connect modal and today steps fix
+- Bugfix: pants after chest
+- Bugfix XSE-478: Make ProductScreen Header have configurable absolute bottom
+- Bugfix: full screen swiper changes
+- Bugfix: YuScreen armor popup on iPhone 13
+- Bugfix GS-162: Fix exit challenge modal
+- Bugfix: eslint upgrade
+- Bugfix: Set dialy steps button label to "Back to challenge" when challenge is active
+- Bugfix GS-144: Fix the position of the active perk asset on some androids
+- Bugfix ENG-2313: Retry query to complete the challenge
+- Bugfix: product details android
+- Bugfix: Yumoji infinite loading on items list
+
+### Tasks
+
+- Task GS-79: Health app tracking
+- Task GS-42 GS-81 GS-83: Add Samsung Health configuration
+
+### Chores
+
+- Chore: set request version for detox
+
+### Extra
+
+- Detox: Fix smoke on iphone 11 pro
+- Detox: Fix PLI
+- Detox: Move PLI to its own run
+- Detox: Extended fixes
+- Detox:Changed from dischard changes to Back on yumoji edit screen
+- Detox: Extended Fixes
+- should work now
+- removed beneficiary validation
+- changed save copy
+- removed zero steps guard
+- Hotfix: Extra padding for text-field placeholder
+- Detox: dismiss new looks modal
+- fix progress bar strobing when autoplayspeed is 0ms
+- Detox: All sad scenarios
+- Detox: PLI Sad - high BMI
+- Detox: Smoke Fixes
+- Detox: Change toggle from hasFibActive to hasCoveaFibActive
+- Purge: Old Yumoji Builder
+- removed modal if no change
+
 ## [3.15.0] - 2021-11-04
 
 ### Features
