@@ -48,6 +48,9 @@ const ChallengesListContainer: FC<Props> = ({ level, componentId }) => {
     setErrorState("Sorry, there was a problem starting your challenge. \n Please try again!");
   }, []);
 
+  const onDismissFitkitConnect = useCallback(() => {
+    Navigation.pop(ROUTES.onboardingFitKitConnect);
+  }, []);
   const handleNavPress = useCallback(() => Navigation.popToRoot(componentId), [componentId]);
 
   const handleSubmitChallenge = useCallback(async () => {
@@ -162,6 +165,7 @@ const ChallengesListContainer: FC<Props> = ({ level, componentId }) => {
                           name: route,
                           passProps: {
                             dismissButtonLabel: "Cancel",
+                            onDismiss: onDismissFitkitConnect,
                             navigateToNext: () => {
                               Navigation.pop(route);
                               setSlot(levelSlot);

@@ -15,6 +15,7 @@ import { FitKitHealthTrackingPlatform } from "@services/fitkit/fitkit.service";
 interface IProps {
   componentId: string;
   navigateToNext: () => void;
+  onDismiss?: () => void;
   /*
     we're using this method only when the screen is shown from daily step not authorised screen,
     if we're not using the handleAuthorised defined there, screen will not update the status to active
@@ -32,7 +33,14 @@ type Props = IProps & ConnectedState & ConnectedDispatch;
 const handlePrivacyPolicy = handleLinkPress(Config.PRIVACY_POLICY_URL);
 
 const FitKitConnectContainer: React.FC<Props> = (props) => {
-  const { dailyStepScreenHandleAuthorised, fitKitConsentAuthorised, navigateToNext, copy, dismissButtonLabel } = props;
+  const {
+    dailyStepScreenHandleAuthorised,
+    fitKitConsentAuthorised,
+    navigateToNext,
+    onDismiss,
+    copy,
+    dismissButtonLabel,
+  } = props;
   const [isConnecting, setIsConnecting] = React.useState(false);
   const { authorise, authorised, loading, available } = useFitKit();
 
@@ -56,7 +64,7 @@ const FitKitConnectContainer: React.FC<Props> = (props) => {
       fitKitAvailable={available}
       onConnectPress={handleConnect}
       onPrivacyPolicyPress={handlePrivacyPolicy}
-      onSkipPress={navigateToNext}
+      onSkipPress={onDismiss || navigateToNext}
       copy={copy}
       dismissButtonLabel={dismissButtonLabel}
     />
