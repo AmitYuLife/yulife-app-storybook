@@ -19,5 +19,6 @@ export const {
 export const {
     tapText,
     reloadAppToTab,
-    reloadOnly
+    reloadOnly,
+    wait
 } = navigation.common
