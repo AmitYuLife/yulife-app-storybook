@@ -85,9 +85,6 @@ const SwitchToGoogleFitModal = (props: SwitchToGoogleFitModalProps) => {
             selectedStyle={styles.selectedStyle}
             list={list}
           />
-          <View style={styles.title}>
-            <TextTemplate type="h1">Heads up!</TextTemplate>
-          </View>
 
           <Button
             label="Switch to Google Fit"
