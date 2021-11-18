@@ -1,9 +1,9 @@
 import { IntroContainer } from "@containers/index";
-import { MODALS } from "@navigation/constants";
-import { IMainTabsProps, labels, showYuModal } from "@navigation/root";
+import { ROUTES } from "@navigation/constants";
+import { IMainTabsProps } from "@navigation/root";
 import { getShowIntro } from "@redux/onboarding/onboarding.selectors";
 import { useFitKit } from "@services/fitkit/fitkit.hooks";
-import React, { memo } from "react";
+import React, { memo, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { startDailySteps } from "@redux/daily-steps/daily-steps.actions";
 import { getDailyStepsIsFetching } from "@redux/daily-steps/daily-steps.selectors";
@@ -13,20 +13,9 @@ import { DailyStepsScreen } from "@screens";
 import { FitkitContext } from "@services/fitkit/fitkit.helpers";
 import useNavigationComponentDidAppear from "@services/hooks/useNavigationComponentDidAppear";
 import { useTapBackTwiceToExit } from "@services/hooks/useTapBackTwiceToExit";
+import { Navigation } from "react-native-navigation";
 
 type Props = IMainTabsProps;
-
-function navigateToTodayYuCoin() {
-  showYuModal({
-    component: {
-      id: MODALS.todayYucoin,
-      name: MODALS.todayYucoin,
-      passProps: {
-        onCtaPress: labels[1].onPress,
-      },
-    },
-  });
-}
 
 function _DailyStepsContainer({ componentId, onLeftMenuPress }: Props) {
   const dispatch = useDispatch();
@@ -37,6 +26,19 @@ function _DailyStepsContainer({ componentId, onLeftMenuPress }: Props) {
   const theme = useSelector(getDailyStepsTheme);
   const showIntro = useSelector(getShowIntro);
   const surgeIntro = useSelector(getSurgeIntro);
+
+  const navigateToTodayEarnings = useCallback(
+    () =>
+      !fitkit.authorised
+        ? null
+        : Navigation.push(componentId, {
+            component: {
+              id: ROUTES.todayEarnings,
+              name: ROUTES.todayEarnings,
+            },
+          }),
+    [componentId]
+  );
 
   useNavigationComponentDidAppear(() => {
     dispatch(startDailySteps());
@@ -52,7 +54,7 @@ function _DailyStepsContainer({ componentId, onLeftMenuPress }: Props) {
         <IntroContainer
           shouldDisplaySurge={shouldDisplaySurge}
           isLoading={isFetching || fitkit.loading}
-          onCoinPress={navigateToTodayYuCoin}
+          onCoinPress={navigateToTodayEarnings}
           onLeftMenuPress={onLeftMenuPress}
           theme={theme}
           showIntro={showIntro}
@@ -66,7 +68,7 @@ function _DailyStepsContainer({ componentId, onLeftMenuPress }: Props) {
   return (
     <FitkitContext.Provider value={fitkit}>
       <DailyStepsScreen
-        onCoinPress={navigateToTodayYuCoin}
+        onCoinPress={navigateToTodayEarnings}
         theme={theme}
         onLeftMenuPress={onLeftMenuPress}
         fitKitAvailable={fitkit.available}

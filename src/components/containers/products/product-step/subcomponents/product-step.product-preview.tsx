@@ -9,7 +9,7 @@ import {
   GetPersonalProductStep_getPersonalProductStep_body_ContentItemPersonalProductPreview_percentageBox as PercentageBoxProps,
 } from "@graphql/_core/schema/GetPersonalProductStep";
 import { ProductStepContext } from "../product-step.context";
-import { Image, Hyperlink, TextTemplate } from "@atoms";
+import { Image, TextTemplate } from "@atoms";
 import { mapServerStyles } from "@components/sdui";
 import { useSetDefaultAnswer } from "../hooks/useSetDefaultAnswer";
 import { mapCoverTypeToColor } from "../utils/mapCoverTypeToColor";
@@ -18,6 +18,7 @@ import {
   HIGHLIGHT_CIRCUMFERENCE,
 } from "./product-step.scrollable-items-picker/product-step.scrollable-items-picker.styles";
 import { useDispatch } from "react-redux";
+import { Hyperlink } from "@molecules";
 
 export const ProductStepProductPreview = memo((props: Props) => {
   const { answerKey, answerKeyDefaultValue, showYumoji, documentHyperlink, percentageBox } = props;

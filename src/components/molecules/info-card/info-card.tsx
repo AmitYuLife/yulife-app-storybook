@@ -3,7 +3,7 @@ import { StyleSheet, View, ViewStyle } from "react-native";
 import { Colours, Style } from "@styles";
 import { TextTemplate } from "@atoms/text/text-template";
 import Markdown from "@components/molecules/markdown/markdown";
-import { Hyperlink } from "@atoms";
+import { Hyperlink } from "@molecules";
 
 interface IProps {
   icon: React.ReactNode;

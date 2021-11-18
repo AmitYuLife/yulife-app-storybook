@@ -3,7 +3,7 @@ import { Navigation } from "react-native-navigation";
 import { MODALS } from "@navigation/constants";
 import { drawBehind } from "@navigation/root";
 
-export function showOverlayWithChild(children: ReactElement) {
+export function showOverlayWithChild(children: ReactElement, withBlurBackground = true) {
   return Navigation.showOverlay({
     component: {
       id: MODALS.blurredOverlay,
@@ -21,6 +21,7 @@ export function showOverlayWithChild(children: ReactElement) {
       },
       passProps: {
         children,
+        withBlurBackground,
       },
     },
   });
