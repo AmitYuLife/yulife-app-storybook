@@ -30,3 +30,6 @@ export { default as AviosRewardConfirmedContainer } from "./member/rewards/confi
 
 // referrals containers
 export { default as ReferralsContainer } from "./referrals/referrals.container";
+
+// today-earnings container
+export { default as TodayEarningsContainer } from "./today-earnings/today-earnings.container";

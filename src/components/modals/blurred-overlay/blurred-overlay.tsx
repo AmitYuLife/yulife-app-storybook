@@ -7,6 +7,7 @@ import { MODALS } from "@navigation/constants";
 
 interface IProps {
   children: ReactElement;
+  withBlurBackground: boolean;
 }
 
 const commonProps = {
@@ -14,7 +15,7 @@ const commonProps = {
   useNativeDriver: true,
 };
 
-const BlurredOverlay = ({ children }: IProps) => {
+const BlurredOverlay = ({ children, withBlurBackground }: IProps) => {
   const opacity = useRef(new Animated.Value(0)).current;
   const fadeIn = Animated.timing(opacity, {
     toValue: 1,
@@ -46,7 +47,7 @@ const BlurredOverlay = ({ children }: IProps) => {
 
   return (
     <Animated.View testID="blur-provider.overlay-container" style={[styles.wrapper, { opacity }]}>
-      <BlurView blurAmount={5} blurType="light" style={styles.blur} />
+      {!withBlurBackground ? null : <BlurView blurAmount={5} blurType="light" style={styles.blur} />}
       <View style={styles.blur} onTouchStart={handleClose} />
       {cloneElement(children, { closeOverlay: handleClose })}
     </Animated.View>

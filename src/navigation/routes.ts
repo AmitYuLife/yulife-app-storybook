@@ -185,6 +185,13 @@ export default [
     component: require("../components/containers/referrals/referrals.container").default,
   },
 
+  // today-earnings
+
+  {
+    name: ROUTES.todayEarnings,
+    component: require("../components/containers/today-earnings/today-earnings.container").default,
+  },
+
   // modals
   {
     name: MODALS.earnRate,

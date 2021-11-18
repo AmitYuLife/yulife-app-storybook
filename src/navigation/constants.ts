@@ -65,6 +65,9 @@ export const ROUTES = {
   // referrals screens
   referralInformation: "yulife.referrals.referralInformation",
 
+  // today-earnings screen
+  todayEarnings: "yulife.todayEarnings",
+
   //debug
   packageCard: "yulife.debug.packageCard",
   packageIntro: "yulife.debug.packageIntro",

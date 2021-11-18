@@ -45,6 +45,8 @@ import { DoneIcon } from "./done-icon";
 import { StepsIcon } from "./steps-icon";
 import { CyclingIcon } from "./cycling-icon";
 import { MindfulnessIcon } from "./mindfulness-icon";
+import { StarIcon } from "./star-icon";
+import { YuCoinIcon } from "./yucoin-icon";
 
 // TODO: check with the team if we can refactor this to support "import { Icon1, Icon2 } from "@atoms/icon";
 
@@ -96,4 +98,6 @@ export default {
   StepsIcon,
   CyclingIcon,
   MindfulnessIcon,
+  StarIcon,
+  YuCoinIcon,
 };

@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef, useMemo } from "react";
 import { StyleSheet, View, ViewStyle, Animated } from "react-native";
-import { Style } from "@styles";
+import { Colours, Style } from "@styles";
 import Svg, { Rect } from "react-native-svg";
 
 interface IProgressBarProps {
@@ -10,10 +10,20 @@ interface IProgressBarProps {
   marginHorizontal?: number;
   childrenWidth?: number;
   children?: React.ReactNode;
+  style?: ViewStyle;
+  isDisabled?: boolean;
 }
 
 export default function ProgressBar(props: IProgressBarProps) {
-  const { currentPosition, maxLength, hideType, childrenWidth = 0, marginHorizontal = Style.adjust(48) } = props;
+  const {
+    currentPosition,
+    maxLength,
+    hideType,
+    childrenWidth = 0,
+    marginHorizontal = Style.adjust(48),
+    style,
+    isDisabled,
+  } = props;
 
   const [position, setPosition] = useState(currentPosition);
   const animatedValue = useRef(new Animated.Value(currentPosition)).current;
@@ -52,6 +62,14 @@ export default function ProgressBar(props: IProgressBarProps) {
     };
   }, [position, maxLength, childrenWidth, marginHorizontal]);
 
+  const svgProps = useMemo(
+    () => ({
+      fill: isDisabled ? Colours.neutral.n100 : Colours.metallic.m100,
+      stroke: data.currentProgressUI === 0 ? Colours.metallic.m200 : "none",
+    }),
+    [isDisabled, data.currentProgressUI]
+  );
+
   if (hideType === "unrendered") {
     return null;
   }
@@ -61,9 +79,17 @@ export default function ProgressBar(props: IProgressBarProps) {
   }
 
   return (
-    <View style={[styles.wrapper, { width: data.wrapperWidth }]}>
+    <View style={[styles.wrapper, { width: data.wrapperWidth }, style]}>
       <Svg width={data.svgWidth} height={14} viewBox={`0 0 ${data.svgWidth} 14`}>
-        <Rect width={data.svgWidth} height={14} rx={7} fill="#F0F0F0" />
+        <Rect
+          width={data.svgWidth - 1}
+          height={13}
+          rx={7}
+          x={0.5}
+          y={0.5}
+          fill={svgProps.fill}
+          stroke={svgProps.stroke}
+        />
         <Rect width={data.currentProgressUI} height={14} rx={7} fill="#F43E8E" />
         <Rect x={5} y={3} width={data.safeShineWidth} height={5} rx={2.5} fill="#F664A4" />
       </Svg>

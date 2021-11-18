@@ -92,6 +92,7 @@ export * from "./GetReferralOnboardingPopover";
 export * from "./GetRewardItemDetails";
 export * from "./GetRewards";
 export * from "./GetSession";
+export * from "./GetTodayEarnings";
 export * from "./GetTotalCoins";
 export * from "./GetUserNotificationsSettings";
 export * from "./GetWellbeingHubItem";

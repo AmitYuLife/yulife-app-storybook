@@ -13,7 +13,8 @@ import { PowerUpIcon } from "@atoms/icon/power-up-icon";
 import { SignedContractIcon } from "@atoms/icon/signed-contract-icon";
 import { YuCoinPileIcon } from "@atoms/icon/yucoin-pile-icon";
 import { YugiGPIcon } from "@atoms/icon/yugi-gp-icon";
-import { Hyperlink, TextTemplate } from "@atoms";
+import { TextTemplate } from "@atoms";
+import { Hyperlink } from "@molecules";
 
 const ICONS = [
   LockHeartIcon,
