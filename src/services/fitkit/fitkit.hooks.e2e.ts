@@ -13,6 +13,10 @@ export function useFitKit() {
     return mock.onFitkitAuthorised(authorise);
   }, []);
 
+  const authoriseFitKitTypes = function () {
+    authorise();
+  };
+
   const { loading, available, authorised } = globalState;
 
   return {
@@ -20,5 +24,6 @@ export function useFitKit() {
     available,
     authorised,
     authorise,
+    authoriseFitKitTypes,
   };
 }
