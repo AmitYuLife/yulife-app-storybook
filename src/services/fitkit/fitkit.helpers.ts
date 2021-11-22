@@ -89,7 +89,11 @@ export const queryFitKitByTypes = async (
       allResults.push(...results);
     } catch (e) {
       error = true;
-      Logger.logMixpanelEvent(`raw_${fitKitType}_query_error`, { error: e.message });
+      Logger.logMixpanelEvent(`raw_${fitKitType}_query_error`, {
+        error: e.message,
+        date_start: startTime,
+        date_end: endTime,
+      });
     }
   }
 
@@ -131,7 +135,11 @@ export const querySteps = async (
 
     return { results: results.map(transformSampleResultToPayload as any), error: null };
   } catch (e) {
-    Logger.logMixpanelEvent("raw_steps_query_error", { error: e.message });
+    Logger.logMixpanelEvent("raw_steps_query_error", {
+      error: e.message,
+      date_start: start.format(),
+      date_end: end.format(),
+    });
     return { results: [], error: e.message };
   }
 };
@@ -161,7 +169,11 @@ export const queryCycling = async (
 
     return results.map(transformSampleResultToPayload);
   } catch (e) {
-    Logger.logMixpanelEvent("raw_cycling_query_error", { error: e.message });
+    Logger.logMixpanelEvent("raw_cycling_query_error", {
+      error: e.message,
+      date_start: startTime,
+      date_end: endTime,
+    });
     return [];
   }
 };
