@@ -7,7 +7,7 @@ import { MODALS } from "@navigation/constants";
 import { getLastUpdatedBeforeToday as getStepsLastUpdateBeforeToday } from "@redux/daily-steps/daily-steps.selectors";
 import moment from "moment";
 import { Navigation } from "react-native-navigation";
-import { call, CallEffect, put, PutEffect, select, SelectEffect, all, AllEffect, delay } from "redux-saga/effects";
+import { call, CallEffect, put, PutEffect, select, SelectEffect, delay } from "redux-saga/effects";
 import { queryFitKitByTypes, querySteps } from "@services/fitkit/fitkit.helpers";
 import Logger from "@services/logging/logger";
 import { getRouteState } from "../../app/app.selectors";
@@ -19,10 +19,6 @@ import { IFeature } from "../../user/user.reducer";
 import { showYuModal } from "@navigation/root";
 
 type HistoricalData = AddHistoricalSteps_addHistoricalSteps;
-
-type SendPassiveActivityYieldResult = SelectEffect | CallEffect<void> | AllEffect<CallEffect<HistoricalData>>;
-
-type SendPassiveActivityGenerator = Generator<SendPassiveActivityYieldResult, void, any>;
 
 const defaultData: HistoricalData = {
   endDateTime: moment().format(),
@@ -127,15 +123,13 @@ export function* sendSteps(
   return stepsHistoricalDataResponse;
 }
 
-export default function* sendPassiveActivity(): SendPassiveActivityGenerator {
+export default function* sendPassiveActivity(): any {
   try {
     const features = yield select(getUserFeatures);
     const startOfDay = moment().startOf("day");
 
-    const [steps, meditation]: HistoricalData[] = yield all([
-      call(sendSteps, features, startOfDay.clone()),
-      call(sendMeditation, features, startOfDay.clone()),
-    ]) as AllEffect<CallEffect<HistoricalData>>;
+    const steps = yield sendSteps(features, startOfDay.clone());
+    const meditation = yield sendMeditation(features, startOfDay.clone());
 
     const awardedYucoin = (meditation?.yucoin || 0) + (steps?.yucoin || 0);
 
@@ -195,20 +189,19 @@ function sampleMeditationDataToAggregatedData(
   for (let i = 0; i < daysCount; i++) {
     const startOfEachDay = moment(startTime).add(i, "days");
 
-    let meditationSeconds = 0;
+    const meditationSeconds = meditationResults.reduce((acc, elem) => {
+      const start = moment(elem.startDateTime);
 
-    meditationResults.forEach((element: ChallengePayload) => {
-      if (
-        moment(element.startDateTime).isAfter(startOfEachDay) &&
-        moment(element.startDateTime).isBefore(moment(startOfEachDay).add(1, "day"))
-      ) {
-        meditationSeconds = meditationSeconds + element.value;
+      if (start.isAfter(startOfEachDay) && start.isBefore(startOfEachDay.clone().add(1, "day"))) {
+        return acc + elem.value;
       }
-    });
+
+      return acc;
+    }, 0);
 
     aggregateMeditationChallengeArray.push({
       startDateTime: startOfEachDay.format(),
-      endDateTime: moment(startOfEachDay).add(1, "day").format(),
+      endDateTime: startOfEachDay.clone().add(1, "day").format(),
       value: meditationSeconds,
     });
   }

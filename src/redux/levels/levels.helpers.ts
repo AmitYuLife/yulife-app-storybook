@@ -3,7 +3,7 @@ import RNFitKit from "@services/fitkit/fitkit.service";
 import Logger from "@services/logging/logger";
 import { DATE_FORMAT_WITH_TZ, getStartAndEndDateTimesWithTimezone } from "@utils";
 import moment from "moment";
-import { querySteps, queryFitKitByTypes } from "@services/fitkit/fitkit.helpers";
+import { queryFitKitByTypes } from "@services/fitkit/fitkit.helpers";
 import { IActiveLevel } from "./levels.selectors";
 
 const MAX_AVAILABLE = 4;
@@ -54,11 +54,6 @@ export async function getEndResult(
   try {
     const { start, end } = getStartAndEndDateTimesWithTimezone(startDateTime, endDateTime);
 
-    // get steps from google services/apple health
-    const fitkitResults = await querySteps(moment(start), moment(end));
-    const fitkitValue =
-      fitkitResults && fitkitResults.results ? fitkitResults.results.reduce((a, b) => a + b.value, 0) : 0;
-
     // get steps from sensors
     const pedometerResults = await RNFitKit.queryPedometerFromDate(start, end);
     const pedometerValue = pedometerResults?.steps || 0;
@@ -69,7 +64,6 @@ export async function getEndResult(
       start,
       end,
       score,
-      fitkitValue,
       pedometerValue,
     });
 
