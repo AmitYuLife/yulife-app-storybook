@@ -26,6 +26,8 @@ import themeReducer, { getInitialState as getInitialThemeState, IThemeStore } fr
 import userReducer, { getInitialState as getInitialUserState, IUserStore } from "../user/user.reducer";
 import productReducer, { getInitialState as getInitialProductState, IProductStore } from "../product/product.reducer";
 import sduiReducer, { getInitialState as getInitialSduiState, ISduiStore } from "../server-driven-ui/sdui.reducer";
+import fitkitReducer, { getInitialState as getInitialFitkitState } from "../fitkit/fitkit.reducer";
+import { IFitkitStore } from "@redux/fitkit/fitkit.reducer";
 
 export interface IReduxState {
   app: IAppStore;
@@ -42,6 +44,7 @@ export interface IReduxState {
   copy: ICopyStore;
   dailyMeditation: IDailyMeditationStore;
   sdui: ISduiStore;
+  fitkit: IFitkitStore;
 }
 
 export const initialState: IReduxState = {
@@ -59,6 +62,7 @@ export const initialState: IReduxState = {
   copy: getInitialCopyState(),
   dailyMeditation: getInitialDailyMeditation(),
   sdui: getInitialSduiState(),
+  fitkit: getInitialFitkitState(),
 };
 
 // this alias is created for testing purposes
@@ -79,6 +83,7 @@ const combinedReducers = combineReducers({
   copy: copyReducer,
   dailyMeditation: dailyMeditationReducer,
   sdui: sduiReducer,
+  fitkit: fitkitReducer,
 });
 
 export default combinedReducers;

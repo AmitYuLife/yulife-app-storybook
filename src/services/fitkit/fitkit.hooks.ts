@@ -1,18 +1,25 @@
-import { useState, useCallback, useEffect } from "react";
+import { useCallback, useEffect } from "react";
 import { Linking, Platform } from "react-native";
 import AsyncStorage from "@react-native-community/async-storage";
 import RNFitKit, { FitKitTypes } from "./fitkit.service";
-import { FitKitState } from "./fitkit.types";
 import Logger from "@services/logging/logger";
 import { FitKitType } from "@graphql/_core/schema/globalTypes";
 import { mapGqlFitKitTypeToFitKitType } from "./fitkit.helpers";
 import { isSamsung } from "@utils";
+import { useDispatch, useSelector } from "react-redux";
+import { fitkitSelector } from "@redux/fitkit/fitkit.selectors";
+import {
+  fitkitAuthoriseFailed,
+  fitkitAuthoriseStart,
+  fitkitAuthoriseSucceeded,
+  fitkitSetup,
+} from "@redux/fitkit/fitkit.actions";
 
 const RNFITKIT_PERMISSIONS_SHOWN = "@RNFitKit:authorised";
 
 export function useFitKit() {
-  const [state, setState] = useState({ available: true, authorised: true, loading: true } as FitKitState);
-  const { loading, available, authorised } = state;
+  const dispatch = useDispatch();
+  const { loading, available, authorised, initialized } = useSelector(fitkitSelector);
 
   const getState = useCallback(async function () {
     let isAvailable = false;
@@ -54,7 +61,7 @@ export function useFitKit() {
 
     await setMixpanelProperties(isAuthorised);
 
-    return { available: isAvailable, authorised: isAuthorised, loading: false };
+    return { available: isAvailable, authorised: isAuthorised };
   }, []);
 
   const setMixpanelProperties = async (isAuthorised: boolean) => {
@@ -96,8 +103,13 @@ export function useFitKit() {
 
   useEffect(() => {
     (async function () {
+      if (initialized) {
+        return;
+      }
+
+      dispatch(fitkitAuthoriseStart());
       const newState = await getState();
-      setState(newState);
+      dispatch(fitkitSetup(newState));
     })();
   }, []);
 
@@ -108,12 +120,18 @@ export function useFitKit() {
        */
       if (Platform.OS === "android") {
         try {
+          dispatch(fitkitAuthoriseStart());
           const isAuthorised = await RNFitKit.authorise(options);
 
-          setState((oldState) => ({ ...oldState, authorised: isAuthorised }));
+          if (isAuthorised) {
+            dispatch(fitkitAuthoriseSucceeded({ healthApp: options.platform }));
+          } else {
+            dispatch(fitkitAuthoriseFailed({ healthApp: options.platform }));
+          }
 
           return isAuthorised;
         } catch (e) {
+          dispatch(fitkitAuthoriseFailed({ healthApp: options.platform }));
           return false;
         }
       }
@@ -136,9 +154,8 @@ export function useFitKit() {
 
       if (wasAuthorisationShown) {
         const newState = await getState();
-
         if (newState.authorised) {
-          setState(newState);
+          dispatch(fitkitSetup(newState));
 
           return true;
         }
@@ -152,11 +169,13 @@ export function useFitKit() {
         return false;
       }
 
+      dispatch(fitkitAuthoriseStart());
+
       await RNFitKit.authorise(options);
 
       const newState = await getState();
 
-      setState(newState);
+      dispatch(fitkitSetup(newState));
 
       try {
         await AsyncStorage.setItem(RNFITKIT_PERMISSIONS_SHOWN, "true");
@@ -174,7 +193,7 @@ export function useFitKit() {
       try {
         await RNFitKit.authorise({ read: fitKitTypes.map(mapGqlFitKitTypeToFitKitType) });
         const newState = await getState();
-        setState(newState);
+        dispatch(fitkitSetup(newState));
       } catch (e) {
         Logger.error(e, {
           event: "authoriseFitKitTypes",
