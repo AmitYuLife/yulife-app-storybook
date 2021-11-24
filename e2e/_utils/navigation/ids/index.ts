@@ -66,7 +66,7 @@ export const HEADSPACE_BUTTON = "HEADSPACE_BUTTON"
 export const BENEFICIARY_CONTINUE = "BENEFICIARY_CONTINUE"
 export const BENEFICIARY_DONE = "BENEFICIARY_DONE"
 export const JOIN_COMMUNITY_GOAL_BUTTON = "JOIN_COMMUNITY_GOAL_BUTTON"
-
+export const ACTIVITY_FEED = "ACTIVITY_FEED"
 // components
 export const VIEW_CONFETTI_COIN = (coins: number) => `VIEW_CONFETTI_COIN_${coins}`;
 export const VIEW_TOP_RIGHT_COIN_COUNTER = (coins: number) => `VIEW_TOP_RIGHT_COIN_COUNTER_${coins}`;
