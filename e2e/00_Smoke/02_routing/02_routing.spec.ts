@@ -3,7 +3,7 @@ import * as scenario from "./_steps/scenario"
 import * as given from "./_steps/given"
 import * as when from "./_steps/when"
 import * as then from "./_steps/then"
-import { YUCOIN, BUTTON_CLOSE, QUESTS_SCREEN, NAV_BAR, LEADERBOARD_SCREEN, REWARDS_SCREEN, MENU_ICON, STATS_SCREEN, ACTIVITY_HISTORY_SCREEN, SETTINGS_SCREEN, YUMATTER_SCREEN, LEVEL_CHALLENGE_BUTTON, CHALLENGE_SET, CHALLENGE_TILE, GENERIC_SCREEN_HEADING, GENERIC_SCREEN_CTA, CHALLENGE_PROGRESS_BAR, BUTTON_CLOSE_CHALLENGE, CHECK_REWARDS_BUTTON, LEADERBOARD_TOP_SCREEN, BUTTON_CLOSE_HEADER, SETTINGS_NAME, SETTINGS_DESC, SETTINGS_SWITCH } from "@ids";
+import { YUCOIN, BUTTON_CLOSE, QUESTS_SCREEN, NAV_BAR, LEADERBOARD_SCREEN, REWARDS_SCREEN, MENU_ICON, STATS_SCREEN, ACTIVITY_HISTORY_SCREEN, SETTINGS_SCREEN, YUMATTER_SCREEN, LEVEL_CHALLENGE_BUTTON, CHALLENGE_SET, CHALLENGE_TILE, GENERIC_SCREEN_HEADING, GENERIC_SCREEN_CTA, CHALLENGE_PROGRESS_BAR, BUTTON_CLOSE_CHALLENGE, CHECK_REWARDS_BUTTON, LEADERBOARD_TOP_SCREEN, BUTTON_CLOSE_HEADER, SETTINGS_NAME, SETTINGS_DESC, SETTINGS_SWITCH, BACK_BUTTON } from "@ids";
 import { REWARDS_JOHN_LEWIS, REAWARDS_AVIOS, REWARDS_BLOOM_UNAVAILABLE, CUSTOMER_2, AUTH_2, CUSTOMER_8, AUTH_8, CUSTOMER_35, AUTH_35 } from "@data";
 Feature("As a user I can navigate through member routes correctly", async () => {
 
@@ -13,7 +13,7 @@ Feature("As a user I can navigate through member routes correctly", async () => 
             When("I tap the yucoin", when.tapID(YUCOIN), async () => {
                 Then("I should be on the yucoin screen", then.onTodaysYucoin())
             })
-            When("I close this screen", when.tapID(BUTTON_CLOSE), async () => {
+            When("I close this screen", when.tapID(BACK_BUTTON), async () => {
                 Then("I should see the daily steps screen", then.onDailySteps())
             })
             When("I tap quests in the tab", when.tapID(NAV_BAR("quests")), async () => {
