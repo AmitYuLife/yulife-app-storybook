@@ -21,6 +21,7 @@ import { openGoogleFit } from "@services/app-link";
 import { androidAlertCopy } from "@components/screens/onboarding/fitkit-connect/copy";
 import { useFitKit } from "@services/fitkit/fitkit.hooks";
 import FitKitPermissions from "@services/fitkit/fitkit.permissions";
+import { ACTIVITY_FEED } from "@ids";
 
 interface IProps {
   id: string;
@@ -112,6 +113,7 @@ const ActivityFeed = ({
                   width={Style.adjust(24)}
                   height={Style.adjust(24)}
                   source={{ uri: questionMarkModal.iconUrl.uri }}
+                  testID={ACTIVITY_FEED}
                 />
               </View>
             </PressableWithDelay>
