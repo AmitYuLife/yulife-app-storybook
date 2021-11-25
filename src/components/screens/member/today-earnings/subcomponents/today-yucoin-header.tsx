@@ -16,23 +16,25 @@ const TodayYuCoinHeader = ({ yuCoinToday, yuCoinPower }: IProps) => {
   const buffTypes = useMemo(() => [BuffArea.stepsMilestone], []);
 
   return (
-    <View style={styles.wrapper}>
+    <View>
       <View style={styles.yuCoinWrapper}>
         <YuCoinIcon />
         <ActiveBuffsButton iconWidth={25} iconHeight={25} style={styles.activeBuffs} buffTypes={buffTypes} />
       </View>
-      <View style={styles.textWrapper}>
-        <TextTemplate type="l1" color={Colours.orange}>
-          earned today
-        </TextTemplate>
-        <TextTemplate type="h1" color={Colours.orange}>
-          {yuCoinToday} YuCoin
-        </TextTemplate>
-      </View>
-      <View style={styles.yuCoinPower}>
-        <PressableWithDelay onPress={showEarnRateOverlay}>
-          <YuCoinPower coins={yuCoinPower} />
-        </PressableWithDelay>
+      <View style={styles.wrapper}>
+        <View style={styles.textWrapper}>
+          <TextTemplate type="l1" color={Colours.orange}>
+            earned today
+          </TextTemplate>
+          <TextTemplate type="h1" color={Colours.orange}>
+            {yuCoinToday} YuCoin
+          </TextTemplate>
+        </View>
+        <View style={styles.yuCoinPower}>
+          <PressableWithDelay onPress={showEarnRateOverlay}>
+            <YuCoinPower coins={yuCoinPower} />
+          </PressableWithDelay>
+        </View>
       </View>
     </View>
   );
@@ -48,10 +50,13 @@ const styles = StyleSheet.create({
     borderColor: Colours.primary.p105,
     borderWidth: 1,
     padding: Style.adjust(16),
+    zIndex: 1,
   } as ViewStyle,
   yuCoinWrapper: {
     position: "absolute",
-    top: Style.adjust(-35),
+    alignSelf: "center",
+    top: Style.adjust(7),
+    zIndex: 2,
   } as ViewStyle,
   activeBuffs: {
     position: "absolute",

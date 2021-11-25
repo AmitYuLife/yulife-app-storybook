@@ -22,6 +22,8 @@ import { androidAlertCopy } from "@components/screens/onboarding/fitkit-connect/
 import { useFitKit } from "@services/fitkit/fitkit.hooks";
 import FitKitPermissions from "@services/fitkit/fitkit.permissions";
 import { ACTIVITY_FEED } from "@ids";
+import { useSelector } from "react-redux";
+import { getHasNotification } from "@redux/levels/levels.selectors";
 
 interface IProps {
   id: string;
@@ -48,6 +50,7 @@ const ActivityFeed = ({
 }: IProps) => {
   const questionMarkRef = useRef<View>();
   const { authorise } = useFitKit();
+  const hasNotification = useSelector(getHasNotification);
 
   const onGoogleFitConnect = useCallback(async () => {
     const { title, message: alertMessage, dismissLabel, downloadLabel, confirmLabel } = androidAlertCopy;
@@ -134,7 +137,11 @@ const ActivityFeed = ({
 
       {!button ? null : (
         <View style={styles.progressWrapper}>
-          <Button onPress={onTakeChallengePress} size="Large" label={button?.label} />
+          <Button
+            onPress={onTakeChallengePress}
+            size="Large"
+            label={hasNotification ? "Back to challenge" : button?.label}
+          />
         </View>
       )}
 
