@@ -41,5 +41,5 @@
       "@mockclient": ["./e2e/_utils/socket/client"]
     }
   },
-  "exclude": ["e2e", "node_modules", "babel.config.js", "metro.config.js", "jest.config.js"]
+  "exclude": ["e2e", "node_modules", "babel.config.js", "metro.config.js"]
 }

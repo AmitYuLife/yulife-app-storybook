@@ -195,21 +195,6 @@ You may also be asked to create an OAuth Consent Screen. You only need to enter 
 
 You should now be able to log in to your Google Account in the simulator or device.
 
-## Tests
-
-To run the tests use:
-
-```sh
-# To run only the unit tests. Report is in './coverage'
-yarn test:unit
-
-# To update snapshots
-yarn test:unit -- -u
-
-# To run all the tests, including TypeScript checking and linting
-yarn test:all
-```
-
 ## Debugging
 
 You can use the react native debugger.
@@ -260,16 +245,11 @@ The YuLife project follows the [atomic design](http://atomicdesign.bradfrost.com
 ```sh
 ├── android
 ├── assets
-├── coverage (Jest lcov & html report)
 ├── ios
-├── jest (Jest setup for unit tests)
 ├── src
 |   ├── components
 |       ├── atoms
 |           ├── component name
-|               ├── _tests
-|                   ├── __snapshots__
-|                   ├── component.spec.tsx (Unit test)
 |               ├── component.styles.ts (CSS & Styles)
 |               ├── component.helpers.tsx (Component helpers)
 |               ├── component.tsx (Component)
@@ -282,9 +262,6 @@ The YuLife project follows the [atomic design](http://atomicdesign.bradfrost.com
 |       ├── molecules
 |       ├── screens (Presentational components only)
 |           ├── component name
-|               ├── tests
-|                   ├── __snapshots__
-|                   ├── component.spec.tsx
 |               ├── component.screen.data.tsx (Text strings used in component)
 |               ├── component.screen.helpers.tsx
 |               ├── component.screen.styles.ts
@@ -419,6 +396,7 @@ On `api-server`
 ### Gotchas
 
 - If `detox:build` fails with the `package was built for iOS not iOS Simulator` error, change detox build step in `package.json` to:
+
 ```
 "build": "xcodebuild -workspace ios/YuLife.xcworkspace -scheme local -configuration Debug -sdk iphonesimulator -derivedDataPath ios/build EXCLUDED_ARCHS=arm64",
 ```
