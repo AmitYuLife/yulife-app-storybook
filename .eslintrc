@@ -9,8 +9,7 @@
   ],
   "plugins": ["react", "@typescript-eslint", "yulife-rn-client", "deprecation"],
   "env": {
-    "browser": true,
-    "jest": true
+    "browser": true
   },
   "globals": {
     "React": "readonly",
