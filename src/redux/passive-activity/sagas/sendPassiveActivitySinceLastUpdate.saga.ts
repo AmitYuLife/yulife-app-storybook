@@ -123,11 +123,7 @@ export function* sendSteps(
   return stepsHistoricalDataResponse;
 }
 
-export default function* sendPassiveActivity({ payload: appState }: { payload: string; type: string }): any {
-  if (appState !== "active") {
-    return;
-  }
-
+export default function* sendPassiveActivity(): any {
   try {
     const features = yield select(getUserFeatures);
     const startOfDay = moment().startOf("day");
