@@ -19,6 +19,23 @@ export interface GetWellbeingHubItem_wellbeingHubItem_icon {
   uri: string | null;
 }
 
+export interface GetWellbeingHubItem_wellbeingHubItem_content_ContentItemText_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetWellbeingHubItem_wellbeingHubItem_content_ContentItemText {
+  __typename: "ContentItemText";
+  id: string;
+  textType: string;
+  text: string;
+  colour: string | null;
+  textAlign: string | null;
+  underline: boolean | null;
+  numberOfLines: number | null;
+  styles: GetWellbeingHubItem_wellbeingHubItem_content_ContentItemText_styles[] | null;
+}
+
 export interface GetWellbeingHubItem_wellbeingHubItem_content_ContentItemMarkdown {
   __typename: "ContentItemMarkdown";
   id: string;
@@ -126,6 +143,7 @@ export interface GetWellbeingHubItem_wellbeingHubItem_content_ContentItemForm {
 }
 
 export type GetWellbeingHubItem_wellbeingHubItem_content =
+  | GetWellbeingHubItem_wellbeingHubItem_content_ContentItemText
   | GetWellbeingHubItem_wellbeingHubItem_content_ContentItemMarkdown
   | GetWellbeingHubItem_wellbeingHubItem_content_ContentItemBox
   | GetWellbeingHubItem_wellbeingHubItem_content_ContentItemButton

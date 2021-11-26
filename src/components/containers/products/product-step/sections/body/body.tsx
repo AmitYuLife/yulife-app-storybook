@@ -68,7 +68,7 @@ export const Body = (props: Props) => {
   const { scrollValue } = useContext(ProductStepContext);
 
   useEffect(() => {
-    scrollValue.setValue(0);
+    scrollValue?.setValue(0);
   }, [props.body]);
 
   return (

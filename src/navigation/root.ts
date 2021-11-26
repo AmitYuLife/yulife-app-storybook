@@ -343,11 +343,12 @@ export async function setOfflineRoot() {
   });
 }
 
-export async function setScreen(currentRoute: string, id: string) {
+export async function setScreen(currentRoute: string, id: string, passProps?: Record<string, string>) {
   await Navigation.push(currentRoute, {
     component: {
       id: id,
       name: id,
+      passProps,
     },
   });
 }

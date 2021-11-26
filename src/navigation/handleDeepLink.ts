@@ -68,6 +68,16 @@ export default async function handleDeepLink(fullUrl: string, hasToken: boolean,
 
       return;
 
+    case url.startsWith("perk-provision"): {
+      const perkId = url.split("/")[1];
+
+      if (hasToken && perkId) {
+        await setScreen(currentRoute, ROUTES.perkSubscriptionInfo, { perkId });
+      }
+
+      return;
+    }
+
     default:
       return;
   }

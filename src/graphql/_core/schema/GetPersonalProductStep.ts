@@ -33,7 +33,8 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemP
     | "ContentItemPersonalProductFaqs"
     | "ContentItemCollapsingHeaderProductInfo"
     | "ContentItemFullScreenSwiper"
-    | "ContentItemSearchPostcode";
+    | "ContentItemSearchPostcode"
+    | "ContentItemForm";
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemTextInput_validation {
@@ -1123,7 +1124,8 @@ export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentIte
     | "ContentItemGpDetails"
     | "ContentItemPackageCardPower"
     | "ContentItemPersonalProductSelectPaymentButton"
-    | "ContentItemSearchPostcode";
+    | "ContentItemSearchPostcode"
+    | "ContentItemForm";
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentItemButton_onPress {
@@ -1305,7 +1307,8 @@ export interface GetPersonalProductStep_getPersonalProductStep_header_ContentIte
     | "ContentItemFullScreenSwiper"
     | "ContentItemGpDetails"
     | "ContentItemPackageCardPower"
-    | "ContentItemPersonalProductSelectPaymentButton";
+    | "ContentItemPersonalProductSelectPaymentButton"
+    | "ContentItemForm";
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_header_ContentItemHeaderBar_onLeftIconPress {
@@ -1437,7 +1440,8 @@ export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_Con
     | "ContentItemGpDetails"
     | "ContentItemPackageCardPower"
     | "ContentItemPersonalProductSelectPaymentButton"
-    | "ContentItemSearchPostcode";
+    | "ContentItemSearchPostcode"
+    | "ContentItemForm";
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemImage_image {

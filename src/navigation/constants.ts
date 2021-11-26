@@ -68,6 +68,9 @@ export const ROUTES = {
   // today-earnings screen
   todayEarnings: "yulife.todayEarnings",
 
+  // perk
+  perkSubscriptionInfo: "yulife.perk.subscriptionInfo",
+
   //debug
   packageCard: "yulife.debug.packageCard",
   packageIntro: "yulife.debug.packageIntro",

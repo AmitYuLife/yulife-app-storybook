@@ -1,6 +1,10 @@
+import { GQL_FRAGMENT_CONTENT_ITEM_TEXT } from "@graphql/_fragments/content.gql";
+import { GQL_FRAGMENT_SDUI_STYLE } from "@graphql/_fragments/shared.gql";
 import gql from "graphql-tag";
 
 export const GQL_QUERY_GET_REWARD_ITEM_DETAILS = gql`
+  ${GQL_FRAGMENT_SDUI_STYLE}
+  ${GQL_FRAGMENT_CONTENT_ITEM_TEXT}
   query GetRewardItemDetails($id: ID!) {
     getRewardItemDetails(id: $id) {
       id
@@ -22,6 +26,10 @@ export const GQL_QUERY_GET_REWARD_ITEM_DETAILS = gql`
         label
       }
       content {
+        ... on ContentItemText {
+          __typename
+          ...ContentItemText
+        }
         ... on ContentItemMarkdown {
           __typename
           id
