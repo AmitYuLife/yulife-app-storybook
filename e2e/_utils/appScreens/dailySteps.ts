@@ -1,6 +1,7 @@
 import { expectIsVisibleViaID, expectIsVisibleViaText } from "@navigation";
 import { DAILY_STEPS_SCREEN, TODAYS_YUCOIN, TODAYS_EARNINGS } from "@ids"
 
+import { scrollUntilTextVisible } from "_utils/navigation/scrolling"
 
 export const onDailySteps = (steps = 0, yucoins = 0) => async () => {
     await expectIsVisibleViaID(DAILY_STEPS_SCREEN);
@@ -18,6 +19,6 @@ export const onTodaysYucoin = (steps = 0, cycling = 0, mindfulness = 0) => async
     // await expectIsVisibleViaText(coreYucoins.toString())
     // await expectIsVisibleViaText(questsYucoints.toString())
     await expectIsVisibleViaText("Today's challenges (0/1)")
-    await expectIsVisibleViaText("No challenge done")
-    await expectIsVisibleViaText("Take a challenge (1 left)")
+    await scrollUntilTextVisible(TODAYS_EARNINGS,"No challenge done","down")
+    await scrollUntilTextVisible(TODAYS_EARNINGS,"Take a challenge (1 left)","down")
 }
