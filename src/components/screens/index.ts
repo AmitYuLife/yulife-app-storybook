@@ -59,3 +59,7 @@ export { default as SplashScreen } from "./splash/splash.screen";
 // referrals
 export { default as ReferralsScreen } from "./referrals/referrals.screen";
 export { default as ReferralsLoadingScreen } from "./referrals/referrals-loading.screen";
+
+// perk
+export { default as PerkSubscriptionInfoScreen } from "./perk/perk-subscription-info.screen";
+export { default as PerkSubscriptionInfoLoadingScreen } from "./perk/perk-subscription-info-loading.screen";

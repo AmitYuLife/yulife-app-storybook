@@ -249,6 +249,11 @@ export interface ProductMetadata {
   avios?: AviosMetadata | null;
 }
 
+export interface SubscribeToPerkField {
+  key: string;
+  value: string;
+}
+
 export interface UserAvatarPartUpdate {
   partId?: string | null;
   partType: string;

@@ -66,7 +66,7 @@ const ContentItemForm = ({ elements, onSubmit, isLoading, customValidation }: IP
       newFormState = { ...formState, [name]: { ...formState[name], value } };
     }
 
-    return { ...newFormState, ...customValidation(newFormState) };
+    return { ...newFormState, ...(customValidation && customValidation(newFormState)) };
   };
 
   const onChange = (index: number, value: any) => {
@@ -108,7 +108,10 @@ const ContentItemForm = ({ elements, onSubmit, isLoading, customValidation }: IP
         };
       }, {});
 
-    const valuesWithCustomValidation = { ...values, ...customValidation({ ...values, initialValidation: true }) };
+    const valuesWithCustomValidation = {
+      ...values,
+      ...(customValidation && customValidation({ ...values, initialValidation: true })),
+    };
 
     validateForm(valuesWithCustomValidation);
     setFormState(valuesWithCustomValidation);

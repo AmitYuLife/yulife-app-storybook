@@ -44,7 +44,8 @@ export interface GetPersonalProductStepDetachedFaqs_getPersonalProductStepDetach
     | "ContentItemGpDetails"
     | "ContentItemPackageCardPower"
     | "ContentItemPersonalProductSelectPaymentButton"
-    | "ContentItemSearchPostcode";
+    | "ContentItemSearchPostcode"
+    | "ContentItemForm";
 }
 
 export interface GetPersonalProductStepDetachedFaqs_getPersonalProductStepDetachedFaqs_body_ContentItemPersonalProductFaqs_headingImage_image {

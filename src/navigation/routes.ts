@@ -192,6 +192,12 @@ export default [
     component: require("../components/containers/today-earnings/today-earnings.container").default,
   },
 
+  // perk
+  {
+    name: ROUTES.perkSubscriptionInfo,
+    component: require("../components/containers/perk/perk-subscription-info.container").default,
+  },
+
   // modals
   {
     name: MODALS.earnRate,

@@ -1,27 +1,21 @@
-import { GQL_FRAGMENT_CONTENT_ITEM_TEXT } from "@graphql/_fragments/content.gql";
+import { GQL_FRAGMENT_CONTENT_ITEM_IMAGE, GQL_FRAGMENT_CONTENT_ITEM_TEXT } from "@graphql/_fragments/content.gql";
 import { GQL_FRAGMENT_SDUI_STYLE } from "@graphql/_fragments/shared.gql";
 import gql from "graphql-tag";
 
-export const GQL_QUERY_GET_WELLBEING_HUB_DETAILS = gql`
+export const GQL_QUERY_GET_PERK_SUBSCRIPTION_INFO = gql`
   ${GQL_FRAGMENT_SDUI_STYLE}
+  ${GQL_FRAGMENT_CONTENT_ITEM_IMAGE}
   ${GQL_FRAGMENT_CONTENT_ITEM_TEXT}
-  query GetWellbeingHubItem($id: ID!, $os: OS) {
-    wellbeingHubItem(id: $id, os: $os) {
-      id
-      title
-      description
-      thumbnail {
-        id
-        uri(options: { width: 800, height: 400, crop: "fit" })
-      }
-      icon {
-        id
-        uri
-      }
+  query GetPerkSubscriptionInfo($perkId: ID!) {
+    getPerkSubscriptionInfo(perkId: $perkId) {
       content {
         ... on ContentItemText {
           __typename
           ...ContentItemText
+        }
+        ... on ContentItemImage {
+          __typename
+          ...ContentItemImage
         }
         ... on ContentItemMarkdown {
           __typename

@@ -23,6 +23,23 @@ export interface GetRewardItemDetails_getRewardItemDetails_availableDenomination
   label: string | null;
 }
 
+export interface GetRewardItemDetails_getRewardItemDetails_content_ContentItemText_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetRewardItemDetails_getRewardItemDetails_content_ContentItemText {
+  __typename: "ContentItemText";
+  id: string;
+  textType: string;
+  text: string;
+  colour: string | null;
+  textAlign: string | null;
+  underline: boolean | null;
+  numberOfLines: number | null;
+  styles: GetRewardItemDetails_getRewardItemDetails_content_ContentItemText_styles[] | null;
+}
+
 export interface GetRewardItemDetails_getRewardItemDetails_content_ContentItemMarkdown {
   __typename: "ContentItemMarkdown";
   id: string;
@@ -138,6 +155,7 @@ export interface GetRewardItemDetails_getRewardItemDetails_content_ContentItemFo
 }
 
 export type GetRewardItemDetails_getRewardItemDetails_content =
+  | GetRewardItemDetails_getRewardItemDetails_content_ContentItemText
   | GetRewardItemDetails_getRewardItemDetails_content_ContentItemMarkdown
   | GetRewardItemDetails_getRewardItemDetails_content_ContentItemBox
   | GetRewardItemDetails_getRewardItemDetails_content_ContentItemButton
