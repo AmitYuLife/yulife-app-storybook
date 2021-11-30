@@ -3,11 +3,11 @@ import * as scenario from "./_steps/scenario"
 import * as given from "./_steps/given"
 import * as when from "./_steps/when"
 import * as then from "./_steps/then"
-import { CUSTOMER_1, CUSTOMER_18, AUTH_18, CUSTOMER_17, AUTH_17, AUTH_19, CUSTOMER_19, USER_18_LEADERBOARD } from "@data";
+import { CUSTOMER_1,CUSTOMER_2, AUTH_2, CUSTOMER_18, AUTH_18, CUSTOMER_17, AUTH_17, AUTH_19, CUSTOMER_19, USER_18_LEADERBOARD } from "@data";
 import {
     GET_STARTED_BUTTON, MALE_BODY, COLOUR, VIEW_TOP_RIGHT_COIN_COUNTER, NAV_BAR, PERSONAL_PRODUCT,
     CHECK_BOX_STATE, SURVEY_SCREEN, SURVEY_TEXT_BOX, FEMALE_BODY, AVATAR_BUILDER_LIST, NO_ITEM_SELECTED, 
-    BODY_TYPE, YUSCREEN_AVATAR, YUSCREEN, YUMOJI_PODIUM, LEADERBOARD_TITLE, YUCOIN_POWER, YUSCREEN_SCROLL_VIEW, AVATAR_ITEM,
+    BODY_TYPE, YUSCREEN_AVATAR, YUSCREEN, YUMOJI_PODIUM, LEADERBOARD_TITLE, YUCOIN_POWER, YUSCREEN_SCROLL_VIEW, AVATAR_ITEM, TEXT_TEMPLATE, YUCOIN, YUCOIN_POWER_INFO
 } from "@ids";
 
 
@@ -124,27 +124,30 @@ Feature("I am able to use the yuscreen, create, and edit an Yumoji", async () =>
 
 
 
-    // skipped while new yuscreen in development
-    ScenarioSkip("My earn rate and employer benefits should be correct", scenario.start, async () => {
-        Given("I login", given.loginToYuScreen(), async () => {
-            Then("I should be on an empty yuscreen tab", then.onEmptyYuscreen(CUSTOMER_1))
-            Then("I should see 1x Yucoin power", then.swipeToID(YUSCREEN, YUCOIN_POWER("1"), "up", 3))
-            When("I scroll to the bottom", when.scrollUntilTextVisible(YUSCREEN_SCROLL_VIEW, "Compass of Life Insurance", "down"), async () => {
-                Then("I should see my Employer benefits", then.multipleTextVisible(["Company Items", "Provided by your company"]))
-                Then("I should see The Compass of Group Life Insurance ", then.textVisible("Compass of Life Insurance"))
-                When("I go to the earn rate", when.scrollUntilIdVisible(YUSCREEN_SCROLL_VIEW, YUCOIN_POWER("1"), "up"), async () => {
-                        When("I tap the earn rate", when.tapID(YUCOIN_POWER("1")), async () => {
-                            Then("I should be on the 'Your YuCoin' screen", then.onYourYuCoin)
-                        })
-                        When("I tap Got it!", when.tapText("Got it!"), async()=>{
-                            When("I scroll to the top", when.scrollFromID(YUSCREEN, "down", "fast"), async()=>{
-                                Then("I should be back on the empty yuscreen", then.onEmptyYuscreen(CUSTOMER_1))
-                            })
-                        })
-                    })
+    Scenario("My earn rate and employer benefits should be correct when i have showCycling toggle on YuCoin Power screen", scenario.start, async () => {
+        Given("I login", given.loginToYuScreen(true, CUSTOMER_2, AUTH_2), async () => {
+            Then("I should be on an empty yuscreen tab", then.onEmptyYuscreen(CUSTOMER_2))
+            When("I should see 20x Yucoin power", when.swipeToID(YUSCREEN, YUCOIN_POWER("20"), "up", 3), async () => {
+                When("I tap the earn rate", when.tapID(YUCOIN_POWER("20")), async () => {
+                    Then("I should see h2 header text YuCoin Power", then.idVisible(TEXT_TEMPLATE("YuCoin Power")))
+                    Then("I should all the data from the table on YuCoin Power screen", then.multipleTextVisible(["2000 steps","1.6 km cycling","5 mindful mins","1 challenge","Chests","Streaks"]))
+                })
+                When("I tap Got it!", when.tapText("Got it!"), async()=>{
+                    Then("I should be back on the empty yuscreen", then.onEmptyYuscreen(CUSTOMER_2))
+                })
+                When("I tap the yucoin", when.tapID(NAV_BAR("yucoin")), async () => {
+                    Then("I should see the daily steps screen", then.onDailySteps())
+                })
+                When("I tap the yucoin", when.tapID(YUCOIN), async () => {
+                    Then("I should be on the yucoin screen", then.onTodaysYucoin())
+                })
+                When("I tap on small i info button for activity feed info", when.tapID(YUCOIN_POWER_INFO), async () => {
+                    Then("I should see h2 header text YuCoin Power", then.idVisible(TEXT_TEMPLATE("YuCoin Power")))
+                    Then("I should all the data from the table on YuCoin Power screen", then.multipleTextVisible(["2000 steps","1.6 km cycling","5 mindful mins","1 challenge","Chests","Streaks"]))
                 })
             })
         })
+    })       
 
     Scenario("I can view my Yumoji after I login, and edit it", scenario.start, async () => {
         Given("I login", given.loginToYuScreen(true, CUSTOMER_17, AUTH_17), async () => {

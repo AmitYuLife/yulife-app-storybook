@@ -36,3 +36,8 @@ export const {
 export const avatarItemVisible = (avatarItem: string, status: string) => async () => {
     await idVisible(AVATAR_ITEM(`https://yulife-develop.imgix.net/yuscreen_products_assets/default/${avatarItem}`, status))
 }
+
+export const {
+    onTodaysYucoin,
+    onDailySteps,
+} = screens.dailySteps

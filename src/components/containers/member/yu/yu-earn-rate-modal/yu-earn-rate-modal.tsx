@@ -12,6 +12,7 @@ import Markdown from "@components/molecules/markdown/markdown";
 import { GetProductEarnRate, GetProductEarnRateVariables } from "@graphql/_core/schema";
 import { CoverType } from "@graphql/_core/schema/globalTypes";
 import { GQL_QUERY_GET_PRODUCT_EARN_RATE } from "@graphql/yuscreen/getProductEarnRate";
+import { TEXT_TEMPLATE } from "@ids";
 
 interface Props {
   slotIcon: React.ReactElement;
@@ -46,7 +47,9 @@ const YuEarnRateModal = ({ slotIcon, customerProductId, coverType }: Props) => {
         <View style={styles.headingWrapper}>
           {slotIcon}
           <View style={slotIcon ? styles.margin : null}>
-            <TextTemplate type="h2">{heading}</TextTemplate>
+            <TextTemplate type="h2" testID={TEXT_TEMPLATE(heading)}>
+              {heading}
+            </TextTemplate>
           </View>
         </View>
         <Table activeCoverType={coverType} columns={columns} loading={false} />
