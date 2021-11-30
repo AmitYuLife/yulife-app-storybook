@@ -25,7 +25,8 @@ export const {
     expectIsVisibleViaID,
     expectIsVisibleViaText,
     booleanIdVisible,
-    booleanTextVisible
+    booleanTextVisible,
+    textNotVisible
 } = navigation.common
 
 export const {

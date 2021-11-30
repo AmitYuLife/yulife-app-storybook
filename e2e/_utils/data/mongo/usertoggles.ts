@@ -36,7 +36,8 @@ export const CUSTOMER_2_TOGGLES = {
             "statsShowCyclingBestScoreCard": true,
             "statsShowCyclingGraphCard": true,
             "showSettings": true,
-            "showNotifications": true
+            "showNotifications": true,
+            "showCycling": true
         }
     }
 } as IDatabaseItem
