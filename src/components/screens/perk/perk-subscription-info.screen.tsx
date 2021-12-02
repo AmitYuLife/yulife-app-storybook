@@ -1,7 +1,7 @@
 import React, { memo, useMemo } from "react";
 import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
 import { Style } from "@styles";
-import { ScrollView, StyleSheet, View, ViewStyle } from "react-native";
+import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet, View, ViewStyle } from "react-native";
 import { Body } from "@components/containers/products/product-step/sections";
 import { ContentItemForm } from "@molecules";
 import {
@@ -17,11 +17,16 @@ interface IProps {
   loading: boolean;
 }
 
+const keyboardAvoidingViewBehavior = Platform.select({
+  ios: "padding" as "padding",
+  android: null,
+});
+
 const PerkSubscriptionInfoScreen = ({ handleBack, item, onSubmit, loading }: IProps) => {
   const getForm: any = useMemo(() => item?.content?.find((i) => i?.__typename === "ContentItemForm"), [item?.content]);
 
   return (
-    <View style={styles.wrapper}>
+    <KeyboardAvoidingView behavior={keyboardAvoidingViewBehavior} style={styles.wrapper}>
       <GenericHeadingPad />
       <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scrollContentContainerStyle}>
         <View style={styles.block}>
@@ -30,7 +35,7 @@ const PerkSubscriptionInfoScreen = ({ handleBack, item, onSubmit, loading }: IPr
         </View>
       </ScrollView>
       <GenericHeadingAbsolute logo="yulife" onLeftIconPress={handleBack} />
-    </View>
+    </KeyboardAvoidingView>
   );
 };
 
