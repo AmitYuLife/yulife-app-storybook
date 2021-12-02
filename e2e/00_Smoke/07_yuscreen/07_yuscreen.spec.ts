@@ -127,13 +127,15 @@ Feature("I am able to use the yuscreen, create, and edit an Yumoji", async () =>
     Scenario("My earn rate and employer benefits should be correct when i have showCycling toggle on YuCoin Power screen", scenario.start, async () => {
         Given("I login", given.loginToYuScreen(true, CUSTOMER_2, AUTH_2), async () => {
             Then("I should be on an empty yuscreen tab", then.onEmptyYuscreen(CUSTOMER_2))
-            When("I should see 20x Yucoin power", when.swipeToID(YUSCREEN, YUCOIN_POWER("20"), "up", 3), async () => {
+            When("I scroll up slow on YU screen", when.scrollFromID(YUSCREEN, "up", "slow"), async () => {
                 When("I tap the earn rate", when.tapID(YUCOIN_POWER("20")), async () => {
                     Then("I should see h2 header text YuCoin Power", then.idVisible(TEXT_TEMPLATE("YuCoin Power")))
                     Then("I should all the data from the table on YuCoin Power screen", then.multipleTextVisible(["2000 steps","1.6 km cycling","5 mindful mins","1 challenge","Chests","Streaks"]))
                 })
                 When("I tap Got it!", when.tapText("Got it!"), async()=>{
-                    Then("I should be back on the empty yuscreen", then.onEmptyYuscreen(CUSTOMER_2))
+                    When("I scroll down slow on YU screen", when.scrollFromID(YUSCREEN, "down", "slow"), async () => {
+                        Then("I should be back on the empty yuscreen", then.onEmptyYuscreen(CUSTOMER_2))
+                    })
                 })
                 When("I tap the yucoin", when.tapID(NAV_BAR("yucoin")), async () => {
                     Then("I should see the daily steps screen", then.onDailySteps())
@@ -144,6 +146,7 @@ Feature("I am able to use the yuscreen, create, and edit an Yumoji", async () =>
                 When("I tap on small i info button for activity feed info", when.tapID(YUCOIN_POWER_INFO), async () => {
                     Then("I should see h2 header text YuCoin Power", then.idVisible(TEXT_TEMPLATE("YuCoin Power")))
                     Then("I should all the data from the table on YuCoin Power screen", then.multipleTextVisible(["2000 steps","1.6 km cycling","5 mindful mins","1 challenge","Chests","Streaks"]))
+                   
                 })
             })
         })
