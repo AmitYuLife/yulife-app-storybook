@@ -48,4 +48,5 @@ export const features = [
   "limitPedometerSteps",
   "showReferrals",
   "showBuffs",
+  "showTodayEarningsScreen",
 ];
