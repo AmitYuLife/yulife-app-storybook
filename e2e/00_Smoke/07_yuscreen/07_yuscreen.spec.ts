@@ -137,17 +137,6 @@ Feature("I am able to use the yuscreen, create, and edit an Yumoji", async () =>
                         Then("I should be back on the empty yuscreen", then.onEmptyYuscreen(CUSTOMER_2))
                     })
                 })
-                When("I tap the yucoin", when.tapID(NAV_BAR("yucoin")), async () => {
-                    Then("I should see the daily steps screen", then.onDailySteps())
-                })
-                When("I tap the yucoin", when.tapID(YUCOIN), async () => {
-                    Then("I should be on the yucoin screen", then.onTodaysYucoin())
-                })
-                When("I tap on small i info button for activity feed info", when.tapID(YUCOIN_POWER_INFO), async () => {
-                    Then("I should see h2 header text YuCoin Power", then.idVisible(TEXT_TEMPLATE("YuCoin Power")))
-                    Then("I should all the data from the table on YuCoin Power screen", then.multipleTextVisible(["2000 steps","1.6 km cycling","5 mindful mins","1 challenge","Chests","Streaks"]))
-                   
-                })
             })
         })
     })       

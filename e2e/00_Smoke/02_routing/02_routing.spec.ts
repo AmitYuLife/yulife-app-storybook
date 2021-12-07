@@ -10,19 +10,6 @@ Feature("As a user I can navigate through member routes correctly", async () => 
     Scenario("I can view the core screens of the app", scenario.start, async () => {
         Given("I login as a user", given.loginAsUser(), async () => {
             Then("I should see the daily steps screen", then.onDailySteps())
-            When("I tap the yucoin", when.tapID(YUCOIN), async () => {
-                Then("I should be on the yucoin screen", then.onTodaysYucoin())
-            })
-            When("I tap on I for activity feed info", when.tapID(YUCOIN_POWER_INFO), async () => {
-                Then("I should see h2 header text YuCoin Power", then.idVisible(TEXT_TEMPLATE("YuCoin Power")))
-                Then("I should all the data from the table on YuCoin Power screen", then.multipleTextVisible(["2000 steps","5 mindful mins","1 challenge","Chests","Streaks"]))
-                Then("I should NOT see 1.6 km cycling text on YuCoin Power screen", then.textNotVisible("1.6 km cycling"))
-            })
-            When("I close this screen", when.tapID(BUTTON_CLOSE), async () => {
-                When("I close this screen", when.tapID(BACK_BUTTON), async () => {
-                    Then("I should see the daily steps screen", then.onDailySteps())
-                })
-            })
             When("I tap quests in the tab", when.tapID(NAV_BAR("quests")), async () => {
                 Then("I should be on the quests screen", then.idVisible(QUESTS_SCREEN(0)))
             })
