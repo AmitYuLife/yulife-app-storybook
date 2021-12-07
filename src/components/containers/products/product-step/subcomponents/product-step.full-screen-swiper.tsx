@@ -40,6 +40,7 @@ export const ProductStepFullScreenSwiper = memo(({ button, close, ...props }: Pr
 
           dispatch({
             type: close.onPress.type,
+            payload: { productId, stepId, dynamicData, serverPayload: close.onPress.payload },
           });
         },
       },
