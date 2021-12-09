@@ -1,5 +1,6 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-  package="com.yulife">
+<manifest 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.yulife">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -54,28 +55,35 @@
         </intent-filter>
       </activity>
 
-      <meta-data android:name="com.mixpanel.android.MPConfig.ResourcePackageName" android:value="com.yulife" />
+        <meta-data
+            android:name="com.mixpanel.android.MPConfig.ResourcePackageName"
+            android:value="com.yulife" />
 
-      <meta-data android:name="com.mixpanel.android.MPConfig.AutoShowMixpanelUpdates" android:value="false" />
+        <meta-data
+            android:name="com.mixpanel.android.MPConfig.AutoShowMixpanelUpdates"
+            android:value="false" />
 
-      <meta-data
-          android:name="com.google.firebase.messaging.default_notification_icon"
-          android:resource="@drawable/intercom_push_icon" />
-      <meta-data
-          android:name="com.google.firebase.messaging.default_notification_channel_id"
-          android:value="YULIFE_PUSH_NOTIFICATION_CHANNEL" />
-      <meta-data android:name="com.google.firebase.messaging.default_notification_color"
-          android:resource="@color/yupink"
-          tools:replace="android:resource" />
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/intercom_push_icon" />
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_channel_id"
+            android:value="YULIFE_PUSH_NOTIFICATION_CHANNEL" />
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_color"
+            android:resource="@color/yupink"
+            tools:replace="android:resource" />
 
-      <meta-data
-          android:name="com.kevinejohn.RNMixpanel.messaging.icon"
-          android:resource="@drawable/intercom_push_icon" />
+        <meta-data
+            android:name="com.kevinejohn.RNMixpanel.messaging.icon"
+            android:resource="@drawable/intercom_push_icon" />
 
         <!-- Change the resource name to your App's accent color - or any other color you want -->
-        <meta-data  android:name="com.dieam.reactnativepushnotification.notification_foreground"
-                    android:value="true"/>
-        <meta-data  android:name="com.dieam.reactnativepushnotification.notification_color"
+        <meta-data
+            android:name="com.dieam.reactnativepushnotification.notification_foreground" 
+            android:value="true"/>
+        <meta-data
+            android:name="com.dieam.reactnativepushnotification.notification_color" 
             android:resource="@color/yupink"/>
 
         <receiver android:name="com.dieam.reactnativepushnotification.modules.RNPushNotificationActions" />
@@ -88,15 +96,14 @@
             </intent-filter>
         </receiver>
         <service android:name="com.dieam.reactnativepushnotification.modules.RNPushNotificationRegistrationService"/>
-        <!-- <service
-            android:name="com.dieam.reactnativepushnotification.modules.RNPushNotificationListenerService"
-            android:exported="false" >
+        <!-- <service android:name="com.dieam.reactnativepushnotification.modules.RNPushNotificationListenerService" android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service> -->
         <!-- Bugsnag -->
-        <meta-data android:name="com.bugsnag.android.API_KEY"
+        <meta-data
+            android:name="com.bugsnag.android.API_KEY" 
             android:value="@string/BUGSNAG_API_KEY"/>
         <!-- Firebase-->
         <service android:name=".YulifeFirebaseMessaggingService">
@@ -104,6 +111,10 @@
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
+        <receiver
+            android:name="com.intercom.reactnative.RNIntercomPushBroadcastReceiver"
+            tools:replace="android:exported"
+            android:exported="true"/>
     </application>
 
 </manifest>

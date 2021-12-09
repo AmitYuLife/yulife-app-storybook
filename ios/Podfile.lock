@@ -64,7 +64,10 @@ PODS:
     - FlipperKit/Core
     - FlipperKit/FlipperKitNetworkPlugin
   - glog (0.3.5)
-  - Intercom (6.1.0)
+  - Intercom (10.3.0)
+  - intercom-react-native (1.1.1):
+    - Intercom (~> 10.3.0)
+    - React-Core
   - Leanplum-iOS-SDK (3.2.1)
   - libevent (2.1.12)
   - libwebp (1.2.1):
@@ -283,9 +286,6 @@ PODS:
     - React-Core
   - react-native-in-app-review (3.1.1):
     - React
-  - react-native-intercom (16.0.0):
-    - Intercom (~> 6.1.0)
-    - React
   - react-native-leanplum (1.2.1):
     - Leanplum-iOS-SDK (= 3.2.1)
     - React-Core
@@ -436,6 +436,7 @@ DEPENDENCIES:
   - FlipperKit/FlipperKitUserDefaultsPlugin (~> 0.75.1)
   - FlipperKit/SKIOSNetworkPlugin (~> 0.75.1)
   - glog (from `../node_modules/react-native/third-party-podspecs/glog.podspec`)
+  - "intercom-react-native (from `../node_modules/@intercom/intercom-react-native`)"
   - lottie-ios (from `../node_modules/lottie-ios`)
   - lottie-react-native (from `../node_modules/lottie-react-native`)
   - RCT-Folly (from `../node_modules/react-native/third-party-podspecs/RCT-Folly.podspec`)
@@ -454,7 +455,6 @@ DEPENDENCIES:
   - "react-native-blur (from `../node_modules/@react-native-community/blur`)"
   - react-native-config (from `../node_modules/react-native-config`)
   - react-native-in-app-review (from `../node_modules/react-native-in-app-review`)
-  - react-native-intercom (from `../node_modules/react-native-intercom`)
   - "react-native-leanplum (from `../node_modules/@leanplum/react-native-sdk`)"
   - react-native-mixpanel (from `../node_modules/react-native-mixpanel`)
   - "react-native-netinfo (from `../node_modules/@react-native-community/netinfo`)"
@@ -521,6 +521,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/React/FBReactNativeSpec"
   glog:
     :podspec: "../node_modules/react-native/third-party-podspecs/glog.podspec"
+  intercom-react-native:
+    :path: "../node_modules/@intercom/intercom-react-native"
   lottie-ios:
     :path: "../node_modules/lottie-ios"
   lottie-react-native:
@@ -553,8 +555,6 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-config"
   react-native-in-app-review:
     :path: "../node_modules/react-native-in-app-review"
-  react-native-intercom:
-    :path: "../node_modules/react-native-intercom"
   react-native-leanplum:
     :path: "../node_modules/@leanplum/react-native-sdk"
   react-native-mixpanel:
@@ -621,7 +621,7 @@ SPEC CHECKSUMS:
   CocoaAsyncSocket: 065fd1e645c7abab64f7a6a2007a48038fdc6a99
   DoubleConversion: cf9b38bf0b2d048436d9a82ad2abe1404f11e7de
   FBLazyVector: e686045572151edef46010a6f819ade377dfeb4b
-  FBReactNativeSpec: d6be4ed5eb3b88f6363d79b585b8cf43f6df6836
+  FBReactNativeSpec: 4e411a1f12924f93862f81d9dd928e2e3a061545
   Flipper: d3da1aa199aad94455ae725e9f3aa43f3ec17021
   Flipper-DoubleConversion: 38631e41ef4f9b12861c67d17cb5518d06badc41
   Flipper-Folly: 755929a4f851b2fb2c347d533a23f191b008554c
@@ -630,7 +630,8 @@ SPEC CHECKSUMS:
   Flipper-RSocket: 127954abe8b162fcaf68d2134d34dc2bd7076154
   FlipperKit: 8a20b5c5fcf9436cac58551dc049867247f64b00
   glog: 73c2498ac6884b13ede40eda8228cb1eee9d9d62
-  Intercom: b168156c4eb1b51352974cdfa47d4f3241a3df8b
+  Intercom: b697b5972ca0fad3412a13c67c6920eab301498b
+  intercom-react-native: 3e766f78c84e80cf3065aad26b798756b5942f06
   Leanplum-iOS-SDK: cdf2399abbea271ec50fbc6e274baea1fc9e0bfe
   libevent: 4049cae6c81cdb3654a443be001fb9bdceff7913
   libwebp: 98a37e597e40bfdb4c911fc98f2c53d0b12d05fc
@@ -652,7 +653,6 @@ SPEC CHECKSUMS:
   react-native-blur: cad4d93b364f91e7b7931b3fa935455487e5c33c
   react-native-config: c98128a72bc2c3a1ca72caec0b021f0fa944aa29
   react-native-in-app-review: 1519011cfb31817aa8bf7814e2290311fd26ed99
-  react-native-intercom: 4916f5d0fee8b73535a6284721ccf7f9cc664fac
   react-native-leanplum: 028cea04d72c6a798b0ab3c8aa9803c072f26b1a
   react-native-mixpanel: 5d0bcea791fd938c35138be2d00e50e19b9de601
   react-native-netinfo: cb74e17062b2af5a16a4b137f32495f241df1a8e

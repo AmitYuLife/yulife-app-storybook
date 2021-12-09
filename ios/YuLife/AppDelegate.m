@@ -1,6 +1,6 @@
 #import "AppDelegate.h"
 #import "ReactNativeConfig.h"
-#import "Intercom/intercom.h"
+#import <IntercomModule.h>
 #import "Mixpanel.h"
 #import <Leanplum-iOS-SDK/Leanplum.h>
 #import <BugsnagReactNative/BugsnagReactNative.h>
@@ -32,6 +32,13 @@ static void InitializeFlipper(UIApplication *application) {
 
 @implementation AppDelegate
 
+- (BOOL)application:(UIApplication *)application
+   openURL:(NSURL *)url
+   options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options
+{
+  return [RCTLinkingManager application:application openURL:url options:options];
+}
+
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url
   sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 {
@@ -52,7 +59,7 @@ static void InitializeFlipper(UIApplication *application) {
   // Intercom
   NSString *intercomApiKey = [ReactNativeConfig envFor:@"INTERCOM_API_KEY_IOS"];
   NSString *intercomAppId = [ReactNativeConfig envFor:@"INTERCOM_APP_ID"];
-  [Intercom setApiKey:intercomApiKey forAppId:intercomAppId];
+  [IntercomModule initialize:intercomApiKey withAppId:intercomAppId];
   
   // Mixpanel
   NSString *mixpanelApiKey = [ReactNativeConfig envFor:@"MIXPANEL_API_TOKEN"];
@@ -65,7 +72,10 @@ static void InitializeFlipper(UIApplication *application) {
 
   // Define UNUserNotificationCenter
   UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
-  center.delegate = self;
+    [center requestAuthorizationWithOptions:(UNAuthorizationOptionAlert + UNAuthorizationOptionSound)
+                          completionHandler:^(BOOL granted, NSError *_Nullable error) {
+                          }];
+    [[UIApplication sharedApplication] registerForRemoteNotifications];
 
 #ifdef FB_SONARKIT_ENABLED
   InitializeFlipper(application);
@@ -111,25 +121,15 @@ static void InitializeFlipper(UIApplication *application) {
 {
   Mixpanel *mixpanel = [Mixpanel sharedInstance];
   [mixpanel.people addPushDeviceToken:deviceToken];
-  [Intercom setDeviceToken:deviceToken];
+  [IntercomModule setDeviceToken:deviceToken];
   [RNCPushNotificationIOS didRegisterForRemoteNotificationsWithDeviceToken:deviceToken];
 }
 // Required for the notification event. You must call the completion handler after handling the remote notification.
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
 fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
 {
-  if ([Intercom isIntercomPushNotification:userInfo]) {
-    NSString *uri = [userInfo objectForKey:@"uri"];
-    [Intercom handleIntercomPushNotification:userInfo];
-    if ([uri length] > 0) {
-      completionHandler(UIBackgroundFetchResultNewData);
-    } else {
-       completionHandler(UIBackgroundFetchResultNoData);
-    }
-  } else {
     [RNCPushNotificationIOS didReceiveRemoteNotification:userInfo fetchCompletionHandler:completionHandler];
     completionHandler(UIBackgroundFetchResultNoData);
-  }
 }
 // Required for the registrationError event.
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error
