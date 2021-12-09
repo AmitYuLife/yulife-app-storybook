@@ -3,7 +3,7 @@ import { MODALS } from "@navigation/constants";
 import { showYuModal, TAB_ROUTES } from "@navigation/root";
 import { handleLinkPress } from "@services/app-link";
 import { Navigation } from "react-native-navigation";
-import Intercom from "react-native-intercom";
+import Intercom from "@intercom/intercom-react-native";
 import { call, select, ActionPattern, takeEvery, takeLeading, put, delay } from "redux-saga/effects";
 import Logger from "@services/logging/logger";
 import { SyncAction } from "@redux/_core/types";
@@ -121,7 +121,7 @@ function* openUrl({ payload }: ProductStepAction) {
 
 function* openChat() {
   try {
-    yield call(() => Intercom.displayConversationsList());
+    yield call(() => Intercom.displayMessenger());
   } catch (e) {
     // shrug (log)
   }

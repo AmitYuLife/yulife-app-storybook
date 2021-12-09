@@ -241,10 +241,6 @@ dependencies {
     implementation fileTree(dir: "libs", include: ["*.aar"])
     implementation "com.facebook.react:react-native:0.62.0"  // From node_modules
     
-    // Intercom
-    implementation project(':react-native-intercom')
-    implementation 'io.intercom.android:intercom-sdk:7.1.+'
-    
     // Leanplum
     implementation 'com.leanplum:leanplum-core:5.7.0'
 
@@ -287,6 +283,13 @@ dependencies {
     } else {
         implementation jscFlavor
     }
+    // Add okhttp BOM to handle different versions
+    // define a BOM and its version
+    implementation(platform("com.squareup.okhttp3:okhttp-bom:4.9.0"))
+
+    // define any required OkHttp artifacts without version
+    implementation("com.squareup.okhttp3:okhttp")
+    implementation("com.squareup.okhttp3:logging-interceptor")
 }
 
 // Run this once to be able to run the application with BUCK
