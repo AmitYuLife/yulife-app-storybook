@@ -74,10 +74,6 @@
             android:resource="@color/yupink"
             tools:replace="android:resource" />
 
-        <meta-data
-            android:name="com.kevinejohn.RNMixpanel.messaging.icon"
-            android:resource="@drawable/intercom_push_icon" />
-
         <!-- Change the resource name to your App's accent color - or any other color you want -->
         <meta-data
             android:name="com.dieam.reactnativepushnotification.notification_foreground" 
@@ -96,11 +92,6 @@
             </intent-filter>
         </receiver>
         <service android:name="com.dieam.reactnativepushnotification.modules.RNPushNotificationRegistrationService"/>
-        <!-- <service android:name="com.dieam.reactnativepushnotification.modules.RNPushNotificationListenerService" android:exported="false">
-            <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT" />
-            </intent-filter>
-        </service> -->
         <!-- Bugsnag -->
         <meta-data
             android:name="com.bugsnag.android.API_KEY" 
