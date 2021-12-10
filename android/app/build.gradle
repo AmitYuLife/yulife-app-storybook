@@ -242,7 +242,8 @@ dependencies {
     implementation "com.facebook.react:react-native:0.62.0"  // From node_modules
     
     // Leanplum
-    implementation 'com.leanplum:leanplum-core:5.7.0'
+    implementation 'com.leanplum:leanplum-core:5.8.0'
+    implementation 'com.leanplum:leanplum-fcm:5.8.0'
 
     // Firebase
     implementation 'com.google.firebase:firebase-core:17.5.0'
