@@ -3,47 +3,28 @@ import { GQL_QUERY_DEBUG_CODES, GQL_MUTATION_RESET_DATA, ResetDataMutationTuple 
 import * as React from "react";
 import { Alert } from "react-native";
 import { Navigation } from "react-native-navigation";
-import { connect } from "react-redux";
-import { IReduxState } from "@redux/_core/reducers";
+import { useDispatch } from "react-redux";
 import { sendTestPush } from "@redux/notifications/notifications.actions";
 import { getUserStart } from "@redux/user/user.actions";
-import { getUserFeatures } from "@redux/user/user.selectors";
 import { DebugScreen } from "@screens";
-import { ROUTES } from "@navigation/constants";
+import Logger from "@services/logging/logger";
 
 interface IProps {
   componentId: string;
 }
 
-type ConnectedState = ReturnType<typeof mapStateToProps>;
-type ConnectedDispatch = typeof mapDispatchToProps;
-
-type Props = IProps & ConnectedState & ConnectedDispatch;
-
-enum CODES {
-  ROUTE_TO_PRODUCT_DETAILS = "ROUTE_TO_PRODUCT_DETAILS",
-  ROUTE_TO_REFERRALS = "ROUTE_TO_REFERRALS",
-}
-
-const DEFAULT_LIST = [
-  "reset-today-partial-data",
-  "reset-today-full-data",
-  "reset-streaks",
-  "more-coins",
-  "reset-coins",
-];
+type Props = IProps;
 
 const ActivityHistoryContainer: React.FC<Props> = (props) => {
+  const dispatch = useDispatch();
+
   const [resetData]: ResetDataMutationTuple = useMutation(GQL_MUTATION_RESET_DATA);
-  const { data } = useQuery(GQL_QUERY_DEBUG_CODES, {
-    fetchPolicy: "cache-and-network",
-  });
+  const { data } = useQuery(GQL_QUERY_DEBUG_CODES);
 
   const list = [
-    ...((data && data.getDebugCodes) || DEFAULT_LIST),
+    ...(data?.getDebugCodes || []),
     "send-test-push",
-    CODES.ROUTE_TO_PRODUCT_DETAILS,
-    CODES.ROUTE_TO_REFERRALS,
+    `toggle-leanplum(${Logger.leanplum.isDevMode ? "dev" : "prod"})`,
   ];
 
   const handleClose = () => {
@@ -55,30 +36,16 @@ const ActivityHistoryContainer: React.FC<Props> = (props) => {
     onPress: async () => {
       try {
         if (code === "send-test-push") {
-          return props.sendTestPush();
+          return dispatch(sendTestPush());
         }
 
-        if (code === CODES.ROUTE_TO_PRODUCT_DETAILS) {
-          return Navigation.push(props.componentId, {
-            component: {
-              id: ROUTES.productDetails,
-              name: ROUTES.productDetails,
-            },
-          });
-        }
-
-        if (code === CODES.ROUTE_TO_REFERRALS) {
-          return Navigation.push(props.componentId, {
-            component: {
-              id: ROUTES.referralInformation,
-              name: ROUTES.referralInformation,
-            },
-          });
+        if (code.startsWith("toggle-leanplum")) {
+          return Logger.leanplum.toggleDevelopmentMode();
         }
 
         await resetData({ variables: { code } });
         Alert.alert("Success");
-        props.getUserStart();
+        dispatch(getUserStart());
       } catch (e) {
         Alert.alert("Fail");
       }
@@ -88,16 +55,4 @@ const ActivityHistoryContainer: React.FC<Props> = (props) => {
   return <DebugScreen onPressClose={handleClose} data={listData} />;
 };
 
-const mapStateToProps = (state: IReduxState) => ({
-  features: getUserFeatures(state),
-});
-
-const mapDispatchToProps = {
-  getUserStart,
-  sendTestPush,
-};
-
-export default connect<ConnectedState, ConnectedDispatch>(
-  mapStateToProps,
-  mapDispatchToProps
-)(ActivityHistoryContainer);
+export default ActivityHistoryContainer;
