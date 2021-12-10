@@ -7,6 +7,41 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.17.0] - 2021-12-10
+
+### Features
+
+- Feature: leanplum dev/prod toggle mode
+- Feature: leanplum push
+
+### Bugfixes
+
+- Bugfix: Only ask for cycling permission for iOS or googleFit
+- Bugfix: Android flipper configuration
+- Bugfix GS-115: Update steps on Todays Earning Screen
+- Bugfix GS-139: Fiit in-app form add KeyboardAvoidingView
+- Bugfix GS-115: Update Todays Earning Screen
+
+### Tasks
+
+- Task: Put Today Earnings screen behind toggle
+- Task GS-139: Fiit - In-app form
+
+### Chores
+
+- Chore: Upgrade intercom
+- Chore: Allow full screen swiper close payload
+
+### Extra
+
+- Detox: Smoke and extended fixes
+- detox:on iphone 8 need to scroll down or up to assert the YU coin power or the name
+- detox: add cyclying assertion and YuCoin Power info screen modal when cycling...
+- Revert passive last update call during authenticated
+- detox:smoke iphone8 has smaller screen need to scroll to assert the text
+- Purge GS-187: Jest tests
+- Purge: Today YuCoin
+
 ## [3.16.0] - 2021-11-17
 
 ### Features
