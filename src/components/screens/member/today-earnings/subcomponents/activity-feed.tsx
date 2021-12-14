@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useMemo, useRef } from "react";
+import React, { memo, useCallback, useMemo, useRef, useState } from "react";
 import { StyleSheet, View, Platform, Alert } from "react-native";
 import { Navigation } from "react-native-navigation";
 import { Block, Button, Image, TextTemplate } from "@atoms";
@@ -48,6 +48,7 @@ const ActivityFeed = ({
   emptyMessage,
   isGoogleFitAuthorised,
 }: IProps) => {
+  const [googleFitIsAuthorised, setGoogleFitIsAuthorised] = useState(isGoogleFitAuthorised);
   const questionMarkRef = useRef<View>();
   const { authorise } = useFitKit();
   const hasNotification = useSelector(getHasNotification);
@@ -65,7 +66,8 @@ const ActivityFeed = ({
       {
         text: confirmLabel,
         onPress: async () => {
-          await authorise({ ...FitKitPermissions, platform: "GoogleFit" });
+          const isAuthorise = await authorise({ ...FitKitPermissions, platform: "GoogleFit" });
+          setGoogleFitIsAuthorised(isAuthorise);
           Navigation.dismissModal(MODALS.switchToGoogleFit);
         },
       },
@@ -83,10 +85,10 @@ const ActivityFeed = ({
     () =>
       Platform.select({
         ios: true,
-        android: id !== "core-activities" || isGoogleFitAuthorised,
+        android: id !== "core-activities" || googleFitIsAuthorised,
       }),
 
-    [id, isGoogleFitAuthorised]
+    [id, googleFitIsAuthorised]
   );
 
   const onTakeChallengePress = useCallback(() => {
@@ -99,10 +101,10 @@ const ActivityFeed = ({
       ...activity,
       isDisabled: Platform.select({
         ios: false,
-        android: !isGoogleFitAuthorised && activity.type !== "steps" && id === "core-activities",
+        android: !googleFitIsAuthorised && activity.type !== "steps" && id === "core-activities",
       }),
     }));
-  }, [isGoogleFitAuthorised]);
+  }, [googleFitIsAuthorised]);
 
   return (
     <Block style={[styles.wrapper, wellDoneBanner ? { paddingBottom: 0 } : null]}>
