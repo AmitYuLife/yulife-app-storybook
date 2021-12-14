@@ -23,7 +23,7 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
                             When("I go back to the daily steps screen", when.tapID(NAV_BAR("yucoin")), async()=>{
                                 When("I tap the yucoin image", when.tapID(YUCOIN), async()=>{
                                     When("I tap on I for activity feed info", when.tapID(TODAYS_YUCOIN), async () => {
-                                        Then("I should see my x2 updated YuCoin earn rate", then.textVisible("20 YuCoin for 2000 steps"))
+                                        Then("I should see my x2 updated YuCoin earn rate", then.textVisible("20 yucoin for 2000 steps"))
                                     })
                                 })
                             })
@@ -86,7 +86,7 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
                                 When("I go back to the daily steps screen", when.tapID(NAV_BAR("yucoin")), async () => {
                                     When("I tap the yucoin image", when.tapID(YUCOIN), async () => {
                                         When("I tap on I for activity feed info", when.tapID(TODAYS_YUCOIN), async () => {
-                                            Then("I should see my x2 updated YuCoin earn rate for 2000 steps", then.textVisible("20 YuCoin for 2000 steps"))
+                                            Then("I should see my x2 updated YuCoin earn rate for 2000 steps", then.textVisible("20 yucoin for 2000 steps"))
                                         })
                                     })
                                 })
