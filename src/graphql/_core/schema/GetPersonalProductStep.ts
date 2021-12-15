@@ -33,8 +33,10 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemP
     | "ContentItemPersonalProductFaqs"
     | "ContentItemCollapsingHeaderProductInfo"
     | "ContentItemFullScreenSwiper"
+    | "ContentItemFullScreenLottieSwiper"
     | "ContentItemSearchPostcode"
-    | "ContentItemForm";
+    | "ContentItemForm"
+    | "ContentItemSelectedPackageAccordion";
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemTextInput_validation {
@@ -1121,11 +1123,13 @@ export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentIte
     | "ContentItemList"
     | "ContentItemRowIconTextBanner"
     | "ContentItemFullScreenSwiper"
+    | "ContentItemFullScreenLottieSwiper"
     | "ContentItemGpDetails"
     | "ContentItemPackageCardPower"
     | "ContentItemPersonalProductSelectPaymentButton"
     | "ContentItemSearchPostcode"
-    | "ContentItemForm";
+    | "ContentItemForm"
+    | "ContentItemSelectedPackageAccordion";
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentItemButton_onPress {
@@ -1305,10 +1309,12 @@ export interface GetPersonalProductStep_getPersonalProductStep_header_ContentIte
     | "ContentItemList"
     | "ContentItemRowIconTextBanner"
     | "ContentItemFullScreenSwiper"
+    | "ContentItemFullScreenLottieSwiper"
     | "ContentItemGpDetails"
     | "ContentItemPackageCardPower"
     | "ContentItemPersonalProductSelectPaymentButton"
-    | "ContentItemForm";
+    | "ContentItemForm"
+    | "ContentItemSelectedPackageAccordion";
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_header_ContentItemHeaderBar_onLeftIconPress {
@@ -1437,11 +1443,13 @@ export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_Con
     | "ContentItemConfirm"
     | "ContentItemList"
     | "ContentItemRowIconTextBanner"
+    | "ContentItemFullScreenLottieSwiper"
     | "ContentItemGpDetails"
     | "ContentItemPackageCardPower"
     | "ContentItemPersonalProductSelectPaymentButton"
     | "ContentItemSearchPostcode"
-    | "ContentItemForm";
+    | "ContentItemForm"
+    | "ContentItemSelectedPackageAccordion";
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemImage_image {

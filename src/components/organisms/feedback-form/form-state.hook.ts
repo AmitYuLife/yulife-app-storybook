@@ -48,14 +48,14 @@ export default function useFormState(
         setQuestion(nextQuestion);
         Logger.logMixpanelEvent("question_interaction", {
           name: "feedback.modal",
-          survey_title: form.title,
+          survey_title: form.label,
           reward_value: form.awardYucoin,
         });
       } else {
         submitForm(newAnswers);
         Logger.logMixpanelEvent("survey_completed", {
           name: "feedback.modal",
-          survey_title: form.title,
+          survey_title: form.label,
           reward_value: form.awardYucoin,
         });
       }

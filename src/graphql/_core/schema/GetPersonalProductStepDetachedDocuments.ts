@@ -41,11 +41,13 @@ export interface GetPersonalProductStepDetachedDocuments_getPersonalProductStepD
     | "ContentItemList"
     | "ContentItemRowIconTextBanner"
     | "ContentItemFullScreenSwiper"
+    | "ContentItemFullScreenLottieSwiper"
     | "ContentItemGpDetails"
     | "ContentItemPackageCardPower"
     | "ContentItemPersonalProductSelectPaymentButton"
     | "ContentItemSearchPostcode"
-    | "ContentItemForm";
+    | "ContentItemForm"
+    | "ContentItemSelectedPackageAccordion";
 }
 
 export interface GetPersonalProductStepDetachedDocuments_getPersonalProductStepDetachedDocuments_body_ContentItemPersonalProductDocuments_headingImage_image {

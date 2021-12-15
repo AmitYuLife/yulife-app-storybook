@@ -79,6 +79,7 @@ export interface PendingPromptsForm_pendingFeedbackForm {
   __typename: "FeedbackForm";
   id: string;
   title: string;
+  label: string;
   awardYucoin: number | null;
   questions: PendingPromptsForm_pendingFeedbackForm_questions[];
 }
