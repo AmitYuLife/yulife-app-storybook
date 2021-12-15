@@ -73,6 +73,7 @@ export enum ContentItemProgressBarType {
 
 export enum ContentItemRowIconTextBannerType {
   error = "error",
+  info = "info",
 }
 
 /**

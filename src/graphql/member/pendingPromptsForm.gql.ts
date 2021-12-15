@@ -26,6 +26,7 @@ export const GQL_PENDING_PROMPTS_FORM = gql`
       __typename
       id
       title
+      label
       awardYucoin
       questions {
         __typename
