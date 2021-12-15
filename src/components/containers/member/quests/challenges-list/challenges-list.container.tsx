@@ -20,6 +20,7 @@ import { bottomTabs, MODALS, ROUTES } from "@navigation/constants";
 import RNFitKit from "@yu-life/react-native-fitkit";
 import { FitKitType } from "@graphql/_core/schema/globalTypes";
 import { useFitKit } from "@services/fitkit/fitkit.hooks";
+import { showYuModal } from "@navigation/root";
 
 interface IProps {
   componentId: string;
@@ -135,7 +136,7 @@ const ChallengesListContainer: FC<Props> = ({ level, componentId }) => {
                       nonSamsungHealthTypesThatRequirePermissions.includes(type)
                     );
                     if (!activityFromGoogleFitAuthorised && isOtherTypesThenSteps && isSamsung()) {
-                      await Navigation.showModal({
+                      await showYuModal({
                         component: {
                           id: MODALS.switchToGoogleFit,
                           name: MODALS.switchToGoogleFit,
