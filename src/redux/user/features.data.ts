@@ -49,4 +49,5 @@ export const features = [
   "showReferrals",
   "showBuffs",
   "showTodayEarningsScreen",
+  "passiveCyclingEnabled",
 ];
