@@ -12,6 +12,7 @@ import { useSelector } from "react-redux";
 import { getDailySteps } from "@redux/daily-steps/daily-steps.selectors";
 import moment from "moment";
 import { GQL_MUTATION_UPSERT_PASSIVE_CHALLENGE } from "@graphql/challenges";
+import { getUserFeatures } from "@redux/user/user.selectors";
 
 interface IProps {
   componentId: string;
@@ -22,6 +23,7 @@ const TodayEarningsContainer = ({ componentId }: IProps) => {
   const [isGoogleFitAuthorised, setIsGoogleFitAuthorised] = useState(false);
   const { authoriseFitKitTypes } = useFitKit();
   const dailySteps = useSelector(getDailySteps);
+  const features = useSelector(getUserFeatures);
   const [upsertPassiveChallenge] = useMutation<UpsertPassiveChallenge, UpsertPassiveChallengeVariables>(
     GQL_MUTATION_UPSERT_PASSIVE_CHALLENGE
   );
@@ -49,7 +51,7 @@ const TodayEarningsContainer = ({ componentId }: IProps) => {
         platform: "GoogleFit",
       });
 
-      if (googleFit || Platform.OS === "ios") {
+      if (features.passiveCyclingEnabled && (googleFit || Platform.OS === "ios")) {
         await authoriseFitKitTypes([FitKitType.Cycling]);
       }
 
