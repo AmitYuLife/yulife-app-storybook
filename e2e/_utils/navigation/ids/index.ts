@@ -83,6 +83,7 @@ export const INPUT_AVIOS_FORM_FIELD = (placeholder: string) => `INPUT_AVIOS_FORM
 export const DATE_INPUT = 'DATE_INPUT'
 export const DATE_PICKER = 'DATE_PICKER'
 export const FULL_SCREEN_SWIPER = (value: "LEFT" | "RIGHT") => `FULL_SCREEN_SWIPER_${value}`;
+export const FULL_SCREEN_LOTTIE_SWIPER = (value: "LEFT" | "RIGHT") => `FULL_SCREEN_LOTTIE_SWIPER_${value}`;
 export const SCROLL_PICKER = (id: string) => `SCROLL_PICKER_${id}`
 export const SCROLL_PICKER_ACTIVE_ITEM = (id: string) => `SCROLL_PICKER_ACTIVE_ITEM_${id}`
 

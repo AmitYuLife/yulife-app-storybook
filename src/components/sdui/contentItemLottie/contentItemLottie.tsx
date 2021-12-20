@@ -4,6 +4,7 @@ import { ContentItemLottie as GqlLottie } from "@graphql/_core/schema";
 import { mapServerStyles } from "../_utils/mapServerStyles";
 import { useDispatch } from "react-redux";
 import { StyleSheet } from "react-native";
+import { Style } from "@styles";
 
 type Props = GqlLottie;
 
@@ -68,5 +69,8 @@ export const ContentItemLottie = memo((props: Props) => {
 });
 
 const styles = StyleSheet.create({
-  wrapper: { flex: 1 },
+  wrapper: {
+    flex: 1,
+    width: Style.DEVICE_WIDTH,
+  },
 });

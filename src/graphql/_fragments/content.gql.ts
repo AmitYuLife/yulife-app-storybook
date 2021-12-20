@@ -580,6 +580,33 @@ export const GQL_FRAGMENT_CONTENT_ITEM_FULL_SCREEN_SWIPER = gql`
   }
 `;
 
+export const GQL_FRAGMENT_CONTENT_ITEM_FULL_SCREEN_LOTTIE_SWIPER = gql`
+  fragment ContentItemFullScreenLottieSwiper on ContentItemFullScreenLottieSwiper {
+    id
+    title
+    autoPlaySpeedMs
+    dismissMinVisibleIndex
+    ctaMinVisibleIndex
+    theme {
+      primaryColor
+    }
+    button {
+      ...ContentItemButton
+    }
+    close {
+      icon {
+        ...RemoteImage
+      }
+      onPress {
+        ...SduiAction
+      }
+    }
+    items {
+      ...ContentItemLottie
+    }
+  }
+`;
+
 export const GQL_FRAGMENT_CONTENT_ITEM_SEARCH_POSTCODE = gql`
   fragment ContentItemSearchPostcode on ContentItemSearchPostcode {
     id

@@ -47,7 +47,8 @@ export interface GetPersonalProductStepDetachedDocuments_getPersonalProductStepD
     | "ContentItemPersonalProductSelectPaymentButton"
     | "ContentItemSearchPostcode"
     | "ContentItemForm"
-    | "ContentItemSelectedPackageAccordion";
+    | "ContentItemSelectedPackageAccordion"
+    | "ContentItemFade";
 }
 
 export interface GetPersonalProductStepDetachedDocuments_getPersonalProductStepDetachedDocuments_body_ContentItemPersonalProductDocuments_headingImage_image {

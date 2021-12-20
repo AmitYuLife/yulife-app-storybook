@@ -4,6 +4,7 @@ import {
   AbsoluteContentItemImage,
   ProductStepCollapsingHeaderProductInfo,
   ProductStepFullScreenSwiper,
+  ProductStepFullScreenLottieSwiper,
 } from "../../subcomponents";
 
 interface Props {
@@ -39,6 +40,8 @@ const renderAbsoluteItemContent = (
       return <ProductStepCollapsingHeaderProductInfo key={item.id} {...item} />;
     case "ContentItemFullScreenSwiper":
       return <ProductStepFullScreenSwiper key={item.id} {...item} />;
+    case "ContentItemFullScreenLottieSwiper":
+      return <ProductStepFullScreenLottieSwiper key={item.id} {...item} />;
     default:
       return null;
   }
