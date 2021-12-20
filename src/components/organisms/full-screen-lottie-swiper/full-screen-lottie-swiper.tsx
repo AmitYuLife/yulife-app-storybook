@@ -4,19 +4,11 @@ import { Colours, Style } from "@styles";
 import { FlatList, TextTemplate } from "@atoms";
 import { ProgressItems } from "./progress-items";
 import { Controller } from "./controller";
-import { Page } from "./page";
 import { Dismiss } from "./dismiss";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 import { useDispatch } from "react-redux";
-
-export interface IPageItem {
-  heading: string;
-  paragraph: string;
-  styles?: Array<{ property: string; value: string }>;
-  backgroundImage: {
-    uri: string;
-  };
-}
+import { ContentItemLottie as GqlLottie } from "@graphql/_core/schema";
+import { ContentItemLottie } from "@components/sdui";
 
 interface Props {
   id: string;
@@ -32,7 +24,7 @@ interface Props {
     };
     onPress: (currentIndex: number) => void;
   };
-  items: Array<IPageItem>;
+  items: Array<GqlLottie>;
   dismissMinVisibleIndex: number;
   ctaMinVisibleIndex?: number;
   autoPlaySpeedMs: number;
@@ -41,7 +33,7 @@ interface Props {
   };
 }
 
-export const FullScreenSwiper = memo((props: Props) => {
+export const FullScreenLottieSwiper = memo((props: Props) => {
   const dispatch = useDispatch();
   const { items, title, button, close, ctaMinVisibleIndex, dismissMinVisibleIndex, autoPlaySpeedMs } = props;
   const animationRef = useRef(null as ReturnType<typeof Animated.timing>);
@@ -83,8 +75,8 @@ export const FullScreenSwiper = memo((props: Props) => {
         if (i !== incremented) {
           dispatch(
             logMixpanelEventActionCreator("modal_movement", {
-              new_modal_name: items[incremented].heading,
-              previous_modal_name: items[i].heading,
+              new_modal_name: items[incremented].id,
+              previous_modal_name: items[i].id,
               interaction: !autoMove,
               elapsed: autoMove,
               direction: increment > 0 ? "Forwards" : "Backwards",
@@ -104,7 +96,7 @@ export const FullScreenSwiper = memo((props: Props) => {
     return { length: Style.DEVICE_WIDTH, offset: Style.DEVICE_WIDTH * index, index };
   }, []);
 
-  const renderItem = useCallback(({ item }) => <Page {...item} />, []);
+  const renderItem = useCallback(({ item }) => <ContentItemLottie {...item} />, []);
 
   return (
     <View style={[styles.screen, { backgroundColor: props.theme.primaryColor }]}>
@@ -112,8 +104,8 @@ export const FullScreenSwiper = memo((props: Props) => {
         <FlatList
           forwardRef={listRef}
           snapToOffsets={snapToOffsets}
-          renderItem={renderItem}
           getItemLayout={getItemLayout}
+          renderItem={renderItem}
           data={items}
           scrollEnabled={false}
           windowSize={3}
@@ -169,7 +161,7 @@ const styles = StyleSheet.create({
   } as ViewStyle,
 });
 
-function useScrollHandler(items: IPageItem[]) {
+function useScrollHandler(items: GqlLottie[]) {
   const dispatch = useDispatch();
   const [activeIndex, setActiveIndex] = useState(0);
   const [userInteractionToggler, setUserInteractionToggler] = useState(false);
@@ -178,7 +170,7 @@ function useScrollHandler(items: IPageItem[]) {
   useEffect(() => {
     dispatch(
       logMixpanelEventActionCreator("modal_viewed", {
-        name: items[activeIndex].heading,
+        name: items[activeIndex].id,
         modal_index: activeIndex,
       })
     );

@@ -16,6 +16,7 @@ export * from "./ContentItemConfirm";
 export * from "./ContentItemCoverListItem";
 export * from "./ContentItemCoverPicker";
 export * from "./ContentItemDatePicker";
+export * from "./ContentItemFullScreenLottieSwiper";
 export * from "./ContentItemFullScreenSwiper";
 export * from "./ContentItemGpDetails";
 export * from "./ContentItemHeaderBar";

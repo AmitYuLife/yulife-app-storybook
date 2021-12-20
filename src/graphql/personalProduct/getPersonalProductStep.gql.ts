@@ -40,6 +40,7 @@ import {
   GQL_FRAGMENT_CONTENT_ITEM_PACKAGE_CARD_POWER,
   GQL_FRAGMENT_CONTENT_ITEM_SELECT_PAYMENT_BUTTON,
   GQL_FRAGMENT_CONTENT_ITEM_SEARCH_POSTCODE,
+  GQL_FRAGMENT_CONTENT_ITEM_FULL_SCREEN_LOTTIE_SWIPER,
 } from "../_fragments/content.gql";
 
 export const GQL_QUERY_GET_PERSONAL_PRODUCT_STEP = gql`
@@ -81,6 +82,7 @@ export const GQL_QUERY_GET_PERSONAL_PRODUCT_STEP = gql`
   ${GQL_FRAGMENT_CONTENT_ITEM_PACKAGE_CARD_POWER}
   ${GQL_FRAGMENT_CONTENT_ITEM_SELECT_PAYMENT_BUTTON}
   ${GQL_FRAGMENT_CONTENT_ITEM_SEARCH_POSTCODE}
+  ${GQL_FRAGMENT_CONTENT_ITEM_FULL_SCREEN_LOTTIE_SWIPER}
 
   query GetPersonalProductStep($productId: String!) {
     getPersonalProductStep(productId: $productId) {
@@ -240,6 +242,9 @@ export const GQL_QUERY_GET_PERSONAL_PRODUCT_STEP = gql`
           }
           ... on ContentItemFullScreenSwiper {
             ...ContentItemFullScreenSwiper
+          }
+          ... on ContentItemFullScreenLottieSwiper {
+            ...ContentItemFullScreenLottieSwiper
           }
         }
       }
