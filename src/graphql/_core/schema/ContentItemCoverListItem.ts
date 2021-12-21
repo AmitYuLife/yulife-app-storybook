@@ -15,12 +15,13 @@ export interface ContentItemCoverListItem_slotBackgroundUrl {
 }
 
 export interface ContentItemCoverListItem {
-  percentCovered: number;
-  monthlyCost: string;
-  monthlyCostSuffix: string;
-  monthlyPayout: string;
-  productPreviewMarkdown: string;
-  collapsingHeaderProductInfoHeading: string;
-  coverType: CoverType;
-  slotBackgroundUrl: ContentItemCoverListItem_slotBackgroundUrl;
+  percentCovered: number | null;
+  monthlyCost: string | null;
+  monthlyCostSuffix: string | null;
+  monthlyPayout: string | null;
+  productPreviewMarkdown: string | null;
+  collapsingHeaderProductInfoHeading: string | null;
+  coverType: CoverType | null;
+  minValue: number | null;
+  slotBackgroundUrl: ContentItemCoverListItem_slotBackgroundUrl | null;
 }
