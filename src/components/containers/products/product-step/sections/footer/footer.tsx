@@ -1,16 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { memo, useEffect, useMemo, useState } from "react";
 import { Keyboard, Platform, StyleSheet, View, ViewStyle } from "react-native";
 import { GetPersonalProductStep_getPersonalProductStep_footer as GPPS_Footer } from "@graphql/_core/schema";
-import { ContentItemOverlay } from "@components/sdui";
+import { ContentItemFade, ContentItemOverlay, ContentItemPad } from "@components/sdui";
 import { ProductStepContentItemButton, ProductStepContentItemMultiButton } from "../../subcomponents";
 import media from "@styles/media";
 import { Style } from "@styles";
 
 interface Props {
   footer: GPPS_Footer[];
+  footerStyle: ViewStyle;
 }
 
-export const Footer = (props: Props) => {
+export const Footer = memo((props: Props) => {
   const [isShowingKeyboard, setIsShowingKeyboard] = useState(false);
 
   useEffect(() => {
@@ -22,12 +23,17 @@ export const Footer = (props: Props) => {
       keyboardDidHideListener.remove();
     };
   }, []);
+
+  const wrapperStyle = useMemo(() => {
+    return [styles.wrapper, props.footerStyle];
+  }, [props.footerStyle]);
+
   return (
-    <View pointerEvents="box-none" style={styles.wrapper}>
+    <View pointerEvents="box-none" style={wrapperStyle}>
       {!isShowingKeyboard || Platform.OS === "ios" ? props.footer.map(renderItemContent) : null}
     </View>
   );
-};
+});
 
 const paddingBottom = media.select(
   [
@@ -57,6 +63,10 @@ const renderItemContent = (item: GPPS_Footer): JSX.Element => {
       return <ProductStepContentItemMultiButton key={item.id} {...item} />;
     case "ContentItemOverlay":
       return <ContentItemOverlay key={item.id} {...item} Button={ProductStepContentItemButton} />;
+    case "ContentItemFade":
+      return <ContentItemFade key={item.id} {...item} />;
+    case "ContentItemPad":
+      return <ContentItemPad key={item.id} {...item} />;
     default:
       return null;
   }
