@@ -35,6 +35,7 @@ export const GQL_FRAGMENT_COVER_LIST_ITEM = gql`
     productPreviewMarkdown
     collapsingHeaderProductInfoHeading
     coverType
+    minValue
     slotBackgroundUrl {
       ...RemoteImage
     }
@@ -48,6 +49,7 @@ export const GQL_FRAGMENT_CONTENT_ITEM_COLLAPSING_HEADER_PRODUCT_INFO = gql`
     coverList {
       ...ContentItemCoverListItem
     }
+    type
   }
 `;
 

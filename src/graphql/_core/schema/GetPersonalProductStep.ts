@@ -12,6 +12,7 @@ import {
   YuProductStatus,
   ContentItemRowIconTextBannerType,
   ContentItemProgressBarType,
+  ContentItemCollapsingHeaderProductInfoType,
 } from "./globalTypes";
 
 // ====================================================
@@ -505,14 +506,15 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemP
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemPersonalProductPreview_coverList {
-  percentCovered: number;
-  monthlyCost: string;
-  monthlyCostSuffix: string;
-  monthlyPayout: string;
-  productPreviewMarkdown: string;
-  collapsingHeaderProductInfoHeading: string;
-  coverType: CoverType;
-  slotBackgroundUrl: GetPersonalProductStep_getPersonalProductStep_body_ContentItemPersonalProductPreview_coverList_slotBackgroundUrl;
+  percentCovered: number | null;
+  monthlyCost: string | null;
+  monthlyCostSuffix: string | null;
+  monthlyPayout: string | null;
+  productPreviewMarkdown: string | null;
+  collapsingHeaderProductInfoHeading: string | null;
+  coverType: CoverType | null;
+  minValue: number | null;
+  slotBackgroundUrl: GetPersonalProductStep_getPersonalProductStep_body_ContentItemPersonalProductPreview_coverList_slotBackgroundUrl | null;
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemPersonalProductPreview_percentageBox {
@@ -1484,14 +1486,15 @@ export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_Con
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemCollapsingHeaderProductInfo_coverList {
-  percentCovered: number;
-  monthlyCost: string;
-  monthlyCostSuffix: string;
-  monthlyPayout: string;
-  productPreviewMarkdown: string;
-  collapsingHeaderProductInfoHeading: string;
-  coverType: CoverType;
-  slotBackgroundUrl: GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemCollapsingHeaderProductInfo_coverList_slotBackgroundUrl;
+  percentCovered: number | null;
+  monthlyCost: string | null;
+  monthlyCostSuffix: string | null;
+  monthlyPayout: string | null;
+  productPreviewMarkdown: string | null;
+  collapsingHeaderProductInfoHeading: string | null;
+  coverType: CoverType | null;
+  minValue: number | null;
+  slotBackgroundUrl: GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemCollapsingHeaderProductInfo_coverList_slotBackgroundUrl | null;
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemCollapsingHeaderProductInfo {
@@ -1499,6 +1502,7 @@ export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_Con
   id: string;
   answerKey: string;
   coverList: GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemCollapsingHeaderProductInfo_coverList[];
+  type: ContentItemCollapsingHeaderProductInfoType | null;
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemFullScreenSwiper_theme {

@@ -36,14 +36,15 @@ export interface ContentItemPersonalProductPreview_coverList_slotBackgroundUrl {
 }
 
 export interface ContentItemPersonalProductPreview_coverList {
-  percentCovered: number;
-  monthlyCost: string;
-  monthlyCostSuffix: string;
-  monthlyPayout: string;
-  productPreviewMarkdown: string;
-  collapsingHeaderProductInfoHeading: string;
-  coverType: CoverType;
-  slotBackgroundUrl: ContentItemPersonalProductPreview_coverList_slotBackgroundUrl;
+  percentCovered: number | null;
+  monthlyCost: string | null;
+  monthlyCostSuffix: string | null;
+  monthlyPayout: string | null;
+  productPreviewMarkdown: string | null;
+  collapsingHeaderProductInfoHeading: string | null;
+  coverType: CoverType | null;
+  minValue: number | null;
+  slotBackgroundUrl: ContentItemPersonalProductPreview_coverList_slotBackgroundUrl | null;
 }
 
 export interface ContentItemPersonalProductPreview_percentageBox {

@@ -60,6 +60,11 @@ export enum ContentItemButtonType {
   tertiary = "tertiary",
 }
 
+export enum ContentItemCollapsingHeaderProductInfoType {
+  coverOptions = "coverOptions",
+  default = "default",
+}
+
 export enum ContentItemFormTextInputType {
   email = "email",
   number = "number",
