@@ -15,6 +15,7 @@ interface Props {
   stepData: string;
   stepId: string;
   style: ViewStyle;
+  footerStyle: ViewStyle;
   body: GetPersonalProductStep_getPersonalProductStep_body[];
   header: GetPersonalProductStep_getPersonalProductStep_header[];
   footer: GetPersonalProductStep_getPersonalProductStep_footer[];
@@ -22,7 +23,7 @@ interface Props {
 }
 
 export const ProductStepScreen = memo((props: Props) => {
-  const { productId, customerProductId, stepId, style, body, header, footer, absolute, stepData } = props;
+  const { productId, customerProductId, stepId, style, body, header, footer, absolute, stepData, footerStyle } = props;
 
   // Used for keeping track of the current step id body elements
   // Because on every `goBack` action we're resetting the dynamicData, all the body elements were
@@ -75,7 +76,7 @@ export const ProductStepScreen = memo((props: Props) => {
     >
       <View style={[styles.wrapper, style]}>
         {stepIdRef.current !== stepId ? null : <Body headerHeight={headerHeight} body={body} />}
-        <Footer footer={footer} />
+        <Footer footerStyle={footerStyle} footer={footer} />
         <Absolute headerHeight={headerHeight} absolute={absolute} />
         <Header onLayout={handleHeaderLayout} header={header} />
         <ProductStepScrollPicker />

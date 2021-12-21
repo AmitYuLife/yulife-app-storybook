@@ -24,6 +24,11 @@ export interface GetPersonalProductStep_getPersonalProductStep_containerStyles {
   value: string;
 }
 
+export interface GetPersonalProductStep_getPersonalProductStep_footerStyles {
+  property: string;
+  value: string;
+}
+
 export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemProgressBar {
   __typename:
     | "ContentItemProgressBar"
@@ -1094,9 +1099,8 @@ export type GetPersonalProductStep_getPersonalProductStep_body =
   | GetPersonalProductStep_getPersonalProductStep_body_ContentItemGpDetails
   | GetPersonalProductStep_getPersonalProductStep_body_ContentItemMultiButton;
 
-export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentItemMarkdown {
+export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentItemLottie {
   __typename:
-    | "ContentItemMarkdown"
     | "ContentItemLottie"
     | "ContentItemText"
     | "ContentItemTextInput"
@@ -1105,7 +1109,6 @@ export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentIte
     | "ContentItemRadio"
     | "ContentItemInfoCard"
     | "ContentItemInfoButton"
-    | "ContentItemPad"
     | "ContentItemImage"
     | "ContentItemPersonalProductInfo"
     | "ContentItemYugiConfirm"
@@ -1132,8 +1135,7 @@ export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentIte
     | "ContentItemPersonalProductSelectPaymentButton"
     | "ContentItemSearchPostcode"
     | "ContentItemForm"
-    | "ContentItemSelectedPackageAccordion"
-    | "ContentItemFade";
+    | "ContentItemSelectedPackageAccordion";
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentItemButton_onPress {
@@ -1275,11 +1277,48 @@ export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentIte
   styles: GetPersonalProductStep_getPersonalProductStep_footer_ContentItemMultiButton_styles[] | null;
 }
 
+export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentItemFade {
+  __typename: "ContentItemFade";
+  id: string;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentItemPad {
+  __typename: "ContentItemPad";
+  id: string;
+  amount: number;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentItemMarkdown_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentItemMarkdown_markdownContainerStyle {
+  property: string;
+  value: string;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentItemMarkdown {
+  __typename: "ContentItemMarkdown";
+  id: string;
+  title: string | null;
+  markdown: string;
+  perkId: string | null;
+  parsedMarkdown: string | null;
+  styles: GetPersonalProductStep_getPersonalProductStep_footer_ContentItemMarkdown_styles[] | null;
+  markdownContainerStyle:
+    | GetPersonalProductStep_getPersonalProductStep_footer_ContentItemMarkdown_markdownContainerStyle[]
+    | null;
+}
+
 export type GetPersonalProductStep_getPersonalProductStep_footer =
-  | GetPersonalProductStep_getPersonalProductStep_footer_ContentItemMarkdown
+  | GetPersonalProductStep_getPersonalProductStep_footer_ContentItemLottie
   | GetPersonalProductStep_getPersonalProductStep_footer_ContentItemButton
   | GetPersonalProductStep_getPersonalProductStep_footer_ContentItemOverlay
-  | GetPersonalProductStep_getPersonalProductStep_footer_ContentItemMultiButton;
+  | GetPersonalProductStep_getPersonalProductStep_footer_ContentItemMultiButton
+  | GetPersonalProductStep_getPersonalProductStep_footer_ContentItemFade
+  | GetPersonalProductStep_getPersonalProductStep_footer_ContentItemPad
+  | GetPersonalProductStep_getPersonalProductStep_footer_ContentItemMarkdown;
 
 export interface GetPersonalProductStep_getPersonalProductStep_header_ContentItemLottie {
   __typename:
@@ -1714,6 +1753,10 @@ export interface GetPersonalProductStep_getPersonalProductStep {
    * Container styles go here
    */
   containerStyles: GetPersonalProductStep_getPersonalProductStep_containerStyles[] | null;
+  /**
+   * Footer styles go here
+   */
+  footerStyles: GetPersonalProductStep_getPersonalProductStep_footerStyles[] | null;
   /**
    * Content displayed inside the scrollview area
    */

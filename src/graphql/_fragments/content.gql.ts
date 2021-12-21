@@ -633,6 +633,12 @@ export const GQL_FRAGMENT_CONTENT_ITEM_SEARCH_POSTCODE = gql`
   }
 `;
 
+export const GQL_FRAGMENT_CONTENT_ITEM_FADE = gql`
+  fragment ContentItemFade on ContentItemFade {
+    id
+  }
+`;
+
 export const GQL_FRAGMENT_CONTENT_ITEM_SCROLL_PICKER = gql`
   fragment ContentItemScrollPicker on ContentItemScrollPicker {
     id
