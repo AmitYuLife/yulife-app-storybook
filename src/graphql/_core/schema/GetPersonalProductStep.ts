@@ -11,6 +11,8 @@ import {
   CoverType,
   YuProductStatus,
   ContentItemRowIconTextBannerType,
+  AvatarPartType,
+  YuWorld,
   ContentItemProgressBarType,
   ContentItemCollapsingHeaderProductInfoType,
 } from "./globalTypes";
@@ -1002,6 +1004,8 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemP
     | null;
   providerImageUrl: GetPersonalProductStep_getPersonalProductStep_body_ContentItemPersonalProductInfo_providerImageUrl | null;
   productDescription: GetPersonalProductStep_getPersonalProductStep_body_ContentItemPersonalProductInfo_productDescription;
+  partType: AvatarPartType | null;
+  selectedYuWorld: YuWorld | null;
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemGpDetails_onSubmit {

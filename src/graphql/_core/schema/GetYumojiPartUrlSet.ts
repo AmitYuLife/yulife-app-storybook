@@ -14,9 +14,15 @@ export interface GetYumojiPartUrlSet_getYumojiPartUrlSet_variants_worlds_remoteU
   uri: string | null;
 }
 
+export interface GetYumojiPartUrlSet_getYumojiPartUrlSet_variants_worlds_title {
+  label: string;
+  color: string;
+}
+
 export interface GetYumojiPartUrlSet_getYumojiPartUrlSet_variants_worlds {
   worldId: YuWorld;
   remoteUrl: GetYumojiPartUrlSet_getYumojiPartUrlSet_variants_worlds_remoteUrl;
+  title: GetYumojiPartUrlSet_getYumojiPartUrlSet_variants_worlds_title | null;
 }
 
 export interface GetYumojiPartUrlSet_getYumojiPartUrlSet_variants {

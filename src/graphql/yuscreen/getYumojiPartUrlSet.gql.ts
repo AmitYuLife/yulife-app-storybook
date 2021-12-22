@@ -13,6 +13,10 @@ export const GQL_QUERY_GET_YUMOJI_PART_URL_SET = gql`
           remoteUrl {
             ...RemoteImage
           }
+          title {
+            label
+            color
+          }
         }
       }
     }
