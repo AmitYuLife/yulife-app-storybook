@@ -1,48 +1,69 @@
-import React, { useCallback, useContext, memo } from "react";
+import React, { useCallback, useContext, useMemo, memo } from "react";
 import { StyleSheet, View } from "react-native";
 import { Style } from "@styles";
 import { Image, TextTemplate } from "@atoms";
 import Markdown from "@molecules/markdown/markdown";
 import { YumojiSwipeTryOn } from "@organisms/yumoji/yumoji.swipe-try-on";
-import { GetPersonalProductStep_getPersonalProductStep_body_ContentItemPersonalProductInfo as GqlButton } from "@graphql/_core/schema";
+import { YumojiSwipePart } from "@organisms/yumoji/yumoji.swipe-part";
+import { GetPersonalProductStep_getPersonalProductStep_body_ContentItemPersonalProductInfo as Props } from "@graphql/_core/schema";
 import { YuWorld } from "@graphql/_core/schema/globalTypes";
 import { ProductStepContext } from "../product-step.context";
 import { mapServerStyles } from "@components/sdui";
 
-type Props = GqlButton;
-
 export const ProductStepProductInfo = memo((props: Props) => {
   const { customerProductId, setDynamicData } = useContext(ProductStepContext);
+  const {
+    partType,
+    coverType,
+    selectedYuWorld,
+    flatListItemOverlayStyles,
+    productTitle,
+    productDescription,
+    providerImageUrl,
+  } = props;
 
   const handleYumojiPartChange = useCallback(
     (worldId: YuWorld) => setDynamicData((oldState) => ({ ...oldState, worldId })),
     []
   );
 
+  const providerImageUrlSource = useMemo(() => {
+    return { uri: providerImageUrl?.uri };
+  }, [providerImageUrl]);
+
   return (
     <View style={styles.wrapper}>
       <View style={styles.info}>
         <View style={styles.titleAndIcon}>
-          {!props?.providerImageUrl?.uri ? null : (
+          {!providerImageUrl?.uri ? null : (
             <Image
-              source={{ uri: props?.providerImageUrl.uri }}
+              source={providerImageUrlSource}
               width={Style.adjust(16)}
               height={Style.adjust(16)}
               theme="light"
               style={styles.icon}
             />
           )}
-          <TextTemplate type="h3">{props.productTitle}</TextTemplate>
+          <TextTemplate type="h3">{productTitle}</TextTemplate>
         </View>
-        <Markdown markdownStyles={markdownStyles} text={props.productDescription?.parsedMarkdown} />
+        <Markdown markdownStyles={markdownStyles} text={productDescription.parsedMarkdown} />
       </View>
       <View>
-        <YumojiSwipeTryOn
-          customerProductId={customerProductId}
-          coverType={props.coverType}
-          onChange={handleYumojiPartChange}
-          flatListItemOverlayStyles={mapServerStyles(props.flatListItemOverlayStyles)}
-        />
+        {partType ? (
+          <YumojiSwipePart
+            onChange={handleYumojiPartChange}
+            selectedYuWorld={selectedYuWorld}
+            partType={partType}
+            coverType={coverType}
+          />
+        ) : (
+          <YumojiSwipeTryOn
+            customerProductId={customerProductId}
+            coverType={coverType}
+            onChange={handleYumojiPartChange}
+            flatListItemOverlayStyles={mapServerStyles(flatListItemOverlayStyles)}
+          />
+        )}
       </View>
     </View>
   );

@@ -199,6 +199,8 @@ export const GQL_QUERY_GET_PERSONAL_PRODUCT_STEP = gql`
             id
             parsedMarkdown
           }
+          partType
+          selectedYuWorld
         }
         ... on ContentItemGpDetails {
           ...ContentItemGpDetails
