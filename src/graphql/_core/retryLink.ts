@@ -4,7 +4,12 @@ import moment from "moment";
 export const MAX_OPERATIONS_ATTEMPTS = 3;
 const MAX_RESPONSE_TIME = 30; // seconds
 
-const BLACKLIST_RETRY_OPERATIONS = ["SaveAvatar", "GetMobileCopy", "CreateActiveChallenge"];
+const BLACKLIST_RETRY_OPERATIONS = [
+  "SaveAvatar",
+  "GetMobileCopy",
+  "CreateActiveChallenge",
+  "CreateQuestMapLevelChallenge",
+];
 
 const retryLink = (showOfflineScreen: () => void) => {
   return new RetryLink({

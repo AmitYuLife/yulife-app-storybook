@@ -1,4 +1,5 @@
 import updateActiveChallengeWithClient from "@graphql/challenges/updateActiveChallenge.gql";
+import UpdateQuestMapLevelChallenge from "@graphql/challenges/updateQuestMapLevelChallenge.gql";
 import { UpdateActiveChallenge } from "@graphql/_core/schema";
 import { getUserFeatures } from "@redux/user/user.selectors";
 import Logger from "@services/logging/logger";
@@ -31,11 +32,9 @@ export default function* endChallengeSaga() {
         let challengeStatus = "active";
         let updateActiveChallengeCount = 0;
         while (challengeStatus !== "completed" && updateActiveChallengeCount < RETRY_UPDATE_CHALLENGE_COUNT) {
-          const { data }: Unpacked<typeof updateActiveChallengeWithClient> = yield call(
-            updateActiveChallengeWithClient,
-            active.levelSlotId,
-            result
-          );
+          const { data }: Unpacked<typeof updateActiveChallengeWithClient> = features.refactoredChallengeApi
+            ? yield call(UpdateQuestMapLevelChallenge, active.levelSlotId, result)
+            : yield call(updateActiveChallengeWithClient, active.levelSlotId, result);
 
           challengeStatus = data?.updateActiveChallenge?.challenge?.status;
           if (challengeStatus !== "completed") {
