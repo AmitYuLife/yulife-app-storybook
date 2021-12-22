@@ -1,5 +1,7 @@
 import cancelActiveChallengeWithClient from "@graphql/challenges/cancelActiveChallenge.gql";
+import cancelQuestMapLevelChallenge from "@graphql/challenges/cancelQuestMapLevelChallenge.gql";
 import updateActiveChallengeWithClient from "@graphql/challenges/updateActiveChallenge.gql";
+import updateActiveChallengeWithClient_v2 from "@graphql/challenges/updateQuestMapLevelChallenge.gql";
 import { FitKitType } from "@graphql/_core/schema/globalTypes";
 import {
   CreateActiveChallenge_createActiveChallenge_challenge,
@@ -57,7 +59,10 @@ export function* startTracking(
           value: Math.floor(queryResult.results.reduce((accumulator, session) => accumulator + session.value, 0)),
         };
 
-        const { data } = yield call(updateActiveChallengeWithClient, levelSlotId, results);
+        const { data } = features.refactoredChallengeApi
+          ? yield call(updateActiveChallengeWithClient_v2, levelSlotId, results)
+          : yield call(updateActiveChallengeWithClient, levelSlotId, results);
+
         yield put(challengeUpdateSuccessAction(data));
 
         if ((data?.updateActiveChallenge?.challenge?.status || "") === "completed") {
@@ -113,7 +118,12 @@ export default function* startChallenge({
 
     if (challengeCancelled) {
       try {
-        yield call(cancelActiveChallengeWithClient, levelSlotId);
+        const features: ReturnType<typeof getUserFeatures> = yield select(getUserFeatures);
+        if (features.refactoredChallengeApi) {
+          yield call(cancelQuestMapLevelChallenge, levelSlotId);
+        } else {
+          yield call(cancelActiveChallengeWithClient, levelSlotId);
+        }
 
         if (challengeTask) {
           yield cancel(challengeTask);

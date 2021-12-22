@@ -1,12 +1,12 @@
 import gql from "graphql-tag";
 import client from "@graphql/_core/client";
 
-import { UpdateActiveChallenge, UpdateActiveChallengeVariables } from "@graphql/_core/schema";
 import { ChallengePayload } from "@graphql/_core/schema/globalTypes";
+import { UpdateActiveChallenge, UpdateActiveChallengeVariables } from "@graphql/_core/schema";
 
-export const GQL_MUTATION_UPDATE_ACTIVE_CHALLENGE = gql`
-  mutation UpdateActiveChallenge($levelSlotId: String!, $payload: ChallengePayload) {
-    updateActiveChallenge(levelSlotId: $levelSlotId, payload: $payload) {
+export const GQL_MUTATION_UPDATE_QUEST_MAP_LEVEL_CHALLENGE = gql`
+  mutation UpdateQuestMapLevelChallenge($levelSlotId: String!, $payload: ChallengePayload) {
+    updateQuestMapLevelChallenge(levelSlotId: $levelSlotId, payload: $payload) {
       challenge {
         level
         levelSlotId
@@ -51,11 +51,11 @@ export const GQL_MUTATION_UPDATE_ACTIVE_CHALLENGE = gql`
   }
 `;
 
-const updateActiveChallengeWithClient = (levelSlotId: string, payload: ChallengePayload) =>
+const updateQuestMapLevelChallenge = (levelSlotId: string, payload: ChallengePayload) =>
   client().mutate<UpdateActiveChallenge, UpdateActiveChallengeVariables>({
-    mutation: GQL_MUTATION_UPDATE_ACTIVE_CHALLENGE,
+    mutation: GQL_MUTATION_UPDATE_QUEST_MAP_LEVEL_CHALLENGE,
     variables: { levelSlotId, payload },
     errorPolicy: "ignore",
   });
 
-export default updateActiveChallengeWithClient;
+export default updateQuestMapLevelChallenge;
