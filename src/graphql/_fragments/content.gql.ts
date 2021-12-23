@@ -633,6 +633,36 @@ export const GQL_FRAGMENT_CONTENT_ITEM_SEARCH_POSTCODE = gql`
   }
 `;
 
+export const GQL_FRAGMENT_CONTENT_ITEM_ACCORDION = gql`
+  fragment ContentItemSelectedPackageAccordion on ContentItemSelectedPackageAccordion {
+    id
+    heading
+    headerIcon {
+      ...RemoteImage
+    }
+    infoIcon {
+      ...RemoteImage
+    }
+    styles {
+      ...SduiStyle
+    }
+    coverOptions {
+      coverType
+      subheading
+      items {
+        leftText
+        rightTextBody
+        rightTextLabel
+        info {
+          onPress {
+            ...SduiAction
+          }
+        }
+      }
+    }
+  }
+`;
+
 export const GQL_FRAGMENT_CONTENT_ITEM_FADE = gql`
   fragment ContentItemFade on ContentItemFade {
     id

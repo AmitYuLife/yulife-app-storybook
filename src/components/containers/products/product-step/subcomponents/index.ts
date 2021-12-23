@@ -25,3 +25,4 @@ export * from "./product-step.full-screen-swiper";
 export * from "./product-step.full-screen-lottie-swiper";
 export * from "./product-step.select-payment-button";
 export * from "./product-step.search-post-code";
+export * from "./product-step.selected-package-accordion";

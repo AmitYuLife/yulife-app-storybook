@@ -23,6 +23,7 @@ import {
   ProductStepSelectedPackageCard,
   ProductStepContentItemInfoButton,
   ProductStepSelectPaymentButton,
+  ProductStepSelectedPackageAccordion,
 } from "../../subcomponents";
 import {
   ContentItemInfoCard,
@@ -154,6 +155,8 @@ const renderItemContent = (item: GPPS_Body): JSX.Element => {
       return <ProductStepContentItemGpDetails key={item.id} {...item} />;
     case "ContentItemPackageCardPower":
       return <ContentItemPackageCardPower key={item.id} {...item} />;
+    case "ContentItemSelectedPackageAccordion":
+      return <ProductStepSelectedPackageAccordion key={item.id} {...item} />;
     default:
       return null;
   }
