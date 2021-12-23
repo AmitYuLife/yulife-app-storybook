@@ -1,7 +1,7 @@
-import { SduiActionType } from "@graphql/_core/schema/globalTypes";
+import { CoverType, SduiActionType } from "@graphql/_core/schema/globalTypes";
 import { SDUI_ACTION_SET_LOADING_STATE } from "./sdui.actions";
 
-export type DynamicDataType = string | boolean | number | string[];
+export type DynamicDataType = string | boolean | number | string[] | CoverType;
 export type DynamicData = Record<string, DynamicDataType>;
 
 export interface ProductStepDefaultFields {

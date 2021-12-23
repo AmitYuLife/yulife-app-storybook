@@ -44,7 +44,6 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemP
     | "ContentItemFullScreenLottieSwiper"
     | "ContentItemSearchPostcode"
     | "ContentItemForm"
-    | "ContentItemSelectedPackageAccordion"
     | "ContentItemFade";
 }
 
@@ -1072,6 +1071,55 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemM
   styles: GetPersonalProductStep_getPersonalProductStep_body_ContentItemMultiButton_styles[] | null;
 }
 
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemSelectedPackageAccordion_headerIcon {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemSelectedPackageAccordion_infoIcon {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemSelectedPackageAccordion_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemSelectedPackageAccordion_coverOptions_items_info_onPress {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemSelectedPackageAccordion_coverOptions_items_info {
+  onPress: GetPersonalProductStep_getPersonalProductStep_body_ContentItemSelectedPackageAccordion_coverOptions_items_info_onPress | null;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemSelectedPackageAccordion_coverOptions_items {
+  leftText: string;
+  rightTextBody: string | null;
+  rightTextLabel: string | null;
+  info: GetPersonalProductStep_getPersonalProductStep_body_ContentItemSelectedPackageAccordion_coverOptions_items_info | null;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemSelectedPackageAccordion_coverOptions {
+  coverType: CoverType;
+  subheading: string | null;
+  items: GetPersonalProductStep_getPersonalProductStep_body_ContentItemSelectedPackageAccordion_coverOptions_items[];
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemSelectedPackageAccordion {
+  __typename: "ContentItemSelectedPackageAccordion";
+  id: string;
+  heading: string | null;
+  headerIcon: GetPersonalProductStep_getPersonalProductStep_body_ContentItemSelectedPackageAccordion_headerIcon | null;
+  infoIcon: GetPersonalProductStep_getPersonalProductStep_body_ContentItemSelectedPackageAccordion_infoIcon | null;
+  styles: GetPersonalProductStep_getPersonalProductStep_body_ContentItemSelectedPackageAccordion_styles[] | null;
+  coverOptions:
+    | GetPersonalProductStep_getPersonalProductStep_body_ContentItemSelectedPackageAccordion_coverOptions[]
+    | null;
+}
+
 export type GetPersonalProductStep_getPersonalProductStep_body =
   | GetPersonalProductStep_getPersonalProductStep_body_ContentItemProgressBar
   | GetPersonalProductStep_getPersonalProductStep_body_ContentItemTextInput
@@ -1101,7 +1149,8 @@ export type GetPersonalProductStep_getPersonalProductStep_body =
   | GetPersonalProductStep_getPersonalProductStep_body_ContentItemYugiConfirm
   | GetPersonalProductStep_getPersonalProductStep_body_ContentItemPersonalProductInfo
   | GetPersonalProductStep_getPersonalProductStep_body_ContentItemGpDetails
-  | GetPersonalProductStep_getPersonalProductStep_body_ContentItemMultiButton;
+  | GetPersonalProductStep_getPersonalProductStep_body_ContentItemMultiButton
+  | GetPersonalProductStep_getPersonalProductStep_body_ContentItemSelectedPackageAccordion;
 
 export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentItemLottie {
   __typename:

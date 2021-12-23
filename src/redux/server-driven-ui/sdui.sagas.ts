@@ -1,10 +1,11 @@
+import { Alert } from "react-native";
+import { Navigation } from "react-native-navigation";
+import { call, select, ActionPattern, takeEvery, takeLeading, put, delay } from "redux-saga/effects";
 import { SduiActionType } from "@graphql/_core/schema/globalTypes";
 import { MODALS } from "@navigation/constants";
 import { showYuModal, TAB_ROUTES } from "@navigation/root";
 import { handleLinkPress } from "@services/app-link";
-import { Navigation } from "react-native-navigation";
 import Intercom from "@intercom/intercom-react-native";
-import { call, select, ActionPattern, takeEvery, takeLeading, put, delay } from "redux-saga/effects";
 import Logger from "@services/logging/logger";
 import { SyncAction } from "@redux/_core/types";
 import { getRouteState } from "../app/app.selectors";
@@ -14,6 +15,7 @@ import { parseJSON, getServerPayload } from "./sdui.helpers";
 import { setLoadingState } from "./sdui.actions";
 import { getYuScreenProductSlots } from "@graphql/yuscreen";
 import { refreshTotalCoins } from "@redux/coins/coins.actions";
+import { store as reduxStore } from "../_core/store";
 
 function* navigateBack({ payload }: ProductStepAction) {
   const currentRoute: ReturnType<typeof getRouteState> = yield select(getRouteState);
@@ -222,6 +224,28 @@ function* openModal(action: ProductStepAction) {
   }
 }
 
+function* openAlertDialog(action: ProductStepAction) {
+  try {
+    const dispatch = reduxStore.dispatch;
+    const serverPayload = JSON.parse(action.payload.serverPayload);
+
+    const { title, message, buttons } = serverPayload;
+
+    yield call(() => {
+      Alert.alert(
+        title,
+        message,
+        buttons.map((button: { text: string; onPress: ProductStepAction }) => ({
+          ...button,
+          onPress: !button.onPress ? null : () => dispatch(button.onPress),
+        }))
+      );
+    });
+  } catch (error) {
+    // log
+  }
+}
+
 export default [
   takeLeading(SduiActionType.SDUI_ACTION_NAVIGATE_BACK as ActionPattern, navigateBack),
   takeLeading(SduiActionType.SDUI_ACTION_NAVIGATE as ActionPattern, navigateTo),
@@ -232,5 +256,6 @@ export default [
   takeLeading(SduiActionType.SDUI_ACTION_PRODUCT_UNDERWRITING_STEP_FINISH as ActionPattern, finishStepJourney),
   takeLeading(SduiActionType.SDUI_ACTION_PRODUCT_UNDERWRITING_STEP_PUSH as ActionPattern, pushStep),
   takeLeading(SduiActionType.SDUI_ACTION_OPEN_MODAL as ActionPattern, openModal),
+  takeLeading(SduiActionType.SDUI_ACTION_OPEN_ALERT_DIALOG as ActionPattern, openAlertDialog),
   takeEvery(SduiActionType.SDUI_ACTION_LOG_EVENT as ActionPattern, logEvent),
 ];
