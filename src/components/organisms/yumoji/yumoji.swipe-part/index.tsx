@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
+import React, { memo, useCallback, useContext, useEffect, useMemo, useRef, useState } from "react";
 import { View, Animated, ViewStyle, FlatList as RNFlatList } from "react-native";
 import { AvatarPartType, CoverType, YuWorld } from "@graphql/_core/schema/globalTypes";
 import { Loading, FlatList, TextTemplate } from "@atoms";
@@ -12,6 +12,8 @@ import { useLocalWorldState } from "../hooks";
 import { FLAT_LIST_ITEM } from "./yumoji-swipe-part.types";
 import { styles, ITEM_WIDTH } from "./yumoji-swipe-part.styles";
 import { renderItem } from "./renderItem";
+import { ProductStepContext } from "@components/containers/products/product-step/product-step.context";
+import { LOCAL_ANSWER_KEY } from "@components/containers/products/product-step/utils";
 
 interface Props {
   onChange: (worldId: YuWorld) => void;
@@ -34,7 +36,17 @@ export const YumojiSwipePart = memo(({ partType, coverType = CoverType.common, s
   const listRef = useRef(null as RNFlatList);
   const scrollToDefaultIndexDelay = useRef(null);
   const { selectedWorld, setSelectedWorld } = useLocalWorldState(selectedYuWorld);
+  const { dynamicData } = useContext(ProductStepContext);
 
+  useEffect(() => {
+    if (!dynamicData[LOCAL_ANSWER_KEY.WorldId]) {
+      const defaultWorldId = data?.getYumojiPartUrlSet.variants[0]?.worlds[0]?.worldId;
+
+      if (defaultWorldId) {
+        onChange(defaultWorldId);
+      }
+    }
+  }, [data, dynamicData, onChange]);
   const handleChangeWorld = useCallback(
     (id: YuWorld) => {
       if (selectedWorld !== id) {
@@ -72,9 +84,10 @@ export const YumojiSwipePart = memo(({ partType, coverType = CoverType.common, s
     if (!hasScrolledToDefaultIndex && urlSet.length && selectedYumojiIndex > -1) {
       scrollToDefaultIndexDelay.current = setTimeout(() => {
         listRef?.current?.scrollToIndex({ index: selectedYumojiIndex, animated: false });
-        setHasScrolledToDefaultIndex(true);
       }, 500);
     }
+
+    setHasScrolledToDefaultIndex(true);
 
     return () => clearTimeout(scrollToDefaultIndexDelay.current);
   }, [selectedYuWorld, urlSet, hasScrolledToDefaultIndex]);
