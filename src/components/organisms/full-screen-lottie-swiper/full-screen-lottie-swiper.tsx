@@ -108,8 +108,8 @@ export const FullScreenLottieSwiper = memo((props: Props) => {
           renderItem={renderItem}
           data={items}
           scrollEnabled={false}
-          windowSize={3}
-          initialNumToRender={3}
+          windowSize={1}
+          initialNumToRender={1}
         />
         <ProgressItems
           userInteractionToggler={userInteractionToggler}
