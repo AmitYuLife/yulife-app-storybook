@@ -32,6 +32,8 @@ If you are having trouble starting the apps, ensure you have followed the instal
 
 This project uses `yarn` for project tasks and dependencies.
 
+Before you run `yarn` make sure you have added your [Gitlab token:](https://yulife.atlassian.net/wiki/spaces/ENGINEERIN/pages/1141833734/Engineering+setup+-+gitlab+access+tokens)
+
 To install dependencies, run:
 
 ```sh
@@ -43,6 +45,8 @@ You'll also need to install iOS pods by running
 ```
 cd ios && pod install && cd ../
 ```
+
+If you get this error `xcrun: error: SDK "iphoneos" cannot be located` after running `pod install` follow this tutorial [SDK “iphoneos” cannot be located](https://www.ryadel.com/en/xcode-sdk-iphoneos-cannot-be-located-mac-osx-error-fix/)
 
 ### Download Apollo Schema
 
