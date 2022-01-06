@@ -34,6 +34,7 @@ export const YUNITY_HEADER = (levelName:string) => `YUNITY_HEADER_${levelName}`
 export const SCROLLABLE_LAYOUT = "SCROLLABLE_LAYOUT"
 export const WELLBEING_HUB_SCREEN = "WELLBEING_HUB_SCREEN"
 export const REFERRALS_SCREEN = "REFERRALS_SCREEN"
+export const GAME_SETTINGS_SCREEN = "GAME_SETTINGS_SCREEN"
 
 
 // buttons

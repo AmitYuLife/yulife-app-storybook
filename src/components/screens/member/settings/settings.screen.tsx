@@ -5,12 +5,14 @@ import { ScrollView, View } from "react-native";
 import { GetUserNotificationsSettings_getUserNotificationsSettings } from "@graphql/_core/schema";
 import ConnectionsItem from "./items/connections-item";
 import NotificationsItem from "./items/notifications-item";
-import SectionHeading from "./section-heading/section-heading";
+import GameSettingsItem from "./items/game-settings-item";
 import data from "./settings.data";
 import styles from "./settings.styles";
 import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
 import { TextTemplate } from "@atoms";
 import { Style } from "@styles";
+import { SettingsHeader } from "@components/molecules";
+import { DistanceMeasurementType } from "@graphql/_core/schema/globalTypes";
 
 export interface ILeaderboardSectionItem {
   name: string;
@@ -25,6 +27,13 @@ export interface INotificationsSectionItem extends GetUserNotificationsSettings_
   description: string;
   onSwitchPress: () => void;
   onTimePress: () => void;
+}
+
+export interface IGameSettingsItem {
+  title: string;
+  description: string;
+  measurement: DistanceMeasurementType;
+  onPress: () => void;
 }
 
 export interface IConnectionsSectionItem {
@@ -76,6 +85,8 @@ export default class SettingsScreen extends PureComponent<IProps> {
           return this.renderNotifications(section, index);
         case "connections":
           return this.renderConnections(section, index);
+        case "gameSettings":
+          return this.renderGameSettings(section, index);
         default:
           return null;
       }
@@ -87,7 +98,7 @@ export default class SettingsScreen extends PureComponent<IProps> {
   private renderNotifications = (section: ISettingSection<INotificationsSectionItem>, index: number) => {
     return (
       <View key={index} style={styles.wrapper}>
-        <SectionHeading heading={section.title} />
+        <SettingsHeader title={section.title} />
         <View style={styles.notificationsItemsWrapper}>
           {section.items.map((item, i) => (
             <NotificationsItem {...item} key={i} />
@@ -97,10 +108,21 @@ export default class SettingsScreen extends PureComponent<IProps> {
     );
   };
 
+  private renderGameSettings = (section: ISettingSection<IGameSettingsItem>, index: number) => (
+    <View key={index} style={styles.wrapper}>
+      <SettingsHeader title={section.title} />
+      <View style={styles.notificationsItemsWrapper}>
+        {section.items.map((item) => (
+          <GameSettingsItem key={item.title} {...item} />
+        ))}
+      </View>
+    </View>
+  );
+
   private renderConnections = (section: ISettingSection<IConnectionsSectionItem>, index: number) => {
     return (
       <View key={index} style={styles.wrapper}>
-        <SectionHeading heading={section.title} />
+        <SettingsHeader title={section.title} />
         <View style={styles.notificationsItemsWrapper}>
           <View style={{ marginBottom: Style.adjust(24) }}>
             <TextTemplate type="b2">

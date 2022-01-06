@@ -2,7 +2,7 @@ import moment from "moment";
 import React, { useMemo } from "react";
 import { Navigation } from "react-native-navigation";
 import { useSelector, useDispatch } from "react-redux";
-import { MODALS } from "@navigation/constants";
+import { MODALS, ROUTES } from "@navigation/constants";
 import { updateConnectionStart } from "@redux/user/user.actions";
 import { Connection, getUserConnections, getUserFeatures } from "@redux/user/user.selectors";
 import { SettingsScreen } from "@screens/index";
@@ -17,10 +17,13 @@ import {
   GetUserNotificationsSettings_getUserNotificationsSettings as Notification,
   UpdateUserNotificationsSettingsVariables as Variables,
   UpdateUserNotificationsSettings as ReturnedData,
+  GetUserProfile,
 } from "@graphql/_core/schema";
 import Logger from "@services/logging/logger";
 import { ScrollPickerModal } from "@components/modals";
 import { showYuModal } from "@navigation/root";
+import { GQL_QUERY_GET_USER_PROFILE } from "@graphql/user";
+
 interface IOwnProps {
   componentId: string;
 }
@@ -34,7 +37,7 @@ function handleCreateNewLeaderboard() {
   });
 }
 
-const getNotificationsOptions = { fetchPolicy: "cache-and-network" as "cache-and-network" };
+const graphqlFetchPolicy = { fetchPolicy: "cache-and-network" as "cache-and-network" };
 
 function SettingsContainer({ componentId }: IOwnProps) {
   const dispatch = useDispatch();
@@ -51,8 +54,9 @@ function SettingsContainer({ componentId }: IOwnProps) {
 
   // gql
   const [updateNotification] = useMutation<ReturnedData, Variables>(GQL_MUTATION_UPDATE_USER_NOTIFICATIONS_SETTINGS);
-  const { data } = useQuery<Data>(GQL_QUERY_GET_USER_NOTIFICATIONS_SETTINGS, getNotificationsOptions);
+  const { data } = useQuery<Data>(GQL_QUERY_GET_USER_NOTIFICATIONS_SETTINGS, graphqlFetchPolicy);
   const notifications = data?.getUserNotificationsSettings || [];
+  const { data: userProfileData } = useQuery<GetUserProfile>(GQL_QUERY_GET_USER_PROFILE, graphqlFetchPolicy);
 
   // helper functions
   const handleClose = React.useCallback(() => Navigation.popToRoot(componentId), [componentId]);
@@ -119,6 +123,30 @@ function SettingsContainer({ componentId }: IOwnProps) {
     [settingsCopy]
   );
 
+  const gameSettings = {
+    name: "gameSettings",
+    title: "Game settings",
+    isVisible: features.passiveCyclingEnabled,
+    items: [
+      {
+        title: "Measurement (Cycling)",
+        description: "Change between the imperial (miles) and metric (kilometers) system.",
+        measurement: userProfileData?.getUserProfile?.gameSettings?.cyclingMeasurement,
+        onPress: () => {
+          Navigation.push(ROUTES.settings, {
+            component: {
+              id: ROUTES.cyclingMeasurement,
+              name: ROUTES.cyclingMeasurement,
+              passProps: {
+                cyclingMeasurement: userProfileData?.getUserProfile?.gameSettings?.cyclingMeasurement,
+              },
+            },
+          });
+        },
+      },
+    ],
+  };
+
   const connection = {
     title: "Fitness trackers",
     isVisible: features.showConnections,
@@ -184,7 +212,7 @@ function SettingsContainer({ componentId }: IOwnProps) {
       <SettingsScreen
         onCreateLeaderboard={handleCreateNewLeaderboard}
         onPressClose={handleClose}
-        sections={[notification, connection]}
+        sections={[notification, gameSettings, connection]}
       />
       {!isTimeModalVisible ? null : (
         <ScrollPickerModal pickers={pickers} onConfirm={handleTimeModalConfirm} onCancel={handleTimeModalCancel} />

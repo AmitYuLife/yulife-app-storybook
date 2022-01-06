@@ -118,6 +118,10 @@ export default [
     component: require("../components/containers/member/change-member-nickname/change-member-nickname.container")
       .default,
   },
+  {
+    name: ROUTES.cyclingMeasurement,
+    component: require("../components/containers/member/cycling-measurement/cycling-measurement.container").default,
+  },
 
   // quests screens
   {

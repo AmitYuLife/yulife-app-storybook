@@ -7,3 +7,5 @@ export * from "./refreshSession.gql";
 export * from "./replyToLeaderboardInvite.gql";
 export * from "./sendMagicLink.gql";
 export * from "./updateNickname.gql";
+export * from "./getUserProfile.gql";
+export * from "./updateCyclingMeasurement.gql";

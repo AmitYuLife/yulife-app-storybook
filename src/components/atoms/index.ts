@@ -65,3 +65,4 @@ export { ProductSvg };
 export { default as DarkScreen } from "./dark-screen/dark-screen";
 export { FlatList } from "./flat-list/flat-list";
 export { default as Block } from "./block/block";
+export { default as Radio } from "./radio/radio";
