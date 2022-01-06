@@ -91,6 +91,11 @@ export enum CoverType {
   rare = "rare",
 }
 
+export enum DistanceMeasurementType {
+  km = "km",
+  mi = "mi",
+}
+
 export enum FeedbackFormQuestionType {
   COMMENT = "COMMENT",
   MULTIPLE_CHOICE = "MULTIPLE_CHOICE",
@@ -137,6 +142,7 @@ export enum OS {
 }
 
 export enum PassiveChallengeType {
+  CYCLING = "CYCLING",
   MEDITATION = "MEDITATION",
   ONBOARDING = "ONBOARDING",
   STEPS = "STEPS",

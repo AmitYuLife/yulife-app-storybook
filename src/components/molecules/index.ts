@@ -45,3 +45,4 @@ export { default as ActivityList } from "./activity-list/activity-list";
 export { default as YuCoinPower } from "./yucoin-power/yucoin-power";
 export { default as Toast } from "./toast/toast";
 export { default as Hyperlink } from "./hyperlink/hyperlink";
+export { default as SettingsHeader } from "./settings-header/settings-header";
