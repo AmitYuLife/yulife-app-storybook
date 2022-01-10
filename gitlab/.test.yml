@@ -1,0 +1,14 @@
+test:
+  extends: .base
+  stage: test
+  interruptible: true
+  script:
+    - export GITLAB_TOKEN="${CI_JOB_TOKEN}"
+    - yarn install --frozen-lockfile --cache-folder .yarn/
+    - yarn test
+    # Rebuild cache if needed
+    - !reference [.build_cache, script]
+  only:
+    - merge_requests
+    - develop
+    - /^release\/.*$/

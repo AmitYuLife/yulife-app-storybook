@@ -33,6 +33,7 @@
         "start:storybook": "node ./scripts/start-storybook && start-storybook -p 7007",
         "start:storybook:browser": "node ./scripts/start-storybook browser && start-storybook -p 7007",
         "reset:storybook": "node ./scripts/start-storybook reset",
+        "test": "run-p lint tsc",
         "tsc": "tsc --noUnusedLocals --noUnusedParameters",
         "tsc:watch": "tsc --noUnusedLocals --noUnusedParameters --watch --pretty",
         "download:schema": "apollo client:download-schema --endpoint=https://develop.eu-west-2.api.yulife.engineering/graphql ./src/graphql/_core/schema.json",
