@@ -1,0 +1,5 @@
+.base:
+  image: 
+    name: 846880112034.dkr.ecr.eu-west-2.amazonaws.com/build-nodejs-14-eb:latest
+  tags:
+    - dev_v3
