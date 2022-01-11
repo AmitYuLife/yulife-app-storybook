@@ -1,7 +1,8 @@
-import React, { ComponentProps } from "react";
+import React, { ComponentProps, useEffect, useMemo } from "react";
+import moment from "moment";
 import { View, ActivityIndicator, StyleSheet, ViewStyle } from "react-native";
 import { ProductDetailsScreen } from "./product-details.screen";
-import { useQuery } from "@apollo/react-hooks";
+import { useLazyQuery } from "@apollo/react-hooks";
 import {
   GetProductDetails,
   GetProductDetailsVariables,
@@ -11,20 +12,35 @@ import { GQL_QUERY_GET_PRODUCT_DETAILS } from "@graphql/products/getProductDetai
 import { Colours } from "@styles";
 import { Navigation } from "react-native-navigation";
 import { ROUTES } from "@navigation/constants";
+import { PolicyStatus } from "@graphql/_core/schema/globalTypes";
+import { ProductDetailsCountdown } from "./product-details.countdown/product-details.countdown";
 
 interface Props {
   productId: string;
 }
 
 const ProductDetailsContainer = ({ productId = "" }: Props) => {
-  const { data, loading } = useQuery<GetProductDetails, GetProductDetailsVariables>(GQL_QUERY_GET_PRODUCT_DETAILS, {
-    variables: {
-      id: productId,
-    },
-    fetchPolicy: "network-only", // TODO: Delete when done TESTing, keep until we use real data
-  });
+  const [queryGetProductDetails, { data, loading }] = useLazyQuery<GetProductDetails, GetProductDetailsVariables>(
+    GQL_QUERY_GET_PRODUCT_DETAILS,
+    {
+      variables: {
+        id: productId,
+      },
+    }
+  );
 
-  if (!data || loading) {
+  const isBeforePolicyStartDate = useMemo(() => {
+    if (!data?.getProductDetails) {
+      return null;
+    }
+
+    const { policyStartDate } = data.getProductDetails;
+    moment(policyStartDate).isAfter(moment());
+  }, [data?.getProductDetails]);
+
+  useEffect(queryGetProductDetails, []);
+
+  if (!data?.getProductDetails || loading) {
     return (
       <View style={styles.loadingWrapper}>
         <ActivityIndicator color={Colours.primary.p600} />
@@ -46,6 +62,18 @@ const ProductDetailsContainer = ({ productId = "" }: Props) => {
         },
       },
     });
+  }
+
+  const { policyStatus, policyStartDate, secondsUntilStartDate } = data.getProductDetails;
+
+  if (isBeforePolicyStartDate || policyStatus === PolicyStatus.NOT_LIVE_YET) {
+    return (
+      <ProductDetailsCountdown
+        policyStartDate={policyStartDate}
+        secondsUntilStartDate={secondsUntilStartDate}
+        refetchQuery={queryGetProductDetails}
+      />
+    );
   }
 
   return (

@@ -27,19 +27,9 @@ export const styles = StyleSheet.create({
   titleWrapper: {
     marginLeft: Style.adjust(16),
   } as TextStyle,
-  title: {
-    letterSpacing: 1,
-    color: Colours.products.fib.n800,
-    lineHeight: Style.adjust(24),
-    fontSize: Style.adjust(16),
-  } as TextStyle,
-  subTitle: {
-    fontSize: Style.adjust(16),
-    color: Colours.neutral.n600,
-    letterSpacing: 0.6,
-    marginTop: 4,
-    lineHeight: Style.adjust(24),
-  } as TextStyle,
+  subtitleWrapper: {
+    marginTop: Style.adjust(4),
+  } as ViewStyle,
   rightIcon: {
     marginLeft: "auto",
   } as ViewStyle,

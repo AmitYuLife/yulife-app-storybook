@@ -292,6 +292,7 @@ export default {
   status: {
     su400: "#40C057",
     er300: "#FF5F5F",
+    wa100: "#FAF4E6",
   },
   hexToRGB,
   rgbToHex,

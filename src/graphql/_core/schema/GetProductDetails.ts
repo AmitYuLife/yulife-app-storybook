@@ -3,7 +3,7 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { CoverType } from "./globalTypes";
+import { CoverType, PolicyStatus } from "./globalTypes";
 
 // ====================================================
 // GraphQL query operation: GetProductDetails
@@ -89,6 +89,18 @@ export interface GetProductDetails_getProductDetails {
    * Date when policy was last updated
    */
   policyLastUpdated: string | null;
+  /**
+   * Policy start date customer_policy.start_date
+   */
+  policyStartDate: string | null;
+  /**
+   * policy status customer_policy.policy_status
+   */
+  policyStatus: PolicyStatus | null;
+  /**
+   * Used for countdown calculation
+   */
+  secondsUntilStartDate: number | null;
   /**
    * Uses markdown
    */
