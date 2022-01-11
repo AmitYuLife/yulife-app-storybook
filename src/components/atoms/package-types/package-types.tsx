@@ -1,5 +1,5 @@
-import React from "react";
-import { StyleSheet, View, Platform } from "react-native";
+import React, { memo, useMemo } from "react";
+import { Platform, StyleSheet, View, ViewStyle } from "react-native";
 import { Colours } from "@styles";
 import { CoverType } from "@graphql/_core/schema/globalTypes";
 import { PACKAGE_TYPES } from "@ids";
@@ -8,15 +8,26 @@ import { toCapitalLetter } from "@utils";
 
 export interface Props {
   type: CoverType;
+  minWidth?: number;
 }
 
-const PackageType: React.FC<Props> = ({ type }) => {
-  const isNotEquipped = !Object.values(CoverType).includes(type);
+const PackageType = ({ type, minWidth = 0 }: Props) => {
+  const isNotEquipped = useMemo(() => {
+    return !Object.values(CoverType).includes(type);
+  }, [type]);
+
+  const wrapperStyle = useMemo(() => {
+    return [
+      styles.wrapper,
+      {
+        backgroundColor: isNotEquipped ? Colours.metallic.m400 : Colours.products.fib[type],
+        minWidth,
+      },
+    ];
+  }, [type, minWidth, isNotEquipped]);
+
   return (
-    <View
-      style={[styles.wrapper, { backgroundColor: isNotEquipped ? Colours.metallic.m400 : Colours.products.fib[type] }]}
-      testID={PACKAGE_TYPES}
-    >
+    <View style={wrapperStyle} testID={PACKAGE_TYPES}>
       <TextTemplate color={Colours.neutral.white} type="l2b">
         {isNotEquipped ? "Not equipped" : toCapitalLetter(type)}
       </TextTemplate>
@@ -40,7 +51,8 @@ const styles = StyleSheet.create({
     paddingBottom: 2,
     borderWidth: 1,
     borderColor: Colours.neutral.white,
-  },
+    alignItems: "center",
+  } as ViewStyle,
 });
 
-export default PackageType;
+export default memo(PackageType);

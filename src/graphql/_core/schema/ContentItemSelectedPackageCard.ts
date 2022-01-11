@@ -14,6 +14,16 @@ export interface ContentItemSelectedPackageCard_backgroundUrl {
   uri: string | null;
 }
 
+export interface ContentItemSelectedPackageCard_providerLogo_url {
+  id: string;
+  uri: string | null;
+}
+
+export interface ContentItemSelectedPackageCard_providerLogo {
+  url: ContentItemSelectedPackageCard_providerLogo_url | null;
+  width: number | null;
+}
+
 export interface ContentItemSelectedPackageCard_slotInfo_backgroundUrl {
   id: string;
   uri: string | null;
@@ -38,5 +48,6 @@ export interface ContentItemSelectedPackageCard {
   priceDescription: string;
   coverType: CoverType;
   backgroundUrl: ContentItemSelectedPackageCard_backgroundUrl;
+  providerLogo: ContentItemSelectedPackageCard_providerLogo | null;
   slotInfo: ContentItemSelectedPackageCard_slotInfo;
 }

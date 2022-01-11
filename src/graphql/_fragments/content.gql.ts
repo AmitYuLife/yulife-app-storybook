@@ -444,8 +444,13 @@ export const GQL_FRAGMENT_CONTENT_ITEM_SELECTED_PACKAGE_CARD = gql`
     priceDescription
     coverType
     backgroundUrl {
-      id
-      uri
+      ...RemoteImage
+    }
+    providerLogo {
+      url {
+        ...RemoteImage
+      }
+      width
     }
     slotInfo {
       ...ContentItemPackageCardSlotInfo
