@@ -17,12 +17,13 @@ interface Props {
   tertiarySubLabel?: string;
   leftIcon?: BUTTON_ICON;
   rightIcon?: BUTTON_ICON;
-  iconSvgXml?: string;
   height?: number;
   show?: boolean;
   size?: Sizes;
   iconUri?: string;
   rightIconUri?: string;
+  LeftIcon?: JSX.Element;
+  RightIcon?: JSX.Element;
 }
 
 const DEFAULT_HEIGHT = Style.adjust(60);
@@ -38,12 +39,13 @@ export const TertiaryButton = (props: Props) => {
     tertiarySubLabel,
     leftIcon,
     rightIcon,
-    iconSvgXml,
     height = DEFAULT_HEIGHT,
     show = true,
     size,
     iconUri,
     rightIconUri,
+    LeftIcon,
+    RightIcon,
   } = props;
 
   const { handlePress } = usePressedInWithDelay({ onPress, delay });
@@ -65,10 +67,11 @@ export const TertiaryButton = (props: Props) => {
         delay={delay}
         leftIcon={leftIcon}
         rightIcon={rightIcon}
-        iconSvgXml={iconSvgXml}
         height={height}
         iconUri={iconUri}
         rightIconUri={rightIconUri}
+        LeftIcon={LeftIcon}
+        RightIcon={RightIcon}
       />
     </View>
   );

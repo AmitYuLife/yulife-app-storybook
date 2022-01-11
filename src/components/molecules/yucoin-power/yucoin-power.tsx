@@ -5,10 +5,20 @@ import { YUCOIN_POWER_INFO } from "@ids";
 
 interface IProps {
   coins: string | number;
+  width?: number;
+  height?: number;
 }
 
-const YuCoinPower = ({ coins }: IProps) => (
-  <Svg width={Style.adjust(281)} height={Style.adjust(50)} viewBox="0 0 281 50" fill="none" testID={YUCOIN_POWER_INFO}>
+const HEIGHT_WIDTH_MULTIPLIER = 50 / 281;
+
+const YuCoinPower = ({ coins, width = Style.adjust(281), height }: IProps) => (
+  <Svg
+    width={width}
+    height={height || width * HEIGHT_WIDTH_MULTIPLIER}
+    viewBox="0 0 281 50"
+    fill="none"
+    testID={YUCOIN_POWER_INFO}
+  >
     <Rect y={5} width={281} height={40} rx={8} fill="#EDB720" />
     <Rect y={4} width={281} height={39} rx={8} fill="url(#prefix__paint0_linear_908:45001)" />
     <Circle cx={269} cy={16} r={7.5} fill="#DB8200" stroke="#FCE56A" />

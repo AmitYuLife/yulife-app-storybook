@@ -13,6 +13,9 @@ export const GQL_QUERY_GET_PRODUCT_DETAILS = gql`
       productDescription
       coverType
       policyLastUpdated
+      policyStartDate
+      policyStatus
+      secondsUntilStartDate
       disclaimer
       hasBeneficiariesEnabled
       benefit {

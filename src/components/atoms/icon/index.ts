@@ -47,8 +47,7 @@ import { CyclingIcon } from "./cycling-icon";
 import { MindfulnessIcon } from "./mindfulness-icon";
 import { StarIcon } from "./star-icon";
 import { YuCoinIcon } from "./yucoin-icon";
-
-// TODO: check with the team if we can refactor this to support "import { Icon1, Icon2 } from "@atoms/icon";
+import { Stars1, Stars2 } from "./stars-icon";
 
 export default {
   Clock,
@@ -100,4 +99,6 @@ export default {
   MindfulnessIcon,
   StarIcon,
   YuCoinIcon,
+  Stars1,
+  Stars2,
 };
