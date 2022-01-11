@@ -14,7 +14,7 @@ nvm use
 
 ### React Native
 
-Follow the [React Native Installation Instructions](https://facebook.github.io/react-native/docs/getting-started.html) for both iOS and Android targets, skipping the section that installs Node.js. This should guide you through the installation of the following required components:
+Follow the [React Native Installation Instructions](https://reactnative.dev/docs/environment-setup) for both iOS and Android targets, skipping the section that installs Node.js. This should guide you through the installation of the following required components:
 
 - watchman
 - react-native-cli
@@ -46,7 +46,16 @@ You'll also need to install iOS pods by running
 cd ios && pod install && cd ../
 ```
 
-If you get this error `xcrun: error: SDK "iphoneos" cannot be located` after running `pod install` follow this tutorial [SDK “iphoneos” cannot be located](https://www.ryadel.com/en/xcode-sdk-iphoneos-cannot-be-located-mac-osx-error-fix/)
+If running `pod install` produces the error `SDK "iphoneos" cannot be located`, this means the XCode installation path is incorrect (it's probably installed under "Applications").
+
+You can check this by running
+```sh
+sudo xcode-select --print-path
+```
+To update this path use
+```su
+sudo xcode-select --switch /Applications/Xcode.app
+```
 
 ### Download Apollo Schema
 
