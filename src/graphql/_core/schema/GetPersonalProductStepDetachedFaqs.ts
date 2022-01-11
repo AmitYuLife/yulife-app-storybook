@@ -119,6 +119,9 @@ export interface GetPersonalProductStepDetachedFaqs_getPersonalProductStepDetach
 }
 
 export interface GetPersonalProductStepDetachedFaqs {
+  /**
+   * @Deprecated - Use the generic getPersonalProductStepDetached with FAQ stepId
+   */
   getPersonalProductStepDetachedFaqs: GetPersonalProductStepDetachedFaqs_getPersonalProductStepDetachedFaqs | null;
 }
 

@@ -1,6 +1,6 @@
 import React, { memo, useMemo } from "react";
 import { View, StyleSheet, ViewStyle } from "react-native";
-import { Image } from "@atoms";
+import { Image, PackageType } from "@atoms";
 import { Style } from "@styles";
 import { CoverType, YuWorld } from "@graphql/_core/schema/globalTypes";
 import { useQuery } from "@apollo/react-hooks";
@@ -18,12 +18,17 @@ interface Props {
    * For getting product yumoji part
    */
   customerProductId: string;
+  /**
+   * Should package type be displayed
+   */
+  shouldDisplayPackageType?: boolean;
 }
 
 const SIZE = Style.adjust(64);
+const SPACE_FOR_PACKAGE_TYPE = Style.adjust(16);
 
 export const SlotIcon = memo((props: Props) => {
-  const { size = SIZE, backgroundUrl, customerProductId = "" } = props;
+  const { size = SIZE, backgroundUrl, customerProductId = "", shouldDisplayPackageType } = props;
   const { data: getProductYumojiPartData } = useQuery<GetProductYumojiPart, GetProductYumojiPartVariables>(
     GQL_QUERY_GET_PRODUCT_YUMOJI_PART,
     {
@@ -63,26 +68,36 @@ export const SlotIcon = memo((props: Props) => {
   }, [data, props]);
 
   const dimensions = useMemo(() => {
-    return { height: size, width: size };
-  }, [size]);
+    return {
+      height: size + (shouldDisplayPackageType ? SPACE_FOR_PACKAGE_TYPE : 0),
+      width: size,
+      paddingTop: shouldDisplayPackageType ? SPACE_FOR_PACKAGE_TYPE : 0,
+    };
+  }, [size, shouldDisplayPackageType]);
+  const wrapperStyle = useMemo(() => [styles.wrapper, dimensions], [dimensions]);
+  const backgroundUrlSource = useMemo(() => ({ uri: backgroundUrl }), [backgroundUrl]);
+  const backgroundUrlSourceStyle = useMemo(() => [StyleSheet.absoluteFill, dimensions], [dimensions]);
+  const itemUrlSource = useMemo(() => ({ uri: itemUrl }), [itemUrl]);
+  const itemUrlSourceStyle = useMemo(() => [StyleSheet.absoluteFill, dimensions], [dimensions]);
 
   return (
-    <View style={[styles.wrapper, dimensions]}>
+    <View style={wrapperStyle}>
+      <Image source={backgroundUrlSource} width={size} height={size} theme="light" style={backgroundUrlSourceStyle} />
       <Image
-        source={{ uri: backgroundUrl }}
+        source={itemUrlSource}
         width={size}
         height={size}
         theme="light"
-        style={[styles.slotWrapper, dimensions]}
-      />
-      <Image
-        source={{ uri: itemUrl }}
-        width={size}
-        height={size}
-        theme="light"
-        style={[styles.slotItem, dimensions]}
+        style={itemUrlSourceStyle}
         suppressLoadingUi={true}
       />
+      {!shouldDisplayPackageType ? null : (
+        <View style={styles.coverTypeWrapper}>
+          <View>
+            <PackageType minWidth={Style.adjust(55)} type={props.coverType} />
+          </View>
+        </View>
+      )}
     </View>
   );
 });
@@ -92,10 +107,12 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   } as ViewStyle,
-  slotWrapper: {
-    ...StyleSheet.absoluteFillObject,
-  },
-  slotItem: {
-    ...StyleSheet.absoluteFillObject,
-  },
+  coverTypeWrapper: {
+    position: "absolute",
+    left: 0,
+    right: 0,
+    top: 0,
+    alignItems: "center",
+    justifyContent: "center",
+  } as ViewStyle,
 });

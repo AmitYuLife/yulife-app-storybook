@@ -374,6 +374,16 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemS
   uri: string | null;
 }
 
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemSelectedPackageCard_providerLogo_url {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemSelectedPackageCard_providerLogo {
+  url: GetPersonalProductStep_getPersonalProductStep_body_ContentItemSelectedPackageCard_providerLogo_url | null;
+  width: number | null;
+}
+
 export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemSelectedPackageCard_slotInfo_backgroundUrl {
   id: string;
   uri: string | null;
@@ -399,6 +409,7 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemS
   priceDescription: string;
   coverType: CoverType;
   backgroundUrl: GetPersonalProductStep_getPersonalProductStep_body_ContentItemSelectedPackageCard_backgroundUrl;
+  providerLogo: GetPersonalProductStep_getPersonalProductStep_body_ContentItemSelectedPackageCard_providerLogo | null;
   slotInfo: GetPersonalProductStep_getPersonalProductStep_body_ContentItemSelectedPackageCard_slotInfo;
 }
 

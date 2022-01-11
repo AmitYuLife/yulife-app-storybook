@@ -107,6 +107,9 @@ export interface GetPersonalProductStepDetachedDocuments_getPersonalProductStepD
 }
 
 export interface GetPersonalProductStepDetachedDocuments {
+  /**
+   * @Deprecated - Use the generic getPersonalProductStepDetached with Documents stepId
+   */
   getPersonalProductStepDetachedDocuments: GetPersonalProductStepDetachedDocuments_getPersonalProductStepDetachedDocuments | null;
 }
 
