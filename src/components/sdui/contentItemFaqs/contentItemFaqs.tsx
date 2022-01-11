@@ -71,7 +71,9 @@ export const ContentItemFaqs = memo((props: Props) => {
                 style={styles.button}
                 onPress={() => pushSubDocument(item.id)}
               >
-                <TextTemplate type="b2b">{item.accessButtonText}</TextTemplate>
+                <View style={styles.left}>
+                  <TextTemplate type="b2b">{item.accessButtonText}</TextTemplate>
+                </View>
                 <View style={styles.right}>
                   <ArrowRightSvg colour={Colours.primary.p600} />
                 </View>
@@ -99,6 +101,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
     padding: Style.adjust(24),
     minHeight: Style.adjust(56),
+  } as ViewStyle,
+  left: {
+    flex: 1,
   } as ViewStyle,
   right: {
     marginLeft: "auto",
