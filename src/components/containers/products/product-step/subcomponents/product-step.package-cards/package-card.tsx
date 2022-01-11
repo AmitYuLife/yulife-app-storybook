@@ -4,9 +4,8 @@ import { Colours, Style } from "@styles";
 import { ContentItemPackageCards_packageCards, GetProductSlotItemBackgroundUrls } from "@graphql/_core/schema";
 import { CoverType, YuWorld } from "@graphql/_core/schema/globalTypes";
 import { showEarnRateOverlay } from "@components/containers/member/yu/navigation/showEarnRateOverlay";
-import { PackageCardPerks } from "@molecules";
+import { PackageCardPerks, PressableWithDelay, YuCoinPower } from "@molecules";
 import PackageCardHeader from "./package-card-header";
-import YuCoinPowerMini from "./yucoin-power-mini";
 import { SlotIcon } from "../product-step.slot-icon";
 import { ProductStepContext } from "../../product-step.context";
 import { LOCAL_ANSWER_KEY } from "../../utils/localAnswerKeys";
@@ -52,15 +51,23 @@ export const PackageCard = memo((props: Partial<Props>) => {
     });
   }, [dynamicData, productSlotItemBackgroundUrls]);
 
+  const wrapperStyle = useMemo(() => {
+    return [styles.centerContent, { width: props.width }];
+  }, [props.width]);
+
+  const innerWrapperStyle = useMemo(() => {
+    return [styles.wrapper, borderColor];
+  }, [borderColor]);
+
   return (
-    <View style={[styles.centerContent, { width: props.width }]}>
-      <View style={[styles.wrapper, borderColor]}>
+    <View style={wrapperStyle}>
+      <View style={innerWrapperStyle}>
         <View style={styles.bgWhite} />
         <PackageCardHeader width={props.width} coverType={props.coverType} header={props.header} />
         <View style={styles.container}>
-          <View style={styles.yucoin}>
-            <YuCoinPowerMini coinValue={props.bonusEarnRate} onPress={handlePressYuCoinPower} />
-          </View>
+          <PressableWithDelay onPress={handlePressYuCoinPower} style={styles.yucoin}>
+            <YuCoinPower coins={props.bonusEarnRate} />
+          </PressableWithDelay>
           <Perks powers={props.powers} />
         </View>
       </View>
@@ -79,6 +86,7 @@ const styles = StyleSheet.create({
   wrapper: {
     borderRadius: BORDER_RADIUS,
     width: "100%",
+    borderWidth: 1,
   },
   container: {
     paddingHorizontal: Style.adjust(24),

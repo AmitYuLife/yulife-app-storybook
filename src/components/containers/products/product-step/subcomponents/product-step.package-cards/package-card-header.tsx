@@ -20,7 +20,6 @@ interface Props {
 /**
  * Don't scale
  */
-const HEADER_HEIGHT = 112;
 const BORDER_RADIUS = 12;
 const OFFSET = media.select(
   [
@@ -31,6 +30,7 @@ const OFFSET = media.select(
   ],
   0
 );
+const HEADER_HEIGHT = Style.adjust(112);
 
 const PackageCardHeader = (props: Props) => {
   const { customerProductId, dynamicData, setDynamicData } = useContext(ProductStepContext);
