@@ -9,7 +9,9 @@ import { RightSide } from "./subcomponents/right-side";
 import { Price } from "./subcomponents/price";
 import { Title } from "./subcomponents/title";
 
-export const ProductStepSelectedPackageCard = memo((props: GqlProps) => {
+type Props = Omit<GqlProps, "previousPrice" | "backgroundUrl">;
+
+export const ProductStepSelectedPackageCard = memo((props: Props) => {
   const { slotInfo, price, priceDescription, providerLogo, coverType } = props;
   const { customerProductId } = useContext(ProductStepContext);
 

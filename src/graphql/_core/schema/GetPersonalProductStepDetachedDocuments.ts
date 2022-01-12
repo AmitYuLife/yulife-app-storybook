@@ -48,7 +48,8 @@ export interface GetPersonalProductStepDetachedDocuments_getPersonalProductStepD
     | "ContentItemSearchPostcode"
     | "ContentItemForm"
     | "ContentItemSelectedPackageAccordion"
-    | "ContentItemFade";
+    | "ContentItemFade"
+    | "ContentItemSelectedPackageCards";
 }
 
 export interface GetPersonalProductStepDetachedDocuments_getPersonalProductStepDetachedDocuments_body_ContentItemPersonalProductDocuments_headingImage_image {

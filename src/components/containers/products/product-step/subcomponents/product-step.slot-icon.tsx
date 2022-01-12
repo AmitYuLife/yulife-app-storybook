@@ -71,7 +71,6 @@ export const SlotIcon = memo((props: Props) => {
     return {
       height: size + (shouldDisplayPackageType ? SPACE_FOR_PACKAGE_TYPE : 0),
       width: size,
-      paddingTop: shouldDisplayPackageType ? SPACE_FOR_PACKAGE_TYPE : 0,
     };
   }, [size, shouldDisplayPackageType]);
   const wrapperStyle = useMemo(() => [styles.wrapper, dimensions], [dimensions]);
