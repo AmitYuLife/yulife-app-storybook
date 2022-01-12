@@ -40,7 +40,9 @@
         "download:schema:local": "apollo client:download-schema --endpoint=http://localhost:5000/graphql ./src/graphql/_core/schema.json",
         "pregenerate:gql:types": "rm -rf ./src/graphql/_core/schema && mkdir ./src/graphql/_core/schema",
         "generate:gql:types": "apollo client:codegen --tagName=gql --localSchemaFile=./src/graphql/_core/schema.json --target=typescript --no-addTypename --outputFlat src/graphql/_core/schema",
-        "postgenerate:gql:types": "node ./scripts/generate-index-schema-file-gql.js",
+        "postgenerate:gql:types": "run-s generate:index:schema prettify:graphql",
+        "generate:index:schema": "node ./scripts/generate-index-schema-file-gql.js",
+        "prettify:graphql": "prettier src/graphql/_core --write",
         "postinstall": "jetify && patch-package",
         "snyk-protect": "snyk protect",
         "prepublish": "yarn snyk-protect"
