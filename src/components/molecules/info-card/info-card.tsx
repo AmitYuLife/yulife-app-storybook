@@ -7,17 +7,16 @@ import { Hyperlink } from "@molecules";
 
 interface IProps {
   icon: React.ReactNode;
-  iconAlign?: "flex-start" | "center" | "flex-end";
   title?: string;
   description?: string;
   customBody?: React.ReactNode;
   hyperlink?: ComponentProps<typeof Hyperlink>;
 }
 
-const InfoCard = memo(({ icon, title, description, customBody, iconAlign = "center", hyperlink }: IProps) => {
+const InfoCard = memo(({ icon, title, description, customBody, hyperlink }: IProps) => {
   return (
     <View style={styles.wrapper}>
-      <View style={[styles.image, { justifyContent: iconAlign }]}>{icon}</View>
+      <View style={styles.image}>{icon}</View>
       <View style={styles.flex}>
         {customBody ? (
           customBody
@@ -43,10 +42,13 @@ const HyperlinkInstance = ({ title, url }: IProps["hyperlink"]) => (
   </View>
 );
 
+const LINE_HEIGHT_OFFSET = -Style.adjust(8);
+
 const styles = StyleSheet.create({
   flex: {
     flex: 1,
-    justifyContent: "center",
+    marginTop: LINE_HEIGHT_OFFSET,
+    paddingRight: Style.adjust(8),
   } as ViewStyle,
   wrapper: {
     backgroundColor: Colours.neutral.white,

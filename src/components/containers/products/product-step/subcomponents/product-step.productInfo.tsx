@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useMemo, memo } from "react";
+import React, { useCallback, useContext, memo } from "react";
 import { StyleSheet, View } from "react-native";
 import { Style } from "@styles";
 import { Image, TextTemplate } from "@atoms";
@@ -27,17 +27,13 @@ export const ProductStepProductInfo = memo((props: Props) => {
     []
   );
 
-  const providerImageUrlSource = useMemo(() => {
-    return { uri: providerImageUrl?.uri };
-  }, [providerImageUrl]);
-
   return (
     <View style={styles.wrapper}>
       <View style={styles.info}>
         <View style={styles.titleAndIcon}>
           {!providerImageUrl?.uri ? null : (
             <Image
-              source={providerImageUrlSource}
+              source={providerImageUrl}
               width={Style.adjust(16)}
               height={Style.adjust(16)}
               theme="light"
