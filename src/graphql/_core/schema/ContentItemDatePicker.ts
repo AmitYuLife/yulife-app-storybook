@@ -9,6 +9,11 @@ import { ContentItemButtonSize } from "./globalTypes";
 // GraphQL fragment: ContentItemDatePicker
 // ====================================================
 
+export interface ContentItemDatePicker_labelWrapperStyles {
+  property: string;
+  value: string;
+}
+
 export interface ContentItemDatePicker_pickerStyles {
   property: string;
   value: string;
@@ -29,6 +34,11 @@ export interface ContentItemDatePicker_buttonRightIcon {
   uri: string | null;
 }
 
+export interface ContentItemDatePicker_styles {
+  property: string;
+  value: string;
+}
+
 export interface ContentItemDatePicker {
   id: string;
   initialDate: string | null;
@@ -36,6 +46,7 @@ export interface ContentItemDatePicker {
   minDate: string;
   dateFormat: string;
   label: string;
+  labelWrapperStyles: ContentItemDatePicker_labelWrapperStyles[] | null;
   subLabel: string | null;
   pickerStyles: ContentItemDatePicker_pickerStyles[] | null;
   buttonStyles: ContentItemDatePicker_buttonStyles[] | null;
@@ -43,4 +54,5 @@ export interface ContentItemDatePicker {
   buttonRightIcon: ContentItemDatePicker_buttonRightIcon | null;
   size: ContentItemButtonSize;
   answerKey: string;
+  styles: ContentItemDatePicker_styles[] | null;
 }

@@ -1,13 +1,12 @@
 import React, { memo, useCallback, useState } from "react";
 import DateTimePicker from "react-native-modal-datetime-picker";
 import moment from "moment";
-import { StyleSheet, View, ViewStyle } from "react-native";
+import { View } from "react-native";
 import { ContentItemDatePicker as GqlDatePicker } from "@graphql/_core/schema";
-import { Colours, Style } from "@styles";
-import { TertiaryButton } from "@atoms";
+import { Colours } from "@styles";
+import { TertiaryButton, TextTemplate } from "@atoms";
 import { mapServerStyles } from "../_utils/mapServerStyles";
 import { DATE_INPUT, DATE_PICKER } from "@ids";
-
 interface IProps extends GqlDatePicker {
   onChange?: (value: string) => void;
 }
@@ -22,10 +21,13 @@ export const ContentItemDatePicker = memo((props: Props) => {
     buttonLeftIcon,
     buttonRightIcon,
     buttonStyles,
+    label,
+    labelWrapperStyles,
     subLabel,
     minDate,
     maxDate,
     initialDate,
+    styles,
   } = props;
   const displayDateFormat = "DD / MM / YYYY";
 
@@ -56,7 +58,14 @@ export const ContentItemDatePicker = memo((props: Props) => {
   }, []);
 
   return (
-    <View style={styles.wrapper}>
+    <View style={mapServerStyles(styles)}>
+      {!label ? null : (
+        <View style={mapServerStyles(labelWrapperStyles)}>
+          <TextTemplate type="l1" color={Colours.neutral.n400}>
+            {label}
+          </TextTemplate>
+        </View>
+      )}
       <TertiaryButton
         size={size}
         iconUri={buttonLeftIcon.uri}
@@ -82,10 +91,4 @@ export const ContentItemDatePicker = memo((props: Props) => {
       />
     </View>
   );
-});
-
-const styles = StyleSheet.create({
-  wrapper: {
-    marginTop: Style.adjust(40),
-  } as ViewStyle,
 });
