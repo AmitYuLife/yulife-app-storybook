@@ -161,6 +161,10 @@ export default [
     component: require("../components/containers/products/product-step/product-step.container").default,
   },
   {
+    name: ROUTES.productStepDetached,
+    component: require("../components/containers/products/product-step/product-step-detached.container").default,
+  },
+  {
     name: ROUTES.productStepFaqs,
     component: require("../components/containers/products/product-step/product-step.faqs.container").default,
   },

@@ -1,0 +1,150 @@
+import React, { memo, useCallback, useMemo, useState } from "react";
+import { ActivityIndicator, StyleSheet, View, ViewStyle, ScrollView, LayoutChangeEvent } from "react-native";
+import { useDispatch } from "react-redux";
+import { useQuery } from "@apollo/react-hooks";
+import { ContentItemDocuments, ContentItemFaqs } from "@components/sdui";
+import { GQL_QUERY_GET_PERSONAL_PRODUCT_STEP_DETACHED } from "@graphql/personalProduct/getPersonalProductStepDetached.gql";
+import { GetPersonalProductStepDetached_getPersonalProductStepDetached_body as GPPSSQ_Body } from "@graphql/_core/schema";
+import { GetPersonalProductStepDetached, GetPersonalProductStepDetachedVariables } from "@graphql/_core/schema";
+import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
+import { ProductStepFaqsContext } from "./product-step.faqs.context";
+import { ProductStepContentItemHeaderDetached } from "./subcomponents/detached/product-step.header.detached";
+import { SduiActionType } from "@graphql/_core/schema/globalTypes";
+import { Colours, Style, TOP_BAR } from "@styles";
+
+const HEADER_HEIGHT_ESTIMATE = TOP_BAR.TOP_BAR_WITH_PAD;
+const EXTRA_PADDING = Style.adjust(32);
+
+const ProductStepDetachedContainer = (props: any) => {
+  const { stepId, productId } = props;
+
+  const dispatch = useDispatch();
+
+  const [headerHeight, setHeaderHeight] = useState(HEADER_HEIGHT_ESTIMATE);
+  const [currentStepId, setCurrentStepId] = useState(stepId);
+  const [history, setHistory] = useState([] as string[]);
+  const [nestedHistory, setNestedHistory] = useState([] as string[]);
+
+  const setCurrentStep = (step: string) => {
+    setHistory((state) => [...state, step]);
+    setCurrentStepId(step);
+  };
+
+  const pushNestedHistory = useCallback(
+    (internalStep: string) => {
+      if (stepId.includes("faq")) {
+        dispatch(logMixpanelEventActionCreator("faq_viewed", { faq_id: internalStep }));
+      }
+
+      setNestedHistory((state) => [...state, internalStep]);
+    },
+    [setNestedHistory, stepId, dispatch]
+  );
+
+  const popNestedHistory = useCallback(() => {
+    setNestedHistory((state) => {
+      if (state.length <= 1) {
+        return [];
+      }
+
+      return state.slice(0, -1);
+    });
+  }, [setNestedHistory]);
+
+  const { data, loading } = useQuery<GetPersonalProductStepDetached, GetPersonalProductStepDetachedVariables>(
+    GQL_QUERY_GET_PERSONAL_PRODUCT_STEP_DETACHED,
+    {
+      variables: { productId, stepId },
+      fetchPolicy: "no-cache",
+    }
+  );
+
+  const handleHeaderLayout = useCallback(
+    (event: LayoutChangeEvent) => {
+      setHeaderHeight(event.nativeEvent.layout.height);
+    },
+    [setHeaderHeight]
+  );
+
+  const scrollViewTopPad = useMemo(() => {
+    return { height: headerHeight + EXTRA_PADDING };
+  }, [headerHeight]);
+
+  if (loading || !data?.getPersonalProductStepDetached) {
+    return (
+      <View style={styles.loadingWrapper}>
+        <ActivityIndicator />
+      </View>
+    );
+  }
+
+  const { body } = data.getPersonalProductStepDetached;
+
+  return (
+    <ProductStepFaqsContext.Provider
+      value={{
+        history,
+        currentStepId,
+        setCurrentStep,
+        productId,
+        popNestedHistory,
+        pushNestedHistory,
+        nestedHistory,
+      }}
+    >
+      <View style={nestedHistory.length === 0 ? styles.wrapper : styles.wrapperWhite}>
+        <ScrollView showsVerticalScrollIndicator={false}>
+          <View style={scrollViewTopPad} />
+          {body.map(renderItemContent)}
+        </ScrollView>
+      </View>
+      <View onLayout={handleHeaderLayout} style={styles.headerWrapper}>
+        <ProductStepContentItemHeaderDetached
+          key={`${stepId}_header`}
+          heading={null}
+          logo="yulife"
+          leftIcon="BACK"
+          rightIcon="CLOSE"
+          onLeftIconPress={{ type: SduiActionType.SDUI_ACTION_NAVIGATE_BACK, payload: null }}
+          onRightIconPress={{ type: SduiActionType.SDUI_ACTION_NAVIGATE_BACK, payload: null }}
+        />
+      </View>
+    </ProductStepFaqsContext.Provider>
+  );
+};
+
+const styles = StyleSheet.create({
+  headerWrapper: {
+    position: "absolute",
+    left: 0,
+    right: 0,
+    top: 0,
+  } as ViewStyle,
+  wrapper: {
+    flex: 1,
+    backgroundColor: Colours.neutral.n50,
+  } as ViewStyle,
+  wrapperWhite: {
+    flex: 1,
+    backgroundColor: Colours.neutral.white,
+  } as ViewStyle,
+  loadingWrapper: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  } as ViewStyle,
+});
+
+const renderItemContent = (item: GPPSSQ_Body): JSX.Element => {
+  switch (item.__typename) {
+    case "ContentItemPersonalProductFaqs":
+      return <ContentItemFaqs key={item.id} {...item} />;
+    case "ContentItemPersonalProductDocuments":
+      return <ContentItemDocuments key={item.id} {...item} />;
+
+    default:
+      return null;
+  }
+};
+
+export default memo(ProductStepDetachedContainer);
