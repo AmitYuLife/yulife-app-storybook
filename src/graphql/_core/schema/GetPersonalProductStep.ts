@@ -413,6 +413,55 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemS
   slotInfo: GetPersonalProductStep_getPersonalProductStep_body_ContentItemSelectedPackageCard_slotInfo;
 }
 
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemSelectedPackageCards_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemSelectedPackageCards_providerLogo_url {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemSelectedPackageCards_providerLogo {
+  url: GetPersonalProductStep_getPersonalProductStep_body_ContentItemSelectedPackageCards_providerLogo_url | null;
+  width: number | null;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemSelectedPackageCards_coverOptions_slotInfo_backgroundUrl {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemSelectedPackageCards_coverOptions_slotInfo_logoUrl {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemSelectedPackageCards_coverOptions_slotInfo {
+  name: string;
+  status: YuProductStatus;
+  backgroundUrl: GetPersonalProductStep_getPersonalProductStep_body_ContentItemSelectedPackageCards_coverOptions_slotInfo_backgroundUrl;
+  logoUrl: GetPersonalProductStep_getPersonalProductStep_body_ContentItemSelectedPackageCards_coverOptions_slotInfo_logoUrl | null;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemSelectedPackageCards_coverOptions {
+  coverType: CoverType;
+  price: string;
+  slotInfo: GetPersonalProductStep_getPersonalProductStep_body_ContentItemSelectedPackageCards_coverOptions_slotInfo;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemSelectedPackageCards {
+  __typename: "ContentItemSelectedPackageCards";
+  id: string;
+  styles: GetPersonalProductStep_getPersonalProductStep_body_ContentItemSelectedPackageCards_styles[] | null;
+  providerLogo: GetPersonalProductStep_getPersonalProductStep_body_ContentItemSelectedPackageCards_providerLogo | null;
+  packageCardsPriceDescription: string | null;
+  coverOptions:
+    | GetPersonalProductStep_getPersonalProductStep_body_ContentItemSelectedPackageCards_coverOptions[]
+    | null;
+}
+
 export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemPackageCards_packageCards_header_backgroundUrl {
   id: string;
   uri: string | null;
@@ -1146,6 +1195,7 @@ export type GetPersonalProductStep_getPersonalProductStep_body =
   | GetPersonalProductStep_getPersonalProductStep_body_ContentItemInfoCard
   | GetPersonalProductStep_getPersonalProductStep_body_ContentItemInfoButton
   | GetPersonalProductStep_getPersonalProductStep_body_ContentItemSelectedPackageCard
+  | GetPersonalProductStep_getPersonalProductStep_body_ContentItemSelectedPackageCards
   | GetPersonalProductStep_getPersonalProductStep_body_ContentItemPackageCards
   | GetPersonalProductStep_getPersonalProductStep_body_ContentItemPackageCardPower
   | GetPersonalProductStep_getPersonalProductStep_body_ContentItemPersonalProductPreview
@@ -1199,7 +1249,8 @@ export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentIte
     | "ContentItemPersonalProductSelectPaymentButton"
     | "ContentItemSearchPostcode"
     | "ContentItemForm"
-    | "ContentItemSelectedPackageAccordion";
+    | "ContentItemSelectedPackageAccordion"
+    | "ContentItemSelectedPackageCards";
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentItemButton_onPress {
@@ -1422,7 +1473,8 @@ export interface GetPersonalProductStep_getPersonalProductStep_header_ContentIte
     | "ContentItemPersonalProductSelectPaymentButton"
     | "ContentItemForm"
     | "ContentItemSelectedPackageAccordion"
-    | "ContentItemFade";
+    | "ContentItemFade"
+    | "ContentItemSelectedPackageCards";
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_header_ContentItemHeaderBar_onLeftIconPress {
@@ -1557,7 +1609,8 @@ export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_Con
     | "ContentItemSearchPostcode"
     | "ContentItemForm"
     | "ContentItemSelectedPackageAccordion"
-    | "ContentItemFade";
+    | "ContentItemFade"
+    | "ContentItemSelectedPackageCards";
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemImage_image {

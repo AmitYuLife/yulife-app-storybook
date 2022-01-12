@@ -21,6 +21,7 @@ export * from "./product-step.review-answer";
 export * from "./product-step.collapsing-header";
 export * from "./product-step.row-icon-text-banner";
 export * from "./product-step.selected-package";
+export * from "./product-step.selected-package-cards";
 export * from "./product-step.full-screen-swiper";
 export * from "./product-step.full-screen-lottie-swiper";
 export * from "./product-step.select-payment-button";

@@ -47,6 +47,8 @@ export * from "./ContentItemScrollableItemsPicker";
 export * from "./ContentItemSearchPostcode";
 export * from "./ContentItemSelectedPackageAccordion";
 export * from "./ContentItemSelectedPackageCard";
+export * from "./ContentItemSelectedPackageCardProviderLogo";
+export * from "./ContentItemSelectedPackageCards";
 export * from "./ContentItemText";
 export * from "./ContentItemTextInput";
 export * from "./CreateActiveChallenge";

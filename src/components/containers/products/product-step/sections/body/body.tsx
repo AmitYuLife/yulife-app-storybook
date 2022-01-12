@@ -21,6 +21,7 @@ import {
   ProductStepContentItemReviewAnswer,
   ProductStepRowIconTextBanner,
   ProductStepSelectedPackageCard,
+  ProductStepSelectedPackageCards,
   ProductStepContentItemInfoButton,
   ProductStepSelectPaymentButton,
   ProductStepSelectedPackageAccordion,
@@ -123,6 +124,8 @@ const renderItemContent = (item: GPPS_Body): JSX.Element => {
       return <ProductStepProductInfo key={item.id} {...item} />;
     case "ContentItemSelectedPackageCard":
       return <ProductStepSelectedPackageCard key={item.id} {...item} />;
+    case "ContentItemSelectedPackageCards":
+      return <ProductStepSelectedPackageCards key={item.id} {...item} />;
     case "ContentItemPackageCards":
       return <ProductStepPackageCards key={item.id} {...item} />;
     case "ContentItemPersonalProductPreview":

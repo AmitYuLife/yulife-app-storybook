@@ -436,6 +436,15 @@ export const GQL_FRAGMENT_CONTENT_ITEM_PACKAGE_CARD_POWER = gql`
   }
 `;
 
+export const GQL_FRAGMENT_CONTENT_ITEM_SELECTED_PACKAGE_CARD_PROVIDER_LOGO = gql`
+  fragment ContentItemSelectedPackageCardProviderLogo on ContentItemSelectedPackageCardProviderLogo {
+    url {
+      ...RemoteImage
+    }
+    width
+  }
+`;
+
 export const GQL_FRAGMENT_CONTENT_ITEM_SELECTED_PACKAGE_CARD = gql`
   fragment ContentItemSelectedPackageCard on ContentItemSelectedPackageCard {
     id
@@ -447,13 +456,30 @@ export const GQL_FRAGMENT_CONTENT_ITEM_SELECTED_PACKAGE_CARD = gql`
       ...RemoteImage
     }
     providerLogo {
-      url {
-        ...RemoteImage
-      }
-      width
+      ...ContentItemSelectedPackageCardProviderLogo
     }
     slotInfo {
       ...ContentItemPackageCardSlotInfo
+    }
+  }
+`;
+
+export const GQL_FRAGMENT_CONTENT_ITEM_SELECTED_PACKAGE_CARDS = gql`
+  fragment ContentItemSelectedPackageCards on ContentItemSelectedPackageCards {
+    id
+    styles {
+      ...SduiStyle
+    }
+    providerLogo {
+      ...ContentItemSelectedPackageCardProviderLogo
+    }
+    packageCardsPriceDescription: priceDescription
+    coverOptions {
+      coverType
+      price
+      slotInfo {
+        ...ContentItemPackageCardSlotInfo
+      }
     }
   }
 `;
