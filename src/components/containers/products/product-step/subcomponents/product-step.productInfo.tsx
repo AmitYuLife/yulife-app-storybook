@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useMemo, memo } from "react";
+import React, { useCallback, useContext, memo } from "react";
 import { StyleSheet, View } from "react-native";
 import { Style } from "@styles";
 import { Image, TextTemplate } from "@atoms";
@@ -20,6 +20,7 @@ export const ProductStepProductInfo = memo((props: Props) => {
     productTitle,
     productDescription,
     providerImageUrl,
+    largeProviderImageUrl,
   } = props;
 
   const handleYumojiPartChange = useCallback(
@@ -27,17 +28,23 @@ export const ProductStepProductInfo = memo((props: Props) => {
     []
   );
 
-  const providerImageUrlSource = useMemo(() => {
-    return { uri: providerImageUrl?.uri };
-  }, [providerImageUrl]);
-
   return (
     <View style={styles.wrapper}>
       <View style={styles.info}>
+        <View style={styles.providerImageContainer}>
+          {!largeProviderImageUrl?.uri ? null : (
+            <Image
+              source={largeProviderImageUrl}
+              width={Style.DEVICE_WIDTH - Style.adjust(200)}
+              theme="light"
+              style={styles.icon}
+            />
+          )}
+        </View>
         <View style={styles.titleAndIcon}>
           {!providerImageUrl?.uri ? null : (
             <Image
-              source={providerImageUrlSource}
+              source={providerImageUrl}
               width={Style.adjust(16)}
               height={Style.adjust(16)}
               theme="light"
@@ -46,6 +53,7 @@ export const ProductStepProductInfo = memo((props: Props) => {
           )}
           <TextTemplate type="h3">{productTitle}</TextTemplate>
         </View>
+
         <Markdown markdownStyles={markdownStyles} text={productDescription.parsedMarkdown} />
       </View>
       <View>
@@ -88,6 +96,12 @@ const styles = StyleSheet.create({
   },
   icon: {
     marginRight: Style.adjust(8),
+  },
+  providerImageContainer: {
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    marginBottom: Style.adjust(8),
   },
 });
 

@@ -204,6 +204,10 @@ export const GQL_QUERY_GET_PERSONAL_PRODUCT_STEP = gql`
             id
             uri
           }
+          largeProviderImageUrl {
+            id
+            uri
+          }
           productDescription: description {
             id
             parsedMarkdown

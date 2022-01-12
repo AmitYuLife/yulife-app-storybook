@@ -1048,6 +1048,11 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemP
   uri: string | null;
 }
 
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemPersonalProductInfo_largeProviderImageUrl {
+  id: string;
+  uri: string | null;
+}
+
 export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemPersonalProductInfo_productDescription {
   id: string;
   parsedMarkdown: string | null;
@@ -1062,6 +1067,7 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemP
     | GetPersonalProductStep_getPersonalProductStep_body_ContentItemPersonalProductInfo_flatListItemOverlayStyles[]
     | null;
   providerImageUrl: GetPersonalProductStep_getPersonalProductStep_body_ContentItemPersonalProductInfo_providerImageUrl | null;
+  largeProviderImageUrl: GetPersonalProductStep_getPersonalProductStep_body_ContentItemPersonalProductInfo_largeProviderImageUrl | null;
   productDescription: GetPersonalProductStep_getPersonalProductStep_body_ContentItemPersonalProductInfo_productDescription;
   partType: AvatarPartType | null;
   selectedYuWorld: YuWorld | null;
