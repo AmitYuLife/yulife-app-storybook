@@ -836,6 +836,11 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemS
     | null;
 }
 
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemDatePicker_labelWrapperStyles {
+  property: string;
+  value: string;
+}
+
 export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemDatePicker_pickerStyles {
   property: string;
   value: string;
@@ -856,6 +861,11 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemD
   uri: string | null;
 }
 
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemDatePicker_styles {
+  property: string;
+  value: string;
+}
+
 export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemDatePicker {
   __typename: "ContentItemDatePicker";
   id: string;
@@ -864,6 +874,9 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemD
   minDate: string;
   dateFormat: string;
   label: string;
+  labelWrapperStyles:
+    | GetPersonalProductStep_getPersonalProductStep_body_ContentItemDatePicker_labelWrapperStyles[]
+    | null;
   subLabel: string | null;
   pickerStyles: GetPersonalProductStep_getPersonalProductStep_body_ContentItemDatePicker_pickerStyles[] | null;
   buttonStyles: GetPersonalProductStep_getPersonalProductStep_body_ContentItemDatePicker_buttonStyles[] | null;
@@ -871,6 +884,7 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemD
   buttonRightIcon: GetPersonalProductStep_getPersonalProductStep_body_ContentItemDatePicker_buttonRightIcon | null;
   size: ContentItemButtonSize;
   answerKey: string;
+  styles: GetPersonalProductStep_getPersonalProductStep_body_ContentItemDatePicker_styles[] | null;
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemMultiSelect_choices_icon {

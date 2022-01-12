@@ -492,6 +492,9 @@ export const GQL_FRAGMENT_CONTENT_ITEM_DATE_PICKER = gql`
     minDate
     dateFormat
     label
+    labelWrapperStyles {
+      ...SduiStyle
+    }
     subLabel
     pickerStyles {
       ...SduiStyle
@@ -507,6 +510,9 @@ export const GQL_FRAGMENT_CONTENT_ITEM_DATE_PICKER = gql`
     }
     size: buttonSize
     answerKey
+    styles {
+      ...SduiStyle
+    }
   }
 `;
 
