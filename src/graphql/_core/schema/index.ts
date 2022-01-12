@@ -83,6 +83,7 @@ export * from "./GetNewConnectionLink";
 export * from "./GetPerkSubscriptionInfo";
 export * from "./GetPersonalProductStep";
 export * from "./GetPersonalProductStepContinueModal";
+export * from "./GetPersonalProductStepDetached";
 export * from "./GetPersonalProductStepDetachedDocuments";
 export * from "./GetPersonalProductStepDetachedFaqs";
 export * from "./GetProductBeneficiaries";

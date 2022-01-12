@@ -134,6 +134,7 @@ export enum MobileOnboardingStepPerformed {
   personalProductsCoveaFIBIntro = "personalProductsCoveaFIBIntro",
   referralsPopover = "referralsPopover",
   yuScreenChest = "yuScreenChest",
+  yuScreenGloves = "yuScreenGloves",
 }
 
 export enum OS {

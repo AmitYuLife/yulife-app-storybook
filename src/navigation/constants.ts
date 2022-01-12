@@ -45,6 +45,7 @@ export const ROUTES = {
   productDetails: "yulife.product.ProductDetails",
   beneficiary: "yulife.product.Beneficiary",
   productStep: "yulife.product.ProductStep",
+  productStepDetached: "yulife.product.ProductStepDetached",
   productStepFaqs: "yulife.product.ProductStepFaqs",
   productStepDocuments: "yulife.product.ProductStepDocuments",
 
