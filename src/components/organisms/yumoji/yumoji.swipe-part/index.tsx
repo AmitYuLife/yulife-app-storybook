@@ -6,7 +6,6 @@ import { Colours } from "@styles";
 import { useQuery } from "@apollo/react-hooks";
 import { GetYumojiPartUrlSet, GetYumojiPartUrlSetVariables } from "@graphql/_core/schema";
 import { GQL_QUERY_GET_YUMOJI_PART_URL_SET } from "@graphql/yuscreen/getYumojiPartUrlSet.gql";
-import { SwipeController } from "@organisms";
 import { useScrollHandlers } from "../hooks/useScrollHandlers";
 import { useLocalWorldState } from "../hooks";
 import { FLAT_LIST_ITEM } from "./yumoji-swipe-part.types";
@@ -35,6 +34,7 @@ export const YumojiSwipePart = memo(({ partType, coverType = CoverType.common, s
   const { current: scrollX } = useRef(new Animated.Value(0));
   const listRef = useRef(null as RNFlatList);
   const scrollToDefaultIndexDelay = useRef(null);
+  const showSelectionDelay = useRef(null);
   const { selectedWorld, setSelectedWorld } = useLocalWorldState(selectedYuWorld);
   const { dynamicData } = useContext(ProductStepContext);
 
@@ -47,6 +47,7 @@ export const YumojiSwipePart = memo(({ partType, coverType = CoverType.common, s
       }
     }
   }, [data, dynamicData, onChange]);
+
   const handleChangeWorld = useCallback(
     (id: YuWorld) => {
       if (selectedWorld !== id) {
@@ -58,6 +59,7 @@ export const YumojiSwipePart = memo(({ partType, coverType = CoverType.common, s
     },
     [setSelectedWorld, onChange, selectedWorld]
   );
+
   const urlSet = useMemo(() => {
     if (!data?.getYumojiPartUrlSet?.variants) {
       return [];
@@ -65,6 +67,7 @@ export const YumojiSwipePart = memo(({ partType, coverType = CoverType.common, s
 
     return data.getYumojiPartUrlSet.variants.find((item) => item.coverType === coverType)?.worlds || [];
   }, [data]);
+
   const onScrollEnd = useCallback(
     (index: number) => {
       listRef.current.scrollToIndex({ index });
@@ -72,12 +75,15 @@ export const YumojiSwipePart = memo(({ partType, coverType = CoverType.common, s
     },
     [urlSet]
   );
+
   const { handleMomentumScrollEnd, handleScrollEndDrag, handleScrollBeginDrag } = useScrollHandlers({
     items: urlSet,
     itemWidth: ITEM_WIDTH,
     onScrollEnd,
   });
+
   const [hasScrolledToDefaultIndex, setHasScrolledToDefaultIndex] = useState(false);
+
   useEffect(() => {
     const selectedYumojiIndex = urlSet.findIndex((item) => item.worldId === selectedYuWorld);
 
@@ -87,32 +93,21 @@ export const YumojiSwipePart = memo(({ partType, coverType = CoverType.common, s
       }, 500);
     }
 
-    setHasScrolledToDefaultIndex(true);
+    showSelectionDelay.current = setTimeout(() => {
+      setHasScrolledToDefaultIndex(true);
+    }, 1000);
 
-    return () => clearTimeout(scrollToDefaultIndexDelay.current);
+    return () => {
+      clearTimeout(scrollToDefaultIndexDelay.current);
+      clearTimeout(showSelectionDelay.current);
+      scrollToDefaultIndexDelay.current = null;
+      showSelectionDelay.current = null;
+    };
   }, [selectedYuWorld, urlSet, hasScrolledToDefaultIndex]);
+
   const selectedIndex = useMemo(() => {
     return urlSet.findIndex((item) => item.worldId === selectedWorld);
   }, [urlSet, selectedWorld]);
-
-  const handleChangeIndex = useCallback(
-    (increment: number) => () => {
-      const newSelectedIndex = selectedIndex + increment;
-
-      if (newSelectedIndex < 0) {
-        return;
-      }
-
-      if (newSelectedIndex > urlSet.length - 1) {
-        return;
-      }
-
-      const newUrlSetItem = urlSet[newSelectedIndex];
-      listRef.current.scrollToIndex({ index: newSelectedIndex, animated: true });
-      handleChangeWorld(newUrlSetItem.worldId);
-    },
-    [selectedIndex, urlSet]
-  );
 
   const formattedListData = useMemo(() => {
     return [
@@ -169,13 +164,11 @@ export const YumojiSwipePart = memo(({ partType, coverType = CoverType.common, s
           </View>
         )}
       </View>
-      <SwipeController
-        title={titleLabel}
-        titleColor={titleColor}
-        onChangeIndex={handleChangeIndex}
-        showLeftButton={!!selectedIndex && hasScrolledToDefaultIndex}
-        showRightButton={selectedIndex < urlSet.length - 1 && hasScrolledToDefaultIndex}
-      />
+      <View style={styles.titleWrapper}>
+        <TextTemplate type="l1b" color={titleColor || Colours.neutral.n800}>
+          {titleLabel}
+        </TextTemplate>
+      </View>
     </View>
   );
 });

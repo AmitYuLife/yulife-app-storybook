@@ -7,7 +7,7 @@ export const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     flex: 1,
-  },
+  } as ViewStyle,
   loadingWrapper: {
     flex: 1,
     justifyContent: "center",
@@ -27,7 +27,7 @@ export const styles = StyleSheet.create({
     marginLeft: -(ITEM_WIDTH + ITEM_WIDTH / 2),
     marginRight: -(ITEM_WIDTH / 2),
     flex: 1,
-  },
+  } as ViewStyle,
   flatListItem: {
     width: ITEM_WIDTH,
     justifyContent: "center",
@@ -35,5 +35,10 @@ export const styles = StyleSheet.create({
   } as ViewStyle,
   pad: {
     width: ITEM_WIDTH,
-  },
+  } as ViewStyle,
+  titleWrapper: {
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+  } as ViewStyle,
 });

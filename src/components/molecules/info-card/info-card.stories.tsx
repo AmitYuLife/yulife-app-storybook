@@ -52,7 +52,6 @@ storiesOf("InfoCard", module).add("default", () => {
             <View key={index} style={styles.wrapper}>
               <InfoCard
                 icon={<Icon />}
-                iconAlign="center"
                 description="Your description goes here. Maximum of 3 lines is ideal in this section."
               />
             </View>
