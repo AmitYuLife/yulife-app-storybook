@@ -12,7 +12,6 @@ import { GQL_QUERY_GET_PRODUCT_DETAILS } from "@graphql/products/getProductDetai
 import { Colours } from "@styles";
 import { Navigation } from "react-native-navigation";
 import { ROUTES } from "@navigation/constants";
-import { PolicyStatus } from "@graphql/_core/schema/globalTypes";
 import { ProductDetailsCountdown } from "./product-details.countdown/product-details.countdown";
 
 interface Props {
@@ -26,6 +25,7 @@ const ProductDetailsContainer = ({ productId = "" }: Props) => {
       variables: {
         id: productId,
       },
+      fetchPolicy: "no-cache",
     }
   );
 
@@ -64,9 +64,9 @@ const ProductDetailsContainer = ({ productId = "" }: Props) => {
     });
   }
 
-  const { policyStatus, policyStartDate, secondsUntilStartDate } = data.getProductDetails;
+  const { policyStartDate, secondsUntilStartDate } = data.getProductDetails;
 
-  if (isBeforePolicyStartDate || policyStatus === PolicyStatus.NOT_LIVE_YET) {
+  if (isBeforePolicyStartDate) {
     return (
       <ProductDetailsCountdown
         policyStartDate={policyStartDate}
