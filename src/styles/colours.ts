@@ -290,9 +290,12 @@ export default {
     },
   },
   status: {
+    su100: "#EBF5ED",
     su400: "#40C057",
+    er100: "#FFE0E0",
     er300: "#FF5F5F",
     wa100: "#FAF4E6",
+    in100: "#EAEFF7",
   },
   hexToRGB,
   rgbToHex,
