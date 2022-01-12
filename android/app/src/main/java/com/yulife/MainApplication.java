@@ -1,6 +1,10 @@
 package com.yulife;
 
 import android.app.Application;
+import android.app.Notification;
+import android.os.Bundle;
+import androidx.annotation.Nullable;
+import androidx.core.app.NotificationCompat;
 import android.content.Context;
 import com.facebook.react.PackageList;
 import com.facebook.react.ReactInstanceManager;
@@ -17,6 +21,8 @@ import java.util.List;
 import com.yulife.reactnative.fitkit.RNFitKitPackage;
 import com.leanplum.Leanplum;
 import com.leanplum.LeanplumActivityHelper;
+import com.leanplum.LeanplumPushNotificationCustomizer;
+import com.leanplum.LeanplumPushService;
 import com.bugsnag.BugsnagReactNative;
 import com.mixpanel.android.mpmetrics.MixpanelAPI;
 import com.intercom.reactnative.IntercomModule;
@@ -69,6 +75,17 @@ public class MainApplication extends NavigationApplication {
     Parser.parseVariables(this);
     //  For session lifecyle tracking.
     LeanplumActivityHelper.enableLifecycleCallbacks(this);
+    LeanplumPushService.setCustomizer(new LeanplumPushNotificationCustomizer() {
+          @Override
+          public void customize(NotificationCompat.Builder builder, Bundle notificationPayload) {
+              builder.setSmallIcon(R.drawable.intercom_push_icon);
+              builder.setColor(getResources().getColor(R.color.yupink));
+          }
+          @Override
+          public void customize(Notification.Builder builder, Bundle bundle, @Nullable Notification.Style style) {
+
+          }
+      });
 
     // Flipper
     SoLoader.init(this, /* native exopackage */ false);
