@@ -31,16 +31,6 @@ export const ProductStepProductInfo = memo((props: Props) => {
   return (
     <View style={styles.wrapper}>
       <View style={styles.info}>
-        <View style={styles.providerImageContainer}>
-          {!largeProviderImageUrl?.uri ? null : (
-            <Image
-              source={largeProviderImageUrl}
-              width={Style.DEVICE_WIDTH - Style.adjust(200)}
-              theme="light"
-              style={styles.icon}
-            />
-          )}
-        </View>
         <View style={styles.titleAndIcon}>
           {!providerImageUrl?.uri ? null : (
             <Image
@@ -52,6 +42,17 @@ export const ProductStepProductInfo = memo((props: Props) => {
             />
           )}
           <TextTemplate type="h3">{productTitle}</TextTemplate>
+        </View>
+
+        <View style={styles.providerImageContainer}>
+          {!largeProviderImageUrl?.uri ? null : (
+            <Image
+              source={largeProviderImageUrl}
+              width={Style.DEVICE_WIDTH - Style.adjust(200)}
+              theme="light"
+              style={styles.icon}
+            />
+          )}
         </View>
 
         <Markdown markdownStyles={markdownStyles} text={productDescription.parsedMarkdown} />
@@ -101,7 +102,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    marginBottom: Style.adjust(8),
+    margin: Style.adjust(8),
   },
 });
 
