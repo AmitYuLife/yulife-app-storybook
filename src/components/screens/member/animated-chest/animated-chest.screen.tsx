@@ -52,7 +52,10 @@ export default class AnimatedChestScreen extends React.PureComponent<IProps> {
       <View style={styles.wrapper}>
         <View style={styles.imageWrapper}>
           {isLocked ? (
-            <Image style={styles.image} source={assets.chestLocked} />
+            <>
+              <Image style={styles.image} source={assets.chestLocked} />
+              <ActiveBuffsButton style={styles.activeBuffsButton} buffTypes={this.buffTypes} />
+            </>
           ) : (
             <>
               <Animated.Image
@@ -90,7 +93,6 @@ export default class AnimatedChestScreen extends React.PureComponent<IProps> {
               </View>
             </>
           )}
-          <ActiveBuffsButton style={styles.activeBuffsButton} buffTypes={this.buffTypes} />
         </View>
         <Text bold={true} style={styles.heading}>
           {heading}
