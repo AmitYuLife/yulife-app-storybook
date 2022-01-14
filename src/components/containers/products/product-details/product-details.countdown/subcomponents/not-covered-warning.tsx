@@ -10,7 +10,7 @@ interface Props {
 export const NotCoveredWarning = memo(({ startDate }: Props) => (
   <View style={styles.wrapper}>
     <InfoPanel
-      copy={`You are not covered yet, and cannot claim for any treatments carried out before your cover starts on ${startDate}`}
+      markdown={`You are not covered yet, and cannot claim for any treatments carried out before your cover starts on ${startDate}`}
     />
   </View>
 ));
