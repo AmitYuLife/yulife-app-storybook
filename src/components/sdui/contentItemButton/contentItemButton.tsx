@@ -9,10 +9,23 @@ type Props = Omit<GqlButton, "onPress" | "disabledState"> & {
   disabled?: boolean;
   isLoading?: boolean;
   onPress?: GqlButton["onPress"] | (() => void);
+  testID?: string;
 };
 
 export const ContentItemButton = memo((props: Props) => {
-  const { label, onPress, styles, icon, rightIcon, buttonSize, buttonType, event, disabled = false, isLoading } = props;
+  const {
+    label,
+    onPress,
+    styles,
+    icon,
+    rightIcon,
+    buttonSize,
+    buttonType,
+    event,
+    disabled = false,
+    isLoading,
+    testID,
+  } = props;
   const dispatch = useDispatch();
 
   const Component = getComponent(buttonType);
@@ -38,6 +51,7 @@ export const ContentItemButton = memo((props: Props) => {
       size={buttonSize}
       onPress={handlePress}
       isLoading={isLoading}
+      testID={testID}
     />
   );
 });

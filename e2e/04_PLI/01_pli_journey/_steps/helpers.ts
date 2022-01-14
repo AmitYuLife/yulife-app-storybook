@@ -209,7 +209,7 @@ export const UNDERWRITING_SEX = async (sex: "Male" | "Female") => {
 }
 
 export const UNDERWRITING_DIAGNOSED_WITH = async (answer: YesNo) => {
-    When(`I tap ${answer}`, when.scrollToTheBottomAndChooseYesOrNo(answer, "HIV / AIDS"), async () => {
+    When(`I tap ${answer}`, when.scrollToTheBottomAndChooseYesOrNo("LEFT_PRODUCT_STEP_MULTI_BUTTON"), async () => {
         Then("I should be on the diagnosed with screen", then.isOnScreen("Have you required 3 or more consultations in the last 3 years from a healthcare professional for an individual medical or mental health condition, symptom, illness or injury?"))
     })
 }
