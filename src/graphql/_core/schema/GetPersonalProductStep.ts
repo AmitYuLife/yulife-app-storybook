@@ -6,6 +6,7 @@
 import {
   ContentItemFormTextInputType,
   SduiActionType,
+  RNViewPointerEvents,
   ContentItemButtonType,
   ContentItemButtonSize,
   CoverType,
@@ -134,6 +135,7 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemP
   __typename: "ContentItemPad";
   id: string;
   amount: number;
+  pointerEvents: RNViewPointerEvents | null;
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemMarkdown_styles {
@@ -1421,6 +1423,7 @@ export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentIte
   __typename: "ContentItemPad";
   id: string;
   amount: number;
+  pointerEvents: RNViewPointerEvents | null;
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentItemMarkdown_styles {

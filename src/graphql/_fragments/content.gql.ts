@@ -231,6 +231,7 @@ export const GQL_FRAGMENT_CONTENT_ITEM_PAD = gql`
   fragment ContentItemPad on ContentItemPad {
     id
     amount
+    pointerEvents
   }
 `;
 

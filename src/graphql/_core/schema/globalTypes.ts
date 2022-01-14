@@ -79,6 +79,7 @@ export enum ContentItemProgressBarType {
 export enum ContentItemRowIconTextBannerType {
   error = "error",
   info = "info",
+  warning = "warning",
 }
 
 /**
@@ -158,6 +159,13 @@ export enum PolicyStatus {
   NOT_LIVE_YET = "NOT_LIVE_YET",
   NOT_TAKEN_UP = "NOT_TAKEN_UP",
   TERMINATION = "TERMINATION",
+}
+
+export enum RNViewPointerEvents {
+  AUTO = "AUTO",
+  BOX_NONE = "BOX_NONE",
+  BOX_ONLY = "BOX_ONLY",
+  NONE = "NONE",
 }
 
 export enum SduiActionType {
