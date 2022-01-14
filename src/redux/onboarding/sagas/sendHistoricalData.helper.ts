@@ -10,6 +10,7 @@ import { getUserFeatures } from "../../user/user.selectors";
 import { setHistoricalDataCollected, setHistoricalMeditationDataCollected } from "../onboarding.actions";
 import { Unpacked } from "@utils";
 
+// TODO purge after GS-113 will be merged
 export default function* sendHistoricalData(onboardingDate: Moment) {
   try {
     const { results } = yield call(queryHistoricalData, onboardingDate);

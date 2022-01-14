@@ -1,5 +1,4 @@
 import { useMutation, useQuery } from "@apollo/react-hooks";
-import { GQL_MUTATION_ADD_HISTORICAL_STEPS, AddHistoricalStepsMutationTuple } from "@graphql/challenges";
 import { GQL_QUERY_GET_ACTIVITY_HISTORY } from "@graphql/user";
 import { querySteps } from "@services/fitkit/fitkit.helpers";
 import moment from "moment";
@@ -15,6 +14,11 @@ import Logger from "@services/logging/logger";
 import GenericConnectionErrorModal from "@modals/generic-modal/generic-connection-error-modal";
 import { ActivityHistoryLevels } from "@screens";
 import { groupDatesByMonth } from "./activity-history.helpers";
+import {
+  GQL_MUTATION_UPSERT_PASSIVE_CHALLENGES,
+  UpsertPassiveChallengesMutationTuple,
+} from "@graphql/challenges/upsertPassiveChallenges.gql";
+import { getDailyCyclingMeasurement } from "@redux/daily-cycling/daily-cycling.selectors";
 
 interface IProps {
   componentId: string;
@@ -28,6 +32,7 @@ type Props = IProps & ConnectedState & ConnectedDispatch;
 const ActivityHistoryContainer: FC<Props> = ({
   componentId,
   copy,
+  cyclingMeasurement,
   features = {},
   getUserStart: dispatchGetUserStart,
 }) => {
@@ -51,7 +56,9 @@ const ActivityHistoryContainer: FC<Props> = ({
     onError: onComplete,
   });
 
-  const [addHistoricalSteps]: AddHistoricalStepsMutationTuple = useMutation(GQL_MUTATION_ADD_HISTORICAL_STEPS);
+  const [addHistoricalSteps]: UpsertPassiveChallengesMutationTuple = useMutation(
+    GQL_MUTATION_UPSERT_PASSIVE_CHALLENGES
+  );
 
   const fetchMoreData = useCallback(() => {
     setMonthsAgo((months) => months + 1);
@@ -69,10 +76,10 @@ const ActivityHistoryContainer: FC<Props> = ({
       if (res.results && !!res.results.length) {
         try {
           const response = await addHistoricalSteps({
-            variables: { payload: res.results, shouldAward: true },
+            variables: { payload: res.results },
           });
 
-          if (response && response.data && response.data.addHistoricalSteps) {
+          if (response && response.data && response.data.upsertPassiveChallenges) {
             refetch();
             dispatchGetUserStart();
           }
@@ -106,6 +113,7 @@ const ActivityHistoryContainer: FC<Props> = ({
       onRefresh={onRefresh}
       copy={copy}
       largeListRef={largeList}
+      cyclingMeasurement={cyclingMeasurement}
     />
   );
 };
@@ -113,6 +121,7 @@ const ActivityHistoryContainer: FC<Props> = ({
 const mapStateToProps = (state: IReduxState) => ({
   features: getUserFeatures(state),
   copy: getCopy(state, "activityHistoryLevels"),
+  cyclingMeasurement: getDailyCyclingMeasurement(state),
 });
 
 const mapDispatchToProps = {

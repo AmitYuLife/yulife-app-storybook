@@ -13,6 +13,7 @@ import { styles as textTemplateStyle } from "@components/atoms/text/text-templat
 import { getChallengesStatus, getHasNotification } from "@redux/levels/levels.selectors";
 import { handleNavigateToQuestsTab } from "@navigation/utils";
 import { getPositionBottom } from "@organisms/nav-bar/nav-bar.styles";
+import { getDailyCycling } from "@redux/daily-cycling/daily-cycling.selectors";
 import { getDailyStepsTheme } from "@redux/theme/theme.selectors";
 
 type DailyStepsOnlineProps = {
@@ -20,6 +21,7 @@ type DailyStepsOnlineProps = {
 };
 
 export const DailyStepsOnline = memo(({ isIntro }: DailyStepsOnlineProps) => {
+  const dailyCycling = useSelector(getDailyCycling);
   const dailyMeditation = useSelector(getDailyMeditation);
   const dailySteps = useSelector(getDailySteps);
   const dailyEarnedCoins = useSelector(getDailyEarnedCoins);
@@ -52,7 +54,7 @@ export const DailyStepsOnline = memo(({ isIntro }: DailyStepsOnlineProps) => {
           <ActivityList
             textColor={textStyle.color}
             steps={dailySteps}
-            cycling={0} //@TODO: enable this when we have the cycling data
+            cycling={dailyCycling}
             mindfulness={usePassiveMeditation && dailyMeditation > 0 ? mindfulTotalToDisplay : null}
           />
         </View>

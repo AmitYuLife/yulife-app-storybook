@@ -4,6 +4,7 @@ import moment from "moment";
 import { call, spawn } from "redux-saga/effects";
 import sendHistoricalData from "./sendHistoricalData.helper";
 
+// TODO purge after GS-113 will be merged
 export default function* sendHistoricalDataOnPushSaga() {
   try {
     const { data } = yield call(getCurrentUserWithClient);

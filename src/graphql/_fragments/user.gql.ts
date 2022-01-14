@@ -80,6 +80,24 @@ export const GQL_FRAGMENT_USER = gql`
       }
       isMainSurge
     }
+    passiveCycling: passiveChallenge(id: CYCLING) {
+      levelSlot {
+        id
+        subtype
+        unit
+        milestones {
+          id
+          XP
+          coins
+          target {
+            steps
+            meditation
+            distance
+          }
+        }
+      }
+      isMainSurge
+    }
     activeChallenge {
       challenge {
         id

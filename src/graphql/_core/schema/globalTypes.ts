@@ -252,6 +252,13 @@ export interface ChallengePayload {
   value?: number | null;
 }
 
+export interface ChallengesPayload {
+  startDateTime: string;
+  endDateTime: string;
+  value: number;
+  type: PassiveChallengeType;
+}
+
 export interface CustomerBeneficiaryUpdate {
   id?: string | null;
   productId: string;

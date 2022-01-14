@@ -11,7 +11,7 @@ import { STEPS_COUNT } from "@ids";
 
 interface IProps {
   steps: number;
-  cycling: number;
+  cycling: string;
   mindfulness: string;
   textColor?: string;
 }
@@ -45,7 +45,7 @@ const ActivityList = memo(({ steps, cycling, mindfulness, textColor = Colours.ne
           <CyclingIcon color={textColor} />
           <View style={styles.textWrapper}>
             <TextTemplate type="b2" color={textColor}>
-              <Counter duration={1200} value={cycling} textStyle={counterStyle} textAfterValue="km" />
+              {cycling}
             </TextTemplate>
           </View>
         </View>

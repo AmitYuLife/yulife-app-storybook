@@ -4,6 +4,8 @@ import * as React from "react";
 import { View } from "react-native";
 import { displaySecondsAsMinutes, padNum, addCommasToNumber } from "@utils";
 import styles from "./activity-history-levels.styles";
+import { DistanceMeasurementType } from "@graphql/_core/schema/globalTypes";
+import { KM_TO_METERS, METER_TO_MILES } from "@redux/daily-cycling/daily-cycling.selectors";
 
 export interface IChallenge {
   earned: number;
@@ -24,6 +26,9 @@ export interface ItemProps {
   yucoin: number;
   mindfulSeconds?: number;
   mindfulYucoin?: number;
+  cycling?: number;
+  cyclingYucoin?: number;
+  cyclingMeasurement: DistanceMeasurementType;
 }
 
 export default function ActivityHistoryLevelsItem({
@@ -36,8 +41,14 @@ export default function ActivityHistoryLevelsItem({
   yucoin,
   mindfulSeconds,
   mindfulYucoin,
+  cycling,
+  cyclingYucoin,
+  cyclingMeasurement,
 }: ItemProps) {
   const typeText = steps === 1 ? "step" : "steps";
+  const cyclingData =
+    cyclingMeasurement === DistanceMeasurementType.km ? cycling / KM_TO_METERS : cycling * METER_TO_MILES;
+  const cyclingText = `${cyclingData.toFixed(1)} ${cyclingMeasurement} cycled`;
   const mindfulTotal = displaySecondsAsMinutes(mindfulSeconds);
   const mindfulTotalToDisplay =
     mindfulTotal.minutes === 1
@@ -81,6 +92,14 @@ export default function ActivityHistoryLevelsItem({
               </View>
             )}
 
+            {!cycling ? null : (
+              <View style={styles.activityLabelWrapper}>
+                <Text numberOfLines={1} style={styles.activityLabel}>
+                  {cyclingText}
+                </Text>
+              </View>
+            )}
+
             {renderSourcesText(sources)}
             {!challenges.length ? (
               <View style={styles.activityLabelWrapper}>
@@ -119,6 +138,7 @@ export default function ActivityHistoryLevelsItem({
           <View style={styles.yuCoinEarnedColumn}>
             {renderCoinEarnedValue(yucoin)}
             {!mindfulSeconds ? null : renderCoinEarnedValue(mindfulYucoin || "0")}
+            {!cycling ? null : renderCoinEarnedValue(cyclingYucoin || "0")}
             {renderSourcesColumnSpacing(sources, () => renderCoinEarnedValue("-"))}
             {challenges.length ? null : renderCoinEarnedValue(0)}
             {challenges.map(({ earned }, index) => renderCoinEarnedValue(earned, { key: index }))}

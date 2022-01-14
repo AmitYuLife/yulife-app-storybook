@@ -1,10 +1,7 @@
 import { FitKitAuthOptions, FitKitTypes } from "@services/fitkit/fitkit.service";
 
 const Permissions: FitKitAuthOptions = {
-    read: [
-        FitKitTypes.Types.MindfulSession,
-        FitKitTypes.Types.StepCount
-    ]
+  read: [FitKitTypes.Types.MindfulSession, FitKitTypes.Types.StepCount, FitKitTypes.Types.Biking],
 };
 
 export default Permissions;
