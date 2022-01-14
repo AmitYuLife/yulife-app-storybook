@@ -39,13 +39,13 @@ export default async function handleDeepLink(fullUrl: string, hasToken: boolean,
       }
 
       return;
+    // TODO purge after GS-113 will be merged
     case url.startsWith("historical-data"):
       if (hasToken) {
         store.dispatch({ type: GET_HISTORICAL_DATA });
       }
 
       return;
-
     case url.startsWith("referral-information"):
       if (hasToken) {
         await setScreen(currentRoute, ROUTES.referralInformation);

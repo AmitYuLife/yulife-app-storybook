@@ -96,6 +96,31 @@ export interface GetCurrentUser_getCurrentUser_passiveMeditation {
   isMainSurge: boolean | null;
 }
 
+export interface GetCurrentUser_getCurrentUser_passiveCycling_levelSlot_milestones_target {
+  steps: number | null;
+  meditation: number | null;
+  distance: number | null;
+}
+
+export interface GetCurrentUser_getCurrentUser_passiveCycling_levelSlot_milestones {
+  id: string | null;
+  XP: number | null;
+  coins: number | null;
+  target: GetCurrentUser_getCurrentUser_passiveCycling_levelSlot_milestones_target | null;
+}
+
+export interface GetCurrentUser_getCurrentUser_passiveCycling_levelSlot {
+  id: string | null;
+  subtype: string | null;
+  unit: string | null;
+  milestones: (GetCurrentUser_getCurrentUser_passiveCycling_levelSlot_milestones | null)[] | null;
+}
+
+export interface GetCurrentUser_getCurrentUser_passiveCycling {
+  levelSlot: GetCurrentUser_getCurrentUser_passiveCycling_levelSlot | null;
+  isMainSurge: boolean | null;
+}
+
 export interface GetCurrentUser_getCurrentUser_activeChallenge_challenge_incomingData {
   steps: number | null;
   meditation: number | null;
@@ -189,6 +214,7 @@ export interface GetCurrentUser_getCurrentUser {
   coinLedger: GetCurrentUser_getCurrentUser_coinLedger | null;
   passiveSteps: GetCurrentUser_getCurrentUser_passiveSteps | null;
   passiveMeditation: GetCurrentUser_getCurrentUser_passiveMeditation | null;
+  passiveCycling: GetCurrentUser_getCurrentUser_passiveCycling | null;
   activeChallenge: GetCurrentUser_getCurrentUser_activeChallenge | null;
   activeStreak: GetCurrentUser_getCurrentUser_activeStreak | null;
   todayActivity: (GetCurrentUser_getCurrentUser_todayActivity | null)[] | null;

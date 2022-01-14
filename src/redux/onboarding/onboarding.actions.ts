@@ -19,10 +19,12 @@ export const setShowIntro = (payload: boolean) => ({
   type: SET_SHOW_INTRO,
 });
 
+// TODO purge after GS-113 will be merged
 export const setHistoricalDataCollected = () => ({
   type: SET_HISTORICAL_DATA_COLLECTED,
 });
 
+// TODO purge after GS-113 will be merged
 export const setHistoricalMeditationDataCollected = () => ({
   type: SET_HISTORICAL_MEDITATION_DATA_COLLECTED,
 });

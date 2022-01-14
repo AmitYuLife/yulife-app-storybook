@@ -33,6 +33,8 @@ export interface GetActivityHistory_getActivityHistoryWithLevels {
   challenges: (GetActivityHistory_getActivityHistoryWithLevels_challenges | null)[] | null;
   mindfulSeconds: number | null;
   mindfulYucoin: number | null;
+  cycling: number | null;
+  cyclingYucoin: number | null;
 }
 
 export interface GetActivityHistory {

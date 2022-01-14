@@ -18,6 +18,7 @@ import { getUserFeatures } from "../../user/user.selectors";
 import { IFeature } from "../../user/user.reducer";
 import { showYuModal } from "@navigation/root";
 
+// TODO purge after GS-113 will be merged
 type HistoricalData = AddHistoricalSteps_addHistoricalSteps;
 
 const defaultData: HistoricalData = {

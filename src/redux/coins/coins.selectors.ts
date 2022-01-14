@@ -9,7 +9,7 @@ const dailyChallengeCoinsSelector = (coins: State) => coins.dailyChallengeEarned
 export const getDailyChallengeCoins = createSelector(reducer, dailyChallengeCoinsSelector);
 
 const dailyEarnedCoinsSelector = (coins: State) =>
-  coins.dailyChallengeEarned + coins.dailyStepsEarned + coins.dailyMeditationEarned;
+  coins.dailyChallengeEarned + coins.dailyStepsEarned + coins.dailyMeditationEarned + coins.dailyCyclingEarned;
 export const getDailyEarnedCoins = createSelector(reducer, dailyEarnedCoinsSelector);
 
 const dailyStepsCoins = (coins: State) => coins.dailyStepsEarned;

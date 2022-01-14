@@ -10,6 +10,7 @@ import { Loading, Text } from "@atoms";
 import Item from "./activity-history-levels.item";
 import styles from "./activity-history-levels.styles";
 import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
+import { DistanceMeasurementType } from "@graphql/_core/schema/globalTypes";
 
 export interface IServerProps {
   items: IFormattedDatesByMonth[];
@@ -22,6 +23,7 @@ export interface IOwnProps {
   onFetchMoreData?: () => void;
   copy: GetMobileCopy_getMobileCopy_screens_activityHistoryLevels;
   largeListRef: React.MutableRefObject<LargeList>;
+  cyclingMeasurement: DistanceMeasurementType;
 }
 
 type IProps = IOwnProps & IServerProps;
@@ -45,6 +47,7 @@ export default class ActivityHistoryLevels extends React.Component<IProps, IStat
     // Check if there are items first then check if there are new items for current month
     return (
       (!!this.props.items.length && this.props.items[0].items.length !== nextProps.items[0].items.length) ||
+      this.props.cyclingMeasurement !== nextProps.cyclingMeasurement ||
       this.props.items.length !== nextProps.items.length ||
       this.props.loading !== nextProps.loading ||
       this.state.willGetMoreData !== nextState.willGetMoreData ||
@@ -90,13 +93,13 @@ export default class ActivityHistoryLevels extends React.Component<IProps, IStat
   }
 
   public renderItem = ({ section, row }: IndexPath) => {
-    const { items } = this.props;
+    const { items, cyclingMeasurement } = this.props;
     const item = items[section].items[row];
 
     if (item) {
       return (
         <View>
-          <Item {...item} />
+          <Item {...item} cyclingMeasurement={cyclingMeasurement} />
         </View>
       );
     }
@@ -199,10 +202,12 @@ export default class ActivityHistoryLevels extends React.Component<IProps, IStat
     const sourceHeight = sourceCount * Style.SCALE_UP_AND_DOWN(23);
     const dividers = Style.SCALE_UP_AND_DOWN(40);
     const mindfulSecondsHeight = item.mindfulSeconds ? Style.SCALE_UP_AND_DOWN(23) : 0;
+    const cyclingHeight = item.cycling ? Style.SCALE_UP_AND_DOWN(23) : 0;
     const challengeHeight = item.challenges.length
       ? item.challenges.length * Style.SCALE_UP_AND_DOWN(23)
       : Style.SCALE_UP_AND_DOWN(23);
-    const height = challengeHeight + Style.SCALE_UP_AND_DOWN(23) + sourceHeight + dividers + mindfulSecondsHeight;
+    const height =
+      challengeHeight + Style.SCALE_UP_AND_DOWN(23) + sourceHeight + dividers + mindfulSecondsHeight + cyclingHeight;
 
     return height;
   };

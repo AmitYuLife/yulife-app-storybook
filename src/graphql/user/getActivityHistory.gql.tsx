@@ -24,6 +24,8 @@ export const GQL_QUERY_GET_ACTIVITY_HISTORY = gql`
       }
       mindfulSeconds
       mindfulYucoin
+      cycling
+      cyclingYucoin
     }
   }
 `;

@@ -29,6 +29,7 @@ import updateConnectionSaga from "./updateConnection.saga";
 import updateLeaderboardConsentSaga from "./updateLeaderboardConsent.saga";
 import updateUserConsentSaga from "./updateUserConsent.saga";
 import sendDuelInvitationSaga from "./sendDuelInvitation.saga";
+import getUserProfileData from "./getUserProfileData.sagas";
 
 export default [
   takeLatest(AUTHENTICATED, fetchUserOnAppStateChangeSaga),
@@ -47,4 +48,5 @@ export default [
   takeLatest(UPDATE_CONNECTION_START, updateConnectionSaga),
   takeLatest(UPDATE_APP_STATE, fetchConnectionsSaga),
   takeLatest(SET_MAIN_ROOT, showSurgeIntroSaga),
+  takeLatest([AUTHENTICATED, UPDATE_APP_STATE], getUserProfileData),
 ];

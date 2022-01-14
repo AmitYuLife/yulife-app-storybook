@@ -96,6 +96,31 @@ export interface LoginUser_loginUser_user_passiveMeditation {
   isMainSurge: boolean | null;
 }
 
+export interface LoginUser_loginUser_user_passiveCycling_levelSlot_milestones_target {
+  steps: number | null;
+  meditation: number | null;
+  distance: number | null;
+}
+
+export interface LoginUser_loginUser_user_passiveCycling_levelSlot_milestones {
+  id: string | null;
+  XP: number | null;
+  coins: number | null;
+  target: LoginUser_loginUser_user_passiveCycling_levelSlot_milestones_target | null;
+}
+
+export interface LoginUser_loginUser_user_passiveCycling_levelSlot {
+  id: string | null;
+  subtype: string | null;
+  unit: string | null;
+  milestones: (LoginUser_loginUser_user_passiveCycling_levelSlot_milestones | null)[] | null;
+}
+
+export interface LoginUser_loginUser_user_passiveCycling {
+  levelSlot: LoginUser_loginUser_user_passiveCycling_levelSlot | null;
+  isMainSurge: boolean | null;
+}
+
 export interface LoginUser_loginUser_user_activeChallenge_challenge_incomingData {
   steps: number | null;
   meditation: number | null;
@@ -189,6 +214,7 @@ export interface LoginUser_loginUser_user {
   coinLedger: LoginUser_loginUser_user_coinLedger | null;
   passiveSteps: LoginUser_loginUser_user_passiveSteps | null;
   passiveMeditation: LoginUser_loginUser_user_passiveMeditation | null;
+  passiveCycling: LoginUser_loginUser_user_passiveCycling | null;
   activeChallenge: LoginUser_loginUser_user_activeChallenge | null;
   activeStreak: LoginUser_loginUser_user_activeStreak | null;
   todayActivity: (LoginUser_loginUser_user_todayActivity | null)[] | null;

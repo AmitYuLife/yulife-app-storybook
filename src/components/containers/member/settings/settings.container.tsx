@@ -17,12 +17,11 @@ import {
   GetUserNotificationsSettings_getUserNotificationsSettings as Notification,
   UpdateUserNotificationsSettingsVariables as Variables,
   UpdateUserNotificationsSettings as ReturnedData,
-  GetUserProfile,
 } from "@graphql/_core/schema";
 import Logger from "@services/logging/logger";
 import { ScrollPickerModal } from "@components/modals";
 import { showYuModal } from "@navigation/root";
-import { GQL_QUERY_GET_USER_PROFILE } from "@graphql/user";
+import { getDailyCyclingMeasurement } from "@redux/daily-cycling/daily-cycling.selectors";
 
 interface IOwnProps {
   componentId: string;
@@ -56,7 +55,7 @@ function SettingsContainer({ componentId }: IOwnProps) {
   const [updateNotification] = useMutation<ReturnedData, Variables>(GQL_MUTATION_UPDATE_USER_NOTIFICATIONS_SETTINGS);
   const { data } = useQuery<Data>(GQL_QUERY_GET_USER_NOTIFICATIONS_SETTINGS, graphqlFetchPolicy);
   const notifications = data?.getUserNotificationsSettings || [];
-  const { data: userProfileData } = useQuery<GetUserProfile>(GQL_QUERY_GET_USER_PROFILE, graphqlFetchPolicy);
+  const cyclingMeasurement = useSelector(getDailyCyclingMeasurement);
 
   // helper functions
   const handleClose = React.useCallback(() => Navigation.popToRoot(componentId), [componentId]);
@@ -131,15 +130,12 @@ function SettingsContainer({ componentId }: IOwnProps) {
       {
         title: "Measurement (Cycling)",
         description: "Change between the imperial (miles) and metric (kilometers) system.",
-        measurement: userProfileData?.getUserProfile?.gameSettings?.cyclingMeasurement,
+        measurement: cyclingMeasurement,
         onPress: () => {
           Navigation.push(ROUTES.settings, {
             component: {
               id: ROUTES.cyclingMeasurement,
               name: ROUTES.cyclingMeasurement,
-              passProps: {
-                cyclingMeasurement: userProfileData?.getUserProfile?.gameSettings?.cyclingMeasurement,
-              },
             },
           });
         },

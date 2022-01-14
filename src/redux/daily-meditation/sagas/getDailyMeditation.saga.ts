@@ -10,6 +10,7 @@ import { UPDATE_APP_STATE } from "../../app/app.actions";
 import { getUserFeatures } from "../../user/user.selectors";
 import { updateDailyMeditation, updateDailyMeditationEmptyResult } from "../daily-meditation.actions";
 
+// TODO purge after GS-113 will be merged
 export default function* getDailyMeditation() {
   while (true) {
     try {

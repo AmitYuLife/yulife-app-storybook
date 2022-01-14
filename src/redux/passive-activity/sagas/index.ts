@@ -1,5 +1,6 @@
+import { REHYDRATE } from "redux-persist/es/constants";
 import { takeLatest } from "redux-saga/effects";
-import { AUTHENTICATED } from "../../app/app.actions";
-import sendPassiveActivity from "./sendPassiveActivitySinceLastUpdate.saga";
+import { UPDATE_APP_STATE } from "../../app/app.actions";
+import sendPassiveActivity from "./sendAllPassiveActivitySinceLastUpdate.saga";
 
-export default [takeLatest(AUTHENTICATED, sendPassiveActivity)];
+export default [takeLatest([UPDATE_APP_STATE, REHYDRATE], sendPassiveActivity)];

@@ -6,6 +6,7 @@ import {
   GetCurrentUser_getCurrentUser_todayActivity,
   LoginUser,
   UpsertPassiveChallenge,
+  UpsertPassiveChallenges_upsertPassiveChallenges_challenges as Challenge,
 } from "@graphql/_core/schema";
 import { SyncAction } from "../_core/types";
 import {
@@ -15,11 +16,13 @@ import {
 import { UPDATE_DAILY_STEPS_SUCCESS_FROM_REMOTE, START_DAILY_STEPS } from "../daily-steps/daily-steps.actions";
 import { GET_USER_SUCCESS, LOGIN_USER_SUCCESS, LOGOUT_SUCCESS } from "../user/user.actions";
 import { UPDATE_TOTAL_COINS } from "./coins.actions";
+import { UPDATE_DAILY_CYCLING_SUCCESS } from "@redux/daily-cycling/daily-cycling.actions";
 
 export interface ICoinsStore {
   dailyChallengeEarned: number; // number of coins earned in the current day through challenges
   dailyStepsEarned: number; // number of coins earned in the current day through daily steps
   dailyMeditationEarned: number; // number of coins earned in the current day through daily meditation
+  dailyCyclingEarned: number; // number of coins earned in the current day through daily cycling
   total: number;
   lastUpdated: string; // total coins the user has earned
 }
@@ -28,6 +31,7 @@ export const getInitialState = (): ICoinsStore => ({
   dailyChallengeEarned: 0,
   dailyStepsEarned: 0,
   dailyMeditationEarned: 0,
+  dailyCyclingEarned: 0,
   total: 0,
   lastUpdated: moment().format(DATE_FORMAT),
 });
@@ -36,6 +40,7 @@ const getDailyResetCoinStore = () => ({
   dailyChallengeEarned: 0,
   dailyStepsEarned: 0,
   dailyMeditationEarned: 0,
+  dailyCyclingEarned: 0,
 });
 
 const coinsReducer = (state: ICoinsStore = getInitialState(), action: SyncAction) => {
@@ -52,6 +57,8 @@ const coinsReducer = (state: ICoinsStore = getInitialState(), action: SyncAction
       return updateDailyMeditationSuccess(state, action.payload);
     case UPDATE_DAILY_STEPS_SUCCESS_FROM_REMOTE:
       return updateDailyStepsSuccess(state, action.payload);
+    case UPDATE_DAILY_CYCLING_SUCCESS:
+      return updateDailyCyclingSuccess(state, action.payload);
     case LOGIN_USER_SUCCESS:
       return loginUserSuccess(state, action.payload);
     case GET_USER_SUCCESS:
@@ -84,7 +91,7 @@ const updatePersistedState = (persistedState: ICoinsStore) => {
    * Every time we add new field in the store we should take care to do that, for now we have it for
    * lastUpdated and dailyMeditationEarned
    */
-  if (!persistedState.lastUpdated || !persistedState.dailyMeditationEarned) {
+  if (!persistedState.lastUpdated || !persistedState.dailyMeditationEarned || !persistedState.dailyCyclingEarned) {
     const newState = { ...persistedState };
 
     if (!persistedState.dailyMeditationEarned) {
@@ -93,6 +100,10 @@ const updatePersistedState = (persistedState: ICoinsStore) => {
 
     if (!persistedState.lastUpdated) {
       newState.lastUpdated = moment().format(DATE_FORMAT);
+    }
+
+    if (!persistedState.dailyCyclingEarned) {
+      newState.dailyCyclingEarned = 0;
     }
 
     return newState;
@@ -137,8 +148,11 @@ const updateDailyMeditationSuccess = (
 ): ICoinsStore => ({
   ...state,
   dailyMeditationEarned: upsertPassiveChallenge?.challenge?.yuCoinAwarded || 0,
-  total: upsertPassiveChallenge?.totalCoins || state.total,
   lastUpdated: moment().format(DATE_FORMAT),
+});
+const updateDailyCyclingSuccess = (state: ICoinsStore, challenge: Challenge): ICoinsStore => ({
+  ...state,
+  dailyCyclingEarned: challenge?.yuCoinAwarded || 0,
 });
 
 const loginUserSuccess = (state: ICoinsStore, { loginUser }: LoginUser): ICoinsStore => ({

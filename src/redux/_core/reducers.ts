@@ -26,6 +26,10 @@ import themeReducer, { getInitialState as getInitialThemeState, IThemeStore } fr
 import userReducer, { getInitialState as getInitialUserState, IUserStore } from "../user/user.reducer";
 import productReducer, { getInitialState as getInitialProductState, IProductStore } from "../product/product.reducer";
 import sduiReducer, { getInitialState as getInitialSduiState, ISduiStore } from "../server-driven-ui/sdui.reducer";
+import dailyCyclingReducer, {
+  IDailyCyclingStore,
+  getInitialState as getInitialDailyCycling,
+} from "@redux/daily-cycling/daily-cycling.reducer";
 import fitkitReducer, { getInitialState as getInitialFitkitState } from "../fitkit/fitkit.reducer";
 import { IFitkitStore } from "@redux/fitkit/fitkit.reducer";
 
@@ -43,6 +47,7 @@ export interface IReduxState {
   user: IUserStore;
   copy: ICopyStore;
   dailyMeditation: IDailyMeditationStore;
+  dailyCycling: IDailyCyclingStore;
   sdui: ISduiStore;
   fitkit: IFitkitStore;
 }
@@ -61,6 +66,7 @@ export const initialState: IReduxState = {
   user: getInitialUserState(),
   copy: getInitialCopyState(),
   dailyMeditation: getInitialDailyMeditation(),
+  dailyCycling: getInitialDailyCycling(),
   sdui: getInitialSduiState(),
   fitkit: getInitialFitkitState(),
 };
@@ -82,6 +88,7 @@ const combinedReducers = combineReducers({
   user: userReducer,
   copy: copyReducer,
   dailyMeditation: dailyMeditationReducer,
+  dailyCycling: dailyCyclingReducer,
   sdui: sduiReducer,
   fitkit: fitkitReducer,
 });

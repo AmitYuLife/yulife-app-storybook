@@ -1,42 +1,33 @@
-import React, { memo, useCallback, useState } from "react";
-import { useApolloClient, useMutation } from "@apollo/react-hooks";
+import React, { memo, useCallback } from "react";
+import { useMutation } from "@apollo/react-hooks";
 import { Navigation } from "react-native-navigation";
 import { CyclingMeasurementScreen } from "@components/screens";
-import { GQL_MUTATION_UPDATE_CYCLING_MEASUREMENT, GQL_QUERY_GET_USER_PROFILE } from "@graphql/user";
+import { GQL_MUTATION_UPDATE_CYCLING_MEASUREMENT } from "@graphql/user";
 import {
   UpdateCyclingMeasurement,
   UpdateCyclingMeasurementVariables,
 } from "@graphql/_core/schema/UpdateCyclingMeasurement";
 import { ROUTES } from "@navigation/constants";
+import { useDispatch, useSelector } from "react-redux";
+import { updateDailyCyclingDistanceMeasurementType } from "@redux/daily-cycling/daily-cycling.actions";
+import { DistanceMeasurementType } from "@graphql/_core/schema/globalTypes";
+import { getDailyCyclingMeasurement } from "@redux/daily-cycling/daily-cycling.selectors";
 
 interface IProps {
   componentId: string;
-  cyclingMeasurement: string;
 }
 
-const CyclingMeasurementContainer = ({ componentId, cyclingMeasurement }: IProps) => {
-  const [selectedCyclingMeasurement, setSelectedCyclingMeasurement] = useState(cyclingMeasurement);
+const CyclingMeasurementContainer = ({ componentId }: IProps) => {
+  const cyclingMeasurement = useSelector(getDailyCyclingMeasurement);
+
   const [updateCyclingMeasurement, { loading }] = useMutation<
     UpdateCyclingMeasurement,
     UpdateCyclingMeasurementVariables
   >(GQL_MUTATION_UPDATE_CYCLING_MEASUREMENT);
-
-  const client = useApolloClient();
+  const dispatch = useDispatch();
 
   const onSelectedCyclingMeasurement = useCallback(async (measurement) => {
-    setSelectedCyclingMeasurement(measurement);
-    client.writeQuery({
-      query: GQL_QUERY_GET_USER_PROFILE,
-      data: {
-        getUserProfile: {
-          __typename: "UserProfile",
-          gameSettings: {
-            __typename: "GameSettings",
-            cyclingMeasurement: measurement,
-          },
-        },
-      },
-    });
+    dispatch(updateDailyCyclingDistanceMeasurementType(measurement as DistanceMeasurementType));
     await updateCyclingMeasurement({ variables: { measurement } });
   }, []);
 
@@ -48,7 +39,7 @@ const CyclingMeasurementContainer = ({ componentId, cyclingMeasurement }: IProps
       onLeftIconPress={onLeftIconPress}
       onRightIconPress={onRightIconPress}
       onRadioPress={onSelectedCyclingMeasurement}
-      selectedCyclingMeasurement={selectedCyclingMeasurement}
+      selectedCyclingMeasurement={cyclingMeasurement}
     />
   );
 };
