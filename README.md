@@ -49,10 +49,13 @@ cd ios && pod install && cd ../
 If running `pod install` produces the error `SDK "iphoneos" cannot be located`, this means the XCode installation path is incorrect (it's probably installed under "Applications").
 
 You can check this by running
+
 ```sh
 sudo xcode-select --print-path
 ```
+
 To update this path use
+
 ```su
 sudo xcode-select --switch /Applications/Xcode.app
 ```
@@ -180,6 +183,12 @@ Wait patiently for the project to sync all of its dependencies. Once it's up-to-
 ##### Build profiles (Android)
 
 Choose your build profile from the `Build Profile` menu, which can be found as a vertical tab on the left side of Android Studio's window. By default, the `debug` profile is selected which connects to the develop API server. Alternate profiles available are `local`, which will connect to a local API instance, `uat` and `production`.
+
+#### How to import Hardware Profiles to Android Studio
+
+You will find all the `hardware-profiles` of the most android devices used by our users on `android-hardware-profiles`
+
+Open `Android Studio` > `AVD Manager` > `Create Virtual Device Configuration` > `Import Hardware Profiles`
 
 #### Google Account signing
 
