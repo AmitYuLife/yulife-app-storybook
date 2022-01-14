@@ -3,6 +3,7 @@ package com.yulife;
 import android.app.Application;
 import android.app.Notification;
 import android.os.Bundle;
+import android.os.Build;
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
 import android.content.Context;
@@ -78,8 +79,12 @@ public class MainApplication extends NavigationApplication {
     LeanplumPushService.setCustomizer(new LeanplumPushNotificationCustomizer() {
           @Override
           public void customize(NotificationCompat.Builder builder, Bundle notificationPayload) {
+            if(Build.VERSION.SDK_INT > Build.VERSION_CODES.R){
+              builder.setSmallIcon(R.drawable.yu_push_icon);
+            } else {
               builder.setSmallIcon(R.drawable.intercom_push_icon);
-              builder.setColor(getResources().getColor(R.color.yupink));
+            }
+            builder.setColor(getResources().getColor(R.color.yupink));
           }
           @Override
           public void customize(Notification.Builder builder, Bundle bundle, @Nullable Notification.Style style) {
