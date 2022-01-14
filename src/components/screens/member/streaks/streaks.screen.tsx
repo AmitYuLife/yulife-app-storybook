@@ -44,6 +44,7 @@ const StreaksScreen = ({
 }: IProps) => {
   const currentStreakCompleted = onPressCtaSecondary ? streakCompleted : streakCompleted - 1;
   const isStreakCompleted = streakMax === streakCompleted && !streakAwardId;
+  const hideBuffs = streakMax === streakCompleted;
 
   const isNotValidTime = timeRemaining.startsWith("NaNd");
   const autoPlayLottie = DETOX_ENABLED ? false : true;
@@ -57,8 +58,11 @@ const StreaksScreen = ({
       <View style={styles.wrapper}>
         <View style={styles.lottieWrapper}>
           <LottieView source={streakInfo?.image} autoPlay={autoPlayLottie} loop={false} />
-          <ActiveBuffsButton style={styles.activeBuffsButton} iconWidth={35} iconHeight={35} buffTypes={buffTypes} />
+          {hideBuffs ? null : (
+            <ActiveBuffsButton style={styles.activeBuffsButton} iconWidth={35} iconHeight={35} buffTypes={buffTypes} />
+          )}
         </View>
+
         <TextTemplate type={Style.isShortToMedium() ? "h2" : "h1"} textAlign="center">
           {streakInfo?.header}
         </TextTemplate>
