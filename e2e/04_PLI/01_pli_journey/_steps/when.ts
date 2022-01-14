@@ -1,6 +1,6 @@
 import { booleanIdVisible, navigation } from "@utils"
 import { screens } from "@appScreens"
-import { AVATAR_ITEM, CONTENT_ITEM_INPUT, DATE_INPUT, DATE_PICKER, FULL_SCREEN_SWIPER, MALE_BODY, PRODUCT_STEP_BODY_SCROLL_VIEW, SEARCH_INPUT, YUMOJI_OUTFIT_LABEL, YUMOJI_OUTFIT_RADIO, YUSCREEN_AVATAR } from "@ids"
+import { AVATAR_ITEM, CONTENT_ITEM_INPUT, DATE_INPUT, DATE_PICKER, FULL_SCREEN_SWIPER, MALE_BODY, PRODUCT_STEP_BODY_SCROLL_VIEW, SEARCH_INPUT, YUMOJI_OUTFIT_LABEL, YUMOJI_OUTFIT_RADIO, YUSCREEN_AVATAR, LEFT_PRODUCT_STEP_MULTI_BUTTON } from "@ids"
 import moment from "moment"
 import { CUSTOMER_37 } from "@data"
 
@@ -100,9 +100,9 @@ export const selectOptionAndNavigate = (option: string, navigationText: string) 
     await navigateViaText(navigationText)
 }
 
-export const scrollToTheBottomAndChooseYesOrNo = (answer: string, textToScrollTo: string) => async () => {
-    await scrollUntilTextVisible(PRODUCT_STEP_BODY_SCROLL_VIEW, textToScrollTo, "down")();
-    await navigateViaText(answer)
+export const scrollToTheBottomAndChooseYesOrNo = (answer: string) => async () => {
+    await scrollUntilIdVisible(PRODUCT_STEP_BODY_SCROLL_VIEW, LEFT_PRODUCT_STEP_MULTI_BUTTON, "down")();
+    await navigateViaID(answer)
 }
 
 /**

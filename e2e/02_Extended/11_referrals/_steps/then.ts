@@ -21,7 +21,7 @@ export const {
 
 export const referralsPopoverVisible = async () => {
     await expect(element(by.text("Invite colleagues"))).toBeVisible()
-    await expect(element(by.text("Share the love and get 300 YuCoin for every referral."))).toBeVisible()
+    await expect(element(by.text("Share the love and get 1000 YuCoin for every referral."))).toBeVisible()
 }
 
 export const referralsPopoverNotVisible = async () => {

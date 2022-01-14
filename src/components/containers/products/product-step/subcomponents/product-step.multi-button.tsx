@@ -7,6 +7,7 @@ import { ContentItemButton, mapServerStyles } from "@components/sdui";
 import { ProductStepContext } from "../product-step.context";
 import { useSelector } from "react-redux";
 import { getSduiLoading, getSduiLoadingForKey } from "@redux/server-driven-ui/sdui.selectors";
+import { RIGHT_PRODUCT_STEP_MULTI_BUTTON, LEFT_PRODUCT_STEP_MULTI_BUTTON } from "@ids";
 
 type Props = GqlMultiButton;
 
@@ -34,10 +35,11 @@ export const ProductStepContentItemMultiButton = memo((props: Props) => {
 
   return (
     <View style={[styles.wrapper, serverStyles]}>
-      {props.buttons.map((button) => (
+      {props.buttons.map((button, index) => (
         <View key={button.id} style={styles.buttonWrapper}>
           <ContentItemButton
             {...button}
+            testID={getTestId(index)}
             onPress={buildDynamicOnPress(button)}
             buttonSize={ContentItemButtonSize.Fill}
             disabled={disabled}
@@ -48,6 +50,10 @@ export const ProductStepContentItemMultiButton = memo((props: Props) => {
     </View>
   );
 });
+
+function getTestId(index: number) {
+  return !index ? LEFT_PRODUCT_STEP_MULTI_BUTTON : RIGHT_PRODUCT_STEP_MULTI_BUTTON;
+}
 
 const styles = StyleSheet.create({
   wrapper: { flexDirection: "row" } as ViewStyle,
