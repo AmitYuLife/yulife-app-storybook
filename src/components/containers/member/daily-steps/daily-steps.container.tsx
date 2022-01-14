@@ -3,7 +3,7 @@ import { MODALS, ROUTES } from "@navigation/constants";
 import { IMainTabsProps, showYuModal, labels } from "@navigation/root";
 import { getShowIntro } from "@redux/onboarding/onboarding.selectors";
 import { useFitKit } from "@services/fitkit/fitkit.hooks";
-import React, { memo, useCallback } from "react";
+import React, { memo, useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { startDailySteps } from "@redux/daily-steps/daily-steps.actions";
 import { getDailyStepsIsFetching } from "@redux/daily-steps/daily-steps.selectors";
@@ -14,6 +14,10 @@ import { FitkitContext } from "@services/fitkit/fitkit.helpers";
 import useNavigationComponentDidAppear from "@services/hooks/useNavigationComponentDidAppear";
 import { useTapBackTwiceToExit } from "@services/hooks/useTapBackTwiceToExit";
 import { Navigation } from "react-native-navigation";
+import { useLazyQuery } from "@apollo/react-hooks";
+import { GQL_QUERY_GET_USER_SURGE } from "@graphql/surge";
+import { GetUserSurge } from "@graphql/_core/schema/GetUserSurge";
+import { getAppState } from "@redux/app/app.selectors";
 
 type Props = IMainTabsProps;
 
@@ -26,6 +30,19 @@ function _DailyStepsContainer({ componentId, onLeftMenuPress }: Props) {
   const theme = useSelector(getDailyStepsTheme);
   const showIntro = useSelector(getShowIntro);
   const surgeIntro = useSelector(getSurgeIntro);
+  const appState = useSelector(getAppState);
+
+  const [getUserSurge, { data: userSurge }] = useLazyQuery<GetUserSurge>(GQL_QUERY_GET_USER_SURGE, {
+    fetchPolicy: "cache-and-network",
+  });
+
+  useEffect(() => {
+    (async () => {
+      if (appState === "active") {
+        await getUserSurge();
+      }
+    })();
+  }, [appState]);
 
   const navigateToTodayEarnings = useCallback(
     () =>
@@ -84,6 +101,7 @@ function _DailyStepsContainer({ componentId, onLeftMenuPress }: Props) {
       <DailyStepsScreen
         onCoinPress={onCoinPress}
         theme={theme}
+        userSurge={userSurge?.getUserSurge}
         onLeftMenuPress={onLeftMenuPress}
         fitKitAvailable={fitkit.available}
         hasPermission={fitkit.authorised}

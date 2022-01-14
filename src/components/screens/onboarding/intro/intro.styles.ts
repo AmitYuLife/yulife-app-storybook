@@ -98,10 +98,10 @@ export const tooltipStyles = StyleSheet.create({
   } as ViewStyle,
   streaksTooltip: {
     top: Style.SCALE_UP_AND_DOWN(isIphoneX() ? 175 : 145),
-    right: Style.SCALE_UP_AND_DOWN(28),
+    right: Style.SCALE_UP_AND_DOWN(18),
   } as ViewStyle,
   streaksCaret: {
-    left: Style.SCALE_UP_AND_DOWN(180),
+    left: Style.SCALE_UP_AND_DOWN(235),
   } as ViewStyle,
   leaderboardCaret: {
     left: Style.SCALE_UP_AND_DOWN(128),

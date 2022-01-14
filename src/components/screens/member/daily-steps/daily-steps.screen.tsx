@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo, useCallback } from "react";
 import { View, Platform } from "react-native";
 import * as Animatable from "react-native-animatable";
 import { isIphoneX } from "react-native-iphone-x-helper";
@@ -6,12 +6,15 @@ import { IThemeStore } from "@app/redux/theme/theme.reducer";
 import { DAILY_STEPS_SCREEN } from "@ids";
 import { IConnectedScreenProps } from "../../../../typings";
 import { CentredScreen, Pad } from "@atoms";
-import { TouchableOpacityWithDelay } from "@molecules";
+import { Surge, TouchableOpacityWithDelay } from "@molecules";
 import { Streak, TopBar, NavBar, DailyStepsContent } from "@organisms";
 import { Style } from "@styles";
 import styles from "./daily-steps.screen.styles";
 import YuCoin from "./assets/yu-coin";
 import ReferralsPopover from "./referrals-popover";
+import { GetUserSurge_getUserSurge } from "@graphql/_core/schema";
+import { SurgeModal } from "@components/modals";
+import { showFloatingModal } from "@components/modals/floating-modals/showFloatingModal";
 
 interface IProps extends IConnectedScreenProps {
   showCounter?: boolean;
@@ -20,16 +23,23 @@ interface IProps extends IConnectedScreenProps {
   onCoinPress: () => void;
   onStreakPress?: () => void;
   theme: IThemeStore["dailyStepsScreen"];
+  userSurge: GetUserSurge_getUserSurge;
 }
 
 type Props = IProps;
 
-export default function DailyStepsScreen({
+const DailyStepsScreen = ({
   hasPermission,
   onCoinPress,
   onLeftMenuPress,
   theme: { centredScreen, hasWhiteGlow, topBarType },
-}: Props) {
+  userSurge,
+}: Props) => {
+  const onSurgePress = useCallback(async () => {
+    const child = <SurgeModal {...userSurge} />;
+    await showFloatingModal(child, userSurge.lottie);
+  }, [userSurge]);
+
   return (
     <Animatable.View duration={750} animation="fadeIn" style={styles.flex} useNativeDriver={true}>
       <CentredScreen
@@ -42,6 +52,9 @@ export default function DailyStepsScreen({
           <YuCoin hasWhiteGlow={hasWhiteGlow} isGrayScale={!hasPermission} />
         </TouchableOpacityWithDelay>
         <DailyStepsContent />
+        {!userSurge?.endDateTime ? null : (
+          <Surge multiplier={userSurge?.multiplier} expireDate={userSurge?.endDateTime} onPress={onSurgePress} />
+        )}
         <Streak />
         <NavBar activeIndex={0} />
       </CentredScreen>
@@ -51,7 +64,9 @@ export default function DailyStepsScreen({
       <ReferralsPopover onLeftMenuPress={onLeftMenuPress} />
     </Animatable.View>
   );
-}
+};
+
+export default memo(DailyStepsScreen);
 
 function getPadHeight() {
   if (isIphoneX()) {

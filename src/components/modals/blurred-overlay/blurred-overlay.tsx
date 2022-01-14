@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, ReactElement, cloneElement } from "react";
-import { Animated, FlexStyle, StyleSheet, View } from "react-native";
+import { Animated, StyleSheet, View, ViewStyle } from "react-native";
 import { Navigation } from "react-native-navigation";
 import { BlurView } from "@react-native-community/blur";
 import { useBackHandler } from "@services/hooks/useBackHandler";
@@ -8,7 +8,7 @@ import { MODALS } from "@navigation/constants";
 interface IProps {
   children: ReactElement;
   withBlurBackground: boolean;
-  flexDirection?: FlexStyle["flexDirection"];
+  wrapperStyle?: ViewStyle;
 }
 
 const commonProps = {
@@ -16,7 +16,7 @@ const commonProps = {
   useNativeDriver: true,
 };
 
-const BlurredOverlay = ({ children, withBlurBackground, flexDirection }: IProps) => {
+const BlurredOverlay = ({ children, withBlurBackground, wrapperStyle }: IProps) => {
   const opacity = useRef(new Animated.Value(0)).current;
   const fadeIn = Animated.timing(opacity, {
     toValue: 1,
@@ -47,7 +47,7 @@ const BlurredOverlay = ({ children, withBlurBackground, flexDirection }: IProps)
   });
 
   return (
-    <Animated.View testID="blur-provider.overlay-container" style={[styles.wrapper, { opacity, flexDirection }]}>
+    <Animated.View testID="blur-provider.overlay-container" style={[styles.wrapper, { opacity, ...wrapperStyle }]}>
       {!withBlurBackground ? null : <BlurView blurAmount={5} blurType="light" style={styles.blur} />}
       <View style={styles.blur} onTouchStart={handleClose} />
       {cloneElement(children, { closeOverlay: handleClose })}

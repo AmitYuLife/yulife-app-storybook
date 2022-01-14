@@ -2,13 +2,9 @@ import { ReactElement } from "react";
 import { Navigation } from "react-native-navigation";
 import { MODALS } from "@navigation/constants";
 import { drawBehind } from "@navigation/root";
-import { FlexStyle } from "react-native";
+import { ViewStyle } from "react-native";
 
-export function showOverlayWithChild(
-  children: ReactElement,
-  withBlurBackground = true,
-  flexDirection: FlexStyle["flexDirection"] = "row"
-) {
+export function showOverlayWithChild(children: ReactElement, withBlurBackground = true, wrapperStyle?: ViewStyle) {
   return Navigation.showOverlay({
     component: {
       id: MODALS.blurredOverlay,
@@ -27,7 +23,7 @@ export function showOverlayWithChild(
       passProps: {
         children,
         withBlurBackground,
-        flexDirection,
+        wrapperStyle,
       },
     },
   });

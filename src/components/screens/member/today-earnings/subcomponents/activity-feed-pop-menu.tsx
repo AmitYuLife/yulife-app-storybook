@@ -75,7 +75,7 @@ const ActivityFeedPopMenu = ({ pageY, header, body, toast }: IProps) => {
 const styles = StyleSheet.create({
   wrapper: {
     height: "100%",
-    width: Style.adjust(271),
+    width: Style.DEVICE_WIDTH / 1.5,
     alignSelf: "center",
     right: Style.adjust(13),
   },

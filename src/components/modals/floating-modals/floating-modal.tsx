@@ -6,20 +6,20 @@ import { ContentItemLottie } from "@components/sdui";
 import { ContentItemLottie as GqlLottie } from "@graphql/_core/schema";
 
 interface IProps {
-  closeOverlay: () => void;
+  closeOverlay?: () => void;
   children: ReactElement;
   height?: number;
   lottie: GqlLottie;
 }
 
-const FloatingModal = ({ closeOverlay, children, lottie, height = Style.adjust(360) }: IProps) => {
+const FloatingModal = ({ closeOverlay, children, lottie, height = Style.adjust(420) }: IProps) => {
   return (
     <View style={[styles.wrapper, { height }]}>
       <View style={styles.iconWrapper}>
         <ContentItemLottie {...lottie} />
       </View>
       {children}
-      <Button onPress={closeOverlay} label="Close" wrapperStyle={styles.buttonWrapperStyle} />
+      <Button onPress={closeOverlay} label="Dismiss" wrapperStyle={styles.buttonWrapperStyle} />
     </View>
   );
 };
