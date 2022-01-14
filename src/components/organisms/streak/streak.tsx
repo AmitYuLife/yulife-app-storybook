@@ -1,18 +1,16 @@
 import React from "react";
 import { connect } from "react-redux";
-import { StyleSheet, TouchableWithoutFeedback, View } from "react-native";
-import { isIphoneX } from "react-native-iphone-x-helper";
+import { StyleSheet, ViewStyle } from "react-native";
 import { usePressedInWithDelay } from "@services/hooks/usePressedInWithDelay";
-import { Pad, Text } from "@atoms";
-import { Calendar } from "./assets";
-import styles, { getColour } from "./streak.styles";
 import { IReduxState } from "@redux/_core/reducers";
 import { getStreaks } from "@redux/streaks/streaks.selectors";
-import { getDailyStepsTheme } from "@redux/theme/theme.selectors";
 import { Navigation } from "react-native-navigation";
 import { labels, showYuModal } from "@navigation/root";
 import { MODALS } from "@navigation/constants";
 import { getUserFeatures } from "@redux/user/user.selectors";
+import { TOP_BAR, Style } from "@styles";
+import { StreakIcon } from "@atoms/icon/streak-icon";
+import { TouchableOpacityWithDelay } from "@components/molecules";
 
 export type StreakTypes = "forest" | "ocean" | "desert" | "mountain";
 
@@ -25,12 +23,12 @@ interface OwnProps {
 export type Props = ConnectedProps & OwnProps;
 
 function _Streak(props: Props) {
-  const { streak, hasStreakFeature, streakType, isDim } = props;
+  const { streak, hasStreakFeature, isDim } = props;
   const { currentStreak, isDoneToday, maxStreak, isAvailable } = streak;
   const show = hasStreakFeature && isAvailable;
 
   const defaultHandlePress = createHandlePress(streak);
-  const { isPressedIn, handlePress, handlePressIn, handlePressOut } = usePressedInWithDelay({
+  const { handlePress, handlePressIn, handlePressOut } = usePressedInWithDelay({
     onPress: defaultHandlePress,
   });
 
@@ -38,25 +36,31 @@ function _Streak(props: Props) {
     return null;
   }
 
-  const backgroundColor = getColour(streakType, isDoneToday, isPressedIn);
-
   return (
-    <TouchableWithoutFeedback onPressIn={handlePressIn} onPressOut={handlePressOut} onPress={handlePress}>
-      <View style={StyleSheet.flatten([styles.wrapper, { backgroundColor }])}>
-        <Pad width={20} />
-        <Text style={styles.text}>{`${currentStreak || 0}/${maxStreak || 1}`}</Text>
-        <Calendar backgroundColor={backgroundColor} progress={(currentStreak / maxStreak) * 100} scale={0.5} />
-        <Pad width={isIphoneX() ? 30 : 15} />
-        {isDim ? <View style={styles.dim} /> : null}
-      </View>
-    </TouchableWithoutFeedback>
+    <TouchableOpacityWithDelay
+      style={styles.wrapper}
+      onPressIn={handlePressIn}
+      onPressOut={handlePressOut}
+      onPress={handlePress}
+    >
+      <StreakIcon isDoneToday={isDim || isDoneToday} streaks={`${currentStreak || 0}/${maxStreak || 1}`} />
+    </TouchableOpacityWithDelay>
   );
 }
 
 const mapStateToProps = (state: IReduxState) => ({
   streak: getStreaks(state),
-  streakType: getDailyStepsTheme(state).streakType,
   hasStreakFeature: getUserFeatures(state).showStreaks,
+});
+
+const styles = StyleSheet.create({
+  wrapper: {
+    position: "absolute",
+    right: Style.adjust(16),
+    top: TOP_BAR.TOP_BAR_WITH_PAD,
+    alignItems: "center",
+    justifyContent: "center",
+  } as ViewStyle,
 });
 
 const redux = connect(mapStateToProps);

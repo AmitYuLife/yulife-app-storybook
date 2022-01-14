@@ -105,6 +105,7 @@ export * from "./GetTodayEarnings";
 export * from "./GetTotalCoins";
 export * from "./GetUserNotificationsSettings";
 export * from "./GetUserProfile";
+export * from "./GetUserSurge";
 export * from "./GetWellbeingHubItem";
 export * from "./GetWellbeingHubItems";
 export * from "./GetYulifer";

@@ -88,10 +88,15 @@ export function getStartAndEndDateTimesWithTimezone(startDateTime: string, endDa
 
 // Re-formats the result of moment.fromNow() so that "minute" becomes "m" and "hour" becomes "h"
 export const minifiedFromNow = (time: moment.Moment): string => {
-  return time
-    .fromNow()
-    .replace(/an hour/i, "1h")
-    .replace(/ hours/i, "h")
-    .replace(/a minute/i, "1m")
-    .replace(/ minutes/i, "m");
+  const days = time.diff(moment(), "days");
+  return days
+    ? `${days} d`
+    : time
+        .fromNow()
+        .replace(/an hour/i, "1h")
+        .replace(/ hours/i, "h")
+        .replace(/a minute/i, "1m")
+        .replace(/ minutes/i, "m")
+        .replace(/in/i, "")
+        .replace(/a day/i, "1d");
 };

@@ -17,3 +17,5 @@ export { default as BlurredOverlay } from "./blurred-overlay/blurred-overlay";
 export { default as ActiveBuffsModal } from "./active-buffs/active-buffs.modal";
 export { default as SwitchToGoogleFitModal } from "./switch-to-googlefit-modal/switch-to-googlefit-modal";
 export { default as WhatsNewModal } from "./whats-new/whats-new";
+export { default as FloatingModal } from "./floating-modals/floating-modal";
+export { default as SurgeModal } from "./surge-modal/surge-modal";
