@@ -31,7 +31,7 @@ const ProductStepDetachedContainer = (props: any) => {
   };
 
   const pushNestedHistory = (internalStep: string) => {
-    dispatch(logMixpanelEventActionCreator("faq_viewed", { faq_id: internalStep }));
+    dispatch(logMixpanelEventActionCreator("faq_viewed", { faq_id: internalStep, cs_product: productId }));
     setNestedHistory((state) => [...state, internalStep]);
   };
 
