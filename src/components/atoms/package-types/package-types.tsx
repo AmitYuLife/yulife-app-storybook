@@ -1,6 +1,6 @@
 import React, { memo, useMemo } from "react";
 import { Platform, StyleSheet, View, ViewStyle } from "react-native";
-import { Colours } from "@styles";
+import { Colours, Style } from "@styles";
 import { CoverType } from "@graphql/_core/schema/globalTypes";
 import { PACKAGE_TYPES } from "@ids";
 import { TextTemplate } from "@atoms";
@@ -11,7 +11,7 @@ export interface Props {
   minWidth?: number;
 }
 
-const PackageType = ({ type, minWidth = 0 }: Props) => {
+const PackageType = ({ type, minWidth = Style.adjust(55) }: Props) => {
   const isNotEquipped = useMemo(() => {
     return !Object.values(CoverType).includes(type);
   }, [type]);
