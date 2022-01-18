@@ -5,7 +5,7 @@ export const DATE_FORMAT = "YYYY-MM-DD";
 export const DATE_FORMAT_WITH_TZ = "YYYY-MM-DDTHH:mm:ssZ";
 export const DATE_FORMAT_WITHOUT_TZ = "YYYY-MM-DDTHH:mm:ss";
 
-type TimeType = "short" | "long";
+type TimeType = "short" | "medium" | "long";
 
 export function addSecondsToChallengeEndDateTime(endDateTime: string, seconds = 10) {
   return moment(endDateTime, DATE_FORMAT_WITHOUT_TZ).add(seconds, "seconds").format(DATE_FORMAT_WITHOUT_TZ);
@@ -29,26 +29,47 @@ export function getTime(nextAvailable: number, format?: TimeType) {
   const paddedMinutes = padNum(minutes);
   const paddedSeconds = padNum(seconds);
   const isShort = format === "short";
+  const isMedium = format === "medium";
 
   if (days < 1 && hours < 1 && minutes < 1) {
     return `:${paddedSeconds}`;
   }
 
   if (days < 1 && hours < 1) {
-    return isShort ? `${paddedMinutes}m ${paddedSeconds}s` : `${paddedMinutes}:${paddedSeconds}`;
+    if (isShort) {
+      return `${paddedMinutes}m`;
+    }
+
+    if (isMedium) {
+      return `${paddedMinutes}m ${paddedSeconds}s`;
+    }
+
+    return `${paddedMinutes}:${paddedSeconds}`;
   }
 
   if (days < 1) {
-    return isShort
-      ? `${paddedHours}h ${paddedMinutes}m ${paddedSeconds}s`
-      : `${paddedHours}:${paddedMinutes}:${paddedSeconds}`;
+    if (isShort) {
+      return `${paddedHours}h ${paddedMinutes}m`;
+    }
+
+    if (isMedium) {
+      return `${paddedHours}h ${paddedMinutes}m ${paddedSeconds}s`;
+    }
+
+    return `${paddedHours}:${paddedMinutes}:${paddedSeconds}`;
   }
 
   const daysOrDay = days > 1 ? "days" : "day";
 
-  return isShort
-    ? `${days}d ${paddedHours}h ${paddedMinutes}m ${paddedSeconds}s`
-    : `${days} ${daysOrDay} and ${paddedHours}:${paddedMinutes}:${paddedSeconds}`;
+  if (isShort) {
+    return `${days}d ${paddedHours}h ${paddedMinutes}m`;
+  }
+
+  if (isMedium) {
+    return `${days}d ${paddedHours}h ${paddedMinutes}m ${paddedSeconds}s`;
+  }
+
+  return `${days} ${daysOrDay} and ${paddedHours}:${paddedMinutes}:${paddedSeconds}`;
 }
 
 export function displaySecondsAsMinutes(amount: number): { minutes: number; seconds: number } {

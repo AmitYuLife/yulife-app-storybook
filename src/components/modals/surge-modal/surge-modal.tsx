@@ -2,8 +2,7 @@ import React, { memo } from "react";
 import { StyleSheet, View } from "react-native";
 import { TextTemplate } from "@atoms";
 import { Colours, Style } from "@styles";
-import { minifiedFromNow } from "@utils";
-import moment from "moment";
+import { getTimeRemaining } from "@utils";
 
 interface IProps {
   title: string;
@@ -24,7 +23,7 @@ const SurgeModal = ({ title, description, multiplier, endDateTime }: IProps) => 
           if (text === "multiplier" || text === "endDateTime") {
             return (
               <TextTemplate key={index} type="b2b" color={Colours.products.fib.epic}>
-                {text === "multiplier" ? multiplier : minifiedFromNow(moment(endDateTime))}
+                {text === "multiplier" ? multiplier : getTimeRemaining(endDateTime, "short")}
               </TextTemplate>
             );
           }
