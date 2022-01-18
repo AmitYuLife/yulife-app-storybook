@@ -96,7 +96,20 @@ export const FullScreenLottieSwiper = memo((props: Props) => {
     return { length: Style.DEVICE_WIDTH, offset: Style.DEVICE_WIDTH * index, index };
   }, []);
 
-  const renderItem = useCallback(({ item }) => <ContentItemLottie {...item} />, []);
+  const renderItem = useCallback(
+    ({ item, index }: { item: GqlLottie; index: number }) => (
+      <ContentItemLottie
+        autoPlay={false}
+        id={item.id}
+        loop={item.loop}
+        styles={item.styles}
+        onAnimationEnd={item.onAnimationEnd}
+        uri={item.uri}
+        shouldPlay={index === activeIndex}
+      />
+    ),
+    [activeIndex]
+  );
 
   return (
     <View style={[styles.screen, { backgroundColor: props.theme.primaryColor }]}>
@@ -108,8 +121,6 @@ export const FullScreenLottieSwiper = memo((props: Props) => {
           renderItem={renderItem}
           data={items}
           scrollEnabled={false}
-          windowSize={1}
-          initialNumToRender={1}
         />
         <ProgressItems
           userInteractionToggler={userInteractionToggler}

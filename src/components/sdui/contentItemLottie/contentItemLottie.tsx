@@ -1,21 +1,24 @@
-import React, { memo, useState, useEffect, useRef, useCallback } from "react";
+import React, { memo, useState, useEffect, useRef, useCallback, MutableRefObject } from "react";
 import LottieView from "lottie-react-native";
 import { ContentItemLottie as GqlLottie } from "@graphql/_core/schema";
 import { mapServerStyles } from "../_utils/mapServerStyles";
 import { useDispatch } from "react-redux";
-import { StyleSheet } from "react-native";
+import { Animated, StyleSheet } from "react-native";
 import { Style } from "@styles";
 
-type Props = GqlLottie;
+type Props = GqlLottie & {
+  shouldPlay?: boolean;
+};
 
 export const ContentItemLottie = memo((props: Props) => {
   const [shouldLoop, setShouldLoop] = useState(false);
   const lottieRef = useRef<LottieView>(null);
   const isUnmounted = useRef(false);
   const [lottieAnimation, setLottieAnimation] = useState(null);
-  const { autoPlay, loop, uri, styles: serverStyles, onAnimationEnd } = props;
-
+  const { autoPlay, loop, uri, styles: serverStyles, onAnimationEnd, shouldPlay } = props;
   const dispatch = useDispatch();
+  const { opacity } = useFadeIn();
+  usePlayControl(lottieRef, shouldPlay);
 
   useEffect(() => {
     if (uri && !lottieAnimation) {
@@ -44,7 +47,7 @@ export const ContentItemLottie = memo((props: Props) => {
   const handleAnimationEnd = useCallback(() => {
     if (loop && !shouldLoop) {
       setShouldLoop(true);
-      lottieRef?.current?.play();
+      lottieRef.current?.play();
     }
 
     if (onAnimationEnd) {
@@ -57,14 +60,16 @@ export const ContentItemLottie = memo((props: Props) => {
   }
 
   return (
-    <LottieView
-      ref={lottieRef}
-      style={[styles.wrapper, mapServerStyles(serverStyles)]}
-      source={lottieAnimation}
-      autoPlay={autoPlay}
-      loop={shouldLoop}
-      onAnimationFinish={handleAnimationEnd}
-    />
+    <Animated.View style={[styles.wrapper, { opacity }]}>
+      <LottieView
+        ref={lottieRef}
+        style={[styles.wrapper, mapServerStyles(serverStyles)]}
+        source={lottieAnimation}
+        autoPlay={autoPlay}
+        loop={shouldLoop}
+        onAnimationFinish={handleAnimationEnd}
+      />
+    </Animated.View>
   );
 });
 
@@ -74,3 +79,61 @@ const styles = StyleSheet.create({
     width: Style.DEVICE_WIDTH,
   },
 });
+
+/**
+ * avoids flashing assets before playing
+ */
+const useFadeIn = () => {
+  const setVisibleTimeout = useRef(null);
+  const opacity = useRef(new Animated.Value(0)).current;
+  useEffect(() => {
+    setVisibleTimeout.current = Animated.timing(opacity, { toValue: 1, useNativeDriver: true }).start();
+
+    return () => {
+      clearTimeout(setVisibleTimeout.current);
+      setVisibleTimeout.current = null;
+    };
+  }, []);
+
+  return { opacity };
+};
+
+const usePlayControl = (lottieRef: MutableRefObject<LottieView>, shouldPlay: boolean) => {
+  const shouldPlayPrevious = useRef(false);
+  const firstTabPlayTimeout = useRef(null);
+
+  /**
+   * handles autoplay of first tab
+   */
+  useEffect(() => {
+    if (shouldPlay) {
+      firstTabPlayTimeout.current = setTimeout(() => {
+        lottieRef.current?.play();
+      }, 1000);
+
+      return () => {
+        clearTimeout(firstTabPlayTimeout.current);
+        firstTabPlayTimeout.current = null;
+      };
+    }
+  }, []);
+
+  /**
+   * handles autoplay of non-first tabs
+   */
+  useEffect(() => {
+    if (!shouldPlayPrevious.current && lottieRef.current) {
+      if (shouldPlay) {
+        lottieRef.current.play();
+      }
+    }
+
+    if (shouldPlayPrevious.current && lottieRef.current) {
+      if (!shouldPlay) {
+        lottieRef.current.pause();
+      }
+    }
+
+    shouldPlayPrevious.current = shouldPlay;
+  }, [shouldPlay]);
+};
