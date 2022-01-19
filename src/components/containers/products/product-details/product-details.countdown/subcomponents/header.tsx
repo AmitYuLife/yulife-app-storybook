@@ -20,7 +20,7 @@ export const Header = memo(({ refetchQuery, secondsUntilStartDate }: Props) => (
       color={Colours.neutral.white}
       textAlign="center"
       type="h3"
-    >{`Good news!\nYour cover starts soon`}</TextTemplate>
+    >{`Great news!\nYour application is being processed`}</TextTemplate>
     <Countdown countdownEndCallback={refetchQuery} secondsUntilStartDate={secondsUntilStartDate} />
   </View>
 ));

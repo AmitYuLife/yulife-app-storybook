@@ -6,7 +6,8 @@ import { Style } from "@styles";
 export const Disclaimer = memo(() => (
   <View style={styles.disclaimerWrapper}>
     <TextTemplate textAlign="center" type="l3">
-      *subject to sanctions checks and succesfull first payment, we will notify you of any changes to your policy status
+      *Subject to confirmation from Bupa and successful first payment, we will notify you of any changes to your
+      application status.
     </TextTemplate>
   </View>
 ));

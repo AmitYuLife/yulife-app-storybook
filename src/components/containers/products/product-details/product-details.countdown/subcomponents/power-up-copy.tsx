@@ -7,7 +7,7 @@ export const PowerUpCopy = memo(() => {
   return (
     <View style={styles.copyWrapper}>
       <TextTemplate textAlign="center" type="b2">
-        Your exclusive dental YuCoin power up has been unlocked!
+        Your exclusive perks including your YuCoin Power is now active and have unlocked your new gloves!
       </TextTemplate>
     </View>
   );

@@ -25,7 +25,7 @@ const _ProductDetailsCountdown = ({ secondsUntilStartDate, policyStartDate, refe
   }, []);
 
   const startDateDisplay = useMemo(() => {
-    return moment(policyStartDate).format("L");
+    return moment(policyStartDate).format("DD/MM/YYYY");
   }, [policyStartDate]);
 
   return (
@@ -37,12 +37,12 @@ const _ProductDetailsCountdown = ({ secondsUntilStartDate, policyStartDate, refe
           <View style={styles.scrollTopPad} />
           <View style={styles.contentWrapper}>
             <TextTemplate textAlign="center" type="b1b">
-              Your policy goes live on*:
+              If approved, your policy goes live on*:
             </TextTemplate>
             <TextTemplate textAlign="center" type="h3">
               {startDateDisplay}
             </TextTemplate>
-            <NotCoveredWarning startDate={startDateDisplay} />
+            <NotCoveredWarning />
             <PowerUpCopy />
             <WrappedYuCoinPower coins={5} />
             <PackageDetailsButton />
