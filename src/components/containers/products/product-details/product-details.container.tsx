@@ -35,7 +35,7 @@ const ProductDetailsContainer = ({ productId = "" }: Props) => {
     }
 
     const { policyStartDate } = data.getProductDetails;
-    moment(policyStartDate).isAfter(moment());
+    return moment(policyStartDate).isAfter(moment());
   }, [data?.getProductDetails]);
 
   useEffect(queryGetProductDetails, []);

@@ -3,14 +3,10 @@ import { StyleSheet, View, ViewStyle } from "react-native";
 import { Style } from "@styles";
 import { InfoPanel } from "@components/molecules";
 
-interface Props {
-  startDate: string;
-}
-
-export const NotCoveredWarning = memo(({ startDate }: Props) => (
+export const NotCoveredWarning = memo(() => (
   <View style={styles.wrapper}>
     <InfoPanel
-      markdown={`You are not covered yet, and cannot claim for any treatments carried out before your cover starts on ${startDate}`}
+      markdown={`You are not covered, and cannot claim for any treatments carried out before your cover starts`}
     />
   </View>
 ));
