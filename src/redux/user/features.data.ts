@@ -49,6 +49,5 @@ export const features = [
   "showReferrals",
   "showBuffs",
   "refactoredChallengeApi",
-  "showTodayEarningsScreen",
   "passiveCyclingEnabled",
 ];
