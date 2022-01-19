@@ -9,6 +9,7 @@ import {
   QueryFitKitByTypesResponse,
 } from "@services/fitkit/fitkit.helpers";
 import { IUserStore } from "@redux/user/user.reducer";
+import { PermissionsAndroid } from "react-native";
 
 export default function* getPassiveSinceLastUpdateAndroid(
   stepsLastUpdate: string,
@@ -24,11 +25,14 @@ export default function* getPassiveSinceLastUpdateAndroid(
       ? moment(meditationLastUpdate).startOf("day")
       : moment(stepsLastUpdate).startOf("day");
 
+  const fineLocationGranted: boolean = yield call(PermissionsAndroid.check, "android.permission.ACCESS_FINE_LOCATION");
+  const queryCycling = shouldQueryCycling && fineLocationGranted;
+
   const [stepsAndMeditation, cycling]: QueryFitKitByTypesResponse[] = yield all([
     stepsLastUpdate || meditationLastUpdate
       ? call(queryAggregatedDataByDay, stepsAndMeditationLastUpdateStartTime, endOfYesterday, userFeatures)
       : returnEmptyResult(),
-    shouldQueryCycling
+    queryCycling
       ? call(
           queryFitKitByTypes,
           moment(cyclingLastUpdate).startOf("day").format(),
@@ -39,7 +43,7 @@ export default function* getPassiveSinceLastUpdateAndroid(
       : returnEmptyResult(),
   ]) as AllEffect<CallEffect<QueryFitKitByTypesResponse>>;
 
-  const aggregatedCycling: ChallengesPayload[] = shouldQueryCycling
+  const aggregatedCycling: ChallengesPayload[] = queryCycling
     ? processResult(cycling, "Biking", moment(cyclingLastUpdate).startOf("day"), endOfYesterday)
     : [];
 
