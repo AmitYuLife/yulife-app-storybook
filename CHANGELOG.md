@@ -7,6 +7,76 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.18.0] - 2022-01-19
+
+### Features
+
+- Feature XSE-578: Use new date picker SDUI fields
+- Feature: New large image for personal product intro
+- Feature XSE-538: Dental Holding screen UI
+- Feature XSE-528: Select package accordions
+- Feature XSE-526: Footer fade
+- Feature: Full screen Lottie swiper
+
+### Bugfixes
+
+- Bugfix: Fix Lottie swiper aspect ratio and play control
+- Hotfix: Dental copy updates and bugfix
+- Bugfix XSE-636: Fix intermittent ContentItemLottie bug
+- Bugfix: Change how surge time is displayed on surge modal
+- Bugfix TF-214: Gray notification icon on Android
+- Bugfix XSE-614: Remove product details container fetch cache
+- Bugfix: Fix lottie swiper loading all slides on mount
+- Bugfix: Set initial world with YumojiSwipePart
+- Bugfix GS-195: Close button position on Samsung s20
+- Bugfix: Update Today Earning Screen when GoogleFit is authorised
+
+### Tasks
+
+- Task: Health app property for not authorised users
+- Task XSE-619: Update active box-option style
+- Task GS-193: Create Surge Icon
+- Task XSE-616: Add ContentItemPad pointerEvents
+- Task GS-113: Cycling and aggregated meditation
+- Task GS-202: Dont show buff on chest/streak collection
+- Task XSE-591: Update InfoBanner
+- Task XSE: Update InfoCard and SwipePartPicker
+- Task: Generic Detached SDUI step
+- Task XSE-527: Add CoverType-wrapped SelectedPackageCard
+- Task XSE-590: Update ProductStepSelectedPackageCard
+- Task XSE-572: Set flex to 1 on faq item text to prevent overlap with right arrow
+- Task: Update PackageCard UI
+- Task DEVOP-281: Run tests on gitlab CI
+- Task GS-184: Add miles / km swapping to settings
+- Task DEVOP-360: Split build-version for log events
+- Task GS-176 GS-178: Active challenge refactor
+- Task XSE-541: New avatar part picker
+- Task XSE-529: Create CollapsingHeader cover options picker
+- Task: Add passiveCyclingEnabled toggle on Today Earnings screen
+- Task GS-197: Survey event property data change
+
+### Chores
+
+- Chore: Today's earning toggle purge
+- Chore: Update Android Java instructions
+- Chore: Add cs_product to FAQ mixpanel events
+- Chore: Add Android hardware profiles of most used devices by our users
+- Chore: Prettify generated files
+- Chore: update readme with additional information
+- Chore: Update README
+
+### Improvements
+
+- Improvement: Android adaptive launcher icon
+
+### Extra
+
+- Fix: Cycling permission flow
+- detox:fix the fail assertion of pli and extended overnight
+- Hotfix: Product info provider image location
+- GS-194 Surge Modal
+- detox:extended small text assertion change the test to fix it
+
 ## [3.17.0] - 2021-12-10
 
 ### Features
