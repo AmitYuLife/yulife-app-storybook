@@ -20,7 +20,7 @@ Follow the [React Native Installation Instructions](https://reactnative.dev/docs
 - react-native-cli
 - XCode (v9.4 or newer)
 - XCode Command Line Tools
-- Java Development Kit (JDK 8 or newer)
+- Java Development Kit (JDK 8)
 - Android Studio
 - Android SDK
 
@@ -132,6 +132,10 @@ The app needs to be signed before it can be installed on a physical device.
 ### Android
 
 ### Building from command line (Android)
+Ensure that the Java SDK (JDK) home path is set as an environment variable called `JAVA_HOME` for the shell used to start the Android build process. You can find the path out by running:
+```sh
+/usr/libexec/java_home -V | grep jdk
+```
 
 Build and run the app in the default simulator by running the following command:
 
