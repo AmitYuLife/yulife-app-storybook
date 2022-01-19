@@ -73,10 +73,14 @@ export const ContentItemLottie = memo((props: Props) => {
   );
 });
 
+const LOTTIE_FILES_ASPECT_RATIO = 1.78;
+
 const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
     width: Style.DEVICE_WIDTH,
+    maxHeight: Style.DEVICE_WIDTH * LOTTIE_FILES_ASPECT_RATIO,
+    alignSelf: "center",
   },
 });
 
@@ -84,15 +88,15 @@ const styles = StyleSheet.create({
  * avoids flashing assets before playing
  */
 const useFadeIn = () => {
-  const setVisibleTimeout = useRef(null);
   const opacity = useRef(new Animated.Value(0)).current;
   useEffect(() => {
-    setVisibleTimeout.current = Animated.timing(opacity, { toValue: 1, useNativeDriver: true }).start();
+    Animated.timing(opacity, {
+      toValue: 1,
+      useNativeDriver: true,
+      delay: 1000,
+    }).start();
 
-    return () => {
-      clearTimeout(setVisibleTimeout.current);
-      setVisibleTimeout.current = null;
-    };
+    return opacity.stopAnimation;
   }, []);
 
   return { opacity };
@@ -124,13 +128,8 @@ const usePlayControl = (lottieRef: MutableRefObject<LottieView>, shouldPlay: boo
   useEffect(() => {
     if (!shouldPlayPrevious.current && lottieRef.current) {
       if (shouldPlay) {
+        lottieRef.current.reset();
         lottieRef.current.play();
-      }
-    }
-
-    if (shouldPlayPrevious.current && lottieRef.current) {
-      if (!shouldPlay) {
-        lottieRef.current.pause();
       }
     }
 
