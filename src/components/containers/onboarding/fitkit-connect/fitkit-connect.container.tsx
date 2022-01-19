@@ -1,6 +1,6 @@
 import React, { useCallback } from "react";
 import Config from "react-native-config";
-import { connect } from "react-redux";
+import { connect, useSelector } from "react-redux";
 import { IReduxState } from "@redux/_core/reducers";
 import { getCopy } from "@redux/copy/copy.selectors";
 import { fitKitConsentAuthorised } from "@redux/user/user.actions";
@@ -10,6 +10,8 @@ import { handleLinkPress } from "@services/app-link";
 import Storage from "@services/storage";
 import { useFitKit } from "@services/fitkit/fitkit.hooks";
 import { FitKitHealthTrackingPlatform } from "@services/fitkit/fitkit.service";
+import { getUserFeatures } from "@redux/user/user.selectors";
+import { requestAndroidSystemPermission } from "@services/fitkit/fitkit.system-permissions";
 
 // TODO find where these props actually come from in RNN types
 interface IProps {
@@ -43,12 +45,18 @@ const FitKitConnectContainer: React.FC<Props> = (props) => {
   } = props;
   const [isConnecting, setIsConnecting] = React.useState(false);
   const { authorise, authorised, loading, available } = useFitKit();
+  const features = useSelector(getUserFeatures);
 
   const handleConnect = useCallback(
     async (platform: FitKitHealthTrackingPlatform) => {
       setIsConnecting(true);
       fitKitConsentAuthorised();
       await Storage.fitkit.setFitkitPermission(Storage.fitkit.REQUESTED);
+
+      if (features.passiveCyclingEnabled && platform === "GoogleFit") {
+        await requestAndroidSystemPermission("android.permission.ACCESS_FINE_LOCATION");
+      }
+
       dailyStepScreenHandleAuthorised
         ? await dailyStepScreenHandleAuthorised(platform)
         : await authorise({ ...FitKitPermissions, platform });

@@ -13,6 +13,8 @@ import { Navigation } from "react-native-navigation";
 import { isSamsung } from "@utils";
 import { Platform } from "react-native";
 import { FitKitHealthTrackingPlatform } from "@services/fitkit/fitkit.service";
+import { requestAndroidSystemPermission } from "@services/fitkit/fitkit.system-permissions";
+import { getUserFeatures } from "@redux/user/user.selectors";
 
 const _DailyStepsContent = () => {
   const { authorise, loading: fitkitLoading, authorised, available } = useContext(FitkitContext);
@@ -20,12 +22,13 @@ const _DailyStepsContent = () => {
     authorise,
   });
   const dailyStepsIsFetching = useSelector(getDailyStepsIsFetching);
+  const features = useSelector(getUserFeatures);
 
   const isLoading = fitkitLoading || dailyStepsIsFetching;
   const unavailable = !isLoading && !available;
   const unauthorised = !isLoading && available && !authorised;
 
-  const onPress = useCallback(() => {
+  const onPress = useCallback(async () => {
     if (isSamsung()) {
       const route = ROUTES.onboardingFitKitConnect;
       Navigation.push(ROUTES.dailySteps, {
@@ -45,12 +48,17 @@ const _DailyStepsContent = () => {
         },
       });
     } else {
-      handleAuthoriseFitkit(
-        Platform.select({
-          ios: "AppleHealth",
-          android: "GoogleFit",
-        })
-      );
+      if (Platform.OS === "android") {
+        if (features.passiveCyclingEnabled) {
+          await requestAndroidSystemPermission("android.permission.ACCESS_FINE_LOCATION", () =>
+            handleAuthoriseFitkit("GoogleFit")
+          );
+        } else {
+          handleAuthoriseFitkit("GoogleFit");
+        }
+      } else {
+        handleAuthoriseFitkit("AppleHealth");
+      }
     }
   }, [handleAuthoriseFitkit, isSamsung]);
 

@@ -14,6 +14,7 @@ import upsertPassiveChallenges from "@graphql/challenges/upsertPassiveChallenges
 import { updateDailyMeditation } from "@redux/daily-meditation/daily-meditation.actions";
 import { updateDailyCycling } from "@redux/daily-cycling/daily-cycling.actions";
 import { refreshTotalCoins } from "@redux/coins/coins.actions";
+import { PermissionsAndroid, Platform } from "react-native";
 
 export default function* getDailyPassiveActivity({ payload: appState, type }: { payload: string; type: string }) {
   if (type === UPDATE_APP_STATE && appState !== "active") {
@@ -36,7 +37,13 @@ export default function* getDailyPassiveActivity({ payload: appState, type }: { 
       [FitKitType.MindfulSession],
       userFeatures
     );
-    const cycling: QueryFitKitByTypesResponse = !userFeatures.passiveCyclingEnabled
+
+    let passiveCyclingEnabled = userFeatures.passiveCyclingEnabled;
+    if (passiveCyclingEnabled && Platform.OS === "android") {
+      passiveCyclingEnabled = yield call(PermissionsAndroid.check, "android.permission.ACCESS_FINE_LOCATION");
+    }
+
+    const cycling: QueryFitKitByTypesResponse = !passiveCyclingEnabled
       ? null
       : yield call(queryFitKitByTypes, startTime.format(), endTime.format(), [FitKitType.Cycling], userFeatures);
 
@@ -44,7 +51,7 @@ export default function* getDailyPassiveActivity({ payload: appState, type }: { 
       return;
     }
 
-    const cyclingResults: ChallengesPayload[] = !userFeatures.passiveCyclingEnabled
+    const cyclingResults: ChallengesPayload[] = !passiveCyclingEnabled
       ? []
       : processResult(cycling, startTime, endTime, "Biking");
 

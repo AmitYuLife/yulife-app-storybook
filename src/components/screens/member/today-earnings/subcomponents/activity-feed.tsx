@@ -24,6 +24,8 @@ import FitKitPermissions from "@services/fitkit/fitkit.permissions";
 import { ACTIVITY_FEED } from "@ids";
 import { useSelector } from "react-redux";
 import { getHasNotification } from "@redux/levels/levels.selectors";
+import { requestAndroidSystemPermission } from "@services/fitkit/fitkit.system-permissions";
+import { getUserFeatures } from "@redux/user/user.selectors";
 
 interface IProps {
   id: string;
@@ -52,6 +54,7 @@ const ActivityFeed = ({
   const questionMarkRef = useRef<View>();
   const { authorise } = useFitKit();
   const hasNotification = useSelector(getHasNotification);
+  const features = useSelector(getUserFeatures);
 
   const onGoogleFitConnect = useCallback(async () => {
     const { title, message: alertMessage, dismissLabel, downloadLabel, confirmLabel } = androidAlertCopy;
@@ -66,6 +69,10 @@ const ActivityFeed = ({
       {
         text: confirmLabel,
         onPress: async () => {
+          if (features.passiveCyclingEnabled) {
+            await requestAndroidSystemPermission("android.permission.ACCESS_FINE_LOCATION");
+          }
+
           const isAuthorise = await authorise({ ...FitKitPermissions, platform: "GoogleFit" });
           setGoogleFitIsAuthorised(isAuthorise);
           Navigation.dismissModal(MODALS.switchToGoogleFit);
