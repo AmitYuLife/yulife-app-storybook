@@ -66,7 +66,7 @@ export function useFitKit() {
 
   const setMixpanelProperties = async (isAuthorised: boolean) => {
     if (!isAuthorised) {
-      Logger.setUserProperties({ health_app: [] });
+      Logger.setUserProperties({ health_app: ["not_set"] });
       return;
     }
 
