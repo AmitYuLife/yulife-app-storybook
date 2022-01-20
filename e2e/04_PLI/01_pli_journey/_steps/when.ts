@@ -174,6 +174,7 @@ export const addContactDetails = async () => {
     await typeViaID(CONTENT_ITEM_INPUT("contactDetailsAddress1"), "Harry's House\n")()
     await typeViaID(CONTENT_ITEM_INPUT("contactDetailsTown"), "London\n")()
     await typeViaID(CONTENT_ITEM_INPUT("contactDetailsPostcode"), "HA9 7FN\n")()
+    await scrollUntilIdVisible(PRODUCT_STEP_BODY_SCROLL_VIEW,CONTENT_ITEM_INPUT("contactDetailsPhone"), "down")()
     await typeViaID(CONTENT_ITEM_INPUT("contactDetailsEmail"), `${CUSTOMER_37.data.email}\n`)()
     await typeViaID(CONTENT_ITEM_INPUT("contactDetailsPhone"), "07123456789\n")()
     await tapText("Continue")()
