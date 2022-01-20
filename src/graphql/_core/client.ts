@@ -83,8 +83,19 @@ persistCache({
   storage: AsyncStorage,
 });
 
+const getAppVersion = () => {
+  const version = DeviceInfo.getVersion();
+
+  // means is local
+  if (DETOX_ENABLED || version === "1.0") {
+    return appJson.version;
+  }
+
+  return version;
+};
+
 const defaultHeaders = {
-  app_version: DETOX_ENABLED ? appJson.version : DeviceInfo.getVersion(),
+  app_version: getAppVersion(),
   device_id: DeviceInfo.getDeviceId(),
   apollo_client_name: `react_native_${Platform.OS}`,
 };
