@@ -158,7 +158,9 @@ To run the app locally on a physical device, you need:
 - USB debugging enabled (in Developer Settings),
 - a USB connecting your mobile device to your computer.
 
-Once connected, find your device name by running:
+Set the Android SDK as an environment variable called `ANDROID_HOME`. By default, this is `~/Library/Android/sdk`. This is required by the adb reverse proxy.
+
+Once your device is connected, find your device name by running:
 
 ```sh
 adb devices
