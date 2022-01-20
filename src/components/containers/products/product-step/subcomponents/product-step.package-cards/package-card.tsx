@@ -66,7 +66,7 @@ export const PackageCard = memo((props: Partial<Props>) => {
         <PackageCardHeader width={props.width} coverType={props.coverType} header={props.header} />
         <View style={styles.container}>
           <PressableWithDelay onPress={handlePressYuCoinPower} style={styles.yucoin}>
-            <YuCoinPower coins={props.bonusEarnRate} />
+            <YuCoinPower width={Style.DEVICE_WIDTH - 104} coins={props.bonusEarnRate} />
           </PressableWithDelay>
           <Perks powers={props.powers} />
         </View>
