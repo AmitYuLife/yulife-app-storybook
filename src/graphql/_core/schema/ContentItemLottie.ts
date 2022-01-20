@@ -26,4 +26,5 @@ export interface ContentItemLottie {
   loop: boolean;
   styles: ContentItemLottie_styles[] | null;
   onAnimationEnd: ContentItemLottie_onAnimationEnd | null;
+  aspectRatio: number | null;
 }

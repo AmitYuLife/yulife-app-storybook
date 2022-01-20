@@ -84,6 +84,7 @@ export interface ContentItemFullScreenLottieSwiper_items {
   loop: boolean;
   styles: ContentItemFullScreenLottieSwiper_items_styles[] | null;
   onAnimationEnd: ContentItemFullScreenLottieSwiper_items_onAnimationEnd | null;
+  aspectRatio: number | null;
 }
 
 export interface ContentItemFullScreenLottieSwiper {

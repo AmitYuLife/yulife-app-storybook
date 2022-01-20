@@ -130,12 +130,14 @@ export enum LoginMethod {
 
 export enum MobileOnboardingStepPerformed {
   newYumojiBuilder = "newYumojiBuilder",
+  passiveCycling = "passiveCycling",
   personalLifeIntro = "personalLifeIntro",
   personalProductsCoveaFIBArmour = "personalProductsCoveaFIBArmour",
   personalProductsCoveaFIBIntro = "personalProductsCoveaFIBIntro",
   referralsPopover = "referralsPopover",
   yuScreenChest = "yuScreenChest",
   yuScreenGloves = "yuScreenGloves",
+  yuScreenGlovesPurchased = "yuScreenGlovesPurchased",
 }
 
 export enum OS {
@@ -151,6 +153,7 @@ export enum PassiveChallengeType {
 }
 
 export enum PolicyStatus {
+  ACCEPTED_BY_INSURER = "ACCEPTED_BY_INSURER",
   CLAIM_ADMITTED = "CLAIM_ADMITTED",
   CLAIM_NOTIFIED = "CLAIM_NOTIFIED",
   DEATH = "DEATH",
@@ -158,6 +161,8 @@ export enum PolicyStatus {
   LIVE = "LIVE",
   NOT_LIVE_YET = "NOT_LIVE_YET",
   NOT_TAKEN_UP = "NOT_TAKEN_UP",
+  REJECTED_BY_INSURER = "REJECTED_BY_INSURER",
+  SENT_APPLICATION_TO_INSURER = "SENT_APPLICATION_TO_INSURER",
   TERMINATION = "TERMINATION",
 }
 

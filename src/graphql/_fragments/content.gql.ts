@@ -110,6 +110,7 @@ export const GQL_FRAGMENT_CONTENT_ITEM_LOTTIE = gql`
     onAnimationEnd {
       ...SduiAction
     }
+    aspectRatio
   }
 `;
 

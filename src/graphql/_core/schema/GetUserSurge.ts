@@ -26,6 +26,7 @@ export interface GetUserSurge_getUserSurge_lottie {
   loop: boolean;
   styles: GetUserSurge_getUserSurge_lottie_styles[] | null;
   onAnimationEnd: GetUserSurge_getUserSurge_lottie_onAnimationEnd | null;
+  aspectRatio: number | null;
 }
 
 export interface GetUserSurge_getUserSurge {

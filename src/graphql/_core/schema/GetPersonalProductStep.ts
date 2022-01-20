@@ -209,6 +209,7 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemL
   loop: boolean;
   styles: GetPersonalProductStep_getPersonalProductStep_body_ContentItemLottie_styles[] | null;
   onAnimationEnd: GetPersonalProductStep_getPersonalProductStep_body_ContentItemLottie_onAnimationEnd | null;
+  aspectRatio: number | null;
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemText_styles {
@@ -1854,6 +1855,7 @@ export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_Con
     | GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemFullScreenLottieSwiper_items_styles[]
     | null;
   onAnimationEnd: GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemFullScreenLottieSwiper_items_onAnimationEnd | null;
+  aspectRatio: number | null;
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemFullScreenLottieSwiper {

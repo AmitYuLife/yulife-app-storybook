@@ -3,11 +3,12 @@ import LottieView from "lottie-react-native";
 import { ContentItemLottie as GqlLottie } from "@graphql/_core/schema";
 import { mapServerStyles } from "../_utils/mapServerStyles";
 import { useDispatch } from "react-redux";
-import { Animated, StyleSheet } from "react-native";
+import { Animated, StyleSheet, ViewStyle } from "react-native";
 import { Style } from "@styles";
 
 type Props = GqlLottie & {
   shouldPlay?: boolean;
+  shouldUseFadeIn?: boolean;
 };
 
 export const ContentItemLottie = memo((props: Props) => {
@@ -15,9 +16,9 @@ export const ContentItemLottie = memo((props: Props) => {
   const lottieRef = useRef<LottieView>(null);
   const isUnmounted = useRef(false);
   const [lottieAnimation, setLottieAnimation] = useState(null);
-  const { autoPlay, loop, uri, styles: serverStyles, onAnimationEnd, shouldPlay } = props;
+  const { autoPlay, loop, uri, styles: serverStyles, onAnimationEnd, shouldPlay, shouldUseFadeIn, aspectRatio } = props;
   const dispatch = useDispatch();
-  const { opacity } = useFadeIn();
+  const { opacity } = useFadeIn(shouldUseFadeIn);
   usePlayControl(lottieRef, shouldPlay);
 
   useEffect(() => {
@@ -60,10 +61,16 @@ export const ContentItemLottie = memo((props: Props) => {
   }
 
   return (
-    <Animated.View style={[styles.wrapper, { opacity }]}>
+    <Animated.View
+      style={[
+        styles.wrapper,
+        { opacity, height: Style.DEVICE_WIDTH * (1 / aspectRatio) },
+        mapServerStyles(serverStyles),
+      ]}
+    >
       <LottieView
         ref={lottieRef}
-        style={[styles.wrapper, mapServerStyles(serverStyles)]}
+        style={styles.wrapper}
         source={lottieAnimation}
         autoPlay={autoPlay}
         loop={shouldLoop}
@@ -73,23 +80,24 @@ export const ContentItemLottie = memo((props: Props) => {
   );
 });
 
-const LOTTIE_FILES_ASPECT_RATIO = 1.78;
-
 const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
     width: Style.DEVICE_WIDTH,
-    maxHeight: Style.DEVICE_WIDTH * LOTTIE_FILES_ASPECT_RATIO,
     alignSelf: "center",
-  },
+  } as ViewStyle,
 });
 
 /**
  * avoids flashing assets before playing
  */
-const useFadeIn = () => {
-  const opacity = useRef(new Animated.Value(0)).current;
+const useFadeIn = (shouldUseFadeIn: boolean) => {
+  const opacity = useRef(new Animated.Value(shouldUseFadeIn ? 0 : 1)).current;
   useEffect(() => {
+    if (!shouldUseFadeIn) {
+      return;
+    }
+
     Animated.timing(opacity, {
       toValue: 1,
       useNativeDriver: true,

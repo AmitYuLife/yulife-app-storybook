@@ -106,6 +106,8 @@ export const FullScreenLottieSwiper = memo((props: Props) => {
         onAnimationEnd={item.onAnimationEnd}
         uri={item.uri}
         shouldPlay={index === activeIndex}
+        shouldUseFadeIn={true}
+        aspectRatio={item.aspectRatio}
       />
     ),
     [activeIndex]
