@@ -5,21 +5,28 @@ import {
     BUTTON_TOP_LEFT_BAR,
     LEVEL_CHALLENGE_BUTTON,
     MENU_ITEM,
-    TAB_BUTTON
+    TAB_BUTTON,
 } from "@ids";
 export { sendSteps, authoriseFitkit } from "@socket";
 import { navigation } from "@navigation"
+import { screens } from "@appScreens"
+
 
 export const {
     tapText,
     typeViaID,
     wait,
-    reloadOnly
+    reloadOnly,
+    tapID
 } = navigation.common
 
 export const {
     loginOnly,
 } = navigation.login
+
+export const {
+    tapMenuItem
+} = screens.menu
 
 export const tapOnLogin = async (): Promise<void> => {
     const target = element(by.id(BUTTON_LOGIN));

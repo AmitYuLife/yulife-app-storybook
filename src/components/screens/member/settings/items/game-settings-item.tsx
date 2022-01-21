@@ -4,6 +4,7 @@ import { TextTemplate } from "@atoms";
 import { ArrowRight } from "@atoms/icon/arrow-right";
 import { Colours, Style } from "@styles";
 import { TouchableOpacityWithDelay } from "@components/molecules";
+import { TEXT_TEMPLATE } from "@ids";
 
 interface IProps {
   title: string;
@@ -15,12 +16,16 @@ interface IProps {
 const GameSettingsItem = ({ title, description, measurement, onPress }: IProps) => (
   <View style={styles.wrapper}>
     <View style={styles.container}>
-      <TextTemplate type="b2">{title}</TextTemplate>
-      <TextTemplate type="l2">{description}</TextTemplate>
+      <TextTemplate type="b2" testID={TEXT_TEMPLATE(title)}>
+        {title}
+      </TextTemplate>
+      <TextTemplate type="l2" testID={TEXT_TEMPLATE(description)}>
+        {description}
+      </TextTemplate>
     </View>
     <TouchableOpacityWithDelay onPress={onPress} style={styles.measurement}>
       <View style={{ marginRight: Style.adjust(10) }}>
-        <TextTemplate type="b2" color={Colours.primary.p600}>
+        <TextTemplate type="b2" color={Colours.primary.p600} testID={TEXT_TEMPLATE(measurement)}>
           {measurement}
         </TextTemplate>
       </View>

@@ -19,13 +19,22 @@ import {
 } from "@ids";
 import { expectDoesNotExistViaText, expectIsVisibleViaID, expectIsVisibleViaText } from "@navigation";
 import { navigation } from "@navigation"
+import { screens } from "@appScreens"
+
 
 export const {
     textVisible,
     textNotVisible,
     idVisible,
-    wait
+    wait,
+    multipleTextVisible,
+    idNotVisible
 } = navigation.common
+
+export const {
+    onDailySteps,
+    onTodaysYucoin
+} = screens.dailySteps
 
 export const emailUnchanged = async (): Promise<void> => {
     const target = element(by.id(INPUT_LOGIN_EMAIL));
@@ -168,3 +177,7 @@ export const onPasswordHelp = async () => {
     await expect(element(by.id(INPUT_RESET_PASSWORD))).toBeVisible()
     await expect(element(by.text("need help?"))).toBeVisible()
 }
+
+export const cyclingMeasured = (cycling: string) => async (): Promise<void> => {
+    await expectIsVisibleViaText(`${cycling} / 6.0 mi`);
+};
