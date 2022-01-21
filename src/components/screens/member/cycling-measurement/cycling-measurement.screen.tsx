@@ -1,7 +1,7 @@
 import { Radio, TextTemplate } from "@atoms";
 import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
 import { SettingsHeader, TouchableOpacityWithDelay } from "@components/molecules";
-import { GAME_SETTINGS_SCREEN } from "@ids";
+import { GAME_SETTINGS_SCREEN, TEXT_TEMPLATE, SETTINGS_NAME } from "@ids";
 import { Style } from "@styles";
 import React, { memo } from "react";
 import { StyleSheet, View } from "react-native";
@@ -42,10 +42,15 @@ const CyclingMeasurementScreen = ({
         {OPTIONS.map((option) => (
           <View key={option.title} style={styles.option}>
             <View>
-              <TextTemplate type="b2">{option.title}</TextTemplate>
-              <TextTemplate type="l2">{option.description}</TextTemplate>
+              <TextTemplate type="b2" testID={TEXT_TEMPLATE(option.title)}>
+                {option.title}
+              </TextTemplate>
+              <TextTemplate type="l2" testID={TEXT_TEMPLATE(option.description)}>
+                {option.description}
+              </TextTemplate>
             </View>
             <TouchableOpacityWithDelay
+              testID={SETTINGS_NAME(option.cyclingMeasurement)}
               onPress={() => onRadioPress(option.cyclingMeasurement)}
               style={styles.radioWrapper}
             >

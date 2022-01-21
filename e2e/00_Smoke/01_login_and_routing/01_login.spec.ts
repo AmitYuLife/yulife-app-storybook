@@ -4,8 +4,8 @@ import * as given from "./_steps/given";
 import * as then from "./_steps/then";
 import * as when from "./_steps/when";
 import * as scenario from "./_steps/scenario";
-import { INPUT_LOGIN_EMAIL, INPUT_RESET_PASSWORD, STEPS_COUNT } from "@ids";
-import { CUSTOMER_4, AUTH_4, CUSTOMER_ARCHIVED, AUTH_ARCHIVED } from "@data";
+import { INPUT_LOGIN_EMAIL, INPUT_RESET_PASSWORD, STEPS_COUNT, CYCLING_COUNT, MINDFUL_COUNT, YUCOIN, BACK_BUTTON, MENU_ICON, SETTINGS_SCREEN, TEXT_TEMPLATE, GAME_SETTINGS_SCREEN, SETTINGS_NAME, BUTTON_CLOSE_HEADER, ACTIVITY_FEED, YUCOIN_POWER, BUTTON_CLOSE, YUCOIN_POWER_INFO } from "@ids";
+import { CUSTOMER_2,CUSTOMER_4, AUTH_2, AUTH_4, CUSTOMER_ARCHIVED, AUTH_ARCHIVED } from "@data";
 
 Feature("As a user I can get past the login screen", async () => {
 
@@ -82,11 +82,14 @@ Feature("As a user I can get past the login screen", async () => {
         Given("I have authorised fitkit and done 10 steps today", given.authoriseFitkit(), async () => {
             Given("I login and go to the daily steps screen", given.loginToDailySteps, async () => {
                 When("I have already seen the onboarding screens", given.seenOnboardingScreens, async () => {
+                    Then("I should Not see any steps done today", then.idNotVisible(STEPS_COUNT(20)));
                     When("I have done 20 steps", given.sendSteps(20), async () => {
                         Then("I should see 20 steps", then.idVisible(STEPS_COUNT(20)));
                     })
                     When("I have done 60 steps", given.sendSteps(60), async () => {
                         Then("I should see 60 steps", then.idVisible(STEPS_COUNT(60)));
+                        Then("I should Not see km done today", then.idNotVisible(CYCLING_COUNT("km")));
+                        Then("I should Not see min mindful done today", then.idNotVisible(MINDFUL_COUNT("min")));
                     })
                 })
             });
@@ -137,4 +140,64 @@ Feature("As a user I can get past the login screen", async () => {
             Then("I should see copy saying I can't use the app", then.textVisible("You are not able to use this app at the moment"))
         })
     })
+
+    Scenario("I can login with correct login details and see the correct data for every passive/active activity that a user has engaged with", scenario.start, async () => {
+        Given("I have authorised fitkit and done 10 steps today", given.authoriseFitkit(), async () => {
+            Given("I login and go to the daily steps screen", given.logInAndGoToTab("yucoin", CUSTOMER_2, AUTH_2), async () => {
+                When("I have already seen the onboarding screens", given.seenOnboardingScreens, async () => {
+                    When("I have done 20 steps", given.sendSteps(20), async () => {
+                        Then("I should see 20 steps", then.idVisible(STEPS_COUNT(20)));
+                    })
+                    When("I have done  11.3 km cycling and 13 min mindfulness", given.triggerAppUpdateState, async () => {
+                        Then("I should see 11.3 km done today", then.idVisible(CYCLING_COUNT("11.3 km")));
+                        Then("I should see 13 min mindful done today", then.idVisible(MINDFUL_COUNT("13 min")));
+                        Then("I should see the amount of yucoin I earned today", then.textVisible("160 YuCoin today"))
+
+                    })
+                    When("I tap on YuCoin coin", when.tapID(YUCOIN), async () => {
+                        Then("I should see correct data 20 steps, 11.3 km, 13 min mindful", then.onTodaysYucoin(20, 11.3, 13))
+                    })
+                    When("I tap the earn rate", when.tapID(YUCOIN_POWER_INFO), async () => {
+                        Then("I should see 1.6 km cycling", then.textVisible("1.6 km cycling"))
+                    })
+                    When("I tap on YuCoin coin", when.tapID(BUTTON_CLOSE), async () => {
+                        When("I close this screen", when.tapID(BACK_BUTTON), async () => {
+                            Then("I should see the daily steps screen", then.onDailySteps())
+                        })
+                    })
+                    When("I tap the menu icon in the top left", when.tapID(MENU_ICON, 1500), async () => {
+                        When("I tap settings", when.tapMenuItem("Settings"), async () => {
+                            Then("I should be on the settings tab", then.idVisible(SETTINGS_SCREEN, 2500))
+                            Then("I should see Measurment cycling title", then.idVisible(TEXT_TEMPLATE("Measurement (Cycling)")))
+                            Then("I should see Measurment cycling description", then.idVisible(TEXT_TEMPLATE("Change between the imperial (miles) and metric (kilometers) system.")))
+                            Then("I should see Measurment method used", then.idVisible(TEXT_TEMPLATE("km")))
+                        })
+                    })
+                    When("I tap the km measurement", when.tapID(TEXT_TEMPLATE("km")), async () => {
+                        Then("I should see GAME_SETTINGS_SCREEN", then.idVisible(GAME_SETTINGS_SCREEN))
+                        Then("I should see correct title for Miles", then.idVisible(TEXT_TEMPLATE("Imperial system")))
+                        Then("I should see correct description for Miles", then.idVisible(TEXT_TEMPLATE("Distance will be shown in miles ”mi”")))
+                        Then("I should see correct title for Metrics", then.idVisible(TEXT_TEMPLATE("Metric system")))
+                        Then("I should see correct description for Metrics", then.idVisible(TEXT_TEMPLATE("Distance will be shown in kilometers ”km”")))
+                        When("I select miles as measurment", when.tapID(SETTINGS_NAME("mi")), async () => {
+                            When("I go back", when.tapID(BUTTON_CLOSE_HEADER("Settings")), async () => {
+                                Then("I should see 7.0 mi done today", then.idVisible(CYCLING_COUNT("7.0 mi")));
+                            })
+                        })
+                    })
+                    When("I tap on YuCoin coin", when.tapID(YUCOIN), async () => {
+                        Then("I should see correct data 7.0 mi on todays earnings", then.cyclingMeasured("7.0"))
+                    })
+                    When("I tap the earn rate", when.tapID(YUCOIN_POWER_INFO), async () => {
+                        Then("I should see 1.0 mi cycling", then.textVisible("1.0 mi cycling"))
+                    })
+                    When("I tap on YuCoin coin", when.tapID(BUTTON_CLOSE), async () => {
+                        When("I tap on I for activity feed info", when.tapID(ACTIVITY_FEED), async () => {
+                            Then("I should see 20 YuCoin for 1.0 mi cycling", then.textVisible("20 YuCoin for 1.0 mi cycling"))
+                        })
+                    })
+                })
+            });
+        });
+    });
 })

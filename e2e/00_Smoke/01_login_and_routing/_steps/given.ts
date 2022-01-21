@@ -8,6 +8,7 @@ import { AUTH_1, CUSTOMER_1, CUSTOMER_4 } from "@data";
 
 export const {
     loginOnly,
+    logInAndGoToTab
 } = navigation.login
 
 export const enterInvalidCredentials = async (): Promise<void> => {
@@ -72,4 +73,8 @@ export const enterPasswordIncorrectly = (attempts: number) => async () => {
         await passwordField.replaceText(`p_w_${i}`);
         await loginButton.tap();
     }
+}
+
+export const triggerAppUpdateState = async (): Promise<void> => {
+    await sendReduxEvent({ type: "UPDATE_APP_STATE", payload: "active" });
 }
