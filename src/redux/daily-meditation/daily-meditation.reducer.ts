@@ -1,12 +1,12 @@
 import moment from "moment";
 import { REHYDRATE } from "redux-persist";
-import { GetCurrentUser, LoginUser, UpsertPassiveChallenge } from "@graphql/_core/schema";
-import { GET_USER_SUCCESS, LOGIN_USER_SUCCESS, LOGOUT_SUCCESS } from "../user/user.actions";
 import {
-  MEDITATION_SINCE_LAST_UPDATE_SUCCESS,
-  UPDATE_DAILY_MEDITATION_EMPTY_RESULT,
-  UPDATE_DAILY_MEDITATION_SUCCESS,
-} from "./daily-meditation.actions";
+  GetCurrentUser,
+  LoginUser,
+  UpsertPassiveChallenges_upsertPassiveChallenges_challenges as Challenge,
+} from "@graphql/_core/schema";
+import { GET_USER_SUCCESS, LOGIN_USER_SUCCESS, LOGOUT_SUCCESS } from "../user/user.actions";
+import { UPDATE_DAILY_MEDITATION_EMPTY_RESULT, UPDATE_DAILY_MEDITATION_SUCCESS } from "./daily-meditation.actions";
 import { PassiveMeditationMilestones, ExchangeRateMeditation as ExchangeRate } from "./daily-meditation.selectors";
 import { SyncAction } from "@redux/_core/types";
 export interface IDailyMeditationStore {
@@ -14,17 +14,6 @@ export interface IDailyMeditationStore {
   exchangeRate: ExchangeRate;
   meditationPassiveMilestones: PassiveMeditationMilestones;
   lastUpdated: string;
-  /**
-   * When the app is opened first thing in the day, there is a meditation gap betwen yesterday's lastUpdated
-   * and midnight this morning. This value `lastUpdatedBeforeToday` records that gap.
-   *
-   * We can't use `lastUpdated` for that, because as soon as the app opens,
-   * the REDYDRATE event is comming, and `lastUpdated` is set to now.
-   *
-   * A null value indicates there is no known meditation gap before the current value of `lastUpdated`,
-   * in which case we can use `lastUpdated` as the last step update.
-   */
-  lastUpdatedBeforeToday: string;
 }
 
 export const getInitialState = (): IDailyMeditationStore => ({
@@ -37,7 +26,6 @@ export const getInitialState = (): IDailyMeditationStore => ({
   },
   meditationPassiveMilestones: [],
   lastUpdated: moment().startOf("day").format(),
-  lastUpdatedBeforeToday: null,
 });
 
 const dailyMeditationReducer = (
@@ -64,9 +52,6 @@ const dailyMeditationReducer = (
     case LOGIN_USER_SUCCESS:
       return loginUserSuccess(state, action.payload);
 
-    case MEDITATION_SINCE_LAST_UPDATE_SUCCESS:
-      return { ...state, lastUpdatedBeforeToday: null };
-
     case LOGOUT_SUCCESS:
       return getInitialState();
 
@@ -75,11 +60,8 @@ const dailyMeditationReducer = (
   }
 };
 
-const updateDailyMeditationSucces = (state: IDailyMeditationStore, data: UpsertPassiveChallenge) => {
-  if (data?.upsertPassiveChallenge?.challenge?.updatedAt) {
-    const {
-      upsertPassiveChallenge: { challenge },
-    } = data;
+const updateDailyMeditationSucces = (state: IDailyMeditationStore, challenge: Challenge) => {
+  if (challenge?.updatedAt) {
     const updatedAt = moment.unix(challenge.updatedAt).format();
 
     return {
@@ -104,7 +86,6 @@ const updatePersistedState = (state: IDailyMeditationStore, persistedState: IDai
     return {
       ...persistedState,
       dailyMeditation: 0,
-      lastUpdatedBeforeToday: persistedState.lastUpdatedBeforeToday || lastUpdated,
     };
   }
 

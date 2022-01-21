@@ -7,16 +7,6 @@ const reducer = (state: IReduxState) => state.onboarding;
 const isOnboardingRedeemedSelector = (state: State) => state.redeemedOnboarding;
 export const getIsOnboardingRedeemed = createSelector(reducer, isOnboardingRedeemedSelector);
 
-// TODO purge after GS-113 will be merged
-const isHistoricalDataCollectedSelector = (state: State) => state.historicalDataCollected;
-export const getIsHistoricalDataCollected = createSelector(reducer, isHistoricalDataCollectedSelector);
-
-const isHistoricalMeditationDataCollectedSelector = (state: State) => state.historicalMeditationDataCollected;
-export const getIsHistoricalMeditationDataCollected = createSelector(
-  reducer,
-  isHistoricalMeditationDataCollectedSelector
-);
-
 const isOnboardingSelector = (state: State) => state.isOnboarding;
 export const getIsOnboarding = createSelector(reducer, isOnboardingSelector);
 

@@ -24,6 +24,7 @@ export interface UpsertPassiveChallenges_upsertPassiveChallenges_challenges {
 export interface UpsertPassiveChallenges_upsertPassiveChallenges {
   challenges: UpsertPassiveChallenges_upsertPassiveChallenges_challenges[];
   totalCoins: number;
+  currentBalance: number;
 }
 
 export interface UpsertPassiveChallenges {

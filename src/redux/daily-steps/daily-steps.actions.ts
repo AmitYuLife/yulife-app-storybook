@@ -1,4 +1,4 @@
-import { UpsertPassiveChallenge } from "@graphql/_core/schema";
+import { UpsertPassiveChallenges_upsertPassiveChallenges_challenges as Challenge } from "@graphql/_core/schema";
 import { SyncAction } from "../_core/types";
 
 export const START_DAILY_STEPS = "START_DAILY_STEPS";
@@ -7,7 +7,6 @@ export const UPDATE_DAILY_STEPS_NO_NEW_DATA = "UPDATE_DAILY_STEPS_NO_NEW_DATA";
 export const UPDATE_DAILY_STEPS_SUCCESS_FROM_REMOTE = "UPDATE_DAILY_STEPS_SUCCESS_FROM_REMOTE";
 export const UPDATE_DAILY_STEPS_SUCCESS_FROM_LOCAL = "UPDATE_DAILY_STEPS_SUCCESS_FROM_LOCAL";
 export const UPDATE_DAILY_STEPS_FAILED = "UPDATE_DAILY_STEPS_FAILED";
-export const STEPS_SINCE_LAST_UPDATED_SUCCESS = "STEPS_SINCE_LAST_UPDATED_SUCCESS";
 
 export const startDailySteps = (): SyncAction => ({
   type: START_DAILY_STEPS,
@@ -17,8 +16,8 @@ export const startStepsSyncing = (): SyncAction => ({
   type: START_STEPS_SYNCING,
 });
 
-export const updateDailyStepsSuccessFromRemote = (results: UpsertPassiveChallenge) => ({
-  payload: results,
+export const updateDailyStepsSuccessFromRemote = (payload: { challenge: Challenge; currentBalance: number }) => ({
+  payload,
   type: UPDATE_DAILY_STEPS_SUCCESS_FROM_REMOTE,
 });
 
@@ -34,8 +33,4 @@ export const updateDailyStepsFailed = (error: string) => ({
 
 export const stepsWithNoUpdate = (): SyncAction => ({
   type: UPDATE_DAILY_STEPS_NO_NEW_DATA,
-});
-
-export const stepsSinceLastUpdateSuccess = (): SyncAction => ({
-  type: STEPS_SINCE_LAST_UPDATED_SUCCESS,
 });

@@ -13,8 +13,8 @@ import { getUserFeatures } from "../../user/user.selectors";
 import upsertPassiveChallenges from "@graphql/challenges/upsertPassiveChallenges.gql";
 import { updateDailyMeditation } from "@redux/daily-meditation/daily-meditation.actions";
 import { updateDailyCycling } from "@redux/daily-cycling/daily-cycling.actions";
-import { refreshTotalCoins } from "@redux/coins/coins.actions";
 import { PermissionsAndroid, Platform } from "react-native";
+import { totalCoinsUpdated } from "@redux/coins/coins.actions";
 
 export default function* getDailyPassiveActivity({ payload: appState, type }: { payload: string; type: string }) {
   if (type === UPDATE_APP_STATE && appState !== "active") {
@@ -69,11 +69,7 @@ export default function* getDailyPassiveActivity({ payload: appState, type }: { 
 
         for (const challenge of data?.upsertPassiveChallenges?.challenges) {
           if (challenge?.incomingData.meditation > 0) {
-            yield put(
-              updateDailyMeditation({
-                upsertPassiveChallenge: { challenge, totalCoins: data?.upsertPassiveChallenges.totalCoins },
-              })
-            );
+            yield put(updateDailyMeditation(challenge));
           }
 
           if (challenge?.incomingData.distance > 0) {
@@ -82,7 +78,7 @@ export default function* getDailyPassiveActivity({ payload: appState, type }: { 
         }
 
         if (data?.upsertPassiveChallenges.totalCoins > 0) {
-          yield put(refreshTotalCoins());
+          yield put(totalCoinsUpdated(data.upsertPassiveChallenges.currentBalance));
         }
 
         isUpdated = true;

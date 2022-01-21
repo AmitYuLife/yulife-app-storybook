@@ -14,9 +14,6 @@ const reducer = (state: IReduxState) => state.dailyMeditation;
 const dailyMeditationSelector = (state: State) => state.dailyMeditation;
 export const getDailyMeditation = createSelector(reducer, dailyMeditationSelector);
 
-const lastUpdatedBeforeTodaySelector = (state: State) => state.lastUpdatedBeforeToday;
-export const getLastUpdatedBeforeToday = createSelector(reducer, lastUpdatedBeforeTodaySelector);
-
 const meditationExchangeRateSelector = (state: State) => state.exchangeRate;
 export const getMeditationExchangeRate = createSelector(reducer, meditationExchangeRateSelector);
 
