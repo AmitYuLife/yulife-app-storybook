@@ -14,9 +14,6 @@ const reducer = (state: IReduxState) => state.dailySteps;
 const dailyStepsSelector = (state: State) => state.dailySteps;
 export const getDailySteps = createSelector(reducer, dailyStepsSelector);
 
-const lastUpdatedBeforeTodaySelector = (state: State) => state.lastUpdatedBeforeToday;
-export const getLastUpdatedBeforeToday = createSelector(reducer, lastUpdatedBeforeTodaySelector);
-
 const exchangeRateSelector = (state: State) => state.exchangeRate;
 export const getExchangeRate = createSelector(reducer, exchangeRateSelector);
 

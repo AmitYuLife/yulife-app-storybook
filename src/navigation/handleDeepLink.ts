@@ -1,5 +1,3 @@
-import { store } from "@redux/_core/store";
-import { GET_HISTORICAL_DATA } from "@redux/onboarding/onboarding.actions";
 import { getQueryStringObject } from "@utils";
 import Config from "react-native-config";
 import { labels, setDuelsScreen, setScreen, setUnauthenticatedRoot } from "./root";
@@ -39,13 +37,7 @@ export default async function handleDeepLink(fullUrl: string, hasToken: boolean,
       }
 
       return;
-    // TODO purge after GS-113 will be merged
-    case url.startsWith("historical-data"):
-      if (hasToken) {
-        store.dispatch({ type: GET_HISTORICAL_DATA });
-      }
 
-      return;
     case url.startsWith("referral-information"):
       if (hasToken) {
         await setScreen(currentRoute, ROUTES.referralInformation);

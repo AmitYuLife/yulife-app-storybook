@@ -1,6 +1,3 @@
-export * from "./addData.gql";
-export * from "./addHistoricalData.gql";
-export * from "./addHistoricalSteps.gql";
 export * from "./cancelActiveChallenge.gql";
 export * from "./cancelQuestMapLevelChallenge.gql";
 export * from "./createActiveChallenge.gql";
@@ -11,4 +8,3 @@ export * from "./submitUnity.gql";
 export * from "./updateActiveChallenge.gql";
 export * from "./updateQuestMapLevelChallenge.gql";
 export * from "./upsertOnboardingChallenge.gql";
-export * from "./upsertPassiveChallenge.gql";

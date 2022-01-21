@@ -3,8 +3,6 @@ import { GetCurrentUser, LoginUser } from "@graphql/_core/schema";
 import { SyncAction } from "../_core/types";
 import { GET_USER_SUCCESS, LOGIN_USER_SUCCESS } from "../user/user.actions";
 import {
-  SET_HISTORICAL_DATA_COLLECTED,
-  SET_HISTORICAL_MEDITATION_DATA_COLLECTED,
   SET_REDEEMED_ONBOARDING,
   SET_SHOW_INTRO,
   SET_YUSCREEN_INTRO_SHOWN,
@@ -16,8 +14,6 @@ import { AUTHENTICATED } from "@redux/app/app.actions";
 
 export interface IOnboardingStore {
   redeemedOnboarding: boolean;
-  historicalDataCollected: boolean;
-  historicalMeditationDataCollected: boolean;
   reward: number;
   isOnboarding: boolean;
   showIntro: boolean;
@@ -29,8 +25,6 @@ export interface IOnboardingStore {
 
 export const getInitialState = (): IOnboardingStore => ({
   redeemedOnboarding: false,
-  historicalDataCollected: false,
-  historicalMeditationDataCollected: false,
   reward: 0,
   isOnboarding: true,
   showIntro: false,
@@ -54,8 +48,6 @@ export const userReducer = (state: IOnboardingStore = getInitialState(), action:
           return {
             showIntro: false,
             redeemedOnboarding: true,
-            historicalDataCollected: true,
-            historicalMeditationDataCollected: true,
             reward: 200,
             isOnboarding: false,
             showYuscreenIntro: true,
@@ -67,12 +59,6 @@ export const userReducer = (state: IOnboardingStore = getInitialState(), action:
       }
 
       return state;
-
-    case SET_HISTORICAL_DATA_COLLECTED:
-      return { ...state, historicalDataCollected: true };
-
-    case SET_HISTORICAL_MEDITATION_DATA_COLLECTED:
-      return { ...state, historicalMeditationDataCollected: true };
 
     case SET_SHOW_INTRO:
       return setShowIntro(state, action.payload);

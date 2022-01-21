@@ -1,7 +1,4 @@
-export * from "./AddData";
 export * from "./AddDeviceToken";
-export * from "./AddHistoricalData";
-export * from "./AddHistoricalSteps";
 export * from "./Address";
 export * from "./Avatar";
 export * from "./BackPersonalProductStep";
@@ -152,7 +149,6 @@ export * from "./UpdateNickname";
 export * from "./UpdateQuestMapLevelChallenge";
 export * from "./UpdateUserNotificationsSettings";
 export * from "./UpsertOnboardingChallenge";
-export * from "./UpsertPassiveChallenge";
 export * from "./UpsertPassiveChallenges";
 export * from "./User";
 export * from "./YuAvatar";

@@ -17,6 +17,7 @@ export const GQL_MUTATION_UPSERT_PASSIVE_CHALLENGES = gql`
         }
       }
       totalCoins
+      currentBalance
     }
   }
 `;

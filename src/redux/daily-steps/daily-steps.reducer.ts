@@ -1,6 +1,9 @@
 import moment from "moment";
 import { REHYDRATE } from "redux-persist";
-import { GetCurrentUser, UpsertPassiveChallenge } from "@graphql/_core/schema";
+import {
+  GetCurrentUser,
+  UpsertPassiveChallenges_upsertPassiveChallenges_challenges as Challenge,
+} from "@graphql/_core/schema";
 import { LoginUser } from "@graphql/_core/schema";
 import {
   PEDOMETER_UPDATES_NO_NEW_DATA,
@@ -9,7 +12,6 @@ import {
 } from "../pedometer/pedometer.actions";
 import { GET_USER_SUCCESS, LOGIN_USER_SUCCESS, LOGOUT_SUCCESS } from "../user/user.actions";
 import {
-  STEPS_SINCE_LAST_UPDATED_SUCCESS,
   UPDATE_DAILY_STEPS_FAILED,
   UPDATE_DAILY_STEPS_SUCCESS_FROM_REMOTE,
   UPDATE_DAILY_STEPS_SUCCESS_FROM_LOCAL,
@@ -57,18 +59,6 @@ export interface IDailyStepsStore {
    * When was the last sync with the server
    */
   lastUpdated: string;
-  /**
-   * @description
-   * When the app is opened first thing in the day, there is a steps gap between yesterday's lastUpdated
-   * and midnight this morning. This value `lastUpdatedBeforeToday` records that gap.
-   *
-   * We can't use `lastUpdated` for that, because as soon as the app opens,
-   * the pedometer starts, and `lastUpdated` is set to now.
-   *
-   * A null value indicates there is no known steps gap before the current value of `lastUpdated`,
-   * in which case we can use `lastUpdated` as the last step update.
-   */
-  lastUpdatedBeforeToday: string;
 }
 
 export const getInitialState = (): IDailyStepsStore => ({
@@ -85,7 +75,6 @@ export const getInitialState = (): IDailyStepsStore => ({
   isSyncing: false,
   isServerFetchedThisSession: false,
   lastUpdated: moment().startOf("day").format(),
-  lastUpdatedBeforeToday: null,
 });
 
 const dailyStepsReducer = (state: IDailyStepsStore = getInitialState(), action: SyncAction): IDailyStepsStore => {
@@ -122,9 +111,6 @@ const dailyStepsReducer = (state: IDailyStepsStore = getInitialState(), action: 
     case LOGIN_USER_SUCCESS:
       return loginUserSuccess(state, action.payload);
 
-    case STEPS_SINCE_LAST_UPDATED_SUCCESS:
-      return { ...state, lastUpdatedBeforeToday: null };
-
     case START_STEPS_SYNCING:
       return { ...state, isSyncing: true };
 
@@ -153,17 +139,13 @@ const updatePersistedState = (state: IDailyStepsStore, persistedState: IDailySte
       serverSteps: 0,
       isFetching: true,
       isServerFetchedThisSession: false,
-      lastUpdatedBeforeToday: persistedState.lastUpdatedBeforeToday || lastUpdated,
     };
   }
 
   return { ...persistedState, isServerFetchedThisSession: false };
 };
 
-const updateDailyStepsSuccess = (
-  state: IDailyStepsStore,
-  { upsertPassiveChallenge: { challenge } }: UpsertPassiveChallenge
-) => {
+const updateDailyStepsSuccess = (state: IDailyStepsStore, { challenge }: { challenge: Challenge }) => {
   const lastUpdated = moment.unix(challenge.updatedAt).format();
   return {
     ...state,

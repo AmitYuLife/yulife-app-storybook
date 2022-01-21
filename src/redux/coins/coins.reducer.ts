@@ -5,7 +5,6 @@ import {
   GetCurrentUser,
   GetCurrentUser_getCurrentUser_todayActivity,
   LoginUser,
-  UpsertPassiveChallenge,
   UpsertPassiveChallenges_upsertPassiveChallenges_challenges as Challenge,
 } from "@graphql/_core/schema";
 import { SyncAction } from "../_core/types";
@@ -134,20 +133,17 @@ const sumCompletedChallenges = (challenges: GetCurrentUser_getCurrentUser_todayA
 
 const updateDailyStepsSuccess = (
   state: ICoinsStore,
-  { upsertPassiveChallenge }: UpsertPassiveChallenge
+  { challenge, currentBalance }: { challenge: Challenge; currentBalance: number }
 ): ICoinsStore => ({
   ...state,
-  dailyStepsEarned: upsertPassiveChallenge?.challenge?.yuCoinAwarded || 0,
-  total: upsertPassiveChallenge?.totalCoins || state.total,
+  dailyStepsEarned: challenge?.yuCoinAwarded || 0,
+  total: currentBalance || state.total,
   lastUpdated: moment().format(DATE_FORMAT),
 });
 
-const updateDailyMeditationSuccess = (
-  state: ICoinsStore,
-  { upsertPassiveChallenge }: UpsertPassiveChallenge
-): ICoinsStore => ({
+const updateDailyMeditationSuccess = (state: ICoinsStore, challenge: Challenge): ICoinsStore => ({
   ...state,
-  dailyMeditationEarned: upsertPassiveChallenge?.challenge?.yuCoinAwarded || 0,
+  dailyMeditationEarned: challenge?.yuCoinAwarded || 0,
   lastUpdated: moment().format(DATE_FORMAT),
 });
 const updateDailyCyclingSuccess = (state: ICoinsStore, challenge: Challenge): ICoinsStore => ({
