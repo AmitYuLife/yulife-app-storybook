@@ -1,8 +1,7 @@
-import React, { useState, useEffect, useRef, useMemo } from "react";
+import React, { useEffect, useRef, useMemo } from "react";
 import { StyleSheet, View, Animated } from "react-native";
 import { Colours, Style } from "@styles";
-import { Text } from "@atoms";
-
+import { TextTemplate } from "@atoms";
 import { PressableWithDelay } from "@components/molecules";
 import { SLIDER_INPUT, SLIDER_LABEL } from "@ids";
 
@@ -23,23 +22,16 @@ export interface SliderInputProps {
 
 export function SliderInput(props: SliderInputProps) {
   const { maxValue, onChange, leftLabel, rightLabel, score, minValue = 0 } = props;
-  const [activeValue, setActiveValue] = useState(score ?? -1);
   const valueIterator = useMemo(() => new Array(maxValue - minValue + 1).fill(0), [maxValue, minValue]);
-
-  useEffect(() => {
-    if (onChange) {
-      onChange(activeValue + minValue);
-    }
-  }, [activeValue, onChange, minValue]);
 
   return (
     <View style={styles.wrapper}>
       <View style={StyleSheet.flatten([styles.valueWrapper, styles.textWrapper])}>
         {valueIterator.map((_, i) => {
-          const isActive = activeValue === i;
+          const isActive = score === i;
 
           return (
-            <PressableWithDelay hitSlop={5} key={i} onPress={() => setActiveValue(i)} testID={SLIDER_INPUT(i)}>
+            <PressableWithDelay hitSlop={5} key={i} onPress={() => onChange(i + minValue)} testID={SLIDER_INPUT(i)}>
               <AnimatedText isActive={isActive} index={i + minValue} />
             </PressableWithDelay>
           );
@@ -47,11 +39,11 @@ export function SliderInput(props: SliderInputProps) {
       </View>
       <View style={StyleSheet.flatten([styles.greyBarWrapper, styles.valueWrapper])}>
         {valueIterator.map((_, i) => {
-          const isActive = activeValue >= i;
+          const isActive = score >= i;
           const activeStyles = isActive ? styles.activeCircle : {};
 
           return (
-            <PressableWithDelay hitSlop={5} key={i} onPress={() => setActiveValue(i)}>
+            <PressableWithDelay hitSlop={5} key={i} onPress={() => onChange(i + minValue)}>
               <View style={styles.circleWrapper}>
                 <View style={StyleSheet.flatten([styles.circle, activeStyles])} />
               </View>
@@ -60,12 +52,12 @@ export function SliderInput(props: SliderInputProps) {
         })}
       </View>
       <View style={styles.labelWrapper}>
-        <Text style={styles.label} testID={SLIDER_LABEL(leftLabel)}>
+        <TextTemplate type="l2b" textAlign="center" testID={SLIDER_LABEL(leftLabel)}>
           {leftLabel}
-        </Text>
-        <Text style={styles.label} testID={SLIDER_LABEL(rightLabel)}>
+        </TextTemplate>
+        <TextTemplate type="l2b" textAlign="center" testID={SLIDER_LABEL(rightLabel)}>
           {rightLabel}
-        </Text>
+        </TextTemplate>
       </View>
     </View>
   );
@@ -155,10 +147,5 @@ const styles = StyleSheet.create({
     paddingVertical: 8,
     flexDirection: "row",
     justifyContent: "space-between",
-  },
-  label: {
-    fontSize: 12,
-    fontFamily: Style.FONT_FAMILY_PRIMARY_BOLD,
-    letterSpacing: 0.8,
   },
 });

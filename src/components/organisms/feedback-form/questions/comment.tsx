@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Image, YugiHeader } from "@atoms";
 import { View, Keyboard } from "react-native";
 import { ScrollableLayout } from "@molecules";
@@ -27,7 +27,14 @@ export default (props: Props) => {
   } = props;
   const [feedback, setFeedback] = useState(defaultAnswer);
 
-  const onSubmit = () => onSubmitAnswer(feedback);
+  const onSubmit = () => {
+    onSubmitAnswer(feedback);
+    setFeedback("");
+  };
+
+  useEffect(() => {
+    setFeedback(defaultAnswer);
+  }, [defaultAnswer]);
 
   return (
     <ScrollableLayout
