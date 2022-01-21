@@ -18,7 +18,8 @@ import getPassiveSinceLastUpdateAndroid from "./getPassiveSinceLastUpdateAndroid
 import getPassiveSinceLastUpdateIos from "./getPassiveSinceLastUpdateIos.saga";
 import { UPDATE_APP_STATE } from "@redux/app/app.actions";
 
-export default function* sendPassiveActivity({ payload: appState, type }: { payload: string; type: string }): any {
+export default function* sendPassiveActivity(dataPayload: { payload: string; type: string }): any {
+  const { payload: appState, type } = dataPayload || {};
   if (type === UPDATE_APP_STATE && appState !== "active") {
     return;
   }

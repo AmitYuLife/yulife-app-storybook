@@ -16,7 +16,8 @@ import { updateDailyCycling } from "@redux/daily-cycling/daily-cycling.actions";
 import { PermissionsAndroid, Platform } from "react-native";
 import { totalCoinsUpdated } from "@redux/coins/coins.actions";
 
-export default function* getDailyPassiveActivity({ payload: appState, type }: { payload: string; type: string }) {
+export default function* getDailyPassiveActivity(dataPayload: { payload: string; type: string }) {
+  const { payload: appState, type } = dataPayload || {};
   if (type === UPDATE_APP_STATE && appState !== "active") {
     return;
   }

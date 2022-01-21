@@ -5,7 +5,8 @@ import Logger from "@services/logging/logger";
 import { Unpacked } from "@utils";
 import { UPDATE_APP_STATE } from "@redux/app/app.actions";
 
-export default function* getUserProfileData({ payload: appState, type }: { payload: string; type: string }) {
+export default function* getUserProfileData(dataPayload: { payload: string; type: string }) {
+  const { payload: appState, type } = dataPayload || {};
   if (type === UPDATE_APP_STATE && appState !== "active") {
     return;
   }
