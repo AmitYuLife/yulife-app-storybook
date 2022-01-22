@@ -24,8 +24,6 @@ export const {
 export const {
     restartAndLoginToTab,
     loginAndCollectSignupBonus,
-    completeIntro,
-    dismissNewLooksModalIfVisible
 } = navigation.login
 
 

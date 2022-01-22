@@ -1,7 +1,6 @@
 import Logger from "@services/logging/logger";
-import { call, put, select, spawn } from "redux-saga/effects";
+import { call, select, spawn } from "redux-saga/effects";
 import { getIsOnboardingRedeemed } from "../onboarding.selectors";
-import { setShowIntro } from "../onboarding.actions";
 import redeemOnboarding from "./redeemOnboarding.helper";
 
 export default function* onboardOnGetUser() {
@@ -10,7 +9,6 @@ export default function* onboardOnGetUser() {
 
     if (!isOnboardingRedeemed) {
       yield call(redeemOnboarding);
-      yield put(setShowIntro(true));
     }
   } catch (e) {
     yield spawn(() => {

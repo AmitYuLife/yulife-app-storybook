@@ -11,7 +11,6 @@ export const {
 } = navigation.common
 
 export const {
-    completeIntro,
     dismissStreakIfVisible
 } = navigation.login
 
@@ -20,7 +19,3 @@ export const {
     dismissChestUnlock,
 } = screens.challenges
 
-export const finishIntro = async () => {
-    await navigateViaText("let’s begin")
-    await completeIntro()
-}

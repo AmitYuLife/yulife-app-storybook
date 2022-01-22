@@ -12,6 +12,5 @@ export const {
 
 
 export const {
-    completeIntro,
     dismissNewLooksModalIfVisible
 } = navigation.login

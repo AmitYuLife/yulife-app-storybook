@@ -4,7 +4,3 @@ export const {
     loginAsUser,
     logInAndGoToTab
 } = navigation.login
-
-export const {
-    completeIntro,
-} = navigation.login

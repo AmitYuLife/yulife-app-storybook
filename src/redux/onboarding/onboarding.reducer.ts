@@ -4,7 +4,6 @@ import { SyncAction } from "../_core/types";
 import { GET_USER_SUCCESS, LOGIN_USER_SUCCESS } from "../user/user.actions";
 import {
   SET_REDEEMED_ONBOARDING,
-  SET_SHOW_INTRO,
   SET_YUSCREEN_INTRO_SHOWN,
   SET_COMMUNITY_GOALS_INTRO_SHOWN,
   SET_DUELS_INTRO_SHOWN,
@@ -59,9 +58,6 @@ export const userReducer = (state: IOnboardingStore = getInitialState(), action:
       }
 
       return state;
-
-    case SET_SHOW_INTRO:
-      return setShowIntro(state, action.payload);
 
     case SET_REDEEMED_ONBOARDING:
       return setRedeemedOnboarding(state, action.payload);
@@ -141,11 +137,6 @@ const setRedeemedOnboarding = (state: IOnboardingStore, reward: number) => ({
   redeemedOnboarding: true,
   isOnboarding: false,
   reward,
-});
-
-const setShowIntro = (state: IOnboardingStore, showIntro: boolean) => ({
-  ...state,
-  showIntro,
 });
 
 const getUserSuccess = (

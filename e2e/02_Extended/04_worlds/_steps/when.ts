@@ -13,10 +13,6 @@ export const {
 } = navigation.common
 
 export const {
-    completeIntro,
-} = navigation.login
-
-export const {
     startChallenge,
     startChallengeFromQuests
 } = screens.challenges

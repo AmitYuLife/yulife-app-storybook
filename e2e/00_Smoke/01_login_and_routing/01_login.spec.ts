@@ -37,41 +37,8 @@ Feature("As a user I can get past the login screen", async () => {
                     Then("I should see a visual indicator to say i've been awarded 200 coins", then.given200coins);
                     Then("I should see the sign up reward screen", then.rewardScreenVisible);
                     When("I press 'next'", when.tapNext, async () => {
-                        Then("I should see the welcome modal", then.welcomeModalVisible)
-                        When("I tap the let's begin button", when.tapText("let’s begin"), async () => {
-                            Then("I should see a pop up showing me my yucoin bank", then.textVisible("Here’s your yucoin bank!"))
-                            Then("I should see the 'Got it' cta", then.textVisible("Got it"))
-                        })
-
-                        When("I tap the 'Got it' CTA", when.tapText("Got it"), async () => {
-                            Then("I should see the yucoin today pop up", then.textVisible("Today’s steps and yucoin"))
-                            Then("I should see the 'Got it' CTA", then.textVisible("Got it"))
-                        })
-
-                        When("I tap 'Got it'", when.tapText("Got it"), async () => {
-                            Then("I should see the earn a bonus pop up", then.textVisible("Earn bonus yucoin!"))
-                            Then("I should see the 'Got it' CTA", then.textVisible("Got it"))
-                        })
-
-                        When("I tap 'Got it'", when.tapText("Got it"), async () => {
-                            Then("I should see the daily progress pop up", then.textVisible("Check out your daily progress"))
-                            Then("I should see the 'Got it' CTA", then.textVisible("Got it"))
-                        })
-                        When("I tap 'Got it'", when.tapText("Got it"), async () => {
-                            Then("I should see the You're moving on up! pop up", then.textVisible("You're moving on up!"))
-                            Then("I should see the 'Got it' CTA", then.textVisible("Got it"))
-                        })
-                        When("I tap 'Got it'", when.tapText("Got it"), async () => {
-                            Then("I should see the You're on a streak pop up", then.textVisible("You're on a streak!"))
-                            Then("I should see the 'Got it' CTA", then.textVisible("Got it"))
-                        })
-                        When("I tap 'Got it'", when.tapText("Got it"), async () => {
-                            Then("I should see the Your rewards are waiting pop up", then.textVisible("Your rewards are waiting!"))
-                            Then("I should see the 'Got it' CTA", then.textVisible("Got it"))
-                        })
-                        When("I tap 'Got it'", when.tapText("Got it"), async () => {
-                            Then("I should see 200 coins in the top right hand corner", then.givenCoinsTopRight(200));
-                        })
+                        Then("I should see 200 coins in the top right hand corner", then.givenCoinsTopRight(200));
+                        Then("I should see 0 YuCoin today", then.textVisible("0 YuCoin today"))
                     })
                 })
             })

@@ -10,9 +10,6 @@ export const getIsOnboardingRedeemed = createSelector(reducer, isOnboardingRedee
 const isOnboardingSelector = (state: State) => state.isOnboarding;
 export const getIsOnboarding = createSelector(reducer, isOnboardingSelector);
 
-const showIntroSelector = (state: State) => state.showIntro;
-export const getShowIntro = createSelector(reducer, showIntroSelector);
-
 const onboardingRewardSelector = (state: State) => state.reward;
 export const getOnboardingReward = createSelector(reducer, onboardingRewardSelector);
 
