@@ -49,7 +49,9 @@ export interface GetPersonalProductStepDetachedDocuments_getPersonalProductStepD
     | "ContentItemForm"
     | "ContentItemSelectedPackageAccordion"
     | "ContentItemFade"
-    | "ContentItemSelectedPackageCards";
+    | "ContentItemSelectedPackageCards"
+    | "ContentItemProcessingTimer"
+    | "ContentItemYuCoinPower";
 }
 
 export interface GetPersonalProductStepDetachedDocuments_getPersonalProductStepDetachedDocuments_body_ContentItemPersonalProductDocuments_headingImage_image {

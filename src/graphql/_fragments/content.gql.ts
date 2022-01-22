@@ -702,6 +702,29 @@ export const GQL_FRAGMENT_CONTENT_ITEM_ACCORDION = gql`
   }
 `;
 
+export const GQL_FRAGMENT_CONTENT_ITEM_PROCESSING_TIMER = gql`
+  fragment ContentItemProcessingTimer on ContentItemProcessingTimer {
+    id
+    endDateTimeWithTz
+    backgroundUrl
+    contentItemProcessingTimerHeading: heading
+    onClose {
+      ...SduiAction
+    }
+  }
+`;
+
+export const GQL_FRAGMENT_CONTENT_ITEM_YU_COIN_POWER = gql`
+  fragment ContentItemYuCoinPower on ContentItemYuCoinPower {
+    id
+    yuCoinPower
+    styles {
+      ...SduiStyle
+    }
+    marginHorizontal
+  }
+`;
+
 export const GQL_FRAGMENT_CONTENT_ITEM_FADE = gql`
   fragment ContentItemFade on ContentItemFade {
     id

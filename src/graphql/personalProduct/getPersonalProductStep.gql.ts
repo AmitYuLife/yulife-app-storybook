@@ -45,6 +45,8 @@ import {
   GQL_FRAGMENT_CONTENT_ITEM_FULL_SCREEN_LOTTIE_SWIPER,
   GQL_FRAGMENT_CONTENT_ITEM_SELECTED_PACKAGE_CARDS,
   GQL_FRAGMENT_CONTENT_ITEM_SELECTED_PACKAGE_CARD_PROVIDER_LOGO,
+  GQL_FRAGMENT_CONTENT_ITEM_PROCESSING_TIMER,
+  GQL_FRAGMENT_CONTENT_ITEM_YU_COIN_POWER,
 } from "../_fragments/content.gql";
 
 export const GQL_QUERY_GET_PERSONAL_PRODUCT_STEP = gql`
@@ -91,6 +93,8 @@ export const GQL_QUERY_GET_PERSONAL_PRODUCT_STEP = gql`
   ${GQL_FRAGMENT_CONTENT_ITEM_ACCORDION}
   ${GQL_FRAGMENT_CONTENT_ITEM_FADE}
   ${GQL_FRAGMENT_CONTENT_ITEM_FULL_SCREEN_LOTTIE_SWIPER}
+  ${GQL_FRAGMENT_CONTENT_ITEM_PROCESSING_TIMER}
+  ${GQL_FRAGMENT_CONTENT_ITEM_YU_COIN_POWER}
 
   query GetPersonalProductStep($productId: String!) {
     getPersonalProductStep(productId: $productId) {
@@ -180,6 +184,9 @@ export const GQL_QUERY_GET_PERSONAL_PRODUCT_STEP = gql`
         ... on ContentItemRowIconTextBanner {
           ...ContentItemRowIconTextBanner
         }
+        ... on ContentItemYuCoinPower {
+          ...ContentItemYuCoinPower
+        }
         ... on ContentItemYugiConfirm {
           id
           yugiHeading
@@ -259,6 +266,9 @@ export const GQL_QUERY_GET_PERSONAL_PRODUCT_STEP = gql`
         }
         ... on ContentItemMarkdown {
           ...ContentItemMarkdown
+        }
+        ... on ContentItemProcessingTimer {
+          ...ContentItemProcessingTimer
         }
       }
       absolute {
