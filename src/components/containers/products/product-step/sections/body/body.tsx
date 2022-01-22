@@ -1,6 +1,9 @@
 import React, { useContext, useEffect, useMemo } from "react";
 import { Animated, KeyboardAvoidingView, Platform, StyleSheet, View, ViewStyle } from "react-native";
 import { GetPersonalProductStep_getPersonalProductStep_body as GPPS_Body } from "@graphql/_core/schema";
+import { PRODUCT_STEP_BODY_SCROLL_VIEW } from "@ids";
+import { Style } from "@styles";
+import media from "@styles/media";
 import {
   ProductStepContentItemButton,
   ProductStepMarkdown,
@@ -33,11 +36,9 @@ import {
   ContentItemImage,
   ContentItemList,
   ContentItemPackageCardPower,
+  ContentItemYuCoinPower,
 } from "@components/sdui";
-import { PRODUCT_STEP_BODY_SCROLL_VIEW } from "@ids";
-import { Style } from "@styles";
 import { ProductStepContext } from "../../product-step.context";
-import media from "@styles/media";
 import { ProductStepContentItemGpDetails } from "../../subcomponents/product-step.gp-details";
 
 interface Props {
@@ -160,6 +161,8 @@ const renderItemContent = (item: GPPS_Body): JSX.Element => {
       return <ContentItemPackageCardPower key={item.id} {...item} />;
     case "ContentItemSelectedPackageAccordion":
       return <ProductStepSelectedPackageAccordion key={item.id} {...item} />;
+    case "ContentItemYuCoinPower":
+      return <ContentItemYuCoinPower key={item.id} {...item} />;
     default:
       return null;
   }

@@ -45,7 +45,8 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemP
     | "ContentItemFullScreenLottieSwiper"
     | "ContentItemSearchPostcode"
     | "ContentItemForm"
-    | "ContentItemFade";
+    | "ContentItemFade"
+    | "ContentItemProcessingTimer";
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemTextInput_validation {
@@ -1036,6 +1037,24 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemR
   styles: GetPersonalProductStep_getPersonalProductStep_body_ContentItemRowIconTextBanner_styles[] | null;
 }
 
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemYuCoinPower_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemYuCoinPower {
+  __typename: "ContentItemYuCoinPower";
+  id: string;
+  yuCoinPower: number;
+  styles: GetPersonalProductStep_getPersonalProductStep_body_ContentItemYuCoinPower_styles[] | null;
+  /**
+   * A separate definition to define width with respect to the device's horizontal edges
+   * A marginHorizontal at the styles level doesn't work because a hardcoded width should
+   * be defined at the Svg parent
+   */
+  marginHorizontal: number | null;
+}
+
 export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemYugiConfirm_content {
   id: string;
   parsedMarkdown: string | null;
@@ -1230,6 +1249,7 @@ export type GetPersonalProductStep_getPersonalProductStep_body =
   | GetPersonalProductStep_getPersonalProductStep_body_ContentItemScrollPicker
   | GetPersonalProductStep_getPersonalProductStep_body_ContentItemPersonalProductReviewItem
   | GetPersonalProductStep_getPersonalProductStep_body_ContentItemRowIconTextBanner
+  | GetPersonalProductStep_getPersonalProductStep_body_ContentItemYuCoinPower
   | GetPersonalProductStep_getPersonalProductStep_body_ContentItemYugiConfirm
   | GetPersonalProductStep_getPersonalProductStep_body_ContentItemPersonalProductInfo
   | GetPersonalProductStep_getPersonalProductStep_body_ContentItemGpDetails
@@ -1273,7 +1293,9 @@ export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentIte
     | "ContentItemSearchPostcode"
     | "ContentItemForm"
     | "ContentItemSelectedPackageAccordion"
-    | "ContentItemSelectedPackageCards";
+    | "ContentItemSelectedPackageCards"
+    | "ContentItemProcessingTimer"
+    | "ContentItemYuCoinPower";
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentItemButton_onPress {
@@ -1498,7 +1520,8 @@ export interface GetPersonalProductStep_getPersonalProductStep_header_ContentIte
     | "ContentItemForm"
     | "ContentItemSelectedPackageAccordion"
     | "ContentItemFade"
-    | "ContentItemSelectedPackageCards";
+    | "ContentItemSelectedPackageCards"
+    | "ContentItemYuCoinPower";
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_header_ContentItemHeaderBar_onLeftIconPress {
@@ -1588,12 +1611,27 @@ export interface GetPersonalProductStep_getPersonalProductStep_header_ContentIte
     | null;
 }
 
+export interface GetPersonalProductStep_getPersonalProductStep_header_ContentItemProcessingTimer_onClose {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_header_ContentItemProcessingTimer {
+  __typename: "ContentItemProcessingTimer";
+  id: string;
+  endDateTimeWithTz: string;
+  backgroundUrl: string;
+  contentItemProcessingTimerHeading: string;
+  onClose: GetPersonalProductStep_getPersonalProductStep_header_ContentItemProcessingTimer_onClose | null;
+}
+
 export type GetPersonalProductStep_getPersonalProductStep_header =
   | GetPersonalProductStep_getPersonalProductStep_header_ContentItemLottie
   | GetPersonalProductStep_getPersonalProductStep_header_ContentItemHeaderBar
   | GetPersonalProductStep_getPersonalProductStep_header_ContentItemProgressBar
   | GetPersonalProductStep_getPersonalProductStep_header_ContentItemSearchPostcode
-  | GetPersonalProductStep_getPersonalProductStep_header_ContentItemMarkdown;
+  | GetPersonalProductStep_getPersonalProductStep_header_ContentItemMarkdown
+  | GetPersonalProductStep_getPersonalProductStep_header_ContentItemProcessingTimer;
 
 export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemMarkdown {
   __typename:
@@ -1634,7 +1672,9 @@ export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_Con
     | "ContentItemForm"
     | "ContentItemSelectedPackageAccordion"
     | "ContentItemFade"
-    | "ContentItemSelectedPackageCards";
+    | "ContentItemSelectedPackageCards"
+    | "ContentItemProcessingTimer"
+    | "ContentItemYuCoinPower";
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemImage_image {

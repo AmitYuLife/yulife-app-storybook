@@ -22,3 +22,5 @@ export * from "./contentItemGpDetails/contentItemGpDetails";
 export * from "./contentItemPackageCardPower/contentItemPackageCardPower";
 export * from "./contentItemSearchPostcode/contentItemSearchPostcode";
 export * from "./contentItemFade/contentItemFade";
+export * from "./contentItemYuCoinPower/contentItemYuCoinPower";
+export * from "./contentItemProcessingTimer/contentItemProcessingTimer";
