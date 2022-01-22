@@ -6,9 +6,6 @@ export const {
     loginAsUser,
 } = navigation.login
 
-export const {
-    completeIntro,
-} = navigation.login
 
 export const logInWithStreakScreen = (customer = CUSTOMER_1, auth = AUTH_1, fitkitAuth = true) => async () => {
     await authoriseFitkit(fitkitAuth)()
@@ -24,6 +21,5 @@ export const logInWithStreakScreen = (customer = CUSTOMER_1, auth = AUTH_1, fitk
 
 export const continueLoginAfterStreak = async () => {
     await navigateViaText("let’s begin")
-    await completeIntro()
 }
 

@@ -60,15 +60,8 @@ Feature("As an enabled user I am able to use the duels feature", async()=>{
                 Then("I should see the are you sure iOS modal", then.textVisible("Are you sure?"))
             })
             When("I tap confirm", when.tapText("Confirm"), async()=>{
-                When("I dismiss a modal if it is visible", [when.wait(3000), when.dismissNewLooksModalIfVisible], async () => {
-                    Then("I should see let’s begin", then.textVisible("let’s begin"))
-                    When("I tap let’s begin", when.tapText("let’s begin"), async()=>{
-                        When("I complete the app intro", when.completeIntro, async () => {
-                            When("I go to the leaderboard", when.tapID(NAV_BAR("leaderboard")), async () =>{
-                                Then("I should see the duels button", then.idVisible(DUELS_BUTTON))
-                            })
-                        })
-                    })
+                When("I go to the leaderboard", when.tapID(NAV_BAR("leaderboard")), async () =>{
+                    Then("I should see the duels button", then.idVisible(DUELS_BUTTON))
                 })
             })
             When("I tap the duels button", when.tapID(DUELS_BUTTON), async()=>{

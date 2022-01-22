@@ -15,7 +15,7 @@ export const webhook_1 = {
         "daysValidFor": 1,
         "label": "Test app store feedback",
         "action": "APP_STORE_REVIEW_PROMPT",
-        "promptAfterSeconds": 10,
+        "promptAfterSeconds": 6,
         "enabled": true,
         "secret": "1mqg2NOMItKUKepufbEpwhs7w8sKhiRkJ6gv09k97x",
         "__v": 0,

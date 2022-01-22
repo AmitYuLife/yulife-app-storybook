@@ -1,9 +1,6 @@
 import { navigation } from "@navigation"
 import { screens } from "@appScreens"
 
-export const {
-    completeIntro,
-} = navigation.login
 
 export const {
     tapID,

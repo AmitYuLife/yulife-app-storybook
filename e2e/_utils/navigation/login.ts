@@ -24,8 +24,6 @@ export const loginAsUser = (
     await dismissPLIModalIfVisible()
     await dismissNewLooksModalIfVisible()
     await dismissStreakIfVisible()
-    await navigateViaText("let’s begin", 2500)
-    await completeIntro()
 }
 
 export const loginAsPLIUser = (
@@ -61,13 +59,6 @@ export const restartAndLoginToTab = (tab?: "yucoin" | "quests" | "leaderboard" |
     await device.launchApp({ delete: true, });
     await loginAsUser(customer, auth, fitkitAuth)()
     await navigateViaID(NAV_BAR(tab))
-}
-
-
-export const completeIntro = async () => {
-    for (var i = 0; i < 7; i++) {
-        await navigateViaText("Got it")
-    }
 }
 
 export const dismissPLIModalIfVisible = async () => {
@@ -119,14 +110,10 @@ export const loginAndCollectSignupBonus = (customer: any, auth: any, fitkitAuth?
 export const continueLogin = async () => {
     await navigateViaText("Next")
     await dismissStreakIfVisible()
-    await navigateViaText("let’s begin")
-    await completeIntro()
 }
 
 export const continueLoginAfterSignupBonus = async()=>{
     await dismissStreakIfVisible()
-    await navigateViaText("let’s begin")
-    await completeIntro()
 }
 
 export const loginToYuScreen = (skipIntro = true, customer = CUSTOMER_1, auth = AUTH_1) => async () => {
