@@ -12,6 +12,17 @@ import { YuProductStatus, CoverType } from "./globalTypes";
 export interface YuScreenProductSlots_getYuScreenProductSlots_left_slot1_icon {
   name: string;
   backgroundUrl: string;
+  colour: string;
+}
+
+export interface YuScreenProductSlots_getYuScreenProductSlots_left_slot1_badge_text {
+  value: string;
+  colour: string;
+}
+
+export interface YuScreenProductSlots_getYuScreenProductSlots_left_slot1_badge {
+  badgeUrl: string;
+  text: YuScreenProductSlots_getYuScreenProductSlots_left_slot1_badge_text | null;
 }
 
 export interface YuScreenProductSlots_getYuScreenProductSlots_left_slot1_popover {
@@ -26,12 +37,24 @@ export interface YuScreenProductSlots_getYuScreenProductSlots_left_slot1 {
   productId: string | null;
   coverType: CoverType | null;
   icon: YuScreenProductSlots_getYuScreenProductSlots_left_slot1_icon;
+  badge: YuScreenProductSlots_getYuScreenProductSlots_left_slot1_badge;
   popover: YuScreenProductSlots_getYuScreenProductSlots_left_slot1_popover | null;
 }
 
 export interface YuScreenProductSlots_getYuScreenProductSlots_left_slot2_icon {
   name: string;
   backgroundUrl: string;
+  colour: string;
+}
+
+export interface YuScreenProductSlots_getYuScreenProductSlots_left_slot2_badge_text {
+  value: string;
+  colour: string;
+}
+
+export interface YuScreenProductSlots_getYuScreenProductSlots_left_slot2_badge {
+  badgeUrl: string;
+  text: YuScreenProductSlots_getYuScreenProductSlots_left_slot2_badge_text | null;
 }
 
 export interface YuScreenProductSlots_getYuScreenProductSlots_left_slot2_popover {
@@ -46,12 +69,24 @@ export interface YuScreenProductSlots_getYuScreenProductSlots_left_slot2 {
   productId: string | null;
   coverType: CoverType | null;
   icon: YuScreenProductSlots_getYuScreenProductSlots_left_slot2_icon;
+  badge: YuScreenProductSlots_getYuScreenProductSlots_left_slot2_badge;
   popover: YuScreenProductSlots_getYuScreenProductSlots_left_slot2_popover | null;
 }
 
 export interface YuScreenProductSlots_getYuScreenProductSlots_left_slot3_icon {
   name: string;
   backgroundUrl: string;
+  colour: string;
+}
+
+export interface YuScreenProductSlots_getYuScreenProductSlots_left_slot3_badge_text {
+  value: string;
+  colour: string;
+}
+
+export interface YuScreenProductSlots_getYuScreenProductSlots_left_slot3_badge {
+  badgeUrl: string;
+  text: YuScreenProductSlots_getYuScreenProductSlots_left_slot3_badge_text | null;
 }
 
 export interface YuScreenProductSlots_getYuScreenProductSlots_left_slot3_popover {
@@ -66,12 +101,24 @@ export interface YuScreenProductSlots_getYuScreenProductSlots_left_slot3 {
   productId: string | null;
   coverType: CoverType | null;
   icon: YuScreenProductSlots_getYuScreenProductSlots_left_slot3_icon;
+  badge: YuScreenProductSlots_getYuScreenProductSlots_left_slot3_badge;
   popover: YuScreenProductSlots_getYuScreenProductSlots_left_slot3_popover | null;
 }
 
 export interface YuScreenProductSlots_getYuScreenProductSlots_left_slot4_icon {
   name: string;
   backgroundUrl: string;
+  colour: string;
+}
+
+export interface YuScreenProductSlots_getYuScreenProductSlots_left_slot4_badge_text {
+  value: string;
+  colour: string;
+}
+
+export interface YuScreenProductSlots_getYuScreenProductSlots_left_slot4_badge {
+  badgeUrl: string;
+  text: YuScreenProductSlots_getYuScreenProductSlots_left_slot4_badge_text | null;
 }
 
 export interface YuScreenProductSlots_getYuScreenProductSlots_left_slot4_popover {
@@ -86,6 +133,7 @@ export interface YuScreenProductSlots_getYuScreenProductSlots_left_slot4 {
   productId: string | null;
   coverType: CoverType | null;
   icon: YuScreenProductSlots_getYuScreenProductSlots_left_slot4_icon;
+  badge: YuScreenProductSlots_getYuScreenProductSlots_left_slot4_badge;
   popover: YuScreenProductSlots_getYuScreenProductSlots_left_slot4_popover | null;
 }
 
@@ -99,6 +147,17 @@ export interface YuScreenProductSlots_getYuScreenProductSlots_left {
 export interface YuScreenProductSlots_getYuScreenProductSlots_right_slot1_icon {
   name: string;
   backgroundUrl: string;
+  colour: string;
+}
+
+export interface YuScreenProductSlots_getYuScreenProductSlots_right_slot1_badge_text {
+  value: string;
+  colour: string;
+}
+
+export interface YuScreenProductSlots_getYuScreenProductSlots_right_slot1_badge {
+  badgeUrl: string;
+  text: YuScreenProductSlots_getYuScreenProductSlots_right_slot1_badge_text | null;
 }
 
 export interface YuScreenProductSlots_getYuScreenProductSlots_right_slot1_popover {
@@ -113,12 +172,24 @@ export interface YuScreenProductSlots_getYuScreenProductSlots_right_slot1 {
   productId: string | null;
   coverType: CoverType | null;
   icon: YuScreenProductSlots_getYuScreenProductSlots_right_slot1_icon;
+  badge: YuScreenProductSlots_getYuScreenProductSlots_right_slot1_badge;
   popover: YuScreenProductSlots_getYuScreenProductSlots_right_slot1_popover | null;
 }
 
 export interface YuScreenProductSlots_getYuScreenProductSlots_right_slot2_icon {
   name: string;
   backgroundUrl: string;
+  colour: string;
+}
+
+export interface YuScreenProductSlots_getYuScreenProductSlots_right_slot2_badge_text {
+  value: string;
+  colour: string;
+}
+
+export interface YuScreenProductSlots_getYuScreenProductSlots_right_slot2_badge {
+  badgeUrl: string;
+  text: YuScreenProductSlots_getYuScreenProductSlots_right_slot2_badge_text | null;
 }
 
 export interface YuScreenProductSlots_getYuScreenProductSlots_right_slot2_popover {
@@ -133,12 +204,24 @@ export interface YuScreenProductSlots_getYuScreenProductSlots_right_slot2 {
   productId: string | null;
   coverType: CoverType | null;
   icon: YuScreenProductSlots_getYuScreenProductSlots_right_slot2_icon;
+  badge: YuScreenProductSlots_getYuScreenProductSlots_right_slot2_badge;
   popover: YuScreenProductSlots_getYuScreenProductSlots_right_slot2_popover | null;
 }
 
 export interface YuScreenProductSlots_getYuScreenProductSlots_right_slot3_icon {
   name: string;
   backgroundUrl: string;
+  colour: string;
+}
+
+export interface YuScreenProductSlots_getYuScreenProductSlots_right_slot3_badge_text {
+  value: string;
+  colour: string;
+}
+
+export interface YuScreenProductSlots_getYuScreenProductSlots_right_slot3_badge {
+  badgeUrl: string;
+  text: YuScreenProductSlots_getYuScreenProductSlots_right_slot3_badge_text | null;
 }
 
 export interface YuScreenProductSlots_getYuScreenProductSlots_right_slot3_popover {
@@ -153,12 +236,24 @@ export interface YuScreenProductSlots_getYuScreenProductSlots_right_slot3 {
   productId: string | null;
   coverType: CoverType | null;
   icon: YuScreenProductSlots_getYuScreenProductSlots_right_slot3_icon;
+  badge: YuScreenProductSlots_getYuScreenProductSlots_right_slot3_badge;
   popover: YuScreenProductSlots_getYuScreenProductSlots_right_slot3_popover | null;
 }
 
 export interface YuScreenProductSlots_getYuScreenProductSlots_right_slot4_icon {
   name: string;
   backgroundUrl: string;
+  colour: string;
+}
+
+export interface YuScreenProductSlots_getYuScreenProductSlots_right_slot4_badge_text {
+  value: string;
+  colour: string;
+}
+
+export interface YuScreenProductSlots_getYuScreenProductSlots_right_slot4_badge {
+  badgeUrl: string;
+  text: YuScreenProductSlots_getYuScreenProductSlots_right_slot4_badge_text | null;
 }
 
 export interface YuScreenProductSlots_getYuScreenProductSlots_right_slot4_popover {
@@ -173,6 +268,7 @@ export interface YuScreenProductSlots_getYuScreenProductSlots_right_slot4 {
   productId: string | null;
   coverType: CoverType | null;
   icon: YuScreenProductSlots_getYuScreenProductSlots_right_slot4_icon;
+  badge: YuScreenProductSlots_getYuScreenProductSlots_right_slot4_badge;
   popover: YuScreenProductSlots_getYuScreenProductSlots_right_slot4_popover | null;
 }
 
@@ -186,6 +282,17 @@ export interface YuScreenProductSlots_getYuScreenProductSlots_right {
 export interface YuScreenProductSlots_getYuScreenProductSlots_bottom_icon {
   name: string;
   backgroundUrl: string;
+  colour: string;
+}
+
+export interface YuScreenProductSlots_getYuScreenProductSlots_bottom_badge_text {
+  value: string;
+  colour: string;
+}
+
+export interface YuScreenProductSlots_getYuScreenProductSlots_bottom_badge {
+  badgeUrl: string;
+  text: YuScreenProductSlots_getYuScreenProductSlots_bottom_badge_text | null;
 }
 
 export interface YuScreenProductSlots_getYuScreenProductSlots_bottom_popover {
@@ -200,6 +307,7 @@ export interface YuScreenProductSlots_getYuScreenProductSlots_bottom {
   productId: string | null;
   coverType: CoverType | null;
   icon: YuScreenProductSlots_getYuScreenProductSlots_bottom_icon;
+  badge: YuScreenProductSlots_getYuScreenProductSlots_bottom_badge;
   popover: YuScreenProductSlots_getYuScreenProductSlots_bottom_popover | null;
 }
 

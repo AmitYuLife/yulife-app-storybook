@@ -12,6 +12,17 @@ import { YuProductStatus, CoverType } from "./globalTypes";
 export interface YuScreenProductSlotItem_icon {
   name: string;
   backgroundUrl: string;
+  colour: string;
+}
+
+export interface YuScreenProductSlotItem_badge_text {
+  value: string;
+  colour: string;
+}
+
+export interface YuScreenProductSlotItem_badge {
+  badgeUrl: string;
+  text: YuScreenProductSlotItem_badge_text | null;
 }
 
 export interface YuScreenProductSlotItem_popover {
@@ -26,5 +37,6 @@ export interface YuScreenProductSlotItem {
   productId: string | null;
   coverType: CoverType | null;
   icon: YuScreenProductSlotItem_icon;
+  badge: YuScreenProductSlotItem_badge;
   popover: YuScreenProductSlotItem_popover | null;
 }

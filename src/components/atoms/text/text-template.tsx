@@ -15,7 +15,9 @@ export type ITextTemplateType =
   | "l2"
   | "l2b"
   | "l3"
-  | "l3b";
+  | "l3b"
+  | "l4"
+  | "l4b";
 
 interface IProps {
   testID?: string;
@@ -125,6 +127,17 @@ export const styles = StyleSheet.create({
   l3b: {
     fontFamily: Style.FONT_FAMILY_PRIMARY_BOLD,
     fontSize: Style.adjust(10),
+    lineHeight: Style.adjust(16),
+    letterSpacing: getLetterSpacing(Style.adjust(0.4)),
+  },
+  l4: {
+    fontSize: Style.adjust(8),
+    lineHeight: Style.adjust(16),
+    letterSpacing: getLetterSpacing(Style.adjust(0.4)),
+  },
+  l4b: {
+    fontFamily: Style.FONT_FAMILY_PRIMARY_BOLD,
+    fontSize: Style.adjust(8),
     lineHeight: Style.adjust(16),
     letterSpacing: getLetterSpacing(Style.adjust(0.4)),
   },

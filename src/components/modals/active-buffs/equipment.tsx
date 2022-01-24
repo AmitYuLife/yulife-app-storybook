@@ -4,7 +4,6 @@ import { GetActiveBuffsOverlay_getActiveBuffsOverlay_equipment } from "@graphql/
 import { SlotIcon } from "@atoms";
 import { PackageCardPerks } from "@molecules";
 import styles from "./active-buffs.styles";
-import { YuProductStatus } from "@graphql/_core/schema/globalTypes";
 
 interface IProps {
   item: GetActiveBuffsOverlay_getActiveBuffsOverlay_equipment;
@@ -13,7 +12,6 @@ interface IProps {
 const Equipment = memo(({ item }: IProps) => {
   const slot = useMemo(
     () => ({
-      status: YuProductStatus.active,
       itemUrl: item.iconUri,
       backgroundUrl: item.slotUri,
       name: "",
@@ -24,7 +22,7 @@ const Equipment = memo(({ item }: IProps) => {
   return (
     <View style={styles.itemWrapper}>
       <View style={styles.itemImageWrapper}>
-        <SlotIcon slot={slot} />
+        <SlotIcon {...slot} />
       </View>
       <View style={styles.perksContainer}>
         {item.buffs.map((buff, index) => (

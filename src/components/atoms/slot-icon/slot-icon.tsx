@@ -2,46 +2,38 @@ import React, { memo } from "react";
 import { View, StyleSheet, ViewStyle } from "react-native";
 import { Image, TextTemplate } from "@atoms";
 import { Style, Colours } from "@styles";
-import { YuProductStatus } from "@graphql/_core/schema/globalTypes";
 
 export interface ISlotIcon {
-  status: YuProductStatus;
   itemUrl: string;
   backgroundUrl: string;
   name: string;
+  colour?: string;
 }
 
-interface IProps {
-  slot: ISlotIcon;
-}
-
-export const SlotIcon = memo(({ slot }: IProps) => (
+export const SlotIcon = memo(({ colour = Colours.metallic.m500, itemUrl, backgroundUrl, name }: ISlotIcon) => (
   <View style={styles.wrapper}>
     <Image
-      source={{ uri: slot.backgroundUrl }}
+      source={{ uri: backgroundUrl }}
       width={Style.adjust(64)}
       height={Style.adjust(64)}
       theme="light"
       style={styles.slotWrapper}
     />
     <Image
-      source={{ uri: slot.itemUrl }}
+      source={{ uri: itemUrl }}
       width={Style.adjust(60)}
       height={Style.adjust(60)}
       theme="light"
       style={styles.slotItem}
     />
     <View>
-      {slot.status !== YuProductStatus.active ? (
+      {!name ? null : (
         <View style={styles.itemName}>
-          <TextTemplate
-            type="l3b"
-            color={slot.status === YuProductStatus.locked ? Colours.metallic.m300 : Colours.metallic.m500}
-          >
-            {slot.name}
+          <TextTemplate type="l3b" color={colour}>
+            {name}
           </TextTemplate>
         </View>
-      ) : null}
+      )}
     </View>
   </View>
 ));
