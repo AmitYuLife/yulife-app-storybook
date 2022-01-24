@@ -1,3 +1,4 @@
+import { GQL_QUERY_GET_USER_SURGE } from "@graphql/surge";
 import gql from "graphql-tag";
 import client from "../_core/client";
 
@@ -14,5 +15,5 @@ export default (levelId: string) =>
   client().mutate<SubmitUnity, SubmitUnityVariables>({
     mutation: GQL_MUTATION_SUBMIT_UNITY,
     variables: { levelId },
-    refetchQueries: [{ query: GQL_QUERY_GET_QUEST_MAP_LEVEL_LIST }],
+    refetchQueries: [{ query: GQL_QUERY_GET_QUEST_MAP_LEVEL_LIST }, { query: GQL_QUERY_GET_USER_SURGE }],
   });
