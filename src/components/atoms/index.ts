@@ -59,9 +59,6 @@ export { default as PackageMonthPrice } from "./package-month-price/package-mont
 export { default as Wrapper } from "./wrapper/wrapper";
 export { SlotIcon } from "./slot-icon/slot-icon";
 export { default as ChecklistInfoCard } from "./checklist-info-card/checklist-info-card";
-// error :( https://www.typescriptlang.org/docs/handbook/release-notes/typescript-3-8.html#export--as-ns-syntax
-import * as ProductSvg from "./product-svg";
-export { ProductSvg };
 export { default as DarkScreen } from "./dark-screen/dark-screen";
 export { FlatList } from "./flat-list/flat-list";
 export { default as Block } from "./block/block";

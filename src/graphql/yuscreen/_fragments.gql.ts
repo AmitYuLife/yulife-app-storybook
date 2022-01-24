@@ -18,6 +18,14 @@ export const GQL_YU_SCREEN_PRODUCT_SLOT_ITEM = gql`
     icon {
       name
       backgroundUrl
+      colour
+    }
+    badge {
+      badgeUrl
+      text {
+        value
+        colour
+      }
     }
     popover {
       ...YuScreenPopover
