@@ -7,11 +7,11 @@ import {
   GetPersonalProductStepDetachedDocuments,
   GetPersonalProductStepDetachedDocumentsVariables,
 } from "@graphql/_core/schema";
-import { ProductStepDocumentsContext } from "./product-step.documents.context";
 import { ProductStepContentItemHeaderDetached } from "./subcomponents/detached/product-step.header.detached";
 import { SduiActionType } from "@graphql/_core/schema/globalTypes";
 import { ContentItemDocuments } from "@components/sdui";
 import { Style, TOP_BAR } from "@styles";
+import { ProductStepDetachedNavigationContext } from "./product-step-detached-navigation.context";
 
 const HEADER_HEIGHT_ESTIMATE = TOP_BAR.TOP_BAR_WITH_PAD;
 const EXTRA_PADDING = Style.adjust(32);
@@ -19,6 +19,22 @@ const EXTRA_PADDING = Style.adjust(32);
 const ProductStepDetachedContainer = (props: any) => {
   const { productId } = props;
   const [headerHeight, setHeaderHeight] = useState(HEADER_HEIGHT_ESTIMATE);
+
+  const [nestedHistory, setNestedHistory] = useState([] as string[]);
+
+  const pushNestedHistory = (internalStep: string) => {
+    setNestedHistory((state) => [...state, internalStep]);
+  };
+
+  const popNestedHistory = () => {
+    setNestedHistory((state) => {
+      if (state.length <= 1) {
+        return [];
+      }
+
+      return state.slice(0, -1);
+    });
+  };
 
   const { data, loading } = useQuery<
     GetPersonalProductStepDetachedDocuments,
@@ -47,7 +63,13 @@ const ProductStepDetachedContainer = (props: any) => {
   const { body } = data.getPersonalProductStepDetachedDocuments;
 
   return (
-    <ProductStepDocumentsContext.Provider value={{ productId }}>
+    <ProductStepDetachedNavigationContext.Provider
+      value={{
+        popNestedHistory,
+        pushNestedHistory,
+        nestedHistory,
+      }}
+    >
       <View style={styles.wrapper}>
         <ScrollView showsVerticalScrollIndicator={false}>
           <View style={scrollViewTopPad} />
@@ -65,7 +87,7 @@ const ProductStepDetachedContainer = (props: any) => {
           onRightIconPress={{ type: SduiActionType.SDUI_ACTION_NAVIGATE_BACK, payload: null }}
         />
       </View>
-    </ProductStepDocumentsContext.Provider>
+    </ProductStepDetachedNavigationContext.Provider>
   );
 };
 

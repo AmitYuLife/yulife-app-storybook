@@ -8,6 +8,7 @@ import {
   GetPersonalProductStep_getPersonalProductStep_footer,
   GetPersonalProductStep_getPersonalProductStep_header,
 } from "@graphql/_core/schema";
+import { buildInitialProductStepDynamicDataState } from "@utils/products";
 
 interface Props {
   productId: string;
@@ -90,21 +91,3 @@ const styles = StyleSheet.create({
     flex: 1,
   } as ViewStyle,
 });
-
-const buildInitialProductStepDynamicDataState = (stepData: string) => {
-  if (!stepData) {
-    return {};
-  }
-
-  try {
-    const data = JSON.parse(stepData);
-
-    if (data && typeof data === "object") {
-      return data;
-    }
-
-    return {};
-  } catch (e) {
-    return {};
-  }
-};

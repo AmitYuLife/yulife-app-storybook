@@ -1,5 +1,6 @@
 import {
   GetPersonalProductStep_getPersonalProductStep_body,
+  GetPersonalProductStepDetached_getPersonalProductStepDetached_body,
   ContentItemScrollPicker as GqlScrollPicker,
 } from "@graphql/_core/schema";
 import { ProductStepDefaultFields, DynamicData } from "@redux/server-driven-ui/sdui.types";
@@ -21,7 +22,9 @@ export interface IProductStepContext extends ProductStepDefaultFields {
   scrollPicker: IProductStepScrollPicker;
   setScrollPicker: Dispatch<SetStateAction<IProductStepScrollPicker>>;
   setDynamicData: Dispatch<SetStateAction<DynamicData>>;
-  body: GetPersonalProductStep_getPersonalProductStep_body[];
+  body:
+    | GetPersonalProductStep_getPersonalProductStep_body[]
+    | GetPersonalProductStepDetached_getPersonalProductStepDetached_body[];
   /**
    * this is the scroll value that comes from the ScrollView onScroll event in
    * src/components/containers/products/product-step/sections/body/body.tsx

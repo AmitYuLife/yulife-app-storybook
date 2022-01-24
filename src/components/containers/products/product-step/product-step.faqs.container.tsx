@@ -7,28 +7,23 @@ import { GQL_QUERY_GET_PERSONAL_PRODUCT_STEP_DETACHED_FAQS } from "@graphql/pers
 import { GetPersonalProductStepDetachedFaqs_getPersonalProductStepDetachedFaqs_body as GPPSSQ_Body } from "@graphql/_core/schema";
 import { GetPersonalProductStepDetachedFaqs, GetPersonalProductStepDetachedFaqsVariables } from "@graphql/_core/schema";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
-import { ProductStepFaqsContext } from "./product-step.faqs.context";
+
 import { ProductStepContentItemHeaderDetached } from "./subcomponents/detached/product-step.header.detached";
 import { SduiActionType } from "@graphql/_core/schema/globalTypes";
 import { Colours, Style, TOP_BAR } from "@styles";
+import { ProductStepDetachedNavigationContext } from "./product-step-detached-navigation.context";
 
 const HEADER_HEIGHT_ESTIMATE = TOP_BAR.TOP_BAR_WITH_PAD;
 const EXTRA_PADDING = Style.adjust(32);
 
 const ProductStepDetachedContainer = (props: any) => {
-  const { stepId, productId } = props;
+  const { productId } = props;
 
   const dispatch = useDispatch();
 
   const [headerHeight, setHeaderHeight] = useState(HEADER_HEIGHT_ESTIMATE);
-  const [currentStepId, setCurrentStepId] = useState(stepId);
-  const [history, setHistory] = useState([] as string[]);
-  const [nestedHistory, setNestedHistory] = useState([] as string[]);
 
-  const setCurrentStep = (step: string) => {
-    setHistory((state) => [...state, step]);
-    setCurrentStepId(step);
-  };
+  const [nestedHistory, setNestedHistory] = useState([] as string[]);
 
   const pushNestedHistory = (internalStep: string) => {
     dispatch(logMixpanelEventActionCreator("faq_viewed", { faq_id: internalStep, cs_product: productId }));
@@ -72,12 +67,8 @@ const ProductStepDetachedContainer = (props: any) => {
   const { body } = data.getPersonalProductStepDetachedFaqs;
 
   return (
-    <ProductStepFaqsContext.Provider
+    <ProductStepDetachedNavigationContext.Provider
       value={{
-        history,
-        currentStepId,
-        setCurrentStep,
-        productId,
         popNestedHistory,
         pushNestedHistory,
         nestedHistory,
@@ -100,7 +91,7 @@ const ProductStepDetachedContainer = (props: any) => {
           onRightIconPress={{ type: SduiActionType.SDUI_ACTION_NAVIGATE_BACK, payload: null }}
         />
       </View>
-    </ProductStepFaqsContext.Provider>
+    </ProductStepDetachedNavigationContext.Provider>
   );
 };
 
