@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Image, SliderInput, YugiHeader } from "@atoms";
 import { View } from "react-native";
 import { SliderInputProps } from "@atoms/slider-input/slider-input";
@@ -25,9 +25,17 @@ export default ({
   onBack,
 }: Props) => {
   const defaultScore = parseInt(defaultAnswer);
-  const [score, setScore] = useState(isNaN(defaultScore) ? undefined : defaultScore);
+  const defaultScoreValue = isNaN(defaultScore) ? undefined : defaultScore;
+  const [score, setScore] = useState(defaultScoreValue);
 
-  const submit = () => onSubmitAnswer(score?.toString());
+  const submit = () => {
+    onSubmitAnswer(score?.toString());
+    setScore(undefined);
+  };
+
+  useEffect(() => {
+    setScore(defaultScoreValue);
+  }, [defaultScoreValue]);
 
   return (
     <ScrollableLayout
