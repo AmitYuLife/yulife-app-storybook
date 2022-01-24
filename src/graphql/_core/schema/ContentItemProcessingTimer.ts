@@ -16,7 +16,7 @@ export interface ContentItemProcessingTimer_onClose {
 
 export interface ContentItemProcessingTimer {
   id: string;
-  endDateTimeWithTz: string;
+  secondsUntilTarget: number;
   backgroundUrl: string;
   contentItemProcessingTimerHeading: string;
   onClose: ContentItemProcessingTimer_onClose | null;

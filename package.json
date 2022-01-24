@@ -26,7 +26,7 @@
         "start:ios": "react-native run-ios",
         "start:ios:local": "ENVFILE=.env.local react-native run-ios --scheme=local",
         "start:ios:uat": "ENVFILE=.env.uat react-native run-ios --scheme=uat",
-        "start:ios:production": "ENVFILE=.env.uat.production react-native run-ios --scheme=production",
+        "start:ios:production": "ENVFILE=.env.production react-native run-ios --scheme=production",
         "start": "run-p start:bundler tsc:watch",
         "start:e2e": "RN_SRC_EXT=e2e.ts,e2e.tsx ENVFILE=.env.e2e run-p start:bundler tsc:watch",
         "start:bundler": "react-native start --reset-cache",

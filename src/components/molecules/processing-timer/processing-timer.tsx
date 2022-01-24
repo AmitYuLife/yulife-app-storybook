@@ -6,13 +6,13 @@ import { Countdown } from "./countdown";
 import { PressableWithDelay } from "..";
 
 interface Props {
-  endDateTimeWithTz: string;
+  secondsUntilTarget: number;
   onClose: () => void;
   backgroundUrl: string;
   heading: string;
 }
 
-const ProcessingTimer = memo(({ endDateTimeWithTz, backgroundUrl, heading, onClose }: Props) => (
+const ProcessingTimer = memo(({ secondsUntilTarget, backgroundUrl, heading, onClose }: Props) => (
   <View style={styles.backgroundWrapper}>
     <View style={styles.whiteBackground} />
     <View style={styles.background}>
@@ -24,7 +24,7 @@ const ProcessingTimer = memo(({ endDateTimeWithTz, backgroundUrl, heading, onClo
         {heading}
       </TextTemplate>
     </View>
-    <Countdown countdownEndCallback={onClose} endDateTimeWithTz={endDateTimeWithTz} />
+    <Countdown countdownEndCallback={onClose} secondsUntilTarget={secondsUntilTarget} />
     <View style={styles.padView} />
     <PressableWithDelay style={styles.closeWrapper} onPress={onClose}>
       <CloseSvg stroke={Colours.neutral.white} />
