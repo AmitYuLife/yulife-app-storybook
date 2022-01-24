@@ -3,12 +3,7 @@ import { IUserStore } from "@redux/user/user.reducer";
 import RNFitKit, { FitKitTypes, PedometerResponse, SampleQueryResult } from "@services/fitkit/fitkit.service";
 import { useFitKit } from "./fitkit.hooks";
 import moment, { Moment } from "moment";
-import {
-  ChallengePayload,
-  ChallengesPayload,
-  FitKitType,
-  PassiveChallengeType,
-} from "@graphql/_core/schema/globalTypes";
+import { ChallengesPayload, FitKitType, PassiveChallengeType } from "@graphql/_core/schema/globalTypes";
 import Logger from "../logging/logger";
 import { createContext } from "react";
 import { DATE_FORMAT_WITH_TZ } from "@utils";
@@ -57,16 +52,11 @@ export const fitkitTypeToGqlType = (type: string): PassiveChallengeType => {
   }
 };
 
-export const mapPedometerResults = (results: PedometerResponse): ChallengePayload => ({
+export const mapPedometerResults = (results: PedometerResponse): ChallengesPayload => ({
   endDateTime: moment(results.endTime).format(),
   startDateTime: moment(results.startTime).format(),
   value: Math.floor(results.steps),
-});
-
-export const transformSampleResultToPayload = (item: SampleQueryResult): ChallengePayload => ({
-  endDateTime: moment(item.endTime).format(),
-  startDateTime: moment(item.startTime).format(),
-  value: Math.floor(item.value),
+  type: PassiveChallengeType.STEPS,
 });
 
 export const transformSampleResultToPayloadWithType = (item: SampleQueryResult): ChallengesPayload => ({
@@ -202,56 +192,6 @@ export const querySteps = async (
     });
     return { results: [], error: e.message };
   }
-};
-
-export const queryCycling = async (
-  startTime: string,
-  endTime: string,
-  { disableUserEntries = true, loggingEnabled = false }: IUserStore["features"] = {}
-): Promise<ChallengePayload[]> => {
-  try {
-    const args = {
-      disableUserEntries,
-      endTime,
-      startTime,
-      type: FitKitTypes.Types.Biking,
-    };
-
-    if (loggingEnabled) {
-      Logger.logMixpanelEvent("raw_cycling_query_args", args);
-    }
-
-    const results = await RNFitKit.sampleQuery(args);
-
-    if (loggingEnabled && results && results.length > 0) {
-      Logger.logMixpanelEvent("raw_cycling_query_results", { results });
-    }
-
-    return results.map(transformSampleResultToPayload);
-  } catch (e) {
-    Logger.logMixpanelEvent("raw_cycling_query_error", {
-      error: e.message,
-      date_start: startTime,
-      date_end: endTime,
-    });
-    return [];
-  }
-};
-
-// TODO purge after GS-113 will be merged
-export const queryHistoricalData = async (onboardingDate: Moment) => {
-  const start = onboardingDate.clone().subtract(60, "days").startOf("day");
-  const end = onboardingDate.clone().subtract(1, "days").endOf("day");
-
-  return querySteps(start, end, { disableUserEntries: false });
-};
-
-// TODO purge after GS-113 will be merged
-export const queryHistoricalMeditationData = async (onboardingDate: Moment, userFeature: IUserStore["features"]) => {
-  const start = onboardingDate.clone().subtract(60, "days");
-  const end = onboardingDate.clone().subtract(1, "days");
-
-  return queryFitKitByTypes(start.format(), end.format(), [FitKitType.MindfulSession], userFeature);
 };
 
 export function sampleDataToAggregatedData(

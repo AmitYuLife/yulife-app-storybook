@@ -16,7 +16,7 @@ export const CPE_1 = {
         "start_date": null,
         "end_date": null,
         "underwriting_step": null,
-        "final_quote_reached": false,
+        "is_banned_from_product": false,
         "archived": false,
         "archived_at": null,
         "taken_up": null,
