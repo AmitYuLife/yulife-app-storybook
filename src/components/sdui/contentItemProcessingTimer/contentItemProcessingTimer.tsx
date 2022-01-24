@@ -9,7 +9,7 @@ export const ContentItemProcessingTimer = memo((props: Props) => {
   return (
     <ProcessingTimer
       backgroundUrl={props.backgroundUrl}
-      endDateTimeWithTz={props.endDateTimeWithTz}
+      secondsUntilTarget={props.secondsUntilTarget}
       onClose={() => dispatch(props.onClose)}
       heading={props.contentItemProcessingTimerHeading}
     />

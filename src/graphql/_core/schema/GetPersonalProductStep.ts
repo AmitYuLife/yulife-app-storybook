@@ -1619,7 +1619,7 @@ export interface GetPersonalProductStep_getPersonalProductStep_header_ContentIte
 export interface GetPersonalProductStep_getPersonalProductStep_header_ContentItemProcessingTimer {
   __typename: "ContentItemProcessingTimer";
   id: string;
-  endDateTimeWithTz: string;
+  secondsUntilTarget: number;
   backgroundUrl: string;
   contentItemProcessingTimerHeading: string;
   onClose: GetPersonalProductStep_getPersonalProductStep_header_ContentItemProcessingTimer_onClose | null;

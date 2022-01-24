@@ -1,18 +1,17 @@
 import React, { memo, useEffect, useRef, useState } from "react";
 import { StyleSheet, View, ViewStyle } from "react-native";
-import moment from "moment";
 import { Stars1, Stars2 } from "@atoms/icon/stars-icon";
 import { CountdownUnit } from "./countdown-unit";
 import { getCountdownFromSeconds } from "./getCountdownFromDate";
 import { Colours, Style } from "@styles";
 
 interface Props {
-  endDateTimeWithTz: string;
+  secondsUntilTarget: number;
   countdownEndCallback: () => void;
 }
 
-export const Countdown = memo(({ endDateTimeWithTz, countdownEndCallback }: Props) => {
-  const { days, hours, minutes } = useCountdownHandler(endDateTimeWithTz, countdownEndCallback);
+export const Countdown = memo(({ secondsUntilTarget, countdownEndCallback }: Props) => {
+  const { days, hours, minutes } = useCountdownHandler(secondsUntilTarget, countdownEndCallback);
 
   return (
     <View style={styles.countdownWrapper}>
@@ -77,8 +76,8 @@ const styles = StyleSheet.create({
 });
 
 const REFRESH_RATE_MILLISECONDS = 1000;
-const useCountdownHandler = (endDateTimeWithTz: string, countdownEndCallback: () => void) => {
-  const secondsDiffRef = useRef(moment.parseZone(endDateTimeWithTz).diff(moment(), "seconds"));
+const useCountdownHandler = (secondsUntilTarget: number, countdownEndCallback: () => void) => {
+  const secondsDiffRef = useRef(secondsUntilTarget);
   const [countdown, setCountdown] = useState(getCountdownFromSeconds(secondsDiffRef.current));
   const recountTimer = useRef(null);
   /**
@@ -99,7 +98,7 @@ const useCountdownHandler = (endDateTimeWithTz: string, countdownEndCallback: ()
     }
 
     return () => clearInterval(recountTimer.current);
-  }, [endDateTimeWithTz]);
+  }, [secondsUntilTarget]);
 
   return countdown.formatted;
 };

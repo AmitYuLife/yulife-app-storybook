@@ -705,7 +705,7 @@ export const GQL_FRAGMENT_CONTENT_ITEM_ACCORDION = gql`
 export const GQL_FRAGMENT_CONTENT_ITEM_PROCESSING_TIMER = gql`
   fragment ContentItemProcessingTimer on ContentItemProcessingTimer {
     id
-    endDateTimeWithTz
+    secondsUntilTarget
     backgroundUrl
     contentItemProcessingTimerHeading: heading
     onClose {
