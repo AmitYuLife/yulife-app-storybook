@@ -9,7 +9,7 @@ import {
 } from "@graphql/_core/schema";
 import { ScrollView, StyleSheet, View, ViewStyle } from "react-native";
 import { TertiaryButton } from "@atoms";
-import { ProductStepFaqsContext } from "@components/containers/products/product-step/product-step.faqs.context";
+import { ProductStepDetachedNavigationContext } from "@components/containers/products/product-step/product-step-detached-navigation.context";
 
 type Props = GqlDocuments;
 
@@ -17,7 +17,7 @@ export const ContentItemFaqs = memo((props: Props) => {
   const { faqs, headingMarkdown, headingImage } = props;
 
   const [showingContent, setShowingContent] = useState(null as GqlDocument);
-  const { pushNestedHistory, nestedHistory } = useContext(ProductStepFaqsContext);
+  const { pushNestedHistory, nestedHistory } = useContext(ProductStepDetachedNavigationContext);
 
   const findDocumentById = (id: string) => {
     return faqs.find((doc) => doc.id === id);

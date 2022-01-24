@@ -789,3 +789,71 @@ export const GQL_FRAGMENT_CONTENT_ITEM_SELECT_PAYMENT_BUTTON = gql`
     }
   }
 `;
+
+export const GQL_FRAGMENT_CONTENT_ITEM_FAQS = gql`
+  fragment ContentItemPersonalProductFaqs on ContentItemPersonalProductFaqs {
+    id
+    headingImage {
+      id
+      image {
+        id
+        uri
+      }
+    }
+    headingMarkdown {
+      id
+      markdown
+      parsedMarkdown
+    }
+    faqs {
+      id
+      accessButtonText
+      content {
+        id
+        markdown
+        parsedMarkdown
+        title
+        styles {
+          property
+          value
+        }
+      }
+      links {
+        id
+        contentItemDocumentId
+        label
+      }
+    }
+  }
+`;
+
+export const GQL_FRAGMENT_CONTENT_ITEM_DOCUMENTS = gql`
+  fragment ContentItemPersonalProductDocuments on ContentItemPersonalProductDocuments {
+    id
+    headingImage {
+      id
+      image {
+        id
+        uri
+      }
+    }
+    headingMarkdown {
+      id
+      markdown
+      parsedMarkdown
+    }
+    documents {
+      id
+      linkLabel
+      rightIcon {
+        id
+        uri
+      }
+      leftIcon {
+        id
+        uri
+      }
+      url
+    }
+  }
+`;

@@ -1,34 +1,82 @@
-import React, { memo, useCallback, useMemo, useState } from "react";
-import { ActivityIndicator, StyleSheet, View, ViewStyle, ScrollView, LayoutChangeEvent } from "react-native";
+import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
+import {
+  ActivityIndicator,
+  StyleSheet,
+  View,
+  ViewStyle,
+  ScrollView,
+  LayoutChangeEvent,
+  Keyboard,
+  Animated,
+} from "react-native";
 import { useDispatch } from "react-redux";
 import { useQuery } from "@apollo/react-hooks";
-import { ContentItemDocuments, ContentItemFaqs } from "@components/sdui";
+import {
+  ContentItemPad,
+  ContentItemDocuments,
+  ContentItemFaqs,
+  ContentItemText,
+  ContentItemButton,
+} from "@components/sdui";
 import { GQL_QUERY_GET_PERSONAL_PRODUCT_STEP_DETACHED } from "@graphql/personalProduct/getPersonalProductStepDetached.gql";
 import { GetPersonalProductStepDetached_getPersonalProductStepDetached_body as GPPSSQ_Body } from "@graphql/_core/schema";
-import { GetPersonalProductStepDetached, GetPersonalProductStepDetachedVariables } from "@graphql/_core/schema";
+
+import {
+  GetPersonalProductStepDetached,
+  GetPersonalProductStepDetachedVariables,
+  GetPersonalProductStepDetached_getPersonalProductStepDetached as DetachedStepData,
+} from "@graphql/_core/schema";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
-import { ProductStepFaqsContext } from "./product-step.faqs.context";
 import { ProductStepContentItemHeaderDetached } from "./subcomponents/detached/product-step.header.detached";
 import { SduiActionType } from "@graphql/_core/schema/globalTypes";
-import { Colours, Style, TOP_BAR } from "@styles";
+import { Colours } from "@styles";
+import {
+  ProductStepCoverPicker,
+  ProductStepSelectedPackageAccordion,
+  ProductStepSelectedPackageCard,
+  ProductStepSelectedPackageCards,
+} from "./subcomponents";
+import { IProductStepScrollPicker, ProductStepContext } from "./product-step.context";
+import { buildInitialProductStepDynamicDataState } from "@utils/products";
+import { DynamicData } from "@redux/server-driven-ui/sdui.types";
+import { ProductStepDetachedNavigationContext } from "./product-step-detached-navigation.context";
 
-const HEADER_HEIGHT_ESTIMATE = TOP_BAR.TOP_BAR_WITH_PAD;
-const EXTRA_PADDING = Style.adjust(32);
+interface Props {
+  productId: string;
+  stepId: string;
+}
 
-const ProductStepDetachedContainer = (props: any) => {
-  const { stepId, productId } = props;
+const ProductStepDetachedContainer = (props: Props) => {
+  const { productId, stepId } = props;
 
   const dispatch = useDispatch();
 
-  const [headerHeight, setHeaderHeight] = useState(HEADER_HEIGHT_ESTIMATE);
-  const [currentStepId, setCurrentStepId] = useState(stepId);
-  const [history, setHistory] = useState([] as string[]);
   const [nestedHistory, setNestedHistory] = useState([] as string[]);
+  const [dynamicData, setDynamicData] = useState<DynamicData>(buildInitialProductStepDynamicDataState(null));
+  const [scrollPicker, setScrollPicker] = useState(null as IProductStepScrollPicker);
+  const [headerHeight, setHeaderHeight] = useState(0);
+  const [headerBottom, setHeaderBottom] = useState(null);
+  const [detachedStep, setDetachedStep] = useState<DetachedStepData>(null);
+  const isMounted = useRef(false);
+  const { current: scrollValue } = useRef(new Animated.Value(0));
 
-  const setCurrentStep = (step: string) => {
-    setHistory((state) => [...state, step]);
-    setCurrentStepId(step);
-  };
+  const { data } = useQuery<GetPersonalProductStepDetached, GetPersonalProductStepDetachedVariables>(
+    GQL_QUERY_GET_PERSONAL_PRODUCT_STEP_DETACHED,
+    {
+      variables: { productId, stepId },
+      fetchPolicy: "no-cache",
+    }
+  );
+
+  useEffect(() => () => Keyboard.dismiss(), []);
+
+  useEffect(() => {
+    if (isMounted?.current) {
+      Keyboard.dismiss();
+    }
+
+    isMounted.current = true;
+  }, [stepId]);
 
   const pushNestedHistory = useCallback(
     (internalStep: string) => {
@@ -51,14 +99,6 @@ const ProductStepDetachedContainer = (props: any) => {
     });
   }, [setNestedHistory]);
 
-  const { data, loading } = useQuery<GetPersonalProductStepDetached, GetPersonalProductStepDetachedVariables>(
-    GQL_QUERY_GET_PERSONAL_PRODUCT_STEP_DETACHED,
-    {
-      variables: { productId, stepId },
-      fetchPolicy: "no-cache",
-    }
-  );
-
   const handleHeaderLayout = useCallback(
     (event: LayoutChangeEvent) => {
       setHeaderHeight(event.nativeEvent.layout.height);
@@ -67,26 +107,20 @@ const ProductStepDetachedContainer = (props: any) => {
   );
 
   const scrollViewTopPad = useMemo(() => {
-    return { height: headerHeight + EXTRA_PADDING };
+    return { height: headerHeight };
   }, [headerHeight]);
 
-  if (loading || !data?.getPersonalProductStepDetached) {
-    return (
-      <View style={styles.loadingWrapper}>
-        <ActivityIndicator />
-      </View>
-    );
-  }
-
-  const { body } = data.getPersonalProductStepDetached;
+  useEffect(() => {
+    if (data?.getPersonalProductStepDetached) {
+      const step = data.getPersonalProductStepDetached;
+      setDetachedStep(step);
+      setDynamicData(buildInitialProductStepDynamicDataState(step.stepData));
+    }
+  }, [data]);
 
   return (
-    <ProductStepFaqsContext.Provider
+    <ProductStepDetachedNavigationContext.Provider
       value={{
-        history,
-        currentStepId,
-        setCurrentStep,
-        productId,
         popNestedHistory,
         pushNestedHistory,
         nestedHistory,
@@ -94,8 +128,31 @@ const ProductStepDetachedContainer = (props: any) => {
     >
       <View style={nestedHistory.length === 0 ? styles.wrapper : styles.wrapperWhite}>
         <ScrollView showsVerticalScrollIndicator={false}>
-          <View style={scrollViewTopPad} />
-          {body.map(renderItemContent)}
+          {!detachedStep ? (
+            <View style={styles.loadingWrapper}>
+              <ActivityIndicator />
+            </View>
+          ) : (
+            <ProductStepContext.Provider
+              value={{
+                body: detachedStep.body,
+                customerProductId: detachedStep.customerProductId,
+                stepId: detachedStep.stepId,
+                dynamicData,
+                setDynamicData,
+                productId,
+                scrollPicker,
+                setScrollPicker,
+                headerBottom,
+                setHeaderBottom,
+                scrollValue,
+                headerHeight: 0,
+              }}
+            >
+              <View style={scrollViewTopPad} />
+              {detachedStep.body.map(renderItemContent)}
+            </ProductStepContext.Provider>
+          )}
         </ScrollView>
       </View>
       <View onLayout={handleHeaderLayout} style={styles.headerWrapper}>
@@ -109,7 +166,7 @@ const ProductStepDetachedContainer = (props: any) => {
           onRightIconPress={{ type: SduiActionType.SDUI_ACTION_NAVIGATE_BACK, payload: null }}
         />
       </View>
-    </ProductStepFaqsContext.Provider>
+    </ProductStepDetachedNavigationContext.Provider>
   );
 };
 
@@ -141,7 +198,20 @@ const renderItemContent = (item: GPPSSQ_Body): JSX.Element => {
       return <ContentItemFaqs key={item.id} {...item} />;
     case "ContentItemPersonalProductDocuments":
       return <ContentItemDocuments key={item.id} {...item} />;
-
+    case "ContentItemText":
+      return <ContentItemText key={item.id} {...item} />;
+    case "ContentItemCoverPicker":
+      return <ProductStepCoverPicker key={item.id} {...item} />;
+    case "ContentItemSelectedPackageCard":
+      return <ProductStepSelectedPackageCard key={item.id} {...item} />;
+    case "ContentItemSelectedPackageCards":
+      return <ProductStepSelectedPackageCards key={item.id} {...item} />;
+    case "ContentItemSelectedPackageAccordion":
+      return <ProductStepSelectedPackageAccordion key={item.id} {...item} />;
+    case "ContentItemButton":
+      return <ContentItemButton key={item.id} {...item} />;
+    case "ContentItemPad":
+      return <ContentItemPad key={item.id} {...item} />;
     default:
       return null;
   }

@@ -32,6 +32,8 @@ export * from "./ContentItemPackageCardPower";
 export * from "./ContentItemPackageCardSlotInfo";
 export * from "./ContentItemPackageCards";
 export * from "./ContentItemPad";
+export * from "./ContentItemPersonalProductDocuments";
+export * from "./ContentItemPersonalProductFaqs";
 export * from "./ContentItemPersonalProductPreview";
 export * from "./ContentItemPersonalProductReviewItem";
 export * from "./ContentItemPersonalProductSelectPaymentButton";

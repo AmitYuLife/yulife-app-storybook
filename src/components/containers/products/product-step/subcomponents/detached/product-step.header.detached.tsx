@@ -4,14 +4,14 @@ import { useDispatch } from "react-redux";
 import GenericHeading from "@atoms/generic-heading/generic-heading";
 import { ContentItemHeaderBar as GqlHeaderBar } from "@graphql/_core/schema";
 import { Colours, TOP_BAR } from "@styles";
-import { ProductStepFaqsContext } from "../../product-step.faqs.context";
 import { useBackHandler } from "@services/hooks/useBackHandler";
+import { ProductStepDetachedNavigationContext } from "../../product-step-detached-navigation.context";
 
 type Props = GqlHeaderBar;
 
 export const ProductStepContentItemHeaderDetached = memo((props: Props) => {
   const { leftIcon, logo, heading, onLeftIconPress, onRightIconPress, rightIcon } = props;
-  const { nestedHistory, popNestedHistory } = useContext(ProductStepFaqsContext);
+  const { nestedHistory, popNestedHistory } = useContext(ProductStepDetachedNavigationContext);
 
   const dispatch = useDispatch();
 
