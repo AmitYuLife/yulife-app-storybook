@@ -11,6 +11,7 @@ import {
   ContentItemButtonSize,
   YuProductStatus,
   RNViewPointerEvents,
+  ContentItemRowIconTextBannerType,
 } from "./globalTypes";
 
 // ====================================================
@@ -42,7 +43,6 @@ export interface GetPersonalProductStepDetached_getPersonalProductStepDetached_b
     | "ContentItemConfirm"
     | "ContentItemCollapsingHeaderProductInfo"
     | "ContentItemList"
-    | "ContentItemRowIconTextBanner"
     | "ContentItemFullScreenSwiper"
     | "ContentItemFullScreenLottieSwiper"
     | "ContentItemGpDetails"
@@ -530,6 +530,30 @@ export interface GetPersonalProductStepDetached_getPersonalProductStepDetached_b
   pointerEvents: RNViewPointerEvents | null;
 }
 
+export interface GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemRowIconTextBanner_bannerIcon {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemRowIconTextBanner_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemRowIconTextBanner {
+  __typename: "ContentItemRowIconTextBanner";
+  id: string;
+  /**
+   * determines client-side style template e.g. error for red
+   */
+  bannerType: ContentItemRowIconTextBannerType;
+  markdown: string;
+  bannerIcon: GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemRowIconTextBanner_bannerIcon;
+  styles:
+    | GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemRowIconTextBanner_styles[]
+    | null;
+}
+
 export type GetPersonalProductStepDetached_getPersonalProductStepDetached_body =
   | GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemMarkdown
   | GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemPersonalProductFaqs
@@ -541,7 +565,8 @@ export type GetPersonalProductStepDetached_getPersonalProductStepDetached_body =
   | GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemSelectedPackageCards
   | GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemSelectedPackageAccordion
   | GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemButton
-  | GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemPad;
+  | GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemPad
+  | GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemRowIconTextBanner;
 
 export interface GetPersonalProductStepDetached_getPersonalProductStepDetached {
   stepId: string;
