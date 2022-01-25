@@ -59,3 +59,24 @@ export const onAppBootstrap = (cb: VoidFunction) => {
     socketServer.io.on("connection", callback);
 }
 
+
+export const sendMindfulnessData = (value: number) => async () => {
+    const record = [{
+        startTime: moment().add(60, "seconds").toDate().toString(),
+        endTime: moment().add(80, "seconds").toDate().toString(),
+        value,
+        type: "MindfulSession"
+    }]
+    await fitKitAddSampleQueries(record)
+}
+
+export const addCyclingData = (value:number) => async () => {
+    const record = [{
+        startTime: moment().startOf("day").add(10,"minutes").toDate().toString(),
+        endTime: moment().endOf("day").subtract(10,"minutes").toDate().toString(),
+        value,
+        type: "Biking"
+    }]
+
+    await fitKitAddSampleQueries(record)
+}
