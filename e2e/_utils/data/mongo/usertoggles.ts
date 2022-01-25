@@ -37,7 +37,6 @@ export const CUSTOMER_2_TOGGLES = {
             "statsShowCyclingGraphCard": true,
             "showSettings": true,
             "showNotifications": true,
-            "showCycling": true,
             "passiveCyclingEnabled": true,
             "showTodayEarningsScreen": true,
 

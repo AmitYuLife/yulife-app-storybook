@@ -113,13 +113,16 @@ Feature("As a user I can get past the login screen", async () => {
             Given("I login and go to the daily steps screen", given.logInAndGoToTab("yucoin", CUSTOMER_2, AUTH_2), async () => {
                 When("I have already seen the onboarding screens", given.seenOnboardingScreens, async () => {
                     When("I have done 20 steps", given.sendSteps(20), async () => {
-                        Then("I should see 20 steps", then.idVisible(STEPS_COUNT(20)));
+                        Then("I should see 20 steps", then.idVisible(STEPS_COUNT(20), 2000));
                     })
-                    When("I have done  11.3 km cycling and 13 min mindfulness", given.triggerAppUpdateState, async () => {
-                        Then("I should see 11.3 km done today", then.idVisible(CYCLING_COUNT("11.3 km")));
-                        Then("I should see 13 min mindful done today", then.idVisible(MINDFUL_COUNT("13 min")));
-                        Then("I should see the amount of yucoin I earned today", then.textVisible("160 YuCoin today"))
-
+                    When("I have done 11.3 km cycling", given.addCyclingData(11345), async () => {
+                        When("I have done 13 min Mindfulness", given.sendMindfulnessData(800), async () => {
+                            When("I update the screen to see today activity", given.triggerAppUpdateState, async () => {
+                                Then("I should see 11.3 km done today", then.idVisible(CYCLING_COUNT("11.3 km")));
+                                Then("I should see 13 min mindful done today", then.idVisible(MINDFUL_COUNT("13 min")));
+                                Then("I should see the amount of yucoin I earned today", then.textVisible("160 YuCoin today"))
+                            })
+                        })
                     })
                     When("I tap on YuCoin coin", when.tapID(YUCOIN), async () => {
                         Then("I should see correct data 20 steps, 11.3 km, 13 min mindful", then.onTodaysYucoin(20, 11.3, 13))

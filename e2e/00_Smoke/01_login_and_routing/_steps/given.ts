@@ -1,6 +1,6 @@
 
 import { INPUT_LOGIN_EMAIL, INPUT_LOGIN_PASSWORD, BUTTON_LOGIN } from "@ids";
-export { authoriseFitkit, sendSteps } from "@socket";
+export { authoriseFitkit, sendSteps, addCyclingData, sendMindfulnessData } from "@socket";
 import * as when from "./when";
 import { sendReduxEvent } from "@socket";
 import { navigation } from "@navigation"
