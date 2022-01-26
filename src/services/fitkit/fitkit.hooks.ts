@@ -130,8 +130,8 @@ export function useFitKit() {
       permissionState.get("android.permission.ACTIVITY_RECOGNITION") === "never_ask_again"
     ) {
       Alert.alert(
-        "Error connecting",
-        "Unable to connect to Google Fit without at least Physical Activity permissions.",
+        "Google Fit permissions denied",
+        "To offer you rewards YuLife needs access to your physical activity through Google Fit.",
         [
           {
             text: "Cancel",
