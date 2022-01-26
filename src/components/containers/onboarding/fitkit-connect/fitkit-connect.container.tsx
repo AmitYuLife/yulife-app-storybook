@@ -11,7 +11,6 @@ import Storage from "@services/storage";
 import { useFitKit } from "@services/fitkit/fitkit.hooks";
 import { FitKitHealthTrackingPlatform } from "@services/fitkit/fitkit.service";
 import { getUserFeatures } from "@redux/user/user.selectors";
-import { requestAndroidSystemPermission } from "@services/fitkit/fitkit.system-permissions";
 
 // TODO find where these props actually come from in RNN types
 interface IProps {
@@ -23,7 +22,7 @@ interface IProps {
     if we're not using the handleAuthorised defined there, screen will not update the status to active
     after user will grant permission (only after a force close of the app)
   */
-  dailyStepScreenHandleAuthorised?: (platform: FitKitHealthTrackingPlatform) => void;
+  dailyStepScreenHandleAuthorised?: (platform: FitKitHealthTrackingPlatform) => Promise<boolean>;
   dismissButtonLabel?: string;
 }
 
@@ -53,14 +52,14 @@ const FitKitConnectContainer: React.FC<Props> = (props) => {
       fitKitConsentAuthorised();
       await Storage.fitkit.setFitkitPermission(Storage.fitkit.REQUESTED);
 
-      if (features.passiveCyclingEnabled && platform === "GoogleFit") {
-        await requestAndroidSystemPermission("android.permission.ACCESS_FINE_LOCATION");
-      }
-
-      dailyStepScreenHandleAuthorised
+      const authorizedResult = dailyStepScreenHandleAuthorised
         ? await dailyStepScreenHandleAuthorised(platform)
-        : await authorise({ ...FitKitPermissions, platform });
-      navigateToNext();
+        : await authorise({ ...FitKitPermissions(features.passiveCyclingEnabled), platform });
+
+      setIsConnecting(false);
+      if (authorizedResult) {
+        navigateToNext();
+      }
     },
     [setIsConnecting, fitKitConsentAuthorised, dailyStepScreenHandleAuthorised, authorise, navigateToNext]
   );

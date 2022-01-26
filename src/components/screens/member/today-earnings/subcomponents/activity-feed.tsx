@@ -1,5 +1,5 @@
-import React, { memo, useCallback, useMemo, useRef, useState } from "react";
-import { StyleSheet, View, Platform, Alert } from "react-native";
+import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { StyleSheet, View, Platform, Alert, PermissionsAndroid, Linking } from "react-native";
 import { Navigation } from "react-native-navigation";
 import { Block, Button, Image, TextTemplate } from "@atoms";
 import { Style } from "@styles";
@@ -26,6 +26,7 @@ import { useSelector } from "react-redux";
 import { getHasNotification } from "@redux/levels/levels.selectors";
 import { requestAndroidSystemPermission } from "@services/fitkit/fitkit.system-permissions";
 import { getUserFeatures } from "@redux/user/user.selectors";
+import { isSamsung } from "@utils/device";
 
 interface IProps {
   id: string;
@@ -51,6 +52,7 @@ const ActivityFeed = ({
   isGoogleFitAuthorised,
 }: IProps) => {
   const [googleFitIsAuthorised, setGoogleFitIsAuthorised] = useState(isGoogleFitAuthorised);
+  const [locationPermissionsGranted, setLocationPermissions] = useState(null);
   const questionMarkRef = useRef<View>();
   const { authorise } = useFitKit();
   const hasNotification = useSelector(getHasNotification);
@@ -69,11 +71,10 @@ const ActivityFeed = ({
       {
         text: confirmLabel,
         onPress: async () => {
-          if (features.passiveCyclingEnabled) {
-            await requestAndroidSystemPermission("android.permission.ACCESS_FINE_LOCATION");
-          }
-
-          const isAuthorise = await authorise({ ...FitKitPermissions, platform: "GoogleFit" });
+          const isAuthorise = await authorise({
+            ...FitKitPermissions(features.passiveCyclingEnabled),
+            platform: "GoogleFit",
+          });
           setGoogleFitIsAuthorised(isAuthorise);
           Navigation.dismissModal(MODALS.switchToGoogleFit);
         },
@@ -82,37 +83,101 @@ const ActivityFeed = ({
     return Alert.alert(title, alertMessage, buttons, { cancelable: true });
   }, [authorise]);
 
+  const onGrantPermission = useCallback(async () => {
+    const result = await requestAndroidSystemPermission("android.permission.ACCESS_FINE_LOCATION");
+
+    if (result === "granted") {
+      setLocationPermissions(true);
+    }
+
+    if (result === "never_ask_again") {
+      return Alert.alert(
+        "Permission Error",
+        "Unfortunately we are not able to enable permissions, you will need to give location permissions through system settings",
+        [
+          {
+            text: "Open app settings",
+            onPress: Linking.openSettings,
+          },
+        ]
+      );
+    }
+  }, []);
+
   const openPopUp = useCallback(() => {
     questionMarkRef?.current?.measure((_fx, _fy, _width, _height, _pageX, pageY) => {
       showOverlayWithChild(<ActivityFeedPopMenu pageY={pageY} {...questionMarkModal} />, false);
     });
   }, [questionMarkRef, questionMarkModal]);
 
-  const hideToast = useMemo(
+  const showGoogleFitToast = useMemo(
     () =>
       Platform.select({
-        ios: true,
-        android: id !== "core-activities" || googleFitIsAuthorised,
+        ios: false,
+        android: id === "core-activities" && !googleFitIsAuthorised && isSamsung(),
       }),
 
     [id, googleFitIsAuthorised]
   );
+  const showSystemLocationPermissionToast = useMemo(() => {
+    if (Platform.OS === "ios" || !googleFitIsAuthorised || id !== "core-activities") {
+      return false;
+    }
+
+    if (!features.passiveCyclingEnabled) {
+      return false;
+    }
+
+    return locationPermissionsGranted === false;
+  }, [googleFitIsAuthorised, id, features.passiveCyclingEnabled, locationPermissionsGranted]);
 
   const onTakeChallengePress = useCallback(() => {
     handleNavigateToQuestsTab();
     Navigation.pop(ROUTES.todayEarnings);
   }, []);
 
+  const isDisabled = useCallback(
+    (activity: IActivityProgress) => {
+      if (Platform.OS === "ios") {
+        return false;
+      }
+
+      if (id !== "core-activities") {
+        return false;
+      }
+
+      switch (activity.type) {
+        case "steps":
+          return false;
+        case "cycling":
+          return !locationPermissionsGranted || !googleFitIsAuthorised;
+        default:
+          return !googleFitIsAuthorised;
+      }
+    },
+    [googleFitIsAuthorised, id, locationPermissionsGranted]
+  );
+
   const parseActivityProgress = useMemo(() => {
     return activityProgress.map((activity) => ({
       ...activity,
-      isDisabled: Platform.select({
-        ios: false,
-        android: !googleFitIsAuthorised && activity.type !== "steps" && id === "core-activities",
-      }),
+      isDisabled: isDisabled(activity),
     }));
-  }, [googleFitIsAuthorised]);
+  }, [activityProgress, isDisabled]);
 
+  useEffect(() => {
+    (async () => {
+      const isGranted = await PermissionsAndroid.check("android.permission.ACCESS_FINE_LOCATION");
+      setLocationPermissions(isGranted);
+    })();
+  }, []);
+
+  useEffect(() => {
+    (async () => {
+      const isGranted = await PermissionsAndroid.check("android.permission.ACCESS_FINE_LOCATION");
+      setLocationPermissions(isGranted);
+    })();
+  }, []);
   return (
     <Block style={[styles.wrapper, wellDoneBanner ? { paddingBottom: 0 } : null]}>
       <View style={styles.headerWrapper}>
@@ -154,7 +219,7 @@ const ActivityFeed = ({
         </View>
       )}
 
-      {hideToast ? null : (
+      {!showGoogleFitToast ? null : (
         <View style={styles.progressWrapper}>
           <Toast
             iconWidth={57}
@@ -170,6 +235,24 @@ const ActivityFeed = ({
               </TextTemplate>
             </View>
             <Button onPress={onGoogleFitConnect} size="Fill" label="Connect to Google Fit" />
+          </Toast>
+        </View>
+      )}
+      {!showSystemLocationPermissionToast ? null : (
+        <View style={styles.progressWrapper}>
+          <Toast
+            iconWidth={57}
+            iconHeight={112}
+            iconUrl={toast?.iconUrl?.uri}
+            backgroundColor={toast?.backgroundColor}
+            borderColor={toast?.borderColor}
+          >
+            <View style={styles.toastDescription}>
+              <TextTemplate type="l3b">
+                To earn Yucoin for cycling, we need location permission to collect data on cycling activity.
+              </TextTemplate>
+            </View>
+            <Button onPress={onGrantPermission} size="Fill" label="Grant Permission" />
           </Toast>
         </View>
       )}

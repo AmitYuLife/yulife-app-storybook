@@ -12,7 +12,6 @@ import { useSelector } from "react-redux";
 import { getDailySteps } from "@redux/daily-steps/daily-steps.selectors";
 import moment from "moment";
 import { getUserFeatures } from "@redux/user/user.selectors";
-import { requestAndroidSystemPermission } from "@services/fitkit/fitkit.system-permissions";
 import { GQL_MUTATION_UPSERT_PASSIVE_CHALLENGES } from "@graphql/challenges/upsertPassiveChallenges.gql";
 
 interface IProps {
@@ -53,11 +52,7 @@ const TodayEarningsContainer = ({ componentId }: IProps) => {
       });
 
       if (features.passiveCyclingEnabled && (googleFit || Platform.OS === "ios")) {
-        Platform.OS === "ios"
-          ? await authoriseFitKitTypes([FitKitType.Cycling])
-          : await requestAndroidSystemPermission("android.permission.ACCESS_FINE_LOCATION", () =>
-              authoriseFitKitTypes([FitKitType.Cycling])
-            );
+        await authoriseFitKitTypes([FitKitType.Cycling]);
       }
 
       setIsGoogleFitAuthorised(googleFit);

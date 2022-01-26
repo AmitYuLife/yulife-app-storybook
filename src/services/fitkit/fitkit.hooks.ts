@@ -1,7 +1,7 @@
 import { useCallback, useEffect } from "react";
-import { Linking, Platform } from "react-native";
+import { Alert, Linking, Platform } from "react-native";
 import AsyncStorage from "@react-native-community/async-storage";
-import RNFitKit, { FitKitTypes } from "./fitkit.service";
+import RNFitKit, { FitKitAuthOptions, FitKitHealthTrackingPlatform, FitKitTypes } from "./fitkit.service";
 import Logger from "@services/logging/logger";
 import { FitKitType } from "@graphql/_core/schema/globalTypes";
 import { mapGqlFitKitTypeToFitKitType } from "./fitkit.helpers";
@@ -14,6 +14,8 @@ import {
   fitkitAuthoriseSucceeded,
   fitkitSetup,
 } from "@redux/fitkit/fitkit.actions";
+import { AndroidSystemPermissionsConfig, FitkitAndroidSystemPermission } from "./fitkit.permissions";
+import { requestAndroidSystemPermissions } from "./fitkit.system-permissions";
 
 const RNFITKIT_PERMISSIONS_SHOWN = "@RNFitKit:authorised";
 
@@ -101,6 +103,67 @@ export function useFitKit() {
     Logger.setUserProperties({ health_app: ["google"] });
   };
 
+  const checkAndroidSystemPermissions = async (options: FitKitAuthOptions) => {
+    if (Platform.OS !== "android" || options.platform !== "GoogleFit") {
+      return options;
+    }
+
+    const androidPermissions = options.read.reduce((permissions, readType) => {
+      if (AndroidSystemPermissionsConfig.has(readType)) {
+        const permission = AndroidSystemPermissionsConfig.get(readType);
+        if (!permissions.has(permission)) {
+          permissions.add(permission);
+        }
+      }
+
+      return permissions;
+    }, new Set<FitkitAndroidSystemPermission>());
+
+    if (androidPermissions.size === 0) {
+      return options;
+    }
+
+    const permissionState = await requestAndroidSystemPermissions([...androidPermissions]);
+    if (
+      options.platform === "GoogleFit" &&
+      Platform.Version > 28 &&
+      permissionState.get("android.permission.ACTIVITY_RECOGNITION") === "never_ask_again"
+    ) {
+      Alert.alert(
+        "Error connecting",
+        "Unable to connect to Google Fit without at least Physical Activity permissions.",
+        [
+          {
+            text: "Cancel",
+          },
+          {
+            text: "Open settings",
+            onPress: () => {
+              Linking.openSettings();
+            },
+          },
+        ]
+      );
+    }
+
+    const filteredRead = options.read.filter((readType) => {
+      if (!AndroidSystemPermissionsConfig.has(readType)) {
+        return true;
+      }
+
+      const permission = AndroidSystemPermissionsConfig.get(readType);
+      if (!permissionState.has(permission) || permissionState.get(permission) !== "granted") {
+        return false;
+      }
+
+      return true;
+    });
+    return {
+      ...options,
+      read: filteredRead,
+    };
+  };
+
   useEffect(() => {
     (async function () {
       if (initialized) {
@@ -114,14 +177,24 @@ export function useFitKit() {
   }, []);
 
   const authorise = useCallback(
-    async function (options) {
+    async function (options: FitKitAuthOptions) {
       /**
        * ANDROID
        */
       if (Platform.OS === "android") {
         try {
           dispatch(fitkitAuthoriseStart());
-          const isAuthorised = await RNFitKit.authorise(options);
+          const filteredOptions = await checkAndroidSystemPermissions(options);
+          if (
+            options.platform === "GoogleFit" &&
+            Platform.Version > 28 &&
+            !filteredOptions?.read?.some((readType) => readType === FitKitTypes.Types.StepCount)
+          ) {
+            dispatch(fitkitAuthoriseFailed({ healthApp: options.platform }));
+            return false;
+          }
+
+          const isAuthorised = await RNFitKit.authorise(filteredOptions);
 
           if (isAuthorised) {
             dispatch(fitkitAuthoriseSucceeded({ healthApp: options.platform }));
@@ -189,9 +262,14 @@ export function useFitKit() {
   );
 
   const authoriseFitKitTypes = useCallback(
-    async (fitKitTypes: FitKitType[]) => {
+    async (fitKitTypes: FitKitType[], platform?: FitKitHealthTrackingPlatform) => {
       try {
-        await RNFitKit.authorise({ read: fitKitTypes.map(mapGqlFitKitTypeToFitKitType) });
+        const options = await checkAndroidSystemPermissions({
+          read: fitKitTypes.map(mapGqlFitKitTypeToFitKitType),
+          platform,
+        });
+
+        await RNFitKit.authorise(options);
         const newState = await getState();
         dispatch(fitkitSetup(newState));
       } catch (e) {
