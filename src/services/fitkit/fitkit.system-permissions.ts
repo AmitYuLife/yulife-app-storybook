@@ -21,7 +21,7 @@ const permissionsConfig: Map<FitkitAndroidSystemPermission, IPermissionConfig> =
     {
       title: "Getting started",
       message:
-        "If you want to be rewarded for your cycling activity through the YuLife app please enable device location access.",
+        "If you would like to be rewarded for cycling using the YuLife app you’ll need to enable location services.",
       multipleItemsMessage: "Location is only required if you would like to be rewarded for cycling.",
       tracking: (status: PermissionStatus) => {
         Logger.logMixpanelEvent("permission_requested", { type: "android.permission.ACCESS_FINE_LOCATION", status });
@@ -33,8 +33,8 @@ const permissionsConfig: Map<FitkitAndroidSystemPermission, IPermissionConfig> =
     "android.permission.ACTIVITY_RECOGNITION",
     {
       title: "Getting started",
-      message: "In order to reward you for your daily activities we need Physical Activity permissions.",
-      multipleItemsMessage: "In order to reward you for your daily activities we need Physical Activity permissions.",
+      message: "To offer you rewards you’ll need to allow YuLife to read your physical activity.",
+      multipleItemsMessage: "To offer you rewards you’ll need to allow YuLife to read your physical activity",
       tracking: (status: PermissionStatus) => {
         Logger.logMixpanelEvent("permission_requested", { type: "android.permission.ACTIVITY_RECOGNITION", status });
       },
