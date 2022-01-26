@@ -172,12 +172,6 @@ const ActivityFeed = ({
     })();
   }, []);
 
-  useEffect(() => {
-    (async () => {
-      const isGranted = await PermissionsAndroid.check("android.permission.ACCESS_FINE_LOCATION");
-      setLocationPermissions(isGranted);
-    })();
-  }, []);
   return (
     <Block style={[styles.wrapper, wellDoneBanner ? { paddingBottom: 0 } : null]}>
       <View style={styles.headerWrapper}>
