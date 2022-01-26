@@ -13,16 +13,16 @@ import { Navigation } from "react-native-navigation";
 import { isSamsung } from "@utils";
 import { Platform } from "react-native";
 import { FitKitHealthTrackingPlatform } from "@services/fitkit/fitkit.service";
-import { requestAndroidSystemPermission } from "@services/fitkit/fitkit.system-permissions";
 import { getUserFeatures } from "@redux/user/user.selectors";
 
 const _DailyStepsContent = () => {
   const { authorise, loading: fitkitLoading, authorised, available } = useContext(FitkitContext);
+  const features = useSelector(getUserFeatures);
   const { isIosMotionAuthorised, fitkitPermission, setFitkitPermission, handleAuthoriseFitkit } = useAuthoriseFitkit({
     authorise,
+    passiveCyclingEnabled: features.passiveCyclingEnabled,
   });
   const dailyStepsIsFetching = useSelector(getDailyStepsIsFetching);
-  const features = useSelector(getUserFeatures);
 
   const isLoading = fitkitLoading || dailyStepsIsFetching;
   const unavailable = !isLoading && !available;
@@ -38,7 +38,8 @@ const _DailyStepsContent = () => {
           passProps: {
             dismissButtonLabel: "Cancel",
             dailyStepScreenHandleAuthorised: async (platform: FitKitHealthTrackingPlatform) => {
-              await handleAuthoriseFitkit(platform);
+              const authorized = await handleAuthoriseFitkit(platform);
+              return authorized;
             },
             navigateToNext: () => {
               Navigation.popToRoot(ROUTES.dailySteps);
@@ -49,13 +50,7 @@ const _DailyStepsContent = () => {
       });
     } else {
       if (Platform.OS === "android") {
-        if (features.passiveCyclingEnabled) {
-          await requestAndroidSystemPermission("android.permission.ACCESS_FINE_LOCATION", () =>
-            handleAuthoriseFitkit("GoogleFit")
-          );
-        } else {
-          handleAuthoriseFitkit("GoogleFit");
-        }
+        handleAuthoriseFitkit("GoogleFit");
       } else {
         handleAuthoriseFitkit("AppleHealth");
       }

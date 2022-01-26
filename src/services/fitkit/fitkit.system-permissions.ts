@@ -1,40 +1,150 @@
 import Logger from "@services/logging/logger";
-import { Permission, PermissionsAndroid, Platform, Rationale } from "react-native";
+import { Alert, AlertButton, PermissionsAndroid, PermissionStatus, Platform } from "react-native";
+import { FitkitAndroidSystemPermission } from "./fitkit.permissions";
 
-const DEFAULT_RATIONAL = {
-  title: "New  permission needed",
+interface IPermissionConfig {
+  title: string;
+  message: string;
+  multipleItemsMessage: string;
+  tracking?: (status: PermissionStatus) => void;
+}
+
+const DEFAULT_CONFIG: IPermissionConfig = {
+  title: "Getting started",
   message: "In order to use the Yulife app please enable a new permission.",
-  buttonPositive: "Enable",
+  multipleItemsMessage: "In order to use the Yulife app please enable a new permission.",
 };
 
-const FINE_LOCATION_RATIONAL = {
-  title: "Device location permission needed",
-  message: "In order to use the Yulife app please enable device location access.",
-  buttonPositive: "Enable",
-};
-
-const permissionRationalMap: Map<Permission, Rationale> = new Map([
-  ["android.permission.ACCESS_FINE_LOCATION", FINE_LOCATION_RATIONAL],
+const permissionsConfig: Map<FitkitAndroidSystemPermission, IPermissionConfig> = new Map([
+  [
+    "android.permission.ACCESS_FINE_LOCATION",
+    {
+      title: "Getting started",
+      message:
+        "If you want to be rewarded for your cycling activity through the YuLife app please enable device location access.",
+      multipleItemsMessage: "Location is only required if you would like to be rewarded for cycling.",
+      tracking: (status: PermissionStatus) => {
+        Logger.logMixpanelEvent("permission_requested", { type: "android.permission.ACCESS_FINE_LOCATION", status });
+        Logger.setUserProperties({ data_permission_location: status });
+      },
+    },
+  ],
+  [
+    "android.permission.ACTIVITY_RECOGNITION",
+    {
+      title: "Getting started",
+      message: "In order to reward you for your daily activities we need Physical Activity permissions.",
+      multipleItemsMessage: "In order to reward you for your daily activities we need Physical Activity permissions.",
+      tracking: (status: PermissionStatus) => {
+        Logger.logMixpanelEvent("permission_requested", { type: "android.permission.ACTIVITY_RECOGNITION", status });
+      },
+    },
+  ],
 ]);
 
-export const requestAndroidSystemPermission = async (permission: Permission, requestFitkitPermission?: () => void) => {
+const handlePermissionTracking = (permissionState: Map<FitkitAndroidSystemPermission, PermissionStatus>) => {
+  permissionState.forEach((status, permission) => {
+    permissionsConfig.get(permission)?.tracking?.(status);
+  });
+};
+
+export const requestAndroidSystemPermissions = async (
+  permissions: FitkitAndroidSystemPermission[]
+): Promise<Map<FitkitAndroidSystemPermission, PermissionStatus>> => {
   if (Platform.OS === "ios") {
-    return;
+    return Promise.reject(null);
   }
 
-  const isPermissionGranted = await PermissionsAndroid.check(permission);
-  const rational = permissionRationalMap.has(permission) ? permissionRationalMap.get(permission) : DEFAULT_RATIONAL;
-  const result = isPermissionGranted ? "granted" : await PermissionsAndroid.request(permission, rational);
+  const currentPermissionState = await Promise.all(
+    permissions.map(async (permission) => {
+      const granted = await PermissionsAndroid.check(permission as any);
+      return {
+        permission,
+        granted,
+      };
+    })
+  );
 
-  if (!isPermissionGranted) {
-    Logger.logMixpanelEvent("permission_requested", { type: permission, status: result });
+  const { missingPermissions, grantedPermissions } = currentPermissionState.reduce(
+    (map, { permission, granted }) => {
+      if (granted) {
+        map.grantedPermissions.set(permission, "granted");
+      } else {
+        map.missingPermissions.push(permission);
+      }
+
+      return map;
+    },
+    {
+      missingPermissions: [] as FitkitAndroidSystemPermission[],
+      grantedPermissions: new Map<FitkitAndroidSystemPermission, PermissionStatus>(),
+    }
+  );
+
+  if (missingPermissions.length === 0) {
+    handlePermissionTracking(grantedPermissions);
+    return Promise.resolve(grantedPermissions);
   }
 
-  if (permission === "android.permission.ACCESS_FINE_LOCATION") {
-    Logger.setUserProperties({ data_permission_location: result });
-  }
+  const singleMissing = missingPermissions.length === 1;
 
-  if (result === "granted" && requestFitkitPermission) {
-    await requestFitkitPermission();
-  }
+  const title =
+    singleMissing && permissionsConfig.has(missingPermissions[0])
+      ? permissionsConfig.get(missingPermissions[0]).title
+      : DEFAULT_CONFIG.title;
+
+  const message =
+    missingPermissions
+      .filter((permission) => permissionsConfig.has(permission))
+      .map(
+        (permission) =>
+          `${
+            singleMissing
+              ? permissionsConfig.get(permission).message
+              : permissionsConfig.get(permission).multipleItemsMessage
+          }`
+      )
+      .join(` `) || DEFAULT_CONFIG.message;
+
+  return new Promise((resolve) => {
+    const buttons: AlertButton[] = [
+      {
+        text: "Maybe later",
+        onPress: () => {
+          const result = new Map<FitkitAndroidSystemPermission, PermissionStatus>([
+            ...grantedPermissions,
+            ...missingPermissions.map<[FitkitAndroidSystemPermission, PermissionStatus]>((permission) => {
+              return [permission, "denied"];
+            }),
+          ]);
+          handlePermissionTracking(result);
+          resolve(result);
+        },
+      },
+      {
+        text: "Enable",
+        onPress: async () => {
+          const permissionsRequestResult = await PermissionsAndroid.requestMultiple(
+            missingPermissions.map((permission) => permission as any)
+          );
+          const result = new Map<FitkitAndroidSystemPermission, PermissionStatus>([
+            ...grantedPermissions,
+            ...Object.entries(permissionsRequestResult).map<[FitkitAndroidSystemPermission, PermissionStatus]>(
+              ([permission, status]) => [permission as FitkitAndroidSystemPermission, status]
+            ),
+          ]);
+          handlePermissionTracking(result);
+          resolve(result);
+        },
+      },
+    ];
+    Alert.alert(title, message, buttons);
+  });
+};
+
+export const requestAndroidSystemPermission = async (
+  permission: FitkitAndroidSystemPermission
+): Promise<PermissionStatus> => {
+  const result = await requestAndroidSystemPermissions([permission]);
+  return result.get(permission);
 };
