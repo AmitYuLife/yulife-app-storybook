@@ -34,7 +34,7 @@ const permissionsConfig: Map<FitkitAndroidSystemPermission, IPermissionConfig> =
     {
       title: "Getting started",
       message: "To offer you rewards you’ll need to allow YuLife to read your physical activity.",
-      multipleItemsMessage: "To offer you rewards you’ll need to allow YuLife to read your physical activity",
+      multipleItemsMessage: "To offer you rewards you’ll need to allow YuLife to read your physical activity.",
       tracking: (status: PermissionStatus) => {
         Logger.logMixpanelEvent("permission_requested", { type: "android.permission.ACTIVITY_RECOGNITION", status });
       },
