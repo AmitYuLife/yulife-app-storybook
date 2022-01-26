@@ -34,13 +34,13 @@ export function getText(level: number): string[] {
 
   const text: TextObject = {
     [WorldName.forest]: [
-      "Take a deep, celebratory breath. You’ve unlocked a bonus daily challenge from now on, and double YuCoin until midnight tomorrow. That’s 2x YuCoin for every 2,000 steps you take!",
+      "Take a deep, celebratory breath. You’ve now unlocked the ability to complete an extra challenge every day! To mark the occasion you’ll receive a 2x surge lasting until tomorrow at midnight.",
     ],
     [WorldName.ocean]: [
-      "You took the plunge and ascended victorious! Enjoy a bonus daily challenge from now on, and double YuCoin until midnight tomorrow. That’s 2x YuCoin for every 2,000 steps you take!",
+      "You took the plunge and ascended victorious! You’ve now unlocked the ability to complete an extra challenge every day! To mark the occasion you’ll receive a 2x surge lasting until tomorrow at midnight.",
     ],
     [WorldName.desert]: [
-      "You are your own wellbeing oasis! Celebrate with a bonus daily challenge from now on, and double YuCoin until midnight tomorrow. That’s 2x YuCoin for every 2,000 steps you take!",
+      "You are your own wellbeing oasis! You’ve now unlocked the ability to complete an extra challenge every day! To mark the occasion you’ll receive a 2x surge lasting until tomorrow at midnight.",
     ],
     [WorldName.mountain]: [
       `By achieving Yunity in all four worlds, your ${toOrdinalWord(
