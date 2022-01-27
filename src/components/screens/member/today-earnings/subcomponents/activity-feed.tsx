@@ -167,8 +167,10 @@ const ActivityFeed = ({
 
   useEffect(() => {
     (async () => {
-      const isGranted = await PermissionsAndroid.check("android.permission.ACCESS_FINE_LOCATION");
-      setLocationPermissions(isGranted);
+      if (Platform.OS === "android") {
+        const isGranted = await PermissionsAndroid.check("android.permission.ACCESS_FINE_LOCATION");
+        setLocationPermissions(isGranted);
+      }
     })();
   }, []);
 
