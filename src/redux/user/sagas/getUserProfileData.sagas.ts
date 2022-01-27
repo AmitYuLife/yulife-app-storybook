@@ -4,10 +4,16 @@ import { call, put, spawn } from "redux-saga/effects";
 import Logger from "@services/logging/logger";
 import { Unpacked } from "@utils";
 import { UPDATE_APP_STATE } from "@redux/app/app.actions";
+import { getToken } from "@services/storage";
 
 export default function* getUserProfileData(dataPayload: { payload: string; type: string }) {
   const { payload: appState, type } = dataPayload || {};
   if (type === UPDATE_APP_STATE && appState !== "active") {
+    return;
+  }
+
+  const token: Unpacked<typeof getToken> = yield call(getToken);
+  if (!token) {
     return;
   }
 

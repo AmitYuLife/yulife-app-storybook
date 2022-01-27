@@ -15,10 +15,17 @@ import { updateDailyMeditation } from "@redux/daily-meditation/daily-meditation.
 import { updateDailyCycling } from "@redux/daily-cycling/daily-cycling.actions";
 import { PermissionsAndroid, Platform } from "react-native";
 import { totalCoinsUpdated } from "@redux/coins/coins.actions";
+import { getToken } from "@services/storage";
+import { Unpacked } from "@utils";
 
 export default function* getDailyPassiveActivity(dataPayload: { payload: string; type: string }) {
   const { payload: appState, type } = dataPayload || {};
   if (type === UPDATE_APP_STATE && appState !== "active") {
+    return;
+  }
+
+  const token: Unpacked<typeof getToken> = yield call(getToken);
+  if (!token) {
     return;
   }
 

@@ -48,5 +48,5 @@ export default [
   takeLatest(UPDATE_CONNECTION_START, updateConnectionSaga),
   takeLatest(UPDATE_APP_STATE, fetchConnectionsSaga),
   takeLatest(SET_MAIN_ROOT, showSurgeIntroSaga),
-  takeLatest([AUTHENTICATED, UPDATE_APP_STATE], getUserProfileData),
+  takeLatest(UPDATE_APP_STATE, getUserProfileData),
 ];
