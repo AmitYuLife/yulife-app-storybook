@@ -132,7 +132,9 @@ The app needs to be signed before it can be installed on a physical device.
 ### Android
 
 ### Building from command line (Android)
+
 Ensure that the Java SDK (JDK) home path is set as an environment variable called `JAVA_HOME` for the shell used to start the Android build process. You can find the path out by running:
+
 ```sh
 /usr/libexec/java_home -V | grep jdk
 ```
@@ -149,6 +151,9 @@ This will run under the default build profile, which will connect to the develop
 yarn start:android:{profile}
 # config = local | uat | production
 ```
+
+When you are testing against a local instance of the API, the Android emulator will attempt to connect via localhost. This actually refers to a service on the emulator itself so will not work. You will need to change
+the `uri` used for `createHttpLink` in `src/components/graphql/_core/client.ts` to either be your local IP address or `10.0.2.2`, which refers to your machine. Don't forget to include the port.
 
 **Using a physical device (Android)**
 
