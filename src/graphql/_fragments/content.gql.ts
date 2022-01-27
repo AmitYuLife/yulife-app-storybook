@@ -228,6 +228,41 @@ export const GQL_FRAGMENT_CONTENT_ITEM_PROGRESS_BAR = gql`
   }
 `;
 
+export const GQL_FRAGMENT_CONTENT_ITEM_PROGRESS_STEPS_THEME_OPTION = gql`
+  fragment ContentItemProgressStepsThemeOption on ContentItemProgressStepsThemeOption {
+    active
+    inactive
+  }
+`;
+
+export const GQL_FRAGMENT_CONTENT_ITEM_PROGRESS_STEPS_THEME = gql`
+  fragment ContentItemProgressStepsTheme on ContentItemProgressStepsTheme {
+    barColour {
+      ...ContentItemProgressStepsThemeOption
+    }
+    barBorderColour {
+      ...ContentItemProgressStepsThemeOption
+    }
+    stepBackgroundColour {
+      ...ContentItemProgressStepsThemeOption
+    }
+    stepTextColour {
+      ...ContentItemProgressStepsThemeOption
+    }
+  }
+`;
+
+export const GQL_FRAGMENT_CONTENT_ITEM_PROGRESS_STEPS = gql`
+  fragment ContentItemProgressSteps on ContentItemProgressSteps {
+    id
+    currentStep
+    numberOfSteps
+    theme {
+      ...ContentItemProgressStepsTheme
+    }
+  }
+`;
+
 export const GQL_FRAGMENT_CONTENT_ITEM_PAD = gql`
   fragment ContentItemPad on ContentItemPad {
     id

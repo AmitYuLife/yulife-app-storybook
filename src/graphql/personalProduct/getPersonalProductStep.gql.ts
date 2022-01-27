@@ -47,6 +47,9 @@ import {
   GQL_FRAGMENT_CONTENT_ITEM_SELECTED_PACKAGE_CARD_PROVIDER_LOGO,
   GQL_FRAGMENT_CONTENT_ITEM_PROCESSING_TIMER,
   GQL_FRAGMENT_CONTENT_ITEM_YU_COIN_POWER,
+  GQL_FRAGMENT_CONTENT_ITEM_PROGRESS_STEPS,
+  GQL_FRAGMENT_CONTENT_ITEM_PROGRESS_STEPS_THEME,
+  GQL_FRAGMENT_CONTENT_ITEM_PROGRESS_STEPS_THEME_OPTION,
 } from "../_fragments/content.gql";
 
 export const GQL_QUERY_GET_PERSONAL_PRODUCT_STEP = gql`
@@ -95,6 +98,9 @@ export const GQL_QUERY_GET_PERSONAL_PRODUCT_STEP = gql`
   ${GQL_FRAGMENT_CONTENT_ITEM_FULL_SCREEN_LOTTIE_SWIPER}
   ${GQL_FRAGMENT_CONTENT_ITEM_PROCESSING_TIMER}
   ${GQL_FRAGMENT_CONTENT_ITEM_YU_COIN_POWER}
+  ${GQL_FRAGMENT_CONTENT_ITEM_PROGRESS_STEPS}
+  ${GQL_FRAGMENT_CONTENT_ITEM_PROGRESS_STEPS_THEME}
+  ${GQL_FRAGMENT_CONTENT_ITEM_PROGRESS_STEPS_THEME_OPTION}
 
   query GetPersonalProductStep($productId: String!) {
     getPersonalProductStep(productId: $productId) {
@@ -260,6 +266,9 @@ export const GQL_QUERY_GET_PERSONAL_PRODUCT_STEP = gql`
         }
         ... on ContentItemProgressBar {
           ...ContentItemProgressBar
+        }
+        ... on ContentItemProgressSteps {
+          ...ContentItemProgressSteps
         }
         ... on ContentItemSearchPostcode {
           ...ContentItemSearchPostcode

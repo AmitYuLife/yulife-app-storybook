@@ -31,7 +31,10 @@ export default function ProgressBar(props: IProgressBarProps) {
   useEffect(() => {
     animatedValue.addListener((e) => setPosition(Math.floor(e.value)));
 
-    return () => animatedValue.removeAllListeners();
+    return () => {
+      animatedValue.removeAllListeners();
+      animatedValue.stopAnimation();
+    };
   }, []);
 
   useEffect(() => {

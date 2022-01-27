@@ -52,7 +52,8 @@ export interface GetPersonalProductStepDetached_getPersonalProductStepDetached_b
     | "ContentItemForm"
     | "ContentItemFade"
     | "ContentItemProcessingTimer"
-    | "ContentItemYuCoinPower";
+    | "ContentItemYuCoinPower"
+    | "ContentItemProgressSteps";
 }
 
 export interface GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemPersonalProductFaqs_headingImage_image {
