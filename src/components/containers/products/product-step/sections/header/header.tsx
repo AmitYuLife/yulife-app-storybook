@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { LayoutChangeEvent, StyleSheet, View, ViewStyle } from "react-native";
 import { GetPersonalProductStep_getPersonalProductStep_header as GPPS_Header } from "@graphql/_core/schema";
-import { ContentItemProgressBar, ContentItemProcessingTimer } from "@components/sdui";
+import { ContentItemProcessingTimer, ContentItemProgressBar, ContentItemProgressSteps } from "@components/sdui";
 import { Colours } from "@styles";
 import { ProductStepContentItemHeader, ProductStepMarkdown, ProductStepSearchPostcode } from "../../subcomponents";
 import { ProductStepContext } from "../../product-step.context";
@@ -37,6 +37,8 @@ const renderItemContent = (item: GPPS_Header): JSX.Element => {
       return <ProductStepContentItemHeader key={item.__typename} {...item} />;
     case "ContentItemProgressBar":
       return <ContentItemProgressBar key={item.id} {...item} />;
+    case "ContentItemProgressSteps":
+      return <ContentItemProgressSteps key={item.id} {...item} />;
     case "ContentItemSearchPostcode":
       return <ProductStepSearchPostcode key={item.__typename} {...item} />;
     case "ContentItemMarkdown":

@@ -46,7 +46,8 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemP
     | "ContentItemSearchPostcode"
     | "ContentItemForm"
     | "ContentItemFade"
-    | "ContentItemProcessingTimer";
+    | "ContentItemProcessingTimer"
+    | "ContentItemProgressSteps";
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemTextInput_validation {
@@ -1295,7 +1296,8 @@ export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentIte
     | "ContentItemSelectedPackageAccordion"
     | "ContentItemSelectedPackageCards"
     | "ContentItemProcessingTimer"
-    | "ContentItemYuCoinPower";
+    | "ContentItemYuCoinPower"
+    | "ContentItemProgressSteps";
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentItemButton_onPress {
@@ -1552,6 +1554,41 @@ export interface GetPersonalProductStep_getPersonalProductStep_header_ContentIte
   progressType: ContentItemProgressBarType | null;
 }
 
+export interface GetPersonalProductStep_getPersonalProductStep_header_ContentItemProgressSteps_theme_barColour {
+  active: string;
+  inactive: string;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_header_ContentItemProgressSteps_theme_barBorderColour {
+  active: string;
+  inactive: string;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_header_ContentItemProgressSteps_theme_stepBackgroundColour {
+  active: string;
+  inactive: string;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_header_ContentItemProgressSteps_theme_stepTextColour {
+  active: string;
+  inactive: string;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_header_ContentItemProgressSteps_theme {
+  barColour: GetPersonalProductStep_getPersonalProductStep_header_ContentItemProgressSteps_theme_barColour;
+  barBorderColour: GetPersonalProductStep_getPersonalProductStep_header_ContentItemProgressSteps_theme_barBorderColour;
+  stepBackgroundColour: GetPersonalProductStep_getPersonalProductStep_header_ContentItemProgressSteps_theme_stepBackgroundColour;
+  stepTextColour: GetPersonalProductStep_getPersonalProductStep_header_ContentItemProgressSteps_theme_stepTextColour;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_header_ContentItemProgressSteps {
+  __typename: "ContentItemProgressSteps";
+  id: string;
+  currentStep: number;
+  numberOfSteps: number;
+  theme: GetPersonalProductStep_getPersonalProductStep_header_ContentItemProgressSteps_theme | null;
+}
+
 export interface GetPersonalProductStep_getPersonalProductStep_header_ContentItemSearchPostcode_styles {
   property: string;
   value: string;
@@ -1629,6 +1666,7 @@ export type GetPersonalProductStep_getPersonalProductStep_header =
   | GetPersonalProductStep_getPersonalProductStep_header_ContentItemLottie
   | GetPersonalProductStep_getPersonalProductStep_header_ContentItemHeaderBar
   | GetPersonalProductStep_getPersonalProductStep_header_ContentItemProgressBar
+  | GetPersonalProductStep_getPersonalProductStep_header_ContentItemProgressSteps
   | GetPersonalProductStep_getPersonalProductStep_header_ContentItemSearchPostcode
   | GetPersonalProductStep_getPersonalProductStep_header_ContentItemMarkdown
   | GetPersonalProductStep_getPersonalProductStep_header_ContentItemProcessingTimer;
@@ -1674,7 +1712,8 @@ export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_Con
     | "ContentItemFade"
     | "ContentItemSelectedPackageCards"
     | "ContentItemProcessingTimer"
-    | "ContentItemYuCoinPower";
+    | "ContentItemYuCoinPower"
+    | "ContentItemProgressSteps";
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemImage_image {

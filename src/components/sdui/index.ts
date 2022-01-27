@@ -7,6 +7,7 @@ export * from "./contentItemMarkdown/contentItemMarkdown";
 export * from "./contentItemOverlay/contentItemOverlay";
 export * from "./contentItemPad/contentItemPad";
 export * from "./contentItemProgressBar/contentItemProgressBar";
+export * from "./contentItemProgressSteps/contentItemProgressSteps";
 export * from "./contentItemTextInput/contentItemTextInput";
 export * from "./contentItemDatePicker/contentItemDatePicker";
 export * from "./contentItemRadio/contentItemRadio";
