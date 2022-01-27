@@ -13,7 +13,7 @@ import showOfflineScreenSaga from "./showOfflineScreen.saga";
 import loggingNetworkState from "./loggingNetworkState.saga";
 
 export default [
-  takeLatest("INIT", listenToAppStateSaga),
+  takeLatest(AUTHENTICATED, listenToAppStateSaga),
   takeLatest("INIT", listenToComponentDidAppear),
   takeLatest("INIT", listenToComponentDidDisappear),
   takeLatest("INIT", listenToLinkingSaga),

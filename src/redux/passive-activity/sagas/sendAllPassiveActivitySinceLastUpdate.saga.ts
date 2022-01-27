@@ -17,10 +17,17 @@ import { refreshTotalCoins } from "@redux/coins/coins.actions";
 import getPassiveSinceLastUpdateAndroid from "./getPassiveSinceLastUpdateAndroid.saga";
 import getPassiveSinceLastUpdateIos from "./getPassiveSinceLastUpdateIos.saga";
 import { UPDATE_APP_STATE } from "@redux/app/app.actions";
+import { Unpacked } from "@utils";
+import { getToken } from "@services/storage";
 
 export default function* sendPassiveActivity(dataPayload: { payload: string; type: string }): any {
   const { payload: appState, type } = dataPayload || {};
   if (type === UPDATE_APP_STATE && appState !== "active") {
+    return;
+  }
+
+  const token: Unpacked<typeof getToken> = yield call(getToken);
+  if (!token) {
     return;
   }
 
