@@ -3,8 +3,8 @@ import * as scenario from "./_steps/scenario"
 import * as given from "./_steps/given"
 import * as when from "./_steps/when"
 import * as then from "./_steps/then"
-import { CUSTOMER_3, AUTH_3 } from "@data";
-import { MENU_ICON, MENU_ITEM, WELLBEING_HUB_SCREEN, BACK_BUTTON, TEXT_TEMPLATE, MORE_INFO_BUTTON } from "@ids";
+import { CUSTOMER_3, AUTH_3, CUSTOMER_31, AUTH_31, CUSTOMER_34, AUTH_34, CUSTOMER_37, AUTH_37 } from "@data";
+import { MENU_ICON, MENU_ITEM, WELLBEING_HUB_SCREEN, BACK_BUTTON, TEXT_TEMPLATE, MORE_INFO_BUTTON, PERK_SCREEN, INPUT_AVIOS_FORM_FIELD } from "@ids";
 
 
 Feature("Wellbeing Hub should be restricted for certain users", async () => {
@@ -13,6 +13,7 @@ Feature("Wellbeing Hub should be restricted for certain users", async () => {
             When("I go to settings", when.tapID(MENU_ICON), async () => {
                 Then("I should see Wellbeing Hub", then.idVisible(MENU_ITEM("Wellbeing Hub")))
                 When("I tap Wellbeing Hub", when.tapID(MENU_ITEM("Wellbeing Hub")), async () => {
+                    Then("I should NOT see Fiit on the screen", then.textNotVisible("Fiit"))
                     Then("I should be on the Wellbeing Hub screen", then.idVisible(WELLBEING_HUB_SCREEN))
                     Then("I should see all Wellbeing Hub services", then.wellbeingServiceVisible)
                     When("I tap the smart health tab", when.tapID(TEXT_TEMPLATE("Smart Health")), async () => {
@@ -45,6 +46,75 @@ Feature("Wellbeing Hub should be restricted for certain users", async () => {
                             })
                         })
                     })
+                })
+            })
+        })
+    })
+
+    Scenario("I can view the Fiit screen as a yulife user and should get Membership already active and Membership claimed when Active account ", scenario.start, async () => {
+        Given("I login as a grouplife user", given.loginAsUser(CUSTOMER_34, AUTH_34), async () => {
+            When("I go to settings", when.tapID(MENU_ICON), async () => {
+                Then("I should see Fiit", then.idVisible(MENU_ITEM("Wellbeing Hub")))
+                When("I tap Fiit", when.tapID(MENU_ITEM("Wellbeing Hub")), async () => {
+                    Then("I should be on the Wellbeing Hub screen", then.idVisible(WELLBEING_HUB_SCREEN))
+                    Then("I should see Fiit on the screen", then.textVisible("Fiit"))
+                    When("I tap the Fiit tab", when.tapID(TEXT_TEMPLATE("Fiit")), async () => {
+                        Then("I should see Welcome to Fiit", then.textVisible("Welcome to Fiit"))
+                        When("I tap Activate your Fiit account", when.navigateViaButton("Activate your Fiit account"), async () => {
+                            Then("I should be on the PERK_SCREEN screen", then.idVisible(PERK_SCREEN))
+                            Then("I should see Tim in the screen", then.textVisible(CUSTOMER_34.data.firstName))
+                            Then("I should see Drake in the screen", then.textVisible(CUSTOMER_34.data.lastName))
+                            Then("I should see email filled in the screen", then.textVisible(CUSTOMER_34.data.email))
+                            When("I tap Active your Fiit account", when.navigateViaButton("Active account"), async () => {
+                                Then("I should see Membership already active", then.textVisible("Membership already active"))
+                                Then("I should see An account has already been created with this email adress", then.textVisible("An account has already been created with this email address."))
+                                When("I tap Close", when.navigateViaButton("Close"), async () => {
+                                    Then("I should see Activate your Fiit account", then.textVisible("Activate your Fiit account"))
+                                    When("I replace the first name", when.replaceTextViaID(INPUT_AVIOS_FORM_FIELD("First name"), CUSTOMER_37.data.firstName), async () => {
+                                        When("I replace the last name", when.replaceTextViaID(INPUT_AVIOS_FORM_FIELD("Last name"), CUSTOMER_37.data.lastName), async () => {
+                                            When("I replace the email", when.replaceTextViaID(INPUT_AVIOS_FORM_FIELD("Email address"), CUSTOMER_37.data.email), async () => {
+                                                When("I tap Active your Fiit account", when.navigateViaButton("Active account"), async () => {
+                                                    Then("I should see Membership claimed", then.textVisible("Membership claimed"))
+                                                    Then("I should see that membership is ready", then.textVisible("Your Fiit membership is ready! Fiit will send you an email invitation how to log in and get started. Please check your email account."))
+                                                    When("I tap Close", when.navigateViaButton("Close"), async () => {
+                                                        When("I tap Active your Fiit account", when.navigateViaButton("Active account"), async () => {
+                                                            Then("I should see Membership already active", then.textVisible("Membership already active"))
+                                                        })
+                                                    })
+                                                })
+                                            })
+                                        })
+                                    })
+                                })
+                            })
+                        })
+                    })
+                })
+            })
+        })
+    })
+
+    Scenario("I should see Membership limit reached on the Fiit screen as trying to active account when no avalaible seat for it", scenario.start, async () => {
+        Given("I login as a grouplife user", given.loginAsUser(CUSTOMER_31, AUTH_31), async () => {
+            When("I go to settings", when.tapID(MENU_ICON), async () => {
+                When("I tap Fiit", when.tapID(MENU_ITEM("Wellbeing Hub")), async () => {
+                    When("I tap the Fiit tab", when.tapID(TEXT_TEMPLATE("Fiit")), async () => {
+                        When("I tap Activate your Fiit account", when.navigateViaButton("Activate your Fiit account"), async () => {
+                            When("I tap Active your Fiit account", when.navigateViaButton("Active account"), async () => {
+                                Then("I should see Membership limit reached", then.textVisible("Membership limit reached"))
+                                Then("I should see all membership was purchased text", then.textVisible("All available memberships purchased by your company are currently in use. Contact our support to resolve this issue."))
+                            })
+                        })
+                    })
+                })
+            })
+        })
+    })
+    Scenario("I should NOT see the Fiit screen as a yulife user who does not have the product assigned to it", scenario.start, async () => {
+        Given("I login as a grouplife user", given.loginAsUser(CUSTOMER_37, AUTH_37), async () => {
+            When("I go to settings", when.tapID(MENU_ICON), async () => {
+                When("I tap Fiit", when.tapID(MENU_ITEM("Wellbeing Hub")), async () => {
+                    Then("I should NOT see Fiit on the screen", then.textNotVisible("Fiit"))
                 })
             })
         })

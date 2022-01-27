@@ -9,6 +9,7 @@ import {
   GetPersonalProductStep_getPersonalProductStep_body as IBody,
 } from "@graphql/_core/schema";
 import { IElement } from "@components/molecules/content-item-form/content-item-form";
+import { PERK_SCREEN } from "@ids";
 
 interface IProps {
   handleBack: () => void;
@@ -29,7 +30,7 @@ const PerkSubscriptionInfoScreen = ({ handleBack, item, onSubmit, loading }: IPr
     <KeyboardAvoidingView behavior={keyboardAvoidingViewBehavior} style={styles.wrapper}>
       <GenericHeadingPad />
       <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scrollContentContainerStyle}>
-        <View style={styles.block}>
+        <View style={styles.block} testID={PERK_SCREEN}>
           <Body headerHeight={0} body={item.content as IBody[]} />
           <ContentItemForm elements={getForm.elements as IElement[]} onSubmit={onSubmit} isLoading={loading} />
         </View>

@@ -22,6 +22,7 @@ export * from "./mongo/core_products";
 export * from "./mongo/rewards_ledgers"
 export * from "./mongo/userAward"
 export * from "./mongo/userOnboardings"
+export * from "./mongo/wellbeing_hub_items"
 
 export * from "./postgres/business";
 export * from "./postgres/customers";
@@ -37,3 +38,5 @@ export * from "./postgres/business_product_category";
 export * from "./postgres/customer_business_product";
 export * from "./postgres/customer_beneficiaries";
 export * from "./postgres/customer_product_entity_beneficiary";
+export * from "./postgres/perk";
+export * from "./postgres/business_product_perk";

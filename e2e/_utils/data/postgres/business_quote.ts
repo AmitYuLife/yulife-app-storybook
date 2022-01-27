@@ -1,4 +1,4 @@
-import { generateRandomPostgresId, IDatabaseItem } from "@yu-life/yulife-bdd-framework"
+import { IDatabaseItem } from "@yu-life/yulife-bdd-framework"
 import { BUSINESS_ACCOUNT_3, BUSINESS_ACCOUNT_4 } from "./business"
 
 
