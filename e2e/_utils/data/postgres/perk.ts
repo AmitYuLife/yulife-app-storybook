@@ -17,5 +17,3 @@ export const FIIT_12_MONTH = {
         "config_fields" : "[{\"name\":\"maxSeats\",\"required\":false}]"
     }
 } as IDatabaseItem
-    
-    

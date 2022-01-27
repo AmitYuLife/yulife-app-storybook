@@ -1,8 +1,6 @@
 import { IDatabaseItem } from "@yu-life/yulife-bdd-framework";
 import { generateRandomMongoId } from "@yu-life/yulife-bdd-framework";
 
-
-
 export const wellbeing_hub_item_1 = {
     modelName: "wellbeing_hub_item",
     type: "mongo",

@@ -1,4 +1,4 @@
-import { generateRandomPostgresId, IDatabaseItem } from "@yu-life/yulife-bdd-framework"
+import { IDatabaseItem } from "@yu-life/yulife-bdd-framework"
 import { BUSINESS_GROUP_QUOTE_3, BUSINESS_GROUP_QUOTE_4_GCI, BUSINESS_GROUP_QUOTE_4_GIP, BUSINESS_GROUP_QUOTE_4_RGL} from "./business_quote"
 
 
@@ -72,4 +72,3 @@ export const BUSINESS_PRODUCT_4_GCI = {
         product_code_id: "YUG0000004"
     }
 } as IDatabaseItem
-    
