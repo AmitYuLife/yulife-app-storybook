@@ -75,6 +75,10 @@ export default function* getDailyPassiveActivity(dataPayload: { payload: string;
       try {
         const { data } = yield call(upsertPassiveChallenges, meditationResults.concat(cyclingResults));
 
+        if (!data?.upsertPassiveChallenges?.challenges?.length) {
+          return;
+        }
+
         for (const challenge of data?.upsertPassiveChallenges?.challenges) {
           if (challenge?.incomingData.meditation > 0) {
             yield put(updateDailyMeditation(challenge));
