@@ -3,8 +3,18 @@ import { Navigation } from "react-native-navigation";
 import { MODALS } from "@navigation/constants";
 import { drawBehind } from "@navigation/root";
 import { ViewStyle } from "react-native";
+import Logger from "@services/logging/logger";
 
-export function showOverlayWithChild(children: ReactElement, withBlurBackground = true, wrapperStyle?: ViewStyle) {
+export function showOverlayWithChild(
+  children: ReactElement,
+  withBlurBackground = true,
+  wrapperStyle?: ViewStyle,
+  modalId?: string
+) {
+  if (modalId) {
+    Logger.logEvent("screen_view", { name: modalId });
+  }
+
   return Navigation.showOverlay({
     component: {
       id: MODALS.blurredOverlay,
