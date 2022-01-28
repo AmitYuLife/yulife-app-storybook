@@ -17,6 +17,7 @@ export const GQL_MUTATION_CONFIRM_PAYMENT_CARD = gql`
       cardValidTill
       cardLast4
       cardBrand
+      customerPaymentMethodId
     }
   }
 `;
