@@ -7,14 +7,11 @@
 // GraphQL mutation operation: UpsertOnboardingChallenge
 // ====================================================
 
-export interface UpsertOnboardingChallenge_upsertPassiveChallenge_challenge {
+export interface UpsertOnboardingChallenge_upsertOnboardingChallenge {
   yuCoinAwarded: number | null;
-}
-
-export interface UpsertOnboardingChallenge_upsertPassiveChallenge {
-  challenge: UpsertOnboardingChallenge_upsertPassiveChallenge_challenge | null;
+  totalCoins: number;
 }
 
 export interface UpsertOnboardingChallenge {
-  upsertPassiveChallenge: UpsertOnboardingChallenge_upsertPassiveChallenge | null;
+  upsertOnboardingChallenge: UpsertOnboardingChallenge_upsertOnboardingChallenge | null;
 }

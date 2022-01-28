@@ -4,10 +4,9 @@ import { UpsertOnboardingChallenge } from "../_core/schema";
 
 export const GQL_MUTATION_UPSERT_ONBOARDING_CHALLENGE = gql`
   mutation UpsertOnboardingChallenge {
-    upsertPassiveChallenge(type: ONBOARDING) {
-      challenge {
-        yuCoinAwarded
-      }
+    upsertOnboardingChallenge {
+      yuCoinAwarded
+      totalCoins
     }
   }
 `;

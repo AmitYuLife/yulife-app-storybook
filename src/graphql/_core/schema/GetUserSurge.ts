@@ -38,5 +38,5 @@ export interface GetUserSurge_getUserSurge {
 }
 
 export interface GetUserSurge {
-  getUserSurge: GetUserSurge_getUserSurge;
+  getUserSurge: GetUserSurge_getUserSurge | null;
 }
