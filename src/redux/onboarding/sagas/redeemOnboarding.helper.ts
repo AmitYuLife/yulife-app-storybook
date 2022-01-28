@@ -8,8 +8,8 @@ export default function* redeemOnboarding() {
   try {
     const { data } = yield call(upsertOnboardingChallenge);
 
-    if (data?.upsertPassiveChallenge?.challenge?.yuCoinAwarded) {
-      yield put(setRedeemedOnboarding(data.upsertPassiveChallenge.challenge.yuCoinAwarded));
+    if (data?.upsertOnboardingChallenge?.yuCoinAwarded) {
+      yield put(setRedeemedOnboarding(data.upsertOnboardingChallenge.yuCoinAwarded));
       yield put(getUserStart());
     }
   } catch (e) {
