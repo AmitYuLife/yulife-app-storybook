@@ -15,6 +15,7 @@ import ReferralsPopover from "./referrals-popover";
 import { GetUserSurge_getUserSurge } from "@graphql/_core/schema";
 import { SurgeModal } from "@components/modals";
 import { showFloatingModal } from "@components/modals/floating-modals/showFloatingModal";
+import { MODALS } from "@navigation/constants";
 
 interface IProps extends IConnectedScreenProps {
   showCounter?: boolean;
@@ -37,7 +38,7 @@ const DailyStepsScreen = ({
 }: Props) => {
   const onSurgePress = useCallback(async () => {
     const child = <SurgeModal {...userSurge} />;
-    await showFloatingModal(child, userSurge.lottie);
+    await showFloatingModal(child, userSurge.lottie, MODALS.surgeOverlay);
   }, [userSurge]);
 
   return (
