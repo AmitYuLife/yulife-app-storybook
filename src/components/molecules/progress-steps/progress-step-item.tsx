@@ -14,7 +14,6 @@ export interface IProgressStepItemProps {
   x: number;
 }
 
-const ADDITIONAL_DELAY = 300;
 const INTERPOLATION_MAXIMUM = 100;
 
 export const ProgressStepItem = ({
@@ -35,7 +34,7 @@ export const ProgressStepItem = ({
   useEffect(() => {
     if (active !== isActive) {
       Animated.sequence([
-        ...(active ? [Animated.delay(animationDelay + ADDITIONAL_DELAY)] : []),
+        ...(active ? [Animated.delay(animationDelay)] : []),
         Animated.timing(animatedValue, {
           duration: 350,
           toValue: active ? INTERPOLATION_MAXIMUM : 0,

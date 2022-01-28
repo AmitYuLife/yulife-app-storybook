@@ -1,5 +1,5 @@
-import React from "react";
+import React, { memo } from "react";
 
 import { IProgressStepsProps, ProgressSteps } from "@components/molecules/progress-steps/progress-steps";
 
-export const ContentItemProgressSteps = (props: IProgressStepsProps) => <ProgressSteps {...props} />;
+export const ContentItemProgressSteps = memo((props: IProgressStepsProps) => <ProgressSteps {...props} />);
