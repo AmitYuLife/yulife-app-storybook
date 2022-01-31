@@ -1,7 +1,8 @@
-import * as React from "react";
-import { SFC } from "react";
+import React, { memo } from "react";
 import { View } from "react-native";
-import Text from "../text/text";
+import { TextTemplate } from "@atoms";
+import { Colours } from "@styles";
+import { addCommasToNumber } from "@utils";
 import Plus from "./assets/plus";
 import styles from "./plus-points.styles";
 
@@ -10,13 +11,15 @@ interface IProps {
   testID?: string;
 }
 
-const PlusPoints: SFC<IProps> = ({ coins, testID }) => (
+const PlusPoints = ({ coins, testID }: IProps) => (
   <View style={styles.textWrapper}>
     <View style={styles.plusWrapper}>
       <Plus scale={0.8} />
     </View>
-    <Text bold={true} style={styles.text} testID={testID}>{`${coins}`}</Text>
+    <TextTemplate type={"h1"} textAlign="center" color={Colours.darkHotPink} testID={testID}>
+      {`${addCommasToNumber(coins)}`}
+    </TextTemplate>
   </View>
 );
 
-export default PlusPoints;
+export default memo(PlusPoints);
