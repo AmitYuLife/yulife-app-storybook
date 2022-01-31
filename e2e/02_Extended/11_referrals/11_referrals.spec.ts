@@ -22,7 +22,7 @@ Feature("Referrals work as intended", async () => {
                         When("I tap on the invite button", when.tapText("Invite a colleague"), async () => {
                             Then("I should be on the Invite a Colleague page", then.isOnInivteColleaguePage(false))
                             When("I tap the invite a colleague button", when.tapID(REFERRALS_INVITE_BUTTON), async () => {
-                                Then("I should see the share modal", then.textVisible("Join me in the Yuniverse! Follow my link to sign up and download the YuLife app."))
+                                Then("I should see the share modal", then.textVisible("Join me on YuLife and earn vouchers for walking and looking after your wellbeing."))
                                 When("I press off the share modal to close it", when.tapID(BACK_BUTTON), async () => {
                                     When("I press the back button", when.tapID(BACK_BUTTON), async () => {
                                         Then("I should be on the daily steps screen", then.onDailySteps)
