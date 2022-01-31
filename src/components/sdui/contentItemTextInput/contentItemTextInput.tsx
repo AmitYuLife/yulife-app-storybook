@@ -12,12 +12,15 @@ interface Props extends GqlTextInput {
   onChange: (value: string) => void;
 }
 
-export const ContentItemTextInput = memo(({ onChange, id, heading, value, prefixValue, type }: Props) => {
+export const ContentItemTextInput = memo(({ onChange, id, heading, value, prefixValue, type, validation }: Props) => {
   const [indentWidth, setIndentWidth] = useState(0);
 
   const handleTextLayout = useCallback((event: LayoutChangeEvent) => {
     setIndentWidth(event.nativeEvent.layout.width + 8);
   }, []);
+
+  const errorMessage =
+    (validation?.length && validation.find((v) => !new RegExp(v.validationValue).test(value))?.validationName) || "";
 
   return (
     <View style={styles.inputWrapper}>
@@ -34,6 +37,8 @@ export const ContentItemTextInput = memo(({ onChange, id, heading, value, prefix
         key={id}
         onChange={onChange}
         testID={CONTENT_ITEM_INPUT(id)}
+        showError={!!errorMessage}
+        errorMessage={errorMessage}
       />
     </View>
   );
