@@ -12,7 +12,7 @@ import { ProductStepContext } from "../product-step.context";
 import { Image, TextTemplate } from "@atoms";
 import { mapServerStyles } from "@components/sdui";
 import { useSetDefaultAnswer } from "../hooks/useSetDefaultAnswer";
-import { mapCoverTypeToColor } from "../utils/mapCoverTypeToColor";
+import { mapCoverTypeToColor } from "@styles";
 import {
   highlightStyles,
   HIGHLIGHT_CIRCUMFERENCE,

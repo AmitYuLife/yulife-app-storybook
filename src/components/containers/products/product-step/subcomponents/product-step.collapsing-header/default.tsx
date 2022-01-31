@@ -2,11 +2,11 @@ import React, { memo, useContext, useMemo } from "react";
 import { StyleSheet, View, ViewStyle } from "react-native";
 import { PackageType, TextTemplate } from "@atoms";
 import { ContentItemCollapsingHeaderProductInfo as Props } from "@graphql/_core/schema";
-import { LOCAL_ANSWER_KEY, mapCoverTypeToColor } from "../../utils";
+import { LOCAL_ANSWER_KEY } from "../../utils";
 import { CoverType, YuWorld } from "@graphql/_core/schema/globalTypes";
 import { ProductStepContext } from "../../product-step.context";
 import { SlotIcon } from "../../subcomponents/product-step.slot-icon";
-import { Style } from "@styles";
+import { Style, mapCoverTypeToColor } from "@styles";
 
 export const CollapsingHeaderDefault = memo(({ coverList, answerKey }: Props) => {
   const { customerProductId, dynamicData } = useContext(ProductStepContext);

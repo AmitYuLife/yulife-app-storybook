@@ -26,6 +26,39 @@ export const GQL_FRAGMENT_CONTENT_ITEM_TEXT = gql`
   }
 `;
 
+export const GQL_FRAGMENT_YU_SCREEN_ITEM_SLOT = gql`
+  fragment YuScreenItemSlot on YuScreenItemSlot {
+    iconUrl
+    backgroundUrl
+  }
+`;
+
+export const GQL_FRAGMENT_CONTENT_ITEM_PRODUCT_DETAILS_HEADER = gql`
+  fragment ContentItemProductDetailsHeader on ContentItemProductDetailsHeader {
+    id
+    coverType
+    productName
+    productDetailsHeaderYuCoinPower: yuCoinPower
+    styles {
+      ...SduiStyle
+    }
+    providerLogo {
+      ...VariableRemoteImage
+    }
+    itemSlot {
+      ...YuScreenItemSlot
+    }
+    productIdentifier {
+      label
+      value
+    }
+    benefit {
+      title
+      markdown
+    }
+  }
+`;
+
 export const GQL_FRAGMENT_COVER_LIST_ITEM = gql`
   fragment ContentItemCoverListItem on ContentItemCoverListItem {
     percentCovered

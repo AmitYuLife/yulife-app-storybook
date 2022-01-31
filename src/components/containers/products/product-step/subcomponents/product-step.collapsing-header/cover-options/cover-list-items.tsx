@@ -7,9 +7,9 @@ import { ContentItemCollapsingHeaderProductInfo_coverList } from "@graphql/_core
 import { CoverType } from "@graphql/_core/schema/globalTypes";
 import { ProductStepContext } from "../../../product-step.context";
 import { useDispatch } from "react-redux";
-import { LOCAL_ANSWER_KEY, mapCoverTypeToColorTheme } from "../../../utils";
+import { LOCAL_ANSWER_KEY } from "../../../utils";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
-import { Colours, Style } from "@styles";
+import { Colours, Style, mapCoverTypeToColorTheme } from "@styles";
 
 interface Props {
   coverList: ContentItemCollapsingHeaderProductInfo_coverList[];
