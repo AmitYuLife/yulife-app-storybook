@@ -1,5 +1,5 @@
 import React, { memo } from "react";
-import { ImageStyle, StyleSheet, View, ViewStyle } from "react-native";
+import { ImageStyle, Platform, StyleSheet, View, ViewStyle } from "react-native";
 import { CloseSvg, Image, TextTemplate } from "@atoms";
 import { Colours, Style } from "@styles";
 import { Countdown } from "./countdown";
@@ -38,10 +38,6 @@ const styles = StyleSheet.create({
   backgroundWrapper: {
     height: Style.adjust(343),
     width: Style.DEVICE_WIDTH,
-    position: "absolute",
-    top: 0,
-    left: 0,
-    right: 0,
     justifyContent: "center",
     alignItems: "center",
   } as ViewStyle,
@@ -73,7 +69,10 @@ const styles = StyleSheet.create({
   } as ViewStyle,
   closeWrapper: {
     position: "absolute",
-    top: Style.getSafeAreaStart() + Style.adjust(16),
+    top: Platform.select({
+      ios: Style.getSafeAreaStart(),
+      android: 0,
+    }),
     right: 0,
     padding: Style.adjust(16),
   },
