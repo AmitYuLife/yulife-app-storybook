@@ -2,7 +2,7 @@ import React, { memo, useContext, useMemo } from "react";
 import { StyleSheet, View, ViewStyle } from "react-native";
 import { ContentItemCollapsingHeaderProductInfo as Props } from "@graphql/_core/schema";
 import { Style } from "@styles";
-import { mapCoverTypeToColorTheme } from "../../../utils";
+import { mapCoverTypeToColorTheme } from "@styles";
 import { ProductStepContext } from "../../../product-step.context";
 import { CoverListItems } from "./cover-list-items";
 import { CoverCost } from "./cover-cost";

@@ -1,5 +1,14 @@
 import gql from "graphql-tag";
 
+export const GQL_FRAGMENT_VARIABLE_REMOTE_IMAGE = gql`
+  fragment VariableRemoteImage on VariableRemoteImage {
+    image {
+      ...RemoteImage
+    }
+    width
+  }
+`;
+
 export const GQL_FRAGMENT_REMOTE_IMAGE = gql`
   fragment RemoteImage on RemoteImage {
     id

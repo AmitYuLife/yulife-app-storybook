@@ -1,0 +1,73 @@
+import React, { memo } from "react";
+import { View, StyleSheet, ViewStyle } from "react-native";
+import { Image, PackageType } from "@atoms";
+import { Style } from "@styles";
+import { CoverType } from "@graphql/_core/schema/globalTypes";
+
+interface Props {
+  size?: number;
+  coverType: CoverType;
+  backgroundUrl: string;
+  itemUrl: string;
+}
+
+const SIZE = Style.adjust(102);
+const SPACE_FOR_PACKAGE_TYPE = Style.adjust(16);
+
+export const SlotIcon = memo((props: Props) => {
+  const { size = SIZE, backgroundUrl, itemUrl } = props;
+
+  if (!itemUrl) {
+    return null;
+  }
+
+  const dimensions = {
+    height: size + SPACE_FOR_PACKAGE_TYPE,
+    width: size,
+  };
+
+  return (
+    <View style={[styles.wrapper, dimensions]}>
+      <Image
+        source={{ uri: backgroundUrl }}
+        width={size}
+        height={size}
+        theme="light"
+        style={[StyleSheet.absoluteFill, dimensions]}
+      />
+      <Image
+        source={{ uri: itemUrl }}
+        width={Style.adjust(80)}
+        height={Style.adjust(80)}
+        theme="light"
+        style={{
+          ...StyleSheet.absoluteFillObject,
+          top: SPACE_FOR_PACKAGE_TYPE / 2,
+          height: Style.adjust(102),
+          width: Style.adjust(102),
+        }}
+        suppressLoadingUi={true}
+      />
+      <View style={styles.coverTypeWrapper}>
+        <View>
+          <PackageType minWidth={Style.adjust(55)} type={props.coverType} />
+        </View>
+      </View>
+    </View>
+  );
+});
+
+const styles = StyleSheet.create({
+  wrapper: {
+    justifyContent: "center",
+    alignItems: "center",
+  } as ViewStyle,
+  coverTypeWrapper: {
+    position: "absolute",
+    left: 0,
+    right: 0,
+    top: 0,
+    alignItems: "center",
+    justifyContent: "center",
+  } as ViewStyle,
+});
