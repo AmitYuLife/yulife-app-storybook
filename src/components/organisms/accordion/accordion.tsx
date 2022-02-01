@@ -1,9 +1,12 @@
-import React, { ComponentProps, memo, useEffect, useMemo, useRef, useState } from "react";
+import React, { ComponentProps, memo, useContext, useEffect, useMemo, useRef, useState } from "react";
 import { Animated, LayoutChangeEvent, StyleSheet, View, ViewStyle } from "react-native";
 import { Source } from "react-native-fast-image";
 import { Header } from "./subcomponents/header";
 import { Content } from "./subcomponents/content";
 import { Item } from "./subcomponents/item";
+import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
+import { useDispatch } from "react-redux";
+import { ProductStepContext } from "@components/containers/products/product-step/product-step.context";
 
 interface Props {
   header: string;
@@ -21,9 +24,12 @@ const INITIAL_TICK = 0;
 
 export const Accordion = memo((props: Props) => {
   const { subheading, style, header, headerIcon, items, infoIcon } = props;
+  const { productId } = useContext(ProductStepContext);
   const [collapsed, setCollapsed] = useState(false);
   const collapseAnimatedValue = useRef(new Animated.Value(0)).current;
   const absoluteContentViewRef = useRef(null as View);
+
+  const dispatch = useDispatch();
   /**
    * manages force re-render to trigger measurements
    */
@@ -57,6 +63,14 @@ export const Accordion = memo((props: Props) => {
   });
 
   const toggleCollapse = () => {
+    dispatch(
+      logMixpanelEventActionCreator("accordion_interaction", {
+        name: header,
+        type: collapsed ? "expanded" : "closed",
+        cs_product: productId,
+      })
+    );
+
     setCollapsed((isCollapsed) => !isCollapsed);
   };
 

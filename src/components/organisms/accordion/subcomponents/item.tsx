@@ -7,6 +7,7 @@ import { Source } from "react-native-fast-image";
 import { SduiAction } from "@graphql/_core/schema";
 import { useDispatch } from "react-redux";
 import { ProductStepContext } from "@components/containers/products/product-step/product-step.context";
+import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 
 interface Props {
   leftText: string;
@@ -40,7 +41,7 @@ export const Item = memo((props: Props) => {
             </TextTemplate>
           )}
         </View>
-        <Info info={info} infoIcon={infoIcon} />
+        <Info info={info} infoIcon={infoIcon} leftText={leftText} />
       </View>
     </View>
   );
@@ -53,32 +54,40 @@ const HIT_SLOP = {
   bottom: 16,
 };
 
-const Info = memo(({ info, infoIcon }: { info: Props["info"]; infoIcon: Source }) => {
-  const dispatch = useDispatch();
-  const { productId, stepId, dynamicData } = useContext(ProductStepContext);
+const Info = memo(
+  ({ info, infoIcon, leftText }: { info: Props["info"]; infoIcon: Source; leftText: Props["leftText"] }) => {
+    const dispatch = useDispatch();
+    const { productId, stepId, dynamicData } = useContext(ProductStepContext);
 
-  const dynamicOnPress: any = useMemo(
-    () => ({
-      type: info?.onPress.type,
-      payload: { productId, stepId, dynamicData, serverPayload: info?.onPress.payload },
-    }),
-    [info, productId, stepId, dynamicData]
-  );
+    const dynamicOnPress: any = useMemo(
+      () => ({
+        type: info?.onPress.type,
+        payload: { productId, stepId, dynamicData, serverPayload: info?.onPress.payload },
+      }),
+      [info, productId, stepId, dynamicData]
+    );
 
-  const handlePress = useCallback(() => {
-    dispatch(dynamicOnPress);
-  }, [dynamicOnPress]);
+    const handlePress = useCallback(() => {
+      dispatch(
+        logMixpanelEventActionCreator("information_viewed", {
+          name: leftText,
+          cs_product: productId,
+        })
+      );
+      dispatch(dynamicOnPress);
+    }, [dynamicOnPress]);
 
-  if (!info) {
-    return null;
+    if (!info) {
+      return null;
+    }
+
+    return (
+      <TouchableOpacityWithDelay style={styles.pressableIcon} hitSlop={HIT_SLOP} onPress={handlePress}>
+        <Image source={infoIcon} width={24} />
+      </TouchableOpacityWithDelay>
+    );
   }
-
-  return (
-    <TouchableOpacityWithDelay style={styles.pressableIcon} hitSlop={HIT_SLOP} onPress={handlePress}>
-      <Image source={infoIcon} width={24} />
-    </TouchableOpacityWithDelay>
-  );
-});
+);
 
 const styles = StyleSheet.create({
   pressableIcon: {

@@ -35,6 +35,7 @@ export const ProductStepFullScreenSwiper = memo(({ button, close, ...props }: Pr
             logMixpanelEventActionCreator("modal_close", {
               previous_modal_index: currentIndex,
               previous_modal_name: items[currentIndex]?.heading,
+              cs_product: productId,
             })
           );
 

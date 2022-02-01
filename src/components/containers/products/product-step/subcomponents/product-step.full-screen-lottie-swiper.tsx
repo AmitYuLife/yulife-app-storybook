@@ -32,6 +32,7 @@ export const ProductStepFullScreenLottieSwiper = memo(({ button, close, ...props
             logMixpanelEventActionCreator("modal_close", {
               previous_modal_index: currentIndex,
               previous_modal_name: items[currentIndex]?.id,
+              cs_product: productId,
             })
           );
 
