@@ -9,7 +9,7 @@ interface IProps {
   children: JSX.Element | JSX.Element[];
 }
 
-const Wrapper = ({ children }: IProps) => (
+const WrapperDebug = ({ children }: IProps) => (
   <View style={styles.wrapper}>
     <GenericHeadingPad />
     <ScrollView contentContainerStyle={styles.center}>{children}</ScrollView>
@@ -24,8 +24,8 @@ const styles = StyleSheet.create({
   },
   center: {
     justifyContent: "center",
-    margin: Style.adjust(24),
+    margin: Style.adjust(12),
   },
 });
 
-export default Wrapper;
+export default WrapperDebug;

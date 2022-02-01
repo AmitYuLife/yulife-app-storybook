@@ -108,9 +108,14 @@ export default [
     component: require("../components/containers/member/leaderboard/leaderboard-list/leaderboard-list.container")
       .default,
   },
+  // debug
   {
     name: ROUTES.debug,
     component: require("../components/containers/member/debug/debug.container").default,
+  },
+  {
+    name: ROUTES.eventPanel,
+    component: require("../components/containers/member/debug/events-debug/event-panel.debug").default,
   },
 
   {
