@@ -20,7 +20,10 @@ export const ContentItemTextInput = memo(({ onChange, id, heading, value, prefix
   }, []);
 
   const errorMessage =
-    (validation?.length && validation.find((v) => !new RegExp(v.validationValue).test(value))?.validationName) || "";
+    (validation?.length &&
+      value &&
+      validation.find((v) => !new RegExp(v.validationValue).test(value))?.validationName) ||
+    "";
 
   return (
     <View style={styles.inputWrapper}>
