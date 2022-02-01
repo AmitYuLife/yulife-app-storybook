@@ -5,6 +5,7 @@ import { spawn, call, select, delay, put } from "redux-saga/effects";
 import Logger from "@services/logging/logger";
 import { getUserFeatures } from "../../user/user.selectors";
 import upsertPassiveChallenges from "@graphql/challenges/upsertPassiveChallenges.gql";
+import upsertDailyPassives from "@graphql/challenges/upsertDailyPassives.gql";
 import { Platform } from "react-native";
 import getPassiveChallengesLastUpdate from "@graphql/challenges/getPassiveChallengesLastUpdate.gql";
 import { GetPassiveChallengesLastUpdate } from "@graphql/_core/schema";
@@ -77,9 +78,11 @@ export default function* sendPassiveActivity(dataPayload: { payload: string; typ
         let isUpdated = false;
         while (!isUpdated) {
           try {
-            const response = yield call(upsertPassiveChallenges, payload);
+            const mutation = userFeatures.usePassiveChallengesService ? upsertDailyPassives : upsertPassiveChallenges;
+            const response = yield call(mutation, payload);
+            const mutationResult = response?.data?.upsertPassiveChallenges || response?.data?.upsertDailyPassives;
 
-            awardedYucoin += response?.data?.upsertPassiveChallenges?.totalCoins || 0;
+            awardedYucoin += mutationResult?.totalCoins || 0;
             yield delay(5000);
             isUpdated = true;
           } catch (e) {

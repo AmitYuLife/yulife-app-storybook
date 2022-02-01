@@ -18,6 +18,10 @@ import {
   GQL_MUTATION_UPSERT_PASSIVE_CHALLENGES,
   UpsertPassiveChallengesMutationTuple,
 } from "@graphql/challenges/upsertPassiveChallenges.gql";
+import {
+  GQL_MUTATION_UPSERT_DAILY_PASSIVES,
+  UpsertDailyPassivesMutationTuple,
+} from "@graphql/challenges/upsertDailyPassives.gql";
 import { getDailyCyclingMeasurement } from "@redux/daily-cycling/daily-cycling.selectors";
 
 interface IProps {
@@ -60,6 +64,8 @@ const ActivityHistoryContainer: FC<Props> = ({
     GQL_MUTATION_UPSERT_PASSIVE_CHALLENGES
   );
 
+  const [addHistoricalStepsNew]: UpsertDailyPassivesMutationTuple = useMutation(GQL_MUTATION_UPSERT_DAILY_PASSIVES);
+
   const fetchMoreData = useCallback(() => {
     setMonthsAgo((months) => months + 1);
   }, []);
@@ -75,11 +81,17 @@ const ActivityHistoryContainer: FC<Props> = ({
 
       if (res.results && !!res.results.length) {
         try {
-          const response = await addHistoricalSteps({
+          const mutation = features.usePassiveChallengesService ? addHistoricalStepsNew : addHistoricalSteps;
+          const response = await mutation({
             variables: { payload: res.results },
           });
 
-          if (response && response.data && response.data.upsertPassiveChallenges) {
+          if (
+            response &&
+            response.data &&
+            (Object.prototype.hasOwnProperty.call(response.data, "upsertPassiveChallenges") ||
+              Object.prototype.hasOwnProperty.call(response.data, "upsertDailyPassives"))
+          ) {
             refetch();
             dispatchGetUserStart();
           }
