@@ -299,11 +299,43 @@ export const GQL_FRAGMENT_CONTENT_ITEM_PROGRESS_STEPS = gql`
   }
 `;
 
+export const GQL_FRAGMENT_CONTENT_ITEM_BENEFICIARIES_SECTION = gql`
+  fragment ContentItemBeneficiariesSection on ContentItemBeneficiariesSection {
+    id
+    productId
+    styles {
+      ...SduiStyle
+    }
+  }
+`;
+
+export const GQL_FRAGMENT_CONTENT_ITEM_COLLAPSING_GENERIC_HEADER = gql`
+  fragment ContentItemCollapsingGenericHeader on ContentItemCollapsingGenericHeader {
+    id
+    title
+    styles {
+      ...SduiStyle
+    }
+    rightIcon {
+      ...RemoteImage
+    }
+    collapsedRightIcon {
+      ...RemoteImage
+    }
+    onPressRightIcon {
+      ...SduiAction
+    }
+  }
+`;
+
 export const GQL_FRAGMENT_CONTENT_ITEM_PAD = gql`
   fragment ContentItemPad on ContentItemPad {
     id
     amount
     pointerEvents
+    styles {
+      ...SduiStyle
+    }
   }
 `;
 

@@ -133,11 +133,17 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemC
   styles: GetPersonalProductStep_getPersonalProductStep_body_ContentItemConfirm_styles[] | null;
 }
 
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemPad_styles {
+  property: string;
+  value: string;
+}
+
 export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemPad {
   __typename: "ContentItemPad";
   id: string;
   amount: number;
   pointerEvents: RNViewPointerEvents | null;
+  styles: GetPersonalProductStep_getPersonalProductStep_body_ContentItemPad_styles[] | null;
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemMarkdown_styles {
@@ -1444,11 +1450,17 @@ export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentIte
   id: string;
 }
 
+export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentItemPad_styles {
+  property: string;
+  value: string;
+}
+
 export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentItemPad {
   __typename: "ContentItemPad";
   id: string;
   amount: number;
   pointerEvents: RNViewPointerEvents | null;
+  styles: GetPersonalProductStep_getPersonalProductStep_footer_ContentItemPad_styles[] | null;
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentItemMarkdown_styles {

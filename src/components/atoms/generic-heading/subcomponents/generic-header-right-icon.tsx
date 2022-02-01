@@ -7,15 +7,29 @@ import PlusSvg from "@atoms/plus/plus-svg";
 import styles from "../generic-heading.styles";
 import { TouchableOpacityWithDelay } from "@molecules";
 
-type Icon = IGenericHeadingProps["rightIcon"];
+type IIcon = IGenericHeadingProps["rightIcon"];
 
 interface IProps {
-  icon: Icon;
+  icon: IIcon;
+  Icon?: JSX.Element;
   onPress: () => void;
   testID: string;
 }
 
-const GenericHeaderRightIcon = ({ icon, onPress, testID }: IProps) => {
+const GenericHeaderRightIcon = ({ icon, onPress, testID, Icon }: IProps) => {
+  if (Icon) {
+    return (
+      <TouchableOpacityWithDelay
+        hitSlop={TOP_BAR.HIT_SLOP}
+        onPress={onPress}
+        style={styles.rightIconTouchable}
+        testID={testID}
+      >
+        {Icon}
+      </TouchableOpacityWithDelay>
+    );
+  }
+
   if (icon === "SAVE") {
     return <Button label="Save" onPress={onPress} size="ExtraSmall" wrapperStyle={styles.buttonSave} testID={testID} />;
   }
@@ -34,7 +48,7 @@ const GenericHeaderRightIcon = ({ icon, onPress, testID }: IProps) => {
 
 export default GenericHeaderRightIcon;
 
-const getIcon = (icon: Icon) => {
+const getIcon = (icon: IIcon) => {
   switch (icon) {
     case "SETTINGS":
       return <Image source={require("@assets/menu/settings.png")} />;
