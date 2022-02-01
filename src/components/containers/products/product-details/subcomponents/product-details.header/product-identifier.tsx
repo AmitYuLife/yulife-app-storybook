@@ -2,10 +2,10 @@ import React, { memo } from "react";
 import { TextTemplate } from "@atoms";
 import { Colours, Style } from "@styles";
 import { StyleSheet, View, ViewStyle } from "react-native";
-import { GetYuScreenProductDetails_getYuScreenProductDetails_body_productIdentifier } from "@graphql/_core/schema";
+import { GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemProductDetailsHeader_productIdentifier as IProductIdentifier } from "@graphql/_core/schema";
 
 interface Props {
-  productIdentifier?: GetYuScreenProductDetails_getYuScreenProductDetails_body_productIdentifier;
+  productIdentifier?: IProductIdentifier;
 }
 
 export const ProductIdentifier = memo(({ productIdentifier }: Props) => {

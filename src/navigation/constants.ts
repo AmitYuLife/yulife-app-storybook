@@ -48,6 +48,7 @@ export const ROUTES = {
   productStepDetached: "yulife.product.ProductStepDetached",
   productStepFaqs: "yulife.product.ProductStepFaqs",
   productStepDocuments: "yulife.product.ProductStepDocuments",
+  productPaymentHistory: "yulife.product.ProductPaymentHistory",
 
   // wellbeing hub
   wellbeingHubItems: "yulife.wellbeingHub.WellbeingHubItems",
