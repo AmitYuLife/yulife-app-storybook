@@ -13,6 +13,8 @@ import { styles, ITEM_WIDTH } from "./yumoji-swipe-part.styles";
 import { renderItem } from "./renderItem";
 import { ProductStepContext } from "@components/containers/products/product-step/product-step.context";
 import { LOCAL_ANSWER_KEY } from "@components/containers/products/product-step/utils";
+import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
+import { useDispatch } from "react-redux";
 
 interface Props {
   onChange: (worldId: YuWorld) => void;
@@ -38,6 +40,8 @@ export const YumojiSwipePart = memo(({ partType, coverType = CoverType.common, s
   const { selectedWorld, setSelectedWorld } = useLocalWorldState(selectedYuWorld);
   const { dynamicData } = useContext(ProductStepContext);
 
+  const dispatch = useDispatch();
+
   useEffect(() => {
     if (!dynamicData[LOCAL_ANSWER_KEY.WorldId]) {
       const defaultWorldId = data?.getYumojiPartUrlSet.variants[0]?.worlds[0]?.worldId;
@@ -52,6 +56,9 @@ export const YumojiSwipePart = memo(({ partType, coverType = CoverType.common, s
     (id: YuWorld) => {
       if (selectedWorld !== id) {
         setSelectedWorld(id);
+        dispatch(
+          logMixpanelEventActionCreator("armour_inspected", { armour_style_chosen: id, location: "swipe_part" })
+        );
         if (onChange) {
           onChange(id);
         }

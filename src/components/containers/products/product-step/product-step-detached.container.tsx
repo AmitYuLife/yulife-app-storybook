@@ -81,7 +81,7 @@ const ProductStepDetachedContainer = (props: Props) => {
 
   const pushNestedHistory = useCallback(
     (internalStep: string) => {
-      if (stepId.includes("faq")) {
+      if (stepId.includes("FAQ")) {
         dispatch(logMixpanelEventActionCreator("faq_viewed", { faq_id: internalStep, cs_product: productId }));
       }
 
