@@ -11,6 +11,7 @@ export interface ConfirmPaymentCard_confirmPaymentCard {
   cardValidTill: string;
   cardLast4: string;
   cardBrand: string;
+  customerPaymentMethodId: string;
 }
 
 export interface ConfirmPaymentCard {
