@@ -72,7 +72,7 @@ function* navigateTo({ payload }: ProductStepAction) {
 
   if (isValid) {
     const { routeId, props } = data;
-    const otherProps = isPayloadObject ? { productId: payload.productId } : {};
+    const otherProps = isPayloadObject ? { productId: payload.productId || data?.productId } : {};
 
     yield call(() =>
       Navigation.push(currentRoute, {

@@ -3,7 +3,8 @@ import { Animated, StyleSheet, ViewStyle } from "react-native";
 import { GetYuScreenProductDetails_getYuScreenProductDetails_body as BodyItems } from "@graphql/_core/schema";
 import { ProductDetailsHeader } from "../subcomponents/product-details.header";
 import { UiContext } from "../product-details.context";
-import { ContentItemBeneficiariesSection, ContentItemButton, ContentItemText } from "@components/sdui";
+import { ContentItemBeneficiariesSection, ContentItemText } from "@components/sdui";
+import { ProductDetailsButton } from "../subcomponents/product-details.button";
 
 interface Props {
   body: BodyItems[];
@@ -40,7 +41,7 @@ const renderItemContent = (item: BodyItems): JSX.Element => {
     case "ContentItemText":
       return <ContentItemText key={item.id} {...item} />;
     case "ContentItemButton":
-      return <ContentItemButton key={item.id} {...item} />;
+      return <ProductDetailsButton key={item.id} {...item} />;
     case "ContentItemBeneficiariesSection":
       return <ContentItemBeneficiariesSection key={item.id} {...item} />;
     default:
