@@ -24,7 +24,7 @@ const ProcessingTimer = memo(({ secondsUntilTarget, backgroundUrl, heading, onCl
         {heading}
       </TextTemplate>
     </View>
-    <Countdown countdownEndCallback={onClose} secondsUntilTarget={secondsUntilTarget} />
+    <Countdown secondsUntilTarget={secondsUntilTarget} />
     <View style={styles.padView} />
     <PressableWithDelay style={styles.closeWrapper} onPress={onClose}>
       <CloseSvg stroke={Colours.neutral.white} />

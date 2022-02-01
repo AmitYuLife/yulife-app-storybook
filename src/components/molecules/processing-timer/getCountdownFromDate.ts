@@ -31,5 +31,10 @@ function getRawDiffInUnits(secondsDiff: number) {
   const minutes = Math.floor((secondsDiff % (60 * 60)) / 60) + 1;
   const seconds = Math.floor(secondsDiff % 60);
 
-  return { days, hours, minutes, seconds };
+  return {
+    days: days < 0 ? 0 : days,
+    hours: hours < 0 ? 0 : hours,
+    minutes: minutes < 0 ? 0 : minutes,
+    seconds: seconds < 0 ? 0 : seconds,
+  };
 }

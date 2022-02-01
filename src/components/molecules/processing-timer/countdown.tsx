@@ -7,11 +7,10 @@ import { Colours, Style } from "@styles";
 
 interface Props {
   secondsUntilTarget: number;
-  countdownEndCallback: () => void;
 }
 
-export const Countdown = memo(({ secondsUntilTarget, countdownEndCallback }: Props) => {
-  const { days, hours, minutes } = useCountdownHandler(secondsUntilTarget, countdownEndCallback);
+export const Countdown = memo(({ secondsUntilTarget }: Props) => {
+  const { days, hours, minutes } = useCountdownHandler(secondsUntilTarget);
 
   return (
     <View style={styles.countdownWrapper}>
@@ -76,7 +75,7 @@ const styles = StyleSheet.create({
 });
 
 const REFRESH_RATE_MILLISECONDS = 1000;
-const useCountdownHandler = (secondsUntilTarget: number, countdownEndCallback: () => void) => {
+const useCountdownHandler = (secondsUntilTarget: number) => {
   const secondsDiffRef = useRef(secondsUntilTarget);
   const [countdown, setCountdown] = useState(getCountdownFromSeconds(secondsDiffRef.current));
   const recountTimer = useRef(null);
@@ -94,7 +93,13 @@ const useCountdownHandler = (secondsUntilTarget: number, countdownEndCallback: (
     const { raw } = countdown;
 
     if (raw.days < 0 || raw.hours < 0 || raw.minutes < 0 || raw.seconds < 0) {
-      countdownEndCallback();
+      /**
+       * Save in case we want to do something in the future
+       * when the countdown ends
+       * countdownEndCallback();
+       */
+
+      clearInterval(recountTimer.current);
     }
 
     return () => clearInterval(recountTimer.current);
