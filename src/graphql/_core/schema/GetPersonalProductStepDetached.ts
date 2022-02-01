@@ -524,11 +524,17 @@ export interface GetPersonalProductStepDetached_getPersonalProductStepDetached_b
   buttonSize: ContentItemButtonSize | null;
 }
 
+export interface GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemPad_styles {
+  property: string;
+  value: string;
+}
+
 export interface GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemPad {
   __typename: "ContentItemPad";
   id: string;
   amount: number;
   pointerEvents: RNViewPointerEvents | null;
+  styles: GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemPad_styles[] | null;
 }
 
 export interface GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemRowIconTextBanner_bannerIcon {

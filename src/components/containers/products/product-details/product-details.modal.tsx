@@ -92,5 +92,5 @@ const styles = StyleSheet.create({
 export default ProductDetailsModal;
 
 async function dismissOverlay() {
-  await Navigation.dismissModal(MODALS.policyCertificate);
+  await Navigation.pop(MODALS.policyCertificate);
 }

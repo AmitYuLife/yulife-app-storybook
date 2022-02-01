@@ -1,16 +1,33 @@
-import React, { memo, useRef } from "react";
+import React, { memo, useMemo, useRef } from "react";
 import { Animated, StyleSheet, View, ViewStyle } from "react-native";
-import { Body } from "./sections";
-import { GetYuScreenProductDetails_getYuScreenProductDetails_body } from "@graphql/_core/schema";
+import { Absolute, Body } from "./sections";
+import {
+  GetYuScreenProductDetails_getYuScreenProductDetails_body as PropsBody,
+  GetYuScreenProductDetails_getYuScreenProductDetails_absolute as PropsAbsolute,
+} from "@graphql/_core/schema";
 import { UiContext } from "./product-details.context";
 
 interface Props {
-  body: GetYuScreenProductDetails_getYuScreenProductDetails_body[];
+  body: PropsBody[];
+  absolute: PropsAbsolute[];
 }
 
 export const ProductDetailsScreen = memo((props: Props) => {
-  const { body } = props;
+  const { body, absolute } = props;
   const { current: scrollValue } = useRef(new Animated.Value(0));
+
+  const { background, foreground } = useMemo(() => {
+    return absolute.reduce(
+      (acc, curr) => {
+        const newObj = { background: acc.background, foreground: acc.foreground };
+        const key = curr.isBackground ? "background" : "foreground";
+        newObj[key].push(curr);
+
+        return newObj;
+      },
+      { background: [], foreground: [] }
+    );
+  }, [absolute]);
 
   return (
     <UiContext.Provider
@@ -19,7 +36,9 @@ export const ProductDetailsScreen = memo((props: Props) => {
       }}
     >
       <View style={styles.wrapper}>
+        <Absolute absolute={background} />
         <Body body={body} />
+        <Absolute absolute={foreground} />
       </View>
     </UiContext.Provider>
   );

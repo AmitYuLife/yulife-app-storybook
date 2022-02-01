@@ -25,3 +25,5 @@ export * from "./contentItemSearchPostcode/contentItemSearchPostcode";
 export * from "./contentItemFade/contentItemFade";
 export * from "./contentItemYuCoinPower/contentItemYuCoinPower";
 export * from "./contentItemProcessingTimer/contentItemProcessingTimer";
+export * from "./contentItemCollapsingGenericHeader/contentItemCollapsingGenericHeader";
+export * from "./contentItemBeneficiariesSection/contentItemBeneficiariesSection";

@@ -10,7 +10,16 @@ import GenericHeaderLeftIcon from "./subcomponents/generic-header-left-icon";
 import { TextTemplate } from "@atoms";
 
 function GenericHeading(props: IGenericHeadingProps) {
-  const { heading, onLeftIconPress, onRightIconPress, leftIcon = "BACK", rightIcon = "CLOSE", isBeta, logo } = props;
+  const {
+    heading,
+    onLeftIconPress,
+    onRightIconPress,
+    leftIcon = "BACK",
+    rightIcon = "CLOSE",
+    isBeta,
+    logo,
+    RightIcon,
+  } = props;
 
   return (
     <View style={styles.wrapper}>
@@ -43,6 +52,7 @@ function GenericHeading(props: IGenericHeadingProps) {
         {!onRightIconPress ? null : (
           <GenericHeaderRightIcon
             icon={rightIcon}
+            Icon={RightIcon}
             onPress={onRightIconPress}
             testID={BUTTON_CLOSE_HEADER(heading || logo || "button_only")}
           />

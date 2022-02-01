@@ -8,6 +8,7 @@ export interface IGenericHeadingProps {
   onRightIconPress?: () => void;
   leftIcon?: ILeftIcon;
   rightIcon?: IRightIcon;
+  RightIcon?: JSX.Element;
   isBeta?: boolean;
   logo?: Logo;
 }

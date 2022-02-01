@@ -3,20 +3,17 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { RNViewPointerEvents } from "./globalTypes";
-
 // ====================================================
-// GraphQL fragment: ContentItemPad
+// GraphQL fragment: ContentItemBeneficiariesSection
 // ====================================================
 
-export interface ContentItemPad_styles {
+export interface ContentItemBeneficiariesSection_styles {
   property: string;
   value: string;
 }
 
-export interface ContentItemPad {
+export interface ContentItemBeneficiariesSection {
   id: string;
-  amount: number;
-  pointerEvents: RNViewPointerEvents | null;
-  styles: ContentItemPad_styles[] | null;
+  productId: string;
+  styles: ContentItemBeneficiariesSection_styles[] | null;
 }
