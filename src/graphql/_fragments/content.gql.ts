@@ -293,6 +293,9 @@ export const GQL_FRAGMENT_CONTENT_ITEM_PROGRESS_STEPS = gql`
     theme {
       ...ContentItemProgressStepsTheme
     }
+    wrapperStyles {
+      ...SduiStyle
+    }
   }
 `;
 

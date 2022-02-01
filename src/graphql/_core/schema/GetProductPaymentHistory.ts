@@ -25,7 +25,7 @@ export interface GetProductPaymentHistory_getProductPaymentHistory_items {
 }
 
 export interface GetProductPaymentHistory_getProductPaymentHistory {
-  infoPanel: GetProductPaymentHistory_getProductPaymentHistory_infoPanel;
+  infoPanel: GetProductPaymentHistory_getProductPaymentHistory_infoPanel | null;
   items: GetProductPaymentHistory_getProductPaymentHistory_items[] | null;
 }
 
