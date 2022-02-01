@@ -1,3 +1,4 @@
+import { GQL_FRAGMENT_REMOTE_IMAGE } from "@graphql/_fragments/shared.gql";
 import gql from "graphql-tag";
 
 export const GQL_FRAGMENT_YU_SCREEN_POPOVER = gql`
@@ -168,5 +169,24 @@ export const GQL_FRAGMENT_AVATAR = gql`
         ...YuAvatarColor
       }
     }
+  }
+`;
+
+export const GQL_QUERY_PRODUCT_PAYMENT_HISTORY_INFO_PANEL = gql`
+  ${GQL_FRAGMENT_REMOTE_IMAGE}
+  fragment YuScreenProductPaymentHistoryInfoPanel on YuScreenProductPaymentHistoryInfoPanel {
+    markdown
+    remoteImage {
+      ...RemoteImage
+    }
+  }
+`;
+
+export const GQL_QUERY_PRODUCT_PAYMENT_HISTORY_ITEM = gql`
+  fragment YuScreenProductPaymentHistoryItem on YuScreenProductPaymentHistoryItem {
+    id
+    amount
+    date
+    status
   }
 `;

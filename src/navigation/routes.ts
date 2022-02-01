@@ -173,6 +173,11 @@ export default [
     component: require("../components/containers/products/product-step/product-step.documents.container").default,
   },
   {
+    name: ROUTES.productPaymentHistory,
+    component: require("../components/containers/products/product-payment-history/product-payment-history.container")
+      .default,
+  },
+  {
     name: ROUTES.wellbeingHubItems,
     component: require("../components/containers/wellbeing-hub/wellbeing-hub-items.container").default,
   },
