@@ -249,6 +249,7 @@ export default {
   // ocean a.k.a underwater
   ocean: {
     up203: "#1B5991",
+    up202: "#013D73",
     up204: "#5BA9D5",
     up306: "#D8F0FF",
     us105: "#CA45B3",

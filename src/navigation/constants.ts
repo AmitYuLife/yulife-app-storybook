@@ -64,6 +64,7 @@ export const ROUTES = {
   wegiftConfirmed: "yulife.rewards.WegiftConfirmed",
   aviosDetails: "yulife.rewards.AviosDetails",
   aviosConfirmed: "yulife.rewards.AviosConfirmed",
+  rewardDetails: "yulife.rewards.RewardDetails",
 
   // referrals screens
   referralInformation: "yulife.referrals.referralInformation",
@@ -75,11 +76,7 @@ export const ROUTES = {
   perkSubscriptionInfo: "yulife.perk.subscriptionInfo",
 
   //debug
-  packageCard: "yulife.debug.packageCard",
-  packageIntro: "yulife.debug.packageIntro",
-  packageFinalise: "yulife.debug.packageFinalise",
-  rewardsNew: "yulife.debug.rewardsNew",
-  rewardDetails: "yulife.rewards.RewardDetails",
+  eventPanel: "yulife.debug.eventPanel",
 };
 
 export const MODALS = {

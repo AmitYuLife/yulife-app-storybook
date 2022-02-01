@@ -51,3 +51,4 @@ export { default as InfoPanel } from "./info-panel/info-panel";
 export { default as SettingsHeader } from "./settings-header/settings-header";
 export { default as Surge } from "./surge/surge";
 export { default as ProcessingTimer } from "./processing-timer/processing-timer";
+export { default as EventPanel } from "./event-panel/event-panel";
