@@ -155,6 +155,7 @@ export * from "./UpdateMemberConsent";
 export * from "./UpdateNickname";
 export * from "./UpdateQuestMapLevelChallenge";
 export * from "./UpdateUserNotificationsSettings";
+export * from "./UpsertDailyPassives";
 export * from "./UpsertOnboardingChallenge";
 export * from "./UpsertPassiveChallenges";
 export * from "./User";

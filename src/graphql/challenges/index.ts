@@ -8,3 +8,4 @@ export * from "./submitUnity.gql";
 export * from "./updateActiveChallenge.gql";
 export * from "./updateQuestMapLevelChallenge.gql";
 export * from "./upsertOnboardingChallenge.gql";
+export * from "./upsertDailyPassives.gql";

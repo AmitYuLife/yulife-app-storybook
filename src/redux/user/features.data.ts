@@ -50,4 +50,5 @@ export const features = [
   "showBuffs",
   "refactoredChallengeApi",
   "passiveCyclingEnabled",
+  "usePassiveChallengesService",
 ];
