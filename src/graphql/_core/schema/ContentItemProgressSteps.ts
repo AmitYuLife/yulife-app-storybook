@@ -34,9 +34,15 @@ export interface ContentItemProgressSteps_theme {
   stepTextColour: ContentItemProgressSteps_theme_stepTextColour;
 }
 
+export interface ContentItemProgressSteps_wrapperStyles {
+  property: string;
+  value: string;
+}
+
 export interface ContentItemProgressSteps {
   id: string;
   currentStep: number;
   numberOfSteps: number;
   theme: ContentItemProgressSteps_theme | null;
+  wrapperStyles: ContentItemProgressSteps_wrapperStyles[] | null;
 }

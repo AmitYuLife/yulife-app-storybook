@@ -5,6 +5,7 @@ import Svg, { Rect } from "react-native-svg";
 import { ProgressStepItem, IProgressStepItemProps } from "./progress-step-item";
 import { GetPersonalProductStep_getPersonalProductStep_header_ContentItemProgressSteps as IContentItemProgressSteps } from "@graphql/_core/schema";
 import { defaultTheme } from "./progress-steps-configuration";
+import { mapServerStyles } from "@components/sdui";
 
 interface IProps {
   hideType?: "unrendered" | "invisible";
@@ -12,9 +13,14 @@ interface IProps {
   childrenWidth?: number;
   children?: React.ReactNode;
   style?: ViewStyle;
+  wrapperStyles?: ViewStyle;
 }
 
-export type IProgressStepsProps = Pick<IContentItemProgressSteps, "currentStep" | "numberOfSteps" | "theme"> & IProps;
+export type IProgressStepsProps = Pick<
+  IContentItemProgressSteps,
+  "currentStep" | "numberOfSteps" | "theme" | "wrapperStyles"
+> &
+  IProps;
 
 const TOTAL_WIDTH = 1000;
 const ANIMATION_TIME = 300;
@@ -29,6 +35,7 @@ export const ProgressSteps = (props: IProgressStepsProps) => {
     style,
     theme,
   } = props;
+  const wrapperStyles = mapServerStyles(props.wrapperStyles);
 
   const { barColour, barBorderColour, stepBackgroundColour, stepTextColour } = theme || defaultTheme;
 
@@ -108,7 +115,7 @@ export const ProgressSteps = (props: IProgressStepsProps) => {
   }
 
   return (
-    <View style={[styles.wrapper, { width: data.wrapperWidth }, style]}>
+    <View style={[styles.wrapper, { width: data.wrapperWidth }, style, wrapperStyles]}>
       <Svg width={data.svgTotalWidth} height={PROGRESS_BAR_HEIGHT} viewBox={`0 0 ${data.svgTotalWidth} 24`}>
         <Rect
           width={data.svgWidth}

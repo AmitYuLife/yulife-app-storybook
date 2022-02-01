@@ -1581,12 +1581,18 @@ export interface GetPersonalProductStep_getPersonalProductStep_header_ContentIte
   stepTextColour: GetPersonalProductStep_getPersonalProductStep_header_ContentItemProgressSteps_theme_stepTextColour;
 }
 
+export interface GetPersonalProductStep_getPersonalProductStep_header_ContentItemProgressSteps_wrapperStyles {
+  property: string;
+  value: string;
+}
+
 export interface GetPersonalProductStep_getPersonalProductStep_header_ContentItemProgressSteps {
   __typename: "ContentItemProgressSteps";
   id: string;
   currentStep: number;
   numberOfSteps: number;
   theme: GetPersonalProductStep_getPersonalProductStep_header_ContentItemProgressSteps_theme | null;
+  wrapperStyles: GetPersonalProductStep_getPersonalProductStep_header_ContentItemProgressSteps_wrapperStyles[] | null;
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_header_ContentItemSearchPostcode_styles {
