@@ -22,7 +22,6 @@ import {
   ProductStepContentItemConfirm,
   ProductStepContentItemLottie,
   ProductStepContentItemReviewAnswer,
-  ProductStepRowIconTextBanner,
   ProductStepSelectedPackageCard,
   ProductStepSelectedPackageCards,
   ProductStepContentItemInfoButton,
@@ -37,6 +36,7 @@ import {
   ContentItemList,
   ContentItemPackageCardPower,
   ContentItemYuCoinPower,
+  ContentItemRowIconTextBanner,
 } from "@components/sdui";
 import { ProductStepContext } from "../../product-step.context";
 import { ProductStepContentItemGpDetails } from "../../subcomponents/product-step.gp-details";
@@ -152,7 +152,7 @@ const renderItemContent = (item: GPPS_Body): JSX.Element => {
     case "ContentItemPersonalProductReviewItem":
       return <ProductStepContentItemReviewAnswer key={item.id} {...item} />;
     case "ContentItemRowIconTextBanner":
-      return <ProductStepRowIconTextBanner key={item.id} {...item} />;
+      return <ContentItemRowIconTextBanner key={item.id} {...item} />;
     case "ContentItemList":
       return <ContentItemList key={item.id} {...item} />;
     case "ContentItemGpDetails":

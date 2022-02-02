@@ -8,6 +8,7 @@ import {
   ContentItemButtonType,
   SduiActionType,
   ContentItemButtonSize,
+  ContentItemRowIconTextBannerType,
   RNViewPointerEvents,
 } from "./globalTypes";
 
@@ -131,19 +132,68 @@ export interface GetYuScreenProductDetails_getYuScreenProductDetails_body_Conten
   styles: GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemBeneficiariesSection_styles[] | null;
 }
 
+export interface GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemRowIconTextBanner_bannerIcon {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemRowIconTextBanner_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemRowIconTextBanner {
+  __typename: "ContentItemRowIconTextBanner";
+  id: string;
+  /**
+   * determines client-side style template e.g. error for red
+   */
+  bannerType: ContentItemRowIconTextBannerType;
+  markdown: string;
+  bannerIcon: GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemRowIconTextBanner_bannerIcon;
+  styles: GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemRowIconTextBanner_styles[] | null;
+}
+
+export interface GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemImage_image {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemImage_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemImage_wrapperStyles {
+  property: string;
+  value: string;
+}
+
+export interface GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemImage {
+  __typename: "ContentItemImage";
+  id: string;
+  image: GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemImage_image | null;
+  styles: GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemImage_styles[] | null;
+  wrapperStyles: GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemImage_wrapperStyles[] | null;
+}
+
 export type GetYuScreenProductDetails_getYuScreenProductDetails_body =
   | GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemPad
   | GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemProductDetailsHeader
   | GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemText
   | GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemButton
-  | GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemBeneficiariesSection;
+  | GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemBeneficiariesSection
+  | GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemRowIconTextBanner
+  | GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemImage;
 
 export interface GetYuScreenProductDetails_getYuScreenProductDetails_absolute_item_ContentItemProductDetailsHeader {
   __typename:
     | "ContentItemProductDetailsHeader"
     | "ContentItemText"
     | "ContentItemButton"
-    | "ContentItemBeneficiariesSection";
+    | "ContentItemBeneficiariesSection"
+    | "ContentItemRowIconTextBanner"
+    | "ContentItemImage";
 }
 
 export interface GetYuScreenProductDetails_getYuScreenProductDetails_absolute_item_ContentItemPad_styles {

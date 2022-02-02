@@ -17,6 +17,7 @@ import {
   ContentItemFaqs,
   ContentItemText,
   ContentItemButton,
+  ContentItemRowIconTextBanner,
 } from "@components/sdui";
 import { GQL_QUERY_GET_PERSONAL_PRODUCT_STEP_DETACHED } from "@graphql/personalProduct/getPersonalProductStepDetached.gql";
 import { GetPersonalProductStepDetached_getPersonalProductStepDetached_body as GPPSSQ_Body } from "@graphql/_core/schema";
@@ -32,7 +33,6 @@ import { SduiActionType } from "@graphql/_core/schema/globalTypes";
 import { Colours } from "@styles";
 import {
   ProductStepCoverPicker,
-  ProductStepRowIconTextBanner,
   ProductStepSelectedPackageAccordion,
   ProductStepSelectedPackageCard,
   ProductStepSelectedPackageCards,
@@ -214,7 +214,7 @@ const renderItemContent = (item: GPPSSQ_Body): JSX.Element => {
     case "ContentItemPad":
       return <ContentItemPad key={item.id} {...item} />;
     case "ContentItemRowIconTextBanner":
-      return <ProductStepRowIconTextBanner key={item.id} {...item} />;
+      return <ContentItemRowIconTextBanner key={item.id} {...item} />;
     default:
       return null;
   }

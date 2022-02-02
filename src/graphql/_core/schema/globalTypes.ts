@@ -137,6 +137,7 @@ export enum MobileOnboardingStepPerformed {
   referralsPopover = "referralsPopover",
   yuScreenChest = "yuScreenChest",
   yuScreenGloves = "yuScreenGloves",
+  yuScreenGlovesLive = "yuScreenGlovesLive",
   yuScreenGlovesPurchased = "yuScreenGlovesPurchased",
 }
 
