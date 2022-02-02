@@ -7,6 +7,59 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.19.0] - 2022-02-02
+
+### Features
+
+- Feature: whats new lottie items
+- Feature XSE: Add ProductDetailsScreens SDUI component types
+- Feature XSE: Add product details SDUI button
+- Feature XSE: Add Product details SDUI screen sections
+- Feature XSE: content item product details header
+- Feature: added validation on contentItemTextInput
+- Feature: CPM in confirm card mutation
+
+### Bugfixes
+
+- Bugfix: surge time
+- Bugfix: Refresh daily steps surge time
+- Bugfix: Remove absolute positioning, reduce top close padding
+- Bugfix GS-222: Fix coin confetti width
+- Bugfix GS-224: Return if no challenges for passive query
+
+### Tasks
+
+- Task GS-185: Create Event Panel
+- Task XSE-742: Use new SDUI wrapperStyles property
+- Task XSE-735: Payment history screen
+- Task GS-175: upsertDailyPassives mutation
+- Task: Input validation on input value only
+- Task: Dental specific mixpanel events
+- Task GS-211: Update Surge Lottie Animations
+- Task GS-225: Purge old Today Yucoin screen
+- Task GS-217: Surge modal screen view tracking
+- Task GS-209: use upsertOnboardingChallenge mutation
+- Task XSE-683: Steps progress component
+- Task XSE-673: Add ContentItemRowIconTextBanner SDUI component
+
+### Chores
+
+- Chore: Progress steps component minor adjustment
+- Chore: Update readme for Android emulator usage
+
+### Extra
+
+- Fix: Query what's new modal when app is active
+- (refs/pipelines/461995724) Revert "Merge branch 'fix/surge-time-refresh' into 'develop'"
+- Purge: Product Details
+- Hotfix: Let ProcessingTimer sit at 0
+- detox: fix the failing assertion during the weekend
+- Detox: Remove Perk data
+- Fix GS-224: Change update app state listener
+- detox: removed the empty lines from the previous merge + overnigth fix for detox assertion
+- Detox: Assertion for Fiit perk
+- Fix: Cleanup android permission check
+
 ## [3.18.0] - 2022-01-19
 
 ### Features
