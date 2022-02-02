@@ -1,5 +1,5 @@
 import FastImage from "react-native-fast-image";
-import { Navigation } from "react-native-navigation";
+import { Navigation, OptionsStatusBar } from "react-native-navigation";
 import { call, delay, select, spawn, take } from "redux-saga/effects";
 import { getMobileWhatsNewModalClient } from "@graphql/onboardingSteps/getMobileWhatsNewModal.gql";
 import { MODALS } from "@navigation/constants";
@@ -31,7 +31,7 @@ export function* getMobileWhatsNewModalSaga() {
             passProps: data.getMobileWhatsNewModal,
             options: {
               statusBar: {
-                style: "light",
+                style: (data.getMobileWhatsNewModal?.theme?.statusBar as OptionsStatusBar["style"]) || "light",
               },
             },
           },

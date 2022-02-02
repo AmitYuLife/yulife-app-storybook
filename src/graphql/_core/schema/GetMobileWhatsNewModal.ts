@@ -10,7 +10,11 @@ import { MobileOnboardingStepPerformed, SduiActionType } from "./globalTypes";
 // ====================================================
 
 export interface GetMobileWhatsNewModal_getMobileWhatsNewModal_theme {
+  statusBar: string | null;
   primaryColor: string;
+  titleColor: string;
+  progressBarForegroundColor: string;
+  progressBarBackgroundColor: string;
 }
 
 export interface GetMobileWhatsNewModal_getMobileWhatsNewModal_button_onPress {
@@ -48,11 +52,17 @@ export interface GetMobileWhatsNewModal_getMobileWhatsNewModal_items_backgroundI
   uri: string | null;
 }
 
+export interface GetMobileWhatsNewModal_getMobileWhatsNewModal_items_lottie {
+  jsonUri: string;
+  aspectRatio: number;
+}
+
 export interface GetMobileWhatsNewModal_getMobileWhatsNewModal_items {
   heading: string;
   paragraph: string;
   styles: GetMobileWhatsNewModal_getMobileWhatsNewModal_items_styles[] | null;
   backgroundImage: GetMobileWhatsNewModal_getMobileWhatsNewModal_items_backgroundImage;
+  lottie: GetMobileWhatsNewModal_getMobileWhatsNewModal_items_lottie | null;
 }
 
 export interface GetMobileWhatsNewModal_getMobileWhatsNewModal {

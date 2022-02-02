@@ -3,11 +3,36 @@ import { Animated, Easing, StyleSheet, View, ViewStyle } from "react-native";
 import { Style, Colours } from "@styles";
 import { DETOX_ENABLED } from "@services/socket";
 
-const ProgressItem = ({ width, translateX }: { width: number; translateX: number | Animated.Value }) => (
-  <View style={[styles.progressBar, { width }]}>
-    <Animated.View style={[styles.animatedProgressBar, { transform: [{ translateX }] }]} />
+type ProgressItemProps = {
+  width: number;
+  translateX: number | Animated.Value;
+  foregroundColor?: string;
+  backgroundColor?: string;
+};
+
+const ProgressItem = ({ width, translateX, foregroundColor, backgroundColor }: ProgressItemProps) => (
+  <View style={[styles.progressBar, { width, backgroundColor: backgroundColor || "rgba(255,255,255,0.32)" }]}>
+    <Animated.View
+      style={[
+        styles.animatedProgressBar,
+        { backgroundColor: foregroundColor || Colours.neutral.white, transform: [{ translateX }] },
+      ]}
+    />
   </View>
 );
+
+type ProgressItemsProps = {
+  length: number;
+  activeIndex: number;
+  userInteractionToggler: boolean;
+  onChangeActiveIndex: () => void;
+  width: number;
+  interpolatedValue: Animated.Value;
+  animationRef: React.MutableRefObject<Animated.CompositeAnimation>;
+  autoPlaySpeedMs: number;
+  progressBarForegroundColor?: string;
+  progressBarBackgroundColor?: string;
+};
 
 export const ProgressItems = ({
   length,
@@ -18,16 +43,9 @@ export const ProgressItems = ({
   interpolatedValue,
   animationRef,
   autoPlaySpeedMs = 2000,
-}: {
-  length: number;
-  activeIndex: number;
-  userInteractionToggler: boolean;
-  onChangeActiveIndex: () => void;
-  width: number;
-  interpolatedValue: Animated.Value;
-  animationRef: React.MutableRefObject<Animated.CompositeAnimation>;
-  autoPlaySpeedMs: number;
-}) => {
+  progressBarForegroundColor,
+  progressBarBackgroundColor,
+}: ProgressItemsProps) => {
   const reanimateInterpolatedValue = useCallback(() => {
     interpolatedValue.setValue(-width);
     animationRef.current = Animated.timing(interpolatedValue, {
@@ -62,7 +80,15 @@ export const ProgressItems = ({
       {Array.from({ length }).map((_, i) => {
         const translateX = activeIndex === i ? interpolatedValue : i < activeIndex ? 0 : -width;
 
-        return <ProgressItem key={i} width={width} translateX={translateX} />;
+        return (
+          <ProgressItem
+            foregroundColor={progressBarForegroundColor}
+            backgroundColor={progressBarBackgroundColor}
+            key={i}
+            width={width}
+            translateX={translateX}
+          />
+        );
       })}
     </View>
   );
@@ -71,7 +97,6 @@ export const ProgressItems = ({
 const styles = StyleSheet.create({
   progressBar: {
     marginHorizontal: Style.adjust(4),
-    backgroundColor: "rgba(255,255,255,0.32)",
     height: Style.adjust(8),
     borderRadius: 999,
     flex: 1,
@@ -80,7 +105,6 @@ const styles = StyleSheet.create({
   animatedProgressBar: {
     width: "100%",
     height: Style.adjust(8),
-    backgroundColor: Colours.neutral.white,
     borderRadius: 999,
   } as ViewStyle,
   progressBarsWrapper: {

@@ -1,22 +1,13 @@
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { FlatList as RNFlatList, Animated, StyleSheet, View, ViewStyle, Platform } from "react-native";
+import { FlatList as RNFlatList, Animated, StyleSheet, View, ViewStyle, Platform, ListRenderItem } from "react-native";
 import { Colours, Style } from "@styles";
 import { FlatList, TextTemplate } from "@atoms";
 import { ProgressItems } from "./progress-items";
 import { Controller } from "./controller";
-import { Page } from "./page";
+import { Page, IPageItem } from "./page";
 import { Dismiss } from "./dismiss";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 import { useDispatch } from "react-redux";
-
-export interface IPageItem {
-  heading: string;
-  paragraph: string;
-  styles?: Array<{ property: string; value: string }>;
-  backgroundImage: {
-    uri: string;
-  };
-}
 
 interface Props {
   id: string;
@@ -38,12 +29,15 @@ interface Props {
   autoPlaySpeedMs: number;
   theme: {
     primaryColor: string;
+    titleColor?: string;
+    progressBarForegroundColor?: string;
+    progressBarBackgroundColor?: string;
   };
 }
 
 export const FullScreenSwiper = memo((props: Props) => {
   const dispatch = useDispatch();
-  const { items, title, button, close, ctaMinVisibleIndex, dismissMinVisibleIndex, autoPlaySpeedMs } = props;
+  const { items, title, button, close, ctaMinVisibleIndex, dismissMinVisibleIndex, autoPlaySpeedMs, theme } = props;
   const animationRef = useRef(null as ReturnType<typeof Animated.timing>);
   const { activeIndex, setActiveIndex, userInteractionToggler, setUserInteractionToggler, listRef } = useScrollHandler(
     items
@@ -104,10 +98,13 @@ export const FullScreenSwiper = memo((props: Props) => {
     return { length: Style.DEVICE_WIDTH, offset: Style.DEVICE_WIDTH * index, index };
   }, []);
 
-  const renderItem = useCallback(({ item }) => <Page {...item} />, []);
+  const renderItem: ListRenderItem<IPageItem> = useCallback(
+    ({ item, index }) => <Page {...item} isActive={index === activeIndex} />,
+    [activeIndex]
+  );
 
   return (
-    <View style={[styles.screen, { backgroundColor: props.theme.primaryColor }]}>
+    <View style={[styles.screen, { backgroundColor: theme.primaryColor }]}>
       <View style={styles.inner}>
         <FlatList
           forwardRef={listRef}
@@ -128,10 +125,12 @@ export const FullScreenSwiper = memo((props: Props) => {
           interpolatedValue={interpolatedValue}
           animationRef={animationRef}
           autoPlaySpeedMs={autoPlaySpeedMs}
+          progressBarForegroundColor={theme.progressBarForegroundColor}
+          progressBarBackgroundColor={theme.progressBarBackgroundColor}
         />
         <Controller handleChangeActiveIndex={handleChangeActiveIndex} />
         <View style={styles.title}>
-          <TextTemplate color={Colours.neutral.white} type="l1b">
+          <TextTemplate color={theme.titleColor || Colours.neutral.white} type="l1b">
             {title}
           </TextTemplate>
         </View>

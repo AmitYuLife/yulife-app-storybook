@@ -11,7 +11,11 @@ export const GQL_QUERY_GET_MOBILE_WHATS_NEW_MODAL = gql`
       dismissMinVisibleIndex
       ctaMinVisibleIndex
       theme {
+        statusBar
         primaryColor
+        titleColor
+        progressBarForegroundColor
+        progressBarBackgroundColor
       }
       button {
         label
@@ -40,6 +44,10 @@ export const GQL_QUERY_GET_MOBILE_WHATS_NEW_MODAL = gql`
         backgroundImage {
           id
           uri
+        }
+        lottie {
+          jsonUri
+          aspectRatio
         }
       }
       refetchQueries
