@@ -6,10 +6,21 @@ import { MODALS } from "@navigation/constants";
 import Logger from "@services/logging/logger";
 import { Unpacked } from "@utils";
 import { getModalState } from "@redux/app/app.selectors";
-import { UPDATE_CURRENT_MODAL } from "@redux/app/app.actions";
+import { UPDATE_APP_STATE, UPDATE_CURRENT_MODAL } from "@redux/app/app.actions";
 import { showYuModal } from "@navigation/root";
+import { getToken } from "@services/storage";
 
-export function* getMobileWhatsNewModalSaga() {
+export function* getMobileWhatsNewModalSaga(dataPayload: { payload: string; type: string }) {
+  const { payload: appState, type } = dataPayload || {};
+  if (type === UPDATE_APP_STATE && appState !== "active") {
+    return;
+  }
+
+  const token: Unpacked<typeof getToken> = yield call(getToken);
+  if (!token) {
+    return;
+  }
+
   try {
     const { data }: Unpacked<typeof getMobileWhatsNewModalClient> = yield call(getMobileWhatsNewModalClient);
 
