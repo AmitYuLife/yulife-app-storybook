@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import React, { memo, useState } from "react";
 import { StyleSheet, View, ViewStyle } from "react-native";
 import LottieView from "lottie-react-native";
 import { TextTemplate } from "@atoms";
@@ -6,8 +6,10 @@ import { Style, TOP_BAR, Colours } from "@styles";
 import moment from "moment";
 import { minifiedFromNow } from "@utils";
 import { TouchableOpacityWithDelay } from "@molecules";
+import useInterval from "@use-it/interval";
 
 const LottieIcon = require("./surge-lottie.json");
+const REFRESH_RATE_MILLISECONDS = 1000 * 60; // 1min
 
 interface IProps {
   expireDate: string;
@@ -15,23 +17,44 @@ interface IProps {
   onPress: () => void;
 }
 
-const Surge = ({ expireDate, multiplier, onPress }: IProps) => (
-  <TouchableOpacityWithDelay style={styles.wrapper} onPress={onPress}>
-    <LottieView style={styles.lottie} source={LottieIcon} autoPlay={true} loop={true} />
-    <View style={styles.timesWrapper}>
-      <View style={styles.timesNumber}>
-        <TextTemplate type="l2b" color={Colours.neutral.white}>
-          {multiplier}
+const Surge = ({ expireDate, multiplier, onPress }: IProps) => {
+  const [time, setTime] = useState(minifiedFromNow(moment(expireDate)));
+
+  useInterval(() => {
+    if (time === null) {
+      return;
+    }
+
+    if (moment().isAfter(expireDate)) {
+      setTime(null);
+      return;
+    }
+
+    setTime(minifiedFromNow(moment(expireDate)));
+  }, REFRESH_RATE_MILLISECONDS);
+
+  if (time === null) {
+    return null;
+  }
+
+  return (
+    <TouchableOpacityWithDelay style={styles.wrapper} onPress={onPress}>
+      <LottieView style={styles.lottie} source={LottieIcon} autoPlay={true} loop={true} />
+      <View style={styles.timesWrapper}>
+        <View style={styles.timesNumber}>
+          <TextTemplate type="l2b" color={Colours.neutral.white}>
+            {multiplier}
+          </TextTemplate>
+        </View>
+      </View>
+      <View style={styles.time}>
+        <TextTemplate type="l1b" color={Colours.neutral.white}>
+          {time}
         </TextTemplate>
       </View>
-    </View>
-    <View style={styles.time}>
-      <TextTemplate type="l1b" color={Colours.neutral.white}>
-        {minifiedFromNow(moment(expireDate))}
-      </TextTemplate>
-    </View>
-  </TouchableOpacityWithDelay>
-);
+    </TouchableOpacityWithDelay>
+  );
+};
 
 const styles = StyleSheet.create({
   wrapper: {
