@@ -153,17 +153,6 @@ export enum PassiveChallengeType {
   STEPS = "STEPS",
 }
 
-export enum PolicyStatus {
-  CLAIM_ADMITTED = "CLAIM_ADMITTED",
-  CLAIM_NOTIFIED = "CLAIM_NOTIFIED",
-  DEATH = "DEATH",
-  LAPSED = "LAPSED",
-  LIVE = "LIVE",
-  NOT_LIVE_YET = "NOT_LIVE_YET",
-  NOT_TAKEN_UP = "NOT_TAKEN_UP",
-  TERMINATION = "TERMINATION",
-}
-
 export enum RNViewPointerEvents {
   AUTO = "AUTO",
   BOX_NONE = "BOX_NONE",
