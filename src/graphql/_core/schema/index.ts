@@ -95,7 +95,6 @@ export * from "./GetPersonalProductStepDetached";
 export * from "./GetPersonalProductStepDetachedDocuments";
 export * from "./GetPersonalProductStepDetachedFaqs";
 export * from "./GetProductBeneficiaries";
-export * from "./GetProductDetails";
 export * from "./GetProductEarnRate";
 export * from "./GetProductPaymentHistory";
 export * from "./GetProductSlotItemBackgroundUrls";
