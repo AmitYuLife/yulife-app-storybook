@@ -3,8 +3,10 @@ import {
   GQL_FRAGMENT_CONTENT_ITEM_BENEFICIARIES_SECTION,
   GQL_FRAGMENT_CONTENT_ITEM_BUTTON,
   GQL_FRAGMENT_CONTENT_ITEM_COLLAPSING_GENERIC_HEADER,
+  GQL_FRAGMENT_CONTENT_ITEM_IMAGE,
   GQL_FRAGMENT_CONTENT_ITEM_PAD,
   GQL_FRAGMENT_CONTENT_ITEM_PRODUCT_DETAILS_HEADER,
+  GQL_FRAGMENT_CONTENT_ITEM_ROW_ICON_TEXT_BANNER,
   GQL_FRAGMENT_CONTENT_ITEM_TEXT,
   GQL_FRAGMENT_YU_SCREEN_ITEM_SLOT,
 } from "@graphql/_fragments/content.gql";
@@ -27,6 +29,8 @@ export const GQL_QUERY_GET_YU_SCREEN_PRODUCT_DETAILS = gql`
   ${GQL_FRAGMENT_CONTENT_ITEM_TEXT}
   ${GQL_FRAGMENT_CONTENT_ITEM_BUTTON}
   ${GQL_FRAGMENT_CONTENT_ITEM_BENEFICIARIES_SECTION}
+  ${GQL_FRAGMENT_CONTENT_ITEM_IMAGE}
+  ${GQL_FRAGMENT_CONTENT_ITEM_ROW_ICON_TEXT_BANNER}
 
   query GetYuScreenProductDetails($customerProductId: String!) {
     getYuScreenProductDetails(customerProductId: $customerProductId) {
@@ -43,6 +47,12 @@ export const GQL_QUERY_GET_YU_SCREEN_PRODUCT_DETAILS = gql`
         }
         ... on ContentItemBeneficiariesSection {
           ...ContentItemBeneficiariesSection
+        }
+        ... on ContentItemRowIconTextBanner {
+          ...ContentItemRowIconTextBanner
+        }
+        ... on ContentItemImage {
+          ...ContentItemImage
         }
       }
       absolute {

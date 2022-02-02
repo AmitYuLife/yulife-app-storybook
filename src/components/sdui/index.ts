@@ -27,3 +27,4 @@ export * from "./contentItemYuCoinPower/contentItemYuCoinPower";
 export * from "./contentItemProcessingTimer/contentItemProcessingTimer";
 export * from "./contentItemCollapsingGenericHeader/contentItemCollapsingGenericHeader";
 export * from "./contentItemBeneficiariesSection/contentItemBeneficiariesSection";
+export * from "./contentItemRowIconTextBanner/contentItemRowIconTextBanner";
