@@ -42,7 +42,7 @@ const CyclingMeasurementScreen = ({
         {OPTIONS.map((option) => (
           <View key={option.title} style={styles.option}>
             <View>
-              <TextTemplate type="b2" testID={TEXT_TEMPLATE(option.title)}>
+              <TextTemplate type="b2b" testID={TEXT_TEMPLATE(option.title)}>
                 {option.title}
               </TextTemplate>
               <TextTemplate type="l2" testID={TEXT_TEMPLATE(option.description)}>
