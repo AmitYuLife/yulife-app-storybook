@@ -16,7 +16,7 @@ interface IProps {
 const GameSettingsItem = ({ title, description, measurement, onPress }: IProps) => (
   <View style={styles.wrapper}>
     <View style={styles.container}>
-      <TextTemplate type="b2" testID={TEXT_TEMPLATE(title)}>
+      <TextTemplate type="b2b" testID={TEXT_TEMPLATE(title)}>
         {title}
       </TextTemplate>
       <TextTemplate type="l2" testID={TEXT_TEMPLATE(description)}>
