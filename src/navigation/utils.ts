@@ -60,3 +60,5 @@ export function showGenericModal(
     },
   });
 }
+
+export const setScreenViewForBurgerMenu = () => Logger.logMixpanelEvent("screen_view", { name: "burger_menu" });

@@ -5,6 +5,7 @@ import { NavBar } from "@components/organisms";
 import { Navigation } from "react-native-navigation";
 import { ROUTES } from "@navigation/constants";
 import { TopBarAbsolute } from "@organisms/top-bar/top-bar-absolute";
+import { setScreenViewForBurgerMenu } from "@navigation/utils";
 
 interface Props {
   children: React.ReactNode;
@@ -23,6 +24,7 @@ export const LeaderboardLayout = ({ children }: Props) => {
 };
 
 const openMenu = () => {
+  setScreenViewForBurgerMenu();
   Navigation.mergeOptions(ROUTES.leaderboards, {
     sideMenu: {
       left: {

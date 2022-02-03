@@ -14,6 +14,7 @@ import { MenuScreen } from "@screens";
 import assets, { LINKS, LinkTypes } from "./assets";
 import { IS_DEVELOP } from "@utils";
 import { showYuModal } from "@navigation/root";
+import Logger from "@services/logging/logger";
 
 const MenuContainer = () => {
   const dispatch = useDispatch();
@@ -38,6 +39,7 @@ const MenuContainer = () => {
         },
       });
     } else {
+      Logger.logMixpanelEvent("screen_view", { name: "chat" });
       callback();
     }
   }, [permissions, pushNotificationCopy]);
