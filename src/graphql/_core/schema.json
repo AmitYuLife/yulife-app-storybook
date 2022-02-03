@@ -2565,6 +2565,33 @@
             "deprecationReason": null
           },
           {
+            "name": "getYumojiPartUrlSetSwiper",
+            "description": "Used for personal products when needing the part assets on their own",
+            "args": [
+              {
+                "name": "partType",
+                "description": null,
+                "type": {
+                  "kind": "ENUM",
+                  "name": "AvatarPartType",
+                  "ofType": null
+                },
+                "defaultValue": null
+              }
+            ],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "GetYumojiPartSet",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "getProductYumojiPart",
             "description": "Gets yumoji part type (e.g. Chest) associated to a product",
             "args": [
