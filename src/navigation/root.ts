@@ -6,6 +6,7 @@ import { bottomTabs, MODALS, ROUTES } from "./constants";
 import { ILabel } from "@components/organisms/nav-bar/nav-bar.helpers";
 import { IUpdateContainerProps } from "@components/containers/update/update.container";
 import { ReviewModalProps } from "@components/modals/app-review/app-review.modal";
+import { setScreenViewForBurgerMenu } from "@navigation/utils";
 
 // eslint-disable-next-line
 const icon = require("@assets/icons/clock.png");
@@ -21,7 +22,8 @@ export interface IMainTabsProps {
 }
 
 export function generateOnLeftMenuPress(route: string) {
-  return () =>
+  return () => {
+    setScreenViewForBurgerMenu();
     Navigation.mergeOptions(route, {
       sideMenu: {
         left: {
@@ -34,6 +36,7 @@ export function generateOnLeftMenuPress(route: string) {
         visible: true,
       },
     });
+  };
 }
 
 export const labels = [

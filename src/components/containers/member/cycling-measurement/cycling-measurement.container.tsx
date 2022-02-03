@@ -12,6 +12,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { updateDailyCyclingDistanceMeasurementType } from "@redux/daily-cycling/daily-cycling.actions";
 import { DistanceMeasurementType } from "@graphql/_core/schema/globalTypes";
 import { getDailyCyclingMeasurement } from "@redux/daily-cycling/daily-cycling.selectors";
+import Logger from "@services/logging/logger";
 
 interface IProps {
   componentId: string;
@@ -29,6 +30,7 @@ const CyclingMeasurementContainer = ({ componentId }: IProps) => {
   const onSelectedCyclingMeasurement = useCallback(async (measurement) => {
     dispatch(updateDailyCyclingDistanceMeasurementType(measurement as DistanceMeasurementType));
     await updateCyclingMeasurement({ variables: { measurement } });
+    Logger.logMixpanelEvent("settings_toggle", { type: "cycling_measurement", subtype: measurement });
   }, []);
 
   const onRightIconPress = useCallback(() => (loading ? null : Navigation.popToRoot(componentId)), [componentId]);

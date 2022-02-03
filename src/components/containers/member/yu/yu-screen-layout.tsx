@@ -14,6 +14,7 @@ import { PAD_TOP } from "./yu-screen";
 import { YuScreenContext } from "./context/yu-screen.context";
 import { navigateToProduct } from "./navigation/navigateToProduct";
 import { YuProductStatus } from "@graphql/_core/schema/globalTypes";
+import { setScreenViewForBurgerMenu } from "@navigation/utils";
 
 interface Props {
   children: React.ReactChild;
@@ -113,6 +114,7 @@ const styles = StyleSheet.create({
 });
 
 const openMenu = () => {
+  setScreenViewForBurgerMenu();
   Navigation.mergeOptions(ROUTES.yuScreen, {
     sideMenu: {
       left: {
