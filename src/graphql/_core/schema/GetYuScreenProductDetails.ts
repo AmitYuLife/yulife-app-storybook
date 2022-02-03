@@ -16,6 +16,11 @@ import {
 // GraphQL query operation: GetYuScreenProductDetails
 // ====================================================
 
+export interface GetYuScreenProductDetails_getYuScreenProductDetails_containerStyles {
+  property: string;
+  value: string;
+}
+
 export interface GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemPad {
   __typename: "ContentItemPad" | "ContentItemCollapsingGenericHeader";
 }
@@ -120,6 +125,19 @@ export interface GetYuScreenProductDetails_getYuScreenProductDetails_body_Conten
   buttonSize: ContentItemButtonSize | null;
 }
 
+export interface GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemKeyValueBox_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemKeyValueBox {
+  __typename: "ContentItemKeyValueBox";
+  id: string;
+  boxKey: string;
+  boxValue: string;
+  styles: GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemKeyValueBox_styles[] | null;
+}
+
 export interface GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemBeneficiariesSection_styles {
   property: string;
   value: string;
@@ -182,6 +200,7 @@ export type GetYuScreenProductDetails_getYuScreenProductDetails_body =
   | GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemProductDetailsHeader
   | GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemText
   | GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemButton
+  | GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemKeyValueBox
   | GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemBeneficiariesSection
   | GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemRowIconTextBanner
   | GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemImage;
@@ -193,6 +212,7 @@ export interface GetYuScreenProductDetails_getYuScreenProductDetails_absolute_it
     | "ContentItemButton"
     | "ContentItemBeneficiariesSection"
     | "ContentItemRowIconTextBanner"
+    | "ContentItemKeyValueBox"
     | "ContentItemImage";
 }
 
@@ -254,6 +274,10 @@ export interface GetYuScreenProductDetails_getYuScreenProductDetails_absolute {
 }
 
 export interface GetYuScreenProductDetails_getYuScreenProductDetails {
+  /**
+   * Container styles go here
+   */
+  containerStyles: GetYuScreenProductDetails_getYuScreenProductDetails_containerStyles[] | null;
   /**
    * Content displayed inside the scrollview area
    */

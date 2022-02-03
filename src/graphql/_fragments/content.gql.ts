@@ -879,6 +879,17 @@ export const GQL_FRAGMENT_CONTENT_ITEM_GP_DETAILS = gql`
   }
 `;
 
+export const GQL_FRAGMENT_CONTENT_ITEM_KEY_VALUE_BOX = gql`
+  fragment ContentItemKeyValueBox on ContentItemKeyValueBox {
+    id
+    boxKey: key
+    boxValue: value
+    styles {
+      ...SduiStyle
+    }
+  }
+`;
+
 export const GQL_FRAGMENT_CONTENT_ITEM_SELECT_PAYMENT_BUTTON = gql`
   fragment ContentItemPersonalProductSelectPaymentButton on ContentItemPersonalProductSelectPaymentButton {
     id
