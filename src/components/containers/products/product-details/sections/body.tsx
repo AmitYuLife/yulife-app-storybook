@@ -8,6 +8,7 @@ import {
   ContentItemImage,
   ContentItemRowIconTextBanner,
   ContentItemText,
+  ContentItemKeyValueBox,
 } from "@components/sdui";
 import { ProductDetailsButton } from "../subcomponents/product-details.button";
 
@@ -45,6 +46,8 @@ const renderItemContent = (item: BodyItems): JSX.Element => {
       return <ProductDetailsHeader key={item.id} {...item} />;
     case "ContentItemText":
       return <ContentItemText key={item.id} {...item} />;
+    case "ContentItemKeyValueBox":
+      return <ContentItemKeyValueBox key={item.id} {...item} />;
     case "ContentItemImage":
       return <ContentItemImage key={item.id} {...item} />;
     case "ContentItemRowIconTextBanner":

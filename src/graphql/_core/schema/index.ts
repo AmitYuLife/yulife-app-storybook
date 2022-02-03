@@ -24,6 +24,7 @@ export * from "./ContentItemHeaderBar";
 export * from "./ContentItemImage";
 export * from "./ContentItemInfoButton";
 export * from "./ContentItemInfoCard";
+export * from "./ContentItemKeyValueBox";
 export * from "./ContentItemList";
 export * from "./ContentItemLottie";
 export * from "./ContentItemMarkdown";

@@ -29,9 +29,7 @@ const ProductDetailsContainer = memo(({ productId: customerProductId }: Props) =
     return null;
   }
 
-  const { absolute, body } = data.getYuScreenProductDetails;
-
-  return <ProductDetailsScreen body={body} absolute={absolute} />;
+  return <ProductDetailsScreen {...data.getYuScreenProductDetails} />;
 });
 
 export default ProductDetailsContainer;
