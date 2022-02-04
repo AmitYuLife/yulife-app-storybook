@@ -63,3 +63,4 @@ export { default as DarkScreen } from "./dark-screen/dark-screen";
 export { FlatList } from "./flat-list/flat-list";
 export { default as Block } from "./block/block";
 export { default as Radio } from "./radio/radio";
+export { default as ProgressBar } from "./progress-bar/progress-bar";
