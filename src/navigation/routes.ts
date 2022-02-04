@@ -117,6 +117,10 @@ export default [
     name: ROUTES.eventPanel,
     component: require("../components/containers/member/debug/events-debug/event-panel.debug").default,
   },
+  {
+    name: ROUTES.eventRewards,
+    component: require("../components/containers/member/debug/events-debug/event-rewards-wrapper.debug").default,
+  },
 
   {
     name: ROUTES.changeMemberNickname,
