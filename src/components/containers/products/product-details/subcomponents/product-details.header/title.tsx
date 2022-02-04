@@ -1,5 +1,6 @@
 import React, { ComponentProps, memo } from "react";
 import { StyleSheet, View, ViewStyle } from "react-native";
+import { TEXT_TEMPLATE } from "@ids";
 import { TextTemplate } from "@atoms";
 import { Colours, Style } from "@styles";
 
@@ -10,7 +11,7 @@ interface Props {
 
 export const Title = memo(({ title, titleType }: Props) => (
   <View style={styles.wrapper}>
-    <TextTemplate color={Colours.neutral.white} type={titleType || "b1b"}>
+    <TextTemplate testID={TEXT_TEMPLATE(title)} color={Colours.neutral.white} type={titleType || "b1b"}>
       {title}
     </TextTemplate>
   </View>
