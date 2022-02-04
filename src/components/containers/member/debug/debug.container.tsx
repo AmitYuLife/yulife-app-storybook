@@ -24,6 +24,7 @@ const ActivityHistoryContainer: React.FC<Props> = (props) => {
 
   enum CODES {
     ROUTE_TO_EVENT_PANEL = "ROUTE_TO_EVENT_PANEL",
+    ROUTE_TO_EVENT_REWARDS = "ROUTE_TO_EVENT_REWARDS",
   }
 
   const list = [
@@ -31,6 +32,7 @@ const ActivityHistoryContainer: React.FC<Props> = (props) => {
     "send-test-push",
     `toggle-leanplum(${Logger.leanplum.isDevMode ? "dev" : "prod"})`,
     CODES.ROUTE_TO_EVENT_PANEL,
+    CODES.ROUTE_TO_EVENT_REWARDS,
   ];
 
   const handleClose = () => {
@@ -54,6 +56,15 @@ const ActivityHistoryContainer: React.FC<Props> = (props) => {
             component: {
               id: ROUTES.eventPanel,
               name: ROUTES.eventPanel,
+            },
+          });
+        }
+
+        if (code === CODES.ROUTE_TO_EVENT_REWARDS) {
+          return Navigation.push(props.componentId, {
+            component: {
+              id: ROUTES.eventRewards,
+              name: ROUTES.eventRewards,
             },
           });
         }

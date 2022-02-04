@@ -1,7 +1,7 @@
 import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
 import { ROUTES } from "@navigation/constants";
-import { Colours, Style } from "@styles";
-import React from "react";
+import { Colours } from "@styles";
+import React, { useCallback } from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
 import { Navigation } from "react-native-navigation";
 
@@ -9,13 +9,16 @@ interface IProps {
   children: JSX.Element | JSX.Element[];
 }
 
-const WrapperDebug = ({ children }: IProps) => (
-  <View style={styles.wrapper}>
-    <GenericHeadingPad />
-    <ScrollView contentContainerStyle={styles.center}>{children}</ScrollView>
-    <GenericHeadingAbsolute logo="yulife" onLeftIconPress={() => Navigation.pop(ROUTES.debug)} />
-  </View>
-);
+const WrapperDebug = ({ children }: IProps) => {
+  const onLeftIconPress = useCallback(() => Navigation.pop(ROUTES.debug), []);
+  return (
+    <View style={styles.wrapper}>
+      <GenericHeadingPad />
+      <ScrollView contentContainerStyle={styles.center}>{children}</ScrollView>
+      <GenericHeadingAbsolute logo="yulife" onLeftIconPress={onLeftIconPress} />
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
   wrapper: {
@@ -24,7 +27,6 @@ const styles = StyleSheet.create({
   },
   center: {
     justifyContent: "center",
-    margin: Style.adjust(12),
   },
 });
 

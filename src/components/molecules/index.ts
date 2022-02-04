@@ -52,3 +52,4 @@ export { default as SettingsHeader } from "./settings-header/settings-header";
 export { default as Surge } from "./surge/surge";
 export { default as ProcessingTimer } from "./processing-timer/processing-timer";
 export { default as EventPanel } from "./event-panel/event-panel";
+export { default as LabelWithImages } from "./label-with-images/label-with-images";
