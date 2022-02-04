@@ -111,7 +111,7 @@ export function getStartAndEndDateTimesWithTimezone(startDateTime: string, endDa
 export const minifiedFromNow = (time: moment.Moment): string => {
   const days = time.diff(moment(), "days");
   return days
-    ? `${days} d`
+    ? `${days}d`
     : time
         .fromNow()
         .replace(/an hour/i, "1h")
