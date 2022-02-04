@@ -2,7 +2,7 @@ import { FitKitType } from "@graphql/_core/schema/globalTypes";
 import { createSelector } from "reselect";
 import { CreateActiveChallenge_createActiveChallenge_levelSlot_milestones } from "@graphql/_core/schema";
 import { IReduxState } from "../_core/reducers";
-import { getChallengesAmountAvailable, isChallengeAvailable } from "./levels.helpers";
+import { getChallengesAmountAvailable, getAvailableChallengesForToday } from "./levels.helpers";
 
 export interface IActiveLevel {
   chest: {
@@ -34,6 +34,7 @@ export interface ITodayChallengesStatus {
   done: number;
   hasDone: boolean;
   isAvailable: boolean;
+  availableForToday: number;
 }
 
 type State = IReduxState["levels"];
@@ -63,12 +64,14 @@ export const getChallengeIsActive = createSelector(reducer, getChallengeIsActive
 const challengesStatusSelector = (state: State) => {
   const available = getChallengesAmountAvailable(state.level);
   const done = state.challengesDoneToday;
+  const availableForToday = getAvailableChallengesForToday(state.level, done, available, state.nextLevelAvailableAt);
 
   return {
     available,
     done,
+    isAvailable: !!availableForToday,
     hasDone: done > 0,
-    isAvailable: isChallengeAvailable(state.level, done, available, state.nextLevelAvailableAt),
+    availableForToday,
   } as ITodayChallengesStatus;
 };
 

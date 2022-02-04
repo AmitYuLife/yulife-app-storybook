@@ -26,8 +26,7 @@ export const DailyStepsOnline = memo(({ isIntro }: DailyStepsOnlineProps) => {
   const dailySteps = useSelector(getDailySteps);
   const dailyEarnedCoins = useSelector(getDailyEarnedCoins);
   const { usePassiveMeditation } = useSelector(getUserFeatures);
-  const { available, done, isAvailable } = useSelector(getChallengesStatus);
-  const availableForToday = useMemo(() => available - done, [available, done]);
+  const { availableForToday, isAvailable } = useSelector(getChallengesStatus);
   const { textStyle } = useSelector(getDailyStepsTheme);
   const mindfulTotal = displaySecondsAsMinutes(dailyMeditation);
   const hasNotification = useSelector(getHasNotification);
