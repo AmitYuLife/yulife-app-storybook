@@ -1,6 +1,7 @@
 import React, { memo } from "react";
 import { Animated, StyleSheet, View, ViewStyle } from "react-native";
 import { useDispatch } from "react-redux";
+import { DETOX_ENABLED } from "@services/socket";
 import { ContentItemCollapsingGenericHeader as Props } from "@graphql/_core/schema";
 import { CloseSvg } from "@atoms";
 import GenericHeadingAbsolute from "@atoms/generic-heading/generic-heading-absolute";
@@ -12,11 +13,13 @@ type OwnProps = Props & {
 
 export const ContentItemCollapsingGenericHeader = memo((props: OwnProps) => {
   const dispatch = useDispatch();
-  const scrolledHeaderTranslateY = props.scrollValue.interpolate({
-    inputRange: [0, 0, 1],
-    outputRange: [-1000, -1000, 0],
-    extrapolate: "clamp",
-  });
+  const scrolledHeaderTranslateY = DETOX_ENABLED
+    ? -1000
+    : props.scrollValue.interpolate({
+        inputRange: [0, 0, 1],
+        outputRange: [-1000, -1000, 0],
+        extrapolate: "clamp",
+      });
 
   return (
     <View style={styles.absoluteBase}>
@@ -25,7 +28,7 @@ export const ContentItemCollapsingGenericHeader = memo((props: OwnProps) => {
           heading=""
           RightIcon={<CloseSvg stroke={Colours.neutral.white} />}
           onRightIconPress={() => dispatch(props.onPressRightIcon)}
-          backgroundColor={"transparent"}
+          backgroundColor="transparent"
         />
       </Animated.View>
       <Animated.View style={[styles.absoluteBase, { transform: [{ translateY: scrolledHeaderTranslateY }] }]}>
@@ -34,6 +37,7 @@ export const ContentItemCollapsingGenericHeader = memo((props: OwnProps) => {
           RightIcon={<CloseSvg />}
           onRightIconPress={() => dispatch(props.onPressRightIcon)}
           backgroundColor={Colours.neutral.white}
+          hideBorder={false}
         />
       </Animated.View>
     </View>

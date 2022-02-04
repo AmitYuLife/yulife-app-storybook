@@ -1,5 +1,6 @@
 import React, { ComponentProps, memo } from "react";
 import { View } from "react-native";
+import { TEXT_TEMPLATE } from "@ids";
 import { TextTemplate } from "@atoms";
 import { ContentItemText as GqlText } from "@graphql/_core/schema";
 import { mapServerStyles } from "../_utils/mapServerStyles";
@@ -19,6 +20,7 @@ export const ContentItemText = memo(({ text, textType, textAlign, styles, ...pro
         {...props}
         type={textType as TemplateProps["type"]}
         textAlign={textAlign as TemplateProps["textAlign"]}
+        testID={TEXT_TEMPLATE(text)}
       >
         {text}
       </TextTemplate>

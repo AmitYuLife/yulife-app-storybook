@@ -207,12 +207,19 @@ export const onCertificate = (productName: string, customer:any, customerGroupPo
     const customerName = `${customer.data.firstName} ${customer.data.lastName}`
     const companyName = business.data.business_account_name
     const policyNumber = customerGroupPol.data.business_product_id
-    const dateJoined = moment(businessEmployee.data.invite_date).format("DD/MM/YY")
+    const dateJoined = moment(businessEmployee.data.invite_date).format("DD/MM/YYYY")
 
     await expect(element(by.text(productName))).toBeVisible()
-
-    await expect(element(by.id(CERTIFICATE_KEY_VALUES("Client name", customerName)))).toBeVisible()
-    await expect(element(by.id(CERTIFICATE_KEY_VALUES("Company name", companyName)))).toBeVisible()
-    await expect(element(by.id(CERTIFICATE_KEY_VALUES("Policy number", policyNumber)))).toBeVisible()
-    await expect(element(by.id(CERTIFICATE_KEY_VALUES("Date joined", dateJoined)))).toBeVisible()
+    
+    await expect(element(by.text("Client name"))).toBeVisible()
+    await expect(element(by.text(customerName))).toBeVisible()
+    
+    await expect(element(by.text("Company name"))).toBeVisible()
+    await expect(element(by.text(companyName))).toBeVisible()
+    
+    await expect(element(by.text("Policy number"))).toBeVisible()
+    await expect(element(by.text(policyNumber))).toBeVisible()
+    
+    await expect(element(by.text("Date joined"))).toBeVisible()
+    await expect(element(by.text(dateJoined))).toBeVisible()
 }
