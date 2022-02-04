@@ -84,20 +84,34 @@ export async function getEndResult(
   }
 }
 
-export function isChallengeAvailable(level: number, done: number, available: number, nextLevelAvailableAt: string) {
-  // when you do level 49/99/159
-  // your current level becomes 51/101/161 so technically you're allowed to take another challenge
+export function getAvailableChallengesForToday(
+  level: number,
+  totalChallengesDoneToday: number,
+  availableChallengesToday: number,
+  nextLevelAvailableAt: string
+) {
+  const availableChallengesMinusOne = availableChallengesToday - 1;
+  const challengesLeft = availableChallengesToday - totalChallengesDoneToday;
+  const challengesLeftMinusOne = challengesLeft - 1;
+  const isNextLevelAvailableAt = moment().isBefore(moment(nextLevelAvailableAt));
+
+  // when you do level 49/99/149
+  // your current level becomes 51/101/151 so technically you're allowed to take another challenge
   // and that should not happen
   if (
     level % 50 === 1 && // check if it's first level of the world
-    Math.floor(level / 50) === done && // check if you already did 1/2/3 challenges today
+    Math.floor(level / 50) === totalChallengesDoneToday && // check if you already did 1/2/3 challenges today
     !!nextLevelAvailableAt && // check if nextLevelAvailableAt is not empty
-    moment().isBefore(moment(nextLevelAvailableAt)) // check if nextLevelAvailableAt is past the current day
+    isNextLevelAvailableAt // check if nextLevelAvailableAt is past the current day
   ) {
-    return false;
+    return challengesLeftMinusOne;
   }
 
-  return done < available;
+  if (level % 50 === 1 && availableChallengesMinusOne > 1 && isNextLevelAvailableAt) {
+    return challengesLeftMinusOne;
+  }
+
+  return challengesLeft;
 }
 
 export function getChallengesAmountAvailable(level: number) {
