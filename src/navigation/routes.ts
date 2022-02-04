@@ -121,6 +121,10 @@ export default [
     name: ROUTES.eventRewards,
     component: require("../components/containers/member/debug/events-debug/event-rewards-wrapper.debug").default,
   },
+  {
+    name: ROUTES.progressBar,
+    component: require("../components/containers/member/debug/events-debug/progress-bar.debug").default,
+  },
 
   {
     name: ROUTES.changeMemberNickname,

@@ -78,6 +78,7 @@ export const ROUTES = {
   //debug
   eventPanel: "yulife.debug.eventPanel",
   eventRewards: "yulife.debug.eventRewards",
+  progressBar: "yulife.debug.progressBar",
 };
 
 export const MODALS = {
