@@ -69,8 +69,8 @@ const styles = StyleSheet.create({
   time: {
     position: "absolute",
     left: 0,
-    right: 0,
-    bottom: 1,
+    right: 2,
+    bottom: 0,
     alignItems: "center",
   },
   timesWrapper: {

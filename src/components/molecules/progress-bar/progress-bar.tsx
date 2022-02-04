@@ -68,7 +68,7 @@ export default function ProgressBar(props: IProgressBarProps) {
   const svgProps = useMemo(
     () => ({
       fill: isDisabled ? Colours.neutral.n100 : Colours.metallic.m100,
-      stroke: data.currentProgressUI === 0 ? Colours.metallic.m200 : "none",
+      stroke: Colours.metallic.m200,
     }),
     [isDisabled, data.currentProgressUI]
   );
