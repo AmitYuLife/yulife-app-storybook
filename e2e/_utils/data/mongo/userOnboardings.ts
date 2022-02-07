@@ -1,7 +1,7 @@
 import { generateRandomMongoId, IDatabaseItem } from "@yu-life/yulife-bdd-framework"
 import moment from "moment"
 import { BUSINESS_ACCOUNT_1, BUSINESS_ACCOUNT_4, BUSINESS_ACCOUNT_2 } from "../postgres/business"
-import {USER_1, USER_5, USER_19, USER_20, USER_21, USER_35, USER_36, USER_37 } from "./users"
+import {USER_1, USER_2, USER_5, USER_19, USER_20, USER_21, USER_35, USER_36, USER_37 } from "./users"
 
 const type = "mongo"
 const modelName = "user_onboardings"
@@ -139,5 +139,19 @@ export const USER_ONBOARDING_37 = {
         createdAt: moment().subtract(7, "d").toISOString(),
         updatedAt: moment().toISOString(),
         inviteDate: moment().subtract(7, "d").toISOString()
+    }
+} as IDatabaseItem
+
+export const USER_ONBOARDING_2 = {
+    type,
+    modelName,
+    data:{
+        _id:generateRandomMongoId(),
+        userId: USER_2.data.userId,
+        businessAccountId: BUSINESS_ACCOUNT_1.data.business_account_id,
+        businessName: "Justice League",
+        performedSteps: {
+            newYumojiBuilder: false
+        },
     }
 } as IDatabaseItem
