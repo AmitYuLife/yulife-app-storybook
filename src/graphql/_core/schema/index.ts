@@ -124,6 +124,7 @@ export * from "./GetYumojiBuilderCategoryList";
 export * from "./GetYumojiBuilderInitialParts";
 export * from "./GetYumojiBuilderItemsForCategory";
 export * from "./GetYumojiPartUrlSet";
+export * from "./GetYumojiPartUrlSetSwiper";
 export * from "./GetYumojiRemoteFittingRoom";
 export * from "./GetYumojiRemoteParts";
 export * from "./InviteToDuel";

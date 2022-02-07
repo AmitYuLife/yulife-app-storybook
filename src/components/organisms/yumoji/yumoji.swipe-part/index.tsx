@@ -4,8 +4,8 @@ import { AvatarPartType, CoverType, YuWorld } from "@graphql/_core/schema/global
 import { Loading, FlatList, TextTemplate } from "@atoms";
 import { Colours } from "@styles";
 import { useQuery } from "@apollo/react-hooks";
-import { GetYumojiPartUrlSet, GetYumojiPartUrlSetVariables } from "@graphql/_core/schema";
-import { GQL_QUERY_GET_YUMOJI_PART_URL_SET } from "@graphql/yuscreen/getYumojiPartUrlSet.gql";
+import { GetYumojiPartUrlSetSwiper, GetYumojiPartUrlSetSwiperVariables } from "@graphql/_core/schema";
+import { GQL_QUERY_GET_YUMOJI_PART_URL_SET_SWIPER } from "@graphql/yuscreen/getYumojiPartUrlSetSwiper.gql";
 import { useScrollHandlers } from "../hooks/useScrollHandlers";
 import { useLocalWorldState } from "../hooks";
 import { FLAT_LIST_ITEM } from "./yumoji-swipe-part.types";
@@ -25,8 +25,8 @@ interface Props {
 }
 
 export const YumojiSwipePart = memo(({ partType, coverType = CoverType.common, selectedYuWorld, onChange }: Props) => {
-  const { data, loading } = useQuery<GetYumojiPartUrlSet, GetYumojiPartUrlSetVariables>(
-    GQL_QUERY_GET_YUMOJI_PART_URL_SET,
+  const { data, loading } = useQuery<GetYumojiPartUrlSetSwiper, GetYumojiPartUrlSetSwiperVariables>(
+    GQL_QUERY_GET_YUMOJI_PART_URL_SET_SWIPER,
     {
       variables: {
         partType,
@@ -44,7 +44,7 @@ export const YumojiSwipePart = memo(({ partType, coverType = CoverType.common, s
 
   useEffect(() => {
     if (!dynamicData[LOCAL_ANSWER_KEY.WorldId]) {
-      const defaultWorldId = data?.getYumojiPartUrlSet.variants[0]?.worlds[0]?.worldId;
+      const defaultWorldId = data?.getYumojiPartUrlSetSwiper.variants[0]?.worlds[0]?.worldId;
 
       if (defaultWorldId) {
         onChange(defaultWorldId);
@@ -68,11 +68,11 @@ export const YumojiSwipePart = memo(({ partType, coverType = CoverType.common, s
   );
 
   const urlSet = useMemo(() => {
-    if (!data?.getYumojiPartUrlSet?.variants) {
+    if (!data?.getYumojiPartUrlSetSwiper?.variants) {
       return [];
     }
 
-    return data.getYumojiPartUrlSet.variants.find((item) => item.coverType === coverType)?.worlds || [];
+    return data.getYumojiPartUrlSetSwiper.variants.find((item) => item.coverType === coverType)?.worlds || [];
   }, [data]);
 
   const onScrollEnd = useCallback(
