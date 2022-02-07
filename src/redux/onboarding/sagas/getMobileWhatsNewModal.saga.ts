@@ -21,6 +21,12 @@ export function* getMobileWhatsNewModalSaga(dataPayload: { payload: string; type
     return;
   }
 
+  const currentModal: ReturnType<typeof getModalState> = yield select(getModalState);
+
+  if (currentModal === MODALS.whatsNew) {
+    return;
+  }
+
   try {
     const { data }: Unpacked<typeof getMobileWhatsNewModalClient> = yield call(getMobileWhatsNewModalClient);
 
