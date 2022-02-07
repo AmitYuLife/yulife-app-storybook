@@ -5,7 +5,9 @@ export const {
     tapID,
     navigateViaText,
     typeViaID,
-    replaceTextViaID
+    replaceTextViaID,
+    replaceTextByID,
+    clearFieldByID
 } = navigation.common
 
 export const {

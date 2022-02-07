@@ -8,7 +8,7 @@ import { AVATAR_ITEM, PRODUCT_TOOL_TIP, BUTTON_CLOSE_HEADER, TEXT_TEMPLATE, BACK
 
 
 Feature("I should be able to use the yuscreen", async()=>{
-    Scenario("As a user with the yuscreen enabled, I shoul be able to use it correctly", scenario.start, async()=>{
+    Scenario("As a user with the yuscreen enabled, I should be able to use it correctly", scenario.start, async()=>{
         Given("I login as a user with yuscreen", given.loginToYuScreen(true, CUSTOMER_31, AUTH_31), async()=>{
                 Then("I should see the newly designed yuscreen", then.onYuscreenV3(CUSTOMER_31))
                 Then("I shoul see the item provided by my employer", then.avatarItemVisible("compass_active", "active"))
@@ -17,7 +17,7 @@ Feature("I should be able to use the yuscreen", async()=>{
                 Then("I should be on the product screen", then.idVisible(TEXT_TEMPLATE("Instant Group Life")))
             })
 
-            When("I tap Policy Details", when.tapText("Policy Details"), async()=>{
+            When("I tap Policy Details", when.tapText("Policy details"), async()=>{
                 Then("I should be on the certificate screen", then.onCertificate("Instant Group Life", CUSTOMER_31, CGP_31, BUSINESS_ACCOUNT_3, BUSINESS_EMPLOYEE_31 ))
             })
         })
@@ -115,13 +115,13 @@ Feature("I should be able to use the yuscreen", async()=>{
                 When("I tap Done", when.tapID(BENEFICIARY_DONE), async () => {
                     Then("I should be on the default beneficiaries confirmation page", then.idVisible(BENEFICIARY_DEFAULT_MODAL))
                     When("I tap Yes", when.tapText("Yes"), async () => {
-                        When("I scroll to the add beneficiary button", when.scrollUntilIdVisible(PRODUCT_DETAILS_SCROLL_VIEW, ADD_BENEFICIARY, "down"), async () => {
+                        When("I scroll to the add beneficiary button", when.scrollFromID(ADD_BENEFICIARY, "up", "slow"), async () => {
                             Then("I should see Harry Todd as a beneficiary", then.idVisible(BENEFICIARY_DETAILS(100, "Harry", "Todd", "Daddy")))
                         })
                     })
                 })
 
-                When("I tap add a beneficiary", when.tapID(ADD_BENEFICIARY), async () => {
+                When("I tap add a beneficiary", when.tryTapText("Add a beneficiary"), async () => {
                     When("I add a beneficiary", when.addBeneficiary("Lois", "Kent", "07123456789", "Wife"), async () => {
                         Then("I should see Harry Todd as a 50% beneficiary", then.idVisible(BENEFICIARY_DETAILS(50, "Harry", "Todd", "Daddy")))
                         Then("I should see Lois Kent as a 50% beneficiary", then.idVisible(BENEFICIARY_DETAILS(50, "Lois", "Kent", "Wife")))
@@ -138,7 +138,7 @@ Feature("I should be able to use the yuscreen", async()=>{
                 When("I tap Done", when.tapID(BENEFICIARY_DONE), async () => {
                     Then("I should be on the default beneficiaries confirmation page", then.idVisible(BENEFICIARY_DEFAULT_MODAL))
                     When("I tap Yes", when.tapText("Yes"), async () => {
-                        When("I scroll to the add beneficiary button", when.scrollUntilIdVisible(PRODUCT_DETAILS_SCROLL_VIEW, ADD_BENEFICIARY, "down"), async () => {
+                        When("I scroll to the add beneficiary button", when.scrollFromID(ADD_BENEFICIARY, "up", "slow"), async () => {
                             Then("I should see Harry Todd as a 33% beneficiary", then.idVisible(BENEFICIARY_DETAILS(33, "Harry", "Todd", "Daddy")))
                             Then("I should see Lois Kent as a 33% beneficiary", then.idVisible(BENEFICIARY_DETAILS(33, "Lois", "Kent", "Wife")))
                             Then("I should see Krypto Kent as a 34% beneficiary", then.idVisible(BENEFICIARY_DETAILS(34, "Krypto", "Kent", "Good Boy")))
@@ -152,7 +152,7 @@ Feature("I should be able to use the yuscreen", async()=>{
             Given("I login as a user with yuscreen", given.loginToYuScreen(true, CUSTOMER_33, AUTH_33), async () => {
                 When("I tap the active compass", when.tapAvatarItem("compass_active", "active"), async () => {
                     Then("I should be on the product screen", then.idVisible(TEXT_TEMPLATE("Registered Group Life")))
-                    When("I scroll to the add beneficiary button", when.scrollUntilIdVisible(PRODUCT_DETAILS_SCROLL_VIEW, ADD_BENEFICIARY, "down"), async () => {
+                    When("I scroll to the add beneficiary button", when.scrollFromID(ADD_BENEFICIARY, "up", "slow"), async () => {
                         Then("I should see Alfred Pennyworth as a 100% beneficiary", then.idVisible(BENEFICIARY_DETAILS(100, "Alfred", "Pennyworth", "Butler")))
                     })
                 })
