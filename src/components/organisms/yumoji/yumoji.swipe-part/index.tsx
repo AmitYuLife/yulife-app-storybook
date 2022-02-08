@@ -54,17 +54,13 @@ export const YumojiSwipePart = memo(({ partType, coverType = CoverType.common, s
 
   const handleChangeWorld = useCallback(
     (id: YuWorld) => {
-      if (selectedWorld !== id) {
-        setSelectedWorld(id);
-        dispatch(
-          logMixpanelEventActionCreator("armour_inspected", { armour_style_chosen: id, location: "swipe_part" })
-        );
-        if (onChange) {
-          onChange(id);
-        }
+      setSelectedWorld(id);
+      dispatch(logMixpanelEventActionCreator("armour_inspected", { armour_style_chosen: id, location: "swipe_part" }));
+      if (onChange) {
+        onChange(id);
       }
     },
-    [setSelectedWorld, onChange, selectedWorld]
+    [onChange]
   );
 
   const urlSet = useMemo(() => {
