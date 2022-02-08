@@ -6,7 +6,8 @@ export const {
     idVisible,
     textVisible,
     idNotVisible,
-    textNotVisible
+    textNotVisible,
+    multipleTextVisible
 } = navigation.common
 
 export const wellbeingServiceVisible = async () => {
