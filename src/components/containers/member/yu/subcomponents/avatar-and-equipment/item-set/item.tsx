@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
   tagWrapper: {
     position: "absolute",
     top: Style.adjust(4),
-    right: -5,
+    right: -(SIZE / 3),
   } as ViewStyle,
   badgeWrapper: {
     width: SIZE,
