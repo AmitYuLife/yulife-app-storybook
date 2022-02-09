@@ -1,4 +1,4 @@
-import React, { memo, useState } from "react";
+import React, { memo, useState, useEffect } from "react";
 import { StyleSheet, View, ViewStyle } from "react-native";
 import LottieView from "lottie-react-native";
 import { TextTemplate } from "@atoms";
@@ -19,7 +19,13 @@ interface IProps {
 }
 
 const Surge = ({ expireDate, multiplier, onPress }: IProps) => {
-  const [time, setTime] = useState(minifiedFromNow(moment(expireDate)));
+  const [time, setTime] = useState<string>(null);
+
+  useEffect(() => {
+    if (!moment().isAfter(expireDate)) {
+      setTime(minifiedFromNow(moment(expireDate)));
+    }
+  }, [expireDate]);
 
   useInterval(
     () => {

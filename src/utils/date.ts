@@ -32,7 +32,7 @@ export function getTime(nextAvailable: number, format?: TimeType) {
   const isMedium = format === "medium";
 
   if (days < 1 && hours < 1 && minutes < 1) {
-    return `:${paddedSeconds}`;
+    return `${paddedSeconds}s`;
   }
 
   if (days < 1 && hours < 1) {
@@ -118,6 +118,7 @@ export const minifiedFromNow = (time: moment.Moment): string => {
         .replace(/ hours/i, "h")
         .replace(/a minute/i, "1m")
         .replace(/ minutes/i, "m")
+        .replace(/ a few seconds/, "<1m")
         .replace(/in/i, "")
         .replace(/a day/i, "1d");
 };
