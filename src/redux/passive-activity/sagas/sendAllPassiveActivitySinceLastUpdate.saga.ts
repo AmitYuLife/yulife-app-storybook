@@ -104,6 +104,15 @@ export default function* sendPassiveActivity(dataPayload: { payload: string; typ
             moment(cyclingLastUpdate)
           );
 
+          /*
+           user was already awarded for startDateTime once last update was set as startDateTime,
+           to not make user confused why we're awarding twice for the same day
+           we should add one day to the startDateTime.
+          */
+          if (startDateTime.format("DD MMM") !== endOfYesterday.format("DD MMM")) {
+            startDateTime.add(1, "day");
+          }
+
           const firstDay = startDateTime.format("DD MMM");
           const lastDay = endOfYesterday.format("DD MMM");
 
