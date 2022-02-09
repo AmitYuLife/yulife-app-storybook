@@ -63,7 +63,13 @@ const TodayEarningsContainer = ({ componentId }: IProps) => {
       });
 
       if (features.passiveCyclingEnabled && (googleFit || Platform.OS === "ios")) {
-        await authoriseFitKitTypes([FitKitType.Cycling]);
+        // if authorise only Cycling permission on Google Fit
+        // then StepsCount and MindfulSession will be revoked
+        const fitkitPermissions = Platform.select({
+          ios: [FitKitType.Cycling],
+          android: [FitKitType.StepCount, FitKitType.MindfulSession, FitKitType.Cycling],
+        });
+        await authoriseFitKitTypes(fitkitPermissions);
       }
 
       setIsGoogleFitAuthorised(googleFit);
