@@ -7,6 +7,41 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.20.0] - 2022-02-09
+
+### Features
+
+- Feature: New query for swiper assets
+- Feature: billing details
+
+### Bugfixes
+
+- Bugfix: hide expired surge
+- Bugfix GS-234: Fix cycling permission is revoking steps permission
+- Bugfix: Fix avatar equipment item tagWrapper position
+- Bugfix: Add border on progress bar and centre text on surge icon
+- Bugfix GS-220: Available challenge button count on daily screen
+- Bugfix: Set cycling measurement on settings titles bold
+
+### Tasks
+
+- Task GS-186: create progress bar
+- Task GS-189: Event rewards
+- Task GS-212: Tracking updates
+
+### Chores
+
+- Chore: Added fitkit logging
+
+### Extra
+
+- detox:overnightfix assertion on input
+- Hotfix: fix what's new overlap
+- Hotfix: Selected world change issue
+- detox: overnight fixes. Changed product detail upper case to lower case....
+- Detox: yuscreen fixes
+- (tag: test-branch-gs-223-last-update-period-fix) GS-223: Fix last update period on reward popup
+
 ## [3.19.0] - 2022-02-02
 
 ### Features
