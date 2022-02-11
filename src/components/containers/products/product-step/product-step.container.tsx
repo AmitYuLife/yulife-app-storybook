@@ -1,11 +1,13 @@
-import React, { memo } from "react";
+import React, { memo, useEffect } from "react";
 import { StyleSheet, View, ViewStyle } from "react-native";
+import { useDispatch } from "react-redux";
 import { useQuery } from "@apollo/react-hooks";
 import { GQL_QUERY_GET_PERSONAL_PRODUCT_STEP } from "@graphql/personalProduct/getPersonalProductStep.gql";
 import { GetPersonalProductStep, GetPersonalProductStepVariables } from "@graphql/_core/schema";
 import { Loading } from "@atoms";
 import { mapServerStyles } from "@components/sdui/_utils/mapServerStyles";
 import { ProductStepScreen } from "./product-step.screen";
+import { setLoadingState } from "@redux/server-driven-ui/sdui.actions";
 
 type Props = {
   productId: string;
@@ -13,6 +15,7 @@ type Props = {
 
 const ProductStepContainer = (props: Props) => {
   const { productId } = props;
+  const dispatch = useDispatch();
 
   const { data, loading } = useQuery<GetPersonalProductStep, GetPersonalProductStepVariables>(
     GQL_QUERY_GET_PERSONAL_PRODUCT_STEP,
@@ -21,6 +24,10 @@ const ProductStepContainer = (props: Props) => {
       fetchPolicy: "no-cache",
     }
   );
+
+  useEffect(() => {
+    dispatch(setLoadingState({ __disabled: false }));
+  }, [data]);
 
   if (loading || !data?.getPersonalProductStep) {
     return (
@@ -56,6 +63,7 @@ const ProductStepContainer = (props: Props) => {
       customerProductId={customerProductId}
       productId={productId}
       footerStyle={footerStyle}
+      isLoading={loading}
     />
   );
 };

@@ -9,10 +9,10 @@ import { getIsJsonSchemaValid } from "../utils";
 type Props = GqlButton;
 
 export const ProductStepContentItemButton = memo(({ onPress, disabledState, id, ...otherProps }: Props) => {
-  const { productId, stepId, dynamicData } = useContext(ProductStepContext);
+  const { productId, stepId, dynamicData, isLoading } = useContext(ProductStepContext);
   const buttonId = `${stepId} - ${id}`;
   const loadingKey = useSelector(getSduiLoadingForKey(buttonId));
-  const disabled = useSelector(getSduiLoadingForKey("__disabled"));
+  const disabled = useSelector(getSduiLoadingForKey("__disabled")) || isLoading;
 
   // TODO: sort out typings
   const dynamicOnPress: any = useMemo(
