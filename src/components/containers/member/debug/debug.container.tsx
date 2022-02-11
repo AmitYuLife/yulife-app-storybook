@@ -16,7 +16,7 @@ interface IProps {
 
 type Props = IProps;
 
-const ActivityHistoryContainer: React.FC<Props> = (props) => {
+const DebugContainer: React.FC<Props> = (props) => {
   const dispatch = useDispatch();
 
   const [resetData]: ResetDataMutationTuple = useMutation(GQL_MUTATION_RESET_DATA);
@@ -92,4 +92,4 @@ const ActivityHistoryContainer: React.FC<Props> = (props) => {
   return <DebugScreen onPressClose={handleClose} data={listData} />;
 };
 
-export default ActivityHistoryContainer;
+export default DebugContainer;
