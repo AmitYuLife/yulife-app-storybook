@@ -1,6 +1,6 @@
 import { Alert } from "react-native";
 import { Navigation } from "react-native-navigation";
-import { call, select, ActionPattern, takeEvery, takeLeading, put, delay } from "redux-saga/effects";
+import { call, select, ActionPattern, takeEvery, takeLeading, put } from "redux-saga/effects";
 import { SduiActionType } from "@graphql/_core/schema/globalTypes";
 import { MODALS } from "@navigation/constants";
 import { showYuModal, TAB_ROUTES } from "@navigation/root";
@@ -132,14 +132,13 @@ function* openChat() {
 // TODO: consider splitting these into sdui, underwriting
 
 function* popStep(action: ProductStepAction) {
-  const { productId } = action.payload;
+  const { productId, id } = action.payload;
 
   try {
+    yield put(setLoadingState({ [id]: true, __disabled: true }));
     yield call(backPersonalProductStep, { productId });
   } catch (e) {
     // shrug (log)
-  } finally {
-    yield delay(250);
     yield put(setLoadingState({ __disabled: false }));
   }
 }
@@ -184,8 +183,6 @@ function* pushStep(action: ProductStepAction) {
     );
   } catch (e) {
     // shrug (log)
-  } finally {
-    yield delay(250);
     yield put(setLoadingState({ __disabled: false }));
   }
 }

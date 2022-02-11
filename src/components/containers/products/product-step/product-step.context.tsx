@@ -41,6 +41,7 @@ export interface IProductStepContext extends ProductStepDefaultFields {
    */
   headerBottom: number;
   setHeaderBottom: Dispatch<SetStateAction<number | null>>;
+  isLoading: boolean;
 }
 
 export const DEFAULT_DYNAMIC_DATA = Object.freeze({});
@@ -59,4 +60,5 @@ export const ProductStepContext = createContext<IProductStepContext>({
   headerHeight: 0,
   headerBottom: null,
   setHeaderBottom: () => null,
+  isLoading: false,
 });

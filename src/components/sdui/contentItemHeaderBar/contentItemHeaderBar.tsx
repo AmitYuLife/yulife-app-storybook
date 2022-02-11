@@ -2,22 +2,25 @@ import React, { ComponentProps, memo, useCallback, useMemo } from "react";
 import { StyleSheet, View, ViewStyle } from "react-native";
 import { useDispatch } from "react-redux";
 import GenericHeading from "@atoms/generic-heading/generic-heading";
-import {
-  ContentItemHeaderBar as GqlHeaderBar,
-  ContentItemHeaderBar_onLeftIconPress,
-  ContentItemHeaderBar_onRightIconPress,
-} from "@graphql/_core/schema";
 import { Colours, TOP_BAR } from "@styles";
 import { useBackHandler } from "@services/hooks/useBackHandler";
+import { ProductStepAction } from "@redux/server-driven-ui/sdui.types";
 
-type Props = GqlHeaderBar;
+interface Props {
+  leftIcon: ComponentProps<typeof GenericHeading>["leftIcon"];
+  rightIcon: ComponentProps<typeof GenericHeading>["rightIcon"];
+  logo: ComponentProps<typeof GenericHeading>["logo"];
+  heading: ComponentProps<typeof GenericHeading>["heading"];
+  onLeftIconPress: ProductStepAction;
+  onRightIconPress: ProductStepAction;
+}
 
 export const ContentItemHeaderBar = memo((props: Props) => {
   const { leftIcon, logo, heading, onLeftIconPress, onRightIconPress, rightIcon } = props;
   const dispatch = useDispatch();
 
   const pressAction = useCallback(
-    (action: ContentItemHeaderBar_onLeftIconPress | ContentItemHeaderBar_onRightIconPress) => {
+    (action: ProductStepAction) => {
       if (!action) {
         return null;
       }
@@ -43,9 +46,9 @@ export const ContentItemHeaderBar = memo((props: Props) => {
   return (
     <View style={styles.wrapper}>
       <GenericHeading
-        leftIcon={leftIcon as ComponentProps<typeof GenericHeading>["leftIcon"]}
-        rightIcon={rightIcon as ComponentProps<typeof GenericHeading>["rightIcon"]}
-        logo={logo as ComponentProps<typeof GenericHeading>["logo"]}
+        leftIcon={leftIcon}
+        rightIcon={rightIcon}
+        logo={logo}
         heading={heading}
         onLeftIconPress={onLeftIconPressAction}
         onRightIconPress={onRightIconPressAction}

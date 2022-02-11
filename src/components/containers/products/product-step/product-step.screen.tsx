@@ -21,10 +21,23 @@ interface Props {
   header: GetPersonalProductStep_getPersonalProductStep_header[];
   footer: GetPersonalProductStep_getPersonalProductStep_footer[];
   absolute: GetPersonalProductStep_getPersonalProductStep_absolute[];
+  isLoading: boolean;
 }
 
 export const ProductStepScreen = memo((props: Props) => {
-  const { productId, customerProductId, stepId, style, body, header, footer, absolute, stepData, footerStyle } = props;
+  const {
+    productId,
+    customerProductId,
+    stepId,
+    style,
+    body,
+    header,
+    footer,
+    absolute,
+    stepData,
+    footerStyle,
+    isLoading,
+  } = props;
 
   // Used for keeping track of the current step id body elements
   // Because on every `goBack` action we're resetting the dynamicData, all the body elements were
@@ -73,6 +86,7 @@ export const ProductStepScreen = memo((props: Props) => {
         headerHeight,
         headerBottom,
         setHeaderBottom,
+        isLoading,
       }}
     >
       <View style={[styles.wrapper, style]}>

@@ -61,7 +61,7 @@ const ProductStepDetachedContainer = (props: Props) => {
   const isMounted = useRef(false);
   const { current: scrollValue } = useRef(new Animated.Value(0));
 
-  const { data } = useQuery<GetPersonalProductStepDetached, GetPersonalProductStepDetachedVariables>(
+  const { data, loading } = useQuery<GetPersonalProductStepDetached, GetPersonalProductStepDetachedVariables>(
     GQL_QUERY_GET_PERSONAL_PRODUCT_STEP_DETACHED,
     {
       variables: { productId, stepId },
@@ -148,6 +148,7 @@ const ProductStepDetachedContainer = (props: Props) => {
                 setHeaderBottom,
                 scrollValue,
                 headerHeight: 0,
+                isLoading: loading,
               }}
             >
               <View style={scrollViewTopPad} />
