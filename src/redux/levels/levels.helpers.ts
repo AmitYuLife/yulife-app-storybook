@@ -53,8 +53,9 @@ export async function getEndResult(
 
   try {
     const { start, end } = getStartAndEndDateTimesWithTimezone(startDateTime, endDateTime);
-
-    // get steps from sensors
+    // RNFitKit.queryPedometerFromDate
+    // Android: queries google fit history, steps from sensor are stored in score
+    // iOS: fetches steps from sensors
     const pedometerResults = await RNFitKit.queryPedometerFromDate(start, end);
     const pedometerValue = pedometerResults?.steps || 0;
 
