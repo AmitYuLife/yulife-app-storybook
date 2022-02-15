@@ -7,7 +7,8 @@ export const {
     reloadAppToTab,
     tapID,
     typeViaID,
-    wait
+    wait,
+    reloadOnly
 } = navigation.common
 
 
