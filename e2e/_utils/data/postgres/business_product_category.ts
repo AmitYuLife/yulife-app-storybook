@@ -11,7 +11,7 @@ export const BPC_1 = {
     type,
     modelName,
     data:{ 
-        product_id: BUSINESS_PRODUCT_3.data.product_id,
+        product_id: BUSINESS_PRODUCT_3.product.data.product_id,
         category_id:1,
         category_description: "All employees",
         earn_rate: 10,
@@ -28,7 +28,7 @@ export const BPC_4_RGL = {
     type,
     modelName,
     data:{
-        product_id: BUSINESS_PRODUCT_4_RGL.data.product_id,
+        product_id: BUSINESS_PRODUCT_4_RGL.product.data.product_id,
         category_id: 1,
         category_description: "All employees",
         earn_rate: 10,
@@ -45,7 +45,7 @@ export const BPC_4_GIP = {
     type,
     modelName,
     data: {
-        product_id: BUSINESS_PRODUCT_4_GIP.data.product_id,
+        product_id: BUSINESS_PRODUCT_4_GIP.product.data.product_id,
         category_id: 1,
         category_description: "All employees",
         earn_rate: 10,
@@ -62,7 +62,7 @@ export const BPC_4_GCI = {
     type,
     modelName,
     data: {
-        product_id: BUSINESS_PRODUCT_4_GCI.data.product_id,
+        product_id: BUSINESS_PRODUCT_4_GCI.product.data.product_id,
         category_id: 1,
         category_description: "All employees",
         earn_rate: 10,

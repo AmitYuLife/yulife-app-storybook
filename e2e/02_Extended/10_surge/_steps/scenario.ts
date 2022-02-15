@@ -9,7 +9,7 @@ export const start = async () => {
     surgeDataManager.connect(`http://localhost:5000/`, true);
     surgeDataManager.clearData()
     surgeDataManager.addData(surgeStubs as Record<string, IDatabaseItem>)
-    surgeDataManager.addData(data)
+    surgeDataManager.addData(data as any)
     await device.terminateApp();
     await surgeDataManager.reseed();
     await device.launchApp({ delete: true, });
