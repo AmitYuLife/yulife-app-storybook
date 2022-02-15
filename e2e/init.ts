@@ -16,7 +16,7 @@ require("dotenv").config({
 before(async () => {
   await socketServer.startServer();
   console.log("Adding data...", Object.values(data).length);
-  dataManager.addData(data);
+  dataManager.addData(data as any);
   await dataManager.connect(`http://localhost:5000/`, true);
   await dataManager.resetData();
   await dataManager.reseed();

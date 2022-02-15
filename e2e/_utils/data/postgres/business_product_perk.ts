@@ -11,7 +11,7 @@ export const YUG0000003_FIIT_12_MONTH = {
     data:{
         "business_product_perk_id" : "YUG0000003_FIIT_12_MONTH",
         "perk_id" : "FIIT_12_MONTH",
-        "business_product_id" : BUSINESS_PRODUCT_4_GIP.data.product_id,
+        "business_product_id" : BUSINESS_PRODUCT_4_GIP.product.data.product_id,
         "max_seats" : 2,
         "archived" : false,
         "modified_by_id" : null,
@@ -27,7 +27,7 @@ export const YUG0000001_FIIT_12_MONTH = {
     data:{
         "business_product_perk_id" : "YUG0000001_FIIT_12_MONTH",
         "perk_id" : "FIIT_12_MONTH",
-        "business_product_id" : BUSINESS_PRODUCT_3.data.product_id,
+        "business_product_id" : BUSINESS_PRODUCT_3.product.data.product_id,
         "max_seats" : 0,
         "archived" : false,
         "modified_by_id" : null,

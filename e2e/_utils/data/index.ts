@@ -31,7 +31,6 @@ export * from "./postgres/customers";
 export * from "./postgres/customer_product_entity";
 export * from "./postgres/customer_quote";
 export * from "./postgres/customer_quote_screening";
-export * from "./postgres/business_quote";
 export * from "./postgres/business_product"; 
 export * from "./postgres/customer_product_entity";
 export * from "./postgres/business_product_category";

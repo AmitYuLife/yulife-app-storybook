@@ -10,7 +10,7 @@ export const CGP_31 = {
     type,
     modelName,
     data:{
-        business_product_id: BUSINESS_PRODUCT_3.data.product_id,
+        business_product_id: BUSINESS_PRODUCT_3.product.data.product_id,
         customer_product_id: CPE_31.data.customer_product_id,
         category_id:1,
         salary: 60000,
@@ -24,7 +24,7 @@ export const CGP_32_RGL = {
     type,
     modelName,
     data: {
-        business_product_id: BUSINESS_PRODUCT_4_RGL.data.product_id,
+        business_product_id: BUSINESS_PRODUCT_4_RGL.product.data.product_id,
         customer_product_id: CPE_32_RGL.data.customer_product_id,
         category_id: 1,
         salary: 100000,
@@ -38,7 +38,7 @@ export const CGP_32_GIP = {
     type,
     modelName,
     data: {
-        business_product_id: BUSINESS_PRODUCT_4_GIP.data.product_id,
+        business_product_id: BUSINESS_PRODUCT_4_GIP.product.data.product_id,
         customer_product_id: CPE_32_GIP.data.customer_product_id,
         category_id: 1,
         salary: 100000,
@@ -52,7 +52,7 @@ export const CGP_32_GCI = {
     type,
     modelName,
     data: {
-        business_product_id: BUSINESS_PRODUCT_4_GCI.data.product_id,
+        business_product_id: BUSINESS_PRODUCT_4_GCI.product.data.product_id,
         customer_product_id: CPE_32_GCI.data.customer_product_id,
         category_id: 1,
         salary: 100000,
@@ -66,7 +66,7 @@ export const CGP_33_RGL = {
     type,
     modelName,
     data: {
-        business_product_id: BUSINESS_PRODUCT_4_RGL.data.product_id,
+        business_product_id: BUSINESS_PRODUCT_4_RGL.product.data.product_id,
         customer_product_id: CPE_33_RGL.data.customer_product_id,
         category_id: 1,
         salary: 100000,
@@ -80,7 +80,7 @@ export const CGP_33_GIP = {
     type,
     modelName,
     data: {
-        business_product_id: BUSINESS_PRODUCT_4_GIP.data.product_id,
+        business_product_id: BUSINESS_PRODUCT_4_GIP.product.data.product_id,
         customer_product_id: CPE_33_GIP.data.customer_product_id,
         category_id: 1,
         salary: 100000,
@@ -94,7 +94,7 @@ export const CGP_33_GCI = {
     type,
     modelName,
     data: {
-        business_product_id: BUSINESS_PRODUCT_4_GCI.data.product_id,
+        business_product_id: BUSINESS_PRODUCT_4_GCI.product.data.product_id,
         customer_product_id: CPE_33_GCI.data.customer_product_id,
         category_id: 1,
         salary: 100000,
@@ -108,7 +108,7 @@ export const CGP_34_RGL = {
     type,
     modelName,
     data: {
-        business_product_id: BUSINESS_PRODUCT_4_RGL.data.product_id,
+        business_product_id: BUSINESS_PRODUCT_4_RGL.product.data.product_id,
         customer_product_id: CPE_34_RGL.data.customer_product_id,
         category_id: 1,
         salary: 100000,
@@ -122,7 +122,7 @@ export const CGP_34_GIP = {
     type,
     modelName,
     data: {
-        business_product_id: BUSINESS_PRODUCT_4_GIP.data.product_id,
+        business_product_id: BUSINESS_PRODUCT_4_GIP.product.data.product_id,
         customer_product_id: CPE_34_GIP.data.customer_product_id,
         category_id: 1,
         salary: 100000,
@@ -136,7 +136,7 @@ export const CGP_34_GCI = {
     type,
     modelName,
     data: {
-        business_product_id: BUSINESS_PRODUCT_4_GCI.data.product_id,
+        business_product_id: BUSINESS_PRODUCT_4_GCI.product.data.product_id,
         customer_product_id: CPE_34_GCI.data.customer_product_id,
         category_id: 1,
         salary: 100000,
