@@ -69,7 +69,12 @@ export default (props: Props) => {
       </View>
       <View style={styles.content}>
         <View testID={FEEDBACK_TEXT_INPUT}>
-          <MultilineTextInput value={feedback} onChange={setFeedback} placeholder={placeholder} />
+          <MultilineTextInput
+            value={feedback}
+            onChange={setFeedback}
+            placeholder={placeholder}
+            testID={FEEDBACK_FORM_QUESTION(placeholder)}
+          />
         </View>
       </View>
     </ScrollableLayout>

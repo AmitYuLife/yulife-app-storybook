@@ -63,3 +63,72 @@ export const FEEDBACK_FORM_1 = {
         metric: "Any",
     }
 } as IDatabaseItem
+
+export const FEEDBACK_FORM_2 = {
+    type,
+    modelName, 
+    data:{
+        _id:generateRandomMongoId(),
+        label : "Hard-coded client NPS (level  100)", 
+        title : "Feedback", 
+        metric : "NPS",
+        questions:[
+            {
+                key : "NPS_RATING", 
+                type : "NUMBER_SLIDER", 
+                questionText : "How likely are you to recommend YuLife to a co-worker?", 
+                isRoot : true, 
+                range : {
+                    min : 0, 
+                    max : 10
+                }, 
+                labels : {
+                    left : "Not at all likely", 
+                    right : "Extremely likely", 
+                    submit : "Submit your rating"
+                }, 
+                nextConditions : [
+                    {
+                        questionKey : "COMMENT_VERY_LIKELY", 
+                        regexMatch : "(10|9|8)"
+                    }, 
+                    {
+                        questionKey : "COMMENT_MAYBE", 
+                        regexMatch : "(7|6|5)"
+                    }, 
+                    {
+                        questionKey : "COMMENT_NOT_LIKELY", 
+                        regexMatch : "(4|3|2|1|0)"
+                    }
+                ]
+            }, 
+            {
+                key : "COMMENT_VERY_LIKELY", 
+                type : "COMMENT", 
+                questionText : "Thank you! We’re so glad to have you on board!", 
+                labels : {
+                    placeholder : "Help us by explaining your score...", 
+                    submit : "Submit feedback"
+                }
+            }, 
+            {
+                key : "COMMENT_MAYBE", 
+                type : "COMMENT", 
+                questionText : "Thank you for your score! What can we do better?", 
+                labels : {
+                    placeholder : "Help us build an app that’s perfect for you...", 
+                    submit : "Submit feedback"
+                }
+            }, 
+            {
+                key : "COMMENT_NOT_LIKELY", 
+                type : "COMMENT", 
+                questionText : "We’re sorry you’re having a hard time. What’s one thing we can do to improve?", 
+                labels : {
+                    placeholder : "Help us by explaining your score...", 
+                    submit : "Submit feedback"
+                }
+            }
+        ]
+    }
+} as IDatabaseItem
