@@ -108,6 +108,13 @@ export default [
     component: require("../components/containers/member/leaderboard/leaderboard-list/leaderboard-list.container")
       .default,
   },
+
+  // events
+  {
+    name: ROUTES.eventDialog,
+    component: require("../components/containers/member/events/event-dialog/event-dialog.container").default,
+  },
+
   // debug
   {
     name: ROUTES.debug,

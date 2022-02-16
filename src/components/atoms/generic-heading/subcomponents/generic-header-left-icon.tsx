@@ -8,23 +8,24 @@ type Icon = IGenericHeadingProps["leftIcon"];
 
 interface IProps {
   icon: Icon;
+  color?: string;
   onPress: () => void;
 }
 
-const GenericHeaderLeftIcon = ({ icon, onPress }: IProps) => (
+const GenericHeaderLeftIcon = ({ icon, color, onPress }: IProps) => (
   <TouchableOpacityWithDelay hitSlop={TOP_BAR.HIT_SLOP} onPress={onPress}>
-    {getIcon(icon)}
+    {getIcon(icon, color)}
   </TouchableOpacityWithDelay>
 );
 
 export default GenericHeaderLeftIcon;
 
-const getIcon = (icon: Icon) => {
+const getIcon = (icon: Icon, color?: string) => {
   switch (icon) {
     case "BACK":
-      return <Back />;
+      return <Back color={color} />;
     case "CLOSE":
-      return <CloseSvg />;
+      return <CloseSvg stroke={color} />;
     default:
       return null;
   }

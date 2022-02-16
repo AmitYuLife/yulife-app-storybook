@@ -176,6 +176,6 @@ const epicRewards = [
 ];
 
 const commonRareRewards = [commonRewards[1], rareRewards[0]];
-const mixedRewards = [commonRewards[1], rareRewards[0], epicRewards[0]];
+export const mixedRewards = [commonRewards[1], rareRewards[0], epicRewards[0]];
 
 export default EventRewardsDebug;

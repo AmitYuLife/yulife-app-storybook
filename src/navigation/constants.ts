@@ -75,6 +75,9 @@ export const ROUTES = {
   // perk
   perkSubscriptionInfo: "yulife.perk.subscriptionInfo",
 
+  // event system
+  eventDialog: "yulife.events.dialog",
+
   //debug
   eventPanel: "yulife.debug.eventPanel",
   eventRewards: "yulife.debug.eventRewards",

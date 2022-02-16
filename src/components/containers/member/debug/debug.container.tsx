@@ -26,6 +26,7 @@ const DebugContainer: React.FC<Props> = (props) => {
     ROUTE_TO_EVENT_PANEL = "ROUTE_TO_EVENT_PANEL",
     ROUTE_TO_EVENT_REWARDS = "ROUTE_TO_EVENT_REWARDS",
     ROUTE_TO_PROGRESS_BAR = "ROUTE_TO_PROGRESS_BAR",
+    ROUTE_TO_EVENT_DIALOG = "ROUTE_TO_EVENT_DIALOG",
   }
 
   const list = [
@@ -35,6 +36,7 @@ const DebugContainer: React.FC<Props> = (props) => {
     CODES.ROUTE_TO_EVENT_PANEL,
     CODES.ROUTE_TO_EVENT_REWARDS,
     CODES.ROUTE_TO_PROGRESS_BAR,
+    CODES.ROUTE_TO_EVENT_DIALOG,
   ];
 
   const handleClose = () => {
@@ -76,6 +78,19 @@ const DebugContainer: React.FC<Props> = (props) => {
             component: {
               id: ROUTES.progressBar,
               name: ROUTES.progressBar,
+            },
+          });
+        }
+
+        if (code === CODES.ROUTE_TO_EVENT_DIALOG) {
+          return Navigation.push(props.componentId, {
+            component: {
+              id: ROUTES.eventDialog,
+              name: ROUTES.eventDialog,
+              passProps: {
+                componentId: props.componentId,
+                onLeftIconPress: () => Navigation.pop(ROUTES.debug),
+              },
             },
           });
         }
