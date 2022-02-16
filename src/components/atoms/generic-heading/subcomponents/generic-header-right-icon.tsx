@@ -12,11 +12,12 @@ type IIcon = IGenericHeadingProps["rightIcon"];
 interface IProps {
   icon: IIcon;
   Icon?: JSX.Element;
+  color?: string;
   onPress: () => void;
   testID: string;
 }
 
-const GenericHeaderRightIcon = ({ icon, onPress, testID, Icon }: IProps) => {
+const GenericHeaderRightIcon = ({ icon, color, onPress, testID, Icon }: IProps) => {
   if (Icon) {
     return (
       <TouchableOpacityWithDelay
@@ -41,14 +42,14 @@ const GenericHeaderRightIcon = ({ icon, onPress, testID, Icon }: IProps) => {
       style={styles.rightIconTouchable}
       testID={testID}
     >
-      {getIcon(icon)}
+      {getIcon(icon, color)}
     </TouchableOpacityWithDelay>
   );
 };
 
 export default GenericHeaderRightIcon;
 
-const getIcon = (icon: IIcon) => {
+const getIcon = (icon: IIcon, color: string) => {
   switch (icon) {
     case "SETTINGS":
       return <Image source={require("@assets/menu/settings.png")} />;
@@ -70,7 +71,7 @@ const getIcon = (icon: IIcon) => {
     case "CLOSE":
       return (
         <View>
-          <CloseSvg />
+          <CloseSvg stroke={color} />
         </View>
       );
     case "Done":

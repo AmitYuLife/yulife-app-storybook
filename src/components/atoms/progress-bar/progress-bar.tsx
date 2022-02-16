@@ -1,5 +1,5 @@
 import React, { Fragment, memo, useMemo } from "react";
-import { Colours, Style } from "@styles";
+import { Colours } from "@styles";
 import Svg, { Path, Rect, Circle, G } from "react-native-svg";
 import { ViewStyle, StyleSheet } from "react-native";
 
@@ -31,7 +31,7 @@ const COMPACT_PROGRESS_BAR_VALUES = {
   starVerticalCenter: 5,
 };
 
-interface IProgressBarProps {
+export interface IProgressBarProps {
   width?: number;
   current: number;
   max: number;
@@ -70,12 +70,7 @@ const ProgressBar = ({ width, current, max, milestones = [], type = "full", styl
   ]);
 
   return (
-    <Svg
-      width={Style.adjust(adjustedWidth)}
-      height={Style.adjust(adjustedHeight)}
-      viewBox={viewBox}
-      style={StyleSheet.flatten([svgStyle, style])}
-    >
+    <Svg width={adjustedWidth} height={adjustedHeight} viewBox={viewBox} style={StyleSheet.flatten([svgStyle, style])}>
       {/* progress bar border */}
       <Rect
         stroke={Colours.neutral.n200}

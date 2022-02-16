@@ -1,7 +1,8 @@
 import { ViewStyle } from "react-native";
+import { ReactNode } from "react";
 
 export interface IGenericHeadingProps {
-  heading?: string;
+  heading?: ReactNode;
   hideBorder?: boolean;
   onLeftIconPress?: () => void;
   style?: ViewStyle;
@@ -11,6 +12,7 @@ export interface IGenericHeadingProps {
   RightIcon?: JSX.Element;
   isBeta?: boolean;
   logo?: Logo;
+  color?: string;
 }
 
 type IRightIcon = "SETTINGS" | "CLOSE" | "EDIT" | "PLUS" | "Done" | "SAVE";

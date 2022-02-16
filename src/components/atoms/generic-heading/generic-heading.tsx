@@ -19,12 +19,13 @@ function GenericHeading(props: IGenericHeadingProps) {
     isBeta,
     logo,
     RightIcon,
+    color,
   } = props;
 
   return (
     <View style={styles.wrapper}>
       <View style={styles.leftIconWrapper}>
-        {!onLeftIconPress ? null : <GenericHeaderLeftIcon icon={leftIcon} onPress={onLeftIconPress} />}
+        {!onLeftIconPress ? null : <GenericHeaderLeftIcon icon={leftIcon} color={color} onPress={onLeftIconPress} />}
       </View>
       {!heading ? (
         <View style={styles.centerWrapper}>
@@ -38,9 +39,13 @@ function GenericHeading(props: IGenericHeadingProps) {
       ) : (
         <View style={styles.centerWrapper}>
           <View style={styles.relative}>
-            <TextTemplate numberOfLines={1} type="b1b">
-              {heading}
-            </TextTemplate>
+            {typeof heading === "string" ? (
+              <TextTemplate numberOfLines={1} type="b1b" color={color}>
+                {heading}
+              </TextTemplate>
+            ) : (
+              heading
+            )}
             <View style={styles.headingBetaWrapper}>
               <Beta show={isBeta} />
             </View>
@@ -53,6 +58,7 @@ function GenericHeading(props: IGenericHeadingProps) {
           <GenericHeaderRightIcon
             icon={rightIcon}
             Icon={RightIcon}
+            color={color}
             onPress={onRightIconPress}
             testID={BUTTON_CLOSE_HEADER(heading || logo || "button_only")}
           />
