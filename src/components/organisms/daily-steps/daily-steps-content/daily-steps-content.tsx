@@ -28,6 +28,29 @@ const _DailyStepsContent = () => {
   const unavailable = !isLoading && !available;
   const unauthorised = !isLoading && available && !authorised;
 
+  const onReferralsButtonPress = useCallback(
+    () =>
+      Navigation.push(ROUTES.dailySteps, {
+        component: {
+          id: ROUTES.referralInformation,
+          name: ROUTES.referralInformation,
+          passProps: {
+            sourceId: ROUTES.dailySteps,
+          },
+          options: {
+            bottomTabs,
+            sideMenu: {
+              left: {
+                enabled: false,
+                visible: false,
+              },
+            },
+          },
+        },
+      }),
+    []
+  );
+
   const onPress = useCallback(async () => {
     if (isSamsung()) {
       const route = ROUTES.onboardingFitKitConnect;
@@ -79,7 +102,7 @@ const _DailyStepsContent = () => {
     );
   }
 
-  return <DailyStepsOnline />;
+  return <DailyStepsOnline onReferralsButtonPress={onReferralsButtonPress} />;
 };
 
 export const DailyStepsContent = memo(_DailyStepsContent);

@@ -93,7 +93,7 @@ const MenuContainer = () => {
           handlePush(currentRoute, ROUTES.wellbeingHubItems);
           return null;
         case LINKS.REFERRALS_INFO:
-          handlePush(currentRoute, ROUTES.referralInformation);
+          handlePush(currentRoute, ROUTES.referralInformation, {}, { sourceId: ROUTES.menu });
           return null;
         default:
           return null;
@@ -164,11 +164,17 @@ const MenuContainer = () => {
 
 export default MenuContainer;
 
-const handlePush = async (currentRoute: string, route: string, options: LayoutComponent["options"] = {}) => {
+const handlePush = async (
+  currentRoute: string,
+  route: string,
+  options: LayoutComponent["options"] = {},
+  passProps = {}
+) => {
   await Navigation.push(currentRoute, {
     component: {
       id: route,
       name: route,
+      passProps,
       options: {
         bottomTabs,
         sideMenu: {
