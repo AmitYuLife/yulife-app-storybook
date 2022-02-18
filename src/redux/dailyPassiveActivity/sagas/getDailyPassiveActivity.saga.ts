@@ -93,7 +93,7 @@ export default function* getDailyPassiveActivity(dataPayload: { payload: string;
         }
 
         if (mutationResult?.totalCoins > 0) {
-          yield put(totalCoinsUpdated(data.upsertPassiveChallenges.currentBalance));
+          yield put(totalCoinsUpdated(mutationResult.currentBalance));
         }
 
         isUpdated = true;
