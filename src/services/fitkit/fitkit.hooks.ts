@@ -269,14 +269,16 @@ export function useFitKit() {
           platform,
         });
 
-        await RNFitKit.authorise(options);
+        const isAuthorised = await RNFitKit.authorise(options);
         const newState = await getState();
         dispatch(fitkitSetup(newState));
+        return isAuthorised;
       } catch (e) {
         Logger.error(e, {
           event: "authoriseFitKitTypes",
           fitKitTypes: fitKitTypes.map((fitKitType) => fitKitType.toString()).join(", "),
         });
+        return false;
       }
     },
     [getState]
