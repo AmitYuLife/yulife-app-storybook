@@ -1,7 +1,7 @@
 import { PedometerResponse } from "@services/fitkit/fitkit.service";
 import moment from "moment";
 import { addSecondsToChallengeEndDateTime } from "@utils";
-import { GetCurrentUser, LoginUser, UpdateActiveChallenge } from "@graphql/_core/schema";
+import { GetCurrentUser, LoginUser } from "@graphql/_core/schema";
 import { SyncAction } from "../_core/types";
 import { PEDOMETER_UPDATES_SUCCESS } from "../pedometer/pedometer.actions";
 import { GET_USER_SUCCESS, LOGIN_USER_SUCCESS, LOGOUT_SUCCESS } from "../user/user.actions";
@@ -17,7 +17,7 @@ import {
   CHALLENGE_END,
   CHALLENGE_IS_ACTIVE,
 } from "./levels.actions";
-import { CHALLENGE_START_INITIAL_STEPS, ChallengeStartPayload } from "./levels.actions";
+import { CHALLENGE_START_INITIAL_STEPS, ChallengeStartPayload, Challenge } from "./levels.actions";
 import { IActiveLevel } from "./levels.selectors";
 
 export interface ILevelsStore {
@@ -170,36 +170,30 @@ const challengeStartSuccess = (
   },
 });
 
-const challengeUpdateSuccess = (
-  state: ILevelsStore,
-  { updateActiveChallenge: res }: UpdateActiveChallenge
-): ILevelsStore => ({
+const challengeUpdateSuccess = (state: ILevelsStore, challenge: Challenge): ILevelsStore => ({
   ...state,
   active: {
     ...state.active,
-    coins: res?.challenge?.yuCoinAwarded || 0,
-    isCompleted: (res?.challenge?.status || "") === "completed",
-    milestonesLog: res?.challenge?.milestoneLog || [],
-    rating: res?.challenge?.rating || 0,
-    score: getScore(res?.challenge?.incomingData) || 0,
+    coins: challenge?.yuCoinAwarded || 0,
+    isCompleted: (challenge?.status || "") === "completed",
+    milestonesLog: challenge?.milestoneLog || [],
+    rating: challenge?.rating || 0,
+    score: getScore(challenge?.incomingData) || 0,
     isLoading: false,
   },
 });
 
-const challengeEndSuccess = (state: ILevelsStore, res: UpdateActiveChallenge): ILevelsStore => ({
+const challengeEndSuccess = (state: ILevelsStore, challenge: Challenge): ILevelsStore => ({
   ...state,
   active: {
     ...state.active,
-    coins: res?.updateActiveChallenge?.challenge?.yuCoinAwarded || state.active.coins,
-    level: res?.updateActiveChallenge?.challenge?.level || state.active.level,
+    coins: challenge?.yuCoinAwarded || state.active.coins,
+    level: challenge?.level || state.active.level,
     isLoading: false,
-    milestonesLog: res?.updateActiveChallenge?.challenge?.milestoneLog || state.active.milestonesLog,
-    rating: res?.updateActiveChallenge?.challenge?.rating || state.active.rating,
-    score: getScore(res?.updateActiveChallenge?.challenge?.incomingData) || state.active.score,
-    status:
-      (res?.updateActiveChallenge?.challenge?.milestoneLog || state.active.milestonesLog).length > 0
-        ? "success"
-        : "failed",
+    milestonesLog: challenge?.milestoneLog || state.active.milestonesLog,
+    rating: challenge?.rating || state.active.rating,
+    score: getScore(challenge?.incomingData) || state.active.score,
+    status: (challenge?.milestoneLog || state.active.milestonesLog).length > 0 ? "success" : "failed",
     challengeIsActive: false,
   },
 });
@@ -250,7 +244,7 @@ const challengeLoading = (state: ILevelsStore, isLoading: boolean): ILevelsStore
   },
 });
 
-const getScore = (data: UpdateActiveChallenge["updateActiveChallenge"]["challenge"]["incomingData"]) => {
+const getScore = (data: Challenge["incomingData"]) => {
   if (!data) {
     return 0;
   }

@@ -2,7 +2,7 @@ import gql from "graphql-tag";
 import client from "@graphql/_core/client";
 
 import { ChallengePayload } from "@graphql/_core/schema/globalTypes";
-import { UpdateActiveChallenge, UpdateActiveChallengeVariables } from "@graphql/_core/schema";
+import { UpdateQuestMapLevelChallenge, UpdateQuestMapLevelChallengeVariables } from "@graphql/_core/schema";
 
 export const GQL_MUTATION_UPDATE_QUEST_MAP_LEVEL_CHALLENGE = gql`
   mutation UpdateQuestMapLevelChallenge($levelSlotId: String!, $payload: ChallengePayload) {
@@ -52,7 +52,7 @@ export const GQL_MUTATION_UPDATE_QUEST_MAP_LEVEL_CHALLENGE = gql`
 `;
 
 const updateQuestMapLevelChallenge = (levelSlotId: string, payload: ChallengePayload) =>
-  client().mutate<UpdateActiveChallenge, UpdateActiveChallengeVariables>({
+  client().mutate<UpdateQuestMapLevelChallenge, UpdateQuestMapLevelChallengeVariables>({
     mutation: GQL_MUTATION_UPDATE_QUEST_MAP_LEVEL_CHALLENGE,
     variables: { levelSlotId, payload },
     errorPolicy: "ignore",
