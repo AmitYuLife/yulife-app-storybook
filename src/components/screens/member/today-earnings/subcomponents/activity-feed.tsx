@@ -16,7 +16,7 @@ import {
   GetTodayEarnings_getTodayEarnings_activityFeed_wellDoneBanner as IWellDoneBanner,
 } from "@graphql/_core/schema";
 import ActivityFeedPopMenu from "./activity-feed-pop-menu";
-import { MODALS, ROUTES } from "@navigation/constants";
+import { ROUTES } from "@navigation/constants";
 import { openGoogleFit } from "@services/app-link";
 import { androidAlertCopy } from "@components/screens/onboarding/fitkit-connect/copy";
 import { useFitKit } from "@services/fitkit/fitkit.hooks";
@@ -27,6 +27,9 @@ import { getHasNotification } from "@redux/levels/levels.selectors";
 import { requestAndroidSystemPermission } from "@services/fitkit/fitkit.system-permissions";
 import { getUserFeatures } from "@redux/user/user.selectors";
 import { isSamsung } from "@utils/device";
+import RNFitKit from "@yu-life/react-native-fitkit";
+import { FitKitTypes } from "@services/fitkit/fitkit.service";
+import { FitKitType } from "@graphql/_core/schema/globalTypes";
 
 interface IProps {
   id: string;
@@ -53,10 +56,21 @@ const ActivityFeed = ({
 }: IProps) => {
   const [googleFitIsAuthorised, setGoogleFitIsAuthorised] = useState(isGoogleFitAuthorised);
   const [locationPermissionsGranted, setLocationPermissions] = useState(null);
+  const [googleFitCyclingPermissionGranted, setGoogleFitCyclingPermission] = useState(null);
   const questionMarkRef = useRef<View>();
-  const { authorise } = useFitKit();
+  const { authorise, authoriseFitKitTypes } = useFitKit();
   const hasNotification = useSelector(getHasNotification);
   const features = useSelector(getUserFeatures);
+
+  const checkCyclingPermissions = useCallback(async () => {
+    const [cyclingAuthorised, isGranted] = await Promise.all([
+      RNFitKit.isAuthorised({ read: [FitKitTypes.Types.Biking], platform: "GoogleFit" }),
+      PermissionsAndroid.check("android.permission.ACCESS_FINE_LOCATION"),
+    ]);
+
+    setLocationPermissions(isGranted);
+    setGoogleFitCyclingPermission(cyclingAuthorised);
+  }, []);
 
   const onGoogleFitConnect = useCallback(async () => {
     const { title, message: alertMessage, dismissLabel, downloadLabel, confirmLabel } = androidAlertCopy;
@@ -75,8 +89,8 @@ const ActivityFeed = ({
             ...FitKitPermissions(features.passiveCyclingEnabled),
             platform: "GoogleFit",
           });
+          await checkCyclingPermissions();
           setGoogleFitIsAuthorised(isAuthorise);
-          Navigation.dismissModal(MODALS.switchToGoogleFit);
         },
       },
     ];
@@ -104,6 +118,11 @@ const ActivityFeed = ({
     }
   }, []);
 
+  const onGrantGoogleFitCyclingPermission = useCallback(async () => {
+    await authoriseFitKitTypes([FitKitType.StepCount, FitKitType.MindfulSession, FitKitType.Cycling], "GoogleFit");
+    await checkCyclingPermissions();
+  }, []);
+
   const openPopUp = useCallback(() => {
     questionMarkRef?.current?.measure((_fx, _fy, _width, _height, _pageX, pageY) => {
       showOverlayWithChild(<ActivityFeedPopMenu pageY={pageY} {...questionMarkModal} />, false);
@@ -128,8 +147,36 @@ const ActivityFeed = ({
       return false;
     }
 
+    if (!googleFitCyclingPermissionGranted) {
+      return false;
+    }
+
     return locationPermissionsGranted === false;
-  }, [googleFitIsAuthorised, id, features.passiveCyclingEnabled, locationPermissionsGranted]);
+  }, [
+    googleFitIsAuthorised,
+    id,
+    features.passiveCyclingEnabled,
+    locationPermissionsGranted,
+    googleFitCyclingPermissionGranted,
+  ]);
+
+  const showGoogleFitPermissionToast = useMemo(() => {
+    if (Platform.OS === "ios" || !googleFitIsAuthorised || id !== "core-activities") {
+      return false;
+    }
+
+    if (!features.passiveCyclingEnabled) {
+      return false;
+    }
+
+    return googleFitCyclingPermissionGranted === false;
+  }, [
+    googleFitIsAuthorised,
+    id,
+    features.passiveCyclingEnabled,
+    locationPermissionsGranted,
+    googleFitCyclingPermissionGranted,
+  ]);
 
   const onTakeChallengePress = useCallback(() => {
     handleNavigateToQuestsTab();
@@ -168,8 +215,7 @@ const ActivityFeed = ({
   useEffect(() => {
     (async () => {
       if (Platform.OS === "android") {
-        const isGranted = await PermissionsAndroid.check("android.permission.ACCESS_FINE_LOCATION");
-        setLocationPermissions(isGranted);
+        await checkCyclingPermissions();
       }
     })();
   }, []);
@@ -249,6 +295,26 @@ const ActivityFeed = ({
               </TextTemplate>
             </View>
             <Button onPress={onGrantPermission} size="Fill" label="Grant Permission" />
+          </Toast>
+        </View>
+      )}
+
+      {!showGoogleFitPermissionToast ? null : (
+        <View style={styles.progressWrapper}>
+          <Toast
+            iconWidth={57}
+            iconHeight={112}
+            iconUrl={toast?.iconUrl?.uri}
+            backgroundColor={toast?.backgroundColor}
+            borderColor={toast?.borderColor}
+          >
+            <View style={styles.toastDescription}>
+              <TextTemplate type="l3b">
+                To earn Yucoin for cycling, we need location permission to collect data on cycling activity and connect
+                to Google Fit.
+              </TextTemplate>
+            </View>
+            <Button onPress={onGrantGoogleFitCyclingPermission} size="Fill" label="Grant Permission" />
           </Toast>
         </View>
       )}
