@@ -1,6 +1,9 @@
 import updateActiveChallengeWithClient from "@graphql/challenges/updateActiveChallenge.gql";
 import UpdateQuestMapLevelChallenge from "@graphql/challenges/updateQuestMapLevelChallenge.gql";
-import { UpdateActiveChallenge } from "@graphql/_core/schema";
+import {
+  UpdateActiveChallenge_updateActiveChallenge as UpdateActiveChallenge,
+  UpdateQuestMapLevelChallenge_updateQuestMapLevelChallenge as UpdateQuestMapActiveChallenge,
+} from "@graphql/_core/schema";
 import { getUserFeatures } from "@redux/user/user.selectors";
 import Logger from "@services/logging/logger";
 import { Unpacked } from "@utils";
@@ -22,31 +25,33 @@ export default function* endChallengeSaga() {
 
   if (active.levelSlotId) {
     if (active.isCompleted) {
-      yield put(challengeEndSuccessAction({ updateActiveChallenge: null }));
+      yield put(challengeEndSuccessAction(null));
     } else {
       try {
         const features: ReturnType<typeof getUserFeatures> = yield select(getUserFeatures);
         const result: Unpacked<typeof getEndResult> = yield call(getEndResult, active, features);
 
-        let challengeData: UpdateActiveChallenge;
+        let challengeData: UpdateActiveChallenge | UpdateQuestMapActiveChallenge;
         let challengeStatus = "active";
         let updateActiveChallengeCount = 0;
         while (challengeStatus !== "completed" && updateActiveChallengeCount < RETRY_UPDATE_CHALLENGE_COUNT) {
-          const { data }: Unpacked<typeof updateActiveChallengeWithClient> = features.refactoredChallengeApi
-            ? yield call(UpdateQuestMapLevelChallenge, active.levelSlotId, result)
-            : yield call(updateActiveChallengeWithClient, active.levelSlotId, result);
+          const mutation = features.refactoredChallengeApi
+            ? UpdateQuestMapLevelChallenge
+            : updateActiveChallengeWithClient;
+          const { data } = yield call(mutation, active.levelSlotId, result);
+          challengeData = data?.updateQuestMapLevelChallenge
+            ? data?.updateQuestMapLevelChallenge
+            : data?.updateActiveChallenge;
 
-          challengeStatus = data?.updateActiveChallenge?.challenge?.status;
+          challengeStatus = challengeData?.challenge?.status;
           if (challengeStatus !== "completed") {
             yield delay(3000);
             updateActiveChallengeCount += 1;
           }
-
-          challengeData = data;
         }
 
-        if (challengeData?.updateActiveChallenge) {
-          yield put(challengeEndSuccessAction(challengeData));
+        if (challengeData) {
+          yield put(challengeEndSuccessAction(challengeData.challenge));
         } else {
           yield put(challengeResetSuccessAction());
         }

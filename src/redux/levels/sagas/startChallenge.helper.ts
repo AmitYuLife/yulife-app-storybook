@@ -1,11 +1,13 @@
 import cancelActiveChallengeWithClient from "@graphql/challenges/cancelActiveChallenge.gql";
 import cancelQuestMapLevelChallenge from "@graphql/challenges/cancelQuestMapLevelChallenge.gql";
 import updateActiveChallengeWithClient from "@graphql/challenges/updateActiveChallenge.gql";
-import updateActiveChallengeWithClient_v2 from "@graphql/challenges/updateQuestMapLevelChallenge.gql";
+import UpdateQuestMapLevelChallenge from "@graphql/challenges/updateQuestMapLevelChallenge.gql";
 import { FitKitType } from "@graphql/_core/schema/globalTypes";
 import {
   CreateActiveChallenge_createActiveChallenge_challenge,
   CreateActiveChallenge_createActiveChallenge_levelSlot,
+  UpdateActiveChallenge_updateActiveChallenge as UpdateActiveChallenge,
+  UpdateQuestMapLevelChallenge_updateQuestMapLevelChallenge as UpdateQuestMapActiveChallenge,
 } from "@graphql/_core/schema";
 import { queryFitKitByTypes, QueryFitKitByTypesResponse } from "@services/fitkit/fitkit.helpers";
 import Logger from "@services/logging/logger";
@@ -59,13 +61,17 @@ export function* startTracking(
           value: Math.floor(queryResult.results.reduce((accumulator, session) => accumulator + session.value, 0)),
         };
 
-        const { data } = features.refactoredChallengeApi
-          ? yield call(updateActiveChallengeWithClient_v2, levelSlotId, results)
-          : yield call(updateActiveChallengeWithClient, levelSlotId, results);
+        const mutation = features.refactoredChallengeApi
+          ? UpdateQuestMapLevelChallenge
+          : updateActiveChallengeWithClient;
+        const { data } = yield call(mutation, levelSlotId, results);
+        const challengeData: UpdateActiveChallenge | UpdateQuestMapActiveChallenge = data?.updateQuestMapLevelChallenge
+          ? data?.updateQuestMapLevelChallenge
+          : data?.updateActiveChallenge;
 
-        yield put(challengeUpdateSuccessAction(data));
+        yield put(challengeUpdateSuccessAction(challengeData?.challenge));
 
-        if ((data?.updateActiveChallenge?.challenge?.status || "") === "completed") {
+        if ((challengeData?.challenge?.status || "") === "completed") {
           yield put(cancelLocalPush());
           yield put(challengeEndAction());
           return;

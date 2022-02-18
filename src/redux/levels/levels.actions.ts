@@ -1,4 +1,9 @@
-import { CreateActiveChallenge, SubmitUnityVariables, UpdateActiveChallenge } from "@graphql/_core/schema";
+import {
+  CreateActiveChallenge,
+  SubmitUnityVariables,
+  UpdateActiveChallenge_updateActiveChallenge_challenge as ActiveChallenge,
+  UpdateQuestMapLevelChallenge_updateQuestMapLevelChallenge_challenge as QuestMapActiveChallenge,
+} from "@graphql/_core/schema";
 
 export const CHALLENGE_SUBMIT_UNITY = "CHALLENGE_SUBMIT_UNITY";
 
@@ -30,6 +35,7 @@ export const submitUnityAction = (payload: SubmitUnityVariables) => ({
 });
 
 export type ChallengeStartPayload = CreateActiveChallenge & { levelSlotId: string };
+export type Challenge = ActiveChallenge | QuestMapActiveChallenge;
 export const challengeStartSuccessAction = (payload: ChallengeStartPayload) => ({
   payload,
   type: CHALLENGE_START_SUCCESS,
@@ -40,7 +46,7 @@ export const pedometerStepsChallengeStarted = (payload: number) => ({
   type: CHALLENGE_START_INITIAL_STEPS,
 });
 
-export const challengeUpdateSuccessAction = (payload: UpdateActiveChallenge) => ({
+export const challengeUpdateSuccessAction = (payload: Challenge) => ({
   payload,
   type: CHALLENGE_UPDATE_SUCCESS,
 });
@@ -57,7 +63,7 @@ export const challengeEndFailAction = () => ({
   type: CHALLENGE_END_FAIL,
 });
 
-export const challengeEndSuccessAction = (payload: UpdateActiveChallenge) => ({
+export const challengeEndSuccessAction = (payload: Challenge) => ({
   payload,
   type: CHALLENGE_END_SUCCESS,
 });
