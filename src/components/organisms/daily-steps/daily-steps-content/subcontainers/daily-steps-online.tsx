@@ -17,10 +17,10 @@ import { getDailyCycling } from "@redux/daily-cycling/daily-cycling.selectors";
 import { getDailyStepsTheme } from "@redux/theme/theme.selectors";
 
 type DailyStepsOnlineProps = {
-  isIntro?: boolean;
+  onReferralsButtonPress: () => void;
 };
 
-export const DailyStepsOnline = memo(({ isIntro }: DailyStepsOnlineProps) => {
+export const DailyStepsOnline = memo(({ onReferralsButtonPress }: DailyStepsOnlineProps) => {
   const dailyCycling = useSelector(getDailyCycling);
   const dailyMeditation = useSelector(getDailyMeditation);
   const dailySteps = useSelector(getDailySteps);
@@ -31,6 +31,7 @@ export const DailyStepsOnline = memo(({ isIntro }: DailyStepsOnlineProps) => {
   const mindfulTotal = displaySecondsAsMinutes(dailyMeditation);
   const hasNotification = useSelector(getHasNotification);
   const mindfulTotalToDisplay = `${mindfulTotal.minutes} min`;
+  const features = useSelector(getUserFeatures);
 
   const counterStyle = useMemo(
     () => ({
@@ -40,7 +41,16 @@ export const DailyStepsOnline = memo(({ isIntro }: DailyStepsOnlineProps) => {
     [textStyle?.color]
   );
 
-  const buttonLabel = hasNotification ? "Back to challenge" : `Take a challenge (${availableForToday} left)`;
+  const [showChallengeButton, showReferralsButton] = useMemo(() => {
+    const showChallenge = isAvailable && availableForToday > 0;
+    const showReferrals = !showChallenge && features.showReferrals;
+    return [showChallenge, showReferrals];
+  }, [isAvailable, availableForToday, features]);
+
+  const challengeButtonLabel = useMemo(
+    () => (hasNotification ? "Back to challenge" : `Take a challenge (${availableForToday} left)`),
+    [hasNotification, availableForToday]
+  );
 
   return (
     <>
@@ -58,9 +68,14 @@ export const DailyStepsOnline = memo(({ isIntro }: DailyStepsOnlineProps) => {
           />
         </View>
       </View>
-      {isIntro || availableForToday === 0 || !isAvailable ? null : (
+      {!showChallengeButton ? null : (
         <View style={styles.buttonWrapper}>
-          <Button onPress={handleNavigateToQuestsTab} size="Large" label={buttonLabel} />
+          <Button onPress={handleNavigateToQuestsTab} size="Large" label={challengeButtonLabel} />
+        </View>
+      )}
+      {!showReferralsButton ? null : (
+        <View style={styles.buttonWrapper}>
+          <Button onPress={onReferralsButtonPress} size="Large" label="Invite a colleague" />
         </View>
       )}
     </>
