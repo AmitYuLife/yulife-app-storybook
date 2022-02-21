@@ -74,7 +74,7 @@ export default function* getDailyPassiveActivity(dataPayload: { payload: string;
     let retryDelayMs = 2000;
     while (!isUpdated && retryDelayMs <= 16000) {
       try {
-        const mutation = userFeatures.usePassiveChallengesService ? upsertDailyPassives : upsertPassiveChallenges;
+        const mutation = userFeatures.useCoreChallengesService ? upsertDailyPassives : upsertPassiveChallenges;
         const { data } = yield call(mutation, meditationResults.concat(cyclingResults));
         const mutationResult = data?.upsertPassiveChallenges || data?.upsertDailyPassives;
 
@@ -100,7 +100,7 @@ export default function* getDailyPassiveActivity(dataPayload: { payload: string;
       } catch (e) {
         yield spawn(() => {
           Logger.error(e, {
-            event: userFeatures.usePassiveChallengesService ? "upsertDailyPassives" : "upsertPassiveChallenges",
+            event: userFeatures.useCoreChallengesService ? "upsertDailyPassives" : "upsertPassiveChallenges",
           });
         });
         yield delay(retryDelayMs);

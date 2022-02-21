@@ -26,7 +26,7 @@ export default function* updateDailyStepsSaga({ payload }: ReturnType<typeof upd
       (!isServerFetchedThisSession || checkIfAPIRequestNeeded(payload.steps, serverSteps, exchangeRate))
     ) {
       const userFeatures: ReturnType<typeof getUserFeatures> = yield select(getUserFeatures);
-      const mutation = userFeatures.usePassiveChallengesService ? upsertDailyPassives : upsertPassiveChallenges;
+      const mutation = userFeatures.useCoreChallengesService ? upsertDailyPassives : upsertPassiveChallenges;
 
       yield put(startStepsSyncing());
       const { data } = yield call(mutation, [mapPedometerResults(payload)]);

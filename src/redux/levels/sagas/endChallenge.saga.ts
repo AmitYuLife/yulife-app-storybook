@@ -35,7 +35,7 @@ export default function* endChallengeSaga() {
         let challengeStatus = "active";
         let updateActiveChallengeCount = 0;
         while (challengeStatus !== "completed" && updateActiveChallengeCount < RETRY_UPDATE_CHALLENGE_COUNT) {
-          const mutation = features.refactoredChallengeApi
+          const mutation = features.useActiveChallengesService
             ? UpdateQuestMapLevelChallenge
             : updateActiveChallengeWithClient;
           const { data } = yield call(mutation, active.levelSlotId, result);

@@ -61,7 +61,7 @@ export function* startTracking(
           value: Math.floor(queryResult.results.reduce((accumulator, session) => accumulator + session.value, 0)),
         };
 
-        const mutation = features.refactoredChallengeApi
+        const mutation = features.useActiveChallengesService
           ? UpdateQuestMapLevelChallenge
           : updateActiveChallengeWithClient;
         const { data } = yield call(mutation, levelSlotId, results);
@@ -125,7 +125,7 @@ export default function* startChallenge({
     if (challengeCancelled) {
       try {
         const features: ReturnType<typeof getUserFeatures> = yield select(getUserFeatures);
-        if (features.refactoredChallengeApi) {
+        if (features.useActiveChallengesService) {
           yield call(cancelQuestMapLevelChallenge, levelSlotId);
         } else {
           yield call(cancelActiveChallengeWithClient, levelSlotId);
