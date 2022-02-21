@@ -47,7 +47,7 @@ Feature("As a user I can navigate through member routes correctly", async () => 
                         Then("I should see the menu items", then.menuItemsVisible)
                     })
                 })
-
+ 
                 When("I tap settings", when.tapMenuItem("Settings"), async () => {
                     Then("I should be on the settings tab", then.idVisible(SETTINGS_SCREEN, 2500))
                     Then("I should see Challenge completion", then.idVisible(SETTINGS_NAME("Challenge completion")))

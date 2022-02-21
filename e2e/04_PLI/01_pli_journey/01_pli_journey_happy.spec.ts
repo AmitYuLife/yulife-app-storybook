@@ -45,7 +45,7 @@ Feature("PLI HAPPY", async()=>{
                 })
             })
         })
-    })
+    }) 
 
     Scenario("As pregnant female with all conditions but under control, I should be able to purchase PLI", scenario.start, async()=>{
         Given("I login as a user with Covea FIB enabled", given.loginToYuScreen(true, CUSTOMER_37, AUTH_37), async()=>{
