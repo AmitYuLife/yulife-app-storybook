@@ -76,7 +76,7 @@ export const ProductPaymentHistoryContainer = ({ customerProductId }: IProps) =>
                 date={date}
                 label={charged ? "Paid" : "Failed"}
                 invoiceId={id}
-                textColour={charged ? null : failure}
+                textColour={charged ? undefined : failure}
               />
             );
           })}
