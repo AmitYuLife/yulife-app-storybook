@@ -4,7 +4,7 @@ import * as given from "./_steps/given"
 import * as when from "./_steps/when"
 import * as then from "./_steps/then"
 import { CUSTOMER_34, AUTH_34 } from "@data"
-import { CHALLENGE_TILE, LEVEL_CHALLENGE_BUTTON, VIEW_TOP_RIGHT_COIN_COUNTER, CHALLENGE_REWARD } from "@ids"
+import { CHALLENGE_TILE, LEVEL_CHALLENGE_BUTTON, VIEW_TOP_RIGHT_COIN_COUNTER, CHALLENGE_REWARD, SURGE_ICON, TEXT_TEMPLATE, DAILY_STEPS_SCREEN } from "@ids"
 
 Feature("Surges work as intended", async () => {
     Scenario("I can complete a challenge with a user that has a surge and my reward is x10", scenario.start, async () => {
@@ -22,6 +22,18 @@ Feature("Surges work as intended", async () => {
                             Then("I should see I have 800 YuCoin", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(800)))
                         })
                     })
+                })
+            })
+        })
+    })
+
+    Scenario("I log in and can see the daily surge icon ", scenario.start, async () => {
+        Given("I login as a user with a surge", given.logInAndGoToTab("yucoin", CUSTOMER_34, AUTH_34), async () => {
+            Then("I should see the surge icon on the today's screen proving the surge is active", then.iCanSeeSurgeIcon("10x", " 1d"))
+            When("I tap the icon", when.tapID(SURGE_ICON), async () => {
+                Then("I should see the surge modal appear", then.canSeeSurgeModal)
+                When("I tap the dismiss button", when.tapText("Dismiss"), async () => {
+                    Then("I should be back on the yucoin tab", then.idVisible(DAILY_STEPS_SCREEN))
                 })
             })
         })

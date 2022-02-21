@@ -6,6 +6,7 @@ import { Style, TOP_BAR, Colours } from "@styles";
 import moment from "moment";
 import { minifiedFromNow } from "@utils";
 import { TouchableOpacityWithDelay } from "@molecules";
+import { TEXT_TEMPLATE, SURGE_ICON } from "@ids";
 import useInterval from "@use-it/interval";
 import { DETOX_ENABLED } from "@services/socket";
 
@@ -44,17 +45,21 @@ const Surge = ({ expireDate, multiplier, onPress }: IProps) => {
   }
 
   return (
-    <TouchableOpacityWithDelay style={styles.wrapper} onPress={onPress}>
+    <TouchableOpacityWithDelay style={styles.wrapper} onPress={onPress} testID={SURGE_ICON}>
       <LottieView style={styles.lottie} source={LottieIcon} autoPlay={true} loop={true} />
       <View style={styles.timesWrapper}>
         <View style={styles.timesNumber}>
-          <TextTemplate type="l2b" color={Colours.neutral.white}>
+          <TextTemplate type="l2b" color={Colours.neutral.white} testID={TEXT_TEMPLATE(multiplier)}>
             {multiplier}
           </TextTemplate>
         </View>
       </View>
       <View style={styles.time}>
-        <TextTemplate type="l1b" color={Colours.neutral.white}>
+        <TextTemplate
+          type="l1b"
+          color={Colours.neutral.white}
+          testID={TEXT_TEMPLATE(minifiedFromNow(moment(expireDate)))}
+        >
           {time}
         </TextTemplate>
       </View>
