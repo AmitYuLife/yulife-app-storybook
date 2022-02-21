@@ -48,7 +48,7 @@ export const features = [
   "limitPedometerSteps",
   "showReferrals",
   "showBuffs",
-  "refactoredChallengeApi",
+  "useActiveChallengesService",
   "passiveCyclingEnabled",
-  "usePassiveChallengesService",
+  "useCoreChallengesService",
 ];

@@ -43,7 +43,7 @@ const TodayEarningsContainer = ({ componentId }: IProps) => {
 
   useEffect(() => {
     (async () => {
-      const mutation = features.usePassiveChallengesService ? upsertDailyPassives : upsertPassiveChallenges;
+      const mutation = features.useCoreChallengesService ? upsertDailyPassives : upsertPassiveChallenges;
       await mutation({
         variables: {
           payload: [

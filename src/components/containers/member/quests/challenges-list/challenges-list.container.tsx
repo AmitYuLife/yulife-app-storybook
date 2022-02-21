@@ -84,7 +84,7 @@ const ChallengesListContainer: FC<Props> = ({ level, componentId }) => {
       await getChallengeDetails(slot.id);
 
       let activeChallenge: ExecutionResult<CreateActiveChallenge>;
-      if (features.refactoredChallengeApi) {
+      if (features.useActiveChallengesService) {
         const {
           data: { createQuestMapLevelChallenge, ...props },
         } = await createQuestMapLevelChallengeMutation({ variables: { levelSlotId: slot.id } });

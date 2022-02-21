@@ -81,7 +81,7 @@ const ActivityHistoryContainer: FC<Props> = ({
 
       if (res.results && !!res.results.length) {
         try {
-          const mutation = features.usePassiveChallengesService ? addHistoricalStepsNew : addHistoricalSteps;
+          const mutation = features.useCoreChallengesService ? addHistoricalStepsNew : addHistoricalSteps;
           const response = await mutation({
             variables: { payload: res.results },
           });

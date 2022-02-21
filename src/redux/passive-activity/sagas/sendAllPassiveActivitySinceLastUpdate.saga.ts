@@ -78,7 +78,7 @@ export default function* sendPassiveActivity(dataPayload: { payload: string; typ
         let isUpdated = false;
         while (!isUpdated) {
           try {
-            const mutation = userFeatures.usePassiveChallengesService ? upsertDailyPassives : upsertPassiveChallenges;
+            const mutation = userFeatures.useCoreChallengesService ? upsertDailyPassives : upsertPassiveChallenges;
             const response = yield call(mutation, payload);
             const mutationResult = response?.data?.upsertPassiveChallenges || response?.data?.upsertDailyPassives;
 
