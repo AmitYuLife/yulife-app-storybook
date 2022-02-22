@@ -2,7 +2,7 @@ import React, { FC, useState, useCallback, useMemo } from "react";
 import { View, ScrollView, NativeSyntheticEvent, NativeScrollEvent } from "react-native";
 import { TextTemplate, ProgressBar, Button } from "@atoms";
 import { Image } from "@atoms/image/image";
-import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
+import GenericHeadingAbsolute from "@atoms/generic-heading/generic-heading-absolute";
 import EventRewardsWrapper from "@organisms/event-reward/event-rewards-wrapper";
 import { Style } from "@styles";
 import { IReward } from "@organisms/event-reward/event-reward";
@@ -56,9 +56,9 @@ const EventDialogScreen: FC<IProps> = ({
     setScrollY(y);
   }, []);
 
-  const headingPadStyle = useMemo(() => ({ backgroundColor }), [backgroundColor]);
   const statusBarCoverStyle = useMemo(() => ({ ...style.statusBarCover, backgroundColor }), [backgroundColor]);
   const headerImageWrapperStyle = useMemo(() => ({ ...style.headerImageWrapper, backgroundColor }), [backgroundColor]);
+  const showHeading = useMemo(() => scrollY < style.contentWrapper.marginTop - Style.adjust(30), [scrollY]);
 
   const headerImageStyle = useMemo(() => {
     return {
@@ -92,9 +92,6 @@ const EventDialogScreen: FC<IProps> = ({
 
   return (
     <View style={style.wrapper}>
-      <View style={headingPadStyle}>
-        <GenericHeadingPad />
-      </View>
       <View style={statusBarCoverStyle} />
       <Image
         style={headerImageWrapperStyle}
@@ -104,13 +101,12 @@ const EventDialogScreen: FC<IProps> = ({
         width={Style.DEVICE_WIDTH}
         height={Style.DEVICE_WIDTH}
       />
-      <GenericHeadingAbsolute
-        heading={heading}
-        color={headerTextColor}
-        onLeftIconPress={onLeftIconPress}
-        backgroundColor="transparent"
-      />
-      <ScrollView style={style.scrollView} onScroll={onScroll} scrollEventThrottle={32}>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        style={style.scrollView}
+        onScroll={onScroll}
+        scrollEventThrottle={32}
+      >
         <View style={style.contentWrapper}>
           <EventRewardsWrapper rewards={rewards} />
           <View style={style.progressText}>
@@ -139,8 +135,17 @@ const EventDialogScreen: FC<IProps> = ({
               </TextTemplate>
             </View>
           </View>
+          {!ctaText || !onButtonPress ? null : <View style={style.ctaPadding} />}
         </View>
       </ScrollView>
+      {!showHeading ? null : (
+        <GenericHeadingAbsolute
+          heading={heading}
+          color={headerTextColor}
+          onLeftIconPress={onLeftIconPress}
+          backgroundColor="transparent"
+        />
+      )}
       {!ctaText || !onButtonPress ? null : (
         <View style={style.ctaWrapper}>
           <Button label={ctaText} size="Fill" onPress={onButtonPress} />
