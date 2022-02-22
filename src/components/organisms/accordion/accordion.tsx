@@ -18,7 +18,6 @@ interface Props {
 }
 
 const DURATION = 60;
-const EXPAND_DURATION = 360;
 
 const INITIAL_TICK = 0;
 
@@ -78,7 +77,7 @@ export const Accordion = memo((props: Props) => {
     const anim1 = Animated.timing(collapseAnimatedValue, {
       toValue: collapsed ? 0 : 1,
       useNativeDriver: true,
-      duration: collapsed ? EXPAND_DURATION : DURATION,
+      duration: DURATION,
     });
     Animated.parallel([anim1]).start();
   }, [collapsed]);
