@@ -5,7 +5,7 @@ import * as then from "./_steps/then";
 import * as when from "./_steps/when";
 import * as scenario from "./_steps/scenario";
 import { INPUT_LOGIN_EMAIL, INPUT_RESET_PASSWORD, STEPS_COUNT, CYCLING_COUNT, MINDFUL_COUNT, YUCOIN, BACK_BUTTON, MENU_ICON, SETTINGS_SCREEN, TEXT_TEMPLATE, GAME_SETTINGS_SCREEN, SETTINGS_NAME, BUTTON_CLOSE_HEADER, ACTIVITY_FEED, YUCOIN_POWER, BUTTON_CLOSE, YUCOIN_POWER_INFO } from "@ids";
-import { CUSTOMER_2,CUSTOMER_4, AUTH_2, AUTH_4, CUSTOMER_ARCHIVED, AUTH_ARCHIVED } from "@data";
+import { CUSTOMER_2,CUSTOMER_4, AUTH_2, AUTH_4, CUSTOMER_ARCHIVED, AUTH_ARCHIVED, CUSTOMER_38, AUTH_38 } from "@data";
 
 Feature("As a user I can get past the login screen", async () => {
 
@@ -170,4 +170,11 @@ Feature("As a user I can get past the login screen", async () => {
             });
         });
     });
+
+    Scenario("As a user belonging to a company with bonus onboarding, I should be able to see the bonus YuCoin in app", scenario.start, async () => {
+        Given("I have entered a valid email address and valid password", given.logInAndGoToTab("yucoin", CUSTOMER_38, AUTH_38), async () => {
+            Then("I should be on the daily steps screen", then.dailyStepsScreenVisible)
+            Then("I should see I have 420 YuCoin", then.givenCoinsTopRight(420))
+        });
+    })
 })
