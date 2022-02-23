@@ -7,6 +7,43 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.21.0] - 2022-02-23
+
+### Bugfixes
+
+- Bugfix ENG-2497: query steps if pedometer has not synced
+- Bugfix XSE-775: Match arrow speed on expand and collapse
+- Bugfix GS-188: event dialog fixes
+- Bugfix XSE-795: update textColour to be undefined for success state
+- Bugfix GS-245: Fix active challenge update queries
+- Bugfix: fix totalcoins when using new passive challenge mutation
+- Bugfix GS-235: Fix cycling permission flow on today earning
+- Bugfix: Fix loading states in ProductStepContainer
+
+### Tasks
+
+- Task XSE-785: Add LabelledHorizontalScroller molecule
+- Task GS-232 & GS-239: Add referrals button to dailySteps screen
+- Task XSE-772: Initialise package cost benefit card
+- Task GS-188: Create Event Dialog Screen
+
+### Chores
+
+- Chore: Rename challenge services toggles
+- Revert "Chore: upgrade bdd"
+- Chore: upgrade bdd
+- Chore: yulife-bdd upgrade
+- Chore: Fix detox tests after products re-factor
+- Chore: Add comment with origin of pedometerValue
+- (origin/chore/xse-727-dental-assets) Release: bump version to 3.21.0
+
+### Extra
+
+- Detox: Bonus onboarding YuCoin
+- detox/surge_icon
+- [HOTFIX] Inc version @yu-life/yulife-bdd-framework
+- detox: added another feedbackform assertion
+
 ## [3.20.0] - 2022-02-09
 
 ### Features
