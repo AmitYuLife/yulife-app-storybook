@@ -50,5 +50,7 @@ export const features = [
   "showBuffs",
   "useActiveChallengesService",
   "passiveCyclingEnabled",
+  "waitForStepsSync",
+  "limitStepsLastUpdateEnabled",
   "useCoreChallengesService",
 ];
