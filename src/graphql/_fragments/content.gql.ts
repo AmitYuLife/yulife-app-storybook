@@ -83,6 +83,7 @@ export const GQL_FRAGMENT_CONTENT_ITEM_COLLAPSING_HEADER_PRODUCT_INFO = gql`
       ...ContentItemCoverListItem
     }
     type
+    expandOnComponentId
   }
 `;
 

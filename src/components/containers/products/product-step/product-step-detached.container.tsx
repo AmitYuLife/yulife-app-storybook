@@ -58,6 +58,7 @@ const ProductStepDetachedContainer = (props: Props) => {
   const [headerHeight, setHeaderHeight] = useState(0);
   const [headerBottom, setHeaderBottom] = useState(null);
   const [detachedStep, setDetachedStep] = useState<DetachedStepData>(null);
+  const [componentsLayout, setComponentsLayout] = useState({});
   const isMounted = useRef(false);
   const { current: scrollValue } = useRef(new Animated.Value(0));
 
@@ -149,6 +150,8 @@ const ProductStepDetachedContainer = (props: Props) => {
                 scrollValue,
                 headerHeight: 0,
                 isLoading: loading,
+                componentsLayout,
+                setComponentsLayout,
               }}
             >
               <View style={scrollViewTopPad} />

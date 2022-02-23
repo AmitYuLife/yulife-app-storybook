@@ -1,4 +1,5 @@
 import React, { memo, useContext, useState } from "react";
+import { LayoutChangeEvent, View } from "react-native";
 import { useDispatch } from "react-redux";
 import { ContentItemCoverPicker as Props } from "@graphql/_core/schema";
 import { CoverType } from "@graphql/_core/schema/globalTypes";
@@ -19,10 +20,13 @@ export const ProductStepCoverPicker = memo((props: Props) => {
     hasSelectedCustomCover,
     coverPickerTitle,
     customCover,
+    id,
   } = props;
   const [isCustom, setIsCustom] = useState(hasSelectedCustomCover);
   const [title, setTitle] = useState(hasSelectedCustomCover ? customCover.title : coverPickerTitle.text);
-  const { setDynamicData, dynamicData, productId } = useContext(ProductStepContext);
+  const { setDynamicData, dynamicData, productId, stepId, componentsLayout, setComponentsLayout } = useContext(
+    ProductStepContext
+  );
 
   const dispatch = useDispatch();
 
@@ -34,8 +38,12 @@ export const ProductStepCoverPicker = memo((props: Props) => {
     answerKey: LOCAL_ANSWER_KEY.CoverType,
   });
 
+  const handleLayout = (event: LayoutChangeEvent) => {
+    setComponentsLayout({ [stepId]: { ...componentsLayout[stepId], [id]: event.nativeEvent.layout } });
+  };
+
   return (
-    <>
+    <View onLayout={handleLayout}>
       <ContentItemText {...coverPickerTitle} text={title} />
       {isCustom ? (
         <ProductStepPercentPicker {...customCover.itemsPicker} __typename="ContentItemScrollableItemsPicker" />
@@ -52,6 +60,6 @@ export const ProductStepCoverPicker = memo((props: Props) => {
           }}
         />
       )}
-    </>
+    </View>
   );
 });
