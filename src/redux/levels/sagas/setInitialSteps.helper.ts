@@ -1,0 +1,64 @@
+import { spawn, delay, select, put } from "redux-saga/effects";
+import moment from "moment";
+import Logger from "@services/logging/logger";
+import { querySteps, QueryFitKitByTypesResponse } from "@services/fitkit/fitkit.helpers";
+import { pedometerStepsChallengeStarted } from "../levels.actions";
+import { getLastResults } from "@redux/pedometer/pedometer.selectors";
+import { IUserStore } from "@redux/user/user.reducer";
+
+export default function* setInitialSteps(startDateTime: string, features: IUserStore["features"]) {
+  const lastPedometerResults: ReturnType<typeof getLastResults> = yield select(getLastResults);
+  const { lastUpdated, steps: pedometerSteps, isSynced } = lastPedometerResults;
+  const isValidInitialSteps = isSynced && moment(lastUpdated).isSame(moment(), "day");
+
+  const { limitStepsLastUpdateEnabled } = features;
+
+  const lastUpdateIsValid =
+    !limitStepsLastUpdateEnabled || moment(startDateTime).diff(moment(lastUpdated), "seconds") <= 10;
+
+  if (isValidInitialSteps && lastUpdateIsValid) {
+    yield put(pedometerStepsChallengeStarted(pedometerSteps));
+    yield spawn(() =>
+      Logger.logMixpanelEvent("initial_pedometer_steps_set", {
+        steps: pedometerSteps,
+        lastUpdated,
+        source: "pedometer",
+      })
+    );
+    return;
+  }
+
+  const eventProperties = {
+    startDateTime,
+    lastUpdated,
+    steps: pedometerSteps,
+    isSynced,
+    limitStepsLastUpdateEnabled,
+    lastUpdateIsValid,
+  };
+  yield spawn(() => Logger.logMixpanelEvent("invalid_pedometer_steps", eventProperties));
+
+  const startOfChallengeMoment = moment(startDateTime);
+  const startOfDayMoment = startOfChallengeMoment.clone().startOf("day");
+
+  let retryDelayMs = 2000;
+  while (retryDelayMs < 16000) {
+    try {
+      const data: QueryFitKitByTypesResponse = yield querySteps(startOfDayMoment, startOfChallengeMoment, features);
+
+      if (!data.error) {
+        const steps = data.results.reduce((acc, payload) => acc + payload.value, 0);
+        yield put(pedometerStepsChallengeStarted(steps));
+        yield spawn(() => Logger.logMixpanelEvent("initial_pedometer_steps_set", { steps, source: "querySteps" }));
+        return;
+      }
+    } catch (e) {
+      yield spawn(() => {
+        Logger.error(e, { event: "setInitialSteps" });
+      });
+    }
+
+    yield delay(retryDelayMs);
+    retryDelayMs = retryDelayMs * 2;
+  }
+}

@@ -1,8 +1,10 @@
 import { addSecondsToChallengeEndDateTime } from "@utils";
-import { call, put, select } from "redux-saga/effects";
+import { call, put, select, fork } from "redux-saga/effects";
 import { getSteps } from "../../pedometer/pedometer.selectors";
 import { challengeStartSuccessAction, pedometerStepsChallengeStarted } from "../levels.actions";
+import setInitialSteps from "./setInitialSteps.helper";
 import startChallenge from "./startChallenge.helper";
+import { getUserFeatures } from "@redux/user/user.selectors";
 
 export default function* startChallengeSuccessSaga({ payload }: ReturnType<typeof challengeStartSuccessAction>) {
   const {
@@ -13,8 +15,15 @@ export default function* startChallengeSuccessSaga({ payload }: ReturnType<typeo
     levelSlotId,
   } = payload;
 
-  const initialPedometerSteps: ReturnType<typeof getSteps> = yield select(getSteps);
-  yield put(pedometerStepsChallengeStarted(initialPedometerSteps));
+  const features: ReturnType<typeof getUserFeatures> = yield select(getUserFeatures);
+
+  if (features.waitForStepsSync) {
+    yield put(pedometerStepsChallengeStarted(null));
+    yield fork(setInitialSteps, startDateTime, features);
+  } else {
+    const initialPedometerSteps: ReturnType<typeof getSteps> = yield select(getSteps);
+    yield put(pedometerStepsChallengeStarted(initialPedometerSteps));
+  }
 
   if (startDateTime && remoteEndDateTime && subtype) {
     const endDateTime = addSecondsToChallengeEndDateTime(remoteEndDateTime);

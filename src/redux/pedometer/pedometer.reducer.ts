@@ -8,12 +8,14 @@ export interface IPedometerStore {
   lastUpdated: string;
   startTime: string;
   steps: number;
+  isSynced: boolean;
 }
 
 export const getInitialState = (): IPedometerStore => ({
   lastUpdated: moment().startOf("day").format(),
   startTime: moment().startOf("day").format(),
   steps: 0,
+  isSynced: false,
 });
 
 const pedometerReducer = (state: IPedometerStore = getInitialState(), action: SyncAction): IPedometerStore => {
@@ -35,4 +37,5 @@ const updatePedometer = (state: IPedometerStore, res: PedometerResponse): IPedom
   lastUpdated: res.endTime,
   startTime: res.startTime,
   steps: res.steps,
+  isSynced: true,
 });
