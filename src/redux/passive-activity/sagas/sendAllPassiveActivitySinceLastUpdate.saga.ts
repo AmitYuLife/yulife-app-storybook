@@ -47,6 +47,19 @@ export default function* sendPassiveActivity(dataPayload: { payload: string; typ
       return;
     }
 
+    const yesterdayMoment = moment().startOf("day").subtract(1, "day");
+    const isStepLastUpdateYesterday = moment(stepsLastUpdate).startOf("day").isSameOrAfter(yesterdayMoment);
+    const isMeditationLastUpdateYesterday = moment(meditationLastUpdate).startOf("day").isSameOrAfter(yesterdayMoment);
+    const isCyclingLastUpdateYesterday = moment(cyclingLastUpdate).startOf("day").isSameOrAfter(yesterdayMoment);
+
+    if (
+      isStepLastUpdateYesterday &&
+      isMeditationLastUpdateYesterday &&
+      (!userFeatures.passiveCyclingEnabled || isCyclingLastUpdateYesterday)
+    ) {
+      return;
+    }
+
     const shouldQueryCycling = cyclingLastUpdate && userFeatures.passiveCyclingEnabled;
     const endOfYesterday = moment().subtract(1, "day").endOf("day");
 
