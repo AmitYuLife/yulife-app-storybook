@@ -16,6 +16,7 @@ import { UPDATE_DAILY_STEPS_SUCCESS_FROM_REMOTE, START_DAILY_STEPS } from "../da
 import { GET_USER_SUCCESS, LOGIN_USER_SUCCESS, LOGOUT_SUCCESS } from "../user/user.actions";
 import { UPDATE_TOTAL_COINS } from "./coins.actions";
 import { UPDATE_DAILY_CYCLING_SUCCESS } from "@redux/daily-cycling/daily-cycling.actions";
+import { UPDATE_APP_STATE_ACTIVE } from "@redux/app/app.actions";
 
 export interface ICoinsStore {
   dailyChallengeEarned: number; // number of coins earned in the current day through challenges
@@ -50,6 +51,8 @@ const coinsReducer = (state: ICoinsStore = getInitialState(), action: SyncAction
       }
 
       return { ...state };
+    case UPDATE_APP_STATE_ACTIVE:
+      return updateStateOnAppStateActive(state);
     case START_DAILY_STEPS:
       return startDailyStepsSuccess(state);
     case UPDATE_DAILY_MEDITATION_SUCCESS:
@@ -115,6 +118,16 @@ const updatePersistedState = (persistedState: ICoinsStore) => {
   }
 
   return { ...persistedState };
+};
+
+const updateStateOnAppStateActive = (state: ICoinsStore) => {
+  const shouldResetCoinStore = getShouldResetCoinStore(state.lastUpdated);
+
+  if (shouldResetCoinStore) {
+    return { ...state, ...getDailyResetCoinStore() };
+  }
+
+  return { ...state };
 };
 
 const startDailyStepsSuccess = (state: ICoinsStore) => {

@@ -9,6 +9,7 @@ import { GET_USER_SUCCESS, LOGIN_USER_SUCCESS, LOGOUT_SUCCESS } from "../user/us
 import { UPDATE_DAILY_MEDITATION_EMPTY_RESULT, UPDATE_DAILY_MEDITATION_SUCCESS } from "./daily-meditation.actions";
 import { PassiveMeditationMilestones, ExchangeRateMeditation as ExchangeRate } from "./daily-meditation.selectors";
 import { SyncAction } from "@redux/_core/types";
+import { UPDATE_APP_STATE_ACTIVE } from "@redux/app/app.actions";
 export interface IDailyMeditationStore {
   dailyMeditation: number;
   exchangeRate: ExchangeRate;
@@ -40,6 +41,8 @@ const dailyMeditationReducer = (
 
       return state;
 
+    case UPDATE_APP_STATE_ACTIVE:
+      return updateStateOnAppUpdate(state);
     case UPDATE_DAILY_MEDITATION_SUCCESS:
       return updateDailyMeditationSucces(state, action.payload);
 
@@ -90,6 +93,20 @@ const updatePersistedState = (state: IDailyMeditationStore, persistedState: IDai
   }
 
   return { ...persistedState };
+};
+
+const updateStateOnAppUpdate = (state: IDailyMeditationStore) => {
+  const lastUpdated = moment(state.lastUpdated).startOf("day").format();
+  const today = moment().startOf("day").format();
+
+  if (lastUpdated !== today) {
+    return {
+      ...state,
+      dailyMeditation: 0,
+    };
+  }
+
+  return { ...state };
 };
 
 const getUserSuccess = (state: IDailyMeditationStore, res: GetCurrentUser) => ({
