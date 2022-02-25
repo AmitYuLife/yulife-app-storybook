@@ -53,7 +53,7 @@ export default function ProgressBar(props: IProgressBarProps) {
     const svgWidth = wrapperWidth - childrenWidth;
     const safeCurrentPosition = position > maxLength ? maxLength : position;
     const currentProgressPercent = safeCurrentPosition / maxLength;
-    const currentProgressUI = svgWidth * currentProgressPercent;
+    const currentProgressUI = currentProgressPercent > 0 ? Math.max(svgWidth * currentProgressPercent, 14) : 0;
     const shineWidth = currentProgressUI - 10;
     const safeShineWidth = shineWidth < 10 ? 0 : shineWidth;
 
