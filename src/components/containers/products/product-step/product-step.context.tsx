@@ -5,7 +5,10 @@ import {
 } from "@graphql/_core/schema";
 import { ProductStepDefaultFields, DynamicData } from "@redux/server-driven-ui/sdui.types";
 import { createContext, Dispatch, SetStateAction } from "react";
-import { Animated } from "react-native";
+import { Animated, LayoutChangeEvent } from "react-native";
+
+type IComponentLayout = Record<string, LayoutChangeEvent["nativeEvent"]["layout"]>;
+export type IStepComponentsLayout = Record<string, IComponentLayout>;
 
 type ScrollPickerNeededKeys =
   | "answerKey"
@@ -42,6 +45,8 @@ export interface IProductStepContext extends ProductStepDefaultFields {
   headerBottom: number;
   setHeaderBottom: Dispatch<SetStateAction<number | null>>;
   isLoading: boolean;
+  componentsLayout: IStepComponentsLayout;
+  setComponentsLayout: Dispatch<SetStateAction<IStepComponentsLayout>>;
 }
 
 export const DEFAULT_DYNAMIC_DATA = Object.freeze({});
@@ -61,4 +66,6 @@ export const ProductStepContext = createContext<IProductStepContext>({
   headerBottom: null,
   setHeaderBottom: () => null,
   isLoading: false,
+  componentsLayout: {},
+  setComponentsLayout: (_layout: IStepComponentsLayout) => null,
 });

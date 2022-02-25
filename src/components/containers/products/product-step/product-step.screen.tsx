@@ -1,7 +1,7 @@
 import React, { memo, useCallback, useEffect, useRef, useState } from "react";
 import { Animated, Keyboard, LayoutChangeEvent, StyleSheet, View, ViewStyle } from "react-native";
 import { Body, Header, Footer, Absolute, ProductStepScrollPicker } from "./sections";
-import { IProductStepScrollPicker, ProductStepContext } from "./product-step.context";
+import { IProductStepScrollPicker, IStepComponentsLayout, ProductStepContext } from "./product-step.context";
 import {
   GetPersonalProductStep_getPersonalProductStep_absolute,
   GetPersonalProductStep_getPersonalProductStep_body,
@@ -50,6 +50,7 @@ export const ProductStepScreen = memo((props: Props) => {
   const [headerBottom, setHeaderBottom] = useState(null);
   const [dynamicData, setDynamicData] = useState(buildInitialProductStepDynamicDataState(stepData));
   const { current: scrollValue } = useRef(new Animated.Value(0));
+  const [componentsLayout, setComponentsLayout] = useState({} as IStepComponentsLayout);
 
   const handleHeaderLayout = useCallback((event: LayoutChangeEvent) => {
     setHeaderHeight(event.nativeEvent.layout.height);
@@ -67,6 +68,8 @@ export const ProductStepScreen = memo((props: Props) => {
       setDynamicData(buildInitialProductStepDynamicDataState(stepData));
       stepIdRef.current = stepId;
     }
+
+    setComponentsLayout({ [stepId]: componentsLayout[stepId] });
 
     isMounted.current = true;
   }, [stepId]);
@@ -87,6 +90,8 @@ export const ProductStepScreen = memo((props: Props) => {
         headerBottom,
         setHeaderBottom,
         isLoading,
+        componentsLayout,
+        setComponentsLayout,
       }}
     >
       <View style={[styles.wrapper, style]}>

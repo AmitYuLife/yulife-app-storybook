@@ -31,4 +31,5 @@ export interface ContentItemCollapsingHeaderProductInfo {
   answerKey: string;
   coverList: ContentItemCollapsingHeaderProductInfo_coverList[];
   type: ContentItemCollapsingHeaderProductInfoType | null;
+  expandOnComponentId: string | null;
 }

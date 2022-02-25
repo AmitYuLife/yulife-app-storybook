@@ -82,6 +82,7 @@ export const Body = (props: Props) => {
         showsVerticalScrollIndicator={false}
         style={styles.wrapper}
         testID={PRODUCT_STEP_BODY_SCROLL_VIEW}
+        bounces={false}
       >
         {!headerHeight ? null : <View style={headerPadStyle} />}
         {props.body.map(renderItemContent)}

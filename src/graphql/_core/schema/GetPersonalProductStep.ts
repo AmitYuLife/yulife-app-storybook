@@ -1780,6 +1780,7 @@ export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_Con
   answerKey: string;
   coverList: GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemCollapsingHeaderProductInfo_coverList[];
   type: ContentItemCollapsingHeaderProductInfoType | null;
+  expandOnComponentId: string | null;
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemFullScreenSwiper_theme {

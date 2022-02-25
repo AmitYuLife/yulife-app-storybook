@@ -10,7 +10,11 @@ import { CollapsingHeaderDefault } from "./default";
 import { CollapsingHeaderCoverOptions } from "./cover-options";
 
 export const ProductStepCollapsingHeaderProductInfo = memo((props: Props) => {
-  const { scrollValue, headerHeight, dynamicData, setDynamicData } = useContext(ProductStepContext);
+  const { scrollValue, headerHeight, stepId, dynamicData, setDynamicData, componentsLayout } = useContext(
+    ProductStepContext
+  );
+  const { answerKey, coverList, expandOnComponentId, type } = props;
+
   useSetDefaultAnswer({
     dynamicData,
     setDynamicData,
@@ -26,30 +30,41 @@ export const ProductStepCollapsingHeaderProductInfo = memo((props: Props) => {
   useSetDefaultAnswer({
     dynamicData,
     setDynamicData,
-    answerKeyDefaultValue: props.coverList[0].minValue,
-    answerKey: props.answerKey,
+    answerKeyDefaultValue: coverList[0].minValue,
+    answerKey: answerKey,
   });
 
   const safeHeaderHeight = headerHeight < 1 ? 1 : headerHeight;
+  const expandThreshold = useMemo(() => {
+    const stepComponents = componentsLayout[stepId];
+
+    if (!expandOnComponentId || !stepComponents?.[expandOnComponentId]) {
+      return safeHeaderHeight;
+    }
+
+    const expandOnComponent = stepComponents[expandOnComponentId];
+
+    return expandOnComponent.height / 2 + expandOnComponent.y - safeHeaderHeight;
+  }, [stepId, safeHeaderHeight, componentsLayout]);
 
   const translateY = useMemo(() => {
     return scrollValue.interpolate({
-      inputRange: [0, safeHeaderHeight - 1, safeHeaderHeight],
+      inputRange: [0, expandThreshold - 1, expandThreshold],
       outputRange: [-Style.DEVICE_HEIGHT, -Style.DEVICE_HEIGHT, headerHeight],
       extrapolate: "clamp",
     });
-  }, [scrollValue, headerHeight, safeHeaderHeight]);
+  }, [scrollValue, headerHeight, expandThreshold]);
   const wrapperStyle = useMemo(() => {
     return [styles.wrapper, { transform: [{ translateY }] }];
   }, [translateY]);
 
   const CollapsingHeader = useMemo(() => {
-    if (props.type === ContentItemCollapsingHeaderProductInfoType.coverOptions) {
+    if (type === ContentItemCollapsingHeaderProductInfoType.coverOptions) {
       return CollapsingHeaderCoverOptions;
     }
 
     return CollapsingHeaderDefault;
-  }, [props.type]);
+  }, [type]);
 
   return (
     <Animated.View style={wrapperStyle}>
