@@ -22,7 +22,7 @@ export function getTime(nextAvailable: number, format?: TimeType) {
   const seconds = nextAvailable % 60;
 
   if (hours < 1 && minutes < 1 && seconds < 1) {
-    return null;
+    return "0s";
   }
 
   const paddedHours = padNum(hours);
@@ -32,12 +32,12 @@ export function getTime(nextAvailable: number, format?: TimeType) {
   const isMedium = format === "medium";
 
   if (days < 1 && hours < 1 && minutes < 1) {
-    return `${paddedSeconds}s`;
+    return `${seconds}s`;
   }
 
   if (days < 1 && hours < 1) {
     if (isShort) {
-      return `${paddedMinutes}m`;
+      return `${minutes}m`;
     }
 
     if (isMedium) {
