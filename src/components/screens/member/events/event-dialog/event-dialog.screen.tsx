@@ -1,16 +1,20 @@
 import React, { FC, useState, useCallback, useMemo } from "react";
-import { View, ScrollView, NativeSyntheticEvent, NativeScrollEvent } from "react-native";
+import { View, ScrollView, NativeSyntheticEvent, NativeScrollEvent, Platform } from "react-native";
 import { TextTemplate, ProgressBar, Button } from "@atoms";
 import { Image } from "@atoms/image/image";
 import GenericHeadingAbsolute from "@atoms/generic-heading/generic-heading-absolute";
 import EventRewardsWrapper from "@organisms/event-reward/event-rewards-wrapper";
 import { Style } from "@styles";
 import { IReward } from "@organisms/event-reward/event-reward";
-import style from "./event-dialog.styles";
+import style, { CONTENT_MARGIN_TOP } from "./event-dialog.styles";
 import { Source } from "react-native-fast-image";
 import { addCommasToNumber } from "@utils";
 
 const PROGRESS_BAR_WIDTH = Style.DEVICE_WIDTH - Style.adjust(48);
+const TITLE_HEIGHT = Platform.select({
+  ios: Style.adjust(32),
+  android: Style.adjust(44),
+});
 
 interface IHeaderProps {
   title: string;
@@ -57,8 +61,10 @@ const EventDialogScreen: FC<IProps> = ({
   }, []);
 
   const statusBarCoverStyle = useMemo(() => ({ ...style.statusBarCover, backgroundColor }), [backgroundColor]);
-  const headerImageWrapperStyle = useMemo(() => ({ ...style.headerImageWrapper, backgroundColor }), [backgroundColor]);
-  const showHeading = useMemo(() => scrollY < style.contentWrapper.marginTop - Style.adjust(30), [scrollY]);
+  const headerImageContainerStyle = useMemo(() => ({ ...style.headerImageContainer, backgroundColor }), [
+    backgroundColor,
+  ]);
+  const showHeading = useMemo(() => scrollY < CONTENT_MARGIN_TOP - TITLE_HEIGHT, [scrollY]);
 
   const headerImageStyle = useMemo(() => {
     return {
@@ -93,14 +99,16 @@ const EventDialogScreen: FC<IProps> = ({
   return (
     <View style={style.wrapper}>
       <View style={statusBarCoverStyle} />
-      <Image
-        style={headerImageWrapperStyle}
-        imageStyle={headerImageStyle}
-        resizeMode="cover"
-        source={headerImageSource}
-        width={Style.DEVICE_WIDTH}
-        height={Style.DEVICE_WIDTH}
-      />
+      <View style={headerImageContainerStyle}>
+        <Image
+          style={style.headerImageWrapper}
+          imageStyle={headerImageStyle}
+          resizeMode="cover"
+          source={headerImageSource}
+          width={Style.DEVICE_WIDTH}
+          height={Style.DEVICE_WIDTH}
+        />
+      </View>
       <ScrollView
         showsVerticalScrollIndicator={false}
         style={style.scrollView}

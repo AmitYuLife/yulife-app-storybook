@@ -1,22 +1,35 @@
 import { StyleSheet, ViewStyle, Platform } from "react-native";
 import { Style, Colours } from "@styles";
-import { PADDING_TOP, PADDING_BOTTOM } from "@styles/top-bar.styles";
+import { PADDING_TOP } from "@styles/top-bar.styles";
+
+const STATUS_BAR_COVER_HEIGHT = Platform.select({
+  ios: PADDING_TOP + Style.adjust(12),
+  android: 0,
+});
+
+export const CONTENT_MARGIN_TOP = Platform.select({
+  ios: Style.DEVICE_WIDTH / 3,
+  android: Style.DEVICE_WIDTH / 3 + Style.adjust(12),
+});
 
 export default StyleSheet.create({
   wrapper: { flexGrow: 1 },
   statusBarCover: {
     width: Style.DEVICE_WIDTH,
-    height: PADDING_TOP + Style.adjust(12),
+    height: STATUS_BAR_COVER_HEIGHT,
   } as ViewStyle,
-  headerImageWrapper: {
+  headerImageContainer: {
     position: "absolute",
-    top: PADDING_TOP + Style.adjust(12),
+    top: PADDING_TOP,
+  },
+  headerImageWrapper: {
+    marginTop: Style.adjust(12),
   },
   scrollView: {
     flex: 1,
   },
   contentWrapper: {
-    marginTop: Style.DEVICE_WIDTH / 4 + PADDING_TOP + PADDING_BOTTOM + Style.adjust(12),
+    marginTop: CONTENT_MARGIN_TOP,
     backgroundColor: Colours.neutral.white,
     paddingVertical: Style.adjust(24),
     borderTopLeftRadius: Style.adjust(8),
