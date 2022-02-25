@@ -1,4 +1,4 @@
-import React, { memo, useState, useEffect } from "react";
+import React, { memo, useState, useEffect, useCallback } from "react";
 import { StyleSheet, View, ViewStyle } from "react-native";
 import LottieView from "lottie-react-native";
 import { TextTemplate } from "@atoms";
@@ -11,7 +11,8 @@ import useInterval from "@use-it/interval";
 import { DETOX_ENABLED } from "@services/socket";
 
 const LottieIcon = require("./surge-lottie.json");
-const REFRESH_RATE_MILLISECONDS = 1000 * 60; // 1min
+const REFRESH_RATE_ONE_MINUTE = 1000 * 60;
+const REFRESH_RATE_ONE_SECOND = 1000;
 
 interface IProps {
   expireDate: string;
@@ -21,24 +22,22 @@ interface IProps {
 
 const Surge = ({ expireDate, multiplier, onPress }: IProps) => {
   const [time, setTime] = useState<string>(null);
+  const [refreshRate, setRefreshRate] = useState(REFRESH_RATE_ONE_MINUTE);
 
-  useEffect(() => {
-    if (!moment().isAfter(expireDate)) {
-      setTime(minifiedFromNow(moment(expireDate)));
+  const handleTimeDisplay = useCallback(() => {
+    if (moment().isSameOrAfter(expireDate)) {
+      setTime(null);
+      return;
     }
+
+    const secondsRemaining = moment(expireDate).diff(moment(), "seconds");
+
+    setRefreshRate(secondsRemaining <= 120 ? REFRESH_RATE_ONE_SECOND : REFRESH_RATE_ONE_MINUTE);
+    setTime(secondsRemaining < 60 ? `${secondsRemaining}s` : minifiedFromNow(moment(expireDate)));
   }, [expireDate]);
 
-  useInterval(
-    () => {
-      if (moment().isAfter(expireDate)) {
-        setTime(null);
-        return;
-      }
-
-      setTime(minifiedFromNow(moment(expireDate)));
-    },
-    !DETOX_ENABLED && time ? REFRESH_RATE_MILLISECONDS : null
-  );
+  useEffect(handleTimeDisplay, [expireDate, handleTimeDisplay]);
+  useInterval(handleTimeDisplay, !DETOX_ENABLED && time ? refreshRate : null);
 
   if (!time) {
     return null;

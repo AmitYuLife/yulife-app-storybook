@@ -1,8 +1,16 @@
-import React, { memo } from "react";
+import React, { memo, useState, useCallback, useEffect } from "react";
 import { StyleSheet, View } from "react-native";
+import { Navigation } from "react-native-navigation";
+import moment from "moment";
 import { TextTemplate } from "@atoms";
 import { Colours, Style } from "@styles";
 import { getTimeRemaining } from "@utils";
+import useInterval from "@use-it/interval";
+import { DETOX_ENABLED } from "@services/socket";
+import { MODALS } from "@navigation/constants";
+
+const REFRESH_RATE_ONE_MINUTE = 1000 * 60;
+const REFRESH_RATE_ONE_SECOND = 1000;
 
 interface IProps {
   title: string;
@@ -12,6 +20,24 @@ interface IProps {
 }
 
 const SurgeModal = ({ title, description, multiplier, endDateTime }: IProps) => {
+  const [time, setTime] = useState<string>("0s");
+  const [refreshRate, setRefreshRate] = useState(REFRESH_RATE_ONE_MINUTE);
+
+  const handleTimeDisplay = useCallback(() => {
+    if (moment().isSameOrAfter(endDateTime)) {
+      Navigation.dismissOverlay(MODALS.blurredOverlay);
+      return;
+    }
+
+    const secondsRemaining = moment(endDateTime).diff(moment(), "seconds");
+
+    setRefreshRate(secondsRemaining <= 120 ? REFRESH_RATE_ONE_SECOND : REFRESH_RATE_ONE_MINUTE);
+    setTime(getTimeRemaining(endDateTime, "short"));
+  }, [endDateTime]);
+
+  useEffect(handleTimeDisplay, [endDateTime, handleTimeDisplay]);
+  useInterval(handleTimeDisplay, !DETOX_ENABLED && time ? refreshRate : null);
+
   const parser = description.split("$");
   return (
     <View style={styles.contentWrapper}>
@@ -23,7 +49,7 @@ const SurgeModal = ({ title, description, multiplier, endDateTime }: IProps) => 
           if (text === "multiplier" || text === "endDateTime") {
             return (
               <TextTemplate key={index} type="b2b" color={Colours.products.fib.epic}>
-                {text === "multiplier" ? multiplier : getTimeRemaining(endDateTime, "short")}
+                {text === "multiplier" ? multiplier : time}
               </TextTemplate>
             );
           }
