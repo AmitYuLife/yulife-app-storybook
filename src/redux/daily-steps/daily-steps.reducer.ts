@@ -20,6 +20,7 @@ import {
 } from "./daily-steps.actions";
 import { SyncAction } from "@redux/_core/types";
 import { ExchangeRate, PassiveStepsMilestones } from "./daily-steps.selectors";
+import { UPDATE_APP_STATE_ACTIVE } from "@redux/app/app.actions";
 
 export interface IDailyStepsStore {
   /**
@@ -86,6 +87,8 @@ const dailyStepsReducer = (state: IDailyStepsStore = getInitialState(), action: 
 
       return { ...state };
 
+    case UPDATE_APP_STATE_ACTIVE:
+      return updateStateOnAppStateActive(state);
     case PEDOMETER_UPDATES_START:
       return { ...state, isFetching: true };
 
@@ -143,6 +146,23 @@ const updatePersistedState = (state: IDailyStepsStore, persistedState: IDailySte
   }
 
   return { ...persistedState, isServerFetchedThisSession: false };
+};
+
+const updateStateOnAppStateActive = (state: IDailyStepsStore) => {
+  const lastUpdated = moment(state.lastUpdated).startOf("day").format();
+  const today = moment().startOf("day").format();
+
+  if (lastUpdated !== today) {
+    return {
+      ...state,
+      dailySteps: 0,
+      serverSteps: 0,
+      isFetching: true,
+      isServerFetchedThisSession: false,
+    };
+  }
+
+  return state;
 };
 
 const updateDailyStepsSuccess = (state: IDailyStepsStore, { challenge }: { challenge: Challenge }) => {

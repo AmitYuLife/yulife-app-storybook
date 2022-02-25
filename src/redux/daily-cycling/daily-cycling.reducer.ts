@@ -14,6 +14,7 @@ import {
   UPDATE_DAILY_CYCLING_DISTANCE_MEASUREMENT_TYPE,
 } from "./daily-cycling.actions";
 import { DistanceMeasurementType } from "@graphql/_core/schema/globalTypes";
+import { UPDATE_APP_STATE_ACTIVE } from "@redux/app/app.actions";
 
 export interface IDailyCyclingStore {
   cyclingMeasurement: DistanceMeasurementType;
@@ -38,6 +39,8 @@ const dailyCyclingReducer = (state: IDailyCyclingStore = getInitialState(), acti
 
       return state;
 
+    case UPDATE_APP_STATE_ACTIVE:
+      return updateStateOnAppStateActive(state);
     case UPDATE_DAILY_CYCLING_SUCCESS:
       return updateDailyCyclingSuccess(state, action.payload);
 
@@ -90,6 +93,20 @@ const updatePersistedState = (state: IDailyCyclingStore, persistedState: IDailyC
   }
 
   return { ...persistedState };
+};
+
+const updateStateOnAppStateActive = (state: IDailyCyclingStore) => {
+  const lastUpdated = moment(state.lastUpdated).startOf("day").format();
+  const today = moment().startOf("day").format();
+
+  if (lastUpdated !== today) {
+    return {
+      ...state,
+      dailyCycling: 0,
+    };
+  }
+
+  return { ...state };
 };
 
 const getUserSuccess = (state: IDailyCyclingStore, res: GetCurrentUser) => ({

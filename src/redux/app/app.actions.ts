@@ -6,6 +6,7 @@ export const UNAUTHENTICATED = "UNAUTHENTICATED";
 export const SHOW_MAINTENANCE = "SHOW_MAINTENANCE";
 export const CHECK_CONNECTION = "CHECK_CONNECTION";
 export const UPDATE_APP_STATE = "UPDATE_APP_STATE";
+export const UPDATE_APP_STATE_ACTIVE = "UPDATE_APP_STATE_ACTIVE";
 export const UPDATE_CURRENT_ROUTE = "UPDATE_CURRENT_ROUTE";
 export const UPDATE_CURRENT_MODAL = "UPDATE_CURRENT_MODAL";
 export const UPDATE_OFFLINE_STATE = "UPDATE_OFFLINE_STATE";
@@ -13,6 +14,10 @@ export const UPDATE_OFFLINE_STATE = "UPDATE_OFFLINE_STATE";
 export const updateAppState = (appState: string): SyncAction<string> => ({
   payload: appState,
   type: UPDATE_APP_STATE,
+});
+
+export const updateAppStateActive = () => ({
+  type: UPDATE_APP_STATE_ACTIVE,
 });
 
 export const updateCurrentRoute = (route: string): SyncAction<string> => ({
