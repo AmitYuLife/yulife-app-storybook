@@ -146,6 +146,27 @@ export function useFitKit() {
       );
     }
 
+    if (
+      options.platform === "GoogleFit" &&
+      permissionState.get("android.permission.ACCESS_FINE_LOCATION") === "never_ask_again"
+    ) {
+      Alert.alert(
+        "Google Fit permissions denied",
+        "To offer you rewards YuLife needs access to your location through Google Fit.",
+        [
+          {
+            text: "Cancel",
+          },
+          {
+            text: "Open settings",
+            onPress: () => {
+              Linking.openSettings();
+            },
+          },
+        ]
+      );
+    }
+
     const filteredRead = options.read.filter((readType) => {
       if (!AndroidSystemPermissionsConfig.has(readType)) {
         return true;
