@@ -175,6 +175,61 @@ const epicRewards = [
   },
 ];
 
+export const collectEventRewards = [
+  {
+    id: "reward_common_2",
+    title: "Common Item",
+    itemBackground: commonBackground,
+    item: commonItem,
+    status: "completed" as RewardStatus,
+    stars: [
+      {
+        id: "star1",
+        uri: yellowStarUri,
+      },
+    ],
+  },
+  {
+    id: "reward_rare_2",
+    title: "Rare Item",
+    itemBackground: rareBackground,
+    item: rareItem,
+    status: "completed" as RewardStatus,
+    stars: [
+      {
+        id: "star1",
+        uri: yellowStarUri,
+      },
+      {
+        id: "star2",
+        uri: yellowStarUri,
+      },
+    ],
+  },
+  {
+    id: "reward_epic_2",
+    title: "Epic Item",
+    itemBackground: epicBackground,
+    item: epicItem,
+    status: "completed" as RewardStatus,
+    animated: true,
+    stars: [
+      {
+        id: "star1",
+        uri: yellowStarUri,
+      },
+      {
+        id: "star2",
+        uri: yellowStarUri,
+      },
+      {
+        id: "star3",
+        uri: yellowStarUri,
+      },
+    ],
+  },
+];
+
 const commonRareRewards = [commonRewards[1], rareRewards[0]];
 export const mixedRewards = [commonRewards[1], rareRewards[0], epicRewards[0]];
 

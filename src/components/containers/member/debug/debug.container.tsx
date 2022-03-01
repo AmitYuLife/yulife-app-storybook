@@ -8,7 +8,9 @@ import { sendTestPush } from "@redux/notifications/notifications.actions";
 import { getUserStart } from "@redux/user/user.actions";
 import { DebugScreen } from "@screens";
 import Logger from "@services/logging/logger";
-import { ROUTES } from "@navigation/constants";
+import { MODALS, ROUTES } from "@navigation/constants";
+import { showYuModal } from "@navigation/root";
+import { collectEventRewards } from "./events-debug/event-rewards-wrapper.debug";
 
 interface IProps {
   componentId: string;
@@ -27,6 +29,7 @@ const DebugContainer: React.FC<Props> = (props) => {
     ROUTE_TO_EVENT_REWARDS = "ROUTE_TO_EVENT_REWARDS",
     ROUTE_TO_PROGRESS_BAR = "ROUTE_TO_PROGRESS_BAR",
     ROUTE_TO_EVENT_DIALOG = "ROUTE_TO_EVENT_DIALOG",
+    ROUTE_TO_COLLECT_EVENT_REWARD_MODAL = "ROUTE_TO_COLLECT_EVENT_REWARD_MODAL",
   }
 
   const list = [
@@ -37,6 +40,7 @@ const DebugContainer: React.FC<Props> = (props) => {
     CODES.ROUTE_TO_EVENT_REWARDS,
     CODES.ROUTE_TO_PROGRESS_BAR,
     CODES.ROUTE_TO_EVENT_DIALOG,
+    CODES.ROUTE_TO_COLLECT_EVENT_REWARD_MODAL,
   ];
 
   const handleClose = () => {
@@ -60,6 +64,22 @@ const DebugContainer: React.FC<Props> = (props) => {
             component: {
               id: ROUTES.eventPanel,
               name: ROUTES.eventPanel,
+            },
+          });
+        }
+
+        if (code === CODES.ROUTE_TO_COLLECT_EVENT_REWARD_MODAL) {
+          return showYuModal({
+            component: {
+              id: MODALS.collectEventReward,
+              name: MODALS.collectEventReward,
+              passProps: {
+                title: "Winter event ended",
+                descriptionTitle: "Great job!",
+                description: `Congrats on completing the\nWinter Event!`,
+                cta: "Claim rewards",
+                rewards: collectEventRewards,
+              },
             },
           });
         }

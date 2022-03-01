@@ -345,4 +345,8 @@ export default [
     name: MODALS.whatsNew,
     component: require("../components/modals/whats-new/whats-new").default,
   },
+  {
+    name: MODALS.collectEventReward,
+    component: require("../components/modals/collect-event-reward/collect-event-reward.modal").default,
+  },
 ];
