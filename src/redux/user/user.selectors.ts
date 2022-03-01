@@ -69,6 +69,24 @@ export const getCurrentUserId = createSelector(reducer, currentUserIdSelector);
 const businessLeaderboardConsentSelector = (state: State) => !!state.leaderboards.find(checkIsCompanyLeaderbaord);
 export const hasBusinessLeaderboardConsent = createSelector(reducer, businessLeaderboardConsentSelector);
 
+const userSurge = (state: State) => state.surge;
+export const getUserSurge = createSelector(reducer, userSurge);
+
+const userAvatar = (state: State) => state.avatar;
+export const getUserAvatar = createSelector(reducer, userAvatar);
+
+const userPassiveChallengesLastUpdate = (state: State) => state.passiveChallengesLastUpdate;
+export const getUserPassiveChallengesLastUpdate = createSelector(reducer, userPassiveChallengesLastUpdate);
+
+const userEndPointsVersion = (state: State) => state.endPointsVersion;
+export const getUserEndPointsVersion = createSelector(reducer, userEndPointsVersion);
+
+const userEarnRate = (state: State) => state.earnRate;
+export const getUserEarnRate = createSelector(reducer, userEarnRate);
+
+const userNotification = (state: State) => state.notification;
+export const getUserNotification = createSelector(reducer, userNotification);
+
 const consentedLeaderboardsSelector = (state: State) =>
   state.leaderboards.reduce((prev: Leaderboard[], curr) => {
     if (checkIsCompanyLeaderbaord(curr)) {

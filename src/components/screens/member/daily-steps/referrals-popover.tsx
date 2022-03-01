@@ -20,10 +20,13 @@ import Markdown from "@molecules/markdown/markdown";
 import { TOP_BAR, Style } from "@styles";
 import styles, { markdownStyles } from "./referrals-popover.styles";
 import { getUserSessionCount } from "@redux/user/user.selectors";
+import AsyncStorage from "@react-native-community/async-storage";
 
 interface IProps {
   onLeftMenuPress: () => void;
 }
+
+const STORAGE_KEY = "@YuStore:referralsPopover";
 
 const ReferralsPopover: FC<IProps> = ({ onLeftMenuPress }) => {
   const [getReferralOnboardingPopover, { data, error }] = useDebouncedQuery<
@@ -47,15 +50,19 @@ const ReferralsPopover: FC<IProps> = ({ onLeftMenuPress }) => {
       setPopoverVisible(true);
       dispatch(setOnboardingReferralsBadge(true));
       await performOnboardingStep({ variables: { step: id } });
+      await AsyncStorage.setItem(STORAGE_KEY, "true");
     } catch (error) {
       Logger.error(error, { file: "referrals-popover" });
     }
   }, [id]);
 
   useEffect(() => {
-    if (sessionCount > 1) {
-      getReferralOnboardingPopover();
-    }
+    (async () => {
+      const isOnboard = await AsyncStorage.getItem(STORAGE_KEY);
+      if (sessionCount > 1 && !isOnboard) {
+        getReferralOnboardingPopover();
+      }
+    })();
   }, []);
 
   useEffect(() => {

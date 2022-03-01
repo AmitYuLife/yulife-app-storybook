@@ -1,28 +1,26 @@
 import React, { useMemo } from "react";
-import { View, StyleSheet, ViewStyle, TextStyle } from "react-native";
+import { View, StyleSheet, ViewStyle } from "react-native";
 import { Style, Colours } from "@styles";
 import { useSelector } from "react-redux";
-import { Text } from "@atoms";
+import { TextTemplate } from "@atoms";
 import { getDailySteps } from "@redux/daily-steps/daily-steps.selectors";
-import { useQuery } from "@apollo/react-hooks";
-import { GetYulifer } from "@graphql/_core/schema";
-import { GQL_QUERY_GET_YULIFER } from "@graphql/yuscreen";
 import { DuelImage } from "../../subcomponents";
 import { addCommasToNumber } from "@utils";
+import { getUserAvatar } from "@redux/user/user.selectors";
 
 const UserSteps = () => {
   const dailySteps = useSelector(getDailySteps);
-  const { data } = useQuery<GetYulifer>(GQL_QUERY_GET_YULIFER, { fetchPolicy: "cache-and-network" });
-  const avatarSource = useMemo(() => data?.user?.avatarRemoteFiles?.pngMini, [data]);
+  const avatar = useSelector(getUserAvatar);
+  const avatarSource = useMemo(() => avatar?.avatarRemoteFiles?.pngMini, [avatar]);
 
   return (
     <View style={styles.wrapper}>
       <View style={styles.imageWrapper}>
         <DuelImage size="medium" uri={avatarSource} />
       </View>
-      <Text bold={true} style={styles.text}>
-        {addCommasToNumber(dailySteps)} steps today
-      </Text>
+      <TextTemplate type={"b2b"} color={Colours.yuscreen.white}>
+        {`${addCommasToNumber(dailySteps)} steps today`}
+      </TextTemplate>
     </View>
   );
 };
@@ -38,11 +36,6 @@ const styles = StyleSheet.create({
     backgroundColor: Colours.blue.b200,
     borderRadius: 8,
   } as ViewStyle,
-  text: {
-    color: Colours.yuscreen.white,
-    fontSize: Style.adjust(18),
-    lineHeight: Style.adjust(22),
-  } as TextStyle,
   imageWrapper: {
     justifyContent: "flex-end",
     alignItems: "flex-end",

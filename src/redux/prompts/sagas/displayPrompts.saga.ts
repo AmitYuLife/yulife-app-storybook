@@ -1,10 +1,17 @@
 import { MODALS } from "@navigation/constants";
-import { call, delay, take } from "redux-saga/effects";
+import { call, delay, select, take } from "redux-saga/effects";
 import { pendingFeedbackFormQuery } from "@graphql/member";
 import { Unpacked } from "@utils";
 import { showAppReviewModal, showYuModal } from "@navigation/root";
+import { getUserNotification } from "@redux/user/user.selectors";
 
 export default function* displayPromptsSaga() {
+  const userNotification: ReturnType<typeof getUserNotification> = yield select(getUserNotification);
+
+  if (!userNotification.hasPendingForm && !userNotification.hasAppReview) {
+    return;
+  }
+
   try {
     const result: Unpacked<typeof pendingFeedbackFormQuery> = yield call(pendingFeedbackFormQuery);
 

@@ -7,14 +7,20 @@ import { getUserFeatures, getCurrentUserId } from "../user.selectors";
 import getDuelsWithClient from "@graphql/duels/getDuels.gql";
 import { GetDuels } from "@graphql/_core/schema";
 import { showYuModal } from "@navigation/root";
+import { getUserNotification } from "@redux/user/user.selectors";
 
 export default function* sendDuelInvitation() {
   const currentRoute: ReturnType<typeof getRouteState> = yield select(getRouteState);
   const currentModal: ReturnType<typeof getRouteState> = yield select(getModalState);
   const userId: ReturnType<typeof getCurrentUserId> = yield select(getCurrentUserId);
   const features: ReturnType<typeof getUserFeatures> = yield select(getUserFeatures);
+  const userNotification: ReturnType<typeof getUserNotification> = yield select(getUserNotification);
 
   const isDuelsEnabled = features.showDuels;
+
+  if (!userNotification.hasDuels) {
+    return;
+  }
 
   const { data }: ApolloQueryResult<GetDuels> = yield call(getDuelsWithClient);
 

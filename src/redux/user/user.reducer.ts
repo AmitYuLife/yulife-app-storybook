@@ -8,6 +8,8 @@ import {
   LoginUser,
   UpdateLeaderboardConsentVariables,
   UpdateMemberConsent,
+  GetUserProfile_getUserProfile_surge_lottie,
+  GetUserSurge_getUserSurge as IUserSurge,
 } from "@graphql/_core/schema";
 import { MobileConsentInput } from "@graphql/_core/schema/globalTypes";
 import { SyncAction } from "../_core/types";
@@ -27,6 +29,9 @@ import {
   UPDATE_USER_CONSENT_SUCCESS,
   UPDATE_ACTIVE_LEADERBOARD_ID,
   LOGOUT_SUCCESS,
+  UPDATE_USER_PROFILE,
+  UPDATE_USER_AVATAR,
+  UPDATE_USER_SURGE,
 } from "./user.actions";
 import { AUTHENTICATED } from "@redux/app/app.actions";
 import { reduceUserFeatures } from "./user.helpers";
@@ -43,6 +48,7 @@ export type ILeaderboard = GetCurrentUser_getCurrentUser_leaderboards & {
 
 type Connection = GetCurrentUser_getCurrentUser_connections & { isLoading?: boolean };
 type Business = (GetCurrentUser_getCurrentUser_business & { isLoading?: boolean }) | null;
+type SurgeLottie = GetUserProfile_getUserProfile_surge_lottie;
 
 export enum MembershipTypes {
   "YULIFE_LITE" = "Yulife Lite",
@@ -65,6 +71,7 @@ export interface IUserStore {
   features: IFeature;
   leaderboards: ILeaderboard[];
   activeLeaderboardId: string;
+  earnRate: number;
   popupVisibility: {
     /**
      *  Every time we'll add a new feature popup we'll add a new key here and mark it as true,
@@ -81,6 +88,36 @@ export interface IUserStore {
     rate: number;
   };
   business: Business;
+  surge: {
+    endDateTime: string;
+    multiplier: string;
+    title: string;
+    description: string;
+    lottie: SurgeLottie;
+  };
+  avatar: {
+    isAvatarCreated: boolean;
+    avatarRemoteFiles: {
+      svgFull: string;
+      pngFull: string;
+      pngMini: string;
+    };
+  };
+  passiveChallengesLastUpdate: {
+    cycling: string;
+    meditation: string;
+    steps: string;
+  };
+  endPointsVersion: {
+    getMobileCopy: string;
+    getMobileAssets: string;
+  };
+  notification: {
+    hasMobileWhatsNewModal: boolean;
+    hasDuels: boolean;
+    hasPendingForm: boolean;
+    hasAppReview: boolean;
+  };
 }
 
 export const getInitialState = (sessionCount: number = 0): IUserStore => ({
@@ -96,9 +133,11 @@ export const getInitialState = (sessionCount: number = 0): IUserStore => ({
   connections: [],
   leaderboards: [],
   activeLeaderboardId: "",
+  earnRate: 0,
   popupVisibility: {
     leaderboard: false,
   },
+  //check if we still need this
   surgeIntro: {
     visibility: false,
     activity: null,
@@ -109,6 +148,36 @@ export const getInitialState = (sessionCount: number = 0): IUserStore => ({
     alpha: true,
     isGroup: false,
     isWellbeingAccess: false,
+  },
+  surge: {
+    endDateTime: "",
+    multiplier: "",
+    title: "",
+    description: "",
+    lottie: null,
+  },
+  avatar: {
+    isAvatarCreated: false,
+    avatarRemoteFiles: {
+      svgFull: "",
+      pngFull: "",
+      pngMini: "",
+    },
+  },
+  passiveChallengesLastUpdate: {
+    cycling: "",
+    meditation: "",
+    steps: "",
+  },
+  endPointsVersion: {
+    getMobileCopy: "",
+    getMobileAssets: "",
+  },
+  notification: {
+    hasMobileWhatsNewModal: false,
+    hasDuels: false,
+    hasPendingForm: false,
+    hasAppReview: false,
   },
 });
 
@@ -154,6 +223,15 @@ export const userReducer = (state: IUserStore = getInitialState(), action: SyncA
 
     case UPDATE_LEADERBOARD_POPUP_VISIBILITY:
       return updatePopupVisibility(state, action.payload, POPUPTYPE.LEADERBOARD);
+
+    case UPDATE_USER_PROFILE:
+      return updateUserProfile(state, action.payload);
+
+    case UPDATE_USER_AVATAR:
+      return { ...state, avatar: { ...state.avatar, avatarRemoteFiles: { ...action.payload } } };
+
+    case UPDATE_USER_SURGE:
+      return updateUserSurge(state, action.payload);
 
     case SET_SHOW_SURGE_INTRO:
       return updateSurgeIntro(state, action.payload);
@@ -210,6 +288,42 @@ const updatePersistedState = (persistedState: IUserStore) => {
       visibility: false,
       activity: null as SurgeActivity,
       rate: 1,
+    };
+  }
+
+  if (!persistedState.surge) {
+    newState.surge = {
+      endDateTime: "",
+      multiplier: "",
+      title: "",
+      description: "",
+      lottie: null,
+    };
+  }
+
+  if (!persistedState.avatar) {
+    newState.avatar = {
+      isAvatarCreated: false,
+      avatarRemoteFiles: {
+        svgFull: "",
+        pngFull: "",
+        pngMini: "",
+      },
+    };
+  }
+
+  if (!persistedState.passiveChallengesLastUpdate) {
+    newState.passiveChallengesLastUpdate = {
+      cycling: "",
+      meditation: "",
+      steps: "",
+    };
+  }
+
+  if (!persistedState.endPointsVersion) {
+    newState.endPointsVersion = {
+      getMobileCopy: "",
+      getMobileAssets: "",
     };
   }
 
@@ -368,4 +482,31 @@ const updatePopupVisibility = (state: IUserStore, payload: boolean, type: POPUPT
 const updateSurgeIntro = (state: IUserStore, surgeIntro: IUserStore["surgeIntro"]) => ({
   ...state,
   surgeIntro,
+});
+
+const updateUserProfile = (state: IUserStore, payload: Partial<IUserStore>) => ({
+  ...state,
+  earnRate: payload.earnRate,
+  surge: {
+    ...payload.surge,
+  },
+  avatar: {
+    ...payload.avatar,
+  },
+  passiveChallengesLastUpdate: {
+    ...payload.passiveChallengesLastUpdate,
+  },
+  endPointsVersion: {
+    ...payload.endPointsVersion,
+  },
+  notification: {
+    ...payload.notification,
+  },
+});
+
+const updateUserSurge = (state: IUserStore, payload: IUserSurge) => ({
+  ...state,
+  surge: {
+    ...payload,
+  },
 });

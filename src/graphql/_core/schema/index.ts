@@ -83,7 +83,7 @@ export * from "./GetDuelsTomorrow";
 export * from "./GetHighlights";
 export * from "./GetLeaderboard";
 export * from "./GetMagicLink";
-export * from "./GetMobileAssets";
+export * from "./GetMobileAssetsWithVersion";
 export * from "./GetMobileCopy";
 export * from "./GetMobilePaymentCardSetup";
 export * from "./GetMobileWhatsNewModal";

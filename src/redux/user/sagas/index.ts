@@ -12,6 +12,7 @@ import {
   UPDATE_CONNECTION_START,
   UPDATE_LEADERBOARD_CONSENT_START,
   UPDATE_USER_CONSENT,
+  UPDATE_USER_PROFILE,
 } from "../user.actions";
 
 import fetchConnectionsSaga from "./fetchConnectionsSaga.sagas";
@@ -34,7 +35,7 @@ import getUserProfileData from "./getUserProfileData.sagas";
 export default [
   takeLatest(AUTHENTICATED, fetchUserOnAppStateChangeSaga),
   takeLatest(GET_USER_START, getUserDataSaga),
-  takeLatest(GET_USER_SUCCESS, sendDuelInvitationSaga),
+  takeLatest(UPDATE_USER_PROFILE, sendDuelInvitationSaga),
   takeLatest(GET_USER_SUCCESS, showLeaderboardInviteOnGetUserSaga),
   takeLatest(SET_USER_NO_ACCESS, setUserNoAccessSaga),
   takeLatest(LOGIN_USER_SUCCESS, loginUserSuccessSaga),

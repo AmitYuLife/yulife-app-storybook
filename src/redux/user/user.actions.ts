@@ -1,8 +1,10 @@
 import {
   GetCurrentUser,
   LoginUser,
+  UpdateAvatar_updateUserAvatarParts_avatarRemoteFiles as AvatarRemoteFiles,
   UpdateLeaderboardConsentVariables,
   UpdateMemberConsent,
+  GetUserSurge_getUserSurge as IUserSurge,
 } from "@graphql/_core/schema";
 import { MobileConsentInput } from "@graphql/_core/schema/globalTypes";
 import { IUserStore } from "./user.reducer";
@@ -34,6 +36,9 @@ export const LOGOUT_START = "LOGOUT_START";
 export const LOGOUT_SUCCESS = "LOGOUT_SUCCESS";
 export const OPEN_MY_ACCOUNT = "OPEN_MY_ACCOUNT";
 export const SET_SHOW_SURGE_INTRO = "SET_SHOW_SURGE_INTRO";
+export const UPDATE_USER_PROFILE = "UPDATE_USER_PROFILE";
+export const UPDATE_USER_AVATAR = "UPDATE_USER_AVATAR";
+export const UPDATE_USER_SURGE = "UPDATE_USER_SURGE";
 
 export const refreshUserToken = () => ({
   type: REFRESH_USER_TOKEN,
@@ -130,5 +135,20 @@ export const setShowSurgeIntro = (payload: IUserStore["surgeIntro"]) => ({
 
 export const updateActiveLeaderboardId = (payload: IUserStore["activeLeaderboardId"]) => ({
   type: UPDATE_ACTIVE_LEADERBOARD_ID,
+  payload,
+});
+
+export const updateUserProfile = (payload: Partial<IUserStore>) => ({
+  type: UPDATE_USER_PROFILE,
+  payload,
+});
+
+export const updateUserAvatarRemoteFiles = (payload: AvatarRemoteFiles) => ({
+  type: UPDATE_USER_AVATAR,
+  payload,
+});
+
+export const updateUserSurge = (payload: IUserSurge) => ({
+  type: UPDATE_USER_SURGE,
   payload,
 });
