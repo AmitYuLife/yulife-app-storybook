@@ -12,7 +12,7 @@ import { Style } from "@styles";
 import styles from "./daily-steps.screen.styles";
 import YuCoin from "./assets/yu-coin";
 import ReferralsPopover from "./referrals-popover";
-import { GetUserSurge_getUserSurge } from "@graphql/_core/schema";
+import { GetUserProfile_getUserProfile_surge } from "@graphql/_core/schema";
 import { SurgeModal } from "@components/modals";
 import { showFloatingModal } from "@components/modals/floating-modals/showFloatingModal";
 import { MODALS } from "@navigation/constants";
@@ -24,7 +24,7 @@ interface IProps extends IConnectedScreenProps {
   onCoinPress: () => void;
   onStreakPress?: () => void;
   theme: IThemeStore["dailyStepsScreen"];
-  userSurge: GetUserSurge_getUserSurge;
+  userSurge: GetUserProfile_getUserProfile_surge;
 }
 
 type Props = IProps;
@@ -38,7 +38,7 @@ const DailyStepsScreen = ({
 }: Props) => {
   const onSurgePress = useCallback(async () => {
     const child = <SurgeModal {...userSurge} />;
-    await showFloatingModal(child, userSurge.lottie, MODALS.surgeOverlay);
+    await showFloatingModal(child, userSurge?.lottie, MODALS.surgeOverlay);
   }, [userSurge]);
 
   return (

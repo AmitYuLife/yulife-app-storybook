@@ -3,13 +3,10 @@ import { ChallengesPayload } from "@graphql/_core/schema/globalTypes";
 import moment from "moment";
 import { spawn, call, select, delay, put } from "redux-saga/effects";
 import Logger from "@services/logging/logger";
-import { getUserFeatures } from "../../user/user.selectors";
+import { getUserFeatures, getUserPassiveChallengesLastUpdate } from "../../user/user.selectors";
 import upsertPassiveChallenges from "@graphql/challenges/upsertPassiveChallenges.gql";
 import upsertDailyPassives from "@graphql/challenges/upsertDailyPassives.gql";
 import { Platform } from "react-native";
-import getPassiveChallengesLastUpdate from "@graphql/challenges/getPassiveChallengesLastUpdate.gql";
-import { GetPassiveChallengesLastUpdate } from "@graphql/_core/schema";
-import { ApolloQueryResult } from "apollo-client";
 import { getRouteState } from "@redux/app/app.selectors";
 import { MODALS } from "@navigation/constants";
 import { showYuModal } from "@navigation/root";
@@ -17,16 +14,10 @@ import { Navigation } from "react-native-navigation";
 import { refreshTotalCoins } from "@redux/coins/coins.actions";
 import getPassiveSinceLastUpdateAndroid from "./getPassiveSinceLastUpdateAndroid.saga";
 import getPassiveSinceLastUpdateIos from "./getPassiveSinceLastUpdateIos.saga";
-import { UPDATE_APP_STATE } from "@redux/app/app.actions";
 import { Unpacked } from "@utils";
 import { getToken } from "@services/storage";
 
-export default function* sendPassiveActivity(dataPayload: { payload: string; type: string }): any {
-  const { payload: appState, type } = dataPayload || {};
-  if (type === UPDATE_APP_STATE && appState !== "active") {
-    return;
-  }
-
+export default function* sendPassiveActivity(): any {
   const token: Unpacked<typeof getToken> = yield call(getToken);
   if (!token) {
     return;
@@ -38,10 +29,9 @@ export default function* sendPassiveActivity(dataPayload: { payload: string; typ
       return;
     }
 
-    const { data }: ApolloQueryResult<GetPassiveChallengesLastUpdate> = yield call(getPassiveChallengesLastUpdate);
-
-    const { meditation: meditationLastUpdate, cycling: cyclingLastUpdate, steps: stepsLastUpdate } =
-      data?.getPassiveChallengesLastUpdate || {};
+    const { meditation: meditationLastUpdate, cycling: cyclingLastUpdate, steps: stepsLastUpdate } = yield select(
+      getUserPassiveChallengesLastUpdate
+    );
 
     if (!stepsLastUpdate && !meditationLastUpdate && !cyclingLastUpdate) {
       return;

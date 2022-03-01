@@ -9,6 +9,7 @@ import { getModalState } from "@redux/app/app.selectors";
 import { UPDATE_APP_STATE, UPDATE_CURRENT_MODAL } from "@redux/app/app.actions";
 import { showYuModal } from "@navigation/root";
 import { getToken } from "@services/storage";
+import { getUserNotification } from "@redux/user/user.selectors";
 
 export function* getMobileWhatsNewModalSaga(dataPayload: { payload: string; type: string }) {
   const { payload: appState, type } = dataPayload || {};
@@ -16,8 +17,9 @@ export function* getMobileWhatsNewModalSaga(dataPayload: { payload: string; type
     return;
   }
 
+  const userNotification: ReturnType<typeof getUserNotification> = yield select(getUserNotification);
   const token: Unpacked<typeof getToken> = yield call(getToken);
-  if (!token) {
+  if (!token || !userNotification.hasMobileWhatsNewModal) {
     return;
   }
 

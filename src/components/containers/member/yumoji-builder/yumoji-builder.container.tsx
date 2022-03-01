@@ -25,6 +25,7 @@ import { showGenericModal } from "@navigation/utils";
 import { useBackHandler } from "@services/hooks/useBackHandler";
 import { useDispatch } from "react-redux";
 import { refreshTotalCoins } from "@redux/coins/coins.actions";
+import { updateUserAvatarRemoteFiles } from "@redux/user/user.actions";
 
 interface IProps {
   heading: string;
@@ -47,8 +48,10 @@ const YumojiBuilderContainer: FC<IProps> = ({ heading }) => {
           })),
         },
         // TODO: work out how to avoid refetch and instead set the fragment direct instead of re-fetching
-        refetchQueries: ["GetYulifer", "GetLeaderboard"],
+        refetchQueries: ["GetLeaderboard"],
       });
+
+      appDispatch(updateUserAvatarRemoteFiles(response?.data?.updateUserAvatarParts?.avatarRemoteFiles));
 
       if (response.data?.updateUserAvatarParts?.rewarded) {
         appDispatch(refreshTotalCoins());
