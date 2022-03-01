@@ -119,6 +119,7 @@ export const MODALS = {
   personalProductStepContinue: "yulife.product.ContinueJourney",
   switchToGoogleFit: "yulife.modals.switchToGoogleFit",
   whatsNew: "yulife.modals.whatsNew",
+  collectEventReward: "yulife.modal.collectEventReward",
 };
 
 export const bottomTabs: OptionsBottomTabs = {
