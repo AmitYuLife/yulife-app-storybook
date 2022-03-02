@@ -102,17 +102,20 @@ export const queryFitKitByTypes = async (
       allResults.push(...results);
     } catch (e) {
       error = true;
-      Logger.error(e, {
-        event: "RNFitKit.sampleQuery",
-        QueryResult: e.QueryResult,
-        QueryOptions: e.QueryOptions,
-        ExceptionName: e.ExceptionName,
-        ExceptionReason: e.ExceptionReason,
-      });
+
+      const errorMessage: string = e.message || "";
+      if (!errorMessage.startsWith("An error occurred retrieving samples of type")) {
+        Logger.error(e, {
+          event: "RNFitKit.sampleQuery",
+          userInfo: e.userInfo,
+        });
+      }
+
       Logger.logMixpanelEvent(`raw_${fitKitType}_query_error`, {
-        error: e.message,
+        error: errorMessage,
         date_start: startTime,
         date_end: endTime,
+        userInfo: e.userInfo,
       });
     }
   }
