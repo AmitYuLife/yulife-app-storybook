@@ -4,7 +4,7 @@ import * as given from "./_steps/given"
 import * as when from "./_steps/when"
 import * as then from "./_steps/then"
 import { QUESTS_SCREEN, LEVEL_CHALLENGE_BUTTON, CHALLENGE_TILE, GENERIC_SCREEN_HEADING, CHALLENGE_PROGRESS_BAR, GENERIC_SCREEN_CTA, BUTTON_CLOSE_CHALLENGE, NAV_BAR, VIEW_TOP_RIGHT_COIN_COUNTER, STEPS_COUNT } from "@ids";
-import { CUSTOMER_9, AUTH_9 } from "@data";
+import { CUSTOMER_9, AUTH_9, CUSTOMER_35, AUTH_35 } from "@data";
 
 Feature("As a user I can take a challenge", async () => {
     
@@ -43,7 +43,7 @@ Feature("As a user I can take a challenge", async () => {
             Then("I should be on the quests screen", then.idVisible(QUESTS_SCREEN(0)))
             Then("I should see the level 1 circle", then.idVisible(LEVEL_CHALLENGE_BUTTON(1)))
             When("I tap this button", when.tapID(LEVEL_CHALLENGE_BUTTON(1)), async () => {
-                Then("I should see the shor t stroll challenge", then.idVisible(CHALLENGE_TILE("short stroll")))
+                Then("I should see the short stroll challenge", then.idVisible(CHALLENGE_TILE("short stroll")))
                 When("I tap this challenge", when.tapID(CHALLENGE_TILE("short stroll")), async () => {
                     Then("I should see a screen with a take challenge option", then.textVisible("short stroll / 0 min"))
                     When("I tap 'take challenge'", when.tapText("Take challenge"), async () => {
@@ -93,6 +93,34 @@ Feature("As a user I can take a challenge", async () => {
                                                 Then("I should see the number of steps I just completed", then.idVisible(STEPS_COUNT(3050)))
                                                 Then("I should see the number of coins I've earned today (270)", then.textVisible("270 YuCoin today"))
                                             })
+                                        })
+                                    })
+                                })
+                            })
+                        })
+                    })
+                })
+            })
+        })
+        Scenario("I can complete today's challenge and then the homepage button updates to invite a colleague", scenario.start, async () => {
+            Given("I am on the quest tab as a user with a daily challenge", given.logInAndGoToTab("quests", CUSTOMER_35, AUTH_35), async () => {
+                Then("I should see my coins in the top right", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(3280)))
+                When("I tap level 6", when.tapID(LEVEL_CHALLENGE_BUTTON(6)), async () => {
+                    Then("I should see the short stroll challenge", then.idVisible(CHALLENGE_TILE("short stroll")))
+                    Then("I should see the long walk challenge", then.idVisible(CHALLENGE_TILE("long walk")))
+                    Then("I should see the meditation challenge", then.idVisible(CHALLENGE_TILE("meditation")))
+                    When("I start the long walk challenge", when.startChallenge("long walk"), async () => {
+                        Then("I should be on the challenge screen", then.idVisible(CHALLENGE_PROGRESS_BAR))
+                        When("I walk over 3000 steps", when.sendSteps(3050, 35000), async () => {
+                            Then("I should see the well done screen", then.onChallengeComplete(3050, 6))
+                            When("I tap collect on the well done screen", when.tapText("collect", 5000), async () => {
+                                Then("I should see the first day streak screen", then.textVisible("First day done!", 10000))
+                                When("I dismiss the streak screen", when.tapText("Done", 5000), async()=>{
+                                    Then("I should be on the quest screen", then.idVisible(LEVEL_CHALLENGE_BUTTON(7), 3000))
+                                    When("I tap yucoin in the tab", when.tapID(NAV_BAR("yucoin")), async () => {
+                                        Then("I should see the Invite a colleague button", then.idVisible("REFERRALS_BUTTON_HOMEPAGE"))
+                                        When("I tap on the invite button", when.tapID("REFERRALS_BUTTON_HOMEPAGE"), async () => {
+                                            Then("I should be on the Invite a Colleague page", then.isOnInivteColleaguePage)
                                         })
                                     })
                                 })

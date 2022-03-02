@@ -15,6 +15,7 @@ import { handleNavigateToQuestsTab } from "@navigation/utils";
 import { getPositionBottom } from "@organisms/nav-bar/nav-bar.styles";
 import { getDailyCycling } from "@redux/daily-cycling/daily-cycling.selectors";
 import { getDailyStepsTheme } from "@redux/theme/theme.selectors";
+import { REFERRALS_BUTTON_HOMEPAGE } from "@ids";
 
 type DailyStepsOnlineProps = {
   onReferralsButtonPress: () => void;
@@ -75,7 +76,12 @@ export const DailyStepsOnline = memo(({ onReferralsButtonPress }: DailyStepsOnli
       )}
       {!showReferralsButton ? null : (
         <View style={styles.buttonWrapper}>
-          <Button onPress={onReferralsButtonPress} size="Large" label="Invite a colleague" />
+          <Button
+            size="Large"
+            label="Invite a colleague"
+            onPress={onReferralsButtonPress}
+            testID={REFERRALS_BUTTON_HOMEPAGE}
+          />
         </View>
       )}
     </>

@@ -20,7 +20,7 @@ Feature("Referrals work as intended", async () => {
                         Then("I should see the Invite a colleague button", then.textVisible("Invite a colleague"))
                         Then("the invite button should have the notification badge", then.idVisible(REFERRALS_BUTTON_BADGE(true)))
                         When("I tap on the invite button", when.tapText("Invite a colleague"), async () => {
-                            Then("I should be on the Invite a Colleague page", then.isOnInivteColleaguePage(false))
+                            Then("I should be on the Invite a Colleague page", then.isOnInivteColleaguePage)
                             When("I tap the invite a colleague button", when.tapID(REFERRALS_INVITE_BUTTON), async () => {
                                 Then("I should see the share modal", then.textVisible("Join me on YuLife and earn vouchers for walking and looking after your wellbeing."))
                                 When("I press off the share modal to close it", when.tapID(BACK_BUTTON), async () => {
@@ -54,7 +54,7 @@ Feature("Referrals work as intended", async () => {
                         Then("I should see the Invite a colleague button", then.textVisible("Invite a colleague"))
                         Then("the invite button should have the notification badge", then.idVisible(REFERRALS_BUTTON_BADGE(true)))
                         When("I tap on the invite button", when.tapText("Invite a colleague"), async () => {
-                            Then("I should be on the Invite a Colleague page", then.isOnInivteColleaguePage(false))
+                            Then("I should be on the Invite a Colleague page", then.isOnInivteColleaguePage)
                             When("I close the app", when.restartWithoutDelete, async () => {
                                 Then("I should no longer see the the popover", then.referralsPopoverNotVisible)
                                 Then("the menu icon should no longer have a badge", then.idVisible(MENU_ICON_BADGE(false))) 
