@@ -104,6 +104,10 @@ export const queryFitKitByTypes = async (
       error = true;
       Logger.error(e, {
         event: "RNFitKit.sampleQuery",
+        QueryResult: e.QueryResult,
+        QueryOptions: e.QueryOptions,
+        ExceptionName: e.ExceptionName,
+        ExceptionReason: e.ExceptionReason,
       });
       Logger.logMixpanelEvent(`raw_${fitKitType}_query_error`, {
         error: e.message,
