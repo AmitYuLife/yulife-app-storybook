@@ -7,6 +7,34 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.22.0] - 2022-03-02
+
+### Bugfixes
+
+- Bugfix: Remove yumojiRemoteUrl check from yu-screen container
+- Bugfix GS-242: Surge modal countdown and close on expiration
+- Bugfix GS-235: Fix never ask again location permission popup
+- Bugfix: Set min width for progress bar (today's earnings screen)
+- Bugfix GS-188: Event Dialog styling fixes
+- Bugfix GS-248: Reset next day core activity data on active app state
+- Bugfix GS-250: Block yesterday last update queries
+- Bugfix XSE-774: expand on target component
+
+### Tasks
+
+- Task GS-236: Kill as many queries on app load
+- Task GS-191: Create event reward modal
+
+### Chores
+
+- Chore: Trigger updateCopySaga after updateUserProfile is trigged
+- Chore: Skip sample error when no fitkit results for bugsnag
+
+### Extra
+
+- Hotfix: Added bugsnag metadata to error log
+- detox/invite_colleague
+
 ## [3.21.0] - 2022-02-23
 
 ### Bugfixes
