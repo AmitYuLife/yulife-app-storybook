@@ -32,9 +32,7 @@ const _YuScreenContainer = (props: ConnectedState) => {
 
   return (
     <YuScreenContext.Provider value={{ earnRate, yumojiRemoteUrl, popover, setPopover }}>
-      <YuScreenLayout testID={YUSCREEN_V3(true)}>
-        {!yumojiRemoteUrl || !earnRate ? <YuScreenLoading /> : <YuScreen />}
-      </YuScreenLayout>
+      <YuScreenLayout testID={YUSCREEN_V3(true)}>{!earnRate ? <YuScreenLoading /> : <YuScreen />}</YuScreenLayout>
     </YuScreenContext.Provider>
   );
 };
