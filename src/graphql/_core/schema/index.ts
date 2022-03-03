@@ -13,6 +13,7 @@ export * from "./ContentItemButton";
 export * from "./ContentItemCollapsingGenericHeader";
 export * from "./ContentItemCollapsingHeaderProductInfo";
 export * from "./ContentItemConfirm";
+export * from "./ContentItemCostPayoutBenefitCard";
 export * from "./ContentItemCoverListItem";
 export * from "./ContentItemCoverPicker";
 export * from "./ContentItemDatePicker";

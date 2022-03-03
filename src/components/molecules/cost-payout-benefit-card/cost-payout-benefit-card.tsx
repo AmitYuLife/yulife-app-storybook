@@ -4,6 +4,7 @@ import { PackageType, TextTemplate } from "@atoms";
 import { CoverType } from "@graphql/_core/schema/globalTypes";
 import { mapCoverTypeToColorTheme, Style } from "@styles";
 import { Colours } from "@styles";
+import Markdown from "../markdown/markdown";
 
 interface Props {
   costValue: string;
@@ -14,7 +15,7 @@ interface Props {
   benefitIntervalMarkdown: string;
 }
 
-const PackageCostBenefitCard = (props: Props) => {
+const CostPayoutBenefitCard = (props: Props) => {
   const { costValue, costDescription, coverType, benefitDescription, benefitIntervalMarkdown, benefitValue } = props;
 
   const adaptiveCostValueTextType = getAdaptiveCostValueTextType(costValue.length);
@@ -43,16 +44,14 @@ const PackageCostBenefitCard = (props: Props) => {
               {benefitValue}
             </TextTemplate>
           </View>
-          <TextTemplate color={Colours.neutral.white} type="l1">
-            {benefitIntervalMarkdown}
-          </TextTemplate>
+          <Markdown text={benefitIntervalMarkdown} markdownStyles={benefitIntervalMarkdownStyle} />
         </View>
       </View>
     </View>
   );
 };
 
-export default memo(PackageCostBenefitCard);
+export default memo(CostPayoutBenefitCard);
 
 function getAdaptiveCostValueTextType(length: number) {
   if (length > 8) {
@@ -96,3 +95,11 @@ const styles = StyleSheet.create({
     marginTop: Style.adjust(12),
   } as ViewStyle,
 });
+
+const benefitIntervalMarkdownStyle = {
+  text: {
+    color: Colours.neutral.white,
+    fontSize: Style.adjust(14),
+    lineHeight: Style.adjust(16),
+  },
+};

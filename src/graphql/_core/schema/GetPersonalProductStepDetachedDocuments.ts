@@ -52,7 +52,8 @@ export interface GetPersonalProductStepDetachedDocuments_getPersonalProductStepD
     | "ContentItemSelectedPackageCards"
     | "ContentItemProcessingTimer"
     | "ContentItemYuCoinPower"
-    | "ContentItemProgressSteps";
+    | "ContentItemProgressSteps"
+    | "ContentItemCostPayoutBenefitCard";
 }
 
 export interface GetPersonalProductStepDetachedDocuments_getPersonalProductStepDetachedDocuments_body_ContentItemPersonalProductDocuments_headingImage_image {

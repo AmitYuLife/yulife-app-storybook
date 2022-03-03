@@ -1229,6 +1229,23 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemS
     | null;
 }
 
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemCostPayoutBenefitCard_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemCostPayoutBenefitCard {
+  __typename: "ContentItemCostPayoutBenefitCard";
+  id: string;
+  costValue: string;
+  costDescription: string;
+  coverType: CoverType;
+  benefitDescription: string;
+  benefitValue: string;
+  benefitIntervalMarkdown: string;
+  styles: GetPersonalProductStep_getPersonalProductStep_body_ContentItemCostPayoutBenefitCard_styles[] | null;
+}
+
 export type GetPersonalProductStep_getPersonalProductStep_body =
   | GetPersonalProductStep_getPersonalProductStep_body_ContentItemProgressBar
   | GetPersonalProductStep_getPersonalProductStep_body_ContentItemTextInput
@@ -1261,7 +1278,8 @@ export type GetPersonalProductStep_getPersonalProductStep_body =
   | GetPersonalProductStep_getPersonalProductStep_body_ContentItemPersonalProductInfo
   | GetPersonalProductStep_getPersonalProductStep_body_ContentItemGpDetails
   | GetPersonalProductStep_getPersonalProductStep_body_ContentItemMultiButton
-  | GetPersonalProductStep_getPersonalProductStep_body_ContentItemSelectedPackageAccordion;
+  | GetPersonalProductStep_getPersonalProductStep_body_ContentItemSelectedPackageAccordion
+  | GetPersonalProductStep_getPersonalProductStep_body_ContentItemCostPayoutBenefitCard;
 
 export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentItemLottie {
   __typename:
@@ -1303,7 +1321,8 @@ export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentIte
     | "ContentItemSelectedPackageCards"
     | "ContentItemProcessingTimer"
     | "ContentItemYuCoinPower"
-    | "ContentItemProgressSteps";
+    | "ContentItemProgressSteps"
+    | "ContentItemCostPayoutBenefitCard";
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentItemButton_onPress {
@@ -1535,7 +1554,8 @@ export interface GetPersonalProductStep_getPersonalProductStep_header_ContentIte
     | "ContentItemSelectedPackageAccordion"
     | "ContentItemFade"
     | "ContentItemSelectedPackageCards"
-    | "ContentItemYuCoinPower";
+    | "ContentItemYuCoinPower"
+    | "ContentItemCostPayoutBenefitCard";
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_header_ContentItemHeaderBar_onLeftIconPress {
@@ -1731,7 +1751,8 @@ export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_Con
     | "ContentItemSelectedPackageCards"
     | "ContentItemProcessingTimer"
     | "ContentItemYuCoinPower"
-    | "ContentItemProgressSteps";
+    | "ContentItemProgressSteps"
+    | "ContentItemCostPayoutBenefitCard";
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemImage_image {

@@ -50,6 +50,7 @@ import {
   GQL_FRAGMENT_CONTENT_ITEM_PROGRESS_STEPS,
   GQL_FRAGMENT_CONTENT_ITEM_PROGRESS_STEPS_THEME,
   GQL_FRAGMENT_CONTENT_ITEM_PROGRESS_STEPS_THEME_OPTION,
+  GQL_FRAGMENT_CONTENT_ITEM_COST_PAYOUT_BENEFIT_CARD,
 } from "../_fragments/content.gql";
 
 export const GQL_QUERY_GET_PERSONAL_PRODUCT_STEP = gql`
@@ -101,6 +102,7 @@ export const GQL_QUERY_GET_PERSONAL_PRODUCT_STEP = gql`
   ${GQL_FRAGMENT_CONTENT_ITEM_PROGRESS_STEPS}
   ${GQL_FRAGMENT_CONTENT_ITEM_PROGRESS_STEPS_THEME}
   ${GQL_FRAGMENT_CONTENT_ITEM_PROGRESS_STEPS_THEME_OPTION}
+  ${GQL_FRAGMENT_CONTENT_ITEM_COST_PAYOUT_BENEFIT_CARD}
 
   query GetPersonalProductStep($productId: String!) {
     getPersonalProductStep(productId: $productId) {
@@ -236,6 +238,9 @@ export const GQL_QUERY_GET_PERSONAL_PRODUCT_STEP = gql`
         }
         ... on ContentItemSelectedPackageAccordion {
           ...ContentItemSelectedPackageAccordion
+        }
+        ... on ContentItemCostPayoutBenefitCard {
+          ...ContentItemCostPayoutBenefitCard
         }
       }
       footer {

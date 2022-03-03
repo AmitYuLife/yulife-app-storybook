@@ -1,16 +1,16 @@
 import React from "react";
 import { ScrollView, View } from "react-native";
 import { storiesOf } from "@storybook/react-native";
-import PackageCostBenefitCard from "./package-cost-benefit-card";
+import CostPayoutBenefitCard from "./cost-payout-benefit-card";
 import { CoverType } from "@graphql/_core/schema/globalTypes";
 import { Style } from "@styles";
 
-storiesOf("molecules/package-cost-benefit-card", module).add("default", () => {
+storiesOf("molecules/cost-payout-benefit-card", module).add("default", () => {
   return (
     <ScrollView>
       <View style={{ height: Style.DEVICE_HEIGHT / 3 }} />
       <View style={{ paddingHorizontal: Style.adjust(24) }}>
-        <PackageCostBenefitCard
+        <CostPayoutBenefitCard
           costValue="£6666.66*"
           costDescription="per month"
           coverType={CoverType.epic}
