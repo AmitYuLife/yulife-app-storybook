@@ -65,33 +65,28 @@ Feature("Wellbeing Hub should be restricted for certain users", async () => {
                             Then("I should see Tim in the screen", then.textVisible(CUSTOMER_34.data.firstName))
                             Then("I should see Drake in the screen", then.textVisible(CUSTOMER_34.data.lastName))
                             Then("I should see email filled in the screen", then.textVisible(CUSTOMER_34.data.email))
-                            When("I tap Active your Fiit account", when.navigateViaButton("Active account"), async () => {
-                                Then("I should see Membership already active", then.textVisible("Membership already active"))
-                                Then("I should see An account has already been created with this email adress", then.textVisible("An account has already been created with this email address."))
-                                When("I tap Close", when.navigateViaButton("Close"), async () => {
-                                    Then("I should see Activate your Fiit account", then.textVisible("Activate your Fiit account"))
-                                    When("I clear First Name field", when.clearFieldByID(INPUT_AVIOS_FORM_FIELD("First name")), async () => {
+                            Then("I should see Activate your Fiit account", then.textVisible("Activate your Fiit account"))
+                            When("I clear First Name field", when.clearFieldByID(INPUT_AVIOS_FORM_FIELD("First Name")), async () => {
+                                When("I tap to dismiss the keyboard", when.tapText("Activate your Fiit account"), async()=>{
+                                    When("I clear Last Name field", when.clearFieldByID(INPUT_AVIOS_FORM_FIELD("Last Name")), async () => {
                                         When("I tap to dismiss the keyboard", when.tapText("Activate your Fiit account"), async()=>{
-                                            When("I clear Last Name field", when.clearFieldByID(INPUT_AVIOS_FORM_FIELD("Last name")), async () => {
+                                            When("I clear First Email field", when.clearFieldByID(INPUT_AVIOS_FORM_FIELD("Email")), async () => {
                                                 When("I tap to dismiss the keyboard", when.tapText("Activate your Fiit account"), async()=>{
-                                                    When("I clear First Email field", when.clearFieldByID(INPUT_AVIOS_FORM_FIELD("Email address")), async () => {
+                                                    Then("I should see all of these fields errors", then.canSeeFiitFormValidationErrors)
+                                                    When("I replace the first name", when.typeViaID(INPUT_AVIOS_FORM_FIELD("First Name"), CUSTOMER_37.data.firstName), async () => {
                                                         When("I tap to dismiss the keyboard", when.tapText("Activate your Fiit account"), async()=>{
-                                                            Then("I should see all of these fields errors", then.multipleTextVisible(["First name must contain at least 1 character","Last name must contain at least 1 character", "Enter a valid email address"]))
-                                                            When("I replace the first name", when.typeViaID(INPUT_AVIOS_FORM_FIELD("First name"), CUSTOMER_37.data.firstName), async () => {
+                                                            When("I replace the last name", when.typeViaID(INPUT_AVIOS_FORM_FIELD("Last Name"), CUSTOMER_37.data.lastName), async () => { 
                                                                 When("I tap to dismiss the keyboard", when.tapText("Activate your Fiit account"), async()=>{
-                                                                    When("I replace the last name", when.typeViaID(INPUT_AVIOS_FORM_FIELD("Last name"), CUSTOMER_37.data.lastName), async () => { 
+                                                                    When("I replace the email", when.typeViaID(INPUT_AVIOS_FORM_FIELD("Email"), CUSTOMER_37.data.email), async () => {
                                                                         When("I tap to dismiss the keyboard", when.tapText("Activate your Fiit account"), async()=>{
-                                                                            When("I replace the email", when.typeViaID(INPUT_AVIOS_FORM_FIELD("Email address"), CUSTOMER_37.data.email), async () => {
-                                                                                When("I tap to dismiss the keyboard", when.tapText("Activate your Fiit account"), async()=>{
-                                                                                    Then("I should see all of these fields", then.multipleTextVisible([CUSTOMER_37.data.firstName, CUSTOMER_37.data.lastName,CUSTOMER_37.data.email]))
-                                                                                    When("I tap Active your Fiit account", when.navigateViaButton("Active account"), async () => {
-                                                                                        Then("I should see Membership claimed", then.textVisible("Membership claimed"))
-                                                                                        Then("I should see that membership is ready", then.textVisible("Your Fiit membership is ready! Fiit will send you an email invitation how to log in and get started. Please check your email account."))
-                                                                                        When("I tap Close", when.navigateViaButton("Close"), async () => {
-                                                                                            When("I tap Active your Fiit account", when.navigateViaButton("Active account"), async () => {
-                                                                                                Then("I should see Membership already active", then.textVisible("Membership already active"))
-                                                                                            })
-                                                                                        })
+                                                                            Then("I should see all of these fields", then.multipleTextVisible([CUSTOMER_37.data.firstName, CUSTOMER_37.data.lastName,CUSTOMER_37.data.email]))
+                                                                            When("I tap Activate your Fiit account", when.navigateViaButton("Activate account"), async () => {
+                                                                                Then("I should see Membership claimed", then.textVisible("Membership claimed"))
+                                                                                Then("I should see that membership is ready", then.canSeeFiitReadyMessage)
+                                                                                When("I tap Close", when.navigateViaButton("Close"), async () => {
+                                                                                    When("I tap Activate your Fiit account", when.navigateViaButton("Activate account"), async () => {
+                                                                                        Then("I should see Membership already active", then.textVisible("Membership already active"))
+                                                                                        Then("I should see You have already claimed this perk.", then.textVisible("You have already claimed this perk."))
                                                                                     })
                                                                                 })
                                                                             })
@@ -120,10 +115,8 @@ Feature("Wellbeing Hub should be restricted for certain users", async () => {
                 When("I tap Fiit", when.tapID(MENU_ITEM("Wellbeing Hub")), async () => {
                     When("I tap the Fiit tab", when.tapID(TEXT_TEMPLATE("Fiit")), async () => {
                         When("I tap Activate your Fiit account", when.navigateViaButton("Activate your Fiit account"), async () => {
-                            When("I tap Active your Fiit account", when.navigateViaButton("Active account"), async () => {
-                                Then("I should see Membership limit reached", then.textVisible("Membership limit reached"))
-                                Then("I should see all membership was purchased text", then.textVisible("All available memberships purchased by your company are currently in use. Contact our support to resolve this issue."))
-                            })
+                            Then("I should see Membership limit reached", then.textVisible("Membership limit reached"))
+                            Then("I should see all membership was purchased text", then.canSeeFiitLimitReached)
                         })
                     })
                 })
