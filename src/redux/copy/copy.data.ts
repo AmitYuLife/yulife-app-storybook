@@ -1,7 +1,7 @@
 /* tslint:disable:max-line-length */
 export default {
   login: {
-    heading: "welcome!",
+    heading: "Welcome!",
     subheading: "Let's begin the journey of making you the best of yu!",
     ctaLabel: "log in",
     ctaLabelSecondary: "sign up",
