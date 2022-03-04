@@ -1,4 +1,4 @@
-import { StarInline, Text } from "@atoms/index";
+import { StarInline, TextTemplate } from "@atoms/index";
 import { GetActivityHistory_getActivityHistoryWithLevels_sources as Sources } from "@graphql/_core/schema";
 import * as React from "react";
 import { View } from "react-native";
@@ -6,6 +6,7 @@ import { displaySecondsAsMinutes, padNum, addCommasToNumber } from "@utils";
 import styles from "./activity-history-levels.styles";
 import { DistanceMeasurementType } from "@graphql/_core/schema/globalTypes";
 import { KM_TO_METERS, METER_TO_MILES } from "@redux/daily-cycling/daily-cycling.selectors";
+import { Colours } from "@styles";
 
 export interface IChallenge {
   earned: number;
@@ -61,12 +62,14 @@ export default function ActivityHistoryLevelsItem({
         {!level ? null : (
           <View style={styles.levelCircle}>
             <View style={styles.levelTextWrapper}>
-              <Text bold={true} style={styles.levelTextTop}>
-                LEVEL
-              </Text>
-              <Text bold={true} style={styles.levelTextBottom}>
+              <View style={styles.levelTextTopMargin}>
+                <TextTemplate type="l3b" textAlign="center" color={Colours.neutral.white} numberOfLines={1}>
+                  LEVEL
+                </TextTemplate>
+              </View>
+              <TextTemplate type="b1b" textAlign="center" color={Colours.neutral.white} numberOfLines={1}>
                 {level}
-              </Text>
+              </TextTemplate>
             </View>
           </View>
         )}
@@ -74,45 +77,53 @@ export default function ActivityHistoryLevelsItem({
       <View style={styles.listItemContentWrapper}>
         <View style={styles.listItemRow}>
           <View style={styles.dayWrapper}>
-            <Text style={styles.dayOfMonth}>{dayOfMonth}</Text>
-            <Text style={styles.dayOfWeek}>{dayOfWeek}</Text>
+            <View style={styles.dayOfMonthMargin}>
+              <TextTemplate type="b1" textAlign="center" numberOfLines={1}>
+                {dayOfMonth}
+              </TextTemplate>
+            </View>
+            <View>
+              <TextTemplate type="b2" textAlign="center" color={Colours.neutral.n500} numberOfLines={1}>
+                {dayOfWeek}
+              </TextTemplate>
+            </View>
           </View>
           <View style={styles.activityLabelsWrapper}>
             <View style={styles.activityLabelWrapper}>
-              <Text numberOfLines={1} style={styles.activityLabel}>
+              <TextTemplate type="b2" numberOfLines={1}>
                 {`${addCommasToNumber(steps)} ${typeText}`}
-              </Text>
+              </TextTemplate>
             </View>
 
             {!mindfulSeconds ? null : (
               <View style={styles.activityLabelWrapper}>
-                <Text numberOfLines={1} style={styles.activityLabel}>
+                <TextTemplate type="b2" numberOfLines={1}>
                   {mindfulTotalToDisplay}
-                </Text>
+                </TextTemplate>
               </View>
             )}
 
             {!cycling ? null : (
               <View style={styles.activityLabelWrapper}>
-                <Text numberOfLines={1} style={styles.activityLabel}>
+                <TextTemplate type="b2" numberOfLines={1}>
                   {cyclingText}
-                </Text>
+                </TextTemplate>
               </View>
             )}
 
             {renderSourcesText(sources)}
             {!challenges.length ? (
               <View style={styles.activityLabelWrapper}>
-                <Text numberOfLines={1} style={styles.activityLabel}>
+                <TextTemplate type="b2" numberOfLines={1}>
                   {`--`}
-                </Text>
+                </TextTemplate>
               </View>
             ) : (
               challenges.map((challenge, index) => (
                 <View key={index} style={styles.activityLabelWrapper}>
-                  <Text numberOfLines={1} style={styles.activityLabel}>
+                  <TextTemplate type="b2" numberOfLines={1}>
                     {getLabel(challenge)}
-                  </Text>
+                  </TextTemplate>
                 </View>
               ))
             )}
@@ -123,6 +134,7 @@ export default function ActivityHistoryLevelsItem({
               <View style={styles.starsWrapper} />
             ))}
             {!mindfulSeconds ? null : <View style={styles.starsWrapper} />}
+            {!cycling ? null : <View style={styles.starsWrapper} />}
             {challenges.map((challenge, key) => (
               <View style={styles.starsWrapper} key={key}>
                 {!challenge.score
@@ -165,7 +177,9 @@ function getLabel(challenge: IChallenge) {
 function renderCoinEarnedValue(value: string | number, props?: any) {
   return (
     <View style={styles.yuCoinEarnedWrapper} {...props}>
-      <Text style={styles.yuCoinEarned}>{value}</Text>
+      <TextTemplate type="b2" numberOfLines={1}>
+        {value}
+      </TextTemplate>
     </View>
   );
 }
@@ -191,23 +205,23 @@ function renderSourcesText(sources: Partial<Sources>) {
     <>
       {!sources.device ? null : (
         <View style={styles.activityLabelWrapper}>
-          <Text numberOfLines={1} style={styles.activityLabel}>
+          <TextTemplate type="b2" numberOfLines={1}>
             {`phone / ${sources.device} steps`}
-          </Text>
+          </TextTemplate>
         </View>
       )}
       {!sources.fitbit ? null : (
         <View style={styles.activityLabelWrapper}>
-          <Text numberOfLines={1} style={styles.activityLabel}>
+          <TextTemplate type="b2" numberOfLines={1}>
             {`fitbit / ${sources.fitbit} steps`}
-          </Text>
+          </TextTemplate>
         </View>
       )}
       {!sources.garmin ? null : (
         <View style={styles.activityLabelWrapper}>
-          <Text numberOfLines={1} style={styles.activityLabel}>
+          <TextTemplate type="b2" numberOfLines={1}>
             {`garmin / ${sources.garmin} steps`}
-          </Text>
+          </TextTemplate>
         </View>
       )}
     </>
