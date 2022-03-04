@@ -7,25 +7,29 @@ import Markdown from "../markdown/markdown";
 import { styles as textTemplateStyle } from "@components/atoms/text/text-template";
 import { RemoteImage } from "@graphql/_core/schema";
 
-type BannerType = "success" | "info" | "warning" | "error" | "neutral";
+export type BannerType = "success" | "info" | "warning" | "error" | "neutral";
 
 interface Props {
   markdown: string;
   type?: BannerType;
   remoteImage?: RemoteImage;
+  wrapperStyle?: ViewStyle;
+  style?: ViewStyle;
 }
 
-const InfoPanel = ({ markdown, remoteImage, type = "warning" }: Props) => {
-  const wrapperStyle = useMemo(() => {
-    return [styles.wrapper, getBannerTheme(type)];
-  }, [type]);
+const InfoPanel = ({ markdown, remoteImage, type = "warning", wrapperStyle, style }: Props) => {
+  const styleWrapper = useMemo(() => {
+    return [styles.wrapper, getBannerTheme(type), wrapperStyle];
+  }, [type, wrapperStyle]);
+
+  const copyStyle = useMemo(() => [styles.copyWrapper], [style]);
 
   return (
-    <View style={wrapperStyle}>
+    <View style={styleWrapper}>
       <View style={styles.imageWrapper}>
         {remoteImage ? <Image width={Style.adjust(56)} source={remoteImage} /> : <YugiStatusIcon />}
       </View>
-      <View style={styles.copyWrapper}>
+      <View style={copyStyle}>
         <Markdown markdownStyles={markdownStyles} text={markdown} />
       </View>
     </View>
