@@ -9,6 +9,9 @@ import { IReward } from "@organisms/event-reward/event-reward";
 import style, { CONTENT_MARGIN_TOP } from "./event-dialog.styles";
 import { Source } from "react-native-fast-image";
 import { addCommasToNumber } from "@utils";
+import { HeadingAndCopy, InfoPanel } from "@components/molecules";
+import { BannerType } from "@components/molecules/info-panel/info-panel";
+import { InfoCardList, IInfoCardListCard } from "@organisms";
 
 const PROGRESS_BAR_WIDTH = Style.DEVICE_WIDTH - Style.adjust(48);
 const TITLE_HEIGHT = Platform.select({
@@ -25,6 +28,20 @@ interface IHeaderProps {
   onLeftIconPress: () => void;
 }
 
+interface IAboutProps {
+  title: string;
+  markdown: string;
+}
+
+interface IEventBanner {
+  image: {
+    id: string;
+    uri: string;
+  };
+  markdown: string;
+  type?: BannerType;
+}
+
 interface IProps {
   headerProps: IHeaderProps;
   rewards: IReward[];
@@ -33,6 +50,9 @@ interface IProps {
   maxProgress: number;
   progressIcon: Source;
   milestones: number[];
+  about: IAboutProps;
+  infoCards: IInfoCardListCard[];
+  banner?: IEventBanner;
   ctaText?: string;
   onButtonPress?: () => void;
 }
@@ -45,6 +65,9 @@ const EventDialogScreen: FC<IProps> = ({
   maxProgress,
   progressIcon,
   milestones,
+  about,
+  infoCards,
+  banner,
   ctaText,
   onButtonPress,
 }) => {
@@ -116,7 +139,9 @@ const EventDialogScreen: FC<IProps> = ({
         scrollEventThrottle={32}
       >
         <View style={style.contentWrapper}>
-          <EventRewardsWrapper rewards={rewards} />
+          <View style={style.rewardsWrapper}>
+            <EventRewardsWrapper rewards={rewards} />
+          </View>
           <View style={style.progressText}>
             <Image
               source={progressIcon}
@@ -128,21 +153,20 @@ const EventDialogScreen: FC<IProps> = ({
               {progressText}
             </TextTemplate>
           </View>
-          <View style={style.progressBar}>
-            <ProgressBar
-              current={currentProgress}
-              max={maxProgress}
-              milestones={milestones}
-              width={PROGRESS_BAR_WIDTH}
-            />
-          </View>
-          <View style={style.testContentWrapper}>
-            <View style={style.testContent}>
-              <TextTemplate numberOfLines={1} type="l1">
-                Test content to show off scrolling
-              </TextTemplate>
+          <ProgressBar current={currentProgress} max={maxProgress} milestones={milestones} width={PROGRESS_BAR_WIDTH} />
+          <HeadingAndCopy title={about.title} wrapperStyle={style.about} titleType="b1b" markdown={about.markdown} />
+          <InfoCardList cards={infoCards} />
+          {!banner ? null : (
+            <View>
+              <InfoPanel
+                markdown={banner.markdown}
+                remoteImage={banner.image}
+                type={banner.type}
+                wrapperStyle={style.bannerWrapper}
+                style={style.banner}
+              />
             </View>
-          </View>
+          )}
           {!ctaText || !onButtonPress ? null : <View style={style.ctaPadding} />}
         </View>
       </ScrollView>

@@ -39,16 +39,7 @@ interface IProps {
 
 const EventDialogContainer: FC<IProps> = ({ componentId, onLeftIconPress }) => {
   // TODO: Event details should be queried from the server
-  const {
-    title,
-    labels,
-    rewards,
-    progressUnit,
-    currentProgress,
-    maxProgress,
-    progressIcon,
-    milestones,
-  } = eventDialogTestProps;
+  const { title, labels, ...passProps } = eventDialogTestProps;
 
   // TODO: Header image and colours should be queried from the server
   const currentLevel = useSelector(getCurrentLevel);
@@ -73,14 +64,9 @@ const EventDialogContainer: FC<IProps> = ({ componentId, onLeftIconPress }) => {
   return (
     <EventDialogScreen
       headerProps={headerProps}
-      rewards={rewards}
-      progressUnit={progressUnit}
-      currentProgress={currentProgress}
-      maxProgress={maxProgress}
-      progressIcon={progressIcon}
-      milestones={milestones}
       ctaText="Take a Challenge"
       onButtonPress={onTakeChallengePress}
+      {...passProps}
     />
   );
 };
@@ -99,4 +85,37 @@ const eventDialogTestProps = {
       "https://yulife-local.imgix.net/app-system/icons/default/steps-2021-10-06.svg?ixlib=js-3.2.1&w=32&h=32&fit=clip&fm=png&s=ddb7a3883155879040c84473d46878a9",
   },
   milestones: [10000, 15000, 25000],
+  about: {
+    title: "About the Community Event",
+    markdown: "One morning, when Gregor Samsa woke from troubled dreams, he found himself transformed in his bed.",
+  },
+  infoCards: [
+    {
+      icon: {
+        id: "duotone/policy-tnc.svg",
+        uri:
+          "https://yulife-local.imgix.net/duotone/policy-tnc.svg?ixlib=js-3.2.1&fm=png&h=24&w=24&s=2341aef9a97331f0b2085f4079030966",
+      },
+      title: "Task",
+      description: `Complete any challenge.\nOnly counted once per day.`,
+    },
+    {
+      icon: {
+        id: "content/icons/trophy.svg",
+        uri:
+          "https://yulife-local.imgix.net/content/icons/trophy.svg?ixlib=js-3.2.1&fm=png&h=24&w=24&s=7e99ef0047018dfabf293546e1fb988d",
+      },
+      title: "Rewards",
+      description: `Completion: Reward X\nParticipation: Reward Y`,
+    },
+  ],
+  banner: {
+    image: {
+      id: "content/icons/yugi-status.svg",
+      uri:
+        "https://yulife-local.imgix.net/content/icons/yugi-status.svg?ixlib=js-3.2.1&fm=png&h=64&w=56&s=aac19872e42c12a5143751fe26c39b30",
+    },
+    markdown: "Join the event to be able to do reach milestones and earn rewards.",
+    type: "info" as const,
+  },
 };

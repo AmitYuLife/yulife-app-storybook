@@ -3,21 +3,23 @@ import { StyleSheet, View, ViewStyle } from "react-native";
 import { TextTemplate } from "@atoms";
 import Markdown from "@components/molecules/markdown/markdown";
 import { Style } from "@styles";
+import { ITextTemplateType } from "@atoms/text/text-template";
 
 interface IProps {
   markdown: string;
   title?: string;
+  titleType?: ITextTemplateType;
   wrapperStyle?: ViewStyle;
   markdownContainerStyle?: ViewStyle;
 }
 
 const HeadingAndCopy = (props: IProps) => {
-  const { markdown, markdownContainerStyle, title, wrapperStyle } = props;
+  const { markdown, markdownContainerStyle, title, titleType = "h3", wrapperStyle } = props;
   const titleMarginTop = !title ? {} : { marginTop: Style.adjust(30) };
 
   return (
     <View style={[styles.wrapper, titleMarginTop, wrapperStyle]}>
-      {!title ? null : <TextTemplate type={"h3"}>{title}</TextTemplate>}
+      {!title ? null : <TextTemplate type={titleType}>{title}</TextTemplate>}
       <Markdown
         text={markdown}
         containerStyle={StyleSheet.flatten([styles.markdownContainer, markdownContainerStyle])}

@@ -11,11 +11,13 @@ interface IProps {
   description?: string;
   customBody?: React.ReactNode;
   hyperlink?: ComponentProps<typeof Hyperlink>;
+  wrapperStyle?: ViewStyle;
+  titleStyle?: ViewStyle;
 }
 
-const InfoCard = memo(({ icon, title, description, customBody, hyperlink }: IProps) => {
+const InfoCard = memo(({ icon, title, description, customBody, hyperlink, wrapperStyle, titleStyle }: IProps) => {
   return (
-    <View style={styles.wrapper}>
+    <View style={[styles.wrapper, wrapperStyle]}>
       <View style={styles.image}>{icon}</View>
       <View style={styles.flex}>
         {customBody ? (
@@ -23,7 +25,7 @@ const InfoCard = memo(({ icon, title, description, customBody, hyperlink }: IPro
         ) : (
           <>
             {!title ? null : (
-              <View style={styles.title}>
+              <View style={[styles.title, titleStyle]}>
                 <TextTemplate type="b2b">{title}</TextTemplate>
               </View>
             )}

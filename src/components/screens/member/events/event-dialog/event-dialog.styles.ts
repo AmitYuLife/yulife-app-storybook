@@ -30,15 +30,21 @@ export default StyleSheet.create({
   },
   contentWrapper: {
     marginTop: CONTENT_MARGIN_TOP,
-    backgroundColor: Colours.neutral.white,
+    backgroundColor: Colours.neutral.n50,
     paddingVertical: Style.adjust(24),
     borderTopLeftRadius: Style.adjust(8),
     borderTopRightRadius: Style.adjust(8),
     minHeight: "100%",
+    paddingHorizontal: Style.adjust(24),
   },
-  progressText: { flexDirection: "row", paddingHorizontal: Style.adjust(24), paddingVertical: Style.adjust(8) },
+  rewardsWrapper: {
+    marginHorizontal: Style.adjust(-24),
+  },
+  progressText: { flexDirection: "row", paddingVertical: Style.adjust(8) },
   progressTextIcon: { marginRight: Style.adjust(4) },
-  progressBar: { paddingHorizontal: Style.adjust(24) },
+  about: { marginTop: Style.adjust(40), marginBottom: Style.adjust(24) },
+  bannerWrapper: { marginBottom: Style.adjust(24) },
+  banner: { paddingVertical: 0 },
   ctaPadding: {
     height: Platform.select({ ios: Style.adjust(28), android: Style.adjust(60) }),
   },
@@ -48,16 +54,5 @@ export default StyleSheet.create({
     width: Style.DEVICE_WIDTH,
     padding: Style.adjust(32),
     paddingTop: 0,
-  },
-  testContentWrapper: {
-    height: 800,
-    padding: Style.adjust(24),
-  },
-  testContent: {
-    height: "100%",
-    backgroundColor: Colours.neutral.n100,
-    borderRadius: Style.adjust(8),
-    justifyContent: "center",
-    alignItems: "center",
   },
 });
