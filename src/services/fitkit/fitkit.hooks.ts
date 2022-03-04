@@ -103,7 +103,7 @@ export function useFitKit() {
     Logger.setUserProperties({ health_app: ["google"] });
   };
 
-  const checkAndroidSystemPermissions = async (options: FitKitAuthOptions) => {
+  const checkSystemPermissions = async (options: FitKitAuthOptions) => {
     if (Platform.OS !== "android" || options.platform !== "GoogleFit") {
       return options;
     }
@@ -205,7 +205,7 @@ export function useFitKit() {
       if (Platform.OS === "android") {
         try {
           dispatch(fitkitAuthoriseStart());
-          const filteredOptions = await checkAndroidSystemPermissions(options);
+          const filteredOptions = await checkSystemPermissions(options);
           if (
             options.platform === "GoogleFit" &&
             Platform.Version > 28 &&
@@ -283,16 +283,19 @@ export function useFitKit() {
   );
 
   const authoriseFitKitTypes = useCallback(
-    async (fitKitTypes: FitKitType[], platform?: FitKitHealthTrackingPlatform) => {
+    async (fitKitTypes: FitKitType[], platform?: FitKitHealthTrackingPlatform, checkState: boolean = true) => {
       try {
-        const options = await checkAndroidSystemPermissions({
+        const options = await checkSystemPermissions({
           read: fitKitTypes.map(mapGqlFitKitTypeToFitKitType),
           platform,
         });
 
         const isAuthorised = await RNFitKit.authorise(options);
-        const newState = await getState();
-        dispatch(fitkitSetup(newState));
+        if (checkState) {
+          const newState = await getState();
+          dispatch(fitkitSetup(newState));
+        }
+
         return isAuthorised;
       } catch (e) {
         Logger.error(e, {
