@@ -1,14 +1,14 @@
 import { countSources, IFormattedDatesByMonth } from "@containers/member/activity-history/activity-history.helpers";
 import { ACTIVITY_HISTORY_SCREEN } from "@ids";
 import { YulifeLoadingFooter, YulifeRefreshHeader } from "@molecules/index";
-import { Style } from "@styles/index";
+import { Style, Colours } from "@styles/index";
 import * as React from "react";
 import { StyleSheet, View } from "react-native";
 import { IndexPath, LargeList } from "react-native-largelist-v3";
 import { GetMobileCopy_getMobileCopy_screens_activityHistoryLevels } from "@graphql/_core/schema";
-import { Loading, Text } from "@atoms";
+import { Loading, TextTemplate } from "@atoms";
 import Item from "./activity-history-levels.item";
-import styles from "./activity-history-levels.styles";
+import styles, { rowHeight, dividerHeight, bottomDividerHeight } from "./activity-history-levels.styles";
 import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
 import { DistanceMeasurementType } from "@graphql/_core/schema/globalTypes";
 
@@ -115,9 +115,9 @@ export default class ActivityHistoryLevels extends React.Component<IProps, IStat
           <View style={styles.dividerLeft} />
           <View style={styles.dividerRight}>
             <View style={styles.dividerRightLabelWrapper}>
-              <Text style={styles.dividerRightLabel} bold={true}>
+              <TextTemplate type="b2b" color={Colours.neutral.white} numberOfLines={1}>
                 {item.title}
-              </Text>
+              </TextTemplate>
             </View>
           </View>
         </View>
@@ -133,18 +133,24 @@ export default class ActivityHistoryLevels extends React.Component<IProps, IStat
         <GenericHeadingPad />
         <View style={styles.headersWrapper}>
           <View style={StyleSheet.flatten([styles.headerBase, styles.headerOneWrapper])}>
-            <Text style={styles.headerSpecial} bold={true}>
+            <TextTemplate type="b2b" color={Colours.activityHistoryHeading} numberOfLines={1}>
               {copy.headerLevel}
-            </Text>
+            </TextTemplate>
           </View>
           <View style={StyleSheet.flatten([styles.headerBase, styles.headerTwoWrapper])}>
-            <Text style={styles.headerDefault}>{copy.headerLeft}</Text>
+            <TextTemplate type="b2" color={Colours.primary.p600} numberOfLines={1}>
+              {copy.headerLeft}
+            </TextTemplate>
           </View>
           <View style={StyleSheet.flatten([styles.headerBase, styles.headerThreeWrapper])}>
-            <Text style={styles.headerDefault}>{copy.headerMid}</Text>
+            <TextTemplate type="b2" color={Colours.primary.p600} numberOfLines={1}>
+              {copy.headerMid}
+            </TextTemplate>
           </View>
           <View style={StyleSheet.flatten([styles.headerBase, styles.headerFourWrapper])}>
-            <Text style={styles.headerDefault}>{copy.headerRight}</Text>
+            <TextTemplate type="b2" color={Colours.primary.p600} numberOfLines={1}>
+              {copy.headerRight}
+            </TextTemplate>
           </View>
         </View>
 
@@ -192,22 +198,16 @@ export default class ActivityHistoryLevels extends React.Component<IProps, IStat
     return null;
   };
 
-  private handleHeightForSection = () => Style.SCALE_UP_AND_DOWN(34);
+  private handleHeightForSection = () => dividerHeight;
 
   private handleHeightForIndexPath = ({ section, row }: IndexPath) => {
     const { items } = this.props;
 
     const item = items[section].items[row];
-    const sourceCount = countSources(item.sources);
-    const sourceHeight = sourceCount * Style.SCALE_UP_AND_DOWN(23);
-    const dividers = Style.SCALE_UP_AND_DOWN(40);
-    const mindfulSecondsHeight = item.mindfulSeconds ? Style.SCALE_UP_AND_DOWN(23) : 0;
-    const cyclingHeight = item.cycling ? Style.SCALE_UP_AND_DOWN(23) : 0;
-    const challengeHeight = item.challenges.length
-      ? item.challenges.length * Style.SCALE_UP_AND_DOWN(23)
-      : Style.SCALE_UP_AND_DOWN(23);
-    const height =
-      challengeHeight + Style.SCALE_UP_AND_DOWN(23) + sourceHeight + dividers + mindfulSecondsHeight + cyclingHeight;
+    const challengeCount = item.challenges.length ? item.challenges.length : 1;
+    const rows = (item.mindfulSeconds ? 1 : 0) + (item.cycling ? 1 : 0) + countSources(item.sources) + challengeCount;
+    const dividers = Style.adjust(40);
+    const height = rows * rowHeight + dividers + bottomDividerHeight;
 
     return height;
   };

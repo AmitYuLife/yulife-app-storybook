@@ -298,6 +298,7 @@ export default {
     wa100: "#FAF4E6",
     in100: "#EAEFF7",
   },
+  activityHistoryHeading: "#FBD127",
   hexToRGB,
   rgbToHex,
   toGrayScale,
