@@ -20,10 +20,13 @@ import moment from "moment";
 import { getUserFeatures } from "@redux/user/user.selectors";
 import { GQL_MUTATION_UPSERT_PASSIVE_CHALLENGES } from "@graphql/challenges/upsertPassiveChallenges.gql";
 import { GQL_MUTATION_UPSERT_DAILY_PASSIVES } from "@graphql/challenges/upsertDailyPassives.gql";
+import AsyncStorage from "@react-native-community/async-storage";
 
 interface IProps {
   componentId: string;
 }
+
+const RN_FIT_KIT_IOS_CYCLING_PERMISSIONS_SHOWN = "@RNFitKit:iosCyclingPermissionShown";
 
 const TodayEarningsContainer = ({ componentId }: IProps) => {
   const [permissionIsLoading, setPermissionIsLoading] = useState(true);
@@ -41,32 +44,53 @@ const TodayEarningsContainer = ({ componentId }: IProps) => {
     fetchPolicy: "cache-and-network",
   });
 
-  useEffect(() => {
-    (async () => {
-      const mutation = features.useCoreChallengesService ? upsertDailyPassives : upsertPassiveChallenges;
-      await mutation({
-        variables: {
-          payload: [
-            {
-              value: dailySteps,
-              endDateTime: moment().format(),
-              startDateTime: moment().startOf("day").format(),
-              type: PassiveChallengeType.STEPS,
-            },
-          ],
-        },
-      });
-      await getTodaysEarnings();
-      const googleFit = await RNFitKit.isAuthorised({
+  const checkPermissions = useCallback(async (): Promise<boolean> => {
+    let googleFitAuthorised = false;
+    if (Platform.OS === "android") {
+      googleFitAuthorised = await RNFitKit.isAuthorised({
         read: [],
         platform: "GoogleFit",
       });
+    }
 
-      if (features.passiveCyclingEnabled && Platform.OS === "ios") {
-        await authoriseFitKitTypes([FitKitType.Cycling]);
+    if (features.passiveCyclingEnabled && Platform.OS === "ios") {
+      const iosCyclingPermissionShown = await AsyncStorage.getItem(RN_FIT_KIT_IOS_CYCLING_PERMISSIONS_SHOWN);
+      if (!iosCyclingPermissionShown) {
+        await authoriseFitKitTypes([FitKitType.Cycling], "AppleHealth", false);
+        AsyncStorage.setItem(RN_FIT_KIT_IOS_CYCLING_PERMISSIONS_SHOWN, "true");
       }
+    }
 
-      setIsGoogleFitAuthorised(googleFit);
+    return googleFitAuthorised;
+  }, [authoriseFitKitTypes, features.passiveCyclingEnabled]);
+
+  const fetchData = useCallback(async () => {
+    const mutation = features.useCoreChallengesService ? upsertDailyPassives : upsertPassiveChallenges;
+    await mutation({
+      variables: {
+        payload: [
+          {
+            value: dailySteps,
+            endDateTime: moment().format(),
+            startDateTime: moment().startOf("day").format(),
+            type: PassiveChallengeType.STEPS,
+          },
+        ],
+      },
+    });
+    await getTodaysEarnings();
+  }, [
+    dailySteps,
+    features.usePassiveChallengesService,
+    getTodaysEarnings,
+    upsertDailyPassives,
+    upsertPassiveChallenges,
+  ]);
+
+  useEffect(() => {
+    (async () => {
+      const [googleFitAuthorised] = await Promise.all([checkPermissions(), fetchData()]);
+      setIsGoogleFitAuthorised(googleFitAuthorised);
       setPermissionIsLoading(false);
     })();
   }, []);
