@@ -25,12 +25,12 @@ export default ({
   onBack,
 }: Props) => {
   const defaultScore = parseInt(defaultAnswer);
-  const defaultScoreValue = isNaN(defaultScore) ? undefined : defaultScore;
+  const defaultScoreValue = isNaN(defaultScore) ? -1 : defaultScore;
   const [score, setScore] = useState(defaultScoreValue);
 
   const submit = () => {
     onSubmitAnswer(score?.toString());
-    setScore(undefined);
+    setScore(-1);
   };
 
   useEffect(() => {
