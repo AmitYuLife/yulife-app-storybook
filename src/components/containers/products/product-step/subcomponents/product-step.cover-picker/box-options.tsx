@@ -1,7 +1,7 @@
 import React, { memo, useCallback, useContext } from "react";
 import { StyleSheet, View, ViewStyle } from "react-native";
 import { useDispatch } from "react-redux";
-import { BoxOption, PackageType, TextTemplate } from "@atoms";
+import { PackageType, TextTemplate } from "@atoms";
 import { mapServerStyles } from "@components/sdui";
 import { Colours, Style } from "@styles";
 import { PERCENTAGE_COVERED, SELECTED_PACKAGE_TITLE } from "@ids";
@@ -10,6 +10,7 @@ import { ProductStepContext } from "../../product-step.context";
 import { CoverType } from "@graphql/_core/schema/globalTypes";
 import { LOCAL_ANSWER_KEY } from "../../utils";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
+import { BoxOption } from "@molecules";
 
 type Props = Pick<ContentItemCoverPicker, "answerKey" | "options" | "styles">;
 

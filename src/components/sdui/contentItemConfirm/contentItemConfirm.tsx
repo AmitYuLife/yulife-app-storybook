@@ -1,9 +1,9 @@
 import React, { memo } from "react";
-import { CheckBox } from "@atoms";
 import { StyleSheet, View, ViewStyle } from "react-native";
 import { ContentItemConfirm as GqlConfirm } from "@graphql/_core/schema";
 import { Style } from "@styles";
 import { mapServerStyles } from "..";
+import { CheckBox } from "@molecules";
 
 type Props = GqlConfirm & {
   checked: boolean;

@@ -2,7 +2,7 @@ import React, { useEffect, memo, useRef } from "react";
 import { StyleSheet, View, Animated, ViewStyle, Platform } from "react-native";
 import { Style, Colours } from "@styles";
 import * as media from "@styles/media";
-import { TouchableWithDelay } from "@components/molecules";
+import { TouchableWithDelay } from "@molecules";
 
 interface Props {
   onPress: () => void;
@@ -24,7 +24,7 @@ const SHADOW_HEIGHT = media.select(
   4
 );
 
-export const BoxOption = memo(
+const BoxOption = memo(
   ({ testID, children, onPress, isSelected, selectedStyle, wrapperStyle, innerHeight = Style.adjust(104) }: Props) => {
     const { translateY } = useAnimation({ isSelected });
 
@@ -48,6 +48,8 @@ export const BoxOption = memo(
     );
   }
 );
+
+export default BoxOption;
 
 const useAnimation = ({ isSelected }: Partial<Props>) => {
   const translateY = useRef(new Animated.Value(isSelected ? 4 : 0)).current;

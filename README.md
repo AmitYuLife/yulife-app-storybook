@@ -261,15 +261,19 @@ Bitrise will automatically build the candidate and submit it to the appstores fo
 
 ## StoryBook
 
-This project provides a StoryBook server. To access it, run the following `start` command instead
-of the default.
+This project provides a StoryBook server. To access it, run the following `start` commands
+
+To access the web version
+
+```sh
+yarn start:storybook:web
+```
+
+To access the app version
 
 ```sh
 yarn start:storybook
 ```
-
-Now, when you build and run either version of the app it will display the StoryBook app instead.
-To view the available components, open [http://localhost:7007](http://localhost:7007) in your web browser.
 
 ## Folder Structure for YuLife
 

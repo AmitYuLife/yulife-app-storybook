@@ -1,12 +1,13 @@
 import React, { useCallback, useEffect, useState, memo } from "react";
 import { View } from "react-native";
-import { Button, BoxOption, TextTemplate } from "@atoms";
+import { Button, TextTemplate } from "@atoms";
 import FemaleBody from "../svg/female-body";
 import MaleBody from "../svg/male-body";
 import styles from "./select-body.styles";
 import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
 import { Style } from "@styles";
 import { AvatarBodyType } from "@graphql/_core/schema/globalTypes";
+import { BoxOption } from "@molecules";
 
 interface IProps {
   onContinue: (bodyType: AvatarBodyType) => void;

@@ -1,9 +1,10 @@
 import * as React from "react";
 import { SFC } from "react";
 import { StyleSheet, View } from "react-native";
-import { Button, CentredScreen, Heading, LinkButton, Pad, Text } from "@atoms";
+import { Button, Heading, LinkButton, Pad, Text } from "@atoms";
 import styles from "./feedback.styles";
 import StarRating from "./star-rating";
+import { CentredScreen } from "@molecules";
 
 interface IProps {
   isSubmitting: boolean;

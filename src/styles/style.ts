@@ -121,6 +121,10 @@ const adjust = (val: number, options: IAdjustOptions = {}) => {
     growThreshold = defaultGrowThreshold,
   } = options;
 
+  if (Platform.OS === "web") {
+    return val;
+  }
+
   if (growThreshold) {
     return val + val * growMultiplier;
   }

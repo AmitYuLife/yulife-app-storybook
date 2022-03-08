@@ -1,12 +1,13 @@
 import { LinkGroup } from "@components/molecules";
 import React, { FC } from "react";
 import { GetMobileCopy_getMobileCopy_screens_fitkitConnect } from "@graphql/_core/schema";
-import { CentredScreen, Loading, Pad } from "@atoms";
+import { Loading, Pad } from "@atoms";
 import FitKitAvailable from "./fitkit-available";
 import FitKitUnavailable from "./fitkit-unavailable";
 import { Style } from "@styles";
 import { isSamsung } from "@utils";
 import { FitKitHealthTrackingPlatform } from "@services/fitkit/fitkit.service";
+import { CentredScreen } from "@molecules";
 
 interface IProps {
   connecting: boolean;

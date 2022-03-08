@@ -26,7 +26,7 @@ export default class YulifeRefreshHeader extends NormalHeader {
 
     return (
       <Animated.Image
-        source={require("../../../../node_modules/react-native-spring-scrollview/Customize/res/arrow.png")}
+        source={{ uri: "../../../../node_modules/react-native-spring-scrollview/Customize/res/arrow.png" }}
         style={{
           transform: [
             {

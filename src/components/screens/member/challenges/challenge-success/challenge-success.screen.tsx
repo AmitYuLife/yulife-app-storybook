@@ -1,4 +1,4 @@
-import { AnimatedPlusPoints, Button, CentredScreen, LevelLine, Stars, Text } from "@atoms/index";
+import { AnimatedPlusPoints, Button, LevelLine, Stars, Text } from "@atoms/index";
 import { getChallengeSuccessCopy } from "@redux/copy/copy.selectors";
 import * as React from "react";
 import { Image, StyleSheet, View } from "react-native";
@@ -7,6 +7,7 @@ import { formatCyclingMetersToKmWithOneDecimal } from "../challenge-progress/sub
 import Assets from "./assets";
 import { getStyle } from "./challenge-success.helpers";
 import styles from "./challenge-success.screen.styles";
+import { CentredScreen } from "@molecules";
 
 interface IProps {
   onPressCta: () => void;

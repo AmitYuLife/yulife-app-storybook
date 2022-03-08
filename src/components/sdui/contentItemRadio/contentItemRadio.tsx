@@ -1,9 +1,10 @@
 import React, { memo, useCallback, useState } from "react";
 import { StyleSheet, View, ViewStyle } from "react-native";
 import { ContentItemRadio as GqlRadio } from "@graphql/_core/schema";
-import { BoxOption, CheckBox, Image, TextTemplate } from "@atoms";
+import { Image, TextTemplate } from "@atoms";
 import { Style } from "@styles";
 import { mapServerStyles } from "../_utils/mapServerStyles";
+import { BoxOption, CheckBox } from "@molecules";
 
 interface Props extends GqlRadio {
   value: string;

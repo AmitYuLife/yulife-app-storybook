@@ -1,10 +1,11 @@
-import { Button, CentredScreen, Text } from "@atoms/index";
+import { Button, Text } from "@atoms/index";
 import { GetMobileCopy_getMobileCopy_screens_offline as OfflineCopy } from "@graphql/_core/schema";
 import * as React from "react";
 import { StyleSheet, TextStyle, View, ViewStyle } from "react-native";
-import { CenteredScreenImages } from "../../atoms/centred-screen/centred-screen";
 import styles from "./offline.screen.styles";
 import { getCurrentWorld } from "@utils";
+import { CentredScreen } from "@molecules";
+import { CenteredScreenImages } from "@molecules/centred-screen/centred-screen";
 
 interface IProps {
   level: number;

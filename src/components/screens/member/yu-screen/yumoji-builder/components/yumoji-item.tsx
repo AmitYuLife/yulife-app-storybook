@@ -1,6 +1,6 @@
 import React, { memo, useCallback, useMemo, useRef, useState } from "react";
 import { View, StyleSheet, ViewStyle } from "react-native";
-import { BoxOption, SkeletonLoading } from "@atoms";
+import { SkeletonLoading } from "@atoms";
 import { CroppedImage } from "./croppedImage";
 import ColorPreview from "./colorPreview";
 import { YumojiItemLabel } from "./yumoji-item-label";
@@ -8,6 +8,7 @@ import { Colours, Style } from "@styles";
 import { GetYumojiBuilderItemsForCategory_getYumojiBuilderItemsForCategory_items as YumojiBuilderItemsForCategoryItems } from "@graphql/_core/schema";
 import FastImage from "react-native-fast-image";
 import { COLOUR, YUMOJI_PART_ID } from "@ids";
+import { BoxOption } from "@molecules";
 
 export interface ItemListItems extends YumojiBuilderItemsForCategoryItems {
   isSelected: boolean;
