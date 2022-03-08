@@ -20,7 +20,7 @@ import { ROUTES } from "@navigation/constants";
 import { openGoogleFit } from "@services/app-link";
 import { androidAlertCopy } from "@components/screens/onboarding/fitkit-connect/copy";
 import { useFitKit } from "@services/fitkit/fitkit.hooks";
-import FitKitPermissions from "@services/fitkit/fitkit.permissions";
+import { buildFitKitPermissions, FitKitAndroidSystemPermission } from "@services/fitkit/fitkit.permissions";
 import { ACTIVITY_FEED } from "@ids";
 import { useSelector } from "react-redux";
 import { getHasNotification } from "@redux/levels/levels.selectors";
@@ -73,7 +73,7 @@ const ActivityFeed = ({
   }, []);
 
   const onGoogleFitConnect = useCallback(async () => {
-    const { title, message: alertMessage, dismissLabel, downloadLabel, confirmLabel } = androidAlertCopy;
+    const { title: alertTitle, message: alertMessage, dismissLabel, downloadLabel, confirmLabel } = androidAlertCopy;
     const buttons = [
       {
         text: dismissLabel,
@@ -86,7 +86,7 @@ const ActivityFeed = ({
         text: confirmLabel,
         onPress: async () => {
           const isAuthorise = await authorise({
-            ...FitKitPermissions(features.passiveCyclingEnabled),
+            ...buildFitKitPermissions(features.passiveCyclingEnabled),
             platform: "GoogleFit",
           });
           await checkCyclingPermissions();
@@ -94,11 +94,12 @@ const ActivityFeed = ({
         },
       },
     ];
-    return Alert.alert(title, alertMessage, buttons, { cancelable: true });
+
+    return Alert.alert(alertTitle, alertMessage, buttons, { cancelable: true });
   }, [authorise]);
 
   const onGrantPermission = useCallback(async () => {
-    const result = await requestAndroidSystemPermission("android.permission.ACCESS_FINE_LOCATION");
+    const result = await requestAndroidSystemPermission(FitKitAndroidSystemPermission.location);
 
     if (result === "granted") {
       setLocationPermissions(true);

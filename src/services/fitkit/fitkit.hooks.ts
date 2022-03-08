@@ -14,7 +14,7 @@ import {
   fitkitAuthoriseSucceeded,
   fitkitSetup,
 } from "@redux/fitkit/fitkit.actions";
-import { AndroidSystemPermissionsConfig, FitkitAndroidSystemPermission } from "./fitkit.permissions";
+import { AndroidSystemPermissionsConfig, FitKitAndroidSystemPermission } from "./fitkit.permissions";
 import { requestAndroidSystemPermissions } from "./fitkit.system-permissions";
 
 const RNFITKIT_PERMISSIONS_SHOWN = "@RNFitKit:authorised";
@@ -117,7 +117,7 @@ export function useFitKit() {
       }
 
       return permissions;
-    }, new Set<FitkitAndroidSystemPermission>());
+    }, new Set<FitKitAndroidSystemPermission>());
 
     if (androidPermissions.size === 0) {
       return options;
@@ -127,7 +127,7 @@ export function useFitKit() {
     if (
       options.platform === "GoogleFit" &&
       Platform.Version > 28 &&
-      permissionState.get("android.permission.ACTIVITY_RECOGNITION") === "never_ask_again"
+      permissionState.get(FitKitAndroidSystemPermission.activity) === "never_ask_again"
     ) {
       Alert.alert(
         "Google Fit permissions denied",
@@ -148,7 +148,7 @@ export function useFitKit() {
 
     if (
       options.platform === "GoogleFit" &&
-      permissionState.get("android.permission.ACCESS_FINE_LOCATION") === "never_ask_again"
+      permissionState.get(FitKitAndroidSystemPermission.location) === "never_ask_again"
     ) {
       Alert.alert(
         "Google Fit permissions denied",
