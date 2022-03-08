@@ -61,7 +61,7 @@ export const BoxOptions = memo(({ answerKey, options, styles: serverStyles }: Pr
                 {option.subheading}
               </TextTemplate>
               <View style={styles.packageTypeWrapper} testID={SELECTED_PACKAGE_TITLE(option.coverType)}>
-                <PackageType type={option.coverType} />
+                <PackageType minWidth={0} type={option.coverType} />
               </View>
             </View>
           </BoxOption>

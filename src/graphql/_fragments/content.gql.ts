@@ -498,6 +498,7 @@ export const GQL_FRAGMENT_CONTENT_ITEM_PACKAGE_CARDS = gql`
     id
     answerKey
     answerKeyDefaultValue
+    filterBasedOnAnswerKey
     packageCards {
       id
       value
@@ -973,6 +974,73 @@ export const GQL_FRAGMENT_CONTENT_ITEM_DOCUMENTS = gql`
       }
       url
     }
+  }
+`;
+
+export const GQL_FRAGMENT_CONTENT_ITEM_AGE_PERCENT_COVER_PICKER_PERCENT_OPTION = gql`
+  fragment ContentItemAgePercentCoverPickerPercentOption on ContentItemAgePercentCoverPickerPercentOption {
+    contentItemAgePercentCoverPickerPercentOptionValue: value
+    cost
+    monthlyPayout
+    coverType
+  }
+`;
+
+export const GQL_FRAGMENT_CONTENT_ITEM_AGE_PERCENT_COVER_PICKER_AGE_OPTION = gql`
+  fragment ContentItemAgePercentCoverPickerAgeOption on ContentItemAgePercentCoverPickerAgeOption {
+    age
+    contentItemAgePercentCoverPickerAgeOptions: options {
+      ...ContentItemAgePercentCoverPickerPercentOption
+    }
+  }
+`;
+
+export const GQL_FRAGMENT_CONTENT_ITEM_COVER_PICKER_CUSTOM_COVER = gql`
+  fragment ContentItemCoverPickerCustomCover on ContentItemCoverPickerCustomCover {
+    contentItemCoverPickerCustomCoverTitle: title
+    button {
+      ...ContentItemButton
+    }
+    itemsPicker {
+      ...ContentItemScrollableItemsPicker
+    }
+  }
+`;
+
+export const GQL_FRAGMENT_CONTENT_ITEM_AGE_PERCENT_COVER_PICKER = gql`
+  fragment ContentItemAgePercentCoverPicker on ContentItemAgePercentCoverPicker {
+    id
+    styles {
+      ...SduiStyle
+    }
+    percentsToDefault
+    contentItemAgePercentCoverPickerOptions: options {
+      ...ContentItemAgePercentCoverPickerAgeOption
+    }
+    topHeading
+    restictedPercentInfoCardText {
+      ...ContentItemMarkdown
+    }
+    costPayoutBenefitHeading
+    costPayoutBenefitPayoutSchedule
+    costPayoutBenefitCostSchedule
+    ageText {
+      ...ContentItemMarkdown
+    }
+    answerKeyPercent
+    answerKeyPercentDefaultValue
+    answerKeyAge
+    answerKeyAgeDefaultValue
+    answerKeyCoverType
+    answerKeyCoverTypeDefaultValue
+    answerKeyMaxSalaryPercent
+    answerKeyMaxSalaryPercentDefaultValue
+
+    customCover {
+      ...ContentItemCoverPickerCustomCover
+    }
+    userAge
+    agePickerButtonRightIconImageUrl
   }
 `;
 

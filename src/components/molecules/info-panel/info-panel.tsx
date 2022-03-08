@@ -13,24 +13,22 @@ interface Props {
   markdown: string;
   type?: BannerType;
   remoteImage?: RemoteImage;
+  copyType?: "sparse" | "dense";
   wrapperStyle?: ViewStyle;
-  style?: ViewStyle;
 }
 
-const InfoPanel = ({ markdown, remoteImage, type = "warning", wrapperStyle, style }: Props) => {
+const InfoPanel = ({ markdown, remoteImage, type = "warning", wrapperStyle, copyType = "sparse" }: Props) => {
   const styleWrapper = useMemo(() => {
     return [styles.wrapper, getBannerTheme(type), wrapperStyle];
   }, [type, wrapperStyle]);
-
-  const copyStyle = useMemo(() => [styles.copyWrapper, style], [style]);
 
   return (
     <View style={styleWrapper}>
       <View style={styles.imageWrapper}>
         {remoteImage ? <Image width={Style.adjust(56)} source={remoteImage} /> : <YugiStatusIcon />}
       </View>
-      <View style={copyStyle}>
-        <Markdown markdownStyles={markdownStyles} text={markdown} />
+      <View style={[styles.copyWrapper, { paddingVertical: Style.adjust(copyType === "sparse" ? 8 : 0) }]}>
+        <Markdown markdownStyles={copyType === "sparse" ? sparseMarkdownStyles : denseMarkdownStyles} text={markdown} />
       </View>
     </View>
   );
@@ -49,7 +47,6 @@ const styles = StyleSheet.create({
     left: 0,
   } as ViewStyle,
   copyWrapper: {
-    paddingVertical: Style.adjust(8),
     marginLeft: Style.adjust(64),
     marginRight: Style.adjust(24),
   } as ViewStyle,
@@ -72,9 +69,13 @@ function getBannerTheme(bannerType: BannerType) {
   }
 }
 
-const markdownStyles = {
+const sparseMarkdownStyles = {
   text: textTemplateStyle.b2,
   paragraph: {
     paddingVertical: Style.adjust(8),
   },
+};
+
+const denseMarkdownStyles = {
+  text: textTemplateStyle.l2b,
 };

@@ -54,6 +54,7 @@ export { default as ProcessingTimer } from "./processing-timer/processing-timer"
 export { default as EventPanel } from "./event-panel/event-panel";
 export { default as LabelWithImages } from "./label-with-images/label-with-images";
 export { default as LabelledHorizontalScroller } from "./labelled-horizontal-scroller/labelled-horizontal-scroller";
+export { default as MultiFactorPricing } from "./multi-factor-pricing/multi-factor-pricing";
 export { default as CostPayoutBenefitCard } from "./cost-payout-benefit-card/cost-payout-benefit-card";
 export { default as BoxOption } from "./box-option/box-option";
 export { default as CheckBox } from "./check-box/check-box";

@@ -92,7 +92,6 @@ function useInitialiseActiveIndex({ updateCursor, setActiveIndex, items, activeV
       if (!hasInitialised.current && !!activeValue) {
         const localActiveIndex = items.findIndex(({ value }) => value === activeValue);
         setActiveIndex(localActiveIndex);
-
         updateCursor(localActiveIndex);
 
         hasInitialised.current = true;

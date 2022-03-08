@@ -1,11 +1,12 @@
-import React, { memo, useMemo } from "react";
+import React, { memo, useMemo, useState } from "react";
 import { View, StyleSheet, ViewStyle } from "react-native";
-import { FlatList } from "@atoms";
+import { FlatList, Image } from "@atoms";
 import { Colours, Style } from "@styles";
 import { CHOICE_WIDTH, COMPONENT_HEIGHT } from "./styles";
 import { renderItem } from "./renderItem";
 import { Label } from "./label";
 import { useScrollHandler } from "./useScrollHandler";
+import PressableWithDelay from "../pressable-delay/pressable-delay";
 
 interface Props {
   label: string;
@@ -13,10 +14,11 @@ interface Props {
   onIndexChange: (index: number) => void;
   activeValue: number;
   style?: ViewStyle;
+  buttonIconUrl: string;
 }
 
 const LabelledHorizontalScroller = (props: Props) => {
-  const { label, items, onIndexChange, activeValue, style } = props;
+  const { label, items, onIndexChange, activeValue, style, buttonIconUrl } = props;
   const snapToOffsets = useMemo(() => Array.from({ length: items.length }).map((_, i) => i * CHOICE_WIDTH), [items]);
   const {
     listRef,
@@ -30,6 +32,8 @@ const LabelledHorizontalScroller = (props: Props) => {
     onIndexChange,
     activeValue,
   });
+  const [showList, setShowList] = useState(false);
+  const activeValueIndex = items.findIndex((item) => item.value === activeValue);
 
   return (
     <View style={[styles.wrapper, style]}>
@@ -46,7 +50,16 @@ const LabelledHorizontalScroller = (props: Props) => {
           snapToOffsets={snapToOffsets}
           style={styles.flatList}
           contentContainerStyle={styles.contentContainer}
+          windowSize={100}
         />
+        {showList ? null : (
+          <PressableWithDelay
+            style={styles.buttonWrapper}
+            onPress={() => (setShowList(true), onIndexChange(activeValueIndex > -1 ? activeValueIndex : 0))}
+          >
+            <Image width={Style.adjust(24)} source={{ uri: buttonIconUrl }} />
+          </PressableWithDelay>
+        )}
       </View>
     </View>
   );
@@ -59,9 +72,18 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     borderColor: Colours.neutral.n100,
     paddingHorizontal: Style.adjust(26),
+    paddingVertical: Style.adjust(8),
     borderWidth: 1,
     borderRadius: 16,
     overflow: "hidden",
+    backgroundColor: Colours.neutral.white,
+  } as ViewStyle,
+  buttonWrapper: {
+    width: CHOICE_WIDTH * 3,
+    justifyContent: "center",
+    alignItems: "flex-end",
+    backgroundColor: "white",
+    ...StyleSheet.absoluteFillObject,
   } as ViewStyle,
   flatList: {
     width: CHOICE_WIDTH * 3,

@@ -43,8 +43,8 @@ storiesOf("LabelledHorizontalScroller", module).add("default", () => {
         label="What age would you like your policy to stop?**"
         items={items}
         onIndexChange={handleIndexChange}
-        style={{ marginHorizontal: 24 }}
         activeValue={activeValue}
+        buttonIconUrl=""
       />
     </ScrollView>
   );
