@@ -37,10 +37,8 @@ const PAD_WIDTH = 20;
 const OFFSET = 1;
 
 export const ProductStepPackageCards = memo((props: GqlPackageCards) => {
-  const { answerKey, answerKeyDefaultValue } = props;
+  const { answerKey, answerKeyDefaultValue, filterBasedOnAnswerKey } = props;
   const { dynamicData, setDynamicData, productId } = useContext(ProductStepContext);
-  const flatListData = useMemo(() => createFlatListData(props.packageCards), [props.packageCards]);
-  const snapToOffsets = Array.from({ length: props.packageCards.length }).map((_, i) => i * PACKAGE_CARD_WIDTH);
 
   useSetDefaultAnswer({ answerKey, answerKeyDefaultValue, dynamicData, setDynamicData });
   useSetDefaultAnswer({
@@ -49,6 +47,18 @@ export const ProductStepPackageCards = memo((props: GqlPackageCards) => {
     dynamicData,
     setDynamicData,
   });
+  const maxPackageCardValue = dynamicData[filterBasedOnAnswerKey] as number;
+  const filteredPackageCards = useMemo(
+    () => props.packageCards.filter((item) => (!maxPackageCardValue ? true : item.value <= maxPackageCardValue)),
+    [props.packageCards, maxPackageCardValue]
+  );
+  const flatListData = useMemo(() => createFlatListData(filteredPackageCards), [
+    filteredPackageCards,
+    maxPackageCardValue,
+  ]);
+  const snapToOffsets = Array.from({
+    length: flatListData.length - 2 /** to account for the pad items before and after packageCards */,
+  }).map((_, i) => i * PACKAGE_CARD_WIDTH);
 
   const {
     listRef,
@@ -57,17 +67,25 @@ export const ProductStepPackageCards = memo((props: GqlPackageCards) => {
     handleMomentumScrollEnd,
     activePackageCardIndex,
   } = useScrollHandler({
-    packageCards: props.packageCards,
+    packageCards: filteredPackageCards,
     answerKey,
     answerKeyValue: dynamicData[answerKey] as number,
     setDynamicData,
     productId,
   });
 
+  useEffect(() => {
+    const syncOnMount = setTimeout(() => {
+      listRef.current.scrollToOffset({ offset: PACKAGE_CARD_WIDTH * activePackageCardIndex });
+    }, 2000);
+
+    return () => clearTimeout(syncOnMount);
+  }, []);
+
   return (
     <View>
       <View style={styles.flexCenter}>
-        {props.packageCards.length <= 1 ? null : (
+        {filteredPackageCards.length <= 1 ? null : (
           <TextTemplate color={Colours.neutral.n400} type="l2b">
             Swipe to discover more
           </TextTemplate>
@@ -84,8 +102,8 @@ export const ProductStepPackageCards = memo((props: GqlPackageCards) => {
         renderItem={renderItem}
         getItemLayout={getItemLayout}
       />
-      {props.packageCards.length <= 1 ? null : (
-        <ActiveItemIndicator length={props.packageCards.length} activeIndex={activePackageCardIndex} />
+      {filteredPackageCards.length <= 1 ? null : (
+        <ActiveItemIndicator length={filteredPackageCards.length} activeIndex={activePackageCardIndex} />
       )}
     </View>
   );

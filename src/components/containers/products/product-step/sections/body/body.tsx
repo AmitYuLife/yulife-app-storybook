@@ -27,6 +27,7 @@ import {
   ProductStepContentItemInfoButton,
   ProductStepSelectPaymentButton,
   ProductStepSelectedPackageAccordion,
+  ProductStepAgePercentCoverPicker,
 } from "../../subcomponents";
 import {
   ContentItemInfoCard,
@@ -165,6 +166,8 @@ const renderItemContent = (item: GPPS_Body): JSX.Element => {
       return <ProductStepSelectedPackageAccordion key={item.id} {...item} />;
     case "ContentItemYuCoinPower":
       return <ContentItemYuCoinPower key={item.id} {...item} />;
+    case "ContentItemAgePercentCoverPicker":
+      return <ProductStepAgePercentCoverPicker key={item.id} {...item} />;
     case "ContentItemCostPayoutBenefitCard":
       return <ContentItemCostPayoutBenefitCard key={item.id} {...item} />;
     default:

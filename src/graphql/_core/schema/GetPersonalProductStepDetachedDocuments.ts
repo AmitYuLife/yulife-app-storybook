@@ -35,6 +35,7 @@ export interface GetPersonalProductStepDetachedDocuments_getPersonalProductStepD
     | "ContentItemSelectedPackageCard"
     | "ContentItemPersonalProductPreview"
     | "ContentItemCoverPicker"
+    | "ContentItemAgePercentCoverPicker"
     | "ContentItemScrollableItemsPicker"
     | "ContentItemConfirm"
     | "ContentItemCollapsingHeaderProductInfo"

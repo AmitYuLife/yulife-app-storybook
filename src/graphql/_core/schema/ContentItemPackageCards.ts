@@ -68,5 +68,11 @@ export interface ContentItemPackageCards {
   id: string;
   answerKey: string;
   answerKeyDefaultValue: number;
+  /**
+   * Optional field that can dynamically filter packageCards field on client
+   * Based on dynamic data, retrieved by accessing this key
+   * Supported at RN client version >=3.23.0
+   */
+  filterBasedOnAnswerKey: string | null;
   packageCards: ContentItemPackageCards_packageCards[] | null;
 }

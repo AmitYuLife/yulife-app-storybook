@@ -1,7 +1,7 @@
 import React, { memo } from "react";
 import { StyleSheet, View, ViewStyle } from "react-native";
-import { TextTemplate } from "@atoms";
-import { Style } from "@styles";
+import { Colours, Style } from "@styles";
+import Markdown from "../markdown/markdown";
 
 interface Props {
   label: string;
@@ -10,7 +10,7 @@ interface Props {
 export const Label = memo(({ label }: Props) => {
   return (
     <View style={styles.wrapper}>
-      <TextTemplate type="l1">{label}</TextTemplate>
+      <Markdown text={label} markdownStyles={markdownStyles} />
     </View>
   );
 });
@@ -18,6 +18,14 @@ export const Label = memo(({ label }: Props) => {
 const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
-    paddingVertical: Style.adjust(23),
+    alignSelf: "center",
   } as ViewStyle,
 });
+
+const markdownStyles = {
+  text: {
+    color: Colours.neutral.n800,
+    fontSize: Style.adjust(14),
+    lineHeight: Style.adjust(16),
+  },
+};

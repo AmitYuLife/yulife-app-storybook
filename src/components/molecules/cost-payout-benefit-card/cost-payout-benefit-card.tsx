@@ -27,9 +27,11 @@ const CostPayoutBenefitCard = (props: Props) => {
           <TextTemplate color={Colours.neutral.white} type={adaptiveCostValueTextType}>
             {costValue}
           </TextTemplate>
-          <TextTemplate color={Colours.neutral.white} type="l1b">
-            {costDescription}
-          </TextTemplate>
+          <View style={styles.costDescriptionWrapper}>
+            <TextTemplate color={Colours.neutral.white} type="l1b">
+              {costDescription}
+            </TextTemplate>
+          </View>
           <View style={styles.packageTypeWrapper}>
             <PackageType type={coverType} minWidth={0} />
           </View>
@@ -69,8 +71,7 @@ const styles = StyleSheet.create({
   innerWrapper: {
     flexDirection: "row",
     alignItems: "center",
-    paddingVertical: Style.adjust(20),
-    paddingHorizontal: Style.adjust(18),
+    padding: Style.adjust(20),
     borderRadius: Style.adjust(8),
   } as ViewStyle,
   costWrapper: {
@@ -80,6 +81,7 @@ const styles = StyleSheet.create({
   benefitWrapper: {
     flex: 0.54,
     justifyContent: "center",
+    paddingVertical: Style.adjust(4),
   } as ViewStyle,
   separator: {
     width: 1,
@@ -93,6 +95,9 @@ const styles = StyleSheet.create({
   } as ViewStyle,
   benefitValueWrapper: {
     marginTop: Style.adjust(12),
+  } as ViewStyle,
+  costDescriptionWrapper: {
+    marginTop: Style.adjust(-8),
   } as ViewStyle,
 });
 

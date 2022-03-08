@@ -163,7 +163,7 @@ const EventDialogScreen: FC<IProps> = ({
                 remoteImage={banner.image}
                 type={banner.type}
                 wrapperStyle={style.bannerWrapper}
-                style={style.banner}
+                copyType="dense"
               />
             </View>
           )}

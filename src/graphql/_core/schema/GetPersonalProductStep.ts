@@ -533,6 +533,12 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemP
   id: string;
   answerKey: string;
   answerKeyDefaultValue: number;
+  /**
+   * Optional field that can dynamically filter packageCards field on client
+   * Based on dynamic data, retrieved by accessing this key
+   * Supported at RN client version >=3.23.0
+   */
+  filterBasedOnAnswerKey: string | null;
   packageCards: GetPersonalProductStep_getPersonalProductStep_body_ContentItemPackageCards_packageCards[] | null;
 }
 
@@ -1229,6 +1235,225 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemS
     | null;
 }
 
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemAgePercentCoverPicker_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemAgePercentCoverPicker_contentItemAgePercentCoverPickerOptions_contentItemAgePercentCoverPickerAgeOptions {
+  contentItemAgePercentCoverPickerPercentOptionValue: number;
+  cost: string;
+  monthlyPayout: string;
+  coverType: CoverType;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemAgePercentCoverPicker_contentItemAgePercentCoverPickerOptions {
+  age: number;
+  contentItemAgePercentCoverPickerAgeOptions: GetPersonalProductStep_getPersonalProductStep_body_ContentItemAgePercentCoverPicker_contentItemAgePercentCoverPickerOptions_contentItemAgePercentCoverPickerAgeOptions[];
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemAgePercentCoverPicker_restictedPercentInfoCardText_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemAgePercentCoverPicker_restictedPercentInfoCardText_markdownContainerStyle {
+  property: string;
+  value: string;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemAgePercentCoverPicker_restictedPercentInfoCardText {
+  id: string;
+  title: string | null;
+  markdown: string;
+  perkId: string | null;
+  parsedMarkdown: string | null;
+  styles:
+    | GetPersonalProductStep_getPersonalProductStep_body_ContentItemAgePercentCoverPicker_restictedPercentInfoCardText_styles[]
+    | null;
+  markdownContainerStyle:
+    | GetPersonalProductStep_getPersonalProductStep_body_ContentItemAgePercentCoverPicker_restictedPercentInfoCardText_markdownContainerStyle[]
+    | null;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemAgePercentCoverPicker_ageText_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemAgePercentCoverPicker_ageText_markdownContainerStyle {
+  property: string;
+  value: string;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemAgePercentCoverPicker_ageText {
+  id: string;
+  title: string | null;
+  markdown: string;
+  perkId: string | null;
+  parsedMarkdown: string | null;
+  styles: GetPersonalProductStep_getPersonalProductStep_body_ContentItemAgePercentCoverPicker_ageText_styles[] | null;
+  markdownContainerStyle:
+    | GetPersonalProductStep_getPersonalProductStep_body_ContentItemAgePercentCoverPicker_ageText_markdownContainerStyle[]
+    | null;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemAgePercentCoverPicker_customCover_button_onPress {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemAgePercentCoverPicker_customCover_button_event {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemAgePercentCoverPicker_customCover_button_icon {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemAgePercentCoverPicker_customCover_button_rightIcon {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemAgePercentCoverPicker_customCover_button_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemAgePercentCoverPicker_customCover_button {
+  id: string;
+  label: string;
+  buttonType: ContentItemButtonType | null;
+  value: string | null;
+  disabledState: string | null;
+  onPress: GetPersonalProductStep_getPersonalProductStep_body_ContentItemAgePercentCoverPicker_customCover_button_onPress | null;
+  event: GetPersonalProductStep_getPersonalProductStep_body_ContentItemAgePercentCoverPicker_customCover_button_event | null;
+  icon: GetPersonalProductStep_getPersonalProductStep_body_ContentItemAgePercentCoverPicker_customCover_button_icon | null;
+  rightIcon: GetPersonalProductStep_getPersonalProductStep_body_ContentItemAgePercentCoverPicker_customCover_button_rightIcon | null;
+  styles:
+    | GetPersonalProductStep_getPersonalProductStep_body_ContentItemAgePercentCoverPicker_customCover_button_styles[]
+    | null;
+  buttonSize: ContentItemButtonSize | null;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemAgePercentCoverPicker_customCover_itemsPicker_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemAgePercentCoverPicker_customCover_itemsPicker_range {
+  min: number;
+  max: number;
+  step: number;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemAgePercentCoverPicker_customCover_itemsPicker_coverMap {
+  coverType: CoverType;
+  max: number;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemAgePercentCoverPicker_customCover_itemsPicker_styleVariants_item {
+  color: string;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemAgePercentCoverPicker_customCover_itemsPicker_styleVariants_overlay_backdropStyles {
+  property: string;
+  value: string;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemAgePercentCoverPicker_customCover_itemsPicker_styleVariants_overlay_overlayTitleWrapperStyles {
+  property: string;
+  value: string;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemAgePercentCoverPicker_customCover_itemsPicker_styleVariants_overlay {
+  backdropStyles:
+    | GetPersonalProductStep_getPersonalProductStep_body_ContentItemAgePercentCoverPicker_customCover_itemsPicker_styleVariants_overlay_backdropStyles[]
+    | null;
+  highlightLabel: string;
+  highlightLabelColor: string;
+  overlayTitle: string;
+  overlayTitleWrapperStyles:
+    | GetPersonalProductStep_getPersonalProductStep_body_ContentItemAgePercentCoverPicker_customCover_itemsPicker_styleVariants_overlay_overlayTitleWrapperStyles[]
+    | null;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemAgePercentCoverPicker_customCover_itemsPicker_styleVariants {
+  id: string;
+  minVisibleIndex: number | null;
+  maxVisibleIndex: number | null;
+  item: GetPersonalProductStep_getPersonalProductStep_body_ContentItemAgePercentCoverPicker_customCover_itemsPicker_styleVariants_item;
+  overlay: GetPersonalProductStep_getPersonalProductStep_body_ContentItemAgePercentCoverPicker_customCover_itemsPicker_styleVariants_overlay;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemAgePercentCoverPicker_customCover_itemsPicker {
+  id: string;
+  answerKey: string;
+  styles:
+    | GetPersonalProductStep_getPersonalProductStep_body_ContentItemAgePercentCoverPicker_customCover_itemsPicker_styles[]
+    | null;
+  range: GetPersonalProductStep_getPersonalProductStep_body_ContentItemAgePercentCoverPicker_customCover_itemsPicker_range;
+  coverMap: GetPersonalProductStep_getPersonalProductStep_body_ContentItemAgePercentCoverPicker_customCover_itemsPicker_coverMap[];
+  styleVariants:
+    | GetPersonalProductStep_getPersonalProductStep_body_ContentItemAgePercentCoverPicker_customCover_itemsPicker_styleVariants[]
+    | null;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemAgePercentCoverPicker_customCover {
+  contentItemCoverPickerCustomCoverTitle: string;
+  button: GetPersonalProductStep_getPersonalProductStep_body_ContentItemAgePercentCoverPicker_customCover_button;
+  itemsPicker: GetPersonalProductStep_getPersonalProductStep_body_ContentItemAgePercentCoverPicker_customCover_itemsPicker;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemAgePercentCoverPicker {
+  __typename: "ContentItemAgePercentCoverPicker";
+  id: string;
+  styles: GetPersonalProductStep_getPersonalProductStep_body_ContentItemAgePercentCoverPicker_styles[] | null;
+  percentsToDefault: number[];
+  contentItemAgePercentCoverPickerOptions: GetPersonalProductStep_getPersonalProductStep_body_ContentItemAgePercentCoverPicker_contentItemAgePercentCoverPickerOptions[];
+  /**
+   * what percentage of your...
+   */
+  topHeading: string | null;
+  /**
+   * Based on your info you can only have ${percent}
+   */
+  restictedPercentInfoCardText: GetPersonalProductStep_getPersonalProductStep_body_ContentItemAgePercentCoverPicker_restictedPercentInfoCardText | null;
+  /**
+   * In the event of your passing...
+   */
+  costPayoutBenefitHeading: string | null;
+  /**
+   * a month until
+   */
+  costPayoutBenefitPayoutSchedule: string | null;
+  /**
+   * per month
+   */
+  costPayoutBenefitCostSchedule: string | null;
+  /**
+   * Your policy will stop when you are ${age}
+   */
+  ageText: GetPersonalProductStep_getPersonalProductStep_body_ContentItemAgePercentCoverPicker_ageText | null;
+  answerKeyPercent: string;
+  answerKeyPercentDefaultValue: number;
+  answerKeyAge: string;
+  answerKeyAgeDefaultValue: number;
+  answerKeyCoverType: string;
+  answerKeyCoverTypeDefaultValue: CoverType;
+  answerKeyMaxSalaryPercent: string;
+  answerKeyMaxSalaryPercentDefaultValue: number;
+  customCover: GetPersonalProductStep_getPersonalProductStep_body_ContentItemAgePercentCoverPicker_customCover | null;
+  /**
+   * User age
+   */
+  userAge: number;
+  agePickerButtonRightIconImageUrl: string;
+}
+
 export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemCostPayoutBenefitCard_styles {
   property: string;
   value: string;
@@ -1279,6 +1504,7 @@ export type GetPersonalProductStep_getPersonalProductStep_body =
   | GetPersonalProductStep_getPersonalProductStep_body_ContentItemGpDetails
   | GetPersonalProductStep_getPersonalProductStep_body_ContentItemMultiButton
   | GetPersonalProductStep_getPersonalProductStep_body_ContentItemSelectedPackageAccordion
+  | GetPersonalProductStep_getPersonalProductStep_body_ContentItemAgePercentCoverPicker
   | GetPersonalProductStep_getPersonalProductStep_body_ContentItemCostPayoutBenefitCard;
 
 export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentItemLottie {
@@ -1305,6 +1531,7 @@ export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentIte
     | "ContentItemSelectedPackageCard"
     | "ContentItemPersonalProductPreview"
     | "ContentItemCoverPicker"
+    | "ContentItemAgePercentCoverPicker"
     | "ContentItemScrollableItemsPicker"
     | "ContentItemConfirm"
     | "ContentItemCollapsingHeaderProductInfo"
@@ -1540,6 +1767,7 @@ export interface GetPersonalProductStep_getPersonalProductStep_header_ContentIte
     | "ContentItemSelectedPackageCard"
     | "ContentItemPersonalProductPreview"
     | "ContentItemCoverPicker"
+    | "ContentItemAgePercentCoverPicker"
     | "ContentItemScrollableItemsPicker"
     | "ContentItemConfirm"
     | "ContentItemCollapsingHeaderProductInfo"
@@ -1737,6 +1965,7 @@ export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_Con
     | "ContentItemSelectedPackageCard"
     | "ContentItemPersonalProductPreview"
     | "ContentItemCoverPicker"
+    | "ContentItemAgePercentCoverPicker"
     | "ContentItemScrollableItemsPicker"
     | "ContentItemConfirm"
     | "ContentItemList"
