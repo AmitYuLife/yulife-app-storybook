@@ -1897,6 +1897,9 @@ export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_Con
 
 export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemFullScreenLottieSwiper_theme {
   primaryColor: string;
+  titleColor: string | null;
+  progressBarForegroundColor: string | null;
+  progressBarBackgroundColor: string | null;
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemFullScreenLottieSwiper_button_onPress {
