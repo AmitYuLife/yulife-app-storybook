@@ -10,12 +10,12 @@ const ProgressBarDebug = () => {
   const milestones = useMemo(() => [60, 80, 100], []);
 
   useInterval(() => {
-    setCurrent((current) => {
-      if (current === 100) {
+    setCurrent((value) => {
+      if (value === 100) {
         return 0;
       }
 
-      return current + 2.5;
+      return value + 2.5;
     });
   }, 125);
 

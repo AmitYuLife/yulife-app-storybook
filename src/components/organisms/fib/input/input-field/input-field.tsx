@@ -69,17 +69,17 @@ const _InputField = (props: InputFieldProps) => {
     }
   };
 
-  const handleFocus = (isFocused: boolean) => {
+  const handleFocus = (newFocusValue: boolean) => {
     if (onFocus) {
       onFocus();
     }
 
     return () => {
       if (hasFocusActive) {
-        hasFocusActive(isFocused);
+        hasFocusActive(newFocusValue);
       }
 
-      setIsFocused(isFocused);
+      setIsFocused(newFocusValue);
     };
   };
 

@@ -1,8 +1,7 @@
 import React, { useCallback } from "react";
 import Config from "react-native-config";
-import { connect, useSelector } from "react-redux";
-import { IReduxState } from "@redux/_core/reducers";
-import { getCopy } from "@redux/copy/copy.selectors";
+import { useDispatch, useSelector } from "react-redux";
+import { getFitKitConnectCopy } from "@redux/copy/copy.selectors";
 import { fitKitConsentAuthorised } from "@redux/user/user.actions";
 import FitKitPermissions from "@services/fitkit/fitkit.permissions";
 import { FitKitConnectScreen } from "@components/screens";
@@ -26,30 +25,22 @@ interface IProps {
   dismissButtonLabel?: string;
 }
 
-type ConnectedState = ReturnType<typeof mapStateToProps>;
-type ConnectedDispatch = typeof mapDispatchToProps;
-
-type Props = IProps & ConnectedState & ConnectedDispatch;
+type Props = IProps;
 
 const handlePrivacyPolicy = handleLinkPress(Config.PRIVACY_POLICY_URL);
 
 const FitKitConnectContainer: React.FC<Props> = (props) => {
-  const {
-    dailyStepScreenHandleAuthorised,
-    fitKitConsentAuthorised,
-    navigateToNext,
-    onDismiss,
-    copy,
-    dismissButtonLabel,
-  } = props;
+  const { dailyStepScreenHandleAuthorised, navigateToNext, onDismiss, dismissButtonLabel } = props;
   const [isConnecting, setIsConnecting] = React.useState(false);
   const { authorise, authorised, loading, available } = useFitKit();
+  const dispatch = useDispatch();
+  const copy = useSelector(getFitKitConnectCopy);
   const features = useSelector(getUserFeatures);
 
   const handleConnect = useCallback(
     async (platform: FitKitHealthTrackingPlatform) => {
       setIsConnecting(true);
-      fitKitConsentAuthorised();
+      dispatch(fitKitConsentAuthorised());
       await Storage.fitkit.setFitkitPermission(Storage.fitkit.REQUESTED);
 
       const authorizedResult = dailyStepScreenHandleAuthorised
@@ -78,12 +69,4 @@ const FitKitConnectContainer: React.FC<Props> = (props) => {
   );
 };
 
-const mapStateToProps = (state: IReduxState) => ({
-  copy: getCopy(state, "fitkitConnect"),
-});
-
-const mapDispatchToProps = {
-  fitKitConsentAuthorised,
-};
-
-export default connect<ConnectedState, ConnectedDispatch>(mapStateToProps, mapDispatchToProps)(FitKitConnectContainer);
+export default FitKitConnectContainer;

@@ -21,15 +21,6 @@ export const pedestalStyles = {
 };
 
 export const PodiumAsset = ({ cropAmount = 0 }: { cropAmount: number }) => {
-  const {
-    SVG_HEIGHT,
-    SVG_WIDTH,
-    multiplier,
-    VIEWBOX_MIN_X,
-    VIEWBOX_MIN_Y,
-    VIEWBOX_WIDTH,
-    VIEWBOX_HEIGHT,
-  } = pedestalStyles;
   return (
     <Svg
       style={{ marginTop: -cropAmount }}

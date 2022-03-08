@@ -65,10 +65,10 @@ const SwitchTab = ({ tabs, defaultSelected, testID, paddingHorizontal = 0 }: ISw
   useEffect(() => {
     const measuresData: IMeasuresData[] = [];
     tabsWithRef.forEach((tab: ITab) => {
-      tab.ref.current.measureLayout(containerRef.current, (x: number, _: any, width: number) => {
+      tab.ref.current.measureLayout(containerRef.current, (x: number, _: any, w: number) => {
         measuresData.push({
           x,
-          width,
+          width: w,
         });
         if (measuresData.length === tabsWithRef.length) {
           setMeasures(measuresData);

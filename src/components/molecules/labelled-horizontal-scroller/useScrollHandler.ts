@@ -14,9 +14,9 @@ export function useScrollHandler({ items, onIndexChange, activeValue }: UseScrol
   const [activeIndex, setActiveIndex] = useState(0);
   let { current: willTriggerOnIndexChange } = useRef(false);
 
-  const updateCursor = (activeIndex: number) => {
+  const updateCursor = (idx: number) => {
     if (listRef.current?.scrollToIndex) {
-      listRef.current.scrollToOffset({ offset: CHOICE_WIDTH * activeIndex, animated: true });
+      listRef.current.scrollToOffset({ offset: CHOICE_WIDTH * idx, animated: true });
     }
   };
 
@@ -35,9 +35,9 @@ export function useScrollHandler({ items, onIndexChange, activeValue }: UseScrol
 
   const handleMomentumScrollEnd = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
     if (willTriggerOnIndexChange) {
-      const activeIndex = Math.round(event.nativeEvent.contentOffset.x / CHOICE_WIDTH);
-      setActiveIndex(activeIndex);
-      onIndexChange(activeIndex);
+      const idx = Math.round(event.nativeEvent.contentOffset.x / CHOICE_WIDTH);
+      setActiveIndex(idx);
+      onIndexChange(idx);
     }
 
     willTriggerOnIndexChange = false;
@@ -55,10 +55,10 @@ export function useScrollHandler({ items, onIndexChange, activeValue }: UseScrol
       return null;
     }
 
-    const activeIndex = Math.round(event.nativeEvent.contentOffset.x / CHOICE_WIDTH);
+    const idx = Math.round(event.nativeEvent.contentOffset.x / CHOICE_WIDTH);
 
     if (willTriggerOnIndexChange) {
-      onIndexChange(activeIndex);
+      onIndexChange(idx);
     }
 
     willTriggerOnIndexChange = false;

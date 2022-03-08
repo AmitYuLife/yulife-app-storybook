@@ -69,8 +69,8 @@ export default function useFormState(
   const canGoBack = answers.length > 0;
   const goBack = useCallback(() => {
     const lastAnswer = answers[answers.length - 1];
-    const question = form.questions.find((q) => q.key === lastAnswer.key);
-    setQuestion(question);
+    const previousQuestion = form.questions.find((q) => q.key === lastAnswer.key);
+    setQuestion(previousQuestion);
   }, [answers, form, setQuestion]);
 
   /**
@@ -114,9 +114,7 @@ const getNextQuestion = (
   supportedQuestionTypes: FeedbackFormQuestionType[]
 ): Question => {
   // find a matching regex condition
-  const condition = currentQuestion.nextConditions.find((condition) =>
-    answerValue.match(new RegExp(condition.regexMatch))
-  );
+  const condition = currentQuestion.nextConditions.find((c) => answerValue.match(new RegExp(c.regexMatch)));
   if (!condition) {
     return null;
   }

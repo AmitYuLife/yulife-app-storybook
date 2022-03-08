@@ -20,6 +20,7 @@
   "rules": {
     "comma-dangle": "off",
     "quotes": 0,
+    "no-shadow": "off",
     "no-extra-boolean-cast": "warn",
     "react-native/no-inline-styles": "warn",
     "prettier/prettier": "off",
@@ -32,6 +33,7 @@
     "@typescript-eslint/no-inferrable-types": "off",
     "@typescript-eslint/prefer-as-const": "off",
     "@typescript-eslint/no-var-requires": "off",
+    "@typescript-eslint/no-shadow": "error",
     "react/jsx-boolean-value": ["error", "always"],
     "react/prop-types": "off",
     "react-hooks/exhaustive-deps": "warn",
