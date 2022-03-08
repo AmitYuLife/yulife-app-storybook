@@ -51,6 +51,7 @@ const styles = StyleSheet.create({
   prefixWrapper: {
     position: "absolute",
     left: 0,
+    top: Style.adjust(52),
     bottom: 0,
     height: Style.adjust(32),
   },
