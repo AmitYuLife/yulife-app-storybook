@@ -11,6 +11,9 @@ import { ContentItemButtonType, SduiActionType, ContentItemButtonSize } from "./
 
 export interface ContentItemFullScreenLottieSwiper_theme {
   primaryColor: string;
+  titleColor: string | null;
+  progressBarForegroundColor: string | null;
+  progressBarBackgroundColor: string | null;
 }
 
 export interface ContentItemFullScreenLottieSwiper_button_onPress {

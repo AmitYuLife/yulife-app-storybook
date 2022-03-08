@@ -30,12 +30,15 @@ interface Props {
   autoPlaySpeedMs: number;
   theme: {
     primaryColor: string;
+    titleColor: string;
+    progressBarForegroundColor?: string;
+    progressBarBackgroundColor?: string;
   };
 }
 
 export const FullScreenLottieSwiper = memo((props: Props) => {
   const dispatch = useDispatch();
-  const { items, title, button, close, ctaMinVisibleIndex, dismissMinVisibleIndex, autoPlaySpeedMs } = props;
+  const { items, title, button, close, ctaMinVisibleIndex, dismissMinVisibleIndex, autoPlaySpeedMs, theme } = props;
   const animationRef = useRef(null as ReturnType<typeof Animated.timing>);
   const { activeIndex, setActiveIndex, userInteractionToggler, setUserInteractionToggler, listRef } = useScrollHandler(
     items
@@ -133,10 +136,12 @@ export const FullScreenLottieSwiper = memo((props: Props) => {
           interpolatedValue={interpolatedValue}
           animationRef={animationRef}
           autoPlaySpeedMs={autoPlaySpeedMs}
+          progressBarForegroundColor={theme.progressBarForegroundColor}
+          progressBarBackgroundColor={theme.progressBarBackgroundColor}
         />
         <Controller handleChangeActiveIndex={handleChangeActiveIndex} />
         <View style={styles.title}>
-          <TextTemplate color={Colours.neutral.white} type="l1b">
+          <TextTemplate color={theme.titleColor || Colours.neutral.white} type="l1b">
             {title}
           </TextTemplate>
         </View>

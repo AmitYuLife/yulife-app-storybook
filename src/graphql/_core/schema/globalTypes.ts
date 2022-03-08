@@ -136,6 +136,7 @@ export enum MobileOnboardingStepPerformed {
   personalProductsCoveaFIBIntro = "personalProductsCoveaFIBIntro",
   referralsPopover = "referralsPopover",
   yuScreenChest = "yuScreenChest",
+  yuScreenChestPurchased = "yuScreenChestPurchased",
   yuScreenGloves = "yuScreenGloves",
   yuScreenGlovesLive = "yuScreenGlovesLive",
   yuScreenGlovesPurchased = "yuScreenGlovesPurchased",
@@ -231,7 +232,7 @@ export enum YumojiPartStatus {
 
 export interface AnswerInput {
   key: string;
-  value: string;
+  value?: string | null;
 }
 
 export interface AviosMetadata {

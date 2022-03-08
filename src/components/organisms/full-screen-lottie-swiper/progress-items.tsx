@@ -3,9 +3,24 @@ import { Animated, Easing, StyleSheet, View, ViewStyle } from "react-native";
 import { Style, Colours } from "@styles";
 import { DETOX_ENABLED } from "@services/socket";
 
-const ProgressItem = ({ width, translateX }: { width: number; translateX: number | Animated.Value }) => (
-  <View style={[styles.progressBar, { width }]}>
-    <Animated.View style={[styles.animatedProgressBar, { transform: [{ translateX }] }]} />
+const ProgressItem = ({
+  width,
+  translateX,
+  foregroundColor,
+  backgroundColor,
+}: {
+  width: number;
+  translateX: number | Animated.Value;
+  foregroundColor?: string;
+  backgroundColor?: string;
+}) => (
+  <View style={[styles.progressBar, { width, backgroundColor: backgroundColor || "rgba(255,255,255,0.32)" }]}>
+    <Animated.View
+      style={[
+        styles.animatedProgressBar,
+        { backgroundColor: foregroundColor || Colours.neutral.white, transform: [{ translateX }] },
+      ]}
+    />
   </View>
 );
 
@@ -18,6 +33,8 @@ export const ProgressItems = ({
   interpolatedValue,
   animationRef,
   autoPlaySpeedMs = 2000,
+  progressBarForegroundColor,
+  progressBarBackgroundColor,
 }: {
   length: number;
   activeIndex: number;
@@ -27,6 +44,8 @@ export const ProgressItems = ({
   interpolatedValue: Animated.Value;
   animationRef: React.MutableRefObject<Animated.CompositeAnimation>;
   autoPlaySpeedMs: number;
+  progressBarForegroundColor?: string;
+  progressBarBackgroundColor?: string;
 }) => {
   const reanimateInterpolatedValue = useCallback(() => {
     interpolatedValue.setValue(-width);
@@ -62,7 +81,15 @@ export const ProgressItems = ({
       {Array.from({ length }).map((_, i) => {
         const translateX = activeIndex === i ? interpolatedValue : i < activeIndex ? 0 : -width;
 
-        return <ProgressItem key={i} width={width} translateX={translateX} />;
+        return (
+          <ProgressItem
+            key={i}
+            width={width}
+            translateX={translateX}
+            foregroundColor={progressBarForegroundColor}
+            backgroundColor={progressBarBackgroundColor}
+          />
+        );
       })}
     </View>
   );

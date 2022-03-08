@@ -734,6 +734,9 @@ export const GQL_FRAGMENT_CONTENT_ITEM_FULL_SCREEN_LOTTIE_SWIPER = gql`
     ctaMinVisibleIndex
     theme {
       primaryColor
+      titleColor
+      progressBarForegroundColor
+      progressBarBackgroundColor
     }
     button {
       ...ContentItemButton
