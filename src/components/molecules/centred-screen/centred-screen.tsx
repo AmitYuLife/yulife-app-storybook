@@ -1,9 +1,9 @@
-import * as React from "react";
+import React, { memo } from "react";
 import { Image as RNImage, SafeAreaView, StyleSheet, View, ViewStyle, ImageStyle } from "react-native";
 import LottieView from "lottie-react-native";
 import styles from "./centred-screen.styles";
 import { Style } from "@styles";
-import { Image } from "@atoms/image/image";
+import { Image } from "@atoms";
 
 interface Props {
   children?: React.ReactNode;
@@ -35,7 +35,7 @@ export type CenteredScreenImages =
   | "new_desert"
   | "new_mountain";
 
-export default function CenteredScreen({ children, footerImage, style, testID, BackgroundGradient = null }: Props) {
+function CentredScreen({ children, footerImage, style, testID, BackgroundGradient = null }: Props) {
   return (
     <SafeAreaView style={StyleSheet.flatten([styles.wrapper, style])} testID={testID}>
       {BackgroundGradient}
@@ -48,6 +48,8 @@ export default function CenteredScreen({ children, footerImage, style, testID, B
     </SafeAreaView>
   );
 }
+
+export default memo(CentredScreen);
 
 const IMAGES: Record<
   CenteredScreenImages,

@@ -1,4 +1,4 @@
-import { TextTemplate, CheckBox, Button } from "@atoms/index";
+import { TextTemplate, Button } from "@atoms";
 import React, { useState, useRef, useEffect } from "react";
 import ReactNative, {
   Keyboard,
@@ -15,6 +15,7 @@ import ProductsSurveyGreetings from "./products-survey-greetings";
 import { Colours } from "@styles";
 import { SURVEY_SCREEN, SURVEY_TEXT_BOX } from "@ids";
 import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
+import { CheckBox } from "@molecules";
 
 interface IProductSurvey {
   label: string;

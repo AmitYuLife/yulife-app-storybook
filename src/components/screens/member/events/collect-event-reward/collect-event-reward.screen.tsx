@@ -1,6 +1,6 @@
 import React, { FC, memo, useCallback } from "react";
 import { View, StyleSheet } from "react-native";
-import { CentredScreen, TextTemplate, Button } from "@atoms";
+import { TextTemplate, Button } from "@atoms";
 import EventRewardsWrapper from "@organisms/event-reward/event-rewards-wrapper";
 import { Colours, Style } from "@styles";
 import { IReward } from "@organisms/event-reward/event-reward";
@@ -8,6 +8,7 @@ import { ContentItemLottie as GqlLottie } from "@graphql/_core/schema";
 import { ContentItemLottie } from "@components/sdui";
 import { Navigation } from "react-native-navigation";
 import { MODALS } from "@navigation/constants";
+import { CentredScreen } from "@molecules";
 
 interface ICollectEventRewardsProps {
   title: string;

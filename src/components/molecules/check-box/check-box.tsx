@@ -1,10 +1,9 @@
-import React from "react";
+import React, { memo } from "react";
 import { ViewStyle, View, StyleSheet } from "react-native";
 import Svg, { Circle, Path } from "react-native-svg";
 import { Colours, Style } from "@styles";
 import { CHECK_BOX_STATE } from "@ids";
-import { TouchableOpacityWithDelay } from "@components/molecules";
-// TODO TECH DEBT: this checkbox shouldn't be an atom
+import { TouchableOpacityWithDelay } from "@molecules";
 import { TextTemplate } from "@atoms";
 
 interface ICheckBox {
@@ -50,6 +49,8 @@ function CheckBox(props: ICheckBox) {
   );
 }
 
+export default memo(CheckBox);
+
 const styles = StyleSheet.create({
   wrapper: {
     flexDirection: "row",
@@ -60,5 +61,3 @@ const styles = StyleSheet.create({
     paddingLeft: Style.adjust(12),
   } as ViewStyle,
 });
-
-export default CheckBox;

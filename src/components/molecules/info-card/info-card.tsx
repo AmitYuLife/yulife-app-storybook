@@ -29,7 +29,7 @@ const InfoCard = memo(({ icon, title, description, customBody, hyperlink, wrappe
                 <TextTemplate type="b2b">{title}</TextTemplate>
               </View>
             )}
-            {!description ? null : <Markdown text={description} />}
+            {!description ? null : <Markdown markdownStyles={markdownStyles} text={description} />}
             {!hyperlink ? null : <HyperlinkInstance {...hyperlink} />}
           </>
         )}
@@ -70,5 +70,11 @@ const styles = StyleSheet.create({
     marginTop: Style.adjust(28),
   },
 });
+
+const markdownStyles = {
+  paragraph: {
+    fontSize: Style.adjust(16),
+  },
+};
 
 export default InfoCard;

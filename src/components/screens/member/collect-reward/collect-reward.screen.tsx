@@ -1,8 +1,9 @@
 import * as React from "react";
 import { SFC } from "react";
 import { Platform, StyleSheet, View } from "react-native";
-import { Button, CentredScreen, CoinConfetti, Heading, Pad } from "@atoms";
+import { Button, CoinConfetti, Heading, Pad } from "@atoms";
 import styles from "./collect-reward.styles";
+import { CentredScreen } from "@molecules";
 
 interface IProps {
   date?: string;

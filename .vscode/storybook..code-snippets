@@ -1,0 +1,29 @@
+{
+  "Create a new storybook": {
+    "prefix": "yuStorybook",
+    "body": [
+      "import React from \"react\";",
+      "import { ScrollView } from \"react-native\";",
+      "import { withDesign } from \"storybook-addon-designs\";",
+      "",
+      "export const ComponentName = () => (",
+      "    <ScrollView>",
+      "",
+      "    </ScrollView>",
+      ");",
+      "",
+      "export default {",
+      "  title: \"ComponentTitle\",",
+      "  component: ComponentName,",
+      "  decorators: [withDesign],",
+      "  parameters: {",
+      "    design: {",
+      "      type: \"figma\",",
+      "      url: \"Component link from figma\",",
+      "    },",
+      "  },",
+      "};"
+    ],
+    "description": ""
+  }
+}

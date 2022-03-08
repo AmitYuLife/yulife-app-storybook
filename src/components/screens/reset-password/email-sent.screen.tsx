@@ -1,8 +1,9 @@
 import * as React from "react";
 import { SFC } from "react";
 import { GetMobileCopy_getMobileCopy_screens_emailSent as EmailSentCopy } from "@graphql/_core/schema";
-import { Blurb, Button, CentredScreen, Heading, LinkButton, Pad, UnauthorisedGradient } from "@atoms";
+import { Blurb, Button, Heading, LinkButton, Pad, UnauthorisedGradient } from "@atoms";
 import styles from "./reset-password.screen.styles";
+import { CentredScreen } from "@molecules";
 
 interface IProps {
   email: string;
