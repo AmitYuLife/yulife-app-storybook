@@ -5,7 +5,7 @@ import moment from "moment";
 import Storage from "@services/storage";
 import { handleOpenWebView } from "@navigation/utils";
 import Logger from "@services/logging/logger";
-import FitKitPermissions from "@services/fitkit/fitkit.permissions";
+import { buildFitKitPermissions } from "@services/fitkit/fitkit.permissions";
 
 // we can move to env if we have different variants, for now keep as constant since this is the only variant
 const FAQ_LINK = "https://faq.yulife.com/en/articles/2813117-connecting-health-apps-to-yulife";
@@ -60,7 +60,7 @@ export function useAuthoriseFitkit({
           await Storage.fitkit.setFitkitPermission(Storage.fitkit.REQUESTED);
           delayedSetFitkitPermission(Storage.fitkit.REQUESTED);
 
-          return authorise(FitKitPermissions(passiveCyclingEnabled));
+          return await authorise(buildFitKitPermissions(passiveCyclingEnabled));
         }
 
         handleOpenWebView({ uri: FAQ_LINK, title: "Help" });
@@ -69,7 +69,7 @@ export function useAuthoriseFitkit({
       }
     } else {
       try {
-        return authorise({ ...FitKitPermissions(passiveCyclingEnabled), platform });
+        return await authorise({ ...buildFitKitPermissions(passiveCyclingEnabled), platform });
       } catch (e) {
         Logger.error(e, { file: "daily-steps-content", platform: "android" });
       }
