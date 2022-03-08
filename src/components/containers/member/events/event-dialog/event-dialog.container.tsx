@@ -94,7 +94,7 @@ const eventDialogTestProps = {
       icon: {
         id: "duotone/policy-tnc.svg",
         uri:
-          "https://yulife-local.imgix.net/duotone/policy-tnc.svg?ixlib=js-3.2.1&fm=png&h=24&w=24&s=2341aef9a97331f0b2085f4079030966",
+          "https://yulife-local.imgix.net/duotone/policy-tnc.svg?ixlib=js-3.2.1&fm=png&h=48&w=48&s=e316c124a9873eae3b4932b42a7e79c6",
       },
       title: "Task",
       description: `Complete any challenge.\nOnly counted once per day.`,
@@ -103,7 +103,7 @@ const eventDialogTestProps = {
       icon: {
         id: "content/icons/trophy.svg",
         uri:
-          "https://yulife-local.imgix.net/content/icons/trophy.svg?ixlib=js-3.2.1&fm=png&h=24&w=24&s=7e99ef0047018dfabf293546e1fb988d",
+          "https://yulife-local.imgix.net/content/icons/trophy.svg?ixlib=js-3.2.1&fm=png&h=48&w=48&s=5f8a92b18d41b120012548df19aed458",
       },
       title: "Rewards",
       description: `Completion: Reward X\nParticipation: Reward Y`,
@@ -113,7 +113,7 @@ const eventDialogTestProps = {
     image: {
       id: "content/icons/yugi-status.svg",
       uri:
-        "https://yulife-local.imgix.net/content/icons/yugi-status.svg?ixlib=js-3.2.1&fm=png&h=64&w=56&s=aac19872e42c12a5143751fe26c39b30",
+        "https://yulife-local.imgix.net/content/icons/yugi-status.svg?ixlib=js-3.2.1&fm=png&h=128&w=112&s=53cd27dab457b4e537f7433569fcfe21",
     },
     markdown: "Join the event to be able to do reach milestones and earn rewards.",
     type: "info" as const,

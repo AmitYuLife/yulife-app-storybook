@@ -22,7 +22,7 @@ const InfoPanel = ({ markdown, remoteImage, type = "warning", wrapperStyle, styl
     return [styles.wrapper, getBannerTheme(type), wrapperStyle];
   }, [type, wrapperStyle]);
 
-  const copyStyle = useMemo(() => [styles.copyWrapper], [style]);
+  const copyStyle = useMemo(() => [styles.copyWrapper, style], [style]);
 
   return (
     <View style={styleWrapper}>
