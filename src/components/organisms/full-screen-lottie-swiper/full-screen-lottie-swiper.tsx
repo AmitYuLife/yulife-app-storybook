@@ -44,12 +44,13 @@ export const FullScreenLottieSwiper = memo((props: Props) => {
     items
   );
 
-  const { width, interpolatedValue } = useMemo(() => {
+  const params = useMemo(() => {
     const width = (Style.DEVICE_WIDTH - Style.adjust(24)) / items.length;
     const interpolatedValue = new Animated.Value(-width);
 
     return { width, interpolatedValue };
   }, [items.length]);
+  const { width, interpolatedValue } = params;
 
   const snapToOffsets = useMemo(() => Array.from({ length: items.length }).map((_, i) => i * Style.DEVICE_WIDTH), [
     items.length,

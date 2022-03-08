@@ -64,7 +64,7 @@ const YumojiBuilderItemList: FC<IProps> = ({ itemList, updateUserAvatar, selecte
 
       if (item?.modal) {
         const { title, message, cta, ctaText } = item.modal || {};
-        const tab = navigationTabs.find((tab) => tab.name === cta);
+        const tab = navigationTabs.find((t) => t.name === cta);
         const onTabPress = tab?.onPress;
         const route = ROUTES[cta as keyof typeof ROUTES];
         const pushNavigation = route ? () => Navigation.push(cta, { component: { id: route, name: route } }) : null;

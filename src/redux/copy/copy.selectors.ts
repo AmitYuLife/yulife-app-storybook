@@ -32,6 +32,9 @@ export const getPurchasesCopy = createSelector(screensReducer, purchasesCopySele
 const notEnoughCoinsAlertCopySelector = (state: ScreensState) => state.rewardsDetails.notEnoughCoinsAlert;
 export const getNotEnoughCoinsAlertCopy = createSelector(screensReducer, notEnoughCoinsAlertCopySelector);
 
+const fitKitConnectCopySelector = (state: ScreensState) => state.fitkitConnect;
+export const getFitKitConnectCopy = createSelector(screensReducer, fitKitConnectCopySelector);
+
 // challenge specifics
 
 type ChallengesScreensState = IReduxState["copy"]["screens"]["challenges"];

@@ -54,9 +54,9 @@ export const ContentBody = ({ items }: Props) => (
       if (item.type === "pairs") {
         return (
           <View key={`${item.type}-${index}`} style={styles.pairsWrapper}>
-            {item.content.map((pair, index) => (
+            {item.content.map((pair, idx) => (
               <ValueDescription
-                key={`${pair.value}-${index}`}
+                key={`${pair.value}-${idx}`}
                 type="vertical"
                 description={pair.label}
                 value={pair.value}

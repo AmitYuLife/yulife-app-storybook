@@ -32,7 +32,7 @@ export const ProductStepProductPreview = memo((props: Props) => {
 
   useSetDefaultAnswer({ answerKey, answerKeyDefaultValue, dynamicData, setDynamicData });
 
-  const { markdown, monthlyCost, priceColour, coverType, monthlyCostSuffix } = useMemo(() => {
+  const data = useMemo(() => {
     if (!dynamicData[answerKey]) {
       return { markdown: "", monthlyCost: "", priceColour: Colours.neutral.n800, monthlyCostSuffix: "" };
     }
@@ -75,6 +75,8 @@ export const ProductStepProductPreview = memo((props: Props) => {
       }),
     [documentHyperlink, productId, stepId, dynamicData]
   );
+
+  const { markdown, monthlyCost, priceColour, coverType, monthlyCostSuffix } = data;
 
   return (
     <View style={[styles.wrapper, mapServerStyles(props.styles)]}>

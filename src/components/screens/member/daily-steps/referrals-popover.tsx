@@ -51,8 +51,8 @@ const ReferralsPopover: FC<IProps> = ({ onLeftMenuPress }) => {
       dispatch(setOnboardingReferralsBadge(true));
       await performOnboardingStep({ variables: { step: id } });
       await AsyncStorage.setItem(STORAGE_KEY, "true");
-    } catch (error) {
-      Logger.error(error, { file: "referrals-popover" });
+    } catch (e) {
+      Logger.error(e, { file: "referrals-popover" });
     }
   }, [id]);
 

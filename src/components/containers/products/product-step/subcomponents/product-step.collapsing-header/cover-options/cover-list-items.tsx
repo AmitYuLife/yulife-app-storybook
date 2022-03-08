@@ -26,15 +26,15 @@ export const CoverListItems = memo(({ coverList, answerKey, coverType, colorThem
   const dispatch = useDispatch();
 
   const handlePickCover = useCallback(
-    ({ coverType, value }: { coverType: CoverType; value: number }) => () => {
+    ({ type, value }: { type: CoverType; value: number }) => () => {
       setDynamicData((oldState) => ({
         ...oldState,
         [answerKey]: value,
-        [LOCAL_ANSWER_KEY.CoverType]: coverType,
+        [LOCAL_ANSWER_KEY.CoverType]: type,
       }));
       dispatch(
         logMixpanelEventActionCreator("package_inspected", {
-          type: coverType,
+          type,
           salary_covered: value,
           cs_product: productId,
           location: "package-options",
@@ -58,9 +58,7 @@ export const CoverListItems = memo(({ coverList, answerKey, coverType, colorThem
     [coverType]
   );
 
-  const getColorTheme = useCallback((coverType: CoverType) => {
-    return mapCoverTypeToColorTheme(coverType);
-  }, []);
+  const getColorTheme = useCallback((type: CoverType) => mapCoverTypeToColorTheme(type), []);
 
   return (
     <View style={styles.coverListItems}>
@@ -68,7 +66,7 @@ export const CoverListItems = memo(({ coverList, answerKey, coverType, colorThem
         return (
           <TouchableOpacityWithDelay
             key={item.minValue}
-            onPress={handlePickCover({ coverType: item.coverType, value: item.minValue })}
+            onPress={handlePickCover({ type: item.coverType, value: item.minValue })}
             style={getCoverListItemStyle(i, item.coverType)}
           >
             <TextTemplate color={getColorTheme(item.coverType).primary} type="l2b">
