@@ -113,7 +113,7 @@ const eventDialogTestProps = {
     image: {
       id: "content/icons/yugi-status.svg",
       uri:
-        "https://yulife-local.imgix.net/content/icons/yugi-status.svg?ixlib=js-3.2.1&fm=png&h=128&w=112&s=53cd27dab457b4e537f7433569fcfe21",
+        "https://yulife-local.imgix.net/content/icons/yugi-status-info.svg?ixlib=js-3.2.1&fm=png&w=112&h=314&s=f2a3cbdd5b592ca9daf0de371435ed74",
     },
     markdown: "Join the event to be able to do reach milestones and earn rewards.",
     type: "info" as const,

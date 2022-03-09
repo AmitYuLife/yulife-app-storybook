@@ -45,9 +45,7 @@ export default StyleSheet.create({
   about: { marginTop: Style.adjust(40), marginBottom: Style.adjust(24) },
   bannerWrapper: { marginBottom: Style.adjust(24) },
   banner: { paddingVertical: 0 },
-  ctaPadding: {
-    height: Platform.select({ ios: Style.adjust(28), android: Style.adjust(60) }),
-  },
+  ctaPadding: { height: Style.adjust(60) },
   ctaWrapper: {
     position: "absolute",
     bottom: 0,
