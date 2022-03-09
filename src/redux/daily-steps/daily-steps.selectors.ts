@@ -31,3 +31,6 @@ export const getDailyStepsSyncState = createSelector(reducer, dailyStepsSyncSele
 const stepsAwardedMilestonesLengthSelector = (state: State) =>
   (state.stepsPassiveMilestones || []).filter((milestone) => milestone.coins > 0).length;
 export const getStepsAwardedMilestonesLength = createSelector(reducer, stepsAwardedMilestonesLengthSelector);
+
+const maxStepsAnomalyWindowMs = (state: State) => state.maxStepsAnomalyWindowMs;
+export const getMaxStepsAnomalyWindowMs = createSelector(reducer, maxStepsAnomalyWindowMs);

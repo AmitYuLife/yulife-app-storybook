@@ -17,10 +17,13 @@ import {
   UPDATE_DAILY_STEPS_SUCCESS_FROM_LOCAL,
   UPDATE_DAILY_STEPS_NO_NEW_DATA,
   START_STEPS_SYNCING,
+  UPDATE_STEPS_MAX_ANOMALY_WINDOW,
 } from "./daily-steps.actions";
 import { SyncAction } from "@redux/_core/types";
 import { ExchangeRate, PassiveStepsMilestones } from "./daily-steps.selectors";
 import { UPDATE_APP_STATE_ACTIVE } from "@redux/app/app.actions";
+
+const MAX_ANOMALY_DETECTION_WINDOW_MS = 10000; // in ms
 
 export interface IDailyStepsStore {
   /**
@@ -60,6 +63,11 @@ export interface IDailyStepsStore {
    * When was the last sync with the server
    */
   lastUpdated: string;
+  /**
+   * @description
+   * Max window time in ms to detect spikes on pedometer reads
+   */
+  maxStepsAnomalyWindowMs: number;
 }
 
 export const getInitialState = (): IDailyStepsStore => ({
@@ -76,6 +84,7 @@ export const getInitialState = (): IDailyStepsStore => ({
   isSyncing: false,
   isServerFetchedThisSession: false,
   lastUpdated: moment().startOf("day").format(),
+  maxStepsAnomalyWindowMs: MAX_ANOMALY_DETECTION_WINDOW_MS,
 });
 
 const dailyStepsReducer = (state: IDailyStepsStore = getInitialState(), action: SyncAction): IDailyStepsStore => {
@@ -119,6 +128,9 @@ const dailyStepsReducer = (state: IDailyStepsStore = getInitialState(), action: 
 
     case LOGOUT_SUCCESS:
       return getInitialState();
+
+    case UPDATE_STEPS_MAX_ANOMALY_WINDOW:
+      return { ...state, maxStepsAnomalyWindowMs: action.payload };
 
     default:
       return state;

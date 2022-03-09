@@ -11,6 +11,7 @@ export const GQL_QUERY_GET_USER_PROFILE = gql`
     getUserProfile {
       gameSettings {
         cyclingMeasurement
+        maxStepsAnomalyWindowMs
       }
       surge {
         endDateTime

@@ -12,10 +12,10 @@ import {
 } from "../pedometer.actions";
 import { stepsChannel } from "../pedometer.channels";
 import { getLastUpdated, getSteps } from "../pedometer.selectors";
+import { getMaxStepsAnomalyWindowMs } from "@redux/daily-steps/daily-steps.selectors";
 
 const ERROR_NOT_AUTHORISED = "Pedometer not authorised";
 const STEPS_PER_MILLISECONDS_LIMIT = 2;
-const MAX_ANOMALY_DETECTION_WINDOW_MS = 10000; // in ms
 
 export default function* listenToSteps() {
   yield put(updatePedometerStartAction());
@@ -24,6 +24,9 @@ export default function* listenToSteps() {
   const momentStartDay = moment().startOf("day");
   const startOfDay = momentStartDay.format();
   const channel: ReturnType<typeof stepsChannel> = yield call(stepsChannel, startOfDay);
+  const maxStepsAnomalyWindowMs: ReturnType<typeof getMaxStepsAnomalyWindowMs> = yield select(
+    getMaxStepsAnomalyWindowMs
+  );
 
   while (true) {
     try {
@@ -59,7 +62,7 @@ export default function* listenToSteps() {
         /**
          * If the pedometer repeats a genuine value assume it's legit
          */
-        if (timeSinceLastUpdate < MAX_ANOMALY_DETECTION_WINDOW_MS) {
+        if (timeSinceLastUpdate < maxStepsAnomalyWindowMs) {
           const stepsPerMilliseconds = (results.steps - currentSteps) / Math.max(1, timeSinceLastUpdate);
           areValidSteps = stepsPerMilliseconds < STEPS_PER_MILLISECONDS_LIMIT;
         }

@@ -11,6 +11,7 @@ import { DistanceMeasurementType, SduiActionType } from "./globalTypes";
 
 export interface GetUserProfile_getUserProfile_gameSettings {
   cyclingMeasurement: DistanceMeasurementType;
+  maxStepsAnomalyWindowMs: number | null;
 }
 
 export interface GetUserProfile_getUserProfile_surge_lottie_styles {
