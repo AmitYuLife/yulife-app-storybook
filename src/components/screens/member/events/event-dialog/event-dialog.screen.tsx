@@ -137,6 +137,7 @@ const EventDialogScreen: FC<IProps> = ({
         style={style.scrollView}
         onScroll={onScroll}
         scrollEventThrottle={32}
+        contentInsetAdjustmentBehavior="never"
       >
         <View style={style.contentWrapper}>
           <View style={style.rewardsWrapper}>
@@ -163,7 +164,6 @@ const EventDialogScreen: FC<IProps> = ({
                 remoteImage={banner.image}
                 type={banner.type}
                 wrapperStyle={style.bannerWrapper}
-                copyType="dense"
               />
             </View>
           )}
