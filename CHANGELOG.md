@@ -7,6 +7,39 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.23.0] - 2022-03-09
+
+### Features
+
+- Feature XSE-822 XSE-825 XSE-826: Multi factor pricing (dependency: https://gitlab.com/yu-life/yulife-api-server/-/merge_requests/4122)
+
+### Bugfixes
+
+- Bugfix GS-190: Use correct variation of InfoPanel and fix cta padding on IOS
+- Bugfix ENG-2540: Max steps anomaly window from server
+- Bugfix: Event Dialog icon quality and positioning
+- Bugfix: Fix contentItemTextInput prefix value absolute position
+- Bugfix: Better validation for NumberSlider on feedbackForm
+- Bugfix GS-246: Request cycling permission only once for iOS
+
+### Tasks
+
+- Task GS-190: [Event Dialog] Create Story, Task, and Feedback modules
+- Task GS-196: Replace Text from atoms with TextTemplate (Activity history)
+- Task XSE-832: Cost benefit sdui
+
+### Chores
+
+- Chore: React-native-web and Storybook
+- Chore: add the no-shadow eslint rule
+- Chore: FitKit enums and exports
+- Chore: Theme options on Full screen lottie
+
+### Extra
+
+- Copy: Capitalize default login heading
+- detox: overnight fix
+
 ## [3.22.0] - 2022-03-02
 
 ### Bugfixes
