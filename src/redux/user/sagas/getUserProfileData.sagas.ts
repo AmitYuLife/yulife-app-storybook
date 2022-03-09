@@ -5,6 +5,7 @@ import Logger from "@services/logging/logger";
 import { Unpacked } from "@utils";
 import { UPDATE_APP_STATE } from "@redux/app/app.actions";
 import { getToken } from "@services/storage";
+import { updateStepsMaxAnomalyDetectionWindow } from "@redux/daily-steps/daily-steps.actions";
 import { updateUserProfile } from "@redux/user/user.actions";
 
 export default function* getUserProfileData(dataPayload: { payload: string; type: string }) {
@@ -21,7 +22,8 @@ export default function* getUserProfileData(dataPayload: { payload: string; type
   try {
     const { data: userProfile }: Unpacked<typeof getUserProfile> = yield call(getUserProfile);
     if (userProfile?.getUserProfile) {
-      yield put(updateDailyCyclingDistanceMeasurementType(userProfile?.getUserProfile.gameSettings.cyclingMeasurement));
+      yield put(updateDailyCyclingDistanceMeasurementType(userProfile.getUserProfile.gameSettings.cyclingMeasurement));
+      yield put(updateStepsMaxAnomalyDetectionWindow(userProfile.getUserProfile.gameSettings.maxStepsAnomalyWindowMs));
       yield put(updateUserProfile(userProfile?.getUserProfile));
     }
   } catch (e) {
