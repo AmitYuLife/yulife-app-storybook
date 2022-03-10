@@ -4,6 +4,7 @@ import { ContentItemButton as GqlButton } from "@graphql/_core/schema";
 import { ContentItemButtonType } from "@graphql/_core/schema/globalTypes";
 import { Button, LinkButton, SecondaryButton, TertiaryButton } from "@atoms";
 import { mapServerStyles } from "../_utils/mapServerStyles";
+import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 
 type Props = Omit<GqlButton, "onPress" | "disabledState"> & {
   disabled?: boolean;
@@ -37,7 +38,11 @@ export const ContentItemButton = memo((props: Props) => {
     }
 
     if (event) {
-      dispatch(event);
+      try {
+        const payload = JSON.parse(event.payload);
+
+        dispatch(logMixpanelEventActionCreator(payload.name || "button_pressed", payload.props || {}));
+      } catch (e) {}
     }
   }, [onPress, dispatch, event]);
 
