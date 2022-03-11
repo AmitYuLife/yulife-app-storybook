@@ -47,7 +47,8 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemP
     | "ContentItemForm"
     | "ContentItemFade"
     | "ContentItemProcessingTimer"
-    | "ContentItemProgressSteps";
+    | "ContentItemProgressSteps"
+    | "ContentItemCollapsingHeaderAgePercentProductInfo";
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemTextInput_validation {
@@ -1549,7 +1550,8 @@ export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentIte
     | "ContentItemProcessingTimer"
     | "ContentItemYuCoinPower"
     | "ContentItemProgressSteps"
-    | "ContentItemCostPayoutBenefitCard";
+    | "ContentItemCostPayoutBenefitCard"
+    | "ContentItemCollapsingHeaderAgePercentProductInfo";
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentItemButton_onPress {
@@ -1783,7 +1785,8 @@ export interface GetPersonalProductStep_getPersonalProductStep_header_ContentIte
     | "ContentItemFade"
     | "ContentItemSelectedPackageCards"
     | "ContentItemYuCoinPower"
-    | "ContentItemCostPayoutBenefitCard";
+    | "ContentItemCostPayoutBenefitCard"
+    | "ContentItemCollapsingHeaderAgePercentProductInfo";
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_header_ContentItemHeaderBar_onLeftIconPress {
@@ -2222,12 +2225,66 @@ export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_Con
   items: GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemFullScreenLottieSwiper_items[];
 }
 
+export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemCollapsingHeaderAgePercentProductInfo_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemCollapsingHeaderAgePercentProductInfo_collapsingHeaderAgePercentProductInfoData_answerKeys {
+  ageToEnd: string | null;
+  salaryPercent: string | null;
+  coverType: string | null;
+  worldId: string | null;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemCollapsingHeaderAgePercentProductInfo_collapsingHeaderAgePercentProductInfoData_agePercentCoverList_contentItemAgePercentCoverPickerAgeOptions {
+  contentItemAgePercentCoverPickerPercentOptionValue: number;
+  cost: string;
+  monthlyPayout: string;
+  coverType: CoverType;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemCollapsingHeaderAgePercentProductInfo_collapsingHeaderAgePercentProductInfoData_agePercentCoverList {
+  age: number;
+  contentItemAgePercentCoverPickerAgeOptions: GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemCollapsingHeaderAgePercentProductInfo_collapsingHeaderAgePercentProductInfoData_agePercentCoverList_contentItemAgePercentCoverPickerAgeOptions[];
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemCollapsingHeaderAgePercentProductInfo_collapsingHeaderAgePercentProductInfoData {
+  answerKeys: GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemCollapsingHeaderAgePercentProductInfo_collapsingHeaderAgePercentProductInfoData_answerKeys;
+  agePercentCoverList: GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemCollapsingHeaderAgePercentProductInfo_collapsingHeaderAgePercentProductInfoData_agePercentCoverList[];
+  monthlyCostDynamicCopy: string;
+  monthlyCostReplacementString: string;
+  salaryPercentDynamicCopy: string;
+  salaryPercentReplacementString: string;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemCollapsingHeaderAgePercentProductInfo {
+  __typename: "ContentItemCollapsingHeaderAgePercentProductInfo";
+  id: string;
+  styles:
+    | GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemCollapsingHeaderAgePercentProductInfo_styles[]
+    | null;
+  /**
+   * Takes a ContentItem's id as value
+   * Header will expand once the ContentItem is in view
+   * target ContentItem needs to implement setComponentsLayout from ProductStepContext
+   */
+  expandOnComponentId: string | null;
+  /**
+   * Overrides everything else, set to the number of pixels scrolled before the header expands.
+   * Set to 0 if it's always expanded
+   */
+  expandThreshold: number | null;
+  collapsingHeaderAgePercentProductInfoData: GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemCollapsingHeaderAgePercentProductInfo_collapsingHeaderAgePercentProductInfoData | null;
+}
+
 export type GetPersonalProductStep_getPersonalProductStep_absolute_item =
   | GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemMarkdown
   | GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemImage
   | GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemCollapsingHeaderProductInfo
   | GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemFullScreenSwiper
-  | GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemFullScreenLottieSwiper;
+  | GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemFullScreenLottieSwiper
+  | GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemCollapsingHeaderAgePercentProductInfo;
 
 export interface GetPersonalProductStep_getPersonalProductStep_absolute {
   id: string;

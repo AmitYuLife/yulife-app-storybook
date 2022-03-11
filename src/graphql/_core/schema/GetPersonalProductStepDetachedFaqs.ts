@@ -54,7 +54,8 @@ export interface GetPersonalProductStepDetachedFaqs_getPersonalProductStepDetach
     | "ContentItemProcessingTimer"
     | "ContentItemYuCoinPower"
     | "ContentItemProgressSteps"
-    | "ContentItemCostPayoutBenefitCard";
+    | "ContentItemCostPayoutBenefitCard"
+    | "ContentItemCollapsingHeaderAgePercentProductInfo";
 }
 
 export interface GetPersonalProductStepDetachedFaqs_getPersonalProductStepDetachedFaqs_body_ContentItemPersonalProductFaqs_headingImage_image {

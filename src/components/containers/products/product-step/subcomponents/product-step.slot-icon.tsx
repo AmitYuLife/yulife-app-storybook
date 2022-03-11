@@ -26,45 +26,46 @@ interface Props {
 
 const SIZE = Style.adjust(64);
 const SPACE_FOR_PACKAGE_TYPE = Style.adjust(16);
+const NO_URLS = { itemUrl: "", itemBackgroundUrl: "" };
 
 export const SlotIcon = memo((props: Props) => {
   const { size = SIZE, backgroundUrl, customerProductId = "", shouldDisplayPackageType } = props;
-  const { data: getProductYumojiPartData } = useQuery<GetProductYumojiPart, GetProductYumojiPartVariables>(
-    GQL_QUERY_GET_PRODUCT_YUMOJI_PART,
-    {
-      variables: {
-        customerProductId,
-      },
-    }
-  );
+  const { data: getProductYumojiPartData, error: getProductYumojiPartError } = useQuery<
+    GetProductYumojiPart,
+    GetProductYumojiPartVariables
+  >(GQL_QUERY_GET_PRODUCT_YUMOJI_PART, {
+    variables: {
+      customerProductId,
+    },
+  });
 
-  const { data, loading } = useQuery<GetYumojiPartUrlSet, GetYumojiPartUrlSetVariables>(
-    GQL_QUERY_GET_YUMOJI_PART_URL_SET,
-    {
-      variables: {
-        partType: getProductYumojiPartData?.getProductYumojiPart.yumojiPartType,
-      },
-    }
-  );
+  const { data, loading, error: getYumojiPartUrlSetError } = useQuery<
+    GetYumojiPartUrlSet,
+    GetYumojiPartUrlSetVariables
+  >(GQL_QUERY_GET_YUMOJI_PART_URL_SET, {
+    variables: {
+      partType: getProductYumojiPartData?.getProductYumojiPart.yumojiPartType,
+    },
+  });
 
-  const itemUrl = useMemo(() => {
+  const activeCoverWorldItem = useMemo(() => {
     if (loading) {
-      return "";
+      return NO_URLS;
     }
 
     const coverTypeGuard = data.getYumojiPartUrlSet.variants.find(({ coverType }) => coverType === props.coverType);
 
     if (!coverTypeGuard) {
-      return "";
+      return NO_URLS;
     }
 
     const worldGuard = coverTypeGuard.worlds.find(({ worldId }) => worldId === props.worldId);
 
     if (!worldGuard) {
-      return "";
+      return NO_URLS;
     }
 
-    return worldGuard.remoteUrl.uri;
+    return { itemUrl: worldGuard.remoteUrl.uri, itemBackgroundUrl: coverTypeGuard.itemSlotBackgroundUrl };
   }, [data, props]);
 
   const dimensions = useMemo(() => {
@@ -74,10 +75,22 @@ export const SlotIcon = memo((props: Props) => {
     };
   }, [size, shouldDisplayPackageType]);
   const wrapperStyle = useMemo(() => [styles.wrapper, dimensions], [dimensions]);
-  const backgroundUrlSource = useMemo(() => ({ uri: backgroundUrl }), [backgroundUrl]);
+  const backgroundUrlSource = useMemo(() => ({ uri: activeCoverWorldItem.itemBackgroundUrl || backgroundUrl }), [
+    activeCoverWorldItem,
+    backgroundUrl,
+  ]);
   const backgroundUrlSourceStyle = useMemo(() => [StyleSheet.absoluteFill, dimensions], [dimensions]);
-  const itemUrlSource = useMemo(() => ({ uri: itemUrl }), [itemUrl]);
+  const itemUrlSource = useMemo(() => ({ uri: activeCoverWorldItem.itemUrl }), [activeCoverWorldItem]);
   const itemUrlSourceStyle = useMemo(() => [StyleSheet.absoluteFill, dimensions], [dimensions]);
+
+  const errors = [
+    ...(getProductYumojiPartError?.graphQLErrors || []),
+    ...(getYumojiPartUrlSetError?.graphQLErrors || []),
+  ];
+
+  if (errors.length) {
+    return null;
+  }
 
   return (
     <View style={wrapperStyle}>

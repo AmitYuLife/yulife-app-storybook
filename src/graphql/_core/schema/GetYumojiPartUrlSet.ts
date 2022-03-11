@@ -27,6 +27,7 @@ export interface GetYumojiPartUrlSet_getYumojiPartUrlSet_variants_worlds {
 
 export interface GetYumojiPartUrlSet_getYumojiPartUrlSet_variants {
   coverType: CoverType;
+  itemSlotBackgroundUrl: string | null;
   worlds: GetYumojiPartUrlSet_getYumojiPartUrlSet_variants_worlds[];
 }
 
