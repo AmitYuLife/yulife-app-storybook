@@ -1,42 +1,40 @@
 import React, { memo, useCallback } from "react";
-import { ListRenderItem, KeyboardAvoidingView, Platform, View } from "react-native";
+import { KeyboardAvoidingView, Platform, StyleSheet, View, ViewStyle } from "react-native";
 import { SearchListEmpty } from "@atoms";
-import { ISearchItem } from "@atoms/search/search-item";
-import { Colours } from "@styles";
-import { StyleSheet, ViewStyle } from "react-native";
+import SearchItem, { ISearchItem } from "@atoms/search/search-item";
 import { NetworkStatus } from "apollo-boost";
+import { Colours } from "@styles";
 
 interface Props {
-  data: ISearchItem<any>[];
+  practices: ISearchItem<any>[];
   networkStatus: NetworkStatus;
   emptyText?: string;
   emptyElement?: JSX.Element;
   loading: boolean;
-  searchItem: ListRenderItem<ISearchItem<any>>;
 }
 
-export const GpSearchList = memo(
-  ({ data = [], networkStatus, emptyText, loading, searchItem, emptyElement }: Props) => {
-    const isLoading = loading || [NetworkStatus.refetch, NetworkStatus.loading].includes(networkStatus);
+export const GpSearchList = memo(({ practices = [], networkStatus, emptyText, loading, emptyElement }: Props) => {
+  const isLoading = loading || [NetworkStatus.refetch, NetworkStatus.loading].includes(networkStatus);
 
-    const emptyComponent = useCallback(() => {
-      if (!isLoading && !data.length) {
-        return emptyElement ? emptyElement : <SearchListEmpty emptyText={emptyText} />;
-      }
+  const emptyComponent = useCallback(() => {
+    if (!isLoading && !practices.length) {
+      return emptyElement ? emptyElement : <SearchListEmpty emptyText={emptyText} />;
+    }
 
-      return null;
-    }, [isLoading, emptyText, emptyElement, data.length]);
+    return null;
+  }, [isLoading, emptyText, emptyElement, practices.length]);
 
-    return (
-      <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : null} style={styles.searchListWrapper}>
-        {data.map((x) => (
-          <View key={x.organisationCode}>{searchItem({ item: x, index: x.organisationCode, separators: null })}</View>
-        ))}
-        {emptyComponent()}
-      </KeyboardAvoidingView>
-    );
-  }
-);
+  return (
+    <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : null} style={styles.searchListWrapper}>
+      {practices.map((practice) => (
+        <View key={practice.organisationCode}>
+          {SearchItem({ item: practice, index: practice.organisationCode, separators: null })}
+        </View>
+      ))}
+      {emptyComponent()}
+    </KeyboardAvoidingView>
+  );
+});
 
 const styles = StyleSheet.create({
   searchListWrapper: {

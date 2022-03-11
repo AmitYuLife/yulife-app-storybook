@@ -1,32 +1,12 @@
-import React, { memo, useState, useMemo } from "react";
+import React, { memo, useMemo } from "react";
 import { View, StyleSheet, ViewStyle, TextStyle, Platform } from "react-native";
 import { Style, Colours } from "@styles";
 import { TextField } from "@molecules";
-import FibTitle from "@atoms/fib/title/title";
-import { Button, TextTemplate } from "@atoms";
+import { TextTemplate } from "@atoms";
 
 interface Props {
-  onContinue: (form: GPInputForm) => void;
-}
-
-export interface GPInputForm {
-  practiceName: string;
-  practiceAddress: string;
-  practiceTown: string;
-  practicePostCode: string;
-  gpName: string;
-}
-
-const defaultFormValue: GPInputForm = {
-  practiceName: "",
-  practiceAddress: "",
-  practiceTown: "",
-  practicePostCode: "",
-  gpName: "",
-};
-
-function validateGPForm(form: GPInputForm) {
-  return !form.practiceName || !form.practiceAddress || !form.practiceTown || !form.practicePostCode || !form.gpName;
+  fields: Record<string, string>;
+  onUpdateFormField(key: string, value: string): void;
 }
 
 const FORM_HEIGHT = Platform.select({
@@ -34,51 +14,39 @@ const FORM_HEIGHT = Platform.select({
   android: Style.adjust(78.5),
 });
 
-export const GpManualEntry = memo((props: Props) => {
-  const { onContinue } = props;
-
-  const [formValue, setFormValue] = useState<GPInputForm>(defaultFormValue);
-
-  const updateForm = (key: string, value: string) => {
-    setFormValue({ ...formValue, [key]: value });
-  };
-
-  const handleContinue = () => {
-    onContinue(formValue);
-  };
-
-  const isValidForm = validateGPForm(formValue);
-
+export const GpManualEntry = memo(({ fields, onUpdateFormField }: Props) => {
   const medicalPracticeForm = useMemo(
     () => [
       {
-        updateFormKey: "practiceName",
+        updateFormKey: "gpPractice",
         placeholder: "Name",
-        value: formValue.practiceName,
+        value: fields?.gpPractice,
       },
       {
-        updateFormKey: "practiceAddress",
+        updateFormKey: "gpAddress",
         placeholder: "Address",
-        value: formValue.practiceAddress,
+        value: fields?.gpAddress,
       },
       {
-        updateFormKey: "practiceTown",
+        updateFormKey: "gpTown",
         placeholder: "Town or City",
-        value: formValue.practiceTown,
+        value: fields?.gpTown,
       },
       {
-        updateFormKey: "practicePostCode",
+        updateFormKey: "gpPostcode",
         placeholder: "Postcode",
-        value: formValue.practicePostCode,
+        value: fields?.gpPostcode,
       },
     ],
-    [formValue]
+    [fields]
   );
 
   return (
     <View>
-      <View>
-        <FibTitle title="Please enter your medical practice and GP details below:" />
+      <View style={styles.header}>
+        <TextTemplate type="h3" color={Colours.neutral.n800}>
+          Please enter your medical practice and GP details below:
+        </TextTemplate>
       </View>
       <View style={styles.contentWrapper}>
         <View style={styles.headerWrapper}>
@@ -89,7 +57,7 @@ export const GpManualEntry = memo((props: Props) => {
         {medicalPracticeForm.map(({ updateFormKey, placeholder, value }) => (
           <View key={updateFormKey} style={styles.formWrapper}>
             <TextField
-              onChange={(val) => updateForm(updateFormKey, val as string)}
+              onChange={(val: string) => onUpdateFormField(updateFormKey, val)}
               placeholder={placeholder}
               inputTextStyle={styles.text}
               value={value}
@@ -104,14 +72,13 @@ export const GpManualEntry = memo((props: Props) => {
         </View>
         <View style={styles.formWrapper}>
           <TextField
-            onChange={(val) => updateForm("gpName", val as string)}
+            onChange={(val: string) => onUpdateFormField("gpName", val)}
             placeholder="Name"
             inputTextStyle={styles.text}
-            value={formValue.gpName}
+            value={fields?.gpName}
             baseUnderlineColor={Colours.neutral.n200}
           />
         </View>
-        <Button wrapperStyle={styles.button} disabled={isValidForm} label={"Continue"} onPress={handleContinue} />
       </View>
     </View>
   );
@@ -145,4 +112,7 @@ const styles = StyleSheet.create({
   button: {
     marginTop: 32,
   } as ViewStyle,
+  header: {
+    paddingHorizontal: Style.adjust(24),
+  },
 });

@@ -1,51 +1,86 @@
-import React, { memo, useCallback, useContext } from "react";
+import React, { memo, useCallback, useContext, useMemo } from "react";
 import {
   ContentItemGpDetails as GqlGpDetails,
-  MedicalPractices_getMedicalPractices,
-  MedicalPractices_getMedicalPractices_practicioners,
+  MedicalPractices_getMedicalPractices as MedicalPractices,
+  MedicalPractices_getMedicalPractices_practicioners as MedicalPractitioners,
 } from "@graphql/_core/schema";
 import { ContentItemGpDetails } from "@components/sdui";
 import { ProductStepContext } from "../product-step.context";
-import { SduiActionType } from "@graphql/_core/schema/globalTypes";
-import { useDispatch } from "react-redux";
-import { useDynamicOnChange } from "../hooks/useDynamicOnChange";
-import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
+import { LOCAL_GP_ANSWER_KEY } from "../utils";
 
 type Props = GqlGpDetails;
 
+type GpDetails = {
+  [LOCAL_GP_ANSWER_KEY.GpPractice]: string;
+  [LOCAL_GP_ANSWER_KEY.GpAddress]: string;
+  [LOCAL_GP_ANSWER_KEY.GpPostcode]: string;
+  [LOCAL_GP_ANSWER_KEY.GpTown]: string;
+  [LOCAL_GP_ANSWER_KEY.GpName]: string;
+};
+
+const formatGpDetails = (practice: MedicalPractices): Omit<GpDetails, "gpName"> => ({
+  gpPractice: practice.name,
+  gpAddress: [practice.address1, practice.address2, practice.address3].filter(Boolean).join(" "),
+  gpTown:
+    practice.address4 || practice.address5
+      ? [practice.address4, practice.address5].filter(Boolean).join(" ")
+      : practice.address3,
+  // Allow addresses with no postcode to pass string validation.
+  gpPostcode: practice.postCode || " ",
+});
+
 export const ProductStepContentItemGpDetails = memo((props: Props) => {
-  const { productId, stepId } = useContext(ProductStepContext);
+  const { dynamicData, setDynamicData } = useContext(ProductStepContext);
 
-  const dispatch = useDispatch();
-
-  const { value } = useDynamicOnChange<string>(props.answerKey);
-
-  const onComplete = useCallback(
-    (
-      practice: MedicalPractices_getMedicalPractices,
-      gp: MedicalPractices_getMedicalPractices_practicioners,
-      dispatchType: SduiActionType
-    ) => {
-      const data = {
-        gpPractice: practice.name,
-        gpAddress: [practice.address1, practice.address2, practice.address3].filter(Boolean).join(" "),
-        gpTown:
-          practice.address4 || practice.address5
-            ? [practice.address4, practice.address5].filter(Boolean).join(" ")
-            : practice.address3,
-        gpPostcode: practice.postCode,
-        gpName: gp.name,
-      };
-
-      dispatch({
-        type: dispatchType,
-        payload: { dynamicData: data, stepId, productId },
-      });
-
-      dispatch(logMixpanelEventActionCreator("checkout_details_submitted", { type: "gp", cs_product: productId }));
-    },
-    [productId, stepId, dispatch]
+  const fields = useMemo<GpDetails>(
+    () => ({
+      [LOCAL_GP_ANSWER_KEY.GpPractice]: dynamicData[LOCAL_GP_ANSWER_KEY.GpPractice] as string,
+      [LOCAL_GP_ANSWER_KEY.GpAddress]: dynamicData[LOCAL_GP_ANSWER_KEY.GpAddress] as string,
+      [LOCAL_GP_ANSWER_KEY.GpPostcode]: dynamicData[LOCAL_GP_ANSWER_KEY.GpPostcode] as string,
+      [LOCAL_GP_ANSWER_KEY.GpTown]: dynamicData[LOCAL_GP_ANSWER_KEY.GpTown] as string,
+      [LOCAL_GP_ANSWER_KEY.GpName]: dynamicData[LOCAL_GP_ANSWER_KEY.GpName] as string,
+    }),
+    [dynamicData]
   );
 
-  return <ContentItemGpDetails {...props} onComplete={onComplete} value={value} />;
+  const onCompletePractise = useCallback(
+    (practice: MedicalPractices) => {
+      const gpDetails = formatGpDetails(practice);
+      setDynamicData((oldState) => ({
+        ...oldState,
+        ...gpDetails,
+      }));
+    },
+    [setDynamicData]
+  );
+
+  const onCompleteGp = useCallback(
+    ({ name: gpName }: Pick<MedicalPractitioners, "name">) => {
+      setDynamicData((oldState) => ({
+        ...oldState,
+        gpName,
+      }));
+    },
+    [setDynamicData]
+  );
+
+  const onUpdateFormField = useCallback(
+    (key: string, value: string) => {
+      setDynamicData((oldState) => ({
+        ...oldState,
+        [key]: value,
+      }));
+    },
+    [setDynamicData]
+  );
+
+  return (
+    <ContentItemGpDetails
+      {...props}
+      onCompletePractise={onCompletePractise}
+      onCompleteGp={onCompleteGp}
+      onUpdateFormField={onUpdateFormField}
+      fields={fields}
+    />
+  );
 });
