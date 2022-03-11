@@ -16,6 +16,7 @@ import { Colours, Style } from "@styles";
 import { GpManualEntry } from "./gpManualEntry";
 import { GpDoctorDetails } from "./gpDoctorDetails";
 import { GpSearchList } from "./gpSearchList";
+import { SEARCH_INPUT } from "@ids";
 
 interface Props extends GqlGpDetails {
   fields: Record<string, string>;
@@ -100,6 +101,7 @@ export const ContentItemGpDetails = memo(({ fields, onCompleteGp, onCompletePrac
           autoFocus={false}
           editable={!medicalPractice}
           selectionColor={Colours.primary.p200}
+          testID={SEARCH_INPUT}
         />
       </View>
       {!medicalPractice ? (
