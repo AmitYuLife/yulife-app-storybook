@@ -192,6 +192,7 @@ export const addGPDetails = async () => {
     await navigateViaText("Continue")
     await typeViaID(SEARCH_INPUT, "CT2 8SG\n")()
     await tapText("London Road Surgery")()
+    await scrollUntilTextVisible(PRODUCT_STEP_BODY_SCROLL_VIEW, "Dr. London Road Surgery", "down")()
     await tapText("Dr. London Road Surgery")()
     await navigateViaText("Continue")
 }
