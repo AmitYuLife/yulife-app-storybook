@@ -1,5 +1,5 @@
 import { Style } from "@styles";
-import React, { memo, Ref } from "react";
+import React, { memo, Ref, useEffect, useState } from "react";
 import {
   Animated,
   FlatListProps,
@@ -11,6 +11,7 @@ import {
 
 type Props = FlatListProps<any> & {
   forwardRef?: Ref<RNFlatList>;
+  throttleTimeoutMs?: number;
 };
 
 const _FlatList = ({
@@ -21,10 +22,26 @@ const _FlatList = ({
   renderItem,
   keyExtractor = defaultKeyExtractor,
   viewabilityConfig = defaultViewabilityConfig,
+  throttleTimeoutMs = 1000,
   ...flatListProps
 }: Props) => {
+  const [allowInteraction, setAllowInteraction] = useState(true);
+
+  useEffect(() => {
+    let throttleTimeout: ReturnType<typeof setTimeout>;
+    if (!allowInteraction) {
+      throttleTimeout = setTimeout(() => {
+        setAllowInteraction(true);
+      }, throttleTimeoutMs);
+    }
+
+    return () => clearTimeout(throttleTimeout);
+  }, [allowInteraction]);
+
+  const handleTouchEnd = () => setAllowInteraction(false);
   return (
     <Animated.FlatList
+      scrollEnabled={allowInteraction}
       style={styles.defaultStyle}
       directionalLockEnabled={directionalLockEnabled}
       data={data}
@@ -37,6 +54,7 @@ const _FlatList = ({
       decelerationRate={"fast"}
       showsHorizontalScrollIndicator={false}
       showsVerticalScrollIndicator={false}
+      onTouchEnd={handleTouchEnd}
       {...flatListProps}
     />
   );
