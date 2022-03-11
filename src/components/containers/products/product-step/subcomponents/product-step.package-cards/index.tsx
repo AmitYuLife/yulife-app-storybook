@@ -1,44 +1,22 @@
-import React, { ComponentProps, memo, useContext, useEffect, useMemo, useRef, useState } from "react";
-import {
-  Animated,
-  ListRenderItemInfo,
-  NativeScrollEvent,
-  NativeSyntheticEvent,
-  StyleSheet,
-  View,
-  ViewStyle,
-  FlatList as RNFlatList,
-} from "react-native";
-import { useDispatch } from "react-redux";
-import {
-  ContentItemPackageCards,
-  GetPersonalProductStep_getPersonalProductStep_body_ContentItemPackageCards as GqlPackageCards,
-} from "@graphql/_core/schema";
-import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
+import React, { ComponentProps, memo, useContext, useMemo, useCallback, useState } from "react";
+import { ActivityIndicator, ListRenderItemInfo, StyleSheet, View, ViewStyle } from "react-native";
+import { GetPersonalProductStep_getPersonalProductStep_body_ContentItemPackageCards as GqlPackageCards } from "@graphql/_core/schema";
 import { PackageCard } from "./package-card";
 import { FlatList, TextTemplate } from "@atoms";
 import { Colours, Style } from "@styles";
-import { IProductStepContext, ProductStepContext } from "../../product-step.context";
+import { ProductStepContext } from "../../product-step.context";
 import { useSetDefaultAnswer } from "../../hooks/useSetDefaultAnswer";
 import { CoverType } from "@graphql/_core/schema/globalTypes";
 import { LOCAL_ANSWER_KEY } from "../../utils/localAnswerKeys";
-
-/**
- * Don't scale
- */
-const PACKAGE_CARD_WIDTH = Style.DEVICE_WIDTH - 48;
-const PAD_WIDTH = 20;
-
-/**
- * the number of items before the viewable items
- * In this case, it's the single FLAT_LIST_ITEM.PAD
- * before the PackageCards
- */
-const OFFSET = 1;
+import { useInitialiseFromDynamicData } from "./hooks/useInitialiseFromDynamicData";
+import { PACKAGE_CARD_WIDTH, PAD_WIDTH } from "./styles";
+import { useScrollHandler } from "./hooks/useScrollHandler";
+import { useAutoCleanTimeout } from "./hooks/useAutoCleanTimeout";
 
 export const ProductStepPackageCards = memo((props: GqlPackageCards) => {
   const { answerKey, answerKeyDefaultValue, filterBasedOnAnswerKey } = props;
   const { dynamicData, setDynamicData, productId } = useContext(ProductStepContext);
+  const [isLoading, setIsLoading] = useState(true);
 
   useSetDefaultAnswer({ answerKey, answerKeyDefaultValue, dynamicData, setDynamicData });
   useSetDefaultAnswer({
@@ -74,13 +52,17 @@ export const ProductStepPackageCards = memo((props: GqlPackageCards) => {
     productId,
   });
 
-  useEffect(() => {
-    const syncOnMount = setTimeout(() => {
-      listRef.current.scrollToOffset({ offset: PACKAGE_CARD_WIDTH * activePackageCardIndex });
-    }, 2000);
+  const { timeout: showLoadingTimeout } = useAutoCleanTimeout();
+  const sync = useCallback(() => {
+    clearTimeout(showLoadingTimeout.current);
 
-    return () => clearTimeout(syncOnMount);
-  }, []);
+    listRef.current.scrollToOffset({ offset: PACKAGE_CARD_WIDTH * activePackageCardIndex });
+
+    showLoadingTimeout.current = setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
+  }, [props, dynamicData]);
+  useInitialiseFromDynamicData({ sync, syncDependencies: [activePackageCardIndex], syncTimeoutMs: 1000 });
 
   return (
     <View>
@@ -105,6 +87,11 @@ export const ProductStepPackageCards = memo((props: GqlPackageCards) => {
       {filteredPackageCards.length <= 1 ? null : (
         <ActiveItemIndicator length={filteredPackageCards.length} activeIndex={activePackageCardIndex} />
       )}
+      {!isLoading ? null : (
+        <View style={styles.loading}>
+          <ActivityIndicator />
+        </View>
+      )}
     </View>
   );
 });
@@ -118,6 +105,12 @@ const styles = StyleSheet.create({
   scrollView: {
     width: Style.DEVICE_WIDTH,
     marginTop: Style.adjust(16),
+  } as ViewStyle,
+  loading: {
+    ...StyleSheet.absoluteFillObject,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: Colours.neutral.white,
   } as ViewStyle,
 });
 
@@ -209,7 +202,7 @@ function ActiveItemIndicator({ length, activeIndex }: { length: number; activeIn
           key={i}
           style={[
             activeItemIndicatorStyles.item,
-            { backgroundColor: i + OFFSET === activeIndex ? Colours.neutral.n300 : Colours.neutral.n100 },
+            { backgroundColor: i === activeIndex ? Colours.neutral.n300 : Colours.neutral.n100 },
           ]}
         />
       ))}
@@ -233,66 +226,3 @@ const activeItemIndicatorStyles = StyleSheet.create({
     borderColor: Colours.neutral.n300,
   } as ViewStyle,
 });
-
-type UseScrollHandler = Pick<IProductStepContext, "setDynamicData"> & {
-  packageCards: ContentItemPackageCards["packageCards"];
-  answerKey: ContentItemPackageCards["answerKey"];
-  answerKeyValue: ContentItemPackageCards["answerKeyDefaultValue"];
-  productId: string;
-};
-
-function useScrollHandler({ packageCards, setDynamicData, answerKey, answerKeyValue, productId }: UseScrollHandler) {
-  const dispatch = useDispatch();
-
-  const listRef = useRef(null as RNFlatList);
-  const [canChangeDynamicData, setCanChangeDynamicData] = useState(false);
-  const scrollX = useRef(new Animated.Value(0));
-  const activePackageCardIndex = useMemo(() => {
-    const activeIndex = packageCards.findIndex((item) => item.value === answerKeyValue);
-
-    return activeIndex + OFFSET;
-  }, [answerKeyValue]);
-
-  useEffect(() => {
-    const activeIndex = packageCards.findIndex(
-      (item) => answerKeyValue >= item.value && answerKeyValue <= item.packageMaxValue
-    );
-
-    const offset = PACKAGE_CARD_WIDTH * activeIndex;
-
-    listRef.current.scrollToOffset({ offset });
-  }, [answerKeyValue]);
-
-  const handleScroll = Animated.event([{ nativeEvent: { contentOffset: { x: scrollX.current } } }], {
-    useNativeDriver: true,
-  });
-
-  const handleScrollBeginDrag = () => {
-    setCanChangeDynamicData(true);
-  };
-
-  const handleMomentumScrollEnd = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
-    if (canChangeDynamicData) {
-      const activeIndex = Math.round(event.nativeEvent.contentOffset.x / PACKAGE_CARD_WIDTH);
-      const packageCard = packageCards[activeIndex];
-      setDynamicData((oldState) => ({
-        ...oldState,
-        [answerKey]: packageCard.value,
-        [LOCAL_ANSWER_KEY.CoverType]: packageCard.coverType,
-      }));
-
-      dispatch(
-        logMixpanelEventActionCreator("package_inspected", {
-          type: packageCard.coverType,
-          salary_covered: packageCard.value,
-          cs_product: productId,
-          location: "scroll-cards",
-        })
-      );
-    }
-
-    setCanChangeDynamicData(false);
-  };
-
-  return { listRef, activePackageCardIndex, handleScroll, handleScrollBeginDrag, handleMomentumScrollEnd };
-}

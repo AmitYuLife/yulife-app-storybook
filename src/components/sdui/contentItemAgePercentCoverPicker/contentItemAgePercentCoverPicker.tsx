@@ -8,6 +8,7 @@ import { useCoverPicker } from "./hooks/useCoverPicker";
 import { CoverType } from "@graphql/_core/schema/globalTypes";
 import { useIndexedData } from "./hooks/useIndexedData";
 import { useSafeData } from "./hooks/useSafeData";
+import { useInitialiseFromDynamicData } from "./hooks/useInitialiseFromDynamicData";
 
 interface ControlledProps {
   onChangePolicyEndAge: (age: number) => void;
@@ -46,17 +47,9 @@ export const ContentItemAgePercentCoverPicker = memo((props: Props) => {
   const maxSalaryPercent = ageToMaxSalaryPercent[policyEndAge];
 
   const updateMaxSalaryPercent = () => onChangeMaxSalaryPercent(maxSalaryPercent);
-  useEffect(() => {
-    const initialiseMaxSalaryPercentTimeout = setTimeout(() => {
-      updateMaxSalaryPercent();
-    }, 1000);
-
-    return () => clearTimeout(initialiseMaxSalaryPercentTimeout);
-  }, []);
+  useInitialiseFromDynamicData({ sync: updateMaxSalaryPercent, syncDependencies: [maxSalaryPercent] });
   useEffect(updateMaxSalaryPercent, [maxSalaryPercent, pricing, ageToMaxSalaryPercent, policyEndAge]);
-
   useSafeData({ keyedPricing, policyEndAge, onChangePolicyEndAge });
-
   const handlePickCover = (newCover: { value: number; coverType: CoverType }) => () => {
     onChangeSalaryPercent(newCover.value);
     onChangeCover(newCover.coverType);
