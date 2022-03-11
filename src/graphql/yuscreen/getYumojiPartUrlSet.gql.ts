@@ -8,6 +8,7 @@ export const GQL_QUERY_GET_YUMOJI_PART_URL_SET = gql`
     getYumojiPartUrlSet(partType: $partType) {
       variants {
         coverType
+        itemSlotBackgroundUrl
         worlds {
           worldId
           remoteUrl {

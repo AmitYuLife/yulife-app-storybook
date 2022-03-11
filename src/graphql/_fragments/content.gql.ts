@@ -1058,3 +1058,35 @@ export const GQL_FRAGMENT_CONTENT_ITEM_COST_PAYOUT_BENEFIT_CARD = gql`
     }
   }
 `;
+
+export const GQL_FRAGMENT_CONTENT_ITEM_ANSWER_KEYS = gql`
+  fragment ContentItemAnswerKeys on ContentItemAnswerKeys {
+    ageToEnd
+    salaryPercent
+    coverType
+    worldId
+  }
+`;
+
+export const GQL_FRAGMENT_CONTENT_ITEM_COLLAPSING_HEADER_AGE_PERCENT_PRODUCT_INFO = gql`
+  fragment ContentItemCollapsingHeaderAgePercentProductInfo on ContentItemCollapsingHeaderAgePercentProductInfo {
+    id
+    styles {
+      ...SduiStyle
+    }
+    expandOnComponentId
+    expandThreshold
+    collapsingHeaderAgePercentProductInfoData: data {
+      answerKeys {
+        ...ContentItemAnswerKeys
+      }
+      agePercentCoverList {
+        ...ContentItemAgePercentCoverPickerAgeOption
+      }
+      monthlyCostDynamicCopy
+      monthlyCostReplacementString
+      salaryPercentDynamicCopy
+      salaryPercentReplacementString
+    }
+  }
+`;

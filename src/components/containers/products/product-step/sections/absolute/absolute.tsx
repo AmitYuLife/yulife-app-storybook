@@ -5,6 +5,7 @@ import {
   ProductStepCollapsingHeaderProductInfo,
   ProductStepFullScreenSwiper,
   ProductStepFullScreenLottieSwiper,
+  ProductStepCollapsingHeaderAgePercentProductInfo,
 } from "../../subcomponents";
 
 interface Props {
@@ -38,6 +39,8 @@ const renderAbsoluteItemContent = (
       );
     case "ContentItemCollapsingHeaderProductInfo":
       return <ProductStepCollapsingHeaderProductInfo key={item.id} {...item} />;
+    case "ContentItemCollapsingHeaderAgePercentProductInfo":
+      return <ProductStepCollapsingHeaderAgePercentProductInfo key={item.id} {...item} />;
     case "ContentItemFullScreenSwiper":
       return <ProductStepFullScreenSwiper key={item.id} {...item} />;
     case "ContentItemFullScreenLottieSwiper":

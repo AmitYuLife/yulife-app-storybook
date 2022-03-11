@@ -59,3 +59,4 @@ export { default as CostPayoutBenefitCard } from "./cost-payout-benefit-card/cos
 export { default as BoxOption } from "./box-option/box-option";
 export { default as CheckBox } from "./check-box/check-box";
 export { default as CentredScreen } from "./centred-screen/centred-screen";
+export { CollapsingHeader } from "./collapsing-header/collapsing-header";

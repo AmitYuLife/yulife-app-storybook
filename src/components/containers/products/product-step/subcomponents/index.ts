@@ -27,3 +27,4 @@ export * from "./product-step.select-payment-button";
 export * from "./product-step.search-post-code";
 export * from "./product-step.selected-package-accordion";
 export * from "./product-step.age-percent-cover-picker";
+export * from "./product-step.collapsing-header-age-percent-product-info";
