@@ -41,7 +41,9 @@ export const ProductStepProductInfo = memo((props: Props) => {
               style={styles.icon}
             />
           )}
-          <TextTemplate type="h3">{productTitle}</TextTemplate>
+          <TextTemplate textAlign={"center"} type="h3">
+            {productTitle}
+          </TextTemplate>
         </View>
 
         <View style={styles.providerImageContainer}>
