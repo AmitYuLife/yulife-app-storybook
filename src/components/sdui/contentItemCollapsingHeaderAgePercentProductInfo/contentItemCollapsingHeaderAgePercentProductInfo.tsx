@@ -41,7 +41,7 @@ export const ContentItemCollapsingHeaderAgePercentProductInfo = memo((props: Pro
   const { keyedPricing } = useIndexedData(agePercentCoverList);
 
   const activeCover = useMemo(() => {
-    if (!keyedPricing || !activeAgeToEnd || !activeSalaryPercent) {
+    if (!activeAgeToEnd || !activeSalaryPercent || !keyedPricing?.[activeAgeToEnd]?.[activeSalaryPercent]) {
       return { cost: "" };
     }
 
