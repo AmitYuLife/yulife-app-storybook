@@ -26,20 +26,17 @@ export function useScrollHandler({
   const listRef = useRef(null as RNFlatList);
   const [canChangeDynamicData, setCanChangeDynamicData] = useState(false);
   const scrollX = useRef(new Animated.Value(0));
-  const activePackageCardIndex = useMemo(() => packageCards.findIndex((item) => item.value === answerKeyValue), [
-    packageCards,
-    answerKeyValue,
-  ]);
+
+  const activePackageCardIndex = useMemo(
+    () => packageCards.findIndex((item) => answerKeyValue >= item.value && answerKeyValue <= item.packageMaxValue),
+    [packageCards, answerKeyValue]
+  );
 
   useEffect(() => {
-    const activeIndex = packageCards.findIndex(
-      (item) => answerKeyValue >= item.value && answerKeyValue <= item.packageMaxValue
-    );
-
-    const offset = PACKAGE_CARD_WIDTH * activeIndex;
+    const offset = PACKAGE_CARD_WIDTH * activePackageCardIndex;
 
     listRef.current.scrollToOffset({ offset });
-  }, [answerKeyValue]);
+  }, [activePackageCardIndex]);
 
   const handleScroll = Animated.event([{ nativeEvent: { contentOffset: { x: scrollX.current } } }], {
     useNativeDriver: true,
