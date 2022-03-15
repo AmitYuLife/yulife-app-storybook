@@ -18,8 +18,8 @@ const LabelWithImages = ({ labelImages, backgroundColor }: IStarWrapper) => {
   return (
     <View style={styles.labelWrapper}>
       <View style={labelStyle}>
-        {labelImages.map((labelImage) => (
-          <View style={styles.labelImageWrapper} key={labelImage.id}>
+        {labelImages.map((labelImage, index) => (
+          <View style={styles.labelImageWrapper} key={`${labelImage.id}_${index}`}>
             <Image
               source={{ uri: labelImage.uri }}
               height={Style.adjust(11)}

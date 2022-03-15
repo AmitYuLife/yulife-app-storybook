@@ -110,6 +110,7 @@ const DebugContainer: React.FC<Props> = (props) => {
               passProps: {
                 componentId: props.componentId,
                 onLeftIconPress: () => Navigation.pop(ROUTES.debug),
+                eventId: "testID",
               },
             },
           });
