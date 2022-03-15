@@ -1984,7 +1984,8 @@ export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_Con
     | "ContentItemProcessingTimer"
     | "ContentItemYuCoinPower"
     | "ContentItemProgressSteps"
-    | "ContentItemCostPayoutBenefitCard";
+    | "ContentItemCostPayoutBenefitCard"
+    | "ContentItemCollapsingHeaderAgePercentProductInfo";
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemImage_image {

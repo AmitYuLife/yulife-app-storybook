@@ -79,6 +79,8 @@ export enum ContentItemProgressBarType {
 export enum ContentItemRowIconTextBannerType {
   error = "error",
   info = "info",
+  neutral = "neutral",
+  success = "success",
   warning = "warning",
 }
 
@@ -114,6 +116,17 @@ export enum FitKitType {
   Strength = "Strength",
   Swimming = "Swimming",
   Yoga = "Yoga",
+}
+
+export enum GoalActionType {
+  CLAIM_REWARD = "CLAIM_REWARD",
+  JOIN_GOAL = "JOIN_GOAL",
+}
+
+export enum GoalRewardStatus {
+  claimed = "claimed",
+  completed = "completed",
+  pending = "pending",
 }
 
 export enum IntercomHashMethod {

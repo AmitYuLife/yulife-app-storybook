@@ -10,8 +10,8 @@ import style, { CONTENT_MARGIN_TOP } from "./event-dialog.styles";
 import { Source } from "react-native-fast-image";
 import { addCommasToNumber } from "@utils";
 import { HeadingAndCopy, InfoPanel } from "@components/molecules";
-import { BannerType } from "@components/molecules/info-panel/info-panel";
 import { InfoCardList, IInfoCardListCard } from "@organisms";
+import { GetGoalDetails_getGoalDetails_banner as EventBanner } from "@graphql/_core/schema";
 
 const PROGRESS_BAR_WIDTH = Style.DEVICE_WIDTH - Style.adjust(48);
 const TITLE_HEIGHT = Platform.select({
@@ -33,15 +33,6 @@ interface IAboutProps {
   markdown: string;
 }
 
-interface IEventBanner {
-  image: {
-    id: string;
-    uri: string;
-  };
-  markdown: string;
-  type?: BannerType;
-}
-
 interface IProps {
   headerProps: IHeaderProps;
   rewards: IReward[];
@@ -52,9 +43,15 @@ interface IProps {
   milestones: number[];
   about: IAboutProps;
   infoCards: IInfoCardListCard[];
-  banner?: IEventBanner;
-  ctaText?: string;
+  banner?: EventBanner;
+  button?: EventButton;
   onButtonPress?: () => void;
+}
+
+interface EventButton {
+  label: string;
+  shadowColor?: string;
+  backgroundColor?: string;
 }
 
 const EventDialogScreen: FC<IProps> = ({
@@ -68,7 +65,7 @@ const EventDialogScreen: FC<IProps> = ({
   about,
   infoCards,
   banner,
-  ctaText,
+  button,
   onButtonPress,
 }) => {
   const { title, labels, source: headerImageSource, backgroundColor, headerTextColor, onLeftIconPress } = headerProps;
@@ -155,19 +152,21 @@ const EventDialogScreen: FC<IProps> = ({
             </TextTemplate>
           </View>
           <ProgressBar current={currentProgress} max={maxProgress} milestones={milestones} width={PROGRESS_BAR_WIDTH} />
-          <HeadingAndCopy title={about.title} wrapperStyle={style.about} titleType="b1b" markdown={about.markdown} />
-          <InfoCardList cards={infoCards} />
+          {!about ? null : (
+            <HeadingAndCopy title={about.title} wrapperStyle={style.about} titleType="b1b" markdown={about.markdown} />
+          )}
+          {!infoCards ? null : <InfoCardList cards={infoCards} />}
           {!banner ? null : (
             <View>
               <InfoPanel
                 markdown={banner.markdown}
-                remoteImage={banner.image}
+                remoteImage={banner.icon}
                 type={banner.type}
                 wrapperStyle={style.bannerWrapper}
               />
             </View>
           )}
-          {!ctaText || !onButtonPress ? null : <View style={style.ctaPadding} />}
+          {!button ? null : <View style={style.ctaPadding} />}
         </View>
       </ScrollView>
       {!showHeading ? null : (
@@ -178,9 +177,15 @@ const EventDialogScreen: FC<IProps> = ({
           backgroundColor="transparent"
         />
       )}
-      {!ctaText || !onButtonPress ? null : (
+      {!button ? null : (
         <View style={style.ctaWrapper}>
-          <Button label={ctaText} size="Fill" onPress={onButtonPress} />
+          <Button
+            label={button.label}
+            size="Fill"
+            onPress={onButtonPress}
+            shadowColor={button.shadowColor || undefined}
+            backgroundColor={button.backgroundColor || undefined}
+          />
         </View>
       )}
     </View>

@@ -6,9 +6,10 @@ import { Colours, Style } from "@styles";
 import { RadioIcon } from "@atoms/icon/radio-icon";
 import LottieView from "lottie-react-native";
 import { ILabelImage } from "@components/molecules/label-with-images/label-with-images";
+import { RemoteImage } from "@graphql/_core/schema";
+import { GoalRewardStatus } from "@graphql/_core/schema/globalTypes";
 
 const lottieAnimationSource = require("./assets/event-reward-animation.json");
-export type RewardStatus = "claimed" | "completed" | "pending";
 
 interface IEventReward {
   marginHorizontal?: number;
@@ -21,9 +22,9 @@ export interface IReward {
   id: string;
   title: string;
   description: string;
-  itemBackground: string;
-  item: string;
-  status: RewardStatus;
+  itemBackground: RemoteImage;
+  item: RemoteImage;
+  status: GoalRewardStatus;
   animated?: boolean;
   stars?: ILabelImage[];
 }
@@ -34,15 +35,23 @@ const EventReward = ({
   width = Style.adjust(136),
   marginHorizontal = Style.adjust(4),
 }: IEventReward) => {
-  const { title, description, stars, item, itemBackground, status, animated } = reward;
-  const rewardClaimed = status === "claimed";
+  const {
+    title,
+    description,
+    stars,
+    item: { uri: itemUri },
+    itemBackground: { uri: itemBackgroundUri },
+    status,
+    animated,
+  } = reward;
+  const rewardClaimed = status === GoalRewardStatus.claimed;
   const statusColor = getStatusColor(status);
   return (
     <View style={[styles.wrapper, { height, width, marginHorizontal }]}>
       <View style={[styles.circleWrapper, { borderColor: statusColor }]}>
         <View style={styles.backgroundImageWrapper}>
           <Image
-            source={{ uri: itemBackground }}
+            source={{ uri: itemBackgroundUri }}
             width={Style.adjust(72)}
             height={Style.adjust(72)}
             style={styles.absolute}
@@ -50,7 +59,7 @@ const EventReward = ({
           {!animated ? null : (
             <LottieView style={styles.absolute} source={lottieAnimationSource} autoPlay={true} loop={true} />
           )}
-          <Image source={{ uri: item }} width={Style.adjust(72)} height={Style.adjust(72)} style={styles.absolute} />
+          <Image source={{ uri: itemUri }} width={Style.adjust(72)} height={Style.adjust(72)} style={styles.absolute} />
         </View>
         <View style={styles.labelWrapper}>
           {!rewardClaimed ? null : (
@@ -74,13 +83,13 @@ const EventReward = ({
   );
 };
 
-const getStatusColor = (status: RewardStatus) => {
+const getStatusColor = (status: GoalRewardStatus) => {
   switch (status) {
-    case "claimed":
+    case GoalRewardStatus.claimed:
       return "#40C057";
-    case "completed":
+    case GoalRewardStatus.completed:
       return Colours.primary.p400;
-    case "pending":
+    case GoalRewardStatus.pending:
     default:
       return Colours.neutral.n100;
   }

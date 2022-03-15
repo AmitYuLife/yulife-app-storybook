@@ -1,4 +1,4 @@
-import { RewardStatus } from "@organisms/event-reward/event-reward";
+import { GoalRewardStatus } from "@graphql/_core/schema/globalTypes";
 import EventRewardsWrapper from "@organisms/event-reward/event-rewards-wrapper";
 import React from "react";
 import WrapperDebug from "../wrapper.debug";
@@ -37,9 +37,9 @@ const commonRewards = [
     id: "reward_common_1",
     title: "Common Item",
     description: "10,000 steps",
-    itemBackground: commonBackground,
-    item: commonItem,
-    status: "pending" as RewardStatus,
+    itemBackground: { id: "", uri: commonBackground },
+    item: { id: "", uri: commonItem },
+    status: GoalRewardStatus.pending,
     stars: [
       {
         id: "star1",
@@ -51,9 +51,9 @@ const commonRewards = [
     id: "reward_common_2",
     title: "Common Item",
     description: "10,000 steps",
-    itemBackground: commonBackground,
-    item: commonItem,
-    status: "completed" as RewardStatus,
+    itemBackground: { id: "", uri: commonBackground },
+    item: { id: "", uri: commonItem },
+    status: GoalRewardStatus.completed,
     stars: [
       {
         id: "star1",
@@ -65,9 +65,9 @@ const commonRewards = [
     id: "reward_common_3",
     title: "Common Item",
     description: "10,000 steps",
-    itemBackground: commonBackground,
-    item: commonItem,
-    status: "claimed" as RewardStatus,
+    itemBackground: { id: "", uri: commonBackground },
+    item: { id: "", uri: commonItem },
+    status: GoalRewardStatus.claimed,
   },
 ];
 
@@ -76,9 +76,9 @@ const rareRewards = [
     id: "reward_rare_1",
     title: "Rare Item",
     description: "15,000 steps",
-    itemBackground: rareBackground,
-    item: rareItem,
-    status: "pending" as RewardStatus,
+    itemBackground: { id: "", uri: rareBackground },
+    item: { id: "", uri: rareItem },
+    status: GoalRewardStatus.pending,
     stars: [
       {
         id: "star1",
@@ -94,9 +94,9 @@ const rareRewards = [
     id: "reward_rare_2",
     title: "Rare Item",
     description: "15,000 steps",
-    itemBackground: rareBackground,
-    item: rareItem,
-    status: "completed" as RewardStatus,
+    itemBackground: { id: "", uri: rareBackground },
+    item: { id: "", uri: rareItem },
+    status: GoalRewardStatus.completed,
     stars: [
       {
         id: "star1",
@@ -112,9 +112,9 @@ const rareRewards = [
     id: "reward_rare_3",
     title: "Rare Item",
     description: "15,000 steps",
-    itemBackground: rareBackground,
-    item: rareItem,
-    status: "claimed" as RewardStatus,
+    itemBackground: { id: "", uri: rareBackground },
+    item: { id: "", uri: rareItem },
+    status: GoalRewardStatus.claimed,
   },
 ];
 const epicRewards = [
@@ -122,9 +122,9 @@ const epicRewards = [
     id: "reward_epic_1",
     title: "Epic Item",
     description: "25,000 step",
-    itemBackground: epicBackground,
-    item: epicItem,
-    status: "pending" as RewardStatus,
+    itemBackground: { id: "", uri: epicBackground },
+    item: { id: "", uri: epicItem },
+    status: GoalRewardStatus.pending,
     animated: true,
     stars: [
       {
@@ -145,9 +145,9 @@ const epicRewards = [
     id: "reward_epic_2",
     title: "Epic Item",
     description: "25,000 step",
-    itemBackground: epicBackground,
-    item: epicItem,
-    status: "completed" as RewardStatus,
+    itemBackground: { id: "", uri: epicBackground },
+    item: { id: "", uri: epicItem },
+    status: GoalRewardStatus.completed,
     animated: true,
     stars: [
       {
@@ -168,9 +168,9 @@ const epicRewards = [
     id: "reward_epic_3",
     title: "Epic Item",
     description: "25,000 steps",
-    itemBackground: epicBackground,
-    item: epicItem,
-    status: "claimed" as RewardStatus,
+    itemBackground: { id: "", uri: epicBackground },
+    item: { id: "", uri: epicItem },
+    status: GoalRewardStatus.claimed,
     animated: true,
   },
 ];
@@ -179,9 +179,9 @@ export const collectEventRewards = [
   {
     id: "reward_common_2",
     title: "Common Item",
-    itemBackground: commonBackground,
-    item: commonItem,
-    status: "completed" as RewardStatus,
+    itemBackground: { id: "", uri: commonBackground },
+    item: { id: "", uri: commonItem },
+    status: GoalRewardStatus.completed,
     stars: [
       {
         id: "star1",
@@ -192,9 +192,9 @@ export const collectEventRewards = [
   {
     id: "reward_rare_2",
     title: "Rare Item",
-    itemBackground: rareBackground,
-    item: rareItem,
-    status: "completed" as RewardStatus,
+    itemBackground: { id: "", uri: rareBackground },
+    item: { id: "", uri: rareItem },
+    status: GoalRewardStatus.completed,
     stars: [
       {
         id: "star1",
@@ -209,9 +209,9 @@ export const collectEventRewards = [
   {
     id: "reward_epic_2",
     title: "Epic Item",
-    itemBackground: epicBackground,
-    item: epicItem,
-    status: "completed" as RewardStatus,
+    itemBackground: { id: "", uri: epicBackground },
+    item: { id: "", uri: epicItem },
+    status: GoalRewardStatus.completed,
     animated: true,
     stars: [
       {
