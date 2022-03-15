@@ -1,18 +1,11 @@
 import React, { memo, useEffect, useMemo, useRef, useState } from "react";
-import {
-  View,
-  FlatList as RNFlatList,
-  Animated,
-  NativeSyntheticEvent,
-  NativeScrollEvent,
-  ActivityIndicator,
-} from "react-native";
+import { View, FlatList as RNFlatList, Animated, NativeSyntheticEvent, NativeScrollEvent } from "react-native";
 import { mapServerStyles } from "@components/sdui";
 import { FlatList } from "@atoms/flat-list/flat-list";
 import { createSnapToOffsets, getOverlayOpacity, renderItem } from "./render-item";
 import { ITEM_WIDTH, styles, highlightStyles } from "./styles";
 import { Colours } from "@styles";
-import { TextTemplate } from "@atoms";
+import { Loading, TextTemplate } from "@atoms";
 import { SduiStyle } from "@graphql/_core/schema";
 import { CoverType } from "@graphql/_core/schema/globalTypes";
 
@@ -165,7 +158,7 @@ export const PercentPicker = memo((props: Props) => {
         />
         {!showLoading ? null : (
           <View style={styles.loadingWrapper}>
-            <ActivityIndicator style={styles.loading} />
+            <Loading style={styles.loading} />
           </View>
         )}
       </View>
