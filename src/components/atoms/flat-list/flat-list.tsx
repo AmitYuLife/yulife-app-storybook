@@ -7,6 +7,8 @@ import {
   FlatList as RNFlatList,
   StyleSheet,
   ViewStyle,
+  NativeSyntheticEvent,
+  NativeScrollEvent,
 } from "react-native";
 
 type Props = FlatListProps<any> & {
@@ -23,6 +25,8 @@ const _FlatList = ({
   keyExtractor = defaultKeyExtractor,
   viewabilityConfig = defaultViewabilityConfig,
   throttleTimeoutMs = 1000,
+  onMomentumScrollEnd,
+  onScrollEndDrag,
   ...flatListProps
 }: Props) => {
   const [allowInteraction, setAllowInteraction] = useState(true);
@@ -38,7 +42,20 @@ const _FlatList = ({
     return () => clearTimeout(throttleTimeout);
   }, [allowInteraction]);
 
-  const handleTouchEnd = () => setAllowInteraction(false);
+  const handleScrollEndDrag = (e: NativeSyntheticEvent<NativeScrollEvent>) => {
+    setAllowInteraction(false);
+    if (onScrollEndDrag) {
+      onScrollEndDrag(e);
+    }
+  };
+
+  const handleMomentumScrollEnd = (e: NativeSyntheticEvent<NativeScrollEvent>) => {
+    setAllowInteraction(false);
+    if (onMomentumScrollEnd) {
+      onMomentumScrollEnd(e);
+    }
+  };
+
   return (
     <Animated.FlatList
       scrollEnabled={allowInteraction}
@@ -54,7 +71,8 @@ const _FlatList = ({
       decelerationRate={"fast"}
       showsHorizontalScrollIndicator={false}
       showsVerticalScrollIndicator={false}
-      onTouchEnd={handleTouchEnd}
+      onScrollEndDrag={handleScrollEndDrag}
+      onMomentumScrollEnd={handleMomentumScrollEnd}
       {...flatListProps}
     />
   );
