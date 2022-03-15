@@ -64,7 +64,8 @@ const MemoizedItem = memo(
         ))}
       </>
     </Wrapper>
-  )
+  ),
+  () => true
 );
 
 interface Props {

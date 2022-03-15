@@ -155,13 +155,14 @@ export const PercentPicker = memo((props: Props) => {
           forwardRef={listRef}
           data={itemRange}
           renderItem={renderItem({ scrollX, itemsLength: itemRange.length, styleVariants })}
+          keyExtractor={keyExtractor}
           snapToOffsets={createSnapToOffsets(itemRange.length)}
           onTouchStart={handleTouchStart}
           onScrollEndDrag={handleScrollEndDrag}
           onMomentumScrollEnd={handleMomentumScrollEnd}
           style={styles.flatList}
           contentContainerStyle={styles.contentContainer}
-          windowSize={itemRange.length}
+          windowSize={itemRange?.length}
         />
         {!showLoading ? null : (
           <View style={styles.loadingWrapper}>
@@ -237,4 +238,8 @@ function getActiveIndex(offset: number, itemWidth: number) {
   const activeIndex = Math.round(offset / itemWidth);
 
   return activeIndex;
+}
+
+function keyExtractor(item: number) {
+  return `${item}`;
 }
