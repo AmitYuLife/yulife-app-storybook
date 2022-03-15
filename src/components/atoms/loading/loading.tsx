@@ -1,13 +1,14 @@
 import { Colours } from "@styles/index";
 import * as React from "react";
-import { ActivityIndicator, ActivityIndicatorProps, StyleSheet } from "react-native";
+import { ActivityIndicator, ActivityIndicatorProps, StyleSheet, ViewStyle } from "react-native";
 
 interface Props {
   size?: ActivityIndicatorProps["size"];
+  style?: ViewStyle;
 }
 
-const Loading = ({ size = "large" }: Props) => (
-  <ActivityIndicator animating={true} color={Colours.darkHotPink} style={styles.wrapper} size={size} />
+const Loading = ({ size = "large", style }: Props) => (
+  <ActivityIndicator animating={true} color={Colours.darkHotPink} style={[styles.wrapper, style]} size={size} />
 );
 
 export default Loading;
