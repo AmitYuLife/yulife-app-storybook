@@ -241,6 +241,7 @@ export const GQL_QUERY_GET_PERSONAL_PRODUCT_STEP = gql`
           }
           partType
           selectedYuWorld
+          swiperTopText
         }
         ... on ContentItemGpDetails {
           ...ContentItemGpDetails

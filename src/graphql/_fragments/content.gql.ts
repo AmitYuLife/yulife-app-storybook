@@ -1087,6 +1087,10 @@ export const GQL_FRAGMENT_CONTENT_ITEM_COLLAPSING_HEADER_AGE_PERCENT_PRODUCT_INF
       monthlyCostReplacementString
       salaryPercentDynamicCopy
       salaryPercentReplacementString
+      defaultActiveAgeToEnd
+      defaultActiveCoverType
+      defaultActiveSalaryPercent
+      defaultActiveWorldId
     }
   }
 `;

@@ -12,10 +12,18 @@ export const ProductStepCollapsingHeaderAgePercentProductInfo = memo((props: Pro
   const { expandOnComponentId, collapsingHeaderAgePercentProductInfoData, expandThreshold: gqlExpandThreshold } = props;
   const { answerKeys } = collapsingHeaderAgePercentProductInfoData;
 
-  const activeAgeToEnd = dynamicData[answerKeys.ageToEnd] as number;
-  const activeCoverType = dynamicData[answerKeys.coverType] as CoverType;
-  const activeSalaryPercent = dynamicData[answerKeys.salaryPercent] as number;
-  const activeWorldId = dynamicData[answerKeys.worldId] as YuWorld;
+  const activeAgeToEnd = (dynamicData[answerKeys.ageToEnd] ||
+    collapsingHeaderAgePercentProductInfoData.defaultActiveAgeToEnd) as number;
+
+  const activeCoverType = (dynamicData[answerKeys.coverType] ||
+    collapsingHeaderAgePercentProductInfoData.defaultActiveCoverType) as CoverType;
+
+  const activeSalaryPercent = (dynamicData[answerKeys.salaryPercent] ||
+    collapsingHeaderAgePercentProductInfoData.defaultActiveSalaryPercent) as number;
+
+  const activeWorldId = (dynamicData[answerKeys.worldId] ||
+    collapsingHeaderAgePercentProductInfoData.defaultActiveWorldId) as YuWorld;
+
   const safeHeaderHeight = headerHeight < 1 ? 1 : headerHeight;
   const expandThreshold = useMemo(() => {
     if (typeof gqlExpandThreshold === "number" && !isNaN(gqlExpandThreshold)) {

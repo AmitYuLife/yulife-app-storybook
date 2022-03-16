@@ -21,6 +21,7 @@ export const ProductStepProductInfo = memo((props: Props) => {
     productDescription,
     providerImageUrl,
     largeProviderImageUrl,
+    swiperTopText,
   } = props;
 
   const handleYumojiPartChange = useCallback(
@@ -66,6 +67,7 @@ export const ProductStepProductInfo = memo((props: Props) => {
             selectedYuWorld={selectedYuWorld}
             partType={partType}
             coverType={coverType}
+            topText={swiperTopText}
           />
         ) : (
           <YumojiSwipeTryOn
@@ -73,6 +75,7 @@ export const ProductStepProductInfo = memo((props: Props) => {
             coverType={coverType}
             onChange={handleYumojiPartChange}
             flatListItemOverlayStyles={mapServerStyles(flatListItemOverlayStyles)}
+            topText={swiperTopText}
           />
         )}
       </View>
