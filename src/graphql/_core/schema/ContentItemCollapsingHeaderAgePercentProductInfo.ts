@@ -40,6 +40,10 @@ export interface ContentItemCollapsingHeaderAgePercentProductInfo_collapsingHead
   monthlyCostReplacementString: string;
   salaryPercentDynamicCopy: string;
   salaryPercentReplacementString: string;
+  defaultActiveAgeToEnd: string | null;
+  defaultActiveCoverType: string | null;
+  defaultActiveSalaryPercent: string | null;
+  defaultActiveWorldId: string | null;
 }
 
 export interface ContentItemCollapsingHeaderAgePercentProductInfo {

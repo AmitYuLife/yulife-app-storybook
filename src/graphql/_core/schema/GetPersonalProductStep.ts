@@ -1121,6 +1121,7 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemP
   productDescription: GetPersonalProductStep_getPersonalProductStep_body_ContentItemPersonalProductInfo_productDescription;
   partType: AvatarPartType | null;
   selectedYuWorld: YuWorld | null;
+  swiperTopText: string | null;
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemGpDetails_onSubmit {
@@ -1984,8 +1985,7 @@ export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_Con
     | "ContentItemProcessingTimer"
     | "ContentItemYuCoinPower"
     | "ContentItemProgressSteps"
-    | "ContentItemCostPayoutBenefitCard"
-    | "ContentItemCollapsingHeaderAgePercentProductInfo";
+    | "ContentItemCostPayoutBenefitCard";
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemImage_image {
@@ -2257,6 +2257,10 @@ export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_Con
   monthlyCostReplacementString: string;
   salaryPercentDynamicCopy: string;
   salaryPercentReplacementString: string;
+  defaultActiveAgeToEnd: string | null;
+  defaultActiveCoverType: string | null;
+  defaultActiveSalaryPercent: string | null;
+  defaultActiveWorldId: string | null;
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemCollapsingHeaderAgePercentProductInfo {

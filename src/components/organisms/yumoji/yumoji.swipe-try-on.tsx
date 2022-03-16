@@ -37,6 +37,7 @@ type Props = {
   customerProductId: string;
   onChange?: (worldId: YuWorld) => void;
   flatListItemOverlayStyles?: ViewStyle;
+  topText: string;
 };
 
 type AvatarParts = Record<AvatarPartType, Part>;
@@ -54,7 +55,7 @@ const HIT_SLOP = {
 };
 
 export const YumojiSwipeTryOn = memo(
-  ({ customerProductId, coverType = CoverType.common, onChange, flatListItemOverlayStyles }: Props) => {
+  ({ customerProductId, coverType = CoverType.common, onChange, flatListItemOverlayStyles, topText }: Props) => {
     const listRef = useRef(null as RNFlatList);
     const scrollToDefaultIndexDelay = useRef(null);
     const { current: scrollX } = useRef(new Animated.Value(0));
@@ -214,7 +215,7 @@ export const YumojiSwipeTryOn = memo(
         <View style={styles.container}>
           <View style={styles.swipeText}>
             <TextTemplate type={"l1"} color={Colours.neutral.n400}>
-              Swipe to choose your style
+              {topText}
             </TextTemplate>
           </View>
           <FlatList
