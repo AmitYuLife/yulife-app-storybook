@@ -12,7 +12,7 @@ interface UseCoverPicker {
   onPickCover: ({ value, coverType }: { value: number; coverType: CoverType }) => () => void;
   ageToMaxSalaryPercent: Record<number, number>;
   topHeading: string;
-  restictedPercentInfoCardText: string;
+  restrictedPercentInfoCardText: string;
 }
 
 export const useCoverPicker = ({
@@ -25,7 +25,7 @@ export const useCoverPicker = ({
   onPickCover,
   ageToMaxSalaryPercent,
   topHeading,
-  restictedPercentInfoCardText,
+  restrictedPercentInfoCardText,
 }: UseCoverPicker) => {
   const coverPicker = useMemo(() => {
     const options = (
@@ -51,9 +51,9 @@ export const useCoverPicker = ({
       activeValue,
       onPickCover,
       isCustom: !percentsToDefault.includes(activeValue),
-      restictedPercentInfoCardText: !restictedPercentInfoCardText
+      restrictedPercentInfoCardText: !restrictedPercentInfoCardText
         ? ""
-        : restictedPercentInfoCardText.replace("${maxPercent}", `${maxSalaryPercent}`),
+        : restrictedPercentInfoCardText.replace("${maxPercent}", `${maxSalaryPercent}`),
       percentPicker: {
         range: {
           min: customCover.itemsPicker.range.min,

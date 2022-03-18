@@ -13,7 +13,7 @@ interface Props {
   isCustom: boolean;
   percentPicker: Omit<ComponentProps<typeof PercentPicker>, "onPickCover" | "activeValue">;
   topHeading: string;
-  restictedPercentInfoCardText?: string;
+  restrictedPercentInfoCardText?: string;
 }
 
 const CoverPicker = ({
@@ -23,7 +23,7 @@ const CoverPicker = ({
   isCustom,
   percentPicker,
   topHeading = "",
-  restictedPercentInfoCardText,
+  restrictedPercentInfoCardText,
 }: Props) => {
   const [showCustom, setShowCustom] = useState(isCustom);
   const handleToggleCustom = () => setShowCustom(true);
@@ -47,9 +47,9 @@ const CoverPicker = ({
       ) : (
         <PercentPicker {...percentPicker} activeValue={activeValue} onPickCover={onPickCover} />
       )}
-      {!restictedPercentInfoCardText ? null : (
+      {!restrictedPercentInfoCardText ? null : (
         <View style={{ marginTop: Style.adjust(!showCustom ? 16 : -20) }}>
-          <InfoPanel markdown={restictedPercentInfoCardText} type="info" copyType="dense" />
+          <InfoPanel markdown={restrictedPercentInfoCardText} type="info" copyType="dense" />
         </View>
       )}
     </View>

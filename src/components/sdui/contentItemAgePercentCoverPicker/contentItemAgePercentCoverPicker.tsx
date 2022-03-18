@@ -37,7 +37,7 @@ export const ContentItemAgePercentCoverPicker = memo((props: Props) => {
     costPayoutBenefitHeading,
     costPayoutBenefitPayoutSchedule,
     costPayoutBenefitCostSchedule,
-    restictedPercentInfoCardText,
+    restrictedPercentInfoCardText,
   } = props;
   const pricing = props.contentItemAgePercentCoverPickerOptions;
   const { keyedPricing, ageToMaxSalaryPercent, agesInYears, ageToIndex, salaryPercentToMaxAge } = useIndexedData(
@@ -65,7 +65,7 @@ export const ContentItemAgePercentCoverPicker = memo((props: Props) => {
     onPickCover: handlePickCover,
     ageToMaxSalaryPercent,
     topHeading,
-    restictedPercentInfoCardText: restictedPercentInfoCardText?.markdown,
+    restrictedPercentInfoCardText: restrictedPercentInfoCardText?.markdown,
   });
   const packageCostBenefitCard = usePackageCostBenefitCard({
     keyedPricing,
