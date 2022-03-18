@@ -1018,7 +1018,7 @@ export const GQL_FRAGMENT_CONTENT_ITEM_AGE_PERCENT_COVER_PICKER = gql`
       ...ContentItemAgePercentCoverPickerAgeOption
     }
     topHeading
-    restictedPercentInfoCardText {
+    restrictedPercentInfoCardText {
       ...ContentItemMarkdown
     }
     costPayoutBenefitHeading

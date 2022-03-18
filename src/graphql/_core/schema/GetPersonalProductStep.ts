@@ -1254,27 +1254,27 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemA
   contentItemAgePercentCoverPickerAgeOptions: GetPersonalProductStep_getPersonalProductStep_body_ContentItemAgePercentCoverPicker_contentItemAgePercentCoverPickerOptions_contentItemAgePercentCoverPickerAgeOptions[];
 }
 
-export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemAgePercentCoverPicker_restictedPercentInfoCardText_styles {
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemAgePercentCoverPicker_restrictedPercentInfoCardText_styles {
   property: string;
   value: string;
 }
 
-export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemAgePercentCoverPicker_restictedPercentInfoCardText_markdownContainerStyle {
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemAgePercentCoverPicker_restrictedPercentInfoCardText_markdownContainerStyle {
   property: string;
   value: string;
 }
 
-export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemAgePercentCoverPicker_restictedPercentInfoCardText {
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemAgePercentCoverPicker_restrictedPercentInfoCardText {
   id: string;
   title: string | null;
   markdown: string;
   perkId: string | null;
   parsedMarkdown: string | null;
   styles:
-    | GetPersonalProductStep_getPersonalProductStep_body_ContentItemAgePercentCoverPicker_restictedPercentInfoCardText_styles[]
+    | GetPersonalProductStep_getPersonalProductStep_body_ContentItemAgePercentCoverPicker_restrictedPercentInfoCardText_styles[]
     | null;
   markdownContainerStyle:
-    | GetPersonalProductStep_getPersonalProductStep_body_ContentItemAgePercentCoverPicker_restictedPercentInfoCardText_markdownContainerStyle[]
+    | GetPersonalProductStep_getPersonalProductStep_body_ContentItemAgePercentCoverPicker_restrictedPercentInfoCardText_markdownContainerStyle[]
     | null;
 }
 
@@ -1423,7 +1423,7 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemA
   /**
    * Based on your info you can only have ${percent}
    */
-  restictedPercentInfoCardText: GetPersonalProductStep_getPersonalProductStep_body_ContentItemAgePercentCoverPicker_restictedPercentInfoCardText | null;
+  restrictedPercentInfoCardText: GetPersonalProductStep_getPersonalProductStep_body_ContentItemAgePercentCoverPicker_restrictedPercentInfoCardText | null;
   /**
    * In the event of your passing...
    */

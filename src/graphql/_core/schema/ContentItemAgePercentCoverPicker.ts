@@ -26,24 +26,26 @@ export interface ContentItemAgePercentCoverPicker_contentItemAgePercentCoverPick
   contentItemAgePercentCoverPickerAgeOptions: ContentItemAgePercentCoverPicker_contentItemAgePercentCoverPickerOptions_contentItemAgePercentCoverPickerAgeOptions[];
 }
 
-export interface ContentItemAgePercentCoverPicker_restictedPercentInfoCardText_styles {
+export interface ContentItemAgePercentCoverPicker_restrictedPercentInfoCardText_styles {
   property: string;
   value: string;
 }
 
-export interface ContentItemAgePercentCoverPicker_restictedPercentInfoCardText_markdownContainerStyle {
+export interface ContentItemAgePercentCoverPicker_restrictedPercentInfoCardText_markdownContainerStyle {
   property: string;
   value: string;
 }
 
-export interface ContentItemAgePercentCoverPicker_restictedPercentInfoCardText {
+export interface ContentItemAgePercentCoverPicker_restrictedPercentInfoCardText {
   id: string;
   title: string | null;
   markdown: string;
   perkId: string | null;
   parsedMarkdown: string | null;
-  styles: ContentItemAgePercentCoverPicker_restictedPercentInfoCardText_styles[] | null;
-  markdownContainerStyle: ContentItemAgePercentCoverPicker_restictedPercentInfoCardText_markdownContainerStyle[] | null;
+  styles: ContentItemAgePercentCoverPicker_restrictedPercentInfoCardText_styles[] | null;
+  markdownContainerStyle:
+    | ContentItemAgePercentCoverPicker_restrictedPercentInfoCardText_markdownContainerStyle[]
+    | null;
 }
 
 export interface ContentItemAgePercentCoverPicker_ageText_styles {
@@ -182,7 +184,7 @@ export interface ContentItemAgePercentCoverPicker {
   /**
    * Based on your info you can only have ${percent}
    */
-  restictedPercentInfoCardText: ContentItemAgePercentCoverPicker_restictedPercentInfoCardText | null;
+  restrictedPercentInfoCardText: ContentItemAgePercentCoverPicker_restrictedPercentInfoCardText | null;
   /**
    * In the event of your passing...
    */
