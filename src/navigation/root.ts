@@ -258,7 +258,6 @@ export async function setUnauthenticatedRoot(passProps: any = {}) {
   });
 }
 
-export const drawBehind = Platform.OS === "android" && Platform.Version >= 30;
 export const showYuModal = async <P>(props: Layout<P>) => {
   Navigation.showModal({
     ...props,
@@ -268,7 +267,6 @@ export const showYuModal = async <P>(props: Layout<P>) => {
         ...props?.component?.options,
         statusBar: {
           ...props?.component?.options?.statusBar,
-          drawBehind,
         },
       },
     },
