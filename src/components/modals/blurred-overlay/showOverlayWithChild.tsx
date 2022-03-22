@@ -1,7 +1,6 @@
 import { ReactElement } from "react";
 import { Navigation } from "react-native-navigation";
 import { MODALS } from "@navigation/constants";
-import { drawBehind } from "@navigation/root";
 import { ViewStyle } from "react-native";
 import Logger from "@services/logging/logger";
 
@@ -25,9 +24,6 @@ export function showOverlayWithChild(
         },
         overlay: {
           interceptTouchOutside: true,
-        },
-        statusBar: {
-          drawBehind,
         },
       },
       passProps: {
