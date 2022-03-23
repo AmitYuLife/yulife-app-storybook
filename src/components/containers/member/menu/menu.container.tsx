@@ -73,6 +73,9 @@ const MenuContainer = () => {
         case LINKS.SETTINGS:
           handlePush(currentRoute, ROUTES.settings);
           return null;
+        case LINKS.TOOLS:
+          handlePush(currentRoute, ROUTES.tools);
+          return null;
         case LINKS.SUPPORT:
           handleIntercom();
           return null;
@@ -132,6 +135,12 @@ const MenuContainer = () => {
         condition: true,
         label: "Settings",
         onPress: handlePressLink(LINKS.SETTINGS),
+        source: assets[LINKS.SETTINGS],
+      },
+      {
+        condition: features.showHelperTools,
+        label: "Tools",
+        onPress: handlePressLink(LINKS.TOOLS),
         source: assets[LINKS.SETTINGS],
       },
       {

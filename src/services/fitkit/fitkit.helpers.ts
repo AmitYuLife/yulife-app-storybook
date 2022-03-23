@@ -36,6 +36,12 @@ export const mapGqlFitKitTypeToFitKitType = (gqlType: FitKitType) => {
       return FitKitTypes.Types.Swimming;
     case FitKitType.Yoga:
       return FitKitTypes.Types.Yoga;
+    case FitKitType.Distance:
+      if (Platform.OS === "ios") {
+        throw new Error("Invalid type for iOS!");
+      }
+
+      return FitKitTypes.Types.Distance;
     default:
       throw new Error("Invalid type!");
   }
@@ -70,6 +76,51 @@ export interface QueryFitKitByTypesResponse {
   results: ChallengesPayload[];
   error: boolean;
 }
+
+export const queryFitKitByTypesDebug = async (
+  startTime: string,
+  endTime: string,
+  fitKitTypes: FitKitType[],
+  disableTypeFilter = false
+): Promise<{ error: boolean }> => {
+  const allResults: SampleQueryResult[] = [];
+  let error = false;
+
+  Logger.logMixpanelEvent(`debug_tool_query_args`, {
+    disableUserEntries: false,
+    endTime,
+    startTime,
+    types: fitKitTypes.map((fitKitType) => mapGqlFitKitTypeToFitKitType(fitKitType)),
+    disableTypeFilter,
+  });
+
+  for (const fitKitType of fitKitTypes) {
+    try {
+      const args = {
+        disableUserEntries: false,
+        endTime,
+        startTime,
+        type: mapGqlFitKitTypeToFitKitType(fitKitType),
+        disableTypeFilter,
+      };
+
+      const results = await RNFitKit.sampleQuery(args);
+
+      allResults.push(...results);
+    } catch (e) {
+      error = true;
+      Logger.logMixpanelEvent(`debug_tool_${fitKitType}_query_error`, {
+        error: e.message,
+        date_start: startTime,
+        date_end: endTime,
+        userInfo: e.userInfo,
+      });
+    }
+  }
+
+  Logger.logMixpanelEvent(`debug_tool_query_results`, { results: allResults, fitKitTypes });
+  return { error };
+};
 
 export const queryFitKitByTypes = async (
   startTime: string,

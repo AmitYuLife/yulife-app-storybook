@@ -109,6 +109,12 @@ export default [
       .default,
   },
 
+  // tools
+  {
+    name: ROUTES.tools,
+    component: require("../components/containers/member/tools/tools.container").default,
+  },
+
   // events
   {
     name: ROUTES.eventDialog,
