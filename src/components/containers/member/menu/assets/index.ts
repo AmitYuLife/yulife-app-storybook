@@ -11,6 +11,7 @@ export type LinkTypes =
   | "wellbeingHub"
   | "play"
   | "settings"
+  | "tools"
   | "stats"
   | "referralsInfo";
 
@@ -24,6 +25,7 @@ export enum LINKS {
   WELLBEING_HUB = "wellbeingHub",
   PLAY = "play",
   SETTINGS = "settings",
+  TOOLS = "tools",
   STATS = "stats",
   REFERRALS_INFO = "referralsInfo",
 }
