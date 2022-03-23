@@ -17,6 +17,7 @@ export const GQL_MUTATION_UPSERT_DAILY_PASSIVES = gql`
         }
       }
       totalCoins
+      currentBalance
     }
   }
 `;
