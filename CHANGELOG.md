@@ -7,6 +7,37 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.24.0] - 2022-03-23
+
+### Features
+
+- Feature: Default values for collapsed header and variable top text for swiper
+
+### Bugfixes
+
+- Bugfix GS-268: Android topbar
+- Bugfix: Improve PercentPicker FlatList render speed
+- Bugfix: Use Loading atom instead of ActivityIndicator
+- Bugfix: Move scroll limiter from touchEnd to scrollEnd and momentumEnd
+- Bugfix: Fix incorrect index on PackageCards when a non-template value is active
+- Bugfix: Protect ContentItemCollapsingHeaderAgePercentProductInfo activeCover from undefined value
+- Bugfix: Protect FlatList atom from destructive behavior
+- Bugfix: ContentItemButton events fix
+
+### Tasks
+
+- Task: Fitkit log tool
+- Task GS-263: Get event details from server side
+- Task XSE-827: Collapsing Header for PLI v2
+- Task XSE-819: Gp checkout changes
+
+### Extra
+
+- Hotfix: Rename bad spelling restricted property
+- Cypress: upgraded yulife-bdd-framework 0.0.14
+- Detox/pli overnightfix11 03
+- Hotfix: Centralise long product intro headings
+
 ## [3.23.0] - 2022-03-09
 
 ### Features
