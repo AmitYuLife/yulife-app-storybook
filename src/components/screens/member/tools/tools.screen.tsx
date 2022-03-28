@@ -244,7 +244,10 @@ const typePickerItemsIOS = [
   {
     label: "Biking",
     value: "Biking",
-    types: [FitKitType.Cycling],
+    types: Platform.select({
+      ios: [FitKitType.Cycling, FitKitType.BikingWorkout, FitKitType.BikingHandWorkout],
+      android: [FitKitType.Cycling],
+    }),
   },
   {
     label: "Workout",
