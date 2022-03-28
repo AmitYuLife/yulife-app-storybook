@@ -18,9 +18,8 @@ import {
 // GraphQL query operation: GetPersonalProductStepDetached
 // ====================================================
 
-export interface GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemMarkdown {
+export interface GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemLottie {
   __typename:
-    | "ContentItemMarkdown"
     | "ContentItemLottie"
     | "ContentItemProgressBar"
     | "ContentItemHeaderBar"
@@ -540,6 +539,29 @@ export interface GetPersonalProductStepDetached_getPersonalProductStepDetached_b
   styles: GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemPad_styles[] | null;
 }
 
+export interface GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemMarkdown_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemMarkdown_markdownContainerStyle {
+  property: string;
+  value: string;
+}
+
+export interface GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemMarkdown {
+  __typename: "ContentItemMarkdown";
+  id: string;
+  title: string | null;
+  markdown: string;
+  perkId: string | null;
+  parsedMarkdown: string | null;
+  styles: GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemMarkdown_styles[] | null;
+  markdownContainerStyle:
+    | GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemMarkdown_markdownContainerStyle[]
+    | null;
+}
+
 export interface GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemRowIconTextBanner_bannerIcon {
   id: string;
   uri: string | null;
@@ -565,7 +587,7 @@ export interface GetPersonalProductStepDetached_getPersonalProductStepDetached_b
 }
 
 export type GetPersonalProductStepDetached_getPersonalProductStepDetached_body =
-  | GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemMarkdown
+  | GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemLottie
   | GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemPersonalProductFaqs
   | GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemPersonalProductDocuments
   | GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemText
@@ -576,6 +598,7 @@ export type GetPersonalProductStepDetached_getPersonalProductStepDetached_body =
   | GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemSelectedPackageAccordion
   | GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemButton
   | GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemPad
+  | GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemMarkdown
   | GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemRowIconTextBanner;
 
 export interface GetPersonalProductStepDetached_getPersonalProductStepDetached {
