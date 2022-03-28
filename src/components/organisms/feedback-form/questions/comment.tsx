@@ -74,6 +74,7 @@ export default (props: Props) => {
             onChange={setFeedback}
             placeholder={placeholder}
             testID={FEEDBACK_FORM_QUESTION(placeholder)}
+            maxLength={1000}
           />
         </View>
       </View>

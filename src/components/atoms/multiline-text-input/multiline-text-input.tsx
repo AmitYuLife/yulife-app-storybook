@@ -9,12 +9,13 @@ interface IProps {
   onFocus?: () => void;
   placeholder?: string;
   testID?: string;
+  maxLength?: number;
 }
 
 function _MultilineTextInput(props: IProps) {
   const [isFocused, setFocusedState] = useState(false);
 
-  const { value, onChange, testID, placeholder = "", numberOfLines = 4, onFocus } = props;
+  const { value, onChange, testID, placeholder = "", numberOfLines = 4, onFocus, maxLength = 800 } = props;
 
   return (
     <View style={StyleSheet.flatten([styles.wrapper, isFocused ? styles.wrapperFocused : {}])}>
@@ -40,6 +41,7 @@ function _MultilineTextInput(props: IProps) {
         placeholder={placeholder}
         underlineColorAndroid="transparent"
         placeholderTextColor="#ABABAD"
+        maxLength={maxLength}
       />
     </View>
   );
