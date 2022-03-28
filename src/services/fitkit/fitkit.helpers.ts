@@ -36,6 +36,16 @@ export const mapGqlFitKitTypeToFitKitType = (gqlType: FitKitType) => {
       return FitKitTypes.Types.Swimming;
     case FitKitType.Yoga:
       return FitKitTypes.Types.Yoga;
+    case FitKitType.BikingWorkout:
+      return Platform.select({
+        android: FitKitTypes.Types.Biking,
+        ios: FitKitTypes.Types.BikingWorkout,
+      });
+    case FitKitType.BikingHandWorkout:
+      return Platform.select({
+        android: FitKitTypes.Types.Biking,
+        ios: FitKitTypes.Types.BikingHandWorkout,
+      });
     case FitKitType.Distance:
       if (Platform.OS === "ios") {
         throw new Error("Invalid type for iOS!");
