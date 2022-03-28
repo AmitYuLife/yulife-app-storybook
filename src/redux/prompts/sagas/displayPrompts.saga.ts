@@ -4,11 +4,17 @@ import { pendingFeedbackFormQuery } from "@graphql/member";
 import { Unpacked } from "@utils";
 import { showAppReviewModal, showYuModal } from "@navigation/root";
 import { getUserNotification } from "@redux/user/user.selectors";
+import { getModalState } from "@redux/app/app.selectors";
 
 export default function* displayPromptsSaga() {
   const userNotification: ReturnType<typeof getUserNotification> = yield select(getUserNotification);
+  const route: ReturnType<typeof getModalState> = yield select(getModalState);
 
   if (!userNotification.hasPendingForm && !userNotification.hasAppReview) {
+    return;
+  }
+
+  if (route === MODALS.feedback || route === MODALS.appReview) {
     return;
   }
 
