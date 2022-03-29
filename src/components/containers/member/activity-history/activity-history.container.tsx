@@ -1,6 +1,6 @@
 import { useMutation, useQuery } from "@apollo/react-hooks";
 import { GQL_QUERY_GET_ACTIVITY_HISTORY } from "@graphql/user";
-import { querySteps } from "@services/fitkit/fitkit.helpers";
+import { processResult, queryFitKitByTypes, querySteps, returnEmptyResult } from "@services/fitkit/fitkit.helpers";
 import moment from "moment";
 import React, { useCallback, useState, useRef, FC } from "react";
 import { LargeList } from "react-native-largelist-v3";
@@ -23,6 +23,8 @@ import {
   UpsertDailyPassivesMutationTuple,
 } from "@graphql/challenges/upsertDailyPassives.gql";
 import { getDailyCyclingMeasurement } from "@redux/daily-cycling/daily-cycling.selectors";
+import { FitKitType } from "@graphql/_core/schema/globalTypes";
+import { DATE_FORMAT_WITH_TZ } from "@utils";
 
 interface IProps {
   componentId: string;
@@ -77,13 +79,33 @@ const ActivityHistoryContainer: FC<Props> = ({
       const start = moment().subtract(30, "days").startOf("day");
       const end = moment().subtract(1, "days").endOf("day");
 
-      const res = await querySteps(start, end, features);
+      const [steps, meditation, cycling] = await Promise.all([
+        querySteps(start, end, features),
+        queryFitKitByTypes(
+          start.format(DATE_FORMAT_WITH_TZ),
+          end.format(DATE_FORMAT_WITH_TZ),
+          [FitKitType.MindfulSession],
+          features
+        ),
+        features.passiveCyclingEnabled
+          ? queryFitKitByTypes(
+              start.format(DATE_FORMAT_WITH_TZ),
+              end.format(DATE_FORMAT_WITH_TZ),
+              [FitKitType.Cycling],
+              features
+            )
+          : returnEmptyResult(),
+      ]);
 
-      if (res.results && !!res.results.length) {
+      const meditationResults = processResult(meditation, "MindfulSession", start, end);
+      const cyclingResults = features.passiveCyclingEnabled ? processResult(cycling, "Biking", start, end) : [];
+      const payload = [...steps.results, ...meditationResults, ...cyclingResults];
+
+      if (payload.length) {
         try {
           const mutation = features.useCoreChallengesService ? addHistoricalStepsNew : addHistoricalSteps;
           const response = await mutation({
-            variables: { payload: res.results },
+            variables: { payload },
           });
 
           if (
