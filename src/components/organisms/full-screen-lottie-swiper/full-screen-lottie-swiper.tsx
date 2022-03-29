@@ -9,6 +9,7 @@ import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 import { useDispatch } from "react-redux";
 import { ContentItemLottie as GqlLottie } from "@graphql/_core/schema";
 import { ContentItemLottie } from "@components/sdui";
+import { TEXT_TEMPLATE } from "@ids";
 
 interface Props {
   id: string;
@@ -142,7 +143,7 @@ export const FullScreenLottieSwiper = memo((props: Props) => {
         />
         <Controller handleChangeActiveIndex={handleChangeActiveIndex} />
         <View style={styles.title}>
-          <TextTemplate color={theme.titleColor || Colours.neutral.white} type="l1b">
+          <TextTemplate color={theme.titleColor || Colours.neutral.white} type="l1b" testID={TEXT_TEMPLATE(title)}>
             {title}
           </TextTemplate>
         </View>

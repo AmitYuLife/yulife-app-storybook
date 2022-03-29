@@ -10,6 +10,7 @@ import media from "@styles/media";
 import { ProductStepContext } from "../../product-step.context";
 import { useSetDefaultAnswer } from "../../hooks/useSetDefaultAnswer";
 import { LOCAL_ANSWER_KEY } from "../../utils/localAnswerKeys";
+import { TEXT_TEMPLATE } from "@ids";
 
 interface Props {
   header: ContentItemPackageCards_packageCards_header;
@@ -51,7 +52,7 @@ const PackageCardHeader = (props: Props) => {
   return (
     <View style={styles.wrapper}>
       <Image style={styles.headerImage} source={headerImage} width={props.width + OFFSET} height={HEADER_HEIGHT} />
-      <View style={styles.inner}>
+      <View style={styles.inner} testID={TEXT_TEMPLATE(props.coverType)}>
         <SlotIcon
           backgroundUrl={props.header.slotInfo.backgroundUrl.uri}
           worldId={dynamicData[LOCAL_ANSWER_KEY.WorldId] as YuWorld}
@@ -61,7 +62,7 @@ const PackageCardHeader = (props: Props) => {
         <View style={styles.distance}>
           <PackageType type={props.coverType} />
           <View style={styles.descriptionWrapper}>
-            <TextTemplate color={Colours.neutral.white} type="h3">
+            <TextTemplate color={Colours.neutral.white} type="h3" testID={TEXT_TEMPLATE(props.header.slotInfo.name)}>
               {props.header.slotInfo.name}
             </TextTemplate>
             {!props.header.slotInfo?.logoUrl?.id ? null : (

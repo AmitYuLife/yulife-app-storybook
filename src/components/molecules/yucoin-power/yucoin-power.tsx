@@ -7,6 +7,7 @@ interface IProps {
   coins: string | number;
   width?: number;
   height?: number;
+  testID?: string;
 }
 
 export const HEIGHT_WIDTH_MULTIPLIER = 50 / 281;

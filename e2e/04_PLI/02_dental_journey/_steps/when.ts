@@ -1,6 +1,6 @@
 import { booleanIdVisible, navigation } from "@utils"
 import { screens } from "@appScreens"
-import { AVATAR_ITEM, CONTENT_ITEM_INPUT, DATE_INPUT, DATE_PICKER, FULL_SCREEN_SWIPER, MALE_BODY, PRODUCT_STEP_BODY_SCROLL_VIEW, SEARCH_INPUT, YUMOJI_OUTFIT_LABEL, YUMOJI_OUTFIT_RADIO, YUSCREEN_AVATAR, LEFT_PRODUCT_STEP_MULTI_BUTTON } from "@ids"
+import { AVATAR_ITEM, CONTENT_ITEM_INPUT, DATE_INPUT, DATE_PICKER, FULL_SCREEN_SWIPER, MALE_BODY, PRODUCT_STEP_BODY_SCROLL_VIEW, SEARCH_INPUT, YUSCREEN_AVATAR, LEFT_PRODUCT_STEP_MULTI_BUTTON, FULL_SCREEN_LOTTIE_SWIPER, PACKAGE_TYPES } from "@ids"
 import moment from "moment"
 import { CUSTOMER_37 } from "@data"
 
@@ -48,37 +48,19 @@ export const createDefaultYumoji = async () => {
     await tapText("Done")()
 }
 
+export const dismissDentalModal = async () => {
+    await navigateViaText("Explore now")
+}
+
 export const tapUnlockableItem = (itemName: string) => async () => {
     const itemUrl = `https://yulife-develop.imgix.net/yuscreen_products_assets/default/${itemName}`
 
     await tapID(AVATAR_ITEM(itemUrl, "unlockable"))()
 }
 
-export const tryOutfits = async () => {
-    const forest = "Forest Pathfinder"
-    const ocean = "Ocean Explorer"
-    const desert = "Desert Trailblazer"
-    const mountain = "Mountain Adventurer"
-
-    await idVisible(YUMOJI_OUTFIT_LABEL(forest))()
-
-    await tapID(YUMOJI_OUTFIT_RADIO(ocean))()
-    await idVisible(YUMOJI_OUTFIT_LABEL(ocean))()
-
-    await tapID(YUMOJI_OUTFIT_RADIO(desert))()
-    await idVisible(YUMOJI_OUTFIT_LABEL(desert))()
-
-    await tapID(YUMOJI_OUTFIT_RADIO(mountain))()
-    await idVisible(YUMOJI_OUTFIT_LABEL(mountain))()
-}
-
 export const navigateThroughTheFullSwiper = async () => {
     await wait(1000)();
-    await tapID(FULL_SCREEN_SWIPER("RIGHT"))();
-}
-
-export const dismissPLIModal = async () => {
-    await navigateViaText("Start my quote (+1000 YuCoin)")
+    await tapID(FULL_SCREEN_LOTTIE_SWIPER("RIGHT"))();
 }
 
 export const chooseCorrectDoB = (age: number) => async () => {
@@ -127,74 +109,19 @@ export const swipeOnPicker = (scrollViewId: string, id: string, direction: Detox
     }
 }
 
-type Screen = "High blood pressure" | "High cholesterol" | "Ears, nose, throat" | "Digestive" | "Kidneys & bladder" | "Eye" | "Minor injuries" | "Lungs" | "Muscles & joints" | "Skin" | "Pregnancy" | "Other"
-
-type YesNo = "Yes" | "No"
-
-export const tapAnswerOnConditionScreen = (screen: Screen, answer: YesNo) => async () => {
-    let condition
-
-    switch (screen) {
-        case "Ears, nose, throat":
-            condition = "ear, nose, and throat issues"
-            break;
-        case "Digestive":
-            condition = "digestive issues"
-            break;
-        case "Kidneys & bladder":
-            condition = "kidney & bladder issues"
-            break;
-        case "Eye":
-            condition = "eye issues"
-            break;
-        case "Minor injuries":
-            condition = "minor injuries"
-            break;
-        case "Lungs":
-            condition = "lung issues"
-            break;
-        case "Muscles & joints":
-            condition = "muscle & joint issues"
-            break;
-        case "Skin":
-            condition = "skin issues"
-            break;
-        case "Other":
-            condition = "other issues"
-            break;
-        default:
-            break;
-    }
-    await textVisible(`Were all of your ${condition} in the list below?`)()
-    await navigateViaText(answer)
-}
-
 export const addContactDetails = async () => {
-    await navigateViaText("Add contact details")
+    await navigateViaText("Continue to checkout")
+    await typeViaID(CONTENT_ITEM_INPUT("title"), "Mr\n")()
+    await scrollUntilTextVisible(PRODUCT_STEP_BODY_SCROLL_VIEW, "Continue", "down")()
+    await tapText("Continue")()
     await typeViaID(CONTENT_ITEM_INPUT("contactDetailsAddress1"), "Harry's House\n")()
     await typeViaID(CONTENT_ITEM_INPUT("contactDetailsTown"), "London\n")()
     await typeViaID(CONTENT_ITEM_INPUT("contactDetailsPostcode"), "HA9 7FN\n")()
     await typeViaID(CONTENT_ITEM_INPUT("contactDetailsEmail"), `${CUSTOMER_37.data.email}\n`)()
     await scrollFromID(PRODUCT_STEP_BODY_SCROLL_VIEW, "up", "slow")()
     await typeViaID(CONTENT_ITEM_INPUT("contactDetailsPhone"), "07123456789\n")()
+    await scrollUntilTextVisible(PRODUCT_STEP_BODY_SCROLL_VIEW, "Continue", "down")()
     await tapText("Continue")()
-}
-
-export const addGPDetails = async () => {
-    const consentText = "Tick here to consent to your doctor supplying us with a medical report"
-    const reportText = "Tick here if you want to see your medical report before your doctor sends it to us. Please note by checking this option you will be invited to your GP surgery to review your report."
-    
-    await navigateViaText("Add GP details")
-    await navigateViaText("Continue")
-    await scrollUntilTextVisible(PRODUCT_STEP_BODY_SCROLL_VIEW, reportText, "down")()
-    await navigateViaText(consentText)
-    await navigateViaText(reportText)
-    await navigateViaText("Continue")
-    await typeViaID(SEARCH_INPUT, "CT2 8SG\n")()
-    await tapText("London Road Surgery")()
-    await scrollUntilTextVisible(PRODUCT_STEP_BODY_SCROLL_VIEW, "Dr. London Road Surgery", "down")()
-    await tapText("Dr. London Road Surgery")()
-    await navigateViaText("Continue")
 }
 
 export const addPaymentDetails = async () => {
@@ -208,6 +135,7 @@ export const addPaymentDetails = async () => {
     const cardCVCInput = element(by.type("Stripe.STPCardCVCInputTextField"))
     const postcodeInput = element(by.type("Stripe.STPPostalCodeInputTextField"))
 
+    await navigateViaText("Continue to payment") 
     await scrollUntilTextVisible(PRODUCT_STEP_BODY_SCROLL_VIEW, "Add payment details", "down")()
     await navigateViaText("Add payment details")
     await slowType(cardNumberInput, cardNumber, 500)()
@@ -215,4 +143,15 @@ export const addPaymentDetails = async () => {
     await slowType(cardCVCInput, cardCVC, 500)()
     await slowType(postcodeInput, postcode, 500)()
     await tapText("Set up")()
+}
+
+export const acceptConditions = async () => {
+    const acceptStatement = "I have read and agreed to the above statements."
+    const acceptAndRead = "I have received, read and agree to Bupa's Membership Guide, and YuLife's Information about our Service document."
+    const bupaPrivacy = "Bupa's Privacy Notice"
+
+
+    await scrollUntilTextVisible(PRODUCT_STEP_BODY_SCROLL_VIEW, bupaPrivacy, "down")()
+    await tapText(acceptStatement)()
+    await tapText(acceptAndRead)()   
 }

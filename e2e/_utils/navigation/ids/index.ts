@@ -106,6 +106,7 @@ export const APPREVIEW_TEXT = (text:string) => `APPREVIEW_TEXT_${text}`
 export const STEPS_COUNT = (steps: number) => `STEPS_COUNT_${steps}`
 export const CYCLING_COUNT = (cycling:string) => `CYCLING_COUNT_${cycling}`
 export const MINDFUL_COUNT = (mindfulness:string) => ` MINDFUL_COUNT_${mindfulness}`
+export const COVER_TYPE = (copy:string) => `COVER_TYPE_${copy}`
 
 
 // reward purchased
@@ -139,7 +140,7 @@ export const EARN_RATE_BUTTON = (earnRate: number) => `EARN_RATE_BUTTON_${earnRa
 export const PACKAGE_SCREEN = "PACKAGE_SCREEN"
 export const YOUR_YUCOIN_SCREEN = "YOUR_YUCOIN_SCREEN"
 export const EARN_RATE_TABLE = "EARN_RATE_TABLE"
-export const YUCOIN_POWER = (powerNum: string) => `YUCOIN_POWER_${powerNum}`
+export const YUCOIN_POWER = (powerNum: string | number) => `YUCOIN_POWER_${powerNum}`
 export const AVATAR_ITEM = (itemUrl:string, status:string) => `AVATAR_ITEM_${itemUrl}_${status}`
 export const YUSCREEN_SCROLL_VIEW = "YUSCREEN_SCROLL_VIEW"
 export const YUSCREEN_V3 = (onYuscreenV3:boolean) => `YUSCREEN_V3_${onYuscreenV3}`

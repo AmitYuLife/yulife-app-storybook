@@ -41,6 +41,7 @@ import { IProductStepScrollPicker, ProductStepContext } from "./product-step.con
 import { buildInitialProductStepDynamicDataState } from "@utils/products";
 import { DynamicData } from "@redux/server-driven-ui/sdui.types";
 import { ProductStepDetachedNavigationContext } from "./product-step-detached-navigation.context";
+import { PRODUCT_STEP_BODY_SCROLL_VIEW } from "@ids";
 
 interface Props {
   productId: string;
@@ -129,7 +130,7 @@ const ProductStepDetachedContainer = (props: Props) => {
       }}
     >
       <View style={nestedHistory.length === 0 ? styles.wrapper : styles.wrapperWhite}>
-        <ScrollView showsVerticalScrollIndicator={false}>
+        <ScrollView showsVerticalScrollIndicator={false} testID={PRODUCT_STEP_BODY_SCROLL_VIEW}>
           {!detachedStep ? (
             <View style={styles.loadingWrapper}>
               <ActivityIndicator />
