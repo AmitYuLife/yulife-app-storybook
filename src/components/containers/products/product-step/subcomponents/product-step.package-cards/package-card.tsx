@@ -11,6 +11,7 @@ import { ProductStepContext } from "../../product-step.context";
 import { LOCAL_ANSWER_KEY } from "../../utils/localAnswerKeys";
 import { useQuery } from "@apollo/react-hooks";
 import { GQL_QUERY_GET_PRODUCT_SLOT_ITEM_BACKGROUND_URLS } from "@graphql/yuscreen/getProductSlotItemBackgroundUrls.gql";
+import { YUCOIN_POWER } from "@ids";
 
 interface OwnProps {
   width: number;
@@ -64,7 +65,7 @@ export const PackageCard = memo((props: Partial<Props>) => {
       <View style={innerWrapperStyle}>
         <View style={styles.bgWhite} />
         <PackageCardHeader width={props.width} coverType={props.coverType} header={props.header} />
-        <View style={styles.container}>
+        <View style={styles.container} testID={YUCOIN_POWER(props.bonusEarnRate)}>
           <PressableWithDelay onPress={handlePressYuCoinPower} style={styles.yucoin}>
             <YuCoinPower width={Style.DEVICE_WIDTH - 104} coins={props.bonusEarnRate} />
           </PressableWithDelay>

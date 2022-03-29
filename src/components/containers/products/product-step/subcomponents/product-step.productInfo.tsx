@@ -9,6 +9,7 @@ import { GetPersonalProductStep_getPersonalProductStep_body_ContentItemPersonalP
 import { YuWorld } from "@graphql/_core/schema/globalTypes";
 import { ProductStepContext } from "../product-step.context";
 import { mapServerStyles } from "@components/sdui";
+import { PACKAGE_TYPES } from "@ids";
 
 export const ProductStepProductInfo = memo((props: Props) => {
   const { customerProductId, setDynamicData } = useContext(ProductStepContext);
@@ -60,7 +61,7 @@ export const ProductStepProductInfo = memo((props: Props) => {
 
         <Markdown markdownStyles={markdownStyles} text={productDescription.parsedMarkdown} />
       </View>
-      <View>
+      <View testID={PACKAGE_TYPES}>
         {partType ? (
           <YumojiSwipePart
             onChange={handleYumojiPartChange}

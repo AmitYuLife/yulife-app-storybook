@@ -845,7 +845,8 @@ export const CUSTOMER_37_TOGGLES = {
             showCommunityGoals: true,
             showReferrals: true,
             yuScreenV3: true,
-            hasCoveaFibActive: true
+            hasCoveaFibActive: true,
+            hasBupaDentActive: true
         }
     }
 } as IDatabaseItem

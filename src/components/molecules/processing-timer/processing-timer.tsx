@@ -4,6 +4,7 @@ import { CloseSvg, Image, TextTemplate } from "@atoms";
 import { Colours, Style } from "@styles";
 import { Countdown } from "./countdown";
 import { PressableWithDelay } from "..";
+import { BUTTON_CLOSE_CHALLENGE } from "@ids";
 
 interface Props {
   secondsUntilTarget: number;
@@ -26,7 +27,7 @@ const ProcessingTimer = memo(({ secondsUntilTarget, backgroundUrl, heading, onCl
     </View>
     <Countdown secondsUntilTarget={secondsUntilTarget} />
     <View style={styles.padView} />
-    <PressableWithDelay style={styles.closeWrapper} onPress={onClose}>
+    <PressableWithDelay style={styles.closeWrapper} onPress={onClose} testID={BUTTON_CLOSE_CHALLENGE}>
       <CloseSvg stroke={Colours.neutral.white} />
     </PressableWithDelay>
   </View>

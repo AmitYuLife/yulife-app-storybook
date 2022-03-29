@@ -20,7 +20,6 @@ export interface IPageItem {
 
 export const Page = (props: IPageItem) => {
   const { heading, paragraph } = props;
-
   return (
     <View style={styles.wrapper}>
       <Background {...props} />

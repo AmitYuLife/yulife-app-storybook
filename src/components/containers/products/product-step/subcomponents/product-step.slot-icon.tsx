@@ -8,6 +8,7 @@ import { GQL_QUERY_GET_YUMOJI_PART_URL_SET } from "@graphql/yuscreen/getYumojiPa
 import { GetYumojiPartUrlSet, GetYumojiPartUrlSetVariables } from "@graphql/_core/schema/GetYumojiPartUrlSet";
 import { GQL_QUERY_GET_PRODUCT_YUMOJI_PART } from "@graphql/yuscreen/getProductYumojiPart";
 import { GetProductYumojiPart, GetProductYumojiPartVariables } from "@graphql/_core/schema/GetProductYumojiPart";
+import { COVER_TYPE } from "@ids";
 
 interface Props {
   size?: number;
@@ -105,7 +106,7 @@ export const SlotIcon = memo((props: Props) => {
       />
       {!shouldDisplayPackageType ? null : (
         <View style={styles.coverTypeWrapper}>
-          <View>
+          <View testID={COVER_TYPE(props.coverType)}>
             <PackageType minWidth={Style.adjust(55)} type={props.coverType} />
           </View>
         </View>
