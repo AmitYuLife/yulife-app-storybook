@@ -7,6 +7,28 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.25.0] - 2022-03-30
+
+### Bugfixes
+
+- Bugfix GS-272: Fix multiple feedback form
+- Bugfix: Do not render cycling distance if is below 0.1
+- Bugfix: Get current balance for daily passive query
+
+### Tasks
+
+- Task GS-273: Query cycling and meditation from activity history
+- Task: Add Biking workout for helper tool
+
+### Chores
+
+- Chore: Add markdown to detached product step
+- Chore: Add maxLength on multiline-text-input
+
+### Extra
+
+- Detox: dental continue
+
 ## [3.24.0] - 2022-03-23
 
 ### Features
