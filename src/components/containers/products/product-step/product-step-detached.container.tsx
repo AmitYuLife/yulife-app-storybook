@@ -33,6 +33,7 @@ import { SduiActionType } from "@graphql/_core/schema/globalTypes";
 import { Colours } from "@styles";
 import {
   ProductStepCoverPicker,
+  ProductStepMarkdown,
   ProductStepSelectedPackageAccordion,
   ProductStepSelectedPackageCard,
   ProductStepSelectedPackageCards,
@@ -218,6 +219,8 @@ const renderItemContent = (item: GPPSSQ_Body): JSX.Element => {
       return <ContentItemButton key={item.id} {...item} />;
     case "ContentItemPad":
       return <ContentItemPad key={item.id} {...item} />;
+    case "ContentItemMarkdown":
+      return <ProductStepMarkdown key={item.id} {...item} />;
     case "ContentItemRowIconTextBanner":
       return <ContentItemRowIconTextBanner key={item.id} {...item} />;
     default:
