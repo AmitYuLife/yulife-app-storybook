@@ -62,6 +62,8 @@ const styles = StyleSheet.create({
   },
   blur: {
     ...StyleSheet.absoluteFillObject,
+    // without border overlay will not be dismissed for android devices on press outside the view
+    borderColor: "transparent",
   },
 });
 
