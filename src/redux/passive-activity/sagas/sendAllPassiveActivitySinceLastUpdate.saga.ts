@@ -100,6 +100,13 @@ export default function* sendPassiveActivity(): any {
       if (awardedYucoin > 0) {
         const route = yield select(getRouteState);
 
+        // check for token before showing collect modal
+        // user can logout before last update query is finished
+        const userToken: Unpacked<typeof getToken> = yield call(getToken);
+        if (!userToken) {
+          return;
+        }
+
         if (route !== MODALS.collectReward) {
           const startDateTime = moment.min(
             moment(meditationLastUpdate),
