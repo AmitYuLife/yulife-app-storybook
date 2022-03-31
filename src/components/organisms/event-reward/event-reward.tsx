@@ -1,13 +1,17 @@
-import React, { memo } from "react";
+import React, { memo, useRef, useCallback } from "react";
 import { StyleSheet, View } from "react-native";
 import { Image, TextTemplate } from "@atoms";
-import { LabelWithImages } from "@molecules";
+import { LabelWithImages, PressableWithDelay } from "@molecules";
 import { Colours, Style } from "@styles";
 import { RadioIcon } from "@atoms/icon/radio-icon";
 import LottieView from "lottie-react-native";
 import { ILabelImage } from "@components/molecules/label-with-images/label-with-images";
 import { RemoteImage } from "@graphql/_core/schema";
 import { GoalRewardStatus } from "@graphql/_core/schema/globalTypes";
+import { showOverlayWithChild } from "@components/modals/blurred-overlay/showOverlayWithChild";
+import InfoMessagePopover from "@components/molecules/info-message-popover/info-message-popover";
+import { Navigation } from "react-native-navigation";
+import { MODALS } from "@navigation/constants";
 
 const lottieAnimationSource = require("./assets/event-reward-animation.json");
 
@@ -27,6 +31,8 @@ export interface IReward {
   status: GoalRewardStatus;
   animated?: boolean;
   stars?: ILabelImage[];
+  infoText?: string;
+  infoBadgeUri?: string;
 }
 
 const EventReward = ({
@@ -43,9 +49,22 @@ const EventReward = ({
     itemBackground: { uri: itemBackgroundUri },
     status,
     animated,
+    infoText,
+    infoBadgeUri,
   } = reward;
+  const questionMarkRef = useRef<View>();
   const rewardClaimed = status === GoalRewardStatus.claimed;
   const statusColor = getStatusColor(status);
+  const onCloseInfoMessage = useCallback(() => Navigation.dismissOverlay(MODALS.blurredOverlay), []);
+
+  const openPopUp = useCallback(() => {
+    questionMarkRef?.current?.measure((_fx, _fy, _width, _height, pageX, pageY) => {
+      const infoView = <InfoMessagePopover text={infoText} pageX={pageX} pageY={pageY} onClose={onCloseInfoMessage} />;
+
+      showOverlayWithChild(infoView, false);
+    });
+  }, [questionMarkRef, infoText, onCloseInfoMessage]);
+
   return (
     <View style={[styles.wrapper, { height, width, marginHorizontal }]}>
       <View style={[styles.circleWrapper, { borderColor: statusColor }]}>
@@ -79,6 +98,16 @@ const EventReward = ({
           <TextTemplate type={"l1"}>{description}</TextTemplate>
         </View>
       )}
+
+      {!infoBadgeUri ? null : (
+        <View style={styles.infoWrapper}>
+          <PressableWithDelay onPress={openPopUp}>
+            <View ref={questionMarkRef} collapsable={false}>
+              <Image width={Style.adjust(22)} height={Style.adjust(22)} source={{ uri: infoBadgeUri }} />
+            </View>
+          </PressableWithDelay>
+        </View>
+      )}
     </View>
   );
 };
@@ -98,6 +127,11 @@ const getStatusColor = (status: GoalRewardStatus) => {
 const styles = StyleSheet.create({
   absolute: {
     position: "absolute",
+  },
+  infoWrapper: {
+    position: "absolute",
+    top: Style.adjust(9),
+    right: Style.adjust(9),
   },
   wrapper: {
     borderWidth: 1,
