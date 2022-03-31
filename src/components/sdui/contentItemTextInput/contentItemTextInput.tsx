@@ -6,6 +6,7 @@ import { TextField } from "@components/molecules";
 import { Style } from "@styles";
 import { ContentItemFormTextInputType } from "@graphql/_core/schema/globalTypes";
 import { TextTemplate } from "@atoms";
+import media, { DEVICES } from "@styles/media";
 
 interface Props extends GqlTextInput {
   value: string;
@@ -47,13 +48,23 @@ export const ContentItemTextInput = memo(({ onChange, id, heading, value, prefix
   );
 });
 
+const TOP = media.select(
+  [
+    {
+      condition: Style.DEVICE_HEIGHT >= DEVICES.iPhone12ProMax.height,
+      value: 54,
+    },
+  ],
+  52
+);
+
 const styles = StyleSheet.create({
   prefixWrapper: {
     position: "absolute",
     left: 0,
-    top: Style.adjust(52),
+    top: TOP,
     bottom: 0,
-    height: Style.adjust(32),
+    height: 32,
   },
   inputWrapper: {
     paddingTop: Style.adjust(24),
