@@ -48,9 +48,11 @@ const paddingBottom = media.select(
 const styles = StyleSheet.create({
   wrapper: {
     position: "absolute",
-    left: Style.adjust(16),
-    right: Style.adjust(16),
+    left: 0,
+    right: 0,
     bottom: 0,
+    paddingLeft: Style.adjust(16),
+    paddingRight: Style.adjust(16),
     paddingBottom,
   } as ViewStyle,
 });
