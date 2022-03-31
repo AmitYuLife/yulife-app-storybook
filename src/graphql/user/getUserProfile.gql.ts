@@ -45,6 +45,7 @@ export const GQL_QUERY_GET_USER_PROFILE = gql`
         hasPendingForm
         hasMobileWhatsNewModal
         hasAppReview
+        hasDailyScreenCustomIcon
       }
     }
   }

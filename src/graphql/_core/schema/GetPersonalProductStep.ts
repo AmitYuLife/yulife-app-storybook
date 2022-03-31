@@ -2305,11 +2305,11 @@ export interface GetPersonalProductStep_getPersonalProductStep {
   customerProductId: string;
   stepData: string | null;
   /**
-   * Container styles go here
+   * Container styles go here. Not supported by detached steps.
    */
   containerStyles: GetPersonalProductStep_getPersonalProductStep_containerStyles[] | null;
   /**
-   * Footer styles go here
+   * Footer styles go here. Not supported by detached steps.
    */
   footerStyles: GetPersonalProductStep_getPersonalProductStep_footerStyles[] | null;
   /**
@@ -2317,15 +2317,16 @@ export interface GetPersonalProductStep_getPersonalProductStep {
    */
   body: (GetPersonalProductStep_getPersonalProductStep_body | null)[] | null;
   /**
-   * Content displayed on the bottom of the screen. sticky footer
+   * Content displayed on the bottom of the screen. Sticky footer. Not supported by detached steps.
    */
   footer: (GetPersonalProductStep_getPersonalProductStep_footer | null)[] | null;
   /**
-   * Content displayed on the top of the screen. sticky header
+   * Content displayed on the top of the screen. Sticky header. Not supported by detached steps.
    */
   header: (GetPersonalProductStep_getPersonalProductStep_header | null)[] | null;
   /**
-   * Content that just sits on the screen. Anywhere you want. Be careful with this powerful tool.
+   * Content that just sits on the screen. Anywhere you want. Be careful with this
+   * powerful tool. Not supported by detached steps.
    */
   absolute: (GetPersonalProductStep_getPersonalProductStep_absolute | null)[] | null;
 }

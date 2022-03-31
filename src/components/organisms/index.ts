@@ -11,3 +11,4 @@ export { FullScreenSwiper } from "./full-screen-swiper/full-screen-swiper";
 export { Accordion } from "./accordion/accordion";
 export { FullScreenLottieSwiper } from "./full-screen-lottie-swiper/full-screen-lottie-swiper";
 export { InfoCardList, IInfoCardListCard } from "./info-card-list/info-card-list";
+export { default as CustomIcon } from "./custom-icon/custom-icon";
