@@ -1,5 +1,4 @@
 import React, { memo, useContext } from "react";
-import { useDispatch } from "react-redux";
 import Logger from "@services/logging/logger";
 import { useMutation, useQuery } from "@apollo/react-hooks";
 import { useStripe, PaymentSheet } from "@stripe/stripe-react-native";
@@ -12,15 +11,13 @@ import {
 import { GQL_QUERY_GET_MOBILE_PAYMENT_CARD_SETUP, GQL_MUTATION_CONFIRM_PAYMENT_CARD } from "@graphql/payment";
 import { ContentItemInfoButton } from "@components/sdui";
 import { ProductStepContext } from "../product-step.context";
-import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 
 type Props = GqlSelectPaymentBtn;
 
 export const ProductStepSelectPaymentButton = memo((props: Props) => {
-  const { id, button, companyName, companyCountryCode, themeStyle, applePayEnabled, googlePayEnabled } = props;
-  const dispatch = useDispatch();
+  const { button, companyName, companyCountryCode, themeStyle, applePayEnabled, googlePayEnabled } = props;
   const { initPaymentSheet, presentPaymentSheet } = useStripe();
-  const { dynamicData, setDynamicData, productId } = useContext(ProductStepContext);
+  const { dynamicData, setDynamicData } = useContext(ProductStepContext);
 
   const { data } = useQuery<GetMobilePaymentCardSetup>(GQL_QUERY_GET_MOBILE_PAYMENT_CARD_SETUP, {
     fetchPolicy: "network-only",
@@ -33,8 +30,6 @@ export const ProductStepSelectPaymentButton = memo((props: Props) => {
     if (!data?.setup?.clientSecret) {
       return;
     }
-
-    dispatch(logMixpanelEventActionCreator("button_pressed", { button_id: id, cs_product: productId }));
 
     try {
       await initPaymentSheet({
