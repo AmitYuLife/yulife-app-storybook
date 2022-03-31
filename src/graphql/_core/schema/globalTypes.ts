@@ -147,7 +147,6 @@ export enum LoginMethod {
 export enum MobileOnboardingStepPerformed {
   newYumojiBuilder = "newYumojiBuilder",
   passiveCycling = "passiveCycling",
-  personalLifeIntro = "personalLifeIntro",
   personalProductsCoveaFIBArmour = "personalProductsCoveaFIBArmour",
   personalProductsCoveaFIBIntro = "personalProductsCoveaFIBIntro",
   referralsPopover = "referralsPopover",

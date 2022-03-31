@@ -7,12 +7,15 @@ import { DAILY_STEPS_SCREEN } from "@ids";
 import { IConnectedScreenProps } from "../../../../typings";
 import { Pad } from "@atoms";
 import { Surge, TouchableOpacityWithDelay, CentredScreen } from "@molecules";
-import { Streak, TopBar, NavBar, DailyStepsContent } from "@organisms";
+import { Streak, TopBar, NavBar, DailyStepsContent, CustomIcon } from "@organisms";
 import { Style } from "@styles";
 import styles from "./daily-steps.screen.styles";
 import YuCoin from "./assets/yu-coin";
 import ReferralsPopover from "./referrals-popover";
-import { GetUserProfile_getUserProfile_surge } from "@graphql/_core/schema";
+import {
+  GetDailyScreenCustomIcon_getDailyScreenCustomIcon,
+  GetUserProfile_getUserProfile_surge,
+} from "@graphql/_core/schema";
 import { SurgeModal } from "@components/modals";
 import { showFloatingModal } from "@components/modals/floating-modals/showFloatingModal";
 import { MODALS } from "@navigation/constants";
@@ -25,6 +28,7 @@ interface IProps extends IConnectedScreenProps {
   onStreakPress?: () => void;
   theme: IThemeStore["dailyStepsScreen"];
   userSurge: GetUserProfile_getUserProfile_surge;
+  customIcon: GetDailyScreenCustomIcon_getDailyScreenCustomIcon;
 }
 
 type Props = IProps;
@@ -35,6 +39,7 @@ const DailyStepsScreen = ({
   onLeftMenuPress,
   theme: { centredScreen, hasWhiteGlow, topBarType },
   userSurge,
+  customIcon,
 }: Props) => {
   const onSurgePress = useCallback(async () => {
     const child = <SurgeModal {...userSurge} />;
@@ -53,10 +58,16 @@ const DailyStepsScreen = ({
           <YuCoin hasWhiteGlow={hasWhiteGlow} isGrayScale={!hasPermission} />
         </TouchableOpacityWithDelay>
         <DailyStepsContent />
-        {!userSurge?.endDateTime ? null : (
-          <Surge multiplier={userSurge?.multiplier} expireDate={userSurge?.endDateTime} onPress={onSurgePress} />
-        )}
-        <Streak />
+        <View style={styles.leftIconList}>
+          {!userSurge?.endDateTime ? null : (
+            <Surge multiplier={userSurge?.multiplier} expireDate={userSurge?.endDateTime} onPress={onSurgePress} />
+          )}
+          {customIcon?.position !== "left" ? null : <CustomIcon icon={customIcon} />}
+        </View>
+        <View style={styles.rightIconList}>
+          <Streak />
+          {customIcon?.position !== "right" ? null : <CustomIcon icon={customIcon} />}
+        </View>
         <NavBar activeIndex={0} />
       </CentredScreen>
       <View style={styles.topbarWrapper}>

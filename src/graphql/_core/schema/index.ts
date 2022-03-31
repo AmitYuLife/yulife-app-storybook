@@ -79,6 +79,7 @@ export * from "./GetCommunityGoals";
 export * from "./GetConnections";
 export * from "./GetCurrentUser";
 export * from "./GetCurrentUserLeaderboard";
+export * from "./GetDailyScreenCustomIcon";
 export * from "./GetDebugCodes";
 export * from "./GetDuelInvitations";
 export * from "./GetDuelTemplates";

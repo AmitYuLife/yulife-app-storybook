@@ -1,8 +1,8 @@
 import React, { memo, useState, useEffect, useCallback } from "react";
-import { StyleSheet, View, ViewStyle } from "react-native";
+import { StyleSheet, View } from "react-native";
 import LottieView from "lottie-react-native";
 import { TextTemplate } from "@atoms";
-import { Style, TOP_BAR, Colours } from "@styles";
+import { Style, Colours } from "@styles";
 import moment from "moment";
 import { minifiedFromNow } from "@utils";
 import { TouchableOpacityWithDelay } from "@molecules";
@@ -68,10 +68,8 @@ const Surge = ({ expireDate, multiplier, onPress }: IProps) => {
 
 const styles = StyleSheet.create({
   wrapper: {
-    position: "absolute",
-    top: TOP_BAR.TOP_BAR_WITH_PAD,
-    left: Style.adjust(16),
-  } as ViewStyle,
+    marginBottom: Style.adjust(20),
+  },
   lottie: {
     width: Style.adjust(64),
     height: Style.adjust(72),

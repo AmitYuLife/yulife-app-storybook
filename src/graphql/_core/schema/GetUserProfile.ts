@@ -69,6 +69,7 @@ export interface GetUserProfile_getUserProfile_notification {
   hasPendingForm: boolean;
   hasMobileWhatsNewModal: boolean;
   hasAppReview: boolean;
+  hasDailyScreenCustomIcon: boolean;
 }
 
 export interface GetUserProfile_getUserProfile {

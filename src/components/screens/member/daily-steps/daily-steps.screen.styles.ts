@@ -50,4 +50,18 @@ export default StyleSheet.create({
     position: "absolute",
     right: 0,
   } as ViewStyle,
+  rightIconList: {
+    position: "absolute",
+    right: Style.adjust(16),
+    top: TOP_BAR.TOP_BAR_WITH_PAD,
+    alignItems: "center",
+    justifyContent: "center",
+  } as ViewStyle,
+  leftIconList: {
+    position: "absolute",
+    left: Style.adjust(16),
+    top: TOP_BAR.TOP_BAR_WITH_PAD,
+    alignItems: "center",
+    justifyContent: "center",
+  } as ViewStyle,
 });

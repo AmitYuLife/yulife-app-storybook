@@ -1533,6 +1533,18 @@
             "deprecationReason": null
           },
           {
+            "name": "getDailyScreenCustomIcon",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "DailyScreenCustomIcon",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "getUserNotificationsSettings",
             "description": null,
             "args": [],
@@ -15868,6 +15880,379 @@
       },
       {
         "kind": "OBJECT",
+        "name": "DailyScreenCustomIcon",
+        "description": null,
+        "fields": [
+          {
+            "name": "position",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "x",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "y",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "image",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "DailyScreenCustomIconImage",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "text",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "DailyScreenCustomIconText",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "onPress",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "SduiAction",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "DailyScreenCustomIconImage",
+        "description": null,
+        "fields": [
+          {
+            "name": "source",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "RemoteImage",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "width",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "height",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "DailyScreenCustomIconText",
+        "description": null,
+        "fields": [
+          {
+            "name": "type",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "colour",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "value",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "x",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "y",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "SduiAction",
+        "description": null,
+        "fields": [
+          {
+            "name": "type",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "ENUM",
+                "name": "SduiActionType",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "payload",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "ENUM",
+        "name": "SduiActionType",
+        "description": null,
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "enumValues": [
+          {
+            "name": "SDUI_ACTION_LOG_EVENT",
+            "description": "Generic: Logs an event to mixpanel from the client",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "SDUI_ACTION_NAVIGATE_BACK",
+            "description": "Generic: Closes the current screen. Accepts alert modal as stringified\npayload. E.g: {\"title\":\"You sure?\",\"message\":\"You won't be able to come\nback!\",\"cancelLabel\":\"Cancel\",\"confirmLabel\":\"Exit\"}",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "SDUI_ACTION_NAVIGATE",
+            "description": "Generic: Accepts client-side route constant as payload. Needs to be stringified. E.g: {\"routeId\":\"some.screen\",\"props\":{}}",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "SDUI_ACTION_OPEN_MODAL",
+            "description": "Generic: Accepts client-side modal constant as payload. Needs to be stringified. E.g: {\"routeId\":\"some.screen\",\"props\":{}}",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "SDUI_ACTION_SET_BOTTOM_TAB",
+            "description": "Generic: Accepts client-side route constant as payload.",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "SDUI_ACTION_OPEN_URL",
+            "description": "Generic: Opens a URL, accepts a URI as payload",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "SDUI_ACTION_OPEN_SUPPORT_CHAT",
+            "description": "Generic: Opens the intercom chat",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "SDUI_ACTION_OPEN_ALERT_DIALOG",
+            "description": "Generic: Opens client side alert dialog",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "SDUI_ACTION_PRODUCT_UNDERWRITING_STEP_PUSH",
+            "description": "Product UW specific step: Gets next step, accepts current StepId as payload",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "SDUI_ACTION_PRODUCT_UNDERWRITING_STEP_FINISH",
+            "description": "Product UW specific step: Finishes the journey",
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "SDUI_ACTION_PRODUCT_UNDERWRITING_STEP_POP",
+            "description": "Product UW specific step: Gets previous step, accepts current StepId as payload",
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
         "name": "NotificationSettingsProps",
         "description": null,
         "fields": [
@@ -17710,83 +18095,6 @@
           {
             "name": "JOIN_GOAL",
             "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "possibleTypes": null
-      },
-      {
-        "kind": "ENUM",
-        "name": "SduiActionType",
-        "description": null,
-        "fields": null,
-        "inputFields": null,
-        "interfaces": null,
-        "enumValues": [
-          {
-            "name": "SDUI_ACTION_LOG_EVENT",
-            "description": "Generic: Logs an event to mixpanel from the client",
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "SDUI_ACTION_NAVIGATE_BACK",
-            "description": "Generic: Closes the current screen. Accepts alert modal as stringified\npayload. E.g: {\"title\":\"You sure?\",\"message\":\"You won't be able to come\nback!\",\"cancelLabel\":\"Cancel\",\"confirmLabel\":\"Exit\"}",
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "SDUI_ACTION_NAVIGATE",
-            "description": "Generic: Accepts client-side route constant as payload. Needs to be stringified. E.g: {\"routeId\":\"some.screen\",\"props\":{}}",
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "SDUI_ACTION_OPEN_MODAL",
-            "description": "Generic: Accepts client-side modal constant as payload. Needs to be stringified. E.g: {\"routeId\":\"some.screen\",\"props\":{}}",
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "SDUI_ACTION_SET_BOTTOM_TAB",
-            "description": "Generic: Accepts client-side route constant as payload.",
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "SDUI_ACTION_OPEN_URL",
-            "description": "Generic: Opens a URL, accepts a URI as payload",
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "SDUI_ACTION_OPEN_SUPPORT_CHAT",
-            "description": "Generic: Opens the intercom chat",
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "SDUI_ACTION_OPEN_ALERT_DIALOG",
-            "description": "Generic: Opens client side alert dialog",
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "SDUI_ACTION_PRODUCT_UNDERWRITING_STEP_PUSH",
-            "description": "Product UW specific step: Gets next step, accepts current StepId as payload",
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "SDUI_ACTION_PRODUCT_UNDERWRITING_STEP_FINISH",
-            "description": "Product UW specific step: Finishes the journey",
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "SDUI_ACTION_PRODUCT_UNDERWRITING_STEP_POP",
-            "description": "Product UW specific step: Gets previous step, accepts current StepId as payload",
             "isDeprecated": false,
             "deprecationReason": null
           }
@@ -20920,12 +21228,6 @@
             "deprecationReason": null
           },
           {
-            "name": "personalLifeIntro",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "newYumojiBuilder",
             "description": null,
             "isDeprecated": false,
@@ -20973,45 +21275,6 @@
                 "name": "SduiAction",
                 "ofType": null
               }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "inputFields": null,
-        "interfaces": [],
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "OBJECT",
-        "name": "SduiAction",
-        "description": null,
-        "fields": [
-          {
-            "name": "type",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "ENUM",
-                "name": "SduiActionType",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "payload",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -21491,7 +21754,7 @@
           },
           {
             "name": "header",
-            "description": "Content displayed on the top of the screen. sticky header",
+            "description": "Content displayed on the top of the screen. Sticky header. Not supported by detached steps.",
             "args": [],
             "type": {
               "kind": "LIST",
@@ -21507,7 +21770,7 @@
           },
           {
             "name": "footer",
-            "description": "Content displayed on the bottom of the screen. sticky footer",
+            "description": "Content displayed on the bottom of the screen. Sticky footer. Not supported by detached steps.",
             "args": [],
             "type": {
               "kind": "LIST",
@@ -21523,7 +21786,7 @@
           },
           {
             "name": "absolute",
-            "description": "Content that just sits on the screen. Anywhere you want. Be careful with this powerful tool.",
+            "description": "Content that just sits on the screen. Anywhere you want. Be careful with this\npowerful tool. Not supported by detached steps.",
             "args": [],
             "type": {
               "kind": "LIST",
@@ -21539,7 +21802,7 @@
           },
           {
             "name": "containerStyles",
-            "description": "Container styles go here",
+            "description": "Container styles go here. Not supported by detached steps.",
             "args": [],
             "type": {
               "kind": "LIST",
@@ -21559,7 +21822,7 @@
           },
           {
             "name": "footerStyles",
-            "description": "Footer styles go here",
+            "description": "Footer styles go here. Not supported by detached steps.",
             "args": [],
             "type": {
               "kind": "LIST",
@@ -21586,7 +21849,7 @@
       {
         "kind": "UNION",
         "name": "ContentPersonalProductItem",
-        "description": null,
+        "description": "For detached steps, ContentItemMarkdown is only supported by RN client version >=3.25.0",
         "fields": null,
         "inputFields": null,
         "interfaces": null,
@@ -27136,6 +27399,18 @@
             },
             "isDeprecated": false,
             "deprecationReason": null
+          },
+          {
+            "name": "restictedPercentInfoCardText",
+            "description": "Deprecated, replaced with correctly spelled field restrictedPercentInfoCardText",
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "ContentItemMarkdown",
+              "ofType": null
+            },
+            "isDeprecated": true,
+            "deprecationReason": "replaced with correctly spelled field restrictedPercentInfoCardText"
           },
           {
             "name": "restrictedPercentInfoCardText",
@@ -33515,6 +33790,22 @@
           },
           {
             "name": "hasAppReview",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "hasDailyScreenCustomIcon",
             "description": null,
             "args": [],
             "type": {

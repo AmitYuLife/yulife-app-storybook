@@ -8,7 +8,7 @@ import { Navigation } from "react-native-navigation";
 import { labels, showYuModal } from "@navigation/root";
 import { MODALS } from "@navigation/constants";
 import { getUserFeatures } from "@redux/user/user.selectors";
-import { TOP_BAR, Style } from "@styles";
+import { Style } from "@styles";
 import { StreakIcon } from "@atoms/icon/streak-icon";
 import { TouchableOpacityWithDelay } from "@components/molecules";
 
@@ -54,13 +54,7 @@ const mapStateToProps = (state: IReduxState) => ({
 });
 
 const styles = StyleSheet.create({
-  wrapper: {
-    position: "absolute",
-    right: Style.adjust(16),
-    top: TOP_BAR.TOP_BAR_WITH_PAD,
-    alignItems: "center",
-    justifyContent: "center",
-  } as ViewStyle,
+  wrapper: { marginBottom: Style.adjust(20) } as ViewStyle,
 });
 
 const redux = connect(mapStateToProps);

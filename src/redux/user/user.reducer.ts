@@ -117,6 +117,7 @@ export interface IUserStore {
     hasDuels: boolean;
     hasPendingForm: boolean;
     hasAppReview: boolean;
+    hasDailyScreenCustomIcon: boolean;
   };
 }
 
@@ -178,6 +179,7 @@ export const getInitialState = (sessionCount: number = 0): IUserStore => ({
     hasDuels: false,
     hasPendingForm: false,
     hasAppReview: false,
+    hasDailyScreenCustomIcon: false,
   },
 });
 
