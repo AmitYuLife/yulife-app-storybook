@@ -1,12 +1,11 @@
-import React, { memo, useMemo } from "react";
-import { StyleSheet, View } from "react-native";
+import React, { memo, useMemo, useState, useCallback } from "react";
+import { LayoutChangeEvent, StyleSheet, View } from "react-native";
 import { CloseSvg, TextTemplate } from "@atoms";
 import { Colours, Style } from "@styles";
 import { PopoverBeak } from "@components/molecules/popover/popover-beak";
 import PressableWithDelay from "../pressable-delay/pressable-delay";
 
 const INFO_VIEW_WIDTH = Style.adjust(271);
-const INFO_VIEW_HEIGHT = Style.adjust(115);
 const BEAK_MIN_LEFT_POSITION = Style.adjust(20);
 const BEAK_MAX_LEFT_POSITION = Style.DEVICE_WIDTH - Style.adjust(38);
 const INFO_WRAPPER_MIN_LEFT_POSITION = Style.adjust(8);
@@ -20,13 +19,14 @@ interface IProps {
 }
 
 const InfoMessagePopover = ({ text, pageX, pageY, onClose }: IProps) => {
+  const [messageViewHeight, setMessageViewHeight] = useState(115);
   const {
     messageViewPositionLeft,
     beakPositionLeft,
     messageViewPositionTop,
     beakPositionTop,
     beakTransform,
-  } = getMessageViewPosition(pageX, pageY);
+  } = getMessageViewPosition(pageX, pageY, messageViewHeight);
   const messageViewStyle = useMemo(
     () => [styles.messageViewWrapper, { left: messageViewPositionLeft, top: messageViewPositionTop }],
     [pageX, pageY, messageViewPositionLeft, messageViewPositionTop]
@@ -36,12 +36,20 @@ const InfoMessagePopover = ({ text, pageX, pageY, onClose }: IProps) => {
     [pageX, pageY, beakPositionLeft, beakPositionTop, beakTransform]
   );
 
+  const onLayout = useCallback(
+    (event: LayoutChangeEvent) => {
+      const { height } = event.nativeEvent.layout;
+      setMessageViewHeight(height);
+    },
+    [setMessageViewHeight]
+  );
+
   return (
     <>
-      <View style={messageViewStyle}>
+      <View style={messageViewStyle} onLayout={onLayout}>
         <TextTemplate type={"l2"}>{text}</TextTemplate>
         <View style={styles.close}>
-          <PressableWithDelay onPress={onClose}>
+          <PressableWithDelay onPress={onClose} hitSlop={50}>
             <CloseSvg size={Style.adjust(12)} />
           </PressableWithDelay>
         </View>
@@ -53,14 +61,14 @@ const InfoMessagePopover = ({ text, pageX, pageY, onClose }: IProps) => {
   );
 };
 
-const getMessageViewPosition = (pageX: number, pageY: number) => {
+const getMessageViewPosition = (pageX: number, pageY: number, messageViewHeight: number) => {
   let messageViewPositionLeft = pageX;
-  let messageViewPositionTop = pageY - INFO_VIEW_HEIGHT - Style.adjust(18);
+  let messageViewPositionTop = pageY - messageViewHeight - Style.adjust(18);
   let beakPositionLeft = pageX;
   let beakPositionTop = pageY - Style.adjust(25);
   let beakTransform = [{ rotate: "270deg" }];
 
-  if (pageY - Style.getSafeAreaStart() < INFO_VIEW_HEIGHT) {
+  if (pageY - Style.getSafeAreaStart() < messageViewHeight) {
     messageViewPositionTop = pageY + Style.adjust(37);
     beakPositionTop = pageY + Style.adjust(17);
     beakTransform = [{ rotate: "90deg" }];
@@ -99,7 +107,6 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   messageViewWrapper: {
-    height: INFO_VIEW_HEIGHT,
     width: INFO_VIEW_WIDTH,
     padding: Style.adjust(16),
     borderRadius: Style.adjust(10),
