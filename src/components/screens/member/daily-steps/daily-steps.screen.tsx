@@ -4,7 +4,7 @@ import * as Animatable from "react-native-animatable";
 import { isIphoneX } from "react-native-iphone-x-helper";
 import { IThemeStore } from "@app/redux/theme/theme.reducer";
 import { DAILY_STEPS_SCREEN } from "@ids";
-import { IConnectedScreenProps } from "../../../../typings";
+import { IConnectedScreenProps } from "@app/typings";
 import { Pad } from "@atoms";
 import { Surge, TouchableOpacityWithDelay, CentredScreen } from "@molecules";
 import { Streak, TopBar, NavBar, DailyStepsContent, CustomIcon } from "@organisms";
@@ -29,6 +29,8 @@ interface IProps extends IConnectedScreenProps {
   theme: IThemeStore["dailyStepsScreen"];
   userSurge: GetUserProfile_getUserProfile_surge;
   customIcon: GetDailyScreenCustomIcon_getDailyScreenCustomIcon;
+  currentWorld: number;
+  hasEvents: boolean;
 }
 
 type Props = IProps;
@@ -40,6 +42,7 @@ const DailyStepsScreen = ({
   theme: { centredScreen, hasWhiteGlow, topBarType },
   userSurge,
   customIcon,
+  hasEvents,
 }: Props) => {
   const onSurgePress = useCallback(async () => {
     const child = <SurgeModal {...userSurge} />;
@@ -53,7 +56,7 @@ const DailyStepsScreen = ({
         style={!hasPermission ? centredScreen.offline.style : centredScreen.online.style}
         testID={DAILY_STEPS_SCREEN}
       >
-        <Pad height={getPadHeight()} />
+        <Pad height={getPadHeight(hasEvents)} />
         <TouchableOpacityWithDelay onPress={onCoinPress} activeOpacity={1}>
           <YuCoin hasWhiteGlow={hasWhiteGlow} isGrayScale={!hasPermission} />
         </TouchableOpacityWithDelay>
@@ -80,17 +83,17 @@ const DailyStepsScreen = ({
 
 export default memo(DailyStepsScreen);
 
-function getPadHeight() {
-  if (isIphoneX()) {
+function getPadHeight(hasEvents: boolean) {
+  if (isIphoneX() || Style.isLargeScreen()) {
     return 110;
   }
 
   if (Platform.OS === "ios") {
-    return 80;
+    return hasEvents ? 15 : 80;
   }
 
   if (Style.isShortToMediumAndroid()) {
-    return 100;
+    return hasEvents ? 19 : 100;
   }
 
   return 110;

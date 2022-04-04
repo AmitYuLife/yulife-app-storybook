@@ -87,6 +87,9 @@ export const getUserEarnRate = createSelector(reducer, userEarnRate);
 const userNotification = (state: State) => state.notification;
 export const getUserNotification = createSelector(reducer, userNotification);
 
+const userEvents = (state: State) => state.events;
+export const getUserEvents = createSelector(reducer, userEvents);
+
 const consentedLeaderboardsSelector = (state: State) =>
   state.leaderboards.reduce((prev: Leaderboard[], curr) => {
     if (checkIsCompanyLeaderbaord(curr)) {

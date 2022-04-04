@@ -12,6 +12,7 @@ import { showOverlayWithChild } from "@components/modals/blurred-overlay/showOve
 import InfoMessagePopover from "@components/molecules/info-message-popover/info-message-popover";
 import { Navigation } from "react-native-navigation";
 import { MODALS } from "@navigation/constants";
+import { showYuModal } from "@navigation/root";
 
 const lottieAnimationSource = require("./assets/event-reward-animation.json");
 
@@ -20,6 +21,7 @@ interface IEventReward {
   height?: number;
   width?: number;
   reward: IReward;
+  claimButton?: boolean;
 }
 
 export interface IReward {
@@ -32,7 +34,7 @@ export interface IReward {
   animated?: boolean;
   stars?: ILabelImage[];
   infoText?: string;
-  infoBadgeUri?: string;
+  infoBadgeUri?: RemoteImage;
 }
 
 const EventReward = ({
@@ -40,6 +42,7 @@ const EventReward = ({
   height = Style.adjust(170),
   width = Style.adjust(136),
   marginHorizontal = Style.adjust(4),
+  claimButton,
 }: IEventReward) => {
   const {
     title,
@@ -65,50 +68,77 @@ const EventReward = ({
     });
   }, [questionMarkRef, infoText, onCloseInfoMessage]);
 
+  const claimReward = useCallback(() => {
+    if (!claimButton || status !== GoalRewardStatus.completed) {
+      return;
+    }
+
+    showYuModal({
+      component: {
+        id: MODALS.collectEventReward,
+        name: MODALS.collectEventReward,
+        passProps: {
+          title: `${title} event ended`,
+          descriptionTitle: "Great job!",
+          description: `Congrats on completing the\n${title} Event!`,
+          cta: "Claim rewards",
+          rewards: [reward],
+        },
+      },
+    });
+  }, [claimButton, reward, status, title]);
+
   return (
-    <View style={[styles.wrapper, { height, width, marginHorizontal }]}>
-      <View style={[styles.circleWrapper, { borderColor: statusColor }]}>
-        <View style={styles.backgroundImageWrapper}>
-          <Image
-            source={{ uri: itemBackgroundUri }}
-            width={Style.adjust(72)}
-            height={Style.adjust(72)}
-            style={styles.absolute}
-          />
-          {!animated ? null : (
-            <LottieView style={styles.absolute} source={lottieAnimationSource} autoPlay={true} loop={true} />
-          )}
-          <Image source={{ uri: itemUri }} width={Style.adjust(72)} height={Style.adjust(72)} style={styles.absolute} />
+    <PressableWithDelay onPress={claimReward}>
+      <View style={[styles.wrapper, { height, width, marginHorizontal }]}>
+        <View style={[styles.circleWrapper, { borderColor: statusColor }]}>
+          <View style={styles.backgroundImageWrapper}>
+            <Image
+              source={{ uri: itemBackgroundUri }}
+              width={Style.adjust(72)}
+              height={Style.adjust(72)}
+              style={styles.absolute}
+            />
+            {!animated ? null : (
+              <LottieView style={styles.absolute} source={lottieAnimationSource} autoPlay={true} loop={true} />
+            )}
+            <Image
+              source={{ uri: itemUri }}
+              width={Style.adjust(72)}
+              height={Style.adjust(72)}
+              style={styles.absolute}
+            />
+          </View>
+          <View style={styles.labelWrapper}>
+            {!rewardClaimed ? null : (
+              <View style={styles.radioIconWrapper}>
+                <RadioIcon checked={true} />
+              </View>
+            )}
+            {rewardClaimed || !stars ? null : <LabelWithImages labelImages={stars} backgroundColor={statusColor} />}
+          </View>
         </View>
-        <View style={styles.labelWrapper}>
-          {!rewardClaimed ? null : (
-            <View style={styles.radioIconWrapper}>
-              <RadioIcon checked={true} />
-            </View>
-          )}
-          {rewardClaimed || !stars ? null : <LabelWithImages labelImages={stars} backgroundColor={statusColor} />}
+        <View style={styles.titleWrapper}>
+          <TextTemplate type={"l1b"}>{title}</TextTemplate>
         </View>
-      </View>
-      <View style={styles.titleWrapper}>
-        <TextTemplate type={"l1b"}>{title}</TextTemplate>
-      </View>
 
-      {!description ? null : (
-        <View style={styles.descriptionWrapper}>
-          <TextTemplate type={"l1"}>{description}</TextTemplate>
-        </View>
-      )}
+        {!description ? null : (
+          <View style={styles.descriptionWrapper}>
+            <TextTemplate type={"l1"}>{description}</TextTemplate>
+          </View>
+        )}
 
-      {!infoBadgeUri ? null : (
-        <View style={styles.infoWrapper}>
-          <PressableWithDelay onPress={openPopUp}>
-            <View ref={questionMarkRef} collapsable={false}>
-              <Image width={Style.adjust(22)} height={Style.adjust(22)} source={{ uri: infoBadgeUri }} />
-            </View>
-          </PressableWithDelay>
-        </View>
-      )}
-    </View>
+        {!infoBadgeUri ? null : (
+          <View style={styles.infoWrapper}>
+            <PressableWithDelay onPress={openPopUp}>
+              <View ref={questionMarkRef} collapsable={false}>
+                <Image width={Style.adjust(22)} height={Style.adjust(22)} source={infoBadgeUri} />
+              </View>
+            </PressableWithDelay>
+          </View>
+        )}
+      </View>
+    </PressableWithDelay>
   );
 };
 

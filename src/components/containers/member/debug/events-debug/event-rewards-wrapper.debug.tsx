@@ -48,8 +48,11 @@ const commonRewards = [
     ],
     infoText:
       "From now you will be able to participate in future individual and community events. In community events you can work together with your colleagues and friends to achieve goals and win prizes.",
-    infoBadgeUri:
-      "https://yulife-develop.imgix.net/app-system/icons/default/info-2022-02-01.svg?ixlib=js-3.2.1&w=48&h=48&fit=clip&fm=png&s=37e13889ed5fd1614b421781be8636c8",
+    infoBadgeUri: {
+      id: "",
+      uri:
+        "https://yulife-develop.imgix.net/app-system/icons/default/info-2022-02-01.svg?ixlib=js-3.2.1&w=48&h=48&fit=clip&fm=png&s=37e13889ed5fd1614b421781be8636c8",
+    },
   },
   {
     id: "reward_common_2",
@@ -95,8 +98,11 @@ const rareRewards = [
     ],
     infoText:
       "From now you will be able to participate in future individual and community events. In community events you can work together with your colleagues and friends to achieve goals and win prizes.",
-    infoBadgeUri:
-      "https://yulife-develop.imgix.net/app-system/icons/default/info-2022-02-01.svg?ixlib=js-3.2.1&w=48&h=48&fit=clip&fm=png&s=37e13889ed5fd1614b421781be8636c8",
+    infoBadgeUri: {
+      id: "",
+      uri:
+        "https://yulife-develop.imgix.net/app-system/icons/default/info-2022-02-01.svg?ixlib=js-3.2.1&w=48&h=48&fit=clip&fm=png&s=37e13889ed5fd1614b421781be8636c8",
+    },
   },
   {
     id: "reward_rare_2",
@@ -150,8 +156,11 @@ const epicRewards = [
     ],
     infoText:
       "From now you will be able to participate in future individual and community events. In community events you can work together with your colleagues and friends to achieve goals and win prizes.",
-    infoBadgeUri:
-      "https://yulife-develop.imgix.net/app-system/icons/default/info-2022-02-01.svg?ixlib=js-3.2.1&w=48&h=48&fit=clip&fm=png&s=37e13889ed5fd1614b421781be8636c8",
+    infoBadgeUri: {
+      id: "",
+      uri:
+        "https://yulife-develop.imgix.net/app-system/icons/default/info-2022-02-01.svg?ixlib=js-3.2.1&w=48&h=48&fit=clip&fm=png&s=37e13889ed5fd1614b421781be8636c8",
+    },
   },
   {
     id: "reward_epic_2",

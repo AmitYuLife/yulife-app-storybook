@@ -47,6 +47,103 @@ export const GQL_QUERY_GET_USER_PROFILE = gql`
         hasAppReview
         hasDailyScreenCustomIcon
       }
+      events {
+        id
+        stageId
+        title
+        description
+        descriptionImage {
+          uri(options: { width: 530, height: 530 })
+        }
+        task
+        taskImage {
+          uri(options: { width: 530, height: 530 })
+        }
+        reward
+        rewardImage {
+          uri(options: { width: 530, height: 530 })
+        }
+        startDate
+        endDate
+        challenges {
+          description
+          icon {
+            uri(options: { width: 32, height: 32 })
+          }
+        }
+        tags {
+          tag
+          joined
+          icon {
+            uri(options: { width: 32, height: 32 })
+          }
+        }
+        badge {
+          text
+          icon {
+            uri(options: { width: 32, height: 32 })
+          }
+          backgroundColor
+        }
+        progressBar {
+          max
+          current
+        }
+        milestones {
+          targetValue
+          image {
+            uri(options: { width: 530, height: 530 })
+          }
+          animated
+          rewardId
+          rewardClaimed
+        }
+      }
+      events {
+        id
+        stageId
+        title
+        description
+        descriptionImage {
+          uri(options: { width: 530, height: 530 })
+        }
+        task
+        taskImage {
+          uri(options: { width: 530, height: 530 })
+        }
+        reward
+        rewardImage {
+          uri(options: { width: 530, height: 530 })
+        }
+        startDate
+        endDate
+        challenges {
+          description
+          icon {
+            uri(options: { width: 32, height: 32 })
+          }
+        }
+        tags {
+          tag
+          joined
+          icon {
+            uri(options: { width: 32, height: 32 })
+          }
+        }
+        progressBar {
+          max
+          current
+        }
+        milestones {
+          targetValue
+          image {
+            uri(options: { width: 530, height: 530 })
+          }
+          animated
+          rewardId
+          rewardClaimed
+        }
+      }
     }
   }
 `;

@@ -1,192 +1,122 @@
 import React, { memo, useCallback, useMemo } from "react";
-import { FlatList, StyleSheet, View } from "react-native";
-import { Image, TextTemplate } from "@atoms";
+import { View } from "react-native";
+import { Image, ProgressBar, TextTemplate } from "@atoms";
 import { Colours, Style } from "@styles";
 import { ArrowRight } from "@atoms/icon/arrow-right";
 import { PressableWithDelay } from "@molecules";
-
-interface IEvent {
-  key?: string;
-  title: string;
-  challenges: {
-    icon: string;
-    description: string;
-  };
-  tags: {
-    icon?: string;
-    tag: string;
-    joined?: string;
-  };
-}
+import { GetUserProfile_getUserProfile_events as IEvent } from "@graphql/_core/schema";
+import { Navigation } from "react-native-navigation";
+import { ROUTES } from "@navigation/constants";
+import styles, { getCurrentWorldStyle } from "./event-panel.styles";
 
 interface IProps {
-  events: IEvent[];
+  componentId?: string;
+  event: IEvent;
   currentWorld: number;
+  width: number;
 }
 
-const CARD_WIDTH = Style.DEVICE_WIDTH * 0.8;
-const DUMMY_CARD = (Style.DEVICE_WIDTH - CARD_WIDTH) / 2;
-
-const EventPanel = ({ events, currentWorld }: IProps) => {
+const EventPanel = ({ event, currentWorld, componentId, width }: IProps) => {
   const { wrapper, container } = getCurrentWorldStyle(currentWorld);
   const fontColour = useMemo(() => (currentWorld === 1 ? Colours.neutral.white : Colours.neutral.n800), [currentWorld]);
-  const eventsWithDummy: Partial<Event>[] = useMemo(() => [{ key: "left-dummy" }, ...events, { key: "right-dummy" }], [
-    events,
-  ]);
+  const PROGRESS_BAR_WIDTH = useMemo(() => width / 1.2 + 5, [width]);
+  const buttonWrapperStyle = useMemo(
+    () => ({
+      width,
+    }),
+    [width]
+  );
 
-  const Event = useCallback(({ item }) => {
-    if (item?.key) {
-      return <View style={{ width: DUMMY_CARD }} />;
-    }
+  const containerStyles = useMemo(
+    () => ({
+      wrapper: [styles.wrapper, wrapper],
+      container: [styles.container, container],
+      badgeContainer: [styles.badgeContainer, { backgroundColor: event?.badge?.backgroundColor || "#F86F63" }],
+    }),
+    [container, wrapper]
+  );
 
-    return (
-      <PressableWithDelay onPress={() => console.log("some action")} style={{ width: CARD_WIDTH }}>
-        <View style={[styles.wrapper, wrapper]}>
-          <View style={[styles.container, container]}>
-            <View style={styles.header}>
-              <TextTemplate type="b1b" color={fontColour}>
-                {item.title}
-              </TextTemplate>
-              <ArrowRight color={Colours.neutral.white} withBackground={true} />
-            </View>
-            <View style={styles.challenges}>
-              <Image
-                source={{ uri: item.challenges.icon }}
-                width={Style.adjust(16)}
-                height={Style.adjust(16)}
-                style={styles.challengeIcon}
-              />
-              <TextTemplate type="l1" color={fontColour}>
-                {item.challenges.description}
-              </TextTemplate>
-            </View>
-            <View style={styles.progressBar}>
-              <TextTemplate type="l1">Progress bar</TextTemplate>
-            </View>
-            <View style={styles.tags}>
-              <View style={styles.statistics}>
+  const onPress = useCallback(() => {
+    Navigation.push(componentId, {
+      component: {
+        id: ROUTES.eventDialog,
+        name: ROUTES.eventDialog,
+        passProps: {
+          componentId: componentId,
+          onLeftIconPress: () => Navigation.pop(componentId),
+          goalId: event.id,
+          stageId: event.stageId,
+        },
+      },
+    });
+  }, [componentId, event.id, event.stageId]);
+
+  return (
+    <PressableWithDelay onPress={onPress} style={buttonWrapperStyle}>
+      <View style={containerStyles.wrapper}>
+        <View style={containerStyles.container}>
+          <View style={styles.header}>
+            <TextTemplate type="b1b" color={fontColour}>
+              {event.title}
+            </TextTemplate>
+            <ArrowRight color={Colours.neutral.white} withBackground={true} />
+          </View>
+          <View style={styles.challenges}>
+            {event.challenges.map((challenge) => (
+              <View key={challenge.description} style={styles.challengeContainer}>
                 <Image
-                  source={{ uri: item.tags.icon }}
+                  source={{ uri: challenge.icon.uri }}
                   width={Style.adjust(16)}
                   height={Style.adjust(16)}
                   style={styles.challengeIcon}
                 />
-                <TextTemplate type="l1b" color={fontColour}>
-                  {item?.tags?.tag}
+                <TextTemplate type="l1" color={fontColour}>
+                  {challenge.description}
                 </TextTemplate>
               </View>
-              {!item?.tags?.joined ? null : (
-                <TextTemplate type="l1b" color={fontColour}>
-                  {item.tags.joined}
-                </TextTemplate>
-              )}
-            </View>
+            ))}
           </View>
+          <View style={styles.progressBar}>
+            <ProgressBar
+              current={event.progressBar.current}
+              max={event.progressBar.max}
+              width={PROGRESS_BAR_WIDTH}
+              milestones={event.milestones?.map((milestone) => milestone.targetValue)}
+              type="compact"
+            />
+          </View>
+          <View style={styles.tags}>
+            <View style={styles.statistics}>
+              <Image
+                source={{ uri: event.tags.icon.uri }}
+                width={Style.adjust(16)}
+                height={Style.adjust(16)}
+                style={styles.challengeIcon}
+              />
+              <TextTemplate type="l1b" color={fontColour}>
+                {event?.tags?.tag}
+              </TextTemplate>
+            </View>
+            {!event?.tags?.joined ? null : (
+              <TextTemplate type="l1b" color={fontColour}>
+                {event.tags.joined}
+              </TextTemplate>
+            )}
+          </View>
+          {!event?.badge?.text ? null : (
+            <View style={containerStyles.badgeContainer}>
+              {!event.badge.icon ? null : (
+                <Image width={styles.badgeIcon.width} style={styles.badgeIcon} source={event.badge.icon} />
+              )}
+              <TextTemplate color={Colours.neutral.white} type={"l1b"}>
+                {event.badge.text}
+              </TextTemplate>
+            </View>
+          )}
         </View>
-      </PressableWithDelay>
-    );
-  }, []);
-
-  return (
-    <FlatList
-      data={eventsWithDummy}
-      horizontal={true}
-      pagingEnabled={false}
-      decelerationRate={0.9}
-      showsVerticalScrollIndicator={false}
-      showsHorizontalScrollIndicator={false}
-      snapToInterval={CARD_WIDTH}
-      keyExtractor={(_, index) => index.toString()}
-      renderItem={Event}
-    />
+      </View>
+    </PressableWithDelay>
   );
-};
-
-const styles = StyleSheet.create({
-  wrapper: {
-    minHeight: Style.adjust(143),
-    borderRadius: 8,
-    alignItems: "center",
-    marginHorizontal: 8,
-  },
-  container: {
-    width: "100%",
-    minHeight: Style.adjust(128),
-    padding: Style.adjust(16),
-    borderWidth: 1,
-    borderRadius: 8,
-  },
-  header: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-  },
-  challenges: {
-    flexDirection: "row",
-    marginTop: Style.adjust(8),
-  },
-  challengeIcon: {
-    marginRight: Style.adjust(4),
-  },
-  progressBar: {
-    width: "100%",
-    height: 20,
-    backgroundColor: Colours.neutral.white,
-    marginTop: Style.adjust(8),
-  },
-  tags: {
-    flexDirection: "row",
-    marginTop: Style.adjust(8),
-    justifyContent: "space-between",
-  },
-  statistics: {
-    flexDirection: "row",
-  },
-});
-
-const getCurrentWorldStyle = (world: number) => {
-  switch (world) {
-    case 1:
-      return {
-        wrapper: {
-          backgroundColor: Colours.ocean.up202,
-        },
-        container: {
-          borderColor: Colours.ocean.up202,
-          backgroundColor: Colours.ocean.up203,
-        },
-      };
-    case 2:
-      return {
-        wrapper: {
-          backgroundColor: "#F3EDD1",
-        },
-        container: {
-          borderColor: "#F3EDD1",
-          backgroundColor: "#FFFBE9",
-        },
-      };
-    case 3:
-      return {
-        wrapper: {
-          backgroundColor: "#F4D1DB",
-        },
-        container: {
-          borderColor: "#F4D1DB",
-          backgroundColor: "#FFE7EC",
-        },
-      };
-    case 0:
-    default:
-      return {
-        wrapper: {
-          backgroundColor: "#EDEDD1",
-        },
-        container: {
-          borderColor: "#EDEDD1",
-          backgroundColor: "#FFFFE5",
-        },
-      };
-  }
 };
 
 export default memo(EventPanel);
