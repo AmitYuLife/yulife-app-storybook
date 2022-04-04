@@ -1,8 +1,8 @@
 import gql from "graphql-tag";
 
 export const GQL_QUERY_GET_GOAL_DETAILS = gql`
-  query GetGoalDetails($id: ID!) {
-    getGoalDetails(id: $id) {
+  query GetGoalDetails($id: ID!, $stageId: String!) {
+    getGoalDetails(id: $id, stageId: $stageId) {
       title
       labels
       headerImage {
@@ -29,6 +29,11 @@ export const GQL_QUERY_GET_GOAL_DETAILS = gql`
           uri
         }
         animated
+        infoText
+        infoBadgeUri {
+          id
+          uri(options: { width: 32, height: 32 })
+        }
       }
       progressUnit
       currentProgress

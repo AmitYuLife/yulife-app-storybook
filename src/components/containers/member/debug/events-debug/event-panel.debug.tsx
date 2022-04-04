@@ -1,4 +1,4 @@
-import { EventPanel } from "@components/molecules";
+import { EventPanels } from "@components/molecules";
 import { Style } from "@styles";
 import React from "react";
 import { View } from "react-native";
@@ -8,7 +8,7 @@ const EventPanelDebug = () => (
   <WrapperDebug>
     {[0, 1, 2, 3].map((world) => (
       <View key={world} style={{ marginBottom: Style.adjust(50) }}>
-        <EventPanel events={events} currentWorld={world} />
+        <EventPanels events={events} currentWorld={world} />
       </View>
     ))}
   </WrapperDebug>
@@ -16,68 +16,90 @@ const EventPanelDebug = () => (
 
 export default EventPanelDebug;
 
-const icon =
-  "https://yulife-local.imgix.net/app-system/icons/default/steps-2021-10-06.svg?ixlib=js-3.2.1&w=32&h=32&fit=clip&fm=png&s=ddb7a3883155879040c84473d46878a9";
-
 const events = [
   {
+    id: "id_1",
+    stageId: "test_stageId",
     title: "Community Event",
-    challenges: {
-      icon,
-      description: "25,000 steps",
+    description: "Community Event",
+    descriptionImage: {
+      uri:
+        "https://yulife-local.imgix.net/app-system/icons/default/steps-2021-10-06.svg?ixlib=js-3.2.1&fit=clip&fm=png&s=47debee80dca111b0762dffa165a0dcb",
+    },
+
+    task: "Community Event",
+    taskImage: {
+      uri:
+        "https://yulife-local.imgix.net/app-system/icons/default/steps-2021-10-06.svg?ixlib=js-3.2.1&fit=clip&fm=png&s=47debee80dca111b0762dffa165a0dcb",
+    },
+    reward: "Community Event",
+    rewardImage: {
+      uri:
+        "https://yulife-local.imgix.net/app-system/icons/default/steps-2021-10-06.svg?ixlib=js-3.2.1&fit=clip&fm=png&s=47debee80dca111b0762dffa165a0dcb",
+    },
+    startDate: "",
+    endDate: "",
+    challenges: [
+      {
+        type: "steps",
+        description: "25,000 steps",
+        icon: {
+          uri:
+            "https://yulife-local.imgix.net/app-system/icons/default/steps-2021-10-06.svg?ixlib=js-3.2.1&fit=clip&fm=png&s=47debee80dca111b0762dffa165a0dcb",
+        },
+      },
+    ],
+    badge: {
+      text: "NEW",
+      icon: {
+        uri:
+          "https://yulife-local.imgix.net/app-system/icons/default/steps-2021-10-06.svg?ixlib=js-3.2.1&fit=clip&fm=png&s=47debee80dca111b0762dffa165a0dcb",
+      },
+      backgroundColor: "#FF0000",
     },
     tags: {
-      icon,
       tag: "Hard • 30 days",
       joined: "12/100 joined",
+      icon: {
+        uri:
+          "https://yulife-local.imgix.net/app-system/icons/default/steps-2021-10-06.svg?ixlib=js-3.2.1&fit=clip&fm=png&s=47debee80dca111b0762dffa165a0dcb",
+      },
     },
-  },
-  {
-    title: "Community Event",
-    challenges: {
-      icon,
-      description: "25,000 steps",
+    progressBar: {
+      max: 6000,
+      current: 3000,
     },
-    tags: {
-      icon,
-      tag: "Hard • 30 days",
-      joined: "12/100 joined",
-    },
-  },
-  {
-    title: "Community Event",
-    challenges: {
-      icon,
-      description: "25,000 steps",
-    },
-    tags: {
-      icon,
-      tag: "Hard • 30 days",
-      joined: "12/100 joined",
-    },
-  },
-  {
-    title: "Community Event",
-    challenges: {
-      icon,
-      description: "25,000 steps",
-    },
-    tags: {
-      icon,
-      tag: "Hard • 30 days",
-      joined: "12/100 joined",
-    },
-  },
-  {
-    title: "Community Event",
-    challenges: {
-      icon,
-      description: "25,000 steps",
-    },
-    tags: {
-      icon,
-      tag: "Hard • 30 days",
-      joined: "12/100 joined",
-    },
+    milestones: [
+      {
+        targetValue: 2500,
+        image: {
+          uri:
+            "https://yulife-local.imgix.net/app-system/icons/default/steps-2021-10-06.svg?ixlib=js-3.2.1&fit=clip&fm=png&s=47debee80dca111b0762dffa165a0dcb",
+        },
+        animated: false,
+        rewardId: "",
+        rewardClaimed: false,
+      },
+      {
+        targetValue: 4000,
+        image: {
+          uri:
+            "https://yulife-local.imgix.net/app-system/icons/default/steps-2021-10-06.svg?ixlib=js-3.2.1&fit=clip&fm=png&s=47debee80dca111b0762dffa165a0dcb",
+        },
+        animated: false,
+        rewardId: "",
+        rewardClaimed: false,
+      },
+      {
+        targetValue: 6000,
+        image: {
+          uri:
+            "https://yulife-local.imgix.net/app-system/icons/default/steps-2021-10-06.svg?ixlib=js-3.2.1&fit=clip&fm=png&s=47debee80dca111b0762dffa165a0dcb",
+        },
+        animated: false,
+        rewardId: "",
+        rewardClaimed: false,
+      },
+    ],
   },
 ];

@@ -10,10 +10,12 @@ import { FitkitContext } from "@services/fitkit/fitkit.helpers";
 import useNavigationComponentDidAppear from "@services/hooks/useNavigationComponentDidAppear";
 import { useTapBackTwiceToExit } from "@services/hooks/useTapBackTwiceToExit";
 import { Navigation } from "react-native-navigation";
-import { getUserNotification, getUserSurge } from "@redux/user/user.selectors";
+import { getUserNotification, getUserSurge, getUserEvents } from "@redux/user/user.selectors";
 import { useLazyQuery } from "@apollo/react-hooks";
 import { GetDailyScreenCustomIcon } from "@graphql/_core/schema";
 import { GQL_QUERY_GET_DAILY_SCREEN_CUSTOM_ICON } from "@graphql/dailyScreenCustomIcon";
+import { getCurrentLevel } from "@redux/levels/levels.selectors";
+import { getCurrentWorld } from "@utils";
 
 type Props = IMainTabsProps;
 
@@ -22,7 +24,7 @@ function _DailyStepsContainer({ componentId, onLeftMenuPress }: Props) {
   const fitkit = useFitKit();
   const theme = useSelector(getDailyStepsTheme);
   const userSurge = useSelector(getUserSurge);
-  const { hasDailyScreenCustomIcon } = useSelector(getUserNotification);
+  const { hasDailyScreenCustomIcon } = useSelector(getUserNotification) || {};
 
   const [getDailyScreenCustomIcon, { data }] = useLazyQuery<GetDailyScreenCustomIcon>(
     GQL_QUERY_GET_DAILY_SCREEN_CUSTOM_ICON,
@@ -36,6 +38,9 @@ function _DailyStepsContainer({ componentId, onLeftMenuPress }: Props) {
       getDailyScreenCustomIcon();
     }
   }, []);
+  const userEvents = useSelector(getUserEvents);
+  const currentLevel = useSelector(getCurrentLevel);
+  const currentWorld = getCurrentWorld(currentLevel);
 
   const navigateToTodayEarnings = useCallback(
     () =>
@@ -66,6 +71,8 @@ function _DailyStepsContainer({ componentId, onLeftMenuPress }: Props) {
         fitKitAvailable={fitkit.available}
         hasPermission={fitkit.authorised}
         customIcon={data?.getDailyScreenCustomIcon}
+        currentWorld={currentWorld}
+        hasEvents={!!userEvents?.length}
       />
     </FitkitContext.Provider>
   );

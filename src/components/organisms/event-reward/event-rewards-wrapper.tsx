@@ -9,9 +9,12 @@ interface IEventRewardWrapperProps {
 
 const EventRewardWrapper = ({ rewards }: IEventRewardWrapperProps) => {
   const { width: rewardWidth, marginHorizontal } = getRewardWidthAndMargin(rewards?.length);
-  const renderReward = useCallback(({ item }) => {
-    return <EventReward reward={item} width={rewardWidth} />;
-  }, []);
+  const renderReward = useCallback(
+    ({ item }) => {
+      return <EventReward claimButton={true} reward={item} width={rewardWidth} />;
+    },
+    [rewardWidth]
+  );
 
   return (
     <View style={styles.wrapper}>
@@ -29,7 +32,13 @@ const EventRewardWrapper = ({ rewards }: IEventRewardWrapperProps) => {
         />
       ) : (
         rewards.map((reward) => (
-          <EventReward key={reward.id} width={rewardWidth} marginHorizontal={marginHorizontal} reward={reward} />
+          <EventReward
+            key={reward.id}
+            claimButton={true}
+            width={rewardWidth}
+            marginHorizontal={marginHorizontal}
+            reward={reward}
+          />
         ))
       )}
     </View>

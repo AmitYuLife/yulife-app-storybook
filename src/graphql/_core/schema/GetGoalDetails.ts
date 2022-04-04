@@ -29,6 +29,11 @@ export interface GetGoalDetails_getGoalDetails_rewards_stars {
   uri: string | null;
 }
 
+export interface GetGoalDetails_getGoalDetails_rewards_infoBadgeUri {
+  id: string;
+  uri: string | null;
+}
+
 export interface GetGoalDetails_getGoalDetails_rewards {
   id: string;
   title: string;
@@ -38,6 +43,8 @@ export interface GetGoalDetails_getGoalDetails_rewards {
   status: GoalRewardStatus;
   stars: GetGoalDetails_getGoalDetails_rewards_stars[] | null;
   animated: boolean;
+  infoText: string | null;
+  infoBadgeUri: GetGoalDetails_getGoalDetails_rewards_infoBadgeUri | null;
 }
 
 export interface GetGoalDetails_getGoalDetails_progressIcon {
@@ -124,4 +131,5 @@ export interface GetGoalDetails {
 
 export interface GetGoalDetailsVariables {
   id: string;
+  stageId: string;
 }

@@ -9,6 +9,7 @@ import {
   UpdateLeaderboardConsentVariables,
   UpdateMemberConsent,
   GetUserProfile_getUserProfile_surge_lottie,
+  GetUserProfile_getUserProfile_events as Events,
   GetUserSurge_getUserSurge as IUserSurge,
 } from "@graphql/_core/schema";
 import { MobileConsentInput } from "@graphql/_core/schema/globalTypes";
@@ -119,6 +120,7 @@ export interface IUserStore {
     hasAppReview: boolean;
     hasDailyScreenCustomIcon: boolean;
   };
+  events: Events[];
 }
 
 export const getInitialState = (sessionCount: number = 0): IUserStore => ({
@@ -181,6 +183,7 @@ export const getInitialState = (sessionCount: number = 0): IUserStore => ({
     hasAppReview: false,
     hasDailyScreenCustomIcon: false,
   },
+  events: [],
 });
 
 export const userReducer = (state: IUserStore = getInitialState(), action: SyncAction): IUserStore => {
@@ -504,6 +507,7 @@ const updateUserProfile = (state: IUserStore, payload: Partial<IUserStore>) => (
   notification: {
     ...payload.notification,
   },
+  events: payload.events,
 });
 
 const updateUserSurge = (state: IUserStore, payload: IUserSurge) => ({

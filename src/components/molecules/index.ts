@@ -51,7 +51,7 @@ export { default as InfoPanel } from "./info-panel/info-panel";
 export { default as SettingsHeader } from "./settings-header/settings-header";
 export { default as Surge } from "./surge/surge";
 export { default as ProcessingTimer } from "./processing-timer/processing-timer";
-export { default as EventPanel } from "./event-panel/event-panel";
+export { default as EventPanels } from "./event-panel/event-panels";
 export { default as LabelWithImages } from "./label-with-images/label-with-images";
 export { default as LabelledHorizontalScroller } from "./labelled-horizontal-scroller/labelled-horizontal-scroller";
 export { default as MultiFactorPricing } from "./multi-factor-pricing/multi-factor-pricing";

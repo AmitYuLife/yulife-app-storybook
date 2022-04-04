@@ -11,14 +11,15 @@ import { MODALS } from "@navigation/constants";
 
 interface IProps {
   componentId: string;
-  eventId: string;
+  goalId: string;
+  stageId: string;
   onLeftIconPress: () => void;
 }
 
-const EventDialogContainer: FC<IProps> = ({ componentId, eventId, onLeftIconPress }) => {
+const EventDialogContainer: FC<IProps> = ({ componentId, goalId, stageId, onLeftIconPress }) => {
   const dispatch = useDispatch();
   const { loading, data } = useQuery<GetGoalDetails>(GQL_QUERY_GET_GOAL_DETAILS, {
-    variables: { id: eventId },
+    variables: { id: goalId, stageId },
     fetchPolicy: "network-only",
   });
 

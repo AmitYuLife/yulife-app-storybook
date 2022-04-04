@@ -1,21 +1,22 @@
 import React, { memo, useMemo } from "react";
 import { Button, TextTemplate } from "@atoms";
-import { ActivityList, Counter } from "@molecules";
+import { ActivityList, Counter, EventPanels } from "@molecules";
 import { View, ViewStyle } from "react-native";
-import { displaySecondsAsMinutes } from "@utils";
+import { displaySecondsAsMinutes, getCurrentWorld } from "@utils";
 import { useSelector } from "react-redux";
 import { getDailyEarnedCoins } from "@redux/coins/coins.selectors";
 import { Style } from "@styles";
-import { getUserFeatures } from "@redux/user/user.selectors";
+import { getUserEvents, getUserFeatures } from "@redux/user/user.selectors";
 import { getDailySteps } from "@redux/daily-steps/daily-steps.selectors";
 import { getDailyMeditation } from "@redux/daily-meditation/daily-meditation.selectors";
 import { styles as textTemplateStyle } from "@components/atoms/text/text-template";
-import { getChallengesStatus, getHasNotification } from "@redux/levels/levels.selectors";
+import { getChallengesStatus, getCurrentLevel, getHasNotification } from "@redux/levels/levels.selectors";
 import { handleNavigateToQuestsTab } from "@navigation/utils";
 import { getPositionBottom } from "@organisms/nav-bar/nav-bar.styles";
 import { getDailyCycling } from "@redux/daily-cycling/daily-cycling.selectors";
 import { getDailyStepsTheme } from "@redux/theme/theme.selectors";
 import { REFERRALS_BUTTON_HOMEPAGE } from "@ids";
+import { ROUTES } from "@navigation/constants";
 
 type DailyStepsOnlineProps = {
   onReferralsButtonPress: () => void;
@@ -33,6 +34,9 @@ export const DailyStepsOnline = memo(({ onReferralsButtonPress }: DailyStepsOnli
   const hasNotification = useSelector(getHasNotification);
   const mindfulTotalToDisplay = `${mindfulTotal.minutes} min`;
   const features = useSelector(getUserFeatures);
+  const currentLevel = useSelector(getCurrentLevel);
+  const currentWorld = getCurrentWorld(currentLevel);
+  const events = useSelector(getUserEvents);
 
   const counterStyle = useMemo(
     () => ({
@@ -43,8 +47,8 @@ export const DailyStepsOnline = memo(({ onReferralsButtonPress }: DailyStepsOnli
   );
 
   const [showChallengeButton, showReferralsButton] = useMemo(() => {
-    const showChallenge = isAvailable && availableForToday > 0;
-    const showReferrals = !showChallenge && features.showReferrals;
+    const showChallenge = isAvailable && availableForToday > 0 && !Style.isXShort();
+    const showReferrals = !showChallenge && features.showReferrals && !Style.isXShort();
     return [showChallenge, showReferrals];
   }, [isAvailable, availableForToday, features]);
 
@@ -69,6 +73,9 @@ export const DailyStepsOnline = memo(({ onReferralsButtonPress }: DailyStepsOnli
           />
         </View>
       </View>
+      {events?.length === 0 ? null : (
+        <EventPanels componentId={ROUTES.dailySteps} events={events} currentWorld={currentWorld} />
+      )}
       {!showChallengeButton ? null : (
         <View style={styles.buttonWrapper}>
           <Button onPress={handleNavigateToQuestsTab} size="Large" label={challengeButtonLabel} />
@@ -98,7 +105,7 @@ const styles = {
   buttonWrapper: {
     left: 0,
     right: 0,
-    bottom: getPositionBottom({ additionalBottom: Style.adjust(85) }),
+    bottom: getPositionBottom({ additionalBottom: Style.adjust(75) }),
     position: "absolute",
   } as ViewStyle,
 };

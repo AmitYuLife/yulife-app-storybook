@@ -123,10 +123,10 @@ const EventDialogScreen: FC<IProps> = ({
         <Image
           style={style.headerImageWrapper}
           imageStyle={headerImageStyle}
-          resizeMode="cover"
+          resizeMode="contain"
           source={headerImageSource}
           width={Style.DEVICE_WIDTH}
-          height={Style.DEVICE_WIDTH}
+          height={CONTENT_MARGIN_TOP}
         />
       </View>
       <ScrollView

@@ -72,6 +72,83 @@ export interface GetUserProfile_getUserProfile_notification {
   hasDailyScreenCustomIcon: boolean;
 }
 
+export interface GetUserProfile_getUserProfile_events_descriptionImage {
+  uri: string | null;
+}
+
+export interface GetUserProfile_getUserProfile_events_taskImage {
+  uri: string | null;
+}
+
+export interface GetUserProfile_getUserProfile_events_rewardImage {
+  uri: string | null;
+}
+
+export interface GetUserProfile_getUserProfile_events_challenges_icon {
+  uri: string | null;
+}
+
+export interface GetUserProfile_getUserProfile_events_challenges {
+  description: string;
+  icon: GetUserProfile_getUserProfile_events_challenges_icon;
+}
+
+export interface GetUserProfile_getUserProfile_events_tags_icon {
+  uri: string | null;
+}
+
+export interface GetUserProfile_getUserProfile_events_tags {
+  tag: string;
+  joined: string | null;
+  icon: GetUserProfile_getUserProfile_events_tags_icon;
+}
+
+export interface GetUserProfile_getUserProfile_events_badge_icon {
+  uri: string | null;
+}
+
+export interface GetUserProfile_getUserProfile_events_badge {
+  text: string;
+  icon: GetUserProfile_getUserProfile_events_badge_icon;
+  backgroundColor: string | null;
+}
+
+export interface GetUserProfile_getUserProfile_events_progressBar {
+  max: number;
+  current: number;
+}
+
+export interface GetUserProfile_getUserProfile_events_milestones_image {
+  uri: string | null;
+}
+
+export interface GetUserProfile_getUserProfile_events_milestones {
+  targetValue: number;
+  image: GetUserProfile_getUserProfile_events_milestones_image | null;
+  animated: boolean | null;
+  rewardId: string | null;
+  rewardClaimed: boolean | null;
+}
+
+export interface GetUserProfile_getUserProfile_events {
+  id: string;
+  stageId: string;
+  title: string;
+  description: string | null;
+  descriptionImage: GetUserProfile_getUserProfile_events_descriptionImage | null;
+  task: string | null;
+  taskImage: GetUserProfile_getUserProfile_events_taskImage | null;
+  reward: string | null;
+  rewardImage: GetUserProfile_getUserProfile_events_rewardImage | null;
+  startDate: string | null;
+  endDate: string | null;
+  challenges: GetUserProfile_getUserProfile_events_challenges[];
+  tags: GetUserProfile_getUserProfile_events_tags;
+  badge: GetUserProfile_getUserProfile_events_badge | null;
+  progressBar: GetUserProfile_getUserProfile_events_progressBar;
+  milestones: GetUserProfile_getUserProfile_events_milestones[];
+}
+
 export interface GetUserProfile_getUserProfile {
   gameSettings: GetUserProfile_getUserProfile_gameSettings;
   surge: GetUserProfile_getUserProfile_surge | null;
@@ -80,6 +157,7 @@ export interface GetUserProfile_getUserProfile {
   passiveChallengesLastUpdate: GetUserProfile_getUserProfile_passiveChallengesLastUpdate;
   endPointsVersion: GetUserProfile_getUserProfile_endPointsVersion;
   notification: GetUserProfile_getUserProfile_notification;
+  events: (GetUserProfile_getUserProfile_events | null)[] | null;
 }
 
 export interface GetUserProfile {
