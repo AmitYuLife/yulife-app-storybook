@@ -3,6 +3,7 @@ import { call, select, spawn, delay, put } from "redux-saga/effects";
 import { ChallengesPayload, FitKitType } from "@graphql/_core/schema/globalTypes";
 import {
   fitkitTypeToGqlType,
+  getAdditionalCyclingFitnessActivities,
   queryFitKitByTypes,
   QueryFitKitByTypesResponse,
   sampleDataToAggregatedData,
@@ -52,9 +53,20 @@ export default function* getDailyPassiveActivity(dataPayload: { payload: string;
       passiveCyclingEnabled = yield call(PermissionsAndroid.check, "android.permission.ACCESS_FINE_LOCATION");
     }
 
+    const additionalCyclingFitnessActivities = new Map<FitKitType, string[]>([
+      [FitKitType.Cycling, getAdditionalCyclingFitnessActivities(userFeatures)],
+    ]);
+
     const cycling: QueryFitKitByTypesResponse = !passiveCyclingEnabled
       ? null
-      : yield call(queryFitKitByTypes, startTime.format(), endTime.format(), [FitKitType.Cycling], userFeatures);
+      : yield call(
+          queryFitKitByTypes,
+          startTime.format(),
+          endTime.format(),
+          [FitKitType.Cycling],
+          userFeatures,
+          additionalCyclingFitnessActivities
+        );
 
     if (!meditation?.results && !cycling?.results) {
       return;
