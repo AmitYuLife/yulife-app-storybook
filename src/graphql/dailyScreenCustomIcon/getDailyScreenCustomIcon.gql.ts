@@ -3,6 +3,7 @@ import gql from "graphql-tag";
 export const GQL_QUERY_GET_DAILY_SCREEN_CUSTOM_ICON = gql`
   query GetDailyScreenCustomIcon {
     getDailyScreenCustomIcon {
+      name
       position
       y
       x
@@ -10,7 +11,7 @@ export const GQL_QUERY_GET_DAILY_SCREEN_CUSTOM_ICON = gql`
         width
         height
         source {
-          uri(options: { width: 64, height: 64 })
+          uri(options: { width: 116, height: 112 })
         }
       }
       text {

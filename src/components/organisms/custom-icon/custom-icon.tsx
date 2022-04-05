@@ -7,6 +7,7 @@ import { Image, TextTemplate } from "@atoms";
 import { ITextTemplateType } from "@atoms/text/text-template";
 import { Source } from "react-native-fast-image";
 import { SduiAction } from "@graphql/_core/schema";
+import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 
 interface ICustomIconImage {
   source: Source;
@@ -23,6 +24,7 @@ interface ICustomIconText {
 }
 
 export interface ICustomIcon {
+  name: string;
   x: number;
   y: number;
   image: ICustomIconImage;
@@ -52,7 +54,14 @@ const CustomIcon = ({ icon }: IProps) => {
     [icon.text.y, icon.text.x]
   );
 
-  const onPress = useCallback(() => (!icon.onPress ? null : dispatch(icon.onPress)), [icon.onPress, dispatch]);
+  const onPress = useCallback(() => {
+    if (!icon.onPress) {
+      return null;
+    }
+
+    dispatch(icon.onPress);
+    dispatch(logMixpanelEventActionCreator("button_pressed", { button_id: icon.name }));
+  }, [icon.onPress, icon.name, dispatch]);
 
   return (
     <TouchableOpacityWithDelay style={wrapperStyle} onPress={onPress}>
