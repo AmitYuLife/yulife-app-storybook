@@ -3,6 +3,7 @@ import { ChallengesPayload, FitKitType, PassiveChallengeType } from "@graphql/_c
 import moment from "moment";
 import { call, CallEffect, all, AllEffect } from "redux-saga/effects";
 import {
+  getAdditionalCyclingFitnessActivities,
   processResult,
   queryAggregatedDataByDay,
   queryFitKitByTypes,
@@ -28,6 +29,10 @@ export default function* getPassiveSinceLastUpdateAndroid(
   const fineLocationGranted: boolean = yield call(PermissionsAndroid.check, "android.permission.ACCESS_FINE_LOCATION");
   const queryCycling = shouldQueryCycling && fineLocationGranted;
 
+  const additionalCyclingFitnessActivities = new Map<FitKitType, string[]>([
+    [FitKitType.Cycling, getAdditionalCyclingFitnessActivities(userFeatures)],
+  ]);
+
   const [stepsAndMeditation, cycling]: QueryFitKitByTypesResponse[] = yield all([
     stepsLastUpdate || meditationLastUpdate
       ? call(queryAggregatedDataByDay, stepsAndMeditationLastUpdateStartTime, endOfYesterday, userFeatures)
@@ -38,7 +43,8 @@ export default function* getPassiveSinceLastUpdateAndroid(
           moment(cyclingLastUpdate).startOf("day").format(),
           endOfYesterday.clone().format(),
           [FitKitType.Cycling],
-          userFeatures
+          userFeatures,
+          additionalCyclingFitnessActivities
         )
       : returnEmptyResult(),
   ]) as AllEffect<CallEffect<QueryFitKitByTypesResponse>>;

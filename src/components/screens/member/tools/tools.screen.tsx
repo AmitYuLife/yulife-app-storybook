@@ -6,9 +6,11 @@ import { View, Alert, ScrollView, StyleSheet, Platform } from "react-native";
 import { Button, TertiaryButton, TextTemplate } from "@atoms";
 import { FitKitType } from "@graphql/_core/schema/globalTypes";
 import { Colours, Style } from "@styles";
-import { queryFitKitByTypesDebug } from "@services/fitkit/fitkit.helpers";
+import { getAdditionalCyclingFitnessActivities, queryFitKitByTypesDebug } from "@services/fitkit/fitkit.helpers";
 import { CheckBox } from "@components/molecules";
 import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
+import { useSelector } from "react-redux";
+import { getUserFeatures } from "@redux/user/user.selectors";
 
 interface Props {
   onClose: () => void;
@@ -16,6 +18,7 @@ interface Props {
 
 const ToolsScreen = ({ onClose }: Props) => {
   const displayDateFormat = "DD / MM / YYYY";
+  const features = useSelector(getUserFeatures);
   const [type, setType] = useState(null);
   const [endDate, setEndDate] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -81,12 +84,18 @@ const ToolsScreen = ({ onClose }: Props) => {
     }
 
     setLoading(true);
+
+    const additionalCyclingFitnessActivities = new Map<FitKitType, string[]>([
+      [FitKitType.Cycling, getAdditionalCyclingFitnessActivities(features)],
+    ]);
+
     try {
       const response = await queryFitKitByTypesDebug(
         startDate,
         endDate,
         typePickerItems[typeIndex].types,
-        allActivitiesSelect
+        allActivitiesSelect,
+        additionalCyclingFitnessActivities
       );
 
       if (response.error) {

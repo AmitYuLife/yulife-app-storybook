@@ -68,6 +68,27 @@ export const fitkitTypeToGqlType = (type: string): PassiveChallengeType => {
   }
 };
 
+export const getAdditionalCyclingFitnessActivities = (features: IUserStore["features"] = {}) => {
+  const additionalFitnessActivitiesToggles = new Map<string, string>([
+    ["enableBikingHand", "biking.hand"],
+    ["enableBikingMountain", "biking.mountain"],
+    ["enableBikingRoad", "biking.road"],
+    ["enableBikingSpinning", "biking.spinning"],
+    ["enableBikingStationary", "biking.stationary"],
+    ["enableBikingUtility", "biking.utility"],
+  ]);
+
+  const additionalCyclingActivities: string[] = [];
+
+  additionalFitnessActivitiesToggles.forEach((value, key) => {
+    if (features[`${key}`]) {
+      additionalCyclingActivities.push(value);
+    }
+  });
+
+  return additionalCyclingActivities;
+};
+
 export const mapPedometerResults = (results: PedometerResponse): ChallengesPayload => ({
   endDateTime: moment(results.endTime).format(),
   startDateTime: moment(results.startTime).format(),
@@ -91,7 +112,8 @@ export const queryFitKitByTypesDebug = async (
   startTime: string,
   endTime: string,
   fitKitTypes: FitKitType[],
-  disableTypeFilter = false
+  disableTypeFilter = false,
+  additionalFitnessActivities: Map<FitKitType, string[]> = new Map<FitKitType, string[]>()
 ): Promise<{ error: boolean }> => {
   const allResults: SampleQueryResult[] = [];
   let error = false;
@@ -102,16 +124,23 @@ export const queryFitKitByTypesDebug = async (
     startTime,
     types: fitKitTypes.map((fitKitType) => mapGqlFitKitTypeToFitKitType(fitKitType)),
     disableTypeFilter,
+    additionalFitnessActivities,
   });
 
   for (const fitKitType of fitKitTypes) {
     try {
+      const additionalFitnessActivitiesCovered = additionalFitnessActivities.has(fitKitType)
+        ? additionalFitnessActivities.get(fitKitType)
+        : [];
+
       const args = {
         disableUserEntries: false,
         endTime,
         startTime,
         type: mapGqlFitKitTypeToFitKitType(fitKitType),
         disableTypeFilter,
+        additionalFitnessActivities,
+        fitnessActivities: additionalFitnessActivitiesCovered,
       };
 
       const results = await RNFitKit.sampleQuery(args);
@@ -136,18 +165,24 @@ export const queryFitKitByTypes = async (
   startTime: string,
   endTime: string,
   fitKitTypes: FitKitType[],
-  { disableUserEntries = true, loggingEnabled = false }: IUserStore["features"] = {}
+  { disableUserEntries = true, loggingEnabled = false }: IUserStore["features"] = {},
+  additionalFitnessActivities: Map<FitKitType, string[]> = new Map<FitKitType, string[]>()
 ): Promise<QueryFitKitByTypesResponse> => {
   const allResults: SampleQueryResult[] = [];
   let error = false;
 
   for (const fitKitType of fitKitTypes) {
     try {
+      const additionalFitnessActivitiesCovered = additionalFitnessActivities.has(fitKitType)
+        ? additionalFitnessActivities.get(fitKitType)
+        : [];
+
       const args = {
         disableUserEntries,
         endTime,
         startTime,
         type: mapGqlFitKitTypeToFitKitType(fitKitType),
+        fitnessActivities: additionalFitnessActivitiesCovered,
       };
 
       if (loggingEnabled) {
