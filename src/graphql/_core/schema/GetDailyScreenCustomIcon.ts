@@ -33,6 +33,7 @@ export interface GetDailyScreenCustomIcon_getDailyScreenCustomIcon_onPress {
 }
 
 export interface GetDailyScreenCustomIcon_getDailyScreenCustomIcon {
+  name: string;
   position: string;
   y: number;
   x: number;
