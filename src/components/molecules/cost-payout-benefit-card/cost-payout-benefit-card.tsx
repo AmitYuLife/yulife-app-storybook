@@ -5,6 +5,7 @@ import { CoverType } from "@graphql/_core/schema/globalTypes";
 import { mapCoverTypeToColorTheme, Style } from "@styles";
 import { Colours } from "@styles";
 import Markdown from "../markdown/markdown";
+import { TEXT_TEMPLATE } from "@ids";
 
 interface Props {
   costValue: string;
@@ -38,7 +39,7 @@ const CostPayoutBenefitCard = (props: Props) => {
         </View>
         <View style={styles.separator} />
         <View style={styles.benefitWrapper}>
-          <TextTemplate color={Colours.neutral.white} type="l1">
+          <TextTemplate color={Colours.neutral.white} type="l1" testID={TEXT_TEMPLATE(benefitDescription)}>
             {benefitDescription}
           </TextTemplate>
           <View style={styles.benefitValueWrapper}>

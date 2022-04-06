@@ -2,19 +2,39 @@ import { When, Then } from "@yu-life/yulife-bdd-framework";
 import * as when from "./when"
 import * as then from "./then"
 import { CUSTOMER_37, AUTH_37 } from "@data";
-import { CONDITION_OPTION, CONTENT_ITEM_INPUT, PRODUCT_STEP_BODY_SCROLL_VIEW, SCROLL_PICKER, SCROLL_PICKER_ACTIVE_ITEM, SELECTED_PACKAGE_TITLE } from "@ids";
+import { CONDITION_OPTION, CONTENT_ITEM_INPUT, PRODUCT_STEP_BODY_SCROLL_VIEW, SCROLL_PICKER, SCROLL_PICKER_ACTIVE_ITEM, SELECTED_PACKAGE_TITLE, PACKAGE_TYPES, BACK_BUTTON, PACKAGE_INFO, TEXT_TEMPLATE } from "@ids";
 import { addCommasToNumber } from "_utils/appScreens/rewards";
 import { capitalizeFirstLetter } from "@navigation";
 
 
+const forest = "Forest Pathfinder"
+const ocean = "Ocean Explorer"
+const desert = "Desert Trailblazer"
+const mountain = "Mountain Adventurer"
+const styleText = `Almost there, choose a style for your Rare chest`
+const subTextStyle = "from any of our worlds: Forest, Ocean, Desert or Mountain!"
+const rareRate = "50% of your salary covered"
+const maximumCover = "Based on the age you would like your policy to stop, the maximum % salary we can cover is 61"
+const topHeading = "What % of your salary would you like covered?"
+
+type MonthlyCoverPrices = "£12.31" | "£12.59" | "£94.07" | "£113.75" | "£142.93"
+type TotalCoverPrices = "£1,041.67" | "£6,250" | "£7,625" | "£9,375"
+
 export const ONBOARDING = async () => {
-    Then("I should be on the first Life Insurance onboarding screen", then.textVisible("Get your quote"));
+
+    const personalInsurance = "Personal Life Insurance"
+    const startQuoteText = "Start my quote (+1000 YuCoin)"
+
+
+    
+    Then(`I should be on the first Life Insurance onboarding screen`, then.textVisible(personalInsurance));
+    Then(`I should see ${startQuoteText}`, then.textVisible(startQuoteText));
     When("I tap on the right part of the screen", when.navigateThroughTheFullSwiper, async () => {
-        Then("I should be on the 2nd onboarding screen", then.textVisible("Fill the gap"));
+        Then(`I should see ${startQuoteText}`, then.textVisible(startQuoteText));
         When("I tap on the right part of the screen", when.navigateThroughTheFullSwiper, async () => {
-            Then("I should be on the 3nd onboarding screen", then.textVisible("Have peace of mind"));
+            Then(`I should see ${startQuoteText}`, then.textVisible(startQuoteText));
             When("I tap on the right part of the screen", when.navigateThroughTheFullSwiper, async () => {
-                Then("I should be on the 4th onboarding screen", then.textVisible("Earn bonus YuCoin"));
+                Then(`I should see ${startQuoteText}`, then.textVisible(startQuoteText));
             })
             When("I tap on start my quote", when.dismissPLIModal, async () => {
                 Then("I should see the intro screen", then.textVisible("Life Insurance"));
@@ -24,9 +44,30 @@ export const ONBOARDING = async () => {
 }
 
 export const INTRO_START = async () => {
+
+    const forest = "Forest Pathfinder"
+    const ocean = "Ocean Explorer"
+    const desert = "Desert Trailblazer"
+    const mountain = "Mountain Adventurer"
+    const priceTime = "Get a price in under 5 minutes."
+
+
+    When("I scroll to the left", when.scrollFromID(PACKAGE_INFO, "left", "slow"), async () => {
+        Then(`I should see ${mountain}`, then.textVisible(mountain))
+    })
+    When("I scroll to the right", when.scrollFromID(PACKAGE_INFO, "right", "slow", 0.4), async () => {
+        Then(`I should see ${desert}`, then.textVisible(desert))
+    })
+    When("I scroll to the right", when.scrollFromID(PACKAGE_INFO, "right", "slow", 0.4), async () => {
+        Then(`I should see ${ocean}`, then.textVisible(ocean))
+    })
+    When("I scroll to the right", when.scrollFromID(PACKAGE_INFO, "right", "slow", 0.4), async () => {
+        Then(`I should see ${forest}`, then.textVisible(forest))
+    })
     When("I scroll down to the bottom of the page", when.swipeFromText("Our simple promise", "up", "fast"), async () => {
         Then("I should see the correct copy in Power up!", then.correctPliIntroCopy("Power up!"))
         Then("I should see the correct copy in Owned by you", then.correctPliIntroCopy("Owned by you"))
+        Then("I should see the correct text on the screen", then.textVisible(priceTime))
         Then("I should see the Get started button", then.textVisible("Get started"))
         When("I tap Get started button", when.tapText("Get started"), async () => {
             Then("I should be on the Let's get personal screen", then.isOnLetsGetPersonalScreen(CUSTOMER_37.data.firstName))
@@ -408,46 +449,98 @@ export const REVIEW_SCREEN = async () => {
     })
 }
 
-type coverLevel = "common" | "rare" | "epic"
+type percentageLevel = "25%" | "50%" | "75%"
 
-export const COVER_SELECTION = async (cover: coverLevel) => {
-    When(`I tap ${cover}`, [then.isOnCoverLevelScreen, when.tapID(SELECTED_PACKAGE_TITLE(cover))], async () => {
-        When("I scroll to the bottom and tap Continue to checkout", when.scrollToAndTapText(PRODUCT_STEP_BODY_SCROLL_VIEW, "Continue to checkout", "down"), async () => {
-            Then("I should be on the next page", then.textNotVisible("Choose your cover level"))
+export const COVER_SELECT_PERCENTAGE = async (percentage: percentageLevel) => {
+    When(`I tap on ${percentage} cover`, when.tapText(percentage), async () => {
+        Then("I should be on the next screen", then.textNotVisible("Submit answers"))
+    })
+    When("I scroll to the bottom and tap Continue to checkout", when.scrollToAndTapText(PRODUCT_STEP_BODY_SCROLL_VIEW, "Continue", "down"), async () => {
+        Then("I should be on the next page", then.textNotVisible("Select your cover"))
+    })
+}
+
+type coverLevel = "common" | "rare" | "epic" | "custom"
+
+export const COVER_PRICE_CHECK = async () => {
+    When("I tap on 25% Common cover", when.tapText("25%"), async () => {
+       Then("I should see corect Common plan", then.packageVisible("Common"))
+    })
+    When("I tap on 75% Epic cover", when.tapText("75%"), async () => {
+        Then("I should see corect Epic plan", then.packageVisible("Epic"))
+    })
+    When("I tap on 50% Rare cover", when.tapText("50%"), async () => {
+        Then("I should see corect Rare plan", then.packageVisible("Rare"))
+    })
+    When("I scroll and tap on Documents",  when.scrollToAndTapText(PRODUCT_STEP_BODY_SCROLL_VIEW, "Documents", "down"), async () => {
+        Then("I shoul be on Documents page", then.isOnDocumentsScreen)
+    })
+    When("I tap to go back to Summary screen", when.tapID(BACK_BUTTON), async () => {
+        Then("I should see again Documnets Button", then.textVisible("Documents"))
+    })
+    When("I scroll to the bottom and tap Continue to checkout", when.scrollToAndTapText(PRODUCT_STEP_BODY_SCROLL_VIEW, "Continue", "down"), async () => {
+        Then("I should be on the next page", then.textNotVisible("Select your cover"))
+    })
+}
+
+
+export const COVER_STYLE_SELECTION = async (cover: coverLevel, mothprice: MonthlyCoverPrices, totalCoverPrices: TotalCoverPrices) => {
+
+    When("I scroll to the left", when.scrollFromID(PACKAGE_INFO, "left", "slow", 0.4), async () => {
+        Then(`I should see ${ocean}`, then.textVisible(ocean))
+    })
+    When("I scroll to the left", when.scrollFromID(PACKAGE_INFO, "left", "slow", 0.4), async () => {
+        Then(`I should see ${desert}`, then.textVisible(desert))
+    })
+    When("I scroll to the left", when.scrollFromID(PACKAGE_INFO, "left", "slow", 0.4), async () => {
+        Then(`I should see ${mountain}`, then.textVisible(mountain))
+    })
+    When("I scroll to the right", when.scrollFromID(PACKAGE_INFO, "right", "fast", 1.0), async () => {
+        When("I scroll to the right", when.scrollFromID(PACKAGE_INFO, "right", "fast", 1.0), async () => {
+            Then(`I should see ${forest}`, then.textVisible(forest))
+            Then(`I should see ${styleText}`, then.textVisible(styleText))
+            Then(`I should see ${subTextStyle}`, then.textVisible(subTextStyle))
+            Then(`I should see ${rareRate}`, then.textVisible(rareRate))
+        })
+    })
+    When("I tap Continue", when.tapText("Continue"), async () => {
+        Then("I should be on the next page", then.textNotVisible(styleText))
+        Then("I should see Summary page", then.textVisible("Summary"))
+        Then("I should see correct package selected", then.packageSummaryVisible(cover, mothprice, totalCoverPrices))
+    })
+    When("I scroll and tap on Documents",  when.scrollToAndTapText(PRODUCT_STEP_BODY_SCROLL_VIEW, "Documents", "down"), async () => {
+        Then("I shoul be on Documents page", then.isOnDocumentsScreen)
+    })
+    When("I tap to go back to Summary screen", when.tapID(BACK_BUTTON), async () => {
+        Then("I should see again Documnets Button", then.textVisible("Documents"))
+    })
+}
+
+export const MAXIMUM_SUM_ASSURED = async (cover: coverLevel, mothprice: MonthlyCoverPrices, totalCoverPrices: TotalCoverPrices) => {
+    When("I am on maximum sum assured screen and tap View full details", [then.isOnScreen("Based on the information you've given us, this is the maximum coverage available."), when.scrollToAndTapText(PRODUCT_STEP_BODY_SCROLL_VIEW, "View full details", "down")], async () => {
+        Then("I should be back on the cover selection screen", then.textVisible("Select your cover"))
+        Then("I should see warning text about maximum cover", then.textVisible(maximumCover))
+        Then("I should see correct heading text", then.textVisible(topHeading))
+        When("I scroll to the bottom and tap Continue to checkout", when.scrollToAndTapText(PRODUCT_STEP_BODY_SCROLL_VIEW, "Continue", "down"), async () => {
+            Then("I should be on the checkout page", then.isOnScreen(styleText))
+            When("I scroll to the bottom and tap Continue to checkout", when.scrollToAndTapText(PRODUCT_STEP_BODY_SCROLL_VIEW, "Continue", "down"), async () => {
+                Then("I should see correct package selected", then.packageSummaryVisible(cover, mothprice, totalCoverPrices))
+            })
         })
     })
 }
 
-export const MAXIMUM_SUM_ASSURED = async () => {
-    When("I am on maximum sum assured screen and tap View full details", [then.isOnScreen("Based on the information you’ve given us, this is the maximum coverage available."), when.scrollToAndTapText(PRODUCT_STEP_BODY_SCROLL_VIEW, "View full details", "down")], async () => {
-        Then("I should be back on the cover selection screen", then.textVisible("Choose your custom cover"))
-        When("I scroll to the bottom and tap Continue to checkout", when.scrollToAndTapText(PRODUCT_STEP_BODY_SCROLL_VIEW, "Continue to checkout", "down"), async () => {
-            Then("I should be on the checkout page", then.isOnScreen("Your details"))
-        })
-    })
-}
-
-export const CHECKOUT = async (cover: coverLevel, isCovered: boolean) => {
-    const capitalCover = capitalizeFirstLetter(cover)
-    const nextScreen = isCovered ? "We’ve got you covered." : "We’ll be in touch"
+export const CHECKOUT = async ( isCovered: boolean) => {
+    const nextScreen = isCovered ? "We've got you covered." : "We’ll be in touch"
 
     When("I add contact details", when.addContactDetails, async () => {
-        Then("I should be on the checkout page", then.isOnScreen("Your details"))
+        Then("I should be on the checkout page", then.isOnScreen("Checkout"))
         When("I add GP details", when.addGPDetails, async () => {
-            Then("I should be on the checkout page", then.isOnScreen("Your details"))
+            Then("I should be on the checkout page", then.isOnScreen("Checkout"))
             When("I add payment details", when.addPaymentDetails, async () => {
-                Then("I should be on the checkout page", then.isOnScreen("Your details"))
-                When(`I scroll down to 'Buy ${capitalCover} cover'`, when.scrollUntilTextVisible(PRODUCT_STEP_BODY_SCROLL_VIEW, `Buy ${capitalCover} cover`, "down"), async () => {
-                    Then("I should see the checkout T&C checkboxes", then.canSeeCheckoutTerms)
-                    When("I tap the above statements checkbox", when.tapText("I have read and agreed to the above statements."), async () => {
-                        When("I tap the prices can change textbox", when.tapText("I understand that the monthly price may be subject to change once my medical information has been assessed and that I will receive a final price before I commit."), async () => {
-                            When("I tap the YuLife terms checkbox", when.tapText("I have read and agree to the Insurance Terms & Conditions, and YuLife Terms of Business."), async () => {
-                                When(`I tap Buy ${capitalCover} cover`, when.tapText(`Buy ${capitalCover} cover`), async () => {
-                                    Then(`I should be on the ${nextScreen} screen`, then.isOnScreen(nextScreen))
-                                })
-                            })
-                        })
-                    })
+                Then("I should be on the checkout page", then.isOnScreen("Checkout"))
+                When(`I tap Purchase cover`, when.tapText(`Purchase cover`), async () => {
+                    Then(`I should be on the ${nextScreen} screen`, then.isOnScreen(nextScreen))
                 })
             })
         })

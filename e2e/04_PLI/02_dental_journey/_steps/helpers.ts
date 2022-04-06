@@ -2,7 +2,7 @@ import { When, Then } from "@yu-life/yulife-bdd-framework";
 import * as when from "./when"
 import * as then from "./then"
 import { CUSTOMER_37, AUTH_37 } from "@data";
-import { CONDITION_OPTION, CONTENT_ITEM_INPUT, PRODUCT_STEP_BODY_SCROLL_VIEW, SCROLL_PICKER, SCROLL_PICKER_ACTIVE_ITEM, SELECTED_PACKAGE_TITLE, YUCOIN_POWER, TEXT_TEMPLATE, COVER_TYPE, BUTTON_CLOSE_CHALLENGE, BACK_BUTTON, PACKAGE_TYPES} from "@ids";
+import { CONDITION_OPTION, CONTENT_ITEM_INPUT, PRODUCT_STEP_BODY_SCROLL_VIEW, SCROLL_PICKER, SCROLL_PICKER_ACTIVE_ITEM, SELECTED_PACKAGE_TITLE, YUCOIN_POWER, TEXT_TEMPLATE, COVER_TYPE, BUTTON_CLOSE_CHALLENGE, BACK_BUTTON, PACKAGE_INFO} from "@ids";
 import { addCommasToNumber } from "_utils/appScreens/rewards";
 import { capitalizeFirstLetter } from "@navigation";
 import moment from "moment"
@@ -42,16 +42,16 @@ export const INFORMATION = async () => {
     const desert = "Desert Trailblazer"
     const mountain = "Mountain Adventurer"
     
-    When("I scroll to the left", when.scrollFromID(PACKAGE_TYPES, "left", "slow"), async () => {
+    When("I scroll to the left", when.scrollFromID(PACKAGE_INFO, "left", "slow"), async () => {
         Then(`I should see ${mountain}`, then.textVisible(mountain))
     })
-    When("I scroll to the right", when.scrollFromID(PACKAGE_TYPES, "right", "slow", 0.4), async () => {
+    When("I scroll to the right", when.scrollFromID(PACKAGE_INFO, "right", "slow", 0.4), async () => {
         Then(`I should see ${desert}`, then.textVisible(desert))
     })
-    When("I scroll to the right", when.scrollFromID(PACKAGE_TYPES, "right", "slow", 0.4), async () => {
+    When("I scroll to the right", when.scrollFromID(PACKAGE_INFO, "right", "slow", 0.4), async () => {
         Then(`I should see ${ocean}`, then.textVisible(ocean))
     })
-    When("I scroll to the right", when.scrollFromID(PACKAGE_TYPES, "right", "slow", 0.4), async () => {
+    When("I scroll to the right", when.scrollFromID(PACKAGE_INFO, "right", "slow", 0.4), async () => {
         Then(`I should see ${forest}`, then.textVisible(forest))
     })
     When("I scroll to Claims made easy", when.scrollUntilTextVisible(PRODUCT_STEP_BODY_SCROLL_VIEW, "Claims made easy", "down"), async () => {
