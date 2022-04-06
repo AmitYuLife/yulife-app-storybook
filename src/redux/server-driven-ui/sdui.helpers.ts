@@ -2,12 +2,12 @@ import { ProductStepAction } from "./sdui.types";
 
 type ParsedJson = {
   isValid: boolean;
-  data?: Record<string, any>;
+  data: Record<string, any>;
 };
 
 export function parseJSON(payload: string, expectedKeys: string[] = []): ParsedJson {
   try {
-    const data = JSON.parse(payload);
+    const data = JSON.parse(payload) || {};
 
     const isValid = !expectedKeys.length
       ? true
@@ -18,7 +18,7 @@ export function parseJSON(payload: string, expectedKeys: string[] = []): ParsedJ
       data,
     };
   } catch (e) {
-    return { isValid: false };
+    return { data: {}, isValid: false };
   }
 }
 

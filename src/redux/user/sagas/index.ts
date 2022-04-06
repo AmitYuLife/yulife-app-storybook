@@ -13,6 +13,7 @@ import {
   UPDATE_LEADERBOARD_CONSENT_START,
   UPDATE_USER_CONSENT,
   UPDATE_USER_PROFILE,
+  REFRESH_USER_PROFILE,
 } from "../user.actions";
 
 import fetchConnectionsSaga from "./fetchConnectionsSaga.sagas";
@@ -49,5 +50,5 @@ export default [
   takeLatest(UPDATE_CONNECTION_START, updateConnectionSaga),
   takeLatest(UPDATE_APP_STATE, fetchConnectionsSaga),
   takeLatest(SET_MAIN_ROOT, showSurgeIntroSaga),
-  takeLatest(UPDATE_APP_STATE, getUserProfileData),
+  takeLatest([REFRESH_USER_PROFILE, UPDATE_APP_STATE], getUserProfileData),
 ];

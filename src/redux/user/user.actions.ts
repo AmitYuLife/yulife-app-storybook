@@ -18,6 +18,7 @@ export interface ISetIsUpdatingLeaderboardPayload {
 export const FITKIT_CONSENT_AUTHORISED = "FITKIT_CONSENT_AUTHORISED";
 export const SET_USER_NO_ACCESS = "SET_USER_NO_ACCESS";
 export const REFRESH_USER_TOKEN = "REFRESH_USER_TOKEN";
+export const REFRESH_USER_PROFILE = "REFRESH_USER_PROFILE";
 export const GET_USER_START = "GET_USER_START";
 export const GET_USER_SUCCESS = "GET_USER_SUCCESS";
 export const LOGIN_USER_SUCCESS = "LOGIN_USER_SUCCESS";
@@ -42,6 +43,10 @@ export const UPDATE_USER_SURGE = "UPDATE_USER_SURGE";
 
 export const refreshUserToken = () => ({
   type: REFRESH_USER_TOKEN,
+});
+
+export const refreshUserProfile = () => ({
+  type: REFRESH_USER_PROFILE,
 });
 
 export const fitKitConsentAuthorised = () => ({
