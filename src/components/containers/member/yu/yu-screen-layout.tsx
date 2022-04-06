@@ -1,5 +1,5 @@
 import React, { ComponentProps, memo, useContext, useCallback } from "react";
-import { View, StyleSheet, ViewStyle, Platform } from "react-native";
+import { View, StyleSheet, ViewStyle, Platform, SafeAreaView } from "react-native";
 import { NavBar } from "@organisms";
 import { Colours, Style } from "@styles";
 import { Navigation } from "react-native-navigation";
@@ -73,7 +73,7 @@ const _YuScreenLayout = ({ children, testID }: Props) => {
   }, [popover]);
 
   return (
-    <View style={styles.wrapper} testID={testID}>
+    <SafeAreaView style={styles.wrapper} testID={testID}>
       {children}
       <TopBarAbsolute hasWhiteBackground={true} onPressLeftIcon={openMenu} />
       <NavBar activeIndex={2} />
@@ -97,7 +97,7 @@ const _YuScreenLayout = ({ children, testID }: Props) => {
           </View>
         </Popover>
       )}
-    </View>
+    </SafeAreaView>
   );
 };
 
