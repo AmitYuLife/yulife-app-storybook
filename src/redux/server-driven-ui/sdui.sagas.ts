@@ -1,6 +1,6 @@
 import { Alert } from "react-native";
 import { Navigation } from "react-native-navigation";
-import { call, select, ActionPattern, takeEvery, takeLeading, put } from "redux-saga/effects";
+import { all, call, select, ActionPattern, takeEvery, takeLeading, put } from "redux-saga/effects";
 import { SduiActionType } from "@graphql/_core/schema/globalTypes";
 import { MODALS } from "@navigation/constants";
 import { showYuModal, TAB_ROUTES } from "@navigation/root";
@@ -14,21 +14,25 @@ import { ProductStepAction } from "./sdui.types";
 import { parseJSON, getServerPayload } from "./sdui.helpers";
 import { setLoadingState } from "./sdui.actions";
 import { getYuScreenProductSlots } from "@graphql/yuscreen";
-import { refreshTotalCoins } from "@redux/coins/coins.actions";
 import { store as reduxStore } from "../_core/store";
+import { refreshUserProfile } from "../user/user.actions";
 
 function* navigateBack({ payload }: ProductStepAction) {
   const currentRoute: ReturnType<typeof getRouteState> = yield select(getRouteState);
   const onExit = () => Navigation.pop(currentRoute);
 
-  const { isValid, data } = parseJSON(getServerPayload(payload), ["title", "message", "cancelLabel", "confirmLabel"]);
+  const {
+    isValid,
+    data: { dispatchActions = [], ...data },
+  } = parseJSON(getServerPayload(payload), ["title", "message", "cancelLabel", "confirmLabel"]);
 
   try {
-    // update YusScreen slots incase any journey progression has changed
+    // update YuScreen slots incase any journey progression has changed
     yield call(getYuScreenProductSlots);
-
-    // update total coins incase coins have been awarded during a journey
-    yield put(refreshTotalCoins());
+    // Dispatch additional actions supplied by the server
+    if (dispatchActions.length) {
+      yield all(dispatchActions.map((dispatchAction: { type: string }) => put(dispatchAction)));
+    }
   } catch (e) {
     // log
   }
@@ -65,7 +69,6 @@ function* navigateBack({ payload }: ProductStepAction) {
 
 function* navigateTo({ payload }: ProductStepAction) {
   const currentRoute: ReturnType<typeof getRouteState> = yield select(getRouteState);
-  // const { serverPayload, productId } = payload;
 
   const isPayloadObject = typeof payload === "object" && !!payload;
   const { isValid, data } = parseJSON(getServerPayload(payload), ["routeId"]);
@@ -158,8 +161,9 @@ function* finishStepJourney(action: ProductStepAction) {
         stepId,
         data: JSON.stringify({ ...serverDynamicData, ...dynamicData }),
       },
-      ["YuScreenProductSlots", "GetYulifer"]
+      ["YuScreenProductSlots"]
     );
+    yield put(refreshUserProfile());
     yield call(() => Navigation.pop(currentRoute));
   } catch (e) {
     // shrug (log)
@@ -168,8 +172,12 @@ function* finishStepJourney(action: ProductStepAction) {
 
 function* pushStep(action: ProductStepAction) {
   const { productId, stepId, dynamicData, serverPayload, id } = action.payload;
-  const { isValid, data } = parseJSON(serverPayload);
+  const {
+    isValid,
+    data: { dispatchActions = [], ...data },
+  } = parseJSON(serverPayload);
   const serverDynamicData = isValid ? data : {};
+
   try {
     yield put(setLoadingState({ [id]: true, __disabled: true }));
     yield call(
@@ -181,6 +189,9 @@ function* pushStep(action: ProductStepAction) {
       },
       ["GetPersonalProductStep"]
     );
+    if (dispatchActions.length) {
+      yield all(dispatchActions.map((dispatchAction: { type: string }) => put(dispatchAction)));
+    }
   } catch (e) {
     // shrug (log)
     yield put(setLoadingState({ __disabled: false }));

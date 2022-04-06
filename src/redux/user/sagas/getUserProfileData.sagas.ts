@@ -8,8 +8,12 @@ import { getToken } from "@services/storage";
 import { updateStepsMaxAnomalyDetectionWindow } from "@redux/daily-steps/daily-steps.actions";
 import { updateUserProfile } from "@redux/user/user.actions";
 
-export default function* getUserProfileData(dataPayload: { payload: string; type: string }) {
-  const { payload: appState, type } = dataPayload || {};
+interface Params {
+  payload?: string;
+  type?: string;
+}
+
+export default function* getUserProfileData({ payload: appState, type }: Params = {}) {
   if (type === UPDATE_APP_STATE && appState !== "active") {
     return;
   }
