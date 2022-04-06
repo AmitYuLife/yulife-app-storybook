@@ -7,6 +7,36 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.26.0] - 2022-04-06
+
+### Bugfixes
+
+- Bugfix XSE-901: Refetch user profile data on navigate back/finish to update avatar and earn rate
+- Bugfix XSE-922: Reset Yu Screen scroll position on route change
+- Bugfix: Support dynamic height for event reward message view
+- Bugfix: Fix contentItemTextInput alignment
+- Bugfix: Don't show collect modal after logout
+- Bugfix: Make footer expand to edges
+
+### Tasks
+
+- Task: Aggregated query biking iOS
+- Task: Add source data for biking payload
+- Task GS-255: Add tracking and increase icone size
+- Task GS-266: Get more cycling types
+- Task GS-257: Create graphql end points for events panel
+- Task: Add reward info message to debug screen
+- Task GS-255: Add Referral Icon
+- Task GS-267: Goal reward info message
+
+### Chores
+
+- Chore: Remove duplicate button press event
+
+### Extra
+
+- detox: from pliv1 to pliv2 test
+
 ## [3.25.0] - 2022-03-30
 
 ### Bugfixes
