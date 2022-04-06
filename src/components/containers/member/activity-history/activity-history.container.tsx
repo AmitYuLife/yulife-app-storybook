@@ -1,6 +1,12 @@
 import { useMutation, useQuery } from "@apollo/react-hooks";
 import { GQL_QUERY_GET_ACTIVITY_HISTORY } from "@graphql/user";
-import { processResult, queryFitKitByTypes, querySteps, returnEmptyResult } from "@services/fitkit/fitkit.helpers";
+import {
+  processResult,
+  queryFitKitByTypes,
+  queryAggregatedBikingIos,
+  querySteps,
+  returnEmptyResult,
+} from "@services/fitkit/fitkit.helpers";
 import moment from "moment";
 import React, { useCallback, useState, useRef, FC } from "react";
 import { LargeList } from "react-native-largelist-v3";
@@ -25,6 +31,7 @@ import {
 import { getDailyCyclingMeasurement } from "@redux/daily-cycling/daily-cycling.selectors";
 import { FitKitType } from "@graphql/_core/schema/globalTypes";
 import { DATE_FORMAT_WITH_TZ } from "@utils";
+import { Platform } from "react-native";
 
 interface IProps {
   componentId: string;
@@ -88,12 +95,14 @@ const ActivityHistoryContainer: FC<Props> = ({
           features
         ),
         features.passiveCyclingEnabled
-          ? queryFitKitByTypes(
-              start.format(DATE_FORMAT_WITH_TZ),
-              end.format(DATE_FORMAT_WITH_TZ),
-              [FitKitType.Cycling],
-              features
-            )
+          ? Platform.OS === "android"
+            ? queryFitKitByTypes(
+                start.format(DATE_FORMAT_WITH_TZ),
+                end.format(DATE_FORMAT_WITH_TZ),
+                [FitKitType.Cycling],
+                features
+              )
+            : queryAggregatedBikingIos(start, end, features)
           : returnEmptyResult(),
       ]);
 
