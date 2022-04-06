@@ -5,6 +5,7 @@ import {
   fitkitTypeToGqlType,
   getAdditionalCyclingFitnessActivities,
   queryFitKitByTypes,
+  queryAggregatedBikingIos,
   QueryFitKitByTypesResponse,
   sampleDataToAggregatedData,
 } from "@services/fitkit/fitkit.helpers";
@@ -59,14 +60,16 @@ export default function* getDailyPassiveActivity(dataPayload: { payload: string;
 
     const cycling: QueryFitKitByTypesResponse = !passiveCyclingEnabled
       ? null
-      : yield call(
+      : Platform.OS === "android"
+      ? yield call(
           queryFitKitByTypes,
           startTime.format(),
           endTime.format(),
           [FitKitType.Cycling],
           userFeatures,
           additionalCyclingFitnessActivities
-        );
+        )
+      : yield call(queryAggregatedBikingIos, startTime, endTime, userFeatures);
 
     if (!meditation?.results && !cycling?.results) {
       return;
