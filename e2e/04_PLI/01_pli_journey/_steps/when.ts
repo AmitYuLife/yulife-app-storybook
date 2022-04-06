@@ -1,6 +1,6 @@
 import { booleanIdVisible, navigation } from "@utils"
 import { screens } from "@appScreens"
-import { AVATAR_ITEM, CONTENT_ITEM_INPUT, DATE_INPUT, DATE_PICKER, FULL_SCREEN_SWIPER, MALE_BODY, PRODUCT_STEP_BODY_SCROLL_VIEW, SEARCH_INPUT, YUMOJI_OUTFIT_LABEL, YUMOJI_OUTFIT_RADIO, YUSCREEN_AVATAR, LEFT_PRODUCT_STEP_MULTI_BUTTON } from "@ids"
+import { AVATAR_ITEM, CONTENT_ITEM_INPUT, DATE_INPUT, DATE_PICKER, FULL_SCREEN_SWIPER, MALE_BODY, PRODUCT_STEP_BODY_SCROLL_VIEW, SEARCH_INPUT, YUMOJI_OUTFIT_LABEL, YUMOJI_OUTFIT_RADIO, YUSCREEN_AVATAR, LEFT_PRODUCT_STEP_MULTI_BUTTON, FULL_SCREEN_LOTTIE_SWIPER } from "@ids"
 import moment from "moment"
 import { CUSTOMER_37 } from "@data"
 
@@ -74,7 +74,7 @@ export const tryOutfits = async () => {
 
 export const navigateThroughTheFullSwiper = async () => {
     await wait(1000)();
-    await tapID(FULL_SCREEN_SWIPER("RIGHT"))();
+    await tapID(FULL_SCREEN_LOTTIE_SWIPER("RIGHT"))();
 }
 
 export const dismissPLIModal = async () => {
@@ -170,7 +170,8 @@ export const tapAnswerOnConditionScreen = (screen: Screen, answer: YesNo) => asy
 }
 
 export const addContactDetails = async () => {
-    await navigateViaText("Add contact details")
+    await scrollUntilTextVisible(PRODUCT_STEP_BODY_SCROLL_VIEW, "Continue", "down")()
+    await navigateViaText("Continue")
     await typeViaID(CONTENT_ITEM_INPUT("contactDetailsAddress1"), "Harry's House\n")()
     await typeViaID(CONTENT_ITEM_INPUT("contactDetailsTown"), "London\n")()
     await typeViaID(CONTENT_ITEM_INPUT("contactDetailsPostcode"), "HA9 7FN\n")()
@@ -183,10 +184,11 @@ export const addContactDetails = async () => {
 export const addGPDetails = async () => {
     const consentText = "Tick here to consent to your doctor supplying us with a medical report"
     const reportText = "Tick here if you want to see your medical report before your doctor sends it to us. Please note by checking this option you will be invited to your GP surgery to review your report."
+    const acceptStatement = "I have read and agreed to the above statements."
+    const acceptAndRead = "I understand that the monthly price may be subject to change once my medical information has been assessed and that I will receive a final price before I commit."
+    const yulifeTerms = "I have read and agree to the Insurance Terms & Conditions, and YuLife Terms of Business."
     
-    await navigateViaText("Add GP details")
-    await navigateViaText("Continue")
-    await scrollUntilTextVisible(PRODUCT_STEP_BODY_SCROLL_VIEW, reportText, "down")()
+    await scrollUntilTextVisible(PRODUCT_STEP_BODY_SCROLL_VIEW, "Continue", "down")()
     await navigateViaText(consentText)
     await navigateViaText(reportText)
     await navigateViaText("Continue")
@@ -195,6 +197,11 @@ export const addGPDetails = async () => {
     await scrollUntilTextVisible(PRODUCT_STEP_BODY_SCROLL_VIEW, "Dr. London Road Surgery", "down")()
     await tapText("Dr. London Road Surgery")()
     await navigateViaText("Continue")
+    await scrollUntilTextVisible(PRODUCT_STEP_BODY_SCROLL_VIEW, "Privacy policy", "down")()
+    await tapText(acceptStatement)()
+    await tapText(acceptAndRead)()
+    await tapText(yulifeTerms)()
+    await navigateViaText("Continue to payment")
 }
 
 export const addPaymentDetails = async () => {
