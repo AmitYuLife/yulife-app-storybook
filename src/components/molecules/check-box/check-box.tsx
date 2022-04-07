@@ -14,10 +14,22 @@ interface ICheckBox {
   children?: React.ReactChild;
   testID?: string;
   colour?: string;
+  strokeColor?: string;
+  activeCheckboxFillColor?: string;
 }
 
 function CheckBox(props: ICheckBox) {
-  const { checked, value, onChange, label, children, testID, colour = Colours.neutral.n800 } = props;
+  const {
+    checked,
+    value,
+    onChange,
+    label,
+    children,
+    testID,
+    colour = Colours.neutral.n800,
+    strokeColor = Colours.neutral.n400,
+    activeCheckboxFillColor = Colours.primary.p600,
+  } = props;
 
   return (
     <TouchableOpacityWithDelay activeOpacity={1} style={styles.wrapper} onPress={() => onChange(value)}>
@@ -25,7 +37,7 @@ function CheckBox(props: ICheckBox) {
         <Svg height={Style.adjust(32)} width={Style.adjust(32)} viewBox="0 0 32 32" testID={testID}>
           {checked ? (
             <>
-              <Circle cx="16" cy="16" r="16" fill="#F43E8E" />
+              <Circle cx="16" cy="16" r="16" fill={activeCheckboxFillColor} />
               <Path
                 d="M24 10.6665L12.8834 21.3332L8 16.5332"
                 stroke="white"
@@ -34,7 +46,7 @@ function CheckBox(props: ICheckBox) {
               />
             </>
           ) : (
-            <Circle cx="16" cy="16" r="15.25" fill="none" stroke="#a0a09b" strokeWidth="1.5" />
+            <Circle cx="16" cy="16" r="15.25" fill="none" stroke={strokeColor} strokeWidth="1.5" />
           )}
         </Svg>
       </View>
