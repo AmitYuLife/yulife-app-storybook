@@ -40,6 +40,8 @@ export const SET_SHOW_SURGE_INTRO = "SET_SHOW_SURGE_INTRO";
 export const UPDATE_USER_PROFILE = "UPDATE_USER_PROFILE";
 export const UPDATE_USER_AVATAR = "UPDATE_USER_AVATAR";
 export const UPDATE_USER_SURGE = "UPDATE_USER_SURGE";
+export const YUSCREEN_SYNCHRONISED = "YUSCREEN_SYNCHRONISED";
+export const REMOVE_YUSCREEN_NOTIFICATIONS = "REMOVE_YUSCREEN_NOTIFICATIONS";
 
 export const refreshUserToken = () => ({
   type: REFRESH_USER_TOKEN,
@@ -59,6 +61,10 @@ export const setUserNoAccessAction = () => ({
 
 export const getUserStart = () => ({
   type: GET_USER_START,
+});
+
+export const yuScreenSynchronised = () => ({
+  type: YUSCREEN_SYNCHRONISED,
 });
 
 export const getUserSuccess = (payload: GetCurrentUser) => ({
@@ -156,4 +162,8 @@ export const updateUserAvatarRemoteFiles = (payload: AvatarRemoteFiles) => ({
 export const updateUserSurge = (payload: IUserSurge) => ({
   type: UPDATE_USER_SURGE,
   payload,
+});
+
+export const removeYuScreenNotifications = () => ({
+  type: REMOVE_YUSCREEN_NOTIFICATIONS,
 });

@@ -33,6 +33,7 @@ import {
   UPDATE_USER_PROFILE,
   UPDATE_USER_AVATAR,
   UPDATE_USER_SURGE,
+  REMOVE_YUSCREEN_NOTIFICATIONS,
 } from "./user.actions";
 import { AUTHENTICATED } from "@redux/app/app.actions";
 import { reduceUserFeatures } from "./user.helpers";
@@ -119,6 +120,7 @@ export interface IUserStore {
     hasPendingForm: boolean;
     hasAppReview: boolean;
     hasDailyScreenCustomIcon: boolean;
+    hasYuScreenNotification: boolean;
   };
   events: Events[];
 }
@@ -182,6 +184,7 @@ export const getInitialState = (sessionCount: number = 0): IUserStore => ({
     hasPendingForm: false,
     hasAppReview: false,
     hasDailyScreenCustomIcon: false,
+    hasYuScreenNotification: false,
   },
   events: [],
 });
@@ -243,6 +246,9 @@ export const userReducer = (state: IUserStore = getInitialState(), action: SyncA
 
     case LOGOUT_SUCCESS:
       return getInitialState(state.sessionCount);
+
+    case REMOVE_YUSCREEN_NOTIFICATIONS:
+      return removeYuScreenNotifications(state);
 
     case AUTHENTICATED:
       return {
@@ -514,5 +520,13 @@ const updateUserSurge = (state: IUserStore, payload: IUserSurge) => ({
   ...state,
   surge: {
     ...payload,
+  },
+});
+
+const removeYuScreenNotifications = (state: IUserStore) => ({
+  ...state,
+  notification: {
+    ...state.notification,
+    hasYuScreenNotification: false,
   },
 });

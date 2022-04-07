@@ -1,12 +1,12 @@
 // tslint:disable:max-line-length
 import { Style } from "@styles/index";
 import * as React from "react";
-import Svg, { Path } from "react-native-svg";
+import Svg, { Circle, Path } from "react-native-svg";
 import { getIconColour, IIconProps } from "../nav-bar.helpers";
 import { NAV_BAR } from "@ids";
 import { Platform } from "react-native";
 
-export default function Yuscreen({ isActive, onPressIn, onPressOut, isHighlighted }: IIconProps) {
+export default function Yuscreen({ isActive, hasNotification, onPressIn, onPressOut, isHighlighted }: IIconProps) {
   const fill = getIconColour(isActive || isHighlighted);
   const size = String(Style.SCALE_UP_AND_DOWN(54));
 
@@ -32,6 +32,7 @@ export default function Yuscreen({ isActive, onPressIn, onPressOut, isHighlighte
         d="M23,47.27a.5.5,0,1,0,0,1c1,0,1.63-.7,2.07-1.68l1.86-4.2a.56.56,0,0,0,0-.21.54.54,0,0,0-.54-.54.53.53,0,0,0-.5.34l-1.1,2.78L23.74,42a.53.53,0,0,0-.5-.34.54.54,0,0,0-.54.54.56.56,0,0,0,0,.21l1.54,3.55C24,46.76,23.65,47.27,23,47.27Zm5.09-5.63a.54.54,0,0,0-.54.54v2.33c0,1,.37,1.88,2,1.88s2-.9,2-1.88V42.18a.54.54,0,0,0-1.08,0v2.33a.9.9,0,1,1-1.79,0V42.18A.54.54,0,0,0,28.1,41.64Z"
         fill={fill}
       />
+      {!hasNotification ? null : <Circle cx="35.6" cy="10.25" r="4.5" fill="#ec6f65" stroke="#fff" />}
     </Svg>
   );
 }

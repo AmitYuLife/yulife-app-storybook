@@ -139,6 +139,7 @@ export * from "./GetYumojiRemoteParts";
 export * from "./InviteToDuel";
 export * from "./JoinCommunityGoal";
 export * from "./LoginUser";
+export * from "./MarkMobileNotificationsAsViewedByType";
 export * from "./MedicalPractices";
 export * from "./Milestone";
 export * from "./NormalisePersonalProductStep";

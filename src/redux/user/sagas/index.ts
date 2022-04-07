@@ -1,5 +1,5 @@
 import { takeLatest } from "redux-saga/effects";
-import { AUTHENTICATED, SET_MAIN_ROOT, UPDATE_APP_STATE } from "../../app/app.actions";
+import { AUTHENTICATED, SET_MAIN_ROOT, UPDATE_APP_STATE, UPDATE_CURRENT_ROUTE } from "../../app/app.actions";
 import { CHALLENGE_RESET_SUCCESS } from "../../levels/levels.actions";
 import {
   FITKIT_CONSENT_AUTHORISED,
@@ -14,6 +14,8 @@ import {
   UPDATE_USER_CONSENT,
   UPDATE_USER_PROFILE,
   REFRESH_USER_PROFILE,
+  YUSCREEN_SYNCHRONISED,
+  REMOVE_YUSCREEN_NOTIFICATIONS,
 } from "../user.actions";
 
 import fetchConnectionsSaga from "./fetchConnectionsSaga.sagas";
@@ -32,6 +34,9 @@ import updateLeaderboardConsentSaga from "./updateLeaderboardConsent.saga";
 import updateUserConsentSaga from "./updateUserConsent.saga";
 import sendDuelInvitationSaga from "./sendDuelInvitation.saga";
 import getUserProfileData from "./getUserProfileData.sagas";
+import updateYuScreenNotification from "./updateYuScreenNotification.saga";
+import synchroniseYuScreenSaga from "./synchroniseYuScreen.saga";
+import removeYuScreenNotification from "./removeYuScreenNotification.saga";
 
 export default [
   takeLatest(AUTHENTICATED, fetchUserOnAppStateChangeSaga),
@@ -51,4 +56,7 @@ export default [
   takeLatest(UPDATE_APP_STATE, fetchConnectionsSaga),
   takeLatest(SET_MAIN_ROOT, showSurgeIntroSaga),
   takeLatest([REFRESH_USER_PROFILE, UPDATE_APP_STATE], getUserProfileData),
+  takeLatest(UPDATE_USER_PROFILE, synchroniseYuScreenSaga),
+  takeLatest([UPDATE_CURRENT_ROUTE, YUSCREEN_SYNCHRONISED], updateYuScreenNotification),
+  takeLatest(REMOVE_YUSCREEN_NOTIFICATIONS, removeYuScreenNotification),
 ];

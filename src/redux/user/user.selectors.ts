@@ -90,6 +90,12 @@ export const getUserNotification = createSelector(reducer, userNotification);
 const userEvents = (state: State) => state.events;
 export const getUserEvents = createSelector(reducer, userEvents);
 
+const yuScreenNotification = (state: State) => state.notification.hasYuScreenNotification;
+export const getYuScreenNotification = createSelector(reducer, yuScreenNotification);
+
+const userProfile = (state: State) => state;
+export const getUserProfile = createSelector(reducer, userProfile);
+
 const consentedLeaderboardsSelector = (state: State) =>
   state.leaderboards.reduce((prev: Leaderboard[], curr) => {
     if (checkIsCompanyLeaderbaord(curr)) {
