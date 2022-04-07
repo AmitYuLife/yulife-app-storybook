@@ -303,7 +303,7 @@ export const queryAggregatedBikingIos = async (
       date_start: start.format(),
       date_end: end.format(),
     });
-    return { results: [], error: e.message };
+    return { results: [], error: true };
   }
 };
 
