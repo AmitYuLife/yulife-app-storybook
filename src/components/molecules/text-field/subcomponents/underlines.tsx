@@ -7,7 +7,9 @@ export const ColouredUnderline = ({ scaleX }: { scaleX: Animated.Value }) => {
 };
 
 export const BaseUnderline = ({ color }: { color: string }) => (
-  <Animated.View style={StyleSheet.flatten([styles.baseUnderline, { backgroundColor: color || "gray" }])} />
+  <Animated.View
+    style={StyleSheet.flatten([styles.baseUnderline, { backgroundColor: color || Colours.neutral.n300 }])}
+  />
 );
 
 const styles = StyleSheet.create({
