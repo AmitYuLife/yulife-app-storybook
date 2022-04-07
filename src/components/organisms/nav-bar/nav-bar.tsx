@@ -1,30 +1,26 @@
 import React, { memo } from "react";
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
 import NavBarView from "./nav-bar.view";
-import { IReduxState } from "@redux/_core/reducers";
-import { getHasNotification } from "@redux/levels/levels.selectors";
+import { getHasNotification as getQuestNotification } from "@redux/levels/levels.selectors";
 import { NavBarProps } from "./nav-bar.helpers";
 import { getYuScreenNotification } from "@redux/user/user.selectors";
 
-type ConnectedState = ReturnType<typeof mapStateToProps>;
-type NavBarContainerProps = NavBarProps & ConnectedState;
+type NavBarContainerProps = NavBarProps;
 
-const NavBarContainer = (props: NavBarContainerProps) => (
-  <NavBarView
-    activeIndex={props.activeIndex}
-    hasNotification={props.hasNotification}
-    labels={props.labels}
-    highlightedLabel={props.highlightedLabel}
-    additionalBottom={props.additionalBottom}
-    hasYuScreenNotification={props.hasYuScreenNotification}
-  />
-);
+const NavBarContainer = (props: NavBarContainerProps) => {
+  const hasQuestNotification = useSelector(getQuestNotification);
+  const hasYuScreenNotification = useSelector(getYuScreenNotification);
 
-const mapStateToProps = (state: IReduxState) => ({
-  hasNotification: getHasNotification(state),
-  hasYuScreenNotification: getYuScreenNotification(state),
-});
+  return (
+    <NavBarView
+      activeIndex={props.activeIndex}
+      hasNotification={hasQuestNotification}
+      labels={props.labels}
+      highlightedLabel={props.highlightedLabel}
+      additionalBottom={props.additionalBottom}
+      hasYuScreenNotification={hasYuScreenNotification}
+    />
+  );
+};
 
-const NavBar = connect<ConnectedState, null, NavBarProps>(mapStateToProps)(NavBarContainer);
-
-export default memo(NavBar, () => true);
+export default memo(NavBarContainer, () => true);

@@ -2,13 +2,11 @@ import { call, put, select, spawn } from "redux-saga/effects";
 import Logger from "@services/logging/logger";
 import { yuScreenSynchronised } from "@redux/user/user.actions";
 import { getYuScreenProductSlots } from "@graphql/yuscreen";
-import { getUserProfile } from "../user.selectors";
+import { getYuScreenNotification } from "../user.selectors";
 
 export default function* synchroniseYuScreenSaga() {
   try {
-    const userProfile: ReturnType<typeof getUserProfile> = yield select(getUserProfile);
-
-    const hasNotification = userProfile?.notification?.hasYuScreenNotification;
+    const hasNotification: ReturnType<typeof getYuScreenNotification> = yield select(getYuScreenNotification);
 
     // New notification sent for the customer. Update the YuScreen product slots.
     if (hasNotification) {
