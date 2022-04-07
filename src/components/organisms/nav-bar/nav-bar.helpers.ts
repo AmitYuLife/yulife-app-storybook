@@ -31,6 +31,7 @@ export interface NavBarProps {
   labels?: ILabel[];
   highlightedLabel?: HighlightedLabel;
   additionalBottom?: number;
+  hasYuScreenNotification?: boolean;
 }
 
 export type HighlightedLabel = "yucoin" | "quests" | "yu" | "leaderboard" | "rewards";

@@ -70,6 +70,7 @@ export interface GetUserProfile_getUserProfile_notification {
   hasMobileWhatsNewModal: boolean;
   hasAppReview: boolean;
   hasDailyScreenCustomIcon: boolean;
+  hasYuScreenNotification: boolean;
 }
 
 export interface GetUserProfile_getUserProfile_events_descriptionImage {

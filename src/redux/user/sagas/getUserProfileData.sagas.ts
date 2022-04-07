@@ -35,6 +35,4 @@ export default function* getUserProfileData({ payload: appState, type }: Params 
       Logger.error(e, { event: "getUserProfileData" });
     });
   }
-
-  return;
 }

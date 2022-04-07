@@ -8,8 +8,14 @@ import useInterval from "@use-it/interval";
 import { NavBarProps } from "./nav-bar.helpers";
 
 const NavBarView = (props: NavBarProps) => {
-  const { activeIndex, hasNotification, labels = defaultLabels, highlightedLabel, additionalBottom = 0 } = props;
-
+  const {
+    activeIndex,
+    hasNotification,
+    hasYuScreenNotification,
+    labels = defaultLabels,
+    highlightedLabel,
+    additionalBottom = 0,
+  } = props;
   const [pressed, setPressed] = useState(0);
   const [hasLaidOut, setHasLaidOut] = useState(false);
   const [displayElevation, setDisplayElevation] = useState(false);
@@ -59,6 +65,7 @@ const NavBarView = (props: NavBarProps) => {
           isHighlighted={highlightedLabel === "yu"}
           onPressIn={labels[2].onPress}
           onPressOut={handlePressOut(labels[2].onPress)}
+          hasNotification={hasYuScreenNotification && activeIndex !== 2}
         />
         <Trophy
           isPressed={pressed === 3}
