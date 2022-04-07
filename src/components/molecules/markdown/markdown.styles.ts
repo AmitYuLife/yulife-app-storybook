@@ -64,6 +64,7 @@ const markdownStyle = (props: IMarkdownStyle) =>
     link: {
       textDecorationLine: "underline",
       alignSelf: "flex-start",
+      color: Colours.primary.p600,
     },
     list: {
       marginBottom: Style.adjust(8),

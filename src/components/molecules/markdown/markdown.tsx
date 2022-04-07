@@ -214,7 +214,7 @@ class Markdown extends React.PureComponent<IProps, IState> {
       case "li":
         return this.renderListItem(node, key, index, extras);
       case "a":
-        return this.renderInlineLink(node, key, extras);
+        return this.renderInlineLink(node, key, concatStyles(extras, styles.link));
       case "img":
         return this.renderImage(node, key);
       case "strong":
