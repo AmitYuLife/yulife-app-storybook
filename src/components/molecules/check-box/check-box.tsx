@@ -34,7 +34,7 @@ function CheckBox(props: ICheckBox) {
   return (
     <TouchableOpacityWithDelay activeOpacity={1} style={styles.wrapper} onPress={() => onChange(value)}>
       <View testID={CHECK_BOX_STATE(label, checked)}>
-        <Svg height={Style.adjust(32)} width={Style.adjust(32)} viewBox="0 0 32 32" testID={testID}>
+        <Svg height={Style.adjust(24)} width={Style.adjust(24)} viewBox="0 0 32 32" testID={testID}>
           {checked ? (
             <>
               <Circle cx="16" cy="16" r="16" fill={activeCheckboxFillColor} />
