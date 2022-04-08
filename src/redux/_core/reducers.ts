@@ -24,7 +24,6 @@ import pedometerReducer, {
 import streaksReducer, { getInitialState as getInitialStreaksState, IStreaksStore } from "../streaks/streaks.reducer";
 import themeReducer, { getInitialState as getInitialThemeState, IThemeStore } from "../theme/theme.reducer";
 import userReducer, { getInitialState as getInitialUserState, IUserStore } from "../user/user.reducer";
-import productReducer, { getInitialState as getInitialProductState, IProductStore } from "../product/product.reducer";
 import sduiReducer, { getInitialState as getInitialSduiState, ISduiStore } from "../server-driven-ui/sdui.reducer";
 import dailyCyclingReducer, {
   IDailyCyclingStore,
@@ -40,7 +39,6 @@ export interface IReduxState {
   device: IDeviceStore;
   levels: ILevelsStore;
   onboarding: IOnboardingStore;
-  product: IProductStore;
   pedometer: IPedometerStore;
   streaks: IStreaksStore;
   theme: IThemeStore;
@@ -59,7 +57,6 @@ export const initialState: IReduxState = {
   device: getInitialDeviceState(),
   levels: getInitialLevelsState(),
   onboarding: getInitialOnboardingState(),
-  product: getInitialProductState(),
   pedometer: getInitialPedometerState(),
   streaks: getInitialStreaksState(),
   theme: getInitialThemeState(),
@@ -81,7 +78,6 @@ const combinedReducers = combineReducers({
   device: deviceReducer,
   levels: levelsReducer,
   onboarding: onboardingReducer,
-  product: productReducer,
   pedometer: pedometerReducer,
   streaks: streaksReducer,
   theme: themeReducer,
