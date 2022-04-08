@@ -1,0 +1,14 @@
+deploy:dev:storybook:
+  extends: .base
+  stage: release
+  # Do not cancel this job if newer commit made
+  interruptible: false
+  needs:
+    - test
+  script:
+    - yarn build:storybook:web
+    - aws s3 sync ./storybook-static  s3://yulife-develop-storybook-origin
+    - aws cloudfront create-invalidation --distribution-id "E2IS257IGXM4OG" --paths "/*" --region "eu-west-2"
+  only:
+    refs:
+      - develop
