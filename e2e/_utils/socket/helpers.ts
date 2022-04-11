@@ -96,3 +96,23 @@ export const addStepsHistoricalData = (value:number) => async () => {
     }]
     await fitKitAddAggregatedQueries(record)
 }
+
+export const addCyclingHistoricalData = (value:number) => async () => {
+    const record = [{
+        startTime: moment().subtract(1,"day").startOf("day").add(10,"minutes").toDate().toString(),
+        endTime: moment().subtract(1,"day").endOf("day").subtract(10,"minutes").toDate().toString(),
+        value,
+        type: "Biking"
+    }]
+    await fitKitAddAggregatedQueries(record)
+}
+
+export const addMindfulnessHistoricalData = (value:number) => async () => {
+    const record = [{
+        startTime: moment().subtract(1,"day").startOf("day").add(10,"minutes").toDate().toString(),
+        endTime: moment().subtract(1,"day").endOf("day").subtract(10,"minutes").toDate().toString(),
+        value,
+        type: "MindfulSession"
+    }]
+    await fitKitAddSampleQueries(record)
+}
