@@ -1,5 +1,5 @@
 import socketServer from "./server";
-import { EVENT, ReduxEvent, FitkitSampleQueriesAdd } from "./events";
+import { EVENT, ReduxEvent, FitkitSampleQueriesAdd, FitkitAggregatedQueriesAdd } from "./events";
 import moment from 'moment';
 import { wait } from "@navigation";
 
@@ -46,6 +46,12 @@ export const fitKitAddSampleQueries = (payload: FitkitSampleQueriesAdd["payload"
     });
 }
 
+export const fitKitAddAggregatedQueries = (payload: FitkitAggregatedQueriesAdd["payload"]) => {
+    socketServer.emit({
+        name: EVENT.FITKIT_AGGREGATED_QUERIES_ADD,
+        payload,
+    });
+}
 
 /**
  * Fires a call-back once at the point that the app bootstraps, before the root view is rendered
@@ -78,5 +84,15 @@ export const addCyclingData = (value:number) => async () => {
         type: "Biking"
     }]
 
-    await fitKitAddSampleQueries(record)
+    await fitKitAddAggregatedQueries(record)
+}
+
+export const addStepsHistoricalData = (value:number) => async () => {
+    const record = [{
+        startTime: moment().subtract(1,"day").startOf("day").add(10,"minutes").toDate().toString(),
+        endTime: moment().subtract(1,"day").endOf("day").subtract(10,"minutes").toDate().toString(),
+        value,
+        type: "StepCount"
+    }]
+    await fitKitAddAggregatedQueries(record)
 }

@@ -49,7 +49,7 @@ export const INTRO_START = async () => {
     const ocean = "Ocean Explorer"
     const desert = "Desert Trailblazer"
     const mountain = "Mountain Adventurer"
-    const priceTime = "Get a price in under 5 minutes."
+    const priceTime = "Get a price in under 5 minutes"
 
 
     When("I scroll to the left", when.scrollFromID(PACKAGE_INFO, "left", "slow"), async () => {
@@ -68,8 +68,8 @@ export const INTRO_START = async () => {
         Then("I should see the correct copy in Power up!", then.correctPliIntroCopy("Power up!"))
         Then("I should see the correct copy in Owned by you", then.correctPliIntroCopy("Owned by you"))
         Then("I should see the correct text on the screen", then.textVisible(priceTime))
-        Then("I should see the Get started button", then.textVisible("Get started"))
-        When("I tap Get started button", when.tapText("Get started"), async () => {
+        Then("I should see the Browse cover levels button", then.textVisible("Browse cover levels"))
+        When("I tap Browse cover levels button", when.tapText("Browse cover levels"), async () => {
             Then("I should be on the Let's get personal screen", then.isOnLetsGetPersonalScreen(CUSTOMER_37.data.firstName))
         })
     })
