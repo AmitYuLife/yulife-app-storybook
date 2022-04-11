@@ -8,6 +8,7 @@ import {
   LayoutChangeEvent,
   Keyboard,
   Animated,
+  SafeAreaView,
 } from "react-native";
 import { useDispatch } from "react-redux";
 import { useQuery } from "@apollo/react-hooks";
@@ -61,6 +62,7 @@ const ProductStepDetachedContainer = (props: Props) => {
   const [headerBottom, setHeaderBottom] = useState(null);
   const [detachedStep, setDetachedStep] = useState<DetachedStepData>(null);
   const [componentsLayout, setComponentsLayout] = useState({});
+  const [wrapperOffset, setWrapperOffset] = useState(0);
   const isMounted = useRef(false);
   const { current: scrollValue } = useRef(new Animated.Value(0));
 
@@ -122,6 +124,12 @@ const ProductStepDetachedContainer = (props: Props) => {
     }
   }, [data]);
 
+  const handleWrapperLayout = (event: LayoutChangeEvent) => {
+    setWrapperOffset(event.nativeEvent.layout.y);
+  };
+
+  const backgroundColor = nestedHistory.length === 0 ? Colours.neutral.n50 : Colours.neutral.white;
+
   return (
     <ProductStepDetachedNavigationContext.Provider
       value={{
@@ -130,55 +138,58 @@ const ProductStepDetachedContainer = (props: Props) => {
         nestedHistory,
       }}
     >
-      <View style={nestedHistory.length === 0 ? styles.wrapper : styles.wrapperWhite}>
-        <ScrollView showsVerticalScrollIndicator={false} testID={PRODUCT_STEP_BODY_SCROLL_VIEW}>
-          {!detachedStep ? (
-            <View style={styles.loadingWrapper}>
-              <ActivityIndicator />
-            </View>
-          ) : (
-            <ProductStepContext.Provider
-              value={{
-                body: detachedStep.body,
-                customerProductId: detachedStep.customerProductId,
-                stepId: detachedStep.stepId,
-                dynamicData,
-                setDynamicData,
-                productId,
-                scrollPicker,
-                setScrollPicker,
-                headerBottom,
-                setHeaderBottom,
-                scrollValue,
-                headerHeight: 0,
-                isLoading: loading,
-                componentsLayout,
-                setComponentsLayout,
-              }}
-            >
-              <View style={scrollViewTopPad} />
-              {detachedStep.body.map(renderItemContent)}
-            </ProductStepContext.Provider>
-          )}
-        </ScrollView>
-      </View>
-      <View onLayout={handleHeaderLayout} style={styles.headerWrapper}>
-        <ProductStepContentItemHeaderDetached
-          key={`${stepId}_header`}
-          heading={null}
-          logo="yulife"
-          leftIcon="BACK"
-          rightIcon="CLOSE"
-          onLeftIconPress={{ type: SduiActionType.SDUI_ACTION_NAVIGATE_BACK, payload: null }}
-          onRightIconPress={{ type: SduiActionType.SDUI_ACTION_NAVIGATE_BACK, payload: null }}
-        />
-      </View>
+      <SafeAreaView style={styles.wrapper}>
+        <View onLayout={handleWrapperLayout} style={[styles.wrapper, { backgroundColor }]}>
+          <ScrollView showsVerticalScrollIndicator={false} testID={PRODUCT_STEP_BODY_SCROLL_VIEW}>
+            {!detachedStep ? (
+              <View style={styles.loadingWrapper}>
+                <ActivityIndicator />
+              </View>
+            ) : (
+              <ProductStepContext.Provider
+                value={{
+                  body: detachedStep.body,
+                  customerProductId: detachedStep.customerProductId,
+                  stepId: detachedStep.stepId,
+                  dynamicData,
+                  setDynamicData,
+                  productId,
+                  scrollPicker,
+                  setScrollPicker,
+                  headerBottom,
+                  setHeaderBottom,
+                  scrollValue,
+                  headerHeight: 0,
+                  isLoading: loading,
+                  componentsLayout,
+                  setComponentsLayout,
+                }}
+              >
+                <View style={scrollViewTopPad} />
+                {detachedStep.body.map(renderItemContent)}
+              </ProductStepContext.Provider>
+            )}
+          </ScrollView>
+          <View onLayout={handleHeaderLayout} style={styles.absolute}>
+            <ProductStepContentItemHeaderDetached
+              key={`${stepId}_header`}
+              heading={null}
+              logo="yulife"
+              leftIcon="BACK"
+              rightIcon="CLOSE"
+              onLeftIconPress={{ type: SduiActionType.SDUI_ACTION_NAVIGATE_BACK, payload: null }}
+              onRightIconPress={{ type: SduiActionType.SDUI_ACTION_NAVIGATE_BACK, payload: null }}
+            />
+          </View>
+        </View>
+        <View style={StyleSheet.flatten([styles.absolute, styles.notchPaint, { height: wrapperOffset }])} />
+      </SafeAreaView>
     </ProductStepDetachedNavigationContext.Provider>
   );
 };
 
 const styles = StyleSheet.create({
-  headerWrapper: {
+  absolute: {
     position: "absolute",
     left: 0,
     right: 0,
@@ -186,10 +197,8 @@ const styles = StyleSheet.create({
   } as ViewStyle,
   wrapper: {
     flex: 1,
-    backgroundColor: Colours.neutral.n50,
   } as ViewStyle,
-  wrapperWhite: {
-    flex: 1,
+  notchPaint: {
     backgroundColor: Colours.neutral.white,
   } as ViewStyle,
   loadingWrapper: {
