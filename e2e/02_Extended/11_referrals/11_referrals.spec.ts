@@ -3,7 +3,7 @@ import * as scenario from "./_steps/scenario"
 import * as given from "./_steps/given"
 import * as when from "./_steps/when"
 import * as then from "./_steps/then"
-import { CUSTOMER_35, AUTH_35, CUSTOMER_1, AUTH_1 } from "@data"
+import { CUSTOMER_35, AUTH_35, CUSTOMER_37, AUTH_37, CUSTOMER_1, AUTH_1 } from "@data"
 import { MENU_ICON, MENU_ICON_BADGE, REFERRALS_BUTTON_BADGE, BACK_BUTTON, REFERRALS_INVITE_BUTTON, NAV_BAR } from "@ids"
 
 Feature("Referrals work as intended", async () => {
@@ -77,6 +77,32 @@ Feature("Referrals work as intended", async () => {
                 Then("I should not see the Invite Colleagues popover", then.referralsPopoverNotVisible)
                 When("I go to the menu", when.tapID(MENU_ICON), async () => {
                     Then("I should not see the invite button", then.textNotVisible("Invite a colleague"))
+                })
+            })
+        })
+    })
+
+    Scenario("As a user with custom icon and reward referrals enabled i can see it on home screen ", scenario.start, async () => {
+        Given("I login as a user with a referrals enabled", given.loginAsUser(CUSTOMER_37, AUTH_37), async () => {
+            Then("I should not see the Invite Colleagues popover", then.referralsPopoverNotVisible)
+                When("I close and reopen the app", when.restartWithoutDeleteTwoTimes, async () => {
+                Then("I should see the Invite Colleagues popover", then.referralsPopoverVisible)
+                When("I tap the menu icon to close the popover", when.tapID(NAV_BAR("yucoin")), async () => {
+                    Then("I should see £10 reward refferal", then.textVisible("£10"))
+                    Then("I should no longer see the the popover", then.referralsPopoverNotVisible)
+                    Then("the menu icon should have a badge", then.idVisible(MENU_ICON_BADGE(true)))
+                    When("I tap on the reward ammount icon", when.tapText("£10"), async () => {
+                        Then("I should be on the Invite a Colleague page", then.isOnInivteColleaguePage)
+                        When("I press the back button", when.tapID(BACK_BUTTON), async () => {
+                            When("I go to the menu page", when.tapID(MENU_ICON), async () => {
+                                Then("I should be on the menu screen", then.menuItemsVisible)
+                                Then("I should see the Invite a colleague button", then.textVisible("Invite a colleague"))
+                                When("I tap on the invite button", when.tapText("Invite a colleague"), async () => {
+                                    Then("I should be on the Invite a Colleague page", then.isOnInivteColleaguePage)
+                                })
+                            })
+                        })
+                    })
                 })
             })
         })

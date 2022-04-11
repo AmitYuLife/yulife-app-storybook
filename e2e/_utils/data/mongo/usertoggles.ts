@@ -846,7 +846,11 @@ export const CUSTOMER_37_TOGGLES = {
             showReferrals: true,
             yuScreenV3: true,
             hasCoveaFibActive: true,
-            hasBupaDentActive: true
+            hasBupaDentActive: true,
+            showDailyScreenCustomIcon: true,
+        },
+        configurations: {
+            companyDailyScreenCustomIconText: "£10"
         }
     }
 } as IDatabaseItem
