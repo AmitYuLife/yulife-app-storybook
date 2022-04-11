@@ -17,7 +17,7 @@ export const {
     startChallengeFromQuests
 } = screens.challenges
 
-export const sendMindfulnessData = (value = 60, startTime = 20, endTime = 60, ) => async () => {
+export const sendMindfulnessData = (value = 180, startTime = 20, endTime = 60, ) => async () => {
     const record = [{
         startTime: moment().add(60, "seconds").toDate().toString(),
         endTime: moment().add(80, "seconds").toDate().toString(),

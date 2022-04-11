@@ -162,8 +162,14 @@ export const idNotVisible = (id: string, waitTime = 0) => async () => {
 
 export const idVisibleAtIndex =(id:string,index:number, waitTime=0) => async()=>{
     const target = element(by.id(id)).atIndex(index)
-    await waitFor(target).toBeNotVisible().withTimeout(waitTime)
-    await expect(target).toBeNotVisible()
+    await waitFor(target).toBeVisible().withTimeout(waitTime)
+    await expect(target).toBeVisible()
+}
+
+export const textVisibleAtIndex =(text:string,index:number, waitTime=0) => async()=>{
+    const target = element(by.text(text)).atIndex(index)
+    await waitFor(target).toBeVisible().withTimeout(waitTime)
+    await expect(target).toBeVisible()
 }
 
 export const typeViaID = (id: string, text: string) => async () => {

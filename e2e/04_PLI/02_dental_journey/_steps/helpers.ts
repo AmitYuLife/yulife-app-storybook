@@ -31,7 +31,7 @@ export const INFORMATION = async () => {
     const supportTitle = "Bupa support is here for you"
     const supportCopy = "Both NHS and private patients can claim cash back towards treatment costs with this plan. Use the Bupa Dental Care support line to arrange an appointment or get fast, free advice via a phone or video call."
     const claimsTitle = "Claims made easy"
-    const claimsCopy = "When you’re seen in a participating Bupa dental practice they’ll settle the claim for you*, or use Bupa Touch for online claims."
+    const claimsCopy = "When you're seen in a participating Bupa dental practice they'll settle the claim for you*, or use Bupa Touch for online claims."
     const worldwideTitle = "Worldwide coverage"
     const worldwideCopy = "Routine or emergency, you’re covered at home and on the go for eligible treatments."
     const onlyWithYuLifeTitle = "Only with YuLife"
@@ -93,7 +93,7 @@ export const PLANS = async () => {
 
     When("I tap the Common tile", when.tapText("£12.99"), async () => {
         When("I scroll down to Preventive treatment", when.scrollUntilTextVisible(PRODUCT_STEP_BODY_SCROLL_VIEW, "Preventive treatment", "down"), async () => {
-            Then("I should see Up to £205", then.textVisible("Up to £205"))
+            Then("I should see Up to £205", then.textVisible("up to £205"))
             Then("I should see £12.99 / month", then.textVisible("£12.99 / month"))
             Then(`I should see correct Common Package details and price`, then.packageVisible("Common"))
         })
@@ -101,7 +101,7 @@ export const PLANS = async () => {
     When("I scroll up to the top of the page", when.scrollUntilTextVisible(PRODUCT_STEP_BODY_SCROLL_VIEW, "Choose a plan that suits you", "up"), async () => {
         When("I tap the Rare tile", when.tapText("£18.99"), async () => {
             When("I scroll down to Preventive treatment", when.scrollUntilTextVisible(PRODUCT_STEP_BODY_SCROLL_VIEW, "Preventive treatment", "down"), async () => {
-                Then("I should see Up to £255", then.textVisible("Up to £255"))
+                Then("I should see Up to £255", then.textVisible("up to £255"))
                 Then("I should see £18.99 / month", then.textVisible("£18.99 / month"))
                 Then(`I should see correct Rare Package details and price`, then.packageVisible("Rare"))
             })
@@ -110,7 +110,7 @@ export const PLANS = async () => {
     When("I scroll up to the top of the page", when.scrollUntilTextVisible(PRODUCT_STEP_BODY_SCROLL_VIEW, "Choose a plan that suits you", "up"), async () => {
         When("I tap the Epic tile", when.tapText("£27.99"), async () => {
             When("I scroll down to Preventive treatment", when.scrollUntilTextVisible(PRODUCT_STEP_BODY_SCROLL_VIEW, "Preventive treatment", "down"), async () => {
-                Then("I should see Up to £385", then.textVisible("Up to £385"))
+                Then("I should see Up to £385", then.textVisible("up to £385"))
                 Then("I should see £27.99 / month", then.textVisible("£27.99 / month"))
                 Then(`I should see correct Epic Package details and price`, then.packageVisible("Epic"))
             })
