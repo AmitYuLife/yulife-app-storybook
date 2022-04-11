@@ -6,6 +6,7 @@
 import {
   ContentItemFormTextInputType,
   SduiActionType,
+  ContentItemConfirmCheckboxType,
   RNViewPointerEvents,
   ContentItemButtonType,
   ContentItemButtonSize,
@@ -131,6 +132,7 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemC
   id: string;
   confirmLabel: string;
   answerKey: string;
+  checkboxType: ContentItemConfirmCheckboxType | null;
   styles: GetPersonalProductStep_getPersonalProductStep_body_ContentItemConfirm_styles[] | null;
 }
 

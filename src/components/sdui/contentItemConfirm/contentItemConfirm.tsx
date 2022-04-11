@@ -10,15 +10,17 @@ type Props = GqlConfirm & {
   onChange: (value: string) => void;
 };
 
-export const ContentItemConfirm = memo(({ checked, onChange, confirmLabel, styles: incomingStyles }: Props) => {
-  const serverStyles = mapServerStyles(incomingStyles);
+export const ContentItemConfirm = memo(
+  ({ checked, onChange, confirmLabel, styles: incomingStyles, checkboxType }: Props) => {
+    const serverStyles = mapServerStyles(incomingStyles);
 
-  return (
-    <View style={[styles.wrapper, serverStyles]}>
-      <CheckBox checked={checked} value="" label={confirmLabel} onChange={onChange} />
-    </View>
-  );
-});
+    return (
+      <View style={[styles.wrapper, serverStyles]}>
+        <CheckBox checkboxType={checkboxType} checked={checked} value="" label={confirmLabel} onChange={onChange} />
+      </View>
+    );
+  }
+);
 
 const styles = StyleSheet.create({
   wrapper: {

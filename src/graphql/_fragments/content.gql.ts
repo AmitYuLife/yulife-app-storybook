@@ -5,6 +5,7 @@ export const GQL_FRAGMENT_CONTENT_ITEM_CONFIRM = gql`
     id
     confirmLabel: text
     answerKey
+    checkboxType
     styles {
       ...SduiStyle
     }

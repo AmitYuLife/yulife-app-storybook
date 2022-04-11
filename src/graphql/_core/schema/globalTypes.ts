@@ -65,6 +65,11 @@ export enum ContentItemCollapsingHeaderProductInfoType {
   default = "default",
 }
 
+export enum ContentItemConfirmCheckboxType {
+  circular = "circular",
+  cubic = "cubic",
+}
+
 export enum ContentItemFormTextInputType {
   email = "email",
   number = "number",

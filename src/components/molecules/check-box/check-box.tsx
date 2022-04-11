@@ -1,10 +1,10 @@
-import React, { memo } from "react";
+import React, { ComponentProps, memo } from "react";
 import { ViewStyle, View, StyleSheet } from "react-native";
-import Svg, { Circle, Path } from "react-native-svg";
 import { Colours, Style } from "@styles";
 import { CHECK_BOX_STATE } from "@ids";
 import { TouchableOpacityWithDelay } from "@molecules";
 import { TextTemplate } from "@atoms";
+import { CheckBoxType } from "./check-box-type";
 
 interface ICheckBox {
   checked: boolean;
@@ -16,6 +16,7 @@ interface ICheckBox {
   colour?: string;
   strokeColor?: string;
   activeCheckboxFillColor?: string;
+  checkboxType?: ComponentProps<typeof CheckBoxType>["type"];
 }
 
 function CheckBox(props: ICheckBox) {
@@ -29,26 +30,19 @@ function CheckBox(props: ICheckBox) {
     colour = Colours.neutral.n800,
     strokeColor = Colours.neutral.n400,
     activeCheckboxFillColor = Colours.primary.p600,
+    checkboxType = "circular",
   } = props;
 
   return (
     <TouchableOpacityWithDelay activeOpacity={1} style={styles.wrapper} onPress={() => onChange(value)}>
-      <View testID={CHECK_BOX_STATE(label, checked)}>
-        <Svg height={Style.adjust(24)} width={Style.adjust(24)} viewBox="0 0 32 32" testID={testID}>
-          {checked ? (
-            <>
-              <Circle cx="16" cy="16" r="16" fill={activeCheckboxFillColor} />
-              <Path
-                d="M24 10.6665L12.8834 21.3332L8 16.5332"
-                stroke="white"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </>
-          ) : (
-            <Circle cx="16" cy="16" r="15.25" fill="none" stroke={strokeColor} strokeWidth="1.5" />
-          )}
-        </Svg>
+      <View style={styles.adjustForLineHeight} testID={CHECK_BOX_STATE(label, checked)}>
+        <CheckBoxType
+          type={checkboxType}
+          checked={checked}
+          testID={testID}
+          strokeColor={strokeColor}
+          activeCheckboxFillColor={activeCheckboxFillColor}
+        />
       </View>
       {children || (
         <View style={styles.textWrapper}>
@@ -66,8 +60,10 @@ export default memo(CheckBox);
 const styles = StyleSheet.create({
   wrapper: {
     flexDirection: "row",
-    alignItems: "center",
     paddingVertical: Style.adjust(6),
+  } as ViewStyle,
+  adjustForLineHeight: {
+    marginTop: Style.adjust(6),
   } as ViewStyle,
   textWrapper: {
     paddingLeft: Style.adjust(12),
