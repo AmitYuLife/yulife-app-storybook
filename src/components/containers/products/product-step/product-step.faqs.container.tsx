@@ -7,7 +7,6 @@ import { GQL_QUERY_GET_PERSONAL_PRODUCT_STEP_DETACHED_FAQS } from "@graphql/pers
 import { GetPersonalProductStepDetachedFaqs_getPersonalProductStepDetachedFaqs_body as GPPSSQ_Body } from "@graphql/_core/schema";
 import { GetPersonalProductStepDetachedFaqs, GetPersonalProductStepDetachedFaqsVariables } from "@graphql/_core/schema";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
-
 import { ProductStepContentItemHeaderDetached } from "./subcomponents/detached/product-step.header.detached";
 import { SduiActionType } from "@graphql/_core/schema/globalTypes";
 import { Colours, Style, TOP_BAR } from "@styles";

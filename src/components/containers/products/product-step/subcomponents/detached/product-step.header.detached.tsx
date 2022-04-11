@@ -3,7 +3,7 @@ import { StyleSheet, View, ViewStyle } from "react-native";
 import { useDispatch } from "react-redux";
 import GenericHeading from "@atoms/generic-heading/generic-heading";
 import { ContentItemHeaderBar as GqlHeaderBar } from "@graphql/_core/schema";
-import { Colours, TOP_BAR } from "@styles";
+import { Colours } from "@styles";
 import { useBackHandler } from "@services/hooks/useBackHandler";
 import { ProductStepDetachedNavigationContext } from "../../product-step-detached-navigation.context";
 
@@ -36,7 +36,6 @@ export const ProductStepContentItemHeaderDetached = memo((props: Props) => {
 
 const styles = StyleSheet.create({
   wrapper: {
-    paddingTop: TOP_BAR.PADDING_TOP,
     backgroundColor: Colours.neutral.white,
   } as ViewStyle,
 });
