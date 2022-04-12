@@ -1,53 +1,38 @@
-// TODO fix console.logs
-// tslint:disable:no-console
 import AsyncStorage from "@react-native-community/async-storage";
+import EncryptedStorage from "react-native-encrypted-storage";
+import Logger from "@services/logging/logger";
 
 const TOKEN_KEY = "@Store:token";
 
 export async function setToken(token: string): Promise<void> {
   try {
-    await AsyncStorage.setItem(TOKEN_KEY, token);
+    await EncryptedStorage.setItem(TOKEN_KEY, token);
   } catch (e) {
-    console.log(e);
+    Logger.error(e, { event: "EncryptedStorage:setToken" });
   }
 }
 
 export async function getToken(): Promise<string | null> {
   try {
-    const token = await AsyncStorage.getItem(TOKEN_KEY);
-    return token;
+    const securedToken = await EncryptedStorage.getItem(TOKEN_KEY);
+
+    if (!securedToken?.length) {
+      const token = await AsyncStorage.getItem(TOKEN_KEY);
+      return token;
+    }
+
+    return securedToken;
   } catch (e) {
-    console.log(e);
+    Logger.error(e, { event: "EncryptedStorage:getToken" });
     return null;
   }
 }
 
 export async function clearToken(): Promise<void> {
   try {
-    await AsyncStorage.removeItem(TOKEN_KEY);
+    await EncryptedStorage.removeItem(TOKEN_KEY);
   } catch (e) {
-    console.log(e);
+    Logger.error(e, { event: "EncryptedStorage:clearToken" });
     return;
   }
-}
-
-export async function migrateOldAppVersionToken(): Promise<void> {
-  const OLD_KEY = "reduxPersist:user";
-  const oldUserStore = await AsyncStorage.getItem(OLD_KEY);
-  if (!oldUserStore) {
-    return;
-  }
-
-  try {
-    const token = JSON.parse(oldUserStore).token;
-    if (token && !!token.length) {
-      await setToken(token);
-    } else if (token && token.token && !!token.token.length) {
-      await setToken(token.token);
-    }
-  } catch (e) {
-    console.log(e);
-  }
-
-  await AsyncStorage.removeItem(OLD_KEY);
 }
