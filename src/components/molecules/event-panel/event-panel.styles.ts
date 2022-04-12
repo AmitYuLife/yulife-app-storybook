@@ -1,11 +1,10 @@
-import { getPositionBottom } from "@organisms/nav-bar/nav-bar.styles";
-import { Colours, Style } from "@styles";
+import { Colours, Style, NAV_BAR } from "@styles";
 import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
   flatListWrapper: {
     position: "absolute",
-    bottom: getPositionBottom({ additionalBottom: Style.adjust(Style.isXShort() ? 85 : 145) }),
+    bottom: NAV_BAR.getPositionBottom({ additionalBottom: Style.adjust(Style.isXShort() ? 85 : 145) }),
   },
   wrapper: {
     minHeight: Style.adjust(143),

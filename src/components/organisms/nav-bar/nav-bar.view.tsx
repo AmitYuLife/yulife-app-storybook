@@ -1,9 +1,10 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, memo, useMemo } from "react";
 import { labels as defaultLabels } from "@navigation/root";
 import { StyleSheet, View, Platform } from "react-native";
+import { NAV_BAR } from "@styles/index";
 import { Giraffe, Scroll, Treasure, Yu } from "./assets";
 import Trophy from "./assets/trophy";
-import styles, { getPositionBottom } from "./nav-bar.styles";
+import styles from "./nav-bar.styles";
 import useInterval from "@use-it/interval";
 import { NavBarProps } from "./nav-bar.helpers";
 
@@ -31,18 +32,18 @@ const NavBarView = (props: NavBarProps) => {
     setHasLaidOut(true);
   }, []);
 
-  function handlePressOut(onPress: () => void) {
-    return () => {
+  const handlePressOut = useCallback(
+    (onPress: () => void) => () => {
       setPressed(null);
       onPress();
-    };
-  }
+    },
+    []
+  );
+
+  const bottomStyle = useMemo(() => ({ bottom: NAV_BAR.getPositionBottom({ additionalBottom }) }), [additionalBottom]);
 
   return (
-    <View
-      onLayout={handleLayout}
-      style={StyleSheet.flatten([styles.outerWrapper, { bottom: getPositionBottom({ additionalBottom }) }])}
-    >
+    <View onLayout={handleLayout} style={StyleSheet.flatten([styles.outerWrapper, styles.shadow, bottomStyle])}>
       <View style={[styles.wrapper, displayElevation && styles.elevation]}>
         <Giraffe
           isPressed={pressed === 0}
@@ -86,4 +87,4 @@ const NavBarView = (props: NavBarProps) => {
   );
 };
 
-export default Object.assign(NavBarView, { getPositionBottom });
+export default memo(NavBarView);

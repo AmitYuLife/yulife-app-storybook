@@ -5,14 +5,13 @@ import { View, ViewStyle } from "react-native";
 import { displaySecondsAsMinutes, getCurrentWorld } from "@utils";
 import { useSelector } from "react-redux";
 import { getDailyEarnedCoins } from "@redux/coins/coins.selectors";
-import { Style } from "@styles";
+import { Style, NAV_BAR } from "@styles";
 import { getUserEvents, getUserFeatures } from "@redux/user/user.selectors";
 import { getDailySteps } from "@redux/daily-steps/daily-steps.selectors";
 import { getDailyMeditation } from "@redux/daily-meditation/daily-meditation.selectors";
 import { styles as textTemplateStyle } from "@components/atoms/text/text-template";
 import { getChallengesStatus, getCurrentLevel, getHasNotification } from "@redux/levels/levels.selectors";
 import { handleNavigateToQuestsTab } from "@navigation/utils";
-import { getPositionBottom } from "@organisms/nav-bar/nav-bar.styles";
 import { getDailyCycling } from "@redux/daily-cycling/daily-cycling.selectors";
 import { getDailyStepsTheme } from "@redux/theme/theme.selectors";
 import { REFERRALS_BUTTON_HOMEPAGE } from "@ids";
@@ -105,7 +104,7 @@ const styles = {
   buttonWrapper: {
     left: 0,
     right: 0,
-    bottom: getPositionBottom({ additionalBottom: Style.adjust(75) }),
+    bottom: NAV_BAR.getPositionBottom({ additionalBottom: Style.adjust(75) }),
     position: "absolute",
   } as ViewStyle,
 };

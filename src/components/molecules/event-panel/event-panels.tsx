@@ -1,7 +1,6 @@
 import React, { memo, useCallback } from "react";
 import { FlatList, StyleSheet, View, ListRenderItemInfo } from "react-native";
-import { Style } from "@styles";
-import { getPositionBottom } from "@organisms/nav-bar/nav-bar.styles";
+import { Style, NAV_BAR } from "@styles";
 import { GetUserProfile_getUserProfile_events as IEvent } from "@graphql/_core/schema";
 import EventPanel from "./event-panel";
 
@@ -45,7 +44,7 @@ const EventPanels = ({ events = [], currentWorld, componentId }: IProps) => {
 const styles = StyleSheet.create({
   flatListWrapper: {
     position: "absolute",
-    bottom: getPositionBottom({ additionalBottom: Style.adjust(Style.isXShort() ? 85 : 145) }),
+    bottom: NAV_BAR.getPositionBottom({ additionalBottom: Style.adjust(Style.isXShort() ? 85 : 145) }),
   },
   flatListContentContainerStyle: {
     paddingHorizontal: INITIAL_PADDING,
