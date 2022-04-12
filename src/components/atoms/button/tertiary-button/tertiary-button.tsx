@@ -1,6 +1,5 @@
 import React from "react";
 import { StyleSheet, View, ViewStyle } from "react-native";
-import { usePressedInWithDelay } from "@services/hooks/usePressedInWithDelay";
 import TertiaryButtonBase from "./tertiary-button.base";
 import { buttonStyles, getButtonDimensions } from "../button.styles";
 import { BUTTON_ICON } from "./tertiary-button.helpers";
@@ -48,8 +47,6 @@ export const TertiaryButton = (props: Props) => {
     RightIcon,
   } = props;
 
-  const { handlePress } = usePressedInWithDelay({ onPress, delay });
-
   const buttonDimensions = getButtonDimensions(size);
 
   if (!show) {
@@ -63,7 +60,7 @@ export const TertiaryButton = (props: Props) => {
         testID={testID}
         title={label}
         subTitle={tertiarySubLabel}
-        onPress={handlePress}
+        onPress={onPress}
         delay={delay}
         leftIcon={leftIcon}
         rightIcon={rightIcon}
