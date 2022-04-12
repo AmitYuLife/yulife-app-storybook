@@ -16,7 +16,14 @@ export const ContentItemConfirm = memo(
 
     return (
       <View style={[styles.wrapper, serverStyles]}>
-        <CheckBox checkboxType={checkboxType} checked={checked} value="" label={confirmLabel} onChange={onChange} />
+        <CheckBox
+          shouldAlignTop={true}
+          checkboxType={checkboxType}
+          checked={checked}
+          value=""
+          label={confirmLabel}
+          onChange={onChange}
+        />
       </View>
     );
   }

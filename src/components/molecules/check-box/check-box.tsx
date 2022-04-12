@@ -17,6 +17,7 @@ interface ICheckBox {
   strokeColor?: string;
   activeCheckboxFillColor?: string;
   checkboxType?: ComponentProps<typeof CheckBoxType>["type"];
+  shouldAlignTop?: boolean;
 }
 
 function CheckBox(props: ICheckBox) {
@@ -31,11 +32,16 @@ function CheckBox(props: ICheckBox) {
     strokeColor = Colours.neutral.n400,
     activeCheckboxFillColor = Colours.primary.p600,
     checkboxType = "circular",
+    shouldAlignTop = false,
   } = props;
 
   return (
-    <TouchableOpacityWithDelay activeOpacity={1} style={styles.wrapper} onPress={() => onChange(value)}>
-      <View style={styles.adjustForLineHeight} testID={CHECK_BOX_STATE(label, checked)}>
+    <TouchableOpacityWithDelay
+      activeOpacity={1}
+      style={[styles.wrapper, shouldAlignTop && styles.alignTopWrapper]}
+      onPress={() => onChange(value)}
+    >
+      <View style={shouldAlignTop ? styles.adjustForLineHeight : null} testID={CHECK_BOX_STATE(label, checked)}>
         <CheckBoxType
           type={checkboxType}
           checked={checked}
@@ -61,6 +67,10 @@ const styles = StyleSheet.create({
   wrapper: {
     flexDirection: "row",
     paddingVertical: Style.adjust(6),
+    alignItems: "center",
+  } as ViewStyle,
+  alignTopWrapper: {
+    alignItems: "flex-start",
   } as ViewStyle,
   adjustForLineHeight: {
     marginTop: Style.adjust(6),
