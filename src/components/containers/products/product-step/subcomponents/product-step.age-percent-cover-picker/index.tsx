@@ -1,11 +1,11 @@
-import React, { useContext } from "react";
+import React, { useContext, memo } from "react";
 import { ContentItemAgePercentCoverPicker as GqlProps } from "@graphql/_core/schema";
 import { ContentItemAgePercentCoverPicker } from "@components/sdui";
 import { useSetDefaultAnswer } from "../../hooks/useSetDefaultAnswer";
 import { ProductStepContext } from "../../product-step.context";
 import { CoverType } from "@graphql/_core/schema/globalTypes";
 
-export const ProductStepAgePercentCoverPicker = (props: GqlProps) => {
+export const ProductStepAgePercentCoverPicker = memo((props: GqlProps) => {
   const { dynamicData, setDynamicData } = useContext(ProductStepContext);
   const {
     answerKeyAge,
@@ -67,4 +67,4 @@ export const ProductStepAgePercentCoverPicker = (props: GqlProps) => {
       coverType={coverType as CoverType}
     />
   );
-};
+});
