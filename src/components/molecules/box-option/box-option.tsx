@@ -2,7 +2,7 @@ import React, { useEffect, memo, useRef } from "react";
 import { StyleSheet, View, Animated, ViewStyle, Platform } from "react-native";
 import { Style, Colours } from "@styles";
 import * as media from "@styles/media";
-import { PressableWithDelay } from "@molecules";
+import { TouchableWithDelay } from "@molecules";
 import { usePressedInWithDelay } from "@services/hooks/usePressedInWithDelay";
 
 interface Props {
@@ -33,7 +33,7 @@ const BoxOption = memo(
     const totalHeight = innerHeight + SHADOW_HEIGHT;
 
     return (
-      <PressableWithDelay testID={testID} onPressIn={handlePressIn} onPressOut={handlePressOut} onPress={handlePress}>
+      <TouchableWithDelay testID={testID} onPressIn={handlePressIn} onPressOut={handlePressOut} onPress={handlePress}>
         <View style={StyleSheet.flatten([styles.wrapper, { height: totalHeight }, wrapperStyle])}>
           <View style={styles.shadowWrapper} />
           <Animated.View
@@ -46,7 +46,7 @@ const BoxOption = memo(
             {children}
           </Animated.View>
         </View>
-      </PressableWithDelay>
+      </TouchableWithDelay>
     );
   }
 );
