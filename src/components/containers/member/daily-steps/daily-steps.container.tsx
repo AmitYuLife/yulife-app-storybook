@@ -24,7 +24,8 @@ function _DailyStepsContainer({ componentId, onLeftMenuPress }: Props) {
   const fitkit = useFitKit();
   const theme = useSelector(getDailyStepsTheme);
   const userSurge = useSelector(getUserSurge);
-  const { hasDailyScreenCustomIcon } = useSelector(getUserNotification) || {};
+  const userNotification = useSelector(getUserNotification);
+  const hasDailyScreenCustomIcon = userNotification?.hasDailyScreenCustomIcon;
 
   const [getDailyScreenCustomIcon, { data }] = useLazyQuery<GetDailyScreenCustomIcon>(
     GQL_QUERY_GET_DAILY_SCREEN_CUSTOM_ICON,

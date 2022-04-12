@@ -1,7 +1,6 @@
 import { Platform, YellowBox } from "react-native";
 import { Navigation, OptionsModalPresentationStyle } from "react-native-navigation";
 import registerScreens from "./navigation/index";
-import { migrateOldAppVersionToken } from "./services/storage";
 import { DETOX_ENABLED } from "@services/socket";
 import { initStripe } from "./services/stripe";
 
@@ -33,8 +32,6 @@ Navigation.events().registerAppLaunchedListener(async () => {
       },
     },
   });
-
-  await migrateOldAppVersionToken();
 
   // register all the screens
   registerScreens();

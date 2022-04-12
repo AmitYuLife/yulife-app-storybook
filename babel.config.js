@@ -28,5 +28,6 @@ module.exports = {
         },
       },
     ],
+    "@babel/plugin-proposal-unicode-property-regex",
   ],
 };
