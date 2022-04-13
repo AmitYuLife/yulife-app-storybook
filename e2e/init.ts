@@ -3,7 +3,6 @@ const config = require('../package.json').detox;
 const adapter = require('detox/runners/mocha/adapter');
 const addContext = require('mochawesome/addContext');
 
-import EncryptedStorage from 'react-native-encrypted-storage';
 import * as path from "path";
 import { socketServer } from "./_utils/socket";
 import { getTestPath } from "./mocha.utils";
@@ -40,7 +39,6 @@ afterEach(async function () {
 
 // comment out for detox debugging/dev
 after(async () => {
-  await EncryptedStorage.removeItem("@Store:token");
   await detoxInstance.cleanup();
   await socketServer.close();
   await dataManager.resetData();
