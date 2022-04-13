@@ -1,12 +1,14 @@
 import AsyncStorage from "@react-native-community/async-storage";
 import EncryptedStorage from "react-native-encrypted-storage";
 import Logger from "@services/logging/logger";
+import { DETOX_ENABLED } from "@services/socket";
 
+const MainStorage = DETOX_ENABLED ? AsyncStorage : EncryptedStorage;
 const TOKEN_KEY = "@Store:token";
 
 export async function setToken(token: string): Promise<void> {
   try {
-    await EncryptedStorage.setItem(TOKEN_KEY, token);
+    await MainStorage.setItem(TOKEN_KEY, token);
   } catch (e) {
     Logger.error(e, { event: "EncryptedStorage:setToken" });
   }
@@ -14,7 +16,7 @@ export async function setToken(token: string): Promise<void> {
 
 export async function getToken(): Promise<string | null> {
   try {
-    const securedToken = await EncryptedStorage.getItem(TOKEN_KEY);
+    const securedToken = await MainStorage.getItem(TOKEN_KEY);
 
     if (!securedToken?.length) {
       const token = await AsyncStorage.getItem(TOKEN_KEY);
@@ -31,7 +33,7 @@ export async function getToken(): Promise<string | null> {
 export async function clearToken(): Promise<void> {
   try {
     await AsyncStorage.removeItem(TOKEN_KEY);
-    await EncryptedStorage.removeItem(TOKEN_KEY);
+    await MainStorage.removeItem(TOKEN_KEY);
   } catch (e) {
     Logger.error(e, { event: "EncryptedStorage:clearToken" });
     return;
