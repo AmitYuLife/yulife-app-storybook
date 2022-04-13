@@ -7,6 +7,47 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.27.0] - 2022-04-13
+
+### Bugfixes
+
+- Bugfix: Align checkbox to top only on ContentItemConfirm
+- Bugfix: crash on app upgrade related to yuScreen notifications
+
+### Tasks
+
+- Task GS-280 GS-277: Join goal
+- Task HACK-22: Secure storage
+- Task XSE-931: Add cubic checkbox type
+- Task XSE-934: Add Bupa Package Details top padding
+- Task HACK-9 B: Remove unused code
+- Task XSE-933: Fix TextInput line color when inactive
+- Task XSE-865: Yu screen notifications
+- Task XSE-916: Fix Checkbox color
+- Task XSE-920: Fix Markdown link color
+- Task: Process iOS aggregated result on global queue
+- Task XSE-938: Reduce checkbox size from 32 to 24
+
+### Chores
+
+- Chore: Memoize component to bring it in line with all of the others
+- Chore: improve box-option and export nav-bar styles
+- Chore: Add pipeline to sync Storybook into s3 bucket
+
+### Extra
+
+- Hotfix: revert the token file and clearKeychain on detox start/restart
+- Hotfix: default to AsyncStorage for detox
+- Hotfix: remove clearStorage
+- Hotfix: use import
+- Hotfix: import encryptedStorage and removeItem in e2e init
+- Hotfix: clear token after test suite
+- Revert: use Touchable for BoxOption
+- detox:activity history screen add cycling and mindfulness
+- detox: referral reward ammount on yuscreen test
+- Detox/fix cycling aggregated query and overnightfix
+- Hotfix: join/api url trailing slash removal
+
 ## [3.26.0] - 2022-04-06
 
 ### Bugfixes
