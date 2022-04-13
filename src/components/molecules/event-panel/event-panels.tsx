@@ -8,17 +8,26 @@ interface IProps {
   componentId?: string;
   events: IEvent[];
   currentWorld: number;
+  onJoin: (event: IEvent) => Promise<void>;
 }
 
 const CARD_WIDTH = Style.DEVICE_WIDTH * 0.8;
 const INITIAL_PADDING = Style.DEVICE_WIDTH * 0.1 + 5;
 
-const EventPanels = ({ events = [], currentWorld, componentId }: IProps) => {
+const EventPanels = ({ events = [], currentWorld, componentId, onJoin }: IProps) => {
   const renderItem = useCallback(
     ({ item }: ListRenderItemInfo<IEvent>) => {
-      return <EventPanel width={CARD_WIDTH} event={item} currentWorld={currentWorld} componentId={componentId} />;
+      return (
+        <EventPanel
+          onJoin={onJoin}
+          width={CARD_WIDTH}
+          event={item}
+          currentWorld={currentWorld}
+          componentId={componentId}
+        />
+      );
     },
-    [currentWorld, componentId]
+    [onJoin, currentWorld, componentId]
   );
 
   const keyExtractor = useCallback((event: IEvent) => event.id, []);

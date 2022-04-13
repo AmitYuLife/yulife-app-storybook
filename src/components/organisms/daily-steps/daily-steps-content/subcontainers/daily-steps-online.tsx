@@ -1,9 +1,9 @@
-import React, { memo, useMemo } from "react";
+import React, { memo, useCallback, useMemo } from "react";
 import { Button, TextTemplate } from "@atoms";
 import { ActivityList, Counter, EventPanels } from "@molecules";
-import { View, ViewStyle } from "react-native";
+import { Alert, View, ViewStyle } from "react-native";
 import { displaySecondsAsMinutes, getCurrentWorld } from "@utils";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getDailyEarnedCoins } from "@redux/coins/coins.selectors";
 import { Style, NAV_BAR } from "@styles";
 import { getUserEvents, getUserFeatures } from "@redux/user/user.selectors";
@@ -16,6 +16,10 @@ import { getDailyCycling } from "@redux/daily-cycling/daily-cycling.selectors";
 import { getDailyStepsTheme } from "@redux/theme/theme.selectors";
 import { REFERRALS_BUTTON_HOMEPAGE } from "@ids";
 import { ROUTES } from "@navigation/constants";
+import { updateUserGoal } from "@redux/user/user.actions";
+import { useMutation } from "@apollo/react-hooks";
+import { JoinGoal, JoinGoalVariables, GetUserProfile_getUserProfile_events as Events } from "@graphql/_core/schema";
+import { GQL_MUTATION_JOIN_GOAL } from "@graphql/goals/joinGoal.gql";
 
 type DailyStepsOnlineProps = {
   onReferralsButtonPress: () => void;
@@ -37,6 +41,10 @@ export const DailyStepsOnline = memo(({ onReferralsButtonPress }: DailyStepsOnli
   const currentWorld = getCurrentWorld(currentLevel);
   const events = useSelector(getUserEvents);
 
+  const dispatch = useDispatch();
+
+  const [joinGoalMutation] = useMutation<JoinGoal, JoinGoalVariables>(GQL_MUTATION_JOIN_GOAL);
+
   const counterStyle = useMemo(
     () => ({
       ...textTemplateStyle.h1,
@@ -56,6 +64,27 @@ export const DailyStepsOnline = memo(({ onReferralsButtonPress }: DailyStepsOnli
     [hasNotification, availableForToday]
   );
 
+  const joinGoal = useCallback(
+    async (event: Events) => {
+      Alert.alert("Ready to join?", "Join the event to participate", [
+        {
+          text: "Cancel",
+          style: "cancel",
+        },
+        {
+          text: "Confirm",
+          onPress: async () => {
+            try {
+              const response = await joinGoalMutation({ variables: { goalId: event.id } });
+              dispatch(updateUserGoal(response.data.joinGoal));
+            } catch (error) {}
+          },
+        },
+      ]);
+    },
+    [dispatch, joinGoalMutation]
+  );
+
   return (
     <>
       <View style={styles.dailyStepsOnlineWrapper}>
@@ -73,7 +102,7 @@ export const DailyStepsOnline = memo(({ onReferralsButtonPress }: DailyStepsOnli
         </View>
       </View>
       {events?.length === 0 ? null : (
-        <EventPanels componentId={ROUTES.dailySteps} events={events} currentWorld={currentWorld} />
+        <EventPanels onJoin={joinGoal} componentId={ROUTES.dailySteps} events={events} currentWorld={currentWorld} />
       )}
       {!showChallengeButton ? null : (
         <View style={styles.buttonWrapper}>

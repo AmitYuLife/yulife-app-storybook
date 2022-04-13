@@ -23,6 +23,7 @@ export default StyleSheet.create({
   header: {
     flexDirection: "row",
     justifyContent: "space-between",
+    height: 32,
   },
   challenges: {
     flexDirection: "row",

@@ -1,6 +1,6 @@
 import React, { memo, useCallback, useMemo } from "react";
 import { View } from "react-native";
-import { Image, ProgressBar, TextTemplate } from "@atoms";
+import { Button, Image, ProgressBar, TextTemplate } from "@atoms";
 import { Colours, Style } from "@styles";
 import { ArrowRight } from "@atoms/icon/arrow-right";
 import { PressableWithDelay } from "@molecules";
@@ -8,16 +8,20 @@ import { GetUserProfile_getUserProfile_events as IEvent } from "@graphql/_core/s
 import { Navigation } from "react-native-navigation";
 import { ROUTES } from "@navigation/constants";
 import styles, { getCurrentWorldStyle } from "./event-panel.styles";
+import { useDispatch } from "react-redux";
+import { updateUserGoal } from "@redux/user/user.actions";
 
 interface IProps {
   componentId?: string;
   event: IEvent;
   currentWorld: number;
   width: number;
+  onJoin: (event: IEvent) => Promise<void>;
 }
 
-const EventPanel = ({ event, currentWorld, componentId, width }: IProps) => {
+const EventPanel = ({ event, currentWorld, componentId, width, onJoin }: IProps) => {
   const { wrapper, container } = getCurrentWorldStyle(currentWorld);
+  const dispatch = useDispatch();
   const fontColour = useMemo(() => (currentWorld === 1 ? Colours.neutral.white : Colours.neutral.n800), [currentWorld]);
   const PROGRESS_BAR_WIDTH = useMemo(() => width / 1.2 + 5, [width]);
   const buttonWrapperStyle = useMemo(
@@ -33,11 +37,11 @@ const EventPanel = ({ event, currentWorld, componentId, width }: IProps) => {
       container: [styles.container, container],
       badgeContainer: [styles.badgeContainer, { backgroundColor: event?.badge?.backgroundColor || "#F86F63" }],
     }),
-    [container, wrapper]
+    [container, event?.badge?.backgroundColor, wrapper]
   );
 
-  const onPress = useCallback(() => {
-    Navigation.push(componentId, {
+  const onPress = useCallback(async () => {
+    await Navigation.push(componentId, {
       component: {
         id: ROUTES.eventDialog,
         name: ROUTES.eventDialog,
@@ -49,7 +53,12 @@ const EventPanel = ({ event, currentWorld, componentId, width }: IProps) => {
         },
       },
     });
-  }, [componentId, event.id, event.stageId]);
+    dispatch(updateUserGoal({ ...event, badge: null }));
+  }, [componentId, dispatch, event]);
+
+  const onJoinPress = useCallback(() => {
+    onJoin(event);
+  }, [event, onJoin]);
 
   return (
     <PressableWithDelay onPress={onPress} style={buttonWrapperStyle}>
@@ -59,7 +68,11 @@ const EventPanel = ({ event, currentWorld, componentId, width }: IProps) => {
             <TextTemplate type="b1b" color={fontColour}>
               {event.title}
             </TextTemplate>
-            <ArrowRight color={Colours.neutral.white} withBackground={true} />
+            {event.joined ? (
+              <ArrowRight color={Colours.neutral.white} withBackground={true} />
+            ) : (
+              <Button onPress={onJoinPress} size={"ExtraSmall"} shadowColor={"transparent"} label={"Join"} />
+            )}
           </View>
           <View style={styles.challenges}>
             {event.challenges.map((challenge) => (
@@ -103,9 +116,9 @@ const EventPanel = ({ event, currentWorld, componentId, width }: IProps) => {
               </TextTemplate>
             )}
           </View>
-          {!event?.badge?.text ? null : (
+          {!event.badge?.text ? null : (
             <View style={containerStyles.badgeContainer}>
-              {!event.badge.icon ? null : (
+              {!event?.badge?.icon?.uri ? null : (
                 <Image width={styles.badgeIcon.width} style={styles.badgeIcon} source={event.badge.icon} />
               )}
               <TextTemplate color={Colours.neutral.white} type={"l1b"}>

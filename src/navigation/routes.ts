@@ -127,19 +127,6 @@ export default [
     component: require("../components/containers/member/debug/debug.container").default,
   },
   {
-    name: ROUTES.eventPanel,
-    component: require("../components/containers/member/debug/events-debug/event-panel.debug").default,
-  },
-  {
-    name: ROUTES.eventRewards,
-    component: require("../components/containers/member/debug/events-debug/event-rewards-wrapper.debug").default,
-  },
-  {
-    name: ROUTES.progressBar,
-    component: require("../components/containers/member/debug/events-debug/progress-bar.debug").default,
-  },
-
-  {
     name: ROUTES.changeMemberNickname,
     component: require("../components/containers/member/change-member-nickname/change-member-nickname.container")
       .default,

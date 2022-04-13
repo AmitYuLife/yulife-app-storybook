@@ -9,21 +9,6 @@ const events = [
     stageId: "test_stage",
     title: "Community Event",
     description: "Community Event",
-    descriptionImage: {
-      uri:
-        "https://yulife-local.imgix.net/app-system/icons/default/steps-2021-10-06.svg?ixlib=js-3.2.1&fit=clip&fm=png&s=47debee80dca111b0762dffa165a0dcb",
-    },
-
-    task: "Community Event",
-    taskImage: {
-      uri:
-        "https://yulife-local.imgix.net/app-system/icons/default/steps-2021-10-06.svg?ixlib=js-3.2.1&fit=clip&fm=png&s=47debee80dca111b0762dffa165a0dcb",
-    },
-    reward: "Community Event",
-    rewardImage: {
-      uri:
-        "https://yulife-local.imgix.net/app-system/icons/default/steps-2021-10-06.svg?ixlib=js-3.2.1&fit=clip&fm=png&s=47debee80dca111b0762dffa165a0dcb",
-    },
     startDate: "",
     endDate: "",
     challenges: [
@@ -44,6 +29,7 @@ const events = [
       },
       backgroundColor: "#FF0000",
     },
+    joined: false,
     tags: {
       tag: "Hard • 30 days",
       joined: "12/100 joined",
@@ -93,10 +79,10 @@ const events = [
 
 export const EventsPanelStory = () => (
   <ScrollView>
-    <EventPanels events={events} currentWorld={0} />
-    <EventPanels events={events} currentWorld={1} />
-    <EventPanels events={events} currentWorld={2} />
-    <EventPanels events={events} currentWorld={3} />
+    <EventPanels onJoin={() => Promise.resolve()} events={events} currentWorld={0} />
+    <EventPanels onJoin={() => Promise.resolve()} events={events} currentWorld={1} />
+    <EventPanels onJoin={() => Promise.resolve()} events={events} currentWorld={2} />
+    <EventPanels onJoin={() => Promise.resolve()} events={events} currentWorld={3} />
   </ScrollView>
 );
 

@@ -1,17 +1,21 @@
-import React, { FC, useState, useCallback, useMemo } from "react";
-import { View, ScrollView, NativeSyntheticEvent, NativeScrollEvent, Platform } from "react-native";
+import React, { FC, useCallback, useMemo, useRef, useState } from "react";
+import { View, Platform, Animated, NativeScrollEvent } from "react-native";
 import { TextTemplate, ProgressBar, Button } from "@atoms";
 import { Image } from "@atoms/image/image";
 import GenericHeadingAbsolute from "@atoms/generic-heading/generic-heading-absolute";
 import EventRewardsWrapper from "@organisms/event-reward/event-rewards-wrapper";
 import { Style } from "@styles";
 import { IReward } from "@organisms/event-reward/event-reward";
-import style, { CONTENT_MARGIN_TOP } from "./event-dialog.styles";
+import style, { CONTENT_MARGIN_TOP, FAQ_ICON_DIMENSION, FAQ_VERTICAL_PADDING } from "./event-dialog.styles";
 import { Source } from "react-native-fast-image";
 import { addCommasToNumber } from "@utils";
-import { HeadingAndCopy, InfoPanel } from "@components/molecules";
+import { HeadingAndCopy, InfoPanel, PressableWithDelay } from "@components/molecules";
 import { InfoCardList, IInfoCardListCard } from "@organisms";
-import { GetGoalDetails_getGoalDetails_banner as EventBanner } from "@graphql/_core/schema";
+import { GetGoalDetails_getGoalDetails_banner as EventBanner, RemoteImage } from "@graphql/_core/schema";
+import InfoMessagePopover from "@components/molecules/info-message-popover/info-message-popover";
+import { showOverlayWithChild } from "@components/modals/blurred-overlay/showOverlayWithChild";
+import { Navigation } from "react-native-navigation";
+import { MODALS } from "@navigation/constants";
 
 const PROGRESS_BAR_WIDTH = Style.DEVICE_WIDTH - Style.adjust(48);
 const TITLE_HEIGHT = Platform.select({
@@ -33,6 +37,11 @@ interface IAboutProps {
   markdown: string;
 }
 
+interface IFaqProps {
+  text: string;
+  icon: RemoteImage;
+}
+
 interface IProps {
   headerProps: IHeaderProps;
   rewards: IReward[];
@@ -42,6 +51,7 @@ interface IProps {
   progressIcon: Source;
   milestones: number[];
   about: IAboutProps;
+  faq?: IFaqProps;
   infoCards: IInfoCardListCard[];
   banner?: EventBanner;
   button?: EventButton;
@@ -63,37 +73,76 @@ const EventDialogScreen: FC<IProps> = ({
   progressIcon,
   milestones,
   about,
+  faq,
   infoCards,
   banner,
   button,
   onButtonPress,
 }) => {
   const { title, labels, source: headerImageSource, backgroundColor, headerTextColor, onLeftIconPress } = headerProps;
-  const [scrollY, setScrollY] = useState(0);
-
-  const onScroll = useCallback((event: NativeSyntheticEvent<NativeScrollEvent>) => {
-    const {
-      nativeEvent: {
-        contentOffset: { y },
-      },
-    } = event;
-    setScrollY(y);
-  }, []);
+  const [showHeading, setHeadingVisibilty] = useState(true);
+  const scrollY = useRef(new Animated.Value(0)).current;
+  const questionMarkRef = useRef<View>();
+  const onCloseInfoMessage = useCallback(() => Navigation.dismissOverlay(MODALS.blurredOverlay), []);
 
   const statusBarCoverStyle = useMemo(() => ({ ...style.statusBarCover, backgroundColor }), [backgroundColor]);
-  const headerImageContainerStyle = useMemo(() => ({ ...style.headerImageContainer, backgroundColor }), [
-    backgroundColor,
-  ]);
-  const showHeading = useMemo(() => scrollY < CONTENT_MARGIN_TOP - TITLE_HEIGHT, [scrollY]);
 
-  const headerImageStyle = useMemo(() => {
+  const onScroll = useCallback(
+    Animated.event<NativeScrollEvent>([{ nativeEvent: { contentOffset: { y: scrollY } } }], {
+      useNativeDriver: true,
+      listener: ({
+        nativeEvent: {
+          contentOffset: { y },
+        },
+      }) => {
+        if (showHeading && y > CONTENT_MARGIN_TOP - TITLE_HEIGHT) {
+          setHeadingVisibilty(false);
+        }
+
+        if (!showHeading && y < CONTENT_MARGIN_TOP - TITLE_HEIGHT) {
+          setHeadingVisibilty(true);
+        }
+      },
+    }),
+    [scrollY, showHeading]
+  );
+
+  const headerImageContainerStyle = useMemo(() => {
     return {
-      backgroundColor,
-      opacity: scrollY > Style.adjust(50) ? Math.max(1 - scrollY / Style.adjust(100), 0) : null,
-      height: Style.DEVICE_WIDTH - scrollY,
-      marginTop: -scrollY,
+      ...style.headerImageContainer,
+      opacity: scrollY.interpolate({
+        inputRange: [30, 60],
+        outputRange: [1, 0],
+        extrapolate: "clamp",
+      }),
+      transform: [{ translateY: Animated.multiply(-0.5, scrollY) }],
     };
-  }, [backgroundColor, scrollY]);
+  }, [scrollY]);
+
+  const openPopUp = useCallback(() => {
+    questionMarkRef?.current?.measure((_fx, _fy, _width, _height, pageX, pageY) => {
+      const infoView = (
+        <InfoMessagePopover
+          text={faq?.text}
+          pageX={pageX + FAQ_ICON_DIMENSION / 2 + FAQ_VERTICAL_PADDING / 2}
+          pageY={pageY + FAQ_ICON_DIMENSION}
+          onClose={onCloseInfoMessage}
+        />
+      );
+
+      showOverlayWithChild(infoView, false);
+    });
+  }, [faq?.text, onCloseInfoMessage]);
+
+  const faqWraperStyle = {
+    ...style.faqImageWrapper,
+    opacity: scrollY.interpolate({
+      inputRange: [30, 60],
+      outputRange: [1, 0],
+      extrapolate: "clamp",
+    }),
+    transform: [{ translateY: Animated.multiply(-1, scrollY) }],
+  };
 
   const heading = useMemo(
     () => (
@@ -112,24 +161,27 @@ const EventDialogScreen: FC<IProps> = ({
   );
 
   const progressText = useMemo(
-    () => `${addCommasToNumber(currentProgress)} / ${addCommasToNumber(maxProgress)} ${progressUnit}`,
+    () =>
+      `${currentProgress && addCommasToNumber(currentProgress)} / ${
+        maxProgress && addCommasToNumber(maxProgress)
+      } ${progressUnit}`,
     [currentProgress, maxProgress, progressUnit]
   );
 
   return (
-    <View style={style.wrapper}>
+    <View style={[style.wrapper, { backgroundColor }]}>
       <View style={statusBarCoverStyle} />
-      <View style={headerImageContainerStyle}>
+
+      <Animated.View style={headerImageContainerStyle}>
         <Image
           style={style.headerImageWrapper}
-          imageStyle={headerImageStyle}
-          resizeMode="contain"
+          resizeMode="cover"
           source={headerImageSource}
           width={Style.DEVICE_WIDTH}
           height={CONTENT_MARGIN_TOP}
         />
-      </View>
-      <ScrollView
+      </Animated.View>
+      <Animated.ScrollView
         showsVerticalScrollIndicator={false}
         style={style.scrollView}
         onScroll={onScroll}
@@ -168,7 +220,16 @@ const EventDialogScreen: FC<IProps> = ({
           )}
           {!button ? null : <View style={style.ctaPadding} />}
         </View>
-      </ScrollView>
+      </Animated.ScrollView>
+      {!faq ? null : (
+        <Animated.View style={faqWraperStyle}>
+          <View style={style.faqImageContainer} ref={questionMarkRef}>
+            <PressableWithDelay onPress={openPopUp}>
+              <Image resizeMode="contain" source={faq.icon} width={FAQ_ICON_DIMENSION} height={FAQ_ICON_DIMENSION} />
+            </PressableWithDelay>
+          </View>
+        </Animated.View>
+      )}
       {!showHeading ? null : (
         <GenericHeadingAbsolute
           heading={heading}
@@ -177,6 +238,7 @@ const EventDialogScreen: FC<IProps> = ({
           backgroundColor="transparent"
         />
       )}
+
       {!button ? null : (
         <View style={style.ctaWrapper}>
           <Button
