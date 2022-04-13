@@ -2,8 +2,8 @@ const detoxInstance = require('detox');
 const config = require('../package.json').detox;
 const adapter = require('detox/runners/mocha/adapter');
 const addContext = require('mochawesome/addContext');
-const EncryptedStorage = require('react-native-encrypted-storage');
 
+import EncryptedStorage from 'react-native-encrypted-storage';
 import * as path from "path";
 import { socketServer } from "./_utils/socket";
 import { getTestPath } from "./mocha.utils";
