@@ -56,6 +56,16 @@ export interface GetGoalDetails_getGoalDetails_about {
   markdown: string | null;
 }
 
+export interface GetGoalDetails_getGoalDetails_faq_icon {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetGoalDetails_getGoalDetails_faq {
+  text: string;
+  icon: GetGoalDetails_getGoalDetails_faq_icon;
+}
+
 export interface GetGoalDetails_getGoalDetails_infoCards_icon {
   id: string;
   uri: string | null;
@@ -120,6 +130,7 @@ export interface GetGoalDetails_getGoalDetails {
   progressIcon: GetGoalDetails_getGoalDetails_progressIcon;
   milestones: number[];
   about: GetGoalDetails_getGoalDetails_about | null;
+  faq: GetGoalDetails_getGoalDetails_faq | null;
   infoCards: GetGoalDetails_getGoalDetails_infoCards[] | null;
   banner: GetGoalDetails_getGoalDetails_banner | null;
   button: GetGoalDetails_getGoalDetails_button | null;

@@ -33,6 +33,7 @@ import {
   UPDATE_USER_PROFILE,
   UPDATE_USER_AVATAR,
   UPDATE_USER_SURGE,
+  UPDATE_USER_GOAL,
   REMOVE_YUSCREEN_NOTIFICATIONS,
 } from "./user.actions";
 import { AUTHENTICATED } from "@redux/app/app.actions";
@@ -234,6 +235,9 @@ export const userReducer = (state: IUserStore = getInitialState(), action: SyncA
 
     case UPDATE_USER_PROFILE:
       return updateUserProfile(state, action.payload);
+
+    case UPDATE_USER_GOAL:
+      return updateUserGoal(state, action.payload);
 
     case UPDATE_USER_AVATAR:
       return { ...state, avatar: { ...state.avatar, avatarRemoteFiles: { ...action.payload } } };
@@ -514,6 +518,17 @@ const updateUserProfile = (state: IUserStore, payload: Partial<IUserStore>) => (
     ...payload.notification,
   },
   events: payload.events,
+});
+
+const updateUserGoal = (state: IUserStore, payload: Events): IUserStore => ({
+  ...state,
+  events: state.events.map((event) => {
+    if (event.id === payload.id) {
+      return { ...payload };
+    }
+
+    return event;
+  }),
 });
 
 const updateUserSurge = (state: IUserStore, payload: IUserSurge) => ({

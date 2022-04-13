@@ -3,7 +3,7 @@ import EventDialogScreen from "@components/screens/member/events/event-dialog/ev
 import EventDialogLoadingScreen from "@components/screens/member/events/event-dialog/event-dialog-loading.screen";
 import { Navigation } from "react-native-navigation";
 import { useQuery } from "@apollo/react-hooks";
-import { GQL_QUERY_GET_GOAL_DETAILS } from "@graphql/events/event-details/getGoalDetails.gql";
+import { GQL_QUERY_GET_GOAL_DETAILS } from "@graphql/goals/getGoalDetails.gql";
 import { useDispatch } from "react-redux";
 import { GetGoalDetails } from "@graphql/_core/schema";
 import { showYuModal } from "@navigation/root";

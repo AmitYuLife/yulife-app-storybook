@@ -5,6 +5,7 @@ import {
   UpdateLeaderboardConsentVariables,
   UpdateMemberConsent,
   GetUserSurge_getUserSurge as IUserSurge,
+  GetUserProfile_getUserProfile_events as Events,
 } from "@graphql/_core/schema";
 import { MobileConsentInput } from "@graphql/_core/schema/globalTypes";
 import { IUserStore } from "./user.reducer";
@@ -40,6 +41,7 @@ export const SET_SHOW_SURGE_INTRO = "SET_SHOW_SURGE_INTRO";
 export const UPDATE_USER_PROFILE = "UPDATE_USER_PROFILE";
 export const UPDATE_USER_AVATAR = "UPDATE_USER_AVATAR";
 export const UPDATE_USER_SURGE = "UPDATE_USER_SURGE";
+export const UPDATE_USER_GOAL = "UPDATE_USER_GOAL";
 export const YUSCREEN_SYNCHRONISED = "YUSCREEN_SYNCHRONISED";
 export const REMOVE_YUSCREEN_NOTIFICATIONS = "REMOVE_YUSCREEN_NOTIFICATIONS";
 
@@ -151,6 +153,11 @@ export const updateActiveLeaderboardId = (payload: IUserStore["activeLeaderboard
 
 export const updateUserProfile = (payload: Partial<IUserStore>) => ({
   type: UPDATE_USER_PROFILE,
+  payload,
+});
+
+export const updateUserGoal = (payload: Events) => ({
+  type: UPDATE_USER_GOAL,
   payload,
 });
 

@@ -46,10 +46,17 @@ export const GQL_QUERY_GET_GOAL_DETAILS = gql`
         title
         markdown
       }
+      faq {
+        text
+        icon {
+          id
+          uri(options: { width: 56, height: 56 })
+        }
+      }
       infoCards {
         icon {
           id
-          uri
+          uri(options: { width: 56, height: 56 })
         }
         title
         description

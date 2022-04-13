@@ -73,18 +73,6 @@ export interface GetUserProfile_getUserProfile_notification {
   hasYuScreenNotification: boolean;
 }
 
-export interface GetUserProfile_getUserProfile_events_descriptionImage {
-  uri: string | null;
-}
-
-export interface GetUserProfile_getUserProfile_events_taskImage {
-  uri: string | null;
-}
-
-export interface GetUserProfile_getUserProfile_events_rewardImage {
-  uri: string | null;
-}
-
 export interface GetUserProfile_getUserProfile_events_challenges_icon {
   uri: string | null;
 }
@@ -136,15 +124,11 @@ export interface GetUserProfile_getUserProfile_events {
   stageId: string;
   title: string;
   description: string | null;
-  descriptionImage: GetUserProfile_getUserProfile_events_descriptionImage | null;
-  task: string | null;
-  taskImage: GetUserProfile_getUserProfile_events_taskImage | null;
-  reward: string | null;
-  rewardImage: GetUserProfile_getUserProfile_events_rewardImage | null;
   startDate: string | null;
   endDate: string | null;
   challenges: GetUserProfile_getUserProfile_events_challenges[];
   tags: GetUserProfile_getUserProfile_events_tags;
+  joined: boolean | null;
   badge: GetUserProfile_getUserProfile_events_badge | null;
   progressBar: GetUserProfile_getUserProfile_events_progressBar;
   milestones: GetUserProfile_getUserProfile_events_milestones[];
