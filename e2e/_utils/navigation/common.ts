@@ -5,11 +5,13 @@ import { dismissNewLooksModalIfVisible } from "./login";
 export const restart = async () => {
     await device.terminateApp();
     await dataManager.reseed();
+    await device.clearKeychain();
     await device.launchApp({ delete: true, });
 }
 
 export const restartWithData = async () => {
     await device.terminateApp();
+    await device.clearKeychain();
     await device.launchApp({ delete: true, });
 }
 
@@ -20,6 +22,7 @@ export const restartWithoutDelete = async () => {
 
 export const start = async () => {
     await device.terminateApp();
+    await device.clearKeychain();
     await device.launchApp({
         delete: true,
         permissions: {},
