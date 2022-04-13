@@ -2,6 +2,7 @@ const detoxInstance = require('detox');
 const config = require('../package.json').detox;
 const adapter = require('detox/runners/mocha/adapter');
 const addContext = require('mochawesome/addContext');
+const clearToken = require('../src/services/storage/token').clearToken;
 
 import * as path from "path";
 import { socketServer } from "./_utils/socket";
@@ -39,6 +40,7 @@ afterEach(async function () {
 
 // comment out for detox debugging/dev
 after(async () => {
+  await clearToken();
   await detoxInstance.cleanup();
   await socketServer.close();
   await dataManager.resetData();
