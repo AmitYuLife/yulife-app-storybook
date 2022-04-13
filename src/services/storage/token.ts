@@ -30,6 +30,7 @@ export async function getToken(): Promise<string | null> {
 
 export async function clearToken(): Promise<void> {
   try {
+    await AsyncStorage.removeItem(TOKEN_KEY);
     await EncryptedStorage.removeItem(TOKEN_KEY);
   } catch (e) {
     Logger.error(e, { event: "EncryptedStorage:clearToken" });
