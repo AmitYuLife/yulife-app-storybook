@@ -1,6 +1,6 @@
 import React, { memo, useCallback, useMemo } from "react";
 import { Button, TextTemplate } from "@atoms";
-import { ActivityList, Counter, EventPanels } from "@molecules";
+import { ActivityList, Counter, EventPanels, Panel } from "@molecules";
 import { Alert, View, ViewStyle } from "react-native";
 import { displaySecondsAsMinutes, getCurrentWorld } from "@utils";
 import { useDispatch, useSelector } from "react-redux";
@@ -20,6 +20,7 @@ import { updateUserGoal } from "@redux/user/user.actions";
 import { useMutation } from "@apollo/react-hooks";
 import { JoinGoal, JoinGoalVariables, GetUserProfile_getUserProfile_events as Events } from "@graphql/_core/schema";
 import { GQL_MUTATION_JOIN_GOAL } from "@graphql/goals/joinGoal.gql";
+import { changePanelVisibility } from "@redux/theme/theme.action";
 
 type DailyStepsOnlineProps = {
   onReferralsButtonPress: () => void;
@@ -32,7 +33,7 @@ export const DailyStepsOnline = memo(({ onReferralsButtonPress }: DailyStepsOnli
   const dailyEarnedCoins = useSelector(getDailyEarnedCoins);
   const { usePassiveMeditation } = useSelector(getUserFeatures);
   const { availableForToday, isAvailable } = useSelector(getChallengesStatus);
-  const { textStyle } = useSelector(getDailyStepsTheme);
+  const { textStyle, showPanel } = useSelector(getDailyStepsTheme);
   const mindfulTotal = displaySecondsAsMinutes(dailyMeditation);
   const hasNotification = useSelector(getHasNotification);
   const mindfulTotalToDisplay = `${mindfulTotal.minutes} min`;
@@ -85,6 +86,8 @@ export const DailyStepsOnline = memo(({ onReferralsButtonPress }: DailyStepsOnli
     [dispatch, joinGoalMutation]
   );
 
+  const closePanel = useCallback(() => dispatch(changePanelVisibility(false)), []);
+
   return (
     <>
       <View style={styles.dailyStepsOnlineWrapper}>
@@ -103,6 +106,17 @@ export const DailyStepsOnline = memo(({ onReferralsButtonPress }: DailyStepsOnli
       </View>
       {events?.length === 0 ? null : (
         <EventPanels onJoin={joinGoal} componentId={ROUTES.dailySteps} events={events} currentWorld={currentWorld} />
+      )}
+
+      {!showPanel ? null : (
+        <View style={styles.panel}>
+          <Panel
+            title="Stay tuned!"
+            description="The next event will start soon."
+            currentWorld={currentWorld}
+            onClose={closePanel}
+          />
+        </View>
       )}
       {!showChallengeButton ? null : (
         <View style={styles.buttonWrapper}>
@@ -135,5 +149,9 @@ const styles = {
     right: 0,
     bottom: NAV_BAR.getPositionBottom({ additionalBottom: Style.adjust(75) }),
     position: "absolute",
+  } as ViewStyle,
+  panel: {
+    position: "absolute",
+    bottom: NAV_BAR.getPositionBottom({ additionalBottom: Style.adjust(Style.isXShort() ? 85 : 145) }),
   } as ViewStyle,
 };

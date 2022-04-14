@@ -48,7 +48,7 @@ import { MindfulnessIcon } from "./mindfulness-icon";
 import { StarIcon } from "./star-icon";
 import { YuCoinIcon } from "./yucoin-icon";
 import { LockIcon } from "./lock";
-import { Stars1, Stars2 } from "./stars-icon";
+import { Stars1, Stars2, Stars3 } from "./stars-icon";
 
 export default {
   Clock,
@@ -103,4 +103,5 @@ export default {
   Stars1,
   Stars2,
   LockIcon,
+  Stars3,
 };
