@@ -11,6 +11,7 @@ const WRAPPER_MARGIN_TOP = Platform.select({
   android: -20,
 });
 interface Props {
+  hasNewRewards?: boolean;
   children: React.ReactNode;
   onLeftTabPress: () => void;
   onRightTabPress: () => void;
@@ -19,17 +20,19 @@ interface Props {
 }
 
 export function RewardsListLayout(props: Props) {
-  const { children, onLeftMenuPress, onLeftTabPress, onRightTabPress, activeScreen } = props;
+  const { children, onLeftMenuPress, onLeftTabPress, onRightTabPress, activeScreen, hasNewRewards } = props;
   const activeIndex = activeScreen === "rewards" ? 0 : 1;
 
   return (
     <View style={styles.wrapper} testID={REWARDS_SCREEN}>
       <View style={styles.topbarFiller} />
-      <View style={styles.rewardTabsWrapper}>
-        <RewardTabs onLeftTabPress={onLeftTabPress} onRightTabPress={onRightTabPress} activeTabIndex={activeIndex} />
-      </View>
+      {hasNewRewards ? null : (
+        <View style={styles.rewardTabsWrapper}>
+          <RewardTabs onLeftTabPress={onLeftTabPress} onRightTabPress={onRightTabPress} activeTabIndex={activeIndex} />
+        </View>
+      )}
       <View style={styles.listWrapper}>{children}</View>
-      <TopBarAbsolute onPressLeftIcon={onLeftMenuPress} />
+      <TopBarAbsolute leftIcon={hasNewRewards ? "Back" : "Menu"} onPressLeftIcon={onLeftMenuPress} />
       <NavBar activeIndex={4} />
     </View>
   );

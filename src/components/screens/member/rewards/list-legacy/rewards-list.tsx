@@ -1,16 +1,15 @@
-import { YulifeRefreshHeader } from "@molecules/index";
+import { RewardsListItem, YulifeRefreshHeader } from "@molecules/index";
 import { Style } from "@styles/index";
 import * as React from "react";
 import { View } from "react-native";
 import { IndexPath, LargeList } from "react-native-largelist-v3";
-import { GetMobileRewardsList_data_list } from "@graphql/_core/schema";
+import { GetRewards_getRewards } from "@graphql/_core/schema";
 
 import { StyleSheet, ViewStyle } from "react-native";
-import { RewardsListItem } from "./rewards-list.item";
 export interface IRewardsListScreenProps {
-  data: GetMobileRewardsList_data_list[];
+  data: GetRewards_getRewards[];
   onRefresh: () => void;
-  onItemPress: (item: GetMobileRewardsList_data_list) => void;
+  onItemPress: (item: GetRewards_getRewards) => void;
 }
 
 export class RewardsList extends React.PureComponent<IRewardsListScreenProps> {
@@ -18,7 +17,6 @@ export class RewardsList extends React.PureComponent<IRewardsListScreenProps> {
 
   public render() {
     const { data } = this.props;
-
     return (
       <View style={styles.listWrapper}>
         <LargeList
@@ -29,7 +27,6 @@ export class RewardsList extends React.PureComponent<IRewardsListScreenProps> {
           onRefresh={this.handleRefresh}
           refreshHeader={YulifeRefreshHeader}
           renderFooter={this.renderFooter}
-          renderHeader={this.renderHeader}
           showsVerticalScrollIndicator={false}
         />
       </View>
@@ -41,8 +38,7 @@ export class RewardsList extends React.PureComponent<IRewardsListScreenProps> {
   };
 
   private handleRefresh = async () => {
-    this.props.onRefresh();
-
+    await this.props.onRefresh();
     if (this.largeList) {
       this.largeList.endRefresh();
     }
@@ -51,33 +47,44 @@ export class RewardsList extends React.PureComponent<IRewardsListScreenProps> {
   private renderIndexPath = ({ row }: IndexPath) => {
     const { data } = this.props;
     const item = data[row];
-
     if (item) {
-      return <RewardsListItem {...item} onPress={this.handleItemPress(item)} />;
+      const { available_denominations, code, currency_code, link_type, uiSettings } = item;
+      const isLocked = !available_denominations.length;
+      const { yuCoin = 0, value = 0 } = available_denominations[0] || {};
+
+      return (
+        <RewardsListItem
+          onPress={this.handleItemPress(item)}
+          code={code}
+          settings={uiSettings}
+          cost={isLocked ? 0 : yuCoin}
+          linkType={link_type}
+          rewardValue={isLocked ? 0 : value}
+          rewardCurrency={currency_code}
+          isLocked={isLocked}
+          logoImageUri={item?.logoImageUri}
+          backgroundImageUri={item.background.uri}
+        />
+      );
     }
 
     return null;
   };
 
-  private handleItemPress = (item: GetMobileRewardsList_data_list) => () => {
+  private handleItemPress = (item: GetRewards_getRewards) => () => {
     this.props.onItemPress(item);
   };
 
-  private getHeight = () => Style.adjust(136);
+  private getHeight = () => Style.adjust(150);
 
   private renderFooter = () => <View style={styles.footer} />;
-  private renderHeader = () => <View style={styles.header} />;
 }
 
 const styles = StyleSheet.create({
   listWrapper: {
     flex: 1,
-    paddingHorizontal: Style.adjust(16),
-  } as ViewStyle,
-  header: {
-    height: Style.adjust(16),
   } as ViewStyle,
   footer: {
-    height: Style.adjust(72),
+    height: Style.SCALE_UP_AND_DOWN(72),
   } as ViewStyle,
 });

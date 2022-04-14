@@ -95,6 +95,7 @@ export * from "./GetMagicLink";
 export * from "./GetMobileAssetsWithVersion";
 export * from "./GetMobileCopy";
 export * from "./GetMobilePaymentCardSetup";
+export * from "./GetMobileRewardsList";
 export * from "./GetMobileWhatsNewModal";
 export * from "./GetNewConnectionLink";
 export * from "./GetPassiveChallengesLastUpdate";
