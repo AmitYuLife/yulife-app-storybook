@@ -8,6 +8,7 @@ export const start = async () => {
     const surgeDataManager = new DataManager()
     surgeDataManager.connect(`http://localhost:5000/`, true);
     surgeDataManager.clearData()
+    await device.clearKeychain();
     surgeDataManager.addData(surgeStubs as Record<string, IDatabaseItem>)
     surgeDataManager.addData(data as any)
     await device.terminateApp();
