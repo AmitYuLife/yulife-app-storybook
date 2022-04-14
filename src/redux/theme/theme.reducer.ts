@@ -8,6 +8,7 @@ import { TopBarTypes } from "@organisms/top-bar/top-bar.helpers";
 import moment from "moment";
 import { Colours } from "@styles";
 import { CenteredScreenImages } from "@molecules/centred-screen/centred-screen";
+import { CHANGE_PANEL_VISIBILITY } from "./theme.action";
 
 export interface ICentredScreen {
   image: CenteredScreenImages;
@@ -25,6 +26,7 @@ export interface IThemeStore {
     streakType: StreakTypes;
     textStyle: { color: string };
     topBarType: TopBarTypes;
+    showPanel: boolean;
   };
   questsOfflineScreen: {
     image: string;
@@ -45,6 +47,7 @@ export const getInitialState = (newBackgroundAssets = false): IThemeStore => ({
     streakType: "forest",
     textStyle: { color: Colours.neutral.n900 },
     topBarType: "default",
+    showPanel: false,
   },
   questsOfflineScreen: {
     image: "forest",
@@ -56,6 +59,8 @@ const themeReducer = (state: IThemeStore = getInitialState(), action: SyncAction
     case GET_USER_SUCCESS:
     case LOGIN_USER_SUCCESS:
       return getCurrentWorldTheme(state, action.payload, action.type);
+    case CHANGE_PANEL_VISIBILITY:
+      return changePanelVisibility(state, action.payload);
     default:
       return state;
   }
@@ -107,6 +112,7 @@ const getCurrentWorldTheme = (
           streakType: "mountain",
           textStyle: { color: Colours.neutral.n900 },
           topBarType: "default",
+          showPanel: false,
         },
         questsOfflineScreen: {
           image: "mountain",
@@ -127,6 +133,7 @@ const getCurrentWorldTheme = (
           streakType: "desert",
           textStyle: { color: Colours.neutral.n900 },
           topBarType: "default",
+          showPanel: false,
         },
         questsOfflineScreen: {
           image: "desert",
@@ -144,6 +151,7 @@ const getCurrentWorldTheme = (
           streakType: "ocean",
           textStyle: { color: Colours.neutral.white },
           topBarType: "white",
+          showPanel: false,
         },
         questsOfflineScreen: {
           image: "ocean",
@@ -153,6 +161,16 @@ const getCurrentWorldTheme = (
     default:
       return getInitialState(newBackgroundAssets);
   }
+};
+
+const changePanelVisibility = (state: IThemeStore, payload: boolean): IThemeStore => {
+  return {
+    ...state,
+    dailyStepsScreen: {
+      ...state.dailyStepsScreen,
+      showPanel: payload,
+    },
+  };
 };
 
 export default themeReducer;
