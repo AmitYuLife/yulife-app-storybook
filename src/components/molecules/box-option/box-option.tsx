@@ -12,6 +12,7 @@ interface Props {
   selectedStyle: ViewStyle | ViewStyle[];
   testID?: string;
   wrapperStyle?: ViewStyle;
+  innerWrapperStyle?: ViewStyle;
   innerHeight?: number;
 }
 
@@ -26,7 +27,16 @@ const SHADOW_HEIGHT = media.select(
 );
 
 const BoxOption = memo(
-  ({ testID, children, onPress, isSelected, selectedStyle, wrapperStyle, innerHeight = Style.adjust(104) }: Props) => {
+  ({
+    testID,
+    children,
+    onPress,
+    isSelected,
+    selectedStyle,
+    wrapperStyle,
+    innerWrapperStyle,
+    innerHeight = Style.adjust(104),
+  }: Props) => {
     const { isPressedIn, handlePressIn, handlePressOut, handlePress } = usePressedInWithDelay({ onPress });
     const { translateY } = useAnimation({ isSelected, isPressedIn });
 
@@ -39,6 +49,7 @@ const BoxOption = memo(
           <Animated.View
             style={[
               styles.innerWrapper,
+              innerWrapperStyle,
               (isSelected || isPressedIn) && selectedStyle,
               { transform: [{ translateY }], height: innerHeight },
             ]}

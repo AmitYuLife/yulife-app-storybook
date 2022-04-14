@@ -73,6 +73,9 @@ export interface GetRewards_getRewards {
 }
 
 export interface GetRewards {
+  /**
+   * Start of Legacy
+   */
   getRewards: (GetRewards_getRewards | null)[] | null;
 }
 

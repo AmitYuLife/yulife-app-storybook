@@ -1,52 +1,46 @@
-import { GQL_QUERY_GET_REWARDS } from "@graphql/rewards";
+import { GQL_QUERY_GET_MOBILE_REWARDS_LIST } from "@graphql/rewards";
 import { bottomTabs } from "@navigation/constants";
-import React, { useCallback } from "react";
+import React, { memo, useCallback, useState } from "react";
+import { useSelector } from "react-redux";
 import { Navigation } from "react-native-navigation";
-import { connect } from "react-redux";
-import { GetRewards, GetRewards_getRewards } from "@graphql/_core/schema";
+import {
+  GetMobileRewardsList as Rewards,
+  GetMobileRewardsListVariables as RewardsVariables,
+  GetMobileRewardsList_data_list,
+} from "@graphql/_core/schema";
 import { MODALS, ROUTES } from "@navigation/constants";
-import { IReduxState } from "@redux/_core/reducers";
-import { getCopy } from "@redux/copy/copy.selectors";
-import { getCurrentLevel } from "@redux/levels/levels.selectors";
+import { getPurchasesCopy } from "@redux/copy/copy.selectors";
 import Logger from "@services/logging/logger";
 import { RewardsListScreen } from "@screens/index";
 import { IMainTabsProps, showYuModal } from "@navigation/root";
 import { useQueryOnScreenSeenOnce } from "@services/hooks/useQueryOnScreenSeenOnce";
-import { PixelRatio } from "react-native";
-import { Style } from "@styles";
 
 interface IProps {
-  onTabChange: (newTab: "rewards" | "purchases", componentId?: string) => void;
   onLeftMenuPress: IMainTabsProps["onLeftMenuPress"];
   componentId?: IMainTabsProps["componentId"];
+  onTabChange: (newTab: "rewards" | "purchases", componentId?: string) => void;
 }
 
-type ConnectedState = ReturnType<typeof mapStateToProps>;
-
-type Props = IProps & ConnectedState;
-
-function RewardsListContainer(props: Props) {
-  const { copy, onTabChange } = props;
-
-  const [getRewards, { loading, data: rewards }] = useQueryOnScreenSeenOnce<GetRewards>(
-    GQL_QUERY_GET_REWARDS,
+const _RewardsListContainer = (props: IProps) => {
+  const { componentId, onLeftMenuPress, onTabChange } = props;
+  const [tag, setTag] = useState("All");
+  const copy = useSelector(getPurchasesCopy);
+  const [getRewards, { loading, data: rewards }] = useQueryOnScreenSeenOnce<Rewards, RewardsVariables>(
+    GQL_QUERY_GET_MOBILE_REWARDS_LIST,
     ROUTES.rewards,
-    {
-      variables: {
-        width: PixelRatio.get() * Style.adjust(375),
-        height: PixelRatio.get() * Style.adjust(150),
-      },
-    }
+    { variables: { tag } }
   );
 
+  const handlePurchasesPress = useCallback(async () => {
+    onTabChange("purchases");
+  }, [onTabChange]);
+
   const handleRewardDetailsItemPress = useCallback(
-    async (reward: GetRewards_getRewards) => {
-      if (!reward.available_denominations.length) {
+    async (reward: GetMobileRewardsList_data_list) => {
+      if (reward.isLocked) {
         Logger.logMixpanelEvent("reward_viewed", {
           locked: true,
-          reward_availability: reward.availability,
-          reward_best_sticker: reward.reward_sticker,
-          reward_code: reward.code,
+          reward_code: reward.id,
           reward_name: reward.name,
         });
 
@@ -65,13 +59,13 @@ function RewardsListContainer(props: Props) {
       } else {
         const route = ROUTES.rewardDetails;
 
-        await Navigation.push(props.componentId, {
+        await Navigation.push(componentId, {
           component: {
             id: route,
             name: route,
             passProps: {
-              onTabChange,
               rewardId: reward.id,
+              onTabChange: onTabChange,
             },
             options: { bottomTabs },
           },
@@ -79,25 +73,22 @@ function RewardsListContainer(props: Props) {
       }
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [props.copy]
+    [copy?.newLockedReward?.ctaLabel]
   );
-
-  const handleRightTabPress = useCallback(() => onTabChange("purchases"), [onTabChange]);
 
   return (
     <RewardsListScreen
-      data={rewards?.getRewards || []}
+      data={rewards?.data}
       onItemPress={handleRewardDetailsItemPress}
-      onLeftMenuPress={props.onLeftMenuPress}
-      onLeftTabPress={getRewards}
-      onRightTabPress={handleRightTabPress}
+      onLeftMenuPress={onLeftMenuPress}
+      onRefresh={getRewards}
+      onTagPress={setTag}
+      onPurchasesPress={handlePurchasesPress}
+      selectedTag={tag}
       loading={loading}
     />
   );
-}
+};
 
-const mapStateToProps = (state: IReduxState) => ({
-  copy: getCopy(state, "purchases"),
-  currentLevel: getCurrentLevel(state),
-});
-export default connect<ConnectedState>(mapStateToProps)(RewardsListContainer);
+const RewardsListContainer = memo(_RewardsListContainer);
+export default RewardsListContainer;

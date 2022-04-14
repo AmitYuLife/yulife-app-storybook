@@ -15,6 +15,7 @@ import { PurchasedListScreen } from "@screens/index";
 import { IMainTabsProps } from "@navigation/root";
 
 interface IProps {
+  hasNewRewards: boolean;
   onTabChange: (newTab: "rewards" | "purchases", componentId?: string) => void;
   onLeftMenuPress: IMainTabsProps["onLeftMenuPress"];
   componentId?: IMainTabsProps["componentId"];
@@ -37,12 +38,12 @@ const getConfirmedRoute = (rewardProviderId: string) => {
 const formatVoucherName = (num: number, currencyType: string, name: string) => {
   switch (currencyType) {
     case "AVIOS":
-      return `${formatMoney(num)} AVIOS`;
+      return `${formatMoney(num)} avios`;
     case "HUGGG":
       return name;
     case "GBP":
     default:
-      return `£${formatMoney(num)} ${name} VOUCHER`;
+      return `£${formatMoney(num)} ${name} voucher`;
   }
 };
 
@@ -51,7 +52,7 @@ const requestOptions: BaseQueryOptions = {
 };
 
 function RewardsPurchasesContainer(props: Props) {
-  const { copy, onTabChange } = props;
+  const { copy, onTabChange, hasNewRewards } = props;
 
   const { loading: purchasesAreLoading, data: purchases, refetch: refetchPurchases } = useQuery<GetAllPurchases>(
     GQL_QUERY_GET_ALL_PURCHASES,
@@ -96,6 +97,7 @@ function RewardsPurchasesContainer(props: Props) {
   return (
     <PurchasedListScreen
       data={items}
+      hasNewRewards={hasNewRewards}
       onLeftMenuPress={props.onLeftMenuPress}
       onLeftTabPress={handleLeftTabPress}
       onRightTabPress={handlePurchasesRefetch}

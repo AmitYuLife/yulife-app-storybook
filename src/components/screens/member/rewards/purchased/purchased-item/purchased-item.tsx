@@ -1,8 +1,8 @@
 import { TouchableOpacityWithDelay } from "@molecules/index";
 import * as React from "react";
-import { SFC } from "react";
-import { StyleSheet, View } from "react-native";
-import { Text } from "@atoms";
+import { FC } from "react";
+import { View } from "react-native";
+import { TextTemplate } from "@atoms";
 import styles from "./purchased-item.styles";
 
 export interface IRewardsPurchasedItemProps {
@@ -20,27 +20,22 @@ export enum RewardStatus {
   delivered = "delivered",
 }
 
-const RewardsPurchasedItem: SFC<IRewardsPurchasedItemProps> = ({ day, month, reward, cost, status, onPress }) => (
+const RewardsPurchasedItem: FC<IRewardsPurchasedItemProps> = ({ day, month, reward, cost, status, onPress }) => (
   <TouchableOpacityWithDelay onPress={onPress} style={styles.wrapper}>
     <View style={styles.dateWrapper}>
-      <Text style={styles.day}>{day}</Text>
-      <Text style={styles.month}>{month}</Text>
+      <TextTemplate type="b1b">{day}</TextTemplate>
+      <TextTemplate type="l1">{month}</TextTemplate>
     </View>
     <View style={styles.contentWrapper}>
-      <Text numberOfLines={1} ellipsizeMode="tail" bold={true} style={styles.reward}>
+      <TextTemplate numberOfLines={1} type="b1b">
         {reward}
-      </Text>
-      <Text style={styles.cost}>{cost}</Text>
+      </TextTemplate>
+      <TextTemplate type="l1">{cost}</TextTemplate>
     </View>
     <View style={styles.statusWrapper}>
-      <Text
-        style={StyleSheet.flatten([
-          styles.statusBase,
-          status === RewardStatus.failed ? styles.statusDeclined : styles.statusPending,
-        ])}
-      >
+      <TextTemplate type="l1" color={status === RewardStatus.failed ? "rgb(255,102,102)" : "rgb(51,51,51)"}>
         {([RewardStatus.failed, RewardStatus.pending] as string[]).indexOf(status) === -1 ? "" : status}
-      </Text>
+      </TextTemplate>
     </View>
   </TouchableOpacityWithDelay>
 );

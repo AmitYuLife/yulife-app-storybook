@@ -12,14 +12,16 @@ interface Props extends IConnectedScreenProps {
   loading: boolean;
   copy: GetMobileCopy_getMobileCopy_screens_purchases;
   currentWorld?: number;
+  hasNewRewards: boolean;
 }
 
 const RewardsPurchasedScreen = React.memo((props: Props) => {
-  const { data, onLeftTabPress, loading, onRightTabPress, onLeftMenuPress, copy } = props;
+  const { data, onLeftTabPress, loading, onRightTabPress, onLeftMenuPress, copy, hasNewRewards } = props;
 
   if (loading && data.length === 0) {
     return (
       <RewardsListLayout
+        hasNewRewards={hasNewRewards}
         activeScreen="purchased"
         onLeftTabPress={onLeftTabPress}
         onRightTabPress={onRightTabPress}
@@ -32,6 +34,7 @@ const RewardsPurchasedScreen = React.memo((props: Props) => {
 
   return (
     <RewardsListLayout
+      hasNewRewards={hasNewRewards}
       activeScreen="purchased"
       onLeftTabPress={onLeftTabPress}
       onRightTabPress={onRightTabPress}
