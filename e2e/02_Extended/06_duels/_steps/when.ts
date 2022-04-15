@@ -34,6 +34,7 @@ export const tapTab = (tabName: string) => async () => {
 
 export const restartToDuelsRequest = (customer:any, auth:any, fitkitAuth=true) => async()=>{
     await device.terminateApp();
+    await device.clearKeychain();
     await device.launchApp({ delete: true, });
     await loginOnly(customer, auth, fitkitAuth)()
     await navigateViaText("Next")
