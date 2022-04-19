@@ -40,7 +40,7 @@ const EventPanel = ({ event, currentWorld, componentId, width, onJoin }: IProps)
     [container, event?.badge?.backgroundColor, wrapper]
   );
 
-  const onPress = useCallback(async () => {
+  const onNavigateToDetails = useCallback(async () => {
     await Navigation.push(componentId, {
       component: {
         id: ROUTES.eventDialog,
@@ -56,12 +56,15 @@ const EventPanel = ({ event, currentWorld, componentId, width, onJoin }: IProps)
     dispatch(updateUserGoal({ ...event, badge: null }));
   }, [componentId, dispatch, event]);
 
-  const onJoinPress = useCallback(() => {
-    onJoin(event);
-  }, [event, onJoin]);
+  const onJoinPress = useCallback(async () => {
+    try {
+      await onJoin(event);
+      onNavigateToDetails();
+    } catch (_) {}
+  }, [event, onJoin, onNavigateToDetails]);
 
   return (
-    <PressableWithDelay onPress={onPress} style={buttonWrapperStyle}>
+    <PressableWithDelay onPress={onNavigateToDetails} style={buttonWrapperStyle}>
       <View style={containerStyles.wrapper}>
         <View style={containerStyles.container}>
           <View style={styles.header}>

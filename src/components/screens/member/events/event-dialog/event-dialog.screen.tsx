@@ -56,6 +56,7 @@ interface IProps {
   banner?: EventBanner;
   button?: EventButton;
   onButtonPress?: () => void;
+  onClaimRewardPress?: (rewardIds: string[]) => void;
 }
 
 interface EventButton {
@@ -78,6 +79,7 @@ const EventDialogScreen: FC<IProps> = ({
   banner,
   button,
   onButtonPress,
+  onClaimRewardPress,
 }) => {
   const { title, labels, source: headerImageSource, backgroundColor, headerTextColor, onLeftIconPress } = headerProps;
   const [showHeading, setHeadingVisibilty] = useState(true);
@@ -190,7 +192,7 @@ const EventDialogScreen: FC<IProps> = ({
       >
         <View style={style.contentWrapper}>
           <View style={style.rewardsWrapper}>
-            <EventRewardsWrapper rewards={rewards} />
+            <EventRewardsWrapper rewards={rewards} onClaimRewardPress={onClaimRewardPress} />
           </View>
           <View style={style.progressText}>
             <Image
@@ -223,7 +225,7 @@ const EventDialogScreen: FC<IProps> = ({
       </Animated.ScrollView>
       {!faq ? null : (
         <Animated.View style={faqWraperStyle}>
-          <View style={style.faqImageContainer} ref={questionMarkRef}>
+          <View style={style.faqImageContainer} collapsable={false} ref={questionMarkRef}>
             <PressableWithDelay onPress={openPopUp}>
               <Image resizeMode="contain" source={faq.icon} width={FAQ_ICON_DIMENSION} height={FAQ_ICON_DIMENSION} />
             </PressableWithDelay>

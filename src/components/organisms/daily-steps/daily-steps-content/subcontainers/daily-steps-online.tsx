@@ -21,6 +21,7 @@ import { useMutation } from "@apollo/react-hooks";
 import { JoinGoal, JoinGoalVariables, GetUserProfile_getUserProfile_events as Events } from "@graphql/_core/schema";
 import { GQL_MUTATION_JOIN_GOAL } from "@graphql/goals/joinGoal.gql";
 import { changePanelVisibility } from "@redux/theme/theme.action";
+import Logger from "@services/logging/logger";
 import { Navigation } from "react-native-navigation";
 import { useFitKit } from "@services/fitkit/fitkit.hooks";
 
@@ -69,21 +70,28 @@ export const DailyStepsOnline = memo(({ onReferralsButtonPress }: DailyStepsOnli
 
   const joinGoal = useCallback(
     async (event: Events) => {
-      Alert.alert("Ready to join?", "Join the event to participate", [
-        {
-          text: "Cancel",
-          style: "cancel",
-        },
-        {
-          text: "Confirm",
-          onPress: async () => {
-            try {
-              const response = await joinGoalMutation({ variables: { goalId: event.id } });
-              dispatch(updateUserGoal(response.data.joinGoal));
-            } catch (error) {}
+      return new Promise<void>((resolve, reject) =>
+        Alert.alert("Ready to join?", "Join the event to participate", [
+          {
+            text: "Cancel",
+            style: "cancel",
+            onPress: () => reject(),
           },
-        },
-      ]);
+          {
+            text: "Confirm",
+            onPress: async () => {
+              try {
+                const response = await joinGoalMutation({ variables: { goalId: event.id } });
+                dispatch(updateUserGoal(response.data.joinGoal));
+                resolve();
+              } catch (error) {
+                Logger.logMixpanelEvent("goal_join_error", { error: error.message, event });
+                reject();
+              }
+            },
+          },
+        ])
+      );
     },
     [dispatch, joinGoalMutation]
   );

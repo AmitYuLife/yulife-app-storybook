@@ -6,6 +6,7 @@ interface IProps {
   descriptionTitle: string;
   description: string;
   cta: string;
+  onCta: (rewardIds: string[]) => void;
   rewards: IReward[];
 }
 
@@ -21,13 +22,14 @@ const lottie = {
   onAnimationEnd: null as any,
 };
 
-export default function CollectEventRewardModal({ title, descriptionTitle, description, cta, rewards }: IProps) {
+export default function CollectEventRewardModal({ title, descriptionTitle, description, cta, onCta, rewards }: IProps) {
   return (
     <CollectEventRewardScreen
       title={title}
       descriptionTitle={descriptionTitle}
       description={description}
       cta={cta}
+      onCta={onCta}
       rewards={rewards}
       lottie={lottie}
     />
