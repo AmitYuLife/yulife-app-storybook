@@ -1,6 +1,6 @@
 import React, { memo, useCallback, useMemo } from "react";
 import { Button, TextTemplate } from "@atoms";
-import { ActivityList, Counter, EventPanels, Panel } from "@molecules";
+import { ActivityList, Counter, EventPanels, Panel, PressableWithDelay } from "@molecules";
 import { Alert, View, ViewStyle } from "react-native";
 import { displaySecondsAsMinutes, getCurrentWorld } from "@utils";
 import { useDispatch, useSelector } from "react-redux";
@@ -21,6 +21,8 @@ import { useMutation } from "@apollo/react-hooks";
 import { JoinGoal, JoinGoalVariables, GetUserProfile_getUserProfile_events as Events } from "@graphql/_core/schema";
 import { GQL_MUTATION_JOIN_GOAL } from "@graphql/goals/joinGoal.gql";
 import { changePanelVisibility } from "@redux/theme/theme.action";
+import { Navigation } from "react-native-navigation";
+import { useFitKit } from "@services/fitkit/fitkit.hooks";
 
 type DailyStepsOnlineProps = {
   onReferralsButtonPress: () => void;
@@ -43,7 +45,7 @@ export const DailyStepsOnline = memo(({ onReferralsButtonPress }: DailyStepsOnli
   const events = useSelector(getUserEvents);
 
   const dispatch = useDispatch();
-
+  const fitkit = useFitKit();
   const [joinGoalMutation] = useMutation<JoinGoal, JoinGoalVariables>(GQL_MUTATION_JOIN_GOAL);
 
   const counterStyle = useMemo(
@@ -88,22 +90,37 @@ export const DailyStepsOnline = memo(({ onReferralsButtonPress }: DailyStepsOnli
 
   const closePanel = useCallback(() => dispatch(changePanelVisibility(false)), []);
 
+  const navigateToTodayEarnings = useCallback(
+    () =>
+      !fitkit.authorised
+        ? null
+        : Navigation.push(ROUTES.dailySteps, {
+            component: {
+              id: ROUTES.todayEarnings,
+              name: ROUTES.todayEarnings,
+            },
+          }),
+    []
+  );
+
   return (
     <>
-      <View style={styles.dailyStepsOnlineWrapper}>
-        <TextTemplate type="h1" color={textStyle.color}>
-          <Counter duration={1200} value={dailyEarnedCoins} textStyle={counterStyle} /> YuCoin today
-        </TextTemplate>
+      <PressableWithDelay onPress={navigateToTodayEarnings}>
+        <View style={styles.dailyStepsOnlineWrapper}>
+          <TextTemplate type="h1" color={textStyle.color}>
+            <Counter duration={1200} value={dailyEarnedCoins} textStyle={counterStyle} /> YuCoin today
+          </TextTemplate>
 
-        <View style={styles.activityListWrapper}>
-          <ActivityList
-            textColor={textStyle.color}
-            steps={dailySteps}
-            cycling={dailyCycling}
-            mindfulness={usePassiveMeditation && dailyMeditation > 0 ? mindfulTotalToDisplay : null}
-          />
+          <View style={styles.activityListWrapper}>
+            <ActivityList
+              textColor={textStyle.color}
+              steps={dailySteps}
+              cycling={dailyCycling}
+              mindfulness={usePassiveMeditation && dailyMeditation > 0 ? mindfulTotalToDisplay : null}
+            />
+          </View>
         </View>
-      </View>
+      </PressableWithDelay>
       {events?.length === 0 ? null : (
         <EventPanels onJoin={joinGoal} componentId={ROUTES.dailySteps} events={events} currentWorld={currentWorld} />
       )}

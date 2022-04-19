@@ -19,6 +19,7 @@ import {
 import { SurgeModal } from "@components/modals";
 import { showFloatingModal } from "@components/modals/floating-modals/showFloatingModal";
 import { MODALS } from "@navigation/constants";
+import { InformationIcon } from "@atoms/icon/information-icon";
 
 interface IProps extends IConnectedScreenProps {
   showCounter?: boolean;
@@ -58,6 +59,9 @@ const DailyStepsScreen = ({
       >
         <Pad height={getPadHeight(hasEvents)} />
         <TouchableOpacityWithDelay onPress={onCoinPress} activeOpacity={1}>
+          <View style={styles.informationIcon}>
+            <InformationIcon />
+          </View>
           <YuCoin hasWhiteGlow={hasWhiteGlow} isGrayScale={!hasPermission} />
         </TouchableOpacityWithDelay>
         <DailyStepsContent />
