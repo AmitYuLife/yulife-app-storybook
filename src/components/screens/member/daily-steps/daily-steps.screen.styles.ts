@@ -64,4 +64,9 @@ export default StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   } as ViewStyle,
+  informationIcon: {
+    position: "absolute",
+    top: Style.adjust(30),
+    left: Style.adjust(30),
+  },
 });

@@ -49,6 +49,7 @@ import { StarIcon } from "./star-icon";
 import { YuCoinIcon } from "./yucoin-icon";
 import { LockIcon } from "./lock";
 import { Stars1, Stars2, Stars3 } from "./stars-icon";
+import { InformationIcon } from "./information-icon";
 
 export default {
   Clock,
@@ -104,4 +105,5 @@ export default {
   Stars2,
   LockIcon,
   Stars3,
+  InformationIcon,
 };
