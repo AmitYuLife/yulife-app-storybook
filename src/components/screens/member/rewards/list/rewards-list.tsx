@@ -1,15 +1,17 @@
-import { YulifeRefreshHeader } from "@molecules/index";
-import { Style } from "@styles/index";
 import * as React from "react";
-import { View } from "react-native";
+import { View, StyleSheet, ViewStyle } from "react-native";
 import { IndexPath, LargeList } from "react-native-largelist-v3";
+import { ArrowRightSvg, TertiaryButton } from "@atoms";
+import { YulifeRefreshHeader } from "@molecules";
+import { Colours, Style } from "@styles";
 import { GetMobileRewardsList_data_list } from "@graphql/_core/schema";
 
-import { StyleSheet, ViewStyle } from "react-native";
 import { RewardsListItem } from "./rewards-list.item";
+import Coupon from "./subcomponents/coupon";
 export interface IRewardsListScreenProps {
   data: GetMobileRewardsList_data_list[];
   onRefresh: () => void;
+  onPurchasesPress: () => void;
   onItemPress: (item: GetMobileRewardsList_data_list) => void;
 }
 
@@ -65,7 +67,21 @@ export class RewardsList extends React.PureComponent<IRewardsListScreenProps> {
 
   private getHeight = () => Style.adjust(136);
 
-  private renderFooter = () => <View style={styles.footer} />;
+  private renderFooter = () => (
+    <View style={styles.footer}>
+      <TertiaryButton
+        size="Fill"
+        onPress={this.props.onPurchasesPress}
+        label="Purchase history"
+        LeftIcon={<Coupon fill={Colours.neutral.n800} hasCheckmark={true} />}
+        RightIcon={
+          <View style={styles.purchasesRightIcon}>
+            <ArrowRightSvg colour={Colours.primary.p600} />
+          </View>
+        }
+      />
+    </View>
+  );
   private renderHeader = () => <View style={styles.header} />;
 }
 
@@ -77,7 +93,6 @@ const styles = StyleSheet.create({
   header: {
     height: Style.adjust(16),
   } as ViewStyle,
-  footer: {
-    height: Style.adjust(72),
-  } as ViewStyle,
+  footer: {} as ViewStyle,
+  purchasesRightIcon: { marginRight: Style.adjust(-8) },
 });
