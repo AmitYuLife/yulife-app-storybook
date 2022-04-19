@@ -6,10 +6,13 @@ import { useDispatch } from "react-redux";
 import { Animated, StyleSheet, ViewStyle } from "react-native";
 import { Style } from "@styles";
 
-type Props = GqlLottie & {
+type Props = Omit<GqlLottie, "onAnimationEnd"> & {
   shouldPlay?: boolean;
   shouldUseFadeIn?: boolean;
+  onAnimationEnd: GqlLottie["onAnimationEnd"] | (() => void);
 };
+
+const GRACE_PERIOD = 2000;
 
 export const ContentItemLottie = memo((props: Props) => {
   const [shouldLoop, setShouldLoop] = useState(false);
@@ -20,6 +23,7 @@ export const ContentItemLottie = memo((props: Props) => {
   const dispatch = useDispatch();
   const { opacity } = useFadeIn(shouldUseFadeIn);
   usePlayControl(lottieRef, shouldPlay);
+  const onAnimationEndDelay = useRef(null);
 
   useEffect(() => {
     if (uri && !lottieAnimation) {
@@ -41,6 +45,9 @@ export const ContentItemLottie = memo((props: Props) => {
   useEffect(
     () => () => {
       isUnmounted.current = true;
+      if (onAnimationEndDelay.current) {
+        clearTimeout(onAnimationEndDelay.current);
+      }
     },
     []
   );
@@ -51,8 +58,13 @@ export const ContentItemLottie = memo((props: Props) => {
       lottieRef.current?.play();
     }
 
+    if (typeof onAnimationEnd === "function") {
+      onAnimationEndDelay.current = setTimeout(onAnimationEnd, GRACE_PERIOD);
+      return null;
+    }
+
     if (onAnimationEnd) {
-      dispatch(onAnimationEnd);
+      return dispatch(onAnimationEnd);
     }
   }, [loop, shouldLoop, onAnimationEnd, dispatch]);
 

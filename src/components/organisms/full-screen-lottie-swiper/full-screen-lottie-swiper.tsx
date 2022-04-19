@@ -11,6 +11,7 @@ import { ContentItemLottie as GqlLottie } from "@graphql/_core/schema";
 import { ContentItemLottie } from "@components/sdui";
 import { TEXT_TEMPLATE } from "@ids";
 
+type ContextAwareGqlLottie = Omit<GqlLottie, "onAnimationEnd"> & { onAnimationEnd: () => void };
 interface Props {
   id: string;
   title: string;
@@ -25,7 +26,7 @@ interface Props {
     };
     onPress: (currentIndex: number) => void;
   };
-  items: Array<GqlLottie>;
+  items: Array<ContextAwareGqlLottie>;
   dismissMinVisibleIndex: number;
   ctaMinVisibleIndex?: number;
   autoPlaySpeedMs: number;
@@ -181,7 +182,7 @@ const styles = StyleSheet.create({
   } as ViewStyle,
 });
 
-function useScrollHandler(items: GqlLottie[]) {
+function useScrollHandler(items: ContextAwareGqlLottie[]) {
   const dispatch = useDispatch();
   const [activeIndex, setActiveIndex] = useState(0);
   const [userInteractionToggler, setUserInteractionToggler] = useState(false);

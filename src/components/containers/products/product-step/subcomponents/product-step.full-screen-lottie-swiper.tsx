@@ -10,18 +10,28 @@ export const ProductStepFullScreenLottieSwiper = memo(({ button, close, ...props
   const dispatch = useDispatch();
   const { productId, stepId, dynamicData } = useContext(ProductStepContext);
 
-  const items = props.items;
+  const items = props.items || [];
+  const contextAwarePayload = { productId, stepId, dynamicData };
 
   const derivedProps = useMemo(
     () => ({
       ...props,
-      items,
+      items: items.map((item) => ({
+        ...item,
+        onAnimationEnd: !item.onAnimationEnd
+          ? null
+          : () =>
+              dispatch({
+                type: item.onAnimationEnd.type,
+                payload: { ...contextAwarePayload, serverPayload: item.onAnimationEnd.payload },
+              }),
+      })),
       button: {
         ...button,
         onPress: () => {
           dispatch({
             type: button.onPress.type,
-            payload: { productId, stepId, dynamicData, serverPayload: button.onPress.payload },
+            payload: { ...contextAwarePayload, serverPayload: button.onPress.payload },
           });
         },
       },
@@ -38,7 +48,7 @@ export const ProductStepFullScreenLottieSwiper = memo(({ button, close, ...props
 
           dispatch({
             type: close.onPress.type,
-            payload: { productId, stepId, dynamicData, serverPayload: close.onPress.payload },
+            payload: { ...contextAwarePayload, serverPayload: close.onPress.payload },
           });
         },
       },
