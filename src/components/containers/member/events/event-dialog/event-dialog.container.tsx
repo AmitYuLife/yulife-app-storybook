@@ -1,13 +1,14 @@
-import React, { FC, useCallback } from "react";
+import React, { FC, useCallback, useEffect, useState } from "react";
 import EventDialogScreen from "@components/screens/member/events/event-dialog/event-dialog.screen";
 import EventDialogLoadingScreen from "@components/screens/member/events/event-dialog/event-dialog-loading.screen";
 import { Navigation } from "react-native-navigation";
-import { useQuery } from "@apollo/react-hooks";
+import { useMutation, useQuery } from "@apollo/react-hooks";
 import { GQL_QUERY_GET_GOAL_DETAILS } from "@graphql/goals/getGoalDetails.gql";
 import { useDispatch } from "react-redux";
-import { GetGoalDetails } from "@graphql/_core/schema";
+import { ClaimGoalRewards, ClaimGoalRewardsVariables, GetGoalDetails } from "@graphql/_core/schema";
 import { showYuModal } from "@navigation/root";
 import { MODALS } from "@navigation/constants";
+import { GQL_MUTATION_CLAIM_GOAL_REWARDS } from "@graphql/goals/claimGoalRewards.gql";
 
 interface IProps {
   componentId: string;
@@ -17,13 +18,26 @@ interface IProps {
 }
 
 const EventDialogContainer: FC<IProps> = ({ componentId, goalId, stageId, onLeftIconPress }) => {
+  const [goalDetails, setGoalDetails] = useState(null);
   const dispatch = useDispatch();
-  const { loading, data } = useQuery<GetGoalDetails>(GQL_QUERY_GET_GOAL_DETAILS, {
+  const { data } = useQuery<GetGoalDetails>(GQL_QUERY_GET_GOAL_DETAILS, {
     variables: { id: goalId, stageId },
     fetchPolicy: "network-only",
   });
 
+  const [claimGoalRewardsMutation] = useMutation<ClaimGoalRewards, ClaimGoalRewardsVariables>(
+    GQL_MUTATION_CLAIM_GOAL_REWARDS
+  );
+
   const { title, labels, headerBackgroundColor, headerTextColor, headerImage, button } = data?.getGoalDetails || {};
+
+  const onClaimRewardPress = useCallback(
+    async (rewardIds: string[]) => {
+      const updatedGoal = await claimGoalRewardsMutation({ variables: { rewardIds } });
+      setGoalDetails(updatedGoal.data.claimGoalRewards);
+    },
+    [claimGoalRewardsMutation]
+  );
 
   const onActionButtonPress = useCallback(() => {
     if (button) {
@@ -62,11 +76,24 @@ const EventDialogContainer: FC<IProps> = ({ componentId, goalId, stageId, onLeft
     onLeftIconPress,
   };
 
-  if (loading) {
+  useEffect(() => {
+    if (data?.getGoalDetails) {
+      setGoalDetails(data.getGoalDetails);
+    }
+  }, [data]);
+
+  if (!goalDetails) {
     return <EventDialogLoadingScreen onLeftIconPress={onLeftIconPress} />;
   }
 
-  return <EventDialogScreen headerProps={headerProps} onButtonPress={onActionButtonPress} {...data?.getGoalDetails} />;
+  return (
+    <EventDialogScreen
+      headerProps={headerProps}
+      onClaimRewardPress={onClaimRewardPress}
+      onButtonPress={onActionButtonPress}
+      {...goalDetails}
+    />
+  );
 };
 
 export default EventDialogContainer;

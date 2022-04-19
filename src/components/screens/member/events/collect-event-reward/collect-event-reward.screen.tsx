@@ -15,6 +15,7 @@ interface ICollectEventRewardsProps {
   descriptionTitle: string;
   description: string;
   cta: string;
+  onCta: (rewardIds: string[]) => void;
   rewards: IReward[];
   lottie: GqlLottie;
 }
@@ -24,12 +25,17 @@ const CollectEventRewardScreen: FC<ICollectEventRewardsProps> = ({
   descriptionTitle,
   description,
   cta,
+  onCta,
   rewards,
   lottie,
 }) => {
   const onCtaPress = useCallback(() => {
+    if (rewards?.length) {
+      onCta(rewards.map((reward) => reward.id));
+    }
+
     Navigation.dismissModal(MODALS.collectEventReward);
-  }, []);
+  }, [onCta, rewards]);
 
   const titleTemplate = Style.isShortToMedium() ? "b2b" : "b1b";
   const descriptionTitleTemplate = Style.isShortToMedium() ? "h3" : "h2";
