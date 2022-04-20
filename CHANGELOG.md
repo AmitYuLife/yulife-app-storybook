@@ -7,6 +7,34 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.28.0] - 2022-04-20
+
+### Features
+
+- Feature: rewards-list v2 under toggle
+
+### Tasks
+
+- Task GS-279: Claim goal rewards
+- Task XSE-946: Allow context aware sdui action on lottie onAnimationEnd
+- Task GS-238: Update Yucoin To Show It Is Selectable
+- Task GS-275: Add Stay Tuned Event Panel
+
+### Snyk
+
+- Snyk: Security upgrade react-native-svg from 12.1.0 to 12.3.0
+- Snyk: Security upgrade moment from 2.24.0 to 2.29.2
+
+### Chores
+
+- Chore: improve chip-list android responsiveness
+
+### Extra
+
+- Detox: remove the trailing space
+- Hotfix: purchases in reward list footer
+- detox:added small fix clearKeychain where is missing
+
 ## [3.27.0] - 2022-04-13
 
 ### Bugfixes
