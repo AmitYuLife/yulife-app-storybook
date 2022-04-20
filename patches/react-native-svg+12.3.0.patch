@@ -1,14 +1,8 @@
 diff --git a/node_modules/react-native-svg/src/css.tsx b/node_modules/react-native-svg/src/css.tsx
-index 306eb21..11d3dc3 100644
+index 0261771..7a11586 100644
 --- a/node_modules/react-native-svg/src/css.tsx
 +++ b/node_modules/react-native-svg/src/css.tsx
-@@ -1,4 +1,4 @@
--import React, { Component, useEffect, useMemo, useState } from 'react';
-+import React, { Component, useEffect, useMemo, useState } from 'react';
- import {
-   camelCase,
-   err,
-@@ -705,11 +705,19 @@ export function SvgCssUri(props: UriProps) {
+@@ -693,11 +693,19 @@ export function SvgCssUri(props: UriProps) {
    const { uri } = props;
    const [xml, setXml] = useState<string | null>(null);
    useEffect(() => {

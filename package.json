@@ -92,7 +92,7 @@
         "react-native-navigation": "^7.26.0",
         "react-native-push-notification": "7.3.1",
         "react-native-spring-scrollview": "^2.0.23",
-        "react-native-svg": "^12.1.0",
+        "react-native-svg": "12.3.0",
         "react-native-web": "^0.17.1",
         "react-native-web-linear-gradient": "^1.1.2",
         "react-native-webview": "^11.0.0",

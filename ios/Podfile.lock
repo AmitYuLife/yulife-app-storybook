@@ -394,8 +394,8 @@ PODS:
     - React
   - RNSpringScrollView (2.0.23):
     - React
-  - RNSVG (12.1.0):
-    - React
+  - RNSVG (12.3.0):
+    - React-Core
   - SDWebImage (5.12.1):
     - SDWebImage/Core (= 5.12.1)
   - SDWebImage/Core (5.12.1)
@@ -630,7 +630,7 @@ SPEC CHECKSUMS:
   CocoaAsyncSocket: 065fd1e645c7abab64f7a6a2007a48038fdc6a99
   DoubleConversion: cf9b38bf0b2d048436d9a82ad2abe1404f11e7de
   FBLazyVector: e686045572151edef46010a6f819ade377dfeb4b
-  FBReactNativeSpec: 4e411a1f12924f93862f81d9dd928e2e3a061545
+  FBReactNativeSpec: 0d2cbdcbb46bee95307b6fedd08312747f52fba2
   Flipper: d3da1aa199aad94455ae725e9f3aa43f3ec17021
   Flipper-DoubleConversion: 38631e41ef4f9b12861c67d17cb5518d06badc41
   Flipper-Folly: 755929a4f851b2fb2c347d533a23f191b008554c
@@ -690,7 +690,7 @@ SPEC CHECKSUMS:
   RNFastImage: e19ba191922e7dab9d932a4d59d62d76660aa222
   RNFitKit: 616d0226b7c2df643037e955434d347057eed612
   RNSpringScrollView: 8b0af44fda8b131d845b93bf5b1d0710152e4e61
-  RNSVG: ce9d996113475209013317e48b05c21ee988d42e
+  RNSVG: 302bfc9905bd8122f08966dc2ce2d07b7b52b9f8
   SDWebImage: 4dc3e42d9ec0c1028b960a33ac6b637bb432207b
   SDWebImageWebPCoder: d0dac55073088d24b2ac1b191a71a8f8d0adac21
   Stripe: 57c6997c64042a3f5aedae9b76e331942f8b75d2
@@ -701,4 +701,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: d048bdc5ea8531bb8e96017c871fdc1e18004c63
 
-COCOAPODS: 1.11.2
+COCOAPODS: 1.11.3
