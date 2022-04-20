@@ -16,7 +16,7 @@ type ChipListProps = {
 };
 
 const _ChipList = ({ chips }: ChipListProps) => (
-  <View>
+  <View style={styles.wrapper}>
     <FlatList
       data={chips}
       horizontal={true}
@@ -38,7 +38,7 @@ const HIT_SLOP_SIZE = Style.adjust(8);
 const HIT_SLOP = {
   left: HIT_SLOP_SIZE,
   right: HIT_SLOP_SIZE,
-  bottom: HIT_SLOP_SIZE,
+  bottom: Style.adjust(16),
   top: HIT_SLOP_SIZE,
 };
 
@@ -47,34 +47,52 @@ const Separator = memo(
   () => true
 );
 
-const renderItem = ({ item: { isSelected, value, onPress } }: ListRenderItemInfo<ChipProps>) => (
-  <PressableWithDelay
-    style={[styles.chip, isSelected ? styles.selected : styles.default]}
-    onPress={() => onPress(value)}
-    key={value}
-    hitSlop={HIT_SLOP}
-  >
-    <TextTemplate type="b2b" color={isSelected ? Colours.neutral.white : Colours.neutral.n800}>
-      {value}
-    </TextTemplate>
-  </PressableWithDelay>
-);
+const renderItem = ({ item }: ListRenderItemInfo<ChipProps>) => <Chip {...item} />;
 
 const keyExtractor = (item: ChipProps) => item.value;
 
+const Chip = memo(
+  ({ isSelected, value, onPress }: ChipProps) => {
+    const handlePress = React.useCallback(() => onPress(value), [value]);
+
+    return (
+      <View style={styles.chipWrapper}>
+        <PressableWithDelay
+          style={[styles.chip, isSelected ? styles.selected : styles.default]}
+          onPress={handlePress}
+          key={value}
+          hitSlop={HIT_SLOP}
+        >
+          <TextTemplate type="b2b" color={isSelected ? Colours.neutral.white : Colours.neutral.n800}>
+            {value}
+          </TextTemplate>
+        </PressableWithDelay>
+      </View>
+    );
+  },
+  (prev, next) => prev.isSelected === next.isSelected && prev.value === next.value
+);
+
 const styles = StyleSheet.create({
+  wrapper: {
+    height: Style.adjust(40),
+  },
   flatList: {
-    height: Style.adjust(28),
     paddingHorizontal: Style.adjust(16),
     justifyContent: "space-between",
   },
-  chip: {
+  chipWrapper: {
     flex: 1,
+    height: Style.adjust(40),
+    justifyContent: "flex-start",
+    alignItems: "center",
+  },
+  chip: {
     justifyContent: "center",
     alignItems: "center",
+    height: Style.adjust(28),
     borderRadius: Style.adjust(99),
     paddingHorizontal: Style.adjust(12),
-    paddingVertical: Style.adjust(2),
   },
   selected: {
     borderWidth: StyleSheet.hairlineWidth,

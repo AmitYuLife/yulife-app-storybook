@@ -31,12 +31,7 @@ const RewardsListScreen = React.memo((props: IRewardsListScreenProps) => {
   return (
     <View style={styles.wrapper} testID={REWARDS_SCREEN}>
       <View style={styles.topBarFiller} />
-      {!chips.length ? null : (
-        <>
-          <ChipList chips={chips} />
-          <View style={styles.separator} />
-        </>
-      )}
+      {!chips.length ? null : <ChipList chips={chips} />}
 
       <View style={styles.listWrapper}>
         {/* add loading */}
@@ -64,9 +59,6 @@ const styles = StyleSheet.create({
     flex: 1,
     marginBottom: Style.adjust(12),
   } as ViewStyle,
-  separator: {
-    marginTop: Style.adjust(16),
-  },
   topBarFiller: {
     height: TOP_BAR.TOP_BAR_WITH_PAD,
   } as ViewStyle,
