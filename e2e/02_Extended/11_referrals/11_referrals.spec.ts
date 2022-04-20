@@ -82,7 +82,7 @@ Feature("Referrals work as intended", async () => {
         })
     })
 
-    Scenario("As a user with custom icon and reward referrals enabled i can see it on home screen ", scenario.start, async () => {
+    Scenario("As a user with custom icon and reward referrals enabled i can see it on home screen", scenario.start, async () => {
         Given("I login as a user with a referrals enabled", given.loginAsUser(CUSTOMER_37, AUTH_37), async () => {
             Then("I should not see the Invite Colleagues popover", then.referralsPopoverNotVisible)
                 When("I close and reopen the app", when.restartWithoutDeleteTwoTimes, async () => {
