@@ -10,7 +10,7 @@ import { setDuelsIntroShown } from "@redux/onboarding/onboarding.actions";
 import { DuelTabs } from "@components/screens/member/duels-hub/subcomponents";
 import { NavBar } from "@organisms";
 import { TopBarAbsolute } from "@organisms/top-bar/top-bar-absolute";
-import { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
+import { GenericHeadingPad } from "@organisms";
 
 interface IProps {
   componentId?: IMainTabsProps["componentId"];

@@ -1,11 +1,11 @@
-import { Button, LevelLine, Stars, Text } from "@atoms";
+import { LevelLine, Stars, Text } from "@atoms";
 import * as React from "react";
 import { StyleSheet, View, ViewStyle } from "react-native";
 import { useSelector } from "react-redux";
 import { getChallengeFailedCopy } from "@redux/copy/copy.selectors";
 import styles from "./challenge-failed.screen.styles";
 import { CenteredScreenImages } from "@molecules/centred-screen/centred-screen";
-import { CentredScreen } from "@molecules";
+import { Button, CentredScreen } from "@molecules";
 
 interface IProps {
   level?: number;

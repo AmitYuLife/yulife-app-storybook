@@ -1,7 +1,8 @@
 import * as React from "react";
 import { SFC } from "react";
 import { GetMobileCopy_getMobileCopy_screens_emailSent as EmailSentCopy } from "@graphql/_core/schema";
-import { Blurb, Button, Heading, LinkButton, Pad, UnauthorisedGradient } from "@atoms";
+import { Blurb, Heading, Pad, UnauthorisedGradient } from "@atoms";
+import { Button, LinkButton } from "@molecules";
 import styles from "./reset-password.screen.styles";
 import { CentredScreen } from "@molecules";
 

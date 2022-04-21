@@ -1,7 +1,8 @@
 import React, { memo, useCallback, useContext } from "react";
 import { StyleSheet, View, ViewStyle } from "react-native";
 import { useDispatch } from "react-redux";
-import { PackageType, TextTemplate } from "@atoms";
+import { TextTemplate } from "@atoms";
+import { PackageType } from "@molecules";
 import { mapServerStyles } from "@components/sdui";
 import { Colours, Style } from "@styles";
 import { PERCENTAGE_COVERED, SELECTED_PACKAGE_TITLE } from "@ids";

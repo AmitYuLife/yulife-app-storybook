@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { DETOX_ENABLED } from "@services/socket";
 import { ContentItemCollapsingGenericHeader as Props } from "@graphql/_core/schema";
 import { CloseSvg } from "@atoms";
-import GenericHeadingAbsolute from "@atoms/generic-heading/generic-heading-absolute";
+import { GenericHeadingAbsolute } from "@organisms";
 import { Colours } from "@styles";
 
 type OwnProps = Props & {

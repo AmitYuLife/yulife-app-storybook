@@ -1,12 +1,13 @@
 import React, { useMemo } from "react";
 import { View } from "react-native";
-import { Button, LinkButton, TextTemplate } from "@atoms";
+import { TextTemplate } from "@atoms";
+import { Button, LinkButton } from "@molecules";
 import { ActiveBuffsButton } from "@organisms";
 import styles from "./streaks.styles";
 import LottieView from "lottie-react-native";
 import StreakCompletion from "@components/screens/member/streaks/subcomponents/streak-completion";
 import StreakStart from "./subcomponents/streak-start";
-import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
+import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import { Style } from "@styles";
 import { DETOX_ENABLED } from "@services/socket";
 import { BuffArea } from "@graphql/_core/schema/globalTypes";

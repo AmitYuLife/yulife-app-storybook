@@ -1,7 +1,7 @@
 import React, { memo } from "react";
 import { View, StyleSheet } from "react-native";
 import { SkeletonLoading } from "@atoms";
-import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
+import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import { UserAvatarCoinCardSkeleton } from "@molecules";
 import { Style } from "@styles";
 

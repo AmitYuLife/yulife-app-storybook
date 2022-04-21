@@ -1,4 +1,5 @@
-import { TextTemplate, Button } from "@atoms";
+import { TextTemplate } from "@atoms";
+import { Button } from "@molecules";
 import React, { useState, useRef, useEffect } from "react";
 import ReactNative, {
   Keyboard,
@@ -14,7 +15,7 @@ import Logger from "@services/logging/logger";
 import ProductsSurveyGreetings from "./products-survey-greetings";
 import { Colours } from "@styles";
 import { SURVEY_SCREEN, SURVEY_TEXT_BOX } from "@ids";
-import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
+import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import { CheckBox } from "@molecules";
 
 interface IProductSurvey {

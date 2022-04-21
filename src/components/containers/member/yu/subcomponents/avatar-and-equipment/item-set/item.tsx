@@ -1,7 +1,7 @@
 import React, { useCallback, useMemo } from "react";
 import { StyleSheet, ViewStyle, View, ImageStyle } from "react-native";
-import { SlotIcon, Image, TextTemplate } from "@atoms";
-import { TouchableOpacityWithDelay } from "@molecules";
+import { Image, TextTemplate } from "@atoms";
+import { SlotIcon, TouchableOpacityWithDelay } from "@molecules";
 import { DETOX_ENABLED } from "@services/socket";
 import { Style } from "@styles";
 import { AVATAR_ITEM } from "@ids";

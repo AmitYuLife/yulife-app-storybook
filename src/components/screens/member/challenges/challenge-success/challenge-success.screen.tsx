@@ -1,13 +1,13 @@
-import { AnimatedPlusPoints, Button, LevelLine, Stars, Text } from "@atoms/index";
-import { getChallengeSuccessCopy } from "@redux/copy/copy.selectors";
 import * as React from "react";
 import { Image, StyleSheet, View } from "react-native";
 import { useSelector } from "react-redux";
+import { LevelLine, Stars, Text } from "@atoms";
+import { AnimatedPlusPoints, Button, CentredScreen } from "@molecules";
+import { getChallengeSuccessCopy } from "@redux/copy/copy.selectors";
 import { formatCyclingMetersToKmWithOneDecimal } from "../challenge-progress/subcomponents/progress-bar.helpers";
 import Assets from "./assets";
 import { getStyle } from "./challenge-success.helpers";
 import styles from "./challenge-success.screen.styles";
-import { CentredScreen } from "@molecules";
 
 interface IProps {
   onPressCta: () => void;

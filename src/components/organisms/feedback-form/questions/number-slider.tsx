@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Image, SliderInput, YugiHeader } from "@atoms";
+import { Image } from "@atoms";
 import { View } from "react-native";
-import { SliderInputProps } from "@atoms/slider-input/slider-input";
-import { ScrollableLayout } from "@molecules";
+import { SliderInput, SliderInputProps, ScrollableLayout, YugiHeader } from "@molecules";
 import { styles, QuestionProps } from "./common";
 import { FEEDBACK_FORM_QUESTION } from "@ids";
 import { Style } from "@styles";

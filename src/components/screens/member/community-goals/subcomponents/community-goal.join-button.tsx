@@ -1,6 +1,7 @@
 import * as React from "react";
 import { StyleSheet } from "react-native";
-import { Button, Text } from "@atoms";
+import { Text } from "@atoms";
+import { Button } from "@molecules";
 import { Style, Colours } from "@styles";
 import { JOIN_COMMUNITY_GOAL_BUTTON } from "@ids";
 

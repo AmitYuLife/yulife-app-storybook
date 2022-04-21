@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, ViewStyle, View } from "react-native";
 import { LeaderboardListItems } from "./subcomponents/leaderboard-list-item";
-import GenericHeadingAbsolute from "@atoms/generic-heading/generic-heading-absolute";
+import { GenericHeadingAbsolute } from "@organisms";
 import { TOP_BAR } from "@styles";
 import { ILeaderboard } from "@redux/user/user.reducer";
 

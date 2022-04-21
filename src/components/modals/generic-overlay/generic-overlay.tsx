@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, View, ViewStyle } from "react-native";
 import { Style } from "@styles";
-import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
+import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 
 interface IGenericOverlay {
   onClose: () => void;

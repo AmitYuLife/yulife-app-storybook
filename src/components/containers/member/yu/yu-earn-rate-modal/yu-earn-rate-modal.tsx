@@ -3,7 +3,8 @@ import { StyleSheet, View, ViewStyle, ScrollView, TextStyle, ActivityIndicator }
 import { Style } from "@styles";
 import { Navigation } from "react-native-navigation";
 import { MODALS } from "@navigation/constants";
-import { Button, TextTemplate } from "@atoms";
+import { TextTemplate } from "@atoms";
+import { Button } from "@molecules";
 import { Table } from "./table/table";
 import { useQuery } from "@apollo/react-hooks";
 import GenericOverlay from "@components/modals/generic-overlay/generic-overlay";

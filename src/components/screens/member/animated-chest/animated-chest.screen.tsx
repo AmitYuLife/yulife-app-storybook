@@ -1,6 +1,7 @@
 import * as React from "react";
 import { Animated, Image, StyleSheet, View, ViewStyle } from "react-native";
-import { Button, ChestCoin, LinkButton, Text } from "@atoms";
+import { ChestCoin, Text } from "@atoms";
+import { Button, LinkButton } from "@molecules";
 import { ActiveBuffsButton } from "@organisms";
 import styles from "./animated-chest.styles";
 import assets from "./assets";

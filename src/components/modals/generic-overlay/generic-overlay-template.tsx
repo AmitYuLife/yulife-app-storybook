@@ -2,7 +2,8 @@ import React, { useCallback } from "react";
 import GenericOverlay from "./generic-overlay";
 import { Navigation } from "react-native-navigation";
 import { View, StyleSheet, ViewStyle, TextStyle } from "react-native";
-import { Text, Button, SecondaryButton } from "@atoms";
+import { Text } from "@atoms";
+import { Button, SecondaryButton } from "@molecules";
 import { Style, Colours } from "@styles";
 import { useBackHandler } from "@services/hooks/useBackHandler";
 

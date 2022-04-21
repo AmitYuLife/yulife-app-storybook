@@ -3,7 +3,7 @@ import { TextTemplate } from "@atoms";
 import { TEXT_TEMPLATE } from "@ids";
 import { Colours } from "@styles";
 import { ActivityIndicator, ScrollView, View } from "react-native";
-import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
+import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import { PaymentHistoryItem } from "./sub-components/payment-history-item";
 import { ROUTES } from "@navigation/constants";
 import { Navigation } from "react-native-navigation";

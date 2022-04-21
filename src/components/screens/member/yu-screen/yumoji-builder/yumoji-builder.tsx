@@ -1,6 +1,6 @@
 import React, { FC, useCallback, useMemo } from "react";
 import { StyleSheet, View } from "react-native";
-import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
+import { GenericHeadingPad, GenericHeadingAbsolute } from "@organisms";
 import { Colours, Style } from "@styles";
 import YumojiBuilderCategories from "./components/yumoji-builder-categories";
 import YumojiBuilderItemList from "./components/yumoji-builder-item-list";

@@ -1,6 +1,7 @@
 import React, { memo } from "react";
 import { StyleSheet, View, ViewStyle } from "react-native";
-import { PackageType, TextTemplate } from "@atoms";
+import { TextTemplate } from "@atoms";
+import { PackageType } from "@molecules";
 import { Style } from "@styles";
 import { CoverType } from "@graphql/_core/schema/globalTypes";
 

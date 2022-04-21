@@ -1,4 +1,4 @@
-import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
+import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import { ROUTES } from "@navigation/constants";
 import { Colours } from "@styles";
 import React, { useCallback } from "react";

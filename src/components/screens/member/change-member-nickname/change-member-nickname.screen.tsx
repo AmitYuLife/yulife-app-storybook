@@ -1,12 +1,13 @@
 import React, { useState, FunctionComponent, memo } from "react";
 import { View, Image, StyleSheet, ImageStyle, TextStyle, Keyboard, ViewStyle, ScrollView } from "react-native";
 import { Style, Colours } from "@styles";
-import { Button, Text, TextInput } from "@atoms";
+import { Text } from "@atoms";
+import { Button, TextInput } from "@molecules";
 import { Navigation } from "react-native-navigation";
 import { ROUTES } from "@navigation/constants";
 import { useKeyboardListeners } from "@services/hooks/useKeyboardListeners";
 import { NICKNAME_INPUT, CHANGE_MEMBER_NICK_BUTTON } from "@ids";
-import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
+import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 
 type Props = {
   enableButton: boolean;

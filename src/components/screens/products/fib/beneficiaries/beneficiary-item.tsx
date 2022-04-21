@@ -1,8 +1,7 @@
 import React from "react";
 import { View, StyleSheet, ViewStyle, TextStyle, Platform } from "react-native";
 import { Colours, Style } from "@styles";
-import { TertiaryButton } from "@atoms";
-import { BUTTON_ICON } from "@atoms/button/tertiary-button/tertiary-button.helpers";
+import { TertiaryButton, BUTTON_ICON } from "@molecules";
 import { InputField } from "@organisms/fib/input/input-field";
 import { truncate } from "@utils";
 import { BENEFICIARY_SHARE_INPUT } from "@ids";

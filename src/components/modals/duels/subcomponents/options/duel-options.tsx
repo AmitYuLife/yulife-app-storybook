@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from "react";
 import { View } from "react-native";
-import { Text, Button, Loading, BlurProvider } from "@atoms/index";
+import { Text, Loading, BlurProvider } from "@atoms";
+import { Button } from "@molecules";
 import styles from "./duel-options.styles";
 import { DuelStepProps, DEFAULT_DUEL_AMOUNT_LABEL } from "../../duels.types";
 import { GQL_QUERY_GET_DUEL_TEMPLATES } from "@graphql/duels/getDuelTemplates.gql";

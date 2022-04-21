@@ -1,6 +1,7 @@
 import React, { memo } from "react";
 import { View, ViewStyle } from "react-native";
-import { Text, LinkButton } from "@atoms";
+import { Text } from "@atoms";
+import { LinkButton } from "@molecules";
 
 export interface ILeaderboardHeaderProps {
   onBack: () => void;

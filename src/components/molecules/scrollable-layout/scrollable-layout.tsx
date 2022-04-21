@@ -1,9 +1,8 @@
 import React, { RefObject } from "react";
 import { Colours, Style } from "@styles";
 import { ScrollView, View, ViewStyle, StyleSheet, Platform, KeyboardAvoidingView } from "react-native";
-import { Logo } from "../../atoms/generic-heading/generic-heading.types";
 import { CTA } from "./cta";
-import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
+import { GenericHeadingAbsolute, GenericHeadingLogo, GenericHeadingPad } from "@organisms";
 import { SCROLLABLE_LAYOUT } from "@ids";
 
 interface Props {
@@ -15,7 +14,7 @@ interface Props {
   buttonAction?: () => void;
   onLeftIconPress?: () => void;
   onRightIconPress?: () => void;
-  logo?: Logo;
+  logo?: GenericHeadingLogo;
   heading?: string;
   shouldCenterContent?: boolean;
   secondButtonAction?: () => void;

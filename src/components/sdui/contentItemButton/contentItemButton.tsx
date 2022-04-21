@@ -2,7 +2,7 @@ import React, { memo, useCallback } from "react";
 import { useDispatch } from "react-redux";
 import { ContentItemButton as GqlButton } from "@graphql/_core/schema";
 import { ContentItemButtonType } from "@graphql/_core/schema/globalTypes";
-import { Button, LinkButton, SecondaryButton, TertiaryButton } from "@atoms";
+import { Button, LinkButton, SecondaryButton, TertiaryButton } from "@molecules";
 import { mapServerStyles } from "../_utils/mapServerStyles";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 

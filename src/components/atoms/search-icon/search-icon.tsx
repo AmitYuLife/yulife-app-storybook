@@ -1,6 +1,6 @@
 import * as React from "react";
 import Svg, { SvgProps, Path } from "react-native-svg";
-import { Style } from "../../../styles";
+import { Style } from "@styles";
 
 function SearchIcon(props: SvgProps = {}) {
   const color = props.color || "#5A5A5C";

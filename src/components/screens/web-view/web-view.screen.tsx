@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import WebView from "react-native-webview";
 import { View, StyleSheet, KeyboardAvoidingView, Linking } from "react-native";
-import { Style, TOP_BAR } from "@styles";
 import Config from "react-native-config";
-import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
 import { ShouldStartLoadRequest } from "react-native-webview/lib/WebViewTypes";
+import { Style, TOP_BAR } from "@styles";
+import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 
 export interface Props {
   uri: string;

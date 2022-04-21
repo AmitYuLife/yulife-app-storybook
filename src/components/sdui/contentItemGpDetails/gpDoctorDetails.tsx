@@ -6,8 +6,7 @@ import {
 } from "@graphql/_core/schema";
 import { Style, Colours } from "@styles";
 import { DoctorIcon, TextTemplate } from "@atoms";
-import SearchItem, { ISearchItem } from "@atoms/search/search-item";
-import { PressableWithDelay } from "@components/molecules";
+import { SearchItem, ISearchItem, PressableWithDelay } from "@molecules";
 
 interface DoctorSelectProps {
   onSelectGp: (gp: MedicalPractioners) => void;

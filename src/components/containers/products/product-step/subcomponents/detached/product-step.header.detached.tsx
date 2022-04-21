@@ -1,7 +1,7 @@
 import React, { ComponentProps, memo, useContext } from "react";
 import { StyleSheet, View, ViewStyle } from "react-native";
 import { useDispatch } from "react-redux";
-import GenericHeading from "@atoms/generic-heading/generic-heading";
+import { GenericHeading } from "@organisms";
 import { ContentItemHeaderBar as GqlHeaderBar } from "@graphql/_core/schema";
 import { Colours } from "@styles";
 import { useBackHandler } from "@services/hooks/useBackHandler";

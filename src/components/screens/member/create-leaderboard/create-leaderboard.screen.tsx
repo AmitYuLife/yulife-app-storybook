@@ -1,12 +1,12 @@
 import { CreateLeaderboardVariables } from "@graphql/_core/schema";
 import * as React from "react";
 import { FlatList, KeyboardAvoidingView, ListRenderItemInfo, Platform, StyleSheet, Text, View } from "react-native";
-import { Button, Close, Pad, SecondaryButton, TextInput } from "@atoms";
+import { Close, Pad } from "@atoms";
+import { Button, CentredScreen, SecondaryButton, TextInput } from "@molecules";
 import { validateEmail } from "@containers/login/login.helpers";
 import styles from "./create-leaderboard.screen.styles";
 import { GROUP_NAME_INPUT, LEADERBOARD_EMAIL_INPUT } from "@ids";
-import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
-import { CentredScreen } from "@molecules";
+import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 
 interface IState {
   emailError: string;

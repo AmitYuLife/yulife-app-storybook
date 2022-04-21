@@ -23,7 +23,7 @@ import { getCurrentUserId } from "@redux/user/user.selectors";
 import { useSelector } from "react-redux";
 import { showExistingDuelAlert } from "../leaderboard/active-leaderboard/leaderboard-content/items/leaderboard-rank-item/duel-dialog.helpers";
 import { useBackHandler } from "@services/hooks/useBackHandler";
-import { SearchInput, SearchList } from "@atoms";
+import { SearchInput, SearchList } from "@molecules";
 import DuelsSearchItem from "./subcomponents/search-item";
 import { showYuModal } from "@navigation/root";
 

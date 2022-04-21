@@ -1,7 +1,7 @@
 import React from "react";
 import { Platform, StyleSheet, View, ViewStyle } from "react-native";
-import { Button, Image } from "@atoms";
-import { TouchableOpacityWithDelay } from "@components/molecules";
+import { Image } from "@atoms";
+import { Button, TouchableOpacityWithDelay } from "@molecules";
 import { Style } from "@styles";
 import media from "@styles/media";
 import { BUTTON_CLOSE } from "@ids";

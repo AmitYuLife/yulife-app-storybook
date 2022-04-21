@@ -9,7 +9,7 @@ import { GetMobileCopy_getMobileCopy_screens_activityHistoryLevels } from "@grap
 import { Loading, TextTemplate } from "@atoms";
 import Item from "./activity-history-levels.item";
 import styles, { rowHeight, dividerHeight, bottomDividerHeight } from "./activity-history-levels.styles";
-import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
+import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import { DistanceMeasurementType } from "@graphql/_core/schema/globalTypes";
 
 export interface IServerProps {

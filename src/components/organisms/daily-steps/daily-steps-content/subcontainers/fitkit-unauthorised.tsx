@@ -1,6 +1,7 @@
 import React from "react";
 import { StyleSheet, TextStyle, View } from "react-native";
-import { Button, TextTemplate } from "@atoms";
+import { TextTemplate } from "@atoms";
+import { Button } from "@molecules";
 import { Style } from "@styles";
 import { getFitKitNotAuthorizedCopy } from "./copy";
 

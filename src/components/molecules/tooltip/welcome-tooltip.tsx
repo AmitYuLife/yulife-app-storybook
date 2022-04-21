@@ -1,4 +1,5 @@
-import { Button, Text } from "@atoms/index";
+import { Text } from "@atoms/index";
+import { Button } from "@molecules";
 import { GetMobileCopy_getMobileCopy_screens_intro_welcome } from "@graphql/_core/schema";
 import React from "react";
 import { Image, StyleSheet, View } from "react-native";

@@ -1,10 +1,10 @@
 import React, { FC } from "react";
 import { ScrollView, StyleSheet, View, ViewStyle } from "react-native";
 import { Style } from "@styles";
-import { YugiHeader } from "@atoms";
+import { YugiHeader } from "@molecules";
 import WellBeingServiceCard from "@components/screens/wellbeing-hub/sub-components/wellbeing-service-card";
 import WellBeingServiceCardSkeleton from "@components/screens/wellbeing-hub/sub-components/wellbeing-service-card-skeleton";
-import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
+import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import { GetWellbeingHubItems_wellbeingHubItems as WellbeingCard } from "@graphql/_core/schema";
 import WellBeingServiceNoResults from "@components/screens/wellbeing-hub/sub-components/wellbeing-service-no-results";
 import { WELLBEING_HUB_SCREEN, WELLBEING_HUB_SCROLL_VIEW } from "@ids";

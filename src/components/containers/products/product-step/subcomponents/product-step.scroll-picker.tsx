@@ -2,7 +2,7 @@ import React, { memo, useCallback, useContext } from "react";
 import { StyleSheet, View, ViewStyle } from "react-native";
 import { ContentItemScrollPicker as GqlScrollPicker } from "@graphql/_core/schema";
 import { Style } from "@styles";
-import { TertiaryButton } from "@atoms";
+import { TertiaryButton } from "@molecules";
 import { ProductStepContext } from "../product-step.context";
 
 type Props = GqlScrollPicker;

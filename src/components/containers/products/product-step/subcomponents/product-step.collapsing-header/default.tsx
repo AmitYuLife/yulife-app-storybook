@@ -1,6 +1,7 @@
 import React, { memo, useContext, useMemo } from "react";
 import { StyleSheet, View, ViewStyle } from "react-native";
-import { PackageType, TextTemplate } from "@atoms";
+import { TextTemplate } from "@atoms";
+import { PackageType } from "@molecules";
 import { ContentItemCollapsingHeaderProductInfo as Props } from "@graphql/_core/schema";
 import { LOCAL_ANSWER_KEY } from "../../utils";
 import { CoverType, YuWorld } from "@graphql/_core/schema/globalTypes";

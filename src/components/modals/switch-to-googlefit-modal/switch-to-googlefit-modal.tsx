@@ -1,6 +1,7 @@
 import React, { memo, useCallback } from "react";
 import { Alert, StyleSheet, View } from "react-native";
-import { Button, ChecklistInfoCard, TextTemplate, Wrapper } from "@atoms";
+import { TextTemplate, Wrapper } from "@atoms";
+import { Button, ChecklistInfoCard } from "@molecules";
 import { GoogleFitIcon } from "@atoms/icon/google-fit-icon";
 import { Colours, Style } from "@styles";
 import GenericOverlay from "@components/modals/generic-overlay/generic-overlay";

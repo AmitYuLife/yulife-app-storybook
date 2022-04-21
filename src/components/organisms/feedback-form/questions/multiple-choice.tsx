@@ -1,5 +1,6 @@
 import React from "react";
-import { Button, Image, YugiHeader } from "@atoms";
+import { Image } from "@atoms";
+import { Button, YugiHeader } from "@molecules";
 import { View } from "react-native";
 import { ScrollableLayout } from "@molecules";
 import { styles, QuestionProps } from "./common";

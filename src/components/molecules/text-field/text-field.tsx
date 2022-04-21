@@ -4,7 +4,7 @@ import { Style } from "@styles/index";
 import { Placeholder } from "./subcomponents/placeholder";
 import { BaseUnderline, ColouredUnderline } from "./subcomponents/underlines";
 import { addCommasToNumber, formatPostCode } from "@utils";
-import Warning from "@atoms/text-input/assets/warning";
+import { TextInputWarningIcon } from "@molecules";
 import { useMaterialInputAnimation } from "./useMaterialInputAnimation";
 
 type Type = "Text" | "Number" | "PhoneNumber" | "PostCode" | "PostCodeFinder";
@@ -154,7 +154,7 @@ export default function TextField(props: Props) {
 
         {showError && !isFocused ? (
           <View style={styles.rightIcon}>
-            <Warning />
+            <TextInputWarningIcon />
           </View>
         ) : null}
       </View>

@@ -1,5 +1,5 @@
-import { Button, Text, Pad, LinkButton, SecondaryButton } from "@atoms/index";
-import { Instruction, Picker } from "@molecules/index";
+import { Text, Pad } from "@atoms";
+import { Button, LinkButton, SecondaryButton, Instruction, Picker } from "@molecules";
 import * as React from "react";
 import { View } from "react-native";
 import LinkGroup from "../link-group/link-group";

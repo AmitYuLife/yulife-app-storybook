@@ -1,8 +1,8 @@
 import * as React from "react";
 import { View, StyleSheet, ViewStyle } from "react-native";
 import { IndexPath, LargeList } from "react-native-largelist-v3";
-import { ArrowRightSvg, TertiaryButton } from "@atoms";
-import { YulifeRefreshHeader } from "@molecules";
+import { ArrowRightSvg } from "@atoms";
+import { YulifeRefreshHeader, TertiaryButton } from "@molecules";
 import { Colours, Style } from "@styles";
 import { GetMobileRewardsList_data_list } from "@graphql/_core/schema";
 

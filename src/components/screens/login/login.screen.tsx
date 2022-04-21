@@ -1,11 +1,11 @@
-import { BUTTON_LOGIN, INPUT_LOGIN_EMAIL, INPUT_LOGIN_PASSWORD } from "@ids";
 import * as React from "react";
 import { PureComponent } from "react";
 import { EmitterSubscription, Keyboard, KeyboardAvoidingView, Platform, View } from "react-native";
 import * as Animatable from "react-native-animatable";
+import { BUTTON_LOGIN, INPUT_LOGIN_EMAIL, INPUT_LOGIN_PASSWORD } from "@ids";
 import { GetMobileCopy_getMobileCopy_screens_login as LoginCopy } from "@graphql/_core/schema";
-import { Button, Heading, Pad, TextInput, TextInputError, UnauthorisedGradient } from "@atoms";
-import { CentredScreen, LinkGroup } from "@molecules";
+import { Heading, Pad, UnauthorisedGradient } from "@atoms";
+import { Button, CentredScreen, LinkGroup, TextInput, TextInputError } from "@molecules";
 import styles from "./login.screen.styles";
 
 export interface IProps {

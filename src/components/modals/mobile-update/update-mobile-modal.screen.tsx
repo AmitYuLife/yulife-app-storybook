@@ -1,9 +1,10 @@
 import * as React from "react";
 import { View } from "react-native";
-import { Button, LinkButton, Text } from "@atoms";
+import { Text } from "@atoms";
+import { Button, LinkButton } from "@molecules";
 import { StyleSheet, TextStyle, ViewStyle } from "react-native";
 import { Colours, Style } from "@styles";
-import GenericHeadingAbsolute from "@atoms/generic-heading/generic-heading-absolute";
+import { GenericHeadingAbsolute } from "@organisms";
 
 type ButtonProps = React.ComponentProps<typeof Button>;
 

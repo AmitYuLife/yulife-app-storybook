@@ -1,9 +1,9 @@
 import React, { memo, useCallback, useMemo } from "react";
 import { View } from "react-native";
-import { Button, Image, ProgressBar, TextTemplate } from "@atoms";
+import { Image, ProgressBar, TextTemplate } from "@atoms";
 import { Colours, Style } from "@styles";
 import { ArrowRight } from "@atoms/icon/arrow-right";
-import { PressableWithDelay } from "@molecules";
+import { Button, PressableWithDelay } from "@molecules";
 import { GetUserProfile_getUserProfile_events as IEvent } from "@graphql/_core/schema";
 import { Navigation } from "react-native-navigation";
 import { ROUTES } from "@navigation/constants";

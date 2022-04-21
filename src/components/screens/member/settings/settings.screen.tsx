@@ -8,7 +8,7 @@ import NotificationsItem from "./items/notifications-item";
 import GameSettingsItem from "./items/game-settings-item";
 import data from "./settings.data";
 import styles from "./settings.styles";
-import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
+import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import { TextTemplate } from "@atoms";
 import { Style } from "@styles";
 import { SettingsHeader } from "@components/molecules";

@@ -1,5 +1,6 @@
 import React, { memo } from "react";
-import { Button, Image } from "@atoms/index";
+import { Image } from "@atoms/index";
+import { Button } from "@molecules";
 import { GetQuestMapLevel_getQuestMapLevel } from "@graphql/_core/schema";
 import { Image as RNImage, ScrollView, StyleSheet, View } from "react-native";
 import { IConnectedScreenProps } from "@app/typings";
