@@ -1,5 +1,6 @@
 import { Linking, Platform } from "react-native";
 import Logger from "@services/logging/logger";
+import { MixpanelEvent } from "@services/logging/types";
 
 interface IAppLinkConfig {
   appName: string;
@@ -110,13 +111,13 @@ export interface IContentHyperLinkProps {
   id: string;
   name: string;
   title: string;
-  componentID: string;
+  componentID: "rewards_details";
   uri: string;
   label: string;
 }
 export const handleContentHyperlink = async ({ id, name, title, componentID, uri, label }: IContentHyperLinkProps) => {
   try {
-    Logger.logMixpanelEvent(`${componentID}_button_pressed`, {
+    Logger.logMixpanelEvent(`${componentID}_button_pressed` as MixpanelEvent, {
       id,
       name,
       title,
@@ -126,6 +127,6 @@ export const handleContentHyperlink = async ({ id, name, title, componentID, uri
 
     await handleLinkPress(uri)();
   } catch (e) {
-    Logger.logMixpanelEvent(`${componentID}_button_pressed_error`, { error: e.message });
+    Logger.logMixpanelEvent(`${componentID}_button_pressed_error` as MixpanelEvent, { error: e.message });
   }
 };

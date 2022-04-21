@@ -5,6 +5,7 @@ import Intercom from "@intercom/intercom-react-native";
 import Mixpanel from "react-native-mixpanel";
 import bugsnag from "../bugsnag";
 import LeanplumClient from "./leanplum";
+import { MixpanelEvent, MixpanelEventMetadata } from "@services/logging/types";
 
 class LoggerInstance {
   private appVersion: string;
@@ -45,7 +46,7 @@ class LoggerInstance {
     Mixpanel.trackWithProperties(event, this.addDefaultEventProperties(metadata));
   };
 
-  public logMixpanelEvent = (event: string, metadata: Record<string, any> = {}) => {
+  public logMixpanelEvent = (event: MixpanelEvent, metadata: MixpanelEventMetadata = {}) => {
     Mixpanel.trackWithProperties(event, this.addDefaultEventProperties(metadata));
   };
 

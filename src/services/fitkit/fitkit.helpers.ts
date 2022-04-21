@@ -148,11 +148,13 @@ export const queryFitKitByTypesDebug = async (
       allResults.push(...results);
     } catch (e) {
       error = true;
-      Logger.logMixpanelEvent(`debug_tool_${fitKitType}_query_error`, {
+      Logger.logMixpanelEvent(`app_debug`, {
         error: e.message,
         date_start: startTime,
         date_end: endTime,
         userInfo: e.userInfo,
+        location: "fitkit",
+        type: `debug_tool_${fitKitType}_query_error`,
       });
     }
   }
@@ -186,13 +188,13 @@ export const queryFitKitByTypes = async (
       };
 
       if (loggingEnabled) {
-        Logger.logMixpanelEvent(`raw_${fitKitType}_query_args`, args);
+        Logger.logMixpanelEvent("app_debug", { ...args, type: `raw_${fitKitType}_query_args`, location: "fitkit" });
       }
 
       const results = await RNFitKit.sampleQuery(args);
 
       if (loggingEnabled && results && results.length > 0) {
-        Logger.logMixpanelEvent(`raw_${fitKitType}_query_results`, { results });
+        Logger.logMixpanelEvent("app_debug", { results, type: `raw_${fitKitType}_query_results`, location: "fitkit" });
       }
 
       allResults.push(...results);
@@ -207,11 +209,13 @@ export const queryFitKitByTypes = async (
         });
       }
 
-      Logger.logMixpanelEvent(`raw_${fitKitType}_query_error`, {
+      Logger.logMixpanelEvent("app_debug", {
         error: errorMessage,
         date_start: startTime,
         date_end: endTime,
         userInfo: e.userInfo,
+        type: `raw_${fitKitType}_query_error`,
+        location: "fitkit",
       });
     }
   }
@@ -247,18 +251,22 @@ export const queryAggregatedDataByDay = async (
     };
 
     if (loggingEnabled) {
-      Logger.logMixpanelEvent("raw_aggregate_data_query_args", args);
+      Logger.logMixpanelEvent("app_debug", { ...args, type: "raw_aggregate_data_query_args", location: "fitkit" });
     }
 
     const results = await RNFitKit.aggregateQuery(args);
 
     if (loggingEnabled && results && results.length > 0) {
-      Logger.logMixpanelEvent("raw_aggregate_data_query_results", { results });
+      Logger.logMixpanelEvent("app_debug", { results, type: "raw_aggregate_data_query_results", location: "fitkit" });
     }
 
     return { results: results.map(transformSampleResultToPayloadWithType as any), error: false };
   } catch (e) {
-    Logger.logMixpanelEvent("raw_aggregated_data_query_error", { error: e.message });
+    Logger.logMixpanelEvent("app_debug", {
+      error: e.message,
+      type: "raw_aggregated_data_query_error",
+      location: "fitkit",
+    });
     return { results: [], error: true };
   }
 };
@@ -287,21 +295,23 @@ export const queryAggregatedBikingIos = async (
     };
 
     if (loggingEnabled) {
-      Logger.logMixpanelEvent("raw_biking_query_args", args);
+      Logger.logMixpanelEvent("app_debug", { ...args, type: "raw_biking_query_args", location: "fitkit" });
     }
 
     const results = await RNFitKit.aggregateQuery(args);
 
     if (loggingEnabled && results && results.length > 0) {
-      Logger.logMixpanelEvent("raw_biking_query_results", { results });
+      Logger.logMixpanelEvent("app_debug", { results, type: "raw_biking_query_results", location: "fitkit" });
     }
 
     return { results: results.map(transformSampleResultToPayloadWithType as any), error: null };
   } catch (e) {
-    Logger.logMixpanelEvent("raw_biking_query_error", {
+    Logger.logMixpanelEvent("app_debug", {
       error: e.message,
       date_start: start.format(),
       date_end: end.format(),
+      type: "raw_biking_query_error",
+      location: "fitkit",
     });
     return { results: [], error: true };
   }
@@ -327,21 +337,23 @@ export const querySteps = async (
     };
 
     if (loggingEnabled) {
-      Logger.logMixpanelEvent("raw_steps_query_args", args);
+      Logger.logMixpanelEvent("app_debug", { ...args, type: "raw_steps_query_args", location: "fitkit" });
     }
 
     const results = await RNFitKit.aggregateQuery(args);
 
     if (loggingEnabled && results && results.length > 0) {
-      Logger.logMixpanelEvent("raw_steps_query_results", { results });
+      Logger.logMixpanelEvent("app_debug", { results, type: "raw_steps_query_results", location: "fitkit" });
     }
 
     return { results: results.map(transformSampleResultToPayloadWithType as any), error: null };
   } catch (e) {
-    Logger.logMixpanelEvent("raw_steps_query_error", {
+    Logger.logMixpanelEvent("app_debug", {
       error: e.message,
       date_start: start.format(),
       date_end: end.format(),
+      type: "raw_steps_query_error",
+      location: "fitkit",
     });
     return { results: [], error: e.message };
   }

@@ -15,6 +15,7 @@ import Markdown from "@molecules/markdown/markdown";
 import { TapToCopy } from "@organisms";
 import { Colours, Style } from "@styles";
 import { styles, markdownStyles } from "./referrals.styles";
+import { MixpanelEvent } from "@services/logging/types";
 
 interface IProps {
   info: GetReferralInformation_referralInformation;
@@ -41,7 +42,7 @@ const ReferralsScreen = ({ info, handleClose, componentId }: IProps) => {
 
   const tapToCopyAnalytics = useMemo(
     () => ({
-      name: "referral_link_copied",
+      name: "referral_link_copied" as MixpanelEvent,
       location: componentId,
     }),
     [componentId]

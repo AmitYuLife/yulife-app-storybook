@@ -30,7 +30,11 @@ export function useFitKit() {
     try {
       isAvailable = await RNFitKit.isAvailable();
     } catch (e) {
-      Logger.logMixpanelEvent("rn_fitKit_isAvailable_error", { error: e.message });
+      Logger.logMixpanelEvent("app_debug", {
+        error: e.message,
+        type: "rn_fitKit_isAvailable_error",
+        location: "fitkit",
+      });
     }
 
     try {
@@ -58,7 +62,7 @@ export function useFitKit() {
         isAuthorised = await RNFitKit.isAuthorised();
       }
     } catch (e) {
-      Logger.logMixpanelEvent("rn_fitKit_isAuthorised_error", { error: e });
+      Logger.logMixpanelEvent("app_debug", { error: e, type: "rn_fitKit_isAuthorised_error", location: "fitkit" });
     }
 
     await setMixpanelProperties(isAuthorised);
@@ -243,7 +247,11 @@ export function useFitKit() {
           wasAuthorisationShown = true;
         }
       } catch (e) {
-        Logger.logMixpanelEvent("rn_fitKit_authorisation_shown_error", { error: e.message });
+        Logger.logMixpanelEvent("app_debug", {
+          error: e.message,
+          type: "rn_fitKit_authorisation_shown_error",
+          location: "fitkit",
+        });
       }
 
       if (wasAuthorisationShown) {
@@ -257,7 +265,11 @@ export function useFitKit() {
         try {
           await Linking.openURL("app-settings:");
         } catch (e) {
-          Logger.logMixpanelEvent("rn_fitKit_open_app_settings_error", { error: e.message });
+          Logger.logMixpanelEvent("app_debug", {
+            error: e.message,
+            type: "rn_fitKit_open_app_settings_error",
+            location: "fitkit",
+          });
         }
 
         return false;
@@ -274,7 +286,11 @@ export function useFitKit() {
       try {
         await AsyncStorage.setItem(RNFITKIT_PERMISSIONS_SHOWN, "true");
       } catch (e) {
-        Logger.logMixpanelEvent("rn_fitKit_authorise_error", { error: e.message });
+        Logger.logMixpanelEvent("app_debug", {
+          error: e.message,
+          type: "rn_fitKit_authorise_error",
+          location: "fitkit",
+        });
       }
 
       return newState.authorised;
