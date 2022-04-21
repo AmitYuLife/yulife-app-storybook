@@ -176,6 +176,7 @@ const EventDialogScreen: FC<IProps> = ({
 
       <Animated.View style={headerImageContainerStyle}>
         <Image
+          suppressLoadingUi={true}
           style={style.headerImageWrapper}
           resizeMode="cover"
           source={headerImageSource}
@@ -196,6 +197,7 @@ const EventDialogScreen: FC<IProps> = ({
           </View>
           <View style={style.progressText}>
             <Image
+              suppressLoadingUi={true}
               source={progressIcon}
               width={Style.adjust(16)}
               height={Style.adjust(16)}
@@ -227,7 +229,13 @@ const EventDialogScreen: FC<IProps> = ({
         <Animated.View style={faqWraperStyle}>
           <View style={style.faqImageContainer} collapsable={false} ref={questionMarkRef}>
             <PressableWithDelay onPress={openPopUp}>
-              <Image resizeMode="contain" source={faq.icon} width={FAQ_ICON_DIMENSION} height={FAQ_ICON_DIMENSION} />
+              <Image
+                suppressLoadingUi={true}
+                resizeMode="contain"
+                source={faq.icon}
+                width={FAQ_ICON_DIMENSION}
+                height={FAQ_ICON_DIMENSION}
+              />
             </PressableWithDelay>
           </View>
         </Animated.View>

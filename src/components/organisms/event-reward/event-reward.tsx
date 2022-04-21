@@ -106,6 +106,7 @@ const EventReward = ({
               <LottieView style={styles.absolute} source={lottieAnimationSource} autoPlay={true} loop={true} />
             )}
             <Image
+              suppressLoadingUi={true}
               source={{ uri: itemUri }}
               width={Style.adjust(72)}
               height={Style.adjust(72)}
@@ -135,7 +136,12 @@ const EventReward = ({
           <View style={styles.infoWrapper}>
             <PressableWithDelay onPress={openPopUp}>
               <View ref={questionMarkRef} collapsable={false}>
-                <Image width={Style.adjust(22)} height={Style.adjust(22)} source={infoBadgeUri} />
+                <Image
+                  suppressLoadingUi={true}
+                  width={Style.adjust(22)}
+                  height={Style.adjust(22)}
+                  source={infoBadgeUri}
+                />
               </View>
             </PressableWithDelay>
           </View>

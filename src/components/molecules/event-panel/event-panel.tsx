@@ -81,6 +81,7 @@ const EventPanel = ({ event, currentWorld, componentId, width, onJoin }: IProps)
             {event.challenges.map((challenge) => (
               <View key={challenge.description} style={styles.challengeContainer}>
                 <Image
+                  suppressLoadingUi={true}
                   source={{ uri: challenge.icon.uri }}
                   width={Style.adjust(16)}
                   height={Style.adjust(16)}
@@ -104,6 +105,7 @@ const EventPanel = ({ event, currentWorld, componentId, width, onJoin }: IProps)
           <View style={styles.tags}>
             <View style={styles.statistics}>
               <Image
+                suppressLoadingUi={true}
                 source={{ uri: event.tags.icon.uri }}
                 width={Style.adjust(16)}
                 height={Style.adjust(16)}
@@ -122,7 +124,12 @@ const EventPanel = ({ event, currentWorld, componentId, width, onJoin }: IProps)
           {!event.badge?.text ? null : (
             <View style={containerStyles.badgeContainer}>
               {!event?.badge?.icon?.uri ? null : (
-                <Image width={styles.badgeIcon.width} style={styles.badgeIcon} source={event.badge.icon} />
+                <Image
+                  suppressLoadingUi={true}
+                  width={styles.badgeIcon.width}
+                  style={styles.badgeIcon}
+                  source={event.badge.icon}
+                />
               )}
               <TextTemplate color={Colours.neutral.white} type={"l1b"}>
                 {event.badge.text}
