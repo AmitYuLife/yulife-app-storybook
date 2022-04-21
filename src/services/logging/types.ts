@@ -22,6 +22,7 @@ export type MixpanelEvent =
   | "end_challenge_result"
   | "end_challenge_triggered"
   | "faq_viewed"
+  | "goal_join_error"
   | "information_viewed"
   | "initial_pedometer_steps_set"
   | "invalid_pedometer_steps"
