@@ -1,4 +1,4 @@
-import React, { ComponentProps, memo } from "react";
+import React, { ComponentProps, memo, useCallback } from "react";
 import { openFiit } from "@services/app-link";
 import ImageButton from "./image-button";
 
@@ -8,16 +8,17 @@ interface Props {
 }
 
 export const FiitButton = memo(({ style, onPressCallback }: Props) => {
+  const onPress = useCallback(() => {
+    openFiit();
+
+    if (onPressCallback) {
+      onPressCallback();
+    }
+  }, [onPressCallback]);
   return (
     <ImageButton
       wrapperStyle={style}
-      onPress={() => {
-        openFiit();
-
-        if (onPressCallback) {
-          onPressCallback();
-        }
-      }}
+      onPress={onPress}
       shadowColor={"#000000"}
       backgroundColor="transparent"
       backgroundGradient={["#000000", "#494949"]}

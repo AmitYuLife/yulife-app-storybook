@@ -1,18 +1,18 @@
 import React, { ComponentProps, useCallback } from "react";
-import { openCalm } from "@services/app-link";
+import { openMeditopia } from "@services/app-link";
 import ImageButton from "./image-button";
-import { CALM_BUTTON } from "@ids";
+import { MEDITOPIA_BUTTON } from "@ids";
 import Logger from "@services/logging/logger";
 interface Props {
   style?: ComponentProps<typeof ImageButton>["wrapperStyle"];
   onPressCallback?: () => void;
 }
 
-export const CalmButton = ({ style, onPressCallback }: Props) => {
+export const MeditopiaButton = ({ style, onPressCallback }: Props) => {
   const onPress = useCallback(() => {
-    openCalm();
+    openMeditopia();
     Logger.logEvent("mindfulness_app_open", {
-      type: "calm",
+      type: "meditopia",
     });
 
     if (onPressCallback) {
@@ -23,11 +23,10 @@ export const CalmButton = ({ style, onPressCallback }: Props) => {
     <ImageButton
       wrapperStyle={style}
       onPress={onPress}
-      shadowColor={"#2937DF"}
-      backgroundColor="transparent"
-      backgroundGradient={["#3AB5EA", "#5064E4"]}
-      icon="calm"
-      testID={CALM_BUTTON}
+      shadowColor={"#0096F2"}
+      backgroundColor="#3BB4FF"
+      icon="meditopia"
+      testID={MEDITOPIA_BUTTON}
     />
   );
 };
