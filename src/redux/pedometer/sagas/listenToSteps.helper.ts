@@ -51,7 +51,9 @@ export default function* listenToSteps() {
       }
 
       if (features.loggingEnabled) {
-        yield spawn(() => Logger.logMixpanelEvent("raw_steps_results_passive", results));
+        yield spawn(() =>
+          Logger.logMixpanelEvent("app_debug", { ...results, type: "raw_steps_results_passive", location: "fitkit" })
+        );
       }
 
       // Check pedometer limit if toggle is enabled

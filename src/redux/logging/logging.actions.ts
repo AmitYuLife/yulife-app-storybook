@@ -1,3 +1,4 @@
+import { MixpanelEvent } from "@services/logging/types";
 import { SyncAction } from "../_core/types";
 
 export const PRODUCT_ITEM_VIEWED = "PRODUCT_ITEM_VIEWED";
@@ -15,7 +16,7 @@ export const logProductItemInspectedActionCreator = (productId: string): SyncAct
 });
 
 export const logMixpanelEventActionCreator = (
-  eventName: string,
+  eventName: MixpanelEvent,
   data: Record<string, string | number | boolean> = {}
 ) => ({
   type: LOG_EVENT_STARTED,

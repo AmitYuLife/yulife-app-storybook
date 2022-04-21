@@ -8,6 +8,7 @@ import { PressableWithDelay } from "@molecules";
 import Markdown from "@molecules/markdown/markdown";
 import { IMarkdownStyle } from "@molecules/markdown/markdown.styles";
 import Logger from "@services/logging/logger";
+import { MixpanelEvent } from "@services/logging/types";
 
 interface IProps {
   heading?: string;
@@ -17,7 +18,7 @@ interface IProps {
   markdown: boolean;
   markdownStyle?: IMarkdownStyle;
   analyticsEvent?: {
-    name: string;
+    name: MixpanelEvent;
     location: string;
   };
 }
