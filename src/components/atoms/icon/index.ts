@@ -12,6 +12,7 @@ import { AppStoreIcon } from "./app-store-icon";
 import { StreakTicks } from "./streak-ticks";
 import { Calm } from "./calm";
 import { Headspace } from "./headspace";
+import { Meditopia } from "./meditopia";
 import { CopyIcon } from "./copy-icon";
 import { HeightSvgIcon } from "./height-icon";
 import { WeighingScaleSvg } from "./weighing-scale-icon";
@@ -67,6 +68,7 @@ export default {
   Calm,
   Fiit,
   Headspace,
+  Meditopia,
   CopyIcon,
   HeightSvgIcon,
   WeighingScaleSvg,

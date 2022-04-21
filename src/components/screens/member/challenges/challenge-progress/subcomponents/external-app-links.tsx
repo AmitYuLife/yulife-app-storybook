@@ -1,6 +1,6 @@
 import React, { memo } from "react";
 import { TextTemplate } from "@atoms";
-import { CalmButton, HeadspaceButton, FiitButton, LinkButton } from "@molecules";
+import { CalmButton, HeadspaceButton, FiitButton, LinkButton, MeditopiaButton } from "@molecules";
 import { Style } from "@styles";
 import { Platform, StyleSheet, View, ViewStyle } from "react-native";
 
@@ -17,8 +17,10 @@ export const MeditationExternalLinks = memo(({ hideOverlay }: ExternalLinksProps
     <TextTemplate type="b2" textAlign="center">
       {`You can use any app that syncs mindfulness minutes to ${Platform.OS === "ios" ? "Apple Health" : "Google Fit"}`}
     </TextTemplate>
-    <CalmButton style={styles.spaceMedium} onPressCallback={hideOverlay} />
+    <MeditopiaButton style={styles.spaceMedium} onPressCallback={hideOverlay} />
+    <CalmButton style={styles.spaceSmall} onPressCallback={hideOverlay} />
     <HeadspaceButton style={styles.spaceSmall} onPressCallback={hideOverlay} />
+
     <LinkButton wrapperStyle={styles.spaceXsmall} label="I'm using a different app" onPress={hideOverlay} />
   </>
 ));

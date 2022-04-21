@@ -69,6 +69,19 @@ export async function openHeadspace() {
   });
 }
 
+export async function openMeditopia() {
+  const playStoreId = "app.meditasyon";
+  const deepLink = Platform.select({
+    ios: "meditopia://",
+    android: `android-app://${playStoreId}`,
+  });
+  return openApp(deepLink, {
+    appName: "meditopia-meditation-sleep",
+    appStoreId: "1190294015",
+    playStoreId,
+  });
+}
+
 export async function openYulife() {
   return openStore({
     appName: "yulife",
