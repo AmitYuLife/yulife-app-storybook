@@ -1,10 +1,11 @@
 import * as React from "react";
 import { StyleSheet, View } from "react-native";
-import { Button, Image, SecondaryButton, Text } from "@atoms";
+import { Image, Text } from "@atoms";
+import { Button, SecondaryButton } from "@molecules";
 import { data, getCardBackgroundColor } from "./challenge-details.helpers";
 import styles from "./challenge-details.styles";
 import Milestones, { IMilestoneProps } from "./milestones";
-import GenericHeadingAbsolute from "@atoms/generic-heading/generic-heading-absolute";
+import { GenericHeadingAbsolute } from "@organisms";
 import { Style } from "@styles";
 
 interface IOwnProps {

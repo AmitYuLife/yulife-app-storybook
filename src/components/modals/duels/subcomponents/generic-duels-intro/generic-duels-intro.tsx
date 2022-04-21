@@ -1,6 +1,7 @@
 import * as React from "react";
 import { Animated, View } from "react-native";
-import { Text, Button, SecondaryButton } from "@atoms/index";
+import { Text } from "@atoms";
+import { Button, SecondaryButton } from "@molecules";
 import { DuelAvatar } from "../avatar/duel-avatar";
 import styles from "./generic-duels-intro.styles";
 import { DuelStepProps } from "../../duels.types";

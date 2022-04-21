@@ -1,6 +1,7 @@
 import * as React from "react";
 import { Animated, View } from "react-native";
-import { Button, Heading } from "@atoms";
+import { Heading } from "@atoms";
+import { Button } from "@molecules";
 import { initializeAnimation } from "./world-animations";
 import { getAssets } from "./unity.data";
 import styles from "./unity.styles";

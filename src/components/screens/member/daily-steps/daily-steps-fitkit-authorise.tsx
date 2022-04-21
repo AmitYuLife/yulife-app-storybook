@@ -1,6 +1,7 @@
 import React from "react";
 import { GetMobileCopy_getMobileCopy_screens_dailyStepsFitKitAuthorise } from "@graphql/_core/schema";
-import { Button, Text } from "@atoms";
+import { Text } from "@atoms";
+import { Button } from "@molecules";
 import { ViewStyle } from "react-native";
 import { Style } from "@styles";
 

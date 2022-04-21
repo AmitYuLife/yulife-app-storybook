@@ -3,12 +3,13 @@ import React, { memo, useMemo, useState, useCallback } from "react";
 import { ScrollPickerModal } from "@components/modals";
 import DateTimePicker from "react-native-modal-datetime-picker";
 import { View, Alert, ScrollView, StyleSheet, Platform } from "react-native";
-import { Button, TertiaryButton, TextTemplate } from "@atoms";
+import { TextTemplate } from "@atoms";
+import { Button, TertiaryButton } from "@molecules";
 import { FitKitType } from "@graphql/_core/schema/globalTypes";
 import { Colours, Style } from "@styles";
 import { getAdditionalCyclingFitnessActivities, queryFitKitByTypesDebug } from "@services/fitkit/fitkit.helpers";
 import { CheckBox } from "@components/molecules";
-import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
+import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import { useSelector } from "react-redux";
 import { getUserFeatures } from "@redux/user/user.selectors";
 

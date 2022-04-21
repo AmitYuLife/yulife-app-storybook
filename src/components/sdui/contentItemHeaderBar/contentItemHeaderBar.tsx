@@ -1,7 +1,7 @@
 import React, { ComponentProps, memo, useCallback, useMemo } from "react";
 import { StyleSheet, View, ViewStyle } from "react-native";
 import { useDispatch } from "react-redux";
-import GenericHeading from "@atoms/generic-heading/generic-heading";
+import { GenericHeading } from "@organisms";
 import { Colours, TOP_BAR } from "@styles";
 import { useBackHandler } from "@services/hooks/useBackHandler";
 import { ProductStepAction } from "@redux/server-driven-ui/sdui.types";

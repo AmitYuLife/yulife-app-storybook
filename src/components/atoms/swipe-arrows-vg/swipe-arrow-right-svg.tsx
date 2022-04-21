@@ -1,6 +1,6 @@
 import React, { memo } from "react";
 import Svg, { Path, Mask, G } from "react-native-svg";
-import { Style } from "../../../styles";
+import { Style } from "@styles";
 
 const SwipeArrowRight = memo(() => {
   return (

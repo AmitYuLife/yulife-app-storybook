@@ -10,7 +10,7 @@ import RecommendationInfoCard from "./cards/recommendation-info-card";
 import WeeklyGraphCard from "./cards/weekly-graph-card";
 import styles from "./stats.styles";
 import { STATS_TITLE, STATS_SCREEN } from "@ids";
-import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
+import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 
 interface IProps {
   data?: GetHighlights_getUserStats[];

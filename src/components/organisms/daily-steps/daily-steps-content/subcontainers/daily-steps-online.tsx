@@ -1,9 +1,9 @@
 import React, { memo, useCallback, useMemo } from "react";
-import { Button, TextTemplate } from "@atoms";
-import { ActivityList, Counter, EventPanels, Panel, PressableWithDelay } from "@molecules";
 import { Alert, View, ViewStyle } from "react-native";
-import { displaySecondsAsMinutes, getCurrentWorld } from "@utils";
 import { useDispatch, useSelector } from "react-redux";
+import { TextTemplate } from "@atoms";
+import { ActivityList, Button, Counter, EventPanels, Panel, PressableWithDelay } from "@molecules";
+import { displaySecondsAsMinutes, getCurrentWorld } from "@utils";
 import { getDailyEarnedCoins } from "@redux/coins/coins.selectors";
 import { Style, NAV_BAR } from "@styles";
 import { getUserEvents, getUserFeatures } from "@redux/user/user.selectors";

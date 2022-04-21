@@ -2,7 +2,7 @@ import React, { useEffect, memo, FC, useMemo, useCallback } from "react";
 import { Animated } from "react-native";
 import { styles } from "./duel-dialog.styles";
 import { MODALS } from "@navigation/constants";
-import { Button } from "@atoms";
+import { Button } from "@molecules";
 import { GetDuels } from "@graphql/_core/schema";
 import { useQuery } from "@apollo/react-hooks";
 import { useSelector } from "react-redux";

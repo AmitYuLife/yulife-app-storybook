@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import Logger from "@services/logging/logger";
 import { Linking, SafeAreaView } from "react-native";
-import GenericHeadingAbsolute from "@atoms/generic-heading/generic-heading-absolute";
+import { GenericHeadingAbsolute } from "@organisms";
 
 interface Props {
   children: React.ReactNode;

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Image, YugiHeader } from "@atoms";
+import { Image } from "@atoms";
 import { View, Keyboard } from "react-native";
-import { ScrollableLayout } from "@molecules";
+import { ScrollableLayout, YugiHeader } from "@molecules";
 import { MultilineTextInput } from "@atoms/multiline-text-input/multiline-text-input";
 import { styles, QuestionProps } from "./common";
 import { FEEDBACK_FORM_QUESTION, FEEDBACK_TEXT_INPUT } from "@ids";

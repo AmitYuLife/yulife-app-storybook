@@ -1,6 +1,6 @@
 import React, { memo } from "react";
 import { Animated, StyleSheet, ViewStyle } from "react-native";
-import { SkeletonRow } from "@atoms";
+import { SkeletonRow } from "@molecules";
 
 const _LeaderboardSkeleton = () => {
   return (

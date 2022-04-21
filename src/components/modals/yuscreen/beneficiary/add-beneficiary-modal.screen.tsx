@@ -1,9 +1,10 @@
 import React, { useRef, useState } from "react";
 import { ScrollView, View, LayoutChangeEvent, KeyboardAvoidingView, Platform, Keyboard } from "react-native";
-import { Button, LinkButton, Pad, Text } from "@atoms";
+import { Pad, Text } from "@atoms";
+import { Button, LinkButton } from "@molecules";
 import { StyleSheet, TextStyle, ViewStyle } from "react-native";
 import { Colours, Style } from "@styles";
-import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
+import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import { TextField } from "@components/molecules";
 import { ConfirmationScreen } from "./confirmation.screen";
 import { GetProductBeneficiaries_getProductBeneficiaries_beneficiaries as Beneficiary } from "@graphql/_core/schema";

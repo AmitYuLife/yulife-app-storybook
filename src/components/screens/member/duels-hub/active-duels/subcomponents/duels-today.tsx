@@ -1,7 +1,8 @@
 import React, { FC } from "react";
 import { View, StyleSheet, ViewStyle, TextStyle } from "react-native";
 import { Style, Colours } from "@styles";
-import { Text, Button } from "@atoms";
+import { Text } from "@atoms";
+import { Button } from "@molecules";
 import { DuelEntry } from "../../subcomponents";
 import { useSelector } from "react-redux";
 import { getCurrentUserId } from "@redux/user/user.selectors";

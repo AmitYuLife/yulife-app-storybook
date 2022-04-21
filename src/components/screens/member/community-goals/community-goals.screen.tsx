@@ -11,7 +11,7 @@ import { EmptyCommunityGoals, CommunityGoal } from "./subcomponents";
 import { View } from "react-native-animatable";
 import { Navigation } from "react-native-navigation";
 import { ROUTES } from "@navigation/constants";
-import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
+import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 
 interface IProps {
   onClose: () => void;

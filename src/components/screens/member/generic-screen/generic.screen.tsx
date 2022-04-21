@@ -1,7 +1,8 @@
 import * as React from "react";
 import { useState } from "react";
 import { View } from "react-native";
-import { Button, SecondaryButton, TextTemplate } from "@atoms";
+import { TextTemplate } from "@atoms";
+import { Button, SecondaryButton } from "@molecules";
 import styles from "./generic.styles";
 import { GENERIC_SCREEN_HEADING, GENERIC_SCREEN_CTA } from "@ids";
 

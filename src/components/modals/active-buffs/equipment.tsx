@@ -1,8 +1,7 @@
 import React, { memo, useMemo } from "react";
 import { View } from "react-native";
 import { GetActiveBuffsOverlay_getActiveBuffsOverlay_equipment } from "@graphql/_core/schema";
-import { SlotIcon } from "@atoms";
-import { PackageCardPerks } from "@molecules";
+import { PackageCardPerks, SlotIcon } from "@molecules";
 import styles from "./active-buffs.styles";
 
 interface IProps {

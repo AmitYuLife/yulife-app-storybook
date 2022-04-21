@@ -1,4 +1,5 @@
-import { Button, Text } from "@atoms/index";
+import { Text } from "@atoms/index";
+import { Button } from "@molecules";
 import { GetMobileCopy_getMobileCopy_screens_offline as OfflineCopy } from "@graphql/_core/schema";
 import * as React from "react";
 import { StyleSheet, TextStyle, View, ViewStyle } from "react-native";

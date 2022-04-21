@@ -1,6 +1,6 @@
 import React, { memo, useMemo, useState } from "react";
 import { StyleSheet, View } from "react-native";
-import { ChecklistInfoCard } from "@atoms";
+import { ChecklistInfoCard } from "@molecules";
 import { Style } from "@styles";
 import { GoogleFitIcon } from "@atoms/icon/google-fit-icon";
 import { SamsungHealthIcon } from "@atoms/icon/samsung-health-icon";

@@ -1,12 +1,11 @@
 import React, { useCallback } from "react";
 import { Platform, View } from "react-native";
 import { GetRewardItemDetails_getRewardItemDetails_content as ItemContent } from "@graphql/_core/schema";
-import { Image, TertiaryButton } from "@atoms";
-import { ContentItemForm, HeadingAndCopy } from "@molecules";
+import { Image } from "@atoms";
+import { ContentItemForm, HeadingAndCopy, BUTTON_ICON, TertiaryButton } from "@molecules";
 import styles from "../reward-details.screen.styles";
 import { TapToCopy } from "@organisms";
 import { MORE_INFO_BUTTON } from "@ids";
-import { BUTTON_ICON } from "@atoms/button/tertiary-button/tertiary-button.helpers";
 import { Style } from "@styles";
 import { IElement } from "@components/molecules/content-item-form/content-item-form";
 

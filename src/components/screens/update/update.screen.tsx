@@ -1,4 +1,5 @@
-import { Button, Text } from "@atoms";
+import { Text } from "@atoms";
+import { Button } from "@molecules";
 import { Colours, Style } from "@styles";
 import React, { memo } from "react";
 import { StyleSheet, View } from "react-native";

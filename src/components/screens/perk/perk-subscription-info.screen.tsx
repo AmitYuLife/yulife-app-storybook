@@ -1,5 +1,5 @@
 import React, { memo, useMemo } from "react";
-import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
+import { GenericHeadingPad, GenericHeadingAbsolute } from "@organisms";
 import { Style } from "@styles";
 import { KeyboardAvoidingView, Platform, ScrollView, StyleSheet, View, ViewStyle } from "react-native";
 import { Body } from "@components/containers/products/product-step/sections";

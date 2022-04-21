@@ -1,6 +1,6 @@
 import React, { memo } from "react";
 import { SkeletonLoading } from "@atoms";
-import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
+import { GenericHeadingPad, GenericHeadingAbsolute } from "@organisms";
 import { StyleSheet, View, ViewStyle } from "react-native";
 import { Style } from "@styles";
 

@@ -1,9 +1,7 @@
 import React, { useState, useEffect, memo } from "react";
-import { Button, SelectInput, TextInput } from "@atoms";
 import { StyleSheet } from "react-native";
+import { Button, SelectInput, TextInput, TextInputTypes, ISelectInputOption } from "@molecules";
 import { Style } from "@styles";
-import { ISelectInputOption } from "@atoms/select-input/select-input.types";
-import { Types } from "@atoms/text-input/text-input";
 import { INPUT_AVIOS_FORM_FIELD } from "@ids";
 
 interface IValidation {
@@ -19,7 +17,7 @@ export interface IElement {
   defaultOption?: ISelectInputOption;
   required: boolean;
   placeholder: string;
-  type: Types;
+  type: TextInputTypes;
   modalPlaceholder: string;
   icon: {
     id: string;

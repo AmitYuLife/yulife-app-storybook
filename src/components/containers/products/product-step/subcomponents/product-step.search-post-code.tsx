@@ -9,7 +9,7 @@ import { ProductStepContext } from "@components/containers/products/product-step
 import { ContentItemSearchPostcode } from "@components/sdui";
 import { useDebouncedQuery } from "@services/hooks/useDebouncedQuery";
 import { GQL_QUERY_GET_ADDRESS_BY_POSTCODE } from "@graphql/yuscreen/getAdress.gql";
-import { ISearchItem } from "@atoms/search/search-item";
+import { ISearchItem } from "@molecules";
 import { formatPostCode } from "@utils";
 import { AddressIcon } from "@atoms";
 import { Colours } from "@styles";

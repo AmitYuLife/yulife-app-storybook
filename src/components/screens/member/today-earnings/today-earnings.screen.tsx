@@ -1,7 +1,7 @@
 import React, { memo } from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
 import { TODAYS_EARNINGS } from "@ids";
-import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
+import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import TodayYuCoinHeader from "./subcomponents/today-yucoin-header";
 import ActivityFeed from "./subcomponents/activity-feed";
 import {

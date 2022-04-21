@@ -4,7 +4,8 @@ import moment from "moment";
 import { View } from "react-native";
 import { ContentItemDatePicker as GqlDatePicker } from "@graphql/_core/schema";
 import { Colours } from "@styles";
-import { TertiaryButton, TextTemplate } from "@atoms";
+import { TextTemplate } from "@atoms";
+import { TertiaryButton } from "@molecules";
 import { mapServerStyles } from "../_utils/mapServerStyles";
 import { DATE_INPUT, DATE_PICKER } from "@ids";
 interface IProps extends GqlDatePicker {

@@ -1,6 +1,7 @@
 import React, { memo, Dispatch, SetStateAction } from "react";
 import { ContentItemSearchPostcode as TSearchPostcode } from "@graphql/_core/schema";
-import { Image, SecondaryButton } from "@atoms";
+import { Image } from "@atoms";
+import { SecondaryButton } from "@molecules";
 import { Colours, Style } from "@styles";
 import { SearchAddress, ISearchAddress } from "@molecules";
 import { mapServerStyles } from "../_utils/mapServerStyles";

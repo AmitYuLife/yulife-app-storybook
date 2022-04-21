@@ -1,5 +1,5 @@
 import React, { memo } from "react";
-import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
+import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import {
   GetWellbeingHubItem_wellbeingHubItem as WellbeingHubItem,
   GetWellbeingHubItem_wellbeingHubItem_content as ItemContent,
@@ -11,9 +11,9 @@ import { MORE_INFO_BUTTON } from "@ids";
 import { TapToCopy } from "@organisms";
 import Logger from "@services/logging/logger";
 import { handleLinkPress } from "@services/app-link";
-import { Image, TertiaryButton } from "@atoms";
-import { BUTTON_ICON } from "@atoms/button/tertiary-button/tertiary-button.helpers";
-import { HeadingAndCopy } from "@molecules";
+import { Image } from "@atoms";
+import { HeadingAndCopy, TertiaryButton, BUTTON_ICON } from "@molecules";
+
 interface IProps {
   handleBack: () => void;
   item: WellbeingHubItem;

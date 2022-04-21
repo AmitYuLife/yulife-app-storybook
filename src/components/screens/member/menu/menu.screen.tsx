@@ -7,10 +7,10 @@ import { useDebouncedQuery } from "@services/hooks/useDebouncedQuery";
 import { GetReferralBackground, GetReferralBackground_getReferralBackground } from "@graphql/_core/schema";
 import { GQL_QUERY_GET_REFERRAL_BACKGROUND } from "@graphql/referrals";
 import { MENU_ITEM, MENU_SCREEN, REFERRALS_BUTTON_BADGE } from "@ids";
-import { Button, CloseSvg, Image, Pad } from "@atoms";
+import { CloseSvg, Image, Pad } from "@atoms";
 import Logo from "@atoms/logo";
 import { TextTemplate } from "@atoms/text/text-template";
-import { TouchableOpacityWithDelay } from "@molecules";
+import { Button, TouchableOpacityWithDelay } from "@molecules";
 import { Colours, Style } from "@styles";
 import styles, { SCROLL_PADDING } from "./menu.screen.styles";
 

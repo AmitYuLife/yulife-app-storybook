@@ -1,11 +1,12 @@
 import React, { memo, useState, useEffect, useCallback } from "react";
 import { View, StyleSheet, ViewStyle, ScrollView, TextStyle, KeyboardAvoidingView, Platform } from "react-native";
 import { Navigation } from "react-native-navigation";
-import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
+import { GenericHeadingPad, GenericHeadingAbsolute } from "@organisms";
 import { useBackHandler } from "@services/hooks/useBackHandler";
 import { MODALS, ROUTES } from "@navigation/constants";
 import { Colours, Style } from "@styles";
-import { Button, SecondaryButton, Text } from "@atoms";
+import { Text } from "@atoms";
+import { Button, SecondaryButton } from "@molecules";
 import { BeneficiaryItem } from "./beneficiary-item";
 import { GetProductBeneficiaries_getProductBeneficiaries_beneficiaries as Beneficiary } from "@graphql/_core/schema";
 import { BENEFICIARY_DETAILS, BENEFICIARIES_PERCENTAGE_ERROR, BENEFICIARY_DONE, ADD_BENEFICIARY } from "@ids";

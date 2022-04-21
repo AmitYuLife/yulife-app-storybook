@@ -4,7 +4,7 @@ import { StyleSheet, TextStyle, ViewStyle, View } from "react-native";
 import { LEADERBOARD_INFO } from "@ids";
 import { Style } from "@styles";
 import { Navigation } from "react-native-navigation";
-import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
+import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import { useBackHandler } from "@services/hooks/useBackHandler";
 
 interface IProps {

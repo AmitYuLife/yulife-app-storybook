@@ -1,6 +1,7 @@
 import * as React from "react";
 import { ScrollView, StyleSheet, TextStyle, View, ViewStyle } from "react-native";
-import { Button, Loading, TextTemplate, LinkButton, Image, Pad } from "@atoms";
+import { Loading, TextTemplate, Image, Pad } from "@atoms";
+import { Button, LinkButton } from "@molecules";
 import { Style } from "@styles";
 import { useMutation, useQuery } from "@apollo/react-hooks";
 import {
@@ -16,8 +17,7 @@ import {
 import { Navigation } from "react-native-navigation";
 import { ROUTES } from "@navigation/constants";
 import Logger from "@services/logging/logger";
-import GenericHeadingAbsolute from "@atoms/generic-heading/generic-heading-absolute";
-import { TOP_BAR_HEIGHT } from "@atoms/generic-heading/generic-heading.styles";
+import { GenericHeadingAbsolute, TOP_BAR_HEIGHT } from "@organisms";
 
 interface IProps {
   componentId?: string;

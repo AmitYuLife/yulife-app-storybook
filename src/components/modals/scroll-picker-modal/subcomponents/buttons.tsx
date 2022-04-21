@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet, View, ViewStyle } from "react-native";
-import { Button, LinkButton } from "@atoms";
+import { Button, LinkButton } from "@molecules";
 import { Style } from "@styles";
 
 interface Props {

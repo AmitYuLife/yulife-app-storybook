@@ -1,6 +1,6 @@
 import React, { memo, ReactElement } from "react";
 import { StyleSheet, View } from "react-native";
-import { Button } from "@atoms";
+import { Button } from "@molecules";
 import { Style } from "@styles";
 import { ContentItemLottie } from "@components/sdui";
 import { ContentItemLottie as GqlLottie } from "@graphql/_core/schema";

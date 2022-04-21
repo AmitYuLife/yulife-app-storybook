@@ -1,8 +1,9 @@
-import { Button, TextTemplate } from "@atoms";
+import { TextTemplate } from "@atoms";
+import { Button } from "@molecules";
 import React from "react";
 import { View, Image } from "react-native";
 import styles from "./products-survey.styles";
-import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
+import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 
 interface IProps {
   onExitConfirmed: () => void;

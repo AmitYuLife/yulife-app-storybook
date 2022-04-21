@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import { View, StyleSheet } from "react-native";
 import { SkeletonLoading } from "@atoms";
 import { Colours, Style } from "@styles";
-import GenericHeadingAbsolute from "@atoms/generic-heading/generic-heading-absolute";
+import { GenericHeadingAbsolute } from "@organisms";
 
 interface Props {
   onLeftIconPress: () => void;

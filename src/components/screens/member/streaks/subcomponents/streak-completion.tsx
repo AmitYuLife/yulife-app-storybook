@@ -1,7 +1,8 @@
-import { RibbonGold, TextTemplate } from "@atoms";
-import { Style } from "@styles";
 import React from "react";
 import { StyleSheet, View } from "react-native";
+import { TextTemplate } from "@atoms";
+import { RibbonGold } from "@molecules";
+import { Style } from "@styles";
 
 interface IProps {
   timeRemaining: string;

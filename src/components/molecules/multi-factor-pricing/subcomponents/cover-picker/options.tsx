@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, View, ViewStyle } from "react-native";
-import { PackageType, TextTemplate } from "@atoms";
-import { BoxOption } from "@molecules";
+import { TextTemplate } from "@atoms";
+import { BoxOption, PackageType } from "@molecules";
 import { CoverType } from "@graphql/_core/schema/globalTypes";
 import { Colours, Style } from "@styles";
 

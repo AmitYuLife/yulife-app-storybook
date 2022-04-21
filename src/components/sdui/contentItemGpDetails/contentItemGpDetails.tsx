@@ -11,7 +11,7 @@ import {
 } from "@graphql/_core/schema";
 import { MedicalPracticeIcon, TextTemplate } from "@atoms";
 import GpNoResults from "./gpNoResults";
-import { ISearchItem } from "@atoms/search/search-item";
+import { ISearchItem } from "@molecules";
 import { Colours, Style } from "@styles";
 import { GpManualEntry } from "./gpManualEntry";
 import { GpDoctorDetails } from "./gpDoctorDetails";

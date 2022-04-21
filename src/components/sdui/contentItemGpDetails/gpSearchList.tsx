@@ -1,7 +1,6 @@
 import React, { memo, useCallback } from "react";
 import { KeyboardAvoidingView, Platform, StyleSheet, View, ViewStyle } from "react-native";
-import { SearchListEmpty } from "@atoms";
-import SearchItem, { ISearchItem } from "@atoms/search/search-item";
+import { SearchListEmpty, SearchItem, ISearchItem } from "@molecules";
 import { NetworkStatus } from "apollo-boost";
 import { Colours } from "@styles";
 

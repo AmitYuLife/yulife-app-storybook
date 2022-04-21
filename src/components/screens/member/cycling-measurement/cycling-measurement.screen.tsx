@@ -1,5 +1,5 @@
 import { Radio, TextTemplate } from "@atoms";
-import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
+import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import { SettingsHeader, TouchableOpacityWithDelay } from "@components/molecules";
 import { GAME_SETTINGS_SCREEN, TEXT_TEMPLATE, SETTINGS_NAME } from "@ids";
 import { Style } from "@styles";

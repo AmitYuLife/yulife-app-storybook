@@ -1,3 +1,4 @@
+export * from "./generic-heading";
 export { default as NavBar } from "./nav-bar/nav-bar";
 export { default as TopBar } from "./top-bar/top-bar";
 export { DailyStepsContent } from "./daily-steps/daily-steps-content/daily-steps-content";

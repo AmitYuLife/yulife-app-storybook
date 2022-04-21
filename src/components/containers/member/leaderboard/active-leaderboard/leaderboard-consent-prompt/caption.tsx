@@ -1,6 +1,7 @@
 import React from "react";
 import { View } from "react-native";
-import { Text, Button } from "@atoms";
+import { Text } from "@atoms";
+import { Button } from "@molecules";
 import { captionStyle } from "./styles";
 import { GetMobileCopy_getMobileCopy_screens_leaderboards_turnBoardOn } from "@graphql/_core/schema";
 

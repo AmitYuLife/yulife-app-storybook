@@ -1,14 +1,13 @@
-import { ArrowRightSvg, Image, TextTemplate, YugiHeader } from "@atoms";
-import { ProductStepMarkdown } from "@components/containers/products/product-step/subcomponents";
-import { PressableWithDelay } from "@components/molecules";
-import { Colours, Style } from "@styles";
 import React, { memo, useContext, useState } from "react";
+import { ScrollView, StyleSheet, View, ViewStyle } from "react-native";
+import { ProductStepMarkdown } from "@components/containers/products/product-step/subcomponents";
+import { ArrowRightSvg, Image, TextTemplate } from "@atoms";
+import { PressableWithDelay, TertiaryButton, YugiHeader } from "@molecules";
+import { Colours, Style } from "@styles";
 import {
   GetPersonalProductStepDetachedFaqs_getPersonalProductStepDetachedFaqs_body_ContentItemPersonalProductFaqs as GqlDocuments,
   GetPersonalProductStepDetachedFaqs_getPersonalProductStepDetachedFaqs_body_ContentItemPersonalProductFaqs_faqs as GqlDocument,
 } from "@graphql/_core/schema";
-import { ScrollView, StyleSheet, View, ViewStyle } from "react-native";
-import { TertiaryButton } from "@atoms";
 import { ProductStepDetachedNavigationContext } from "@components/containers/products/product-step/product-step-detached-navigation.context";
 
 type Props = GqlDocuments;

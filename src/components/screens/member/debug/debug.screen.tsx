@@ -5,7 +5,7 @@ import { PureComponent } from "react";
 import { FlatList, ListRenderItemInfo, View } from "react-native";
 import Svg, { Polygon } from "react-native-svg";
 import styles from "./debug.styles";
-import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
+import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 
 interface ItemProps {
   id: string;

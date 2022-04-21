@@ -1,19 +1,20 @@
 import React, { FC, useEffect, useCallback } from "react";
+import { Alert, Keyboard, Linking } from "react-native";
+import { Navigation } from "react-native-navigation";
+import { useDispatch, useSelector } from "react-redux";
 import { useMutation, useQuery } from "@apollo/react-hooks";
 import {
   RedeemRewardMutationTuple,
   GQL_MUTATION_REDEEM_REWARD,
   GQL_QUERY_GET_REWARD_ITEM_DETAILS,
 } from "@graphql/rewards";
-import { Alert, Keyboard, Linking } from "react-native";
-import { Navigation } from "react-native-navigation";
-import { useDispatch, useSelector } from "react-redux";
 import {
   RedeemReward,
   GetRewardItemDetails,
   GetRewardItemDetails_getRewardItemDetails_confirmAlert,
 } from "@graphql/_core/schema";
 import { bottomTabs, MODALS, ROUTES } from "@navigation/constants";
+import { showYuModal } from "@navigation/root";
 import { getOfflineState } from "@redux/app/app.selectors";
 import { getTotalCoins } from "@redux/coins/coins.selectors";
 import { getNotEnoughCoinsAlertCopy, getPurchasesCopy } from "@redux/copy/copy.selectors";
@@ -21,12 +22,10 @@ import { getUserStart } from "@redux/user/user.actions";
 import Logger from "@services/logging/logger";
 import { RewardDetailsScreen, RewardDetailsLoadingScreen } from "@screens";
 import { useBackHandler } from "@services/hooks/useBackHandler";
-import { ISelectInputOption } from "@atoms/select-input/select-input.types";
 import { AviosMetadata } from "@graphql/_core/schema/globalTypes";
 import { formatMoney } from "@services/money";
-import { ListPicker } from "@molecules";
+import { ListPicker, ISelectInputOption } from "@molecules";
 import { showOverlayWithChild } from "@modals/blurred-overlay/showOverlayWithChild";
-import { showYuModal } from "@navigation/root";
 
 interface IProps {
   componentId: string;

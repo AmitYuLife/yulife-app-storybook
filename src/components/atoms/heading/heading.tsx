@@ -1,8 +1,6 @@
 import * as React from "react";
-import { Style } from "@styles";
-
 import { StyleSheet, Text, TextStyle } from "react-native";
-import colours from "@styles/colours";
+import { Style, Colours } from "@styles";
 
 interface IProps {
   bold?: boolean;
@@ -16,7 +14,7 @@ interface IProps {
 type Sizes = "medium" | "large" | "small";
 
 function Heading(props: IProps) {
-  const { label, size = "medium", style, bold, color = colours.darkGray, testID } = props;
+  const { label, size = "medium", style, bold, color = Colours.darkGray, testID } = props;
   const boldStyles = bold ? styles.bold : null;
 
   return (

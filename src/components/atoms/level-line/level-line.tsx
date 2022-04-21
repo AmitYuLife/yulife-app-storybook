@@ -1,7 +1,6 @@
-/* tslint:disable */
 import * as React from "react";
 import Svg, { G, Path } from "react-native-svg";
-import { Style } from "@styles/index";
+import { Style } from "@styles";
 
 interface Props {
   scale?: number;

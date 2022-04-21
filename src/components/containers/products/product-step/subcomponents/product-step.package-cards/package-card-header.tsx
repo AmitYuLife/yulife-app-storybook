@@ -1,6 +1,7 @@
 import React, { memo, useContext } from "react";
 import { View, StyleSheet, ViewStyle, Platform } from "react-native";
-import { PackageType, TextTemplate } from "@atoms";
+import { TextTemplate } from "@atoms";
+import { PackageType } from "@molecules";
 import { Colours, Style } from "@styles";
 import { Image } from "@atoms";
 import { SlotIcon } from "../product-step.slot-icon";

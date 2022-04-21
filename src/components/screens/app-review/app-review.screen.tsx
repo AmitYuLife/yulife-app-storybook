@@ -1,6 +1,7 @@
 import React, { FC } from "react";
 import { View, StyleSheet } from "react-native";
-import { Button, LinkButton, Image, SecondaryButton, TextTemplate } from "@atoms";
+import { Image, TextTemplate } from "@atoms";
+import { Button, LinkButton, SecondaryButton } from "@molecules";
 import { Style } from "@styles";
 import { APPREVIEW_TEXT } from "@ids";
 

@@ -1,12 +1,10 @@
 import { NetworkStatus } from "apollo-client";
 import React, { useCallback, useEffect, memo } from "react";
 import { View, StyleSheet, ViewStyle } from "react-native";
-import { SearchInput, SearchList, SearchListEmpty } from "@atoms";
-import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
-import SearchItem, { ISearchItem } from "@atoms/search/search-item";
+import { SearchInput, SearchList, SearchListEmpty, SearchItem, ISearchItem } from "@molecules";
+import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import { useBackHandler } from "@services/hooks/useBackHandler";
 import { Colours, Style } from "@styles";
-import Styles from "../../../styles/style";
 
 export interface ISearchAddress {
   onClose: () => void;
@@ -59,7 +57,7 @@ export default memo((props: ISearchAddress) => {
       <SearchInput styleProps={searchInputStyles} title={searchTitle} query={query} onChangeText={onChangeText} />
       <SearchList
         data={addressList}
-        wrapperStyles={{ height: Styles.DEVICE_HEIGHT }}
+        wrapperStyles={{ height: Style.DEVICE_HEIGHT }}
         networkStatus={networkStatus}
         onRefresh={onRefresh}
         loading={loading}

@@ -1,9 +1,10 @@
 import * as React from "react";
 import { FC } from "react";
 import { GetMobileCopy_getMobileCopy_screens_signupReward as SignUpRewardCopy } from "@graphql/_core/schema";
-import { Blurb, Button, CoinConfetti, Heading, Pad } from "@atoms";
+import { Blurb, Heading, Pad } from "@atoms";
+import { Button } from "@molecules";
 import styles from "./signup-reward.screen.styles";
-import { CentredScreen } from "@molecules";
+import { CoinConfetti, CentredScreen } from "@molecules";
 
 interface IProps {
   isLoading: boolean;

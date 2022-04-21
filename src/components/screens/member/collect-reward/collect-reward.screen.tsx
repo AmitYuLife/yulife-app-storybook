@@ -1,9 +1,8 @@
 import * as React from "react";
-import { SFC } from "react";
 import { Platform, StyleSheet, View } from "react-native";
-import { Button, CoinConfetti, Heading, Pad } from "@atoms";
+import { Heading, Pad } from "@atoms";
 import styles from "./collect-reward.styles";
-import { CentredScreen } from "@molecules";
+import { Button, CentredScreen, CoinConfetti } from "@molecules";
 
 interface IProps {
   date?: string;
@@ -12,7 +11,7 @@ interface IProps {
   ctaLabel?: string;
 }
 
-const CollectReward: SFC<IProps> = ({ onPress, date, yucoin, ctaLabel }) => (
+const CollectReward: React.FC<IProps> = ({ onPress, date, yucoin, ctaLabel }) => (
   <View style={StyleSheet.absoluteFill}>
     <CentredScreen style={styles.centredScreen}>
       <CoinConfetti isExpanded={true} coins={yucoin} animationType="collect-reward" />

@@ -15,7 +15,7 @@ import {
   LoadingRecomendationCard,
 } from "@screens/member/stats/cards/general-info-card";
 import Stats from "@screens/member/stats/stats";
-import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
+import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import { useBackHandler } from "@services/hooks/useBackHandler";
 
 interface IProps {

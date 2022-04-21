@@ -1,5 +1,6 @@
 import React from "react";
-import { Button, SecondaryButton, TextTemplate } from "@atoms";
+import { TextTemplate } from "@atoms";
+import { Button, SecondaryButton } from "@molecules";
 import { SafeAreaView, StyleSheet, View } from "react-native";
 import { useSelector } from "react-redux";
 import { useBackHandler } from "@services/hooks/useBackHandler";

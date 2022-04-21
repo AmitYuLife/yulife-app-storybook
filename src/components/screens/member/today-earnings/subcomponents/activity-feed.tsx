@@ -1,12 +1,12 @@
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { StyleSheet, View, Platform, Alert, PermissionsAndroid, Linking } from "react-native";
 import { Navigation } from "react-native-navigation";
-import { Block, Button, Image, TextTemplate } from "@atoms";
+import { Block, Image, TextTemplate } from "@atoms";
 import { Style } from "@styles";
 import ActivityProgress from "./activity-progress";
 import { handleNavigateToQuestsTab } from "@navigation/utils";
 import { Toast } from "@components/molecules";
-import { PressableWithDelay } from "@molecules";
+import { PressableWithDelay, Button } from "@molecules";
 import { showOverlayWithChild } from "@components/modals/blurred-overlay/showOverlayWithChild";
 import {
   GetTodayEarnings_getTodayEarnings_activityFeed_activityProgress as IActivityProgress,

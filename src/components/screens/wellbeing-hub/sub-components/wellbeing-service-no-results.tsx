@@ -1,8 +1,9 @@
 import React, { FC } from "react";
 import { StyleSheet, View, ViewStyle } from "react-native";
 import { Style } from "@styles";
-import { Button, TextTemplate } from "@atoms";
-import GenericHeadingAbsolute, { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
+import { TextTemplate } from "@atoms";
+import { Button } from "@molecules";
+import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import { YugiProcessingIcon } from "@atoms/icon/yugi-processing-icon";
 
 interface IProps {

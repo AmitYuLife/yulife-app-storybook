@@ -4,7 +4,7 @@ import { GetRewardItemDetails_getRewardItemDetails } from "@graphql/_core/schema
 import { Wrapper } from "@atoms";
 import styles from "./reward-details.screen.styles";
 import { GetItemContent } from "./helpers/getItemContent";
-import { GenericHeadingPad } from "@atoms/generic-heading/generic-heading-absolute";
+import { GenericHeadingPad } from "@organisms";
 import { handleContentHyperlink, IContentHyperLinkProps } from "@services/app-link";
 import { TopBarLeftIconTypes } from "@organisms/top-bar/top-bar.helpers";
 import { TopBarAbsolute } from "@organisms/top-bar/top-bar-absolute";

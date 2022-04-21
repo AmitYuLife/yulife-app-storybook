@@ -1,6 +1,6 @@
 import React, { FC, useEffect } from "react";
 import { ScrollView, View, Text, Animated } from "react-native";
-import { Button } from "@atoms";
+import { Button } from "@molecules";
 import styles from "./lightbox.styles";
 import { Heading } from "@atoms";
 import YuCoin from "@screens/member/daily-steps/assets/yu-coin";

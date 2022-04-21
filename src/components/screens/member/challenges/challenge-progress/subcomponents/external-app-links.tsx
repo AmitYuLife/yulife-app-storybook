@@ -1,8 +1,6 @@
 import React, { memo } from "react";
-import { LinkButton, TextTemplate } from "@atoms";
-import { CalmButton } from "@atoms/button/image-button/calm-button";
-import { HeadspaceButton } from "@atoms/button/image-button/headspace-button";
-import { FiitButton } from "@atoms/button/image-button/fiit-button";
+import { TextTemplate } from "@atoms";
+import { CalmButton, HeadspaceButton, FiitButton, LinkButton } from "@molecules";
 import { Style } from "@styles";
 import { Platform, StyleSheet, View, ViewStyle } from "react-native";
 
