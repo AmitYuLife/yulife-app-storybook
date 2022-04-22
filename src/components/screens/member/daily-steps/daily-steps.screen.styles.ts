@@ -66,7 +66,7 @@ export default StyleSheet.create({
   } as ViewStyle,
   informationIcon: {
     position: "absolute",
-    top: Style.adjust(30),
-    left: Style.adjust(30),
+    top: Style.adjust(40),
+    left: Style.adjust(37),
   },
 });
