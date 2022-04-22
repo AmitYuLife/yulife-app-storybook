@@ -6,13 +6,16 @@ import EventReward, { IReward } from "./event-reward";
 interface IEventRewardWrapperProps {
   rewards: IReward[];
   onClaimRewardPress?: (rewardIds: string[]) => void;
+  isClaimEnabled?: boolean;
 }
 
-const EventRewardWrapper = ({ rewards, onClaimRewardPress }: IEventRewardWrapperProps) => {
+const EventRewardWrapper = ({ isClaimEnabled = true, rewards, onClaimRewardPress }: IEventRewardWrapperProps) => {
   const { width: rewardWidth, marginHorizontal } = getRewardWidthAndMargin(rewards?.length);
   const renderReward = useCallback(
     ({ item }) => {
-      return <EventReward onClaimPress={onClaimRewardPress} claimButton={true} reward={item} width={rewardWidth} />;
+      return (
+        <EventReward onClaimPress={onClaimRewardPress} claimButton={isClaimEnabled} reward={item} width={rewardWidth} />
+      );
     },
     [rewardWidth]
   );
@@ -27,7 +30,7 @@ const EventRewardWrapper = ({ rewards, onClaimRewardPress }: IEventRewardWrapper
           decelerationRate={0.9}
           showsVerticalScrollIndicator={false}
           showsHorizontalScrollIndicator={false}
-          keyExtractor={(reward) => reward.id}
+          keyExtractor={keyExtractor}
           renderItem={renderReward}
           contentContainerStyle={styles.contentContainer}
         />
@@ -35,7 +38,7 @@ const EventRewardWrapper = ({ rewards, onClaimRewardPress }: IEventRewardWrapper
         rewards?.map((reward) => (
           <EventReward
             key={reward.id}
-            claimButton={true}
+            claimButton={isClaimEnabled}
             width={rewardWidth}
             onClaimPress={onClaimRewardPress}
             marginHorizontal={marginHorizontal}
@@ -46,6 +49,8 @@ const EventRewardWrapper = ({ rewards, onClaimRewardPress }: IEventRewardWrapper
     </View>
   );
 };
+
+const keyExtractor = (reward: IReward) => reward.id;
 
 const getRewardWidthAndMargin = (rewardsSize: number) => {
   switch (rewardsSize) {

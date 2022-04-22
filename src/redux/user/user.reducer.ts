@@ -31,6 +31,7 @@ import {
   UPDATE_ACTIVE_LEADERBOARD_ID,
   LOGOUT_SUCCESS,
   UPDATE_USER_PROFILE,
+  UPDATE_USER_PROFILE_EVENTS,
   UPDATE_USER_AVATAR,
   UPDATE_USER_SURGE,
   UPDATE_USER_GOAL,
@@ -235,6 +236,9 @@ export const userReducer = (state: IUserStore = getInitialState(), action: SyncA
 
     case UPDATE_USER_PROFILE:
       return updateUserProfile(state, action.payload);
+
+    case UPDATE_USER_PROFILE_EVENTS:
+      return updateUserProfileEvents(state, action.payload);
 
     case UPDATE_USER_GOAL:
       return updateUserGoal(state, action.payload);
@@ -518,6 +522,11 @@ const updateUserProfile = (state: IUserStore, payload: Partial<IUserStore>) => (
     ...payload.notification,
   },
   events: payload.events,
+});
+
+const updateUserProfileEvents = (state: IUserStore, events: IUserStore["events"]) => ({
+  ...state,
+  events,
 });
 
 const updateUserGoal = (state: IUserStore, payload: Events): IUserStore => ({
