@@ -39,6 +39,7 @@ export const LOGOUT_SUCCESS = "LOGOUT_SUCCESS";
 export const OPEN_MY_ACCOUNT = "OPEN_MY_ACCOUNT";
 export const SET_SHOW_SURGE_INTRO = "SET_SHOW_SURGE_INTRO";
 export const UPDATE_USER_PROFILE = "UPDATE_USER_PROFILE";
+export const UPDATE_USER_PROFILE_EVENTS = "UPDATE_USER_PROFILE_EVENTS";
 export const UPDATE_USER_AVATAR = "UPDATE_USER_AVATAR";
 export const UPDATE_USER_SURGE = "UPDATE_USER_SURGE";
 export const UPDATE_USER_GOAL = "UPDATE_USER_GOAL";
@@ -153,6 +154,11 @@ export const updateActiveLeaderboardId = (payload: IUserStore["activeLeaderboard
 
 export const updateUserProfile = (payload: Partial<IUserStore>) => ({
   type: UPDATE_USER_PROFILE,
+  payload,
+});
+
+export const updateUserProfileEvents = (payload: IUserStore["events"]) => ({
+  type: UPDATE_USER_PROFILE_EVENTS,
   payload,
 });
 

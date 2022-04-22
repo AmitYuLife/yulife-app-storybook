@@ -34,6 +34,7 @@ import updateLeaderboardConsentSaga from "./updateLeaderboardConsent.saga";
 import updateUserConsentSaga from "./updateUserConsent.saga";
 import sendDuelInvitationSaga from "./sendDuelInvitation.saga";
 import getUserProfileData from "./getUserProfileData.sagas";
+import getUserProfileEvents from "./getUserProfileEvents.saga";
 import updateYuScreenNotification from "./updateYuScreenNotification.saga";
 import synchroniseYuScreenSaga from "./synchroniseYuScreen.saga";
 import removeYuScreenNotification from "./removeYuScreenNotification.saga";
@@ -48,6 +49,7 @@ export default [
   takeLatest(LOGIN_USER_SUCCESS, showLeaderboardInviteOnLoginSaga),
   takeLatest(FITKIT_CONSENT_AUTHORISED, fitKitConsentAuthorisedSaga),
   takeLatest(CHALLENGE_RESET_SUCCESS, getUserDataSaga),
+  takeLatest(CHALLENGE_RESET_SUCCESS, getUserProfileEvents),
   takeLatest(UPDATE_LEADERBOARD_CONSENT_START, updateLeaderboardConsentSaga),
   takeLatest(UPDATE_USER_CONSENT, updateUserConsentSaga),
   takeLatest(LOGOUT_START, logOutSaga),

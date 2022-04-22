@@ -142,7 +142,7 @@ export interface GetUserProfile_getUserProfile {
   passiveChallengesLastUpdate: GetUserProfile_getUserProfile_passiveChallengesLastUpdate;
   endPointsVersion: GetUserProfile_getUserProfile_endPointsVersion;
   notification: GetUserProfile_getUserProfile_notification;
-  events: (GetUserProfile_getUserProfile_events | null)[] | null;
+  events: GetUserProfile_getUserProfile_events[];
 }
 
 export interface GetUserProfile {
