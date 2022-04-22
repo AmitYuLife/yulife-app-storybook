@@ -42,6 +42,7 @@ function _DailyStepsContainer({ componentId, onLeftMenuPress }: Props) {
       getDailyScreenCustomIcon();
     }
   }, []);
+
   const userEvents = useSelector(getUserEvents);
   const currentLevel = useSelector(getCurrentLevel);
   const currentWorld = getCurrentWorld(currentLevel);
@@ -51,7 +52,7 @@ function _DailyStepsContainer({ componentId, onLeftMenuPress }: Props) {
       return null;
     }
 
-    if (!hideDailyScreenInformationIcon) {
+    if (!isDailyScreenInformationIconHidden) {
       dispatch(hideDailyScreenInformationIcon());
     }
 
@@ -61,7 +62,7 @@ function _DailyStepsContainer({ componentId, onLeftMenuPress }: Props) {
         name: ROUTES.todayEarnings,
       },
     });
-  }, [componentId]);
+  }, [fitkit.authorised, isDailyScreenInformationIconHidden, componentId]);
 
   useNavigationComponentDidAppear(() => {
     dispatch(startDailySteps());
