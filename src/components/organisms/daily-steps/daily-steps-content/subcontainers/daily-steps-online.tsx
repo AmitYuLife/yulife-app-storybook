@@ -82,7 +82,11 @@ export const DailyStepsOnline = memo(({ onReferralsButtonPress }: DailyStepsOnli
             onPress: async () => {
               try {
                 const response = await joinGoalMutation({ variables: { goalId: event.id } });
-                dispatch(updateUserGoal(response.data.joinGoal));
+
+                if (response?.data?.joinGoal) {
+                  dispatch(updateUserGoal(response.data.joinGoal));
+                }
+
                 resolve();
               } catch (error) {
                 Logger.logMixpanelEvent("goal_join_error", { error: error.message, event });

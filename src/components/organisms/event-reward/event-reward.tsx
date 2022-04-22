@@ -80,7 +80,7 @@ const EventReward = ({
         id: MODALS.collectEventReward,
         name: MODALS.collectEventReward,
         passProps: {
-          title: `${title}`,
+          title,
           descriptionTitle: "Great job!",
           description: `You reached the milestone!\nCongratualtions. Claim your rewards.`,
           cta: "Claim",
