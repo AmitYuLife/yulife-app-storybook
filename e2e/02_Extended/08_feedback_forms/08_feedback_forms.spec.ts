@@ -24,9 +24,7 @@ Feature("Feedback forms should behave correctly", async()=>{
                             Then("I should see the text I just input", then.textVisible("duels"))
                         })
                         When("I tap submit", when.tapText("submit"), async()=>{
-                            When("I tap on Awesome", when.tapText("Awesome"), async()=>{
-                                Then("I should be on the today screen", then.idVisible(DAILY_STEPS_SCREEN))
-                            })
+                            Then("I should be on the today screen", then.idVisible(DAILY_STEPS_SCREEN))
                         })
                     })
                 })
@@ -49,9 +47,7 @@ Feature("Feedback forms should behave correctly", async()=>{
                             Then("I should see the text I just input", then.textVisible("dark mode"))
                         })
                         When("I tap submit", when.tapText("submit"), async () => {
-                            When("I tap on Awesome", when.tapText("Awesome"), async()=>{
-                                Then("I should be on the today screen", then.idVisible(DAILY_STEPS_SCREEN))
-                            })
+                            Then("I should be on the today screen", then.idVisible(DAILY_STEPS_SCREEN))
                         })
                     })
                 })
@@ -75,14 +71,10 @@ Feature("Feedback forms should behave correctly", async()=>{
                             Then("I should see the text I just input", then.textVisible("duels"))
                         })
                         When("I tap Submit your feedback", when.tapText("Submit feedback"), async()=>{
-                            When("I tap on Awesome", when.tapText("Awesome"), async()=>{
                                 Then("I should be on the today screen", then.idVisible(DAILY_STEPS_SCREEN))
-                            })
                         })
                         When("I close and reopen the app", when.reloadOnly, async()=>{  
-                            When("I tap on Awesome", when.tapText("Awesome"), async()=>{
-                                Then("The Feedback Form should not popUp again", then.textNotVisible(FEEDBACK_FORM_2.data.title, 6000))
-                            })
+                            Then("The Feedback Form should not popUp again", then.textNotVisible(FEEDBACK_FORM_2.data.title, 6000))
                         })
                     })
                 })
@@ -106,14 +98,10 @@ Feature("Feedback forms should behave correctly", async()=>{
                             Then("I should see the text I just input", then.textVisible("car insurance"))
                         })
                         When("I tap Submit your feedback", when.tapText("Submit feedback"), async()=>{
-                            When("I tap on Awesome", when.tapText("Awesome"), async()=>{
-                                Then("I should be on the today screen", then.idVisible(DAILY_STEPS_SCREEN))
-                            })
+                            Then("I should be on the today screen", then.idVisible(DAILY_STEPS_SCREEN))
                         })
-                        When("I close and reopen the app", when.reloadOnly, async()=>{  
-                            When("I tap on Awesome", when.tapText("Awesome"), async()=>{
-                                Then("The Feedback Form should not popUp again", then.textNotVisible(FEEDBACK_FORM_2.data.title, 6000))
-                            })
+                        When("I close and reopen the app", when.reloadOnly, async()=>{
+                            Then("The Feedback Form should not popUp again", then.textNotVisible(FEEDBACK_FORM_2.data.title, 6000))
                         })
                     })
                 })
@@ -137,14 +125,10 @@ Feature("Feedback forms should behave correctly", async()=>{
                             Then("I should see the text I just input", then.textVisible("more rewards"))
                         })
                         When("I tap Submit your feedback", when.tapText("Submit feedback"), async()=>{
-                            When("I tap on Awesome", when.tapText("Awesome"), async()=>{
-                                Then("I should be on the today screen", then.idVisible(DAILY_STEPS_SCREEN))
-                            })
+                            Then("I should be on the today screen", then.idVisible(DAILY_STEPS_SCREEN))
                         })
                         When("I close and reopen the app", when.reloadOnly, async()=>{  
-                            When("I tap on Awesome", when.tapText("Awesome"), async()=>{
-                                Then("The Feedback Form should not popUp again", then.textNotVisible(FEEDBACK_FORM_2.data.title, 6000))
-                            })
+                            Then("The Feedback Form should not popUp again", then.textNotVisible(FEEDBACK_FORM_2.data.title, 6000))
                         })
                     })
                 })
@@ -168,14 +152,10 @@ Feature("Feedback forms should behave correctly", async()=>{
                             Then("I should see the text I just input", then.textVisible("This is the way"))
                         })
                         When("I tap Submit your feedback", when.tapText("Submit feedback"), async()=>{
-                            When("I tap on Awesome", when.tapText("Awesome"), async()=>{
-                                Then("I should be on the today screen", then.idVisible(DAILY_STEPS_SCREEN))
-                            })
+                            Then("I should be on the today screen", then.idVisible(DAILY_STEPS_SCREEN))
                         })
                         When("I close and reopen the app", when.reloadOnly, async()=>{  
-                            When("I tap on Awesome", when.tapText("Awesome"), async()=>{
-                                Then("The Feedback Form should not popUp again", then.textNotVisible(FEEDBACK_FORM_2.data.title, 6000))
-                            })
+                            Then("The Feedback Form should not popUp again", then.textNotVisible(FEEDBACK_FORM_2.data.title, 6000))
                         })
                     })
                 })

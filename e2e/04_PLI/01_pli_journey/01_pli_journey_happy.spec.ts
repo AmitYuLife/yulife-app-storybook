@@ -7,7 +7,7 @@ import * as helper from "./_steps/helpers"
 import { CUSTOMER_37, AUTH_37 } from "@data";
 
 Feature("PLI HAPPY", async()=>{
-    Scenario("As a completely healthy male user with Covea FIB enabled, I should be able to purchase PLI", scenario.start, async()=>{
+    ScenarioOnly("As a completely healthy male user with Covea FIB enabled, I should be able to purchase PLI", scenario.start, async()=>{
         Given("I login as a user with Covea FIB enabled", given.loginToYuScreen(true, CUSTOMER_37, AUTH_37), async()=>{
             Then("I should be on the yuscreen", then.onYuscreenV3(CUSTOMER_37))
             When("I create the default yumoji", when.createDefaultYumoji, async () => {
