@@ -53,7 +53,7 @@ const EventPanel = ({ event, currentWorld, componentId, width, onJoin }: IProps)
         },
       },
     });
-    dispatch(updateUserGoal({ ...event, badge: null }));
+    dispatch(updateUserGoal({ id: event.id, badge: null }));
   }, [componentId, dispatch, event]);
 
   const onJoinPress = useCallback(async () => {
@@ -74,7 +74,7 @@ const EventPanel = ({ event, currentWorld, componentId, width, onJoin }: IProps)
             {event.joined ? (
               <ArrowRight color={Colours.neutral.white} withBackground={true} />
             ) : (
-              <Button onPress={onJoinPress} size={"ExtraSmall"} shadowColor={"transparent"} label={"Join"} />
+              <Button onPress={onJoinPress} size="ExtraSmall" shadowColor="transparent" label="Join" />
             )}
           </View>
           <View style={styles.challenges}>

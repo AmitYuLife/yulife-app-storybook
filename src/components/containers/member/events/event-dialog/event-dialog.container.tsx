@@ -5,10 +5,19 @@ import { Navigation } from "react-native-navigation";
 import { useMutation, useQuery } from "@apollo/react-hooks";
 import { GQL_QUERY_GET_GOAL_DETAILS } from "@graphql/goals/getGoalDetails.gql";
 import { useDispatch } from "react-redux";
-import { ClaimGoalRewards, ClaimGoalRewardsVariables, GetGoalDetails } from "@graphql/_core/schema";
+import {
+  ClaimGoalRewards,
+  ClaimGoalRewardsVariables,
+  GetGoalDetails,
+  JoinGoal,
+  JoinGoalVariables,
+} from "@graphql/_core/schema";
 import { showYuModal } from "@navigation/root";
 import { MODALS } from "@navigation/constants";
 import { GQL_MUTATION_CLAIM_GOAL_REWARDS } from "@graphql/goals/claimGoalRewards.gql";
+import { GQL_MUTATION_JOIN_GOAL } from "@graphql/goals/joinGoal.gql";
+import { getUserStart, updateUserGoal } from "@redux/user/user.actions";
+import { GoalActionType } from "@graphql/_core/schema/globalTypes";
 
 interface IProps {
   componentId: string;
@@ -25,6 +34,7 @@ const EventDialogContainer: FC<IProps> = ({ componentId, goalId, stageId, onLeft
     fetchPolicy: "network-only",
   });
 
+  const [joinGoalMutation] = useMutation<JoinGoal, JoinGoalVariables>(GQL_MUTATION_JOIN_GOAL);
   const [claimGoalRewardsMutation] = useMutation<ClaimGoalRewards, ClaimGoalRewardsVariables>(
     GQL_MUTATION_CLAIM_GOAL_REWARDS
   );
@@ -35,36 +45,55 @@ const EventDialogContainer: FC<IProps> = ({ componentId, goalId, stageId, onLeft
     async (rewardIds: string[]) => {
       const updatedGoal = await claimGoalRewardsMutation({ variables: { rewardIds } });
       setGoalDetails(updatedGoal.data.claimGoalRewards);
+      // update today's yucoin screen
+      dispatch(getUserStart());
     },
     [claimGoalRewardsMutation]
   );
 
-  const onActionButtonPress = useCallback(() => {
-    if (button) {
+  const onActionButtonPress = useCallback(async () => {
+    if (button?.onPress) {
       if (button.onPress.goalType) {
-        // TODO: query join even or claim reward here
-        showYuModal({
-          component: {
-            id: MODALS.collectEventReward,
-            name: MODALS.collectEventReward,
-            passProps: {
-              title: "Winter event ended",
-              descriptionTitle: "Great job!",
-              description: `Congrats on completing the\nWinter Event!`,
-              cta: "Claim rewards",
-              rewards: data.getGoalDetails.rewards,
+        const { goalType } = button.onPress;
+
+        if (goalType === GoalActionType.CLAIM_REWARD) {
+          await showYuModal({
+            component: {
+              id: MODALS.collectEventReward,
+              name: MODALS.collectEventReward,
+              passProps: {
+                title: "Event ended",
+                descriptionTitle: "Great job!",
+                description: `Congrats on completing the event!`,
+                cta: "Claim rewards",
+                rewards: data.getGoalDetails.rewards,
+              },
             },
-          },
-        });
-      } else {
-        dispatch({
-          type: button.onPress.sduiType,
-          payload: { serverPayload: button.onPress.payload },
-        });
+          });
+        }
+
+        if (goalType === GoalActionType.JOIN_GOAL) {
+          try {
+            const response = await joinGoalMutation({ variables: { goalId } });
+
+            if (response.data?.joinGoal) {
+              dispatch(updateUserGoal(response.data.joinGoal));
+            }
+          } catch (e) {
+            // do something at some point
+          }
+        }
+
+        return;
       }
+
+      dispatch({
+        type: button.onPress.sduiType,
+        payload: { serverPayload: button.onPress.payload },
+      });
     }
 
-    Navigation.popToRoot(componentId);
+    await Navigation.popToRoot(componentId);
   }, [componentId, button, dispatch]);
 
   const headerProps = {

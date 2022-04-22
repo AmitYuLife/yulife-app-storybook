@@ -533,7 +533,7 @@ const updateUserGoal = (state: IUserStore, payload: Events): IUserStore => ({
   ...state,
   events: state.events.map((event) => {
     if (event.id === payload.id) {
-      return { ...payload };
+      return { ...event, ...payload };
     }
 
     return event;

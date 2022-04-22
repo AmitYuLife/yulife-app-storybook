@@ -162,7 +162,7 @@ export const updateUserProfileEvents = (payload: IUserStore["events"]) => ({
   payload,
 });
 
-export const updateUserGoal = (payload: Events) => ({
+export const updateUserGoal = (payload: Partial<Events>) => ({
   type: UPDATE_USER_GOAL,
   payload,
 });
