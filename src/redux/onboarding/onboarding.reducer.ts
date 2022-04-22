@@ -8,6 +8,7 @@ import {
   SET_COMMUNITY_GOALS_INTRO_SHOWN,
   SET_DUELS_INTRO_SHOWN,
   SET_ONBOARDING_REFERRALS_BADGE,
+  SET_DAILY_SCREEN_INFORMATION_ICON,
 } from "./onboarding.actions";
 import { AUTHENTICATED } from "@redux/app/app.actions";
 
@@ -20,6 +21,7 @@ export interface IOnboardingStore {
   showCommunityGoalsIntro: boolean;
   showDuelsIntro: boolean;
   showReferralsBadge: boolean;
+  hideDailyScreenInformationIcon: boolean;
 }
 
 export const getInitialState = (): IOnboardingStore => ({
@@ -31,6 +33,7 @@ export const getInitialState = (): IOnboardingStore => ({
   showCommunityGoalsIntro: true,
   showDuelsIntro: true,
   showReferralsBadge: false,
+  hideDailyScreenInformationIcon: false,
 });
 
 export const userReducer = (state: IOnboardingStore = getInitialState(), action: SyncAction): IOnboardingStore => {
@@ -53,6 +56,7 @@ export const userReducer = (state: IOnboardingStore = getInitialState(), action:
             showCommunityGoalsIntro: true,
             showDuelsIntro: true,
             showReferralsBadge: false,
+            hideDailyScreenInformationIcon: false,
           };
         }
       }
@@ -90,6 +94,12 @@ export const userReducer = (state: IOnboardingStore = getInitialState(), action:
       return {
         ...state,
         showReferralsBadge: action.payload,
+      };
+
+    case SET_DAILY_SCREEN_INFORMATION_ICON:
+      return {
+        ...state,
+        hideDailyScreenInformationIcon: true,
       };
 
     case AUTHENTICATED:

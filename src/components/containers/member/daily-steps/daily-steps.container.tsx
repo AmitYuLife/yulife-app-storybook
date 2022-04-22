@@ -16,6 +16,8 @@ import { GetDailyScreenCustomIcon } from "@graphql/_core/schema";
 import { GQL_QUERY_GET_DAILY_SCREEN_CUSTOM_ICON } from "@graphql/dailyScreenCustomIcon";
 import { getCurrentLevel } from "@redux/levels/levels.selectors";
 import { getCurrentWorld } from "@utils";
+import { dailyScreenInformationIcon } from "@redux/onboarding/onboarding.selectors";
+import { hideDailyScreenInformationIcon } from "@redux/onboarding/onboarding.actions";
 
 type Props = IMainTabsProps;
 
@@ -26,6 +28,7 @@ function _DailyStepsContainer({ componentId, onLeftMenuPress }: Props) {
   const userSurge = useSelector(getUserSurge);
   const userNotification = useSelector(getUserNotification);
   const hasDailyScreenCustomIcon = userNotification?.hasDailyScreenCustomIcon;
+  const isDailyScreenInformationIconHidden = useSelector(dailyScreenInformationIcon);
 
   const [getDailyScreenCustomIcon, { data }] = useLazyQuery<GetDailyScreenCustomIcon>(
     GQL_QUERY_GET_DAILY_SCREEN_CUSTOM_ICON,
@@ -43,18 +46,22 @@ function _DailyStepsContainer({ componentId, onLeftMenuPress }: Props) {
   const currentLevel = useSelector(getCurrentLevel);
   const currentWorld = getCurrentWorld(currentLevel);
 
-  const navigateToTodayEarnings = useCallback(
-    () =>
-      !fitkit.authorised
-        ? null
-        : Navigation.push(componentId, {
-            component: {
-              id: ROUTES.todayEarnings,
-              name: ROUTES.todayEarnings,
-            },
-          }),
-    [componentId]
-  );
+  const navigateToTodayEarnings = useCallback(() => {
+    if (!fitkit.authorised) {
+      return null;
+    }
+
+    if (!hideDailyScreenInformationIcon) {
+      dispatch(hideDailyScreenInformationIcon());
+    }
+
+    Navigation.push(componentId, {
+      component: {
+        id: ROUTES.todayEarnings,
+        name: ROUTES.todayEarnings,
+      },
+    });
+  }, [componentId]);
 
   useNavigationComponentDidAppear(() => {
     dispatch(startDailySteps());
@@ -74,6 +81,7 @@ function _DailyStepsContainer({ componentId, onLeftMenuPress }: Props) {
         customIcon={data?.getDailyScreenCustomIcon}
         currentWorld={currentWorld}
         hasEvents={!!userEvents?.length}
+        hideInformationIcon={isDailyScreenInformationIconHidden}
       />
     </FitkitContext.Provider>
   );

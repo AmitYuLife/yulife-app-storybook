@@ -32,6 +32,7 @@ interface IProps extends IConnectedScreenProps {
   customIcon: GetDailyScreenCustomIcon_getDailyScreenCustomIcon;
   currentWorld: number;
   hasEvents: boolean;
+  hideInformationIcon: boolean;
 }
 
 type Props = IProps;
@@ -44,6 +45,7 @@ const DailyStepsScreen = ({
   userSurge,
   customIcon,
   hasEvents,
+  hideInformationIcon,
 }: Props) => {
   const onSurgePress = useCallback(async () => {
     const child = <SurgeModal {...userSurge} />;
@@ -59,9 +61,11 @@ const DailyStepsScreen = ({
       >
         <Pad height={getPadHeight(hasEvents)} />
         <TouchableOpacityWithDelay onPress={onCoinPress} activeOpacity={1}>
-          <View style={styles.informationIcon}>
-            <InformationIcon />
-          </View>
+          {hideInformationIcon ? null : (
+            <View style={styles.informationIcon}>
+              <InformationIcon isOffline={!hasPermission} />
+            </View>
+          )}
           <YuCoin hasWhiteGlow={hasWhiteGlow} isGrayScale={!hasPermission} />
         </TouchableOpacityWithDelay>
         <DailyStepsContent />

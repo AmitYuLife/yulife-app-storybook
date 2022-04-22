@@ -4,6 +4,7 @@ export const SET_YUSCREEN_INTRO_SHOWN = "SET_YUSCREEN_INTRO_SHOWN";
 export const SET_COMMUNITY_GOALS_INTRO_SHOWN = "SET_COMMUNITY_GOALS_INTRO_SHOWN";
 export const SET_DUELS_INTRO_SHOWN = "SET_DUELS_INTRO_SHOWN";
 export const SET_ONBOARDING_REFERRALS_BADGE = "SET_ONBOARDING_REFERRALS_BADGE";
+export const SET_DAILY_SCREEN_INFORMATION_ICON = "SET_DAILY_SCREEN_INFORMATION_ICON";
 
 export const setRedeemedOnboarding = (payload: number) => ({
   payload,
@@ -25,4 +26,8 @@ export const setDuelsIntroShown = () => ({
 export const setOnboardingReferralsBadge = (payload: boolean) => ({
   payload,
   type: SET_ONBOARDING_REFERRALS_BADGE,
+});
+
+export const hideDailyScreenInformationIcon = () => ({
+  type: SET_DAILY_SCREEN_INFORMATION_ICON,
 });

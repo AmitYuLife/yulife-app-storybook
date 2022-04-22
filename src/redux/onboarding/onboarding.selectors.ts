@@ -24,3 +24,6 @@ export const getDuelsGoalsIntro = createSelector(reducer, duelsGoalsIntroSelecto
 
 const onboardingReferralsBadgeSelector = (state: State) => state.showReferralsBadge;
 export const getOnboardingReferralsBadge = createSelector(reducer, onboardingReferralsBadgeSelector);
+
+const dailyScreenInformationIconSelector = (state: State) => state.hideDailyScreenInformationIcon;
+export const dailyScreenInformationIcon = createSelector(reducer, dailyScreenInformationIconSelector);
