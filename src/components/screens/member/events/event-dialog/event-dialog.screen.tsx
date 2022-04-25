@@ -2,7 +2,6 @@ import React, { FC, useState, useCallback, useRef, useMemo } from "react";
 import { Animated, View, NativeScrollEvent, Platform } from "react-native";
 import { TextTemplate, ProgressBar } from "@atoms";
 import { Image } from "@atoms/image/image";
-import { GenericHeadingAbsolute } from "@organisms";
 import EventRewardsWrapper from "@organisms/event-reward/event-rewards-wrapper";
 import { Style } from "@styles";
 import { IReward } from "@organisms/event-reward/event-reward";
@@ -10,12 +9,9 @@ import style, { CONTENT_MARGIN_TOP, FAQ_ICON_DIMENSION, FAQ_VERTICAL_PADDING } f
 import { Source } from "react-native-fast-image";
 import { addCommasToNumber } from "@utils";
 import { Button, HeadingAndCopy, InfoPanel, PressableWithDelay } from "@molecules";
-import { InfoCardList, IInfoCardListCard } from "@organisms";
+import { InfoCardList, IInfoCardListCard, GenericHeadingAbsolute } from "@organisms";
 import { GetGoalDetails_getGoalDetails_banner as EventBanner, RemoteImage } from "@graphql/_core/schema";
-import InfoMessagePopover from "@components/molecules/info-message-popover/info-message-popover";
-import { showOverlayWithChild } from "@components/modals/blurred-overlay/showOverlayWithChild";
-import { Navigation } from "react-native-navigation";
-import { MODALS } from "@navigation/constants";
+import { showInfoMessageTooltipPointRelative } from "@organisms/tooltip-popup/tooltip-popup.helper";
 
 const PROGRESS_BAR_WIDTH = Style.DEVICE_WIDTH - Style.adjust(48);
 const TITLE_HEIGHT = Platform.select({
@@ -85,8 +81,6 @@ const EventDialogScreen: FC<IProps> = ({
   const [showHeading, setHeadingVisibilty] = useState(true);
   const scrollY = useRef(new Animated.Value(0)).current;
   const questionMarkRef = useRef<View>();
-  const onCloseInfoMessage = useCallback(() => Navigation.dismissOverlay(MODALS.blurredOverlay), []);
-
   const statusBarCoverStyle = useMemo(() => ({ ...style.statusBarCover, backgroundColor }), [backgroundColor]);
 
   const onScroll = useCallback(
@@ -123,18 +117,14 @@ const EventDialogScreen: FC<IProps> = ({
 
   const openPopUp = useCallback(() => {
     questionMarkRef?.current?.measure((_fx, _fy, _width, _height, pageX, pageY) => {
-      const infoView = (
-        <InfoMessagePopover
-          text={faq?.text}
-          pageX={pageX + FAQ_ICON_DIMENSION / 2 + FAQ_VERTICAL_PADDING / 2}
-          pageY={pageY + FAQ_ICON_DIMENSION}
-          onClose={onCloseInfoMessage}
-        />
-      );
-
-      showOverlayWithChild(infoView, false);
+      showInfoMessageTooltipPointRelative({
+        x: pageX + FAQ_ICON_DIMENSION / 2 + FAQ_VERTICAL_PADDING / 2,
+        y: pageY + FAQ_ICON_DIMENSION,
+        beakPosition: "topRight",
+        infoText: faq?.text,
+      });
     });
-  }, [faq?.text, onCloseInfoMessage]);
+  }, [faq?.text]);
 
   const faqWraperStyle = {
     ...style.faqImageWrapper,

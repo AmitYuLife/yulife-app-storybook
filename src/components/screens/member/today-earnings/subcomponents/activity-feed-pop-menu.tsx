@@ -1,9 +1,8 @@
 import React, { memo, useCallback } from "react";
 import { Hyperlink, PressableWithDelay, Toast } from "@molecules";
 import { Navigation } from "react-native-navigation";
-import { Colours, Style } from "@styles";
+import { Style } from "@styles";
 import { Block, CloseSvg, Image, TextTemplate } from "@atoms";
-import { PopoverBeak } from "@components/molecules/popover/popover-beak";
 import { StyleSheet, View } from "react-native";
 import {
   GetTodayEarnings_getTodayEarnings_activityFeed_questionMarkModal_body as IBody,
@@ -12,13 +11,12 @@ import {
 import { ROUTES } from "@navigation/constants";
 
 interface IProps {
-  pageY: number;
   header: string;
   body: IBody[];
   toast: IToast;
 }
 
-const ActivityFeedPopMenu = ({ pageY, header, body, toast }: IProps) => {
+const ActivityFeedPopMenu = ({ header, body, toast }: IProps) => {
   const onClose = useCallback(() => Navigation.dismissAllOverlays(), []);
 
   const onSettingPress = useCallback(() => {
@@ -31,13 +29,10 @@ const ActivityFeedPopMenu = ({ pageY, header, body, toast }: IProps) => {
     });
   }, [onClose]);
   return (
-    <PressableWithDelay onPress={onClose} style={[styles.wrapper, { top: pageY - Style.adjust(17) }]}>
+    <PressableWithDelay onPress={onClose} style={styles.wrapper}>
       <Block style={styles.block}>
         <View style={styles.close}>
           <CloseSvg size={Style.adjust(12)} />
-        </View>
-        <View style={styles.popoverBreak}>
-          <PopoverBeak backgroundColor={Colours.neutral.white} />
         </View>
         <TextTemplate type="l2">{header}</TextTemplate>
         <View style={styles.bodyWrapper}>
@@ -77,7 +72,6 @@ const styles = StyleSheet.create({
     height: "100%",
     width: Style.DEVICE_WIDTH / 1.5,
     alignSelf: "center",
-    right: Style.adjust(13),
   },
   block: {
     padding: Style.adjust(16),
@@ -86,12 +80,6 @@ const styles = StyleSheet.create({
     position: "absolute",
     right: Style.adjust(10),
     top: Style.adjust(8),
-  },
-  popoverBreak: {
-    position: "absolute",
-    right: Style.adjust(-19),
-    top: Style.adjust(13),
-    transform: [{ rotate: "180deg" }],
   },
   bodyWrapper: {
     marginTop: Style.adjust(16),

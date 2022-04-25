@@ -7,7 +7,6 @@ import ActivityProgress from "./activity-progress";
 import { handleNavigateToQuestsTab } from "@navigation/utils";
 import { Toast } from "@components/molecules";
 import { PressableWithDelay, Button } from "@molecules";
-import { showOverlayWithChild } from "@components/modals/blurred-overlay/showOverlayWithChild";
 import {
   GetTodayEarnings_getTodayEarnings_activityFeed_activityProgress as IActivityProgress,
   GetTodayEarnings_getTodayEarnings_activityFeed_button as IButton,
@@ -30,6 +29,7 @@ import { isSamsung } from "@utils/device";
 import RNFitKit from "@yu-life/react-native-fitkit";
 import { FitKitTypes } from "@services/fitkit/fitkit.service";
 import { FitKitType } from "@graphql/_core/schema/globalTypes";
+import { showTooltipPopupRelativeToView } from "@organisms/tooltip-popup/tooltip-popup.helper";
 
 interface IProps {
   id: string;
@@ -125,8 +125,10 @@ const ActivityFeed = ({
   }, []);
 
   const openPopUp = useCallback(() => {
-    questionMarkRef?.current?.measure((_fx, _fy, _width, _height, _pageX, pageY) => {
-      showOverlayWithChild(<ActivityFeedPopMenu pageY={pageY} {...questionMarkModal} />, false);
+    showTooltipPopupRelativeToView({
+      viewRef: questionMarkRef,
+      beakPosition: "autoHorizontal",
+      children: <ActivityFeedPopMenu {...questionMarkModal} />,
     });
   }, [questionMarkRef, questionMarkModal]);
 

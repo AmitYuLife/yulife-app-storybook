@@ -8,14 +8,12 @@ import LottieView from "lottie-react-native";
 import { ILabelImage } from "@components/molecules/label-with-images/label-with-images";
 import { RemoteImage } from "@graphql/_core/schema";
 import { GoalRewardStatus } from "@graphql/_core/schema/globalTypes";
-import { showOverlayWithChild } from "@components/modals/blurred-overlay/showOverlayWithChild";
-import InfoMessagePopover from "@components/molecules/info-message-popover/info-message-popover";
-import { Navigation } from "react-native-navigation";
 import { MODALS } from "@navigation/constants";
 import { showYuModal } from "@navigation/root";
+import { showInfoMessageTooltipViewRelative } from "@organisms/tooltip-popup/tooltip-popup.helper";
 
 const lottieAnimationSource = require("./assets/event-reward-animation.json");
-
+const INFO_VIEW_HEIGHT_WIDTH = Style.adjust(22);
 interface IEventReward {
   marginHorizontal?: number;
   height?: number;
@@ -60,15 +58,10 @@ const EventReward = ({
   const questionMarkRef = useRef<View>();
   const rewardClaimed = status === GoalRewardStatus.claimed;
   const statusColor = getStatusColor(status);
-  const onCloseInfoMessage = useCallback(() => Navigation.dismissOverlay(MODALS.blurredOverlay), []);
 
   const openPopUp = useCallback(() => {
-    questionMarkRef?.current?.measure((_fx, _fy, _width, _height, pageX, pageY) => {
-      const infoView = <InfoMessagePopover text={infoText} pageX={pageX} pageY={pageY} onClose={onCloseInfoMessage} />;
-
-      showOverlayWithChild(infoView, false);
-    });
-  }, [questionMarkRef, infoText, onCloseInfoMessage]);
+    showInfoMessageTooltipViewRelative({ viewRef: questionMarkRef, infoText, buttonLabel: "Got it" });
+  }, [questionMarkRef, infoText]);
 
   const claimReward = useCallback(() => {
     if (!claimButton || status !== GoalRewardStatus.completed) {
@@ -138,8 +131,8 @@ const EventReward = ({
               <View ref={questionMarkRef} collapsable={false}>
                 <Image
                   suppressLoadingUi={true}
-                  width={Style.adjust(22)}
-                  height={Style.adjust(22)}
+                  width={INFO_VIEW_HEIGHT_WIDTH}
+                  height={INFO_VIEW_HEIGHT_WIDTH}
                   source={infoBadgeUri}
                 />
               </View>
