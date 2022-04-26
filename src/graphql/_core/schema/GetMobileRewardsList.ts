@@ -29,11 +29,17 @@ export interface GetMobileRewardsList_data_list {
   pills: GetMobileRewardsList_data_list_pills[];
 }
 
+export interface GetMobileRewardsList_data_preloadAssets {
+  id: string;
+  uri: string | null;
+}
+
 export interface GetMobileRewardsList_data {
   __typename: "MobileRewardsList";
   id: string;
   tags: string[];
   list: GetMobileRewardsList_data_list[];
+  preloadAssets: GetMobileRewardsList_data_preloadAssets[];
 }
 
 export interface GetMobileRewardsList {
