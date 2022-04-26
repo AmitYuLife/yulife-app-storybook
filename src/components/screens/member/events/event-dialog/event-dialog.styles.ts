@@ -12,9 +12,9 @@ export const CONTENT_MARGIN_TOP = Platform.select({
   android: Style.DEVICE_WIDTH / 3 + Style.adjust(12),
 });
 
-export const FAQ_ICON_DIMENSION = 40;
+export const FAQ_ICON_DIMENSION = 30;
 
-export const FAQ_VERTICAL_PADDING = 18;
+export const FAQ_VERTICAL_PADDING = 15;
 
 export const FAQ_HORIZONTAL_PADDING = 18;
 
@@ -33,7 +33,7 @@ export default StyleSheet.create({
   },
   faqImageWrapper: {
     position: "absolute",
-    top: CONTENT_MARGIN_TOP + PADDING_TOP + Style.adjust(12) - FAQ_ICON_DIMENSION - 2 * FAQ_VERTICAL_PADDING,
+    top: 0,
     right: 0,
   },
   faqImageContainer: {

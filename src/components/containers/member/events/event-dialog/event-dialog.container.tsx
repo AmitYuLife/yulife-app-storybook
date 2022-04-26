@@ -16,7 +16,7 @@ import { showYuModal } from "@navigation/root";
 import { MODALS } from "@navigation/constants";
 import { GQL_MUTATION_CLAIM_GOAL_REWARDS } from "@graphql/goals/claimGoalRewards.gql";
 import { GQL_MUTATION_JOIN_GOAL } from "@graphql/goals/joinGoal.gql";
-import { getUserStart, updateUserGoal } from "@redux/user/user.actions";
+import { getUserStart, refreshUserProfileEvents, updateUserGoal } from "@redux/user/user.actions";
 import { GoalActionType } from "@graphql/_core/schema/globalTypes";
 
 interface IProps {
@@ -29,7 +29,7 @@ interface IProps {
 const EventDialogContainer: FC<IProps> = ({ componentId, goalId, stageId, onLeftIconPress }) => {
   const [goalDetails, setGoalDetails] = useState(null);
   const dispatch = useDispatch();
-  const { data } = useQuery<GetGoalDetails>(GQL_QUERY_GET_GOAL_DETAILS, {
+  const { data, loading, refetch } = useQuery<GetGoalDetails>(GQL_QUERY_GET_GOAL_DETAILS, {
     variables: { id: goalId, stageId },
     fetchPolicy: "network-only",
   });
@@ -45,10 +45,11 @@ const EventDialogContainer: FC<IProps> = ({ componentId, goalId, stageId, onLeft
     async (rewardIds: string[]) => {
       const updatedGoal = await claimGoalRewardsMutation({ variables: { rewardIds } });
       setGoalDetails(updatedGoal.data.claimGoalRewards);
+      dispatch(refreshUserProfileEvents());
       // update today's yucoin screen
       dispatch(getUserStart());
     },
-    [claimGoalRewardsMutation]
+    [claimGoalRewardsMutation, dispatch]
   );
 
   const onActionButtonPress = useCallback(async () => {
@@ -66,6 +67,7 @@ const EventDialogContainer: FC<IProps> = ({ componentId, goalId, stageId, onLeft
                 descriptionTitle: "Great job!",
                 description: `Congrats on completing the event!`,
                 cta: "Claim rewards",
+                onCta: onClaimRewardPress,
                 rewards: data.getGoalDetails.rewards,
               },
             },
@@ -77,7 +79,10 @@ const EventDialogContainer: FC<IProps> = ({ componentId, goalId, stageId, onLeft
             const response = await joinGoalMutation({ variables: { goalId } });
 
             if (response.data?.joinGoal) {
+              // updates event panels
               dispatch(updateUserGoal(response.data.joinGoal));
+              // updates event dialog
+              refetch();
             }
           } catch (e) {
             // do something at some point
@@ -109,7 +114,11 @@ const EventDialogContainer: FC<IProps> = ({ componentId, goalId, stageId, onLeft
     if (data?.getGoalDetails) {
       setGoalDetails(data.getGoalDetails);
     }
-  }, [data]);
+  }, [data, loading]);
+
+  useEffect(() => {
+    dispatch(refreshUserProfileEvents());
+  }, [dispatch]);
 
   if (!goalDetails) {
     return <EventDialogLoadingScreen onLeftIconPress={onLeftIconPress} />;

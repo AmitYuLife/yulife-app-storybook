@@ -1,7 +1,7 @@
-import React, { memo, useRef, useCallback } from "react";
+import React, { memo, useRef, useCallback, useMemo } from "react";
 import { StyleSheet, View } from "react-native";
 import { Image, TextTemplate } from "@atoms";
-import { LabelWithImages, PressableWithDelay } from "@molecules";
+import { Button, LabelWithImages, PressableWithDelay } from "@molecules";
 import { Colours, Style } from "@styles";
 import { RadioIcon } from "@atoms/icon/radio-icon";
 import LottieView from "lottie-react-native";
@@ -57,6 +57,7 @@ const EventReward = ({
   } = reward;
   const questionMarkRef = useRef<View>();
   const rewardClaimed = status === GoalRewardStatus.claimed;
+  const rewardCompleted = status === GoalRewardStatus.completed;
   const statusColor = getStatusColor(status);
 
   const openPopUp = useCallback(() => {
@@ -64,7 +65,7 @@ const EventReward = ({
   }, [questionMarkRef, infoText]);
 
   const claimReward = useCallback(() => {
-    if (!claimButton || status !== GoalRewardStatus.completed) {
+    if (!claimButton || !rewardCompleted) {
       return;
     }
 
@@ -75,7 +76,7 @@ const EventReward = ({
         passProps: {
           title,
           descriptionTitle: "Great job!",
-          description: `You reached the milestone!\nCongratualtions. Claim your rewards.`,
+          description: `You reached the milestone!\nCongratulations. Claim your rewards.`,
           cta: "Claim",
           onCta: onClaimPress,
           rewards: [reward],
@@ -83,6 +84,38 @@ const EventReward = ({
       },
     });
   }, [claimButton, reward, status, title]);
+
+  const descriptionFooter = useMemo(() => {
+    if (rewardCompleted && claimButton) {
+      return (
+        <Button
+          wrapperStyle={styles.descriptionWrapper}
+          onPress={claimReward}
+          size="ExtraSmall"
+          shadowColor="transparent"
+          label="Claim now"
+        />
+      );
+    }
+
+    if (description) {
+      return (
+        <View style={styles.descriptionWrapper}>
+          <TextTemplate type={"l1"}>{description}</TextTemplate>
+        </View>
+      );
+    }
+
+    return null;
+  }, [claimButton, claimReward, description, rewardCompleted]);
+
+  const animation = useMemo(() => {
+    if (!animated && !rewardCompleted) {
+      return null;
+    }
+
+    return <LottieView style={styles.absolute} source={lottieAnimationSource} autoPlay={true} loop={true} />;
+  }, [animated, rewardCompleted]);
 
   return (
     <PressableWithDelay onPress={claimReward}>
@@ -95,9 +128,7 @@ const EventReward = ({
               height={Style.adjust(72)}
               style={styles.absolute}
             />
-            {!animated ? null : (
-              <LottieView style={styles.absolute} source={lottieAnimationSource} autoPlay={true} loop={true} />
-            )}
+            {animation}
             <Image
               suppressLoadingUi={true}
               source={{ uri: itemUri }}
@@ -119,11 +150,7 @@ const EventReward = ({
           <TextTemplate type={"l1b"}>{title}</TextTemplate>
         </View>
 
-        {!description ? null : (
-          <View style={styles.descriptionWrapper}>
-            <TextTemplate type={"l1"}>{description}</TextTemplate>
-          </View>
-        )}
+        {descriptionFooter}
 
         {!infoBadgeUri ? null : (
           <View style={styles.infoWrapper}>

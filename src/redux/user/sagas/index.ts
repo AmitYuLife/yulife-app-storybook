@@ -16,6 +16,7 @@ import {
   REFRESH_USER_PROFILE,
   YUSCREEN_SYNCHRONISED,
   REMOVE_YUSCREEN_NOTIFICATIONS,
+  REFRESH_USER_PROFILE_EVENTS,
 } from "../user.actions";
 
 import fetchConnectionsSaga from "./fetchConnectionsSaga.sagas";
@@ -49,7 +50,7 @@ export default [
   takeLatest(LOGIN_USER_SUCCESS, showLeaderboardInviteOnLoginSaga),
   takeLatest(FITKIT_CONSENT_AUTHORISED, fitKitConsentAuthorisedSaga),
   takeLatest(CHALLENGE_RESET_SUCCESS, getUserDataSaga),
-  takeLatest(CHALLENGE_RESET_SUCCESS, getUserProfileEvents),
+  takeLatest([CHALLENGE_RESET_SUCCESS, REFRESH_USER_PROFILE_EVENTS], getUserProfileEvents),
   takeLatest(UPDATE_LEADERBOARD_CONSENT_START, updateLeaderboardConsentSaga),
   takeLatest(UPDATE_USER_CONSENT, updateUserConsentSaga),
   takeLatest(LOGOUT_START, logOutSaga),
