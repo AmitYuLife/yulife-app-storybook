@@ -129,11 +129,10 @@ const EventDialogScreen: FC<IProps> = ({
   const faqWraperStyle = {
     ...style.faqImageWrapper,
     opacity: scrollY.interpolate({
-      inputRange: [30, 60],
+      inputRange: [0, CONTENT_MARGIN_TOP - TITLE_HEIGHT],
       outputRange: [1, 0],
       extrapolate: "clamp",
     }),
-    transform: [{ translateY: Animated.multiply(-1, scrollY) }],
   };
 
   const heading = useMemo(
@@ -215,6 +214,14 @@ const EventDialogScreen: FC<IProps> = ({
           {!button ? null : <View style={style.ctaPadding} />}
         </View>
       </Animated.ScrollView>
+      {!showHeading ? null : (
+        <GenericHeadingAbsolute
+          heading={heading}
+          color={headerTextColor}
+          onLeftIconPress={onLeftIconPress}
+          backgroundColor="transparent"
+        />
+      )}
       {!faq ? null : (
         <Animated.View style={faqWraperStyle}>
           <View style={style.faqImageContainer} collapsable={false} ref={questionMarkRef}>
@@ -230,15 +237,6 @@ const EventDialogScreen: FC<IProps> = ({
           </View>
         </Animated.View>
       )}
-      {!showHeading ? null : (
-        <GenericHeadingAbsolute
-          heading={heading}
-          color={headerTextColor}
-          onLeftIconPress={onLeftIconPress}
-          backgroundColor="transparent"
-        />
-      )}
-
       {!button ? null : (
         <View style={style.ctaWrapper}>
           <Button
