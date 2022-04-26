@@ -1,8 +1,9 @@
 import { GQL_QUERY_GET_MOBILE_REWARDS_LIST } from "@graphql/rewards";
 import { bottomTabs } from "@navigation/constants";
-import React, { memo, useCallback, useState } from "react";
+import React, { memo, useCallback, useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { Navigation } from "react-native-navigation";
+import FastImage from "react-native-fast-image";
 import {
   GetMobileRewardsList as Rewards,
   GetMobileRewardsListVariables as RewardsVariables,
@@ -23,6 +24,7 @@ interface IProps {
 
 const _RewardsListContainer = (props: IProps) => {
   const { componentId, onLeftMenuPress, onTabChange } = props;
+  const areAssetsPrefetched = useRef(false);
   const [tag, setTag] = useState("All");
   const copy = useSelector(getPurchasesCopy);
   const [getRewards, { loading, data: rewards }] = useQueryOnScreenSeenOnce<Rewards, RewardsVariables>(
@@ -30,6 +32,14 @@ const _RewardsListContainer = (props: IProps) => {
     ROUTES.rewards,
     { variables: { tag } }
   );
+
+  useEffect(() => {
+    if (!areAssetsPrefetched?.current && rewards?.data?.preloadAssets?.length) {
+      FastImage.preload(rewards.data.preloadAssets);
+      areAssetsPrefetched.current = true;
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [rewards?.data?.id]);
 
   const handlePurchasesPress = useCallback(async () => {
     onTabChange("purchases");

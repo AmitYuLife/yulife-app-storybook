@@ -9,6 +9,9 @@ export const GQL_QUERY_GET_MOBILE_REWARDS_LIST = gql`
       __typename
       id
       tags
+      preloadAssets {
+        ...RemoteImage
+      }
       list {
         __typename
         id
