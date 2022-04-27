@@ -98,8 +98,11 @@ const EventPanel = ({ event, currentWorld, componentId, width, onJoin }: IProps)
               current={event.progressBar.current}
               max={event.progressBar.max}
               width={PROGRESS_BAR_WIDTH}
-              milestones={event.milestones?.map((milestone) => milestone.targetValue)}
               type="compact"
+              milestones={event.milestones?.map((m) => ({
+                value: m.targetValue,
+                shouldAttractAttention: m.isClaimable,
+              }))}
             />
           </View>
           <View style={styles.tags}>

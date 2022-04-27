@@ -51,6 +51,7 @@ export interface GetUserProfileEvents_getUserProfileEvents_milestones {
   animated: boolean | null;
   rewardId: string | null;
   rewardClaimed: boolean | null;
+  isClaimable: boolean | null;
 }
 
 export interface GetUserProfileEvents_getUserProfileEvents {

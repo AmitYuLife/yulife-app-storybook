@@ -1,7 +1,10 @@
 import React, { Fragment, memo, useMemo } from "react";
 import { Colours } from "@styles";
 import Svg, { Path, Rect, Circle, G } from "react-native-svg";
-import { ViewStyle, StyleSheet } from "react-native";
+import { ViewStyle, StyleSheet, Animated, Easing } from "react-native";
+import { DETOX_ENABLED } from "@services/socket";
+
+const AnimatedCircle = Animated.createAnimatedComponent(Circle);
 
 const FULL_PROGRESS_BAR_VALUES = {
   defaultWidth: 327,
@@ -19,7 +22,7 @@ const FULL_PROGRESS_BAR_VALUES = {
 
 const COMPACT_PROGRESS_BAR_VALUES = {
   defaultWidth: 232,
-  adjustedHeight: 22,
+  adjustedHeight: 30,
   rectYOffset: 7,
   rectHeight: 8,
   rectBorderRadius: 4,
@@ -31,11 +34,16 @@ const COMPACT_PROGRESS_BAR_VALUES = {
   starVerticalCenter: 5,
 };
 
+interface ProgressBarMilestone {
+  value: number;
+  shouldAttractAttention: boolean;
+}
+
 export interface IProgressBarProps {
   width?: number;
   current: number;
   max: number;
-  milestones?: number[];
+  milestones?: ProgressBarMilestone[];
   type?: "full" | "compact";
   style?: ViewStyle;
 }
@@ -82,12 +90,12 @@ const ProgressBar = ({ width, current, max, milestones = [], type = "full", styl
         rx={rectBorderRadius}
       />
       {/* milestone circle borders */}
-      {milestones.map((milestone) => {
-        const ratio = milestone / max;
+      {milestones.map(({ value }) => {
+        const ratio = value / max;
         const circleCenter = ratio * fullWidth + circleHorizontalOffset;
         return (
           <Circle
-            key={`progress-milestone-border-${milestone}`}
+            key={`progress-milestone-border-${value}`}
             cx={circleCenter}
             cy={circleVerticalCenter}
             r={circleRadius}
@@ -118,31 +126,24 @@ const ProgressBar = ({ width, current, max, milestones = [], type = "full", styl
         />
       )}
       {/* milestone circle fills and stars */}
-      {milestones.map((milestone) => {
-        const milestoneMet = current >= milestone;
-        const ratio = milestone / max;
-        const circleCenter = ratio * fullWidth + circleHorizontalOffset;
-        const circleBorderColor = milestoneMet ? Colours.primary.p400 : null;
-        const circleFillColor = milestoneMet ? Colours.primary.p400 : Colours.neutral.white;
-        const starColor = milestoneMet ? Colours.forest.fp103 : Colours.neutral.n400;
-        const starX = ratio * fullWidth + starHorizontalOffset;
+      {milestones.map(({ value, shouldAttractAttention }) => {
+        const milestoneMet = current >= value;
+        const ratio = value / max;
+
         return (
-          <Fragment key={`progress-milestone-fill-${milestone}`}>
-            <Circle
-              cx={circleCenter}
-              cy={circleVerticalCenter}
-              r={circleRadius}
-              strokeWidth={1}
-              stroke={circleBorderColor}
-              fill={circleFillColor}
-            />
-            <G scale={starScale} x={starX} y={starVerticalCenter}>
-              <Path
-                d="M5.99935 0.75L7.32065 4.91281L11.625 4.90353L8.13717 7.4675L9.47674 11.625L5.99935 9.04512L2.52326 11.625L3.86283 7.4675L0.375 4.90353L4.67935 4.91281L5.99935 0.75Z"
-                fill={starColor}
-              />
-            </G>
-          </Fragment>
+          <RewardMilestone
+            key={value}
+            shouldAttractAttention={shouldAttractAttention}
+            milestoneMet={milestoneMet}
+            ratio={ratio}
+            fullWidth={fullWidth}
+            circleHorizontalOffset={circleHorizontalOffset}
+            starHorizontalOffset={starHorizontalOffset}
+            circleVerticalCenter={circleVerticalCenter}
+            circleRadius={circleRadius}
+            starScale={starScale}
+            starVerticalCenter={starVerticalCenter}
+          />
         );
       })}
     </Svg>
@@ -150,3 +151,97 @@ const ProgressBar = ({ width, current, max, milestones = [], type = "full", styl
 };
 
 export default memo(ProgressBar);
+
+type RewardMilestoneProps = {
+  shouldAttractAttention: boolean;
+  milestoneMet: boolean;
+  ratio: number;
+  fullWidth: number;
+  circleHorizontalOffset: number;
+  starHorizontalOffset: number;
+  circleVerticalCenter: number;
+  circleRadius: number;
+  starScale: number;
+  starVerticalCenter: number;
+};
+
+const RewardMilestone = memo(
+  ({
+    shouldAttractAttention,
+    milestoneMet,
+    ratio,
+    fullWidth,
+    circleHorizontalOffset,
+    starHorizontalOffset,
+    circleVerticalCenter,
+    circleRadius,
+    starScale,
+    starVerticalCenter,
+  }: RewardMilestoneProps) => {
+    const anim = React.useRef(new Animated.Value(0));
+    const circleCenter = ratio * fullWidth + circleHorizontalOffset;
+    const circleBorderColor = milestoneMet ? Colours.primary.p400 : null;
+    const circleFillColor = milestoneMet ? Colours.primary.p400 : Colours.neutral.white;
+    const starColor = milestoneMet ? Colours.forest.fp103 : Colours.neutral.n400;
+    const starX = ratio * fullWidth + starHorizontalOffset;
+
+    React.useEffect(() => {
+      if (!DETOX_ENABLED) {
+        const animation = Animated.loop(
+          Animated.sequence(
+            [1, 0].map((toValue) =>
+              Animated.timing(anim.current, {
+                duration: 1500,
+                easing: Easing.in((n: number) => n),
+                toValue,
+                useNativeDriver: true,
+              })
+            )
+          )
+        );
+
+        animation.start();
+
+        return () => {
+          animation.stop();
+        };
+      }
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
+    const interpolation = {
+      inputRange: [0, 1],
+      outputRange: [circleRadius, circleRadius + 5],
+    };
+
+    return (
+      <Fragment key={`progress-milestone-fill-${ratio}`}>
+        {!shouldAttractAttention ? null : (
+          <AnimatedCircle
+            cx={circleCenter}
+            cy={circleVerticalCenter}
+            r={anim.current.interpolate(interpolation)}
+            strokeWidth={1}
+            stroke={circleBorderColor}
+            fill={circleFillColor}
+            opacity={0.5}
+          />
+        )}
+        <Circle
+          cx={circleCenter}
+          cy={circleVerticalCenter}
+          r={circleRadius}
+          strokeWidth={1}
+          stroke={circleBorderColor}
+          fill={circleFillColor}
+        />
+        <G scale={starScale} x={starX} y={starVerticalCenter}>
+          <Path
+            d="M5.99935 0.75L7.32065 4.91281L11.625 4.90353L8.13717 7.4675L9.47674 11.625L5.99935 9.04512L2.52326 11.625L3.86283 7.4675L0.375 4.90353L4.67935 4.91281L5.99935 0.75Z"
+            fill={starColor}
+          />
+        </G>
+      </Fragment>
+    );
+  }
+);

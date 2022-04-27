@@ -196,7 +196,12 @@ const EventDialogScreen: FC<IProps> = ({
               {progressText}
             </TextTemplate>
           </View>
-          <ProgressBar current={currentProgress} max={maxProgress} milestones={milestones} width={PROGRESS_BAR_WIDTH} />
+          <ProgressBar
+            current={currentProgress}
+            max={maxProgress}
+            milestones={milestones.map((value) => ({ value, shouldAttractAttention: false }))}
+            width={PROGRESS_BAR_WIDTH}
+          />
           {!about ? null : (
             <HeadingAndCopy title={about.title} wrapperStyle={style.about} titleType="b1b" markdown={about.markdown} />
           )}
