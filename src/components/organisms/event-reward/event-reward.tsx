@@ -20,7 +20,6 @@ interface IEventReward {
   width?: number;
   reward: IReward;
   claimButton?: boolean;
-  onClaimPress?: (rewardIds: string[]) => void;
 }
 
 export interface IReward {
@@ -42,7 +41,6 @@ const EventReward = ({
   width = Style.adjust(136),
   marginHorizontal = Style.adjust(4),
   claimButton,
-  onClaimPress,
 }: IEventReward) => {
   const {
     title,
@@ -78,7 +76,6 @@ const EventReward = ({
           descriptionTitle: "Great job!",
           description: `You reached the milestone!\nCongratulations. Claim your rewards.`,
           cta: "Claim",
-          onCta: onClaimPress,
           rewards: [reward],
         },
       },
@@ -101,7 +98,7 @@ const EventReward = ({
     if (description) {
       return (
         <View style={styles.descriptionWrapper}>
-          <TextTemplate type={"l1"}>{description}</TextTemplate>
+          <TextTemplate type="l1">{description}</TextTemplate>
         </View>
       );
     }

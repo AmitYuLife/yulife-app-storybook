@@ -1,22 +1,15 @@
-import React, { FC, useCallback, useEffect, useState } from "react";
+import React, { FC, useCallback, useEffect } from "react";
 import EventDialogScreen from "@components/screens/member/events/event-dialog/event-dialog.screen";
 import EventDialogLoadingScreen from "@components/screens/member/events/event-dialog/event-dialog-loading.screen";
 import { Navigation } from "react-native-navigation";
 import { useMutation, useQuery } from "@apollo/react-hooks";
 import { GQL_QUERY_GET_GOAL_DETAILS } from "@graphql/goals/getGoalDetails.gql";
 import { useDispatch } from "react-redux";
-import {
-  ClaimGoalRewards,
-  ClaimGoalRewardsVariables,
-  GetGoalDetails,
-  JoinGoal,
-  JoinGoalVariables,
-} from "@graphql/_core/schema";
+import { GetGoalDetails, JoinGoal, JoinGoalVariables } from "@graphql/_core/schema";
 import { showYuModal } from "@navigation/root";
 import { MODALS } from "@navigation/constants";
-import { GQL_MUTATION_CLAIM_GOAL_REWARDS } from "@graphql/goals/claimGoalRewards.gql";
 import { GQL_MUTATION_JOIN_GOAL } from "@graphql/goals/joinGoal.gql";
-import { getUserStart, refreshUserProfileEvents, updateUserGoal } from "@redux/user/user.actions";
+import { refreshUserProfileEvents, updateUserGoal } from "@redux/user/user.actions";
 import { GoalActionType } from "@graphql/_core/schema/globalTypes";
 
 interface IProps {
@@ -27,7 +20,6 @@ interface IProps {
 }
 
 const EventDialogContainer: FC<IProps> = ({ componentId, goalId, stageId, onLeftIconPress }) => {
-  const [goalDetails, setGoalDetails] = useState(null);
   const dispatch = useDispatch();
   const { data, loading, refetch } = useQuery<GetGoalDetails>(GQL_QUERY_GET_GOAL_DETAILS, {
     variables: { id: goalId, stageId },
@@ -35,22 +27,13 @@ const EventDialogContainer: FC<IProps> = ({ componentId, goalId, stageId, onLeft
   });
 
   const [joinGoalMutation] = useMutation<JoinGoal, JoinGoalVariables>(GQL_MUTATION_JOIN_GOAL);
-  const [claimGoalRewardsMutation] = useMutation<ClaimGoalRewards, ClaimGoalRewardsVariables>(
-    GQL_MUTATION_CLAIM_GOAL_REWARDS
-  );
 
-  const { title, labels, headerBackgroundColor, headerTextColor, headerImage, button } = goalDetails || {};
+  useEffect(() => {
+    // rehydrate the daily screen
+    dispatch(refreshUserProfileEvents());
+  }, []);
 
-  const onClaimRewardPress = useCallback(
-    async (rewardIds: string[]) => {
-      const updatedGoal = await claimGoalRewardsMutation({ variables: { rewardIds } });
-      setGoalDetails(updatedGoal.data.claimGoalRewards);
-      dispatch(refreshUserProfileEvents());
-      // update today's yucoin screen
-      dispatch(getUserStart());
-    },
-    [claimGoalRewardsMutation, dispatch]
-  );
+  const { title, labels, headerBackgroundColor, headerTextColor, headerImage, button } = data?.getGoalDetails || {};
 
   const onActionButtonPress = useCallback(async () => {
     if (button?.onPress) {
@@ -67,7 +50,6 @@ const EventDialogContainer: FC<IProps> = ({ componentId, goalId, stageId, onLeft
                 descriptionTitle: "Great job!",
                 description: `Congrats on completing the event!`,
                 cta: "Claim rewards",
-                onCta: onClaimRewardPress,
                 rewards: data.getGoalDetails.rewards,
               },
             },
@@ -110,28 +92,11 @@ const EventDialogContainer: FC<IProps> = ({ componentId, goalId, stageId, onLeft
     onLeftIconPress,
   };
 
-  useEffect(() => {
-    if (data?.getGoalDetails) {
-      setGoalDetails(data.getGoalDetails);
-    }
-  }, [data, loading]);
-
-  useEffect(() => {
-    dispatch(refreshUserProfileEvents());
-  }, [dispatch]);
-
-  if (!goalDetails) {
+  if (loading || !data?.getGoalDetails) {
     return <EventDialogLoadingScreen onLeftIconPress={onLeftIconPress} />;
   }
 
-  return (
-    <EventDialogScreen
-      headerProps={headerProps}
-      onClaimRewardPress={onClaimRewardPress}
-      onButtonPress={onActionButtonPress}
-      {...goalDetails}
-    />
-  );
+  return <EventDialogScreen headerProps={headerProps} onButtonPress={onActionButtonPress} {...data.getGoalDetails} />;
 };
 
 export default EventDialogContainer;
