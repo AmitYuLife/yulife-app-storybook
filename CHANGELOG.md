@@ -7,6 +7,41 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.29.0] - 2022-04-27
+
+### Bugfixes
+
+- Bugfix: refactor claim reward logic
+- Bugfix: progress bar pulse
+- Bugfix: info icon on daily screen
+- Bugfix: join goal event
+- Bugfix: Bring InformationIcon closer to YuCoin on daily screen
+- Bugfix: Add missing mixpanel event type
+
+### Tasks
+
+- Task: animate claimable goal rewards
+- Task: preload reward images
+- Task GS-283: Generic popup tooltip
+- Task: refetch events after challenge completion
+- Task GS-289: Add Meditopia To Quest Screen
+
+### Chores
+
+- Chore: Event fixes
+- Chore: surpress image loading ui for events
+- Chore: RN Redux state logging
+- Chore XSE-951: Migrate non-atoms from atoms folder
+
+### Extra
+
+- detox:multifactor price change test
+- Fix ENG-2654: Move join leaderboard button between paragraphs
+- detox:changed the average minutes per day number test
+- Detox: fixes_25_04
+- Hotfix: isDailyScreenInformationIconHidden fix
+- Detox: add userOnboarding to the users
+
 ## [3.28.0] - 2022-04-20
 
 ### Features
