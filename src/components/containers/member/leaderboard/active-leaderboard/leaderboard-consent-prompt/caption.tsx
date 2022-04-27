@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { View } from "react-native";
-import { Text } from "@atoms";
+import { TextTemplate } from "@atoms";
 import { Button } from "@molecules";
-import { captionStyle } from "./styles";
+import { captionStyle, SUBHEADING_COLOR } from "./styles";
 import { GetMobileCopy_getMobileCopy_screens_leaderboards_turnBoardOn } from "@graphql/_core/schema";
 
 interface Props {
@@ -16,20 +16,33 @@ export function Caption(props: Props) {
   const { setConsent, copy = defaultCopy } = props;
   const { heading, subheading = "", ctaLabel } = copy;
 
+  const paragraphs = useMemo(() => {
+    return subheading
+      .split("\n")
+      .filter((segment) => !!segment)
+      .reduce((list, segment, position) => {
+        list.push(
+          <View key={position} style={captionStyle.subheading}>
+            <TextTemplate textAlign="center" type={"b2"} color={SUBHEADING_COLOR}>
+              {segment}
+            </TextTemplate>
+          </View>
+        );
+        if (position === 0) {
+          list.push(
+            <Button key={"button_id"} wrapperStyle={captionStyle.button} label={ctaLabel} onPress={setConsent} />
+          );
+        }
+
+        return list;
+      }, []);
+  }, [ctaLabel, setConsent, subheading]);
   return (
     <View style={captionStyle.wrapper}>
-      <Text style={captionStyle.heading} bold={true}>
+      <TextTemplate textAlign="center" type="h1" color={captionStyle.heading.color}>
         {heading}
-      </Text>
-      {subheading
-        .split("\n")
-        .filter((segment) => !!segment)
-        .map((segment, i) => (
-          <Text key={i} style={captionStyle.subheading}>
-            {segment}
-          </Text>
-        ))}
-      <Button wrapperStyle={captionStyle.button} label={ctaLabel} onPress={setConsent} />
+      </TextTemplate>
+      {paragraphs}
     </View>
   );
 }

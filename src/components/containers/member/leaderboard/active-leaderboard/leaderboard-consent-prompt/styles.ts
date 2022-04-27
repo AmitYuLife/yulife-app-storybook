@@ -3,7 +3,7 @@ import { LeaderboardPodium } from "../leaderboard-podium";
 import { Style } from "@styles";
 
 export const CROP_AMOUNT = 60;
-
+export const SUBHEADING_COLOR = "#333";
 export const captionStyle = StyleSheet.create({
   wrapper: {
     justifyContent: "center",
@@ -24,14 +24,9 @@ export const captionStyle = StyleSheet.create({
     color: "#333",
   } as TextStyle,
   subheading: {
-    fontSize: Style.adjust(15),
-    lineHeight: Style.adjust(21),
     marginHorizontal: 20,
-    color: "#333",
-    textAlign: "center",
     marginTop: Style.adjust(15),
-    letterSpacing: 1,
-  } as TextStyle,
+  } as ViewStyle,
   button: {
     marginTop: Style.adjust(22),
   } as ViewStyle,
