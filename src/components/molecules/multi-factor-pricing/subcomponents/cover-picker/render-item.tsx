@@ -4,6 +4,7 @@ import { Text } from "@atoms";
 import { styles, ITEM_WIDTH } from "./styles";
 import { Style } from "@styles";
 import { ContentItemScrollableItemsPicker_styleVariants } from "@graphql/_core/schema";
+import { SCROLL_NUMBER_PICKER } from "@ids";
 
 export const createSnapToOffsets = (length: number) => {
   return Array.from({ length }).map((_, i) => ITEM_WIDTH * i);
@@ -38,7 +39,7 @@ const MemoizedItem = memo(
         {item}
       </ItemText>
       <>
-        {styleVariants.map((styleVariant) => (
+        {styleVariants.map((styleVariant, i) => (
           <Animated.View
             key={styleVariant.id}
             style={{
@@ -57,6 +58,7 @@ const MemoizedItem = memo(
               opacity={getActiveTextOpacityValue({ scrollX, index, itemWidth: ITEM_WIDTH })}
               style={{ color: styleVariant.item.color }}
               active={true}
+              testID={styleVariants.length - 1 === i ? SCROLL_NUMBER_PICKER(item) : null}
             >
               {item}
             </ItemText>

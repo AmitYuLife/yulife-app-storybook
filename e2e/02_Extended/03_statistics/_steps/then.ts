@@ -16,7 +16,7 @@ export const userStatsVisible = async () => {
     const subtitles = ["total earned", "total redeemed", "total challenges completed", "challenge history", "average daily steps", "most steps in a day", "steps this week", "average mindful minutes per day", "mindful minutes on your best week", "mindful minutes this week", "see activity history"]
     const mostStepsDate = moment().subtract(7, "days").format("DD/MM/YYYY").toString()
     const mindfulWeekBeginningDate = "27/04/2020"
-    const valueIDs = ["940", "0", "3", "917", "2,500", mostStepsDate, "9", "167", mindfulWeekBeginningDate]
+    const valueIDs = ["940", "0", "3", "917", "2,500", mostStepsDate, "5", "167", mindfulWeekBeginningDate]
     const challengeHistory = [1, 1]
     
     for(let i=0; i>challengeHistory.length;i++){

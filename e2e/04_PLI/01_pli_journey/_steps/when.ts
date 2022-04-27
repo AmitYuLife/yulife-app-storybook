@@ -78,7 +78,7 @@ export const navigateThroughTheFullSwiper = async () => {
 }
 
 export const dismissPLIModal = async () => {
-    await navigateViaText("Start my quote (+1000 YuCoin)")
+    await navigateViaText("Start my quote (+1000 YuCoin)", 4000)
 }
 
 export const chooseCorrectDoB = (age: number) => async () => {
@@ -108,14 +108,14 @@ export const scrollToTheBottomAndChooseYesOrNo = (answer: string) => async () =>
 /**
  * This skips 1 item. It also takes a while until it gets there
  */
-export const swipeOnPicker = (scrollViewId: string, id: string, direction: Detox.Direction) => async () => {
+export const swipeOnPicker = (scrollViewId: string, id: string, direction: Detox.Direction, speed = 150) => async () => {
     const scroller = element(by.id(scrollViewId))
 
     let isVisible = false;
     let attempts = 0;
 
     while (!isVisible) {
-        await scroller.scroll(150, direction);
+        await scroller.scroll(speed, direction);
         await wait(500)();
 
         isVisible = await booleanIdVisible(id);

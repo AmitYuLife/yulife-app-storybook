@@ -8,6 +8,7 @@ import { Colours } from "@styles";
 import { Loading, TextTemplate } from "@atoms";
 import { SduiStyle } from "@graphql/_core/schema";
 import { CoverType } from "@graphql/_core/schema/globalTypes";
+import { HORIZONTAL_SCROLLER } from "@ids";
 
 interface Props {
   range: {
@@ -156,6 +157,7 @@ export const PercentPicker = memo((props: Props) => {
           style={styles.flatList}
           contentContainerStyle={styles.contentContainer}
           windowSize={itemRange?.length}
+          testID={HORIZONTAL_SCROLLER}
         />
         {!showLoading ? null : (
           <View style={styles.loadingWrapper}>

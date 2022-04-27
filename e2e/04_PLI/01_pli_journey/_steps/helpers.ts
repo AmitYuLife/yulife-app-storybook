@@ -2,7 +2,7 @@ import { When, Then } from "@yu-life/yulife-bdd-framework";
 import * as when from "./when"
 import * as then from "./then"
 import { CUSTOMER_37, AUTH_37 } from "@data";
-import { CONDITION_OPTION, CONTENT_ITEM_INPUT, PRODUCT_STEP_BODY_SCROLL_VIEW, SCROLL_PICKER, SCROLL_PICKER_ACTIVE_ITEM, SELECTED_PACKAGE_TITLE, PACKAGE_TYPES, BACK_BUTTON, PACKAGE_INFO, TEXT_TEMPLATE } from "@ids";
+import { CONDITION_OPTION, CONTENT_ITEM_INPUT, PRODUCT_STEP_BODY_SCROLL_VIEW, SCROLL_PICKER, SCROLL_PICKER_ACTIVE_ITEM, SELECTED_PACKAGE_TITLE, PACKAGE_TYPES, BACK_BUTTON, PACKAGE_INFO, TEXT_TEMPLATE, EDIT_BUTTON, DATE_PICKER, DATE_INPUT, HORIZONTAL_SCROLLER, SCROLL_NUMBER_PICKER } from "@ids";
 import { addCommasToNumber } from "_utils/appScreens/rewards";
 import { capitalizeFirstLetter } from "@navigation";
 
@@ -12,13 +12,12 @@ const ocean = "Ocean Explorer"
 const desert = "Desert Trailblazer"
 const mountain = "Mountain Adventurer"
 const styleText = `Almost there, choose a style for your Rare chest`
+const styleTextCommon = `Almost there, choose a style for your Common chest`
 const subTextStyle = "from any of our worlds: Forest, Ocean, Desert or Mountain!"
-const rareRate = "50% of your salary covered"
 const maximumCover = "Based on the age you would like your policy to stop, the maximum % salary we can cover is 61"
 const topHeading = "What % of your salary would you like covered?"
+const yuScreenChestPurchased = "Your Life Insurance lives here. Tap anytime to review your policy details."
 
-type MonthlyCoverPrices = "£12.31" | "£12.59" | "£94.07" | "£113.75" | "£142.93"
-type TotalCoverPrices = "£1,041.67" | "£6,250" | "£7,625" | "£9,375"
 
 export const ONBOARDING = async () => {
 
@@ -462,7 +461,7 @@ export const COVER_SELECT_PERCENTAGE = async (percentage: percentageLevel) => {
 
 type coverLevel = "common" | "rare" | "epic" | "custom"
 
-export const COVER_PRICE_CHECK = async () => {
+export const COVER_PRICE_CHECK = async (answer: string) => {
     When("I tap on 25% Common cover", when.tapText("25%"), async () => {
        Then("I should see corect Common plan", then.packageVisible("Common"))
     })
@@ -472,6 +471,26 @@ export const COVER_PRICE_CHECK = async () => {
     When("I tap on 50% Rare cover", when.tapText("50%"), async () => {
         Then("I should see corect Rare plan", then.packageVisible("Rare"))
     })
+    When("I Edit this screen", when.tapID(EDIT_BUTTON), async () => {
+        Then(`I should have selected 60`, then.idVisible(SCROLL_PICKER_ACTIVE_ITEM("60")))
+    })
+    When(`I choose 36`, when.swipeOnPicker(DATE_PICKER,SCROLL_PICKER_ACTIVE_ITEM("36"), "left"), async () => {
+        Then(`I should have selected "36"`, then.idVisible(SCROLL_PICKER_ACTIVE_ITEM("36")))
+        Then(`I should see corect Price changed according when i am  "36" years`, then.multiFactorPriceChange(30, "£5.10","£1,041.67", 36))
+    })
+    When(`I choose ${answer}`, when.swipeOnPicker(DATE_PICKER,SCROLL_PICKER_ACTIVE_ITEM(answer), "right", 200), async () => {
+        Then(`I should have selected ${answer}`, then.idVisible(SCROLL_PICKER_ACTIVE_ITEM(answer)))
+        Then(`I should see corect Price changed according when i am  ${answer} years`, then.multiFactorPriceChange(30, "£17.96","£1,041.67", 70))
+    })
+    When("I tap on percentage choose", when.tapText("Or, choose a custom percentage"), async () => {
+        Then(`I should see selected 50 % by default`, then.idVisible(SCROLL_NUMBER_PICKER(50), 4000))
+        When(`I choose 62 %`, when.swipeOnPicker(HORIZONTAL_SCROLLER, SCROLL_NUMBER_PICKER(62), "right"), async () => {
+            Then("I should see correct price package appearing", then.multiFactorPriceChange(30, "£20.94","£1,291.67", 70))
+            Then(`I should have selected ${answer}`, then.idVisible(SCROLL_PICKER_ACTIVE_ITEM(answer)))
+
+        })
+    })
+
     When("I scroll and tap on Documents",  when.scrollToAndTapText(PRODUCT_STEP_BODY_SCROLL_VIEW, "Documents", "down"), async () => {
         Then("I shoul be on Documents page", then.isOnDocumentsScreen)
     })
@@ -484,7 +503,9 @@ export const COVER_PRICE_CHECK = async () => {
 }
 
 
-export const COVER_STYLE_SELECTION = async (cover: coverLevel, mothprice: MonthlyCoverPrices, totalCoverPrices: TotalCoverPrices) => {
+export const COVER_STYLE_SELECTION = async (cover: coverLevel, percentage: string, mothprice: MonthlyCoverPrices, totalCoverPrices: TotalCoverPrices) => {
+
+    const rareRate = `${percentage} of your salary covered`
 
     When("I scroll to the left", when.scrollFromID(PACKAGE_INFO, "left", "slow", 0.4), async () => {
         Then(`I should see ${ocean}`, then.textVisible(ocean))
@@ -521,10 +542,14 @@ export const MAXIMUM_SUM_ASSURED = async (cover: coverLevel, mothprice: MonthlyC
         Then("I should be back on the cover selection screen", then.textVisible("Select your cover"))
         Then("I should see warning text about maximum cover", then.textVisible(maximumCover))
         Then("I should see correct heading text", then.textVisible(topHeading))
-        When("I scroll to the bottom and tap Continue to checkout", when.scrollToAndTapText(PRODUCT_STEP_BODY_SCROLL_VIEW, "Continue", "down"), async () => {
-            Then("I should be on the checkout page", then.isOnScreen(styleText))
+        Then(`I should have  text selected 61`, then.idVisible(SCROLL_NUMBER_PICKER(61)))
+        When(`I choose 31 %`, when.swipeOnPicker(HORIZONTAL_SCROLLER, SCROLL_NUMBER_PICKER(31), "left"), async () => {
+            Then("I should see correct price package appearing", then.multiFactorPriceChange(33, mothprice, totalCoverPrices, 60))
             When("I scroll to the bottom and tap Continue to checkout", when.scrollToAndTapText(PRODUCT_STEP_BODY_SCROLL_VIEW, "Continue", "down"), async () => {
-                Then("I should see correct package selected", then.packageSummaryVisible(cover, mothprice, totalCoverPrices))
+                Then("I should be on the checkout page", then.isOnScreen(styleTextCommon))
+                When("I scroll to the bottom and tap Continue to checkout", when.scrollToAndTapText(PRODUCT_STEP_BODY_SCROLL_VIEW, "Continue", "down"), async () => {
+                    Then("I should see correct package selected", then.packageSummaryVisible(cover, mothprice, totalCoverPrices))
+                })
             })
         })
     })
@@ -557,5 +582,14 @@ export const REJECTED = async (screen: RejectionScreen, date?: string, time?: st
     When("I wait 5 seconds", when.wait(5000), async () => {
         Then(`I should be on the ${screen} rejection screen`, then.textVisible("Sorry about this!"))
         Then(`I should be on the ${screen} rejection screen`, then.textVisible(screenText))
+    })
+}
+
+export const REVIEW_YUSCREEN = async () => {
+    When("I tap Continue", when.tapText("Continue"), async () => {
+        Then("I should see toolTip info text", then.textVisible(yuScreenChestPurchased))
+        When("I tap the toolTip", when.tapText(yuScreenChestPurchased), async () => {
+            Then("I should NOT see toolTip info text", then.textNotVisible(yuScreenChestPurchased))
+        })
     })
 }

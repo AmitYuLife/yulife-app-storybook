@@ -43,7 +43,7 @@ export const scrollToAndTapText = (scrollViewid: string, text: string, direction
 
 
 
-export const swipeToText = (scrollID: any, targetText: string, direction: "up" | "down" = "up", maxAttempts = 10) => async()=>{
+export const swipeToText = (scrollID: any, targetText: string, direction: "up" | "down" | "left" | "right", maxAttempts = 10) => async()=>{
     let targetTextVisible = await booleanTextVisible(targetText)
     let scroller = element(by.id(scrollID))
 
