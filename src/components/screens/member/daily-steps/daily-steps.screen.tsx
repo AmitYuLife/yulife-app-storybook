@@ -61,9 +61,9 @@ const DailyStepsScreen = ({
       >
         <Pad height={getPadHeight(hasEvents)} />
         <TouchableOpacityWithDelay onPress={onCoinPress} activeOpacity={1}>
-          {hideInformationIcon ? null : (
+          {hideInformationIcon || !hasPermission ? null : (
             <View style={styles.informationIcon}>
-              <InformationIcon isOffline={!hasPermission} />
+              <InformationIcon />
             </View>
           )}
           <YuCoin hasWhiteGlow={hasWhiteGlow} isGrayScale={!hasPermission} />
