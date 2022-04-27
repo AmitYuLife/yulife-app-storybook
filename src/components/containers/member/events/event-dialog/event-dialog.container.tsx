@@ -39,7 +39,7 @@ const EventDialogContainer: FC<IProps> = ({ componentId, goalId, stageId, onLeft
     GQL_MUTATION_CLAIM_GOAL_REWARDS
   );
 
-  const { title, labels, headerBackgroundColor, headerTextColor, headerImage, button } = data?.getGoalDetails || {};
+  const { title, labels, headerBackgroundColor, headerTextColor, headerImage, button } = goalDetails || {};
 
   const onClaimRewardPress = useCallback(
     async (rewardIds: string[]) => {

@@ -104,5 +104,5 @@ function getPadHeight(hasEvents: boolean) {
     return hasEvents ? 19 : 100;
   }
 
-  return 110;
+  return 100;
 }

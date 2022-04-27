@@ -195,6 +195,7 @@ const styles = StyleSheet.create({
   wrapper: {
     borderWidth: 1,
     borderColor: Colours.neutral.n100,
+    backgroundColor: Colours.neutral.white,
     borderRadius: Style.adjust(8),
     alignItems: "center",
     paddingTop: Style.adjust(16),
