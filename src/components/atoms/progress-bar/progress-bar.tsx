@@ -22,7 +22,7 @@ const FULL_PROGRESS_BAR_VALUES = {
 
 const COMPACT_PROGRESS_BAR_VALUES = {
   defaultWidth: 232,
-  adjustedHeight: 30,
+  adjustedHeight: 22,
   rectYOffset: 7,
   rectHeight: 8,
   rectBorderRadius: 4,
@@ -66,7 +66,7 @@ const ProgressBar = ({ width, current, max, milestones = [], type = "full", styl
   const fullWidth = useMemo(() => width || defaultWidth, [width, defaultWidth]);
 
   // these extra pixels are so that rounded edges are not cut off outside the viewBox
-  const adjustedWidth = useMemo(() => fullWidth + 2, [fullWidth]);
+  const adjustedWidth = useMemo(() => fullWidth + 10, [fullWidth]);
   const svgStyle = useMemo(() => ({ top: -1, left: -1 }), []);
 
   const progress = useMemo(() => current / max, [current, max]);
@@ -77,8 +77,10 @@ const ProgressBar = ({ width, current, max, milestones = [], type = "full", styl
     rectBorderRadius,
   ]);
 
+  const svgHeight = adjustedHeight + 8;
+
   return (
-    <Svg width={adjustedWidth} height={adjustedHeight} viewBox={viewBox} style={StyleSheet.flatten([svgStyle, style])}>
+    <Svg width={adjustedWidth} height={svgHeight} viewBox={viewBox} style={StyleSheet.flatten([svgStyle, style])}>
       {/* progress bar border */}
       <Rect
         stroke={Colours.neutral.n200}
