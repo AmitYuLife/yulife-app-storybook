@@ -1,4 +1,4 @@
-import React, { FC, memo, useCallback } from "react";
+import React, { FC, memo } from "react";
 import { View, StyleSheet } from "react-native";
 import { TextTemplate } from "@atoms";
 import EventRewardsWrapper from "@organisms/event-reward/event-rewards-wrapper";
@@ -6,8 +6,6 @@ import { Colours, Style } from "@styles";
 import { IReward } from "@organisms/event-reward/event-reward";
 import { ContentItemLottie as GqlLottie } from "@graphql/_core/schema";
 import { ContentItemLottie } from "@components/sdui";
-import { Navigation } from "react-native-navigation";
-import { MODALS } from "@navigation/constants";
 import { CentredScreen, Button } from "@molecules";
 
 interface ICollectEventRewardsProps {
@@ -15,7 +13,7 @@ interface ICollectEventRewardsProps {
   descriptionTitle: string;
   description: string;
   cta: string;
-  onCta: (rewardIds: string[]) => void;
+  onCta: () => void;
   rewards: IReward[];
   lottie: GqlLottie;
 }
@@ -29,14 +27,6 @@ const CollectEventRewardScreen: FC<ICollectEventRewardsProps> = ({
   rewards,
   lottie,
 }) => {
-  const onCtaPress = useCallback(() => {
-    if (rewards?.length) {
-      onCta(rewards.map((reward) => reward.id));
-    }
-
-    Navigation.dismissModal(MODALS.collectEventReward);
-  }, [onCta, rewards]);
-
   const titleTemplate = Style.isShortToMedium() ? "b2b" : "b1b";
   const descriptionTitleTemplate = Style.isShortToMedium() ? "h3" : "h2";
   return (
@@ -59,7 +49,7 @@ const CollectEventRewardScreen: FC<ICollectEventRewardsProps> = ({
       <View style={style.rewardSeparator} />
       <EventRewardsWrapper isClaimEnabled={false} rewards={rewards} />
       <View style={style.buttonWrapper}>
-        <Button size="Large" onPress={onCtaPress} label={cta} />
+        <Button size="Large" onPress={onCta} label={cta} />
       </View>
     </CentredScreen>
   );

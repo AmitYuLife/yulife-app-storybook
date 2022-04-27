@@ -52,7 +52,6 @@ interface IProps {
   banner?: EventBanner;
   button?: EventButton;
   onButtonPress?: () => void;
-  onClaimRewardPress?: (rewardIds: string[]) => void;
 }
 
 interface EventButton {
@@ -75,7 +74,6 @@ const EventDialogScreen: FC<IProps> = ({
   banner,
   button,
   onButtonPress,
-  onClaimRewardPress,
 }) => {
   const { title, labels, source: headerImageSource, backgroundColor, headerTextColor, onLeftIconPress } = headerProps;
   const [showHeading, setHeadingVisibilty] = useState(true);
@@ -182,7 +180,7 @@ const EventDialogScreen: FC<IProps> = ({
       >
         <View style={style.contentWrapper}>
           <View style={style.rewardsWrapper}>
-            <EventRewardsWrapper rewards={rewards} onClaimRewardPress={onClaimRewardPress} />
+            <EventRewardsWrapper rewards={rewards} />
           </View>
           <View style={style.progressText}>
             <Image

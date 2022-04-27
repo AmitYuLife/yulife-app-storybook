@@ -1,12 +1,20 @@
-import * as React from "react";
+import React, { useCallback, useState } from "react";
+import { useMutation } from "@apollo/react-hooks";
+import { useDispatch } from "react-redux";
+import { Navigation } from "react-native-navigation";
 import { CollectEventRewardScreen } from "@screens";
 import { IReward } from "@organisms/event-reward/event-reward";
+import { ClaimGoalRewards, ClaimGoalRewardsVariables } from "@graphql/_core/schema";
+import { GQL_MUTATION_CLAIM_GOAL_REWARDS } from "@graphql/goals/claimGoalRewards.gql";
+import { getUserStart, refreshUserProfileEvents } from "@redux/user/user.actions";
+import { MODALS } from "@navigation/constants";
+import Logger from "@services/logging/logger";
+
 interface IProps {
   title: string;
   descriptionTitle: string;
   description: string;
   cta: string;
-  onCta: (rewardIds: string[]) => void;
   rewards: IReward[];
 }
 
@@ -22,15 +30,42 @@ const lottie = {
   onAnimationEnd: null as any,
 };
 
-export default function CollectEventRewardModal({ title, descriptionTitle, description, cta, onCta, rewards }: IProps) {
+const handleModalClose = () => Navigation.dismissModal(MODALS.collectEventReward);
+
+export default function CollectEventRewardModal({ title, descriptionTitle, description, cta, rewards }: IProps) {
+  const [localRewards, setLocalRewards] = useState(rewards);
+  const dispatch = useDispatch();
+  const [claimGoalRewardsMutation] = useMutation<ClaimGoalRewards, ClaimGoalRewardsVariables>(
+    GQL_MUTATION_CLAIM_GOAL_REWARDS,
+    { refetchQueries: ["GetGoalDetails"] }
+  );
+
+  const onClaimRewardPress = useCallback(async () => {
+    try {
+      const rewardIds = rewards.map((r) => r.id);
+      const result = await claimGoalRewardsMutation({ variables: { rewardIds } });
+
+      if (result?.data?.claimGoalRewards?.rewards) {
+        setLocalRewards(result.data.claimGoalRewards.rewards.filter((r) => rewardIds.includes(r.id)));
+        dispatch(refreshUserProfileEvents());
+        // update today's yucoin screen
+        dispatch(getUserStart());
+      }
+    } catch (e) {
+      Logger.error(e, { event: "claim-goal" });
+    } finally {
+      handleModalClose();
+    }
+  }, [claimGoalRewardsMutation, dispatch, rewards?.length]);
+
   return (
     <CollectEventRewardScreen
       title={title}
       descriptionTitle={descriptionTitle}
       description={description}
       cta={cta}
-      onCta={onCta}
-      rewards={rewards}
+      onCta={onClaimRewardPress}
+      rewards={localRewards}
       lottie={lottie}
     />
   );
