@@ -33,7 +33,7 @@ export default StyleSheet.create({
   },
   faqImageWrapper: {
     position: "absolute",
-    top: 0,
+    top: PADDING_TOP,
     right: 0,
   },
   faqImageContainer: {

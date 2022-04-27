@@ -93,7 +93,7 @@ const EventReward = ({
           onPress={claimReward}
           size="ExtraSmall"
           shadowColor="transparent"
-          label="Claim now"
+          label="Claim"
         />
       );
     }

@@ -52,6 +52,7 @@ const events = [
         animated: false,
         rewardId: "",
         rewardClaimed: false,
+        isClaimable: false,
       },
       {
         targetValue: 4000,
@@ -62,6 +63,7 @@ const events = [
         animated: false,
         rewardId: "",
         rewardClaimed: false,
+        isClaimable: false,
       },
       {
         targetValue: 6000,
@@ -72,6 +74,7 @@ const events = [
         animated: false,
         rewardId: "",
         rewardClaimed: false,
+        isClaimable: false,
       },
     ],
   },

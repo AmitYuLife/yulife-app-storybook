@@ -11,21 +11,21 @@ export const GQL_FRAGMENT_GOAL = gql`
     challenges {
       description
       icon {
-        uri(options: { width: 32, height: 32 })
+        uri
       }
     }
     tags {
       tag
       joined
       icon {
-        uri(options: { width: 32, height: 32 })
+        uri
       }
     }
     joined
     badge {
       text
       icon {
-        uri(options: { width: 32, height: 32 })
+        uri
       }
       backgroundColor
     }
@@ -36,11 +36,12 @@ export const GQL_FRAGMENT_GOAL = gql`
     milestones {
       targetValue
       image {
-        uri(options: { width: 530, height: 530 })
+        uri
       }
       animated
       rewardId
       rewardClaimed
+      isClaimable
     }
   }
 `;
@@ -76,7 +77,7 @@ export const GQL_FRAGMENT_GOAL_DETAILS = gql`
       infoText
       infoBadgeUri {
         id
-        uri(options: { width: 32, height: 32 })
+        uri
       }
     }
     progressUnit
@@ -94,13 +95,13 @@ export const GQL_FRAGMENT_GOAL_DETAILS = gql`
       text
       icon {
         id
-        uri(options: { width: 56, height: 56 })
+        uri
       }
     }
     infoCards {
       icon {
         id
-        uri(options: { width: 56, height: 56 })
+        uri
       }
       title
       description

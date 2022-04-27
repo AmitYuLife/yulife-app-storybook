@@ -51,6 +51,7 @@ export interface JoinGoal_joinGoal_milestones {
   animated: boolean | null;
   rewardId: string | null;
   rewardClaimed: boolean | null;
+  isClaimable: boolean | null;
 }
 
 export interface JoinGoal_joinGoal {

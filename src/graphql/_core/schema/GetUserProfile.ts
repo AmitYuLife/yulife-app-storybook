@@ -117,6 +117,7 @@ export interface GetUserProfile_getUserProfile_events_milestones {
   animated: boolean | null;
   rewardId: string | null;
   rewardClaimed: boolean | null;
+  isClaimable: boolean | null;
 }
 
 export interface GetUserProfile_getUserProfile_events {
