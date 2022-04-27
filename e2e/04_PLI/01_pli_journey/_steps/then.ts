@@ -248,5 +248,18 @@ export const packageSummaryVisible = (packageType: string, totalprice: string, m
         default:
             break;
     }
+}
 
+export const multiFactorPriceChange = (myAge: number, priceMonthPrice: string, payOutAmmount: string, setToEndAge: number) => async () => {
+    
+    const policyStops = `Your policy is set to end when you are ${setToEndAge} years old**. To amend click here`
+    const yearsCovered = setToEndAge - myAge
+    const addYearsCovered = moment().add(yearsCovered, 'y').format("Do MMMM YYYY")
+    const payoutUntil =  `a month until\n${addYearsCovered}`
+
+    await expect(element(by.text(`${priceMonthPrice}*`))).toBeVisible()
+    await expect(element(by.text("per month"))).toBeVisible()
+    await expect(element(by.text(payOutAmmount))).toBeVisible()
+    await expect(element(by.text(payoutUntil))).toBeVisible()
+    await expect(element(by.text(policyStops))).toBeVisible()
 }

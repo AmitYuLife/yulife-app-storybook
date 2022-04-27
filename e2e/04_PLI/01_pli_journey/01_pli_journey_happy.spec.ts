@@ -7,7 +7,7 @@ import * as helper from "./_steps/helpers"
 import { CUSTOMER_37, AUTH_37 } from "@data";
 
 Feature("PLI HAPPY", async()=>{
-    ScenarioOnly("As a completely healthy male user with Covea FIB enabled, I should be able to purchase PLI", scenario.start, async()=>{
+    Scenario("As a completely healthy male user with Covea FIB enabled, I should be able to purchase PLI", scenario.start, async()=>{
         Given("I login as a user with Covea FIB enabled", given.loginToYuScreen(true, CUSTOMER_37, AUTH_37), async()=>{
             Then("I should be on the yuscreen", then.onYuscreenV3(CUSTOMER_37))
             When("I create the default yumoji", when.createDefaultYumoji, async () => {
@@ -41,9 +41,10 @@ Feature("PLI HAPPY", async()=>{
                         helper.UNDERWRITING_COVID_EXPOSURE("No")
                         helper.UNDERWRITING_OTHER_POLICIES("No")
                         helper.REVIEW_SCREEN()
-                        helper.COVER_PRICE_CHECK()
-                        helper.COVER_STYLE_SELECTION("rare", "£12.31", "£1,041.67")
+                        helper.COVER_PRICE_CHECK("70")
+                        helper.COVER_STYLE_SELECTION("rare", "62%", "£20.94","£1,291.67")
                         helper.CHECKOUT(true)
+                        helper.REVIEW_YUSCREEN()
                     })
                 })
             })
@@ -99,8 +100,9 @@ Feature("PLI HAPPY", async()=>{
                         helper.UNDERWRITING_OTHER_POLICIES("No")
                         helper.REVIEW_SCREEN()
                         helper.COVER_SELECT_PERCENTAGE("50%")
-                        helper.COVER_STYLE_SELECTION("rare", "£12.59", "£1,041.67")
+                        helper.COVER_STYLE_SELECTION("rare", "50%", "£12.59", "£1,041.67")
                         helper.CHECKOUT(true)
+                        helper.REVIEW_YUSCREEN()
                     })
                 })
             })
@@ -145,7 +147,7 @@ Feature("PLI HAPPY", async()=>{
                         helper.UNDERWRITING_DO_POLICIES_EXCEED("No")
                         helper.REVIEW_SCREEN()
                         helper.COVER_SELECT_PERCENTAGE("75%")
-                        helper.MAXIMUM_SUM_ASSURED("rare","£113.75", "£7,625")
+                        helper.MAXIMUM_SUM_ASSURED("common","£57.68","£3,875")
                         helper.CHECKOUT(false)
                     })
                 })

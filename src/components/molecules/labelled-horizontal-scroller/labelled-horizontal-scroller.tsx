@@ -7,6 +7,7 @@ import { renderItem } from "./renderItem";
 import { Label } from "./label";
 import { useScrollHandler } from "./useScrollHandler";
 import PressableWithDelay from "../pressable-delay/pressable-delay";
+import { DATE_PICKER, EDIT_BUTTON } from "@ids";
 
 interface Props {
   label: string;
@@ -51,11 +52,13 @@ const LabelledHorizontalScroller = (props: Props) => {
           style={styles.flatList}
           contentContainerStyle={styles.contentContainer}
           windowSize={100}
+          testID={DATE_PICKER}
         />
         {showList ? null : (
           <PressableWithDelay
             style={styles.buttonWrapper}
             onPress={() => (setShowList(true), onIndexChange(activeValueIndex > -1 ? activeValueIndex : 0))}
+            testID={EDIT_BUTTON}
           >
             <Image width={Style.adjust(24)} source={{ uri: buttonIconUrl }} />
           </PressableWithDelay>

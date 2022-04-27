@@ -4,6 +4,7 @@ import { TextTemplate } from "@atoms";
 import { PackageType } from "@molecules";
 import { Style } from "@styles";
 import { CoverType } from "@graphql/_core/schema/globalTypes";
+import { SCROLL_PICKER_ACTIVE_ITEM } from "@ids";
 
 interface Props {
   SlotIcon: JSX.Element;
@@ -23,7 +24,7 @@ export const Content = memo(({ SlotIcon, color, coverType, monthlyCost, salaryPe
         </TextTemplate>
         <View style={styles.row}>
           <PackageType type={coverType} />
-          <View style={styles.marginLeft}>
+          <View style={styles.marginLeft} testID={SCROLL_PICKER_ACTIVE_ITEM(salaryPercent)}>
             <TextTemplate color={color} type="l2b">
               {salaryPercent}
             </TextTemplate>

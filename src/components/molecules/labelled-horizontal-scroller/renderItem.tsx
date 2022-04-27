@@ -4,13 +4,14 @@ import { Text } from "@atoms";
 import { getActiveTextOpacityValue, getInactiveTextOpacityValue } from "./animation";
 import { CHOICE_WIDTH } from "./styles";
 import { Colours, Style } from "@styles";
+import { SCROLL_PICKER_ACTIVE_ITEM } from "@ids";
 
 export const renderItem = ({ scrollX }: { scrollX: Animated.Value }) => ({
   item,
   index,
 }: ListRenderItemInfo<{ label: string; value: string }>) => {
   return (
-    <View style={styles.wrapper}>
+    <View style={styles.wrapper} testID={SCROLL_PICKER_ACTIVE_ITEM(item.label)}>
       <Animated.View
         style={[
           styles.textWrapper,

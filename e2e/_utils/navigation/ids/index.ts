@@ -92,6 +92,8 @@ export const FULL_SCREEN_LOTTIE_SWIPER = (value: "LEFT" | "RIGHT") => `FULL_SCRE
 export const SCROLL_PICKER = (id: string) => `SCROLL_PICKER_${id}`
 export const SCROLL_PICKER_ACTIVE_ITEM = (id: string) => `SCROLL_PICKER_ACTIVE_ITEM_${id}`
 export const SURGE_ICON = 'SURGE_ICON'
+export const SCROLL_NUMBER_PICKER = (id: number) => `SCROLL_PICKER_${id}`
+export const HORIZONTAL_SCROLLER = 'HORIZONTAL_SCROLLER'
 
 // modals
 export const WELCOME_MODAL = (heading: string) => `WELCOME_MODAL${heading}`
