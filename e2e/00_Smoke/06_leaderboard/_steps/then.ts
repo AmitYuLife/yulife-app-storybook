@@ -11,7 +11,8 @@ export const {
 export const {
     scrollFromID,
     scrollFromText,
-    scrollUntilIdVisible
+    scrollUntilIdVisible,
+    swipeFromText
 } = navigation.scrolling
 
 export const onLeaderboardConsent = async () => {
@@ -19,6 +20,7 @@ export const onLeaderboardConsent = async () => {
     const secondParagraph ="You can opt out at any time by tapping the name of the leaderboard and adjusting your settings."
     const copy = ["Join the Leaderboard?", firstParagraph,secondParagraph, "Yes"]
 
+    await swipeFromText("Yes", "up", "slow")()
     for (const i of copy) {
         await expect(element(by.text(i))).toBeVisible()
     }
