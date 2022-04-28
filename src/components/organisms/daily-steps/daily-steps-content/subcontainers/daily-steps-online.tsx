@@ -1,5 +1,5 @@
 import React, { memo, useCallback, useMemo } from "react";
-import { Alert, View, ViewStyle } from "react-native";
+import { Alert, Platform, View, ViewStyle } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { TextTemplate } from "@atoms";
 import { ActivityList, Button, Counter, EventPanels, Panel, PressableWithDelay } from "@molecules";
@@ -58,8 +58,8 @@ export const DailyStepsOnline = memo(({ onReferralsButtonPress }: DailyStepsOnli
   );
 
   const [showChallengeButton, showReferralsButton] = useMemo(() => {
-    const showChallenge = isAvailable && availableForToday > 0 && !Style.isXShort();
-    const showReferrals = !showChallenge && features.showReferrals && !Style.isXShort();
+    const showChallenge = isAvailable && availableForToday > 0 && !isShort;
+    const showReferrals = !showChallenge && features.showReferrals && !isShort;
     return [showChallenge, showReferrals];
   }, [isAvailable, availableForToday, features]);
 
@@ -166,6 +166,7 @@ export const DailyStepsOnline = memo(({ onReferralsButtonPress }: DailyStepsOnli
   );
 });
 
+const isShort = Platform.select({ ios: Style.isXShort(), android: Style.isShortToMediumAndroid() });
 const styles = {
   dailyStepsOnlineWrapper: {
     alignItems: "center",
@@ -181,6 +182,6 @@ const styles = {
   } as ViewStyle,
   panel: {
     position: "absolute",
-    bottom: NAV_BAR.getPositionBottom({ additionalBottom: Style.adjust(Style.isXShort() ? 85 : 145) }),
+    bottom: NAV_BAR.getPositionBottom({ additionalBottom: Style.adjust(isShort ? 85 : 145) }),
   } as ViewStyle,
 };

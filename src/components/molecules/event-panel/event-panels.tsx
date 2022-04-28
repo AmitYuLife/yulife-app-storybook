@@ -1,5 +1,5 @@
 import React, { memo, useCallback } from "react";
-import { FlatList, StyleSheet, View, ListRenderItemInfo } from "react-native";
+import { FlatList, StyleSheet, View, ListRenderItemInfo, Platform } from "react-native";
 import { Style, NAV_BAR } from "@styles";
 import { GetUserProfile_getUserProfile_events as IEvent } from "@graphql/_core/schema";
 import EventPanel from "./event-panel";
@@ -50,10 +50,11 @@ const EventPanels = ({ events = [], currentWorld, componentId, onJoin }: IProps)
   );
 };
 
+const isShort = Platform.select({ ios: Style.isXShort(), android: Style.isShortToMediumAndroid() });
 const styles = StyleSheet.create({
   flatListWrapper: {
     position: "absolute",
-    bottom: NAV_BAR.getPositionBottom({ additionalBottom: Style.adjust(Style.isXShort() ? 85 : 145) }),
+    bottom: NAV_BAR.getPositionBottom({ additionalBottom: Style.adjust(isShort ? 85 : 145) }),
   },
   flatListContentContainerStyle: {
     paddingHorizontal: INITIAL_PADDING,
