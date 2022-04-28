@@ -5,6 +5,7 @@ import { CUSTOMER_37, AUTH_37 } from "@data";
 import { CONDITION_OPTION, CONTENT_ITEM_INPUT, PRODUCT_STEP_BODY_SCROLL_VIEW, SCROLL_PICKER, SCROLL_PICKER_ACTIVE_ITEM, SELECTED_PACKAGE_TITLE, PACKAGE_TYPES, BACK_BUTTON, PACKAGE_INFO, TEXT_TEMPLATE, EDIT_BUTTON, DATE_PICKER, DATE_INPUT, HORIZONTAL_SCROLLER, SCROLL_NUMBER_PICKER } from "@ids";
 import { addCommasToNumber } from "_utils/appScreens/rewards";
 import { capitalizeFirstLetter } from "@navigation";
+import { MonthlyCoverPrices, TotalCoverPrices} from "./types"
 
 
 const forest = "Forest Pathfinder"
