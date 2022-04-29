@@ -78,7 +78,7 @@ export const navigateThroughTheFullSwiper = async () => {
 }
 
 export const dismissPLIModal = async () => {
-    await navigateViaText("Start my quote (+1000 YuCoin)", 4000)
+    await navigateViaText("Start my quote (+1000 YuCoin)", 6000)
 }
 
 export const chooseCorrectDoB = (age: number) => async () => {
