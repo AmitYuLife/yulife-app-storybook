@@ -4,7 +4,7 @@ import * as given from "./_steps/given";
 import * as then from "./_steps/then";
 import * as when from "./_steps/when";
 import * as scenario from "./_steps/scenario";
-import { INPUT_LOGIN_EMAIL, INPUT_RESET_PASSWORD, STEPS_COUNT, CYCLING_COUNT, MINDFUL_COUNT, YUCOIN, BACK_BUTTON, MENU_ICON, SETTINGS_SCREEN, TEXT_TEMPLATE, GAME_SETTINGS_SCREEN, SETTINGS_NAME, BUTTON_CLOSE_HEADER, ACTIVITY_FEED, YUCOIN_POWER, BUTTON_CLOSE, YUCOIN_POWER_INFO } from "@ids";
+import { INPUT_LOGIN_EMAIL, INPUT_RESET_PASSWORD, STEPS_COUNT, CYCLING_COUNT, MINDFUL_COUNT, YUCOIN, BACK_BUTTON, MENU_ICON, SETTINGS_SCREEN, TEXT_TEMPLATE, GAME_SETTINGS_SCREEN, SETTINGS_NAME, BUTTON_CLOSE_HEADER, ACTIVITY_FEED, YUCOIN_POWER, BUTTON_CLOSE, YUCOIN_POWER_INFO, DAILYSTEP_SCREEN_COIN } from "@ids";
 import { CUSTOMER_2,CUSTOMER_4, AUTH_2, AUTH_4, CUSTOMER_ARCHIVED, AUTH_ARCHIVED, CUSTOMER_38, AUTH_38 } from "@data";
 
 Feature("As a user I can get past the login screen", async () => {
@@ -39,10 +39,18 @@ Feature("As a user I can get past the login screen", async () => {
                     When("I press 'next'", when.tapNext, async () => {
                         Then("I should see 200 coins in the top right hand corner", then.givenCoinsTopRight(200));
                         Then("I should see 0 YuCoin today", then.textVisible("0 YuCoin today"))
+                        Then("I should see the i icon near the Coin", then.idVisible(YUCOIN_POWER_INFO))
+                        When("I tap the YuCoins", when.tapID(DAILYSTEP_SCREEN_COIN), async () => {
+                            Then("I should see 0 YuCoin today", then.textVisible("0 YuCoin"))
+                            When("I close this screen", when.tapID(BACK_BUTTON), async () => {
+                                Then("I should see 0 YuCoin today", then.textVisible("0 YuCoin today"))
+                                Then("I should Not see InfoIcon anymore", then.idNotVisible(YUCOIN_POWER_INFO));
+                            })
+                        })
                     })
                 })
             })
-        });
+        }); 
     });
 
     Scenario("I can login with correct login details and see the correct steps sent", scenario.start, async () => {
@@ -121,17 +129,24 @@ Feature("As a user I can get past the login screen", async () => {
                                 Then("I should see 11.3 km done today", then.idVisible(CYCLING_COUNT("11.3 km"), 2000));
                                 Then("I should see 13 min mindful done today", then.idVisible(MINDFUL_COUNT("13 min")));
                                 Then("I should see the amount of yucoin I earned today", then.textVisible("160 YuCoin today"))
+                                Then("I should see the i icon near the Coin", then.idVisible(YUCOIN_POWER_INFO))
                             })
                         })
                     })
-                    When("I tap on YuCoin coin", when.tapID(YUCOIN), async () => {
-                        Then("I should see correct data 20 steps, 11.3 km, 13 min mindful", then.onTodaysYucoin(20, 11.3, 13))
+                    When("I tap on YuCoin", when.tapID(DAILYSTEP_SCREEN_COIN), async () => {
+                        Then("I should see 160 YuCoin today", then.textVisible("160 YuCoin"))
                     })
-                    When("I tap the earn rate", when.tapID(YUCOIN_POWER_INFO), async () => {
+                    When("I go back this screen", when.tapID(BACK_BUTTON), async () => {
+                        Then("I should Not see InfoIcon anymore", then.idNotVisible(YUCOIN_POWER_INFO));
+                        When("I tap on YuCoin today text", when.tapText("160 YuCoin today"), async () => {
+                            Then("I should see correct data 20 steps, 11.3 km, 13 min mindful", then.onTodaysYucoin(20, 11.3, 13))
+                        })
+                    })
+                    When("I tap the YuCoin icon", when.tapID(YUCOIN_POWER_INFO), async () => {
                         Then("I should see 1.6 km cycling", then.textVisible("1.6 km cycling"))
                     })
-                    When("I tap on YuCoin coin", when.tapID(BUTTON_CLOSE), async () => {
-                        When("I close this screen", when.tapID(BACK_BUTTON), async () => {
+                    When("I tap to close the screen", when.tapID(BUTTON_CLOSE), async () => {
+                        When("I go back from this screen", when.tapID(BACK_BUTTON), async () => {
                             Then("I should see the daily steps screen", then.onDailySteps())
                         })
                     })
@@ -150,15 +165,16 @@ Feature("As a user I can get past the login screen", async () => {
                         Then("I should see correct title for Metrics", then.idVisible(TEXT_TEMPLATE("Metric system")))
                         Then("I should see correct description for Metrics", then.idVisible(TEXT_TEMPLATE("Distance will be shown in kilometers ”km”")))
                         When("I select miles as measurment", when.tapID(SETTINGS_NAME("mi")), async () => {
-                            When("I go back", when.tapID(BUTTON_CLOSE_HEADER("Settings")), async () => {
+                            When("I go close the settings screen", when.tapID(BUTTON_CLOSE_HEADER("Settings")), async () => {
                                 Then("I should see 7.0 mi done today", then.idVisible(CYCLING_COUNT("7.0 mi")));
+                                Then("I should Not see InfoIcon anymore", then.idNotVisible(YUCOIN_POWER_INFO));
                             })
                         })
                     })
-                    When("I tap on YuCoin coin", when.tapID(YUCOIN), async () => {
+                    When("I tap on YuCoin coin", when.tapID(CYCLING_COUNT("7.0 mi")), async () => {
                         Then("I should see correct data 7.0 mi on todays earnings", then.cyclingMeasured("7.0"))
                     })
-                    When("I tap the earn rate", when.tapID(YUCOIN_POWER_INFO), async () => {
+                    When("I tap the Info icon", when.tapID(YUCOIN_POWER_INFO), async () => {
                         Then("I should see 1.0 mi cycling", then.textVisible("1.0 mi cycling"))
                     })
                     When("I tap on YuCoin coin", when.tapID(BUTTON_CLOSE), async () => {

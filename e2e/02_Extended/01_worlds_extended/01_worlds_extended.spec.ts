@@ -87,6 +87,8 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
                                     When("I tap the yucoin image", when.tapID(YUCOIN), async () => {
                                         When("I tap on I for activity feed info", when.tapID(ACTIVITY_FEED), async () => {
                                             Then("I should see 10 YuCoin for 2000 steps", then.textVisible("10 YuCoin for 2000 steps"))
+                                            Then("I should NOT see 20 YuCoin for 1.6 km cycling", then.textNotVisible("20 YuCoin for 1.6 km cycling"))
+                                            Then("I should NOT see 10 YuCoin for 1.6 km cycling", then.textNotVisible("10 YuCoin for 1.6 km cycling"))
                                         })
                                     })
                                 })
