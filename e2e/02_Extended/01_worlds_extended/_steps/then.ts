@@ -4,6 +4,7 @@ import { screens } from "@appScreens"
 export const {
     idVisible,
     textVisible,
+    textNotVisible
 } = navigation.common
 
 export const {

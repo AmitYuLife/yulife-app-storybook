@@ -94,6 +94,7 @@ export const SCROLL_PICKER_ACTIVE_ITEM = (id: string) => `SCROLL_PICKER_ACTIVE_I
 export const SURGE_ICON = 'SURGE_ICON'
 export const SCROLL_NUMBER_PICKER = (id: number) => `SCROLL_PICKER_${id}`
 export const HORIZONTAL_SCROLLER = 'HORIZONTAL_SCROLLER'
+export const DAILYSTEP_SCREEN_COIN =  "DAILYSTEP_SCREEN_COIN";
 
 // modals
 export const WELCOME_MODAL = (heading: string) => `WELCOME_MODAL${heading}`
