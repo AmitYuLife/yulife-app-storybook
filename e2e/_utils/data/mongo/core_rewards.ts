@@ -2,14 +2,12 @@ import { generateRandomMongoId } from "@yu-life/yulife-bdd-framework";
 ;
 import { IDatabaseItem } from "@yu-life/yulife-bdd-framework";
 
-import { CORE_REWARDS_JOHN_LEWIS, CORE_REWARDS_AVIOS, CORE_REWARDS_BLOOM_UNAVAILABLE, CORE_REWARDS_NIKE } from "./core_rewards"
-
-export const REWARDS_JOHN_LEWIS = {
+export const CORE_REWARDS_JOHN_LEWIS = {
     type: "mongo",
-    modelName: "rewards", 
+    modelName: "core_rewards", 
     data: {
-        "_id": CORE_REWARDS_JOHN_LEWIS.data._id,
-        "redeem_steps": {
+        "_id": generateRandomMongoId(),
+        "redemptionSteps": {
             "steps": [
                 "Your e-voucher can only be redeemed online at johnlewis.com The John Lewis website hosts a range of high quality fashion, furnishings, flowers and household goods, all delivered direct to your door. All you need to do is 'shop' the website and once you've proceeded to checkout, select 'Add Gift Voucher or e-voucher'. You will then be asked to enter two codes for the e-voucher you wish to spend:",
                 "The 10 digit serial number off the e-voucher and the 7 character online security code.",
@@ -19,31 +17,20 @@ export const REWARDS_JOHN_LEWIS = {
             ],
             "info": "To redeem John Lewis:"
         },
-        "logo_image": "reward/logo/JLS-GB.png",
-        "background_image": "reward/background/JLS-GB.jpg",
-        "loyalty_programme": [],
-        "sort_order": 14,
-        "rewardProviderId": "false_id_for_detox",
-        "availability": "stocked",
-        "progression_level": "5",
-        "card_image_url": "https://gift-sandbox.wegift.io/static/product_assets/JLS/JLS-card.png",
-        "code": "JLS-GB",
-        "currency_code": "GBP",
-        "denomination_type": "fixed",
-        "description": "John Lewis is a British institution, with a legacy spanning over 150 years and stores all over the country. Redeem your voucher for one of the many products on johnlewis.com, where you can find everything from face creams to sofas!",
-        "e_code_usage_type": null,
-        "expiry_date_policy": "None",
-        "maximum_value": 250,
-        "minimum_value": 5,
-        "name": "John Lewis",
-        "terms_and_conditions_url": "https://gift-sandbox.wegift.io/public/terms/JLS-GB.pdf",
-        "reward_sticker": null,
-        "uiSettings": {
-            "id": "JLS-GB",
-            "logoWidth": 95,
-            "logoHeight": 23
+        "images": {
+            "listItemImageKey": "reward/background/JLS-GB.jpg",
+            "detailHeaderKey": "reward/header/JLS-GB.jpg",
         },
-        "available_denominations": [
+        "loyaltyProgramme": [],
+        "sortOrder": 14,
+        "rewardProviderId": "false_id_for_detox",
+        "redemptionUrl": "stocked",
+        "code": "JLS-GB",
+        "currencyCode": "GBP",
+        "description": "John Lewis is a British institution, with a legacy spanning over 150 years and stores all over the country. Redeem your voucher for one of the many products on johnlewis.com, where you can find everything from face creams to sofas!",
+        "name": "John Lewis",
+        "termsAndConditionsUrl": "https://gift-sandbox.wegift.io/public/terms/JLS-GB.pdf",
+        "availableDenominations": [
             {
                 "_id": generateRandomMongoId(),
                 "yuCoin": 4130,
@@ -67,20 +54,21 @@ export const REWARDS_JOHN_LEWIS = {
     }
 } as IDatabaseItem
 
-export const REWARDS_AVIOS = {
+export const CORE_REWARDS_AVIOS = {
     type: "mongo",
-    modelName: "rewards",
+    modelName: "core_rewards",
     data: {
-        "_id": CORE_REWARDS_AVIOS.data._id,
-        "background_image": "reward/background/AVI-GB.jpg",
-        "logo_image": "reward/logo/AVI-GB.png",
-        "sort_order": 1,
+        "_id": generateRandomMongoId(),
+        "images": {
+            "listItemImageKey": "reward/background/AVI-GB.jpg",
+            "detailHeaderKey": "reward/header/AVI-GB.jpg",
+        },
+        "sortOrder": 1,
         "rewardProviderId": "avios",
-        "availability": "stocked",
+        "redemptionUrl": "stocked",
         "progression_level": "5",
-        "card_image_url": "https://res.cloudinary.com/yu-life/image/upload/v1533742185/reward/avios-card.png",
         "code": "AVI-GB",
-        "currency_code": "AVIOS",
+        "currencyCode": "AVIOS",
         "denomination_type": null,
         "description": "Avios are the loyalty currency of Aer Lingus, British Airways, Vueling and other airlines. When you collect Avios you can spend them on flights, hotels and many other experiences.  \n\n * Reward flights are subject to availability. Taxes fees and carrier charges apply \n\n * Avios may take a few days to process your request",
         "e_code_usage_type": null,
@@ -88,7 +76,7 @@ export const REWARDS_AVIOS = {
         "maximum_value": null,
         "minimum_value": null,
         "name": "Avios Miles",
-        "terms_and_conditions_url": "https://res.cloudinary.com/yu-life/image/upload/v1533742185/reward/avios-card.png",
+        "termsAndConditionsUrl": "https://res.cloudinary.com/yu-life/image/upload/v1533742185/reward/avios-card.png",
         "reward_sticker": "best value",
         "__v": 0,
         "uiSettings": {
@@ -97,18 +85,18 @@ export const REWARDS_AVIOS = {
             "logoHeight": 55,
             "ctaLabel": "buy avios"
         },
-        "redeem_steps": {
+        "redemptionSteps": {
             "info": "connect yucoin to avios",
             "steps": [
                 "Please select your Avios loyalty programme and enter your membership number. Choose how many yucoin you want to convert and you’re on your way."
             ]
         },
-        "loyalty_programme": [
+        "loyaltyProgramme": [
             "AerClub",
             "The British Airways Executive Club",
             "Vueling Club"
         ],
-        "available_denominations": [
+        "availableDenominations": [
             {
                 "yuCoin": 500,
                 "value": 50,
@@ -149,12 +137,12 @@ export const REWARDS_AVIOS = {
 } as IDatabaseItem
 
 
-export const REWARDS_BLOOM_UNAVAILABLE = {
+export const CORE_REWARDS_BLOOM_UNAVAILABLE = {
     type: "mongo",
-    modelName: "rewards",
+    modelName: "core_rewards",
     data: {
-        "_id": CORE_REWARDS_BLOOM_UNAVAILABLE.data._id,
-        "redeem_steps": {
+        "_id": generateRandomMongoId(),
+        "redemptionSteps": {
             "steps": [
                 "Visit bloomandwild.com/send-flowers",
                 "Select your bouquet or gift",
@@ -163,16 +151,17 @@ export const REWARDS_BLOOM_UNAVAILABLE = {
             ],
             "info": "How to redeem Bloom & Wild:"
         },
-        "background_image": "reward/background/YLBAW-GB.jpg",
-        "logo_image": "reward/logo/YLBAW-GB.png",
-        "loyalty_programme": [],
-        "sort_order": 1.3,
+        "images": {
+            "listItemImageKey": "reward/background/YLBAW-GB.jpg",
+            "detailHeaderKey": "reward/header/YLBAW-GB.jpg",
+        },
+        "loyaltyProgramme": [],
+        "sortOrder": 1.3,
         "rewardProviderId": "wegift",
-        "availability": "stocked",
+        "redemptionUrl": "stocked",
         "progression_level": "5",
-        "card_image_url": "https://gift.wegift.io/static/product_assets/YLBAW-GB/YLBAW-GB-icon.png",
         "code": "YLBAW-GB",
-        "currency_code": "GBP",
+        "currencyCode": "GBP",
         "link_type": "20% Your Next Order",
         "denomination_type": "fixed",
         "description": "Bloom & Wild is the UK's most-loved online florist. They invented letterbox flowers to make sending beautiful blooms easier and more delightful. Every box is hand-packed with seasonal stems and sent with fun arranging tips! But the best bit? How posties can deliver them through the door when no one's home. Make someone's day with fresh blooms and save 20% off your next order.",
@@ -181,7 +170,7 @@ export const REWARDS_BLOOM_UNAVAILABLE = {
         "maximum_value": 2500,
         "minimum_value": 1,
         "name": "Bloom & Wild",
-        "terms_and_conditions_url": "https://gift.wegift.io/public/terms/YLBAW-GB.pdf",
+        "termsAndConditionsUrl": "https://gift.wegift.io/public/terms/YLBAW-GB.pdf",
         "uiSettings": {
             "id": "YLBAW-GB",
             "logoWidth": 87,
@@ -192,18 +181,18 @@ export const REWARDS_BLOOM_UNAVAILABLE = {
             "alertHeading": "Claim your discount",
             "alertSubheading": "20% discount for all yulife members"
         },
-        "available_denominations": [],
+        "availableDenominations": [],
         "__v": 0,
 
     }
 } as IDatabaseItem
 
-export const REWARDS_NIKE = {
+export const CORE_REWARDS_NIKE = {
     type: "mongo",
-    modelName: "rewards",
+    modelName: "core_rewards",
     data: {
-        "_id": CORE_REWARDS_NIKE.data._id,
-        "redeem_steps": {
+        "_id": generateRandomMongoId(),
+        "redemptionSteps": {
             "steps": [
                 "In-store: At any Nike-owned retail store in the UK (includes Factory Stores). Please print the eGift or show it on your smart phone at the till (UK only). An unlimited amount of gift cards/eGifts can be used in one transaction in store",
                 "Online: http://www.nike.com/gb/en_gb/ . Up to 10 gift cards/eGifts can be used in one transaction online",
@@ -214,16 +203,17 @@ export const REWARDS_NIKE = {
             ],
             "info": "How to redeem Nike"
         },
-        "logo_image": "reward/logo/NIKE-GB.png",
-        "background_image": "reward/background/NIKE-GB.jpg",
-        "loyalty_programme": [],
-        "sort_order": 18,
+        "images": {
+            "listItemImageKey": "reward/background/NIKE-GB.jpg",
+            "detailHeaderKey": "reward/header/NIKE-GB.jpg",
+        },
+        "loyaltyProgramme": [],
+        "sortOrder": 18,
         "rewardProviderId": "wegift",
-        "availability": "realtime",
+        "redemptionUrl": "realtime",
         "progression_level": "5",
-        "card_image_url": "https://gift-sandbox.wegift.io/static/product_assets/NIKE/NIKE-card.png",
         "code": "NIKE-GB",
-        "currency_code": "GBP",
+        "currencyCode": "GBP",
         "denomination_type": "open",
         "description": "As one of the leading sports brands in the world, Nike offers authentic athletic footwear, apparel, equipment, and accessories for a wide variety of sports and fitness activities. Redeem your voucher online or in any Nike UK store.",
         "e_code_usage_type": null,
@@ -231,14 +221,14 @@ export const REWARDS_NIKE = {
         "maximum_value": 400,
         "minimum_value": 5,
         "name": "Nike",
-        "terms_and_conditions_url": "https://gift-sandbox.wegift.io/public/terms/NIKE-GB.pdf",
+        "termsAndConditionsUrl": "https://gift-sandbox.wegift.io/public/terms/NIKE-GB.pdf",
         "reward_sticker": null,
         "uiSettings": {
             "id": "NIKE-GB",
             "logoWidth": 71,
             "logoHeight": 37
         },
-        "available_denominations": [
+        "availableDenominations": [
             {
                 "_id": generateRandomMongoId(),
                 "yuCoin": 7750,
