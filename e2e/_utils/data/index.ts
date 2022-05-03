@@ -4,6 +4,7 @@ export * from "./mongo/users";
 export * from "./mongo/usertoggles";
 export * from "./mongo/challenge";
 export * from "./mongo/coinledger";
+export * from "./mongo/core_rewards";
 export * from "./mongo/rewards";
 export * from "./mongo/map_level_slot_templates";
 export * from "./mongo/mixpanel_webhooks";

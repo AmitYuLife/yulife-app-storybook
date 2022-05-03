@@ -4,7 +4,7 @@ import * as given from "./_steps/given"
 import * as when from "./_steps/when"
 import * as then from "./_steps/then"
 import { YUCOIN, BUTTON_CLOSE, QUESTS_SCREEN, NAV_BAR, LEADERBOARD_SCREEN, REWARDS_SCREEN, MENU_ICON, STATS_SCREEN, ACTIVITY_HISTORY_SCREEN, SETTINGS_SCREEN, YUMATTER_SCREEN, LEVEL_CHALLENGE_BUTTON, CHALLENGE_SET, CHALLENGE_TILE, GENERIC_SCREEN_HEADING, GENERIC_SCREEN_CTA, CHALLENGE_PROGRESS_BAR, BUTTON_CLOSE_CHALLENGE, CHECK_REWARDS_BUTTON, LEADERBOARD_TOP_SCREEN, BUTTON_CLOSE_HEADER, SETTINGS_NAME, SETTINGS_DESC, SETTINGS_SWITCH, BACK_BUTTON, YUCOIN_POWER_INFO, TEXT_TEMPLATE, STEPS_COUNT, CYCLING_COUNT, MINDFUL_COUNT } from "@ids";
-import { REWARDS_JOHN_LEWIS, REAWARDS_AVIOS, REWARDS_BLOOM_UNAVAILABLE, CUSTOMER_2, AUTH_2, CUSTOMER_8, AUTH_8, CUSTOMER_35, AUTH_35 } from "@data";
+import { REWARDS_JOHN_LEWIS, REWARDS_AVIOS, REWARDS_BLOOM_UNAVAILABLE, CUSTOMER_2, AUTH_2, CUSTOMER_8, AUTH_8, CUSTOMER_35, AUTH_35 } from "@data";
 Feature("As a user I can navigate through member routes correctly", async () => {
 
     Scenario("I can view the core screens of the app", scenario.start, async () => {
@@ -124,7 +124,7 @@ Feature("As a user I can navigate through member routes correctly", async () => 
             When("I go to rewards", when.tapID(NAV_BAR("rewards")), async () => {
                 Then("I should be on the rewards screen", then.idVisible(REWARDS_SCREEN, 2000))
                 Then("I should see a John Lewis reward", then.rewardVisible(REWARDS_JOHN_LEWIS))
-                Then("I should see an Avois reward", then.specialRewardVisible(REAWARDS_AVIOS, "avios"))
+                Then("I should see an Avois reward", then.specialRewardVisible(REWARDS_AVIOS, "avios"))
                 Then("I should see a locked reward", then.lockedRewardVisible(REWARDS_BLOOM_UNAVAILABLE))
                 Then("I should see the purchased tab", then.textVisible("purchased", 1500))
                 When("I tap the purchased tab", when.tapText("purchased"), async () => {
@@ -132,8 +132,8 @@ Feature("As a user I can navigate through member routes correctly", async () => 
                         Then("the tab should be in an empty state, as I have not purchases anything", then.idVisible(CHECK_REWARDS_BUTTON, 1500))
                         When("I tap 'check rewards", when.tapID(CHECK_REWARDS_BUTTON), async () => {
                             Then("I should be back on the rewards tab", then.idVisible(REWARDS_SCREEN))
-                            When("I tap on the Avois reward", when.tapRewardInList(REAWARDS_AVIOS), async () => {
-                                Then("I should be on the avios reward screen", then.onSpecialRewardScreen(REAWARDS_AVIOS, "avios"))
+                            When("I tap on the Avois reward", when.tapRewardInList(REWARDS_AVIOS), async () => {
+                                Then("I should be on the avios reward screen", then.onSpecialRewardScreen(REWARDS_AVIOS, "avios"))
                             })
                         })
                     })
