@@ -10,7 +10,7 @@ import { showYuModal } from "@navigation/root";
 import { MODALS } from "@navigation/constants";
 import { GQL_MUTATION_JOIN_GOAL } from "@graphql/goals/joinGoal.gql";
 import { refreshUserProfileEvents, updateUserGoal } from "@redux/user/user.actions";
-import { GoalActionType } from "@graphql/_core/schema/globalTypes";
+import { GoalActionType, GoalRewardStatus } from "@graphql/_core/schema/globalTypes";
 
 interface IProps {
   componentId: string;
@@ -50,7 +50,7 @@ const EventDialogContainer: FC<IProps> = ({ componentId, goalId, stageId, onLeft
                 descriptionTitle: "Great job!",
                 description: `Congrats on completing the event!`,
                 cta: "Claim rewards",
-                rewards: data.getGoalDetails.rewards,
+                rewards: data.getGoalDetails.rewards.filter((reward) => reward.status === GoalRewardStatus.completed),
               },
             },
           });
