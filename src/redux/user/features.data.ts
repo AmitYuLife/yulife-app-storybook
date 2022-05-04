@@ -59,4 +59,5 @@ export const features = [
   "enableBikingSpinning",
   "enableBikingStationary",
   "enableBikingUtility",
+  "enableDebugTool",
 ];
