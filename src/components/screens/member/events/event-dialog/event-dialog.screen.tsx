@@ -197,7 +197,10 @@ const EventDialogScreen: FC<IProps> = ({
           <ProgressBar
             current={currentProgress}
             max={maxProgress}
-            milestones={milestones.map((value) => ({ value, shouldAttractAttention: false }))}
+            milestones={milestones.map((value, index) => ({
+              value,
+              rewardClaimed: rewards[index]?.status === "claimed",
+            }))}
             width={PROGRESS_BAR_WIDTH}
           />
           {!about ? null : (
