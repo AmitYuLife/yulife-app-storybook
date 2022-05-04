@@ -2,6 +2,7 @@ import { all } from "redux-saga/effects";
 import appSagas from "../app/sagas";
 import copySagas from "../copy/sagas";
 import getDailyPassiveActivity from "../dailyPassiveActivity/sagas";
+import debugToolSaga from "../debug/sagas";
 import coinsSagas from "../coins/sagas";
 import dailyStepsSagas from "../daily-steps/sagas";
 import deviceSagas from "../device/sagas";
@@ -27,6 +28,7 @@ export default function* allSagas() {
     ...coinsSagas,
     ...dailyStepsSagas,
     ...getDailyPassiveActivity,
+    ...debugToolSaga,
     ...deviceSagas,
     ...feedbackSagas,
     ...levelsSagas,

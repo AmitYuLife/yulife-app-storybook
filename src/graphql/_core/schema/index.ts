@@ -123,6 +123,7 @@ export * from "./GetRewards";
 export * from "./GetSession";
 export * from "./GetTodayEarnings";
 export * from "./GetTotalCoins";
+export * from "./GetUserDebugData";
 export * from "./GetUserNotificationsSettings";
 export * from "./GetUserProfile";
 export * from "./GetUserProfileEvents";
