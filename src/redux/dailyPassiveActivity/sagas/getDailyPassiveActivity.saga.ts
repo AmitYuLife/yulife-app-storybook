@@ -1,5 +1,5 @@
 import moment, { Moment } from "moment";
-import { call, select, spawn, delay, put } from "redux-saga/effects";
+import { all, call, select, spawn, delay, put } from "redux-saga/effects";
 import { ChallengesPayload, FitKitType } from "@graphql/_core/schema/globalTypes";
 import {
   fitkitTypeToGqlType,
@@ -20,6 +20,7 @@ import { PermissionsAndroid, Platform } from "react-native";
 import { totalCoinsUpdated } from "@redux/coins/coins.actions";
 import { getToken } from "@services/storage";
 import { Unpacked } from "@utils";
+import RNFitKit, { FitKitTypes } from "@yu-life/react-native-fitkit";
 
 export default function* getDailyPassiveActivity(dataPayload: { payload: string; type: string }) {
   const { payload: appState, type } = dataPayload || {};
@@ -38,20 +39,42 @@ export default function* getDailyPassiveActivity(dataPayload: { payload: string;
       return;
     }
 
+    const setDefaultPermissionCheck = userFeatures.disableCheckPermission || Platform.OS === "ios";
+    const [meditationPermissionGranted, cyclingPermissionGranted] = yield all([
+      setDefaultPermissionCheck
+        ? true
+        : call(RNFitKit.isAuthorised, { read: [FitKitTypes.Types.MindfulSession], platform: "GoogleFit" }),
+      setDefaultPermissionCheck
+        ? true
+        : call(RNFitKit.isAuthorised, { read: [FitKitTypes.Types.Biking], platform: "GoogleFit" }),
+    ]);
+
+    if (!meditationPermissionGranted || !cyclingPermissionGranted) {
+      Logger.logMixpanelEvent("app_debug", {
+        type: "google_fit_permission_not_granted",
+        permissions: {
+          cycling: cyclingPermissionGranted,
+          mindful: meditationPermissionGranted,
+        },
+        location: "getDailyPassiveActivity",
+      });
+    }
+
+    if (!meditationPermissionGranted && !cyclingPermissionGranted) {
+      return;
+    }
+
     const startTime = moment().startOf("day");
     const endTime = moment().endOf("day");
 
-    const meditation: QueryFitKitByTypesResponse = yield call(
-      queryFitKitByTypes,
-      startTime.format(),
-      endTime.format(),
-      [FitKitType.MindfulSession],
-      userFeatures
-    );
+    const meditation: QueryFitKitByTypesResponse = !meditationPermissionGranted
+      ? null
+      : yield call(queryFitKitByTypes, startTime.format(), endTime.format(), [FitKitType.MindfulSession], userFeatures);
 
     let passiveCyclingEnabled = userFeatures.passiveCyclingEnabled;
     if (passiveCyclingEnabled && Platform.OS === "android") {
-      passiveCyclingEnabled = yield call(PermissionsAndroid.check, "android.permission.ACCESS_FINE_LOCATION");
+      passiveCyclingEnabled = yield call(PermissionsAndroid.check, "android.permission.ACCESS_FINE_LOCATION") &&
+        cyclingPermissionGranted;
     }
 
     const additionalCyclingFitnessActivities = new Map<FitKitType, string[]>([
@@ -79,7 +102,9 @@ export default function* getDailyPassiveActivity(dataPayload: { payload: string;
       ? []
       : processResult(cycling, startTime, endTime, "Biking");
 
-    const meditationResults: ChallengesPayload[] = processResult(meditation, startTime, endTime, "MindfulSession");
+    const meditationResults: ChallengesPayload[] = !meditationPermissionGranted
+      ? []
+      : processResult(meditation, startTime, endTime, "MindfulSession");
 
     if (!cyclingResults.length && !meditationResults.length) {
       return;
