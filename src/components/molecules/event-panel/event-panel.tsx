@@ -102,6 +102,7 @@ const EventPanel = ({ event, currentWorld, componentId, width, onJoin }: IProps)
               milestones={event.milestones?.map((m) => ({
                 value: m.targetValue,
                 shouldAttractAttention: m.isClaimable,
+                rewardClaimed: m.rewardClaimed,
               }))}
             />
           </View>
