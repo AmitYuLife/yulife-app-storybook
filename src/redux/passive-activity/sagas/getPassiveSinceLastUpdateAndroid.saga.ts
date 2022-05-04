@@ -11,6 +11,8 @@ import {
 } from "@services/fitkit/fitkit.helpers";
 import { IUserStore } from "@redux/user/user.reducer";
 import { PermissionsAndroid } from "react-native";
+import RNFitKit, { FitKitTypes } from "@yu-life/react-native-fitkit";
+import Logger from "@services/logging/logger";
 
 export default function* getPassiveSinceLastUpdateAndroid(
   stepsLastUpdate: string,
@@ -26,8 +28,29 @@ export default function* getPassiveSinceLastUpdateAndroid(
       ? moment(meditationLastUpdate).startOf("day")
       : moment(stepsLastUpdate).startOf("day");
 
+  const setDefaultPermissionCheck = userFeatures.disableCheckPermission;
+  const [meditationPermissionGranted, cyclingPermissionGranted]: boolean[] = yield all([
+    setDefaultPermissionCheck
+      ? true
+      : call(RNFitKit.isAuthorised, { read: [FitKitTypes.Types.MindfulSession], platform: "GoogleFit" }),
+    setDefaultPermissionCheck
+      ? true
+      : call(RNFitKit.isAuthorised, { read: [FitKitTypes.Types.Biking], platform: "GoogleFit" }),
+  ]);
+
+  if (!meditationPermissionGranted || !cyclingPermissionGranted) {
+    Logger.logMixpanelEvent("app_debug", {
+      type: "google_fit_permission_not_granted",
+      permissions: {
+        cycling: cyclingPermissionGranted,
+        mindful: meditationPermissionGranted,
+      },
+      location: "getPassiveSinceLastUpdateAndroid",
+    });
+  }
+
   const fineLocationGranted: boolean = yield call(PermissionsAndroid.check, "android.permission.ACCESS_FINE_LOCATION");
-  const queryCycling = shouldQueryCycling && fineLocationGranted;
+  const queryCycling = shouldQueryCycling && fineLocationGranted && cyclingPermissionGranted;
 
   const additionalCyclingFitnessActivities = new Map<FitKitType, string[]>([
     [FitKitType.Cycling, getAdditionalCyclingFitnessActivities(userFeatures)],
@@ -59,14 +82,15 @@ export default function* getPassiveSinceLastUpdateAndroid(
     const meditation = stepsAndMeditation.results.filter((result) => result.type === PassiveChallengeType.MEDITATION);
     const steps = stepsAndMeditation.results.filter((result) => result.type === PassiveChallengeType.STEPS);
 
-    aggregatedMeditation = meditationLastUpdate
-      ? processResult(
-          { error: false, results: meditation },
-          "MindfulSession",
-          stepsAndMeditationLastUpdateStartTime,
-          endOfYesterday
-        )
-      : [];
+    aggregatedMeditation =
+      meditationLastUpdate && meditationPermissionGranted
+        ? processResult(
+            { error: false, results: meditation },
+            "MindfulSession",
+            stepsAndMeditationLastUpdateStartTime,
+            endOfYesterday
+          )
+        : [];
     aggregatedSteps = stepsLastUpdate
       ? processResult(
           { error: false, results: steps },
