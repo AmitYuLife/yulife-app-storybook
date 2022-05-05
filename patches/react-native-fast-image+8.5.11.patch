@@ -41,7 +41,7 @@ index d86f66f..7fdb4a6 100644
          return getValue("resizeMode", "cover", FAST_IMAGE_RESIZE_MODE_MAP, propValue);
      }
 diff --git a/node_modules/react-native-fast-image/dist/index.d.ts b/node_modules/react-native-fast-image/dist/index.d.ts
-index 0b1afd5..4c6e27a 100644
+index 8a91257..9cbd723 100644
 --- a/node_modules/react-native-fast-image/dist/index.d.ts
 +++ b/node_modules/react-native-fast-image/dist/index.d.ts
 @@ -26,6 +26,10 @@ export declare type Source = {
