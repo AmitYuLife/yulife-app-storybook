@@ -12,7 +12,7 @@ export const {
 } = navigation.scrolling
 
 export const userStatsVisible = async () => {
-    const titles = ["your yucoin", "challenges", "steps", "mindfulness"]
+    const titles = ["your YuCoin", "challenges", "steps", "mindfulness"]
     const subtitles = ["total earned", "total redeemed", "total challenges completed", "challenge history", "average daily steps", "most steps in a day", "steps this week", "average mindful minutes per day", "mindful minutes on your best week", "mindful minutes this week", "see activity history"]
     const mostStepsDate = moment().subtract(7, "days").format("DD/MM/YYYY").toString()
     const mindfulWeekBeginningDate = "27/04/2020"
