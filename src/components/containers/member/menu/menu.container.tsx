@@ -108,7 +108,7 @@ const MenuContainer = () => {
   const links = React.useMemo(
     () => [
       {
-        condition: true,
+        condition: features.showStats,
         label: "Statistics",
         onPress: handlePressLink(LINKS.STATS),
         source: assets[LINKS.STATS],
