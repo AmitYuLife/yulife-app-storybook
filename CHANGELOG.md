@@ -7,6 +7,32 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.30.0] - 2022-05-05
+
+### Bugfixes
+
+- Bugfix: Hide action button on short to medium android
+
+### Tasks
+
+- Task GS-327: Check for meditation and cycling permission before query
+- Task: Create debug tool
+- Task GS-319: add tick icon to progress bar claimed reward milestones
+
+### Chores
+
+- Chore: added back the stats toggle
+- Chore: upgrade fast image
+
+### Extra
+
+- detox: fixes the change of text and added some waittime
+- Fix: Small event fixes
+- Detox: Add core rewards
+- Detox/info icon today test
+- detox:added some wait time to PLI
+- detox: added small fixes to overnight failures
+
 ## [3.29.0] - 2022-04-27
 
 ### Bugfixes
