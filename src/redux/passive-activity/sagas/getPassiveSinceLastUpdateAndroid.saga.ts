@@ -1,12 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { ChallengesPayload, FitKitType, PassiveChallengeType } from "@graphql/_core/schema/globalTypes";
+import { ChallengesPayload, PassiveChallengeType } from "@graphql/_core/schema/globalTypes";
 import moment from "moment";
 import { call, CallEffect, all, AllEffect } from "redux-saga/effects";
 import {
-  getAdditionalCyclingFitnessActivities,
   processResult,
   queryAggregatedDataByDay,
-  queryFitKitByTypes,
+  queryAggregatedBiking,
   QueryFitKitByTypesResponse,
 } from "@services/fitkit/fitkit.helpers";
 import { IUserStore } from "@redux/user/user.reducer";
@@ -52,30 +51,16 @@ export default function* getPassiveSinceLastUpdateAndroid(
   const fineLocationGranted: boolean = yield call(PermissionsAndroid.check, "android.permission.ACCESS_FINE_LOCATION");
   const queryCycling = shouldQueryCycling && fineLocationGranted && cyclingPermissionGranted;
 
-  const additionalCyclingFitnessActivities = new Map<FitKitType, string[]>([
-    [FitKitType.Cycling, getAdditionalCyclingFitnessActivities(userFeatures)],
-  ]);
-
   const [stepsAndMeditation, cycling]: QueryFitKitByTypesResponse[] = yield all([
     stepsLastUpdate || meditationLastUpdate
       ? call(queryAggregatedDataByDay, stepsAndMeditationLastUpdateStartTime, endOfYesterday, userFeatures)
       : returnEmptyResult(),
     queryCycling
-      ? call(
-          queryFitKitByTypes,
-          moment(cyclingLastUpdate).startOf("day").format(),
-          endOfYesterday.clone().format(),
-          [FitKitType.Cycling],
-          userFeatures,
-          additionalCyclingFitnessActivities
-        )
+      ? call(queryAggregatedBiking, moment(cyclingLastUpdate).startOf("day"), endOfYesterday, userFeatures)
       : returnEmptyResult(),
   ]) as AllEffect<CallEffect<QueryFitKitByTypesResponse>>;
 
-  const aggregatedCycling: ChallengesPayload[] = queryCycling
-    ? processResult(cycling, "Biking", moment(cyclingLastUpdate).startOf("day"), endOfYesterday)
-    : [];
-
+  const aggregatedCycling: ChallengesPayload[] = queryCycling ? cycling.results : [];
   let aggregatedMeditation: ChallengesPayload[] = [];
   let aggregatedSteps: ChallengesPayload[] = [];
   if (!stepsAndMeditation?.error) {

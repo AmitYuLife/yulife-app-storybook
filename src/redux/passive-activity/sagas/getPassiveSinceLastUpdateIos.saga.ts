@@ -7,7 +7,7 @@ import {
   queryFitKitByTypes,
   QueryFitKitByTypesResponse,
   querySteps,
-  queryAggregatedBikingIos,
+  queryAggregatedBiking,
 } from "@services/fitkit/fitkit.helpers";
 import { IUserStore } from "@redux/user/user.reducer";
 
@@ -35,12 +35,7 @@ export default function* getPassiveSinceLastUpdateIos(
     : returnEmptyResult();
 
   const cycling: QueryFitKitByTypesResponse = shouldQueryCycling
-    ? yield call(
-        queryAggregatedBikingIos,
-        moment(cyclingLastUpdate).startOf("day"),
-        endOfYesterday.clone(),
-        userFeatures
-      )
+    ? yield call(queryAggregatedBiking, moment(cyclingLastUpdate).startOf("day"), endOfYesterday.clone(), userFeatures)
     : returnEmptyResult();
 
   const aggregatedCycling: ChallengesPayload[] = shouldQueryCycling
