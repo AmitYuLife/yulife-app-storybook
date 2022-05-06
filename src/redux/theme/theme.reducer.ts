@@ -5,7 +5,6 @@ import { GET_USER_SUCCESS, LOGIN_USER_SUCCESS } from "../user/user.actions";
 import { getCurrentWorld } from "@utils";
 import { SyncAction } from "../_core/types";
 import { TopBarTypes } from "@organisms/top-bar/top-bar.helpers";
-import moment from "moment";
 import { Colours } from "@styles";
 import { CenteredScreenImages } from "@molecules/centred-screen/centred-screen";
 import { CHANGE_PANEL_VISIBILITY } from "./theme.action";
@@ -73,28 +72,47 @@ const getCurrentWorldTheme = (
 ): IThemeStore => {
   let newBackgroundAssets = false;
   let currentLevel = 0;
+  let yuniversalMap = 0;
 
   if (type === GET_USER_SUCCESS) {
     const { getCurrentUser } = data as GetCurrentUser;
-    const { currentLevel: level, nextLevelAvailableAt } = getCurrentUser.coinLedger;
-    const hasChangedYuniverse = currentLevel % 200 === 1;
-    const isBeforeNextLevel = nextLevelAvailableAt && moment().isBefore(moment(nextLevelAvailableAt));
-    const shouldStickWithCurrentWorld = !hasChangedYuniverse && isBeforeNextLevel;
 
-    currentLevel = level;
-
-    if (shouldStickWithCurrentWorld) {
-      currentLevel = currentLevel - 1;
-    }
+    currentLevel = getCurrentUser.coinLedger.currentLevel;
+    yuniversalMap = getCurrentUser.coinLedger.yuniversalMap;
 
     newBackgroundAssets = !!getCurrentUser.userFeatures.find((f) => f.name === "newBackgroundAssets" && f.value);
   } else {
     const { loginUser } = data as LoginUser;
+
     currentLevel = loginUser.user.coinLedger.currentLevel;
+    yuniversalMap = loginUser.user.coinLedger.yuniversalMap;
     newBackgroundAssets = !!loginUser.user.userFeatures.find((f) => f.name === "newBackgroundAssets" && f.value);
   }
 
   const currentWorld = getCurrentWorld(currentLevel);
+
+  if (yuniversalMap) {
+    return {
+      dailyStepsScreen: {
+        centredScreen: {
+          offline: { image: "gray_yuniversal_1", style: { backgroundColor: "" } },
+          online: {
+            image: "yuniversal_1",
+            style: { backgroundColor: "" },
+          },
+        },
+        hasWhiteGlow: true,
+        isLight: false,
+        streakType: "yuniversal_1",
+        textStyle: { color: Colours.neutral.white },
+        topBarType: "white",
+        showPanel: false,
+      },
+      questsOfflineScreen: {
+        image: "yuniversal_1",
+      },
+    };
+  }
 
   switch (currentWorld) {
     case 3:

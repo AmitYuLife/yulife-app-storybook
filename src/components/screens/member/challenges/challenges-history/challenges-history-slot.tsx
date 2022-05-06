@@ -5,6 +5,8 @@ import { Image, Text } from "@atoms";
 import styles from "./challenges-history-slot.styles";
 import { getSlotImageProps } from "./challenges-history.helpers";
 import { CHALLENGE_HISTORY_STARS } from "@ids";
+import { Colours } from "@styles";
+
 interface IProps {
   availableAtLevel: number;
   duration: string;
@@ -13,6 +15,7 @@ interface IProps {
   challenges: GetQuestMapLevel_getQuestMapLevel_slots_challenges[];
   image: string;
   currentWorld: number;
+  yuniversalMap?: number;
 }
 
 const ChallengesHistorySlot: React.FC<IProps> = ({
@@ -22,8 +25,11 @@ const ChallengesHistorySlot: React.FC<IProps> = ({
   type,
   challenges,
   currentWorld,
+  yuniversalMap,
   image,
 }) => {
+  const textColour = yuniversalMap ? Colours.neutral.white : Colours.darkGray;
+
   return (
     <View style={styles.wrapper}>
       {locked ? (
@@ -34,15 +40,17 @@ const ChallengesHistorySlot: React.FC<IProps> = ({
       ) : (
         <View style={currentWorld === 3 ? styles.challengeSetWrapperMountain : styles.challengeSetWrapper}>
           <View style={styles.challengeWrapper}>
-            <Text bold={true} style={styles.challengeTypeText}>
+            <Text bold={true} style={StyleSheet.flatten([styles.challengeTypeText, { color: textColour }])}>
               {type}
             </Text>
-            <Text style={styles.durationText}>{duration}</Text>
+            <Text style={StyleSheet.flatten([styles.durationText, { color: textColour }])}>{duration}</Text>
           </View>
           <View style={styles.resultsWrapper}>
             {challenges.map((element, index) => (
               <View style={styles.challengeResultWrapper} key={`challenge-details-${index}`}>
-                <Text style={styles.rewardText}>{`${element.reward} yucoin`}</Text>
+                <Text
+                  style={StyleSheet.flatten([styles.rewardText, { color: textColour }])}
+                >{`${element.reward} yucoin`}</Text>
                 <View
                   style={StyleSheet.flatten([
                     styles.starsWrapper,
@@ -62,7 +70,7 @@ const ChallengesHistorySlot: React.FC<IProps> = ({
               </View>
             ))}
           </View>
-          <Image {...getSlotImageProps(type, currentWorld)} source={{ uri: image }} />
+          <Image {...getSlotImageProps(type, currentWorld, yuniversalMap)} source={{ uri: image }} />
         </View>
       )}
     </View>

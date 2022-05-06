@@ -9,13 +9,15 @@ const dismissChallengeUnavailableModal = () => Navigation.dismissModal(MODALS.ch
 
 const dismissLevelUnavailableModal = () => Navigation.dismissModal(MODALS.levelUnavailable);
 
-export const goToChallengesList = (componentId: string, level: number) =>
+export const goToChallengesList = (componentId: string, level: number, levelName?: string, yuniversalMap?: number) =>
   Navigation.push(componentId, {
     component: {
       id: ROUTES.questsChallengesList,
       name: ROUTES.questsChallengesList,
       passProps: {
         level,
+        levelName,
+        yuniversalMap,
       },
       options: { bottomTabs },
     },
@@ -24,6 +26,7 @@ export const goToChallengesList = (componentId: string, level: number) =>
 export const showChestModal = (
   componentId: string,
   level: GetQuestMapLevelList_getQuestMapLevelList,
+  yuniversalMap: number,
   isNext: boolean,
   {
     ctaLabelIsNext,
@@ -47,7 +50,7 @@ export const showChestModal = (
         isLocked: true,
         onPressCta: () => {
           if (isNext) {
-            goToChallengesList(componentId, level.level);
+            goToChallengesList(componentId, level.level, null, yuniversalMap);
           }
 
           dismissChestModal();
@@ -81,13 +84,20 @@ export const showLevelUnavailableModal = (level: number) =>
     },
   });
 
-export const showLevelCompleteModal = (componentId: string, level: number) =>
+export const showLevelCompleteModal = (
+  componentId: string,
+  level: number,
+  yuniversalMap?: number,
+  levelName?: string
+) =>
   Navigation.push(componentId, {
     component: {
       id: ROUTES.questsChallengesHistory,
       name: ROUTES.questsChallengesHistory,
       passProps: {
         level,
+        yuniversalMap,
+        levelName,
         onPressActivityHistory: () => {
           Navigation.push(componentId, {
             component: {

@@ -4,7 +4,7 @@ import { Style } from "@styles/index";
 import React, { FC, useCallback, useEffect, useMemo } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { challengeCancelAction, challengeEndAction, challengeResetAction } from "@redux/levels/levels.actions";
-import { getActiveLevel, getChallengeIsActive } from "@redux/levels/levels.selectors";
+import { getActiveLevel, getChallengeIsActive, getYuniversalProgress } from "@redux/levels/levels.selectors";
 import { displayStreaksCompletedAction } from "@redux/streaks/streaks.actions";
 import {
   ChallengeExitScreen,
@@ -23,6 +23,7 @@ export type Props = IMainTabsProps;
 const QuestsContainer: FC<Props> = (props) => {
   const dispatch = useDispatch();
   const activeLevel = useSelector(getActiveLevel);
+  const { yuniversalMap } = useSelector(getYuniversalProgress);
   const challengeIsActive = useSelector(getChallengeIsActive);
 
   const { componentId, onLeftMenuPress } = props;
@@ -85,6 +86,7 @@ const QuestsContainer: FC<Props> = (props) => {
       return (
         <ChallengeSuccessScreen
           level={level}
+          yuniversalMap={yuniversalMap}
           onPressCta={() => handleResetChallenge(true)}
           rating={rating}
           reward={coins}
@@ -97,7 +99,13 @@ const QuestsContainer: FC<Props> = (props) => {
     }
 
     return (
-      <ChallengeFailedScreen level={level} onPress={handleResetChallenge} loading={false} currentWorld={currentWorld} />
+      <ChallengeFailedScreen
+        level={level}
+        yuniversalMap={yuniversalMap}
+        onPress={handleResetChallenge}
+        loading={false}
+        currentWorld={currentWorld}
+      />
     );
   }
 

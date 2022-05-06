@@ -33,7 +33,9 @@ export type CenteredScreenImages =
   | "new_forest"
   | "new_ocean"
   | "new_desert"
-  | "new_mountain";
+  | "new_mountain"
+  | "yuniversal_1"
+  | "gray_yuniversal_1";
 
 function CentredScreen({ children, footerImage, style, testID, BackgroundGradient = null }: Props) {
   return (
@@ -156,6 +158,14 @@ const IMAGES: Record<
   },
   new_mountain: {
     source: require("../../../../assets/centred-screen/new_mountain.png"),
+    isFullScreen: true,
+  },
+  yuniversal_1: {
+    source: require("../../../../assets/yuniversal/yuniversal_1.png"),
+    isFullScreen: true,
+  },
+  gray_yuniversal_1: {
+    source: require("../../../../assets/yuniversal/gray_yuniversal_1.png"),
     isFullScreen: true,
   },
 };

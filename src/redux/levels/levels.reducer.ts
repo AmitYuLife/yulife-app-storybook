@@ -24,6 +24,8 @@ export interface ILevelsStore {
   active: IActiveLevel;
   challengesDoneToday: number;
   level: number;
+  yuniversalMap: number;
+  yuniversalLevel: number;
   nextLevelAvailableAt: string;
 }
 
@@ -54,6 +56,8 @@ export const getInitialState = (): ILevelsStore => ({
   },
   challengesDoneToday: 0,
   level: 1,
+  yuniversalMap: 0,
+  yuniversalLevel: 0,
   nextLevelAvailableAt: "",
 });
 
@@ -127,6 +131,8 @@ const getUserSuccess = (state: ILevelsStore, data: GetCurrentUser): ILevelsStore
   },
   challengesDoneToday: data?.getCurrentUser?.challengesDoneToday || 0,
   level: data?.getCurrentUser?.coinLedger?.currentLevel || 1,
+  yuniversalMap: data?.getCurrentUser?.coinLedger?.yuniversalMap || 0,
+  yuniversalLevel: data?.getCurrentUser?.coinLedger?.yuniversalLevel || 0,
   nextLevelAvailableAt: data?.getCurrentUser?.coinLedger?.nextLevelAvailableAt || "",
 });
 
@@ -134,6 +140,8 @@ const loginUserSuccess = (state: ILevelsStore, data: LoginUser): ILevelsStore =>
   ...state,
   challengesDoneToday: data?.loginUser?.user?.challengesDoneToday || 0,
   level: data?.loginUser?.user?.coinLedger?.currentLevel || 1,
+  yuniversalMap: data?.loginUser?.user?.coinLedger?.yuniversalMap || 0,
+  yuniversalLevel: data?.loginUser?.user?.coinLedger?.yuniversalLevel || 0,
   nextLevelAvailableAt: data?.loginUser?.user?.coinLedger?.nextLevelAvailableAt || "",
 });
 

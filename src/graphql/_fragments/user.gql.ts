@@ -39,6 +39,8 @@ export const GQL_FRAGMENT_USER = gql`
     coinLedger {
       currentBalance
       currentLevel
+      yuniversalMap
+      yuniversalLevel
       nextLevelAvailableAt
     }
     passiveSteps: passiveChallenge {

@@ -1,8 +1,8 @@
 import gql from "graphql-tag";
 
 export const GQL_QUERY_GET_QUEST_MAP_LEVEL = gql`
-  query GetQuestMapLevel($level: Int!) {
-    getQuestMapLevel(level: $level) {
+  query GetQuestMapLevel($level: Int!, $yuniversalMap: Int) {
+    getQuestMapLevel(level: $level, yuniversalMap: $yuniversalMap) {
       id
       __typename
       level

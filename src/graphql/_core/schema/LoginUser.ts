@@ -38,6 +38,8 @@ export interface LoginUser_loginUser_user_mobileConsent {
 export interface LoginUser_loginUser_user_coinLedger {
   currentBalance: number | null;
   currentLevel: number | null;
+  yuniversalMap: number | null;
+  yuniversalLevel: number | null;
   nextLevelAvailableAt: string | null;
 }
 

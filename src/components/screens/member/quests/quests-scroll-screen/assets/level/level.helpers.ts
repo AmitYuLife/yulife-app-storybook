@@ -1,4 +1,3 @@
-import { padNum } from "@utils";
 import { Style } from "../../../../../../../styles";
 import { IChallenge } from "../../quests-screen";
 import { IMapSlice } from "../slices";
@@ -221,30 +220,6 @@ export function getButtonPosition(slice: IMapSlice, index: number, isPulse?: boo
   }
 
   return style;
-}
-
-export function getTime(nextAvailable: number) {
-  const hours = Math.floor(nextAvailable / (60 * 60)) % 24;
-  const minutes = Math.floor(nextAvailable / 60) % 60;
-  const seconds = nextAvailable % 60;
-
-  if (hours < 1 && minutes < 1 && seconds < 1) {
-    return null;
-  }
-
-  const paddedHours = padNum(hours);
-  const paddedMinutes = padNum(minutes);
-  const paddedSeconds = padNum(seconds);
-
-  if (hours < 1 && minutes < 1) {
-    return `:${paddedSeconds}`;
-  }
-
-  if (hours < 1) {
-    return `${paddedMinutes}:${paddedSeconds}`;
-  }
-
-  return `${paddedHours}:${paddedMinutes}:${paddedSeconds}`;
 }
 
 export function getPulseColor(level: number) {

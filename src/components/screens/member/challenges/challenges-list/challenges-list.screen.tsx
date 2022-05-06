@@ -11,6 +11,7 @@ import { ROUTES } from "@navigation/constants";
 
 interface IProps extends IChallengesListProps {
   currentLevel?: number;
+  yuniversalMap?: number;
   name: string;
   onPressLeftIcon: () => void;
   challenges: IFormattedChallenge[];
@@ -49,6 +50,7 @@ class ChallengesListScreen extends Component<IProps, IState> {
   public shouldComponentUpdate(nextProps: IProps, nextState: IState) {
     return (
       this.props.currentLevel !== nextProps.currentLevel ||
+      this.props.yuniversalMap !== nextProps.yuniversalMap ||
       this.state.hideChallengeTiles !== nextState.hideChallengeTiles ||
       (!!(this.props.challenges[0] && nextProps.challenges[0]) &&
         this.props.challenges[0].id !== nextProps.challenges[0].id)
@@ -64,8 +66,8 @@ class ChallengesListScreen extends Component<IProps, IState> {
   }
 
   public render() {
-    const { challenges, currentLevel, onPressLeftIcon, name } = this.props;
-    const { backgroundWrapperStyle, backgroundImage, topBarType } = getWorldStyle(currentLevel) as any;
+    const { challenges, currentLevel, yuniversalMap, onPressLeftIcon, name } = this.props;
+    const { backgroundWrapperStyle, backgroundImage, topBarType } = getWorldStyle(currentLevel, yuniversalMap) as any;
 
     return (
       <View style={styles.wrapper} testID={CHALLENGE_SCREEN}>
@@ -99,7 +101,15 @@ class ChallengesListScreen extends Component<IProps, IState> {
 
 export default memo(ChallengesListScreen);
 
-export function getWorldStyle(currentLevel: number) {
+export function getWorldStyle(currentLevel: number, yuniversalMap?: number) {
+  if (yuniversalMap) {
+    return {
+      backgroundImage: require("@assets/yuniversal/yuniversal_1.png"),
+      backgroundWrapperStyle: StyleSheet.flatten([StyleSheet.absoluteFillObject]),
+      topBarType: "white",
+    };
+  }
+
   const world = getCurrentWorld(currentLevel);
   switch (world) {
     case 3:

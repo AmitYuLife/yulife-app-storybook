@@ -12,6 +12,7 @@ import styles from "./challenge-success.screen.styles";
 interface IProps {
   onPressCta: () => void;
   level?: number;
+  yuniversalMap?: number;
   rating: number;
   loading: boolean;
   reward: number;
@@ -22,6 +23,7 @@ interface IProps {
 
 export default function ChallengeSuccessScreen({
   level,
+  yuniversalMap,
   onPressCta,
   rating,
   reward,
@@ -31,7 +33,10 @@ export default function ChallengeSuccessScreen({
   currentWorld,
 }: IProps) {
   const copy = useSelector(getChallengeSuccessCopy);
-  const { backgroundImage, backgroundStyle } = getStyle(currentWorld);
+  const { backgroundImage, backgroundStyle, textStyle, lineColour = "rgb(251, 207, 39)" } = getStyle(
+    currentWorld,
+    yuniversalMap
+  );
 
   return (
     <CentredScreen style={StyleSheet.flatten([styles.wrapper, backgroundStyle])} footerImage={backgroundImage}>
@@ -39,13 +44,13 @@ export default function ChallengeSuccessScreen({
         <Stars isLeftHighlighted={rating > 0} isMidHighlighted={rating > 1} isRightHighlighted={rating > 2} />
         <View style={styles.levelWrapper}>
           <View style={styles.levelLineWrapper}>
-            <LevelLine colour={"rgb(251, 207, 39)"} />
+            <LevelLine colour={lineColour} />
           </View>
-          <Text style={styles.level}>{`level ${level}`}</Text>
+          <Text style={StyleSheet.flatten([styles.level, textStyle])}>{`level ${level}`}</Text>
         </View>
       </View>
 
-      <Text bold={true} style={styles.heading}>
+      <Text bold={true} style={StyleSheet.flatten([styles.heading, textStyle])}>
         {copy.footer}
       </Text>
       <View>
