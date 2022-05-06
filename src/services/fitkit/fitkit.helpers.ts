@@ -271,27 +271,27 @@ export const queryAggregatedDataByDay = async (
   }
 };
 
-export const queryAggregatedBikingIos = async (
+export const queryAggregatedBiking = async (
   start: Moment,
   end: Moment,
-  { disableUserEntries = true, loggingEnabled = false }: IUserStore["features"] = {}
+  features: IUserStore["features"] = { disableUserEntries: true, loggingEnabled: false }
 ): Promise<QueryFitKitByTypesResponse> => {
-  if (Platform.OS === "android") {
-    return { results: [], error: true };
-  }
-
   try {
+    const { disableUserEntries, loggingEnabled } = features;
+    const additionalFitnessActivities = getAdditionalCyclingFitnessActivities(features);
+
     const startTime = start.format(DATE_FORMAT_WITH_TZ);
     const endTime = end.format(DATE_FORMAT_WITH_TZ);
     const args = {
       aggregateBy: {
-        bucketSize: { value: 1, type: FitKitTypes.TimeRange.DAYS },
-        type: FitKitTypes.AggregateType.Time,
+        bucketSize: { value: 1, type: FitKitTypes.TimeRange.SECONDS },
+        type: FitKitTypes.AggregateType.ActivitySegment,
       },
       disableUserEntries,
       endTime,
       startTime,
       type: FitKitTypes.Types.Biking,
+      fitnessActivities: additionalFitnessActivities,
     };
 
     if (loggingEnabled) {
