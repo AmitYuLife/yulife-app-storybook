@@ -12,8 +12,6 @@ import { SCROLLABLE_LAYOUT } from "@ids";
 
 export interface Props {
   rewardItem: GetRewardItemDetails_getRewardItemDetails;
-  onLeftTabPress: () => void;
-  onRightTabPress: () => void;
   onPressTopBar: () => void;
   isLoading?: boolean;
   onSubmit: () => void;

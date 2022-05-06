@@ -18,7 +18,7 @@ import { showYuModal } from "@navigation/root";
 import { getOfflineState } from "@redux/app/app.selectors";
 import { getTotalCoins } from "@redux/coins/coins.selectors";
 import { getNotEnoughCoinsAlertCopy, getPurchasesCopy } from "@redux/copy/copy.selectors";
-import { getUserStart } from "@redux/user/user.actions";
+import { refreshTotalCoins } from "@redux/coins/coins.actions";
 import Logger from "@services/logging/logger";
 import { RewardDetailsScreen, RewardDetailsLoadingScreen } from "@screens";
 import { useBackHandler } from "@services/hooks/useBackHandler";
@@ -30,7 +30,6 @@ import { showOverlayWithChild } from "@modals/blurred-overlay/showOverlayWithChi
 interface IProps {
   componentId: string;
   rewardId: string;
-  onTabChange: (tab: "rewards" | "purchases", componentId: string) => void;
 }
 
 interface IDisplayAlert {
@@ -43,18 +42,18 @@ interface IDisplayAlert {
   name: string;
 }
 
-const RewardDetailsContainer: FC<IProps> = ({ onTabChange, componentId, rewardId }) => {
+const RewardDetailsContainer: FC<IProps> = ({ rewardId }) => {
   const dispatch = useDispatch();
   const totalCoins = useSelector(getTotalCoins);
   const offline = useSelector(getOfflineState);
   const purchasesCopy = useSelector(getPurchasesCopy);
   const notEnoughCoinsAlertCopy = useSelector(getNotEnoughCoinsAlertCopy);
 
-  const onRewardsTabPress = useCallback(() => {
+  const handleBackPress = useCallback(() => {
     Keyboard.dismiss();
-    onTabChange("rewards", componentId);
-  }, [onTabChange, componentId]);
-  const onPurchasesTabPress = useCallback(() => onTabChange("purchases", componentId), [onTabChange, componentId]);
+    Navigation.popToRoot(ROUTES.rewards);
+  }, []);
+
   const [redeemReward, { loading }]: RedeemRewardMutationTuple = useMutation(GQL_MUTATION_REDEEM_REWARD);
   const { data, loading: loadingReward } = useQuery<GetRewardItemDetails>(GQL_QUERY_GET_REWARD_ITEM_DETAILS, {
     variables: { id: rewardId },
@@ -62,7 +61,7 @@ const RewardDetailsContainer: FC<IProps> = ({ onTabChange, componentId, rewardId
   });
 
   useBackHandler(() => {
-    Navigation.pop(componentId);
+    handleBackPress();
     return true;
   });
 
@@ -165,14 +164,15 @@ const RewardDetailsContainer: FC<IProps> = ({ onTabChange, componentId, rewardId
           //TODO-REWARDS: https://yulife.atlassian.net/browse/GS-70
           const confirmedRoute = rewardProviderId === "avios" ? ROUTES.aviosConfirmed : ROUTES.wegiftConfirmed;
 
-          dispatch(getUserStart());
+          dispatch(refreshTotalCoins());
+
           await Navigation.push(ROUTES.rewards, {
             component: {
               id: confirmedRoute,
               name: confirmedRoute,
               passProps: {
-                onTabChange: onTabChange,
                 purchase: (result as { data: RedeemReward }).data.redeemReward,
+                shouldPopToRoot: true,
               },
               options: { bottomTabs },
             },
@@ -201,7 +201,7 @@ const RewardDetailsContainer: FC<IProps> = ({ onTabChange, componentId, rewardId
         });
       }
     },
-    [data, redeemReward, onTabChange, purchasesCopy, offline]
+    [data, redeemReward, purchasesCopy, offline]
   );
 
   const handleRewardPurchase = useCallback(
@@ -245,21 +245,17 @@ const RewardDetailsContainer: FC<IProps> = ({ onTabChange, componentId, rewardId
     [data, redeemRewardLink, redeemRewardVoucher, totalCoins]
   );
 
+  if (loadingReward) {
+    return <RewardDetailsLoadingScreen handleBack={handleBackPress} />;
+  }
+
   return (
-    <>
-      {loadingReward ? (
-        <RewardDetailsLoadingScreen handleBack={onRewardsTabPress} />
-      ) : (
-        <RewardDetailsScreen
-          rewardItem={data.getRewardItemDetails}
-          isLoading={loading}
-          onPressTopBar={onRewardsTabPress}
-          onLeftTabPress={onRewardsTabPress}
-          onRightTabPress={onPurchasesTabPress}
-          onSubmit={handleRewardPurchase}
-        />
-      )}
-    </>
+    <RewardDetailsScreen
+      rewardItem={data.getRewardItemDetails}
+      isLoading={loading}
+      onPressTopBar={handleBackPress}
+      onSubmit={handleRewardPurchase}
+    />
   );
 };
 

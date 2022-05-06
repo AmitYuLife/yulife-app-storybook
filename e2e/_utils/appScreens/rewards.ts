@@ -13,7 +13,7 @@ export const rewardVisible = (reward: any) => async () => {
 
     const minValue = reward.data.minimum_value
     const minYucoin = addCommasToNumber(reward.data.available_denominations[0].yuCoin)
-    const rewardItem = REWARD_ITEM(reward.data.code)
+    const rewardItem = REWARD_ITEM(reward.data._id)
 
     let rewardItemVisible = await booleanIdVisible(rewardItem)
     const maxAttempts = 15
@@ -40,7 +40,7 @@ export const specialRewardVisible = (reward: any, type: rewardType) => async () 
             const minValue = reward.data.available_denominations[0].value
             const minYucoin = addCommasToNumber(reward.data.available_denominations[0].yuCoin)
 
-            rewardItem = REWARD_ITEM(reward.data.code)
+            rewardItem = REWARD_ITEM(reward.data._id)
             rewardTitle = `${minValue} avios`
             rewardSubText = `yucoin x ${minYucoin} up`
 
@@ -54,7 +54,7 @@ export const specialRewardVisible = (reward: any, type: rewardType) => async () 
 }
 
 export const tapRewardInList = (reward: any) => async () => {
-        const rewardItem = element(by.id(REWARD_ITEM(reward.data.code)))
+        const rewardItem = element(by.id(REWARD_ITEM(reward.data._id)))
         await rewardItem.tap()
 }
 
@@ -65,7 +65,7 @@ export const onRewardScreen = (reward: any) => async () => {
     const minValue = reward.data.available_denominations[0].value
     const minYucoin = reward.data.available_denominations[0].yuCoin
 
-    const rewardItem = REWARD_ITEM(reward.data.code)
+    const rewardItem = REWARD_ITEM(reward.data._id)
     const rewardTitle = `£${minValue} ${name} for ${minYucoin} YuCoins`
     
     // await idVisible(MARKDOWN_TEXT(rewardTitle))()
@@ -87,7 +87,7 @@ export const onSpecialRewardScreen = (reward: any, type: rewardType) => async ()
             const minValue = reward.data.available_denominations[0].value
             const minYucoin = addCommasToNumber(reward.data.available_denominations[0].yuCoin)
 
-            rewardItem = REWARD_ITEM(reward.data.code)
+            rewardItem = REWARD_ITEM(reward.data._id)
             rewardTitle = `${minValue} avios`
             rewardSubText = `yucoin x ${minYucoin} up`
 
@@ -102,7 +102,7 @@ export const onSpecialRewardScreen = (reward: any, type: rewardType) => async ()
 }
 
 export const lockedRewardVisible = (reward: any) => async () => {
-    const rewardItem = LOCKED_REWARD_ITEM(reward.data.code)
+    const rewardItem = LOCKED_REWARD_ITEM(reward.data._id)
 
     await expectIsVisibleViaID(rewardItem, 1500)
     await expectIsVisibleViaText("locked", 1500)

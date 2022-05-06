@@ -7,40 +7,22 @@ import { RewardsListLoading } from "../subcomponents/rewards-loading";
 
 interface Props extends IConnectedScreenProps {
   data: RewardsPurchasedItemData[];
-  onLeftTabPress: () => void;
-  onRightTabPress: () => void;
   loading: boolean;
   copy: GetMobileCopy_getMobileCopy_screens_purchases;
   currentWorld?: number;
-  hasNewRewards: boolean;
+  onRefresh: () => void;
 }
 
 const RewardsPurchasedScreen = React.memo((props: Props) => {
-  const { data, onLeftTabPress, loading, onRightTabPress, onLeftMenuPress, copy, hasNewRewards } = props;
-
-  if (loading && data.length === 0) {
-    return (
-      <RewardsListLayout
-        hasNewRewards={hasNewRewards}
-        activeScreen="purchased"
-        onLeftTabPress={onLeftTabPress}
-        onRightTabPress={onRightTabPress}
-        onLeftMenuPress={onLeftMenuPress}
-      >
-        <RewardsListLoading />
-      </RewardsListLayout>
-    );
-  }
+  const { data, loading, onLeftMenuPress, copy, onRefresh } = props;
 
   return (
-    <RewardsListLayout
-      hasNewRewards={hasNewRewards}
-      activeScreen="purchased"
-      onLeftTabPress={onLeftTabPress}
-      onRightTabPress={onRightTabPress}
-      onLeftMenuPress={onLeftMenuPress}
-    >
-      <RewardsPurchasedList onPressEmptyCta={onLeftTabPress} onRefresh={onRightTabPress} data={data} copy={copy} />
+    <RewardsListLayout hasBackButton={true} onLeftMenuPress={onLeftMenuPress}>
+      {loading && data?.length === 0 ? (
+        <RewardsListLoading />
+      ) : (
+        <RewardsPurchasedList onRefresh={onRefresh} onPressEmptyCta={onLeftMenuPress} data={data} copy={copy} />
+      )}
     </RewardsListLayout>
   );
 });

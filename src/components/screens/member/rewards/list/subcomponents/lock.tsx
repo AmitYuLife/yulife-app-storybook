@@ -4,8 +4,12 @@ import { Colours, Style } from "@styles";
 
 import { LockIcon } from "@atoms/icon/lock";
 
-const _LockedReward = () => (
-  <View style={styles.wrapper}>
+type Props = {
+  testID?: string;
+};
+
+const _LockedReward = ({ testID }: Props) => (
+  <View testID={testID} style={styles.wrapper}>
     <View style={styles.inner}>
       <View style={styles.lock}>
         <LockIcon />

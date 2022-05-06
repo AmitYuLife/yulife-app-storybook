@@ -1,29 +1,25 @@
 import moment from "moment";
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect } from "react";
 import { Alert } from "react-native";
 import Config from "react-native-config";
 import Intercom from "@intercom/intercom-react-native";
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
 import { GetAllPurchases_getAllPurchases } from "@graphql/_core/schema";
-import { IReduxState } from "@redux/_core/reducers";
-import { getCopy } from "@redux/copy/copy.selectors";
+import { getPurchasesCopy } from "@redux/copy/copy.selectors";
 import { AviosRewardConfirmedScreen } from "@screens";
 import { handleLinkPress } from "@services/app-link";
+import { Navigation } from "react-native-navigation";
+import { ROUTES } from "@navigation/constants";
 
 interface IProps {
+  shouldPopToRoot?: boolean;
   componentId: string;
   purchase: GetAllPurchases_getAllPurchases;
-  onTabChange: (tab: "rewards" | "purchases", componentId: string) => void;
 }
 
-type ConnectedState = ReturnType<typeof mapStateToProps>;
-
-type Props = IProps & ConnectedState;
-
 const AviosRewardConfirmedContainer = ({
-  onTabChange,
   componentId,
-  copy,
+  shouldPopToRoot,
   purchase: {
     name,
     status,
@@ -33,22 +29,25 @@ const AviosRewardConfirmedContainer = ({
       avios: { loyaltyProgramme },
     },
   },
-}: Props) => {
+}: IProps) => {
+  const copy = useSelector(getPurchasesCopy);
   const purchaseDate = moment(new Date(createdAt).toISOString()).format("DD MMM YYYY");
 
-  const showIntercom = () => {
+  const showIntercom = useCallback(() => {
     Intercom.displayMessenger();
-  };
+  }, []);
 
   const openRewardsPolicy = handleLinkPress(Config.REWARDS_POLICY_URL);
 
-  const goBack = async () => {
-    await onTabChange("purchases", componentId);
-  };
+  const goToRewards = useCallback(() => Navigation.popToRoot(ROUTES.rewards), []);
 
-  const goToRewards = async () => {
-    await onTabChange("rewards", componentId);
-  };
+  const goBack = useCallback(async () => {
+    if (shouldPopToRoot) {
+      return goToRewards();
+    }
+
+    return Navigation.pop(componentId);
+  }, [componentId, shouldPopToRoot]);
 
   useEffect(() => {
     if (status === "pending") {
@@ -76,8 +75,4 @@ const AviosRewardConfirmedContainer = ({
   );
 };
 
-const mapStateToProps = (state: IReduxState) => ({
-  copy: getCopy(state, "purchases"),
-});
-
-export default connect<ConnectedState>(mapStateToProps)(AviosRewardConfirmedContainer);
+export default AviosRewardConfirmedContainer;

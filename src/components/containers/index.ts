@@ -19,7 +19,6 @@ export { default as QuestsContainer } from "./member/quests/quests.container";
 export { default as ChallengesListContainer } from "./member/quests/challenges-list/challenges-list.container";
 export { default as ChallengesHistoryContainer } from "./member/quests/challenges-history/challenges-history.container";
 export { default as DailyStepsContainer } from "./member/daily-steps/daily-steps.container";
-export { default as RewardsContainer } from "./member/rewards/rewards.main.container";
 export { default as CommunityGoalsContainer } from "./member/community-goals/comunity-goals.container";
 export { default as CyclingMeasurementContainer } from "./member/cycling-measurement/cycling-measurement.container";
 

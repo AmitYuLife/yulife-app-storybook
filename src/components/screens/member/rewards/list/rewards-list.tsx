@@ -93,6 +93,8 @@ const styles = StyleSheet.create({
   header: {
     height: Style.adjust(16),
   } as ViewStyle,
-  footer: {} as ViewStyle,
+  footer: {
+    paddingBottom: Style.adjust(8),
+  } as ViewStyle,
   purchasesRightIcon: { marginRight: Style.adjust(-8) },
 });

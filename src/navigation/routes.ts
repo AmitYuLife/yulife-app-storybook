@@ -70,7 +70,11 @@ export default [
     hasMenu: true,
     renderAfterMs: 600,
     name: ROUTES.rewards,
-    component: require("../components/containers/member/rewards/rewards.main.container").default,
+    component: require("../components/containers/member/rewards/rewards.list.container").default,
+  },
+  {
+    name: ROUTES.purchases,
+    component: require("../components/containers/member/rewards/rewards.purchases.container").default,
   },
   {
     name: ROUTES.activityHistory,

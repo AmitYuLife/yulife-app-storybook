@@ -1,8 +1,8 @@
-import * as React from "react";
+import React, { memo } from "react";
 import { StyleSheet, View } from "react-native";
 import { ArrowRightSvg, Image, TextTemplate } from "@atoms";
 import { BoxOption } from "@molecules";
-import { memo } from "react";
+import { REWARD_ITEM, LOCKED_REWARD_ITEM } from "@ids";
 import { Colours, Style } from "@styles";
 import { GetMobileRewardsList_data_list } from "@graphql/_core/schema";
 import Lock from "./subcomponents/lock";
@@ -12,7 +12,7 @@ type RewardsListItem = GetMobileRewardsList_data_list & {
   onPress: () => void;
 };
 
-const _RewardsListItem = ({ onPress, imageUrl, name, description, pills, isLocked }: RewardsListItem) => (
+const _RewardsListItem = ({ onPress, imageUrl, name, description, pills, isLocked, id }: RewardsListItem) => (
   <BoxOption
     onPress={onPress}
     isSelected={false}
@@ -20,11 +20,12 @@ const _RewardsListItem = ({ onPress, imageUrl, name, description, pills, isLocke
     innerWrapperStyle={isLocked && styles.locked}
     wrapperStyle={styles.wrapper}
     innerHeight={BOX_HEIGHT}
+    testID={REWARD_ITEM(id)}
   >
     <View style={styles.main}>
       <View style={styles.imageWrapper}>
         {!imageUrl?.uri ? null : <Image height={IMAGE_HEIGHT} width={IMAGE_WIDTH} source={imageUrl} />}
-        {!isLocked ? null : <Lock />}
+        {!isLocked ? null : <Lock testID={LOCKED_REWARD_ITEM(id)} />}
       </View>
       <View style={styles.detailWrapper}>
         <TextTemplate type="b2b">{name}</TextTemplate>
