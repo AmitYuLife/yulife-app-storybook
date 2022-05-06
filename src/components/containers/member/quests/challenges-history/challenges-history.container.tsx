@@ -1,4 +1,4 @@
-import React, { memo, useCallback } from "react";
+import React, { memo, useCallback, useMemo } from "react";
 import { Navigation } from "react-native-navigation";
 import { GetQuestMapLevel } from "@graphql/_core/schema";
 import { IConnectedScreenProps } from "@app/typings";
@@ -11,11 +11,13 @@ import { ChallengesLoading } from "@components/molecules";
 interface IProps extends IConnectedScreenProps {
   componentId?: string;
   level: number;
+  yuniversalMap?: number;
+  levelName?: string;
   onPressActivityHistory: () => void;
   onPressCta?: () => void;
 }
 
-function ChallengesHistoryContainer({ level, onPressActivityHistory, componentId }: IProps) {
+function ChallengesHistoryContainer({ level, yuniversalMap, levelName, onPressActivityHistory, componentId }: IProps) {
   const handleClose = useCallback(() => Navigation.popToRoot(componentId), [componentId]);
 
   useBackHandler(() => {
@@ -23,16 +25,20 @@ function ChallengesHistoryContainer({ level, onPressActivityHistory, componentId
     return true;
   });
 
+  const name = useMemo(() => levelName || `level ${level}`, [level, levelName]);
+
   const { loading, data } = useQuery<GetQuestMapLevel>(GQL_QUERY_GET_QUEST_MAP_LEVEL, {
-    variables: { level },
+    variables: { level, yuniversalMap },
     fetchPolicy: "network-only",
   });
 
   return loading ? (
-    <ChallengesLoading currentLevel={level} />
+    <ChallengesLoading currentLevel={level} yuniversalMap={yuniversalMap} />
   ) : (
     <ChallengesHistoryScreen
       level={data?.getQuestMapLevel}
+      yuniversalMap={yuniversalMap}
+      name={name}
       onPressActivityHistory={onPressActivityHistory}
       onPressCta={handleClose}
       onLeftMenuPress={handleClose}

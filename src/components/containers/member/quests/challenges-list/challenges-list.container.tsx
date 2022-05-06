@@ -1,4 +1,4 @@
-import React, { FC, useState, useCallback, memo } from "react";
+import React, { FC, useState, useCallback, memo, useMemo } from "react";
 import {
   GQL_MUTATION_CREATE_ACTIVE_CHALLENGE,
   CreateActiveChallengeMutationTuple,
@@ -35,11 +35,13 @@ import { showYuModal } from "@navigation/root";
 interface IProps {
   componentId: string;
   level: number;
+  levelName: string;
+  yuniversalMap?: number;
 }
 
 type Props = IProps;
 
-const ChallengesListContainer: FC<Props> = ({ level, componentId }) => {
+const ChallengesListContainer: FC<Props> = ({ level, levelName, yuniversalMap, componentId }) => {
   const [error, setErrorState] = useState(null as string);
   const [slot, setSlot] = useState(null as GetQuestMapLevel_getQuestMapLevel_slots);
   const [submitting, setSubmittingState] = useState(false);
@@ -55,11 +57,13 @@ const ChallengesListContainer: FC<Props> = ({ level, componentId }) => {
   );
 
   const { loading, data } = useQuery<GetQuestMapLevel>(GQL_QUERY_GET_QUEST_MAP_LEVEL, {
-    variables: { level },
+    variables: { level, yuniversalMap },
     fetchPolicy: "cache-and-network",
   });
 
   const currentWorld = getCurrentWorld(level);
+
+  const name = useMemo(() => levelName || `level ${level}`, [level, levelName]);
 
   const setError = useCallback(() => {
     setErrorState("Sorry, there was a problem starting your challenge. \n Please try again!");
@@ -126,7 +130,7 @@ const ChallengesListContainer: FC<Props> = ({ level, componentId }) => {
       render={({ showOverlay }: IToggleBlur) => (
         <>
           {loading ? (
-            <ChallengesLoading currentLevel={level} />
+            <ChallengesLoading currentLevel={level} yuniversalMap={yuniversalMap} />
           ) : (
             <ChallengesListScreen
               challenges={slots.map((levelSlot) => {
@@ -216,7 +220,8 @@ const ChallengesListContainer: FC<Props> = ({ level, componentId }) => {
                 };
               })}
               currentLevel={level}
-              name={`level ${level}`}
+              yuniversalMap={yuniversalMap}
+              name={name}
               onPressLeftIcon={handleNavPress}
             />
           )}

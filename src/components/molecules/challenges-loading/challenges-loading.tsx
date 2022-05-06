@@ -6,10 +6,11 @@ import challengeListStyle from "@components/screens/member/challenges/challenges
 
 interface IProps {
   currentLevel: number;
+  yuniversalMap?: number;
 }
 
-const ChallengesLoading = ({ currentLevel }: IProps) => {
-  const { backgroundWrapperStyle, backgroundImage } = getWorldStyle(currentLevel) as any;
+const ChallengesLoading = ({ currentLevel, yuniversalMap }: IProps) => {
+  const { backgroundWrapperStyle, backgroundImage } = getWorldStyle(currentLevel, yuniversalMap) as any;
   return (
     <View style={backgroundWrapperStyle}>
       <Image resizeMode="cover" style={challengeListStyle.background} source={backgroundImage} />

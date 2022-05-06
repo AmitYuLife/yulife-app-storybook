@@ -1,10 +1,8 @@
 import { ImageStyle, Platform, StyleSheet, TextStyle, ViewStyle } from "react-native";
 import { Style } from "../../../../../styles";
-
 export default StyleSheet.create({
   challengeWrapper: {
     width: Style.SCALE_UP_AND_DOWN(80),
-    flex: 1,
   } as ViewStyle,
   challengeTypeText: {
     fontSize: Style.SCALE_UP_AND_DOWN(16),
@@ -20,14 +18,12 @@ export default StyleSheet.create({
     opacity: 0.5,
   } as ViewStyle,
   resultsWrapper: {
-    flex: 1,
-    flexDirection: "column",
     marginTop: Style.SCALE_UP_AND_DOWN(24),
     marginLeft: "auto",
   } as ViewStyle,
   challengeResultWrapper: {
-    flex: 1,
     flexDirection: "row",
+    justifyContent: "flex-end",
     marginBottom: Style.SCALE_UP_AND_DOWN(8),
   } as ViewStyle,
   rewardText: {
@@ -43,10 +39,11 @@ export default StyleSheet.create({
   challengeSetWrapper: {
     display: "flex",
     flexDirection: "row",
+    flexWrap: "wrap",
     backgroundColor: "rgba(255, 255, 255, 0.32)",
     borderRadius: 16,
     paddingTop: Style.SCALE_Y_UP_AND_DOWN(14),
-    paddingRight: Style.SCALE_Y_UP_AND_DOWN(25),
+    paddingRight: Style.SCALE_Y_UP_AND_DOWN(10),
     paddingLeft: Style.SCALE_UP_AND_DOWN(75),
     paddingBottom: Style.SCALE_Y_UP_AND_DOWN(8),
     borderWidth: Style.SCALE_UP_AND_DOWN(1),
@@ -58,10 +55,11 @@ export default StyleSheet.create({
   challengeSetWrapperMountain: {
     display: "flex",
     flexDirection: "row",
+    flexWrap: "wrap",
     backgroundColor: "rgba(255, 255, 255, 0.32)",
     borderRadius: 16,
     paddingTop: Style.SCALE_Y_UP_AND_DOWN(14),
-    paddingRight: Style.SCALE_Y_UP_AND_DOWN(35),
+    paddingRight: Style.SCALE_Y_UP_AND_DOWN(10),
     paddingBottom: Style.SCALE_Y_UP_AND_DOWN(8),
     paddingLeft: Style.SCALE_UP_AND_DOWN(93),
     borderWidth: Style.SCALE_UP_AND_DOWN(1),
@@ -78,7 +76,6 @@ export default StyleSheet.create({
     marginBottom: "auto",
   } as ImageStyle,
   starsWrapper: {
-    flex: 1,
     flexDirection: "row",
   } as ViewStyle,
   wrapper: {

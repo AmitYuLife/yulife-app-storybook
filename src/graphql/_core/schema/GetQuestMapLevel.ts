@@ -72,4 +72,5 @@ export interface GetQuestMapLevel {
 
 export interface GetQuestMapLevelVariables {
   level: number;
+  yuniversalMap?: number | null;
 }

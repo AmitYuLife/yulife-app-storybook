@@ -9,14 +9,18 @@ import { Button, CentredScreen } from "@molecules";
 
 interface IProps {
   level?: number;
+  yuniversalMap?: number;
   loading: boolean;
   onPress: () => void;
   currentWorld: number;
 }
 
-export default function ChallengeFailedScreen({ level, onPress, loading, currentWorld }: IProps) {
+export default function ChallengeFailedScreen({ level, yuniversalMap, onPress, loading, currentWorld }: IProps) {
   const copy = useSelector(getChallengeFailedCopy);
-  const { backgroundImage, backgroundStyle } = getStyle(currentWorld);
+  const { backgroundImage, backgroundStyle, textStyle, lineColour = "rgb(226, 226, 226)" } = getStyle(
+    currentWorld,
+    yuniversalMap
+  );
 
   return (
     <CentredScreen
@@ -27,21 +31,29 @@ export default function ChallengeFailedScreen({ level, onPress, loading, current
         <Stars />
         <View style={styles.levelWrapper}>
           <View style={styles.levelLineWrapper}>
-            <LevelLine colour="rgb(226, 226, 226)" />
+            <LevelLine colour={lineColour} />
           </View>
-          <Text style={styles.level}>{`level ${level}`}</Text>
+          <Text style={StyleSheet.flatten([styles.level, textStyle])}>{`level ${level}`}</Text>
         </View>
       </View>
-      <Text bold={true} style={styles.heading}>
+      <Text bold={true} style={StyleSheet.flatten([styles.heading, textStyle])}>
         {copy.heading}
       </Text>
-      <Text style={styles.secondaryText}>{copy.footer}</Text>
+      <Text style={StyleSheet.flatten([styles.secondaryText, textStyle])}>{copy.footer}</Text>
       <Button isLoading={loading} wrapperStyle={styles.cta} onPress={onPress} label={copy.ctaLabel} size="Medium" />
     </CentredScreen>
   );
 }
 
-function getStyle(currentWorld: number) {
+function getStyle(currentWorld: number, yuniversalMap?: number) {
+  if (yuniversalMap) {
+    return {
+      backgroundImage: "yuniversal_1" as CenteredScreenImages,
+      textStyle: { color: "white" },
+      lineColour: "white",
+    };
+  }
+
   switch (currentWorld) {
     case 3:
       return {

@@ -1,9 +1,8 @@
 import * as React from "react";
 import { StyleSheet, View } from "react-native";
-import { getCurrentWorld, getNormalizedLevel } from "@utils";
+import { getCurrentWorld, getNormalizedLevel, getQuestScreenTimer } from "@utils";
 import { Chest, DoubleLock, Lock, Text } from "@atoms";
 import { IChallenge } from "../../quests-screen";
-import { getTime } from "./level.helpers";
 import LevelStar from "./level.star";
 import styles from "./level.styles";
 
@@ -78,7 +77,7 @@ export default function getLevelButton(
   if (level.level === currentLevel) {
     if (nextAvailable < 0) {
       const style = StyleSheet.flatten([styles.textPending, { color: !level.isActive ? "rgb(79, 151,139)" : "white" }]);
-      const nextAvailableFormatted = getTime(Math.abs(nextAvailable));
+      const nextAvailableFormatted = getQuestScreenTimer(Math.abs(nextAvailable));
 
       return (
         <View style={styles.column}>

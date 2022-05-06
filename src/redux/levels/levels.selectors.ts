@@ -46,6 +46,12 @@ export const getChallengesDone = createSelector(reducer, getChallengesDoneSelect
 const getCurrentLevelSelector = (state: State) => state.level;
 export const getCurrentLevel = createSelector(reducer, getCurrentLevelSelector);
 
+const getYuniversalProgressSelector = (state: State) => ({
+  yuniversalMap: state.yuniversalMap || 0,
+  yuniversalLevel: state.yuniversalLevel || 0,
+});
+export const getYuniversalProgress = createSelector(reducer, getYuniversalProgressSelector);
+
 const getNextLevelAvailableAtSelector = (state: State) => state.nextLevelAvailableAt;
 export const getNextLevelAvailableAt = createSelector(reducer, getNextLevelAvailableAtSelector);
 

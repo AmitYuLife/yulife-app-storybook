@@ -39,6 +39,14 @@ const BRISK_WALK: ISlotSet[] = [
     },
     width: Style.SCALE_UP_AND_DOWN(181),
   },
+  {
+    style: {
+      position: "absolute",
+      left: 0,
+      top: 0,
+    },
+    width: Style.SCALE_UP_AND_DOWN(55),
+  },
 ];
 const SHORT_STROLL: ISlotSet[] = [
   {
@@ -72,6 +80,14 @@ const SHORT_STROLL: ISlotSet[] = [
       top: -34,
     },
     width: Style.SCALE_UP_AND_DOWN(119),
+  },
+  {
+    style: {
+      position: "absolute",
+      left: 0,
+      top: 0,
+    },
+    width: Style.SCALE_UP_AND_DOWN(55),
   },
 ];
 const LONG_WALK: ISlotSet[] = [
@@ -107,6 +123,14 @@ const LONG_WALK: ISlotSet[] = [
     },
     width: Style.SCALE_UP_AND_DOWN(143),
   },
+  {
+    style: {
+      position: "absolute",
+      left: 0,
+      top: 0,
+    },
+    width: Style.SCALE_UP_AND_DOWN(55),
+  },
 ];
 const MEDITATION: ISlotSet[] = [
   {
@@ -140,6 +164,14 @@ const MEDITATION: ISlotSet[] = [
       top: 6,
     },
     width: Style.SCALE_UP_AND_DOWN(98),
+  },
+  {
+    style: {
+      position: "absolute",
+      left: 0,
+      top: 0,
+    },
+    width: Style.SCALE_UP_AND_DOWN(55),
   },
 ];
 
@@ -175,6 +207,14 @@ const CYCLING: ISlotSet[] = [
       top: 6,
     },
     width: Style.SCALE_UP_AND_DOWN(170),
+  },
+  {
+    style: {
+      position: "absolute",
+      left: 0,
+      top: 0,
+    },
+    width: Style.SCALE_UP_AND_DOWN(55),
   },
 ];
 
@@ -213,23 +253,29 @@ const BOTTOM_GRADIENT: (ISlotSet & { source: ImageRequireSource })[] = [
   },
 ];
 
-export function getBottomGradient(currentWorld: number) {
+export function getBottomGradient(currentWorld: number, yuniversalMap?: number) {
+  if (yuniversalMap) {
+    return null;
+  }
+
   return BOTTOM_GRADIENT[currentWorld];
 }
 
-export function getSlotImageProps(challengeType: string, currentWorld: number) {
+export function getSlotImageProps(challengeType: string, currentWorld: number, yuniversalMap?: number) {
+  const index = yuniversalMap ? 4 : currentWorld;
+
   switch (challengeType) {
     case "brisk walk":
-      return BRISK_WALK[currentWorld] || BRISK_WALK[0];
+      return BRISK_WALK[index] || BRISK_WALK[0];
     case "short stroll":
-      return SHORT_STROLL[currentWorld] || SHORT_STROLL[0];
+      return SHORT_STROLL[index] || SHORT_STROLL[0];
     case "long walk":
-      return LONG_WALK[currentWorld] || LONG_WALK[0];
+      return LONG_WALK[index] || LONG_WALK[0];
     case "meditation":
-      return MEDITATION[currentWorld] || MEDITATION[0];
+      return MEDITATION[index] || MEDITATION[0];
     case "fiit":
     case "cycling":
-      return CYCLING[currentWorld] || CYCLING[0];
+      return CYCLING[index] || CYCLING[0];
     default:
       return { style: null, width: 0 };
   }

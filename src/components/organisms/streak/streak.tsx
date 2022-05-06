@@ -12,7 +12,7 @@ import { Style } from "@styles";
 import { StreakIcon } from "@atoms/icon/streak-icon";
 import { TouchableOpacityWithDelay } from "@components/molecules";
 
-export type StreakTypes = "forest" | "ocean" | "desert" | "mountain";
+export type StreakTypes = "forest" | "ocean" | "desert" | "mountain" | "yuniversal_1";
 
 type ConnectedProps = ReturnType<typeof mapStateToProps>;
 

@@ -1,6 +1,14 @@
 import { CenteredScreenImages } from "@molecules/centred-screen/centred-screen";
 
-export function getStyle(currentWorld: number) {
+export function getStyle(currentWorld: number, yuniversalMap?: number) {
+  if (yuniversalMap) {
+    return {
+      backgroundImage: "yuniversal_1" as CenteredScreenImages,
+      textStyle: { color: "white" },
+      lineColour: "white",
+    };
+  }
+
   switch (currentWorld) {
     case 3:
       return {

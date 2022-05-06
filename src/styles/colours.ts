@@ -253,6 +253,7 @@ export default {
     up204: "#5BA9D5",
     up306: "#D8F0FF",
     us105: "#CA45B3",
+    us106: "#E99FE9",
   },
   desert: {
     ds106: "#F86F63",

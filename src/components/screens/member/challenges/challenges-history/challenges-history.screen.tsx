@@ -13,13 +13,16 @@ import { getCurrentWorld } from "@utils";
 
 interface IProps extends IConnectedScreenProps {
   level: GetQuestMapLevel_getQuestMapLevel;
+  yuniversalMap?: number;
+  name: string;
   onPressActivityHistory: () => void;
   onPressCta: () => void;
 }
 
-function ChallengesHistory({ level, onPressActivityHistory, onLeftMenuPress }: IProps) {
+function ChallengesHistory({ level, yuniversalMap, name, onPressActivityHistory, onLeftMenuPress }: IProps) {
   const normalizedWorld = getCurrentWorld(level?.level);
-  const { backgroundWrapperStyle, backgroundImage, topBarType } = getWorldStyle(normalizedWorld);
+  const { backgroundWrapperStyle, backgroundImage, topBarType } = getWorldStyle(normalizedWorld, yuniversalMap);
+  const bottomGradient = getBottomGradient(normalizedWorld, yuniversalMap);
 
   return (
     <View style={styles.wrapper}>
@@ -27,13 +30,15 @@ function ChallengesHistory({ level, onPressActivityHistory, onLeftMenuPress }: I
       <View style={backgroundWrapperStyle}>
         <RNImage resizeMode="cover" style={styles.background} source={backgroundImage} />
       </View>
-      <TopBar
-        leftIcon="Back"
-        menuLabel="map"
-        name={`level ${level.level}`}
-        onPressLeftIcon={onLeftMenuPress}
-        type={topBarType as TopBarTypes}
-      />
+      <View style={styles.topBarWrapper}>
+        <TopBar
+          leftIcon="Back"
+          menuLabel="map"
+          name={name}
+          onPressLeftIcon={onLeftMenuPress}
+          type={topBarType as TopBarTypes}
+        />
+      </View>
       <View style={styles.challengeSetWrapper}>
         <ScrollView
           showsVerticalScrollIndicator={false}
@@ -51,11 +56,12 @@ function ChallengesHistory({ level, onPressActivityHistory, onLeftMenuPress }: I
                 locked={slot.isLocked}
                 challenges={slot.challenges}
                 currentWorld={normalizedWorld}
+                yuniversalMap={yuniversalMap}
               />
             ) : null
           )}
         </ScrollView>
-        <Image {...getBottomGradient(normalizedWorld)} />
+        {!bottomGradient ? null : <Image {...bottomGradient} />}
       </View>
       <View style={styles.buttonsWrapper}>
         <Button onPress={onPressActivityHistory} label="Full history" />
@@ -67,7 +73,15 @@ function ChallengesHistory({ level, onPressActivityHistory, onLeftMenuPress }: I
 
 export default memo(ChallengesHistory);
 
-function getWorldStyle(currentWorld: number) {
+function getWorldStyle(currentWorld: number, yuniversalMap?: number) {
+  if (yuniversalMap) {
+    return {
+      backgroundImage: require("@assets/yuniversal/yuniversal_1.png"),
+      backgroundWrapperStyle: StyleSheet.flatten([StyleSheet.absoluteFillObject]),
+      topBarType: "white",
+    };
+  }
+
   switch (currentWorld) {
     case 3:
       return {
