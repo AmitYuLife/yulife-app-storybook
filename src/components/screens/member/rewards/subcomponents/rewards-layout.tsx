@@ -1,7 +1,6 @@
 import React from "react";
 import { StyleSheet, ViewStyle, View, Platform } from "react-native";
-import { TOP_BAR, Style } from "@styles";
-import { RewardTabs } from "@components/molecules";
+import { TOP_BAR } from "@styles";
 import { REWARDS_SCREEN } from "@ids";
 import { NavBar } from "@components/organisms";
 import { TopBarAbsolute } from "@organisms/top-bar/top-bar-absolute";
@@ -11,28 +10,19 @@ const WRAPPER_MARGIN_TOP = Platform.select({
   android: -20,
 });
 interface Props {
-  hasNewRewards?: boolean;
   children: React.ReactNode;
-  onLeftTabPress: () => void;
-  onRightTabPress: () => void;
   onLeftMenuPress: () => void;
-  activeScreen: "rewards" | "purchased";
+  hasBackButton?: boolean;
 }
 
 export function RewardsListLayout(props: Props) {
-  const { children, onLeftMenuPress, onLeftTabPress, onRightTabPress, activeScreen, hasNewRewards } = props;
-  const activeIndex = activeScreen === "rewards" ? 0 : 1;
+  const { children, onLeftMenuPress, hasBackButton } = props;
 
   return (
     <View style={styles.wrapper} testID={REWARDS_SCREEN}>
       <View style={styles.topbarFiller} />
-      {hasNewRewards ? null : (
-        <View style={styles.rewardTabsWrapper}>
-          <RewardTabs onLeftTabPress={onLeftTabPress} onRightTabPress={onRightTabPress} activeTabIndex={activeIndex} />
-        </View>
-      )}
       <View style={styles.listWrapper}>{children}</View>
-      <TopBarAbsolute leftIcon={hasNewRewards ? "Back" : "Menu"} onPressLeftIcon={onLeftMenuPress} />
+      <TopBarAbsolute leftIcon={hasBackButton ? "Back" : "Menu"} onPressLeftIcon={onLeftMenuPress} />
       <NavBar activeIndex={4} />
     </View>
   );
@@ -50,6 +40,6 @@ const styles = StyleSheet.create({
     marginTop: WRAPPER_MARGIN_TOP,
   } as ViewStyle,
   topbarFiller: {
-    height: TOP_BAR.HEIGHT * (Style.hasNotch ? 2.2 : 2),
+    height: TOP_BAR.TOP_BAR_WITH_PAD,
   } as ViewStyle,
 });

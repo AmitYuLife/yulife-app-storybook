@@ -15,23 +15,30 @@ import Logger from "@services/logging/logger";
 import { RewardsListScreen } from "@screens/index";
 import { IMainTabsProps, showYuModal } from "@navigation/root";
 import { useQueryOnScreenSeenOnce } from "@services/hooks/useQueryOnScreenSeenOnce";
+import { useTapBackTwiceToExit } from "@services/hooks/useTapBackTwiceToExit";
 
-interface IProps {
-  onLeftMenuPress: IMainTabsProps["onLeftMenuPress"];
-  componentId?: IMainTabsProps["componentId"];
-  onTabChange: (newTab: "rewards" | "purchases", componentId?: string) => void;
-}
-
-const _RewardsListContainer = (props: IProps) => {
-  const { componentId, onLeftMenuPress, onTabChange } = props;
+const _RewardsListContainer = (props: IMainTabsProps) => {
+  const { componentId, onLeftMenuPress } = props;
   const areAssetsPrefetched = useRef(false);
   const [tag, setTag] = useState("All");
   const copy = useSelector(getPurchasesCopy);
+
+  useTapBackTwiceToExit(componentId);
+
   const [getRewards, { loading, data: rewards }] = useQueryOnScreenSeenOnce<Rewards, RewardsVariables>(
     GQL_QUERY_GET_MOBILE_REWARDS_LIST,
     ROUTES.rewards,
     { variables: { tag } }
   );
+
+  const handlePurchasesPress = useCallback(async () => {
+    await Navigation.push(componentId, {
+      component: {
+        id: ROUTES.purchases,
+        name: ROUTES.purchases,
+      },
+    });
+  }, [componentId]);
 
   useEffect(() => {
     if (!areAssetsPrefetched?.current && rewards?.data?.preloadAssets?.length) {
@@ -41,12 +48,8 @@ const _RewardsListContainer = (props: IProps) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [rewards?.data?.id]);
 
-  const handlePurchasesPress = useCallback(async () => {
-    onTabChange("purchases");
-  }, [onTabChange]);
-
   const handleRewardDetailsItemPress = useCallback(
-    async (reward: GetMobileRewardsList_data_list) => {
+    (reward: GetMobileRewardsList_data_list) => {
       if (reward.isLocked) {
         Logger.logMixpanelEvent("reward_viewed", {
           locked: true,
@@ -54,7 +57,7 @@ const _RewardsListContainer = (props: IProps) => {
           reward_name: reward.name,
         });
 
-        await showYuModal({
+        return showYuModal({
           component: {
             id: MODALS.rewards,
             name: MODALS.rewards,
@@ -66,21 +69,16 @@ const _RewardsListContainer = (props: IProps) => {
             },
           },
         });
-      } else {
-        const route = ROUTES.rewardDetails;
-
-        await Navigation.push(componentId, {
-          component: {
-            id: route,
-            name: route,
-            passProps: {
-              rewardId: reward.id,
-              onTabChange: onTabChange,
-            },
-            options: { bottomTabs },
-          },
-        });
       }
+
+      return Navigation.push(componentId, {
+        component: {
+          id: ROUTES.rewardDetails,
+          name: ROUTES.rewardDetails,
+          passProps: { rewardId: reward.id },
+          options: { bottomTabs },
+        },
+      });
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [copy?.newLockedReward?.ctaLabel]
@@ -95,7 +93,7 @@ const _RewardsListContainer = (props: IProps) => {
       onTagPress={setTag}
       onPurchasesPress={handlePurchasesPress}
       selectedTag={tag}
-      loading={loading}
+      loading={!rewards?.data?.list?.length && loading}
     />
   );
 };

@@ -1,13 +1,12 @@
 import * as React from "react";
 import { GetMobileRewardsList_data, GetMobileRewardsList_data_list } from "@graphql/_core/schema";
 import { IConnectedScreenProps } from "../../../../../typings";
-import { RewardsList } from "./rewards-list";
 import { StyleSheet, ViewStyle, View } from "react-native";
-import { TOP_BAR, Style, NAV_BAR } from "@styles";
-import { REWARDS_SCREEN } from "@ids";
-import { NavBar } from "@components/organisms";
-import { TopBarAbsolute } from "@organisms/top-bar/top-bar-absolute";
-import { ChipList } from "@components/molecules";
+import { Style, NAV_BAR } from "@styles";
+import { ChipList } from "@molecules";
+import { RewardsList } from "./rewards-list";
+import { RewardsListLayout } from "../subcomponents/rewards-layout";
+import { RewardsListLoading } from "../subcomponents/rewards-loading";
 
 export interface IRewardsListScreenProps extends IConnectedScreenProps {
   data: GetMobileRewardsList_data;
@@ -20,7 +19,7 @@ export interface IRewardsListScreenProps extends IConnectedScreenProps {
 }
 
 const RewardsListScreen = React.memo((props: IRewardsListScreenProps) => {
-  const { data, selectedTag, onLeftMenuPress, onTagPress, onRefresh, onItemPress, onPurchasesPress } = props;
+  const { data, selectedTag, onLeftMenuPress, onTagPress, onRefresh, onItemPress, onPurchasesPress, loading } = props;
 
   const chips = (data?.tags || []).map((tag) => ({
     value: tag,
@@ -29,38 +28,31 @@ const RewardsListScreen = React.memo((props: IRewardsListScreenProps) => {
   }));
 
   return (
-    <View style={styles.wrapper} testID={REWARDS_SCREEN}>
-      <View style={styles.topBarFiller} />
+    <RewardsListLayout onLeftMenuPress={onLeftMenuPress}>
       {!chips.length ? null : <ChipList chips={chips} />}
-
       <View style={styles.listWrapper}>
-        {/* add loading */}
-        <RewardsList
-          onPurchasesPress={onPurchasesPress}
-          onRefresh={onRefresh}
-          data={data?.list || []}
-          onItemPress={onItemPress}
-        />
+        {loading ? (
+          <RewardsListLoading />
+        ) : (
+          <RewardsList
+            onPurchasesPress={onPurchasesPress}
+            onRefresh={onRefresh}
+            data={data?.list || []}
+            onItemPress={onItemPress}
+          />
+        )}
       </View>
       <View style={styles.navBarFiller} />
-      <TopBarAbsolute onPressLeftIcon={onLeftMenuPress} />
-      <NavBar activeIndex={4} />
-    </View>
+    </RewardsListLayout>
   );
 });
 
 export default RewardsListScreen;
 
 const styles = StyleSheet.create({
-  wrapper: {
-    flex: 1,
-  } as ViewStyle,
   listWrapper: {
     flex: 1,
     marginBottom: Style.adjust(12),
-  } as ViewStyle,
-  topBarFiller: {
-    height: TOP_BAR.TOP_BAR_WITH_PAD,
   } as ViewStyle,
   navBarFiller: {
     height: NAV_BAR.DEFAULT_FULL_HEIGHT,

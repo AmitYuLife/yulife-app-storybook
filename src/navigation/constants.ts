@@ -21,6 +21,7 @@ export const ROUTES = {
   dailySteps: "yulife.member.DailySteps",
   quests: "yulife.member.Quests",
   rewards: "yulife.member.Rewards",
+  purchases: "yulife.member.Purchases",
   activityHistory: "yulife.member.ActivityHistory",
   stats: "yulife.member.Stats",
   duelsHub: "yulife.member.DuelsHub",
@@ -62,10 +63,7 @@ export const ROUTES = {
   questsChallengesHistory: "yulife.quests.ChallengesHistory",
 
   // rewards screens
-  linkDetails: "yulife.rewards.LinkDetails",
-  wegiftDetails: "yulife.rewards.WegiftDetails",
   wegiftConfirmed: "yulife.rewards.WegiftConfirmed",
-  aviosDetails: "yulife.rewards.AviosDetails",
   aviosConfirmed: "yulife.rewards.AviosConfirmed",
   rewardDetails: "yulife.rewards.RewardDetails",
 

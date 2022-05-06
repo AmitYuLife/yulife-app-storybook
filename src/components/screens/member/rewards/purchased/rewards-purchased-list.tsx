@@ -68,11 +68,7 @@ export class RewardsPurchasedList extends React.PureComponent<IProps> {
     const item = data[row];
 
     if (item) {
-      const { day, month, reward, cost, status, onPress } = item;
-
-      return (
-        <RewardsPurchasedItem day={day} month={month} reward={reward} cost={cost} status={status} onPress={onPress} />
-      );
+      return <RewardsPurchasedItem {...item} />;
     }
 
     return null;
@@ -87,11 +83,11 @@ const styles = StyleSheet.create({
   } as ViewStyle,
   listWrapper: {
     flex: 1,
-    paddingHorizontal: Style.SCALE_UP_AND_DOWN(15),
+    paddingHorizontal: Style.adjust(16),
   } as ViewStyle,
   navBarWrapper: {
-    height: Style.SCALE_UP_AND_DOWN(isIphoneX() ? 25 : 15),
-    paddingBottom: Style.SCALE_UP_AND_DOWN(isIphoneX() ? 0 : 25),
+    height: Style.adjust(isIphoneX() ? 24 : 16),
+    paddingBottom: Style.adjust(isIphoneX() ? 0 : 24),
     alignItems: "center",
   } as ViewStyle,
   rewardTabsWrapper: {
@@ -99,7 +95,7 @@ const styles = StyleSheet.create({
     marginTop: TOP_BAR.HEIGHT * 2,
   } as ViewStyle,
   footer: {
-    height: Style.SCALE_UP_AND_DOWN(72),
+    height: Style.adjust(72),
   } as ViewStyle,
   topbarWrapper: {
     position: "absolute",

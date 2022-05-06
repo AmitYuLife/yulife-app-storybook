@@ -46,7 +46,6 @@ export { default as LevelLockedScreen } from "./member/challenges/level-locked/l
 export { default as AviosRewardConfirmedScreen } from "./member/rewards/confirmed/avios-confirmed.screen";
 export { default as PurchasedListScreen } from "./member/rewards/purchased/rewards-purchased.screen";
 export { default as RewardsListScreen } from "./member/rewards/list/rewards-list.screen";
-export { default as RewardsListLegacyScreen } from "./member/rewards/list-legacy/rewards-list.screen";
 export { default as WegiftRewardConfirmedScreen } from "./member/rewards/confirmed/wegift-confirmed.screen";
 export { default as RewardDetailsScreen } from "./member/rewards/details/reward-details.screen";
 export { default as RewardDetailsLoadingScreen } from "./member/rewards/details/reward-details-loading.screen";

@@ -1,12 +1,14 @@
 import React from "react";
 import { ScrollView, View, StyleSheet } from "react-native";
-import NativeSvg from "@components/molecules/native-svg/native-svg";
-import { Rect, Circle } from "react-native-svg";
+import NativeSvg from "@molecules/native-svg/native-svg";
+import { Rect } from "react-native-svg";
+import { Colours, Style } from "@styles";
 
 export function RewardsListLoading() {
   return (
-    <ScrollView>
+    <ScrollView showsVerticalScrollIndicator={false}>
       <View style={styles.loadingContainer}>
+        <LoadingCard />
         <LoadingCard />
         <LoadingCard />
         <LoadingCard />
@@ -21,36 +23,39 @@ function LoadingCard() {
     <View style={styles.loadingCard}>
       <NativeSvg
         speed={2}
-        width={32}
-        height={32}
-        viewBox="0 0 32 32"
-        backgroundColor="#f3f3f3"
-        foregroundColor="#ecebeb"
+        width={Style.adjust(112)}
+        height={Style.adjust(84)}
+        viewBox="0 0 112 84"
+        backgroundColor={Colours.metallic.m100}
+        foregroundColor={Colours.neutral.n50}
       >
-        <Circle opacity="0.5" cx="16" cy="16" r="16" fill="#F4F4F8" />
+        <Rect width="112" height="84" rx="16" />
       </NativeSvg>
 
-      <NativeSvg
-        speed={2}
-        width={106}
-        height={12}
-        viewBox="0 0 106 12"
-        backgroundColor="#f3f3f3"
-        foregroundColor="#ecebeb"
-      >
-        <Rect width="106" height="12" rx="6" fill="#F4F4F8" />
-      </NativeSvg>
+      <View style={styles.text}>
+        <NativeSvg
+          speed={2}
+          width={106}
+          height={12}
+          viewBox="0 0 106 12"
+          backgroundColor={Colours.metallic.m100}
+          foregroundColor={Colours.neutral.n50}
+          style={styles.textMargin}
+        >
+          <Rect width="106" height="12" rx="6" />
+        </NativeSvg>
 
-      <NativeSvg
-        speed={2}
-        width={59}
-        height={12}
-        viewBox="0 0 59 12"
-        backgroundColor="#f3f3f3"
-        foregroundColor="#ecebeb"
-      >
-        <Rect width="59" height="12" rx="6" fill="#F4F4F8" />
-      </NativeSvg>
+        <NativeSvg
+          speed={2}
+          width={59}
+          height={12}
+          viewBox="0 0 59 12"
+          backgroundColor={Colours.metallic.m100}
+          foregroundColor={Colours.neutral.n50}
+        >
+          <Rect width="59" height="12" rx="6" />
+        </NativeSvg>
+      </View>
     </View>
   );
 }
@@ -61,15 +66,20 @@ const styles = StyleSheet.create({
     width: "100%",
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#f4f4f8",
+    backgroundColor: Colours.neutral.white,
   },
   loadingCard: {
-    marginVertical: 12,
+    flexDirection: "row",
+    marginBottom: Style.adjust(16),
     width: "90%",
-    backgroundColor: "white",
-    height: 160,
-    justifyContent: "space-around",
-    borderRadius: 10,
-    padding: 20,
+    backgroundColor: Colours.neutral.n50,
+    height: Style.adjust(116),
+    justifyContent: "flex-start",
+    borderRadius: Style.adjust(16),
+    padding: Style.adjust(16),
   },
+  text: {
+    marginLeft: Style.adjust(16),
+  },
+  textMargin: { marginBottom: Style.adjust(12) },
 });

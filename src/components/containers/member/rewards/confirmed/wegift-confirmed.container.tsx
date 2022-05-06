@@ -7,11 +7,13 @@ import { GetAllPurchases_getAllPurchases } from "@graphql/_core/schema";
 import { WegiftRewardConfirmedScreen } from "@screens";
 import { handleLinkPress } from "@services/app-link";
 import Logger from "@services/logging/logger";
+import { Navigation } from "react-native-navigation";
+import { ROUTES } from "@navigation/constants";
 
 interface IProps {
   componentId: string;
   purchase: GetAllPurchases_getAllPurchases;
-  onTabChange: (tab: "rewards" | "purchases", componentId: string) => void;
+  shouldPopToRoot?: boolean;
 }
 
 interface IState {
@@ -75,13 +77,17 @@ class WegiftRewardConfirmedContainer extends Component<IProps, IState> {
     }
   };
 
-  public goBack = async () => {
-    await this.props.onTabChange("purchases", this.props.componentId);
+  public goBack = () => {
+    const { componentId, shouldPopToRoot } = this.props;
+
+    if (shouldPopToRoot) {
+      return this.goToRewards();
+    }
+
+    return Navigation.pop(componentId);
   };
 
-  public goToRewards = async () => {
-    await this.props.onTabChange("rewards", this.props.componentId);
-  };
+  public goToRewards = () => Navigation.popToRoot(ROUTES.rewards);
 }
 
 export default WegiftRewardConfirmedContainer;
