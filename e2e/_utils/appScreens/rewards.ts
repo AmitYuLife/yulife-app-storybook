@@ -1,4 +1,4 @@
-import { expectIsVisibleViaText, REWARD_ITEM, expectIsVisibleViaID, LOCKED_REWARD_ITEM, WEGIFT_CONFIRMED, PURCHASE_IMAGE, booleanIdVisible, wait, REWARDS_SCREEN, idVisible } from "@navigation"
+import { expectIsVisibleViaText, REWARD_ITEM, expectIsVisibleViaID, LOCKED_REWARD_ITEM, WEGIFT_CONFIRMED, PURCHASE_IMAGE, booleanIdVisible, wait, REWARDS_SCREEN } from "@navigation"
 import moment = require("moment")
 import { scrollFromID, scrollFromText } from "_utils/navigation/scrolling"
 import { TEXT_TEMPLATE } from "@ids"
@@ -25,8 +25,7 @@ export const rewardVisible = (reward: any) => async () => {
         currentAttempt += 1
     }
 
-    await expectIsVisibleViaText(`£${minValue} voucher`, 1500)
-    await expectIsVisibleViaText(`yucoin x ${minYucoin}`, 1500)
+    await expectIsVisibleViaText(`Get vouchers from\n£${minValue} for ${minYucoin} YuCoin`, 1500)
     await expectIsVisibleViaID(rewardItem, 1500)
 }
 
@@ -105,14 +104,13 @@ export const lockedRewardVisible = (reward: any) => async () => {
     const rewardItem = LOCKED_REWARD_ITEM(reward.data._id)
 
     await expectIsVisibleViaID(rewardItem, 1500)
-    await expectIsVisibleViaText("locked", 1500)
 }
 
 export const rewardDenominationsVisible = (reward: any) => async () => {
     const denominations = reward.data.available_denominations
 
     for (const i of denominations) {
-        await expect(element(by.text(`£${i.value}.00 - ${i.yuCoin} yucoin`))).toBeVisible()
+        await expect(element(by.text(`£${i.value} - ${i.yuCoin} YuCoin`))).toBeVisible()
     };
 }
 
@@ -126,6 +124,7 @@ export const denominationListVisible = (reward: any, availableYuCoin: number) =>
     const denominationArr = reward.data.available_denominations
     
     await expect(element(by.text(`You have ${availableYuCoin} YuCoin`))).toBeVisible()
+    await expect(element(by.text(`Cancel`))).toBeVisible()
 
     for (const i of denominationArr) {
         await expect(element(by.text(`£${i.value} - ${i.yuCoin} YuCoin`))).toBeVisible()
@@ -135,26 +134,32 @@ export const denominationListVisible = (reward: any, availableYuCoin: number) =>
 
 export const tapDenominationList = (reward: any, index = 0) => async () => {
     const denomination = reward.data.available_denominations[index]
+    const denominationText = element(by.text(`£${denomination.value} - ${denomination.yuCoin} YuCoin`))
+    const confirmationPurchaseText =  element(by.text(`You'll purchase Nike £${denomination.value} voucher with ${denomination.yuCoin} yucoin.`))
+
     await wait(5000)()
-    const denominationText = element(by.text(`£${denomination.value}.00`))
     await expect(denominationText).toBeVisible()
     await denominationText.tap()
+    await expect(confirmationPurchaseText).toBeVisible()
+    await expect(element(by.text(`Cancel`))).toBeVisible()
+
 }
 
 export const buyButtonVisible = (reward: any, index = 0) => async () => {
-    const buttonText = element(by.text(`buy with ${reward.data.available_denominations[index].yuCoin} yucoin`))
+    const buttonText = element(by.text(`£10 - ${reward.data.available_denominations[index].yuCoin} YuCoin`))
     await expect(buttonText).toBeVisible()
 }
 
 export const tapBuyButton = (reward: any, index = 0) => async () => {
-    const buttonText = element(by.text(`buy with ${reward.data.available_denominations[index].yuCoin} yucoin`))
+    const buttonText = element(by.text(`£20 - ${reward.data.available_denominations[index].yuCoin} YuCoin`))
     await expect(buttonText).toBeVisible()
     await buttonText.longPress()
 }
 
-export const onRewardPurchasedScreen = (reward: any) => async () => {
+export const onRewardPurchasedScreen = (reward: any, index = 0) => async () => {
     const cardImageURL = element(by.id(PURCHASE_IMAGE(reward.data.card_image_url)))
     const description = reward.data.description
+    const howtoRedeem = reward.data.redeem_steps.steps[index]
 
     const expiryPolicy = reward.data.expiry_date_policy
     const purchaseDate = moment().format("DD MMM YYYY")
@@ -184,6 +189,7 @@ export const onRewardPurchasedScreen = (reward: any) => async () => {
         await expect(element(by.text("get voucher"))).toBeVisible()
     } catch (e) {
         await scrollFromText("How to redeem", "up", "fast")()
+        await expect(element(by.text(howtoRedeem))).toBeVisible()
         await expect(element(by.text("get voucher"))).toBeVisible()
     }
 
@@ -196,21 +202,24 @@ export const onRewardPurchasedScreen = (reward: any) => async () => {
 export const purchasedRewardVisible = (reward: any, denominationIndex = 0) => async () => {
     const value = reward.data.available_denominations[denominationIndex].value
     const rewardName = reward.data.name
-    const yuCoinCost = reward.data.available_denominations[denominationIndex].yuCoin
+    const yuCoinCost = addCommasToNumber(reward.data.available_denominations[denominationIndex].yuCoin)
 
-    const title = `£${value} ${rewardName} VOUCHER`
-    const subTitle = `${yuCoinCost} yucoin`
+    const title = `£${value} ${rewardName} voucher`
+    const subTitle = `${yuCoinCost} YuCoin`
+    const todayDay = moment().format("DD")
+    const currentMonth = moment().format("MMM")
 
-    await expect(element(by.text(title))).toBeVisible()
-    await expect(element(by.text(subTitle))).toBeVisible()
-
+    await expect(element(by.text(title)).atIndex(denominationIndex)).toBeVisible()
+    await expect(element(by.text(subTitle)).atIndex(denominationIndex)).toBeVisible()
+    await expect(element(by.text(todayDay)).atIndex(denominationIndex)).toBeVisible()
+    await expect(element(by.text(currentMonth)).atIndex(denominationIndex)).toBeVisible()
 }
 
 export const tapPurchasedReward = (reward: any, denominationIndex = 0) => async () => {
     const value = reward.data.available_denominations[denominationIndex].value
     const rewardName = reward.data.name
 
-    const title = element(by.text(`£${value} ${rewardName} VOUCHER`))
+    const title = element(by.text(`£${value} ${rewardName} voucher`)).atIndex(denominationIndex)
     await title.tap()
 }
 
@@ -219,3 +228,5 @@ export const onRewardNotAvailableScreen = async () => {
     await expect(element(by.text("Please come back later."))).toBeVisible()
     await expect(element(by.text("check other rewards"))).toBeVisible()
 }
+
+

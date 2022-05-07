@@ -229,7 +229,7 @@ export const REWARDS_NIKE = {
         "e_code_usage_type": null,
         "expiry_date_policy": "24 months from last activity",
         "maximum_value": 400,
-        "minimum_value": 5,
+        "minimum_value": 10,
         "name": "Nike",
         "terms_and_conditions_url": "https://gift-sandbox.wegift.io/public/terms/NIKE-GB.pdf",
         "reward_sticker": null,
