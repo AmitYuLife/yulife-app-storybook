@@ -18,5 +18,6 @@ export const {
 
 export const {
     tapText,
-    reloadAppToTab
+    reloadAppToTab,
+    tapID
 } = navigation.common

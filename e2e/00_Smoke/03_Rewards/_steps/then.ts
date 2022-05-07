@@ -6,7 +6,8 @@ export const {
     idNotVisible,
     textVisible,
     textNotVisible,
-    multipleTextVisible
+    multipleTextVisible,
+    textVisibleAtIndex
 } = navigation.common
 
 export const {

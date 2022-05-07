@@ -204,8 +204,8 @@ export const CORE_REWARDS_NIKE = {
             "info": "How to redeem Nike"
         },
         "images": {
-            "listItemImageKey": "reward/background/NIKE-GB.jpg",
-            "detailHeaderKey": "reward/header/NIKE-GB.jpg",
+            "listItemImageKey": "reward/list-detail/v1/Nike.png",
+            "detailHeaderKey": "https://gift-sandbox.wegift.io/static/product_assets/NIKE/NIKE-card.png",
         },
         "loyaltyProgramme": [],
         "sortOrder": 18,

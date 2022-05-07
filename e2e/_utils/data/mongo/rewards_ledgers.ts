@@ -1,3 +1,4 @@
+import { CORE_REWARDS_NIKE } from "@data";
 import { generateRandomMongoId, IDatabaseItem } from "@yu-life/yulife-bdd-framework";
 import moment from "moment";
 import { USER_2 } from "./users";
@@ -8,14 +9,18 @@ export const REWARD_LEDGER_1 = {
     data: {
         "_id": generateRandomMongoId(),
         "userId": USER_2.data.userId,
-        "delivery_url": "https://gift-sandbox.wegift.io/public/gifts/instant/a1a3a359-c428-4aaf-902f-0cb992c81ac2",
-        "expiry_date": moment().add(24, "months").format("DD MMM YYYY"),
+        "delivery_url": "https://playground.wegift.io/public/gifts/instant/cbe60a2a-1453-4e88-a74e-1dfe11bdd385",
+        "expiry_date": moment().add(24, "months").format("YYYY-MM-DD"),
+        "status": "approved",
         "code": "NIKE-GB",
         "rewardProviderId": "wegift",
         "amount": 10,
         "yuCoinsSpent": 7750,
         "currency_code": "GBP",
         "name": "Nike",
+        "reward": CORE_REWARDS_NIKE.data._id,
+        "createdAt": moment().subtract(2, "hours").toISOString(),
+        "updatedAt": moment().subtract(1, "hours").toISOString(),
         "__v": 0
     }
 } as IDatabaseItem
