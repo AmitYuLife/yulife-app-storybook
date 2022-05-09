@@ -7,7 +7,7 @@ import { ChipList } from "@molecules";
 import { RewardsList } from "./rewards-list";
 import { RewardsListLayout } from "../subcomponents/rewards-layout";
 import { RewardsListLoading } from "../subcomponents/rewards-loading";
-
+import { REWARDS_LIST_SCREEN } from "@ids";
 export interface IRewardsListScreenProps extends IConnectedScreenProps {
   data: GetMobileRewardsList_data;
   onItemPress: (item: GetMobileRewardsList_data_list) => void;
@@ -30,7 +30,7 @@ const RewardsListScreen = React.memo((props: IRewardsListScreenProps) => {
   return (
     <RewardsListLayout onLeftMenuPress={onLeftMenuPress}>
       {!chips.length ? null : <ChipList chips={chips} />}
-      <View style={styles.listWrapper}>
+      <View style={styles.listWrapper} testID={REWARDS_LIST_SCREEN}>
         {loading ? (
           <RewardsListLoading />
         ) : (

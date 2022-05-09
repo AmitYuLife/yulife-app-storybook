@@ -9,6 +9,7 @@ export type ItemSlot = "pants" | "chest" | "gloves" | "boots" | "compass" | "map
 export const COMPONENT_HOME_SCREEN = "COMPONENT_HOME_SCREEN";
 export const DAILY_STEPS_SCREEN = "DAILY_STEPS_SCREEN";
 export const REWARDS_SCREEN = "REWARDS_SCREEN";
+export const REWARDS_LIST_SCREEN = "REWARDS_LIST_SCREEN";
 export const ACTIVITY_HISTORY_SCREEN = "ACTIVITY_HISTORY_SCREEN";
 export const STATS_SCREEN = "STATS_SCREEN";
 export const SETTINGS_SCREEN = "SETTINGS_SCREEN";

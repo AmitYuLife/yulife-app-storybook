@@ -1,6 +1,6 @@
-import { expectIsVisibleViaText, REWARD_ITEM, expectIsVisibleViaID, LOCKED_REWARD_ITEM, WEGIFT_CONFIRMED, PURCHASE_IMAGE, booleanIdVisible, wait, REWARDS_SCREEN } from "@navigation"
+import { expectIsVisibleViaText, REWARD_ITEM, expectIsVisibleViaID, LOCKED_REWARD_ITEM, WEGIFT_CONFIRMED, PURCHASE_IMAGE, booleanIdVisible, wait, REWARDS_SCREEN, REWARDS_LIST_SCREEN } from "@navigation"
 import moment = require("moment")
-import { scrollFromID, scrollFromText } from "_utils/navigation/scrolling"
+import { scrollFromID, scrollFromText, scrollUntilTextVisible, scrollUntilIdVisible } from "_utils/navigation/scrolling"
 import { TEXT_TEMPLATE } from "@ids"
 
 type rewardType = "avios"
@@ -54,6 +54,8 @@ export const specialRewardVisible = (reward: any, type: rewardType) => async () 
 
 export const tapRewardInList = (reward: any) => async () => {
         const rewardItem = element(by.id(REWARD_ITEM(reward.data._id)))
+
+        await scrollUntilIdVisible(REWARDS_LIST_SCREEN,REWARD_ITEM(reward.data._id),"down")
         await rewardItem.tap()
 }
 

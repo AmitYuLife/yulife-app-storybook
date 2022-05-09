@@ -3,7 +3,7 @@ import * as scenario from "./_steps/scenario"
 import * as given from "./_steps/given"
 import * as when from "./_steps/when"
 import * as then from "./_steps/then"
-import { REWARDS_SCREEN, VIEW_TOP_RIGHT_COIN_COUNTER, WEGIFT_DETAILS, BACK_BUTTON} from "@ids";
+import { REWARDS_SCREEN, REWARDS_LIST_SCREEN, VIEW_TOP_RIGHT_COIN_COUNTER, WEGIFT_DETAILS, BACK_BUTTON} from "@ids";
 import { REWARDS_JOHN_LEWIS, REWARDS_BLOOM_UNAVAILABLE, CUSTOMER_3, AUTH_3, REWARDS_NIKE, CUSTOMER_4, AUTH_4, COIN_LEDGER_4, CUSTOMER_2, AUTH_2 } from "@data";
 
 
@@ -48,12 +48,14 @@ Feature("Rewards should act correctly", async () => {
     Scenario("I can change the reward amount and buy it if I have enough coin", scenario.start, () => {
         Given("I login and go to rewards", given.logInAndGoToTab("rewards", CUSTOMER_3, AUTH_3), () => {
             Then("I should be on the rewards tab", then.idVisible(REWARDS_SCREEN))
-            Then("I should see the Nike Reward", then.rewardVisible(REWARDS_NIKE))
-            Then("I should see my coin balance in the top right", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(17700)))
-            When("I tap this reward", when.tapRewardInList(REWARDS_NIKE), async () => {
-                Then("I should be on the reward page", then.onRewardScreen(REWARDS_NIKE))
+            When("I swipe down this page", when.swipeToText(REWARDS_LIST_SCREEN,"Purchase history", "up"), async () => {
+                Then("I should see the Nike Reward", then.rewardVisible(REWARDS_NIKE))
+                Then("I should see my coin balance in the top right", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(17700)))
+                When("I tap this reward", when.tapRewardInList(REWARDS_NIKE), async () => {
+                    Then("I should be on the reward page", then.onRewardScreen(REWARDS_NIKE))
+                })
             })
-            When("I scroll to the bottom of the page", when.swipeFromText("How to redeem Nike", "up", "fast"), async () => {
+            When("I scroll to the bottom of the page", when.swipeFromText("Nike", "up", "fast"), async () => {
                 When("I tap the button", when.tapText("Buy voucher with YuCoin",0,true), async () => {
                     Then("I should see the buy button", then.buyButtonVisible(REWARDS_NIKE))
                     Then("I should see the £ amount drop down", then.denominationListVisible(REWARDS_NIKE, 17700))
@@ -76,6 +78,8 @@ Feature("Rewards should act correctly", async () => {
             })
             When("I go back this screen", when.tapID(BACK_BUTTON), async () => {
                 Then("I should be on the rewards tab", then.idVisible(REWARDS_SCREEN))
+            })
+            When("I swipe down this page", when.swipeToText(REWARDS_LIST_SCREEN,"Purchase history", "up"), async () => {
                 Then("I should see the Nike Reward", then.rewardVisible(REWARDS_NIKE))
                 Then("I should see my coin balance in the top right", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(9950)))
                 When("I press on purchase history", when.tapText("Purchase history"), async () => {
@@ -92,7 +96,7 @@ Feature("Rewards should act correctly", async () => {
             })
             When("I tap this reward", when.tapRewardInList(REWARDS_NIKE), async () => {
                 Then("I should see my coin balance in the top right", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(9950)))
-                When("I scroll to the bottom of the page", when.swipeFromText("How to redeem Nike", "up", "fast"), async () => {
+                When("I scroll to the bottom of the page", when.swipeFromText("Nike", "up", "fast"), async () => {
                     When("I tap the button", when.tapText("Buy voucher with YuCoin",0,true), async () => {
                         Then("I should see the £ amount drop down", then.denominationListVisible(REWARDS_NIKE, 9950))
                     })
@@ -114,9 +118,11 @@ Feature("Rewards should act correctly", async () => {
                 Then("I should be back on the rewards screen", then.idVisible(REWARDS_SCREEN))
                 Then("I should see my updated balance", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(2200)))
                 When("I reload the app and go to rewards", when.reloadAppToTab("rewards"), async () => {
-                    When("I tap the Purchased history", when.tapText("Purchase history"), async () => {
-                        Then("I should see my nike reward", then.purchasedRewardVisible(REWARDS_NIKE, 0))
-                        Then("I should see the 2 purchased reward in list", then.textVisibleAtIndex("£10 Nike voucher", 1))
+                    When("I swipe down this page", when.swipeToText(REWARDS_LIST_SCREEN,"Purchase history", "up"), async () => {
+                        When("I tap the Purchased history", when.tapText("Purchase history"), async () => {
+                            Then("I should see my nike reward", then.purchasedRewardVisible(REWARDS_NIKE, 0))
+                            Then("I should see the 2 purchased reward in list", then.textVisibleAtIndex("£10 Nike voucher", 1))
+                        })
                     })
                 })
             })
