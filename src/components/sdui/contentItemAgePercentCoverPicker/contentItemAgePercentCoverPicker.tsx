@@ -18,6 +18,7 @@ interface ControlledProps {
   salaryPercent: number;
   policyEndAge: number;
   coverType: CoverType;
+  onToggleAgeScroller: () => void;
 }
 type Props = GqlProps & ControlledProps;
 
@@ -38,6 +39,7 @@ export const ContentItemAgePercentCoverPicker = memo((props: Props) => {
     costPayoutBenefitPayoutSchedule,
     costPayoutBenefitCostSchedule,
     restrictedPercentInfoCardText,
+    onToggleAgeScroller,
   } = props;
   const pricing = props.contentItemAgePercentCoverPickerOptions;
   const { keyedPricing, ageToMaxSalaryPercent, agesInYears, ageToIndex, salaryPercentToMaxAge } = useIndexedData(
@@ -86,6 +88,7 @@ export const ContentItemAgePercentCoverPicker = memo((props: Props) => {
     policyEndAge,
     ageText: props.ageText.markdown,
     agePickerButtonRightIconImageUrl,
+    onPressListViewCallback: onToggleAgeScroller,
   });
 
   return (

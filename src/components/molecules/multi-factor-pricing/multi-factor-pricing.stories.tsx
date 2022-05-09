@@ -103,6 +103,7 @@ storiesOf("molecules/multi-factor-pricing", module).add("default", () => {
     activeValue: policyEndAge,
     maxAge: filteredLabelledHorizontalScrollerItems[filteredLabelledHorizontalScrollerItems.length - 1].value,
     buttonIconUrl: "",
+    onPressListViewCallback: (): null => null,
   };
 
   const coverPicker = {

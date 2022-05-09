@@ -4,8 +4,12 @@ import { ContentItemAgePercentCoverPicker } from "@components/sdui";
 import { useSetDefaultAnswer } from "../../hooks/useSetDefaultAnswer";
 import { ProductStepContext } from "../../product-step.context";
 import { CoverType } from "@graphql/_core/schema/globalTypes";
+import { useDispatch } from "react-redux";
+import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 
 export const ProductStepAgePercentCoverPicker = memo((props: GqlProps) => {
+  const productStepContext = useContext(ProductStepContext);
+  const dispatch = useDispatch();
   const { dynamicData, setDynamicData } = useContext(ProductStepContext);
   const {
     answerKeyAge,
@@ -55,6 +59,16 @@ export const ProductStepAgePercentCoverPicker = memo((props: GqlProps) => {
   const handleChangeMaxSalaryPercent = (newMaxSalaryPercent: number) =>
     setDynamicData((oldState) => ({ ...oldState, [answerKeyMaxSalaryPercent]: newMaxSalaryPercent }));
 
+  const handlePressCustomAgeViewCallback = () => {
+    dispatch(
+      logMixpanelEventActionCreator("button_pressed", {
+        button_id: "custom_length_viewed",
+        location: productStepContext.stepId,
+        cs_product: "Covea_FIB",
+      })
+    );
+  };
+
   return (
     <ContentItemAgePercentCoverPicker
       {...props}
@@ -65,6 +79,7 @@ export const ProductStepAgePercentCoverPicker = memo((props: GqlProps) => {
       salaryPercent={salaryPercent as number}
       policyEndAge={policyEndAge as number}
       coverType={coverType as CoverType}
+      onToggleAgeScroller={handlePressCustomAgeViewCallback}
     />
   );
 });

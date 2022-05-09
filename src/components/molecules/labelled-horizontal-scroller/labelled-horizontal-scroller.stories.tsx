@@ -45,6 +45,7 @@ storiesOf("LabelledHorizontalScroller", module).add("default", () => {
         onIndexChange={handleIndexChange}
         activeValue={activeValue}
         buttonIconUrl=""
+        onPressListViewCallback={(): null => null}
       />
     </ScrollView>
   );
