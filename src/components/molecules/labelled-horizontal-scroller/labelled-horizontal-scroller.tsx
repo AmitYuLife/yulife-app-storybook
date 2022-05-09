@@ -1,6 +1,6 @@
-import React, { memo, useMemo, useState } from "react";
+import React, { memo, useEffect, useMemo, useState } from "react";
 import { View, StyleSheet, ViewStyle } from "react-native";
-import { FlatList, Image } from "@atoms";
+import { FlatList, Image, Loading } from "@atoms";
 import { Colours, Style } from "@styles";
 import { CHOICE_WIDTH, COMPONENT_HEIGHT } from "./styles";
 import { renderItem } from "./renderItem";
@@ -36,7 +36,18 @@ const LabelledHorizontalScroller = (props: Props) => {
   });
   const [showList, setShowList] = useState(false);
   const activeValueIndex = items.findIndex((item) => item.value === activeValue);
+  const [hasInitialised, setHasInitialised] = useState(false);
+  useEffect(() => {
+    if (!showList) {
+      return;
+    }
 
+    const initializationDelay = setTimeout(() => {
+      setHasInitialised(true);
+    }, 1000);
+
+    return () => clearTimeout(initializationDelay);
+  }, [showList]);
   return (
     <View style={[styles.wrapper, style]}>
       <Label label={label} />
@@ -55,9 +66,14 @@ const LabelledHorizontalScroller = (props: Props) => {
           windowSize={100}
           testID={DATE_PICKER}
         />
+        {hasInitialised ? null : (
+          <View style={StyleSheet.flatten([styles.baseOverlay, styles.loadingWrapper])}>
+            <Loading />
+          </View>
+        )}
         {showList ? null : (
           <PressableWithDelay
-            style={styles.buttonWrapper}
+            style={styles.baseOverlay}
             onPress={() => {
               setShowList(true);
               onIndexChange(activeValueIndex > -1 ? activeValueIndex : 0);
@@ -88,13 +104,6 @@ const styles = StyleSheet.create({
     overflow: "hidden",
     backgroundColor: Colours.neutral.white,
   } as ViewStyle,
-  buttonWrapper: {
-    width: CHOICE_WIDTH * 3,
-    justifyContent: "center",
-    alignItems: "flex-end",
-    backgroundColor: "white",
-    ...StyleSheet.absoluteFillObject,
-  } as ViewStyle,
   flatList: {
     width: CHOICE_WIDTH * 3,
     height: COMPONENT_HEIGHT,
@@ -106,5 +115,15 @@ const styles = StyleSheet.create({
   contentContainer: {
     paddingLeft: CHOICE_WIDTH,
     paddingRight: CHOICE_WIDTH,
+  } as ViewStyle,
+  loadingWrapper: {
+    paddingRight: Style.adjust(20),
+  } as ViewStyle,
+  baseOverlay: {
+    width: CHOICE_WIDTH * 3,
+    justifyContent: "center",
+    alignItems: "flex-end",
+    backgroundColor: "white",
+    ...StyleSheet.absoluteFillObject,
   } as ViewStyle,
 });
