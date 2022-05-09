@@ -71,6 +71,7 @@ export interface GetUserProfile_getUserProfile_notification {
   hasAppReview: boolean;
   hasDailyScreenCustomIcon: boolean;
   hasYuScreenNotification: boolean;
+  hasAdBanners: boolean;
 }
 
 export interface GetUserProfile_getUserProfile_events_challenges_icon {

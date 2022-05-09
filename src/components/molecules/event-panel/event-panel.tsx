@@ -1,5 +1,5 @@
 import React, { memo, useCallback, useMemo } from "react";
-import { View } from "react-native";
+import { LayoutChangeEvent, View } from "react-native";
 import { Image, ProgressBar, TextTemplate } from "@atoms";
 import { Colours, Style } from "@styles";
 import { ArrowRight } from "@atoms/icon/arrow-right";
@@ -17,9 +17,10 @@ interface IProps {
   currentWorld: number;
   width: number;
   onJoin: (event: IEvent) => Promise<void>;
+  onLayout?: (event: LayoutChangeEvent) => void;
 }
 
-const EventPanel = ({ event, currentWorld, componentId, width, onJoin }: IProps) => {
+const EventPanel = ({ event, currentWorld, componentId, width, onJoin, onLayout }: IProps) => {
   const { wrapper, container } = getCurrentWorldStyle(currentWorld);
   const dispatch = useDispatch();
   const fontColour = useMemo(() => (currentWorld === 1 ? Colours.neutral.white : Colours.neutral.n800), [currentWorld]);
@@ -64,7 +65,7 @@ const EventPanel = ({ event, currentWorld, componentId, width, onJoin }: IProps)
   }, [event, onJoin, onNavigateToDetails]);
 
   return (
-    <PressableWithDelay onPress={onNavigateToDetails} style={buttonWrapperStyle}>
+    <PressableWithDelay onPress={onNavigateToDetails} style={buttonWrapperStyle} onLayout={onLayout}>
       <View style={containerStyles.wrapper}>
         <View style={containerStyles.container}>
           <View style={styles.header}>
