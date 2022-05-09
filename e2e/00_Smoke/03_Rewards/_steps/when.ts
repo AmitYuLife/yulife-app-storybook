@@ -13,7 +13,8 @@ export const {
 export const {
     scrollFromText,
     scrollFromID,
-    swipeFromText
+    swipeFromText,
+    swipeToText
 } = navigation.scrolling
 
 export const {
