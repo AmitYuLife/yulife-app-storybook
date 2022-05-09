@@ -6,6 +6,7 @@ import {
   UpdateMemberConsent,
   GetUserSurge_getUserSurge as IUserSurge,
   GetUserProfile_getUserProfile_events as Events,
+  GetAdBanners_getAdBanners as AdBanners,
 } from "@graphql/_core/schema";
 import { MobileConsentInput } from "@graphql/_core/schema/globalTypes";
 import { IUserStore } from "./user.reducer";
@@ -46,6 +47,7 @@ export const UPDATE_USER_SURGE = "UPDATE_USER_SURGE";
 export const UPDATE_USER_GOAL = "UPDATE_USER_GOAL";
 export const YUSCREEN_SYNCHRONISED = "YUSCREEN_SYNCHRONISED";
 export const REMOVE_YUSCREEN_NOTIFICATIONS = "REMOVE_YUSCREEN_NOTIFICATIONS";
+export const ADD_AD_BANNERS_ON_USER_PROFILE_EVENTS = "ADD_AD_BANNERS_ON_USER_PROFILE_EVENTS";
 
 export const refreshUserToken = () => ({
   type: REFRESH_USER_TOKEN,
@@ -184,4 +186,9 @@ export const updateUserSurge = (payload: IUserSurge) => ({
 
 export const removeYuScreenNotifications = () => ({
   type: REMOVE_YUSCREEN_NOTIFICATIONS,
+});
+
+export const addAdBannersUserProfileEvents = (payload: AdBanners[]) => ({
+  type: ADD_AD_BANNERS_ON_USER_PROFILE_EVENTS,
+  payload,
 });

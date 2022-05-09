@@ -75,6 +75,7 @@ export * from "./DeleteConnection";
 export * from "./DuelOpponent";
 export * from "./GetActiveBuffsOverlay";
 export * from "./GetActivityHistory";
+export * from "./GetAdBanners";
 export * from "./GetAllPurchases";
 export * from "./GetCommunityGoals";
 export * from "./GetConnections";

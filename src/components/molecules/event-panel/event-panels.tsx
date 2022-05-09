@@ -1,12 +1,20 @@
-import React, { memo, useCallback } from "react";
+import React, { memo, useCallback, useState } from "react";
 import { FlatList, StyleSheet, View, ListRenderItemInfo, Platform } from "react-native";
 import { Style, NAV_BAR } from "@styles";
 import { GetUserProfile_getUserProfile_events as IEvent } from "@graphql/_core/schema";
 import EventPanel from "./event-panel";
+import { AdBanner } from "@molecules";
+
+interface IAdBanner {
+  imageUrl: string;
+  navigateTo: string;
+}
+
+type IEvents = IEvent & IAdBanner;
 
 interface IProps {
   componentId?: string;
-  events: IEvent[];
+  events: Partial<IEvents>[];
   currentWorld: number;
   onJoin: (event: IEvent) => Promise<void>;
 }
@@ -15,10 +23,22 @@ const CARD_WIDTH = Style.DEVICE_WIDTH * 0.8;
 const INITIAL_PADDING = Style.DEVICE_WIDTH * 0.1 + 5;
 
 const EventPanels = ({ events = [], currentWorld, componentId, onJoin }: IProps) => {
+  const [adHeight, setAdHeight] = useState(148);
+
+  const onLayout = useCallback((e) => setAdHeight(e?.nativeEvent?.layout?.height || 148), [adHeight]);
   const renderItem = useCallback(
-    ({ item }: ListRenderItemInfo<IEvent>) => {
+    ({ item }: ListRenderItemInfo<IEvent & IAdBanner>) => {
+      if (item.id.startsWith("ad-")) {
+        return (
+          <View style={styles.adBanners}>
+            <AdBanner width={CARD_WIDTH} height={adHeight} imageUrl={item.imageUrl} navigateTo={item.navigateTo} />
+          </View>
+        );
+      }
+
       return (
         <EventPanel
+          onLayout={onLayout}
           onJoin={onJoin}
           width={CARD_WIDTH}
           event={item}
@@ -58,6 +78,10 @@ const styles = StyleSheet.create({
   },
   flatListContentContainerStyle: {
     paddingHorizontal: INITIAL_PADDING,
+  },
+  adBanners: {
+    alignItems: "center",
+    justifyContent: "flex-end",
   },
 });
 

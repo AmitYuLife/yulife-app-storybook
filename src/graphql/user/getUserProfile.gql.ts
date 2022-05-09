@@ -49,6 +49,7 @@ export const GQL_QUERY_GET_USER_PROFILE = gql`
         hasAppReview
         hasDailyScreenCustomIcon
         hasYuScreenNotification
+        hasAdBanners
       }
       events {
         ...UserProfileEvents

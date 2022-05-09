@@ -75,3 +75,4 @@ export { default as CentredScreen } from "./centred-screen/centred-screen";
 export { default as Panel } from "./panel/panel";
 export { CollapsingHeader } from "./collapsing-header/collapsing-header";
 export { ChipList } from "./chip-list/chip-list";
+export { default as AdBanner } from "./ad-banner/ad-banner";
