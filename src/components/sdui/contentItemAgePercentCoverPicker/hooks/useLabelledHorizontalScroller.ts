@@ -7,6 +7,7 @@ interface UseLabelledHorizontalScroller {
   policyEndAge: number;
   ageText: string;
   agePickerButtonRightIconImageUrl: string;
+  onPressListViewCallback: () => void;
 }
 
 export const useLabelledHorizontalScroller = ({
@@ -18,6 +19,7 @@ export const useLabelledHorizontalScroller = ({
   policyEndAge,
   ageText,
   agePickerButtonRightIconImageUrl,
+  onPressListViewCallback,
 }: UseLabelledHorizontalScroller) => {
   const maxAgeForSalaryPercent = salaryPercentToMaxAge[activeSalaryPercent];
 
@@ -36,6 +38,7 @@ export const useLabelledHorizontalScroller = ({
     activeValue: policyEndAge,
     maxAge: filteredLabelledHorizontalScrollerItems[filteredLabelledHorizontalScrollerItems.length - 1].value,
     buttonIconUrl: agePickerButtonRightIconImageUrl,
+    onPressListViewCallback,
   };
 
   return labelledHorizontalScroller;

@@ -16,10 +16,11 @@ interface Props {
   activeValue: number;
   style?: ViewStyle;
   buttonIconUrl: string;
+  onPressListViewCallback: () => void;
 }
 
 const LabelledHorizontalScroller = (props: Props) => {
-  const { label, items, onIndexChange, activeValue, style, buttonIconUrl } = props;
+  const { label, items, onIndexChange, activeValue, style, buttonIconUrl, onPressListViewCallback } = props;
   const snapToOffsets = useMemo(() => Array.from({ length: items.length }).map((_, i) => i * CHOICE_WIDTH), [items]);
   const {
     listRef,
@@ -57,7 +58,13 @@ const LabelledHorizontalScroller = (props: Props) => {
         {showList ? null : (
           <PressableWithDelay
             style={styles.buttonWrapper}
-            onPress={() => (setShowList(true), onIndexChange(activeValueIndex > -1 ? activeValueIndex : 0))}
+            onPress={() => {
+              setShowList(true);
+              onIndexChange(activeValueIndex > -1 ? activeValueIndex : 0);
+              if (onPressListViewCallback) {
+                onPressListViewCallback();
+              }
+            }}
             testID={EDIT_BUTTON}
           >
             <Image width={Style.adjust(24)} source={{ uri: buttonIconUrl }} />
