@@ -2,7 +2,7 @@ import React, { useState, useCallback, memo } from "react";
 import { ImageStyle, StyleSheet, View, ViewStyle } from "react-native";
 import { Navigation } from "react-native-navigation";
 import { Image, TextTemplate } from "@atoms";
-import { ArrowRight } from "@atoms/icon/arrow-right";
+import { ArrowIcon } from "@atoms/icon/arrow";
 import { ListPicker, TouchableOpacityWithDelay, TextInputError } from "@molecules";
 import { ISelectInput, ISelectInputOption } from "./select-input.types";
 import { MODALS } from "@navigation/constants";
@@ -66,7 +66,7 @@ const SelectInput = ({
           </TextTemplate>
         </View>
         <View style={styles.arrow}>
-          <ArrowRight color={Colours.neutral.n400} />
+          <ArrowIcon color={Colours.neutral.n400} />
         </View>
       </TouchableOpacityWithDelay>
       {!errorMessage ? null : <TextInputError>{errorMessage}</TextInputError>}

@@ -39,7 +39,7 @@ export const iconHashMap = {
   [BUTTON_ICON.EDIT]: EditSvg,
   [BUTTON_ICON.EDIT_GREY]: EditSvgGrey,
   [BUTTON_ICON.QUESTION_BUBBLE]: QuestionBubbleSvg,
-  [BUTTON_ICON.ARROW_RIGHT]: Icon.ArrowRight,
+  [BUTTON_ICON.ARROW_RIGHT]: Icon.ArrowIcon,
   [BUTTON_ICON.DOCUMENT]: Icon.Document,
   [BUTTON_ICON.BLUE_DOC]: Icon.BlueDoc,
   [BUTTON_ICON.YELLOW_DOC]: Icon.YellowDoc,

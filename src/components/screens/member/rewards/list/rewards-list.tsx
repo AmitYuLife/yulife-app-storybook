@@ -1,13 +1,14 @@
 import * as React from "react";
 import { View, StyleSheet, ViewStyle } from "react-native";
 import { IndexPath, LargeList } from "react-native-largelist-v3";
-import { ArrowRightSvg } from "@atoms";
+import { ArrowIcon } from "@atoms/icon/arrow";
 import { YulifeRefreshHeader, TertiaryButton } from "@molecules";
 import { Colours, Style } from "@styles";
 import { GetMobileRewardsList_data_list } from "@graphql/_core/schema";
 
 import { RewardsListItem } from "./rewards-list.item";
 import Coupon from "./subcomponents/coupon";
+
 export interface IRewardsListScreenProps {
   data: GetMobileRewardsList_data_list[];
   onRefresh: () => void;
@@ -76,7 +77,7 @@ export class RewardsList extends React.PureComponent<IRewardsListScreenProps> {
         LeftIcon={<Coupon fill={Colours.neutral.n800} hasCheckmark={true} />}
         RightIcon={
           <View style={styles.purchasesRightIcon}>
-            <ArrowRightSvg colour={Colours.primary.p600} />
+            <ArrowIcon color={Colours.primary.p600} />
           </View>
         }
       />

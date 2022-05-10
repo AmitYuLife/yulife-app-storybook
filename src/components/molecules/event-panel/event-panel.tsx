@@ -2,7 +2,7 @@ import React, { memo, useCallback, useMemo } from "react";
 import { LayoutChangeEvent, View } from "react-native";
 import { Image, ProgressBar, TextTemplate } from "@atoms";
 import { Colours, Style } from "@styles";
-import { ArrowRight } from "@atoms/icon/arrow-right";
+import { ArrowIcon } from "@atoms/icon/arrow";
 import { Button, PressableWithDelay } from "@molecules";
 import { GetUserProfile_getUserProfile_events as IEvent } from "@graphql/_core/schema";
 import { Navigation } from "react-native-navigation";
@@ -73,7 +73,7 @@ const EventPanel = ({ event, currentWorld, componentId, width, onJoin, onLayout 
               {event.title}
             </TextTemplate>
             {event.joined ? (
-              <ArrowRight color={Colours.neutral.white} withBackground={true} />
+              <ArrowIcon color={Colours.neutral.white} withBackground={true} />
             ) : (
               <Button onPress={onJoinPress} size="ExtraSmall" shadowColor="transparent" label="Join" />
             )}

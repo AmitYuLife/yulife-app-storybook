@@ -1,6 +1,7 @@
 import React, { memo } from "react";
 import { StyleSheet, View } from "react-native";
-import { ArrowRightSvg, Image, TextTemplate } from "@atoms";
+import { Image, TextTemplate } from "@atoms";
+import { ArrowIcon } from "@atoms/icon/arrow";
 import { BoxOption } from "@molecules";
 import { REWARD_ITEM, LOCKED_REWARD_ITEM } from "@ids";
 import { Colours, Style } from "@styles";
@@ -34,7 +35,7 @@ const _RewardsListItem = ({ onPress, imageUrl, name, description, pills, isLocke
         </TextTemplate>
       </View>
       <View>
-        <ArrowRightSvg colour={isLocked ? Colours.neutral.n800 : Colours.primary.p600} />
+        <ArrowIcon color={isLocked ? Colours.neutral.n800 : Colours.primary.p600} />
       </View>
       <View style={styles.pillsWrapper}>
         {pills.map((p) => (
