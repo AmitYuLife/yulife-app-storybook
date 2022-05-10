@@ -314,3 +314,9 @@ export const restartWithoutDeleteTwoTimes = async () => {
     await device.launchApp({ delete: false, });
     await dismissNewLooksModalIfVisible()
 }
+
+export const idExist = (id: string, waitTime = 0) => async () => {
+    const target = element(by.id(id))
+    await waitFor(target).toExist().withTimeout(waitTime)
+    await expect(target).toExist()
+}

@@ -11,6 +11,7 @@ import { LevelBubble } from "./level/level-bubble";
 import { IConnectedScreenProps } from "@app/typings";
 import { GetQuestMapLevelList_getQuestMapLevelList as QuestMapLevel } from "@graphql/_core/schema";
 import { getLevelsProps } from "./yuniversal-quest-screen.helpers";
+import { QUESTS_SCREEN_YUNIVERSAL } from "@ids";
 
 const BACKGROUND_IMAGE = require("@assets/yuniversal/yuniversal_1.png");
 
@@ -44,7 +45,7 @@ const _YuniversalQuestsScreen: FC<IProps> = ({
 
   return (
     <View style={styles.container}>
-      <View style={styles.backgroundImage} />
+      <View style={styles.backgroundImage} testID={QUESTS_SCREEN_YUNIVERSAL(yuniversalLevel)} />
       <Image resizeMode="cover" style={styles.backgroundImage} source={BACKGROUND_IMAGE} />
       {!levelMap?.length ? null : (
         <YuniversalQuestSvg width={styles.backgroundImage.width} height={styles.backgroundImage.height}>
