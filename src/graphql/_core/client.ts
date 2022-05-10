@@ -20,7 +20,7 @@ import createRetryLink from "./retryLink";
 
 const appJson = require("../../../package.json");
 
-const buildRegionalGqlUri = () => `${region.getPreferredRegion()}/graphql`;
+const buildRegionalGqlUri = () => `${region.getPreferredRegionUri()}/graphql`;
 
 const httpLink = () =>
   createHttpLink({
