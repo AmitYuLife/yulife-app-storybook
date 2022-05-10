@@ -14,14 +14,18 @@ import AsyncStorage from "@react-native-community/async-storage";
 import Config from "react-native-config";
 import DeviceInfo from "react-native-device-info";
 import { store } from "@redux/_core/store";
+import region from "@services/region";
 import { updateOfflineState } from "@redux/app/app.actions";
 import createRetryLink from "./retryLink";
 
 const appJson = require("../../../package.json");
 
+const buildRegionalGqlUri = () => `${region.getPreferredRegion()}/graphql`;
+
 const httpLink = () =>
   createHttpLink({
-    uri: `${Config.API_URL}/graphql`,
+    uri: buildRegionalGqlUri(),
+    fetch,
   });
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -29,28 +33,16 @@ const dataIdFromObject = (object: any) => {
   switch (object.__typename) {
     case "UserPayload":
       return `${object.__typename}-${object.expiresAt}`;
-    case "Level":
-      return `${object.__typename}-${object.id}`;
-    case "CommunityGoal":
-      return `${object.__typename}-${object.id}`;
     case "CommunityGoalParticipant":
       return `${object.__typename}-${object.userId}-${object.stats.value}`;
     case "CommunityGoalParticipantStats":
       return `${object.__typename}-${object.value}`;
-    case "Duel":
-      return `${object.__typename}-${object.id}`;
     case "DuelOpponent":
       return `${object.__typename}-${object.duelId}-${object.userId}-${object.score}`;
     case "DuelSearchResult":
       return `${object.__typename}-${object.customerId}`;
-    case "LevelSlot":
-      return `${object.__typename}-${object.id}`;
-    case "LevelSlotMilestone":
-      return `${object.__typename}-${object.id}`;
     case "MilestoneTarget":
       return `${object.__typename}-${object.steps}-${object.meditation}-${object.distance}`;
-    case "User":
-      return `${object.__typename}-${object.id}`;
     case "Reward":
       return `${object.__typename}-${object.code}`;
     case "RewardUiSettings":
@@ -106,6 +98,7 @@ const authMiddleware = setContext(async (_, { headers }) => {
 
   // return the headers to the context so httpLink can read them
   return {
+    uri: buildRegionalGqlUri(),
     headers: {
       ...headers,
       ...defaultHeaders,
