@@ -134,14 +134,14 @@ const worldBubbleColours: IBubbleColours = {
 
 function getGemColor(level: IChallenge) {
   if (level.isDone || level.isActive || level.isNext) {
-    switch (level.level) {
+    switch (level.level % 200) {
       case 50:
         return "#8DE0B0";
       case 100:
         return "#80DAEF";
       case 150:
         return "#FA906A";
-      case 200:
+      case 0:
         return "#FFD2DB";
       default:
         return "white";

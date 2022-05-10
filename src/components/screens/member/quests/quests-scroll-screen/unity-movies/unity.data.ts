@@ -1,4 +1,3 @@
-import { getCurrentWorld } from "@utils";
 import { Colours } from "@styles";
 
 interface Data {
@@ -11,8 +10,8 @@ interface Data {
 }
 
 export function getAssets(unity: number): Data {
-  const index = getCurrentWorld(unity);
-  return data[index];
+  const index = Math.floor((unity - 1) / 50);
+  return data[index] || data[index % 4];
 }
 
 const data = [
