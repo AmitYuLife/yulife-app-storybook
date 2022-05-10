@@ -1,7 +1,7 @@
 import React, { memo } from "react";
 import { StyleSheet, View, ViewStyle } from "react-native";
 import { TextTemplate } from "@atoms";
-import { ArrowRight } from "@atoms/icon/arrow-right";
+import { ArrowIcon } from "@atoms/icon/arrow";
 import { Colours, Style } from "@styles";
 import { TouchableOpacityWithDelay } from "@components/molecules";
 import { TEXT_TEMPLATE } from "@ids";
@@ -29,7 +29,7 @@ const GameSettingsItem = ({ title, description, measurement, onPress }: IProps) 
           {measurement}
         </TextTemplate>
       </View>
-      <ArrowRight color={Colours.primary.p600} />
+      <ArrowIcon color={Colours.primary.p600} />
     </TouchableOpacityWithDelay>
   </View>
 );

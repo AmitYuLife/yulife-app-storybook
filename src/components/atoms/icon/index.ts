@@ -4,7 +4,7 @@ import { Document } from "./document";
 import { YellowDoc } from "./yellow-doc";
 import { BlueDoc } from "./blue-doc";
 import { Pdf } from "./pdf";
-import { ArrowRight } from "./arrow-right";
+import { ArrowIcon } from "./arrow";
 import { DocIcon } from "./doc-icon";
 import { SmartHealthIcon } from "./smart-health-icon";
 import { GooglePlayIcon } from "./google-play-icon";
@@ -59,7 +59,7 @@ export default {
   YellowDoc,
   BlueDoc,
   Pdf,
-  ArrowRight,
+  ArrowIcon,
   DocIcon,
   SmartHealthIcon,
   GooglePlayIcon,

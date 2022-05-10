@@ -1,17 +1,27 @@
 import React, { memo } from "react";
 import Svg, { Path } from "react-native-svg";
 import { Colours, Style } from "@styles";
+import { TransformsStyle } from "react-native";
+
+type ArrowDirection = "right" | "down" | "left";
 
 interface IProps {
   width?: number;
   height?: number;
   color?: string;
   withBackground?: boolean;
+  direction?: ArrowDirection;
 }
 
-export const ArrowRight = memo(
-  ({ width = Style.adjust(24), height = Style.adjust(24), color = Colours.primary.p600, withBackground }: IProps) => (
-    <Svg width={width} height={height} viewBox="0 0 24 24">
+export const ArrowIcon = memo(
+  ({
+    width = Style.adjust(24),
+    height = Style.adjust(24),
+    color = Colours.primary.p600,
+    withBackground,
+    direction = "right",
+  }: IProps) => (
+    <Svg width={width} height={height} viewBox="0 0 24 24" style={TRANSFORM[direction]}>
       {withBackground ? (
         <>
           <Path d="M24 12c0 6.627-5.373 12-12 12S0 18.627 0 12 5.373 0 12 0s12 5.373 12 12Z" fill="#E30D76" />
@@ -28,3 +38,9 @@ export const ArrowRight = memo(
     </Svg>
   )
 );
+
+const TRANSFORM: Record<ArrowDirection, TransformsStyle> = {
+  left: { transform: [{ rotate: "180deg" }] },
+  down: { transform: [{ rotate: "90deg" }] },
+  right: undefined,
+};

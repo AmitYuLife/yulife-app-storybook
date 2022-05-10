@@ -2,7 +2,8 @@ import React, { FC } from "react";
 import { StyleSheet, View, ViewStyle } from "react-native";
 import { Colours, Style } from "@styles";
 import { TouchableOpacityWithDelay } from "@components/molecules";
-import { ArrowRightSvg, Image, TextTemplate } from "@atoms";
+import { Image, TextTemplate } from "@atoms";
+import { ArrowIcon } from "@atoms/icon/arrow";
 import { Navigation } from "react-native-navigation";
 import { ROUTES } from "@navigation/constants";
 import { GetWellbeingHubItems_wellbeingHubItems as WellbeingCard } from "@graphql/_core/schema";
@@ -56,7 +57,7 @@ const WellBeingServiceCard: FC<IProps> = ({ card }) => (
         </View>
       </View>
       <View style={styles.arrowRight}>
-        <ArrowRightSvg colour={Colours.primary.p600} />
+        <ArrowIcon color={Colours.primary.p600} />
       </View>
     </View>
   </TouchableOpacityWithDelay>
