@@ -20,6 +20,9 @@ const screensReducer = (state: IReduxState) => state.copy.screens;
 const settingsCopySelector = (state: ScreensState) => state.settingsInfo;
 export const getSettingsCopy = createSelector(screensReducer, settingsCopySelector);
 
+const loginCopySelector = (state: ScreensState) => state.login;
+export const getLoginCopy = createSelector(screensReducer, loginCopySelector);
+
 const leaderboardsCopySelector = (state: ScreensState) => state.leaderboards;
 export const getLeaderboardsCopy = createSelector(screensReducer, leaderboardsCopySelector);
 

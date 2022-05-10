@@ -8,12 +8,10 @@ import { Style } from "@styles/index";
 import React, { useState, useCallback, useMemo } from "react";
 import { Keyboard, Platform } from "react-native";
 import { Navigation } from "react-native-navigation";
-import { connect, useDispatch } from "react-redux";
-import { GetMobileCopy_getMobileCopy_screens_login as LoginCopy } from "@graphql/_core/schema";
+import { useDispatch, useSelector } from "react-redux";
 import { LoginMethod, IntercomHashMethod } from "@graphql/_core/schema/globalTypes";
-import { IReduxState } from "@redux/_core/reducers";
 import { setAuthenticated } from "@redux/app/app.actions";
-import { getCopy } from "@redux/copy/copy.selectors";
+import { getLoginCopy } from "@redux/copy/copy.selectors";
 import { loginUserSuccess } from "@redux/user/user.actions";
 import { setToken } from "@services/storage";
 import { LoginScreen } from "@screens";
@@ -21,25 +19,21 @@ import { validateEmail, validatePassword } from "./login.helpers";
 
 const trimGraphQLError = (message: string) => message.replace(/^GraphQL error: /, "");
 
-interface IOwnProps {
+interface Props {
   componentId: string;
   otp?: string;
   email?: string;
   hasSessionExpiredError?: boolean;
 }
 
-type ConnectedState = ReturnType<typeof mapStateToProps>;
-
-type Props = IOwnProps & ConnectedState;
-
 const LoginContainer: React.FC<Props> = ({
   componentId,
-  copy,
   otp,
   email: incomingEmail,
   hasSessionExpiredError = false,
 }) => {
   const dispatch = useDispatch();
+  const copy = useSelector(getLoginCopy);
   const { authorised: fitkitAuthorised, loading: fitkitLoading } = useFitKit();
   const [isUsingOtp, setIsUsingOtp] = useState(otp && otp.length > 10);
   const [email, setEmail] = useState(isUsingOtp ? incomingEmail : "");
@@ -92,15 +86,15 @@ const LoginContainer: React.FC<Props> = ({
     [componentId, dispatch]
   );
 
+  const handleError = useCallback(() => {
+    if (isUsingOtp) {
+      setWasLogginCalled(false);
+      setIsUsingOtp(false);
+    }
+  }, [isUsingOtp]);
+
   const onLogIn = useCallback(
     async (authorised: boolean) => {
-      const handleError = () => {
-        if (isUsingOtp) {
-          setWasLogginCalled(false);
-          setIsUsingOtp(false);
-        }
-      };
-
       if (isFormValid || isUsingOtp) {
         try {
           const results = await loginUser({
@@ -113,7 +107,7 @@ const LoginContainer: React.FC<Props> = ({
             },
           });
 
-          if (results && results.data && results.data.loginUser && results.data.loginUser.token) {
+          if (results?.data?.loginUser?.token) {
             await setToken(results.data.loginUser.token);
             dispatch(loginUserSuccess(results.data));
 
@@ -178,8 +172,4 @@ const LoginContainer: React.FC<Props> = ({
   );
 };
 
-const mapStateToProps = (state: IReduxState) => ({
-  copy: getCopy(state, "login") as LoginCopy,
-});
-
-export default connect<ConnectedState>(mapStateToProps)(LoginContainer);
+export default LoginContainer;

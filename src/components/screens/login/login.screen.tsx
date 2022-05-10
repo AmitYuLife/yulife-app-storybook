@@ -4,9 +4,11 @@ import { EmitterSubscription, Keyboard, KeyboardAvoidingView, Platform, View } f
 import * as Animatable from "react-native-animatable";
 import { BUTTON_LOGIN, INPUT_LOGIN_EMAIL, INPUT_LOGIN_PASSWORD } from "@ids";
 import { GetMobileCopy_getMobileCopy_screens_login as LoginCopy } from "@graphql/_core/schema";
-import { Heading, Pad, UnauthorisedGradient } from "@atoms";
+import { Pad, TextTemplate, UnauthorisedGradient } from "@atoms";
+import region from "@services/region";
 import { Button, CentredScreen, LinkGroup, TextInput, TextInputError } from "@molecules";
 import styles from "./login.screen.styles";
+import { ServerDropdown } from "./subcomponents/server-dropdown";
 
 export interface IProps {
   disabled: boolean;
@@ -71,9 +73,18 @@ class LoginScreen extends PureComponent<IProps, IState> {
         <Animatable.View duration={1000} animation="fadeIn" style={styles.flex} useNativeDriver={true}>
           <CentredScreen footerImage="forest" BackgroundGradient={<UnauthorisedGradient />}>
             {this.state.isShowingKeyboard ? null : (
-              <View>
+              <View style={styles.headingWrapper}>
                 <Pad height={100} />
-                <Heading label={copy.heading} size="large" />
+                {region.ARE_MULTIPLE_REGIONS_ENABLED ? (
+                  <View style={styles.headingInnerWrapper}>
+                    <TextTemplate type="h2">{copy.heading}</TextTemplate>
+                    <ServerDropdown />
+                  </View>
+                ) : (
+                  <TextTemplate textAlign="center" type="h1">
+                    {copy.heading}
+                  </TextTemplate>
+                )}
               </View>
             )}
             <Pad height={44} />
