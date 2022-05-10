@@ -199,7 +199,7 @@ const styles = StyleSheet.create({
   },
   labelWrapper: {
     position: "absolute",
-    bottom: Style.adjust(-9),
+    bottom: Style.adjust(-12),
   },
   titleWrapper: {
     marginTop: Style.adjust(8),

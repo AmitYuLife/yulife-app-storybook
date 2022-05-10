@@ -14,6 +14,7 @@ interface Props {
   theme?: "light" | "dark";
   testID?: string;
   resizeMode?: ResizeMode;
+  tintColor?: string | number;
   /**
    * suppresses loading ui
    * usually for prefetched assets that we know
@@ -36,6 +37,7 @@ export const Image = memo(
       testID,
       resizeMode,
       suppressLoadingUi,
+      tintColor,
       onLoad,
     } = props;
 
@@ -84,6 +86,7 @@ export const Image = memo(
           style={imageStyles}
           source={source}
           resizeMode={resizeMode}
+          tintColor={tintColor}
         />
         {isLoading && !suppressLoadingUi ? (
           <View style={styles.loader}>
