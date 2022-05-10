@@ -157,12 +157,14 @@ Feature("Rewards should act correctly", async () => {
     Scenario("I can login and view my previously purchased rewards", scenario.start, async () => {
         Given("I login and go to rewards", given.logInAndGoToTab("rewards", CUSTOMER_2, AUTH_2), async () => {
             Then("I should be on the rewards tab", then.idVisible(REWARDS_SCREEN))
-            When("I tap the Purchased history", when.tapText("Purchase history"), async () => {
-                Then("I should see the nike reward I have previously purchased", then.purchasedRewardVisible(REWARDS_NIKE, 0))
-                Then("I should see my coin balance in the top right", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(200)))
-                When("I tap this reward", when.tapPurchasedReward(REWARDS_NIKE, 0), async () => {
-                    Then("I should be on the purchase screen for this reward", then.onRewardPurchasedScreen(REWARDS_NIKE))
+            When("I swipe down this page", when.swipeToText(REWARDS_LIST_SCREEN,"Purchase history", "up"), async () => {
+                When("I tap the Purchased history", when.tapText("Purchase history"), async () => {
+                    Then("I should see the nike reward I have previously purchased", then.purchasedRewardVisible(REWARDS_NIKE, 0))
                     Then("I should see my coin balance in the top right", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(200)))
+                    When("I tap this reward", when.tapPurchasedReward(REWARDS_NIKE, 0), async () => {
+                        Then("I should be on the purchase screen for this reward", then.onRewardPurchasedScreen(REWARDS_NIKE))
+                        Then("I should see my coin balance in the top right", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(200)))
+                    })
                 })
             })
         })

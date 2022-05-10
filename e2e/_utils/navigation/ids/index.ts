@@ -14,6 +14,7 @@ export const ACTIVITY_HISTORY_SCREEN = "ACTIVITY_HISTORY_SCREEN";
 export const STATS_SCREEN = "STATS_SCREEN";
 export const SETTINGS_SCREEN = "SETTINGS_SCREEN";
 export const QUESTS_SCREEN = (level: number) => `QUESTS_SCREEN_${level.toString()}`;
+export const QUESTS_SCREEN_YUNIVERSAL = (level: number) => `QUESTS_SCREEN_YUNIVERSAL_${level}`;
 export const LEVEL_BUBBLE = (level: number) => `LEVEL_BUBBLE_${level}`
 export const MENU_SCREEN = "MENU_SCREEN";
 export const CHALLENGE_SCREEN = "CHALLENGE_SCREEN";

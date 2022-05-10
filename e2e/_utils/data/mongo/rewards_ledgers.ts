@@ -19,8 +19,8 @@ export const REWARD_LEDGER_1 = {
         "currency_code": "GBP",
         "name": "Nike",
         "reward": CORE_REWARDS_NIKE.data._id,
-        "createdAt": moment().subtract(2, "hours").toISOString(),
-        "updatedAt": moment().subtract(1, "hours").toISOString(),
+        "createdAt": moment().subtract(10, "minutes").toISOString(),
+        "updatedAt": moment().subtract(5, "minutes").toISOString(),
         "__v": 0
     }
 } as IDatabaseItem

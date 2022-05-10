@@ -4,7 +4,7 @@ import * as given from "./_steps/given"
 import * as when from "./_steps/when"
 import * as then from "./_steps/then"
 import { CUSTOMER_22, AUTH_22, CUSTOMER_23, AUTH_23, CUSTOMER_24, AUTH_24 } from "@data";
-import { LEVEL_CHALLENGE_BUTTON, NAV_BAR, QUESTS_SCREEN, VIEW_TOP_RIGHT_COIN_COUNTER, YUCOIN, YUNIVERSAL_CONTNIUE_BUTTON, ACTIVITY_FEED } from "@ids";
+import { LEVEL_CHALLENGE_BUTTON, NAV_BAR, QUESTS_SCREEN, VIEW_TOP_RIGHT_COIN_COUNTER, YUCOIN, YUNIVERSAL_CONTNIUE_BUTTON, ACTIVITY_FEED, QUESTS_SCREEN_YUNIVERSAL } from "@ids";
 
 
 Feature("As a user I can complete challenges across multiple worlds", async () => {
@@ -82,7 +82,8 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
                         When("I tap the level 200 unity challenge", when.tapID(LEVEL_CHALLENGE_BUTTON(200)), async () => {
                             Then("The yunity screens should be correct", then.yunityCorrect(4, "Mountain1"))
                             When("I tap 'Continue'", when.tapID(YUNIVERSAL_CONTNIUE_BUTTON), async () => {
-                                Then("I should be on the second world", then.idVisible(QUESTS_SCREEN(0)))
+                                Then("I should be on the Yuniversal world", then.idExist(QUESTS_SCREEN_YUNIVERSAL(1)))
+                                Then("I should see The Yuniversal", then.textVisible("The Yuniversal"))
                                 When("I go back to the daily steps screen", when.tapID(NAV_BAR("yucoin")), async () => {
                                     When("I tap the yucoin image", when.tapID(YUCOIN), async () => {
                                         When("I tap on I for activity feed info", when.tapID(ACTIVITY_FEED), async () => {
@@ -92,7 +93,6 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
                                         })
                                     })
                                 })
-
                             })
                         })
                     })
