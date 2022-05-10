@@ -5,7 +5,7 @@ type REGION = "UK" | "US";
 
 class RegionService {
   private readonly STORAGE_KEY = "@yulife:region";
-  private SELECTED_REGION = "UK";
+  private SELECTED_REGION: REGION = "UK";
   public ARE_MULTIPLE_REGIONS_ENABLED = false;
 
   public readonly API_URLS: Record<REGION, string> = {
@@ -19,9 +19,10 @@ class RegionService {
   ];
 
   public getPreferredRegion = () => this.SELECTED_REGION;
+  public getPreferredRegionUri = () => this.API_URLS[this.SELECTED_REGION];
 
   public hydratePreferredRegion = async () => {
-    const region = await AsyncStorage.getItem(this.STORAGE_KEY);
+    const region = (await AsyncStorage.getItem(this.STORAGE_KEY)) as REGION;
     try {
       if (Object.keys(this.API_URLS).includes(region)) {
         this.SELECTED_REGION = region;
@@ -33,6 +34,7 @@ class RegionService {
 
   public setRegion = async (region: REGION) => {
     try {
+      this.SELECTED_REGION = region;
       await AsyncStorage.setItem(this.STORAGE_KEY, region);
     } catch (e) {
       // safe fail
