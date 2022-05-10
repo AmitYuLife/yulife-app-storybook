@@ -87,6 +87,7 @@ const EventPanel = ({ event, currentWorld, componentId, width, onJoin, onLayout 
                   width={Style.adjust(16)}
                   height={Style.adjust(16)}
                   style={styles.challengeIcon}
+                  tintColor={fontColour}
                 />
                 <TextTemplate type="l1" color={fontColour}>
                   {challenge.description}
@@ -115,6 +116,7 @@ const EventPanel = ({ event, currentWorld, componentId, width, onJoin, onLayout 
                 width={Style.adjust(16)}
                 height={Style.adjust(16)}
                 style={styles.challengeIcon}
+                tintColor={fontColour}
               />
               <TextTemplate type="l1b" color={fontColour}>
                 {event?.tags?.tag}

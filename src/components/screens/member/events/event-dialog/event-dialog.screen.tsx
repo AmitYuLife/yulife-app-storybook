@@ -5,7 +5,12 @@ import { Image } from "@atoms/image/image";
 import EventRewardsWrapper from "@organisms/event-reward/event-rewards-wrapper";
 import { Style } from "@styles";
 import { IReward } from "@organisms/event-reward/event-reward";
-import style, { CONTENT_MARGIN_TOP, FAQ_ICON_DIMENSION, FAQ_VERTICAL_PADDING } from "./event-dialog.styles";
+import style, {
+  CONTENT_MARGIN_TOP,
+  FAQ_ICON_DIMENSION,
+  FAQ_VERTICAL_PADDING,
+  HEADER_HEIGHT,
+} from "./event-dialog.styles";
 import { Source } from "react-native-fast-image";
 import { addCommasToNumber } from "@utils";
 import { Button, HeadingAndCopy, InfoPanel, PressableWithDelay } from "@molecules";
@@ -168,7 +173,7 @@ const EventDialogScreen: FC<IProps> = ({
           resizeMode="cover"
           source={headerImageSource}
           width={Style.DEVICE_WIDTH}
-          height={CONTENT_MARGIN_TOP}
+          height={HEADER_HEIGHT}
         />
       </Animated.View>
       <Animated.ScrollView
