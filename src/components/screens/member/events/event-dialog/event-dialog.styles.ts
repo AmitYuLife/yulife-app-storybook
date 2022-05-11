@@ -6,7 +6,7 @@ const STATUS_BAR_COVER_HEIGHT = Platform.select({
   ios: PADDING_TOP + Style.adjust(12),
   android: 0,
 });
-export const HEADER_HEIGHT = Style.DEVICE_WIDTH / 3;
+export const HEADER_HEIGHT = Style.DEVICE_WIDTH / 2.2;
 export const CONTENT_MARGIN_TOP = Platform.select({
   ios: HEADER_HEIGHT,
   android: HEADER_HEIGHT + Style.adjust(12),
