@@ -11,7 +11,7 @@ export { default as SignUpRewardContainer } from "./onboarding/signup-reward/sig
 
 // member containers
 export { default as MenuContainer } from "./member/menu/menu.container";
-export { default as SettingsContainer } from "./member/settings/settings.container";
+export { default as SettingsContainer } from "./member/settings/_settings.container";
 export { default as ActivityHistoryContainer } from "./member/activity-history/activity-history.container";
 export { default as DebugContainer } from "./member/debug/debug.container";
 
@@ -20,7 +20,7 @@ export { default as ChallengesListContainer } from "./member/quests/challenges-l
 export { default as ChallengesHistoryContainer } from "./member/quests/challenges-history/challenges-history.container";
 export { default as DailyStepsContainer } from "./member/daily-steps/daily-steps.container";
 export { default as CommunityGoalsContainer } from "./member/community-goals/comunity-goals.container";
-export { default as CyclingMeasurementContainer } from "./member/cycling-measurement/cycling-measurement.container";
+export { default as CyclingMeasurementContainer } from "./member/settings/cycling-measurement.container";
 
 // reward containers
 export { default as RewardDetailsContainer } from "./member/rewards/details/reward-details.container";

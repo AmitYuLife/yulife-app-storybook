@@ -1,45 +1,30 @@
 import { Radio, TextTemplate } from "@atoms";
 import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import { SettingsHeader, TouchableOpacityWithDelay } from "@components/molecules";
-import { GAME_SETTINGS_SCREEN, TEXT_TEMPLATE, SETTINGS_NAME } from "@ids";
+import { TEXT_TEMPLATE, SETTINGS_NAME } from "@ids";
 import { Style } from "@styles";
 import React, { memo } from "react";
 import { StyleSheet, View } from "react-native";
 
-interface IProps {
+type Option = { id: string; title: string; description: string; isSelected: boolean; onPress: () => void };
+
+type Props = {
   onRightIconPress: () => void;
   onLeftIconPress: () => void;
-  onRadioPress: (type: string) => void;
-  selectedCyclingMeasurement: string;
-}
+  options: Option[];
+  screenTestId?: string;
+  headerText: string;
+};
 
-const OPTIONS = [
-  {
-    title: "Imperial system",
-    description: "Distance will be shown in miles ”mi”",
-    cyclingMeasurement: "mi",
-  },
-  {
-    title: "Metric system",
-    description: "Distance will be shown in kilometers ”km”",
-    cyclingMeasurement: "km",
-  },
-];
-
-const CyclingMeasurementScreen = ({
-  onRightIconPress,
-  onLeftIconPress,
-  onRadioPress,
-  selectedCyclingMeasurement,
-}: IProps) => {
+const SettingLayout = ({ onRightIconPress, onLeftIconPress, options, headerText, screenTestId }: Props) => {
   return (
-    <View testID={GAME_SETTINGS_SCREEN}>
+    <View testID={screenTestId}>
       <GenericHeadingPad />
       <View style={styles.settingsHeader}>
-        <SettingsHeader title="Measurement (Cycling)" />
+        <SettingsHeader title={headerText} />
       </View>
       <View style={styles.container}>
-        {OPTIONS.map((option) => (
+        {options.map((option) => (
           <View key={option.title} style={styles.option}>
             <View>
               <TextTemplate type="b2b" testID={TEXT_TEMPLATE(option.title)}>
@@ -50,11 +35,11 @@ const CyclingMeasurementScreen = ({
               </TextTemplate>
             </View>
             <TouchableOpacityWithDelay
-              testID={SETTINGS_NAME(option.cyclingMeasurement)}
-              onPress={() => onRadioPress(option.cyclingMeasurement)}
+              testID={SETTINGS_NAME(option.id)}
+              onPress={option.onPress}
               style={styles.radioWrapper}
             >
-              <Radio selected={option.cyclingMeasurement === selectedCyclingMeasurement} />
+              <Radio selected={option.isSelected} />
             </TouchableOpacityWithDelay>
           </View>
         ))}
@@ -88,4 +73,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default memo(CyclingMeasurementScreen);
+export default memo(SettingLayout);

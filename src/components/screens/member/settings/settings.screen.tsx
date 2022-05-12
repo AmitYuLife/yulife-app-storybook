@@ -32,7 +32,7 @@ export interface INotificationsSectionItem extends GetUserNotificationsSettings_
 export interface IGameSettingsItem {
   title: string;
   description: string;
-  measurement: DistanceMeasurementType;
+  value: DistanceMeasurementType | string;
   onPress: () => void;
 }
 
@@ -54,7 +54,6 @@ interface ISettingSection<T> {
 }
 
 interface IProps {
-  onCreateLeaderboard: () => void;
   onPressClose: () => void;
   sections: ISettingSection<INotificationsSectionItem | ILeaderboardSectionItem | IConnectionsSectionItem>[];
 }
@@ -86,7 +85,9 @@ export default class SettingsScreen extends PureComponent<IProps> {
         case "connections":
           return this.renderConnections(section, index);
         case "gameSettings":
-          return this.renderGameSettings(section, index);
+          return this.renderSettingsItem(section, index);
+        case "rewardStoreSettings":
+          return this.renderSettingsItem(section, index);
         default:
           return null;
       }
@@ -108,7 +109,7 @@ export default class SettingsScreen extends PureComponent<IProps> {
     );
   };
 
-  private renderGameSettings = (section: ISettingSection<IGameSettingsItem>, index: number) => (
+  private renderSettingsItem = (section: ISettingSection<IGameSettingsItem>, index: number) => (
     <View key={index} style={styles.wrapper}>
       <SettingsHeader title={section.title} />
       <View style={styles.notificationsItemsWrapper}>

@@ -9,11 +9,11 @@ import { TEXT_TEMPLATE } from "@ids";
 interface IProps {
   title: string;
   description: string;
-  measurement: string;
+  value: string;
   onPress: () => void;
 }
 
-const GameSettingsItem = ({ title, description, measurement, onPress }: IProps) => (
+const GameSettingsItem = ({ title, description, value, onPress }: IProps) => (
   <View style={styles.wrapper}>
     <View style={styles.container}>
       <TextTemplate type="b2b" testID={TEXT_TEMPLATE(title)}>
@@ -25,8 +25,8 @@ const GameSettingsItem = ({ title, description, measurement, onPress }: IProps) 
     </View>
     <TouchableOpacityWithDelay onPress={onPress} style={styles.measurement}>
       <View style={{ marginRight: Style.adjust(10) }}>
-        <TextTemplate type="b2" color={Colours.primary.p600} testID={TEXT_TEMPLATE(measurement)}>
-          {measurement}
+        <TextTemplate type="b2" color={Colours.primary.p600} testID={TEXT_TEMPLATE(value)}>
+          {value}
         </TextTemplate>
       </View>
       <ArrowIcon color={Colours.primary.p600} />

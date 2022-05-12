@@ -1,7 +1,6 @@
 import React, { memo, useCallback } from "react";
 import { useMutation } from "@apollo/react-hooks";
 import { Navigation } from "react-native-navigation";
-import { CyclingMeasurementScreen } from "@components/screens";
 import { GQL_MUTATION_UPDATE_CYCLING_MEASUREMENT } from "@graphql/user";
 import {
   UpdateCyclingMeasurement,
@@ -13,6 +12,8 @@ import { updateDailyCyclingDistanceMeasurementType } from "@redux/daily-cycling/
 import { DistanceMeasurementType } from "@graphql/_core/schema/globalTypes";
 import { getDailyCyclingMeasurement } from "@redux/daily-cycling/daily-cycling.selectors";
 import Logger from "@services/logging/logger";
+import SettingLayout from "./setting.layout";
+import { GAME_SETTINGS_SCREEN } from "@ids";
 
 interface IProps {
   componentId: string;
@@ -37,13 +38,31 @@ const CyclingMeasurementContainer = ({ componentId }: IProps) => {
   const onLeftIconPress = useCallback(() => (loading ? null : Navigation.pop(ROUTES.cyclingMeasurement)), []);
 
   return (
-    <CyclingMeasurementScreen
+    <SettingLayout
       onLeftIconPress={onLeftIconPress}
       onRightIconPress={onRightIconPress}
-      onRadioPress={onSelectedCyclingMeasurement}
-      selectedCyclingMeasurement={cyclingMeasurement}
+      headerText="Measurement (Cycling)"
+      screenTestId={GAME_SETTINGS_SCREEN}
+      options={OPTIONS.map((o) => ({
+        ...o,
+        isSelected: o.id === cyclingMeasurement,
+        onPress: () => onSelectedCyclingMeasurement(o.id),
+      }))}
     />
   );
 };
 
 export default memo(CyclingMeasurementContainer);
+
+const OPTIONS = [
+  {
+    id: "mi",
+    title: "Imperial system",
+    description: "Distance will be shown in miles ”mi”",
+  },
+  {
+    id: "km",
+    title: "Metric system",
+    description: "Distance will be shown in kilometers ”km”",
+  },
+];

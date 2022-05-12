@@ -53,7 +53,7 @@ export default [
   },
   {
     name: ROUTES.settings,
-    component: require("../components/containers/member/settings/settings.container").default,
+    component: require("../components/containers/member/settings/_settings.container").default,
   },
   {
     hasMenu: true,
@@ -135,9 +135,14 @@ export default [
     component: require("../components/containers/member/change-member-nickname/change-member-nickname.container")
       .default,
   },
+  // settings
   {
     name: ROUTES.cyclingMeasurement,
-    component: require("../components/containers/member/cycling-measurement/cycling-measurement.container").default,
+    component: require("../components/containers/member/settings/cycling-measurement.container").default,
+  },
+  {
+    name: ROUTES.rewardStoreLocation,
+    component: require("../components/containers/member/settings/reward-store-location.container").default,
   },
 
   // quests screens
