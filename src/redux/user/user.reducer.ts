@@ -11,7 +11,6 @@ import {
   GetUserProfile_getUserProfile_surge_lottie,
   GetUserProfile_getUserProfile_events as Events,
   GetUserSurge_getUserSurge as IUserSurge,
-  GetAdBanners_getAdBanners as AdBanners,
 } from "@graphql/_core/schema";
 import { MobileConsentInput } from "@graphql/_core/schema/globalTypes";
 import { SyncAction } from "../_core/types";
@@ -37,7 +36,6 @@ import {
   UPDATE_USER_SURGE,
   UPDATE_USER_GOAL,
   REMOVE_YUSCREEN_NOTIFICATIONS,
-  ADD_AD_BANNERS_ON_USER_PROFILE_EVENTS,
 } from "./user.actions";
 import { AUTHENTICATED } from "@redux/app/app.actions";
 import { reduceUserFeatures } from "./user.helpers";
@@ -261,9 +259,6 @@ export const userReducer = (state: IUserStore = getInitialState(), action: SyncA
 
     case REMOVE_YUSCREEN_NOTIFICATIONS:
       return removeYuScreenNotifications(state);
-
-    case ADD_AD_BANNERS_ON_USER_PROFILE_EVENTS:
-      return addAdBannersOnUserProfileEvents(state, action.payload);
 
     case AUTHENTICATED:
       return {
@@ -561,16 +556,3 @@ const removeYuScreenNotifications = (state: IUserStore) => ({
     hasYuScreenNotification: false,
   },
 });
-
-const addAdBannersOnUserProfileEvents = (state: IUserStore, payload: AdBanners[]) => {
-  const formatData = payload.map(({ id, imageUrl, navigateTo }) => ({
-    id,
-    imageUrl: imageUrl.uri,
-    navigateTo,
-  }));
-
-  return {
-    ...state,
-    events: [...state.events, ...formatData],
-  };
-};

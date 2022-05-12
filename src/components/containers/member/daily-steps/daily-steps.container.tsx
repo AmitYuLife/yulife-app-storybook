@@ -10,7 +10,7 @@ import { FitkitContext } from "@services/fitkit/fitkit.helpers";
 import useNavigationComponentDidAppear from "@services/hooks/useNavigationComponentDidAppear";
 import { useTapBackTwiceToExit } from "@services/hooks/useTapBackTwiceToExit";
 import { Navigation } from "react-native-navigation";
-import { getUserNotification, getUserSurge, getUserEvents } from "@redux/user/user.selectors";
+import { getUserNotification, getUserSurge, getUserEventsWithAds } from "@redux/user/user.selectors";
 import { useLazyQuery } from "@apollo/react-hooks";
 import { GetDailyScreenCustomIcon } from "@graphql/_core/schema";
 import { GQL_QUERY_GET_DAILY_SCREEN_CUSTOM_ICON } from "@graphql/dailyScreenCustomIcon";
@@ -43,7 +43,7 @@ function _DailyStepsContainer({ componentId, onLeftMenuPress }: Props) {
     }
   }, []);
 
-  const userEvents = useSelector(getUserEvents);
+  const userEvents = useSelector(getUserEventsWithAds);
   const currentLevel = useSelector(getCurrentLevel);
   const currentWorld = getCurrentWorld(currentLevel);
 
