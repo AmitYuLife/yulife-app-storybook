@@ -39,9 +39,11 @@ function getLevelStatus(
   const { hasDone: hasDoneChallenge, isAvailable: isChallengeAvailable } = challengesStatus;
   const isInSecondWorld = currentLevel > 51;
 
+  const hasTimer = !isAvailable(nextAvailableAt);
+
   if (currentLevel === level) {
     return {
-      isActive: isInSecondWorld && hasDoneChallenge ? !isChallengeAvailable || !nextAvailableAt : true,
+      isActive: isInSecondWorld && hasDoneChallenge ? !isChallengeAvailable || !hasTimer : true,
       isDone: false,
       isNext: true,
       isPrevious: false,
@@ -55,7 +57,7 @@ function getLevelStatus(
     (level % 50 !== 0 && currentLevel - 1 === level) ||
     (isInSecondWorld && currentLevel % 50 === 1 && currentLevel - 2 === level)
   ) {
-    const previousAvailable = hasDoneChallenge && isChallengeAvailable;
+    const previousAvailable = hasDoneChallenge && hasTimer && isChallengeAvailable;
     return {
       isActive: previousAvailable,
       isDone: true,
