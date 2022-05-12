@@ -6,7 +6,7 @@ import { ActivityList, Button, Counter, EventPanels, Panel, PressableWithDelay }
 import { displaySecondsAsMinutes, getCurrentWorld } from "@utils";
 import { getDailyEarnedCoins } from "@redux/coins/coins.selectors";
 import { Style, NAV_BAR } from "@styles";
-import { getUserEvents, getUserFeatures } from "@redux/user/user.selectors";
+import { getUserEventsWithAds, getUserFeatures } from "@redux/user/user.selectors";
 import { getDailySteps } from "@redux/daily-steps/daily-steps.selectors";
 import { getDailyMeditation } from "@redux/daily-meditation/daily-meditation.selectors";
 import { styles as textTemplateStyle } from "@components/atoms/text/text-template";
@@ -43,7 +43,7 @@ export const DailyStepsOnline = memo(({ onReferralsButtonPress }: DailyStepsOnli
   const features = useSelector(getUserFeatures);
   const currentLevel = useSelector(getCurrentLevel);
   const currentWorld = getCurrentWorld(currentLevel);
-  const events = useSelector(getUserEvents);
+  const events = useSelector(getUserEventsWithAds);
 
   const dispatch = useDispatch();
   const fitkit = useFitKit();
