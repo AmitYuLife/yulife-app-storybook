@@ -144,6 +144,10 @@ export default [
     name: ROUTES.rewardStoreLocation,
     component: require("../components/containers/member/settings/reward-store-location.container").default,
   },
+  {
+    name: ROUTES.levelSelector,
+    component: require("../components/containers/member/debug/level-selector/level-selector.container").default,
+  },
 
   // quests screens
   {

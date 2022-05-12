@@ -45,6 +45,11 @@ class TextInput extends React.PureComponent<IProps> {
     }
 
     const Icon = icon ? getIcon(icon) : getIcon(type);
+
+    if (!Icon) {
+      return null;
+    }
+
     return <Icon colour={getColour({ hasError, hasValue: !!value })} scale={0.5} />;
   }
 
