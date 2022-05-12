@@ -139,6 +139,10 @@ export default [
     name: ROUTES.cyclingMeasurement,
     component: require("../components/containers/member/cycling-measurement/cycling-measurement.container").default,
   },
+  {
+    name: ROUTES.levelSelector,
+    component: require("../components/containers/member/debug/level-selector/level-selector.container").default,
+  },
 
   // quests screens
   {

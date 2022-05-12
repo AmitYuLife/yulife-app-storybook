@@ -165,6 +165,7 @@ export * from "./SduiStyle";
 export * from "./SearchForDuelOpponent";
 export * from "./SendMagicLink";
 export * from "./SetShareOfBenefitForProduct";
+export * from "./SetUserQuestProgress";
 export * from "./SubmitAppStoreReviewAction";
 export * from "./SubmitFeedbackForm";
 export * from "./SubmitPersonalProductStep";

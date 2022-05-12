@@ -80,9 +80,7 @@ export const ROUTES = {
   eventDialog: "yulife.events.dialog",
 
   //debug
-  eventPanel: "yulife.debug.eventPanel",
-  eventRewards: "yulife.debug.eventRewards",
-  progressBar: "yulife.debug.progressBar",
+  levelSelector: "yulife.debug.levelSelector",
 };
 
 export const MODALS = {

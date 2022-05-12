@@ -8,6 +8,7 @@ import { sendTestPush } from "@redux/notifications/notifications.actions";
 import { getUserStart } from "@redux/user/user.actions";
 import { DebugScreen } from "@screens";
 import Logger from "@services/logging/logger";
+import { ROUTES } from "@navigation/constants";
 
 interface IProps {
   componentId: string;
@@ -22,6 +23,7 @@ const DebugContainer: React.FC<Props> = (props) => {
   const { data } = useQuery(GQL_QUERY_DEBUG_CODES);
 
   const list = [
+    "level-selector",
     ...(data?.getDebugCodes || []),
     "send-test-push",
     `toggle-leanplum(${Logger.leanplum.isDevMode ? "dev" : "prod"})`,
@@ -35,6 +37,15 @@ const DebugContainer: React.FC<Props> = (props) => {
     id: code,
     onPress: async () => {
       try {
+        if (code === "level-selector") {
+          return Navigation.push(props.componentId, {
+            component: {
+              id: ROUTES.levelSelector,
+              name: ROUTES.levelSelector,
+            },
+          });
+        }
+
         if (code === "send-test-push") {
           return dispatch(sendTestPush());
         }
