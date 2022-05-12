@@ -26,7 +26,6 @@ export { default as CommunityGoalsIntro } from "./member/community-goals/communi
 export { default as ChangeMemberNickname } from "./member/change-member-nickname/change-member-nickname.screen";
 export { default as TodayEarningsScreen } from "./member/today-earnings/today-earnings.screen";
 export { default as TodayEarningLoadingScreen } from "./member/today-earnings/today-earnings-loading.screen";
-export { default as CyclingMeasurementScreen } from "./member/cycling-measurement/cycling-measurement.screen";
 
 // quests screens
 export { default as QuestsScreenOffline } from "./member/quests/quests-offline/quests-offline";

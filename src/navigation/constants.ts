@@ -36,7 +36,9 @@ export const ROUTES = {
   yumojiBuilder: "yulife.member.yumojiBuilder",
   yuProductSurvey: "yulife.member.YuProductSurvey",
   changeMemberNickname: "yulife.member.changeMemberNickname",
+  // settings
   cyclingMeasurement: "yulife.member.cyclingMeasurement",
+  rewardStoreLocation: "yulife.member.rewardStoreLocation",
 
   //tools
   tools: "yulife.member.tools",

@@ -153,6 +153,7 @@ export enum MobileOnboardingStepPerformed {
   newYumojiBuilder = "newYumojiBuilder",
   passiveCycling = "passiveCycling",
   personalProductLaunchDental = "personalProductLaunchDental",
+  personalProductLaunchDentalAndPli = "personalProductLaunchDentalAndPli",
   personalProductLaunchPLI = "personalProductLaunchPLI",
   referralsPopover = "referralsPopover",
   yuScreenChest = "yuScreenChest",
