@@ -18,6 +18,9 @@ export const REWARD_LEDGER_1 = {
         "yuCoinsSpent": 7750,
         "currency_code": "GBP",
         "name": "Nike",
+        "restrictions": {
+            "locations": ["GB"]
+        },
         "reward": CORE_REWARDS_NIKE.data._id,
         "createdAt": moment().subtract(10, "minutes").toISOString(),
         "updatedAt": moment().subtract(5, "minutes").toISOString(),

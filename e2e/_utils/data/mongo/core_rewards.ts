@@ -29,6 +29,9 @@ export const CORE_REWARDS_JOHN_LEWIS = {
         "currencyCode": "GBP",
         "description": "John Lewis is a British institution, with a legacy spanning over 150 years and stores all over the country. Redeem your voucher for one of the many products on johnlewis.com, where you can find everything from face creams to sofas!",
         "name": "John Lewis",
+        "restrictions": {
+            "locations": ["GB"]
+        },
         "termsAndConditionsUrl": "https://gift-sandbox.wegift.io/public/terms/JLS-GB.pdf",
         "availableDenominations": [
             {
@@ -76,6 +79,9 @@ export const CORE_REWARDS_AVIOS = {
         "maximum_value": null,
         "minimum_value": null,
         "name": "Avios Miles",
+        "restrictions": {
+            "locations": ["GB"]
+        },
         "termsAndConditionsUrl": "https://res.cloudinary.com/yu-life/image/upload/v1533742185/reward/avios-card.png",
         "reward_sticker": "best value",
         "__v": 0,
@@ -170,6 +176,9 @@ export const CORE_REWARDS_BLOOM_UNAVAILABLE = {
         "maximum_value": 2500,
         "minimum_value": 1,
         "name": "Bloom & Wild",
+        "restrictions": {
+            "locations": ["GB"]
+        },
         "termsAndConditionsUrl": "https://gift.wegift.io/public/terms/YLBAW-GB.pdf",
         "uiSettings": {
             "id": "YLBAW-GB",
@@ -221,6 +230,9 @@ export const CORE_REWARDS_NIKE = {
         "maximum_value": 400,
         "minimum_value": 5,
         "name": "Nike",
+        "restrictions": {
+            "locations": ["GB"]
+        },
         "termsAndConditionsUrl": "https://gift-sandbox.wegift.io/public/terms/NIKE-GB.pdf",
         "reward_sticker": null,
         "uiSettings": {
