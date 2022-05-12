@@ -7,6 +7,46 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.31.0] - 2022-05-12
+
+### Features
+
+- Feature XSE-1032: Add event handler on PLI custom age picker
+
+### Bugfixes
+
+- Bugfix: Android build fix
+- Bugfix: store the selected region and return the uri
+- Bugfix: show correct animations for level 250/300/350/400 unity
+- Bugfix: minor event fixes
+- Bugfix: Protect LabelledHorizontalScroller from destructive behavior
+- Bugfix: EOTW don't subtract challenge from yuniversal
+
+### Tasks
+
+- Task GS-334: [DEBUG] Level Selector
+- Task: reward store selection
+- Task: US config
+- Task GS-293: Add An Ad Panel In The Today Screen
+- Task GS-262: EOTW's Phase 1 Hack - 2
+- Task: Aggregate biking query on android
+
+### Chores
+
+- Chore: one arrow component to rule them all
+
+### Improvements
+
+- Improvement: fix event header aspect ratio
+
+### Extra
+
+- detox: add restrictions to core rewards
+- detox: fix for failed tests
+- Detox/fixes 09 05
+- detox: rewards scenario
+- Purge: legacy rewards
+
 ## [3.30.0] - 2022-05-05
 
 ### Bugfixes
