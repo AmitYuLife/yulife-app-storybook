@@ -714,6 +714,7 @@ export const GQL_FRAGMENT_CONTENT_ITEM_FULL_SCREEN_SWIPER = gql`
       }
     }
     items {
+      id
       heading
       paragraph
       title

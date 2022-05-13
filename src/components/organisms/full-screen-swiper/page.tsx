@@ -5,6 +5,7 @@ import { Image, TextTemplate } from "@atoms";
 import { Colours, Style } from "@styles";
 
 export interface IPageItem {
+  id: string;
   isActive?: boolean;
   heading: string;
   paragraph: string;

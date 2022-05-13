@@ -78,6 +78,7 @@ export interface ContentItemFullScreenSwiper_items_styles {
 }
 
 export interface ContentItemFullScreenSwiper_items {
+  id: string;
   heading: string;
   paragraph: string;
   title: string;

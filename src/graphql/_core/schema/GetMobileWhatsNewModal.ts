@@ -58,6 +58,7 @@ export interface GetMobileWhatsNewModal_getMobileWhatsNewModal_items_lottie {
 }
 
 export interface GetMobileWhatsNewModal_getMobileWhatsNewModal_items {
+  id: string;
   heading: string;
   paragraph: string;
   styles: GetMobileWhatsNewModal_getMobileWhatsNewModal_items_styles[] | null;
