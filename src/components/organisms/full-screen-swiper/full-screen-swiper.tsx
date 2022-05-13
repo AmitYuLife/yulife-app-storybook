@@ -178,7 +178,7 @@ function useScrollHandler(items: IPageItem[]) {
   useEffect(() => {
     dispatch(
       logMixpanelEventActionCreator("modal_viewed", {
-        name: items[activeIndex].heading,
+        name: items[activeIndex].id,
         modal_index: activeIndex,
       })
     );

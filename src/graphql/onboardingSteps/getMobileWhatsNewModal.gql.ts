@@ -35,6 +35,7 @@ export const GQL_QUERY_GET_MOBILE_WHATS_NEW_MODAL = gql`
         }
       }
       items {
+        id
         heading
         paragraph
         styles {

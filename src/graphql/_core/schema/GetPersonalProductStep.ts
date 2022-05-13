@@ -2110,6 +2110,7 @@ export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_Con
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemFullScreenSwiper_items {
+  id: string;
   heading: string;
   paragraph: string;
   title: string;
