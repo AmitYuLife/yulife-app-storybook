@@ -47,7 +47,7 @@ const EventPanels = ({ events = [], currentWorld, componentId, onJoin }: IProps)
         />
       );
     },
-    [onJoin, currentWorld, componentId]
+    [onJoin, currentWorld, componentId, adHeight, onLayout]
   );
 
   const keyExtractor = useCallback((event: IEvent) => event.id, []);

@@ -65,8 +65,8 @@ const EventPanel = ({ event, currentWorld, componentId, width, onJoin, onLayout 
   }, [event, onJoin, onNavigateToDetails]);
 
   return (
-    <PressableWithDelay onPress={onNavigateToDetails} style={buttonWrapperStyle} onLayout={onLayout}>
-      <View style={containerStyles.wrapper}>
+    <PressableWithDelay onPress={onNavigateToDetails} style={buttonWrapperStyle}>
+      <View style={containerStyles.wrapper} onLayout={onLayout}>
         <View style={containerStyles.container}>
           <View style={styles.header}>
             <TextTemplate type="b1b" color={fontColour}>
