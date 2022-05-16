@@ -1,7 +1,6 @@
 #import "AppDelegate.h"
 #import "ReactNativeConfig.h"
 #import <IntercomModule.h>
-#import "Mixpanel.h"
 #import <Leanplum-iOS-SDK/Leanplum.h>
 #import <BugsnagReactNative/BugsnagReactNative.h>
 #import <ReactNativeNavigation/ReactNativeNavigation.h>
@@ -60,11 +59,6 @@ static void InitializeFlipper(UIApplication *application) {
   NSString *intercomApiKey = [ReactNativeConfig envFor:@"INTERCOM_API_KEY_IOS"];
   NSString *intercomAppId = [ReactNativeConfig envFor:@"INTERCOM_APP_ID"];
   [IntercomModule initialize:intercomApiKey withAppId:intercomAppId];
-  
-  // Mixpanel
-  NSString *mixpanelApiKey = [ReactNativeConfig envFor:@"MIXPANEL_API_TOKEN"];
-  Mixpanel *mixpanel = [Mixpanel sharedInstanceWithToken:mixpanelApiKey launchOptions:launchOptions];
-  mixpanel.showNotificationOnActive = NO;
 
   // Bugsnag
   NSString *bugsnagApiKey = [ReactNativeConfig envFor:@"BUGSNAG_API_KEY"];
