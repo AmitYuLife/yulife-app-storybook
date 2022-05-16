@@ -1,21 +1,17 @@
-import { Colours, Style, NAV_BAR } from "@styles";
+import { Colours, Style } from "@styles";
 import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
-  flatListWrapper: {
-    position: "absolute",
-    bottom: NAV_BAR.getPositionBottom({ additionalBottom: Style.adjust(Style.isXShort() ? 85 : 145) }),
-  },
   wrapper: {
     minHeight: Style.adjust(143),
     borderRadius: 8,
     alignItems: "center",
     marginHorizontal: 8,
-    marginTop: 15,
+    marginTop: Style.adjust(15),
+    paddingBottom: Style.adjust(5),
   },
   container: {
     width: "100%",
-    minHeight: Style.adjust(128),
     padding: Style.adjust(16),
     borderWidth: 1,
     borderRadius: 8,
@@ -31,7 +27,7 @@ export default StyleSheet.create({
   },
   challengeContainer: {
     flexDirection: "row",
-    paddingRight: 10,
+    paddingRight: Style.adjust(10),
   },
   challengeIcon: {
     marginRight: Style.adjust(4),
@@ -50,8 +46,8 @@ export default StyleSheet.create({
   badgeContainer: {
     position: "absolute",
     height: 24,
-    paddingVertical: 4,
-    paddingHorizontal: 10,
+    paddingVertical: Style.adjust(4),
+    paddingHorizontal: Style.adjust(10),
     borderRadius: 12,
     top: -12,
     left: 12,
@@ -68,16 +64,12 @@ export default StyleSheet.create({
   },
 });
 
-const BORDER_WIDTH = 4;
-
 export const getCurrentWorldStyle = (world: number) => {
   switch (world) {
     case 1:
       return {
         wrapper: {
           backgroundColor: Colours.ocean.up202,
-          borderBottomColor: Colours.ocean.up202,
-          borderBottomWidth: BORDER_WIDTH,
         },
         container: {
           borderColor: Colours.ocean.up202,
@@ -88,8 +80,6 @@ export const getCurrentWorldStyle = (world: number) => {
       return {
         wrapper: {
           backgroundColor: "#F3EDD1",
-          borderBottomColor: "#F3EDD1",
-          borderBottomWidth: BORDER_WIDTH,
         },
         container: {
           borderColor: "#F3EDD1",
@@ -100,8 +90,6 @@ export const getCurrentWorldStyle = (world: number) => {
       return {
         wrapper: {
           backgroundColor: "#F4D1DB",
-          borderBottomColor: "#F4D1DB",
-          borderBottomWidth: BORDER_WIDTH,
         },
         container: {
           borderColor: "#F4D1DB",
@@ -113,8 +101,6 @@ export const getCurrentWorldStyle = (world: number) => {
       return {
         wrapper: {
           backgroundColor: "#EDEDD1",
-          borderBottomColor: "#EDEDD1",
-          borderBottomWidth: BORDER_WIDTH,
         },
         container: {
           borderColor: "#EDEDD1",
