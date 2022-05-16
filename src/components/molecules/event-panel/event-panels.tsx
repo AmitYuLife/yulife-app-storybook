@@ -23,7 +23,7 @@ const CARD_WIDTH = Style.DEVICE_WIDTH * 0.8;
 const INITIAL_PADDING = Style.DEVICE_WIDTH * 0.1 + 5;
 
 const EventPanels = ({ events = [], currentWorld, componentId, onJoin }: IProps) => {
-  const [adHeight, setAdHeight] = useState(148);
+  const [adHeight, setAdHeight] = useState(143);
 
   const onLayout = useCallback((e) => setAdHeight(e?.nativeEvent?.layout?.height || 148), [adHeight]);
   const renderItem = useCallback(
@@ -31,7 +31,13 @@ const EventPanels = ({ events = [], currentWorld, componentId, onJoin }: IProps)
       if (item.id.startsWith("ad-")) {
         return (
           <View style={styles.adBanners}>
-            <AdBanner width={CARD_WIDTH} height={adHeight} imageUrl={item.imageUrl} navigateTo={item.navigateTo} />
+            <AdBanner
+              width={CARD_WIDTH - Style.adjust(15)}
+              height={adHeight - Style.adjust(2)}
+              imageUrl={item.imageUrl}
+              navigateTo={item.navigateTo}
+              style={styles.adBannerImage}
+            />
           </View>
         );
       }
@@ -80,8 +86,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: INITIAL_PADDING,
   },
   adBanners: {
-    alignItems: "center",
-    justifyContent: "flex-end",
+    marginTop: Style.adjust(15),
+    marginHorizontal: Style.adjust(8),
+    justifyContent: "center",
+  },
+  adBannerImage: {
+    borderRadius: 8,
   },
 });
 

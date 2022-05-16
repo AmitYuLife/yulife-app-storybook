@@ -6,15 +6,18 @@ import { useSelector } from "react-redux";
 import { getRouteState } from "@redux/app/app.selectors";
 import { Navigation } from "react-native-navigation";
 import { handleLinkPress } from "@services/app-link";
+import { StyleProp } from "react-native";
+import { ImageStyle } from "react-native-fast-image";
 
 interface IProps {
   width: number;
   height: number;
   imageUrl: string;
   navigateTo: string;
+  style?: StyleProp<ImageStyle>;
 }
 
-const AdBanner = ({ width, height, imageUrl, navigateTo }: IProps) => {
+const AdBanner = ({ width, height, imageUrl, navigateTo, style }: IProps) => {
   const currentRoute = useSelector(getRouteState);
 
   const onPress = useCallback(async () => {
@@ -36,7 +39,8 @@ const AdBanner = ({ width, height, imageUrl, navigateTo }: IProps) => {
         source={{ uri: imageUrl }}
         width={Style.adjust(width)}
         height={Style.adjust(height)}
-        resizeMode="contain"
+        resizeMode="stretch"
+        imageStyle={style}
       />
     </PressableWithDelay>
   );
