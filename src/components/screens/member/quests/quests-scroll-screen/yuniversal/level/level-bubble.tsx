@@ -132,7 +132,7 @@ const _LevelBubble: FC<ILevelBubbleProps> = ({
   const showRating = !showTimer && !showIcon && !isActive;
 
   return (
-    <G x={x} y={y} onPress={handlePress}>
+    <G x={x} y={y} onPressIn={handlePress}>
       <Circle y={3} r={25} fill={shadowColour} />
       {!isActive ? null : (
         <>
