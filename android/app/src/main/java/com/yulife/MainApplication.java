@@ -25,7 +25,6 @@ import com.leanplum.LeanplumActivityHelper;
 import com.leanplum.LeanplumPushNotificationCustomizer;
 import com.leanplum.LeanplumPushService;
 import com.bugsnag.BugsnagReactNative;
-import com.mixpanel.android.mpmetrics.MixpanelAPI;
 import com.intercom.reactnative.IntercomModule;
 
 public class MainApplication extends NavigationApplication {
@@ -64,9 +63,6 @@ public class MainApplication extends NavigationApplication {
 
     // Intercom
     IntercomModule.initialize(this, BuildConfig.INTERCOM_API_KEY_ANDROID, BuildConfig.INTERCOM_APP_ID);
-
-    // Mixpanel
-    MixpanelAPI mixpanel = MixpanelAPI.getInstance(this, BuildConfig.MIXPANEL_API_TOKEN);
 
     // Bugsnag
     BugsnagReactNative.start(this);

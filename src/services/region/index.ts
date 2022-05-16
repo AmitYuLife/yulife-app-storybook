@@ -42,7 +42,14 @@ class RegionService {
   };
 
   public fetchConfig = async () => {
-    // fetch from api_url/config
+    try {
+      const response = await fetch(`${this.getPreferredRegionUri()}/config`);
+      const result = await response.json();
+
+      return result;
+    } catch (e) {
+      //safe fail
+    }
   };
 }
 
