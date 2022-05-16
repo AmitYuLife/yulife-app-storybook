@@ -68,12 +68,16 @@ export default StyleSheet.create({
   },
 });
 
+const BORDER_WIDTH = 4;
+
 export const getCurrentWorldStyle = (world: number) => {
   switch (world) {
     case 1:
       return {
         wrapper: {
           backgroundColor: Colours.ocean.up202,
+          borderBottomColor: Colours.ocean.up202,
+          borderBottomWidth: BORDER_WIDTH,
         },
         container: {
           borderColor: Colours.ocean.up202,
@@ -84,6 +88,8 @@ export const getCurrentWorldStyle = (world: number) => {
       return {
         wrapper: {
           backgroundColor: "#F3EDD1",
+          borderBottomColor: "#F3EDD1",
+          borderBottomWidth: BORDER_WIDTH,
         },
         container: {
           borderColor: "#F3EDD1",
@@ -94,6 +100,8 @@ export const getCurrentWorldStyle = (world: number) => {
       return {
         wrapper: {
           backgroundColor: "#F4D1DB",
+          borderBottomColor: "#F4D1DB",
+          borderBottomWidth: BORDER_WIDTH,
         },
         container: {
           borderColor: "#F4D1DB",
@@ -105,6 +113,8 @@ export const getCurrentWorldStyle = (world: number) => {
       return {
         wrapper: {
           backgroundColor: "#EDEDD1",
+          borderBottomColor: "#EDEDD1",
+          borderBottomWidth: BORDER_WIDTH,
         },
         container: {
           borderColor: "#EDEDD1",
