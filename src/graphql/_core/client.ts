@@ -28,11 +28,20 @@ const httpLink = () =>
     fetch,
   });
 
+const defaultYuLifeIdFromObject = (object: any) => `${object.__typename}-${object.id}`;
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const dataIdFromObject = (object: any) => {
   switch (object.__typename) {
     case "UserPayload":
       return `${object.__typename}-${object.expiresAt}`;
+    case "Level":
+    case "CommunityGoal":
+    case "Duel":
+    case "LevelSlot":
+    case "LevelSlotMilestone":
+    case "User":
+      return defaultYuLifeIdFromObject(object);
     case "CommunityGoalParticipant":
       return `${object.__typename}-${object.userId}-${object.stats.value}`;
     case "CommunityGoalParticipantStats":
