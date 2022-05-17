@@ -24,6 +24,11 @@ export * from "./mongo/rewards_ledgers"
 export * from "./mongo/userAward"
 export * from "./mongo/userOnboardings"
 export * from "./mongo/wellbeing_hub_items"
+export * from "./mongo/goals"
+export * from "./mongo/goal_reward_milestones"
+export * from "./mongo/goal_invitation"
+export * from "./mongo/goal_events"
+export * from "./mongo/ad_banners"
 
 export * from "./postgres/business";
 export * from "./postgres/customers";

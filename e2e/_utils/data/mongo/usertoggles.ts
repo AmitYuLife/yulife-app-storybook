@@ -40,6 +40,8 @@ export const CUSTOMER_2_TOGGLES = {
             "showNotifications": true,
             "passiveCyclingEnabled": true,
             "showTodayEarningsScreen": true,
+            "showGoals": true,
+            "yuScreenV3": true
 
         }
     }
@@ -296,7 +298,10 @@ export const CUSTOMER_20_TOGGLES = {
             hideSmartHealthScreen: true,
             hideYuMatterScreen: true,
             showDuels: true,
-            showCommunityGoals:true
+            showCommunityGoals:true,
+            "showGoals": true,
+            useCoreChallengesService: true,
+            useActiveChallengesService: true
         },
     }
 } as IDatabaseItem
@@ -717,7 +722,11 @@ export const CUSTOMER_34_TOGGLES = {
             newGamePlus: true,
             unitySurge: true,
             yuScreenV3: true,
-            hasBeneficiariesEnabled: false
+            hasBeneficiariesEnabled: false,
+            showCommunityGoals:true,
+            "showGoals": true,
+            useCoreChallengesService: true,
+            useActiveChallengesService: true
         }
     }
 } as IDatabaseItem

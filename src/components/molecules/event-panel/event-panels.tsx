@@ -4,6 +4,7 @@ import { Style, NAV_BAR } from "@styles";
 import { GetUserProfile_getUserProfile_events as IEvent } from "@graphql/_core/schema";
 import EventPanel from "./event-panel";
 import { AdBanner } from "@molecules";
+import { FLAT_LIST_EVENTS } from "@ids";
 
 interface IAdBanner {
   imageUrl: string;
@@ -71,6 +72,7 @@ const EventPanels = ({ events = [], currentWorld, componentId, onJoin }: IProps)
         snapToInterval={CARD_WIDTH}
         keyExtractor={keyExtractor}
         renderItem={renderItem}
+        testID={FLAT_LIST_EVENTS}
       />
     </View>
   );

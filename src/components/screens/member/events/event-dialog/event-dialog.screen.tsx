@@ -17,6 +17,7 @@ import { Button, HeadingAndCopy, InfoPanel, PressableWithDelay } from "@molecule
 import { InfoCardList, IInfoCardListCard, GenericHeadingAbsolute } from "@organisms";
 import { GetGoalDetails_getGoalDetails_banner as EventBanner, RemoteImage } from "@graphql/_core/schema";
 import { showInfoMessageTooltipPointRelative } from "@organisms/tooltip-popup/tooltip-popup.helper";
+import { EVENT_DIALOG_SCREEN } from "@ids";
 
 const PROGRESS_BAR_WIDTH = Style.DEVICE_WIDTH - Style.adjust(48);
 const TITLE_HEIGHT = Platform.select({
@@ -163,7 +164,7 @@ const EventDialogScreen: FC<IProps> = ({
   );
 
   return (
-    <View style={[style.wrapper, { backgroundColor }]}>
+    <View style={[style.wrapper, { backgroundColor }]} testID={EVENT_DIALOG_SCREEN}>
       <View style={statusBarCoverStyle} />
 
       <Animated.View style={headerImageContainerStyle}>
