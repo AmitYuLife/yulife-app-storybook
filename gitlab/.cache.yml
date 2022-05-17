@@ -2,6 +2,7 @@ cache:
   key:
     files:
       - "yarn.lock"
+      - "patches/**"
   paths:
     - "node_modules/"
     - ".yarn/"

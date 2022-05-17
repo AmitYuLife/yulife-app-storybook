@@ -25,7 +25,6 @@ import com.leanplum.LeanplumActivityHelper;
 import com.leanplum.LeanplumPushNotificationCustomizer;
 import com.leanplum.LeanplumPushService;
 import com.bugsnag.BugsnagReactNative;
-import com.intercom.reactnative.IntercomModule;
 
 public class MainApplication extends NavigationApplication {
 
@@ -60,10 +59,6 @@ public class MainApplication extends NavigationApplication {
   @Override
   public void onCreate() {
     super.onCreate();
-
-    // Intercom
-    IntercomModule.initialize(this, BuildConfig.INTERCOM_API_KEY_ANDROID, BuildConfig.INTERCOM_APP_ID);
-
     // Bugsnag
     BugsnagReactNative.start(this);
 
