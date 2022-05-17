@@ -11,6 +11,7 @@ import { GoalRewardStatus } from "@graphql/_core/schema/globalTypes";
 import { MODALS } from "@navigation/constants";
 import { showYuModal } from "@navigation/root";
 import { showInfoMessageTooltipViewRelative } from "@organisms/tooltip-popup/tooltip-popup.helper";
+import { GOAL_TOOLTIP_INFO } from "@ids";
 
 const lottieAnimationSource = require("./assets/event-reward-animation.json");
 const INFO_VIEW_HEIGHT_WIDTH = Style.adjust(22);
@@ -152,7 +153,7 @@ const EventReward = ({
         {!infoBadgeUri ? null : (
           <View style={styles.infoWrapper}>
             <PressableWithDelay onPress={openPopUp}>
-              <View ref={questionMarkRef} collapsable={false}>
+              <View ref={questionMarkRef} collapsable={false} testID={GOAL_TOOLTIP_INFO}>
                 <Image
                   suppressLoadingUi={true}
                   width={INFO_VIEW_HEIGHT_WIDTH}

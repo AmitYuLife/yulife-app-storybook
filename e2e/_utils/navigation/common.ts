@@ -200,6 +200,12 @@ export const multipleTextVisible = (textArr: string[]) => async () => {
     }
 }
 
+export const multipleTextNotVisible = (textArr: string[]) => async () => {
+    for (const i of textArr) {
+        await expect(element(by.text(i))).toBeNotVisible()
+    }
+}
+
 export const multipleIDVisible = (idArr: string[]) => async () => {
     for (const i of idArr) {
         await expect(element(by.id(i))).toBeVisible()
@@ -319,4 +325,10 @@ export const idExist = (id: string, waitTime = 0) => async () => {
     const target = element(by.id(id))
     await waitFor(target).toExist().withTimeout(waitTime)
     await expect(target).toExist()
+}
+
+export const tapIDAtIndex = (id: string, index = 0, waitTime = 0) => async () => {
+    const target = element(by.id(id)).atIndex(index)
+    await waitFor(target).toBeVisible().withTimeout(waitTime)
+    await target.tap()
 }

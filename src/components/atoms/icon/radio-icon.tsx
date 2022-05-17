@@ -1,6 +1,7 @@
 import { Style } from "@styles";
 import React, { memo } from "react";
 import Svg, { Circle, Path } from "react-native-svg";
+import { RADIO_ICON_COLOUR } from "@ids";
 
 interface IProps {
   checked: boolean;
@@ -9,7 +10,13 @@ interface IProps {
 export const RadioIcon = memo(({ checked }: IProps) => {
   const colour = checked ? "#40C057" : "#FF5F5F";
   return (
-    <Svg width={Style.adjust(16)} height={Style.adjust(16)} viewBox="0 0 16 16" fill="none">
+    <Svg
+      width={Style.adjust(16)}
+      height={Style.adjust(16)}
+      viewBox="0 0 16 16"
+      fill="none"
+      testID={RADIO_ICON_COLOUR(colour)}
+    >
       <Circle cx={8} cy={8} r={7.5} fill={colour} stroke={colour} />
       {checked ? (
         <Path

@@ -3,8 +3,9 @@ import * as scenario from "./_steps/scenario"
 import * as given from "./_steps/given"
 import * as when from "./_steps/when"
 import * as then from "./_steps/then"
-import { CUSTOMER_20, AUTH_20, CUSTOMER_19, AUTH_19, CUSTOMER_17, AUTH_17, CUSTOMER_16 } from "@data";
-import { COMMUNITY_GOAL_DROPDOWN, GOALS_BUTTON, NICKNAME_INPUT } from "@ids";
+import * as helper from "./_steps/helpers"
+import { CUSTOMER_20, AUTH_20, CUSTOMER_19, AUTH_19, CUSTOMER_17, AUTH_17, CUSTOMER_16, CUSTOMER_34, AUTH_34 } from "@data";
+import { COMMUNITY_GOAL_DROPDOWN, GOALS_BUTTON, NICKNAME_INPUT, GOAL_TOOLTIP_INFO, QUESTS_SCREEN, LEVEL_CHALLENGE_BUTTON, CHALLENGE_TILE, CHALLENGE_SET, GENERIC_SCREEN_CTA, CHALLENGE_PROGRESS_BAR, GENERIC_SCREEN_HEADING, FLAT_LIST_EVENTS, AD_BANNERS, NAV_BAR, RADIO_ICON_COLOUR, BACK_BUTTON, VIEW_TOP_RIGHT_COIN_COUNTER} from "@ids"
 
 Feature("As an enabled user I am able to use the goals feature", async () => {
     //! Community goals data not pulling through
@@ -62,6 +63,22 @@ Feature("As an enabled user I am able to use the goals feature", async () => {
             })
         })
     })
-
-
+    Scenario("As a user can see the new goal event and the ad next to it, can complete the goal with team", scenario.start, async () => {
+        Given("I login as a user with a goal invitation", given.logInAndGoToTab("yucoin", CUSTOMER_34, AUTH_34), async () => {
+            helper.GOAL_JOIN_INFO("0 / 2", 200);
+            helper.REFUSE_JOIN();
+            helper.AD_VISIBILE("left");
+            helper.AD_NOT_VISIBLE("right");
+            helper.JOIN_GOAL("0 / 2")
+            helper.COMPLETE_CHALLENGE(60 ,"1 / 2", 260, 1)
+            helper.CLAIM_REWARD(560 ,"1 / 2", 760)
+            helper.AD_VISIBILE("left");
+            helper.LOGIN_ANOTHER_TEAM_MEMBER(CUSTOMER_20, AUTH_20, 200, 1)
+            helper.JOIN_GOAL("1 / 2")
+            helper.COMPLETE_CHALLENGE(60 ,"2 / 2", 260, 2)
+            helper.CLAIM_ALL_REWARDS_WHEN_SECOND_CHALLENGE_COMPLETED("1,560" ,"2 / 2", 1760)
+            helper.LOGIN_ANOTHER_TEAM_MEMBER(CUSTOMER_34, AUTH_34, 760, 2)
+            helper.CLAIM_REWARDS_WHEN_TEAMMEMBER_COMPLETED_GOAL("1,560" ,"2 / 2", 1760)
+        })
+    })
 })

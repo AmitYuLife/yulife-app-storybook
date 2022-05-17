@@ -39,6 +39,7 @@ export const REFERRALS_SCREEN = "REFERRALS_SCREEN"
 export const GAME_SETTINGS_SCREEN = "GAME_SETTINGS_SCREEN"
 export const REWARD_STORE_SETTINGS_SCREEN = "REWARD_STORE_SETTINGS_SCREEN"
 export const PERK_SCREEN = "PERK_SCREEN"
+export const EVENT_DIALOG_SCREEN = "EVENT_DIALOG_SCREEN";
 
 
 // buttons
@@ -257,6 +258,10 @@ export const DUEL_AVATAR = (fullName: string) => `DUEL_AVATAR_${fullName}`
 // COMMUNITY GOALS
 export const NICKNAME_INPUT = "NICKNAME_INPUT"
 export const COMMUNITY_GOAL_DROPDOWN = "COMMUNITY_GOAL_DROPDOWN"
+export const GOAL_TOOLTIP_INFO = "GOAL_TOOLTIP_INFO"
+export const AD_BANNERS = "AD_BANNERS"
+export const FLAT_LIST_EVENTS = "FLAT_LIST_EVENTS"
+export const RADIO_ICON_COLOUR  = (hexColour: string) => `RADIO_ICON_COLOUR_${hexColour}`
 
 // FEEDBACK FORMS
 export const FEEDBACK_FORM_QUESTION =(question:string) => `FEEDBACK_FORM_QUESTION_${question}`

@@ -8,6 +8,7 @@ import { Navigation } from "react-native-navigation";
 import { handleLinkPress } from "@services/app-link";
 import { StyleProp } from "react-native";
 import { ImageStyle } from "react-native-fast-image";
+import { AD_BANNERS } from "@ids";
 
 interface IProps {
   width: number;
@@ -34,7 +35,7 @@ const AdBanner = ({ width, height, imageUrl, navigateTo, style }: IProps) => {
     });
   }, [navigateTo, currentRoute]);
   return (
-    <PressableWithDelay onPress={onPress}>
+    <PressableWithDelay onPress={onPress} testID={AD_BANNERS}>
       <Image
         source={{ uri: imageUrl }}
         width={Style.adjust(width)}
