@@ -6,6 +6,7 @@ import Mixpanel from "react-native-mixpanel";
 import bugsnag from "../bugsnag";
 import LeanplumClient from "./leanplum";
 import { MixpanelEvent, MixpanelEventMetadata } from "@services/logging/types";
+import { Platform } from "react-native";
 
 class LoggerInstance {
   private appVersion: string;
@@ -15,12 +16,20 @@ class LoggerInstance {
   public readonly leanplum: LeanplumClient;
 
   constructor() {
-    Mixpanel.sharedInstanceWithToken(Config.MIXPANEL_API_TOKEN);
+    this.init();
     this.bugsnag = bugsnag();
     this.leanplum = new LeanplumClient();
     this.appVersion = DeviceInfo.getVersion();
     this.appVersionMajorMinor = DeviceInfo.getVersion().replace(this.appVersionRegex, "$1");
   }
+
+  private init = async () => {
+    await Mixpanel.sharedInstanceWithToken(Config.MIXPANEL_API_TOKEN);
+    await Intercom.init(
+      Platform.select({ ios: Config.INTERCOM_API_KEY_IOS, android: Config.INTERCOM_API_KEY_ANDROID }),
+      Config.INTERCOM_APP_ID
+    );
+  };
 
   private addDefaultEventProperties = (props: Record<string, any>): Record<string, any> => {
     return {

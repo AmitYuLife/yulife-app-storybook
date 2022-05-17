@@ -55,11 +55,6 @@ static void InitializeFlipper(UIApplication *application) {
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-  // Intercom
-  NSString *intercomApiKey = [ReactNativeConfig envFor:@"INTERCOM_API_KEY_IOS"];
-  NSString *intercomAppId = [ReactNativeConfig envFor:@"INTERCOM_APP_ID"];
-  [IntercomModule initialize:intercomApiKey withAppId:intercomAppId];
-
   // Bugsnag
   NSString *bugsnagApiKey = [ReactNativeConfig envFor:@"BUGSNAG_API_KEY"];
   [BugsnagReactNative startWithAPIKey:bugsnagApiKey];
