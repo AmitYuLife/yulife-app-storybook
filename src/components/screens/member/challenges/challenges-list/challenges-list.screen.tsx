@@ -105,7 +105,10 @@ export function getWorldStyle(currentLevel: number, yuniversalMap?: number) {
   if (yuniversalMap) {
     return {
       backgroundImage: require("@assets/yuniversal/yuniversal_1.png"),
-      backgroundWrapperStyle: StyleSheet.flatten([StyleSheet.absoluteFillObject]),
+      backgroundWrapperStyle: StyleSheet.flatten([
+        StyleSheet.absoluteFillObject,
+        { backgroundColor: "rgb(61, 1, 57)" },
+      ]),
       topBarType: "white",
     };
   }
