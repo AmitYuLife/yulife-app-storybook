@@ -706,17 +706,20 @@ export const COIN_LEDGER_35 = {
                 "level": 5,
                 "currentStreak": 5
             },
-            {
+            {   "_id": generateRandomMongoId(),
                 "coins": 2500,
                 "source": "streak",
                 "sourceId": `award_${CHALLENGE_USER_35_E.data._id}`,
                 "timestamp": CHALLENGE_USER_35_E.data.endDateTime,
+                "_key": generateRandomMongoId(),
+
             },
-            {
+            {   "_id": generateRandomMongoId(),
                 "coins": 100,
                 "source": "avatar_creation_award",
                 "sourceId": CHALLENGE_USER_35_E.data.customerId,
                 "timestamp": moment().subtract(24, "hours").toDate(),
+                "_key": generateRandomMongoId(),
             }
         ],
         activeStreakId: "YU_STREAK_001",

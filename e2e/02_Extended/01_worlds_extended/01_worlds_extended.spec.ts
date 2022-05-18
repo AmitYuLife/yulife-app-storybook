@@ -83,7 +83,6 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
                             Then("The yunity screens should be correct", then.yunityCorrect(4, "Mountain1"))
                             When("I tap 'Continue'", when.tapID(YUNIVERSAL_CONTNIUE_BUTTON), async () => {
                                 Then("I should be on the Yuniversal world", then.idExist(QUESTS_SCREEN_YUNIVERSAL(1)))
-                                Then("I should see The Yuniversal", then.textVisible("The Yuniversal"))
                                 When("I go back to the daily steps screen", when.tapID(NAV_BAR("yucoin")), async () => {
                                     When("I tap the yucoin image", when.tapID(YUCOIN), async () => {
                                         When("I tap on I for activity feed info", when.tapID(ACTIVITY_FEED), async () => {

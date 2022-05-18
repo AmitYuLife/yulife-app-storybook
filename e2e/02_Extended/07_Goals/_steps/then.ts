@@ -34,7 +34,7 @@ export const iCanSeeGoal = (challenge: string) => async () => {
 export const iCanSeePopUp = async () => {
     await textVisible("Ready to join?")()
     await textVisible("Join the event to participate")()
-    await textVisible("Cancel")()
+    await textVisible("Cancel", 2000)()
     await textVisible("Confirm")()
 }
 
