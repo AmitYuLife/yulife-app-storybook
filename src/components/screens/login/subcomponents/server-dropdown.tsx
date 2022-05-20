@@ -9,6 +9,8 @@ import { ArrowIcon } from "@atoms/icon/arrow";
 import region from "@services/region";
 import { Colours, Style } from "@styles";
 import { GlobeSvg } from "./globe-svg";
+import { useDispatch } from "react-redux";
+import { setRegionConfig } from "@redux/app/app.actions";
 
 const COPY = {
   short: "Company location",
@@ -16,13 +18,15 @@ const COPY = {
 };
 
 export const ServerDropdown = memo(() => {
+  const dispatch = useDispatch();
   const [server, setServer] = useState(region.getPreferredRegion());
   const handlePress = async () => {
     const items = region.OPTIONS.map((option) => ({
       ...option,
       onPress: async () => {
         const newValue = option.key;
-        await region.setRegion(newValue);
+        region.setRegion(newValue);
+        dispatch(setRegionConfig());
         setServer(newValue);
         await Navigation.dismissOverlay(MODALS.blurredOverlay);
       },

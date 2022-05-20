@@ -1,5 +1,4 @@
 import React, { useCallback } from "react";
-import Config from "react-native-config";
 import { useDispatch, useSelector } from "react-redux";
 import { getFitKitConnectCopy } from "@redux/copy/copy.selectors";
 import { fitKitConsentAuthorised } from "@redux/user/user.actions";
@@ -10,6 +9,7 @@ import Storage from "@services/storage";
 import { useFitKit } from "@services/fitkit/fitkit.hooks";
 import { FitKitHealthTrackingPlatform } from "@services/fitkit/fitkit.service";
 import { getUserFeatures } from "@redux/user/user.selectors";
+import region from "@services/region";
 
 // TODO find where these props actually come from in RNN types
 interface IProps {
@@ -26,8 +26,6 @@ interface IProps {
 }
 
 type Props = IProps;
-
-const handlePrivacyPolicy = handleLinkPress(Config.PRIVACY_POLICY_URL);
 
 const FitKitConnectContainer: React.FC<Props> = (props) => {
   const { dailyStepScreenHandleAuthorised, navigateToNext, onDismiss, dismissButtonLabel } = props;
@@ -61,7 +59,7 @@ const FitKitConnectContainer: React.FC<Props> = (props) => {
       loading={loading || authorised}
       fitKitAvailable={available}
       onConnectPress={handleConnect}
-      onPrivacyPolicyPress={handlePrivacyPolicy}
+      onPrivacyPolicyPress={handleLinkPress(region.getConfig("urls").privacyPolicy)}
       onSkipPress={onDismiss || navigateToNext}
       copy={copy}
       dismissButtonLabel={dismissButtonLabel}

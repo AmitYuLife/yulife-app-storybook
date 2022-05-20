@@ -2,13 +2,13 @@ import moment from "moment";
 import { Component } from "react";
 import * as React from "react";
 import Clipboard from "@react-native-community/clipboard";
-import Config from "react-native-config";
 import { GetAllPurchases_getAllPurchases } from "@graphql/_core/schema";
 import { WegiftRewardConfirmedScreen } from "@screens";
 import { handleLinkPress } from "@services/app-link";
 import Logger from "@services/logging/logger";
 import { Navigation } from "react-native-navigation";
 import { ROUTES } from "@navigation/constants";
+import region from "@services/region";
 
 interface IProps {
   componentId: string;
@@ -60,7 +60,9 @@ class WegiftRewardConfirmedContainer extends Component<IProps, IState> {
   public copyToClipboard = async () => Clipboard.setString(this.props.purchase.delivery_url);
 
   public openPDFs = (pdf: "policy" | "terms") =>
-    handleLinkPress(pdf === "policy" ? Config.REWARDS_POLICY_URL : this.props.purchase.reward.terms_and_conditions_url);
+    handleLinkPress(
+      pdf === "policy" ? region.getConfig("urls").privacyPolicy : this.props.purchase.reward.terms_and_conditions_url
+    );
 
   public linkToUrl = async () => {
     try {

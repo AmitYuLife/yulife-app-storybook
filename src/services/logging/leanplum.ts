@@ -1,6 +1,6 @@
 import AsyncStorage from "@react-native-community/async-storage";
 import { Leanplum } from "@leanplum/react-native-sdk";
-import Config from "react-native-config";
+import region from "@services/region";
 
 export default class LeanplumClient {
   public isDevMode = false;
@@ -9,7 +9,9 @@ export default class LeanplumClient {
   private enabled = true;
 
   constructor() {
-    if (!Config.LEANPLUM_API_PROD_KEY && !Config.LEANPLUM_APP_ID) {
+    const config = region.getConfig("leanplum");
+
+    if (!config.prodKey && !config.appId) {
       this.enabled = false;
       return;
     }
@@ -18,12 +20,13 @@ export default class LeanplumClient {
   }
 
   private bootstrap = async () => {
+    const config = region.getConfig("leanplum");
     this.isDevMode = await this.checkIfDevMode();
 
     if (this.isDevMode) {
-      Leanplum.setAppIdForDevelopmentMode(Config.LEANPLUM_APP_ID, Config.LEANPLUM_API_DEV_KEY);
+      Leanplum.setAppIdForDevelopmentMode(config.appId, config.devKey);
     } else {
-      Leanplum.setAppIdForProductionMode(Config.LEANPLUM_APP_ID, Config.LEANPLUM_API_PROD_KEY);
+      Leanplum.setAppIdForProductionMode(config.appId, config.prodKey);
     }
   };
 

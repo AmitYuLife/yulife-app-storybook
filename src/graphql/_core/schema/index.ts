@@ -113,6 +113,7 @@ export * from "./GetProductEarnRate";
 export * from "./GetProductPaymentHistory";
 export * from "./GetProductSlotItemBackgroundUrls";
 export * from "./GetProductYumojiPart";
+export * from "./GetPublicYuAPIConfig";
 export * from "./GetQuestMapLevel";
 export * from "./GetQuestMapLevelChallengeDetails";
 export * from "./GetQuestMapLevelList";

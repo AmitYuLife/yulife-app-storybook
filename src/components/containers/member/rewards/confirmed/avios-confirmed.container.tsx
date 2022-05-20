@@ -1,7 +1,6 @@
 import moment from "moment";
 import React, { useCallback, useEffect } from "react";
 import { Alert } from "react-native";
-import Config from "react-native-config";
 import Intercom from "@intercom/intercom-react-native";
 import { useSelector } from "react-redux";
 import { GetAllPurchases_getAllPurchases } from "@graphql/_core/schema";
@@ -10,6 +9,7 @@ import { AviosRewardConfirmedScreen } from "@screens";
 import { handleLinkPress } from "@services/app-link";
 import { Navigation } from "react-native-navigation";
 import { ROUTES } from "@navigation/constants";
+import region from "@services/region";
 
 interface IProps {
   shouldPopToRoot?: boolean;
@@ -37,7 +37,7 @@ const AviosRewardConfirmedContainer = ({
     Intercom.displayMessenger();
   }, []);
 
-  const openRewardsPolicy = handleLinkPress(Config.REWARDS_POLICY_URL);
+  const openRewardsPolicy = handleLinkPress(region.getConfig("urls").rewardsPolicy);
 
   const goToRewards = useCallback(() => Navigation.popToRoot(ROUTES.rewards), []);
 

@@ -3,6 +3,7 @@ import { SyncAction } from "../_core/types";
 export const SET_MAIN_ROOT = "SET_MAIN_ROOT";
 export const AUTHENTICATED = "AUTHENTICATED";
 export const UNAUTHENTICATED = "UNAUTHENTICATED";
+export const SET_REGION_CONFIG = "SET_REGION_CONFIG";
 export const SHOW_MAINTENANCE = "SHOW_MAINTENANCE";
 export const CHECK_CONNECTION = "CHECK_CONNECTION";
 export const UPDATE_APP_STATE = "UPDATE_APP_STATE";
@@ -41,6 +42,10 @@ export const setAuthenticated = () => ({
 
 export const setUnauthenticated = () => ({
   type: UNAUTHENTICATED,
+});
+
+export const setRegionConfig = () => ({
+  type: SET_REGION_CONFIG,
 });
 
 export const checkConnection = (hasDelay = false) => ({

@@ -7,28 +7,29 @@ import bugsnag from "../bugsnag";
 import LeanplumClient from "./leanplum";
 import { MixpanelEvent, MixpanelEventMetadata } from "@services/logging/types";
 import { Platform } from "react-native";
+import region from "@services/region";
 
 class LoggerInstance {
+  private initialised = false;
   private appVersion: string;
   private appVersionMajorMinor: string;
   private appVersionRegex = /(\d+.\d+).(\d+)/;
   private bugsnag: Client;
-  public readonly leanplum: LeanplumClient;
+  public leanplum: LeanplumClient;
 
   constructor() {
-    this.init();
     this.bugsnag = bugsnag();
-    this.leanplum = new LeanplumClient();
     this.appVersion = DeviceInfo.getVersion();
     this.appVersionMajorMinor = DeviceInfo.getVersion().replace(this.appVersionRegex, "$1");
   }
 
-  private init = async () => {
-    await Mixpanel.sharedInstanceWithToken(Config.MIXPANEL_API_TOKEN);
-    await Intercom.init(
-      Platform.select({ ios: Config.INTERCOM_API_KEY_IOS, android: Config.INTERCOM_API_KEY_ANDROID }),
-      Config.INTERCOM_APP_ID
-    );
+  public init = async () => {
+    const mixpanelKey = region.getConfig("mixpanelKey");
+    const intercom = region.getConfig("intercom");
+    await Mixpanel.sharedInstanceWithToken(mixpanelKey);
+    await Intercom.init(Platform.select({ ios: intercom.ios, android: intercom.android }), intercom.appId);
+    this.leanplum = new LeanplumClient();
+    this.initialised = true;
   };
 
   private addDefaultEventProperties = (props: Record<string, any>): Record<string, any> => {
@@ -51,16 +52,22 @@ class LoggerInstance {
   };
 
   public logEvent = (event: string, metadata: Record<string, any> = {}) => {
-    Intercom.logEvent(event, this.addDefaultEventProperties(metadata));
-    Mixpanel.trackWithProperties(event, this.addDefaultEventProperties(metadata));
+    if (!this.initialised) {
+      return;
+    }
+
+    const data = this.addDefaultEventProperties(metadata);
+
+    Intercom.logEvent(event, data);
+    Mixpanel.trackWithProperties(event, data);
   };
 
   public logMixpanelEvent = (event: MixpanelEvent, metadata: MixpanelEventMetadata = {}) => {
-    Mixpanel.trackWithProperties(event, this.addDefaultEventProperties(metadata));
-  };
+    if (!this.initialised) {
+      return;
+    }
 
-  public logIntercomEven = (event: string, metadata: Record<string, any> = {}) => {
-    Intercom.logEvent(event, this.addDefaultEventProperties(metadata));
+    Mixpanel.trackWithProperties(event, this.addDefaultEventProperties(metadata));
   };
 
   public setUserProperties = (props: Record<string, any>, customAttrs = false) => {
