@@ -7,6 +7,31 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.32.0] - 2022-05-20
+
+### Bugfixes
+
+- Bugfix: White flash when going to challenges list on EOTW
+- Bugfix GS-231: hide yuniversal title on smaller devices
+- Bugfix: EOTW handle press on android devices
+- Bugfix: Event panel bottom border on android
+- Bugfix: Add shadow on event panel and improve adbanner height
+- Bugfix GS-293: Ad disappearing after click on event
+- Bugfix GS-231: level bubble fix
+
+### Chores
+
+- Chore: patch intercom for init
+
+### Extra
+
+- detox: overnight_fix_20_05
+- detox: fixed the fail scenarios
+- Hotfix: default yulife cache id from object
+- Detox/goals
+- Purge: unused env vars
+- Hotfix: Swipers needing IDs
+
 ## [3.31.0] - 2022-05-12
 
 ### Features
