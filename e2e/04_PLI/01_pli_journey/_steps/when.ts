@@ -73,12 +73,12 @@ export const tryOutfits = async () => {
 }
 
 export const navigateThroughTheFullSwiper = async () => {
-    await wait(1000)();
+    await wait(2000)();
     await tapID(FULL_SCREEN_LOTTIE_SWIPER("RIGHT"))();
 }
 
 export const dismissPLIModal = async () => {
-    await navigateViaText("Start my quote (+1000 YuCoin)", 6000)
+    await navigateViaText("Start my quote (+1000 YuCoin)")
 }
 
 export const chooseCorrectDoB = (age: number) => async () => {

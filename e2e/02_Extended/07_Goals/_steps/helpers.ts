@@ -13,12 +13,12 @@ export const GOAL_JOIN_INFO = async (challengeProgress: string, totalCoinCounter
     })
 }
 
-When("I press Cancel to the popUP", when.tapText("Cancel", 2000), async () => {
+When("I press Cancel to the popUP", when.tapText("Cancel", 3000), async () => {
     Then("I should still see the Join text", then.multipleTextVisible(["Join", "0 joined"]))
 })
 
 export const REFUSE_JOIN = async () => {
-    When("I press Cancel to the popUP", when.tapText("Cancel", 2000), async () => {
+    When("I press Cancel to refuse to Join", when.tapText("Cancel", 3000), async () => {
         Then("I should still see the Join text", then.multipleTextVisible(["Join", "0 joined"]))
     })
 }
