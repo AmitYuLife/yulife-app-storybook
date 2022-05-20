@@ -2,7 +2,6 @@ import { Platform, YellowBox } from "react-native";
 import { Navigation, OptionsModalPresentationStyle } from "react-native-navigation";
 import registerScreens from "./navigation/index";
 import { DETOX_ENABLED } from "@services/socket";
-import { initStripe } from "@services/stripe";
 import region from "@services/region";
 
 if (DETOX_ENABLED) {
@@ -38,11 +37,7 @@ Navigation.events().registerAppLaunchedListener(async () => {
 
   // register all the screens
   registerScreens();
-
   setDefaultOptions();
-
-  // Init stripe
-  initStripe();
 });
 
 function setDefaultOptions() {

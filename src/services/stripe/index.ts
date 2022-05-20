@@ -1,6 +1,7 @@
+import region from "@services/region";
 import { initStripe as init } from "@stripe/stripe-react-native";
-import Config from "react-native-config";
 
-export function initStripe() {
-  init({ publishableKey: Config.STRIPE_PUBLISHABLE_KEY });
+export async function initStripe() {
+  const publishableKey = region.getConfig("stripeKey");
+  await init({ publishableKey });
 }

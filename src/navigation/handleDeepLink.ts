@@ -1,10 +1,11 @@
 import { getQueryStringObject } from "@utils";
-import Config from "react-native-config";
 import { labels, setDuelsScreen, setScreen, setUnauthenticatedRoot } from "./root";
 import { ROUTES } from "@navigation/constants";
+import region from "@services/region";
 
 export default async function handleDeepLink(fullUrl: string, hasToken: boolean, currentRoute?: string) {
-  const url = fullUrl.replace("yulifeapp://yulife/", "").replace(Config.JOIN_URL, "");
+  const membersUrl = region.getConfig("urls").members;
+  const url = fullUrl.replace("yulifeapp://yulife/", "").replace(membersUrl + membersUrl.endsWith("/") ? "" : "/", "");
 
   switch (true) {
     case url.startsWith(labels[0].name):
