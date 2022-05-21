@@ -36,9 +36,13 @@ const MenuScreen = ({ onDebugPress, onInvitePress, onPressClose, links, version,
   const [getReferralBackground, { data, loading }] = useDebouncedQuery<
     GetReferralBackground,
     GetReferralBackground_getReferralBackground
-  >(GQL_QUERY_GET_REFERRAL_BACKGROUND, {
-    fetchPolicy: "cache-and-network",
-  });
+  >(
+    GQL_QUERY_GET_REFERRAL_BACKGROUND,
+    {
+      fetchPolicy: "cache-and-network",
+    },
+    1800
+  );
 
   const currentLevel = useSelector(getCurrentLevel);
   const showBadge = useSelector(getOnboardingReferralsBadge);
@@ -47,7 +51,7 @@ const MenuScreen = ({ onDebugPress, onInvitePress, onPressClose, links, version,
     if (showReferralButton) {
       getReferralBackground();
     }
-  }, [showReferralButton, currentLevel, getReferralBackground]);
+  }, [showReferralButton, currentLevel]);
 
   return (
     <>

@@ -2,7 +2,7 @@ import React, { memo, useCallback, useContext, useEffect } from "react";
 import { StyleSheet, ViewStyle, View } from "react-native";
 import { Style, Colours } from "@styles";
 import { ItemSet } from "./item-set/item-set";
-import { useQuery } from "@apollo/react-hooks";
+import { useQueryOnScreenSeenOnce } from "@hooks";
 import { YuScreenProductSlots } from "@graphql/_core/schema";
 import { GQL_QUERY_GET_YU_SCREEN_PRODUCTS_SLOTS } from "@graphql/yuscreen";
 import { YUSCREEN_AVATAR } from "@ids";
@@ -12,11 +12,13 @@ import { Yumoji, TouchableOpacityWithDelay } from "@molecules";
 import { ItemBottom } from "./item-set/item-bottom";
 import { YuScreenContext } from "../../context/yu-screen.context";
 import { navigateToYumojiBuilder } from "../../navigation/navigateToYumojiBuilder";
+import { ROUTES } from "@navigation/constants";
 
 const _AvatarAndEquipment = () => {
-  const { data: yuScreenProductSlots } = useQuery<YuScreenProductSlots>(GQL_QUERY_GET_YU_SCREEN_PRODUCTS_SLOTS, {
-    fetchPolicy: "cache-and-network",
-  });
+  const [, { data: yuScreenProductSlots }] = useQueryOnScreenSeenOnce<YuScreenProductSlots>(
+    GQL_QUERY_GET_YU_SCREEN_PRODUCTS_SLOTS,
+    ROUTES.yuScreen
+  );
 
   const editYumoji = useCallback(() => navigateToYumojiBuilder({ heading: "Edit your Yumoji" }), []);
 
