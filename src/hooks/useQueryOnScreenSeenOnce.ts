@@ -29,7 +29,7 @@ export function useQueryOnScreenSeenOnce<T = any, TVariables = OperationVariable
     if (!data && isScreenActive) {
       query();
     }
-  }, [data, query, isScreenActive]);
+  }, [isScreenActive]);
 
   return [query, queryResult];
 }

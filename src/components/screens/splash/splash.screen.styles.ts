@@ -1,10 +1,10 @@
-import { Colours, Style } from "@styles/index";
+import { Colours, Style, TOP_BAR } from "@styles/index";
 import { ImageStyle, StyleSheet, ViewStyle } from "react-native";
 
-const LOGO_MARGIN_TOP = Style.SCALE_UP_AND_DOWN(135);
-const YU_ICON_SIZE = Style.SCALE_UP_AND_DOWN(100);
-const DOT_SIZE = Style.SCALE_UP_AND_DOWN(10);
-const DOTS_WIDTH = Style.SCALE_UP_AND_DOWN(80);
+const LOGO_MARGIN_TOP = TOP_BAR.TOP_BAR_WITH_PAD + Style.adjust(135);
+const YU_ICON_SIZE = Style.adjust(100);
+const DOT_SIZE = Style.adjust(10);
+const DOTS_WIDTH = Style.adjust(80);
 
 export default StyleSheet.create({
   wrapper: {

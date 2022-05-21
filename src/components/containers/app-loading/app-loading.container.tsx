@@ -36,9 +36,13 @@ export const AppLoadingContainer: React.FC<IProps> = () => {
     return () => null;
   }, [persistorBoostrapped, animationEnded, url]);
 
+  const handleAnimationStart = React.useCallback(() => setRenderPersistor(true), []);
+  const handleAnimationEnd = React.useCallback(() => setAnimationEnded(true), []);
+  const handleLayout = React.useCallback(() => setPersistorBoostrapped(true), []);
+
   return (
     <View style={styles.wrapper}>
-      <SplashScreen onAnimationStart={() => setRenderPersistor(true)} onAnimationEnd={() => setAnimationEnded(true)} />
+      <SplashScreen onAnimationStart={handleAnimationStart} onAnimationEnd={handleAnimationEnd} />
       {!renderPersistor ? null : (
         <PersistGate persistor={persistor}>
           {(bootstrapped: boolean) => {
@@ -46,7 +50,7 @@ export const AppLoadingContainer: React.FC<IProps> = () => {
               return null;
             }
 
-            return <View onLayout={() => setPersistorBoostrapped(true)} />;
+            return <View onLayout={handleLayout} />;
           }}
         </PersistGate>
       )}

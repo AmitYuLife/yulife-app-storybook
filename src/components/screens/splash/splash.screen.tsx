@@ -2,7 +2,7 @@ import Logo from "@atoms/logo";
 import { Style } from "@styles/index";
 import * as React from "react";
 import { useRef } from "react";
-import { SafeAreaView, View } from "react-native";
+import { View } from "react-native";
 import * as Animatable from "react-native-animatable";
 import styles from "./splash.screen.styles";
 
@@ -28,12 +28,12 @@ Animatable.initializeRegistryWithDefinitions({
   splash_yu: {
     0: { translateX: 0 },
     0.5: { translateX: 0 },
-    1: { translateX: 0 - Style.SCALE_UP_AND_DOWN(40) },
+    1: { translateX: 0 - Style.adjust(40) },
   },
   splash_life: {
     0: { translateX: 0 },
     0.5: { translateX: 0 },
-    1: { translateX: Style.SCALE_UP_AND_DOWN(55) },
+    1: { translateX: Style.adjust(55) },
   },
   splash_yulifeZoomOut: {
     0: {
@@ -70,7 +70,7 @@ function SplashScreen(props: IProps) {
   }
 
   return (
-    <SafeAreaView style={styles.wrapper}>
+    <View style={styles.wrapper}>
       <Animatable.View delay={2000} ref={fullLogoRef} style={styles.logoWrapper} useNativeDriver={true}>
         <Animatable.View
           style={styles.textWrapper}
@@ -117,8 +117,8 @@ function SplashScreen(props: IProps) {
           />
         </View>
       </View>
-    </SafeAreaView>
+    </View>
   );
 }
 
-export default SplashScreen;
+export default React.memo(SplashScreen);

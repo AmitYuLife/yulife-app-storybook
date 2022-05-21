@@ -2,7 +2,7 @@ import { OperationVariables } from "@apollo/react-common";
 import { LazyQueryHookOptions, QueryTuple, useLazyQuery } from "@apollo/react-hooks";
 import { getRouteState } from "@redux/app/app.selectors";
 import { DocumentNode } from "graphql";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
 
 /**
@@ -15,6 +15,7 @@ export function useQueryOnScreenSeen<T = any, TVariables = OperationVariables>(
   screenName: string,
   queryOptions: LazyQueryHookOptions<T, TVariables> = {}
 ): QueryTuple<T, TVariables> {
+  const hasBeenQueried = useRef(false);
   const currentScreen = useSelector(getRouteState);
   const isScreenActive = currentScreen === screenName;
 
@@ -25,9 +26,14 @@ export function useQueryOnScreenSeen<T = any, TVariables = OperationVariables>(
 
   useEffect(() => {
     if (isScreenActive) {
-      query();
+      if (!hasBeenQueried.current) {
+        query();
+        hasBeenQueried.current = true;
+      } else {
+        queryResult.refetch();
+      }
     }
-  }, [query, isScreenActive]);
+  }, [isScreenActive]);
 
   return [query, queryResult];
 }
