@@ -1,6 +1,6 @@
 import React, { useCallback, memo, useMemo, useState } from "react";
 import { StyleSheet, TextInput, View, ViewStyle } from "react-native";
-import { useDebouncedQuery } from "@services/hooks/useDebouncedQuery";
+import { useDebouncedQuery } from "@hooks";
 import { GQL_GET_MEDICAL_PRACTICES } from "@graphql/products";
 import {
   MedicalPractices as MedicalPracticesGql,

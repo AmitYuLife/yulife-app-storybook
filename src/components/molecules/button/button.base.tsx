@@ -1,7 +1,7 @@
 import React, { ComponentProps, memo, useEffect, useState } from "react";
 import { Animated, StyleSheet, ActivityIndicator, TouchableWithoutFeedback, View, ViewStyle } from "react-native";
 import LinearGradient from "react-native-linear-gradient";
-import { usePressedInWithDelay } from "@services/hooks/usePressedInWithDelay";
+import { usePressedInWithDelay } from "@hooks";
 import { Style } from "@styles";
 import { getOptionallyDisabledColor } from "@styles/getOptionallyDisabledColor";
 import { TextTemplate } from "@atoms/text/text-template";

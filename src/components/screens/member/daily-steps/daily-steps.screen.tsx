@@ -2,7 +2,7 @@ import React, { memo, useCallback } from "react";
 import { View, Platform } from "react-native";
 import * as Animatable from "react-native-animatable";
 import { isIphoneX } from "react-native-iphone-x-helper";
-import { IThemeStore } from "@app/redux/theme/theme.reducer";
+import { IThemeStore } from "@redux/theme/theme.reducer";
 import { DAILY_STEPS_SCREEN } from "@ids";
 import { IConnectedScreenProps } from "@app/typings";
 import { Pad } from "@atoms";

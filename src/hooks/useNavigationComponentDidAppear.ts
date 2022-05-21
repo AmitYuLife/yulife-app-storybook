@@ -3,14 +3,14 @@
  * [more info](https://wix.github.io/react-native-navigation/api/events/#componentdidappear)
  */
 
-import { ComponentDidDisappearEvent, Navigation } from "react-native-navigation";
+import { ComponentDidAppearEvent, Navigation } from "react-native-navigation";
 import { useLayoutEffect } from "react";
 
-function useNavigationComponentDidDisappear(
+export function useNavigationComponentDidAppear(
   /**
    * Function called each time the event is triggered.
    */
-  handler: (event: ComponentDidDisappearEvent) => void,
+  handler: (event: ComponentDidAppearEvent) => void,
 
   /**
    * Component reference id. If provided it listens for event only for this screen.
@@ -18,20 +18,16 @@ function useNavigationComponentDidDisappear(
   componentId?: string
 ) {
   useLayoutEffect(() => {
-    const subscription = Navigation.events().registerComponentDidDisappearListener(
-      (event: ComponentDidDisappearEvent) => {
-        const equalComponentId = event.componentId === componentId;
+    const subscription = Navigation.events().registerComponentDidAppearListener((event: ComponentDidAppearEvent) => {
+      const equalComponentId = event.componentId === componentId;
 
-        if (componentId && !equalComponentId) {
-          return;
-        }
-
-        handler(event);
+      if (componentId && !equalComponentId) {
+        return;
       }
-    );
+
+      handler(event);
+    });
 
     return () => subscription.remove();
   }, [handler, componentId]);
 }
-
-export default useNavigationComponentDidDisappear;

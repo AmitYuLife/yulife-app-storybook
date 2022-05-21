@@ -6,7 +6,6 @@ import { DUELS_SEARCH } from "@ids";
 import styles from "./duels-search.styles";
 import { GQL_QUERY_SEARCH_FOR_DUEL_OPPONENT } from "@graphql/duels/searchForDuelOpponents.gql";
 import { TopBarAbsolute } from "@organisms/top-bar/top-bar-absolute";
-import { useDebouncedQuery } from "@services/hooks/useDebouncedQuery";
 import {
   SearchForDuelOpponent,
   SearchForDuelOpponentVariables,
@@ -22,7 +21,7 @@ import { DATE_FORMAT_WITH_TZ } from "@utils";
 import { getCurrentUserId } from "@redux/user/user.selectors";
 import { useSelector } from "react-redux";
 import { showExistingDuelAlert } from "../leaderboard/active-leaderboard/leaderboard-content/items/leaderboard-rank-item/duel-dialog.helpers";
-import { useBackHandler } from "@services/hooks/useBackHandler";
+import { useBackHandler, useDebouncedQuery } from "@hooks";
 import { SearchInput, SearchList } from "@molecules";
 import DuelsSearchItem from "./subcomponents/search-item";
 import { showYuModal } from "@navigation/root";

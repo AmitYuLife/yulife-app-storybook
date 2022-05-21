@@ -16,14 +16,13 @@ import FloatingRankItem from "../../items/leaderboard-rank-item/floating-rank-it
 import { getUriSet } from "./helpers/resToList";
 import { PAGE_SIZE } from "../active-leaderboard.container";
 import { MODALS } from "@navigation/constants";
-import useNavigationComponentDidDisappear from "@services/hooks/useNavigationComponentDidDisappear";
 import { IReduxState } from "@redux/_core/reducers";
 import { getUserFeatures } from "@redux/user/user.selectors";
 import { connect } from "react-redux";
 import { LEADERBOARD_ITEM_HEIGHT } from "../../items/leaderboard-rank-item/subcomponents";
 import { TOP_PADDING_HEIGHT } from "./helpers/constants";
 import { LEADERBOARD_SCROLL_LIST } from "@ids";
-import { useAppState } from "@services/hooks/useAppState";
+import { useAppState, useNavigationComponentDidDisappear } from "@hooks";
 
 export interface LeaderboardContentContainerProps {
   query: GetLeaderboard;

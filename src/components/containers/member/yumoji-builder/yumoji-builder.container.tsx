@@ -22,7 +22,7 @@ import { showAwardModal, returnToYuScreen, showExitModal } from "./yumoji-builde
 import Logger from "@services/logging/logger";
 import { cache } from "@services/image";
 import { showGenericModal } from "@navigation/utils";
-import { useBackHandler } from "@services/hooks/useBackHandler";
+import { useBackHandler } from "@hooks";
 import { useDispatch } from "react-redux";
 import { refreshTotalCoins } from "@redux/coins/coins.actions";
 import { updateUserAvatarRemoteFiles } from "@redux/user/user.actions";

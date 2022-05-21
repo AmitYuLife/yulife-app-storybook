@@ -2,7 +2,7 @@ import React, { useEffect, useRef, ReactElement, cloneElement } from "react";
 import { Animated, StyleSheet, View, ViewStyle } from "react-native";
 import { Navigation } from "react-native-navigation";
 import { BlurView } from "@react-native-community/blur";
-import { useBackHandler } from "@services/hooks/useBackHandler";
+import { useBackHandler } from "@hooks";
 import { MODALS } from "@navigation/constants";
 
 interface IProps {

@@ -21,7 +21,7 @@ import { getNotEnoughCoinsAlertCopy, getPurchasesCopy } from "@redux/copy/copy.s
 import { refreshTotalCoins } from "@redux/coins/coins.actions";
 import Logger from "@services/logging/logger";
 import { RewardDetailsScreen, RewardDetailsLoadingScreen } from "@screens";
-import { useBackHandler } from "@services/hooks/useBackHandler";
+import { useBackHandler } from "@hooks";
 import { AviosMetadata } from "@graphql/_core/schema/globalTypes";
 import { formatMoney } from "@services/money";
 import { ListPicker, ISelectInputOption } from "@molecules";

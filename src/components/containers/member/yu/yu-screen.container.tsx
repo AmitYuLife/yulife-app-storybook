@@ -5,7 +5,7 @@ import { YuScreenLoading } from "./yu-screen-loading";
 import { useSelector } from "react-redux";
 import { getShowYuscreenIntro } from "@redux/onboarding/onboarding.selectors";
 import { YuScreenIntro } from "./yu-screen-intro/yu-screen-intro";
-import { useTapBackTwiceToExit } from "@services/hooks/useTapBackTwiceToExit";
+import { useTapBackTwiceToExit } from "@hooks";
 import { IMainTabsProps } from "@navigation/root";
 import { YUSCREEN_V3 } from "@ids";
 import { YuScreenContext } from "./context/yu-screen.context";

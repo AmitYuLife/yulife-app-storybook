@@ -3,7 +3,7 @@ import { TextTemplate } from "@atoms";
 import { Button, SecondaryButton } from "@molecules";
 import { SafeAreaView, StyleSheet, View } from "react-native";
 import { useSelector } from "react-redux";
-import { useBackHandler } from "@services/hooks/useBackHandler";
+import { useBackHandler } from "@hooks";
 import { getChallengeExitCopy } from "@redux/copy/copy.selectors";
 import styles from "./challenge-exit.styles";
 import { Colours } from "@styles";

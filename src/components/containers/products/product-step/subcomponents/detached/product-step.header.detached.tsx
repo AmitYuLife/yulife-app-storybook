@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { GenericHeading } from "@organisms";
 import { ContentItemHeaderBar as GqlHeaderBar } from "@graphql/_core/schema";
 import { Colours } from "@styles";
-import { useBackHandler } from "@services/hooks/useBackHandler";
+import { useBackHandler } from "@hooks";
 import { ProductStepDetachedNavigationContext } from "../../product-step-detached-navigation.context";
 
 type Props = GqlHeaderBar;

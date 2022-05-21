@@ -14,8 +14,7 @@ import { getPurchasesCopy } from "@redux/copy/copy.selectors";
 import Logger from "@services/logging/logger";
 import { RewardsListScreen } from "@screens/index";
 import { IMainTabsProps, showYuModal } from "@navigation/root";
-import { useQueryOnScreenSeenOnce } from "@services/hooks/useQueryOnScreenSeenOnce";
-import { useTapBackTwiceToExit } from "@services/hooks/useTapBackTwiceToExit";
+import { useQueryOnScreenSeenOnce, useTapBackTwiceToExit } from "@hooks";
 
 const _RewardsListContainer = (props: IMainTabsProps) => {
   const { componentId, onLeftMenuPress } = props;

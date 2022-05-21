@@ -3,7 +3,7 @@ import { StyleSheet, View, ViewStyle } from "react-native";
 import { useDispatch } from "react-redux";
 import { GenericHeading } from "@organisms";
 import { Colours, TOP_BAR } from "@styles";
-import { useBackHandler } from "@services/hooks/useBackHandler";
+import { useBackHandler } from "@hooks";
 import { ProductStepAction } from "@redux/server-driven-ui/sdui.types";
 
 interface Props {

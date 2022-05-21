@@ -9,7 +9,7 @@ import { handleContentHyperlink, IContentHyperLinkProps } from "@services/app-li
 import { TopBarLeftIconTypes } from "@organisms/top-bar/top-bar.helpers";
 import { TopBarAbsolute } from "@organisms/top-bar/top-bar-absolute";
 import { SCROLLABLE_LAYOUT } from "@ids";
-import { useKeyboardListeners } from "@services/hooks/useKeyboardListeners";
+import { useKeyboardListeners } from "@hooks";
 
 export interface Props {
   rewardItem: GetRewardItemDetails_getRewardItemDetails;

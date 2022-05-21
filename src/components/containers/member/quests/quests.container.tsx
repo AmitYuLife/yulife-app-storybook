@@ -1,3 +1,4 @@
+import moment from "moment";
 import { IMainTabsProps } from "@navigation/root";
 import { getUnitTarget, getCurrentWorld } from "@utils";
 import { Style } from "@styles/index";
@@ -15,8 +16,7 @@ import {
 } from "@screens";
 import QuestsScreenContainer from "@screens/member/quests/quests-scroll-screen/quests-screen.container";
 import { BlurProvider } from "@atoms/index";
-import { useTapBackTwiceToExit } from "@services/hooks/useTapBackTwiceToExit";
-import moment from "moment";
+import { useTapBackTwiceToExit } from "@hooks";
 
 export type Props = IMainTabsProps;
 

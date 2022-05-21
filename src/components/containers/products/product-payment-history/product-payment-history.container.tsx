@@ -10,7 +10,7 @@ import { Navigation } from "react-native-navigation";
 import { useQuery } from "@apollo/react-hooks";
 import { GQL_QUERY_PRODUCT_PAYMENT_HISTORY } from "@graphql/yuscreen/getPaymentHistory.gql";
 import { GetProductPaymentHistory, GetProductPaymentHistoryVariables } from "@graphql/_core/schema";
-import { useBackHandler } from "@services/hooks/useBackHandler";
+import { useBackHandler } from "@hooks";
 import { InfoPanel } from "@components/molecules";
 import { styles } from "./styles";
 

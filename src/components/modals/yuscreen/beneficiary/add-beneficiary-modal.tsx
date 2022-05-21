@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useRef } from "react";
 import { Keyboard } from "react-native";
 import { Navigation } from "react-native-navigation";
 import { MODALS, ROUTES } from "@navigation/constants";
-import { useBackHandler } from "@services/hooks/useBackHandler";
+import { useBackHandler } from "@hooks";
 import AddBeneficiaryModalScreen from "./add-beneficiary-modal.screen";
 import { useMutation } from "@apollo/react-hooks";
 import {

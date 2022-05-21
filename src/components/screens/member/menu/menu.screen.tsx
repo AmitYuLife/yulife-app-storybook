@@ -3,7 +3,7 @@ import { Image as RNImage, ImageRequireSource, ScrollView, View } from "react-na
 import { useSelector } from "react-redux";
 import { getCurrentLevel } from "@redux/levels/levels.selectors";
 import { getOnboardingReferralsBadge } from "@redux/onboarding/onboarding.selectors";
-import { useDebouncedQuery } from "@services/hooks/useDebouncedQuery";
+import { useDebouncedQuery } from "@hooks";
 import { GetReferralBackground, GetReferralBackground_getReferralBackground } from "@graphql/_core/schema";
 import { GQL_QUERY_GET_REFERRAL_BACKGROUND } from "@graphql/referrals";
 import { MENU_ITEM, MENU_SCREEN, REFERRALS_BUTTON_BADGE } from "@ids";

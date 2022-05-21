@@ -1,6 +1,6 @@
 import * as React from "react";
 import { AnimatedChestScreen } from "@screens";
-import { useBackHandler } from "@services/hooks/useBackHandler";
+import { useBackHandler } from "@hooks";
 
 interface IProps {
   ctaLabel: string;

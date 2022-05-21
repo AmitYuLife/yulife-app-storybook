@@ -7,7 +7,7 @@ import { Text } from "@atoms";
 import { OnboardingSwiper, OnboardingSwiperData } from "@organisms";
 import { Style, Colours } from "@styles";
 import { ChangeMemberNickname } from "@screens";
-import { useKeyboardListeners } from "@services/hooks/useKeyboardListeners";
+import { useKeyboardListeners } from "@hooks";
 
 interface Props {
   setOnboardingShown: () => void;

@@ -2,7 +2,7 @@ import React, { memo, useState, useEffect, useCallback } from "react";
 import { View, StyleSheet, ViewStyle, ScrollView, TextStyle, KeyboardAvoidingView, Platform } from "react-native";
 import { Navigation } from "react-native-navigation";
 import { GenericHeadingPad, GenericHeadingAbsolute } from "@organisms";
-import { useBackHandler } from "@services/hooks/useBackHandler";
+import { useBackHandler } from "@hooks";
 import { MODALS, ROUTES } from "@navigation/constants";
 import { Colours, Style } from "@styles";
 import { Text } from "@atoms";

@@ -4,7 +4,7 @@ import { ContentItemHeaderBar } from "@components/sdui";
 import { ProductStepContext } from "../product-step.context";
 import { useSelector, useDispatch } from "react-redux";
 import { getSduiLoadingForKey } from "@redux/server-driven-ui/sdui.selectors";
-import { useBackHandler } from "@services/hooks/useBackHandler";
+import { useBackHandler } from "@hooks";
 import { ProductStepAction } from "@redux/server-driven-ui/sdui.types";
 
 type Props = GqlHeader;

@@ -5,7 +5,7 @@ import { Navigation } from "react-native-navigation";
 import { MODALS } from "@navigation/constants";
 import { GroupProductDisclaimer } from "@molecules";
 import GenericOverlay from "@components/modals/generic-overlay/generic-overlay";
-import { useBackHandler } from "@services/hooks/useBackHandler";
+import { useBackHandler } from "@hooks";
 import { CoverType } from "@graphql/_core/schema/globalTypes";
 import { CertificateLayout } from "./subcomponents/certificate/certificate-layout";
 import { ContentKeyValues } from "./subcomponents/certificate/content-key-values";

@@ -8,7 +8,7 @@ import { GetDuelsTomorrow } from "@graphql/_core/schema";
 import { useSelector } from "react-redux";
 import { getCurrentUserId } from "@redux/user/user.selectors";
 import { DuelSkeleton } from "../../subcomponents/duel-skeleton/duel-skeleton";
-import { useQueryOnScreenSeen } from "@services/hooks/useQueryOnScreenSeen";
+import { useQueryOnScreenSeen } from "@hooks";
 import { ROUTES } from "@navigation/constants";
 
 const DuelsTomorrow: FC = () => {

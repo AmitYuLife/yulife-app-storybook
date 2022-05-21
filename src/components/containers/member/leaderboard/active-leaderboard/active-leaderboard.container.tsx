@@ -14,7 +14,7 @@ import { LeaderboardContentContainer } from "./leaderboard-content/leaderboard-c
 import { LeaderboardSkeleton } from "./leaderboard-layout/subcomponents/leaderboard-skeleton/leaderboard-skeleton";
 import { MODALS } from "@navigation/constants";
 import { IMainTabsProps, showYuModal } from "@navigation/root";
-import { useTapBackTwiceToExit } from "@services/hooks/useTapBackTwiceToExit";
+import { useTapBackTwiceToExit } from "@hooks";
 
 type OwnProps = IMainTabsProps;
 

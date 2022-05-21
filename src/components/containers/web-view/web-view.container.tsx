@@ -3,7 +3,7 @@ import { WebViewScreen } from "@components/screens/web-view/web-view.screen";
 import { Navigation } from "react-native-navigation";
 import { ROUTES } from "@navigation/constants";
 import { WebViewErrorBoundary } from "@components/screens/web-view/web-view.error-boundary";
-import { useBackHandler } from "@services/hooks/useBackHandler";
+import { useBackHandler } from "@hooks";
 
 export interface WebViewContainerProps {
   uri: string;

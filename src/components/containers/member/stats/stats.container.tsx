@@ -16,7 +16,7 @@ import {
 } from "@screens/member/stats/cards/general-info-card";
 import Stats from "@screens/member/stats/stats";
 import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
-import { useBackHandler } from "@services/hooks/useBackHandler";
+import { useBackHandler } from "@hooks";
 
 interface IProps {
   componentId: string;

@@ -16,7 +16,7 @@ import { getTotalCoins } from "@redux/coins/coins.selectors";
 import { Loading } from "@atoms";
 import styles from "./duel-respond.styles";
 import { GQL_QUERY_GET_DUELLER_DETAILS } from "@graphql/duels/getDuellerDetails";
-import { useBackHandler } from "@services/hooks/useBackHandler";
+import { useBackHandler } from "@hooks";
 import { TopBarAbsolute } from "@organisms/top-bar/top-bar-absolute";
 
 interface IProps {

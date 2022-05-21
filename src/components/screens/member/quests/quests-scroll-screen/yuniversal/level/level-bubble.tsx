@@ -3,7 +3,7 @@ import { Animated, Easing } from "react-native";
 import { G, Path, Circle, Text, ClipPath } from "react-native-svg";
 import moment from "moment";
 import { DETOX_ENABLED } from "@services/socket";
-import { usePressedInWithDelay } from "@services/hooks/usePressedInWithDelay";
+import { usePressedInWithDelay } from "@hooks";
 import useInterval from "@use-it/interval";
 import { getQuestScreenTimer } from "@utils";
 import { getLevelIcon } from "./level-slot-helpers";

@@ -7,7 +7,7 @@ import {
 } from "@graphql/_core/schema";
 import { ProductStepContext } from "@components/containers/products/product-step/product-step.context";
 import { ContentItemSearchPostcode } from "@components/sdui";
-import { useDebouncedQuery } from "@services/hooks/useDebouncedQuery";
+import { useDebouncedQuery } from "@hooks";
 import { GQL_QUERY_GET_ADDRESS_BY_POSTCODE } from "@graphql/yuscreen/getAdress.gql";
 import { ISearchItem } from "@molecules";
 import { formatPostCode } from "@utils";

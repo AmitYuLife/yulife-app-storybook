@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { StyleSheet, ViewStyle } from "react-native";
-import { usePressedInWithDelay } from "@services/hooks/usePressedInWithDelay";
+import { usePressedInWithDelay } from "@hooks";
 import { IReduxState } from "@redux/_core/reducers";
 import { getStreaks } from "@redux/streaks/streaks.selectors";
 import { Navigation } from "react-native-navigation";
