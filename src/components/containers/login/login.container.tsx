@@ -8,10 +8,9 @@ import { Style } from "@styles/index";
 import React, { useState, useCallback, useMemo } from "react";
 import { Keyboard, Platform } from "react-native";
 import { Navigation } from "react-native-navigation";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { LoginMethod, IntercomHashMethod } from "@graphql/_core/schema/globalTypes";
 import { setAuthenticated } from "@redux/app/app.actions";
-import { getLoginCopy } from "@redux/copy/copy.selectors";
 import { loginUserSuccess } from "@redux/user/user.actions";
 import { setToken } from "@services/storage";
 import { LoginScreen } from "@screens";
@@ -33,7 +32,6 @@ const LoginContainer: React.FC<Props> = ({
   hasSessionExpiredError = false,
 }) => {
   const dispatch = useDispatch();
-  const copy = useSelector(getLoginCopy);
   const { authorised: fitkitAuthorised, loading: fitkitLoading } = useFitKit();
   const [isUsingOtp, setIsUsingOtp] = useState(otp && otp.length > 10);
   const [email, setEmail] = useState(isUsingOtp ? incomingEmail : "");
@@ -167,7 +165,6 @@ const LoginContainer: React.FC<Props> = ({
       onPasswordChange={onPasswordChange}
       password={password}
       passwordError={passwordError}
-      copy={copy}
     />
   );
 };

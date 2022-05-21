@@ -1,28 +1,26 @@
-import * as React from "react";
-import { SFC } from "react";
-import { GetMobileCopy_getMobileCopy_screens_emailSent as EmailSentCopy } from "@graphql/_core/schema";
+import React, { FC } from "react";
 import { Blurb, Heading, Pad, UnauthorisedGradient } from "@atoms";
 import { Button, LinkButton } from "@molecules";
 import styles from "./reset-password.screen.styles";
 import { CentredScreen } from "@molecules";
+import { t } from "@locale";
 
 interface IProps {
   email: string;
   onCtaPress: () => void;
   onSecondaryCtaPress: () => void;
-  copy: EmailSentCopy;
 }
 
-const EmailSentScreen: SFC<IProps> = ({ onCtaPress, onSecondaryCtaPress, email, copy }) => (
+const EmailSentScreen: FC<IProps> = ({ onCtaPress, onSecondaryCtaPress, email }) => (
   <CentredScreen footerImage="forest" BackgroundGradient={<UnauthorisedGradient />}>
     <Pad height={120} />
-    <Heading style={styles.heading} label={copy.heading} />
+    <Heading style={styles.heading} label={t("screens.resetPasswordSubmitted.heading")} />
     <Pad height={9} />
-    <Blurb label={copy.subheading.replace("${email}", email)} />
+    <Blurb label={t("screens.resetPasswordSubmitted.subheading", { email })} />
     <Pad height={45} />
-    <Button label={copy.ctaLabel} onPress={onCtaPress} />
+    <Button label={t("screens.resetPasswordSubmitted.ctaLabel")} onPress={onCtaPress} />
     <Pad height={10} />
-    <LinkButton label={copy.ctaLabelSecondary} onPress={onSecondaryCtaPress} />
+    <LinkButton label={t("screens.resetPasswordSubmitted.ctaLabelSecondary")} onPress={onSecondaryCtaPress} />
   </CentredScreen>
 );
 

@@ -1,5 +1,5 @@
-import React, { useState, FC, useEffect, useCallback } from "react";
-import { Keyboard, Platform, ScrollView, StyleSheet, View } from "react-native";
+import React, { FC, useCallback } from "react";
+import { ScrollView, StyleSheet, View } from "react-native";
 import { GetRewardItemDetails_getRewardItemDetails } from "@graphql/_core/schema";
 import { Wrapper } from "@atoms";
 import styles from "./reward-details.screen.styles";
@@ -9,6 +9,7 @@ import { handleContentHyperlink, IContentHyperLinkProps } from "@services/app-li
 import { TopBarLeftIconTypes } from "@organisms/top-bar/top-bar.helpers";
 import { TopBarAbsolute } from "@organisms/top-bar/top-bar-absolute";
 import { SCROLLABLE_LAYOUT } from "@ids";
+import { useKeyboardListeners } from "@services/hooks/useKeyboardListeners";
 
 export interface Props {
   rewardItem: GetRewardItemDetails_getRewardItemDetails;
@@ -18,23 +19,7 @@ export interface Props {
 }
 
 const RewardDetailsScreen: FC<Props> = ({ rewardItem, onPressTopBar, isLoading, onSubmit }) => {
-  const [isShowingKeyboard, setIsShowingKeyboard] = useState(false);
-
-  useEffect(() => {
-    const keyboardDidShowListener = Keyboard.addListener(
-      Platform.OS === "ios" ? "keyboardWillShow" : "keyboardDidShow",
-      () => setIsShowingKeyboard(true)
-    );
-    const keyboardDidHideListener = Keyboard.addListener(
-      Platform.OS === "ios" ? "keyboardWillHide" : "keyboardDidHide",
-      () => setIsShowingKeyboard(false)
-    );
-
-    return () => {
-      keyboardDidShowListener.remove();
-      keyboardDidHideListener.remove();
-    };
-  }, []);
+  const isShowingKeyboard = useKeyboardListeners();
 
   const handleLink = useCallback(
     (item: IContentHyperLinkProps) =>

@@ -13,6 +13,8 @@
     "baseUrl": ".",
     "paths": {
       "@assets/*": ["./assets/*"],
+      "@locale": ["./src/locale/index"],
+      "@hooks": ["./src/hooks/index"],
       "@atoms": ["./src/components/atoms/index"],
       "@atoms/*": ["./src/components/atoms/*"],
       "@organisms": ["./src/components/organisms/index"],

@@ -22,6 +22,8 @@ module.exports = {
           "@services": "./src/services",
           "@utils": "./src/utils",
           "@styles": "./src/styles",
+          "@locale": "./src/locale",
+          "@hooks": "./src/hooks",
           "@mockclient": "./e2e/_utils/socket/client",
           "@e2e": "./e2e",
           "@ids": "./e2e/_utils/navigation/ids",
