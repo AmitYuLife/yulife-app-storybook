@@ -8,7 +8,7 @@ import { Button } from "@molecules";
 import { Table } from "./table/table";
 import { useQuery } from "@apollo/react-hooks";
 import GenericOverlay from "@components/modals/generic-overlay/generic-overlay";
-import { useBackHandler } from "@services/hooks/useBackHandler";
+import { useBackHandler } from "@hooks";
 import Markdown from "@components/molecules/markdown/markdown";
 import { GetProductEarnRate, GetProductEarnRateVariables } from "@graphql/_core/schema";
 import { CoverType } from "@graphql/_core/schema/globalTypes";

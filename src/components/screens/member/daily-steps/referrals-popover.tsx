@@ -13,7 +13,7 @@ import {
   PerformMobileOnboardingStep,
   PerformMobileOnboardingStepVariables,
 } from "@graphql/_core/schema/PerformMobileOnboardingStep";
-import { useDebouncedQuery } from "@services/hooks/useDebouncedQuery";
+import { useDebouncedQuery } from "@hooks";
 import Logger from "@services/logging/logger";
 import { Popover } from "@molecules";
 import Markdown from "@molecules/markdown/markdown";

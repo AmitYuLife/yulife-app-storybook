@@ -14,7 +14,7 @@ import { getTotalCoins } from "@redux/coins/coins.selectors";
 import { ROUTES } from "@navigation/constants";
 import { GQL_QUERY_GET_DUELLER_DETAILS } from "@graphql/duels/getDuellerDetails";
 import { GQL_QUERY_GET_DUEL_INVITATIONS } from "@graphql/duels/getDuelInvitations.gql";
-import { useBackHandler } from "@services/hooks/useBackHandler";
+import { useBackHandler } from "@hooks";
 
 const STEPS = {
   INTRO: {

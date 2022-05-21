@@ -7,8 +7,7 @@ import region from "@services/region";
 import { Button, CentredScreen, LinkGroup, TextInput, TextInputError } from "@molecules";
 import styles from "./login.screen.styles";
 import { ServerDropdown } from "./subcomponents/server-dropdown";
-import { useKeyboardListeners } from "@services/hooks/useKeyboardListeners";
-import { useTranslation } from "@hooks";
+import { useTranslation, useKeyboardListeners } from "@hooks";
 
 export interface IProps {
   disabled: boolean;

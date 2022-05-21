@@ -3,7 +3,7 @@ import React, { useCallback, useEffect, memo } from "react";
 import { View, StyleSheet, ViewStyle } from "react-native";
 import { SearchInput, SearchList, SearchListEmpty, SearchItem, ISearchItem } from "@molecules";
 import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
-import { useBackHandler } from "@services/hooks/useBackHandler";
+import { useBackHandler } from "@hooks";
 import { Colours, Style } from "@styles";
 
 export interface ISearchAddress {

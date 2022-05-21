@@ -10,7 +10,7 @@ import { TouchableOpacityWithDelay } from "@components/molecules";
 import { MODALS, ROUTES } from "@navigation/constants";
 import { DuelSkeleton } from "../../subcomponents/duel-skeleton/duel-skeleton";
 import { DUELS_HUB_INVITATION } from "@ids";
-import { useQueryOnScreenSeen } from "@services/hooks/useQueryOnScreenSeen";
+import { useQueryOnScreenSeen } from "@hooks";
 import { showYuModal } from "@navigation/root";
 
 const DuelInvitations: FC = () => {

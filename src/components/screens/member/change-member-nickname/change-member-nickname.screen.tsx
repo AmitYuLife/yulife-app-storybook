@@ -5,7 +5,7 @@ import { Text } from "@atoms";
 import { Button, TextInput } from "@molecules";
 import { Navigation } from "react-native-navigation";
 import { ROUTES } from "@navigation/constants";
-import { useKeyboardListeners } from "@services/hooks/useKeyboardListeners";
+import { useKeyboardListeners } from "@hooks";
 import { NICKNAME_INPUT, CHANGE_MEMBER_NICK_BUTTON } from "@ids";
 import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 

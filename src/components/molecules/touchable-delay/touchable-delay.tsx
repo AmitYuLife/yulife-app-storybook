@@ -1,6 +1,6 @@
 import * as React from "react";
 import { TouchableWithoutFeedback, TouchableWithoutFeedbackProps, ViewProps } from "react-native";
-import { usePressedInWithDelay } from "@services/hooks/usePressedInWithDelay";
+import { usePressedInWithDelay } from "@hooks";
 
 export type IProps = Omit<TouchableWithoutFeedbackProps, "onPress"> &
   ViewProps & {

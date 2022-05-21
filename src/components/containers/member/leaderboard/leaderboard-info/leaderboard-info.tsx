@@ -5,7 +5,7 @@ import { LEADERBOARD_INFO } from "@ids";
 import { Style } from "@styles";
 import { Navigation } from "react-native-navigation";
 import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
-import { useBackHandler } from "@services/hooks/useBackHandler";
+import { useBackHandler } from "@hooks";
 
 interface IProps {
   componentId: string;

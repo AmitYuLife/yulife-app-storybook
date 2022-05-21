@@ -5,7 +5,7 @@ import { View, StyleSheet, ViewStyle, TextStyle } from "react-native";
 import { Text } from "@atoms";
 import { Button, SecondaryButton } from "@molecules";
 import { Style, Colours } from "@styles";
-import { useBackHandler } from "@services/hooks/useBackHandler";
+import { useBackHandler } from "@hooks";
 
 interface IButton {
   label: string;

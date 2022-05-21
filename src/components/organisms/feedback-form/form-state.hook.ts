@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { PendingPromptsForm } from "@graphql/_core/schema";
 import { AnswerInput, FeedbackFormQuestionType } from "@graphql/_core/schema/globalTypes";
-import { useBackHandler } from "@services/hooks/useBackHandler";
+import { useBackHandler } from "@hooks";
 import Logger from "@services/logging/logger";
 
 export default function useFormState(

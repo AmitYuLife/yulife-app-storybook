@@ -3,7 +3,7 @@ import { GenericScreen } from "@screens";
 import { IGenericModalProps } from "@screens/member/generic-screen/generic.screen";
 import { Navigation } from "react-native-navigation";
 import { MODALS } from "@navigation/constants";
-import { useBackHandler } from "@services/hooks/useBackHandler";
+import { useBackHandler } from "@hooks";
 
 export default function GenericModal(props: IGenericModalProps) {
   const {

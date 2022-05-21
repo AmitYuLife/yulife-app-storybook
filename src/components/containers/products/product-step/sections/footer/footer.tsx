@@ -2,7 +2,7 @@ import React, { memo, useMemo } from "react";
 import { Platform, StyleSheet, View, ViewStyle } from "react-native";
 import { GetPersonalProductStep_getPersonalProductStep_footer as GPPS_Footer } from "@graphql/_core/schema";
 import { ContentItemFade, ContentItemOverlay, ContentItemPad } from "@components/sdui";
-import { useKeyboardListeners } from "@services/hooks/useKeyboardListeners";
+import { useKeyboardListeners } from "@hooks";
 import { ProductStepContentItemButton, ProductStepContentItemMultiButton } from "../../subcomponents";
 import media from "@styles/media";
 import { Style } from "@styles";

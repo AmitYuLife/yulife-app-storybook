@@ -1,6 +1,6 @@
 import { useRef } from "react";
-import useNavigationComponentDidAppear from "./useNavigationComponentDidAppear";
-import useNavigationComponentDidDisappear from "./useNavigationComponentDidDisappear";
+import { useNavigationComponentDidAppear } from "./useNavigationComponentDidAppear";
+import { useNavigationComponentDidDisappear } from "./useNavigationComponentDidDisappear";
 import { NativeEventSubscription, BackHandler } from "react-native";
 
 export const useTapBackTwiceToExit = (componentId: string) => {
@@ -20,7 +20,7 @@ export const useTapBackTwiceToExit = (componentId: string) => {
   }, componentId);
 
   useNavigationComponentDidDisappear(() => {
-    if (backHandler.current) {
+    if (backHandler?.current) {
       backHandler.current.remove();
     }
   });

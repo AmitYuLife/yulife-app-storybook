@@ -1,7 +1,7 @@
 import React from "react";
 import { Platform, StyleSheet, View, ViewStyle } from "react-native";
 import { Colours, Style } from "@styles";
-import { useBackHandler } from "@services/hooks/useBackHandler";
+import { useBackHandler } from "@hooks";
 import { useSelector } from "react-redux";
 import { getActiveLevelSubtype } from "@redux/levels/levels.selectors";
 import { TouchableOpacityWithDelay } from "@components/molecules";

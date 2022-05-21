@@ -1,6 +1,6 @@
 import * as React from "react";
 import { TouchableOpacity, TouchableOpacityProps, ViewProps } from "react-native";
-import { usePressedInWithDelay } from "@services/hooks/usePressedInWithDelay";
+import { usePressedInWithDelay } from "@hooks";
 
 export type IProps = Omit<TouchableOpacityProps, "onPress"> &
   ViewProps & {

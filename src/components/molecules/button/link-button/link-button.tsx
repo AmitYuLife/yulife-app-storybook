@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet, View, ViewStyle } from "react-native";
-import { usePressedInWithDelay } from "@services/hooks/usePressedInWithDelay";
+import { usePressedInWithDelay } from "@hooks";
 import { Colours } from "@styles";
 import LinkButtonBase from "./link-button.base";
 import { DEFAULT_HEIGHT, buttonStyles } from "../button.styles";

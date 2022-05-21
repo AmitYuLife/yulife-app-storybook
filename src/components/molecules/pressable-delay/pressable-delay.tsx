@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Pressable, PressableProps } from "react-native";
-import { usePressedInWithDelay } from "@services/hooks/usePressedInWithDelay";
+import { usePressedInWithDelay } from "@hooks";
 
 export interface IProps extends PressableProps {
   onPress: () => void;

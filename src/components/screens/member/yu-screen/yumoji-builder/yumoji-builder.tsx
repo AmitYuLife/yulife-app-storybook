@@ -7,7 +7,7 @@ import YumojiBuilderItemList from "./components/yumoji-builder-item-list";
 import { ActionTypes, IState, IDispatch } from "@components/containers/member/yumoji-builder/yumoji-builder.reducer";
 import { ScalableYumoji } from "@organisms/yumoji/scalableYumoji";
 import { GetYumojiBuilderInitialParts_getYumojiBuilderInitialParts as YumojiBuilderInitialParts } from "@graphql/_core/schema";
-import { useBackHandler } from "@services/hooks/useBackHandler";
+import { useBackHandler } from "@hooks";
 import { BODY_TYPE } from "@ids";
 
 interface IProps {

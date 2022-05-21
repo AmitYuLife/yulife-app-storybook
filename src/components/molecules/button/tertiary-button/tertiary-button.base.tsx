@@ -1,6 +1,6 @@
 import React, { memo } from "react";
 import { StyleSheet, View } from "react-native";
-import { usePressedInWithDelay } from "@services/hooks/usePressedInWithDelay";
+import { usePressedInWithDelay } from "@hooks";
 import { Image, TextTemplate } from "@atoms";
 import { Style, Colours } from "@styles";
 import { PressableWithDelay } from "@components/molecules";

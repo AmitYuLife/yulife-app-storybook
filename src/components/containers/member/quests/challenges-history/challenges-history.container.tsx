@@ -3,7 +3,7 @@ import { Navigation } from "react-native-navigation";
 import { GetQuestMapLevel } from "@graphql/_core/schema";
 import { IConnectedScreenProps } from "@app/typings";
 import { ChallengesHistoryScreen } from "@screens";
-import { useBackHandler } from "@services/hooks/useBackHandler";
+import { useBackHandler } from "@hooks";
 import { useQuery } from "@apollo/react-hooks";
 import { GQL_QUERY_GET_QUEST_MAP_LEVEL } from "@graphql/challenges";
 import { ChallengesLoading } from "@components/molecules";

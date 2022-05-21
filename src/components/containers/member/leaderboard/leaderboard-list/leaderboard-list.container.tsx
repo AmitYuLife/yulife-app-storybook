@@ -6,7 +6,7 @@ import { getActiveLeaderboardId, getUserFeatures } from "@redux/user/user.select
 import { getAcceptedLeaderboards } from "@redux/user/user.selectors";
 import { updateActiveLeaderboardId, updateLeaderboardConsent } from "@redux/user/user.actions";
 import { MODALS } from "@navigation/constants";
-import { useBackHandler } from "@services/hooks/useBackHandler";
+import { useBackHandler } from "@hooks";
 import { getLeaderboardsCopy } from "@redux/copy/copy.selectors";
 import { showYuModal } from "@navigation/root";
 

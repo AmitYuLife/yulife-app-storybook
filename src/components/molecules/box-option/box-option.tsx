@@ -3,7 +3,7 @@ import { StyleSheet, View, Animated, ViewStyle, Platform } from "react-native";
 import { Style, Colours } from "@styles";
 import * as media from "@styles/media";
 import { TouchableWithDelay } from "@molecules";
-import { usePressedInWithDelay } from "@services/hooks/usePressedInWithDelay";
+import { usePressedInWithDelay } from "@hooks";
 
 interface Props {
   onPress: () => void;

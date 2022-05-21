@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { ActiveDuelsScreen, CompletedDuelsScreen, DuelsIntroScreen } from "@screens/index";
 import { IMainTabsProps } from "@navigation/root";
 import { StyleSheet, FlatList, ListRenderItemInfo, ViewToken, ViewStyle, View } from "react-native";
-import { useBackHandler } from "@services/hooks/useBackHandler";
+import { useBackHandler } from "@hooks";
 import { getDuelsGoalsIntro } from "@redux/onboarding/onboarding.selectors";
 import { setDuelsIntroShown } from "@redux/onboarding/onboarding.actions";
 import { DuelTabs } from "@components/screens/member/duels-hub/subcomponents";

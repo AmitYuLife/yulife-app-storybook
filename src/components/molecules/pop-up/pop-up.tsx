@@ -1,4 +1,4 @@
-import { GetMobileCopy_getMobileCopy_screens_popUp } from "@app/graphql/_core/schema";
+import { GetMobileCopy_getMobileCopy_screens_popUp } from "@graphql/_core/schema";
 import * as React from "react";
 import { Image, StyleProp, StyleSheet, TouchableOpacity, View, ViewStyle } from "react-native";
 import { Text } from "../../atoms";
