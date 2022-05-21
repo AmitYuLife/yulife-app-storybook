@@ -11,14 +11,11 @@ import { Colours, Style } from "@styles";
 import { GlobeSvg } from "./globe-svg";
 import { useDispatch } from "react-redux";
 import { setRegionConfig } from "@redux/app/app.actions";
-
-const COPY = {
-  short: "Company location",
-  long: `Please select your company's location`,
-};
+import { useTranslation } from "@hooks";
 
 export const ServerDropdown = memo(() => {
   const dispatch = useDispatch();
+  const translations = useTranslation(["screens.login.serverLocation.short", "screens.login.serverLocation.long"]);
   const [server, setServer] = useState(region.getPreferredRegion());
   const handlePress = async () => {
     const items = region.OPTIONS.map((option) => ({
@@ -32,14 +29,14 @@ export const ServerDropdown = memo(() => {
       },
     }));
 
-    const child = <ListPicker instruction={COPY.long} items={items} />;
+    const child = <ListPicker instruction={translations["screens.login.serverLocation.long"]} items={items} />;
 
     await showOverlayWithChild(child);
   };
 
   return (
     <View style={styles.wrapper}>
-      <TextTemplate type="l3">{COPY.short}</TextTemplate>
+      <TextTemplate type="l3">{translations["screens.login.serverLocation.short"]}</TextTemplate>
       <TouchableOpacityWithDelay onPress={handlePress} style={styles.touchable}>
         <View style={styles.innerWrapper}>
           <GlobeSvg />

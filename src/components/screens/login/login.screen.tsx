@@ -1,14 +1,14 @@
 import * as React from "react";
-import { PureComponent } from "react";
-import { EmitterSubscription, Keyboard, KeyboardAvoidingView, Platform, View } from "react-native";
+import { KeyboardAvoidingView, Platform, View } from "react-native";
 import * as Animatable from "react-native-animatable";
 import { BUTTON_LOGIN, INPUT_LOGIN_EMAIL, INPUT_LOGIN_PASSWORD } from "@ids";
-import { GetMobileCopy_getMobileCopy_screens_login as LoginCopy } from "@graphql/_core/schema";
 import { Pad, TextTemplate, UnauthorisedGradient } from "@atoms";
 import region from "@services/region";
 import { Button, CentredScreen, LinkGroup, TextInput, TextInputError } from "@molecules";
 import styles from "./login.screen.styles";
 import { ServerDropdown } from "./subcomponents/server-dropdown";
+import { useKeyboardListeners } from "@services/hooks/useKeyboardListeners";
+import { useTranslation } from "@hooks";
 
 export interface IProps {
   disabled: boolean;
@@ -22,67 +22,49 @@ export interface IProps {
   onPasswordChange: (password: string) => void;
   password: string;
   passwordError: string;
-  copy: LoginCopy;
 }
 
-interface IState {
-  isShowingKeyboard: boolean;
-}
-
-class LoginScreen extends PureComponent<IProps, IState> {
-  public state: IState = {
-    isShowingKeyboard: false,
-  };
-
-  private keyboardDidShowListener?: EmitterSubscription;
-  private keyboardDidHideListener?: EmitterSubscription;
-
-  public componentWillUnmount() {
-    this.keyboardDidShowListener.remove();
-    this.keyboardDidHideListener.remove();
-  }
-
-  public componentDidMount() {
-    this.keyboardDidShowListener = Keyboard.addListener(
-      Platform.OS === "ios" ? "keyboardWillShow" : "keyboardDidShow",
-      this.keyboardDidShow(true)
+const LoginScreen = React.memo(
+  ({
+    disabled,
+    email,
+    emailError,
+    isLoggingIn,
+    loginError,
+    onEmailChange,
+    onLogInPress,
+    onPasswordChange,
+    password,
+    passwordError,
+    onResetPasswordPress,
+  }: IProps) => {
+    const isShowingKeyboard = useKeyboardListeners();
+    const t = useTranslation(["screens.login.help", "screens.login.heading", "screens.login.ctaLabel"]);
+    const links = React.useMemo(
+      () => [
+        {
+          label: t["screens.login.help"],
+          onPress: onResetPasswordPress,
+        },
+      ],
+      []
     );
-    this.keyboardDidHideListener = Keyboard.addListener(
-      Platform.OS === "ios" ? "keyboardWillHide" : "keyboardDidHide",
-      this.keyboardDidShow(false)
-    );
-  }
-
-  public render() {
-    const {
-      disabled,
-      email,
-      emailError,
-      isLoggingIn,
-      loginError,
-      onEmailChange,
-      onLogInPress,
-      onPasswordChange,
-      password,
-      passwordError,
-      copy,
-    } = this.props;
 
     return (
       <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : null} style={styles.flex}>
         <Animatable.View duration={1000} animation="fadeIn" style={styles.flex} useNativeDriver={true}>
           <CentredScreen footerImage="forest" BackgroundGradient={<UnauthorisedGradient />}>
-            {this.state.isShowingKeyboard ? null : (
+            {isShowingKeyboard ? null : (
               <View style={styles.headingWrapper}>
                 <Pad height={100} />
                 {region.ARE_MULTIPLE_REGIONS_ENABLED ? (
                   <View style={styles.headingInnerWrapper}>
-                    <TextTemplate type="h2">{copy.heading}</TextTemplate>
+                    <TextTemplate type="h2">{t["screens.login.heading"]}</TextTemplate>
                     <ServerDropdown />
                   </View>
                 ) : (
                   <TextTemplate textAlign="center" type="h1">
-                    {copy.heading}
+                    {t["screens.login.heading"]}
                   </TextTemplate>
                 )}
               </View>
@@ -112,32 +94,18 @@ class LoginScreen extends PureComponent<IProps, IState> {
               testID={BUTTON_LOGIN}
               isLoading={isLoggingIn}
               disabled={isLoggingIn || disabled}
-              label={copy.ctaLabel}
+              label={t["screens.login.ctaLabel"]}
               onPress={onLogInPress}
               size="Large"
             />
 
             <Pad height={15} />
-            <LinkGroup data={this.getLinks()} />
+            <LinkGroup data={links} />
           </CentredScreen>
         </Animatable.View>
       </KeyboardAvoidingView>
     );
   }
-
-  private keyboardDidShow = (isShowingKeyboard: boolean) => {
-    return () => this.setState({ isShowingKeyboard });
-  };
-
-  private getLinks = () => {
-    const { onResetPasswordPress } = this.props;
-    return [
-      {
-        label: "need help logging in?",
-        onPress: onResetPasswordPress,
-      },
-    ];
-  };
-}
+);
 
 export default LoginScreen;

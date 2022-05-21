@@ -16,6 +16,7 @@ import { TapToCopy } from "@organisms";
 import { Colours, Style } from "@styles";
 import { styles, markdownStyles } from "./referrals.styles";
 import { MixpanelEvent } from "@services/logging/types";
+import { getReadableDateFormat } from "@locale";
 
 interface IProps {
   info: GetReferralInformation_referralInformation;
@@ -104,7 +105,7 @@ const ReferralsScreen = ({ info, handleClose, componentId }: IProps) => {
                 key={user.id}
                 name={user.name}
                 avatarUrl={user.avatarUrl}
-                subTitle={moment(user.date).format("DD/MM/YYYY")}
+                subTitle={moment(user.date).format(getReadableDateFormat())}
                 coin={user.coin}
               />
             ))}

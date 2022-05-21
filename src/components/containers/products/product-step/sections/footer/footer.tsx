@@ -1,7 +1,8 @@
-import React, { memo, useEffect, useMemo, useState } from "react";
-import { Keyboard, Platform, StyleSheet, View, ViewStyle } from "react-native";
+import React, { memo, useMemo } from "react";
+import { Platform, StyleSheet, View, ViewStyle } from "react-native";
 import { GetPersonalProductStep_getPersonalProductStep_footer as GPPS_Footer } from "@graphql/_core/schema";
 import { ContentItemFade, ContentItemOverlay, ContentItemPad } from "@components/sdui";
+import { useKeyboardListeners } from "@services/hooks/useKeyboardListeners";
 import { ProductStepContentItemButton, ProductStepContentItemMultiButton } from "../../subcomponents";
 import media from "@styles/media";
 import { Style } from "@styles";
@@ -12,17 +13,7 @@ interface Props {
 }
 
 export const Footer = memo((props: Props) => {
-  const [isShowingKeyboard, setIsShowingKeyboard] = useState(false);
-
-  useEffect(() => {
-    const keyboardDidShowListener = Keyboard.addListener("keyboardDidShow", () => setIsShowingKeyboard(true));
-    const keyboardDidHideListener = Keyboard.addListener("keyboardDidHide", () => setIsShowingKeyboard(false));
-
-    return () => {
-      keyboardDidShowListener.remove();
-      keyboardDidHideListener.remove();
-    };
-  }, []);
+  const isShowingKeyboard = useKeyboardListeners();
 
   const wrapperStyle = useMemo(() => {
     return [styles.wrapper, props.footerStyle];

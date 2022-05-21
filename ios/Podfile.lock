@@ -392,6 +392,8 @@ PODS:
     - SDWebImageWebPCoder (~> 0.8.4)
   - RNFitKit (1.0.0):
     - React
+  - RNLocalize (2.2.1):
+    - React-Core
   - RNSpringScrollView (2.0.23):
     - React
   - RNSVG (12.3.0):
@@ -486,6 +488,7 @@ DEPENDENCIES:
   - RNDeviceInfo (from `../node_modules/react-native-device-info`)
   - RNFastImage (from `../node_modules/react-native-fast-image`)
   - "RNFitKit (from `../node_modules/@yu-life/react-native-fitkit/ios`)"
+  - RNLocalize (from `../node_modules/react-native-localize`)
   - RNSpringScrollView (from `../node_modules/react-native-spring-scrollview/ios`)
   - RNSVG (from `../node_modules/react-native-svg`)
   - "stripe-react-native (from `../node_modules/@stripe/stripe-react-native`)"
@@ -614,6 +617,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-fast-image"
   RNFitKit:
     :path: "../node_modules/@yu-life/react-native-fitkit/ios"
+  RNLocalize:
+    :path: "../node_modules/react-native-localize"
   RNSpringScrollView:
     :path: "../node_modules/react-native-spring-scrollview/ios"
   RNSVG:
@@ -689,6 +694,7 @@ SPEC CHECKSUMS:
   RNDeviceInfo: e1d82a27d0c1ea6278e3b141784dc38e51fc90f4
   RNFastImage: 1f2cab428712a4baaf78d6169eaec7f622556dd7
   RNFitKit: 616d0226b7c2df643037e955434d347057eed612
+  RNLocalize: cbcb55d0e19c78086ea4eea20e03fe8000bbbced
   RNSpringScrollView: 8b0af44fda8b131d845b93bf5b1d0710152e4e61
   RNSVG: 302bfc9905bd8122f08966dc2ce2d07b7b52b9f8
   SDWebImage: a7f831e1a65eb5e285e3fb046a23fcfbf08e696d
