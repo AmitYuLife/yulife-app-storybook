@@ -5,7 +5,8 @@ export const {
     idVisible,
     textVisible,
     textNotVisible,
-    idExist
+    idExist,
+    textVisibleAtIndex
 } = navigation.common
 
 export const {
@@ -72,4 +73,15 @@ export const yunityCorrect = (yunityNum:number, worldType: "Forest" | "Ocean" |"
         await expect(element(by.id(YUNITY_HEADER(label)))).toBeVisible()
     }
 
+}
+
+export const onTodaysYucoin = (steps = 0, mindfulness = 0) => async () => {
+    await expectIsVisibleViaText(`${steps} / 12000 steps`)
+    await expectIsVisibleViaText(`${mindfulness} / 30 mindful mins`)
+    await textVisibleAtIndex("0/60",0)
+    await textVisibleAtIndex("0/60",1)
+    await textVisible("10")
+    await expectIsVisibleViaText("Today's challenges (1/4)")
+    await expectIsVisibleViaText("Short stroll (400 steps)")
+    await expectIsVisibleViaText("Take a challenge (3 left)")
 }
