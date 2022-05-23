@@ -47,8 +47,8 @@ const _YuniversalQuestsScreen: FC<IProps> = ({
   );
 
   return (
-    <View style={styles.container}>
-      <View style={styles.backgroundImage} testID={QUESTS_SCREEN_YUNIVERSAL(yuniversalLevel)} />
+    <View style={styles.container} testID={QUESTS_SCREEN_YUNIVERSAL(yuniversalLevel)}>
+      <View style={styles.backgroundImage} />
       <Image resizeMode="cover" style={styles.backgroundImage} source={BACKGROUND_IMAGE} />
       {!levelMap?.length ? null : (
         <YuniversalQuestSvg width={styles.backgroundImage.width} height={styles.backgroundImage.height}>

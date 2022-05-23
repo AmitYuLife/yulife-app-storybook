@@ -1,7 +1,7 @@
 import { screens } from "@appScreens"
-import { navigation, navigateViaID, LEVEL_CHALLENGE_BUTTON } from "@utils"
+import { navigation, navigateViaID, LEVEL_CHALLENGE_BUTTON, QUESTS_SCREEN_YUNIVERSAL } from "@utils"
 export { authoriseFitkit, sendSteps } from "@socket";
-import { sendSteps, fitKitAddSampleQueries } from "@socket"
+import { sendSteps, fitKitAddSampleQueries, sendMindfulnessData } from "@socket"
 import moment = require("moment");
 export const {
     tapText,
@@ -10,6 +10,7 @@ export const {
     navigateViaText,
     wait,
     booleanTextVisible,
+    tapIDAtPoint
 } = navigation.common
 
 export const {
@@ -61,5 +62,13 @@ export const completeNewWorldMeditation = (levelNumber: number) => async () => {
         await navigateViaText("collect")
     }
 
+}
 
+export const completYuniversWorldShortStroll = async () => {
+    await startChallenge("short stroll")()
+    await sendSteps(400, 35000)()
+    await waitFor(element(by.text("collect"))).toBeVisible().withTimeout(5000)
+    await navigateViaText("collect")
+    await waitFor(element(by.text("Done"))).toBeVisible().withTimeout(5000)
+    await navigateViaText("Done")
 }
