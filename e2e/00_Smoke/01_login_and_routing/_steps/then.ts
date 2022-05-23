@@ -175,7 +175,7 @@ export const welcomeModalVisible = async () => {
 
 export const onPasswordHelp = async () => {
     await expect(element(by.id(INPUT_RESET_PASSWORD))).toBeVisible()
-    await expect(element(by.text("need help?"))).toBeVisible()
+    await expect(element(by.text("Need help?"))).toBeVisible()
 }
 
 export const cyclingMeasured = (cycling: string) => async (): Promise<void> => {

@@ -73,11 +73,12 @@ export const tryOutfits = async () => {
 }
 
 export const navigateThroughTheFullSwiper = async () => {
-    await wait(2000)();
+    await wait(3000)();
     await tapID(FULL_SCREEN_LOTTIE_SWIPER("RIGHT"))();
 }
 
 export const dismissPLIModal = async () => {
+    await wait(2000)();
     await navigateViaText("Start my quote (+1000 YuCoin)")
 }
 
