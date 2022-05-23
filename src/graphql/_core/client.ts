@@ -17,6 +17,7 @@ import { store } from "@redux/_core/store";
 import region from "@services/region";
 import { updateOfflineState } from "@redux/app/app.actions";
 import createRetryLink from "./retryLink";
+import { getLocale } from "@locale";
 
 const appJson = require("../../../package.json");
 
@@ -114,6 +115,7 @@ const authMiddleware = setContext(async (_, { headers }) => {
       authorization: token ? `Bearer ${token}` : "",
       date: moment().format(DATE_FORMAT_WITH_TZ),
       yu_client_token: Config.YU_CLIENT_TOKEN,
+      yu_locale: getLocale(),
     },
   };
 });
