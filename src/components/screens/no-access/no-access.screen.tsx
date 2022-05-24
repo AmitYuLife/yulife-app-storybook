@@ -1,16 +1,25 @@
-import { Text } from "@atoms/index";
-import * as React from "react";
+import { TextTemplate } from "@atoms/index";
+import { useTranslation } from "@hooks";
+import React, { memo } from "react";
 import { Image, View } from "react-native";
 import styles from "./no-access.screen.styles";
 
-export default function NoAccessScreen() {
-    return (
-        <View style={styles.wrapper}>
-            <Image style={styles.image} source={require("../../../../assets/purchases-empty/rewards-empty.png")} />
-            <View style={styles.contentWrapper}>
-                <Text style={styles.text}>Sorry!</Text>
-                <Text style={styles.text}>You are not able to use this app at the moment</Text>
-            </View>
-        </View>
-    );
-}
+const NoAccessScreen = memo(() => {
+  const translations = useTranslation(["screens.noAccess.heading", "screens.noAccess.subheading"]);
+
+  return (
+    <View style={styles.wrapper}>
+      <Image style={styles.image} source={require("../../../../assets/purchases-empty/rewards-empty.png")} />
+      <View style={styles.contentWrapper}>
+        <TextTemplate type="h1" textAlign="center">
+          {translations["screens.noAccess.heading"]}
+        </TextTemplate>
+        <TextTemplate type="b2" textAlign="center">
+          {translations["screens.noAccess.subheading"]}
+        </TextTemplate>
+      </View>
+    </View>
+  );
+});
+
+export default NoAccessScreen;
