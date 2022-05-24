@@ -1,30 +1,20 @@
 import OfflineScreen from "@screens/offline/offline.screen";
-import { IReduxState } from "@redux/_core/reducers";
 import { checkConnection } from "@redux/app/app.actions";
-import { getCopy } from "@redux/copy/copy.selectors";
 import { getCurrentLevel } from "@redux/levels/levels.selectors";
 import * as React from "react";
-import { connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 interface IProps {
   componentId: string;
 }
 
-type ConnectedState = ReturnType<typeof mapStateToProps>;
-type ConnectedDispatch = typeof mapDispatchToProps;
-type Props = IProps & ConnectedDispatch & ConnectedState;
+const AppOfflineContainer: React.FC<IProps> = () => {
+  const level = useSelector(getCurrentLevel);
+  const dispatch = useDispatch();
 
-const AppOfflineContainer: React.FC<Props> = ({ copy, level, checkConnection: onCTA }) => (
-  <OfflineScreen copy={copy} level={level} onPress={onCTA} />
-);
+  const handlePress = React.useCallback(() => dispatch(checkConnection()), []);
 
-const mapStateToProps = (state: IReduxState) => ({
-  level: getCurrentLevel(state),
-  copy: getCopy(state, "offline"),
-});
-
-const mapDispatchToProps = {
-  checkConnection,
+  return <OfflineScreen level={level} onPress={handlePress} />;
 };
 
-export default connect<ConnectedState>(mapStateToProps, mapDispatchToProps)(AppOfflineContainer);
+export default React.memo(AppOfflineContainer);

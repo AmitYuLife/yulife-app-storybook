@@ -33,5 +33,14 @@ export default {
       ctaLabelSecondary: "Back",
       submitting: "Submitting ...",
     },
+    noAccess: {
+      heading: "Sorry!",
+      subheading: "You are not able to use this app at the moment",
+    },
+    offline: {
+      heading: "You're offline",
+      subheading: "Check your internet connection.",
+      ctaLabel: "Got it",
+    },
   },
 };
