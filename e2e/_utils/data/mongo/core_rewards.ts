@@ -71,7 +71,7 @@ export const CORE_REWARDS_AVIOS = {
         "redemptionUrl": "stocked",
         "progression_level": "5",
         "code": "AVI-GB",
-        "currencyCode": "AVIOS",
+        "currencyCode": "GBP",
         "denomination_type": null,
         "description": "Avios are the loyalty currency of Aer Lingus, British Airways, Vueling and other airlines. When you collect Avios you can spend them on flights, hotels and many other experiences.  \n\n * Reward flights are subject to availability. Taxes fees and carrier charges apply \n\n * Avios may take a few days to process your request",
         "e_code_usage_type": null,
