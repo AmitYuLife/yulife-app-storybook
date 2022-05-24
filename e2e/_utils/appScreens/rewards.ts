@@ -118,7 +118,7 @@ export const rewardDenominationsVisible = (reward: any) => async () => {
 
 export const tapDenomination = (reward: any, index: number) => async () => {
     const denomination = reward.data.available_denominations[index]
-    const denominationText = element(by.id(TEXT_TEMPLATE(`£${denomination.value} - ${denomination.yuCoin} YuCoin`)))
+    const denominationText = element(by.id(TEXT_TEMPLATE(`£${denomination.value} - ${addCommasToNumber(denomination.yuCoin)} YuCoin`)))
     await denominationText.tap()
 }
 
@@ -129,14 +129,14 @@ export const denominationListVisible = (reward: any, availableYuCoin: number) =>
     await expect(element(by.text(`Cancel`))).toBeVisible()
 
     for (const i of denominationArr) {
-        await expect(element(by.text(`£${i.value} - ${i.yuCoin} YuCoin`))).toBeVisible()
+        await expect(element(by.text(`£${i.value} - ${addCommasToNumber(i.yuCoin)} YuCoin`))).toBeVisible()
     }
 
 }
 
 export const tapDenominationList = (reward: any, index = 0) => async () => {
     const denomination = reward.data.available_denominations[index]
-    const denominationText = element(by.text(`£${denomination.value} - ${denomination.yuCoin} YuCoin`))
+    const denominationText = element(by.text(`£${denomination.value} - ${addCommasToNumber(denomination.yuCoin)} YuCoin`))
     const confirmationPurchaseText =  element(by.text(`You'll purchase Nike £${denomination.value} voucher with ${denomination.yuCoin} yucoin.`))
 
     await wait(5000)()
@@ -148,7 +148,7 @@ export const tapDenominationList = (reward: any, index = 0) => async () => {
 }
 
 export const buyButtonVisible = (reward: any, index = 0) => async () => {
-    const buttonText = element(by.text(`£10 - ${reward.data.available_denominations[index].yuCoin} YuCoin`))
+    const buttonText = element(by.text(`£10 - ${addCommasToNumber(reward.data.available_denominations[index].yuCoin)} YuCoin`))
     await expect(buttonText).toBeVisible()
 }
 
