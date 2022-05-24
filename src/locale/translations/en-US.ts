@@ -42,5 +42,10 @@ export default {
       subheading: "Check your internet connection.",
       ctaLabel: "Got it",
     },
+    signupReward: {
+      heading: "Sign-up bounty\nunlocked!",
+      subheading: "Use your YuCoin for vouchers from Amazon, Lululemon, Target and many more!",
+      ctaLabel: "Next",
+    },
   },
 };
