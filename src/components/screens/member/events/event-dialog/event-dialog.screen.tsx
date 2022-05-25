@@ -54,6 +54,7 @@ interface IProps {
   milestones: number[];
   about: IAboutProps;
   faq?: IFaqProps;
+  onFaqViewed?: () => void;
   infoCards: IInfoCardListCard[];
   banner?: EventBanner;
   button?: EventButton;
@@ -76,6 +77,7 @@ const EventDialogScreen: FC<IProps> = ({
   milestones,
   about,
   faq,
+  onFaqViewed,
   infoCards,
   banner,
   button,
@@ -120,6 +122,7 @@ const EventDialogScreen: FC<IProps> = ({
   }, [scrollY]);
 
   const openPopUp = useCallback(() => {
+    onFaqViewed?.();
     questionMarkRef?.current?.measure((_fx, _fy, _width, _height, pageX, pageY) => {
       showInfoMessageTooltipPointRelative({
         x: pageX + FAQ_ICON_DIMENSION / 2 + FAQ_VERTICAL_PADDING / 2,

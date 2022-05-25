@@ -3,12 +3,18 @@ import { useMutation } from "@apollo/react-hooks";
 import { useDispatch } from "react-redux";
 import { Navigation } from "react-native-navigation";
 import { CollectEventRewardScreen } from "@screens";
-import { IReward } from "@organisms/event-reward/event-reward";
+import {
+  FADE_IN_DURATION,
+  FADE_OUT_DURATION,
+  FADE_PAUSE_DURATION,
+  IReward,
+} from "@organisms/event-reward/event-reward";
 import { ClaimGoalRewards, ClaimGoalRewardsVariables } from "@graphql/_core/schema";
 import { GQL_MUTATION_CLAIM_GOAL_REWARDS } from "@graphql/goals/claimGoalRewards.gql";
 import { getUserStart, refreshUserProfileEvents } from "@redux/user/user.actions";
 import { MODALS } from "@navigation/constants";
 import Logger from "@services/logging/logger";
+import { delay } from "@utils/misc";
 
 interface IProps {
   title: string;
@@ -47,6 +53,8 @@ export default function CollectEventRewardModal({ title, descriptionTitle, descr
 
       if (result?.data?.claimGoalRewards?.rewards) {
         setLocalRewards(result.data.claimGoalRewards.rewards.filter((r) => rewardIds.includes(r.id)));
+
+        await delay(FADE_IN_DURATION + FADE_PAUSE_DURATION + FADE_OUT_DURATION + 200);
         dispatch(refreshUserProfileEvents());
         // update today's yucoin screen
         dispatch(getUserStart());
