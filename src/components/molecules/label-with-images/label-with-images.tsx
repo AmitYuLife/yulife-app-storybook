@@ -25,6 +25,7 @@ const LabelWithImages = ({ labelImages, backgroundColor }: IStarWrapper) => {
               height={Style.adjust(11)}
               width={Style.adjust(10)}
               style={styles.labelImage}
+              suppressLoadingUi={true}
             />
           </View>
         ))}

@@ -88,7 +88,7 @@ export const getUserEarnRate = createSelector(reducer, userEarnRate);
 const userNotification = (state: State) => state.notification;
 export const getUserNotification = createSelector(reducer, userNotification);
 
-const userEvents = (state: State) => state.events;
+const userEvents = (state: State) => state.events || [];
 export const getUserEvents = createSelector(reducer, userEvents);
 
 export const getUserEventsWithAds = createSelector(getUserEvents, getAdBanners, (events, banners) => {

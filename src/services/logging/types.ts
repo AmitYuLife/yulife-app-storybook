@@ -45,4 +45,6 @@ export type MixpanelEvent =
   | "user_action"
   | "user_connection_state"
   | "wellbeing_item_button_pressed"
-  | "wellbeing_item_button_pressed_error";
+  | "wellbeing_item_button_pressed_error"
+  | "reward_info_viewed"
+  | "event_faq_viewed";

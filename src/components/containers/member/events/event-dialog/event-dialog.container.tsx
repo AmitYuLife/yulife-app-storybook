@@ -11,6 +11,7 @@ import { MODALS } from "@navigation/constants";
 import { GQL_MUTATION_JOIN_GOAL } from "@graphql/goals/joinGoal.gql";
 import { refreshUserProfileEvents, updateUserGoal } from "@redux/user/user.actions";
 import { GoalActionType, GoalRewardStatus } from "@graphql/_core/schema/globalTypes";
+import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 
 interface IProps {
   componentId: string;
@@ -33,7 +34,18 @@ const EventDialogContainer: FC<IProps> = ({ componentId, goalId, stageId, onLeft
     dispatch(refreshUserProfileEvents());
   }, []);
 
-  const { title, labels, headerBackgroundColor, headerTextColor, headerImage, button } = data?.getGoalDetails || {};
+  const { title, labels, headerBackgroundColor, headerTextColor, headerImage, button, faq } =
+    data?.getGoalDetails || {};
+  const onFaqViewed = useCallback(() => {
+    dispatch(
+      logMixpanelEventActionCreator("event_faq_viewed", {
+        name: title,
+        ID: goalId,
+        stageId,
+        faq_name: faq?.text,
+      })
+    );
+  }, [faq?.text, goalId, stageId, title]);
 
   const onActionButtonPress = useCallback(async () => {
     if (button?.onPress) {
@@ -96,7 +108,14 @@ const EventDialogContainer: FC<IProps> = ({ componentId, goalId, stageId, onLeft
     return <EventDialogLoadingScreen onLeftIconPress={onLeftIconPress} />;
   }
 
-  return <EventDialogScreen headerProps={headerProps} onButtonPress={onActionButtonPress} {...data.getGoalDetails} />;
+  return (
+    <EventDialogScreen
+      headerProps={headerProps}
+      onButtonPress={onActionButtonPress}
+      onFaqViewed={onFaqViewed}
+      {...data.getGoalDetails}
+    />
+  );
 };
 
 export default EventDialogContainer;

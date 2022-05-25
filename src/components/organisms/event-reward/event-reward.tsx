@@ -1,5 +1,5 @@
-import React, { memo, useRef, useCallback, useMemo } from "react";
-import { StyleSheet, View } from "react-native";
+import React, { memo, useRef, useCallback, useMemo, useEffect, useState } from "react";
+import { Animated, Easing, StyleSheet, View } from "react-native";
 import { Image, TextTemplate } from "@atoms";
 import { Button, LabelWithImages, PressableWithDelay } from "@molecules";
 import { Colours, Style } from "@styles";
@@ -12,8 +12,27 @@ import { MODALS } from "@navigation/constants";
 import { showYuModal } from "@navigation/root";
 import { showInfoMessageTooltipViewRelative } from "@organisms/tooltip-popup/tooltip-popup.helper";
 import { GOAL_TOOLTIP_INFO } from "@ids";
+import Svg, { Circle } from "react-native-svg";
+import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
+import { useDispatch } from "react-redux";
 
 const lottieAnimationSource = require("./assets/event-reward-animation.json");
+
+const CIRCLE_SIZE = Style.adjust(88);
+const HALF_SIZE = CIRCLE_SIZE / 2;
+const STROKE_WIDTH = Style.adjust(4);
+const REWARD_PADDING = Style.adjust(4);
+
+const REWARD_SIZE = CIRCLE_SIZE - 2 * STROKE_WIDTH - 2 * REWARD_PADDING;
+
+const CIRCLE_RADIUS = (CIRCLE_SIZE - STROKE_WIDTH) / 2;
+
+const CIRCLE_CIRCUMFERENCE = CIRCLE_RADIUS * 2 * Math.PI;
+
+export const FADE_OUT_DURATION = 500;
+export const FADE_PAUSE_DURATION = 200;
+export const FADE_IN_DURATION = 1000;
+
 const INFO_VIEW_HEIGHT_WIDTH = Style.adjust(22);
 interface IEventReward {
   marginHorizontal?: number;
@@ -36,6 +55,8 @@ export interface IReward {
   infoBadgeUri?: RemoteImage;
 }
 
+const AnimatedCircle = Animated.createAnimatedComponent(Circle);
+
 const EventReward = ({
   reward,
   height = Style.adjust(170),
@@ -44,6 +65,7 @@ const EventReward = ({
   claimButton,
 }: IEventReward) => {
   const {
+    id,
     title,
     description,
     stars,
@@ -55,11 +77,20 @@ const EventReward = ({
     infoBadgeUri,
   } = reward;
   const questionMarkRef = useRef<View>();
-  const rewardClaimed = status === GoalRewardStatus.claimed;
+  const [rewardClaimed, setRewardClaimed] = useState(status === GoalRewardStatus.claimed);
   const rewardCompleted = status === GoalRewardStatus.completed;
-  const statusColor = getStatusColor(status);
+  const [statusColor, setStatusColor] = useState(getStatusColor(status));
+  const progress = useRef(new Animated.Value(CIRCLE_CIRCUMFERENCE)).current;
+  const dispatch = useDispatch();
 
   const openPopUp = useCallback(() => {
+    dispatch(
+      logMixpanelEventActionCreator("reward_info_viewed", {
+        name: title,
+        ID: id,
+        info_text: infoText,
+      })
+    );
     showInfoMessageTooltipViewRelative({ viewRef: questionMarkRef, infoText, buttonLabel: "Got it" });
   }, [questionMarkRef, infoText]);
 
@@ -115,16 +146,76 @@ const EventReward = ({
     return <LottieView style={styles.absolute} source={lottieAnimationSource} autoPlay={true} loop={true} />;
   }, [animated, rewardCompleted]);
 
+  useEffect(() => {
+    const statusChanged = statusColor !== getStatusColor(status);
+    const animationSequence = Animated.sequence([
+      ...(statusChanged
+        ? [
+            Animated.timing(progress, {
+              toValue: CIRCLE_CIRCUMFERENCE,
+              duration: FADE_OUT_DURATION,
+              easing: Easing.linear,
+              useNativeDriver: true,
+            }),
+          ]
+        : []),
+      {
+        start: (cb) => {
+          setStatusColor(getStatusColor(status));
+          setRewardClaimed(status === GoalRewardStatus.claimed);
+          cb({ finished: true });
+        },
+        stop: () => null,
+        reset: () => null,
+      },
+      Animated.timing(progress, {
+        toValue: 0,
+        duration: FADE_IN_DURATION,
+        delay: FADE_PAUSE_DURATION,
+        easing: Easing.cubic,
+        useNativeDriver: true,
+      }),
+    ]);
+    animationSequence.start();
+    return () => {
+      animationSequence.stop();
+    };
+  }, [progress, status]);
+
+  const wrapperStyle = useMemo(() => [styles.wrapper, { height, width, marginHorizontal }], []);
+
   return (
     <PressableWithDelay onPress={claimReward}>
-      <View style={[styles.wrapper, { height, width, marginHorizontal }]}>
-        <View style={[styles.circleWrapper, { borderColor: statusColor }]}>
+      <View style={wrapperStyle}>
+        <View style={styles.circleWrapper}>
+          <Svg width={CIRCLE_SIZE} height={CIRCLE_SIZE} viewBox={`0 0 ${CIRCLE_SIZE} ${CIRCLE_SIZE}`} fill="none">
+            <Circle
+              cx={HALF_SIZE}
+              cy={HALF_SIZE}
+              r={CIRCLE_RADIUS}
+              stroke={Colours.neutral.n100}
+              strokeWidth={STROKE_WIDTH}
+              strokeLinecap={"round"}
+            />
+            <AnimatedCircle
+              cx={HALF_SIZE}
+              cy={HALF_SIZE}
+              r={CIRCLE_RADIUS}
+              strokeDasharray={[CIRCLE_CIRCUMFERENCE, CIRCLE_CIRCUMFERENCE]}
+              strokeDashoffset={progress}
+              stroke={statusColor}
+              transform={`rotate(90, ${HALF_SIZE}, ${HALF_SIZE})`}
+              strokeWidth={STROKE_WIDTH}
+              strokeLinecap={"round"}
+            />
+          </Svg>
           <View style={styles.backgroundImageWrapper}>
             <Image
               source={{ uri: itemBackgroundUri }}
               width={Style.adjust(72)}
               height={Style.adjust(72)}
               style={styles.absolute}
+              suppressLoadingUi={true}
             />
             {animation}
             <Image
@@ -200,7 +291,7 @@ const styles = StyleSheet.create({
   },
   labelWrapper: {
     position: "absolute",
-    bottom: Style.adjust(-12),
+    bottom: -(REWARD_PADDING + STROKE_WIDTH),
   },
   titleWrapper: {
     marginTop: Style.adjust(8),
@@ -209,18 +300,17 @@ const styles = StyleSheet.create({
     marginTop: Style.adjust(4),
   },
   circleWrapper: {
-    width: Style.adjust(88),
-    height: Style.adjust(88),
-    borderRadius: Style.adjust(44),
-    borderWidth: Style.adjust(4),
-    backgroundColor: "transparent",
+    width: CIRCLE_SIZE,
+    height: CIRCLE_SIZE,
     alignItems: "center",
     justifyContent: "center",
   },
   backgroundImageWrapper: {
-    width: Style.adjust(72),
-    height: Style.adjust(72),
-    borderRadius: Style.adjust(36),
+    width: REWARD_SIZE,
+    height: REWARD_SIZE,
+    borderRadius: REWARD_SIZE / 2,
+    position: "absolute",
+    top: REWARD_PADDING + STROKE_WIDTH,
   },
   radioIconWrapper: {
     paddingHorizontal: Style.adjust(2),
