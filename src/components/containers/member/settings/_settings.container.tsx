@@ -242,20 +242,29 @@ function SettingsContainer({ componentId }: IOwnProps) {
 
 const generateTimes = () => {
   const times = [];
-  const DEFAULT_DATE = "2000-01-01";
+  const date = moment();
 
   for (let hour = 0; hour < 24; hour++) {
+    const hourMoment = date.clone().set({ year: 2000, month: 0, date: 1, hour, second: 0, millisecond: 0 });
+
+    hourMoment.minute(0);
     times.push({
-      label: moment(DEFAULT_DATE).hour(hour).minute(0).second(0).format("hh:mm A"),
-      value: moment(DEFAULT_DATE).hour(hour).minute(0).second(0).utc().toISOString(),
+      label: hourMoment.format("hh:mm A"),
+      value: formatToDefaultDate(hourMoment.toISOString()),
     });
+
+    hourMoment.minute(30);
     times.push({
-      label: moment(DEFAULT_DATE).hour(hour).minute(30).second(0).format("hh:mm A"),
-      value: moment(DEFAULT_DATE).hour(hour).minute(30).second(0).utc().toISOString(),
+      label: hourMoment.format("hh:mm A"),
+      value: formatToDefaultDate(hourMoment.toISOString()),
     });
   }
 
   return times;
 };
+
+const DATE_REG_EX = /^.{10}/g;
+const DEFAULT_DATE = "2000-01-01";
+const formatToDefaultDate = (date: string) => date.replace(DATE_REG_EX, DEFAULT_DATE);
 
 export default SettingsContainer;
