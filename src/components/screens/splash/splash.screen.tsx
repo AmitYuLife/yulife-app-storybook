@@ -28,12 +28,12 @@ Animatable.initializeRegistryWithDefinitions({
   splash_yu: {
     0: { translateX: 0 },
     0.5: { translateX: 0 },
-    1: { translateX: 0 - Style.adjust(40) },
+    1: { translateX: 0 - Style.adjust(50) },
   },
   splash_life: {
     0: { translateX: 0 },
     0.5: { translateX: 0 },
-    1: { translateX: Style.adjust(55) },
+    1: { translateX: Style.adjust(50) },
   },
   splash_yulifeZoomOut: {
     0: {
