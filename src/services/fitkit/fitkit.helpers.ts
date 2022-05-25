@@ -277,7 +277,7 @@ export const queryAggregatedBiking = async (
   features: IUserStore["features"] = { disableUserEntries: true, loggingEnabled: false }
 ): Promise<QueryFitKitByTypesResponse> => {
   try {
-    const { disableUserEntries, loggingEnabled } = features;
+    const { disableUserEntries = true, loggingEnabled = false } = features || {};
     const additionalFitnessActivities = getAdditionalCyclingFitnessActivities(features);
 
     const startTime = start.format(DATE_FORMAT_WITH_TZ);
