@@ -61,10 +61,13 @@ Feature("As a user I can get past the login screen", async () => {
                     When("I have done 20 steps", given.sendSteps(20), async () => {
                         Then("I should see 20 steps", then.idVisible(STEPS_COUNT(20)));
                     })
-                    When("I have done 60 steps", given.sendSteps(60), async () => {
-                        Then("I should see 60 steps", then.idVisible(STEPS_COUNT(60)));
+                    When("I have done 2000 steps", given.sendSteps(2000), async () => {
+                        Then("I should see 2000 steps", then.idVisible(STEPS_COUNT(2000)));
                         Then("I should Not see km done today", then.idNotVisible(CYCLING_COUNT("km")));
                         Then("I should Not see min mindful done today", then.idNotVisible(MINDFUL_COUNT("min")));
+                    })
+                    When("I tap on YuCoin", when.tapID(DAILYSTEP_SCREEN_COIN), async () => {
+                        Then("I should see 2000 steps, 0 mindful, 20 stepcoins", then.dailyCoreActivities(2000, 0, 20))
                     })
                 })
             });
@@ -139,7 +142,7 @@ Feature("As a user I can get past the login screen", async () => {
                     When("I go back this screen", when.tapID(BACK_BUTTON), async () => {
                         Then("I should Not see InfoIcon anymore", then.idNotVisible(YUCOIN_POWER_INFO));
                         When("I tap on YuCoin today text", when.tapText("160 YuCoin today"), async () => {
-                            Then("I should see correct data 20 steps, 11.3 km, 13 min mindful", then.onTodaysYucoin(20, 11.3, 13))
+                            Then("I should see correct data 20 steps, 11.3 km, 13 min mindful", then.onTodaysYucoin(20, "11.3 / 9.6 km", 13))
                         })
                     })
                     When("I tap the YuCoin icon", when.tapID(YUCOIN_POWER_INFO), async () => {
@@ -172,7 +175,7 @@ Feature("As a user I can get past the login screen", async () => {
                         })
                     })
                     When("I tap on YuCoin coin", when.tapID(CYCLING_COUNT("7.0 mi")), async () => {
-                        Then("I should see correct data 7.0 mi on todays earnings", then.cyclingMeasured("7.0"))
+                        Then("I should see correct data 20 steps, 7 mi, 13 min mindful", then.onTodaysYucoin(20, "7.0 / 6.0 mi", 13))
                     })
                     When("I tap the Info icon", when.tapID(YUCOIN_POWER_INFO), async () => {
                         Then("I should see 1.0 mi cycling", then.textVisible("1.0 mi cycling"))

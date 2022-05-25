@@ -17,7 +17,7 @@ import {
     WELCOME_MODAL,
     INPUT_RESET_PASSWORD
 } from "@ids";
-import { expectDoesNotExistViaText, expectIsVisibleViaID, expectIsVisibleViaText } from "@navigation";
+import { expectDoesNotExistViaText, expectIsVisibleViaID, expectIsVisibleViaText, textVisibleAtIndex } from "@navigation";
 import { navigation } from "@navigation"
 import { screens } from "@appScreens"
 
@@ -178,6 +178,9 @@ export const onPasswordHelp = async () => {
     await expect(element(by.text("Need help?"))).toBeVisible()
 }
 
-export const cyclingMeasured = (cycling: string) => async (): Promise<void> => {
-    await expectIsVisibleViaText(`${cycling} / 6.0 mi`);
-};
+export const dailyCoreActivities = (steps = 0, mindfulness = 0, stepsCoin = 0, mindfulCoin = 0) => async () => {
+    await expectIsVisibleViaText(`${steps} / 12000 steps`)
+    await expectIsVisibleViaText(`${mindfulness} / 30 mindful mins`)
+    await textVisibleAtIndex(`${stepsCoin}/120`,0)
+    await textVisibleAtIndex(`${mindfulCoin}/120`,1)
+}
