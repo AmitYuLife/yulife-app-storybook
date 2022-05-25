@@ -7,6 +7,34 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.33.0] - 2022-05-25
+
+### Bugfixes
+
+- Bugfix: notification settings
+- Bugfix: Set default values for aggregate biking query toggles
+- Bugfix: misplaced logo
+
+### Tasks
+
+- Task: Add claim reward animation
+- Task: signup reward copy
+- Task: send user's locale to the server
+
+### Chores
+
+- Chore: query on screen only
+- Chore: remove hooks from services
+- Chore: added locale
+- Chore: remote config
+
+### Extra
+
+- detox/fixes_24_05
+- Refactor: offline and no access screens to use translations
+- detox:small fixes for overnight run
+- detox: yuniversal world
+
 ## [3.32.0] - 2022-05-20
 
 ### Bugfixes
