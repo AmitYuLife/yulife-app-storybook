@@ -1,6 +1,5 @@
 import moment from "moment";
 import { Platform } from "react-native";
-import RNFitKit from "@yu-life/react-native-fitkit";
 import { call, cancelled, put, select, spawn, take } from "redux-saga/effects";
 import { PedometerResponse } from "@services/fitkit/fitkit.service";
 import Logger from "@services/logging/logger";
@@ -34,11 +33,7 @@ export default function* listenToSteps() {
        * For iOS, add initialisation phase to stop infinite fetching state if unauthorised
        */
       if (Platform.OS === "ios") {
-        const isAuthorised: boolean = yield call(RNFitKit.isAuthorised);
-
-        if (!isAuthorised) {
-          yield put(updatePedometerNoNewDataAction());
-        }
+        yield put(updatePedometerNoNewDataAction());
       }
 
       const results: typeof ERROR_NOT_AUTHORISED | PedometerResponse = yield take(channel);

@@ -299,12 +299,21 @@ export function useFitKit() {
   );
 
   const authoriseFitKitTypes = useCallback(
-    async (fitKitTypes: FitKitType[], platform?: FitKitHealthTrackingPlatform, checkState: boolean = true) => {
+    async (
+      fitKitTypesRead: FitKitType[],
+      platform?: FitKitHealthTrackingPlatform,
+      checkState = true,
+      fitkitTypesWrite?: FitKitType[]
+    ) => {
       try {
         const options = await checkSystemPermissions({
-          read: fitKitTypes.map(mapGqlFitKitTypeToFitKitType),
+          read: fitKitTypesRead.map(mapGqlFitKitTypeToFitKitType),
           platform,
         });
+
+        if (fitkitTypesWrite) {
+          options.write = fitkitTypesWrite.map(mapGqlFitKitTypeToFitKitType);
+        }
 
         const isAuthorised = await RNFitKit.authorise(options);
         if (checkState) {
@@ -316,7 +325,7 @@ export function useFitKit() {
       } catch (e) {
         Logger.error(e, {
           event: "authoriseFitKitTypes",
-          fitKitTypes: fitKitTypes.map((fitKitType) => fitKitType.toString()).join(", "),
+          fitKitTypes: fitKitTypesRead.map((fitKitType) => fitKitType.toString()).join(", "),
         });
         return false;
       }

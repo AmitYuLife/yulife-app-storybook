@@ -24,6 +24,7 @@ import { ScrollPickerModal } from "@components/modals";
 import { showYuModal } from "@navigation/root";
 import { getDailyCyclingMeasurement } from "@redux/daily-cycling/daily-cycling.selectors";
 import { GQL_QUERY_GET_MOBILE_REWARD_STORE_LOCATIONS } from "@graphql/rewards";
+import { t } from "@locale";
 
 interface IOwnProps {
   componentId: string;
@@ -167,6 +168,27 @@ function SettingsContainer({ componentId }: IOwnProps) {
     ],
   };
 
+  const permissionSettings = {
+    name: "permissionSettings",
+    title: "Permissions",
+    isVisible: features.showPermissionSettings,
+    items: [
+      {
+        title: t("screens.permissions.title"),
+        description: t("screens.permissions.description"),
+        value: "",
+        onPress: () => {
+          Navigation.push(ROUTES.settings, {
+            component: {
+              id: ROUTES.permissions,
+              name: ROUTES.permissions,
+            },
+          });
+        },
+      },
+    ],
+  };
+
   const connection = {
     title: "Fitness trackers",
     isVisible: features.showConnections,
@@ -231,7 +253,7 @@ function SettingsContainer({ componentId }: IOwnProps) {
     <>
       <SettingsScreen
         onPressClose={handleClose}
-        sections={[notification, gameSettings, connection, rewardStoreSettings]}
+        sections={[notification, gameSettings, connection, permissionSettings, rewardStoreSettings]}
       />
       {!isTimeModalVisible ? null : (
         <ScrollPickerModal pickers={pickers} onConfirm={handleTimeModalConfirm} onCancel={handleTimeModalCancel} />
