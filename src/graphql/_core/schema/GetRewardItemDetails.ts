@@ -11,7 +11,6 @@ import { ContentItemFormTextInputType } from "./globalTypes";
 
 export interface GetRewardItemDetails_getRewardItemDetails_confirmAlert {
   title: string;
-  message: string | null;
   okLabel: string;
   cancelLabel: string;
 }
@@ -21,6 +20,7 @@ export interface GetRewardItemDetails_getRewardItemDetails_availableDenomination
   stock: number | null;
   yuCoin: number | null;
   label: string | null;
+  alertMessage: string | null;
 }
 
 export interface GetRewardItemDetails_getRewardItemDetails_content_ContentItemText_styles {

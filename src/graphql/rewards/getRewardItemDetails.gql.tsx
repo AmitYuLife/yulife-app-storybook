@@ -15,7 +15,6 @@ export const GQL_QUERY_GET_REWARD_ITEM_DETAILS = gql`
       rewardSticker
       confirmAlert {
         title
-        message
         okLabel
         cancelLabel
       }
@@ -24,6 +23,7 @@ export const GQL_QUERY_GET_REWARD_ITEM_DETAILS = gql`
         stock
         yuCoin
         label
+        alertMessage
       }
       content {
         ... on ContentItemText {
