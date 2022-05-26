@@ -51,6 +51,8 @@ import { YuCoinIcon } from "./yucoin-icon";
 import { LockIcon } from "./lock";
 import { Stars1, Stars2, Stars3 } from "./stars-icon";
 import { InformationIcon } from "./information-icon";
+import { ExclamationIcon } from "./exclamation-icon";
+import { InfoIcon } from "./info-icon";
 
 export default {
   Clock,
@@ -108,4 +110,6 @@ export default {
   LockIcon,
   Stars3,
   InformationIcon,
+  ExclamationIcon,
+  InfoIcon,
 };

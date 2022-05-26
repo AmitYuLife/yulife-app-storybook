@@ -91,6 +91,38 @@ export async function openYulife() {
   });
 }
 
+export async function openGoogleFitApp() {
+  if (Platform.OS === "ios") {
+    return;
+  }
+
+  const playStoreId = "com.google.android.apps.fitness";
+  const deepLink = `android-app://${playStoreId}`;
+  openApp(deepLink, {
+    appName: "",
+    appStoreId: "",
+    playStoreId,
+  });
+}
+
+export async function openAppleHealthPrivacy() {
+  Linking.openURL("App-Prefs:Privacy&path=HEALTH");
+}
+
+export async function openSamsungHealthApp() {
+  if (Platform.OS === "ios") {
+    return;
+  }
+
+  const playStoreId = "com.sec.android.app.shealth";
+  const deepLink = `android-app://${playStoreId}`;
+  openApp(deepLink, {
+    appName: "",
+    appStoreId: "",
+    playStoreId,
+  });
+}
+
 export async function openGoogleFit() {
   return openStore({
     appName: "",

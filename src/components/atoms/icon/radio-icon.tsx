@@ -5,18 +5,14 @@ import { RADIO_ICON_COLOUR } from "@ids";
 
 interface IProps {
   checked: boolean;
+  height?: number;
+  width?: number;
 }
 
-export const RadioIcon = memo(({ checked }: IProps) => {
+export const RadioIcon = memo(({ checked, height = Style.adjust(16), width = Style.adjust(16) }: IProps) => {
   const colour = checked ? "#40C057" : "#FF5F5F";
   return (
-    <Svg
-      width={Style.adjust(16)}
-      height={Style.adjust(16)}
-      viewBox="0 0 16 16"
-      fill="none"
-      testID={RADIO_ICON_COLOUR(colour)}
-    >
+    <Svg width={width} height={height} viewBox="0 0 16 16" fill="none" testID={RADIO_ICON_COLOUR(colour)}>
       <Circle cx={8} cy={8} r={7.5} fill={colour} stroke={colour} />
       {checked ? (
         <Path

@@ -148,6 +148,10 @@ export default [
     name: ROUTES.levelSelector,
     component: require("../components/containers/member/debug/level-selector/level-selector.container").default,
   },
+  {
+    name: ROUTES.permissions,
+    component: require("../components/containers/member/permissions/permissions.container").default,
+  },
 
   // quests screens
   {
