@@ -11,7 +11,8 @@ import {
 import {
   RedeemReward,
   GetRewardItemDetails,
-  GetRewardItemDetails_getRewardItemDetails_confirmAlert,
+  GetRewardItemDetails_getRewardItemDetails_confirmAlert as ConfirmAlert,
+  GetRewardItemDetails_getRewardItemDetails_availableDenominations as Denomination,
 } from "@graphql/_core/schema";
 import { bottomTabs, MODALS, ROUTES } from "@navigation/constants";
 import { showYuModal } from "@navigation/root";
@@ -23,7 +24,6 @@ import Logger from "@services/logging/logger";
 import { RewardDetailsScreen, RewardDetailsLoadingScreen } from "@screens";
 import { useBackHandler } from "@hooks";
 import { AviosMetadata } from "@graphql/_core/schema/globalTypes";
-import { formatMoney } from "@services/money";
 import { ListPicker, ISelectInputOption } from "@molecules";
 import { showOverlayWithChild } from "@modals/blurred-overlay/showOverlayWithChild";
 
@@ -33,9 +33,8 @@ interface IProps {
 }
 
 interface IDisplayAlert {
-  confirmAlert: GetRewardItemDetails_getRewardItemDetails_confirmAlert;
-  denominationYuCoin: number;
-  amount: number;
+  confirmAlert: ConfirmAlert;
+  denomination: Denomination;
   rewardProviderId: string;
   code: string;
   metadata: AviosMetadata;
@@ -89,20 +88,8 @@ const RewardDetailsContainer: FC<IProps> = ({ rewardId }) => {
     });
   }, [loadingReward, data, totalCoins]);
 
-  const displayAlert = ({
-    confirmAlert,
-    denominationYuCoin,
-    amount,
-    rewardProviderId,
-    code,
-    metadata,
-    name,
-  }: IDisplayAlert) => {
-    const parsedMessage = confirmAlert.message
-      .replace("$PRICE", formatMoney(amount))
-      .replace("$YUCOIN", denominationYuCoin.toString());
-
-    Alert.alert(confirmAlert.title, parsedMessage, [
+  const displayAlert = ({ confirmAlert, denomination, rewardProviderId, code, metadata, name }: IDisplayAlert) => {
+    Alert.alert(confirmAlert.title, denomination.alertMessage, [
       {
         style: "cancel",
         text: confirmAlert.cancelLabel,
@@ -114,10 +101,10 @@ const RewardDetailsContainer: FC<IProps> = ({ rewardId }) => {
       {
         onPress: () => {
           if (rewardProviderId === "link") {
-            return redeemRewardLink(code, amount);
+            return redeemRewardLink(code, denomination.value);
           }
 
-          redeemRewardVoucher(code, amount, metadata);
+          redeemRewardVoucher(code, denomination.value, metadata);
         },
         text: confirmAlert.okLabel,
       },
@@ -208,20 +195,18 @@ const RewardDetailsContainer: FC<IProps> = ({ rewardId }) => {
     async (metadata?: AviosMetadata) => {
       const { rewardProviderId, confirmAlert, code, availableDenominations, name } = data.getRewardItemDetails;
 
-      let amount = availableDenominations[0].value;
-      let denominationYuCoin = availableDenominations[0].yuCoin;
+      let denomination = availableDenominations[0];
 
       if (availableDenominations.length > 1) {
         const onPress = async (option: ISelectInputOption) => {
-          denominationYuCoin = availableDenominations[option.value].yuCoin;
-          amount = availableDenominations[option.value].value;
+          denomination = availableDenominations[option.value];
           await Navigation.dismissOverlay(MODALS.blurredOverlay);
 
-          if (totalCoins < denominationYuCoin) {
+          if (totalCoins < denomination.yuCoin) {
             return notEnoughCoinsAlert();
           }
 
-          displayAlert({ confirmAlert, denominationYuCoin, rewardProviderId, code, amount, metadata, name });
+          displayAlert({ confirmAlert, denomination, rewardProviderId, code, metadata, name });
         };
 
         const options = availableDenominations.map(({ label }, index) => ({
@@ -239,7 +224,7 @@ const RewardDetailsContainer: FC<IProps> = ({ rewardId }) => {
 
         await showOverlayWithChild(child);
       } else {
-        displayAlert({ confirmAlert, denominationYuCoin, rewardProviderId, code, amount, metadata, name });
+        displayAlert({ confirmAlert, denomination, rewardProviderId, code, metadata, name });
       }
     },
     [data, redeemRewardLink, redeemRewardVoucher, totalCoins]
