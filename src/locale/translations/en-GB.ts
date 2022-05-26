@@ -82,12 +82,6 @@ export default {
         description:
           "Needed by the yulife app to read steps & mindful minutes data tracked in your Google Fit account.",
       },
-      fitnessActivityWrite: {
-        title: "Mindfulness activity (Write)",
-        requirement: "Requires: Activity recognition",
-        description:
-          "Needed by the Yulife app to sync mindful minutes from your meditation sessions to your Google Fit account.",
-      },
       distanceRead: {
         title: "Cycling tracking",
         requirement: "Requires: Activity recognition, Location",
@@ -124,10 +118,6 @@ export default {
       },
       mindfulnessRead: {
         title: "Mindfulness tracking (Read)",
-        description: "Needed by the yulife app to read mindful minutes data tracked in your Apple Health account.",
-      },
-      mindfulnessWrite: {
-        title: "Mindfulness tracking (Write)",
         description: "Needed by the yulife app to read mindful minutes data tracked in your Apple Health account.",
       },
       cyclingRead: {

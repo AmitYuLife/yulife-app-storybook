@@ -299,21 +299,12 @@ export function useFitKit() {
   );
 
   const authoriseFitKitTypes = useCallback(
-    async (
-      fitKitTypesRead: FitKitType[],
-      platform?: FitKitHealthTrackingPlatform,
-      checkState = true,
-      fitkitTypesWrite?: FitKitType[]
-    ) => {
+    async (fitKitTypesRead: FitKitType[], platform?: FitKitHealthTrackingPlatform, checkState = true) => {
       try {
         const options = await checkSystemPermissions({
           read: fitKitTypesRead.map(mapGqlFitKitTypeToFitKitType),
           platform,
         });
-
-        if (fitkitTypesWrite) {
-          options.write = fitkitTypesWrite.map(mapGqlFitKitTypeToFitKitType);
-        }
 
         const isAuthorised = await RNFitKit.authorise(options);
         if (checkState) {

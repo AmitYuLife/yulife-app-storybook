@@ -29,12 +29,10 @@ export interface SettingsPermissions {
 }
 
 const healthPermissionIDs = [
-  "google_fit_fitness_activity_write",
   "google_fit_steps_mindfulness",
   "google_fit_cycling",
   "apple_health_steps_read",
   "apple_health_mindfulness_read",
-  "apple_health_mindfulness_write",
   "apple_health_cycling_read",
   "apple_health_workout",
   "samsung_health_step_daily_trend",
@@ -80,16 +78,6 @@ const androidPermissions: Permissions[] = [
     checkStatus: async () => checkGoogleFitPermission({ read: [FitKitTypes.Types.StepCount], platform: "GoogleFit" }),
     type: FitKitType.StepCount,
     scope: "read",
-  },
-  {
-    id: "google_fit_fitness_activity_write",
-    title: t("permissions.android.fitnessActivityWrite.title"),
-    requirement: t("permissions.android.fitnessActivityWrite.requirement"),
-    description: t("permissions.android.fitnessActivityWrite.description"),
-    checkStatus: async () =>
-      checkGoogleFitPermission({ read: [], write: [FitKitTypes.Types.MindfulSession], platform: "GoogleFit" }),
-    type: FitKitType.MindfulSession,
-    scope: "write",
   },
   {
     id: "google_fit_cycling",
@@ -154,14 +142,6 @@ const iosPermissions: Permissions[] = [
     checkStatus: async () => checkIosHealthPermission(FitKitTypes.Types.MindfulSession),
     type: FitKitType.MindfulSession,
     scope: "read",
-  },
-  {
-    id: "apple_health_mindfulness_write",
-    title: t("permissions.ios.mindfulnessWrite.title"),
-    description: t("permissions.ios.mindfulnessWrite.description"),
-    checkStatus: async () => checkPermissionsStatus({ read: [], write: [FitKitTypes.Types.MindfulSession] }),
-    type: FitKitType.MindfulSession,
-    scope: "write",
   },
   {
     id: "apple_health_cycling_read",
@@ -269,11 +249,6 @@ export const checkPermissions = async (): Promise<SettingsPermissions> => {
 const checkGoogleFitPermission = async (options: FitKitAuthOptions): Promise<PermissionStatus> => {
   const isAuthorised = await RNFitKit.isAuthorised(options);
   return isAuthorised ? "authorised" : "denied";
-};
-
-const checkPermissionsStatus = async (options: FitKitAuthOptions): Promise<PermissionStatus> => {
-  const status = await RNFitKit.getAuthorisedStatus(options);
-  return status as PermissionStatus;
 };
 
 const checkAndroidSystemPermission = async (permission: Permission): Promise<PermissionStatus> => {
