@@ -55,14 +55,11 @@ const PermissionsScreen = ({ settingsPermissions, loading, updatePermissions }: 
       ios: "AppleHealth",
       android: showSamsungHealth ? "SamsungHealth" : "GoogleFit",
     });
-    const [fitkitTypesRead, fitkitTypesWrite] = !showSamsungHealth
-      ? [
-          healthPermission.filter((item) => item.scope === "read").map((item) => item.type as FitKitType),
-          healthPermission.filter((item) => item.scope === "write").map((item) => item.type as FitKitType),
-        ]
-      : [[], []];
+    const fitkitTypesRead = !showSamsungHealth
+      ? []
+      : healthPermission.filter((item) => item.scope === "read").map((item) => item.type as FitKitType);
 
-    await authoriseFitKitTypes(fitkitTypesRead, platform, true, fitkitTypesWrite);
+    await authoriseFitKitTypes(fitkitTypesRead, platform, true);
 
     if (Platform.OS === "ios") {
       await updatePermissions();
