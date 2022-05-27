@@ -4,6 +4,7 @@ import { View } from "react-native";
 import { TextTemplate } from "@atoms";
 import { styles } from "./_styles";
 import { t } from "@locale";
+import { GoogleFitIcon } from "@atoms/icon/google-fit-icon";
 
 interface IProps {
   connectGoogleFit: () => void;
@@ -14,6 +15,9 @@ const SwitchGoogleFitSection = ({ connectGoogleFit }: IProps) => {
     <>
       <View style={styles.settingsHeader}>
         <SettingsHeader title={"Google Fit"} />
+      </View>
+      <View style={styles.googleFitIconWrapper}>
+        <GoogleFitIcon height={80} width={80} />
       </View>
       <View style={styles.switchGoogleFitWrapper}>
         <TextTemplate type="b2">{t("screens.permissions.switchToGoogleFit")}</TextTemplate>

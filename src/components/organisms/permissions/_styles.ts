@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { Style } from "@styles";
+import { Colours, Style } from "@styles";
 
 export const styles = StyleSheet.create({
   settingsHeader: {
@@ -12,5 +12,29 @@ export const styles = StyleSheet.create({
   switchGoogleFitWrapper: {
     paddingHorizontal: Style.adjust(24),
     marginBottom: Style.adjust(32),
+  },
+  infoErrorWrapperStyle: {
+    marginTop: Style.adjust(24),
+    marginBottom: Style.adjust(24),
+    marginHorizontal: Style.adjust(24),
+    backgroundColor: "#FFF2F2",
+    borderColor: Colours.status.er300,
+    borderWidth: Style.adjust(1),
+  },
+  infoWrapperStyle: {
+    marginTop: Style.adjust(24),
+    marginBottom: Style.adjust(24),
+    marginHorizontal: Style.adjust(24),
+    backgroundColor: "#E6EDF9",
+    borderColor: "#5A89D8",
+    borderWidth: Style.adjust(1),
+  },
+  copyWrapperStyle: {
+    marginLeft: Style.adjust(72),
+    marginRight: Style.adjust(16),
+  },
+  googleFitIconWrapper: {
+    alignItems: "center",
+    marginBottom: Style.adjust(16),
   },
 });
