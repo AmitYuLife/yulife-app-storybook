@@ -10,6 +10,7 @@ import { handleLinkPress } from "@services/app-link";
 import { Navigation } from "react-native-navigation";
 import { ROUTES } from "@navigation/constants";
 import region from "@services/region";
+import { t } from "@locale";
 
 interface IProps {
   shouldPopToRoot?: boolean;
@@ -31,7 +32,7 @@ const AviosRewardConfirmedContainer = ({
   },
 }: IProps) => {
   const copy = useSelector(getPurchasesCopy);
-  const purchaseDate = moment(new Date(createdAt).toISOString()).format("DD MMM YYYY");
+  const purchaseDate = moment(new Date(createdAt).toISOString()).format(t("format.date_readable"));
 
   const showIntercom = useCallback(() => {
     Intercom.displayMessenger();

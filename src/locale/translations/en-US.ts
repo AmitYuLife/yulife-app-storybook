@@ -1,6 +1,7 @@
 export default {
   format: {
     date_short: "MM/DD/YYYY",
+    date_readable: "MMMM DD, YYYY",
   },
   validator: {
     email: "Please enter a valid email address.",
