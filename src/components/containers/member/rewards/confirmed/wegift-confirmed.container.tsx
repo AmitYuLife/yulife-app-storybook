@@ -9,6 +9,7 @@ import Logger from "@services/logging/logger";
 import { Navigation } from "react-native-navigation";
 import { ROUTES } from "@navigation/constants";
 import region from "@services/region";
+import { t } from "@locale";
 
 interface IProps {
   componentId: string;
@@ -33,20 +34,20 @@ class WegiftRewardConfirmedContainer extends Component<IProps, IState> {
 
     const { isAccessingUrl } = this.state;
 
-    const purchaseDate = moment(new Date(createdAt).toISOString()).format("DD MMM YYYY");
+    const purchaseDate = moment(new Date(createdAt).toISOString()).format(t("format.date_readable"));
 
     const validDate = expiry_date
-      ? moment(new Date(expiry_date).toISOString()).format("DD MMM YYYY")
+      ? moment(new Date(expiry_date).toISOString()).format(t("format.date_readable"))
       : expiry_date_policy || null;
 
     return (
       <WegiftRewardConfirmedScreen
         rewardName={name}
-        redeemInstructions={(reward && reward.redeem_steps.steps) || []}
-        description={(reward && reward.description) || ""}
+        redeemInstructions={reward?.redeem_steps?.steps || []}
+        description={reward?.description || ""}
         purchaseDate={purchaseDate}
         validDate={validDate}
-        imageUrl={(reward && reward?.cardImage?.uri) || ""}
+        imageUrl={reward?.cardImage?.uri || ""}
         onPressCancel={this.goToRewards}
         onPressConfirm={this.linkToUrl}
         isLoadingConfirmAction={isAccessingUrl}

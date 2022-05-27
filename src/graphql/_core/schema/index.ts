@@ -134,6 +134,7 @@ export * from "./GetUserSurge";
 export * from "./GetWellbeingHubItem";
 export * from "./GetWellbeingHubItems";
 export * from "./GetYuScreenProductDetails";
+export * from "./GetYuScreenProductSurvey";
 export * from "./GetYulifer";
 export * from "./GetYuliferWithAvatar";
 export * from "./GetYumojiBuilderCategoryList";
