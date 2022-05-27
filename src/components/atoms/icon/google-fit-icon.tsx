@@ -2,8 +2,13 @@ import React, { memo } from "react";
 import { Style } from "@styles";
 import Svg, { Path } from "react-native-svg";
 
-export const GoogleFitIcon = memo(() => (
-  <Svg width={Style.adjust(41)} height={Style.adjust(40)} viewBox="0 0 41 40" fill="none">
+interface Props {
+  height?: number;
+  width?: number;
+}
+
+export const GoogleFitIcon = memo(({ width = 41, height = 40 }: Props) => (
+  <Svg width={Style.adjust(width)} height={Style.adjust(height)} viewBox="0 0 41 40" fill="none">
     <Path
       d="M4.077 21.47l2.015 2.04 4.352-4.388-1.998-2.04-.914-.926a3.846 3.846 0 01-1.118-2.743c0-.908.305-1.731.83-2.383.71-.908 1.795-1.49 3.014-1.49 1.033 0 1.981.41 2.726 1.148l.898.874 2.015 2.057 4.369-4.389-2.032-2.04-.915-.89c-1.812-1.835-4.3-2.967-7.061-2.967C4.72 3.333.25 7.86.25 13.431c0 1.388.27 2.708.779 3.925a9.847 9.847 0 002.15 3.206l.898.909z"
       fill="#EA4335"

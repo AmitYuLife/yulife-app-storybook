@@ -6,6 +6,7 @@ import { Colours, Style } from "@styles";
 import Markdown from "../markdown/markdown";
 import { styles as textTemplateStyle } from "@components/atoms/text/text-template";
 import { RemoteImage } from "@graphql/_core/schema";
+import { YugiInfoStatus } from "@atoms/icon/yugi-status-info";
 
 export type BannerType = "success" | "info" | "warning" | "error" | "neutral";
 
@@ -15,9 +16,19 @@ interface Props {
   remoteImage?: RemoteImage;
   copyType?: "sparse" | "dense";
   wrapperStyle?: ViewStyle;
+  copyWrapperStyle?: ViewStyle;
+  iconType?: BannerType;
 }
 
-const InfoPanel = ({ markdown, remoteImage, type = "warning", wrapperStyle, copyType = "sparse" }: Props) => {
+const InfoPanel = ({
+  markdown,
+  remoteImage,
+  type = "warning",
+  wrapperStyle,
+  copyWrapperStyle,
+  copyType = "sparse",
+  iconType,
+}: Props) => {
   const styleWrapper = useMemo(() => {
     return [styles.wrapper, getBannerTheme(type), wrapperStyle];
   }, [type, wrapperStyle]);
@@ -25,9 +36,11 @@ const InfoPanel = ({ markdown, remoteImage, type = "warning", wrapperStyle, copy
   return (
     <View style={styleWrapper}>
       <View style={styles.imageWrapper}>
-        {remoteImage ? <Image width={Style.adjust(56)} source={remoteImage} /> : <YugiStatusIcon />}
+        {remoteImage ? <Image width={Style.adjust(56)} source={remoteImage} /> : getYugiStatusIcon(iconType)}
       </View>
-      <View style={[styles.copyWrapper, { paddingVertical: Style.adjust(copyType === "sparse" ? 8 : 0) }]}>
+      <View
+        style={[styles.copyWrapper, copyWrapperStyle, { paddingVertical: Style.adjust(copyType === "sparse" ? 8 : 0) }]}
+      >
         <Markdown markdownStyles={copyType === "sparse" ? sparseMarkdownStyles : denseMarkdownStyles} text={markdown} />
       </View>
     </View>
@@ -66,6 +79,19 @@ function getBannerTheme(bannerType: BannerType) {
       return { backgroundColor: Colours.status.er100 };
     default:
       return { backgroundColor: Colours.neutral.n100 };
+  }
+}
+
+function getYugiStatusIcon(bannerType: BannerType) {
+  switch (bannerType) {
+    case "warning":
+      return <YugiInfoStatus />;
+    case "info":
+      return <YugiInfoStatus />;
+    case "error":
+      return <YugiInfoStatus color={Colours.status.er300} />;
+    default:
+      return <YugiStatusIcon />;
   }
 }
 

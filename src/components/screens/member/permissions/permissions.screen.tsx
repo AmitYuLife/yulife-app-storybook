@@ -9,8 +9,6 @@ import { Style } from "@styles";
 import React, { memo, useCallback, useMemo } from "react";
 import { Platform, ScrollView, StyleSheet, View } from "react-native";
 import { useFitKit } from "@services/fitkit/fitkit.hooks";
-import { Navigation } from "react-native-navigation";
-import { ROUTES } from "@navigation/constants";
 import { isSamsung } from "@utils";
 import { FitKitHealthTrackingPlatform } from "@yu-life/react-native-fitkit";
 import FitKitPermissions from "@services/fitkit/fitkit.permissions";
@@ -24,9 +22,17 @@ interface IProps {
   loading: boolean;
   settingsPermissions: SettingsPermissions;
   updatePermissions: () => Promise<void>;
+  onLeftIconPress: () => void;
+  onRightIconPress: () => void;
 }
 
-const PermissionsScreen = ({ settingsPermissions, loading, updatePermissions }: IProps) => {
+const PermissionsScreen = ({
+  settingsPermissions,
+  loading,
+  updatePermissions,
+  onLeftIconPress,
+  onRightIconPress,
+}: IProps) => {
   const {
     systemPermission,
     healthPermission,
@@ -37,7 +43,6 @@ const PermissionsScreen = ({ settingsPermissions, loading, updatePermissions }: 
 
   const { authoriseFitKitTypes, authorise } = useFitKit();
   const features = useSelector(getUserFeatures);
-  const onPressBack = useCallback(() => Navigation.pop(ROUTES.permissions), []);
   const connectGoogleFit = useCallback(async () => {
     await authorise({ ...FitKitPermissions(features.passiveCyclingEnabled), platform: "GoogleFit" });
   }, []);
@@ -55,7 +60,8 @@ const PermissionsScreen = ({ settingsPermissions, loading, updatePermissions }: 
       ios: "AppleHealth",
       android: showSamsungHealth ? "SamsungHealth" : "GoogleFit",
     });
-    const fitkitTypesRead = !showSamsungHealth
+
+    const fitkitTypesRead = showSamsungHealth
       ? []
       : healthPermission.filter((item) => item.scope === "read").map((item) => item.type as FitKitType);
 
@@ -81,7 +87,11 @@ const PermissionsScreen = ({ settingsPermissions, loading, updatePermissions }: 
 
         {!showSamsungHealth ? null : <SwitchGoogleFitSection connectGoogleFit={connectGoogleFit} />}
       </ScrollView>
-      <GenericHeadingAbsolute heading={t("screens.permissions.heading")} onLeftIconPress={onPressBack} />
+      <GenericHeadingAbsolute
+        heading={t("screens.permissions.heading")}
+        onLeftIconPress={onLeftIconPress}
+        onRightIconPress={onRightIconPress}
+      />
     </View>
   );
 };

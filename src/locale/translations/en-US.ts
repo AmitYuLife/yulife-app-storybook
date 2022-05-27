@@ -54,6 +54,12 @@ export default {
       switchToGoogleFit:
         "Samsung Health does not currently sync all the data we need in order to reward you for your activities. To sync mindful minutes, cycling & 3rd party apps, please switch to Google Fit.",
       heading: "Permissions",
+      statusUnknown:
+        "**Status: Unknown**\nWe can not determine the status of the permission. Probably all is in working order.",
+      statusDisconnected:
+        "**Status: Disconnected**\nTo reconnect check your phone settings. Please [visit our FAQ](https://faq.yulife.com/en/collections/728876-yulife-app-and-game) for additional help.",
+      statusAskPermissions:
+        "**Ask for permission**\nTo connect use the “Connect” button. Please [visit our FAQ](https://faq.yulife.com/en/collections/728876-yulife-app-and-game) for additional help.",
       systemSection: {
         header: "System Permission",
         secondaryButton: "System Settings",
