@@ -158,20 +158,20 @@ export const tapBuyButton = (reward: any, index = 0) => async () => {
     await buttonText.longPress()
 }
 
-export const onRewardPurchasedScreen = (reward: any, index = 0) => async () => {
+export const onRewardPurchasedScreen = (reward: any, locale = "en-GB", index = 0) => async () => {
     const cardImageURL = element(by.id(PURCHASE_IMAGE(reward.data.card_image_url)))
     const description = reward.data.description
     const howtoRedeem = reward.data.redeem_steps.steps[index]
 
     const expiryPolicy = reward.data.expiry_date_policy
-    const purchaseDate = moment().format("DD MMM YYYY")
+    const purchaseDate = moment().format(locale === "en-US" ? "MMM DD, YYYY" : "DD MMM YYYY")
     let expiryDate;
+
 
     switch (expiryPolicy) {
         case "24 months from last activity":
             expiryDate = moment().add(24, "months").format("DD MMM YYYY")
     }
-
     await expect(element(by.id(WEGIFT_CONFIRMED))).toBeVisible()
     await expect(cardImageURL).toBeVisible()
 
