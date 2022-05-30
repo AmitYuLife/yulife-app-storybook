@@ -54,7 +54,7 @@ const _LeaderboardContentContainer = ({
   const [scrollValue] = useState(new Animated.Value(0));
   const [flatListHeight, setFlatListHeight] = useState(0);
   const flatListRef: RefObject<_FlatList> = useRef();
-  const timer = useRef<NodeJS.Timeout>(null);
+  const timer = useRef<ReturnType<typeof setTimeout>>(null);
   const leaderboardItems = query?.getLeaderboard || [];
   const myLeaderboardItem = leaderboardItems.find((item) => item.userId === currentUserId);
   const setDuelDialog = useCallback(

@@ -24,7 +24,7 @@ export default class AnimatedPlusPoints extends React.PureComponent<IProps, ISta
     scale: new Animated.Value(1),
   };
 
-  public timeout: NodeJS.Timeout = null;
+  public timeout: ReturnType<typeof setTimeout> = null;
 
   public componentDidMount() {
     const { translateX, translateY, scale } = this.state;

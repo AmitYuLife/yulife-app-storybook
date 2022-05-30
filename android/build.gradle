@@ -51,6 +51,7 @@ allprojects {
         jcenter() {
             content {
                 includeModule("com.eightbitlab", "blurview")
+                includeModule("com.yqritc", "android-scalablevideoview")
             }
         }
     }

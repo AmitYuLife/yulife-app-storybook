@@ -2,7 +2,7 @@ import FastImage, { Source } from "react-native-fast-image";
 import Logger from "@services/logging/logger";
 
 const queue: Source[] = [];
-let timer: NodeJS.Timeout | null = null;
+let timer: ReturnType<typeof setInterval> | null = null;
 
 const BATCH_SIZE = 15;
 const TIMEOUT = 5000; //ms

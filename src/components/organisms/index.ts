@@ -16,3 +16,5 @@ export { default as CustomIcon } from "./custom-icon/custom-icon";
 export { default as SystemPermissionsSection } from "./permissions/system-permissions";
 export { default as HealthPermissionsSection } from "./permissions/health-permissions";
 export { default as SwitchGoogleFitSection } from "./permissions/switch-google-fit";
+export { default as VideoPlayer } from "./video-player/video-player";
+export { default as YuCoinCounter } from "./yucoin-counter/yucoin-counter";

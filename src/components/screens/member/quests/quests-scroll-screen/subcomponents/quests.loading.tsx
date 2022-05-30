@@ -15,7 +15,7 @@ function _QuestsLoadingOverlay(props: Props) {
   const [loadingClone, setLoadingClone] = useState(loading);
 
   useEffect(() => {
-    let timeout: NodeJS.Timer = null;
+    let timeout: ReturnType<typeof setTimeout> = null;
 
     if (!loading) {
       timeout = setTimeout(() => {

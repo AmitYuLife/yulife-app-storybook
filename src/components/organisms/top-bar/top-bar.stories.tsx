@@ -1,7 +1,7 @@
 import React from "react";
 import { View } from "react-native";
 import { storiesOf } from "@storybook/react-native";
-import { withKnobs, text, number, boolean } from "@storybook/addon-knobs";
+import { withKnobs, text, boolean } from "@storybook/addon-knobs";
 import moment from "moment";
 import TopBar from "./top-bar";
 import { TOP_BAR_TYPES, TopBarLeftIconTypes } from "./top-bar.helpers";
@@ -14,7 +14,6 @@ storiesOf("TopBar", module)
   .add("default", () => (
     <TopBar
       onPressLeftIcon={() => null}
-      coins={number("coins", 0)}
       name={text("name", "name")}
       menuLabel={text("menuLabel", "")}
       leftIcon={TopBarLeftIconTypes.BACK}
@@ -26,7 +25,6 @@ storiesOf("TopBar", module)
   .add("timer", () => (
     <TopBar
       onPressLeftIcon={() => null}
-      coins={number("coins", 0)}
       timer={moment().add(1, "minute").toString()}
       name={text("name", "")}
       menuLabel={text("menuLabel", "brisk walk")}

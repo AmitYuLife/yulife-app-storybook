@@ -87,7 +87,7 @@ const logoHashMap = {
   calm: Icon.Calm,
   headspace: Icon.Headspace,
   fiit: Icon.Fiit,
-  meditopia: Icon.Meditopia,
+  meditopia: Icon.MeditopiaLogoWithText,
 } as Record<IconType, () => JSX.Element>;
 
 export default ImageButton;

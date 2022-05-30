@@ -9,7 +9,7 @@ export function useDebouncedQuery<TData, TVariables>(
   timeout = 750,
   initialQuery?: TVariables
 ): [(variables?: TVariables) => void, QueryResult<TData, TVariables>] {
-  const timerId = React.useRef<NodeJS.Timeout>(null);
+  const timerId = React.useRef<ReturnType<typeof setTimeout>>(null);
   const [query, res] = useLazyQuery<TData, TVariables>(gql, options);
 
   const fireQuery = useCallback((variables: TVariables) => {

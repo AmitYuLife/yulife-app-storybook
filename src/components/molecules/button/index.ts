@@ -3,3 +3,4 @@ export * from "./secondary-button/secondary-button";
 export * from "./link-button/link-button";
 export * from "./tertiary-button/tertiary-button";
 export * from "./image-button";
+export * from "./video-player-button/video-player-button";

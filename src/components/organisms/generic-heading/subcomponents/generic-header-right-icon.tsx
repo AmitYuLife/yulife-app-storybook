@@ -1,12 +1,11 @@
 import React from "react";
 import { Image, View } from "react-native";
 import { CloseSvg, EditSvg, Text } from "@atoms";
-import { Button } from "@molecules";
-import { TOP_BAR } from "@styles";
-import { IGenericHeadingProps } from "@organisms";
+import { Button, TouchableOpacityWithDelay } from "@molecules";
+import { TOP_BAR, Colours } from "@styles";
+import { IGenericHeadingProps, YuCoinCounter } from "@organisms";
 import PlusSvg from "@atoms/plus/plus-svg";
 import styles from "../generic-heading.styles";
-import { TouchableOpacityWithDelay } from "@molecules";
 
 type IIcon = IGenericHeadingProps["rightIcon"];
 
@@ -81,6 +80,14 @@ const getIcon = (icon: IIcon, color: string) => {
           {icon}
         </Text>
       );
+
+    case "COINS":
+      return (
+        <View style={styles.rightIconCoinsWrapper}>
+          <YuCoinCounter colour={Colours.neutral.white} textStyle={styles.rightIconCoinsTextColour} />
+        </View>
+      );
+
     default:
       return null;
   }

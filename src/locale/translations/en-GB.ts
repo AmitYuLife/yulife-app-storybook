@@ -7,6 +7,7 @@ export default {
     email: "Please enter a valid email address.",
     password: "Please enter a password.",
   },
+  meditation: "Meditation",
   screens: {
     login: {
       heading: "Welcome!",
