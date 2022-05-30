@@ -2,11 +2,17 @@ import { dataManager } from "@yu-life/yulife-bdd-framework";
 import { NAV_BAR } from '@ids';
 import { dismissNewLooksModalIfVisible } from "./login";
 
-export const restart = async () => {
+export const restart = async (locale = "en-GB") => {
     await device.terminateApp();
     await dataManager.reseed();
     await device.clearKeychain();
-    await device.launchApp({ delete: true, });
+    await device.launchApp({ 
+        delete: true,
+        languageAndLocale: {
+            language: locale,
+            locale: locale
+          }
+    });
 }
 
 export const restartWithData = async () => {
@@ -29,9 +35,9 @@ export const start = async () => {
     });
 }
 
-export const startWithoutLaunch = async () => {
+export const startWithoutLaunch = (locale = "en-GB") => async () => {
     await dataManager.reseed();
-    await restart();
+    await restart(locale);
 }
 
 export const reloadAppToTab = (tab: "yucoin" | "quests" | "leaderboard" | "rewards") => async () => {
