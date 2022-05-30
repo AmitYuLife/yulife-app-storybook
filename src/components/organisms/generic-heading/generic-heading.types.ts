@@ -15,7 +15,7 @@ export interface IGenericHeadingProps {
   color?: string;
 }
 
-type IRightIcon = "SETTINGS" | "CLOSE" | "EDIT" | "PLUS" | "Done" | "SAVE";
+type IRightIcon = "SETTINGS" | "CLOSE" | "EDIT" | "PLUS" | "Done" | "SAVE" | "COINS";
 
 type ILeftIcon = "BACK" | "CLOSE";
 

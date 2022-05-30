@@ -84,6 +84,7 @@ export const ROUTES = {
 
   //debug
   levelSelector: "yulife.debug.levelSelector",
+  videoPlayer: "yulife.debug.videoPlayer",
 };
 
 export const MODALS = {

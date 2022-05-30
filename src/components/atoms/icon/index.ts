@@ -12,7 +12,7 @@ import { AppStoreIcon } from "./app-store-icon";
 import { StreakTicks } from "./streak-ticks";
 import { Calm } from "./calm";
 import { Headspace } from "./headspace";
-import { Meditopia } from "./meditopia";
+import { MeditopiaLogoWithText, MeditopiaLogoIcon } from "./meditopia";
 import { CopyIcon } from "./copy-icon";
 import { HeightSvgIcon } from "./height-icon";
 import { WeighingScaleSvg } from "./weighing-scale-icon";
@@ -53,6 +53,7 @@ import { Stars1, Stars2, Stars3 } from "./stars-icon";
 import { InformationIcon } from "./information-icon";
 import { ExclamationIcon } from "./exclamation-icon";
 import { InfoIcon } from "./info-icon";
+import { CoinsIcon } from "./coins-icon";
 
 export default {
   Clock,
@@ -70,7 +71,8 @@ export default {
   Calm,
   Fiit,
   Headspace,
-  Meditopia,
+  MeditopiaLogoWithText,
+  MeditopiaLogoIcon,
   CopyIcon,
   HeightSvgIcon,
   WeighingScaleSvg,
@@ -112,4 +114,5 @@ export default {
   InformationIcon,
   ExclamationIcon,
   InfoIcon,
+  CoinsIcon,
 };

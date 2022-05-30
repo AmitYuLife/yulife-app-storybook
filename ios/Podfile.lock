@@ -295,10 +295,17 @@ PODS:
   - react-native-mixpanel (1.2.5):
     - Mixpanel (~> 3.6.0)
     - React
+  - react-native-music-control (1.4.1):
+    - React-Core
   - react-native-netinfo (5.9.2):
     - React
   - react-native-slider (3.0.3):
     - React
+  - react-native-video (5.2.0):
+    - React-Core
+    - react-native-video/Video (= 5.2.0)
+  - react-native-video/Video (5.2.0):
+    - React-Core
   - react-native-webview (11.0.0):
     - React-Core
   - React-perflogger (0.64.2)
@@ -465,8 +472,10 @@ DEPENDENCIES:
   - react-native-in-app-review (from `../node_modules/react-native-in-app-review`)
   - "react-native-leanplum (from `../node_modules/@leanplum/react-native-sdk`)"
   - react-native-mixpanel (from `../node_modules/react-native-mixpanel`)
+  - react-native-music-control (from `../node_modules/react-native-music-control`)
   - "react-native-netinfo (from `../node_modules/@react-native-community/netinfo`)"
   - "react-native-slider (from `../node_modules/@react-native-community/slider`)"
+  - react-native-video (from `../node_modules/react-native-video`)
   - react-native-webview (from `../node_modules/react-native-webview`)
   - React-perflogger (from `../node_modules/react-native/ReactCommon/reactperflogger`)
   - React-RCTActionSheet (from `../node_modules/react-native/Libraries/ActionSheetIOS`)
@@ -571,10 +580,14 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@leanplum/react-native-sdk"
   react-native-mixpanel:
     :path: "../node_modules/react-native-mixpanel"
+  react-native-music-control:
+    :path: "../node_modules/react-native-music-control"
   react-native-netinfo:
     :path: "../node_modules/@react-native-community/netinfo"
   react-native-slider:
     :path: "../node_modules/@react-native-community/slider"
+  react-native-video:
+    :path: "../node_modules/react-native-video"
   react-native-webview:
     :path: "../node_modules/react-native-webview"
   React-perflogger:
@@ -635,7 +648,7 @@ SPEC CHECKSUMS:
   CocoaAsyncSocket: 065fd1e645c7abab64f7a6a2007a48038fdc6a99
   DoubleConversion: cf9b38bf0b2d048436d9a82ad2abe1404f11e7de
   FBLazyVector: e686045572151edef46010a6f819ade377dfeb4b
-  FBReactNativeSpec: 0d2cbdcbb46bee95307b6fedd08312747f52fba2
+  FBReactNativeSpec: 0816bb5d9082d853d51ca095e11d2423f07e6105
   Flipper: d3da1aa199aad94455ae725e9f3aa43f3ec17021
   Flipper-DoubleConversion: 38631e41ef4f9b12861c67d17cb5518d06badc41
   Flipper-Folly: 755929a4f851b2fb2c347d533a23f191b008554c
@@ -671,8 +684,10 @@ SPEC CHECKSUMS:
   react-native-in-app-review: 1519011cfb31817aa8bf7814e2290311fd26ed99
   react-native-leanplum: 028cea04d72c6a798b0ab3c8aa9803c072f26b1a
   react-native-mixpanel: 5d0bcea791fd938c35138be2d00e50e19b9de601
+  react-native-music-control: 3fc719c179a6562e18af1ac6e30ba9e33b397a31
   react-native-netinfo: cb74e17062b2af5a16a4b137f32495f241df1a8e
   react-native-slider: e99fc201cefe81270fc9d81714a7a0f5e566b168
+  react-native-video: a4c2635d0802f983594b7057e1bce8f442f0ad28
   react-native-webview: 6b7950628616679d81bdd75747e50cf6de9b5a5f
   React-perflogger: 25373e382fed75ce768a443822f07098a15ab737
   React-RCTActionSheet: af7796ba49ffe4ca92e7277a5d992d37203f7da5

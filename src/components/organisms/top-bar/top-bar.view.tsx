@@ -7,7 +7,6 @@ import Left, { LeftIconTypes } from "./subcomponents/left";
 import Right from "./subcomponents/right";
 
 const TopBarView = ({
-  coins,
   leftIcon = "Menu" as LeftIconTypes,
   leftIconHasBadge = false,
   menuLabel,
@@ -33,13 +32,7 @@ const TopBarView = ({
         textStyle={textStyle}
       />
       <Center name={name} timer={timer} logoColour={logoColour} colour={colour} textStyle={textStyle} />
-      <Right
-        icon={rightIcon}
-        shouldHighlightCoins={shouldHighlightCoins}
-        coins={coins}
-        colour={colour}
-        textStyle={textStyle}
-      />
+      <Right icon={rightIcon} shouldHighlightCoins={shouldHighlightCoins} colour={colour} textStyle={textStyle} />
     </View>
   );
 };

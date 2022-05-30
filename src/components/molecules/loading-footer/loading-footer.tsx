@@ -4,7 +4,7 @@ import { ActivityIndicator, Animated, StyleSheet, Text, View } from "react-nativ
 import { LoadingFooterStateType, NormalFooter } from "react-native-spring-scrollview";
 
 export default class YulifeLoadingFooter extends NormalFooter {
-  private timer: NodeJS.Timer;
+  private timer: ReturnType<typeof setTimeout>;
 
   public componentDidUpdate(_: any, prevState: LoadingFooterStateType) {
     if (this.state.status === "rebound" && prevState.status !== "rebound") {

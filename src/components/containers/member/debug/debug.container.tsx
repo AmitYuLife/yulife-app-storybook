@@ -24,6 +24,7 @@ const DebugContainer: React.FC<Props> = (props) => {
 
   const list = [
     "level-selector",
+    "video-player",
     ...(data?.getDebugCodes || []),
     "send-test-push",
     `toggle-leanplum(${Logger.leanplum.isDevMode ? "dev" : "prod"})`,
@@ -42,6 +43,15 @@ const DebugContainer: React.FC<Props> = (props) => {
             component: {
               id: ROUTES.levelSelector,
               name: ROUTES.levelSelector,
+            },
+          });
+        }
+
+        if (code === "video-player") {
+          return Navigation.push(props.componentId, {
+            component: {
+              id: ROUTES.videoPlayer,
+              name: ROUTES.videoPlayer,
             },
           });
         }

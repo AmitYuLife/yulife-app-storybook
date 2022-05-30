@@ -1,0 +1,112 @@
+import MusicControl from "react-native-music-control";
+
+export enum ActionTypes {
+  PAUSE_PLAYER = "PAUSE_PLAYER",
+  PLAY_PLAYER = "PLAY_PLAYER",
+  SET_DURATION = "SET_DURATION",
+  SET_CURRENT_PROGRESS = "SET_CURRENT_PROGRESS",
+  SET_LOADING = "SET_LOADING",
+  SET_MUSIC_CONTROL_MOUNTED = "SET_MUSIC_CONTROL_MOUNTED",
+  SET_SHOW_FOCUS_SCREEN = "SET_SHOW_FOCUS_SCREEN",
+}
+
+export interface IState {
+  durationInMilliSeconds: number;
+  durationInSeconds: number;
+  currentProgressInMilliSeconds: number;
+  currentProgressInSeconds: number;
+  musicControlMounted: boolean;
+  loading: boolean;
+  isPaused: boolean;
+  showFocusScreen: boolean;
+}
+
+export interface IAction {
+  type: ActionTypes;
+  payload?: any;
+}
+
+export const INITIAL_STATE: IState = {
+  durationInMilliSeconds: 0,
+  durationInSeconds: 0,
+  currentProgressInMilliSeconds: 0,
+  currentProgressInSeconds: 0,
+  musicControlMounted: false,
+  loading: false,
+  isPaused: true,
+  showFocusScreen: false,
+};
+
+export const setMusicControlInitialConfig = () => {
+  MusicControl.enableBackgroundMode(true);
+  MusicControl.enableControl("play", true);
+  MusicControl.enableControl("pause", true);
+  MusicControl.enableControl("stop", false);
+  MusicControl.enableControl("nextTrack", false);
+  MusicControl.enableControl("previousTrack", false);
+  MusicControl.enableControl("seekForward", false);
+  MusicControl.enableControl("seekBackward", false);
+  MusicControl.enableControl("seek", false);
+  MusicControl.enableControl("setRating", false);
+  MusicControl.enableControl("volume", true);
+  MusicControl.enableControl("remoteVolume", true);
+  MusicControl.enableControl("enableLanguageOption", false);
+  MusicControl.enableControl("disableLanguageOption", false);
+  MusicControl.enableControl("closeNotification", true, { when: "never" });
+};
+
+export const reducer = (state: IState, action: IAction): IState => {
+  switch (action.type) {
+    case ActionTypes.SET_CURRENT_PROGRESS: {
+      return {
+        ...state,
+        currentProgressInMilliSeconds: action.payload,
+        currentProgressInSeconds: action.payload / 1000,
+      };
+    }
+
+    case ActionTypes.SET_DURATION: {
+      return {
+        ...state,
+        durationInSeconds: action.payload / 1000,
+        durationInMilliSeconds: action.payload,
+      };
+    }
+
+    case ActionTypes.SET_LOADING: {
+      return {
+        ...state,
+        loading: action.payload,
+      };
+    }
+
+    case ActionTypes.SET_MUSIC_CONTROL_MOUNTED: {
+      return {
+        ...state,
+        musicControlMounted: true,
+        isPaused: false,
+      };
+    }
+
+    case ActionTypes.PLAY_PLAYER: {
+      return {
+        ...state,
+        isPaused: false,
+      };
+    }
+
+    case ActionTypes.PAUSE_PLAYER: {
+      return {
+        ...state,
+        isPaused: true,
+      };
+    }
+
+    case ActionTypes.SET_SHOW_FOCUS_SCREEN: {
+      return {
+        ...state,
+        showFocusScreen: action.payload,
+      };
+    }
+  }
+};

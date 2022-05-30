@@ -1,40 +1,28 @@
 import React from "react";
-import { Platform, StyleSheet, ViewStyle, TextStyle, View } from "react-native";
-import { Style, Colours } from "@styles/index";
-import { Coins } from "../assets";
-import { Counter, TouchableOpacityWithDelay } from "@components/molecules";
+import { Platform, StyleSheet, ViewStyle, TextStyle } from "react-native";
+import { Style } from "@styles/index";
+import { TouchableOpacityWithDelay } from "@components/molecules";
 import { labels } from "@navigation/root";
+
+import { YuCoinCounter } from "@organisms";
 
 export type RightIconTypes = "Coins";
 
 interface Props {
-  coins?: number;
   textStyle?: TextStyle;
   shouldHighlightCoins?: boolean;
   colour?: string;
   icon?: RightIconTypes;
 }
 
-export default function Right({ coins = 0, shouldHighlightCoins, textStyle, colour, icon }: Props) {
+export default function Right({ shouldHighlightCoins, textStyle, colour, icon }: Props) {
   if (!icon) {
     return null;
   }
 
   return (
     <TouchableOpacityWithDelay onPress={labels[4].onPress} style={styles.coinsWrapper}>
-      <View style={styles.coinsTextWrapper}>
-        <Counter
-          value={coins || 0}
-          textStyle={StyleSheet.flatten([
-            styles.coinsText,
-            textStyle,
-            shouldHighlightCoins ? { color: Colours.darkHotPink } : null,
-          ])}
-        />
-      </View>
-      <View style={styles.coinsLogoWrapper}>
-        <Coins color={shouldHighlightCoins ? Colours.darkHotPink : colour} />
-      </View>
+      <YuCoinCounter shouldHighlightCoins={shouldHighlightCoins} textStyle={textStyle} colour={colour} />
     </TouchableOpacityWithDelay>
   );
 }
@@ -53,11 +41,8 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   } as ViewStyle,
   coinsWrapper: {
-    alignItems: "center",
-    flexDirection: "row",
     position: "absolute",
     right: Style.adjust(15),
-    height: Style.adjust(30),
     top: Platform.select({ ios: 2, android: Style.adjust(8) }),
   } as ViewStyle,
 });

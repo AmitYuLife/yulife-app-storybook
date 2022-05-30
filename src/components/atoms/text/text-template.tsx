@@ -17,7 +17,8 @@ export type ITextTemplateType =
   | "l3"
   | "l3b"
   | "l4"
-  | "l4b";
+  | "l4b"
+  | "time";
 
 interface IProps {
   testID?: string;
@@ -140,6 +141,12 @@ export const styles = StyleSheet.create({
     fontSize: Style.adjust(8),
     lineHeight: Style.adjust(16),
     letterSpacing: getLetterSpacing(Style.adjust(0.4)),
+  },
+  time: {
+    fontFamily: Style.FONT_FAMILY_PRIMARY_BOLD,
+    fontSize: Style.adjust(48),
+    lineHeight: Style.adjust(44),
+    letterSpacing: getLetterSpacing(Style.adjust(1)),
   },
   underline: {
     textDecorationLine: "underline",
