@@ -115,7 +115,7 @@ Feature("As a user I can get past the login screen", async () => {
     Scenario("As an archived user, I should not be able to login", scenario.start, async () => {
         Given("I login as an archived user", given.loginOnly(CUSTOMER_ARCHIVED, AUTH_ARCHIVED), async () => {
             Then("I should see 'Sorry'!", then.textVisible("Sorry!"))
-            Then("I should see copy saying I can't use the app", then.textVisible("You are not able to use this app at the moment"))
+            Then("I should see copy saying I can't use the app", then.textVisible("You are not able to use this app at the moment."))
         })
     })
 

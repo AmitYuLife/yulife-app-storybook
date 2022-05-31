@@ -170,7 +170,7 @@ export const onRewardPurchasedScreen = (reward: any, locale = "en-GB", index = 0
 
     switch (expiryPolicy) {
         case "24 months from last activity":
-            expiryDate = moment().add(24, "months").format("DD MMM YYYY")
+            expiryDate = moment().add(24, "months").format(locale === "en-US" ? "MMM DD, YYYY" : "DD MMM YYYY")
     }
     await expect(element(by.id(WEGIFT_CONFIRMED))).toBeVisible()
     await expect(cardImageURL).toBeVisible()
