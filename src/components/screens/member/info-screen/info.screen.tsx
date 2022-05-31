@@ -1,29 +1,42 @@
 import * as React from "react";
 import { Image, View } from "react-native";
-import { Text } from "@atoms";
+import { TextTemplate } from "@atoms";
 import { Button } from "@molecules";
 import { GenericHeadingAbsolute } from "@organisms";
 import assets from "./assets";
 import styles from "./info.styles";
+import { SmartWatchIcon } from "@atoms/icon/smart-watch-icon";
 
+type Type = "garmin" | "fitbit" | "otherWearables";
 export interface InfoModalProps {
-  type: "garmin" | "fitbit";
+  type: Type;
   onPress: () => void;
   heading: string;
-  subheading: string;
+  subheading?: string;
   ctaLabel: string;
 }
 
 export default function InfoScreen({ type, heading, subheading, ctaLabel, onPress }: InfoModalProps) {
+  const buttonStyle = React.useMemo(() => (type === "otherWearables" ? {} : styles.buttonWrapper), [type]);
   return (
     <>
       <View style={styles.wrapper}>
-        <Image style={styles.image} resizeMethod="scale" source={assets[type]} />
-        <Text style={styles.heading}>{heading}</Text>
-        <Text style={styles.subheading}>{subheading}</Text>
-        <Button wrapperStyle={styles.buttonWrapper} label={ctaLabel} onPress={onPress} />
+        {getImage(type)}
+        <View style={styles.heading}>
+          <TextTemplate type="b2">{heading}</TextTemplate>
+        </View>
+        {!subheading ? null : <TextTemplate type="b2">{subheading}</TextTemplate>}
+        <Button wrapperStyle={buttonStyle} label={ctaLabel} onPress={onPress} />
       </View>
       <GenericHeadingAbsolute onRightIconPress={onPress} />
     </>
   );
 }
+
+const getImage = (type: Type) => {
+  if (type === "otherWearables") {
+    return <SmartWatchIcon wrapperStyle={styles.otherWearableWrapper} />;
+  }
+
+  return <Image style={styles.image} resizeMethod="scale" source={assets[type]} />;
+};

@@ -49,6 +49,20 @@ export default {
       subheading: "Use your YuCoin for vouchers from Amazon, Asos, M&S, and many more!",
       ctaLabel: "Next",
     },
+    settings: {
+      fitnessTrackers: {
+        title:
+          "Connect your fitness tracker to get rewarded for additional daily steps. Don’t forget to still keep your phone with you during challenges!",
+      },
+    },
+    infoModal: {
+      otherWearables: {
+        heading:
+          "As long as your wearable connects up to Google Fit or Apple Health we will sync up at the end of each day to reward you for all your steps.",
+        ctaLabel: "Got it",
+        item: "Other wearables",
+      },
+    },
     permissions: {
       title: "Permission settings",
       description: "Status and management of account and system level permissions granted",
