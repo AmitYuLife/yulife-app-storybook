@@ -1,4 +1,6 @@
 import gql from "graphql-tag";
+import client from "@graphql/_core/client";
+import { GetGoalDetails, GetGoalDetailsVariables } from "@graphql/_core/schema";
 
 export const GQL_QUERY_GET_GOAL_DETAILS = gql`
   query GetGoalDetails($id: ID!, $stageId: String!) {
@@ -91,3 +93,11 @@ export const GQL_QUERY_GET_GOAL_DETAILS = gql`
     }
   }
 `;
+
+export default function getGoalDetails(variables: GetGoalDetailsVariables) {
+  return client().query<GetGoalDetails>({
+    fetchPolicy: "network-only",
+    query: GQL_QUERY_GET_GOAL_DETAILS,
+    variables,
+  });
+}

@@ -213,6 +213,11 @@ export enum UserNotificationsType {
   surges = "surges",
 }
 
+export enum UserProfileEventStatus {
+  active = "active",
+  completed = "completed",
+}
+
 export enum YuProductStatus {
   active = "active",
   inProgress = "inProgress",

@@ -3,7 +3,7 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { DistanceMeasurementType, SduiActionType } from "./globalTypes";
+import { DistanceMeasurementType, SduiActionType, UserProfileEventStatus } from "./globalTypes";
 
 // ====================================================
 // GraphQL query operation: GetUserProfile
@@ -128,6 +128,7 @@ export interface GetUserProfile_getUserProfile_events {
   description: string | null;
   startDate: string | null;
   endDate: string | null;
+  status: UserProfileEventStatus | null;
   challenges: GetUserProfile_getUserProfile_events_challenges[];
   tags: GetUserProfile_getUserProfile_events_tags;
   joined: boolean | null;

@@ -35658,6 +35658,18 @@
             "deprecationReason": null
           },
           {
+            "name": "status",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "ENUM",
+              "name": "UserProfileEventStatus",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "challenges",
             "description": null,
             "args": [],
@@ -35753,6 +35765,29 @@
         "inputFields": null,
         "interfaces": [],
         "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "ENUM",
+        "name": "UserProfileEventStatus",
+        "description": null,
+        "fields": null,
+        "inputFields": null,
+        "interfaces": null,
+        "enumValues": [
+          {
+            "name": "active",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "completed",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
         "possibleTypes": null
       },
       {
@@ -44826,7 +44861,7 @@
           },
           {
             "name": "getUserGoals",
-            "description": "Gets current user goals and invitations, joins goals marked as autoJoin",
+            "description": "@Deprecated - Use the getUserProfileEvents",
             "args": [],
             "type": {
               "kind": "NON_NULL",
