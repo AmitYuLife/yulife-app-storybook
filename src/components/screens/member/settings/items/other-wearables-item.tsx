@@ -1,32 +1,34 @@
-import React, { memo } from "react";
+import React, { memo, useCallback } from "react";
 import { showYuModal } from "@navigation/root";
 import { MODALS } from "@navigation/constants";
 import { Navigation } from "react-native-navigation";
 import { t } from "@locale";
 import ItemTitle from "./item-title";
-import { View } from "react-native";
+import { Platform, View } from "react-native";
 import styles from "./item.styles";
 
 const OtherWearablesItem = () => {
+  const onPress = useCallback(() => {
+    const platform = Platform.select({ ios: "Apple Health", android: "Google Fit" });
+    showYuModal({
+      component: {
+        id: MODALS.info,
+        name: MODALS.info,
+        passProps: {
+          onPress: () => Navigation.dismissModal(MODALS.info),
+          type: "otherWearables",
+          heading: t("screens.infoModal.otherWearables.heading", { platform }),
+          ctaLabel: t("screens.infoModal.otherWearables.ctaLabel"),
+        },
+      },
+    });
+  }, []);
+
   return (
     <View style={styles.wrapper}>
-      <ItemTitle name={t("screens.infoModal.otherWearables.item")} onPressInfo={onPressInfo} />
+      <ItemTitle name={t("screens.infoModal.otherWearables.item")} onPressInfo={onPress} />
     </View>
   );
 };
-
-const onPressInfo = () =>
-  showYuModal({
-    component: {
-      id: MODALS.info,
-      name: MODALS.info,
-      passProps: {
-        onPress: () => Navigation.dismissModal(MODALS.info),
-        type: "otherWearables",
-        heading: t("screens.infoModal.otherWearables.heading"),
-        ctaLabel: t("screens.infoModal.otherWearables.ctaLabel"),
-      },
-    },
-  });
 
 export default memo(OtherWearablesItem);
