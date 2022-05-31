@@ -8,6 +8,7 @@ export const GQL_FRAGMENT_GOAL = gql`
     description
     startDate
     endDate
+    status
     challenges {
       description
       icon {

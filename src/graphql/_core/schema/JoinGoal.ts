@@ -3,6 +3,8 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
+import { UserProfileEventStatus } from "./globalTypes";
+
 // ====================================================
 // GraphQL mutation operation: JoinGoal
 // ====================================================
@@ -61,6 +63,7 @@ export interface JoinGoal_joinGoal {
   description: string | null;
   startDate: string | null;
   endDate: string | null;
+  status: UserProfileEventStatus | null;
   challenges: JoinGoal_joinGoal_challenges[];
   tags: JoinGoal_joinGoal_tags;
   joined: boolean | null;

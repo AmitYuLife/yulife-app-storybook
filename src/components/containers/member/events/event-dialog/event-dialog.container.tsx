@@ -1,17 +1,18 @@
-import React, { FC, useCallback, useEffect } from "react";
-import EventDialogScreen from "@components/screens/member/events/event-dialog/event-dialog.screen";
-import EventDialogLoadingScreen from "@components/screens/member/events/event-dialog/event-dialog-loading.screen";
-import { Navigation } from "react-native-navigation";
 import { useMutation, useQuery } from "@apollo/react-hooks";
+import EventDialogLoadingScreen from "@components/screens/member/events/event-dialog/event-dialog-loading.screen";
+import EventDialogScreen from "@components/screens/member/events/event-dialog/event-dialog.screen";
 import { GQL_QUERY_GET_GOAL_DETAILS } from "@graphql/goals/getGoalDetails.gql";
-import { useDispatch } from "react-redux";
-import { GetGoalDetails, JoinGoal, JoinGoalVariables } from "@graphql/_core/schema";
-import { showYuModal } from "@navigation/root";
-import { MODALS } from "@navigation/constants";
 import { GQL_MUTATION_JOIN_GOAL } from "@graphql/goals/joinGoal.gql";
-import { refreshUserProfileEvents, updateUserGoal } from "@redux/user/user.actions";
+import { GetGoalDetails, JoinGoal, JoinGoalVariables } from "@graphql/_core/schema";
 import { GoalActionType, GoalRewardStatus } from "@graphql/_core/schema/globalTypes";
+import { t } from "@locale";
+import { MODALS } from "@navigation/constants";
+import { showYuModal } from "@navigation/root";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
+import { refreshUserProfileEvents, updateUserGoal } from "@redux/user/user.actions";
+import React, { FC, useCallback, useEffect } from "react";
+import { Navigation } from "react-native-navigation";
+import { useDispatch } from "react-redux";
 
 interface IProps {
   componentId: string;
@@ -58,10 +59,10 @@ const EventDialogContainer: FC<IProps> = ({ componentId, goalId, stageId, onLeft
               id: MODALS.collectEventReward,
               name: MODALS.collectEventReward,
               passProps: {
-                title: "Event ended",
-                descriptionTitle: "Great job!",
-                description: `Congrats on completing the event!`,
-                cta: "Claim rewards",
+                title: t("screens.collectRewardModal.title"),
+                descriptionTitle: t("screens.collectRewardModal.descriptionTitle"),
+                description: t("screens.collectRewardModal.description"),
+                cta: t("screens.collectRewardModal.cta"),
                 rewards: data.getGoalDetails.rewards.filter((reward) => reward.status === GoalRewardStatus.completed),
               },
             },

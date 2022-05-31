@@ -85,6 +85,18 @@ export default {
         samsungHeader: "Samsung Health permissions",
       },
     },
+    eventFail: {
+      title: "has ended",
+      multipleEventsTitle: "A couple of your events have ended",
+      description: "Hurry up to catch a spot for the next one and win big prizes.",
+      cta: "OK",
+    },
+    collectRewardModal: {
+      title: "Event ended",
+      descriptionTitle: "Great job!",
+      description: `Congrats on completing the event!`,
+      cta: "Claim rewards",
+    },
   },
   permissions: {
     android: {

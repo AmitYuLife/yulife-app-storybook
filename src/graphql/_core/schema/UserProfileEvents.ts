@@ -3,6 +3,8 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
+import { UserProfileEventStatus } from "./globalTypes";
+
 // ====================================================
 // GraphQL fragment: UserProfileEvents
 // ====================================================
@@ -61,6 +63,7 @@ export interface UserProfileEvents {
   description: string | null;
   startDate: string | null;
   endDate: string | null;
+  status: UserProfileEventStatus | null;
   challenges: UserProfileEvents_challenges[];
   tags: UserProfileEvents_tags;
   joined: boolean | null;
