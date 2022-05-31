@@ -58,7 +58,7 @@ export default {
     infoModal: {
       otherWearables: {
         heading:
-          "As long as your wearable connects up to Google Fit or Apple Health we will sync up at the end of each day to reward you for all your steps.",
+          "As long as your wearable connects up to %{platform} we will sync up at the end of each day to reward you for all your steps.",
         ctaLabel: "Got it",
         item: "Other wearables",
       },
