@@ -1,13 +1,13 @@
+import * as React from "react";
 import { TextTemplate } from "@atoms/index";
 import { Colours } from "@styles/index";
 import moment from "moment";
-import * as React from "react";
 import { FC } from "react";
-import { ActivityIndicator, Image, View } from "react-native";
-import { Switch, TouchableOpacityWithDelay } from "@molecules";
+import { ActivityIndicator, View } from "react-native";
+import { Switch } from "@molecules";
 import { IConnectionsSectionItem } from "../settings.screen";
-import assets from "./assets";
 import styles from "./item.styles";
+import ItemTitle from "./item-title";
 import { toCapitalLetter } from "@utils";
 
 const formatDate = (timestamp: number) => {
@@ -35,12 +35,7 @@ const ConnectionsItem: FC<IConnectionsSectionItem> = ({
 }) => (
   <View style={[styles.wrapper, { flexDirection: "row" }]}>
     <View style={styles.nameWrapper}>
-      <View>
-        <TouchableOpacityWithDelay style={styles.infoButton} onPress={onPressInfo}>
-          <TextTemplate type="b2b">{toCapitalLetter(name)}</TextTemplate>
-          <Image style={styles.image} source={assets.infoIcon} />
-        </TouchableOpacityWithDelay>
-      </View>
+      <ItemTitle name={toCapitalLetter(name)} onPressInfo={onPressInfo} />
       {isConnected ? (
         !lastUpdated ? null : (
           <TextTemplate type="l2">{`Last synced at ${formatDate(lastUpdated)}`}</TextTemplate>

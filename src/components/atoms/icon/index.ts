@@ -54,6 +54,7 @@ import { InformationIcon } from "./information-icon";
 import { ExclamationIcon } from "./exclamation-icon";
 import { InfoIcon } from "./info-icon";
 import { CoinsIcon } from "./coins-icon";
+import { SmartWatchIcon } from "./smart-watch-icon";
 
 export default {
   Clock,
@@ -115,4 +116,5 @@ export default {
   ExclamationIcon,
   InfoIcon,
   CoinsIcon,
+  SmartWatchIcon,
 };

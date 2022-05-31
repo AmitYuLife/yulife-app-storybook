@@ -13,6 +13,8 @@ import { TextTemplate } from "@atoms";
 import { Style } from "@styles";
 import { SettingsHeader } from "@components/molecules";
 import { DistanceMeasurementType } from "@graphql/_core/schema/globalTypes";
+import OtherWearablesItem from "./items/other-wearables-item";
+import { t } from "@locale";
 
 export interface ILeaderboardSectionItem {
   name: string;
@@ -39,6 +41,7 @@ export interface IGameSettingsItem {
 export interface IConnectionsSectionItem {
   title: string;
   name: string;
+  defaultDescription?: string;
   isConnected: boolean;
   lastUpdated?: number;
   isLoading: boolean;
@@ -126,16 +129,14 @@ export default class SettingsScreen extends PureComponent<IProps> {
     return (
       <View key={index} style={styles.wrapper}>
         <SettingsHeader title={section.title} />
-        <View style={styles.notificationsItemsWrapper}>
+        <View style={styles.fitnessTrackersItemWrapper}>
           <View style={{ marginBottom: Style.adjust(24) }}>
-            <TextTemplate type="b2">
-              Connect your fitness tracker to get rewarded for additional daily steps and mindfulness minutes. Don’t
-              forget to still keep your phone with you during challenges!
-            </TextTemplate>
+            <TextTemplate type="b2">{t("screens.settings.fitnessTrackers.title")}</TextTemplate>
           </View>
           {section.items.map((item, i) => (
             <ConnectionsItem {...item} key={i} />
           ))}
+          <OtherWearablesItem />
         </View>
       </View>
     );
