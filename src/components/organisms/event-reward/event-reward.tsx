@@ -44,6 +44,7 @@ interface IEventReward {
 
 export interface IReward {
   id: string;
+  goalId: string;
   title: string;
   description: string;
   itemBackground: RemoteImage;
@@ -66,6 +67,7 @@ const EventReward = ({
 }: IEventReward) => {
   const {
     id,
+    goalId,
     title,
     description,
     stars,
@@ -88,6 +90,7 @@ const EventReward = ({
       logMixpanelEventActionCreator("reward_info_viewed", {
         name: title,
         ID: id,
+        event_id: goalId,
         info_text: infoText,
       })
     );

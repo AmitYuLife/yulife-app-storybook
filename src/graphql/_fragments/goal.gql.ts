@@ -59,6 +59,7 @@ export const GQL_FRAGMENT_GOAL_DETAILS = gql`
     headerTextColor
     rewards {
       id
+      goalId
       title
       description
       itemBackground {

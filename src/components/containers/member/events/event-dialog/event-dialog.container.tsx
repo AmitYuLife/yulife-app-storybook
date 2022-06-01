@@ -3,7 +3,8 @@ import EventDialogLoadingScreen from "@components/screens/member/events/event-di
 import EventDialogScreen from "@components/screens/member/events/event-dialog/event-dialog.screen";
 import { GQL_QUERY_GET_GOAL_DETAILS } from "@graphql/goals/getGoalDetails.gql";
 import { GQL_MUTATION_JOIN_GOAL } from "@graphql/goals/joinGoal.gql";
-import { GetGoalDetails, JoinGoal, JoinGoalVariables } from "@graphql/_core/schema";
+import { JoinGoal, JoinGoalVariables } from "@graphql/_core/schema";
+import { GetGoalDetails } from "@graphql/_core/schema/GetGoalDetails";
 import { GoalActionType, GoalRewardStatus } from "@graphql/_core/schema/globalTypes";
 import { t } from "@locale";
 import { MODALS } from "@navigation/constants";
