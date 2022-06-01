@@ -1,5 +1,5 @@
 import React, { memo, useRef, useCallback, useMemo, useEffect, useState } from "react";
-import { Animated, Easing, StyleSheet, View } from "react-native";
+import { Animated, Easing, StyleSheet, Vibration, View } from "react-native";
 import { Image, TextTemplate } from "@atoms";
 import { Button, LabelWithImages, PressableWithDelay } from "@molecules";
 import { Colours, Style } from "@styles";
@@ -31,7 +31,8 @@ const CIRCLE_CIRCUMFERENCE = CIRCLE_RADIUS * 2 * Math.PI;
 
 export const FADE_OUT_DURATION = 500;
 export const FADE_PAUSE_DURATION = 200;
-export const FADE_IN_DURATION = 1000;
+export const FADE_IN_DURATION = 800;
+export const FADE_OUT_PAUSE = 200;
 
 const INFO_VIEW_HEIGHT_WIDTH = Style.adjust(22);
 interface IEventReward {
@@ -51,6 +52,7 @@ export interface IReward {
   item: RemoteImage;
   status: GoalRewardStatus;
   animated?: boolean;
+  animationDelay?: number;
   stars?: ILabelImage[];
   infoText?: string;
   infoBadgeUri?: RemoteImage;
@@ -75,6 +77,7 @@ const EventReward = ({
     itemBackground: { uri: itemBackgroundUri },
     status,
     animated,
+    animationDelay,
     infoText,
     infoBadgeUri,
   } = reward;
@@ -158,12 +161,14 @@ const EventReward = ({
               toValue: CIRCLE_CIRCUMFERENCE,
               duration: FADE_OUT_DURATION,
               easing: Easing.linear,
+              delay: animationDelay,
               useNativeDriver: true,
             }),
           ]
         : []),
       {
         start: (cb) => {
+          statusChanged && Vibration.vibrate();
           setStatusColor(getStatusColor(status));
           setRewardClaimed(status === GoalRewardStatus.claimed);
           cb({ finished: true });
@@ -178,6 +183,7 @@ const EventReward = ({
         easing: Easing.cubic,
         useNativeDriver: true,
       }),
+      Animated.delay(FADE_OUT_PAUSE),
     ]);
     animationSequence.start();
     return () => {
