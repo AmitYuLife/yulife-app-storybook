@@ -6,6 +6,7 @@ import { CollectEventRewardScreen } from "@screens";
 import {
   FADE_IN_DURATION,
   FADE_OUT_DURATION,
+  FADE_OUT_PAUSE,
   FADE_PAUSE_DURATION,
   IReward,
 } from "@organisms/event-reward/event-reward";
@@ -37,9 +38,11 @@ const lottie = {
 };
 
 const handleModalClose = () => Navigation.dismissModal(MODALS.collectEventReward);
-
+const TRANSITION_DELAY = FADE_IN_DURATION + FADE_PAUSE_DURATION + FADE_OUT_DURATION + FADE_OUT_PAUSE;
 export default function CollectEventRewardModal({ title, descriptionTitle, description, cta, rewards }: IProps) {
-  const [localRewards, setLocalRewards] = useState(rewards);
+  const [localRewards, setLocalRewards] = useState(
+    rewards.map((reward, index) => ({ ...reward, animationDelay: index * TRANSITION_DELAY }))
+  );
   const dispatch = useDispatch();
   const [claimGoalRewardsMutation] = useMutation<ClaimGoalRewards, ClaimGoalRewardsVariables>(
     GQL_MUTATION_CLAIM_GOAL_REWARDS,
@@ -52,9 +55,13 @@ export default function CollectEventRewardModal({ title, descriptionTitle, descr
       const result = await claimGoalRewardsMutation({ variables: { rewardIds } });
 
       if (result?.data?.claimGoalRewards?.rewards) {
-        setLocalRewards(result.data.claimGoalRewards.rewards.filter((r) => rewardIds.includes(r.id)));
+        setLocalRewards(
+          result.data.claimGoalRewards.rewards
+            .filter((r) => rewardIds.includes(r.id))
+            .map((reward, index) => ({ ...reward, animationDelay: index * TRANSITION_DELAY }))
+        );
 
-        await delay(FADE_IN_DURATION + FADE_PAUSE_DURATION + FADE_OUT_DURATION + 200);
+        await delay(localRewards.length * TRANSITION_DELAY + 200);
         dispatch(refreshUserProfileEvents());
         // update today's yucoin screen
         dispatch(getUserStart());
