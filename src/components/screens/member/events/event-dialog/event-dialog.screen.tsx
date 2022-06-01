@@ -1,23 +1,24 @@
-import React, { FC, useState, useCallback, useRef, useMemo } from "react";
-import { Animated, View, NativeScrollEvent, Platform } from "react-native";
-import { TextTemplate, ProgressBar } from "@atoms";
+import { ProgressBar, TextTemplate } from "@atoms";
 import { Image } from "@atoms/image/image";
-import EventRewardsWrapper from "@organisms/event-reward/event-rewards-wrapper";
-import { Style } from "@styles";
+import { RemoteImage } from "@graphql/_core/schema";
+import { GetGoalDetails_getGoalDetails_banner as EventBanner } from "@graphql/_core/schema/GetGoalDetails";
+import { EVENT_DIALOG_SCREEN } from "@ids";
+import { Button, HeadingAndCopy, InfoPanel, PressableWithDelay } from "@molecules";
+import { GenericHeadingAbsolute, IInfoCardListCard, InfoCardList } from "@organisms";
 import { IReward } from "@organisms/event-reward/event-reward";
+import EventRewardsWrapper from "@organisms/event-reward/event-rewards-wrapper";
+import { showInfoMessageTooltipPointRelative } from "@organisms/tooltip-popup/tooltip-popup.helper";
+import { Style } from "@styles";
+import { addCommasToNumber } from "@utils";
+import React, { FC, useCallback, useMemo, useRef, useState } from "react";
+import { Animated, NativeScrollEvent, Platform, View } from "react-native";
+import { Source } from "react-native-fast-image";
 import style, {
   CONTENT_MARGIN_TOP,
   FAQ_ICON_DIMENSION,
   FAQ_VERTICAL_PADDING,
   HEADER_HEIGHT,
 } from "./event-dialog.styles";
-import { Source } from "react-native-fast-image";
-import { addCommasToNumber } from "@utils";
-import { Button, HeadingAndCopy, InfoPanel, PressableWithDelay } from "@molecules";
-import { InfoCardList, IInfoCardListCard, GenericHeadingAbsolute } from "@organisms";
-import { GetGoalDetails_getGoalDetails_banner as EventBanner, RemoteImage } from "@graphql/_core/schema";
-import { showInfoMessageTooltipPointRelative } from "@organisms/tooltip-popup/tooltip-popup.helper";
-import { EVENT_DIALOG_SCREEN } from "@ids";
 
 const PROGRESS_BAR_WIDTH = Style.DEVICE_WIDTH - Style.adjust(48);
 const TITLE_HEIGHT = Platform.select({

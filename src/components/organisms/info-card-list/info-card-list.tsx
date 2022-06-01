@@ -3,7 +3,7 @@ import { InfoCard } from "@components/molecules";
 import { Image } from "@atoms";
 import { Style } from "@styles";
 import style from "./info-card-list.styles";
-import { GetGoalDetails_getGoalDetails_infoCards_styles as InfoCardStyle } from "@graphql/_core/schema";
+import { GetGoalDetails_getGoalDetails_infoCards_styles as InfoCardStyle } from "@graphql/_core/schema/GetGoalDetails";
 import { mapServerStyles } from "@components/sdui";
 
 export type IInfoCardListCard = {

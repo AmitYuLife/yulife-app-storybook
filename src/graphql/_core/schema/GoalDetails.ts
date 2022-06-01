@@ -36,6 +36,7 @@ export interface GoalDetails_rewards_infoBadgeUri {
 
 export interface GoalDetails_rewards {
   id: string;
+  goalId: string;
   title: string;
   description: string | null;
   itemBackground: GoalDetails_rewards_itemBackground;
