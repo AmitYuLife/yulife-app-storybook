@@ -42,7 +42,7 @@ const EventDialogContainer: FC<IProps> = ({ componentId, goalId, stageId, onLeft
     dispatch(
       logMixpanelEventActionCreator("event_faq_viewed", {
         name: title,
-        ID: goalId,
+        event_id: goalId,
         stageId,
         faq_name: faq?.text,
       })
