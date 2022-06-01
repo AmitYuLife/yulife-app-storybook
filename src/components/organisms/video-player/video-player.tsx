@@ -15,8 +15,10 @@ import {
 } from "./video-player.reducer";
 import VideoPlayerLoading from "./video-player-loading";
 import VideoPlayerDescription from "./video-player-description";
+import VideoPlayerTimer from "./video-player-timer";
 import { Button, PressableWithDelay, VidePlayerButton } from "@molecules";
 import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
+import { PlayIcon } from "@atoms/icon/play-icon";
 
 interface IProps {
   source: string;
@@ -162,14 +164,18 @@ const VideoPlayer = ({
                   styles.currentProgressBar,
                   {
                     width:
-                      `${Math.ceil((state.currentProgressInMilliSeconds / state.durationInMilliSeconds) * 100)}%` || 0,
+                      `${Math.round((state.currentProgressInMilliSeconds / state.durationInMilliSeconds) * 100)}%` || 0,
                   },
                 ]}
               />
             </View>
-            <TextTemplate type="l2" color={themeColour}>
-              {moment.utc(state.durationInMilliSeconds).format("mm:ss")}
-            </TextTemplate>
+            <View style={styles.countDown}>
+              <VideoPlayerTimer
+                textType="l2"
+                time={state.durationInMilliSeconds - state.currentProgressInMilliSeconds}
+                colour={themeColour}
+              />
+            </View>
           </Animated.View>
         )}
 
@@ -187,15 +193,13 @@ const VideoPlayer = ({
 
         {!state.musicControlMounted ? null : (
           <>
-            <View style={styles.title}>
+            <Animated.View style={[styles.title, { opacity }]}>
               <TextTemplate type="h3" color={themeColour}>
                 {title}
               </TextTemplate>
-            </View>
+            </Animated.View>
             <View style={styles.currentProgressTime}>
-              <TextTemplate type="time" color={themeColour}>
-                {moment.utc(state.currentProgressInMilliSeconds).format("mm:ss")}
-              </TextTemplate>
+              <VideoPlayerTimer textType="time" time={state.currentProgressInMilliSeconds} colour={themeColour} />
               {!state.loading ? null : (
                 <View style={styles.loading}>
                   <Loading />
@@ -211,20 +215,20 @@ const VideoPlayer = ({
 
       {state.musicControlMounted ? null : (
         <View style={styles.starSessionButton}>
-          <Button label="Start session" onPress={onButtonAction} />
+          <Button label="Start session" onPress={onButtonAction} leftIcon={<PlayIcon />} />
         </View>
       )}
       {state.durationInSeconds ? null : <VideoPlayerLoading />}
 
       {!state.durationInSeconds ? null : (
-        <Animated.View style={[styles.topbarWrapper, { opacity }]}>
+        <Animated.View style={styles.topbarWrapper}>
           <GenericHeadingAbsolute
             backgroundColor="transparent"
             logo="yulife"
             onLeftIconPress={!state.musicControlMounted ? onLeftIconPress : null}
             color={themeColour}
             onRightIconPress={onRightIconPress}
-            rightIcon={!state.musicControlMounted ? "COINS" : "CLOSE"}
+            rightIcon={state.showFocusScreen ? null : !state.musicControlMounted ? "COINS" : "CLOSE"}
           />
         </Animated.View>
       )}
@@ -238,21 +242,25 @@ const styles = StyleSheet.create({
   },
   progressBarContainer: {
     flexDirection: "row",
-    justifyContent: "flex-end",
     marginHorizontal: Style.adjust(24),
     alignItems: "center",
     marginTop: Style.adjust(32),
   },
   progressBar: {
-    flex: 1,
     height: 6,
-    marginRight: Style.adjust(8),
     borderRadius: 3,
+    width: "87%",
   },
   currentProgressBar: {
     height: 6,
     backgroundColor: Colours.primary.p400,
     borderRadius: 3,
+  },
+  countDown: {
+    position: "absolute",
+    alignItems: "flex-end",
+    right: 0,
+    width: "13%",
   },
   videoDescription: {
     marginTop: Style.adjust(32),
@@ -264,7 +272,7 @@ const styles = StyleSheet.create({
   currentProgressTime: {
     alignItems: "center",
     justifyContent: "center",
-    flex: 0.8,
+    flex: 0.7,
   },
   loading: {
     position: "absolute",

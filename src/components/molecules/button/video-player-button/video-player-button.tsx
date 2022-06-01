@@ -1,8 +1,9 @@
 import React, { memo } from "react";
 import { StyleSheet } from "react-native";
-import Svg, { Path, Rect } from "react-native-svg";
+import Svg, { Rect } from "react-native-svg";
 import { PressableWithDelay } from "@molecules";
 import { Colours, Style } from "@styles";
+import { PlayIcon } from "@atoms/icon/play-icon";
 
 interface IProps {
   onPress: () => void;
@@ -19,10 +20,7 @@ export const VidePlayerButton = memo(({ onPress, isPaused }: IProps) => {
             <Rect x={25} y={1.667} width={1.667} height={36.667} rx={0.833} fill={Colours.neutral.white} />
           </>
         ) : (
-          <Path
-            d="M13.334 33.173V8.493a1 1 0 0 1 1.539-.841l19.28 12.339a1 1 0 0 1 0 1.684l-19.28 12.34a1 1 0 0 1-1.54-.842Z"
-            fill={Colours.neutral.white}
-          />
+          <PlayIcon width={40} height={40} />
         )}
       </Svg>
     </PressableWithDelay>
