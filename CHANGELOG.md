@@ -7,6 +7,38 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.34.0] - 2022-06-01
+
+### Bugfixes
+
+- Bugfix: event_id tracking
+- Bugfix: Improvements on VideoPlayer component
+- Bugfix: default ad banners array
+- Bugfix: android messagging service
+
+### Tasks
+
+- Task GS-362: Other wearables platform based copy
+- Task GS-355: Finish events
+- Task GS-362: Other wearables
+- Task GS-346: Media Player Screen
+- Task GS-337: Settings Permission UI
+- Task: Remove write permissions
+- Task: Permission settings
+
+### Chores
+
+- Chore: Additional event logging info
+- Chore: product survey query
+- Chore: use reward denomination alert
+
+### Extra
+
+- detox: overnight fixes
+- detox: assert date by locale US or GB
+- detox/fixes_26_05
+- detox: assert the correct ammount of coins is issued
+
 ## [3.33.0] - 2022-05-25
 
 ### Bugfixes
