@@ -42,7 +42,7 @@ export const iCanSeeGoalEventScreen = (challenge: string) => async () => {
     const descriptionTitle = GOALS_1.data.stages.descriptionTitle
     const description = GOALS_1.data.stages.description
    
-    await textVisible("Test event detox")()
+    await textVisible("Test event detox", 4000)()
     await textVisible(`${challenge} challenges`)()
     await textVisible(description)
     await textVisible(descriptionTitle)
