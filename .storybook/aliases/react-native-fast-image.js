@@ -1,3 +1,6 @@
+import React from "react";
 import { Image } from "react-native";
 
-export const FastImage = () => <Image />;
+const FastImage = () => <Image />;
+
+export default FastImage;
