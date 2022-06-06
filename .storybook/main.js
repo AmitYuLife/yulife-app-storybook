@@ -1,21 +1,4 @@
 const path = require("path");
-
-const mockPackages = (packageNames = []) => {
-  return packageNames.reduce((acc, packageName) => {
-    console.log(packageName, "pakckanem");
-    const packages = require(packageName);
-    acc[packageName] = Object.entries(packages).reduce((acc, [key, value]) => {
-      if (typeof value === "function") {
-        acc[key] = () => ({});
-      }
-      if (typeof value === "bigint" || typeof value === "number") {
-        acc[key] = 1;
-      }
-      acc[key] = {};
-    }, {});
-  }, {});
-};
-
 const CUSTOM_CONFIG = {
   resolve: {
     alias: {
@@ -37,6 +20,9 @@ const CUSTOM_CONFIG = {
       "react-native-largelist-v3": path.join(__dirname, "/aliases/react-native-largelist-v3"),
       "react-native-webview": path.join(__dirname, "/aliases/react-native-webview"),
       "react-native-fast-image": path.join(__dirname, "/aliases/react-native-fast-image"),
+      "react-native-encrypted-storage": path.join(__dirname, "/aliases/react-native-encrypted-storage"),
+      "react-native-music-control": path.join(__dirname, "/aliases/react-native-music-control"),
+      "react-native-video": path.join(__dirname, "/aliases/react-native-video"),
     },
 
     extensions: [".web.js", ".js", ".ts", ".tsx"],
