@@ -164,13 +164,13 @@ export const onRewardPurchasedScreen = (reward: any, locale = "en-GB", index = 0
     const howtoRedeem = reward.data.redeem_steps.steps[index]
 
     const expiryPolicy = reward.data.expiry_date_policy
-    const purchaseDate = moment().format(locale === "en-US" ? "MMM DD, YYYY" : "DD MMM YYYY")
+    const purchaseDate = moment().format(locale === "en-US" ? "MMMM DD, YYYY" : "DD MMM YYYY")
     let expiryDate;
 
 
     switch (expiryPolicy) {
         case "24 months from last activity":
-            expiryDate = moment().add(24, "months").format(locale === "en-US" ? "MMM DD, YYYY" : "DD MMM YYYY")
+            expiryDate = moment().add(24, "months").format(locale === "en-US" ? "MMMM DD, YYYY" : "DD MMM YYYY")
     }
     await expect(element(by.id(WEGIFT_CONFIRMED))).toBeVisible()
     await expect(cardImageURL).toBeVisible()

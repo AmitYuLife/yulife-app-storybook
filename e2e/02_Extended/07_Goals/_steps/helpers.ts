@@ -130,6 +130,7 @@ export const CLAIM_ALL_REWARDS_WHEN_SECOND_CHALLENGE_COMPLETED = async (todayEar
     })
     When("I press on Claim rewards", when.tapText("Claim rewards"), async () => {
         Then("I shold not see Join text", then.textNotVisible("Join"))
+        Then("I should see that Event ended", then.iCanSeeEventEndedWhenClaimRewards)
     })
     When("I press on Claim rewards", when.tapText("Claim rewards"), async () => {
         Then(`I should see ${challengeProgress} event completed`, then.iCanSeeGoalEventScreen(challengeProgress))
