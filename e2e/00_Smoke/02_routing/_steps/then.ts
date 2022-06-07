@@ -1,5 +1,6 @@
 import { screens } from "@appScreens"
-import { navigation, STATS_TITLE, STATS_SCREEN } from "@utils"
+import { navigation, STATS_TITLE, STATS_SCREEN, HEALTH_SCREEN, STATUS_ICON } from "@utils"
+import { permissionSettings } from "../fixtures"
 
 export const {
     onDailySteps,
@@ -26,7 +27,8 @@ export const {
     expectIsVisibleViaText,
     booleanIdVisible,
     booleanTextVisible,
-    textNotVisible
+    textNotVisible,
+    idVisibleAtIndex
 } = navigation.common
 
 export const {
@@ -70,4 +72,41 @@ export const statsCorrect = async () => {
 
         await expect(element(by.text(i))).toBeVisible()
     };
+}
+
+export const permissionsRightVissible = async()=>{
+    await expect(element(by.text("Permissions"))).toBeVisible()
+    await expect(element(by.text("Permission settings"))).toBeVisible()
+    await expect(element(by.text("Status and management of account and system level permissions granted"))).toBeVisible()
+}
+
+export const onPermissionsPage = (status: string) => async () => {
+    await expect(element(by.text("Permissions"))).toBeVisible()
+    await expect(element(by.text("System Permission"))).toBeVisible()
+    await expect(element(by.text(permissionSettings.ios.motionAndFitness.title))).toBeVisible()
+    await expect(element(by.text(permissionSettings.ios.motionAndFitness.requirement))).toBeVisible()
+    await expect(element(by.text(permissionSettings.ios.motionAndFitness.description))).toBeVisible()
+    await expect(element(by.text(permissionSettings.ios.stepsRead.title))).toBeVisible()
+    await expect(element(by.text(permissionSettings.ios.stepsRead.description))).toBeVisible()
+    await expect(element(by.text(permissionSettings.ios.mindfulnessRead.title))).toBeVisible()
+    await expect(element(by.text(permissionSettings.ios.mindfulnessRead.description))).toBeVisible()
+    await expect(element(by.text(permissionSettings.ios.cyclingRead.title))).toBeVisible()
+    await expect(element(by.text(permissionSettings.ios.cyclingRead.description))).toBeVisible()
+    await expect(element(by.text(permissionSettings.ios.workoutsRead.title))).toBeVisible()
+    await expect(element(by.text(permissionSettings.ios.workoutsRead.description))).toBeVisible()
+    await idVisibleAtIndex(STATUS_ICON("authorised"), 0)
+    await idVisibleAtIndex(STATUS_ICON(status), 0)
+    await idVisibleAtIndex(STATUS_ICON(status), 1)
+    await idVisibleAtIndex(STATUS_ICON(status), 2)
+    await idVisibleAtIndex(STATUS_ICON(status), 3)
+
+    if (status === "not_determined") {
+        await scrollFromID(HEALTH_SCREEN, "up", "fast")()
+        await expect(element(by.text("Apple Health"))).toBeVisible()
+        await expect(element(by.text(permissionSettings.ios.statusUnknown.unknownStatusText))).toBeVisible()
+    }
+    else if (status === "authorised") {
+        await idVisibleAtIndex(STATUS_ICON(status), 4)
+        await expect(element(by.text(permissionSettings.ios.statusUnknown.unknownStatusText))).toBeNotVisible()
+    }
 }

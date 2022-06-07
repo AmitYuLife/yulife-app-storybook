@@ -3,7 +3,7 @@ import * as scenario from "./_steps/scenario"
 import * as given from "./_steps/given"
 import * as when from "./_steps/when"
 import * as then from "./_steps/then"
-import { YUCOIN, BUTTON_CLOSE, QUESTS_SCREEN, NAV_BAR, LEADERBOARD_SCREEN, REWARDS_SCREEN, MENU_ICON, STATS_SCREEN, ACTIVITY_HISTORY_SCREEN, SETTINGS_SCREEN, YUMATTER_SCREEN, LEVEL_CHALLENGE_BUTTON, CHALLENGE_SET, CHALLENGE_TILE, GENERIC_SCREEN_HEADING, GENERIC_SCREEN_CTA, CHALLENGE_PROGRESS_BAR, BUTTON_CLOSE_CHALLENGE, CHECK_REWARDS_BUTTON, LEADERBOARD_TOP_SCREEN, BUTTON_CLOSE_HEADER, SETTINGS_NAME, SETTINGS_DESC, SETTINGS_SWITCH, BACK_BUTTON, YUCOIN_POWER_INFO, TEXT_TEMPLATE, STEPS_COUNT, CYCLING_COUNT, MINDFUL_COUNT } from "@ids";
+import { YUCOIN, BUTTON_CLOSE, QUESTS_SCREEN, NAV_BAR, LEADERBOARD_SCREEN, REWARDS_SCREEN, MENU_ICON, STATS_SCREEN, ACTIVITY_HISTORY_SCREEN, SETTINGS_SCREEN, YUMATTER_SCREEN, LEVEL_CHALLENGE_BUTTON, CHALLENGE_SET, CHALLENGE_TILE, GENERIC_SCREEN_HEADING, GENERIC_SCREEN_CTA, CHALLENGE_PROGRESS_BAR, BUTTON_CLOSE_CHALLENGE, CHECK_REWARDS_BUTTON, LEADERBOARD_TOP_SCREEN, BUTTON_CLOSE_HEADER, SETTINGS_NAME, SETTINGS_DESC, SETTINGS_SWITCH, BACK_BUTTON, YUCOIN_POWER_INFO, TEXT_TEMPLATE, STEPS_COUNT, CYCLING_COUNT, MINDFUL_COUNT, ARROW_BUTTON, HEALTH_SCREEN, STATUS_ICON } from "@ids";
 import { REWARDS_JOHN_LEWIS, REWARDS_AVIOS, REWARDS_BLOOM_UNAVAILABLE, CUSTOMER_2, AUTH_2, CUSTOMER_8, AUTH_8, CUSTOMER_35, AUTH_35 } from "@data";
 Feature("As a user I can navigate through member routes correctly", async () => {
 
@@ -197,6 +197,47 @@ Feature("As a user I can navigate through member routes correctly", async () => 
             })
         })
     })
-    
+
+    Scenario("I can see Status Permissions not_determined if have not done any activity", scenario.start, async () => {
+        Given("I login as a user", given.loginAsUser(CUSTOMER_2, AUTH_2, true), async () => {
+            When("I tap the menu icon in the top left", when.tapID(MENU_ICON, 1500), async () => {
+                When("I tap settings", when.tapMenuItem("Settings"), async () => {
+                    Then("I should be on the settings tab", then.idVisible(SETTINGS_SCREEN, 2500))
+                })
+            })
+            When("I scroll down", when.scrollFromID(SETTINGS_SCREEN, "up", "fast"), async () => {
+                Then("I should see the right settings details", then.permissionsRightVissible)
+            })
+            When("I tap permissions settings", when.tapIDAtIndex(ARROW_BUTTON, 1), async () => {
+                Then("I should be on permission page", then.onPermissionsPage("not_determined"))
+            })
+        })
+    })
+    Scenario("I can see Apple Health permission case authorised when have activity done ", scenario.start, async () => {
+        When("I have done yesterday 309 steps", given.addStepsHistoricalData(309), async () => {
+            When("I have done yesterday Biking 11.3 km", given.addCyclingHistoricalData(11345), async () => {
+                When("I have done yesterday 13:20 min Mindfulness", given.addMindfulnessHistoricalData(800), async () => {
+                    When("I have done yesterday 2 Pilates", given.addPilatesHistoricalData(2), async () => {
+                        Given("I login as a user", given.loginAsUser(CUSTOMER_2, AUTH_2), async () => {
+                            Then("I should see a menu icon in the top left", then.idVisible(MENU_ICON, 1500))
+                            When("I tap the menu icon in the top left", when.tapID(MENU_ICON, 1500), async () => {
+                                Then("I should see the menu items", then.menuItemsVisible)
+                            })
+                        })
+                    })
+                })
+            })
+        })
+        When("I tap settings", when.tapMenuItem("Settings"), async () => {
+            Then("I should be on the settings tab", then.idVisible(SETTINGS_SCREEN, 2500))
+        })
+        When("I scroll down", when.scrollFromID(SETTINGS_SCREEN, "up", "fast"), async () => {
+            Then("I should see the right settings details", then.permissionsRightVissible)
+        })
+        When("I tap permissions settings", when.tapIDAtIndex(ARROW_BUTTON, 1), async () => {
+            Then("I should correct detail and icons when authorised", then.onPermissionsPage("authorised"))
+        })
+                
+    })
 
 })

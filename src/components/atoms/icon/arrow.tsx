@@ -2,6 +2,7 @@ import React, { memo } from "react";
 import Svg, { Path } from "react-native-svg";
 import { Colours, Style } from "@styles";
 import { TransformsStyle } from "react-native";
+import { ARROW_BUTTON } from "@ids";
 
 type ArrowDirection = "right" | "down" | "left";
 
@@ -21,7 +22,7 @@ export const ArrowIcon = memo(
     withBackground,
     direction = "right",
   }: IProps) => (
-    <Svg width={width} height={height} viewBox="0 0 24 24" style={TRANSFORM[direction]}>
+    <Svg width={width} height={height} viewBox="0 0 24 24" style={TRANSFORM[direction]} testID={ARROW_BUTTON}>
       {withBackground ? (
         <>
           <Path d="M24 12c0 6.627-5.373 12-12 12S0 18.627 0 12 5.373 0 12 0s12 5.373 12 12Z" fill="#E30D76" />

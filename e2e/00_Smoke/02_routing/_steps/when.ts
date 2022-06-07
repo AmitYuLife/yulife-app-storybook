@@ -6,7 +6,8 @@ export const {
     tapID,
     tapText,
     tapIDAtPoint,
-    wait
+    wait,
+    tapIDAtIndex
 } = navigation.common
 
 export const {
@@ -16,3 +17,9 @@ export const {
 export const {
     tapRewardInList
 } = screens.rewards
+
+export const {
+    scrollFromText,
+    scrollFromID,
+    scrollUntilTextVisible
+} = navigation.scrolling

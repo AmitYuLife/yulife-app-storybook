@@ -6,6 +6,7 @@ import { RadioIcon } from "@atoms/icon/radio-icon";
 import { ExclamationIcon } from "@atoms/icon/exclamation-icon";
 import { InfoIcon } from "@atoms/icon/info-icon";
 import { PermissionStatus } from "@yu-life/react-native-fitkit";
+import { STATUS_ICON } from "@ids";
 
 interface PermissionItemProps {
   title: string;
@@ -25,7 +26,7 @@ const PermissionItem = ({ title, status, loading, description, requirement }: Pe
   );
 
   return (
-    <View style={styles.permissionItem}>
+    <View style={styles.permissionItem} testID={STATUS_ICON(status)}>
       <View style={styles.textBox}>
         <TextTemplate color={color} type={"b2"}>
           {title}

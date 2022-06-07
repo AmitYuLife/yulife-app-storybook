@@ -7,6 +7,7 @@ import { styles } from "./_styles";
 import { t } from "@locale";
 import { ChainIcon } from "@atoms/icon/chain-icon";
 import { Colours } from "@styles";
+import { HEALTH_SCREEN } from "@ids";
 
 interface IProps {
   loading: boolean;
@@ -51,7 +52,7 @@ const HealthPermissionsSection = ({ healthPermission, showSamsungHealth, loading
   }, [showSamsungHealth]);
 
   return (
-    <View>
+    <View testID={HEALTH_SCREEN}>
       <View style={styles.settingsHeader}>
         <SettingsHeader title={healthAppSectionTitle} />
       </View>
