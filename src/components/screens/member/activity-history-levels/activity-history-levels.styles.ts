@@ -1,7 +1,7 @@
 import { Style, Colours } from "@styles/index";
 import { Platform, StyleSheet, ViewStyle } from "react-native";
 
-const headerTwoWidth = Style.adjust(56);
+const headerTwoWidth = Style.adjust(Style.DEVICE_WIDTH > 360 ? 56 : 40);
 const distanceTwoThree = Style.adjust(12);
 
 export const dividerHeight = Style.adjust(34);
