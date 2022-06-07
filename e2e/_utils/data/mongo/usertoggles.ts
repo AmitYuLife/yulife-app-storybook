@@ -41,7 +41,8 @@ export const CUSTOMER_2_TOGGLES = {
             "passiveCyclingEnabled": true,
             "showTodayEarningsScreen": true,
             "showGoals": true,
-            "yuScreenV3": true
+            "yuScreenV3": true,
+            "showPermissionSettings": true
 
         }
     }

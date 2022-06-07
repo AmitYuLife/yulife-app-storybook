@@ -116,3 +116,13 @@ export const addMindfulnessHistoricalData = (value:number) => async () => {
     }]
     await fitKitAddSampleQueries(record)
 }
+
+export const addPilatesHistoricalData = (value:number) => async () => {
+    const record = [{
+        startTime: moment().subtract(1,"day").startOf("day").add(10,"minutes").toDate().toString(),
+        endTime: moment().subtract(1,"day").endOf("day").subtract(10,"minutes").toDate().toString(),
+        value,
+        type: "Pilates"
+    }]
+    await fitKitAddSampleQueries(record)
+}

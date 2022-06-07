@@ -1,5 +1,5 @@
 import { navigation } from "@navigation"
-export { addStepsHistoricalData, addCyclingHistoricalData, addMindfulnessHistoricalData} from "@socket";
+export { addStepsHistoricalData, addCyclingHistoricalData, addMindfulnessHistoricalData, addPilatesHistoricalData} from "@socket";
 
 export const {
     loginAsUser

@@ -40,6 +40,7 @@ export const GAME_SETTINGS_SCREEN = "GAME_SETTINGS_SCREEN"
 export const REWARD_STORE_SETTINGS_SCREEN = "REWARD_STORE_SETTINGS_SCREEN"
 export const PERK_SCREEN = "PERK_SCREEN"
 export const EVENT_DIALOG_SCREEN = "EVENT_DIALOG_SCREEN";
+export const HEALTH_SCREEN = "HEALTH_SCREEN";
 
 
 // buttons
@@ -52,6 +53,7 @@ export const BUTTON_CLOSE_HEADER = (header:any) => `BUTTON_CLOSE_HEADER_${header
 export const BUTTON_CLOSE_CHALLENGE = "BUTTON_CLOSE_CHALLENGE"
 export const BACK_BUTTON = "BACK_BUTTON"
 export const EDIT_BUTTON = "EDIT_BUTTON"
+export const ARROW_BUTTON = `ARROW_BUTTON`
 export const PLUS_BUTTON = "PLUS_BUTTON"
 export const CHANGE_MEMBER_NICK_BUTTON = "CHANGE_MEMBER_NICK_BUTTON"
 export const INPUT_LOGIN_EMAIL = "INPUT_LOGIN_EMAIL";
@@ -99,6 +101,7 @@ export const SURGE_ICON = 'SURGE_ICON'
 export const SCROLL_NUMBER_PICKER = (id: number) => `SCROLL_PICKER_${id}`
 export const HORIZONTAL_SCROLLER = 'HORIZONTAL_SCROLLER'
 export const DAILYSTEP_SCREEN_COIN =  "DAILYSTEP_SCREEN_COIN";
+export const STATUS_ICON = (value:string) => `STATUS_ICON_${value}`
 
 // modals
 export const WELCOME_MODAL = (heading: string) => `WELCOME_MODAL${heading}`
