@@ -7,6 +7,23 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.35.0] - 2022-06-08
+
+### Bugfixes
+
+- Bugfix: Activity history not showing yucoin on SM-S20
+- Bugfix: Storybook aliases
+
+### Tasks
+
+- Task: Update CI/CD for storybook deployment
+- Task GS-357: Claim rewards animations
+
+### Extra
+
+- detox: Permissions To Health test
+- detox: fixes for overnight_failures
+
 ## [3.34.0] - 2022-06-01
 
 ### Bugfixes
