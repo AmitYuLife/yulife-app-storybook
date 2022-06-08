@@ -2,7 +2,6 @@ import { Platform, YellowBox } from "react-native";
 import { Navigation, OptionsModalPresentationStyle } from "react-native-navigation";
 import registerScreens from "./navigation/index";
 import { DETOX_ENABLED } from "@services/socket";
-import region from "@services/region";
 
 if (DETOX_ENABLED) {
   YellowBox.ignoreWarnings([
@@ -32,8 +31,6 @@ Navigation.events().registerAppLaunchedListener(async () => {
       },
     },
   });
-
-  await region.hydratePreferredRegion();
 
   // register all the screens
   registerScreens();
