@@ -10,6 +10,8 @@ interface Props {
   button: {
     label: string;
     onPress: () => void;
+    isLoading: boolean;
+    disabled: boolean;
   };
   close: {
     onPress: (currentIndex: number) => void;
@@ -25,7 +27,12 @@ export const Dismiss = ({ button, close, currentIndex }: Props) => {
     <>
       {!button ? null : (
         <View style={styles.button} testID={BUTTON_CLOSE}>
-          <Button label={button.label} onPress={button.onPress} />
+          <Button
+            disabled={button.disabled}
+            isLoading={button.isLoading}
+            label={button.label}
+            onPress={button.onPress}
+          />
         </View>
       )}
       {!close ? null : (

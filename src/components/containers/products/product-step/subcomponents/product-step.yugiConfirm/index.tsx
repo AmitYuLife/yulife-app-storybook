@@ -1,5 +1,5 @@
 import React, { useRef, RefObject, memo, useContext, useMemo } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import * as Animated from "react-native-animatable";
 import LottieView from "lottie-react-native";
 import { View, StyleSheet, ViewStyle, FlatList, Platform, ListRenderItemInfo } from "react-native";
@@ -10,6 +10,7 @@ import { FIB_INTRO_SCREEN } from "@ids";
 import { GetPersonalProductStep_getPersonalProductStep_body_ContentItemYugiConfirm } from "@graphql/_core/schema";
 import { ArrowUp } from "./arrowUp";
 import { ProductStepContext } from "./../../product-step.context";
+import { getSduiLoadingForKey } from "@redux/server-driven-ui/sdui.selectors";
 
 const lottieJson = require("./yugi.json");
 
@@ -17,7 +18,7 @@ type Props = GetPersonalProductStep_getPersonalProductStep_body_ContentItemYugiC
 
 export const ProductStepYugiConfirm = memo(function (props: Props) {
   const contextConsumer = useContext(ProductStepContext);
-  const { productId, stepId, dynamicData } = contextConsumer;
+  const { productId, stepId, dynamicData, isLoading: isInLoadingContext } = contextConsumer;
   const { yugiHeading, content, buttonText, buttonOnPress, id } = props;
   const lottieYugiRef: RefObject<LottieView> = useRef();
   const swiper: RefObject<FlatList> = useRef();
@@ -30,6 +31,8 @@ export const ProductStepYugiConfirm = memo(function (props: Props) {
     }),
     [buttonOnPress, productId, stepId, dynamicData, id]
   );
+
+  const isLoading = useSelector(getSduiLoadingForKey(id)) || isInLoadingContext;
 
   return (
     <View style={styles.yugiIntroWrapper}>
@@ -77,7 +80,14 @@ export const ProductStepYugiConfirm = memo(function (props: Props) {
       </Animated.View>
 
       <View style={styles.buttonWrapper}>
-        <Button size="Small" onPress={() => dispatch(dynamicOnPress)} delay={300} label={buttonText} />
+        <Button
+          disabled={isLoading}
+          isLoading={isLoading}
+          size="Small"
+          onPress={() => dispatch(dynamicOnPress)}
+          delay={300}
+          label={buttonText}
+        />
       </View>
     </View>
   );

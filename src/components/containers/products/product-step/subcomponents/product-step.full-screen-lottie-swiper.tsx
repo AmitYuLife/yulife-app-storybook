@@ -1,17 +1,29 @@
 import React, { memo, useContext, useMemo } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { FullScreenLottieSwiper } from "@organisms/full-screen-lottie-swiper/full-screen-lottie-swiper";
 import { ContentItemFullScreenLottieSwiper } from "@graphql/_core/schema/ContentItemFullScreenLottieSwiper";
 import { ProductStepContext } from "../product-step.context";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
+import { getSduiLoadingForKey } from "@redux/server-driven-ui/sdui.selectors";
 
 type Props = ContentItemFullScreenLottieSwiper;
 export const ProductStepFullScreenLottieSwiper = memo(({ button, close, ...props }: Props) => {
   const dispatch = useDispatch();
-  const { productId, stepId, dynamicData } = useContext(ProductStepContext);
+  const { productId, stepId, dynamicData, isLoading: isInLoadingContext } = useContext(ProductStepContext);
 
   const items = props.items || [];
   const contextAwarePayload = { productId, stepId, dynamicData };
+
+  const buttonId = `${stepId} - ${button.id}`;
+  const isLoading = useSelector(getSduiLoadingForKey(buttonId)) || isInLoadingContext;
+
+  const dynamicOnPress = useMemo(
+    () => ({
+      type: button.onPress.type,
+      payload: { productId, stepId, dynamicData, serverPayload: button.onPress.payload, id: buttonId },
+    }),
+    [button.onPress, productId, stepId, dynamicData, buttonId]
+  );
 
   const derivedProps = useMemo(
     () => ({
@@ -28,12 +40,9 @@ export const ProductStepFullScreenLottieSwiper = memo(({ button, close, ...props
       })),
       button: {
         ...button,
-        onPress: () => {
-          dispatch({
-            type: button.onPress.type,
-            payload: { ...contextAwarePayload, serverPayload: button.onPress.payload },
-          });
-        },
+        onPress: () => dispatch(dynamicOnPress),
+        isLoading,
+        disabled: isLoading,
       },
       close: {
         ...close,
