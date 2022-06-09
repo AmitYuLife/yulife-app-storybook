@@ -71,6 +71,10 @@ class LoggerInstance {
   };
 
   public setUserProperties = (props: Record<string, any>, customAttrs = false) => {
+    if (!this.initialised) {
+      return;
+    }
+
     const eventProperties = this.addDefaultEventProperties(props);
     if (customAttrs) {
       Intercom.updateUser({ customAttributes: eventProperties });
