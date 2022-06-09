@@ -16,7 +16,7 @@ export default function* hydrateApiConfigSaga(payload: SyncAction) {
 
       const existingConfig = region.getConfig("mixpanelKey");
 
-      if (!existingConfig) {
+      if (existingConfig?.length) {
         shouldFetchConfig = false;
       }
     }
