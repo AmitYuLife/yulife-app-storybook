@@ -36,7 +36,7 @@ export const ONBOARDING = async () => {
             When("I tap on the right part of the screen", when.navigateThroughTheFullSwiper, async () => {
                 Then(`I should see ${startQuoteText}`, then.textVisible(startQuoteText));
             })
-            When("I tap on start my quote", when.dismissPLIModal, async () => {
+            When("I tap on start my quote button", when.dismissPLIModalIfExists, async () => {
                 Then("I should see the intro screen", then.textVisible("Life Insurance"));
             })
         })
@@ -49,7 +49,7 @@ export const INTRO_START = async () => {
     const ocean = "Ocean Explorer"
     const desert = "Desert Trailblazer"
     const mountain = "Mountain Adventurer"
-    const priceTime = "Get a price in under 5 minutes"
+    const priceTime = "Get a quote in 5 mins"
 
 
     When("I scroll to the left", when.scrollFromID(PACKAGE_INFO, "left", "slow"), async () => {
@@ -64,12 +64,17 @@ export const INTRO_START = async () => {
     When("I scroll to the right", when.scrollFromID(PACKAGE_INFO, "right", "slow", 0.4), async () => {
         Then(`I should see ${forest}`, then.textVisible(forest))
     })
-    When("I scroll down to the bottom of the page", when.swipeFromText("Our simple promise", "up", "fast"), async () => {
+    When("I scroll down the page", when.swipeFromText("Our simple promise", "up", "slow", 0.2), async () => {
+        Then("I should see the correct copy in Cover for a lifetime!", then.correctPliIntroCopy("Cover for a lifetime"))
+    })
+    When("I scroll down the page", when.swipeFromText("Cover for a lifetime", "up", "slow", 0.2), async () => {
         Then("I should see the correct copy in Power up!", then.correctPliIntroCopy("Power up!"))
+    })
+    When("I scroll down the page", when.swipeFromText("Power up!", "up", "fast"), async () => {
         Then("I should see the correct copy in Owned by you", then.correctPliIntroCopy("Owned by you"))
+        Then("I should see the correct copy in YuCoin", then.correctPliIntroCopy("YuCoin"))
         Then("I should see the correct text on the screen", then.textVisible(priceTime))
-        Then("I should see the Browse cover levels button", then.textVisible("Browse cover levels"))
-        When("I tap Browse cover levels button", when.tapText("Browse cover levels"), async () => {
+        When("I tap Get started button", when.tapText("Get started"), async () => {
             Then("I should be on the Let's get personal screen", then.isOnLetsGetPersonalScreen(CUSTOMER_37.data.firstName))
         })
     })

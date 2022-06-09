@@ -53,13 +53,16 @@ export const correctPliIntroCopy = (header: string) => async () => {
             await textVisible("Should you pass away, your family will receive a percentage of your pre-tax salary every month.")()
             break;
         case "Cover for a lifetime":
-            await textVisible("We pay out for up to 40 years or until you would have been 70 years old, whichever happens first.")()
+            await textVisible("You can create a policy that lasts between 5 – 40 yrs, as long as you are not older than 70 years old when it ends.")()
             break;
         case "Power up!":
             await textVisible("Customise your Yumoji’s style and unlock new Power in the Yuniverse.")()
             break;
         case "Owned by you":
             await textVisible("This policy will be owned by you and is not linked to any policies you have with your employer. You keep both the YuLife app and this policy even if you change jobs.")()
+            break;
+        case "YuCoin":
+            await textVisible("You’ll get 1000 YuCoin for completing the questions.")()
             break;
     }
 }
@@ -70,7 +73,6 @@ export const isOnLetsGetPersonalScreen = (name: string) => async () => {
     const internetText = "You’ll need an active internet connection to answer some questions."
     const privacyText = "This policy will be owned by you, and your answers will not be seen by your employer."
     const exitText = "Should you exit or drop out of the journey at any stage your progress will be saved and you can simply pick up where you left off."
-    const coinText = "You’ll get 1000 YuCoin for completing the questions."
     const termsText = "Before we get started, please take a moment to read the YuLife Terms of Business."
     const buttonText = "Let's go!"
     const privacyPolicy = "Privacy policy"
@@ -83,7 +85,6 @@ export const isOnLetsGetPersonalScreen = (name: string) => async () => {
     await expect(element(by.text(privacyText))).toBeVisible()
     await scrollUntilTextVisible(PRODUCT_STEP_BODY_SCROLL_VIEW, termsOfBusiness, "down")()
     await expect(element(by.text(exitText))).toBeVisible()
-    await expect(element(by.text(coinText))).toBeVisible()
     await expect(element(by.text(termsText))).toBeVisible()
     await expect(element(by.text(buttonText))).toBeVisible()
     await expect(element(by.text(privacyPolicy))).toBeVisible()
