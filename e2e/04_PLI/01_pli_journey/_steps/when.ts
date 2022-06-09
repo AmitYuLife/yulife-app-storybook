@@ -77,8 +77,13 @@ export const navigateThroughTheFullSwiper = async () => {
     await tapID(FULL_SCREEN_LOTTIE_SWIPER("RIGHT"))();
 }
 
-export const dismissPLIModal = async () => {
-    await navigateViaText("Start my quote (+1000 YuCoin)")
+export const dismissPLIModalIfExists = async () => {
+    try {
+        await expect(element(by.text("Start my quote (+1000 YuCoin)"))).toBeVisible()
+        await navigateViaText("Start my quote (+1000 YuCoin)")
+    } catch (e) {
+
+    }
 }
 
 export const chooseCorrectDoB = (age: number) => async () => {

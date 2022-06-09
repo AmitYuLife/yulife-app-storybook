@@ -32,8 +32,8 @@ export const INFORMATION = async () => {
     const supportCopy = "Both NHS and private patients can claim cash back towards treatment costs with this plan. Use the Bupa Dental Care support line to arrange an appointment or get fast, free advice via a phone or video call."
     const claimsTitle = "Claims made easy"
     const claimsCopy = "When you're seen in a participating Bupa dental practice they'll settle the claim for you*, or use Bupa Touch for online claims."
-    const worldwideTitle = "Worldwide coverage"
-    const worldwideCopy = "Routine or emergency, you’re covered at home and on the go for eligible treatments."
+    const toothBrushTitle = "Claim a free Ordo toothbrush"
+    const toothBrushCopy = "You can claim a free Ordo Sonic toothbrush with this policy**."
     const onlyWithYuLifeTitle = "Only with YuLife"
     const onlyWithYuLifeCopy = "Customise your Yumoji's style and unlock new perks, as well as keep the YuLife app and this policy if you change jobs."
 
@@ -54,14 +54,14 @@ export const INFORMATION = async () => {
     When("I scroll to the right", when.scrollFromID(PACKAGE_INFO, "right", "slow", 0.4), async () => {
         Then(`I should see ${forest}`, then.textVisible(forest))
     })
-    When("I scroll to Claims made easy", when.scrollUntilTextVisible(PRODUCT_STEP_BODY_SCROLL_VIEW, "Claims made easy", "down"), async () => {
+    When("I scroll to Claims made easy", when.scrollUntilTextVisible(PRODUCT_STEP_BODY_SCROLL_VIEW, claimsTitle, "down"), async () => {
         Then("I should see the Bupa support box", then.multipleTextVisible([supportTitle, supportCopy]))
     })
-    When("I scroll to Worldwide coverage", when.scrollUntilTextVisible(PRODUCT_STEP_BODY_SCROLL_VIEW, "Worldwide coverage", "down"), async () => {
+    When("I scroll to Worldwide coverage", when.scrollUntilTextVisible(PRODUCT_STEP_BODY_SCROLL_VIEW, toothBrushTitle, "down"), async () => {
         Then("I should see the Claims box", then.multipleTextVisible([claimsTitle, claimsCopy]))
     })
-    When("I scroll to Only with YuLife", when.scrollUntilTextVisible(PRODUCT_STEP_BODY_SCROLL_VIEW, "Only with YuLife", "down"), async () => {
-        Then("I should see the Worldwide box", then.multipleTextVisible([worldwideTitle, worldwideCopy]))
+    When("I scroll to Only with YuLife", when.scrollUntilTextVisible(PRODUCT_STEP_BODY_SCROLL_VIEW, onlyWithYuLifeTitle, "down"), async () => {
+        Then("I should see the Ordo toothbrush", then.multipleTextVisible([toothBrushTitle, toothBrushCopy]))
     })
 
     When("I scroll to the bottom of the page", when.scrollUntilTextVisible(PRODUCT_STEP_BODY_SCROLL_VIEW, "Information about our Service", "down"), async () => {
@@ -86,6 +86,8 @@ export const PLANS = async () => {
     const stepLimitTitle = "Increased Daily Step Limit"
     const stepLimitCopy = "Increases the number of daily steps for which you earn YuCoin."
     const eligibleStartDateCopy = `You could be eligible to start claiming for treatments from ${startOfnextMonth}*`
+    const toothBrushTitle = "Claim a free Ordo toothbrush"
+    const toothBrushCopy = "You can claim a free Ordo Sonic toothbrush with this policy*."
 
 
 
@@ -134,13 +136,17 @@ export const PLANS = async () => {
         Then("I should see also Benefit from", then.textVisible("You'll also benefit from:"))
         Then("I should see the correct YuCoin power", then.idVisible(YUCOIN_POWER(6)))
         Then("I should see the Chest Reward perk", then.multipleTextVisible([chestRewardsTitle, chestRewardsCopy]))
-        Then("I should see the Streak Bounty perk", then.multipleTextVisible([streakBountyTitle, streakBountyCopy]))
-        When("I scroll to the bottom of the page", when.swipeFromText(streakBountyTitle, "up", "slow"), async () => {
+        Then("I should see the Ordo toothbrush", then.multipleTextVisible([toothBrushTitle, toothBrushCopy]))
+        When("I scroll a little down on the page", when.swipeFromText(streakBountyTitle , "up", "slow", 0.4), async () => {
+            Then("I should see the Streak Bounty perk", then.multipleTextVisible([streakBountyTitle, streakBountyCopy]))
             Then("I should see the Increased Steps perk", then.multipleTextVisible([stepLimitTitle, stepLimitCopy]))
             Then("I should see Package details", then.textVisible("Package details"))
             Then("I should see FAQs", then.textVisible("FAQs"))
             Then("I should see Membership Guide", then.textVisible("Membership Guide"))
             Then("I should see Product information (IPID)", then.textVisible("Product information (IPID)"))
+            When("I scroll a little down on the page", when.swipeFromText(streakBountyTitle , "up", "slow", 0.4), async () => {
+                Then("I should see again Continue to checkout", then.textVisible("Continue to checkout"))
+            })
         })
     })
 }
