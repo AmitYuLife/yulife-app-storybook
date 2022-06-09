@@ -18,6 +18,8 @@ interface Props {
   button: {
     label: string;
     onPress: () => void;
+    isLoading: boolean;
+    disabled: boolean;
   };
   close: {
     icon: {
@@ -173,12 +175,6 @@ const styles = StyleSheet.create({
     position: "absolute",
     top: Style.adjust(40),
     left: Style.adjust(16),
-  } as ViewStyle,
-  button: {
-    position: "absolute",
-    left: Style.adjust(32),
-    right: Style.adjust(32),
-    bottom: Style.adjust(32),
   } as ViewStyle,
 });
 
