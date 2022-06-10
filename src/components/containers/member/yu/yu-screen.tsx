@@ -3,9 +3,10 @@ import { StyleSheet, ViewStyle, View, ScrollView, Platform, Animated } from "rea
 import { Style, TOP_BAR } from "@styles";
 import media from "@styles/media";
 import { YUSCREEN, YUSCREEN_SCROLL_VIEW } from "@ids";
-import { NameAndLevel, AvatarAndEquipment, YuCoinPower } from "./subcomponents";
+import { AvatarAndEquipment, YuCoinPower } from "./subcomponents";
 import { useSelector } from "react-redux";
 import { getRouteState } from "@redux/app/app.selectors";
+import { NameAndLevel } from "@components/molecules";
 
 export const YuScreen = () => {
   const scrollValue = useRef(new Animated.Value(0)).current;

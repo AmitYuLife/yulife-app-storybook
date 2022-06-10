@@ -25,6 +25,7 @@ const DebugContainer: React.FC<Props> = (props) => {
   const list = [
     "level-selector",
     "video-player",
+    "inspect",
     ...(data?.getDebugCodes || []),
     "send-test-push",
     `toggle-leanplum(${Logger.leanplum.isDevMode ? "dev" : "prod"})`,
@@ -43,6 +44,15 @@ const DebugContainer: React.FC<Props> = (props) => {
             component: {
               id: ROUTES.levelSelector,
               name: ROUTES.levelSelector,
+            },
+          });
+        }
+
+        if (code === "inspect") {
+          return Navigation.push(props.componentId, {
+            component: {
+              id: ROUTES.inspect,
+              name: ROUTES.inspect,
             },
           });
         }
