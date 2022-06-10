@@ -74,3 +74,4 @@ export { CollapsingHeader } from "./collapsing-header/collapsing-header";
 export { ChipList } from "./chip-list/chip-list";
 export { default as AdBanner } from "./ad-banner/ad-banner";
 export { default as PermissionItem } from "./permissions/permission-item";
+export { default as NameAndLevel } from "./name-and-level/name-and-level";

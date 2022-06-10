@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 import { getUserName } from "@redux/user/user.selectors";
 import { getCurrentLevel } from "@redux/levels/levels.selectors";
 
-const _NameAndLevel = () => {
+const NameAndLevel = () => {
   const userName = useSelector(getUserName);
   const currentLevel = useSelector(getCurrentLevel);
 
@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
   } as TextStyle,
 });
 
-export const NameAndLevel = memo(_NameAndLevel);
+export default memo(NameAndLevel);
 
 function getWorldColor(world: string) {
   switch (world) {

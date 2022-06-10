@@ -64,5 +64,5 @@ export { default as ReferralsLoadingScreen } from "./referrals/referrals-loading
 export { default as PerkSubscriptionInfoScreen } from "./perk/perk-subscription-info.screen";
 export { default as PerkSubscriptionInfoLoadingScreen } from "./perk/perk-subscription-info-loading.screen";
 
-//events
+// events
 export { default as CollectEventRewardScreen } from "./member/events/collect-event-reward/collect-event-reward.screen";
