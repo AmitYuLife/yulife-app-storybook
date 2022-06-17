@@ -24,12 +24,14 @@ class LoggerInstance {
   }
 
   public init = async () => {
-    const mixpanelKey = region.getConfig("mixpanelKey");
-    const intercom = region.getConfig("intercom");
-    await Mixpanel.sharedInstanceWithToken(mixpanelKey);
-    await Intercom.init(Platform.select({ ios: intercom.ios, android: intercom.android }), intercom.appId);
-    this.leanplum = new LeanplumClient();
-    this.initialised = true;
+    if (!this.initialised) {
+      const mixpanelKey = region.getConfig("mixpanelKey");
+      const intercom = region.getConfig("intercom");
+      await Mixpanel.sharedInstanceWithToken(mixpanelKey);
+      await Intercom.init(Platform.select({ ios: intercom.ios, android: intercom.android }), intercom.appId);
+      this.leanplum = new LeanplumClient();
+      this.initialised = true;
+    }
   };
 
   private addDefaultEventProperties = (props: Record<string, any>): Record<string, any> => {
