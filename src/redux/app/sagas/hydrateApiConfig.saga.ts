@@ -29,7 +29,6 @@ export default function* hydrateApiConfigSaga(payload: SyncAction) {
       }
     }
 
-    yield call(Logger.init);
     yield call(initStripe);
   } catch (error) {
     Logger.error(error, { file: "hydrateApiConfigSaga" });
