@@ -35,7 +35,7 @@ const InspectDetailsItem = ({ text, infoText, value, remoteImage, showInfoPopup 
         <TextTemplate type="b2">{text}</TextTemplate>
         {!infoText ? null : (
           <PressableWithDelay onPress={showPopup}>
-            <View ref={questionMarkRef} style={styles.infoWrapper}>
+            <View ref={questionMarkRef} style={styles.infoWrapper} collapsable={false}>
               <InfoIcon height={22} width={22} colour={Colours.neutral.n800} filled={false} />
             </View>
           </PressableWithDelay>
@@ -56,6 +56,7 @@ const styles = StyleSheet.create({
   },
   imageTextWrapper: {
     flexDirection: "row",
+    alignItems: "center",
   },
   imageWrapper: {
     height: Style.adjust(24),

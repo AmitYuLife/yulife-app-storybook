@@ -91,6 +91,7 @@ const styles = StyleSheet.create({
   wrapper: {
     paddingHorizontal: Style.adjust(24),
     height: Style.DEVICE_HEIGHT,
+    backgroundColor: Colours.neutral.n50,
   },
   yumojiWrapper: {
     alignItems: "center",
@@ -102,6 +103,7 @@ const styles = StyleSheet.create({
   },
   box: {
     borderColor: Colours.neutral.n100,
+    backgroundColor: Colours.neutral.white,
     borderWidth: Style.adjust(1),
     borderRadius: Style.adjust(8),
     paddingHorizontal: Style.adjust(16),
