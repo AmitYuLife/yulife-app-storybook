@@ -1,8 +1,10 @@
-import React, { useCallback, useState } from "react";
 import { useMutation } from "@apollo/react-hooks";
-import { useDispatch } from "react-redux";
-import { Navigation } from "react-native-navigation";
-import { CollectEventRewardScreen } from "@screens";
+import { eventState } from "@components/screens/member/events/collect-event-reward/collect-event-reward.screen";
+import { GQL_MUTATION_CLAIM_GOAL_REWARDS } from "@graphql/goals/claimGoalRewards.gql";
+import { ClaimGoalRewards, ClaimGoalRewardsVariables } from "@graphql/_core/schema";
+import { GoalRewardStatus } from "@graphql/_core/schema/globalTypes";
+import { t } from "@locale";
+import { MODALS } from "@navigation/constants";
 import {
   FADE_IN_DURATION,
   FADE_OUT_DURATION,
@@ -10,19 +12,18 @@ import {
   FADE_PAUSE_DURATION,
   IReward,
 } from "@organisms/event-reward/event-reward";
-import { ClaimGoalRewards, ClaimGoalRewardsVariables } from "@graphql/_core/schema";
-import { GQL_MUTATION_CLAIM_GOAL_REWARDS } from "@graphql/goals/claimGoalRewards.gql";
 import { getUserStart, refreshUserProfileEvents } from "@redux/user/user.actions";
-import { MODALS } from "@navigation/constants";
+import { CollectEventRewardScreen } from "@screens";
 import Logger from "@services/logging/logger";
 import { delay } from "@utils/misc";
+import React, { useCallback, useMemo, useState } from "react";
+import { Navigation } from "react-native-navigation";
+import { useDispatch } from "react-redux";
 
 interface IProps {
-  title: string;
-  descriptionTitle: string;
-  description: string;
-  cta: string;
+  event: string;
   rewards: IReward[];
+  completed?: boolean;
 }
 
 const lottie = {
@@ -38,10 +39,13 @@ const lottie = {
 };
 
 const handleModalClose = () => Navigation.dismissModal(MODALS.collectEventReward);
-const TRANSITION_DELAY = FADE_IN_DURATION + FADE_PAUSE_DURATION + FADE_OUT_DURATION + FADE_OUT_PAUSE;
-export default function CollectEventRewardModal({ title, descriptionTitle, description, cta, rewards }: IProps) {
-  const [localRewards, setLocalRewards] = useState(
-    rewards.map((reward, index) => ({ ...reward, animationDelay: index * TRANSITION_DELAY }))
+const TRANSITION_DURATION = FADE_IN_DURATION + FADE_PAUSE_DURATION + FADE_OUT_DURATION + FADE_OUT_PAUSE;
+const TRANSITION_DELAY = 300;
+
+export default function CollectEventRewardModal({ event, rewards, completed = false }: IProps) {
+  const [localRewards, setLocalRewards] = useState(rewards);
+  const [eventFinished, setEventFinished] = useState(
+    completed && rewards.every(({ status }) => status !== GoalRewardStatus.completed)
   );
   const dispatch = useDispatch();
   const [claimGoalRewardsMutation] = useMutation<ClaimGoalRewards, ClaimGoalRewardsVariables>(
@@ -49,39 +53,101 @@ export default function CollectEventRewardModal({ title, descriptionTitle, descr
     { refetchQueries: ["GetGoalDetails"] }
   );
 
-  const onClaimRewardPress = useCallback(async () => {
+  const { orderedRewards, unclaimedRewardIds } = useMemo(() => {
+    return localRewards
+      .sort(({ status: status1 }, { status: status2 }) => {
+        if (status1 === status2) {
+          return 0;
+        }
+
+        if (status1 === GoalRewardStatus.completed) {
+          return -1;
+        }
+
+        return 1;
+      })
+      .reduce<{ orderedRewards: IReward[]; unclaimedRewardIds: string[] }>(
+        (map, reward, index) => {
+          if (reward.status === GoalRewardStatus.completed) {
+            map.unclaimedRewardIds.push(reward.id);
+          }
+
+          map.orderedRewards.push({ ...reward, animationDelay: index * TRANSITION_DELAY });
+          return map;
+        },
+        { orderedRewards: [], unclaimedRewardIds: [] }
+      );
+  }, [localRewards]);
+
+  const onCta = useCallback(async () => {
+    if (eventFinished) {
+      handleModalClose();
+      return;
+    }
+
     try {
-      const rewardIds = rewards.map((r) => r.id);
-      const result = await claimGoalRewardsMutation({ variables: { rewardIds } });
+      const result = await claimGoalRewardsMutation({ variables: { rewardIds: unclaimedRewardIds } });
 
-      if (result?.data?.claimGoalRewards?.rewards) {
-        setLocalRewards(
-          result.data.claimGoalRewards.rewards
-            .filter((r) => rewardIds.includes(r.id))
-            .map((reward, index) => ({ ...reward, animationDelay: index * TRANSITION_DELAY }))
-        );
+      const updatedRewards = result?.data?.claimGoalRewards?.rewards;
 
-        await delay(localRewards.length * TRANSITION_DELAY + 200);
+      if (updatedRewards) {
+        setLocalRewards((stateRewards) => {
+          const claimedRewardIds = updatedRewards.map(({ id }) => id);
+          return stateRewards.map((reward) => {
+            if (claimedRewardIds.includes(reward.id)) {
+              return { ...reward, status: GoalRewardStatus.claimed };
+            }
+
+            return reward;
+          });
+        });
+
+        await delay(unclaimedRewardIds.length * TRANSITION_DELAY + TRANSITION_DURATION + 200);
         dispatch(refreshUserProfileEvents());
+
         // update today's yucoin screen
         dispatch(getUserStart());
       }
     } catch (e) {
       Logger.error(e, { event: "claim-goal" });
     } finally {
-      handleModalClose();
+      if (completed) {
+        setEventFinished(true);
+      } else {
+        handleModalClose();
+      }
     }
-  }, [claimGoalRewardsMutation, dispatch, rewards?.length]);
+  }, [eventFinished]);
 
+  const { title, descriptionTitle, description, cta, status } = useMemo(() => {
+    if (eventFinished) {
+      return {
+        title: t("screens.eventCompleted.title", { event }),
+        descriptionTitle: t("screens.eventCompleted.descriptionTitle"),
+        description: t("screens.eventCompleted.description"),
+        cta: t("screens.eventCompleted.cta"),
+        status: eventState.COMPLETED,
+      };
+    }
+
+    return {
+      title: t("screens.collectRewardModal.title", { event }),
+      descriptionTitle: t("screens.collectRewardModal.descriptionTitle"),
+      description: t("screens.collectRewardModal.description"),
+      cta: t("screens.collectRewardModal.cta"),
+      status: eventState.IN_PROGRESS,
+    };
+  }, [eventFinished]);
   return (
     <CollectEventRewardScreen
       title={title}
       descriptionTitle={descriptionTitle}
       description={description}
       cta={cta}
-      onCta={onClaimRewardPress}
-      rewards={localRewards}
+      onCta={onCta}
+      rewards={orderedRewards}
       lottie={lottie}
+      status={status}
     />
   );
 }

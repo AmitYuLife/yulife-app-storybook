@@ -5,6 +5,7 @@ import {
 } from "@graphql/_core/schema";
 import { IReduxState } from "../_core/reducers";
 import { getAdBanners } from "../ad-banners/ad-banners.selectors";
+import { UserProfileEventStatus } from "@graphql/_core/schema/globalTypes";
 
 export type Connection = GetCurrentUser_getCurrentUser_connections;
 export type Leaderboard = GetCurrentUser_getCurrentUser_leaderboards;
@@ -91,7 +92,11 @@ export const getUserNotification = createSelector(reducer, userNotification);
 const userEvents = (state: State) => state.events || [];
 export const getUserEvents = createSelector(reducer, userEvents);
 
-export const getUserEventsWithAds = createSelector(getUserEvents, getAdBanners, (events, banners) => {
+export const getUserActiveEvents = createSelector(getUserEvents, (events) =>
+  events.filter((event) => event.status !== UserProfileEventStatus.completed)
+);
+
+export const getUserEventsWithAds = createSelector(getUserActiveEvents, getAdBanners, (events, banners) => {
   const formatData = banners.map(({ id, imageUrl, navigateTo }) => ({
     id,
     imageUrl: imageUrl.uri,

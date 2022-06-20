@@ -190,7 +190,7 @@ const EventDialogScreen: FC<IProps> = ({
       >
         <View style={style.contentWrapper}>
           <View style={style.rewardsWrapper}>
-            <EventRewardsWrapper rewards={rewards} />
+            <EventRewardsWrapper eventTitle={title} rewards={rewards} />
           </View>
           <View style={style.progressText}>
             <Image

@@ -5,13 +5,16 @@ import EventReward, { IReward } from "./event-reward";
 
 interface IEventRewardWrapperProps {
   rewards: IReward[];
+  eventTitle: string;
   isClaimEnabled?: boolean;
 }
 
-const EventRewardWrapper = ({ isClaimEnabled = true, rewards }: IEventRewardWrapperProps) => {
+const EventRewardWrapper = ({ isClaimEnabled = true, rewards, eventTitle }: IEventRewardWrapperProps) => {
   const { width: rewardWidth, marginHorizontal } = getRewardWidthAndMargin(rewards?.length);
   const renderReward = useCallback(
-    ({ item }) => <EventReward claimButton={isClaimEnabled} reward={item} width={rewardWidth} />,
+    ({ item }) => (
+      <EventReward eventTitle={eventTitle} claimButton={isClaimEnabled} reward={item} width={rewardWidth} />
+    ),
     [rewardWidth]
   );
 
@@ -36,6 +39,7 @@ const EventRewardWrapper = ({ isClaimEnabled = true, rewards }: IEventRewardWrap
             claimButton={isClaimEnabled}
             width={rewardWidth}
             marginHorizontal={marginHorizontal}
+            eventTitle={eventTitle}
             reward={reward}
           />
         ))

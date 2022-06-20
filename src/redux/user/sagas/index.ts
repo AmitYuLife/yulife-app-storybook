@@ -40,7 +40,7 @@ import getUserProfileEvents from "./getUserProfileEvents.saga";
 import updateYuScreenNotification from "./updateYuScreenNotification.saga";
 import synchroniseYuScreenSaga from "./synchroniseYuScreen.saga";
 import removeYuScreenNotification from "./removeYuScreenNotification.saga";
-import showEventFail from "./showEventFail.saga";
+import showEventFinishDialog from "./showEventFinishedDialog.saga";
 
 export default [
   takeLatest(AUTHENTICATED, fetchUserOnAppStateChangeSaga),
@@ -64,5 +64,5 @@ export default [
   takeLatest(UPDATE_USER_PROFILE, synchroniseYuScreenSaga),
   takeLatest([UPDATE_CURRENT_ROUTE, YUSCREEN_SYNCHRONISED], updateYuScreenNotification),
   takeLatest(REMOVE_YUSCREEN_NOTIFICATIONS, removeYuScreenNotification),
-  takeLatest([UPDATE_USER_PROFILE, UPDATE_USER_PROFILE_EVENTS], showEventFail),
+  takeLatest([UPDATE_USER_PROFILE, UPDATE_USER_PROFILE_EVENTS], showEventFinishDialog),
 ];
