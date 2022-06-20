@@ -22,7 +22,12 @@ const SwitchGoogleFitSection = ({ connectGoogleFit }: IProps) => {
       <View style={styles.switchGoogleFitWrapper}>
         <TextTemplate type="b2">{t("screens.permissions.switchToGoogleFit")}</TextTemplate>
       </View>
-      <Button size="Fill" label="Use Google Fit" wrapperStyle={styles.paddingHorizontal24} onPress={connectGoogleFit} />
+      <Button
+        size="Fill"
+        label="Use Google Fit"
+        wrapperStyle={styles.googleFitActionButton}
+        onPress={connectGoogleFit}
+      />
     </>
   );
 };

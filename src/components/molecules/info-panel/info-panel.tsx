@@ -95,7 +95,7 @@ function getYugiStatusIcon(bannerType: BannerType) {
   }
 }
 
-const sparseMarkdownStyles = {
+export const sparseMarkdownStyles = {
   text: textTemplateStyle.b2,
   paragraph: {
     paddingVertical: Style.adjust(8),
