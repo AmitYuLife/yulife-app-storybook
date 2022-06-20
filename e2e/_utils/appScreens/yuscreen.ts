@@ -207,7 +207,7 @@ export const onCertificate = (productName: string, customer:any, customerGroupPo
     const customerName = `${customer.data.firstName} ${customer.data.lastName}`
     const companyName = business.data.business_account_name
     const policyNumber = customerGroupPol.data.business_product_id
-    const dateJoined = moment(businessEmployee.data.invite_date).format("DD/MM/YYYY")
+    const dateJoined = moment(businessEmployee.data.employment_start_date).format("DD/MM/YYYY")
 
     await expect(element(by.text(productName))).toBeVisible()
     

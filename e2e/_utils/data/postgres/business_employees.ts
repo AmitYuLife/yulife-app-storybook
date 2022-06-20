@@ -18,7 +18,7 @@ export const BUSINESS_EMPLOYEE_1 = {
     data: {
         "business_account_id": BUSINESS_ACCOUNT_1.data.business_account_id,
         "customer_id": CUSTOMER_1.data.customerId,
-        "invite_date": "2019-12-30T00:00:00Z",
+        "employment_start_date": "2019-12-30T00:00:00Z",
         "leave_date": "2999-12-31T00:00:00Z",
     },
 } as IDatabaseItem;
@@ -29,7 +29,7 @@ export const BUSINESS_EMPLOYEE_2 = {
     data: {
         "business_account_id": BUSINESS_ACCOUNT_1.data.business_account_id,
         "customer_id": CUSTOMER_2.data.customerId,
-        "invite_date": "2019-12-30T00:00:00Z",
+        "employment_start_date": "2019-12-30T00:00:00Z",
         "leave_date": "2999-12-31T00:00:00Z",
     },
 } as IDatabaseItem;
@@ -40,7 +40,7 @@ export const BUSINESS_EMPLOYEE_3 = {
     data: {
         business_account_id: BUSINESS_ACCOUNT_1.data.business_account_id,
         customer_id: CUSTOMER_3.data.customerId,
-        invite_date: moment().subtract(6, "months").toDate(),
+        employment_start_date: moment().subtract(6, "months").toDate(),
         leave_date: moment().add(10, "years").toDate()
     }
 } as IDatabaseItem
@@ -51,7 +51,7 @@ export const BUSINESS_EMPLOYEE_4 = {
     data: {
         business_account_id: BUSINESS_ACCOUNT_1.data.business_account_id,
         customer_id: CUSTOMER_4.data.customerId,
-        invite_date: moment().subtract(4, "months").toDate(),
+        employment_start_date: moment().subtract(4, "months").toDate(),
         leave_date: moment().add(10, "years").toDate()
     }
 } as IDatabaseItem
@@ -62,7 +62,7 @@ export const BUSINESS_EMPLOYEE_5 = {
     data: {
         business_account_id: BUSINESS_ACCOUNT_1.data.business_account_id,
         customer_id: CUSTOMER_5.data.customerId,
-        invite_date: moment().toDate(),
+        employment_start_date: moment().toDate(),
         leave_date: moment().add(10, "years").toDate()
     }
 } as IDatabaseItem
@@ -73,7 +73,7 @@ export const BUSINESS_EMPLOYEE_6 = {
     data: {
         business_account_id: BUSINESS_ACCOUNT_1.data.business_account_id,
         customer_id: CUSTOMER_6.data.customerId,
-        invite_date: moment().subtract(7, "days").toDate(),
+        employment_start_date: moment().subtract(7, "days").toDate(),
         leave_date: moment().add(10, "years").toDate()
     }
 } as IDatabaseItem
@@ -84,7 +84,7 @@ export const BUSINESS_EMPLOYEE_7 = {
     data: {
         business_account_id: BUSINESS_ACCOUNT_1.data.business_account_id,
         customer_id: CUSTOMER_7.data.customerId,
-        invite_date: moment().subtract(26, "days").toDate(),
+        employment_start_date: moment().subtract(26, "days").toDate(),
         leave_date: moment().add(10, "years").toDate()
     }
 } as IDatabaseItem
@@ -96,7 +96,7 @@ export const BUSINESS_EMPLOYEE_8 = {
     data: {
         business_account_id: BUSINESS_ACCOUNT_1.data.business_account_id,
         customer_id: CUSTOMER_8.data.customerId,
-        invite_date: moment().subtract(26, "days").toDate(),
+        employment_start_date: moment().subtract(26, "days").toDate(),
         leave_date: moment().add(10, "years").toDate()
     }
 } as IDatabaseItem
@@ -107,7 +107,7 @@ export const BUSINESS_EMPLOYEE_9 = {
     data: {
         business_account_id: BUSINESS_ACCOUNT_1.data.business_account_id,
         customer_id: CUSTOMER_9.data.customerId,
-        invite_date: moment().subtract(40, "days").toDate(),
+        employment_start_date: moment().subtract(40, "days").toDate(),
         leave_date: moment().add(5, "years").toDate()
     }
 } as IDatabaseItem
@@ -118,7 +118,7 @@ export const BUSINESS_EMPLOYEE_10 = {
     data: {
         business_account_id: BUSINESS_ACCOUNT_1.data.business_account_id,
         customer_id: CUSTOMER_10.data.customerId,
-        invite_date: moment().subtract(55, "days").toDate(),
+        employment_start_date: moment().subtract(55, "days").toDate(),
         leave_date: moment().add(10, "years").toDate()
     }
 } as IDatabaseItem
@@ -129,7 +129,7 @@ export const BUSINESS_EMPLOYEE_11 = {
     data: {
         business_account_id: BUSINESS_ACCOUNT_1.data.business_account_id,
         customer_id: CUSTOMER_11.data.customerId,
-        invite_date: moment().subtract(300, "days").toDate(),
+        employment_start_date: moment().subtract(300, "days").toDate(),
         leave_date: moment().add(10, "years").toDate()
     }
 } as IDatabaseItem
@@ -140,7 +140,7 @@ export const BUSINESS_EMPLOYEE_12 = {
     data: {
         business_account_id: BUSINESS_ACCOUNT_1.data.business_account_id,
         customer_id: CUSTOMER_12.data.customerId,
-        invite_date: moment().subtract(6, "months").toDate(),
+        employment_start_date: moment().subtract(6, "months").toDate(),
         leave_date: moment().add(10, "years").toDate()
     }
 } as IDatabaseItem
@@ -151,7 +151,7 @@ export const BUSINESS_EMPLOYEE_13 = {
     data: {
         business_account_id: BUSINESS_ACCOUNT_1.data.business_account_id,
         customer_id: CUSTOMER_13.data.customerId,
-        invite_date: moment().subtract(6, "months").toDate(),
+        employment_start_date: moment().subtract(6, "months").toDate(),
         leave_date: moment().add(10, "years").toDate()
     }
 } as IDatabaseItem
@@ -162,7 +162,7 @@ export const BUSINESS_EMPLOYEE_14 = {
     data: {
         business_account_id: BUSINESS_ACCOUNT_1.data.business_account_id,
         customer_id: CUSTOMER_14.data.customerId,
-        invite_date: moment().subtract(6, "months").toDate(),
+        employment_start_date: moment().subtract(6, "months").toDate(),
         leave_date: moment().add(10, "years").toDate()
     }
 } as IDatabaseItem
@@ -173,7 +173,7 @@ export const BUSINESS_EMPLOYEE_15 = {
     data: {
         business_account_id: BUSINESS_ACCOUNT_1.data.business_account_id,
         customer_id: CUSTOMER_15.data.customerId,
-        invite_date: moment().subtract(6, "months").toDate(),
+        employment_start_date: moment().subtract(6, "months").toDate(),
         leave_date: moment().add(10, "years").toDate()
     }
 } as IDatabaseItem
@@ -184,7 +184,7 @@ export const BUSINESS_EMPLOYEE_16 = {
     data: {
         business_account_id: BUSINESS_ACCOUNT_2.data.business_account_id,
         customer_id: CUSTOMER_16.data.customerId,
-        invite_date: moment().subtract(6, "months").toDate(),
+        employment_start_date: moment().subtract(6, "months").toDate(),
         leave_date: moment().add(10, "years").toDate()
     }
 } as IDatabaseItem
@@ -195,7 +195,7 @@ export const BUSINESS_EMPLOYEE_17 = {
     data: {
         business_account_id: BUSINESS_ACCOUNT_2.data.business_account_id,
         customer_id: CUSTOMER_17.data.customerId,
-        invite_date: moment().subtract(3, "months").toDate(),
+        employment_start_date: moment().subtract(3, "months").toDate(),
         leave_date: moment().add(10, "years").toDate()
     }
 } as IDatabaseItem
@@ -206,7 +206,7 @@ export const BUSINESS_EMPLOYEE_18 = {
     data: {
         business_account_id: BUSINESS_ACCOUNT_2.data.business_account_id,
         customer_id: CUSTOMER_18.data.customerId,
-        invite_date: moment().subtract(13, "months").toDate(),
+        employment_start_date: moment().subtract(13, "months").toDate(),
         leave_date: moment().add(10, "years").toDate()
     }
 } as IDatabaseItem
@@ -217,7 +217,7 @@ export const BUSINESS_EMPLOYEE_19 = {
     data: {
         business_account_id: BUSINESS_ACCOUNT_2.data.business_account_id,
         customer_id: CUSTOMER_19.data.customerId,
-        invite_date: moment().subtract(13, "months").toDate(),
+        employment_start_date: moment().subtract(13, "months").toDate(),
         leave_date: moment().add(10, "years").toDate()
     }
 } as IDatabaseItem
@@ -228,7 +228,7 @@ export const BUSINESS_EMPLOYEE_20 = {
     data: {
         business_account_id: BUSINESS_ACCOUNT_2.data.business_account_id,
         customer_id: CUSTOMER_20.data.customerId,
-        invite_date: moment().subtract(13, "months").toDate(),
+        employment_start_date: moment().subtract(13, "months").toDate(),
         leave_date: moment().add(10, "years").toDate()
     }
 } as IDatabaseItem
@@ -239,7 +239,7 @@ export const BUSINESS_EMPLOYEE_21 = {
     data: {
         business_account_id: BUSINESS_ACCOUNT_2.data.business_account_id,
         customer_id: CUSTOMER_21.data.customerId,
-        invite_date: moment().subtract(8, "months").toDate(),
+        employment_start_date: moment().subtract(8, "months").toDate(),
         leave_date: moment().add(10, "years").toDate()
     }
 } as IDatabaseItem
@@ -250,7 +250,7 @@ export const BUSINESS_EMPLOYEE_22 = {
     data: {
         business_account_id: BUSINESS_ACCOUNT_1.data.business_account_id,
         customer_id: CUSTOMER_22.data.customerId,
-        invite_date: moment().subtract(8, "months").toDate(),
+        employment_start_date: moment().subtract(8, "months").toDate(),
         leave_date: moment().add(10, "years").toDate()
     }
 } as IDatabaseItem
@@ -261,7 +261,7 @@ export const BUSINESS_EMPLOYEE_23 = {
     data: {
         business_account_id: BUSINESS_ACCOUNT_1.data.business_account_id,
         customer_id: CUSTOMER_23.data.customerId,
-        invite_date: moment().subtract(8, "months").toDate(),
+        employment_start_date: moment().subtract(8, "months").toDate(),
         leave_date: moment().add(10, "years").toDate()
     }
 } as IDatabaseItem
@@ -272,7 +272,7 @@ export const BUSINESS_EMPLOYEE_ALPHA = {
     data: {
         business_account_id: BUSINESS_ACCOUNT_1.data.business_account_id,
         customer_id: CUSTOMER_ALPHA.data.customerId,
-        invite_date: moment().subtract(8, "months").toDate(),
+        employment_start_date: moment().subtract(8, "months").toDate(),
         leave_date: moment().add(10, "years").toDate(),
         // customer_membership: "Yulife Alpha",
     }
@@ -284,7 +284,7 @@ export const BUSINESS_EMPLOYEE_24 = {
     data: {
         business_account_id: BUSINESS_ACCOUNT_1.data.business_account_id,
         customer_id: CUSTOMER_24.data.customerId,
-        invite_date: moment().subtract(8, "months").toDate(),
+        employment_start_date: moment().subtract(8, "months").toDate(),
         leave_date: moment().add(10, "years").toDate()
     }
 } as IDatabaseItem
@@ -295,7 +295,7 @@ export const BUSINESS_EMPLOYEE_25 = {
     data: {
         business_account_id: BUSINESS_ACCOUNT_1.data.business_account_id,
         customer_id: CUSTOMER_25.data.customerId,
-        invite_date: moment().subtract(10, "months").toDate(),
+        employment_start_date: moment().subtract(10, "months").toDate(),
         leave_date: moment().add(10, "years").toDate()
     }
 } as IDatabaseItem
@@ -306,7 +306,7 @@ export const BUSINESS_EMPLOYEE_26 = {
     data: {
         business_account_id: BUSINESS_ACCOUNT_2.data.business_account_id,
         customer_id: CUSTOMER_26.data.customerId,
-        invite_date: moment().subtract(10, "months").toDate(),
+        employment_start_date: moment().subtract(10, "months").toDate(),
         leave_date: moment().add(10, "years").toDate()
     }
 } as IDatabaseItem
@@ -317,7 +317,7 @@ export const BUSINESS_EMPLOYEE_27 = {
     data: {
         business_account_id: BUSINESS_ACCOUNT_2.data.business_account_id,
         customer_id: CUSTOMER_27.data.customerId,
-        invite_date: moment().subtract(10, "months").toDate(),
+        employment_start_date: moment().subtract(10, "months").toDate(),
         leave_date: moment().add(10, "years").toDate()
     }
 } as IDatabaseItem
@@ -328,7 +328,7 @@ export const BUSINESS_EMPLOYEE_28 = {
     data: {
         business_account_id: BUSINESS_ACCOUNT_2.data.business_account_id,
         customer_id: CUSTOMER_28.data.customerId,
-        invite_date: moment().subtract(10, "months").toDate(),
+        employment_start_date: moment().subtract(10, "months").toDate(),
         leave_date: moment().add(10, "years").toDate()
     }
 } as IDatabaseItem
@@ -339,7 +339,7 @@ export const BUSINESS_EMPLOYEE_29 = {
     data: {
         business_account_id: BUSINESS_ACCOUNT_2.data.business_account_id,
         customer_id: CUSTOMER_29.data.customerId,
-        invite_date: moment().subtract(10, "months").toDate(),
+        employment_start_date: moment().subtract(10, "months").toDate(),
         leave_date: moment().add(10, "years").toDate()
     }
 } as IDatabaseItem
@@ -350,7 +350,7 @@ export const BUSINESS_EMPLOYEE_30 = {
     data: {
         business_account_id: BUSINESS_ACCOUNT_2.data.business_account_id,
         customer_id: CUSTOMER_30.data.customerId,
-        invite_date: moment().subtract(10, "months").toDate(),
+        employment_start_date: moment().subtract(10, "months").toDate(),
         leave_date: moment().add(10, "years").toDate()
     }
 } as IDatabaseItem
@@ -361,7 +361,7 @@ export const BUSINESS_EMPLOYEE_31 = {
     data: {
         business_account_id: BUSINESS_ACCOUNT_3.data.business_account_id,
         customer_id: CUSTOMER_31.data.customerId,
-        invite_date: moment().subtract(3, "months").toDate(),
+        employment_start_date: moment().subtract(3, "months").toDate(),
         leave_date: moment().add(10, "years").toDate()
     }
 } as IDatabaseItem
@@ -372,7 +372,7 @@ export const BUSINESS_EMPLOYEE_32 = {
     data:{
         business_account_id: BUSINESS_ACCOUNT_4.data.business_account_id,
         customer_id: CUSTOMER_32.data.customerId,
-        invite_date: moment().subtract(1, "year").toDate(),
+        employment_start_date: moment().subtract(1, "year").toDate(),
         leave_date: moment().add(10, "years").toDate()
     }
 } as IDatabaseItem
@@ -383,7 +383,7 @@ export const BUSINESS_EMPLOYEE_33 = {
     data:{
         business_account_id: BUSINESS_ACCOUNT_4.data.business_account_id,
         customer_id: CUSTOMER_33.data.customerId,
-        invite_date: moment().subtract(1, "year").toDate(),
+        employment_start_date: moment().subtract(1, "year").toDate(),
         leave_date: moment().add(10, "years").toDate()
     }
 } as IDatabaseItem
@@ -394,7 +394,7 @@ export const BUSINESS_EMPLOYEE_34 = {
     data:{
         business_account_id: BUSINESS_ACCOUNT_4.data.business_account_id,
         customer_id: CUSTOMER_34.data.customerId,
-        invite_date: moment().subtract(1, "year").toDate(),
+        employment_start_date: moment().subtract(1, "year").toDate(),
         leave_date: moment().add(10, "years").toDate()
     }
 } as IDatabaseItem
@@ -405,7 +405,7 @@ export const BUSINESS_EMPLOYEE_35 = {
     data: {
         business_account_id: BUSINESS_ACCOUNT_4.data.business_account_id,
         customer_id: CUSTOMER_35.data.customerId,
-        invite_date: moment().subtract(1, "year").toDate(),
+        employment_start_date: moment().subtract(1, "year").toDate(),
         leave_date: moment().add(10, "years").toDate()
     }
 } as IDatabaseItem
@@ -416,7 +416,7 @@ export const BUSINESS_EMPLOYEE_36 = {
     data: {
         business_account_id: BUSINESS_ACCOUNT_4.data.business_account_id,
         customer_id: CUSTOMER_36.data.customerId,
-        invite_date: moment().subtract(1, "year").toDate(),
+        employment_start_date: moment().subtract(1, "year").toDate(),
         leave_date: moment().add(10, "years").toDate()
     }
 } as IDatabaseItem
@@ -427,7 +427,7 @@ export const BUSINESS_EMPLOYEE_37 = {
     data: {
         business_account_id: BUSINESS_ACCOUNT_4.data.business_account_id,
         customer_id: CUSTOMER_37.data.customerId,
-        invite_date: moment().subtract(1, "year").toDate(),
+        employment_start_date: moment().subtract(1, "year").toDate(),
         leave_date: moment().add(10, "years").toDate()
     }
 } as IDatabaseItem
@@ -438,7 +438,7 @@ export const BUSINESS_EMPLOYEE_38 = {
     data: {
         business_account_id: BUSINESS_ACCOUNT_5.data.business_account_id,
         customer_id: CUSTOMER_38.data.customerId,
-        invite_date: moment().subtract(1, "year").toDate(),
+        employment_start_date: moment().subtract(1, "year").toDate(),
         leave_date: moment().add(10, "years").toDate()
     }
 } as IDatabaseItem
@@ -449,7 +449,7 @@ export const BUSINESS_EMPLOYEE_39 = {
     data: {
         business_account_id: BUSINESS_ACCOUNT_5.data.business_account_id,
         customer_id: CUSTOMER_39.data.customerId,
-        invite_date: moment().subtract(1, "year").toDate(),
+        employment_start_date: moment().subtract(1, "year").toDate(),
         leave_date: moment().add(10, "years").toDate()
     }
 } as IDatabaseItem
