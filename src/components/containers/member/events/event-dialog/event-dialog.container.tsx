@@ -6,7 +6,6 @@ import { GQL_MUTATION_JOIN_GOAL } from "@graphql/goals/joinGoal.gql";
 import { JoinGoal, JoinGoalVariables } from "@graphql/_core/schema";
 import { GetGoalDetails } from "@graphql/_core/schema/GetGoalDetails";
 import { GoalActionType, GoalRewardStatus } from "@graphql/_core/schema/globalTypes";
-import { t } from "@locale";
 import { MODALS } from "@navigation/constants";
 import { showYuModal } from "@navigation/root";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
@@ -36,7 +35,7 @@ const EventDialogContainer: FC<IProps> = ({ componentId, goalId, stageId, onLeft
     dispatch(refreshUserProfileEvents());
   }, []);
 
-  const { title, labels, headerBackgroundColor, headerTextColor, headerImage, button, faq } =
+  const { title, labels, headerBackgroundColor, headerTextColor, headerImage, button, faq, rewards, milestones } =
     data?.getGoalDetails || {};
   const onFaqViewed = useCallback(() => {
     dispatch(
@@ -60,11 +59,10 @@ const EventDialogContainer: FC<IProps> = ({ componentId, goalId, stageId, onLeft
               id: MODALS.collectEventReward,
               name: MODALS.collectEventReward,
               passProps: {
-                title: t("screens.collectRewardModal.title"),
-                descriptionTitle: t("screens.collectRewardModal.descriptionTitle"),
-                description: t("screens.collectRewardModal.description"),
-                cta: t("screens.collectRewardModal.cta"),
-                rewards: data.getGoalDetails.rewards.filter((reward) => reward.status === GoalRewardStatus.completed),
+                event: title,
+                rewards: rewards.filter((reward) => reward.status === GoalRewardStatus.completed),
+                completed:
+                  rewards.filter(({ status }) => status !== GoalRewardStatus.completed).length === milestones.length,
               },
             },
           });

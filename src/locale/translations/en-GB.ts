@@ -86,16 +86,23 @@ export default {
       },
     },
     eventFail: {
-      title: "has ended",
+      title: "%{event} event has ended",
       multipleEventsTitle: "A couple of your events have ended",
       description: "Hurry up to catch a spot for the next one and win big prizes.",
       cta: "OK",
     },
-    collectRewardModal: {
-      title: "Event ended",
+    eventCompleted: {
+      title: "%{event} event finished",
+      multipleEventsTitle: "A couple of your events have finished",
       descriptionTitle: "Great job!",
-      description: `Congrats on completing the event!`,
-      cta: "Claim rewards",
+      description: "You collected all milestone rewards. Good job! \n This event will be closed.",
+      cta: "Great!",
+    },
+    collectRewardModal: {
+      title: "%{event} event",
+      descriptionTitle: "Great job!",
+      description: "You have reached the event milestone!\nCongratulations. Claim your rewards",
+      cta: "Claim",
     },
   },
   permissions: {

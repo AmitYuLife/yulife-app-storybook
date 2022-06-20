@@ -40,6 +40,7 @@ interface IEventReward {
   height?: number;
   width?: number;
   reward: IReward;
+  eventTitle: string;
   claimButton?: boolean;
 }
 
@@ -66,6 +67,7 @@ const EventReward = ({
   width = Style.adjust(136),
   marginHorizontal = Style.adjust(4),
   claimButton,
+  eventTitle,
 }: IEventReward) => {
   const {
     id,
@@ -110,10 +112,7 @@ const EventReward = ({
         id: MODALS.collectEventReward,
         name: MODALS.collectEventReward,
         passProps: {
-          title,
-          descriptionTitle: "Great job!",
-          description: `You reached the milestone!\nCongratulations. Claim your rewards.`,
-          cta: "Claim",
+          event: eventTitle,
           rewards: [reward],
         },
       },
