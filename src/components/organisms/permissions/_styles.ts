@@ -13,6 +13,10 @@ export const styles = StyleSheet.create({
     paddingHorizontal: Style.adjust(24),
     marginBottom: Style.adjust(32),
   },
+  googleFitActionButton: {
+    paddingHorizontal: Style.adjust(24),
+    marginBottom: Style.adjust(12),
+  },
   infoErrorWrapperStyle: {
     marginTop: Style.adjust(24),
     marginBottom: Style.adjust(24),

@@ -66,6 +66,7 @@ export default {
     permissions: {
       title: "Permission settings",
       description: "Status and management of account and system level permissions granted",
+      infoMessage: "Manage your permissions to get fully rewarded with YuCoin for your activities.",
       switchToGoogleFit:
         "Samsung Health does not currently sync all the data we need in order to reward you for your activities. To sync mindful minutes, cycling & 3rd party apps, please switch to Google Fit.",
       heading: "Permissions",
@@ -74,15 +75,15 @@ export default {
       statusDisconnected:
         "**Status: Disconnected**\nTo reconnect check your phone settings. Please [visit our FAQ](https://faq.yulife.com/en/collections/728876-yulife-app-and-game) for additional help.",
       statusAskPermissions:
-        "**Ask for permission**\nTo connect use the “Connect” button. Please [visit our FAQ](https://faq.yulife.com/en/collections/728876-yulife-app-and-game) for additional help.",
+        "**Permission not connected**\nTo connect use the “Connect” button. Please [visit our FAQ](https://faq.yulife.com/en/collections/728876-yulife-app-and-game) for additional help.",
       systemSection: {
-        header: "System Permission",
+        header: "System Permissions",
         secondaryButton: "System Settings",
       },
       healthSection: {
-        iosHeader: "Apple Health permissions",
-        androidHeader: "Google Fit permissions",
-        samsungHeader: "Samsung Health permissions",
+        iosHeader: "Apple Health Permissions",
+        androidHeader: "Google Fit Permissions",
+        samsungHeader: "Samsung Health Permissions",
       },
     },
     eventFail: {
@@ -101,25 +102,40 @@ export default {
   permissions: {
     android: {
       activityRecognition: {
-        title: "Activity recognition",
+        title: "Physical Recognition",
         requirement: "Required for: Steps, Mindfulness & Cycling",
-        description: "Needed by the yulife app to get activity data from your phone.",
+        description: "Needed by the YuLife app to get activity data from your phone.",
+      },
+      activityRecognitionSamsungHealth: {
+        title: "Physical Recognition",
+        requirement: "Required for: Steps",
+        description: "Needed by the YuLife app to get activity data from your phone.",
       },
       location: {
         title: "Location",
         requirement: "Required for: Cycling",
-        description: "Needed by the yulife app to get location data from your phone.",
+        description: "Needed by the YuLife app to get activity data from your phone.",
       },
       fitnessActivityRead: {
-        title: "Steps & Mindfulness tracking (Read)",
-        requirement: "Requires: Activity recognition",
+        title: "Steps",
+        requirement: "Requires: Physical Recognition",
+        description: "Needed by the YuLife app to read steps data tracked in your Google Fit account.",
+      },
+      mindfulnessRead: {
+        title: "Mindful Minutes",
+        requirement: "Requires: Physical Recognition",
         description:
-          "Needed by the yulife app to read steps & mindful minutes data tracked in your Google Fit account.",
+          "Needed by the YuLife app to sync mindful minutes from your meditation sessions to your Google Fit account.",
       },
       distanceRead: {
-        title: "Cycling tracking",
-        requirement: "Requires: Activity recognition, Location",
-        description: "Needed by the yulife app to get cycling/biking data tracked in your Google Fit account.",
+        title: "Cycling Distance",
+        requirement: "Requires: Physical Recognition, Location",
+        description: "Needed by the YuLife app to get cycling/biking data tracked in your Google Fit account.",
+      },
+      workoutsRead: {
+        title: "Workouts",
+        requirement: "Requires: Physical Recognition",
+        description: "Needed by the YuLife app to get workout (e.g. Fiit) data tracked in your Google Fit account.",
       },
       samsungStepsCountTrend: {
         title: "Daily steps count trend",
@@ -133,7 +149,7 @@ export default {
       },
       samsungMindful: {
         title: "Mindful minutes (Unsupported)",
-        description: "Mindful is not supported by Samsung Health. To get rewarded switch to Google Fit.",
+        description: "Meditation is not supported by Samsung Health. To get rewarded switch to Google Fit.",
       },
       samsungCycling: {
         title: "Cycling (Unsupported)",
@@ -143,24 +159,25 @@ export default {
     ios: {
       motionAndFitness: {
         title: "Motion & Fitness",
-        requirement: "Required for: Steps",
-        description: "Needed by the yulife app to get activity data from your phone.",
+        description: "Required for the YuLife app to reward you for your daily activities.",
       },
       stepsRead: {
-        title: "Steps tracking",
-        description: "Needed by the yulife app to read steps data tracked in your Apple Health account.",
+        title: "Steps",
+        description:
+          "Needed by the YuLife app to read steps & mindful minutes data tracked in your Apple Health account.",
       },
       mindfulnessRead: {
-        title: "Mindfulness tracking (Read)",
-        description: "Needed by the yulife app to read mindful minutes data tracked in your Apple Health account.",
+        title: "Mindful Minutes",
+        description:
+          "Needed by the YuLife app to sync mindful minutes from your meditation sessions to your Apple Health account.",
       },
       cyclingRead: {
         title: "Cycling Distance",
-        description: "Needed by the yulife app to get cycling/biking data tracked in your Apple Health account.",
+        description: "Needed by the YuLife app to get cycling/biking data tracked in your Apple Health account.",
       },
       workoutsRead: {
         title: "Workouts",
-        description: "Needed by the Yulife app to get workout (e.g. Fiit) data tracked in your Apple Health account.",
+        description: "Needed by the YuLife app to get workout (e.g. Fiit) data tracked in your Apple Health account.",
       },
     },
   },

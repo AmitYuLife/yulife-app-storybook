@@ -39,6 +39,8 @@ const healthPermissionIDs = [
   "samsung_health_step_count",
   "samsung_health_mindful",
   "samsung_health_cycling",
+  "google_fit_mindfulness",
+  "google_fit_workouts",
 ];
 
 const systemPermissionIDs = [
@@ -47,7 +49,7 @@ const systemPermissionIDs = [
   "system_motion_fitness",
 ];
 
-const commonAndroidPermissions: Permissions[] = [
+const androidPermissions: Permissions[] = [
   {
     id: "system_activity_recognition_permission",
     title: t("permissions.android.activityRecognition.title"),
@@ -66,10 +68,6 @@ const commonAndroidPermissions: Permissions[] = [
     type: FitKitAndroidSystemPermission.location,
     scope: "read",
   },
-];
-
-const androidPermissions: Permissions[] = [
-  ...commonAndroidPermissions,
   {
     id: "google_fit_steps_mindfulness",
     title: t("permissions.android.fitnessActivityRead.title"),
@@ -77,6 +75,16 @@ const androidPermissions: Permissions[] = [
     description: t("permissions.android.fitnessActivityRead.description"),
     checkStatus: async () => checkGoogleFitPermission({ read: [FitKitTypes.Types.StepCount], platform: "GoogleFit" }),
     type: FitKitType.StepCount,
+    scope: "read",
+  },
+  {
+    id: "google_fit_mindfulness",
+    title: t("permissions.android.mindfulnessRead.title"),
+    requirement: t("permissions.android.mindfulnessRead.requirement"),
+    description: t("permissions.android.mindfulnessRead.description"),
+    checkStatus: async () =>
+      checkGoogleFitPermission({ read: [FitKitTypes.Types.MindfulSession], platform: "GoogleFit" }),
+    type: FitKitType.MindfulSession,
     scope: "read",
   },
   {
@@ -88,10 +96,27 @@ const androidPermissions: Permissions[] = [
     type: FitKitType.Cycling,
     scope: "read",
   },
+  {
+    id: "google_fit_workouts",
+    title: t("permissions.android.workoutsRead.title"),
+    requirement: t("permissions.android.workoutsRead.requirement"),
+    description: t("permissions.android.workoutsRead.description"),
+    checkStatus: async () => checkGoogleFitPermission({ read: [FitKitTypes.Types.Pilates], platform: "GoogleFit" }),
+    type: FitKitType.Pilates,
+    scope: "read",
+  },
 ];
 
 const samsungHealthPermissions: Permissions[] = [
-  ...commonAndroidPermissions,
+  {
+    id: "system_activity_recognition_permission",
+    title: t("permissions.android.activityRecognitionSamsungHealth.title"),
+    requirement: t("permissions.android.activityRecognitionSamsungHealth.requirement"),
+    description: t("permissions.android.activityRecognitionSamsungHealth.description"),
+    checkStatus: async () => checkAndroidSystemPermission(FitKitAndroidSystemPermission.activity as any),
+    type: FitKitAndroidSystemPermission.activity as any,
+    scope: "read",
+  },
   {
     id: "samsung_health_step_daily_trend",
     title: t("permissions.android.samsungStepsCountTrend.title"),
@@ -162,7 +187,6 @@ const iosPermissions: Permissions[] = [
   {
     id: "system_motion_fitness",
     title: t("permissions.ios.motionAndFitness.title"),
-    requirement: t("permissions.ios.motionAndFitness.requirement"),
     description: t("permissions.ios.motionAndFitness.description"),
     checkStatus: async () => checkIosMotionAndFitnessPermission(),
     scope: "read",

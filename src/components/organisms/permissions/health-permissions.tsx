@@ -1,4 +1,4 @@
-import { Button, InfoPanel, PermissionItem, SecondaryButton, SettingsHeader } from "@components/molecules";
+import { Button, PermissionItem, SecondaryButton, SettingsHeader } from "@components/molecules";
 import React, { memo, useCallback } from "react";
 import { Platform, View } from "react-native";
 import { Permissions } from "@services/fitkit/permissions.helpers";
@@ -14,9 +14,16 @@ interface IProps {
   showSamsungHealth: boolean;
   healthPermission: Permissions[];
   onHealthConnect: () => void;
+  showInfoPopup: (viewRef: React.MutableRefObject<View>, markdown: string) => void;
 }
 
-const HealthPermissionsSection = ({ healthPermission, showSamsungHealth, loading, onHealthConnect }: IProps) => {
+const HealthPermissionsSection = ({
+  healthPermission,
+  showSamsungHealth,
+  loading,
+  onHealthConnect,
+  showInfoPopup,
+}: IProps) => {
   const showConnectButtonHealthSection = healthPermission?.find((item) =>
     Platform.select({
       android: item.status === "denied",
@@ -24,7 +31,6 @@ const HealthPermissionsSection = ({ healthPermission, showSamsungHealth, loading
     })
   );
 
-  const showInfoView = healthPermission?.find((item) => item.status === "not_determined");
   const healthApp = Platform.select({
     ios: "Apple Health",
     android: showSamsungHealth ? "Samsung Health" : "Google Fit",
@@ -65,6 +71,9 @@ const HealthPermissionsSection = ({ healthPermission, showSamsungHealth, loading
           description={description}
           requirement={requirement}
           loading={loading}
+          showInfoPopup={showInfoPopup}
+          errorMessage={t("screens.permissions.statusAskPermissions")}
+          infoMessage={t("screens.permissions.statusUnknown")}
         />
       ))}
 
@@ -85,25 +94,6 @@ const HealthPermissionsSection = ({ healthPermission, showSamsungHealth, loading
           leftIcon={<ChainIcon />}
         />
       )}
-
-      {showConnectButtonHealthSection ? (
-        <InfoPanel
-          markdown={t("screens.permissions.statusAskPermissions")}
-          type="error"
-          iconType="error"
-          wrapperStyle={styles.infoErrorWrapperStyle}
-          copyWrapperStyle={styles.copyWrapperStyle}
-        />
-      ) : null}
-      {showInfoView && !showConnectButtonHealthSection ? (
-        <InfoPanel
-          markdown={t("screens.permissions.statusUnknown")}
-          type="info"
-          iconType="info"
-          wrapperStyle={styles.infoWrapperStyle}
-          copyWrapperStyle={styles.copyWrapperStyle}
-        />
-      ) : null}
     </View>
   );
 };

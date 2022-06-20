@@ -17,6 +17,13 @@ import { getUserFeatures } from "@redux/user/user.selectors";
 import { SettingsPermissions } from "@services/fitkit/permissions.helpers";
 import { FitKitType } from "@graphql/_core/schema/globalTypes";
 import { t } from "@locale";
+import { TextTemplate } from "@atoms";
+import { showTooltipPopupRelativeToView } from "@organisms/tooltip-popup/tooltip-popup.helper";
+import Markdown from "@components/molecules/markdown/markdown";
+import { sparseMarkdownStyles } from "@components/molecules/info-panel/info-panel";
+import { SecondaryButton } from "@components/molecules";
+import { Navigation } from "react-native-navigation";
+import { MODALS } from "@navigation/constants";
 
 interface IProps {
   loading: boolean;
@@ -40,6 +47,17 @@ const PermissionsScreen = ({
     isSamsungHealthStepsAuthorised,
     isSamsungHealthStepDailyTrendAuthorised,
   } = settingsPermissions || {};
+
+  const showPopup = useCallback((viewRef: React.MutableRefObject<View>, markdown: string) => {
+    const onDismiss = () => Navigation.dismissOverlay(MODALS.blurredOverlay);
+    const children = (
+      <View style={styles.infoPopupWrapper}>
+        <Markdown markdownStyles={sparseMarkdownStyles} text={markdown} containerStyle={styles.infoMarkdown} />
+        <SecondaryButton size="Fill" onPress={onDismiss} label="Got it" />
+      </View>
+    );
+    showTooltipPopupRelativeToView({ viewRef, children });
+  }, []);
 
   const { authoriseFitKitTypes, authorise } = useFitKit();
   const features = useSelector(getUserFeatures);
@@ -72,20 +90,21 @@ const PermissionsScreen = ({
     }
   }, [updatePermissions, authoriseFitKitTypes, showSamsungHealth, healthPermission]);
   return (
-    <View>
+    <View style={styles.wrapper}>
+      <GenericHeadingPad />
       <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scrollViewContainer}>
-        <GenericHeadingPad />
-
-        <SystemPermissionsSection loading={loading} systemPermission={systemPermission} />
-
+        <View style={styles.messageWrapper}>
+          <TextTemplate type="b2">{t("screens.permissions.infoMessage")}</TextTemplate>
+        </View>
+        {!showSamsungHealth ? null : <SwitchGoogleFitSection connectGoogleFit={connectGoogleFit} />}
+        <SystemPermissionsSection loading={loading} systemPermission={systemPermission} showInfoPopup={showPopup} />
         <HealthPermissionsSection
           loading={loading}
           healthPermission={healthPermission}
           showSamsungHealth={showSamsungHealth}
           onHealthConnect={onHealthConnect}
+          showInfoPopup={showPopup}
         />
-
-        {!showSamsungHealth ? null : <SwitchGoogleFitSection connectGoogleFit={connectGoogleFit} />}
       </ScrollView>
       <GenericHeadingAbsolute
         heading={t("screens.permissions.heading")}
@@ -97,8 +116,23 @@ const PermissionsScreen = ({
 };
 
 const styles = StyleSheet.create({
+  wrapper: {
+    height: Style.DEVICE_HEIGHT,
+  },
   scrollViewContainer: {
-    paddingBottom: Style.adjust(24),
+    paddingBottom: Style.adjust(Platform.select({ ios: 24, android: 70 })),
+  },
+  messageWrapper: {
+    marginTop: Style.adjust(12),
+    marginBottom: Style.adjust(12),
+    paddingHorizontal: Style.adjust(24),
+  },
+  infoPopupWrapper: {
+    padding: Style.adjust(16),
+    width: Style.adjust(Style.DEVICE_WIDTH * 0.75),
+  },
+  infoMarkdown: {
+    marginBottom: Style.adjust(8),
   },
 });
 
