@@ -56,6 +56,7 @@ import { InfoIcon } from "./info-icon";
 import { CoinsIcon } from "./coins-icon";
 import { SmartWatchIcon } from "./smart-watch-icon";
 import { PlayIcon } from "./play-icon";
+import { Rank } from "./rank";
 
 export default {
   Clock,
@@ -119,4 +120,5 @@ export default {
   CoinsIcon,
   SmartWatchIcon,
   PlayIcon,
+  Rank,
 };
