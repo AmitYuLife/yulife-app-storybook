@@ -19,3 +19,4 @@ export { default as SwitchGoogleFitSection } from "./permissions/switch-google-f
 export { default as VideoPlayer } from "./video-player/video-player";
 export { default as YuCoinCounter } from "./yucoin-counter/yucoin-counter";
 export { default as InspectDetailsItem } from "./inspect/details-item";
+export { default as AvatarItems } from "./inspect/avatar-items";

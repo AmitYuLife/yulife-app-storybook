@@ -1,15 +1,25 @@
-import React, { memo, useCallback } from "react";
+import React, { memo, useCallback, useMemo } from "react";
 import InspectScreen from "@components/screens/member/inspect/inspect.screen";
 import { Navigation } from "react-native-navigation";
 import { ROUTES } from "@navigation/constants";
 
 interface IProps {
   componentId: string;
+  showOpponent?: boolean;
 }
 
-const InspectContainer = ({ componentId: _componentId }: IProps) => {
+const InspectContainer = ({ componentId: _componentId, showOpponent }: IProps) => {
   const onClose = useCallback(() => Navigation.pop(ROUTES.inspect), []);
-  return <InspectScreen infoItems={topItems} duelsItems={bottomItems} yumoji={yumoji} onClose={onClose} />;
+  const items = useMemo(() => (showOpponent ? activityItemsOpponent : activityItems), [showOpponent]);
+  return (
+    <InspectScreen
+      infoItems={topItems}
+      duelsItems={bottomItems}
+      yumoji={yumoji}
+      onClose={onClose}
+      activityItems={items}
+    />
+  );
 };
 
 const yumoji =
@@ -81,5 +91,70 @@ const bottomItems = [
     value: "53",
   },
 ];
+
+const activityItems = {
+  avatarUri:
+    "https://yulife-develop.imgix.net/avatars/54CU/2752161b-7651-4511-b313-31375589eef5.svg?ixlib=js-3.2.1&fm=png8&w=530&h=1106&fit=clip&s=098b2f3a6402b414c8c10df4da2fdacf",
+  averageItems: [
+    {
+      id: "averageItems1",
+      icon:
+        "https://yulife-local.imgix.net/user-inspect/steps.svg?ixlib=js-3.2.1&w=44&h=44&s=e56e46edc3ba3c8015009869db75f977",
+      value: "9,134",
+      name: "Average steps",
+    },
+    {
+      id: "averageItems2",
+      icon:
+        "https://yulife-local.imgix.net/user-inspect/cycling.svg?ixlib=js-3.2.1&w=44&h=44&s=f8d5b68a3c2786f5d4bcf0eeafa559e2",
+      value: "2.3 km",
+      name: "Average cycling",
+    },
+    {
+      id: "averageItems3",
+      icon:
+        "https://yulife-local.imgix.net/user-inspect/meditation.svg?ixlib=js-3.2.1&w=44&h=44&s=2f12a52492a6b488d436600651d9b0e6",
+      value: "12 min",
+      name: "Average mindfulness",
+    },
+  ],
+};
+
+const activityItemsOpponent = {
+  avatarUri:
+    "https://yulife-develop.imgix.net/avatars/56ZG/5265a899-68a9-489b-b1ad-a1fcdfcee410.svg?ixlib=js-3.2.1&fm=png8&w=530&h=1106&fit=clip&s=31c43fd7d1cc9479f2aa279f17a5d40d",
+  opponentAvatarUri:
+    "https://yulife-develop.imgix.net/avatars/54CU/2752161b-7651-4511-b313-31375589eef5.svg?ixlib=js-3.2.1&fm=png8&w=530&h=1106&fit=clip&s=098b2f3a6402b414c8c10df4da2fdacf",
+  opponentName: "Boris",
+  averageItems: [
+    {
+      id: "averageItems1",
+      icon:
+        "https://yulife-local.imgix.net/user-inspect/steps.svg?ixlib=js-3.2.1&w=44&h=44&s=e56e46edc3ba3c8015009869db75f977",
+      value: "9,134",
+      opponentValue: "6,134",
+      opponentIsWinner: false,
+      name: "Average steps",
+    },
+    {
+      id: "averageItems2",
+      icon:
+        "https://yulife-local.imgix.net/user-inspect/cycling.svg?ixlib=js-3.2.1&w=44&h=44&s=f8d5b68a3c2786f5d4bcf0eeafa559e2",
+      value: "2.3 km",
+      opponentValue: "0 km",
+      opponentIsWinner: false,
+      name: "Average cycling",
+    },
+    {
+      id: "averageItems3",
+      icon:
+        "https://yulife-local.imgix.net/user-inspect/meditation.svg?ixlib=js-3.2.1&w=44&h=44&s=2f12a52492a6b488d436600651d9b0e6",
+      value: "10 min",
+      opponentValue: "12 min",
+      opponentIsWinner: true,
+      name: "Average mindfulness",
+    },
+  ],
+};
 
 export default memo(InspectContainer);
