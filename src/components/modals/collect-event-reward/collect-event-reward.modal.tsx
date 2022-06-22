@@ -38,7 +38,6 @@ const lottie = {
   onAnimationEnd: null as any,
 };
 
-const handleModalClose = () => Navigation.dismissModal(MODALS.collectEventReward);
 const TRANSITION_DURATION = FADE_IN_DURATION + FADE_PAUSE_DURATION + FADE_OUT_DURATION + FADE_OUT_PAUSE;
 const TRANSITION_DELAY = 300;
 
@@ -48,6 +47,15 @@ export default function CollectEventRewardModal({ event, rewards, completed = fa
     completed && rewards.every(({ status }) => status !== GoalRewardStatus.completed)
   );
   const dispatch = useDispatch();
+
+  const handleModalClose = useCallback(() => {
+    dispatch(refreshUserProfileEvents());
+
+    // update today's yucoin screen
+    dispatch(getUserStart());
+    Navigation.dismissModal(MODALS.collectEventReward);
+  }, [dispatch]);
+
   const [claimGoalRewardsMutation] = useMutation<ClaimGoalRewards, ClaimGoalRewardsVariables>(
     GQL_MUTATION_CLAIM_GOAL_REWARDS,
     { refetchQueries: ["GetGoalDetails"] }
@@ -92,9 +100,8 @@ export default function CollectEventRewardModal({ event, rewards, completed = fa
 
       if (updatedRewards) {
         setLocalRewards((stateRewards) => {
-          const claimedRewardIds = updatedRewards.map(({ id }) => id);
           return stateRewards.map((reward) => {
-            if (claimedRewardIds.includes(reward.id)) {
+            if (unclaimedRewardIds.includes(reward.id)) {
               return { ...reward, status: GoalRewardStatus.claimed };
             }
 
@@ -103,10 +110,6 @@ export default function CollectEventRewardModal({ event, rewards, completed = fa
         });
 
         await delay(unclaimedRewardIds.length * TRANSITION_DELAY + TRANSITION_DURATION + 200);
-        dispatch(refreshUserProfileEvents());
-
-        // update today's yucoin screen
-        dispatch(getUserStart());
       }
     } catch (e) {
       Logger.error(e, { event: "claim-goal" });
