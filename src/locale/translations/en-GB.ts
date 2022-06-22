@@ -147,12 +147,12 @@ export default {
       samsungStepsCountTrend: {
         title: "Daily steps count trend",
         requirement: "Requires: Physical recognition",
-        description: "Needed by the Yulife app to read steps data tracked in your Samsung Health account.",
+        description: "Needed by the YuLife app to read steps data tracked in your Samsung Health account.",
       },
       samsungStepsCount: {
         title: "Step count",
         requirement: "Requires: Physical recognition",
-        description: "Needed by the Yulife app to read steps data tracked in your Samsung Health account.",
+        description: "Needed by the YuLife app to read steps data tracked in your Samsung Health account.",
       },
       samsungMindful: {
         title: "Mindful minutes (Unsupported)",
@@ -170,8 +170,7 @@ export default {
       },
       stepsRead: {
         title: "Steps",
-        description:
-          "Needed by the YuLife app to read steps & mindful minutes data tracked in your Apple Health account.",
+        description: "Needed by the YuLife app to read steps data tracked in your Apple Health account.",
       },
       mindfulnessRead: {
         title: "Mindful Minutes",

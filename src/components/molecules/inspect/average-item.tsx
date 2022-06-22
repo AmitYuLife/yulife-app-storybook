@@ -23,7 +23,7 @@ const AverageItem = ({ icon, name, value, opponentValue, opponentIsWinner }: IAv
         <Image width={Style.adjust(22)} source={{ uri: icon }} />
       </View>
       <View style={styles.nameWrapper}>
-        <TextTemplate type="b1b" color={TEXT_COLOR}>
+        <TextTemplate type="b2b" color={TEXT_COLOR}>
           {name}
         </TextTemplate>
       </View>
