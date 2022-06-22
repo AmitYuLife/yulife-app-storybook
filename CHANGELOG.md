@@ -7,6 +7,45 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.36.0] - 2022-06-22
+
+### Features
+
+- Feature XSE-1128: Disable SDUI button while loading
+
+### Bugfixes
+
+- Bugfix XSE-736: Edit payment details is failing
+- Bugfix: Claiming rewards after events end
+- Bugfix: Permissions copy & inspect styles
+- Bugfix ENG-2703 - Samsung health today steps
+- Bugfix GS-373: Fix inspect UI
+- Bugfix: init logger after user fetch
+- Bugfix: Remove audio from UIBackgroundModes until video-player is fully ready
+- Bugfix ENG-2736: US reset password subheading
+
+### Tasks
+
+- Task GS-375: Inspect activity UI
+- Task GS-374: Permissions copy update
+- Task GS-356: Add Event Finished Screen
+- Task GS-373: Inspect character sheet ui
+
+### Chores
+
+- Chore: Implement pre-commit hook to check large patches
+
+### Extra
+
+- Purge: unused user selectors
+- Detox: Change invite_date to employment_start_date
+- Hotfix: Allow zero earn rate on YuScreen
+- detox:fix change the text looks
+- Hotfix: react-native-video patch fix
+- detox:pli_fix
+- Hotfix: existing config check
+- Hotfix: intercom not initialising
+
 ## [3.35.0] - 2022-06-08
 
 ### Bugfixes
