@@ -3,7 +3,7 @@ import { Button, NameAndLevel, Yumoji } from "@molecules";
 import { AvatarItems, InspectDetailsItem, GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import { Colours, Style } from "@styles";
 import { InspectItem } from "@organisms/inspect/details-item";
-import { ScrollView, StyleSheet, View } from "react-native";
+import { Platform, ScrollView, StyleSheet, View } from "react-native";
 import { TextTemplate } from "@atoms";
 import { showInfoMessageTooltipViewRelative } from "@organisms/tooltip-popup/tooltip-popup.helper";
 import AverageItem, { IAverageItem } from "@components/molecules/inspect/average-item";
@@ -41,7 +41,7 @@ const InspectScreen = ({ infoItems, duelsItems, yumoji, onClose, activityItems }
   return (
     <View style={styles.wrapper}>
       <GenericHeadingPad />
-      <ScrollView showsVerticalScrollIndicator={false}>
+      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.containerStyle}>
         <NameAndLevel />
         <View style={styles.yumojiWrapper}>
           <Yumoji
@@ -133,6 +133,9 @@ const styles = StyleSheet.create({
     height: Style.DEVICE_HEIGHT,
     backgroundColor: Colours.neutral.n50,
   },
+  containerStyle: {
+    paddingBottom: Style.adjust(Platform.select({ ios: 20, android: 50 })),
+  },
   yumojiWrapper: {
     alignItems: "center",
     marginBottom: Style.adjust(10),
@@ -155,6 +158,8 @@ const styles = StyleSheet.create({
     marginBottom: Style.adjust(8),
   },
   activityHeader: {
+    marginTop: Style.adjust(16),
+    marginBottom: Style.adjust(8),
     alignItems: "center",
   },
 });
