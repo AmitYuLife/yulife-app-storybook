@@ -102,7 +102,7 @@ export const CLAIM_REWARD = async (todayEarnedCoins: number, challengeProgress: 
     })
     When("I press Claim", when.tapText("Claim"), async () => {
         Then("I should see correct colour of first claimed reward", then.idVisible(RADIO_ICON_COLOUR("#40C057")))
-        Then("I should not see Claim text", then.multipleTextNotVisible(["Claim", "Claim rewards"]))
+        Then("I should not see Claim text", then.multipleTextNotVisible(["Claim", "Claim rewards"], 2000))
         Then("I should see Take a challenge", then.textVisible("Take a challenge"))
     })
     When("I close this screen", when.tapID(BACK_BUTTON), async () => {
@@ -132,14 +132,14 @@ export const CLAIM_ALL_REWARDS_WHEN_SECOND_CHALLENGE_COMPLETED = async (todayEar
         Then("I shold not see Join text", then.textNotVisible("Join"))
         Then("I should see that Event ended", then.iCanSeeEventEndedWhenClaimRewards)
     })
-    When("I press on Claim rewards", when.tapText("Claim rewards"), async () => {
+    When("I press on Claim", when.tapText("Claim"), async () => {
         Then(`I should see ${challengeProgress} event completed`, then.iCanSeeGoalEventScreen(challengeProgress))
-        Then("I should not see Claim text", then.multipleTextNotVisible(["Claim", "Claim rewards"]))
+        Then("I should not see Claim text", then.multipleTextNotVisible(["Claim", "Claim rewards"], 4000))
     })
     When("I close this screen", when.tapID(BACK_BUTTON), async () => {
         Then(`I should see ${todayEarnedCoins} screen details`, then.textVisible(`${todayEarnedCoins} YuCoin today`))
-        Then(`I should see my coin balance in the top right ${totalCoinCounter}`, then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(totalCoinCounter)))
-        Then("I should Not see the Event Goal", then.multipleTextNotVisible(["Claim", "Claim rewards", "Test event detox"]))
+        Then(`I should see my coin balance in the top right ${totalCoinCounter}`, then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(totalCoinCounter), 2000))
+        Then("I should Not see the Event Goal", then.multipleTextNotVisible(["Claim", "Claim rewards", "Test event detox"], 4000))
         Then("I should NOT see the ad ASOS", then.idNotVisible(AD_BANNERS))
     })
 }
@@ -154,13 +154,13 @@ export const CLAIM_REWARDS_WHEN_TEAMMEMBER_COMPLETED_GOAL = async (todayEarnedCo
         Then("I should see correct text", then.iCanSeeClaimSecondReward)
     })
     When("I press on Claim", when.tapText("Claim"), async () => {
-        Then("I should see correct colour of claimed first challenge", then.idVisibleAtIndex(RADIO_ICON_COLOUR("#40C057"), 0))
+        Then("I should see correct colour of claimed first challenge", then.idVisibleAtIndex(RADIO_ICON_COLOUR("#40C057"), 0, 4000))
         Then("I should see correct colour of claimed second challenge", then.idVisibleAtIndex(RADIO_ICON_COLOUR("#40C057"), 1))
     })
     When("I close this screen", when.tapID(BACK_BUTTON), async () => {
         Then(`I should see ${todayEarnedCoins} screen details`, then.textVisible(`${todayEarnedCoins} YuCoin today`))
-        Then(`I should see my coin balance in the top right ${totalCoinCounter}`, then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(totalCoinCounter)))
-        Then("I should Not see the Event Goal", then.multipleTextNotVisible(["Claim", "Claim rewards", "Test event detox"]))
+        Then(`I should see my coin balance in the top right ${totalCoinCounter}`, then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(totalCoinCounter), 2000))
+        Then("I should Not see the Event Goal", then.multipleTextNotVisible(["Claim", "Claim rewards", "Test event detox"], 2000))
         Then("I should see the ad ASOS", then.idVisible(AD_BANNERS))
     })
 }

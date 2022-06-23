@@ -206,7 +206,8 @@ export const multipleTextVisible = (textArr: string[]) => async () => {
     }
 }
 
-export const multipleTextNotVisible = (textArr: string[]) => async () => {
+export const multipleTextNotVisible = (textArr: string[], waitTime = 0) => async () => {
+    await wait(waitTime)()
     for (const i of textArr) {
         await expect(element(by.text(i))).toBeNotVisible()
     }
