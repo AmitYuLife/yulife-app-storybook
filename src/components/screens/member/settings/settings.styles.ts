@@ -13,7 +13,7 @@ export default StyleSheet.create({
     flexDirection: "column",
     justifyContent: "center",
     marginHorizontal: Style.adjust(24),
-    marginVertical: Style.adjust(24),
+    marginTop: Style.adjust(24),
   } as ViewStyle,
   fitnessTrackersItemWrapper: {
     flexDirection: "column",

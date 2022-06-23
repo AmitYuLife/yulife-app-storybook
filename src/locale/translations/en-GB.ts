@@ -64,8 +64,8 @@ export default {
       },
     },
     permissions: {
-      title: "Permission settings",
-      description: "Status and management of account and system level permissions granted",
+      title: "Activity permissions",
+      description: "Status and management of account and system level permissions.",
       infoMessage: "Manage your permissions to get fully rewarded with YuCoin for your activities.",
       switchToGoogleFit:
         "Samsung Health does not currently sync all the data we need in order to reward you for your activities. To sync mindful minutes, cycling & 3rd party apps, please switch to Google Fit.",
