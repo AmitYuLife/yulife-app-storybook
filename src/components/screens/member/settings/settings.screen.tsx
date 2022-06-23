@@ -91,8 +91,6 @@ export default class SettingsScreen extends PureComponent<IProps> {
           return this.renderSettingsItem(section, index);
         case "rewardStoreSettings":
           return this.renderSettingsItem(section, index);
-        case "permissionSettings":
-          return this.renderSettingsItem(section, index);
         default:
           return null;
       }

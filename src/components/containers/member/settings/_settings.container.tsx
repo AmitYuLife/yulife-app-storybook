@@ -131,6 +131,19 @@ function SettingsContainer({ componentId }: IOwnProps) {
     isVisible: features.passiveCyclingEnabled,
     items: [
       {
+        title: t("screens.permissions.title"),
+        description: t("screens.permissions.description"),
+        value: "",
+        onPress: () => {
+          Navigation.push(ROUTES.settings, {
+            component: {
+              id: ROUTES.permissions,
+              name: ROUTES.permissions,
+            },
+          });
+        },
+      },
+      {
         title: "Measurement (Cycling)",
         description: "Change between the imperial (miles) and metric (kilometers) system.",
         value: cyclingMeasurement,
@@ -161,27 +174,6 @@ function SettingsContainer({ componentId }: IOwnProps) {
             component: {
               id: ROUTES.rewardStoreLocation,
               name: ROUTES.rewardStoreLocation,
-            },
-          });
-        },
-      },
-    ],
-  };
-
-  const permissionSettings = {
-    name: "permissionSettings",
-    title: "Permissions",
-    isVisible: features.showPermissionSettings,
-    items: [
-      {
-        title: t("screens.permissions.title"),
-        description: t("screens.permissions.description"),
-        value: "",
-        onPress: () => {
-          Navigation.push(ROUTES.settings, {
-            component: {
-              id: ROUTES.permissions,
-              name: ROUTES.permissions,
             },
           });
         },
@@ -253,7 +245,7 @@ function SettingsContainer({ componentId }: IOwnProps) {
     <>
       <SettingsScreen
         onPressClose={handleClose}
-        sections={[notification, gameSettings, connection, permissionSettings, rewardStoreSettings]}
+        sections={[notification, gameSettings, connection, rewardStoreSettings]}
       />
       {!isTimeModalVisible ? null : (
         <ScrollPickerModal pickers={pickers} onConfirm={handleTimeModalConfirm} onCancel={handleTimeModalCancel} />

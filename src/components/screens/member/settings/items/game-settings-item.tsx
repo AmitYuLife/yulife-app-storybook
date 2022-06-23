@@ -39,6 +39,7 @@ export default memo(GameSettingsItem);
 const styles = StyleSheet.create({
   wrapper: {
     flexDirection: "row",
+    marginBottom: Style.adjust(24),
   } as ViewStyle,
   container: {
     flex: 1,
