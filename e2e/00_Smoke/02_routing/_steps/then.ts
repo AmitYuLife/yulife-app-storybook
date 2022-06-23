@@ -82,9 +82,8 @@ export const permissionsRightVissible = async()=>{
 
 export const onPermissionsPage = (status: string) => async () => {
     await expect(element(by.text("Permissions"))).toBeVisible()
-    await expect(element(by.text("System Permission"))).toBeVisible()
+    await expect(element(by.text("System Settings"))).toBeVisible()
     await expect(element(by.text(permissionSettings.ios.motionAndFitness.title))).toBeVisible()
-    await expect(element(by.text(permissionSettings.ios.motionAndFitness.requirement))).toBeVisible()
     await expect(element(by.text(permissionSettings.ios.motionAndFitness.description))).toBeVisible()
     await expect(element(by.text(permissionSettings.ios.stepsRead.title))).toBeVisible()
     await expect(element(by.text(permissionSettings.ios.stepsRead.description))).toBeVisible()
@@ -103,7 +102,6 @@ export const onPermissionsPage = (status: string) => async () => {
     if (status === "not_determined") {
         await scrollFromID(HEALTH_SCREEN, "up", "fast")()
         await expect(element(by.text("Apple Health"))).toBeVisible()
-        await expect(element(by.text(permissionSettings.ios.statusUnknown.unknownStatusText))).toBeVisible()
     }
     else if (status === "authorised") {
         await idVisibleAtIndex(STATUS_ICON(status), 4)
