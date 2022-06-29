@@ -29,7 +29,7 @@ export const truncate = (str: string, chars = 30) => {
 export function getQueryStringObject(fullUrl: string) {
   const urlArray = fullUrl.split("?");
   const url = urlArray[1] || urlArray[0];
-  const properties = url.split("&");
+  const properties = url.replace(/\%20/g, "+").split("&");
   const result: any = {};
 
   for (const property of properties) {
