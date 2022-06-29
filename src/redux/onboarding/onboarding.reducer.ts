@@ -4,7 +4,6 @@ import { SyncAction } from "../_core/types";
 import { GET_USER_SUCCESS, LOGIN_USER_SUCCESS } from "../user/user.actions";
 import {
   SET_REDEEMED_ONBOARDING,
-  SET_YUSCREEN_INTRO_SHOWN,
   SET_COMMUNITY_GOALS_INTRO_SHOWN,
   SET_DUELS_INTRO_SHOWN,
   SET_ONBOARDING_REFERRALS_BADGE,
@@ -17,7 +16,6 @@ export interface IOnboardingStore {
   reward: number;
   isOnboarding: boolean;
   showIntro: boolean;
-  showYuscreenIntro: boolean;
   showCommunityGoalsIntro: boolean;
   showDuelsIntro: boolean;
   showReferralsBadge: boolean;
@@ -29,7 +27,6 @@ export const getInitialState = (): IOnboardingStore => ({
   reward: 0,
   isOnboarding: true,
   showIntro: false,
-  showYuscreenIntro: true,
   showCommunityGoalsIntro: true,
   showDuelsIntro: true,
   showReferralsBadge: false,
@@ -52,7 +49,6 @@ export const userReducer = (state: IOnboardingStore = getInitialState(), action:
             redeemedOnboarding: true,
             reward: 200,
             isOnboarding: false,
-            showYuscreenIntro: true,
             showCommunityGoalsIntro: true,
             showDuelsIntro: true,
             showReferralsBadge: false,
@@ -82,12 +78,6 @@ export const userReducer = (state: IOnboardingStore = getInitialState(), action:
       return {
         ...state,
         showDuelsIntro: false,
-      };
-
-    case SET_YUSCREEN_INTRO_SHOWN:
-      return {
-        ...state,
-        showYuscreenIntro: false,
       };
 
     case SET_ONBOARDING_REFERRALS_BADGE:
@@ -125,10 +115,6 @@ const updatePersistedState = (persistedState: IOnboardingStore) => {
 
   if (typeof persistedState.showIntro === "undefined") {
     newState.showIntro = false;
-  }
-
-  if (typeof persistedState.showYuscreenIntro === "undefined") {
-    newState.showYuscreenIntro = true;
   }
 
   if (typeof persistedState.showCommunityGoalsIntro === "undefined") {
