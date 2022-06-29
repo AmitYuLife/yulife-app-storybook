@@ -7,6 +7,20 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.37.0] - 2022-06-29
+
+### Bugfixes
+
+- Bugfix: Allow + symbol on deeplinks
+
+### Tasks
+
+- Task GS-379: Add activity permission to game section
+
+### Extra
+
+- detox/fixes_22_06
+
 ## [3.36.0] - 2022-06-22
 
 ### Features
