@@ -1,10 +1,7 @@
 PODS:
   - boost-for-react-native (1.63.0)
-  - BugsnagReactNative (2.23.6):
-    - BugsnagReactNative/Core (= 2.23.6)
-    - React
-  - BugsnagReactNative/Core (2.23.6):
-    - React
+  - BugsnagReactNative (7.16.2):
+    - React-Core
   - BVLinearGradient (2.5.6):
     - React
   - CocoaAsyncSocket (7.6.5)
@@ -425,7 +422,7 @@ PODS:
     - Yoga (~> 1.14)
 
 DEPENDENCIES:
-  - BugsnagReactNative (from `../node_modules/bugsnag-react-native`)
+  - "BugsnagReactNative (from `../node_modules/@bugsnag/react-native`)"
   - BVLinearGradient (from `../node_modules/react-native-linear-gradient`)
   - DoubleConversion (from `../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec`)
   - FBLazyVector (from `../node_modules/react-native/Libraries/FBLazyVector`)
@@ -529,7 +526,7 @@ SPEC REPOS:
 
 EXTERNAL SOURCES:
   BugsnagReactNative:
-    :path: "../node_modules/bugsnag-react-native"
+    :path: "../node_modules/@bugsnag/react-native"
   BVLinearGradient:
     :path: "../node_modules/react-native-linear-gradient"
   DoubleConversion:
@@ -643,12 +640,12 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   boost-for-react-native: 39c7adb57c4e60d6c5479dd8623128eb5b3f0f2c
-  BugsnagReactNative: 76ba231ece009a6fad369f18d89779ab75cc1c7d
+  BugsnagReactNative: 8ccbb937bc8001cd3a5ed18ef0691d23cca8a748
   BVLinearGradient: e3aad03778a456d77928f594a649e96995f1c872
   CocoaAsyncSocket: 065fd1e645c7abab64f7a6a2007a48038fdc6a99
   DoubleConversion: cf9b38bf0b2d048436d9a82ad2abe1404f11e7de
   FBLazyVector: e686045572151edef46010a6f819ade377dfeb4b
-  FBReactNativeSpec: 0d2cbdcbb46bee95307b6fedd08312747f52fba2
+  FBReactNativeSpec: 4e411a1f12924f93862f81d9dd928e2e3a061545
   Flipper: d3da1aa199aad94455ae725e9f3aa43f3ec17021
   Flipper-DoubleConversion: 38631e41ef4f9b12861c67d17cb5518d06badc41
   Flipper-Folly: 755929a4f851b2fb2c347d533a23f191b008554c

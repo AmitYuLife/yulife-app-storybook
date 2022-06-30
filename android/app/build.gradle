@@ -112,6 +112,7 @@ project.ext.react = [
 ]
 
 apply from: "../../node_modules/react-native/react.gradle"
+apply plugin: "com.bugsnag.android.gradle"
 
 /**
  * Set this to true to create two separate APKs instead of one:
@@ -167,6 +168,7 @@ android {
         resValue "string", "build_config_package", "com.yulife"
         versionCode getNPMVersionCode()
         versionName getNPMVersionName()
+        manifestPlaceholders = [BUGSNAG_API_KEY: project.env.get("BUGSNAG_API_KEY"), ENV: project.env.get("ENV")]
     }
     splits {
         abi {
@@ -183,6 +185,7 @@ android {
             debuggable true
             matchingFallbacks = ['debug']
             resValue 'string', 'app_name', "YuLife (local v${getVersionFromNpm()})"
+            resValue 'string', 'app_version', "${getVersionFromNpm()}"
         }
         local {
             initWith debug
@@ -194,6 +197,7 @@ android {
             matchingFallbacks = ['release']
             manifestPlaceholders = [deepLinkHost: "develop.members.yulife.engineering", deepLinkAppName:"yulife-develop"]
             resValue 'string', 'app_name', "YuLife (develop v${getVersionFromNpm()})"
+            resValue 'string', 'app_version', "${getVersionFromNpm()}"
         }
         uat {
             initWith release
@@ -201,6 +205,7 @@ android {
             matchingFallbacks = ['release']
             manifestPlaceholders = [deepLinkHost: "uat.members.yulife.engineering", deepLinkAppName:"yulife-uat"]
             resValue 'string', 'app_name', "YuLife (uat v${getVersionFromNpm()})"
+            resValue 'string', 'app_version', "${getVersionFromNpm()}"
         }
         production {
             initWith uat
@@ -210,6 +215,7 @@ android {
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
             resValue 'string', 'app_name', 'YuLife'
+            resValue 'string', 'app_version', "${getVersionFromNpm()}"
         }
     }
 
@@ -252,9 +258,6 @@ dependencies {
     // Mixpanel
     implementation project(':react-native-mixpanel')
     implementation "com.mixpanel.android:mixpanel-android:5.8.6"
-
-    // Bugsnag
-    implementation project(':bugsnag-react-native')
 
     // FitKit
     implementation project(':yulife-react-native-fitkit')
@@ -302,3 +305,7 @@ task copyDownloadableDepsToLibs(type: Copy) {
 
 apply plugin: 'com.google.gms.google-services'
 apply from: file("../../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesAppBuildGradle(project)
+
+bugsnag {
+  uploadReactNativeMappings = true
+}
