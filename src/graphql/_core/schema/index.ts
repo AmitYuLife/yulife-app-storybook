@@ -126,6 +126,7 @@ export * from "./GetRewards";
 export * from "./GetSession";
 export * from "./GetTodayEarnings";
 export * from "./GetTotalCoins";
+export * from "./GetUnityRewards";
 export * from "./GetUserDebugData";
 export * from "./GetUserNotificationsSettings";
 export * from "./GetUserProfile";

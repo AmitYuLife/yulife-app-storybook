@@ -182,7 +182,16 @@ export enum RNViewPointerEvents {
   NONE = "NONE",
 }
 
+export enum RewardsChestType {
+  CELESTIAL = "CELESTIAL",
+  DESERT = "DESERT",
+  FOREST = "FOREST",
+  MOUNTAIN = "MOUNTAIN",
+  OCEAN = "OCEAN",
+}
+
 export enum SduiActionType {
+  OPEN_MY_ACCOUNT = "OPEN_MY_ACCOUNT",
   SDUI_ACTION_LOG_EVENT = "SDUI_ACTION_LOG_EVENT",
   SDUI_ACTION_NAVIGATE = "SDUI_ACTION_NAVIGATE",
   SDUI_ACTION_NAVIGATE_BACK = "SDUI_ACTION_NAVIGATE_BACK",
@@ -284,6 +293,7 @@ export interface ChallengesPayload {
   endDateTime: string;
   value: number;
   type: PassiveChallengeType;
+  bundleIdentifiers?: (string | null)[] | null;
 }
 
 export interface CustomerBeneficiaryUpdate {

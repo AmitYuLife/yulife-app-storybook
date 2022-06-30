@@ -91,6 +91,7 @@ interface Props extends IConnectedScreenProps {
 function QuestsScreenContainer(props: Props) {
   const { componentId, onLeftMenuPress } = props;
   const [unity, setUnity] = useState<number | null>(null);
+  const [repeatedUnity, setRepeatedUnity] = useState(false);
 
   const dispatch = useDispatch();
   const showChestModalCopy = useSelector(getShowChestCopy);
@@ -130,6 +131,7 @@ function QuestsScreenContainer(props: Props) {
             switch (action) {
               case "SetUnity":
                 setUnity(itemLevel.level);
+                setRepeatedUnity(true);
                 break;
               case "GoToChallengesList":
                 goToChallengesList(componentId, itemLevel.level);
@@ -140,6 +142,7 @@ function QuestsScreenContainer(props: Props) {
               case "DispatchSubmitUnityAction":
                 setUnity(itemLevel.level);
                 dispatch(submitUnityAction({ levelId: itemLevel.id }));
+                setRepeatedUnity(false);
                 break;
               case "ShowChestModal":
                 showChestModal(componentId, itemLevel, null, levelStatus.isNext, showChestModalCopy);
@@ -171,12 +174,12 @@ function QuestsScreenContainer(props: Props) {
   return (
     <QuestsScreen
       loading={loading}
-      componentId={componentId}
       currentLevel={currentLevel}
       onLeftMenuPress={onLeftMenuPress}
       data={formattedData}
       hideUnity={hideUnity}
       unity={unity}
+      repeatedUnity={repeatedUnity}
       activeLevel={getActiveLevel(formattedData)}
     />
   );
