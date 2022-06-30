@@ -1,12 +1,12 @@
-import { Client } from "bugsnag-react-native";
 import Config from "react-native-config";
 import DeviceInfo from "react-native-device-info";
 import Intercom from "@intercom/intercom-react-native";
 import Mixpanel from "react-native-mixpanel";
-import bugsnag from "../bugsnag";
+import getBugsnagClient, { BugsnagClient } from "../bugsnag";
 import LeanplumClient from "./leanplum";
 import { MixpanelEvent, MixpanelEventMetadata } from "@services/logging/types";
 import { Platform } from "react-native";
+import { Event } from "@bugsnag/react-native";
 import region from "@services/region";
 
 class LoggerInstance {
@@ -14,11 +14,11 @@ class LoggerInstance {
   private appVersion: string;
   private appVersionMajorMinor: string;
   private appVersionRegex = /(\d+.\d+).(\d+)/;
-  private bugsnag: Client;
+  private bugsnag: BugsnagClient;
   public leanplum: LeanplumClient;
 
   constructor() {
-    this.bugsnag = bugsnag();
+    this.bugsnag = getBugsnagClient();
     this.appVersion = DeviceInfo.getVersion();
     this.appVersionMajorMinor = DeviceInfo.getVersion().replace(this.appVersionRegex, "$1");
   }
@@ -91,7 +91,7 @@ class LoggerInstance {
       console.error(error, tags);
     }
 
-    this.bugsnag.notify(error, function (event) {
+    this.bugsnag.notify(error, function (event: Event) {
       // TODO: Omit tags we don't want to see in bugsnag
       if (Object.keys(tags).length) {
         for (const tag of Object.keys(tags)) {

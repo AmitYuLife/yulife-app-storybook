@@ -1,5 +1,6 @@
 package com.yulife;
 
+import com.bugsnag.android.Bugsnag;
 import android.app.Application;
 import android.app.Notification;
 import android.os.Bundle;
@@ -24,7 +25,6 @@ import com.leanplum.Leanplum;
 import com.leanplum.LeanplumActivityHelper;
 import com.leanplum.LeanplumPushNotificationCustomizer;
 import com.leanplum.LeanplumPushService;
-import com.bugsnag.BugsnagReactNative;
 
 public class MainApplication extends NavigationApplication {
 
@@ -60,28 +60,29 @@ public class MainApplication extends NavigationApplication {
   public void onCreate() {
     super.onCreate();
     // Bugsnag
-    BugsnagReactNative.start(this);
+    Bugsnag.start(this);
 
     // Leanplum
     Leanplum.setApplicationContext(this);
     Parser.parseVariables(this);
-    //  For session lifecyle tracking.
+    // For session lifecyle tracking.
     LeanplumActivityHelper.enableLifecycleCallbacks(this);
     LeanplumPushService.setCustomizer(new LeanplumPushNotificationCustomizer() {
-          @Override
-          public void customize(NotificationCompat.Builder builder, Bundle notificationPayload) {
-            if(Build.VERSION.SDK_INT > Build.VERSION_CODES.R){
-              builder.setSmallIcon(R.drawable.yu_push_icon);
-            } else {
-              builder.setSmallIcon(R.drawable.intercom_push_icon);
-            }
-            builder.setColor(getResources().getColor(R.color.yupink));
-          }
-          @Override
-          public void customize(Notification.Builder builder, Bundle bundle, @Nullable Notification.Style style) {
+      @Override
+      public void customize(NotificationCompat.Builder builder, Bundle notificationPayload) {
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.R) {
+          builder.setSmallIcon(R.drawable.yu_push_icon);
+        } else {
+          builder.setSmallIcon(R.drawable.intercom_push_icon);
+        }
+        builder.setColor(getResources().getColor(R.color.yupink));
+      }
 
-          }
-      });
+      @Override
+      public void customize(Notification.Builder builder, Bundle bundle, @Nullable Notification.Style style) {
+
+      }
+    });
 
     // Flipper
     SoLoader.init(this, /* native exopackage */ false);

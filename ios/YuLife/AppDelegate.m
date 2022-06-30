@@ -1,8 +1,8 @@
+#import <Bugsnag/Bugsnag.h>
 #import "AppDelegate.h"
 #import "ReactNativeConfig.h"
 #import <IntercomModule.h>
 #import <Leanplum-iOS-SDK/Leanplum.h>
-#import <BugsnagReactNative/BugsnagReactNative.h>
 #import <ReactNativeNavigation/ReactNativeNavigation.h>
 
 #import <RNCPushNotificationIOS.h>
@@ -56,8 +56,17 @@ static void InitializeFlipper(UIApplication *application) {
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
   // Bugsnag
+  NSString *appVersion = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
+  NSString *appBundleVersion = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
   NSString *bugsnagApiKey = [ReactNativeConfig envFor:@"BUGSNAG_API_KEY"];
-  [BugsnagReactNative startWithAPIKey:bugsnagApiKey];
+  NSString *stage = [ReactNativeConfig envFor:@"ENV"];
+  BugsnagConfiguration *config = [BugsnagConfiguration loadConfig];
+  config.appVersion = appVersion;
+  config.bundleVersion = appBundleVersion;
+  config.apiKey = bugsnagApiKey;
+  config.releaseStage = stage;
+  config.redactedKeys = [NSSet setWithArray:@[@"password", @"email"]];
+  [Bugsnag startWithConfiguration:config];
 
   // Define UNUserNotificationCenter
   UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
