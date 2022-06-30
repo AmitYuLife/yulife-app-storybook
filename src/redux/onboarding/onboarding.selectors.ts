@@ -13,9 +13,6 @@ export const getIsOnboarding = createSelector(reducer, isOnboardingSelector);
 const onboardingRewardSelector = (state: State) => state.reward;
 export const getOnboardingReward = createSelector(reducer, onboardingRewardSelector);
 
-const showYuscreenIntroSelector = (state: State) => state.showYuscreenIntro;
-export const getShowYuscreenIntro = createSelector(reducer, showYuscreenIntroSelector);
-
 const showCommunityGoalsIntroSelector = (state: State) => state.showCommunityGoalsIntro;
 export const getShowCommunityGoalsIntro = createSelector(reducer, showCommunityGoalsIntroSelector);
 

@@ -3,8 +3,6 @@ import { YuScreen } from "./yu-screen";
 import { YuScreenLayout } from "./yu-screen-layout";
 import { YuScreenLoading } from "./yu-screen-loading";
 import { useSelector } from "react-redux";
-import { getShowYuscreenIntro } from "@redux/onboarding/onboarding.selectors";
-import { YuScreenIntro } from "./yu-screen-intro/yu-screen-intro";
 import { useTapBackTwiceToExit } from "@hooks";
 import { IMainTabsProps } from "@navigation/root";
 import { YUSCREEN_V3 } from "@ids";
@@ -20,13 +18,8 @@ const _YuScreenContainer = (props: ConnectedState) => {
    */
   useTapBackTwiceToExit(props.componentId);
   const [popover, setPopover] = useState(null);
-  const showIntro = useSelector(getShowYuscreenIntro);
   const avatar = useSelector(getUserAvatar);
   const earnRate = useSelector(getUserEarnRate);
-
-  if (showIntro) {
-    return <YuScreenIntro />;
-  }
 
   const yumojiRemoteUrl = avatar.avatarRemoteFiles?.pngFull;
 
