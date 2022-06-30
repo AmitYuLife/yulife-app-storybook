@@ -1,6 +1,6 @@
 import { StyleSheet, ViewStyle } from "react-native";
 import { isIphoneX } from "react-native-iphone-x-helper";
-import { Style, TOP_BAR } from "../../../../../styles";
+import { TOP_BAR } from "../../../../../styles";
 
 function scrollViewAdjustPosition() {
   if (isIphoneX()) {
@@ -17,14 +17,6 @@ function scrollViewAdjustPosition() {
 }
 
 export default StyleSheet.create({
-  navBarWrapper: {
-    alignItems: "center",
-    bottom: Style.SCALE_UP_AND_DOWN(isIphoneX() ? 20 : 10),
-    paddingBottom: Style.SCALE_UP_AND_DOWN(15),
-    left: 0,
-    position: "absolute",
-    right: 0,
-  } as ViewStyle,
   scrollViewWrapper: {
     ...StyleSheet.absoluteFillObject,
     ...scrollViewAdjustPosition(),

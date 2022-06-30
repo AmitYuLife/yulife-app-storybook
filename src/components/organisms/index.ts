@@ -18,5 +18,7 @@ export { default as HealthPermissionsSection } from "./permissions/health-permis
 export { default as SwitchGoogleFitSection } from "./permissions/switch-google-fit";
 export { default as VideoPlayer } from "./video-player/video-player";
 export { default as YuCoinCounter } from "./yucoin-counter/yucoin-counter";
+export { default as Chest, CHEST_STATE } from "./chest/chest";
 export { default as InspectDetailsItem } from "./inspect/details-item";
+export { default as ChestCard } from "./chest-card/chest-card";
 export { default as AvatarItems } from "./inspect/avatar-items";

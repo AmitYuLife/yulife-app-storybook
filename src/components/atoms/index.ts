@@ -37,3 +37,4 @@ export { FlatList } from "./flat-list/flat-list";
 export { default as Block } from "./block/block";
 export { default as Radio } from "./radio/radio";
 export { default as ProgressBar } from "./progress-bar/progress-bar";
+export { default as TooltipIcon } from "./tooltip-icon/tooltip-icon";

@@ -1,64 +1,32 @@
 import { Style } from "@styles/index";
-import { StyleSheet, TextStyle, ViewStyle } from "react-native";
+import { StyleSheet, TextStyle, ViewStyle, ImageStyle } from "react-native";
 
 const styles = StyleSheet.create({
   heading: {
-    fontSize: 32,
-    lineHeight: 32,
-    letterSpacing: 1,
-    paddingBottom: 16,
-    paddingHorizontal: 30,
-    fontFamily: Style.FONT_FAMILY_PRIMARY_BOLD,
-  } as TextStyle,
-  subheading: {
-    fontSize: 24,
-    lineHeight: 30,
-    letterSpacing: 1,
-    paddingHorizontal: 30,
-    marginHorizontal: "auto",
-    fontFamily: Style.FONT_FAMILY_PRIMARY,
-  } as TextStyle,
+    paddingHorizontal: Style.adjust(40),
+  } as ViewStyle,
   headingWrapper: {
-    top: 80,
+    top: Style.adjust(80),
     left: 0,
     position: "absolute",
     alignItems: "center",
     justifyContent: "center",
     width: Style.DEVICE_WIDTH,
   } as TextStyle,
-  infoText: {
-    flex: 6,
-    width: Style.DEVICE_WIDTH,
-  } as ViewStyle,
-  infoHeading: {
-    alignItems: "center",
-    justifyContent: "center",
-    paddingBottom: 24,
-    width: Style.DEVICE_WIDTH,
-    fontFamily: Style.FONT_FAMILY_PRIMARY_BOLD,
-  } as TextStyle,
-  infoBody: {
-    fontSize: 15,
-    lineHeight: 30,
-    letterSpacing: 1,
-    fontFamily: Style.FONT_FAMILY_PRIMARY,
-    width: Style.DEVICE_WIDTH,
-    paddingHorizontal: 30,
-    paddingBottom: 24,
-    marginHorizontal: "auto",
-  } as TextStyle,
-  coinWrapper: {
-    flex: 4,
+  subHeadingWrapper: {
+    display: Style.DEVICE_HEIGHT < 812 ? "none" : "flex",
+    position: Style.DEVICE_HEIGHT < 812 ? "relative" : "absolute",
+    bottom: Style.adjust(139),
+    left: 0,
     alignItems: "center",
     justifyContent: "center",
     width: Style.DEVICE_WIDTH,
-    paddingTop: 60,
-  } as ViewStyle,
-  coinScale: {
-    transform: [{ scale: 1.5 }],
+  } as TextStyle,
+  page: {
+    ...StyleSheet.absoluteFillObject,
   } as ViewStyle,
   buttonWrapper: {
-    bottom: 40,
+    bottom: Style.adjust(40),
     left: 0,
     position: "absolute",
     width: Style.DEVICE_WIDTH,
@@ -70,6 +38,43 @@ const styles = StyleSheet.create({
     width: Style.DEVICE_WIDTH,
     height: Style.DEVICE_HEIGHT,
     ...StyleSheet.absoluteFillObject,
+  } as ViewStyle,
+  congratulatoryPage: {
+    ...StyleSheet.absoluteFillObject,
+  } as ViewStyle,
+  congratulatoryContent: {
+    position: "relative",
+    alignItems: "center",
+    paddingHorizontal: Style.adjust(52),
+    marginTop: Style.adjust(Style.DEVICE_HEIGHT < 844 ? 124 : 154),
+  } as ViewStyle,
+  chestPage: {
+    ...StyleSheet.absoluteFillObject,
+    justifyContent: "center",
+  },
+  chestTitleWrapper: {
+    position: "absolute",
+    top: Style.adjust(Style.DEVICE_HEIGHT < 844 ? 90 : 116),
+    width: Style.DEVICE_WIDTH,
+  } as ViewStyle,
+  afterword: {
+    ...StyleSheet.absoluteFillObject,
+    alignItems: "center",
+    paddingHorizontal: Style.adjust(38),
+  } as ViewStyle,
+  backgroundImage: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    width: Style.DEVICE_WIDTH,
+    height: Style.DEVICE_HEIGHT,
+  } as ImageStyle,
+  afterwordText: {
+    marginTop: Style.adjust(Style.DEVICE_HEIGHT < 844 ? 78 : 108),
+  } as ViewStyle,
+  yugiContainer: {
+    marginTop: Style.adjust(Style.DEVICE_HEIGHT < 844 ? 65 : 95),
+    marginRight: Style.adjust(13),
   } as ViewStyle,
 });
 
