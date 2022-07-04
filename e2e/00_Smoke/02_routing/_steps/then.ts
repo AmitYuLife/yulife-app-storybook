@@ -74,17 +74,18 @@ export const statsCorrect = async () => {
     };
 }
 
-export const permissionsRightVissible = async()=>{
-    await expect(element(by.text("Permissions"))).toBeVisible()
-    await expect(element(by.text("Permission settings"))).toBeVisible()
-    await expect(element(by.text("Status and management of account and system level permissions granted"))).toBeVisible()
+export const permissionsActivityRightVisible = async()=>{
+    await expect(element(by.text("Game settings"))).toBeVisible()
+    await expect(element(by.text("Activity permissions"))).toBeVisible()
+    await expect(element(by.text("Status and management of account and system level permissions."))).toBeVisible()
 }
 
 export const onPermissionsPage = (status: string) => async () => {
     await expect(element(by.text("Permissions"))).toBeVisible()
-    await expect(element(by.text("System Settings"))).toBeVisible()
+    await expect(element(by.text("System Permissions"))).toBeVisible()
     await expect(element(by.text(permissionSettings.ios.motionAndFitness.title))).toBeVisible()
     await expect(element(by.text(permissionSettings.ios.motionAndFitness.description))).toBeVisible()
+    await expect(element(by.text("Apple Health Permissions"))).toBeVisible()
     await expect(element(by.text(permissionSettings.ios.stepsRead.title))).toBeVisible()
     await expect(element(by.text(permissionSettings.ios.stepsRead.description))).toBeVisible()
     await expect(element(by.text(permissionSettings.ios.mindfulnessRead.title))).toBeVisible()
