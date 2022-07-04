@@ -59,6 +59,7 @@ export interface GetAllPurchases_getAllPurchases {
   yuCoinsSpent: number | null;
   delivery_url: string | null;
   status: string | null;
+  rewardTitle: string | null;
   metadata: GetAllPurchases_getAllPurchases_metadata | null;
   reward: GetAllPurchases_getAllPurchases_reward | null;
 }

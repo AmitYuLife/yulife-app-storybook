@@ -10,7 +10,6 @@ import { bottomTabs, ROUTES } from "@navigation/constants";
 import { getPurchasesCopy } from "@redux/copy/copy.selectors";
 import { PurchasedListScreen } from "@screens/index";
 import { IMainTabsProps } from "@navigation/root";
-import { formatMoney } from "@services/money";
 import { addCommasToNumber } from "@utils";
 
 type Props = Pick<IMainTabsProps, "componentId">;
@@ -39,9 +38,8 @@ function RewardsPurchasesContainer(props: Props) {
   const items = useMemo(
     () =>
       (purchases?.getAllPurchases || []).map((purchase) => {
-        const { id, amount, currency_code, name, status, createdAt, yuCoinsSpent } = purchase;
+        const { id, status, createdAt, yuCoinsSpent, rewardTitle } = purchase;
         const [day, month] = moment(new Date(createdAt).toISOString()).format("DD-MMM").split("-");
-        const reward = formatVoucherName(amount, currency_code, name);
         const route = getConfirmedRoute(purchase.rewardProviderId);
 
         return {
@@ -60,7 +58,7 @@ function RewardsPurchasesContainer(props: Props) {
                 options: { bottomTabs },
               },
             }),
-          reward,
+          reward: rewardTitle,
           status,
         };
       }),
@@ -87,17 +85,5 @@ const getConfirmedRoute = (rewardProviderId: string) => {
     case "wegift":
     default:
       return ROUTES.wegiftConfirmed;
-  }
-};
-
-const formatVoucherName = (num: number, currencyType: string, name: string) => {
-  switch (currencyType) {
-    case "AVIOS":
-      return `${formatMoney(num)} avios`;
-    case "HUGGG":
-      return name;
-    case "GBP":
-    default:
-      return `£${formatMoney(num)} ${name} voucher`;
   }
 };
