@@ -18,6 +18,7 @@ export const GQL_QUERY_GET_ALL_PURCHASES = gql`
       yuCoinsSpent
       delivery_url
       status
+      rewardTitle
       metadata {
         __typename
         avios {
