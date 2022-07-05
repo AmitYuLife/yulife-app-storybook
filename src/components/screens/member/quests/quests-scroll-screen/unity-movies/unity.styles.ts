@@ -14,9 +14,9 @@ const styles = StyleSheet.create({
     width: Style.DEVICE_WIDTH,
   } as TextStyle,
   subHeadingWrapper: {
-    display: Style.DEVICE_HEIGHT < 812 ? "none" : "flex",
-    position: Style.DEVICE_HEIGHT < 812 ? "relative" : "absolute",
-    bottom: Style.adjust(139),
+    display: Style.DEVICE_HEIGHT < 700 ? "none" : "flex",
+    position: Style.DEVICE_HEIGHT < 700 ? "relative" : "absolute",
+    bottom: Style.adjust(120),
     left: 0,
     alignItems: "center",
     justifyContent: "center",
@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     ...StyleSheet.absoluteFillObject,
   } as ViewStyle,
   buttonWrapper: {
-    bottom: Style.adjust(40),
+    bottom: Style.adjust(32),
     left: 0,
     position: "absolute",
     width: Style.DEVICE_WIDTH,
@@ -48,6 +48,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: Style.adjust(52),
     marginTop: Style.adjust(Style.DEVICE_HEIGHT < 844 ? 124 : 154),
   } as ViewStyle,
+  congratulatoryText: {
+    marginTop: Style.adjust(16),
+  },
   chestPage: {
     ...StyleSheet.absoluteFillObject,
     justifyContent: "center",
@@ -56,6 +59,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     top: Style.adjust(Style.DEVICE_HEIGHT < 844 ? 90 : 116),
     width: Style.DEVICE_WIDTH,
+    paddingHorizontal: Style.adjust(58),
   } as ViewStyle,
   afterword: {
     ...StyleSheet.absoluteFillObject,

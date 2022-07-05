@@ -22,7 +22,7 @@ export interface GetYuScreenProductDetails_getYuScreenProductDetails_containerSt
 }
 
 export interface GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemPad {
-  __typename: "ContentItemPad" | "ContentItemCollapsingGenericHeader";
+  __typename: "ContentItemPad" | "ContentItemCollapsingGenericHeader" | "ContentItemMobileAppPromotion";
 }
 
 export interface GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemProductDetailsHeader_styles {
@@ -213,7 +213,8 @@ export interface GetYuScreenProductDetails_getYuScreenProductDetails_absolute_it
     | "ContentItemBeneficiariesSection"
     | "ContentItemRowIconTextBanner"
     | "ContentItemKeyValueBox"
-    | "ContentItemImage";
+    | "ContentItemImage"
+    | "ContentItemMobileAppPromotion";
 }
 
 export interface GetYuScreenProductDetails_getYuScreenProductDetails_absolute_item_ContentItemPad_styles {
