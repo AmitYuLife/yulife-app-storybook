@@ -26,6 +26,7 @@ interface ChestItem {
 interface IProps {
   chestType: ChestType;
   items: ChestItem[];
+  openOnPress?: boolean;
   chestState: CHEST_STATE;
   setChestState: React.Dispatch<React.SetStateAction<CHEST_STATE>>;
 }
@@ -36,7 +37,7 @@ export enum CHEST_STATE {
   OPEN,
 }
 
-const Chest: FC<IProps> = ({ chestType, items, chestState, setChestState }) => {
+const Chest: FC<IProps> = ({ chestType, items, openOnPress = true, chestState, setChestState }) => {
   const timeout = useRef<NodeJS.Timeout>();
 
   const chestY = useRef(new Animated.Value(Style.adjust(-100)));
@@ -130,12 +131,12 @@ const Chest: FC<IProps> = ({ chestType, items, chestState, setChestState }) => {
   }, [chestState]);
 
   const onChestPress = useCallback(() => {
-    if (chestState === CHEST_STATE.CLOSED) {
+    if (openOnPress && chestState === CHEST_STATE.CLOSED) {
       setChestState(CHEST_STATE.OPENING);
     }
-  }, [chestState, setChestState]);
+  }, [openOnPress, chestState, setChestState]);
 
-  const { chestSource, fogClosedSource, fogOpenedSource, starsClosedSource, starsOpenedSource } = useAssets(chestType);
+  const { chestSource, fogClosedSource, fogOpenedSource, starsClosed, starsOpenedSource } = useAssets(chestType);
 
   return (
     <View style={styles.container}>
@@ -167,13 +168,8 @@ const Chest: FC<IProps> = ({ chestType, items, chestState, setChestState }) => {
                   source={fogClosedSource}
                 />
               </View>
-              <View style={styles.starsClosedWrapper}>
-                <RNImage
-                  resizeMode="contain"
-                  width={Style.adjust(292)}
-                  style={styles.starsClosedImage}
-                  source={starsClosedSource}
-                />
+              <View style={starsClosed.wrapperStyle}>
+                <RNImage resizeMode="contain" style={starsClosed.imageStyle} source={starsClosed.source} />
               </View>
             </>
           )}

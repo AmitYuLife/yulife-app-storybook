@@ -41,6 +41,15 @@ const styles = StyleSheet.create({
     position: "absolute",
     bottom: Style.adjust(160),
   } as ViewStyle,
+  starsClosedMountainImage: {
+    width: Style.adjust(354),
+    height: Style.adjust(193),
+  } as ImageStyle,
+  starsClosedMountainWrapper: {
+    position: "absolute",
+    bottom: Style.adjust(128),
+    paddingRight: Style.adjust(18),
+  } as ViewStyle,
   starsOpenedImage: {
     width: Style.adjust(186),
     height: Style.adjust(176),

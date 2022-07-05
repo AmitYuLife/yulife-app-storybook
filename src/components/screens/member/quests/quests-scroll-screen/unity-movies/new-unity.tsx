@@ -323,9 +323,11 @@ const Unity: FC<IProps> = ({ level, repeatedUnity, onSkip }) => {
             <TextTemplate color={color} type="h3" textAlign="center">
               {data?.getUnityRewards?.congratulatory.title}
             </TextTemplate>
-            <TextTemplate color={color} type="b2" textAlign="center">
-              {data?.getUnityRewards?.congratulatory.description}
-            </TextTemplate>
+            <View style={styles.congratulatoryText}>
+              <TextTemplate color={color} type="b2" textAlign="center">
+                {data?.getUnityRewards?.congratulatory.description}
+              </TextTemplate>
+            </View>
           </View>
           <View style={styles.buttonWrapper}>
             <Button
@@ -346,9 +348,17 @@ const Unity: FC<IProps> = ({ level, repeatedUnity, onSkip }) => {
               </TextTemplate>
             </Animated.View>
           )}
+          {chestState !== CHEST_STATE.CLOSED || !data?.getUnityRewards?.chest?.title ? null : (
+            <Animated.View style={[styles.chestTitleWrapper]}>
+              <TextTemplate color={color} type="h3" textAlign="center">
+                {data.getUnityRewards.chest.title}
+              </TextTemplate>
+            </Animated.View>
+          )}
           <Chest
             chestType={data.getUnityRewards.chest.chestType}
             items={data.getUnityRewards.chest.items}
+            openOnPress={false}
             chestState={chestState}
             setChestState={setChestState}
           />
@@ -374,7 +384,7 @@ const Unity: FC<IProps> = ({ level, repeatedUnity, onSkip }) => {
             <YugiStickerSvg />
           </View>
           <View style={styles.buttonWrapper}>
-            <Button size="Large" onPress={finishUnity} label={"Continue"} />
+            <Button size="Large" onPress={finishUnity} label={data?.getUnityRewards?.afterword?.cta} />
           </View>
         </Animated.View>
       )}
