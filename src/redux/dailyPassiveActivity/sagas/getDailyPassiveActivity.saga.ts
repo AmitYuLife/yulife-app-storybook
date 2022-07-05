@@ -11,7 +11,6 @@ import {
 import Logger from "@services/logging/logger";
 import { UPDATE_APP_STATE } from "../../app/app.actions";
 import { getUserFeatures } from "../../user/user.selectors";
-import upsertPassiveChallenges from "@graphql/challenges/upsertPassiveChallenges.gql";
 import upsertDailyPassives from "@graphql/challenges/upsertDailyPassives.gql";
 import { updateDailyMeditation } from "@redux/daily-meditation/daily-meditation.actions";
 import { updateDailyCycling } from "@redux/daily-cycling/daily-cycling.actions";
@@ -100,8 +99,7 @@ export default function* getDailyPassiveActivity(dataPayload: { payload: string;
     let retryDelayMs = 2000;
     while (!isUpdated && retryDelayMs <= 16000) {
       try {
-        const mutation = userFeatures.useCoreChallengesService ? upsertDailyPassives : upsertPassiveChallenges;
-        const { data } = yield call(mutation, meditationResults.concat(cyclingResults));
+        const { data } = yield call(upsertDailyPassives, meditationResults.concat(cyclingResults));
         const mutationResult = data?.upsertPassiveChallenges || data?.upsertDailyPassives;
 
         if (!mutationResult?.challenges?.length) {
@@ -126,7 +124,7 @@ export default function* getDailyPassiveActivity(dataPayload: { payload: string;
       } catch (e) {
         yield spawn(() => {
           Logger.error(e, {
-            event: userFeatures.useCoreChallengesService ? "upsertDailyPassives" : "upsertPassiveChallenges",
+            event: "upsertDailyPassives",
           });
         });
         yield delay(retryDelayMs);

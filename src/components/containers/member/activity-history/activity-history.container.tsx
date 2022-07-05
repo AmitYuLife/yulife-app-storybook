@@ -21,10 +21,6 @@ import GenericConnectionErrorModal from "@modals/generic-modal/generic-connectio
 import { ActivityHistoryLevels } from "@screens";
 import { groupDatesByMonth } from "./activity-history.helpers";
 import {
-  GQL_MUTATION_UPSERT_PASSIVE_CHALLENGES,
-  UpsertPassiveChallengesMutationTuple,
-} from "@graphql/challenges/upsertPassiveChallenges.gql";
-import {
   GQL_MUTATION_UPSERT_DAILY_PASSIVES,
   UpsertDailyPassivesMutationTuple,
 } from "@graphql/challenges/upsertDailyPassives.gql";
@@ -68,11 +64,7 @@ const ActivityHistoryContainer: FC<Props> = ({
     onError: onComplete,
   });
 
-  const [addHistoricalSteps]: UpsertPassiveChallengesMutationTuple = useMutation(
-    GQL_MUTATION_UPSERT_PASSIVE_CHALLENGES
-  );
-
-  const [addHistoricalStepsNew]: UpsertDailyPassivesMutationTuple = useMutation(GQL_MUTATION_UPSERT_DAILY_PASSIVES);
+  const [addHistoricalSteps]: UpsertDailyPassivesMutationTuple = useMutation(GQL_MUTATION_UPSERT_DAILY_PASSIVES);
 
   const fetchMoreData = useCallback(() => {
     setMonthsAgo((months) => months + 1);
@@ -102,8 +94,7 @@ const ActivityHistoryContainer: FC<Props> = ({
 
       if (payload.length) {
         try {
-          const mutation = features.useCoreChallengesService ? addHistoricalStepsNew : addHistoricalSteps;
-          const response = await mutation({
+          const response = await addHistoricalSteps({
             variables: { payload },
           });
 

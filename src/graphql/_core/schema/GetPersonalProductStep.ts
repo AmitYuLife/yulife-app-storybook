@@ -49,7 +49,8 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemP
     | "ContentItemFade"
     | "ContentItemProcessingTimer"
     | "ContentItemProgressSteps"
-    | "ContentItemCollapsingHeaderAgePercentProductInfo";
+    | "ContentItemCollapsingHeaderAgePercentProductInfo"
+    | "ContentItemMobileAppPromotion";
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemTextInput_validation {
@@ -1554,7 +1555,8 @@ export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentIte
     | "ContentItemYuCoinPower"
     | "ContentItemProgressSteps"
     | "ContentItemCostPayoutBenefitCard"
-    | "ContentItemCollapsingHeaderAgePercentProductInfo";
+    | "ContentItemCollapsingHeaderAgePercentProductInfo"
+    | "ContentItemMobileAppPromotion";
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentItemButton_onPress {
@@ -1789,7 +1791,8 @@ export interface GetPersonalProductStep_getPersonalProductStep_header_ContentIte
     | "ContentItemSelectedPackageCards"
     | "ContentItemYuCoinPower"
     | "ContentItemCostPayoutBenefitCard"
-    | "ContentItemCollapsingHeaderAgePercentProductInfo";
+    | "ContentItemCollapsingHeaderAgePercentProductInfo"
+    | "ContentItemMobileAppPromotion";
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_header_ContentItemHeaderBar_onLeftIconPress {
@@ -1987,7 +1990,8 @@ export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_Con
     | "ContentItemProcessingTimer"
     | "ContentItemYuCoinPower"
     | "ContentItemProgressSteps"
-    | "ContentItemCostPayoutBenefitCard";
+    | "ContentItemCostPayoutBenefitCard"
+    | "ContentItemMobileAppPromotion";
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemImage_image {

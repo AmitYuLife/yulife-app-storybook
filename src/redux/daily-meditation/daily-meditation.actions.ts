@@ -1,4 +1,4 @@
-import { UpsertPassiveChallenges_upsertPassiveChallenges_challenges as Challenge } from "@graphql/_core/schema";
+import { UpsertDailyPassives_upsertDailyPassives_challenges as Challenge } from "@graphql/_core/schema";
 export const UPDATE_DAILY_MEDITATION_SUCCESS = "UPDATE_DAILY_MEDITATION";
 export const UPDATE_DAILY_MEDITATION_EMPTY_RESULT = "UPDATE_DAILY_MEDITATION_EMPTY_RESULT";
 

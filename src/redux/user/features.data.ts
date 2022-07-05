@@ -52,7 +52,6 @@ export const features = [
   "passiveCyclingEnabled",
   "waitForStepsSync",
   "limitStepsLastUpdateEnabled",
-  "useCoreChallengesService",
   "enableBikingHand",
   "enableBikingMountain",
   "enableBikingRoad",
