@@ -1,19 +1,15 @@
-import upsertPassiveChallenges from "@graphql/challenges/upsertPassiveChallenges.gql";
 import upsertDailyPassives from "@graphql/challenges/upsertDailyPassives.gql";
 import { call, put, spawn, select } from "redux-saga/effects";
-
 import { mapPedometerResults } from "@services/fitkit/fitkit.helpers";
 import Logger from "@services/logging/logger";
-
-import { ExchangeRate, getDailyStepsSyncState } from "../../daily-steps/daily-steps.selectors";
-import { updatePedometerSuccessAction } from "../../pedometer/pedometer.actions";
+import { ExchangeRate, getDailyStepsSyncState } from "@redux/daily-steps/daily-steps.selectors";
+import { updatePedometerSuccessAction } from "@redux/pedometer/pedometer.actions";
 import {
   updateDailyStepsFailed,
   updateDailyStepsSuccessFromRemote,
   updateDailyStepsSuccessFromLocal,
   startStepsSyncing,
 } from "../daily-steps.actions";
-import { getUserFeatures } from "@redux/user/user.selectors";
 
 export default function* updateDailyStepsSaga({ payload }: ReturnType<typeof updatePedometerSuccessAction>) {
   try {
@@ -25,11 +21,8 @@ export default function* updateDailyStepsSaga({ payload }: ReturnType<typeof upd
       !isSyncing &&
       (!isServerFetchedThisSession || checkIfAPIRequestNeeded(payload.steps, serverSteps, exchangeRate))
     ) {
-      const userFeatures: ReturnType<typeof getUserFeatures> = yield select(getUserFeatures);
-      const mutation = userFeatures.useCoreChallengesService ? upsertDailyPassives : upsertPassiveChallenges;
-
       yield put(startStepsSyncing());
-      const { data } = yield call(mutation, [mapPedometerResults(payload)]);
+      const { data } = yield call(upsertDailyPassives, [mapPedometerResults(payload)]);
       const mutationResult = data?.upsertPassiveChallenges || data?.upsertDailyPassives;
 
       if (mutationResult?.challenges?.length) {

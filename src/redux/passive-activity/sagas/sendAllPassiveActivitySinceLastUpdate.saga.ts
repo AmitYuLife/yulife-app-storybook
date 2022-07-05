@@ -4,7 +4,6 @@ import moment from "moment";
 import { spawn, call, select, delay, put } from "redux-saga/effects";
 import Logger from "@services/logging/logger";
 import { getUserFeatures, getUserPassiveChallengesLastUpdate } from "../../user/user.selectors";
-import upsertPassiveChallenges from "@graphql/challenges/upsertPassiveChallenges.gql";
 import upsertDailyPassives from "@graphql/challenges/upsertDailyPassives.gql";
 import { Platform } from "react-native";
 import { getRouteState } from "@redux/app/app.selectors";
@@ -81,8 +80,7 @@ export default function* sendPassiveActivity(): any {
         let isUpdated = false;
         while (!isUpdated) {
           try {
-            const mutation = userFeatures.useCoreChallengesService ? upsertDailyPassives : upsertPassiveChallenges;
-            const response = yield call(mutation, payload);
+            const response = yield call(upsertDailyPassives, payload);
             const mutationResult = response?.data?.upsertPassiveChallenges || response?.data?.upsertDailyPassives;
 
             awardedYucoin += mutationResult?.totalCoins || 0;

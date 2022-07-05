@@ -186,7 +186,6 @@ export * from "./UpdateQuestMapLevelChallenge";
 export * from "./UpdateUserNotificationsSettings";
 export * from "./UpsertDailyPassives";
 export * from "./UpsertOnboardingChallenge";
-export * from "./UpsertPassiveChallenges";
 export * from "./User";
 export * from "./UserProfileEvents";
 export * from "./VariableRemoteImage";

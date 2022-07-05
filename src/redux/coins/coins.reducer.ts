@@ -5,7 +5,7 @@ import {
   GetCurrentUser,
   GetCurrentUser_getCurrentUser_todayActivity,
   LoginUser,
-  UpsertPassiveChallenges_upsertPassiveChallenges_challenges as Challenge,
+  UpsertDailyPassives_upsertDailyPassives_challenges as Challenge,
 } from "@graphql/_core/schema";
 import { SyncAction } from "../_core/types";
 import {

@@ -1,9 +1,6 @@
 import moment from "moment";
 import { REHYDRATE } from "redux-persist";
-import {
-  GetCurrentUser,
-  UpsertPassiveChallenges_upsertPassiveChallenges_challenges as Challenge,
-} from "@graphql/_core/schema";
+import { GetCurrentUser, UpsertDailyPassives_upsertDailyPassives_challenges as Challenge } from "@graphql/_core/schema";
 import { LoginUser } from "@graphql/_core/schema";
 import {
   PEDOMETER_UPDATES_NO_NEW_DATA,

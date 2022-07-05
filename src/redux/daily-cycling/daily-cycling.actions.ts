@@ -1,6 +1,6 @@
 import {
   LoginUser_loginUser_user_passiveCycling_levelSlot_milestones,
-  UpsertPassiveChallenges_upsertPassiveChallenges_challenges as Challenge,
+  UpsertDailyPassives_upsertDailyPassives_challenges as Challenge,
 } from "@graphql/_core/schema";
 import { DistanceMeasurementType } from "@graphql/_core/schema/globalTypes";
 export const UPDATE_DAILY_CYCLING_SUCCESS = "UPDATE_DAILY_CYCLING_SUCCESS";

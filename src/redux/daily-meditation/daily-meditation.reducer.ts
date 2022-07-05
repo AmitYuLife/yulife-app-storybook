@@ -3,7 +3,7 @@ import { REHYDRATE } from "redux-persist";
 import {
   GetCurrentUser,
   LoginUser,
-  UpsertPassiveChallenges_upsertPassiveChallenges_challenges as Challenge,
+  UpsertDailyPassives_upsertDailyPassives_challenges as Challenge,
 } from "@graphql/_core/schema";
 import { GET_USER_SUCCESS, LOGIN_USER_SUCCESS, LOGOUT_SUCCESS } from "../user/user.actions";
 import { UPDATE_DAILY_MEDITATION_EMPTY_RESULT, UPDATE_DAILY_MEDITATION_SUCCESS } from "./daily-meditation.actions";
