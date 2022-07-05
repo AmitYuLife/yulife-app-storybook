@@ -16,7 +16,6 @@ export const CUSTOMER_2_TOGGLES = {
         userId: CUSTOMER_2.data.customerId,
         features: {
             showStats: true,
-            showActivity: true,
             "statsShowCoinGeneralTotalYearned": true,
             "statsShowCoinRecommendationCard": true,
             "statsShowCoinGeneralTotalRedeemedCard": true,
@@ -115,7 +114,7 @@ export const CUSTOMER_10_TOGGLES = {
         userId: CUSTOMER_10.data.customerId,
         features: {
             hideSmartHealthScreen: true,
-            hideYuMatterScreen: true, 
+            hideYuMatterScreen: true,
         },
     }
 } as IDatabaseItem
@@ -127,7 +126,8 @@ export const CUSTOMER_12_TOGGLES = {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_12.data.customerId,
         features: {
-            hideSmartHealthScreen: true, hideYuMatterScreen: true, unitySurge: true},
+            hideSmartHealthScreen: true, hideYuMatterScreen: true, unitySurge: true
+        },
     }
 } as IDatabaseItem
 
@@ -150,11 +150,8 @@ export const CUSTOMER_14_TOGGLES = {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_14.data.customerId,
         features: {
-            "showTodayYucoin": true,
-            "showActivity": true,
             "showNotifications": true,
             "showStreaks": true,
-            "showCompletedLevel": true,
             "showCounter": true,
             "showBuildNumber": true,
             "showSettings": true,
@@ -165,7 +162,6 @@ export const CUSTOMER_14_TOGGLES = {
             "showConnections": true,
             "showLastSynced": true,
             "newPassiveValidationRule": true,
-            "showWegiftPicker": true,
             "usePassiveMeditation": true,
             "statsShowCoinGeneralTotalYearned": true,
             "statsShowCoinRecommendationCard": true,
@@ -231,10 +227,10 @@ export const CUSTOMER_18_TOGGLES = {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_18.data.customerId,
         features: {
-            hideSmartHealthScreen: false, 
-            hideYuMatterScreen: true, 
+            hideSmartHealthScreen: false,
+            hideYuMatterScreen: true,
             showDuels: true
-         },
+        },
     }
 } as IDatabaseItem
 
@@ -258,11 +254,8 @@ export const CUSTOMER_20_TOGGLES = {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_20.data.customerId,
         features: {
-            "showTodayYucoin": true,
-            "showActivity": true,
             "showNotifications": true,
             "showStreaks": true,
-            "showCompletedLevel": true,
             "showCounter": true,
             "showBuildNumber": true,
             "showSettings": true,
@@ -273,7 +266,6 @@ export const CUSTOMER_20_TOGGLES = {
             "showConnections": true,
             "showLastSynced": true,
             "newPassiveValidationRule": true,
-            "showWegiftPicker": true,
             "usePassiveMeditation": true,
             "statsShowCoinGeneralTotalYearned": true,
             "statsShowCoinRecommendationCard": true,
@@ -298,7 +290,7 @@ export const CUSTOMER_20_TOGGLES = {
             hideSmartHealthScreen: true,
             hideYuMatterScreen: true,
             showDuels: true,
-            showCommunityGoals:true,
+            showCommunityGoals: true,
             "showGoals": true,
             useCoreChallengesService: true,
             useActiveChallengesService: true
@@ -314,11 +306,8 @@ export const CUSTOMER_22_TOGGLES = {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_22.data.customerId,
         features: {
-            "showTodayYucoin": true,
-            "showActivity": true,
             "showNotifications": true,
             "showStreaks": true,
-            "showCompletedLevel": true,
             "showCounter": true,
             "showBuildNumber": true,
             "showSettings": true,
@@ -329,7 +318,6 @@ export const CUSTOMER_22_TOGGLES = {
             "showConnections": true,
             "showLastSynced": true,
             "newPassiveValidationRule": true,
-            "showWegiftPicker": true,
             "usePassiveMeditation": true,
             "statsShowCoinGeneralTotalYearned": true,
             "statsShowCoinRecommendationCard": true,
@@ -353,8 +341,8 @@ export const CUSTOMER_22_TOGGLES = {
             "showStats": true,
             hideSmartHealthScreen: true,
             hideYuMatterScreen: false,
-            newGamePlus:true,
-            unitySurge:true,
+            newGamePlus: true,
+            unitySurge: true,
         }
     }
 } as IDatabaseItem
@@ -366,11 +354,8 @@ export const CUSTOMER_23_TOGGLES = {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_23.data.customerId,
         features: {
-            "showTodayYucoin": true,
-            "showActivity": true,
             "showNotifications": true,
             "showStreaks": true,
-            "showCompletedLevel": true,
             "showCounter": true,
             "showBuildNumber": true,
             "showSettings": true,
@@ -381,7 +366,6 @@ export const CUSTOMER_23_TOGGLES = {
             "showConnections": true,
             "showLastSynced": true,
             "newPassiveValidationRule": true,
-            "showWegiftPicker": true,
             "usePassiveMeditation": true,
             "statsShowCoinGeneralTotalYearned": true,
             "statsShowCoinRecommendationCard": true,
@@ -416,11 +400,8 @@ export const CUSTOMER_24_TOGGLES = {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_24.data.customerId,
         features: {
-            "showTodayYucoin": true,
-            "showActivity": true,
             "showNotifications": true,
             "showStreaks": true,
-            "showCompletedLevel": true,
             "showCounter": true,
             "showBuildNumber": true,
             "showSettings": true,
@@ -431,7 +412,6 @@ export const CUSTOMER_24_TOGGLES = {
             "showConnections": true,
             "showLastSynced": true,
             "newPassiveValidationRule": true,
-            "showWegiftPicker": true,
             "usePassiveMeditation": true,
             "statsShowCoinGeneralTotalYearned": true,
             "statsShowCoinRecommendationCard": true,
@@ -456,7 +436,7 @@ export const CUSTOMER_24_TOGGLES = {
             hideSmartHealthScreen: true,
             hideYuMatterScreen: false,
             newGamePlus: true,
-            unitySurge:true
+            unitySurge: true
         }
     }
 } as IDatabaseItem
@@ -514,52 +494,48 @@ export const CUSTOMER_30_TOGGLES = {
 export const CUSTOMER_31_TOGGLES = {
     type,
     modelName,
-    data:{
-        _id:generateRandomMongoId(),
+    data: {
+        _id: generateRandomMongoId(),
         userId: CUSTOMER_31.data.customerId,
-        features:{
-        "showTodayYucoin": true,
-        "showActivity": true,
-        "showNotifications": true,
-        "showStreaks": true,
-        "showCompletedLevel": true,
-        "showCounter": true,
-        "showBuildNumber": true,
-        "showSettings": true,
-        "showCreateLeaderboard": true,
-        "showAdvancedLeaderboards": true,
-        "disableUserEntries": true,
-        "fitbit": true,
-        "showConnections": true,
-        "showLastSynced": true,
-        "newPassiveValidationRule": true,
-        "showWegiftPicker": true,
-        "usePassiveMeditation": true,
-        "statsShowCoinGeneralTotalYearned": true,
-        "statsShowCoinRecommendationCard": true,
-        "statsShowCoinGeneralTotalRedeemedCard": true,
-        "statsShowCoinAchievementCard": true,
-        "statsShowChallengeGeneralCard": true,
-        "statsShowChallengeRecommendationCard": true,
-        "statsShowChallengeComparisonCard": true,
-        "statsShowStepsRecommendationCard": true,
-        "statsShowStepsGeneralCard": true,
-        "statsShowStepsBestScoreCard": true,
-        "statsShowStepsGraphCard": true,
-        "statsShowMindfulnessRecommendationCard": true,
-        "statsShowMindfulnessGeneralCard": true,
-        "statsShowMindfulnessBestScoreCard": true,
-        "statsShowMindfulnessGraphCard": true,
-        "statsShowCyclingRecommendationCard": true,
-        "statsShowCyclingGeneralCard": true,
-        "statsShowCyclingBestScoreCard": true,
-        "statsShowCyclingGraphCard": true,
-        "showStats": true,
-        hideSmartHealthScreen: true,
-        hideYuMatterScreen: false,
-        newGamePlus: true,
-        unitySurge: true,
-        yuScreenV3: true
+        features: {
+            "showNotifications": true,
+            "showStreaks": true,
+            "showCounter": true,
+            "showBuildNumber": true,
+            "showSettings": true,
+            "showCreateLeaderboard": true,
+            "showAdvancedLeaderboards": true,
+            "disableUserEntries": true,
+            "fitbit": true,
+            "showConnections": true,
+            "showLastSynced": true,
+            "newPassiveValidationRule": true,
+            "usePassiveMeditation": true,
+            "statsShowCoinGeneralTotalYearned": true,
+            "statsShowCoinRecommendationCard": true,
+            "statsShowCoinGeneralTotalRedeemedCard": true,
+            "statsShowCoinAchievementCard": true,
+            "statsShowChallengeGeneralCard": true,
+            "statsShowChallengeRecommendationCard": true,
+            "statsShowChallengeComparisonCard": true,
+            "statsShowStepsRecommendationCard": true,
+            "statsShowStepsGeneralCard": true,
+            "statsShowStepsBestScoreCard": true,
+            "statsShowStepsGraphCard": true,
+            "statsShowMindfulnessRecommendationCard": true,
+            "statsShowMindfulnessGeneralCard": true,
+            "statsShowMindfulnessBestScoreCard": true,
+            "statsShowMindfulnessGraphCard": true,
+            "statsShowCyclingRecommendationCard": true,
+            "statsShowCyclingGeneralCard": true,
+            "statsShowCyclingBestScoreCard": true,
+            "statsShowCyclingGraphCard": true,
+            "showStats": true,
+            hideSmartHealthScreen: true,
+            hideYuMatterScreen: false,
+            newGamePlus: true,
+            unitySurge: true,
+            yuScreenV3: true
         }
     }
 } as IDatabaseItem
@@ -572,11 +548,8 @@ export const CUSTOMER_32_TOGGLES = {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_32.data.customerId,
         features: {
-            "showTodayYucoin": true,
-            "showActivity": true,
             "showNotifications": true,
             "showStreaks": true,
-            "showCompletedLevel": true,
             "showCounter": true,
             "showBuildNumber": true,
             "showSettings": true,
@@ -587,7 +560,6 @@ export const CUSTOMER_32_TOGGLES = {
             "showConnections": true,
             "showLastSynced": true,
             "newPassiveValidationRule": true,
-            "showWegiftPicker": true,
             "usePassiveMeditation": true,
             "statsShowCoinGeneralTotalYearned": true,
             "statsShowCoinRecommendationCard": true,
@@ -626,11 +598,8 @@ export const CUSTOMER_33_TOGGLES = {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_33.data.customerId,
         features: {
-            "showTodayYucoin": true,
-            "showActivity": true,
             "showNotifications": true,
             "showStreaks": true,
-            "showCompletedLevel": true,
             "showCounter": true,
             "showBuildNumber": true,
             "showSettings": true,
@@ -641,7 +610,6 @@ export const CUSTOMER_33_TOGGLES = {
             "showConnections": true,
             "showLastSynced": true,
             "newPassiveValidationRule": true,
-            "showWegiftPicker": true,
             "usePassiveMeditation": true,
             "statsShowCoinGeneralTotalYearned": true,
             "statsShowCoinRecommendationCard": true,
@@ -680,11 +648,8 @@ export const CUSTOMER_34_TOGGLES = {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_34.data.customerId,
         features: {
-            "showTodayYucoin": true,
-            "showActivity": true,
             "showNotifications": true,
             "showStreaks": true,
-            "showCompletedLevel": true,
             "showCounter": true,
             "showBuildNumber": true,
             "showSettings": true,
@@ -695,7 +660,6 @@ export const CUSTOMER_34_TOGGLES = {
             "showConnections": true,
             "showLastSynced": true,
             "newPassiveValidationRule": true,
-            "showWegiftPicker": true,
             "usePassiveMeditation": true,
             "statsShowCoinGeneralTotalYearned": true,
             "statsShowCoinRecommendationCard": true,
@@ -723,7 +687,7 @@ export const CUSTOMER_34_TOGGLES = {
             unitySurge: true,
             yuScreenV3: true,
             hasBeneficiariesEnabled: false,
-            showCommunityGoals:true,
+            showCommunityGoals: true,
             "showGoals": true,
             useCoreChallengesService: true,
             useActiveChallengesService: true
@@ -735,10 +699,10 @@ export const CUSTOMER_34_TOGGLES = {
 export const CUSTOMER_ALPHA_TOGGLES = {
     type,
     modelName,
-    data:{
-        _id:generateRandomMongoId(),
+    data: {
+        _id: generateRandomMongoId(),
         userId: CUSTOMER_ALPHA.data.customerId,
-        features:{
+        features: {
             yuScreenV3: true
         }
     }
@@ -751,11 +715,8 @@ export const CUSTOMER_35_TOGGLES = {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_35.data.customerId,
         features: {
-            "showTodayYucoin": true,
-            "showActivity": true,
             "showNotifications": true,
             "showStreaks": true,
-            "showCompletedLevel": true,
             "showCounter": true,
             "showBuildNumber": true,
             "showSettings": true,
@@ -766,7 +727,6 @@ export const CUSTOMER_35_TOGGLES = {
             "showConnections": true,
             "showLastSynced": true,
             "newPassiveValidationRule": true,
-            "showWegiftPicker": true,
             "usePassiveMeditation": true,
             "statsShowCoinGeneralTotalYearned": true,
             "statsShowCoinRecommendationCard": true,
@@ -813,11 +773,8 @@ export const CUSTOMER_37_TOGGLES = {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_37.data.customerId,
         features: {
-            "showTodayYucoin": true,
-            "showActivity": true,
             "showNotifications": true,
             "showStreaks": true,
-            "showCompletedLevel": true,
             "showCounter": true,
             "showBuildNumber": true,
             "showSettings": true,
@@ -828,7 +785,6 @@ export const CUSTOMER_37_TOGGLES = {
             "showConnections": true,
             "showLastSynced": true,
             "newPassiveValidationRule": true,
-            "showWegiftPicker": true,
             "usePassiveMeditation": true,
             "statsShowCoinGeneralTotalYearned": true,
             "statsShowCoinRecommendationCard": true,
@@ -870,7 +826,7 @@ export const BA5_USER_TOGGLES = {
     data: {
         _id: generateRandomMongoId(),
         businessAccountId: BUSINESS_ACCOUNT_5.data.business_account_id,
-        configurations: { appOnboardingRewardAmount: 420 }, 
+        configurations: { appOnboardingRewardAmount: 420 },
     }
 } as IDatabaseItem
 

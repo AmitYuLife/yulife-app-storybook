@@ -2,11 +2,8 @@
 // Should be GetCurrentUser_getCurrentUser_userFeatures["name"]
 
 export const features = [
-  "showActivity",
-  "showTodayYucoin",
   "showNotifications",
   "showStreaks",
-  "showCompletedLevel",
   "showCounter",
   "showBuildNumber",
   "showSettings",
@@ -17,7 +14,6 @@ export const features = [
   "fitbit",
   "showLastSynced",
   "newPassiveValidationRule",
-  "showWegiftPicker",
   "usePassiveMeditation",
   "showStats",
   "statsShowCoinGeneralTotalYearned",
