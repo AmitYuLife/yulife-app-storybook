@@ -1,6 +1,7 @@
 export default {
   format: {
     date_short: "MM/DD/YYYY",
+    date_readable_short: "MMM DD",
     date_readable: "MMMM DD, YYYY",
   },
   validator: {
