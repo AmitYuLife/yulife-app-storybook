@@ -7,6 +7,32 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.38.0] - 2022-07-06
+
+### Bugfixes
+
+- Bugfix: Skip upload sourcemaps if Bugsnag api key is not set
+- Bugfix: use reward title for purchases
+
+### Tasks
+
+- Task US-20: readable US short date format
+- Task GS-320: yunity screen adjustments
+- Task GS-320: Yunity & Yuniversal Transition Screens
+- Task US-3: purge yuscreen intro
+
+### Chores
+
+- Chore TF-273: remove old toggles
+- Chore: Upgrade bugsnag to latest
+
+### Extra
+
+- Revert: one intercom instance
+- Purge GS-371: Purge Old Challenge & Passive Activities Code
+- Hotfix: enable multiple regions for UAT
+- Detox GS-379: Activity settings
+
 ## [3.37.0] - 2022-06-29
 
 ### Bugfixes
