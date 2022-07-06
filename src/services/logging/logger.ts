@@ -5,7 +5,6 @@ import Mixpanel from "react-native-mixpanel";
 import getBugsnagClient, { BugsnagClient } from "../bugsnag";
 import LeanplumClient from "./leanplum";
 import { MixpanelEvent, MixpanelEventMetadata } from "@services/logging/types";
-import { Platform } from "react-native";
 import { Event } from "@bugsnag/react-native";
 import region from "@services/region";
 
@@ -26,9 +25,7 @@ class LoggerInstance {
   public init = async () => {
     if (!this.initialised) {
       const mixpanelKey = region.getConfig("mixpanelKey");
-      const intercom = region.getConfig("intercom");
       await Mixpanel.sharedInstanceWithToken(mixpanelKey);
-      await Intercom.init(Platform.select({ ios: intercom.ios, android: intercom.android }), intercom.appId);
       this.leanplum = new LeanplumClient();
       this.initialised = true;
     }

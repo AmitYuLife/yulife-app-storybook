@@ -1,5 +1,6 @@
 package com.yulife;
 
+import com.intercom.reactnative.IntercomModule;
 import com.bugsnag.android.Bugsnag;
 import android.app.Application;
 import android.app.Notification;
@@ -61,6 +62,9 @@ public class MainApplication extends NavigationApplication {
     super.onCreate();
     // Bugsnag
     Bugsnag.start(this);
+
+    // Intercom
+    IntercomModule.initialize(this, BuildConfig.INTERCOM_API_KEY_ANDROID, BuildConfig.INTERCOM_APP_ID);
 
     // Leanplum
     Leanplum.setApplicationContext(this);
