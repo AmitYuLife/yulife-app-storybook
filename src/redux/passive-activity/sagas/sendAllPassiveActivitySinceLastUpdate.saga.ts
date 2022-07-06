@@ -15,12 +15,15 @@ import getPassiveSinceLastUpdateAndroid from "./getPassiveSinceLastUpdateAndroid
 import getPassiveSinceLastUpdateIos from "./getPassiveSinceLastUpdateIos.saga";
 import { Unpacked } from "@utils";
 import { getToken } from "@services/storage";
+import { getReadableShortDateFormat } from "@locale";
 
 export default function* sendPassiveActivity(): any {
   const token: Unpacked<typeof getToken> = yield call(getToken);
   if (!token) {
     return;
   }
+
+  const readableDateFormat = getReadableShortDateFormat();
 
   try {
     const userFeatures: ReturnType<typeof getUserFeatures> = yield select(getUserFeatures);
@@ -117,12 +120,12 @@ export default function* sendPassiveActivity(): any {
            to not make user confused why we're awarding twice for the same day
            we should add one day to the startDateTime.
           */
-          if (startDateTime.format("DD MMM") !== endOfYesterday.format("DD MMM")) {
+          if (startDateTime.format(readableDateFormat) !== endOfYesterday.format(readableDateFormat)) {
             startDateTime.add(1, "day");
           }
 
-          const firstDay = startDateTime.format("DD MMM");
-          const lastDay = endOfYesterday.format("DD MMM");
+          const firstDay = startDateTime.format(readableDateFormat);
+          const lastDay = endOfYesterday.format(readableDateFormat);
 
           yield showRewardModal(firstDay, lastDay, awardedYucoin);
           yield put(refreshTotalCoins());
