@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
   },
   chestTitleWrapper: {
     position: "absolute",
-    top: Style.adjust(Style.DEVICE_HEIGHT < 844 ? 90 : 116),
+    top: Style.adjust(84),
     width: Style.DEVICE_WIDTH,
     paddingHorizontal: Style.adjust(58),
   } as ViewStyle,

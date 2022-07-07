@@ -7,11 +7,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   } as ViewStyle,
-  titleWrapper: {
-    position: "absolute",
-    top: Style.adjust(156),
-    width: Style.DEVICE_WIDTH,
-  } as ViewStyle,
   chestContainer: {
     width: Style.DEVICE_WIDTH,
     height: Style.adjust(350),
@@ -40,15 +35,6 @@ const styles = StyleSheet.create({
   starsClosedWrapper: {
     position: "absolute",
     bottom: Style.adjust(160),
-  } as ViewStyle,
-  starsClosedMountainImage: {
-    width: Style.adjust(354),
-    height: Style.adjust(193),
-  } as ImageStyle,
-  starsClosedMountainWrapper: {
-    position: "absolute",
-    bottom: Style.adjust(128),
-    paddingRight: Style.adjust(18),
   } as ViewStyle,
   starsOpenedImage: {
     width: Style.adjust(186),

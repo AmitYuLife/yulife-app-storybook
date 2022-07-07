@@ -136,7 +136,7 @@ const Chest: FC<IProps> = ({ chestType, items, openOnPress = true, chestState, s
     }
   }, [openOnPress, chestState, setChestState]);
 
-  const { chestSource, fogClosedSource, fogOpenedSource, starsClosed, starsOpenedSource } = useAssets(chestType);
+  const { chestSource, fogClosedSource, fogOpenedSource, starsClosedSource, starsOpenedSource } = useAssets(chestType);
 
   return (
     <View style={styles.container}>
@@ -168,8 +168,8 @@ const Chest: FC<IProps> = ({ chestType, items, openOnPress = true, chestState, s
                   source={fogClosedSource}
                 />
               </View>
-              <View style={starsClosed.wrapperStyle}>
-                <RNImage resizeMode="contain" style={starsClosed.imageStyle} source={starsClosed.source} />
+              <View style={styles.starsClosedWrapper}>
+                <RNImage resizeMode="contain" style={styles.starsClosedImage} source={starsClosedSource} />
               </View>
             </>
           )}
