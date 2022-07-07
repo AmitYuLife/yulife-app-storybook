@@ -388,6 +388,7 @@ export const CUSTOMER_23_TOGGLES = {
             "statsShowCyclingGraphCard": true,
             "showStats": true,
             hideSmartHealthScreen: false,
+            newGamePlus: true,
             hideYuMatterScreen: true,
         }
     }

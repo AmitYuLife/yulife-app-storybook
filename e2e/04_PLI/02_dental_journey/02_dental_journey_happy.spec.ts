@@ -9,7 +9,7 @@ import { TEXT_TEMPLATE } from "@ids";
 
 Feature("DENTAL HAPPY", async()=>{
     Scenario("Dental Happy", scenario.start, async()=>{
-        Given("I login as a user with Bupa Dental enabled", given.loginToYuScreen(true, CUSTOMER_37, AUTH_37), async()=>{
+        Given("I login as a user with Bupa Dental enabled", given.loginToYuScreen(false, CUSTOMER_37, AUTH_37), async()=>{
             Then("I should be on the yuscreen", then.onYuscreenV3(CUSTOMER_37))
             When("I create the default yumoji", when.createDefaultYumoji, async () => {
                 Then("I should see the Dental tooltip", then.dentalTooltipVisible)

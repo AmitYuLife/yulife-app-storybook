@@ -182,7 +182,6 @@ export const packageScreenCorrect = async () => {
 export const onYuscreenV3 = (customer:any)=> async()=>{
     const firstName = customer.data.firstName
     const lastName = customer.data.lastName
-
     await expect(element(by.text(`${firstName} ${lastName}`))).toBeVisible()
     await expect(element(by.id(YUSCREEN_V3(true)))).toBeVisible()
 }

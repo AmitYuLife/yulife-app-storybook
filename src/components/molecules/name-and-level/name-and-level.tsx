@@ -6,6 +6,7 @@ import { getCurrentWorld, getCurrentWorldImage, getCurrentWorldText } from "@uti
 import { useSelector } from "react-redux";
 import { getUserName } from "@redux/user/user.selectors";
 import { getCurrentLevel } from "@redux/levels/levels.selectors";
+import { TEXT_TEMPLATE } from "@ids";
 
 const NameAndLevel = () => {
   const userName = useSelector(getUserName);
@@ -17,7 +18,7 @@ const NameAndLevel = () => {
 
   return (
     <View style={styles.wrapper}>
-      <Text style={styles.text} bold={true}>
+      <Text style={styles.text} bold={true} testID={TEXT_TEMPLATE(userName)}>
         {userName}
       </Text>
       <View style={styles.worldDetails}>

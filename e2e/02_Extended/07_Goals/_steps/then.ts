@@ -27,7 +27,7 @@ export const iCanSeeGoal = (challenge: string) => async () => {
     await textVisible("Join")()
     await textVisible("Test event detox")()
     await textVisible(`${challenge} challenges`)()
-    await textVisible("6 days")()
+    await textVisible("6 days left")()
     await textVisible("0 joined")()
 }
 
@@ -100,7 +100,7 @@ export const iCanSeeEventEndedWhenClaimRewards = async () => {
 export const iCanSeeClaimSecondReward = async () => {
     const rewardValue = GOAL_REWARD_MILESTONES_2.data.rewardValue
     const congatulationText = "Great job!"
-    const rewardText = "You reached the milestone!\nCongratulations. Claim your rewards."
+    const rewardText = "You reached the event milestone!\nCongratulations. Claim your rewards."
     const challenge = "1 Challenge"
 
     await textVisibleAtIndex(`${rewardValue} YuCoin`, 0)

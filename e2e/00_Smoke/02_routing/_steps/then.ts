@@ -74,7 +74,7 @@ export const statsCorrect = async () => {
     };
 }
 
-export const permissionsActivityRightVisible = async()=>{
+export const permissionsActivityRightVisible = async () => {
     await expect(element(by.text("Game settings"))).toBeVisible()
     await expect(element(by.text("Activity permissions"))).toBeVisible()
     await expect(element(by.text("Status and management of account and system level permissions."))).toBeVisible()
@@ -92,6 +92,7 @@ export const onPermissionsPage = (status: string) => async () => {
     await expect(element(by.text(permissionSettings.ios.mindfulnessRead.description))).toBeVisible()
     await expect(element(by.text(permissionSettings.ios.cyclingRead.title))).toBeVisible()
     await expect(element(by.text(permissionSettings.ios.cyclingRead.description))).toBeVisible()
+    await scrollFromID(HEALTH_SCREEN, "up", "fast")()
     await expect(element(by.text(permissionSettings.ios.workoutsRead.title))).toBeVisible()
     await expect(element(by.text(permissionSettings.ios.workoutsRead.description))).toBeVisible()
     await idVisibleAtIndex(STATUS_ICON("authorised"), 0)

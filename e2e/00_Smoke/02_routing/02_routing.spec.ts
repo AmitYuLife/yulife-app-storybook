@@ -243,7 +243,7 @@ Feature("As a user I can navigate through member routes correctly", async () => 
         When("I scroll down", when.scrollFromID(SETTINGS_SCREEN, "up", "fast"), async () => {
             Then("I should see the right settings details", then.permissionsActivityRightVisible)
         })
-        When("I tap permissions settings", when.tapIDAtIndex(ARROW_BUTTON, 1), async () => {
+        When("I tap permissions settings", when.tapIDAtIndex(ARROW_BUTTON, 0), async () => {
             Then("I should correct detail and icons when authorised", then.onPermissionsPage("authorised"))
         })        
     })
