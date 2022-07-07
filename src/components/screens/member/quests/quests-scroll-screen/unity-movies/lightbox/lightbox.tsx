@@ -6,7 +6,7 @@ import { Heading } from "@atoms";
 import YuCoin from "@screens/member/daily-steps/assets/yu-coin";
 import LinearGradient from "react-native-linear-gradient";
 import { getHeading, getText, getButtonLabel } from "./lightbox.data";
-import { YUNITY_HEADER, YUNIVERSAL_CONTNIUE_BUTTON } from "@ids";
+import { YUNITY_HEADER, YUNIVERSAL_CONTNIUE_BUTTON, YUNITY_SUBHEADER } from "@ids";
 import { DETOX_ENABLED } from "@services/socket";
 
 interface IProps {
@@ -68,7 +68,7 @@ const Lightbox: FC<IProps> = ({ level, goToNextScreen }) => {
             </View>
             <View>
               {getText(level).map((paragraph) => (
-                <Text key={paragraph} style={styles.text}>
+                <Text key={paragraph} style={styles.text} testID={YUNITY_SUBHEADER(getHeading(level))}>
                   {paragraph}
                 </Text>
               ))}

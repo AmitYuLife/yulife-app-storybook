@@ -1,4 +1,4 @@
-import { Feature, Scenario, Given, When, Then, FeatureOnly, ScenarioOnly } from "@yu-life/yulife-bdd-framework";
+import { Feature, Scenario, Given, When, Then, FeatureOnly, ScenarioOnly, ScenarioSkip } from "@yu-life/yulife-bdd-framework";
 import * as scenario from "./_steps/scenario"
 import * as given from "./_steps/given"
 import * as when from "./_steps/when"
@@ -75,10 +75,9 @@ Feature("As an enabled user I am able to use the goals feature", async () => {
             helper.AD_VISIBILE("left");
             helper.LOGIN_ANOTHER_TEAM_MEMBER(CUSTOMER_20, AUTH_20, 200, 1)
             helper.JOIN_GOAL("1 / 2")
-            helper.COMPLETE_CHALLENGE(60 ,"2 / 2", 260, 2)
-            helper.CLAIM_ALL_REWARDS_WHEN_SECOND_CHALLENGE_COMPLETED("1,560" ,"2 / 2", 1760)
-            helper.LOGIN_ANOTHER_TEAM_MEMBER(CUSTOMER_34, AUTH_34, 760, 2)
-            helper.CLAIM_REWARDS_WHEN_TEAMMEMBER_COMPLETED_GOAL("1,560" ,"2 / 2", 1760)
+            helper.COMPLETE_CHALLENGE_SECOND_USER("1,560" , 1760) 
+            helper.LOG_BACK_IN_FIRST_MEMBER(CUSTOMER_34, AUTH_34)
+            helper.CLAIM_REWARD_COMPLETED_GOAL("1,560" , 1760)
         })
     })
 })

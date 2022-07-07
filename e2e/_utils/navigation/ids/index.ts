@@ -33,6 +33,7 @@ export const CHALLENGE_UNAVAILABLE = `CHALLENGE_UNAVAILABLE`
 export const WEGIFT_DETAILS = "WEGIFT_DETAILS"
 export const YUNITY_REACHED = (yunityNum:number) => `YUNITY_REACHED_${yunityNum}`
 export const YUNITY_HEADER = (levelName:string) => `YUNITY_HEADER_${levelName}`
+export const YUNITY_SUBHEADER = (worldType:string) => `YUNITY_SUBHEADER_${worldType}`
 export const SCROLLABLE_LAYOUT = "SCROLLABLE_LAYOUT"
 export const WELLBEING_HUB_SCREEN = "WELLBEING_HUB_SCREEN"
 export const REFERRALS_SCREEN = "REFERRALS_SCREEN"

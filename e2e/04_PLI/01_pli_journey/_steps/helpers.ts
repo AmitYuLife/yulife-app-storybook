@@ -29,17 +29,15 @@ export const ONBOARDING = async () => {
     
     Then(`I should be on the first Life Insurance onboarding screen`, then.textVisible(personalInsurance));
     Then(`I should see ${startQuoteText}`, then.textVisible(startQuoteText));
+     
     When("I tap on the right part of the screen", when.navigateThroughTheFullSwiper, async () => {
         Then(`I should see ${startQuoteText}`, then.textVisible(startQuoteText));
-        When("I tap on the right part of the screen", when.navigateThroughTheFullSwiper, async () => {
-            Then(`I should see ${startQuoteText}`, then.textVisible(startQuoteText));
-            When("I tap on the right part of the screen", when.navigateThroughTheFullSwiper, async () => {
-                Then(`I should see ${startQuoteText}`, then.textVisible(startQuoteText));
-            })
-            When("I tap on start my quote button", when.dismissPLIModalIfExists, async () => {
-                Then("I should see the intro screen", then.textVisible("Life Insurance"));
-            })
-        })
+    })
+    When("I tap on the right part of the screen", when.navigateThroughTheFullSwiper, async () => {
+        Then(`I should see ${startQuoteText}`, then.textVisible(startQuoteText));
+    })
+    When("I tap on start my quote button", when.dismissPLIModalIfExists, async () => {
+        Then("I should see the intro screen", then.textVisible("Life Insurance"));
     })
 }
 

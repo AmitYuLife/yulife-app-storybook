@@ -1,4 +1,4 @@
-import { navigation, multipleTextVisible, expectIsVisibleViaText, CHALLENGE_HISTORY_STARS, YUNITY_REACHED, navigateViaText, wait, YUNITY_HEADER } from "@utils"
+import { navigation, multipleTextVisible, expectIsVisibleViaText, CHALLENGE_HISTORY_STARS, YUNITY_REACHED, navigateViaText, wait, YUNITY_HEADER, YUNITY_SUBHEADER } from "@utils"
 import { screens } from "@appScreens"
 
 export const {
@@ -47,30 +47,36 @@ export const onChallengeHistory = (challengeType: string, levelNum: number, yuco
 }
 
 
-export const yunityCorrect = (yunityNum:number, worldType: "Forest" | "Ocean" |"Desert" |"Mountain1") => async()=>{
+export const yunityCorrect = (worldType: "Forest" | "Ocean" |"Desert" |"Mountain1") => async()=>{
     await wait(5000)()
     let label = ""
+    let subheading = ""
 
     switch(worldType){
         case "Forest":
-            label ="You’ve achieved Yunity with the Forest"
+            label = "You’ve achieved Yunity with the Forest"
+            subheading = "Take a deep, celebratory breath.\nYou earned a Yunity forest chest!"
             break 
         case "Ocean":
             label = "You’ve achieved Yunity with the Ocean"
+            subheading = "You took the plunge and ascended victorious. You earned a Yunity ocean chest!"
             break 
         case "Desert":
             label = "You’ve achieved Yunity with the Desert"
+            subheading = "You are your own wellbeing oasis and earned a Yunity desert chest!"
             break
         case "Mountain1":
-            label = `You’ve completed your first Yuniversal Journey`
+            label = "... and you’ve completed your first journey for unity!"
+            subheading = "You’re ready to explore the Yuniverse in your enlightened state. Enjoy your Yunity Mountain Chest and floating through the cosmos."
     }
     
     try{
-        await expect(element(by.id(YUNITY_REACHED(yunityNum)))).toBeVisible()
+        await textVisible(label, 3000)
+        await textVisible(subheading)()
         await navigateViaText("Continue")
-        await expect(element(by.id(YUNITY_HEADER(label)))).toBeVisible()
     }catch(e){
-        await expect(element(by.id(YUNITY_HEADER(label)))).toBeVisible()
+        await textVisible(label, 3000)
+        await navigateViaText("Continue")
     }
 
 }
@@ -81,7 +87,41 @@ export const onTodaysYucoin = (steps = 0, mindfulness = 0) => async () => {
     await textVisibleAtIndex("0/60",0)
     await textVisibleAtIndex("0/60",1)
     await textVisible("10")
-    await expectIsVisibleViaText("Today's challenges (1/4)")
+    await expectIsVisibleViaText("Today's challenges (1/3)")
     await expectIsVisibleViaText("Short stroll (400 steps)")
-    await expectIsVisibleViaText("Take a challenge (3 left)")
+    await expectIsVisibleViaText("Take a challenge (2 left)")
+}
+
+export const forestThreeRewardsVisible = () => async () => {
+    await textVisible("1 day 2x surge")
+    await textVisible("+1 Challenge per day")
+    await textVisible("Ocean Outfit")
+    await navigateViaText("Claim rewards")
+}
+
+export const oceanThreeRewardsVisible = () => async () => {
+    await textVisible("1 day 2x surge")
+    await textVisible("+1 Challenge per day")
+    await textVisible("Desert Outfit")
+    await navigateViaText("Claim rewards")
+}
+
+export const mountainYunityFirstPartCorrect = () => async () => {
+    textVisible("You've achieved Yunity with the Mountain ...", 4000)
+    navigateViaText("Continue")
+}
+
+export const mountainChestMessageVisible = () => async () => {
+    textVisible("You have earned Yunity Mountain Chest", 3000)
+}
+
+export const mountainTwoRewardsVisible = () => async () => {
+    await textVisible("7 day 2x surge")
+    await textVisible("The Yuniversal Reflection")
+    await navigateViaText("Claim rewards")
+}
+
+export const isOnExploreYuniverseScreen = () => async () => {
+    await textVisible("With your first Yuniversal journey complete, now is a time for reflection and gratitude as you drift amongst the stars. Familiar friends will guide you on your path towards a celestial chest, and what’s inside ...", 3000)
+    await navigateViaText("Explore the Yuniverse")
 }

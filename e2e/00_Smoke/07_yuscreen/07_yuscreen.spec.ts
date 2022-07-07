@@ -116,7 +116,7 @@ Feature("I am able to use the yuscreen, create, and edit an Yumoji", async () =>
 
 
     Scenario("My earn rate and employer benefits should be correct when i have showCycling toggle on YuCoin Power screen", scenario.start, async () => {
-        Given("I login", given.loginToYuScreen(true, CUSTOMER_2, AUTH_2), async () => {
+        Given("I login", given.loginToYuScreen(false, CUSTOMER_2, AUTH_2), async () => {
             Then("I should be on an empty yuscreen tab", then.onEmptyYuscreen(CUSTOMER_2))
             When("I scroll up slow on YU screen", when.scrollFromID(YUSCREEN, "up", "slow"), async () => {
                 When("I tap the earn rate", when.tapID(YUCOIN_POWER("20")), async () => {
@@ -133,7 +133,7 @@ Feature("I am able to use the yuscreen, create, and edit an Yumoji", async () =>
     })       
 
     Scenario("I can view my Yumoji after I login, and edit it", scenario.start, async () => {
-        Given("I login", given.loginToYuScreen(true, CUSTOMER_17, AUTH_17), async () => {
+        Given("I login", given.loginToYuScreen(false, CUSTOMER_17, AUTH_17), async () => {
             Then("I should see my Yumoji", then.idVisible(YUSCREEN_AVATAR))
             When("I go to the leaderboard", when.tapID(NAV_BAR("leaderboard")), async () => {
                 Then("I should see my Yumoji", then.idVisible(YUMOJI_PODIUM(1)))
@@ -189,7 +189,7 @@ Feature("I am able to use the yuscreen, create, and edit an Yumoji", async () =>
                        
 
     Scenario("I can create an Yumoji using the female body type", scenario.start, async () => {
-        Given("I login and go to the yuscreen", given.loginToYuScreen(true, CUSTOMER_19, AUTH_19), async () => {
+        Given("I login and go to the yuscreen", given.loginToYuScreen(false, CUSTOMER_19, AUTH_19), async () => {
             Then("I should be on the yuscreen tab", then.onEmptyYuscreen(CUSTOMER_19))
             Then("I should see my coin balance in the top right", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(450)))
             When("I tap get started", when.tapID(GET_STARTED_BUTTON), async () => {

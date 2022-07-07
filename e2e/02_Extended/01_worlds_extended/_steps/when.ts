@@ -72,3 +72,7 @@ export const completYuniversWorldShortStroll = async () => {
     await waitFor(element(by.text("Done"))).toBeVisible().withTimeout(5000)
     await navigateViaText("Done")
 }
+
+export const tapExploreYuniverse = async () => {
+    await tapText("Explore the Yuniverse", 2000)
+}
