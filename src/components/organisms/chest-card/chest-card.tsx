@@ -9,6 +9,7 @@ import InfoMessage from "@organisms/info-message/info-message";
 import { Style } from "@styles";
 import styles from "./chest-card.styles";
 import { StarsSvg } from "./stars-svg";
+import { ShineSvg } from "./shine-svg";
 
 interface IProps {
   description: string;
@@ -68,7 +69,10 @@ const ChestCard: FC<IProps> = ({
           {description}
         </TextTemplate>
       </View>
-      <View ref={tooltipIconRef} style={styles.tooltipIcon}>
+      <View style={styles.shine}>
+        <ShineSvg />
+      </View>
+      <View ref={tooltipIconRef} style={styles.tooltipIcon} collapsable={false}>
         <PressableWithDelay onPress={openPopUp}>
           <TooltipIcon />
         </PressableWithDelay>

@@ -20,6 +20,13 @@ const styles = StyleSheet.create({
     width: Style.adjust(106),
     height: Style.adjust(144),
   } as ViewStyle,
+  shine: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    width: Style.adjust(106),
+    height: Style.adjust(116),
+  } as ViewStyle,
   icon: {
     paddingTop: Style.adjust(24),
     paddingHorizontal: Style.adjust(23),
