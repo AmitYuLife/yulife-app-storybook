@@ -5,26 +5,33 @@ import { PressableWithDelay } from "@molecules";
 import { Colours, Style } from "@styles";
 import { InfoIcon } from "@atoms/icon/info-icon";
 import { RemoteImage } from "@graphql/_core/schema";
+import { addCommasToNumber } from "@utils";
 
 export interface InspectItem {
   id: string;
-  remoteImage: RemoteImage;
-  text: string;
-  value: string;
-  infoText?: string;
+  icon: RemoteImage;
+  name: string;
+  value: number;
+  info?: string;
+  label?: string;
 }
 
 interface IProps {
   remoteImage: RemoteImage;
   text: string;
-  value: string;
+  value: number;
   infoText?: string;
+  label?: string;
   showInfoPopup: (viewRef: React.MutableRefObject<View>, infoText: string) => void;
 }
 
-const InspectDetailsItem = ({ text, infoText, value, remoteImage, showInfoPopup }: IProps) => {
+const InspectDetailsItem = ({ text, infoText, value, remoteImage, label, showInfoPopup }: IProps) => {
   const questionMarkRef = useRef<View>();
-  const showPopup = useCallback(() => showInfoPopup(questionMarkRef, infoText), [questionMarkRef, infoText]);
+  const showPopup = useCallback(() => showInfoPopup(questionMarkRef, infoText), [
+    questionMarkRef,
+    infoText,
+    showInfoPopup,
+  ]);
 
   return (
     <View style={styles.itemWrapper}>
@@ -41,7 +48,7 @@ const InspectDetailsItem = ({ text, infoText, value, remoteImage, showInfoPopup 
           </PressableWithDelay>
         )}
       </View>
-      <TextTemplate type="b1b">{value}</TextTemplate>
+      <TextTemplate type="b1b">{`${addCommasToNumber(value)}${label || ""}`}</TextTemplate>
     </View>
   );
 };

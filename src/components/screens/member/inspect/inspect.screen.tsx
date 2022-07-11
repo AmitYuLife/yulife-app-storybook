@@ -14,35 +14,58 @@ const EMPTY_AVATAR_WIDTH = Style.adjust(111);
 const EMPTY_AVATAR_HEIGHT = Style.adjust(298);
 
 interface ActivityItems {
+  title: string;
+  subTitle: string;
   avatarUri: string;
   opponentAvatarUri?: string;
-  opponentName?: string;
+  name?: string;
   averageItems: IAverageItem[];
+}
+
+interface DuelSection {
+  title: string;
+  items: InspectItem[];
 }
 export interface InspectProps {
   infoItems: InspectItem[];
-  duelsItems: InspectItem[];
-  activityItems: ActivityItems;
+  duel: DuelSection;
+  activity: ActivityItems;
   yumoji: string;
+  userName: string;
+  level: number;
   onClose: () => void;
+  challengeDuel: () => void;
 }
 
-const InspectScreen = ({ infoItems, duelsItems, yumoji, onClose, activityItems }: InspectProps) => {
+const InspectScreen = ({
+  infoItems,
+  duel,
+  yumoji,
+  onClose,
+  challengeDuel,
+  activity,
+  userName,
+  level,
+}: InspectProps) => {
   const showInfoPopup = useCallback(
     (viewRef: React.MutableRefObject<View>, infoText: string) =>
       showInfoMessageTooltipViewRelative({ viewRef, infoText, buttonLabel: "Got it" }),
     []
   );
-  const challengeSomebody = useCallback(() => {
-    /* challenge somebody*/
-  }, []);
 
-  const { avatarUri, opponentAvatarUri, opponentName, averageItems } = activityItems;
+  const {
+    avatarUri,
+    opponentAvatarUri,
+    name,
+    averageItems,
+    title: activitySectionTitle,
+    subTitle: activitySectionSubTitle,
+  } = activity;
   return (
     <View style={styles.wrapper}>
       <GenericHeadingPad />
       <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.containerStyle}>
-        <NameAndLevel />
+        <NameAndLevel name={userName} level={level} />
         <View style={styles.yumojiWrapper}>
           <Yumoji
             width={AVATAR_WIDTH}
@@ -54,13 +77,14 @@ const InspectScreen = ({ infoItems, duelsItems, yumoji, onClose, activityItems }
         </View>
 
         <View style={styles.box}>
-          {infoItems.map(({ remoteImage, text, infoText, value, id }) => (
+          {infoItems?.map(({ icon: remoteImage, name: statsName, info, value, id, label }) => (
             <InspectDetailsItem
               showInfoPopup={showInfoPopup}
               remoteImage={remoteImage}
-              text={text}
-              infoText={infoText}
+              text={statsName}
+              infoText={info}
               value={value}
+              label={label}
               key={id}
             />
           ))}
@@ -68,51 +92,48 @@ const InspectScreen = ({ infoItems, duelsItems, yumoji, onClose, activityItems }
 
         <View>
           <View style={styles.boxTitle}>
-            <TextTemplate type="h3">Duel Statistics</TextTemplate>
+            <TextTemplate type="h3">{duel.title}</TextTemplate>
           </View>
           <View style={styles.box}>
-            {duelsItems.map(({ remoteImage, text, infoText, value, id }) => (
+            {duel?.items?.map(({ icon: remoteImage, name: statsName, info, value, id, label }) => (
               <InspectDetailsItem
                 showInfoPopup={showInfoPopup}
                 remoteImage={remoteImage}
-                text={text}
-                infoText={infoText}
+                text={statsName}
+                infoText={info}
                 value={value}
+                label={label}
                 key={id}
               />
             ))}
-            <Button
-              size="Fill"
-              label="Challenge somebody"
-              wrapperStyle={styles.boxButton}
-              onPress={challengeSomebody}
-            />
+            <Button size="Fill" label="Challenge somebody" wrapperStyle={styles.boxButton} onPress={challengeDuel} />
           </View>
         </View>
 
         <View style={styles.activityHeader}>
-          <TextTemplate type="h3">Activity</TextTemplate>
-          <TextTemplate type="b2">Last 30 days</TextTemplate>
+          <TextTemplate type="h3">{activitySectionTitle}</TextTemplate>
+          <TextTemplate type="b2">{activitySectionSubTitle}</TextTemplate>
         </View>
 
         <View style={styles.box}>
           {!opponentAvatarUri ? (
             <>
               <AvatarItems avatarUri={avatarUri} />
-              {averageItems.map(({ icon, value, name, id }) => (
-                <AverageItem icon={icon} value={value} name={name} key={id} />
+              {averageItems?.map(({ icon, value, name: statsName, id, label }) => (
+                <AverageItem icon={icon} value={value} name={statsName} key={id} label={label} />
               ))}
             </>
           ) : (
             <>
-              <AvatarItems avatarUri={avatarUri} opponentAvatarUri={opponentAvatarUri} opponentName={opponentName} />
-              {averageItems.map(({ icon, value, name, opponentIsWinner, opponentValue, id }) => (
+              <AvatarItems avatarUri={avatarUri} opponentAvatarUri={opponentAvatarUri} name={name} />
+              {averageItems?.map(({ icon, value, name: statsName, opponentIsWinner, opponentValue, id, label }) => (
                 <AverageItem
                   icon={icon}
                   value={value}
-                  name={name}
+                  name={statsName}
                   opponentIsWinner={opponentIsWinner}
                   opponentValue={opponentValue}
+                  label={label}
                   key={id}
                 />
               ))}

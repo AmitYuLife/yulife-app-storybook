@@ -19,6 +19,12 @@ export default {
         long: "Please select your company's location",
       },
     },
+    leaderboard: {
+      actionButton: {
+        inspect: "Inspect",
+        challengeDuel: "challenge to duel",
+      },
+    },
     resetPasswordSubmitted: {
       heading: "Email sent",
       subheading:

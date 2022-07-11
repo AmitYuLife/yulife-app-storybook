@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import React, { memo, useCallback } from "react";
 import { View, Animated } from "react-native";
 import { LEADERBOARD_NAME } from "@ids";
 import { Image } from "./subcomponents/image";
@@ -9,6 +9,8 @@ import { baseStyles } from "./subcomponents/styles";
 import { ILeaderboardRankItemProps } from "./rank-item.types";
 import { DuelDialog } from "../../active-leaderboard/leaderboard-content/items/leaderboard-rank-item/duel-dialog";
 import { TouchableOpacityWithDelay } from "@components/molecules";
+import { useSelector } from "react-redux";
+import { getUserFeatures } from "@redux/user/user.selectors";
 
 const _ListRankItem = ({
   rank = 0,
@@ -22,17 +24,20 @@ const _ListRankItem = ({
   showDuels,
   index,
 }: ILeaderboardRankItemProps) => {
+  const features = useSelector(getUserFeatures);
+  const onPress = useCallback(() => {
+    if ((showDuels && !isCurrentUser) || features.showInspect) {
+      setDuelDialogId(duelDialogId === id ? "" : id);
+    }
+  }, [id, setDuelDialogId, showDuels, features.showInspect, isCurrentUser, duelDialogId]);
+
   return (
     <>
       <TouchableOpacityWithDelay
         testID={LEADERBOARD_NAME(name)}
         delay={200}
         style={baseStyles.wrapper}
-        onPress={() => {
-          if (showDuels && !isCurrentUser) {
-            setDuelDialogId(duelDialogId === id ? "" : id);
-          }
-        }}
+        onPress={onPress}
       >
         <Animated.View style={baseStyles.wrapper}>
           {isCurrentUser && <View style={baseStyles.currentUser} />}
