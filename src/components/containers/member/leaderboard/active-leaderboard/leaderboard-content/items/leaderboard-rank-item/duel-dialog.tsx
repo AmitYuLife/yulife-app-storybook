@@ -1,17 +1,19 @@
 import React, { useEffect, memo, FC, useMemo, useCallback } from "react";
 import { Animated } from "react-native";
 import { styles } from "./duel-dialog.styles";
-import { MODALS } from "@navigation/constants";
+import { MODALS, ROUTES } from "@navigation/constants";
 import { Button } from "@molecules";
 import { GetDuels } from "@graphql/_core/schema";
 import { useQuery } from "@apollo/react-hooks";
 import { useSelector } from "react-redux";
-import { getCurrentUserId } from "@redux/user/user.selectors";
+import { getCurrentUserId, getUserFeatures } from "@redux/user/user.selectors";
 import { DATE_FORMAT_WITH_TZ } from "@utils";
 import { showExistingDuelAlert } from "./duel-dialog.helpers";
 import moment from "moment";
 import { GQL_QUERY_GET_DUELS } from "@graphql/duels";
 import { showYuModal } from "@navigation/root";
+import { Navigation } from "react-native-navigation";
+import { t } from "@locale";
 
 interface Props {
   id: string;
@@ -29,6 +31,7 @@ export interface ValidDuel {
 
 const _DuelDialog: FC<Props> = ({ id, index }) => {
   const userId = useSelector(getCurrentUserId);
+  const features = useSelector(getUserFeatures);
   const opacity = new Animated.Value(0.15);
   const height = new Animated.Value(0);
 
@@ -60,6 +63,9 @@ const _DuelDialog: FC<Props> = ({ id, index }) => {
 
   const opponentId = id.replace("lead_", "");
   const duels = data?.getDuels || [];
+  const label = features.showInspect
+    ? t("screens.leaderboard.actionButton.inspect")
+    : t("screens.leaderboard.actionButton.challengeDuel");
 
   const validDuels: ValidDuel[] = useMemo(() => {
     const now = moment();
@@ -126,9 +132,26 @@ const _DuelDialog: FC<Props> = ({ id, index }) => {
     await navigateToDuelInvite();
   }, [opponentId, index, validDuels, navigateToDuelInvite]);
 
+  const onButtonPress = useCallback(async () => {
+    if (features.showInspect) {
+      return Navigation.push(ROUTES.leaderboards, {
+        component: {
+          id: ROUTES.inspect,
+          name: ROUTES.inspect,
+          passProps: {
+            userId: id.replace("lead_", ""),
+            challengeDuel: onPress,
+          },
+        },
+      });
+    }
+
+    onPress();
+  }, [id, onPress]);
+
   return (
     <Animated.View style={[styles.centered, { opacity, transform: [{ scaleY: height }] }]}>
-      <Button label="challenge to duel" size="Large" onPress={onPress} />
+      <Button label={label} size="Large" onPress={onButtonPress} />
     </Animated.View>
   );
 };

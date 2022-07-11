@@ -7,21 +7,21 @@ import { Colours, Style } from "@styles";
 interface IProps {
   avatarUri: string;
   opponentAvatarUri?: string;
-  opponentName?: string;
+  name?: string;
 }
 
-const AvatarItems = ({ avatarUri, opponentAvatarUri, opponentName }: IProps) => {
+const AvatarItems = ({ avatarUri, opponentAvatarUri, name }: IProps) => {
   return (
     <>
       {opponentAvatarUri ? (
         <View style={styles.opponentStateWrapper}>
-          <ActivityAvatar name={opponentName} avatarUri={opponentAvatarUri} />
+          <ActivityAvatar name={name} avatarUri={avatarUri} />
           <View style={styles.vs}>
             <TextTemplate type="b2b" color={Colours.neutral.n500}>
               VS
             </TextTemplate>
           </View>
-          <ActivityAvatar name="You" avatarUri={avatarUri} />
+          <ActivityAvatar name="You" avatarUri={opponentAvatarUri} />
         </View>
       ) : (
         <ActivityAvatar name="You" avatarUri={avatarUri} />

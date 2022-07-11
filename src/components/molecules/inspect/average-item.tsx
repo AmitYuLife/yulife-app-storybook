@@ -3,18 +3,21 @@ import { StyleSheet, View } from "react-native";
 import { Image, TextTemplate } from "@atoms";
 import { Rank } from "@atoms/icon/rank";
 import { Colours, Style } from "@styles";
+import { addCommasToNumber } from "@utils";
 
 export interface IAverageItem {
   id?: string;
   icon: string;
   name: string;
-  value: string;
-  opponentValue?: string;
+  value: number;
+  opponentValue?: number;
   opponentIsWinner?: boolean;
+  label?: string;
 }
 
 const TEXT_COLOR = "#545454";
-const AverageItem = ({ icon, name, value, opponentValue, opponentIsWinner }: IAverageItem) => {
+const AverageItem = ({ icon, name, value, opponentValue, opponentIsWinner, label: itemLabel }: IAverageItem) => {
+  const label = itemLabel || "";
   return (
     <View style={styles.wrapper}>
       <View style={styles.topLine} />
@@ -28,30 +31,32 @@ const AverageItem = ({ icon, name, value, opponentValue, opponentIsWinner }: IAv
         </TextTemplate>
       </View>
 
-      {opponentValue ? (
+      {opponentValue >= 0 ? (
         <View style={styles.valuesWrapper}>
           <View style={styles.valueWrapper}>
             <View style={styles.leftRankWrapper}>
-              <Rank isWinner={opponentIsWinner} />
-            </View>
-            <TextTemplate type={opponentIsWinner ? "b1b" : "b1"} color={TEXT_COLOR}>
-              {opponentValue}
-            </TextTemplate>
-          </View>
-          <View style={styles.separator} />
-          <View style={styles.valueWrapper}>
-            <TextTemplate type={!opponentIsWinner ? "b1b" : "b1"} color={TEXT_COLOR}>
-              {value}
-            </TextTemplate>
-            <View style={styles.rightRankWrapper}>
               <Rank isWinner={!opponentIsWinner} />
             </View>
+            <TextTemplate type={!opponentIsWinner ? "b1b" : "b1"} color={TEXT_COLOR}>
+              {`${addCommasToNumber(value)}${label}`}
+            </TextTemplate>
+          </View>
+          <View style={styles.valueWrapper}>
+            <TextTemplate type={opponentIsWinner ? "b1b" : "b1"} color={TEXT_COLOR}>
+              {`${addCommasToNumber(opponentValue)}${label}`}
+            </TextTemplate>
+            <View style={styles.rightRankWrapper}>
+              <Rank isWinner={opponentIsWinner} />
+            </View>
+          </View>
+          <View style={styles.wrapperSeparator}>
+            <View style={styles.separator} />
           </View>
         </View>
       ) : (
         <View style={styles.singleValueWrapper}>
           <TextTemplate type="b1" color={TEXT_COLOR}>
-            {value}
+            {`${addCommasToNumber(value)}${label}`}
           </TextTemplate>
         </View>
       )}
@@ -105,11 +110,16 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
   },
+  wrapperSeparator: {
+    position: "absolute",
+    width: "100%",
+  },
   separator: {
     height: Style.adjust(4),
     width: Style.adjust(4),
     borderRadius: Style.adjust(2),
     backgroundColor: Colours.neutral.n800,
+    alignSelf: "center",
   },
   leftRankWrapper: {
     height: Style.adjust(24),

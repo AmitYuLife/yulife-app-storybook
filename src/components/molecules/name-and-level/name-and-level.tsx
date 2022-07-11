@@ -8,9 +8,16 @@ import { getUserName } from "@redux/user/user.selectors";
 import { getCurrentLevel } from "@redux/levels/levels.selectors";
 import { TEXT_TEMPLATE } from "@ids";
 
-const NameAndLevel = () => {
-  const userName = useSelector(getUserName);
-  const currentLevel = useSelector(getCurrentLevel);
+interface IProps {
+  name?: string;
+  level?: number;
+}
+
+const NameAndLevel = ({ name, level }: IProps) => {
+  const storedUserName = useSelector(getUserName);
+  const storedCurrentLevel = useSelector(getCurrentLevel);
+  const userName = name || storedUserName;
+  const currentLevel = level || storedCurrentLevel;
 
   const currentWorld = getCurrentWorld(currentLevel);
   const worldIcon = getCurrentWorldImage(currentWorld);
