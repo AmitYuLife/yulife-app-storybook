@@ -15,7 +15,7 @@ import { GetQuestMapLevelList_getQuestMapLevelList as QuestMapLevel } from "@gra
 import { getLevelsProps } from "./yuniversal-quest-screen.helpers";
 import { QUESTS_SCREEN_YUNIVERSAL } from "@ids";
 
-const BACKGROUND_IMAGE = require("@assets/yuniversal/yuniversal_1.png");
+const BACKGROUND_IMAGE = require("@assets/yuniversal/yuniversal_quest_map_1.png");
 const SHOW_TITLE = Style.DEVICE_HEIGHT >= media.DEVICES.iPhone12.height;
 
 interface IProps extends IConnectedScreenProps {

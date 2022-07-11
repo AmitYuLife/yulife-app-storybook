@@ -7,17 +7,22 @@ import { usePressedInWithDelay } from "@hooks";
 import useInterval from "@use-it/interval";
 import { getQuestScreenTimer } from "@utils";
 import { getLevelIcon } from "./level-slot-helpers";
+import { LevelBubbleBackground } from "./level-bubble-background";
+import { LevelOverlay } from "./level-overlay";
 
 export interface ILevelBubbleProps {
   x: number;
   y: number;
+  radius: number;
   isActive?: boolean;
   text?: string | number;
   rating: number;
   icon?: "lock" | "chest";
   backgroundColour: string;
+  backgroundColour2?: string;
   shadowColour: string;
   textColour: string;
+  withOverlay?: boolean;
   pressColour: string;
   nextLevelAvailableAt?: string;
   onPress: () => void;
@@ -26,13 +31,16 @@ export interface ILevelBubbleProps {
 const _LevelBubble: FC<ILevelBubbleProps> = ({
   x,
   y,
+  radius,
   isActive,
   text,
   rating,
   icon,
   backgroundColour,
+  backgroundColour2,
   shadowColour,
   textColour,
+  withOverlay,
   pressColour,
   nextLevelAvailableAt,
   onPress,
@@ -133,7 +141,7 @@ const _LevelBubble: FC<ILevelBubbleProps> = ({
 
   return (
     <G x={x} y={y} onPressIn={handlePress}>
-      <Circle y={3} r={25} fill={shadowColour} />
+      <Circle y={3} r={radius} fill={shadowColour} />
       {!isActive ? null : (
         <>
           {pulse.map((props, index) => (
@@ -141,7 +149,7 @@ const _LevelBubble: FC<ILevelBubbleProps> = ({
           ))}
         </>
       )}
-      <Circle r={25} fill={backgroundColour} />
+      <LevelBubbleBackground radius={radius} colour={backgroundColour} colour2={backgroundColour2} />
       {!showTimer ? null : (
         <>
           <Text y={-3} fill={textColour} font={FONT_TIMER} textAnchor="middle">
@@ -179,11 +187,16 @@ const _LevelBubble: FC<ILevelBubbleProps> = ({
           </>
         )}
       </G>
+      {!withOverlay ? null : (
+        <G x={-radius} y={-radius}>
+          <LevelOverlay radius={radius} />
+        </G>
+      )}
       <G clipPath={`url(#${circleClipId})`} opacity={0.4}>
-        <AnimatedCircle r={25} opacity={animatedPressOpacity} fill={pressColour} />
+        <AnimatedCircle r={radius} opacity={animatedPressOpacity} fill={pressColour} />
       </G>
       <ClipPath id={circleClipId}>
-        <Circle r={25} />
+        <Circle r={radius} />
       </ClipPath>
     </G>
   );

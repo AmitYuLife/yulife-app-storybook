@@ -70,6 +70,7 @@ const getLevelButtonState = (
 
 interface SlotColours {
   backgroundColour: string;
+  backgroundColour2?: string;
   shadowColour: string;
   textColour: string;
   pressColour: string;
@@ -97,7 +98,14 @@ export const slotColours: Record<string, SlotColours> = {
   locked: {
     backgroundColour: Colours.neutral.white,
     shadowColour: "#DFDFDF",
-    textColour: "#4692E4",
+    textColour: "#956AFF",
+    pressColour: Colours.neutral.n200,
+  },
+  chestLocked: {
+    backgroundColour: "#9796FE",
+    backgroundColour2: "#FF7DFF",
+    shadowColour: "#7243F9",
+    textColour: "#956AFF",
     pressColour: Colours.neutral.n200,
   },
 };
@@ -105,12 +113,15 @@ export const slotColours: Record<string, SlotColours> = {
 interface ILevelProps {
   x: number;
   y: number;
+  radius: number;
   text: string | number;
   rating: number;
   isActive: boolean;
   backgroundColour: string;
+  backgroundColour2?: string;
   shadowColour: string;
   textColour: string;
+  withOverlay?: boolean;
   pressColour: string;
   icon?: ILevelBubbleProps["icon"];
   nextLevelAvailableAt?: string;
@@ -134,11 +145,12 @@ const getLevelProps = (
     return null;
   }
 
-  const { x, y, text, lockIcon } = levelSlot;
+  const { x, y, isChest, text, lockIcon } = levelSlot;
 
   const commonProps = {
     x,
     y,
+    radius: isChest ? 27.5 : 25,
     text: text || level.level,
     rating: level.rating,
   };
@@ -184,7 +196,8 @@ const getLevelProps = (
     case "ChestLocked":
       return {
         ...commonProps,
-        ...slotColours.locked,
+        ...slotColours.chestLocked,
+        withOverlay: true,
         isActive: false,
         icon: lockIcon,
         onPress: () => showChestModal(componentId, level, yuniversalMap, false, showChestModalCopy),
