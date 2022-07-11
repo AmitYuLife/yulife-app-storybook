@@ -23,6 +23,7 @@ Feature("DENTAL HAPPY", async()=>{
                 helper.INFORMATION()
                 helper.PLANS()
                 helper.PACKAGE_DETAILS("Epic")
+                helper.ADD_EDIT_PAYMENT_DETAILS()
                 helper.CHECKOUT()
             })
         })

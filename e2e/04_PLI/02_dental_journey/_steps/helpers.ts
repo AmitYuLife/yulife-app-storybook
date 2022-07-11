@@ -171,37 +171,49 @@ export const CHECKOUT = async () => {
     const onboardStepPerformed = "Information about your policy lives here, with details of cover amounts and how to make a claim"
 
 
-    
+    When(`I tap Purchase cover`, when.tapText("Purchase cover"), async () => {
+        Then(`I should be on the ${nextScreen} screen`, then.isOnScreen(nextScreen))
+        Then("I should see more info text", then.textVisible(exclusiveText))
+        When(`I tap More details`, when.tapText("More details"), async () => {
+            Then(`I should be on the ${nextScreen} screen`, then.isOnScreen(nextScreen))
+            Then("I should see policy Live on text", then.textVisible(policyLiveOn))  
+            // Then("I shoul see correct date in the text", then.textVisible(startOfnextMonthFormated)) //need to find a how this days is calculated
+            Then("I should see warning text", then.textVisible(warningText))
+            Then("I should see perks text", then.textVisible(perksText))
+            Then("I should see the correct YuCoin power", then.idVisible(YUCOIN_POWER(6)))
+            Then("I should see Package details", then.textVisible("Package details"))
+            When("I scroll to the bottom of the page", when.swipeFromText("Package details", "up", "slow"), async () => {
+                Then("I should see Membership Guide", then.textVisible("Membership Guide"))
+                Then("I should see Product information (IPID)", then.textVisible("Product information (IPID)"))
+                Then("I should see FAQs", then.textVisible("FAQs"))
+                Then("I should see checkout summary text", then.textVisible(checkoutSummary))
+                When("I tap on Close button", when.tapID(BUTTON_CLOSE_CHALLENGE), async () => {
+                    Then("I should see Onboard Performed text", then.textVisible(onboardStepPerformed))
+                })
+            })
+        })
+    })
+}
+
+export const ADD_EDIT_PAYMENT_DETAILS = async () => {
+
     When("I add contact details", when.addContactDetails, async () => {
         Then("I should be on the checkout page", then.isOnScreen("Declarations"))
         When("I accept the conditions", when.acceptConditions, async () => {
             Then("I should see YuLife's Privacy Policy", then.textVisible("YuLife's Privacy Policy"))
-            When("I add payment details", when.addPaymentDetails, async () => {
-                Then("I should be on the checkout page", then.isOnScreen("Checkout"))
-                Then("I should see £27.99 / month", then.textVisible("£27.99 / month"))
-                When(`I tap Purchase cover`, when.tapText("Purchase cover"), async () => {
-                    Then(`I should be on the ${nextScreen} screen`, then.isOnScreen(nextScreen))
-                    Then("I should see more info text", then.textVisible(exclusiveText))
-                    When(`I tap More details`, when.tapText("More details"), async () => {
-                        Then(`I should be on the ${nextScreen} screen`, then.isOnScreen(nextScreen))
-                        Then("I should see policy Live on text", then.textVisible(policyLiveOn))  
-                        // Then("I shoul see correct date in the text", then.textVisible(startOfnextMonthFormated)) //need to find a how this days is calculated
-                        Then("I should see warning text", then.textVisible(warningText))
-                        Then("I should see perks text", then.textVisible(perksText))
-                        Then("I should see the correct YuCoin power", then.idVisible(YUCOIN_POWER(6)))
-                        Then("I should see Package details", then.textVisible("Package details"))
-                        When("I scroll to the bottom of the page", when.swipeFromText("Package details", "up", "slow"), async () => {
-                            Then("I should see Membership Guide", then.textVisible("Membership Guide"))
-                            Then("I should see Product information (IPID)", then.textVisible("Product information (IPID)"))
-                            Then("I should see FAQs", then.textVisible("FAQs"))
-                            Then("I should see checkout summary text", then.textVisible(checkoutSummary))
-                            When("I tap on Close button", when.tapID(BUTTON_CLOSE_CHALLENGE), async () => {
-                                Then("I should see Onboard Performed text", then.textVisible(onboardStepPerformed))
-                            })
-                        })
-                    })
-                })
-            })
+        })
+    })
+    When("I add payment details", when.addPaymentDetails, async () => {
+        Then("I should be on the checkout page", then.isOnScreen("Checkout"))
+        Then("I should see £27.99 / month", then.textVisible("£27.99 / month"))
+    })
+    When("I tap on Payment details", when.tapTextAtIndex("Payment details", 1), async () => {
+        Then("I should see payment methods", then.textVisible("Select your payment method"))
+        Then("I should see Add", then.textVisible("+ Add"))
+        Then("I should see Edit", then.textVisible("Edit"))
+        Then("I should see Set up", then.textVisible("Set up"))
+        When("I add another card payment details", when.addPaymentDetailsMastercard, async () => {
+            Then("I should be on the checkout page", then.isOnScreen("Checkout"))
         })
     })
 }

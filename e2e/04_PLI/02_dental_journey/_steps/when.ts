@@ -32,7 +32,8 @@ export const {
     navigateViaText,
     navigateViaID,
     textVisible,
-    slowType
+    slowType,
+    tapTextAtIndex
 } = navigation.common
 
 export const {
@@ -154,4 +155,24 @@ export const acceptConditions = async () => {
     await scrollUntilTextVisible(PRODUCT_STEP_BODY_SCROLL_VIEW, bupaPrivacy, "down")()
     await tapText(acceptStatement)()
     await tapText(acceptAndRead)()   
+}
+
+export const addPaymentDetailsMastercard = async () => {
+
+const cardNumber = "5555555555554444\n"
+    const cardExpiry = "424\n"
+    const cardCVC = "242\n"
+    const postcode = "42424\n"
+
+    const cardNumberInput = element(by.type("Stripe.STPCardNumberInputTextField"))
+    const cardExpiryInput = element(by.type("Stripe.STPCardExpiryInputTextField"))
+    const cardCVCInput = element(by.type("Stripe.STPCardCVCInputTextField"))
+    const postcodeInput = element(by.type("Stripe.STPPostalCodeInputTextField"))
+
+    await navigateViaText("+ Add")
+    await slowType(cardNumberInput, cardNumber, 500)()
+    await slowType(cardExpiryInput, cardExpiry, 500)()
+    await slowType(cardCVCInput, cardCVC, 500)()
+    await slowType(postcodeInput, postcode, 500)()
+    await tapText("Set up")()
 }
