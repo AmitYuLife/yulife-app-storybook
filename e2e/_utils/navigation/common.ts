@@ -339,3 +339,9 @@ export const tapIDAtIndex = (id: string, index = 0, waitTime = 0) => async () =>
     await waitFor(target).toBeVisible().withTimeout(waitTime)
     await target.tap()
 }
+
+export const tapTextAtIndex = (text: string, index = 0, waitTime = 0) => async () => {
+    const target = element(by.text(text)).atIndex(index)
+    await waitFor(target).toBeVisible().withTimeout(waitTime)
+    await target.tap()
+}
