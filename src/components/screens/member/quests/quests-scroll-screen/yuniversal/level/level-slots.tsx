@@ -4,6 +4,7 @@ interface LevelSlot {
   level: number;
   x: number;
   y: number;
+  isChest?: boolean;
   text?: string;
   name?: string;
   lockIcon?: ILevelBubbleProps["icon"];
@@ -62,6 +63,7 @@ export const slots: LevelSlot[] = [
     level: 7,
     x: 187,
     y: 263,
+    isChest: true,
     text: "VII",
     name: "Yuniversal VII",
     lockIcon: "chest",
