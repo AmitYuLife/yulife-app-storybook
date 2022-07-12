@@ -23,7 +23,7 @@ export const MeditopiaButton = ({ style, onPressCallback }: Props) => {
     <ImageButton
       wrapperStyle={style}
       onPress={onPress}
-      shadowColor={"#0096F2"}
+      shadowColor="#0096F2"
       backgroundColor="#3BB4FF"
       icon="meditopia"
       testID={MEDITOPIA_BUTTON}

@@ -144,8 +144,8 @@ export const styles = StyleSheet.create({
   },
   time: {
     fontFamily: Style.FONT_FAMILY_PRIMARY_BOLD,
-    fontSize: Style.adjust(48),
-    lineHeight: Style.adjust(44),
+    fontSize: Style.adjust(62),
+    lineHeight: Style.adjust(58),
     letterSpacing: getLetterSpacing(Style.adjust(1)),
   },
   underline: {

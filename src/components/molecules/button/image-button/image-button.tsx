@@ -87,7 +87,7 @@ const logoHashMap = {
   calm: Icon.Calm,
   headspace: Icon.Headspace,
   fiit: Icon.Fiit,
-  meditopia: Icon.MeditopiaLogoWithText,
+  meditopia: () => <Icon.MeditopiaLogo type="full" colour="white" width={160} height={32} />, //@TODO: GS-340 - This is temporary until we release the new meditation, delete this after
 } as Record<IconType, () => JSX.Element>;
 
 export default ImageButton;

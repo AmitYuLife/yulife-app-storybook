@@ -34,7 +34,7 @@ export const submitUnityAction = (payload: SubmitUnityVariables) => ({
   type: CHALLENGE_SUBMIT_UNITY,
 });
 
-export type ChallengeStartPayload = CreateActiveChallenge & { levelSlotId: string };
+export type ChallengeStartPayload = CreateActiveChallenge & { levelSlotId: string; videoPlayerIsActive?: boolean };
 export type Challenge = ActiveChallenge | QuestMapActiveChallenge;
 export const challengeStartSuccessAction = (payload: ChallengeStartPayload) => ({
   payload,

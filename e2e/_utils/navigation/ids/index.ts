@@ -103,6 +103,7 @@ export const SCROLL_NUMBER_PICKER = (id: number) => `SCROLL_PICKER_${id}`
 export const HORIZONTAL_SCROLLER = 'HORIZONTAL_SCROLLER'
 export const DAILYSTEP_SCREEN_COIN =  "DAILYSTEP_SCREEN_COIN";
 export const STATUS_ICON = (value:string) => `STATUS_ICON_${value}`
+export const MEDITATION_ITEM = (value:string) => `MEDITATION_ITEM_${value}`
 
 // modals
 export const WELCOME_MODAL = (heading: string) => `WELCOME_MODAL${heading}`

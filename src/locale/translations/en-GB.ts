@@ -118,6 +118,11 @@ export default {
       description: "You have reached the event milestone!\nCongratulations. Claim your rewards",
       cta: "Claim",
     },
+    mediaList: {
+      differentAppCtaLabel: "Use a different app",
+      differentAppSectionLabel: "additionally you can",
+      videoDurationRewardLabel: "%{formattedDuration} min • Earn %{reward}x",
+    },
   },
   permissions: {
     android: {
@@ -197,6 +202,16 @@ export default {
       workoutsRead: {
         title: "Workouts",
         description: "Needed by the YuLife app to get workout (e.g. Fiit) data tracked in your Apple Health account.",
+      },
+    },
+  },
+  modals: {
+    genericModal: {
+      cancelChallenge: {
+        heading: "Call it quits?",
+        subheading: "Your current progress will be lost but you can retry any time",
+        ctaLabel: "Exit challenge",
+        ctaLabelSecondary: "Cancel",
       },
     },
   },

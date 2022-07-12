@@ -4,8 +4,8 @@ import gql from "graphql-tag";
 import { CreateActiveChallenge, CreateActiveChallengeVariables } from "../_core/schema";
 
 export const GQL_MUTATION_CREATE_ACTIVE_CHALLENGE = gql`
-  mutation CreateActiveChallenge($levelSlotId: String!) {
-    createActiveChallenge(levelSlotId: $levelSlotId) {
+  mutation CreateActiveChallenge($levelSlotId: String!, $contentId: String) {
+    createActiveChallenge(levelSlotId: $levelSlotId, contentId: $contentId) {
       challenge {
         level
         levelSlotId

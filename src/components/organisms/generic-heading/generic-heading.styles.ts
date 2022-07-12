@@ -25,16 +25,16 @@ const styles = StyleSheet.create({
   } as ViewStyle,
   leftIconWrapper: {
     alignSelf: "center",
-    flex: 0.2,
+    width: "33.33%",
   } as ViewStyle,
-  centerWrapper: { flexDirection: "row", flex: 0.9, justifyContent: "center" } as ViewStyle,
+  centerWrapper: { flexDirection: "row", width: "33.33%", justifyContent: "center" } as ViewStyle,
   relative: { position: "relative" } as ViewStyle,
   logoBetaWrapper: { position: "absolute", left: 24 } as ViewStyle,
   headingBetaWrapper: { position: "absolute", right: -38 } as ViewStyle,
-  rightIconWrapper: { flex: 0.2, alignSelf: "center" } as ViewStyle,
+  rightIconWrapper: { width: "33.33%", alignSelf: "center" } as ViewStyle,
   rightIconTouchable: { alignSelf: "flex-end" },
   rightIconCoinsWrapper: {
-    bottom: Style.adjust(8),
+    bottom: Platform.select({ ios: Style.adjust(8), android: Style.adjust(2) }),
     right: Style.adjust(3),
   },
   rightIconCoinsTextColour: {

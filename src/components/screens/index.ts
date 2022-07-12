@@ -41,6 +41,8 @@ export { default as ChallengesListScreen } from "./member/challenges/challenges-
 export { default as ChallengesHistoryScreen } from "./member/challenges/challenges-history/challenges-history.screen";
 export { default as ChallengeExitScreen } from "./member/challenges/challenge-exit/challenge-exit.screen";
 export { default as LevelLockedScreen } from "./member/challenges/level-locked/level-locked.screen";
+export { default as MediaListScreen } from "./member/media/media-list/media-list.screen";
+export { default as MediaPlayerScreen } from "./member/media/media-player/media-player.screen";
 
 // rewards screens
 export { default as AviosRewardConfirmedScreen } from "./member/rewards/confirmed/avios-confirmed.screen";

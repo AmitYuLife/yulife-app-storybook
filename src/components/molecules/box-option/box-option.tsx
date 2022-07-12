@@ -14,6 +14,7 @@ interface Props {
   wrapperStyle?: ViewStyle;
   innerWrapperStyle?: ViewStyle;
   innerHeight?: number;
+  disabled?: boolean;
 }
 
 const SHADOW_HEIGHT = media.select(
@@ -36,6 +37,7 @@ const BoxOption = memo(
     wrapperStyle,
     innerWrapperStyle,
     innerHeight = Style.adjust(104),
+    disabled,
   }: Props) => {
     const { isPressedIn, handlePressIn, handlePressOut, handlePress } = usePressedInWithDelay({ onPress });
     const { translateY } = useAnimation({ isSelected, isPressedIn });
@@ -43,7 +45,13 @@ const BoxOption = memo(
     const totalHeight = innerHeight + SHADOW_HEIGHT;
 
     return (
-      <TouchableWithDelay testID={testID} onPressIn={handlePressIn} onPressOut={handlePressOut} onPress={handlePress}>
+      <TouchableWithDelay
+        testID={testID}
+        onPressIn={handlePressIn}
+        onPressOut={handlePressOut}
+        onPress={handlePress}
+        disabled={disabled}
+      >
         <View style={StyleSheet.flatten([styles.wrapper, { height: totalHeight }, wrapperStyle])}>
           <View style={styles.shadowWrapper} />
           <Animated.View

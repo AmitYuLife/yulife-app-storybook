@@ -21,7 +21,8 @@ export { default as ChallengesHistoryContainer } from "./member/quests/challenge
 export { default as DailyStepsContainer } from "./member/daily-steps/daily-steps.container";
 export { default as CommunityGoalsContainer } from "./member/community-goals/comunity-goals.container";
 export { default as CyclingMeasurementContainer } from "./member/settings/cycling-measurement.container";
-
+export { default as MediaListContainer } from "./member/media/media-list/media-list.container";
+export { default as MediaPlayerContainer } from "./member/media/media-player/media-player.container";
 // reward containers
 export { default as RewardDetailsContainer } from "./member/rewards/details/reward-details.container";
 export { default as WegiftRewardConfirmedContainer } from "./member/rewards/confirmed/wegift-confirmed.container";

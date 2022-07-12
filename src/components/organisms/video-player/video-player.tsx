@@ -3,7 +3,7 @@ import Video from "react-native-video";
 import moment from "moment";
 import MusicControl, { Command } from "react-native-music-control";
 import { Animated, StyleSheet, View } from "react-native";
-import { Loading, TextTemplate } from "@atoms";
+import { Loading } from "@atoms";
 import { Colours, Style } from "@styles";
 import {
   IState,
@@ -26,7 +26,9 @@ interface IProps {
   title: string;
   description: string;
   shortDescription: string;
-  cover: string;
+  thumbnail: string;
+  logo: string;
+  onStart: () => void;
   onEnd: () => void;
   onLeftIconPress: () => void;
   onRightIconPress: () => void;
@@ -45,8 +47,10 @@ const VideoPlayer = ({
   poster,
   title,
   description,
-  cover,
+  thumbnail,
+  logo,
   onEnd,
+  onStart,
   onLeftIconPress,
   onRightIconPress,
   theme,
@@ -109,22 +113,36 @@ const VideoPlayer = ({
   }, []);
 
   const onBuffer = useCallback(({ isBuffering }) => {
-    dispatch({ type: ActionTypes.SET_LOADING, payload: isBuffering });
+    dispatch({ type: ActionTypes.SET_BUFFERING, payload: isBuffering });
   }, []);
 
   const onButtonAction = useCallback(() => {
-    if (!state.musicControlMounted) {
+    dispatch({ type: state.isPaused ? ActionTypes.PLAY_PLAYER : ActionTypes.PAUSE_PLAYER });
+  }, [state.isPaused, state.durationInSeconds]);
+
+  const handleStartButton = useCallback(async () => {
+    dispatch({ type: ActionTypes.SET_LOADING, payload: true });
+    try {
+      await onStart();
       MusicControl.setNowPlaying({
         title,
-        artwork: cover,
+        artwork: thumbnail,
         artist: shortDescription,
         duration: state.durationInSeconds,
       });
-      return dispatch({ type: ActionTypes.SET_MUSIC_CONTROL_MOUNTED });
+      dispatch({ type: ActionTypes.SET_MUSIC_CONTROL_MOUNTED });
+    } catch (e) {
+    } finally {
+      dispatch({ type: ActionTypes.SET_LOADING, payload: false });
     }
+  }, [onStart, state.durationInSeconds]);
 
-    return dispatch({ type: state.isPaused ? ActionTypes.PLAY_PLAYER : ActionTypes.PAUSE_PLAYER });
-  }, [state.isPaused, state.durationInSeconds]);
+  const handleOnEnd = useCallback(async () => {
+    try {
+      await onEnd();
+      MusicControl.resetNowPlaying();
+    } catch (e) {}
+  }, [onEnd]);
 
   const handleFocusScreen = useCallback(() => {
     if (!state.isPaused && !state.showFocusScreen) {
@@ -146,7 +164,7 @@ const VideoPlayer = ({
           resizeMode="cover"
           onError={(e) => console.log(e, "onError")}
           onLoad={onLoad}
-          onEnd={onEnd}
+          onEnd={handleOnEnd}
           onProgress={onProgress}
           onBuffer={onBuffer}
           paused={state.isPaused}
@@ -156,29 +174,6 @@ const VideoPlayer = ({
         />
         <GenericHeadingPad />
 
-        {!state.musicControlMounted ? null : (
-          <Animated.View style={[styles.progressBarContainer, { opacity }]}>
-            <View style={[styles.progressBar, { backgroundColor: themeColour }]}>
-              <View
-                style={[
-                  styles.currentProgressBar,
-                  {
-                    width:
-                      `${Math.round((state.currentProgressInMilliSeconds / state.durationInMilliSeconds) * 100)}%` || 0,
-                  },
-                ]}
-              />
-            </View>
-            <View style={styles.countDown}>
-              <VideoPlayerTimer
-                textType="l2"
-                time={state.durationInMilliSeconds - state.currentProgressInMilliSeconds}
-                colour={themeColour}
-              />
-            </View>
-          </Animated.View>
-        )}
-
         {state.musicControlMounted ? null : (
           <View style={styles.videoDescription}>
             <VideoPlayerDescription
@@ -187,25 +182,41 @@ const VideoPlayer = ({
               duration={state.durationInSeconds}
               yuCoin={yuCoin}
               stars={stars}
+              logo={logo}
             />
           </View>
         )}
 
         {!state.musicControlMounted ? null : (
           <>
-            <Animated.View style={[styles.title, { opacity }]}>
-              <TextTemplate type="h3" color={themeColour}>
-                {title}
-              </TextTemplate>
-            </Animated.View>
             <View style={styles.currentProgressTime}>
               <VideoPlayerTimer textType="time" time={state.currentProgressInMilliSeconds} colour={themeColour} />
-              {!state.loading ? null : (
+              {!state.isBuffering ? null : (
                 <View style={styles.loading}>
                   <Loading />
                 </View>
               )}
             </View>
+            <Animated.View style={[styles.progressBarContainer, { opacity }]}>
+              <View style={styles.currentProgress}>
+                <VideoPlayerTimer textType="l2b" time={state.currentProgressInMilliSeconds} colour={themeColour} />
+              </View>
+              <View style={[styles.progressBar, { backgroundColor: themeColour }]}>
+                <View
+                  style={[
+                    styles.currentProgressBar,
+                    {
+                      width:
+                        `${Math.round((state.currentProgressInMilliSeconds / state.durationInMilliSeconds) * 100)}%` ||
+                        0,
+                    },
+                  ]}
+                />
+              </View>
+              <View style={styles.duration}>
+                <VideoPlayerTimer textType="l2b" time={state.durationInMilliSeconds} colour={themeColour} />
+              </View>
+            </Animated.View>
             <Animated.View style={[styles.buttonWrapper, { opacity }]}>
               <VidePlayerButton onPress={onButtonAction} isPaused={state.isPaused} />
             </Animated.View>
@@ -215,10 +226,10 @@ const VideoPlayer = ({
 
       {state.musicControlMounted ? null : (
         <View style={styles.starSessionButton}>
-          <Button label="Start session" onPress={onButtonAction} leftIcon={<PlayIcon />} />
+          <Button label="Start session" onPress={handleStartButton} leftIcon={<PlayIcon />} />
         </View>
       )}
-      {state.durationInSeconds ? null : <VideoPlayerLoading />}
+      {!state.loading ? null : <VideoPlayerLoading />}
 
       {!state.durationInSeconds ? null : (
         <Animated.View style={styles.topbarWrapper}>
@@ -245,18 +256,28 @@ const styles = StyleSheet.create({
     marginHorizontal: Style.adjust(24),
     alignItems: "center",
     marginTop: Style.adjust(32),
+    justifyContent: "center",
+    position: "absolute",
+    bottom: Style.adjust(140),
+    left: 0,
+    right: 0,
   },
   progressBar: {
     height: 6,
     borderRadius: 3,
-    width: "87%",
+    width: "74%",
   },
   currentProgressBar: {
     height: 6,
     backgroundColor: Colours.primary.p400,
     borderRadius: 3,
   },
-  countDown: {
+  currentProgress: {
+    position: "absolute",
+    left: 0,
+    width: "13%",
+  },
+  duration: {
     position: "absolute",
     alignItems: "flex-end",
     right: 0,
@@ -272,7 +293,7 @@ const styles = StyleSheet.create({
   currentProgressTime: {
     alignItems: "center",
     justifyContent: "center",
-    flex: 0.7,
+    ...StyleSheet.absoluteFillObject,
   },
   loading: {
     position: "absolute",
@@ -280,7 +301,7 @@ const styles = StyleSheet.create({
   },
   buttonWrapper: {
     position: "absolute",
-    bottom: Style.adjust(130),
+    bottom: Style.adjust(40),
     justifyContent: "center",
     alignItems: "center",
     left: 0,

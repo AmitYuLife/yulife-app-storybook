@@ -6,6 +6,7 @@ import { TOP_BAR, Colours } from "@styles";
 import { IGenericHeadingProps, YuCoinCounter } from "@organisms";
 import PlusSvg from "@atoms/plus/plus-svg";
 import styles from "../generic-heading.styles";
+import { labels } from "@navigation/root";
 
 type IIcon = IGenericHeadingProps["rightIcon"];
 
@@ -17,7 +18,9 @@ interface IProps {
   testID: string;
 }
 
+// TODO: This component needs a proper refactor in the soon...
 const GenericHeaderRightIcon = ({ icon, color, onPress, testID, Icon }: IProps) => {
+  const handleOnPress = icon === "COINS" ? labels[4].onPress : onPress;
   if (Icon) {
     return (
       <TouchableOpacityWithDelay
@@ -38,7 +41,7 @@ const GenericHeaderRightIcon = ({ icon, color, onPress, testID, Icon }: IProps) 
   return (
     <TouchableOpacityWithDelay
       hitSlop={TOP_BAR.HIT_SLOP}
-      onPress={onPress}
+      onPress={handleOnPress}
       style={styles.rightIconTouchable}
       testID={testID}
     >

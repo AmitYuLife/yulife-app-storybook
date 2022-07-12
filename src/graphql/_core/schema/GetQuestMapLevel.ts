@@ -31,11 +31,43 @@ export interface GetQuestMapLevel_getQuestMapLevel_slots_details_milestones {
   rewardType: string;
 }
 
+export interface GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent_logo {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent_buttonLogo {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent_contentApp {
+  iosUrl: string;
+  androidUrl: string;
+  appName: string;
+  appStoreId: string;
+  appStoreLocale: string;
+  playStoreId: string;
+}
+
+export interface GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent {
+  contentType: string;
+  contentMediaTags: string[];
+  title: string;
+  description: string;
+  logo: GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent_logo;
+  buttonLogo: GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent_buttonLogo;
+  buttonColor: string;
+  buttonTitle: string;
+  contentApp: GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent_contentApp | null;
+}
+
 export interface GetQuestMapLevel_getQuestMapLevel_slots_details {
   heading: string;
   tutorialUrl: string | null;
   image: GetQuestMapLevel_getQuestMapLevel_slots_details_image;
   milestones: (GetQuestMapLevel_getQuestMapLevel_slots_details_milestones | null)[] | null;
+  internalContent: GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent[] | null;
 }
 
 export interface GetQuestMapLevel_getQuestMapLevel_slots_challenges {
@@ -44,8 +76,8 @@ export interface GetQuestMapLevel_getQuestMapLevel_slots_challenges {
 }
 
 export interface GetQuestMapLevel_getQuestMapLevel_slots {
-  id: string;
   __typename: "QuestMapLevelSlot";
+  id: string;
   heading: string;
   duration: string;
   image: GetQuestMapLevel_getQuestMapLevel_slots_image;

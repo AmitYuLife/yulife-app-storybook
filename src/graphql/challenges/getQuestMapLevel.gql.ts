@@ -8,8 +8,8 @@ export const GQL_QUERY_GET_QUEST_MAP_LEVEL = gql`
       level
       levelChest
       slots {
-        id
         __typename
+        id
         heading
         duration
         image {
@@ -36,6 +36,30 @@ export const GQL_QUERY_GET_QUEST_MAP_LEVEL = gql`
             target
             rewardAmount
             rewardType
+          }
+          internalContent {
+            contentType
+            contentMediaTags
+            title
+            description
+            logo {
+              id
+              uri
+            }
+            buttonLogo {
+              id
+              uri
+            }
+            buttonColor
+            buttonTitle
+            contentApp {
+              iosUrl
+              androidUrl
+              appName
+              appStoreId
+              appStoreLocale
+              playStoreId
+            }
           }
         }
         challenges {
