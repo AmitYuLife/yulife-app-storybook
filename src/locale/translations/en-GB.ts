@@ -25,6 +25,12 @@ export default {
         challengeDuel: "challenge to duel",
       },
     },
+    inspect: {
+      duel: {
+        challengeDuel: "Challenge to duel",
+        challengeSomebody: "Challenge somebody",
+      },
+    },
     resetPasswordSubmitted: {
       heading: "Email sent",
       subheading:

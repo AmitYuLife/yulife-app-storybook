@@ -1,4 +1,4 @@
-import React, { memo, useCallback } from "react";
+import React, { memo, useCallback, useMemo } from "react";
 import { Button, NameAndLevel, Yumoji } from "@molecules";
 import { AvatarItems, InspectDetailsItem, GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import { Colours, Style } from "@styles";
@@ -7,6 +7,7 @@ import { Platform, ScrollView, StyleSheet, View } from "react-native";
 import { TextTemplate } from "@atoms";
 import { showInfoMessageTooltipViewRelative } from "@organisms/tooltip-popup/tooltip-popup.helper";
 import AverageItem, { IAverageItem } from "@components/molecules/inspect/average-item";
+import { t } from "@locale";
 
 const AVATAR_WIDTH = Style.adjust(160) * 0.95;
 const AVATAR_HEIGHT = Style.adjust(328) * 0.95;
@@ -33,6 +34,7 @@ export interface InspectProps {
   yumoji: string;
   userName: string;
   level: number;
+  inspectOtherUser: boolean;
   onClose: () => void;
   challengeDuel: () => void;
 }
@@ -46,11 +48,17 @@ const InspectScreen = ({
   activity,
   userName,
   level,
+  inspectOtherUser,
 }: InspectProps) => {
   const showInfoPopup = useCallback(
     (viewRef: React.MutableRefObject<View>, infoText: string) =>
       showInfoMessageTooltipViewRelative({ viewRef, infoText, buttonLabel: "Got it" }),
     []
+  );
+
+  const actionButtonLabel = useMemo(
+    () => (inspectOtherUser ? t("screens.inspect.duel.challengeDuel") : t("screens.inspect.duel.challengeSomebody")),
+    [inspectOtherUser]
   );
 
   const {
@@ -106,7 +114,7 @@ const InspectScreen = ({
                 key={id}
               />
             ))}
-            <Button size="Fill" label="Challenge somebody" wrapperStyle={styles.boxButton} onPress={challengeDuel} />
+            <Button size="Fill" label={actionButtonLabel} wrapperStyle={styles.boxButton} onPress={challengeDuel} />
           </View>
         </View>
 
@@ -160,6 +168,7 @@ const styles = StyleSheet.create({
   yumojiWrapper: {
     alignItems: "center",
     marginBottom: Style.adjust(10),
+    marginTop: Style.adjust(16),
   },
   boxTitle: {
     alignItems: "center",
