@@ -23,7 +23,7 @@ const InspectContainer = ({ componentId: _componentId, userId, challengeDuel }: 
   const inspectOtherUser = useMemo(() => userId !== currentUserId, [userId, currentUserId]);
 
   const onPressChallengeDuel = useCallback(() => {
-    inspectOtherUser ? challengeDuel() : onClose();
+    inspectOtherUser ? challengeDuel() : openDuelHub();
   }, [inspectOtherUser, onClose, challengeDuel]);
   const { loading, data } = useQuery<GetStatistics>(GQL_QUERY_GET_STATISTICS, {
     variables: { userId },
@@ -101,6 +101,14 @@ const InspectContainer = ({ componentId: _componentId, userId, challengeDuel }: 
     />
   );
 };
+
+const openDuelHub = () =>
+  Navigation.push(ROUTES.inspect, {
+    component: {
+      id: ROUTES.duelsHub,
+      name: ROUTES.duelsHub,
+    },
+  });
 
 const styles = StyleSheet.create({
   wrapper: {
