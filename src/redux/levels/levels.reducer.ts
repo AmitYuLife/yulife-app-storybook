@@ -54,6 +54,7 @@ export const getInitialState = (): ILevelsStore => ({
     unit: "",
     challengeIsActive: false,
     videoPlayerIsActive: false,
+    hideExternalLinks: true,
   },
   challengesDoneToday: 0,
   level: 1,
@@ -157,7 +158,11 @@ const isCancellingChallenge = (state: ILevelsStore): ILevelsStore => ({
 
 const challengeStartSuccess = (
   state: ILevelsStore,
-  { createActiveChallenge: { challenge, levelSlot, chest }, videoPlayerIsActive }: ChallengeStartPayload
+  {
+    createActiveChallenge: { challenge, levelSlot, chest },
+    videoPlayerIsActive,
+    hideExternalLinks,
+  }: ChallengeStartPayload
 ): ILevelsStore => ({
   ...state,
   active: {
@@ -178,6 +183,7 @@ const challengeStartSuccess = (
     score: 0,
     isLoading: false,
     videoPlayerIsActive,
+    hideExternalLinks,
   },
 });
 

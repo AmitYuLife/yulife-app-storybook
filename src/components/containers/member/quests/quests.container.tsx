@@ -5,7 +5,12 @@ import { Style } from "@styles/index";
 import React, { FC, useCallback, useEffect, useMemo } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { challengeCancelAction, challengeEndAction, challengeResetAction } from "@redux/levels/levels.actions";
-import { getActiveLevel, getChallengeIsActive, getYuniversalProgress } from "@redux/levels/levels.selectors";
+import {
+  getActiveLevel,
+  getChallengeIsActive,
+  getHideExternalLinks,
+  getYuniversalProgress,
+} from "@redux/levels/levels.selectors";
 import { displayStreaksCompletedAction } from "@redux/streaks/streaks.actions";
 import {
   ChallengeExitScreen,
@@ -18,17 +23,14 @@ import QuestsScreenContainer from "@screens/member/quests/quests-scroll-screen/q
 import { BlurProvider } from "@atoms/index";
 import { useTapBackTwiceToExit } from "@hooks";
 
-interface IProps extends IMainTabsProps {
-  hideExternalLinks?: boolean;
-}
-
-const QuestsContainer: FC<IProps> = (props) => {
+const QuestsContainer: FC<IMainTabsProps> = (props) => {
   const dispatch = useDispatch();
   const activeLevel = useSelector(getActiveLevel);
   const { yuniversalMap } = useSelector(getYuniversalProgress);
   const challengeIsActive = useSelector(getChallengeIsActive);
+  const hideExternalLinks = useSelector(getHideExternalLinks);
 
-  const { componentId, onLeftMenuPress, hideExternalLinks = false } = props;
+  const { componentId, onLeftMenuPress } = props;
 
   const {
     coins,
