@@ -3,6 +3,7 @@ import { StyleSheet, View, ViewStyle } from "react-native";
 import { TextTemplate } from "@atoms";
 import { Colours, Style } from "@styles";
 import FastImage, { ImageStyle } from "react-native-fast-image";
+import { EmptyMaleBody } from "../yumoji/assets/empty-male-body-svg";
 
 interface IProps {
   name: string;
@@ -16,7 +17,13 @@ const ActivityAvatar = ({ name, avatarUri }: IProps) => {
         <TextTemplate type="b2b">{name}</TextTemplate>
       </View>
       <View style={styles.smallAvatarWrapper}>
-        <FastImage resizeMode="contain" source={{ uri: avatarUri }} style={styles.image} />
+        {avatarUri ? (
+          <FastImage resizeMode="contain" source={{ uri: avatarUri }} style={styles.image} />
+        ) : (
+          <View style={styles.emptyAvatarWrapper}>
+            <EmptyMaleBody height={Style.adjust(223)} width={Style.adjust(83)} />
+          </View>
+        )}
       </View>
     </View>
   );
@@ -36,6 +43,9 @@ const styles = StyleSheet.create({
     width: scaleAvatarBasedOnDeviceHeight(WIDTH),
     height: scaleAvatarBasedOnDeviceHeight(WIDTH + 300),
   } as ImageStyle,
+  emptyAvatarWrapper: {
+    marginTop: Style.adjust(20),
+  },
   smallAvatarWrapper: {
     height: Style.adjust(96),
     width: Style.adjust(96),

@@ -79,7 +79,7 @@ const InspectContainer = ({ componentId: _componentId, userId, challengeDuel }: 
     [current]
   );
 
-  if (loading && !data?.getStatistics) {
+  if (loading && !data?.getStatistics?.current) {
     return (
       <View style={styles.wrapper}>
         <Loading />
@@ -97,6 +97,7 @@ const InspectContainer = ({ componentId: _componentId, userId, challengeDuel }: 
       yumoji={current.avatar.uri}
       onClose={onClose}
       challengeDuel={onPressChallengeDuel}
+      inspectOtherUser={inspectOtherUser}
     />
   );
 };
