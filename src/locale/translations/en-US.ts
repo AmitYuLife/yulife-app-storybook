@@ -121,7 +121,7 @@ export default {
     mediaList: {
       differentAppCtaLabel: "Use a different app",
       differentAppSectionLabel: "additionally you can",
-      videoDurationRewardLabel: "%{formattedDuration} min • Earn %{reward}x",
+      videoDurationRewardLabel: "%{formattedDuration} min • Earn %{reward}",
     },
   },
   permissions: {
