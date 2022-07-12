@@ -73,21 +73,9 @@ const ChallengesListContainer: FC<Props> = ({ level, levelName, yuniversalMap, c
     Navigation.pop(ROUTES.onboardingFitKitConnect);
   }, []);
 
-  const handleNavPress = useCallback(
-    (hideExternalLinks?: boolean) =>
-      Navigation.push(componentId, {
-        component: {
-          id: ROUTES.quests,
-          name: ROUTES.quests,
-          passProps: {
-            hideExternalLinks,
-          },
-        },
-      }),
-    [componentId]
-  );
+  const handleNavPress = useCallback(() => Navigation.popToRoot(componentId), [componentId]);
 
-  const createChallenge = async (hideExternalLinks = true) => {
+  const createChallenge = async () => {
     try {
       setSubmittingState(true);
       if (slot.fitKitTypes?.length && !DETOX_ENABLED) {
@@ -115,9 +103,10 @@ const ChallengesListContainer: FC<Props> = ({ level, levelName, yuniversalMap, c
           challengeStartSuccessAction({
             ...activeChallenge.data,
             levelSlotId: slot.id,
+            hideExternalLinks: !slot.fitKitTypes.includes(FitKitType.MindfulSession),
           })
         );
-        handleNavPress(hideExternalLinks);
+        handleNavPress();
       } else {
         setError();
       }
@@ -129,7 +118,6 @@ const ChallengesListContainer: FC<Props> = ({ level, levelName, yuniversalMap, c
   };
 
   const handleSubmitChallenge = useCallback(async () => {
-    const isMeditation = slot.fitKitTypes.includes(FitKitType.MindfulSession);
     const internalContent = slot?.details?.internalContent?.[0];
     if (internalContent) {
       return Navigation.push(componentId, {
@@ -145,7 +133,7 @@ const ChallengesListContainer: FC<Props> = ({ level, levelName, yuniversalMap, c
       });
     }
 
-    return createChallenge(!isMeditation);
+    return createChallenge();
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
