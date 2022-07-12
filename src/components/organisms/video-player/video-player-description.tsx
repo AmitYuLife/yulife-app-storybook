@@ -1,11 +1,10 @@
 import React, { memo, useMemo } from "react";
-import { Image, StyleSheet, View } from "react-native";
+import { Image as RNImage, StyleSheet, View } from "react-native";
 import moment from "moment";
 import { t } from "@locale";
-import { TextTemplate } from "@atoms";
+import { Image, TextTemplate } from "@atoms";
 import { Colours, Style } from "@styles";
 import { StarIcon } from "@atoms/icon/star-icon";
-import { MeditopiaLogoIcon } from "@atoms/icon/meditopia";
 
 interface IProps {
   title: string;
@@ -13,9 +12,10 @@ interface IProps {
   duration: number;
   stars: number;
   yuCoin: number;
+  logo: string;
 }
 
-const VideoPlayerDescription = ({ title, description, duration, stars, yuCoin }: IProps) => {
+const VideoPlayerDescription = ({ title, description, duration, stars, yuCoin, logo }: IProps) => {
   const timeType = useMemo(() => (Math.floor(duration) < 60 ? "sec" : "min"), [duration]);
   const durationFormatted = useMemo(() => moment.utc(duration * 1000).format(timeType === "sec" ? "s" : "m"), [
     duration,
@@ -25,7 +25,7 @@ const VideoPlayerDescription = ({ title, description, duration, stars, yuCoin }:
     <View style={styles.wrapper}>
       <TextTemplate type="h3">{title}</TextTemplate>
       <View style={styles.info}>
-        <MeditopiaLogoIcon />
+        <Image source={{ uri: logo }} width={16} height={16} />
         <View style={styles.subTitle}>
           <TextTemplate type="l2b">
             {t("meditation")} • {durationFormatted} {timeType}
@@ -50,7 +50,7 @@ const VideoPlayerDescription = ({ title, description, duration, stars, yuCoin }:
         </View>
         <View style={styles.yuCoin}>
           <TextTemplate type="b2">{yuCoin}x</TextTemplate>
-          <Image source={require("@assets/icons/yucoin.png")} resizeMode="contain" style={styles.coin} />
+          <RNImage source={require("@assets/icons/yucoin.png")} resizeMode="contain" style={styles.coin} />
         </View>
       </View>
     </View>

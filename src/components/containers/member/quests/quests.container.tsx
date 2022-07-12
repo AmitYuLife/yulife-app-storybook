@@ -18,15 +18,17 @@ import QuestsScreenContainer from "@screens/member/quests/quests-scroll-screen/q
 import { BlurProvider } from "@atoms/index";
 import { useTapBackTwiceToExit } from "@hooks";
 
-export type Props = IMainTabsProps;
+interface IProps extends IMainTabsProps {
+  hideExternalLinks?: boolean;
+}
 
-const QuestsContainer: FC<Props> = (props) => {
+const QuestsContainer: FC<IProps> = (props) => {
   const dispatch = useDispatch();
   const activeLevel = useSelector(getActiveLevel);
   const { yuniversalMap } = useSelector(getYuniversalProgress);
   const challengeIsActive = useSelector(getChallengeIsActive);
 
-  const { componentId, onLeftMenuPress } = props;
+  const { componentId, onLeftMenuPress, hideExternalLinks = false } = props;
 
   const {
     coins,
@@ -124,6 +126,7 @@ const QuestsContainer: FC<Props> = (props) => {
             userProgress={score}
             progressTargets={progressTargets}
             unit={unit as any}
+            hideExternalLinks={hideExternalLinks}
           />
         )}
         renderOverlay={({ hideOverlay }) => (

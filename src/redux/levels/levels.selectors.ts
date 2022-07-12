@@ -27,6 +27,7 @@ export interface IActiveLevel {
   subtype: string;
   challengeIsActive: boolean;
   unit: string;
+  videoPlayerIsActive: boolean;
 }
 
 export interface ITodayChallengesStatus {
@@ -66,6 +67,9 @@ export const getHasNotification = createSelector(reducer, getHasNotificationSele
 
 const getChallengeIsActiveSelector = (state: State) => state.active.challengeIsActive;
 export const getChallengeIsActive = createSelector(reducer, getChallengeIsActiveSelector);
+
+const getVideoPlayerIsActiveSelector = (state: State) => state.active.videoPlayerIsActive;
+export const getVideoPlayerIsActive = createSelector(reducer, getVideoPlayerIsActiveSelector);
 
 const challengesStatusSelector = (state: State) => {
   const available = getChallengesAmountAvailable(state.level);

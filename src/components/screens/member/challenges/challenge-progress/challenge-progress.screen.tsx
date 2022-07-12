@@ -31,6 +31,7 @@ interface IProps extends IConnectedScreenProps {
   progressTargets: number[];
   unit: "steps" | "minutes";
   onDismissPress: () => void;
+  hideExternalLinks: boolean;
 }
 
 function ChallengeProgressScreen({
@@ -42,10 +43,11 @@ function ChallengeProgressScreen({
   progressTargets,
   unit,
   userProgress,
+  hideExternalLinks,
 }: IProps) {
   const [showOverlay, setShowOverlay] = React.useState(false);
 
-  const { hasExternalLinks, secondaryButtonCtaLabel } = getHasExternalLinks(challengeType);
+  const { secondaryButtonCtaLabel } = getButtonCtaLabel(challengeType);
 
   const { data } = useQuery<GetQuestMapLevelChallengeDetails, GetQuestMapLevelChallengeDetailsVariables>(
     GQL_QUERY_GET_QUEST_MAP_CHALLENGE_DETAILS,
@@ -82,10 +84,10 @@ function ChallengeProgressScreen({
   } = data?.getQuestMapLevelChallengeDetails || {};
 
   React.useEffect(() => {
-    if (hasExternalLinks) {
+    if (!hideExternalLinks) {
       setShowOverlay(true);
     }
-  }, [hasExternalLinks]);
+  }, [!hideExternalLinks]);
 
   return (
     <View style={StyleSheet.flatten([styles.wrapper, { backgroundColor: backgroundColour }])}>
@@ -104,7 +106,7 @@ function ChallengeProgressScreen({
           <Exit onPress={onDismissPress} {...actionStyles} />
         </View>
       </View>
-      {!hasExternalLinks ? null : (
+      {hideExternalLinks ? null : (
         <View style={styles.meditationButtonWrapper}>
           <SecondaryButton
             backgroundColor={actionStyles.primaryColour}
@@ -130,21 +132,17 @@ function ChallengeProgressScreen({
 
 export default memo(ChallengeProgressScreen);
 
-const getHasExternalLinks = (challengeType: ChallengeType) => {
+const getButtonCtaLabel = (challengeType: ChallengeType) => {
   switch (challengeType) {
     case "fiit":
       return {
-        hasExternalLinks: true,
         secondaryButtonCtaLabel: "Open Fiit",
       };
     case "meditation":
       return {
-        hasExternalLinks: true,
         secondaryButtonCtaLabel: "Open a meditation app",
       };
     default:
-      return {
-        hasExternalLinks: false,
-      };
+      return {};
   }
 };

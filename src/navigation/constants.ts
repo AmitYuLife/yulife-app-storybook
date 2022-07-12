@@ -83,9 +83,12 @@ export const ROUTES = {
   // event system
   eventDialog: "yulife.events.dialog",
 
+  // media
+  mediaList: "yulife.media.list",
+  mediaPlayer: "yulife.media.player",
+
   //debug
   levelSelector: "yulife.debug.levelSelector",
-  videoPlayer: "yulife.debug.videoPlayer",
 };
 
 export const MODALS = {

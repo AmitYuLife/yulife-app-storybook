@@ -3,8 +3,8 @@ import { CreateActiveChallengeVariables, CreateQuestMapLevelChallenge } from "@g
 import gql from "graphql-tag";
 
 export const GQL_MUTATION_CREATE_QUEST_MAP_LEVEL_CHALLENGE = gql`
-  mutation CreateQuestMapLevelChallenge($levelSlotId: String!) {
-    createQuestMapLevelChallenge(levelSlotId: $levelSlotId) {
+  mutation CreateQuestMapLevelChallenge($levelSlotId: String!, $contentId: String) {
+    createQuestMapLevelChallenge(levelSlotId: $levelSlotId, contentId: $contentId) {
       challenge {
         level
         levelSlotId

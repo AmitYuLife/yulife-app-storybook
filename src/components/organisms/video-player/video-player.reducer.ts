@@ -6,6 +6,7 @@ export enum ActionTypes {
   SET_DURATION = "SET_DURATION",
   SET_CURRENT_PROGRESS = "SET_CURRENT_PROGRESS",
   SET_LOADING = "SET_LOADING",
+  SET_BUFFERING = "SET_BUFFERING",
   SET_MUSIC_CONTROL_MOUNTED = "SET_MUSIC_CONTROL_MOUNTED",
   SET_SHOW_FOCUS_SCREEN = "SET_SHOW_FOCUS_SCREEN",
 }
@@ -17,6 +18,7 @@ export interface IState {
   currentProgressInSeconds: number;
   musicControlMounted: boolean;
   loading: boolean;
+  isBuffering: boolean;
   isPaused: boolean;
   showFocusScreen: boolean;
 }
@@ -32,7 +34,8 @@ export const INITIAL_STATE: IState = {
   currentProgressInMilliSeconds: 0,
   currentProgressInSeconds: 0,
   musicControlMounted: false,
-  loading: false,
+  loading: true,
+  isBuffering: false,
   isPaused: true,
   showFocusScreen: false,
 };
@@ -70,6 +73,7 @@ export const reducer = (state: IState, action: IAction): IState => {
         ...state,
         durationInSeconds: action.payload / 1000,
         durationInMilliSeconds: action.payload,
+        loading: false,
       };
     }
 
@@ -77,6 +81,13 @@ export const reducer = (state: IState, action: IAction): IState => {
       return {
         ...state,
         loading: action.payload,
+      };
+    }
+
+    case ActionTypes.SET_BUFFERING: {
+      return {
+        ...state,
+        isBuffering: action.payload,
       };
     }
 

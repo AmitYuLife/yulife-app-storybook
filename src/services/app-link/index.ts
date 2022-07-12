@@ -9,7 +9,10 @@ interface IAppLinkConfig {
   playStoreId: string | null;
 }
 
-async function openApp(url: string, { appName, appStoreId, appStoreLocale = "gb", playStoreId }: IAppLinkConfig) {
+export async function openApp(
+  url: string,
+  { appName, appStoreId, appStoreLocale = "gb", playStoreId }: IAppLinkConfig
+) {
   try {
     await Linking.openURL(url);
   } catch (err) {

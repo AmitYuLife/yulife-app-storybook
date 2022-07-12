@@ -57,4 +57,5 @@ export interface CreateQuestMapLevelChallenge {
 
 export interface CreateQuestMapLevelChallengeVariables {
   levelSlotId: string;
+  contentId?: string | null;
 }

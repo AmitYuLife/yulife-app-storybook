@@ -57,4 +57,5 @@ export interface CreateActiveChallenge {
 
 export interface CreateActiveChallengeVariables {
   levelSlotId: string;
+  contentId?: string | null;
 }

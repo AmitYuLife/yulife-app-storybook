@@ -70,15 +70,6 @@ const DebugContainer: React.FC<Props> = (props) => {
           });
         }
 
-        if (code === "video-player") {
-          return Navigation.push(props.componentId, {
-            component: {
-              id: ROUTES.videoPlayer,
-              name: ROUTES.videoPlayer,
-            },
-          });
-        }
-
         if (code === "send-test-push") {
           return dispatch(sendTestPush());
         }

@@ -135,14 +135,22 @@ export default [
     component: require("../components/containers/member/debug/debug.container").default,
   },
   {
-    name: ROUTES.videoPlayer,
-    component: require("../components/screens/member/debug/video-player-debug/video-player-debug.screen").default,
-  },
-  {
     name: ROUTES.changeMemberNickname,
     component: require("../components/containers/member/change-member-nickname/change-member-nickname.container")
       .default,
   },
+
+  // meditation
+
+  {
+    name: ROUTES.mediaList,
+    component: require("../components/containers/member/media/media-list/media-list.container").default,
+  },
+  {
+    name: ROUTES.mediaPlayer,
+    component: require("../components/containers/member/media/media-player/media-player.container").default,
+  },
+
   // settings
   {
     name: ROUTES.cyclingMeasurement,
