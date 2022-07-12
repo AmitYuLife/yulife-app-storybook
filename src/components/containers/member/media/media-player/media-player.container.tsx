@@ -66,12 +66,7 @@ const MediaPlayerContainer = ({ componentId, video, levelSlotId }: IProps) => {
 
   const navigateToQuests = useCallback(async () => {
     await Navigation.pop(ROUTES.mediaPlayer); // this is needed so we unmount the mediayPlayer
-    await Navigation.push(ROUTES.mediaList, {
-      component: {
-        id: ROUTES.quests,
-        name: ROUTES.quests,
-      },
-    });
+    await Navigation.popTo(ROUTES.quests);
   }, []);
 
   const cancelChallenge = useCallback(async () => {
@@ -91,24 +86,10 @@ const MediaPlayerContainer = ({ componentId, video, levelSlotId }: IProps) => {
     });
 
     dispatch(challengeEndSuccessAction({ ...data?.updateQuestMapLevelChallenge?.challenge }));
-    await Navigation.push(ROUTES.mediaList, {
-      component: {
-        id: ROUTES.quests,
-        name: ROUTES.quests,
-      },
-    });
+    await Navigation.popTo(ROUTES.quests);
   }, []);
 
-  const onLeftIconPress = useCallback(
-    () =>
-      Navigation.push(componentId, {
-        component: {
-          id: ROUTES.mediaList,
-          name: ROUTES.mediaList,
-        },
-      }),
-    [componentId]
-  );
+  const onLeftIconPress = useCallback(() => Navigation.popTo(ROUTES.mediaList), [componentId]);
 
   const onRightIconPress = useCallback(
     () =>

@@ -19,7 +19,6 @@ interface IProps extends IInternalContent {
 }
 
 const MediaListContainer = ({
-  componentId,
   createChallenge,
   levelSlotId,
   contentMediaTags,
@@ -42,27 +41,9 @@ const MediaListContainer = ({
     }
   );
 
-  const onLeftIconPress = useCallback(
-    () =>
-      Navigation.push(componentId, {
-        component: {
-          id: ROUTES.questsChallengesList,
-          name: ROUTES.questsChallengesList,
-        },
-      }),
-    [componentId]
-  );
+  const onLeftIconPress = useCallback(() => Navigation.popTo(ROUTES.questsChallengesList), []);
 
-  const onRightIconPress = useCallback(
-    () =>
-      Navigation.push(componentId, {
-        component: {
-          id: ROUTES.quests,
-          name: ROUTES.quests,
-        },
-      }),
-    [componentId]
-  );
+  const onRightIconPress = useCallback(() => Navigation.popTo(ROUTES.quests), []);
 
   const handleOpenContentApp = useCallback(async () => {
     if (!contentApp) {
