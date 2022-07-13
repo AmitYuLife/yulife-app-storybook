@@ -7,6 +7,7 @@ import {
   GetQuestMapLevelChallengeContent,
   GetQuestMapLevelChallengeContentVariables,
   GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent as IInternalContent,
+  GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent_buttons_options as IButtonOptions,
 } from "@graphql/_core/schema";
 import { ROUTES } from "@navigation/constants";
 import { openApp } from "@services/app-link";
@@ -24,11 +25,8 @@ const MediaListContainer = ({
   contentMediaTags,
   title,
   description,
-  buttonTitle,
   logo,
-  buttonLogo,
-  buttonColor,
-  contentApp,
+  buttons,
 }: IProps) => {
   const { data, loading } = useQuery<GetQuestMapLevelChallengeContent, GetQuestMapLevelChallengeContentVariables>(
     GQL_QUERY_GET_QUEST_MAP_CHALLENGE_CONTENT,
@@ -45,19 +43,19 @@ const MediaListContainer = ({
 
   const onRightIconPress = useCallback(() => Navigation.popTo(ROUTES.quests), []);
 
-  const handleOpenContentApp = useCallback(async () => {
-    if (!contentApp) {
+  const handleOpenApp = useCallback(async (options: IButtonOptions) => {
+    if (!options) {
       return;
     }
 
-    const { iosUrl, androidUrl, appName, appStoreId, appStoreLocale, playStoreId } = contentApp;
+    const { iosUrl, androidUrl, appName, appStoreId, appStoreLocale, playStoreId } = options;
     const url = Platform.select({
       ios: iosUrl,
       android: androidUrl,
     });
     await createChallenge();
     openApp(url, { appName, appStoreId, appStoreLocale, playStoreId });
-  }, [contentApp]);
+  }, []);
 
   const handleOtherApp = useCallback(async () => {
     await createChallenge(false);
@@ -83,11 +81,9 @@ const MediaListContainer = ({
       loading={loading || formattedVideos?.length === 0}
       onLeftIconPress={onLeftIconPress}
       onRightIconPress={onRightIconPress}
-      handleOpenContentApp={handleOpenContentApp}
-      openContentAppLabel={buttonTitle}
-      contentAppLogo={logo}
-      contentAppButtonLogo={buttonLogo}
-      contentAppButtonColor={buttonColor}
+      handleOpenApp={handleOpenApp}
+      logo={logo}
+      buttons={buttons}
       handleOtherApp={handleOtherApp}
     />
   );

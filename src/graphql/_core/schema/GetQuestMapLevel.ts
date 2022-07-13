@@ -36,12 +36,12 @@ export interface GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent
   uri: string | null;
 }
 
-export interface GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent_buttonLogo {
+export interface GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent_buttons_logo {
   id: string;
   uri: string | null;
 }
 
-export interface GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent_contentApp {
+export interface GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent_buttons_options {
   iosUrl: string;
   androidUrl: string;
   appName: string;
@@ -50,16 +50,22 @@ export interface GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent
   playStoreId: string;
 }
 
+export interface GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent_buttons {
+  title: string;
+  color: string;
+  logo: GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent_buttons_logo;
+  width: number;
+  height: number;
+  options: GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent_buttons_options | null;
+}
+
 export interface GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent {
   contentType: string;
   contentMediaTags: string[];
   title: string;
   description: string;
   logo: GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent_logo;
-  buttonLogo: GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent_buttonLogo;
-  buttonColor: string;
-  buttonTitle: string;
-  contentApp: GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent_contentApp | null;
+  buttons: GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent_buttons[];
 }
 
 export interface GetQuestMapLevel_getQuestMapLevel_slots_details {

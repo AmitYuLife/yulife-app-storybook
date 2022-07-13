@@ -46,19 +46,23 @@ export const GQL_QUERY_GET_QUEST_MAP_LEVEL = gql`
               id
               uri
             }
-            buttonLogo {
-              id
-              uri
-            }
-            buttonColor
-            buttonTitle
-            contentApp {
-              iosUrl
-              androidUrl
-              appName
-              appStoreId
-              appStoreLocale
-              playStoreId
+            buttons {
+              title
+              color
+              logo {
+                id
+                uri
+              }
+              width
+              height
+              options {
+                iosUrl
+                androidUrl
+                appName
+                appStoreId
+                appStoreLocale
+                playStoreId
+              }
             }
           }
         }

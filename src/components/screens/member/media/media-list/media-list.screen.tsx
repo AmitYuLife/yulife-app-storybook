@@ -1,16 +1,20 @@
-import { Image, Logo, TextTemplate } from "@atoms";
-import { GetQuestMapLevelChallengeContent_getQuestMapLevelChallengeContent_media as Video } from "@graphql/_core/schema";
+import React, { memo, useCallback } from "react";
+import { ScrollView, StyleSheet, View } from "react-native";
+import { Navigation } from "react-native-navigation";
 import { t } from "@locale";
+import { Image, Logo, TextTemplate } from "@atoms";
 import { SecondaryButton } from "@molecules";
 import { ROUTES } from "@navigation/constants";
 import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import { Colours, Style } from "@styles";
-import React, { memo, useCallback } from "react";
-import { ScrollView, StyleSheet, View } from "react-native";
-import { Source } from "react-native-fast-image";
-import { Navigation } from "react-native-navigation";
 import MediaList from "./media-list";
+import {
+  GetQuestMapLevelChallengeContent_getQuestMapLevelChallengeContent_media as Video,
+  GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent_buttons as IButtons,
+  GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent_buttons_options as IButtonOptions,
+} from "@graphql/_core/schema";
 import MediaListLoading from "./media-list-loading";
+import { Source } from "react-native-fast-image";
 
 export interface IVideo extends Video {
   reward: number;
@@ -25,13 +29,11 @@ interface IProps {
   loading: boolean;
   onLeftIconPress: () => void;
   onRightIconPress: () => void;
-  handleOpenContentApp: () => void;
+  handleOpenApp: (options: IButtonOptions) => void;
   handleOtherApp: () => void;
   levelSlotId: string;
-  openContentAppLabel: string;
-  contentAppLogo: Source;
-  contentAppButtonLogo: Source;
-  contentAppButtonColor: string;
+  logo: Source;
+  buttons: IButtons[];
 }
 
 const MediaListScreen = ({
@@ -41,13 +43,11 @@ const MediaListScreen = ({
   loading,
   onLeftIconPress,
   onRightIconPress,
-  handleOpenContentApp,
+  handleOpenApp,
   handleOtherApp,
   levelSlotId,
-  openContentAppLabel,
-  contentAppLogo,
-  contentAppButtonLogo,
-  contentAppButtonColor,
+  logo,
+  buttons,
 }: IProps) => {
   const handleOnPress = useCallback((video: Video) => {
     Navigation.push(ROUTES.mediaList, {
@@ -73,7 +73,7 @@ const MediaListScreen = ({
             </View>
             <View style={styles.divider} />
             <View style={styles.appLogo}>
-              <Image source={contentAppLogo} width={98} height={20} />
+              <Image source={logo} width={98} height={20} />
             </View>
           </View>
           <View style={styles.description}>
@@ -96,18 +96,21 @@ const MediaListScreen = ({
             ))
           )}
           <View style={styles.additionalInfo}>
-            <TextTemplate type="l1">{t("screens.mediaList.differentAppCtaLabel")}</TextTemplate>
+            <TextTemplate type="l1">{t("screens.mediaList.differentAppSectionLabel")}</TextTemplate>
           </View>
           <View>
-            <SecondaryButton
-              borderColor={contentAppButtonColor}
-              textColor={contentAppButtonColor}
-              size="Fill"
-              label={openContentAppLabel}
-              onPress={handleOpenContentApp}
-              wrapperStyle={styles.buttonStyle}
-              leftIcon={<Image source={contentAppButtonLogo} width={31} height={24} />}
-            />
+            {buttons.map((button) => (
+              <SecondaryButton
+                key={button.title}
+                label={button.title}
+                borderColor={button.color}
+                textColor={button.color}
+                size="Fill"
+                onPress={() => handleOpenApp(button.options)}
+                wrapperStyle={styles.buttonStyle}
+                leftIcon={<Image source={{ uri: button.logo.uri }} width={button.width} height={button.height} />}
+              />
+            ))}
             <SecondaryButton size="Fill" label={t("screens.mediaList.differentAppCtaLabel")} onPress={handleOtherApp} />
           </View>
         </ScrollView>

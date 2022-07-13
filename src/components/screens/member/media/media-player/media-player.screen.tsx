@@ -1,6 +1,7 @@
 import React, { memo, useCallback } from "react";
 import { VideoPlayer } from "@organisms";
 import { Media } from "@graphql/_core/schema";
+import { useBackHandler } from "@hooks";
 
 interface IVideo extends Media {
   reward: number;
@@ -13,12 +14,18 @@ interface IProps {
   onRightIconPress: () => void;
   onStart: (contendId: string) => void;
   onEnd: () => void;
+  cancelChallenge: (shouldNavigate: boolean) => void;
 }
 
-const MediaPlayerScreen = ({ video, onLeftIconPress, onRightIconPress, onStart, onEnd }: IProps) => {
+const MediaPlayerScreen = ({ video, onLeftIconPress, onRightIconPress, onStart, onEnd, cancelChallenge }: IProps) => {
   const onStartMedia = useCallback(() => {
     onStart(video.id);
   }, []);
+
+  useBackHandler(() => {
+    cancelChallenge(false);
+    return false;
+  });
 
   return (
     <VideoPlayer
