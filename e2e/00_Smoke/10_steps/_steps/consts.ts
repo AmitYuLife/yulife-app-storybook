@@ -1,0 +1,1 @@
+export const fiveDaySteps = ["75,000 steps", "75,000 steps", "75,000 steps", "75,000 steps", "75,000 steps"]

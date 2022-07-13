@@ -1,6 +1,6 @@
 import { generateRandomMongoId } from "@yu-life/yulife-bdd-framework"
 import { IDatabaseItem } from "@yu-life/yulife-bdd-framework";
-import { CUSTOMER_2, CUSTOMER_6, CUSTOMER_7, CUSTOMER_8, CUSTOMER_9, CUSTOMER_14, CUSTOMER_15, CUSTOMER_18, CUSTOMER_17, CUSTOMER_3, CUSTOMER_19, CUSTOMER_16, CUSTOMER_35 } from '../postgres/customers';
+import { CUSTOMER_2, CUSTOMER_6, CUSTOMER_7, CUSTOMER_8, CUSTOMER_9, CUSTOMER_14, CUSTOMER_15, CUSTOMER_18, CUSTOMER_17, CUSTOMER_3, CUSTOMER_19, CUSTOMER_16, CUSTOMER_35, CUSTOMER_40 } from '../postgres/customers';
 import moment = require('moment');
 import { SHORT_STROLL_MILESTONE_1, LONG_WALK_MILESTONE_1, MEDITATION_MILESTONE_1 } from './map_milestone_templates';
 import { MEDITATION_1, LONG_WALK_1, SHORT_STROLL_1 } from './map_level_slot_templates';
@@ -1113,3 +1113,203 @@ export const CHALLENGE_USER_35_E = {
         ],
     }
 } as IDatabaseItem;
+
+export const CHALLENGE_USER_40_DAY1 = {
+    type: "mongo",
+    modelName: "challenge",
+    data: {
+        _id: generateRandomMongoId(),
+        userId: CUSTOMER_40.data.customerId,
+        startTime: moment("00:01", "HH:mm").subtract(5, "days").toDate(),  
+        startDateTime: moment("00:01", "HH:mm").subtract(5, "days").toDate(), 
+        endDateTime: moment("23:59", "HH:mm").subtract(5, "days").toDate(), 
+        "sources": {
+            "device": {
+                "steps": 75000
+            }
+        },
+        "incomingData": {
+            "steps": 75000,
+            "meditation": 0
+        },
+        "levelSlotTemplateId": "DAILY_PASSIVE_001",
+        "isNewType": true,
+        "status": "passive",
+        "passive": true,
+        "yuCoinAwarded": 0,
+        "milestoneLog": [
+            {
+                "completionData": [],
+                "_id": generateRandomMongoId(),
+                "data": {
+                    "meditation": 0,
+                    "steps": 75000
+                },
+                "yuCoinAwarded": 20,
+                "completed": moment().subtract(1, "day").toDate(),
+                "id": "YU_MILESTONE_DAILY_STEPS_0"
+            },
+        ],
+    }
+} as IDatabaseItem;
+
+export const CHALLENGE_USER_40_DAY2 = {
+    type: "mongo",
+    modelName: "challenge",
+    data: {
+        _id: generateRandomMongoId(),
+        userId: CUSTOMER_40.data.customerId,
+        startTime: moment("00:01", "HH:mm").subtract(4, "days").toDate(),  
+        startDateTime: moment("00:01", "HH:mm").subtract(4, "days").toDate(), 
+        endDateTime: moment("23:59", "HH:mm").subtract(4, "days").toDate(), 
+        "sources": {
+            "device": {
+                "steps": 75000
+            }
+        },
+        "incomingData": {
+            "steps": 75000,
+            "meditation": 0
+        },
+        "levelSlotTemplateId": "DAILY_PASSIVE_001",
+        "isNewType": true,
+        "status": "passive",
+        "passive": true,
+        "yuCoinAwarded": 0,
+        "milestoneLog": [
+            {
+                "completionData": [],
+                "_id": generateRandomMongoId(),
+                "data": {
+                    "meditation": 0,
+                    "steps": 75000
+                },
+                "yuCoinAwarded": 20,
+                "completed": moment().subtract(1, "day").toDate(),
+                "id": "YU_MILESTONE_DAILY_STEPS_0"
+            },
+        ],
+    }
+} as IDatabaseItem;
+
+export const CHALLENGE_USER_40_DAY3 = {
+    type: "mongo",
+    modelName: "challenge",
+    data: {
+        _id: generateRandomMongoId(),
+        userId: CUSTOMER_40.data.customerId,
+        startTime: moment("00:01", "HH:mm").subtract(3, "days").toDate(),  
+        startDateTime: moment("00:01", "HH:mm").subtract(3, "days").toDate(), 
+        endDateTime: moment("23:59", "HH:mm").subtract(3, "days").toDate(), 
+        "sources": {
+            "device": {
+                "steps": 75000
+            }
+        },
+        "incomingData": {
+            "steps": 75000,
+            "meditation": 0
+        },
+        "levelSlotTemplateId": "DAILY_PASSIVE_001",
+        "isNewType": true,
+        "status": "passive",
+        "passive": true,
+        "yuCoinAwarded": 0,
+        "milestoneLog": [
+            {
+                "completionData": [],
+                "_id": generateRandomMongoId(),
+                "data": {
+                    "meditation": 0,
+                    "steps": 75000
+                },
+                "yuCoinAwarded": 20,
+                "completed": moment().subtract(1, "day").toDate(),
+                "id": "YU_MILESTONE_DAILY_STEPS_0"
+            },
+        ],
+    }
+} as IDatabaseItem;
+
+export const CHALLENGE_USER_40_DAY4 = {
+    type: "mongo",
+    modelName: "challenge",
+    data: {
+        _id: generateRandomMongoId(),
+        userId: CUSTOMER_40.data.customerId,
+        startTime: moment("00:01", "HH:mm").subtract(2, "days").toDate(),  
+        startDateTime: moment("00:01", "HH:mm").subtract(2, "days").toDate(), 
+        endDateTime: moment("23:59", "HH:mm").subtract(2, "days").toDate(), 
+        "sources": {
+            "device": {
+                "steps": 75000
+            }
+        },
+        "incomingData": {
+            "steps": 75000,
+            "meditation": 0
+        },
+        "levelSlotTemplateId": "DAILY_PASSIVE_001",
+        "isNewType": true,
+        "status": "passive",
+        "passive": true,
+        "yuCoinAwarded": 0,
+        "milestoneLog": [
+            {
+                "completionData": [],
+                "_id": generateRandomMongoId(),
+                "data": {
+                    "meditation": 0,
+                    "steps": 75000
+                },
+                "yuCoinAwarded": 20,
+                "completed": moment().subtract(1, "day").toDate(),
+                "id": "YU_MILESTONE_DAILY_STEPS_0"
+            },
+        ],
+    }
+} as IDatabaseItem;
+
+export const CHALLENGE_USER_40_DAY5 = {
+    type: "mongo",
+    modelName: "challenge",
+    data: {
+        _id: generateRandomMongoId(),
+        userId: CUSTOMER_40.data.customerId,
+        startTime: moment("00:01", "HH:mm").subtract(1, "days").toDate(),  
+        startDateTime: moment("00:01", "HH:mm").subtract(1, "days").toDate(), 
+        endDateTime: moment("23:59", "HH:mm").subtract(1, "days").toDate(), 
+        "sources": {
+            "device": {
+                "steps": 75000
+            }
+        },
+        "incomingData": {
+            "steps": 75000,
+            "meditation": 0
+        },
+        "levelSlotTemplateId": "DAILY_PASSIVE_001",
+        "isNewType": true,
+        "status": "passive",
+        "passive": true,
+        "yuCoinAwarded": 0,
+        "milestoneLog": [
+            {
+                "completionData": [],
+                "_id": generateRandomMongoId(),
+                "data": {
+                    "meditation": 0,
+                    "steps": 75000
+                },
+                "yuCoinAwarded": 20,
+                "completed": moment().subtract(1, "day").toDate(),
+                "id": "YU_MILESTONE_DAILY_STEPS_0"
+            },
+        ],
+    }
+} as IDatabaseItem;
+
+
+
+
+
