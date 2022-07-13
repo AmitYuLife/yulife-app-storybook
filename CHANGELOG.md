@@ -7,6 +7,42 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.39.0] - 2022-07-13
+
+### Features
+
+- Feature XSE-1191: Add ContentItemButton UI fields (needs https://gitlab.com/yu-life/yulife-api-server/-/merge_requests/5003)
+- Feature XSE-1202: Add YuScreen v4 behind toggle
+
+### Bugfixes
+
+- Bugfix: Set videoPlayerIsActive to false when all challenges end
+- Bugfix: Improvements on Media components
+- Bugfix: Add extra buttons on media list and improvements
+- Bugfix: Media list navigation issues & small improvements
+- Bugfix: Navigation issue when creating challenge on android devices
+- Bugfix: Inspect empty avatar, use localization
+- Bugfix GS-320: Fix tooltips on android and other adjustments
+
+### Tasks
+
+- Task: Deep link PPs
+- Task: Open duel hubs from inspect
+- Task GS-340: Meditopia content selection screen initial work
+- Task GS-388: Get inspect stats from server
+- Task GS-323: Update 7 Stages In Space Assets
+
+### Chores
+
+- Chore: enable multi region for prod
+
+### Extra
+
+- (HEAD -> develop, origin/develop, refs/pipelines/587115611) Hotfix: US Prod API uri
+- Detox/high step count
+- detox/edit_payment_cards
+- detox: overnight fixes 24/6/22
+
 ## [3.38.0] - 2022-07-06
 
 ### Bugfixes
