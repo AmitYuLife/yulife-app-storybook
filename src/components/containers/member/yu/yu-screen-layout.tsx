@@ -10,7 +10,7 @@ import { TextTemplate } from "@atoms";
 import { GQL_MUTATION_PERFORM_MOBILE_ONBOARDING_STEP } from "@graphql/onboardingSteps/performMobileOnboardingStep.gql";
 import media from "@styles/media";
 import { TopBarAbsolute } from "@organisms/top-bar/top-bar-absolute";
-import { PAD_TOP } from "./yu-screen";
+import { PAD_TOP } from "./yu-screen.legacy";
 import { YuScreenContext } from "./context/yu-screen.context";
 import { navigateToProduct } from "./navigation/navigateToProduct";
 import { YuProductStatus } from "@graphql/_core/schema/globalTypes";
