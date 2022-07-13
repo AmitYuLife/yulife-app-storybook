@@ -53,7 +53,7 @@ const MediaListContainer = ({
       ios: iosUrl,
       android: androidUrl,
     });
-    await createChallenge();
+    await createChallenge(true);
     openApp(url, { appName, appStoreId, appStoreLocale, playStoreId });
   }, []);
 

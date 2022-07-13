@@ -9,6 +9,7 @@ import {
   getActiveLevel,
   getChallengeIsActive,
   getHideExternalLinks,
+  getVideoPlayerIsActive,
   getYuniversalProgress,
 } from "@redux/levels/levels.selectors";
 import { displayStreaksCompletedAction } from "@redux/streaks/streaks.actions";
@@ -22,6 +23,9 @@ import {
 import QuestsScreenContainer from "@screens/member/quests/quests-scroll-screen/quests-screen.container";
 import { BlurProvider } from "@atoms/index";
 import { useTapBackTwiceToExit } from "@hooks";
+import { useMutation } from "@apollo/react-hooks";
+import { CancelActiveChallenge, CancelActiveChallengeVariables } from "@graphql/_core/schema";
+import { GQL_MUTATION_CANCEL_ACTIVE_CHALLENGE } from "@graphql/challenges";
 
 const QuestsContainer: FC<IMainTabsProps> = (props) => {
   const dispatch = useDispatch();
@@ -29,6 +33,11 @@ const QuestsContainer: FC<IMainTabsProps> = (props) => {
   const { yuniversalMap } = useSelector(getYuniversalProgress);
   const challengeIsActive = useSelector(getChallengeIsActive);
   const hideExternalLinks = useSelector(getHideExternalLinks);
+  const videoPlayerIsActive = useSelector(getVideoPlayerIsActive);
+
+  const [cancelActiveChallenge] = useMutation<CancelActiveChallenge, CancelActiveChallengeVariables>(
+    GQL_MUTATION_CANCEL_ACTIVE_CHALLENGE
+  );
 
   const { componentId, onLeftMenuPress } = props;
 
@@ -55,6 +64,21 @@ const QuestsContainer: FC<IMainTabsProps> = (props) => {
       }
     }
   }, [challengeIsActive, endDateTime, levelSlotId, dispatch, status]);
+
+  //This is needed so we cancel the challenge when the user closes the app
+  // and open again when doing meditopia/fiit challenge with our new media player
+  useEffect(() => {
+    if (videoPlayerIsActive && levelSlotId && challengeIsActive) {
+      (async function () {
+        await cancelActiveChallenge({
+          variables: {
+            levelSlotId,
+          },
+        });
+        dispatch(challengeCancelAction());
+      })();
+    }
+  }, [levelSlotId]);
 
   useTapBackTwiceToExit(props.componentId);
 

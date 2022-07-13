@@ -64,11 +64,6 @@ const MediaPlayerContainer = ({ componentId, video, levelSlotId }: IProps) => {
     [levelSlotId, createQuestMapLevelChallengeMutation, dispatch]
   );
 
-  const navigateToQuests = useCallback(async () => {
-    await Navigation.pop(ROUTES.mediaPlayer); // this is needed so we unmount the mediayPlayer
-    await Navigation.popTo(ROUTES.quests);
-  }, []);
-
   const cancelChallenge = useCallback(async (shouldNavigate = true) => {
     await cancelActiveChallenge({
       variables: {
@@ -77,7 +72,7 @@ const MediaPlayerContainer = ({ componentId, video, levelSlotId }: IProps) => {
     });
     dispatch(challengeCancelAction());
     if (shouldNavigate) {
-      await navigateToQuests();
+      await Navigation.pop(ROUTES.mediaPlayer);
       await Navigation.dismissModal(MODALS.generic);
     }
   }, []);
