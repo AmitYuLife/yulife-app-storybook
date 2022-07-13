@@ -69,15 +69,17 @@ const MediaPlayerContainer = ({ componentId, video, levelSlotId }: IProps) => {
     await Navigation.popTo(ROUTES.quests);
   }, []);
 
-  const cancelChallenge = useCallback(async () => {
+  const cancelChallenge = useCallback(async (shouldNavigate = true) => {
     await cancelActiveChallenge({
       variables: {
         levelSlotId,
       },
     });
     dispatch(challengeCancelAction());
-    await navigateToQuests();
-    await Navigation.dismissModal(MODALS.generic);
+    if (shouldNavigate) {
+      await navigateToQuests();
+      await Navigation.dismissModal(MODALS.generic);
+    }
   }, []);
 
   const endChallenge = useCallback(async () => {
@@ -118,6 +120,7 @@ const MediaPlayerContainer = ({ componentId, video, levelSlotId }: IProps) => {
       video={video}
       onLeftIconPress={onLeftIconPress}
       onRightIconPress={onRightIconPress}
+      cancelChallenge={cancelChallenge}
     />
   );
 };

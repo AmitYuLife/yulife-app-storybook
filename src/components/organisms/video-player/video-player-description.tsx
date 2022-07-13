@@ -49,7 +49,7 @@ const VideoPlayerDescription = ({ title, description, duration, stars, yuCoin, l
           ))}
         </View>
         <View style={styles.yuCoin}>
-          <TextTemplate type="b2">{yuCoin}x</TextTemplate>
+          <TextTemplate type="b2">{yuCoin}</TextTemplate>
           <RNImage source={require("@assets/icons/yucoin.png")} resizeMode="contain" style={styles.coin} />
         </View>
       </View>

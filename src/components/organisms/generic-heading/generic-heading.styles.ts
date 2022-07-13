@@ -25,13 +25,17 @@ const styles = StyleSheet.create({
   } as ViewStyle,
   leftIconWrapper: {
     alignSelf: "center",
-    width: "33.33%",
+    width: "20%",
   } as ViewStyle,
-  centerWrapper: { flexDirection: "row", width: "33.33%", justifyContent: "center" } as ViewStyle,
+  centerWrapper: {
+    flexDirection: "row",
+    width: "60%",
+    justifyContent: "center",
+  } as ViewStyle,
   relative: { position: "relative" } as ViewStyle,
   logoBetaWrapper: { position: "absolute", left: 24 } as ViewStyle,
   headingBetaWrapper: { position: "absolute", right: -38 } as ViewStyle,
-  rightIconWrapper: { width: "33.33%", alignSelf: "center" } as ViewStyle,
+  rightIconWrapper: { width: "20%", alignSelf: "center" } as ViewStyle,
   rightIconTouchable: { alignSelf: "flex-end" },
   rightIconCoinsWrapper: {
     bottom: Platform.select({ ios: Style.adjust(8), android: Style.adjust(2) }),
