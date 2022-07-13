@@ -212,6 +212,7 @@ const challengeEndSuccess = (state: ILevelsStore, challenge: Challenge): ILevels
     score: getScore(challenge?.incomingData) || state.active.score,
     status: (challenge?.milestoneLog || state.active.milestonesLog).length > 0 ? "success" : "failed",
     challengeIsActive: false,
+    videoPlayerIsActive: false,
   },
 });
 
