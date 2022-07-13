@@ -117,6 +117,9 @@ export interface GetYuScreenProductDetails_getYuScreenProductDetails_body_Conten
   buttonType: ContentItemButtonType | null;
   value: string | null;
   disabledState: string | null;
+  borderColor: string | null;
+  backgroundColor: string | null;
+  textColor: string | null;
   onPress: GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemButton_onPress | null;
   event: GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemButton_event | null;
   icon: GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemButton_icon | null;

@@ -40,6 +40,9 @@ export interface ContentItemScrollPicker_button {
   buttonType: ContentItemButtonType | null;
   value: string | null;
   disabledState: string | null;
+  borderColor: string | null;
+  backgroundColor: string | null;
+  textColor: string | null;
   onPress: ContentItemScrollPicker_button_onPress | null;
   event: ContentItemScrollPicker_button_event | null;
   icon: ContentItemScrollPicker_button_icon | null;

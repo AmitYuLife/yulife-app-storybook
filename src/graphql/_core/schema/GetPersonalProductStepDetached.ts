@@ -250,6 +250,9 @@ export interface GetPersonalProductStepDetached_getPersonalProductStepDetached_b
   buttonType: ContentItemButtonType | null;
   value: string | null;
   disabledState: string | null;
+  borderColor: string | null;
+  backgroundColor: string | null;
+  textColor: string | null;
   onPress: GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemCoverPicker_customCover_button_onPress | null;
   event: GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemCoverPicker_customCover_button_event | null;
   icon: GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemCoverPicker_customCover_button_icon | null;
@@ -519,6 +522,9 @@ export interface GetPersonalProductStepDetached_getPersonalProductStepDetached_b
   buttonType: ContentItemButtonType | null;
   value: string | null;
   disabledState: string | null;
+  borderColor: string | null;
+  backgroundColor: string | null;
+  textColor: string | null;
   onPress: GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemButton_onPress | null;
   event: GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemButton_event | null;
   icon: GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemButton_icon | null;

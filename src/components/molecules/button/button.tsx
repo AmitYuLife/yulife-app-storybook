@@ -20,6 +20,7 @@ interface IProps {
   disableAnimation?: boolean;
   show?: boolean;
   backgroundColor?: string;
+  borderColor?: string;
   shadowColor?: string;
   textColor?: string;
   showBadge?: boolean;
@@ -38,6 +39,7 @@ function Button(props: IProps) {
     disableAnimation,
     show = true,
     backgroundColor = Colours.primary.p600,
+    borderColor,
     shadowColor = Colours.primary.p600Shadow,
     textColor = Colours.neutral.white,
     showBadge = false,
@@ -54,6 +56,7 @@ function Button(props: IProps) {
   return (
     <View style={StyleSheet.flatten([buttonStyles.wrapper, wrapperStyle, buttonDimensions])}>
       <ButtonBase
+        borderColor={borderColor}
         backgroundColor={backgroundColor}
         shadowColor={shadowColor}
         testID={testID}

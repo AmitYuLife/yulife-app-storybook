@@ -26,6 +26,9 @@ export const ContentItemButton = memo((props: Props) => {
     disabled = false,
     isLoading,
     testID,
+    borderColor,
+    backgroundColor,
+    textColor,
   } = props;
   const dispatch = useDispatch();
 
@@ -57,6 +60,9 @@ export const ContentItemButton = memo((props: Props) => {
       onPress={handlePress}
       isLoading={isLoading}
       testID={testID}
+      backgroundColor={backgroundColor}
+      borderColor={borderColor}
+      textColor={textColor}
     />
   );
 });
