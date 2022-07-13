@@ -1,5 +1,5 @@
 import getSession from "@graphql/user/getSession.gql";
-import handleDeepLink from "@navigation/handleDeepLink";
+import deepLink from "@navigation/deepLink";
 import {
   setAuthenticatedRoot,
   setOfflineRoot,
@@ -74,7 +74,7 @@ export default function* setMainRootSaga({ payload }: IMainRootPayload) {
   }
 
   if (payload) {
-    yield call(handleDeepLink, payload, !!token);
+    yield call(deepLink.init, payload, !!token);
   }
 }
 
