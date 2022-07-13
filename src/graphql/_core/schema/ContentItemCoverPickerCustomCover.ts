@@ -40,6 +40,9 @@ export interface ContentItemCoverPickerCustomCover_button {
   buttonType: ContentItemButtonType | null;
   value: string | null;
   disabledState: string | null;
+  borderColor: string | null;
+  backgroundColor: string | null;
+  textColor: string | null;
   onPress: ContentItemCoverPickerCustomCover_button_onPress | null;
   event: ContentItemCoverPickerCustomCover_button_event | null;
   icon: ContentItemCoverPickerCustomCover_button_icon | null;

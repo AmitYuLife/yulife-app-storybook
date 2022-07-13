@@ -40,6 +40,9 @@ export interface ContentItemButton {
   buttonType: ContentItemButtonType | null;
   value: string | null;
   disabledState: string | null;
+  borderColor: string | null;
+  backgroundColor: string | null;
+  textColor: string | null;
   onPress: ContentItemButton_onPress | null;
   event: ContentItemButton_event | null;
   icon: ContentItemButton_icon | null;

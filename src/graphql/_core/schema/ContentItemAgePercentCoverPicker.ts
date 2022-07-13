@@ -99,6 +99,9 @@ export interface ContentItemAgePercentCoverPicker_customCover_button {
   buttonType: ContentItemButtonType | null;
   value: string | null;
   disabledState: string | null;
+  borderColor: string | null;
+  backgroundColor: string | null;
+  textColor: string | null;
   onPress: ContentItemAgePercentCoverPicker_customCover_button_onPress | null;
   event: ContentItemAgePercentCoverPicker_customCover_button_event | null;
   icon: ContentItemAgePercentCoverPicker_customCover_button_icon | null;

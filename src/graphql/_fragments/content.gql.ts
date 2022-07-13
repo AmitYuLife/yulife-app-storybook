@@ -657,6 +657,9 @@ export const GQL_FRAGMENT_CONTENT_ITEM_BUTTON = gql`
     buttonType: type
     value
     disabledState
+    borderColor
+    backgroundColor
+    textColor
     onPress {
       ...SduiAction
     }

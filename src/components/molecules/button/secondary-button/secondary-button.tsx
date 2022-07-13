@@ -11,6 +11,7 @@ interface Props {
   onPress: () => void;
   delay?: number;
   disabled?: boolean;
+  iconUri?: string;
   leftIcon?: JSX.Element;
   testID?: string;
   label: string;
@@ -32,10 +33,11 @@ export const SecondaryButton = (props: Props) => {
     show = true,
     size,
     leftIcon,
+    iconUri,
     isLoading,
-    borderColor = Colours.primary.p600,
-    backgroundColor = "transparent",
-    textColor = Colours.primary.p600,
+    borderColor,
+    backgroundColor,
+    textColor,
     wrapperStyle,
   } = props;
 
@@ -55,10 +57,11 @@ export const SecondaryButton = (props: Props) => {
         isLoading={isLoading}
         title={label}
         leftIcon={leftIcon}
+        iconUri={iconUri}
         onPress={handlePress}
-        borderColor={borderColor}
-        color={textColor}
-        backgroundColor={backgroundColor}
+        borderColor={borderColor || Colours.primary.p600}
+        color={textColor || Colours.primary.p600}
+        backgroundColor={backgroundColor || "transparent"}
         borderRadius={50}
         delay={delay}
       />

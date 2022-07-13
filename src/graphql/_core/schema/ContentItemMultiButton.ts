@@ -40,6 +40,9 @@ export interface ContentItemMultiButton_buttons {
   buttonType: ContentItemButtonType | null;
   value: string | null;
   disabledState: string | null;
+  borderColor: string | null;
+  backgroundColor: string | null;
+  textColor: string | null;
   onPress: ContentItemMultiButton_buttons_onPress | null;
   event: ContentItemMultiButton_buttons_event | null;
   icon: ContentItemMultiButton_buttons_icon | null;

@@ -40,6 +40,9 @@ export interface ContentItemOverlay_buttons {
   buttonType: ContentItemButtonType | null;
   value: string | null;
   disabledState: string | null;
+  borderColor: string | null;
+  backgroundColor: string | null;
+  textColor: string | null;
   onPress: ContentItemOverlay_buttons_onPress | null;
   event: ContentItemOverlay_buttons_event | null;
   icon: ContentItemOverlay_buttons_icon | null;

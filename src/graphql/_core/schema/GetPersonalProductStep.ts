@@ -273,6 +273,9 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemB
   buttonType: ContentItemButtonType | null;
   value: string | null;
   disabledState: string | null;
+  borderColor: string | null;
+  backgroundColor: string | null;
+  textColor: string | null;
   onPress: GetPersonalProductStep_getPersonalProductStep_body_ContentItemButton_onPress | null;
   event: GetPersonalProductStep_getPersonalProductStep_body_ContentItemButton_event | null;
   icon: GetPersonalProductStep_getPersonalProductStep_body_ContentItemButton_icon | null;
@@ -706,6 +709,9 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemC
   buttonType: ContentItemButtonType | null;
   value: string | null;
   disabledState: string | null;
+  borderColor: string | null;
+  backgroundColor: string | null;
+  textColor: string | null;
   onPress: GetPersonalProductStep_getPersonalProductStep_body_ContentItemCoverPicker_customCover_button_onPress | null;
   event: GetPersonalProductStep_getPersonalProductStep_body_ContentItemCoverPicker_customCover_button_event | null;
   icon: GetPersonalProductStep_getPersonalProductStep_body_ContentItemCoverPicker_customCover_button_icon | null;
@@ -957,6 +963,9 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemS
   buttonType: ContentItemButtonType | null;
   value: string | null;
   disabledState: string | null;
+  borderColor: string | null;
+  backgroundColor: string | null;
+  textColor: string | null;
   onPress: GetPersonalProductStep_getPersonalProductStep_body_ContentItemScrollPicker_button_onPress | null;
   event: GetPersonalProductStep_getPersonalProductStep_body_ContentItemScrollPicker_button_event | null;
   icon: GetPersonalProductStep_getPersonalProductStep_body_ContentItemScrollPicker_button_icon | null;
@@ -1169,6 +1178,9 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemM
   buttonType: ContentItemButtonType | null;
   value: string | null;
   disabledState: string | null;
+  borderColor: string | null;
+  backgroundColor: string | null;
+  textColor: string | null;
   onPress: GetPersonalProductStep_getPersonalProductStep_body_ContentItemMultiButton_buttons_onPress | null;
   event: GetPersonalProductStep_getPersonalProductStep_body_ContentItemMultiButton_buttons_event | null;
   icon: GetPersonalProductStep_getPersonalProductStep_body_ContentItemMultiButton_buttons_icon | null;
@@ -1334,6 +1346,9 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemA
   buttonType: ContentItemButtonType | null;
   value: string | null;
   disabledState: string | null;
+  borderColor: string | null;
+  backgroundColor: string | null;
+  textColor: string | null;
   onPress: GetPersonalProductStep_getPersonalProductStep_body_ContentItemAgePercentCoverPicker_customCover_button_onPress | null;
   event: GetPersonalProductStep_getPersonalProductStep_body_ContentItemAgePercentCoverPicker_customCover_button_event | null;
   icon: GetPersonalProductStep_getPersonalProductStep_body_ContentItemAgePercentCoverPicker_customCover_button_icon | null;
@@ -1591,6 +1606,9 @@ export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentIte
   buttonType: ContentItemButtonType | null;
   value: string | null;
   disabledState: string | null;
+  borderColor: string | null;
+  backgroundColor: string | null;
+  textColor: string | null;
   onPress: GetPersonalProductStep_getPersonalProductStep_footer_ContentItemButton_onPress | null;
   event: GetPersonalProductStep_getPersonalProductStep_footer_ContentItemButton_event | null;
   icon: GetPersonalProductStep_getPersonalProductStep_footer_ContentItemButton_icon | null;
@@ -1630,6 +1648,9 @@ export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentIte
   buttonType: ContentItemButtonType | null;
   value: string | null;
   disabledState: string | null;
+  borderColor: string | null;
+  backgroundColor: string | null;
+  textColor: string | null;
   onPress: GetPersonalProductStep_getPersonalProductStep_footer_ContentItemOverlay_buttons_onPress | null;
   event: GetPersonalProductStep_getPersonalProductStep_footer_ContentItemOverlay_buttons_event | null;
   icon: GetPersonalProductStep_getPersonalProductStep_footer_ContentItemOverlay_buttons_icon | null;
@@ -1676,6 +1697,9 @@ export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentIte
   buttonType: ContentItemButtonType | null;
   value: string | null;
   disabledState: string | null;
+  borderColor: string | null;
+  backgroundColor: string | null;
+  textColor: string | null;
   onPress: GetPersonalProductStep_getPersonalProductStep_footer_ContentItemMultiButton_buttons_onPress | null;
   event: GetPersonalProductStep_getPersonalProductStep_footer_ContentItemMultiButton_buttons_event | null;
   icon: GetPersonalProductStep_getPersonalProductStep_footer_ContentItemMultiButton_buttons_icon | null;
@@ -2078,6 +2102,9 @@ export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_Con
   buttonType: ContentItemButtonType | null;
   value: string | null;
   disabledState: string | null;
+  borderColor: string | null;
+  backgroundColor: string | null;
+  textColor: string | null;
   onPress: GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemFullScreenSwiper_button_onPress | null;
   event: GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemFullScreenSwiper_button_event | null;
   icon: GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemFullScreenSwiper_button_icon | null;
@@ -2173,6 +2200,9 @@ export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_Con
   buttonType: ContentItemButtonType | null;
   value: string | null;
   disabledState: string | null;
+  borderColor: string | null;
+  backgroundColor: string | null;
+  textColor: string | null;
   onPress: GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemFullScreenLottieSwiper_button_onPress | null;
   event: GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemFullScreenLottieSwiper_button_event | null;
   icon: GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemFullScreenLottieSwiper_button_icon | null;

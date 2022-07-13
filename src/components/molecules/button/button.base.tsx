@@ -6,6 +6,7 @@ import { Style } from "@styles";
 import { getOptionallyDisabledColor } from "@styles/getOptionallyDisabledColor";
 import { TextTemplate } from "@atoms/text/text-template";
 import { BadgeIcon } from "@atoms/icon/badge-icon";
+import { Image } from "@atoms";
 
 interface IProps {
   disabled?: boolean;
@@ -14,6 +15,7 @@ interface IProps {
   isLoading?: boolean;
   title?: string;
   leftIcon?: JSX.Element;
+  iconUri?: string;
   rightIcon?: JSX.Element;
   borderColor?: string;
   color?: string;
@@ -42,11 +44,23 @@ export function ButtonBase(props: IProps) {
     children = null,
     onPress,
     height = Style.adjust(50),
-    borderRadius = props.height / 2,
+    borderRadius = height / 2,
     delay,
     disableAnimation,
     hideShadow,
     showBadge,
+    shadowColor,
+    testID,
+    disabled,
+    backgroundColor,
+    backgroundGradient,
+    borderColor,
+    color,
+    isLoading,
+    title,
+    iconUri,
+    leftIcon,
+    rightIcon,
   } = props;
   const [translateYAnimation] = useState(new Animated.Value(0));
   const { isPressedIn, handlePressIn, handlePressOut, handlePress } = usePressedInWithDelay({ onPress, delay });
@@ -67,24 +81,25 @@ export function ButtonBase(props: IProps) {
     <View style={[styles.flex, { height }]}>
       {hideShadow ? null : (
         <Shadow
-          shadowColor={props.shadowColor}
-          testID={props.testID}
+          shadowColor={shadowColor}
+          testID={testID}
           height={height - SHADOW_DIFF - SHADOW_TRIM}
           borderRadius={borderRadius}
-          disabled={props.disabled}
+          disabled={disabled}
         />
       )}
       <Main
-        backgroundColor={props.backgroundColor}
-        backgroundGradient={props.backgroundGradient}
-        borderColor={props.borderColor}
-        color={props.color}
-        isLoading={props.isLoading}
-        testID={props.testID}
-        disabled={props.disabled}
-        title={props.title}
-        leftIcon={props.leftIcon}
-        rightIcon={props.rightIcon}
+        backgroundColor={backgroundColor}
+        backgroundGradient={backgroundGradient}
+        borderColor={borderColor}
+        color={color}
+        isLoading={isLoading}
+        testID={testID}
+        disabled={disabled}
+        title={title}
+        iconUri={iconUri}
+        leftIcon={leftIcon}
+        rightIcon={rightIcon}
         height={height - (hideShadow ? 0 : SHADOW_DIFF)}
         borderRadius={borderRadius}
         onPressIn={handlePressIn}
@@ -128,6 +143,7 @@ function Main({
   onPress,
   title,
   leftIcon,
+  iconUri,
   rightIcon,
   showBadge,
   children,
@@ -158,6 +174,7 @@ function Main({
             testID={`${testID}-text-view`}
             title={title}
             leftIcon={leftIcon}
+            iconUri={iconUri}
             rightIcon={rightIcon}
             isLoading={isLoading}
             color={adjustedColor}
@@ -178,13 +195,14 @@ function Main({
 interface ContentProps {
   title: string;
   leftIcon?: JSX.Element;
+  iconUri?: string;
   rightIcon?: JSX.Element;
   isLoading: boolean;
   color: string;
   children: React.ReactElement;
   testID: string;
 }
-function Content({ title, leftIcon, rightIcon, isLoading, color, children, testID }: ContentProps) {
+function Content({ title, leftIcon, iconUri, rightIcon, isLoading, color, children, testID }: ContentProps) {
   if (isLoading) {
     return <ActivityIndicator color={color} />;
   }
@@ -192,7 +210,7 @@ function Content({ title, leftIcon, rightIcon, isLoading, color, children, testI
   if (title) {
     return (
       <View style={styles.buttonContent}>
-        {leftIcon ? <View style={styles.leftIcon}>{leftIcon}</View> : null}
+        <LeftIcon leftIcon={leftIcon} iconUri={iconUri} />
         <TextTemplate type="b2b" testID={testID} color={color}>
           {title}
         </TextTemplate>
@@ -203,6 +221,22 @@ function Content({ title, leftIcon, rightIcon, isLoading, color, children, testI
 
   return children;
 }
+
+const LeftIcon = memo(({ leftIcon, iconUri }: Pick<ContentProps, "leftIcon" | "iconUri">) => {
+  if (leftIcon) {
+    return <View style={styles.leftIcon}>{leftIcon}</View>;
+  }
+
+  if (iconUri) {
+    return (
+      <View style={styles.leftIcon}>
+        <Image width={Style.adjust(16)} height={Style.adjust(16)} resizeMode="contain" source={{ uri: iconUri }} />
+      </View>
+    );
+  }
+
+  return null;
+});
 
 export default ButtonBase;
 
