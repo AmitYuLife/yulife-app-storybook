@@ -1,4 +1,4 @@
-import handleDeepLink from "@navigation/handleDeepLink";
+import deepLink from "@navigation/deepLink";
 import { getRouteState } from "@redux/app/app.selectors";
 import { getToken } from "@services/storage";
 import { Unpacked } from "@utils";
@@ -14,7 +14,7 @@ export default function* listenToLinkingSaga() {
 
     if (url && !!url.url) {
       const currentRoute: string = yield select(getRouteState);
-      yield call(handleDeepLink, url.url, !!token, currentRoute);
+      yield call(deepLink.init, url.url, !!token, currentRoute);
     }
   }
 }
