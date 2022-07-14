@@ -441,3 +441,34 @@ On `api-server`
 ## Garmin Sync
 
 Trying to sync Garmin? On `api-server`, do `yarn develop:develop` before trying to toggle Garmin sync.
+
+## Testing Remote Push Notifications
+
+### iOS
+
+If you want to test remote push notifications (different to local ones), for example if you want to introduce a new deep link and want to see it work, you can do it either in a simulator or on device. For the iOS simulator, you can do the following;
+
+- You can either send a push to a specific simulator or just use the booted one. If you want to target a specific simulator, do the following - Get the identifier of your simulator. In XCode `Window -> Devices and Simulators -> Simulators -> Click your simulator and copy the Identifier`
+- Create the payload you want and save it to a JSON file, in the following format. With the `URL:` being the deep link
+
+```
+{
+  "Simulator Target Bundle": "com.yulife.develop",
+  "aps": {
+    "badge": 0,
+    "alert": {
+      "title": "Title",
+      "subtitle": "Subtitle",
+      "body": "Body text"
+    },
+    "sound": "default"
+  },
+  "_lpm": 1,
+  "_lpx": {
+    "__name__": "Open URL",
+    "URL": "yulifeapp://yulife/personal-product/detached?productId=Bupa_Dent&stepId=Bupa_Dent_01_FAQs"
+  }
+}
+```
+
+- Run the following command in any terminal, replacing the identifier (or using the word `booted` for the current running simulator) and link to your JSON payload - `xcrun simctl push 6D3D6FFD-50A2-4853-8D21-BE8991490BB6 com.yulife.develop pushNotificationTestPayload.json`
