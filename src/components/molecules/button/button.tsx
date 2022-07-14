@@ -57,8 +57,9 @@ function Button(props: IProps) {
     <View style={StyleSheet.flatten([buttonStyles.wrapper, wrapperStyle, buttonDimensions])}>
       <ButtonBase
         borderColor={borderColor}
-        backgroundColor={backgroundColor}
-        shadowColor={shadowColor}
+        backgroundColor={backgroundColor || Colours.primary.p600}
+        shadowColor={shadowColor || Colours.primary.p600Shadow}
+        color={textColor || Colours.neutral.white}
         testID={testID}
         height={buttonDimensions.height}
         isLoading={isLoading}
@@ -67,7 +68,6 @@ function Button(props: IProps) {
         leftIcon={props.leftIcon}
         rightIcon={props.rightIcon}
         onPress={handlePress}
-        color={textColor}
         borderRadius={50}
         delay={delay}
         disableAnimation={disableAnimation}
