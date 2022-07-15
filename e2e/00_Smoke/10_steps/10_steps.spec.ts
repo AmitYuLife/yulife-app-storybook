@@ -5,16 +5,20 @@ import * as when from "./_steps/when"
 import * as then from "./_steps/then"
 import { NAV_BAR, MENU_ICON, ACTIVITY_HISTORY_SCREEN, BUTTON_CLOSE_HEADER, LEADERBOARD_TITLE, STEPS_COUNT, DUELS_BUTTON } from "@ids";
 import { CUSTOMER_40, AUTH_40, USER_40_LEADERBOARD } from "@data";
+import { yesterdaysDateDaysOnly } from "./_steps/consts"
+
 
 Feature("As a user my steps are monitored correctly", async () => {
     
-    Scenario("Leaderboard is reset and duels are unavailable if I walk a => 75k steps average over 5 consecutive days within the last 5 days", scenario.start, async () => {
+    Scenario("Leaderboard is reset and duels are unavailable if I walk >= 75k steps average over 5 consecutive days within the last 5 days", scenario.start, async () => {
         Given("I login", given.loginToYuScreen(false, CUSTOMER_40, AUTH_40), async () => {
             When("I go back to the yucoin tab", when.tapID(NAV_BAR("yucoin"), 3000), async () => {
                 Then("I should see my steps today as 0", then.idVisible(STEPS_COUNT(0)))
             })
-            When("I have done 75,000 steps over every day over the last 4 days", when.addSteps4DaysHistoricalData(75000), async () => {
-                Then("I should still see 0 steps for today", then.idVisible(STEPS_COUNT(0)));
+            When("I have done 3 days of 75,000 steps from 4 days ago", when.addSteps3DaysHistoricalData(75000), async () => {
+                When("I have done 75,001 steps yesterday", when.addStepsHistoricalData(75001), async () => {
+                    Then("I should still see 0 steps for today", then.idVisible(STEPS_COUNT(0)));
+                })
             })
             When("I go to the leaderboard screen", when.tapID(NAV_BAR("leaderboard")), async () => {
                 Then("I should see the leaderboard title", then.idVisible(LEADERBOARD_TITLE(USER_40_LEADERBOARD.data.name)))
@@ -31,18 +35,18 @@ Feature("As a user my steps are monitored correctly", async () => {
             When("I tap activity history", when.tapMenuItem("Activity History"), async () => {
                 Then("I should be on activity history", then.idVisible(ACTIVITY_HISTORY_SCREEN, 2500))
             })
-            When("I scroll down this page", when.swipeFromText("07", "down", "fast"), async () => {
-                Then("I should see the historical steps loaded in", then.canSee4DaysHistoricalSteps)
+            When("I pull down the activity history page to refresh", when.swipeFromText(yesterdaysDateDaysOnly, "down", "fast"), async () => {
+                Then("I should see the historical steps from yesterday loaded in meaning the refresh has worked", then.canSeeYesterdaysSteps)
             })
             When("I go back", when.tapID(BUTTON_CLOSE_HEADER("activity history")), async () => {
                 Then("I should be the yucoin tab", then.onDailySteps)
             })
             When("I go to the leaderboard screen", when.tapID(NAV_BAR("leaderboard")), async () => {
                 Then("I should see the leaderboard consent screen as my leaderboard has been reset", then.onLeaderboardConsent)
-                When("I tap 'Yes'", when.tapText("Yes"), async () => {
-                    Then("I should see the leaderboard title", then.idVisible(LEADERBOARD_TITLE(USER_40_LEADERBOARD.data.name)))
-                    Then("I should not see the duel button on the leaderboard screen", then.idNotVisible(DUELS_BUTTON))
-                })
+            })
+            When("I tap 'Yes'", when.tapText("Yes"), async () => {
+                Then("I should see the leaderboard title", then.idVisible(LEADERBOARD_TITLE(USER_40_LEADERBOARD.data.name)))
+                Then("I should not see the duel button on the leaderboard screen", then.idNotVisible(DUELS_BUTTON))
             })
         })
     })
