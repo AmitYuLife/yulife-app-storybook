@@ -2,7 +2,7 @@ import { When, Then } from "@yu-life/yulife-bdd-framework";
 import * as when from "./when"
 import * as then from "./then"
 import { CUSTOMER_37, AUTH_37 } from "@data";
-import { CONDITION_OPTION, CONTENT_ITEM_INPUT, PRODUCT_STEP_BODY_SCROLL_VIEW, SCROLL_PICKER, SCROLL_PICKER_ACTIVE_ITEM, SELECTED_PACKAGE_TITLE, YUCOIN_POWER, TEXT_TEMPLATE, COVER_TYPE, BUTTON_CLOSE_CHALLENGE, BACK_BUTTON, PACKAGE_INFO} from "@ids";
+import { CONDITION_OPTION, CONTENT_ITEM_INPUT, PRODUCT_STEP_BODY_SCROLL_VIEW, SCROLL_PICKER, SCROLL_PICKER_ACTIVE_ITEM, SELECTED_PACKAGE_TITLE, YUCOIN_POWER, TEXT_TEMPLATE, COVER_TYPE, BUTTON_CLOSE_CHALLENGE, BACK_BUTTON, PACKAGE_INFO, BUTTON_CLOSE} from "@ids";
 import { addCommasToNumber } from "_utils/appScreens/rewards";
 import { capitalizeFirstLetter } from "@navigation";
 import moment from "moment"
@@ -217,3 +217,32 @@ export const ADD_EDIT_PAYMENT_DETAILS = async () => {
         })
     })
 }
+
+export const BUPA_CLAIM = async () => {
+    When("I tap How to make claim", when.tapText("How to make a claim"), async () => {
+        Then("I should see Bupa claim text", then.bupaClaimInfo)
+        When("I tap to go back to Policy details screen", when.tapID(BACK_BUTTON), async () => {
+            Then("I should see again Policy dedtails", then.textVisible("Policy details"))
+        })
+    })
+}
+
+export const FAQ = async () => {
+    When("I tap FAQs text", when.tapText("FAQs"), async () => {
+        Then("I should see FAQs info", then.FAQInfo)
+        When("I tap to go back to Policy details screen", when.tapID(BACK_BUTTON), async () => {
+            Then("I should see again Policy dedtails", then.textVisible("Policy details"))
+        })
+    })
+}
+
+export const PAYMENT_HISTORY = async () => {
+    When("I tap View payment history text", when.tapText("View payment history"), async () => {
+        Then("I should see View payment history info", then.paymentHistoryInfo)
+        When("I tap to go back to Policy details screen", when.tapID(BACK_BUTTON), async () => {
+            Then("I should see again Policy dedtails", then.textVisible("Policy details"))
+        })
+    })
+}
+    
+

@@ -33,7 +33,8 @@ export const {
     navigateViaID,
     textVisible,
     slowType,
-    tapTextAtIndex
+    tapTextAtIndex,
+    tapIDAtPoint
 } = navigation.common
 
 export const {
