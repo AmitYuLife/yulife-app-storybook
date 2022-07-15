@@ -6,7 +6,7 @@ import { DETOX_ENABLED } from "@services/socket";
 import { Style } from "@styles";
 import { AVATAR_ITEM } from "@ids";
 import { YuScreenProductSlotItem } from "@graphql/_core/schema";
-import { navigateToProduct } from "../../../navigation/navigateToProduct";
+import { navigateToProduct } from "../../../../navigation/navigateToProduct";
 
 interface IItem extends YuScreenProductSlotItem {
   style?: ViewStyle;

@@ -1,105 +1,67 @@
-import React, { memo, useContext } from "react";
-import { View, Image, StyleSheet, ViewStyle, ImageStyle, TextStyle } from "react-native";
+import React, { memo } from "react";
+import { Image, ImageStyle, StyleSheet, TextStyle, View, ViewStyle } from "react-native";
 import { Text } from "@atoms";
-import { TextWithBoldText, TouchableOpacityWithDelay } from "@components/molecules";
-import { Style, Colours } from "@styles";
-import { YUCOIN_POWER } from "@ids";
+import { Style } from "@styles";
+import { getUserEarnRate } from "@redux/user/user.selectors";
+import { useSelector } from "react-redux";
+import { TouchableOpacityWithDelay } from "@components/molecules";
 import { showEarnRateOverlay } from "../../navigation/showEarnRateOverlay";
-import { YuScreenContext } from "../../context/yu-screen.context";
 
-const POWER_LABEL_TOP = "YuCoin Power";
-const getInfo = (power: number) =>
-  power < 2
-    ? "To increase your YuCoin Power, check out your available gear."
-    : `Your items boost your YuCoin. For every 1 you would have earned, you now get <bold>${power}</bold>.`;
+export const YuCoinPower = memo(() => {
+  return (
+    <TouchableOpacityWithDelay onPress={showEarnRateOverlay} style={styles.ycWrapperOuter}>
+      <Image style={styles.ycPowerBg} source={require("./ycPowerBg.png")} />
+      <Yc />
+    </TouchableOpacityWithDelay>
+  );
+});
 
-const _YuCoinPower = () => {
-  const { earnRate = 1 } = useContext(YuScreenContext);
+const Yc = () => {
+  const earnRate = useSelector(getUserEarnRate);
 
   return (
-    <TouchableOpacityWithDelay
-      activeOpacity={1}
-      onPress={showEarnRateOverlay}
-      style={styles.wrapper}
-      testID={YUCOIN_POWER(earnRate.toString())}
-    >
-      <View style={styles.backgroundWrapper}>
-        <Image resizeMode="stretch" style={styles.backgroundImage} source={require("./background.png")} />
+    <View style={styles.ycWrapper}>
+      <Text bold={true} style={styles.ycPowerVal}>
+        {earnRate}
+      </Text>
+      <View style={styles.ycPowerDescriptionWrapper}>
+        <Text bold={true} style={styles.ycPowerDescription}>
+          YuCoin
+        </Text>
+        <Text style={styles.ycPowerDescription}>Power</Text>
       </View>
-      <View style={styles.contentWrapper}>
-        <View style={styles.powerWrapper}>
-          <Text bold={true} style={styles.powerLabelTop}>
-            {POWER_LABEL_TOP}
-          </Text>
-          <Text bold={true} style={styles.power}>
-            {earnRate}
-          </Text>
-        </View>
-        <View style={styles.infoWrapper}>
-          <TextWithBoldText style={styles.info} value={getInfo(earnRate)} />
-        </View>
-      </View>
-    </TouchableOpacityWithDelay>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
-  wrapper: {
-    marginTop: Style.adjust(24),
-    height: Style.adjust(144),
+  ycWrapper: {
     flexDirection: "row",
-    borderWidth: 1,
-    borderColor: "transparent",
-    marginHorizontal: Style.adjust(22),
+    alignItems: "center",
+    justifyContent: "center",
+    position: "absolute",
+    top: Style.adjust(10),
+    right: Style.adjust(72),
   } as ViewStyle,
-  backgroundWrapper: {
-    ...StyleSheet.absoluteFillObject,
+  ycWrapperOuter: {
+    alignItems: "flex-end",
   } as ViewStyle,
-  backgroundImage: {
-    alignSelf: "center",
-    borderRadius: 8,
-    width: "100%",
-    height: Style.adjust(144),
+  ycPowerBg: {
+    width: Style.adjust(182),
+    height: Style.adjust(66),
   } as ImageStyle,
-  contentWrapper: {
-    flexDirection: "row",
-    flex: 1,
-    marginLeft: "auto",
-    marginRight: "auto",
-    marginBottom: Style.adjust(8),
+  ycPowerVal: {
+    fontSize: Style.adjust(40),
+    lineHeight: Style.adjust(40),
+    color: "#D17C00", // TODO: ASK DESIGN FOR NAME
   } as ViewStyle,
-  powerWrapper: {
+  ycPowerDescriptionWrapper: {
     justifyContent: "center",
-    alignItems: "center",
-    width: "45%",
-    marginTop: 12,
+    marginLeft: Style.adjust(8),
   } as ViewStyle,
-  powerLabelTop: {
-    fontSize: Style.adjust(16),
-    lineHeight: Style.adjust(16),
-    color: Colours.orange,
-    letterSpacing: 1,
-  } as TextStyle,
-  power: {
-    fontSize: Style.adjust(56),
-    color: Colours.orange,
-    marginTop: Style.adjust(8),
-    letterSpacing: 1,
-  } as TextStyle,
-  infoWrapper: {
-    marginLeft: "auto",
-    justifyContent: "center",
-    alignItems: "center",
-    marginTop: Style.adjust(8),
-    width: "50%",
-    paddingRight: Style.adjust(24),
-  } as TextStyle,
-  info: {
-    color: Colours.orange,
-    fontSize: Style.adjust(16),
-    lineHeight: Style.adjust(24),
-    letterSpacing: 0.6,
+  ycPowerDescription: {
+    fontSize: Style.adjust(18),
+    lineHeight: Style.adjust(18),
+    color: "#D17C00",
   } as TextStyle,
 });
-
-export const YuCoinPower = memo(_YuCoinPower);
