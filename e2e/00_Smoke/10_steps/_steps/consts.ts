@@ -1,1 +1,2 @@
-export const fiveDaySteps = ["75,000 steps", "75,000 steps", "75,000 steps", "75,000 steps", "75,000 steps"]
+import moment = require("moment");
+export const yesterdaysDateDaysOnly = moment().subtract(1, "days").date().toString()

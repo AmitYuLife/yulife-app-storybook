@@ -1,6 +1,5 @@
-import { navigation, LEADERBOARD_NAME, LEADERBOARD_TOP_SCREEN, LEADERBOARD_SCREEN, LEADERBOARD_PEDESTAL, LEADERBOARD_STATUS, LEADERBOARD_SCROLL_LIST } from "@utils"
+import { navigation, LEADERBOARD_NAME, LEADERBOARD_STATUS, LEADERBOARD_SCROLL_LIST } from "@utils"
 import { screens } from "@appScreens"
-import { fiveDaySteps } from "./consts"
 
 export const {
     textVisible,
@@ -59,15 +58,10 @@ export const canSeeTodaysSteps = () => async () => {
     await expectIsVisibleViaText("Short stroll (75,000 steps)", 1000)
 }
 
-
 export const {
     menuItemsVisible,
 } = screens.menu
 
-export const canSee4DaysHistoricalSteps = () => async () => {
-    fiveDaySteps.forEach((step) => {
-        textVisible(step)()
-    })
-
-};
-
+export const canSeeYesterdaysSteps = () => async () => {
+    await textVisible("75,001 steps", 1000)()
+}

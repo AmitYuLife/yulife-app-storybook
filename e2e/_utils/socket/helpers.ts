@@ -97,13 +97,8 @@ export const addStepsHistoricalData = (value:number) => async () => {
     await fitKitAddAggregatedQueries(record)
 }
 
-export const addSteps4DaysHistoricalData = (value:number) => async () => {
+export const addSteps3DaysHistoricalData = (value: number) => async () => {
     const record = [{
-        startTime: moment().subtract(1,"day").startOf("day").add(10,"minutes").toDate().toString(),
-        endTime: moment().subtract(1,"day").endOf("day").subtract(10,"minutes").toDate().toString(),
-        value,
-        type: "StepCount"
-    }, {
         startTime: moment().subtract(2,"day").startOf("day").add(10,"minutes").toDate().toString(),
         endTime: moment().subtract(2,"day").endOf("day").subtract(10,"minutes").toDate().toString(),
         value,

@@ -1,5 +1,5 @@
 import { navigation } from "@navigation"
-export { sendSteps, addSteps4DaysHistoricalData } from "@socket";
+export { sendSteps, addSteps3DaysHistoricalData, addStepsHistoricalData } from "@socket";
 import { screens } from "@appScreens"
 
 
