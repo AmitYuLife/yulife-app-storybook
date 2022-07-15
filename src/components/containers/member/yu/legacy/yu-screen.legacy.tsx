@@ -1,12 +1,13 @@
 import React, { useEffect, useRef } from "react";
 import { StyleSheet, ViewStyle, View, ScrollView, Platform, Animated } from "react-native";
-import { Style, TOP_BAR } from "@styles";
+import { Style } from "@styles";
 import media from "@styles/media";
 import { YUSCREEN, YUSCREEN_SCROLL_VIEW } from "@ids";
 import { AvatarAndEquipment, YuCoinPower } from "./subcomponents";
 import { useSelector } from "react-redux";
 import { getRouteState } from "@redux/app/app.selectors";
 import { NameAndLevel } from "@components/molecules";
+import { PAD_TOP } from "../yu-screen.styles";
 
 export const YuScreen = () => {
   const scrollValue = useRef(new Animated.Value(0)).current;
@@ -37,19 +38,6 @@ export const YuScreen = () => {
     </View>
   );
 };
-
-export const PAD_TOP = Platform.select({
-  ios: media.select(
-    [
-      {
-        condition: Style.hasNotch,
-        value: TOP_BAR.HEIGHT + Style.adjust(8),
-      },
-    ],
-    TOP_BAR.HEIGHT + Style.adjust(22)
-  ),
-  android: TOP_BAR.HEIGHT + Style.adjust(20),
-});
 
 const PAD_BOT = Platform.select({
   ios: media.select(

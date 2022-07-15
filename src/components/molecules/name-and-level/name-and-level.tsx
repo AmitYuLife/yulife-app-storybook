@@ -11,9 +11,11 @@ import { TEXT_TEMPLATE } from "@ids";
 interface IProps {
   name?: string;
   level?: number;
+  hideWorldIcon?: boolean;
+  useWorldColor?: boolean;
 }
 
-const NameAndLevel = ({ name, level }: IProps) => {
+const NameAndLevel = ({ name, level, hideWorldIcon, useWorldColor }: IProps) => {
   const storedUserName = useSelector(getUserName);
   const storedCurrentLevel = useSelector(getCurrentLevel);
   const userName = name || storedUserName;
@@ -29,12 +31,18 @@ const NameAndLevel = ({ name, level }: IProps) => {
         {userName}
       </Text>
       <View style={styles.worldDetails}>
-        <Image style={styles.image} source={worldIcon} />
+        {hideWorldIcon ? null : <Image style={styles.image} source={worldIcon} />}
         <View style={styles.worldTextWrapper}>
           <Text bold={true} style={StyleSheet.flatten([styles.worldName, { color: getWorldColor(worldName) }])}>
             {worldName}
           </Text>
-          <Text bold={true} style={styles.currentLevel}>{` Level ${currentLevel}`}</Text>
+          <Text
+            bold={true}
+            style={StyleSheet.flatten([
+              styles.currentLevel,
+              useWorldColor ? { color: getWorldColor(worldName) } : null,
+            ])}
+          >{` Level ${currentLevel}`}</Text>
         </View>
       </View>
     </View>

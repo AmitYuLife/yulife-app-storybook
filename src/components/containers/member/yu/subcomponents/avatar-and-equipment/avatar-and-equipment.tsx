@@ -1,162 +1,63 @@
-import React, { memo, useCallback, useContext, useEffect } from "react";
-import { StyleSheet, ViewStyle, View } from "react-native";
-import { Style, Colours } from "@styles";
-import { ItemSet } from "./item-set/item-set";
-import { useQueryOnScreenSeenOnce } from "@hooks";
-import { YuScreenProductSlots } from "@graphql/_core/schema";
-import { GQL_QUERY_GET_YU_SCREEN_PRODUCTS_SLOTS } from "@graphql/yuscreen";
-import { YUSCREEN_AVATAR } from "@ids";
-import { YumojiCreationPrompt } from "../../subcomponents";
-import { TextTemplate } from "@atoms";
-import { Yumoji, TouchableOpacityWithDelay } from "@molecules";
-import { ItemBottom } from "./item-set/item-bottom";
+import React, { useContext, FC, useCallback, memo } from "react";
+import { StyleSheet, View, ViewStyle } from "react-native";
+import { TouchableOpacityWithDelay, Yumoji } from "@components/molecules";
+import { Style } from "@styles";
 import { YuScreenContext } from "../../context/yu-screen.context";
 import { navigateToYumojiBuilder } from "../../navigation/navigateToYumojiBuilder";
-import { ROUTES } from "@navigation/constants";
+import { YuCoinPower } from "../yu-coin-power/yu-coin-power";
 
-const _AvatarAndEquipment = () => {
-  const [, { data: yuScreenProductSlots }] = useQueryOnScreenSeenOnce<YuScreenProductSlots>(
-    GQL_QUERY_GET_YU_SCREEN_PRODUCTS_SLOTS,
-    ROUTES.yuScreen
-  );
-
-  const editYumoji = useCallback(() => navigateToYumojiBuilder({ heading: "Edit your Yumoji" }), []);
-
-  const { setPopover, yumojiRemoteUrl } = useContext(YuScreenContext);
-
-  useEffect(() => {
-    if (!yumojiRemoteUrl) {
-      return;
-    }
-
-    if (!yuScreenProductSlots?.getYuScreenProductSlots) {
-      return setPopover(null);
-    }
-
-    const left = Object.values(yuScreenProductSlots?.getYuScreenProductSlots?.left)
-      .map((item, index) => ({
-        popover: item?.popover,
-        index,
-        product: {
-          status: item.status,
-          productId: item.productId,
-        },
-      }))
-      .filter((item) => !!item.popover);
-
-    const queuedPopoverLeft = left[0];
-    if (queuedPopoverLeft?.popover && queuedPopoverLeft.product) {
-      const {
-        popover: { id, message },
-        index,
-        product: { productId, status },
-      } = queuedPopoverLeft;
-      return setPopover({
-        id,
-        message,
-        index,
-        product: {
-          productId,
-          status,
-        },
-        side: "left",
-      });
-    }
-
-    const right = Object.values(yuScreenProductSlots?.getYuScreenProductSlots?.right)
-      .map((item, index) => ({
-        popover: item?.popover,
-        index,
-        product: {
-          status: item.status,
-          productId: item.productId,
-        },
-      }))
-      .filter((item) => !!item.popover);
-
-    const queuedPopoverRight = right[0];
-    if (queuedPopoverRight?.popover && queuedPopoverRight.product) {
-      const {
-        popover: { id, message },
-        index,
-        product: { productId, status },
-      } = queuedPopoverRight;
-      return setPopover({
-        id,
-        message,
-        index,
-        product: {
-          productId,
-          status,
-        },
-        side: "right",
-      });
-    }
-
-    return setPopover(null);
-  }, [yuScreenProductSlots, setPopover, yumojiRemoteUrl]);
+export const AvatarAndEquipment = memo(() => {
+  const { yumojiRemoteUrl } = useContext(YuScreenContext);
 
   return (
-    <View>
-      <View style={styles.wrapper} testID={YUSCREEN_AVATAR}>
-        <ItemSet items={yuScreenProductSlots?.getYuScreenProductSlots.left} />
-        <TouchableOpacityWithDelay onPress={editYumoji} style={styles.avatarWrapper}>
-          <Yumoji
-            width={AVATAR_WIDTH}
-            height={AVATAR_HEIGHT}
-            emptyWidth={EMPTY_AVATAR_WIDTH}
-            emptyHeight={EMPTY_AVATAR_HEIGHT}
-            testID="YUMOJI_EQUIPMENT"
-            uri={yumojiRemoteUrl}
-          />
-        </TouchableOpacityWithDelay>
-        <ItemSet items={yuScreenProductSlots?.getYuScreenProductSlots.right} />
-      </View>
-      {!yumojiRemoteUrl ? <YumojiCreationPrompt /> : null}
-      {yuScreenProductSlots?.getYuScreenProductSlots.bottom.length > 0 ? (
-        <>
-          <View style={styles.itemSetWrapper}>
-            <ItemBottom items={yuScreenProductSlots?.getYuScreenProductSlots.bottom} />
-          </View>
-          <View style={styles.itemSetTextWrapper}>
-            <TextTemplate textAlign="center" type="l2b" color={Colours.metallic.m500}>
-              Provided by your employer
-            </TextTemplate>
-          </View>
-        </>
-      ) : null}
+    <View style={styles.wrapper}>
+      <YumojiAvatar uri={yumojiRemoteUrl} />
+      <EquipmentWrapper>
+        <YuCoinPower />
+      </EquipmentWrapper>
     </View>
+  );
+});
+
+const EquipmentWrapper: FC = ({ children }) => <View style={styles.equipmentWrapper}>{children}</View>;
+
+const AVATAR_HEIGHT_TO_WIDTH_RATIO = 328 / 160;
+const AVATAR_WIDTH = Style.DEVICE_WIDTH / 2;
+const AVATAR_HEIGHT = AVATAR_WIDTH * AVATAR_HEIGHT_TO_WIDTH_RATIO;
+
+const YumojiAvatar = ({ uri }: { uri: string }) => {
+  const editYumoji = useCallback(() => navigateToYumojiBuilder({ heading: "Edit your Yumoji" }), []);
+
+  if (!uri) {
+    return null;
+  }
+
+  return (
+    <TouchableOpacityWithDelay onPress={editYumoji} style={styles.avatarWrapper}>
+      <Yumoji width={AVATAR_WIDTH} height={AVATAR_HEIGHT} testID="YUMOJI_EQUIPMENT" uri={uri} />
+    </TouchableOpacityWithDelay>
   );
 };
 
-const BASE_PADDING = Style.adjust(22);
-const AVATAR_WIDTH = Style.adjust(160) * 0.95;
-const AVATAR_HEIGHT = Style.adjust(328) * 0.95;
-const EMPTY_AVATAR_WIDTH = Style.adjust(111);
-const EMPTY_AVATAR_HEIGHT = Style.adjust(298);
-
+const AVATAR_MARGIN_TOP = Style.adjust(28);
+const ALLOWANCE = Style.adjust(8);
+const TOTAL_HEIGHT = AVATAR_HEIGHT + AVATAR_MARGIN_TOP + ALLOWANCE;
 const styles = StyleSheet.create({
   wrapper: {
     flexDirection: "row",
-    height: Style.adjust(328),
-    justifyContent: "space-between",
-    paddingLeft: BASE_PADDING,
-    paddingRight: BASE_PADDING,
+    height: TOTAL_HEIGHT,
   } as ViewStyle,
   avatarWrapper: {
-    marginTop: "auto",
-    width: AVATAR_WIDTH,
-    height: AVATAR_HEIGHT,
+    position: "absolute",
+    top: AVATAR_MARGIN_TOP,
+    left: Style.adjust(8),
+    width: Style.DEVICE_WIDTH / 2.1,
     alignItems: "center",
-    justifyContent: "center",
   } as ViewStyle,
-  itemSetWrapper: {
-    alignSelf: "center",
-    marginTop: 26,
-  },
-  itemSetTextWrapper: {
-    marginTop: Style.adjust(8),
-  },
+  equipmentWrapper: {
+    width: Style.DEVICE_WIDTH / 1.9,
+    marginLeft: "auto",
+    marginRight: Style.adjust(16),
+    marginTop: Style.adjust(32),
+  } as ViewStyle,
 });
-
-export const AvatarAndEquipment = memo(_AvatarAndEquipment);

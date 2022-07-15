@@ -3,7 +3,7 @@ import { View, StyleSheet, ViewStyle, TextStyle } from "react-native";
 import { Text } from "@atoms";
 import { Button } from "@molecules";
 import { Colours, Style } from "@styles";
-import { navigateToYumojiBuilder } from "../navigation/navigateToYumojiBuilder";
+import { navigateToYumojiBuilder } from "../../navigation/navigateToYumojiBuilder";
 import { GET_STARTED_BUTTON, EMPTY_YUSCREEN_COPY } from "@ids";
 import LinearGradient from "react-native-linear-gradient";
 

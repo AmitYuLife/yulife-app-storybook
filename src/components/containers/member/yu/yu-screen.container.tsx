@@ -1,6 +1,6 @@
 import React, { memo, useState } from "react";
 import { YuScreen } from "./yu-screen";
-import { YuScreen as YuScreenLegacy } from "./yu-screen.legacy";
+import { YuScreen as YuScreenLegacy } from "./legacy/yu-screen.legacy";
 import { YuScreenLayout } from "./yu-screen-layout";
 import { YuScreenLoading } from "./yu-screen-loading";
 import { useSelector } from "react-redux";

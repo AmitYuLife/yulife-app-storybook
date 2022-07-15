@@ -1,12 +1,18 @@
 import React from "react";
-import { StyleSheet, ViewStyle, View } from "react-native";
+import { StyleSheet, ViewStyle, View, ScrollView } from "react-native";
 import { YUSCREEN } from "@ids";
-import { TextTemplate } from "@atoms";
+import { Style } from "@styles";
+import { NameAndLevel } from "@components/molecules";
+import { AvatarAndEquipment } from "./subcomponents/avatar-and-equipment/avatar-and-equipment";
 
 export const YuScreen = () => {
   return (
     <View style={styles.wrapper} testID={YUSCREEN}>
-      <TextTemplate type="h1">YuScreenV4</TextTemplate>
+      <ScrollView style={styles.scrollView}>
+        <View style={styles.padTop} />
+        <NameAndLevel hideWorldIcon={true} useWorldColor={true} />
+        <AvatarAndEquipment />
+      </ScrollView>
     </View>
   );
 };
@@ -14,10 +20,15 @@ export const YuScreen = () => {
 const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
-    justifyContent: "center",
     alignItems: "center",
   } as ViewStyle,
-  list: {
-    flex: 1,
+  scrollView: {
+    width: Style.DEVICE_WIDTH,
+  } as ViewStyle,
+  padTop: {
+    height: Style.adjust(32),
+  } as ViewStyle,
+  userInfoWrapper: {
+    alignItems: "center",
   } as ViewStyle,
 });
