@@ -14,10 +14,19 @@ interface IProps {
   onRightIconPress: () => void;
   onStart: (contendId: string) => void;
   onEnd: () => void;
+  onError: () => void;
   cancelChallenge: (shouldNavigate: boolean) => void;
 }
 
-const MediaPlayerScreen = ({ video, onLeftIconPress, onRightIconPress, onStart, onEnd, cancelChallenge }: IProps) => {
+const MediaPlayerScreen = ({
+  video,
+  onLeftIconPress,
+  onRightIconPress,
+  onStart,
+  onEnd,
+  onError,
+  cancelChallenge,
+}: IProps) => {
   const onStartMedia = useCallback(() => {
     onStart(video.id);
   }, []);
@@ -43,6 +52,7 @@ const MediaPlayerScreen = ({ video, onLeftIconPress, onRightIconPress, onStart, 
       onRightIconPress={onRightIconPress}
       onStart={onStartMedia}
       onEnd={onEnd}
+      onError={onError}
     />
   );
 };

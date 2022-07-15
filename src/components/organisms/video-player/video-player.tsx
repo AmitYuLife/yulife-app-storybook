@@ -30,6 +30,7 @@ interface IProps {
   logo: string;
   onStart: () => void;
   onEnd: () => void;
+  onError: () => void;
   onLeftIconPress: () => void;
   onRightIconPress: () => void;
   theme: "light" | "dark";
@@ -50,6 +51,7 @@ const VideoPlayer = ({
   thumbnail,
   logo,
   onEnd,
+  onError,
   onStart,
   onLeftIconPress,
   onRightIconPress,
@@ -97,10 +99,10 @@ const VideoPlayer = ({
   const onProgress = useCallback(
     ({ currentTime }) => {
       const time = moment.duration(currentTime, "seconds").asMilliseconds();
-      const currentProgress = Math.floor(currentTime);
+      const inComingProgress = Math.floor(currentTime);
       const formatCurrentProgressInSeconds = Math.floor(state.currentProgressInSeconds);
 
-      if (formatCurrentProgressInSeconds !== currentProgress && formatCurrentProgressInSeconds < currentProgress) {
+      if (formatCurrentProgressInSeconds !== inComingProgress && formatCurrentProgressInSeconds < inComingProgress) {
         dispatch({ type: ActionTypes.SET_CURRENT_PROGRESS, payload: time });
       }
     },
@@ -162,7 +164,7 @@ const VideoPlayer = ({
           poster={poster}
           posterResizeMode="cover"
           resizeMode="cover"
-          onError={(e) => console.log(e, "onError")}
+          onError={onError}
           onLoad={onLoad}
           onEnd={handleOnEnd}
           onProgress={onProgress}

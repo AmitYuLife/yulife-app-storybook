@@ -155,7 +155,7 @@ const styles = StyleSheet.create({
     paddingLeft: Style.adjust(16),
   },
   description: {
-    paddingHorizontal: Style.adjust(85),
+    paddingHorizontal: Style.adjust(70),
     marginBottom: Style.adjust(24),
   },
   additionalInfo: {
