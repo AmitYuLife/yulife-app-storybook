@@ -43,6 +43,7 @@ export * from "./postgres/customer_payment_method";
 export * from "./postgres/customer_quote_screening";
 export * from "./postgres/business_product"; 
 export * from "./postgres/customer_product_entity";
+export * from "./postgres/customer_product_progression";
 export * from "./postgres/business_product_category";
 export * from "./postgres/customer_business_product";
 export * from "./postgres/customer_beneficiaries";
