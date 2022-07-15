@@ -213,6 +213,13 @@ export default {
         ctaLabel: "Exit challenge",
         ctaLabelSecondary: "Cancel",
       },
+      onMeditopiaError: {
+        heading: "Uh oh, something’s not quite right.",
+        subheading:
+          "We couldn’t load the media. Please check your connection and try again. If you continue to see this message reach out to us via chat.",
+        ctaLabel: "Retry",
+        ctaLabelSecondary: "Quest menu",
+      },
     },
   },
 };
