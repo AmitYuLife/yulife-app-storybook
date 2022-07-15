@@ -2,6 +2,8 @@ import { navigation } from "@utils"
 import { DATE_INPUT, PERCENTAGE_COVERED, REFERRALS_INVITE_BUTTON, PRODUCT_STEP_BODY_SCROLL_VIEW } from "@ids"
 import { screens } from "@appScreens"
 import { scrollUntilTextVisible, swipeFromText } from "_utils/navigation/scrolling"
+import moment from "moment"
+import { PAYMENT_PLAN_DENTAL_1 } from "@data"
 
 
 export const {
@@ -145,4 +147,86 @@ export const packageVisible = (packageType: any) => async () => {
         default:
             break;
     }
+}
+
+export const dentalProductInfo = (packageType: string) => async () => {
+
+    const policyDetails = "Policy details"
+    const name = "Bupa Dental Plan for YuLife"
+    const membershipNumber = "0000000123"
+    const coverFor = "What I'm covered for"
+    const bupaClaim = "How to make a claim"
+    const billingInfo = "Billing info"
+    const paymenHistory = "View payment history"
+    const updatePayment = "Update payment details"
+    const faq = "FAQs"
+    const membershipGuide = "Membership Guide"
+    const productInfo = "Product Information (IPID)"
+
+    await expect(element(by.text(policyDetails))).toBeVisible();
+    await expect(element(by.text(packageType))).toBeVisible()
+    await expect(element(by.text(name))).toBeVisible();
+    await expect(element(by.text(membershipNumber))).toBeVisible();
+    await swipeFromText(membershipNumber, "up", "fast")()
+    await expect(element(by.text(coverFor))).toBeVisible();
+    await expect(element(by.text(bupaClaim))).toBeVisible();
+    await expect(element(by.text(billingInfo))).toBeVisible();
+    await expect(element(by.text(paymenHistory))).toBeVisible();
+    await expect(element(by.text(updatePayment))).toBeVisible();
+    await expect(element(by.text(faq))).toBeVisible();
+    await expect(element(by.text(membershipGuide))).toBeVisible();
+    await expect(element(by.text(productInfo))).toBeVisible();
+}
+
+export const bupaClaimInfo = async () => {
+   const title = "How to make a claim"
+
+   await expect(element(by.text(title))).toBeVisible();
+}
+
+export const FAQInfo = async () => {
+    const faq1 = "Why YuLife?"
+    const faq2 = "Should I consider dental insurance?"
+    const faq3 = "Does this affect my insurance with my employer?"
+    const faq4 = "Will my employer know that I have purchased additional cover?"
+    const faq5 = "What is Bupa Touch?"
+    const faq6 = "Do I have to wait before I can make a claim?"
+    const faq7 = "How to make a claim"
+    const faq8 = "How long will it take for my claim to be processed?"
+    const faq9 = "When will payments be taken?"
+    const faq10 = "What happens if a payment fails?"
+    const faq11 = "Can I cancel my dental insurance?"
+    const faq12 = "Can I add my spouse/partner?"
+    const faq13 = "How can I change my policy?"
+    const faq14 = "Can I change my Yumoji's gloves?"
+
+    await expect(element(by.text(faq1))).toBeVisible();
+    await expect(element(by.text(faq2))).toBeVisible();
+    await expect(element(by.text(faq3))).toBeVisible();
+    await expect(element(by.text(faq4))).toBeVisible();
+    await expect(element(by.text(faq5))).toBeVisible();
+    await swipeFromText(faq5, "up", "slow")()
+    await expect(element(by.text(faq7))).toBeVisible();
+    await expect(element(by.text(faq8))).toBeVisible();
+    await expect(element(by.text(faq9))).toBeVisible();
+    await expect(element(by.text(faq10))).toBeVisible();
+    await swipeFromText(faq10, "up", "fast")()
+    await expect(element(by.text(faq11))).toBeVisible();
+    await expect(element(by.text(faq12))).toBeVisible();
+    await expect(element(by.text(faq13))).toBeVisible();
+    await expect(element(by.text(faq14))).toBeVisible();
+}
+
+export const paymentHistoryInfo = async () => {
+    const paymentText = "Payment History"
+    const todayDate = moment().format("DD/MM/YYYY")
+    const ammountPaid = "£18.99"
+    const status = "Paid"
+    const helpInfo = "See something that doesn't look right? Feel free to contact us via chat"
+
+    await expect(element(by.text(paymentText))).toBeVisible();
+    await expect(element(by.text(todayDate))).toBeVisible();
+    await expect(element(by.text(ammountPaid))).toBeVisible();
+    await expect(element(by.text(status))).toBeVisible();
+    await expect(element(by.text(helpInfo))).toBeVisible();
 }

@@ -1,5 +1,7 @@
 import { IDatabaseItem } from "@yu-life/yulife-bdd-framework";
-import { CUSTOMER_10, CUSTOMER_31, CUSTOMER_32, CUSTOMER_33, CUSTOMER_34, CUSTOMER_9 } from "./customers";
+import { CUSTOMER_10, CUSTOMER_31, CUSTOMER_32, CUSTOMER_33, CUSTOMER_34, CUSTOMER_9, CUSTOMER_DENTAL_1 } from "./customers";
+import moment from "moment"
+
 
 const type = "postgres"
 const modelName = "customer_product_entity"
@@ -143,5 +145,20 @@ export const CPE_34_GCI = {
         earn_rate: 10,
         product_variant_id: "AIG_GCI_01_03",
         archived: false
+    }
+} as IDatabaseItem
+
+export const CPE_DENTAL_1 = {
+    type: "postgres",
+    modelName: "customer_product_entity",
+    data: {
+        customerId: CUSTOMER_DENTAL_1.data.customerId,
+        customerProductId: "YUCPID0000000135",
+        earn_rate: 10,
+        productVariantId: "Bupa_Dent_01_03",
+        startDate: moment().format(),
+        endDate: moment("2199-12-31", "YYYY-MM-DD").format(),
+        world_id: "forest",
+        taken_up: true
     }
 } as IDatabaseItem

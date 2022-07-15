@@ -1,6 +1,10 @@
 import { IDatabaseItem } from "@yu-life/yulife-bdd-framework";
 import moment from "moment";
 import { CUSTOMER_9 } from "./customers";
+import { CPE_DENTAL_1 } from "./customer_product_entity";
+import { generateRandomPostgresId } from "@yu-life/yulife-bdd-framework";
+
+const modelName = "customer_quote";
 
 export const QUOTE_1 = {
     type: "postgres",
@@ -56,4 +60,20 @@ export const QUOTE_1 = {
         risk_premium_wl_gender_spec: 100.75063,
         risk_rate_gender_spec: 0.08325
     },
+} as IDatabaseItem;
+
+export const CUSTOMER_QUOTE_DENTAL_1 = {
+    type: "postgres",
+    modelName,
+    data: {
+        quoteId: generateRandomPostgresId(),
+        customerProductId: CPE_DENTAL_1.data.customerProductId,
+        insuranceType: "Dental",
+        insuranceMonthlyPayment: "18.99",
+        insuranceTermYears: -1,
+        validTill: moment().add(1, "year").format(),
+        createdAt: moment().format(),
+        modifiedAt: moment().format(),
+        coverType: "epic"
+    }
 } as IDatabaseItem;
