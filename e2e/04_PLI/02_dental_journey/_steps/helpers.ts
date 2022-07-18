@@ -244,5 +244,14 @@ export const PAYMENT_HISTORY = async () => {
         })
     })
 }
+
+export const PACKAGE_COVERING = async ( cover: coverLevel )  => {
+    When(`I tap "What I'm covered for" text`, when.tapText("What I'm covered for"), async () => {
+        Then(`I should see correct ${cover} Package details and price`, then.packageVisible(cover));     
+        When("I tap to go back to Policy details screen", when.tapID(BACK_BUTTON), async () => {
+            Then("I should see again Policy dedtails", then.textVisible("Policy details"))
+        })
+    })
+}
     
 

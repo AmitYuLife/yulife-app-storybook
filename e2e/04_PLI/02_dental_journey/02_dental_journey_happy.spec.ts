@@ -36,6 +36,7 @@ Feature("DENTAL HAPPY", async()=>{
                 When("I tap at level 1", when.tapTextAtIndex("10", 0), async () => {
                     Then("I should see correct product details", then.dentalProductInfo("Epic"))
                 })
+                helper.PACKAGE_COVERING("Epic")
                 helper.BUPA_CLAIM()
                 helper.FAQ()
                 helper.PAYMENT_HISTORY()
