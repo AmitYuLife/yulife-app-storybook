@@ -4,7 +4,7 @@ import { GetQuestMapLevel_getQuestMapLevel_slots_challenges } from "@graphql/_co
 import { Image, Text } from "@atoms";
 import styles from "./challenges-history-slot.styles";
 import { getSlotImageProps } from "./challenges-history.helpers";
-import { CHALLENGE_HISTORY_STARS } from "@ids";
+import { CHALLENGE_HISTORY_STARS, CHALLENGE_HISTORY_YUCOIN_STARS } from "@ids";
 import { Colours } from "@styles";
 
 interface IProps {
@@ -49,6 +49,7 @@ const ChallengesHistorySlot: React.FC<IProps> = ({
             {challenges.map((element, index) => (
               <View style={styles.challengeResultWrapper} key={`challenge-details-${index}`}>
                 <Text
+                  testID={CHALLENGE_HISTORY_YUCOIN_STARS(element.reward, element.rating, type, index)}
                   style={StyleSheet.flatten([styles.rewardText, { color: textColour }])}
                 >{`${element.reward} yucoin`}</Text>
                 <View
