@@ -104,6 +104,7 @@ export const HORIZONTAL_SCROLLER = 'HORIZONTAL_SCROLLER'
 export const DAILYSTEP_SCREEN_COIN =  "DAILYSTEP_SCREEN_COIN";
 export const STATUS_ICON = (value:string) => `STATUS_ICON_${value}`
 export const MEDITATION_ITEM = (value:string) => `MEDITATION_ITEM_${value}`
+export const CHALLENGE_HISTORY_YUCOIN_STARS = (yuCoin: string, stars: number, challengeType: string, index: number) => `CHALLENGE_HISTORY_YUCOIN+${yuCoin}_${stars}_${challengeType}_${index}`
 
 // modals
 export const WELCOME_MODAL = (heading: string) => `WELCOME_MODAL${heading}`

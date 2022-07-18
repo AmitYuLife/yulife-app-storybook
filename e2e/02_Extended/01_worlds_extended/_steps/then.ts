@@ -1,4 +1,4 @@
-import { navigation, multipleTextVisible, expectIsVisibleViaText, CHALLENGE_HISTORY_STARS, YUNITY_REACHED, navigateViaText, wait, YUNITY_HEADER, YUNITY_SUBHEADER } from "@utils"
+import { navigation, expectIsVisibleViaText, CHALLENGE_HISTORY_YUCOIN_STARS, navigateViaText, wait } from "@utils"
 import { screens } from "@appScreens"
 
 export const {
@@ -17,14 +17,14 @@ export const {
     onMeditationChallengeComplete
 } = screens.challenges
 
-export const onChallengeHistory = (challengeType: string, levelNum: number, yucoinNum: number, starCount: number, timeSpent?: number, steps?: number) => async () => {
+
+
+export const onChallengeHistory = (challengeType: string, levelNum: number, yucoinNums: number[], starsCount: number[], timeSpent?: number, steps?: number) => async () => {
     const fullHistory = "Full history"
     const level = `level ${levelNum}`
-    const yuCoin = `${yucoinNum} yucoin`
 
-    let values = [challengeType, level, yuCoin, fullHistory]
-
-
+    let values = [challengeType, level, fullHistory]
+    
     if (timeSpent > 1) {
         values.push(`${timeSpent} mins`)
     } else if (timeSpent === 1) {
@@ -36,15 +36,20 @@ export const onChallengeHistory = (challengeType: string, levelNum: number, yuco
         values.push(stepCount)
     }
 
-    for (const value of values) {
-        await expect(element(by.text(value))).toBeVisible()
+    for (const value of values ) {
+        await expect(element(by.text(value))).toBeVisible() 
     }
 
-    for (let i = 0; i < starCount; i += 1) {
-        await expect(element(by.id(CHALLENGE_HISTORY_STARS(i, challengeType)))).toBeVisible()
-    }
+    let yuCoinIndex = 0;
 
+    for (const yucoin of yucoinNums) {
+      const str = `${yucoin}`;
+      const id = CHALLENGE_HISTORY_YUCOIN_STARS(str, starsCount[yuCoinIndex], challengeType, yuCoinIndex);
+      await expect(element(by.id(id))).toBeVisible();
+      yuCoinIndex++
+    }
 }
+
 
 
 export const yunityCorrect = (worldType: "Forest" | "Ocean" |"Desert" |"Mountain1") => async()=>{
@@ -125,3 +130,33 @@ export const isOnExploreYuniverseScreen = () => async () => {
     await textVisible("With your first Yuniversal journey complete, now is a time for reflection and gratitude as you drift amongst the stars. Familiar friends will guide you on your path towards a celestial chest, and what’s inside ...", 3000)
     await navigateViaText("Explore the Yuniverse")
 }
+
+export const isOnChestScreen = (worldType: "Forest" | "Ocean" |"Desert" |"Mountain1") => async()=> {
+    await wait(5000)()
+    let label = ""
+    let subheading = ""
+
+    switch(worldType){
+        case "Forest":
+            label = "You have earned Yunity Forest Chest!"
+            break 
+        case "Ocean":
+            label = "You have earned Yunity Ocean Chest!"
+            break 
+        case "Desert":
+            label = "You have earned Yunity Desert Chest!"
+            break
+        case "Mountain1":
+            label = "You have earned Yunity Mountain Chest!"
+    }
+
+    await textVisible(label, 3000)
+}
+
+export const desertThreeRewardsVisible = () => async () => {
+    await textVisible("1 day 2x surge")
+    await textVisible("+1 Challenge per day")
+    await textVisible("Mountain Outfit")
+    await navigateViaText("Claim rewards")
+}
+ 

@@ -542,6 +542,7 @@ export const CUSTOMER_39 = {
 } as IDatabaseItem
 
 export const CUSTOMER_40 = {
+
     type: "postgres",
     modelName: "customer",
     data: {
@@ -553,6 +554,21 @@ export const CUSTOMER_40 = {
         status: "onboarded"
     }
 } as IDatabaseItem
+   
+
+export const CUSTOMER_41 = {
+    type: "postgres",
+    modelName: "customer",
+    data: {
+        customerId: generateRandomMongoId(),
+        email: generateRandomInbox(),
+        firstName: "Bo",
+        lastName: "Selecta",
+        dateOfBirth: moment().subtract(40, "years").toDate(),
+        status: "onboarded"
+    }
+} as IDatabaseItem
+       
 
 export const CUSTOMER_DENTAL_1 = {
     type: "postgres",
@@ -564,5 +580,6 @@ export const CUSTOMER_DENTAL_1 = {
         lastName: "Todd",
         dateOfBirth: moment().subtract(23, "years").toDate(),
         status: "onboarded",
-    },
+    }
 } as IDatabaseItem
+       
