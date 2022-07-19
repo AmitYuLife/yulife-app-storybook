@@ -19,6 +19,7 @@ import VideoPlayerTimer from "./video-player-timer";
 import { Button, PressableWithDelay, VidePlayerButton } from "@molecules";
 import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import { PlayIcon } from "@atoms/icon/play-icon";
+import { DETOX_ENABLED } from "@services/socket";
 
 interface IProps {
   source: string;
@@ -156,11 +157,19 @@ const VideoPlayer = ({
     }
   }, [state.isPaused, state.showFocusScreen]);
 
+  const videoUrl = useMemo(
+    () =>
+      DETOX_ENABLED
+        ? "https://yulife-local.imgix.net/media/meditation/meditopia/15-seconds-video.mp4?ixlib=js-3.2.1&s=5270f77d06c4b2ad83e582610a75553b"
+        : source,
+    [source, DETOX_ENABLED]
+  );
+
   return (
     <>
       <PressableWithDelay onPress={handleFocusScreen} style={styles.container}>
         <Video
-          source={{ uri: source }}
+          source={{ uri: videoUrl }}
           poster={poster}
           posterResizeMode="cover"
           resizeMode="cover"
