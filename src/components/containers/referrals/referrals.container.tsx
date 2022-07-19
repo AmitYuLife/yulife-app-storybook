@@ -25,7 +25,7 @@ const ReferralsContainer = ({ componentId, sourceId }: IProps) => {
 
   const handleClose = useCallback(() => Navigation.popToRoot(componentId), [componentId]);
 
-  if (loading) {
+  if (loading || !data?.referralInformation) {
     return <ReferralsLoadingScreen handleClose={handleClose} />;
   }
 
