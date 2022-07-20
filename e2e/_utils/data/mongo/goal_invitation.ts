@@ -15,7 +15,6 @@ export const GOAL_INVITATION_1 = {
     modelName,
     data:{
         goal: GOALS_1.data._id,
-        stageId: "test_stage",
         teamName:"TeamYulife",
         userId: CUSTOMER_34.data.customerId,
         endDate: moment().add(7, "day").toDate(),
@@ -27,7 +26,6 @@ export const GOAL_INVITATION_2 = {
     modelName,
     data:{
         goal: GOALS_1.data._id,
-        stageId: "test_stage",
         teamName:"TeamYulife",
         userId: CUSTOMER_20.data.customerId,
         endDate: moment().add(7, "day").toDate(),
