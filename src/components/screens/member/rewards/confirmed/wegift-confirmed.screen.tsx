@@ -86,7 +86,7 @@ class WegiftRewardsConfirmed extends React.PureComponent<Props, IState> {
           {validDate ? (
             <View style={styles.dateRowWrapper}>
               <View style={styles.dateLabelWrapper}>
-                <Text style={styles.textSizeDefault}>Valid date</Text>
+                <Text style={styles.textSizeDefault}>Valid until</Text>
               </View>
               <View style={styles.dateWrapper}>
                 <Text style={styles.textSizeDefault}>{validDate}</Text>
