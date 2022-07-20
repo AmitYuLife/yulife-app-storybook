@@ -7,6 +7,7 @@ import styles from "./challenge-details.styles";
 import Milestones, { IMilestoneProps } from "./milestones";
 import { GenericHeadingAbsolute } from "@organisms";
 import { Style } from "@styles";
+import { useBackHandler } from "@hooks";
 
 interface IOwnProps {
   heading: string;
@@ -32,6 +33,11 @@ function ChallengeDetailsScreen({
   onPressSetUp = null,
   imageUri,
 }: Props) {
+  useBackHandler(() => {
+    onPressClose();
+    return true;
+  });
+
   return (
     <>
       <View style={styles.wrapper}>
