@@ -274,17 +274,21 @@ export const queryAggregatedDataByDay = async (
 export const queryAggregatedBiking = async (
   start: Moment,
   end: Moment,
-  features: IUserStore["features"] = { disableUserEntries: true, loggingEnabled: false }
+  features?: IUserStore["features"]
 ): Promise<QueryFitKitByTypesResponse> => {
   try {
-    const { disableUserEntries = true, loggingEnabled = false } = features || {};
+    const { disableUserEntries = true, loggingEnabled = false, cyclingAggregationMin = false } = features || {
+      disableUserEntries: true,
+      loggingEnabled: false,
+    };
     const additionalFitnessActivities = getAdditionalCyclingFitnessActivities(features);
 
+    const type = cyclingAggregationMin ? FitKitTypes.TimeRange.MINUTES : FitKitTypes.TimeRange.SECONDS;
     const startTime = start.format(DATE_FORMAT_WITH_TZ);
     const endTime = end.format(DATE_FORMAT_WITH_TZ);
     const args = {
       aggregateBy: {
-        bucketSize: { value: 1, type: FitKitTypes.TimeRange.SECONDS },
+        bucketSize: { value: 1, type },
         type: FitKitTypes.AggregateType.ActivitySegment,
       },
       disableUserEntries,
