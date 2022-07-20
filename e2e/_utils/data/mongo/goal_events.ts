@@ -13,7 +13,6 @@ export const GOAL_EVENTS_1 = {
     modelName,
     data:{
         goal: GOALS_1.data._id,
-        stageId: "test_stage",
         type: "active_challenge",
         targetValue: 2,
     }
