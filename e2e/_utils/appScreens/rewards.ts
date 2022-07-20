@@ -137,7 +137,7 @@ export const denominationListVisible = (reward: any, availableYuCoin: number) =>
 export const tapDenominationList = (reward: any, index = 0) => async () => {
     const denomination = reward.data.available_denominations[index]
     const denominationText = element(by.text(`£${denomination.value} - ${addCommasToNumber(denomination.yuCoin)} YuCoin`))
-    const confirmationPurchaseText =  element(by.text(`You'll purchase £${denomination.value} Nike voucher with ${addCommasToNumber(denomination.yuCoin)} YuCoin.`))
+    const confirmationPurchaseText =  element(by.text(`You'll purchase a £${denomination.value} Nike voucher with ${addCommasToNumber(denomination.yuCoin)} YuCoin.`))
 
     await wait(5000)()
     await expect(denominationText).toBeVisible()
