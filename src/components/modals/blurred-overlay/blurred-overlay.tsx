@@ -2,7 +2,7 @@ import React, { useEffect, useRef, ReactElement, cloneElement } from "react";
 import { Animated, StyleSheet, View, ViewStyle } from "react-native";
 import { Navigation } from "react-native-navigation";
 import { BlurView } from "@react-native-community/blur";
-import { useBackHandler } from "@hooks";
+import { useBackHandler, usePressedInWithDelay } from "@hooks";
 import { MODALS } from "@navigation/constants";
 
 interface IProps {
@@ -36,21 +36,25 @@ const BlurredOverlay = ({ children, withBlurBackground, wrapperStyle }: IProps) 
   }, [fadeIn, fadeOut]);
 
   const handleClose = () => {
-    fadeOut.start(() => {
-      Navigation.dismissOverlay(MODALS.blurredOverlay);
+    fadeOut.start(({ finished }) => {
+      if (finished) {
+        Navigation.dismissOverlay(MODALS.blurredOverlay);
+      }
     });
   };
 
   useBackHandler(() => {
-    Navigation.dismissOverlay(MODALS.blurredOverlay);
+    handleClose();
     return true;
   });
+
+  const { handlePress } = usePressedInWithDelay({ onPress: handleClose });
 
   return (
     <Animated.View testID="blur-provider.overlay-container" style={[styles.wrapper, { opacity, ...wrapperStyle }]}>
       {!withBlurBackground ? null : <BlurView blurAmount={5} blurType="light" style={styles.blur} />}
-      <View style={styles.blur} onTouchStart={handleClose} />
-      {cloneElement(children, { closeOverlay: handleClose })}
+      <View style={styles.blur} onTouchStart={handlePress} />
+      {cloneElement(children, { closeOverlay: handlePress })}
     </Animated.View>
   );
 };

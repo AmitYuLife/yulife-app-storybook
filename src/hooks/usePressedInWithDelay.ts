@@ -7,9 +7,9 @@ interface Args {
 
 export function usePressedInWithDelay({ delay = 1000, onPress }: Args) {
   const [isPressedIn, setIsPressedIn] = React.useState(false);
-  const [calledAt, setCalledAt] = React.useState(getInitialDate());
-  const [isWaitingForResponse, setIsWaitingForResponse] = React.useState(false);
   const isUnmounted = useRef(false);
+  const isWaitingForResponse = useRef(false);
+  const calledAt = useRef(getInitialDate());
 
   useEffect(() => {
     return function () {
@@ -27,15 +27,14 @@ export function usePressedInWithDelay({ delay = 1000, onPress }: Args) {
         setIsPressedIn(false);
       },
       async handlePress() {
-        if (new Date().valueOf() - calledAt.valueOf() > delay) {
-          setCalledAt(new Date());
-
-          if (onPress && !isWaitingForResponse) {
-            setIsWaitingForResponse(true);
+        if (new Date().valueOf() - calledAt.current.valueOf() > delay) {
+          calledAt.current = new Date();
+          if (onPress && !isWaitingForResponse.current) {
+            isWaitingForResponse.current = true;
             await onPress(); // onPress can be anything, safer to await
 
             if (!isUnmounted.current) {
-              setIsWaitingForResponse(false);
+              isWaitingForResponse.current = false;
             }
           }
         }
