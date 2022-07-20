@@ -1,5 +1,5 @@
 import { StyleSheet, ViewStyle, ImageStyle } from "react-native";
-import { Style } from "@styles";
+import { Style, Media } from "@styles";
 import { PADDING_TOP, TOP_BAR_WITH_PAD } from "@styles/top-bar.styles";
 
 export default StyleSheet.create({
@@ -23,5 +23,9 @@ export default StyleSheet.create({
     position: "absolute",
     right: 0,
     top: PADDING_TOP,
+  } as ViewStyle,
+  levelsWrapper: {
+    position: "absolute",
+    bottom: Style.DEVICE_HEIGHT > Media.DEVICES.iPhone8.height ? 0 : Style.adjust(-40),
   } as ViewStyle,
 });
