@@ -7,6 +7,41 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.40.0] - 2022-07-20
+
+### Features
+
+- Feature XSE-1195 XSE-1197: Add new YuScreen components
+
+### Bugfixes
+
+- Bugfix: Inspect long name and VS not showing if user has no avatar
+- Bugfix: Cycling aggregation query
+- Bugfix ENG-2798: referralInformation undefined is not an object (evaluating "f.referralLink")
+- Bugfix ENG-2800: Stack yulife.quests.ChallengesList not found
+- Bugfix: Enable audio on background
+- Bugfix: Meditopia improvements
+- Bugfix: Assign default colors to or operator to protect when gql passes null
+
+### Tasks
+
+- Task GS-323: space map adjustments
+- Task: Purge event stages
+- Task: Play 15 seconds video on detox tests
+
+### Chores
+
+- Chore: bug fixes for collect goals and a copy fix
+- Chore: Readme update for push notification testing
+
+### Extra
+
+- detox/fiixes_20_07
+- Detox/end the world
+- detox:add progression to test
+- Detox/fixes 14 7
+- detox: dental approved scenario
+
 ## [3.39.0] - 2022-07-13
 
 ### Features
