@@ -8,23 +8,29 @@ interface IProps {
   avatarUri: string;
   opponentAvatarUri?: string;
   name?: string;
+  inspectOtherUser: boolean;
 }
 
-const AvatarItems = ({ avatarUri, opponentAvatarUri, name }: IProps) => {
+const AvatarItems = ({ avatarUri, opponentAvatarUri, name, inspectOtherUser }: IProps) => {
   return (
     <>
-      {opponentAvatarUri ? (
+      {inspectOtherUser ? (
         <View style={styles.opponentStateWrapper}>
-          <ActivityAvatar name={name} avatarUri={avatarUri} />
+          <ActivityAvatar name={name} avatarUri={avatarUri} opponent={true} inspectOtherUser={inspectOtherUser} />
           <View style={styles.vs}>
             <TextTemplate type="b2b" color={Colours.neutral.n500}>
               VS
             </TextTemplate>
           </View>
-          <ActivityAvatar name="You" avatarUri={opponentAvatarUri} />
+          <ActivityAvatar
+            name="You"
+            avatarUri={opponentAvatarUri}
+            opponent={false}
+            inspectOtherUser={inspectOtherUser}
+          />
         </View>
       ) : (
-        <ActivityAvatar name="You" avatarUri={avatarUri} />
+        <ActivityAvatar name="You" avatarUri={avatarUri} opponent={false} inspectOtherUser={inspectOtherUser} />
       )}
     </>
   );
