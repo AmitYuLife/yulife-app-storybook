@@ -51,11 +51,13 @@ const _YuniversalQuestsScreen: FC<IProps> = ({
       <View style={styles.backgroundImage} />
       <Image resizeMode="cover" style={styles.backgroundImage} source={BACKGROUND_IMAGE} />
       {!levelMap?.length ? null : (
-        <YuniversalQuestSvg width={styles.backgroundImage.width} height={styles.backgroundImage.height}>
-          {levelMap.map((level) => (
-            <LevelBubble {...level} key={level.text} />
-          ))}
-        </YuniversalQuestSvg>
+        <View style={styles.levelsWrapper}>
+          <YuniversalQuestSvg width={styles.backgroundImage.width} height={styles.backgroundImage.height}>
+            {levelMap.map((level) => (
+              <LevelBubble {...level} key={level.text} />
+            ))}
+          </YuniversalQuestSvg>
+        </View>
       )}
       {!SHOW_TITLE ? null : (
         <View style={styles.titleWrapper}>
