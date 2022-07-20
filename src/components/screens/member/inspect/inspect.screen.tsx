@@ -124,16 +124,21 @@ const InspectScreen = ({
         </View>
 
         <View style={styles.box}>
-          {!opponentAvatarUri ? (
+          {!inspectOtherUser ? (
             <>
-              <AvatarItems avatarUri={avatarUri} />
+              <AvatarItems avatarUri={avatarUri} inspectOtherUser={inspectOtherUser} />
               {averageItems?.map(({ icon, value, name: statsName, id, label }) => (
                 <AverageItem icon={icon} value={value} name={statsName} key={id} label={label} />
               ))}
             </>
           ) : (
             <>
-              <AvatarItems avatarUri={avatarUri} opponentAvatarUri={opponentAvatarUri} name={name} />
+              <AvatarItems
+                avatarUri={avatarUri}
+                opponentAvatarUri={opponentAvatarUri}
+                name={name}
+                inspectOtherUser={inspectOtherUser}
+              />
               {averageItems?.map(({ icon, value, name: statsName, opponentIsWinner, opponentValue, id, label }) => (
                 <AverageItem
                   icon={icon}

@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import React, { memo, useMemo } from "react";
 import { StyleSheet, View, ViewStyle } from "react-native";
 import { TextTemplate } from "@atoms";
 import { Colours, Style } from "@styles";
@@ -8,22 +8,40 @@ import { EmptyMaleBody } from "../yumoji/assets/empty-male-body-svg";
 interface IProps {
   name: string;
   avatarUri: string;
+  opponent: boolean;
+  inspectOtherUser: boolean;
 }
 
-const ActivityAvatar = ({ name, avatarUri }: IProps) => {
+const ActivityAvatar = ({ name, avatarUri, opponent, inspectOtherUser }: IProps) => {
+  const wrapper = useMemo(() => {
+    return {
+      ...styles.wrapper,
+      width: inspectOtherUser ? "43%" : "100%",
+      alignItems: !inspectOtherUser ? "center" : opponent ? "flex-start" : "flex-end",
+    } as ViewStyle;
+  }, [opponent, inspectOtherUser]);
+
+  const avatarWrapper = useMemo(
+    () => ({ ...styles.avatarWrapper, alignItems: name?.length > 15 ? "flex-start" : "center" } as ViewStyle),
+    [name]
+  );
   return (
-    <View style={styles.avatarWrapper}>
-      <View style={styles.nameTextWrapper}>
-        <TextTemplate type="b2b">{name}</TextTemplate>
-      </View>
-      <View style={styles.smallAvatarWrapper}>
-        {avatarUri ? (
-          <FastImage resizeMode="contain" source={{ uri: avatarUri }} style={styles.image} />
-        ) : (
-          <View style={styles.emptyAvatarWrapper}>
-            <EmptyMaleBody height={Style.adjust(223)} width={Style.adjust(83)} />
-          </View>
-        )}
+    <View style={wrapper}>
+      <View style={avatarWrapper}>
+        <View style={styles.nameTextWrapper}>
+          <TextTemplate type="b2b" numberOfLines={1}>
+            {name}
+          </TextTemplate>
+        </View>
+        <View style={styles.smallAvatarWrapper}>
+          {avatarUri ? (
+            <FastImage resizeMode="contain" source={{ uri: avatarUri }} style={styles.image} />
+          ) : (
+            <View style={styles.emptyAvatarWrapper}>
+              <EmptyMaleBody height={Style.adjust(223)} width={Style.adjust(83)} />
+            </View>
+          )}
+        </View>
       </View>
     </View>
   );
@@ -54,9 +72,11 @@ const styles = StyleSheet.create({
     borderRadius: Style.adjust(60),
     backgroundColor: Colours.metallic.m100,
   } as ViewStyle,
+  wrapper: {
+    marginBottom: Style.adjust(8),
+  } as ViewStyle,
   avatarWrapper: {
     alignItems: "center",
-    marginBottom: Style.adjust(8),
   } as ViewStyle,
   nameTextWrapper: {
     marginBottom: Style.adjust(16),
