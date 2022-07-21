@@ -33,13 +33,13 @@ Feature("DENTAL HAPPY", async()=>{
         Given("I login as a user with Bupa Dental product approved", given.loginToYuScreen(false, CUSTOMER_DENTAL_1, AUTH_DENTAL_1), async()=>{
             Then("I should be on the yuscreen", then.onYuscreenV3(CUSTOMER_DENTAL_1))
             When("I create the default yumoji", when.createDefaultYumoji, async () => {
-                When("I tap at level 1", when.tapTextAtIndex("10", 0), async () => {
-                    Then("I should see correct product details", then.dentalProductInfo("Epic"))
+                When("I tap at YuCoin Power 10", when.tapTextAtIndex("10", 0), async () => {
+                    Then("I should see correct product details", then.dentalProductInfo("Epic", "0123"))
                 })
                 helper.PACKAGE_COVERING("Epic")
                 helper.BUPA_CLAIM()
                 helper.FAQ()
-                helper.PAYMENT_HISTORY()
+                helper.PAYMENT_HISTORY("£18.99", "Paid")
             })
         })
     })

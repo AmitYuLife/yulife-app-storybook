@@ -2,7 +2,7 @@ import { When, Then } from "@yu-life/yulife-bdd-framework";
 import * as when from "./when"
 import * as then from "./then"
 import { CUSTOMER_37, AUTH_37 } from "@data";
-import { CONDITION_OPTION, CONTENT_ITEM_INPUT, PRODUCT_STEP_BODY_SCROLL_VIEW, SCROLL_PICKER, SCROLL_PICKER_ACTIVE_ITEM, SELECTED_PACKAGE_TITLE, YUCOIN_POWER, TEXT_TEMPLATE, COVER_TYPE, BUTTON_CLOSE_CHALLENGE, BACK_BUTTON, PACKAGE_INFO, BUTTON_CLOSE} from "@ids";
+import { CONDITION_OPTION, CONTENT_ITEM_INPUT, PRODUCT_STEP_BODY_SCROLL_VIEW, SCROLL_PICKER, SCROLL_PICKER_ACTIVE_ITEM, SELECTED_PACKAGE_TITLE, YUCOIN_POWER, TEXT_TEMPLATE, COVER_TYPE, BUTTON_CLOSE_CHALLENGE, BACK_BUTTON, PACKAGE_INFO, BUTTON_CLOSE } from "@ids";
 import { addCommasToNumber } from "_utils/appScreens/rewards";
 import { capitalizeFirstLetter } from "@navigation";
 import moment from "moment"
@@ -222,25 +222,27 @@ export const BUPA_CLAIM = async () => {
     When("I tap How to make claim", when.tapText("How to make a claim"), async () => {
         Then("I should see Bupa claim text", then.bupaClaimInfo)
         When("I tap to go back to Policy details screen", when.tapID(BACK_BUTTON), async () => {
-            Then("I should see again Policy dedtails", then.textVisible("Policy details"))
+            Then("I should see again Policy details", then.textVisible("Policy details"))
         })
     })
 }
 
 export const FAQ = async () => {
-    When("I tap FAQs text", when.tapText("FAQs"), async () => {
-        Then("I should see FAQs info", then.FAQInfo)
-        When("I tap to go back to Policy details screen", when.tapID(BACK_BUTTON), async () => {
-            Then("I should see again Policy dedtails", then.textVisible("Policy details"))
+    When("I swipe down the page", when.swipeFromText("How to make a claim", "up", "slow"), async () => {
+        When("I tap FAQs text", when.tapText("FAQs"), async () => {
+            Then("I should see FAQs info", then.FAQInfo)
+            When("I tap to go back to Policy details screen", when.tapID(BACK_BUTTON), async () => {
+                Then("I should see again Billing info", then.textVisible("Billing info"))
+            })
         })
     })
 }
 
-export const PAYMENT_HISTORY = async () => {
+export const PAYMENT_HISTORY = async ( ammountPaid: string, payStatus: string )  => {
     When("I tap View payment history text", when.tapText("View payment history"), async () => {
-        Then("I should see View payment history info", then.paymentHistoryInfo)
+        Then("I should see View payment history info", then.paymentHistoryInfo(ammountPaid, payStatus))
         When("I tap to go back to Policy details screen", when.tapID(BACK_BUTTON), async () => {
-            Then("I should see again Policy dedtails", then.textVisible("Policy details"))
+            Then("I should see again Billing info", then.textVisible("Billing info"))
         })
     })
 }
@@ -249,7 +251,16 @@ export const PACKAGE_COVERING = async ( cover: coverLevel )  => {
     When(`I tap "What I'm covered for" text`, when.tapText("What I'm covered for"), async () => {
         Then(`I should see correct ${cover} Package details and price`, then.packageVisible(cover));     
         When("I tap to go back to Policy details screen", when.tapID(BACK_BUTTON), async () => {
-            Then("I should see again Policy dedtails", then.textVisible("Policy details"))
+            Then("I should see again Policy details", then.textVisible("Policy details"))
+        })
+    })
+}
+
+export const CANCELLED_NOTIFICATION = async ( cover: coverLevel )  => {
+    When(`I tap "What I'm covered for" text`, when.tapText("What I'm covered for"), async () => {
+        Then(`I should see correct ${cover} Package details and price`, then.packageVisible(cover));     
+        When("I tap to go back to Policy details screen", when.tapID(BACK_BUTTON), async () => {
+            Then("I should see again Billing info", then.textVisible("Billing info"))
         })
     })
 }
