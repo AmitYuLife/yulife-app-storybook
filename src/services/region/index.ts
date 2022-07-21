@@ -1,7 +1,7 @@
 import Config from "react-native-config";
 import AsyncStorage from "@react-native-community/async-storage";
 
-type REGION = "UK" | "US";
+export type REGION = "UK" | "US";
 
 type RegionConfig = {
   language: string;
