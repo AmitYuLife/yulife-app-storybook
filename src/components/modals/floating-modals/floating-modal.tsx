@@ -1,25 +1,44 @@
 import React, { memo, ReactElement } from "react";
 import { StyleSheet, View } from "react-native";
-import { Button } from "@molecules";
+import { Button, SecondaryButton } from "@molecules";
 import { Style } from "@styles";
 import { ContentItemLottie } from "@components/sdui";
 import { ContentItemLottie as GqlLottie } from "@graphql/_core/schema";
+import { useTranslation } from "@hooks";
 
 interface IProps {
   closeOverlay?: () => void;
   children: ReactElement;
   height?: number;
-  lottie: GqlLottie;
+  paddingTop?: number;
+  lottie?: GqlLottie;
+  isCloseButtonSecondary?: boolean;
 }
 
-const FloatingModal = ({ closeOverlay, children, lottie, height = Style.adjust(420) }: IProps) => {
+const FloatingModal = ({
+  closeOverlay,
+  children,
+  lottie,
+  height = Style.adjust(420),
+  paddingTop = Style.adjust(124),
+  isCloseButtonSecondary,
+}: IProps) => {
+  const CloseButton = isCloseButtonSecondary ? SecondaryButton : Button;
+  const translation = useTranslation(["button.close"]);
+
   return (
-    <View style={[styles.wrapper, { height }]}>
-      <View style={styles.iconWrapper}>
-        <ContentItemLottie {...lottie} />
-      </View>
+    <View style={[styles.wrapper, { paddingTop, minHeight: height }]}>
+      {!lottie ? null : (
+        <View style={styles.iconWrapper}>
+          <ContentItemLottie {...lottie} />
+        </View>
+      )}
       {children}
-      <Button onPress={closeOverlay} label="Dismiss" wrapperStyle={styles.buttonWrapperStyle} />
+      <CloseButton
+        onPress={closeOverlay}
+        label={translation["button.close"]}
+        wrapperStyle={styles.buttonWrapperStyle}
+      />
     </View>
   );
 };
@@ -29,7 +48,6 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     borderTopLeftRadius: Style.adjust(20),
     borderTopRightRadius: Style.adjust(20),
-    paddingTop: Style.adjust(124),
   },
   iconWrapper: {
     height: Style.adjust(140),

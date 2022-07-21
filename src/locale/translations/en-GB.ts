@@ -9,6 +9,10 @@ export default {
     password: "Please enter a password.",
   },
   meditation: "Meditation",
+  button: {
+    close: "Close",
+    dismiss: "Dismiss",
+  },
   screens: {
     login: {
       heading: "Welcome!",

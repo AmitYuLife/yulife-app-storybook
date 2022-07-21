@@ -49,8 +49,8 @@ const DailyStepsScreen = ({
   hideInformationIcon,
 }: Props) => {
   const onSurgePress = useCallback(async () => {
-    const child = <SurgeModal {...userSurge} />;
-    await showFloatingModal(child, userSurge?.lottie, MODALS.surgeOverlay);
+    const children = <SurgeModal {...userSurge} />;
+    await showFloatingModal({ children, lottie: userSurge?.lottie, modalId: MODALS.surgeOverlay });
   }, [userSurge]);
 
   return (

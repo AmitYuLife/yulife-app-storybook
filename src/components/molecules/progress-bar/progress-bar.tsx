@@ -12,6 +12,7 @@ interface IProgressBarProps {
   children?: React.ReactNode;
   style?: ViewStyle;
   isDisabled?: boolean;
+  isCompleted?: boolean;
 }
 
 export default function ProgressBar(props: IProgressBarProps) {
@@ -23,6 +24,7 @@ export default function ProgressBar(props: IProgressBarProps) {
     marginHorizontal = Style.adjust(48),
     style,
     isDisabled,
+    isCompleted,
   } = props;
 
   const [position, setPosition] = useState(currentPosition);
@@ -70,7 +72,7 @@ export default function ProgressBar(props: IProgressBarProps) {
       fill: isDisabled ? Colours.neutral.n100 : Colours.metallic.m100,
       stroke: Colours.metallic.m200,
     }),
-    [isDisabled, data.currentProgressUI]
+    [isDisabled]
   );
 
   if (hideType === "unrendered") {
@@ -80,6 +82,8 @@ export default function ProgressBar(props: IProgressBarProps) {
   if (hideType === "invisible") {
     return <View style={styles.emptyWrapper} />;
   }
+
+  const fillColour = isCompleted ? Colours.status.su400 : Colours.primary.p400;
 
   return (
     <View style={[styles.wrapper, { width: data.wrapperWidth }, style]}>
@@ -93,8 +97,7 @@ export default function ProgressBar(props: IProgressBarProps) {
           fill={svgProps.fill}
           stroke={svgProps.stroke}
         />
-        <Rect width={data.currentProgressUI} height={14} rx={7} fill="#F43E8E" />
-        <Rect x={5} y={3} width={data.safeShineWidth} height={5} rx={2.5} fill="#F664A4" />
+        <Rect width={data.currentProgressUI} height={14} rx={7} fill={fillColour} />
       </Svg>
       {props.children}
     </View>
