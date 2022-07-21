@@ -149,11 +149,11 @@ export const packageVisible = (packageType: any) => async () => {
     }
 }
 
-export const dentalProductInfo = (packageType: string) => async () => {
+export const dentalProductInfo = (packageType: string, membershipEnding: string) => async () => {
 
     const policyDetails = "Policy details"
     const name = "Bupa Dental Plan for YuLife"
-    const membershipNumber = "0000000123"
+    const membershipNumber = `000000${membershipEnding}`
     const coverFor = "What I'm covered for"
     const bupaClaim = "How to make a claim"
     const billingInfo = "Billing info"
@@ -176,6 +176,7 @@ export const dentalProductInfo = (packageType: string) => async () => {
     await expect(element(by.text(faq))).toBeVisible();
     await expect(element(by.text(membershipGuide))).toBeVisible();
     await expect(element(by.text(productInfo))).toBeVisible();
+    await swipeFromText(productInfo, "down", "slow", 0.5)()
 }
 
 export const bupaClaimInfo = async () => {
@@ -217,16 +218,27 @@ export const FAQInfo = async () => {
     await expect(element(by.text(faq14))).toBeVisible();
 }
 
-export const paymentHistoryInfo = async () => {
+export const paymentHistoryInfo = (ammountPaid: string, payStatus: string) => async () => {
     const paymentText = "Payment History"
     const todayDate = moment().format("DD/MM/YYYY")
-    const ammountPaid = "£18.99"
-    const status = "Paid"
     const helpInfo = "See something that doesn't look right? Feel free to contact us via chat"
 
     await expect(element(by.text(paymentText))).toBeVisible();
     await expect(element(by.text(todayDate))).toBeVisible();
     await expect(element(by.text(ammountPaid))).toBeVisible();
-    await expect(element(by.text(status))).toBeVisible();
+    await expect(element(by.text(payStatus))).toBeVisible();
     await expect(element(by.text(helpInfo))).toBeVisible();
+
+    if(payStatus === "Failed") {
+        await expect(element(by.text(payStatus))).toBeVisible();
+    } else {
+        await expect(element(by.text(payStatus))).toBeVisible();
+    }
 }
+
+export const cancelledNotificationVisible = async () => {
+    const policyEndDate =  moment().add(7, "d").format("DD/MM/YYYY")
+    const notification = `Your policy ends soon. In the meantime, you're still covered and can still make claims for treatment received up until ${policyEndDate}.`
+ 
+    await expect(element(by.text(notification))).toBeVisible();
+ }

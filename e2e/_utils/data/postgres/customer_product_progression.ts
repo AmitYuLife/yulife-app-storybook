@@ -49,7 +49,7 @@ export const CUSTOMER_PROGRESSION_4 = {
         customer_product_progression_id :  generateRandomPostgresId(),
         customerProductId: "YUCPID0000000135",
         step_id : "Bupa_Dent_01_checkout_payment",
-        step_data : "{\"coverType\":\"epic\",\"selectedPackage\":{\"earnRate\":6,\"coverType\":\"epic\",\"insuranceMonthlyPayment\":2799,\"productVariantId\":\"Bupa_Dent_01_03\",\"value\":2799,\"insuranceTermYears\":0,\"bmiLoading\":0,\"riskRate\":0,\"riskPremiumWithLoading\":0,\"riskRateGenderSpec\":0,\"riskPremiumWlGenderSpec\":0,\"coverLoading\":0,\"insuranceCoverAmount\":0,\"medicalCost\":0,\"carrierFee\":0},\"worldId\":\"forest\",\"customerPaymentMethodId\":\"YUPAYMETHOD0003568\",\"cardLast4\":\"Ending in 4242\",\"cardBrand\":\"Visa\",\"cardValidTill\":\"4\/2024\",\"__typename\":\"ConfirmedPaymentCard\"}",
+        step_data : "{\"coverType\":\"epic\",\"selectedPackage\":{\"earnRate\":6,\"coverType\":\"epic\",\"insuranceMonthlyPayment\":2799,\"productVariantId\":\"Bupa_Dent_01_03\",\"value\":2799,\"insuranceTermYears\":0,\"bmiLoading\":0,\"riskRate\":0,\"riskPremiumWithLoading\":0,\"riskRateGenderSpec\":0,\"riskPremiumWlGenderSpec\":0,\"coverLoading\":0,\"insuranceCoverAmount\":0,\"medicalCost\":0,\"carrierFee\":0},\"worldId\":\"forest\",\"customerPaymentMethodId\":\"YUPAYMENTMETHOD002\",\"cardLast4\":\"Ending in 4242\",\"cardBrand\":\"Visa\",\"cardValidTill\":\"4\/2024\",\"__typename\":\"ConfirmedPaymentCard\"}",
         archived : false,
         session_id : "a03f5545-5a57-47c3-8467-ab789c5a4401"
     },
@@ -79,6 +79,86 @@ export const CUSTOMER_PROGRESSION_6 = {
         step_data : "{\"dentalStartDate\":\"2022-07-16T00:00:00\",\"subscriptionTrialId\":\"sub_1LIDxPGwfxr4FdJOTxnRmP78\",\"bupaResponseDue\":\"2022-07-14T00:00:00\",\"sentToBupa\":true,\"bupaGroupNumber\":\"55315653120\", \"successFromBupa\": true, \"responseFromBupa\": true, \"bupaMembershipNumber\": \"membershipNumber\"}",
         archived : false,
         session_id : "a03f5545-5a57-47c3-8467-ab789c5a4401"
+    },
+}
+
+export const CUSTOMER_PROGRESSION_7 = {
+    type: "postgres",
+    modelName,
+    data: {
+        customer_product_progression_id :  generateRandomPostgresId(),
+        customerProductId: "YUCPID0000000136",
+        step_id : "Bupa_Dent_01_onboarding",
+        step_data : "{}",
+        archived : false,
+        session_id : "a03f5545-5a57-47c3-8467-ab789c5a4411"
+    },
+ }
+
+ export const CUSTOMER_PROGRESSION_8 = {
+    type: "postgres",
+    modelName,
+    data: {
+        customer_product_progression_id :  generateRandomPostgresId(),
+        customerProductId: "YUCPID0000000136",
+        step_id : "Bupa_Dent_01_checkout_summary",
+        step_data : "{\"coverType\":\"common\",\"selectedPackage\":{\"earnRate\":2,\"coverType\":\"common\",\"insuranceMonthlyPayment\":1299,\"productVariantId\":\"Bupa_Dent_01_03\",\"value\":1299,\"insuranceTermYears\":0,\"bmiLoading\":0,\"riskRate\":0,\"riskPremiumWithLoading\":0,\"riskRateGenderSpec\":0,\"riskPremiumWlGenderSpec\":0,\"coverLoading\":0,\"insuranceCoverAmount\":0,\"medicalCost\":0,\"carrierFee\":0},\"worldId\":\"forest\"}",
+        archived : false,
+        session_id : "a03f5545-5a57-47c3-8467-ab789c5a4411"
+    },
+ }
+
+export const CUSTOMER_PROGRESSION_9 = {
+    type: "postgres",
+    modelName,
+    data: {
+        customer_product_progression_id :  generateRandomPostgresId(),
+        customerProductId: "YUCPID0000000136",
+        step_id : "Bupa_Dent_01_select_package_loading",
+        step_data : "{\"selectedPackage\":{\"earnRate\":2,\"coverType\":\"common\",\"insuranceMonthlyPayment\":1299,\"productVariantId\":\"Bupa_Dent_01_03\",\"value\":1299,\"insuranceTermYears\":0,\"bmiLoading\":0,\"riskRate\":0,\"riskPremiumWithLoading\":0,\"riskRateGenderSpec\":0,\"riskPremiumWlGenderSpec\":0,\"coverLoading\":0,\"insuranceCoverAmount\":0,\"medicalCost\":0,\"carrierFee\":0}}",
+        archived : false,
+        session_id : "a03f5545-5a57-47c3-8467-ab789c5a4411"
+    },
+}
+
+
+export const CUSTOMER_PROGRESSION_10 = {
+    type: "postgres",
+    modelName,
+    data: {
+        customer_product_progression_id :  generateRandomPostgresId(),
+        customerProductId: "YUCPID0000000136",
+        step_id : "Bupa_Dent_01_checkout_payment",
+        step_data : "{\"coverType\":\"common\",\"selectedPackage\":{\"earnRate\":2,\"coverType\":\"common\",\"insuranceMonthlyPayment\":1299,\"productVariantId\":\"Bupa_Dent_01_03\",\"value\":1299,\"insuranceTermYears\":0,\"bmiLoading\":0,\"riskRate\":0,\"riskPremiumWithLoading\":0,\"riskRateGenderSpec\":0,\"riskPremiumWlGenderSpec\":0,\"coverLoading\":0,\"insuranceCoverAmount\":0,\"medicalCost\":0,\"carrierFee\":0},\"worldId\":\"forest\",\"customerPaymentMethodId\":\"YUPAYMENTMETHOD002\",\"cardLast4\":\"Ending in 4242\",\"cardBrand\":\"Visa\",\"cardValidTill\":\"4\/2024\",\"__typename\":\"ConfirmedPaymentCard\"}",
+        archived : false,
+        session_id : "a03f5545-5a57-47c3-8467-ab789c5a4411"
+    },
+}
+
+
+export const CUSTOMER_PROGRESSION_11 = {
+    type: "postgres",
+    modelName,
+    data: {
+        customer_product_progression_id :  generateRandomPostgresId(),
+        customerProductId: "YUCPID0000000136",
+        step_id : "Bupa_Dent_01_policy_holding",
+        step_data : "{}",
+        archived : false,
+        session_id : "a03f5545-5a57-47c3-8467-ab789c5a4411"
+    },
+}
+
+export const CUSTOMER_PROGRESSION_12 = {
+    type: "postgres",
+    modelName,
+    data: {
+        customer_product_progression_id :  generateRandomPostgresId(),
+        customerProductId: "YUCPID0000000136",
+        step_id : "Bupa_Dent_01_success_purchase",
+        step_data : "{\"dentalStartDate\":\"2022-07-16T00:00:00\",\"subscriptionTrialId\":\"sub_2LIDxPGwfxr4FdJOTxnRmP79\",\"bupaResponseDue\":\"2022-07-14T00:00:00\",\"sentToBupa\":true,\"bupaGroupNumber\":\"55315653121\", \"successFromBupa\": true, \"responseFromBupa\": true, \"bupaMembershipNumber\": \"membershipNumber\"}",
+        archived : false,
+        session_id : "a03f5545-5a57-47c3-8467-ab789c5a4411"
     },
 }
     
