@@ -57,7 +57,7 @@ export const GQL_QUERY_GET_TODAY_EARNINGS = gql`
           maxLength
           currentPosition
           iconUrl {
-            uri(options: { width: 32, height: 32 })
+            uri(options: { width: 64, height: 64 })
           }
         }
       }

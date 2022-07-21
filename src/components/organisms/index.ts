@@ -22,3 +22,4 @@ export { default as Chest, CHEST_STATE } from "./chest/chest";
 export { default as InspectDetailsItem } from "./inspect/details-item";
 export { default as ChestCard } from "./chest-card/chest-card";
 export { default as AvatarItems } from "./inspect/avatar-items";
+export { ActivityProgress, ClaimableActivityProgress } from "./activity-progress/activity-progress";
