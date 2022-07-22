@@ -6,8 +6,8 @@ import { IThemeStore } from "@redux/theme/theme.reducer";
 import { DAILY_STEPS_SCREEN } from "@ids";
 import { IConnectedScreenProps } from "@app/typings";
 import { Pad } from "@atoms";
-import { Surge, TouchableOpacityWithDelay, CentredScreen } from "@molecules";
-import { Streak, TopBar, NavBar, DailyStepsContent, CustomIcon } from "@organisms";
+import { TouchableOpacityWithDelay, CentredScreen } from "@molecules";
+import { Surge, Streak, TopBar, NavBar, DailyStepsContent, CustomIcon } from "@organisms";
 import { Style } from "@styles";
 import styles from "./daily-steps.screen.styles";
 import YuCoin from "./assets/yu-coin";
@@ -72,7 +72,7 @@ const DailyStepsScreen = ({
         <DailyStepsContent />
         <View style={styles.leftIconList}>
           {!userSurge?.endDateTime ? null : (
-            <Surge multiplier={userSurge?.multiplier} expireDate={userSurge?.endDateTime} onPress={onSurgePress} />
+            <Surge multiplier={userSurge?.multiplier} endDateTime={userSurge?.endDateTime} onPress={onSurgePress} />
           )}
           {customIcon?.position !== "left" ? null : <CustomIcon icon={customIcon} />}
         </View>
