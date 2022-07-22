@@ -21,7 +21,7 @@ const _YuScreenContainer = (props: ConnectedState) => {
   const [popover, setPopover] = useState(null);
   const avatar = useSelector(getUserAvatar);
   const earnRate = useSelector(getUserEarnRate);
-  const showV4 = useSelector(getUserFeatures).yuScreenV4dev;
+  const showV4 = useSelector(getUserFeatures).yuScreenV4beta;
 
   const yumojiRemoteUrl = avatar.avatarRemoteFiles?.pngFull;
 
