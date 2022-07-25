@@ -1,11 +1,11 @@
 import { ProductStepAction } from "./sdui.types";
 
-type ParsedJson = {
+type ParsedJson<T> = {
   isValid: boolean;
-  data: Record<string, any>;
+  data: T;
 };
 
-export function parseJSON(payload: string, expectedKeys: string[] = []): ParsedJson {
+export function parseJSON<T = Record<string, any>>(payload: string, expectedKeys: string[] = []): ParsedJson<T> {
   try {
     const data = JSON.parse(payload) || {};
 
@@ -18,7 +18,7 @@ export function parseJSON(payload: string, expectedKeys: string[] = []): ParsedJ
       data,
     };
   } catch (e) {
-    return { data: {}, isValid: false };
+    return { data: {} as T, isValid: false };
   }
 }
 

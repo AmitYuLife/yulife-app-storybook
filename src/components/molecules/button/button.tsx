@@ -24,6 +24,7 @@ interface IProps {
   shadowColor?: string;
   textColor?: string;
   showBadge?: boolean;
+  height?: number;
 }
 
 function Button(props: IProps) {
@@ -43,6 +44,7 @@ function Button(props: IProps) {
     shadowColor = Colours.primary.p600Shadow,
     textColor = Colours.neutral.white,
     showBadge = false,
+    height,
   } = props;
 
   const { handlePress } = usePressedInWithDelay({ onPress, delay });
@@ -61,7 +63,7 @@ function Button(props: IProps) {
         shadowColor={shadowColor || Colours.primary.p600Shadow}
         color={textColor || Colours.neutral.white}
         testID={testID}
-        height={buttonDimensions.height}
+        height={height || buttonDimensions.height}
         isLoading={isLoading}
         disabled={disabled}
         title={label}

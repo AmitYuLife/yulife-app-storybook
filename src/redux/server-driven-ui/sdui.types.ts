@@ -28,3 +28,10 @@ export interface ProductStepAction {
 }
 
 export type SduiActionTypes = ISetIsLoading;
+
+export type YuScreenNextRoute = {
+  nextRouteId?: string;
+  nextModalId?: string;
+  shouldBeNormalised?: boolean;
+  productId: string;
+};

@@ -2,23 +2,31 @@ import { Alert } from "react-native";
 import { Navigation } from "react-native-navigation";
 import { all, call, select, ActionPattern, takeEvery, takeLeading, put } from "redux-saga/effects";
 import { SduiActionType } from "@graphql/_core/schema/globalTypes";
-import { MODALS } from "@navigation/constants";
+import { MODALS, ROUTES } from "@navigation/constants";
 import { showYuModal, TAB_ROUTES } from "@navigation/root";
 import { handleLinkPress } from "@services/app-link";
 import Intercom from "@intercom/intercom-react-native";
 import Logger from "@services/logging/logger";
 import { SyncAction } from "@redux/_core/types";
 import { getRouteState } from "../app/app.selectors";
-import { submitPersonalProductStep, backPersonalProductStep } from "@graphql/personalProduct";
-import { ProductStepAction } from "./sdui.types";
+import {
+  submitPersonalProductStep,
+  backPersonalProductStep,
+  normalisePersonalProductStep,
+} from "@graphql/personalProduct";
+import { ProductStepAction, YuScreenNextRoute } from "./sdui.types";
 import { parseJSON, getServerPayload } from "./sdui.helpers";
 import { setLoadingState } from "./sdui.actions";
 import { getYuScreenProductSlots } from "@graphql/yuscreen";
 import { store as reduxStore } from "../_core/store";
 import { refreshUserProfile } from "../user/user.actions";
+import { getUserFeatures } from "@redux/user/user.selectors";
+import { getYuScreen } from "@graphql/yuscreen/getYuScreen.gql";
 
 function* navigateBack({ payload }: ProductStepAction) {
   const currentRoute: ReturnType<typeof getRouteState> = yield select(getRouteState);
+  const userFeatures: ReturnType<typeof getUserFeatures> = yield select(getUserFeatures);
+
   const onExit = () => Navigation.pop(currentRoute);
 
   const {
@@ -28,7 +36,9 @@ function* navigateBack({ payload }: ProductStepAction) {
 
   try {
     // update YuScreen slots incase any journey progression has changed
-    yield call(getYuScreenProductSlots);
+    const updateYuScreen = userFeatures.yuScreenV4beta ? getYuScreen : getYuScreenProductSlots;
+    yield call(updateYuScreen);
+
     // Dispatch additional actions supplied by the server
     if (dispatchActions.length) {
       yield all(dispatchActions.map((dispatchAction: { type: string }) => put(dispatchAction)));
@@ -152,6 +162,8 @@ function* finishStepJourney(action: ProductStepAction) {
   const serverDynamicData = isValid ? data : {};
 
   const currentRoute: ReturnType<typeof getRouteState> = yield select(getRouteState);
+  const userFeatures: ReturnType<typeof getUserFeatures> = yield select(getUserFeatures);
+  const refetchQuery = userFeatures.yuScreenV4beta ? "GetYuScreen" : "YuScreenProductSlots";
 
   try {
     yield call(
@@ -161,7 +173,7 @@ function* finishStepJourney(action: ProductStepAction) {
         stepId,
         data: JSON.stringify({ ...serverDynamicData, ...dynamicData }),
       },
-      ["YuScreenProductSlots"]
+      [refetchQuery]
     );
     yield put(refreshUserProfile());
     yield call(() => Navigation.pop(currentRoute));
@@ -254,6 +266,49 @@ function* openAlertDialog(action: ProductStepAction) {
   }
 }
 
+function* yuScreenNavigate(action: SyncAction<string>) {
+  const { isValid, data } = parseJSON<YuScreenNextRoute>(action.payload, ["productId"]);
+
+  if (isValid) {
+    if (data.shouldBeNormalised) {
+      try {
+        yield call(normalisePersonalProductStep, {
+          productId: data.productId,
+        });
+      } catch (e) {
+        Logger.error(e, { where: "product-step-normalise" });
+      }
+    }
+
+    if (data.nextModalId) {
+      yield call(() =>
+        showYuModal({
+          component: {
+            id: data.nextModalId,
+            name: data.nextModalId,
+            passProps: {
+              productId: data.productId,
+            },
+          },
+        })
+      );
+      return;
+    }
+
+    yield call(() =>
+      Navigation.push(ROUTES.yuScreen, {
+        component: {
+          id: data.nextRouteId,
+          name: data.nextRouteId,
+          passProps: {
+            productId: data.productId,
+          },
+        },
+      })
+    );
+  }
+}
+
 export default [
   takeLeading(SduiActionType.SDUI_ACTION_NAVIGATE_BACK as ActionPattern, navigateBack),
   takeLeading(SduiActionType.SDUI_ACTION_NAVIGATE as ActionPattern, navigateTo),
@@ -266,4 +321,5 @@ export default [
   takeLeading(SduiActionType.SDUI_ACTION_OPEN_MODAL as ActionPattern, openModal),
   takeLeading(SduiActionType.SDUI_ACTION_OPEN_ALERT_DIALOG as ActionPattern, openAlertDialog),
   takeEvery(SduiActionType.SDUI_ACTION_LOG_EVENT as ActionPattern, logEvent),
+  takeEvery(SduiActionType.SDUI_ACTION_YU_SCREEN_NAVIGATE as ActionPattern, yuScreenNavigate),
 ];
