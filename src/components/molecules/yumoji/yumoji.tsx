@@ -6,6 +6,7 @@ import { EmptyMaleBody } from "./assets/empty-male-body-svg";
 interface Props {
   uri: string;
   testID?: string;
+  theme?: "light" | "dark";
   height?: number;
   width?: number;
   emptyHeight?: number;
@@ -20,6 +21,7 @@ export const EMPTY_BODY_AVATAR_WIDTH = Style.SCALE_UP_AND_DOWN(40);
 function _Yumoji({
   uri,
   testID,
+  theme = "light",
   height = BODY_AVATAR_HEIGHT,
   width = BODY_AVATAR_WIDTH,
   emptyHeight = EMPTY_BODY_AVATAR_HEIGHT,
@@ -29,7 +31,7 @@ function _Yumoji({
     return <EmptyMaleBody height={emptyHeight} width={emptyWidth} />;
   }
 
-  return <Image testID={testID} width={width} height={height} source={{ uri }} />;
+  return <Image testID={testID} width={width} height={height} source={{ uri }} theme={theme} />;
 }
 
 const MemoizedYumoji = React.memo(_Yumoji);

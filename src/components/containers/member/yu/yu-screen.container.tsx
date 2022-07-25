@@ -1,14 +1,15 @@
 import React, { memo, useState } from "react";
 import { YuScreen } from "./yu-screen";
 import { YuScreen as YuScreenLegacy } from "./legacy/yu-screen.legacy";
-import { YuScreenLayout } from "./yu-screen-layout";
+import { YuScreenLayoutLegacy } from "./legacy/yu-screen-layout-legacy";
 import { YuScreenLoading } from "./yu-screen-loading";
 import { useSelector } from "react-redux";
 import { useTapBackTwiceToExit } from "@hooks";
 import { IMainTabsProps } from "@navigation/root";
-import { YUSCREEN_V3 } from "@ids";
+import { YUSCREEN_V3, YUSCREEN_V4 } from "@ids";
 import { YuScreenContext } from "./context/yu-screen.context";
 import { getUserAvatar, getUserEarnRate, getUserFeatures } from "@redux/user/user.selectors";
+import { YuScreenLayout } from "./yu-screen-layout";
 
 type ConnectedState = IMainTabsProps;
 
@@ -27,9 +28,7 @@ const _YuScreenContainer = (props: ConnectedState) => {
 
   return (
     <YuScreenContext.Provider value={{ earnRate, yumojiRemoteUrl, popover, setPopover }}>
-      <YuScreenLayout testID={YUSCREEN_V3(true)}>
-        <YuScreenVersion earnRate={earnRate} showV4={showV4} />
-      </YuScreenLayout>
+      <YuScreenVersion earnRate={earnRate} showV4={showV4} />
     </YuScreenContext.Provider>
   );
 };
@@ -45,10 +44,18 @@ const YuScreenVersion = ({ earnRate, showV4 }: YuScreenVersionProps) => {
   }
 
   if (showV4) {
-    return <YuScreen />;
+    return (
+      <YuScreenLayout testID={YUSCREEN_V4(true)}>
+        <YuScreen />
+      </YuScreenLayout>
+    );
   }
 
-  return <YuScreenLegacy />;
+  return (
+    <YuScreenLayoutLegacy testID={YUSCREEN_V3(true)}>
+      <YuScreenLegacy />
+    </YuScreenLayoutLegacy>
+  );
 };
 
 const YuScreenContainer = memo(_YuScreenContainer);

@@ -1,4 +1,4 @@
-import React, { memo, useMemo, useState, useCallback } from "react";
+import React, { memo, useMemo, useState, useCallback, ComponentProps } from "react";
 import { StyleSheet, View, ViewStyle, ActivityIndicator, StyleProp } from "react-native";
 import FastImage, { ImageStyle, OnLoadEvent, ResizeMode, Source } from "react-native-fast-image";
 import { Colours } from "@styles";
@@ -22,6 +22,8 @@ interface Props {
    */
   suppressLoadingUi?: boolean;
   onLoad?: (event: OnLoadEvent) => void;
+  accessible?: ComponentProps<typeof FastImage>["accessible"];
+  accessibilityLabel?: ComponentProps<typeof FastImage>["accessibilityLabel"];
 }
 
 export const Image = memo(
@@ -39,6 +41,8 @@ export const Image = memo(
       suppressLoadingUi,
       tintColor,
       onLoad,
+      accessible,
+      accessibilityLabel,
     } = props;
 
     const [isLoading, setIsLoading] = useState(true);
@@ -87,6 +91,8 @@ export const Image = memo(
           source={source}
           resizeMode={resizeMode}
           tintColor={tintColor}
+          accessible={accessible}
+          accessibilityLabel={accessibilityLabel}
         />
         {isLoading && !suppressLoadingUi ? (
           <View style={styles.loader}>

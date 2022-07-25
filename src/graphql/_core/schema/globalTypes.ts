@@ -203,6 +203,7 @@ export enum SduiActionType {
   SDUI_ACTION_PRODUCT_UNDERWRITING_STEP_POP = "SDUI_ACTION_PRODUCT_UNDERWRITING_STEP_POP",
   SDUI_ACTION_PRODUCT_UNDERWRITING_STEP_PUSH = "SDUI_ACTION_PRODUCT_UNDERWRITING_STEP_PUSH",
   SDUI_ACTION_SET_BOTTOM_TAB = "SDUI_ACTION_SET_BOTTOM_TAB",
+  SDUI_ACTION_YU_SCREEN_NAVIGATE = "SDUI_ACTION_YU_SCREEN_NAVIGATE",
 }
 
 export enum TopBarType {
@@ -231,6 +232,7 @@ export enum YuProductStatus {
   active = "active",
   inProgress = "inProgress",
   locked = "locked",
+  ownedNoPolicy = "ownedNoPolicy",
   unlockable = "unlockable",
 }
 
