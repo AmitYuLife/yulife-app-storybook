@@ -1,5 +1,5 @@
 // tslint:disable-next-line
-import { StreakTypes } from "@organisms/streak/streak";
+import { StreakTypes } from "@organisms/game-icon-button/streak.button";
 import { GetCurrentUser, LoginUser } from "@graphql/_core/schema";
 import { GET_USER_SUCCESS, LOGIN_USER_SUCCESS } from "../user/user.actions";
 import { getCurrentWorld } from "@utils";

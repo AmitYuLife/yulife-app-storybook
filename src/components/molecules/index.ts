@@ -59,7 +59,6 @@ export { default as Toast } from "./toast/toast";
 export { default as Hyperlink } from "./hyperlink/hyperlink";
 export { default as InfoPanel } from "./info-panel/info-panel";
 export { default as SettingsHeader } from "./settings-header/settings-header";
-export { default as Surge } from "./surge/surge";
 export { default as ProcessingTimer } from "./processing-timer/processing-timer";
 export { default as EventPanels } from "./event-panel/event-panels";
 export { default as LabelWithImages } from "./label-with-images/label-with-images";
