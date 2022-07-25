@@ -3,7 +3,7 @@ import * as scenario from "./_steps/scenario"
 import * as given from "./_steps/given"
 import * as when from "./_steps/when"
 import * as then from "./_steps/then"
-import { CUSTOMER_5, AUTH_5, CUSTOMER_6, AUTH_6, CUSTOMER_7, AUTH_7, CUSTOMER_8, AUTH_8, CUSTOMER_15, AUTH_15 } from "@data";
+import { CUSTOMER_5, AUTH_5, CUSTOMER_6, AUTH_6, CUSTOMER_7, AUTH_7, CUSTOMER_8, AUTH_8, CUSTOMER_15, AUTH_15, CUSTOMER_42, AUTH_42 } from "@data";
 import { QUESTS_SCREEN, LEVEL_CHALLENGE_BUTTON, CHALLENGE_SET, CHALLENGE_TILE, GENERIC_SCREEN_CTA, GENERIC_SCREEN_HEADING, CHALLENGE_PROGRESS_BAR, NAV_BAR, DAILY_STEPS_SCREEN, VIEW_TOP_RIGHT_COIN_COUNTER, CHALLENGE_UNAVAILABLE, STEPS_COUNT } from "@ids";
 import { idVisible } from "@utils";
 
@@ -201,4 +201,45 @@ Feature("As a user I can use the streaks functionality", async () => {
         })
     })
 
+    Scenario("I can redeem a challenge the next day and move to level 52 if i have last active challenge from yesterday", scenario.start, async () => {
+        Given("I login as a user who activated a challenge yesterday", given.loginAsUser(CUSTOMER_42, AUTH_42), async () => {
+            Then("I should see 0/5 on the daily steps screen", then.textVisible("0/5"))
+            Then("I should see my updated coin balance", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(580)))
+            When("I go to the quests tab", when.tapID(NAV_BAR("quests")), async () => {
+                Then("I should see the well done screen", then.onChallengeComplete(450, 51))
+                When("I tap collect", when.tapText("collect"), async () => {
+                    Then("I should see my updated yucoin balance", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(580)))
+                    Then("I should see the fifth level is unlocked", then.idVisible(LEVEL_CHALLENGE_BUTTON(51)))
+                    When("I tap this button", when.tapID(LEVEL_CHALLENGE_BUTTON(51)), async () => {
+                        Then("I should see the short stroll challenge", then.idVisible(CHALLENGE_TILE("short stroll")))
+                        Then("I should see the long walk challenge", then.idVisible(CHALLENGE_TILE("long walk")))
+                        Then("I should see the meditation challenge", then.idVisible(CHALLENGE_TILE("meditation")))
+                        When("I start the short stroll challenge", when.startChallenge("short stroll"), async () => {
+                            Then("The challenge should start", idVisible(CHALLENGE_PROGRESS_BAR))
+                            When("I walk over 300 steps", when.sendSteps(305, 35000), async () => {
+                                Then("I should see the well done screen", then.onChallengeComplete(305, 51))
+                                When("I tap collect", when.tapText("collect"), async () => {
+                                    Then("I should see the complete streak day 1 screen", then.completedTodayStreakCopyVisible(1))
+                                    When("I tap 'done'", when.tapText("Done"), async () => {
+                                        When("I tap the level 52 challenge", when.tapID(LEVEL_CHALLENGE_BUTTON(52)), async () => {
+                                            Then("I should see a challenge unavailable screen", then.idVisible(CHALLENGE_UNAVAILABLE))
+                                            When("I tap 'got it'", when.tapText("got it"), async () => {
+                                                Then("I should be back on the quests screen", then.idVisible(LEVEL_CHALLENGE_BUTTON(52)))
+                                                When("I go back to the yucoin tab", when.tapID(NAV_BAR("yucoin")), async () => {
+                                                    Then("I should see the coins I earned today", then.textVisible("10 YuCoin today"))
+                                                    Then("I should see the steps I completed today", then.idVisible(STEPS_COUNT(305)))
+                                                    Then("I should see my total yucoin", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(590)))
+                                                    Then("I should see 1/5 on the daily steps screen", then.textVisible("1/5"))
+                                                })
+                                            })
+                                        })
+                                    })
+                                })
+                            })
+                        })
+                    })
+                })
+            })
+        })
+    })
 })

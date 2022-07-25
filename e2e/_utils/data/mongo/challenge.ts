@@ -1,6 +1,6 @@
 import { generateRandomMongoId } from "@yu-life/yulife-bdd-framework"
 import { IDatabaseItem } from "@yu-life/yulife-bdd-framework";
-import { CUSTOMER_2, CUSTOMER_6, CUSTOMER_7, CUSTOMER_8, CUSTOMER_9, CUSTOMER_14, CUSTOMER_15, CUSTOMER_18, CUSTOMER_17, CUSTOMER_3, CUSTOMER_19, CUSTOMER_16, CUSTOMER_35, CUSTOMER_40 } from '../postgres/customers';
+import { CUSTOMER_2, CUSTOMER_6, CUSTOMER_7, CUSTOMER_8, CUSTOMER_9, CUSTOMER_14, CUSTOMER_15, CUSTOMER_18, CUSTOMER_17, CUSTOMER_3, CUSTOMER_19, CUSTOMER_16, CUSTOMER_35, CUSTOMER_40, CUSTOMER_42 } from '../postgres/customers';
 import moment = require('moment');
 import { SHORT_STROLL_MILESTONE_1, LONG_WALK_MILESTONE_1, MEDITATION_MILESTONE_1 } from './map_milestone_templates';
 import { MEDITATION_1, LONG_WALK_1, SHORT_STROLL_1 } from './map_level_slot_templates';
@@ -1304,6 +1304,66 @@ export const CHALLENGE_USER_40_DAY5 = {
                 "yuCoinAwarded": 20,
                 "completed": moment().subtract(1, "day").toDate(),
                 "id": "YU_MILESTONE_DAILY_STEPS_0"
+            },
+        ],
+    }
+} as IDatabaseItem;
+
+export const CHALLENGE_USER_42_A = {
+    type: "mongo",
+    modelName: "challenge",
+    data: {
+        ...CHALLENGE_TEMPLATE.data,
+        _id: generateRandomMongoId(),
+        userId: CUSTOMER_42.data.customerId,
+        startTime: moment().subtract(1, "days").toDate(),
+        startDateTime: moment().subtract(1, "days").toDate(),
+        endDateTime: moment().subtract(1, "days").toDate(),
+        levelSlotTemplateId: "DAILY_PASSIVE_002",
+        subtype: MEDITATION_1.data.subtype,
+        incomingData: {
+            meditation: 100
+        },
+        level: 51,
+        milestoneLog: [
+            {
+                completionData: [],
+                _id: generateRandomMongoId(),
+                id: MEDITATION_MILESTONE_1.data.id,
+                completed: moment().subtract(1, "day").toDate(),
+                data: {
+                    meditation: 100,
+                },
+                yuCoinAwarded: 60
+            }
+        ],
+    }
+} as IDatabaseItem;
+
+export const CHALLENGE_USER_42_B = {
+    type: "mongo",
+    modelName: "challenge",
+    data: {
+        ...CHALLENGE_TEMPLATE.data,
+        _id: generateRandomMongoId(),
+        userId: CUSTOMER_42.data.customerId,
+        startTime: moment().subtract(1, "days").toDate(),
+        startDateTime: moment().subtract(1, "days").toDate(),
+        incomingData: {
+            steps: 450
+        },
+        level: 51,
+        levelSlotTemplateId: "DAILY_PASSIVE_001",
+        status: "active",
+
+        milestoneLog: [
+            {
+                completionData: [],
+                _id: generateRandomMongoId(),
+                data: {
+                    steps: 450
+                },
+                id: SHORT_STROLL_MILESTONE_1.data.id
             },
         ],
     }
