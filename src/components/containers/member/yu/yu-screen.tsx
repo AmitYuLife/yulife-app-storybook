@@ -20,7 +20,7 @@ export const YuScreen = () => {
       <ScrollView showsVerticalScrollIndicator={false} style={styles.scrollView}>
         {data ? (
           <>
-            <NameAndLevel useWorldColor={true} />
+            <NameAndLevel useWorldColor={true} hideWorldIcon={true} />
             <YumojiAndSlots productSlots={data?.getYuScreen.productSlots} />
             <Carousel {...data?.getYuScreen.productCarousel} />
           </>
