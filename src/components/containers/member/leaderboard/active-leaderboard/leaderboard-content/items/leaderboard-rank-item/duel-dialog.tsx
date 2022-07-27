@@ -134,7 +134,7 @@ const _DuelDialog: FC<Props> = ({ id, index }) => {
 
   const onButtonPress = useCallback(async () => {
     if (features.showInspect) {
-      return Navigation.push(ROUTES.leaderboards, {
+      Navigation.push(ROUTES.leaderboards, {
         component: {
           id: ROUTES.inspect,
           name: ROUTES.inspect,
@@ -144,6 +144,9 @@ const _DuelDialog: FC<Props> = ({ id, index }) => {
           },
         },
       });
+
+      // if you are opening inspect from lean leaderboard
+      return Navigation.dismissAllModals();
     }
 
     onPress();
