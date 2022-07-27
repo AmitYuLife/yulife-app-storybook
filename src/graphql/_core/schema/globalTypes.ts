@@ -94,7 +94,6 @@ export enum ContentItemRowIconTextBannerType {
  */
 export enum CoverType {
   common = "common",
-  custom = "custom",
   epic = "epic",
   rare = "rare",
 }
@@ -233,6 +232,7 @@ export enum YuProductStatus {
   inProgress = "inProgress",
   locked = "locked",
   ownedNoPolicy = "ownedNoPolicy",
+  rejected = "rejected",
   unlockable = "unlockable",
 }
 
