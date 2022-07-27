@@ -188,6 +188,7 @@ const VideoPlayer = ({
       <PressableWithDelay onPress={handleFocusScreen} style={styles.container}>
         <Video
           source={{ uri: videoUrl }}
+          minLoadRetryCount={20}
           poster={poster}
           posterResizeMode="cover"
           resizeMode="cover"
