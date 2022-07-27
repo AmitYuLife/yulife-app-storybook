@@ -47,4 +47,12 @@ export type MixpanelEvent =
   | "wellbeing_item_button_pressed"
   | "wellbeing_item_button_pressed_error"
   | "reward_info_viewed"
-  | "event_faq_viewed";
+  | "event_faq_viewed"
+  | "meditopia_challenge_end"
+  | "video_player_button_start_pressed"
+  | "video_player_play_button_start_pressed"
+  | "video_player_start"
+  | "video_player_is_playing"
+  | "video_player_is_paused"
+  | "video_player_focused"
+  | "video_player_is_buffering";
