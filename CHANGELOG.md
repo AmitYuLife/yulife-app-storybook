@@ -7,6 +7,40 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.41.0] - 2022-07-27
+
+### Features
+
+- Feature XSE-1200 XSE-1201: New YuScreen
+
+### Bugfixes
+
+- Bugfix: Add logs for meditopia and improvements
+- Bugfix: Opening inspect from lean leaderboard
+- Bugfix ENG-2796: A stack cant contain two children with the same id
+- Bugfix: Failed to execute stack command stack not found
+- Bugfix ENG-2801: Could not dismiss Overlay with id yulife.modals.blurredOverlay was not found
+
+### Snyk
+
+- Snyk: Security upgrade moment from 2.29.3 to 2.29.4
+
+### Chores
+
+- Chore: Dont show world icon
+- Chore: one game mechanic button to rule 'em all
+- Chore: Yuscreen V4 beta not dev
+- Chore: ground work for weeklies (activity-progress and floating-modal)
+
+### Extra
+
+- Hotfix: Stopping annimation
+- Purge: community goals
+- Purge: Custom type cover
+- detox: added yesterday streak challenge functionality
+- Hotfix: update region for magic links
+- detox: added canceled scenario policy
+
 ## [3.40.0] - 2022-07-20
 
 ### Features
