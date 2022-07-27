@@ -37,16 +37,11 @@ const dataIdFromObject = (object: any) => {
     case "UserPayload":
       return `${object.__typename}-${object.expiresAt}`;
     case "Level":
-    case "CommunityGoal":
     case "Duel":
     case "LevelSlot":
     case "LevelSlotMilestone":
     case "User":
       return defaultYuLifeIdFromObject(object);
-    case "CommunityGoalParticipant":
-      return `${object.__typename}-${object.userId}-${object.stats.value}`;
-    case "CommunityGoalParticipantStats":
-      return `${object.__typename}-${object.value}`;
     case "DuelOpponent":
       return `${object.__typename}-${object.duelId}-${object.userId}-${object.score}`;
     case "DuelSearchResult":

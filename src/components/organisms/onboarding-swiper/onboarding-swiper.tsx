@@ -18,7 +18,7 @@ interface Props {
   data: OnboardingSwiperData[];
   onClose: () => void;
   renderItem: ListRenderItem<OnboardingSwiperData>;
-  type: "yuscreen" | "communityGoals" | "duels";
+  type: "yuscreen" | "duels";
 }
 
 interface State {
@@ -32,8 +32,6 @@ const getScreenViewName = (type: Props["type"], page = 0) => {
       return `${ROUTES.yuScreen}.Onboarding.${page}`;
     case "duels":
       return `${ROUTES.duelsHub}.Onboarding.${page}`;
-    case "communityGoals":
-      return `${ROUTES.communityGoals}.Onboarding.${page}`;
     default:
       return "";
   }

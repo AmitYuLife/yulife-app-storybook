@@ -21,8 +21,6 @@ export { default as AnimatedChestScreen } from "./member/animated-chest/animated
 export { default as ActiveDuelsScreen } from "./member/duels-hub/active-duels/active-duels.screen";
 export { default as CompletedDuelsScreen } from "./member/duels-hub/completed-duels/completed-duels.screen";
 export { default as DuelsIntroScreen } from "./member/duels-hub/duels.intro.screen";
-export { default as CommunityGoalsScreen } from "./member/community-goals/community-goals.screen";
-export { default as CommunityGoalsIntro } from "./member/community-goals/community-goals.intro";
 export { default as ChangeMemberNickname } from "./member/change-member-nickname/change-member-nickname.screen";
 export { default as TodayEarningsScreen } from "./member/today-earnings/today-earnings.screen";
 export { default as TodayEarningLoadingScreen } from "./member/today-earnings/today-earnings-loading.screen";

@@ -40,12 +40,6 @@ export enum BuffArea {
   streak = "streak",
 }
 
-export enum CommunityGoalType {
-  meditation = "meditation",
-  quests = "quests",
-  steps = "steps",
-}
-
 export enum ContentItemButtonSize {
   Fill = "Fill",
   Large = "Large",
