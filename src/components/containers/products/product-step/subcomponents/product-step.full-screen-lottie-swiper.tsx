@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { FullScreenLottieSwiper } from "@organisms/full-screen-lottie-swiper/full-screen-lottie-swiper";
 import { ContentItemFullScreenLottieSwiper } from "@graphql/_core/schema/ContentItemFullScreenLottieSwiper";
 import { ProductStepContext } from "../product-step.context";
-import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 import { getSduiLoadingForKey } from "@redux/server-driven-ui/sdui.selectors";
+import { sduiEventActionCreator } from "../utils/sduiEventActionCreator";
 
 type Props = ContentItemFullScreenLottieSwiper;
 export const ProductStepFullScreenLottieSwiper = memo(({ button, close, ...props }: Props) => {
@@ -48,7 +48,7 @@ export const ProductStepFullScreenLottieSwiper = memo(({ button, close, ...props
         ...close,
         onPress: (currentIndex: number) => {
           dispatch(
-            logMixpanelEventActionCreator("modal_close", {
+            sduiEventActionCreator("modal_close", {
               previous_modal_index: currentIndex,
               previous_modal_name: items[currentIndex]?.id,
               cs_product: productId,

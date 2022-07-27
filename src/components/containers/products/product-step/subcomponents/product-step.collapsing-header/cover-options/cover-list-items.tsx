@@ -8,8 +8,8 @@ import { CoverType } from "@graphql/_core/schema/globalTypes";
 import { ProductStepContext } from "../../../product-step.context";
 import { useDispatch } from "react-redux";
 import { LOCAL_ANSWER_KEY } from "../../../utils";
-import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 import { Colours, Style, mapCoverTypeToColorTheme } from "@styles";
+import { sduiEventActionCreator } from "../../../utils/sduiEventActionCreator";
 
 interface Props {
   coverList: ContentItemCollapsingHeaderProductInfo_coverList[];
@@ -33,7 +33,7 @@ export const CoverListItems = memo(({ coverList, answerKey, coverType, colorThem
         [LOCAL_ANSWER_KEY.CoverType]: type,
       }));
       dispatch(
-        logMixpanelEventActionCreator("package_inspected", {
+        sduiEventActionCreator("package_inspected", {
           type,
           salary_covered: value,
           cs_product: productId,

@@ -1,10 +1,10 @@
 import { ContentItemPackageCards } from "@graphql/_core/schema";
-import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 import { useRef, useState, useMemo, useEffect } from "react";
 import { Animated, NativeSyntheticEvent, NativeScrollEvent, FlatList as RNFlatList } from "react-native";
 import { useDispatch } from "react-redux";
 import { IProductStepContext } from "../../../product-step.context";
 import { LOCAL_ANSWER_KEY } from "../../../utils";
+import { sduiEventActionCreator } from "../../../utils/sduiEventActionCreator";
 import { PACKAGE_CARD_WIDTH } from "../styles";
 
 type UseScrollHandler = Pick<IProductStepContext, "setDynamicData"> & {
@@ -57,7 +57,7 @@ export function useScrollHandler({
       }));
 
       dispatch(
-        logMixpanelEventActionCreator("package_inspected", {
+        sduiEventActionCreator("package_inspected", {
           type: packageCard.coverType,
           salary_covered: packageCard.value,
           cs_product: productId,

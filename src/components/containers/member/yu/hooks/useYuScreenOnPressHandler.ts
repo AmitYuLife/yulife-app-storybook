@@ -1,3 +1,4 @@
+import { defaultSduiActionProps } from "@components/containers/products/product-step/utils/sduiEventActionCreator";
 import { SduiAction } from "@graphql/_core/schema";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 import { useCallback } from "react";
@@ -21,7 +22,10 @@ export const useYuScreenOnPressHandler = (buttonParams: ButtonParams, defaultEve
       if (buttonParams?.event) {
         try {
           const payload = JSON.parse(buttonParams.event.payload);
-          const action = logMixpanelEventActionCreator(payload.name || defaultEventName, payload.props || {});
+          const action = logMixpanelEventActionCreator(
+            payload.name || defaultEventName,
+            payload.props || defaultSduiActionProps
+          );
           actions.push(action);
         } catch (e) {}
       }

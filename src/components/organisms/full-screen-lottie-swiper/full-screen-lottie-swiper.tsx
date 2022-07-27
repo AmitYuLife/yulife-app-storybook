@@ -5,11 +5,11 @@ import { FlatList, TextTemplate } from "@atoms";
 import { ProgressItems } from "./progress-items";
 import { Controller } from "./controller";
 import { Dismiss } from "./dismiss";
-import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 import { useDispatch } from "react-redux";
 import { ContentItemLottie as GqlLottie } from "@graphql/_core/schema";
 import { ContentItemLottie } from "@components/sdui";
 import { TEXT_TEMPLATE } from "@ids";
+import { sduiEventActionCreator } from "@components/containers/products/product-step/utils/sduiEventActionCreator";
 
 type ContextAwareGqlLottie = Omit<GqlLottie, "onAnimationEnd"> & { onAnimationEnd: () => void };
 interface Props {
@@ -82,7 +82,7 @@ export const FullScreenLottieSwiper = memo((props: Props) => {
 
         if (i !== incremented) {
           dispatch(
-            logMixpanelEventActionCreator("modal_movement", {
+            sduiEventActionCreator("modal_movement", {
               new_modal_name: items[incremented].id,
               previous_modal_name: items[i].id,
               interaction: !autoMove,
@@ -186,7 +186,7 @@ function useScrollHandler(items: ContextAwareGqlLottie[]) {
 
   useEffect(() => {
     dispatch(
-      logMixpanelEventActionCreator("modal_viewed", {
+      sduiEventActionCreator("modal_viewed", {
         name: items[activeIndex].id,
         modal_index: activeIndex,
       })
