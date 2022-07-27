@@ -116,7 +116,7 @@ const useFadeIn = (shouldUseFadeIn: boolean) => {
       delay: 1000,
     }).start();
 
-    return opacity.stopAnimation;
+    return () => opacity.stopAnimation();
   }, []);
 
   return { opacity };
