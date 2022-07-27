@@ -189,6 +189,7 @@ const VideoPlayer = ({
         <Video
           source={{ uri: videoUrl }}
           minLoadRetryCount={20}
+          disableFocus={true}
           poster={poster}
           posterResizeMode="cover"
           resizeMode="cover"
