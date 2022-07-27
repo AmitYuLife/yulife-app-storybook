@@ -11,7 +11,7 @@ import { mapServerStyles } from "@components/sdui";
 import { CoverType } from "@graphql/_core/schema/globalTypes";
 
 interface ActiveItem {
-  coverType: Exclude<CoverType, CoverType.custom>;
+  coverType: CoverType;
   price: string;
   slotInfo: ContentItemSelectedPackageCards_coverOptions_slotInfo;
 }
