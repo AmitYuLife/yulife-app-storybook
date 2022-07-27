@@ -14,6 +14,7 @@ import moment from "moment";
 import { getUserFeatures } from "@redux/user/user.selectors";
 import { GQL_MUTATION_UPSERT_DAILY_PASSIVES } from "@graphql/challenges/upsertDailyPassives.gql";
 import AsyncStorage from "@react-native-community/async-storage";
+import { useBackHandler } from "@hooks";
 
 interface IProps {
   componentId: string;
@@ -79,6 +80,11 @@ const TodayEarningsContainer = ({ componentId }: IProps) => {
   }, []);
 
   const onLeftIconPress = useCallback(() => Navigation.popToRoot(componentId), [componentId]);
+
+  useBackHandler(() => {
+    onLeftIconPress();
+    return true;
+  });
 
   if (loading || permissionIsLoading) {
     return <TodayEarningLoadingScreen handleClose={onLeftIconPress} />;
