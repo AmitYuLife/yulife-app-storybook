@@ -1,10 +1,11 @@
-import { addSecondsToChallengeEndDateTime } from "@utils";
+import { addSecondsToChallengeEndDateTime, DATE_FORMAT_WITHOUT_TZ } from "@utils";
 import { call, put, select, fork } from "redux-saga/effects";
 import { getSteps } from "../../pedometer/pedometer.selectors";
 import { challengeStartSuccessAction, pedometerStepsChallengeStarted } from "../levels.actions";
 import setInitialSteps from "./setInitialSteps.helper";
 import startChallenge from "./startChallenge.helper";
 import { getUserFeatures } from "@redux/user/user.selectors";
+import moment from "moment";
 
 export default function* startChallengeSuccessSaga({ payload }: ReturnType<typeof challengeStartSuccessAction>) {
   const {
@@ -13,6 +14,7 @@ export default function* startChallengeSuccessSaga({ payload }: ReturnType<typeo
       levelSlot: { subtype, fitKitTypes, shouldEndOnLastGoalAchieved },
     },
     levelSlotId,
+    videoDuration,
   } = payload;
 
   const features: ReturnType<typeof getUserFeatures> = yield select(getUserFeatures);
@@ -26,7 +28,9 @@ export default function* startChallengeSuccessSaga({ payload }: ReturnType<typeo
   }
 
   if (startDateTime && remoteEndDateTime && subtype) {
-    const endDateTime = addSecondsToChallengeEndDateTime(remoteEndDateTime);
+    const endDateTime = videoDuration
+      ? moment(new Date(), DATE_FORMAT_WITHOUT_TZ).add(videoDuration, "seconds").format(DATE_FORMAT_WITHOUT_TZ)
+      : addSecondsToChallengeEndDateTime(remoteEndDateTime);
 
     yield call(startChallenge, {
       endDateTime,

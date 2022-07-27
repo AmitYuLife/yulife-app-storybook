@@ -20,6 +20,7 @@ import { Button, PressableWithDelay, VidePlayerButton } from "@molecules";
 import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import { PlayIcon } from "@atoms/icon/play-icon";
 import { DETOX_ENABLED } from "@services/socket";
+import Logger from "@services/logging/logger";
 
 interface IProps {
   source: string;
@@ -92,10 +93,11 @@ const VideoPlayer = ({
 
   useEffect(() => {
     MusicControl.updatePlayback({
-      state: state.isPaused ? MusicControl.STATE_PAUSED : MusicControl.STATE_PLAYING,
+      state: state.isPaused || state.isBuffering ? MusicControl.STATE_PAUSED : MusicControl.STATE_PLAYING,
       elapsedTime: state.currentProgressInSeconds,
     });
-  }, [state.isPaused]);
+    Logger.logMixpanelEvent(state.isPaused ? "video_player_is_paused" : "video_player_is_playing");
+  }, [state.isPaused, state.isBuffering]);
 
   const onProgress = useCallback(
     ({ currentTime }) => {
@@ -117,10 +119,12 @@ const VideoPlayer = ({
 
   const onBuffer = useCallback(({ isBuffering }) => {
     dispatch({ type: ActionTypes.SET_BUFFERING, payload: isBuffering });
+    Logger.logMixpanelEvent("video_player_is_buffering", { isBuffering });
   }, []);
 
   const onButtonAction = useCallback(() => {
     dispatch({ type: state.isPaused ? ActionTypes.PLAY_PLAYER : ActionTypes.PAUSE_PLAYER });
+    Logger.logMixpanelEvent("video_player_play_button_start_pressed");
   }, [state.isPaused, state.durationInSeconds]);
 
   const handleStartButton = useCallback(async () => {
@@ -134,7 +138,9 @@ const VideoPlayer = ({
         duration: state.durationInSeconds,
       });
       dispatch({ type: ActionTypes.SET_MUSIC_CONTROL_MOUNTED });
-    } catch (e) {
+      Logger.logMixpanelEvent("video_player_button_start_pressed");
+    } catch (err) {
+      Logger.error(err, { location: "video-player-handleStartButton" });
     } finally {
       dispatch({ type: ActionTypes.SET_LOADING, payload: false });
     }
@@ -144,18 +150,27 @@ const VideoPlayer = ({
     try {
       await onEnd();
       MusicControl.resetNowPlaying();
-    } catch (e) {}
+    } catch (err) {
+      Logger.error(err, { location: "video-player-handleOnEnd" });
+    }
   }, [onEnd]);
 
   const handleFocusScreen = useCallback(() => {
     if (!state.isPaused && !state.showFocusScreen) {
       dispatch({ type: ActionTypes.SET_SHOW_FOCUS_SCREEN, payload: true });
       fadeOut.start();
+      Logger.logMixpanelEvent("video_player_focused", { isFocused: true });
     } else {
       dispatch({ type: ActionTypes.SET_SHOW_FOCUS_SCREEN, payload: false });
       fadeIn.start();
+      Logger.logMixpanelEvent("video_player_focused", { isFocused: false });
     }
   }, [state.isPaused, state.showFocusScreen]);
+
+  const handleOnError = useCallback(async (err) => {
+    onError();
+    Logger.error(err, { location: "video-player-onError" });
+  }, []);
 
   const videoUrl = useMemo(
     () =>
@@ -173,7 +188,7 @@ const VideoPlayer = ({
           poster={poster}
           posterResizeMode="cover"
           resizeMode="cover"
-          onError={onError}
+          onError={handleOnError}
           onLoad={onLoad}
           onEnd={handleOnEnd}
           onProgress={onProgress}
@@ -308,7 +323,10 @@ const styles = StyleSheet.create({
   },
   loading: {
     position: "absolute",
+    left: 0,
+    right: 0,
     paddingTop: Style.adjust(90),
+    justifyContent: "center",
   },
   buttonWrapper: {
     position: "absolute",

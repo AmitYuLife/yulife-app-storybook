@@ -2,7 +2,7 @@ import React, { memo, useCallback } from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
 import { Navigation } from "react-native-navigation";
 import { t } from "@locale";
-import { Image, Logo, TextTemplate } from "@atoms";
+import { Image, TextTemplate } from "@atoms";
 import { SecondaryButton } from "@molecules";
 import { ROUTES } from "@navigation/constants";
 import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
@@ -31,6 +31,7 @@ interface IProps {
   onRightIconPress: () => void;
   handleOpenApp: (options: IButtonOptions) => void;
   handleOtherApp: () => void;
+  otherAppLoading: boolean;
   levelSlotId: string;
   logo: Source;
   buttons: IButtons[];
@@ -45,6 +46,7 @@ const MediaListScreen = ({
   onRightIconPress,
   handleOpenApp,
   handleOtherApp,
+  otherAppLoading,
   levelSlotId,
   logo,
   buttons,
@@ -68,18 +70,15 @@ const MediaListScreen = ({
       <View style={styles.wrapper}>
         <ScrollView showsVerticalScrollIndicator={false}>
           <View style={styles.header}>
-            <View style={styles.yuLifeLogo}>
-              <Logo type="full" width={61} height={32} />
-            </View>
-            <View style={styles.divider} />
-            <View style={styles.appLogo}>
-              <Image source={logo} width={98} height={20} />
-            </View>
+            <TextTemplate type="b1b">{title}</TextTemplate>
           </View>
           <View style={styles.description}>
             <TextTemplate type="b2" textAlign="center">
               {description}
             </TextTemplate>
+            <View style={styles.appLogo}>
+              <Image source={logo} width={98} height={20} />
+            </View>
           </View>
           {loading ? (
             <MediaListLoading limit={3} />
@@ -96,12 +95,13 @@ const MediaListScreen = ({
             ))
           )}
           <View style={styles.additionalInfo}>
-            <TextTemplate type="l1">{t("screens.mediaList.differentAppSectionLabel")}</TextTemplate>
+            <TextTemplate type="l1b">{t("screens.mediaList.differentAppSectionLabel")}</TextTemplate>
           </View>
           <View>
             {buttons.map((button) => (
               <SecondaryButton
                 key={button.title}
+                isLoading={otherAppLoading}
                 label={button.title}
                 borderColor={button.color}
                 textColor={button.color}
@@ -117,10 +117,10 @@ const MediaListScreen = ({
       </View>
       <GenericHeadingAbsolute
         backgroundColor="transparent"
-        heading={<TextTemplate type="b1">{title}</TextTemplate>}
         onLeftIconPress={onLeftIconPress}
         color={Colours.neutral.n800}
         onRightIconPress={onRightIconPress}
+        logo="yulife"
       />
     </View>
   );
@@ -136,7 +136,8 @@ const styles = StyleSheet.create({
   },
   header: {
     alignItems: "center",
-    marginBottom: Style.adjust(32),
+    marginTop: Style.adjust(10),
+    marginBottom: Style.adjust(10),
     flexDirection: "row",
     justifyContent: "center",
   },
@@ -145,18 +146,15 @@ const styles = StyleSheet.create({
     alignItems: "flex-end",
     paddingRight: Style.adjust(16),
   },
-  divider: {
-    width: 1,
-    height: 25,
-    backgroundColor: "#D9D9D7",
-  },
   appLogo: {
-    width: "50%",
-    paddingLeft: Style.adjust(16),
+    paddingLeft: Style.adjust(8),
   },
   description: {
     paddingHorizontal: Style.adjust(70),
     marginBottom: Style.adjust(24),
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
   },
   additionalInfo: {
     alignItems: "center",

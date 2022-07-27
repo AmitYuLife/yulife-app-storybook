@@ -16,6 +16,7 @@ import getPassiveSinceLastUpdateIos from "./getPassiveSinceLastUpdateIos.saga";
 import { Unpacked } from "@utils";
 import { getToken } from "@services/storage";
 import { getReadableShortDateFormat } from "@locale";
+import { getVideoPlayerIsActive } from "@redux/levels/levels.selectors";
 
 export default function* sendPassiveActivity(): any {
   const token: Unpacked<typeof getToken> = yield call(getToken);
@@ -141,17 +142,22 @@ export default function* sendPassiveActivity(): any {
 
 function* showRewardModal(firstDay: string, lastDay: string, awardedYucoin: number) {
   const date = firstDay !== lastDay ? `${firstDay} - ${lastDay}` : firstDay;
-  yield call(() => {
-    showYuModal({
-      component: {
-        id: MODALS.collectReward,
-        name: MODALS.collectReward,
-        passProps: {
-          date,
-          onPress: () => Navigation.dismissModal(MODALS.collectReward),
-          yucoin: awardedYucoin,
+
+  const videoPlayerIsActive: ReturnType<typeof getVideoPlayerIsActive> = yield select(getVideoPlayerIsActive);
+
+  if (!videoPlayerIsActive) {
+    yield call(() => {
+      showYuModal({
+        component: {
+          id: MODALS.collectReward,
+          name: MODALS.collectReward,
+          passProps: {
+            date,
+            onPress: () => Navigation.dismissModal(MODALS.collectReward),
+            yucoin: awardedYucoin,
+          },
         },
-      },
+      });
     });
-  });
+  }
 }

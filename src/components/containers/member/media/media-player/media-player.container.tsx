@@ -8,6 +8,8 @@ import {
   Media,
   UpdateQuestMapLevelChallenge,
   UpdateQuestMapLevelChallengeVariables,
+  UpsertDailyPassives,
+  UpsertDailyPassivesVariables,
 } from "@graphql/_core/schema";
 import {
   CreateQuestMapLevelChallengeMutationTuple,
@@ -26,6 +28,10 @@ import { t } from "@locale";
 import { Modal } from "react-native";
 import { GenericModal } from "@components/modals";
 import { getChallengeIsActive } from "@redux/levels/levels.selectors";
+import Logger from "@services/logging/logger";
+import { GQL_MUTATION_UPSERT_DAILY_PASSIVES } from "@graphql/challenges/upsertDailyPassives.gql";
+import { PassiveChallengeType } from "@graphql/_core/schema/globalTypes";
+import moment from "moment";
 
 interface IVideo extends Media {
   reward: number;
@@ -54,6 +60,9 @@ const MediaPlayerContainer = ({ componentId, video, levelSlotId }: IProps) => {
   const [cancelActiveChallenge] = useMutation<CancelActiveChallenge, CancelActiveChallengeVariables>(
     GQL_MUTATION_CANCEL_ACTIVE_CHALLENGE
   );
+  const [upsertDailyPassives] = useMutation<UpsertDailyPassives, UpsertDailyPassivesVariables>(
+    GQL_MUTATION_UPSERT_DAILY_PASSIVES
+  );
 
   const createChallenge = useCallback(
     async (contentId: string) => {
@@ -63,10 +72,24 @@ const MediaPlayerContainer = ({ componentId, video, levelSlotId }: IProps) => {
           createActiveChallenge: data?.createQuestMapLevelChallenge,
           levelSlotId,
           videoPlayerIsActive: true,
+          videoDuration: video.duration,
         })
       );
+
+      await upsertDailyPassives({
+        variables: {
+          payload: [
+            {
+              value: video.duration,
+              endDateTime: moment().format(),
+              startDateTime: moment().startOf("day").format(),
+              type: PassiveChallengeType.MEDITATION,
+            },
+          ],
+        },
+      });
     },
-    [levelSlotId, createQuestMapLevelChallengeMutation, dispatch]
+    [levelSlotId, createQuestMapLevelChallengeMutation, dispatch, upsertDailyPassives, video.duration]
   );
 
   const cancelChallenge = useCallback(async (shouldNavigate = true) => {
@@ -89,6 +112,7 @@ const MediaPlayerContainer = ({ componentId, video, levelSlotId }: IProps) => {
 
     dispatch(challengeEndSuccessAction({ ...data?.updateQuestMapLevelChallenge?.challenge }));
     await Navigation.popTo(ROUTES.quests);
+    Logger.logMixpanelEvent("meditopia_challenge_end", { levelSlotId, duration: video.duration });
   }, []);
 
   const onError = useCallback(() => {

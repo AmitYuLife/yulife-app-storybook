@@ -38,6 +38,7 @@ export type ChallengeStartPayload = CreateActiveChallenge & {
   levelSlotId: string;
   videoPlayerIsActive?: boolean;
   hideExternalLinks?: boolean;
+  videoDuration?: number;
 };
 export type Challenge = ActiveChallenge | QuestMapActiveChallenge;
 export const challengeStartSuccessAction = (payload: ChallengeStartPayload) => ({

@@ -1,4 +1,4 @@
-import React, { useCallback, memo, useMemo } from "react";
+import React, { useCallback, memo, useMemo, useState } from "react";
 import { useQuery } from "@apollo/react-hooks";
 import { Navigation } from "react-native-navigation";
 import { MediaListScreen } from "@components/screens";
@@ -12,6 +12,7 @@ import {
 import { ROUTES } from "@navigation/constants";
 import { openApp } from "@services/app-link";
 import { Platform } from "react-native";
+import Logger from "@services/logging/logger";
 
 interface IProps extends IInternalContent {
   componentId: string;
@@ -28,6 +29,7 @@ const MediaListContainer = ({
   logo,
   buttons,
 }: IProps) => {
+  const [otherAppLoading, setOtherAppLoading] = useState(false);
   const { data, loading } = useQuery<GetQuestMapLevelChallengeContent, GetQuestMapLevelChallengeContentVariables>(
     GQL_QUERY_GET_QUEST_MAP_CHALLENGE_CONTENT,
     {
@@ -48,17 +50,33 @@ const MediaListContainer = ({
       return;
     }
 
+    setOtherAppLoading(true);
     const { iosUrl, androidUrl, appName, appStoreId, appStoreLocale, playStoreId } = options;
     const url = Platform.select({
       ios: iosUrl,
       android: androidUrl,
     });
-    await createChallenge(true);
+
+    try {
+      await createChallenge(true);
+    } catch (err) {
+      Logger.error(err, { location: "media-list.container.handleOpenApp" });
+    } finally {
+      setOtherAppLoading(false);
+    }
+
     openApp(url, { appName, appStoreId, appStoreLocale, playStoreId });
   }, []);
 
   const handleOtherApp = useCallback(async () => {
-    await createChallenge(false);
+    setOtherAppLoading(true);
+    try {
+      await createChallenge(true);
+    } catch (err) {
+      Logger.error(err, { location: "media-list.container.handleOtherApp" });
+    } finally {
+      setOtherAppLoading(false);
+    }
   }, []);
 
   const formattedVideos = useMemo(
@@ -85,6 +103,7 @@ const MediaListContainer = ({
       logo={logo}
       buttons={buttons}
       handleOtherApp={handleOtherApp}
+      otherAppLoading={otherAppLoading}
     />
   );
 };
