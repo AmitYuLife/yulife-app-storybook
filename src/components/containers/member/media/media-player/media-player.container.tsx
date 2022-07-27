@@ -75,19 +75,6 @@ const MediaPlayerContainer = ({ componentId, video, levelSlotId }: IProps) => {
           videoDuration: video.duration,
         })
       );
-
-      await upsertDailyPassives({
-        variables: {
-          payload: [
-            {
-              value: video.duration,
-              endDateTime: moment().format(),
-              startDateTime: moment().startOf("day").format(),
-              type: PassiveChallengeType.MEDITATION,
-            },
-          ],
-        },
-      });
     },
     [levelSlotId, createQuestMapLevelChallengeMutation, dispatch, upsertDailyPassives, video.duration]
   );
@@ -111,6 +98,18 @@ const MediaPlayerContainer = ({ componentId, video, levelSlotId }: IProps) => {
     });
 
     dispatch(challengeEndSuccessAction({ ...data?.updateQuestMapLevelChallenge?.challenge }));
+    await upsertDailyPassives({
+      variables: {
+        payload: [
+          {
+            value: video.duration,
+            endDateTime: moment().format(),
+            startDateTime: moment().startOf("day").format(),
+            type: PassiveChallengeType.MEDITATION,
+          },
+        ],
+      },
+    });
     await Navigation.popTo(ROUTES.quests);
     Logger.logMixpanelEvent("meditopia_challenge_end", { levelSlotId, duration: video.duration });
   }, []);

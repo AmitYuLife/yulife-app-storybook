@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   minutes: {
-    width: "46%",
+    width: "47%",
     alignItems: "flex-end",
   },
   seconds: {
