@@ -11,7 +11,7 @@ export default function* cancelChallengeNotificationSaga() {
     if (active.levelSlotId) {
       const id = Number(numericId(active.levelSlotId)).toString() as string;
 
-      yield call(() => PushNotification.cancelLocalNotifications({ id }));
+      yield call(() => PushNotification.cancelLocalNotification(id));
     }
   } catch (error) {
     Logger.error(error, { file: "cancelChallengeNotificationSaga" });
