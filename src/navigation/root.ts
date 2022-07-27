@@ -7,6 +7,9 @@ import { ILabel } from "@components/organisms/nav-bar/nav-bar.helpers";
 import { IUpdateContainerProps } from "@components/containers/update/update.container";
 import { ReviewModalProps } from "@components/modals/app-review/app-review.modal";
 import { setScreenViewForBurgerMenu } from "@navigation/utils";
+import { store } from "@redux/_core/store";
+import { IReduxState } from "@redux/_core/reducers";
+import { updateCurrentRoute } from "@redux/app/app.actions";
 
 // eslint-disable-next-line
 const icon = require("@assets/icons/clock.png");
@@ -273,6 +276,21 @@ export const showYuModal = async <P>(props: Layout<P>) => {
   });
 };
 
+export const pushToScreen = <P>(componentId: string, props: Layout<P>) => {
+  const dispatch = store.dispatch;
+  const state = store.getState() as IReduxState;
+
+  // I know we already update the currentRoute on listenToComponentDidAppear
+  // but on slow android devices is not quicker enough
+  dispatch(updateCurrentRoute(props?.component.id));
+
+  if (state?.app?.activeRoute === props?.component.id) {
+    return;
+  }
+
+  Navigation.push(componentId, props);
+};
+
 export async function showAppReviewModal(reviewModalProps: ReviewModalProps) {
   const { id, title, body, rejectedTitle, rejectedBody, image } = reviewModalProps;
   showYuModal({
@@ -344,23 +362,18 @@ export async function setOfflineRoot() {
   });
 }
 
-export async function setScreen(currentRoute: string, id: string, passProps?: Record<string, string>) {
-  await Navigation.push(currentRoute, {
-    component: {
-      id: id,
-      name: id,
-      passProps,
-    },
-  });
-}
-
 export async function setDuelsScreen(currentRoute: string) {
   if (currentRoute === ROUTES.duelsHub) {
     return;
   }
 
   await labels[3].onPress();
-  await setScreen(ROUTES.leaderboards, ROUTES.duelsHub);
+  await pushToScreen(ROUTES.leaderboards, {
+    component: {
+      id: ROUTES.duelsHub,
+      name: ROUTES.duelsHub,
+    },
+  });
 }
 
 export async function expireSession() {

@@ -1,5 +1,5 @@
 import { ROUTES } from "@navigation/constants";
-import { IMainTabsProps } from "@navigation/root";
+import { IMainTabsProps, pushToScreen } from "@navigation/root";
 import { useFitKit } from "@services/fitkit/fitkit.hooks";
 import React, { memo, useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -8,7 +8,6 @@ import { getDailyStepsTheme } from "@redux/theme/theme.selectors";
 import { DailyStepsScreen } from "@screens";
 import { FitkitContext } from "@services/fitkit/fitkit.helpers";
 import { useNavigationComponentDidAppear, useTapBackTwiceToExit } from "@hooks";
-import { Navigation } from "react-native-navigation";
 import { getUserNotification, getUserSurge, getUserEventsWithAds } from "@redux/user/user.selectors";
 import { useLazyQuery } from "@apollo/react-hooks";
 import { GetDailyScreenCustomIcon } from "@graphql/_core/schema";
@@ -17,7 +16,6 @@ import { getCurrentLevel } from "@redux/levels/levels.selectors";
 import { getCurrentWorld } from "@utils";
 import { dailyScreenInformationIcon } from "@redux/onboarding/onboarding.selectors";
 import { hideDailyScreenInformationIcon } from "@redux/onboarding/onboarding.actions";
-
 type Props = IMainTabsProps;
 
 function _DailyStepsContainer({ componentId, onLeftMenuPress }: Props) {
@@ -55,7 +53,7 @@ function _DailyStepsContainer({ componentId, onLeftMenuPress }: Props) {
       dispatch(hideDailyScreenInformationIcon());
     }
 
-    Navigation.push(componentId, {
+    pushToScreen(componentId, {
       component: {
         id: ROUTES.todayEarnings,
         name: ROUTES.todayEarnings,

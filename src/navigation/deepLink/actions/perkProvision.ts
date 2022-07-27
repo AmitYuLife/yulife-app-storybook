@@ -1,5 +1,5 @@
 import { ROUTES } from "@navigation/constants";
-import { setScreen } from "../../root";
+import { pushToScreen } from "../../root";
 import { DeepLinkHandler } from "../types";
 
 export const perkProvision: DeepLinkHandler = {
@@ -8,7 +8,13 @@ export const perkProvision: DeepLinkHandler = {
     const perkId = rootUrl.split("/")[1];
 
     if (perkId) {
-      setScreen(currentRoute, ROUTES.perkSubscriptionInfo, { perkId });
+      pushToScreen(currentRoute, {
+        component: {
+          id: ROUTES.perkSubscriptionInfo,
+          name: ROUTES.perkSubscriptionInfo,
+          passProps: { perkId },
+        },
+      });
     }
   },
 };
