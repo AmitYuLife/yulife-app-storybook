@@ -21,6 +21,8 @@ import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import { PlayIcon } from "@atoms/icon/play-icon";
 import { DETOX_ENABLED } from "@services/socket";
 import Logger from "@services/logging/logger";
+import { useDispatch } from "react-redux";
+import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 
 interface IProps {
   source: string;
@@ -65,6 +67,7 @@ const VideoPlayer = ({
   const [state, dispatch] = useReducer<React.Reducer<IState, IAction>>(reducer, INITIAL_STATE);
   const opacity = useRef(new Animated.Value(1)).current;
   const themeColour = useMemo(() => (theme === "light" ? Colours.neutral.white : Colours.neutral.n800), [theme]);
+  const reduxDispatch = useDispatch();
 
   const fadeIn = Animated.timing(opacity, {
     toValue: 1,
@@ -96,7 +99,7 @@ const VideoPlayer = ({
       state: state.isPaused || state.isBuffering ? MusicControl.STATE_PAUSED : MusicControl.STATE_PLAYING,
       elapsedTime: state.currentProgressInSeconds,
     });
-    Logger.logMixpanelEvent(state.isPaused ? "video_player_is_paused" : "video_player_is_playing");
+    reduxDispatch(logMixpanelEventActionCreator(state.isPaused ? "video_player_is_paused" : "video_player_is_playing"));
   }, [state.isPaused, state.isBuffering]);
 
   const onProgress = useCallback(
@@ -119,12 +122,12 @@ const VideoPlayer = ({
 
   const onBuffer = useCallback(({ isBuffering }) => {
     dispatch({ type: ActionTypes.SET_BUFFERING, payload: isBuffering });
-    Logger.logMixpanelEvent("video_player_is_buffering", { isBuffering });
+    reduxDispatch(logMixpanelEventActionCreator("video_player_is_buffering", { isBuffering }));
   }, []);
 
   const onButtonAction = useCallback(() => {
     dispatch({ type: state.isPaused ? ActionTypes.PLAY_PLAYER : ActionTypes.PAUSE_PLAYER });
-    Logger.logMixpanelEvent("video_player_play_button_start_pressed");
+    reduxDispatch(logMixpanelEventActionCreator("video_player_play_button_start_pressed"));
   }, [state.isPaused, state.durationInSeconds]);
 
   const handleStartButton = useCallback(async () => {
@@ -138,7 +141,7 @@ const VideoPlayer = ({
         duration: state.durationInSeconds,
       });
       dispatch({ type: ActionTypes.SET_MUSIC_CONTROL_MOUNTED });
-      Logger.logMixpanelEvent("video_player_button_start_pressed");
+      reduxDispatch(logMixpanelEventActionCreator("video_player_button_start_pressed"));
     } catch (err) {
       Logger.error(err, { location: "video-player-handleStartButton" });
     } finally {
@@ -159,11 +162,11 @@ const VideoPlayer = ({
     if (!state.isPaused && !state.showFocusScreen) {
       dispatch({ type: ActionTypes.SET_SHOW_FOCUS_SCREEN, payload: true });
       fadeOut.start();
-      Logger.logMixpanelEvent("video_player_focused", { isFocused: true });
+      reduxDispatch(logMixpanelEventActionCreator("video_player_focused", { isFocused: true }));
     } else {
       dispatch({ type: ActionTypes.SET_SHOW_FOCUS_SCREEN, payload: false });
       fadeIn.start();
-      Logger.logMixpanelEvent("video_player_focused", { isFocused: false });
+      reduxDispatch(logMixpanelEventActionCreator("video_player_focused", { isFocused: false }));
     }
   }, [state.isPaused, state.showFocusScreen]);
 
