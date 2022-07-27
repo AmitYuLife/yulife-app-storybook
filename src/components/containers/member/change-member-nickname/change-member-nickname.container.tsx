@@ -13,7 +13,7 @@ const ChangeMemberNicknameContainer: FunctionComponent = () => {
   );
   const handleOnPress = async (nickname: string) => {
     try {
-      await updateNickname({ variables: { nickname }, refetchQueries: ["GetCommunityGoals"] });
+      await updateNickname({ variables: { nickname } });
       Keyboard.dismiss();
       Navigation.pop(ROUTES.changeMemberNickname);
     } catch (e) {

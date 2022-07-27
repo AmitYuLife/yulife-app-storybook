@@ -8,7 +8,6 @@ import { TouchableOpacityWithDelay } from "@components/molecules";
 import Svg, { Path } from "react-native-svg";
 import { InfoButton } from "./info-button";
 import { DuelsButton } from "./duels-button";
-import { CommunityGoalsButton } from "./community-goals-button";
 import { getUserFeatures } from "@redux/user/user.selectors";
 import { IReduxState } from "@redux/_core/reducers";
 import { connect } from "react-redux";
@@ -23,20 +22,13 @@ type ConnectedState = ReturnType<typeof mapStateToProps>;
 
 interface IProps extends LeaderboardPressableTitleProps, Partial<ConnectedState> {}
 
-export function _LeaderboardPressableTitle({
-  onPressLabel,
-  onPressInfo,
-  name,
-  showDuels,
-  showCommunityGoals,
-}: Partial<IProps>) {
+export function _LeaderboardPressableTitle({ onPressLabel, onPressInfo, name, showDuels }: Partial<IProps>) {
   return (
     <View pointerEvents="box-none" style={styles.wrapper}>
       <View style={styles.row}>
         <Title title={name} onPressLabel={onPressLabel} onPressInfo={onPressInfo} />
       </View>
       {!showDuels ? null : <DuelsButton />}
-      {!showCommunityGoals ? null : <CommunityGoalsButton />}
     </View>
   );
 }
@@ -143,7 +135,6 @@ const arrowStyles = StyleSheet.create({
 
 const mapStateToProps = (state: IReduxState) => ({
   showDuels: !!getUserFeatures(state).showDuels,
-  showCommunityGoals: !!getUserFeatures(state).showCommunityGoals,
 });
 
 export const LeaderboardPressableTitle = connect<ConnectedState>(mapStateToProps)(_LeaderboardPressableTitle);

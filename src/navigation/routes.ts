@@ -97,10 +97,6 @@ export default [
     component: require("../components/containers/member/inspect/inspect.container").default,
   },
   {
-    name: ROUTES.communityGoals,
-    component: require("../components/containers/member/community-goals/comunity-goals.container").default,
-  },
-  {
     hasMenu: true,
     renderAfterMs: 450,
     name: ROUTES.leaderboards,
