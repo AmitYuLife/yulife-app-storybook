@@ -5,7 +5,7 @@ import { useSetDefaultAnswer } from "../../hooks/useSetDefaultAnswer";
 import { ProductStepContext } from "../../product-step.context";
 import { CoverType } from "@graphql/_core/schema/globalTypes";
 import { useDispatch } from "react-redux";
-import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
+import { sduiEventActionCreator } from "../../utils/sduiEventActionCreator";
 
 export const ProductStepAgePercentCoverPicker = memo((props: GqlProps) => {
   const productStepContext = useContext(ProductStepContext);
@@ -61,7 +61,7 @@ export const ProductStepAgePercentCoverPicker = memo((props: GqlProps) => {
 
   const handlePressCustomAgeViewCallback = () => {
     dispatch(
-      logMixpanelEventActionCreator("button_pressed", {
+      sduiEventActionCreator("button_pressed", {
         button_id: "custom_length_viewed",
         location: productStepContext.stepId,
         cs_product: "Covea_FIB",

@@ -5,7 +5,7 @@ import { Image, TextTemplate } from "@atoms";
 import { PressableWithDelay } from "@components/molecules";
 import { StyleSheet, View, ViewStyle } from "react-native";
 import { Colours, Style } from "@styles";
-import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
+import { sduiEventActionCreator } from "@components/containers/products/product-step/utils/sduiEventActionCreator";
 
 type Props = Omit<GqlInfoButton, "onPress" | "answerKeys"> & {
   additionalInfo?: string;
@@ -25,7 +25,7 @@ export const ContentItemInfoButton = memo((props: Props) => {
       dispatch(onPress);
     }
 
-    dispatch(logMixpanelEventActionCreator("button_pressed", { button_id: id }));
+    dispatch(sduiEventActionCreator("button_pressed", { button_id: id }));
   }, [onPress, dispatch]);
 
   const isPrompt = !additionalInfo;

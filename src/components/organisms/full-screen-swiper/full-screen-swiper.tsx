@@ -6,8 +6,8 @@ import { ProgressItems } from "./progress-items";
 import { Controller } from "./controller";
 import { Page, IPageItem } from "./page";
 import { Dismiss } from "./dismiss";
-import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 import { useDispatch } from "react-redux";
+import { sduiEventActionCreator } from "@components/containers/products/product-step/utils/sduiEventActionCreator";
 
 interface Props {
   id: string;
@@ -77,7 +77,7 @@ export const FullScreenSwiper = memo((props: Props) => {
 
         if (i !== incremented) {
           dispatch(
-            logMixpanelEventActionCreator("modal_movement", {
+            sduiEventActionCreator("modal_movement", {
               new_modal_name: items[incremented].heading,
               previous_modal_name: items[i].heading,
               interaction: !autoMove,
@@ -177,7 +177,7 @@ function useScrollHandler(items: IPageItem[]) {
 
   useEffect(() => {
     dispatch(
-      logMixpanelEventActionCreator("modal_viewed", {
+      sduiEventActionCreator("modal_viewed", {
         name: items[activeIndex].id,
         modal_index: activeIndex,
       })

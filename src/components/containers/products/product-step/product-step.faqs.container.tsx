@@ -6,11 +6,11 @@ import { ContentItemFaqs } from "@components/sdui";
 import { GQL_QUERY_GET_PERSONAL_PRODUCT_STEP_DETACHED_FAQS } from "@graphql/personalProduct/getPersonalProductStepDetachedFaqs.gql";
 import { GetPersonalProductStepDetachedFaqs_getPersonalProductStepDetachedFaqs_body as GPPSSQ_Body } from "@graphql/_core/schema";
 import { GetPersonalProductStepDetachedFaqs, GetPersonalProductStepDetachedFaqsVariables } from "@graphql/_core/schema";
-import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 import { ProductStepContentItemHeaderDetached } from "./subcomponents/detached/product-step.header.detached";
 import { SduiActionType } from "@graphql/_core/schema/globalTypes";
 import { Colours, Style, TOP_BAR } from "@styles";
 import { ProductStepDetachedNavigationContext } from "./product-step-detached-navigation.context";
+import { sduiEventActionCreator } from "./utils/sduiEventActionCreator";
 
 const HEADER_HEIGHT_ESTIMATE = TOP_BAR.TOP_BAR_WITH_PAD;
 const EXTRA_PADDING = Style.adjust(32);
@@ -25,7 +25,7 @@ const ProductStepDetachedContainer = (props: any) => {
   const [nestedHistory, setNestedHistory] = useState([] as string[]);
 
   const pushNestedHistory = (internalStep: string) => {
-    dispatch(logMixpanelEventActionCreator("faq_viewed", { faq_id: internalStep, cs_product: productId }));
+    dispatch(sduiEventActionCreator("faq_viewed", { faq_id: internalStep, cs_product: productId }));
     setNestedHistory((state) => [...state, internalStep]);
   };
 

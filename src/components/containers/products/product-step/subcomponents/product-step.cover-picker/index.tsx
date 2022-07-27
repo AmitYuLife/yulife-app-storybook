@@ -3,13 +3,13 @@ import { LayoutChangeEvent, View } from "react-native";
 import { useDispatch } from "react-redux";
 import { ContentItemCoverPicker as Props } from "@graphql/_core/schema";
 import { CoverType } from "@graphql/_core/schema/globalTypes";
-import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 import { ContentItemButton, ContentItemText } from "@components/sdui";
 import { ProductStepContext } from "../../product-step.context";
 import { useSetDefaultAnswer } from "../../hooks/useSetDefaultAnswer";
 import { LOCAL_ANSWER_KEY } from "../../utils/localAnswerKeys";
 import { ProductStepPercentPicker } from "../product-step.scrollable-items-picker";
 import { BoxOptions } from "./box-options";
+import { sduiEventActionCreator } from "../../utils/sduiEventActionCreator";
 
 export const ProductStepCoverPicker = memo((props: Props) => {
   const {
@@ -54,7 +54,7 @@ export const ProductStepCoverPicker = memo((props: Props) => {
         <ContentItemButton
           {...customCover.button}
           onPress={() => {
-            dispatch(logMixpanelEventActionCreator("customer_cover_viewed", { cs_product: productId }));
+            dispatch(sduiEventActionCreator("customer_cover_viewed", { cs_product: productId }));
             setTitle(customCover.title);
             setIsCustom(true);
           }}

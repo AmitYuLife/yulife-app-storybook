@@ -9,8 +9,8 @@ import {
 } from "@graphql/_core/schema";
 import { Linking, Platform, ScrollView, StyleSheet, View, ViewStyle } from "react-native";
 import { handleOpenWebView } from "@navigation/utils";
-import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 import Logger from "@services/logging/logger";
+import { sduiEventActionCreator } from "@components/containers/products/product-step/utils/sduiEventActionCreator";
 
 type Props = GqlDocuments;
 
@@ -26,7 +26,7 @@ export const ContentItemDocuments = memo((props: Props) => {
         : await Linking.openURL(document.url);
 
       dispatch(
-        logMixpanelEventActionCreator("document_viewed", {
+        sduiEventActionCreator("document_viewed", {
           document_id: document.id,
           document_name: document.linkLabel,
         })

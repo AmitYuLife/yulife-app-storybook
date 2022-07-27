@@ -10,8 +10,8 @@ import { ContentItemCoverPicker } from "@graphql/_core/schema";
 import { ProductStepContext } from "../../product-step.context";
 import { CoverType } from "@graphql/_core/schema/globalTypes";
 import { LOCAL_ANSWER_KEY } from "../../utils";
-import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 import { BoxOption } from "@molecules";
+import { sduiEventActionCreator } from "../../utils/sduiEventActionCreator";
 
 type Props = Pick<ContentItemCoverPicker, "answerKey" | "options" | "styles">;
 
@@ -27,7 +27,7 @@ export const BoxOptions = memo(({ answerKey, options, styles: serverStyles }: Pr
         [LOCAL_ANSWER_KEY.CoverType]: coverType,
       }));
       dispatch(
-        logMixpanelEventActionCreator("package_inspected", {
+        sduiEventActionCreator("package_inspected", {
           type: coverType,
           salary_covered: value,
           cs_product: productId,

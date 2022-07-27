@@ -28,7 +28,6 @@ import {
   GetPersonalProductStepDetachedVariables,
   GetPersonalProductStepDetached_getPersonalProductStepDetached as DetachedStepData,
 } from "@graphql/_core/schema";
-import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 import { ProductStepContentItemHeaderDetached } from "./subcomponents/detached/product-step.header.detached";
 import { SduiActionType } from "@graphql/_core/schema/globalTypes";
 import { Colours } from "@styles";
@@ -44,6 +43,7 @@ import { buildInitialProductStepDynamicDataState } from "@utils/products";
 import { DynamicData } from "@redux/server-driven-ui/sdui.types";
 import { ProductStepDetachedNavigationContext } from "./product-step-detached-navigation.context";
 import { PRODUCT_STEP_BODY_SCROLL_VIEW } from "@ids";
+import { sduiEventActionCreator } from "./utils/sduiEventActionCreator";
 
 interface Props {
   productId: string;
@@ -87,7 +87,7 @@ const ProductStepDetachedContainer = (props: Props) => {
   const pushNestedHistory = useCallback(
     (internalStep: string) => {
       if (stepId.includes("FAQ")) {
-        dispatch(logMixpanelEventActionCreator("faq_viewed", { faq_id: internalStep, cs_product: productId }));
+        dispatch(sduiEventActionCreator("faq_viewed", { faq_id: internalStep, cs_product: productId }));
       }
 
       setNestedHistory((state) => [...state, internalStep]);
