@@ -2,7 +2,7 @@ import { generateRandomMongoId } from "@yu-life/yulife-bdd-framework";
 ;
 import { IDatabaseItem } from "@yu-life/yulife-bdd-framework";
 
-export const CORE_REWARDS_JOHN_LEWIS = {
+export const REWARDS_JOHN_LEWIS = {
     type: "mongo",
     modelName: "core_rewards", 
     data: {
@@ -29,6 +29,8 @@ export const CORE_REWARDS_JOHN_LEWIS = {
         "currencyCode": "GBP",
         "description": "John Lewis is a British institution, with a legacy spanning over 150 years and stores all over the country. Redeem your voucher for one of the many products on johnlewis.com, where you can find everything from face creams to sofas!",
         "name": "John Lewis",
+        "maximum_value": 250,
+        "minimum_value": 5,
         "restrictions": {
             "locations": ["GB"]
         },
@@ -57,7 +59,7 @@ export const CORE_REWARDS_JOHN_LEWIS = {
     }
 } as IDatabaseItem
 
-export const CORE_REWARDS_AVIOS = {
+export const REWARDS_AVIOS = {
     type: "mongo",
     modelName: "core_rewards",
     data: {
@@ -143,7 +145,7 @@ export const CORE_REWARDS_AVIOS = {
 } as IDatabaseItem
 
 
-export const CORE_REWARDS_BLOOM_UNAVAILABLE = {
+export const REWARDS_BLOOM_UNAVAILABLE = {
     type: "mongo",
     modelName: "core_rewards",
     data: {
@@ -196,7 +198,7 @@ export const CORE_REWARDS_BLOOM_UNAVAILABLE = {
     }
 } as IDatabaseItem
 
-export const CORE_REWARDS_NIKE = {
+export const REWARDS_NIKE = {
     type: "mongo",
     modelName: "core_rewards",
     data: {
@@ -228,7 +230,7 @@ export const CORE_REWARDS_NIKE = {
         "e_code_usage_type": null,
         "expiry_date_policy": "24 months from last activity",
         "maximum_value": 400,
-        "minimum_value": 5,
+        "minimum_value": 10,
         "name": "Nike",
         "restrictions": {
             "locations": ["GB"]

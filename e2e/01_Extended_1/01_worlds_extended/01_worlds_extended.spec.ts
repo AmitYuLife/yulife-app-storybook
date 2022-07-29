@@ -180,7 +180,7 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
             Then("I should have right ammount of coins 20430 ", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(20430)))
         })
             
-        When("I tap at level 2", when.tapIDAtPoint(QUESTS_SCREEN_YUNIVERSAL(2), 187, 627), async () => {
+        When("I tap at level 2", when.tapIDAtPoint(QUESTS_SCREEN_YUNIVERSAL(2), 187, 655), async () => {
             Then("I should i just completed a level", then.textVisible("You have just completed a level"))
         })
         When("I press got it", when.tapText("got it"), async () => {

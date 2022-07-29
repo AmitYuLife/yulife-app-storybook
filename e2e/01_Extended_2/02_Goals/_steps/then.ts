@@ -39,8 +39,8 @@ export const iCanSeePopUp = async () => {
 }
 
 export const iCanSeeGoalEventScreen = (challenge: string) => async () => {
-    const descriptionTitle = GOALS_1.data.stages.descriptionTitle
-    const description = GOALS_1.data.stages.description
+    const descriptionTitle = GOALS_1.data.descriptionTitle
+    const description = GOALS_1.data.description
    
     await textVisible("Test event detox", 4000)()
     await textVisible(`${challenge} challenges`)()

@@ -38,8 +38,8 @@ afterEach(async function () {
 
 
 // comment out for detox debugging/dev
-after(async () => {
-  await detoxInstance.cleanup();
-  await socketServer.close();
-  await dataManager.resetData();
-});
+// after(async () => {
+//   await detoxInstance.cleanup();
+//   await socketServer.close();
+//   await dataManager.resetData();
+// });
