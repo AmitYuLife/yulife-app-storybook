@@ -1,4 +1,4 @@
-import { Feature, Scenario, Given, When, Then, FeatureOnly, ScenarioOnly, ScenarioSkip } from "@yu-life/yulife-bdd-framework";
+import { Feature, Scenario, Given, When, Then, FeatureOnly, ScenarioOnly, ScenarioSkip, FeatureSkip } from "@yu-life/yulife-bdd-framework";
 import * as scenario from "./_steps/scenario"
 import * as given from "./_steps/given"
 import * as when from "./_steps/when"
@@ -9,7 +9,7 @@ import { COMMUNITY_GOAL_DROPDOWN, GOALS_BUTTON, NICKNAME_INPUT, GOAL_TOOLTIP_INF
 
 Feature("As an enabled user I am able to use the goals feature", async () => {
     //! Community goals data not pulling through
-    Scenario("As a user I am able to view my community goals", scenario.start, async () => {
+    ScenarioSkip("As a user I am able to view my community goals", scenario.start, async () => {  // Goals was purged from this screen
         Given("I login as a user with goals enabled", given.logInAndGoToTab("leaderboard", CUSTOMER_20, AUTH_20), async () => {
             Then("I should see the goals icon", then.idVisible(GOALS_BUTTON))
             When("I tap the goals button", when.tapID(GOALS_BUTTON), async()=>{
@@ -38,7 +38,7 @@ Feature("As an enabled user I am able to use the goals feature", async () => {
         })
     })
     
-    Scenario("As a user I can join a community goal", scenario.start, async () => {
+    ScenarioSkip("As a user I can join a community goal", scenario.start, async () => {
         Given("I login as a user with goals enabled", given.logInAndGoToTab("leaderboard", CUSTOMER_17, AUTH_17), async () => {
             Then("I should see the goals icon", then.idVisible(GOALS_BUTTON))
             When("I tap the goals button", when.tapID(GOALS_BUTTON), async () => {

@@ -143,7 +143,7 @@ export const PLANS = async () => {
             Then("I should see Package details", then.textVisible("Package details"))
             Then("I should see FAQs", then.textVisible("FAQs"))
             Then("I should see Membership Guide", then.textVisible("Membership Guide"))
-            Then("I should see Product information (IPID)", then.textVisible("Product information (IPID)"))
+            Then("I should see Product information (IPID)", then.textVisible("Product Information (IPID)"))
             When("I scroll a little down on the page", when.swipeFromText(streakBountyTitle , "up", "slow", 0.4), async () => {
                 Then("I should see again Continue to checkout", then.textVisible("Continue to checkout"))
             })
@@ -184,7 +184,7 @@ export const CHECKOUT = async () => {
             Then("I should see Package details", then.textVisible("Package details"))
             When("I scroll to the bottom of the page", when.swipeFromText("Package details", "up", "slow"), async () => {
                 Then("I should see Membership Guide", then.textVisible("Membership Guide"))
-                Then("I should see Product information (IPID)", then.textVisible("Product information (IPID)"))
+                Then("I should see Product information (IPID)", then.textVisible("Product Information (IPID)"))
                 Then("I should see FAQs", then.textVisible("FAQs"))
                 Then("I should see checkout summary text", then.textVisible(checkoutSummary))
                 When("I tap on Close button", when.tapID(BUTTON_CLOSE_CHALLENGE), async () => {

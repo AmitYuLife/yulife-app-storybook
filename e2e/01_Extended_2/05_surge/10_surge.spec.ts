@@ -32,7 +32,7 @@ Feature("Surges work as intended", async () => {
             Then("I should see the surge icon on the today's screen proving the surge is active", then.iCanSeeSurgeIcon("10x", " 1d"))
             When("I tap the icon", when.tapID(SURGE_ICON), async () => {
                 Then("I should see the surge modal appear", then.canSeeSurgeModal)
-                When("I tap the dismiss button", when.tapText("Dismiss"), async () => {
+                When("I tap the close button", when.tapText("Close"), async () => {
                     Then("I should be back on the yucoin tab", then.idVisible(DAILY_STEPS_SCREEN))
                 })
             })

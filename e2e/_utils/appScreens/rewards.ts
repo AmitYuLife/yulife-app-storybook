@@ -12,7 +12,7 @@ export function addCommasToNumber(x: number) {
 export const rewardVisible = (reward: any) => async () => {
 
     const minValue = reward.data.minimum_value
-    const minYucoin = addCommasToNumber(reward.data.available_denominations[0].yuCoin)
+    const minYucoin = addCommasToNumber(reward.data.availableDenominations[0].yuCoin)
     const rewardItem = REWARD_ITEM(reward.data._id)
 
     let rewardItemVisible = await booleanIdVisible(rewardItem)
@@ -36,8 +36,8 @@ export const specialRewardVisible = (reward: any, type: rewardType) => async () 
 
     switch (type) {
         case "avios":
-            const minValue = reward.data.available_denominations[0].value
-            const minYucoin = addCommasToNumber(reward.data.available_denominations[0].yuCoin)
+            const minValue = reward.data.availableDenominations[0].value
+            const minYucoin = addCommasToNumber(reward.data.availableDenominations[0].yuCoin)
 
             rewardItem = REWARD_ITEM(reward.data._id)
             rewardTitle = `${minValue} avios`
@@ -63,8 +63,8 @@ export const tapRewardInList = (reward: any) => async () => {
 export const onRewardScreen = (reward: any) => async () => {
     const name = reward.data.name
     const description = reward.data.description
-    const minValue = reward.data.available_denominations[0].value
-    const minYucoin = reward.data.available_denominations[0].yuCoin
+    const minValue = reward.data.availableDenominations[0].value
+    const minYucoin = reward.data.availableDenominations[0].yuCoin
 
     const rewardItem = REWARD_ITEM(reward.data._id)
     const rewardTitle = `£${minValue} ${name} for ${minYucoin} YuCoins`
@@ -85,8 +85,8 @@ export const onSpecialRewardScreen = (reward: any, type: rewardType) => async ()
 
     switch (type) {
         case "avios":
-            const minValue = reward.data.available_denominations[0].value
-            const minYucoin = addCommasToNumber(reward.data.available_denominations[0].yuCoin)
+            const minValue = reward.data.availableDenominations[0].value
+            const minYucoin = addCommasToNumber(reward.data.availableDenominations[0].yuCoin)
 
             rewardItem = REWARD_ITEM(reward.data._id)
             rewardTitle = `${minValue} avios`
@@ -109,7 +109,7 @@ export const lockedRewardVisible = (reward: any) => async () => {
 }
 
 export const rewardDenominationsVisible = (reward: any) => async () => {
-    const denominations = reward.data.available_denominations
+    const denominations = reward.data.availableDenominations
 
     for (const i of denominations) {
         await expect(element(by.text(`£${i.value} - ${i.yuCoin} YuCoin`))).toBeVisible()
@@ -117,13 +117,13 @@ export const rewardDenominationsVisible = (reward: any) => async () => {
 }
 
 export const tapDenomination = (reward: any, index: number) => async () => {
-    const denomination = reward.data.available_denominations[index]
+    const denomination = reward.data.availableDenominations[index]
     const denominationText = element(by.id(TEXT_TEMPLATE(`£${denomination.value} - ${addCommasToNumber(denomination.yuCoin)} YuCoin`)))
     await denominationText.tap()
 }
 
 export const denominationListVisible = (reward: any, availableYuCoin: number) => async () => {
-    const denominationArr = reward.data.available_denominations
+    const denominationArr = reward.data.availableDenominations
     
     await expect(element(by.text(`You have ${availableYuCoin} YuCoin`))).toBeVisible()
     await expect(element(by.text(`Cancel`))).toBeVisible()
@@ -135,7 +135,7 @@ export const denominationListVisible = (reward: any, availableYuCoin: number) =>
 }
 
 export const tapDenominationList = (reward: any, index = 0) => async () => {
-    const denomination = reward.data.available_denominations[index]
+    const denomination = reward.data.availableDenominations[index]
     const denominationText = element(by.text(`£${denomination.value} - ${addCommasToNumber(denomination.yuCoin)} YuCoin`))
     const confirmationPurchaseText =  element(by.text(`You'll purchase a £${denomination.value} Nike voucher with ${addCommasToNumber(denomination.yuCoin)} YuCoin.`))
 
@@ -148,20 +148,20 @@ export const tapDenominationList = (reward: any, index = 0) => async () => {
 }
 
 export const buyButtonVisible = (reward: any, index = 0) => async () => {
-    const buttonText = element(by.text(`£10 - ${addCommasToNumber(reward.data.available_denominations[index].yuCoin)} YuCoin`))
+    const buttonText = element(by.text(`£10 - ${addCommasToNumber(reward.data.availableDenominations[index].yuCoin)} YuCoin`))
     await expect(buttonText).toBeVisible()
 }
 
 export const tapBuyButton = (reward: any, index = 0) => async () => {
-    const buttonText = element(by.text(`£20 - ${reward.data.available_denominations[index].yuCoin} YuCoin`))
+    const buttonText = element(by.text(`£20 - ${reward.data.availableDenominations[index].yuCoin} YuCoin`))
     await expect(buttonText).toBeVisible()
     await buttonText.longPress()
 }
 
 export const onRewardPurchasedScreen = (reward: any, locale = "en-GB", index = 0) => async () => {
-    const cardImageURL = element(by.id(PURCHASE_IMAGE(reward.data.card_image_url)))
+    const cardImageURL = element(by.id(PURCHASE_IMAGE(reward.data.images.detailHeaderKey)))
     const description = reward.data.description
-    const howtoRedeem = reward.data.redeem_steps.steps[index]
+    const howtoRedeem = reward.data.redemptionSteps.steps[index]
 
     const expiryPolicy = reward.data.expiry_date_policy
     const purchaseDate = moment().format(locale === "en-US" ? "MMMM DD, YYYY" : "DD MMM YYYY")
@@ -202,9 +202,9 @@ export const onRewardPurchasedScreen = (reward: any, locale = "en-GB", index = 0
 
 
 export const purchasedRewardVisible = (reward: any, denominationIndex = 0) => async () => {
-    const value = reward.data.available_denominations[denominationIndex].value
+    const value = reward.data.availableDenominations[denominationIndex].value
     const rewardName = reward.data.name
-    const yuCoinCost = addCommasToNumber(reward.data.available_denominations[denominationIndex].yuCoin)
+    const yuCoinCost = addCommasToNumber(reward.data.availableDenominations[denominationIndex].yuCoin)
 
     const title = `£${value} ${rewardName} voucher`
     const subTitle = `${yuCoinCost} YuCoin`
@@ -218,7 +218,7 @@ export const purchasedRewardVisible = (reward: any, denominationIndex = 0) => as
 }
 
 export const tapPurchasedReward = (reward: any, denominationIndex = 0) => async () => {
-    const value = reward.data.available_denominations[denominationIndex].value
+    const value = reward.data.availableDenominations[denominationIndex].value
     const rewardName = reward.data.name
 
     const title = element(by.text(`£${value} ${rewardName} voucher`)).atIndex(denominationIndex)
