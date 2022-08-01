@@ -707,3 +707,21 @@ export const USER_42 = {
         earnRate: 10,
     }
 } as IDatabaseItem
+
+
+export const USER_PLI_2 = {
+    type: "mongo",
+    modelName: "users",
+    data: {
+        _id: generateRandomMongoId(),
+        userId: CUSTOMER_42.data.customerId,
+        products: [{
+            productId: generateRandomMongoId(),
+            productType: "Yulife",
+            option: "epic",
+            type: "employer",
+            earnRate: 10,
+        }],
+        earnRate: 10,
+    }
+} as IDatabaseItem

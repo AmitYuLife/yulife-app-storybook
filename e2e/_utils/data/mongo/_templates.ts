@@ -110,3 +110,55 @@ export const CHALLENGE_TEMPLATE = {
         "multiplierId": null
     }
 } as IDatabaseItem
+
+
+export const allTogglesTrueFor_PLI = {
+    type: "mongo",
+    modelName: "usertoggles",
+    data: {
+        _id: generateRandomMongoId(),
+        userId: generateRandomMongoId(),
+        features: {
+            "showNotifications": true,
+            "showStreaks": true,
+            "showCounter": true,
+            "showBuildNumber": true,
+            "showSettings": true,
+            "showCreateLeaderboard": true,
+            "showAdvancedLeaderboards": true,
+            "disableUserEntries": true,
+            "fitbit": true,
+            "showConnections": true,
+            "showLastSynced": true,
+            "newPassiveValidationRule": true,
+            "usePassiveMeditation": true,
+            "statsShowCoinGeneralTotalYearned": true,
+            "statsShowCoinRecommendationCard": true,
+            "statsShowCoinGeneralTotalRedeemedCard": true,
+            "statsShowCoinAchievementCard": true,
+            "statsShowChallengeGeneralCard": true,
+            "statsShowChallengeRecommendationCard": true,
+            "statsShowChallengeComparisonCard": true,
+            "statsShowStepsRecommendationCard": true,
+            "statsShowStepsGeneralCard": true,
+            "statsShowStepsBestScoreCard": true,
+            "statsShowStepsGraphCard": true,
+            "statsShowMindfulnessRecommendationCard": true,
+            "statsShowMindfulnessGeneralCard": true,
+            "statsShowMindfulnessBestScoreCard": true,
+            "statsShowMindfulnessGraphCard": true,
+            "statsShowCyclingRecommendationCard": true,
+            "statsShowCyclingGeneralCard": true,
+            "statsShowCyclingBestScoreCard": true,
+            "statsShowCyclingGraphCard": true,
+            "showStats": true,
+            "showDuels": true,
+            showCommunityGoals: true,
+            showReferrals: true,
+            yuScreenV3: true,
+            hasCoveaFibActive: true,
+            hasBupaDentActive: true,
+            showDailyScreenCustomIcon: true,
+        }
+    }
+} as IDatabaseItem

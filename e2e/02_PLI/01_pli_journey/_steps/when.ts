@@ -32,7 +32,8 @@ export const {
     navigateViaText,
     navigateViaID,
     textVisible,
-    slowType
+    slowType,
+    tapTextAtIndex
 } = navigation.common
 
 export const {

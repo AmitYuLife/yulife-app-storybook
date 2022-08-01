@@ -4,7 +4,7 @@ import * as given from "./_steps/given"
 import * as when from "./_steps/when"
 import * as then from "./_steps/then"
 import * as helper from "./_steps/helpers"
-import { CUSTOMER_37, AUTH_37 } from "@data";
+import { CUSTOMER_37, AUTH_37, CUSTOMER_PLI_5, AUTH_PLI_5 } from "@data";
 
 Feature("PLI SAD", async()=>{
     Scenario("As a user with High BMI, I cannot get PLI", scenario.start, async()=>{
@@ -154,6 +154,20 @@ Feature("PLI SAD", async()=>{
                         helper.UNDERWRITING_CONFIRM_DOB();
                         helper.REJECTED("Age")
                     })
+                })
+            })
+        })
+    })
+
+    Scenario("As a user whose latest quote is 61 days old and whose application got rejected, then getting into the journey should show me that I am still rejected.", scenario.start, async()=>{
+        Given("I login as a user with Covea FIB enabled", given.loginToYuScreen(false,  CUSTOMER_PLI_5, AUTH_PLI_5), async()=>{
+            Then("I should be on the yuscreen", then.onYuscreenV3(CUSTOMER_PLI_5))
+            When("I create the default yumoji", when.createDefaultYumoji, async () => {
+                When("I tap off the tooltip", when.tapText(`${CUSTOMER_PLI_5.data.firstName} ${CUSTOMER_PLI_5.data.lastName}`), async () => {
+                    Then("I should be back on the YuScreen", then.onYuscreenV3(CUSTOMER_PLI_5))
+                })
+                When("I tap the chest", when.tapUnlockableItem("chest"), async () => {
+                    helper.REJECTED("Answers")
                 })
             })
         })

@@ -1,4 +1,5 @@
 import { generateRandomPostgresId } from "@yu-life/yulife-bdd-framework";
+import moment from "moment";
 
 const modelName = "customer_product_progression";
 
@@ -161,4 +162,91 @@ export const CUSTOMER_PROGRESSION_12 = {
         session_id : "a03f5545-5a57-47c3-8467-ab789c5a4411"
     },
 }
+
+export const CUSTOMER_PLI_PROGRESSION_13 = {
+    type: "postgres",
+    modelName,
+    data: {
+        "customer_product_progression_id" : generateRandomPostgresId(),
+        "customer_product_id" : "YUCPID0000000137",
+        "step_id" : "Covea_FIB_02_checkout_summary",
+        "step_data" : "{}",
+        "archived" : false,
+        "archived_at" : "2022-07-28T11:56:11.687Z",
+        "created_at" : "2022-07-28T11:56:07.244Z",
+        "created_by_id" : null,
+        "modified_at" : "2022-07-28T11:56:11.687Z",
+        "modified_by_id" : null,
+        "archive_reason" : "back",
+        "session_id" : "c6ac7c02-7f17-4129-a132-e28281e63e07"
+    },
+}
+
+export const CUSTOMER_PLI_PROGRESSION_14 = {
+    type: "postgres",
+    modelName,
+    data: {
+        "customer_product_progression_id" : generateRandomPostgresId(),
+        "customer_product_id" : "YUCPID0000000138",
+        "step_id" : "Covea_FIB_02_underwriting_dob",
+        "archived" : false,
+        "archived_at" : null,
+        "created_at" : "2022-07-28T11:53:43.986Z",
+        "created_by_id" : null,
+        "modified_at" : "2022-07-28T11:53:52.138Z",
+        "modified_by_id" : null,
+        "archive_reason" : null,
+        "session_id" : "c6ac7c02-7f17-4129-a132-e28281e63e07",
+        "step_data" : {
+            "dateOfBirth": moment().subtract(30, "years").format("YYYY-MM-DD"),
+            "quoteAge":"29"
+        },
+    },
+}
+
+export const CUSTOMER_PLI_PROGRESSION_15 = {
+    type: "postgres",
+    modelName,
+    data: {
+        "customer_product_progression_id" : generateRandomPostgresId(),
+        "customer_product_id" : "YUCPID0000000139",
+        "step_id" : "Covea_FIB_02_underwriting_salary",
+        "step_data" : "{\"salary\":15000}",
+        "archived" : false,
+        "archived_at" : null,
+        "created_by_id" : null,
+        "modified_at" : "2022-08-01T14:02:29.725Z",
+        "modified_by_id" : null,
+        "archive_reason" : null,
+        "session_id" : "c6ac7c02-7f17-4111-a132-e28281e63e07",
+    },
+}
+
+export const CUSTOMER_QUOTE_PLI_15_UPDATE = {
+    type: "postgres",
+    modelName,
+    updateKey: "customer_product_progression_id",
+    data: {
+        customer_product_progression_id: CUSTOMER_PLI_PROGRESSION_15.data.customer_product_progression_id,
+        created_at : moment().subtract(31, "days").format(),
+    }
+}
+
     
+export const CUSTOMER_PLI_PROGRESSION_16 = {
+    type: "postgres",
+    modelName,
+    data: {
+        "customer_product_progression_id" : generateRandomPostgresId(),
+        "customer_product_id" : "YUCPID0000000140",
+        "step_id" : "Covea_FIB_02_rejection_generic",
+        "archived" : false,
+        "archived_at" : null,
+        "created_by_id" : null,
+        "modified_at" : "2022-08-01T10:12:53.195Z",
+        "modified_by_id" : null,
+        "archive_reason" : null,
+        "session_id" : "6527c8e6-a23e-4916-b939-1b6e3b07e8ae",
+        "step_data" : "{}",
+    },
+}
