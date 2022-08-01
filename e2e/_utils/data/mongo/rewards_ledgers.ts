@@ -1,4 +1,4 @@
-import { REWARDS_NIKE } from "@data";
+import { CORE_REWARDS_NIKE } from "@data";
 import { generateRandomMongoId, IDatabaseItem } from "@yu-life/yulife-bdd-framework";
 import moment from "moment";
 import { USER_2 } from "./users";
@@ -21,7 +21,7 @@ export const REWARD_LEDGER_1 = {
         "restrictions": {
             "locations": ["GB"]
         },
-        "reward": REWARDS_NIKE.data._id,
+        "reward": CORE_REWARDS_NIKE.data._id,
         "createdAt": moment().subtract(10, "minutes").toISOString(),
         "updatedAt": moment().subtract(5, "minutes").toISOString(),
         "__v": 0

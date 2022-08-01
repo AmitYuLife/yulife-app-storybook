@@ -2,7 +2,7 @@ import { generateRandomMongoId } from "@yu-life/yulife-bdd-framework";
 ;
 import { IDatabaseItem } from "@yu-life/yulife-bdd-framework";
 
-export const REWARDS_JOHN_LEWIS = {
+export const CORE_REWARDS_JOHN_LEWIS = {
     type: "mongo",
     modelName: "core_rewards", 
     data: {
@@ -59,7 +59,7 @@ export const REWARDS_JOHN_LEWIS = {
     }
 } as IDatabaseItem
 
-export const REWARDS_AVIOS = {
+export const CORE_REWARDS_AVIOS = {
     type: "mongo",
     modelName: "core_rewards",
     data: {
@@ -145,7 +145,7 @@ export const REWARDS_AVIOS = {
 } as IDatabaseItem
 
 
-export const REWARDS_BLOOM_UNAVAILABLE = {
+export const CORE_REWARDS_BLOOM_UNAVAILABLE = {
     type: "mongo",
     modelName: "core_rewards",
     data: {
@@ -198,7 +198,7 @@ export const REWARDS_BLOOM_UNAVAILABLE = {
     }
 } as IDatabaseItem
 
-export const REWARDS_NIKE = {
+export const CORE_REWARDS_NIKE = {
     type: "mongo",
     modelName: "core_rewards",
     data: {
