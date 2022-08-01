@@ -581,8 +581,59 @@ export const CUSTOMER_42 = {
         status: "onboarded"
     }
 } as IDatabaseItem
-       
 
+export const CUSTOMER_PLI_2 = {
+    type,
+    modelName,
+    data:{
+        customerId: generateRandomMongoId(),
+        email: generateRandomInbox(),
+        firstName: "John",
+        lastName: "Doe",
+        dateOfBirth: moment().subtract(25, "years").toDate(),
+        status: "onboarded"
+    }
+} as IDatabaseItem
+
+export const CUSTOMER_PLI_3 = {
+    type,
+    modelName,
+    data:{
+        customerId: generateRandomMongoId(),
+        email: generateRandomInbox(),
+        firstName: "San",
+        lastName: "Voe",
+        dateOfBirth: moment().subtract(30, "years").toDate(),
+        status: "onboarded"
+    }
+} as IDatabaseItem
+
+export const CUSTOMER_PLI_4 = {
+    type,
+    modelName,
+    data:{
+        customerId: generateRandomMongoId(),
+        email: generateRandomInbox(),
+        firstName: "Akio",
+        lastName: "Haruko",
+        dateOfBirth: moment().subtract(35, "years").toDate(),
+        status: "onboarded"
+    }
+} as IDatabaseItem
+
+export const CUSTOMER_PLI_5 = {
+    type,
+    modelName,
+    data:{
+        customerId: generateRandomMongoId(),
+        email: generateRandomInbox(),
+        firstName: "Elijah",
+        lastName: "Musk",
+        dateOfBirth: moment().subtract(35, "years").toDate(),
+        status: "onboarded"
+    }
+} as IDatabaseItem
+       
 export const CUSTOMER_DENTAL_1 = {
     type: "postgres",
     modelName: "customer",

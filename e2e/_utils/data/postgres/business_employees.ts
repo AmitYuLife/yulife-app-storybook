@@ -6,7 +6,7 @@ import {
     CUSTOMER_17, CUSTOMER_18, CUSTOMER_19, CUSTOMER_20, CUSTOMER_21, CUSTOMER_22, CUSTOMER_23, CUSTOMER_ALPHA, CUSTOMER_24, CUSTOMER_25, CUSTOMER_26, CUSTOMER_27, CUSTOMER_28, CUSTOMER_29, CUSTOMER_30, CUSTOMER_31, CUSTOMER_32, CUSTOMER_33, CUSTOMER_34, CUSTOMER_35, CUSTOMER_36, CUSTOMER_38, CUSTOMER_39, CUSTOMER_40, CUSTOMER_41, CUSTOMER_42
 } from './customers';
 import moment = require('moment');
-import { CUSTOMER_37 } from "@data";
+import { CUSTOMER_37, CUSTOMER_PLI_2 } from "@data";
 
 
 const type = "postgres"
@@ -483,6 +483,17 @@ export const BUSINESS_EMPLOYEE_42 = {
         business_account_id: BUSINESS_ACCOUNT_1.data.business_account_id,
         customer_id: CUSTOMER_42.data.customerId,
         employment_start_date: moment().subtract(26, "days").toDate(),
+        leave_date: moment().add(10, "years").toDate()
+    }
+} as IDatabaseItem
+
+export const BUSINESS_EMPLOYEE_PLI_2 = {
+    type,
+    modelName,
+    data: {
+        business_account_id: BUSINESS_ACCOUNT_4.data.business_account_id,
+        customer_id: CUSTOMER_PLI_2.data.customerId,
+        employment_start_date: moment().subtract(1, "year").toDate(),
         leave_date: moment().add(10, "years").toDate()
     }
 } as IDatabaseItem

@@ -4,7 +4,7 @@ import * as given from "./_steps/given"
 import * as when from "./_steps/when"
 import * as then from "./_steps/then"
 import * as helper from "./_steps/helpers"
-import { CUSTOMER_37, AUTH_37 } from "@data";
+import { CUSTOMER_37, AUTH_37, CUSTOMER_PLI_2, AUTH_PLI_2, CUSTOMER_PLI_3, AUTH_PLI_3, CUSTOMER_PLI_4, AUTH_PLI_4 } from "@data";
 
 Feature("PLI HAPPY", async()=>{
     Scenario("As a completely healthy male user with Covea FIB enabled, I should be able to purchase PLI", scenario.start, async()=>{
@@ -150,6 +150,48 @@ Feature("PLI HAPPY", async()=>{
                         helper.MAXIMUM_SUM_ASSURED("common","£57.68","£3,875")
                         helper.CHECKOUT(false)
                     })
+                })
+            })
+        })
+    })
+
+    Scenario("As a user who started a journey and reached the point of receiving a quote, when 60 days have passed since the last quote was generated, when I resume my journey, then I should start from the beginning.", scenario.start, async()=>{
+        Given("I login as a user with Covea FIB enabled", given.loginToYuScreen(false,  CUSTOMER_PLI_2, AUTH_PLI_2), async()=>{
+            Then("I should be on the yuscreen", then.onYuscreenV3(CUSTOMER_PLI_2))
+            When("I create the default yumoji", when.createDefaultYumoji, async () => {
+                When("I tap off the tooltip", when.tapText(`${CUSTOMER_PLI_2.data.firstName} ${CUSTOMER_PLI_2.data.lastName}`), async () => {
+                    Then("I should be back on the YuScreen", then.onYuscreenV3(CUSTOMER_PLI_2))
+                })
+                When("I tap the chest", when.tapUnlockableItem("chest"), async () => {
+                    helper.ONBOARDING();
+                })
+            })
+        })
+    })
+
+    Scenario("As a user who had a birthday after I started my journey, when I resume my journey, then I should start from the beginning.", scenario.start, async()=>{
+        Given("I login as a user with Covea FIB enabled", given.loginToYuScreen(false,  CUSTOMER_PLI_3, AUTH_PLI_3), async()=>{
+            Then("I should be on the yuscreen", then.onYuscreenV3(CUSTOMER_PLI_3))
+            When("I create the default yumoji", when.createDefaultYumoji, async () => {
+                When("I tap off the tooltip", when.tapText(`${CUSTOMER_PLI_3.data.firstName} ${CUSTOMER_PLI_3.data.lastName}`), async () => {
+                    Then("I should be back on the YuScreen", then.onYuscreenV3(CUSTOMER_PLI_3))
+                })
+                When("I tap the chest", when.tapUnlockableItem("chest"), async () => {
+                    helper.ONBOARDING();
+                })
+            })
+        })
+    })
+
+    Scenario("As a user who started the journey but has not reached the point of being given a quote, when I resume my journey after 30 days, then I should start from the beginning.", scenario.start, async()=>{
+        Given("I login as a user with Covea FIB enabled", given.loginToYuScreen(false,  CUSTOMER_PLI_4, AUTH_PLI_4), async()=>{
+            Then("I should be on the yuscreen", then.onYuscreenV3(CUSTOMER_PLI_4))
+            When("I create the default yumoji", when.createDefaultYumoji, async () => {
+                When("I tap off the tooltip", when.tapText(`${CUSTOMER_PLI_4.data.firstName} ${CUSTOMER_PLI_4.data.lastName}`), async () => {
+                    Then("I should be back on the YuScreen", then.onYuscreenV3(CUSTOMER_PLI_4))
+                })
+                When("I tap the chest", when.tapUnlockableItem("chest"), async () => {
+                    helper.ONBOARDING();
                 })
             })
         })
