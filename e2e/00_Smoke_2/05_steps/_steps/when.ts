@@ -9,7 +9,8 @@ export const {
     tapText,
     replaceTextByID,
     restartWithData,
-    reloadAppToTab
+    reloadAppToTab,
+    wait
 } = navigation.common
 
 export const {
@@ -22,7 +23,8 @@ export const {
 
 export const {
     scrollFromID,
-    swipeFromText
+    swipeFromText,
+    swipeFromID
 } = navigation.scrolling
 
 export const turnOffLeaderboard = (leaderboardID: string) => async () => {

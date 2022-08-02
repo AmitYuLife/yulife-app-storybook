@@ -1,2 +1,6 @@
 import moment = require("moment");
-export const yesterdaysDateDaysOnly = moment().subtract(1, "days").date().toString()
+export const twoDaysAgoDate = moment().subtract(2, 'days').format('DD')
+
+
+
+

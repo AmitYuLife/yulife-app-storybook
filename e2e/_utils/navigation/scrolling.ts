@@ -96,3 +96,9 @@ export const swipeToID = (scrollID: any, targetID: string, direction: Detox.Dire
         }
     }
 }
+
+export const swipeFromID = (id: string, direction: any, speed: any, percentage?: any) => async () => {
+    const target = element(by.id(id))
+    await target.swipe(direction, speed, percentage)
+}
+
