@@ -28,7 +28,7 @@ async function openStore({ appName, appStoreId, appStoreLocale = "gb", playStore
       // check if appStoreLocale is set
       const locale = typeof appStoreLocale === "undefined" ? "us" : appStoreLocale;
 
-      await Linking.openURL(`https://itunes.apple.com/${locale}/app/${appName}/id${appStoreId}`);
+      await Linking.openURL(`https://itunes.apple.com/${locale}/app/${appName}/id/${appStoreId}`);
     } else {
       await Linking.openURL(`https://play.google.com/store/apps/details?id=${playStoreId}`);
     }
