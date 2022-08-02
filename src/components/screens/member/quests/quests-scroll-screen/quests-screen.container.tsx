@@ -108,7 +108,7 @@ function QuestsScreenContainer(props: Props) {
     fetchPolicy: "network-only",
   });
 
-  const currentWorldGQL = data?.getQuestMapLevelList ? data?.getQuestMapLevelList : [];
+  const currentWorldGQL = data?.getQuestMapLevelList || [];
   const formattedData = yuniversalMap
     ? []
     : currentWorldGQL.map((itemLevel) => {
@@ -181,6 +181,7 @@ function QuestsScreenContainer(props: Props) {
       unity={unity}
       repeatedUnity={repeatedUnity}
       activeLevel={getActiveLevel(formattedData)}
+      componentId={componentId}
     />
   );
 }
