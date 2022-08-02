@@ -5,7 +5,7 @@ import * as when from "./_steps/when"
 import * as then from "./_steps/then"
 import { NAV_BAR, MENU_ICON, ACTIVITY_HISTORY_SCREEN, BUTTON_CLOSE_HEADER, LEADERBOARD_TITLE, STEPS_COUNT, DUELS_BUTTON } from "@ids";
 import { CUSTOMER_40, AUTH_40, USER_40_LEADERBOARD } from "@data";
-import { yesterdaysDateDaysOnly } from "./_steps/consts"
+import { twoDaysAgoDate } from "./_steps/consts"
 
 
 Feature("As a user my steps are monitored correctly", async () => {
@@ -35,7 +35,7 @@ Feature("As a user my steps are monitored correctly", async () => {
             When("I tap activity history", when.tapMenuItem("Activity History"), async () => {
                 Then("I should be on activity history", then.idVisible(ACTIVITY_HISTORY_SCREEN, 2500))
             })
-            When("I pull down the activity history page to refresh", when.swipeFromText(yesterdaysDateDaysOnly, "down", "fast"), async () => {
+            When("I pull down the activity history page to refresh", when.swipeFromText(twoDaysAgoDate, "down", "fast"), async () => {
                 Then("I should see the historical steps from yesterday loaded in meaning the refresh has worked", then.canSeeYesterdaysSteps)
             })
             When("I go back", when.tapID(BUTTON_CLOSE_HEADER("activity history")), async () => {

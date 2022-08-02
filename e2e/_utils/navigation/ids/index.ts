@@ -122,7 +122,6 @@ export const CYCLING_COUNT = (cycling:string) => `CYCLING_COUNT_${cycling}`
 export const MINDFUL_COUNT = (mindfulness:string) => ` MINDFUL_COUNT_${mindfulness}`
 export const COVER_TYPE = (copy:string) => `COVER_TYPE_${copy}`
 
-
 // reward purchased
 export const WEGIFT_CONFIRMED = "WEGIFT_CONFIRMED"
 export const PURCHASE_IMAGE = (url: any) => `PURCHASE_IMAGE_${url}`

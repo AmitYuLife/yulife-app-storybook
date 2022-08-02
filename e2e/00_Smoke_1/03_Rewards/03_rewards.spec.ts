@@ -1,10 +1,10 @@
-import { Feature, Scenario, Given, When, Then, ScenarioOnly, FeatureOnly, ScenarioSkip, FeatureSkip } from "@yu-life/yulife-bdd-framework";
+import { Feature, ScenarioSkip, Given, When, Then, ScenarioOnly, FeatureOnly, Scenario, FeatureSkip } from "@yu-life/yulife-bdd-framework";
 import * as scenario from "./_steps/scenario"
 import * as given from "./_steps/given"
 import * as when from "./_steps/when"
 import * as then from "./_steps/then"
-import { REWARDS_SCREEN, REWARDS_LIST_SCREEN, VIEW_TOP_RIGHT_COIN_COUNTER, WEGIFT_DETAILS, BACK_BUTTON} from "@ids";
-import { CORE_REWARDS_JOHN_LEWIS, CORE_REWARDS_BLOOM_UNAVAILABLE, CUSTOMER_3, AUTH_3, CORE_REWARDS_NIKE, CUSTOMER_4, AUTH_4, COIN_LEDGER_4, CUSTOMER_2, AUTH_2 } from "@data";
+import { REWARDS_SCREEN, REWARDS_LIST_SCREEN, VIEW_TOP_RIGHT_COIN_COUNTER, BACK_BUTTON} from "@ids";
+import { CORE_REWARDS_JOHN_LEWIS, CORE_REWARDS_BLOOM_UNAVAILABLE, CUSTOMER_3, AUTH_3, CORE_REWARDS_NIKE, CUSTOMER_4, AUTH_4, CUSTOMER_2, AUTH_2 } from "@data";
 
 
 
@@ -173,15 +173,15 @@ Feature("Rewards should act correctly", async () => {
     Scenario("I can login and view my previously purchased rewards with different date formate : locale US", scenario.startUS, async () => {
         Given("I login and go to rewards", given.logInAndGoToTab("rewards", CUSTOMER_2, AUTH_2), async () => {
             Then("I should be on the rewards tab", then.idVisible(REWARDS_SCREEN))
-            When("I swipe down this page", when.swipeToText(REWARDS_LIST_SCREEN,"Purchase history", "up"), async () => {
-                When("I tap the Purchased history", when.tapText("Purchase history"), async () => {
-                    Then("I should see the nike reward I have previously purchased", then.purchasedRewardVisible(CORE_REWARDS_NIKE, 0))
-                    Then("I should see my coin balance in the top right", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(200)))
-                    When("I tap this reward", when.tapPurchasedReward(CORE_REWARDS_NIKE, 0), async () => {
-                        Then("I should be on the purchase screen for this reward and see US date format", then.onRewardPurchasedScreen(CORE_REWARDS_NIKE, "en-US"))
-                        Then("I should see my coin balance in the top right", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(200)))
-                    })
-                })
+        })
+        When("I swipe down this page", when.swipeToText(REWARDS_LIST_SCREEN,"Purchase history", "up"), async () => {
+            When("I tap the Purchased history", when.tapText("Purchase history", 3000), async () => {
+                Then("I should see the nike reward I have previously purchased", then.purchasedRewardVisible(CORE_REWARDS_NIKE, 0))
+                Then("I should see my coin balance in the top right", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(200)))
+            })
+            When("I tap this reward", when.tapPurchasedReward(CORE_REWARDS_NIKE, 0), async () => {
+                Then("I should be on the purchase screen for this reward and see US date format", then.onRewardPurchasedScreen(CORE_REWARDS_NIKE, "en-US"))
+                Then("I should see my coin balance in the top right", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(200)))
             })
         })
     })
