@@ -65,5 +65,8 @@ export interface GetAllPurchases_getAllPurchases {
 }
 
 export interface GetAllPurchases {
+  /**
+   * Start of Legacy
+   */
   getAllPurchases: (GetAllPurchases_getAllPurchases | null)[] | null;
 }

@@ -56,7 +56,7 @@ export interface GetPersonalProductStepDetached_getPersonalProductStepDetached_b
     | "ContentItemProgressSteps"
     | "ContentItemCostPayoutBenefitCard"
     | "ContentItemCollapsingHeaderAgePercentProductInfo"
-    | "ContentItemMobileAppPromotion";
+    | "ContentItemPerks";
 }
 
 export interface GetPersonalProductStepDetached_getPersonalProductStepDetached_body_ContentItemPersonalProductFaqs_headingImage_image {

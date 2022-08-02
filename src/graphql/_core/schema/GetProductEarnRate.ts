@@ -39,10 +39,6 @@ export interface GetProductEarnRate_getProductEarnRate {
 }
 
 export interface GetProductEarnRate {
-  /**
-   * If optional customerProductId is not given, will
-   * return default earn rate table which consists of base earn rate and user current earn rate
-   */
   getProductEarnRate: GetProductEarnRate_getProductEarnRate | null;
 }
 
