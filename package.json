@@ -57,8 +57,8 @@
     "dependencies": {
         "@apollo/react-common": "^3.1.4",
         "@apollo/react-hooks": "^3.1.4",
-        "@bugsnag/plugin-react-native-navigation": "7.16.1",
-        "@bugsnag/react-native": "7.16.2",
+        "@bugsnag/plugin-react-native-navigation": "7.17.0",
+        "@bugsnag/react-native": "7.17.3",
         "@intercom/intercom-react-native": "1.1.1",
         "@leanplum/react-native-sdk": "^1.2.1",
         "@react-native-community/async-storage": "^1.11.0",
