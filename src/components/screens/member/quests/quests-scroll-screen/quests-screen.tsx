@@ -35,6 +35,7 @@ interface IProps extends IConnectedScreenProps {
   unity: number;
   repeatedUnity: boolean;
   loading: boolean;
+  componentId: string;
 }
 
 type CurrentWorld = 0 | 1 | 2 | 3;
@@ -48,6 +49,7 @@ const QuestsScreen: FC<IProps> = ({
   repeatedUnity,
   loading,
   onLeftMenuPress,
+  componentId,
 }) => {
   const features = useSelector(getUserFeatures);
 
@@ -85,7 +87,7 @@ const QuestsScreen: FC<IProps> = ({
         }
       }, 600);
     }
-  }, [activeLevel, flatList.current]);
+  }, [activeLevel]);
 
   const setFlatListRef = useCallback((ref: any) => {
     flatList.current = ref;
@@ -95,7 +97,7 @@ const QuestsScreen: FC<IProps> = ({
     if (!loading) {
       scrollToActiveLevel();
     }
-  });
+  }, componentId);
 
   useEffect(() => {
     return () => clearTimeout(timer.current);
@@ -103,7 +105,7 @@ const QuestsScreen: FC<IProps> = ({
 
   useEffect(() => {
     scrollToActiveLevel();
-  }, [scrollToActiveLevel, loading, unity, activeLevel]);
+  }, [loading, unity, activeLevel]);
 
   const { initialScrollIndex, slices, snapOffsets } = useMemo(() => getWorldData(currentLevel), [currentLevel]);
 
