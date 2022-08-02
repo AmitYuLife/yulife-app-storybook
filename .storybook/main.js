@@ -12,7 +12,7 @@ const CUSTOM_CONFIG = {
       "@react-native-community/push-notification-ios": path.join(__dirname, "/aliases/react-native-push-notification"),
       "react-native-linear-gradient": "react-native-web-linear-gradient",
       "react-native-mixpanel": path.join(__dirname, "/aliases/mixpanel"),
-      "bugsnag-react-native": path.join(__dirname, "/aliases/bugsnag"),
+      "@bugsnag/react-native": path.join(__dirname, "/aliases/bugsnag"),
       "react-native-spring-scrollview": path.join(__dirname, "/aliases/react-native-spring-scrollview"),
       "react-native-navigation": path.join(__dirname, "/aliases/react-native-navigation"),
       "react-native-animatable": path.join(__dirname, "/aliases/react-native-animatable"),
