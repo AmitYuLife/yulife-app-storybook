@@ -1,4 +1,4 @@
-import React, { memo, useState, useRef, useCallback, useEffect, useMemo, FC } from "react";
+import React, { memo, useState, useRef, useCallback, useEffect, FC } from "react";
 import { QUESTS_SCREEN } from "@ids";
 import { getCurrentEpisode, getCurrentWorld, getNormalizedLevel } from "@utils";
 import { FlatList, SafeAreaView, View, ViewabilityConfigCallbackPair } from "react-native";
@@ -107,7 +107,11 @@ const QuestsScreen: FC<IProps> = ({
     scrollToActiveLevel();
   }, [loading, unity, activeLevel]);
 
-  const { initialScrollIndex, slices, snapOffsets } = useMemo(() => getWorldData(currentLevel), [currentLevel]);
+  /**
+   * If we attempt to wrap this up in useMemo the scrolly quests won't update,
+   * because the data its getting is `slices` and not the levels.
+   */
+  const { initialScrollIndex, slices, snapOffsets } = getWorldData(currentLevel);
 
   if (unity) {
     if (features.newGamePlus) {
