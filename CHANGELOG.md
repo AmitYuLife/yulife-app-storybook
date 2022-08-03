@@ -7,6 +7,42 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.42.0] - 2022-08-03
+
+### Features
+
+- Feature XSE-1184: personal products SDUI action events action creator
+
+### Bugfixes
+
+- Bugfix ENG-2827: Hide action button on small screens if event available
+- Bugfix: Log error correctly on activity history reload
+- Bugfix: Send health_app to intercom as custom attribute
+- Bugfix: Correct store link for apple
+- Bugfix: Bugsnag storybook build
+- Bugfix: quests screen component id
+- Bugfix: upgrade bugsnag
+- Bugfix: Set disableFocus to true for android devices
+- Bugfix: cancel custom media notifications
+- Bugfix: Use sagas to log mixpanel events on video-player component
+
+### Chores
+
+- Chore: Update YuCoin awarded text
+- Chore: Update react-native-video exoplayer version
+- Chore: Update schema and types from latest develop branch
+- Detox/Chore: Clean up e2e
+- Detox/Chore: Remove Rewards mongo
+
+### Extra
+
+- Hotfix: Quest Map list is empty sometimes
+- Detox: overnight fixes
+- detox/fixes_01_08
+- detox/expiry_rules_test
+- detox/fixes_29_07
+- Hotfix: Increase the minLoadRetryCount on video-player and only send passive when challenge end
+
 ## [3.41.0] - 2022-07-27
 
 ### Features
