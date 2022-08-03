@@ -307,5 +307,12 @@ apply plugin: 'com.google.gms.google-services'
 apply from: file("../../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesAppBuildGradle(project)
 
 bugsnag {
-  uploadReactNativeMappings = true
+    variantFilter { variant ->
+        // disables plugin for local/debug builds
+        def name = variant.name.toLowerCase()
+        if (name.contains("debug") || name.contains("local")) {
+            enabled = false
+        }
+    }
+    uploadReactNativeMappings = true
 }
