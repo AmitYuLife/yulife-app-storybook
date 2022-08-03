@@ -16,7 +16,7 @@ export const useYuScreenOnPressHandler = (buttonParams: ButtonParams, defaultEve
     if (buttonParams?.onPress) {
       actions.push({
         type: buttonParams.onPress.type,
-        payload: buttonParams.onPress.payload,
+        payload: { serverPayload: buttonParams.onPress.payload },
       });
 
       if (buttonParams?.event) {

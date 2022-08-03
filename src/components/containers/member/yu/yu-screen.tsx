@@ -5,6 +5,7 @@ import { Style } from "@styles";
 import { NameAndLevel } from "@components/molecules";
 import { YumojiAndSlots } from "./subcomponents/yumoji-and-slots/yumoji-and-slots";
 import { Carousel } from "./subcomponents/carousel/carousel";
+import { Survey } from "./subcomponents/survey/survey";
 import { GetYuScreen } from "@graphql/_core/schema";
 import { GQL_QUERY_GET_YU_SCREEN } from "@graphql/yuscreen/getYuScreen.gql";
 import NameAndLevelSkeleton from "@components/molecules/name-and-level/name-and-level-skeleton";
@@ -23,6 +24,7 @@ export const YuScreen = () => {
             <NameAndLevel useWorldColor={true} hideWorldIcon={true} />
             <YumojiAndSlots productSlots={data?.getYuScreen.productSlots} />
             <Carousel {...data?.getYuScreen.productCarousel} />
+            <Survey {...data?.getYuScreen.surveyFooter} />
           </>
         ) : (
           <>

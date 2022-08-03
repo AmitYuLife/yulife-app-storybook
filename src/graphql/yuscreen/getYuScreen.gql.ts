@@ -66,9 +66,31 @@ const GQL_FRAGMENT_YU_SCREEN_CAROUSEL = gql`
   }
 `;
 
+const GQL_FRAGMENT_YU_SCREEN_SURVEY_FOOTER = gql`
+  ${GQL_FRAGMENT_SDUI_ACTION}
+  ${GQL_FRAGMENT_REMOTE_IMAGE}
+  fragment YuScreenSurveyFooter on YuScreenSurveyFooter {
+    markdown
+    backgroundColour
+    button {
+      label
+      onPress {
+        ...SduiAction
+      }
+      event {
+        ...SduiAction
+      }
+    }
+    image {
+      ...RemoteImage
+    }
+  }
+`;
+
 export const GQL_QUERY_GET_YU_SCREEN = gql`
   ${GQL_FRAGMENT_YU_SCREEN_PRODUCT_SLOT_ITEM}
   ${GQL_FRAGMENT_YU_SCREEN_CAROUSEL}
+  ${GQL_FRAGMENT_YU_SCREEN_SURVEY_FOOTER}
 
   query GetYuScreen {
     getYuScreen {
@@ -77,6 +99,9 @@ export const GQL_QUERY_GET_YU_SCREEN = gql`
       }
       productCarousel {
         ...YuScreenCarousel
+      }
+      surveyFooter {
+        ...YuScreenSurveyFooter
       }
     }
   }

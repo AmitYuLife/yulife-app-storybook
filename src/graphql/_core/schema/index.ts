@@ -206,5 +206,6 @@ export * from "./YuScreenProductPaymentHistoryItem";
 export * from "./YuScreenProductSlot";
 export * from "./YuScreenProductSlotItem";
 export * from "./YuScreenProductSlots";
+export * from "./YuScreenSurveyFooter";
 export * from "./YumojiRemoteFiles";
 export * from "./YumojiRemotePart";
