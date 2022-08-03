@@ -25,3 +25,6 @@ export const getDeviceId = createSelector(reducer, deviceIdSelector);
 
 const pushNotificationsSelector = (state: State) => state.pushNotifications;
 export const getPushNotifications = createSelector(reducer, pushNotificationsSelector);
+
+const isFreshlyInstalledSelector = (state: State) => state.isAppFreshlyInstalled;
+export const getIsAppFreshlyInstalled = createSelector(reducer, isFreshlyInstalledSelector);

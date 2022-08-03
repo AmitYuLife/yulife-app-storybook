@@ -18,9 +18,11 @@ export default {
       heading: "Welcome!",
       ctaLabel: "Log in",
       help: "Need help logging in?",
-      serverLocation: {
+      server_location: {
         short: "Company location",
         long: "Please select your company's location",
+        heading: "Select your company location",
+        description: "Your reward store items will depend on the location where your company is located",
       },
     },
     leaderboard: {
