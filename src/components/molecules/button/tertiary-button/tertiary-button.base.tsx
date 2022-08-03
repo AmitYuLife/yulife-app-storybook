@@ -72,7 +72,9 @@ export function TertiaryButtonBase(props: IProps) {
             )}
           </View>
         </View>
-        <View style={styles.rightIcon}>{RightIcon || <Icon uri={rightIconUri} button={rightIcon} />}</View>
+        {!RightIcon && !rightIconUri && !rightIcon ? null : (
+          <View style={styles.rightIcon}>{RightIcon || <Icon uri={rightIconUri} button={rightIcon} />}</View>
+        )}
       </PressableWithDelay>
     </View>
   );

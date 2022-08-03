@@ -1,7 +1,11 @@
 import { PedometerResponse } from "@services/fitkit/fitkit.service";
 import moment from "moment";
 import { addSecondsToChallengeEndDateTime } from "@utils";
-import { GetCurrentUser, LoginUser } from "@graphql/_core/schema";
+import {
+  GetCurrentUser,
+  LoginUser,
+  GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent_buttons as IButton,
+} from "@graphql/_core/schema";
 import { SyncAction } from "../_core/types";
 import { PEDOMETER_UPDATES_SUCCESS } from "../pedometer/pedometer.actions";
 import { GET_USER_SUCCESS, LOGIN_USER_SUCCESS, LOGOUT_SUCCESS } from "../user/user.actions";
@@ -16,6 +20,7 @@ import {
   CHALLENGE_UPDATE_SUCCESS,
   CHALLENGE_END,
   CHALLENGE_IS_ACTIVE,
+  UPDATE_CHALLENGE_APP_BUTTON,
 } from "./levels.actions";
 import { CHALLENGE_START_INITIAL_STEPS, ChallengeStartPayload, Challenge } from "./levels.actions";
 import { IActiveLevel } from "./levels.selectors";
@@ -55,6 +60,7 @@ export const getInitialState = (): ILevelsStore => ({
     challengeIsActive: false,
     videoPlayerIsActive: false,
     hideExternalLinks: true,
+    appButton: null,
   },
   challengesDoneToday: 0,
   level: 1,
@@ -98,6 +104,9 @@ const levelsReducer = (state: ILevelsStore = getInitialState(), action: SyncActi
 
     case CHALLENGE_RESET_FAIL:
       return challengeResetFail(state);
+
+    case UPDATE_CHALLENGE_APP_BUTTON:
+      return updateChallengeAppButton(state, action.payload);
 
     case PEDOMETER_UPDATES_SUCCESS:
       return pedometerUpdate(state, action.payload);
@@ -161,7 +170,7 @@ const challengeStartSuccess = (
   {
     createActiveChallenge: { challenge, levelSlot, chest },
     videoPlayerIsActive,
-    hideExternalLinks,
+    hideExternalLinks, // TODO: Delete this after our meditopia player goes live for everyone
   }: ChallengeStartPayload
 ): ILevelsStore => ({
   ...state,
@@ -183,7 +192,7 @@ const challengeStartSuccess = (
     score: 0,
     isLoading: false,
     videoPlayerIsActive,
-    hideExternalLinks,
+    hideExternalLinks, // TODO: Delete this after our meditopia player goes live for everyone
   },
 });
 
@@ -230,6 +239,16 @@ const challengeResetFail = (state: ILevelsStore): ILevelsStore => ({
     ...state.active,
     isLoading: false,
     challengeIsActive: false,
+  },
+});
+
+const updateChallengeAppButton = (state: ILevelsStore, button: IButton): ILevelsStore => ({
+  ...state,
+  active: {
+    ...state.active,
+    appButton: {
+      ...button,
+    },
   },
 });
 

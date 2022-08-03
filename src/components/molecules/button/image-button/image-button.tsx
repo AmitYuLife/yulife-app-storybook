@@ -6,7 +6,7 @@
 
 import * as React from "react";
 import { StyleSheet, View, ViewStyle } from "react-native";
-import { Colours } from "@styles";
+import { Colours, Style } from "@styles";
 import { usePressedInWithDelay } from "@hooks";
 import { ButtonBase } from "../button.base";
 import { buttonStyles, getButtonDimensions } from "../button.styles";
@@ -77,11 +77,19 @@ export function ImageButton(props: IProps) {
         delay={delay}
         disableAnimation={disableAnimation}
       >
-        <Logo />
+        <View style={icon !== "fiit" ? null : styles.fiitWrapper}>
+          <Logo />
+        </View>
       </ButtonBase>
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  fiitWrapper: {
+    marginTop: Style.adjust(10),
+  },
+});
 
 const logoHashMap = {
   calm: Icon.Calm,

@@ -29,6 +29,25 @@ export interface IActiveLevel {
   unit: string;
   videoPlayerIsActive: boolean;
   hideExternalLinks: boolean;
+  appButton: {
+    title: string;
+    color?: string;
+    tutorialUrl?: string;
+    logo?: {
+      uri?: string;
+      id?: string;
+    };
+    width?: number;
+    height?: number;
+    options?: {
+      iosUrl?: string;
+      androidUrl?: string;
+      appName?: string;
+      appStoreId?: string;
+      appStoreLocale?: string;
+      playStoreId?: string;
+    };
+  };
 }
 
 export interface ITodayChallengesStatus {
@@ -74,6 +93,9 @@ export const getVideoPlayerIsActive = createSelector(reducer, getVideoPlayerIsAc
 
 const getHideExternalLinksSelector = (state: State) => state.active.hideExternalLinks;
 export const getHideExternalLinks = createSelector(reducer, getHideExternalLinksSelector);
+
+const getActiveChallengeAppButtonSelector = (state: State) => state.active.appButton;
+export const getActiveChallengeAppButton = createSelector(reducer, getActiveChallengeAppButtonSelector);
 
 const challengesStatusSelector = (state: State) => {
   const available = getChallengesAmountAvailable(state.level);

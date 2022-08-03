@@ -3,6 +3,7 @@ import {
   SubmitUnityVariables,
   UpdateActiveChallenge_updateActiveChallenge_challenge as ActiveChallenge,
   UpdateQuestMapLevelChallenge_updateQuestMapLevelChallenge_challenge as QuestMapActiveChallenge,
+  GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent_buttons as IButton,
 } from "@graphql/_core/schema";
 
 export const CHALLENGE_SUBMIT_UNITY = "CHALLENGE_SUBMIT_UNITY";
@@ -29,6 +30,8 @@ export const CHALLENGE_CANCEL = "CHALLENGE_CANCEL";
 export const CHALLENGE_CANCEL_SUCCESS = "CHALLENGE_CANCEL_SUCCESS";
 export const CHALLENGE_CANCEL_FAIL = "CHALLENGE_CANCEL_FAIL";
 
+export const UPDATE_CHALLENGE_APP_BUTTON = "UPDATE_CHALLENGE_APP_BUTTON";
+
 export const submitUnityAction = (payload: SubmitUnityVariables) => ({
   payload,
   type: CHALLENGE_SUBMIT_UNITY,
@@ -37,7 +40,7 @@ export const submitUnityAction = (payload: SubmitUnityVariables) => ({
 export type ChallengeStartPayload = CreateActiveChallenge & {
   levelSlotId: string;
   videoPlayerIsActive?: boolean;
-  hideExternalLinks?: boolean;
+  hideExternalLinks?: boolean; // TODO: Delete this after our meditopia player goes live for everyone
   videoDuration?: number;
 };
 export type Challenge = ActiveChallenge | QuestMapActiveChallenge;
@@ -91,4 +94,9 @@ export const challengeCancelAction = () => ({
 
 export const challengeIsActive = () => ({
   type: CHALLENGE_IS_ACTIVE,
+});
+
+export const updateChallengeAppButton = (payload: Partial<IButton>) => ({
+  payload,
+  type: UPDATE_CHALLENGE_APP_BUTTON,
 });

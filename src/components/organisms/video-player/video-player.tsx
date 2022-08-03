@@ -1,8 +1,8 @@
-import React, { memo, useCallback, useEffect, useMemo, useReducer, useRef } from "react";
+import React, { memo, useCallback, useEffect, useMemo, useReducer, useRef, useState } from "react";
 import Video from "react-native-video";
 import moment from "moment";
 import MusicControl, { Command } from "react-native-music-control";
-import { Animated, StyleSheet, View } from "react-native";
+import { Animated, Image, StyleSheet, View, AppStateStatus } from "react-native";
 import { Loading } from "@atoms";
 import { Colours, Style } from "@styles";
 import {
@@ -21,8 +21,10 @@ import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import { PlayIcon } from "@atoms/icon/play-icon";
 import { DETOX_ENABLED } from "@services/socket";
 import Logger from "@services/logging/logger";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
+import { useAppState } from "@hooks";
+import { getVideoPlayerIsActive } from "@redux/levels/levels.selectors";
 
 interface IProps {
   source: string;
@@ -65,9 +67,11 @@ const VideoPlayer = ({
   stars,
 }: IProps) => {
   const [state, dispatch] = useReducer<React.Reducer<IState, IAction>>(reducer, INITIAL_STATE);
+  const [appCurrentState, setAppCurrentState] = useState<AppStateStatus>("active");
   const opacity = useRef(new Animated.Value(1)).current;
   const themeColour = useMemo(() => (theme === "light" ? Colours.neutral.white : Colours.neutral.n800), [theme]);
   const reduxDispatch = useDispatch();
+  const videoPlayerIsActive = useSelector(getVideoPlayerIsActive);
 
   const fadeIn = Animated.timing(opacity, {
     toValue: 1,
@@ -77,6 +81,27 @@ const VideoPlayer = ({
     toValue: 0,
     ...commonProps,
   });
+
+  const onChangeAppState = useCallback(
+    (appState: AppStateStatus) => {
+      setAppCurrentState(appState);
+    },
+    [appCurrentState]
+  );
+
+  useAppState(onChangeAppState);
+
+  useEffect(() => {
+    (async () => {
+      if (
+        appCurrentState === "active" &&
+        videoPlayerIsActive &&
+        Math.trunc(state.durationInSeconds) === Math.trunc(state.currentProgressInSeconds)
+      ) {
+        await onEnd();
+      }
+    })();
+  }, [appCurrentState, videoPlayerIsActive, state.durationInSeconds, state.currentProgressInSeconds]);
 
   useEffect(() => {
     setMusicControlInitialConfig();
@@ -90,7 +115,7 @@ const VideoPlayer = ({
     return () => {
       fadeIn.stop();
       fadeOut.stop();
-      MusicControl.stopControl();
+      MusicControl.resetNowPlaying();
     };
   }, []);
 
@@ -150,13 +175,16 @@ const VideoPlayer = ({
   }, [onStart, state.durationInSeconds]);
 
   const handleOnEnd = useCallback(async () => {
+    if (appCurrentState !== "active") {
+      return;
+    }
+
     try {
       await onEnd();
-      MusicControl.resetNowPlaying();
     } catch (err) {
       Logger.error(err, { location: "video-player-handleOnEnd" });
     }
-  }, [onEnd]);
+  }, [onEnd, appCurrentState]);
 
   const handleFocusScreen = useCallback(() => {
     if (!state.isPaused && !state.showFocusScreen) {
@@ -185,9 +213,13 @@ const VideoPlayer = ({
 
   return (
     <>
+      <Image source={{ uri: poster }} resizeMode="cover" style={styles.posterBackground} />
       <PressableWithDelay onPress={handleFocusScreen} style={styles.container}>
         <Video
-          source={{ uri: videoUrl }}
+          source={{
+            uri: videoUrl,
+            type: "mp4",
+          }}
           minLoadRetryCount={20}
           disableFocus={true}
           poster={poster}
@@ -279,6 +311,11 @@ const VideoPlayer = ({
 };
 
 const styles = StyleSheet.create({
+  posterBackground: {
+    width: "100%",
+    height: "100%",
+    position: "absolute",
+  },
   container: {
     flex: 1,
   },
