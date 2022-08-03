@@ -6,7 +6,7 @@ import { Button } from "@molecules";
 import { Image, TextTemplate } from "@atoms";
 import { yumojiWrapperWidth } from "../yumoji-and-slots/styles";
 
-const CREATE_YUMOJI_HEADING = "Earn 200 YuCoin";
+const CREATE_YUMOJI_HEADING = "Earn 100 YuCoin";
 const CREATE_YUMOJI_TEXT = "when you create your Yumoji.";
 const CREATE_YUMOJI_CTA_COPY = "Create Yumoji";
 
