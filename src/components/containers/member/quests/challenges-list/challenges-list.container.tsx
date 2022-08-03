@@ -128,12 +128,13 @@ const ChallengesListContainer: FC<Props> = ({ level, levelName, yuniversalMap, c
             createChallenge,
             levelSlotId: slot.id,
             ...internalContent,
+            tutorialUrl: slot.details.tutorialUrl,
           },
         },
       });
     }
 
-    return createChallenge(!slot.fitKitTypes.includes(FitKitType.MindfulSession));
+    return createChallenge(slot.fitKitTypes.includes(FitKitType.StepCount));
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [

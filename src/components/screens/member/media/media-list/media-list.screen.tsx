@@ -11,7 +11,6 @@ import MediaList from "./media-list";
 import {
   GetQuestMapLevelChallengeContent_getQuestMapLevelChallengeContent_media as Video,
   GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent_buttons as IButtons,
-  GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent_buttons_options as IButtonOptions,
 } from "@graphql/_core/schema";
 import MediaListLoading from "./media-list-loading";
 import { Source } from "react-native-fast-image";
@@ -29,9 +28,8 @@ interface IProps {
   loading: boolean;
   onLeftIconPress: () => void;
   onRightIconPress: () => void;
-  handleOpenApp: (options: IButtonOptions) => void;
-  handleOtherApp: () => void;
-  otherAppLoading: boolean;
+  handleOtherMeditationApp: (appName: string, button?: IButtons) => void;
+  otherAppLoading: string;
   levelSlotId: string;
   logo: Source;
   buttons: IButtons[];
@@ -44,8 +42,7 @@ const MediaListScreen = ({
   loading,
   onLeftIconPress,
   onRightIconPress,
-  handleOpenApp,
-  handleOtherApp,
+  handleOtherMeditationApp,
   otherAppLoading,
   levelSlotId,
   logo,
@@ -63,6 +60,8 @@ const MediaListScreen = ({
       },
     });
   }, []);
+
+  const handleOtherAppPress = useCallback(() => handleOtherMeditationApp("otherApp"), [otherAppLoading]);
 
   return (
     <View style={styles.flex}>
@@ -101,17 +100,22 @@ const MediaListScreen = ({
             {buttons.map((button) => (
               <SecondaryButton
                 key={button.title}
-                isLoading={otherAppLoading}
+                isLoading={otherAppLoading === button.options.appName}
                 label={button.title}
                 borderColor={button.color}
                 textColor={button.color}
                 size="Fill"
-                onPress={() => handleOpenApp(button.options)}
+                onPress={() => handleOtherMeditationApp(button.options.appName, button)}
                 wrapperStyle={styles.buttonStyle}
                 leftIcon={<Image source={{ uri: button.logo.uri }} width={button.width} height={button.height} />}
               />
             ))}
-            <SecondaryButton size="Fill" label={t("screens.mediaList.differentAppCtaLabel")} onPress={handleOtherApp} />
+            <SecondaryButton
+              isLoading={otherAppLoading === "otherApp"}
+              size="Fill"
+              label={t("screens.mediaList.differentAppCtaLabel")}
+              onPress={handleOtherAppPress}
+            />
           </View>
         </ScrollView>
       </View>

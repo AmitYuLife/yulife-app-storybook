@@ -127,6 +127,9 @@ export default {
       differentAppSectionLabel: "Or use an app",
       videoDurationRewardLabel: "%{formattedDuration} min • Earn %{reward}",
     },
+    challengeProgress: {
+      howMeditateWithOtherAppsLabel: "How do I meditate with other apps",
+    },
   },
   permissions: {
     android: {

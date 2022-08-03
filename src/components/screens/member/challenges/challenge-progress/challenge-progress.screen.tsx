@@ -1,5 +1,5 @@
-import React, { memo } from "react";
-import { StyleSheet, View } from "react-native";
+import React, { memo, useCallback } from "react";
+import { Platform, StyleSheet, View } from "react-native";
 import { IConnectedScreenProps } from "../../../../../typings";
 import styles from "./challenge-progress.screen.styles";
 import Exit from "./subcomponents/exit";
@@ -9,7 +9,7 @@ import { BUTTON_CLOSE_CHALLENGE, CHALLENGE_PROGRESS_BAR } from "@ids";
 import { NavBar } from "@components/organisms";
 import { TopBarAbsolute } from "@organisms/top-bar/top-bar-absolute";
 import { Image } from "@atoms";
-import { SecondaryButton } from "@molecules";
+import { SecondaryButton, TertiaryButton } from "@molecules";
 import { ExternalAppLinksOverlay } from "./subcomponents/external-app-links-overlay";
 import { Style } from "@styles";
 import { TopBarType } from "@graphql/_core/schema/globalTypes";
@@ -17,6 +17,11 @@ import { useQuery } from "@apollo/react-hooks";
 import { GQL_QUERY_GET_QUEST_MAP_CHALLENGE_DETAILS } from "@graphql/challenges/getQuestMapChallengeDetails.gql";
 import { GetQuestMapLevelChallengeDetails, GetQuestMapLevelChallengeDetailsVariables } from "@graphql/_core/schema";
 import { fromGql } from "@organisms/top-bar/top-bar.helpers";
+import { useSelector } from "react-redux";
+import { getUserFeatures } from "@redux/user/user.selectors";
+import { getActiveChallengeAppButton } from "@redux/levels/levels.selectors";
+import { handleLinkPress, openApp, openFiit } from "@services/app-link";
+import { Fiit } from "@atoms/icon/fiit-icon";
 
 // transparent png 1x1
 const empty_uri = {
@@ -46,8 +51,9 @@ function ChallengeProgressScreen({
   hideExternalLinks,
 }: IProps) {
   const [showOverlay, setShowOverlay] = React.useState(false);
-
   const { secondaryButtonCtaLabel } = getButtonCtaLabel(challengeType);
+  const features = useSelector(getUserFeatures);
+  const appButton = useSelector(getActiveChallengeAppButton);
 
   const { data } = useQuery<GetQuestMapLevelChallengeDetails, GetQuestMapLevelChallengeDetailsVariables>(
     GQL_QUERY_GET_QUEST_MAP_CHALLENGE_DETAILS,
@@ -89,6 +95,22 @@ function ChallengeProgressScreen({
     }
   }, [!hideExternalLinks]);
 
+  const handleOpenApp = useCallback(async () => {
+    if (appButton?.tutorialUrl) {
+      return await handleLinkPress(appButton?.tutorialUrl)();
+    }
+
+    const { iosUrl, androidUrl, appName, appStoreId, appStoreLocale, playStoreId } = appButton?.options;
+    const url = Platform.select({
+      ios: iosUrl,
+      android: androidUrl,
+    });
+
+    openApp(url, { appName, appStoreId, appStoreLocale, playStoreId });
+  }, [appButton]);
+
+  const handleOpenFiit = useCallback(() => openFiit(), []);
+
   return (
     <View style={StyleSheet.flatten([styles.wrapper, { backgroundColor: backgroundColour }])}>
       <View style={styles.pad} />
@@ -108,14 +130,49 @@ function ChallengeProgressScreen({
       </View>
       {hideExternalLinks ? null : (
         <View style={styles.meditationButtonWrapper}>
-          <SecondaryButton
-            backgroundColor={actionStyles.primaryColour}
-            borderColor={actionStyles.primaryColour}
-            textColor={actionStyles.secondaryColour}
-            onPress={() => setShowOverlay(true)}
-            label={secondaryButtonCtaLabel}
-            size="Medium"
-          />
+          {!features?.mediaPlayer ? (
+            <SecondaryButton
+              backgroundColor={actionStyles.primaryColour}
+              borderColor={actionStyles.primaryColour}
+              textColor={actionStyles.secondaryColour}
+              onPress={() => setShowOverlay(true)}
+              label={secondaryButtonCtaLabel}
+              size="Medium"
+            />
+          ) : (
+            <>
+              {/* @TODO: Delete this when Fiit goes live, this a temp solution until Fiit media player goes live */}
+              {!appButton ? (
+                <TertiaryButton
+                  size="Large"
+                  label="Open Fiit app"
+                  onPress={handleOpenFiit}
+                  height={Style.adjust(48)}
+                  LeftIcon={<Fiit colour="black" width={41} height={30} />}
+                />
+              ) : (
+                <TertiaryButton
+                  size="Large"
+                  label={appButton?.title}
+                  onPress={handleOpenApp}
+                  height={Style.adjust(48)}
+                  LeftIcon={
+                    <>
+                      {!appButton?.logo?.uri ? null : (
+                        <Image
+                          source={{
+                            uri: appButton?.logo?.uri,
+                          }}
+                          width={appButton?.width}
+                          height={appButton?.height}
+                        />
+                      )}
+                    </>
+                  }
+                />
+              )}
+            </>
+          )}
         </View>
       )}
       <TopBarAbsolute
@@ -125,7 +182,12 @@ function ChallengeProgressScreen({
         timer={endDateTime}
       />
       <NavBar activeIndex={1} additionalBottom={2} />
-      <ExternalAppLinksOverlay showScreen={showOverlay} setShowScreen={setShowOverlay} />
+
+      {/* @TODO: Delete this when our new meditation be released to everyone */}
+      {features?.mediaPlayer ? null : (
+        <ExternalAppLinksOverlay showScreen={showOverlay} setShowScreen={setShowOverlay} />
+      )}
+      {/*  */}
     </View>
   );
 }

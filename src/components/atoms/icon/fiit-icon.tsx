@@ -1,17 +1,22 @@
 import React, { FC, memo } from "react";
-import Svg, { Path, Circle } from "react-native-svg";
-import { Style } from "@styles";
+import Svg, { G, Path, Defs, ClipPath } from "react-native-svg";
+import { Colours, Style } from "@styles";
 
-export const Fiit: FC = memo(() => (
-  <Svg width={Style.adjust(63)} height={Style.adjust(32)} viewBox="0 0 786 394" fill="none">
-    <Path d="M651.689 170.668H571.085V122.784H785.764V170.668H705.16V392.53H651.689V170.668Z" fill="white" />
-    <Path
-      d="M0.467743 121.986H195.196V170.668H54.7362V236.907H165.667V285.589H54.7362V392.53H0.467743V121.986Z"
-      fill="white"
-    />
-    <Circle cx="306.521" cy="34.4197" r="34.3168" fill="white" />
-    <Circle cx="463.346" cy="34.4197" r="34.3168" fill="white" />
-    <Path d="M332.463 122.784H278.195V392.53H332.463V122.784Z" fill="white" />
-    <Path d="M490.48 122.784H436.212V392.53H490.48V122.784Z" fill="white" />
+interface IProps {
+  width?: number;
+  height?: number;
+  colour?: string;
+}
+
+export const Fiit: FC<IProps> = memo(({ width = 67, height = 56, colour = Colours.neutral.white }) => (
+  <Svg width={Style.adjust(width)} height={Style.adjust(height)} fill="none" viewBox="0 0 41 30">
+    <G clipPath="url(#a)" fill={colour}>
+      <Path d="M16.5 2.054a1.757 1.757 0 0 0-2.173 1.934 1.754 1.754 0 0 0 2.608 1.29 1.754 1.754 0 0 0-.435-3.224ZM8.77 14.112H3.387a.138.138 0 0 1-.139-.139v-3.182a.138.138 0 0 1 .139-.14h6.925a.138.138 0 0 0 .139-.138v-2.16a.137.137 0 0 0-.086-.128.139.139 0 0 0-.053-.01H.563a.138.138 0 0 0-.138.138v13.513a.138.138 0 0 0 .138.139h2.545a.138.138 0 0 0 .14-.139V16.7a.138.138 0 0 1 .138-.138H8.77a.14.14 0 0 0 .128-.086.137.137 0 0 0 .01-.054v-2.17a.138.138 0 0 0-.138-.14ZM17.266 8.205H14.72a.138.138 0 0 0-.138.138v13.515c0 .077.062.139.138.139h2.546a.138.138 0 0 0 .139-.139V8.343a.138.138 0 0 0-.139-.138ZM25.318 8.205h-2.546a.138.138 0 0 0-.138.138v13.515c0 .077.061.139.138.139h2.546a.138.138 0 0 0 .138-.139V8.343a.138.138 0 0 0-.138-.138ZM40.433 8.207H29.728a.14.14 0 0 0-.14.138v2.25a.14.14 0 0 0 .14.137h3.814a.14.14 0 0 1 .128.087c.007.017.01.035.01.053v10.986a.138.138 0 0 0 .138.139h2.527a.138.138 0 0 0 .138-.139V10.872a.137.137 0 0 1 .04-.098.14.14 0 0 1 .099-.042h3.813a.137.137 0 0 0 .14-.138V8.353a.138.138 0 0 0-.142-.146ZM24.475 2.054a1.757 1.757 0 0 0-2.171 1.936 1.754 1.754 0 0 0 2.608 1.288 1.754 1.754 0 0 0-.437-3.224Z" />
+    </G>
+    <Defs>
+      <ClipPath id="a">
+        <Path fill="#fff" transform="translate(.425 2)" d="M0 0h40.15v20H0z" />
+      </ClipPath>
+    </Defs>
   </Svg>
 ));

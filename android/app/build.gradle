@@ -268,6 +268,27 @@ dependencies {
 
     
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0"
+
+    // dependency for exoplayer
+    implementation "com.google.android.exoplayer:exoplayer:2.13.3"
+
+    // for core support in exoplayer.
+    implementation "com.google.android.exoplayer:exoplayer-core:2.13.3"
+
+    // for adding dash support in our exoplayer.
+    implementation "com.google.android.exoplayer:exoplayer-dash:2.13.3"
+
+    // for adding hls support in exoplayer.
+    implementation "com.google.android.exoplayer:exoplayer-hls:2.13.3"
+
+    // for smooth streaming of video in our exoplayer.
+    implementation "com.google.android.exoplayer:exoplayer-smoothstreaming:2.13.3"
+
+    // for generating default ui of exoplayer
+    implementation "com.google.android.exoplayer:exoplayer-ui:2.13.3"
+
+    implementation "com.google.android.exoplayer:extension-okhttp:2.13.3"
+    
     
     debugImplementation("com.facebook.flipper:flipper:${FLIPPER_VERSION}") {
       exclude group:'com.facebook.fbjni'

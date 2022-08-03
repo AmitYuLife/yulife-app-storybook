@@ -7,17 +7,18 @@ import {
   GetQuestMapLevelChallengeContent,
   GetQuestMapLevelChallengeContentVariables,
   GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent as IInternalContent,
-  GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent_buttons_options as IButtonOptions,
+  GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent_buttons as IButton,
 } from "@graphql/_core/schema";
 import { ROUTES } from "@navigation/constants";
-import { openApp } from "@services/app-link";
-import { Platform } from "react-native";
 import Logger from "@services/logging/logger";
-
+import { useDispatch } from "react-redux";
+import { updateChallengeAppButton } from "@redux/levels/levels.actions";
+import { t } from "@locale";
 interface IProps extends IInternalContent {
   componentId: string;
   createChallenge: (hideExternalLinks?: boolean) => void;
   levelSlotId: string;
+  tutorialUrl: string;
 }
 
 const MediaListContainer = ({
@@ -28,8 +29,10 @@ const MediaListContainer = ({
   description,
   logo,
   buttons,
+  tutorialUrl,
 }: IProps) => {
-  const [otherAppLoading, setOtherAppLoading] = useState(false);
+  const [otherAppLoading, setOtherAppLoading] = useState("");
+  const dispatch = useDispatch();
   const { data, loading } = useQuery<GetQuestMapLevelChallengeContent, GetQuestMapLevelChallengeContentVariables>(
     GQL_QUERY_GET_QUEST_MAP_CHALLENGE_CONTENT,
     {
@@ -45,37 +48,24 @@ const MediaListContainer = ({
 
   const onRightIconPress = useCallback(() => Navigation.popTo(ROUTES.quests), []);
 
-  const handleOpenApp = useCallback(async (options: IButtonOptions) => {
-    if (!options) {
+  const handleOtherMeditationApp = useCallback(async (appName: string, button?: IButton) => {
+    if (!appName) {
       return;
     }
 
-    setOtherAppLoading(true);
-    const { iosUrl, androidUrl, appName, appStoreId, appStoreLocale, playStoreId } = options;
-    const url = Platform.select({
-      ios: iosUrl,
-      android: androidUrl,
-    });
+    const otherApp = {
+      title: t("screens.challengeProgress.howMeditateWithOtherAppsLabel"),
+      tutorialUrl,
+    };
 
+    setOtherAppLoading(appName);
     try {
-      await createChallenge(true);
+      await createChallenge(false);
+      dispatch(updateChallengeAppButton(appName === "otherApp" ? otherApp : button));
     } catch (err) {
       Logger.error(err, { location: "media-list.container.handleOpenApp" });
     } finally {
-      setOtherAppLoading(false);
-    }
-
-    openApp(url, { appName, appStoreId, appStoreLocale, playStoreId });
-  }, []);
-
-  const handleOtherApp = useCallback(async () => {
-    setOtherAppLoading(true);
-    try {
-      await createChallenge(true);
-    } catch (err) {
-      Logger.error(err, { location: "media-list.container.handleOtherApp" });
-    } finally {
-      setOtherAppLoading(false);
+      setOtherAppLoading("");
     }
   }, []);
 
@@ -99,10 +89,9 @@ const MediaListContainer = ({
       loading={loading || formattedVideos?.length === 0}
       onLeftIconPress={onLeftIconPress}
       onRightIconPress={onRightIconPress}
-      handleOpenApp={handleOpenApp}
+      handleOtherMeditationApp={handleOtherMeditationApp}
       logo={logo}
       buttons={buttons}
-      handleOtherApp={handleOtherApp}
       otherAppLoading={otherAppLoading}
     />
   );
