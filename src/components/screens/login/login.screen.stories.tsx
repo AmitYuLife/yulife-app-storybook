@@ -10,6 +10,9 @@ storiesOf("LoginScreen", module)
   .add("default", () => <LoginScreen {...loginScreenProps} />);
 
 const loginScreenProps = {
+  regionIsStored: false,
+  regionPrefered: "UK",
+  onFirstTimeRegionSelect: voidFunc,
   disabled: false,
   email: "andrico",
   isLoggingIn: false,

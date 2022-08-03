@@ -57,6 +57,9 @@ import { CoinsIcon } from "./coins-icon";
 import { SmartWatchIcon } from "./smart-watch-icon";
 import { PlayIcon } from "./play-icon";
 import { Rank } from "./rank";
+import { FlagUK } from "./flag-uk";
+import { FlagUS } from "./flag-us";
+import { FlagSA } from "./flag-sa";
 
 export default {
   Clock,
@@ -120,4 +123,7 @@ export default {
   SmartWatchIcon,
   PlayIcon,
   Rank,
+  FlagUK,
+  FlagUS,
+  FlagSA,
 };

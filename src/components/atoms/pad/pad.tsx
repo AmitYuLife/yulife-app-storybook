@@ -1,5 +1,4 @@
 import * as React from "react";
-import { SFC } from "react";
 import { StyleSheet, View } from "react-native";
 import { getHeight, getWidth } from "./pad.styles";
 
@@ -8,9 +7,9 @@ interface IProps {
   width?: number;
 }
 
-// @TODO: Remove this component
-const Pad: SFC<IProps> = ({ height, width }) => (
-  <View style={StyleSheet.flatten([getHeight(height), getWidth(width)])} />
-);
+const Pad: React.FC<IProps> = ({ height, width }) => {
+  const style = React.useMemo(() => StyleSheet.flatten([getHeight(height), getWidth(width)]), [height, width]);
+  return <View style={style} />;
+};
 
 export default Pad;
