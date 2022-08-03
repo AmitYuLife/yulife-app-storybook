@@ -69,6 +69,10 @@ const isShortAndLowScaledPixelAndroid = () => {
   return Platform.OS === "android" && y <= 690 && scaledPixel < 0.98;
 };
 
+const isShorterThan = (height: number) => {
+  return y < height;
+};
+
 const isWideScreen = () => {
   return x > 400;
 };
@@ -196,6 +200,7 @@ const Style = {
   isLargeScreen,
   isHuaweiMate10,
   IOS_NOTCH_HEIGHT,
+  isShorterThan,
 };
 
 export default Style;

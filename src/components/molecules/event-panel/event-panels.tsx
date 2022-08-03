@@ -78,7 +78,7 @@ const EventPanels = ({ events = [], currentWorld, componentId, onJoin }: IProps)
   );
 };
 
-const isShort = Platform.select({ ios: Style.isXShort(), android: Style.isShortToMediumAndroid() });
+const isShort = Platform.select({ ios: Style.isXShort(), android: Style.isShorterThan(750) });
 const styles = StyleSheet.create({
   flatListWrapper: {
     position: "absolute",
