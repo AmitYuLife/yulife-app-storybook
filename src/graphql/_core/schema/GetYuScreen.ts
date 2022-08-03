@@ -83,9 +83,38 @@ export interface GetYuScreen_getYuScreen_productCarousel {
   items: GetYuScreen_getYuScreen_productCarousel_items[] | null;
 }
 
+export interface GetYuScreen_getYuScreen_surveyFooter_button_onPress {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface GetYuScreen_getYuScreen_surveyFooter_button_event {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface GetYuScreen_getYuScreen_surveyFooter_button {
+  label: string;
+  onPress: GetYuScreen_getYuScreen_surveyFooter_button_onPress;
+  event: GetYuScreen_getYuScreen_surveyFooter_button_event | null;
+}
+
+export interface GetYuScreen_getYuScreen_surveyFooter_image {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetYuScreen_getYuScreen_surveyFooter {
+  markdown: string;
+  backgroundColour: string;
+  button: GetYuScreen_getYuScreen_surveyFooter_button;
+  image: GetYuScreen_getYuScreen_surveyFooter_image;
+}
+
 export interface GetYuScreen_getYuScreen {
   productSlots: (GetYuScreen_getYuScreen_productSlots | null)[] | null;
   productCarousel: GetYuScreen_getYuScreen_productCarousel;
+  surveyFooter: GetYuScreen_getYuScreen_surveyFooter | null;
 }
 
 export interface GetYuScreen {

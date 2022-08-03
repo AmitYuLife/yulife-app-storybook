@@ -266,8 +266,8 @@ function* openAlertDialog(action: ProductStepAction) {
   }
 }
 
-function* yuScreenNavigate(action: SyncAction<string>) {
-  const { isValid, data } = parseJSON<YuScreenNextRoute>(action.payload, ["productId"]);
+function* yuScreenNavigate(action: ProductStepAction) {
+  const { isValid, data } = parseJSON<YuScreenNextRoute>(action.payload?.serverPayload, ["productId"]);
 
   if (isValid) {
     if (data.shouldBeNormalised) {
