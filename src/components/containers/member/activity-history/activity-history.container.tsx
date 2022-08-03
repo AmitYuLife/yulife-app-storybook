@@ -108,9 +108,9 @@ const ActivityHistoryContainer: FC<Props> = ({
             dispatchGetUserStart();
           }
         } catch (e) {
-          Logger.error(error, { event: "@activity_history_reload_catched" });
+          Logger.error(e, { event: "@activity_history_reload_catched" });
         }
-      } else {
+      } else if (error) {
         Logger.error(error, { event: "@activity_history_reload" });
       }
     } else {
