@@ -72,12 +72,12 @@ export function useFitKit() {
 
   const setMixpanelProperties = async (isAuthorised: boolean) => {
     if (!isAuthorised) {
-      Logger.setUserProperties({ health_app: ["not_set"] });
+      Logger.setUserProperties({ health_app: ["not_set"] }, true);
       return;
     }
 
     if (Platform.OS === "ios") {
-      Logger.setUserProperties({ health_app: ["apple"] });
+      Logger.setUserProperties({ health_app: ["apple"] }, true);
       return;
     }
 
@@ -100,11 +100,11 @@ export function useFitKit() {
         healthApps.push("samsung");
       }
 
-      Logger.setUserProperties({ health_app: healthApps });
+      Logger.setUserProperties({ health_app: healthApps }, true);
       return;
     }
 
-    Logger.setUserProperties({ health_app: ["google"] });
+    Logger.setUserProperties({ health_app: ["google"] }, true);
   };
 
   const checkSystemPermissions = async (options: FitKitAuthOptions) => {
