@@ -166,7 +166,7 @@ export const DailyStepsOnline = memo(({ onReferralsButtonPress }: DailyStepsOnli
   );
 });
 
-const isShort = Platform.select({ ios: Style.isXShort(), android: Style.isShortToMediumAndroid() });
+const isShort = Platform.select({ ios: Style.isXShort(), android: Style.isShorterThan(750) });
 const styles = {
   dailyStepsOnlineWrapper: {
     alignItems: "center",
