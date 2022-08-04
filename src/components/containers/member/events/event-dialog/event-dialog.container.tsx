@@ -6,6 +6,7 @@ import { GQL_MUTATION_JOIN_GOAL } from "@graphql/goals/joinGoal.gql";
 import { JoinGoal, JoinGoalVariables } from "@graphql/_core/schema";
 import { GetGoalDetails } from "@graphql/_core/schema/GetGoalDetails";
 import { GoalActionType, GoalRewardStatus } from "@graphql/_core/schema/globalTypes";
+import { useBackHandler } from "@hooks";
 import { MODALS } from "@navigation/constants";
 import { showYuModal } from "@navigation/root";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
@@ -26,6 +27,11 @@ const EventDialogContainer: FC<IProps> = ({ componentId, goalId, stageId, onLeft
   const { data, loading, refetch } = useQuery<GetGoalDetails>(GQL_QUERY_GET_GOAL_DETAILS, {
     variables: { id: goalId, stageId },
     fetchPolicy: "network-only",
+  });
+
+  useBackHandler(() => {
+    Navigation.popToRoot(componentId);
+    return true;
   });
 
   const [joinGoalMutation] = useMutation<JoinGoal, JoinGoalVariables>(GQL_MUTATION_JOIN_GOAL);

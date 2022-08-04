@@ -1,15 +1,16 @@
-import React, { memo, useCallback, useMemo } from "react";
-import InspectScreen from "@components/screens/member/inspect/inspect.screen";
-import { Navigation } from "react-native-navigation";
-import { ROUTES } from "@navigation/constants";
-import { useSelector } from "react-redux";
-import { getCurrentUserId } from "@redux/user/user.selectors";
 import { useQuery } from "@apollo/react-hooks";
+import React, { memo, useCallback, useMemo } from "react";
+import { View, StyleSheet } from "react-native";
+import { Navigation } from "react-native-navigation";
+import { useSelector } from "react-redux";
+import InspectScreen from "@components/screens/member/inspect/inspect.screen";
+import { ROUTES } from "@navigation/constants";
+import { getCurrentUserId } from "@redux/user/user.selectors";
 import { GQL_QUERY_GET_STATISTICS } from "@graphql/statistics/getStatistics.gql";
 import { GetStatistics } from "@graphql/_core/schema";
 import { Loading } from "@atoms";
-import { View, StyleSheet } from "react-native";
 import { Style } from "@styles";
+import { useBackHandler } from "@hooks";
 
 interface IProps {
   componentId: string;
@@ -18,9 +19,15 @@ interface IProps {
 }
 
 const InspectContainer = ({ componentId: _componentId, userId, challengeDuel }: IProps) => {
-  const onClose = useCallback(() => Navigation.pop(ROUTES.inspect), []);
+  const onClose = useCallback(() => {
+    Navigation.pop(ROUTES.inspect);
+    return true;
+  }, []);
+
   const currentUserId = useSelector(getCurrentUserId);
   const inspectOtherUser = useMemo(() => userId !== currentUserId, [userId, currentUserId]);
+
+  useBackHandler(onClose);
 
   const onPressChallengeDuel = useCallback(() => {
     inspectOtherUser ? challengeDuel() : openDuelHub();
