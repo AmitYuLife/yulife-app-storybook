@@ -81,7 +81,11 @@ export const LoginForm = (props: LoginFormProps) => {
         value={password}
         type={TextInput.Types.PASSWORD}
       />
-      {!loginError ? null : <TextInputError>{loginError}</TextInputError>}
+      {!loginError ? null : (
+        <View style={styles.centerWrapper}>
+          <TextInputError>{loginError}</TextInputError>
+        </View>
+      )}
       <Pad height={44} />
 
       <Button
@@ -102,6 +106,9 @@ export const LoginForm = (props: LoginFormProps) => {
 const styles = StyleSheet.create({
   flex: {
     flex: 1,
+  },
+  centerWrapper: {
+    alignItems: "center",
   },
   headingWrapper: {
     width: Style.DEVICE_WIDTH,
