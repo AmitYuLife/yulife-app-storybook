@@ -151,7 +151,6 @@
         "babel-loader": "^8.2.2",
         "babel-plugin-module-resolver": "^4.0.0",
         "babel-plugin-react-native-web": "^0.17.1",
-        "bcryptjs": "^2.4.3",
         "detox": "^19.4.2",
         "eslint": "^7.14.0",
         "eslint-config-prettier": "^6.10.1",
