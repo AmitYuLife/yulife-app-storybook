@@ -9,9 +9,14 @@ import { DistanceMeasurementType, SduiActionType, UserProfileEventStatus } from 
 // GraphQL query operation: GetUserProfile
 // ====================================================
 
+export interface GetUserProfile_getUserProfile_gameSettings_blackListApps {
+  steps: (string | null)[] | null;
+}
+
 export interface GetUserProfile_getUserProfile_gameSettings {
   cyclingMeasurement: DistanceMeasurementType;
   maxStepsAnomalyWindowMs: number | null;
+  blackListApps: GetUserProfile_getUserProfile_gameSettings_blackListApps | null;
 }
 
 export interface GetUserProfile_getUserProfile_surge_lottie_styles {

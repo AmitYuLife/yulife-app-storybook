@@ -4,6 +4,7 @@ import {
   UpdateActiveChallenge_updateActiveChallenge as UpdateActiveChallenge,
   UpdateQuestMapLevelChallenge_updateQuestMapLevelChallenge as UpdateQuestMapActiveChallenge,
 } from "@graphql/_core/schema";
+import { getStepsBlackListApps } from "@redux/daily-steps/daily-steps.selectors";
 import { getUserFeatures } from "@redux/user/user.selectors";
 import Logger from "@services/logging/logger";
 import { Unpacked } from "@utils";
@@ -29,7 +30,8 @@ export default function* endChallengeSaga() {
     } else {
       try {
         const features: ReturnType<typeof getUserFeatures> = yield select(getUserFeatures);
-        const result: Unpacked<typeof getEndResult> = yield call(getEndResult, active, features);
+        const stepsBlackListApps: string[] = yield select(getStepsBlackListApps);
+        const result: Unpacked<typeof getEndResult> = yield call(getEndResult, active, stepsBlackListApps, features);
 
         let challengeData: UpdateActiveChallenge | UpdateQuestMapActiveChallenge;
         let challengeStatus = "active";

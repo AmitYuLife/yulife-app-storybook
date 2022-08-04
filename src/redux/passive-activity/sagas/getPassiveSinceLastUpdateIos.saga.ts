@@ -21,7 +21,7 @@ export default function* getPassiveSinceLastUpdateIos(
   const endOfYesterday = moment().subtract(1, "day").endOf("day");
 
   const steps: QueryFitKitByTypesResponse = stepsLastUpdate
-    ? yield call(querySteps, moment(stepsLastUpdate).startOf("day"), endOfYesterday, userFeatures)
+    ? yield call(querySteps, moment(stepsLastUpdate).startOf("day"), endOfYesterday, [], userFeatures)
     : returnEmptyResult();
 
   const meditation: QueryFitKitByTypesResponse = meditationLastUpdate

@@ -11,7 +11,7 @@ import {
 } from "../pedometer.actions";
 import { stepsChannel } from "../pedometer.channels";
 import { getLastUpdated, getSteps } from "../pedometer.selectors";
-import { getMaxStepsAnomalyWindowMs } from "@redux/daily-steps/daily-steps.selectors";
+import { getMaxStepsAnomalyWindowMs, getStepsBlackListApps } from "@redux/daily-steps/daily-steps.selectors";
 
 const ERROR_NOT_AUTHORISED = "Pedometer not authorised";
 const STEPS_PER_MILLISECONDS_LIMIT = 2;
@@ -20,9 +20,10 @@ export default function* listenToSteps() {
   yield put(updatePedometerStartAction());
 
   const features: ReturnType<typeof getUserFeatures> = yield select(getUserFeatures);
+  const stepsBlackListApps: string[] = yield select(getStepsBlackListApps);
   const momentStartDay = moment().startOf("day");
   const startOfDay = momentStartDay.format();
-  const channel: ReturnType<typeof stepsChannel> = yield call(stepsChannel, startOfDay);
+  const channel: ReturnType<typeof stepsChannel> = yield call(stepsChannel, startOfDay, stepsBlackListApps);
   const maxStepsAnomalyWindowMs: ReturnType<typeof getMaxStepsAnomalyWindowMs> = yield select(
     getMaxStepsAnomalyWindowMs
   );

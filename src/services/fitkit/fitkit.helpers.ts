@@ -94,6 +94,7 @@ export const mapPedometerResults = (results: PedometerResponse): ChallengesPaylo
   startDateTime: moment(results.startTime).format(),
   value: Math.floor(results.steps),
   type: PassiveChallengeType.STEPS,
+  bundleIdentifiers: results.bundleIdentifiers,
 });
 
 export const transformSampleResultToPayloadWithType = (item: SampleQueryResult): ChallengesPayload => ({
@@ -101,6 +102,7 @@ export const transformSampleResultToPayloadWithType = (item: SampleQueryResult):
   startDateTime: moment(item.startTime).format(),
   value: Math.floor(item.value),
   type: fitkitTypeToGqlType(item.type),
+  bundleIdentifiers: item.bundleIdentifiers,
 });
 
 export interface QueryFitKitByTypesResponse {
@@ -231,6 +233,7 @@ export const queryFitKitByTypes = async (
 export const queryAggregatedDataByDay = async (
   start: Moment,
   end: Moment,
+  stepsBlackListApps: string[],
   { disableUserEntries = true, loggingEnabled = false }: IUserStore["features"] = {},
   fitKitTypes: FitKitType[] = [FitKitType.StepCount, FitKitType.MindfulSession]
 ): Promise<QueryFitKitByTypesResponse> => {
@@ -247,6 +250,7 @@ export const queryAggregatedDataByDay = async (
       endTime,
       startTime,
       type: FitKitTypes.Types.MindfulSession, // should be removed when requesting aggregated for multiple types
+      blackListApps: stepsBlackListApps,
       types,
     };
 
@@ -320,6 +324,7 @@ export const queryAggregatedBiking = async (
 export const querySteps = async (
   start: Moment,
   end: Moment,
+  blackListApps: string[],
   { disableUserEntries = true, loggingEnabled = false }: IUserStore["features"] = {}
 ): Promise<{ results: ChallengesPayload[]; error: string | null }> => {
   try {
@@ -333,6 +338,7 @@ export const querySteps = async (
       disableUserEntries,
       endTime,
       startTime,
+      blackListApps,
       type: FitKitTypes.Types.StepCount,
     };
 
@@ -368,9 +374,11 @@ export function sampleDataToAggregatedData(
 
   return buckets.map(({ end, start }) => {
     let value = 0;
+    const bundleIdentifiers: Set<string> = new Set();
     results.forEach((element: ChallengesPayload) => {
       if (moment(element.startDateTime).isSameOrAfter(start) && moment(element.startDateTime).isSameOrBefore(end)) {
         value = value + element.value;
+        element.bundleIdentifiers?.map((bundle) => bundleIdentifiers.add(bundle));
       }
     });
 
@@ -380,6 +388,7 @@ export function sampleDataToAggregatedData(
       endDateTime: end.format(),
       value,
       type,
+      bundleIdentifiers: Array.from(bundleIdentifiers),
     };
   });
 }

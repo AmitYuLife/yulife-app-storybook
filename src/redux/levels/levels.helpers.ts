@@ -10,6 +10,7 @@ const MAX_AVAILABLE = 4;
 
 export async function getEndResult(
   { startDateTime, endDateTime, score, fitKitTypes }: IActiveLevel,
+  blackListApps: string[],
   features: Record<string, boolean> = {}
 ) {
   if (!fitKitTypes.includes(FitKitType.StepCount)) {
@@ -56,7 +57,7 @@ export async function getEndResult(
     // RNFitKit.queryPedometerFromDate
     // Android: queries google fit history, steps from sensor are stored in score
     // iOS: fetches steps from sensors
-    const pedometerResults = await RNFitKit.queryPedometerFromDate(start, end);
+    const pedometerResults = await RNFitKit.queryPedometerFromDate(start, end, { blackListApps });
     const pedometerValue = pedometerResults?.steps || 0;
 
     Logger.logMixpanelEvent("end_challenge_result", {
