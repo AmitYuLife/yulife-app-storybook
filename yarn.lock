@@ -11750,19 +11750,6 @@ keymirror@^0.1.1:
   resolved "https://registry.yarnpkg.com/keymirror/-/keymirror-0.1.1.tgz#918889ea13f8d0a42e7c557250eee713adc95c35"
   integrity sha1-kYiJ6hP40KQufFVyUO7nE63JXDU=
 
-keypress-prompt@^0.3.2:
-  version "0.3.2"
-  resolved "https://registry.yarnpkg.com/keypress-prompt/-/keypress-prompt-0.3.2.tgz#9383b1c811bac2115a8b5e1d7e6344151ca4616d"
-  integrity sha1-k4OxyBG6whFai14dfmNEFRykYW0=
-  dependencies:
-    keypress "0.2.1"
-    q "1.0.0"
-
-keypress@0.2.1:
-  version "0.2.1"
-  resolved "https://registry.yarnpkg.com/keypress/-/keypress-0.2.1.tgz#1e80454250018dbad4c3fe94497d6e67b6269c77"
-  integrity sha1-HoBFQlABjbrUw/6USX1uZ7YmnHc=
-
 kind-of@^3.0.2, kind-of@^3.0.3, kind-of@^3.2.0:
   version "3.2.2"
   resolved "https://registry.yarnpkg.com/kind-of/-/kind-of-3.2.2.tgz#31ea21a734bab9bbb0f32466d893aea51e4a3c64"
@@ -14456,11 +14443,6 @@ punycode@^2.1.0, punycode@^2.1.1:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/punycode/-/punycode-2.1.1.tgz#b58b010ac40c22c5657616c8d2c2c02c7bf479ec"
   integrity sha512-XRsRjdf+j5ml+y/6GKHPZbrF/8p2Yga0JPtdqTIY2Xe5ohJPD9saDJJLPvp9+NSBprVvevdXZybnj2cv8OEd0A==
-
-q@1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/q/-/q-1.0.0.tgz#dc1f92c4587be54f7853b29dc28e6d243a88498d"
-  integrity sha1-3B+SxFh75U94U7Kdwo5tJDqISY0=
 
 qs@6.7.0:
   version "6.7.0"
