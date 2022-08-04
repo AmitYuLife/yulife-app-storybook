@@ -28191,6 +28191,18 @@
             },
             "isDeprecated": false,
             "deprecationReason": null
+          },
+          {
+            "name": "secondaryText",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
           }
         ],
         "inputFields": null,
@@ -40249,6 +40261,11 @@
           {
             "kind": "OBJECT",
             "name": "ContentItemPerks",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "ContentItemSelectedPackageCard",
             "ofType": null
           }
         ]

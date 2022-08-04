@@ -22,7 +22,10 @@ export const YuScreen = () => {
         {data ? (
           <>
             <NameAndLevel useWorldColor={true} hideWorldIcon={true} />
-            <YumojiAndSlots productSlots={data?.getYuScreen.productSlots} />
+            <YumojiAndSlots
+              productSlots={data?.getYuScreen.productSlots}
+              yumojiPrompt={data?.getYuScreen.yumojiPrompt}
+            />
             <Carousel {...data?.getYuScreen.productCarousel} />
             <Survey {...data?.getYuScreen.surveyFooter} />
           </>

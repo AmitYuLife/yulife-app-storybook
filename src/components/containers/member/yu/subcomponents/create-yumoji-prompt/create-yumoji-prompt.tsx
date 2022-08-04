@@ -1,14 +1,11 @@
-import React, { memo, useCallback } from "react";
+import React, { FC, memo, useCallback } from "react";
 import { View, StyleSheet } from "react-native";
 import { Colours, Style } from "@styles";
 import { navigateToYumojiBuilder } from "../../navigation/navigateToYumojiBuilder";
 import { Button } from "@molecules";
 import { Image, TextTemplate } from "@atoms";
 import { yumojiWrapperWidth } from "../yumoji-and-slots/styles";
-
-const CREATE_YUMOJI_HEADING = "Earn 100 YuCoin";
-const CREATE_YUMOJI_TEXT = "when you create your Yumoji.";
-const CREATE_YUMOJI_CTA_COPY = "Create Yumoji";
+import { GetYuScreen_getYuScreen_yumojiPrompt as Props } from "@graphql/_core/schema";
 
 export const BUTTON_HEIGHT = Style.adjust(48);
 
@@ -17,7 +14,7 @@ const YUCOIN_WIDTH = Style.adjust(48);
 
 const PROMPT_WIDTH = yumojiWrapperWidth - Style.adjust(30);
 
-export const CreateYumojiPrompt = memo(() => {
+export const CreateYumojiPrompt: FC<Props> = memo(({ buttonText, heading, text }) => {
   const createYumoji = useCallback(() => navigateToYumojiBuilder({}), []);
 
   return (
@@ -25,15 +22,15 @@ export const CreateYumojiPrompt = memo(() => {
       <Image height={YUCOIN_HEIGHT} width={YUCOIN_WIDTH} style={styles.yucoinImage} source={require("./yucoin.png")} />
       <View style={styles.contentWrapper}>
         <TextTemplate textAlign="center" type="h3">
-          {CREATE_YUMOJI_HEADING}
+          {heading}
         </TextTemplate>
         <TextTemplate textAlign="center" type="l1b">
-          {CREATE_YUMOJI_TEXT}
+          {text}
         </TextTemplate>
         <Button
           height={BUTTON_HEIGHT}
           size="Fill"
-          label={CREATE_YUMOJI_CTA_COPY}
+          label={buttonText}
           onPress={createYumoji}
           wrapperStyle={styles.buttonWrapper}
         />
