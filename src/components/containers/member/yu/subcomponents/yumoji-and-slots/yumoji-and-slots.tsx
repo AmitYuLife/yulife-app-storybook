@@ -5,20 +5,24 @@ import { YuScreenContext } from "../../context/yu-screen.context";
 import { navigateToYumojiBuilder } from "../../navigation/navigateToYumojiBuilder";
 import { YuCoinPower } from "../yu-coin-power/yu-coin-power";
 import { ItemSlot } from "../item-slot/item-slot";
-import { GetYuScreen_getYuScreen as GetYuScreen } from "@graphql/_core/schema";
+import {
+  GetYuScreen_getYuScreen_productSlots as ProductSlots,
+  GetYuScreen_getYuScreen_yumojiPrompt as YumojiPrompt,
+} from "@graphql/_core/schema";
 import { AVATAR_HEIGHT, AVATAR_WIDTH, styles } from "./styles";
 import { CreateYumojiPrompt } from "../create-yumoji-prompt/create-yumoji-prompt";
 
 interface Props {
-  productSlots: GetYuScreen["productSlots"];
+  productSlots: Array<ProductSlots>;
+  yumojiPrompt: YumojiPrompt;
 }
 
-export const YumojiAndSlots: FC<Props> = memo(({ productSlots }) => {
+export const YumojiAndSlots: FC<Props> = memo(({ productSlots, yumojiPrompt }) => {
   const { yumojiRemoteUrl } = useContext(YuScreenContext);
 
   return (
     <View style={styles.wrapper}>
-      <YumojiAvatar uri={yumojiRemoteUrl} />
+      <YumojiAvatar uri={yumojiRemoteUrl} yumojiPrompt={yumojiPrompt} />
       <SlotsWrapper>
         <YuCoinPower />
         {productSlots.map((props) => (
@@ -31,7 +35,8 @@ export const YumojiAndSlots: FC<Props> = memo(({ productSlots }) => {
 
 const SlotsWrapper: FC = ({ children }) => <View style={styles.slotsWrapper}>{children}</View>;
 
-const YumojiAvatar = ({ uri }: { uri?: string }) => {
+const YumojiAvatar = ({ uri, yumojiPrompt }: { uri?: string; yumojiPrompt: YumojiPrompt }) => {
+  const { buttonText, heading, text } = yumojiPrompt;
   const editYumoji = useCallback(() => navigateToYumojiBuilder({ heading: "Edit your Yumoji" }), []);
 
   const YumojiWrapper = useMemo(() => (uri ? TouchableOpacityWithDelay : View), [uri]);
@@ -49,7 +54,7 @@ const YumojiAvatar = ({ uri }: { uri?: string }) => {
           uri={uri}
         />
       </YumojiWrapper>
-      {!uri ? <CreateYumojiPrompt /> : null}
+      {!uri ? <CreateYumojiPrompt buttonText={buttonText} heading={heading} text={text} /> : null}
     </View>
   );
 };

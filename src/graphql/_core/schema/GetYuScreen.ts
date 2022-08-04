@@ -111,10 +111,17 @@ export interface GetYuScreen_getYuScreen_surveyFooter {
   image: GetYuScreen_getYuScreen_surveyFooter_image;
 }
 
+export interface GetYuScreen_getYuScreen_yumojiPrompt {
+  buttonText: string;
+  heading: string;
+  text: string;
+}
+
 export interface GetYuScreen_getYuScreen {
   productSlots: (GetYuScreen_getYuScreen_productSlots | null)[] | null;
   productCarousel: GetYuScreen_getYuScreen_productCarousel;
   surveyFooter: GetYuScreen_getYuScreen_surveyFooter | null;
+  yumojiPrompt: GetYuScreen_getYuScreen_yumojiPrompt | null;
 }
 
 export interface GetYuScreen {

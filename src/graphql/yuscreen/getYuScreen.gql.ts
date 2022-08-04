@@ -87,10 +87,19 @@ const GQL_FRAGMENT_YU_SCREEN_SURVEY_FOOTER = gql`
   }
 `;
 
+const GQL_FRAGMENT_YU_SCREEN_YUMOJI_PROMPT = gql`
+  fragment YuScreenYumojiPrompt on YuScreenYumojiPrompt {
+    buttonText
+    heading
+    text
+  }
+`;
+
 export const GQL_QUERY_GET_YU_SCREEN = gql`
   ${GQL_FRAGMENT_YU_SCREEN_PRODUCT_SLOT_ITEM}
   ${GQL_FRAGMENT_YU_SCREEN_CAROUSEL}
   ${GQL_FRAGMENT_YU_SCREEN_SURVEY_FOOTER}
+  ${GQL_FRAGMENT_YU_SCREEN_YUMOJI_PROMPT}
 
   query GetYuScreen {
     getYuScreen {
@@ -102,6 +111,9 @@ export const GQL_QUERY_GET_YU_SCREEN = gql`
       }
       surveyFooter {
         ...YuScreenSurveyFooter
+      }
+      yumojiPrompt {
+        ...YuScreenYumojiPrompt
       }
     }
   }
