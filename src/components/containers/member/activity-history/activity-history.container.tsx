@@ -11,7 +11,7 @@ import moment from "moment";
 import React, { useCallback, useState, useRef, FC } from "react";
 import { LargeList } from "react-native-largelist-v3";
 import { Navigation } from "react-native-navigation";
-import { connect } from "react-redux";
+import { connect, useSelector } from "react-redux";
 import { IReduxState } from "@redux/_core/reducers";
 import { getCopy } from "@redux/copy/copy.selectors";
 import { getUserStart } from "@redux/user/user.actions";
@@ -27,6 +27,7 @@ import {
 import { getDailyCyclingMeasurement } from "@redux/daily-cycling/daily-cycling.selectors";
 import { FitKitType } from "@graphql/_core/schema/globalTypes";
 import { DATE_FORMAT_WITH_TZ } from "@utils";
+import { getStepsBlackListApps } from "@redux/daily-steps/daily-steps.selectors";
 
 interface IProps {
   componentId: string;
@@ -46,6 +47,7 @@ const ActivityHistoryContainer: FC<Props> = ({
 }) => {
   const [monthsAgo, setMonthsAgo] = useState(0);
   const largeList = useRef<LargeList>(null);
+  const stepsBlackListApps = useSelector(getStepsBlackListApps);
 
   const handleClose = useCallback(() => {
     Navigation.popToRoot(componentId);
@@ -78,7 +80,7 @@ const ActivityHistoryContainer: FC<Props> = ({
       const end = moment().subtract(1, "days").endOf("day");
 
       const [steps, meditation, cycling] = await Promise.all([
-        querySteps(start, end, features),
+        querySteps(start, end, stepsBlackListApps, features),
         queryFitKitByTypes(
           start.format(DATE_FORMAT_WITH_TZ),
           end.format(DATE_FORMAT_WITH_TZ),

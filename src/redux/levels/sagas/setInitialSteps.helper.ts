@@ -5,9 +5,11 @@ import { querySteps, QueryFitKitByTypesResponse } from "@services/fitkit/fitkit.
 import { pedometerStepsChallengeStarted } from "../levels.actions";
 import { getLastResults } from "@redux/pedometer/pedometer.selectors";
 import { IUserStore } from "@redux/user/user.reducer";
+import { getStepsBlackListApps } from "@redux/daily-steps/daily-steps.selectors";
 
 export default function* setInitialSteps(startDateTime: string, features: IUserStore["features"]) {
   const lastPedometerResults: ReturnType<typeof getLastResults> = yield select(getLastResults);
+  const stepsBlackListApps: string[] = yield select(getStepsBlackListApps);
   const { lastUpdated, steps: pedometerSteps, isSynced } = lastPedometerResults;
   const isValidInitialSteps = isSynced && moment(lastUpdated).isSame(moment(), "day");
 
@@ -44,7 +46,12 @@ export default function* setInitialSteps(startDateTime: string, features: IUserS
   let retryDelayMs = 2000;
   while (retryDelayMs < 16000) {
     try {
-      const data: QueryFitKitByTypesResponse = yield querySteps(startOfDayMoment, startOfChallengeMoment, features);
+      const data: QueryFitKitByTypesResponse = yield querySteps(
+        startOfDayMoment,
+        startOfChallengeMoment,
+        stepsBlackListApps,
+        features
+      );
 
       if (!data.error) {
         const steps = data.results.reduce((acc, payload) => acc + payload.value, 0);

@@ -1,20 +1,23 @@
 import moment from "moment";
 import { REHYDRATE } from "redux-persist";
-import { GetCurrentUser, UpsertDailyPassives_upsertDailyPassives_challenges as Challenge } from "@graphql/_core/schema";
+import {
+  GetCurrentUser,
+  UpsertDailyPassives_upsertDailyPassives_challenges as Challenge,
+  GetUserProfile_getUserProfile_gameSettings as GameSettings,
+} from "@graphql/_core/schema";
 import { LoginUser } from "@graphql/_core/schema";
 import {
   PEDOMETER_UPDATES_NO_NEW_DATA,
   PEDOMETER_UPDATES_START,
   PEDOMETER_START,
 } from "../pedometer/pedometer.actions";
-import { GET_USER_SUCCESS, LOGIN_USER_SUCCESS, LOGOUT_SUCCESS } from "../user/user.actions";
+import { GET_USER_SUCCESS, LOGIN_USER_SUCCESS, LOGOUT_SUCCESS, UPDATE_USER_PROFILE } from "../user/user.actions";
 import {
   UPDATE_DAILY_STEPS_FAILED,
   UPDATE_DAILY_STEPS_SUCCESS_FROM_REMOTE,
   UPDATE_DAILY_STEPS_SUCCESS_FROM_LOCAL,
   UPDATE_DAILY_STEPS_NO_NEW_DATA,
   START_STEPS_SYNCING,
-  UPDATE_STEPS_MAX_ANOMALY_WINDOW,
 } from "./daily-steps.actions";
 import { SyncAction } from "@redux/_core/types";
 import { ExchangeRate, PassiveStepsMilestones } from "./daily-steps.selectors";
@@ -65,6 +68,11 @@ export interface IDailyStepsStore {
    * Max window time in ms to detect spikes on pedometer reads
    */
   maxStepsAnomalyWindowMs: number;
+  /**
+   * @description
+   * Steps data from these apps  will be filtered/ignored
+   */
+  blackListApps: string[];
 }
 
 export const getInitialState = (): IDailyStepsStore => ({
@@ -82,6 +90,7 @@ export const getInitialState = (): IDailyStepsStore => ({
   isServerFetchedThisSession: false,
   lastUpdated: moment().startOf("day").format(),
   maxStepsAnomalyWindowMs: MAX_ANOMALY_DETECTION_WINDOW_MS,
+  blackListApps: [],
 });
 
 const dailyStepsReducer = (state: IDailyStepsStore = getInitialState(), action: SyncAction): IDailyStepsStore => {
@@ -126,8 +135,8 @@ const dailyStepsReducer = (state: IDailyStepsStore = getInitialState(), action: 
     case LOGOUT_SUCCESS:
       return getInitialState();
 
-    case UPDATE_STEPS_MAX_ANOMALY_WINDOW:
-      return { ...state, maxStepsAnomalyWindowMs: action.payload };
+    case UPDATE_USER_PROFILE:
+      return updateUserProfile(state, action.payload.gameSettings);
 
     default:
       return state;
@@ -156,6 +165,12 @@ const updatePersistedState = (state: IDailyStepsStore, persistedState: IDailySte
 
   return { ...persistedState, isServerFetchedThisSession: false };
 };
+
+const updateUserProfile = (state: IDailyStepsStore, gameSettings: GameSettings) => ({
+  ...state,
+  maxStepsAnomalyWindowMs: gameSettings?.maxStepsAnomalyWindowMs,
+  blackListApps: gameSettings?.blackListApps?.steps,
+});
 
 const updateStateOnAppStateActive = (state: IDailyStepsStore) => {
   const lastUpdated = moment(state.lastUpdated).startOf("day").format();

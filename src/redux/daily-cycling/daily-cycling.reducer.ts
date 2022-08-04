@@ -5,7 +5,7 @@ import {
   LoginUser,
   UpsertDailyPassives_upsertDailyPassives_challenges as Challenge,
 } from "@graphql/_core/schema";
-import { GET_USER_SUCCESS, LOGIN_USER_SUCCESS, LOGOUT_SUCCESS } from "../user/user.actions";
+import { GET_USER_SUCCESS, LOGIN_USER_SUCCESS, LOGOUT_SUCCESS, UPDATE_USER_PROFILE } from "../user/user.actions";
 import { SyncAction } from "@redux/_core/types";
 import {
   UPDATE_DAILY_CYCLING_SUCCESS,
@@ -46,6 +46,9 @@ const dailyCyclingReducer = (state: IDailyCyclingStore = getInitialState(), acti
 
     case UPDATE_DAILY_CYCLING_DISTANCE_MEASUREMENT_TYPE:
       return { ...state, cyclingMeasurement: action.payload };
+
+    case UPDATE_USER_PROFILE:
+      return { ...state, cyclingMeasurement: action.payload.gameSettings.cyclingMeasurement };
 
     case UPDATE_DAILY_CYCLING_EMPTY_RESULT:
       return { ...state, dailyCycling: 0 };

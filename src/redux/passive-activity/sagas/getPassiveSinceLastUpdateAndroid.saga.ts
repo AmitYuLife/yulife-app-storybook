@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { ChallengesPayload, PassiveChallengeType } from "@graphql/_core/schema/globalTypes";
 import moment from "moment";
-import { call, CallEffect, all, AllEffect } from "redux-saga/effects";
+import { call, select, CallEffect, all, AllEffect } from "redux-saga/effects";
 import {
   processResult,
   queryAggregatedDataByDay,
@@ -12,6 +12,7 @@ import { IUserStore } from "@redux/user/user.reducer";
 import { PermissionsAndroid } from "react-native";
 import RNFitKit, { FitKitTypes } from "@yu-life/react-native-fitkit";
 import Logger from "@services/logging/logger";
+import { getStepsBlackListApps } from "@redux/daily-steps/daily-steps.selectors";
 
 export default function* getPassiveSinceLastUpdateAndroid(
   stepsLastUpdate: string,
@@ -50,10 +51,17 @@ export default function* getPassiveSinceLastUpdateAndroid(
 
   const fineLocationGranted: boolean = yield call(PermissionsAndroid.check, "android.permission.ACCESS_FINE_LOCATION");
   const queryCycling = shouldQueryCycling && fineLocationGranted && cyclingPermissionGranted;
+  const stepsBlackListApps: string[] = yield select(getStepsBlackListApps);
 
   const [stepsAndMeditation, cycling]: QueryFitKitByTypesResponse[] = yield all([
     stepsLastUpdate || meditationLastUpdate
-      ? call(queryAggregatedDataByDay, stepsAndMeditationLastUpdateStartTime, endOfYesterday, userFeatures)
+      ? call(
+          queryAggregatedDataByDay,
+          stepsAndMeditationLastUpdateStartTime,
+          endOfYesterday,
+          stepsBlackListApps,
+          userFeatures
+        )
       : returnEmptyResult(),
     queryCycling
       ? call(queryAggregatedBiking, moment(cyclingLastUpdate).startOf("day"), endOfYesterday, userFeatures)
