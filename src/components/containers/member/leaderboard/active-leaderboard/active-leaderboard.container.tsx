@@ -79,7 +79,7 @@ const ActiveLeaderboardContainer = (props: Props) => {
       >
         <LeaderboardContentContainer
           leaderboardName={activeLeaderboard?.name}
-          query={data}
+          leaderboardItems={data?.getLeaderboard || []}
           currentUserId={userId}
           onRefetch={handleRefetch}
           isRefetching={networkStatus === NetworkStatus.refetch}

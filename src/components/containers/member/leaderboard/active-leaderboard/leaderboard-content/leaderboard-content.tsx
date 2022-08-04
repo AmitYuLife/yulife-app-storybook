@@ -16,16 +16,15 @@ import FloatingRankItem from "../../items/leaderboard-rank-item/floating-rank-it
 import { getUriSet } from "./helpers/resToList";
 import { PAGE_SIZE } from "../active-leaderboard.container";
 import { MODALS } from "@navigation/constants";
-import { IReduxState } from "@redux/_core/reducers";
 import { getUserFeatures } from "@redux/user/user.selectors";
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
 import { LEADERBOARD_ITEM_HEIGHT } from "../../items/leaderboard-rank-item/subcomponents";
 import { TOP_PADDING_HEIGHT } from "./helpers/constants";
 import { LEADERBOARD_SCROLL_LIST } from "@ids";
 import { useAppState, useNavigationComponentDidDisappear } from "@hooks";
 
 export interface LeaderboardContentContainerProps {
-  query: GetLeaderboard;
+  leaderboardItems: GetLeaderboard["getLeaderboard"];
   leaderboardName: string;
   currentUserId: string;
   isRefetching: boolean;
@@ -34,28 +33,23 @@ export interface LeaderboardContentContainerProps {
   openModal: () => void;
 }
 
-type ConnectedState = ReturnType<typeof mapStateToProps>;
-
-interface IProps extends LeaderboardContentContainerProps, ConnectedState {}
-
 const FlatList = Animated.createAnimatedComponent(_FlatList);
 
-const _LeaderboardContentContainer = ({
-  query,
+export const LeaderboardContentContainer = ({
+  leaderboardItems,
   leaderboardName,
   currentUserId,
   onRefetch,
   openModal,
   isRefetching,
   isLoading,
-  showDuels,
-}: IProps) => {
+}: LeaderboardContentContainerProps) => {
   const [duelDialogId, setDuelDialogId] = useState("");
   const [scrollValue] = useState(new Animated.Value(0));
   const [flatListHeight, setFlatListHeight] = useState(0);
+  const showDuels = useSelector(getUserFeatures)?.showDuels;
   const flatListRef: RefObject<_FlatList> = useRef();
   const timer = useRef<ReturnType<typeof setTimeout>>(null);
-  const leaderboardItems = query?.getLeaderboard || [];
   const myLeaderboardItem = leaderboardItems.find((item) => item.userId === currentUserId);
   const setDuelDialog = useCallback(
     (value: string) => {
@@ -138,7 +132,7 @@ const _LeaderboardContentContainer = ({
         scrollEventThrottle={16}
         onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: scrollValue } } }], { useNativeDriver: true })}
       />
-      <IOSPodium scrollValue={scrollValue} query={query} leaderboardName={leaderboardName} />
+      <IOSPodium scrollValue={scrollValue} leaderboardItems={leaderboardItems} leaderboardName={leaderboardName} />
       <FloatingRankItem
         onPress={handlePressFloater}
         item={myLeaderboardItem}
@@ -151,14 +145,12 @@ const _LeaderboardContentContainer = ({
 
 function IOSPodium({
   leaderboardName,
-  query,
+  leaderboardItems,
   scrollValue,
 }: Partial<LeaderboardContentContainerProps> & { scrollValue: Animated.Value }) {
   if (Platform.OS === "android") {
     return null;
   }
-
-  const leaderboardItems = query?.getLeaderboard || [];
 
   return (
     <View pointerEvents="box-none" style={styles.absolute}>
@@ -179,9 +171,3 @@ const styles = StyleSheet.create({
     position: "absolute",
   } as ViewStyle,
 });
-
-const mapStateToProps = (state: IReduxState) => ({
-  showDuels: !!getUserFeatures(state).showDuels,
-});
-
-export const LeaderboardContentContainer = connect<ConnectedState>(mapStateToProps)(_LeaderboardContentContainer);
