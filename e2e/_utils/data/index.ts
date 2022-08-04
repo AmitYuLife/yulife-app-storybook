@@ -13,8 +13,6 @@ export * from "./mongo/leaderboard"
 export * from "./mongo/duel_challenge_templates"
 export * from "./mongo/duel_wager_template"
 export * from "./mongo/userDuel"
-export * from "./mongo/user_community_goals"
-export * from "./mongo/core_community_goals"
 export * from "./mongo/_templates";
 export * from "./mongo/feedback_forms";
 export * from "./mongo/feedback_submission";
