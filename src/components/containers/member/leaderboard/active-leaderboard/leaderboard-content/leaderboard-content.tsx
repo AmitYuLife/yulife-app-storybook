@@ -1,4 +1,4 @@
-import React, { useRef, RefObject, useCallback, useState, useEffect } from "react";
+import React, { useRef, RefObject, useCallback, useState, useEffect, useMemo } from "react";
 import {
   Animated,
   FlatList as _FlatList,
@@ -50,6 +50,7 @@ export const LeaderboardContentContainer = ({
   const showDuels = useSelector(getUserFeatures)?.showDuels;
   const flatListRef: RefObject<_FlatList> = useRef();
   const timer = useRef<ReturnType<typeof setTimeout>>(null);
+  const refreshing = useMemo(() => Platform.select({ ios: false, android: isRefetching }), [isRefetching]);
   const myLeaderboardItem = leaderboardItems.find((item) => item.userId === currentUserId);
   const setDuelDialog = useCallback(
     (value: string) => {
@@ -122,7 +123,7 @@ export const LeaderboardContentContainer = ({
         testID={LEADERBOARD_SCROLL_LIST}
         onLayout={handleLayout}
         onRefresh={onRefetch}
-        refreshing={isRefetching}
+        refreshing={refreshing}
         ref={flatListRef}
         style={styles.flex}
         showsVerticalScrollIndicator={false}
