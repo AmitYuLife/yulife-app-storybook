@@ -47,10 +47,10 @@ const FeedbackModal = () => {
         });
         dispatch(getUserStart());
       } catch (e) {
-        // silent fail
+        Logger.error(e, { location: "feedback.modal", feedbackId: data?.pendingFeedbackForm?.id });
+      } finally {
+        await Navigation.dismissModal(MODALS.feedback);
       }
-
-      await Navigation.dismissModal(MODALS.feedback);
     },
     [submitFeedbackForm, data]
   );
