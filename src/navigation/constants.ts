@@ -126,6 +126,7 @@ export const MODALS = {
   switchToGoogleFit: "yulife.modals.switchToGoogleFit",
   whatsNew: "yulife.modals.whatsNew",
   collectEventReward: "yulife.modal.collectEventReward",
+  weeklyQuestsOverlay: "yulife.overlay.weeklyQuests",
 };
 
 export const bottomTabs: OptionsBottomTabs = {

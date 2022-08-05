@@ -19,9 +19,9 @@ import {
   getLevelAction,
 } from "./quests-screen.container.helpers";
 import { useQuery } from "@apollo/react-hooks";
-import { GQL_QUERY_GET_QUEST_MAP_LEVEL_LIST } from "@graphql/challenges/getQuestMapLevelList";
+import { GQL_QUERY_GET_QUEST_MAP } from "@graphql/challenges";
 import { getShowChestCopy } from "@redux/copy/copy.selectors";
-import { GetQuestMapLevelList } from "@graphql/_core/schema/GetQuestMapLevelList";
+import { GetQuestMap } from "@graphql/_core/schema";
 import { YuniversalQuestsScreen } from "./yuniversal/yuniversal-quest-screen";
 
 function isAvailable(nextAvailableAt: string): boolean {
@@ -104,14 +104,18 @@ function QuestsScreenContainer(props: Props) {
     setUnity(null);
   }, []);
 
-  const { loading, data } = useQuery<GetQuestMapLevelList>(GQL_QUERY_GET_QUEST_MAP_LEVEL_LIST, {
+  const { loading, data } = useQuery<GetQuestMap>(GQL_QUERY_GET_QUEST_MAP, {
     fetchPolicy: "network-only",
   });
 
-  const currentWorldGQL = data?.getQuestMapLevelList || [];
+  const levelsList = data?.levels || [];
+
+  const weeklyQuestsEndDateTime = data?.weeklies?.endDateTime;
+  const weeklyClaimableRewards = data?.weeklies?.activityProgress?.filter?.((e) => e.isClaimable)?.length;
+
   const formattedData = yuniversalMap
     ? []
-    : currentWorldGQL.map((itemLevel) => {
+    : levelsList.map((itemLevel) => {
         const levelStatus = getLevelStatus(challengesStatus, currentLevel, itemLevel.level, nextLevelAvailableAt);
         const isChestLevel = !!itemLevel.levelChest;
 
@@ -165,7 +169,7 @@ function QuestsScreenContainer(props: Props) {
         componentId={componentId}
         yuniversalLevel={yuniversalLevel}
         yuniversalMap={yuniversalMap}
-        levelList={currentWorldGQL}
+        levelList={levelsList}
         onLeftMenuPress={onLeftMenuPress}
       />
     );
@@ -182,6 +186,8 @@ function QuestsScreenContainer(props: Props) {
       repeatedUnity={repeatedUnity}
       activeLevel={getActiveLevel(formattedData)}
       componentId={componentId}
+      weeklyClaimableRewards={weeklyClaimableRewards}
+      weeklyQuestsEndDateTime={weeklyQuestsEndDateTime}
     />
   );
 }

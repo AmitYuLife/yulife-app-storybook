@@ -12,8 +12,13 @@ export default {
   button: {
     close: "Close",
     dismiss: "Dismiss",
+    claim: "Claim",
   },
   screens: {
+    weekly_quests: {
+      title: "Weekly quests",
+      time_remaining: "Time remaining",
+    },
     login: {
       heading: "Welcome!",
       ctaLabel: "Log in",

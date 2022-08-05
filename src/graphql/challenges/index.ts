@@ -3,7 +3,7 @@ export * from "./cancelQuestMapLevelChallenge.gql";
 export * from "./createActiveChallenge.gql";
 export * from "./createQuestMapLevelChallenge.gql";
 export * from "./getQuestMapLevel.gql";
-export * from "./getQuestMapLevelList";
+export * from "./getQuestMap.gql";
 export * from "./submitUnity.gql";
 export * from "./updateActiveChallenge.gql";
 export * from "./updateQuestMapLevelChallenge.gql";

@@ -2,7 +2,7 @@ import React, { memo, useState, useRef, useCallback, useEffect, FC } from "react
 import { QUESTS_SCREEN } from "@ids";
 import { getCurrentEpisode, getCurrentWorld, getNormalizedLevel } from "@utils";
 import { FlatList, SafeAreaView, View, ViewabilityConfigCallbackPair } from "react-native";
-import { GetQuestMapLevelList_getQuestMapLevelList } from "@graphql/_core/schema";
+import { GetQuestMap_levels } from "@graphql/_core/schema";
 import { IConnectedScreenProps } from "../../../../../typings";
 import { IMapSlice, mapSlices } from "./assets";
 import offsets from "./assets/offsets";
@@ -10,15 +10,15 @@ import styles from "./quests-screen.styles";
 import ScrollyQuest from "./subcomponents/scrolly-quest";
 import Unity from "./unity-movies/unity";
 import NewUnity from "./unity-movies/new-unity";
-import { NavBar } from "@components/organisms";
+import { NavBar, TopBar } from "@organisms";
 import QuestsLoadingOverlay from "./subcomponents/quests.loading";
-import { TopBar } from "@components/organisms";
+import { WeeklyQuestsButton } from "./weeklies/weeklies.button";
 import { useNavigationComponentDidAppear } from "@hooks";
 import { useSelector } from "react-redux";
 import { getUserFeatures } from "@redux/user/user.selectors";
 import { getTopBarType, getWorldData } from "./quests-screen.helpers";
 
-export interface IChallenge extends GetQuestMapLevelList_getQuestMapLevelList {
+export interface IChallenge extends GetQuestMap_levels {
   isActive?: boolean;
   isDone?: boolean;
   isNext?: boolean;
@@ -36,6 +36,8 @@ interface IProps extends IConnectedScreenProps {
   repeatedUnity: boolean;
   loading: boolean;
   componentId: string;
+  weeklyClaimableRewards: number;
+  weeklyQuestsEndDateTime: string | null;
 }
 
 type CurrentWorld = 0 | 1 | 2 | 3;
@@ -50,9 +52,11 @@ const QuestsScreen: FC<IProps> = ({
   loading,
   onLeftMenuPress,
   componentId,
+  weeklyClaimableRewards,
+  weeklyQuestsEndDateTime,
 }) => {
   const features = useSelector(getUserFeatures);
-
+  const [isOnCurrentEpisode, setIsOnCurrentEpisode] = useState(false);
   const [topBarType, setTopBarType] = useState(getTopBarType(currentLevel));
   const flatList = useRef<FlatList<IMapSlice>>();
   const timer = useRef<NodeJS.Timeout>();
@@ -76,6 +80,7 @@ const QuestsScreen: FC<IProps> = ({
     if (result && result.episodeSettings) {
       timer.current = global.setTimeout(() => {
         if (flatList.current) {
+          setIsOnCurrentEpisode(true);
           setTopBarType(result.episodeSettings.topBarType);
           const currentEpisode = getCurrentEpisode(normalizedLevel);
           flatList.current.scrollToOffset({
@@ -138,6 +143,13 @@ const QuestsScreen: FC<IProps> = ({
       </View>
       <NavBar activeIndex={1} />
       <QuestsLoadingOverlay loading={loading} />
+      <View style={styles.rightIconList}>
+        <WeeklyQuestsButton
+          endDateTime={weeklyQuestsEndDateTime}
+          claimableRewards={weeklyClaimableRewards}
+          isVisible={features?.showWeeklyQuests && isOnCurrentEpisode}
+        />
+      </View>
     </SafeAreaView>
   );
 };

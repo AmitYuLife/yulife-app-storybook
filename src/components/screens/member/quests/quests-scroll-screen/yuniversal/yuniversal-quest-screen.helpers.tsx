@@ -1,6 +1,6 @@
 import { ITodayChallengesStatus } from "@redux/levels/levels.selectors";
 import {
-  GetQuestMapLevelList_getQuestMapLevelList as QuestMapLevel,
+  GetQuestMap_levels,
   GetMobileCopy_getMobileCopy_screens_challenges_showChestModal as ShowChestModalCopy,
 } from "@graphql/_core/schema";
 import { slots } from "./level/level-slots";
@@ -134,7 +134,7 @@ const getLevelProps = (
   challengesStatus: ITodayChallengesStatus,
   yuniversalLevel: number,
   yuniversalMap: number,
-  level: QuestMapLevel,
+  level: GetQuestMap_levels,
   nextLevelAvailableAt: string
 ): ILevelProps => {
   const levelButtonState = getLevelButtonState(challengesStatus, yuniversalLevel, level.level, !!level.levelChest);
@@ -220,7 +220,7 @@ export const getLevelsProps = (
   challengesStatus: ITodayChallengesStatus,
   yuniversalLevel: number,
   yuniversalMap: number,
-  levelList: QuestMapLevel[],
+  levelList: GetQuestMap_levels[],
   nextLevelAvailableAt: string
 ): ILevelProps[] =>
   levelList.reduce((acc, level) => {
