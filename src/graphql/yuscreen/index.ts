@@ -1,6 +1,5 @@
 export * from "./getAvatarData.gql";
 export * from "./getYulifer.gql";
-export * from "./getUserStats.gql";
 export * from "./getYuScreenProductSlots.gql";
 export * from "./getYumojiRemoteParts.gql";
 export * from "./getYumojiRemoteFittingRoom.gql";

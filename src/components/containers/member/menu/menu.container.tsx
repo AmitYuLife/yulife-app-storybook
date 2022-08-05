@@ -64,9 +64,6 @@ const MenuContainer = () => {
   const handlePressLink = React.useCallback(
     (link: LinkTypes) => (): null => {
       switch (link) {
-        case LINKS.STATS:
-          handlePush(currentRoute, ROUTES.stats);
-          return null;
         case LINKS.ACTIVITY:
           handlePush(currentRoute, ROUTES.activityHistory);
           return null;
@@ -107,12 +104,6 @@ const MenuContainer = () => {
 
   const links = React.useMemo(
     () => [
-      {
-        condition: features.showStats,
-        label: "Statistics",
-        onPress: handlePressLink(LINKS.STATS),
-        source: assets[LINKS.STATS],
-      },
       {
         condition: true,
         label: "Activity History",

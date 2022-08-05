@@ -90,7 +90,6 @@ export * from "./GetDuelsCompleted";
 export * from "./GetDuelsToday";
 export * from "./GetDuelsTomorrow";
 export * from "./GetGoalDetails";
-export * from "./GetHighlights";
 export * from "./GetLeaderboard";
 export * from "./GetMagicLink";
 export * from "./GetMedia";
