@@ -23,7 +23,6 @@ export { default as LevelLine } from "./level-line/level-line";
 export * from "./yucoin-mini/yucoin-mini";
 export { UnauthorisedGradient } from "./unauthorised-gradient/unauthorised-gradient";
 export { default as YuCoinIcon } from "./yucoin-icon/yucoin.icon";
-export { default as GenderIcon } from "./gender/gender";
 export { default as SearchIcon } from "./search-icon/search-icon";
 export { default as AddressIcon } from "./address-icon/address-icon";
 export * from "./gp-icons";
