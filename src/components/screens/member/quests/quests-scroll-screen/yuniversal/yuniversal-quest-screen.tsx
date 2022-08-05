@@ -11,7 +11,7 @@ import media from "@styles/media";
 import { YuniversalQuestSvg } from "./yuniversal-quest-svg";
 import { LevelBubble } from "./level/level-bubble";
 import { IConnectedScreenProps } from "@app/typings";
-import { GetQuestMapLevelList_getQuestMapLevelList as QuestMapLevel } from "@graphql/_core/schema";
+import { GetQuestMap_levels } from "@graphql/_core/schema";
 import { getLevelsProps } from "./yuniversal-quest-screen.helpers";
 import { QUESTS_SCREEN_YUNIVERSAL } from "@ids";
 
@@ -22,7 +22,7 @@ interface IProps extends IConnectedScreenProps {
   componentId: string;
   yuniversalLevel: number;
   yuniversalMap: number;
-  levelList: QuestMapLevel[];
+  levelList: GetQuestMap_levels[];
 }
 
 const _YuniversalQuestsScreen: FC<IProps> = ({

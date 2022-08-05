@@ -4,6 +4,7 @@ import React, { memo, useMemo } from "react";
 import { StyleSheet, View, Image as RNImage } from "react-native";
 import { ProgressBar, PressableWithDelay } from "@molecules";
 import { StarIcon } from "@atoms/icon/star-icon";
+import { useTranslation } from "@hooks";
 
 interface IProps {
   activitySubTotal: string;
@@ -29,6 +30,7 @@ export const ActivityProgress = (props: IProps) => {
 
 export const ClaimableActivityProgress = (props: IProps) => {
   const { isClaimable, isCompleted } = props;
+  const t = useTranslation(["button.claim"]);
   const style = useMemo(
     () => (isCompleted ? styles.completedActivityBlock : isClaimable ? styles.claimableActivityBlock : {}),
     [isClaimable, isCompleted]
@@ -48,7 +50,7 @@ export const ClaimableActivityProgress = (props: IProps) => {
                 <View style={styles.wrapper}>
                   <View style={styles.claim}>
                     <TextTemplate textAlign="center" color={Colours.neutral.white} type="l1b">
-                      Claim
+                      {t["button.claim"]}
                     </TextTemplate>
                   </View>
                 </View>

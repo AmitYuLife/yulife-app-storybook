@@ -1,4 +1,4 @@
-import { GetQuestMapLevelList_getQuestMapLevelList } from "@graphql/_core/schema";
+import { GetQuestMap_levels } from "@graphql/_core/schema";
 import { Navigation } from "react-native-navigation";
 import { ROUTES, bottomTabs, MODALS } from "@navigation/constants";
 import { showYuModal } from "@navigation/root";
@@ -25,7 +25,7 @@ export const goToChallengesList = (componentId: string, level: number, levelName
 
 export const showChestModal = (
   componentId: string,
-  level: GetQuestMapLevelList_getQuestMapLevelList,
+  level: GetQuestMap_levels,
   yuniversalMap: number,
   isNext: boolean,
   {
