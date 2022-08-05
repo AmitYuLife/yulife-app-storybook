@@ -81,10 +81,6 @@ export default [
     component: require("../components/containers/member/activity-history/activity-history.container").default,
   },
   {
-    name: ROUTES.stats,
-    component: require("../components/containers/member/stats/stats.container").default,
-  },
-  {
     name: ROUTES.duelsHub,
     component: require("../components/containers/member/duels-hub/duels-hub.container").default,
   },

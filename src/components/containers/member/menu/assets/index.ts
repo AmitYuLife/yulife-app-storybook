@@ -26,12 +26,10 @@ export enum LINKS {
   PLAY = "play",
   SETTINGS = "settings",
   TOOLS = "tools",
-  STATS = "stats",
   REFERRALS_INFO = "referralsInfo",
 }
 
 export default {
-  [LINKS.STATS]: require("../../../../../../assets/menu/stats.png"),
   [LINKS.ACTIVITY]: require("../../../../../../assets/menu/activity.png"),
   [LINKS.SUPPORT]: require("../../../../../../assets/menu/chat.png"),
   [LINKS.LOGOUT]: require("../../../../../../assets/menu/logout.png"),
