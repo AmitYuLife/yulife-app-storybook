@@ -147,7 +147,7 @@ const QuestsScreen: FC<IProps> = ({
         <WeeklyQuestsButton
           endDateTime={weeklyQuestsEndDateTime}
           claimableRewards={weeklyClaimableRewards}
-          isVisible={features?.showWeeklyQuests && isOnCurrentEpisode}
+          isVisible={features?.showWeeklies && isOnCurrentEpisode}
         />
       </View>
     </SafeAreaView>

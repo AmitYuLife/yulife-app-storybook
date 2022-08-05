@@ -25,7 +25,7 @@ export const WeeklyQuestsModal = memo(() => {
   const t = useTranslation(["screens.weekly_quests.title", "screens.weekly_quests.time_remaining"]);
   const { data } = useQuery<GetMobileGameWeeklies>(GQL_QUERY_GET_GAME_WEEKLIES, { fetchPolicy: "no-cache" });
   const [claim] = useMutation<ClaimWeeklies, ClaimWeekliesVars>(GQL_MUTATION_CLAIM_WEEKLY_GAME_REWARDS, {
-    refetchQueries: ["GetMobileGameWeeklies"],
+    refetchQueries: ["GetMobileGameWeeklies", "GetQuestMap"],
   });
 
   if (!data?.getMobileGameWeeklies?.id) {
