@@ -27,7 +27,6 @@ export enum BUTTON_ICON {
   APP_STORE = "APP_STORE",
   HEIGHT = "HEIGHT",
   WEIGHT = "WEIGHT",
-  DRINKS = "DRINKS",
 }
 
 interface IconProps {
@@ -52,5 +51,4 @@ export const iconHashMap = {
   [BUTTON_ICON.APP_STORE]: AppStoreIcon,
   [BUTTON_ICON.HEIGHT]: Icon.HeightSvgIcon,
   [BUTTON_ICON.WEIGHT]: Icon.WeighingScaleSvg,
-  [BUTTON_ICON.DRINKS]: Icon.AlcoholDrinksSvg,
 } as Record<BUTTON_ICON, ({ color }: IconProps) => JSX.Element>;
