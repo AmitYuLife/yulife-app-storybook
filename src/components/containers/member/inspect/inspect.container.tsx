@@ -86,6 +86,14 @@ const InspectContainer = ({ componentId: _componentId, userId, challengeDuel }: 
     [current]
   );
 
+  const general = useMemo(
+    () => ({
+      title: current?.sections?.general?.title,
+      items: current?.sections?.general?.stats || [],
+    }),
+    [current]
+  );
+
   if (loading && !data?.getStatistics?.current) {
     return (
       <View style={styles.wrapper}>
@@ -98,7 +106,7 @@ const InspectContainer = ({ componentId: _componentId, userId, challengeDuel }: 
     <InspectScreen
       userName={current.fullName}
       level={current.level}
-      infoItems={current.sections.general?.stats || []}
+      general={general}
       duel={duel}
       activity={averageActivity}
       yumoji={current.avatar.uri}
