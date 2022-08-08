@@ -14,7 +14,6 @@ import { NotVisibleGuyIcon } from "./not-visible-guy-icon";
 import { PowerUpIcon } from "./power-up-icon";
 import { SignedContractIcon } from "./signed-contract-icon";
 import { YuCoinPileIcon } from "./yucoin-pile-icon";
-import { YugiGPIcon } from "./yugi-gp-icon";
 import { SwitchIcon } from "./switch-icon";
 import { QuestionMarkIcon } from "./question-mark-icon";
 import { DoubleChestIcon } from "./double-chest-icon";
@@ -68,7 +67,6 @@ export default {
   PowerUpIcon,
   SignedContractIcon,
   YuCoinPileIcon,
-  YugiGPIcon,
   SwitchIcon,
   QuestionMarkIcon,
   DoubleChestIcon,
