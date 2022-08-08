@@ -11,6 +11,7 @@ import {
 } from "@graphql/_core/schema";
 import { AVATAR_HEIGHT, AVATAR_WIDTH, styles } from "./styles";
 import { CreateYumojiPrompt } from "../create-yumoji-prompt/create-yumoji-prompt";
+import { YUMOJI_AVATAR_YUSCREEN_V4 } from "@ids";
 
 interface Props {
   productSlots: Array<ProductSlots>;
@@ -21,7 +22,7 @@ export const YumojiAndSlots: FC<Props> = memo(({ productSlots, yumojiPrompt }) =
   const { yumojiRemoteUrl } = useContext(YuScreenContext);
 
   return (
-    <View style={styles.wrapper}>
+    <View style={styles.wrapper} testID={YUMOJI_AVATAR_YUSCREEN_V4}>
       <YumojiAvatar uri={yumojiRemoteUrl} yumojiPrompt={yumojiPrompt} />
       <SlotsWrapper>
         <YuCoinPower />

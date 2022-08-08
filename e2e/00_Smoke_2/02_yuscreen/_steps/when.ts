@@ -7,7 +7,8 @@ export const {
     swipeToID,
     swipeToText,
     scrollUntilTextVisible,
-    scrollUntilIdVisible
+    scrollUntilIdVisible,
+    swipeFromText
 } = navigation.scrolling
 
 export const {
@@ -18,7 +19,10 @@ export const {
     replaceTextViaID,
     textVisible,
     idVisible,
-    wait
+    wait,
+    tapIDAtPoint,
+    tapIDAtIndex,
+    textNotVisible
 } = navigation.common
 
 export const tapAvatarItem = (avatarItem: string, status: string) => async () => {
@@ -74,4 +78,15 @@ export const editYumoji = (skinTone: string, hairStyle: string, hairColour: stri
 
     const doneButton = element(by.text("Done"))
     await doneButton.tap()
+}
+
+export const createDefaultYumoji = async () => {
+    await tapText("Create Yumoji")()
+    await tapID(MALE_BODY)()
+    await tapText("Continue")()
+    await tapText("Save")()
+    await tapText("Save changes")()
+    await tapText("Done")()
+    await textNotVisible("Create Yumoji", 3000)()
+
 }

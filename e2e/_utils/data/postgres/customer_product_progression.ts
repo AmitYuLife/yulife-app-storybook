@@ -250,3 +250,34 @@ export const CUSTOMER_PLI_PROGRESSION_16 = {
         "step_data" : "{}",
     },
 }
+
+export const CUSTOMER_PROGRESSION_17 = {
+    type: "postgres",
+    modelName,
+    data: {
+        customer_product_progression_id :  generateRandomPostgresId(),
+        customerProductId: "YUCPID0000000141",
+        step_id : "Bupa_Dent_01_success_purchase",
+        step_data : "{\"dentalStartDate\":\"2022-07-16T00:00:00\",\"subscriptionTrialId\":\"sub_1LIDxPGwfxr4FdJOTxnRmP78\",\"bupaResponseDue\":\"2022-07-14T00:00:00\",\"sentToBupa\":true,\"bupaGroupNumber\":\"55315653120\", \"successFromBupa\": true, \"responseFromBupa\": true, \"bupaMembershipNumber\": \"membershipNumber\"}",
+        archived : false,
+        session_id : "a03f5545-5a57-47c3-8467-ac789c5a4401"
+    },
+}
+
+export const CUSTOMER_PLI_PROGRESSION_18 = {
+    type: "postgres",
+    modelName,
+    data: {
+        "customer_product_progression_id" : generateRandomPostgresId(),
+        "customer_product_id" : "YUCPID0000000142",
+        "step_id" : "Covea_FIB_02_rejection_generic",
+        "archived" : false,
+        "archived_at" : null,
+        "created_by_id" : null,
+        "modified_at" : "2022-08-01T10:12:53.195Z",
+        "modified_by_id" : null,
+        "archive_reason" : null,
+        "session_id" : "6527c8e6-a23e-4916-b939-1b6e3b07e8ae",
+        "step_data" : "{}",
+    },
+}
