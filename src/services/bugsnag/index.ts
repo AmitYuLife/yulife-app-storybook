@@ -11,6 +11,13 @@ export default function getClient(): BugsnagClient {
     Bugsnag.start({
       plugins: [new BugsnagPluginReactNativeNavigation(Navigation)],
       onError: function (event: Event) {
+        if (event.errors?.[0]?.errorMessage) {
+          const { errorMessage } = event.errors[0];
+          // Ignore the network errors
+          if (errorMessage === "Network error: Network request failed") {
+            return false;
+          }
+        }
         // Add additional diagnostic information
         // event.addMetadata(...)
 
