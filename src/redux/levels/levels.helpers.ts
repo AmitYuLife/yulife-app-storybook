@@ -97,8 +97,8 @@ export function getAvailableChallengesForToday(
   const challengesLeftMinusOne = challengesLeft - 1;
   const isNextLevelAvailableAt = moment().isBefore(moment(nextLevelAvailableAt));
 
-  // don't subtract a challenge during yuniversal or straight after
-  if (level % 200 === 1) {
+  // don't subtract a challenge during yuniversal or after
+  if (level > 200) {
     return challengesLeft;
   }
 
