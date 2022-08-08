@@ -1,17 +1,32 @@
 import React, { memo, useContext } from "react";
 import { View, Image, StyleSheet, ViewStyle, ImageStyle, TextStyle } from "react-native";
-import { Text } from "@atoms";
-import { TextWithBoldText, TouchableOpacityWithDelay } from "@components/molecules";
+import { Text, TextTemplate } from "@atoms";
+import { TouchableOpacityWithDelay } from "@components/molecules";
 import { Style, Colours } from "@styles";
 import { YUCOIN_POWER } from "@ids";
 import { showEarnRateOverlay } from "../../../navigation/showEarnRateOverlay";
 import { YuScreenContext } from "../../../context/yu-screen.context";
 
 const POWER_LABEL_TOP = "YuCoin Power";
-const getInfo = (power: number) =>
-  power < 2
-    ? "To increase your YuCoin Power, check out your available gear."
-    : `Your items boost your YuCoin. For every 1 you would have earned, you now get <bold>${power}</bold>.`;
+const getInfo = (power: number) => {
+  if (power < 2) {
+    return (
+      <TextTemplate color={Colours.orange} type="b2">
+        To increase your YuCoin Power, check out your available gear.
+      </TextTemplate>
+    );
+  }
+
+  return (
+    <TextTemplate color={Colours.orange} type="b2">
+      Your items boost your YuCoin. For every 1 you would have earned, you now get{" "}
+      <TextTemplate color={Colours.orange} type="b2b">
+        {power}
+      </TextTemplate>
+      .
+    </TextTemplate>
+  );
+};
 
 const _YuCoinPower = () => {
   const { earnRate = 1 } = useContext(YuScreenContext);
@@ -35,9 +50,7 @@ const _YuCoinPower = () => {
             {earnRate}
           </Text>
         </View>
-        <View style={styles.infoWrapper}>
-          <TextWithBoldText style={styles.info} value={getInfo(earnRate)} />
-        </View>
+        <View style={styles.infoWrapper}>{getInfo(earnRate)}</View>
       </View>
     </TouchableOpacityWithDelay>
   );
@@ -93,12 +106,6 @@ const styles = StyleSheet.create({
     marginTop: Style.adjust(8),
     width: "50%",
     paddingRight: Style.adjust(24),
-  } as TextStyle,
-  info: {
-    color: Colours.orange,
-    fontSize: Style.adjust(16),
-    lineHeight: Style.adjust(24),
-    letterSpacing: 0.6,
   } as TextStyle,
 });
 
