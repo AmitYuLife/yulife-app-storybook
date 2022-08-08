@@ -1,21 +1,11 @@
 import { Clock } from "./clock";
 import { YugiCertificateHead } from "./yugi-certificate-head";
-import { Document } from "./document";
-import { YellowDoc } from "./yellow-doc";
-import { BlueDoc } from "./blue-doc";
-import { Pdf } from "./pdf";
 import { ArrowIcon } from "./arrow";
-import { DocIcon } from "./doc-icon";
-import { SmartHealthIcon } from "./smart-health-icon";
-import { GooglePlayIcon } from "./google-play-icon";
-import { AppStoreIcon } from "./app-store-icon";
 import { StreakTicks } from "./streak-ticks";
 import { Calm } from "./calm";
 import { Headspace } from "./headspace";
 import { MeditopiaLogo } from "./meditopia";
 import { CopyIcon } from "./copy-icon";
-import { HeightSvgIcon } from "./height-icon";
-import { WeighingScaleSvg } from "./weighing-scale-icon";
 import { GPRequestIcon } from "./gp-request-icon";
 import { HandshakeHeartIcon } from "./handshake-heart-icon";
 import { LockHeartIcon } from "./lock-heart-icon";
@@ -63,23 +53,13 @@ import { FlagSA } from "./flag-sa";
 export default {
   Clock,
   YugiCertificateHead,
-  Document,
-  YellowDoc,
-  BlueDoc,
-  Pdf,
   ArrowIcon,
-  DocIcon,
-  SmartHealthIcon,
-  GooglePlayIcon,
-  AppStoreIcon,
   StreakTicks,
   Calm,
   Fiit,
   Headspace,
   MeditopiaLogo,
   CopyIcon,
-  HeightSvgIcon,
-  WeighingScaleSvg,
   GPRequestIcon,
   HandshakeHeartIcon,
   LockHeartIcon,
