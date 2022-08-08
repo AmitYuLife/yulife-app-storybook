@@ -9,9 +9,7 @@ import { NotVisibleGuyIcon } from "@atoms/icon/not-visible-guy-icon";
 import { PowerUpIcon } from "@atoms/icon/power-up-icon";
 import { SignedContractIcon } from "@atoms/icon/signed-contract-icon";
 import { YuCoinPileIcon } from "@atoms/icon/yucoin-pile-icon";
-import { YugiGPIcon } from "@atoms/icon/yugi-gp-icon";
 import { TextTemplate } from "@atoms";
-import { Hyperlink } from "@molecules";
 import { withDesign } from "storybook-addon-designs";
 
 const ICONS = [
@@ -23,7 +21,6 @@ const ICONS = [
   PowerUpIcon,
   SignedContractIcon,
   YuCoinPileIcon,
-  YugiGPIcon,
 ];
 
 export const InfoCardStory = () => {
@@ -52,26 +49,6 @@ export const InfoCardStory = () => {
             </View>
           ))}
         </View>
-
-        <View style={styles.wrapper}>
-          <TextTemplate type="b1b">Cards with custom body</TextTemplate>
-          <View style={styles.wrapper}>
-            <InfoCard
-              icon={<YugiGPIcon />}
-              customBody={
-                <>
-                  <TextTemplate type="b2">
-                    Your description goes here. Maximum of 3 lines is ideal in this section.
-                  </TextTemplate>
-                  <View style={{ marginTop: 28 }}>
-                    <Hyperlink title="See details" url="https://yulife.com" />
-                  </View>
-                </>
-              }
-            />
-          </View>
-        </View>
-        <View style={{ marginBottom: 50 }} />
       </ScrollView>
     </View>
   );
