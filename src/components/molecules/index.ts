@@ -30,7 +30,6 @@ export { default as Tooltip } from "./tooltip/tooltip";
 export { default as Switch } from "./switch/switch";
 export { POPUPTYPE } from "./pop-up/pop-up";
 export { default as TextField } from "./text-field/text-field";
-export { default as HorizontalScroller } from "./horizontal-scroller/horizontal-scroller";
 export * from "./beta-text/beta-text";
 export { AvatarEmpty } from "./avatar/avatar-empty";
 export { default as ProgressBar } from "./progress-bar/progress-bar";
