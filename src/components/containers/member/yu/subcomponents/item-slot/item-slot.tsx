@@ -6,6 +6,7 @@ import { Colours } from "@styles";
 import { GetYuScreen_getYuScreen_productSlots as Props } from "@graphql/_core/schema";
 import { TouchableOpacityWithDelay } from "@components/molecules";
 import { useYuScreenOnPressHandler } from "../../hooks/useYuScreenOnPressHandler";
+import { BACKGROUND_COLOUR_PRODUCT, RIGHT_STATUS_ICON } from "@ids";
 
 export const ItemSlot: FC<Props> = memo(
   ({
@@ -41,7 +42,7 @@ export const ItemSlot: FC<Props> = memo(
           ) : null}
           {rightStatusIcon ? (
             <View style={styles.slotStatusWrapper}>
-              <Image style={styles.slotStatusImage} source={rightStatusIcon} />
+              <Image style={styles.slotStatusImage} source={rightStatusIcon} testID={RIGHT_STATUS_ICON} />
             </View>
           ) : null}
           <View style={StyleSheet.flatten([styles.slotInnerWrapperTop, { backgroundColor: topShadowColour }])} />
@@ -50,7 +51,10 @@ export const ItemSlot: FC<Props> = memo(
             <View style={styles.slotSocketInner} />
           </View>
 
-          <View style={StyleSheet.flatten([styles.slotInnerWrapper, { backgroundColor: backgroundColour }])}>
+          <View
+            style={StyleSheet.flatten([styles.slotInnerWrapper, { backgroundColor: backgroundColour }])}
+            testID={BACKGROUND_COLOUR_PRODUCT(backgroundColour)}
+          >
             {leftBackgroundImage ? <View style={styles.spacer} /> : null}
             <View style={styles.titleWrapper}>
               <TextTemplate color={titleColour} type="l2b">

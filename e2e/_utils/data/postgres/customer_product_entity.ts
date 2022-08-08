@@ -1,5 +1,5 @@
 import { IDatabaseItem } from "@yu-life/yulife-bdd-framework";
-import { CUSTOMER_10, CUSTOMER_31, CUSTOMER_32, CUSTOMER_33, CUSTOMER_34, CUSTOMER_9, CUSTOMER_DENTAL_1, CUSTOMER_DENTAL_2, CUSTOMER_PLI_2, CUSTOMER_PLI_3, CUSTOMER_PLI_4, CUSTOMER_PLI_5 } from "./customers";
+import { CUSTOMER_10, CUSTOMER_31, CUSTOMER_32, CUSTOMER_33, CUSTOMER_34, CUSTOMER_43, CUSTOMER_45, CUSTOMER_46, CUSTOMER_9, CUSTOMER_DENTAL_1, CUSTOMER_DENTAL_2, CUSTOMER_PLI_2, CUSTOMER_PLI_3, CUSTOMER_PLI_4, CUSTOMER_PLI_5 } from "./customers";
 import moment from "moment"
 
 
@@ -178,6 +178,21 @@ export const CPE_DENTAL_2 = {
     }
 } as IDatabaseItem
 
+export const CPE_DENTAL_3 = {
+    type: "postgres",
+    modelName: "customer_product_entity",
+    data: {
+        customerId:  CUSTOMER_45.data.customerId,
+        customerProductId: "YUCPID0000000141",
+        earn_rate: 6,
+        productVariantId: "Bupa_Dent_01_03",
+        startDate: moment().format(),
+        endDate: moment("2199-12-31", "YYYY-MM-DD").format(),
+        world_id: "ocean",
+        taken_up: true
+    }
+} as IDatabaseItem
+
 
 export const CPE_PLI_2 = {
     type: "postgres",
@@ -270,3 +285,39 @@ export const CPE_PLI_5 = {
         world_id: "ocean",
     }
 } as IDatabaseItem
+
+export const CPE_PLI_6 = {
+    type: "postgres",
+    modelName: "customer_product_entity",
+    data: {
+        customerId: CUSTOMER_46.data.customerId,
+        customerProductId: "YUCPID0000000142",
+        earn_rate: 10,
+        start_date : "2022-07-28",
+        end_date: "2199-12-31",
+        underwriting_step: null,
+        is_banned_from_product: false,
+        archived: false,
+        accounted_for_join_date: null,
+        accounted_for_leave_date: null,
+        is_joiner: null,
+        created_at: "2022-07-28T11:52:03.774Z",
+        created_by_id: null,
+        modified_at: "2022-07-28T11:56:07.233Z",
+        product_variant_id: "Covea_FIB_02_01",
+        world_id: "ocean",
+    }
+} as IDatabaseItem
+
+export const CPE_43_WELLBEING = {
+    type,
+    modelName,
+    data: {
+        customer_product_id: "YUCPID0000000143",
+        customer_id: CUSTOMER_43.data.customerId,
+        earn_rate: 10,
+        product_variant_id: "YuLife_Wellbeing_01_03",
+        archived: false
+    }
+} as IDatabaseItem
+    

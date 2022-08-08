@@ -1,5 +1,5 @@
 import { IDatabaseItem } from "@yu-life/yulife-bdd-framework"
-import { BUSINESS_PRODUCT_3, BUSINESS_PRODUCT_4_GCI, BUSINESS_PRODUCT_4_GIP, BUSINESS_PRODUCT_4_RGL } from "./business_product"
+import { BUSINESS_PRODUCT_3, BUSINESS_PRODUCT_4_GCI, BUSINESS_PRODUCT_4_GIP, BUSINESS_PRODUCT_4_RGL, BUSINESS_PRODUCT_1_WB} from "./business_product"
 import { CPE_31 } from "./customer_product_entity"
 
 
@@ -74,3 +74,17 @@ export const BPC_4_GCI = {
         category_name: "All employees"
     }
 } as IDatabaseItem
+
+export const BPC_1_WELLBEING = {
+    type,
+    modelName,
+    data: {
+        product_id: BUSINESS_PRODUCT_1_WB.product.data.product_id,
+        category_id: 1,
+        category_description: "All employees will have access to the YuLife app",
+        earn_rate: 10,
+        eligibility_conditions: "All employees of the employer between the ages of 16 and the day before the State Pension Age. Entry is immediate upon commencement of employment.",
+        category_name : "App access only",
+    }
+} as IDatabaseItem
+    

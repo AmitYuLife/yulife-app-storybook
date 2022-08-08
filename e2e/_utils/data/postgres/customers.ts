@@ -582,6 +582,58 @@ export const CUSTOMER_42 = {
     }
 } as IDatabaseItem
 
+export const CUSTOMER_43 = {
+    type: "postgres",
+    modelName: "customer",
+    data: {
+        customerId: generateRandomMongoId(),
+        email: generateRandomInbox(),
+        firstName: "Dominic",
+        lastName: "Toledo",
+        dateOfBirth: moment().subtract(45, "years").toDate(),
+        status: "onboarded"
+    }
+} as IDatabaseItem
+
+export const CUSTOMER_44 = {
+    type: "postgres",
+    modelName: "customer",
+    data: {
+        customerId: generateRandomMongoId(),
+        email: generateRandomInbox(),
+        firstName: "Donald",
+        lastName: "Trump",
+        dateOfBirth: moment().subtract(65, "years").toDate(),
+        status: "onboarded"
+    }
+} as IDatabaseItem
+
+export const CUSTOMER_45 = {
+    type: "postgres",
+    modelName: "customer",
+    data: {
+        customerId: generateRandomMongoId(),
+        email: generateRandomInbox(),
+        firstName: "Richard",
+        lastName: "Wurmbrand",
+        dateOfBirth: moment().subtract(67, "years").toDate(),
+        status: "onboarded"
+    }
+} as IDatabaseItem
+
+export const CUSTOMER_46 = {
+    type: "postgres",
+    modelName: "customer",
+    data: {
+        customerId: generateRandomMongoId(),
+        email: generateRandomInbox(),
+        firstName: "James",
+        lastName: "Clear",
+        dateOfBirth: moment().subtract(40, "years").toDate(),
+        status: "onboarded"
+    }
+} as IDatabaseItem
+
 export const CUSTOMER_PLI_2 = {
     type,
     modelName,
