@@ -16,7 +16,6 @@ import { MeditopiaLogo } from "./meditopia";
 import { CopyIcon } from "./copy-icon";
 import { HeightSvgIcon } from "./height-icon";
 import { WeighingScaleSvg } from "./weighing-scale-icon";
-import { AlcoholDrinksSvg } from "./alcohol-drinks-icon";
 import { GPRequestIcon } from "./gp-request-icon";
 import { HandshakeHeartIcon } from "./handshake-heart-icon";
 import { LockHeartIcon } from "./lock-heart-icon";
@@ -81,7 +80,6 @@ export default {
   CopyIcon,
   HeightSvgIcon,
   WeighingScaleSvg,
-  AlcoholDrinksSvg,
   GPRequestIcon,
   HandshakeHeartIcon,
   LockHeartIcon,
