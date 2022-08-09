@@ -18,10 +18,13 @@ import { DETOX_ENABLED } from "@services/socket";
 import { Clock } from "@atoms/icon/clock";
 import { ClaimableActivityProgress } from "@organisms";
 import { useTranslation } from "@hooks";
+import { useDispatch } from "react-redux";
+import { getUserStart } from "@redux/user/user.actions";
 
 const handleCloseOverlay = () => Navigation.dismissOverlay(MODALS.blurredOverlay);
 
 export const WeeklyQuestsModal = memo(() => {
+  const dispatch = useDispatch();
   const t = useTranslation(["screens.weekly_quests.title", "screens.weekly_quests.time_remaining"]);
   const { data } = useQuery<GetMobileGameWeeklies>(GQL_QUERY_GET_GAME_WEEKLIES, { fetchPolicy: "no-cache" });
   const [claim] = useMutation<ClaimWeeklies, ClaimWeekliesVars>(GQL_MUTATION_CLAIM_WEEKLY_GAME_REWARDS, {
@@ -54,6 +57,7 @@ export const WeeklyQuestsModal = memo(() => {
           : async () => {
               try {
                 await claim({ variables: { rewardIds: [activity.id] } });
+                dispatch(getUserStart());
               } catch (e) {
                 //
               }
