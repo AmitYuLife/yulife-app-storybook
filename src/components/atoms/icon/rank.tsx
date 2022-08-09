@@ -3,10 +3,31 @@ import Svg, { Path, Circle } from "react-native-svg";
 import { Style } from "@styles";
 
 interface Props {
-  isWinner?: boolean;
+  isWinner: boolean;
+  isDraw: boolean;
 }
 
-export const Rank = memo(({ isWinner = true }: Props) => {
+export const Rank = memo(({ isWinner, isDraw }: Props) => {
+  if (isDraw) {
+    return (
+      <Svg width={Style.adjust(24)} height={Style.adjust(24)} viewBox="0 0 24 24" fill="none">
+        <Path
+          d="M4 13.5V22.9086C4 23.6455 4.7699 24.1293 5.43383 23.8096L12 20.648L18.5662 23.8096C19.2301 24.1293 20 23.6455 20 22.9086V13.5L12 17.82L4 13.5Z"
+          fill="#DEDEF0"
+        />
+        <Circle cx="11.9999" cy="10.4999" r="9.49994" fill="#EFF0FA" stroke="#DEDEF0" />
+        <Path
+          d="M18.364 16.8639C20.0518 15.1761 21 12.8869 21 10.4999C21 8.11301 20.0518 5.82384 18.364 4.13602C16.6762 2.44821 14.387 1.5 12.0001 1.5C9.61313 1.5 7.32396 2.4482 5.63615 4.13602L12.0001 10.4999L18.364 16.8639Z"
+          fill="#DEDEF0"
+        />
+        <Path
+          d="M13.504 10.552C13.504 10.252 13.252 10 12.952 10H10.552C10.252 10 10 10.252 10 10.552C10 10.852 10.252 11.104 10.552 11.104H12.952C13.252 11.104 13.504 10.852 13.504 10.552Z"
+          fill="#AAAABF"
+        />
+      </Svg>
+    );
+  }
+
   return (
     <>
       {isWinner ? (
