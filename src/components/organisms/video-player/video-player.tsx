@@ -94,6 +94,7 @@ const VideoPlayer = ({
   useEffect(() => {
     (async () => {
       if (
+        !state.isPaused &&
         appCurrentState === "active" &&
         videoPlayerIsActive &&
         Math.trunc(state.durationInSeconds) === Math.trunc(state.currentProgressInSeconds)
@@ -101,7 +102,7 @@ const VideoPlayer = ({
         await onEnd();
       }
     })();
-  }, [appCurrentState, videoPlayerIsActive, state.durationInSeconds, state.currentProgressInSeconds]);
+  }, [appCurrentState]);
 
   useEffect(() => {
     setMusicControlInitialConfig();

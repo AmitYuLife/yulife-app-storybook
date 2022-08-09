@@ -27,6 +27,7 @@ import {
 } from "../levels.actions";
 import { DETOX_ENABLED } from "@services/socket";
 import { Task } from "redux-saga";
+import { getVideoPlayerIsActive } from "@redux/levels/levels.selectors";
 
 export function* startTracking(
   levelSlotId: string,
@@ -36,6 +37,11 @@ export function* startTracking(
 ) {
   const start = moment(startDateTime).format(DATE_FORMAT_WITH_TZ);
   const end = moment(endDateTime);
+  const videoPlayerIsActive: ReturnType<typeof getVideoPlayerIsActive> = yield select(getVideoPlayerIsActive);
+
+  if (videoPlayerIsActive) {
+    return;
+  }
 
   while (moment().isBefore(end)) {
     const isCancelled: boolean = yield cancelled();
