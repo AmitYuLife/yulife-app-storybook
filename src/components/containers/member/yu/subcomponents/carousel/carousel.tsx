@@ -21,7 +21,7 @@ export const Carousel: FC<YuScreenCarousel> = memo(({ heading, items }) => {
       <View style={styles.carouselTitleWrapper}>
         <TextTemplate type="b1b">{heading}</TextTemplate>
       </View>
-      <FlatList onScroll={handleScroll} data={items} renderItem={renderItem(items.length)} />
+      <FlatList disableThrottle={true} onScroll={handleScroll} data={items} renderItem={renderItem(items.length)} />
     </View>
   );
 });

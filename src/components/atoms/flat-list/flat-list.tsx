@@ -13,7 +13,17 @@ import {
 
 type Props = FlatListProps<any> & {
   forwardRef?: Ref<RNFlatList>;
+  /**
+   * throttle is introduced to protect against destructive user behavior
+   * especially on use cases where onScroll (e.g. onMomentumScrollEnd, onScrollEndDrag)
+   * callbacks are passed and update states that affect the FlatList
+   */
   throttleTimeoutMs?: number;
+  /**
+   * throttle can be safely disabled for FlatList instances
+   * that do not need onScroll (e.g. onMomentumScrollEnd, onScrollEndDrag) callbacks
+   */
+  disableThrottle?: boolean;
 };
 
 const _FlatList = ({
@@ -25,6 +35,7 @@ const _FlatList = ({
   keyExtractor = defaultKeyExtractor,
   viewabilityConfig = defaultViewabilityConfig,
   throttleTimeoutMs = 1000,
+  disableThrottle,
   onMomentumScrollEnd,
   onScrollEndDrag,
   ...flatListProps
@@ -32,6 +43,10 @@ const _FlatList = ({
   const [allowInteraction, setAllowInteraction] = useState(true);
 
   useEffect(() => {
+    if (disableThrottle) {
+      return;
+    }
+
     let throttleTimeout: ReturnType<typeof setTimeout>;
     if (!allowInteraction) {
       throttleTimeout = setTimeout(() => {
@@ -43,14 +58,20 @@ const _FlatList = ({
   }, [allowInteraction]);
 
   const handleScrollEndDrag = (e: NativeSyntheticEvent<NativeScrollEvent>) => {
-    setAllowInteraction(false);
+    if (!disableThrottle) {
+      setAllowInteraction(false);
+    }
+
     if (onScrollEndDrag) {
       onScrollEndDrag(e);
     }
   };
 
   const handleMomentumScrollEnd = (e: NativeSyntheticEvent<NativeScrollEvent>) => {
-    setAllowInteraction(false);
+    if (!disableThrottle) {
+      setAllowInteraction(false);
+    }
+
     if (onMomentumScrollEnd) {
       onMomentumScrollEnd(e);
     }
