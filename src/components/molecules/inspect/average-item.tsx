@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import React, { memo, useMemo } from "react";
 import { StyleSheet, View } from "react-native";
 import { Image, TextTemplate } from "@atoms";
 import { Rank } from "@atoms/icon/rank";
@@ -18,6 +18,7 @@ export interface IAverageItem {
 const TEXT_COLOR = "#545454";
 const AverageItem = ({ icon, name, value, opponentValue, opponentIsWinner, label: itemLabel }: IAverageItem) => {
   const label = itemLabel || "";
+  const isDraw = useMemo(() => opponentValue === value, [opponentValue, value]);
   return (
     <View style={styles.wrapper}>
       <View style={styles.topLine} />
@@ -35,7 +36,7 @@ const AverageItem = ({ icon, name, value, opponentValue, opponentIsWinner, label
         <View style={styles.valuesWrapper}>
           <View style={styles.valueWrapper}>
             <View style={styles.leftRankWrapper}>
-              <Rank isWinner={!opponentIsWinner} />
+              <Rank isWinner={!opponentIsWinner} isDraw={isDraw} />
             </View>
             <TextTemplate type={!opponentIsWinner ? "b1b" : "b1"} color={TEXT_COLOR}>
               {`${addCommasToNumber(value)}${label}`}
@@ -46,7 +47,7 @@ const AverageItem = ({ icon, name, value, opponentValue, opponentIsWinner, label
               {`${addCommasToNumber(opponentValue)}${label}`}
             </TextTemplate>
             <View style={styles.rightRankWrapper}>
-              <Rank isWinner={opponentIsWinner} />
+              <Rank isWinner={opponentIsWinner} isDraw={isDraw} />
             </View>
           </View>
           <View style={styles.wrapperSeparator}>
