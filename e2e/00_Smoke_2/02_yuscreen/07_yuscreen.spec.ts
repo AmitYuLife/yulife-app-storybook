@@ -170,7 +170,7 @@ Feature("I am able to use the yuscreen, create, and edit an Yumoji", async () =>
             When("I tap another option", when.tapText("Bicycle insurance"), async () => {
                 Then("This option should be selected", then.idVisible(CHECK_BOX_STATE("Bicycle insurance", true)))
                 Then("This Dental insurance should still be selected", then.idVisible(CHECK_BOX_STATE("Dental insurance", true)))
-                Then("Another option should not be selected", then.idNotVisible(CHECK_BOX_STATE("Car insurance pay for usage only", false)))
+                Then("Another option should not be selected", then.idNotVisible(CHECK_BOX_STATE("Car insurance pay for usa", false)))
             })
             When("I scroll to the bottom", when.scrollFromID(SURVEY_SCREEN, "up", "fast"), async () => {
                 Then("I should see a text box", then.idVisible(SURVEY_TEXT_BOX))
@@ -248,6 +248,7 @@ Feature("I am able to use the yuscreen, create, and edit an Yumoji", async () =>
             })
         })
     })
+
     Scenario("I can create my Yumoji on new Yuscreen V4 and see no product state", scenario.start, async () => {
         Given("I login as a user", given.logInAndGoToTab("yu", CUSTOMER_43, AUTH_43), async () => {
             Then("I should be on the YuScreen V4", then.onYuscreenV4(CUSTOMER_43, "wellbeing only", "10"))

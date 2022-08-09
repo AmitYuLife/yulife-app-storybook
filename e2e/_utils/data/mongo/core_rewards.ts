@@ -225,12 +225,8 @@ export const CORE_REWARDS_NIKE = {
         "progression_level": "5",
         "code": "NIKE-GB",
         "currencyCode": "GBP",
-        "denomination_type": "open",
         "description": "As one of the leading sports brands in the world, Nike offers authentic athletic footwear, apparel, equipment, and accessories for a wide variety of sports and fitness activities. Redeem your voucher online or in any Nike UK store.",
-        "e_code_usage_type": null,
-        "expiry_date_policy": "24 months from last activity",
-        "maximum_value": 400,
-        "minimum_value": 10,
+
         "name": "Nike",
         "restrictions": {
             "locations": ["GB"]

@@ -4,7 +4,7 @@ import * as given from "./_steps/given"
 import * as when from "./_steps/when"
 import * as then from "./_steps/then"
 import { REWARDS_SCREEN, REWARDS_LIST_SCREEN, VIEW_TOP_RIGHT_COIN_COUNTER, BACK_BUTTON} from "@ids";
-import { CORE_REWARDS_JOHN_LEWIS, CORE_REWARDS_BLOOM_UNAVAILABLE, CUSTOMER_3, AUTH_3, CORE_REWARDS_NIKE, CUSTOMER_4, AUTH_4, CUSTOMER_2, AUTH_2 } from "@data";
+import { CORE_REWARDS_JOHN_LEWIS, CORE_REWARDS_BLOOM_UNAVAILABLE, CUSTOMER_3, AUTH_3, CORE_REWARDS_NIKE, CUSTOMER_4, AUTH_4, CUSTOMER_2, AUTH_2, REWARD_LEDGER_1 } from "@data";
 
 
 
@@ -40,7 +40,6 @@ Feature("Rewards should act correctly", async () => {
                 When("I tap 'back to rewards'", when.tapText("back to rewards"), async () => {
                     Then("I should be back on the rewards screen", then.idVisible(REWARDS_SCREEN))
                 })
-
             })
         })
     })
@@ -86,8 +85,8 @@ Feature("Rewards should act correctly", async () => {
                     Then("I should see my nike reward purchased", then.purchasedRewardVisible(CORE_REWARDS_NIKE, 0))
                 })
             })
-            When("I tap on the reward i just purcahsed", when.tapText("£10 Nike voucher"), async () => {
-                Then("I should be on the purchase screen", then.onRewardPurchasedScreen(CORE_REWARDS_NIKE))
+            When("I tap on the reward i just purchased", when.tapText("£10 Nike voucher"), async () => { /////
+                Then("I should be on the purchase screen", then.onRewardHistoryScreen(CORE_REWARDS_NIKE, REWARD_LEDGER_1))
                 Then("I should see my coin balance in the top right", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(9950)))
                 When("I see other rewards", when.tapText("see other rewards"), async () => {
                     Then("I should be on the rewards tab", then.idVisible(REWARDS_SCREEN))

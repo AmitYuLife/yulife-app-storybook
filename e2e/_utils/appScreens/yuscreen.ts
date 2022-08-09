@@ -217,7 +217,7 @@ export const onYuscreenV4 = (customer:any, productStatus, earnRate: string)=> as
         await expect(element(by.id(BACKGROUND_COLOUR_PRODUCT("#FAFAFE")))).toBeVisible()
         await expect(element(by.text(WellbeingProduct))).toBeVisible()
         await expect(element(by.text(noProductText))).toBeVisible()
-        await swipeFromText(browseMoreProtection,"up", "fast")()
+        await swipeFromText(browseMoreProtection,"up", "slow")()
         await expect(element(by.id(CAROUSEL_CARD))).toBeVisible()
         await expect(element(by.text(surveyText))).toBeVisible()
         await expect(element(by.text(surveyLabel))).toBeVisible()
@@ -227,7 +227,7 @@ export const onYuscreenV4 = (customer:any, productStatus, earnRate: string)=> as
         await expect(element(by.text(dentalYuCoinPower))).toBeVisible()
         await expect(element(by.text(PLIYuCoinPower))).toBeVisible()
         await expect(element(by.text(lifeInsurance))).toBeVisible()
-        await swipeFromText(browseMoreProtection,"up", "fast")()
+        await swipeFromText(browseMoreProtection,"up", "slow")()
         await expect(element(by.id(CAROUSEL_CARD)).atIndex(0)).toBeVisible()
         await expect(element(by.text(dentalPriceFrom))).toBeVisible()
         await swipeFromText(dentalPriceFrom, "left", "fast")()
@@ -239,7 +239,7 @@ export const onYuscreenV4 = (customer:any, productStatus, earnRate: string)=> as
         await expect(element(by.text(dentalInsurance))).toBeVisible()
         await expect(element(by.text(PLIYuCoinPower))).toBeVisible()
         await expect(element(by.text(lifeInsurance))).toBeVisible()
-        await swipeFromText(browseMoreProtection,"up", "fast")()
+        await swipeFromText(browseMoreProtection,"up", "slow")()
         await expect(element(by.id(CAROUSEL_CARD)).atIndex(0)).toBeVisible()
         await expect(element(by.text(dentalPriceFrom))).toBeNotVisible()
         await expect(element(by.text(extendLifeInsurance))).toBeVisible()
@@ -248,12 +248,12 @@ export const onYuscreenV4 = (customer:any, productStatus, earnRate: string)=> as
         await expect(element(by.text(dentalYuCoinPower))).toBeVisible()
         await expect(element(by.text(dentalInsurance))).toBeVisible()
         await expect(element(by.text(lifeInsurance))).toBeVisible()
-        await swipeFromText(browseMoreProtection,"up", "fast")()
+        await swipeFromText(browseMoreProtection,"up", "slow")()
         await expect(element(by.id(CAROUSEL_CARD)).atIndex(0)).toBeVisible()
         await expect(element(by.text(dentalPriceFrom))).toBeVisible()
         await expect(element(by.text(extendLifeInsurance))).toBeNotVisible()
     }
-    await swipeFromText(browseMoreProtection,"down", "fast")()
+    await swipeFromText(browseMoreProtection,"down", "slow")()
 }
 
 export const onProductDetails = (coverType: string, productName: string, earnRate: number) => async ()=>{
