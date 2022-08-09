@@ -1,5 +1,5 @@
 import { MODALS, ROUTES } from "@navigation/constants";
-import React, { memo, useCallback, useMemo } from "react";
+import React, { memo, useCallback } from "react";
 import { View, Keyboard } from "react-native";
 import { Navigation } from "react-native-navigation";
 import { DUELS_SEARCH } from "@ids";
@@ -15,12 +15,12 @@ import RecentOpponents from "./subcomponents/recent-opponents";
 import { useQuery } from "@apollo/react-hooks";
 import { GetDuels } from "@graphql/_core/schema";
 import { GQL_QUERY_GET_DUELS } from "@graphql/duels";
-import { ValidDuel } from "../leaderboard/active-leaderboard/leaderboard-content/items/leaderboard-rank-item/duel-dialog";
-import moment from "moment";
-import { DATE_FORMAT_WITH_TZ } from "@utils";
 import { getCurrentUserId } from "@redux/user/user.selectors";
 import { useSelector } from "react-redux";
-import { showExistingDuelAlert } from "../leaderboard/active-leaderboard/leaderboard-content/items/leaderboard-rank-item/duel-dialog.helpers";
+import {
+  showExistingDuelAlert,
+  validDuels,
+} from "../leaderboard/active-leaderboard/leaderboard-content/items/leaderboard-rank-item/duel-dialog.helpers";
 import { useBackHandler, useDebouncedQuery } from "@hooks";
 import { SearchInput, SearchList } from "@molecules";
 import DuelsSearchItem from "./subcomponents/search-item";
@@ -85,34 +85,9 @@ function _DuelsSearchContainer() {
 
   const duels = getDuels?.data?.getDuels || [];
 
-  const validDuels: ValidDuel[] = useMemo(() => {
-    const now = moment();
-    return duels.reduce((acc, duel) => {
-      if (["accepted", "pending"].includes(duel.status)) {
-        const opponentIndex = duel.opponents.findIndex((dueller) => dueller.userId !== userId);
-        const opponent = duel.opponents[opponentIndex];
-        const isOpponentInviter = opponentIndex === 0;
-        const startDateTime = moment(duel.opponents[0].startDateTime, DATE_FORMAT_WITH_TZ);
-
-        if (startDateTime.isAfter(now, "day")) {
-          acc.push({
-            id: duel.id,
-            userId: opponent.userId,
-            name: opponent.name,
-            startDateTime,
-            status: duel.status,
-            isOpponentInviter,
-          });
-        }
-      }
-
-      return acc;
-    }, []);
-  }, [duels, userId]);
-
   const onPress = useCallback(
     async (opponentId: string, requestLocation: "search_list" | "recents") => {
-      const existingDuel = validDuels.find(({ userId: duelistId }) => duelistId === opponentId);
+      const existingDuel = validDuels(duels, userId).find(({ userId: duelistId }) => duelistId === opponentId);
 
       if (existingDuel) {
         const shouldShowDuelRespond = existingDuel.isOpponentInviter && existingDuel.status === "pending";
@@ -128,7 +103,7 @@ function _DuelsSearchContainer() {
 
       await inviteToDuel(opponentId, requestLocation);
     },
-    [validDuels]
+    [validDuels, duels, userId]
   );
 
   const onChangeText = useCallback(

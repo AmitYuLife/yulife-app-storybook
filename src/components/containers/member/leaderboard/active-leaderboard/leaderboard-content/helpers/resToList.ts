@@ -27,9 +27,6 @@ interface ResToListArgs {
   isRefetching: boolean;
   isLoading: boolean;
   scrollValue: Animated.Value;
-  duelDialogId: string;
-  setDuelDialogId: (value: string) => void;
-  showDuels: boolean;
 }
 
 export const resToList = ({
@@ -39,9 +36,6 @@ export const resToList = ({
   isRefetching,
   scrollValue,
   isLoading,
-  duelDialogId,
-  setDuelDialogId,
-  showDuels,
 }: ResToListArgs): ResToListOutput => {
   if (!leaderboardItems.length || !currentUserId) {
     return { flatListData: [], floatingItemData: null, currentUserOffset: 0 };
@@ -59,9 +53,6 @@ export const resToList = ({
     id: "",
     firstName: "",
     lastName: "",
-    duelDialogId,
-    setDuelDialogId,
-    showDuels,
     index: userIndex,
   };
 
@@ -69,7 +60,7 @@ export const resToList = ({
 
   addTopPadding({ list, leaderboardName, leaderboardItems, isRefetching, scrollValue, isLoading });
   addFrontPageLabel(list, leaderboardItems.length);
-  addRankItems(list, currentUserData, { leaderboardItems, currentUserId }, duelDialogId, setDuelDialogId, showDuels);
+  addRankItems(list, currentUserData, { leaderboardItems, currentUserId });
   addBottomPadding({ list, userInPage: user?.position < PAGE_SIZE });
 
   return {
@@ -148,10 +139,7 @@ interface AddRanksItemArgs {
 function addRankItems(
   list: ILeaderboardListItem[],
   currentUserData: ILeaderboardRankItemProps,
-  { leaderboardItems, currentUserId }: AddRanksItemArgs,
-  duelDialogId: string,
-  setDuelDialogId: React.Dispatch<React.SetStateAction<string>>,
-  showDuels: boolean
+  { leaderboardItems, currentUserId }: AddRanksItemArgs
 ) {
   for (let i = 0; i < leaderboardItems.length; i++) {
     const leaderboardItem = leaderboardItems[i];
@@ -165,9 +153,6 @@ function addRankItems(
       id: leaderboardItem.id,
       firstName: leaderboardItem.firstName,
       lastName: leaderboardItem.lastName,
-      duelDialogId,
-      setDuelDialogId,
-      showDuels,
       index: i,
     };
 
