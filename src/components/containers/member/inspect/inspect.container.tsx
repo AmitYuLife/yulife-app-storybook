@@ -7,18 +7,20 @@ import InspectScreen from "@components/screens/member/inspect/inspect.screen";
 import { ROUTES } from "@navigation/constants";
 import { getCurrentUserId } from "@redux/user/user.selectors";
 import { GQL_QUERY_GET_STATISTICS } from "@graphql/statistics/getStatistics.gql";
-import { GetStatistics } from "@graphql/_core/schema";
+import { GetStatistics, GetDuels } from "@graphql/_core/schema";
 import { Loading } from "@atoms";
 import { Style } from "@styles";
 import { useBackHandler } from "@hooks";
+import { GQL_QUERY_GET_DUELS } from "@graphql/duels";
+import { onDuelPress } from "../leaderboard/active-leaderboard/leaderboard-content/items/leaderboard-rank-item/duel-dialog.helpers";
 
 interface IProps {
   componentId: string;
   userId: string;
-  challengeDuel: () => void;
+  leaderboardPlacement: number;
 }
 
-const InspectContainer = ({ componentId: _componentId, userId, challengeDuel }: IProps) => {
+const InspectContainer = ({ componentId: _componentId, userId, leaderboardPlacement }: IProps) => {
   const onClose = useCallback(() => {
     Navigation.pop(ROUTES.inspect);
     return true;
@@ -29,9 +31,15 @@ const InspectContainer = ({ componentId: _componentId, userId, challengeDuel }: 
 
   useBackHandler(onClose);
 
+  const { data: duelsData } = useQuery<GetDuels>(GQL_QUERY_GET_DUELS, {
+    fetchPolicy: "cache-only",
+  });
+
+  const duels = duelsData?.getDuels || [];
+
   const onPressChallengeDuel = useCallback(() => {
-    inspectOtherUser ? challengeDuel() : openDuelHub();
-  }, [inspectOtherUser, onClose, challengeDuel]);
+    inspectOtherUser ? onDuelPress(duels, currentUserId, userId, leaderboardPlacement, "inspect") : openDuelHub();
+  }, [inspectOtherUser, onClose, onDuelPress, duelsData]);
   const { loading, data } = useQuery<GetStatistics>(GQL_QUERY_GET_STATISTICS, {
     variables: { userId },
     fetchPolicy: "network-only",

@@ -7,10 +7,9 @@ import { Name } from "./subcomponents/name";
 import { Score } from "./subcomponents/score";
 import { baseStyles } from "./subcomponents/styles";
 import { ILeaderboardRankItemProps } from "./rank-item.types";
-import { DuelDialog } from "../../active-leaderboard/leaderboard-content/items/leaderboard-rank-item/duel-dialog";
 import { TouchableOpacityWithDelay } from "@components/molecules";
-import { useSelector } from "react-redux";
-import { getUserFeatures } from "@redux/user/user.selectors";
+import { Navigation } from "react-native-navigation";
+import { ROUTES } from "@navigation/constants";
 
 const _ListRankItem = ({
   rank = 0,
@@ -19,17 +18,23 @@ const _ListRankItem = ({
   uri = null,
   isCurrentUser = false,
   id = "",
-  duelDialogId,
-  setDuelDialogId,
-  showDuels,
   index,
 }: ILeaderboardRankItemProps) => {
-  const features = useSelector(getUserFeatures);
   const onPress = useCallback(() => {
-    if ((showDuels && !isCurrentUser) || features.showInspect) {
-      setDuelDialogId(duelDialogId === id ? "" : id);
-    }
-  }, [id, setDuelDialogId, showDuels, features.showInspect, isCurrentUser, duelDialogId]);
+    Navigation.push(ROUTES.leaderboards, {
+      component: {
+        id: ROUTES.inspect,
+        name: ROUTES.inspect,
+        passProps: {
+          userId: id.replace("lead_", ""),
+          leaderboardPlacement: index + 1,
+        },
+      },
+    });
+
+    // if you are opening inspect from lean leaderboard
+    return Navigation.dismissAllModals();
+  }, [id, index]);
 
   return (
     <>
@@ -49,7 +54,6 @@ const _ListRankItem = ({
           </View>
         </Animated.View>
       </TouchableOpacityWithDelay>
-      {duelDialogId !== id ? null : <DuelDialog id={id} index={index} />}
     </>
   );
 };

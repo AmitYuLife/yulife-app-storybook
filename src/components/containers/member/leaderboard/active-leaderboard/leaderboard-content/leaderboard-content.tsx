@@ -16,8 +16,6 @@ import FloatingRankItem from "../../items/leaderboard-rank-item/floating-rank-it
 import { getUriSet } from "./helpers/resToList";
 import { PAGE_SIZE } from "../active-leaderboard.container";
 import { MODALS } from "@navigation/constants";
-import { getUserFeatures } from "@redux/user/user.selectors";
-import { useSelector } from "react-redux";
 import { LEADERBOARD_ITEM_HEIGHT } from "../../items/leaderboard-rank-item/subcomponents";
 import { TOP_PADDING_HEIGHT } from "./helpers/constants";
 import { LEADERBOARD_SCROLL_LIST } from "@ids";
@@ -44,26 +42,12 @@ export const LeaderboardContentContainer = ({
   isRefetching,
   isLoading,
 }: LeaderboardContentContainerProps) => {
-  const [duelDialogId, setDuelDialogId] = useState("");
   const [scrollValue] = useState(new Animated.Value(0));
   const [flatListHeight, setFlatListHeight] = useState(0);
-  const showDuels = useSelector(getUserFeatures)?.showDuels;
   const flatListRef: RefObject<_FlatList> = useRef();
   const timer = useRef<ReturnType<typeof setTimeout>>(null);
   const refreshing = useMemo(() => Platform.select({ ios: false, android: isRefetching }), [isRefetching]);
   const myLeaderboardItem = leaderboardItems.find((item) => item.userId === currentUserId);
-  const setDuelDialog = useCallback(
-    (value: string) => {
-      setDuelDialogId(value);
-      const index = leaderboardItems.findIndex((item) => `lead_${item.userId}` === value);
-      if (index === leaderboardItems.length - 1) {
-        timer.current = setTimeout(() => {
-          flatListRef.current?.scrollToIndex({ index, animated: true });
-        }, 200);
-      }
-    },
-    [leaderboardItems]
-  );
 
   const onChangeAppState = (appState: AppStateStatus) => {
     if (appState === "inactive" && flatListRef.current) {
@@ -88,9 +72,6 @@ export const LeaderboardContentContainer = ({
     isRefetching,
     scrollValue,
     isLoading,
-    duelDialogId,
-    setDuelDialogId: setDuelDialog,
-    showDuels,
   });
 
   const offsetFromRows = LEADERBOARD_ITEM_HEIGHT * (myLeaderboardItem?.position || 0);

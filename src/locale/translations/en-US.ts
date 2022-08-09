@@ -30,12 +30,6 @@ export default {
         description: "Your reward store items will depend on the location where your company is located",
       },
     },
-    leaderboard: {
-      actionButton: {
-        inspect: "Inspect",
-        challengeDuel: "challenge to duel",
-      },
-    },
     inspect: {
       duel: {
         challengeDuel: "Challenge to duel",
