@@ -11,7 +11,7 @@ export function addCommasToNumber(x: number) {
 
 export const rewardVisible = (reward: any) => async () => {
 
-    const minValue = reward.data.minimum_value
+    const minValue = reward.data.availableDenominations[0].value
     const minYucoin = addCommasToNumber(reward.data.availableDenominations[0].yuCoin)
     const rewardItem = REWARD_ITEM(reward.data._id)
 
@@ -162,21 +162,23 @@ export const onRewardPurchasedScreen = (reward: any, locale = "en-GB", index = 0
     const cardImageURL = element(by.id(PURCHASE_IMAGE(reward.data.images.detailHeaderKey)))
     const description = reward.data.description
     const howtoRedeem = reward.data.redemptionSteps.steps[index]
-
     const expiryPolicy = reward.data.expiry_date_policy
     const purchaseDate = moment().format(locale === "en-US" ? "MMMM DD, YYYY" : "DD MMM YYYY")
-    let expiryDate;
 
-
-    switch (expiryPolicy) {
-        case "24 months from last activity":
-            expiryDate = moment().add(24, "months").format(locale === "en-US" ? "MMMM DD, YYYY" : "DD MMM YYYY")
-    }
+    await wait(3000)()
+   
     await expect(element(by.id(WEGIFT_CONFIRMED))).toBeVisible()
     await expect(cardImageURL).toBeVisible()
-
     await expect(element(by.text(purchaseDate))).toBeVisible()
-    await expect(element(by.text(expiryDate))).toBeVisible()
+
+    if (expiryPolicy) {
+        let expiryDate;
+        switch (expiryPolicy) {
+            case "24 months from last activity":
+                expiryDate = moment().add(24, "months").format(locale === "en-US" ? "MMMM DD, YYYY" : "DD MMM YYYY")
+        }
+        await expect(element(by.text(expiryDate))).toBeVisible()
+    }
 
     try {
         await expect(element(by.text(description))).toBeVisible()
@@ -229,6 +231,44 @@ export const onRewardNotAvailableScreen = async () => {
     await expect(element(by.text("the voucher is not currently available"))).toBeVisible()
     await expect(element(by.text("Please come back later."))).toBeVisible()
     await expect(element(by.text("check other rewards"))).toBeVisible()
+}
+
+
+export const onRewardHistoryScreen = (reward: any, ledger: any, locale = "en-GB", index = 0) => async () => {
+    const cardImageURL = element(by.id(PURCHASE_IMAGE(reward.data.images.detailHeaderKey)))
+    const description = reward.data.description
+    const howtoRedeem = reward.data.redemptionSteps.steps[index]
+    const purchaseDate = moment().format(locale === "en-US" ? "MMMM DD, YYYY" : "DD MMM YYYY")
+    const date = moment(ledger.data.expiryDate)
+    const validDate = date.format(locale === "en-US" ? "MMMM DD, YYYY" : "DD MMM YYYY")
+
+    await wait(3000)()
+    await expect(element(by.id(WEGIFT_CONFIRMED))).toBeVisible()
+    await expect(cardImageURL).toBeVisible()
+    await expect(element(by.text(purchaseDate))).toBeVisible()
+    await expect(element(by.text(validDate))).toBeVisible()
+    
+
+    try {
+        await expect(element(by.text(description))).toBeVisible()
+    } catch (e) {
+        await cardImageURL.swipe("up", "slow", 0.1)
+        await expect(element(by.text(description))).toBeVisible()
+    }
+    await cardImageURL.swipe("up", "fast")
+
+    await expect(element(by.text("see other rewards"))).toBeVisible()
+    try {
+        await expect(element(by.text("get voucher"))).toBeVisible()
+    } catch (e) {
+        await scrollFromText("How to redeem", "up", "fast")()
+        await expect(element(by.text(howtoRedeem))).toBeVisible()
+        await expect(element(by.text("get voucher"))).toBeVisible()
+    }
+
+    await expect(element(by.text("T&Cs"))).toBeVisible()
+    await expect(element(by.text("Rewards policy"))).toBeVisible()
+
 }
 
 

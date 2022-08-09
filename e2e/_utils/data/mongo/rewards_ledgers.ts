@@ -9,15 +9,13 @@ export const REWARD_LEDGER_1 = {
     data: {
         "_id": generateRandomMongoId(),
         "userId": USER_2.data.userId,
-        "delivery_url": "https://playground.wegift.io/public/gifts/instant/cbe60a2a-1453-4e88-a74e-1dfe11bdd385",
-        "expiry_date": moment().add(24, "months").format("YYYY-MM-DD"),
+        "deliveryUrl": "https://playground.wegift.io/public/gifts/instant/cbe60a2a-1453-4e88-a74e-1dfe11bdd385",
+        "expiryDate": moment().add(24, "months").format("YYYY-MM-DD"),
         "status": "approved",
         "code": "NIKE-GB",
         "rewardProviderId": "wegift",
         "amount": 10,
         "yuCoinsSpent": 7750,
-        "currency_code": "GBP",
-        "name": "Nike",
         "restrictions": {
             "locations": ["GB"]
         },

@@ -3,8 +3,10 @@ import * as scenario from "./_steps/scenario"
 import * as given from "./_steps/given"
 import * as when from "./_steps/when"
 import * as then from "./_steps/then"
-import { YUCOIN, BUTTON_CLOSE, QUESTS_SCREEN, NAV_BAR, LEADERBOARD_SCREEN, REWARDS_SCREEN, MENU_ICON, STATS_SCREEN, ACTIVITY_HISTORY_SCREEN, SETTINGS_SCREEN, YUMATTER_SCREEN, LEVEL_CHALLENGE_BUTTON, CHALLENGE_SET, CHALLENGE_TILE, GENERIC_SCREEN_HEADING, GENERIC_SCREEN_CTA, CHALLENGE_PROGRESS_BAR, BUTTON_CLOSE_CHALLENGE, CHECK_REWARDS_BUTTON, LEADERBOARD_TOP_SCREEN, BUTTON_CLOSE_HEADER, SETTINGS_NAME, SETTINGS_DESC, SETTINGS_SWITCH, BACK_BUTTON, YUCOIN_POWER_INFO, TEXT_TEMPLATE, STEPS_COUNT, CYCLING_COUNT, MINDFUL_COUNT, ARROW_BUTTON, HEALTH_SCREEN, STATUS_ICON } from "@ids";
+import { QUESTS_SCREEN, NAV_BAR, REWARDS_SCREEN, MENU_ICON, ACTIVITY_HISTORY_SCREEN, SETTINGS_SCREEN, LEVEL_CHALLENGE_BUTTON, CHALLENGE_SET, CHALLENGE_TILE, GENERIC_SCREEN_HEADING, GENERIC_SCREEN_CTA, CHALLENGE_PROGRESS_BAR, BUTTON_CLOSE_CHALLENGE, CHECK_REWARDS_BUTTON, LEADERBOARD_TOP_SCREEN, ARROW_BUTTON, SETTINGS_SWITCH, SETTINGS_NAME, TEXT_TEMPLATE, SETTINGS_DESC, BACK_BUTTON, BUTTON_CLOSE_HEADER } from "@ids";
 import { CORE_REWARDS_JOHN_LEWIS, CORE_REWARDS_AVIOS, CORE_REWARDS_BLOOM_UNAVAILABLE, CUSTOMER_2, AUTH_2, CUSTOMER_8, AUTH_8, CUSTOMER_35, AUTH_35 } from "@data";
+import { monthYear } from "./_steps/consts"
+
 Feature("As a user I can navigate through member routes correctly", async () => {
 
     Scenario("I can view the core screens of the app", scenario.start, async () => {
@@ -35,18 +37,10 @@ Feature("As a user I can navigate through member routes correctly", async () => 
         When("I tap the menu icon in the top left", when.tapID(MENU_ICON, 1500), async () => {
             Then("I should see the menu items", then.menuItemsVisible)
         })
-        When("I tap statistics", when.tapMenuItem("Statistics"), async () => {
-            Then("I should be on statistics", then.idVisible(STATS_SCREEN))
-            Then("I should see the correct stats elements and figures", then.statsCorrect)
-        })
-        When("I go back", when.tapID(BUTTON_CLOSE_HEADER("statistics")), async () => {
-            Then("I should be the yucoin tab", then.onDailySteps)
-        })
-        When("I tap the menu icon in the top left", when.tapID(MENU_ICON, 500), async () => {
-            Then("I should see the menu items", then.menuItemsVisible)
-        })
         When("I tap activity history", when.tapMenuItem("Activity History"), async () => {
             Then("I should be on activity history", then.idVisible(ACTIVITY_HISTORY_SCREEN, 2500))
+        })
+        When("I pull down the activity history page to refresh", when.swipeFromText(monthYear, "down", "fast"), async () => { // this does not run
             Then("I should see 309 done in activity history", then.textVisible("309 steps"))
             Then("I should see  13:20 mindful mins in activity history", then.textVisible("13:20 mindful mins"))
             Then("I should see 11.3 km cycled in activity history", then.textVisible("11.3 km cycled"))
