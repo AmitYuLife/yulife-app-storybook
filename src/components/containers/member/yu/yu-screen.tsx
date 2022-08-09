@@ -19,15 +19,12 @@ export const YuScreen = () => {
   return (
     <View style={styles.wrapper} testID={YUSCREEN}>
       <ScrollView showsVerticalScrollIndicator={false} style={styles.scrollView}>
-        {data ? (
+        {data?.getYuScreen ? (
           <>
             <NameAndLevel useWorldColor={true} hideWorldIcon={true} />
-            <YumojiAndSlots
-              productSlots={data?.getYuScreen.productSlots}
-              yumojiPrompt={data?.getYuScreen.yumojiPrompt}
-            />
-            <Carousel {...data?.getYuScreen.productCarousel} />
-            <Survey {...data?.getYuScreen.surveyFooter} />
+            <YumojiAndSlots productSlots={data.getYuScreen.productSlots} yumojiPrompt={data.getYuScreen.yumojiPrompt} />
+            <Carousel {...data.getYuScreen.productCarousel} />
+            <Survey {...data.getYuScreen.surveyFooter} />
           </>
         ) : (
           <>
