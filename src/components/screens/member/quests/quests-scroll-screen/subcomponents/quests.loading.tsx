@@ -1,23 +1,20 @@
-import React, { memo, useState, useEffect } from "react";
+import React, { memo, useState, useEffect, useContext } from "react";
 import { View } from "react-native-animatable";
 import { StyleSheet, ViewStyle } from "react-native";
 import { Loading } from "@atoms";
 import { Style } from "@styles";
-
-interface Props {
-  loading: boolean;
-}
+import { QuestsMapContext } from "../quests.context";
 
 const ANIMATION_DURATION = 750;
 
-function _QuestsLoadingOverlay(props: Props) {
-  const { loading } = props;
-  const [loadingClone, setLoadingClone] = useState(loading);
+function _QuestsLoadingOverlay() {
+  const { isLoading } = useContext(QuestsMapContext);
+  const [loadingClone, setLoadingClone] = useState(isLoading);
 
   useEffect(() => {
     let timeout: ReturnType<typeof setTimeout> = null;
 
-    if (!loading) {
+    if (!isLoading) {
       timeout = setTimeout(() => {
         setLoadingClone(false);
       }, ANIMATION_DURATION);
@@ -28,7 +25,7 @@ function _QuestsLoadingOverlay(props: Props) {
         clearTimeout(timeout);
       }
     };
-  }, [loading]);
+  }, [isLoading]);
 
   if (!loadingClone) {
     return null;
@@ -37,7 +34,7 @@ function _QuestsLoadingOverlay(props: Props) {
   return (
     <View
       duration={ANIMATION_DURATION}
-      animation={loading ? "fadeIn" : "fadeOut"}
+      animation={isLoading ? "fadeIn" : "fadeOut"}
       useNativeDriver={true}
       style={styles.wrapper}
     >

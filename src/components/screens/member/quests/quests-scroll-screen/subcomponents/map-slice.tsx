@@ -1,46 +1,38 @@
-import React from "react";
+import React, { memo, useContext, useMemo } from "react";
 import { StyleSheet, View } from "react-native";
 import FastImage from "react-native-fast-image";
 import { isIphoneX } from "react-native-iphone-x-helper";
 import { Style } from "@styles";
 import { IMapSlice, LevelBubble, MAP_SLICE_HEIGHT } from "../assets";
 import { HALF_MAP_SLICE_HEIGHT } from "../assets/slices.settings";
-import { IChallenge } from "../quests-screen";
+import { QuestsMapContext } from "../quests.context";
 
-interface IProps {
-  activeLevel: number;
-  currentLevel: number;
-  levels: IChallenge[];
+interface IProps extends IMapSlice {
   onPress?: () => void;
-  slice: IMapSlice;
 }
 
-export default class MapSlice extends React.Component<IProps> {
-  public shouldComponentUpdate(nextProps: IProps) {
-    return (
-      this.props.currentLevel !== nextProps.currentLevel ||
-      this.props.slice.id !== nextProps.slice.id ||
-      this.props.activeLevel !== nextProps.activeLevel
-    );
-  }
-
-  public render() {
-    const { levels, slice } = this.props;
-    const hasForestInterstitial = isIphoneX() && slice.id === "MAP_SLICE_W01_INTERSTITIALS_01";
+const MapSlice = memo(
+  (props: IProps) => {
+    const { slots, id, image } = props;
+    const { formattedLevels, currentLevel } = useContext(QuestsMapContext);
+    const hasForestInterstitial = useMemo(() => isIphoneX() && id === "MAP_SLICE_W01_INTERSTITIALS_01", [id]);
+    const levels = slots.map((slot) => formattedLevels[slot.index]).filter(Boolean);
 
     return (
-      <View key={slice.id} style={hasForestInterstitial ? styles.halfMapSliceWrapper : styles.wrapper}>
-        <FastImage source={slice.image} style={styles.image} />
-        <View style={styles.levelButtonWrapper}>{levels.map(this.mapLevels)}</View>
+      <View key={id} style={hasForestInterstitial ? styles.halfMapSliceWrapper : styles.wrapper}>
+        <FastImage source={image} style={styles.image} />
+        <View style={styles.levelButtonWrapper}>
+          {levels.map((level, index) => (
+            <LevelBubble key={level.id} currentLevel={currentLevel} index={index} level={level} slots={slots} />
+          ))}
+        </View>
       </View>
     );
-  }
+  },
+  (prevProps, nextProps) => prevProps.id !== nextProps.id
+);
 
-  private mapLevels = (level: IChallenge, index: number) => {
-    const { currentLevel, slice } = this.props;
-    return <LevelBubble currentLevel={currentLevel} index={index} key={level.id} level={level} slice={slice} />;
-  };
-}
+export default MapSlice;
 
 const styles = StyleSheet.create({
   image: {

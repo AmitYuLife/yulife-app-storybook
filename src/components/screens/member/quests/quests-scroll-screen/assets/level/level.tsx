@@ -4,7 +4,6 @@ import moment from "moment";
 import React, { useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { Style } from "../../../../../../../styles";
-import { IChallenge } from "../../quests-screen";
 import { IMapSlice } from "../index";
 import getLevelButton from "./level.content";
 import {
@@ -18,21 +17,22 @@ import styles, { CIRCLE_SIZE } from "./level.styles";
 import Pulse from "./pulse";
 import useInterval from "@use-it/interval";
 import { getCurrentWorld, getNormalizedLevel } from "@utils";
+import { QuestsMapLevel } from "../../quests.context";
 
 interface IProps {
   currentLevel: number;
   index: number;
-  level: IChallenge;
-  slice: IMapSlice;
+  level: QuestsMapLevel;
+  slots: IMapSlice["slots"];
 }
 
 const PULSE_MAX_SIZE = Style.SCALE_UP_AND_DOWN(66);
 
 function LevelBubble(props: IProps) {
-  const { slice, index, level, currentLevel } = props;
+  const { slots, index, level, currentLevel } = props;
   const [nextAvailableTimer, setNextAvailableTimer] = useState(null);
-  const style = getButtonPosition(slice, index, false);
-  const pulseStyle = getButtonPosition(slice, index, true);
+  const style = getButtonPosition(slots, index, false);
+  const pulseStyle = getButtonPosition(slots, index, true);
   const ONE_SECOND = 1000;
 
   useInterval(

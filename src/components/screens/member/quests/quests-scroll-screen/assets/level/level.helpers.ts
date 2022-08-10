@@ -1,5 +1,5 @@
 import { Style } from "../../../../../../../styles";
-import { IChallenge } from "../../quests-screen";
+import { QuestsMapLevel } from "../../quests.context";
 import { IMapSlice } from "../slices";
 
 interface IBubbleColours {
@@ -132,7 +132,7 @@ const worldBubbleColours: IBubbleColours = {
   },
 };
 
-function getGemColor(level: IChallenge) {
+function getGemColor(level: QuestsMapLevel) {
   if (level.isDone || level.isActive || level.isNext) {
     switch (level.level % 200) {
       case 50:
@@ -151,7 +151,7 @@ function getGemColor(level: IChallenge) {
   return "white";
 }
 
-export function getBackgroundColor(nextAvailable: number, level: IChallenge, normalizedWorld: number): string {
+export function getBackgroundColor(nextAvailable: number, level: QuestsMapLevel, normalizedWorld: number): string {
   // time for more of that fucking awful logic
 
   if (level.level % 50 === 0) {
@@ -204,9 +204,9 @@ export function getShadowPosition(style: any) {
   return newStyle;
 }
 
-export function getButtonPosition(slice: IMapSlice, index: number, isPulse?: boolean) {
+export function getButtonPosition(slots: IMapSlice["slots"], index: number, isPulse?: boolean) {
   const highDensityRepositionValue = Style.PIXEL_RATIO >= 3 && !isPulse ? Style.SCALE_UP_AND_DOWN(10) : 0;
-  const record = slice.slots[index];
+  const record = slots[index];
   const style: IPosition = {
     left: Style.SCALE_UP_AND_DOWN(record.left) - highDensityRepositionValue,
   };

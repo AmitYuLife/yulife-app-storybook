@@ -1,8 +1,7 @@
-import React, { memo, useState, useRef, useCallback, useEffect, FC } from "react";
+import React, { memo, useState, useRef, useCallback, useEffect, FC, useContext } from "react";
 import { QUESTS_SCREEN } from "@ids";
 import { getCurrentEpisode, getCurrentWorld, getNormalizedLevel } from "@utils";
 import { FlatList, SafeAreaView, View, ViewabilityConfigCallbackPair } from "react-native";
-import { GetQuestMap_levels } from "@graphql/_core/schema";
 import { IConnectedScreenProps } from "../../../../../typings";
 import { IMapSlice, mapSlices } from "./assets";
 import offsets from "./assets/offsets";
@@ -17,44 +16,19 @@ import { useNavigationComponentDidAppear } from "@hooks";
 import { useSelector } from "react-redux";
 import { getUserFeatures } from "@redux/user/user.selectors";
 import { getTopBarType, getWorldData } from "./quests-screen.helpers";
-
-export interface IChallenge extends GetQuestMap_levels {
-  isActive?: boolean;
-  isDone?: boolean;
-  isNext?: boolean;
-  isChestLevel?: boolean;
-  nextAvailableAt?: string;
-  onPress?: () => void;
-}
+import { QuestsMapContext } from "./quests.context";
 
 interface IProps extends IConnectedScreenProps {
-  currentLevel: number;
-  activeLevel: number;
-  data: IChallenge[];
   hideUnity?: () => void | null;
   unity: number;
   repeatedUnity: boolean;
-  loading: boolean;
   componentId: string;
-  weeklyClaimableRewards: number;
-  weeklyQuestsEndDateTime: string | null;
 }
 
 type CurrentWorld = 0 | 1 | 2 | 3;
 
-const QuestsScreen: FC<IProps> = ({
-  currentLevel,
-  activeLevel,
-  data,
-  hideUnity,
-  unity,
-  repeatedUnity,
-  loading,
-  onLeftMenuPress,
-  componentId,
-  weeklyClaimableRewards,
-  weeklyQuestsEndDateTime,
-}) => {
+const QuestsScreen: FC<IProps> = ({ hideUnity, unity, repeatedUnity, onLeftMenuPress, componentId }) => {
+  const { isLoading, currentLevel, activeLevel } = useContext(QuestsMapContext);
   const features = useSelector(getUserFeatures);
   const [isOnCurrentEpisode, setIsOnCurrentEpisode] = useState(false);
   const [topBarType, setTopBarType] = useState(getTopBarType(currentLevel));
@@ -99,7 +73,7 @@ const QuestsScreen: FC<IProps> = ({
   }, []);
 
   useNavigationComponentDidAppear(() => {
-    if (!loading) {
+    if (!isLoading) {
       scrollToActiveLevel();
     }
   }, componentId);
@@ -110,7 +84,7 @@ const QuestsScreen: FC<IProps> = ({
 
   useEffect(() => {
     scrollToActiveLevel();
-  }, [loading, unity, activeLevel]);
+  }, [isLoading, unity, activeLevel]);
 
   /**
    * If we attempt to wrap this up in useMemo the scrolly quests won't update,
@@ -129,11 +103,8 @@ const QuestsScreen: FC<IProps> = ({
   return (
     <SafeAreaView style={styles.wrapper} testID={QUESTS_SCREEN(getCurrentWorld(currentLevel))}>
       <ScrollyQuest
-        currentLevel={currentLevel}
-        activeLevel={activeLevel}
         initialScrollIndex={initialScrollIndex}
         data={slices}
-        levels={data}
         offsets={snapOffsets}
         onViewableItemsChanged={handleViewableItemsChanged.current}
         setFlatListRef={setFlatListRef}
@@ -142,13 +113,9 @@ const QuestsScreen: FC<IProps> = ({
         <TopBar type={topBarType} onPressLeftIcon={onLeftMenuPress} />
       </View>
       <NavBar activeIndex={1} />
-      <QuestsLoadingOverlay loading={loading} />
+      <QuestsLoadingOverlay />
       <View style={styles.rightIconList}>
-        <WeeklyQuestsButton
-          endDateTime={weeklyQuestsEndDateTime}
-          claimableRewards={weeklyClaimableRewards}
-          isVisible={features?.showWeeklies && isOnCurrentEpisode}
-        />
+        <WeeklyQuestsButton isVisible={features?.showWeeklies && isOnCurrentEpisode} />
       </View>
     </SafeAreaView>
   );

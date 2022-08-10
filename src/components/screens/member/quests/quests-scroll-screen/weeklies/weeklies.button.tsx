@@ -1,13 +1,12 @@
-import React, { memo } from "react";
+import React, { memo, useContext } from "react";
 import { Style } from "@styles";
 import { MODALS } from "@navigation/constants";
 import { WeeklyQuestsModal } from "./weeklies.modal";
 import { showFloatingModal } from "@components/modals/floating-modals/showFloatingModal";
 import { Weeklies } from "@organisms";
+import { QuestsMapContext } from "../quests.context";
 
 type Props = {
-  claimableRewards: number;
-  endDateTime: string;
   isVisible: boolean;
 };
 
@@ -21,10 +20,14 @@ const handlePress = async () => {
   });
 };
 
-export const WeeklyQuestsButton = memo(({ isVisible, claimableRewards, endDateTime }: Props) => {
-  if (!isVisible || !endDateTime) {
+export const WeeklyQuestsButton = memo(({ isVisible }: Props) => {
+  const { weeklies } = useContext(QuestsMapContext);
+
+  if (!isVisible || !weeklies?.endDateTime) {
     return null;
   }
 
-  return <Weeklies onPress={handlePress} claimableRewards={claimableRewards} endDateTime={endDateTime} />;
+  const claimableRewards = weeklies?.activityProgress?.filter?.((e) => e.isClaimable)?.length;
+
+  return <Weeklies onPress={handlePress} claimableRewards={claimableRewards} endDateTime={weeklies.endDateTime} />;
 });
