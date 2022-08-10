@@ -15,6 +15,7 @@ import {
 import { getUserStart, refreshUserProfileEvents } from "@redux/user/user.actions";
 import { CollectEventRewardScreen } from "@screens";
 import Logger from "@services/logging/logger";
+import { Style } from "@styles";
 import { delay } from "@utils/misc";
 import React, { useCallback, useMemo, useState } from "react";
 import { Navigation } from "react-native-navigation";
@@ -34,7 +35,7 @@ const lottie = {
   autoPlay: true,
   loop: false,
   aspectRatio: 1,
-  styles: null as any,
+  styles: [{ property: "height", value: Style.adjust(330).toString() }],
   onAnimationEnd: null as any,
 };
 
