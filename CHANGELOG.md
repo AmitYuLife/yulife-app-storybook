@@ -7,6 +7,68 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.43.0] - 2022-08-10
+
+### Features
+
+- Feature XSE-1296: YuScreen onboarding
+- Feature: Select region overlay
+
+### Bugfixes
+
+- Bugfix XSE-1310: Status bar Android and small device fix
+- Bugfix: Trophy position on claim goals rewards
+- Bugfix: Meditopia challenge ends and the collect yucoin mechanism is triggered automatically
+- Bugfix: Update coins when claim weekely quests
+- Bugfix GS-419: fix challenge count after yuniversal
+- Revert "Bugfix: Correct store link for apple"
+- Bugfix ENG-2828: Dismiss modal even on error
+- Bugfix: back handler for inspect/event dialog
+- Bugfix: Force exoplayer on android devices and improvements on meditopia player
+- Bugfix: Disable bugsnag sourcemaps for android local builds
+
+### Tasks
+
+- Task GS-416: Open inspect on press leaderboard item
+- Task GS-421: Inspect draw state
+- Task GS-403: weekly quests
+- Task GS-418: Purge old statistics
+- Task GS-417: Swap duel and challenges stats
+- Task: Update schema
+- Task ENG-2742: Filter data from blacklist apps
+- Task: Leaderboard refreshing state for ios set to false
+- Task XSE-1286: Yumoji prompt server driven
+- Task: Survey link on yuscreen
+
+### Chores
+
+- Chore: Disable onboarding buttons on submit
+- Chore: optional chain on nullable
+- Chore: Add documentation for the purpose of throttling and allow disable
+- Chore: exclude bugsnag network errors and add fast-image to proguard
+
+### Extra
+
+- Detox: overnight fixes done
+- Purge: package readline
+- Purge: atoms YugiGPIcon
+- Purge: molecules SwitchTab
+- Purge: molecules HorizontalScroller
+- Purge: molecules TextWithBoldText
+- Purge: Button unused icons
+- detox/new_yuscreenV4
+- Purge: GenderIcon component
+- Purge: AlcoholDrinksSvg component
+- Hotfix: weeklies toggle name
+- Purge: @apollo/react-testing package
+- Purge: bcryptjs package
+- Purge: keypress-prompt package
+- detox/fixes_04_08
+- Purge: react-native-community-slider package
+- Purge: yup package
+- Refactor: leaderboard useSelector
+- Hotfix: center warning
+
 ## [3.42.0] - 2022-08-03
 
 ### Features
