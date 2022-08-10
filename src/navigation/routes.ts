@@ -45,7 +45,7 @@ export default [
   },
   {
     name: ROUTES.yuProductSurvey,
-    component: require("../components/containers/member/yu/yu-product-survey").default,
+    component: require("../components/containers/member/yu/yu-product-survey.container").default,
   },
   {
     name: ROUTES.yumojiBuilder,

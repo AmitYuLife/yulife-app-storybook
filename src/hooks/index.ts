@@ -10,3 +10,4 @@ export * from "./useQueryOnScreenSeen";
 export * from "./useQueryOnScreenSeenOnce";
 export * from "./useTapBackTwiceToExit";
 export * from "./usePressedInWithDelay";
+export * from "./useStatusBarStyle";

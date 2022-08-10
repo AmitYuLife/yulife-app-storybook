@@ -200,6 +200,7 @@ export * from "./YuAvatarPart";
 export * from "./YuScreenCarousel";
 export * from "./YuScreenCarouselItem";
 export * from "./YuScreenItemSlot";
+export * from "./YuScreenOnboarding";
 export * from "./YuScreenPopover";
 export * from "./YuScreenProduct";
 export * from "./YuScreenProductPaymentHistoryInfoPanel";

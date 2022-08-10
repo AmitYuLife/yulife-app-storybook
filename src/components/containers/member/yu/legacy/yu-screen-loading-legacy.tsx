@@ -3,16 +3,21 @@ import { View, ScrollView, StyleSheet, ViewStyle } from "react-native";
 import { Rect, Path } from "react-native-svg";
 import { Style } from "@styles";
 import NativeSvg from "@components/molecules/native-svg/native-svg";
+import { YUSCREEN } from "@ids";
+import { PAD_TOP } from "./yu-screen.legacy";
 
 export function YuScreenLoading() {
   return (
-    <ScrollView>
-      <View style={styles.loadingContainer}>
-        <HeaderLoading />
-        <AvatarSectionLoading />
-        <BenefitsLoading />
-      </View>
-    </ScrollView>
+    <View testID={YUSCREEN}>
+      <ScrollView>
+        <View style={styles.padTop} />
+        <View style={styles.loadingContainer}>
+          <HeaderLoading />
+          <AvatarSectionLoading />
+          <BenefitsLoading />
+        </View>
+      </ScrollView>
+    </View>
   );
 }
 
@@ -98,7 +103,6 @@ function BenefitLoading() {
 
 const styles = StyleSheet.create({
   loadingContainer: {
-    marginBottom: 80,
     width: "100%",
     justifyContent: "center",
     alignItems: "center",
@@ -154,5 +158,8 @@ const styles = StyleSheet.create({
     alignItems: "flex-start",
     marginHorizontal: 20,
     marginTop: Style.adjust(50),
+  } as ViewStyle,
+  padTop: {
+    height: PAD_TOP,
   } as ViewStyle,
 });

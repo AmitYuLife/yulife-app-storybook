@@ -38,5 +38,5 @@ export interface YuScreenCarousel_items {
 
 export interface YuScreenCarousel {
   heading: string;
-  items: YuScreenCarousel_items[] | null;
+  items: (YuScreenCarousel_items | null)[];
 }

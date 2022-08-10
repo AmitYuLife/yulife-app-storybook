@@ -3,6 +3,23 @@ import gql from "graphql-tag";
 import client from "@graphql/_core/client";
 import { GetYuScreen } from "@graphql/_core/schema";
 
+const GQL_FRAGMENT_YU_SCREEN_ONBOARDING = gql`
+  fragment YuScreenOnboarding on YuScreenOnboarding {
+    id
+    heading
+    text
+    button {
+      event {
+        ...SduiAction
+      }
+      label
+    }
+    placeholder {
+      ...YuScreenProduct
+    }
+  }
+`;
+
 const GQL_FRAGMENT_YU_SCREEN_PRODUCT_SLOT_ITEM = gql`
   ${GQL_FRAGMENT_REMOTE_IMAGE}
 
@@ -33,6 +50,7 @@ const GQL_FRAGMENT_YU_SCREEN_PRODUCT_SLOT_ITEM = gql`
       type
       payload
     }
+    type
   }
 `;
 
@@ -96,6 +114,7 @@ const GQL_FRAGMENT_YU_SCREEN_YUMOJI_PROMPT = gql`
 `;
 
 export const GQL_QUERY_GET_YU_SCREEN = gql`
+  ${GQL_FRAGMENT_YU_SCREEN_ONBOARDING}
   ${GQL_FRAGMENT_YU_SCREEN_PRODUCT_SLOT_ITEM}
   ${GQL_FRAGMENT_YU_SCREEN_CAROUSEL}
   ${GQL_FRAGMENT_YU_SCREEN_SURVEY_FOOTER}
@@ -103,6 +122,9 @@ export const GQL_QUERY_GET_YU_SCREEN = gql`
 
   query GetYuScreen {
     getYuScreen {
+      onboarding {
+        ...YuScreenOnboarding
+      }
       productSlots {
         ...YuScreenProduct
       }

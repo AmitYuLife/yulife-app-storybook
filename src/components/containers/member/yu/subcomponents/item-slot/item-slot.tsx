@@ -1,12 +1,16 @@
-import React, { FC, memo, useMemo } from "react";
+import React, { FC, memo } from "react";
 import { Image, StyleSheet, View } from "react-native";
 import { styles } from "./styles";
 import { TextTemplate } from "@atoms";
 import { Colours } from "@styles";
-import { GetYuScreen_getYuScreen_productSlots as Props } from "@graphql/_core/schema";
+import { GetYuScreen_getYuScreen_productSlots as ProductSlots } from "@graphql/_core/schema";
 import { TouchableOpacityWithDelay } from "@components/molecules";
 import { useYuScreenOnPressHandler } from "../../hooks/useYuScreenOnPressHandler";
 import { BACKGROUND_COLOUR_PRODUCT, RIGHT_STATUS_ICON } from "@ids";
+
+interface Props extends ProductSlots {
+  socketType?: "yuscreen" | "onboarding";
+}
 
 export const ItemSlot: FC<Props> = memo(
   ({
@@ -22,10 +26,11 @@ export const ItemSlot: FC<Props> = memo(
     title,
     titleColour,
     topShadowColour,
+    socketType = "yuscreen",
   }) => {
     const handlePress = useYuScreenOnPressHandler({ event, onPress });
 
-    const ItemSlotWrapper = useMemo(() => (onPress ? TouchableOpacityWithDelay : View), [onPress]);
+    const ItemSlotWrapper = onPress ? TouchableOpacityWithDelay : View;
 
     return (
       <View style={styles.container}>
@@ -47,8 +52,18 @@ export const ItemSlot: FC<Props> = memo(
           ) : null}
           <View style={StyleSheet.flatten([styles.slotInnerWrapperTop, { backgroundColor: topShadowColour }])} />
           <View style={StyleSheet.flatten([styles.slotInnerWrapperBottom, { backgroundColor: bottomShadowColour }])} />
-          <View style={styles.slotSocket}>
-            <View style={styles.slotSocketInner} />
+          <View
+            style={StyleSheet.flatten([
+              styles.slotSocket,
+              socketType === "yuscreen" ? styles.slotSocketYuScreen : styles.slotSocketOnboarding,
+            ])}
+          >
+            <View
+              style={StyleSheet.flatten([
+                styles.slotSocketInner,
+                socketType === "yuscreen" ? styles.slotSocketInnerYuScreen : styles.slotSocketInnerOnboarding,
+              ])}
+            />
           </View>
 
           <View

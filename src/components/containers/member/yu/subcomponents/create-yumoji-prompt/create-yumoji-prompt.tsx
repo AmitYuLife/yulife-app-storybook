@@ -3,11 +3,14 @@ import { View, StyleSheet } from "react-native";
 import { Colours, Style } from "@styles";
 import { navigateToYumojiBuilder } from "../../navigation/navigateToYumojiBuilder";
 import { Button } from "@molecules";
-import { Image, TextTemplate } from "@atoms";
+import { TextTemplate } from "@atoms";
 import { yumojiWrapperWidth } from "../yumoji-and-slots/styles";
 import { GetYuScreen_getYuScreen_yumojiPrompt as Props } from "@graphql/_core/schema";
+import FastImage from "react-native-fast-image";
 
 export const BUTTON_HEIGHT = Style.adjust(48);
+
+const YUCOIN_IMAGE = require("./assets/yucoin.png");
 
 const YUCOIN_HEIGHT = Style.adjust(51);
 const YUCOIN_WIDTH = Style.adjust(48);
@@ -19,7 +22,7 @@ export const CreateYumojiPrompt: FC<Props> = memo(({ buttonText, heading, text }
 
   return (
     <View style={styles.wrapper}>
-      <Image height={YUCOIN_HEIGHT} width={YUCOIN_WIDTH} style={styles.yucoinImage} source={require("./yucoin.png")} />
+      <FastImage style={styles.yucoinImage} source={YUCOIN_IMAGE} />
       <View style={styles.contentWrapper}>
         <TextTemplate textAlign="center" type="h3">
           {heading}
@@ -65,5 +68,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     left: PROMPT_WIDTH / 2 - YUCOIN_HEIGHT / 2,
     top: -YUCOIN_HEIGHT / 2,
+    height: YUCOIN_HEIGHT,
+    width: YUCOIN_WIDTH,
   },
 });
