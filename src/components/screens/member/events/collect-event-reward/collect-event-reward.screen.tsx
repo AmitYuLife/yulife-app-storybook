@@ -146,7 +146,7 @@ const style = StyleSheet.create({
     marginTop: Style.isShortToMedium() ? Style.adjust(8) : Style.adjust(14),
     height: Style.isShortToMedium() ? Style.adjust(170) : Style.adjust(220),
     width: Style.DEVICE_WIDTH,
-    alignContent: "center",
+    alignItems: "center",
     justifyContent: "center",
     flexDirection: "row",
   },
