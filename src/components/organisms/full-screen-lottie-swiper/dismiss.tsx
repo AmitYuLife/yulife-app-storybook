@@ -22,8 +22,8 @@ interface Props {
   currentIndex: number;
 }
 
-export const Dismiss = ({ button, close, currentIndex }: Props) => {
-  return (
+export const Dismiss = ({ button, close, currentIndex }: Props) =>
+  button.disabled ? null : (
     <>
       {!button ? null : (
         <View style={styles.button} testID={BUTTON_CLOSE}>
@@ -48,7 +48,6 @@ export const Dismiss = ({ button, close, currentIndex }: Props) => {
       )}
     </>
   );
-};
 
 const buttonBottom = media.select(
   [

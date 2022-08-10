@@ -14,15 +14,14 @@ export const ProductStepFullScreenLottieSwiper = memo(({ button, close, ...props
   const items = props.items || [];
   const contextAwarePayload = { productId, stepId, dynamicData };
 
-  const buttonId = `${stepId} - ${button.id}`;
-  const isLoading = useSelector(getSduiLoadingForKey(buttonId)) || isInLoadingContext;
+  const isLoading = useSelector(getSduiLoadingForKey(stepId)) || isInLoadingContext;
 
   const dynamicOnPress = useMemo(
     () => ({
       type: button.onPress.type,
-      payload: { productId, stepId, dynamicData, serverPayload: button.onPress.payload, id: buttonId },
+      payload: { ...contextAwarePayload, serverPayload: button.onPress.payload, id: stepId },
     }),
-    [button.onPress, productId, stepId, dynamicData, buttonId]
+    [button.onPress, productId, stepId, dynamicData, stepId]
   );
 
   const derivedProps = useMemo(
@@ -30,13 +29,14 @@ export const ProductStepFullScreenLottieSwiper = memo(({ button, close, ...props
       ...props,
       items: items.map((item) => ({
         ...item,
-        onAnimationEnd: !item.onAnimationEnd
-          ? null
-          : () =>
-              dispatch({
-                type: item.onAnimationEnd.type,
-                payload: { ...contextAwarePayload, serverPayload: item.onAnimationEnd.payload },
-              }),
+        onAnimationEnd:
+          !item.onAnimationEnd || isLoading
+            ? null
+            : () =>
+                dispatch({
+                  type: item.onAnimationEnd.type,
+                  payload: { ...contextAwarePayload, serverPayload: item.onAnimationEnd.payload, id: stepId },
+                }),
       })),
       button: {
         ...button,
@@ -57,7 +57,7 @@ export const ProductStepFullScreenLottieSwiper = memo(({ button, close, ...props
 
           dispatch({
             type: close.onPress.type,
-            payload: { ...contextAwarePayload, serverPayload: close.onPress.payload },
+            payload: { ...contextAwarePayload, serverPayload: close.onPress.payload, id: stepId },
           });
         },
       },
