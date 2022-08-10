@@ -29,7 +29,7 @@ export { default as PermissionScreen } from "./member/permissions/permissions.sc
 // quests screens
 export { default as QuestsScreenOffline } from "./member/quests/quests-offline/quests-offline";
 export { default as QuestsScrollScreen } from "./member/quests/quests-scroll-screen/quests-screen.container";
-export { IChallenge } from "./member/quests/quests-scroll-screen/quests-screen";
+export { QuestsMapLevel } from "./member/quests/quests-scroll-screen/quests.context";
 export { default as ChallengeFailedScreen } from "./member/challenges/challenge-failed/challenge-failed.screen";
 export { default as ChallengeProgressScreen } from "./member/challenges/challenge-progress/challenge-progress.screen";
 export { default as ChallengeSuccessScreen } from "./member/challenges/challenge-success/challenge-success.screen";

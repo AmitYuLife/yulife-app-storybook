@@ -2,9 +2,9 @@ import * as React from "react";
 import { StyleSheet, View } from "react-native";
 import { getCurrentWorld, getNormalizedLevel, getQuestScreenTimer } from "@utils";
 import { Chest, DoubleLock, Lock, Text } from "@atoms";
-import { IChallenge } from "../../quests-screen";
 import LevelStar from "./level.star";
 import styles from "./level.styles";
+import { QuestsMapLevel } from "../../quests.context";
 
 const getTextColor = (level: number) => {
   switch (true) {
@@ -58,7 +58,7 @@ const getLevelLockIcon = (currentLevel: number, normalizedLevel: number) => {
 export default function getLevelButton(
   nextAvailable: number,
   currentLevel: number,
-  level: IChallenge,
+  level: QuestsMapLevel,
   normalizedLevel: number
 ) {
   // step right up, we have more horrible logic, come and see the horrible logic!

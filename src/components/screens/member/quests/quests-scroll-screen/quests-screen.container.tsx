@@ -23,6 +23,7 @@ import { GQL_QUERY_GET_QUEST_MAP } from "@graphql/challenges";
 import { getShowChestCopy } from "@redux/copy/copy.selectors";
 import { GetQuestMap } from "@graphql/_core/schema";
 import { YuniversalQuestsScreen } from "./yuniversal/yuniversal-quest-screen";
+import { QuestsMapContext } from "./quests.context";
 
 function isAvailable(nextAvailableAt: string): boolean {
   const nextAvailable = nextAvailableAt ? moment().diff(moment(nextAvailableAt), "seconds") : 0;
@@ -109,10 +110,6 @@ function QuestsScreenContainer(props: Props) {
   });
 
   const levelsList = data?.levels || [];
-
-  const weeklyQuestsEndDateTime = data?.weeklies?.endDateTime;
-  const weeklyClaimableRewards = data?.weeklies?.activityProgress?.filter?.((e) => e.isClaimable)?.length;
-
   const formattedData = yuniversalMap
     ? []
     : levelsList.map((itemLevel) => {
@@ -163,32 +160,35 @@ function QuestsScreenContainer(props: Props) {
         };
       });
 
-  if (yuniversalMap && !unity) {
-    return (
-      <YuniversalQuestsScreen
-        componentId={componentId}
-        yuniversalLevel={yuniversalLevel}
-        yuniversalMap={yuniversalMap}
-        levelList={levelsList}
-        onLeftMenuPress={onLeftMenuPress}
-      />
-    );
-  }
+  const context = {
+    activeLevel: getActiveLevel(formattedData),
+    formattedLevels: formattedData,
+    weeklies: data?.weeklies,
+    isLoading: loading,
+    levelsList,
+    currentLevel,
+  };
 
   return (
-    <QuestsScreen
-      loading={loading}
-      currentLevel={currentLevel}
-      onLeftMenuPress={onLeftMenuPress}
-      data={formattedData}
-      hideUnity={hideUnity}
-      unity={unity}
-      repeatedUnity={repeatedUnity}
-      activeLevel={getActiveLevel(formattedData)}
-      componentId={componentId}
-      weeklyClaimableRewards={weeklyClaimableRewards}
-      weeklyQuestsEndDateTime={weeklyQuestsEndDateTime}
-    />
+    <QuestsMapContext.Provider value={context}>
+      {yuniversalMap && !unity ? (
+        <YuniversalQuestsScreen
+          componentId={componentId}
+          yuniversalLevel={yuniversalLevel}
+          yuniversalMap={yuniversalMap}
+          levelList={levelsList}
+          onLeftMenuPress={onLeftMenuPress}
+        />
+      ) : (
+        <QuestsScreen
+          onLeftMenuPress={onLeftMenuPress}
+          hideUnity={hideUnity}
+          unity={unity}
+          repeatedUnity={repeatedUnity}
+          componentId={componentId}
+        />
+      )}
+    </QuestsMapContext.Provider>
   );
 }
 
