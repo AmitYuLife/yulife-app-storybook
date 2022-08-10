@@ -1,5 +1,5 @@
 import React, { FC, useMemo } from "react";
-import { View, StyleSheet } from "react-native";
+import { View, ScrollView } from "react-native";
 import {
   GetYuScreen_getYuScreen_onboarding as OnboardingProps,
   GetYuScreen_getYuScreen_productSlots as ProductSlots,
@@ -28,10 +28,9 @@ export const Onboarding: FC<Props> = ({ onboarding: { id, heading, text, button,
   const slotsToDisplay = useMemo(() => getOnboardingProducts(productSlots, placeholder), [productSlots, placeholder]);
 
   return (
-    <AnimatedView useNativeDriver={true} animation="fadeInUpBig" duration={500} style={StyleSheet.absoluteFillObject}>
-      <View style={styles.container}>
-        <View style={styles.backgroundImage} />
-        <FastImage style={styles.backgroundImage} source={BACKGROUND_IMAGE} />
+    <AnimatedView useNativeDriver={true} animation="fadeInUpBig" duration={500} style={styles.container}>
+      <FastImage style={styles.backgroundImage} source={BACKGROUND_IMAGE} />
+      <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.contentWrapper}>
           <View style={styles.itemSlotContainer}>
             <FastImage style={styles.itemSlotContainerImage} source={ITEM_SLOT_CONTAINER_IMAGE} />
@@ -56,7 +55,7 @@ export const Onboarding: FC<Props> = ({ onboarding: { id, heading, text, button,
           </View>
           <Button size="Fill" label={button.label} onPress={() => dispatch(dismissYuScreenOnboarding(id))} />
         </View>
-      </View>
+      </ScrollView>
     </AnimatedView>
   );
 };
