@@ -1,18 +1,27 @@
-import React, { memo } from "react";
-import { Image, ImageStyle, StyleSheet, TextStyle, View, ViewStyle } from "react-native";
+import React, { FC, memo } from "react";
+import { StyleSheet, View } from "react-native";
 import { Text } from "@atoms";
 import { Style } from "@styles";
 import { getUserEarnRate } from "@redux/user/user.selectors";
 import { useSelector } from "react-redux";
 import { TouchableOpacityWithDelay } from "@components/molecules";
 import { showEarnRateOverlay } from "../../navigation/showEarnRateOverlay";
+import FastImage from "react-native-fast-image";
 
-export const YuCoinPower = memo(() => {
+interface Props {
+  onPress?: typeof showEarnRateOverlay;
+}
+
+const YUCOIN_POWER_IMAGE = require("./assets/ycPowerBg.png");
+
+export const YuCoinPower: FC<Props> = memo(({ onPress = showEarnRateOverlay }) => {
+  const YuCoinPowerWrapper = onPress ? TouchableOpacityWithDelay : View;
+
   return (
-    <TouchableOpacityWithDelay onPress={showEarnRateOverlay} style={styles.ycWrapperOuter}>
-      <Image style={styles.ycPowerBg} source={require("./ycPowerBg.png")} />
+    <YuCoinPowerWrapper onPress={onPress} style={styles.ycWrapperOuter}>
+      <FastImage style={styles.ycPowerBg} source={YUCOIN_POWER_IMAGE} />
       <Yc />
-    </TouchableOpacityWithDelay>
+    </YuCoinPowerWrapper>
   );
 });
 
@@ -42,26 +51,26 @@ const styles = StyleSheet.create({
     position: "absolute",
     top: Style.adjust(10),
     right: Style.adjust(72),
-  } as ViewStyle,
+  },
   ycWrapperOuter: {
     alignItems: "flex-end",
-  } as ViewStyle,
+  },
   ycPowerBg: {
     width: Style.adjust(182),
     height: Style.adjust(66),
-  } as ImageStyle,
+  },
   ycPowerVal: {
     fontSize: Style.adjust(40),
     lineHeight: Style.adjust(40),
     color: "#D17C00", // TODO: ASK DESIGN FOR NAME
-  } as ViewStyle,
+  },
   ycPowerDescriptionWrapper: {
     justifyContent: "center",
     marginLeft: Style.adjust(8),
-  } as ViewStyle,
+  },
   ycPowerDescription: {
     fontSize: Style.adjust(18),
     lineHeight: Style.adjust(18),
     color: "#D17C00",
-  } as TextStyle,
+  },
 });

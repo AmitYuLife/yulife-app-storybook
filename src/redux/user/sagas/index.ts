@@ -18,6 +18,7 @@ import {
   REMOVE_YUSCREEN_NOTIFICATIONS,
   REFRESH_USER_PROFILE_EVENTS,
   UPDATE_USER_PROFILE_EVENTS,
+  DISMISS_YUSCREEN_ONBOARDING,
 } from "../user.actions";
 
 import fetchConnectionsSaga from "./fetchConnectionsSaga.sagas";
@@ -41,6 +42,7 @@ import updateYuScreenNotification from "./updateYuScreenNotification.saga";
 import synchroniseYuScreenSaga from "./synchroniseYuScreen.saga";
 import removeYuScreenNotification from "./removeYuScreenNotification.saga";
 import showEventFinishDialog from "./showEventFinishedDialog.saga";
+import dismissYuScreenOnboardingSaga from "./dismissYuScreenOnboarding.saga";
 
 export default [
   takeLatest(AUTHENTICATED, fetchUserOnAppStateChangeSaga),
@@ -65,4 +67,5 @@ export default [
   takeLatest([UPDATE_CURRENT_ROUTE, YUSCREEN_SYNCHRONISED], updateYuScreenNotification),
   takeLatest(REMOVE_YUSCREEN_NOTIFICATIONS, removeYuScreenNotification),
   takeLatest([UPDATE_USER_PROFILE, UPDATE_USER_PROFILE_EVENTS], showEventFinishDialog),
+  takeLatest(DISMISS_YUSCREEN_ONBOARDING, dismissYuScreenOnboardingSaga),
 ];

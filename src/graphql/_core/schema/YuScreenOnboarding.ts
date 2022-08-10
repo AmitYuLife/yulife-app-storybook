@@ -1,0 +1,76 @@
+/* tslint:disable */
+/* eslint-disable */
+// @generated
+// This file was automatically generated and should not be edited.
+
+import {
+  MobileOnboardingStepPerformed,
+  SduiActionType,
+  YuProductStatus,
+  YuScreenSalesChannelType,
+} from "./globalTypes";
+
+// ====================================================
+// GraphQL fragment: YuScreenOnboarding
+// ====================================================
+
+export interface YuScreenOnboarding_button_event {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface YuScreenOnboarding_button {
+  event: YuScreenOnboarding_button_event | null;
+  label: string;
+}
+
+export interface YuScreenOnboarding_placeholder_leftBackgroundImage {
+  id: string;
+  uri: string | null;
+}
+
+export interface YuScreenOnboarding_placeholder_rightIcon {
+  id: string;
+  uri: string | null;
+}
+
+export interface YuScreenOnboarding_placeholder_rightStatusIcon {
+  id: string;
+  uri: string | null;
+}
+
+export interface YuScreenOnboarding_placeholder_onPress {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface YuScreenOnboarding_placeholder_event {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface YuScreenOnboarding_placeholder {
+  id: string;
+  leftText: string | null;
+  leftTextColour: string | null;
+  status: YuProductStatus;
+  title: string;
+  titleColour: string;
+  backgroundColour: string;
+  topShadowColour: string;
+  bottomShadowColour: string;
+  leftBackgroundImage: YuScreenOnboarding_placeholder_leftBackgroundImage | null;
+  rightIcon: YuScreenOnboarding_placeholder_rightIcon | null;
+  rightStatusIcon: YuScreenOnboarding_placeholder_rightStatusIcon | null;
+  onPress: YuScreenOnboarding_placeholder_onPress | null;
+  event: YuScreenOnboarding_placeholder_event | null;
+  type: YuScreenSalesChannelType | null;
+}
+
+export interface YuScreenOnboarding {
+  id: MobileOnboardingStepPerformed;
+  heading: string;
+  text: string;
+  button: YuScreenOnboarding_button;
+  placeholder: YuScreenOnboarding_placeholder;
+}

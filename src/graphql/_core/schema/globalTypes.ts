@@ -154,6 +154,7 @@ export enum MobileOnboardingStepPerformed {
   yuScreenGloves = "yuScreenGloves",
   yuScreenGlovesLive = "yuScreenGlovesLive",
   yuScreenGlovesPurchased = "yuScreenGlovesPurchased",
+  yuScreenOnboarding = "yuScreenOnboarding",
 }
 
 export enum OS {
@@ -242,6 +243,11 @@ export enum YuScreenEarnRateTableThemeType {
 export enum YuScreenEarnRateTableValueType {
   data = "data",
   header = "header",
+}
+
+export enum YuScreenSalesChannelType {
+  B2B = "B2B",
+  D2C = "D2C",
 }
 
 export enum YuWorld {

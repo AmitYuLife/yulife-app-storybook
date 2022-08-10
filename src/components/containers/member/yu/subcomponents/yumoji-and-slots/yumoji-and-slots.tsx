@@ -1,4 +1,4 @@
-import React, { useContext, FC, memo, useCallback, useMemo } from "react";
+import React, { useContext, FC, memo, useCallback } from "react";
 import { View } from "react-native";
 import { TouchableOpacityWithDelay, Yumoji } from "@components/molecules";
 import { YuScreenContext } from "../../context/yu-screen.context";
@@ -18,29 +18,32 @@ interface Props {
   yumojiPrompt: YumojiPrompt;
 }
 
+interface YumojiAvatarProps {
+  uri?: string;
+  yumojiPrompt: YumojiPrompt;
+}
+
 export const YumojiAndSlots: FC<Props> = memo(({ productSlots, yumojiPrompt }) => {
   const { yumojiRemoteUrl } = useContext(YuScreenContext);
 
   return (
     <View style={styles.wrapper} testID={YUMOJI_AVATAR_YUSCREEN_V4}>
       <YumojiAvatar uri={yumojiRemoteUrl} yumojiPrompt={yumojiPrompt} />
-      <SlotsWrapper>
+      <View style={styles.slotsWrapper}>
         <YuCoinPower />
         {productSlots.map((props) => (
           <ItemSlot key={props.id} {...props} />
         ))}
-      </SlotsWrapper>
+      </View>
     </View>
   );
 });
 
-const SlotsWrapper: FC = ({ children }) => <View style={styles.slotsWrapper}>{children}</View>;
-
-const YumojiAvatar = ({ uri, yumojiPrompt }: { uri?: string; yumojiPrompt: YumojiPrompt }) => {
+const YumojiAvatar: FC<YumojiAvatarProps> = ({ uri, yumojiPrompt }) => {
   const { buttonText, heading, text } = yumojiPrompt;
   const editYumoji = useCallback(() => navigateToYumojiBuilder({ heading: "Edit your Yumoji" }), []);
 
-  const YumojiWrapper = useMemo(() => (uri ? TouchableOpacityWithDelay : View), [uri]);
+  const YumojiWrapper = uri ? TouchableOpacityWithDelay : View;
 
   return (
     <View style={styles.yumojiWrapper}>

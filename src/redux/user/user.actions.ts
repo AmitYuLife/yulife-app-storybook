@@ -7,7 +7,7 @@ import {
   GetUserSurge_getUserSurge as IUserSurge,
   GetUserProfile_getUserProfile_events as Events,
 } from "@graphql/_core/schema";
-import { MobileConsentInput } from "@graphql/_core/schema/globalTypes";
+import { MobileConsentInput, MobileOnboardingStepPerformed } from "@graphql/_core/schema/globalTypes";
 import { IUserStore } from "./user.reducer";
 import { Connection } from "./user.selectors";
 
@@ -46,6 +46,7 @@ export const UPDATE_USER_SURGE = "UPDATE_USER_SURGE";
 export const UPDATE_USER_GOAL = "UPDATE_USER_GOAL";
 export const YUSCREEN_SYNCHRONISED = "YUSCREEN_SYNCHRONISED";
 export const REMOVE_YUSCREEN_NOTIFICATIONS = "REMOVE_YUSCREEN_NOTIFICATIONS";
+export const DISMISS_YUSCREEN_ONBOARDING = "DISMISS_YUSCREEN_ONBOARDING";
 
 export const refreshUserToken = () => ({
   type: REFRESH_USER_TOKEN,
@@ -184,4 +185,9 @@ export const updateUserSurge = (payload: IUserSurge) => ({
 
 export const removeYuScreenNotifications = () => ({
   type: REMOVE_YUSCREEN_NOTIFICATIONS,
+});
+
+export const dismissYuScreenOnboarding = (payload: MobileOnboardingStepPerformed) => ({
+  type: DISMISS_YUSCREEN_ONBOARDING,
+  payload,
 });

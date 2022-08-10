@@ -39,7 +39,6 @@ export const styles = StyleSheet.create({
     zIndex: 2,
   },
   slotSocket: {
-    backgroundColor: "#E7E7EB",
     borderRadius: Style.adjust(8),
     height: Style.adjust(54),
     width: Style.adjust(174),
@@ -47,14 +46,25 @@ export const styles = StyleSheet.create({
     left: Style.adjust(-2),
     top: Style.adjust(2),
   },
+  slotSocketYuScreen: {
+    backgroundColor: Colours.neutral.n100,
+  },
+  slotSocketOnboarding: {
+    backgroundColor: "#5D4275",
+  },
   slotSocketInner: {
-    backgroundColor: Colours.neutral.n50,
     borderRadius: Style.adjust(8),
     height: Style.adjust(51),
     width: Style.adjust(172),
     position: "absolute",
     top: Style.adjust(2),
     left: Style.adjust(1),
+  },
+  slotSocketInnerYuScreen: {
+    backgroundColor: Colours.neutral.n50,
+  },
+  slotSocketInnerOnboarding: {
+    backgroundColor: "#875EAD",
   },
   slotYucoinPowerWrapper: {
     alignItems: "center",

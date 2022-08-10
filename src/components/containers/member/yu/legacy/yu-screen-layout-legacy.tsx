@@ -10,11 +10,12 @@ import { TextTemplate } from "@atoms";
 import { GQL_MUTATION_PERFORM_MOBILE_ONBOARDING_STEP } from "@graphql/onboardingSteps/performMobileOnboardingStep.gql";
 import media from "@styles/media";
 import { TopBarAbsolute } from "@organisms/top-bar/top-bar-absolute";
-import { PAD_TOP } from "../yu-screen.styles";
 import { YuScreenContext } from "../context/yu-screen.context";
 import { navigateToProduct } from "../navigation/navigateToProduct";
 import { YuProductStatus } from "@graphql/_core/schema/globalTypes";
 import { setScreenViewForBurgerMenu } from "@navigation/utils";
+import { PAD_TOP } from "./yu-screen.legacy";
+import { YUSCREEN_V3 } from "@ids";
 
 interface Props {
   children: React.ReactChild;
@@ -57,7 +58,7 @@ const NAME_AND_TITLE_HEIGHT = Style.adjust(80);
 const TARGET_Y_CONSTANT = PAD_TOP + NAME_AND_TITLE_HEIGHT + DEVICE_ADJUSTMENT + ITEM_SLOT_POSITION_CONSTANT;
 const OFFSET = Style.adjust(60);
 
-const _YuScreenLayoutLegacy = ({ children, testID }: Props) => {
+const _YuScreenLayoutLegacy = ({ children, testID = YUSCREEN_V3(true) }: Props) => {
   const { popover } = useContext(YuScreenContext);
   const [performOnboarding] = useMutation(GQL_MUTATION_PERFORM_MOBILE_ONBOARDING_STEP);
 

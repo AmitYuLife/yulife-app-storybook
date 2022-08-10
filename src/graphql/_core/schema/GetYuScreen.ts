@@ -3,11 +3,77 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { YuProductStatus, SduiActionType } from "./globalTypes";
+import {
+  MobileOnboardingStepPerformed,
+  SduiActionType,
+  YuProductStatus,
+  YuScreenSalesChannelType,
+} from "./globalTypes";
 
 // ====================================================
 // GraphQL query operation: GetYuScreen
 // ====================================================
+
+export interface GetYuScreen_getYuScreen_onboarding_button_event {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface GetYuScreen_getYuScreen_onboarding_button {
+  event: GetYuScreen_getYuScreen_onboarding_button_event | null;
+  label: string;
+}
+
+export interface GetYuScreen_getYuScreen_onboarding_placeholder_leftBackgroundImage {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetYuScreen_getYuScreen_onboarding_placeholder_rightIcon {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetYuScreen_getYuScreen_onboarding_placeholder_rightStatusIcon {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetYuScreen_getYuScreen_onboarding_placeholder_onPress {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface GetYuScreen_getYuScreen_onboarding_placeholder_event {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface GetYuScreen_getYuScreen_onboarding_placeholder {
+  id: string;
+  leftText: string | null;
+  leftTextColour: string | null;
+  status: YuProductStatus;
+  title: string;
+  titleColour: string;
+  backgroundColour: string;
+  topShadowColour: string;
+  bottomShadowColour: string;
+  leftBackgroundImage: GetYuScreen_getYuScreen_onboarding_placeholder_leftBackgroundImage | null;
+  rightIcon: GetYuScreen_getYuScreen_onboarding_placeholder_rightIcon | null;
+  rightStatusIcon: GetYuScreen_getYuScreen_onboarding_placeholder_rightStatusIcon | null;
+  onPress: GetYuScreen_getYuScreen_onboarding_placeholder_onPress | null;
+  event: GetYuScreen_getYuScreen_onboarding_placeholder_event | null;
+  type: YuScreenSalesChannelType | null;
+}
+
+export interface GetYuScreen_getYuScreen_onboarding {
+  id: MobileOnboardingStepPerformed;
+  heading: string;
+  text: string;
+  button: GetYuScreen_getYuScreen_onboarding_button;
+  placeholder: GetYuScreen_getYuScreen_onboarding_placeholder;
+}
 
 export interface GetYuScreen_getYuScreen_productSlots_leftBackgroundImage {
   id: string;
@@ -49,6 +115,7 @@ export interface GetYuScreen_getYuScreen_productSlots {
   rightStatusIcon: GetYuScreen_getYuScreen_productSlots_rightStatusIcon | null;
   onPress: GetYuScreen_getYuScreen_productSlots_onPress | null;
   event: GetYuScreen_getYuScreen_productSlots_event | null;
+  type: YuScreenSalesChannelType | null;
 }
 
 export interface GetYuScreen_getYuScreen_productCarousel_items_image {
@@ -80,7 +147,7 @@ export interface GetYuScreen_getYuScreen_productCarousel_items {
 
 export interface GetYuScreen_getYuScreen_productCarousel {
   heading: string;
-  items: GetYuScreen_getYuScreen_productCarousel_items[] | null;
+  items: (GetYuScreen_getYuScreen_productCarousel_items | null)[];
 }
 
 export interface GetYuScreen_getYuScreen_surveyFooter_button_onPress {
@@ -118,10 +185,11 @@ export interface GetYuScreen_getYuScreen_yumojiPrompt {
 }
 
 export interface GetYuScreen_getYuScreen {
-  productSlots: (GetYuScreen_getYuScreen_productSlots | null)[] | null;
-  productCarousel: GetYuScreen_getYuScreen_productCarousel;
+  onboarding: GetYuScreen_getYuScreen_onboarding | null;
+  productSlots: (GetYuScreen_getYuScreen_productSlots | null)[];
+  productCarousel: GetYuScreen_getYuScreen_productCarousel | null;
   surveyFooter: GetYuScreen_getYuScreen_surveyFooter | null;
-  yumojiPrompt: GetYuScreen_getYuScreen_yumojiPrompt | null;
+  yumojiPrompt: GetYuScreen_getYuScreen_yumojiPrompt;
 }
 
 export interface GetYuScreen {
