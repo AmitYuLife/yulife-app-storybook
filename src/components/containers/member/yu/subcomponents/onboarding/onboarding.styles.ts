@@ -1,5 +1,7 @@
+import { DEFAULT_HEIGHT as buttonHeight } from "@components/molecules/button/button.styles";
 import { Style } from "@styles";
 import { TOP_BAR_WITH_PAD } from "@styles/top-bar.styles";
+import navBar from "@styles/nav-bar.styles";
 import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
@@ -7,12 +9,12 @@ export default StyleSheet.create({
     ...StyleSheet.absoluteFillObject,
     width: Style.DEVICE_WIDTH,
     height: Style.DEVICE_HEIGHT,
-    position: "absolute",
   },
   contentWrapper: {
     flex: 1,
-    paddingTop: TOP_BAR_WITH_PAD + Style.adjust(32),
+    paddingBottom: buttonHeight + navBar.DEFAULT_FULL_HEIGHT,
     paddingHorizontal: Style.adjust(32),
+    paddingTop: TOP_BAR_WITH_PAD + Style.adjust(16),
   },
   backgroundImage: {
     width: Style.DEVICE_WIDTH,
