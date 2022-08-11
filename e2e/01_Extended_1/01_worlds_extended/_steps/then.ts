@@ -92,9 +92,9 @@ export const onTodaysYucoin = (steps = 0, mindfulness = 0) => async () => {
     await textVisibleAtIndex("0/60",0)
     await textVisibleAtIndex("0/60",1)
     await textVisible("10")
-    await expectIsVisibleViaText("Today's challenges (1/3)")
+    await expectIsVisibleViaText("Today's challenges (1/4)")
     await expectIsVisibleViaText("Short stroll (400 steps)")
-    await expectIsVisibleViaText("Take a challenge (2 left)")
+    await expectIsVisibleViaText("Take a challenge (3 left)")
 }
 
 export const forestThreeRewardsVisible = () => async () => {
