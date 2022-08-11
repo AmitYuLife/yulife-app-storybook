@@ -1,6 +1,7 @@
 import React, { FC, useRef, useEffect } from "react";
 import { Animated, StyleSheet, ViewStyle } from "react-native";
 import { Colours } from "@styles";
+import { DETOX_ENABLED } from "@services/socket";
 
 interface IProps {
   style: ViewStyle;
@@ -15,13 +16,21 @@ const SkeletonLoading: FC<IProps> = ({ style }) => {
   });
 
   useEffect(() => {
-    Animated.loop(
+    if (DETOX_ENABLED) {
+      return;
+    }
+
+    const animation = Animated.loop(
       Animated.timing(fadeInFadeOut, {
         toValue: 1,
         duration: 2000,
         useNativeDriver: true,
       })
-    ).start();
+    );
+
+    animation.start();
+
+    return () => animation.stop;
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
