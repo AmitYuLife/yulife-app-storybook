@@ -195,7 +195,7 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
         When("I tap the yucoin image", when.tapID(YUCOIN), async()=>{
             Then("I should see correct steps and data in", then.onTodaysYucoin(400))
         })
-        When("I press Take a challenge (2 left)", when.tapText("Take a challenge (2 left)"), async () => {
+        When("I press Take a challenge (3 left)", when.tapText("Take a challenge (3 left)"), async () => {
             Then("Level 2 should exist in the screen", then.idExist(QUESTS_SCREEN_YUNIVERSAL(2)))
             Then("I should have right ammount of coins 20430 ", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(20430)))
         })

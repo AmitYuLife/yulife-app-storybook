@@ -494,7 +494,6 @@ export const COVER_PRICE_CHECK = async (answer: string) => {
 
         })
     })
-
     When("I scroll and tap on Documents",  when.scrollToAndTapText(PRODUCT_STEP_BODY_SCROLL_VIEW, "Documents", "down"), async () => {
         Then("I shoul be on Documents page", then.isOnDocumentsScreen)
     })
