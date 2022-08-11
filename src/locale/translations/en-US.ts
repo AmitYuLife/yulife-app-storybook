@@ -131,6 +131,16 @@ export default {
     challengeProgress: {
       howMeditateWithOtherAppsLabel: "How do I meditate with other apps",
     },
+    yumoji_builder: {
+      create: {
+        title: "We've made things personal",
+        description: "Create your Yumoji to step into the Yuniverse",
+        link: "I'll do this later",
+      },
+      edit: {
+        title: "Pick a body type",
+      },
+    },
   },
   permissions: {
     android: {
@@ -227,6 +237,12 @@ export default {
           "We couldn’t load the media. Please check your connection and try again. If you continue to see this message reach out to us via chat.",
         ctaLabel: "Retry",
         ctaLabelSecondary: "Quest menu",
+      },
+      yumoji_builder: {
+        heading: "Yu look great!",
+        subheading: "Do you want to save these changes?",
+        cta_label: "Save changes",
+        cta_label_secondary: "Back",
       },
     },
   },
