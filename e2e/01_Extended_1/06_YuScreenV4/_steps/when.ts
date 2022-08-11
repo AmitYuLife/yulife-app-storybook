@@ -79,3 +79,14 @@ export const editYumoji = (skinTone: string, hairStyle: string, hairColour: stri
     const doneButton = element(by.text("Done"))
     await doneButton.tap()
 }
+
+export const createDefaultYumoji = async () => {
+    await tapText("Create Yumoji")()
+    await tapID(MALE_BODY)()
+    await tapText("Continue")()
+    await tapText("Save")()
+    await tapText("Save changes")()
+    await tapText("Done")()
+    await textNotVisible("Create Yumoji", 3000)()
+
+}

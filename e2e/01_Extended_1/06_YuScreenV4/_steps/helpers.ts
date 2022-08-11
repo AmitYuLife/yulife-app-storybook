@@ -114,3 +114,17 @@ export const CHECK_OTHER_PRODUCT_WHEN_HAVE_PAYMENT_FAILED = async ( productButto
         })
     })
 }
+
+export const ONBOARDING_YUSCREEN = async (customer:any,packType:string, yuCoinPower: string) => {
+    
+    const buttonText = "Check out my power"
+    const yuMojiBuilder = "We've made things personal"
+
+    Then("I should see the onboarding Yuscreen", then.onboardingYuscreenV4(yuCoinPower))
+    When(`I tap ${buttonText}`, when.tapText(buttonText), async () => {
+        Then(`I should see ${yuMojiBuilder}`, then.textVisible(yuMojiBuilder))
+        When("I close this screen", when.tapIDAtIndex(BUTTON_CLOSE, 0), async () => {
+            Then("I should be on YuScreen V4", then.onYuscreenV4(customer, packType, yuCoinPower))
+        })
+    })
+}
