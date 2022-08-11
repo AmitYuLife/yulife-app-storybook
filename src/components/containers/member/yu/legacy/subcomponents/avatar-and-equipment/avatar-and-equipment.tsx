@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useContext, useEffect } from "react";
+import React, { memo, useContext, useEffect } from "react";
 import { StyleSheet, ViewStyle, View } from "react-native";
 import { Style, Colours } from "@styles";
 import { ItemSet } from "./item-set/item-set";
@@ -19,8 +19,6 @@ const _AvatarAndEquipment = () => {
     GQL_QUERY_GET_YU_SCREEN_PRODUCTS_SLOTS,
     ROUTES.yuScreen
   );
-
-  const editYumoji = useCallback(() => navigateToYumojiBuilder({ heading: "Edit your Yumoji" }), []);
 
   const { setPopover, yumojiRemoteUrl } = useContext(YuScreenContext);
 
@@ -100,7 +98,7 @@ const _AvatarAndEquipment = () => {
     <View>
       <View style={styles.wrapper} testID={YUSCREEN_AVATAR}>
         <ItemSet items={yuScreenProductSlots?.getYuScreenProductSlots.left} />
-        <TouchableOpacityWithDelay onPress={editYumoji} style={styles.avatarWrapper}>
+        <TouchableOpacityWithDelay onPress={navigateToYumojiBuilder} style={styles.avatarWrapper}>
           <Yumoji
             width={AVATAR_WIDTH}
             height={AVATAR_HEIGHT}
