@@ -151,6 +151,7 @@
         "babel-loader": "^8.2.2",
         "babel-plugin-module-resolver": "^4.0.0",
         "babel-plugin-react-native-web": "^0.17.1",
+        "babel-plugin-transform-remove-console": "^6.9.4",
         "detox": "^19.4.2",
         "eslint": "^7.14.0",
         "eslint-config-prettier": "^6.10.1",
