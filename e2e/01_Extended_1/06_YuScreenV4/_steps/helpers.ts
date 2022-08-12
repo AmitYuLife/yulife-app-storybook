@@ -118,7 +118,7 @@ export const CHECK_OTHER_PRODUCT_WHEN_HAVE_PAYMENT_FAILED = async ( productButto
 export const ONBOARDING_YUSCREEN = async (customer:any,packType:string, yuCoinPower: string) => {
     
     const buttonText = "Check out my power"
-    const yuMojiBuilder = "We've made things personal"
+    const yuMojiBuilder = "Pick a body type"
 
     Then("I should see the onboarding Yuscreen", then.onboardingYuscreenV4(yuCoinPower))
     When(`I tap ${buttonText}`, when.tapText(buttonText), async () => {
