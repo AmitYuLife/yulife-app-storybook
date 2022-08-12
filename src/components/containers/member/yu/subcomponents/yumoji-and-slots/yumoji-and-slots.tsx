@@ -1,4 +1,4 @@
-import React, { useContext, FC, memo } from "react";
+import React, { useContext, FC, memo, useCallback } from "react";
 import { View } from "react-native";
 import { TouchableOpacityWithDelay, Yumoji } from "@components/molecules";
 import { YuScreenContext } from "../../context/yu-screen.context";
@@ -41,12 +41,13 @@ export const YumojiAndSlots: FC<Props> = memo(({ productSlots, yumojiPrompt }) =
 
 const YumojiAvatar: FC<YumojiAvatarProps> = ({ uri, yumojiPrompt }) => {
   const { buttonText, heading, text } = yumojiPrompt;
+  const editYumoji = useCallback(() => navigateToYumojiBuilder({ heading: "Edit your Yumoji" }), []);
 
   const YumojiWrapper = uri ? TouchableOpacityWithDelay : View;
 
   return (
     <View style={styles.yumojiWrapper}>
-      <YumojiWrapper onPress={uri ? navigateToYumojiBuilder : null}>
+      <YumojiWrapper onPress={uri ? editYumoji : null}>
         <Yumoji
           emptyHeight={AVATAR_HEIGHT}
           emptyWidth={AVATAR_WIDTH}

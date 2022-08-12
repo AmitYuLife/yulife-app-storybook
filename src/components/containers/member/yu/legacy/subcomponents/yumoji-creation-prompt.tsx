@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import React, { memo, useCallback } from "react";
 import { View, StyleSheet, ViewStyle, TextStyle } from "react-native";
 import { Text } from "@atoms";
 import { Button } from "@molecules";
@@ -10,21 +10,25 @@ import LinearGradient from "react-native-linear-gradient";
 const CREATE_YUMOJI_CAPTION_COPY = "Build your Yumoji to unlock equipment and earn 100 YuCoin!";
 const CREATE_YUMOJI_CTA_COPY = "Create your Yumoji";
 
-const _YumojiCreationPrompt = () => (
-  <View style={styles.wrapper}>
-    <LinearGradient
-      colors={["rgba(255, 255, 255, 0)", "rgba(255, 255, 255, 0.8)"]}
-      locations={[0.8, 0]}
-      style={styles.gradient}
-    />
-    <View style={styles.body}>
-      <Text testID={EMPTY_YUSCREEN_COPY} bold={true} style={styles.promptLabel}>
-        {CREATE_YUMOJI_CAPTION_COPY}
-      </Text>
-      <Button testID={GET_STARTED_BUTTON} label={CREATE_YUMOJI_CTA_COPY} onPress={navigateToYumojiBuilder} />
+const _YumojiCreationPrompt = () => {
+  const createYumoji = useCallback(() => navigateToYumojiBuilder({}), []);
+
+  return (
+    <View style={styles.wrapper}>
+      <LinearGradient
+        colors={["rgba(255, 255, 255, 0)", "rgba(255, 255, 255, 0.8)"]}
+        locations={[0.8, 0]}
+        style={styles.gradient}
+      />
+      <View style={styles.body}>
+        <Text testID={EMPTY_YUSCREEN_COPY} bold={true} style={styles.promptLabel}>
+          {CREATE_YUMOJI_CAPTION_COPY}
+        </Text>
+        <Button testID={GET_STARTED_BUTTON} label={CREATE_YUMOJI_CTA_COPY} onPress={createYumoji} />
+      </View>
     </View>
-  </View>
-);
+  );
+};
 
 const styles = StyleSheet.create({
   wrapper: {

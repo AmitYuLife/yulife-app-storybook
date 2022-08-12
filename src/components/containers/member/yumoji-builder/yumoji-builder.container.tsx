@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useReducer, useRef } from "react";
+import React, { FC, useCallback, useEffect, useReducer, useRef } from "react";
 import { useMutation, useLazyQuery, useQuery } from "@apollo/react-hooks";
 import { Loading } from "@atoms";
 import { AvatarBodyType } from "@graphql/_core/schema/globalTypes";
@@ -22,24 +22,18 @@ import { showAwardModal, returnToYuScreen, showExitModal } from "./yumoji-builde
 import Logger from "@services/logging/logger";
 import { cache } from "@services/image";
 import { showGenericModal } from "@navigation/utils";
-import { useBackHandler, useTranslation } from "@hooks";
-import { useDispatch, useSelector } from "react-redux";
+import { useBackHandler } from "@hooks";
+import { useDispatch } from "react-redux";
 import { refreshTotalCoins } from "@redux/coins/coins.actions";
 import { updateUserAvatarRemoteFiles } from "@redux/user/user.actions";
-import { getUserAvatar } from "@redux/user/user.selectors";
 
-const YumojiBuilderContainer = () => {
+interface IProps {
+  heading: string;
+}
+
+const YumojiBuilderContainer: FC<IProps> = ({ heading }) => {
   const [state, dispatch] = useReducer<React.Reducer<IState, IAction>>(reducer, INITIAL_STATE);
   const appDispatch = useDispatch();
-  const avatar = useSelector(getUserAvatar);
-  const translations = useTranslation([
-    "modals.genericModal.yumoji_builder.heading",
-    "modals.genericModal.yumoji_builder.subheading",
-    "modals.genericModal.yumoji_builder.cta_label",
-    "modals.genericModal.yumoji_builder.cta_label_secondary",
-  ]);
-
-  const hasYumoji = !!avatar?.avatarRemoteFiles?.pngFull;
 
   const [updateUserAvatar]: UpdateAvatarMutationTuple = useMutation(GQL_MUTATION_UPDATE_AVATAR);
 
@@ -72,13 +66,13 @@ const YumojiBuilderContainer = () => {
 
   const updateAvatar = useCallback(() => {
     showGenericModal(
-      translations["modals.genericModal.yumoji_builder.heading"],
-      translations["modals.genericModal.yumoji_builder.subheading"],
+      "Yu look great!",
+      "Do you want to save these changes?",
       handleAvatarUpdate,
-      translations["modals.genericModal.yumoji_builder.cta_label"],
-      translations["modals.genericModal.yumoji_builder.cta_label_secondary"]
+      "Save changes",
+      "Back"
     );
-  }, [handleAvatarUpdate, translations]);
+  }, [handleAvatarUpdate]);
 
   useQuery<GetYumojiBuilderCategoryList>(GQL_QUERY_GET_YUMOJI_BUILDER_CATEGORY_LIST, {
     onCompleted: ({ getYumojiBuilderCategoryList }) => {
@@ -185,7 +179,13 @@ const YumojiBuilderContainer = () => {
 
   if (state.bodySelected) {
     return (
-      <YumojiBuilder state={state} dispatch={dispatch} onBackPressed={onBackPressed} updateAvatar={updateAvatar} />
+      <YumojiBuilder
+        state={state}
+        dispatch={dispatch}
+        onBackPressed={onBackPressed}
+        heading={heading}
+        updateAvatar={updateAvatar}
+      />
     );
   }
 
@@ -193,8 +193,8 @@ const YumojiBuilderContainer = () => {
     <SelectBody
       onContinue={handleBodySelected}
       bodyType={state.bodyType}
+      heading={heading}
       onPressExitButton={onPressExitButton}
-      hasYumoji={hasYumoji}
     />
   );
 };
