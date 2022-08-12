@@ -1,4 +1,4 @@
-import React, { FC, memo } from "react";
+import React, { FC, memo, useCallback } from "react";
 import { View, StyleSheet } from "react-native";
 import { Colours, Style } from "@styles";
 import { navigateToYumojiBuilder } from "../../navigation/navigateToYumojiBuilder";
@@ -17,26 +17,30 @@ const YUCOIN_WIDTH = Style.adjust(48);
 
 const PROMPT_WIDTH = yumojiWrapperWidth - Style.adjust(30);
 
-export const CreateYumojiPrompt: FC<Props> = memo(({ buttonText, heading, text }) => (
-  <View style={styles.wrapper}>
-    <FastImage style={styles.yucoinImage} source={YUCOIN_IMAGE} />
-    <View style={styles.contentWrapper}>
-      <TextTemplate textAlign="center" type="h3">
-        {heading}
-      </TextTemplate>
-      <TextTemplate textAlign="center" type="l1b">
-        {text}
-      </TextTemplate>
-      <Button
-        height={BUTTON_HEIGHT}
-        size="Fill"
-        label={buttonText}
-        onPress={navigateToYumojiBuilder}
-        wrapperStyle={styles.buttonWrapper}
-      />
+export const CreateYumojiPrompt: FC<Props> = memo(({ buttonText, heading, text }) => {
+  const createYumoji = useCallback(() => navigateToYumojiBuilder({}), []);
+
+  return (
+    <View style={styles.wrapper}>
+      <FastImage style={styles.yucoinImage} source={YUCOIN_IMAGE} />
+      <View style={styles.contentWrapper}>
+        <TextTemplate textAlign="center" type="h3">
+          {heading}
+        </TextTemplate>
+        <TextTemplate textAlign="center" type="l1b">
+          {text}
+        </TextTemplate>
+        <Button
+          height={BUTTON_HEIGHT}
+          size="Fill"
+          label={buttonText}
+          onPress={createYumoji}
+          wrapperStyle={styles.buttonWrapper}
+        />
+      </View>
     </View>
-  </View>
-));
+  );
+});
 
 const styles = StyleSheet.create({
   wrapper: {
