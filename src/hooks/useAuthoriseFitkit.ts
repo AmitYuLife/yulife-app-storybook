@@ -10,13 +10,7 @@ import { buildFitKitPermissions } from "@services/fitkit/fitkit.permissions";
 // we can move to env if we have different variants, for now keep as constant since this is the only variant
 const FAQ_LINK = "https://faq.yulife.com/en/articles/2813117-connecting-health-apps-to-yulife";
 
-export function useAuthoriseFitkit({
-  passiveCyclingEnabled,
-  authorise,
-}: {
-  passiveCyclingEnabled: boolean;
-  authorise: (value: FitKitAuthOptions) => Promise<boolean>;
-}) {
+export function useAuthoriseFitkit({ authorise }: { authorise: (value: FitKitAuthOptions) => Promise<boolean> }) {
   const [fitkitPermission, setFitkitPermission] = useState("");
   const [isIosMotionAuthorised, setIsIosMotionAuthorised] = useState(false);
 
@@ -60,7 +54,7 @@ export function useAuthoriseFitkit({
           await Storage.fitkit.setFitkitPermission(Storage.fitkit.REQUESTED);
           delayedSetFitkitPermission(Storage.fitkit.REQUESTED);
 
-          return await authorise(buildFitKitPermissions(passiveCyclingEnabled));
+          return await authorise(buildFitKitPermissions());
         }
 
         handleOpenWebView({ uri: FAQ_LINK, title: "Help" });
@@ -69,7 +63,7 @@ export function useAuthoriseFitkit({
       }
     } else {
       try {
-        return await authorise({ ...buildFitKitPermissions(passiveCyclingEnabled), platform });
+        return await authorise({ ...buildFitKitPermissions(), platform });
       } catch (e) {
         Logger.error(e, { file: "daily-steps-content", platform: "android" });
       }

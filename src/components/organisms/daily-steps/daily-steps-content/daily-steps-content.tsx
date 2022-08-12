@@ -13,14 +13,11 @@ import { Navigation } from "react-native-navigation";
 import { isSamsung } from "@utils";
 import { Platform } from "react-native";
 import { FitKitHealthTrackingPlatform } from "@services/fitkit/fitkit.service";
-import { getUserFeatures } from "@redux/user/user.selectors";
 
 const _DailyStepsContent = () => {
   const { authorise, loading: fitkitLoading, authorised, available } = useContext(FitkitContext);
-  const features = useSelector(getUserFeatures);
   const { isIosMotionAuthorised, fitkitPermission, setFitkitPermission, handleAuthoriseFitkit } = useAuthoriseFitkit({
     authorise,
-    passiveCyclingEnabled: features.passiveCyclingEnabled,
   });
   const dailyStepsIsFetching = useSelector(getDailyStepsIsFetching);
 

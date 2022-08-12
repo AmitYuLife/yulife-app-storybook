@@ -23,7 +23,6 @@ import { ACTIVITY_FEED } from "@ids";
 import { useSelector } from "react-redux";
 import { getHasNotification } from "@redux/levels/levels.selectors";
 import { requestAndroidSystemPermission } from "@services/fitkit/fitkit.system-permissions";
-import { getUserFeatures } from "@redux/user/user.selectors";
 import { isSamsung } from "@utils/device";
 import RNFitKit from "@yu-life/react-native-fitkit";
 import { FitKitTypes } from "@services/fitkit/fitkit.service";
@@ -59,7 +58,6 @@ const ActivityFeed = ({
   const questionMarkRef = useRef<View>();
   const { authorise, authoriseFitKitTypes } = useFitKit();
   const hasNotification = useSelector(getHasNotification);
-  const features = useSelector(getUserFeatures);
 
   const checkCyclingPermissions = useCallback(async () => {
     const [cyclingAuthorised, isGranted] = await Promise.all([
@@ -85,7 +83,7 @@ const ActivityFeed = ({
         text: confirmLabel,
         onPress: async () => {
           const isAuthorise = await authorise({
-            ...buildFitKitPermissions(features.passiveCyclingEnabled),
+            ...buildFitKitPermissions(),
             platform: "GoogleFit",
           });
           await checkCyclingPermissions();
@@ -145,40 +143,20 @@ const ActivityFeed = ({
       return false;
     }
 
-    if (!features.passiveCyclingEnabled) {
-      return false;
-    }
-
     if (!googleFitCyclingPermissionGranted) {
       return false;
     }
 
     return locationPermissionsGranted === false;
-  }, [
-    googleFitIsAuthorised,
-    id,
-    features.passiveCyclingEnabled,
-    locationPermissionsGranted,
-    googleFitCyclingPermissionGranted,
-  ]);
+  }, [googleFitIsAuthorised, id, locationPermissionsGranted, googleFitCyclingPermissionGranted]);
 
   const showGoogleFitPermissionToast = useMemo(() => {
     if (Platform.OS === "ios" || !googleFitIsAuthorised || id !== "core-activities") {
       return false;
     }
 
-    if (!features.passiveCyclingEnabled) {
-      return false;
-    }
-
     return googleFitCyclingPermissionGranted === false;
-  }, [
-    googleFitIsAuthorised,
-    id,
-    features.passiveCyclingEnabled,
-    locationPermissionsGranted,
-    googleFitCyclingPermissionGranted,
-  ]);
+  }, [googleFitIsAuthorised, id, locationPermissionsGranted, googleFitCyclingPermissionGranted]);
 
   const onTakeChallengePress = useCallback(() => {
     handleNavigateToQuestsTab();

@@ -16,12 +16,8 @@ export const AndroidSystemPermissionsConfig = new Map(
     : [[FitKitTypes.Types.Biking, FitKitAndroidSystemPermission.location]]
 );
 
-export const buildFitKitPermissions = (cycling: boolean): FitKitAuthOptions => {
-  const read = [FitKitTypes.Types.MindfulSession, FitKitTypes.Types.StepCount];
-
-  if (cycling) {
-    return { read: [...read, FitKitTypes.Types.Biking] };
-  }
+export const buildFitKitPermissions = (): FitKitAuthOptions => {
+  const read = [FitKitTypes.Types.MindfulSession, FitKitTypes.Types.StepCount, FitKitTypes.Types.Biking];
 
   return { read };
 };

@@ -12,8 +12,6 @@ import { useFitKit } from "@services/fitkit/fitkit.hooks";
 import { isSamsung } from "@utils";
 import { FitKitHealthTrackingPlatform } from "@yu-life/react-native-fitkit";
 import FitKitPermissions from "@services/fitkit/fitkit.permissions";
-import { useSelector } from "react-redux";
-import { getUserFeatures } from "@redux/user/user.selectors";
 import { SettingsPermissions } from "@services/fitkit/permissions.helpers";
 import { FitKitType } from "@graphql/_core/schema/globalTypes";
 import { t } from "@locale";
@@ -60,9 +58,8 @@ const PermissionsScreen = ({
   }, []);
 
   const { authoriseFitKitTypes, authorise } = useFitKit();
-  const features = useSelector(getUserFeatures);
   const connectGoogleFit = useCallback(async () => {
-    await authorise({ ...FitKitPermissions(features.passiveCyclingEnabled), platform: "GoogleFit" });
+    await authorise({ ...FitKitPermissions(), platform: "GoogleFit" });
   }, []);
 
   const showSamsungHealth = useMemo(

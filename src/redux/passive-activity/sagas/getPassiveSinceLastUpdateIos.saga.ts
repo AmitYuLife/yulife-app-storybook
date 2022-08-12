@@ -15,7 +15,6 @@ export default function* getPassiveSinceLastUpdateIos(
   stepsLastUpdate: string,
   meditationLastUpdate: string,
   cyclingLastUpdate: string,
-  shouldQueryCycling: boolean,
   userFeatures: IUserStore["features"]
 ) {
   const endOfYesterday = moment().subtract(1, "day").endOf("day");
@@ -34,11 +33,11 @@ export default function* getPassiveSinceLastUpdateIos(
       )
     : returnEmptyResult();
 
-  const cycling: QueryFitKitByTypesResponse = shouldQueryCycling
+  const cycling: QueryFitKitByTypesResponse = cyclingLastUpdate
     ? yield call(queryAggregatedBiking, moment(cyclingLastUpdate).startOf("day"), endOfYesterday.clone(), userFeatures)
     : returnEmptyResult();
 
-  const aggregatedCycling: ChallengesPayload[] = shouldQueryCycling
+  const aggregatedCycling: ChallengesPayload[] = cyclingLastUpdate
     ? processResult(cycling, "Biking", moment(cyclingLastUpdate).startOf("day"), endOfYesterday)
     : [];
   const aggregatedMeditation: ChallengesPayload[] = meditationLastUpdate

@@ -1,12 +1,6 @@
 import { useMutation, useQuery } from "@apollo/react-hooks";
 import { GQL_QUERY_GET_ACTIVITY_HISTORY } from "@graphql/user";
-import {
-  processResult,
-  queryFitKitByTypes,
-  queryAggregatedBiking,
-  querySteps,
-  returnEmptyResult,
-} from "@services/fitkit/fitkit.helpers";
+import { processResult, queryFitKitByTypes, queryAggregatedBiking, querySteps } from "@services/fitkit/fitkit.helpers";
 import moment from "moment";
 import React, { useCallback, useState, useRef, FC } from "react";
 import { LargeList } from "react-native-largelist-v3";
@@ -87,11 +81,11 @@ const ActivityHistoryContainer: FC<Props> = ({
           [FitKitType.MindfulSession],
           features
         ),
-        features.passiveCyclingEnabled ? queryAggregatedBiking(start, end, features) : returnEmptyResult(),
+        queryAggregatedBiking(start, end, features),
       ]);
 
       const meditationResults = processResult(meditation, "MindfulSession", start, end);
-      const cyclingResults = features.passiveCyclingEnabled ? processResult(cycling, "Biking", start, end) : [];
+      const cyclingResults = processResult(cycling, "Biking", start, end);
       const payload = [...steps.results, ...meditationResults, ...cyclingResults];
 
       if (payload.length) {
