@@ -1,7 +1,6 @@
-module.exports = {
-  presets: ["module:metro-react-native-babel-preset"],
-  sourceMaps: "inline",
-  plugins: [
+module.exports = (api) => {
+  const babelEnv = api.env();
+  const plugins = [
     [
       "module-resolver",
       {
@@ -31,5 +30,15 @@ module.exports = {
       },
     ],
     "@babel/plugin-proposal-unicode-property-regex",
-  ],
+  ];
+
+  if (babelEnv === "uat" || babelEnv === "production") {
+    plugins.push(["transform-remove-console"]);
+  }
+
+  return {
+    presets: ["module:metro-react-native-babel-preset"],
+    sourceMaps: "inline",
+    plugins,
+  };
 };
