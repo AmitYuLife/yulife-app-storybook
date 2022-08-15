@@ -569,7 +569,6 @@ export const USER_ONBOARDING_44 = {
         performedSteps: {
             personalLifeIntro: true,
             newYumojiBuilder: true,
-            yuScreenOnboarding: true
         },
     }
 } as IDatabaseItem
@@ -585,7 +584,6 @@ export const USER_ONBOARDING_45 = {
         performedSteps: {
             personalLifeIntro: true,
             newYumojiBuilder: true,
-            yuScreenOnboarding: true
         },
     }
 } as IDatabaseItem

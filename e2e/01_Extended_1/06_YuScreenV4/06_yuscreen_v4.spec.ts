@@ -20,7 +20,7 @@ Feature("I am able to use the yuscreen, create, and edit an Yumoji", async () =>
 
     Scenario("I can create my Yumoji on new Yuscreen V4 and navigate to products via slots and carousel", scenario.start, async () => {
         Given("I login as a user", given.logInAndGoToTab("yu", CUSTOMER_44, AUTH_44), async () => {
-            Then("I should be on the YuScreen V4", then.onYuscreenV4(CUSTOMER_44, "dentalAndPli", "5"))
+            helper.ONBOARDING_YUSCREEN(CUSTOMER_44, "dentalAndPli", "5")
             helper.CREATE_DEFAULT_YUMOJI(300);
             helper.YUCOIN_POWER(CUSTOMER_44, "5")
             helper.CORRECT_PRODUCT_SLOT_BACKGROUND("0 product live")
