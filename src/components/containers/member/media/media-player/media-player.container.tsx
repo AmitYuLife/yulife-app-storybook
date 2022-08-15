@@ -30,10 +30,7 @@ import { GenericModal } from "@components/modals";
 import { getChallengeIsActive } from "@redux/levels/levels.selectors";
 import Logger from "@services/logging/logger";
 import { GQL_MUTATION_UPSERT_DAILY_PASSIVES } from "@graphql/challenges/upsertDailyPassives.gql";
-import { PassiveChallengeType } from "@graphql/_core/schema/globalTypes";
-import moment from "moment";
-import { getDailyMeditation } from "@redux/daily-meditation/daily-meditation.selectors";
-import { updateDailyMeditation } from "@redux/daily-meditation/daily-meditation.actions";
+import { updateInAppMeditation } from "@redux/daily-meditation/daily-meditation.actions";
 
 interface IVideo extends Media {
   reward: number;
@@ -50,7 +47,6 @@ const MediaPlayerContainer = ({ componentId, video, levelSlotId }: IProps) => {
   const [showModal, setShowModal] = useState(false);
   const [showError, setShowError] = useState(false);
   const challengeIsActive = useSelector(getChallengeIsActive);
-  const dailyMeditation = useSelector(getDailyMeditation);
   const dispatch = useDispatch();
   const [createQuestMapLevelChallengeMutation]: CreateQuestMapLevelChallengeMutationTuple = useMutation(
     GQL_MUTATION_CREATE_QUEST_MAP_LEVEL_CHALLENGE
@@ -101,19 +97,7 @@ const MediaPlayerContainer = ({ componentId, video, levelSlotId }: IProps) => {
     });
 
     dispatch(challengeEndSuccessAction({ ...data?.updateQuestMapLevelChallenge?.challenge }));
-    const { data: dailyMeditationPassive } = await upsertDailyPassives({
-      variables: {
-        payload: [
-          {
-            value: dailyMeditation + video.duration,
-            endDateTime: moment().format(),
-            startDateTime: moment().startOf("day").format(),
-            type: PassiveChallengeType.MEDITATION,
-          },
-        ],
-      },
-    });
-    dispatch(updateDailyMeditation(dailyMeditationPassive?.upsertDailyPassives.challenges[0]));
+    dispatch(updateInAppMeditation(video.duration));
 
     await Navigation.popTo(ROUTES.quests);
     Logger.logMixpanelEvent("meditopia_challenge_end", { levelSlotId, duration: video.duration });

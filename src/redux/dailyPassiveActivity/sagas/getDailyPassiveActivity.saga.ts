@@ -1,6 +1,6 @@
 import moment, { Moment } from "moment";
 import { all, call, select, spawn, delay, put } from "redux-saga/effects";
-import { ChallengesPayload, FitKitType } from "@graphql/_core/schema/globalTypes";
+import { ChallengesPayload, FitKitType, PassiveChallengeType } from "@graphql/_core/schema/globalTypes";
 import {
   fitkitTypeToGqlType,
   queryFitKitByTypes,
@@ -19,6 +19,7 @@ import { totalCoinsUpdated } from "@redux/coins/coins.actions";
 import { getToken } from "@services/storage";
 import { Unpacked } from "@utils";
 import RNFitKit, { FitKitTypes } from "@yu-life/react-native-fitkit";
+import { getInAppDailyMeditation } from "@redux/daily-meditation/daily-meditation.selectors";
 
 export default function* getDailyPassiveActivity(dataPayload: { payload: string; type: string }) {
   const { payload: appState, type } = dataPayload || {};
@@ -65,7 +66,8 @@ export default function* getDailyPassiveActivity(dataPayload: { payload: string;
     const startTime = moment().startOf("day");
     const endTime = moment().endOf("day");
 
-    const meditation: QueryFitKitByTypesResponse = !meditationPermissionGranted
+    const inAppDailyMeditation: ReturnType<typeof getInAppDailyMeditation> = yield select(getInAppDailyMeditation);
+    const fitkitMeditation: QueryFitKitByTypesResponse = !meditationPermissionGranted
       ? null
       : yield call(queryFitKitByTypes, startTime.format(), endTime.format(), [FitKitType.MindfulSession], userFeatures);
 
@@ -74,6 +76,8 @@ export default function* getDailyPassiveActivity(dataPayload: { payload: string;
       shouldQueryCycling = yield call(PermissionsAndroid.check, "android.permission.ACCESS_FINE_LOCATION") &&
         cyclingPermissionGranted;
     }
+
+    const meditation = getMeditation(inAppDailyMeditation, fitkitMeditation);
 
     const cycling: QueryFitKitByTypesResponse = !shouldQueryCycling
       ? null
@@ -148,6 +152,38 @@ const processResult = (response: QueryFitKitByTypesResponse, startTime: Moment, 
   }
 
   return sampleDataToAggregatedData(startTime.clone().format(), endTime.clone().format(), response.results);
+};
+
+const getMeditation = (
+  inAppMeditation: number,
+  fitkitMeditation: QueryFitKitByTypesResponse
+): QueryFitKitByTypesResponse => {
+  const inAppMeditationResponse = {
+    value: inAppMeditation,
+    endDateTime: moment().format(),
+    startDateTime: moment().startOf("day").format(),
+    type: PassiveChallengeType.MEDITATION,
+  };
+
+  if (!fitkitMeditation && !inAppMeditation) {
+    return null;
+  }
+
+  if (!fitkitMeditation && inAppMeditation) {
+    return {
+      error: false,
+      results: [inAppMeditationResponse],
+    };
+  }
+
+  if (fitkitMeditation && !inAppMeditation) {
+    return fitkitMeditation;
+  }
+
+  return {
+    error: false,
+    results: [...fitkitMeditation.results, inAppMeditationResponse],
+  };
 };
 
 const getEmptyResults = (startTime: Moment, endTime: Moment, type: string): ChallengesPayload[] => {
