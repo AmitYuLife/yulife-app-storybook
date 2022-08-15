@@ -18,7 +18,6 @@ export default function* getPassiveSinceLastUpdateAndroid(
   stepsLastUpdate: string,
   meditationLastUpdate: string,
   cyclingLastUpdate: string,
-  shouldQueryCycling: boolean,
   userFeatures: IUserStore["features"]
 ) {
   const endOfYesterday = moment().subtract(1, "day").endOf("day");
@@ -50,7 +49,7 @@ export default function* getPassiveSinceLastUpdateAndroid(
   }
 
   const fineLocationGranted: boolean = yield call(PermissionsAndroid.check, "android.permission.ACCESS_FINE_LOCATION");
-  const queryCycling = shouldQueryCycling && fineLocationGranted && cyclingPermissionGranted;
+  const queryCycling = cyclingLastUpdate && fineLocationGranted && cyclingPermissionGranted;
   const stepsBlackListApps: string[] = yield select(getStepsBlackListApps);
 
   const [stepsAndMeditation, cycling]: QueryFitKitByTypesResponse[] = yield all([

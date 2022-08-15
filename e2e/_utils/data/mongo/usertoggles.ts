@@ -37,7 +37,6 @@ export const CUSTOMER_2_TOGGLES = {
             "statsShowCyclingGraphCard": true,
             "showSettings": true,
             "showNotifications": true,
-            "passiveCyclingEnabled": true,
             "showTodayEarningsScreen": true,
             "showGoals": true,
             "yuScreenV3": true,
@@ -883,7 +882,6 @@ export const CUSTOMER_40_TOGGLES = {
             "showStats": true,
             "showDuels": true,
             showCommunityGoals: true,
-            passiveCyclingEnabled: true,
         },
     }
 } as IDatabaseItem

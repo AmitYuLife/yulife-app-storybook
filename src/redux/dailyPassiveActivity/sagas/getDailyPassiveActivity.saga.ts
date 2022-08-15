@@ -69,13 +69,13 @@ export default function* getDailyPassiveActivity(dataPayload: { payload: string;
       ? null
       : yield call(queryFitKitByTypes, startTime.format(), endTime.format(), [FitKitType.MindfulSession], userFeatures);
 
-    let passiveCyclingEnabled = userFeatures.passiveCyclingEnabled;
-    if (passiveCyclingEnabled && Platform.OS === "android") {
-      passiveCyclingEnabled = yield call(PermissionsAndroid.check, "android.permission.ACCESS_FINE_LOCATION") &&
+    let shouldQueryCycling = true;
+    if (Platform.OS === "android") {
+      shouldQueryCycling = yield call(PermissionsAndroid.check, "android.permission.ACCESS_FINE_LOCATION") &&
         cyclingPermissionGranted;
     }
 
-    const cycling: QueryFitKitByTypesResponse = !passiveCyclingEnabled
+    const cycling: QueryFitKitByTypesResponse = !shouldQueryCycling
       ? null
       : yield call(queryAggregatedBiking, startTime, endTime, userFeatures);
 
@@ -83,7 +83,7 @@ export default function* getDailyPassiveActivity(dataPayload: { payload: string;
       return;
     }
 
-    const cyclingResults: ChallengesPayload[] = !passiveCyclingEnabled
+    const cyclingResults: ChallengesPayload[] = !shouldQueryCycling
       ? []
       : processResult(cycling, startTime, endTime, "Biking");
 

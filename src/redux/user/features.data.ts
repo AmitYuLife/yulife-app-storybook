@@ -45,7 +45,6 @@ export const features = [
   "showReferrals",
   "showBuffs",
   "useActiveChallengesService",
-  "passiveCyclingEnabled",
   "waitForStepsSync",
   "limitStepsLastUpdateEnabled",
   "enableBikingHand",

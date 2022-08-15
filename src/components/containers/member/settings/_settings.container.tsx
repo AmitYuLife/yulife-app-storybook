@@ -128,7 +128,7 @@ function SettingsContainer({ componentId }: IOwnProps) {
   const gameSettings = {
     name: "gameSettings",
     title: "Game settings",
-    isVisible: features.passiveCyclingEnabled,
+    isVisible: true,
     items: [
       {
         title: t("screens.permissions.title"),

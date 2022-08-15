@@ -44,7 +44,7 @@ const TodayEarningsContainer = ({ componentId }: IProps) => {
       });
     }
 
-    if (features.passiveCyclingEnabled && Platform.OS === "ios") {
+    if (Platform.OS === "ios") {
       const iosCyclingPermissionShown = await AsyncStorage.getItem(RN_FIT_KIT_IOS_CYCLING_PERMISSIONS_SHOWN);
       if (!iosCyclingPermissionShown) {
         await authoriseFitKitTypes([FitKitType.Cycling], "AppleHealth", false);
@@ -53,7 +53,7 @@ const TodayEarningsContainer = ({ componentId }: IProps) => {
     }
 
     return googleFitAuthorised;
-  }, [authoriseFitKitTypes, features.passiveCyclingEnabled]);
+  }, [authoriseFitKitTypes]);
 
   const fetchData = useCallback(async () => {
     await upsertDailyPassives({

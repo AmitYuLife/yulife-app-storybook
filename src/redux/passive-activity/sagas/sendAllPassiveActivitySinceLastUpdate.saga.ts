@@ -45,15 +45,10 @@ export default function* sendPassiveActivity(): any {
     const isMeditationLastUpdateYesterday = moment(meditationLastUpdate).startOf("day").isSameOrAfter(yesterdayMoment);
     const isCyclingLastUpdateYesterday = moment(cyclingLastUpdate).startOf("day").isSameOrAfter(yesterdayMoment);
 
-    if (
-      isStepLastUpdateYesterday &&
-      isMeditationLastUpdateYesterday &&
-      (!userFeatures.passiveCyclingEnabled || isCyclingLastUpdateYesterday)
-    ) {
+    if (isStepLastUpdateYesterday && isMeditationLastUpdateYesterday && isCyclingLastUpdateYesterday) {
       return;
     }
 
-    const shouldQueryCycling = cyclingLastUpdate && userFeatures.passiveCyclingEnabled;
     const endOfYesterday = moment().subtract(1, "day").endOf("day");
 
     let allResults: ChallengesPayload[] = [];
@@ -63,7 +58,6 @@ export default function* sendPassiveActivity(): any {
         stepsLastUpdate,
         meditationLastUpdate,
         cyclingLastUpdate,
-        shouldQueryCycling,
         userFeatures
       );
     } else {
@@ -72,7 +66,6 @@ export default function* sendPassiveActivity(): any {
         stepsLastUpdate,
         meditationLastUpdate,
         cyclingLastUpdate,
-        shouldQueryCycling,
         userFeatures
       );
     }

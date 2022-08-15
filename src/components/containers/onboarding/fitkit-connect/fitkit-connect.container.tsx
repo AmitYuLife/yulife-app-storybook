@@ -8,7 +8,6 @@ import { handleLinkPress } from "@services/app-link";
 import Storage from "@services/storage";
 import { useFitKit } from "@services/fitkit/fitkit.hooks";
 import { FitKitHealthTrackingPlatform } from "@services/fitkit/fitkit.service";
-import { getUserFeatures } from "@redux/user/user.selectors";
 import region from "@services/region";
 
 // TODO find where these props actually come from in RNN types
@@ -33,7 +32,6 @@ const FitKitConnectContainer: React.FC<Props> = (props) => {
   const { authorise, authorised, loading, available } = useFitKit();
   const dispatch = useDispatch();
   const copy = useSelector(getFitKitConnectCopy);
-  const features = useSelector(getUserFeatures);
 
   const handleConnect = useCallback(
     async (platform: FitKitHealthTrackingPlatform) => {
@@ -43,7 +41,7 @@ const FitKitConnectContainer: React.FC<Props> = (props) => {
 
       const authorizedResult = dailyStepScreenHandleAuthorised
         ? await dailyStepScreenHandleAuthorised(platform)
-        : await authorise({ ...FitKitPermissions(features.passiveCyclingEnabled), platform });
+        : await authorise({ ...FitKitPermissions(), platform });
 
       setIsConnecting(false);
       if (authorizedResult) {
