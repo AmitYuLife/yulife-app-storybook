@@ -120,7 +120,7 @@ export const ONBOARDING_YUSCREEN = async (customer:any,packType:string, yuCoinPo
     const buttonText = "Check out my power"
     const yuMojiBuilder = "Pick a body type"
 
-    Then("I should see the onboarding Yuscreen", then.onboardingYuscreenV4(yuCoinPower))
+    Then("I should see the onboarding Yuscreen", then.onboardingYuscreenV4(yuCoinPower, packType))
     When(`I tap ${buttonText}`, when.tapText(buttonText), async () => {
         Then(`I should see ${yuMojiBuilder}`, then.textVisible(yuMojiBuilder))
         When("I close this screen", when.tapIDAtIndex(BUTTON_CLOSE, 0), async () => {
