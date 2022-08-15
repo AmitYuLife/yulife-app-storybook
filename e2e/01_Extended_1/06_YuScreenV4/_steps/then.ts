@@ -137,7 +137,7 @@ export const paymentOverdueInfo = async () => {
 
 export const onboardingYuscreenV4 = (yuCoinPower:string)=> async()=>{
     const WellbeingProduct = "Wellbeing Access"
-    const noProductText = "More insurance available"
+    const noProductText = "More protection coming soon"
     const protectionTitle = "Protection, powered up!"
     const protectionOptionText = "Earn rewards faster with increased YuCoin power"
     const buttonText = "Check out my power"
