@@ -54,7 +54,7 @@ const RewardDetailsContainer: FC<IProps> = ({ rewardId }) => {
   }, []);
 
   const [redeemReward, { loading }]: RedeemRewardMutationTuple = useMutation(GQL_MUTATION_REDEEM_REWARD);
-  const { data, loading: loadingReward } = useQuery<GetRewardItemDetails>(GQL_QUERY_GET_REWARD_ITEM_DETAILS, {
+  const { data, loading: loadingReward, error } = useQuery<GetRewardItemDetails>(GQL_QUERY_GET_REWARD_ITEM_DETAILS, {
     variables: { id: rewardId },
     fetchPolicy: "no-cache",
   });
@@ -73,7 +73,7 @@ const RewardDetailsContainer: FC<IProps> = ({ rewardId }) => {
   }, []);
 
   useEffect(() => {
-    if (loadingReward || !data.getRewardItemDetails) {
+    if (loadingReward || !data?.getRewardItemDetails) {
       return;
     }
 
@@ -230,13 +230,17 @@ const RewardDetailsContainer: FC<IProps> = ({ rewardId }) => {
     [data, redeemRewardLink, redeemRewardVoucher, totalCoins]
   );
 
-  if (loadingReward) {
+  if (loadingReward || error) {
+    if (error) {
+      handleBackPress();
+    }
+
     return <RewardDetailsLoadingScreen handleBack={handleBackPress} />;
   }
 
   return (
     <RewardDetailsScreen
-      rewardItem={data.getRewardItemDetails}
+      rewardItem={data?.getRewardItemDetails}
       isLoading={loading}
       onPressTopBar={handleBackPress}
       onSubmit={handleRewardPurchase}
