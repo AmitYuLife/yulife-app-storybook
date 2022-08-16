@@ -4,7 +4,7 @@ import * as given from "./_steps/given"
 import * as when from "./_steps/when"
 import * as then from "./_steps/then"
 import { CUSTOMER_22, AUTH_22, CUSTOMER_23, AUTH_23, CUSTOMER_24, AUTH_24, CUSTOMER_39, AUTH_39, CUSTOMER_41, AUTH_41 } from "@data";
-import { LEVEL_CHALLENGE_BUTTON, NAV_BAR, QUESTS_SCREEN, VIEW_TOP_RIGHT_COIN_COUNTER, YUCOIN, QUESTS_SCREEN_YUNIVERSAL, CHALLENGE_TILE, STEPS_COUNT, DAILY_STEPS_SCREEN, ACTIVITY_FEED } from "@ids";
+import { LEVEL_CHALLENGE_BUTTON, NAV_BAR, QUESTS_SCREEN, VIEW_TOP_RIGHT_COIN_COUNTER, YUCOIN, QUESTS_SCREEN_YUNIVERSAL, CHALLENGE_TILE, STEPS_COUNT, DAILY_STEPS_SCREEN, ACTIVITY_FEED, YUCOIN_POWER } from "@ids";
 
 
 Feature("As a user I can complete challenges across multiple worlds", async () => {
@@ -124,7 +124,7 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
     }) 
     
 
-    Scenario("When I get to level 200 my earn rate should be doubled", scenario.start, async()=>{
+    Scenario("When I get to level 200 my earn rate should increase for a surge", scenario.start, async()=>{
         Given("I login as a user on level 199", given.logInAndGoToTab("quests", CUSTOMER_24, AUTH_24), async () => {
             Then("I should be on the mountain fourth world", then.idVisible(QUESTS_SCREEN(3)))
             Then("I should see level 199", then.idVisible(LEVEL_CHALLENGE_BUTTON(199)))
@@ -147,10 +147,10 @@ Feature("As a user I can complete challenges across multiple worlds", async () =
                                         Then("I should be on the today screen", then.idVisible(DAILY_STEPS_SCREEN))
                                         Then("I should see my Yucoin total for today", then.textVisible("210 YuCoin today", 2000))
                                         When("I tap the YuCoin image", when.tapID(YUCOIN, 2000), async () => {
+                                            Then("I should see 10 Yu coin power", then.idVisible(YUCOIN_POWER(10)))
                                             When("I tap on I for activity feed info", when.tapID(ACTIVITY_FEED, 1000), async () => {
                                                 Then("I should see 10 YuCoin for 2000 steps", then.textVisible("10 YuCoin for 2000 steps"))
                                                 Then("I should NOT see 20 YuCoin for 1.6 km cycling", then.textNotVisible("20 YuCoin for 1.6 km cycling"))
-                                                Then("I should NOT see 10 YuCoin for 1.6 km cycling", then.textNotVisible("10 YuCoin for 1.6 km cycling"))
                                             })
                                         })
                                     })

@@ -43,7 +43,7 @@ Feature("PLI HAPPY", async()=>{
                         helper.REVIEW_SCREEN()
                         helper.COVER_PRICE_CHECK("70")
                         helper.COVER_STYLE_SELECTION("rare", "62%", "£20.94","£1,291.67")
-                        helper.CHECKOUT(true)
+                        helper.CHECKOUT(true, "Rare")
                         helper.REVIEW_YUSCREEN()
                     })
                 })
@@ -51,7 +51,8 @@ Feature("PLI HAPPY", async()=>{
         })
     }) 
 
-    Scenario("As pregnant female with all conditions but under control, I should be able to purchase PLI", scenario.start, async()=>{
+    Scenario
+    ("As pregnant female with all conditions but under control, I should be able to purchase PLI", scenario.start, async()=>{
         Given("I login as a user with Covea FIB enabled", given.loginToYuScreen(false, CUSTOMER_37, AUTH_37), async()=>{
             Then("I should be on the yuscreen", then.onYuscreenV3(CUSTOMER_37))
             When("I create the default yumoji", when.createDefaultYumoji, async () => {
@@ -101,7 +102,7 @@ Feature("PLI HAPPY", async()=>{
                         helper.REVIEW_SCREEN()
                         helper.COVER_SELECT_PERCENTAGE("50%")
                         helper.COVER_STYLE_SELECTION("rare", "50%", "£12.59", "£1,041.67")
-                        helper.CHECKOUT(true)
+                        helper.CHECKOUT(true, "Rare")
                         helper.REVIEW_YUSCREEN()
                     })
                 })
@@ -109,7 +110,8 @@ Feature("PLI HAPPY", async()=>{
         })
     })
 
-    Scenario("As a healthy 33y/o, high earning male user that smokes in moderation and has existing <£20m PLI, I should be able to purchase PLI", scenario.start, async()=>{
+    Scenario
+    ("As a healthy 33y/o, high earning male user that smokes in moderation and has existing <£20m PLI, I should be able to purchase PLI", scenario.start, async()=>{
         Given("I login as a user with Covea FIB enabled", given.loginToYuScreen(false, CUSTOMER_37, AUTH_37), async()=>{
             Then("I should be on the yuscreen", then.onYuscreenV3(CUSTOMER_37))
             When("I create the default yumoji", when.createDefaultYumoji, async () => {
@@ -148,14 +150,15 @@ Feature("PLI HAPPY", async()=>{
                         helper.REVIEW_SCREEN()
                         helper.COVER_SELECT_PERCENTAGE("75%")
                         helper.MAXIMUM_SUM_ASSURED("common","£57.68","£3,875")
-                        helper.CHECKOUT(false)
+                        helper.CHECKOUT(false, "")
                     })
                 })
             })
         })
     })
 
-    Scenario("As a user who started a journey and reached the point of receiving a quote, when 60 days have passed since the last quote was generated, when I resume my journey, then I should start from the beginning.", scenario.start, async()=>{
+    Scenario
+    ("As a user who started a journey and reached the point of receiving a quote, when 60 days have passed since the last quote was generated, when I resume my journey, then I should start from the beginning.", scenario.start, async()=>{
         Given("I login as a user with Covea FIB enabled", given.loginToYuScreen(false,  CUSTOMER_PLI_2, AUTH_PLI_2), async()=>{
             Then("I should be on the yuscreen", then.onYuscreenV3(CUSTOMER_PLI_2))
             When("I create the default yumoji", when.createDefaultYumoji, async () => {
@@ -169,7 +172,8 @@ Feature("PLI HAPPY", async()=>{
         })
     })
 
-    Scenario("As a user who had a birthday after I started my journey, when I resume my journey, then I should start from the beginning.", scenario.start, async()=>{
+    Scenario
+    ("As a user who had a birthday after I started my journey, when I resume my journey, then I should start from the beginning.", scenario.start, async()=>{
         Given("I login as a user with Covea FIB enabled", given.loginToYuScreen(false,  CUSTOMER_PLI_3, AUTH_PLI_3), async()=>{
             Then("I should be on the yuscreen", then.onYuscreenV3(CUSTOMER_PLI_3))
             When("I create the default yumoji", when.createDefaultYumoji, async () => {
@@ -183,7 +187,8 @@ Feature("PLI HAPPY", async()=>{
         })
     })
 
-    Scenario("As a user who started the journey but has not reached the point of being given a quote, when I resume my journey after 30 days, then I should start from the beginning.", scenario.start, async()=>{
+    Scenario
+    ("As a user who started the journey but has not reached the point of being given a quote, when I resume my journey after 30 days, then I should start from the beginning.", scenario.start, async()=>{
         Given("I login as a user with Covea FIB enabled", given.loginToYuScreen(false,  CUSTOMER_PLI_4, AUTH_PLI_4), async()=>{
             Then("I should be on the yuscreen", then.onYuscreenV3(CUSTOMER_PLI_4))
             When("I create the default yumoji", when.createDefaultYumoji, async () => {

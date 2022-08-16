@@ -558,8 +558,10 @@ export const MAXIMUM_SUM_ASSURED = async (cover: coverLevel, mothprice: MonthlyC
     })
 }
 
-export const CHECKOUT = async ( isCovered: boolean) => {
-    const nextScreen = isCovered ? "We've got you covered." : "We’ll be in touch"
+export const CHECKOUT = async ( isCovered: boolean, cover: string) => {
+    const nextScreenTitle = isCovered ? "Item unlocked!\nYou've powered up your protection." : "We’ll be in touch"
+    const nextScreenBody = (nextScreenTitle == "Item unlocked!\nYou've powered up your protection.") ? `Congratulations, you've successully purchased ${cover} cover, your policy is now active.` : 
+    "Based on your answers we’ll need additional information. We’ll reach out shortly by email and text to let you know what to do next. No payment will be taken from you.\n\nIn the meantime, you are now covered by Accidental Death Benefit provided by your selected policy:"
 
     When("I add contact details", when.addContactDetails, async () => {
         Then("I should be on the checkout page", then.isOnScreen("Checkout"))
@@ -568,7 +570,8 @@ export const CHECKOUT = async ( isCovered: boolean) => {
             When("I add payment details", when.addPaymentDetails, async () => {
                 Then("I should be on the checkout page", then.isOnScreen("Checkout"))
                 When(`I tap Purchase cover`, when.tapText(`Purchase cover`), async () => {
-                    Then(`I should be on the ${nextScreen} screen`, then.isOnScreen(nextScreen))
+                    Then(`I should be on the ${nextScreenTitle} screen`, then.isOnScreen(nextScreenTitle))
+                    Then(`I should see the ${nextScreenBody}`, then.isOnScreen(nextScreenBody))
                 })
             })
         })
