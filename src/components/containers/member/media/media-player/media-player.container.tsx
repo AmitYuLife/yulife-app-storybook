@@ -133,6 +133,7 @@ const MediaPlayerContainer = ({ componentId, video, levelSlotId }: IProps) => {
         onLeftIconPress={onLeftIconPress}
         onRightIconPress={onRightIconPress}
         cancelChallenge={cancelChallenge}
+        startErrorMessage={t("createChallengeError")}
       />
       <Modal animationType="slide" visible={showModal} onRequestClose={() => setShowModal(false)}>
         <GenericModal

@@ -9,6 +9,7 @@ export enum ActionTypes {
   SET_BUFFERING = "SET_BUFFERING",
   SET_MUSIC_CONTROL_MOUNTED = "SET_MUSIC_CONTROL_MOUNTED",
   SET_SHOW_FOCUS_SCREEN = "SET_SHOW_FOCUS_SCREEN",
+  SET_START_ERROR_MESSAGE = "SET_START_ERROR_MESSAGE",
 }
 
 export interface IState {
@@ -21,6 +22,7 @@ export interface IState {
   isBuffering: boolean;
   isPaused: boolean;
   showFocusScreen: boolean;
+  startErrorMessage: string;
 }
 
 export interface IAction {
@@ -38,6 +40,7 @@ export const INITIAL_STATE: IState = {
   isBuffering: false,
   isPaused: true,
   showFocusScreen: false,
+  startErrorMessage: null,
 };
 
 export const setMusicControlInitialConfig = () => {
@@ -117,6 +120,13 @@ export const reducer = (state: IState, action: IAction): IState => {
       return {
         ...state,
         showFocusScreen: action.payload,
+      };
+    }
+
+    case ActionTypes.SET_START_ERROR_MESSAGE: {
+      return {
+        ...state,
+        startErrorMessage: action.payload,
       };
     }
   }

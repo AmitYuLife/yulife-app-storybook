@@ -14,6 +14,7 @@ export default {
     dismiss: "Dismiss",
     claim: "Claim",
   },
+  createChallengeError: "Sorry, there was a problem starting your challenge. \n Please try again!",
   screens: {
     weekly_quests: {
       title: "Weekly quests",
