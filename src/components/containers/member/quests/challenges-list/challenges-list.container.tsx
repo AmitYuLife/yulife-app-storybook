@@ -31,6 +31,7 @@ import {
 import { getUserFeatures } from "@redux/user/user.selectors";
 import { ExecutionResult } from "graphql";
 import { showYuModal } from "@navigation/root";
+import { t } from "@locale";
 
 interface IProps {
   componentId: string;
@@ -66,7 +67,7 @@ const ChallengesListContainer: FC<Props> = ({ level, levelName, yuniversalMap, c
   const name = useMemo(() => levelName || `level ${level}`, [level, levelName]);
 
   const setError = useCallback(() => {
-    setErrorState("Sorry, there was a problem starting your challenge. \n Please try again!");
+    setErrorState(t("createChallengeError"));
   }, []);
 
   const onDismissFitkitConnect = useCallback(() => {

@@ -16,6 +16,7 @@ interface IProps {
   onEnd: () => void;
   onError: () => void;
   cancelChallenge: (shouldNavigate: boolean) => void;
+  startErrorMessage?: string;
 }
 
 const MediaPlayerScreen = ({
@@ -26,9 +27,10 @@ const MediaPlayerScreen = ({
   onEnd,
   onError,
   cancelChallenge,
+  startErrorMessage,
 }: IProps) => {
-  const onStartMedia = useCallback(() => {
-    onStart(video.id);
+  const onStartMedia = useCallback(async () => {
+    await onStart(video.id);
   }, []);
 
   useBackHandler(() => {
@@ -53,6 +55,7 @@ const MediaPlayerScreen = ({
       onStart={onStartMedia}
       onEnd={onEnd}
       onError={onError}
+      startErrorMessage={startErrorMessage}
     />
   );
 };

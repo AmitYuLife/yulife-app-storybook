@@ -3,7 +3,7 @@ import Video from "react-native-video";
 import moment from "moment";
 import MusicControl, { Command } from "react-native-music-control";
 import { Animated, Image, StyleSheet, View, AppStateStatus } from "react-native";
-import { Loading } from "@atoms";
+import { Loading, TextTemplate } from "@atoms";
 import { Colours, Style } from "@styles";
 import {
   IState,
@@ -39,6 +39,7 @@ interface IProps {
   onError: () => void;
   onLeftIconPress: () => void;
   onRightIconPress: () => void;
+  startErrorMessage?: string;
   theme: "light" | "dark";
   yuCoin: number;
   stars: number;
@@ -61,6 +62,7 @@ const VideoPlayer = ({
   onStart,
   onLeftIconPress,
   onRightIconPress,
+  startErrorMessage,
   theme,
   shortDescription,
   yuCoin,
@@ -170,6 +172,7 @@ const VideoPlayer = ({
       reduxDispatch(logMixpanelEventActionCreator("video_player_button_start_pressed"));
     } catch (err) {
       Logger.error(err, { location: "video-player-handleStartButton" });
+      dispatch({ type: ActionTypes.SET_START_ERROR_MESSAGE, payload: startErrorMessage });
     } finally {
       dispatch({ type: ActionTypes.SET_LOADING, payload: false });
     }
@@ -288,6 +291,14 @@ const VideoPlayer = ({
         )}
       </PressableWithDelay>
 
+      {!state.startErrorMessage ? null : (
+        <View style={styles.error}>
+          <TextTemplate type="b2" textAlign="center" color={themeColour}>
+            {state.startErrorMessage}
+          </TextTemplate>
+        </View>
+      )}
+
       {state.musicControlMounted ? null : (
         <View style={styles.starSessionButton}>
           <Button label="Start session" onPress={handleStartButton} leftIcon={<PlayIcon />} />
@@ -395,6 +406,13 @@ const styles = StyleSheet.create({
   backgroundVideo: {
     ...StyleSheet.absoluteFillObject,
     height: "100%",
+  },
+  error: {
+    left: 0,
+    bottom: Style.SCALE_UP_AND_DOWN(86),
+    position: "absolute",
+    width: "100%",
+    paddingHorizontal: Style.adjust(20),
   },
 });
 
