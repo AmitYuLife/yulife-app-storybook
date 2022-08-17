@@ -7,6 +7,36 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.44.0] - 2022-08-17
+
+### Bugfixes
+
+- Bugfix ENG-2839: Pop to rewards list screen on rewards details error
+- Bugfix: Meditation not recording passive correctly
+- Bugfix ENG-2797: Update android JavaScriptCore
+
+### Tasks
+
+- Task GS-411: Show challenge creation error message in in-app meditation challenge
+- Task: Purge passive cycling toggle
+- Revert "Merge branch 'task/XSE-1303-yumoji-builder-changes' into 'develop'"
+- Task XSE-1303: Yumoji builder changes
+
+### Chores
+
+- Chore: Improve performance on prod by removing all console.\* calls
+- Chore: quests map context
+
+### Extra
+
+- Detox/fixes 16 8
+- detox:add one more test to User Onboarding
+- detox:overnight fixes of text
+- detox:adjust the text test due changes
+- Detox/fixes 10 08
+- Detox: turn off animation
+- detox/fixes_10_8
+
 ## [3.43.0] - 2022-08-10
 
 ### Features
