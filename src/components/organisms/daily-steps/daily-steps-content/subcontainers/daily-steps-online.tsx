@@ -58,10 +58,15 @@ export const DailyStepsOnline = memo(({ onReferralsButtonPress }: DailyStepsOnli
   );
 
   const [showChallengeButton, showReferralsButton] = useMemo(() => {
-    const showChallenge = isAvailable && availableForToday > 0 && !isShort;
-    const showReferrals = !showChallenge && features.showReferrals && !isShort;
+    const showChallenge = isAvailable && availableForToday > 0;
+    const showReferrals = !showChallenge && features.showReferrals;
+
+    if (isShort && events.length > 0) {
+      return [false, false];
+    }
+
     return [showChallenge, showReferrals];
-  }, [isAvailable, availableForToday, features]);
+  }, [isAvailable, availableForToday, features, events.length]);
 
   const challengeButtonLabel = useMemo(
     () => (hasNotification ? "Back to challenge" : `Take a challenge (${availableForToday} left)`),
