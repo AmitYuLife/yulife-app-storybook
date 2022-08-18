@@ -2,8 +2,8 @@ import React, { memo, useCallback, useEffect, useMemo, useReducer, useRef, useSt
 import Video from "react-native-video";
 import moment from "moment";
 import MusicControl, { Command } from "react-native-music-control";
-import { Animated, Image, StyleSheet, View, AppStateStatus } from "react-native";
-import { Loading, TextTemplate } from "@atoms";
+import { Animated, StyleSheet, View, AppStateStatus } from "react-native";
+import { Image, Loading, TextTemplate } from "@atoms";
 import { Colours, Style } from "@styles";
 import {
   IState,
@@ -23,8 +23,10 @@ import { DETOX_ENABLED } from "@services/socket";
 import Logger from "@services/logging/logger";
 import { useDispatch, useSelector } from "react-redux";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
-import { useAppState } from "@hooks";
+import { useAppState, useGetLottieJson } from "@hooks";
 import { getVideoPlayerIsActive } from "@redux/levels/levels.selectors";
+import { ContentItemLottie as GqlLottie } from "@graphql/_core/schema";
+import LottieView from "lottie-react-native";
 
 interface IProps {
   source: string;
@@ -34,6 +36,7 @@ interface IProps {
   shortDescription: string;
   thumbnail: string;
   logo: string;
+  videoLogo?: string;
   onStart: () => void;
   onEnd: () => void;
   onError: () => void;
@@ -43,6 +46,7 @@ interface IProps {
   theme: "light" | "dark";
   yuCoin: number;
   stars: number;
+  lottie?: GqlLottie;
 }
 
 const commonProps = {
@@ -57,6 +61,7 @@ const VideoPlayer = ({
   description,
   thumbnail,
   logo,
+  videoLogo,
   onEnd,
   onError,
   onStart,
@@ -67,13 +72,16 @@ const VideoPlayer = ({
   shortDescription,
   yuCoin,
   stars,
+  lottie,
 }: IProps) => {
   const [state, dispatch] = useReducer<React.Reducer<IState, IAction>>(reducer, INITIAL_STATE);
   const [appCurrentState, setAppCurrentState] = useState<AppStateStatus>("active");
   const opacity = useRef(new Animated.Value(1)).current;
+  const lottieRef = useRef<LottieView>();
   const themeColour = useMemo(() => (theme === "light" ? Colours.neutral.white : Colours.neutral.n800), [theme]);
   const reduxDispatch = useDispatch();
   const videoPlayerIsActive = useSelector(getVideoPlayerIsActive);
+  const { uri: lottieUri, loading: lottieUriLoading } = useGetLottieJson(lottie?.uri);
 
   const fadeIn = Animated.timing(opacity, {
     toValue: 1,
@@ -154,12 +162,21 @@ const VideoPlayer = ({
   }, []);
 
   const onButtonAction = useCallback(() => {
+    if (state.showFocusScreen) {
+      return;
+    }
+
     dispatch({ type: state.isPaused ? ActionTypes.PLAY_PLAYER : ActionTypes.PAUSE_PLAYER });
+
+    if (lottieUri) {
+      lottieRef?.current[state.isPaused ? "resume" : "pause"]();
+    }
+
     reduxDispatch(logMixpanelEventActionCreator("video_player_play_button_start_pressed"));
-  }, [state.isPaused, state.durationInSeconds]);
+  }, [state.isPaused, state.durationInSeconds, state.showFocusScreen]);
 
   const handleStartButton = useCallback(async () => {
-    dispatch({ type: ActionTypes.SET_LOADING, payload: true });
+    dispatch({ type: ActionTypes.SET_STARTING, payload: true });
     try {
       await onStart();
       MusicControl.setNowPlaying({
@@ -169,12 +186,16 @@ const VideoPlayer = ({
         duration: state.durationInSeconds,
       });
       dispatch({ type: ActionTypes.SET_MUSIC_CONTROL_MOUNTED });
+      if (lottieUri) {
+        lottieRef?.current?.play();
+      }
+
       reduxDispatch(logMixpanelEventActionCreator("video_player_button_start_pressed"));
     } catch (err) {
       Logger.error(err, { location: "video-player-handleStartButton" });
       dispatch({ type: ActionTypes.SET_START_ERROR_MESSAGE, payload: startErrorMessage });
     } finally {
-      dispatch({ type: ActionTypes.SET_LOADING, payload: false });
+      dispatch({ type: ActionTypes.SET_STARTING, payload: false });
     }
   }, [onStart, state.durationInSeconds]);
 
@@ -217,9 +238,9 @@ const VideoPlayer = ({
 
   return (
     <>
-      <Image source={{ uri: poster }} resizeMode="cover" style={styles.posterBackground} />
       <PressableWithDelay onPress={handleFocusScreen} style={styles.container}>
         <Video
+          audioOnly={lottieUri ? true : false}
           source={{
             uri: videoUrl,
             type: "mp4",
@@ -241,6 +262,8 @@ const VideoPlayer = ({
         />
         <GenericHeadingPad />
 
+        {!lottieUri ? null : <LottieView ref={lottieRef} resizeMode="cover" style={styles.lottie} source={lottieUri} />}
+
         {state.musicControlMounted ? null : (
           <View style={styles.videoDescription}>
             <VideoPlayerDescription
@@ -252,6 +275,12 @@ const VideoPlayer = ({
               logo={logo}
             />
           </View>
+        )}
+
+        {!state.musicControlMounted ? null : (
+          <Animated.View style={[styles.videoLogo, { opacity }]}>
+            <Image suppressLoadingUi={true} source={{ uri: videoLogo }} resizeMode="cover" width={Style.adjust(151)} />
+          </Animated.View>
         )}
 
         {!state.musicControlMounted ? null : (
@@ -301,10 +330,15 @@ const VideoPlayer = ({
 
       {state.musicControlMounted ? null : (
         <View style={styles.starSessionButton}>
-          <Button label="Start session" onPress={handleStartButton} leftIcon={<PlayIcon />} />
+          <Button
+            label="Start session"
+            onPress={handleStartButton}
+            leftIcon={<PlayIcon />}
+            isLoading={state.isStarting}
+          />
         </View>
       )}
-      {!state.loading ? null : <VideoPlayerLoading />}
+      {!state.loading && !lottieUriLoading ? null : <VideoPlayerLoading />}
 
       {!state.durationInSeconds ? null : (
         <Animated.View style={styles.topbarWrapper}>
@@ -323,13 +357,11 @@ const VideoPlayer = ({
 };
 
 const styles = StyleSheet.create({
-  posterBackground: {
-    width: "100%",
-    height: "100%",
-    position: "absolute",
-  },
   container: {
     flex: 1,
+  },
+  videoLogo: {
+    alignItems: "center",
   },
   progressBarContainer: {
     flexDirection: "row",
@@ -409,10 +441,14 @@ const styles = StyleSheet.create({
   },
   error: {
     left: 0,
-    bottom: Style.SCALE_UP_AND_DOWN(86),
+    bottom: Style.adjust(86),
     position: "absolute",
     width: "100%",
     paddingHorizontal: Style.adjust(20),
+  },
+  lottie: {
+    ...StyleSheet.absoluteFillObject,
+    height: "100%",
   },
 });
 

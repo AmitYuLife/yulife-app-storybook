@@ -23,7 +23,9 @@ const VideoPlayerDescription = ({ title, description, duration, stars, yuCoin, l
 
   return (
     <View style={styles.wrapper}>
-      <TextTemplate type="h3">{title}</TextTemplate>
+      <TextTemplate textAlign="center" type="h3">
+        {title}
+      </TextTemplate>
       <View style={styles.info}>
         <Image source={{ uri: logo }} width={16} height={16} />
         <View style={styles.subTitle}>

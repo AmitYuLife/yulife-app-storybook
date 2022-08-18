@@ -3,6 +3,8 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
+import { SduiActionType } from "./globalTypes";
+
 // ====================================================
 // GraphQL fragment: Media
 // ====================================================
@@ -27,6 +29,31 @@ export interface Media_logo {
   uri: string | null;
 }
 
+export interface Media_videoLogo {
+  id: string;
+  uri: string | null;
+}
+
+export interface Media_lottie_styles {
+  property: string;
+  value: string;
+}
+
+export interface Media_lottie_onAnimationEnd {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface Media_lottie {
+  id: string;
+  uri: string;
+  autoPlay: boolean;
+  loop: boolean;
+  styles: Media_lottie_styles[] | null;
+  onAnimationEnd: Media_lottie_onAnimationEnd | null;
+  aspectRatio: number | null;
+}
+
 export interface Media {
   id: string;
   title: string;
@@ -38,4 +65,6 @@ export interface Media {
   cover: Media_cover;
   thumbnail: Media_thumbnail;
   logo: Media_logo;
+  videoLogo: Media_videoLogo | null;
+  lottie: Media_lottie | null;
 }

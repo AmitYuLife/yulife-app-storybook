@@ -1,6 +1,10 @@
 import gql from "graphql-tag";
+import { GQL_FRAGMENT_CONTENT_ITEM_LOTTIE } from "./content.gql";
+import { GQL_FRAGMENT_SDUI_ACTION } from "./shared.gql";
 
 export const GQL_FRAGMENT_MEDIA = gql`
+  ${GQL_FRAGMENT_CONTENT_ITEM_LOTTIE}
+  ${GQL_FRAGMENT_SDUI_ACTION}
   fragment Media on Media {
     id
     title
@@ -23,6 +27,13 @@ export const GQL_FRAGMENT_MEDIA = gql`
     logo {
       id
       uri
+    }
+    videoLogo {
+      id
+      uri
+    }
+    lottie {
+      ...ContentItemLottie
     }
   }
 `;
