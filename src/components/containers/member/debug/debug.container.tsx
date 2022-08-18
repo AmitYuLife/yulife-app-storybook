@@ -1,23 +1,28 @@
 import { useMutation, useQuery } from "@apollo/react-hooks";
 import { GQL_QUERY_DEBUG_CODES, GQL_MUTATION_RESET_DATA, ResetDataMutationTuple } from "@graphql/debug";
-import * as React from "react";
+import React from "react";
 import { Alert } from "react-native";
 import { Navigation } from "react-native-navigation";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { sendTestPush } from "@redux/notifications/notifications.actions";
 import { getUserStart } from "@redux/user/user.actions";
 import { DebugScreen } from "@screens";
 import Logger from "@services/logging/logger";
 import { ROUTES } from "@navigation/constants";
+import { getUserFeatures } from "@redux/user/user.selectors";
+import { getYuScreen } from "@graphql/yuscreen/getYuScreen.gql";
+import { getYuScreenProductSlots } from "@graphql/yuscreen";
 
-interface IProps {
+interface Props {
   componentId: string;
 }
 
-type Props = IProps;
+const personalProducts = ["personal-products-reset-fib", "personal-products-reset-dental"];
 
 const DebugContainer: React.FC<Props> = (props) => {
   const dispatch = useDispatch();
+
+  const { yuScreenV4beta } = useSelector(getUserFeatures);
 
   const [resetData]: ResetDataMutationTuple = useMutation(GQL_MUTATION_RESET_DATA);
   const { data } = useQuery(GQL_QUERY_DEBUG_CODES);
@@ -35,6 +40,8 @@ const DebugContainer: React.FC<Props> = (props) => {
   const handleClose = () => {
     Navigation.popToRoot(props.componentId);
   };
+
+  const refreshPersonalProducts = yuScreenV4beta ? getYuScreen : getYuScreenProductSlots;
 
   const listData = list.map((code) => ({
     id: code,
@@ -81,6 +88,10 @@ const DebugContainer: React.FC<Props> = (props) => {
         await resetData({ variables: { code } });
         Alert.alert("Success");
         dispatch(getUserStart());
+
+        if (personalProducts.includes(code)) {
+          await refreshPersonalProducts();
+        }
       } catch (e) {
         Alert.alert("Fail");
       }
