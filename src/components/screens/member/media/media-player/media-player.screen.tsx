@@ -45,6 +45,7 @@ const MediaPlayerScreen = ({
       title={video.title}
       thumbnail={video.thumbnail.uri}
       logo={video.logo.uri}
+      videoLogo={video?.videoLogo?.uri}
       description={video.description}
       shortDescription={video.shortDescription}
       theme={video.theme as "light" | "dark"}
@@ -56,6 +57,7 @@ const MediaPlayerScreen = ({
       onEnd={onEnd}
       onError={onError}
       startErrorMessage={startErrorMessage}
+      lottie={video?.lottie}
     />
   );
 };

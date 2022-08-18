@@ -3,6 +3,8 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
+import { SduiActionType } from "./globalTypes";
+
 // ====================================================
 // GraphQL query operation: GetQuestMapLevelChallengeContent
 // ====================================================
@@ -27,6 +29,31 @@ export interface GetQuestMapLevelChallengeContent_getQuestMapLevelChallengeConte
   uri: string | null;
 }
 
+export interface GetQuestMapLevelChallengeContent_getQuestMapLevelChallengeContent_media_videoLogo {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetQuestMapLevelChallengeContent_getQuestMapLevelChallengeContent_media_lottie_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetQuestMapLevelChallengeContent_getQuestMapLevelChallengeContent_media_lottie_onAnimationEnd {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface GetQuestMapLevelChallengeContent_getQuestMapLevelChallengeContent_media_lottie {
+  id: string;
+  uri: string;
+  autoPlay: boolean;
+  loop: boolean;
+  styles: GetQuestMapLevelChallengeContent_getQuestMapLevelChallengeContent_media_lottie_styles[] | null;
+  onAnimationEnd: GetQuestMapLevelChallengeContent_getQuestMapLevelChallengeContent_media_lottie_onAnimationEnd | null;
+  aspectRatio: number | null;
+}
+
 export interface GetQuestMapLevelChallengeContent_getQuestMapLevelChallengeContent_media {
   id: string;
   title: string;
@@ -38,6 +65,8 @@ export interface GetQuestMapLevelChallengeContent_getQuestMapLevelChallengeConte
   cover: GetQuestMapLevelChallengeContent_getQuestMapLevelChallengeContent_media_cover;
   thumbnail: GetQuestMapLevelChallengeContent_getQuestMapLevelChallengeContent_media_thumbnail;
   logo: GetQuestMapLevelChallengeContent_getQuestMapLevelChallengeContent_media_logo;
+  videoLogo: GetQuestMapLevelChallengeContent_getQuestMapLevelChallengeContent_media_videoLogo | null;
+  lottie: GetQuestMapLevelChallengeContent_getQuestMapLevelChallengeContent_media_lottie | null;
 }
 
 export interface GetQuestMapLevelChallengeContent_getQuestMapLevelChallengeContent {
