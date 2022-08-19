@@ -9,7 +9,7 @@ import moment from "moment";
 
 export default function* startChallengeSuccessSaga({ payload }: ReturnType<typeof challengeStartSuccessAction>) {
   const {
-    createActiveChallenge: {
+    createQuestMapLevelChallenge: {
       challenge: { startDateTime, endDateTime: remoteEndDateTime },
       levelSlot: { subtype, fitKitTypes, shouldEndOnLastGoalAchieved },
     },

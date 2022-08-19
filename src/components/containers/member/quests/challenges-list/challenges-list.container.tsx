@@ -1,16 +1,8 @@
 import React, { FC, useState, useCallback, memo, useMemo } from "react";
-import {
-  GQL_MUTATION_CREATE_ACTIVE_CHALLENGE,
-  CreateActiveChallengeMutationTuple,
-  GQL_QUERY_GET_QUEST_MAP_LEVEL,
-} from "@graphql/challenges";
+import { GQL_QUERY_GET_QUEST_MAP_LEVEL } from "@graphql/challenges";
 import { Navigation } from "react-native-navigation";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  CreateActiveChallenge,
-  GetQuestMapLevel,
-  GetQuestMapLevel_getQuestMapLevel_slots,
-} from "@graphql/_core/schema";
+import { useDispatch } from "react-redux";
+import { GetQuestMapLevel, GetQuestMapLevel_getQuestMapLevel_slots } from "@graphql/_core/schema";
 import { challengeStartSuccessAction } from "@redux/levels/levels.actions";
 import { BlurProvider, IToggleBlur } from "@atoms";
 import { ChallengesListScreen, ChallengeDetailsScreen } from "@screens";
@@ -28,8 +20,6 @@ import {
   CreateQuestMapLevelChallengeMutationTuple,
   GQL_MUTATION_CREATE_QUEST_MAP_LEVEL_CHALLENGE,
 } from "@graphql/challenges/createQuestMapLevelChallenge.gql";
-import { getUserFeatures } from "@redux/user/user.selectors";
-import { ExecutionResult } from "graphql";
 import { showYuModal } from "@navigation/root";
 import { t } from "@locale";
 
@@ -48,11 +38,7 @@ const ChallengesListContainer: FC<Props> = ({ level, levelName, yuniversalMap, c
   const [submitting, setSubmittingState] = useState(false);
   const dispatch = useDispatch();
   const { authoriseFitKitTypes } = useFitKit();
-  const features = useSelector(getUserFeatures);
 
-  const [createActiveChallengeMutation]: CreateActiveChallengeMutationTuple = useMutation(
-    GQL_MUTATION_CREATE_ACTIVE_CHALLENGE
-  );
   const [createQuestMapLevelChallengeMutation]: CreateQuestMapLevelChallengeMutationTuple = useMutation(
     GQL_MUTATION_CREATE_QUEST_MAP_LEVEL_CHALLENGE
   );
@@ -89,17 +75,9 @@ const ChallengesListContainer: FC<Props> = ({ level, levelName, yuniversalMap, c
 
       await getChallengeDetails(slot.id);
 
-      let activeChallenge: ExecutionResult<CreateActiveChallenge>;
-      if (features.useActiveChallengesService) {
-        const {
-          data: { createQuestMapLevelChallenge, ...props },
-        } = await createQuestMapLevelChallengeMutation({ variables: { levelSlotId: slot.id } });
-        activeChallenge = { data: { ...props, createActiveChallenge: createQuestMapLevelChallenge } };
-      } else {
-        activeChallenge = await createActiveChallengeMutation({ variables: { levelSlotId: slot.id } });
-      }
+      const activeChallenge = await createQuestMapLevelChallengeMutation({ variables: { levelSlotId: slot.id } });
 
-      if (activeChallenge?.data?.createActiveChallenge) {
+      if (activeChallenge?.data?.createQuestMapLevelChallenge) {
         dispatch(
           challengeStartSuccessAction({
             ...activeChallenge.data,
@@ -138,14 +116,7 @@ const ChallengesListContainer: FC<Props> = ({ level, levelName, yuniversalMap, c
     return createChallenge(slot.fitKitTypes.includes(FitKitType.StepCount));
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [
-    slot?.id,
-    createActiveChallengeMutation,
-    createQuestMapLevelChallengeMutation,
-    dispatch,
-    handleNavPress,
-    setError,
-  ]);
+  }, [slot?.id, createQuestMapLevelChallengeMutation, dispatch, handleNavPress, setError]);
 
   const slots = data?.getQuestMapLevel?.slots || [];
 

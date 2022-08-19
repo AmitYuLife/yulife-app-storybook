@@ -1,7 +1,6 @@
 import {
-  CreateActiveChallenge,
+  CreateQuestMapLevelChallenge,
   SubmitUnityVariables,
-  UpdateActiveChallenge_updateActiveChallenge_challenge as ActiveChallenge,
   UpdateQuestMapLevelChallenge_updateQuestMapLevelChallenge_challenge as QuestMapActiveChallenge,
   GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent_buttons as IButton,
 } from "@graphql/_core/schema";
@@ -37,13 +36,12 @@ export const submitUnityAction = (payload: SubmitUnityVariables) => ({
   type: CHALLENGE_SUBMIT_UNITY,
 });
 
-export type ChallengeStartPayload = CreateActiveChallenge & {
+export type ChallengeStartPayload = CreateQuestMapLevelChallenge & {
   levelSlotId: string;
   videoPlayerIsActive?: boolean;
   hideExternalLinks?: boolean; // TODO: Delete this after our meditopia player goes live for everyone
   videoDuration?: number;
 };
-export type Challenge = ActiveChallenge | QuestMapActiveChallenge;
 export const challengeStartSuccessAction = (payload: ChallengeStartPayload) => ({
   payload,
   type: CHALLENGE_START_SUCCESS,
@@ -54,7 +52,7 @@ export const pedometerStepsChallengeStarted = (payload: number) => ({
   type: CHALLENGE_START_INITIAL_STEPS,
 });
 
-export const challengeUpdateSuccessAction = (payload: Challenge) => ({
+export const challengeUpdateSuccessAction = (payload: QuestMapActiveChallenge) => ({
   payload,
   type: CHALLENGE_UPDATE_SUCCESS,
 });
@@ -71,7 +69,7 @@ export const challengeEndFailAction = () => ({
   type: CHALLENGE_END_FAIL,
 });
 
-export const challengeEndSuccessAction = (payload: Challenge) => ({
+export const challengeEndSuccessAction = (payload: QuestMapActiveChallenge) => ({
   payload,
   type: CHALLENGE_END_SUCCESS,
 });

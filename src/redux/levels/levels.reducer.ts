@@ -5,6 +5,7 @@ import {
   GetCurrentUser,
   LoginUser,
   GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent_buttons as IButton,
+  UpdateQuestMapLevelChallenge_updateQuestMapLevelChallenge_challenge as QuestMapActiveChallenge,
 } from "@graphql/_core/schema";
 import { SyncAction } from "../_core/types";
 import { PEDOMETER_UPDATES_SUCCESS } from "../pedometer/pedometer.actions";
@@ -22,7 +23,7 @@ import {
   CHALLENGE_IS_ACTIVE,
   UPDATE_CHALLENGE_APP_BUTTON,
 } from "./levels.actions";
-import { CHALLENGE_START_INITIAL_STEPS, ChallengeStartPayload, Challenge } from "./levels.actions";
+import { CHALLENGE_START_INITIAL_STEPS, ChallengeStartPayload } from "./levels.actions";
 import { IActiveLevel } from "./levels.selectors";
 
 export interface ILevelsStore {
@@ -168,7 +169,7 @@ const isCancellingChallenge = (state: ILevelsStore): ILevelsStore => ({
 const challengeStartSuccess = (
   state: ILevelsStore,
   {
-    createActiveChallenge: { challenge, levelSlot, chest },
+    createQuestMapLevelChallenge: { challenge, levelSlot, chest },
     videoPlayerIsActive,
     hideExternalLinks, // TODO: Delete this after our meditopia player goes live for everyone
   }: ChallengeStartPayload
@@ -196,7 +197,7 @@ const challengeStartSuccess = (
   },
 });
 
-const challengeUpdateSuccess = (state: ILevelsStore, challenge: Challenge): ILevelsStore => ({
+const challengeUpdateSuccess = (state: ILevelsStore, challenge: QuestMapActiveChallenge): ILevelsStore => ({
   ...state,
   active: {
     ...state.active,
@@ -209,7 +210,7 @@ const challengeUpdateSuccess = (state: ILevelsStore, challenge: Challenge): ILev
   },
 });
 
-const challengeEndSuccess = (state: ILevelsStore, challenge: Challenge): ILevelsStore => ({
+const challengeEndSuccess = (state: ILevelsStore, challenge: QuestMapActiveChallenge): ILevelsStore => ({
   ...state,
   active: {
     ...state.active,
@@ -281,7 +282,7 @@ const challengeLoading = (state: ILevelsStore, isLoading: boolean): ILevelsStore
   },
 });
 
-const getScore = (data: Challenge["incomingData"]) => {
+const getScore = (data: QuestMapActiveChallenge["incomingData"]) => {
   if (!data) {
     return 0;
   }

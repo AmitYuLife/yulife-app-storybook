@@ -1,4 +1,4 @@
-import { CreateActiveChallenge_createActiveChallenge_levelSlot_milestones_target } from "@graphql/_core/schema";
+import { CreateQuestMapLevelChallenge_createQuestMapLevelChallenge_levelSlot_milestones_target } from "@graphql/_core/schema";
 
 export function getCurrentWorld(currentLevel: number) {
   return Math.floor((currentLevel - 1) / 50) % 4;
@@ -42,7 +42,7 @@ export function getCurrentWorldText(currentWorld: number) {
 
 export function getUnitTarget(
   subtype: string
-): keyof CreateActiveChallenge_createActiveChallenge_levelSlot_milestones_target {
+): keyof CreateQuestMapLevelChallenge_createQuestMapLevelChallenge_levelSlot_milestones_target {
   switch (subtype) {
     case "meditation":
       return "meditation";

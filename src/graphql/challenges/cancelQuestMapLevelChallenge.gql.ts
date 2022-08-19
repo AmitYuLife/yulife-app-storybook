@@ -1,7 +1,7 @@
 import gql from "graphql-tag";
 import client from "../_core/client";
 
-import { CancelActiveChallenge, CancelActiveChallengeVariables } from "@graphql/_core/schema";
+import { CancelQuestMapLevelChallenge, CancelQuestMapLevelChallengeVariables } from "@graphql/_core/schema";
 
 export const GQL_MUTATION_CANCEL_MAP_LEVEL_CHALLENGE = gql`
   mutation CancelQuestMapLevelChallenge($levelSlotId: String!) {
@@ -12,9 +12,11 @@ export const GQL_MUTATION_CANCEL_MAP_LEVEL_CHALLENGE = gql`
   }
 `;
 
-export default (levelSlotId: string) =>
-  client().mutate<CancelActiveChallenge, CancelActiveChallengeVariables>({
+const cancelQuestMapLevelChallenge = (levelSlotId: string) =>
+  client().mutate<CancelQuestMapLevelChallenge, CancelQuestMapLevelChallengeVariables>({
     mutation: GQL_MUTATION_CANCEL_MAP_LEVEL_CHALLENGE,
     variables: { levelSlotId },
     errorPolicy: "ignore",
   });
+
+export default cancelQuestMapLevelChallenge;
