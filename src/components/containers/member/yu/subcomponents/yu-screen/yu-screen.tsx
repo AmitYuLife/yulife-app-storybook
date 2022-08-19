@@ -12,6 +12,7 @@ import { YuScreenContext } from "../../context/yu-screen.context";
 import { useQueryOnScreenSeenOnce, useStatusBarStyle } from "@hooks";
 import { ROUTES } from "@navigation/constants";
 import { TOP_BAR_TYPES } from "@organisms/top-bar/top-bar.helpers";
+import { useOnboardingDismissalHandler } from "../../hooks/useOnboardingDismissalHandler";
 
 interface Props {
   componentId: string;
@@ -20,7 +21,10 @@ interface Props {
 export const YuScreen = memo(({ componentId }: Props) => {
   const [, { data }] = useQueryOnScreenSeenOnce<GetYuScreen>(GQL_QUERY_GET_YU_SCREEN, ROUTES.yuScreen);
   const { earnRate } = useContext(YuScreenContext);
-  useStatusBarStyle(componentId, !!data?.getYuScreen?.onboarding);
+  const onboarding = data?.getYuScreen?.onboarding;
+  const [onboardingDismissed, dismissOnboarding] = useOnboardingDismissalHandler(onboarding?.id);
+  const showOnboarding = !!onboarding && !onboardingDismissed;
+  useStatusBarStyle(componentId, showOnboarding);
 
   if (!data || earnRate === null) {
     return (
@@ -30,13 +34,13 @@ export const YuScreen = memo(({ componentId }: Props) => {
     );
   }
 
-  const { onboarding, productCarousel, productSlots, surveyFooter, yumojiPrompt } = data?.getYuScreen || {};
+  const { productCarousel, productSlots, surveyFooter, yumojiPrompt } = data?.getYuScreen || {};
 
-  if (onboarding) {
+  if (showOnboarding) {
     return (
       <YuScreenLayout fullHeight={true} hasWhiteBackground={false} topBarType={TOP_BAR_TYPES.WHITE}>
         <YuScreenSkeleton />
-        <Onboarding onboarding={onboarding} productSlots={productSlots} />
+        <Onboarding onDismiss={dismissOnboarding} onboarding={onboarding} productSlots={productSlots} />
       </YuScreenLayout>
     );
   }

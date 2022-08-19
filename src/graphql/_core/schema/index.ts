@@ -203,6 +203,7 @@ export * from "./YuScreenItemSlot";
 export * from "./YuScreenOnboarding";
 export * from "./YuScreenPopover";
 export * from "./YuScreenProduct";
+export * from "./YuScreenProductButtonAction";
 export * from "./YuScreenProductPaymentHistoryInfoPanel";
 export * from "./YuScreenProductPaymentHistoryItem";
 export * from "./YuScreenProductSlot";

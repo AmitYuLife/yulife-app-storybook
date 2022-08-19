@@ -17,11 +17,23 @@ const GQL_FRAGMENT_YU_SCREEN_ONBOARDING = gql`
     placeholder {
       ...YuScreenProduct
     }
+    dismissByPlaceholder
+  }
+`;
+
+const GQL_FRAGMENT_YU_SCREEN_PRODUCT_BUTTON_ACTION = gql`
+  fragment YuScreenProductButtonAction on YuScreenProductButtonAction {
+    productId
+    nextRouteId
+    nextModalId
+    shouldBeNormalised
   }
 `;
 
 const GQL_FRAGMENT_YU_SCREEN_PRODUCT_SLOT_ITEM = gql`
   ${GQL_FRAGMENT_REMOTE_IMAGE}
+  ${GQL_FRAGMENT_SDUI_ACTION}
+  ${GQL_FRAGMENT_YU_SCREEN_PRODUCT_BUTTON_ACTION}
 
   fragment YuScreenProduct on YuScreenProduct {
     id
@@ -43,19 +55,18 @@ const GQL_FRAGMENT_YU_SCREEN_PRODUCT_SLOT_ITEM = gql`
       ...RemoteImage
     }
     onPress {
-      type
-      payload
+      ...YuScreenProductButtonAction
     }
     event {
-      type
-      payload
+      ...SduiAction
     }
-    type
+    showOnOnboarding
   }
 `;
 
 const GQl_FRAGMENT_YU_SCREEN_CAROUSEL_ITEM = gql`
   ${GQL_FRAGMENT_SDUI_ACTION}
+  ${GQL_FRAGMENT_YU_SCREEN_PRODUCT_BUTTON_ACTION}
 
   fragment YuScreenCarouselItem on YuScreenCarouselItem {
     image {
@@ -65,7 +76,7 @@ const GQl_FRAGMENT_YU_SCREEN_CAROUSEL_ITEM = gql`
     button {
       label
       onPress {
-        ...SduiAction
+        ...YuScreenProductButtonAction
       }
       event {
         ...SduiAction

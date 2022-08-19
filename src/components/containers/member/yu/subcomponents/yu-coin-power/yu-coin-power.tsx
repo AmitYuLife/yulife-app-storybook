@@ -9,17 +9,18 @@ import { showEarnRateOverlay } from "../../navigation/showEarnRateOverlay";
 import FastImage from "react-native-fast-image";
 
 interface Props {
-  onPress?: typeof showEarnRateOverlay;
+  pressable?: boolean;
 }
 
 const YUCOIN_POWER_IMAGE = require("./assets/ycPowerBg.png");
+const YUCOIN_POWER_INTERACTIVE_IMAGE = require("./assets/ycPowerInteractiveBg.png");
 
-export const YuCoinPower: FC<Props> = memo(({ onPress = showEarnRateOverlay }) => {
-  const YuCoinPowerWrapper = onPress ? TouchableOpacityWithDelay : View;
+export const YuCoinPower: FC<Props> = memo(({ pressable = true }) => {
+  const YuCoinPowerWrapper = pressable ? TouchableOpacityWithDelay : View;
 
   return (
-    <YuCoinPowerWrapper onPress={onPress} style={styles.ycWrapperOuter}>
-      <FastImage style={styles.ycPowerBg} source={YUCOIN_POWER_IMAGE} />
+    <YuCoinPowerWrapper onPress={pressable ? showEarnRateOverlay : null} style={styles.ycWrapperOuter}>
+      <FastImage style={styles.ycPowerBg} source={pressable ? YUCOIN_POWER_INTERACTIVE_IMAGE : YUCOIN_POWER_IMAGE} />
       <Yc />
     </YuCoinPowerWrapper>
   );

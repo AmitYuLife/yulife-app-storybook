@@ -17379,18 +17379,6 @@
             "description": "Backwards compatible yulife-rn-client specific",
             "isDeprecated": false,
             "deprecationReason": null
-          },
-          {
-            "name": "SDUI_ACTION_YU_SCREEN_NAVIGATE",
-            "description": "YuScreen V4 specific navigation action. Allows for normalisation before navigating\nto a route or modal.",
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "SDUI_ACTION_YU_SCREEN_DISMISS_ONBOARDING",
-            "description": "YuScreen V4 dismiss onboarding action.",
-            "isDeprecated": false,
-            "deprecationReason": null
           }
         ],
         "possibleTypes": null
@@ -39690,7 +39678,7 @@
             "args": [],
             "type": {
               "kind": "OBJECT",
-              "name": "SduiAction",
+              "name": "YuScreenProductButtonAction",
               "ofType": null
             },
             "isDeprecated": false,
@@ -39709,12 +39697,12 @@
             "deprecationReason": null
           },
           {
-            "name": "type",
+            "name": "showOnOnboarding",
             "description": null,
             "args": [],
             "type": {
-              "kind": "ENUM",
-              "name": "YuScreenSalesChannelType",
+              "kind": "SCALAR",
+              "name": "Boolean",
               "ofType": null
             },
             "isDeprecated": false,
@@ -39727,26 +39715,66 @@
         "possibleTypes": null
       },
       {
-        "kind": "ENUM",
-        "name": "YuScreenSalesChannelType",
+        "kind": "OBJECT",
+        "name": "YuScreenProductButtonAction",
         "description": null,
-        "fields": null,
-        "inputFields": null,
-        "interfaces": null,
-        "enumValues": [
+        "fields": [
           {
-            "name": "B2B",
+            "name": "productId",
             "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              }
+            },
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
-            "name": "D2C",
+            "name": "nextRouteId",
             "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "nextModalId",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "shouldBeNormalised",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
+              "ofType": null
+            },
             "isDeprecated": false,
             "deprecationReason": null
           }
         ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
         "possibleTypes": null
       },
       {
@@ -39897,7 +39925,7 @@
               "name": null,
               "ofType": {
                 "kind": "OBJECT",
-                "name": "SduiAction",
+                "name": "YuScreenProductButtonAction",
                 "ofType": null
               }
             },
@@ -40195,6 +40223,22 @@
             },
             "isDeprecated": false,
             "deprecationReason": null
+          },
+          {
+            "name": "dismissByPlaceholder",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
           }
         ],
         "inputFields": null,
@@ -40229,22 +40273,6 @@
               "ofType": {
                 "kind": "SCALAR",
                 "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "onPress",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "SduiAction",
                 "ofType": null
               }
             },

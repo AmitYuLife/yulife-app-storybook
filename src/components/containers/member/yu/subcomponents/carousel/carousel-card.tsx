@@ -4,15 +4,15 @@ import { YuScreenCarousel_items as CarouselItem } from "@graphql/_core/schema";
 import React, { FC, memo } from "react";
 import { StyleSheet, View } from "react-native";
 import { BUTTON_HEIGHT, CARD_BACKGROUND_IMAGE_HEIGHT, CARD_WIDTH, styles } from "./styles";
-import { useYuScreenOnPressHandler } from "../../hooks/useYuScreenOnPressHandler";
 import { CAROUSEL_CARD } from "@ids";
+import { useYuScreenOnPressHandler } from "../../hooks/useYuScreenOnPressHandler";
 
 interface Props extends CarouselItem {
   marginRight: number;
 }
 
 export const CarouselCard: FC<Props> = memo(({ button, image, marginRight }) => {
-  const handlePress = useYuScreenOnPressHandler(button);
+  const handlePress = useYuScreenOnPressHandler({ event: button?.event, onPress: button?.onPress });
 
   return (
     <View style={StyleSheet.flatten([styles.carouselCardWrapper, { marginRight }])}>

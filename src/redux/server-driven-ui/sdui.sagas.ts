@@ -2,19 +2,15 @@ import { Alert } from "react-native";
 import { Navigation } from "react-native-navigation";
 import { all, call, select, ActionPattern, takeEvery, takeLeading, put } from "redux-saga/effects";
 import { SduiActionType } from "@graphql/_core/schema/globalTypes";
-import { MODALS, ROUTES } from "@navigation/constants";
+import { MODALS } from "@navigation/constants";
 import { showYuModal, TAB_ROUTES } from "@navigation/root";
 import { handleLinkPress } from "@services/app-link";
 import Intercom from "@intercom/intercom-react-native";
 import Logger from "@services/logging/logger";
 import { SyncAction } from "@redux/_core/types";
 import { getRouteState } from "../app/app.selectors";
-import {
-  submitPersonalProductStep,
-  backPersonalProductStep,
-  normalisePersonalProductStep,
-} from "@graphql/personalProduct";
-import { ProductStepAction, YuScreenNextRoute } from "./sdui.types";
+import { submitPersonalProductStep, backPersonalProductStep } from "@graphql/personalProduct";
+import { ProductStepAction } from "./sdui.types";
 import { parseJSON, getServerPayload } from "./sdui.helpers";
 import { setLoadingState } from "./sdui.actions";
 import { getYuScreenProductSlots } from "@graphql/yuscreen";
@@ -266,49 +262,6 @@ function* openAlertDialog(action: ProductStepAction) {
   }
 }
 
-function* yuScreenNavigate(action: ProductStepAction) {
-  const { isValid, data } = parseJSON<YuScreenNextRoute>(action.payload?.serverPayload, ["productId"]);
-
-  if (isValid) {
-    if (data.shouldBeNormalised) {
-      try {
-        yield call(normalisePersonalProductStep, {
-          productId: data.productId,
-        });
-      } catch (e) {
-        Logger.error(e, { where: "product-step-normalise" });
-      }
-    }
-
-    if (data.nextModalId) {
-      yield call(() =>
-        showYuModal({
-          component: {
-            id: data.nextModalId,
-            name: data.nextModalId,
-            passProps: {
-              productId: data.productId,
-            },
-          },
-        })
-      );
-      return;
-    }
-
-    yield call(() =>
-      Navigation.push(ROUTES.yuScreen, {
-        component: {
-          id: data.nextRouteId,
-          name: data.nextRouteId,
-          passProps: {
-            productId: data.productId,
-          },
-        },
-      })
-    );
-  }
-}
-
 export default [
   takeLeading(SduiActionType.SDUI_ACTION_NAVIGATE_BACK as ActionPattern, navigateBack),
   takeLeading(SduiActionType.SDUI_ACTION_NAVIGATE as ActionPattern, navigateTo),
@@ -321,5 +274,4 @@ export default [
   takeLeading(SduiActionType.SDUI_ACTION_OPEN_MODAL as ActionPattern, openModal),
   takeLeading(SduiActionType.SDUI_ACTION_OPEN_ALERT_DIALOG as ActionPattern, openAlertDialog),
   takeEvery(SduiActionType.SDUI_ACTION_LOG_EVENT as ActionPattern, logEvent),
-  takeEvery(SduiActionType.SDUI_ACTION_YU_SCREEN_NAVIGATE as ActionPattern, yuScreenNavigate),
 ];
