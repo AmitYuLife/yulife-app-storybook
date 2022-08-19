@@ -1,5 +1,5 @@
 import { MutationTuple } from "@apollo/react-hooks";
-import { CreateActiveChallengeVariables, CreateQuestMapLevelChallenge } from "@graphql/_core/schema";
+import { CreateQuestMapLevelChallengeVariables, CreateQuestMapLevelChallenge } from "@graphql/_core/schema";
 import gql from "graphql-tag";
 
 export const GQL_MUTATION_CREATE_QUEST_MAP_LEVEL_CHALLENGE = gql`
@@ -39,5 +39,5 @@ export const GQL_MUTATION_CREATE_QUEST_MAP_LEVEL_CHALLENGE = gql`
 `;
 export type CreateQuestMapLevelChallengeMutationTuple = MutationTuple<
   CreateQuestMapLevelChallenge,
-  CreateActiveChallengeVariables
+  CreateQuestMapLevelChallengeVariables
 >;

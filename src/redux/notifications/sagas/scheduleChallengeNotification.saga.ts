@@ -13,11 +13,11 @@ import { addSecondsToChallengeEndDateTime } from "@utils";
 type Action = ReturnType<typeof challengeStartSuccessAction>;
 
 export default function* scheduleChallengeNotificationSaga({ payload }: Action) {
-  if (!payload?.createActiveChallenge?.challenge) {
+  if (!payload?.createQuestMapLevelChallenge?.challenge) {
     return;
   }
 
-  const { createActiveChallenge, videoDuration } = payload;
+  const { createQuestMapLevelChallenge, videoDuration } = payload;
 
   if (videoDuration) {
     // for custom media we dont need a notification
@@ -33,7 +33,7 @@ export default function* scheduleChallengeNotificationSaga({ payload }: Action) 
       );
 
       if (challengeCompletion?.isActive) {
-        const { endDateTime, levelSlotId } = createActiveChallenge.challenge;
+        const { endDateTime, levelSlotId } = createQuestMapLevelChallenge.challenge;
         const fixedId = numericId(levelSlotId);
         const details = getNotificationTitleAndMessage();
         const id = Number(fixedId);

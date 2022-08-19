@@ -1,12 +1,9 @@
-import cancelActiveChallengeWithClient from "@graphql/challenges/cancelActiveChallenge.gql";
 import cancelQuestMapLevelChallenge from "@graphql/challenges/cancelQuestMapLevelChallenge.gql";
-import updateActiveChallengeWithClient from "@graphql/challenges/updateActiveChallenge.gql";
 import UpdateQuestMapLevelChallenge from "@graphql/challenges/updateQuestMapLevelChallenge.gql";
 import { FitKitType } from "@graphql/_core/schema/globalTypes";
 import {
-  CreateActiveChallenge_createActiveChallenge_challenge,
-  CreateActiveChallenge_createActiveChallenge_levelSlot,
-  UpdateActiveChallenge_updateActiveChallenge as UpdateActiveChallenge,
+  CreateQuestMapLevelChallenge_createQuestMapLevelChallenge_challenge,
+  CreateQuestMapLevelChallenge_createQuestMapLevelChallenge_levelSlot,
   UpdateQuestMapLevelChallenge_updateQuestMapLevelChallenge as UpdateQuestMapActiveChallenge,
 } from "@graphql/_core/schema";
 import { queryFitKitByTypes, QueryFitKitByTypesResponse } from "@services/fitkit/fitkit.helpers";
@@ -67,13 +64,8 @@ export function* startTracking(
           value: Math.floor(queryResult.results.reduce((accumulator, session) => accumulator + session.value, 0)),
         };
 
-        const mutation = features.useActiveChallengesService
-          ? UpdateQuestMapLevelChallenge
-          : updateActiveChallengeWithClient;
-        const { data } = yield call(mutation, levelSlotId, results);
-        const challengeData: UpdateActiveChallenge | UpdateQuestMapActiveChallenge = data?.updateQuestMapLevelChallenge
-          ? data?.updateQuestMapLevelChallenge
-          : data?.updateActiveChallenge;
+        const { data } = yield call(UpdateQuestMapLevelChallenge, levelSlotId, results);
+        const challengeData: UpdateQuestMapActiveChallenge = data?.updateQuestMapLevelChallenge;
 
         yield put(challengeUpdateSuccessAction(challengeData?.challenge));
 
@@ -104,8 +96,11 @@ export function* startTrackingTime(endDateTime: string) {
   yield put(challengeEndAction());
 }
 
-type Args = Omit<CreateActiveChallenge_createActiveChallenge_challenge, "level" | "status"> &
-  Pick<CreateActiveChallenge_createActiveChallenge_levelSlot, "shouldEndOnLastGoalAchieved" | "fitKitTypes">;
+type Args = Omit<CreateQuestMapLevelChallenge_createQuestMapLevelChallenge_challenge, "level" | "status"> &
+  Pick<
+    CreateQuestMapLevelChallenge_createQuestMapLevelChallenge_levelSlot,
+    "shouldEndOnLastGoalAchieved" | "fitKitTypes"
+  >;
 
 export default function* startChallenge({
   shouldEndOnLastGoalAchieved,
@@ -130,12 +125,7 @@ export default function* startChallenge({
 
     if (challengeCancelled) {
       try {
-        const features: ReturnType<typeof getUserFeatures> = yield select(getUserFeatures);
-        if (features.useActiveChallengesService) {
-          yield call(cancelQuestMapLevelChallenge, levelSlotId);
-        } else {
-          yield call(cancelActiveChallengeWithClient, levelSlotId);
-        }
+        yield call(cancelQuestMapLevelChallenge, levelSlotId);
 
         if (challengeTask) {
           yield cancel(challengeTask);

@@ -1,9 +1,5 @@
-import updateActiveChallengeWithClient from "@graphql/challenges/updateActiveChallenge.gql";
 import UpdateQuestMapLevelChallenge from "@graphql/challenges/updateQuestMapLevelChallenge.gql";
-import {
-  UpdateActiveChallenge_updateActiveChallenge as UpdateActiveChallenge,
-  UpdateQuestMapLevelChallenge_updateQuestMapLevelChallenge as UpdateQuestMapActiveChallenge,
-} from "@graphql/_core/schema";
+import { UpdateQuestMapLevelChallenge_updateQuestMapLevelChallenge as UpdateQuestMapActiveChallenge } from "@graphql/_core/schema";
 import { getStepsBlackListApps } from "@redux/daily-steps/daily-steps.selectors";
 import { getUserFeatures } from "@redux/user/user.selectors";
 import Logger from "@services/logging/logger";
@@ -33,17 +29,12 @@ export default function* endChallengeSaga() {
         const stepsBlackListApps: string[] = yield select(getStepsBlackListApps);
         const result: Unpacked<typeof getEndResult> = yield call(getEndResult, active, stepsBlackListApps, features);
 
-        let challengeData: UpdateActiveChallenge | UpdateQuestMapActiveChallenge;
+        let challengeData: UpdateQuestMapActiveChallenge;
         let challengeStatus = "active";
         let updateActiveChallengeCount = 0;
         while (challengeStatus !== "completed" && updateActiveChallengeCount < RETRY_UPDATE_CHALLENGE_COUNT) {
-          const mutation = features.useActiveChallengesService
-            ? UpdateQuestMapLevelChallenge
-            : updateActiveChallengeWithClient;
-          const { data } = yield call(mutation, active.levelSlotId, result);
-          challengeData = data?.updateQuestMapLevelChallenge
-            ? data?.updateQuestMapLevelChallenge
-            : data?.updateActiveChallenge;
+          const { data } = yield call(UpdateQuestMapLevelChallenge, active.levelSlotId, result);
+          challengeData = data?.updateQuestMapLevelChallenge;
 
           challengeStatus = challengeData?.challenge?.status;
           if (challengeStatus !== "completed") {

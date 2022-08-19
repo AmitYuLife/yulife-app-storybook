@@ -24,8 +24,8 @@ import QuestsScreenContainer from "@screens/member/quests/quests-scroll-screen/q
 import { BlurProvider } from "@atoms/index";
 import { useTapBackTwiceToExit } from "@hooks";
 import { useMutation } from "@apollo/react-hooks";
-import { CancelActiveChallenge, CancelActiveChallengeVariables } from "@graphql/_core/schema";
-import { GQL_MUTATION_CANCEL_ACTIVE_CHALLENGE } from "@graphql/challenges";
+import { CancelQuestMapLevelChallenge, CancelQuestMapLevelChallengeVariables } from "@graphql/_core/schema";
+import { GQL_MUTATION_CANCEL_MAP_LEVEL_CHALLENGE } from "@graphql/challenges";
 
 const QuestsContainer: FC<IMainTabsProps> = (props) => {
   const dispatch = useDispatch();
@@ -35,9 +35,10 @@ const QuestsContainer: FC<IMainTabsProps> = (props) => {
   const hideExternalLinks = useSelector(getHideExternalLinks);
   const videoPlayerIsActive = useSelector(getVideoPlayerIsActive);
 
-  const [cancelActiveChallenge] = useMutation<CancelActiveChallenge, CancelActiveChallengeVariables>(
-    GQL_MUTATION_CANCEL_ACTIVE_CHALLENGE
-  );
+  const [cancelQuestMapLevelChallenge] = useMutation<
+    CancelQuestMapLevelChallenge,
+    CancelQuestMapLevelChallengeVariables
+  >(GQL_MUTATION_CANCEL_MAP_LEVEL_CHALLENGE);
 
   const { componentId, onLeftMenuPress } = props;
 
@@ -70,7 +71,7 @@ const QuestsContainer: FC<IMainTabsProps> = (props) => {
   useEffect(() => {
     if (videoPlayerIsActive && levelSlotId && challengeIsActive) {
       (async function () {
-        await cancelActiveChallenge({
+        await cancelQuestMapLevelChallenge({
           variables: {
             levelSlotId,
           },

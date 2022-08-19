@@ -3,8 +3,8 @@ import { ROUTES } from "@navigation/constants";
 import React, { useCallback, memo, useState } from "react";
 import { Navigation } from "react-native-navigation";
 import {
-  CancelActiveChallenge,
-  CancelActiveChallengeVariables,
+  CancelQuestMapLevelChallenge,
+  CancelQuestMapLevelChallengeVariables,
   Media,
   UpdateQuestMapLevelChallenge,
   UpdateQuestMapLevelChallengeVariables,
@@ -13,7 +13,7 @@ import {
 } from "@graphql/_core/schema";
 import {
   CreateQuestMapLevelChallengeMutationTuple,
-  GQL_MUTATION_CANCEL_ACTIVE_CHALLENGE,
+  GQL_MUTATION_CANCEL_MAP_LEVEL_CHALLENGE,
   GQL_MUTATION_CREATE_QUEST_MAP_LEVEL_CHALLENGE,
   GQL_MUTATION_UPDATE_QUEST_MAP_LEVEL_CHALLENGE,
 } from "@graphql/challenges";
@@ -56,8 +56,8 @@ const MediaPlayerContainer = ({ componentId, video, levelSlotId }: IProps) => {
     UpdateQuestMapLevelChallengeVariables
   >(GQL_MUTATION_UPDATE_QUEST_MAP_LEVEL_CHALLENGE);
 
-  const [cancelActiveChallenge] = useMutation<CancelActiveChallenge, CancelActiveChallengeVariables>(
-    GQL_MUTATION_CANCEL_ACTIVE_CHALLENGE
+  const [cancelMapLevelChallenge] = useMutation<CancelQuestMapLevelChallenge, CancelQuestMapLevelChallengeVariables>(
+    GQL_MUTATION_CANCEL_MAP_LEVEL_CHALLENGE
   );
   const [upsertDailyPassives] = useMutation<UpsertDailyPassives, UpsertDailyPassivesVariables>(
     GQL_MUTATION_UPSERT_DAILY_PASSIVES
@@ -68,7 +68,7 @@ const MediaPlayerContainer = ({ componentId, video, levelSlotId }: IProps) => {
       const { data } = await createQuestMapLevelChallengeMutation({ variables: { levelSlotId, contentId } });
       dispatch(
         challengeStartSuccessAction({
-          createActiveChallenge: data?.createQuestMapLevelChallenge,
+          createQuestMapLevelChallenge: data?.createQuestMapLevelChallenge,
           levelSlotId,
           videoPlayerIsActive: true,
           videoDuration: video.duration,
@@ -79,7 +79,7 @@ const MediaPlayerContainer = ({ componentId, video, levelSlotId }: IProps) => {
   );
 
   const cancelChallenge = useCallback(async (shouldNavigate = true) => {
-    await cancelActiveChallenge({
+    await cancelMapLevelChallenge({
       variables: {
         levelSlotId,
       },
