@@ -3,16 +3,21 @@ import { Image, StyleSheet, View } from "react-native";
 import { styles } from "./styles";
 import { TextTemplate } from "@atoms";
 import { Colours } from "@styles";
-import { GetYuScreen_getYuScreen_productSlots as ProductSlots } from "@graphql/_core/schema";
+import {
+  GetYuScreen_getYuScreen_productSlots as ProductSlots,
+  YuScreenProductButtonAction,
+} from "@graphql/_core/schema";
 import { TouchableOpacityWithDelay } from "@components/molecules";
-import { useYuScreenOnPressHandler } from "../../hooks/useYuScreenOnPressHandler";
 import { BACKGROUND_COLOUR_PRODUCT, RIGHT_STATUS_ICON } from "@ids";
+import { OnboardingHandler } from "../../hooks/useOnboardingDismissalHandler";
+import { useYuScreenOnPressHandler } from "../../hooks/useYuScreenOnPressHandler";
 
-interface Props extends ProductSlots {
+export interface ItemSlotProps extends Omit<ProductSlots, "onPress"> {
+  onPress?: YuScreenProductButtonAction | OnboardingHandler;
   socketType?: "yuscreen" | "onboarding";
 }
 
-export const ItemSlot: FC<Props> = memo(
+export const ItemSlot: FC<ItemSlotProps> = memo(
   ({
     backgroundColour,
     bottomShadowColour,

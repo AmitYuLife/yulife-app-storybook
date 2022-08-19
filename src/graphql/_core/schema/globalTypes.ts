@@ -197,8 +197,6 @@ export enum SduiActionType {
   SDUI_ACTION_PRODUCT_UNDERWRITING_STEP_POP = "SDUI_ACTION_PRODUCT_UNDERWRITING_STEP_POP",
   SDUI_ACTION_PRODUCT_UNDERWRITING_STEP_PUSH = "SDUI_ACTION_PRODUCT_UNDERWRITING_STEP_PUSH",
   SDUI_ACTION_SET_BOTTOM_TAB = "SDUI_ACTION_SET_BOTTOM_TAB",
-  SDUI_ACTION_YU_SCREEN_DISMISS_ONBOARDING = "SDUI_ACTION_YU_SCREEN_DISMISS_ONBOARDING",
-  SDUI_ACTION_YU_SCREEN_NAVIGATE = "SDUI_ACTION_YU_SCREEN_NAVIGATE",
 }
 
 export enum TopBarType {
@@ -244,11 +242,6 @@ export enum YuScreenEarnRateTableThemeType {
 export enum YuScreenEarnRateTableValueType {
   data = "data",
   header = "header",
-}
-
-export enum YuScreenSalesChannelType {
-  B2B = "B2B",
-  D2C = "D2C",
 }
 
 export enum YuWorld {

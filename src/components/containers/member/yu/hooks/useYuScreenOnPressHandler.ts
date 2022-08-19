@@ -1,36 +1,37 @@
-import { defaultSduiActionProps } from "@components/containers/products/product-step/utils/sduiEventActionCreator";
-import { SduiAction } from "@graphql/_core/schema";
-import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 import { useCallback } from "react";
 import { useDispatch } from "react-redux";
+import { SduiAction, YuScreenProductButtonAction } from "@graphql/_core/schema";
+import Logger from "@services/logging/logger";
+import { logEvent } from "./helpers/logEvent";
+import { navigateToProduct } from "./helpers/navigateToProduct";
+import { OnboardingHandler } from "./useOnboardingDismissalHandler";
 
-interface ButtonParams {
-  event: SduiAction;
-  onPress: SduiAction;
+interface Props {
+  event?: SduiAction;
+  onPress?: OnboardingHandler | YuScreenProductButtonAction;
 }
 
-export const useYuScreenOnPressHandler = (buttonParams: ButtonParams, defaultEventName = "button_press") => {
+export const useYuScreenOnPressHandler = ({ event, onPress }: Props) => {
   const dispatch = useDispatch();
-  return useCallback(() => {
-    const actions = [];
-    if (buttonParams?.onPress) {
-      actions.push({
-        type: buttonParams.onPress.type,
-        payload: { serverPayload: buttonParams.onPress.payload },
-      });
-
-      if (buttonParams?.event) {
-        try {
-          const payload = JSON.parse(buttonParams.event.payload);
-          const action = logMixpanelEventActionCreator(
-            payload.name || defaultEventName,
-            payload.props || defaultSduiActionProps
-          );
-          actions.push(action);
-        } catch (e) {}
+  return useCallback(async () => {
+    if (typeof onPress === "function") {
+      try {
+        await onPress();
+        logEvent(dispatch, event);
+      } catch (e) {
+        Logger.error(e, { where: "use-yu-screen-on-press-handler-onboarding-handler" });
       }
 
-      actions.map((action) => dispatch(action));
+      return;
     }
-  }, [buttonParams, defaultEventName, dispatch]);
+
+    if (onPress?.productId) {
+      try {
+        await navigateToProduct(onPress);
+        logEvent(dispatch, event);
+      } catch (e) {
+        Logger.error(e, { where: "use-yu-screen-on-press-handler-navigate-to-product" });
+      }
+    }
+  }, [dispatch, event, onPress]);
 };

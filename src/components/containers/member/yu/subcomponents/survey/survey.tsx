@@ -4,11 +4,11 @@ import { Style } from "@styles";
 import React, { FC, memo } from "react";
 import { Image, StyleSheet, View } from "react-native";
 import Markdown from "@components/molecules/markdown/markdown";
-import { useYuScreenOnPressHandler } from "../../hooks/useYuScreenOnPressHandler";
+import { useSduiActionHandler } from "../../hooks/useSduiActionHandler";
 
 export const Survey: FC<YuScreenSurveyFooter> = memo(
   ({ markdown, backgroundColour, image, button: { event, onPress, label } }) => {
-    const handlePress = useYuScreenOnPressHandler({ event, onPress });
+    const handlePress = useSduiActionHandler({ event, onPress });
 
     return (
       <View>

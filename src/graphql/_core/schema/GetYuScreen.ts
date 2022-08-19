@@ -3,12 +3,7 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import {
-  MobileOnboardingStepPerformed,
-  SduiActionType,
-  YuProductStatus,
-  YuScreenSalesChannelType,
-} from "./globalTypes";
+import { MobileOnboardingStepPerformed, SduiActionType, YuProductStatus } from "./globalTypes";
 
 // ====================================================
 // GraphQL query operation: GetYuScreen
@@ -40,8 +35,10 @@ export interface GetYuScreen_getYuScreen_onboarding_placeholder_rightStatusIcon 
 }
 
 export interface GetYuScreen_getYuScreen_onboarding_placeholder_onPress {
-  type: SduiActionType;
-  payload: string | null;
+  productId: string;
+  nextRouteId: string | null;
+  nextModalId: string | null;
+  shouldBeNormalised: boolean | null;
 }
 
 export interface GetYuScreen_getYuScreen_onboarding_placeholder_event {
@@ -64,7 +61,7 @@ export interface GetYuScreen_getYuScreen_onboarding_placeholder {
   rightStatusIcon: GetYuScreen_getYuScreen_onboarding_placeholder_rightStatusIcon | null;
   onPress: GetYuScreen_getYuScreen_onboarding_placeholder_onPress | null;
   event: GetYuScreen_getYuScreen_onboarding_placeholder_event | null;
-  type: YuScreenSalesChannelType | null;
+  showOnOnboarding: boolean | null;
 }
 
 export interface GetYuScreen_getYuScreen_onboarding {
@@ -73,6 +70,7 @@ export interface GetYuScreen_getYuScreen_onboarding {
   text: string;
   button: GetYuScreen_getYuScreen_onboarding_button;
   placeholder: GetYuScreen_getYuScreen_onboarding_placeholder;
+  dismissByPlaceholder: boolean;
 }
 
 export interface GetYuScreen_getYuScreen_productSlots_leftBackgroundImage {
@@ -91,8 +89,10 @@ export interface GetYuScreen_getYuScreen_productSlots_rightStatusIcon {
 }
 
 export interface GetYuScreen_getYuScreen_productSlots_onPress {
-  type: SduiActionType;
-  payload: string | null;
+  productId: string;
+  nextRouteId: string | null;
+  nextModalId: string | null;
+  shouldBeNormalised: boolean | null;
 }
 
 export interface GetYuScreen_getYuScreen_productSlots_event {
@@ -115,7 +115,7 @@ export interface GetYuScreen_getYuScreen_productSlots {
   rightStatusIcon: GetYuScreen_getYuScreen_productSlots_rightStatusIcon | null;
   onPress: GetYuScreen_getYuScreen_productSlots_onPress | null;
   event: GetYuScreen_getYuScreen_productSlots_event | null;
-  type: YuScreenSalesChannelType | null;
+  showOnOnboarding: boolean | null;
 }
 
 export interface GetYuScreen_getYuScreen_productCarousel_items_image {
@@ -124,8 +124,10 @@ export interface GetYuScreen_getYuScreen_productCarousel_items_image {
 }
 
 export interface GetYuScreen_getYuScreen_productCarousel_items_button_onPress {
-  type: SduiActionType;
-  payload: string | null;
+  productId: string;
+  nextRouteId: string | null;
+  nextModalId: string | null;
+  shouldBeNormalised: boolean | null;
 }
 
 export interface GetYuScreen_getYuScreen_productCarousel_items_button_event {

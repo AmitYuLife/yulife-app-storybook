@@ -1,18 +1,20 @@
 import { GetYuScreen_getYuScreen_productSlots as ProductSlots } from "@graphql/_core/schema";
-import { YuScreenSalesChannelType } from "@graphql/_core/schema/globalTypes";
+import { ItemSlotProps } from "../item-slot/item-slot";
 
-const filterGroupProducts = (productSlot: ProductSlots) => productSlot.type === YuScreenSalesChannelType.B2B;
+const filterOnboardingProducts = (productSlot: ProductSlots) => productSlot.showOnOnboarding;
 
-const itemsToDisplay = 4;
+const removeProductOnPress = (productSlot: ProductSlots): ItemSlotProps => ({
+  ...productSlot,
+  onPress: null,
+});
 
-export const getOnboardingProducts = (productSlots: Array<ProductSlots> = [], placeholder: ProductSlots) => {
-  const onboardingProducts = productSlots.filter(filterGroupProducts);
+// UI can fit 4 items total and will always display a placeholder.
+const productsToDisplay = 3;
 
-  return Array.from({ length: itemsToDisplay }, (_, i) => {
-    const productSlot = onboardingProducts[i] ?? { ...placeholder, id: `${placeholder.id}-${i}` };
-    return {
-      ...productSlot,
-      onPress: null,
-    };
-  });
+export const getOnboardingProducts = (productSlots: Array<ProductSlots> = [], placeholder: ItemSlotProps) => {
+  const onboardingProducts = productSlots
+    .filter(filterOnboardingProducts)
+    .slice(0, productsToDisplay)
+    .map(removeProductOnPress);
+  return [...onboardingProducts, placeholder];
 };

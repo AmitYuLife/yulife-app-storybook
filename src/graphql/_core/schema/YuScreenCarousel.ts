@@ -15,8 +15,10 @@ export interface YuScreenCarousel_items_image {
 }
 
 export interface YuScreenCarousel_items_button_onPress {
-  type: SduiActionType;
-  payload: string | null;
+  productId: string;
+  nextRouteId: string | null;
+  nextModalId: string | null;
+  shouldBeNormalised: boolean | null;
 }
 
 export interface YuScreenCarousel_items_button_event {

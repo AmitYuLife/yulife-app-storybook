@@ -8,25 +8,44 @@ import styles from "./onboarding.styles";
 import { TextTemplate } from "@atoms";
 import { Button } from "@molecules";
 import { YuCoinPower } from "../yu-coin-power/yu-coin-power";
-import { ItemSlot } from "../item-slot/item-slot";
+import { ItemSlot, ItemSlotProps } from "../item-slot/item-slot";
 import { getOnboardingProducts } from "./getOnboardingProducts";
-import { useDispatch } from "react-redux";
-import { dismissYuScreenOnboarding } from "@redux/user/user.actions";
 import FastImage from "react-native-fast-image";
 import { View as AnimatedView } from "react-native-animatable";
 import { ONBOARDING_SCREEN } from "@ids";
+import { OnboardingHandler } from "../../hooks/useOnboardingDismissalHandler";
+import { useYuScreenOnPressHandler } from "../../hooks/useYuScreenOnPressHandler";
 
 const BACKGROUND_IMAGE = require("./assets/onboarding-background.png");
 const ITEM_SLOT_CONTAINER_IMAGE = require("./assets/item-slot-container.png");
 
 interface Props {
   onboarding: OnboardingProps;
+  onDismiss: OnboardingHandler;
   productSlots: Array<ProductSlots>;
 }
 
-export const Onboarding: FC<Props> = ({ onboarding: { id, heading, text, button, placeholder }, productSlots }) => {
-  const dispatch = useDispatch();
-  const slotsToDisplay = useMemo(() => getOnboardingProducts(productSlots, placeholder), [productSlots, placeholder]);
+export const Onboarding: FC<Props> = ({
+  onboarding: {
+    dismissByPlaceholder,
+    heading,
+    text,
+    button: { event, label },
+    placeholder,
+  },
+  onDismiss,
+  productSlots,
+}) => {
+  const itemPlaceholder = useMemo<ItemSlotProps>(
+    () => ({ ...placeholder, onPress: dismissByPlaceholder ? onDismiss : null }),
+    [dismissByPlaceholder, onDismiss, placeholder]
+  );
+  const slotsToDisplay = useMemo(() => getOnboardingProducts(productSlots, itemPlaceholder), [
+    itemPlaceholder,
+    productSlots,
+  ]);
+
+  const handlePress = useYuScreenOnPressHandler({ event, onPress: onDismiss });
 
   return (
     <AnimatedView useNativeDriver={true} animation="fadeInUpBig" duration={500} style={styles.container}>
@@ -36,7 +55,7 @@ export const Onboarding: FC<Props> = ({ onboarding: { id, heading, text, button,
           <View style={styles.itemSlotContainer}>
             <FastImage style={styles.itemSlotContainerImage} source={ITEM_SLOT_CONTAINER_IMAGE} />
             <View style={styles.yuCoinPower}>
-              <YuCoinPower onPress={null} />
+              <YuCoinPower pressable={false} />
             </View>
             <View style={styles.itemSlotsContainer}>
               {slotsToDisplay.map((props) => (
@@ -54,7 +73,7 @@ export const Onboarding: FC<Props> = ({ onboarding: { id, heading, text, button,
               {text}
             </TextTemplate>
           </View>
-          <Button size="Fill" label={button.label} onPress={() => dispatch(dismissYuScreenOnboarding(id))} />
+          <Button size="Fill" label={label} onPress={handlePress} />
         </View>
       </ScrollView>
     </AnimatedView>

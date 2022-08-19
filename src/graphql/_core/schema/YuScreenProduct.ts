@@ -3,7 +3,7 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { YuProductStatus, SduiActionType, YuScreenSalesChannelType } from "./globalTypes";
+import { YuProductStatus, SduiActionType } from "./globalTypes";
 
 // ====================================================
 // GraphQL fragment: YuScreenProduct
@@ -25,8 +25,10 @@ export interface YuScreenProduct_rightStatusIcon {
 }
 
 export interface YuScreenProduct_onPress {
-  type: SduiActionType;
-  payload: string | null;
+  productId: string;
+  nextRouteId: string | null;
+  nextModalId: string | null;
+  shouldBeNormalised: boolean | null;
 }
 
 export interface YuScreenProduct_event {
@@ -49,5 +51,5 @@ export interface YuScreenProduct {
   rightStatusIcon: YuScreenProduct_rightStatusIcon | null;
   onPress: YuScreenProduct_onPress | null;
   event: YuScreenProduct_event | null;
-  type: YuScreenSalesChannelType | null;
+  showOnOnboarding: boolean | null;
 }
