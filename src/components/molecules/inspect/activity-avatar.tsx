@@ -4,15 +4,17 @@ import { TextTemplate } from "@atoms";
 import { Colours, Style } from "@styles";
 import FastImage, { ImageStyle } from "react-native-fast-image";
 import { EmptyMaleBody } from "../yumoji/assets/empty-male-body-svg";
+import { COMPARISON_NAMES, USER_YUMOJI_AVATAR, EMPTY_USER_YUMOJI_AVATAR } from "@ids";
 
 interface IProps {
   name: string;
   avatarUri: string;
   opponent: boolean;
   inspectOtherUser: boolean;
+  testID: string;
 }
 
-const ActivityAvatar = ({ name, avatarUri, opponent, inspectOtherUser }: IProps) => {
+const ActivityAvatar = ({ name, avatarUri, opponent, inspectOtherUser, testID }: IProps) => {
   const wrapper = useMemo(() => {
     return {
       ...styles.wrapper,
@@ -26,18 +28,23 @@ const ActivityAvatar = ({ name, avatarUri, opponent, inspectOtherUser }: IProps)
     [name]
   );
   return (
-    <View style={wrapper}>
+    <View style={wrapper} testID={testID}>
       <View style={avatarWrapper}>
         <View style={styles.nameTextWrapper}>
-          <TextTemplate type="b2b" numberOfLines={1}>
+          <TextTemplate type="b2b" numberOfLines={1} testID={COMPARISON_NAMES(name)}>
             {name}
           </TextTemplate>
         </View>
         <View style={styles.smallAvatarWrapper}>
           {avatarUri ? (
-            <FastImage resizeMode="contain" source={{ uri: avatarUri }} style={styles.image} />
+            <FastImage
+              resizeMode="contain"
+              source={{ uri: avatarUri }}
+              style={styles.image}
+              testID={USER_YUMOJI_AVATAR}
+            />
           ) : (
-            <View style={styles.emptyAvatarWrapper}>
+            <View style={styles.emptyAvatarWrapper} testID={EMPTY_USER_YUMOJI_AVATAR}>
               <EmptyMaleBody height={Style.adjust(223)} width={Style.adjust(83)} />
             </View>
           )}

@@ -87,15 +87,16 @@ export const addCyclingData = (value:number) => async () => {
     await fitKitAddAggregatedQueries(record)
 }
 
-export const addStepsHistoricalData = (value:number) => async () => {
+export const addStepsHistoricalData = (value:number, dayToSubstract = 1) => async () => {
     const record = [{
-        startTime: moment().subtract(1,"day").startOf("day").add(10,"minutes").toDate().toString(),
-        endTime: moment().subtract(1,"day").endOf("day").subtract(10,"minutes").toDate().toString(),
+        startTime: moment().subtract(dayToSubstract,"day").startOf("day").add(10,"minutes").toDate().toString(),
+        endTime: moment().subtract(dayToSubstract, "day").endOf("day").subtract(10,"minutes").toDate().toString(),
         value,
         type: "StepCount"
     }]
     await fitKitAddAggregatedQueries(record)
 }
+
 
 export const addSteps3DaysHistoricalData = (value: number) => async () => {
     const record = [{
@@ -118,20 +119,21 @@ export const addSteps3DaysHistoricalData = (value: number) => async () => {
     await fitKitAddAggregatedQueries(record)
 }
 
-export const addCyclingHistoricalData = (value:number) => async () => {
+export const addCyclingHistoricalData = (value:number, dayToSubstract = 1) => async () => {
     const record = [{
-        startTime: moment().subtract(1,"day").startOf("day").add(10,"minutes").toDate().toString(),
-        endTime: moment().subtract(1,"day").endOf("day").subtract(10,"minutes").toDate().toString(),
+        startTime: moment().subtract(dayToSubstract,"day").startOf("day").add(10,"minutes").toDate().toString(),
+        endTime: moment().subtract(dayToSubstract,"day").endOf("day").subtract(10,"minutes").toDate().toString(),
         value,
         type: "Biking"
     }]
     await fitKitAddAggregatedQueries(record)
 }
 
-export const addMindfulnessHistoricalData = (value:number) => async () => {
+
+export const addMindfulnessHistoricalData = (value:number, dayToSubstract = 1) => async () => {
     const record = [{
-        startTime: moment().subtract(1,"day").startOf("day").add(10,"minutes").toDate().toString(),
-        endTime: moment().subtract(1,"day").endOf("day").subtract(10,"minutes").toDate().toString(),
+        startTime: moment().subtract(dayToSubstract,"day").startOf("day").add(10,"minutes").toDate().toString(),
+        endTime: moment().subtract(dayToSubstract,"day").endOf("day").subtract(10,"minutes").toDate().toString(),
         value,
         type: "MindfulSession"
     }]

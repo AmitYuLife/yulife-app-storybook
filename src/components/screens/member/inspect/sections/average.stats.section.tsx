@@ -4,6 +4,7 @@ import { Colours, Style } from "@styles";
 import { StyleSheet, View } from "react-native";
 import { TextTemplate } from "@atoms";
 import AverageItem, { IAverageItem } from "@components/molecules/inspect/average-item";
+import { INSPECT_ACTIVITY_SECTION, INSPECT_ACTIVITY_PERIOD, INSPECT_ACTIVITY_HEADER } from "@ids";
 
 export interface ActivityItems {
   title: string;
@@ -30,10 +31,14 @@ const AverageStatsSection = ({ activity, inspectOtherUser }: IProps) => {
   } = activity;
 
   return (
-    <View>
+    <View testID={INSPECT_ACTIVITY_SECTION}>
       <View style={styles.activityHeader}>
-        <TextTemplate type="h3">{activitySectionTitle}</TextTemplate>
-        <TextTemplate type="b2">{activitySectionSubTitle}</TextTemplate>
+        <TextTemplate type="h3" testID={INSPECT_ACTIVITY_HEADER}>
+          {activitySectionTitle}
+        </TextTemplate>
+        <TextTemplate type="b2" testID={INSPECT_ACTIVITY_PERIOD}>
+          {activitySectionSubTitle}
+        </TextTemplate>
       </View>
 
       <View style={styles.box}>

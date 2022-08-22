@@ -1,6 +1,6 @@
 
 import { allTogglesTrue, allTogglesTrueFor_PLI } from "./_templates";
-import { CUSTOMER_2, CUSTOMER_5, CUSTOMER_6, CUSTOMER_7, CUSTOMER_8, CUSTOMER_9, CUSTOMER_14, CUSTOMER_3, CUSTOMER_15, CUSTOMER_16, CUSTOMER_17, CUSTOMER_20, CUSTOMER_23, CUSTOMER_10, CUSTOMER_12, CUSTOMER_13, CUSTOMER_18, CUSTOMER_22, CUSTOMER_24, CUSTOMER_19, CUSTOMER_26, CUSTOMER_27, CUSTOMER_28, CUSTOMER_29, CUSTOMER_30, CUSTOMER_31, CUSTOMER_32, CUSTOMER_33, CUSTOMER_ALPHA, CUSTOMER_34, CUSTOMER_35, CUSTOMER_36, CUSTOMER_37, CUSTOMER_39, CUSTOMER_40, CUSTOMER_41, CUSTOMER_42, CUSTOMER_43, CUSTOMER_44, CUSTOMER_45, CUSTOMER_46, CUSTOMER_PLI_2, CUSTOMER_PLI_3, CUSTOMER_PLI_4, CUSTOMER_PLI_5, CUSTOMER_DENTAL_1 } from '../postgres/customers';
+import { CUSTOMER_2, CUSTOMER_5, CUSTOMER_6, CUSTOMER_7, CUSTOMER_8, CUSTOMER_9, CUSTOMER_14, CUSTOMER_3, CUSTOMER_15, CUSTOMER_16, CUSTOMER_17, CUSTOMER_20, CUSTOMER_23, CUSTOMER_10, CUSTOMER_12, CUSTOMER_13, CUSTOMER_18, CUSTOMER_22, CUSTOMER_24, CUSTOMER_19, CUSTOMER_26, CUSTOMER_27, CUSTOMER_28, CUSTOMER_29, CUSTOMER_30, CUSTOMER_31, CUSTOMER_32, CUSTOMER_33, CUSTOMER_ALPHA, CUSTOMER_34, CUSTOMER_35, CUSTOMER_36, CUSTOMER_37, CUSTOMER_39, CUSTOMER_40, CUSTOMER_41, CUSTOMER_42, CUSTOMER_43, CUSTOMER_44, CUSTOMER_45, CUSTOMER_46, CUSTOMER_PLI_2, CUSTOMER_PLI_3, CUSTOMER_PLI_4, CUSTOMER_PLI_5, CUSTOMER_DENTAL_1, CUSTOMER_47 } from '../postgres/customers';
 import { generateRandomMongoId, IDatabaseItem } from "@yu-life/yulife-bdd-framework";
 import { BUSINESS_ACCOUNT_4, BUSINESS_ACCOUNT_5 } from "../postgres/business";
 
@@ -244,7 +244,6 @@ export const CUSTOMER_19_TOGGLES = {
         },
     }
 } as IDatabaseItem
-
 
 export const CUSTOMER_20_TOGGLES = {
     type: "mongo",
@@ -1037,5 +1036,19 @@ export const CUSTOMER_PLI_5_TOGGLES = {
         _id: generateRandomMongoId(),
         userId: CUSTOMER_PLI_5.data.customerId,
         features: allTogglesTrueFor_PLI.data.features
+    }
+} as IDatabaseItem
+
+export const CUSTOMER_47_TOGGLES = {
+    type: "mongo",
+    modelName: "usertoggles",
+    data: {
+        _id: generateRandomMongoId(),
+        userId: CUSTOMER_47.data.customerId,
+        features: {
+            showDuels: true,
+            showInspect: true,
+            passiveCyclingEnabled: true,
+        },
     }
 } as IDatabaseItem

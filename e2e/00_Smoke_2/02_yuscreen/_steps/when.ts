@@ -48,7 +48,6 @@ export const tapColour = (hexValue: string) => async () => {
 }
 
 export const editYumoji = (skinTone: string, hairStyle: string, hairColour: string, facialHair: string, facialHairColour: string, eyeColour: string, accessories: string) => async () => {
-    await textVisible("Edit your Yumoji")()
 
     await textVisible("Pick a body type")()
     await tapID(MALE_BODY)()

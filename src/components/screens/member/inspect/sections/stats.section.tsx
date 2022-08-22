@@ -6,6 +6,7 @@ import { InspectItem } from "@organisms/inspect/details-item";
 import { StyleSheet, View } from "react-native";
 import { TextTemplate } from "@atoms";
 import { showInfoMessageTooltipViewRelative } from "@organisms/tooltip-popup/tooltip-popup.helper";
+import { INSPECT_SECTION_HEADER, CHALLENGE_DUEL_BUTTON } from "@ids";
 
 export interface Section {
   title: string;
@@ -28,7 +29,7 @@ const StatsSection = ({ section, onPress, actionButtonLabel }: StatsProps) => {
   return (
     <View>
       {!section.title ? null : (
-        <View style={styles.boxTitle}>
+        <View style={styles.boxTitle} testID={INSPECT_SECTION_HEADER(section.title)}>
           <TextTemplate type="h3">{section.title}</TextTemplate>
         </View>
       )}
@@ -46,7 +47,13 @@ const StatsSection = ({ section, onPress, actionButtonLabel }: StatsProps) => {
           />
         ))}
         {!actionButtonLabel ? null : (
-          <Button size="Fill" label={actionButtonLabel} wrapperStyle={styles.boxButton} onPress={onPress} />
+          <Button
+            size="Fill"
+            label={actionButtonLabel}
+            wrapperStyle={styles.boxButton}
+            onPress={onPress}
+            testID={CHALLENGE_DUEL_BUTTON}
+          />
         )}
       </View>
     </View>

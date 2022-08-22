@@ -6,6 +6,7 @@ import { Colours, Style } from "@styles";
 import { InfoIcon } from "@atoms/icon/info-icon";
 import { RemoteImage } from "@graphql/_core/schema";
 import { addCommasToNumber } from "@utils";
+import { INSPECT_ACTIVITY, INSPECT_DATA } from "@ids";
 
 export interface InspectItem {
   id: string;
@@ -39,7 +40,9 @@ const InspectDetailsItem = ({ text, infoText, value, remoteImage, label, showInf
         <View style={styles.imageWrapper}>
           <Image width={Style.adjust(22)} source={remoteImage} />
         </View>
-        <TextTemplate type="b2">{text}</TextTemplate>
+        <TextTemplate type="b2" testID={INSPECT_ACTIVITY(text)}>
+          {text}
+        </TextTemplate>
         {!infoText ? null : (
           <PressableWithDelay onPress={showPopup}>
             <View ref={questionMarkRef} style={styles.infoWrapper} collapsable={false}>
@@ -48,7 +51,9 @@ const InspectDetailsItem = ({ text, infoText, value, remoteImage, label, showInf
           </PressableWithDelay>
         )}
       </View>
-      <TextTemplate type="b1b">{`${addCommasToNumber(value)}${label || ""}`}</TextTemplate>
+      <TextTemplate type="b1b" testID={INSPECT_DATA(value, label)}>
+        {`${addCommasToNumber(value)}${label || ""}`}
+      </TextTemplate>
     </View>
   );
 };

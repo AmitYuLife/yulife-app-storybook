@@ -3,7 +3,7 @@ import { StyleSheet, View } from "react-native";
 import { TextTemplate } from "@atoms";
 import { ActivityAvatar } from "@molecules";
 import { Colours, Style } from "@styles";
-
+import { COMPARISON_STATS_SECTION, LEFT_USER, RIGHT_USER, SINGLE_USER } from "@ids";
 interface IProps {
   avatarUri: string;
   opponentAvatarUri?: string;
@@ -15,8 +15,14 @@ const AvatarItems = ({ avatarUri, opponentAvatarUri, name, inspectOtherUser }: I
   return (
     <>
       {inspectOtherUser ? (
-        <View style={styles.opponentStateWrapper}>
-          <ActivityAvatar name={name} avatarUri={avatarUri} opponent={true} inspectOtherUser={inspectOtherUser} />
+        <View style={styles.opponentStateWrapper} testID={COMPARISON_STATS_SECTION}>
+          <ActivityAvatar
+            name={name}
+            avatarUri={avatarUri}
+            opponent={true}
+            inspectOtherUser={inspectOtherUser}
+            testID={LEFT_USER}
+          />
           <View style={styles.vs}>
             <TextTemplate type="b2b" color={Colours.neutral.n500}>
               VS
@@ -27,10 +33,17 @@ const AvatarItems = ({ avatarUri, opponentAvatarUri, name, inspectOtherUser }: I
             avatarUri={opponentAvatarUri}
             opponent={false}
             inspectOtherUser={inspectOtherUser}
+            testID={RIGHT_USER}
           />
         </View>
       ) : (
-        <ActivityAvatar name="You" avatarUri={avatarUri} opponent={false} inspectOtherUser={inspectOtherUser} />
+        <ActivityAvatar
+          name="You"
+          avatarUri={avatarUri}
+          opponent={false}
+          inspectOtherUser={inspectOtherUser}
+          testID={SINGLE_USER}
+        />
       )}
     </>
   );

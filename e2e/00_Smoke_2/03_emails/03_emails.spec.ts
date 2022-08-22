@@ -3,7 +3,7 @@ import * as scenario from "./_steps/scenario"
 import * as given from "./_steps/given"
 import * as when from "./_steps/when"
 import * as then from "./_steps/then"
-import { REWARDS_SCREEN, INPUT_RESET_PASSWORD, INPUT_AVIOS_FORM_FIELD, SCROLLABLE_LAYOUT, TEXT_TEMPLATE } from "@ids"
+import { REWARDS_SCREEN, INPUT_RESET_PASSWORD, INPUT_AVIOS_FORM_FIELD, SCROLLABLE_LAYOUT, TEXT_TEMPLATE,  } from "@ids"
 
 import { CUSTOMER_36, AUTH_36, CORE_REWARDS_AVIOS, CORE_REWARDS_NIKE } from "@data"
 
