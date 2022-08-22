@@ -64,3 +64,21 @@ export const BRISK_WALK_1 = {
         fitKitTypes: ["StepCount"]
     }
 } as IDatabaseItem
+
+export const CYCLING_1 = {
+    type: "mongo",
+    modelName: "map_level_slot_templates",
+    updateKey: "id",
+    data: {
+        id: "CYCLING_001",
+        timeLimit: 3600,
+        passive: false,
+        type: "move",
+        subtype: "cycling",
+        unit: "meters",
+        canFinishAtLastGoal: false,
+        fitKitTypes: ["Cycling"]
+    }
+} as IDatabaseItem
+
+

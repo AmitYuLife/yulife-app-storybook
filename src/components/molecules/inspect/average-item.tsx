@@ -4,6 +4,14 @@ import { Image, TextTemplate } from "@atoms";
 import { Rank } from "@atoms/icon/rank";
 import { Colours, Style } from "@styles";
 import { addCommasToNumber } from "@utils";
+import {
+  COMPARISON_ACTIVITY,
+  COMPARISON_ACTIVITY_MINE,
+  COMPARISON_ACTIVITY_OPPONENT,
+  WINNER,
+  SECOND_POSITION,
+  AV_STATS,
+} from "@ids";
 
 export interface IAverageItem {
   id?: string;
@@ -27,7 +35,7 @@ const AverageItem = ({ icon, name, value, opponentValue, opponentIsWinner, label
         <Image width={Style.adjust(22)} source={{ uri: icon }} />
       </View>
       <View style={styles.nameWrapper}>
-        <TextTemplate type="b2b" color={TEXT_COLOR}>
+        <TextTemplate type="b2b" color={TEXT_COLOR} testID={COMPARISON_ACTIVITY(name)}>
           {name}
         </TextTemplate>
       </View>
@@ -36,18 +44,34 @@ const AverageItem = ({ icon, name, value, opponentValue, opponentIsWinner, label
         <View style={styles.valuesWrapper}>
           <View style={styles.valueWrapper}>
             <View style={styles.leftRankWrapper}>
-              <Rank isWinner={!opponentIsWinner} isDraw={isDraw} />
+              <Rank
+                isWinner={!opponentIsWinner}
+                testID={!opponentIsWinner ? WINNER(value) : SECOND_POSITION(value)}
+                isDraw={isDraw}
+              />
             </View>
-            <TextTemplate type={!opponentIsWinner ? "b1b" : "b1"} color={TEXT_COLOR}>
+            <TextTemplate
+              testID={COMPARISON_ACTIVITY_OPPONENT(value)}
+              type={!opponentIsWinner ? "b1b" : "b1"}
+              color={TEXT_COLOR}
+            >
               {`${addCommasToNumber(value)}${label}`}
             </TextTemplate>
           </View>
           <View style={styles.valueWrapper}>
-            <TextTemplate type={opponentIsWinner ? "b1b" : "b1"} color={TEXT_COLOR}>
+            <TextTemplate
+              testID={COMPARISON_ACTIVITY_MINE(opponentValue)}
+              type={opponentIsWinner ? "b1b" : "b1"}
+              color={TEXT_COLOR}
+            >
               {`${addCommasToNumber(opponentValue)}${label}`}
             </TextTemplate>
             <View style={styles.rightRankWrapper}>
-              <Rank isWinner={opponentIsWinner} isDraw={isDraw} />
+              <Rank
+                isWinner={opponentIsWinner}
+                testID={opponentIsWinner ? WINNER(opponentValue) : SECOND_POSITION(opponentValue)}
+                isDraw={isDraw}
+              />
             </View>
           </View>
           <View style={styles.wrapperSeparator}>
@@ -56,7 +80,7 @@ const AverageItem = ({ icon, name, value, opponentValue, opponentIsWinner, label
         </View>
       ) : (
         <View style={styles.singleValueWrapper}>
-          <TextTemplate type="b1" color={TEXT_COLOR}>
+          <TextTemplate type="b1" color={TEXT_COLOR} testID={AV_STATS(value)}>
             {`${addCommasToNumber(value)}${label}`}
           </TextTemplate>
         </View>

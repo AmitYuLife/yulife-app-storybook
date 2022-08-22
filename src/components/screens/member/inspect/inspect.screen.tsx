@@ -4,6 +4,7 @@ import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import { Colours, Style } from "@styles";
 import { Platform, ScrollView, StyleSheet, View } from "react-native";
 import { t } from "@locale";
+import { INSPECT_SCREEN, YUMOJI, USER_INFO } from "@ids";
 import AverageStatsSection, { ActivityItems } from "./sections/average.stats.section";
 import StatsSection, { Section } from "./sections/stats.section";
 
@@ -41,11 +42,15 @@ const InspectScreen = ({
   );
 
   return (
-    <View style={styles.wrapper}>
+    <View style={styles.wrapper} testID={INSPECT_SCREEN}>
       <GenericHeadingPad />
-      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.containerStyle}>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={styles.containerStyle}
+        testID={USER_INFO(`${userName} ${level}`)}
+      >
         <NameAndLevel name={userName} level={level} />
-        <View style={styles.yumojiWrapper}>
+        <View style={styles.yumojiWrapper} testID={YUMOJI}>
           <Yumoji
             width={AVATAR_WIDTH}
             height={AVATAR_HEIGHT}
@@ -54,7 +59,6 @@ const InspectScreen = ({
             uri={yumoji}
           />
         </View>
-
         <StatsSection section={duel} actionButtonLabel={actionButtonLabel} onPress={challengeDuel} />
         <StatsSection section={general} />
         <AverageStatsSection activity={activity} inspectOtherUser={inspectOtherUser} />

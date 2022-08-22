@@ -42,6 +42,7 @@ export const REWARD_STORE_SETTINGS_SCREEN = "REWARD_STORE_SETTINGS_SCREEN"
 export const PERK_SCREEN = "PERK_SCREEN"
 export const EVENT_DIALOG_SCREEN = "EVENT_DIALOG_SCREEN";
 export const HEALTH_SCREEN = "HEALTH_SCREEN";
+export const INSPECT_SCREEN = "INSPECT_SCREEN";
 
 
 // buttons
@@ -80,6 +81,7 @@ export const ACTIVITY_FEED = "ACTIVITY_FEED"
 export const YUCOIN_POWER_INFO = "YUCOIN_POWER_INFO"
 export const RIGHT_PRODUCT_STEP_MULTI_BUTTON = "RIGHT_PRODUCT_STEP_MULTI_BUTTON";
 export const LEFT_PRODUCT_STEP_MULTI_BUTTON = "LEFT_PRODUCT_STEP_MULTI_BUTTON";
+export const INSPECT_BUTTON = "INSPECT_BUTTON";
 // components
 export const VIEW_CONFETTI_COIN = (coins: number) => `VIEW_CONFETTI_COIN_${coins}`;
 export const VIEW_TOP_RIGHT_COIN_COUNTER = (coins: number) => `VIEW_TOP_RIGHT_COIN_COUNTER_${coins}`;
@@ -189,7 +191,8 @@ export const AVATAR_BUILDER_LIST = "AVATAR_BUILDER_LIST"
 export const BUILDER_BODY = (bodyItems: string[]) => `BUILDER_BODY${bodyItems}`
 export const NO_ITEM_SELECTED = "NO_ITEM_SELECTED"
 export const HEAD_TYPE = (type: string) => `HEAD_TYPE_${type}`
-export const YUSCREEN_AVATAR = "YUSCREEN_AVATAR"
+export const YUSCREEN_AVATAR = "YUSCREEN_AVATAR";
+export const YUMOJI_CONTINUE_BUTTON = "YUMOJI_CONTINUE_BUTTON";
 
 // SDUI
 export const CONTENT_ITEM_INPUT = (id: string) => `SDUI_INPUT_${id}`
@@ -305,3 +308,32 @@ export const SETTINGS_SWITCH = (name:string, bool:boolean) => `SETTINGS_SWITCH_$
 // PLI
 export const YUMOJI_OUTFIT_RADIO = (title: string) => `YUMOJI_OUTFIT_RADIO${title}`
 export const YUMOJI_OUTFIT_LABEL = (title: string) => `YUMOJI_OUTFIT_LABEL${title}`
+
+// INSPECT SCREEN
+export const YUMOJI = "YUMOJI";
+export const INSPECT_DATA = (value: number, label: string) => `INSPECT_DATA${value}_${label}`;
+export const INSPECT_ACTIVITY = (data: string | number) => `INSPECT_ACTIVITY_${data}`;
+export const USER_INFO = (userData: string) => `USER_INFO_${userData}`;
+export const DUELS_STATS_SECTION = "DUELS_STATS_SECTION";
+export const DUELS_STAT = (title: string) => `DUELS_STAT${title}`;
+export const CHALLENGE_DUEL_BUTTON = "CHALLENGE_DUEL_BUTTON";
+export const INSPECT_ACTIVITY_SECTION = "INSPECT_ACTIVITY_SECTION";
+export const COMPARISON_STATS_SECTION = "COMPARISON_STATS_SECTION";
+export const COMPARISON_NAMES = (name: string) => `COMPARISON_NAMES_${name}`;
+export const EMPTY_USER_YUMOJI_AVATAR= "EMPTY_USER_YUMOJI_AVATAR";
+export const COMPARISON_ACTIVITY = (data: string | number) => `COMPARISON_ACTIVITY_${data}`;
+export const COMPARISON_ACTIVITY_MINE = (data: string | number) => `COMPARISON_ACTIVITY_MINE_${data}`;
+export const COMPARISON_ACTIVITY_OPPONENT = (data: string | number) => `COMPARISON_ACTIVITY_OPPONENT_${data}`;
+export const USER_YUMOJI_AVATAR = "USER_YUMOJI_AVATAR";
+export const INSPECT_SECTION_HEADER = (title: string) => `INSPECT_SECTION_HEADER_${title}`;
+export const INSPECT_ACTIVITY_HEADER = "INSPECT_ACTIVITY_HEADER";
+export const INSPECT_ACTIVITY_PERIOD = "INSPECT_ACTIVITY_PERIOD";
+export const ACTIVITY_NAMES = (opponentName: string, name: string) => `OPPONENT_ACTIVITY_INFO_${opponentName}_${name}`
+export const WINNER = (value: number) => `WINNER_${value}`;
+export const SECOND_POSITION = (value: number) => `SECOND_POSITION_${value}`;
+export const INSPECT_AVATAR = (order: number) => `INSPECT_AVATAR_${order}`;
+export const RANK = (name: string) => `RANK_${name}`
+export const SINGLE_USER = "SINGLE_USER";
+export const LEFT_USER = "LEFT_USER";
+export const RIGHT_USER = "RIGHT_USER";
+export const AV_STATS = (value: number) => `AV_STATS_${value}`;

@@ -23,8 +23,7 @@ export const {
 
 export const {
     scrollFromID,
-    swipeFromText,
-    swipeFromID
+    swipeFromText
 } = navigation.scrolling
 
 export const turnOffLeaderboard = (leaderboardID: string) => async () => {

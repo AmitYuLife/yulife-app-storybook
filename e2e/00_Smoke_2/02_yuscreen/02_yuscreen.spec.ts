@@ -3,11 +3,11 @@ import * as scenario from "./_steps/scenario"
 import * as given from "./_steps/given"
 import * as when from "./_steps/when"
 import * as then from "./_steps/then"
-import { CUSTOMER_1,CUSTOMER_2, AUTH_2, CUSTOMER_18, AUTH_18, CUSTOMER_17, AUTH_17, AUTH_19, CUSTOMER_43, AUTH_43, CUSTOMER_44, AUTH_44, CUSTOMER_19, USER_18_LEADERBOARD, CUSTOMER_45, AUTH_45, CUSTOMER_46, AUTH_46 } from "@data";
+import { CUSTOMER_2, AUTH_2, CUSTOMER_18, AUTH_18, CUSTOMER_17, AUTH_17, AUTH_19, CUSTOMER_19, USER_18_LEADERBOARD } from "@data";
 import {
-    GET_STARTED_BUTTON, MALE_BODY, COLOUR, VIEW_TOP_RIGHT_COIN_COUNTER, NAV_BAR, PERSONAL_PRODUCT,
-    CHECK_BOX_STATE, SURVEY_SCREEN, SURVEY_TEXT_BOX, FEMALE_BODY, AVATAR_BUILDER_LIST, NO_ITEM_SELECTED, 
-    BODY_TYPE, YUSCREEN_AVATAR, YUSCREEN, YUMOJI_PODIUM, LEADERBOARD_TITLE, YUCOIN_POWER, YUSCREEN_SCROLL_VIEW, AVATAR_ITEM, TEXT_TEMPLATE, YUCOIN, YUCOIN_POWER_INFO, YUMOJI_AVATAR_YUSCREEN_V4, YUSCREEN_V4, BUTTON_CLOSE
+    GET_STARTED_BUTTON, MALE_BODY, COLOUR, VIEW_TOP_RIGHT_COIN_COUNTER, NAV_BAR,
+    CHECK_BOX_STATE, SURVEY_SCREEN, SURVEY_TEXT_BOX, FEMALE_BODY,
+    BODY_TYPE, YUSCREEN_AVATAR, YUSCREEN, YUMOJI_PODIUM, LEADERBOARD_TITLE, YUCOIN_POWER, TEXT_TEMPLATE
 } from "@ids";
 
 
@@ -107,7 +107,7 @@ Feature("I am able to use the yuscreen, create, and edit an Yumoji", async () =>
                     })
                     When("I go to the leaderboard", when.tapID(NAV_BAR("leaderboard")), async () => {
                         Then("I should see the leaderboard title", then.idVisible(LEADERBOARD_TITLE(USER_18_LEADERBOARD.data.name)))
-                        Then("I should see my Yumoji", then.idVisible(YUMOJI_PODIUM(0)))
+                        Then("I should see my Yumoji", then.idVisible(YUMOJI_PODIUM(1)))
                     })
                 })
             })
@@ -132,12 +132,12 @@ Feature("I am able to use the yuscreen, create, and edit an Yumoji", async () =>
             })
         })
     })       
-
+    // user's yumoji does not load on yu screen or leaderboard when i log in
     Scenario("I can view my Yumoji after I login, and edit it", scenario.start, async () => {
         Given("I login", given.loginToYuScreen(false, CUSTOMER_17, AUTH_17), async () => {
             Then("I should see my Yumoji", then.idVisible(YUSCREEN_AVATAR))
             When("I go to the leaderboard", when.tapID(NAV_BAR("leaderboard")), async () => {
-                Then("I should see my Yumoji", then.idVisible(YUMOJI_PODIUM(1)))
+                Then("I should see myself in the leaderboard", then.idVisible(YUMOJI_PODIUM(2)))
                 Then("I should see my coin balance", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(560)))
                 When("I go back to the yuscreen", when.tapID(NAV_BAR("yu")), async () => {
                     Then("I should be on the yuscreen", then.onYuscreen(CUSTOMER_17))
@@ -148,7 +148,7 @@ Feature("I am able to use the yuscreen, create, and edit an Yumoji", async () =>
                         When("I proceed to edit my Yumoji", when.editYumoji("#FFC89F", "scruffy_sidepart", "#212121", "fat_lumberjack", "#2B2B2B", "#3C9172", "glasses_5"), async () => {
                             Then("I should be awarded 100 yucoin", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(660)))
                             When("I go to the leaderboard", when.tapID(NAV_BAR("leaderboard")), async () => {
-                                Then("I should see my Yumoji", then.idVisible(YUMOJI_PODIUM(1)))
+                                Then("I should see my Yumoji", then.idVisible(YUMOJI_PODIUM(2)))
                             })
                         })    
                     })
@@ -200,33 +200,33 @@ Feature("I am able to use the yuscreen, create, and edit an Yumoji", async () =>
                         Then("I should be on the Yumoji builder", then.onAvatarBuilder("Skin Tone"))
                         Then("The male body should be selected", then.idVisible(BODY_TYPE("female")))
                         Then("I should see a skin tone", then.idVisible(COLOUR("#FFC89F")))
-                    })
-                    When("I tap this skin tone", when.tapColour("#FFC89F"), async () => {
-                        When("I tap the 'Hair Style' tab", when.tapTab("hairStyle"), async () => {
-                            Then("I should be on the Hair Style tab", then.textVisible("Hair Style"))
-                            When("I tap a style", when.tapItem("long_sides"), async () => {
-                                When("I tap hair colour", when.tapTab("hairColour"), async () => {
-                                    Then("I should be on the Hair Colour tab", then.textVisible("Hair Colour"))
-                                    When("I tap a hair colour", when.tapColour("#212121"), async () => {
-                                        When("I tap the Facial Hair tab", when.tapTab("facialHair"), async () => {
-                                            Then("I should be on the Facial Hair tab", then.textVisible("Facial Hair"))
-                                            When("I tap a facial hair style", when.tapItem(""), async () => {
-                                                When("I tap Facial Hair Colour", when.tapTab("facialHairColour"), async () => {
-                                                    Then("I should see the empty tab", then.textVisible("No need to select facial hair colour if you haven’t selected any facial hair."))
-                                                    When("I tap eye colour", when.tapTab("eyeColour"), async () => {
-                                                        Then("I should be on the Eye Colour tab", then.textVisible("Eye Colour"))
-                                                        When("I select a colour", when.tapColour("#3C9172"), async () => {
-                                                            When("I tap the accessories tab", when.tapTab("glasses"), async () => {
-                                                                Then("I should be on the Accessories tab", then.textVisible("Accessories"))
-                                                                When("I select an accessory", when.tapItem("glasses_3"), async () => {
-                                                                    When("I tap 'Save'", when.tapText("Save"), async () => {
-                                                                        Then("I should be on the 'Yu look great!' screen", then.textVisible("Yu look great!"))
-                                                                        When("I tap 'yes'", when.tapText("Save changes"), async () => {
-                                                                            Then("I should be on the Yumoji completion screen", then.onAvatarCompletionScreen)
-                                                                            When("I tap 'Done' ", when.tapText("Done"), async () => {
-                                                                                Then("I should be on the yuscreen", then.onYuscreen(CUSTOMER_19))
-                                                                                Then("I should see my Yumoji", then.idVisible(YUSCREEN_AVATAR))
-                                                                                Then("I should be awarded 100 yucoin", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(550)))
+                        When("I tap this skin tone", when.tapColour("#FFC89F"), async () => {
+                            When("I tap the 'Hair Style' tab", when.tapTab("hairStyle"), async () => {
+                                Then("I should be on the Hair Style tab", then.textVisible("Hair Style"))
+                                When("I tap a style", when.tapItem("long_sides"), async () => {
+                                    When("I tap hair colour", when.tapTab("hairColour"), async () => {
+                                        Then("I should be on the Hair Colour tab", then.textVisible("Hair Colour"))
+                                        When("I tap a hair colour", when.tapColour("#212121"), async () => {
+                                            When("I tap the Facial Hair tab", when.tapTab("facialHair"), async () => {
+                                                Then("I should be on the Facial Hair tab", then.textVisible("Facial Hair"))
+                                                When("I tap a facial hair style", when.tapItem(""), async () => {
+                                                    When("I tap Facial Hair Colour", when.tapTab("facialHairColour"), async () => {
+                                                        Then("I should see the empty tab", then.textVisible("No need to select facial hair colour if you haven’t selected any facial hair."))
+                                                        When("I tap eye colour", when.tapTab("eyeColour"), async () => {
+                                                            Then("I should be on the Eye Colour tab", then.textVisible("Eye Colour"))
+                                                            When("I select a colour", when.tapColour("#3C9172"), async () => {
+                                                                When("I tap the accessories tab", when.tapTab("glasses"), async () => {
+                                                                    Then("I should be on the Accessories tab", then.textVisible("Accessories"))
+                                                                    When("I select an accessory", when.tapItem("glasses_3"), async () => {
+                                                                        When("I tap 'Save'", when.tapText("Save"), async () => {
+                                                                            Then("I should be on the 'Yu look great!' screen", then.textVisible("Yu look great!"))
+                                                                            When("I tap 'yes'", when.tapText("Save changes"), async () => {
+                                                                                Then("I should be on the Yumoji completion screen", then.onAvatarCompletionScreen)
+                                                                                When("I tap 'Done' ", when.tapText("Done"), async () => {
+                                                                                    Then("I should be on the yuscreen", then.onYuscreen(CUSTOMER_19))
+                                                                                    Then("I should see my Yumoji", then.idVisible(YUSCREEN_AVATAR))
+                                                                                    Then("I should be awarded 100 yucoin", then.idVisible(VIEW_TOP_RIGHT_COIN_COUNTER(550)))
+                                                                                })
                                                                             })
                                                                         })
                                                                     })
@@ -236,8 +236,8 @@ Feature("I am able to use the yuscreen, create, and edit an Yumoji", async () =>
                                                     })
                                                 })
                                             })
+                                            
                                         })
-                                        
                                     })
                                 })
                             })

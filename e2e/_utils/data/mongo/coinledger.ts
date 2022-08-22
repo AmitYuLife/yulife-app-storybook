@@ -1,7 +1,7 @@
 
 import { generateRandomMongoId } from "@yu-life/yulife-bdd-framework"
 import { IDatabaseItem } from "@yu-life/yulife-bdd-framework";
-import { CUSTOMER_2, CUSTOMER_3, CUSTOMER_4, CUSTOMER_6, CUSTOMER_7, CUSTOMER_8, CUSTOMER_9, CUSTOMER_12, CUSTOMER_13, CUSTOMER_14, CUSTOMER_15, CUSTOMER_18, CUSTOMER_17, CUSTOMER_22, CUSTOMER_23, CUSTOMER_24, CUSTOMER_19, CUSTOMER_16, CUSTOMER_35, CUSTOMER_36, CUSTOMER_37, CUSTOMER_38, CUSTOMER_39, CUSTOMER_40, CUSTOMER_41, CUSTOMER_42 } from '../postgres/customers';
+import { CUSTOMER_2, CUSTOMER_3, CUSTOMER_4, CUSTOMER_6, CUSTOMER_7, CUSTOMER_8, CUSTOMER_9, CUSTOMER_12, CUSTOMER_13, CUSTOMER_14, CUSTOMER_15, CUSTOMER_18, CUSTOMER_17, CUSTOMER_22, CUSTOMER_23, CUSTOMER_24, CUSTOMER_19, CUSTOMER_16, CUSTOMER_35, CUSTOMER_36, CUSTOMER_37, CUSTOMER_38, CUSTOMER_39, CUSTOMER_40, CUSTOMER_41, CUSTOMER_42, CUSTOMER_47 } from '../postgres/customers';
 import {
     CHALLENGE_2, CHALLENGE_USER_6_A, CHALLENGE_USER_7_A, CHALLENGE_USER_7_B, CHALLENGE_USER_7_C, CHALLENGE_USER_7_D,
     CHALLENGE_USER_8_B, CHALLENGE_USER_8_A, CHALLENGE_USER_9_B, CHALLENGE_USER_9_A, CHALLENGE_USER_9_C, CHALLENGE_USER_9_D,
@@ -581,7 +581,6 @@ export const COIN_LEDGER_18 = {
         currentBalance: 320,
         currentLevel: 2,
         nextStreakAvailableAt: moment().startOf("day").format("YYYY-MM-DDTHH:mm:ss")
-
     }
 } as IDatabaseItem
 
@@ -598,7 +597,6 @@ export const COIN_LEDGER_19 = {
         currentLevel: 1
     }
 } as IDatabaseItem
-
 
 export const COIN_LEDGER_22 = {
     type: "mongo",
@@ -842,5 +840,19 @@ export const COIN_LEDGER_35 = {
         currentStreak: 5,
         currentLevel: 51,
         nextStreakAvailableAt: moment().startOf("day").format("YYYY-MM-DDTHH:mm:ss")
+        }
+    } as IDatabaseItem
+
+    export const COIN_LEDGER_47 = {
+        type:"mongo",
+        modelName:"coinledger",
+        data:{
+            _id: generateRandomMongoId(),
+            customerId: CUSTOMER_47.data.customerId,
+            userId: CUSTOMER_47.data.customerId,
+            transactions: [],
+            currentBalance: 500,
+            currentStreak: 1,
+            currentLevel: 1
         }
     } as IDatabaseItem

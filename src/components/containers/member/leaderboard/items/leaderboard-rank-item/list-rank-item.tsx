@@ -8,6 +8,7 @@ import { Score } from "./subcomponents/score";
 import { baseStyles } from "./subcomponents/styles";
 import { ILeaderboardRankItemProps } from "./rank-item.types";
 import { TouchableOpacityWithDelay } from "@components/molecules";
+import { RANK } from "@ids";
 import { Navigation } from "react-native-navigation";
 import { ROUTES } from "@navigation/constants";
 
@@ -46,7 +47,7 @@ const _ListRankItem = ({
       >
         <Animated.View style={baseStyles.wrapper}>
           {isCurrentUser && <View style={baseStyles.currentUser} />}
-          <View style={baseStyles.borderWrapper}>
+          <View style={baseStyles.borderWrapper} testID={RANK(name)}>
             <Rank rank={rank} />
             <Image uri={uri} />
             <Name name={name} bold={isCurrentUser} />

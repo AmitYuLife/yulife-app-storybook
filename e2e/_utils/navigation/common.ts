@@ -201,6 +201,7 @@ export const replaceTextViaID = (id: string, text: string) => async () => {
 }
 
 export const multipleTextVisible = (textArr: string[]) => async () => {
+    await wait(2000)()
     for (const i of textArr) {
         await expect(element(by.text(i))).toBeVisible()
     }
