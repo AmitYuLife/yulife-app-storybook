@@ -25,6 +25,7 @@ export const user_duel_1 = {
                 startDateTime: moment().subtract(1, "hours").toISOString(),
             }
         ],
+        date: moment().subtract(1, "hours").format("YYYY-MM-DD"),
         type: "steps",
         status: "accepted",
         duration: 86400,
@@ -52,6 +53,7 @@ export const user_duel_2 = {
                 score:400
             }
         ],
+        date: moment().subtract(5, "days").format("YYYY-MM-DD"),
         type: "steps",
         status: "finished",
         duration: 86400,
@@ -79,6 +81,7 @@ export const user_duel_3 = {
                 score: 500
             }
         ],
+        date: moment().subtract(8, "days").format("YYYY-MM-DD"),
         type: "steps",
         status: "finished",
         duration: 86400,
@@ -107,6 +110,7 @@ export const user_duel_4 = {
                 score: 800
             }
         ],
+        date: moment().subtract(8, "days").format("YYYY-MM-DD"),
         type: "steps",
         status: "finished",
         duration: 86400,
@@ -134,6 +138,7 @@ export const user_duel_5 = {
                 score: 500
             }
         ],
+        date: moment().subtract(8, "days").format("YYYY-MM-DD"),
         type: "steps",
         status: "finished",
         duration: 86400,
@@ -161,6 +166,7 @@ export const user_duel_6 = {
                 score: 200
             }
         ],
+        date: moment().subtract(8, "days").format("YYYY-MM-DD"),
         type: "steps",
         status: "finished",
         duration: 86400,
@@ -188,6 +194,7 @@ export const user_duel_7 = {
                 score: 200
             }
         ],
+        date: moment().subtract(6, "days").format("YYYY-MM-DD"),
         type: "steps",
         status: "finished",
         duration: 86400,
@@ -215,6 +222,7 @@ export const user_duel_8 = {
                 score: 200
             }
         ],
+        date: moment().subtract(7, "days").format("YYYY-MM-DD"),
         type: "steps",
         status: "finished",
         duration: 86400,
@@ -242,6 +250,7 @@ export const user_duel_9 = {
                 score: 200
             }
         ],
+        date: moment().subtract(8, "days").format("YYYY-MM-DD"),
         type: "steps",
         status: "finished",
         duration: 86400,
@@ -269,6 +278,7 @@ export const user_duel_10 = {
                 score: 200
             }
         ],
+        date: moment().subtract(1, "days").format("YYYY-MM-DD"),
         type: "steps",
         status: "finished",
         duration: 86400,
@@ -297,6 +307,7 @@ export const user_duel_11 = {
                 score: 400
             }
         ],
+        date: moment().subtract(19, "days").format("YYYY-MM-DD"),
         type: "steps",
         status: "finished",
         duration: 86400,
@@ -324,6 +335,7 @@ export const user_duel_12 = {
                 score: 600
             }
         ],
+        date: moment().subtract(20, "days").format("YYYY-MM-DD"),
         type: "steps",
         status: "finished",
         duration: 86400,
@@ -351,6 +363,7 @@ export const user_duel_13 = {
                 score: 600
             }
         ],
+        date: moment().subtract(21, "days").format("YYYY-MM-DD"),
         type: "steps",
         status: "finished",
         duration: 86400,
