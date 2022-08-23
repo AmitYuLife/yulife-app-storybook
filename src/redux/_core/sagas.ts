@@ -9,6 +9,7 @@ import deviceSagas from "../device/sagas";
 import feedbackSagas from "../prompts/sagas";
 import levelsSagas from "../levels/sagas";
 import loggingSagas from "../logging/logging.sagas";
+import nativeLoggingSagas from "../native-logging/sagas";
 import notificationsSagas from "../notifications/sagas";
 import onboardingSagas from "../onboarding/sagas";
 import passiveActivitySagas from "../passive-activity/sagas";
@@ -27,6 +28,7 @@ export default function* allSagas() {
     ...copySagas,
     ...assetsSagas,
     ...coinsSagas,
+    ...nativeLoggingSagas,
     ...dailyStepsSagas,
     ...getDailyPassiveActivity,
     ...debugToolSaga,

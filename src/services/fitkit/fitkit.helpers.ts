@@ -281,9 +281,15 @@ export const queryAggregatedBiking = async (
   features?: IUserStore["features"]
 ): Promise<QueryFitKitByTypesResponse> => {
   try {
-    const { disableUserEntries = true, loggingEnabled = false, cyclingAggregationMin = false } = features || {
+    const {
+      disableUserEntries = true,
+      loggingEnabled = false,
+      cyclingAggregationMin = false,
+      runOnNewThread = false,
+    } = features || {
       disableUserEntries: true,
       loggingEnabled: false,
+      runOnNewThread: false,
     };
     const additionalFitnessActivities = getAdditionalCyclingFitnessActivities(features);
 
@@ -300,6 +306,7 @@ export const queryAggregatedBiking = async (
       startTime,
       type: FitKitTypes.Types.Biking,
       fitnessActivities: additionalFitnessActivities,
+      runOnNewThread,
     };
 
     if (loggingEnabled) {
