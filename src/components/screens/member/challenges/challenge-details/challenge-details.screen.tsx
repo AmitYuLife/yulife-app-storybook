@@ -75,7 +75,7 @@ function ChallengeDetailsScreen({
         )}
         {!error ? null : <Text style={styles.error}>{error}</Text>}
       </View>
-      <GenericHeadingAbsolute backgroundColor="transparent" onRightIconPress={onPressClose} />
+      <GenericHeadingAbsolute backgroundColor="transparent" onLeftIconPress={onPressClose} />
     </>
   );
 }
