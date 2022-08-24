@@ -11,6 +11,7 @@ export enum ActionTypes {
   SET_SHOW_FOCUS_SCREEN = "SET_SHOW_FOCUS_SCREEN",
   SET_START_ERROR_MESSAGE = "SET_START_ERROR_MESSAGE",
   SET_STARTING = "SET_STARTING",
+  SET_IS_DONE = "SET_IS_DONE",
 }
 
 export interface IState {
@@ -23,6 +24,7 @@ export interface IState {
   isStarting: boolean;
   isBuffering: boolean;
   isPaused: boolean;
+  isDone: boolean;
   showFocusScreen: boolean;
   startErrorMessage: string;
 }
@@ -42,6 +44,7 @@ export const INITIAL_STATE: IState = {
   isBuffering: false,
   isPaused: true,
   isStarting: false,
+  isDone: false,
   showFocusScreen: false,
   startErrorMessage: null,
 };
@@ -137,6 +140,13 @@ export const reducer = (state: IState, action: IAction): IState => {
       return {
         ...state,
         isStarting: action.payload,
+      };
+    }
+
+    case ActionTypes.SET_IS_DONE: {
+      return {
+        ...state,
+        isDone: true,
       };
     }
   }
