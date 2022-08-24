@@ -1,4 +1,4 @@
-import { GQL_FRAGMENT_REMOTE_IMAGE } from "@graphql/_fragments/shared.gql";
+import { GQL_FRAGMENT_REMOTE_IMAGE, GQL_FRAGMENT_SDUI_ACTION } from "@graphql/_fragments/shared.gql";
 import gql from "graphql-tag";
 
 export const GQL_FRAGMENT_YU_SCREEN_POPOVER = gql`
@@ -172,12 +172,48 @@ export const GQL_FRAGMENT_AVATAR = gql`
   }
 `;
 
+export const GQL_QUERY_PRODUCT_PAYMENT_HISTORY_INFO_PANEL_BUTTON = gql`
+  ${GQL_FRAGMENT_SDUI_ACTION}
+  fragment ProductPaymentHistoryInfoPanelButton on ProductPaymentHistoryInfoPanelButton {
+    label
+    onPress {
+      ...SduiAction
+    }
+    event {
+      ...SduiAction
+    }
+  }
+`;
+
+export const GQL_QUERY_PRODUCT_PAYMENT_HISTORY_INFO_PANEL_CONTAINER_ACTIONS = gql`
+  ${GQL_FRAGMENT_SDUI_ACTION}
+  fragment ProductPaymentHistoryInfoPanelContainerActions on ProductPaymentHistoryInfoPanelContainerActions {
+    onPress {
+      ...SduiAction
+    }
+    event {
+      ...SduiAction
+    }
+  }
+`;
+
 export const GQL_QUERY_PRODUCT_PAYMENT_HISTORY_INFO_PANEL = gql`
   ${GQL_FRAGMENT_REMOTE_IMAGE}
+  ${GQL_QUERY_PRODUCT_PAYMENT_HISTORY_INFO_PANEL_BUTTON}
+  ${GQL_QUERY_PRODUCT_PAYMENT_HISTORY_INFO_PANEL_CONTAINER_ACTIONS}
   fragment YuScreenProductPaymentHistoryInfoPanel on YuScreenProductPaymentHistoryInfoPanel {
     markdown
     remoteImage {
       ...RemoteImage
+    }
+    type
+    titleMarkdown
+    showCloseIcon
+    button {
+      ...ProductPaymentHistoryInfoPanelButton
+    }
+    containerActions {
+      ...ProductPaymentHistoryInfoPanelContainerActions
     }
   }
 `;

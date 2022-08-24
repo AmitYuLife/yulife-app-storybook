@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import React, { memo, useMemo, useState } from "react";
 import { TextTemplate } from "@atoms";
 import { TEXT_TEMPLATE } from "@ids";
 import { Colours } from "@styles";
@@ -13,6 +13,8 @@ import { GetProductPaymentHistory, GetProductPaymentHistoryVariables } from "@gr
 import { useBackHandler } from "@hooks";
 import { InfoPanel } from "@components/molecules";
 import { styles } from "./styles";
+import { useDispatch } from "react-redux";
+import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
 
 enum PAYMENT_PLAN_INVOICE_STATUS {
   CHARGED = "charged",
@@ -33,6 +35,10 @@ const onLeftIconPress = () => {
 
 export const ProductPaymentHistoryContainer = ({ customerProductId }: IProps) => {
   useBackHandler(onLeftIconPress);
+  const dispatch = useDispatch();
+  const [visible, setVisible] = useState(true);
+
+  const onClose = () => setVisible(false);
 
   const { data, loading } = useQuery<GetProductPaymentHistory, GetProductPaymentHistoryVariables>(
     GQL_QUERY_PRODUCT_PAYMENT_HISTORY,
@@ -44,6 +50,57 @@ export const ProductPaymentHistoryContainer = ({ customerProductId }: IProps) =>
     }
   );
 
+  const infoPanel = data?.getProductPaymentHistory?.infoPanel;
+
+  const infoPanelContainerOnPress = useMemo(
+    () =>
+      infoPanel?.containerActions
+        ? () => {
+            const { containerActions } = infoPanel;
+            dispatch({
+              type: containerActions.onPress.type,
+              payload: {
+                serverPayload: containerActions.onPress.payload,
+              },
+            });
+            if (containerActions.event) {
+              try {
+                const payload = JSON.parse(containerActions.event.payload);
+
+                dispatch(logMixpanelEventActionCreator(payload.name || "button_pressed", payload.props));
+              } catch (e) {}
+            }
+          }
+        : null,
+    [dispatch, infoPanel]
+  );
+
+  const infoPanelButton = useMemo(
+    () =>
+      infoPanel?.button
+        ? {
+            label: infoPanel.button.label,
+            onPress: () => {
+              const { button } = infoPanel;
+              dispatch({
+                type: button.onPress.type,
+                payload: {
+                  serverPayload: button.onPress.payload,
+                },
+              });
+              if (button.event) {
+                try {
+                  const payload = JSON.parse(button.event.payload);
+
+                  dispatch(logMixpanelEventActionCreator(payload.name || "button_pressed", payload.props));
+                } catch (e) {}
+              }
+            },
+          }
+        : null,
+    [dispatch, infoPanel]
+  );
+
   if (!data?.getProductPaymentHistory || loading) {
     return (
       <View style={styles.activityIndicatorWrapper}>
@@ -53,7 +110,7 @@ export const ProductPaymentHistoryContainer = ({ customerProductId }: IProps) =>
   }
 
   const {
-    getProductPaymentHistory: { items, infoPanel },
+    getProductPaymentHistory: { items },
   } = data;
 
   return (
@@ -82,7 +139,18 @@ export const ProductPaymentHistoryContainer = ({ customerProductId }: IProps) =>
           })}
         </View>
         <View style={styles.infoPanelWrapper}>
-          <InfoPanel markdown={infoPanel.markdown} remoteImage={infoPanel?.remoteImage} type="info" />
+          {visible ? (
+            <InfoPanel
+              markdown={infoPanel.markdown}
+              type={infoPanel.type}
+              remoteImage={infoPanel.remoteImage}
+              titleMarkdown={infoPanel.titleMarkdown}
+              button={infoPanelButton}
+              showIcon={!!infoPanel.remoteImage}
+              onClose={infoPanel.showCloseIcon ? onClose : null}
+              containerOnPress={infoPanelContainerOnPress}
+            />
+          ) : null}
         </View>
       </ScrollView>
       <GenericHeadingAbsolute logo="yulife" onLeftIconPress={onLeftIconPress} />

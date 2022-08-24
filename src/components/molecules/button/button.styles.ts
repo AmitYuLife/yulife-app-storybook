@@ -43,6 +43,10 @@ export const buttonStyles = StyleSheet.create({
     width: Style.DEVICE_WIDTH - 70,
     height: DEFAULT_HEIGHT,
   },
+  narrow: {
+    width: "100%",
+    height: Style.adjust(40),
+  },
 });
 
 export function getButtonDimensions(size: Sizes) {
@@ -55,6 +59,8 @@ export function getButtonDimensions(size: Sizes) {
       return buttonStyles.small;
     case BUTTON_SIZES.MEDIUM:
       return buttonStyles.medium;
+    case BUTTON_SIZES.NARROW:
+      return buttonStyles.narrow;
     case BUTTON_SIZES.LARGE:
     default:
       return buttonStyles.large;
