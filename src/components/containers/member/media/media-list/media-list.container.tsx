@@ -14,6 +14,7 @@ import Logger from "@services/logging/logger";
 import { useDispatch } from "react-redux";
 import { updateChallengeAppButton } from "@redux/levels/levels.actions";
 import { t } from "@locale";
+import { useBackHandler } from "@hooks";
 interface IProps extends IInternalContent {
   componentId: string;
   createChallenge: (hideExternalLinks?: boolean) => void;
@@ -45,8 +46,12 @@ const MediaListContainer = ({
   );
 
   const onLeftIconPress = useCallback(() => Navigation.popTo(ROUTES.questsChallengesList), []);
-
   const onRightIconPress = useCallback(() => Navigation.popTo(ROUTES.quests), []);
+
+  useBackHandler(() => {
+    onLeftIconPress();
+    return false;
+  });
 
   const handleOtherMeditationApp = useCallback(async (appName: string, button?: IButton) => {
     if (!appName) {
