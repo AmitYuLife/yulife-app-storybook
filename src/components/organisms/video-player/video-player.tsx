@@ -112,6 +112,7 @@ const VideoPlayer = ({
   useEffect(() => {
     (async () => {
       if (
+        !state.isDone &&
         !state.isPaused &&
         appCurrentState === "active" &&
         videoPlayerIsActive &&
@@ -213,7 +214,7 @@ const VideoPlayer = ({
     }
 
     try {
-      dispatch({ type: ActionTypes.PAUSE_PLAYER });
+      dispatch({ type: ActionTypes.SET_IS_DONE });
       await onEnd();
     } catch (err) {
       Logger.error(err, { location: "video-player-handleOnEnd" });
