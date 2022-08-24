@@ -6,7 +6,7 @@ import { call, cancel, fork, put, race, select, take } from "redux-saga/effects"
 import { UPDATE_APP_STATE } from "../../app/app.actions";
 import { START_DAILY_STEPS } from "../../daily-steps/daily-steps.actions";
 import { getIsUserArchived } from "../../user/user.selectors";
-import { PEDOMETER_STOP, startPedometerUpdates } from "../pedometer.actions";
+import { PEDOMETER_RESTART_ON_NEW_DAY, PEDOMETER_STOP, startPedometerUpdates } from "../pedometer.actions";
 import listenToSteps from "./listenToSteps.helper";
 
 // TODO: restart the pedometer when a new day ticks over
@@ -29,13 +29,16 @@ export default function* startPedometerSaga() {
     if (token && !isArchived && shouldStartPedometerUpdates) {
       yield put(startPedometerUpdates());
       const stepsTask: Task = yield fork(listenToSteps);
-      yield race({
+      const { restarted } = yield race({
         appUpdated: take(UPDATE_APP_STATE),
         dailySteps: take(PEDOMETER_STOP),
         unauthenticated: take(LOGOUT_SUCCESS),
+        restarted: take(PEDOMETER_RESTART_ON_NEW_DAY),
       });
+
       yield cancel(stepsTask);
-      shouldStartPedometerUpdates = false; // we need to make sure that if the app was put in the background we're waiting for the actions
+
+      shouldStartPedometerUpdates = !!restarted; // we need to make sure that if the app was put in the background we're waiting for the actions
     }
   }
 }
