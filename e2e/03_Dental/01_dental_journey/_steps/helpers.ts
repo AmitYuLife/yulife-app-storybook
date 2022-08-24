@@ -29,13 +29,13 @@ export const ONBOARDING = async () => {
 
 export const INFORMATION = async () => {
     const supportTitle = "Bupa support is here for you"
-    const supportCopy = "Both NHS and private patients can claim cash back towards treatment costs with this plan. Use the Bupa Dental Care support line to arrange an appointment or get fast, free advice via a phone or video call."
+    const supportCopy = "Both NHS and private patients can claim cashback towards treatment costs. Use the Bupa Dental Care support line to arrange an appointment or get fast, free advice via phone or video call."
     const claimsTitle = "Claims made easy"
-    const claimsCopy = "When you're seen in a participating Bupa dental practice they'll settle the claim for you*, or use Bupa Touch for online claims."
+    const claimsCopy = "When you’re seen in a participating Bupa dental practice they’ll settle the claim for you*, or use Bupa Touch for online claims."
     const toothBrushTitle = "Claim a free Ordo toothbrush"
     const toothBrushCopy = "You can claim a free Ordo Sonic toothbrush with this policy**."
     const onlyWithYuLifeTitle = "Only with YuLife"
-    const onlyWithYuLifeCopy = "Customise your Yumoji's style and unlock new perks, as well as keep the YuLife app and this policy if you change jobs."
+    const onlyWithYuLifeCopy = "Customise your Yumoji’s style and unlock new perks, as well as keep the YuLife app and your policy if you change jobs."
 
     const forest = "Forest Pathfinder"
     const ocean = "Ocean Explorer"
@@ -64,13 +64,14 @@ export const INFORMATION = async () => {
         Then("I should see the Ordo toothbrush", then.multipleTextVisible([toothBrushTitle, toothBrushCopy]))
     })
 
-    When("I scroll to the bottom of the page", when.scrollUntilTextVisible(PRODUCT_STEP_BODY_SCROLL_VIEW, "Information about our Service", "down"), async () => {
+    When("I scroll to the bottom of the page", when.scrollUntilTextVisible(PRODUCT_STEP_BODY_SCROLL_VIEW, "Bupa’s Privacy Notice", "down"), async () => {
         Then("I should see the Only with YuLife box", then.multipleTextVisible([onlyWithYuLifeTitle, onlyWithYuLifeCopy]))
         Then("I should see *Excludes some treatments", then.textVisible("*Excludes some treatments"))
         Then("I should see FAQs", then.textVisible("FAQs"))
-        Then("I should see YuLife's Privacy Policy", then.textVisible("YuLife's Privacy Policy"))
-        Then("I should see Bupa's Privacy Notice", then.textVisible("Bupa's Privacy Notice"))
-        Then("I should see Information about our Service", then.textVisible("Information about our Service"))
+        Then("I should see YuLife's Privacy Policy", then.textVisible("YuLife’s Privacy Policy"))
+        Then("I should see Bupa's Privacy Notice", then.textVisible("Bupa’s Privacy Notice"))
+    })
+    When("I scroll more to the bottom of the page", when.scrollUntilTextVisible(PRODUCT_STEP_BODY_SCROLL_VIEW, "Information about our Service", "down"), async () => {
         Then("I should see Browse cover levels button", then.textVisible("Browse cover levels"))
     })
     When("I tap Browse cover levels", when.tapText("Browse cover levels"), async () => {
@@ -261,6 +262,41 @@ export const CANCELLED_NOTIFICATION = async ( cover: coverLevel )  => {
         Then(`I should see correct ${cover} Package details and price`, then.packageVisible(cover));     
         When("I tap to go back to Policy details screen", when.tapID(BACK_BUTTON), async () => {
             Then("I should see again Billing info", then.textVisible("Billing info"))
+        })
+    })
+}
+
+
+export const TAP_UNLOCKED_ITEM = async ( item: string, productName: string )  => {
+    When("I tap off the tooltip", when.tapText(`${CUSTOMER_37.data.firstName} ${CUSTOMER_37.data.lastName}`), async () => {
+        When(`I tap the ${item}`, when.tapUnlockableItem(item), async () => {
+            Then(`I should be on the first ${productName} screen`, then.idVisible(TEXT_TEMPLATE(productName)));
+        })
+    })
+}
+
+export const CHOOSE_PLAN_AND_CHECKOUT = async () => {
+
+    const streakBountyTitle = "Increased Streak Bounty"
+    const nextScreen = "Great news!\nYour application is being processed"
+
+    When("I scroll to the bottom of the page", when.scrollUntilTextVisible(PRODUCT_STEP_BODY_SCROLL_VIEW, "Information about our Service", "down"), async () => {
+        When("I tap Browse cover levels", when.tapText("Browse cover levels"), async () => {
+            Then("I should be on the plan page", then.isOnScreen("Choose a plan that suits you"))
+        })
+    })
+    When("I tap the Epic tile", when.tapText("£27.99"), async () => {
+        When("I tap Continue", when.tapText("Continue"), async () => {
+            Then("I should be on the Summary page", then.isOnScreen("Summary"))
+            When("I scroll a little down on the page", when.swipeFromText(streakBountyTitle , "up", "fast"), async () => {
+                Then("I should see again Continue to checkout", then.textVisible("Continue to checkout"))
+                When("I continue to checkout", when.continueCheckoutDental, async () => {
+                    Then("I should see exising card ending with 4242", then.textVisible("Purchase with **** 4242"))
+                    When("I tap purchase with existing card", when.tapText("Purchase with **** 4242"), async () => {
+                        Then(`I should be on the ${nextScreen} screen`, then.isOnScreen(nextScreen))
+                    })
+                })
+            })
         })
     })
 }

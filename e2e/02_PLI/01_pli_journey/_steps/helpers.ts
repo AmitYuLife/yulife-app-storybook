@@ -7,7 +7,6 @@ import { addCommasToNumber } from "_utils/appScreens/rewards";
 import { capitalizeFirstLetter } from "@navigation";
 import { MonthlyCoverPrices, TotalCoverPrices} from "./types"
 
-
 const forest = "Forest Pathfinder"
 const ocean = "Ocean Explorer"
 const desert = "Desert Trailblazer"
@@ -24,14 +23,10 @@ export const ONBOARDING = async () => {
 
     const personalInsurance = "Personal Life Insurance"
     const startQuoteText = "Start my quote (+1000 YuCoin)"
-
-
-    
-    Then(`I should be on the first Life Insurance onboarding screen`, then.textVisible(personalInsurance));
-    Then(`I should see ${startQuoteText}`, then.textVisible(startQuoteText));
      
     When("I tap on the right part of the screen", when.navigateThroughTheFullSwiper, async () => {
         Then(`I should see ${startQuoteText}`, then.textVisible(startQuoteText));
+        Then(`I should be on the first Life Insurance onboarding screen`, then.textVisible(personalInsurance));
     })
     When("I tap on the right part of the screen", when.navigateThroughTheFullSwiper, async () => {
         Then(`I should see ${startQuoteText}`, then.textVisible(startQuoteText));
@@ -596,6 +591,60 @@ export const REVIEW_YUSCREEN = async () => {
         Then("I should see toolTip info text", then.textVisible(yuScreenChestPurchased))
         When("I tap the toolTip", when.tapText(yuScreenChestPurchased), async () => {
             Then("I should NOT see toolTip info text", then.textNotVisible(yuScreenChestPurchased))
+        })
+    })
+}
+
+export const FAST_INTRO_START = async () => {
+
+    When("I tap Get started button", when.tapText("Get started"), async () => {
+        When("I scroll to the bottom", when.scrollUntilTextVisible(PRODUCT_STEP_BODY_SCROLL_VIEW, "Terms of Business", "down"), async () => {
+            When("I tap Let's go!", when.tapText("Let's go!"), async () => {
+                Then("I should be on promise Yugi screen", then.isOnPromiseYugiScreen)
+                When("I tap Yes, I promise", when.tapText("Yes, I promise"), async () => {
+                    Then("I should be on the name screen", then.isOnNameScreen(CUSTOMER_37))
+                })
+            })
+        })
+    })
+}
+
+export const FAST_REVIEW_SCREEN = async () => {
+    const correctAnswerText = "I confirm that I have understood and answered all the questions honestly, accurately and to the best of my knowledge."
+    When("I scroll to the bottom", when.scrollUntilTextVisible(PRODUCT_STEP_BODY_SCROLL_VIEW, correctAnswerText, "down"), async () => {
+        Then("I should see both the accurate answer and sharing text", then.textVisible(correctAnswerText))
+        When("I check both checkboxes", when.tapText(correctAnswerText), async () => {
+            When("I tap submit answers", when.tapText("Submit answers"), async () => {
+                Then("I should be on the next screen", then.textNotVisible("Submit answers"))
+                When("I scroll to the bottom and tap Continue to checkout", when.scrollToAndTapText(PRODUCT_STEP_BODY_SCROLL_VIEW, "Continue", "down"), async () => {
+                    Then("I should be on the next page", then.textNotVisible("Select your cover"))
+                    When("I scroll to the bottom and tap Continue to checkout", when.scrollToAndTapText(PRODUCT_STEP_BODY_SCROLL_VIEW, "Continue", "down"), async () => {
+                        Then("I should be on the next page", then.textNotVisible("Select your cover"))
+                        When("I tap Continue", when.tapText("Continue"), async () => {
+                            Then("I should be on the next page", then.textNotVisible(styleText))
+                            Then("I should Not see Summary page", then.textNotVisible("Summary"))
+                        })
+                    })
+                })
+            })
+        })
+    })
+}
+
+export const FAST_CHECKOUT = async ( isCovered: boolean, cover: string) => {
+    const nextScreenTitle = isCovered ? "Item unlocked!\nYou've powered up your protection." : "We’ll be in touch"
+    const nextScreenBody = (nextScreenTitle == "Item unlocked!\nYou've powered up your protection.") ? `Congratulations, you've successully purchased ${cover} cover, your policy is now active.` : 
+    "Based on your answers we’ll need additional information. We’ll reach out shortly by email and text to let you know what to do next. No payment will be taken from you.\n\nIn the meantime, you are now covered by Accidental Death Benefit provided by your selected policy:"
+
+    When("I continue on contact details screen", when.continueOnContactsPage, async () => {
+        Then("I should be on the checkout page", then.isOnScreen("Checkout"))
+        When("I add GP details", when.addGPDetails, async () => {
+            Then("I should be on the checkout page", then.isOnScreen("Checkout"))
+            Then("I should see existing card ending in 4444", then.textVisible("Purchase with **** 4444"))
+            When("I tap purchase with existing card", when.tapText("Purchase with **** 4444"), async () => {
+                Then("I should see We've got you covered", then.textVisible("Item unlocked!\nYou've powered up your protection."))
+                Then(`I should see the ${nextScreenBody}`, then.isOnScreen(nextScreenBody))
+            })
         })
     })
 }
