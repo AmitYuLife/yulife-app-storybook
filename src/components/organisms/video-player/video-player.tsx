@@ -23,7 +23,7 @@ import { DETOX_ENABLED } from "@services/socket";
 import Logger from "@services/logging/logger";
 import { useDispatch, useSelector } from "react-redux";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
-import { useAppState, useGetLottieJson } from "@hooks";
+import { useAppState, useBackHandler, useGetLottieJson } from "@hooks";
 import { getVideoPlayerIsActive } from "@redux/levels/levels.selectors";
 import { ContentItemLottie as GqlLottie } from "@graphql/_core/schema";
 import LottieView from "lottie-react-native";
@@ -98,6 +98,14 @@ const VideoPlayer = ({
     },
     [appCurrentState]
   );
+
+  useBackHandler(() => {
+    if (!state.musicControlMounted) {
+      onLeftIconPress();
+    }
+
+    return false;
+  });
 
   useAppState(onChangeAppState);
 
@@ -205,6 +213,7 @@ const VideoPlayer = ({
     }
 
     try {
+      dispatch({ type: ActionTypes.PAUSE_PLAYER });
       await onEnd();
     } catch (err) {
       Logger.error(err, { location: "video-player-handleOnEnd" });
