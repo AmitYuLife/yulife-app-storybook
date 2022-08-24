@@ -5,9 +5,10 @@ import * as when from "./_steps/when"
 import * as then from "./_steps/then"
 import * as helper from "./_steps/helpers"
 import { CUSTOMER_37, AUTH_37, CUSTOMER_PLI_2, AUTH_PLI_2, CUSTOMER_PLI_3, AUTH_PLI_3, CUSTOMER_PLI_4, AUTH_PLI_4 } from "@data";
+import * as helper_dental from "03_Dental/01_dental_journey/_steps/helpers";
 
 Feature("PLI HAPPY", async()=>{
-    Scenario("As a completely healthy male user with Covea FIB enabled, I should be able to purchase PLI", scenario.start, async()=>{
+    Scenario("As a completely healthy male user with Covea FIB enabled, I should be able to purchase PLI and Dental, Only allow previously used card for purchase of new product", scenario.start, async()=>{
         Given("I login as a user with Covea FIB enabled", given.loginToYuScreen(false, CUSTOMER_37, AUTH_37), async()=>{
             Then("I should be on the yuscreen", then.onYuscreenV3(CUSTOMER_37))
             When("I create the default yumoji", when.createDefaultYumoji, async () => {
@@ -45,6 +46,9 @@ Feature("PLI HAPPY", async()=>{
                         helper.COVER_STYLE_SELECTION("rare", "62%", "£20.94","£1,291.67")
                         helper.CHECKOUT(true, "Rare")
                         helper.REVIEW_YUSCREEN()
+                        helper_dental.TAP_UNLOCKED_ITEM("gloves", "Dental Insurance")
+                        helper_dental.ONBOARDING()
+                        helper_dental.CHOOSE_PLAN_AND_CHECKOUT()
                     })
                 })
             })

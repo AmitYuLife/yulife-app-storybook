@@ -149,7 +149,7 @@ export const addPaymentDetails = async () => {
 
 export const acceptConditions = async () => {
     const acceptStatement = "I have read and agreed to the above statements."
-    const acceptAndRead = "I have received, read and agree to Bupa's Membership Guide, and YuLife's Information about our Service document."
+    const acceptAndRead = "I have received, read and agree to Bupa’s Membership Guide, and YuLife’s Information about our service document."
     const bupaPrivacy = "Bupa's Privacy Notice"
 
 
@@ -176,4 +176,20 @@ const cardNumber = "5555555555554444\n"
     await slowType(cardCVCInput, cardCVC, 500)()
     await slowType(postcodeInput, postcode, 500)()
     await tapText("Set up")()
+}
+
+export const continueCheckoutDental = async () => {
+
+    const acceptStatement = "I have read and agreed to the above statements."
+    const acceptAndRead = "I have received, read and agree to Bupa’s Membership Guide, and YuLife’s Information about our service document."
+
+    await navigateViaText("Continue to checkout")
+    await typeViaID(CONTENT_ITEM_INPUT("title"), "Mr\n")()
+    await tapText("Continue")()
+    await scrollFromID(PRODUCT_STEP_BODY_SCROLL_VIEW, "up", "fast")()
+    await tapText("Continue")()
+    await scrollFromID(PRODUCT_STEP_BODY_SCROLL_VIEW, "up", "fast")()
+    await tapText(acceptStatement)()
+    await tapText(acceptAndRead)()
+    await navigateViaText("Continue to payment")
 }

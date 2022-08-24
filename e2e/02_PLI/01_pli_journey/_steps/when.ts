@@ -229,3 +229,8 @@ export const addPaymentDetails = async () => {
     await slowType(postcodeInput, postcode, 500)()
     await tapText("Set up")()
 }
+
+export const continueOnContactsPage = async () => {
+    await scrollFromID(PRODUCT_STEP_BODY_SCROLL_VIEW, "up", "fast")()
+    await navigateViaText("Continue")
+}
