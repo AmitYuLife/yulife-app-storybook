@@ -1,4 +1,8 @@
-import { GQL_FRAGMENT_REMOTE_IMAGE, GQL_FRAGMENT_SDUI_ACTION } from "@graphql/_fragments/shared.gql";
+import {
+  GQL_FRAGMENT_REMOTE_IMAGE,
+  GQL_FRAGMENT_SDUI_ACTION,
+  GQL_FRAGMENT_VARIABLE_REMOTE_IMAGE,
+} from "@graphql/_fragments/shared.gql";
 import gql from "graphql-tag";
 import client from "@graphql/_core/client";
 import { GetYuScreen } from "@graphql/_core/schema";
@@ -130,6 +134,7 @@ export const GQL_QUERY_GET_YU_SCREEN = gql`
   ${GQL_FRAGMENT_YU_SCREEN_CAROUSEL}
   ${GQL_FRAGMENT_YU_SCREEN_SURVEY_FOOTER}
   ${GQL_FRAGMENT_YU_SCREEN_YUMOJI_PROMPT}
+  ${GQL_FRAGMENT_VARIABLE_REMOTE_IMAGE}
 
   query GetYuScreen {
     getYuScreen {
@@ -147,6 +152,9 @@ export const GQL_QUERY_GET_YU_SCREEN = gql`
       }
       yumojiPrompt {
         ...YuScreenYumojiPrompt
+      }
+      carrierLogo {
+        ...VariableRemoteImage
       }
     }
   }
