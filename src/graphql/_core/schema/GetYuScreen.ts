@@ -186,12 +186,23 @@ export interface GetYuScreen_getYuScreen_yumojiPrompt {
   text: string;
 }
 
+export interface GetYuScreen_getYuScreen_carrierLogo_image {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetYuScreen_getYuScreen_carrierLogo {
+  image: GetYuScreen_getYuScreen_carrierLogo_image;
+  width: number;
+}
+
 export interface GetYuScreen_getYuScreen {
   onboarding: GetYuScreen_getYuScreen_onboarding | null;
   productSlots: (GetYuScreen_getYuScreen_productSlots | null)[];
   productCarousel: GetYuScreen_getYuScreen_productCarousel | null;
   surveyFooter: GetYuScreen_getYuScreen_surveyFooter | null;
   yumojiPrompt: GetYuScreen_getYuScreen_yumojiPrompt;
+  carrierLogo: GetYuScreen_getYuScreen_carrierLogo | null;
 }
 
 export interface GetYuScreen {

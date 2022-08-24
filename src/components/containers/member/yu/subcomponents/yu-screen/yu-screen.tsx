@@ -13,6 +13,9 @@ import { useQueryOnScreenSeenOnce, useStatusBarStyle } from "@hooks";
 import { ROUTES } from "@navigation/constants";
 import { TOP_BAR_TYPES } from "@organisms/top-bar/top-bar.helpers";
 import { useOnboardingDismissalHandler } from "../../hooks/useOnboardingDismissalHandler";
+import { StyleSheet, View } from "react-native";
+import { Style } from "@styles";
+import { Image } from "@atoms";
 
 interface Props {
   componentId: string;
@@ -34,7 +37,7 @@ export const YuScreen = memo(({ componentId }: Props) => {
     );
   }
 
-  const { productCarousel, productSlots, surveyFooter, yumojiPrompt } = data?.getYuScreen || {};
+  const { productCarousel, productSlots, surveyFooter, yumojiPrompt, carrierLogo } = data?.getYuScreen || {};
 
   if (showOnboarding) {
     return (
@@ -50,6 +53,11 @@ export const YuScreen = memo(({ componentId }: Props) => {
       <NameAndLevel useWorldColor={true} hideWorldIcon={true} />
       <YumojiAndSlots productSlots={productSlots} yumojiPrompt={yumojiPrompt} />
       {productCarousel ? <Carousel heading={productCarousel.heading} items={productCarousel.items} /> : null}
+      {carrierLogo ? (
+        <View style={styles.carrierLogoWrapper}>
+          <Image source={carrierLogo.image} width={carrierLogo.width} />
+        </View>
+      ) : null}
       {surveyFooter ? (
         <Survey
           backgroundColour={surveyFooter.backgroundColour}
@@ -60,4 +68,13 @@ export const YuScreen = memo(({ componentId }: Props) => {
       ) : null}
     </YuScreenLayout>
   );
+});
+
+const styles = StyleSheet.create({
+  carrierLogoWrapper: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    marginTop: Style.adjust(32),
+  },
 });

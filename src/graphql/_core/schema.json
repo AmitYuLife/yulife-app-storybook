@@ -9615,8 +9615,8 @@
               "kind": "NON_NULL",
               "name": null,
               "ofType": {
-                "kind": "UNION",
-                "name": "SettingValues",
+                "kind": "OBJECT",
+                "name": "TeamSettingValue",
                 "ofType": null
               }
             },
@@ -9658,34 +9658,8 @@
         "possibleTypes": null
       },
       {
-        "kind": "UNION",
-        "name": "SettingValues",
-        "description": null,
-        "fields": null,
-        "inputFields": null,
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": [
-          {
-            "kind": "OBJECT",
-            "name": "StringSettingValues",
-            "ofType": null
-          },
-          {
-            "kind": "OBJECT",
-            "name": "IntSettingValues",
-            "ofType": null
-          },
-          {
-            "kind": "OBJECT",
-            "name": "BooleanSettingValues",
-            "ofType": null
-          }
-        ]
-      },
-      {
         "kind": "OBJECT",
-        "name": "StringSettingValues",
+        "name": "TeamSettingValue",
         "description": null,
         "fields": [
           {
@@ -9711,72 +9685,14 @@
             },
             "isDeprecated": false,
             "deprecationReason": null
-          }
-        ],
-        "inputFields": null,
-        "interfaces": [],
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "OBJECT",
-        "name": "IntSettingValues",
-        "description": null,
-        "fields": [
-          {
-            "name": "value",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "Int",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
           },
           {
-            "name": "globalValue",
+            "name": "type",
             "description": null,
             "args": [],
             "type": {
               "kind": "SCALAR",
-              "name": "Int",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "inputFields": null,
-        "interfaces": [],
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "OBJECT",
-        "name": "BooleanSettingValues",
-        "description": null,
-        "fields": [
-          {
-            "name": "value",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "Boolean",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "globalValue",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "Boolean",
+              "name": "String",
               "ofType": null
             },
             "isDeprecated": false,
@@ -39488,6 +39404,18 @@
             },
             "isDeprecated": false,
             "deprecationReason": null
+          },
+          {
+            "name": "carrierLogo",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "VariableRemoteImage",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
           }
         ],
         "inputFields": null,
@@ -40287,6 +40215,49 @@
       },
       {
         "kind": "OBJECT",
+        "name": "VariableRemoteImage",
+        "description": null,
+        "fields": [
+          {
+            "name": "image",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "RemoteImage",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "width",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
         "name": "ProductEarnRateScreen",
         "description": null,
         "fields": [
@@ -40910,49 +40881,6 @@
               "ofType": {
                 "kind": "SCALAR",
                 "name": "String",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "inputFields": null,
-        "interfaces": [],
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "OBJECT",
-        "name": "VariableRemoteImage",
-        "description": null,
-        "fields": [
-          {
-            "name": "image",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "RemoteImage",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "width",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "Int",
                 "ofType": null
               }
             },
