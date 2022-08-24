@@ -5,11 +5,12 @@ import { PedometerResponse } from "@services/fitkit/fitkit.service";
 import Logger from "@services/logging/logger";
 import { getUserFeatures } from "../../user/user.selectors";
 import {
+  restartPedometerOnNewDay,
   updatePedometerNoNewDataAction,
   updatePedometerStartAction,
   updatePedometerSuccessAction,
 } from "../pedometer.actions";
-import { stepsChannel } from "../pedometer.channels";
+import { stepsChannel, NEXT_DAY_STARTED } from "../pedometer.channels";
 import { getLastUpdated, getSteps } from "../pedometer.selectors";
 import { getMaxStepsAnomalyWindowMs, getStepsBlackListApps } from "@redux/daily-steps/daily-steps.selectors";
 
@@ -37,12 +38,17 @@ export default function* listenToSteps() {
         yield put(updatePedometerNoNewDataAction());
       }
 
-      const results: typeof ERROR_NOT_AUTHORISED | PedometerResponse = yield take(channel);
+      const results: typeof ERROR_NOT_AUTHORISED | typeof NEXT_DAY_STARTED | PedometerResponse = yield take(channel);
       const currentSteps: ReturnType<typeof getSteps> = yield select(getSteps);
 
       if (results === ERROR_NOT_AUTHORISED) {
         yield spawn(() => Logger.logEvent("pedometer_unauthorised", { event: "listenToSteps" }));
         yield put(updatePedometerNoNewDataAction());
+        continue;
+      }
+
+      if (results === NEXT_DAY_STARTED) {
+        yield put(restartPedometerOnNewDay());
         continue;
       }
 

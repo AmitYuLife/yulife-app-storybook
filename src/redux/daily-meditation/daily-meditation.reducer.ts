@@ -14,6 +14,7 @@ import {
 import { PassiveMeditationMilestones, ExchangeRateMeditation as ExchangeRate } from "./daily-meditation.selectors";
 import { SyncAction } from "@redux/_core/types";
 import { UPDATE_APP_STATE_ACTIVE } from "@redux/app/app.actions";
+import { PEDOMETER_RESTART_ON_NEW_DAY } from "@redux/pedometer/pedometer.actions";
 export interface IDailyMeditationStore {
   dailyMeditation: number;
   inAppDailyMeditation: number;
@@ -52,6 +53,7 @@ const dailyMeditationReducer = (
     case UPDATE_DAILY_MEDITATION_SUCCESS:
       return updateDailyMeditationSucces(state, action.payload);
 
+    case PEDOMETER_RESTART_ON_NEW_DAY:
     case UPDATE_DAILY_MEDITATION_EMPTY_RESULT:
       return { ...state, dailyMeditation: 0 };
 

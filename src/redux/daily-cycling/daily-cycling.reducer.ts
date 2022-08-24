@@ -15,6 +15,7 @@ import {
 } from "./daily-cycling.actions";
 import { DistanceMeasurementType } from "@graphql/_core/schema/globalTypes";
 import { UPDATE_APP_STATE_ACTIVE } from "@redux/app/app.actions";
+import { PEDOMETER_RESTART_ON_NEW_DAY } from "@redux/pedometer/pedometer.actions";
 
 export interface IDailyCyclingStore {
   cyclingMeasurement: DistanceMeasurementType;
@@ -50,6 +51,7 @@ const dailyCyclingReducer = (state: IDailyCyclingStore = getInitialState(), acti
     case UPDATE_USER_PROFILE:
       return { ...state, cyclingMeasurement: action.payload.gameSettings.cyclingMeasurement };
 
+    case PEDOMETER_RESTART_ON_NEW_DAY:
     case UPDATE_DAILY_CYCLING_EMPTY_RESULT:
       return { ...state, dailyCycling: 0 };
 

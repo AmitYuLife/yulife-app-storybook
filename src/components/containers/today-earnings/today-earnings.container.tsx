@@ -8,13 +8,16 @@ import React, { useCallback, useEffect, useState } from "react";
 import { Navigation } from "react-native-navigation";
 import { FitKitType, PassiveChallengeType } from "@graphql/_core/schema/globalTypes";
 import { useFitKit } from "@services/fitkit/fitkit.hooks";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getDailySteps } from "@redux/daily-steps/daily-steps.selectors";
 import moment from "moment";
 import { getUserFeatures } from "@redux/user/user.selectors";
 import { GQL_MUTATION_UPSERT_DAILY_PASSIVES } from "@graphql/challenges/upsertDailyPassives.gql";
 import AsyncStorage from "@react-native-community/async-storage";
 import { useBackHandler } from "@hooks";
+import { getLastUpdated } from "@redux/pedometer/pedometer.selectors";
+import { DATE_FORMAT } from "@utils";
+import { restartPedometerOnNewDay } from "@redux/pedometer/pedometer.actions";
 
 interface IProps {
   componentId: string;
@@ -27,7 +30,9 @@ const TodayEarningsContainer = ({ componentId }: IProps) => {
   const [isGoogleFitAuthorised, setIsGoogleFitAuthorised] = useState(false);
   const { authoriseFitKitTypes } = useFitKit();
   const dailySteps = useSelector(getDailySteps);
+  const pedometerLastUpdate = useSelector(getLastUpdated);
   const features = useSelector(getUserFeatures);
+  const dispatch = useDispatch();
   const [upsertDailyPassives] = useMutation<UpsertDailyPassives, UpsertDailyPassivesVariables>(
     GQL_MUTATION_UPSERT_DAILY_PASSIVES
   );
@@ -56,11 +61,18 @@ const TodayEarningsContainer = ({ componentId }: IProps) => {
   }, [authoriseFitKitTypes]);
 
   const fetchData = useCallback(async () => {
+    const today = moment().format(DATE_FORMAT);
+    const lastUpdate = moment(pedometerLastUpdate).format(DATE_FORMAT);
+
+    if (lastUpdate !== today) {
+      dispatch(restartPedometerOnNewDay());
+    }
+
     await upsertDailyPassives({
       variables: {
         payload: [
           {
-            value: dailySteps,
+            value: lastUpdate !== today ? 0 : dailySteps,
             endDateTime: moment().format(),
             startDateTime: moment().startOf("day").format(),
             type: PassiveChallengeType.STEPS,
@@ -69,7 +81,14 @@ const TodayEarningsContainer = ({ componentId }: IProps) => {
       },
     });
     await getTodaysEarnings();
-  }, [dailySteps, features.usePassiveChallengesService, getTodaysEarnings, upsertDailyPassives]);
+  }, [
+    dailySteps,
+    features.usePassiveChallengesService,
+    getTodaysEarnings,
+    upsertDailyPassives,
+    pedometerLastUpdate,
+    dispatch,
+  ]);
 
   useEffect(() => {
     (async () => {

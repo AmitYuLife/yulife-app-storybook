@@ -17,6 +17,7 @@ import { GET_USER_SUCCESS, LOGIN_USER_SUCCESS, LOGOUT_SUCCESS } from "../user/us
 import { UPDATE_TOTAL_COINS } from "./coins.actions";
 import { UPDATE_DAILY_CYCLING_SUCCESS } from "@redux/daily-cycling/daily-cycling.actions";
 import { UPDATE_APP_STATE_ACTIVE } from "@redux/app/app.actions";
+import { PEDOMETER_RESTART_ON_NEW_DAY } from "@redux/pedometer/pedometer.actions";
 
 export interface ICoinsStore {
   dailyChallengeEarned: number; // number of coins earned in the current day through challenges
@@ -69,6 +70,9 @@ const coinsReducer = (state: ICoinsStore = getInitialState(), action: SyncAction
       return totalCoinsUpdated(state, action.payload);
     case UPDATE_DAILY_MEDITATION_EMPTY_RESULT:
       return { ...state, dailyMeditationEarned: 0 };
+
+    case PEDOMETER_RESTART_ON_NEW_DAY:
+      return { ...state, ...getDailyResetCoinStore() };
 
     case LOGOUT_SUCCESS:
       return getInitialState();
