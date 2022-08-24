@@ -4,6 +4,7 @@ export enum BUTTON_SIZES {
   SMALL = "Small",
   MEDIUM = "Medium",
   LARGE = "Large",
+  NARROW = "Narrow",
 }
 
-export type Sizes = "Fill" | "ExtraSmall" | "Small" | "Medium" | "Large";
+export type Sizes = "Fill" | "ExtraSmall" | "Small" | "Medium" | "Large" | "Narrow";

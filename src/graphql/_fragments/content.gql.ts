@@ -88,6 +88,18 @@ export const GQL_FRAGMENT_CONTENT_ITEM_COLLAPSING_HEADER_PRODUCT_INFO = gql`
   }
 `;
 
+export const GQL_FRAGMENT_CONTENT_ITEM_ROW_ICON_TEXT_BANNER_CONTAINER_ACTIONS = gql`
+  fragment ContentItemRowIconTextBannerContainerActions on ContentItemRowIconTextBannerContainerActions {
+    id
+    event {
+      ...SduiAction
+    }
+    onPress {
+      ...SduiAction
+    }
+  }
+`;
+
 export const GQL_FRAGMENT_CONTENT_ITEM_ROW_ICON_TEXT_BANNER = gql`
   fragment ContentItemRowIconTextBanner on ContentItemRowIconTextBanner {
     id
@@ -98,6 +110,15 @@ export const GQL_FRAGMENT_CONTENT_ITEM_ROW_ICON_TEXT_BANNER = gql`
     }
     styles {
       ...SduiStyle
+    }
+    titleMarkdown
+    showCloseIcon
+    bannerButton: button {
+      ...ContentItemButton
+    }
+    showIcon
+    containerActions {
+      ...ContentItemRowIconTextBannerContainerActions
     }
   }
 `;

@@ -49,7 +49,7 @@ const CoverPicker = ({
       )}
       {!restrictedPercentInfoCardText ? null : (
         <View style={{ marginTop: Style.adjust(!showCustom ? 16 : -20) }}>
-          <InfoPanel markdown={restrictedPercentInfoCardText} type="info" copyType="dense" />
+          <InfoPanel markdown={restrictedPercentInfoCardText} type="info" />
         </View>
       )}
     </View>

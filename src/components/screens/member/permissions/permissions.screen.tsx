@@ -18,10 +18,10 @@ import { t } from "@locale";
 import { TextTemplate } from "@atoms";
 import { showTooltipPopupRelativeToView } from "@organisms/tooltip-popup/tooltip-popup.helper";
 import Markdown from "@components/molecules/markdown/markdown";
-import { sparseMarkdownStyles } from "@components/molecules/info-panel/info-panel";
 import { SecondaryButton } from "@components/molecules";
 import { Navigation } from "react-native-navigation";
 import { MODALS } from "@navigation/constants";
+import { styles as textTemplateStyle } from "@components/atoms/text/text-template";
 
 interface IProps {
   loading: boolean;
@@ -132,5 +132,12 @@ const styles = StyleSheet.create({
     marginBottom: Style.adjust(8),
   },
 });
+
+const sparseMarkdownStyles = {
+  text: textTemplateStyle.b2,
+  paragraph: {
+    paddingVertical: Style.adjust(8),
+  },
+};
 
 export default memo(PermissionsScreen);

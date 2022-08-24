@@ -50,7 +50,8 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemP
     | "ContentItemProcessingTimer"
     | "ContentItemProgressSteps"
     | "ContentItemCollapsingHeaderAgePercentProductInfo"
-    | "ContentItemPerks";
+    | "ContentItemPerks"
+    | "ContentItemPerksComparison";
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemTextInput_validation {
@@ -1051,6 +1052,64 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemR
   value: string;
 }
 
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemRowIconTextBanner_bannerButton_onPress {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemRowIconTextBanner_bannerButton_event {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemRowIconTextBanner_bannerButton_icon {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemRowIconTextBanner_bannerButton_rightIcon {
+  id: string;
+  uri: string | null;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemRowIconTextBanner_bannerButton_styles {
+  property: string;
+  value: string;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemRowIconTextBanner_bannerButton {
+  id: string;
+  label: string;
+  buttonType: ContentItemButtonType | null;
+  value: string | null;
+  disabledState: string | null;
+  borderColor: string | null;
+  backgroundColor: string | null;
+  textColor: string | null;
+  onPress: GetPersonalProductStep_getPersonalProductStep_body_ContentItemRowIconTextBanner_bannerButton_onPress | null;
+  event: GetPersonalProductStep_getPersonalProductStep_body_ContentItemRowIconTextBanner_bannerButton_event | null;
+  icon: GetPersonalProductStep_getPersonalProductStep_body_ContentItemRowIconTextBanner_bannerButton_icon | null;
+  rightIcon: GetPersonalProductStep_getPersonalProductStep_body_ContentItemRowIconTextBanner_bannerButton_rightIcon | null;
+  styles: GetPersonalProductStep_getPersonalProductStep_body_ContentItemRowIconTextBanner_bannerButton_styles[] | null;
+  buttonSize: ContentItemButtonSize | null;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemRowIconTextBanner_containerActions_event {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemRowIconTextBanner_containerActions_onPress {
+  type: SduiActionType;
+  payload: string | null;
+}
+
+export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemRowIconTextBanner_containerActions {
+  id: string;
+  event: GetPersonalProductStep_getPersonalProductStep_body_ContentItemRowIconTextBanner_containerActions_event | null;
+  onPress: GetPersonalProductStep_getPersonalProductStep_body_ContentItemRowIconTextBanner_containerActions_onPress;
+}
+
 export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemRowIconTextBanner {
   __typename: "ContentItemRowIconTextBanner";
   id: string;
@@ -1061,6 +1120,28 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemR
   markdown: string;
   bannerIcon: GetPersonalProductStep_getPersonalProductStep_body_ContentItemRowIconTextBanner_bannerIcon;
   styles: GetPersonalProductStep_getPersonalProductStep_body_ContentItemRowIconTextBanner_styles[] | null;
+  /**
+   * RN client version >= 3.45.0
+   */
+  titleMarkdown: string | null;
+  /**
+   * RN client version >= 3.45.0
+   */
+  showCloseIcon: boolean | null;
+  /**
+   * RN client version >= 3.45.0
+   */
+  bannerButton: GetPersonalProductStep_getPersonalProductStep_body_ContentItemRowIconTextBanner_bannerButton | null;
+  /**
+   * RN client version >= 3.45.0: icon field is required, so showIcon is used
+   * here for backward compatibility to conditionally hide the icon
+   */
+  showIcon: boolean | null;
+  /**
+   * RN client version >= 3.45.0
+   * This field is intended to make the entire info panel pressable.
+   */
+  containerActions: GetPersonalProductStep_getPersonalProductStep_body_ContentItemRowIconTextBanner_containerActions | null;
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemYuCoinPower_styles {
@@ -1571,7 +1652,8 @@ export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentIte
     | "ContentItemProgressSteps"
     | "ContentItemCostPayoutBenefitCard"
     | "ContentItemCollapsingHeaderAgePercentProductInfo"
-    | "ContentItemPerks";
+    | "ContentItemPerks"
+    | "ContentItemPerksComparison";
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentItemButton_onPress {
@@ -1816,7 +1898,8 @@ export interface GetPersonalProductStep_getPersonalProductStep_header_ContentIte
     | "ContentItemYuCoinPower"
     | "ContentItemCostPayoutBenefitCard"
     | "ContentItemCollapsingHeaderAgePercentProductInfo"
-    | "ContentItemPerks";
+    | "ContentItemPerks"
+    | "ContentItemPerksComparison";
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_header_ContentItemHeaderBar_onLeftIconPress {
@@ -2015,7 +2098,8 @@ export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_Con
     | "ContentItemYuCoinPower"
     | "ContentItemProgressSteps"
     | "ContentItemCostPayoutBenefitCard"
-    | "ContentItemPerks";
+    | "ContentItemPerks"
+    | "ContentItemPerksComparison";
 }
 
 export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_ContentItemImage_image {

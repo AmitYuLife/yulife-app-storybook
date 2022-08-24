@@ -222,6 +222,7 @@ const EventDialogScreen: FC<IProps> = ({
               <InfoPanel
                 markdown={banner.markdown}
                 remoteImage={banner.icon}
+                showIcon={true}
                 type={banner.type}
                 wrapperStyle={style.bannerWrapper}
               />
