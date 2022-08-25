@@ -2,14 +2,9 @@
 import { ChallengesPayload, FitKitType } from "@graphql/_core/schema/globalTypes";
 import moment from "moment";
 import { call } from "redux-saga/effects";
-import {
-  processResult,
-  queryFitKitByTypes,
-  QueryFitKitByTypesResponse,
-  querySteps,
-  queryAggregatedBiking,
-} from "@services/fitkit/fitkit.helpers";
+import { processResult, queryFitKitByTypes, querySteps, queryAggregatedBiking } from "@services/fitkit/fitkit.helpers";
 import { IUserStore } from "@redux/user/user.reducer";
+import { getEndDates } from "./helper";
 
 export default function* getPassiveSinceLastUpdateIos(
   stepsLastUpdate: string,
@@ -17,41 +12,69 @@ export default function* getPassiveSinceLastUpdateIos(
   cyclingLastUpdate: string,
   userFeatures: IUserStore["features"]
 ) {
-  const endOfYesterday = moment().subtract(1, "day").endOf("day");
+  const { endDateSteps, endDateMeditation, endDateCycling } = getEndDates(
+    stepsLastUpdate,
+    meditationLastUpdate,
+    cyclingLastUpdate
+  );
 
-  const steps: QueryFitKitByTypesResponse = stepsLastUpdate
-    ? yield call(querySteps, moment(stepsLastUpdate).startOf("day"), endOfYesterday, [], userFeatures)
-    : returnEmptyResult();
+  const steps: ChallengesPayload[] = yield call(getSteps, stepsLastUpdate, endDateSteps, userFeatures);
+  const meditation: ChallengesPayload[] = yield call(
+    getMeditation,
+    meditationLastUpdate,
+    endDateMeditation,
+    userFeatures
+  );
+  const cycling: ChallengesPayload[] = yield call(getCycling, cyclingLastUpdate, endDateCycling, userFeatures);
 
-  const meditation: QueryFitKitByTypesResponse = meditationLastUpdate
-    ? yield call(
-        queryFitKitByTypes,
-        moment(meditationLastUpdate).startOf("day").format(),
-        endOfYesterday.clone().format(),
-        [FitKitType.MindfulSession],
-        userFeatures
-      )
-    : returnEmptyResult();
-
-  const cycling: QueryFitKitByTypesResponse = cyclingLastUpdate
-    ? yield call(queryAggregatedBiking, moment(cyclingLastUpdate).startOf("day"), endOfYesterday.clone(), userFeatures)
-    : returnEmptyResult();
-
-  const aggregatedCycling: ChallengesPayload[] = cyclingLastUpdate
-    ? processResult(cycling, "Biking", moment(cyclingLastUpdate).startOf("day"), endOfYesterday)
-    : [];
-  const aggregatedMeditation: ChallengesPayload[] = meditationLastUpdate
-    ? processResult(meditation, "MindfulSession", moment(meditationLastUpdate).startOf("day"), endOfYesterday)
-    : [];
-  const aggregatedSteps: ChallengesPayload[] = stepsLastUpdate
-    ? processResult(steps, "StepCount", moment(stepsLastUpdate).startOf("day"), endOfYesterday)
-    : [];
-
-  const allResults: ChallengesPayload[] = [...aggregatedCycling, ...aggregatedMeditation, ...aggregatedSteps];
+  const allResults: ChallengesPayload[] = [...cycling, ...meditation, ...steps];
 
   return allResults;
 }
 
-const returnEmptyResult = (): QueryFitKitByTypesResponse => {
-  return { results: [], error: false };
+const getSteps = async (
+  stepsLastUpdate: string,
+  endDateSteps: moment.Moment,
+  userFeatures: IUserStore["features"]
+): Promise<ChallengesPayload[]> => {
+  if (!stepsLastUpdate) {
+    return [];
+  }
+
+  const steps = await querySteps(moment(stepsLastUpdate).startOf("day"), endDateSteps, [], userFeatures);
+
+  return processResult(steps, "StepCount", moment(stepsLastUpdate).startOf("day"), endDateSteps);
+};
+
+const getMeditation = async (
+  meditationLastUpdate: string,
+  endDateMeditation: moment.Moment,
+  userFeatures: IUserStore["features"]
+): Promise<ChallengesPayload[]> => {
+  if (!meditationLastUpdate) {
+    return [];
+  }
+
+  const meditation = await queryFitKitByTypes(
+    moment(meditationLastUpdate).startOf("day").format(),
+    endDateMeditation.format(),
+    [FitKitType.MindfulSession],
+    userFeatures
+  );
+
+  return processResult(meditation, "MindfulSession", moment(meditationLastUpdate).startOf("day"), endDateMeditation);
+};
+
+const getCycling = async (
+  cyclingLastUpdate: string,
+  endDateCycling: moment.Moment,
+  userFeatures: IUserStore["features"]
+): Promise<ChallengesPayload[]> => {
+  if (!cyclingLastUpdate) {
+    return [];
+  }
+
+  const cycling = await queryAggregatedBiking(moment(cyclingLastUpdate).startOf("day"), endDateCycling, userFeatures);
+
+  return processResult(cycling, "Biking", moment(cyclingLastUpdate).startOf("day"), endDateCycling);
 };

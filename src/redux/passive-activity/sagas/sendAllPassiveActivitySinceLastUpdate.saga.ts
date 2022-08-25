@@ -17,6 +17,7 @@ import { Unpacked } from "@utils";
 import { getToken } from "@services/storage";
 import { getReadableShortDateFormat } from "@locale";
 import { getVideoPlayerIsActive } from "@redux/levels/levels.selectors";
+import { PASSIVE_ACTIVITY_LAST_UPDATE_LIMIT } from "@services/constants";
 
 export default function* sendPassiveActivity(): any {
   const token: Unpacked<typeof getToken> = yield call(getToken);
@@ -40,90 +41,116 @@ export default function* sendPassiveActivity(): any {
       return;
     }
 
-    const yesterdayMoment = moment().startOf("day").subtract(1, "day");
-    const isStepLastUpdateYesterday = moment(stepsLastUpdate).startOf("day").isSameOrAfter(yesterdayMoment);
-    const isMeditationLastUpdateYesterday = moment(meditationLastUpdate).startOf("day").isSameOrAfter(yesterdayMoment);
-    const isCyclingLastUpdateYesterday = moment(cyclingLastUpdate).startOf("day").isSameOrAfter(yesterdayMoment);
-
-    if (isStepLastUpdateYesterday && isMeditationLastUpdateYesterday && isCyclingLastUpdateYesterday) {
-      return;
-    }
-
     const endOfYesterday = moment().subtract(1, "day").endOf("day");
 
+    let awardedYucoin = 0;
+    let dynamicStepsLastUpdate = stepsLastUpdate;
+    let dynamicMeditationLastUpdate = meditationLastUpdate;
+    let dynamicCyclingLastUpdate = cyclingLastUpdate;
     let allResults: ChallengesPayload[] = [];
-    if (Platform.OS === "android") {
-      allResults = yield call(
-        getPassiveSinceLastUpdateAndroid,
-        stepsLastUpdate,
-        meditationLastUpdate,
-        cyclingLastUpdate,
-        userFeatures
-      );
-    } else {
-      allResults = yield call(
-        getPassiveSinceLastUpdateIos,
-        stepsLastUpdate,
-        meditationLastUpdate,
-        cyclingLastUpdate,
-        userFeatures
-      );
-    }
+    let lastUpdateValidation = isPassiveActivityUpToDate(
+      dynamicStepsLastUpdate,
+      dynamicMeditationLastUpdate,
+      dynamicCyclingLastUpdate
+    );
 
-    if (allResults.length) {
-      let awardedYucoin = 0;
-      while (allResults.length > 0) {
-        const payload = allResults.splice(0, 15);
-        let isUpdated = false;
-        while (!isUpdated) {
-          try {
-            const response = yield call(upsertDailyPassives, payload);
-            const mutationResult = response?.data?.upsertPassiveChallenges || response?.data?.upsertDailyPassives;
-
-            awardedYucoin += mutationResult?.totalCoins || 0;
-            yield delay(5000);
-            isUpdated = true;
-          } catch (e) {
-            yield spawn(() => {
-              Logger.error(e, { event: "upsertPassiveChallengesSinceLastUpdate" });
-            });
-            yield delay(15000);
-          }
-        }
+    while (!lastUpdateValidation.upToDate) {
+      const {
+        isStepLastUpdateYesterday,
+        isMeditationLastUpdateYesterday,
+        isCyclingLastUpdateYesterday,
+      } = lastUpdateValidation;
+      if (Platform.OS === "android") {
+        allResults = yield call(
+          getPassiveSinceLastUpdateAndroid,
+          isStepLastUpdateYesterday ? undefined : dynamicStepsLastUpdate,
+          isMeditationLastUpdateYesterday ? undefined : dynamicMeditationLastUpdate,
+          isCyclingLastUpdateYesterday ? undefined : dynamicCyclingLastUpdate,
+          userFeatures
+        );
+      } else {
+        allResults = yield call(
+          getPassiveSinceLastUpdateIos,
+          isStepLastUpdateYesterday ? undefined : dynamicStepsLastUpdate,
+          isMeditationLastUpdateYesterday ? undefined : dynamicMeditationLastUpdate,
+          isCyclingLastUpdateYesterday ? undefined : dynamicCyclingLastUpdate,
+          userFeatures
+        );
       }
 
-      if (awardedYucoin > 0) {
-        const route = yield select(getRouteState);
+      if (allResults.length) {
+        while (allResults.length > 0) {
+          const payload = allResults.splice(0, 15);
+          let isUpdated = false;
 
-        // check for token before showing collect modal
-        // user can logout before last update query is finished
-        const userToken: Unpacked<typeof getToken> = yield call(getToken);
-        if (!userToken) {
-          return;
-        }
+          while (!isUpdated) {
+            try {
+              const response: Unpacked<typeof upsertDailyPassives> = yield call(upsertDailyPassives, payload);
 
-        if (route !== MODALS.collectReward) {
-          const startDateTime = moment.min(
-            moment(meditationLastUpdate),
-            moment(stepsLastUpdate),
-            moment(cyclingLastUpdate)
-          );
-
-          /*
-           user was already awarded for startDateTime once last update was set as startDateTime,
-           to not make user confused why we're awarding twice for the same day
-           we should add one day to the startDateTime.
-          */
-          if (startDateTime.format(readableDateFormat) !== endOfYesterday.format(readableDateFormat)) {
-            startDateTime.add(1, "day");
+              awardedYucoin += response?.data?.upsertDailyPassives?.totalCoins || 0;
+              yield delay(5000);
+              isUpdated = true;
+            } catch (e) {
+              yield spawn(() => {
+                Logger.error(e, { event: "upsertPassiveChallengesSinceLastUpdate" });
+              });
+              yield delay(15000);
+            }
           }
-
-          const firstDay = startDateTime.format(readableDateFormat);
-          const lastDay = endOfYesterday.format(readableDateFormat);
-
-          yield showRewardModal(firstDay, lastDay, awardedYucoin);
-          yield put(refreshTotalCoins());
         }
+
+        dynamicStepsLastUpdate = moment(dynamicStepsLastUpdate)
+          .add(PASSIVE_ACTIVITY_LAST_UPDATE_LIMIT, "days")
+          .format();
+        dynamicMeditationLastUpdate = moment(dynamicMeditationLastUpdate)
+          .add(PASSIVE_ACTIVITY_LAST_UPDATE_LIMIT, "days")
+          .format();
+        dynamicCyclingLastUpdate = moment(dynamicCyclingLastUpdate)
+          .add(PASSIVE_ACTIVITY_LAST_UPDATE_LIMIT, "days")
+          .format();
+        lastUpdateValidation = isPassiveActivityUpToDate(
+          dynamicStepsLastUpdate,
+          dynamicMeditationLastUpdate,
+          dynamicCyclingLastUpdate
+        );
+
+        if (!lastUpdateValidation.upToDate) {
+          yield delay(5000);
+        }
+      }
+    }
+
+    if (awardedYucoin > 0) {
+      const route = yield select(getRouteState);
+
+      // check for token before showing collect modal
+      // user can logout before last update query is finished
+      const userToken: Unpacked<typeof getToken> = yield call(getToken);
+      if (!userToken) {
+        return;
+      }
+
+      if (route !== MODALS.collectReward) {
+        const startDateTime = moment.min(
+          moment(meditationLastUpdate),
+          moment(stepsLastUpdate),
+          moment(cyclingLastUpdate)
+        );
+
+        /*
+         user was already awarded for startDateTime once last update was set as startDateTime,
+         to not make user confused why we're awarding twice for the same day
+         we should add one day to the startDateTime.
+        */
+        if (startDateTime.format(readableDateFormat) !== endOfYesterday.format(readableDateFormat)) {
+          startDateTime.add(1, "day");
+        }
+
+        const firstDay = startDateTime.format(readableDateFormat);
+        const lastDay = endOfYesterday.format(readableDateFormat);
+
+        yield showRewardModal(firstDay, lastDay, awardedYucoin);
+        yield put(refreshTotalCoins());
       }
     }
   } catch (e) {
@@ -132,6 +159,20 @@ export default function* sendPassiveActivity(): any {
     });
   }
 }
+
+const isPassiveActivityUpToDate = (
+  stepsLastUpdate: string,
+  meditationLastUpdate: string,
+  cyclingLastUpdate: string
+) => {
+  const yesterdayMoment = moment().startOf("day").subtract(1, "day");
+  const isStepLastUpdateYesterday = moment(stepsLastUpdate).startOf("day").isSameOrAfter(yesterdayMoment);
+  const isMeditationLastUpdateYesterday = moment(meditationLastUpdate).startOf("day").isSameOrAfter(yesterdayMoment);
+  const isCyclingLastUpdateYesterday = moment(cyclingLastUpdate).startOf("day").isSameOrAfter(yesterdayMoment);
+
+  const upToDate = isStepLastUpdateYesterday && isMeditationLastUpdateYesterday && isCyclingLastUpdateYesterday;
+  return { upToDate, isStepLastUpdateYesterday, isMeditationLastUpdateYesterday, isCyclingLastUpdateYesterday };
+};
 
 function* showRewardModal(firstDay: string, lastDay: string, awardedYucoin: number) {
   const date = firstDay !== lastDay ? `${firstDay} - ${lastDay}` : firstDay;
