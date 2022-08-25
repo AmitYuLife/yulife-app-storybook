@@ -54,7 +54,6 @@ const styles = StyleSheet.create({
     paddingTop: Style.adjust(32),
     paddingBottom: Style.adjust(16),
     position: "absolute",
-    top: Style.adjust(90),
   },
   contentWrapper: {
     flex: 1,
