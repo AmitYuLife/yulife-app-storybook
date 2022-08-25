@@ -103,8 +103,11 @@ export default function* getDailyPassiveActivity(dataPayload: { payload: string;
     let retryDelayMs = 2000;
     while (!isUpdated && retryDelayMs <= 16000) {
       try {
-        const { data } = yield call(upsertDailyPassives, meditationResults.concat(cyclingResults));
-        const mutationResult = data?.upsertPassiveChallenges || data?.upsertDailyPassives;
+        const response: Unpacked<typeof upsertDailyPassives> = yield call(
+          upsertDailyPassives,
+          meditationResults.concat(cyclingResults)
+        );
+        const mutationResult = response?.data?.upsertDailyPassives;
 
         if (!mutationResult?.challenges?.length) {
           return;

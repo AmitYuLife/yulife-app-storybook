@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { ChallengesPayload, PassiveChallengeType } from "@graphql/_core/schema/globalTypes";
+import { ChallengesPayload, FitKitType } from "@graphql/_core/schema/globalTypes";
 import moment from "moment";
 import { call, select, CallEffect, all, AllEffect } from "redux-saga/effects";
 import {
@@ -13,6 +13,7 @@ import { PermissionsAndroid } from "react-native";
 import RNFitKit, { FitKitTypes } from "@yu-life/react-native-fitkit";
 import Logger from "@services/logging/logger";
 import { getStepsBlackListApps } from "@redux/daily-steps/daily-steps.selectors";
+import { getEndDates } from "./helper";
 
 export default function* getPassiveSinceLastUpdateAndroid(
   stepsLastUpdate: string,
@@ -20,21 +21,126 @@ export default function* getPassiveSinceLastUpdateAndroid(
   cyclingLastUpdate: string,
   userFeatures: IUserStore["features"]
 ) {
-  const endOfYesterday = moment().subtract(1, "day").endOf("day");
+  const stepsBlackListApps: string[] = yield select(getStepsBlackListApps);
+  const { endDateSteps, endDateMeditation, endDateCycling } = getEndDates(
+    stepsLastUpdate,
+    meditationLastUpdate,
+    cyclingLastUpdate
+  );
+  const { meditationPermissionGranted, cyclingPermissionGranted, fineLocationGranted } = yield call(
+    checkPermissions,
+    userFeatures
+  );
+  const queryCycling = cyclingLastUpdate && fineLocationGranted && cyclingPermissionGranted;
+  const queryMeditation = meditationLastUpdate && meditationPermissionGranted;
 
-  const stepsAndMeditationLastUpdateStartTime =
-    meditationLastUpdate && moment(meditationLastUpdate)?.isBefore(stepsLastUpdate)
-      ? moment(meditationLastUpdate).startOf("day")
-      : moment(stepsLastUpdate).startOf("day");
+  if (userFeatures.runLastUpdateQueryInSequence) {
+    const steps: ChallengesPayload[] = yield call(
+      getSteps,
+      stepsLastUpdate,
+      endDateSteps,
+      stepsBlackListApps,
+      userFeatures
+    );
+    const meditation: ChallengesPayload[] = yield call(
+      getMeditation,
+      queryMeditation,
+      meditationLastUpdate,
+      endDateMeditation,
+      userFeatures
+    );
+    const cycling: ChallengesPayload[] = yield call(
+      getCycling,
+      queryCycling,
+      cyclingLastUpdate,
+      endDateCycling,
+      userFeatures
+    );
 
+    return [...cycling, ...meditation, ...steps];
+  }
+
+  const [steps, meditation, cycling]: ChallengesPayload[][] = yield all([
+    call(getSteps, stepsLastUpdate, endDateSteps, stepsBlackListApps, userFeatures),
+    call(getMeditation, queryMeditation, meditationLastUpdate, endDateMeditation, userFeatures),
+    call(getCycling, queryCycling, cyclingLastUpdate, endDateCycling, userFeatures),
+  ]) as AllEffect<CallEffect<ChallengesPayload[]>>;
+
+  return [...cycling, ...meditation, ...steps];
+}
+
+const getCycling = async (
+  queryCycling: boolean,
+  cyclingLastUpdate: string,
+  endDateCycling: moment.Moment,
+  userFeatures: IUserStore["features"]
+): Promise<ChallengesPayload[]> => {
+  if (!queryCycling) {
+    return [];
+  }
+
+  const cycling = await queryAggregatedBiking(moment(cyclingLastUpdate).startOf("day"), endDateCycling, userFeatures);
+
+  if (cycling.error) {
+    return [];
+  }
+
+  return cycling.results;
+};
+
+const getMeditation = async (
+  queryMeditation: boolean,
+  meditationLastUpdate: string,
+  endDateMeditation: moment.Moment,
+  userFeatures: IUserStore["features"]
+): Promise<ChallengesPayload[]> => {
+  if (!queryMeditation) {
+    return [];
+  }
+
+  const meditation = await queryAggregatedDataByDay(
+    moment(meditationLastUpdate).startOf("day"),
+    endDateMeditation,
+    [],
+    [FitKitType.MindfulSession],
+    userFeatures
+  );
+
+  return processResult(meditation, "MindfulSession", moment(meditationLastUpdate), endDateMeditation);
+};
+
+const getSteps = async (
+  stepsLastUpdate: string,
+  endDateSteps: moment.Moment,
+  stepsBlackListApps: string[],
+  userFeatures: IUserStore["features"]
+): Promise<ChallengesPayload[]> => {
+  if (!stepsLastUpdate) {
+    return [];
+  }
+
+  const steps: QueryFitKitByTypesResponse = await queryAggregatedDataByDay(
+    moment(stepsLastUpdate).startOf("day"),
+    endDateSteps,
+    stepsBlackListApps,
+    [FitKitType.StepCount],
+    userFeatures
+  );
+
+  return processResult(steps, "StepCount", moment(stepsLastUpdate), endDateSteps);
+};
+
+const checkPermissions = async (userFeatures: IUserStore["features"]) => {
   const setDefaultPermissionCheck = userFeatures.disableCheckPermission;
-  const [meditationPermissionGranted, cyclingPermissionGranted]: boolean[] = yield all([
+
+  const [meditationPermissionGranted, cyclingPermissionGranted, fineLocationGranted] = await Promise.all([
     setDefaultPermissionCheck
       ? true
-      : call(RNFitKit.isAuthorised, { read: [FitKitTypes.Types.MindfulSession], platform: "GoogleFit" }),
+      : RNFitKit.isAuthorised({ read: [FitKitTypes.Types.MindfulSession], platform: "GoogleFit" }),
     setDefaultPermissionCheck
       ? true
-      : call(RNFitKit.isAuthorised, { read: [FitKitTypes.Types.Biking], platform: "GoogleFit" }),
+      : RNFitKit.isAuthorised({ read: [FitKitTypes.Types.Biking], platform: "GoogleFit" }),
+    PermissionsAndroid.check("android.permission.ACCESS_FINE_LOCATION"),
   ]);
 
   if (!meditationPermissionGranted || !cyclingPermissionGranted) {
@@ -48,56 +154,5 @@ export default function* getPassiveSinceLastUpdateAndroid(
     });
   }
 
-  const fineLocationGranted: boolean = yield call(PermissionsAndroid.check, "android.permission.ACCESS_FINE_LOCATION");
-  const queryCycling = cyclingLastUpdate && fineLocationGranted && cyclingPermissionGranted;
-  const stepsBlackListApps: string[] = yield select(getStepsBlackListApps);
-
-  const [stepsAndMeditation, cycling]: QueryFitKitByTypesResponse[] = yield all([
-    stepsLastUpdate || meditationLastUpdate
-      ? call(
-          queryAggregatedDataByDay,
-          stepsAndMeditationLastUpdateStartTime,
-          endOfYesterday,
-          stepsBlackListApps,
-          userFeatures
-        )
-      : returnEmptyResult(),
-    queryCycling
-      ? call(queryAggregatedBiking, moment(cyclingLastUpdate).startOf("day"), endOfYesterday, userFeatures)
-      : returnEmptyResult(),
-  ]) as AllEffect<CallEffect<QueryFitKitByTypesResponse>>;
-
-  const aggregatedCycling: ChallengesPayload[] = queryCycling ? cycling.results : [];
-  let aggregatedMeditation: ChallengesPayload[] = [];
-  let aggregatedSteps: ChallengesPayload[] = [];
-  if (!stepsAndMeditation?.error) {
-    const meditation = stepsAndMeditation.results.filter((result) => result.type === PassiveChallengeType.MEDITATION);
-    const steps = stepsAndMeditation.results.filter((result) => result.type === PassiveChallengeType.STEPS);
-
-    aggregatedMeditation =
-      meditationLastUpdate && meditationPermissionGranted
-        ? processResult(
-            { error: false, results: meditation },
-            "MindfulSession",
-            stepsAndMeditationLastUpdateStartTime,
-            endOfYesterday
-          )
-        : [];
-    aggregatedSteps = stepsLastUpdate
-      ? processResult(
-          { error: false, results: steps },
-          "StepCount",
-          stepsAndMeditationLastUpdateStartTime,
-          endOfYesterday
-        )
-      : [];
-  }
-
-  const allResults: ChallengesPayload[] = [...aggregatedCycling, ...aggregatedMeditation, ...aggregatedSteps];
-
-  return allResults;
-}
-
-const returnEmptyResult = (): QueryFitKitByTypesResponse => {
-  return { results: [], error: false };
+  return { meditationPermissionGranted, cyclingPermissionGranted, fineLocationGranted };
 };

@@ -107,7 +107,7 @@ export const transformSampleResultToPayloadWithType = (item: SampleQueryResult):
 
 export interface QueryFitKitByTypesResponse {
   results: ChallengesPayload[];
-  error: boolean;
+  error: boolean | string;
 }
 
 export const queryFitKitByTypesDebug = async (
@@ -234,8 +234,8 @@ export const queryAggregatedDataByDay = async (
   start: Moment,
   end: Moment,
   stepsBlackListApps: string[],
-  { disableUserEntries = true, loggingEnabled = false }: IUserStore["features"] = {},
-  fitKitTypes: FitKitType[] = [FitKitType.StepCount, FitKitType.MindfulSession]
+  fitKitTypes: FitKitType[],
+  { disableUserEntries = true, loggingEnabled = false }: IUserStore["features"] = {}
 ): Promise<QueryFitKitByTypesResponse> => {
   try {
     const startTime = start.format(DATE_FORMAT_WITH_TZ);
