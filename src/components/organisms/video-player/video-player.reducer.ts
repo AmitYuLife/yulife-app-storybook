@@ -61,7 +61,7 @@ export const setMusicControlInitialConfig = () => {
   MusicControl.enableControl("seek", false);
   MusicControl.enableControl("setRating", false);
   MusicControl.enableControl("volume", true);
-  MusicControl.enableControl("remoteVolume", true);
+  MusicControl.enableControl("remoteVolume", false);
   MusicControl.enableControl("enableLanguageOption", false);
   MusicControl.enableControl("disableLanguageOption", false);
   MusicControl.enableControl("closeNotification", true, { when: "never" });
