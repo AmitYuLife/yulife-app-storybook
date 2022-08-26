@@ -57,6 +57,7 @@ export interface GetPersonalProductStepDetached_getPersonalProductStepDetached_b
     | "ContentItemCostPayoutBenefitCard"
     | "ContentItemCollapsingHeaderAgePercentProductInfo"
     | "ContentItemPerks"
+    | "ContentItemAppDownloadPrompt"
     | "ContentItemPerksComparison";
 }
 

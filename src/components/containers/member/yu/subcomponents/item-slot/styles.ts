@@ -92,7 +92,7 @@ export const styles = StyleSheet.create({
   },
   titleWrapper: {
     flex: 1,
-    paddingLeft: Style.adjust(10),
+    paddingLeft: Style.adjust(7),
   },
   slotStatusWrapper: {
     alignItems: "center",

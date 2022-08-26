@@ -43,6 +43,7 @@ export interface YuScreenProduct {
   status: YuProductStatus;
   title: string;
   titleColour: string;
+  text: string | null;
   backgroundColour: string;
   topShadowColour: string;
   bottomShadowColour: string;

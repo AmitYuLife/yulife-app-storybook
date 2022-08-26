@@ -46,6 +46,7 @@ const GQL_FRAGMENT_YU_SCREEN_PRODUCT_SLOT_ITEM = gql`
     status
     title
     titleColour
+    text
     backgroundColour
     topShadowColour
     bottomShadowColour

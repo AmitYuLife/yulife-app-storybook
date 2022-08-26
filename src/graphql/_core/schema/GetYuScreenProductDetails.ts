@@ -26,7 +26,8 @@ export interface GetYuScreenProductDetails_getYuScreenProductDetails_body_Conten
     | "ContentItemPad"
     | "ContentItemCollapsingGenericHeader"
     | "ContentItemPerks"
-    | "ContentItemSelectedPackageCard";
+    | "ContentItemSelectedPackageCard"
+    | "ContentItemAppDownloadPrompt";
 }
 
 export interface GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemProductDetailsHeader_styles {
@@ -304,7 +305,8 @@ export interface GetYuScreenProductDetails_getYuScreenProductDetails_absolute_it
     | "ContentItemKeyValueBox"
     | "ContentItemImage"
     | "ContentItemPerks"
-    | "ContentItemSelectedPackageCard";
+    | "ContentItemSelectedPackageCard"
+    | "ContentItemAppDownloadPrompt";
 }
 
 export interface GetYuScreenProductDetails_getYuScreenProductDetails_absolute_item_ContentItemPad_styles {

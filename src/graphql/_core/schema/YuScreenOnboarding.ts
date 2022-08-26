@@ -53,6 +53,7 @@ export interface YuScreenOnboarding_placeholder {
   status: YuProductStatus;
   title: string;
   titleColour: string;
+  text: string | null;
   backgroundColour: string;
   topShadowColour: string;
   bottomShadowColour: string;

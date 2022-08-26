@@ -25098,6 +25098,11 @@
           },
           {
             "kind": "OBJECT",
+            "name": "ContentItemAppDownloadPrompt",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
             "name": "ContentItemPerksComparison",
             "ofType": null
           }
@@ -33748,6 +33753,89 @@
       },
       {
         "kind": "OBJECT",
+        "name": "ContentItemAppDownloadPrompt",
+        "description": null,
+        "fields": [
+          {
+            "name": "id",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "ID",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "headingText",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "footerText",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "qrCodeImage",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "RemoteImage",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "styles",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "SduiStyle",
+                  "ofType": null
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
         "name": "ContentItemPerksComparison",
         "description": null,
         "fields": [
@@ -39926,6 +40014,18 @@
             "deprecationReason": null
           },
           {
+            "name": "text",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "backgroundColour",
             "description": null,
             "args": [],
@@ -41072,6 +41172,11 @@
           {
             "kind": "OBJECT",
             "name": "ContentItemSelectedPackageCard",
+            "ofType": null
+          },
+          {
+            "kind": "OBJECT",
+            "name": "ContentItemAppDownloadPrompt",
             "ofType": null
           }
         ]

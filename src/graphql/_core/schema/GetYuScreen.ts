@@ -53,6 +53,7 @@ export interface GetYuScreen_getYuScreen_onboarding_placeholder {
   status: YuProductStatus;
   title: string;
   titleColour: string;
+  text: string | null;
   backgroundColour: string;
   topShadowColour: string;
   bottomShadowColour: string;
@@ -107,6 +108,7 @@ export interface GetYuScreen_getYuScreen_productSlots {
   status: YuProductStatus;
   title: string;
   titleColour: string;
+  text: string | null;
   backgroundColour: string;
   topShadowColour: string;
   bottomShadowColour: string;
