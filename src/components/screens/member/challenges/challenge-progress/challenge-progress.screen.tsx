@@ -130,7 +130,7 @@ function ChallengeProgressScreen({
       </View>
       {hideExternalLinks ? null : (
         <View style={styles.meditationButtonWrapper}>
-          {!features?.mediaPlayer ? (
+          {!features?.newMediaPlayer ? (
             <SecondaryButton
               backgroundColor={actionStyles.primaryColour}
               borderColor={actionStyles.primaryColour}
@@ -184,7 +184,7 @@ function ChallengeProgressScreen({
       <NavBar activeIndex={1} additionalBottom={2} />
 
       {/* @TODO: Delete this when our new meditation be released to everyone */}
-      {features?.mediaPlayer ? null : (
+      {features?.newMediaPlayer ? null : (
         <ExternalAppLinksOverlay showScreen={showOverlay} setShowScreen={setShowOverlay} />
       )}
       {/*  */}

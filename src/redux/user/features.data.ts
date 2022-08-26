@@ -55,4 +55,5 @@ export const features = [
   "enableBikingUtility",
   "enableDebugTool",
   "mediaPlayer",
+  "newMediaPlayer",
 ];
