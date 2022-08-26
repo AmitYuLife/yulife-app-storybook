@@ -28,6 +28,7 @@ export const ItemSlot: FC<ItemSlotProps> = memo(
     onPress,
     rightIcon,
     rightStatusIcon,
+    text,
     title,
     titleColour,
     topShadowColour,
@@ -80,6 +81,11 @@ export const ItemSlot: FC<ItemSlotProps> = memo(
               <TextTemplate color={titleColour} type="l2b">
                 {title}
               </TextTemplate>
+              {text ? (
+                <TextTemplate color={titleColour} type="l3">
+                  {text}
+                </TextTemplate>
+              ) : null}
             </View>
             {rightIcon ? (
               <View style={styles.rightIconImageWrapper}>

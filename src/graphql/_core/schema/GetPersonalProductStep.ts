@@ -51,6 +51,7 @@ export interface GetPersonalProductStep_getPersonalProductStep_body_ContentItemP
     | "ContentItemProgressSteps"
     | "ContentItemCollapsingHeaderAgePercentProductInfo"
     | "ContentItemPerks"
+    | "ContentItemAppDownloadPrompt"
     | "ContentItemPerksComparison";
 }
 
@@ -1653,6 +1654,7 @@ export interface GetPersonalProductStep_getPersonalProductStep_footer_ContentIte
     | "ContentItemCostPayoutBenefitCard"
     | "ContentItemCollapsingHeaderAgePercentProductInfo"
     | "ContentItemPerks"
+    | "ContentItemAppDownloadPrompt"
     | "ContentItemPerksComparison";
 }
 
@@ -1899,6 +1901,7 @@ export interface GetPersonalProductStep_getPersonalProductStep_header_ContentIte
     | "ContentItemCostPayoutBenefitCard"
     | "ContentItemCollapsingHeaderAgePercentProductInfo"
     | "ContentItemPerks"
+    | "ContentItemAppDownloadPrompt"
     | "ContentItemPerksComparison";
 }
 
@@ -2099,6 +2102,7 @@ export interface GetPersonalProductStep_getPersonalProductStep_absolute_item_Con
     | "ContentItemProgressSteps"
     | "ContentItemCostPayoutBenefitCard"
     | "ContentItemPerks"
+    | "ContentItemAppDownloadPrompt"
     | "ContentItemPerksComparison";
 }
 
