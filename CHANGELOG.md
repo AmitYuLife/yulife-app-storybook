@@ -7,6 +7,39 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.45.0] - 2022-08-26
+
+### Bugfixes
+
+- Bugfix: Prevent onEnd to be called twice on video-player
+- Bugfix: Improve android back button on meditopia
+- Bugfix: Display buttons on daily screen on small devices if there is no events
+
+### Tasks
+
+- Task XSE-1297: Align yumoji
+- Task: Update Fitkit version 1.0.22
+- Task XSE-1192: Info panel updates
+- Task: Yuscreen Carrier logo
+- Task: Log events from native bridge
+- Task GS-409: Purge old active challenges logic
+- Task XSE-1330: YuScreen onboarding updates and refactor
+- Task XSE-1302: Reset FIB/Dental journeys
+
+### Chores
+
+- Chore: Set limit for last update
+- Chore: Change close button to go back button on challenge details screen
+- Chore: Restart pedometer at midnight
+- Chore: date on userDuel obj
+- Chore: Add support for lottie animation on media player
+
+### Extra
+
+- Detox:save card when got product test
+- Detox/inspect players
+- detox/fixes_18_8
+
 ## [3.44.0] - 2022-08-17
 
 ### Bugfixes
