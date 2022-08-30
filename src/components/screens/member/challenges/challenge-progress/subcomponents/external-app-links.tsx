@@ -24,7 +24,7 @@ export const MeditationExternalLinks = memo(({ hideOverlay }: ExternalLinksProps
         }`}
       </TextTemplate>
       {/* //@TODO: GS-340 - This is temporary until we release the new meditation, delete this after */}
-      {features.mediaPlayer ? null : <MeditopiaButton style={styles.spaceMedium} onPressCallback={hideOverlay} />}
+      {features.newMediaPlayer ? null : <MeditopiaButton style={styles.spaceMedium} onPressCallback={hideOverlay} />}
       <CalmButton style={styles.spaceSmall} onPressCallback={hideOverlay} />
       <HeadspaceButton style={styles.spaceSmall} onPressCallback={hideOverlay} />
 
