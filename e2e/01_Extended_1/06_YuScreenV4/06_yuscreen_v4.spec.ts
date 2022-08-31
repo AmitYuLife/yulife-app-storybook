@@ -24,10 +24,10 @@ Feature("I am able to use the yuscreen, create, and edit an Yumoji", async () =>
             helper.CREATE_DEFAULT_YUMOJI(300);
             helper.YUCOIN_POWER(CUSTOMER_44, "5")
             helper.CORRECT_PRODUCT_SLOT_BACKGROUND("0 product live")
-            helper.CHECK_PRODUCT_BUTTON_LINK("Dental insurance", "Dental Insurance");
-            helper.CHECK_PRODUCT_BUTTON_LINK("Life insurance", "Personal Life Insurance");
-            helper.CHECK_CAROUSEL_BUTTON_LINK("right", "From £12.99 per month", "Dental Insurance");
-            helper.CHECK_CAROUSEL_BUTTON_LINK("left", "Extend your life insurance", "Personal Life Insurance");
+            helper.CHECK_PRODUCT_BUTTON_LINK("Dental", "Dental Insurance");
+            helper.CHECK_PRODUCT_BUTTON_LINK("Life Insurance", "Personal Life Insurance");
+            helper.CHECK_CAROUSEL_BUTTON_LINK("right", "From £12.99 per month", "Bupa Dental Plan for YuLife");
+            helper.CHECK_CAROUSEL_BUTTON_LINK("left", "Extend your life insurance", "Life Insurance");
         })
     })
 
@@ -35,7 +35,7 @@ Feature("I am able to use the yuscreen, create, and edit an Yumoji", async () =>
         Given("I login as a user", given.logInAndGoToTab("yu", CUSTOMER_45, AUTH_45), async () => {
             Then("I should be on the YuScreen V4", then.onYuscreenV4(CUSTOMER_45, "dentalActiveAndPliInactive", "6" ))
             helper.PAYMENT_FAILED()
-            helper.CHECK_OTHER_PRODUCT_WHEN_HAVE_PAYMENT_FAILED("Life insurance")
+            helper.CHECK_OTHER_PRODUCT_WHEN_HAVE_PAYMENT_FAILED("Life Insurance")
             helper.CORRECT_PRODUCT_SLOT_BACKGROUND("dental only")
             helper.DENTAL_PRODUCT_VIEW("Epic", "0321")
         })
@@ -46,7 +46,7 @@ Feature("I am able to use the yuscreen, create, and edit an Yumoji", async () =>
             Then("I should be on the YuScreen V4", then.onYuscreenV4(CUSTOMER_46, "PliRejectedAndDentalInactive", "5" ))
             helper.CORRECT_PRODUCT_SLOT_BACKGROUND("0 product live")
             helper.REJECTED("Answers")
-            helper.CHECK_PRODUCT_BUTTON_LINK("Dental insurance", "Dental Insurance");
+            helper.CHECK_PRODUCT_BUTTON_LINK("Dental", "Dental Insurance");
         })
     })
 })

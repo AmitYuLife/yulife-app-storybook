@@ -37,6 +37,11 @@ export default class SocketClient {
         return () => this.socket.off(EVENT.FITKIT_AGGREGATED_QUERIES_ADD);
     }
 
+    public onNativeEvent(cb: Callback<PedometerEvent>) {
+        this.socket.on(EVENT.NATIVE_EVENT, cb);
+        return () => this.socket.off(EVENT.NATIVE_EVENT, cb);
+    }
+
     public unsubscribe(event: EVENT, cb: any) {
         this.socket.off(event, cb);
     }

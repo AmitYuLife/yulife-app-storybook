@@ -143,24 +143,36 @@ export const onboardingYuscreenV4 = (yuCoinPower:string, status: string)=> async
     const protectionTitle = "Protection, powered up!"
     const protectionOptionText = "Earn rewards faster with increased YuCoin power"
     const buttonText = "Check out my power"
+    const yuCoinText = "YuCoin"
+    const powerText = "Power"
+    const paidBy = "Employer paid"
 
     if (status === "wellbeing only"){
         await textVisibleAtIndex(yuCoinPower, 0)()
         await textVisibleAtIndex(yuCoinPower, 1)()
         await expect(element(by.text(WellbeingProduct))).toBeVisible()
-        await textVisibleAtIndex(noProductText, 0)()
-        await textVisibleAtIndex(noProductText, 1)()
-        await textVisibleAtIndex(noProductText, 2)()
+        await textVisible(noProductText)()
+        await textVisible(yuCoinText)()
+        await textVisible(powerText)()
+        await textVisible(paidBy)()
     }
     if (status === "dentalAndPli"){
-        await textVisibleAtIndex(availableProducts, 0)()
-        await textVisibleAtIndex(availableProducts, 1)()
-        await textVisibleAtIndex(availableProducts, 2)()
-        await textVisibleAtIndex(availableProducts, 3)()
+        await textVisible(yuCoinPower, 0)()
+        await textVisible(yuCoinText)()
+        await textVisible(powerText)()
+        await textVisible(availableProducts)()
     }
 
     await expect(element(by.id(ONBOARDING_SCREEN))).toBeVisible()
     await expect(element(by.text(protectionTitle))).toBeVisible()
     await expect(element(by.text(protectionOptionText))).toBeVisible()
     await expect(element(by.text(buttonText))).toBeVisible()
+}
+
+export const onLifeInsuranceOverview = async () => {
+    await textVisible("Life Insurance", 3000)()
+}
+
+export const onDentalInsuranceOverview = async () => {
+    await textVisible("Bupa Dental Plan for YuLife", 3000)()
 }
