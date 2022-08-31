@@ -1375,24 +1375,24 @@ export const CHALLENGE_USER_42_A = {
         startTime: moment().subtract(1, "days").toDate(),
         startDateTime: moment().subtract(1, "days").toDate(),
         endDateTime: moment().subtract(1, "days").toDate(),
-        levelSlotTemplateId: "DAILY_PASSIVE_002",
-        subtype: MEDITATION_1.data.subtype,
+        isNewType: true,
+        yuCoinAwarded: 10,
+        XPAwarded: 0,
+        rating: 3,
         incomingData: {
-            meditation: 100
+            "steps": 305
         },
+        sources: {},
         level: 51,
-        milestoneLog: [
-            {
-                completionData: [],
-                _id: generateRandomMongoId(),
-                id: MEDITATION_MILESTONE_1.data.id,
-                completed: moment().subtract(1, "day").toDate(),
-                data: {
-                    meditation: 100,
-                },
-                yuCoinAwarded: 60
-            }
-        ],
+        levelId: "YU_LEVEL_0051",
+        levelSlotId: "YU_LEVEL_0051_2",
+        levelSlotTemplateId: "SHORT_STROLL_001",
+        milestoneTemplateId: "YU_MILESTONE_SS0006",
+        subtype: "short stroll",
+        status: "completed",
+        passive: false,
+        __v: 0,
+        multiplierId: null
     }
 } as IDatabaseItem;
 
@@ -1409,7 +1409,6 @@ export const CHALLENGE_USER_42_B = {
             steps: 450
         },
         level: 51,
-        levelSlotTemplateId: "DAILY_PASSIVE_001",
         status: "active",
 
         milestoneLog: [

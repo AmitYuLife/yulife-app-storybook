@@ -18,6 +18,7 @@ import { getToken } from "@services/storage";
 import { getReadableShortDateFormat } from "@locale";
 import { getVideoPlayerIsActive } from "@redux/levels/levels.selectors";
 import { PASSIVE_ACTIVITY_LAST_UPDATE_LIMIT } from "@services/constants";
+import { DETOX_ENABLED } from "@services/socket";
 
 export default function* sendPassiveActivity(): any {
   const token: Unpacked<typeof getToken> = yield call(getToken);
@@ -88,7 +89,10 @@ export default function* sendPassiveActivity(): any {
               const response: Unpacked<typeof upsertDailyPassives> = yield call(upsertDailyPassives, payload);
 
               awardedYucoin += response?.data?.upsertDailyPassives?.totalCoins || 0;
-              yield delay(5000);
+              if (!DETOX_ENABLED) {
+                yield delay(5000);
+              }
+
               isUpdated = true;
             } catch (e) {
               yield spawn(() => {
@@ -114,7 +118,7 @@ export default function* sendPassiveActivity(): any {
           dynamicCyclingLastUpdate
         );
 
-        if (!lastUpdateValidation.upToDate) {
+        if (!lastUpdateValidation.upToDate && !DETOX_ENABLED) {
           yield delay(5000);
         }
       }

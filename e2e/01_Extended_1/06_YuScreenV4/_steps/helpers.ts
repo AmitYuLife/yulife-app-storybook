@@ -32,15 +32,9 @@ export const CHECK_CAROUSEL_BUTTON_LINK = async ( direction:string, productButto
     When("I swipe down the Yu screen page", when.swipeFromText(browseMoreProtection,"up", "fast"), async () => {
         When(`I swipe right from ${dentalPriceFrom}`, when.swipeFromText(dentalPriceFrom, direction, "fast"), async () => {
             When(`I tap on ${productButton}`, when.tapText(productButton), async () => {
-                Then("I should see pick where i left modal", then.pickWhereLeftModal)
-                When(`I tap on Continue`, when.tapText("Continue"), async () => {
-                Then(`I should be on the first ${productOnboardingViewText} onboarding screen`, then.idVisible(TEXT_TEMPLATE(productOnboardingViewText)));
-                    When("I close this screen", when.tapIDAtIndex(BUTTON_CLOSE, 1), async () => {
-                        When("I close this screen", when.tapIDAtIndex(BUTTON_CLOSE, 1), async () => {
-                            Then(`I should not see ${productOnboardingViewText} onboarding screen`, then.textNotVisible(productOnboardingViewText))
-
-                        })
-                    })
+                Then(`I should be on the first ${productOnboardingViewText} onboarding screen`, then.textVisible(productOnboardingViewText));
+                When("I close this screen", when.tapIDAtIndex(BUTTON_CLOSE, 1), async () => {
+                    Then(`I should not see ${productOnboardingViewText} onboarding screen`, then.textNotVisible(productOnboardingViewText))
                 })
             })
         })
@@ -52,7 +46,9 @@ export const PAYMENT_FAILED = async () => {
 }
 
 export const CORRECT_PRODUCT_SLOT_BACKGROUND = async (status:string) => {
-    Then("I should see correct products Slot background colours", then.productSlotsAreCorrect(status))
+    When("I wait", when.wait(1000), async () => {
+        Then("I should see correct products Slot background colours", then.productSlotsAreCorrect(status))
+    })
 }
 
 type RejectionScreen = "Age" | "Answers"
@@ -63,7 +59,7 @@ export const REJECTED = async (screen: RejectionScreen, date?: string, time?: st
         : "Based on your answers, we’re not able to offer you personal life insurance right now."
 
 
-    When(`I tap on Life insurance`, when.tapText("Life insurance"), async () => {
+    When(`I tap on Life insurance`, when.tapText("Life Insurance"), async () => {
         When("I wait 5 seconds", when.wait(3000), async () => {
             Then(`I should be on the ${screen} rejection screen`, then.textVisible("Sorry about this!"))
             Then(`I should be on the ${screen} rejection screen`, then.textVisible(screenText))
@@ -75,7 +71,7 @@ export const REJECTED = async (screen: RejectionScreen, date?: string, time?: st
 }
 
 export const DENTAL_PRODUCT_VIEW = async (packageType: string, membershipEnding: string) => {
-    When(`I tap Dental insurance`, when.tapText("Dental insurance"), async () => {
+    When(`I tap Dental insurance`, when.tapText("Dental"), async () => {
         Then("I should see correct product details", then.dentalProductInfo(packageType, membershipEnding))
     })
 }
@@ -110,12 +106,12 @@ export const CHECK_OTHER_PRODUCT_WHEN_HAVE_PAYMENT_FAILED = async ( productButto
     When(`I tap on ${productButton}`, when.tapText(productButton), async () => {
         Then(`I should payment overdue screen`, then.paymentOverdueInfo)
         When("I close this screen", when.tapIDAtIndex(BUTTON_CLOSE, 1), async () => {
-            Then("I should be able to see Dental insurance", then.textVisible("Dental insurance"))
+            Then("I should be able to see Dental insurance", then.textVisible("Dental"))
         })
     })
 }
 
-export const ONBOARDING_YUSCREEN = async (customer:any,packType:string, yuCoinPower: string) => {
+export const ONBOARDING_YUSCREEN = async (customer: any, packType: string, yuCoinPower: string) => {
     
     const buttonText = "Check out my power"
     const yuMojiBuilder = "Pick a body type"
