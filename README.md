@@ -84,6 +84,10 @@ The Metro bundler and TypeScript watch process must be started before you can bu
 yarn start
 ```
 
+### Optimising new image assets
+
+When new image assets are added, these should be run through [ImageOptim](https://imageoptim.com) to reduce the file size as much as possible without a loss in quality.
+
 ## Build app
 
 ### iOS
