@@ -7,6 +7,21 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.46.0] - 2022-08-31
+
+### Bugfixes
+
+- Bugfix: Volume show as casting on android devices on video-player
+
+### Tasks
+
+- Task XSE-1331: New product slot field
+
+### Chores
+
+- Chore: Optimise assets
+- Chore: Change the toggle to enable in-app meditation
+
 ## [3.45.0] - 2022-08-26
 
 ### Bugfixes
