@@ -66,7 +66,7 @@ export const INFORMATION = async () => {
 
     When("I scroll to the bottom of the page", when.scrollUntilTextVisible(PRODUCT_STEP_BODY_SCROLL_VIEW, "Bupa’s Privacy Notice", "down"), async () => {
         Then("I should see the Only with YuLife box", then.multipleTextVisible([onlyWithYuLifeTitle, onlyWithYuLifeCopy]))
-        Then("I should see *Excludes some treatments", then.textVisible("*Excludes some treatments"))
+        Then("I should see *Excludes some treatments", then.textVisible("* Excludes some treatments. Please see full terms and conditions."))
         Then("I should see FAQs", then.textVisible("FAQs"))
         Then("I should see YuLife's Privacy Policy", then.textVisible("YuLife’s Privacy Policy"))
         Then("I should see Bupa's Privacy Notice", then.textVisible("Bupa’s Privacy Notice"))
@@ -168,7 +168,7 @@ export const CHECKOUT = async () => {
     const exclusiveText = `Your exclusive dental YuCoin power up has been unlocked! You can find more details via the gloves located next to your Yumoji`
     const policyLiveOn = `If approved, your policy goes live on*:`
     const perksText = "Your YuLife perks are now unlocked, including YuCoin Power and your new gloves!"
-    const checkoutSummary = "*Subject to confirmation from Bupa and successful first payment, we will notify you of any changes to your application status."
+    const checkoutSummary = "*Subject to confirmation from Bupa and successful first payment, we will notify you of any changes to your application status. Any claims for treatments prior to this date will not be eligible"
     const onboardStepPerformed = "Information about your policy lives here, with details of cover amounts and how to make a claim"
 
 
