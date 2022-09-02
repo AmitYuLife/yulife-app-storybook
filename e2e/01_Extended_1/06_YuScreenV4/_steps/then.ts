@@ -140,9 +140,9 @@ export const onboardingYuscreenV4 = (yuCoinPower:string, status: string)=> async
     const WellbeingProduct = "Wellbeing Access"
     const noProductText = "More protection coming soon"
     const availableProducts = "More protection"
-    const protectionTitle = "Protection, powered up!"
-    const protectionOptionText = "Earn rewards faster with increased YuCoin power"
-    const buttonText = "Check out my power"
+    const protectionTitle = "Protection with personality"
+    const protectionOptionText = "Take a step closer to financial wellbeing, with policies designed to be as unique as you."
+    const buttonText = "Show me the way"
     const yuCoinText = "YuCoin"
     const powerText = "Power"
     const paidBy = "Employer paid"
@@ -166,6 +166,7 @@ export const onboardingYuscreenV4 = (yuCoinPower:string, status: string)=> async
     await expect(element(by.id(ONBOARDING_SCREEN))).toBeVisible()
     await expect(element(by.text(protectionTitle))).toBeVisible()
     await expect(element(by.text(protectionOptionText))).toBeVisible()
+    await swipeFromText(protectionTitle, "up", "slow")()
     await expect(element(by.text(buttonText))).toBeVisible()
 }
 
