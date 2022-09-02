@@ -12,7 +12,7 @@ const  addOneMonth = moment().add(1, 'M')
 const  startOfnextMonth = moment(addOneMonth).startOf('month').format("DD/MM/YYYY")
 const  startOfnextMonthFormated = moment(addOneMonth).startOf('month').format("DD.MM.YYYY")
 
-const warningText = "You are not covered, and cannot claim for any treatments carried out before your cover starts"
+const warningText = "You are not covered, and cannot claim for any treatments carried out before your cover starts."
 
 
 export const ONBOARDING = async () => {

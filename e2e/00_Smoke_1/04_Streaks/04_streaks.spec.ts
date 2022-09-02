@@ -161,7 +161,7 @@ Feature("As a user I can use the streaks functionality", async () => {
                     When("I start the short stroll challenge", when.startChallenge("short stroll"), async () => {
                         Then("The challenge should start", idVisible(CHALLENGE_PROGRESS_BAR))
                         When("I wait for the challenge to finish", when.wait(32000), async () => {
-                            Then("I should see the challenge failed screen", then.textVisible("you didn’t make it", 5000))
+                            Then("I should see the challenge failed screen", then.textVisible("you didn’t make it", 6000))
                             When("I tap back to quests", when.tapText("back to quests"), async () => {
                                 Then("I should be on the quests screen", then.idVisible(QUESTS_SCREEN(0)))
                                 When("I go back to the yuicoin screen", when.tapID(NAV_BAR("yucoin")), async () => {
