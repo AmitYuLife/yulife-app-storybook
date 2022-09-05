@@ -276,7 +276,7 @@ export const onCertificate = (productName: string, customer:any, customerGroupPo
     const customerName = `${customer.data.firstName} ${customer.data.lastName}`
     const companyName = business.data.business_account_name
     const policyNumber = customerGroupPol.data.business_product_id
-    const dateJoined = moment(businessEmployee.data.employment_start_date).format("DD/MM/YYYY")
+    const dateJoined = moment(businessEmployee.data.start_date).format("DD/MM/YYYY")
 
     await expect(element(by.text(productName))).toBeVisible()
     
@@ -289,6 +289,6 @@ export const onCertificate = (productName: string, customer:any, customerGroupPo
     await expect(element(by.text("Policy number"))).toBeVisible()
     await expect(element(by.text(policyNumber))).toBeVisible()
     
-    await expect(element(by.text("Date joined"))).toBeVisible()
+    await expect(element(by.text("Cover start date"))).toBeVisible()
     await expect(element(by.text(dateJoined))).toBeVisible()
 }
