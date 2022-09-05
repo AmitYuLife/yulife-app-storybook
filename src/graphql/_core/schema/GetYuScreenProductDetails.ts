@@ -60,6 +60,17 @@ export interface GetYuScreenProductDetails_getYuScreenProductDetails_body_Conten
   markdown: string;
 }
 
+export interface GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemProductDetailsHeader_funding_theme {
+  backgroundColor: string;
+  borderColor: string;
+  textColor: string;
+}
+
+export interface GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemProductDetailsHeader_funding {
+  text: string;
+  theme: GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemProductDetailsHeader_funding_theme | null;
+}
+
 export interface GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemProductDetailsHeader {
   __typename: "ContentItemProductDetailsHeader";
   id: string;
@@ -71,6 +82,7 @@ export interface GetYuScreenProductDetails_getYuScreenProductDetails_body_Conten
   itemSlot: GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemProductDetailsHeader_itemSlot;
   productIdentifier: GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemProductDetailsHeader_productIdentifier | null;
   benefit: GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemProductDetailsHeader_benefit | null;
+  funding: GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemProductDetailsHeader_funding | null;
 }
 
 export interface GetYuScreenProductDetails_getYuScreenProductDetails_body_ContentItemText_styles {
