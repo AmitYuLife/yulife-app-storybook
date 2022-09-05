@@ -10,6 +10,7 @@ import { SlotIcon } from "./slot-icon";
 import styles from "./styles";
 import { ProviderLogo } from "./provider-logo";
 import { Benefit } from "./benefit";
+import { Funding } from "./funding";
 
 const SLOT_ICON_SIZE = Style.adjust(102);
 const YU_COIN_POWER_HEIGHT = Style.DEVICE_WIDTH * YU_COIN_POWER_HEIGHT_WIDTH_MULTIPLIER;
@@ -23,6 +24,7 @@ export const ProductDetailsHeader = memo((props: ContentItemProductDetailsHeader
     productIdentifier,
     productDetailsHeaderYuCoinPower: yuCoinPower,
     benefit,
+    funding,
   } = props;
 
   const [benefitHeight, setBenefitHeight] = useState(0);
@@ -38,6 +40,7 @@ export const ProductDetailsHeader = memo((props: ContentItemProductDetailsHeader
       >
         <View style={styles.inner}>
           <View style={styles.leftSide}>
+            {funding ? <Funding {...funding} /> : null}
             <ProviderLogo image={providerLogo?.image} width={providerLogo?.width} />
             <Title titleType="h2" title={productName} />
             <ProductIdentifier productIdentifier={productIdentifier} />

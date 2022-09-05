@@ -34,6 +34,22 @@ export const GQL_FRAGMENT_YU_SCREEN_ITEM_SLOT = gql`
   }
 `;
 
+export const GQL_FRAGMENT_CONTENT_ITEM_PRODUCT_DETAILS_HEADER_FUNDING_THEME = gql`
+  fragment ContentItemProductDetailsHeaderFundingTheme on ContentItemProductDetailsHeaderFundingTheme {
+    backgroundColor
+    borderColor
+    textColor
+  }
+`;
+
+export const GQL_FRAGMENT_CONTENT_ITEM_PRODUCT_DETAILS_HEADER_FUNDING = gql`
+  fragment ContentItemProductDetailsHeaderFunding on ContentItemProductDetailsHeaderFunding {
+    text
+    theme {
+      ...ContentItemProductDetailsHeaderFundingTheme
+    }
+  }
+`;
 export const GQL_FRAGMENT_CONTENT_ITEM_PRODUCT_DETAILS_HEADER = gql`
   fragment ContentItemProductDetailsHeader on ContentItemProductDetailsHeader {
     id
@@ -56,6 +72,9 @@ export const GQL_FRAGMENT_CONTENT_ITEM_PRODUCT_DETAILS_HEADER = gql`
     benefit {
       title
       markdown
+    }
+    funding {
+      ...ContentItemProductDetailsHeaderFunding
     }
   }
 `;

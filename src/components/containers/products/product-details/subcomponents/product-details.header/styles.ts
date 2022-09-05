@@ -1,5 +1,10 @@
-import { Style } from "@styles";
+import { Colours, Style } from "@styles";
 import { StyleSheet, ViewStyle } from "react-native";
+
+export const defaultFundingTheme = {
+  backgroundColor: Colours.primary.p400,
+  borderColor: Colours.primary.p600,
+};
 
 const styles = StyleSheet.create({
   wrapper: {

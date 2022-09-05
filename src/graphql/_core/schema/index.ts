@@ -50,6 +50,8 @@ export * from "./ContentItemPersonalProductReviewItem";
 export * from "./ContentItemPersonalProductSelectPaymentButton";
 export * from "./ContentItemProcessingTimer";
 export * from "./ContentItemProductDetailsHeader";
+export * from "./ContentItemProductDetailsHeaderFunding";
+export * from "./ContentItemProductDetailsHeaderFundingTheme";
 export * from "./ContentItemProgressBar";
 export * from "./ContentItemProgressSteps";
 export * from "./ContentItemProgressStepsTheme";
