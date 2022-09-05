@@ -14,7 +14,7 @@ export default StyleSheet.create({
     flex: 1,
     paddingBottom: buttonHeight + navBar.DEFAULT_FULL_HEIGHT,
     paddingHorizontal: Style.adjust(32),
-    paddingTop: TOP_BAR_WITH_PAD + Style.adjust(16),
+    paddingTop: TOP_BAR_WITH_PAD,
   },
   backgroundImage: {
     width: Style.DEVICE_WIDTH,
@@ -25,7 +25,7 @@ export default StyleSheet.create({
     alignItems: "center",
     height: Style.adjust(322),
     marginBottom: Style.adjust(20),
-    marginTop: Style.adjust(32),
+    marginTop: Style.adjust(22),
   },
   itemSlotContainerImage: {
     width: Style.adjust(229),
@@ -39,10 +39,7 @@ export default StyleSheet.create({
   itemSlotsContainer: {
     paddingTop: Style.adjust(45),
   },
-  heading: {
-    paddingHorizontal: Style.adjust(20),
-    paddingVertical: Style.adjust(8),
-  },
+  heading: { paddingVertical: Style.adjust(8) },
   text: {
     paddingBottom: Style.adjust(32),
   },
