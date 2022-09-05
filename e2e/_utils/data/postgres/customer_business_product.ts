@@ -2,6 +2,7 @@ import { generateRandomPostgresId, IDatabaseItem } from "@yu-life/yulife-bdd-fra
 import { BUSINESS_PRODUCT_3, BUSINESS_PRODUCT_4_GCI, BUSINESS_PRODUCT_4_GIP, BUSINESS_PRODUCT_4_RGL, BUSINESS_PRODUCT_1_WB } from "./business_product"
 import { CUSTOMER_31, CUSTOMER_32, CUSTOMER_33, CUSTOMER_34, CUSTOMER_43 } from "./customers"
 import { CPE_31, CPE_32_GCI, CPE_32_GIP, CPE_32_RGL, CPE_33_GCI, CPE_33_GIP, CPE_33_RGL, CPE_34_GCI, CPE_34_GIP, CPE_34_RGL, CPE_43_WELLBEING } from "./customer_product_entity"
+import moment = require('moment');
 
 const type = "postgres"
 const modelName = "customer_business_product"
@@ -15,7 +16,7 @@ export const CGP_31 = {
         category_id:1,
         salary: 60000,
         country: "UK",
-        start_date: CUSTOMER_31.data.start_date,
+        start_date: moment().subtract(3, "months").toDate(),
         date_of_birth: CUSTOMER_31.data.date_of_birth
     }
 } as IDatabaseItem
@@ -29,7 +30,7 @@ export const CGP_32_RGL = {
         category_id: 1,
         salary: 100000,
         country: "UK",
-        start_date: CUSTOMER_32.data.start_date,
+        start_date: moment().subtract(1, "year").toDate(),
         date_of_birth: CUSTOMER_32.data.date_of_birth
     }
 } as IDatabaseItem
@@ -43,7 +44,7 @@ export const CGP_32_GIP = {
         category_id: 1,
         salary: 100000,
         country: "UK",
-        start_date: CUSTOMER_32.data.start_date,
+        start_date: moment().subtract(1, "year").toDate(),
         date_of_birth: CUSTOMER_32.data.date_of_birth
     }
 } as IDatabaseItem
@@ -57,7 +58,7 @@ export const CGP_32_GCI = {
         category_id: 1,
         salary: 100000,
         country: "UK",
-        start_date: CUSTOMER_32.data.start_date,
+        start_date: moment().subtract(1, "year").toDate(),
         date_of_birth: CUSTOMER_32.data.date_of_birth
     }
 } as IDatabaseItem

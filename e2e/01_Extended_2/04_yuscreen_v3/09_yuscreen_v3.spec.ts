@@ -14,11 +14,11 @@ Feature("I should be able to use the yuscreen", async()=>{
                 Then("I shoul see the item provided by my employer", then.avatarItemVisible("compass_active", "active"))
             })
             When("I tap the active compass", when.tapAvatarItem("compass_active", "active"), async()=>{
-                Then("I should be on the product screen", then.idVisible(TEXT_TEMPLATE("Instant Group Life")))
+                Then("I should be on the product screen", then.idVisible(TEXT_TEMPLATE("Life Insurance")))
             })
 
             When("I tap Policy Details", when.tapText("Policy details"), async()=>{
-                Then("I should be on the certificate screen", then.onCertificate("Instant Group Life", CUSTOMER_31, CGP_31, BUSINESS_ACCOUNT_3, BUSINESS_EMPLOYEE_31 ))
+                Then("I should be on the certificate screen", then.onCertificate("Instant Group Life", CUSTOMER_31, CGP_31, BUSINESS_ACCOUNT_3, CGP_31 ))
             })
         })
 
@@ -30,10 +30,10 @@ Feature("I should be able to use the yuscreen", async()=>{
                 Then("I should see the unlocked binoculars", then.avatarItemVisible("binoculars_active", "active"))
                 })
             When("I tap the active compass", when.tapAvatarItem("compass_active", "active"), async()=>{
-                Then("I should be on the product screen", then.idVisible(TEXT_TEMPLATE("Registered Group Life")))
+                Then("I should be on the product screen", then.idVisible(TEXT_TEMPLATE("Life Insurance")))
                 })
             When("I tap Policy details", when.tapText("Policy details"), async () => {
-                Then("I should be on the certificate screen", then.onCertificate("Registered Group Life", CUSTOMER_32, CGP_32_RGL, BUSINESS_ACCOUNT_4, BUSINESS_EMPLOYEE_32))
+                Then("I should be on the certificate screen", then.onCertificate("Registered Group Life", CUSTOMER_32, CGP_32_RGL, BUSINESS_ACCOUNT_4, CGP_32_RGL))
                 })
             When("I close this screen", when.tapID(BUTTON_CLOSE_HEADER("button_only")), async()=>{
                 Then("I should be on the product details screen", then.idVisible(TEXT_TEMPLATE("Policy documents")))
@@ -42,10 +42,10 @@ Feature("I should be able to use the yuscreen", async()=>{
                 Then("I should be back on the yuscreen and see the unlocked map", then.avatarItemVisible("map_active", "active"))
                 })
             When("I tap the active map", when.tapAvatarItem("map_active", "active"), async () => {
-                Then("I should be on the product screen", then.idVisible(TEXT_TEMPLATE("Group Income Protection")))
+                Then("I should be on the product screen", then.idVisible(TEXT_TEMPLATE("Income Protection")))
                 }) 
             When("I tap Policy Details", when.tapText("Policy details"), async () => {
-                Then("I should be on the certificate screen", then.onCertificate("Group Income Protection", CUSTOMER_32, CGP_32_GIP, BUSINESS_ACCOUNT_4, BUSINESS_EMPLOYEE_32))
+                Then("I should be on the certificate screen", then.onCertificate("Group Income Protection", CUSTOMER_32, CGP_32_GIP, BUSINESS_ACCOUNT_4, CGP_32_GIP))
             })
             When("I close this screen", when.tapID(BUTTON_CLOSE_HEADER("button_only")), async () => {
                 Then("I should be on the product details screen", then.idVisible(TEXT_TEMPLATE("Policy documents")))
@@ -54,10 +54,10 @@ Feature("I should be able to use the yuscreen", async()=>{
                 Then("I should be back on the yuscreen and see the unlocked map", then.avatarItemVisible("map_active", "active"))
             })
             When("I tap the active binoculars", when.tapAvatarItem("binoculars_active", "active"), async () => {
-                Then("I should be on the product screen", then.idVisible(TEXT_TEMPLATE("Group Critical Illness")))
+                Then("I should be on the product screen", then.idVisible(TEXT_TEMPLATE("Critical Illness")))
             })
             When("I tap Policy Details", when.tapText("Policy details"), async () => {
-                Then("I should be on the certificate screen", then.onCertificate("Group Critical Illness", CUSTOMER_32, CGP_32_GCI, BUSINESS_ACCOUNT_4, BUSINESS_EMPLOYEE_32))
+                Then("I should be on the certificate screen", then.onCertificate("Group Critical Illness", CUSTOMER_32, CGP_32_GCI, BUSINESS_ACCOUNT_4, CGP_32_GCI))
             })
             When("I close this screen", when.tapID(BUTTON_CLOSE_HEADER("button_only")), async () => {
                 Then("I should be on the product details screen", then.idVisible(TEXT_TEMPLATE("Policy documents")))
@@ -77,7 +77,7 @@ Feature("I should be able to use the yuscreen", async()=>{
         Scenario("As a user with the compass unlocked, I can add beneficiaries", scenario.start, async()=>{
             Given("I login as a user with yuscreen", given.loginToYuScreen(false, CUSTOMER_32, AUTH_32), async () => {
                 When("I tap the active compass", when.tapAvatarItem("compass_active", "active"), async () => {
-                    Then("I should be on the product screen", then.idVisible(TEXT_TEMPLATE("Registered Group Life")))
+                    Then("I should be on the product screen", then.idVisible(TEXT_TEMPLATE("Life Insurance")))
                 })
                 When("I scroll to the add beneficiary button", when.scrollUntilIdVisible(PRODUCT_DETAILS_SCROLL_VIEW, ADD_BENEFICIARY, "down"), async () => {
                     When("I tap Add a beneficiary", when.tapID(ADD_BENEFICIARY), async () => {
@@ -151,7 +151,7 @@ Feature("I should be able to use the yuscreen", async()=>{
         Scenario("As a user with beneficiaries added, I can view them", scenario.start, async()=>{
             Given("I login as a user with yuscreen", given.loginToYuScreen(false, CUSTOMER_33, AUTH_33), async () => {
                 When("I tap the active compass", when.tapAvatarItem("compass_active", "active"), async () => {
-                    Then("I should be on the product screen", then.idVisible(TEXT_TEMPLATE("Registered Group Life")))
+                    Then("I should be on the product screen", then.idVisible(TEXT_TEMPLATE("Life Insurance")))
                     When("I scroll to the add beneficiary button", when.scrollFromID(ADD_BENEFICIARY, "up", "slow"), async () => {
                         Then("I should see Alfred Pennyworth as a 100% beneficiary", then.idVisible(BENEFICIARY_DETAILS(100, "Alfred", "Pennyworth", "Butler")))
                     })
@@ -162,7 +162,7 @@ Feature("I should be able to use the yuscreen", async()=>{
         Scenario("As a user with beneficiaries toggled off, I should not see any", scenario.start, async()=>{
             Given("I login as a user with yuscreen", given.loginToYuScreen(false, CUSTOMER_34, AUTH_34), async () => {
                 When("I tap the active compass", when.tapAvatarItem("compass_active", "active"), async () => {
-                    Then("I should be on the product screen", then.idVisible(TEXT_TEMPLATE("Registered Group Life")))
+                    Then("I should be on the product screen", then.idVisible(TEXT_TEMPLATE("Life Insurance")))
                     Then("I should not see Beneficiaries section", then.textNotVisible("Beneficiaries"))
                     Then("I should not see Bruce Wayne as a 100% beneficiary", then.idNotVisible(BENEFICIARY_DETAILS(100, "Bruce", "Wayne", "Bossman")))
                 })
