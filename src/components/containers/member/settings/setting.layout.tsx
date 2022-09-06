@@ -1,10 +1,10 @@
-import { Radio, TextTemplate } from "@atoms";
+import React, { memo } from "react";
+import { StyleSheet, View, ListRenderItemInfo } from "react-native";
+import { FlatList, Radio, TextTemplate } from "@atoms";
 import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import { SettingsHeader, TouchableOpacityWithDelay } from "@components/molecules";
 import { TEXT_TEMPLATE, SETTINGS_NAME } from "@ids";
 import { Style } from "@styles";
-import React, { memo } from "react";
-import { StyleSheet, View } from "react-native";
 
 type Option = { id: string; title: string; description: string; isSelected: boolean; onPress: () => void };
 
@@ -18,32 +18,12 @@ type Props = {
 
 const SettingLayout = ({ onRightIconPress, onLeftIconPress, options, headerText, screenTestId }: Props) => {
   return (
-    <View testID={screenTestId}>
+    <View style={styles.flex} testID={screenTestId}>
       <GenericHeadingPad />
       <View style={styles.settingsHeader}>
         <SettingsHeader title={headerText} />
       </View>
-      <View style={styles.container}>
-        {options.map((option) => (
-          <View key={option.title} style={styles.option}>
-            <View>
-              <TextTemplate type="b2b" testID={TEXT_TEMPLATE(option.title)}>
-                {option.title}
-              </TextTemplate>
-              <TextTemplate type="l2" testID={TEXT_TEMPLATE(option.description)}>
-                {option.description}
-              </TextTemplate>
-            </View>
-            <TouchableOpacityWithDelay
-              testID={SETTINGS_NAME(option.id)}
-              onPress={option.onPress}
-              style={styles.radioWrapper}
-            >
-              <Radio selected={option.isSelected} />
-            </TouchableOpacityWithDelay>
-          </View>
-        ))}
-      </View>
+      <FlatList style={styles.container} horizontal={false} data={options} renderItem={renderItem} />
       <GenericHeadingAbsolute
         heading="Settings"
         onLeftIconPress={onLeftIconPress}
@@ -54,6 +34,9 @@ const SettingLayout = ({ onRightIconPress, onLeftIconPress, options, headerText,
 };
 
 const styles = StyleSheet.create({
+  flex: {
+    flex: 1,
+  },
   settingsHeader: {
     marginTop: Style.adjust(10),
     marginBottom: Style.adjust(24),
@@ -74,3 +57,19 @@ const styles = StyleSheet.create({
 });
 
 export default memo(SettingLayout);
+
+const renderItem = ({ item }: ListRenderItemInfo<Option>): React.ReactElement | null => (
+  <View key={item.title} style={styles.option}>
+    <View>
+      <TextTemplate type="b2b" testID={TEXT_TEMPLATE(item.title)}>
+        {item.title}
+      </TextTemplate>
+      <TextTemplate type="l2" testID={TEXT_TEMPLATE(item.description)}>
+        {item.description}
+      </TextTemplate>
+    </View>
+    <TouchableOpacityWithDelay testID={SETTINGS_NAME(item.id)} onPress={item.onPress} style={styles.radioWrapper}>
+      <Radio selected={item.isSelected} />
+    </TouchableOpacityWithDelay>
+  </View>
+);
