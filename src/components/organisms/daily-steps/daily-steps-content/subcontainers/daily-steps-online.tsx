@@ -24,6 +24,7 @@ import { changePanelVisibility } from "@redux/theme/theme.action";
 import Logger from "@services/logging/logger";
 import { Navigation } from "react-native-navigation";
 import { useFitKit } from "@services/fitkit/fitkit.hooks";
+import { t } from "@locale";
 
 type DailyStepsOnlineProps = {
   onReferralsButtonPress: () => void;
@@ -70,6 +71,14 @@ export const DailyStepsOnline = memo(({ onReferralsButtonPress }: DailyStepsOnli
 
   const challengeButtonLabel = useMemo(
     () => (hasNotification ? "Back to challenge" : `Take a challenge (${availableForToday} left)`),
+    [hasNotification, availableForToday]
+  );
+
+  const accessibilityLabel = useMemo(
+    () =>
+      hasNotification
+        ? t("screens.daily.challengeButton.backToChallenge.accessibilityLabel")
+        : t("screens.daily.challengeButton.takeChallenge.accessibilityLabel", { challenges: availableForToday }),
     [hasNotification, availableForToday]
   );
 
@@ -124,7 +133,11 @@ export const DailyStepsOnline = memo(({ onReferralsButtonPress }: DailyStepsOnli
     <>
       <PressableWithDelay onPress={navigateToTodayEarnings}>
         <View style={styles.dailyStepsOnlineWrapper}>
-          <TextTemplate type="h1" color={textStyle.color}>
+          <TextTemplate
+            type="h1"
+            color={textStyle.color}
+            accessibilityLabel={t("screens.daily.dailyPassive.coins.accessibilityLabel", { coins: dailyEarnedCoins })}
+          >
             <Counter duration={1200} value={dailyEarnedCoins} textStyle={counterStyle} /> YuCoin today
           </TextTemplate>
 
@@ -134,6 +147,13 @@ export const DailyStepsOnline = memo(({ onReferralsButtonPress }: DailyStepsOnli
               steps={dailySteps}
               cycling={dailyCycling}
               mindfulness={usePassiveMeditation && dailyMeditation > 0 ? mindfulTotalToDisplay : null}
+              stepsAccessibilityLabel={t("screens.daily.dailyPassive.steps.accessibilityLabel", { steps: dailySteps })}
+              mindfulnessAccessibilityLabel={t("screens.daily.dailyPassive.mindfulness.accessibilityLabel", {
+                mindfulness: mindfulTotal.minutes,
+              })}
+              cyclingAccessibilityLabel={t("screens.daily.dailyPassive.cycling.accessibilityLabel", {
+                cycling: dailyCycling,
+              })}
             />
           </View>
         </View>
@@ -154,7 +174,12 @@ export const DailyStepsOnline = memo(({ onReferralsButtonPress }: DailyStepsOnli
       )}
       {!showChallengeButton ? null : (
         <View style={styles.buttonWrapper}>
-          <Button onPress={handleNavigateToQuestsTab} size="Large" label={challengeButtonLabel} />
+          <Button
+            onPress={handleNavigateToQuestsTab}
+            size="Large"
+            label={challengeButtonLabel}
+            accessibilityLabel={accessibilityLabel}
+          />
         </View>
       )}
       {!showReferralsButton ? null : (

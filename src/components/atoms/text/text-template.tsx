@@ -1,5 +1,5 @@
 import React, { memo } from "react";
-import { ColorValue, StyleSheet, Text, TextStyle, Platform } from "react-native";
+import { ColorValue, StyleSheet, Text, TextStyle, Platform, AccessibilityRole } from "react-native";
 import { Style, Colours } from "@styles";
 
 export type ITextTemplateType =
@@ -28,10 +28,24 @@ interface IProps {
   textAlign?: TextStyle["textAlign"];
   decoration?: "underline" | "strikeThrough";
   numberOfLines?: number;
+  accessibilityLabel?: string;
+  accessibilityRole?: AccessibilityRole;
+  accessible?: boolean;
 }
 
 export const TextTemplate = memo(
-  ({ children, testID, type, color = Colours.neutral.n800, textAlign = "left", decoration, numberOfLines }: IProps) => {
+  ({
+    children,
+    testID,
+    type,
+    color = Colours.neutral.n800,
+    textAlign = "left",
+    decoration,
+    numberOfLines,
+    accessibilityLabel,
+    accessibilityRole,
+    accessible = true,
+  }: IProps) => {
     const alignment = { textAlign };
     const fontColor = { color };
     const decorationStyle = !decoration ? null : styles[decoration];
@@ -42,6 +56,9 @@ export const TextTemplate = memo(
         allowFontScaling={false}
         testID={testID}
         numberOfLines={numberOfLines}
+        accessible={accessible}
+        accessibilityLabel={accessibilityLabel}
+        accessibilityRole={accessibilityRole}
       >
         {children}
       </Text>

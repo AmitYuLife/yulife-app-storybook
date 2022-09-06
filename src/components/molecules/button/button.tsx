@@ -25,6 +25,7 @@ interface IProps {
   textColor?: string;
   showBadge?: boolean;
   height?: number;
+  accessibilityLabel?: string;
 }
 
 function Button(props: IProps) {
@@ -45,6 +46,7 @@ function Button(props: IProps) {
     textColor = Colours.neutral.white,
     showBadge = false,
     height,
+    accessibilityLabel,
   } = props;
 
   const { handlePress } = usePressedInWithDelay({ onPress, delay });
@@ -74,6 +76,7 @@ function Button(props: IProps) {
         delay={delay}
         disableAnimation={disableAnimation}
         showBadge={showBadge}
+        accessibilityLabel={accessibilityLabel}
       />
     </View>
   );

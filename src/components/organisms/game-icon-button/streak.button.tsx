@@ -7,6 +7,7 @@ import { MODALS } from "@navigation/constants";
 import { getUserFeatures } from "@redux/user/user.selectors";
 import { StreakIcon } from "@atoms/icon/streak-icon";
 import { GameButton } from "./_base.button";
+import { t } from "@locale";
 
 export type StreakTypes = "forest" | "ocean" | "desert" | "mountain" | "yuniversal_1";
 
@@ -26,6 +27,10 @@ const _Streak = () => {
       onPress={createHandlePress(streak)}
       label={`${currentStreak || 0}/${maxStreak || 1}`}
       Icon={<StreakIcon isDoneToday={isDoneToday} />}
+      accessibilityLabel={t("screens.daily.streak.accessibilityLabel", {
+        currentStreak: currentStreak || 0,
+        maxStreak: maxStreak || 1,
+      })}
     />
   );
 };

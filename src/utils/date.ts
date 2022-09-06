@@ -108,9 +108,9 @@ export function getStartAndEndDateTimesWithTimezone(startDateTime: string, endDa
 }
 
 // Re-formats the result of moment.fromNow() so that "minute" becomes "m" and "hour" becomes "h"
-export const minifiedFromNow = (time: moment.Moment): string => {
+export const minifiedFromNow = (time: moment.Moment): { shortFormat: string; longFormat: string } => {
   const days = time.diff(moment(), "days");
-  return days
+  const shortFormat = days
     ? `${days}d`
     : time
         .fromNow()
@@ -121,6 +121,20 @@ export const minifiedFromNow = (time: moment.Moment): string => {
         .replace(/ a few seconds/, "<1m")
         .replace(/in/i, "")
         .replace(/a day/i, "1d");
+
+  const longFormat = days
+    ? `${days} days`
+    : time
+        .fromNow()
+        .replace(/an hour/i, "1 hour")
+        .replace(/ hours/i, "hours")
+        .replace(/a minute/i, "1 minute")
+        .replace(/ minutes/i, "minutes")
+        .replace(/ a few seconds/, "less then a minute")
+        .replace(/in/i, "")
+        .replace(/a day/i, "1 day");
+
+  return { shortFormat, longFormat };
 };
 
 export const getQuestScreenTimer = (nextAvailable: number) => {

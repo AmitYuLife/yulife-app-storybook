@@ -5,6 +5,7 @@ import { Back, CloseSvg } from "@atoms";
 import { Menu } from "../assets";
 import { Text } from "@atoms/index";
 import { Style, TOP_BAR, Colours } from "@styles/index";
+import { t } from "@locale";
 
 export type LeftIconTypes = "Menu" | "Back" | "Close";
 export const leftIconTypes = { MENU: "Menu", BACK: "Back" } as Record<"MENU" | "BACK", LeftIconTypes>;
@@ -29,7 +30,8 @@ const Left = ({ onPress, icon, hasBadge, colour, label, textStyle }: Props) => {
       style={styles.wrapper}
       onPress={onPress}
       testID={BUTTON_TOP_LEFT_BAR}
-      accessibilityLabel={icon}
+      accessibilityLabel={getAccessibilityLabel(icon)}
+      accessibilityRole={"button"}
     >
       <Icon icon={icon} colour={colour} hasBadge={hasBadge} />
       <MenuLabel label={label} textStyle={textStyle} />
@@ -38,6 +40,14 @@ const Left = ({ onPress, icon, hasBadge, colour, label, textStyle }: Props) => {
 };
 
 export default memo(Left);
+
+const getAccessibilityLabel = (iconType: LeftIconTypes) => {
+  if (iconType === "Menu") {
+    return t("topBar.menu.icon.accessibilityLabel");
+  }
+
+  return iconType;
+};
 
 function Icon({ icon, colour = "#333333", hasBadge }: { icon: LeftIconTypes; colour: string; hasBadge: boolean }) {
   switch (icon) {
