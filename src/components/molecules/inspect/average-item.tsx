@@ -27,6 +27,8 @@ const TEXT_COLOR = "#545454";
 const AverageItem = ({ icon, name, value, opponentValue, opponentIsWinner, label: itemLabel }: IAverageItem) => {
   const label = itemLabel || "";
   const isDraw = useMemo(() => opponentValue === value, [opponentValue, value]);
+  const textType = useMemo(() => (!opponentIsWinner && !isDraw ? "b1b" : "b1"), [opponentIsWinner, isDraw]);
+  const opponentTextType = useMemo(() => (opponentIsWinner && !isDraw ? "b1b" : "b1"), [opponentIsWinner, isDraw]);
   return (
     <View style={styles.wrapper}>
       <View style={styles.topLine} />
@@ -50,20 +52,12 @@ const AverageItem = ({ icon, name, value, opponentValue, opponentIsWinner, label
                 isDraw={isDraw}
               />
             </View>
-            <TextTemplate
-              testID={COMPARISON_ACTIVITY_OPPONENT(value)}
-              type={!opponentIsWinner ? "b1b" : "b1"}
-              color={TEXT_COLOR}
-            >
+            <TextTemplate testID={COMPARISON_ACTIVITY_OPPONENT(value)} type={textType} color={TEXT_COLOR}>
               {`${addCommasToNumber(value)}${label}`}
             </TextTemplate>
           </View>
           <View style={styles.valueWrapper}>
-            <TextTemplate
-              testID={COMPARISON_ACTIVITY_MINE(opponentValue)}
-              type={opponentIsWinner ? "b1b" : "b1"}
-              color={TEXT_COLOR}
-            >
+            <TextTemplate testID={COMPARISON_ACTIVITY_MINE(opponentValue)} type={opponentTextType} color={TEXT_COLOR}>
               {`${addCommasToNumber(opponentValue)}${label}`}
             </TextTemplate>
             <View style={styles.rightRankWrapper}>
