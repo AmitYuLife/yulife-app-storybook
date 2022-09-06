@@ -3,7 +3,10 @@ import { Platform, StyleSheet, ViewStyle, TextStyle } from "react-native";
 import { Style } from "@styles/index";
 import { TouchableOpacityWithDelay } from "@components/molecules";
 import { labels } from "@navigation/root";
-
+import { useSelector } from "react-redux";
+import { getTotalCoins } from "@redux/coins/coins.selectors";
+import { t } from "@locale";
+import { addCommasToNumber } from "@utils";
 import { YuCoinCounter } from "@organisms";
 
 export type RightIconTypes = "Coins";
@@ -16,12 +19,18 @@ interface Props {
 }
 
 export default function Right({ shouldHighlightCoins, textStyle, colour, icon }: Props) {
+  const coins = useSelector(getTotalCoins);
+
   if (!icon) {
     return null;
   }
 
   return (
-    <TouchableOpacityWithDelay onPress={labels[4].onPress} style={styles.coinsWrapper}>
+    <TouchableOpacityWithDelay
+      onPress={labels[4].onPress}
+      style={styles.coinsWrapper}
+      accessibilityLabel={t("topBar.totalBank.icon.accessibilityLabel", { coins: addCommasToNumber(coins) })}
+    >
       <YuCoinCounter shouldHighlightCoins={shouldHighlightCoins} textStyle={textStyle} colour={colour} />
     </TouchableOpacityWithDelay>
   );

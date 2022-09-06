@@ -31,6 +31,39 @@ export default {
         description: "Your reward store items will depend on the location where your company is located",
       },
     },
+    daily: {
+      todayYuCoin: {
+        accessibilityLabel: "Today's yucoin",
+      },
+      streak: {
+        accessibilityLabel: "Streak %{currentStreak} out of %{maxStreak} days",
+      },
+      surge: {
+        accessibilityLabel: "%{multiplier} times surge %{time} remaining",
+      },
+      challengeButton: {
+        takeChallenge: {
+          accessibilityLabel: "Take a challenge (%{challenges} left today)",
+        },
+        backToChallenge: {
+          accessibilityLabel: "Back to challenge",
+        },
+      },
+      dailyPassive: {
+        coins: {
+          accessibilityLabel: "%{coins} yucoin earned today",
+        },
+        steps: {
+          accessibilityLabel: "%{steps} steps",
+        },
+        mindfulness: {
+          accessibilityLabel: ", %{mindfulness} mindful minutes",
+        },
+        cycling: {
+          accessibilityLabel: ", %{cycling} cycled",
+        },
+      },
+    },
     inspect: {
       duel: {
         challengeDuel: "Challenge to duel",
@@ -229,6 +262,40 @@ export default {
         ctaLabel: "Retry",
         ctaLabelSecondary: "Quest menu",
       },
+    },
+  },
+  topBar: {
+    menu: {
+      icon: {
+        accessibilityLabel: "Menu",
+      },
+    },
+    totalBank: {
+      icon: {
+        accessibilityLabel: "%{coins} yucoin to spend",
+      },
+    },
+  },
+  navbar: {
+    yucoin: {
+      accessibilityLabel: "Open yucoin",
+      accessibilityTextValue: "1 out of 5",
+    },
+    quest: {
+      accessibilityLabel: "Open quest",
+      accessibilityTextValue: "2 out of 5",
+    },
+    yu: {
+      accessibilityLabel: "Open yu screen",
+      accessibilityTextValue: "3 out of 5",
+    },
+    leaderboard: {
+      accessibilityLabel: "Open leaderboard",
+      accessibilityTextValue: "4 out of 5",
+    },
+    rewards: {
+      accessibilityLabel: "Open rewards",
+      accessibilityTextValue: "5 out of 5",
     },
   },
 };

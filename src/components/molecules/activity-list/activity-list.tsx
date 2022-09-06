@@ -13,56 +13,69 @@ interface IProps {
   steps: number;
   cycling: string;
   mindfulness: string;
+  stepsAccessibilityLabel: string;
+  cyclingAccessibilityLabel: string;
+  mindfulnessAccessibilityLabel: string;
   textColor?: string;
 }
 
-const ActivityList = memo(({ steps, cycling, mindfulness, textColor = Colours.neutral.n900 }: IProps) => {
-  const counterStyle = useMemo(
-    () => ({
-      ...textTemplateStyle.b2,
-      color: textColor,
-    }),
-    [textColor]
-  );
+const ActivityList = memo(
+  ({
+    steps,
+    cycling,
+    mindfulness,
+    stepsAccessibilityLabel,
+    cyclingAccessibilityLabel,
+    mindfulnessAccessibilityLabel,
+    textColor = Colours.neutral.n900,
+  }: IProps) => {
+    const counterStyle = useMemo(
+      () => ({
+        ...textTemplateStyle.b2,
+        color: textColor,
+      }),
+      [textColor]
+    );
 
-  return (
-    <View style={styles.wrapper}>
-      <View style={styles.container}>
-        <StepsIcon color={textColor} />
-        <View style={styles.textWrapper}>
-          <TextTemplate type="b2" color={textColor} testID={STEPS_COUNT(steps)}>
-            <Counter
-              duration={1200}
-              value={steps}
-              textStyle={counterStyle}
-              textAfterValue={steps === 1 ? "step" : "steps"}
-            />
-          </TextTemplate>
+    return (
+      <View style={styles.wrapper}>
+        <View style={styles.container} accessibilityLabel={stepsAccessibilityLabel}>
+          <StepsIcon color={textColor} />
+          <View style={styles.textWrapper}>
+            <TextTemplate type="b2" color={textColor} testID={STEPS_COUNT(steps)}>
+              <Counter
+                duration={1200}
+                value={steps}
+                textStyle={counterStyle}
+                textAfterValue={steps === 1 ? "step" : "steps"}
+              />
+            </TextTemplate>
+          </View>
         </View>
+        {!cycling ? null : (
+          <View style={styles.container} accessibilityLabel={cyclingAccessibilityLabel}>
+            <CyclingIcon color={textColor} />
+            <View style={styles.textWrapper}>
+              <TextTemplate type="b2" color={textColor} testID={CYCLING_COUNT(cycling)}>
+                {cycling}
+              </TextTemplate>
+            </View>
+          </View>
+        )}
+        {!mindfulness ? null : (
+          <View style={styles.container} accessibilityLabel={mindfulnessAccessibilityLabel}>
+            <MindfulnessIcon color={textColor} />
+            <View style={styles.textWrapper}>
+              <TextTemplate type="b2" color={textColor} testID={MINDFUL_COUNT(mindfulness)}>
+                {mindfulness}
+              </TextTemplate>
+            </View>
+          </View>
+        )}
       </View>
-      {!cycling ? null : (
-        <View style={styles.container}>
-          <CyclingIcon color={textColor} />
-          <View style={styles.textWrapper}>
-            <TextTemplate type="b2" color={textColor} testID={CYCLING_COUNT(cycling)}>
-              {cycling}
-            </TextTemplate>
-          </View>
-        </View>
-      )}
-      {!mindfulness ? null : (
-        <View style={styles.container}>
-          <MindfulnessIcon color={textColor} />
-          <View style={styles.textWrapper}>
-            <TextTemplate type="b2" color={textColor} testID={MINDFUL_COUNT(mindfulness)}>
-              {mindfulness}
-            </TextTemplate>
-          </View>
-        </View>
-      )}
-    </View>
-  );
-});
+    );
+  }
+);
 
 const styles = StyleSheet.create({
   wrapper: {

@@ -7,6 +7,7 @@ import { minifiedFromNow } from "@utils";
 import { TEXT_TEMPLATE, SURGE_ICON } from "@ids";
 import { GameButton } from "./_base.button";
 import { useRemainingTime } from "./helpers/useRemainingTime";
+import { t } from "@locale";
 
 const LottieIcon = require("./assets/surge-lottie.json");
 
@@ -29,9 +30,13 @@ const _Surge = ({ endDateTime, multiplier, onPress }: Props) => {
       testID={SURGE_ICON}
       badge={multiplier}
       badgeTestID={TEXT_TEMPLATE(multiplier)}
-      label={time}
-      labelTestID={TEXT_TEMPLATE(minifiedFromNow(moment(endDateTime)))}
+      label={time.shortFormat}
+      labelTestID={TEXT_TEMPLATE(minifiedFromNow(moment(endDateTime)).shortFormat)}
       Icon={<LottieView style={styles.lottie} source={LottieIcon} autoPlay={true} loop={true} />}
+      accessibilityLabel={t("screens.daily.surge.accessibilityLabel", {
+        multiplier: multiplier.replace("x", ""),
+        time: time.longFormat,
+      })}
     />
   );
 };

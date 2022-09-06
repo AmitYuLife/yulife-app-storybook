@@ -75,7 +75,6 @@ function Main({ height, color, testID, disabled, onPressIn, onPressOut, onPress,
   return (
     <PressableWithDelay
       testID={testID}
-      accessibilityLabel={disabled ? "disabled" : "enabled"}
       disabled={disabled}
       onPressIn={handlePressIn}
       onPressOut={handlePressOut}

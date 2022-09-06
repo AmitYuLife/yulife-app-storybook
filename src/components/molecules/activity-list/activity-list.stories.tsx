@@ -6,7 +6,14 @@ import ActivityList from "./activity-list";
 storiesOf("ActivityList", module).add("all", () => {
   return (
     <ScrollView contentContainerStyle={{ padding: 24 }}>
-      <ActivityList steps={5802} cycling={"23 km"} mindfulness={"32 min"} />
+      <ActivityList
+        steps={5802}
+        cycling={"23 km"}
+        mindfulness={"32 min"}
+        stepsAccessibilityLabel={""}
+        cyclingAccessibilityLabel={""}
+        mindfulnessAccessibilityLabel={""}
+      />
     </ScrollView>
   );
 });

@@ -12,5 +12,5 @@ export type IProps = Omit<TouchableOpacityProps, "onPress"> &
 export default function TouchableOpacityWithDelay({ onPress, delay, ...otherProps }: IProps) {
   const { handlePress } = usePressedInWithDelay({ onPress, delay });
 
-  return <TouchableOpacity {...otherProps} onPress={handlePress} />;
+  return <TouchableOpacity accessibilityRole={"button"} {...otherProps} onPress={handlePress} />;
 }

@@ -7,11 +7,11 @@ import { Style, Colours } from "@styles";
 type GameButtonProps = {
   Icon: React.ReactElement;
   onPress: () => void;
+  accessibilityLabel: string;
   badge?: string;
   badgeColor?: string;
   badgeStyle?: ViewStyle;
   label?: string;
-
   testID?: string;
   badgeTestID?: string;
   labelTestID?: string;
@@ -19,6 +19,7 @@ type GameButtonProps = {
 
 const _GameButton = (props: GameButtonProps) => {
   const {
+    accessibilityLabel,
     badge,
     badgeColor = Colours.forest.fp101,
     badgeStyle = { right: 3, top: 1 },
@@ -30,7 +31,12 @@ const _GameButton = (props: GameButtonProps) => {
     onPress,
   } = props;
   return (
-    <TouchableOpacityWithDelay style={styles.wrapper} onPress={onPress} testID={testID}>
+    <TouchableOpacityWithDelay
+      style={styles.wrapper}
+      onPress={onPress}
+      testID={testID}
+      accessibilityLabel={accessibilityLabel}
+    >
       {Icon}
       {!badge ? null : (
         <View style={[styles.badgeWrapper, badgeStyle, { backgroundColor: badgeColor }]}>

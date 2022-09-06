@@ -21,8 +21,9 @@ const _Weeklies = ({ endDateTime, onPress, claimableRewards }: Props) => {
       badge={badge}
       badgeColor={Colours.status.er300}
       badgeStyle={badgeStyle}
-      label={time}
+      label={time.shortFormat}
       Icon={<WeekliesIcon hasBadge={hasBadge} />}
+      accessibilityLabel={""}
     />
   );
 };

@@ -29,6 +29,7 @@ interface IProps {
   children?: React.ReactElement;
   hideShadow?: boolean;
   showBadge?: boolean;
+  accessibilityLabel?: string;
 }
 
 interface IState {
@@ -61,6 +62,7 @@ export function ButtonBase(props: IProps) {
     iconUri,
     leftIcon,
     rightIcon,
+    accessibilityLabel,
   } = props;
   const [translateYAnimation] = useState(new Animated.Value(0));
   const { isPressedIn, handlePressIn, handlePressOut, handlePress } = usePressedInWithDelay({ onPress, delay });
@@ -108,6 +110,7 @@ export function ButtonBase(props: IProps) {
         isPressedIn={isPressedIn}
         translateYAnimation={translateYAnimation}
         showBadge={showBadge}
+        accessibilityLabel={accessibilityLabel}
       >
         <View>{children}</View>
       </Main>
@@ -147,6 +150,7 @@ function Main({
   rightIcon,
   showBadge,
   children,
+  accessibilityLabel,
 }: IProps & IState & ComponentProps<typeof TouchableWithoutFeedback>) {
   const adjustedColor = getOptionallyDisabledColor({ color, disabled });
   const adjustedBorderColor = getOptionallyDisabledColor({ color: borderColor, disabled });
@@ -155,11 +159,12 @@ function Main({
   return (
     <TouchableWithoutFeedback
       testID={testID}
-      accessibilityLabel={disabled ? "disabled" : "enabled"}
       disabled={disabled}
       onPressIn={onPressIn}
       onPressOut={onPressOut}
       onPress={onPress}
+      accessibilityLabel={accessibilityLabel || title}
+      accessibilityRole={"button"}
     >
       <View style={styles.mainWrapper}>
         <Animated.View

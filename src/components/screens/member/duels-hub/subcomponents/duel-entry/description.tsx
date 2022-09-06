@@ -22,7 +22,7 @@ const Description: FC<IProps> = ({ duel, type, userId }) => {
     ? moment(opponent.lastTimeOpponentDataRetrieved)
     : moment().startOf("day");
 
-  const fromNow = minifiedFromNow(lastTimeOpponentDataRetrieved);
+  const fromNow = minifiedFromNow(lastTimeOpponentDataRetrieved).shortFormat;
 
   if (type === "today") {
     return (

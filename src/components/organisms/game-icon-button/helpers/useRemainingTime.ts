@@ -9,6 +9,7 @@ const REFRESH_RATE_ONE_SECOND = 1000;
 
 export const useRemainingTime = (endDateTime: string) => {
   const [time, setTime] = useState<string>(null);
+  const [timeLongFormat, setTimeLongFormat] = useState<string>(null);
   const [refreshRate, setRefreshRate] = useState(REFRESH_RATE_ONE_MINUTE);
 
   const handleTimeDisplay = useCallback(() => {
@@ -20,11 +21,18 @@ export const useRemainingTime = (endDateTime: string) => {
     const secondsRemaining = moment(endDateTime).diff(moment(), "seconds");
 
     setRefreshRate(secondsRemaining <= 120 ? REFRESH_RATE_ONE_SECOND : REFRESH_RATE_ONE_MINUTE);
-    setTime(secondsRemaining < 60 ? `${secondsRemaining}s` : minifiedFromNow(moment(endDateTime)));
+    if (secondsRemaining < 60) {
+      setTime(`${secondsRemaining}s`);
+      setTimeLongFormat(`${secondsRemaining} seconds`);
+    } else {
+      const { shortFormat, longFormat } = minifiedFromNow(moment(endDateTime));
+      setTime(shortFormat);
+      setTimeLongFormat(longFormat);
+    }
   }, [endDateTime]);
 
   useEffect(handleTimeDisplay, [endDateTime, handleTimeDisplay]);
   useInterval(handleTimeDisplay, !DETOX_ENABLED && time ? refreshRate : null);
 
-  return time;
+  return { shortFormat: time, longFormat: timeLongFormat };
 };
