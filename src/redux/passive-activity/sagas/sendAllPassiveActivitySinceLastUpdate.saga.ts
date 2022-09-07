@@ -55,7 +55,10 @@ export default function* sendPassiveActivity(): any {
       dynamicCyclingLastUpdate
     );
 
-    while (!lastUpdateValidation.upToDate) {
+    let attempts = 0;
+    while (!lastUpdateValidation.upToDate && attempts < 12) {
+      attempts++;
+
       const {
         isStepLastUpdateYesterday,
         isMeditationLastUpdateYesterday,
@@ -102,25 +105,23 @@ export default function* sendPassiveActivity(): any {
             }
           }
         }
+      }
 
-        dynamicStepsLastUpdate = moment(dynamicStepsLastUpdate)
-          .add(PASSIVE_ACTIVITY_LAST_UPDATE_LIMIT, "days")
-          .format();
-        dynamicMeditationLastUpdate = moment(dynamicMeditationLastUpdate)
-          .add(PASSIVE_ACTIVITY_LAST_UPDATE_LIMIT, "days")
-          .format();
-        dynamicCyclingLastUpdate = moment(dynamicCyclingLastUpdate)
-          .add(PASSIVE_ACTIVITY_LAST_UPDATE_LIMIT, "days")
-          .format();
-        lastUpdateValidation = isPassiveActivityUpToDate(
-          dynamicStepsLastUpdate,
-          dynamicMeditationLastUpdate,
-          dynamicCyclingLastUpdate
-        );
+      dynamicStepsLastUpdate = moment(dynamicStepsLastUpdate).add(PASSIVE_ACTIVITY_LAST_UPDATE_LIMIT, "days").format();
+      dynamicMeditationLastUpdate = moment(dynamicMeditationLastUpdate)
+        .add(PASSIVE_ACTIVITY_LAST_UPDATE_LIMIT, "days")
+        .format();
+      dynamicCyclingLastUpdate = moment(dynamicCyclingLastUpdate)
+        .add(PASSIVE_ACTIVITY_LAST_UPDATE_LIMIT, "days")
+        .format();
+      lastUpdateValidation = isPassiveActivityUpToDate(
+        dynamicStepsLastUpdate,
+        dynamicMeditationLastUpdate,
+        dynamicCyclingLastUpdate
+      );
 
-        if (!lastUpdateValidation.upToDate && !DETOX_ENABLED) {
-          yield delay(5000);
-        }
+      if (!lastUpdateValidation.upToDate && !DETOX_ENABLED) {
+        yield delay(5000);
       }
     }
 

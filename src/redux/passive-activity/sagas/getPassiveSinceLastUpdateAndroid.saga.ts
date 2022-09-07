@@ -143,7 +143,7 @@ const checkPermissions = async (userFeatures: IUserStore["features"]) => {
     PermissionsAndroid.check("android.permission.ACCESS_FINE_LOCATION"),
   ]);
 
-  if (!meditationPermissionGranted || !cyclingPermissionGranted) {
+  if ((!meditationPermissionGranted || !cyclingPermissionGranted) && userFeatures?.loggingEnabled) {
     Logger.logMixpanelEvent("app_debug", {
       type: "google_fit_permission_not_granted",
       permissions: {
