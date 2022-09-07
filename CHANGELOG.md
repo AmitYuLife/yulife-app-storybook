@@ -7,6 +7,38 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [3.47.0] - 2022-09-07
+
+### Features
+
+- Feature XSE-1347: YuCoin power screen rework
+- Feature XSE-1224: Product details employer funded
+
+### Bugfixes
+
+- Bugfix: Remove bold type for inspect draw state
+
+### Tasks
+
+- Task XSE-1303: Yumoji builder changes
+- Task: Log Google fit permission state based on toggle
+- Task GS-411: Yunity Chest Animations
+- Task GS-437: Daily screen accessibility
+
+### Chores
+
+- Chore: Improve typings (slightly) and fix duplicate index by using unique...
+- Chore: Improve content item info button
+- Chore: use FlatList in settings layout
+- Chore: Adjust onboaring content position
+
+### Extra
+
+- detox: fix the start date of product
+- detox:some fixes due changes
+- detox:change text for dental journey
+- detox:fix e2e NATIVE_EVENT
+
 ## [3.46.0] - 2022-08-31
 
 ### Bugfixes
