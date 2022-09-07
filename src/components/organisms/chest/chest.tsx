@@ -1,11 +1,12 @@
-import React, { FC, memo, useEffect, useRef, useCallback, useMemo } from "react";
-import { Image as RNImage, View, Animated } from "react-native";
+import React, { FC, memo, useEffect, useRef, useCallback, useMemo, RefObject } from "react";
+import { View, Animated, Easing } from "react-native";
+import LottieView from "lottie-react-native";
 import { Style } from "@styles";
 import { DETOX_ENABLED } from "@services/socket";
 import { ChestCard } from "@organisms";
-import styles from "./chest.styles";
-import { useAssets } from "./hooks/useAssets";
+import styles, { cardPositions } from "./chest.styles";
 import { PressableWithDelay } from "@components/molecules";
+import { useAssets } from "./hooks/useAssets";
 
 export type ChestType = "FOREST" | "OCEAN" | "DESERT" | "MOUNTAIN" | "CELESTIAL";
 
@@ -40,46 +41,81 @@ export enum CHEST_STATE {
 const Chest: FC<IProps> = ({ chestType, items, openOnPress = true, chestState, setChestState }) => {
   const timeout = useRef<NodeJS.Timeout>();
 
-  const chestY = useRef(new Animated.Value(Style.adjust(-100)));
-  const chestScale = useRef(new Animated.Value(1));
-  const fogOpacity = useRef(new Animated.Value(0));
-  const cardListOpacity = useRef(new Animated.Value(0));
-  const cardListY = useRef(new Animated.Value(Style.adjust(50)));
+  const { chestShakingLottie, chestOpeningLottie } = useAssets(chestType);
+  const lottieChestRef: RefObject<LottieView> = useRef();
+
+  const cardListY = useRef(new Animated.Value(0));
+  const cardOpacities = useRef([new Animated.Value(0), new Animated.Value(0), new Animated.Value(0)]);
+  const cardYs = useRef([
+    new Animated.Value(cardPositions.startY),
+    new Animated.Value(cardPositions.startY),
+    new Animated.Value(cardPositions.startY),
+  ]);
+  const cardXs = useMemo(
+    () => (items.length > 2 ? cardPositions.xPositionsThreeCards : cardPositions.xPositionsTwoCards),
+    [items.length]
+  );
 
   const openChestSequence = useMemo(
     () =>
-      Animated.sequence([
-        Animated.parallel([
-          Animated.timing(chestY.current, {
-            toValue: 0,
-            useNativeDriver: true,
-            duration: DETOX_ENABLED ? 0 : 1000,
-          }),
-          Animated.timing(chestScale.current, {
-            toValue: 0.77,
-            useNativeDriver: true,
-            duration: DETOX_ENABLED ? 0 : 1000,
-          }),
-        ]),
-        Animated.parallel([
-          Animated.timing(fogOpacity.current, {
-            toValue: 1,
-            useNativeDriver: true,
-            duration: DETOX_ENABLED ? 0 : 1000,
-          }),
-          Animated.timing(cardListOpacity.current, {
-            toValue: 1,
-            useNativeDriver: true,
-            duration: DETOX_ENABLED ? 0 : 1000,
-            delay: DETOX_ENABLED ? 0 : 500,
-          }),
-          Animated.timing(cardListY.current, {
-            toValue: 0,
-            useNativeDriver: true,
-            duration: DETOX_ENABLED ? 0 : 1000,
-            delay: DETOX_ENABLED ? 0 : 500,
-          }),
-        ]),
+      Animated.parallel([
+        Animated.timing(cardOpacities.current[0], {
+          toValue: 1,
+          useNativeDriver: true,
+          duration: DETOX_ENABLED ? 0 : 500,
+          delay: DETOX_ENABLED ? 0 : 1800,
+        }),
+        Animated.timing(cardYs.current[0], {
+          toValue: cardPositions.endY,
+          useNativeDriver: true,
+          duration: DETOX_ENABLED ? 0 : 500,
+          delay: DETOX_ENABLED ? 0 : 1800,
+        }),
+        Animated.timing(cardOpacities.current[1], {
+          toValue: 1,
+          useNativeDriver: true,
+          duration: DETOX_ENABLED ? 0 : 500,
+          delay: DETOX_ENABLED ? 0 : 2000,
+        }),
+        Animated.timing(cardYs.current[1], {
+          toValue: items.length > 2 ? cardPositions.endYMiddle : cardPositions.endY,
+          useNativeDriver: true,
+          duration: DETOX_ENABLED ? 0 : 500,
+          delay: DETOX_ENABLED ? 0 : 2000,
+        }),
+        Animated.timing(cardOpacities.current[2], {
+          toValue: 1,
+          useNativeDriver: true,
+          duration: DETOX_ENABLED ? 0 : 500,
+          delay: DETOX_ENABLED ? 0 : 2200,
+        }),
+        Animated.timing(cardYs.current[2], {
+          toValue: Style.adjust(155),
+          useNativeDriver: true,
+          duration: DETOX_ENABLED ? 0 : 500,
+          delay: DETOX_ENABLED ? 0 : 2200,
+        }),
+        DETOX_ENABLED
+          ? null
+          : Animated.sequence([
+              Animated.delay(3000),
+              Animated.loop(
+                Animated.sequence([
+                  Animated.timing(cardListY.current, {
+                    toValue: Style.adjust(20),
+                    useNativeDriver: true,
+                    duration: 2500,
+                    easing: Easing.inOut(Easing.ease),
+                  }),
+                  Animated.timing(cardListY.current, {
+                    toValue: 0,
+                    useNativeDriver: true,
+                    duration: 2500,
+                    easing: Easing.inOut(Easing.ease),
+                  }),
+                ])
+              ),
+            ]),
         {
           start: (cb) => {
             setChestState(CHEST_STATE.OPEN);
@@ -89,7 +125,7 @@ const Chest: FC<IProps> = ({ chestType, items, openOnPress = true, chestState, s
           reset: () => null,
         },
       ]),
-    []
+    [items.length]
   );
 
   useEffect(() => {
@@ -102,31 +138,8 @@ const Chest: FC<IProps> = ({ chestType, items, openOnPress = true, chestState, s
   }, []);
 
   useEffect(() => {
-    if (chestState === CHEST_STATE.CLOSED) {
-      chestY.current?.setValue(Style.adjust(-100));
-      chestScale.current?.setValue(1);
-      fogOpacity.current?.setValue(0);
-      cardListOpacity.current?.setValue(0);
-      cardListY.current?.setValue(Style.adjust(50));
-      return;
-    }
-
     if (chestState === CHEST_STATE.OPENING) {
-      chestY.current?.setValue(Style.adjust(-100));
-      chestScale.current?.setValue(1);
-      fogOpacity.current?.setValue(0);
-      cardListOpacity.current?.setValue(0);
-      cardListY.current?.setValue(Style.adjust(50));
       openChestSequence.start();
-      return;
-    }
-
-    if (chestState === CHEST_STATE.OPEN) {
-      chestY.current?.setValue(0);
-      chestScale.current?.setValue(0.77);
-      fogOpacity.current?.setValue(1);
-      cardListOpacity.current?.setValue(1);
-      cardListY.current?.setValue(0);
     }
   }, [chestState]);
 
@@ -134,64 +147,46 @@ const Chest: FC<IProps> = ({ chestType, items, openOnPress = true, chestState, s
     if (openOnPress && chestState === CHEST_STATE.CLOSED) {
       setChestState(CHEST_STATE.OPENING);
     }
-  }, [openOnPress, chestState, setChestState]);
 
-  const { chestSource, fogClosedSource, fogOpenedSource, starsClosedSource, starsOpenedSource } = useAssets(chestType);
+    lottieChestRef.current.play();
+  }, [openOnPress, chestState, setChestState]);
 
   return (
     <View style={styles.container}>
-      <PressableWithDelay onPress={onChestPress}>
-        <View style={styles.chestContainer}>
-          <Animated.View style={[{ opacity: fogOpacity.current }, styles.fogOpenedWrapper]}>
-            <RNImage
-              resizeMode="contain"
-              width={Style.adjust(338)}
-              style={styles.fogOpenedImage}
-              source={fogOpenedSource}
-            />
-          </Animated.View>
-          <Animated.View
-            style={[
-              { transform: [{ translateY: chestY.current }, { scale: chestScale.current }] },
-              styles.chestWrapper,
-            ]}
-          >
-            <RNImage resizeMode="contain" width={Style.adjust(260)} style={styles.chestImage} source={chestSource} />
-          </Animated.View>
-          {chestState !== CHEST_STATE.CLOSED ? null : (
-            <>
-              <View style={styles.fogClosedWrapper}>
-                <RNImage
-                  resizeMode="contain"
-                  width={Style.adjust(395)}
-                  style={styles.fogClosedImage}
-                  source={fogClosedSource}
-                />
-              </View>
-              <View style={styles.starsClosedWrapper}>
-                <RNImage resizeMode="contain" style={styles.starsClosedImage} source={starsClosedSource} />
-              </View>
-            </>
-          )}
-          {chestState === CHEST_STATE.CLOSED ? null : (
-            <Animated.View style={[{ opacity: fogOpacity.current }, styles.starsOpenedWrapper]}>
-              <RNImage
-                resizeMode="contain"
-                width={Style.adjust(186)}
-                style={styles.starsOpenedImage}
-                source={starsOpenedSource}
-              />
-            </Animated.View>
-          )}
-          <Animated.View
-            style={[
-              { opacity: cardListOpacity.current, transform: [{ translateY: cardListY.current }] },
-              styles.cardList,
-            ]}
-          >
-            {items.map((item) => (
+      <View style={styles.chestLottieWrapper}>
+        <PressableWithDelay onPress={onChestPress}>
+          <LottieView
+            resizeMode="cover"
+            style={styles.chestLottie}
+            source={chestState === CHEST_STATE.CLOSED ? chestShakingLottie : chestOpeningLottie}
+            autoPlay={true}
+            loop={false}
+            ref={lottieChestRef}
+          />
+        </PressableWithDelay>
+      </View>
+      <Animated.View
+        style={[
+          styles.cardList,
+          {
+            transform: [{ translateY: cardListY.current }],
+          },
+        ]}
+      >
+        {items.map((item, index) =>
+          index > 2 ? null : (
+            <Animated.View
+              key={item.description}
+              style={[
+                styles.cardWrapper,
+                {
+                  zIndex: index === 1 ? 2 : 1,
+                  opacity: cardOpacities.current[index],
+                  transform: [{ translateY: cardYs.current[index] }, { translateX: cardXs[index] }],
+                },
+              ]}
+            >
               <ChestCard
-                key={item.description}
                 description={item.description}
                 backgroundColour={item.backgroundColour}
                 shadowColour={item.shadowColour}
@@ -200,10 +195,10 @@ const Chest: FC<IProps> = ({ chestType, items, openOnPress = true, chestState, s
                 icon={item.icon}
                 tooltip={item.tooltip}
               />
-            ))}
-          </Animated.View>
-        </View>
-      </PressableWithDelay>
+            </Animated.View>
+          )
+        )}
+      </Animated.View>
     </View>
   );
 };

@@ -6,7 +6,6 @@ const styles = StyleSheet.create({
     width: Style.adjust(106),
     height: Style.adjust(148),
     borderRadius: Style.adjust(8),
-    marginHorizontal: Style.adjust(4),
   } as ViewStyle,
   cardInner: {
     width: Style.adjust(106),
@@ -34,8 +33,8 @@ const styles = StyleSheet.create({
   } as ImageStyle,
   tooltipIcon: {
     position: "absolute",
-    top: Style.adjust(8),
-    right: Style.adjust(8),
+    top: Style.adjust(10),
+    right: Style.adjust(10),
   } as ViewStyle,
 });
 
