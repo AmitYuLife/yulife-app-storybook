@@ -48,7 +48,7 @@ export default function* getDailyPassiveActivity(dataPayload: { payload: string;
         : call(RNFitKit.isAuthorised, { read: [FitKitTypes.Types.Biking], platform: "GoogleFit" }),
     ]);
 
-    if (!meditationPermissionGranted || !cyclingPermissionGranted) {
+    if ((!meditationPermissionGranted || !cyclingPermissionGranted) && userFeatures.loggingEnabled) {
       Logger.logMixpanelEvent("app_debug", {
         type: "google_fit_permission_not_granted",
         permissions: {

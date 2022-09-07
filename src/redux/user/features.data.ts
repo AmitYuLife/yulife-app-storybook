@@ -56,4 +56,5 @@ export const features = [
   "enableDebugTool",
   "mediaPlayer",
   "newMediaPlayer",
+  "loggingEnabled",
 ];
