@@ -1,17 +1,12 @@
-import React, { memo, useCallback, useContext, useMemo } from "react";
+import React, { memo, useMemo } from "react";
 import { StyleSheet, View, ViewStyle } from "react-native";
 import { Colours, Style } from "@styles";
-import { ContentItemPackageCards_packageCards, GetProductSlotItemBackgroundUrls } from "@graphql/_core/schema";
-import { CoverType, YuWorld } from "@graphql/_core/schema/globalTypes";
-import { showEarnRateOverlay } from "@components/containers/member/yu/navigation/showEarnRateOverlay";
-import { PackageCardPerks, PressableWithDelay, YuCoinPower } from "@molecules";
+import { ContentItemPackageCards_packageCards } from "@graphql/_core/schema";
+import { CoverType } from "@graphql/_core/schema/globalTypes";
+import { PackageCardPerks } from "@molecules";
 import PackageCardHeader from "./package-card-header";
-import { SlotIcon } from "../product-step.slot-icon";
-import { ProductStepContext } from "../../product-step.context";
-import { LOCAL_ANSWER_KEY } from "../../utils/localAnswerKeys";
-import { useQuery } from "@apollo/react-hooks";
-import { GQL_QUERY_GET_PRODUCT_SLOT_ITEM_BACKGROUND_URLS } from "@graphql/yuscreen/getProductSlotItemBackgroundUrls.gql";
 import { YUCOIN_POWER } from "@ids";
+import { YuCoinPower } from "./subcomponents/yucoin-power";
 
 interface OwnProps {
   width: number;
@@ -21,36 +16,6 @@ type Props = ContentItemPackageCards_packageCards & OwnProps;
 
 export const PackageCard = memo((props: Partial<Props>) => {
   const borderColor = useMemo(() => ({ borderColor: getBorderColor(props.coverType) }), [props.coverType]);
-  const { dynamicData, customerProductId } = useContext(ProductStepContext);
-  const { data: productSlotItemBackgroundUrls } = useQuery<GetProductSlotItemBackgroundUrls>(
-    GQL_QUERY_GET_PRODUCT_SLOT_ITEM_BACKGROUND_URLS
-  );
-
-  const handlePressYuCoinPower = useCallback(() => {
-    if (!productSlotItemBackgroundUrls?.getProductSlotItemBackgroundUrls?.length) {
-      return;
-    }
-
-    const backgroundUrl = productSlotItemBackgroundUrls.getProductSlotItemBackgroundUrls.find(
-      ({ coverType }) => coverType === dynamicData[LOCAL_ANSWER_KEY.CoverType]
-    )?.image?.uri;
-
-    const coverType = dynamicData[LOCAL_ANSWER_KEY.CoverType] as CoverType;
-    const worldId = dynamicData[LOCAL_ANSWER_KEY.WorldId] as YuWorld;
-    showEarnRateOverlay({
-      slotIcon: (
-        <SlotIcon
-          coverType={coverType}
-          worldId={worldId}
-          backgroundUrl={backgroundUrl}
-          size={Style.adjust(40)}
-          customerProductId={customerProductId}
-        />
-      ),
-      customerProductId,
-      coverType: dynamicData[LOCAL_ANSWER_KEY.CoverType] as CoverType,
-    });
-  }, [dynamicData, productSlotItemBackgroundUrls]);
 
   const wrapperStyle = useMemo(() => {
     return [styles.centerContent, { width: props.width }];
@@ -66,9 +31,9 @@ export const PackageCard = memo((props: Partial<Props>) => {
         <View style={styles.bgWhite} />
         <PackageCardHeader width={props.width} coverType={props.coverType} header={props.header} />
         <View style={styles.container} testID={YUCOIN_POWER(props.bonusEarnRate)}>
-          <PressableWithDelay onPress={handlePressYuCoinPower} style={styles.yucoin}>
+          <View style={styles.yucoin}>
             <YuCoinPower width={Style.DEVICE_WIDTH - 104} coins={props.bonusEarnRate} />
-          </PressableWithDelay>
+          </View>
           <Perks powers={props.powers} />
         </View>
       </View>

@@ -2,8 +2,8 @@ import { useCallback } from "react";
 import { useDispatch } from "react-redux";
 import { SduiAction, YuScreenProductButtonAction } from "@graphql/_core/schema";
 import Logger from "@services/logging/logger";
-import { logEvent } from "./helpers/logEvent";
-import { navigateToProduct } from "./helpers/navigateToProduct";
+import { logEvent } from "../helpers/logEvent";
+import { navigateToProduct } from "../helpers/navigateToProduct";
 import { OnboardingHandler } from "./useOnboardingDismissalHandler";
 
 interface Props {

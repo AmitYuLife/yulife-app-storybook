@@ -4,7 +4,7 @@ import { Text, TextTemplate } from "@atoms";
 import { TouchableOpacityWithDelay } from "@components/molecules";
 import { Style, Colours } from "@styles";
 import { YUCOIN_POWER } from "@ids";
-import { showEarnRateOverlay } from "../../../navigation/showEarnRateOverlay";
+import { showYuCoinPowerExplainedOverlay } from "../../../navigation/showYuCoinPowerExplainedOverlay";
 import { YuScreenContext } from "../../../context/yu-screen.context";
 
 const POWER_LABEL_TOP = "YuCoin Power";
@@ -34,7 +34,7 @@ const _YuCoinPower = () => {
   return (
     <TouchableOpacityWithDelay
       activeOpacity={1}
-      onPress={showEarnRateOverlay}
+      onPress={showYuCoinPowerExplainedOverlay}
       style={styles.wrapper}
       testID={YUCOIN_POWER(earnRate.toString())}
     >

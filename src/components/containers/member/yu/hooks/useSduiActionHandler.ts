@@ -1,7 +1,7 @@
 import { useCallback } from "react";
 import { useDispatch } from "react-redux";
 import { SduiAction } from "@graphql/_core/schema";
-import { logEvent } from "./helpers/logEvent";
+import { logEvent } from "../helpers/logEvent";
 
 type UseSduiActionHandler = ({ event, onPress }: { event?: SduiAction; onPress: SduiAction }) => () => void;
 
