@@ -1,21 +1,23 @@
 import React, { memo, useCallback } from "react";
 import { useDispatch } from "react-redux";
 import { ContentItemInfoButton as GqlInfoButton } from "@graphql/_core/schema";
-import { Image, TextTemplate } from "@atoms";
-import { PressableWithDelay } from "@components/molecules";
-import { StyleSheet, View, ViewStyle } from "react-native";
+import { Image, TextTemplate, Loading } from "@atoms";
+import { TouchableWithDelay } from "@components/molecules";
+import { StyleSheet, View } from "react-native";
 import { Colours, Style } from "@styles";
 import { sduiEventActionCreator } from "@components/containers/products/product-step/utils/sduiEventActionCreator";
 
 type Props = Omit<GqlInfoButton, "onPress" | "answerKeys"> & {
   additionalInfo?: string;
+  disabled?: boolean;
+  isLoading?: boolean;
   onPress?: GqlInfoButton["onPress"] | (() => void);
 };
 
 const ICON_IMAGE_SIZE = Style.adjust(24);
 
 export const ContentItemInfoButton = memo((props: Props) => {
-  const { id, label, onPress, infoBtnLeftIcon, infoBtnRightIcon, active, additionalInfo } = props;
+  const { id, label, isLoading, disabled, onPress, infoBtnLeftIcon, infoBtnRightIcon, active, additionalInfo } = props;
   const dispatch = useDispatch();
 
   const handlePress = useCallback(() => {
@@ -26,13 +28,29 @@ export const ContentItemInfoButton = memo((props: Props) => {
     }
 
     dispatch(sduiEventActionCreator("button_pressed", { button_id: id }));
-  }, [onPress, dispatch]);
+  }, [id, onPress, dispatch]);
 
   const isPrompt = !additionalInfo;
 
+  if (isLoading) {
+    return (
+      <View style={styles.activityIndicator}>
+        <Loading size="small" />
+      </View>
+    );
+  }
+
+  const InfoButtonView = disabled ? View : TouchableWithDelay;
+
   return (
-    <PressableWithDelay onPress={handlePress}>
-      <View style={StyleSheet.flatten([styles.wrapper, isPrompt ? styles.wrapperPrompt : styles.wrapperFilled])}>
+    <InfoButtonView disabled={disabled} onPress={handlePress}>
+      <View
+        style={StyleSheet.flatten([
+          styles.wrapper,
+          isPrompt ? styles.wrapperPrompt : styles.wrapperFilled,
+          disabled ? styles.disabledWrapper : {},
+        ])}
+      >
         <View style={styles.background} />
         <Image
           width={ICON_IMAGE_SIZE}
@@ -53,7 +71,7 @@ export const ContentItemInfoButton = memo((props: Props) => {
           />
         </View>
       </View>
-    </PressableWithDelay>
+    </InfoButtonView>
   );
 });
 
@@ -68,7 +86,10 @@ const styles = StyleSheet.create({
     overflow: "hidden",
     flexDirection: "row",
     borderWidth: 1,
-  } as ViewStyle,
+  },
+  disabledWrapper: {
+    opacity: 0.5,
+  },
   background: {
     backgroundColor: "white",
     flex: 1,
@@ -79,22 +100,27 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     bottom: 4,
-  } as ViewStyle,
+  },
   iconRight: {
     marginLeft: "auto",
-  } as ViewStyle,
+  },
   promptWrapper: {
     marginLeft: Style.adjust(16),
     width: Style.DEVICE_WIDTH - 160,
-  } as ViewStyle,
+  },
   alignSelfCenter: {
     alignSelf: "center",
-  } as ViewStyle,
+  },
   wrapperPrompt: {
     paddingVertical: Style.adjust(30),
     alignItems: "center",
-  } as ViewStyle,
+  },
   wrapperFilled: {
     paddingVertical: Style.adjust(16),
-  } as ViewStyle,
+  },
+  activityIndicator: {
+    paddingHorizontal: Style.adjust(16),
+    marginHorizontal: Style.adjust(24),
+    marginTop: Style.adjust(20),
+  },
 });

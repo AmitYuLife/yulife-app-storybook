@@ -1,4 +1,4 @@
-import React, { memo, useContext, useEffect, useState } from "react";
+import React, { memo, useCallback, useContext, useEffect, useState } from "react";
 import Logger from "@services/logging/logger";
 import { useMutation, useQuery } from "@apollo/react-hooks";
 import { useStripe, PaymentSheet, PaymentSheetError } from "@stripe/stripe-react-native";
@@ -21,7 +21,7 @@ export const ProductStepSelectPaymentButton = memo((props: Props) => {
   const [needsRefetch, setsNeedsRefetch] = useState(false);
   const [buttonEnabled, setButtonEnabled] = useState(false);
 
-  const { data, refetch } = useQuery<GetMobilePaymentCardSetup>(GQL_QUERY_GET_MOBILE_PAYMENT_CARD_SETUP, {
+  const { data, loading, refetch } = useQuery<GetMobilePaymentCardSetup>(GQL_QUERY_GET_MOBILE_PAYMENT_CARD_SETUP, {
     fetchPolicy: "network-only",
   });
 
@@ -29,15 +29,24 @@ export const ProductStepSelectPaymentButton = memo((props: Props) => {
     GQL_MUTATION_CONFIRM_PAYMENT_CARD
   );
 
-  useEffect(() => {
-    if (needsRefetch) {
-      refetch().catch(() => null);
+  const onRefetch = useCallback(async () => {
+    try {
+      await refetch();
+      setsNeedsRefetch(false);
+    } catch (e) {
+      Logger.error(e, { where: "select-payment-button-on-refetch" });
     }
-  }, [needsRefetch]);
+  }, [refetch]);
 
   useEffect(() => {
-    if (data?.setup?.clientSecret) {
-      setsNeedsRefetch(false);
+    if (needsRefetch) {
+      onRefetch();
+    }
+  }, [needsRefetch, onRefetch]);
+
+  // Button enabled after load or refetch.
+  useEffect(() => {
+    if (data) {
       setButtonEnabled(true);
     }
   }, [data]);
@@ -62,11 +71,13 @@ export const ProductStepSelectPaymentButton = memo((props: Props) => {
       const present = await presentPaymentSheet();
 
       if (present.error?.code === PaymentSheetError.Canceled) {
-        return setButtonEnabled(true);
+        setButtonEnabled(true);
+        return;
       }
 
       if (present.error?.code === PaymentSheetError.Failed) {
-        return setsNeedsRefetch(true);
+        setsNeedsRefetch(true);
+        return;
       }
 
       const res = await confirmPaymentCard({ variables: { paymentId: data.setup.paymentId } });
@@ -85,5 +96,13 @@ export const ProductStepSelectPaymentButton = memo((props: Props) => {
     .filter(Boolean)
     .join("\n");
 
-  return <ContentItemInfoButton {...button} onPress={buttonEnabled && handlePress} additionalInfo={additionalInfo} />;
+  return (
+    <ContentItemInfoButton
+      {...button}
+      disabled={!buttonEnabled}
+      isLoading={loading}
+      onPress={handlePress}
+      additionalInfo={additionalInfo}
+    />
+  );
 });
