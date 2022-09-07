@@ -12,7 +12,11 @@ export type ISearchItem<T> = T & {
   icon: JSX.Element;
 };
 
-function SearchItem({ item, index }: ListRenderItemInfo<ISearchItem<any>>) {
+interface Props extends Omit<ListRenderItemInfo<ISearchItem<any>>, "index"> {
+  index: string | number;
+}
+
+function SearchItem({ item, index }: Props) {
   const wrapperStyle = item?.isConfirm ? styles.confirmStyles : styles.wrapper;
 
   return (
