@@ -251,8 +251,8 @@ export default [
 
   // modals
   {
-    name: MODALS.earnRate,
-    component: require("../components/containers/member/yu/yu-earn-rate-modal/yu-earn-rate-modal").default,
+    name: MODALS.yuCoinPowerExplained,
+    component: require("../components/containers/member/yu/yu-coin-power-explained/yu-coin-power-explained").default,
   },
   {
     name: MODALS.policyCertificate,

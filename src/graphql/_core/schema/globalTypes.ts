@@ -230,20 +230,6 @@ export enum YuProductStatus {
   unlockable = "unlockable",
 }
 
-export enum YuScreenEarnRateTableThemeType {
-  base = "base",
-  baseDecorated = "baseDecorated",
-  common = "common",
-  epic = "epic",
-  prestige = "prestige",
-  rare = "rare",
-}
-
-export enum YuScreenEarnRateTableValueType {
-  data = "data",
-  header = "header",
-}
-
 export enum YuWorld {
   desert = "desert",
   forest = "forest",

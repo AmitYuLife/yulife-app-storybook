@@ -5,7 +5,7 @@ import { Style } from "@styles";
 import { getUserEarnRate } from "@redux/user/user.selectors";
 import { useSelector } from "react-redux";
 import { TouchableOpacityWithDelay } from "@components/molecules";
-import { showEarnRateOverlay } from "../../navigation/showEarnRateOverlay";
+import { showYuCoinPowerExplainedOverlay } from "../../navigation/showYuCoinPowerExplainedOverlay";
 import FastImage from "react-native-fast-image";
 
 interface Props {
@@ -19,7 +19,7 @@ export const YuCoinPower: FC<Props> = memo(({ pressable = true }) => {
   const YuCoinPowerWrapper = pressable ? TouchableOpacityWithDelay : View;
 
   return (
-    <YuCoinPowerWrapper onPress={pressable ? showEarnRateOverlay : null} style={styles.ycWrapperOuter}>
+    <YuCoinPowerWrapper onPress={pressable ? showYuCoinPowerExplainedOverlay : null} style={styles.ycWrapperOuter}>
       <FastImage style={styles.ycPowerBg} source={pressable ? YUCOIN_POWER_INTERACTIVE_IMAGE : YUCOIN_POWER_IMAGE} />
       <Yc />
     </YuCoinPowerWrapper>

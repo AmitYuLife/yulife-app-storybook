@@ -3,7 +3,7 @@ import { LayoutChangeEvent, StyleSheet, View } from "react-native";
 import { Style, mapCoverTypeToColorTheme } from "@styles";
 import { ContentItemProductDetailsHeader } from "@graphql/_core/schema";
 import { PressableWithDelay, YuCoinPower, YU_COIN_POWER_HEIGHT_WIDTH_MULTIPLIER } from "@components/molecules";
-import { showEarnRateOverlay } from "@components/containers/member/yu/navigation/showEarnRateOverlay";
+import { showYuCoinPowerExplainedOverlay } from "@components/containers/member/yu/navigation/showYuCoinPowerExplainedOverlay";
 import { Title } from "./title";
 import { ProductIdentifier } from "./product-identifier";
 import { SlotIcon } from "./slot-icon";
@@ -67,7 +67,7 @@ export const ProductDetailsHeader = memo((props: ContentItemProductDetailsHeader
             { height: YU_COIN_POWER_HEIGHT / 2, backgroundColor: mapCoverTypeToColorTheme(coverType).primary },
           ]}
         />
-        <PressableWithDelay onPress={showEarnRateOverlay}>
+        <PressableWithDelay onPress={showYuCoinPowerExplainedOverlay}>
           <YuCoinPower width={Style.DEVICE_WIDTH} coins={yuCoinPower} />
         </PressableWithDelay>
       </View>

@@ -110,7 +110,7 @@ export const MODALS = {
   info: "yulife.modals.info",
   duelInvite: "yulife.modals.duelInvite",
   duelRespond: "yulife.modals.duelRespond",
-  earnRate: "yulife.modals.earnRate",
+  yuCoinPowerExplained: "yulife.modals.yuCoinPowerExplained",
   enterSalary: "yulife.modals.enterSalary",
   financialCoverForm: "yulife.member.financialCoverForm",
   priceChanged: "yulife.member.priceChanged",
