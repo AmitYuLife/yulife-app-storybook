@@ -40,10 +40,8 @@ export const ContentItemInfoButton = memo((props: Props) => {
     );
   }
 
-  const InfoButtonView = disabled ? View : TouchableWithDelay;
-
   return (
-    <InfoButtonView disabled={disabled} onPress={handlePress}>
+    <TouchableWithDelay disabled={disabled} onPress={handlePress}>
       <View
         style={StyleSheet.flatten([
           styles.wrapper,
@@ -71,7 +69,7 @@ export const ContentItemInfoButton = memo((props: Props) => {
           />
         </View>
       </View>
-    </InfoButtonView>
+    </TouchableWithDelay>
   );
 });
 

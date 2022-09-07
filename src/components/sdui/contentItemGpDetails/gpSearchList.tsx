@@ -3,9 +3,10 @@ import { KeyboardAvoidingView, Platform, StyleSheet, View, ViewStyle } from "rea
 import { SearchListEmpty, SearchItem, ISearchItem } from "@molecules";
 import { NetworkStatus } from "apollo-boost";
 import { Colours } from "@styles";
+import { MedicalPractices_getMedicalPractices as MedicalPractices } from "@graphql/_core/schema";
 
 interface Props {
-  practices: ISearchItem<any>[];
+  practices: ISearchItem<MedicalPractices>[];
   networkStatus: NetworkStatus;
   emptyText?: string;
   emptyElement?: JSX.Element;

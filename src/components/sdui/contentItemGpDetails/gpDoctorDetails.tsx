@@ -43,7 +43,7 @@ export const GpDoctorDetails = memo(
           ) : (
             <>
               {doctors.map((doctor) => (
-                <View key={doctor.name}>{SearchItem({ item: doctor, index: 1, separators: null })}</View>
+                <View key={doctor.organisationCode}>{SearchItem({ item: doctor, index: 1, separators: null })}</View>
               ))}
               <View style={styles.footerWrapper}>
                 <PressableWithDelay onPress={setManualInput}>
