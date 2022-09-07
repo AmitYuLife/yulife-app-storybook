@@ -14,14 +14,13 @@ interface IProps {
   state: IState;
   dispatch: IDispatch;
   onBackPressed: () => void;
-  heading: string;
   updateAvatar: () => void;
 }
 
 const AVATAR_WIDTH = Style.adjust(160) * 0.73;
 const AVATAR_HEIGHT = Style.adjust(340) * 0.73;
 
-const YumojiBuilder: FC<IProps> = ({ state, dispatch, onBackPressed, updateAvatar, heading }) => {
+const YumojiBuilder: FC<IProps> = ({ state, dispatch, onBackPressed, updateAvatar }) => {
   const categoryProps = useMemo(() => {
     const category =
       state?.selectedCategoryId &&
@@ -85,7 +84,6 @@ const YumojiBuilder: FC<IProps> = ({ state, dispatch, onBackPressed, updateAvata
       </View>
       <GenericHeadingAbsolute
         leftIcon="BACK"
-        heading={heading}
         onLeftIconPress={onBackPressed}
         onRightIconPress={updateAvatar}
         rightIcon="SAVE"

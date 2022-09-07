@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState, memo } from "react";
-import { View } from "react-native";
+import { ScrollView, View } from "react-native";
 import { TextTemplate } from "@atoms";
-import { Button } from "@molecules";
+import { Button, LinkButton } from "@molecules";
 import FemaleBody from "../svg/female-body";
 import MaleBody from "../svg/male-body";
 import styles from "./select-body.styles";
@@ -9,18 +9,25 @@ import { GenericHeadingAbsolute, GenericHeadingPad } from "@organisms";
 import { Style } from "@styles";
 import { AvatarBodyType } from "@graphql/_core/schema/globalTypes";
 import { BoxOption } from "@molecules";
+import { useTranslation } from "@hooks";
 
 interface IProps {
-  onContinue: (bodyType: AvatarBodyType) => void;
   bodyType: AvatarBodyType;
-  heading: string;
+  hasYumoji?: boolean;
+  onContinue: (bodyType: AvatarBodyType) => void;
   onPressExitButton: () => void;
 }
 
 const BODY_HEIGHT = Style.adjust(344);
 
-function SelectBody({ onContinue, bodyType, heading, onPressExitButton }: IProps) {
+function SelectBody({ bodyType, hasYumoji, onContinue, onPressExitButton }: IProps) {
   const [selectedBody, selectBody] = useState<AvatarBodyType>(bodyType);
+  const translations = useTranslation([
+    "screens.yumoji_builder.create.button",
+    "screens.yumoji_builder.create.title",
+    "screens.yumoji_builder.create.link",
+    "screens.yumoji_builder.edit.title",
+  ]);
 
   const isMale = selectedBody === AvatarBodyType.male;
   const isFemale = selectedBody === AvatarBodyType.female;
@@ -44,34 +51,49 @@ function SelectBody({ onContinue, bodyType, heading, onPressExitButton }: IProps
   return (
     <View style={styles.wrapper}>
       <GenericHeadingPad />
-      <View style={styles.elementWrapper}>
-        <View style={styles.title}>
-          <TextTemplate type="h1">Pick a body type</TextTemplate>
-        </View>
-        <View style={styles.selectorWrapper}>
-          <BoxOption
-            onPress={selectMaleBody}
-            isSelected={isMale}
-            selectedStyle={styles.bodySelected}
-            innerHeight={BODY_HEIGHT}
-          >
-            <MaleBody isSelected={isMale} />
-          </BoxOption>
+      <GenericHeadingAbsolute logo="yulife" onRightIconPress={onPressExitButton} rightIcon="CLOSE" />
+      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scrollViewContainer}>
+        <View style={styles.elementWrapper}>
+          <View>
+            <View style={styles.title}>
+              <TextTemplate textAlign="center" type="h1">
+                {hasYumoji
+                  ? translations["screens.yumoji_builder.edit.title"]
+                  : translations["screens.yumoji_builder.create.title"]}
+              </TextTemplate>
+            </View>
+          </View>
+          <View style={styles.selectorWrapper}>
+            <BoxOption
+              onPress={selectMaleBody}
+              isSelected={isMale}
+              selectedStyle={styles.bodySelected}
+              innerHeight={BODY_HEIGHT}
+            >
+              <MaleBody isSelected={isMale} />
+            </BoxOption>
 
-          <BoxOption
-            onPress={selectFemaleBody}
-            isSelected={isFemale}
-            selectedStyle={styles.bodySelected}
-            innerHeight={BODY_HEIGHT}
-          >
-            <FemaleBody isSelected={isFemale} />
-          </BoxOption>
+            <BoxOption
+              onPress={selectFemaleBody}
+              isSelected={isFemale}
+              selectedStyle={styles.bodySelected}
+              innerHeight={BODY_HEIGHT}
+            >
+              <FemaleBody isSelected={isFemale} />
+            </BoxOption>
+          </View>
         </View>
         <View style={styles.buttonsWrapper}>
-          <Button disabled={isNone} onPress={onContinuePressed} label="Continue" />
+          <Button
+            disabled={isNone}
+            onPress={onContinuePressed}
+            label={translations["screens.yumoji_builder.create.button"]}
+          />
+          {!hasYumoji ? (
+            <LinkButton onPress={onPressExitButton} label={translations["screens.yumoji_builder.create.link"]} />
+          ) : null}
         </View>
-      </View>
-      <GenericHeadingAbsolute heading={heading} onLeftIconPress={onPressExitButton} leftIcon="CLOSE" />
+      </ScrollView>
     </View>
   );
 }
