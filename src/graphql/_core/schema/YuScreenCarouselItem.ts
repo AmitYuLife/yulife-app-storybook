@@ -9,9 +9,14 @@ import { SduiActionType } from "./globalTypes";
 // GraphQL fragment: YuScreenCarouselItem
 // ====================================================
 
-export interface YuScreenCarouselItem_image {
+export interface YuScreenCarouselItem_images_image {
   id: string;
   uri: string | null;
+}
+
+export interface YuScreenCarouselItem_images {
+  image: YuScreenCarouselItem_images_image;
+  width: number;
 }
 
 export interface YuScreenCarouselItem_button_onPress {
@@ -33,7 +38,10 @@ export interface YuScreenCarouselItem_button {
 }
 
 export interface YuScreenCarouselItem {
-  image: YuScreenCarouselItem_image;
+  images: YuScreenCarouselItem_images[] | null;
   altText: string;
+  title: string | null;
+  description: string | null;
+  backgroundColor: string | null;
   button: YuScreenCarouselItem_button | null;
 }

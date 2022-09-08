@@ -70,14 +70,18 @@ const GQL_FRAGMENT_YU_SCREEN_PRODUCT_SLOT_ITEM = gql`
 `;
 
 const GQl_FRAGMENT_YU_SCREEN_CAROUSEL_ITEM = gql`
+  ${GQL_FRAGMENT_VARIABLE_REMOTE_IMAGE}
   ${GQL_FRAGMENT_SDUI_ACTION}
   ${GQL_FRAGMENT_YU_SCREEN_PRODUCT_BUTTON_ACTION}
 
   fragment YuScreenCarouselItem on YuScreenCarouselItem {
-    image {
-      ...RemoteImage
+    images {
+      ...VariableRemoteImage
     }
     altText
+    title
+    description
+    backgroundColor
     button {
       label
       onPress {
