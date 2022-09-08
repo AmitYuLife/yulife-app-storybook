@@ -27373,6 +27373,18 @@
             "deprecationReason": null
           },
           {
+            "name": "providerNameDescription",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "largeProviderImageUrl",
             "description": null,
             "args": [],
@@ -33671,6 +33683,18 @@
             "type": {
               "kind": "SCALAR",
               "name": "Int",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "interactive",
+            "description": "Supported at RN client version >=3.47.0",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean",
               "ofType": null
             },
             "isDeprecated": false,

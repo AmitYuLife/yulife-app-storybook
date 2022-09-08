@@ -3,10 +3,9 @@ import { StyleSheet, View, ViewStyle } from "react-native";
 import { Colours, Style } from "@styles";
 import { ContentItemPackageCards_packageCards } from "@graphql/_core/schema";
 import { CoverType } from "@graphql/_core/schema/globalTypes";
-import { PackageCardPerks } from "@molecules";
+import { PackageCardPerks, YuCoinPower } from "@molecules";
 import PackageCardHeader from "./package-card-header";
 import { YUCOIN_POWER } from "@ids";
-import { YuCoinPower } from "./subcomponents/yucoin-power";
 
 interface OwnProps {
   width: number;
@@ -32,7 +31,7 @@ export const PackageCard = memo((props: Partial<Props>) => {
         <PackageCardHeader width={props.width} coverType={props.coverType} header={props.header} />
         <View style={styles.container} testID={YUCOIN_POWER(props.bonusEarnRate)}>
           <View style={styles.yucoin}>
-            <YuCoinPower width={Style.DEVICE_WIDTH - 104} coins={props.bonusEarnRate} />
+            <YuCoinPower width={Style.DEVICE_WIDTH - 104} coins={props.bonusEarnRate} hideInfoIcon={true} />
           </View>
           <Perks powers={props.powers} />
         </View>

@@ -5,15 +5,17 @@ import { showYuCoinPowerExplainedOverlay } from "@components/containers/member/y
 import { ContentItemYuCoinPower as Props } from "@graphql/_core/schema";
 import { mapServerStyles } from "..";
 import { YUCOIN_POWER } from "@ids";
+import { View } from "react-native";
 
-export const ContentItemYuCoinPower = memo(({ yuCoinPower, styles, marginHorizontal = 0 }: Props) => {
+export const ContentItemYuCoinPower = memo(({ yuCoinPower, styles, marginHorizontal = 0, interactive }: Props) => {
+  const YuCoinPowerView = interactive ? TouchableOpacityWithDelay : View;
   return (
-    <TouchableOpacityWithDelay
+    <YuCoinPowerView
       style={mapServerStyles(styles)}
-      onPress={showYuCoinPowerExplainedOverlay}
+      onPress={interactive ? showYuCoinPowerExplainedOverlay : null}
       testID={YUCOIN_POWER(yuCoinPower)}
     >
-      <YuCoinPower width={Style.DEVICE_WIDTH - marginHorizontal * 2} coins={yuCoinPower} />
-    </TouchableOpacityWithDelay>
+      <YuCoinPower width={Style.DEVICE_WIDTH - marginHorizontal * 2} coins={yuCoinPower} hideInfoIcon={!interactive} />
+    </YuCoinPowerView>
   );
 });

@@ -22,4 +22,8 @@ export interface ContentItemYuCoinPower {
    * be defined at the Svg parent
    */
   marginHorizontal: number | null;
+  /**
+   * Supported at RN client version >=3.47.0
+   */
+  interactive: boolean | null;
 }
