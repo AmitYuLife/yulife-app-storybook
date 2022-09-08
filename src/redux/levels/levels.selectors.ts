@@ -46,6 +46,7 @@ export interface IActiveLevel {
       appStoreId?: string;
       appStoreLocale?: string;
       playStoreId?: string;
+      faqUrl?: string;
     };
   };
 }

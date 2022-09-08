@@ -45,4 +45,9 @@ export default StyleSheet.create({
   pad: {
     height: TOP_BAR.TOP_BAR_WITH_PAD,
   } as ViewStyle,
+  faqUrl: {
+    alignItems: "flex-end",
+    marginRight: Style.adjust(35),
+    bottom: Style.adjust(20),
+  } as ViewStyle,
 });
