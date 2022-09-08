@@ -9,7 +9,7 @@ import { BUTTON_CLOSE_CHALLENGE, CHALLENGE_PROGRESS_BAR } from "@ids";
 import { NavBar } from "@components/organisms";
 import { TopBarAbsolute } from "@organisms/top-bar/top-bar-absolute";
 import { Image } from "@atoms";
-import { SecondaryButton, TertiaryButton } from "@molecules";
+import { PressableWithDelay, SecondaryButton, TertiaryButton } from "@molecules";
 import { ExternalAppLinksOverlay } from "./subcomponents/external-app-links-overlay";
 import { Style } from "@styles";
 import { TopBarType } from "@graphql/_core/schema/globalTypes";
@@ -22,6 +22,7 @@ import { getUserFeatures } from "@redux/user/user.selectors";
 import { getActiveChallengeAppButton } from "@redux/levels/levels.selectors";
 import { handleLinkPress, openApp, openFiit } from "@services/app-link";
 import { Fiit } from "@atoms/icon/fiit-icon";
+import { QuestionMarkIcon } from "@atoms/icon/question-mark-icon";
 
 // transparent png 1x1
 const empty_uri = {
@@ -110,6 +111,9 @@ function ChallengeProgressScreen({
   }, [appButton]);
 
   const handleOpenFiit = useCallback(() => openFiit(), []);
+  const openFaqUrl = useCallback(async () => await handleLinkPress(appButton?.options?.faqUrl)(), [
+    appButton?.options?.faqUrl,
+  ]);
 
   return (
     <View style={StyleSheet.flatten([styles.wrapper, { backgroundColor: backgroundColour }])}>
@@ -151,25 +155,30 @@ function ChallengeProgressScreen({
                   LeftIcon={<Fiit colour="black" width={41} height={30} />}
                 />
               ) : (
-                <TertiaryButton
-                  size="Large"
-                  label={appButton?.title}
-                  onPress={handleOpenApp}
-                  height={Style.adjust(48)}
-                  LeftIcon={
-                    <>
-                      {!appButton?.logo?.uri ? null : (
-                        <Image
-                          source={{
-                            uri: appButton?.logo?.uri,
-                          }}
-                          width={appButton?.width}
-                          height={appButton?.height}
-                        />
-                      )}
-                    </>
-                  }
-                />
+                <>
+                  <PressableWithDelay onPress={openFaqUrl} style={styles.faqUrl}>
+                    <QuestionMarkIcon width={Style.adjust(34)} height={Style.adjust(34)} />
+                  </PressableWithDelay>
+                  <TertiaryButton
+                    size="Large"
+                    label={appButton?.title}
+                    onPress={handleOpenApp}
+                    height={Style.adjust(48)}
+                    LeftIcon={
+                      <>
+                        {!appButton?.logo?.uri ? null : (
+                          <Image
+                            source={{
+                              uri: appButton?.logo?.uri,
+                            }}
+                            width={appButton?.width}
+                            height={appButton?.height}
+                          />
+                        )}
+                      </>
+                    }
+                  />
+                </>
               )}
             </>
           )}

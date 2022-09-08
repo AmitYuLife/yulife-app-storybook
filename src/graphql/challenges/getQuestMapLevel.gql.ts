@@ -62,6 +62,7 @@ export const GQL_QUERY_GET_QUEST_MAP_LEVEL = gql`
                 appStoreId
                 appStoreLocale
                 playStoreId
+                faqUrl
               }
             }
           }

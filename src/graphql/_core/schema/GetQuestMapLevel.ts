@@ -48,6 +48,7 @@ export interface GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent
   appStoreId: string;
   appStoreLocale: string;
   playStoreId: string;
+  faqUrl: string;
 }
 
 export interface GetQuestMapLevel_getQuestMapLevel_slots_details_internalContent_buttons {
