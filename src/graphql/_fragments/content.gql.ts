@@ -875,6 +875,7 @@ export const GQL_FRAGMENT_CONTENT_ITEM_YU_COIN_POWER = gql`
       ...SduiStyle
     }
     marginHorizontal
+    interactive
   }
 `;
 
