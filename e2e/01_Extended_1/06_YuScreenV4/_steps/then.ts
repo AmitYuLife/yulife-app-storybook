@@ -108,21 +108,28 @@ export const wellbeingProductInfo = (packageType: string) => async () => {
     const policyName = "Wellbeing Access"
     const policyDescription = "A YuLife Wellbeing access membership rewards you with YuCoin, discounts, and vouchers for building healthier habits."
     const policyInsurance = "There is no insurance attached to this membership."
-   
+    const paidBy = "Employer Paid"
 
     await expect(element(by.text(policyName)).atIndex(1)).toBeVisible();
+    await expect(element(by.text(paidBy))).toBeVisible();
     await expect(element(by.text(policyDescription))).toBeVisible()
     await expect(element(by.text(policyInsurance))).toBeVisible();
     await expect(element(by.text(packageType))).toBeVisible()
 }
 
-export const yuCoinPowerInfo = (yuCoinPower: string) => async () => {
+export const yuCoinPowerInfo = (yuCoinPower: number) => async () => {
 
-    const yuCoinPowerTitle = "YuCoin Power"
-    const yuCoinPowerText = `Equipping yourself with policies boosts your YuCoin Power in the Yuniverse. For every 1 YuCoin you would have earned, you now earn ${yuCoinPower}!`
+    const yuCoinPowerTitle = "YuCoin\nPower"
+    const powerBoost = `For every 1 YuCoin you would have earned, you now earn ${yuCoinPower}!`
+    const baseYucoinPower = "Equipping yourself with policies boosts your YuCoin Power in the Yuniverse."
 
     await expect(element(by.text(yuCoinPowerTitle))).toBeVisible();
-    await expect(element(by.text(yuCoinPowerText))).toBeVisible()
+    if(yuCoinPower < 2) {
+        await expect(element(by.text(baseYucoinPower))).toBeVisible()
+    } else {
+        await expect(element(by.text(baseYucoinPower))).toBeVisible()
+        await expect(element(by.text(powerBoost))).toBeVisible()
+    }
 
 }
 
@@ -146,12 +153,16 @@ export const onboardingYuscreenV4 = (yuCoinPower:string, status: string)=> async
     const yuCoinText = "YuCoin"
     const powerText = "Power"
     const paidBy = "Employer paid"
+    const lifeInsurance = "Life Insurance"
+    const criticalIllness = "Critical Illness"
+    const incomeProtextion = "Income Protection"
 
     if (status === "wellbeing only"){
         await textVisibleAtIndex(yuCoinPower, 0)()
         await textVisibleAtIndex(yuCoinPower, 1)()
         await expect(element(by.text(WellbeingProduct))).toBeVisible()
         await textVisible(noProductText)()
+        await textNotVisible(availableProducts)()
         await textVisible(yuCoinText)()
         await textVisible(powerText)()
         await textVisible(paidBy)()
@@ -160,6 +171,18 @@ export const onboardingYuscreenV4 = (yuCoinPower:string, status: string)=> async
         await textVisible(yuCoinPower, 0)()
         await textVisible(yuCoinText)()
         await textVisible(powerText)()
+        await textVisible(availableProducts)()
+    }
+    if (status === "4Products"){
+        await textVisible(yuCoinPower, 1)()
+        await textVisible(yuCoinText)()
+        await textVisible(powerText)()
+        await textVisible(lifeInsurance)()
+        await textVisibleAtIndex(paidBy, 0)()
+        await textVisible(criticalIllness)()
+        await textVisibleAtIndex(paidBy, 1)()
+        await textVisible(incomeProtextion)()
+        await textVisibleAtIndex(paidBy, 2)()
         await textVisible(availableProducts)()
     }
 

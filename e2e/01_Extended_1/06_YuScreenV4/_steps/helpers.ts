@@ -76,7 +76,7 @@ export const DENTAL_PRODUCT_VIEW = async (packageType: string, membershipEnding:
     })
 }
 
-export const WELLBEING_PRODUCT_VIEW = async (packageType: string, yuCoinPower: string) => {
+export const WELLBEING_PRODUCT_VIEW = async (packageType: string, yuCoinPower: number) => {
     When(`I tap Wellbeing Access`, when.tapText("Wellbeing Access"), async () => {
         Then("I should see correct product details", then.wellbeingProductInfo(packageType))
         When("I tap the YuCoin icon", when.tapID(YUCOIN_POWER_INFO), async () => {
@@ -88,7 +88,7 @@ export const WELLBEING_PRODUCT_VIEW = async (packageType: string, yuCoinPower: s
     })
 }
 
-export const YUCOIN_POWER = async (customer:any, yuCoinPower: string) => {
+export const YUCOIN_POWER = async (customer:any, yuCoinPower: number) => {
     
     const firstName = customer.data.firstName
     const lastName = customer.data.lastName
@@ -111,10 +111,9 @@ export const CHECK_OTHER_PRODUCT_WHEN_HAVE_PAYMENT_FAILED = async ( productButto
     })
 }
 
-export const ONBOARDING_YUSCREEN = async (customer: any, packType: string, yuCoinPower: string) => {
+export const ONBOARDING_YUSCREEN = async (customer: any, packType: string, yuCoinPower: string, buttonText = "Show me the way") => {
     
-    const buttonText = "Show me the way"
-    const yuMojiBuilder = "Pick a body type"
+    const yuMojiBuilder = "Create your Yumoji to step into the Yuniverse"
 
     Then("I should see the onboarding Yuscreen", then.onboardingYuscreenV4(yuCoinPower, packType))
     When(`I tap ${buttonText}`, when.tapText(buttonText), async () => {
