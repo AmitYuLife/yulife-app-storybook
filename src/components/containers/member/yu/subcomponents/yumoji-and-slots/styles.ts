@@ -24,7 +24,6 @@ export const styles = StyleSheet.create({
     justifyContent: "center",
   },
   slotsWrapper: {
-    width: Style.DEVICE_WIDTH / 1.9,
     marginLeft: "auto",
     marginRight: Style.adjust(16),
     marginTop: Style.adjust(32),
