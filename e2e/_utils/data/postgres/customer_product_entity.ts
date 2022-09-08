@@ -1,5 +1,5 @@
 import { IDatabaseItem } from "@yu-life/yulife-bdd-framework";
-import { CUSTOMER_10, CUSTOMER_31, CUSTOMER_32, CUSTOMER_33, CUSTOMER_34, CUSTOMER_43, CUSTOMER_45, CUSTOMER_46, CUSTOMER_9, CUSTOMER_DENTAL_1, CUSTOMER_DENTAL_2, CUSTOMER_PLI_2, CUSTOMER_PLI_3, CUSTOMER_PLI_4, CUSTOMER_PLI_5 } from "./customers";
+import { CUSTOMER_10, CUSTOMER_31, CUSTOMER_32, CUSTOMER_33, CUSTOMER_34, CUSTOMER_43, CUSTOMER_45, CUSTOMER_46, CUSTOMER_48, CUSTOMER_49, CUSTOMER_9, CUSTOMER_DENTAL_1, CUSTOMER_DENTAL_2, CUSTOMER_PLI_2, CUSTOMER_PLI_3, CUSTOMER_PLI_4, CUSTOMER_PLI_5 } from "./customers";
 import moment from "moment"
 
 
@@ -320,4 +320,101 @@ export const CPE_43_WELLBEING = {
         archived: false
     }
 } as IDatabaseItem
+
+export const CPE_48_RGL = {
+    type,
+    modelName,
+    data:{
+        customer_product_id: "YUCPID0000000144",
+        customer_id: CUSTOMER_48.data.customerId,
+        earn_rate: 10,
+        product_variant_id: "AIG_ReGL_01_03",
+        archived:false
+    }
+} as IDatabaseItem
+
+export const CPE_48_GIP = {
+    type,
+    modelName,
+    data: {
+        customer_product_id: "YUCPID0000000145",
+        customer_id: CUSTOMER_48.data.customerId,
+        earn_rate: 10,
+        product_variant_id: "AIG_GIP_01_03",
+        archived: false
+    }
+} as IDatabaseItem
+
+export const CPE_48_GCI = {
+    type,
+    modelName,
+    data: {
+        customer_product_id: "YUCPID0000000146",
+        customer_id: CUSTOMER_48.data.customerId,
+        earn_rate: 10,
+        product_variant_id: "AIG_GCI_01_03",
+        archived: false
+    }
+} as IDatabaseItem
+
+export const CPE_48_WELLBEING = {
+    type,
+    modelName,
+    data: {
+        customer_product_id: "YUCPID0000000148",
+        customer_id: CUSTOMER_48.data.customerId,
+        earn_rate: 10,
+        product_variant_id: "YuLife_Wellbeing_01_03",
+        archived: false
+    }
+} as IDatabaseItem
+
+export const CPE_49_RGL = {
+    type,
+    modelName,
+    data:{
+        customer_product_id: "YUCPID0000000149",
+        customer_id: CUSTOMER_49.data.customerId,
+        earn_rate: 10,
+        product_variant_id: "AIG_ReGL_01_03",
+        archived:false
+    }
+} as IDatabaseItem
+
+export const CPE_49_GIP = {
+    type,
+    modelName,
+    data: {
+        customer_product_id: "YUCPID0000000150",
+        customer_id: CUSTOMER_49.data.customerId,
+        earn_rate: 10,
+        product_variant_id: "AIG_GIP_01_03",
+        archived: false
+    }
+} as IDatabaseItem
+
+export const CPE_49_GCI = {
+    type,
+    modelName,
+    data: {
+        customer_product_id: "YUCPID0000000151",
+        customer_id: CUSTOMER_49.data.customerId,
+        earn_rate: 10,
+        product_variant_id: "AIG_GCI_01_03",
+        archived: false
+    }
+} as IDatabaseItem
+
+export const CPE_49_WELLBEING = {
+    type,
+    modelName,
+    data: {
+        customer_product_id: "YUCPID0000000152",
+        customer_id: CUSTOMER_49.data.customerId,
+        earn_rate: 10,
+        product_variant_id: "YuLife_Wellbeing_01_03",
+        archived: false
+    }
+} as IDatabaseItem
+
     

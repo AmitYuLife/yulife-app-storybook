@@ -193,13 +193,15 @@ export const onYuscreenV4 = (customer:any, productStatus, earnRate: string)=> as
     const createYumujiHeading = "Earn 100 YuCoin";
     const createYumujiText = "when you create your Yumoji.";
     const createYumujiCTA = "Create Yumoji";
+    const lifeInsurance = "Life Insurance"
+    const criticalIllness = "Critical Illness"
+    const incomeProtextion = "Income Protection"
     const WellbeingProduct = "Wellbeing Access"
     const noProductText = "More protection coming soon"
     const browseMoreProtection = "Browse more protection"
     const dentalInsurance = "Dental"
     const dentalYuCoinPower = "+6"
     const PLIYuCoinPower = "+20"
-    const lifeInsurance = "Life Insurance"
     const dentalPriceFrom = "From £12.99 per month"
     const extendLifeInsurance = "Extend your life insurance"
     const surveyText = "We love hearing from you.\nHelp shape the future of YuLife!"
@@ -247,11 +249,37 @@ export const onYuscreenV4 = (customer:any, productStatus, earnRate: string)=> as
     if (productStatus === "PliRejectedAndDentalInactive") {
         await expect(element(by.text(dentalYuCoinPower))).toBeVisible()
         await expect(element(by.text(dentalInsurance))).toBeVisible()
-        await expect(element(by.text(lifeInsurance))).toBeVisible()
+        await expect(element(by.text(lifeInsurance))).toBeNotVisible
         await swipeFromText(browseMoreProtection,"up", "slow")()
         await expect(element(by.id(CAROUSEL_CARD)).atIndex(0)).toBeVisible()
         await expect(element(by.text(dentalPriceFrom))).toBeVisible()
         await expect(element(by.text(extendLifeInsurance))).toBeNotVisible()
+    }
+    if (productStatus === "6Products") {
+        await textVisibleAtIndex(lifeInsurance, 0)()
+        await expect(element(by.text(criticalIllness))).toBeVisible()
+        await expect(element(by.text(incomeProtextion))).toBeVisible()
+        await expect(element(by.text(WellbeingProduct))).toBeVisible()
+        await expect(element(by.text(dentalYuCoinPower))).toBeVisible()
+        await expect(element(by.text(dentalInsurance))).toBeVisible()
+        await expect(element(by.text(PLIYuCoinPower))).toBeVisible()
+        await textVisibleAtIndex(lifeInsurance, 1)()
+        await swipeFromText(browseMoreProtection,"up", "slow")()
+        await expect(element(by.id(CAROUSEL_CARD)).atIndex(0)).toBeVisible()
+        await expect(element(by.text(dentalPriceFrom))).toBeVisible()
+        await expect(element(by.text(noProductText))).toBeNotVisible()
+    }
+    if (productStatus === "5Products") {
+        await textVisibleAtIndex(lifeInsurance, 0)()
+        await expect(element(by.text(criticalIllness))).toBeVisible()
+        await expect(element(by.text(incomeProtextion))).toBeVisible()
+        await expect(element(by.text(WellbeingProduct))).toBeVisible()
+        await expect(element(by.text(dentalYuCoinPower))).toBeVisible()
+        await expect(element(by.text(dentalInsurance))).toBeVisible()
+        await expect(element(by.text(noProductText))).toBeVisible()
+        await swipeFromText(browseMoreProtection,"up", "slow")()
+        await expect(element(by.id(CAROUSEL_CARD)).atIndex(0)).toBeVisible()
+        await expect(element(by.text(dentalPriceFrom))).toBeVisible()
     }
     await swipeFromText(browseMoreProtection,"down", "slow")()
 }

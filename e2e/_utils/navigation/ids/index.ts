@@ -312,6 +312,7 @@ export const SETTINGS_SWITCH = (name:string, bool:boolean) => `SETTINGS_SWITCH_$
 // PLI
 export const YUMOJI_OUTFIT_RADIO = (title: string) => `YUMOJI_OUTFIT_RADIO${title}`
 export const YUMOJI_OUTFIT_LABEL = (title: string) => `YUMOJI_OUTFIT_LABEL${title}`
+export const DENTAL_TOOLTIP_INFO = "DENTAL_TOOLTIP_INFO"
 
 // INSPECT SCREEN
 export const YUMOJI = "YUMOJI";

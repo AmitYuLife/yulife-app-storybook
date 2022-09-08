@@ -2,7 +2,7 @@ import { Feature, Scenario, Given, When, Then, FeatureOnly, ScenarioOnly, Scenar
 import * as scenario from "./_steps/scenario"
 import * as given from "./_steps/given"
 import * as then from "./_steps/then"
-import {  CUSTOMER_43, AUTH_43, CUSTOMER_44, AUTH_44, CUSTOMER_45, AUTH_45, CUSTOMER_46, AUTH_46 } from "@data";
+import {  CUSTOMER_43, AUTH_43, CUSTOMER_44, AUTH_44, CUSTOMER_45, AUTH_45, CUSTOMER_46, AUTH_46, CUSTOMER_48, AUTH_48, CUSTOMER_49, AUTH_49 } from "@data";
 
 import * as helper from "./_steps/helpers"
 
@@ -13,8 +13,8 @@ Feature("I am able to use the yuscreen, create, and edit an Yumoji", async () =>
         Given("I login as a user", given.logInAndGoToTab("yu", CUSTOMER_43, AUTH_43), async () => {
             helper.ONBOARDING_YUSCREEN(CUSTOMER_43, "wellbeing only", "10")
             helper.CREATE_DEFAULT_YUMOJI(300);
-            helper.YUCOIN_POWER(CUSTOMER_43, "10")
-            helper.WELLBEING_PRODUCT_VIEW("Epic", "10")
+            helper.YUCOIN_POWER(CUSTOMER_43, 10)
+            helper.WELLBEING_PRODUCT_VIEW("Epic", 10)
         })
     })
 
@@ -22,7 +22,7 @@ Feature("I am able to use the yuscreen, create, and edit an Yumoji", async () =>
         Given("I login as a user", given.logInAndGoToTab("yu", CUSTOMER_44, AUTH_44), async () => {
             helper.ONBOARDING_YUSCREEN(CUSTOMER_44, "dentalAndPli", "5")
             helper.CREATE_DEFAULT_YUMOJI(300);
-            helper.YUCOIN_POWER(CUSTOMER_44, "5")
+            helper.YUCOIN_POWER(CUSTOMER_44, 5)
             helper.CORRECT_PRODUCT_SLOT_BACKGROUND("0 product live")
             helper.CHECK_PRODUCT_BUTTON_LINK("Dental", "Dental Insurance");
             helper.CHECK_PRODUCT_BUTTON_LINK("Life Insurance", "Personal Life Insurance");
@@ -45,8 +45,23 @@ Feature("I am able to use the yuscreen, create, and edit an Yumoji", async () =>
         Given("I login as a user", given.logInAndGoToTab("yu", CUSTOMER_46, AUTH_46), async () => {
             Then("I should be on the YuScreen V4", then.onYuscreenV4(CUSTOMER_46, "PliRejectedAndDentalInactive", "5" ))
             helper.CORRECT_PRODUCT_SLOT_BACKGROUND("0 product live")
-            helper.REJECTED("Answers")
             helper.CHECK_PRODUCT_BUTTON_LINK("Dental", "Dental Insurance");
+        })
+    })
+
+    Scenario("As a YuLifer with 6 slots i should  NOT see More protection coming soon slot ", scenario.start, async () => {
+        Given("I login as a user", given.logInAndGoToTab("yu", CUSTOMER_48, AUTH_48), async () => {
+            helper.ONBOARDING_YUSCREEN(CUSTOMER_48, "6Products", "1", "More protection")
+            helper.CREATE_DEFAULT_YUMOJI(300);
+            helper.WELLBEING_PRODUCT_VIEW("Epic", 1)
+        })
+    })
+
+    Scenario("As a YuLifer with less than 6 slots i should see More protection coming soon slot", scenario.start, async () => {
+        Given("I login as a user", given.logInAndGoToTab("yu", CUSTOMER_49, AUTH_49), async () => {
+            helper.ONBOARDING_YUSCREEN(CUSTOMER_49, "5Products", "1", "More protection")
+            helper.CREATE_DEFAULT_YUMOJI(300);
+            helper.WELLBEING_PRODUCT_VIEW("Epic", 1)
         })
     })
 })

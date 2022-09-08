@@ -2,7 +2,7 @@ import { When, Then } from "@yu-life/yulife-bdd-framework";
 import * as when from "./when"
 import * as then from "./then"
 import { CUSTOMER_37, AUTH_37 } from "@data";
-import { CONDITION_OPTION, CONTENT_ITEM_INPUT, PRODUCT_STEP_BODY_SCROLL_VIEW, SCROLL_PICKER, SCROLL_PICKER_ACTIVE_ITEM, SELECTED_PACKAGE_TITLE, YUCOIN_POWER, TEXT_TEMPLATE, COVER_TYPE, BUTTON_CLOSE_CHALLENGE, BACK_BUTTON, PACKAGE_INFO, BUTTON_CLOSE } from "@ids";
+import { CONDITION_OPTION, CONTENT_ITEM_INPUT, PRODUCT_STEP_BODY_SCROLL_VIEW, SCROLL_PICKER, SCROLL_PICKER_ACTIVE_ITEM, SELECTED_PACKAGE_TITLE, YUCOIN_POWER, TEXT_TEMPLATE, COVER_TYPE, BUTTON_CLOSE_CHALLENGE, BACK_BUTTON, PACKAGE_INFO, BUTTON_CLOSE, DENTAL_TOOLTIP_INFO } from "@ids";
 import { addCommasToNumber } from "_utils/appScreens/rewards";
 import { capitalizeFirstLetter } from "@navigation";
 import moment from "moment"
@@ -155,11 +155,30 @@ export const PLANS = async () => {
 type coverLevel = "Common" | "Rare" | "Epic"
 
 export const PACKAGE_DETAILS = async ( cover: coverLevel )  => {
+    const tooltipFilling = "Fissure sealants and topical fluoride treatments are included in this benefit"
+    const tooltipRestorative = "80% towards the cost of your treatment up to your benefit limit"
+    const tooltipCancerTreatment = "Paid in full when being referred for oral cancer treatment and using partnership facilities and recognised practitioners who are fee-assured consultants.\n\nThree month waiting period applies from your cover start date when you first join the policy."
+
     When(`I tap Package Details text`, when.tapText("Package details"), async () => {
         Then(`I should see correct ${cover} Package details and price`, then.packageVisible(cover));     
     })
-    When("I tap to go back to Summary screen", when.tapID(BACK_BUTTON), async () => {
-        Then("I should see again Continue to checkout", then.textVisible("Continue to checkout"))
+    When("I tap last tooltip", when.tapIDAtIndex(DENTAL_TOOLTIP_INFO, 2 ), async () => {
+        Then("I should see correct tooltip", then.textVisible(tooltipCancerTreatment))
+    })
+    When("I tap Got It", when.tapText("Got it"), async () => {
+        When("I tap the first tooltip", when.tapIDAtIndex(DENTAL_TOOLTIP_INFO, 0 ), async () => {
+            Then("I should see correct tooltip", then.textVisible(tooltipFilling))
+        })
+    })
+    When("I tap Got It", when.tapText("Got it"), async () => {
+        When("I tap the second tooltip", when.tapIDAtIndex(DENTAL_TOOLTIP_INFO, 1 ), async () => {
+            Then("I should see correct tooltip", then.textVisible(tooltipRestorative))
+        })
+    })
+    When("I tap Got It", when.tapText("Got it"), async () => {
+        When("I tap to go back to Summary screen", when.tapID(BACK_BUTTON), async () => {
+            Then("I should see again Continue to checkout", then.textVisible("Continue to checkout"))
+        })
     })
 }
 
@@ -297,6 +316,28 @@ export const CHOOSE_PLAN_AND_CHECKOUT = async () => {
                     })
                 })
             })
+        })
+    })
+}
+
+export const canSeeTooltips = async () => {
+    const tooltipFilling = "Fissure sealants and topical fluoride treatments are included in this benefit"
+    const tooltipRestorative = "80% towards the cost of your treatment up to your benefit limit"
+    const tooltipCancerTreatment = "Paid in full when being referred for oral cancer treatment and using partnership facilities and recognised practitioners who are fee-assured consultants.\n\nThree month waiting period applies from your cover start date when you first join the policy."
+
+    When("I tap last tooltip", when.tapTextAtIndex(DENTAL_TOOLTIP_INFO, 2 ), async () => {
+        Then("I should see correct tooltip", then.textVisible(tooltipCancerTreatment))
+    })
+    When("I tap Got It", when.tapText("Got it"), async () => {
+        When("I scroll to the first tooltip",when.scrollUntilTextVisible(PRODUCT_STEP_BODY_SCROLL_VIEW,"Fillings/ root canal", "up"), async () => {
+            When("I tap the first tooltip", when.tapTextAtIndex(DENTAL_TOOLTIP_INFO, 2 ), async () => {
+                Then("I should see correct tooltip", then.textVisible(tooltipFilling))
+            })
+        })
+    })
+    When("I tap Got It", when.tapText("Got it"), async () => {
+        When("I tap the second tooltip", when.tapTextAtIndex(DENTAL_TOOLTIP_INFO, 1 ), async () => {
+            Then("I should see correct tooltip", then.textVisible(tooltipRestorative))
         })
     })
 }

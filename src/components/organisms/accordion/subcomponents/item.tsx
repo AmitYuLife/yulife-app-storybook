@@ -8,6 +8,7 @@ import { SduiAction } from "@graphql/_core/schema";
 import { useDispatch } from "react-redux";
 import { ProductStepContext } from "@components/containers/products/product-step/product-step.context";
 import { logMixpanelEventActionCreator } from "@redux/logging/logging.actions";
+import { DENTAL_TOOLTIP_INFO } from "@ids";
 
 interface Props {
   leftText: string;
@@ -83,7 +84,7 @@ const Info = memo(
 
     return (
       <TouchableOpacityWithDelay style={styles.pressableIcon} hitSlop={HIT_SLOP} onPress={handlePress}>
-        <Image source={infoIcon} width={24} />
+        <Image source={infoIcon} width={24} testID={DENTAL_TOOLTIP_INFO} />
       </TouchableOpacityWithDelay>
     );
   }
