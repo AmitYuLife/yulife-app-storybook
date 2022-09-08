@@ -120,9 +120,14 @@ export interface GetYuScreen_getYuScreen_productSlots {
   showOnOnboarding: boolean | null;
 }
 
-export interface GetYuScreen_getYuScreen_productCarousel_items_image {
+export interface GetYuScreen_getYuScreen_productCarousel_items_images_image {
   id: string;
   uri: string | null;
+}
+
+export interface GetYuScreen_getYuScreen_productCarousel_items_images {
+  image: GetYuScreen_getYuScreen_productCarousel_items_images_image;
+  width: number;
 }
 
 export interface GetYuScreen_getYuScreen_productCarousel_items_button_onPress {
@@ -144,8 +149,11 @@ export interface GetYuScreen_getYuScreen_productCarousel_items_button {
 }
 
 export interface GetYuScreen_getYuScreen_productCarousel_items {
-  image: GetYuScreen_getYuScreen_productCarousel_items_image;
+  images: GetYuScreen_getYuScreen_productCarousel_items_images[] | null;
   altText: string;
+  title: string | null;
+  description: string | null;
+  backgroundColor: string | null;
   button: GetYuScreen_getYuScreen_productCarousel_items_button | null;
 }
 
