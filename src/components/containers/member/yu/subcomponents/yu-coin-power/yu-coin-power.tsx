@@ -50,8 +50,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     position: "absolute",
-    top: Style.adjust(10),
-    right: Style.adjust(72),
+    bottom: Style.adjust(16),
+    left: Style.adjust(16),
   },
   ycWrapperOuter: {
     alignItems: "flex-end",
@@ -63,7 +63,8 @@ const styles = StyleSheet.create({
   ycPowerVal: {
     fontSize: Style.adjust(40),
     lineHeight: Style.adjust(40),
-    color: "#D17C00", // TODO: ASK DESIGN FOR NAME
+    color: "#D17C00", // TODO: ASK DESIGN FOR NAME,
+    marginTop: Style.adjust(2),
   },
   ycPowerDescriptionWrapper: {
     justifyContent: "center",
