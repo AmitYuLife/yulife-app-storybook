@@ -16,6 +16,7 @@ const SignUpRewardScreen: React.FC<IProps> = ({ isLoading, onCollectPress, yuCoi
     "screens.signupReward.heading",
     "screens.signupReward.subheading",
     "screens.signupReward.ctaLabel",
+    "screens.signupReward.ctaAccessibility",
   ]);
 
   return (
@@ -32,6 +33,7 @@ const SignUpRewardScreen: React.FC<IProps> = ({ isLoading, onCollectPress, yuCoi
       <Pad height={40} />
       <Button
         label={translations["screens.signupReward.ctaLabel"]}
+        accessibilityLabel={translations["screens.signupReward.ctaAccessibility"]}
         onPress={onCollectPress}
         isLoading={isLoading}
         disabled={isLoading}
