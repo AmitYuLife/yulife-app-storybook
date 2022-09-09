@@ -62,7 +62,7 @@ export const onLoginScreen = async () => {
 export const enterPasswordIncorrectly = (attempts: number) => async () => {
     const loginField = element(by.id(INPUT_LOGIN_EMAIL));
     const passwordField = element(by.id(INPUT_LOGIN_PASSWORD("Password")));
-    const loginButton = element(by.id(BUTTON_LOGIN));
+    const loginButton = element(by.id(BUTTON_LOGIN(false)));
 
     await loginField.tap();
     await loginField.replaceText(CUSTOMER_4.data.email);

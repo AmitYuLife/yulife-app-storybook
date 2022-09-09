@@ -1,20 +1,21 @@
-import { Feature, Scenario, Given, When, Then, FeatureOnly, ScenarioOnly, ScenarioSkip } from "@yu-life/yulife-bdd-framework";
+import { Feature, Scenario, Given, When, Then, FeatureOnly, ScenarioOnly, ScenarioSkip, FeatureSkip } from "@yu-life/yulife-bdd-framework";
 import * as scenario from "./_steps/scenario"
 import * as given from "./_steps/given"
 import * as then from "./_steps/then"
 import {  CUSTOMER_43, AUTH_43, CUSTOMER_44, AUTH_44, CUSTOMER_45, AUTH_45, CUSTOMER_46, AUTH_46, CUSTOMER_48, AUTH_48, CUSTOMER_49, AUTH_49 } from "@data";
+import {  MENU_ICON } from "@ids";
 
 import * as helper from "./_steps/helpers"
 
 
-
-Feature("I am able to use the yuscreen, create, and edit an Yumoji", async () => {
+// Eugene to fix
+FeatureSkip("I am able to use the yuscreen, create, and edit an Yumoji", async () => {
     Scenario("I can create my Yumoji on new Yuscreen V4 and see no product state", scenario.start, async () => {
         Given("I login as a user", given.logInAndGoToTab("yu", CUSTOMER_43, AUTH_43), async () => {
             helper.ONBOARDING_YUSCREEN(CUSTOMER_43, "wellbeing only", "10")
             helper.CREATE_DEFAULT_YUMOJI(300);
-            helper.YUCOIN_POWER(CUSTOMER_43, 10)
-            helper.WELLBEING_PRODUCT_VIEW("Epic", 10)
+            helper.YUCOIN_POWER(CUSTOMER_43, "10", 10)
+            helper.WELLBEING_PRODUCT_VIEW("Epic", "10", 10)
         })
     })
 
@@ -22,7 +23,7 @@ Feature("I am able to use the yuscreen, create, and edit an Yumoji", async () =>
         Given("I login as a user", given.logInAndGoToTab("yu", CUSTOMER_44, AUTH_44), async () => {
             helper.ONBOARDING_YUSCREEN(CUSTOMER_44, "dentalAndPli", "5")
             helper.CREATE_DEFAULT_YUMOJI(300);
-            helper.YUCOIN_POWER(CUSTOMER_44, 5)
+            helper.YUCOIN_POWER(CUSTOMER_44, "5", 5)
             helper.CORRECT_PRODUCT_SLOT_BACKGROUND("0 product live")
             helper.CHECK_PRODUCT_BUTTON_LINK("Dental", "Dental Insurance");
             helper.CHECK_PRODUCT_BUTTON_LINK("Life Insurance", "Personal Life Insurance");
@@ -53,7 +54,7 @@ Feature("I am able to use the yuscreen, create, and edit an Yumoji", async () =>
         Given("I login as a user", given.logInAndGoToTab("yu", CUSTOMER_48, AUTH_48), async () => {
             helper.ONBOARDING_YUSCREEN(CUSTOMER_48, "6Products", "1", "More protection")
             helper.CREATE_DEFAULT_YUMOJI(300);
-            helper.WELLBEING_PRODUCT_VIEW("Epic", 1)
+            helper.WELLBEING_PRODUCT_VIEW("Epic", "1", 1)
         })
     })
 
@@ -61,7 +62,7 @@ Feature("I am able to use the yuscreen, create, and edit an Yumoji", async () =>
         Given("I login as a user", given.logInAndGoToTab("yu", CUSTOMER_49, AUTH_49), async () => {
             helper.ONBOARDING_YUSCREEN(CUSTOMER_49, "5Products", "1", "More protection")
             helper.CREATE_DEFAULT_YUMOJI(300);
-            helper.WELLBEING_PRODUCT_VIEW("Epic", 1)
+            helper.WELLBEING_PRODUCT_VIEW("Epic", "1", 1)
         })
     })
 })

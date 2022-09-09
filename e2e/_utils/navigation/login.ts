@@ -19,7 +19,7 @@ export const loginAsUser = (
     await loginField.replaceText(customer.data.email);
     await passwordField.tap();
     await passwordField.replaceText(auth.data.password);
-    await navigateViaID(BUTTON_LOGIN)
+    await navigateViaID(BUTTON_LOGIN(false))
     await navigateViaText("Next") // sign-up reward screen
     await dismissPLIModalIfVisible()
     await dismissNewLooksModalIfVisible()
@@ -39,7 +39,7 @@ export const loginAsPLIUser = (
     await loginField.replaceText(customer.data.email);
     await passwordField.tap();
     await passwordField.replaceText(auth.data.password);
-    await navigateViaID(BUTTON_LOGIN)
+    await navigateViaID(BUTTON_LOGIN(false))
     await navigateViaText("Next") // sign-up reward screen
     await dismissPLIModalIfVisible()
     await dismissNewLooksModalIfVisible()
@@ -100,7 +100,7 @@ export const loginOnly = (customer: any, auth: any, fitkitAuth?: boolean) => asy
     await loginField.replaceText(customer.data.email);
     await passwordField.tap();
     await passwordField.replaceText(auth.data.password);
-    await navigateViaID(BUTTON_LOGIN)
+    await navigateViaID(BUTTON_LOGIN(false))
     await dismissNewLooksModalIfVisible()
 }
 export const loginAndCollectSignupBonus = (customer: any, auth: any, fitkitAuth?: boolean)=> async()=>{

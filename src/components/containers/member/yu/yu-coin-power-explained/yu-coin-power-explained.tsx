@@ -9,7 +9,7 @@ import { useQuery } from "@apollo/react-hooks";
 import GenericOverlay from "@components/modals/generic-overlay/generic-overlay";
 import { useBackHandler } from "@hooks";
 import { GQL_QUERY_GET_YU_COIN_POWER_EXPLAINED } from "@graphql/yuscreen/getYuCoinPowerExplained";
-import { TEXT_TEMPLATE } from "@ids";
+import { EARN_RATE, TEXT_TEMPLATE, YUCOIN_TITLE } from "@ids";
 import { GetYuCoinPowerExplained } from "@graphql/_core/schema";
 import { Style } from "@styles";
 import { YuCoinPowerSVG } from "./yu-coin-power-svg";
@@ -69,11 +69,11 @@ const YuCoinPowerExplained = memo(() => {
             </View>
             <View style={styles.yuCoinPowerWrapper}>
               <View style={styles.yuCoinPowerEarnRateWrapper}>
-                <Text bold={true} style={styles.yuCoinPowerEarnRate}>
+                <Text bold={true} style={styles.yuCoinPowerEarnRate} testID={EARN_RATE(yuCoin.earnRate)}>
                   {yuCoin.earnRate}
                 </Text>
               </View>
-              <View>
+              <View testID={YUCOIN_TITLE}>
                 <Markdown text={yuCoin.title} markdownStyles={titleMarkdownStyles} />
               </View>
               <View style={styles.yuCoinPowerDescription}>

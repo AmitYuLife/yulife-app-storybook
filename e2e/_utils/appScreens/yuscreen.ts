@@ -47,11 +47,8 @@ export const onYuscreen = (customer) => async () => {
 }
 
 export const onCreateAvatarScreen = async () => {
-    const createTitle = element(by.text("Create your Yumoji"))
-    const editTitle = element(by.text("Edit your Yumoji"))
-
-    const subTitle = element(by.text("Pick a body type"))
-    await expect(subTitle).toBeVisible()
+    const createTitle = element(by.text("Create your Yumoji to step into the Yuniverse"))
+    const editTitle = element(by.text("Pick a body type"))
 
     const femaleBody = element(by.id(FEMALE_BODY))
     await expect(femaleBody).toBeVisible()
@@ -64,6 +61,9 @@ export const onCreateAvatarScreen = async () => {
     } catch (e) {
         await expect(editTitle).toBeVisible()
     }
+
+    await textVisible("Continue")()
+
 }
 
 export const onAvatarBuilder = (screen: string) => async () => {
@@ -249,7 +249,7 @@ export const onYuscreenV4 = (customer:any, productStatus, earnRate: string)=> as
     if (productStatus === "PliRejectedAndDentalInactive") {
         await expect(element(by.text(dentalYuCoinPower))).toBeVisible()
         await expect(element(by.text(dentalInsurance))).toBeVisible()
-        await expect(element(by.text(lifeInsurance))).toBeNotVisible
+        await expect(element(by.text(lifeInsurance))).toBeNotVisible()
         await swipeFromText(browseMoreProtection,"up", "slow")()
         await expect(element(by.id(CAROUSEL_CARD)).atIndex(0)).toBeVisible()
         await expect(element(by.text(dentalPriceFrom))).toBeVisible()
@@ -319,4 +319,20 @@ export const onCertificate = (productName: string, customer:any, customerGroupPo
     
     await expect(element(by.text("Cover start date"))).toBeVisible()
     await expect(element(by.text(dateJoined))).toBeVisible()
+}
+
+export const onSkinToneScreen = (screen: string) => async () => {
+    try {
+        await expect(element(by.id(BODY_ITEM_TITLE(screen)))).toBeVisible()
+    } catch (e) {
+        await expect(element(by.text(screen))).toBeVisible()
+    }
+}
+
+export const onFacialHairScreen = (screen: string) => async () => {
+    try {
+        await expect(element(by.id(BODY_ITEM_TITLE(screen)))).toBeVisible()
+    } catch (e) {
+        await expect(element(by.text(screen))).toBeVisible()
+    }
 }

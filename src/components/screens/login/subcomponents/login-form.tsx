@@ -89,7 +89,7 @@ export const LoginForm = (props: LoginFormProps) => {
       <Pad height={44} />
 
       <Button
-        testID={BUTTON_LOGIN}
+        testID={BUTTON_LOGIN(disabled)}
         isLoading={isLoggingIn}
         disabled={isLoggingIn || disabled}
         label={t["screens.login.ctaLabel"]}
