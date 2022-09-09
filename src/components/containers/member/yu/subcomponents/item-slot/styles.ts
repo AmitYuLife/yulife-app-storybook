@@ -7,6 +7,21 @@ const slotContainerBase = {
   width: Style.adjust(170),
 };
 
+export const slotYuCoinPowerImageDimensions = {
+  height: Style.adjust(54),
+  width: Style.adjust(45),
+};
+
+export const slotStatusImageDimensions = {
+  height: Style.adjust(18),
+  width: Style.adjust(18),
+};
+
+export const rightIconImageDimensions = {
+  height: Style.adjust(52),
+  width: Style.adjust(43),
+};
+
 export const styles = StyleSheet.create({
   container: {
     alignItems: "flex-end",
@@ -67,46 +82,30 @@ export const styles = StyleSheet.create({
     backgroundColor: "#875EAD",
   },
   slotYucoinPowerWrapper: {
+    ...slotYuCoinPowerImageDimensions,
     alignItems: "center",
     justifyContent: "center",
-    height: Style.adjust(54),
-    width: Style.adjust(45),
     position: "absolute",
     zIndex: 3,
   },
   slotYucoinPowerImage: {
-    height: Style.adjust(54),
-    width: Style.adjust(45),
-    resizeMode: "contain",
     position: "absolute",
   },
   rightIconImageWrapper: {
-    height: Style.adjust(52),
-    width: Style.adjust(43),
-  },
-  rightIconImage: {
-    flex: 1,
-    width: null,
-    height: null,
-    resizeMode: "contain",
+    ...rightIconImageDimensions,
   },
   titleWrapper: {
     flex: 1,
     paddingLeft: Style.adjust(7),
   },
   slotStatusWrapper: {
+    ...slotStatusImageDimensions,
     alignItems: "center",
     justifyContent: "center",
-    height: Style.adjust(18),
-    width: Style.adjust(18),
     position: "absolute",
     zIndex: 3,
     right: Style.adjust(-9),
     top: Style.adjust(-9),
-  },
-  slotStatusImage: {
-    height: Style.adjust(18),
-    width: Style.adjust(18),
   },
   spacer: {
     height: Style.adjust(54),
